@@ -1,0 +1,114 @@
+# OS and editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*.orig
+
+# Local env and secrets
+.env
+.env.*
+**/.env
+**/.env.*
+env
+env.*
+*.env.server
+*.env.backup
+production.env
+rag.env
+rag.env.*
+rag-service/rag.env
+KOV/key.json/
+*.gserviceaccount.json
+
+# Logs and local outputs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+coverage/
+.nyc_output/
+
+# Backups and temp files
+*.bak
+*.tmp
+*.patch
+*.tgz
+backups/
+/tmp/
+generated/
+prisma/_backup_old/
+rag-service/storage.bak.*/
+safety_snapshots/
+
+# Codex / local review artifacts
+.codex/
+.playwright-mcp/
+*.codex_tmp
+*.segment.txt
+
+# Node / frontend build
+node_modules/
+.next/
+out/
+.turbo/
+.vercel/
+.eslintcache
+.pnpm-store/
+.npm/
+
+# Python / rag-service
+.venv/
+rag-service/.venv/
+rag-service/**/__pycache__/
+rag-service/.mypy_cache/
+rag-service/.pytest_cache/
+rag-service/.ruff_cache/
+rag-service/.ipynb_checkpoints/
+rag-service/.python-version
+rag-service/**/*.py[cod]
+rag-service/logs/
+
+# Local runtime data
+storage/
+rag-service/storage/
+.pm2/
+
+# Prisma SQLite leftovers
+prisma/dev.db
+prisma/dev.db-journal
+
+# Windows reserved device names
+/CON
+
+# CSS restructure: local style archives stay out of the repo
+app/styles/*.zip
+
+# Local-only e2e/test helper scripts (create local test accounts; never commit)
+scripts/tmp-*.mjs
+reports/css-snapshots/
+
+# CSS safe-loop: per-file before/after snapshot blobs (regenerable, can be large)
+reports/css-cleanup/state/
+
+# --- Redesign-repo puhas algus (2026-07-04): suured binaarid/artefaktid välja ---
+# Täisajalugu + need failid jäävad alles vanas arhiiv-repos (LauRRaud/sotsiaalai).
+# Videod (pole äpi koodis viidatud)
+*.mp4
+dev-video/
+# Ajalooline legacy-arhiiv (ainult git-ajaloos, mitte puus)
+app/(legacy).zip
+# Genereeritud CSS/audit-raportid (regenereeritavad, mahukad)
+reports/css-page-report/
+reports/jscpd/
+reports/jscpd-mobile-css/
+reports/css stukt/
+reports/css-token-audit.json
+reports/rag-graph-plan-2026-06-11.json
+reports/service-map-geocoding-review-2026-05-20.json
+
+# Demo-videod ei kuulu tarnesse (puhas GitHub-tarne, 07.07.2026)
+public/*.mp4

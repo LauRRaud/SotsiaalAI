@@ -1,0 +1,21 @@
+{
+  "docId": "REP-2024-002",
+  "collection_id": "active_workspace_default",
+  "title": "Teenuse kvaliteedijuhend",
+  "description": "Juhend teenuse kvaliteedi tagamiseks.",
+  "authors": ["Eesnimi Perenimi"],
+  "section": "Juhendid",
+  "year": 2024,
+  "audience": "SOCIAL_WORKER",
+  "tags": ["juhend", "kvaliteet"],
+  "language": "et",
+  "publisher": "Sotsiaalkindlustusamet",
+  "pageRange": "1-36",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "municipality_name": null,
+  "municipality_id": null,
+  "district_name": null,
+  "district_id": null,
+  "source_type": "file"
+}

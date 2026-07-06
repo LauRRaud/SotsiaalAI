@@ -1,0 +1,61 @@
+{
+  "excluded_slugs": [
+    "harku-vald"
+  ],
+  "municipalities": [
+    {
+      "municipality_name": "Jõgeva vald",
+      "slug": "jogeva-vald",
+      "municipality_id": "jogeva_vald",
+      "county": "Jõgevamaa"
+    },
+    {
+      "municipality_name": "Antsla vald",
+      "slug": "antsla-vald",
+      "municipality_id": "antsla_vald",
+      "county": "Võrumaa"
+    },
+    {
+      "municipality_name": "Anija vald",
+      "slug": "anija-vald",
+      "municipality_id": "anija_vald",
+      "county": "Harjumaa"
+    },
+    {
+      "municipality_name": "Alutaguse vald",
+      "slug": "alutaguse-vald",
+      "municipality_id": "alutaguse_vald",
+      "county": "Ida-Virumaa"
+    },
+    {
+      "municipality_name": "Elva vald",
+      "slug": "elva-vald",
+      "municipality_id": "elva_vald",
+      "county": "Tartumaa"
+    },
+    {
+      "municipality_name": "Häädemeeste vald",
+      "slug": "haademeeste-vald",
+      "municipality_id": "haademeeste_vald",
+      "county": "Pärnumaa"
+    },
+    {
+      "municipality_name": "Haapsalu linn",
+      "slug": "haapsalu-linn",
+      "municipality_id": "haapsalu_linn",
+      "county": "Läänemaa"
+    },
+    {
+      "municipality_name": "Hiiumaa vald",
+      "slug": "hiiumaa-vald",
+      "municipality_id": "hiiumaa_vald",
+      "county": "Hiiumaa"
+    },
+    {
+      "municipality_name": "Haljala vald",
+      "slug": "haljala-vald",
+      "municipality_id": "haljala_vald",
+      "county": "Lääne-Virumaa"
+    }
+  ]
+}

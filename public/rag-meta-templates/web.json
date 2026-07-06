@@ -1,0 +1,19 @@
+{
+  "docId": "WEB-2024-010",
+  "collection_id": "active_workspace_default",
+  "title": "Toetuste taotlemine",
+  "description": "Kodulehe juhis toetuse taotlemiseks.",
+  "section": "Toetused",
+  "year": 2024,
+  "audience": "CLIENT",
+  "tags": ["toetus", "taotlus"],
+  "language": "et",
+  "source_type": "url",
+  "source_url": "https://example.com/toetused",
+  "country": "EE",
+  "jurisdiction_level": "MUNICIPALITY",
+  "municipality_name": "Tallinn",
+  "municipality_id": null,
+  "district_name": null,
+  "district_id": null
+}

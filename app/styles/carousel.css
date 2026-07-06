@@ -1,0 +1,381 @@
+@layer components {
+/* ============================================================
+   Mattklaasist paneelide karussell (pilt 8/11 + tellija korrektuurid):
+   — nooled ekraani SERVADES, veidi suuremad;
+   — üks samm korraga, rahulik settimine; peidetud kaardid EI libise
+     nähtavalt üle rea (transform ilma üleminekuta);
+   — fookuskaardi kuma süttib VIITEGA pärast settimist (mitte kahel
+     kaardil korraga);
+   — servad "liquid glass": pehme gradient-rõngas maskiga, mitte
+     kõva 1px joon, mis 3D-pöördel pikslisse läheb;
+   — kaartidel kontuurikoon + nimi;
+   — käivitusfaasid: klaasid enne (faas 1), sisu järele (faas 2).
+   Üks 3D-tasand: perspective siin, kaardid otse all (iOS).
+   ============================================================ */
+
+.gc {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.gc-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1500px;
+  perspective-origin: 50% 44%;
+  touch-action: pan-y;
+  --gc-spacing: calc(var(--gc-w) * 1.06);
+  --drag: 0px;
+}
+
+.gc-item {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: var(--gc-w);
+  aspect-ratio: 0.72;
+  margin: 0;
+  /* Sissepoole pööratud küljed; külgmised selgelt väiksemad */
+  transform: translate(-50%, -50%)
+    translate3d(calc(var(--pos) * var(--gc-spacing) + var(--drag)), 0, 0)
+    rotateY(calc(var(--pos) * 19deg))
+    scale(calc(1 - min(var(--abs), 2.2) * 0.19));
+  transition: transform 860ms var(--ease-soft), opacity 640ms var(--ease-soft);
+  opacity: 1;
+  will-change: transform;
+}
+/* Rea peidus olevad kaardid: nähtamatud ja parkides serva taga
+   (--pos on JS-is klammerdatud ±1.4 peale) — liikumine võib olla
+   sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. */
+.gc-item[data-hidden="1"] {
+  opacity: 0;
+  pointer-events: none;
+}
+.gc-list[data-dragging="1"] .gc-item {
+  transition: none;
+}
+
+/* ---------- Käivituse faas 1: klaasid ilmuvad omal kohal, tühjadena,
+   keskmine esimesena (~180 ms sammuga viide). MITTE libisemist. ---------- */
+@keyframes gc-ignite {
+  from {
+    opacity: 0;
+  }
+}
+.room[data-power="igniting"] .gc-item:not([data-hidden="1"]),
+.room[data-power="on"] .gc-item:not([data-hidden="1"]) {
+  animation: gc-ignite 1100ms var(--ease-soft) backwards;
+  animation-delay: calc(var(--abs) * 240ms);
+}
+html[data-reduce-motion="1"] .gc-item {
+  animation: none !important;
+}
+
+/* ---------- Kaart: liquid glass, pehme gradient-serv ---------- */
+.gc-card {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 1.15rem;
+  border-radius: clamp(20px, 2.4vw, 30px);
+  /* Tellija 06.07: läbipaistvam ja MATIM — nagu 3D-prillide klaas,
+     tume toon ilma suure läiketa; ruum kumab selgelt läbi */
+  background:
+    linear-gradient(
+      165deg,
+      rgba(44, 39, 34, 0.46) 0%,
+      rgba(32, 28, 25, 0.52) 55%,
+      rgba(24, 21, 19, 0.58) 100%
+    );
+  border: none;
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.09),
+    var(--glass-shadow);
+  color: var(--room-text);
+  text-decoration: none;
+  overflow: hidden;
+  /* NB: box-shadow'd EI animeerita — varjulistide üleminek pani
+     aluvarju virvendama (tellija 06.07); kuma elab .gc-item::before'is */
+}
+
+/* Läige AINULT valguse-poolses ülanurgas (aknad üleval-vasakul),
+   väike ja kiirelt hajuv — 3D-prillid ei peegelda suurt midagi */
+.gc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 90% at 12% 0%,
+    rgba(255, 250, 242, 0.1),
+    rgba(255, 250, 242, 0.03) 34%,
+    transparent 56%
+  );
+  pointer-events: none;
+}
+
+/* Liquid-serv: pehme gradient-rõngas maskiga (sujuv ka 3D-pöördel);
+   heledaim valguse-poolne serv, ülejäänu vaikne (matt üldmulje) */
+.gc-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.3px;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(255, 255, 255, 0.12) 32%,
+    rgba(255, 255, 255, 0.05) 58%,
+    rgba(255, 255, 255, 0.22) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-soft);
+}
+
+/* Fookuskaardi kuma: ERALDI kiht, mille OPACITY süttib viitega pärast
+   pöörde settimist ja kaotajal kustub kohe — mitte box-shadow' vahetus,
+   mis interpoleeris eri pikkusega varjuliste ja pani varju vilkuma. */
+.gc-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: clamp(20px, 2.4vw, 30px);
+  box-shadow:
+    0 0 22px rgba(255, 244, 228, 0.1),
+    0 0 52px rgba(255, 238, 216, 0.06);
+  opacity: 0;
+  transition: opacity 260ms var(--ease-soft) 0ms;
+  pointer-events: none;
+}
+.gc-item[data-center="1"]::before {
+  opacity: 1;
+  transition: opacity 480ms var(--ease-soft) 560ms;
+}
+
+/* ---------- Ikoon + nimi (käivituse faas 2: sisu joonistub järele) ---------- */
+.gc-icon {
+  display: grid;
+  place-items: center;
+  color: var(--room-text); /* sama värv mis tekstil (tellija) */
+}
+/* Tellija 07.07: ikoonid VEEL suuremad ja õhulisemad — mõõt üles,
+   kontuurijoon peenemaks (stroke 1.5 → 1.25 CSS-iga üle presentats.
+   atribuudi; kõik CardIcons glüüfid on joonepõhised, ka PIN-täpid).
+   NB: külgkaardil EI ole eraldi väiksemat mõõtu — sisu kahaneb
+   SUJUVALT kaardi enda transform-skaalaga (diskreetne suurusehüpe
+   fookusest lahkudes oli tellija jaoks häiriv); ainult toon pehmeneb. */
+.gc-icon svg {
+  width: clamp(4rem, 5.6vw, 5.3rem);
+  height: clamp(4rem, 5.6vw, 5.3rem);
+}
+.gc-icon svg * {
+  stroke-width: 1.25;
+}
+.gc-item[data-center="0"] .gc-icon {
+  color: var(--room-text-soft);
+}
+.gc-label {
+  font-family: var(--font-ui);
+  font-weight: 480;
+  font-size: clamp(0.98rem, 0.82rem + 0.65vw, 1.3rem);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  text-align: center;
+  text-wrap: balance;
+  padding: 0 1.1em 0 calc(1.1em + var(--track-caps));
+  text-shadow: 0 1px 14px rgba(10, 5, 3, 0.55);
+}
+.gc-item[data-center="0"] .gc-label {
+  color: var(--room-text-soft);
+}
+.gc-label[data-long="1"] {
+  letter-spacing: 0.13em;
+  font-size: clamp(0.86rem, 0.74rem + 0.48vw, 1.08rem);
+  padding: 0 1em 0 calc(1em + 0.13em);
+}
+/* Faas 2: sisu ilmub pärast klaasi. VÄRAV = cardsReady, MITTE power
+   (tellija 06.07): cardsReady lülitub alles SAI-vahepala kadumise järel,
+   seega ikoonid/sildid EI kattu enam vahepala-logoga. Kest (gc-item)
+   ilmub varem (power igniting/on); sisu siin, väikese kese-esimese
+   astaki (var(--abs)) ja lühikese üldviitega. Toon sulab viiteta kaasa. */
+.gc-icon,
+.gc-label {
+  opacity: 0;
+  transition:
+    opacity 620ms var(--ease-soft) calc(var(--abs) * 160ms + 80ms),
+    color 640ms var(--ease-soft) 0ms;
+}
+.room[data-power="on"][data-cards-ready="1"] .gc-icon,
+.room[data-power="on"][data-cards-ready="1"] .gc-label {
+  opacity: 1;
+}
+html[data-reduce-motion="1"] .gc-icon,
+html[data-reduce-motion="1"] .gc-label {
+  transition: none;
+  opacity: 1;
+}
+
+.gc-card:focus-visible {
+  box-shadow:
+    var(--glass-rim-glow),
+    var(--glass-shadow),
+    var(--focus-ring);
+}
+
+/* ---------- Nooled: ekraani SERVADES, veidi suuremad ---------- */
+.gc-arrow {
+  position: absolute;
+  top: 46%;
+  translate: 0 -50%;
+  z-index: 60;
+  width: 3.6rem;
+  height: 3.6rem;
+  --icon-size: 1.6rem;
+  color: var(--room-text-soft);
+  opacity: 0.85;
+}
+.gc-arrow:hover {
+  opacity: 1;
+  color: var(--room-text);
+}
+/* Optiline tsentreering (tellija): chevroni KOLMNURGA raskuskese
+   nupu keskele — bbox-keskjoondus jätab tipu keskele ja keha kõrvale.
+   Kolmnurga raskuskese on 1/6 glüüfi laiusest tipu poolt eemal.
+   Asukoht (tellija 07.07): OTSE külgkaardi kõrval — arvutatud kaardi
+   välisservast (keskjoon + 1.56 × kaardi laius), mitte ekraani servast. */
+.gc-arrow--left {
+  left: auto;
+  right: calc(50% + var(--gc-w) * 1.56 + 0.9rem);
+}
+.gc-arrow--left svg {
+  translate: -12%;
+}
+.gc-arrow--right {
+  right: auto;
+  left: calc(50% + var(--gc-w) * 1.56 + 0.9rem);
+}
+.gc-arrow--right svg {
+  translate: 12%;
+}
+
+/* ---------- Asukohaviide (punktid; >5 paneeli) ---------- */
+.gc-dots {
+  position: absolute;
+  left: 50%;
+  bottom: max(7.5%, env(safe-area-inset-bottom, 0px) + 4.5%);
+  translate: -50%;
+  display: flex;
+  gap: 0.6rem;
+}
+.gc-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.26);
+  transition:
+    background-color var(--dur-med) var(--ease-soft),
+    box-shadow var(--dur-med) var(--ease-soft),
+    scale var(--dur-med) var(--ease-soft);
+}
+.gc-dot[data-on="1"] {
+  background: var(--text-warm);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  scale: 1.25;
+}
+
+/* ---------- Mobiil ---------- */
+@media (max-width: 768px) {
+  :root {
+    --gc-w: min(60vw, 16.5rem); /* rem: allub ekraaniprofiilile */
+  }
+  .gc-list {
+    --gc-spacing: calc(var(--gc-w) * 1.1);
+  }
+  .gc-item {
+    top: 44%;
+  }
+  .gc-arrow {
+    display: none; /* svaip + punktid */
+  }
+  .gc-dots {
+    bottom: max(11%, env(safe-area-inset-bottom, 0px) + 8%);
+  }
+}
+
+/* Login avatud VÕI kaardi-leht (pin/e-post): keskmine kaart annab
+   koha sisule, küljed jäävad konteksti, kuid puhkavad */
+/* Login / info-modal (Kontakt, Paigalda) / kaardi-leht: keskkaart kaob
+   HETKEGA — sisu vahetub kohapeal, raam ei liigu, alt ei paista hajuvat
+   kaarti (tellija 06.07 öö) */
+.room[data-login-open="1"] .gc-item[data-center="1"],
+.room[data-info-open="1"] .gc-item[data-center="1"],
+.room[data-card-page="1"] .gc-item[data-center="1"] {
+  opacity: 0;
+  transition: none;
+}
+/* KOKKULEPE (tellija 07.07): uue akna (login/info/kaardi-leht) avanedes
+   KÜLJEKAARDID EI MUUTU vasakul ega paremal — nad jäävad täpselt oma
+   olekusse. Selle asemel läheb RUUM blurri (nagu kasutusjuhendi lehel);
+   vt room.css .room[data-login-open]/.room[data-info-open] .room-stage.
+   Nii ei teki "topeltklaasi" (login klaasil paistis terav taust läbi),
+   ilma küljekaarte muutmata. Pargitud kaardid jäävad vaikimisi peidus
+   (.gc-item[data-hidden="1"]{opacity:0}). */
+.room[data-info-open="1"] .gc-arrow,
+.room[data-info-open="1"] .gc-dots {
+  opacity: 0;
+}
+.room[data-info-open="1"] .room-carousel-wrap {
+  pointer-events: none !important;
+}
+.room[data-login-open="1"] .room-carousel-wrap,
+.room[data-login-open="1"] .gc-arrow,
+.room[data-login-open="1"] .gc-dots,
+.room[data-card-page="1"] .room-carousel-wrap,
+.room[data-card-page="1"] .gc-arrow,
+.room[data-card-page="1"] .gc-dots {
+  pointer-events: none !important;
+}
+.room[data-login-open="1"] .gc-arrow,
+.room[data-login-open="1"] .gc-dots,
+.room[data-card-page="1"] .gc-arrow,
+.room[data-card-page="1"] .gc-dots {
+  opacity: 0;
+}
+
+/* Tellija: fookus-modal (login/info/kaardi-leht) avanedes lähevad
+   KÜLJEKAARDID SAMUTI blurri — nagu taust (ruumi-lava). Varem jäid
+   küljekaardid teravaks; nüüd taanduvad koos ruumiga. Login-kaart ise
+   elab eraldi kihis (#login-modal, portal body) ega blurru. */
+.room[data-login-open="1"] .room-carousel-wrap,
+.room[data-info-open="1"] .room-carousel-wrap,
+.room[data-card-page="1"] .room-carousel-wrap {
+  filter: blur(3px);
+}
+
+/* Kõrgkontrast: kuma maha, selged servad */
+html[data-contrast="hc"] .gc-card::after {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2px;
+}
+html[data-contrast="hc"] .gc-dot {
+  background: rgba(255, 255, 255, 0.45);
+}
+html[data-contrast="hc"] .gc-dot[data-on="1"] {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+}

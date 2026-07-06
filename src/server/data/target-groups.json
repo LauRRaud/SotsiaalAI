@@ -1,0 +1,37 @@
+[
+  {
+    "code": "CHILD",
+    "labelEt": "Laps",
+    "labelEn": "Child",
+    "labelRu": "Ребёнок",
+    "isActive": true
+  },
+  {
+    "code": "YOUTH",
+    "labelEt": "Noor",
+    "labelEn": "Youth",
+    "labelRu": "Молодёжь",
+    "isActive": true
+  },
+  {
+    "code": "ADULT",
+    "labelEt": "Täiskasvanu",
+    "labelEn": "Adult",
+    "labelRu": "Взрослый",
+    "isActive": true
+  },
+  {
+    "code": "ELDER",
+    "labelEt": "Eakas",
+    "labelEn": "Older person",
+    "labelRu": "Пожилой человек",
+    "isActive": true
+  },
+  {
+    "code": "DISABILITY",
+    "labelEt": "Erivajadus",
+    "labelEn": "Disability or special need",
+    "labelRu": "Инвалидность или особая потребность",
+    "isActive": true
+  }
+]

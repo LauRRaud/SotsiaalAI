@@ -1,0 +1,42 @@
+{
+  "docId": "DOC-2024-014",
+  "articles": [
+    {
+      "title": "Koduhoolduse teenus",
+      "description": "Ulevaade teenuse tingimustest.",
+      "authors": ["Eesnimi Perenimi"],
+      "section": "Teenused",
+      "year": 2024,
+      "journalTitle": "Vallaleht",
+      "issueLabel": "2024-01",
+      "articleId": "ART-014",
+      "audience": "SOCIAL_WORKER",
+      "tags": ["koduhooldus", "teenused"],
+      "pageRange": "12-18",
+      "collection_id": "active_workspace_default",
+      "country": "EE",
+      "jurisdiction_level": "MUNICIPALITY",
+      "municipality_name": "Tallinn",
+      "municipality_id": null,
+      "district_name": null,
+      "district_id": null
+    },
+    {
+      "title": "Toetused ja nouded",
+      "description": "Luhiulevaade toetuste tingimustest.",
+      "section": "Toetused",
+      "year": 2024,
+      "audience": "CLIENT",
+      "tags": ["toetus", "tingimused"],
+      "startPage": 19,
+      "endPage": 21,
+      "collection_id": "active_workspace_default",
+      "country": "EE",
+      "jurisdiction_level": "MUNICIPALITY",
+      "municipality_name": "Tallinn",
+      "municipality_id": null,
+      "district_name": null,
+      "district_id": null
+    }
+  ]
+}

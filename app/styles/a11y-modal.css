@@ -1,0 +1,126 @@
+@layer components {
+/* ============================================================
+   Ligipääsetavuse modal (esmakülastuse eelistused + profiil).
+   Tellija 06.07 öö: sisu elab KESKMISE KAARDI geomeetrias (sama
+   laius/külgsuhe/asukoht mis karussellikaardil), ILMA pealkirjata,
+   LIHTNE kaart (ei läikeid ega helendavat rõngast), sisu kerib
+   üles-alla ja LÕIKUB täpselt kaardi servast, scrollbar peidus.
+   Taust (ruum + karussell) hägustub kergelt; kaart ise ILMA blurita.
+   Haagid: [role="dialog"][aria-labelledby="a11y-title"] + .csp-step.
+   ============================================================ */
+
+/* Taustkate — kerge hämardus + ÕRN hägu (ruum "astub tahaplaanile") */
+div[role="presentation"][aria-hidden="true"] {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-modal) - 1);
+  background: rgba(8, 6, 5, 0.32);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+
+/* Kaart: sama geomeetria ja sama matt klaas mis fookuskaardil */
+[role="dialog"][aria-labelledby="a11y-title"] {
+  position: fixed;
+  left: 50%;
+  top: 46%;
+  translate: -50% -50%;
+  z-index: var(--z-modal);
+  width: min(var(--gc-w), calc(100vw - 1.5rem));
+  /* Kõrgus SISU järgi kuni ekraani-lakini, MITTE jäik aspect-ratio:
+     suurel fondil (Suur/Väga suur) lõikas 0.72-suhe sisu ära ja jättis
+     tühja ala — nüüd kaart kasvab sisuga ja kerib puhtalt (tellija 07.07). */
+  height: auto;
+  min-height: min(24rem, 62lvh);
+  max-height: min(88lvh, 720px);
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* sisu lõikub täpselt servast */
+  border-radius: clamp(20px, 2.4vw, 30px);
+  background: linear-gradient(
+    165deg,
+    rgba(44, 39, 34, 0.52) 0%,
+    rgba(32, 28, 25, 0.58) 55%,
+    rgba(24, 21, 19, 0.64) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.09),
+    var(--glass-shadow);
+  color: var(--room-text);
+  overflow: hidden;
+  animation: a11y-card-in 480ms var(--ease-soft) backwards;
+}
+/* Ilmub PAIGAL (fade + kerge kasv) — mitte diagonaalis: scale-omadus
+   ei sega translate-omadust (vana login-shell-in transform liitis
+   translatsiooni topelt ja kaart libises nurgast). */
+@keyframes a11y-card-in {
+  from {
+    opacity: 0;
+    scale: 0.97;
+  }
+}
+
+/* Pealkirja EI kuvata (tellija) — jääb ekraanilugejale */
+#a11y-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keritav sisu: algab ülevalt, ühtlane polster, scrollbar peidus */
+[role="dialog"][aria-labelledby="a11y-title"] > div[tabindex="0"] {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.2rem 1rem 1.2rem;
+  scrollbar-width: none;
+}
+[role="dialog"][aria-labelledby="a11y-title"] > div[tabindex="0"]::-webkit-scrollbar {
+  display: none;
+}
+
+.csp-step {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  border: none;
+}
+.csp-step legend {
+  padding: 0 0 0.55em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--room-text-dim);
+}
+.csp-step > div {
+  display: grid;
+  gap: 0.55rem;
+}
+
+/* Valikukaardid (OptionCard) modalis: liquid-glass materjal tuleb
+   globaalselt (panel.css label[data-control-type]) — siin AINULT
+   paigutus (tekst keskele), et pind jääks samaks mis nupud. */
+.csp-step label[data-control-type] {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Salvesta-nupp kasutab globaalset liquid-glass primary-nuppu (glass.css)
+   — eraldi ülekirjutust EI ole, et pind oleks sama mis mujal. */
+
+/* Salvesta-samm */
+.csp-step:last-child,
+div.csp-step {
+  display: grid;
+  justify-items: center;
+  padding-bottom: 0.4rem;
+}
+
+}

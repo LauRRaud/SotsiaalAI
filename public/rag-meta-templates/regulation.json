@@ -1,0 +1,22 @@
+{
+  "docId": "LAW-2023-005",
+  "collection_id": "active_workspace_default",
+  "title": "Sotsiaalhoolekande seadus",
+  "description": "Seaduse luhikokkuvote ja olulisemad punktid.",
+  "section": "Seadusandlus",
+  "year": 2023,
+  "audience": "BOTH",
+  "tags": ["seadus", "hoolekanne"],
+  "language": "et",
+  "publisher": "Riigi Teataja",
+  "regulationRefs": ["RT I, 01.01.2023, 1"],
+  "level": "seadus",
+  "country": "EE",
+  "jurisdiction_level": "NATIONAL",
+  "municipality_name": null,
+  "municipality_id": null,
+  "district_name": null,
+  "district_id": null,
+  "source_type": "url",
+  "source_url": "https://www.riigiteataja.ee"
+}

@@ -1,0 +1,979 @@
+{
+  "sourceName": "ESTA mentorlus",
+  "checkedAt": "2026-05-24",
+  "statusPolicy": "All records are imported as PENDING_CONSENT / EXTERNAL_REFERENCE. They must not be shown as active SotsiaalAI mentors without consent.",
+  "imagePolicy": "Do not copy or display mentor photos in SotsiaalAI without separate consent. Use sourceUrl / externalProfileUrl to view the original ESTA profile.",
+  "contactPolicy": "Contact data is collected only from public ESTA profile pages and must be treated as admin-only until separate consent and ACTIVE status exist.",
+  "mentors": [
+    {
+      "displayName": "Kairit Lindmäe",
+      "slug": "kairit-lindmae",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/kairit-lindmae/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "riiklik perelepitaja",
+      "organization": "Sotsiaalkindlustusamet",
+      "roleDescription": "Sotsiaalvaldkonna professionaal ja riiklik perelepitaja.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Karjäärialased eesmärgid ja enesearneg",
+        "Kriisijuhtimine",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö kogukonnas (sh ökosotsiaaltöö)",
+        "Sotsiaaltöö laste ja peredega",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon",
+        "Sotsiaaltöö tööealistega",
+        "Sotsiaaltöö tööotsijatega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen kogenud sotsiaaltöö professionaal ja rakendusliku sotsiaaltöö magister. Minu töös on keskne arusaam, et inimesel on olemas vajalikud ressursid ja võimekus oma arengut juhtida ning mentorina loon turvalise ja hinnanguvaba ruumi, mis toetab eneserefleksiooni, selguse tekkimist ja teadlikke valikuid. Kasutan süsteemset lähenemist, sokraatilist küsitlemist ja refleksiooni ning väärtustan vastutuse võtmist ja sisemist motivatsiooni. Mul on üle 30 aasta kogemust erinevatel tasanditel: olen töötanud erivajadustega laste ja täiskasvanutega, eakate ja töötutega ning sotsiaalvaldkonna juhina kohalikus omavalitsuses, olen koolitanud ja juhendanud spetsialiste üle Eesti. Pikaajaline praktiline töö, juhendamine ja pidev enesetäiendamine on kujundanud minu professionaalse vilumuse.\nTöökogemused hõlmavad riikliku perelepitaja rolli (Sotsiaalkindlustusamet, 2022–…), psühhosotsiaalse nõustaja ja koolitaja tööd ning mitmesuguseid juhtimis- ja arendusrolle kohalikes omavalitsustes ja organisatsioonides.",
+      "bioShort": "Rakendusliku sotsiaaltöö magister ja kogenud sotsiaalvaldkonna juht ning nõustaja, kelle mentorlus toetab eneserefleksiooni ja teadlikke valikuid ning põhineb süsteemsel lähenemisel ja partnerluse põhimõttel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Töökogemus sisaldab rolli riikliku perelepitajana (Sotsiaalkindlustusamet 2022–…), juhatuse liiget ja nõustajat ettevõttes Eneseteadvus OÜ (alates 2020), erinevaid juhendaja- ja koolitajarolle sotsiaalvaldkonnas, kohaliku omavalitsuse juhtimispositsioone Saaremaa vallavalitsuses ja Kuressaare linnavalitsuses ning mitmeid teisi rolle sotsiaal- ja kogukonnatöös.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, kriisijuhtimisele ja karjääriarengule. Oluline on juhi eneseteadlikkus, enesehoid ja süsteemne mõtlemine. Toetab menteesid erivajadustega inimeste, kogukonna ja perega seotud sotsiaaltöös, tervishoiu ja rehabilitatsiooniteenuste arendamisel ning tööealiste ja tööotsijatega töötamisel.",
+      "publicContact": {
+        "email": "kairit.lindmae@gmail.com",
+        "phone": "54512202",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/kairit-lindmae/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Marelle Erlenheim",
+      "slug": "marelle-erlenheim",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/marelle-erlenheim/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "sotsiaalvaldkonna juht ja praktik",
+      "organization": "",
+      "roleDescription": "Kogenud juht ja praktik sotsiaal- ja turvalisuse valdkonnas, toetab juhte ja spetsialiste.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Kriisijuhtimine",
+        "Sotsiaaltöö kogukonnas",
+        "Sotsiaaltöö laste ja peredega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Konkreetse olukorra lahendamine",
+        "Tööalaste muutuste toetamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen kogenud juht ja praktik, kellele on oluline, et sotsiaaltöö tegijad ei jääks oma töös toeta. Olen töötanud sotsiaal- ja turvalisuse valdkonnas ning teinud tihedat koostööd erinevate partneritega. Mentorina toetan juhte ja spetsialiste, kes tahavad oma rollis tegutseda teadlikumalt ja suurema kindlusega. Usun partnerlusse – koht, kus saab ausalt mõelda, küsida ja katsetada.\nNäen, et saan kasulik olla juhtimises sotsiaalvaldkonnas, kriisijuhtimises, laste ja peredega seotud teenuste juhtimises ning kogukonnapõhiste lahenduste kujundamises.",
+      "bioShort": "Kogenud sotsiaal- ja turvalisuse valdkonna juht ning praktik, kes toetab juhte ja spetsialiste teadlikuma ja süsteemsema juhtimise ning kriisijuhtimise teemadel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Omab pikaajalist kogemust avalikus sektoris (16 aastat finantsjuht, 5 aastat Sotsiaalministeeriumi kantsler, 5 aastat Saue valla sotsiaalosakonna juhataja) ning on töötanud nii era- kui avalikus sektoris ja kaitseväes. Tunnustatud juht ja koolitaja.",
+      "mentoringFocusSummary": "Mentor toetab juhte sotsiaalvaldkonna juhtimises, kriisijuhtimises, kogukonna teenuste arendamisel ja laste ja peredega seotud teenuste juhtimisel. Keskendub teadliku ja süsteemse juhtimispraktika kujundamisele ja tööalaste muutuste toetamisele.",
+      "publicContact": {
+        "email": "merlenheim@hotmail.com",
+        "phone": "5105923",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/marelle-erlenheim/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Ille Koppel",
+      "slug": "ille-koppel",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/ille-koppel/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "Vinni Perekodu juhataja",
+      "organization": "Vinni Vallavalitsus",
+      "roleDescription": "Laste ja peredega seotud asutuse juht ning mentor.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Karjäärialased eesmärgid ja enesearneg",
+        "Sotsiaaltöö laste ja peredega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Mentorina pakun toetavat ja mõtestatud koostööd neile, kes töötavad sotsiaalvaldkonnas laste ja peredega või juhivad meeskondi vaimselt nõudlikus töökeskkonnas. Olen tegutsenud asendushoolduse valdkonnas alates 2018. aastast ning töötanud nii majandusjuhataja kui juhatajana. Täna juhin Vinni Perekodu ning tean omast kogemusest, kui keeruline ja samas tähendusrikas see töö on. Minu mentorluse keskmes on turvalise ja väärtustel põhineva töökeskkonna loomine, enesehoid ning organisatsioonisisese enesehoiusüsteemi kujundamine. Väärtustan dialoogi ja vastastikust õppimist ning pakun mõtlemisruumi, peegeldust ja julgustust, et inimene saaks oma rollis kindlamalt tegutseda.",
+      "bioShort": "Asendushoolduse valdkonnas kogenud Vinni Perekodu juhataja, kelle mentorlus keskendub turvalise töökeskkonna, enesehoiu ja meeskonna kestlikkuse arendamisele.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Töötanud Vinni Perekodus juhatajana (2024–…), majandusjuhatajana (2018–2024) ning varem personalijuhina, juhiabina ja internetipunkti juhatajana. Omab kogemust raamatupidaja ja majandusarvestuse valdkonnas ning on pikaaegselt tegutsenud kogukonna arendamise ja projektitööga.",
+      "mentoringFocusSummary": "Mentor toetab juhte ja spetsialiste laste ja peredega seotud sotsiaaltöös, keskendudes juhtimisele sotsiaalvaldkonnas, enesehoidule ning kvaliteetse juhtimise ja organisatsiooni enesehoiusüsteemide arendamisele.",
+      "publicContact": {
+        "email": "ille.koppel@gmail.com",
+        "phone": "53423936",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/ille-koppel/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Kadri Koppel",
+      "slug": "kadri-koppel",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/kadri-koppel/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "teenuste juht",
+      "organization": "MTÜ Iseseisev Elu",
+      "roleDescription": "MTÜ Iseseisev Elu juhatuse liige ja teenuste juht",
+      "fields": [
+        "Kriisijuhtimine",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö täisealistega",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Kriisijuhtimine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Sotsiaaltöö tervishoius (tervi)",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen sotsiaaltöö magistrikraadiga spetsialist, kelle ligi 25‑aastane töökogemus ulatub sotsiaaltööst ehituseni ning hõlmab tööd ministeeriumist eraettevõtjani. Minu mitmekülgne pagas aitab leida loomingulisi lahendusi ja näha, et ei ole olemas lahendamatuid olukordi – vahel ei pruugi meile lihtsalt olemasolev lahendus meeldida. Väärtustan arengut ja otsin uusi võimalusi enese arendamiseks, jagades oma kogemusi teistega.",
+      "bioShort": "Mitmekülgse töökogemusega sotsiaaltöö magistrikraadiga teenuste juht, kes leiab loomingulisi lahendusi ja usub, et kõik olukorrad on lahendatavad.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Töötanud MTÜ Iseseisev Elu teenuste juhina (2021–…), Tartu Tervishoiu Kõrgkooli külalisõppejõuna (alates 2019), Hoolekandeteenuste AS tiimijuhina (2020–2021), eraettevõtjana stressijuhtimise koolitajana ning varasemalt ostujuhina, struktuuritoetuste nõunikuna ja spetsialistina Sotsiaalministeeriumis.",
+      "mentoringFocusSummary": "Mentor aitab kriisijuhtimises, sotsiaaltöös erivajadustega ja täisealistega ning sotsiaaltöö tööealiste ja täisealiste valdkondades. Keskendub sotsiaalvaldkonna juhtimisele, karjääri ja enesearengu eesmärkide seadmisel, konkreetsete olukordade lahendamisel ja organisatsioonisisese enesehoiusüsteemi loomisele.",
+      "publicContact": {
+        "email": "Kadri.Koppel@mail.ee",
+        "phone": "521 7488",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/kadri-koppel/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Marina Runno",
+      "slug": "marina-runno",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/marina-runno/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "Koduteenuse osakonna juht",
+      "organization": "Tallinna Koduteenuse Keskus",
+      "roleDescription": "Tallinna Koduteenuse Keskuse koduteenuse osakonna juht, varasem kogemus kogukonnatervishoius ja juhtimises.",
+      "fields": [
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö kogukonnaga",
+        "Sotsiaaltöö kogukonnas (sh ökosotsiaaltöö)",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon"
+      ],
+      "topics": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Juhtimiskvaliteedi edendamine",
+        "Konkreetse olukorra lahendamine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Sotsiaaltöö tervishoius",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE",
+        "AUDIO"
+      ],
+      "bioFull": "Minu eesmärk on mentorina olla motiveeriv ning toetada mentee enesearengu võimaluste leidmisel. Pean lugu usalduslikust partnerlusest ja usun, et mentori tugi on eriti oluline organisatsiooni töökorralduse muutuste ajal. Soovin jagada oma kogemust ja olla partneriks ja peegliks ning aidata juhi läbipõlemise ennetamisel või kriisis.\nOlen alustanud tööelu velskrina väikeses vallas ning töötanud üle 25 aasta sotsiaalvaldkonnas, läbides kohaliku omavalitsuse, riigi tasandi peaspetsialisti ja poliitika juhi rollid. Olen viie aasta jooksul juhtinud Käo Tugikeskust ning töötan praegu Tallinna Koduteenuse Keskuse koduteenuse osakonna juhina.",
+      "bioShort": "Kogenud kogukonnatervishoiu ja sotsiaalvaldkonna juht, kes toetab menteesid muutuste juhtimisel, juhtide läbipõlemise ennetamisel ja teenuste arendamisel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Karjääri algus küla tohtrina ja velskrina, üle 25 aasta kogemust sotsiaalvaldkonnas. On töötanud kohaliku omavalitsuse sotsiaaltöötajana, riigi tasandil peaspetsialisti ja poliitika juhina, käinud Kaitseliidus ja Õhuväes, olnud Käo Tugikeskuse juht ning on praegu Tallinna Koduteenuse Keskuse koduteenuse osakonna juht.",
+      "mentoringFocusSummary": "Mentor toetab eakate ja erivajadustega inimestega seotud sotsiaaltööd, kogukonna- ja tervishoiuteenuste juhtimist ning kriisisituatsioonide lahendamist. Fookus on süsteemsel juhtimisel, enesehoidul ja parimate praktikate jagamisel.",
+      "publicContact": {
+        "email": "marina.runno@gmail.com",
+        "phone": "5149827",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/marina-runno/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Keiu Talve",
+      "slug": "keiu-talve",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/keiu-talve/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "kvaliteedi ja teenuste juht, juhatuse liige",
+      "organization": "Südamekodud AS",
+      "roleDescription": "Juhatuse liige ja kvaliteedi- ning teenuste juht Eesti suurimas hooldusteenuseid osutavas ettevõttes.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Tööalaste muutuste toetamine"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [
+        "eesti",
+        "inglise"
+      ],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen ebatraditsiooniline sotsiaalvaldkonna juht, kuna minu tööelu ei alanud sotsiaaltööst. Karjäär on kulgenud haridus- ja sotsiaalvaldkonna piirimaadel, põigetega riigiametisse ja erasektorisse. Suureks kasvuperioodiks pean Riigikantselei tippjuhi arenguprogrammi ning tööd Euroopa kvaliteedimudeliga. Olen saanud teadmisi muutuste juhtimisest ja universaalsetest juhtimispõhimõtetest ning usun, et juhtide peamine töö on muutuste juhtimine. Olen otsekohene ja tulevikku vaatav mentor, kes sobib inimestele, kellel on kindel siht ja kes vajavad abi oma eesmärkide saavutamisel või soovivad oma teekonnale raputust. Praegu juhin Eesti suurima hooldusteenuseid osutava ettevõtte teenuseid ja kvaliteeti, olen Innostep OÜ asutaja ning oman kogemust riigikontrolli auditi projektijuhina ja Euroopa kvaliteedimudeli koordinaatorina.",
+      "bioShort": "Ebatraditsiooniline sotsiaalvaldkonna juht, kes aitab juhte muutuste juhtimises ja kvaliteedi edendamises ning tegutseb kvaliteedi ja teenuste juhina suurimas hooldusteenuseid osutavas ettevõttes.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Südamekodud AS kvaliteedi ja teenuste juht, juhatuse liige (2024–…), INNOSTEP OÜ asutaja (alates 2021), Eesti Kvaliteediühingu juhatuse liige (2019–2022), Riigikontrolli auditi projektijuht (2019–2021), Astangu Kutserehabilitatsiooni Keskuse teenuse disaini projektijuht ja Euroopa kvaliteedimudeli koordinaator (2013–2023).",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, kvaliteedi edendamisele, karjääri ja enesearengu eesmärkide seadmisel ning organisatsioonisisese enesehoiu ja tööalaste muutuste toetamisele.",
+      "publicContact": {
+        "email": "keiu@innostep.ee",
+        "phone": "5097258",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/keiu-talve/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Maarja Võrk",
+      "slug": "maarja-vork",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/maarja-vork/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "asutaja ja teenusejuht",
+      "organization": "MTÜ Töömaja",
+      "roleDescription": "Kogukonnapõhise rehabilitatsioonikeskuse Töömaja asutaja ja teenusejuht.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Karjäärialased eesmärgid ja enesearneg",
+        "Sotsiaaltöö kodututega",
+        "Sotsiaaltöö kogukonnas (sh ökosotsiaaltöö)",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Konkreetse olukorra lahendamine",
+        "Parimate praktikate kogemuspõhine jagamine"
+      ],
+      "languages": [],
+      "formats": [
+        "ONLINE",
+        "AUDIO",
+        "IN_PERSON"
+      ],
+      "bioFull": "Olen MTÜ Töömaja asutaja ja kogukonnapõhise rehabilitatsioonikeskuse arendaja. Koos meeskonnaga oleme loonud sõltuvusprobleemidest taastuvatele inimestele suunatud keskuse, mis toetub teaduspõhistele lähenemistele ja valdkonnakogemusele. Tegutsen igapäevaselt klienditöö ja teenuste arendamise piiril ning olen aastaid vedanud muutusi ja kujundanud koostööd kohalike omavalitsuste ja riigiasutustega. Minu jaoks on sotsiaaltöö sisukas ja jätkusuutlik, keskendudes nii klientide kui spetsialistide heaolule. Mentorina loon rahuliku ja selge ruumi vastutusrikastes rollides töötavatele inimestele, aidates analüüsida olukorda tervikuna ja näha seoseid, et saavutada kindlus ja teadlikult juhtida muutusi.",
+      "bioShort": "Kogukonnapõhise rehabilitatsioonikeskuse Töömaja asutaja, kes toetab menteesid sotsiaalteenuste arendamisel, koostöö kujundamisel ja muutuste juhtimisel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "MTÜ Töömaja asutaja ja teenusejuht (2019–…), koostööprojektide juht kohalike omavalitsuste ja riigiasutustega, Kehtna valla kogukonnakomisjoni liige (2024–2025), projektijuht erinevates KOV ja EL programmides ning koolitaja kõrgkoolides.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele ja kogukonnapõhisele rehabilitatsioonile, toetades karjääri ja enesearengu eesmärke ning konkreetsete olukordade lahendamist ja parimate praktikate jagamist.",
+      "publicContact": {
+        "email": "vorkmaarja@gmail.com",
+        "phone": "55667227",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/maarja-vork/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Kairi Ustav",
+      "slug": "kairi-ustav",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/kairi-ustav/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "juhatuse liige",
+      "organization": "AS Värska Sanatoorium",
+      "roleDescription": "AS Värska Sanatooriumi juhatuse liige ja sotsiaalvaldkonna juht",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Kriisijuhtimine",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon",
+        "Sotsiaaltöö vähemuskultuuridega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Kui otsid selgust, hoogu või julgust järgmise sammu tegemiseks, siis olen õige partner. Ma ei jaga valmis retsepte, vaid aitan kaasa mõelda ja otsustada nii, et lahendused oleksid tulemuslikud. Olen empaatiline, toetav ja vahel ka provotseeriv ning usun, et tõeline kasv algab mugavustsoonist väljas.\nMul on kogemus sotsiaalvaldkonna juhtimises, kriisijuhtimises ja tervishoiu- ning rehabilitatsiooniteenuste arendamises. Olen töötanud juhtimisrollides erinevates organisatsioonides ja hindan mentorlust kui partnerlust, kus toetatakse enesearengut ja muudatuste elluviimist.",
+      "bioShort": "Empaatiline ja toetav juht ning mentor, kes aitab selgust leida ja julgustab tegutsema sotsiaalvaldkonna ja kriisijuhtimise teemadel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Juhatuse liige AS Värska Sanatooriumis (2024–…), Tartu Südamekodu juhataja (2024), Integratsiooni Sihtasutuse lõimumisprojektide hindaja (alates 2023) ning varasem kogemus mitmes sotsiaalvaldkonna organisatsioonis.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, kriisijuhtimisele, tervishoiu ja rehabilitatsiooniteenuste arendamisele ning vähemuskultuuridega töötamisele. Fookuses on juhtimiskvaliteedi parandamine, karjääriareng ja organisatsioonisisene enesehoid.",
+      "publicContact": {
+        "email": "kairiustav@gmail.com",
+        "phone": "5077511",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/kairi-ustav/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Anna Mikkonen-Berg",
+      "slug": "anna-mikkonen-berg",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/anna-mikkonen-berg/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "asutaja ja juht",
+      "organization": "Lootus Õnnele (Lapssi OÜ)",
+      "roleDescription": "Personaalse lähenemisega korrektsiooni- ja rehabilitatsioonikeskuse asutaja ja juht.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Karjäärialased eesmärgid ja enesearneg",
+        "Kriisijuhtimine",
+        "Sotsiaaltöö laste ja peredega",
+        "Sotsiaaltöö rahvusvahelise kaitse saajatega",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Parimate praktikate kogemuspõhine jagamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "AUDIO",
+        "ONLINE"
+      ],
+      "bioFull": "Olen jurist, ettevõtja ja sotsiaalvaldkonna praktik, töötanud aastaid laste, perede ja erivajadustega inimeste toetamisel. Asutasin ja juhin personaalse lähenemisega korrektsiooni- ja rehabilitatsioonikeskust Lootus Õnnele. Minu töös on keskmes inimesed ja praktilised lahendused: olen tegelenud sotsiaalteenuste arendamise, meeskondade juhtimise, uute teenuste käivitamise ja keeruliste olukordade lahendamisega. Olen läbinud kogemusnõustaja koolituse ja töötanud kriisi- ja traumakogemusega inimestega. Usun, et iga inimene võib leida oma tee edasi, kui tal on õiged teadmised, tugi ja keegi, kes aitab näha võimalusi. Mentorina soovin toetada inimesi, kes töötavad sotsiaal-, haridus- või tervisevaldkonnas, alustavad oma teenuse loomist või otsivad uusi arengusuundi.",
+      "bioShort": "Juristi taustaga sotsiaalvaldkonna ettevõtja, Lootus Õnnele rehabilitatsioonikeskuse asutaja ja juht, kes toetab menteesid teenuse arendamisel ja keeruliste olukordade lahendamisel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Asutaja ja juht korrektsiooni- ja rehabilitatsioonikeskuses Lootus Õnnele (alates 2016), kogemusnõustaja, töö erivajadustega laste ja peredega, kriisi- ja traumatoe pakkumine, meeskondade juhtimine ja sotsiaalteenuste arendamine.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, kriisijuhtimisele, laste ja peredega töötamisele ning rahvusvahelise kaitse saajate ja rehabilitatsiooniteenuste teemadele. Mentor toetab karjääri- ja enesearengu eesmärke ning praktiliste olukordade lahendamist.",
+      "publicContact": {
+        "email": "anna@lootusonnele.eu",
+        "phone": "56681138",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/anna-mikkonen-berg/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Simone Epro",
+      "slug": "simone-epro",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/simone-epro/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "juhatuse liige",
+      "organization": "OÜ WonderTeam",
+      "roleDescription": "Sotsiaalvaldkonna teenuste arendusspetsialist ja koolitaja, OÜ WonderTeam juhatuse liige.",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Karjäärialased eesmärgid ja enesearneg",
+        "Kriisijuhtimine",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö laste ja peredega"
+      ],
+      "topics": [],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Usun, et minu haridustee ja mitmekülgne töökogemus erinevatel sotsiaalvaldkonna ametikohtadel loovad tugeva aluse menteede toetamiseks. Olen omandanud põhjalikke teadmisi läbi arvukate täiendkoolituste ning alustanud karjääri tegevusjuhendaja ja hooldaja rollis, liikudes sealt vastutusrikkamatele positsioonidele. Olen olnud mentor meeskonnajuhtidele ja juhendan nii töötavaid tegevusjuhendajaid kui ka tudengeid. Hindan enesehoidu ning teadlikku ajajuhtimist ja planeerimist, mis aitavad tasakaalu hoida.",
+      "bioShort": "Mitmekülgse sotsiaalvaldkonna kogemusega OÜ WonderTeam juhatuse liige, kes toetab menteesid juhtimises, kriisijuhtimises ja enesearengu planeerimises.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "OÜ WonderTeam juhatuse liige (alates 2024), teenuste arendusspetsialist AS Hoolekandeteenused (alates 2023), projektijuht Eesti Sotsiaaltöö Assotsiatsioonis, õppejõud Tartu Tervishoiu Kõrgkoolis (alates 2016), erinevad juhtimis- ja spetsialistipositsioonid Sotsiaalkindlustusametis ning koolitaja rollid.",
+      "mentoringFocusSummary": "Mentor pakub tuge sotsiaalvaldkonna juhtimises, karjääri ja enesearengu planeerimisel, kriisijuhtimises ning eakate, erivajadustega inimeste ja peredega töötamise valdkonnas. Fookuses on meeskonnatöö arendamine ja enesehoid.",
+      "publicContact": {
+        "email": "simone@wonderteam.ee",
+        "phone": "59197318",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/simone-epro/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "ESTA profiilil on valdkonnad olemas, kuid eraldi mentorlusteemasid ei kuvata (teine loetelurida on tühi). Teemasid ei ole lisatud, et vältida oletamist.",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": false,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Eveli Lilleoja",
+      "slug": "eveli-lilleoja",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/eveli-lilleoja/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "sotsiaalosakonna juhataja",
+      "organization": "Põltsamaa Vallavalitsus",
+      "roleDescription": "Põltsamaa valla sotsiaalosakonna juhataja",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö laste ja peredega",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Minu jaoks on alati olnud oluline tööalane toetamine, nii juhina töötajate toetamine kui töötajate poolt üksteise toetamine. Usun, et kõike tuleb teha naudinguga ja edasiandmine kinnistab oma teadmisi. Olen töötanud sotsiaalvaldkonnas 16 aastat, sh tegevusjuhendaja, tugiisiku, päevakeskuse juhataja ja valdkonna juhina. Minu kogemused ja erinevad rollid võimaldavad mul jagada laia valikut teadmisi ja oskusi.",
+      "bioShort": "Põltsamaa valla sotsiaalosakonna juhataja, kes väärtustab meeskonna toetamist ja naudib teadmiste edasiandmist; omab 16 aasta pikkust sotsiaalvaldkonna kogemust.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Põltsamaa Vallavalitsuse sotsiaalosakonna juhataja (2023–…), Põhja-Sakala Vallavalitsuse sotsiaalosakonna juhataja (2018–2023), sotsiaalnõunik ja päevakeskuse juhataja Võhma ja Imavere valdades ning pikaajaline kogemus tegevusjuhendajana ja tugiisikuna.",
+      "mentoringFocusSummary": "Mentor keskendub sotsiaalvaldkonna juhtimisele, eakate ja erivajadustega inimeste ning laste ja peredega töötamisele. Ta aitab arendada juhtimiskvaliteeti, enesehoidu ja toetab karjääri ning tööalaste muutuste juhtimist.",
+      "publicContact": {
+        "email": "eveli.lilleoja@poltsamaa.ee",
+        "phone": "53325015",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/eveli-lilleoja/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Jana Klomann",
+      "slug": "jana-klomann",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/jana-klomann/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "osakonnajuhataja asetäitja",
+      "organization": "Eesti Töötukassa",
+      "roleDescription": "Eesti Töötukassa juhtide juht ning osakonnajuhataja asetäitja",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö tööealistega",
+        "Sotsiaaltöö tööotsijatega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Mind huvitavad inimesed, nende lood ja otsuste põhjused. Olles juhina, mentorina ja koolitajana kaasteeline paljude inimeste enesearengu teekonnal, õpin ka ise. Töötan Eesti Töötukassas juhtide juhina ja toetan mentorina nii töötukassa kui teiste organisatsioonide juhte. Olen valmis pakkuma mentortuge ka tudengitele juhtimise ja sotsiaaltöö valdkonnas. Olen läbinud coachiva mentorluse programmi ja oman EIA Practitioner sertifikaati ning kuulun Eesti Mentorite Kotta.",
+      "bioShort": "Eesti Töötukassa juhtide juht ja mentor, kes armastab kuulata inimeste lugusid ning toetab juhte ja spetsialiste enesearengul.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Eesti Töötukassa osakonnajuhataja asetäitja (2018–…), büroojuhataja ja juhtivkonsultant, coachiva mentorluse ja supervisiooni väljaõpe ning magistriõpingud sotsiaaltöös.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, tööealiste ja tööotsijatega töötamisele ning juhtimiskvaliteedi parandamisele. Mentor toetab karjääri ja enesearengu eesmärke ning aitab lahendada konkreetseid olukordi ja muuta töökorraldust.",
+      "publicContact": {
+        "email": "klomann.jana@gmail.com",
+        "phone": "5172648",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/jana-klomann/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Pille Priilinn-Türk",
+      "slug": "pille-priilinn-turk",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/pille-priilinn-turk/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "sotsiaalteenuste juhataja",
+      "organization": "Eesti Kaitsevägi",
+      "roleDescription": "Eesti Kaitseväe sotsiaalteenuste juhataja ning kogenud rehabilitatsiooni ja hariduse valdkonna juht",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Minu jaoks on mentorlus koostöösuhe, mis aitab avada mentee potentsiaali ja inspireerib tööalaste ja isiklike eesmärkide saavutamisel. Soovin olla kuulaja, peegeldaja, arengupartner ja võimestaja, aidates leida ressursse ja toetades muutusi tööalases käitumises. Oman Bobath‑terapeudi diplomi füsioterapeudina ning loov- ja kriisireageerimise väljaõppeid. Mul on eripedagoogi ja sotsiaaltöö magistrikraadid ning olen töötanud erivajadustega kooli juhi ja projektijuhina. Samuti olen olnud lektor ning Eesti Kaitseväe sotsiaalvaldkonna juht suurte organisatsiooniliste muutuste ajal. Mentorina kasutan lahenduskeskset ja väärtustavat lähenemist ning oman superviisori/coach'i taset.",
+      "bioShort": "Eesti Kaitseväe sotsiaalteenuste juhataja ja kogenud rehabilitatsiooni ning hariduse valdkonna ekspert, kes toetab menteesid lahenduskeskse ja väärtustava lähenemise kaudu.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Eesti Kaitseväe sotsiaalteenuste juhataja (alates 2017), projektijuht Sotsiaalkindlustusametis (2016–2017), direktor Hilariuse koolis (2015–2016), rehabilitatsioonikeskuse ja taastusravikeskuse juht ning lektor Tallinna Tervishoiu Kõrgkoolis ja Tallinna Ülikoolis. Pikaaegne kogemus füsioterapeudina ja erinevate koolituste läbiviijana.",
+      "mentoringFocusSummary": "Mentorlus keskendub sotsiaalvaldkonna juhtimisele, eakate ja erivajadustega inimeste ning tervishoiu- ja rehabilitatsiooniteenuste arendamisele. Mentor toetab juhtimiskvaliteedi parandamist, karjäärialast arengut, konkreetsete olukordade lahendamist ja enesehoiu süsteemide loomist.",
+      "publicContact": {
+        "email": "pille.priilinn@gmail.com",
+        "phone": "56260498",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/pille-priilinn-turk/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Kersti Suun-Deket",
+      "slug": "kersti-suun-deket",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/kersti-suun-deket/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "hoolekande osakonna juhataja",
+      "organization": "Sotsiaalministeerium",
+      "roleDescription": "Sotsiaalministeeriumi hoolekande osakonna juhataja ja kogenud sotsiaalvaldkonna juht",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö kodututega",
+        "Sotsiaaltöö laste ja peredega",
+        "Sotsiaaltöö rahvusvahelise kaitse saajatega",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Konkreetse olukorra lahendamine",
+        "Parimate praktikate kogemuspõhine jagamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen töötanud sotsiaalvaldkonnas üle 13 aasta, alustades asendushooldusteenuse valdkonnast ja liikudes omavalitsuses sotsiaalvaldkonna korraldamise juurde. Viimased peaaegu 7 aastat töötasin Rakvere linnas sotsiaalosakonna juhatajana ja alates 2024. aastast juhin Sotsiaalministeeriumi hoolekande osakonda. Mul on kogemus puuetega inimeste ja eakate hoolekande teenuste arenduses, õiguste kaitsel ja valdkonna konsultandina. Olen lisaks pereterapeut ja MTÜ Virumaa Tugiteenused ja MTÜ Maria ja lapsed nõustaja-pereterapeut. Mentorina toetan sotsiaaltöö praktikuid, et abivajav inimene saaks parimat abi.",
+      "bioShort": "Kogenud sotsiaalvaldkonna juht ja pereterapeut, Sotsiaalministeeriumi hoolekande osakonna juhataja, kes toetab sotsiaaltöö praktikuid teenuste arendamisel ja kvaliteedi parandamisel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Hoolekande osakonna juhataja Sotsiaalministeeriumis (2024–…), Rakvere linnavalitsuse sotsiaalosakonna juhataja (2016–2024), sotsiaaltöötaja-pereterapeut MTÜ Virumaa Tugiteenustes ja MTÜ Maria ja lapsed, projektide koordinaator Sotsiaalkindlustusametis ja konsultant Lääne-Virumaa Arenduskeskuses. Varasem kogemus asendushooldusteenuse valdkonnas.",
+      "mentoringFocusSummary": "Mentor keskendub sotsiaalvaldkonna juhtimisele ja teenuste arendamisele, eakate, erivajadustega inimeste, laste, perede ja rahvusvahelise kaitse saajatega töötamisele. Toetab juhtimiskvaliteeti, konkreetsete olukordade lahendamist ja parimate praktikate jagamist.",
+      "publicContact": {
+        "email": "kersti.suundeket@gmail.com",
+        "phone": "56999984",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/kersti-suun-deket/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Triin Voodla",
+      "slug": "triin-voodla",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/triin-voodla/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "lastekaitsespetsialist",
+      "organization": "Saku Vallavalitsus",
+      "roleDescription": "Saku valla lastekaitsespetsialist ja kogenud sotsiaaltöötaja",
+      "fields": [
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö laste ja peredega",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen töötanud peaaegu 8 aastat lastekaitsetöötajana ja sotsiaaltöötajana kohalikus omavalitsuses. Olen valmis olema mentoriks nii alustavale sotsiaalvaldkonna töötajale kui ka neile, kes vajavad kõrvalist pilku keeruliste olukordade lahendamiseks. Pakun tuge sotsiaaltöötaja rolli, piiride seadmise, eneseväärtustamise ja rollikonfliktide teemadel ning aitan leida tasakaalu töö ja isikliku elu vahel.",
+      "bioShort": "Saku valla lastekaitsespetsialist, kes toetab alustavaid ja kogenud sotsiaaltöötajaid laste ja peredega töötamisel ning enesearengu küsimustes.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Lastekaitsespetsialist Saku Vallavalitsuses (2023–…), sotsiaaltöö spetsialist ja lastekaitsespetsialist Kohila Vallavalitsuses (2015–2023), õppekorralduse spetsialist Sisekaitseakadeemias, peaspetsialist Tallinna Vanglas ja Justiitsministeeriumis.",
+      "mentoringFocusSummary": "Mentorlus keskendub erivajadustega inimeste, laste ja peredega ning tööealistega töötamisele. Mentor toetab karjääri ja enesearengu eesmärke, konkreetsete olukordade lahendamist ning enesehoiu ja tööalaste muutuste juhtimist.",
+      "publicContact": {
+        "email": "triin.voodla@gmail.com",
+        "phone": "5050229",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/triin-voodla/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "Bio on ESTA profiilil lühike, kuid bioFull sisaldab kogu avalikult loetavat tutvustusteksti. Ei vaja PARTIAL staatust üksnes teksti pikkuse tõttu.",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Katrin Tsuiman",
+      "slug": "katrin-tsuiman",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/katrin-tsuiman/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "nõunik",
+      "organization": "MTÜ Eesti Puuetega Inimeste Koda",
+      "roleDescription": "Eesti Puuetega Inimeste Koja nõunik ja sotsiaalvaldkonna koolitaja",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega",
+        "Sotsiaaltöö kogukonnas (sh ökosotsiaaltöö)",
+        "Sotsiaaltöö tervishoius ja rehabilitatsioon",
+        "Sotsiaaltöö tööealistega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Konkreetse olukorra lahendamine",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Parimate praktikate kogemuspõhine jagamine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Mul on üle 30 aasta töökogemust sotsiaalvaldkonnas ning kirg väärika ja inimõigusi austava teenuskultuuri kujundamise vastu. Olen töötanud rohujuure tasandi sotsiaaltöötajana, kohaliku omavalitsuse arendajana, riigi tasandil teenusdisaini projektijuhina ja valdkonna nõunikuna. Igapäevaselt tegelen koolituste ja meeskondade arengu toetamisega, et abivajav inimene saaks head abi. Minu tugevusteks on kuulamine, kohalolu ja võimalustele toetuv mõttepartnerlus. Olen avatud dialoogi ja koosloome toetaja ning kasutan coachingu-, supervisiooni- ja nõustamistehnikaid.",
+      "bioShort": "Üle 30 aasta sotsiaalvaldkonnas tegutsenud nõunik ja koolitaja, kes toetab meeskondade arengut ja väärika teenuskultuuri kujundamist.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Nõunik MTÜ Eesti Puuetega Inimeste Kojas (alates 2023), juhatuse liige MTÜ Eesti Psühhosotsiaalse Rehabilitatsiooni Ühingus, koolitaja ja arengumentor ettevõttes Hea Abi Teejuht OÜ, varasem teenusdisaini projektijuht Sotsiaalkindlustusametis, sotsiaalravi teenistuse juht Pärnu haiglas, erihoolekande nõunik Sotsiaalkindlustusametis ja valdkonna arendusprojektide juht Sotsiaalministeeriumis.",
+      "mentoringFocusSummary": "Mentor keskendub sotsiaaltöö juhtimisele, eakate ja erivajadustega inimeste ning kogukonna ja tervishoiu teenuste arendamisele. Toetab karjääri ja enesearengu eesmärke, konkreetsete olukordade lahendamist, enesehoiu süsteemide loomist ja parimate praktikate jagamist.",
+      "publicContact": {
+        "email": "info@heaabi.ee",
+        "phone": "+3725088707",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/katrin-tsuiman/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    },
+    {
+      "displayName": "Heli Kallasmaa",
+      "slug": "heli-kallasmaa",
+      "sourceUrl": "https://eswa.ee/mentorlus/mentorid/heli-kallasmaa/",
+      "sourceName": "ESTA mentorlus",
+      "sourceType": "EXTERNAL_REFERENCE",
+      "status": "PENDING_CONSENT",
+      "consentStatus": "NOT_REQUESTED",
+      "checkedAt": "2026-05-24",
+      "importStatus": "COMPLETE",
+      "title": "juhataja",
+      "organization": "Pärnu Sotsiaalkeskus",
+      "roleDescription": "Pärnu Sotsiaalkeskuse juhataja",
+      "fields": [
+        "Juhtimine sotsiaalvaldkonnas",
+        "Sotsiaaltöö eakatega",
+        "Sotsiaaltöö erivajadusega inimestega"
+      ],
+      "topics": [
+        "Juhtimiskvaliteedi edendamine",
+        "Karjäärialased eesmärgid ja eneseareng",
+        "Organisatsioonisisese enesehoiusüsteemi loomine",
+        "Tööalaste muutuste toetamine"
+      ],
+      "languages": [],
+      "formats": [
+        "IN_PERSON",
+        "ONLINE"
+      ],
+      "bioFull": "Olen Pärnu sotsiaalkeskuse juht ja sotsiaalvaldkonnas tegutsenud üle 11 aasta. Suure hoolekandeteenuseid osutava asutuse juhina oman kogemust, et olla toetajaks nii alustavatele kui kogenud sotsiaalvaldkonna töötajatele. Usun, et takistusi ei pea üksi ületama ja alati on keegi, kes saab aidata või olla mõttekaaslaseks. Julgustan küsima abi või jagama ideid, et leida uusi vaatenurki. Mentorina aitan luua toetavat ruumi ja leida enesearenguks ressursse.",
+      "bioShort": "Pärnu sotsiaalkeskuse juhataja, kellel on üle 11 aasta kogemust sotsiaalvaldkonnas ning kes toetab sotsiaaltöötajaid ja juhte enesearengu ja teenuste arendamise teemadel.",
+      "bioSourceNote": "Bio kopeeritud ESTA mentoriprofiilist (kontrollitud 24.05.2026)",
+      "experienceSummary": "Pärnu Sotsiaalkeskuse juhataja (alates 2017), varem Pärnu Eakate Avahoolduskeskuse juhataja (2011–2017). Omab magistrikraadi sotsiaalteadustes ja on läbinud mitmeid mentorluse, dementsuse ja rehabilitatsiooniga seotud koolitusi.",
+      "mentoringFocusSummary": "Mentor keskendub sotsiaalvaldkonna juhtimisele, eakate ja erivajadustega inimestega töötamisele ning juhtimiskvaliteedi parandamisele. Toetab karjääriarengut, enesehoidu ja tööalaste muutuste elluviimist.",
+      "publicContact": {
+        "email": "helikallasmaa@gmail.com",
+        "phone": "5123701",
+        "other": ""
+      },
+      "contactDisplayAllowed": false,
+      "externalProfileUrl": "https://eswa.ee/mentorlus/mentorid/heli-kallasmaa/",
+      "externalProfileLabel": "Vaata ESTA profiili",
+      "imageUrl": "",
+      "imageUsePolicy": "DO_NOT_COPY_WITHOUT_CONSENT",
+      "adminOnlyNotes": "",
+      "sourceEvidence": {
+        "profileTitleFound": true,
+        "contactsFound": true,
+        "fieldsFound": true,
+        "topicsFound": true,
+        "bioFound": true,
+        "imageFound": false
+      }
+    }
+  ],
+  "reviewNote": "2026-05-24 järelkontroll: pildi URL-e ei käsitletud. Simone Epro teemad puuduvad ka kontrollitud ESTA profiilil; Triin Voodla bio on lühike, kuid lehel tervikuna olemas."
+}

@@ -1,0 +1,19 @@
+{
+  "docId": "DOC-2024-001",
+  "collection_id": "active_workspace_default",
+  "title": "Teenuse kirjeldus",
+  "description": "Luhike kokkuvote 1-3 lauset.",
+  "authors": ["Eesnimi Perenimi"],
+  "section": "Teenused",
+  "year": 2024,
+  "audience": "BOTH",
+  "tags": ["toetus", "hooldus", "noustamine"],
+  "language": "et",
+  "country": "EE",
+  "jurisdiction_level": "UNKNOWN",
+  "municipality_name": null,
+  "municipality_id": null,
+  "district_name": null,
+  "district_id": null,
+  "source_type": "file"
+}

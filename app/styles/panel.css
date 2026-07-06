@@ -1,0 +1,477 @@
+@layer components {
+/* ============================================================
+   Avatud paneel: klaasraam + sisu tüpograafia + UI-primitiivid.
+   Sisulehed EI saa uut disaini — ainult klaasi ja tüpograafia
+   (brief §7/§10). Primitiivid stiilitakse data-atribuutide järgi.
+   ============================================================ */
+
+.panel-scrim {
+  position: relative;
+  z-index: var(--z-panel);
+  min-height: 100lvh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3.2lvh, 2.6rem) clamp(0.75rem, 2.5vw, 2rem);
+}
+
+@keyframes panel-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0) scale(0.985);
+  }
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Tellija 06.07: EI mingeid ekraanisuurusi kaste — platvorm on
+     pigem kitsas, kast nii suur kui sisu vajab (proosa ~72ch) */
+  /* REM-ankrud: paneel allub ekraaniprofiilile (--ui-scale) */
+  width: min(47.5rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
+  height: auto;
+  max-height: var(--panel-max-h);
+  min-height: min(20rem, 60lvh);
+  border-radius: var(--panel-radius);
+  /* Tellija 06.07 öö: paneelil EI ole oma backdrop-blurit — ruum
+     hägustub paneeli taga niikuinii (data-room-mode=panel) ja kaart
+     paistab läbi; blur elas topelt ja mattis ruumi ära. */
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    var(--glass-inner-light),
+    0 0 0.5px rgba(255, 251, 244, 0.65),
+    0 0 44px rgba(255, 246, 232, 0.1),
+    var(--glass-shadow);
+  animation: panel-enter var(--dur-med) var(--ease-soft) backwards;
+  overflow: hidden;
+}
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--glass-highlight), transparent 30%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Vestlus: aken nagu pildil 9 — EI täida ekraani, ruum jääb ümber */
+.panel-scrim[data-chat="1"] .panel {
+  width: min(55rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
+  height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
+  max-height: 47.5rem;
+}
+/* Kompaktne kaart: väikesed vormid (3 välja + nupp) võtavad TÄPSELT
+   keskmise karusselli-kaardi geomeetria (sama laius, külgsuhe, raadius,
+   asukoht) — sisu vahetub kaardi SEES, mitte eraldi kujuga aknas
+   (tellija 06.07). */
+.panel-scrim[data-compact="1"] {
+  display: block;
+}
+.panel-scrim[data-compact="1"] .panel {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%);
+  width: min(var(--gc-w), 94vw);
+  aspect-ratio: 0.72;
+  min-height: 0;
+  max-height: min(86lvh, 43.75rem);
+  border-radius: clamp(20px, 2.4vw, 30px);
+  /* Tellija 06.07 öö: MITTE mingit "kaart kasvab kaardi sees" efekti —
+     sama kaardi sisu lihtsalt vahetub, raam ei liigu. */
+  animation: none;
+}
+.panel-scrim[data-compact="1"] .panel-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.1rem, 2.6lvh, 1.6rem) clamp(1rem, 2.4vw, 1.5rem);
+  padding-top: clamp(2.4rem, 5lvh, 2.8rem);
+}
+.panel-scrim[data-compact="1"] .panel-body form {
+  display: grid;
+  gap: 0.7rem;
+  /* Sisu keskele nagu registreerimisel (tellija 07.07): väljad täislaiad,
+     nupp keskel — vasakule triivinud paigutus oli "puudu keskjoondus". */
+  justify-items: center;
+}
+.panel-scrim[data-compact="1"] .panel-body form > * {
+  width: 100%;
+}
+/* Salvesta-nupu mähis keskele; nupp ise auto-laius nagu registreeru CTA
+   (.register-submit muster). */
+.panel-scrim[data-compact="1"] .panel-body form > div:last-child {
+  display: grid;
+  justify-items: center;
+  padding-top: 0.3rem;
+}
+.panel-scrim[data-compact="1"] .panel-body h1 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+/* Admin-töövaated vajavad laiust (tabelid) */
+.panel-scrim[data-admin="1"] .panel {
+  width: min(90rem, calc(100vw - clamp(0.75rem, 3vw, 3rem)));
+  height: calc(100lvh - clamp(2rem, 6lvh, 4.5rem));
+}
+
+/* Lai leht (Teenusekaart): SUUR kaart, aken täidab ekraani */
+.panel-scrim[data-wide="1"] .panel {
+  width: min(87.5rem, calc(100vw - clamp(1rem, 4vw, 3rem)));
+  height: calc(100lvh - clamp(2.5rem, 8lvh, 5rem));
+}
+.panel-scrim[data-wide="1"] .panel-body {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(0.8rem, 1.6vw, 1.2rem);
+  padding-top: clamp(3rem, 6lvh, 3.6rem); /* nurga-nuppude riba */
+}
+.panel-scrim[data-wide="1"] .panel-body > * {
+  flex: 1;
+  min-height: 0;
+}
+/* KÕIK vahekihid kuni kaardileheni venima (WorkspaceFeaturePage
+   anonüümsed section/div mähised) */
+.panel-scrim[data-wide="1"] .panel-body :is(section, div):has(.service-map-page) {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.panel-scrim[data-wide="1"] .service-map-page {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Sulgemisrist (IconButton) — siin ainult paigutus + pöörde-aktsent */
+.panel-close {
+  position: absolute;
+  top: clamp(0.8rem, 1.6vw, 1.3rem);
+  right: clamp(0.8rem, 1.6vw, 1.3rem);
+  z-index: 30;
+}
+.panel-close:hover {
+  rotate: 90deg;
+}
+/* Vestluste menüü — vasakul üleval (pilt 9) */
+.panel-menu {
+  position: absolute;
+  top: clamp(0.8rem, 1.6vw, 1.3rem);
+  left: clamp(0.8rem, 1.6vw, 1.3rem);
+  z-index: 30;
+  --icon-size: 1rem;
+}
+
+/* Tagasi-noolt paneelis EI kuvata — sulgemisrist täidab rolli
+   (tellija otsus; topeltnavigatsioon ajas segadusse) */
+.panel-body button:has(path[d="M19 12H5"]) {
+  display: none;
+}
+
+.panel-body {
+  position: relative;
+  z-index: 2;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: var(--panel-pad);
+  padding-top: calc(var(--panel-pad) + 0.6rem);
+  scrollbar-gutter: stable;
+}
+
+/* ---------- Sisu tüpograafia paneelis ---------- */
+.panel-body h1 {
+  font-size: var(--fs-title);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.9em;
+}
+.panel-body h2 {
+  font-size: calc(var(--fs-body) * 1.28);
+  margin-top: 1.9em;
+  color: var(--text-warm);
+}
+.panel-body h3 {
+  font-size: calc(var(--fs-body) * 1.08);
+  margin-top: 1.4em;
+}
+.panel-body p,
+.panel-body li {
+  color: var(--text-soft);
+  max-width: 72ch;
+}
+/* Lugemislehed (Meist, Võimalused, juhendid — <article>): tekst
+   selgelt suurem ja õhulisem (tellija 06.07 öö, korduvalt rõhutatud) */
+.panel-body article p,
+.panel-body article li {
+  font-size: 1.12rem;
+  line-height: 1.68;
+  color: rgba(244, 241, 236, 0.86);
+}
+.panel-body article h2 {
+  font-size: 1.35rem;
+}
+.panel-body strong {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.panel-body ul,
+.panel-body ol {
+  padding-left: 1.3em;
+  margin: 0 0 1.1em;
+}
+.panel-body li {
+  margin-bottom: 0.35em;
+}
+.panel-body li::marker {
+  color: var(--text-soft);
+}
+.panel-body hr {
+  border: none;
+  border-top: 1px solid var(--glass-cell-border);
+  margin: 1.6em 0;
+}
+.panel-body table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: var(--fs-small);
+}
+.panel-body th,
+.panel-body td {
+  text-align: left;
+  padding: 0.55em 0.8em;
+  border-bottom: 1px solid var(--glass-cell-border);
+}
+.panel-body th {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* ---------- UI-primitiivid (data-variant; components/ui) ----------
+   Nuppude liquid glass materjal on defineeritud ÜKS KORD glass.css-is
+   (katab button[data-variant] jt). Siin ainult vormid ja pinnad.
+   Suletud variandisüsteem (kujundusreeglid §3): default + primary. */
+
+/* Sisendid — ka ILMA data-variandita paljad väljad paneelis */
+.panel-body input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.sr-only):not(#chat-input),
+.panel-body textarea:not(#chat-input),
+input[data-variant],
+textarea[data-variant],
+select[data-variant] {
+  width: 100%;
+  padding: 0.7em 1.05em;
+  border-radius: var(--input-radius);
+  background: var(--input-bg);
+  border: var(--input-border);
+  color: var(--input-text);
+  caret-color: var(--text-warm);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.panel-body input::placeholder,
+.panel-body textarea::placeholder,
+input[data-variant]::placeholder,
+textarea[data-variant]::placeholder {
+  color: var(--input-placeholder);
+}
+.panel-body input:not([type="checkbox"]):not([type="radio"]):not(.sr-only):not(#chat-input):focus,
+.panel-body textarea:not(#chat-input):focus,
+input[data-variant]:focus,
+textarea[data-variant]:focus,
+select[data-variant]:focus {
+  background: var(--input-bg-focus);
+  border: var(--input-border-focus);
+}
+textarea[data-variant] {
+  min-height: 6.5em;
+  resize: vertical;
+  border-radius: 1.1rem;
+}
+
+/* Paneelid ja kaardid sisus */
+div[data-variant="glass"],
+section[data-variant="glass"] {
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 18px;
+}
+div[data-variant="glass"][data-padding="sm"] {
+  padding: 0.8rem;
+}
+div[data-variant="glass"][data-padding="md"],
+div[data-variant="glass"]:not([data-padding]) {
+  padding: 1.25rem;
+}
+div[data-variant="glass"][data-padding="lg"] {
+  padding: 1.9rem;
+}
+
+/* OptionCard / raadiovalikud — klikitav rida/valik klaasil.
+   Globaalne (ka a11y-modal ja registreerimine kasutavad).
+   BAAS = token-põhine (kõrgkontrast + reduce-transparency saavad oma
+   tugeva/läbipaistmatu käsitluse); liquid-glass läige lisandub AINULT
+   tavarežiimis (allpool, sama värav mis bend-filtril glass.css-is). */
+label[data-control-type],
+[role="radio"] {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  width: 100%;
+  text-align: left;
+  padding: 0.9em 1.15em;
+  border-radius: 16px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  color: var(--text-warm);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft);
+}
+label[data-control-type]:hover,
+[role="radio"]:hover {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+label[data-control-type][data-checked="true"],
+[role="radio"][data-checked="true"],
+[role="radio"][aria-checked="true"] {
+  border-color: var(--glass-rim);
+  background: var(--glass-cell-bg-hover);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.14);
+}
+
+/* Liquid-glass materjal — SAMA keel mis nupud (tellija 07.07), aga
+   nurgad jäävad pehmeks ristkülikuks (pill'iks ei tee). Ainult
+   tavarežiimis: hc/reduce-transparency jäävad token-baasi peale. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type], [role="radio"]) {
+  background-color: rgba(255, 255, 255, 0.04);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.14) 0%,
+    rgba(255, 255, 255, 0.05) 40%,
+    rgba(255, 255, 255, 0.02) 66%,
+    rgba(255, 255, 255, 0.09) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.26),
+    inset 0 0 14px rgba(255, 255, 255, 0.04),
+    0 4px 14px rgba(0, 0, 0, 0.22);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type], [role="radio"]):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.38),
+    inset 0 0 18px rgba(255, 255, 255, 0.07),
+    0 6px 18px rgba(0, 0, 0, 0.26);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[data-control-type][data-checked="true"], [role="radio"][data-checked="true"], [role="radio"][aria-checked="true"]) {
+  border-color: var(--glass-rim);
+  background-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.42),
+    inset 0 0 18px rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(255, 255, 255, 0.14),
+    0 6px 18px rgba(0, 0, 0, 0.26);
+}
+label[data-control-type][data-focus-visible="true"] {
+  box-shadow: var(--focus-ring);
+}
+label[data-control-type] > span[aria-hidden="true"] {
+  display: grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 7px;
+  border: 1.5px solid var(--glass-cell-border);
+  color: var(--text-warm);
+  flex: none;
+}
+label[data-control-type] > span[aria-hidden="true"] svg {
+  width: 0.95em;
+  height: 0.95em;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-soft);
+}
+label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
+  opacity: 1;
+}
+
+/* Konto seaded (profiili sektsioon): kolm toimingut, õhk vahel.
+   Tellija 07.07: keskjoondatud kaart nagu ülejäänud redisain — pealkiri,
+   identiteet ja toimingud keskel; nupud liquid-glass primary (glass.css). */
+.konto-title {
+  text-align: center;
+}
+.konto-identity {
+  margin-top: -0.4em;
+  font-size: var(--fs-small);
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--text-dim);
+}
+.konto-actions {
+  display: grid;
+  gap: 1.6rem;
+  margin-top: 1.6rem;
+  margin-inline: auto;
+  max-width: 24rem;
+  width: 100%;
+  justify-items: center;
+}
+.konto-actions > div {
+  display: grid;
+  justify-items: center;
+  gap: 0.45rem;
+  width: 100%;
+}
+.konto-actions p {
+  margin: 0;
+  font-size: var(--fs-small);
+  text-align: center;
+  color: var(--text-dim);
+}
+
+/* Teated */
+.panel-body [role="alert"] {
+  color: var(--status-error);
+  padding: 0.7em 1em;
+  border-radius: 12px;
+  background: rgba(224, 138, 106, 0.1);
+  border: 1px solid rgba(224, 138, 106, 0.3);
+  margin: 0.6em 0;
+}
+.panel-body [role="status"] {
+  color: var(--status-success);
+  margin: 0.6em 0;
+}
+
+/* Mobiil: paneel täidab ekraani servast servani */
+@media (max-width: 768px) {
+  .panel-scrim {
+    padding: 0;
+  }
+  .panel,
+  .panel-scrim[data-admin="1"] .panel,
+  .panel-scrim[data-chat="1"] .panel {
+    width: 100%;
+    height: 100lvh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .panel-body {
+    padding: 1.1rem;
+    padding-top: 3.6rem;
+  }
+}
+
+}

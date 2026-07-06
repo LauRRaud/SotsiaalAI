@@ -1,0 +1,626 @@
+[
+  {
+    "slug": "keila-linn",
+    "baseName": "Keila",
+    "type": "LINN",
+    "displayName": "Keila linn",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "loksa-linn",
+    "baseName": "Loksa",
+    "type": "LINN",
+    "displayName": "Loksa linn",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "maardu-linn",
+    "baseName": "Maardu",
+    "type": "LINN",
+    "displayName": "Maardu linn",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "tallinn",
+    "baseName": "Tallinn",
+    "type": "LINN",
+    "displayName": "Tallinn",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "anija-vald",
+    "baseName": "Anija",
+    "type": "VALD",
+    "displayName": "Anija vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "harku-vald",
+    "baseName": "Harku",
+    "type": "VALD",
+    "displayName": "Harku vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "joelahtme-vald",
+    "baseName": "Jõelähtme",
+    "type": "VALD",
+    "displayName": "Jõelähtme vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kiili-vald",
+    "baseName": "Kiili",
+    "type": "VALD",
+    "displayName": "Kiili vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kose-vald",
+    "baseName": "Kose",
+    "type": "VALD",
+    "displayName": "Kose vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kuusalu-vald",
+    "baseName": "Kuusalu",
+    "type": "VALD",
+    "displayName": "Kuusalu vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "laane-harju-vald",
+    "baseName": "Lääne-Harju",
+    "type": "VALD",
+    "displayName": "Lääne-Harju vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "raasiku-vald",
+    "baseName": "Raasiku",
+    "type": "VALD",
+    "displayName": "Raasiku vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "rae-vald",
+    "baseName": "Rae",
+    "type": "VALD",
+    "displayName": "Rae vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "saku-vald",
+    "baseName": "Saku",
+    "type": "VALD",
+    "displayName": "Saku vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "saue-vald",
+    "baseName": "Saue",
+    "type": "VALD",
+    "displayName": "Saue vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "viimsi-vald",
+    "baseName": "Viimsi",
+    "type": "VALD",
+    "displayName": "Viimsi vald",
+    "county": "Harjumaa",
+    "isActive": true
+  },
+  {
+    "slug": "hiiumaa-vald",
+    "baseName": "Hiiumaa",
+    "type": "VALD",
+    "displayName": "Hiiumaa vald",
+    "county": "Hiiumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kohtla-jarve-linn",
+    "baseName": "Kohtla-Järve",
+    "type": "LINN",
+    "displayName": "Kohtla-Järve linn",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "narva-linn",
+    "baseName": "Narva",
+    "type": "LINN",
+    "displayName": "Narva linn",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "narva-joesuu-linn",
+    "baseName": "Narva-Jõesuu",
+    "type": "LINN",
+    "displayName": "Narva-Jõesuu linn",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "sillamae-linn",
+    "baseName": "Sillamäe",
+    "type": "LINN",
+    "displayName": "Sillamäe linn",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "alutaguse-vald",
+    "baseName": "Alutaguse",
+    "type": "VALD",
+    "displayName": "Alutaguse vald",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "johvi-vald",
+    "baseName": "Jõhvi",
+    "type": "VALD",
+    "displayName": "Jõhvi vald",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "luganuse-vald",
+    "baseName": "Lüganuse",
+    "type": "VALD",
+    "displayName": "Lüganuse vald",
+    "county": "Ida-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "jogeva-vald",
+    "baseName": "Jõgeva",
+    "type": "VALD",
+    "displayName": "Jõgeva vald",
+    "county": "Jõgevamaa",
+    "isActive": true
+  },
+  {
+    "slug": "mustvee-vald",
+    "baseName": "Mustvee",
+    "type": "VALD",
+    "displayName": "Mustvee vald",
+    "county": "Jõgevamaa",
+    "isActive": true
+  },
+  {
+    "slug": "poltsamaa-vald",
+    "baseName": "Põltsamaa",
+    "type": "VALD",
+    "displayName": "Põltsamaa vald",
+    "county": "Jõgevamaa",
+    "isActive": true
+  },
+  {
+    "slug": "paide-linn",
+    "baseName": "Paide",
+    "type": "LINN",
+    "displayName": "Paide linn",
+    "county": "Järvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "jarva-vald",
+    "baseName": "Järva",
+    "type": "VALD",
+    "displayName": "Järva vald",
+    "county": "Järvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "turi-vald",
+    "baseName": "Türi",
+    "type": "VALD",
+    "displayName": "Türi vald",
+    "county": "Järvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "haapsalu-linn",
+    "baseName": "Haapsalu",
+    "type": "LINN",
+    "displayName": "Haapsalu linn",
+    "county": "Läänemaa",
+    "isActive": true
+  },
+  {
+    "slug": "laane-nigula-vald",
+    "baseName": "Lääne-Nigula",
+    "type": "VALD",
+    "displayName": "Lääne-Nigula vald",
+    "county": "Läänemaa",
+    "isActive": true
+  },
+  {
+    "slug": "vormsi-vald",
+    "baseName": "Vormsi",
+    "type": "VALD",
+    "displayName": "Vormsi vald",
+    "county": "Läänemaa",
+    "isActive": true
+  },
+  {
+    "slug": "rakvere-linn",
+    "baseName": "Rakvere",
+    "type": "LINN",
+    "displayName": "Rakvere linn",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "haljala-vald",
+    "baseName": "Haljala",
+    "type": "VALD",
+    "displayName": "Haljala vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kadrina-vald",
+    "baseName": "Kadrina",
+    "type": "VALD",
+    "displayName": "Kadrina vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "rakvere-vald",
+    "baseName": "Rakvere",
+    "type": "VALD",
+    "displayName": "Rakvere vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "tapa-vald",
+    "baseName": "Tapa",
+    "type": "VALD",
+    "displayName": "Tapa vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "vinni-vald",
+    "baseName": "Vinni",
+    "type": "VALD",
+    "displayName": "Vinni vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "viru-nigula-vald",
+    "baseName": "Viru-Nigula",
+    "type": "VALD",
+    "displayName": "Viru-Nigula vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "vaike-maarja-vald",
+    "baseName": "Väike-Maarja",
+    "type": "VALD",
+    "displayName": "Väike-Maarja vald",
+    "county": "Lääne-Virumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kanepi-vald",
+    "baseName": "Kanepi",
+    "type": "VALD",
+    "displayName": "Kanepi vald",
+    "county": "Põlvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "polva-vald",
+    "baseName": "Põlva",
+    "type": "VALD",
+    "displayName": "Põlva vald",
+    "county": "Põlvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "rapina-vald",
+    "baseName": "Räpina",
+    "type": "VALD",
+    "displayName": "Räpina vald",
+    "county": "Põlvamaa",
+    "isActive": true
+  },
+  {
+    "slug": "parnu-linn",
+    "baseName": "Pärnu",
+    "type": "LINN",
+    "displayName": "Pärnu linn",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "haademeeste-vald",
+    "baseName": "Häädemeeste",
+    "type": "VALD",
+    "displayName": "Häädemeeste vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kihnu-vald",
+    "baseName": "Kihnu",
+    "type": "VALD",
+    "displayName": "Kihnu vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "laaneranna-vald",
+    "baseName": "Lääneranna",
+    "type": "VALD",
+    "displayName": "Lääneranna vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "pohja-parnumaa-vald",
+    "baseName": "Põhja-Pärnumaa",
+    "type": "VALD",
+    "displayName": "Põhja-Pärnumaa vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "saarde-vald",
+    "baseName": "Saarde",
+    "type": "VALD",
+    "displayName": "Saarde vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "tori-vald",
+    "baseName": "Tori",
+    "type": "VALD",
+    "displayName": "Tori vald",
+    "county": "Pärnumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kehtna-vald",
+    "baseName": "Kehtna",
+    "type": "VALD",
+    "displayName": "Kehtna vald",
+    "county": "Raplamaa",
+    "isActive": true
+  },
+  {
+    "slug": "kohila-vald",
+    "baseName": "Kohila",
+    "type": "VALD",
+    "displayName": "Kohila vald",
+    "county": "Raplamaa",
+    "isActive": true
+  },
+  {
+    "slug": "marjamaa-vald",
+    "baseName": "Märjamaa",
+    "type": "VALD",
+    "displayName": "Märjamaa vald",
+    "county": "Raplamaa",
+    "isActive": true
+  },
+  {
+    "slug": "rapla-vald",
+    "baseName": "Rapla",
+    "type": "VALD",
+    "displayName": "Rapla vald",
+    "county": "Raplamaa",
+    "isActive": true
+  },
+  {
+    "slug": "muhu-vald",
+    "baseName": "Muhu",
+    "type": "VALD",
+    "displayName": "Muhu vald",
+    "county": "Saaremaa",
+    "isActive": true
+  },
+  {
+    "slug": "ruhnu-vald",
+    "baseName": "Ruhnu",
+    "type": "VALD",
+    "displayName": "Ruhnu vald",
+    "county": "Saaremaa",
+    "isActive": true
+  },
+  {
+    "slug": "saaremaa-vald",
+    "baseName": "Saaremaa",
+    "type": "VALD",
+    "displayName": "Saaremaa vald",
+    "county": "Saaremaa",
+    "isActive": true
+  },
+  {
+    "slug": "tartu-linn",
+    "baseName": "Tartu",
+    "type": "LINN",
+    "displayName": "Tartu linn",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "elva-vald",
+    "baseName": "Elva",
+    "type": "VALD",
+    "displayName": "Elva vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kambja-vald",
+    "baseName": "Kambja",
+    "type": "VALD",
+    "displayName": "Kambja vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "kastre-vald",
+    "baseName": "Kastre",
+    "type": "VALD",
+    "displayName": "Kastre vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "luunja-vald",
+    "baseName": "Luunja",
+    "type": "VALD",
+    "displayName": "Luunja vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "noo-vald",
+    "baseName": "Nõo",
+    "type": "VALD",
+    "displayName": "Nõo vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "peipsiaare-vald",
+    "baseName": "Peipsiääre",
+    "type": "VALD",
+    "displayName": "Peipsiääre vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "tartu-vald",
+    "baseName": "Tartu",
+    "type": "VALD",
+    "displayName": "Tartu vald",
+    "county": "Tartumaa",
+    "isActive": true
+  },
+  {
+    "slug": "otepaa-vald",
+    "baseName": "Otepää",
+    "type": "VALD",
+    "displayName": "Otepää vald",
+    "county": "Valgamaa",
+    "isActive": true
+  },
+  {
+    "slug": "torva-vald",
+    "baseName": "Tõrva",
+    "type": "VALD",
+    "displayName": "Tõrva vald",
+    "county": "Valgamaa",
+    "isActive": true
+  },
+  {
+    "slug": "valga-vald",
+    "baseName": "Valga",
+    "type": "VALD",
+    "displayName": "Valga vald",
+    "county": "Valgamaa",
+    "isActive": true
+  },
+  {
+    "slug": "viljandi-linn",
+    "baseName": "Viljandi",
+    "type": "LINN",
+    "displayName": "Viljandi linn",
+    "county": "Viljandimaa",
+    "isActive": true
+  },
+  {
+    "slug": "mulgi-vald",
+    "baseName": "Mulgi",
+    "type": "VALD",
+    "displayName": "Mulgi vald",
+    "county": "Viljandimaa",
+    "isActive": true
+  },
+  {
+    "slug": "pohja-sakala-vald",
+    "baseName": "Põhja-Sakala",
+    "type": "VALD",
+    "displayName": "Põhja-Sakala vald",
+    "county": "Viljandimaa",
+    "isActive": true
+  },
+  {
+    "slug": "viljandi-vald",
+    "baseName": "Viljandi",
+    "type": "VALD",
+    "displayName": "Viljandi vald",
+    "county": "Viljandimaa",
+    "isActive": true
+  },
+  {
+    "slug": "voru-linn",
+    "baseName": "Võru",
+    "type": "LINN",
+    "displayName": "Võru linn",
+    "county": "Võrumaa",
+    "isActive": true
+  },
+  {
+    "slug": "antsla-vald",
+    "baseName": "Antsla",
+    "type": "VALD",
+    "displayName": "Antsla vald",
+    "county": "Võrumaa",
+    "isActive": true
+  },
+  {
+    "slug": "rouge-vald",
+    "baseName": "Rõuge",
+    "type": "VALD",
+    "displayName": "Rõuge vald",
+    "county": "Võrumaa",
+    "isActive": true
+  },
+  {
+    "slug": "setomaa-vald",
+    "baseName": "Setomaa",
+    "type": "VALD",
+    "displayName": "Setomaa vald",
+    "county": "Võrumaa",
+    "isActive": true
+  },
+  {
+    "slug": "voru-vald",
+    "baseName": "Võru",
+    "type": "VALD",
+    "displayName": "Võru vald",
+    "county": "Võrumaa",
+    "isActive": true
+  }
+]

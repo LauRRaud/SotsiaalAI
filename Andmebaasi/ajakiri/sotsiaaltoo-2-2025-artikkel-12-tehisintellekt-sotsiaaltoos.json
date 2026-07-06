@@ -1,0 +1,36 @@
+{
+  "docId": "sotsiaaltoo-2-2025",
+  "year": 2025,
+  "journalTitle": "Sotsiaaltöö",
+  "issueLabel": "2/2025",
+  "audience": "BOTH",
+  "language": "et",
+  "source_type": "journal_article",
+  "legacy_source_type": "file",
+  "authority": "editorial",
+  "source_status": "active",
+  "historical": true,
+  "last_checked": "2026-04-26",
+  "collection_id": "sotsiaaltoo_articles",
+  "articleId": "tehisintellekt-sotsiaaltoos-praktika-kaalutlused-ja-vaartuspohised-piirid-2025-2",
+  "source_id": "sotsiaaltoo_tehisintellekt_sotsiaaltoos_praktika_kaalutlused_ja_vaartuspohised_piirid_2025_2",
+  "document_id": "sotsiaaltoo-2-2025-tehisintellekt-sotsiaaltoos-praktika-kaalutlused-ja-vaartuspohised-piirid-2025-2",
+  "title": "Tehisintellekt sotsiaaltöös: praktika, kaalutlused ja väärtuspõhised piirid",
+  "authors": [
+    "Laur Raudsoo"
+  ],
+  "section": "Eetika",
+  "pdf_start_page": 1,
+  "pdf_end_page": 13,
+  "description": "Artikkel arutleb tehisintellekti kasutamise võimaluste ja riskide üle sotsiaaltöös. Käsitletakse juhtumipõhise nõustamise, dokumenteerimise, infootsingu ja enesejuhitud õppe toetamist ning piire, millest kaugemale ei tohiks minna – kliendisuhte asendamine, otsuste automatiseerimine, peen diskrimineerimine ja eraelu puutumatuse rikkumine. Autor seob arutelu sotsiaaltöö põhiväärtuste, kutse-eetika ja inimõiguste raamistikuga ning pakub välja põhimõtted, millest lähtuda: läbipaistvus, vastutus, inimese kontroll otsuste üle, riskirühmade kaitse ja teadlik kasutamine. Tuuakse näiteid nii võimalikust kasust kui ka väärkasutuse ohtudest.",
+  "tags": [
+    "tehisintellekt",
+    "sotsiaaltöö eetika",
+    "digitaalsed töövahendid",
+    "andmekaitse",
+    "inimõigused",
+    "automatiseeritud otsused",
+    "kutse-eetika"
+  ],
+  "source_path": "Tehisintellekt sotsiaaltöös_2_2025.pdf"
+}

@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "target": "ES2022",
+    "types": ["node"],
+    "ignoreDeprecations": "6.0"
+  },
+  "include": [
+    "app/**/*.js",
+    "app/**/*.jsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "components/**/*.js",
+    "components/**/*.jsx",
+    "lib/**/*.js",
+    "lib/**/*.jsx",
+    "hooks/**/*.js",
+    "hooks/**/*.jsx",
+    "contexts/**/*.js",
+    "contexts/**/*.jsx",
+    "utils/**/*.js",
+    "utils/**/*.jsx",
+    "pages/**/*.js",
+    "pages/**/*.jsx",
+    "scripts/**/*.js",
+    "scripts/**/*.mjs",
+    "auth.js",
+    "proxy.js",
+    "next-env.d.ts"
+  ],
+  "exclude": ["node_modules", ".next", "dist"]
+}

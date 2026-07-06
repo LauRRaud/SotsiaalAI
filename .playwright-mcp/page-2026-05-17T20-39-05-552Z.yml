@@ -1,0 +1,12 @@
+- generic [active] [ref=e1]:
+  - main [ref=e4]
+  - button "Open Next.js Dev Tools" [ref=e66] [cursor=pointer]:
+    - img [ref=e67]
+  - alert [ref=e83]
+  - dialog "Abisoovid" [ref=e179]:
+    - button "Tagasi töölauale" [ref=e180]:
+      - img [ref=e181]
+    - banner [ref=e185]:
+      - heading "Abisoovid" [level=2] [ref=e187]
+    - paragraph [ref=e189]: 0 kuulutust
+    - generic [ref=e192]: Kuulutuste laadimine ebaõnnestus.

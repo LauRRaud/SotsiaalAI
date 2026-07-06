@@ -1,0 +1,308 @@
+/* ============================================================
+   SotsiaalAI — hämariku disainisüsteem (visuaalne brief v1.1)
+   Ruum: puitpaneelid, loojang, mattklaas. Luksus on vaikne.
+   ============================================================ */
+
+:root {
+  color-scheme: dark;
+  --base-rem: 16px;
+  --ui-scale: 1;
+
+  /* ---- Stseeni palett (kaadritest 1–7) ---- */
+  --dusk-void: #0f0805; /* ukse pimedus, laadimisekraan */
+  --dusk-floor: #140b07; /* stseeni baas, html taust */
+  --dusk-shadow: #1e110a; /* sügav pruun vari */
+  --dusk-wood: #4a2e1c; /* puitpaneel */
+  --dusk-wood-lit: #7a4d2c; /* valgustatud puit */
+  --dusk-amber: #c97f4a; /* seinapesu kuma */
+  --dusk-sunset: #e8a86a; /* loojang akna taga */
+  --dusk-glow: #f4c690; /* heledaim kuma */
+  --dusk-cream: #e9d7bf; /* tugitooli samet */
+
+  /* ---- Tekst: tavaline kiri, ilma toonita (tellija otsus) ---- */
+  --text-warm: #f4f1ec; /* põhitekst */
+  --text-soft: rgba(244, 241, 236, 0.76); /* teisene tekst */
+  --text-dim: rgba(244, 241, 236, 0.55); /* summutatud / vihjed */
+  --text-ink: #241d17; /* tekst heledal pinnal (primary-nupp) */
+  --text-ink-soft: #4d4238;
+
+  /* ---- Klaas: NEUTRAALNE läbipaistvus, ilma toonita.
+     Soojus tuleb ruumist klaasi tagant, mitte klaasi värvist. ---- */
+  --glass-bg: linear-gradient(
+    165deg,
+    rgba(40, 37, 33, 0.44) 0%,
+    rgba(24, 22, 20, 0.56) 55%,
+    rgba(15, 14, 12, 0.64) 100%
+  );
+  --glass-bg-strong: linear-gradient(
+    165deg,
+    rgba(34, 31, 28, 0.8) 0%,
+    rgba(20, 18, 16, 0.88) 100%
+  );
+  --glass-blur: 26px;
+  --glass-saturate: 112%;
+  --glass-border: rgba(255, 255, 255, 0.26);
+  --glass-border-soft: rgba(255, 255, 255, 0.13);
+  --glass-rim: rgba(255, 248, 238, 0.9); /* helendav serv (pilt 8) */
+  --glass-rim-glow:
+    0 0 0.5px rgba(255, 248, 238, 0.9),
+    0 0 22px rgba(255, 240, 222, 0.2),
+    0 0 60px rgba(255, 234, 210, 0.1);
+  --glass-inner-light: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --glass-shadow:
+    0 24px 70px rgba(8, 4, 2, 0.55),
+    0 6px 22px rgba(8, 4, 2, 0.35);
+  --glass-highlight: rgba(255, 255, 255, 0.07);
+
+  /* Klaasi sisepinnad (read, kaardid klaasi peal) — neutraalne alfa */
+  --glass-cell-bg: rgba(255, 255, 255, 0.055);
+  --glass-cell-bg-hover: rgba(255, 255, 255, 0.11);
+  --glass-cell-border: rgba(255, 255, 255, 0.14);
+
+  /* ---- Tüpograafia ----
+     Exo 2 = platvormi läbiv font (logo font, tellija 07.07): nii UI/keha
+     kui pealkirjad ühes kirjas. Kaal/suurus eristab, mitte perekond. */
+  --font-ui: var(--font-exo2, ui-sans-serif, system-ui, sans-serif);
+  --font-display: var(--font-exo2, ui-sans-serif, system-ui, sans-serif);
+  --track-caps: 0.24em; /* paneelisildid (pildid 8/11) */
+  --fs-hero: clamp(1.7rem, 1.1rem + 2.6vw, 3.1rem);
+  --fs-title: clamp(1.35rem, 1.05rem + 1.3vw, 2rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.78rem;
+
+  /* ---- Liikumine (aeglane ja pehme) ---- */
+  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-drift: cubic-bezier(0.33, 0, 0.15, 1);
+  --dur-fast: 240ms;
+  --dur-med: 560ms;
+  --dur-slow: 950ms;
+  --dur-drift: 1600ms;
+
+  /* ---- Fookus (neutraalne hele ring tumedal) ---- */
+  --focus-ring: 0 0 0 2px rgba(15, 13, 11, 0.9), 0 0 0 4.5px rgba(246, 241, 233, 0.95);
+  --focus-ring-light: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 0 0 4.5px #55483c;
+
+  /* ---- Kihid ---- */
+  --z-room: 0;
+  --z-home-ui: 20;
+  --z-panel: 30;
+  --z-modal: 60;
+  --z-veil: 80;
+  --z-skip: 100;
+
+  /* ---- Karusselli kaardi mõõt (jagatud: kaardid + login-kaart) ---- */
+  /* REM-ankrud (mitte px!): nii allub kaart ekraaniprofiilile
+     (--ui-scale: PC/väline ekraan 1.25×, Retina 1.18×) — tellija
+     07.07: suurel 100%-skaleeringuga ekraanil peab kujundus KASVAMA,
+     mitte px-lakke kinni jääma. Skaleeringul 1 on väärtused
+     identsed vanade px-idega (240/348px). */
+  --gc-w: clamp(15rem, 25vw, 21.75rem);
+
+  /* ---- Paneeli mõõdud ---- */
+  --panel-max-w: min(73.75rem, calc(100vw - clamp(1.25rem, 4vw, 4rem)));
+  --panel-max-h: calc(100lvh - clamp(4.5rem, 9lvh, 7rem));
+  --panel-radius: clamp(18px, 2.2vw, 30px);
+  --panel-pad: clamp(1.25rem, 2.6vw, 2.75rem);
+
+  /* ---- Vana koodi viidatud paigutusmuutujad (JSX inline) ---- */
+  --bg-overscan: clamp(120px, 18svh, 220px);
+  --chat-diameter: clamp(41.25rem, 94vmin, 77.5rem);
+  --profile-diameter: var(--chat-diameter);
+  --icon-btn-close-size: 2.65rem;
+
+  /* ---- Kursor (soe elevandiluu, loetav tumedal) ---- */
+  --cursor-default:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2228%22%20height%3D%2228%22%20viewBox%3D%220%200%2014%2015%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22m%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234a4e59%22%2F%3E%3Cstop%20offset%3D%220.28%22%20stop-color%3D%22%23e8e5de%22%2F%3E%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%238b877f%22%2F%3E%3Cstop%20offset%3D%220.68%22%20stop-color%3D%22%23e6d3c0%22%2F%3E%3Cstop%20offset%3D%220.84%22%20stop-color%3D%22%23565059%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23b9b4ab%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%202%201%20L%209%207%20Q%209.5%207.4%208.7%207.8%20L%204.2%209.5%20Q%203.2%209.9%203.0%208.9%20L%202%201%20Z%22%20fill%3D%22url(%23m)%22%20stroke%3D%22%23f2ece1%22%20stroke-opacity%3D%220.65%22%20stroke-width%3D%220.5%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")
+      4 2,
+    auto;
+  --cursor-pointer:
+    url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2230%22%20height%3D%2230%22%20viewBox%3D%220%200%2014%2015%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22m%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%234a4e59%22%2F%3E%3Cstop%20offset%3D%220.28%22%20stop-color%3D%22%23e8e5de%22%2F%3E%3Cstop%20offset%3D%220.5%22%20stop-color%3D%22%238b877f%22%2F%3E%3Cstop%20offset%3D%220.68%22%20stop-color%3D%22%23e6d3c0%22%2F%3E%3Cstop%20offset%3D%220.84%22%20stop-color%3D%22%23565059%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23b9b4ab%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M%202%201%20L%209%207%20Q%209.5%207.4%208.7%207.8%20L%204.2%209.5%20Q%203.2%209.9%203.0%208.9%20L%202%201%20Z%22%20fill%3D%22url(%23m)%22%20stroke%3D%22%23f2ece1%22%20stroke-opacity%3D%220.65%22%20stroke-width%3D%220.5%22%20stroke-linejoin%3D%22round%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E")
+      4 2,
+    pointer;
+
+  /* ---- Nupud / vormid (klaasikeeles, neutraalne) ---- */
+  --btn-bg: rgba(255, 255, 255, 0.08);
+  --btn-bg-hover: rgba(255, 255, 255, 0.14);
+  --btn-bg-active: rgba(255, 255, 255, 0.19);
+  --btn-text: var(--text-warm);
+  --btn-border: 1px solid rgba(255, 255, 255, 0.24);
+  --btn-primary-bg: linear-gradient(165deg, #f4efe7, #ddd5c9);
+  --btn-primary-text: var(--text-ink);
+  /* Liquid glass INPUT (etalon: Plaan/"input näide.png", tellija
+     07.07): HELE klaas-pill — valge 10% täide, taustablur, sisemine
+     helk üleval + õrn peegeldus all, pehme vari; fookus = ere ääris.
+     Materjal rakendub globaalselt glass.css :where()-primitiivist. */
+  --input-bg: rgba(255, 255, 255, 0.1);
+  --input-bg-hover: rgba(255, 255, 255, 0.13);
+  --input-bg-focus: rgba(255, 255, 255, 0.15);
+  --input-text: var(--text-warm);
+  --input-placeholder: rgba(255, 255, 255, 0.65);
+  --input-border: 1px solid rgba(255, 255, 255, 0.18);
+  --input-border-hover: 1px solid rgba(255, 255, 255, 0.3);
+  /* Fookus PEHME (tellija 07.07: 0.75 oli "liiga hele + pikslid" ääres,
+     mitte mahe nagu nupud) — heleduse annab õrn kuma, mitte kõva joon */
+  --input-border-focus: 1px solid rgba(255, 255, 255, 0.4);
+  --input-radius: 28px;
+  --input-blur: 32px;
+  --input-highlight:
+    inset 0 1px 1px rgba(255, 255, 255, 0.26),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.05);
+  --input-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* Fookuse õrn kuma (mahe, nagu nupu hover-rim — mitte kõva ere joon) */
+  --input-focus-glow: 0 0 0 3px rgba(255, 250, 244, 0.09);
+
+  /* ---- Admin (funktsionaalne, soe-neutraalne) ---- */
+  --admin-surface: #201310;
+  --admin-surface-2: #2a1a13;
+  --admin-surface-3: #34211768;
+  --admin-border: rgba(244, 198, 144, 0.18);
+  --admin-border-strong: rgba(244, 198, 144, 0.34);
+  --admin-text: var(--text-warm);
+  --admin-muted: var(--text-dim);
+  --admin-accent: var(--dusk-sunset);
+  --admin-accent-soft: rgba(232, 168, 106, 0.16);
+  --admin-accent-cool: var(--dusk-amber);
+  --admin-danger: #e08a6a;
+  --admin-success: #b8c290;
+  --admin-shadow: 0 18px 44px rgba(8, 4, 2, 0.5);
+  --admin-shadow-soft: 0 8px 22px rgba(8, 4, 2, 0.35);
+
+  /* ---- Olekud ---- */
+  --status-error: #eb9a76;
+  --status-success: #c5cf9b;
+  --status-info: var(--text-soft);
+
+  /* ---- Ruumi kohal hõljuvate pindade alias — SAMA klaas mis
+     kõikjal (üks toon, tellija otsus; ei mingit eri varjundit). ---- */
+  --room-glass-bg: var(--glass-bg);
+  --room-glass-strong: var(--glass-bg-strong);
+  --room-glass-border: var(--glass-border);
+  --room-glass-rim: var(--glass-rim);
+  --room-glass-blur: var(--glass-blur);
+  --room-text: var(--text-warm);
+  --room-text-soft: var(--text-soft);
+  --room-text-dim: var(--text-dim);
+  --room-cell-bg: var(--glass-cell-bg);
+  --room-cell-hover: var(--glass-cell-bg-hover);
+  --room-cell-border: var(--glass-cell-border);
+}
+
+/* ============================================================
+   TEEMAD: kolm tonaalset teemat (tellija 07.07).
+     • Hämar (mid) = VAIKIMISI = :root ülal (stseeni loojang).
+       Eraldi .theme-mid plokki EI vaja — mid pärib :root'i.
+     • Hele (light) ja Öö (dark) alt = KARKASS ("prep"): Fable 5
+       häälestab lõpliku paleti. Väärtused on ajutised lähteväärtused,
+       et lüliti oleks nähtavalt funktsionaalne — MITTE lõplik disain.
+   Ainult BAAS-tokeneid on vaja üle kirjutada; --room-* aliased on
+   var()-viited (nt --room-text: var(--text-warm)) ja pärivad kaasa.
+   Kõrgkontrast (data-contrast="hc") jääb ORTOGONAALSEKS — ta sunnib
+   .theme-dark klassi, aga tema plokk (allpool) võidab hilisema
+   allika-järjekorra tõttu; Öö-karkass on :not([data-contrast="hc"]).
+   ============================================================ */
+
+/* ---- KARKASS · Hele (light) — TODO Fable 5: lõplik palett ---- */
+html.theme-light {
+  color-scheme: light;
+  --text-warm: #241d17;
+  --text-soft: rgba(36, 29, 23, 0.72);
+  --text-dim: rgba(36, 29, 23, 0.5);
+  --glass-bg: linear-gradient(
+    165deg,
+    rgba(255, 253, 250, 0.62) 0%,
+    rgba(246, 242, 236, 0.72) 100%
+  );
+  --glass-bg-strong: linear-gradient(
+    165deg,
+    rgba(255, 254, 251, 0.86) 0%,
+    rgba(244, 240, 233, 0.92) 100%
+  );
+  --glass-border: rgba(60, 48, 38, 0.22);
+  --glass-border-soft: rgba(60, 48, 38, 0.12);
+  --glass-rim: rgba(255, 255, 255, 0.92);
+  --glass-rim-glow: 0 0 0.5px rgba(255, 255, 255, 0.9);
+  --glass-highlight: rgba(255, 255, 255, 0.5);
+  --glass-cell-bg: rgba(36, 29, 23, 0.05);
+  --glass-cell-bg-hover: rgba(36, 29, 23, 0.1);
+  --glass-cell-border: rgba(36, 29, 23, 0.14);
+  --btn-bg: rgba(36, 29, 23, 0.06);
+  --btn-bg-hover: rgba(36, 29, 23, 0.11);
+  --btn-bg-active: rgba(36, 29, 23, 0.16);
+  --btn-border: 1px solid rgba(36, 29, 23, 0.2);
+  --input-bg: rgba(255, 255, 255, 0.72);
+  --input-bg-hover: rgba(255, 255, 255, 0.82);
+  --input-bg-focus: rgba(255, 255, 255, 0.92);
+  --input-text: #241d17;
+  --input-placeholder: rgba(36, 29, 23, 0.55);
+  --input-border: 1px solid rgba(36, 29, 23, 0.18);
+  --input-border-hover: 1px solid rgba(36, 29, 23, 0.3);
+  --input-border-focus: 1px solid rgba(36, 29, 23, 0.45);
+}
+
+/* ---- KARKASS · Öö (dark) — TODO Fable 5: lõplik palett ----
+   :not(hc), et kõrgkontrast jääks puutumata. Tekst püsib soe/hele. */
+html.theme-dark:not([data-contrast="hc"]) {
+  --dusk-floor: #0a0604;
+  --glass-bg: linear-gradient(
+    165deg,
+    rgba(20, 18, 17, 0.6) 0%,
+    rgba(10, 9, 8, 0.72) 100%
+  );
+  --glass-bg-strong: linear-gradient(
+    165deg,
+    rgba(16, 14, 13, 0.88) 0%,
+    rgba(8, 7, 6, 0.94) 100%
+  );
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-border-soft: rgba(255, 255, 255, 0.09);
+  --glass-cell-bg: rgba(255, 255, 255, 0.04);
+  --glass-cell-bg-hover: rgba(255, 255, 255, 0.09);
+  --glass-cell-border: rgba(255, 255, 255, 0.11);
+  --text-soft: rgba(244, 241, 236, 0.68);
+  --text-dim: rgba(244, 241, 236, 0.46);
+}
+
+/* ============================================================
+   KÕRGKONTRAST — data-contrast="hc": klaas muutub peaaegu
+   läbipaistmatuks, äärised tugevaks. Ortogonaalne teemale.
+   ============================================================ */
+html[data-contrast="hc"] {
+  --glass-bg: linear-gradient(165deg, rgba(14, 13, 12, 0.97), rgba(8, 7, 6, 0.99));
+  --glass-bg-strong: linear-gradient(165deg, rgba(12, 11, 10, 0.99), rgba(6, 5, 4, 1));
+  --glass-blur: 0px;
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-border-soft: rgba(255, 255, 255, 0.5);
+  --glass-cell-bg: rgba(255, 255, 255, 0.08);
+  --glass-cell-bg-hover: rgba(255, 255, 255, 0.18);
+  --glass-cell-border: rgba(255, 255, 255, 0.55);
+  --text-warm: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.92);
+  --text-dim: rgba(255, 255, 255, 0.75);
+  --glass-rim: #ffffff;
+  --glass-rim-glow: none;
+  --glass-highlight: transparent;
+  /* Vormiväljad kõrgkontrastis: läbipaistmatu tume + tugev ääris */
+  --input-bg: rgba(0, 0, 0, 0.92);
+  --input-bg-hover: rgba(0, 0, 0, 0.92);
+  --input-bg-focus: #000000;
+  --input-placeholder: rgba(255, 255, 255, 0.75);
+  --input-border: 1px solid rgba(255, 255, 255, 0.8);
+  --input-border-hover: 1px solid #ffffff;
+  --input-border-focus: 1px solid #ffffff;
+  --input-blur: 0px;
+  --input-highlight: none;
+  --input-shadow: none;
+}
+
+/* Läbipaistvuse vähendamine (kasutaja eelistus) */
+html[data-reduce-transparency="1"] {
+  --glass-blur: 0px;
+  --glass-bg: linear-gradient(165deg, rgba(32, 30, 27, 0.97), rgba(19, 17, 15, 0.99));
+  --glass-bg-strong: linear-gradient(165deg, rgba(28, 26, 23, 0.99), rgba(16, 14, 13, 1));
+  --input-blur: 0px;
+  --input-bg: rgba(38, 35, 31, 0.94);
+  --input-bg-hover: rgba(42, 39, 34, 0.96);
+  --input-bg-focus: rgba(46, 42, 37, 0.97);
+  --input-highlight: none;
+}

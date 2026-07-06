@@ -1,0 +1,511 @@
+Framework agreement on the professional use of SotsiaalAI and the processing of personal data
+
+In brief for the user and the organisation
+
+No separate framework agreement is required for the ordinary use of the SotsiaalAI platform. This framework agreement is intended for situations where an organisation or a local government wishes to permit the use of SotsiaalAI in work tasks that may involve the processing of personal data.
+
+SotsiaalAI is an artificial intelligence-based work tool that helps find and organise information, draft documents and working drafts, analyse materials and prepare work tasks. SotsiaalAI does not make decisions on behalf of a person and does not replace the judgement of a specialist, official, employee or organisation.
+
+Professional use is based on the following principles:
+
+SotsiaalAI is used only for the performance of a work task and in accordance with the organisation's instructions;
+
+only the data necessary for a specific work task are entered into the platform;
+
+where possible, the situation is described in a generalised or pseudonymised form, that is, without names and identifying details;
+
+identifiable or sensitive data are used only when this is necessary for the work, permitted by the organisation and legally justified;
+
+passwords, PIN codes, authentication codes, bank card details and other secret access credentials are not entered into conversations, documents, files or other content fields;
+
+responses, summaries and document drafts prepared by SotsiaalAI are reviewed by a person before use;
+
+SotsiaalAI output is not used as the sole basis for a decision affecting a person's rights, services, benefits, compensations, obligations or procedural status.
+
+This framework agreement does not in itself grant the right to process all work-related personal data. The organisation determines in which work tasks, by which users and with which data the use of the platform is permitted.
+
+1. Purpose and parties of the agreement
+
+1.1. This framework agreement establishes the principles for the professional use of the SotsiaalAI platform and the obligations of the organisation and SotsiaalAI OÜ in the processing of personal data.
+
+1.2. The parties to the agreement are the organisation or local government and SotsiaalAI OÜ.
+
+1.3. An employee, official, contractual worker or other end user is not a party to this agreement. The organisation may use the usage rules of this agreement as the basis for its internal approval, instructions or employee notifications.
+
+1.4. This agreement also constitutes a data processing agreement to the extent that SotsiaalAI OÜ processes personal data on behalf of the organisation.
+
+1.5. SotsiaalAI supports the user in carrying out their work but does not make binding decisions on behalf of a person. Important responses, summaries and document drafts must be reviewed by a person before use.
+
+2. Applicable law and responsibility of the organisation
+
+2.1. The professional use of SotsiaalAI must comply with the General Data Protection Regulation, the Estonian Personal Data Protection Act and other legislation and internal rules applicable to the organisation.
+
+2.2. The organisation is responsible for ensuring that the use of SotsiaalAI complies with the requirements applicable to the organisation, including requirements concerning social welfare, child protection, health data, public information, records management, archiving, confidentiality and document retention.
+
+2.3. The organisation determines the conditions for the professional use of SotsiaalAI through its internal rules, instructions, a decision on adopting the service or another suitable organisational arrangement. Where necessary, this includes areas of use, user roles, permitted and restricted data categories, conditions for the use of identifiable or sensitive data, the review of SotsiaalAI outputs and a contact point in the event of doubt, error or possible breach. Annex 2 of this agreement supports internal implementation.
+
+2.4. This agreement does not replace the organisation's internal procedures, data protection terms, records management procedures, job descriptions, retention periods or other rules applicable to the organisation.
+
+2.5. If the organisation's internal rules are stricter than this agreement, the organisation must follow the stricter rule when instructing users, unless the law or a written agreement between the parties requires otherwise.
+
+3. Roles of the parties in the processing of personal data
+
+3.1. The organisation is the controller with respect to the personal data that its users process in SotsiaalAI for the performance of work tasks.
+
+3.2. SotsiaalAI OÜ is the processor to the extent that it processes the organisation's work data on behalf of the organisation and on the basis of the organisation's documented instructions.
+
+3.3. Documented instructions include this agreement, its annexes, the organisation's written instructions, service settings, user actions on the platform and other conditions agreed between the parties.
+
+3.4. SotsiaalAI OÜ may be a separate controller with respect to data that it processes for the administration of its own service, for example for managing user accounts, billing, ensuring security, performing the agreement or fulfilling statutory obligations. Such processing is described in the SotsiaalAI privacy terms.
+
+4. Permitted use
+
+4.1. SotsiaalAI may be used only where there is a professional need, in accordance with the organisation's instructions and under the conditions set out in this agreement.
+
+4.2. The platform may be used in particular for:
+
+searching for, organising and making sense of work-related information;
+
+drafting documents, letters, summaries, reports and other working drafts;
+
+structuring case descriptions;
+
+wording, simplifying or translating work-related texts;
+
+analysing documents or other work materials;
+
+storing and using files necessary for work;
+
+preparing practical next steps;
+
+supporting other workflows permitted by the organisation.
+
+4.3. SotsiaalAI may help explain legislation, guidelines, terms of services or possible courses of action, but it must not be used as the sole basis for a decision affecting a person's rights, obligations, services, benefits, compensations, procedural status or other significant circumstances. The final assessment and decision remain with the person and, where necessary, with the organisation.
+
+5. Principles of data use
+
+5.1. Only data necessary for the performance of a specific work task are entered into and stored in SotsiaalAI.
+
+5.2. If the performance of a work task does not require the direct identification of a person, entering the name, personal identification code, exact address, contact details or other directly identifying information must be avoided, and the situation should, where possible, be described in a generalised or pseudonymised form.
+
+5.3. Identifiable personal data, special categories of personal data or other sensitive data may be used on the platform only if such use is necessary for the performance of a work task, permitted by the organisation, legally justified and in accordance with the organisation's internal rules. If the same purpose can be achieved with a generalised, pseudonymised or less sensitive description, the option containing less data must be preferred.
+
+5.4. Passwords, PIN codes, authentication codes, bank card details, access keys or other secret access credentials must not be entered into SotsiaalAI conversations, working drafts, documents, files, notes or other content fields.
+
+5.5. The restriction set out in clause 5.4 does not apply to data that the user enters into the platform's official login, authentication, account or payment fields for their intended purpose.
+
+5.6. Data or files must not be entered into the platform in a manner that would be contrary to the law, official secrecy, professional ethics, confidentiality obligations or the organisation's internal procedures.
+
+6. Data processing agreement
+
+6.1. This clause constitutes the data processing agreement between the organisation and SotsiaalAI OÜ to the extent that SotsiaalAI OÜ processes personal data on behalf of the organisation.
+
+6.2. SotsiaalAI OÜ processes the organisation's work data only on the basis of the organisation's documented instructions and to the extent necessary for providing the service.
+
+6.3. The purpose, subject matter, duration and nature of the processing, the data categories, the categories of data subjects, the retention principles and the rights and obligations of the parties are described in this agreement and its annexes.
+
+6.4. SotsiaalAI OÜ ensures that persons who come into contact with the organisation's data are bound by a confidentiality obligation or are subject to a statutory confidentiality obligation.
+
+6.5. SotsiaalAI OÜ implements appropriate technical and organisational measures to protect the organisation's data, taking into account the nature, scope, context and purposes of the processing and the risk to the rights and freedoms of data subjects. A summary of the measures is provided in Annex 4.
+
+6.6. If SotsiaalAI OÜ considers that an instruction of the organisation may be contrary to applicable data protection law, it will inform the organisation thereof within a reasonable time, unless such notification is prohibited by law.
+
+6.7. SotsiaalAI OÜ does not use the organisation's work data for any purpose other than providing the service, performing the agreement or another purpose permitted under this agreement, the privacy terms or a basis agreed between the parties.
+
+7. Use of artificial intelligence services
+
+7.1. In providing the service, SotsiaalAI may use artificial intelligence service providers where this is necessary for responding to user inputs, analysing documents, drafting texts, processing speech or providing other platform functions.
+
+7.2. Only content necessary for the operation of a specific function may be transmitted to an artificial intelligence service provider. This may include, for example:
+
+the user's message and a limited conversation history;
+
+system instructions and relevant RAG context, that is, relevant text passages found in the knowledge base;
+
+the text or text passages of a document selected or uploaded by the user;
+
+a draft prepared on the basis of a document or input necessary for structuring;
+
+an audio file needed for transcription or text needed for speech synthesis.
+
+7.3. The organisation and the user must take into account that work-related content entered into a conversation, document or file may be transmitted to an artificial intelligence service provider for the preparation of a response, summary, analysis, transcription or document draft.
+
+7.4. SotsiaalAI OÜ ensures that appropriate confidentiality, security and data protection obligations, and where necessary data transfer safeguards, apply to the artificial intelligence service provider.
+
+7.5. If the organisation requires more detailed information about a specific artificial intelligence service provider, data transfer or sub-processor, SotsiaalAI OÜ will make it available to a reasonable extent through an annex to the agreement, the website or a written enquiry.
+
+8. Access, administrative access and confidentiality
+
+8.1. A user's conversations, documents and work files are linked to a specific user account, and access to them is restricted according to the user's role, ownership and the platform's technical permissions.
+
+8.2. This agreement does not give the organisation's representative an automatic right to see users' conversations, documents or files unless such access has been separately technically created on the platform, contractually agreed and permitted by the organisation's internal rules.
+
+8.3. For administering the service, ensuring security, providing technical support, investigating an error or security incident, preventing misuse or fulfilling a legal obligation, SotsiaalAI OÜ may process limited technical metadata or carry out justified data operations only to the extent necessary.
+
+8.4. Any access by the platform administrator to the content of conversations, rooms, documents or files is an exceptional technical administrative access. Such access may be used only in the event of a justified need and to the extent necessary for fulfilling a specific purpose.
+
+9. Logging and audit trail
+
+9.1. SotsiaalAI maintains a technical audit trail of significant data operations, including account deletion, document deletion, deletion of user data, RAG or index data deletion jobs, clean-up operations performed on the basis of retention periods and other administrative operations significant from a data protection perspective.
+
+9.2. The audit trail may include the time of the operation, the type of operation, the performer, the affected user or resource and limited technical metadata.
+
+9.3. The audit trail is not used for storing conversations, documents, files, audio, raw payment service responses, authentication credentials or other substantive work data.
+
+9.4. SotsiaalAI applies the principle of data minimisation in logging. When logging error messages, sanitised error descriptions are used where possible, retaining the technical information necessary for identifying the error while removing or masking passwords, authentication credentials, access keys, request contents, file contents and other excessive or sensitive data.
+
+10. Sub-processors, data location and transfers
+
+10.1. SotsiaalAI OÜ may use necessary sub-processors and service providers for providing the service, for example providers of hosting, artificial intelligence, speech services, e-mail, logging, monitoring, authentication, backup or technical infrastructure services.
+
+10.2. The organisation grants SotsiaalAI OÜ a general authorisation to use sub-processors necessary for providing the service.
+
+10.3. An up-to-date list of sub-processors is made available to the organisation through an annex to the agreement, the website or a written enquiry.
+
+10.4. SotsiaalAI OÜ ensures that sub-processors are, to the appropriate extent, subject to data protection obligations equivalent to those applying to SotsiaalAI OÜ under this agreement.
+
+10.5. If SotsiaalAI OÜ adds a new significant sub-processor or replaces an existing significant sub-processor, it will inform the organisation thereof within a reasonable time. The organisation has the right to raise a justified objection.
+
+10.6. The primary hosting of the platform takes place in the European Economic Area, including Estonia, unless the parties agree otherwise in writing.
+
+10.7. If the provision of the service requires the transfer of personal data outside the European Union or the European Economic Area, SotsiaalAI OÜ does so only on the basis of applicable law and uses appropriate safeguards.
+
+10.8. An overview of sub-processors is provided in Annex 3.
+
+11. Data subjects' rights, breaches and oversight
+
+11.1. The organisation is responsible for resolving data subjects' requests to the extent that the organisation is the controller.
+
+11.2. SotsiaalAI OÜ assists the organisation to a reasonable extent in resolving data subjects' requests, assessing breaches, preparing impact assessments and fulfilling other data protection obligations to the extent that this relates to the SotsiaalAI service.
+
+11.3. Assistance may include, for example, locating, exporting, rectifying, deleting or restricting access to data to the extent that this is technically possible and consistent with the law, retention obligations and the organisation's instructions.
+
+11.4. If SotsiaalAI OÜ becomes aware of a personal data breach affecting the organisation's data, it will notify the organisation without undue delay and, where possible, within 24 hours of becoming aware of the breach.
+
+11.5. The notification includes the initially known information about the nature of the breach, the data affected, the possible impact, the measures taken or planned and the contact point. If all the information is not initially available, SotsiaalAI OÜ may provide the information in stages.
+
+11.6. SotsiaalAI OÜ makes available to the organisation, to a reasonable extent, the information necessary to demonstrate compliance with this data processing agreement.
+
+11.7. If an additional inspection or audit is required, the parties will separately agree on its scope, timing, manner, confidentiality and possible costs.
+
+12. Retention and deletion
+
+12.1. At the SotsiaalAI application level, general usage data, conversations and application logs are retained by default for up to 90 days, payment data for up to 7 years (2555 days in the system) and raw payment service responses for up to 90 days, unless otherwise specified in the service settings or agreed between the parties.
+
+12.2. When a user's document is deleted, the application's active database record and the file are removed, and the deletion of the related RAG or index data is initiated if the corresponding function is enabled in the service.
+
+12.3. If the deletion of RAG or index data does not succeed immediately, this does not prevent the deletion of the user's document; instead, a deletion job for follow-up processing and an audit trail are recorded.
+
+12.4. When an account is deleted, a central deletion process is initiated, in the course of which the user account and the related application data are removed and the related files are cleaned up to the extent technically supported by the platform.
+
+12.5. A technical audit trail and a register of deletion jobs are retained for deletion operations; these are not intended for retaining the content of documents, conversations or other work data.
+
+12.6. Certain data may be retained for a limited time in backups, server and system logs, payment and accounting data, security incident handling or other data sets whose retention is necessary due to the law, the agreement, security, troubleshooting or legal claims.
+
+12.7. Application-level retention periods do not automatically cover server and database backups, server- and infrastructure-level logs or logs kept by service providers. Their retention and deletion take place on the basis of the settings of the relevant server, service provider or operational backup.
+
+12.8. A more detailed summary of retention is provided in Annex 5.
+
+13. End of processing
+
+13.1. Upon termination of the use of the service, SotsiaalAI OÜ deletes or returns the organisation's work data in accordance with the organisation's instructions, to the extent technically possible and consistent with applicable retention obligations.
+
+13.2. If certain data must be retained due to a statutory obligation, accounting requirement, records management, archiving requirement, security, dispute or legal claim, they are retained only to the necessary extent and with restricted access.
+
+14. Responsibility
+
+14.1. The organisation is responsible for ensuring that the use of SotsiaalAI within the organisation is authorised, guided and supervised.
+
+14.2. The organisation is responsible in particular for determining the purpose and legal basis of the processing, providing instructions to users, defining permitted and prohibited data categories, carrying out an impact assessment where necessary, ensuring data subjects' rights, and for the final professional assessments, documents and decisions.
+
+14.3. SotsiaalAI OÜ is responsible for providing the service, following the organisation's documented instructions, implementing the agreed security measures and fulfilling the processor obligations described in this agreement.
+
+15. Other terms
+
+15.1. The use of the SotsiaalAI service may additionally be subject to the SotsiaalAI terms of use, privacy terms, service description, pricing terms and other agreements concluded between the parties.
+
+16. Entry into force and signatures
+
+16.1. This agreement enters into force when the organisation and SotsiaalAI OÜ have signed it or have otherwise confirmed its application in a format that can be reproduced in writing.
+
+16.2. The annexes to the agreement form an integral part of the agreement, unless the parties agree otherwise in writing.
+
+Signatures
+
+Organisation
+
+Organisation name:
+
+Registry code:
+
+Representative's name and position:
+
+Date:
+
+Signature:
+
+SotsiaalAI
+
+SotsiaalAI OÜ
+
+14206225
+
+Laur Raudsoo, Member of the Management Board
+
+02.05.2026
+
+digital
+
+Annex 1. Brief description of processing
+
+Element
+
+Description
+
+Subject matter of processing
+
+Use of the SotsiaalAI platform for processing work-related inputs, conversations, files, documents, summaries, reports and other working drafts.
+
+Duration of processing
+
+The period of use of the service and the necessary retention period thereafter.
+
+Nature of processing
+
+Entry, storage, reading, analysis, structuring, preparation of responses, storage of files, logging, backup and deletion.
+
+Purpose of processing
+
+Provision of the platform service, support of workflows, assistance to the user, preparation of documents and working drafts, ensuring security and reliability.
+
+Controller
+
+The organisation.
+
+Processor
+
+SotsiaalAI OÜ.
+
+Data subjects
+
+Employees, clients, service recipients, applicants, family members, guardians, caregivers, contact persons, cooperation partners and other persons whose data the organisation lawfully processes in the service.
+
+Data categories
+
+Account data, contact details, work-related inputs, documents, conversations, case descriptions, data related to social services and benefits and, where necessary, special categories of personal data.
+
+Sensitive and special categories of data
+
+Permitted only if the organisation has allowed it, the processing is necessary for the work task and a legal basis exists.
+
+Sub-processors
+
+According to the up-to-date SotsiaalAI list of sub-processors.
+
+Data location
+
+Primary hosting in the European Economic Area, including Estonia, unless the parties agree otherwise.
+
+Annex 2. Guidance for the organisation's internal implementation
+
+This annex helps the organisation organise the professional use of SotsiaalAI internally. If the organisation already has internal procedures governing the use of SotsiaalAI, the processing of personal data, confidentiality, records management and the instruction of employees, the separate use of this annex is not mandatory.
+
+Where necessary, the organisation may determine at least the following matters.
+
+1. Permitted users and roles
+
+The organisation determines who may use SotsiaalAI professionally. For example, users may include social workers, child protection specialists, service coordinators, managers, support specialists or other employees designated by the organisation.
+
+2. Permitted work tasks
+
+The organisation determines in which workflows SotsiaalAI may be used. For example:
+
+searching for and clarifying work-related information;
+
+drafting a case summary;
+
+drafting a letter or notification;
+
+preparing a draft assessment of the need for assistance;
+
+drafting an action plan or intervention plan;
+
+preparing a plain-language explanation for a client;
+
+summarising a document or guideline;
+
+drafting a report, memo or work instruction.
+
+3. Restricted or prohibited use
+
+The organisation determines which uses are prohibited or require separate authorisation. SotsiaalAI must not be used as the sole basis for a decision affecting a person's rights or obligations, for processing secret access credentials, for unrelated purposes or purposes driven by curiosity, or for processing data for which there is no professional need.
+
+4. Permitted and prohibited data
+
+The organisation determines which data may be used in SotsiaalAI.
+
+Data
+
+Use
+
+General question about a service or benefit
+
+Usually permitted.
+
+Generalised description of a client's situation
+
+Usually permitted.
+
+Name, personal identification code, exact address or contact details
+
+Only if this is necessary and permitted by the organisation.
+
+Health data, disability data, sensitive information relating to a child or other special category information
+
+Only under special conditions, if this is necessary, permitted and legally justified.
+
+Passwords, PIN codes, authentication codes, bank card details or access keys
+
+Prohibited.
+
+5. Review of output
+
+The organisation determines how SotsiaalAI outputs are reviewed before use. At a minimum, the following must be checked:
+
+whether the facts are correct;
+
+whether the legal basis or source is correct;
+
+whether the text is suitable for the specific case;
+
+whether the text contains excessive personal data;
+
+whether the tone is professional and dignified;
+
+whether the document meets the organisation's requirements;
+
+whether the final decision is based on human judgement, not only on AI output.
+
+Annex 3. Overview of sub-processors and service providers
+
+The exact list of sub-processors may change over time. An up-to-date list is made available to the organisation through an annex to the agreement, the website or a written enquiry.
+
+Service provider or type of service
+
+Use
+
+OpenAI
+
+Conversation, text generation, document analysis, structuring, vector representations (embeddings), transcription and/or speech synthesis.
+
+Maksekeskus / MakeCommerce
+
+Processing of payments and orders.
+
+Google Cloud Text-to-Speech
+
+Speech synthesis.
+
+E-mail service provider
+
+Sending account messages, confirmations, invitations and service notifications.
+
+Database and server infrastructure
+
+Storage of platform data and operation of the service.
+
+Redis
+
+Operation of rooms, real-time events and technical workflows.
+
+Chroma / RAG service
+
+Operation of search, the vector index and the knowledge base.
+
+Nominatim / OpenStreetMap
+
+Location search and refinement of location-based information in the assistant conversation, in the workflow for requests for help and offers of help, and in other platform functions.
+
+Zone Media OÜ / VPS infrastructure
+
+Platform hosting and server infrastructure.
+
+Annex 4. Summary of technical and organisational measures
+
+SotsiaalAI implements technical and organisational measures to protect data. A more detailed description of the technical and organisational security measures is provided in the document “SotsiaalAI Security Description” or in the version of it made available to the client.
+
+The measures may include, among other things:
+
+secure connections;
+
+user authentication;
+
+role-based access;
+
+user account and session management;
+
+restriction of file access;
+
+server- and application-level protection measures;
+
+data minimisation in logs;
+
+a technical audit trail of significant data operations;
+
+a register of deletion jobs for the follow-up processing of files and RAG or index data;
+
+backup and recovery;
+
+software updates and vulnerability management;
+
+breach handling procedures;
+
+retention period and deletion rules;
+
+restriction of access based on work-related need;
+
+confidentiality obligations for persons who come into contact with data;
+
+warnings, reminders or restrictions displayed in the workflow, where the corresponding function is in use in the service.
+
+Annex 5. Summary of retention and deletion
+
+Data category
+
+Retention principle
+
+Conversations and general work data
+
+By default up to 90 days, unless otherwise specified in the service settings or agreed between the parties.
+
+Deleted conversations
+
+Removed from the user's normal view or made inaccessible to the user according to the technical logic of the specific workflow, and permanently removed upon expiry of the retention period or during the clean-up process.
+
+User documents and files
+
+Retained during the use of the service or until the user deletes them; upon deletion, the active file and the database record are removed.
+
+RAG and vector index data
+
+When a document is deleted, the deletion of the related RAG or index data is initiated if the corresponding function is enabled; in the event of failure, a record of the deletion job remains.
+
+Technical and usage logs
+
+By default up to 90 days, unless a security incident, troubleshooting or a legal claim requires longer retention.
+
+Raw payment service responses
+
+By default up to 90 days.
+
+Payment and billing data
+
+Up to 7 years (2555 days in the system) or another period arising from accounting and legal requirements.
+
+Backups
+
+Retained according to the settings of the server, the service provider and operational backup; the application does not delete backups itself.
+
+Server, proxy, systemd/journald and service provider logs
+
+Retained according to the separate settings of the server or service provider.

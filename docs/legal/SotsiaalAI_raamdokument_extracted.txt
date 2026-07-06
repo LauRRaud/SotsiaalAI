@@ -1,0 +1,117 @@
+Tööalase kasutuse raamistik ja andmete töötlemise kokkulepe
+
+
+
+Õiguslik raamistik ja säilitamine 
+
+Käesolev dokument lähtub isikuandmete töötlemisel kohaldatavast õigusest, eelkõige Euroopa Parlamendi ja nõukogu määrusest (EL) 2016/679 ning Eesti isikuandmete kaitse seadusest. Organisatsioon vastutab selle eest, et SotsiaalAI kasutamisel järgitakse ka organisatsioonile kohalduvaid valdkondlikke nõudeid, sealhulgas avaliku teabe, dokumendihalduse, arhiveerimise või dokumentide säilitamise nõudeid.
+
+SotsiaalAI-s tohib andmeid, dokumente ja muid töömaterjale kasutada, säilitada ja töödelda ainult ulatuses, mis on vajalik tööülesande täitmiseks, teenuse osutamiseks või seadusest tuleneva kohustuse täitmiseks. Andmeid ei säilitata kauem, kui see on vajalik. Kui säilitamise alus lõpeb, andmed kustutatakse, tagastatakse või arhiveeritakse vastavalt poolte kokkuleppele, kohaldatavatele säilitamiskohustustele ja tehnilistele võimalustele.
+
+1. Milleks see dokument on
+
+Käesolev dokument koondab ühte faili organisatsiooni tööalase kasutuse aluse, kasutamise põhireeglid, töötaja kinnituse ning organisatsiooni ja SotsiaalAI vahelise kirjaliku kokkuleppe andmete töötlemise kohta ulatuses, milles SotsiaalAI töötleb andmeid organisatsiooni nimel.
+
+SotsiaalAI on töövahend. Seda võib kasutada dokumentide, kirjade, kokkuvõtete, aruannete ja muude töömustandite ettevalmistamiseks, info korrastamiseks ning tööks vajalike failide hoidmiseks ja kasutamiseks platvormis. SotsiaalAI aitab töötajat töö tegemisel, kuid ei tee otsuseid inimese eest. Kõik oluline kontrollitakse enne kasutamist inimese poolt üle.
+
+Käesolev dokument ei anna iseenesest õigust kasutada isikuandmeid ükskõik millisel viisil. Organisatsioon peab enne kasutamist veenduma, et andmete kasutamine on vajalik, lubatud ja seadusega kooskõlas.
+
+2. Kasutamise põhireeglid
+
+SotsiaalAI-d kasutatakse ainult tööalase vajaduse korral ja organisatsiooni kehtestatud juhiste kohaselt.
+
+SotsiaalAI-d ei tohi kasutada ainsa alusena otsusele, mis mõjutab inimese õigusi, kohustusi, toetusi, teenuseid või muud olulist olukorda. Lõplik hinnang ja otsus jäävad alati inimesele ning vajaduse korral organisatsioonile.
+
+Platvormi võib kasutada tekstide sõnastamiseks, kokkuvõtete ja aruannete ettevalmistamiseks, töömustandite koostamiseks, info korrastamiseks ning tööks vajalike failide hoidmiseks ja kasutamiseks ühes keskkonnas.
+
+3. Andmete kasutamine
+
+Platvormi sisestatakse ja seal hoitakse ainult nii palju infot, kui on töö tegemiseks vajalik. Võimaluse korral kirjeldatakse olukorda üldisemalt ja selliselt, et inimest ei saaks kohe ära tunda.
+
+Kui töö tegemiseks on siiski vaja kasutada tundlikke andmeid või inimese täpseid andmeid, tohib seda teha ainult siis, kui see on tööülesande täitmiseks vajalik, organisatsiooni poolt lubatud ja kohaldatava õigusega kooskõlas. Ka sel juhul kasutatakse ainult kõige vajalikumat osa.
+
+Platvormi ei tohi sisestada salasõnu, sisselogimiskoode, pangakaardiandmeid ega muid salajasi ligipääsuandmeid. Samuti ei tohi sinna lisada andmeid või faile viisil, mis oleks vastuolus seaduse, ametisaladuse, kutse-eetika, konfidentsiaalsuskohustuse või organisatsiooni sisekorraga.
+
+4. Vastutus
+
+Organisatsioon vastutab selle eest, et töötajale oleks selge, milleks tohib SotsiaalAI-d kasutada ja milleks mitte. Organisatsioon otsustab, millal võib kasutada tuvastatavaid või tundlikke andmeid, kas vaja on täiendavaid kaitsemeetmeid ning millised piirangud või sisekorrareeglid kasutamisele kohalduvad.
+
+Töötaja kasutab SotsiaalAI-d ainult tööalase vajaduse korral ja organisatsiooni juhiste järgi. Töötaja vastutab selle eest, et ta ei sisesta rohkem andmeid kui vajalik, kontrollib platvormi vastused alati ise üle ning ei kasuta SotsiaalAI-d inimese kohta lõpliku otsuse tegemiseks.
+
+5. Organisatsiooni eelkontroll
+
+Organisatsioon kinnitab käesoleva dokumendi allkirjastamisega, et enne tuvastatavate või tundlike andmete kasutamist on vähemalt hinnatud järgmisi küsimusi: kasutamise eesmärk, andmete kasutamise õiguslik alus, kasutamise lubatavus, vajadus täiendava hindamise või kaitsemeetmete järele ning see, kas töötajatele on antud piisavad juhised ja kasutusreeglid.
+
+6. Kokkulepe andmete töötlemise kohta
+
+Käesolev dokument on ühtlasi organisatsiooni ja SotsiaalAI vaheline kirjalik kokkulepe andmete töötlemise kohta ulatuses, milles SotsiaalAI töötleb isikuandmeid organisatsiooni nimel. Käesoleva dokumendi selles osas käsitatakse organisatsiooni vastutava töötlejana ja SotsiaalAI-d volitatud töötlejana ulatuses, milles see õiguslik rollijaotus konkreetsele töötlemisele kohaldub.
+
+See osa jõustub siis, kui organisatsioon ja SotsiaalAI on allkirjastanud sama sisuga faili.
+
+SotsiaalAI töötleb organisatsiooni nimel andmeid ainult ulatuses, mis on vajalik teenuse osutamiseks. See võib hõlmata failide hoidmist, dokumentide, kokkuvõtete, aruannete ja muude töömustandite ettevalmistamist, info korrastamist, lubatud töövoogude tehnilist käitamist, kasutaja tuvastamist, tehnilist tuge, turvet ja teenuse töökindluse tagamist.
+
+Töödeldavad andmed võivad hõlmata töömaterjalide sisu, vestluste sisendeid, dokumente, kontaktandmeid, kasutajakonto andmeid ning muid andmeid, mida organisatsioon kasutab teenuses õiguspäraselt. Andmete hulka võivad kuuluda ka isikuandmed, sealhulgas eriliigilised isikuandmed, kui nende kasutamine on organisatsiooni tööülesannete täitmiseks vajalik ja lubatud.
+
+Andmeid töödeldakse nii kaua, kui organisatsioon teenust kasutab, töötlemine on vajalik teenuse osutamiseks või säilitamine on vajalik seadusest, dokumendihaldusest, arhiveerimisnõuetest või teenuse töökindlusest tuleneval põhjusel.
+
+SotsiaalAI töötleb andmeid organisatsiooni dokumenteeritud juhiste järgi, tagab andmetega kokku puutuvate isikute konfidentsiaalsuskohustuse ning rakendab asjakohaseid tehnilisi ja korralduslikke meetmeid andmete kaitsmiseks.
+
+SotsiaalAI aitab mõistlikus ulatuses organisatsiooni andmesubjektide taotluste lahendamisel, isikuandmetega seotud rikkumiste hindamisel, turvameetmete kirjeldamisel ning muude andmekaitsealaste kohustuste täitmisel ulatuses, milles see on seotud teenusega.
+
+Töötlemise lõppemisel kustutab või tagastab SotsiaalAI organisatsiooni andmed organisatsiooni juhiste kohaselt selles ulatuses, mis on tehniliselt võimalik ja kooskõlas säilitamiskohustustega. Kui seadus nõuab teatud andmete või dokumentide pikemat säilitamist, arhiveerimist või piiratud juurdepääsu, lähtutakse vastavast õiguslikust alusest.
+
+7. Turvalisus
+
+SotsiaalAI kaitseb andmeid asjakohaste tehniliste ja korralduslike meetmetega. Nende hulka kuuluvad muu hulgas turvalised ühendused, ligipääsu piiramine vastavalt rollile ja töövajadusele, logimine, varundamine, taastamine, uuenduste ja haavatavuste haldus, rikkumiste käsitlus ning andmete säilitamise ja kustutamise reeglid.
+
+Teenuse osutamiseks võib SotsiaalAI kasutada vajalikke teenusepakkujaid või alltöötlejaid, näiteks majutuse, tehisintellekti, kõneteenuste, e-posti, logimise või monitooringu jaoks. Neid kasutatakse ainult teenuse toimimiseks vajalikus ulatuses ning neile kohalduvad asjakohased konfidentsiaalsus- ja andmekaitsekohustused.
+
+Kui andmeid edastatakse väljapoole Euroopa Liitu või Euroopa Majanduspiirkonda, rakendatakse selleks asjakohaseid kaitsemeetmeid vastavalt kohaldatavale õigusele.
+
+Platvormi põhimajutus toimub Euroopa Majanduspiirkonnas, sealhulgas Eestis, kui pooled ei lepi kirjalikult kokku teisiti.
+
+8. Vead ja rikkumised
+
+Kui töötaja märkab või kahtlustab, et platvormi on sisestatud vale, liigne või loata info, peab ta sellest viivitamata teatama organisatsiooni tavapärase korra järgi.
+
+Kui SotsiaalAI saab teada rikkumisest, mis puudutab organisatsiooni andmeid, teavitab ta organisatsiooni põhjendamatu viivituseta ning aitab mõistlikus ulatuses rikkumise asjaolude, võimaliku mõju ja edasiste sammude hindamisel.
+
+9. Allkirjad ja jõustumine
+
+Käesolev dokument jõustub organisatsiooni sisemise tööalase kasutuse alusena siis, kui organisatsiooni esindaja ja töötaja on selle allkirjastanud.
+
+Käesoleva dokumendi lepinguline osa jõustub SotsiaalAI suhtes siis, kui organisatsioon ja SotsiaalAI on allkirjastanud sama sisuga faili.
+
+Organisatsioon
+
+ 
+
+Jõustumise kuupäev
+
+ 
+
+
+
+Allkirjastaja
+
+Nimi ja ametikoht
+
+Kuupäev ja allkiri
+
+Organisatsiooni esindaja
+
+ 
+
+ 
+
+Organisatsiooni töötaja
+
+
+
+
+
+SotsiaalAI OÜ esindaja
+
+ Laur Raudsoo, juhatuse liige
+
+ 23.04.2026, allkiri digitaalne

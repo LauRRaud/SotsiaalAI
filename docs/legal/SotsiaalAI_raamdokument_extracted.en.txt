@@ -1,0 +1,119 @@
+Framework for Professional Use and Data Processing Agreement
+
+
+
+Legal Framework and Retention
+
+This document is based on the applicable legal framework for the processing of personal data, in particular Regulation (EU) 2016/679 of the European Parliament and of the Council and the Estonian Personal Data Protection Act. The organisation is responsible for ensuring that the use of SotsiaalAI also complies with any sector-specific requirements applicable to the organisation, including requirements concerning public information, document management, archiving, or document retention.
+
+Data, documents, and other work materials may be used, stored, and processed in SotsiaalAI only to the extent necessary for the performance of work tasks, the provision of the service, or compliance with a legal obligation. Data must not be retained longer than necessary. When the legal or operational basis for retention ends, the data shall be deleted, returned, or archived in accordance with the parties? agreement, applicable retention obligations, and technical possibilities.
+
+1. Purpose of this document
+
+This document brings together in one file the basis for the organisation?s professional use of SotsiaalAI, the main rules for use, the employee?s acknowledgement, and the written agreement between the organisation and SotsiaalAI on the processing of data to the extent that SotsiaalAI processes data on behalf of the organisation.
+
+SotsiaalAI is a work tool. It may be used for preparing documents, letters, summaries, reports, and other work drafts, for organising information, and for storing and using work-related files within the platform. SotsiaalAI assists the employee in carrying out work, but it does not make decisions on behalf of a person. All important output must be reviewed by a human before use.
+
+This document does not in itself grant the right to use personal data in any manner whatsoever. Before using SotsiaalAI, the organisation must ensure that the use of data is necessary, permitted, and in compliance with the law.
+
+2. Basic rules of use
+
+SotsiaalAI may only be used for professional purposes and in accordance with the organisation?s internal instructions.
+
+SotsiaalAI must not be used as the sole basis for a decision that affects a person?s rights, obligations, benefits, services, or any other important situation. Final assessment and decision-making always remain with a human and, where necessary, with the organisation.
+
+The platform may be used for drafting texts, preparing summaries and reports, creating work drafts, organising information, and storing and using work-related files in one environment.
+
+3. Use of data
+
+Only as much information as is necessary for carrying out the work may be entered into and stored in the platform. Wherever possible, situations should be described in more general terms and in a way that does not immediately identify a person.
+
+If it is nevertheless necessary to use sensitive data or exact personal data for the performance of work tasks, this may only be done where such use is necessary, authorised by the organisation, and compliant with applicable law. Even in such cases, only the minimum necessary data may be used.
+
+Passwords, login codes, payment card data, and other confidential access credentials must not be entered into the platform. Data or files must also not be added in any manner that would conflict with the law, official secrecy, professional ethics, confidentiality obligations, or the organisation?s internal rules.
+
+4. Responsibility
+
+The organisation is responsible for ensuring that the employee clearly understands what SotsiaalAI may and may not be used for. The organisation decides when identifiable or sensitive data may be used, whether additional safeguards are required, and which restrictions or internal rules apply to such use.
+
+The employee may use SotsiaalAI only for professional purposes and in accordance with the organisation?s instructions. The employee is responsible for ensuring that no more data than necessary is entered, that the platform?s outputs are always reviewed independently, and that SotsiaalAI is not used to make a final decision about a person.
+
+5. Prior assessment by the organisation
+
+By signing this document, the organisation confirms that, before using identifiable or sensitive data, it has assessed at least the following: the purpose of use, the legal basis for using the data, whether such use is permitted, whether additional assessment or safeguards are needed, and whether employees have been given sufficient instructions and rules for use.
+
+6. Agreement on data processing
+
+This document also constitutes the written agreement between the organisation and SotsiaalAI regarding data processing to the extent that SotsiaalAI processes personal data on behalf of the organisation. For the purposes of this part of the document, the organisation shall be regarded as the controller and SotsiaalAI as the processor to the extent that this legal allocation of roles applies to the relevant processing.
+
+This part enters into force once the organisation and SotsiaalAI have signed a document of identical content.
+
+SotsiaalAI processes data on behalf of the organisation only to the extent necessary for the provision of the service. This may include file storage, preparation of documents, summaries, reports, and other work drafts, organisation of information, technical operation of permitted workflows, user authentication, technical support, security, and ensuring the reliability of the service.
+
+The processed data may include the content of work materials, chat inputs, documents, contact details, user account data, and other data that the organisation lawfully uses within the service. The data may also include personal data, including special categories of personal data, where their use is necessary and permitted for the performance of the organisation?s work tasks.
+
+Data shall be processed for as long as the organisation uses the service, for as long as processing is necessary for the provision of the service, or for as long as retention is required by law, document management, archiving requirements, or service reliability.
+
+SotsiaalAI processes data in accordance with the organisation?s documented instructions, ensures confidentiality obligations for persons who come into contact with the data, and implements appropriate technical and organisational measures to protect the data.
+
+SotsiaalAI shall provide reasonable assistance to the organisation in handling data subject requests, assessing personal data breaches, describing security measures, and fulfilling other data protection obligations to the extent that these relate to the service.
+
+Upon termination of the processing, SotsiaalAI shall delete or return the organisation?s data in accordance with the organisation?s instructions, to the extent technically possible and in compliance with retention obligations. If the law requires longer retention, archiving, or restricted access to certain data or documents, the relevant legal basis shall be followed.
+
+7. Security and service providers
+
+SotsiaalAI protects data using appropriate technical and organisational measures. These include, among other things, secure connections, access restriction based on role and work-related need, logging, backups, recovery, update and vulnerability management, incident handling, and rules for data retention and deletion.
+
+For the provision of the service, SotsiaalAI may use necessary service providers or subprocessors, for example for hosting, artificial intelligence services, voice services, email, logging, or monitoring. These are used only to the extent necessary for the functioning of the service and are subject to appropriate confidentiality and data protection obligations.
+
+If data is transferred outside the European Union or the European Economic Area, appropriate safeguards shall be applied in accordance with applicable law.
+
+The main hosting of the platform takes place within the European Economic Area, including Estonia, unless the parties agree otherwise in writing.
+
+8. Errors, breaches, and notification
+
+If an employee notices or suspects that incorrect, excessive, or unauthorised information has been entered into the platform, the employee must report this without delay in accordance with the organisation?s usual procedure.
+
+If SotsiaalAI becomes aware of a breach affecting the organisation?s data, it shall notify the organisation without undue delay and provide reasonable assistance in assessing the circumstances of the breach, its possible impact, and the next steps.
+
+9. Signatures and entry into force
+
+This document enters into force as the basis for the organisation?s internal professional use once it has been signed by the organisation?s representative and the employee.
+
+The contractual part of this document enters into force with regard to SotsiaalAI once the organisation and SotsiaalAI have signed a document of identical content.
+
+
+
+Organisation
+
+ 
+
+Effective date
+
+ 
+
+
+
+Signatory
+
+Name and position
+
+Date and signature
+
+Organisation representative
+
+ 
+
+ 
+
+Organisation employee
+
+
+
+
+
+SotsiaalAI OÜ representative
+
+ Laur Raudsoo, Member of the Management Board
+
+ 23 April 2026, digitally signed

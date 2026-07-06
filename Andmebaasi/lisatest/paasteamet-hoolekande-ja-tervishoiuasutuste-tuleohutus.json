@@ -1,0 +1,97 @@
+{
+  "schemaVersion": "knowledge-doc-v1",
+  "country": "EE",
+  "sector": "social",
+  "audience": "BOTH",
+  "audiences": [
+    "SOCIAL_WORKER",
+    "CLIENT"
+  ],
+  "language": "et",
+  "source_origin_type": "file",
+  "source_format": "pdf",
+  "source_status": "active",
+  "historical": false,
+  "checked_at": "2026-05-03",
+  "copyright_status": "restricted_citation_summary_only",
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "ingest": {
+    "chunking_strategy": "section_aware",
+    "preserve_page_numbers": true,
+    "preserve_heading_path": true,
+    "display_full_text": false,
+    "allow_short_excerpts": true
+  },
+  "quality": {
+    "metadata_complete": false,
+    "section_index_complete": false,
+    "ocr_required": false,
+    "needs_manual_review": true,
+    "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+  },
+  "docId": "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus",
+  "canonical_source_id": "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus",
+  "source_id": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+  "document_id": "paasteamet-hoolekande-ja-tervishoiuasutuste-tuleohutus",
+  "title": "Hoolekande- ja tervishoiuasutuste tuleohutus",
+  "description": "Päästeameti infomaterjal hoolekande- ja tervishoiuasutuste tuleohutuse, evakuatsiooni ja kriisivalmiduse käsitlemiseks.",
+  "publisher": "Päästeamet",
+  "source_organization": "Päästeamet",
+  "organization_id": "paasteamet",
+  "publisher_type": "government_agency",
+  "authority_level": "national_agency_information",
+  "year": 2024,
+  "publication_date": "2024-03-03",
+  "document_kind": "manual",
+  "resource_type": "information_material",
+  "source_type": "information_material",
+  "collection_id": "organization_materials",
+  "collection_hint": "information_materials",
+  "domain": "care_institution_safety",
+  "evidence_role": "background",
+  "allowed_claim_types": [
+    "background",
+    "risk_awareness",
+    "safety_guidance",
+    "practice_recommendation",
+    "preparedness_guidance"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "final_fire_safety_compliance_decision"
+  ],
+  "topics": [
+    "hoolekanne",
+    "sotsiaalteenused",
+    "hooldus",
+    "tuleohutus",
+    "pääste",
+    "evakuatsioon",
+    "kriisivalmidus",
+    "tervishoid",
+    "esmatasand",
+    "patsient",
+    "ohutus"
+  ],
+  "target_groups": [
+    "hoolekandeasutused",
+    "tervishoiuasutused",
+    "teenuseosutajad",
+    "asutuste juhid",
+    "sotsiaalvaldkonna spetsialistid"
+  ],
+  "source_path": "2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+  "source_url": "https://www.rescue.ee/files/Materjalid/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+  "page_count": 17,
+  "registry_source": {
+    "source_master_source_id": "paasteamet_hoolekande_ja_tervishoiuasutuste_tuleohutus_pdf",
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://www.rescue.ee/files/Materjalid/2024-03-03-hoolekande-ja-tervishoiuasutuste-tuleohutus.pdf",
+    "duplicate_group_id": "dup_exact_001"
+  },
+  "jurisdiction_level": "NATIONAL"
+}

@@ -1,0 +1,220 @@
+{
+  "schemaVersion": "source-master-validation-v1-final",
+  "generated_at": "2026-04-29",
+  "registry_file": "master_sources_final.json",
+  "summary": {
+    "unique_sources": 323,
+    "total_input_entries": 398,
+    "duplicates_merged": 75,
+    "by_source_format": {
+      "html": 143,
+      "pdf": 180
+    },
+    "by_collection_hint": {
+      "organizations": 60,
+      "source_registry": 50,
+      "sotsiaaltoo_articles": 11,
+      "service_provider_registries": 16,
+      "research_reports": 36,
+      "national_guidelines": 103,
+      "policy_analyses": 7,
+      "organization_guidelines": 15,
+      "organization_materials": 25
+    },
+    "by_source_type": {
+      "organization_profile": 58,
+      "social_media_page": 2,
+      "web_page": 50,
+      "journal_article": 11,
+      "registry": 16,
+      "research_report": 36,
+      "information_material": 102,
+      "official_guideline": 40,
+      "policy_analysis": 7,
+      "methodology_material": 1
+    },
+    "by_ingest_status": {
+      "referenced_only": 137,
+      "ingest_candidate": 186
+    },
+    "by_ingest_priority": {
+      "low": 110,
+      "medium": 171,
+      "high": 42
+    },
+    "recommended_pipeline": {
+      "organization_collection_agent": 60,
+      "html_or_topic_pipeline": 50,
+      "journal_layer": 11,
+      "registry_reference": 16,
+      "knowledge_doc_pipeline": 186
+    }
+  },
+  "required_field_missing_count": 0,
+  "required_field_missing_examples": [],
+  "possible_issue_count": 31,
+  "possible_issue_examples": [
+    {
+      "source_id": "maakondlikud_kojad_ida_virumaa_puuetega_inimeste_koda",
+      "issue": "redirect",
+      "url": "https://www.erivajadus.ee/"
+    },
+    {
+      "source_id": "maakondlikud_kojad_viljandimaa_puuetega_inimeste_noukoda",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://viljandipin.eu/"
+    },
+    {
+      "source_id": "maakondlikud_kojad_vorumaa_puuetega_inimeste_koda",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.vorukoda.ee/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_pohja_eesti_pimedate_uhing",
+      "issue": "redirect",
+      "url": "https://ppy.ee/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_ppu_infoleht_kuukiir",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://ppy.ee/kuukiir/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_eesti_pimekurtide_tugiliit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.pimekurdid.ee/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_tallinna_noustamine_nagemispuudega_inimesele",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.tallinn.ee/et/noustamine-nagemispuudega-inimesele"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_nirk",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://nirkkeskus.ee/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_epl_teemaleht_nagemispuue",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://pimedateliit.ee/nagemispuue/"
+    },
+    {
+      "source_id": "nagemispuue_ja_liitpuue_sotsiaalministeeriumi_kompetentsikeskus_eesti_pimedate_liit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://kompetentsikeskus.sm.ee/et/vordsed-voimalused/ligipaasetavus/tahad-teada-rohkem/infoportaalid-ja-vorgustikud/eesti-pimedate-liit"
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_kurtide_liit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.ead.ee/"
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_evl_liidust",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://vaegkuuljad.ee/liidust/"
+    },
+    {
+      "source_id": "kuulmispuue_kurtus_ja_viipekeel_eesti_viipekeeletolkide_kutseuhing",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://evkty.ee/"
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__tugiliisu",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://tugiliisu.ee/"
+    },
+    {
+      "source_id": "intellekti_autismi_psuuhikahairete__pohja_eesti_autismi_liit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://autism.ee/"
+    },
+    {
+      "source_id": "kone_ja_kommunikatsioonihaired_eesti_kogelejate_uhing",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://kogelus.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_parkinsoniliit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.parkinson.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_lihasehaigete_selts",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.els.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_allergialiit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://allergialiit.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_kopsuliit",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.kopsuliit.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_neeruhaigete_liit",
+      "issue": "redirect",
+      "url": "https://www.neer.ee/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_pohja_eesti_neeruhaigete_selts_facebook",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.facebook.com/p/P%C3%B5hja-Eesti-Neeruhaigete-Selts-100011071697630/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_eesti_epilepsialiit_ajalooline_registripohine_viide",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.inforegister.ee/80068934-EESTI-EPILEPSIALIIT-MTU/"
+    },
+    {
+      "source_id": "neuroloogilised_ja_kroonilised_seis_epilepsiaga_inimeste_tugigrupp_facebook",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.facebook.com/groups/epilepsialiit/"
+    },
+    {
+      "source_id": "uldised_pakkujad_invaru",
+      "issue": "redirect",
+      "url": "https://www.invaru.ee/"
+    },
+    {
+      "source_id": "uldised_pakkujad_tervise_abi",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://terviseabi.ee/"
+    },
+    {
+      "source_id": "kuulmisabivahendid_audiomed_kuulmiskeskus",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://kuulmiseni.ee/"
+    },
+    {
+      "source_id": "kuulmisabivahendid_tervise_abi_kuulmisabivahendid",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://terviseabi.ee/tootekategooria/kuulmisabivahendid/"
+    },
+    {
+      "source_id": "remont_hooldus_ortoosid_eesti_ortoosikeskus",
+      "issue": "search_confirmed_not_direct_ok",
+      "url": "https://www.ortoosikeskus.ee/"
+    },
+    {
+      "source_id": "registrid_e_ariregister",
+      "issue": "redirect",
+      "url": "https://ariregister.rik.ee/"
+    },
+    {
+      "source_id": "tai_tai_aastaaruanne_2025",
+      "issue": "staging_url",
+      "url": "https://staging.tai.ee/sites/default/files/2026-02/aastaaruanne_2025_18.02.pdf"
+    }
+  ],
+  "final_notes": [
+    "Fail on kasutatav dedupe ja ingest-planeerimise alusena.",
+    "See ei ole lõppkasutajale nähtav teadmuskorpus.",
+    "PDF/DOCX allikad vajavad knowledge-doc metadata generatorit/validatorit enne ingest’i.",
+    "Organisatsiooni kodulehed vajavad andmekorjeagendi 4 tuumfaili.",
+    "Teemaportaalid vajavad teemapaketti või alamlehtede HTML knowledge-doc korjet."
+  ]
+}

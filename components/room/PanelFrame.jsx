@@ -1,0 +1,177 @@
+"use client";
+
+/**
+ * PanelFrame — avatud paneeli klaasraam (brief §7).
+ *
+ * Avalehel renderdab lapsed puutumata; igal muul marsruudil mähib
+ * sisu mattklaasist paneeli, mille taga hämardub ruum (kaader 7).
+ * Sulgemisrist ja Esc viivad tagasi ruumi — karussell taastub
+ * samasse kohta (GlassCarousel hoiab asukohta sessionStorage'is).
+ * Sisu kerib paneeli SEES vertikaalselt (telgede reegel, brief §3).
+ */
+
+import { useCallback, useEffect, useRef } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import { localizePath } from "@/lib/localizePath";
+import IconButton from "@/components/glass/IconButton";
+import CloseIcon from "@/components/brand/icons/CloseIcon";
+import MenuIcon from "@/components/brand/icons/MenuIcon";
+import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+
+/* ⓘ akna vasakus ülanurgas (tellija 06.07 öö: peaaegu igal lehel);
+   sisu on olemas ainult neil id-del (lib/dashboardInfoContent). */
+const PANEL_INFO_IDS = {
+  "/teekond": "journey",
+  "/documents": "documents",
+  "/dokreziim": "document_drafting",
+  "/kovisioon": "kovision",
+  "/materjalid": "materials",
+  "/eelpoordumised": "intake",
+  "/teenusekaart": "service_map",
+  "/teenuseprofiil": "service_profile",
+};
+
+function normalizePathname(pathname) {
+  const raw = String(pathname || "/").split("#")[0].split("?")[0] || "/";
+  return raw.replace(/^\/(et|ru|en)(?=\/|$)/, "") || "/";
+}
+
+export default function PanelFrame({ children }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { t, locale } = useI18n();
+  const bodyRef = useRef(null);
+
+  const normalized = normalizePathname(pathname);
+  const isHome = normalized === "/";
+  /* Profiili-hub on karussell (RoomStage); lehe sisu avaneb alles
+     sektsiooni valides (?sektsioon=konto). */
+  const isProfileHub =
+    normalized === "/profiil" && !String(searchParams?.get("sektsioon") || "").trim();
+  const isAdmin = normalized.startsWith("/admin");
+  const isChat = normalized.startsWith("/vestlus") || normalized.startsWith("/teekond");
+  /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
+     teenusekaart = suur kaart; kovisioon = täisekraani lõuend */
+  const isWide = normalized === "/teenusekaart" || normalized === "/kovisioon";
+  /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
+     (tellija 06.07 öö) */
+  const workspaceParam = String(searchParams?.get("workspace") || "").trim();
+  const isWorkspaceView = normalized.startsWith("/vestlus") && Boolean(workspaceParam);
+  const showConversationsMenu = normalized.startsWith("/vestlus") && !workspaceParam;
+  const panelInfoId = isWorkspaceView ? "workspace" : PANEL_INFO_IDS[normalized] || null;
+  /* Väikese sisuga lehed avanevad kaardi-mõõtu aknas, mitte üle
+     ekraani (tellija otsus; 06.07 öö: ka Ruumid keskmises kaardis). */
+  const isCompact =
+    normalized === "/uuenda-pin" ||
+    normalized === "/uuenda-epost" ||
+    normalized === "/ruum" ||
+    normalized.startsWith("/taasta-parool");
+
+  const isProfileCardPage = normalized === "/uuenda-pin" || normalized === "/uuenda-epost";
+
+  const closePanel = useCallback(() => {
+    // pin/e-post sulgub profiili-karusselli, muu (sh Ruumid) peavalikusse
+    router.push(localizePath(isProfileCardPage ? "/profiil" : "/", locale));
+  }, [router, locale, isProfileCardPage]);
+
+  useEffect(() => {
+    if (isHome || isProfileHub) return undefined;
+    const onKey = (e) => {
+      if (e.key !== "Escape" || e.defaultPrevented) return;
+      if (document.body.classList.contains("modal-open")) return;
+      if (document.documentElement.classList.contains("login-modal-open")) return;
+      const el = e.target;
+      const tag = (el?.tagName || "").toLowerCase();
+      if (tag === "input" || tag === "textarea" || tag === "select" || el?.isContentEditable) return;
+      if (el?.closest?.("[role='dialog'],[data-esc-scope]")) return;
+      closePanel();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isHome, isProfileHub, closePanel]);
+
+  /* Kerimiskoha säilitamine paneeli kohta (naasmisel sama koht). */
+  useEffect(() => {
+    if (isHome) return undefined;
+    const el = bodyRef.current;
+    if (!el) return undefined;
+    const key = `sotsiaalai:panel-scroll:${normalized}`;
+    try {
+      const saved = window.sessionStorage.getItem(key);
+      if (saved != null) el.scrollTop = Number(saved) || 0;
+    } catch {}
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        try {
+          window.sessionStorage.setItem(key, String(el.scrollTop));
+        } catch {}
+      });
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [isHome, normalized]);
+
+  if (isHome) return children;
+  if (isProfileHub) {
+    // Sisu jääb monteerituks (seis säilib), aga on peidus ja inertne —
+    // nähtav navigatsioon on RoomStage'i profiili-karussell.
+    return (
+      <div hidden inert>
+        {children}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="panel-scrim"
+      data-admin={isAdmin ? "1" : "0"}
+      data-chat={isChat ? "1" : "0"}
+      data-compact={isCompact ? "1" : "0"}
+      data-wide={isWide ? "1" : "0"}
+    >
+      <section className="panel" aria-label={t("room.panel_region")}>
+        {showConversationsMenu ? (
+          /* Vestluste menüü (ajalugu, uus vestlus) — vasakul üleval,
+             AINULT vestlusevaates (pilt 9) */
+          <IconButton
+            layoutClassName="panel-menu"
+            aria-label={t("nav.chats")}
+            onClick={() =>
+              window.dispatchEvent(
+                new CustomEvent("sotsiaalai:toggle-conversations", { detail: { open: true } })
+              )
+            }
+          >
+            <MenuIcon />
+          </IconButton>
+        ) : panelInfoId ? (
+          /* Lehe ⓘ — samas nurgas, avab selgituse klaasmodaalis */
+          <DashboardInfoTrigger
+            infoId={panelInfoId}
+            label={t("room.panel_info_label")}
+            className="panel-menu panel-menu--info"
+          />
+        ) : null}
+        <IconButton
+          layoutClassName="panel-close"
+          aria-label={t("room.close_panel")}
+          onClick={closePanel}
+        >
+          <CloseIcon />
+        </IconButton>
+        <div className="panel-body" ref={bodyRef}>
+          {children}
+        </div>
+      </section>
+    </div>
+  );
+}

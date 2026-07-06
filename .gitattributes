@@ -1,0 +1,8 @@
+# text files normalized
+* text=auto
+
+# code + config in LF
+*.{js,jsx,ts,tsx,mjs,cjs,json,css,scss,md,html,yml,yaml} text eol=lf
+
+# Windows scripts
+*.{ps1,bat,cmd} text eol=crlf

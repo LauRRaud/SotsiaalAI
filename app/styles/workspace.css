@@ -1,0 +1,671 @@
+@layer components {
+/* ============================================================
+   Töölaud (tellija 06.07: "väga stiilne"): ⓘ üleval VASAKUS
+   nurgas (avab selgituse samal kaardil), Fraunces-pealkiri,
+   kaheveeruline ruudustik, rida = graveeritud ikoonitahvel + nimi
+   liquid-glass ribal. Sama ⓘ-keel kehtib Tööheaolu jt lehtedel.
+   Haagid: .workspace-dashboard-panel, .workspace-dashboard-card,
+   .dashboard-info-trigger, .dashboard-info-shell.
+   ============================================================ */
+
+.workspace-dashboard-panel {
+  position: relative;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  /* Pealkirja EI ole (tellija) — ülaruba on VAID nii lai, et nurga-nupud
+     (ⓘ vasakul, S/P/T + × paremal) ei kata kaste; panel-body annab juba
+     osa vahet, seega siin minimaalne top (tellija 06.07: sisu tunduvalt
+     ülemeks) */
+  padding: clamp(0.9rem, 2lvh, 1.3rem) clamp(1rem, 2.6vw, 2.2rem)
+    clamp(0.9rem, 2vw, 1.6rem);
+}
+/* Admini S/P/T — paneeli ülanurgas paremal, akna ×-ist vasakul.
+   NB: otsene laps on .admin-role-view-cycle mähis (mitte .workspace-role-switch)
+   — muidu lüliti jäi voogu ja lükkas kastid alla (tellija: sisu ülemeks). */
+.workspace-dashboard-panel > .admin-role-view-cycle {
+  position: absolute;
+  top: clamp(0.5rem, 1.1vw, 0.85rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+}
+.workspace-dashboard-panel[data-visible="false"] {
+  display: none;
+}
+
+/* ---------- ⓘ — väike klaasnupp pealkirja kõrval ---------- */
+.dashboard-info-trigger {
+  align-self: flex-start;
+  flex: none;
+  /* Sama mõõt kui sulgemisrist (.glass-iconbtn 2.6rem) — ⓘ ja × on paar
+     (tellija 06.07): ka "i" joonestiil vastab ristile (õhuke bränd) */
+  width: 2.6rem;
+  height: 2.6rem;
+  --icon-size: 1.35rem;
+  color: var(--room-text-soft, var(--text-soft));
+  opacity: 0.85;
+}
+.dashboard-info-trigger:hover {
+  opacity: 1;
+  color: var(--text-warm);
+}
+
+/* ---------- Alamvaadete pealkiri (embedded featuurid) ---------- */
+.workspace-dashboard-panel header h1 {
+  margin: 0 0 clamp(0.9rem, 2.4lvh, 1.7rem);
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.05rem);
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+
+/* ---------- Admini vaatelülitid S/P/T (Töölaud jt tööpinnad) ---------- */
+.workspace-role-switch {
+  display: flex;
+  gap: 0.35rem;
+}
+/* PIND tuleb glass.css-ist (data-variant); siin AINULT paigutus.
+   Aktiivne = data-variant="primary" (JSX), mitte oma gradient. */
+.workspace-role-switch button {
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 0.85rem;
+  font-weight: 560;
+  letter-spacing: 0.02em;
+}
+
+/* Tööheaolu aken (/tooheaolu) on omaette tsentreeritud paneel — tõsta
+   sisu tunduvalt ülemeks, ankurda paneel ekraani ülaossa (tellija 06.07).
+   Puudutab AINULT tööriistade nimekirja lehte (workspace-dashboard-grid). */
+.panel-scrim:has(.workspace-dashboard-grid) {
+  align-items: start;
+}
+
+/* ---------- Ruudustik: 2 veergu, õhk ridade vahel ---------- */
+.workspace-dashboard-panel [data-workspace-card-key] {
+  width: 100%;
+}
+.workspace-dashboard-panel > div:has(.workspace-dashboard-card),
+.workspace-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr; /* KÕIK kastid võrdsed (tellija) */
+  gap: clamp(0.8rem, 2.2lvh, 1.3rem) clamp(0.9rem, 2.4vw, 1.5rem);
+  /* Ruudustik TÄIDAB akna: kasvab kogu vaba kõrguse (tellija 06.07 —
+     "täida see suur aken ära"); 1fr-read venivad ühtlaseks */
+  flex: 1 1 auto;
+  align-content: stretch;
+  min-height: 0;
+  padding: 0.2rem;
+}
+/* Andmestruktuuri "rea"-mähised EI ole ruudustiku lahtrid — lahtriteks
+   on kaardid ise (muidu paigutusid paarid tükkidena ja kastid olid
+   ebavõrdsed, tellija 06.07) */
+.workspace-dashboard-panel > div:has(.workspace-dashboard-card) > div {
+  display: contents;
+}
+
+/* ---------- Rida: liquid-glass riba, graveeritud ikoonitahvel ---------- */
+.workspace-dashboard-card {
+  display: flex;
+  align-items: center;
+  gap: 1.1em;
+  text-align: left;
+  min-height: 5rem;
+  padding: 1.05em 1.4em;
+  border-radius: 18px;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 253, 248, 0.055) 0%,
+    rgba(255, 253, 248, 0.03) 55%,
+    rgba(20, 16, 13, 0.12) 100%
+  );
+  border: 1px solid var(--glass-cell-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+  color: var(--text-warm);
+  font-size: calc(var(--fs-body) * 1.3);
+  letter-spacing: 0.015em;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft),
+    translate var(--dur-fast) var(--ease-soft);
+}
+.workspace-dashboard-card:hover {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.09),
+    0 6px 18px rgba(8, 5, 3, 0.28);
+  translate: 0 -1px;
+}
+.workspace-dashboard-card:active {
+  translate: 0 1px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+.workspace-dashboard-card:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.09),
+    var(--focus-ring);
+}
+
+/* Ikoon suurelt, ILMA tahvli-taustata (tellija 06.07 öö) */
+.workspace-dashboard-card [data-workspace-card-icon] {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.8em;
+  color: var(--text-soft);
+}
+.workspace-dashboard-card:hover [data-workspace-card-icon] {
+  color: var(--text-warm);
+}
+.workspace-dashboard-card [data-workspace-card-icon] svg {
+  width: 2.55rem;
+  height: 2.55rem;
+}
+/* Palju peenem joon (tellija 06.07): kärbi nähtavate kujundite stroke.
+   NB: AINULT nähtavad shape'id (svg otsesed lapsed + <g mask> sees) —
+   <defs><mask> sisemisi teid EI puutu, muidu lõikemaskid (kaart, pliiats)
+   moonduksid. */
+.workspace-dashboard-card [data-workspace-card-icon] svg > path,
+.workspace-dashboard-card [data-workspace-card-icon] svg > circle,
+.workspace-dashboard-card [data-workspace-card-icon] svg > rect,
+.workspace-dashboard-card [data-workspace-card-icon] svg > g > path,
+.workspace-dashboard-card [data-workspace-card-icon] svg > g > circle,
+.workspace-dashboard-card [data-workspace-card-icon] svg > g > rect {
+  stroke-width: 1.5;
+}
+
+/* Märgis (nt lugemata) — diskreetne helendav täpp */
+.workspace-dashboard-card [data-badge-type] {
+  flex: none;
+  margin-left: auto;
+  min-width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: var(--text-warm);
+  box-shadow: 0 0 8px rgba(255, 244, 228, 0.45);
+  opacity: 0.9;
+}
+
+/* ---------- ⓘ selgitus: ILMA pealkirjata (tellija reegel), LAIEM,
+   × oma ribal ja tekst kerib TÄPSELT servast servani riba all ---------- */
+.dashboard-info-shell {
+  width: min(46rem, 94vw);
+  max-width: none;
+  aspect-ratio: auto; /* laiem kui kaart — sisu dikteerib */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0; /* sisu lõikub kaardi servast */
+  overflow: hidden;
+  animation: a11y-card-in 420ms var(--ease-soft) backwards;
+}
+.dashboard-info-top {
+  flex: none;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.7rem 0.7rem 0.35rem;
+}
+.dashboard-info-close {
+  width: 2.2rem;
+  height: 2.2rem;
+  --icon-size: 0.95rem;
+}
+.dashboard-info-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: min(62lvh, 34rem);
+  overflow-y: auto;
+  padding: 0.2rem 1.6rem 1.5rem;
+  font-size: 1.05rem; /* tellija: font veidi suuremaks */
+  line-height: 1.55;
+}
+.dashboard-info-intro {
+  color: var(--text-warm);
+  font-size: 1.1rem;
+}
+.dashboard-info-detail {
+  margin-top: 1.1rem;
+}
+.dashboard-info-detail h3 {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display);
+  font-weight: 460;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+.dashboard-info-detail p {
+  margin: 0;
+  color: var(--text-soft);
+}
+.dashboard-info-detail ul {
+  margin: 0.2rem 0 0;
+  padding-left: 1.1em;
+  color: var(--text-soft);
+}
+.dashboard-info-detail li {
+  margin: 0.3em 0;
+}
+
+/* ---------- Mobiil: üks veerg ---------- */
+@media (max-width: 768px) {
+  .workspace-dashboard-panel > div:has(.workspace-dashboard-card),
+  .workspace-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Teenusekaart (tellija 06.07 öö: "väga hea kujundus, suur kaart,
+   nupud ülaservas"): juhtriba üleval, kaart täidab ülejäänu;
+   Leaflet saab hämariku tumeda tooni + klaas-popupid.
+   ============================================================ */
+.service-map-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 0.7rem;
+}
+.service-map-topbar {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding-right: 0.2rem;
+}
+.service-map-topbar-inner {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.service-map-topbar[data-open="0"] .service-map-topbar-inner {
+  display: none;
+}
+.service-map-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 0.55rem;
+}
+.service-map-fields input {
+  width: 100%;
+  padding: 0.6em 1.05em;
+  border-radius: 999px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  color: var(--input-text);
+}
+.service-map-fields input:focus {
+  outline: none;
+  background: var(--input-bg-focus);
+  border: var(--input-border-focus);
+}
+/* Liigivalik kompaktsete pillidena (mitte täislaiuses ridadena) */
+.service-map-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+.service-map-types label[data-control-type] {
+  width: auto;
+  padding: 0.45em 1.05em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.service-map-types label[data-control-type] > span[aria-hidden="true"] {
+  display: none; /* pill ise näitab valikut */
+}
+.service-map-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: 5.4rem;
+  overflow-y: auto;
+}
+.service-map-results button {
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.service-map-results button:hover,
+.service-map-results button[data-selected="true"] {
+  color: var(--text-warm);
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+.service-map-toggle {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--text-soft);
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+}
+.service-map-toggle:hover {
+  color: var(--text-warm);
+}
+.service-map-toggle svg {
+  width: 1rem;
+  height: 1rem;
+}
+.service-map-admin {
+  flex: none;
+}
+/* Kaart täidab kogu ülejäänud ala */
+.service-map-canvas {
+  flex: 1;
+  min-height: 18rem;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--glass-cell-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+.service-map-canvas .service-map-leaflet-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.service-map-canvas .service-map-leaflet {
+  width: 100%;
+  height: 100% !important;
+  min-height: 18rem;
+  background: #16110d;
+}
+/* Hämariku toon OSM-plaatidele. NB: Leafleti kihiväline CSS ütleb
+   .leaflet-tile{filter:inherit} — seepärast toonime KONTEINERIT,
+   millelt plaadid pärivad. */
+.service-map-canvas .leaflet-tile-container {
+  filter: brightness(0.72) contrast(1.05) saturate(0.7) sepia(0.22) hue-rotate(-8deg);
+}
+.service-map-leaflet__legend {
+  position: absolute;
+  left: 0.8rem;
+  bottom: 0.8rem;
+  z-index: 500;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(20, 16, 13, 0.82);
+  border: 1px solid var(--glass-border-soft);
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+.service-map-leaflet__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.service-map-leaflet__status {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-soft);
+  background: rgba(16, 12, 10, 0.6);
+  z-index: 510;
+}
+/* Popupid klaasikeeles */
+.service-map-canvas .leaflet-popup-content-wrapper {
+  background: rgba(24, 20, 17, 0.96);
+  color: var(--text-warm);
+  border-radius: 14px;
+  border: 1px solid var(--glass-border-soft);
+  box-shadow: var(--glass-shadow);
+}
+.service-map-canvas .leaflet-popup-tip {
+  background: rgba(24, 20, 17, 0.96);
+}
+.service-map-popup {
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.service-map-popup__label {
+  color: var(--text-dim);
+}
+.service-map-popup__action,
+.service-map-popup__contact-button {
+  display: inline-block;
+  margin: 0.25rem 0.3rem 0 0;
+  padding: 0.35em 0.85em;
+  border-radius: 999px;
+  color: var(--text-warm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  text-decoration: none;
+  cursor: pointer;
+}
+.service-map-popup__action:hover,
+.service-map-popup__contact-button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+.service-map-canvas .leaflet-container a.leaflet-popup-close-button {
+  color: var(--text-soft);
+}
+
+@media (max-width: 768px) {
+  .service-map-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   Alamlehtede sweep (kovisioon / dokumendid / tööheaolu / teekond /
+   kutsed): ikoonivabad tekstinupud, aktiivse valiku seis, kahe-
+   realised valikunupud, üleslaadimise kukutusala ning pill-sisendid
+   ka portaalis (väljaspool .panel-body).
+   ============================================================ */
+
+/* Aktiivne valik lülitiridades (perioodi-/sammunupud): reegel elab nüüd
+   ÜHES kohas — glass.css (button[data-variant] valitud-olek). */
+
+/* Kovisiooni loomise sammuriba */
+.covision-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+/* Kaherealine valikunupp (pealkiri + selgitav rida) — klaasnupp,
+   mis rivistub kaardina, mitte pillina */
+.wellbeing-choice-btn {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2em;
+  width: 100%;
+  text-align: left;
+  padding: 0.85em 1.15em;
+  border-radius: 16px;
+}
+.wellbeing-choice-btn > span:first-child {
+  color: var(--text-warm);
+}
+.wellbeing-choice-btn > span + span,
+.wellbeing-choice-btn small {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+
+/* Dokumentide üleslaadimise kukutusala — katkendjoonega klaaslahter */
+.documents-dropzone {
+  display: block;
+  width: 100%;
+  padding: 1.1rem 1.2rem;
+  border-radius: 16px;
+  border: 1.5px dashed var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+  text-align: center;
+  cursor: var(--cursor-pointer);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft);
+}
+.documents-dropzone:hover,
+.documents-dropzone[data-drag-active="true"] {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--text-warm);
+}
+.documents-dropzone p {
+  margin: 0.35em 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+
+/* Kutse-vaate väljad — sama pill-keel ka portaalis (väljaspool
+   .panel-body renderduvas modaalis) */
+.invite-field-input {
+  width: 100%;
+  padding: 0.6em 1.05em;
+  border-radius: 999px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  color: var(--input-text);
+  caret-color: var(--text-warm);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.invite-field-input::placeholder {
+  color: var(--input-placeholder);
+}
+.invite-field-input:focus {
+  outline: none;
+  background: var(--input-bg-focus);
+  border: var(--input-border-focus);
+}
+
+/* Kutse-modali tagasi-ikoonnupp (ainus tagasitee portaalis) */
+.invite-modal-back {
+  flex: none;
+  margin-bottom: 0.6rem;
+}
+
+
+/* ============================================================
+   Kovisiooni TÄISEKRAANI LÕUEND (tellija 06.07 öö): liigutatavad
+   kaardid suurel pinnal, etapiriba, paigutuse taastamine.
+   Haagid: .covision-stagebar, .covision-canvas, .covision-card.
+   ============================================================ */
+.covision-stagebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 0 0.7rem;
+}
+/* PIND glass.css-ist (data-variant); siin AINULT paigutus. Aktiivne
+   etapp = data-variant="primary" (JSX). */
+.covision-stagebar button {
+  padding: 0.42em 1em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.covision-canvas {
+  position: relative;
+  min-height: 30rem;
+  border-radius: 18px;
+  border: 1px solid var(--glass-cell-border);
+  background:
+    radial-gradient(1px 1px at 24px 24px, rgba(255, 253, 248, 0.14) 1px, transparent 1px),
+    linear-gradient(165deg, rgba(22, 18, 15, 0.5), rgba(14, 11, 9, 0.62));
+  background-size: 48px 48px, 100% 100%;
+  overflow: hidden;
+}
+.covision-canvas-surface {
+  position: absolute;
+  inset: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.covision-canvas-plane {
+  position: relative;
+  width: 1560px;
+  height: 1100px;
+}
+.covision-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 22.5rem;
+  max-width: 80vw;
+  border-radius: 16px;
+  background: linear-gradient(165deg, rgba(44, 39, 34, 0.72), rgba(26, 22, 19, 0.82));
+  border: 1px solid var(--glass-cell-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 10px 26px rgba(6, 4, 3, 0.42);
+  transition: opacity 260ms var(--ease-soft), box-shadow 260ms var(--ease-soft);
+}
+.covision-card[data-dim="1"] {
+  opacity: 0.38;
+}
+.covision-card[data-active-drag="1"] {
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 18px 42px rgba(6, 4, 3, 0.6);
+  z-index: 30;
+}
+.covision-card-head {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: var(--fs-small);
+  font-weight: 560;
+  letter-spacing: 0.02em;
+  color: var(--text-warm);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.covision-canvas[data-dragging="1"] .covision-card-head {
+  cursor: grabbing;
+}
+.covision-card-body {
+  padding: 0.7rem 0.9rem 0.85rem;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  white-space: pre-wrap;
+  max-height: 15rem;
+  overflow-y: auto;
+}
+/* PIND glass.css-ist (data-variant); siin AINULT paigutus. */
+.covision-canvas-reset {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.7rem;
+  z-index: 40;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+/* Kovisioon laias aknas: lõuend venib täiskõrguseks */
+.panel-scrim[data-wide="1"] .covision-canvas {
+  flex: 1;
+  min-height: 24rem;
+}
+
+}

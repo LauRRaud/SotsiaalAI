@@ -1,0 +1,16 @@
+/* SotsiaalAI — hämarikuruumi visuaalne kiht (brief v1.1 + kujundusreeglid).
+ * Kihid: tokenid (muutujad) → tailwind (@layer järjekord) → base →
+ * components (glass-primitiivid enne valdkonnafaile, et paigutusklassid
+ * saaksid primitiive täpsustada). Järjekord on oluline.
+ */
+@import url("./tokens.css");
+@import url("./tailwind.css");
+@import url("./base.css");
+@import url("./glass.css");
+@import url("./room.css");
+@import url("./carousel.css");
+@import url("./panel.css");
+@import url("./login.css");
+@import url("./a11y-modal.css");
+@import url("./chat.css");
+@import url("./workspace.css");

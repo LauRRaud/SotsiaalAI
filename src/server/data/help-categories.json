@@ -1,0 +1,122 @@
+[
+  {
+    "code": "TRANSPORT",
+    "labelEt": "Transport",
+    "labelEn": "Transport",
+    "labelRu": "Транспорт",
+    "descriptionEt": "Abi sõidutamisel, saatmisel või transpordi korraldamisel.",
+    "descriptionEn": "Help with rides, accompaniment, or arranging transport.",
+    "descriptionRu": "Помощь с поездками, сопровождением или организацией транспорта.",
+    "sortOrder": 10,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "DAILY_TASKS",
+    "labelEt": "Igapäevaabi",
+    "labelEn": "Daily assistance",
+    "labelRu": "Повседневная помощь",
+    "descriptionEt": "Abi poes käimisel, asjaajamisel ja muudes igapäevastes toimingutes.",
+    "descriptionEn": "Help with shopping, errands, and other everyday tasks.",
+    "descriptionRu": "Помощь с покупками, делами и другими повседневными задачами.",
+    "sortOrder": 20,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "HOME_HELP",
+    "labelEt": "Koduabi",
+    "labelEn": "Home help",
+    "labelRu": "Помощь по дому",
+    "descriptionEt": "Abi kodustes töödes, koristamises või muudes koduga seotud tegevustes.",
+    "descriptionEn": "Help with household tasks, cleaning, or other home-related activities.",
+    "descriptionRu": "Помощь по дому, в уборке и других домашних делах.",
+    "sortOrder": 30,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "DIGITAL_HELP",
+    "labelEt": "Digiabi",
+    "labelEn": "Digital help",
+    "labelRu": "Цифровая помощь",
+    "descriptionEt": "Abi telefoni, arvuti, interneti või e-teenuste kasutamisel.",
+    "descriptionEn": "Help with using a phone, computer, internet, or e-services.",
+    "descriptionRu": "Помощь в использовании телефона, компьютера, интернета или электронных услуг.",
+    "sortOrder": 40,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "CARE_SUPPORT",
+    "labelEt": "Tugi ja hooldus",
+    "labelEn": "Care and support",
+    "labelRu": "Уход и поддержка",
+    "descriptionEt": "Abi hooldamisel, kõrvalabina või toetava kohaloluga.",
+    "descriptionEn": "Help with care, assistance, or supportive presence.",
+    "descriptionRu": "Помощь в уходе, сопровождении или поддерживающем присутствии.",
+    "sortOrder": 50,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "CHILD_YOUTH_SUPPORT",
+    "labelEt": "Laste ja noorte tugi",
+    "labelEn": "Support for children and youth",
+    "labelRu": "Поддержка детей и молодёжи",
+    "descriptionEt": "Abi lastele või noortele suunatud toetuse, saatmise või juhendamisega.",
+    "descriptionEn": "Support, accompaniment, or guidance aimed at children or young people.",
+    "descriptionRu": "Поддержка, сопровождение или помощь, направленная на детей и молодёжь.",
+    "sortOrder": 60,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "LEARNING_GUIDANCE",
+    "labelEt": "Õppimise ja juhendamise abi",
+    "labelEn": "Learning and guidance support",
+    "labelRu": "Помощь в обучении и наставничестве",
+    "descriptionEt": "Abi õppimisel, juhendamisel, harjutamisel või oskuste arendamisel.",
+    "descriptionEn": "Help with learning, guidance, practice, or skills development.",
+    "descriptionRu": "Помощь в обучении, наставничестве, практике или развитии навыков.",
+    "sortOrder": 70,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "SOCIAL_SUPPORT",
+    "labelEt": "Seltskond ja sotsiaalne tugi",
+    "labelEn": "Companionship and social support",
+    "labelRu": "Общение и социальная поддержка",
+    "descriptionEt": "Abi suhtlemise, seltsi pakkumise või sotsiaalse toe vormis.",
+    "descriptionEn": "Support through companionship, social contact, or emotional presence.",
+    "descriptionRu": "Поддержка в форме общения, компании или социального контакта.",
+    "sortOrder": 80,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "ADMIN_FORM_HELP",
+    "labelEt": "Asjaajamise ja vormide abi",
+    "labelEn": "Administrative and forms help",
+    "labelRu": "Помощь с документами и оформлением",
+    "descriptionEt": "Abi avalduste, vormide, dokumentide või asjaajamisega.",
+    "descriptionEn": "Help with applications, forms, documents, or administrative tasks.",
+    "descriptionRu": "Помощь с заявлениями, формами, документами и административными вопросами.",
+    "sortOrder": 90,
+    "isActive": true,
+    "parentCode": null
+  },
+  {
+    "code": "OTHER",
+    "labelEt": "Muu abi",
+    "labelEn": "Other help",
+    "labelRu": "Другая помощь",
+    "descriptionEt": "Muu abi, mis ei sobitu hästi ühegi põhikategooriaga.",
+    "descriptionEn": "Other help that does not fit well into the main categories.",
+    "descriptionRu": "Другая помощь, которая не подходит ни к одной из основных категорий.",
+    "sortOrder": 100,
+    "isActive": true,
+    "parentCode": null
+  }
+]

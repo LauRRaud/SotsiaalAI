@@ -1,0 +1,22 @@
+# Self-hosted LiveKit config for SotsiaalAI audio rooms.
+# Copy to /etc/livekit/livekit.yaml on the server and replace placeholders there.
+# Do not commit the rendered file with real keys.
+
+port: 7880
+bind_addresses:
+  - ""
+log_level: info
+
+rtc:
+  tcp_port: 7881
+  port_range_start: 50000
+  port_range_end: 60000
+  use_external_ip: true
+
+keys:
+  <LIVEKIT_API_KEY>: <LIVEKIT_API_SECRET>
+
+room:
+  auto_create: true
+
+# No egress, recording, SIP, or ingress service is configured in this phase.

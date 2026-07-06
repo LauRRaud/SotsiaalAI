@@ -1,0 +1,19 @@
+/ -> app/page.js
+/admin/analytics -> app/admin/analytics/page.jsx
+/admin/rag -> app/admin/rag/page.jsx
+/join -> app/join/page.jsx
+/kasutusjuhend -> app/kasutusjuhend/page.jsx
+/kasutustingimused -> app/kasutustingimused/page.js
+/privaatsustingimused -> app/privaatsustingimused/page.js
+/profiil -> app/profiil/page.js
+/registreerimine -> app/registreerimine/page.js
+/room/[roomId] -> app/room/[roomId]/page.jsx
+/rooms -> app/rooms/page.js
+/ruum -> app/ruum/page.js
+/taasta-parool -> app/taasta-parool/page.jsx
+/taasta-parool/[token] -> app/taasta-parool/[token]/page.jsx
+/tellimus -> app/tellimus/page.js
+/uuenda-epost -> app/uuenda-epost/page.js
+/uuenda-pin -> app/uuenda-pin/page.js
+/vestlus -> app/vestlus/page.js
+

@@ -1,0 +1,1 @@
+ALTER TABLE "ServiceMapEntry" ADD COLUMN IF NOT EXISTS "accessPath" JSONB;

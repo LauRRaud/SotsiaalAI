@@ -1,0 +1,499 @@
+@layer components {
+/* ============================================================
+   Vestluse klaasi-raam (pilt 9 etalon). Sisu loogikat ei muudeta —
+   ainult klaas, mullid, sisendiriba ja tüpograafia. Haagid:
+   #chat-window, #chat-window-scroll, [role="article"][data-role],
+   #chat-input, tühjad ikoonnupud saavad glüüfid maskidena.
+   ============================================================ */
+
+/* Lehe skelett paneeli sees: sõnumid kerivad, komposer all */
+.panel-scrim[data-chat="1"] .panel-body {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 2vw, 1.6rem) clamp(1rem, 2.4vw, 2rem);
+  padding-top: clamp(3.8rem, 7lvh, 4.6rem);
+}
+/* Vahekihid venima, et komposer püsiks paneeli allservas.
+   NB: ChatBodyView-s on KAKS anonüümset vahekihti (aria-hidden mähis +
+   sisemähis) — mõlemad peavad venima, muidu jääb sisend keskele. */
+.panel-scrim[data-chat="1"] .panel-body > div,
+.panel-scrim[data-chat="1"] .panel-body > div > div:has([data-chat-container]) {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+[data-chat-container] {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+[data-chat-container] > main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-window {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+#chat-window-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0.4rem 0.3rem 1rem;
+}
+
+/* ---------- Sõnumimullid ---------- */
+[role="article"][data-role] {
+  position: relative;
+  max-width: min(78%, 46rem);
+  padding: 0.8em 1.05em;
+  border-radius: 18px;
+  line-height: 1.5;
+  color: var(--text-warm);
+}
+[role="article"][data-role="user"] {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-bottom-right-radius: 8px;
+}
+[role="article"][data-role="ai"] {
+  align-self: flex-start;
+  background: rgba(0, 0, 0, 0.26);
+  border: 1px solid var(--glass-cell-border);
+  border-bottom-left-radius: 8px;
+}
+[role="article"][data-role] p {
+  margin: 0 0 0.5em;
+}
+[role="article"][data-role] p:last-child {
+  margin-bottom: 0;
+}
+[role="article"][data-role] ul,
+[role="article"][data-role] ol {
+  padding-left: 1.2em;
+  margin: 0.4em 0;
+}
+[role="article"][data-role]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* Sõnumi tegevusrida (Kopeeri / Kuula) — vaikne, mulli all */
+[role="article"][data-role] [aria-label] > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.3em 0.75em;
+  margin: 0.35em 0.4em 0 0;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+[role="article"][data-role] [aria-label] > button:hover {
+  color: var(--text-soft);
+  border-color: var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+}
+
+/* ---------- Komposer: sisendiriba nagu pildil 9 ----------
+   Tegelik DOM: form > div(Tööriistad-nupp oma svg-ga) + div > div(pill:
+   div > textarea#chat-input + div > mic + saada). */
+form:has(#chat-input) {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.55rem;
+  padding-top: 0.75rem;
+}
+/* Tööriistad (+) — pilli SEES vasakus otsas, ilma taustata
+   (tellija otsus). DOM-is on nupp pillist väljas → paigutame
+   absoluutselt pilli algusse ja anname pillile vasaku varu. */
+form:has(#chat-input) {
+  position: relative;
+}
+form:has(#chat-input) > div:first-child {
+  position: absolute;
+  left: 0.4rem;
+  bottom: 0.62rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.2rem;
+}
+form:has(#chat-input) > div:first-child button {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--text-soft);
+  background: none;
+  border: none;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+form:has(#chat-input) > div:first-child button:hover {
+  color: var(--text-warm);
+}
+form:has(#chat-input) > div:first-child button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+/* Sisendiala venib; pill on selle esimene laps */
+form:has(#chat-input) > div:has(#chat-input) {
+  flex: 1;
+  min-width: 0;
+}
+form:has(#chat-input) > div:has(#chat-input) > div {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1.55rem;
+  padding: 0.4rem 0.45rem 0.4rem 2.7rem;
+  transition: border-color var(--dur-fast) var(--ease-soft);
+}
+form:has(#chat-input) > div:has(#chat-input) > div:focus-within {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+/* Tekstiala ümbris venib; nuppude ümbris rivistub ritta */
+form:has(#chat-input) div:has(> #chat-input) {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+}
+form:has(#chat-input) > div:has(#chat-input) > div > div:not(:has(#chat-input)) {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  flex: none;
+}
+#chat-input {
+  flex: 1;
+  width: 100%;
+  min-height: 1.5em;
+  max-height: 9em;
+  padding: 0.45em 0;
+  background: none;
+  border: none;
+  resize: none;
+  color: var(--text-warm);
+  caret-color: var(--text-warm);
+  line-height: 1.45;
+}
+/* Kohatäiteteksti ei kuvata (tellija otsus); sr-silt on olemas */
+#chat-input::placeholder {
+  color: transparent;
+}
+#chat-input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Mikrofon + saada (tühi markup → glüüfid maskidena) */
+form:has(#chat-input) button[data-recording],
+form:has(#chat-input) button[type="submit"] {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--text-soft);
+}
+/* Saada — liquid glass nupp nagu kõik teised (glass.css materjal) */
+form:has(#chat-input) button[type="submit"] {
+  color: var(--text-warm);
+  background-color: rgba(255, 255, 255, 0.03);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 36%,
+    rgba(255, 255, 255, 0.02) 62%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.42),
+    inset 0 -1px 1.5px rgba(255, 255, 255, 0.13),
+    0 4px 14px rgba(0, 0, 0, 0.24);
+}
+form:has(#chat-input) button[type="submit"]:hover {
+  background-color: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+form:has(#chat-input) button[type="submit"]:active {
+  background-color: rgba(0, 0, 0, 0.14);
+  scale: 0.96;
+}
+form:has(#chat-input) button[data-recording]::before,
+form:has(#chat-input) button[type="submit"]::before {
+  content: "";
+  width: 1.05rem;
+  height: 1.05rem;
+  background: currentColor;
+  -webkit-mask: var(--glyph) center / contain no-repeat;
+  mask: var(--glyph) center / contain no-repeat;
+}
+form:has(#chat-input) button[data-recording]::before {
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Crect x='9' y='3.5' width='6' height='11' rx='3'/%3E%3Cpath d='M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6'/%3E%3C/svg%3E");
+}
+form:has(#chat-input) button[data-recording="true"] {
+  color: #ff9d8a;
+  border-color: rgba(255, 157, 138, 0.5);
+}
+form:has(#chat-input) button[type="submit"]::before {
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V6M6.5 11.5 12 6l5.5 5.5'/%3E%3C/svg%3E");
+}
+/* Peatamise seisund (voogedastus): ruut */
+form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='7' y='7' width='10' height='10' rx='2'/%3E%3C/svg%3E");
+}
+
+/* Tööriistade menüü (portaal) — kompaktne klaasmenüü + nupu juures;
+   ikoonid VÄIKESED rea ees (ilma mõõduta svg paisus ekraanisuuruseks) */
+[role="menu"] {
+  min-width: 15rem;
+  max-width: 20rem;
+  max-height: min(60lvh, 26.25rem);
+  overflow-y: auto;
+  padding: 0.45rem;
+  border-radius: 16px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  z-index: var(--z-modal);
+}
+[role="menu"] [role="menuitem"] {
+  display: flex;
+  align-items: center;
+  gap: 0.65em;
+  width: 100%;
+  text-align: left;
+  padding: 0.6em 0.9em;
+  border-radius: 10px;
+  color: var(--text-warm);
+  font-size: var(--fs-small);
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+[role="menu"] [role="menuitem"] svg,
+[role="menu"] [role="menuitem"] img {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: none;
+}
+[role="menu"] [role="menuitem"]:hover {
+  background: var(--glass-cell-bg-hover);
+}
+
+/* Vestluse jalus tühi/väike */
+.panel-scrim[data-chat="1"] footer {
+  flex: none;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  text-align: center;
+  padding-top: 0.4rem;
+}
+
+/* ---------- Vestluste sahtel (☰ → ConversationDrawer + ChatSidebar) ----------
+   Tellija 06.07 öö: sahtel oli stiilimata "imelik asi" — nüüd klaasikeeles:
+   tume matt paneel vasakul, taust hägustub, read klaasi-lahtritena. */
+.drawer-overlay {
+  background: rgba(8, 6, 5, 0.35);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+}
+.drawer-panel {
+  width: min(20.625rem, 88vw);
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, rgba(32, 28, 24, 0.94), rgba(18, 15, 13, 0.97));
+  border-right: 1px solid var(--glass-border-soft);
+  box-shadow: var(--glass-shadow);
+  color: var(--text-warm);
+  transform: translateX(-102%);
+  transition: transform 300ms var(--ease-soft);
+}
+.drawer-panel.open {
+  transform: none;
+}
+.drawer-header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 1.05rem 0.9rem 0.55rem 1.15rem;
+}
+.drawer-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+.drawer-header > button {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  color: var(--text-soft);
+  border: 1px solid transparent;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.drawer-header > button:hover {
+  color: var(--text-warm);
+  border-color: var(--glass-cell-border);
+}
+.drawer-header > button svg {
+  width: 1rem;
+  height: 1rem;
+}
+.drawer-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+.drawer-content > nav {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0 1rem 1rem;
+}
+/* Tegevuspillid (Uus / Vali / uuenda / Grupivestlused) */
+.drawer-content > nav > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.drawer-content > nav > div:first-child button {
+  font-size: var(--fs-small);
+}
+.drawer-content > nav > div:first-child button svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+/* Otsing */
+.drawer-content input#chat-sidebar-search {
+  width: 100%;
+  padding: 0.5em 1em;
+  border-radius: 999px;
+  background: var(--input-bg);
+  border: var(--input-border);
+  color: var(--input-text);
+  font-size: var(--fs-small);
+}
+.drawer-content input#chat-sidebar-search::placeholder {
+  color: var(--input-placeholder);
+}
+.drawer-content input#chat-sidebar-search:focus {
+  outline: none;
+  background: var(--input-bg-focus);
+  border: var(--input-border-focus);
+}
+/* Loend kerib; read klaasi-lahtritena */
+.drawer-content > nav > div:last-child {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+.drawer-content nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+.drawer-content nav li {
+  border-radius: 14px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  padding: 0.55rem 0.75rem;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.drawer-content nav li:hover {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.drawer-content nav li [role="button"],
+.drawer-content nav li > div {
+  cursor: pointer;
+}
+.drawer-content nav li button {
+  color: var(--text-dim);
+  border-radius: 8px;
+  padding: 0.2em 0.45em;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+.drawer-content nav li button:hover {
+  color: var(--text-warm);
+}
+.drawer-content nav [role="alert"] {
+  color: var(--status-error);
+  font-size: var(--fs-small);
+}
+
+/* Alla-kerimise nupp */
+button[aria-controls="chat-window-scroll"] {
+  position: absolute;
+  right: 1.4rem;
+  bottom: 6.2rem;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: var(--text-soft);
+}
+button[aria-controls="chat-window-scroll"]::before {
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v13M6.5 12.5 12 18l5.5-5.5'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v13M6.5 12.5 12 18l5.5-5.5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+@media (max-width: 768px) {
+  [role="article"][data-role] {
+    max-width: 88%;
+  }
+  form:has(#chat-input) > div:first-child button {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+}

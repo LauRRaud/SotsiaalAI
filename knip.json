@@ -1,0 +1,47 @@
+{
+  "$schema": "https://unpkg.com/knip@latest/schema.json",
+  "paths": {
+    "@/*": ["./*"]
+  },
+  "ignoreDependencies": [
+    "@svgr/webpack",
+    "tailwindcss",
+    "pg"
+  ],
+  "ignoreBinaries": [
+    "pm2"
+  ],
+  "entry": [
+    "eslint.config.{js,mjs,cjs,ts}",
+    "next.config.{js,mjs,cjs,ts}",
+    "proxy.{js,jsx,ts,tsx}",
+    "auth.{js,mjs,cjs,ts}",
+    "app/**/{page,layout,template,loading,error,not-found,notfound,route,default}.{js,jsx,ts,tsx}",
+    "app/**/{robots,sitemap}.{js,ts}",
+    "pages/**/*.{js,jsx,ts,tsx}",
+    "scripts/**/*.{js,mjs,cjs,ts}"
+  ],
+  "project": [
+    "app/**/*.{js,jsx,ts,tsx}",
+    "components/**/*.{js,jsx,ts,tsx}",
+    "lib/**/*.{js,jsx,ts,tsx}",
+    "scripts/**/*.{js,mjs,cjs,ts}"
+  ],
+  "ignore": [
+    ".next/**",
+    "node_modules/**",
+    "Coverage/**",
+    "coverage-reports/**",
+    "tmp/**",
+    "dist/**",
+    "build/**",
+    "generated/**",
+    "codex-skills/**",
+    "public/vendor/**",
+    "app/styles/**/*.css",
+    "components/**/*.css",
+    "*.zip",
+    "*.log",
+    "*coverage*.json"
+  ]
+}

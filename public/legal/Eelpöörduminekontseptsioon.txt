@@ -1,0 +1,503 @@
+Eelpöördumise leht eluküsimusega pöördujale, küsitluse tulemused sotsiaaltöötajale ja teenuseostajale. Pöördumine võib olla tavaline kiri või siis eelhindamise tulemus. Eelhindamine ja kaardistus on pdf failis.
+
+Eelpöördumine ja abivajaduse eelkaardistus
+1. Kontseptsiooni tuum
+
+Eelpöördumine ja abivajaduse eelkaardistus on SotsiaalAI töövoog, mis aitab inimesel enne kohaliku omavalitsuse, lastekaitse, sotsiaaltöötaja või teenuseosutajaga ühenduse võtmist oma olukorda selgemalt kirjeldada. Inimene saab vestluslikult läbi mõelda, milles ta abi vajab, millised eluvaldkonnad on mõjutatud, kes on juba tema võrgustikus olemas, milliseid samme on varem proovitud ning millise osapoole poole võiks olla mõistlik pöörduda.
+
+See ei ole ametlik abivajaduse hindamine ega STAR2 hindamise asendaja. SKA juhend ütleb, et SHS §15 kohustab KOV-i hindama inimese abivajadust ning STAR2-s on selleks loodud universaalne struktureeritud küsimustik; samas rõhutatakse, et hindamine ise ei määra teenust, vaid annab spetsialistile sisendi kaalutletud otsuse tegemiseks.
+
+SotsiaalAI roll on koguda ja korrastada eelinfot. Ametliku hindamise, abimeetmete kaalumise, otsuse ja teenusele suunamise teeb pädev spetsialist või vastav asutus.
+
+2. Avalik sõnastus
+
+Eelpöördumine aitab inimesel enne kohtumist või pöördumist oma olukorra selgemalt kirja panna. SotsiaalAI küsib lihtsas keeles küsimusi igapäevase toimetuleku, tervise, elukeskkonna, võrgustiku, senise abi ja peamiste vajaduste kohta ning koostab sellest kontrollitava kokkuvõtte või kirja mustandi. Kokkuvõtte saab inimene üle vaadata, täiendada ja soovi korral edastada kohaliku omavalitsuse sotsiaalhoolekande kontaktile, lastekaitsele või teenuseosutajale. Ametliku abivajaduse hindamise ja otsused teeb pädev spetsialist.
+
+Lühike versioon:
+
+Eelpöördumine ja abivajaduse eelkaardistus aitavad inimesel oma olukorra, vajadused ja võrgustiku enne kohtumist selgelt kokku võtta ning suunata pöördumise sobivale KOV kontaktile, lastekaitsele või teenuseosutajale.
+
+3. Miks see on KOV-ile kasulik?
+
+KOV-i jaoks on väärtus selles, et inimene ei tule kohtumisele täiesti “tühja lehega”. Enne kohtumist saab sotsiaaltöötaja või lastekaitsetöötaja struktureeritud eelinfo: inimese enda sõnastatud mure, puudutatud eluvaldkonnad, senised sammud, võrgustik, võimalikud riskid, dokumendid ja küsimused, mida kohtumisel täpsustada.
+
+SKA juhend rõhutab, et spetsialist viib inimese või tema lähedasega läbi struktureeritud vestluse, kuid eesmärk ei ole inimest üle kuulata, vaid koondada toimetuleku tagamiseks oluline info. Just seda põhimõtet saab SotsiaalAI eelkaardistus toetada: kasutajasõbralik eelinfo kogumine, mitte ametliku hindamise asendamine.
+
+4. Kasutaja töövoog
+4.1. Algus: inimene kirjeldab olukorda
+
+Kasutaja avab Eelpöördumise ja kirjutab oma sõnadega, mis mure tal on.
+
+Näiteks:
+
+“Mu ema vajab järjest rohkem abi, ma ei jaksa enam üksi hooldada ja ei tea, kas peaksin pöörduma KOV-i poole või otsima teenuseosutajat.”
+
+SotsiaalAI alustab vestluslikku eelkaardistust, mitte pikka ametlikku ankeeti.
+
+4.2. Vajadusvaldkondade tuvastamine
+
+Assistendi ülesanne on tuvastada, milliseid teemasid kirjeldus puudutab.
+
+Näiteks:
+
+hoolduskoormus;
+eakad;
+füüsiline tervis;
+igapäevaelu toimingud;
+koduteenus;
+üldhooldusteenus;
+pereliikme toetus;
+KOV abivajaduse hindamine;
+teenuseosutaja info.
+
+STAR2 juhendi loogikas käsitletakse täisealise inimese abivajadust eluvaldkondade kaupa: suhtlemine, vaimne tervis, füüsiline tervis, elukeskkond, hõivatus, vaba aeg ja huvitegevus ning igapäevaelu toimingud. SotsiaalAI saab neid kasutada lihtsustatud eelkaardistuse raamistikuna.
+
+4.3. Täpsustavad küsimused
+
+SotsiaalAI küsib ainult vajalikku lisainfot. Mitte kogu hindamisküsimustikku, vaid olukorrast lähtuvaid küsimusi.
+
+Näiteks hoolduskoormuse puhul:
+
+Kas inimene vajab abi kodus igapäevatoimingutes?
+Kes praegu aitab?
+Kas inimene liigub iseseisvalt?
+Kas kodus on turvaline?
+Kas varasemalt on KOV-i või teenuseosutajaga suheldud?
+Kas pereliikme hoolduskoormus on muutunud liiga suureks?
+Kas vaja on infot, kohtumist, teenust või ametlikku hindamist?
+4.4. Võrgustiku kirjeldamine
+
+Kasutaja saab valida või lisada osapooled:
+
+pereliige;
+hooldaja;
+eestkostja;
+perearst;
+KOV sotsiaaltöötaja;
+lastekaitsetöötaja;
+teenuseosutaja;
+kool/lasteaed;
+SKA;
+Töötukassa;
+politsei/ohvriabi;
+muu osapool.
+
+See loogika haakub hindamisjuhendi võrgustiku põhimõttega: olulised on inimesed ja osapooled, kes mõjutavad inimese igapäevast toimetulekut.
+
+4.5. Inimese enda vajadused
+
+SotsiaalAI aitab inimesel sõnastada:
+
+mida ta ise soovib;
+mis on kõige suurem takistus;
+milles ta vajab abi;
+mida ta kohtumiselt või pöördumiselt ootab;
+milline oleks tema jaoks esimene praktiline järgmine samm.
+
+SKA juhendis on eraldi rõhutatud inimese enda nimetatud vajaduste väljatoomist: mida inimene ise soovib, kuhu tahab jõuda, mis on puudu ja mida ta peab oma toimetuleku jaoks vajalikuks.
+
+5. Adressaadi valik: kuhu pöördumine suunata?
+
+Eelpöördumine ei peaks olema ainult “kirjuta KOV sotsiaaltöötajale” vorm. Süsteem peab oskama pakkuda sobivat suunda.
+
+5.1. KOV sotsiaalhoolekanne
+
+Sobib siis, kui teema puudutab täisealise inimese toimetulekut, hooldusvajadust, koduteenust, üldhooldusteenust, eluaset, toetusi, abivahendeid, hoolduskoormust või ametlikku abivajaduse hindamist.
+
+5.2. KOV lastekaitse
+
+Sobib siis, kui teema puudutab lapse heaolu, pere olukorda, lapse erivajadust, kooli/lasteaia muret, vanemluse raskusi, turvalisust või võimalikku lapse heaolu riski.
+
+5.3. Teenuseosutaja
+
+Sobib siis, kui inimene soovib küsida infot konkreetse teenuse kohta, alustada kontakti teenuseosutajaga või uurida, kas teenus võiks tema olukorras sobida.
+
+5.4. Mõlemad korraga
+
+Paljudel juhtudel on õige tulemus KOV + teenuseosutaja. Näiteks inimene vajab KOV hindamist, aga võib samal ajal küsida teenuseosutajalt infot teenuse sisu, asukoha, järjekorra või tingimuste kohta.
+
+6. Match’i loogika teenuseosutajatega
+
+Selleks, et eelpöördumine oskaks teenuseosutajaid soovitada, peab teenuseosutaja profiil olema struktureeritud. Ühest kirjeldusväljast ei piisa.
+
+Teenuseosutaja profiilis peab olema:
+
+Organisatsiooni info
+
+nimi;
+lühikirjeldus;
+kontaktid;
+aadress/vastuvõtukoht;
+keeled;
+ligipääsetavuse info;
+veebileht.
+
+Teenuste info
+
+teenuse nimetus;
+teenuse kategooriad;
+sihtrühmad;
+probleemid/vajadused, mille puhul teenus sobib;
+teenuse vorm: kohapeal, kodus, veebis, telefonitsi;
+kas teenus on tasuta, tasuline või kokkuleppel;
+kas teenus vajab KOV suunamist või otsust;
+millal teenus ei ole sobiv kontakt.
+
+Piirkond
+
+KOV-id, mida teenindatakse;
+maakond;
+kas teenus sobib kõrvalomavalitsuse inimesele;
+kas teenus on üle-eestiline või veebipõhine.
+
+Vastuvõtukanalid
+
+võtab vastu SotsiaalAI siseseid eelpöördumisi;
+lubab e-posti mustandi koostamist;
+kontakt-e-post;
+milliste teenuste kohta võib pöördumisi saata.
+
+Praeguses SotsiaalAI tehnilises plaanis on juba olemas põhimõte, et teenuseprofiil, teenusekaart ja eelpöördumine kasutavad seotud struktuuri: teenuseosutaja haldab teenuseprofiili, avaldatud teenuseprofiil loob kaardikirje, eelpöördumise töövoos saab valida adressaadiks KOV kontakti või teenuseosutaja ning avaldatud profiil muutub assistendile leitavaks teenuseosutajate teadmuskihina.
+
+7. Match’i lihtne otsustusmudel
+
+Kui inimene täidab eelpöördumist, tekib süsteemis vajadusprofiil.
+
+Näiteks:
+
+needAreas: ["hoolduskoormus", "eakad", "igapäevaelu toimingud"]
+targetGroups: ["eakas inimene", "hooldaja/lähedane"]
+lifeDomains: ["füüsiline tervis", "igapäevaelu toimingud", "elukeskkond"]
+municipalityId: "parnu_linn"
+urgencyLevel: "normal"
+suggestedNextSteps: ["KOV", "SERVICE_PROVIDER"]
+
+Süsteem otsib teenuseosutajaid, kelle profiilis kattuvad:
+
+teenuse kategooria;
+sihtrühm;
+piirkond või teenindusala;
+eelpöördumiste vastuvõtt;
+profiili staatus;
+vajadusel teenusele pääsemise tingimused.
+
+Praeguses arendusplaanis on /api/pre-inquiries/assist juba mõeldud tagastama selliseid väljundeid nagu situationSummary, selectedNeedAreas, urgencyLevel, suggestedNextSteps, recommendedRecipients, draftSubject, draftBody, channelSuggestion ja warnings.
+
+8. Kasutajale nähtav soovitus
+
+SotsiaalAI ei ütle lihtsalt “see on õige teenus”, vaid põhjendab ettevaatlikult.
+
+Näiteks:
+
+Pärnu linnavalitsuse sotsiaalosakond
+Sobib, sest kirjeldatud olukord võib vajada KOV abivajaduse hindamist ja võimalike teenuste või toetuste kaalumist.
+
+Teenuseosutaja X
+Sobib, sest teenuseosutaja märgib oma profiilis hoolduskoormuse, eakate toe ja nõustamise ning teenindab Pärnu piirkonda. Teenusele pääsemise tingimused võivad vajada KOV-i või teenuseosutajaga täpsustamist.
+
+See hoiab sõnastuse turvalisena: süsteem ei luba teenust, vaid pakub võimalikku pöördumissuunda.
+
+9. Eelpöördumise väljundid
+
+Eelpöördumise lõpus võiks kasutaja saada kolm asja.
+
+9.1. Kohtumiseelne kokkuvõte
+
+Struktureeritud ülevaade:
+
+peamine põhjus pöördumiseks;
+inimese enda sõnastatud vajadused;
+puudutatud eluvaldkonnad;
+senised sammud;
+võrgustik;
+võimalikud riskid või kiireloomulised asjaolud;
+küsimused, mida kohtumisel täpsustada;
+soovitatud pöördumise suund.
+9.2. Kirja või pöördumise mustand
+
+Näiteks:
+
+KOV sotsiaalhoolekandele;
+lastekaitsele;
+teenuseosutajale;
+mõlemale erineva sõnastusega.
+9.3. Adressaadi valik ja tegevused
+
+Kasutaja saab:
+
+salvestada mustandi;
+kopeerida teksti;
+laadida alla;
+saata platvormisiseselt, kui adressaat on SotsiaalAI kasutaja ja vastuvõtt on lubatud;
+hiljem saata e-postiga ainult eraldi kinnituse järel.
+
+Praeguses tehnilises plaanis on eelpöördumise töövoog juba mõeldud nii, et kasutaja kirjeldab olukorda, assistent aitab sõnastada, leida kontaktid ja koostada kontrollitava mustandi; sobivad kontaktid tulevad ServiceMapEntry kihist ning midagi ei saadeta automaatselt ilma kinnitamiseta.
+
+10. Kolm kasutusrežiimi
+Tase 1: Lihtne eelpöördumine
+
+Kasutaja kirjeldab muret ja saab kirja mustandi.
+
+Sobib üldiseks kasutuseks.
+
+Tase 2: Abivajaduse eelkaardistus
+
+Kasutaja läbib põhjalikuma vestlusliku eelkaardistuse eluvaldkondade, toimetuleku, võrgustiku ja vajaduste kohta.
+
+Sobib olukordades, kus inimene valmistub KOV kohtumiseks või vajab selgemat ülevaadet.
+
+Tase 3: KOV koostöörežiim
+
+Partner-KOV puhul saab inimene nõusoleku alusel edastada eelkaardistuse otse KOV tööruumi. Sotsiaaltöötaja näeb saabunud eelpöördumist, saab selle vastu võtta, avada vestlusruumi, valmistada kohtumist ette ja kasutada infot ametliku hindamise ettevalmistamisel.
+
+11. Lastekaitse eristus
+
+Lapse ja perega seotud teemade puhul peab suunamine olema eraldi.
+
+Eelpöördumise assistent peaks tuvastama lapse heaolu teemad:
+
+lapse turvalisus;
+vanema toimetulek;
+kooli/lasteaia mure;
+lapse erivajadus;
+hooldusõigus või pere konflikt;
+võimalik väärkohtlemine;
+lapse hooldus ja järelevalve;
+pere abivajadus.
+
+Kui sellised teemad ilmnevad, ei tohiks süsteem suunata üldiselt “sotsiaaltöötajale”, vaid pakkuda KOV lastekaitse või lapse heaolu kontakt suunda. Vahetu ohu korral tuleb anda kriisiabi või hädaabi juhis.
+
+12. Kriisi- ja ohuloogika
+
+Kui inimene kirjeldab vahetut ohtu elule, tervisele või turvalisusele, siis eelpöördumise tavaline töövoog ei ole piisav.
+
+Sellisel juhul peab assistent:
+
+andma neutraalse kriisisuunamise;
+soovitama helistada hädaabinumbrile 112, kui oht on vahetu;
+vajadusel suunama kriisiabi, ohvriabi või lasteabi poole;
+mitte jätma inimest ainult “koostame kirja” töövoogu.
+13. Tehniline rakendamise plaan
+Etapp 1: Ühine taksonoomia
+
+Luua ühine kategooriate süsteem, mida kasutavad:
+
+eelpöördumine;
+teenuseprofiil;
+teenusekaart;
+AI/RAG teenuseosutajate kiht;
+hiljem kovisioon.
+
+Põhikategooriad:
+
+eakad;
+lapsed ja pered;
+puudega inimesed;
+vaimne tervis;
+hoolduskoormus;
+eluase;
+võlad ja toimetulek;
+lähisuhtevägivald;
+sõltuvus;
+töö ja karjäär;
+abivahendid;
+KOV teenused;
+lastekaitse;
+kriis.
+Etapp 2: Eelpöördumise andmemudeli laiendamine
+
+PreInquiry juurde lisada või kinnistada väljad:
+
+situationSummary
+selectedNeedAreas
+targetGroups
+lifeDomains
+municipalityId
+urgencyLevel
+suggestedNextSteps
+recommendedRecipients
+selectedRecipientId
+selectedRecipientType
+draftType
+draftSubject
+draftBody
+channelSuggestion
+warnings
+consentToShare
+status
+Etapp 3: Teenuseprofiili match-väljad
+
+Teenuseprofiili sees peab olema teenuste kaupa struktuur.
+
+Näiteks:
+
+ServiceProviderProfile
+- organizationName
+- shortDescription
+- contactEmail
+- phone
+- website
+- addresses
+- serviceAreaMunicipalityIds
+- acceptsPlatformPreInquiries
+- acceptsEmailPreInquiries
+- profileStatus
+- mapVisible
+
+ProviderService
+- name
+- description
+- serviceCategories
+- targetGroups
+- lifeDomains
+- serviceAreaMunicipalityIds
+- deliveryMode
+- feeType
+- acceptsPreInquiries
+- requiresKovReferral
+- requiresOfficialDecision
+- eligibilityNotes
+- whenNotSuitable
+Etapp 4: Match’i loogika
+
+Assistendi või backend’i sobitusloogika:
+
+võta kasutaja kirjeldusest vajadusvaldkonnad;
+tuvasta sihtrühm;
+tuvasta piirkond/KOV;
+tuvasta, kas teema on KOV, lastekaitse, teenuseosutaja või mõlemad;
+otsi ServiceMapEntry ja teenuseprofiili andmest sobivad kontaktid;
+filtreeri ainult avaldatud ja vastuvõttu lubavad teenuseosutajad;
+arvesta teeninduspiirkonda, mitte ainult füüsilist aadressi;
+tagasta põhjendatud soovitused;
+jäta lõplik valik kasutajale.
+Etapp 5: KOV kontaktide sidumine
+
+KOV sotsiaalhoolekande ja lastekaitse kontaktid peaksid tulema struktureeritud andmekihist, mitte runtime RAG otsingust. Sinu olemasolevas plaanis on ServiceMapEntry just see sisemine struktureeritud kaardikirje, mida kaart ja eelpöördumised kasutavad.
+
+KOV kontaktikirjetes peaks olema:
+
+type: KOV_SOCIAL_CONTACT | KOV_CHILD_PROTECTION | KOV_GENERAL_CONTACT
+municipalityId
+title
+department
+address
+phone
+email
+officialUrl
+checkedAt
+sourceDocId
+status
+Etapp 6: KOV koostöövaade
+
+Partner-KOV jaoks:
+
+sotsiaaltöötaja näeb saabunud eelpöördumisi;
+saab märkida “vastu võetud”;
+saab avada vestlusruumi;
+saab lisada sisemärkuse;
+saab määrata kohtumise;
+saab eksportida või kasutada kokkuvõtet ametliku hindamise ettevalmistamisel;
+saab vajadusel algatada kovisiooni anonüümse juhtumipüstitusena, mitte otse inimese teksti jagades.
+Etapp 7: Nõusolek ja saatmine
+
+Enne edastamist peab kasutaja nägema:
+
+kellele info läheb;
+milline tekst või kokkuvõte edastatakse;
+kas tegemist on platvormisisese pöördumise või e-kirja mustandiga;
+et ametlikku otsust see ei asenda.
+
+Saatmine toimub ainult kinnituse alusel.
+
+14. Kasutajatekstid lehele
+Lehe juhttekst
+
+Kirjelda oma olukorda ja SotsiaalAI aitab sellest koostada selge eelpöördumise. Vajadusel aitab assistent läbi mõelda igapäevase toimetuleku, tervise, elukeskkonna, võrgustiku ja peamised vajadused ning pakub sobivaid kontakte. Enne edastamist saad kõik üle vaadata ja muuta.
+
+Piirangu tekst
+
+Eelpöördumine ja eelkaardistus ei ole ametlik abivajaduse hindamine ega otsus teenuse või toetuse määramiseks. Ametliku hindamise ja otsused teeb pädev spetsialist.
+
+Nõusoleku tekst
+
+Enne pöördumise edastamist vaata tekst üle. Saad muuta sõnastust, valida adressaadi ja kinnitada, millise info soovid edasi saata. Midagi ei saadeta ilma sinu kinnitamiseta.
+
+15. Kõige tähtsam tooteotsus
+
+Eelpöördumine ei ole ainult kirja koostamise tööriist. See on inimese olukorra struktureerimise, sobiva suuna leidmise ja kontrollitava pöördumise koostamise töövoog.
+
+SotsiaalAI väärtus tekib kolmest kihist:
+
+Inimene saab oma olukorra paremini sõnastada.
+Süsteem aitab valida sobiva suuna: KOV, lastekaitse, teenuseosutaja või mitu suunda.
+Spetsialist või teenuseosutaja saab parema eelinfo, kuid säilitab otsustamise ja hindamise vastutuse.
+
+
+Lisa:
+
+võimalik teenuseosutaja profiili info: 
+Mida peab teenuseprofiilis olema, et selline match töötaks?
+
+Masaani näitel peab teenuseprofiil olema umbes selline:
+
+{
+  "organizationName": "Masaan",
+  "shortDescription": "Vaimse tervise, tugiisiku- ja erihoolekandega seotud teenuseid pakkuv organisatsioon.",
+  "serviceAreaMunicipalityIds": ["tallinn", "rapla_vald", "kohila_vald", "kehtna_vald", "kiili_vald", "viljandi_linn", "tartu_linn", "valga_vald"],
+  "county": ["Harjumaa", "Raplamaa", "Viljandimaa", "Tartumaa", "Valgamaa"],
+  "addresses": [
+    {
+      "label": "Tallinn",
+      "address": "Kassi 1, Tallinn",
+      "useForMap": true
+    },
+    {
+      "label": "Rapla",
+      "address": "Piiri 5, Rapla",
+      "useForMap": true
+    }
+  ],
+  "services": [
+    {
+      "name": "Tugiisikuteenus täisealisele inimesele",
+      "serviceCategories": ["tugiisikuteenus", "igapäevane toimetulek", "vaimne tervis", "puue"],
+      "targetGroups": ["täisealine", "puudega inimene", "psüühilise erivajadusega inimene"],
+      "lifeDomains": ["igapäevaelu toimingud", "suhtlemine", "vaimne tervis"],
+      "acceptsPreInquiries": true,
+      "requiresKovReferral": "depends",
+      "eligibilityNotes": "Teenuse kasutamine ja rahastus võivad sõltuda KOV korraldusest või kokkuleppest."
+    },
+    {
+      "name": "Erihoolekandeteenused",
+      "serviceCategories": ["erihoolekanne", "igapäevaelu toetamine", "toetatud elamine", "töötamise toetamine"],
+      "targetGroups": ["psüühilise erivajadusega inimene", "täisealine"],
+      "lifeDomains": ["vaimne tervis", "igapäevaelu toimingud", "hõivatus"],
+      "acceptsPreInquiries": true,
+      "requiresOfficialReferralOrDecision": true,
+      "eligibilityNotes": "Teenuse vajadus ja suunamine vajavad ametliku protsessi täpsustamist."
+    },
+    {
+      "name": "ISTE projekt",
+      "serviceCategories": ["ISTE", "isikukeskne erihoolekanne", "KOV koostöö"],
+      "targetGroups": ["tööealine psüühilise erivajadusega inimene"],
+      "lifeDomains": ["vaimne tervis", "igapäevaelu toimingud", "hõivatus", "suhtlemine"],
+      "acceptsPreInquiries": true,
+      "requiresKovParticipation": true,
+      "eligibilityNotes": "Sobivus sõltub projekti tingimustest ja osalevast KOV-ist."
+    },
+    {
+      "name": "Vaimse tervise toetamine",
+      "serviceCategories": ["vaimse tervise tugi", "nõustamine", "teraapia", "kogemusnõustamine"],
+      "targetGroups": ["täisealine", "pere", "laps ja pere", "vaimse tervise murega inimene"],
+      "lifeDomains": ["vaimne tervis", "suhtlemine", "pere ja võrgustik"],
+      "acceptsPreInquiries": true,
+      "requiresKovReferral": "depends"
+    }
+  ],
+  "acceptsPlatformPreInquiries": true,
+  "acceptsEmailPreInquiries": true,
+  "contactEmail": "info@masaan.ee",
+  "profileStatus": "published",
+  "mapVisible": true
+}

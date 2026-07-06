@@ -1,0 +1,14 @@
+@layer theme, base, components, utilities;
+@custom-variant light (&:where(html.theme-light *));
+@custom-variant hc (&:where(html:not(.theme-light)[data-contrast=hc] *));
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities) source(none);
+@source "../../app/**/*.{js,jsx,mdx}";
+@source "../../components/**/*.{js,jsx}";
+@source "../../src/**/*.{js,jsx}";
+@layer utilities {
+  .invite-modal-overlay ~ .glass-box.chat-container {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

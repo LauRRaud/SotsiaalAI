@@ -1,0 +1,39 @@
+- generic [active] [ref=e1]:
+  - main [ref=e4]:
+    - region "Vestluse sisu" [ref=e8]:
+      - generic:
+        - navigation "Vestluse sisu":
+          - button "Tagasi avalehele" [ref=e9]:
+            - img [ref=e10]
+          - button "Uus vestlus" [ref=e14]:
+            - generic [ref=e15]:
+              - img [ref=e16]
+              - generic:
+                - img
+          - button "Vestlused" [ref=e18]:
+            - img [ref=e19]
+      - generic:
+        - navigation "Vestluse otseteed":
+          - button "Profiil" [ref=e24]:
+            - img
+          - button "Ruumid" [ref=e25]:
+            - img [ref=e26]
+          - button "Töölaud" [ref=e31]:
+            - img [ref=e32]
+      - main [ref=e38]:
+        - region "Vestluse sõnumid" [ref=e40]
+      - generic [ref=e43]:
+        - button "Tööriistad" [ref=e45]:
+          - img [ref=e46]
+        - generic [ref=e48]: Kirjuta sõnum
+        - generic [ref=e52]:
+          - textbox "Kirjuta sõnum" [ref=e54]:
+            - /placeholder: Kirjuta siia
+          - generic [ref=e55]:
+            - button "Alusta dikteerimist" [ref=e56]:
+              - img [ref=e57]
+            - button "Saada sõnum" [disabled] [ref=e60]:
+              - generic:
+                - img
+  - button "Open Next.js Dev Tools" [ref=e66] [cursor=pointer]:
+    - img [ref=e67]

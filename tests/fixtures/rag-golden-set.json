@@ -1,0 +1,202 @@
+[
+  {
+    "id": "concept_voimaluste_kohvik_current_001",
+    "question": "Mis on Võimaluste kohvik?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["journal_article", "project_description"],
+    "forbidden_source_types": ["kov_service_info", "official_form"],
+    "must_mention": ["Võimaluste kohvik"],
+    "must_not_claim": ["tänane kehtiv KOV teenus"]
+  },
+  {
+    "id": "concept_voimaluste_kohvik_historical_2017_001",
+    "question": "Mis oli Võimaluste kohvik 2017. aasta allika põhjal?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["journal_article", "historical_source"],
+    "forbidden_source_types": ["kov_service_info"],
+    "must_mention": ["2017"],
+    "must_not_claim": ["praegu kehtiv teenus"]
+  },
+  {
+    "id": "concept_kanep_mis_on_mis_001",
+    "question": "Mis on Kanep - mis on mis?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["journal_article"],
+    "forbidden_source_types": ["kov_service_info", "official_form"],
+    "must_mention": ["Kanep - mis on mis"],
+    "must_not_claim": ["KOV teenus"]
+  },
+  {
+    "id": "kov_koduteenus_specific_001",
+    "question": "Leia Tartu linna koduteenus.",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["koduteenus", "Tartu"],
+    "must_not_claim": ["kehtib igas KOV-is"]
+  },
+  {
+    "id": "kov_sotsiaaltransport_application_001",
+    "question": "Kuidas taotleda Tartu linnas sotsiaaltransporti?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info", "application_form", "official_contact"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["taotlus", "Tartu"],
+    "must_not_claim": ["kindel summa, kui allikas seda ei kinnita"]
+  },
+  {
+    "id": "kov_hooldajatoetus_form_001",
+    "question": "Milline vorm on seotud Tartu linna hooldajatoetusega?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["application_form", "web_form", "pdf_form"],
+    "forbidden_source_types": ["journal_article", "opinion"],
+    "must_mention": ["vorm"],
+    "must_not_claim": ["mitteametlik vorm"]
+  },
+  {
+    "id": "kov_service_contact_001",
+    "question": "Kes on Tartu linna koduteenuse kontaktisik?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["official_contact", "contact_page", "kov_service_info"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["kontakt"],
+    "must_not_claim": ["kontakt artiklist"]
+  },
+  {
+    "id": "state_toimetulekutoetus_eligibility_001",
+    "question": "Kas inimesel on õigus toimetulekutoetusele?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["national_law", "state_guide"],
+    "forbidden_source_types": ["journal_article", "opinion"],
+    "must_mention": ["toimetulekutoetus", "tingimused"],
+    "must_not_claim": ["kindel õigus ilma asjaolusid kontrollimata"]
+  },
+  {
+    "id": "state_vs_kov_difference_001",
+    "question": "Mis on riikliku ja KOV tasandi info vahe koduteenuse küsimuses?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["national_law", "state_guide", "kov_service_info"],
+    "forbidden_source_types": ["opinion"],
+    "must_mention": ["riiklik", "KOV"],
+    "must_not_claim": ["KOV kord on sama igal pool"]
+  },
+  {
+    "id": "insufficient_evidence_001",
+    "question": "Kui suur on Tartu linna koduteenuse täpne kuutasu?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info", "kov_regulation"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["allikas", "kontrollida"],
+    "must_not_claim": ["täpne summa, kui allikas seda ei kinnita"]
+  },
+  {
+    "id": "stale_article_not_current_service_001",
+    "question": "Kas 2018. aasta artikkel kinnitab tänase koduteenuse taotlemise korra?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["journal_article", "historical_source"],
+    "forbidden_source_types": ["official_form"],
+    "must_mention": ["ei kinnita", "tänane"],
+    "must_not_claim": ["artikkel on tänane ametlik kord"]
+  },
+  {
+    "id": "article_background_not_legal_basis_001",
+    "question": "Kas Sotsiaaltöö artikkel sobib hooldajatoetuse õiguslikuks aluseks?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["journal_article", "national_law", "kov_regulation"],
+    "forbidden_source_types": ["opinion"],
+    "must_mention": ["taust", "õiguslik alus"],
+    "must_not_claim": ["artikkel on õiguslik alus"]
+  },
+  {
+    "id": "wrong_municipality_exclusion_001",
+    "question": "Kas Elva valla koduteenuse kord kehtib Tartu linna elanikule?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info", "kov_regulation"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["Elva", "Tartu"],
+    "must_not_claim": ["ühe KOV kord kehtib teises KOV-is"]
+  },
+  {
+    "id": "wrong_language_exclusion_001",
+    "question": "Leia eestikeelne info Tartu linna koduteenuse kohta.",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info"],
+    "forbidden_source_types": ["wrong_language"],
+    "must_mention": ["Tartu", "koduteenus"],
+    "must_not_claim": ["vale keele allikas on põhitõendus"]
+  },
+  {
+    "id": "exact_title_beats_semantic_001",
+    "question": "Leia allikas pealkirjaga Koduteenus.",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info"],
+    "forbidden_source_types": ["journal_article"],
+    "must_mention": ["Koduteenus"],
+    "must_not_claim": ["semantiliselt sarnane, kuid vale pealkiri on parem"]
+  },
+  {
+    "id": "official_form_required_001",
+    "question": "Kust saab ametliku koduteenuse taotlusvormi?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["application_form", "web_form", "pdf_form"],
+    "forbidden_source_types": ["journal_article", "practice_example"],
+    "must_mention": ["ametlik", "vorm"],
+    "must_not_claim": ["mitteametlik näidis on taotlusvorm"]
+  },
+  {
+    "id": "official_contact_required_001",
+    "question": "Anna ametlik kontakt koduteenuse kohta.",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["official_contact", "contact_page", "kov_service_info"],
+    "forbidden_source_types": ["journal_article", "opinion"],
+    "must_mention": ["kontakt"],
+    "must_not_claim": ["kontakt pärineb artiklist"]
+  },
+  {
+    "id": "client_plain_language_001",
+    "question": "Mul on emal kodus abi vaja. Millest alustada?",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info", "state_guide"],
+    "forbidden_source_types": ["opinion"],
+    "must_mention": ["pöördu", "KOV"],
+    "must_not_claim": ["kindel õigus teenusele ilma hindamiseta"]
+  },
+  {
+    "id": "worker_detailed_casework_001",
+    "question": "Kuidas spetsialistina hinnata koduteenuse vajadust ja dokumenteerida järgmised sammud?",
+    "role": "SOCIAL_WORKER",
+    "language": "et",
+    "expected_source_types": ["national_law", "state_guide", "methodology_guide", "kov_service_info"],
+    "forbidden_source_types": ["opinion"],
+    "must_mention": ["hindamine", "dokumenteerida"],
+    "must_not_claim": ["AI teeb otsuse spetsialisti eest"]
+  },
+  {
+    "id": "source_panel_not_all_candidates_001",
+    "question": "Vasta Tartu koduteenuse taotlemise kohta ja ära kuva kasutamata kandidaate allikatena.",
+    "role": "CLIENT",
+    "language": "et",
+    "expected_source_types": ["kov_service_info", "application_form"],
+    "forbidden_source_types": ["retrieved_but_unused"],
+    "must_mention": ["taotlus", "Tartu"],
+    "must_not_claim": ["kõik otsingukandidaadid on vastuse allikad"]
+  }
+]

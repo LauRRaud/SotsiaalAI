@@ -1,0 +1,3 @@
+﻿st DEFAULT_POLL_MS = 15000;
+const POLL_MS = Number(process.env.NEXT_PUBLIC_RAG_POLL_MS || DEFAULT_POLL_MS);
+// puhastame ja teeme komplekti kiireks vĆ

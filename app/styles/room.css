@@ -1,0 +1,944 @@
+@layer components {
+/* ============================================================
+   Ruumi lavastus: kaadrid, loor, tekstipeatused, CTA, vihjed.
+   Kõik liikumine transform/opacity/filter peal (GPU, brief §9).
+   ============================================================ */
+
+.room {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-room);
+  overflow: hidden;
+  background: var(--dusk-floor);
+}
+/* iOS: pinnitud stseen vajab 100lvh, et tööriistariba peitumine
+   ei venitaks kaadrit (brief §9). Ainult puuteseadmetel. */
+@media (pointer: coarse) {
+  .room {
+    height: 100lvh;
+    bottom: auto;
+  }
+}
+
+/* Lava — kannab kursorikallet; kaadrid on otse selle all */
+.room-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: flat;
+  will-change: transform;
+}
+
+.room-frame {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform, opacity;
+  transform-origin: 50% 47%;
+}
+.room-frame--1 {
+  transform-origin: 52% 50%;
+}
+.room-frame picture,
+.room-frame img {
+  width: 100%;
+  height: 100%;
+}
+.room-frame img {
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Mikroelu: väga aeglane hingav suum lõppseisus (paar promilli) */
+@keyframes room-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.006);
+  }
+}
+.room[data-mode="room"] .room-frame--7 img {
+  animation: room-breathe 22s var(--ease-drift) infinite alternate;
+}
+html[data-reduce-motion="1"] .room-frame--7 img,
+html[data-contrast="hc"] .room-frame--7 img {
+  animation: none;
+}
+
+/* Vinjett istutab liidese ruumi ja parandab servade kontrasti */
+.room-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      120% 90% at 50% 42%,
+      transparent 52%,
+      rgba(10, 5, 3, 0.34) 82%,
+      rgba(10, 5, 3, 0.62) 100%
+    );
+}
+
+/* Paneelirežiimi hämardus + hägu: ruum astub sammu tagasi (brief §6).
+   Avatud paneeli taga läheb kogu ruum pehmeks (pilt 9/10 etalon). */
+.room-dim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(8, 7, 6, 0.3);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-soft);
+}
+/* Ruum astub sammu tagasi: paneelirežiim VÕI keskele avatud aken
+   (login / info-modal / kaardi-leht). KOKKULEPE (tellija 07.07): uue
+   akna avanedes AINULT BLUR — MITTE tumendust (room-dim EI aktiveeru),
+   ja seda IGAL POOL. Küljekaardid (carousel on room-stage'ist väljas
+   eraldi kihis) EI muutu. NB: room-dim jääb teadlikult opacity 0 peale;
+   varasem opacity:1 tegi tausta tumedamaks — tellija ei soovi. */
+.room-stage {
+  transition: filter var(--dur-slow) var(--ease-soft), transform var(--dur-slow) var(--ease-soft);
+}
+.room[data-mode="panel"] .room-stage,
+.room[data-login-open="1"] .room-stage,
+.room[data-info-open="1"] .room-stage,
+.room[data-card-page="1"] .room-stage {
+  /* AINULT hägu (scale peidab hägu heledad servad); tumendust ei ole */
+  filter: blur(3px);
+  transform: scale(1.02);
+}
+html[data-reduce-motion="1"] .room-stage {
+  transition: none;
+}
+
+/* Paneelirežiimis on kaader 7 ainus nähtav; sujuv üleandmine */
+.room[data-mode="panel"] .room-frame {
+  transition: opacity var(--dur-slow) var(--ease-soft);
+}
+
+/* ---------- Laadimisloor (brief §4; tellija 06.07: nupp KESKEL,
+   tekstid selle all, logo täiesti ALASERVAS) ---------- */
+.room-veil {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-veil);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  background: var(--dusk-void);
+  opacity: 1;
+  transition: opacity 900ms var(--ease-soft);
+}
+.room-veil[data-state="fading"] {
+  opacity: 0;
+  pointer-events: none;
+}
+.room-veil[data-state="gone"] {
+  display: none;
+}
+/* Visuaalne järjekord (DOM-i muutmata): nupp → tekstid; logo on
+   voost väljas alaserva ankurdatuna */
+.room-veil-enter {
+  order: 1;
+}
+.room-veil-line {
+  order: 2;
+}
+/* Logo: SUUR, päris alaservas; UUS sõnamärk sotsiaalai-h-valge.svg
+   (Exo 2 + originaal-AI, tellija 07.07); "AI" saab MetallicPaint kihi. */
+.room-veil-logo {
+  position: absolute;
+  left: 50%;
+  /* Tellija 07.07: logo istub serval (−0.1375rem ≈ −2.2px → 1px üles
+     eelmisest −3.2px-ist). env hoiab notch-turvaala. */
+  bottom: max(-0.1375rem, env(safe-area-inset-bottom, 0px) - 0.1375rem);
+  translate: -50%;
+  width: clamp(17rem, 40vw, 33rem); /* rem: allub ekraaniprofiilile */
+}
+.room-veil-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Kreemjas drop-shadow EEMALDATUD (tellija 07.07): tekitas heleda
+     halo, mis mõjus kui logol oleks teist värvi taust. Sära tuleb
+     metallik-AI-st, mitte võltskumast. */
+}
+/* Metall katab AINULT AI piirkonna (mask ai-mark.svg): shaderi
+   voolamisväli arvutatakse siis AI enda kasti (mitte kogu laia logo)
+   järgi — sama rikas muster, mis kinnitatud näidisel (tellija 07.07).
+   Geomeetria h-logost (viewBox 264.37×50, AI nihutatud 0.7u alla):
+   AI kast x [217.17..264.37], y [0.7..48.7] → protsendid generaatorist. */
+.room-veil-logo-metal {
+  position: absolute;
+  left: 82.15%;
+  right: 0;
+  top: 1.40%;
+  bottom: 2.60%;
+  pointer-events: none;
+  /* Alus-AI on läbipaistev; metall tuuakse SUJUVALT sisse alles kui
+     muster on renderdatud (data-metal-ready) — enne ei paista tühja/musta
+     AI-kuju ega hüppa muster järsult ette (tellija 06.07). */
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-soft);
+}
+.room-veil[data-metal-ready="1"] .room-veil-logo-metal {
+  opacity: 1;
+}
+.room-veil-logo-metal canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* ---- Saabumine: AEGLANE LUKSUSLIK TÕUS ALT (tellija 07.07) ----
+   Valguspühe asendatud: kogu logo (koos metallik-AI-ga) tõuseb ekraani
+   ALT SERVAST oma kohale — aeglane, pehme deceleratsioon. Metall
+   sillerdab juba tõusu ajal (WebGL jookseb pidevalt). translate hoiab
+   -50% horisontaalkeset; y 120% (ekraani all) → 0 (kohal). */
+@keyframes veil-logo-rise {
+  0% {
+    translate: -50% 120%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    translate: -50% 0;
+    opacity: 1;
+  }
+}
+.room-veil[data-state="shown"] .room-veil-logo {
+  animation: veil-logo-rise 3.6s cubic-bezier(0.16, 0.84, 0.24, 1) 0.4s both;
+  will-change: translate, opacity;
+}
+/* Liikumistundlik: logo lihtsalt kohal, ilma tõusuta */
+html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-veil[data-state="shown"] .room-veil-logo {
+    animation: none;
+  }
+}
+/* Tekstid nupu all: ÜHTLANE plokk (sama perekond ja lähedane mõõt),
+   selge vahe nupust (tellija 06.07 öö: mitte nupu külje all) */
+.room-veil-line {
+  margin: 2.8rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.95rem);
+  font-weight: 390;
+  letter-spacing: 0.05em;
+  color: rgba(244, 241, 236, 0.85);
+  /* Tekstis olev \n annab käsitsi reamurru (tellija 06.07: "on ühes
+     kohas" teisele reale); mõlemad read keskele */
+  white-space: pre-line;
+  text-align: center;
+}
+
+/* "Sisenen" — kasutaja avab ruumi ise, kui on valmis */
+.glass-btn.room-veil-enter {
+  min-height: 3.4rem;
+  padding: 0 2.1em;
+  font-size: 1.18rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  translate: 0 8px;
+  transition:
+    opacity var(--dur-slow) var(--ease-soft),
+    translate var(--dur-slow) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.glass-btn.room-veil-enter[data-ready="1"] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Usaldusread EEMALDATUD loorilt (tellija 06.07 öö) — jääb ainult
+   tagline "Ruum, kus..." nupu all. */
+
+/* Taustaheli juhtnupud — vaikne nurgaklaster "ukse peal" ehk KÕNNIS
+   (tellija 07.07: muusika + lülitid alates uksekaadrist, mitte loorilt):
+   vaigista/taasta + järgmine lugu. Mähis kannab fikseeritud paigutuse,
+   nupud on flex-lapsed → kaob .room-skip'i-laadne position-lõks
+   (glass-iconbtn position:relative on flexis ohutu). */
+.room-walk-audio {
+  position: fixed;
+  left: clamp(1.3rem, 3vw, 2.4rem);
+  bottom: max(1.6rem, env(safe-area-inset-bottom, 0px) + 1rem);
+  z-index: var(--z-home-ui);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+/* [hidden] võidaks display:flex'i vastu — sunni peitmine käsitsi */
+.room-walk-audio[hidden] {
+  display: none;
+}
+.glass-iconbtn.room-walk-sound,
+.glass-iconbtn.room-walk-next {
+  width: 3.1rem;
+  height: 3.1rem;
+  --icon-size: 1.5rem;
+  color: var(--room-text-soft);
+  opacity: 0.8;
+}
+.glass-iconbtn.room-walk-sound[data-on="0"] {
+  color: var(--room-text-dim);
+}
+.glass-iconbtn.room-walk-sound:hover,
+.glass-iconbtn.room-walk-next:hover {
+  opacity: 1;
+  color: var(--room-text);
+}
+.glass-iconbtn.room-walk-sound svg,
+.glass-iconbtn.room-walk-next svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.room[data-mode="room"] .room-walk-audio {
+  display: none;
+}
+
+/* ---------- OOTEREŽIIM: tekst + ⏻ korpusel, ILMA klaasita ---------- */
+.room-standby {
+  position: fixed;
+  left: 50%;
+  top: 34%; /* tellija 06.07: nupp + tekst kõrgemale */
+  translate: -50%;
+  z-index: var(--z-home-ui);
+  display: grid;
+  justify-items: center;
+  gap: 1.3rem;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+}
+.room-standby-line {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 390;
+  font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.85rem);
+  color: var(--room-text);
+  text-shadow:
+    0 1px 2px rgba(10, 6, 3, 0.85),
+    0 2px 18px rgba(10, 6, 3, 0.6);
+}
+/* Toitelüliti: värvitu kontuur, ILMA kumata (tellija) */
+.room-power {
+  width: 4.4rem;
+  height: 4.4rem;
+  --icon-size: 2.4rem;
+  color: var(--room-text);
+}
+/* GLITCH-parandus (Chromium): backdrop-filter (nii SVG-bend kui plain-blur)
+   jätab ANIMEERITUD ruumi-lava (kursorikalle) kohal ghost-jälje — hover'i
+   järel jääb hägu püsima ja kuhjub. Lava-üleval nupud loobuvad seetõttu
+   live-backdrop-filtrist TÄIELIKULT; klaasi-ilme annab gradient + ääris +
+   sisemine helk + vari (glass.css materjal jääb). Loori-nupp (SISENEN) EI
+   ole selles loendis — tema on liikumatu loori kohal ega glitchi. */
+.room-power,
+.glass-iconbtn.room-walk-sound,
+.glass-iconbtn.room-walk-next,
+.glass-iconbtn.room-quick-btn,
+.glass-btn.room-skip {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+/* Vajutusel kaob KOGU ooterežiim KOHE (tellija 06.07 öö: nupp ei tohi
+   ekraanile ripakile jääda); lühike sähvatus jääb kaadri 6→7 süttimisele */
+.room[data-power="igniting"] .room-standby {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 180ms var(--ease-soft);
+}
+.room[data-power="on"] .room-standby {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+/* Puhkeseis room-režiimis ("Välja" järel, reduced-motion maandumine):
+   kõnni inline-ramp siin ei jookse — nähtavus tuleb deklaratiivselt. */
+.room[data-mode="room"][data-power="standby"] .room-standby {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* ---------- Tekstipeatused (teekonna-tekstid: EELISTATULT plaadita;
+   tekst istub ruumis — kohalik toon + vari annavad loetavuse) ---------- */
+.room-texts {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-home-ui);
+  pointer-events: none;
+}
+.room-text {
+  position: absolute;
+  margin: 0;
+  opacity: 0;
+  /* Laiem mull → tekst murdub 2–3 laiaks reaks, mitte kõrgeks kitsaks
+     tulbaks (tellija 07.07: "liiga pikalt vertikaalne") */
+  max-width: min(30rem, 42vw);
+  font-family: var(--font-display);
+  font-weight: 390;
+  font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.5rem);
+  line-height: 1.46;
+  letter-spacing: 0.055em;
+  color: var(--room-text);
+  padding: 0.72em 1.05em;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  /* OLULINE: taust JA blur peavad elama SAMAL elemendil, mis kannab
+     transformi + opacity't. Kui blur on lapsel (.room-text-body), teeb
+     transformitud/opacity'ga vanem "backdrop root'i" ja backdrop-filter
+     EI rakendu — ruum paistab teravalt läbi (tellija 07.07 viga). */
+  background: rgba(34, 31, 28, 0.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.55),
+    0 2px 16px rgba(0, 0, 0, 0.4);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    0 10px 34px rgba(8, 5, 3, 0.34);
+  will-change: transform, opacity, filter;
+}
+.room-text--left {
+  left: clamp(3rem, 14vw, 15rem);
+  top: 44%;
+  border-bottom-left-radius: 8px; /* vestlusmulli saba vihje */
+}
+.room-text--right {
+  right: clamp(3rem, 14vw, 15rem);
+  top: 44%;
+  text-align: left; /* mulli sees loomulik joondus */
+  border-bottom-right-radius: 8px;
+}
+/* Kaadripõhine häälestus (tellija 07.07): tekstid silmade kõrgusele
+   (mitte lae alla), laiemad mullid, tervitus RUUMI KESKELE. Kohad
+   kaadripiltide järgi, vaiksematesse aladesse. */
+.room-text[data-stop="walk_1"] {
+  left: clamp(2.5rem, 8vw, 10rem);
+  top: 40%;
+}
+/* Tervitus: ruumi keskel, silmade kõrgusel (tellija 07.07) */
+.room-text[data-stop="walk_2a"] {
+  left: 50%;
+  top: 46%;
+  text-align: center;
+}
+.room-text[data-stop="walk_2b"] {
+  right: clamp(3rem, 10vw, 12rem);
+  top: 58%;
+}
+.room-text[data-stop="walk_3a"] {
+  right: clamp(4rem, 12vw, 14rem);
+  top: 34%;
+}
+/* Tellija 07.07: see mull TUGITOOLI KOHALE — kõrgemale, tooli pea
+   kohale, et see hõljuks tooli kohal, mitte peatoel. */
+.room-text[data-stop="walk_3b"] {
+  left: clamp(4rem, 12vw, 14rem);
+  top: 24%;
+}
+.room-text[data-stop="walk_4a"] {
+  left: clamp(3rem, 10vw, 12rem);
+  top: 38%;
+}
+.room-text[data-stop="walk_4b"] {
+  right: clamp(3rem, 9vw, 11rem);
+  top: 50%;
+}
+.room-text[data-stop="walk_5a"] {
+  left: clamp(3rem, 9vw, 10rem);
+  top: 34%;
+}
+.room-text[data-stop="walk_5b"] {
+  right: clamp(3rem, 9vw, 11rem);
+  top: 46%;
+}
+/* Ainus keskpaigutuse erand: kaadri 6 tekst (istuja vaatab seina).
+   X-tsentreering elab JS-i transformis (inline kirjutaks CSS-i üle). */
+.room-text--center {
+  left: 50%;
+  top: 42%;
+  text-align: center;
+  max-width: min(34rem, 70vw);
+}
+/* Tekstikandja: puhas tekstikiht mulli sees. Kogu klaas-välimus
+   (taust, blur, ääris, vari) elab .room-text peal — vt kommentaari
+   sealt (backdrop-filter nõuab transformi-kandjaga sama elementi). */
+.room-text-body {
+  display: block;
+}
+
+/* ---------- Kerimisvihje: sõnatu, hingav nooleke ---------- */
+.room-hint {
+  position: fixed;
+  left: 50%;
+  bottom: max(0.9rem, env(safe-area-inset-bottom, 0px) + 0.4rem);
+  translate: -50%;
+  z-index: var(--z-home-ui);
+  pointer-events: none;
+  display: grid;
+  justify-items: center;
+  gap: 0.7rem;
+}
+.room-hint-track {
+  position: relative;
+  display: block;
+  width: 3px;
+  height: 44px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+@keyframes hint-slide {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(320%);
+    opacity: 0;
+  }
+}
+.room-hint-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 20px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  animation: hint-slide 3.1s var(--ease-drift) infinite;
+}
+/* Tellija 06.07 öö: KERI selgelt suurem ja loetavam */
+.room-hint-label {
+  font-size: 1.16rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  padding-left: 0.34em;
+  color: var(--room-text-soft);
+}
+.room[data-mode="room"] .room-hint,
+.room[data-mode="panel"] .room-hint {
+  display: none;
+}
+
+/* ---------- Vahelejätt — GlassButton, kompaktne paigutus ---------- */
+/* Liquid glass materjal tuleb glass.css-ist; siin ainult paigutus.
+   NB: .glass-btn.room-skip (0-2-0) — pelk .room-skip kaotas position'i
+   osas glass-btn'i position:relative'ile ja nupp triivis üles vasakusse
+   nurka (tellija leitud artefakt, 06.07 öö). */
+.glass-btn.room-skip {
+  position: fixed;
+  bottom: max(1.6rem, env(safe-area-inset-bottom, 0px) + 1rem);
+  right: clamp(1.3rem, 3vw, 2.4rem);
+  z-index: var(--z-home-ui);
+  min-height: 3.1rem;
+  padding: 0 1.9em;
+  font-size: var(--fs-small);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--room-text-soft);
+  opacity: 0.92;
+}
+.room-skip:hover {
+  color: var(--room-text);
+}
+.room[data-mode="room"] .room-skip {
+  display: none;
+}
+
+/* ---------- Ülaserva kiirriba: PEIDUS, vajub hoveril alla ----------
+   Tellija: paneel on vaikimisi ekraani ülaserva TAHA peidetud, näha jääb
+   ainult ümar ALASERV + sellel istuv allanool. Hiir sellele (või
+   klaviatuurifookus) → paneel vajub poolik-pillina alla (lame ülaserv jääb
+   serva taha, näha ümar alaosa + nupud). Materjal = sama mis klaaskaardil
+   (.gc-card): matt gradient + maskitud serv-rõngas (::after) + läige
+   (::before), ILMA backdrop-filtrita (glitch-kindel). Nupud on
+   klaasnupud (glass-iconbtn). */
+.room-topbar {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-panel);
+  /* Positsiooni-/nähtavuse-konteiner: ise ei püüa klikke (pointer-events
+     none), hoveri püüab paneel + nool ise (nähtav alaserv on sihtala).
+     Laius annab paneelile tsentreerimise viite. */
+  width: min(30rem, 96vw);
+  height: 4.6rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-soft);
+}
+/* Süttib (muutub kättesaadavaks) alles kui kaardid on interaktiivsed */
+.room[data-power="on"][data-cards-ready="1"] .room-topbar {
+  opacity: 1;
+}
+
+/* Nupud ISE — ILMA taustapaneelita (tellija: "kustuta menüü taust ära").
+   Rida klaas-ikoonnuppe. Vaikimisi PIILUVAD nuppude alaservad ~0.8rem
+   servast välja (avastatavuse vihje: näha, et siin on juhtnupud), hoveril/
+   fookusel/klõpsul vajub riba täies pikkuses alla. Pilli, serva ega varju
+   EI ole. */
+.room-quickbar {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 1;
+  /* Nupp 3.2rem + polster (top 0.3rem) = alaserv 3.5rem quickbari ülaservast.
+     -2.7rem → nuppude alaservad piiluvad ~0.8rem ekraani serva alla. */
+  transform: translate(-50%, -2.7rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.5rem;
+  pointer-events: none;
+  transition: transform var(--dur-med) var(--ease-soft);
+}
+.room-topbar:hover .room-quickbar,
+.room-topbar:focus-within .room-quickbar,
+.room-topbar[data-open="1"] .room-quickbar {
+  transform: translate(-50%, 0.4rem);
+  pointer-events: auto;
+}
+
+/* Püüdeala — katab kogu .room-topbari (päris <button>). Püüab hoveri/klõpsu,
+   et riba avada (klõps töötab ka puuteseadmetel, kus hoverit pole). Sees
+   STAATILINE vihjenool piiluvate nuppude all. */
+.room-topbar-arrow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* Nool piiluvate nuppude ALL (nupud piiluvad ~0.8rem, nool ~1.35rem) */
+  padding-top: 1.35rem;
+  pointer-events: auto;
+  /* Nupu vaikimisi materjal nulli — läbipaistev püüdeala */
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* STAATILINE nool — EI vilgu ega hüple. Näha vaikimisi; kaob AINULT siis kui
+   riba avaneb (nupud tulevad välja): hover / fookus / data-open. */
+.room-topbar-arrow svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  color: var(--room-text-soft);
+  opacity: 0.55;
+  filter: drop-shadow(0 1px 3px rgba(8, 4, 2, 0.55));
+  transition: opacity var(--dur-med) var(--ease-soft);
+}
+.room-topbar:hover .room-topbar-arrow svg,
+.room-topbar:focus-within .room-topbar-arrow svg,
+.room-topbar[data-open="1"] .room-topbar-arrow svg {
+  opacity: 0;
+}
+/* Avatuna ei püüa püüdeala klikke — sulgemine käib väljast-klõpsust/Esc,
+   nii ei toggle'da riba nuppude vahelt kogemata kinni. */
+.room-topbar[data-open="1"] .room-topbar-arrow {
+  pointer-events: none;
+}
+/* Klaasnupp (glass-iconbtn materjal jääb), nagu alguses — ainult mõõt */
+.glass-iconbtn.room-quick-btn {
+  position: relative;
+  z-index: 1;
+  width: 3.2rem;
+  height: 3.2rem;
+  --icon-size: 1.5rem;
+  color: var(--room-text-soft);
+}
+.glass-iconbtn.room-quick-btn svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.glass-iconbtn.room-quick-btn:hover,
+.glass-iconbtn.room-quick-btn:focus-visible {
+  color: var(--room-text);
+}
+.glass-iconbtn.room-quick-btn[data-on="0"] {
+  color: var(--room-text-dim);
+}
+/* Kõnnis ja paneelirežiimis riba puudub */
+.room[data-mode="walk"] .room-topbar,
+.room[data-mode="panel"] .room-topbar {
+  display: none;
+}
+/* Login avaneb ülaserva ankurdatud poolik-pillina (login.css) samasse
+   kohta — peida ülariba (ka vihje ja hover-reveal) login'i ajaks. */
+.room[data-login-open="1"] .room-topbar {
+  opacity: 0;
+}
+.room[data-login-open="1"] .room-quickbar,
+.room[data-login-open="1"] .room-topbar-arrow {
+  pointer-events: none;
+}
+
+/* ---------- Karussell süttib KÄIVITUSEGA (⏻), mitte kerimisega ---------- */
+.room-carousel-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-home-ui);
+  opacity: 0;
+  pointer-events: none;
+  /* Fookus-modal avanedes lähevad küljekaardid blurri (carousel.css) —
+     sujuv üleminek nagu ruumi-laval. */
+  transition: filter var(--dur-slow) var(--ease-soft);
+}
+.room[data-power="igniting"] .room-carousel-wrap {
+  opacity: 1; /* kaardid ilmuvad omal kohal oma viidetega (carousel.css) */
+}
+.room[data-power="on"] .room-carousel-wrap {
+  opacity: 1;
+}
+/* Kerimine/klikkimine avaneb alles pärast käivituse mõlemat faasi */
+.room[data-power="on"][data-cards-ready="1"] .room-carousel-wrap {
+  pointer-events: auto;
+}
+.room[data-mode="panel"] .room-carousel-wrap {
+  display: none;
+}
+
+/* ---------- Käivituse SAI-vahepala ----------
+   Pärast klaaside teket sähvatab keskele animeeritud SAI-monogramm
+   (~2 s), enne kui kaartidele sisu laeb. Istub kaartidest kõrgemal,
+   ei sega klikki (pointer-events:none). Fade+skaala luksuslikuks
+   ilmumiseks; SMIL-münt-pööre elab SVG-s eneses. */
+.room-intro-sai {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-home-ui) + 2);
+  pointer-events: none;
+}
+/* Monogramm: KESKMISE KAARDI keskele (kaardi kese ~46% vaatest, nagu
+   .gc-item top:46%), SUUR (kõrgusepõhine). Kannab valget S-i (img) ja
+   AI metallik-kihti. Ümbrik: sujuv fade in (~6%) → S üks AEGLANE täispööre
+   (SMIL 2.4 s) → ~2.5 s liikumatu hoid → sujuv fade out (~11%). translate
+   hoiab kaardi-keskme; õrn skaala ilmumis-/kadumisnõks. Kaardi SISU on
+   cardsReady taga ja laeb alles pärast unmount'i → ei kattu. */
+.room-intro-sai-mono {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  height: clamp(230px, 40vh, 360px);
+  aspect-ratio: 28.75 / 67.32;
+  /* AI on vahepalast eemaldatud → kasti alaosa (AI-ruum) on tühi. S-i
+     kese on ~27% kastist (viewBox y 18.07/67.32), seega Y-nihe −27%
+     (mitte −50%) paneb S-i ENDA keskme kaardi keskele (top:46%). */
+  transform: translate(-50%, -27%);
+  animation: intro-sai-fade 3.3s ease-in-out forwards;
+}
+.room-intro-sai-mono img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  /* S teeb ÜHE tõelise 3D-täispöörde (rotateY 0→360° perspektiiviga).
+     scaleX-münt-pöördel puudus sügavus/suund → mõjus kui "pool teed ja
+     siis teistpidi tagasi" (tellija 06.07). Perspektiiv annab pideva,
+     suunatud pöörde. transform-origin S vertikaalkeskmesse (~27% kastist),
+     et pööre oleks sümmeetriline. AI (metallik, eraldi kiht) EI pöörle. */
+  transform-origin: 50% 27%;
+  animation: intro-s-flip 3s ease-in-out both;
+}
+@keyframes intro-s-flip {
+  from {
+    transform: perspective(700px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(700px) rotateY(360deg);
+  }
+}
+/* AI = METALLIK (sama efekt mis loori AI). Kast monogrammi AI-piirkonnas
+   (geomeetria v-metalbase.svg-st: AI x[1.00..27.75]/28.75 → 3.48%..96.52%,
+   y[40.12..67.32]/67.32 → 59.6%..100%). ILMUB KOHAPEAL: ainult opacity,
+   ILMA nihketa/pöördeta, ja ALLES kui metallik-muster on renderdatud
+   (data-ai-ready) — enne pole tühja/musta alust näha (tellija 06.07). */
+.room-intro-sai-metal {
+  position: absolute;
+  left: 3.48%;
+  right: 3.48%;
+  top: 59.6%;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0;
+  /* Aeglane, luksuslik kohapeal-ilmumine (tellija 06.07: 0.7 s oli liiga
+     kiire). Jõuab hõlpsalt hoiu-akna sisse (S-pööre 2.4 s + 2.5 s hoid). */
+  transition: opacity 1.4s var(--ease-soft);
+}
+.room-intro-sai[data-ai-ready="1"] .room-intro-sai-metal {
+  opacity: 1;
+}
+.room-intro-sai-metal canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@keyframes intro-sai-fade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -27%) scale(0.985);
+  }
+  22% {
+    opacity: 1;
+    transform: translate(-50%, -27%) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -27%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -27%) scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .room-intro-sai-mono {
+    top: 44%;
+    height: clamp(190px, 32vh, 290px);
+  }
+}
+
+/* ---------- Avalehe kerimisruum ja staatiline sisu ---------- */
+.room-scroll-spacer {
+  height: calc(var(--walk-vh, 520) * 1lvh);
+  pointer-events: none;
+}
+html[data-room-mode="room"] .room-scroll-spacer,
+html[data-room-mode="panel"] .room-scroll-spacer {
+  height: 0;
+}
+
+/* Staatiline tekstiplokk: ekraanilugejale/robotitele alati olemas,
+   visuaalselt nähtav ainult liikumise vähendamisel (brief §9). */
+.room-static-copy {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+html[data-reduce-motion="1"] .room-static-copy {
+  position: fixed;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  left: clamp(1.5rem, 6vw, 6rem);
+  top: clamp(4.5rem, 12vh, 8rem);
+  z-index: var(--z-home-ui);
+  max-width: min(30rem, 82vw);
+  padding: 1.4em 1.6em;
+  border-radius: 20px;
+  background: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--text-warm);
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-static-copy {
+    position: fixed;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    left: clamp(1.5rem, 6vw, 6rem);
+    top: clamp(4.5rem, 12vh, 8rem);
+    z-index: var(--z-home-ui);
+    max-width: min(30rem, 82vw);
+    padding: 1.4em 1.6em;
+    border-radius: 20px;
+    background: var(--glass-bg-strong);
+    border: 1px solid var(--glass-border);
+    color: var(--text-warm);
+  }
+}
+.room-static-copy h1 {
+  font-size: var(--fs-title);
+  margin-bottom: 0.35em;
+}
+.room-static-copy p {
+  margin: 0 0 0.4em;
+  color: var(--text-soft);
+  font-size: var(--fs-small);
+}
+
+/* Liikumise vähendamine: tekstipeatused ja vihje maha (staatiline vaade) */
+html[data-reduce-motion="1"] .room-texts,
+html[data-reduce-motion="1"] .room-hint,
+html[data-reduce-motion="1"] .room-skip,
+html[data-reduce-motion="1"] .room-walk-audio {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-texts,
+  .room-hint,
+  .room-skip,
+  .room-walk-audio {
+    display: none;
+  }
+}
+
+/* ---------- Mobiil (brief §5: tekstid alanurkades, väiksemana) ---------- */
+@media (max-width: 768px) {
+  .room-text {
+    max-width: min(26rem, 78vw);
+  }
+  .room-text--intro {
+    left: 1.1rem;
+    top: auto;
+    bottom: 24%;
+  }
+  .room-text--who {
+    right: 1.1rem;
+    top: auto;
+    bottom: 22%;
+  }
+  .room-text--what {
+    left: 1.1rem;
+    bottom: 20%;
+  }
+  .room-text-serif {
+    font-size: clamp(1.15rem, 5.2vw, 1.5rem);
+  }
+  .room-text--who .room-text-glass {
+    font-size: 0.86rem;
+  }
+  .room-text--who .room-text-sep {
+    margin: 0 0.4em;
+  }
+  .room-cta {
+    right: 1rem;
+    padding: 0.55em 1.1em;
+    font-size: 0.72rem;
+  }
+  .room-skip {
+    right: 1rem;
+  }
+}
+
+}

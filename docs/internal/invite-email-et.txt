@@ -1,0 +1,11 @@
+Subject: Kutse: {{room_title}}
+
+Tere, {{invitee_email}}!
+
+{{inviter_name}} kutsub sind vestlusruumi "{{room_title}}".
+Kutse aegub: {{expires_at}}.
+
+Liitu: {{join_link}}
+
+Kui link ei tööta, kopeeri ja kleebi aadress brauserisse.
+Kui sa ei oodanud seda kirja, ignoreeri seda.

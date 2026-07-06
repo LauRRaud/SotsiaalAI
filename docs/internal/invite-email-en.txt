@@ -1,0 +1,11 @@
+Subject: Invitation: {{room_title}}
+
+Hi {{invitee_email}},
+
+{{inviter_name}} invited you to the chat room "{{room_title}}".
+This invite expires at: {{expires_at}}.
+
+Join: {{join_link}}
+
+If the link does not work, copy and paste it into your browser.
+If you did not expect this email, you can ignore it.

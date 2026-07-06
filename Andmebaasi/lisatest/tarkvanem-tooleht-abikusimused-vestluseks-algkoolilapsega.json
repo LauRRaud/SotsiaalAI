@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "knowledge-doc-v1",
+  "country": "EE",
+  "sector": "social",
+  "audience": "BOTH",
+  "audiences": [
+    "SOCIAL_WORKER",
+    "CLIENT"
+  ],
+  "language": "et",
+  "source_origin_type": "file",
+  "source_format": "pdf",
+  "source_status": "active",
+  "historical": false,
+  "checked_at": "2026-05-03",
+  "copyright_status": "restricted_citation_summary_only",
+  "display_full_text": false,
+  "allow_excerpts": "short_only",
+  "ingest": {
+    "chunking_strategy": "section_aware",
+    "preserve_page_numbers": true,
+    "preserve_heading_path": true,
+    "display_full_text": false,
+    "allow_short_excerpts": true
+  },
+  "quality": {
+    "metadata_complete": false,
+    "section_index_complete": false,
+    "ocr_required": false,
+    "needs_manual_review": true,
+    "review_note": "Draft metadata generated for test ingestion. Codex should validate field names against the current project schema."
+  },
+  "docId": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+  "canonical_source_id": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+  "source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+  "document_id": "tarkvanem-tooleht-abikusimused-vestluseks-algkoolilapsega",
+  "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+  "description": "Tarkvanema praktiline tööleht abiküsimustega algkoolilapsega vestlemiseks; sobib lastega töötavatele spetsialistidele ja lapsevanematele suhtlemise toetamiseks.",
+  "publisher": "Tarkvanem",
+  "source_organization": "Tarkvanem",
+  "organization_id": "tarkvanem",
+  "publisher_type": "public_information_portal",
+  "authority_level": "public_health_parenting_guidance",
+  "year": 2018,
+  "publication_date": "2018-05",
+  "document_kind": "training_material",
+  "resource_type": "method_guidance",
+  "source_type": "training_material",
+  "collection_id": "training_materials",
+  "collection_hint": "guidance_and_methods",
+  "domain": "children_and_families",
+  "evidence_role": "practice_guidance",
+  "allowed_claim_types": [
+    "practice_recommendation",
+    "communication_guidance",
+    "casework_tool",
+    "methodology_background"
+  ],
+  "disallowed_claim_types": [
+    "legal_entitlement",
+    "benefit_amount",
+    "municipal_service_availability",
+    "application_deadline",
+    "medical_diagnosis_or_treatment"
+  ],
+  "topics": [
+    "lapsed ja pered",
+    "laps",
+    "haridus",
+    "kool",
+    "õpilase toetamine",
+    "tugimeetmed",
+    "tööleht",
+    "lapse kasvatamine",
+    "suhtlemisoskused",
+    "algkool",
+    "praktiline töövahend"
+  ],
+  "target_groups": [
+    "algkoolilapsed",
+    "lapsevanemad",
+    "õpetajad",
+    "lastega töötavad spetsialistid"
+  ],
+  "source_path": "Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+  "source_url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+  "page_count": 1,
+  "registry_source": {
+    "source_master_source_id": "tarkvanem_tooleht_abikusimused_vestluseks_algkoolilapsega",
+    "recommended_pipeline": "knowledge_doc_pipeline",
+    "dedupe_key": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf"
+  },
+  "jurisdiction_level": "NATIONAL"
+}

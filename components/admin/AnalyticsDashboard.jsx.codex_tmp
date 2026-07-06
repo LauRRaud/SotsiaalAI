@@ -1,0 +1,149 @@
+"use client";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
+import CardTitle from "@/components/ui/CardTitle";
+import BackIcon from "@/components/ui/icons/BackIcon";
+import { glassPageTitleClassName } from "@/components/ui/glassPageStyles";
+const pageClassName = "flex flex-col gap-2 text-[color:var(--admin-text)] [--rag-text:var(--admin-text)]";
+const pageHeaderClassName = "flex flex-col items-start gap-2 text-left";
+const pageTitleClassName = `${glassPageTitleClassName} !mt-0 !mb-1 !px-0 !text-left !whitespace-normal !text-[clamp(1.55rem,2.5vw,2.1rem)] !tracking-[0.02em] max-[768px]:!text-[clamp(1.72rem,7vw,2.35rem)] max-[768px]:!leading-[1.06] max-[768px]:!mt-0 max-[768px]:!mb-0`;
+const cardClassName = "relative overflow-hidden rounded-[1rem] border border-[color:var(--glass-border-color,var(--admin-border))] bg-[linear-gradient(160deg,color-mix(in_srgb,var(--admin-surface)_78%,var(--glass-surface-bg)_22%),color-mix(in_srgb,var(--admin-surface-2)_84%,transparent))] p-[clamp(0.72rem,1.9vw,0.95rem)] shadow-[var(--glass-shell-shadow,var(--admin-shadow-soft))] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:bg-[radial-gradient(circle_at_12%_-4%,rgba(255,255,255,0.11),transparent_44%)] before:opacity-65";
+const cardBodyClassName = "relative z-[1] grid gap-1.5";
+const kpiGridClassName = "grid [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] gap-2";
+const kpiValueClassName = "text-[1.6rem] font-[700] text-[color:var(--admin-text)]";
+const kpiMetaClassName = "text-[0.9rem] leading-[1.4] text-[color:var(--admin-muted)]";
+const sectionHeadClassName = "flex flex-wrap items-start justify-between gap-2";
+const sectionSubClassName = "text-[0.95rem] text-[color:var(--admin-muted)] max-w-[56ch]";
+const barClassName = "flex h-2 overflow-hidden rounded-full border border-[color:var(--admin-border)] bg-[color:var(--admin-surface-3)]";
+const tableWrapClassName = "overflow-x-auto rounded-[12px] border border-[color:var(--admin-border)] bg-[color:var(--admin-surface-2)]";
+const tableClassName = "w-full border-collapse text-[color:var(--admin-text)]";
+const tableHeadCellClassName = "border-b border-[color:var(--admin-border)] bg-[color:var(--admin-surface-3)] px-2 py-1.5 text-left text-[0.82rem] uppercase tracking-[0.02em] text-[color:var(--admin-muted)]";
+const tableCellClassName = "border-b border-[color:var(--admin-border)] px-2 py-1.5 text-left text-[0.9rem] align-top";
+const cellSubClassName = "text-[0.82rem] text-[color:var(--admin-muted)]";
+const toolbarPrimaryClassName = "grid [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] items-center gap-2 rounded-[14px] border border-[color:var(--admin-border)] bg-[linear-gradient(180deg,var(--admin-surface-2),var(--admin-surface-3))] p-2 shadow-[var(--admin-shadow-soft)]";
+const toolbarSecondaryClassName = "grid [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] items-center gap-2 rounded-[14px] border border-[color:var(--admin-border)] bg-[color-mix(in_srgb,var(--admin-surface-2)_80%,transparent)] p-2";
+const usersSelectBarClassName = "grid gap-2 rounded-[14px] border border-[color:var(--admin-border)] bg-[linear-gradient(180deg,var(--admin-surface-2),var(--admin-surface-3))] p-2";
+const usersSelectActionsClassName = "flex flex-wrap items-center gap-2 max-[768px]:items-start max-[768px]:gap-1.5";
+const usersSelectCountClassName = "inline-flex items-center rounded-full border border-[color:var(--admin-border-strong)] bg-[color:var(--admin-surface-2)] px-2.5 py-1 text-[0.82rem] text-[color:var(--admin-muted)]";
+const emailSendBarClassName = "grid gap-2 rounded-[14px] border border-[color:var(--admin-border-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--admin-surface-2)_90%,transparent),color-mix(in_srgb,var(--admin-surface-3)_92%,transparent))] p-2";
+const emailSendHeadClassName = "flex flex-wrap items-center justify-between gap-2";
+const emailSendHintClassName = "text-[0.86rem] text-[color:var(--admin-muted)]";
+const selectClassName = "w-full rounded-[12px] border border-[color:var(--admin-border-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--admin-surface-3)_86%,transparent),var(--admin-surface-3))] px-3 py-[0.55rem] text-[0.95rem] text-[color:var(--admin-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow,background] duration-150 ease-out focus-visible:outline-none focus-visible:border-[color:var(--admin-accent)] focus-visible:shadow-[0_0_0_3px_var(--admin-accent-soft)]";
+const inputClassName = "w-full rounded-[12px] border border-[color:var(--admin-border-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--admin-surface-3)_86%,transparent),var(--admin-surface-3))] px-3 py-[0.6rem] text-[0.95rem] text-[color:var(--admin-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow,background] duration-150 ease-out focus-visible:outline-none focus-visible:border-[color:var(--admin-accent)] focus-visible:shadow-[0_0_0_3px_var(--admin-accent-soft)]";
+const textAreaClassName = "w-full min-h-[120px] rounded-[12px] border border-[color:var(--admin-border-strong)] bg-[linear-gradient(180deg,color-mix(in_srgb,var(--admin-surface-3)_86%,transparent),var(--admin-surface-3))] px-3 py-[0.7rem] text-[0.95rem] leading-[1.45] text-[color:var(--admin-text)] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,box-shadow,background] duration-150 ease-out focus-visible:outline-none focus-visible:border-[color:var(--admin-accent)] focus-visible:shadow-[0_0_0_3px_var(--admin-accent-soft)]";
+const alertErrorClassName = "rounded-[12px] border border-[color:var(--admin-danger)] bg-[color-mix(in_srgb,var(--admin-danger)_16%,var(--admin-surface-2)_84%)] px-3 py-2 text-[color:var(--admin-text)]";
+const alertInfoClassName = "rounded-[12px] border border-[color:var(--admin-border-strong)] bg-[color-mix(in_srgb,var(--admin-accent-cool)_15%,var(--admin-surface-2)_85%)] px-3 py-2 text-[color:var(--admin-text)]";
+const alertWarnClassName = "rounded-[12px] border border-[color:var(--admin-warning,#f59e0b)] bg-[color-mix(in_srgb,var(--admin-warning,#f59e0b)_18%,var(--admin-surface-2)_82%)] px-3 py-2 text-[color:var(--admin-text)]";
+const alertCriticalClassName = "rounded-[12px] border border-[color:var(--admin-danger)] bg-[color-mix(in_srgb,var(--admin-danger)_18%,var(--admin-surface-2)_82%)] px-3 py-2 text-[color:var(--admin-text)]";
+const alertSuccessClassName = "rounded-[12px] border border-[color:var(--admin-success)] bg-[color-mix(in_srgb,var(--admin-success)_16%,var(--admin-surface-2)_84%)] px-3 py-2 text-[color:var(--admin-text)]";
+const refreshButtonStyle = {
+  "--btn-primary-bg": "linear-gradient(135deg,color-mix(in_srgb,var(--admin-accent)_35%,var(--admin-surface)_65%),var(--admin-surface-2))",
+  "--btn-primary-bg-hover": "linear-gradient(135deg,color-mix(in_srgb,var(--admin-accent)_42%,var(--admin-surface)_58%),var(--admin-surface-2))",
+  "--btn-primary-bg-active": "linear-gradient(135deg,color-mix(in_srgb,var(--admin-accent)_28%,var(--admin-surface)_72%),var(--admin-surface-2))",
+  "--btn-primary-border": "1px solid color-mix(in_srgb,var(--admin-accent)_65%,var(--admin-border)_35%)",
+  "--btn-primary-border-hover": "1px solid var(--admin-accent)",
+  "--btn-primary-border-active": "1px solid color-mix(in_srgb,var(--admin-accent)_75%,var(--admin-border)_25%)",
+  "--btn-primary-text": "var(--admin-text)",
+  "--btn-primary-shadow": "var(--admin-shadow-soft)",
+  "--btn-primary-shadow-hover": "0 0 0 3px var(--admin-accent-soft), var(--admin-shadow)",
+  "--btn-primary-shadow-active": "var(--admin-shadow-soft)",
+  "--btn-primary-focus-ring-color": "var(--admin-accent-soft)"
+};
+const refreshButtonClassName = "!justify-self-start !self-start !w-auto !min-h-[2.34rem] !rounded-[0.86rem] !px-[1.05rem] !py-[0.42rem] !text-[0.96rem] !leading-[1.12] !font-semibold !tracking-[0.01em]";
+const actionButtonClassName = "!justify-self-start !self-start !w-auto !min-h-[2.18rem] !rounded-[0.86rem] !px-[0.98rem] !py-[0.38rem] !text-[0.92rem] !leading-[1.1] !font-semibold !tracking-[0.01em]";
+const resetActionGridClassName = "mt-2 grid grid-cols-1 gap-1.5 sm:grid-cols-2 xl:grid-cols-3";
+const resetActionButtonClassName = `${actionButtonClassName} !w-full !justify-start !min-h-[2.38rem] !px-[1.1rem] !py-[0.56rem] !text-[0.97rem] !leading-[1.15]`;
+const backButtonClassName = "inline-flex h-[5.2rem] w-[5.2rem] items-center justify-center bg-transparent p-0 transition-transform duration-150 ease-out hover:scale-[1.12] focus-visible:outline-none active:scale-[0.98]";
+const EVENT_OPTIONS = [
+  { value: "chat_request", labelKey: "admin.analytics.events.chat_request" },
+  { value: "rag_search", labelKey: "admin.analytics.events.rag_search" },
+  { value: "no_context", labelKey: "admin.analytics.events.no_context" },
+  { value: "crisis_detected", labelKey: "admin.analytics.events.crisis_detected" },
+  { value: "stt_request", labelKey: "admin.analytics.events.stt_request" },
+  { value: "tts_request", labelKey: "admin.analytics.events.tts_request" },
+  { value: "rag_error", labelKey: "admin.analytics.events.rag_error" },
+  { value: "openai_error", labelKey: "admin.analytics.events.openai_error" },
+  { value: "subscription_init_started", labelKey: "admin.analytics.events.subscription_init_started" },
+  { value: "subscription_init_checkout_created", labelKey: "admin.analytics.events.subscription_init_checkout_created" },
+  { value: "subscription_init_failed", labelKey: "admin.analytics.events.subscription_init_failed" },
+  { value: "subscription_callback_redirect", labelKey: "admin.analytics.events.subscription_callback_redirect" },
+  { value: "subscription_webhook_processed", labelKey: "admin.analytics.events.subscription_webhook_processed" },
+  { value: "subscription_webhook_failed", labelKey: "admin.analytics.events.subscription_webhook_failed" },
+  { value: "subscription_webhook_owner_email_sent", labelKey: "admin.analytics.events.subscription_webhook_owner_email_sent" },
+  { value: "subscription_webhook_owner_email_failed", labelKey: "admin.analytics.events.subscription_webhook_owner_email_failed" },
+  { value: "subscription_webhook_owner_email_skipped", labelKey: "admin.analytics.events.subscription_webhook_owner_email_skipped" },
+  { value: "payment_alert_dispatch_dry_run", labelKey: "admin.analytics.events.payment_alert_dispatch_dry_run" },
+  { value: "payment_alert_dispatched", labelKey: "admin.analytics.events.payment_alert_dispatched" },
+  { value: "payment_alert_dispatch_failed", labelKey: "admin.analytics.events.payment_alert_dispatch_failed" }
+];
+const PRELAUNCH_RESET_ACTIONS = [
+  { value: "clear_logs", labelKey: "admin.analytics.reset.actions.clear_logs" },
+  { value: "clear_conversations", labelKey: "admin.analytics.reset.actions.clear_conversations" },
+  { value: "clear_rooms", labelKey: "admin.analytics.reset.actions.clear_rooms" },
+  { value: "clear_auth_tokens", labelKey: "admin.analytics.reset.actions.clear_auth_tokens" },
+  { value: "clear_usage_metrics", labelKey: "admin.analytics.reset.actions.clear_usage_metrics" },
+  { value: "clear_billing", labelKey: "admin.analytics.reset.actions.clear_billing" }
+];
+const STATUS_LABEL_KEYS = {
+  PENDING: "admin.analytics.status.pending",
+  PROCESSING: "admin.analytics.status.processing",
+  COMPLETED: "admin.analytics.status.completed",
+  FAILED: "admin.analytics.status.failed"
+};
+const AUDIENCE_LABEL_KEYS = {
+  SOCIAL_WORKER: "admin.analytics.audience.social_worker",
+  CLIENT: "admin.analytics.audience.client",
+  BOTH: "admin.analytics.audience.both"
+};
+function formatI18n(template, values) {
+  if (typeof template !== "string") return "";
+  if (!values 
+  let out = template;
+  for (const [key, value] of Object.entries(values)) {
+    out = out.split(`{${key}}`).join(String(value));
+  }
+  return out;
+}
+function toLocaleTag(locale) {
+  const normalized = String(locale 
+  if (normalized.startsWith("et")) return "et-EE";
+  if (normalized.startsWith("ru")) return "ru-RU";
+  return "en-US";
+}
+  const n = typeof value === "string" ? Number(value) : typeof value === "number" ? value : Number(value 
+  return Number.isFinite(n) ? n : 0;
+};
+  const n = toNumber(value);
+  try {
+    return new Intl.NumberFormat(localeTag).format(n);
+  } catch {
+    return String(n);
+  }
+};
+  const n = toNumber(amount);
+  try {
+    return new Intl.NumberFormat(localeTag, {
+      style: "currency",
+      currency
+    }).format(n);
+  } catch {
+    return `${n.toFixed?.(2) 
+  }
+};
+  const n = toNumber(value);
+  try {
+    return new Intl.NumberFormat(localeTag, {
+      maximumFractionDigits: 0
+    }).format(n);
+  } catch {
+    return String(Math.round(n));
+  }
+};
+  const keys = order.length ? order : Object.keys(obj 
+  const parts = [];
+  for (const key of keys) {
+    if (obj?.[key] == null) continue;
+    parts.push(`${labels[key] 
+  }
