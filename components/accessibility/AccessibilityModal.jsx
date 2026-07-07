@@ -6,7 +6,6 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import CenteredScrollPicker from "@/components/CenteredScrollPicker";
 import OptionCard from "@/components/ui/OptionCard";
-import useSmoothWheelProxy from "@/components/ui/useSmoothWheelProxy";
 import { getAmbientMode, setAmbientMode } from "@/components/room/AmbientAudio";
 export default function AccessibilityModal({
   onClose,
@@ -70,11 +69,6 @@ export default function AccessibilityModal({
   const saveDisabled =
     requireInitialSelection &&
     (!lang || !contrast || !uiScale || !uiProfile || !theme);
-  const proxyWheelToModalScroll = useSmoothWheelProxy({
-    scrollRef,
-    disabled: isMobileViewport,
-    passthroughNativeTargets: false,
-  });
   useEffect(() => {
     setUiScale(current => current ?? initialUiScale);
     setUiProfile(current => current ?? initialUiProfile);
@@ -350,7 +344,7 @@ export default function AccessibilityModal({
   return <>
       <div onClick={onClose} role="presentation" aria-hidden="true" />
 
-      <div ref={boxRef} role="dialog" aria-modal="true" aria-labelledby="a11y-title" onClick={stopInside} onWheel={proxyWheelToModalScroll} tabIndex={-1}>
+      <div ref={boxRef} role="dialog" aria-modal="true" aria-labelledby="a11y-title" onClick={stopInside} tabIndex={-1}>
         <div aria-hidden="false">
           <h2 id="a11y-title">
             <span>{a11yTitleLine1}</span>

@@ -23,10 +23,14 @@ div[role="presentation"][aria-hidden="true"] {
 [role="dialog"][aria-labelledby="a11y-title"] {
   position: fixed;
   left: 50%;
-  top: 46%;
+  /* Ekraani KESKEL (tellija 07.07): varasem 46% ankurdas kaardi
+     karussellikaardi kohale ja tõstis selle keskpunktist üles. */
+  top: 50%;
   translate: -50% -50%;
   z-index: var(--z-modal);
-  width: min(var(--gc-w), calc(100vw - 1.5rem));
+  /* Laiem kui karussellikaart (tellija 07.07): suurem nupu-tekst
+     ("Mobiil / sülearvuti ekraan" jt) vajab rohkem ruumi kui --gc-w. */
+  width: min(24rem, calc(100vw - 1.5rem));
   /* Kõrgus SISU järgi kuni ekraani-lakini, MITTE jäik aspect-ratio:
      suurel fondil (Suur/Väga suur) lõikas 0.72-suhe sisu ära ja jättis
      tühja ala — nüüd kaart kasvab sisuga ja kerib puhtalt (tellija 07.07). */
@@ -93,10 +97,14 @@ div[role="presentation"][aria-hidden="true"] {
   border: none;
 }
 .csp-step legend {
-  padding: 0 0 0.55em;
-  font-size: var(--fs-micro);
-  letter-spacing: 0.2em;
+  /* Keskele + suuremaks (tellija 07.07) — legend vajab tsentreerimiseks
+     täislaiust. */
+  width: 100%;
+  padding: 0 0 0.65em;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+  text-align: center;
   color: var(--room-text-dim);
 }
 .csp-step > div {
@@ -110,17 +118,24 @@ div[role="presentation"][aria-hidden="true"] {
 .csp-step label[data-control-type] {
   justify-content: center;
   text-align: center;
+  /* Suurem nupu-tekst modalis (tellija 07.07) — scoped .csp-step'ile,
+     et teised paneelid (registreerimine, teenusekaart) ei muutuks. */
+  font-size: clamp(1.12rem, 1.02rem + 0.5vw, 1.32rem);
 }
 
 /* Salvesta-nupp kasutab globaalset liquid-glass primary-nuppu (glass.css)
    — eraldi ülekirjutust EI ole, et pind oleks sama mis mujal. */
 
-/* Salvesta-samm */
+/* Salvesta-samm (tellija 07.07): eraldatud viimasest sektsioonist üleval
+   ja istub kaardi alaservast sama kaugel kui sisu külgedest — enam ei ole
+   topeltvahet all (baas-margin + konteineri padding). */
 .csp-step:last-child,
 div.csp-step {
   display: grid;
   justify-items: center;
-  padding-bottom: 0.4rem;
+  margin-top: 0.6rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 }

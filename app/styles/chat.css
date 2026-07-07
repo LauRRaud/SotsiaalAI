@@ -400,24 +400,8 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   width: 0.95rem;
   height: 0.95rem;
 }
-/* Otsing */
-.drawer-content input#chat-sidebar-search {
-  width: 100%;
-  padding: 0.5em 1em;
-  border-radius: 999px;
-  background: var(--input-bg);
-  border: var(--input-border);
-  color: var(--input-text);
-  font-size: var(--fs-small);
-}
-.drawer-content input#chat-sidebar-search::placeholder {
-  color: var(--input-placeholder);
-}
-.drawer-content input#chat-sidebar-search:focus {
-  outline: none;
-  background: var(--input-bg-focus);
-  border: var(--input-border-focus);
-}
+/* Otsing = kanooniline input-baas (glass.css) nagu kõik väljad
+   (tellija 07.07: üks input-kujundus, eraldi look-reeglit pole). */
 /* Loend kerib; read klaasi-lahtritena */
 .drawer-content > nav > div:last-child {
   flex: 1;

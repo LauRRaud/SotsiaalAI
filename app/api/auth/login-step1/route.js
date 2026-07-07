@@ -9,8 +9,6 @@ import {
   normalizeEmail,
   normalizePin,
   isValidPin,
-  randomOtpCode,
-  hashOtpCode,
   maskEmail,
   generateOpaqueToken,
   hashOpaqueToken,
@@ -18,12 +16,15 @@ import {
   computeIpFromHeaders,
   computeIpRange,
   DEVICE_COOKIE_NAME,
-  OTP_TTL_MINUTES,
   TEMP_LOGIN_TOKEN_MINUTES,
   summarizeUserAgent,
   formatSecurityEventTime
 } from "@/lib/auth/pin-login";
 import { getMailer } from "@/lib/mailer";
+import {
+  buildLoginConfirmUrl,
+  sendLoginLinkEmail
+} from "@/lib/auth/login-email-link";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { serverT, normalizeServerLocale } from "@/lib/i18n/serverMessages";
 
@@ -130,12 +131,14 @@ async function createTempLoginToken({
   trustedDeviceId
 }) {
   const token = generateOpaqueToken(32);
+  const emailLinkToken = requiresOtp ? generateOpaqueToken(32) : null;
   const expiresAt = new Date(Date.now() + TEMP_LOGIN_TOKEN_MINUTES * 60 * 1000);
 
   await prisma.loginTempToken.create({
     data: {
       userId,
       tokenHash: hashOpaqueToken(token),
+      emailLinkTokenHash: emailLinkToken ? hashOpaqueToken(emailLinkToken) : null,
       requiresOtp: Boolean(requiresOtp),
       expiresAt,
       userAgent,
@@ -144,49 +147,7 @@ async function createTempLoginToken({
     }
   });
 
-  return { token, expiresAt };
-}
-
-async function sendOtpEmail(email, code, locale) {
-  const mailer = getMailer("login-otp");
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  const isDev = process.env.NODE_ENV === "development";
-
-  if (isDev) {
-    console.info("[login-otp][dev] generated otp", { email, code });
-  }
-
-  if (!from) {
-    if (isDev) return;
-    throw new Error("api.auth.login.email_from_missing");
-  }
-
-  const subject = serverT(locale, "email.auth.login_otp.subject", {
-    minutes: OTP_TTL_MINUTES
-  });
-  const text = serverT(locale, "email.auth.login_otp.text", {
-    code,
-    minutes: OTP_TTL_MINUTES
-  });
-  const html = serverT(locale, "email.auth.login_otp.html", {
-    code,
-    minutes: OTP_TTL_MINUTES
-  });
-
-  try {
-    if (!isDev) {
-      await mailer.sendMail({
-        to: email,
-        from,
-        subject,
-        text,
-        html
-      });
-    }
-  } catch (error) {
-    console.error("[login-otp] send failed", safeError(error));
-    if (!isDev) throw error;
-  }
+  return { token, emailLinkToken, expiresAt };
 }
 
 async function sendNewDeviceAlertEmail(email, locale, { userAgent, ipAddress } = {}) {
@@ -356,7 +317,7 @@ export async function POST(request) {
         ? "trusted_device_expired"
         : undefined;
 
-    const { token, expiresAt } = await createTempLoginToken({
+    const { token, emailLinkToken, expiresAt } = await createTempLoginToken({
       userId: user.id,
       requiresOtp,
       userAgent,
@@ -372,10 +333,6 @@ export async function POST(request) {
       });
     }
 
-    const otpCode = randomOtpCode();
-    const otpHash = await hashOtpCode(otpCode);
-    const otpExpiresAt = new Date(Date.now() + OTP_TTL_MINUTES * 60 * 1000);
-
     try {
       if (!trustedDevice) {
         await sendNewDeviceAlertEmail(user.email, locale, { userAgent, ipAddress });
@@ -384,20 +341,17 @@ export async function POST(request) {
       console.error("login-step1 device alert send failed", safeError(mailError));
     }
 
-    await sendOtpEmail(user.email, otpCode, locale);
-    await prisma.emailOtpCode.create({
-      data: {
-        userId: user.id,
-        codeHash: otpHash,
-        expiresAt: otpExpiresAt
-      }
-    });
+    await sendLoginLinkEmail(
+      user.email,
+      buildLoginConfirmUrl(request, emailLinkToken, locale),
+      locale
+    );
 
     return json({
       status: "need_2fa",
       temp_login_token: token,
       email_mask: maskEmail(user.email),
-      otp_expires_at: otpExpiresAt.toISOString(),
+      otp_expires_at: expiresAt.toISOString(),
       otp_reason: otpReason
     });
   } catch (error) {

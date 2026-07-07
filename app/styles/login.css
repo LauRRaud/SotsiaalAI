@@ -146,6 +146,11 @@
   margin: 0 0 clamp(0.5rem, 1.4vh, 0.9rem);
   padding-left: 0.2em;
 }
+.login-modal-title--otp {
+  font-size: clamp(1.2rem, 1.02rem + 0.9vw, 1.48rem);
+  line-height: 1.18;
+  white-space: normal;
+}
 
 /* E-posti väli — MATERJAL tuleb liquid-glass primitiivist (glass.css
    + --input-* tokenid); siin ainult paigutus (ikoon eemaldatud
@@ -154,21 +159,12 @@
   display: block;
 }
 .login-modal-shell input[type="email"]:not(.sr-only) {
-  /* Väiksem PILL (tellija 07.07: "pill tunduvalt väiksemaks"), aga
-     SUUREM tekst — kitsam laius + õhem polster hoiavad pilli tihedana,
-     tekst hingab suurema fondiga */
-  width: min(100%, 15.5rem);
+  /* Kujundus (pill, keskjoondus, font, ellipsis) tuleb glass.css
+     kanoonilisest baasist — SAMA mis kõik väljad (tellija 07.07).
+     Siin ainult login-kaardi paigutus: kitsam, keskel pill. */
   display: block;
-  margin: 0 auto;
-  text-align: center;
-  /* õhuke polster = lühem, väiksem pill (tellija 07.07); tekst suurem */
-  padding: 0.4em 0.95em;
-  border-radius: 999px;
-  /* Tekst suurem (tellija): pill EI kasva/lae — pikk e-post lõigatakse
-     kolme-punktiga, tervikut ei pea näitama */
-  font-size: clamp(1.16rem, 1.05rem + 0.5vw, 1.34rem);
-  letter-spacing: 0.02em; /* veidi tähevahet (tellija 07.07) */
-  text-overflow: ellipsis;
+  width: min(100%, 15.5rem);
+  margin-inline: auto;
 }
 
 /* ---------- Klahvistik: ringid klaasil (pilt 12) ---------- */
@@ -181,7 +177,10 @@
   display: grid;
   grid-template-columns: repeat(3, max-content);
   justify-content: center;
-  gap: clamp(0.7rem, 1.8vh, 1.05rem) clamp(1rem, 3vw, 1.5rem);
+  /* Veergude vahe laiem (tellija 07.07: "nupud veidi laiemalt") — MIN
+     jääb 1rem'i, et väikseim telefon (kaardi siselaius napp) ei ületaks;
+     desktop saab avarama vahe. */
+  gap: clamp(0.7rem, 1.8vh, 1.05rem) clamp(1rem, 4vw, 2.15rem);
   justify-items: center;
   padding: 0;
 }
@@ -283,6 +282,15 @@
 .login-otp-action-link:hover {
   color: var(--text-soft);
 }
+/* Klaviatuuri-fookus (a11y): selge rõngas + heledam tekst, ilma alajooneta
+   (tellija: kviet-lingid jäävad jooneta). */
+.login-keypad-toggle-link:focus-visible,
+.login-otp-action-link:focus-visible {
+  outline: none;
+  color: var(--text-warm);
+  border-radius: 8px;
+  box-shadow: var(--focus-ring);
+}
 
 .login-register-row {
   margin-top: 0; /* vahe annab kesta gap */
@@ -300,7 +308,17 @@
   letter-spacing: 0.13em; /* mahe tähevahe, ei nihuta keset */
   text-transform: uppercase;
   color: var(--text-soft);
-  transition: color var(--dur-fast) var(--ease-soft), text-shadow var(--dur-fast) var(--ease-soft);
+  /* Transition peab katma ka KLAASI-omadused (taust/serv/vari/scale), mis
+     tulevad glass.css a[data-variant]-hoverist — muidu hüppab nupp järsult
+     (tellija 07.07: "ei ole nii sujuv kui Jäta vahele"). Sama kate mis
+     baas-klaasnupul + text-shadow. */
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    text-shadow var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft),
+    scale 160ms var(--ease-soft);
 }
 .login-register-link:hover {
   color: var(--text-warm);
@@ -339,15 +357,34 @@
   margin-top: 0.85rem;
   font-size: 1.02rem;
 }
+/* Abi-popoveri × = väike klaas-lahtri sulgemisnupp, sama keel mis peamine
+   .login-modal-close (tellija 07.07: enam mitte paljas glüüf). */
 .login-help-close-btn {
   position: absolute;
-  top: 0.5rem;
-  right: 0.7rem;
+  top: 0.45rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
   color: var(--text-dim);
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
   font-size: 1.05rem;
+  line-height: 1;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
 }
 .login-help-close-btn:hover {
   color: var(--text-warm);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.login-help-close-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* OTP samm — kaardikeel (tellija 07.07): keskjoondatud koopia,
@@ -374,16 +411,14 @@
 }
 .login-otp-copy #otp-deadline {
   color: var(--text-dim);
-  font-size: 0.88em;
+  font-size: 1em;
 }
-/* Materjal liquid-glass primitiivist; siin paigutus + koodi mõõt */
-.login-otp-content input[type="text"] {
-  width: 100%;
-  text-align: center;
-  padding: 0.6em 1em;
-  border-radius: 999px;
+.login-otp-waiting {
+  color: var(--text-soft);
+  font-size: 1em;
 }
-/* Kood ise suurelt ja harvalt; seadmenimi jääb tavamõõtu */
+/* Väli ise = kanooniline baas (pill, keskel, materjal). Siin ainult
+   koodivälja eripära: suur font + hõre tähevahe (tellija 07.07). */
 .login-otp-content #otp-code-input {
   font-size: 1.45rem;
   letter-spacing: 0.45em;
@@ -404,40 +439,17 @@
   font-size: var(--fs-small);
   cursor: pointer;
 }
-.login-otp-content input[type="checkbox"] {
-  appearance: none;
-  width: 1.15rem;
-  height: 1.15rem;
-  margin: 0;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition:
-    border-color var(--dur-fast) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft);
-}
-.login-otp-content input[type="checkbox"]:checked {
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 250, 240, 0.16);
-}
-.login-otp-content input[type="checkbox"]:checked::after {
-  content: "";
-  width: 0.55em;
-  height: 0.3em;
-  border-left: 1.6px solid var(--text-warm);
-  border-bottom: 1.6px solid var(--text-warm);
-  rotate: -45deg;
-  translate: 0 -12%;
-}
+/* OTP "jäta seade meelde" checkbox kasutab nüüd KANOONILIST klaas-checkboxi
+   (glass.css input[type=checkbox]) — oma kast eemaldatud, et kõik oleks üks
+   kujundus (tellija 07.07). Siin jääb ainult sildi-paigutus (ülal). */
 .login-otp-content button[type="submit"] {
   min-width: 11em;
 }
 .login-otp-actions {
   display: flex;
-  gap: 1.2rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
   justify-content: center;
   margin-top: 0.55rem;
 }
@@ -536,6 +548,10 @@
 .register-step {
   margin: 0 0 1.3rem;
 }
+/* Viimane samm (CTA) ei lisa alla topelt-õhku (tellija 07.07) */
+.register-scroll form > section:last-child {
+  margin-bottom: 0;
+}
 .register-question {
   margin: 0 0 0.65rem;
   text-align: center;
@@ -546,10 +562,18 @@
   display: grid;
   gap: 0.55rem;
 }
-/* Rolli-nuppude tekst suurem + hõredam tähevahe (tellija) */
+/* Rolli-nuppude tekst suurem + hõredam tähevahe + KESKEL (tellija 07.07) */
 .register-page [role="radio"] {
+  justify-content: center;
+  text-align: center;
   font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
   letter-spacing: 0.04em;
+}
+/* Registreeru sisendväljad = kanooniline baas (glass.css) nagu kõik
+   väljad — eraldi reeglit enam pole (tellija 07.07: üks input-kujundus). */
+/* Tingimuste/juhendi valikkaartide tekst suurem (tellija 07.07) */
+.register-page label[data-control-type] {
+  font-size: calc(var(--fs-body) * 1.05);
 }
 .register-field-error {
   display: block;
@@ -562,11 +586,49 @@
   justify-items: center;
   padding-top: 0.2rem;
 }
+/* Registreeru-CTA suurem ja kaalukam (tellija 07.07) */
+.register-submit button {
+  padding: 0.85em 2.6em;
+  font-size: calc(var(--fs-body) * 1.05);
+  min-width: 13rem;
+}
 .register-success {
   display: grid;
   gap: 1.1rem;
   justify-items: center;
   text-align: center;
+}
+
+/* Registreerimisel õhem ülaserv — pealkirja kohal oli liiga palju
+   tühja (tellija 07.07). :has() sihib AINULT registreerimispaneeli,
+   muud lehed jäävad standardpolstriga. */
+.panel-scrim:has(.register-page) .panel-body {
+  padding-top: clamp(1.4rem, 2.2vw, 1.9rem);
+}
+
+/* Desktop (≥769px, JS scroll-picker'i lävi): puhas voog, MITTE
+   flex:1-venitus. Varem venisid ring/scrollwrap/scroll paneeli täis ja
+   jätsid vormi alla ~40px surnud ruumi (tellija 07.07: "alumises servas
+   palju tühja"). Nüüd sisu on loomulikus kõrguses ja paneel kerib ISE;
+   lühikese sisuga (kõrge ekraan) tsentreerib safe-center'iga.
+   Mobiil (≤768px) jääb scroll-picker'ile — seal flex-kest on vajalik. */
+@media (min-width: 769px) {
+  .register-page {
+    height: auto;
+    min-height: 100%;
+    justify-content: safe center;
+  }
+  .register-ring {
+    flex: 0 1 auto;
+  }
+  .register-scrollwrap {
+    flex: 0 1 auto;
+  }
+  .register-scroll {
+    flex: 0 1 auto;
+    overflow: visible;
+    padding-bottom: 0.2rem;
+  }
 }
 
 }

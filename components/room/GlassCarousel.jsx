@@ -21,15 +21,97 @@ const wrapPos = (i, active, n) => {
   return pos;
 };
 
-export default function GlassCarousel({ items, initialKey, onSelect, t }) {
+export default function GlassCarousel({
+  items,
+  initialKey,
+  onSelect,
+  t,
+  setKey = null,
+  forceInitial = false,
+}) {
   const n = items.length;
 
+  /* Viimase keskkaardi mälu komplekti kohta (sessionStorage), et elaks
+     üle karusselli remountide (key={carouselSet}) ja route-vahetuste. */
+  const storageId = setKey ? `gc:last:${setKey}` : null;
+  const indexOfKey = useCallback(
+    (key) => (key ? items.findIndex((it) => it.key === key) : -1),
+    [items]
+  );
+
   const [active, setActive] = useState(() => {
-    const byKey = Math.max(0, items.findIndex((it) => it.key === initialKey));
-    return byKey;
+    // Kaardilehel (forceInitial) tsentreeri ALATI avatud kaart.
+    if (!forceInitial && storageId && typeof window !== "undefined") {
+      try {
+        const saved = window.sessionStorage.getItem(storageId);
+        const savedIdx = indexOfKey(saved);
+        if (savedIdx >= 0) return savedIdx;
+      } catch {}
+    }
+    return Math.max(0, indexOfKey(initialKey));
   });
   const activeRef = useRef(active);
   activeRef.current = active;
+
+  /* Jäta iga vahetus meelde — tagasitulek samasse komplekti taastab koha. */
+  useEffect(() => {
+    if (!storageId || typeof window === "undefined") return;
+    const key = items[active]?.key;
+    if (!key) return;
+    try {
+      window.sessionStorage.setItem(storageId, key);
+    } catch {}
+  }, [active, items, storageId]);
+
+  /* ---------- Positsioonid: pöördlaud, mitte lineaarne ringitõmme ----------
+     Iga kaart liigub sammu kohta täpselt ÜHE koha võrra ja LÜHIMAT teed:
+     lahkuv külgkaart taandub oma poolele (nt −1 → −2), mitte üle esiplaani
+     vastasserva (+2). Ringi-õmblus (pos hüppab üle poole ringi) tehakse
+     HETKEGA, ilma transform-üleminekuta (data-warp), sel hetkel kui kaart
+     on nagunii peidus/hajumas — nii ei teki nähtavat ülelendu. Väiksemaid
+     komplekte (nt haldus, n=4) parandab; suuremad ei muutu (seal oli õmblus
+     juba nähtamatus tsoonis). */
+  /* posRef hoiab kaartide praeguseid pidevaid positsioone (arvutus elab
+     efekti kehas — puhas seisu-updater, StrictMode-kindel). */
+  const posRef = useRef(null);
+  if (posRef.current === null) {
+    posRef.current = items.map((_, i) => wrapPos(i, active, n));
+  }
+  const [layout, setLayout] = useState(() => ({
+    pos: posRef.current,
+    warp: items.map(() => false),
+  }));
+  const prevActiveRef = useRef(active);
+
+  useEffect(() => {
+    const curPos = posRef.current;
+    // Komplekt/pikkus vahetus (nt haldus↔töö) — algsea puhtalt.
+    if (!curPos || curPos.length !== n) {
+      const seeded = items.map((_, i) => wrapPos(i, activeRef.current, n));
+      posRef.current = seeded;
+      prevActiveRef.current = activeRef.current;
+      setLayout({ pos: seeded, warp: items.map(() => false) });
+      return;
+    }
+    const prev = prevActiveRef.current;
+    if (prev === active) return;
+    prevActiveRef.current = active;
+    // Lühim ringisuund prev→active (sammud, −n/2..n/2)
+    let d = (((active - prev) % n) + n) % n;
+    if (d > n / 2) d -= n;
+    const pos = curPos.map((p) => {
+      let np = p - d;
+      // Aken [-n/2, n/2]: mõlemad tagaosa esitused (±n/2) on lubatud
+      // puhkekohad; wrap käivitub alles siis, kui kaart läheb neist
+      // KAUGEMALE (siis on ta juba peidus → hüpe tehakse hetkega).
+      while (np < -n / 2) np += n;
+      while (np > n / 2) np -= n;
+      return np;
+    });
+    const warp = pos.map((np, i) => Math.abs(np - curPos[i]) > 1.0001);
+    posRef.current = pos;
+    setLayout({ pos, warp });
+  }, [active, n, items]);
 
   const listRef = useRef(null);
   const drag = useRef({ on: false, x0: 0, dx: 0, moved: false, pid: null });
@@ -47,10 +129,11 @@ export default function GlassCarousel({ items, initialKey, onSelect, t }) {
     return true;
   };
 
-  /* Tellija otsus (07.07): karussell avaneb ALATI vaikekaardilt
-     (initialKey) — viimast keritud asukohta EI jäeta meelde. Sama
-     komplekti sees kerimine töötab React-seisu kaudu; vaid reload/
-     komplektivahetus algab uuesti vaikekaardilt. */
+  /* Tellija otsus (07.07, täpsustus): iga komplekt AVANEB VIIMASELT
+     keskkaardilt — asukoht jäetakse meelde (storageId, üleval), et
+     komplektivahetus (work↔admin↔profile) ja tagasitulek ei viskaks
+     vaikekaardile. Kaardilehel (forceInitial) tsentreeritakse siiski
+     avatud kaart. Kerimine komplekti sees töötab React-seisu kaudu. */
 
   const step = useCallback(
     (delta, { focus = false } = {}) => {
@@ -235,9 +318,10 @@ export default function GlassCarousel({ items, initialKey, onSelect, t }) {
         onPointerCancel={endDrag}
       >
         {items.map((item, i) => {
-          const pos = wrapPos(i, active, n);
+          const pos = layout.pos[i] ?? wrapPos(i, active, n);
           const abs = Math.abs(pos);
           const isCenter = pos === 0;
+          const isWarp = layout.warp[i] === true;
           /* Peidus kaardid PARGIVAD kohe serva taga (±1.4 sammu), mitte
              oma kaugel ringipositsioonil — sisenev kaart libiseb servast
              ühe sammu ega lenda üle rea; lahkuv libiseb serva taha ja
@@ -251,6 +335,7 @@ export default function GlassCarousel({ items, initialKey, onSelect, t }) {
               style={{ "--pos": posVis, "--abs": absVis, zIndex: 40 - abs * 10 }}
               data-center={isCenter ? "1" : "0"}
               data-hidden={abs > 1 ? "1" : "0"}
+              data-warp={isWarp ? "1" : "0"}
             >
               <GlassCard
                 ref={(el) => {

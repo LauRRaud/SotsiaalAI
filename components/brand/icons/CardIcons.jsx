@@ -67,20 +67,24 @@ export const ContactMailIcon = (props) => (
   </Svg>
 );
 
-/* Logi sisse — PIN-klahvistik (tellija 06.07 öö: kaasaegne, mitte võti) */
-export const LoginKeyIcon = (props) => (
-  <Svg {...props}>
-    <circle {...P} cx="5.6" cy="5.6" r="1.55" />
-    <circle {...P} cx="12" cy="5.6" r="1.55" />
-    <circle {...P} cx="18.4" cy="5.6" r="1.55" />
-    <circle {...P} cx="5.6" cy="12" r="1.55" />
-    <circle {...P} cx="12" cy="12" r="1.55" />
-    <circle {...P} cx="18.4" cy="12" r="1.55" />
-    <circle {...P} cx="5.6" cy="18.4" r="1.55" />
-    <circle {...P} cx="12" cy="18.4" r="1.55" />
-    <circle {...P} cx="18.4" cy="18.4" r="1.55" />
-  </Svg>
-);
+/* Logi sisse — PIN-klahvistik (tellija 06.07 öö: kaasaegne, mitte võti;
+   07.07: täidetud täpid, mitte tühjad rõngad) */
+export const LoginKeyIcon = (props) => {
+  const dot = { fill: "currentColor", stroke: "none" };
+  return (
+    <Svg {...props}>
+      <circle {...dot} cx="5.6" cy="5.6" r="1.9" />
+      <circle {...dot} cx="12" cy="5.6" r="1.9" />
+      <circle {...dot} cx="18.4" cy="5.6" r="1.9" />
+      <circle {...dot} cx="5.6" cy="12" r="1.9" />
+      <circle {...dot} cx="12" cy="12" r="1.9" />
+      <circle {...dot} cx="18.4" cy="12" r="1.9" />
+      <circle {...dot} cx="5.6" cy="18.4" r="1.9" />
+      <circle {...dot} cx="12" cy="18.4" r="1.9" />
+      <circle {...dot} cx="18.4" cy="18.4" r="1.9" />
+    </Svg>
+  );
+};
 
 /* Analüütika — tulpdiagramm */
 export const AnalyticsIcon = (props) => (

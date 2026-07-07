@@ -10,7 +10,7 @@ const Checkbox = forwardRef(function Checkbox({
   name,
   className
 }, ref) {
-  return <label className={className}>
+  return <label className={["ui-checkbox", className].filter(Boolean).join(" ")}>
       <input ref={ref} id={id} name={name} type="checkbox" checked={!!checked} onChange={e => onChange?.(e.target.checked, e)} onKeyDown={e => {
       if (e.key === "Enter") {
         e.preventDefault();

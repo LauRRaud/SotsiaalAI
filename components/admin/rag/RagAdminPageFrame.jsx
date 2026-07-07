@@ -61,7 +61,7 @@ export default function RagAdminPageFrame({
           <h1>{title || copy.heading}</h1>
           {subtitle ? <p>{subtitle}</p> : null}
 
-          <nav aria-label={copy.heading}>
+          <nav aria-label={copy.heading} className="rag-admin-nav">
             {NAV_ORDER.map(key => {
               const item = nav[key];
               const isActive = activeKey === key;
@@ -71,6 +71,8 @@ export default function RagAdminPageFrame({
                   key={key}
                   prefetch={false}
                   href={item.href}
+                  data-variant="default"
+                  data-selected={isActive ? "true" : undefined}
                   aria-current={isActive ? "page" : undefined}
                 >
                   <span>{item.label}</span>

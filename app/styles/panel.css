@@ -82,6 +82,30 @@
   /* Tellija 06.07 öö: MITTE mingit "kaart kasvab kaardi sees" efekti —
      sama kaardi sisu lihtsalt vahetub, raam ei liigu. */
   animation: none;
+  /* Kaardi-leht ON kaart: SAMA ilme mis .gc-card, ühisest allikast
+     (tokens.css --card-glass-*) — mitte eraldi paneeli-stiil, mitte
+     koopia. Nii ei näi see eraldi aknana, vaid keskkaardi sisuna. */
+  background: var(--card-glass-bg);
+  border: none;
+  box-shadow: var(--card-glass-shadow);
+}
+/* Läige + liquid-serv — sama allikas mis .gc-card::before/::after */
+.panel-scrim[data-compact="1"] .panel::before {
+  background: var(--card-glass-sheen);
+}
+.panel-scrim[data-compact="1"] .panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.3px;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 2;
 }
 .panel-scrim[data-compact="1"] .panel-body {
   display: flex;
@@ -115,7 +139,10 @@
 
 /* Admin-töövaated vajavad laiust (tabelid) */
 .panel-scrim[data-admin="1"] .panel {
-  width: min(90rem, calc(100vw - clamp(0.75rem, 3vw, 3rem)));
+  /* Tellija 07.07: 90rem oli ~ekraani-lai (mõeldud laiade tabelite jaoks),
+     aga sisuvaated (nt KOV kontaktiregister) jäid tühja ette. Kont-
+     aineeritud laius; laiu tabeleid saab vajadusel horisontaalselt kerida. */
+  width: min(64rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
   height: calc(100lvh - clamp(2rem, 6lvh, 4.5rem));
 }
 
@@ -257,41 +284,13 @@
    (katab button[data-variant] jt). Siin ainult vormid ja pinnad.
    Suletud variandisüsteem (kujundusreeglid §3): default + primary. */
 
-/* Sisendid — ka ILMA data-variandita paljad väljad paneelis */
-.panel-body input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):not(.sr-only):not(#chat-input),
-.panel-body textarea:not(#chat-input),
-input[data-variant],
-textarea[data-variant],
-select[data-variant] {
-  width: 100%;
-  padding: 0.7em 1.05em;
-  border-radius: var(--input-radius);
-  background: var(--input-bg);
-  border: var(--input-border);
-  color: var(--input-text);
-  caret-color: var(--text-warm);
-  transition:
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft);
-}
-.panel-body input::placeholder,
-.panel-body textarea::placeholder,
-input[data-variant]::placeholder,
-textarea[data-variant]::placeholder {
-  color: var(--input-placeholder);
-}
-.panel-body input:not([type="checkbox"]):not([type="radio"]):not(.sr-only):not(#chat-input):focus,
-.panel-body textarea:not(#chat-input):focus,
-input[data-variant]:focus,
-textarea[data-variant]:focus,
-select[data-variant]:focus {
-  background: var(--input-bg-focus);
-  border: var(--input-border-focus);
-}
+/* Sisendite look (materjal, pill-kuju, keskjoondus, font, fookus,
+   placeholder) tuleb nüüd AINULT glass.css baasprimitiivist — üks
+   input-kujundus kogu platvormil (tellija 07.07). Siia jääb vaid
+   mitmerealise textarea paigutus (kõrgus + suuruse muutmine). */
 textarea[data-variant] {
   min-height: 6.5em;
   resize: vertical;
-  border-radius: 1.1rem;
 }
 
 /* Paneelid ja kaardid sisus */
@@ -385,24 +384,45 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :is(label[dat
 label[data-control-type][data-focus-visible="true"] {
   box-shadow: var(--focus-ring);
 }
+/* Checkbox-indikaator = SAMA klaas-kast mis natiivne checkbox (glass.css):
+   heledam raam + suurem linnuke + checked-täidis (tellija 07.07). */
 label[data-control-type] > span[aria-hidden="true"] {
   display: grid;
   place-items: center;
-  width: 1.35em;
-  height: 1.35em;
+  width: 1.4em;
+  height: 1.4em;
   border-radius: 7px;
-  border: 1.5px solid var(--glass-cell-border);
+  border: 1.6px solid rgba(255, 255, 255, 0.46);
+  background: rgba(255, 255, 255, 0.07);
   color: var(--text-warm);
   flex: none;
+  transition:
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
 }
 label[data-control-type] > span[aria-hidden="true"] svg {
-  width: 0.95em;
-  height: 0.95em;
+  width: 1.05em;
+  height: 1.05em;
   opacity: 0;
   transition: opacity var(--dur-fast) var(--ease-soft);
 }
+label[data-control-type][data-checked="true"] > span[aria-hidden="true"] {
+  border-color: rgba(255, 250, 240, 0.72);
+  background: rgba(255, 250, 240, 0.18);
+}
 label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   opacity: 1;
+}
+
+/* RAG admini navi (RagAdminPageFrame): tab-rida klaas-pillidena — enne olid
+   need paljad kokkujooksnud lingid (shell-klassid olid tühjaks stripitud).
+   Pilli-materjal + aktiivne olek tulevad glass.css-ist (a[data-variant] +
+   [data-selected="true"]); siin ainult rea-paigutus (tellija 07.07). */
+.rag-admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0.4rem;
 }
 
 /* Konto seaded (profiili sektsioon): kolm toimingut, õhk vahel.

@@ -750,7 +750,6 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
   display: block;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
   /* S teeb ÜHE tõelise 3D-täispöörde (rotateY 0→360° perspektiiviga).
      scaleX-münt-pöördel puudus sügavus/suund → mõjus kui "pool teed ja
      siis teistpidi tagasi" (tellija 06.07). Perspektiiv annab pideva,
@@ -839,44 +838,10 @@ html[data-room-mode="panel"] .room-scroll-spacer {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
-html[data-reduce-motion="1"] .room-static-copy {
-  position: fixed;
-  width: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-  left: clamp(1.5rem, 6vw, 6rem);
-  top: clamp(4.5rem, 12vh, 8rem);
-  z-index: var(--z-home-ui);
-  max-width: min(30rem, 82vw);
-  padding: 1.4em 1.6em;
-  border-radius: 20px;
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  color: var(--text-warm);
-}
-@media (prefers-reduced-motion: reduce) {
-  .room-static-copy {
-    position: fixed;
-    width: auto;
-    height: auto;
-    margin: 0;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-    left: clamp(1.5rem, 6vw, 6rem);
-    top: clamp(4.5rem, 12vh, 8rem);
-    z-index: var(--z-home-ui);
-    max-width: min(30rem, 82vw);
-    padding: 1.4em 1.6em;
-    border-radius: 20px;
-    background: var(--glass-bg-strong);
-    border: 1px solid var(--glass-border);
-    color: var(--text-warm);
-  }
-}
+/* Tellija 07.07: .room-static-copy JÄÄB sr-only'ks ka liikumise-
+   vähendamisel — varasem "tee nähtavaks klaaskastiks" (brief §9) dubleeris
+   loori-rea (.room-veil-line = sama room.loading_line) ja jättis kasti
+   ruumi peale rippuma. Plokk on endiselt DOM-is ekraanilugejale/robotitele. */
 .room-static-copy h1 {
   font-size: var(--fs-title);
   margin-bottom: 0.35em;

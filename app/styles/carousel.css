@@ -57,6 +57,13 @@
   opacity: 0;
   pointer-events: none;
 }
+/* Ringi-õmblus (data-warp): kaart hüppab üle poole ringi teisele poole —
+   transform tehakse HETKEGA (ei lenda üle esiplaani), aga opacity hajub
+   endiselt sujuvalt. Nii ei näe väikeses komplektis (haldus) äärmise
+   kaardi ülelendu, vaid ta lihtsalt taandub/hajub oma poolel. */
+.gc-item[data-warp="1"] {
+  transition: opacity 640ms var(--ease-soft);
+}
 .gc-list[data-dragging="1"] .gc-item {
   transition: none;
 }
@@ -87,18 +94,12 @@ html[data-reduce-motion="1"] .gc-item {
   gap: 1.15rem;
   border-radius: clamp(20px, 2.4vw, 30px);
   /* Tellija 06.07: läbipaistvam ja MATIM — nagu 3D-prillide klaas,
-     tume toon ilma suure läiketa; ruum kumab selgelt läbi */
-  background:
-    linear-gradient(
-      165deg,
-      rgba(44, 39, 34, 0.46) 0%,
-      rgba(32, 28, 25, 0.52) 55%,
-      rgba(24, 21, 19, 0.58) 100%
-    );
+     tume toon ilma suure läiketa; ruum kumab selgelt läbi.
+     ÜKS ühine ilme (tokens.css --card-glass-*), jagatud kaardilehe
+     paneeliga (panel.css) — ei mingeid koopiaid. */
+  background: var(--card-glass-bg);
   border: none;
-  box-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.09),
-    var(--glass-shadow);
+  box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
   text-decoration: none;
   overflow: hidden;
@@ -113,12 +114,7 @@ html[data-reduce-motion="1"] .gc-item {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: radial-gradient(
-    120% 90% at 12% 0%,
-    rgba(255, 250, 242, 0.1),
-    rgba(255, 250, 242, 0.03) 34%,
-    transparent 56%
-  );
+  background: var(--card-glass-sheen);
   pointer-events: none;
 }
 
@@ -130,13 +126,7 @@ html[data-reduce-motion="1"] .gc-item {
   inset: 0;
   border-radius: inherit;
   padding: 1.3px;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.12) 32%,
-    rgba(255, 255, 255, 0.05) 58%,
-    rgba(255, 255, 255, 0.22) 100%
-  );
+  background: var(--card-glass-rim);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -320,6 +310,11 @@ html[data-reduce-motion="1"] .gc-label {
 /* Login / info-modal (Kontakt, Paigalda) / kaardi-leht: keskkaart kaob
    HETKEGA — sisu vahetub kohapeal, raam ei liigu, alt ei paista hajuvat
    kaarti (tellija 06.07 öö) */
+/* Kaardi-leht (Ruumid, PIN, e-post): AINULT keskkaart kaob hetkega —
+   kompaktne paneel võtab TÄPSELT tema koha ja klaasi-ilme (panel.css),
+   nii et loeb kui keskkaardi sisu vahetus. KÜLJEKAARDID JÄÄVAD kõrvale
+   konteksti (tellija 07.07 õhtu: tagumised/külgmised kaardid ei tohi
+   kaduda). */
 .room[data-login-open="1"] .gc-item[data-center="1"],
 .room[data-info-open="1"] .gc-item[data-center="1"],
 .room[data-card-page="1"] .gc-item[data-center="1"] {

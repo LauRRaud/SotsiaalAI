@@ -1074,17 +1074,18 @@ model TrustedDevice {
 }
 
 model LoginTempToken {
-  id              String    @id @default(cuid())
-  userId          String
-  tokenHash       String    @unique
-  requiresOtp     Boolean   @default(false)
-  otpVerifiedAt   DateTime?
-  expiresAt       DateTime
-  usedAt          DateTime?
-  userAgent       String?
-  ipAddress       String?
-  trustedDeviceId String?
-  createdAt       DateTime  @default(now())
+  id                 String    @id @default(cuid())
+  userId             String
+  tokenHash          String    @unique
+  emailLinkTokenHash String?   @unique
+  requiresOtp        Boolean   @default(false)
+  otpVerifiedAt      DateTime?
+  expiresAt          DateTime
+  usedAt             DateTime?
+  userAgent          String?
+  ipAddress          String?
+  trustedDeviceId    String?
+  createdAt          DateTime  @default(now())
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   trustedDevice TrustedDevice? @relation(fields: [trustedDeviceId], references: [id], onDelete: SetNull)

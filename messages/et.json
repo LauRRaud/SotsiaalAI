@@ -56,21 +56,24 @@
       "register_link": "Registreeru",
       "clear": "Kustuta PIN",
       "otp_title": "Kinnita sisenemine",
-      "otp_description": "Saadsime kinnituskoodi aadressile {email}. Sisesta see 15 minuti jooksul.",
-      "otp_spam_hint": "Kui kiri sattus rämpsposti, ava see ja vajuta \"Teavitan, et pole rämpspost\".",
-      "otp_expires": "Kood aegub kell {time}.",
-      "otp_placeholder": "Kinnituskood (6 numbrit)",
-      "otp_short_placeholder": "Kinnituskood",
+      "otp_description": "Saadsime kinnituse aadressile {email}. Ava kiri ja vajuta kinnitamise linki.",
+      "otp_spam_hint": "Kui kiri sattus rämpsposti, märgi, et see ei ole rämpspost.",
+      "otp_expires": "Kinnituslink aegub kell {time}.",
+      "otp_placeholder": "Kinnituslink",
+      "otp_short_placeholder": "Kinnituslink",
       "remember_device": "Jäta see seade 30 päevaks meelde",
       "device_name_label": "Seadme nimi",
       "device_name_placeholder": "Seadme nimi",
       "otp_submit": "Kinnitan",
-      "resend": "Saada kood uuesti",
+      "email_link_waiting": "Ootan e-posti kinnitust...",
+      "email_link_completing": "Kinnitus leitud. Sisenen...",
+      "email_link_verified": "Kinnitus leitud.",
+      "resend": "Saada kinnitus uuesti",
       "resending": "Saadame...",
       "otp_back": "Kasuta teist e-posti",
       "otp_invalid": "Kood on vale või aegunud.",
-      "otp_trusted_device_expired": "Usaldatud seadme 30-päevane periood lõppes. Kinnita sisselogimine koodiga.",
-      "otp_resent": "Saadeti uus kood aadressile {email}.",
+      "otp_trusted_device_expired": "Usaldatud seadme 30-päevane periood lõppes. Kinnita sisselogimine e-posti lingiga.",
+      "otp_resent": "Saadeti uus kinnitus aadressile {email}.",
       "pin_hint": "Sisesta PIN. Turvalisuse huvides on sisestus peidetud ja märke ette ei loeta.",
       "key": "Number {digit}",
       "toggle_keypad": "Vaheta klahvistik",
@@ -388,7 +391,7 @@
     },
     "section3": {
       "heading": "3. Konto ja ligipääs",
-      "items": "<li>Platvormi põhifunktsioonide kasutamiseks tuleb luua konto ning valida sobiv kasutajaroll.</li><li>Kasutaja peab hoidma oma e-posti, PIN-i ja muud sisselogimisinfot konfidentsiaalsena ning vastutab oma konto alt tehtud toimingute eest.</li><li>Sisselogimine võib nõuda täiendavat e-posti teel saadetud kinnituskoodi ning kasutaja võib soovi korral märkida seadme usaldatuks.</li><li>Mitmed töövood eeldavad aktiivset tellimust või sponsoreeritud ligipääsu olemasolu.</li><li>Administraatori eelvaaterolli või muu haldusõiguse kasutamine ei anna õigust esineda teise kasutajana, vaadata tema isiklikke vestlusi või dokumente ega muuta tema andmeid ilma selge õigusliku või tehnilise põhjenduseta.</li>"
+      "items": "<li>Platvormi põhifunktsioonide kasutamiseks tuleb luua konto ning valida sobiv kasutajaroll.</li><li>Kasutaja peab hoidma oma e-posti, PIN-i ja muud sisselogimisinfot konfidentsiaalsena ning vastutab oma konto alt tehtud toimingute eest.</li><li>Sisselogimine võib nõuda täiendavat e-posti teel saadetud kinnitust ning kasutaja võib soovi korral märkida seadme usaldatuks.</li><li>Mitmed töövood eeldavad aktiivset tellimust või sponsoreeritud ligipääsu olemasolu.</li><li>Administraatori eelvaaterolli või muu haldusõiguse kasutamine ei anna õigust esineda teise kasutajana, vaadata tema isiklikke vestlusi või dokumente ega muuta tema andmeid ilma selge õigusliku või tehnilise põhjenduseta.</li>"
     },
     "section4": {
       "heading": "4. Lubatud kasutus",
@@ -2169,7 +2172,7 @@
         },
         "signin": {
           "title": "4. Sisselogimine ja rolli alusel liikumine",
-          "body": "<p>Sisselogimine algab avalehe <strong>Logi sisse</strong> nupust.</p><ul><li>Sisesta e-posti aadress ja PIN-kood.</li><li>Varem usaldatud seadmes piisab tavaliselt ainult PIN-ist.</li><li>Kui logid sisse uuest või ebatavalisest keskkonnast, saadame e-postile 6-kohalise kinnituskoodi.</li><li>Soovi korral märgi \"Mäleta seda seadet 30 päeva\".</li><li>Kui PIN on ununenud, kasuta linki <a href=\"/taasta-parool\">Unustasin PIN-i</a>.</li><li>Pärast edukat sisselogimist avaneb sinu rolli vestlusvaade; kui ligipääs on piiratud, kuvatakse järgmised sammud.</li></ul>"
+          "body": "<p>Sisselogimine algab avalehe <strong>Logi sisse</strong> nupust.</p><ul><li>Sisesta e-posti aadress ja PIN-kood.</li><li>Varem usaldatud seadmes piisab tavaliselt ainult PIN-ist.</li><li>Kui logid sisse uuest või ebatavalisest keskkonnast, saadame e-postile kinnitamise lingi.</li><li>Soovi korral märgi \"Mäleta seda seadet 30 päeva\".</li><li>Kui PIN on ununenud, kasuta linki <a href=\"/taasta-parool\">Unustasin PIN-i</a>.</li><li>Pärast edukat sisselogimist avaneb sinu rolli vestlusvaade; kui ligipääs on piiratud, kuvatakse järgmised sammud.</li></ul>"
         },
         "chat": {
           "title": "5. Vestlusleht",
@@ -2411,6 +2414,11 @@
         "text": "Tere!\n\nSaad PIN-i lähtestada lingi kaudu:\n{resetUrl}\n\nKui sa ei soovinud PIN-i taastada, võid selle kirja eirata.",
         "html": "<p>Tere!</p><p>Saad PIN-i lähtestada lingi kaudu:</p><p><a href=\"{resetUrl}\">{resetUrl}</a></p><p>Kui sa ei soovinud PIN-i taastada, võid selle kirja eirata.</p>"
       },
+      "login_link": {
+        "subject": "SotsiaalAI sisselogimise kinnitamine",
+        "text": "Tere!\n\nSisselogimise kinnitamiseks ava see link:\n{confirmUrl}\n\nKinnituslink kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
+        "html": "<p>Tere!</p><p>Sisselogimise kinnitamiseks ava see link:</p><p><a href=\"{confirmUrl}\">Kinnita sisenemine</a></p><p>Kinnituslink kehtib {minutes} minutit.</p><p>Kui sa ei proovinud sisse logida, eira seda kirja.</p>"
+      },
       "login_otp": {
         "subject": "SotsiaalAI sisselogimise kinnituskood",
         "text": "Tere!\n\nSinu kinnituskood on: {code}\nKood kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
@@ -2423,8 +2431,8 @@
       },
       "login_device_alert": {
         "subject": "SotsiaalAI sisselogimine uuest või tundmatust seadmest",
-        "text": "Tere!\n\nMärkasime sisselogimiskatset uuest või tundmatust seadmest.\n\nAeg: {time}\nSeade: {device}\nIP-aadress: {ip}\n\nKui see olid sina, saad sisselogimist kinnituskoodiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.",
-        "html": "<p>Tere!</p><p>Märkasime sisselogimiskatset uuest või tundmatust seadmest.</p><ul><li><strong>Aeg:</strong> {time}</li><li><strong>Seade:</strong> {device}</li><li><strong>IP-aadress:</strong> {ip}</li></ul><p>Kui see olid sina, saad sisselogimist kinnituskoodiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.</p>"
+        "text": "Tere!\n\nMärkasime sisselogimiskatset uuest või tundmatust seadmest.\n\nAeg: {time}\nSeade: {device}\nIP-aadress: {ip}\n\nKui see olid sina, saad sisselogimist e-posti lingiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.",
+        "html": "<p>Tere!</p><p>Märkasime sisselogimiskatset uuest või tundmatust seadmest.</p><ul><li><strong>Aeg:</strong> {time}</li><li><strong>Seade:</strong> {device}</li><li><strong>IP-aadress:</strong> {ip}</li></ul><p>Kui see olid sina, saad sisselogimist e-posti lingiga jätkata. Kui mitte, muuda palun kohe oma PIN-i.</p>"
       },
       "verify": {
         "subject": "Kinnita oma e-posti aadress",
@@ -2657,14 +2665,15 @@
         "pin_invalid": "PIN peab olema 4-8 numbrit.",
         "missing_fields": "Puudub vajalik teave.",
         "token_invalid": "Sisselogimise token on vigane.",
-        "token_expired": "Kinnituskood on aegunud.",
+        "token_expired": "Kinnituslink on aegunud.",
         "otp_invalid": "Kood on vale või aegunud.",
         "step1_failed": "Sisselogimine ebaõnnestus. Palun proovi uuesti.",
-        "verify_failed": "Koodi kontroll ebaõnnestus. Palun proovi uuesti.",
+        "verify_failed": "Kinnituse kontroll ebaõnnestus. Palun proovi uuesti.",
+        "email_link_pending": "Palun ava e-kiri ja vajuta kinnitamise linki.",
         "resend_missing_token": "Puudub ajutine sisselogimise token.",
-        "resend_token_invalid": "Seda koodi ei saa uuesti saata.",
+        "resend_token_invalid": "Seda kinnitust ei saa uuesti saata.",
         "user_missing": "Kasutajat ei leitud.",
-        "resend_failed": "Koodi saatmine ebaõnnestus.",
+        "resend_failed": "Kinnituse saatmine ebaõnnestus.",
         "email_from_missing": "Saatja e-posti aadress ei ole seadistatud."
       },
       "register": {

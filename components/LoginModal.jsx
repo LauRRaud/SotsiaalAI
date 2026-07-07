@@ -9,7 +9,6 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import Input from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
 const MODAL_FOCUSABLE_SELECTOR = [
@@ -43,7 +42,16 @@ function resetInputHorizontalScroll(element) {
 }
 
 function renderOtpTitle(title) {
-  return title;
+  const words = String(title || "").trim().split(/\s+/).filter(Boolean);
+  if (words.length < 2) return title;
+  const splitAt = Math.ceil(words.length / 2);
+  return (
+    <>
+      {words.slice(0, splitAt).join(" ")}
+      <br />
+      {words.slice(splitAt).join(" ")}
+    </>
+  );
 }
 
 export default function LoginModal({
@@ -103,7 +111,6 @@ export default function LoginModal({
   const [resendLoading, setResendLoading] = useState(false);
   const [tempToken, setTempToken] = useState("");
   const [emailMask, setEmailMask] = useState("");
-  const [otpValue, setOtpValue] = useState("");
   const [rememberDevice, setRememberDevice] = useState(true);
   const [deviceName, setDeviceName] = useState("");
   const [otpExpiresAt, setOtpExpiresAt] = useState(null);
@@ -146,7 +153,7 @@ export default function LoginModal({
   const keypadRefs = useRef([]);
   const emailHintIdRef = useRef(`login-email-hint-${Math.random().toString(36).slice(2, 10)}`);
   const pinHintIdRef = useRef(`login-pin-hint-${Math.random().toString(36).slice(2, 10)}`);
-  const otpInputRef = useRef(null);
+  const loginCompletionStartedRef = useRef(false);
   const touchStartRef = useRef(null);
   const suppressNativeBlurSubmitRef = useRef(false);
   const zeroLongPressTimerRef = useRef(null);
@@ -201,7 +208,6 @@ export default function LoginModal({
       return "";
     }
   }, [otpExpiresAt, locale]);
-  const otpInputDescribedBy = [otpDeadlineLabel ? "otp-deadline" : null, otpInlineError ? "otp-inline-error" : null].filter(Boolean).join(" ") || undefined;
   useEffect(() => {
     if (!open) {
       setHelpOpen(false);
@@ -444,7 +450,7 @@ export default function LoginModal({
     setPinValue("");
     setPinError(false);
     setTempToken("");
-    setOtpValue("");
+    loginCompletionStartedRef.current = false;
     setStoredEmail("");
     setOtpExpiresAt(null);
     setRememberDevice(true);
@@ -517,7 +523,6 @@ export default function LoginModal({
         boxRef.current
           ?.querySelector?.(".login-modal-shell")
           ?.scrollTo?.({ top: 0, behavior: "auto" });
-        focusElementWithoutScroll(otpInputRef.current);
       }, 0);
       return;
     }
@@ -645,7 +650,7 @@ export default function LoginModal({
         rememberKnownEmail(email);
         markPinSuccess();
         setStep("otp");
-        setOtpValue("");
+        loginCompletionStartedRef.current = false;
         setEmailMask(payload.email_mask || email);
         setOtpExpiresAt(payload.otp_expires_at || null);
         setInfo(payload?.otp_reason === "trusted_device_expired" ? t("auth.login.otp_trusted_device_expired") : "");
@@ -800,21 +805,13 @@ export default function LoginModal({
   useEffect(() => () => {
     stopZeroHoldActions();
   }, [stopZeroHoldActions]);
-  const submitOtpStep = async () => {
+  const submitOtpStep = useCallback(async () => {
     if (!tempToken) {
       setError(t("auth.login.error.generic"));
-      return;
-    }
-    const rawOtp = String(otpInputRef.current?.value || otpValue || "");
-    const cleanedOtp = rawOtp.replace(/\D/g, "").slice(0, 6);
-    if (cleanedOtp !== otpValue) setOtpValue(cleanedOtp);
-    if (!/^\d{6}$/.test(cleanedOtp)) {
-      setError(t("auth.login.otp_invalid"));
-      return;
+      return false;
     }
     setOtpLoading(true);
     setError("");
-    setInfo("");
     try {
       const res = await fetch("/api/auth/login-step2", {
         method: "POST",
@@ -823,7 +820,6 @@ export default function LoginModal({
         },
         body: JSON.stringify({
           temp_login_token: tempToken,
-          otp_code: cleanedOtp,
           remember_device: rememberDevice,
           device_name: rememberDevice ? deviceName : "",
           locale
@@ -832,20 +828,80 @@ export default function LoginModal({
       const payload = await res.json().catch(() => ({}));
       if (!res.ok) {
         setError(resolveAuthApiMessage(payload, "auth.login.error.generic"));
-        return;
+        return false;
       }
       if (payload?.status === "verified") {
-        await finishLogin(payload?.temp_login_token || tempToken);
-        return;
+        return await finishLogin(payload?.temp_login_token || tempToken);
       }
       setError(resolveAuthApiMessage(payload, "auth.login.error.generic"));
+      return false;
     } catch (err) {
       console.error("login-step2 error", err);
       setError(t("auth.login.error.generic"));
+      return false;
     } finally {
       setOtpLoading(false);
     }
-  };
+  }, [
+    deviceName,
+    finishLogin,
+    locale,
+    rememberDevice,
+    resolveAuthApiMessage,
+    t,
+    tempToken
+  ]);
+  useEffect(() => {
+    if (!isOtpStep || !tempToken || !open || otpLoading) return undefined;
+    let stopped = false;
+    let intervalId = null;
+
+    const checkStatus = async () => {
+      if (stopped || loginCompletionStartedRef.current) return;
+      try {
+        const res = await fetch("/api/auth/login-status", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            temp_login_token: tempToken,
+            locale
+          })
+        });
+        const payload = await res.json().catch(() => ({}));
+        if (stopped || loginCompletionStartedRef.current) return;
+        if (!res.ok) {
+          setError(resolveAuthApiMessage(payload, "auth.login.error.generic"));
+          return;
+        }
+        if (payload?.status === "verified") {
+          loginCompletionStartedRef.current = true;
+          setInfo(t("auth.login.email_link_verified"));
+          const ok = await submitOtpStep();
+          if (!ok) loginCompletionStartedRef.current = false;
+        }
+      } catch (err) {
+        console.error("login-status error", err);
+      }
+    };
+
+    checkStatus();
+    intervalId = window.setInterval(checkStatus, 2000);
+    return () => {
+      stopped = true;
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, [
+    isOtpStep,
+    locale,
+    open,
+    otpLoading,
+    resolveAuthApiMessage,
+    submitOtpStep,
+    t,
+    tempToken
+  ]);
   const handleResendOtp = async () => {
     if (!tempToken) return;
     setResendLoading(true);
@@ -881,8 +937,8 @@ export default function LoginModal({
   const resetToPinStep = () => {
     setStep("pin");
     setPinValue("");
-    setOtpValue("");
     setTempToken("");
+    loginCompletionStartedRef.current = false;
     setOtpExpiresAt(null);
     setInfo("");
     setError("");
@@ -983,7 +1039,7 @@ export default function LoginModal({
           <button className="login-modal-close" onClick={onClose} aria-label={t("buttons.close")} type="button" />
 
           <div>
-            <div className="login-modal-title">
+            <div className={`login-modal-title${isOtpStep ? " login-modal-title--otp" : ""}`}>
               {isOtpStep
                 ? renderOtpTitle(t("auth.login.otp_title"))
                 : t("auth.login.title")}
@@ -1178,7 +1234,10 @@ export default function LoginModal({
                         {t("auth.login.help_wrong_pin_note")}
                       </div>
 
-                      <AppLink href={resetRequestPath} variant="brand" onClick={() => setHelpOpen(false)}>
+                      <AppLink href={resetRequestPath} variant="brand" onClick={() => {
+                        setHelpOpen(false);
+                        onClose?.();
+                      }}>
                         {t("auth.login.forgot")}
                       </AppLink>
                     </div>
@@ -1204,7 +1263,6 @@ export default function LoginModal({
 
         {isOtpStep && <form className="login-otp-content" onSubmit={e => {
         e.preventDefault();
-        submitOtpStep();
       }}>
             <div className="login-otp-copy">
                 {info && <p role="status">
@@ -1223,11 +1281,11 @@ export default function LoginModal({
                 time: otpDeadlineLabel
               })}
                   </p>}
+                <p className="login-otp-waiting" role="status">
+                  {otpLoading ? t("auth.login.email_link_completing") : t("auth.login.email_link_waiting")}
+                </p>
             </div>
 
-            <div>
-              <Input id="otp-code-input" ref={otpInputRef} type="text" dir="ltr" inputMode="numeric" autoComplete="one-time-code" aria-label={t("auth.login.otp_placeholder")} aria-describedby={otpInputDescribedBy} aria-invalid={otpInlineError ? "true" : undefined} maxLength={6} value={otpValue} onChange={e => setOtpValue(e.target.value.replace(/\D/g, "").slice(0, 6))} onInput={e => setOtpValue(e.target.value.replace(/\D/g, "").slice(0, 6))} placeholder={t("auth.login.otp_short_placeholder", "Kinnituskood")} />
-            </div>
             {otpInlineError ? <p id="otp-inline-error" role="alert">
                 {otpInlineError}
               </p> : null}
@@ -1258,12 +1316,6 @@ export default function LoginModal({
             ) : null}
 
             <div>
-              <Button type="submit" variant="primary" disabled={otpLoading}>
-                <span>
-                  {t("auth.login.otp_submit")}
-                </span>
-              </Button>
-
               <div className="login-otp-actions">
                 <button
                   type="button"
@@ -1296,7 +1348,7 @@ export default function LoginModal({
 
         {!isOtpStep && <>
             <div className="login-register-row">
-              <AppLink href={`${localizePath("/registreerimine", locale)}?next=${encodeURIComponent(nextUrl)}`} variant="brand" className="login-register-link">
+              <AppLink href={`${localizePath("/registreerimine", locale)}?next=${encodeURIComponent(nextUrl)}`} variant="brand" className="login-register-link" onClick={() => onClose?.()}>
                 {t("auth.login.register_link")}
               </AppLink>
             </div>

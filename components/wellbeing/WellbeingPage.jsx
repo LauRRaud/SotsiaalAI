@@ -89,6 +89,10 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
             onBack={handleBack}
             backAriaLabel={t("chat.workspace.wellbeing_page.back_label", "Tagasi")}
             titleId="wellbeing-title"
+            /* Ülevaade (tööriistade menüü) = pealkirjata nagu Töölaud (tellija
+               07.07). Pealkiri jääb ekraanilugejale (sr-only). Üksik-tööriista
+               vaates (activeTool) pealkiri kuvatakse tavaliselt. */
+            headerClassName={activeTool ? undefined : "sr-only"}
             rightSlot={
               <DashboardInfoTrigger
                 infoId={infoId}

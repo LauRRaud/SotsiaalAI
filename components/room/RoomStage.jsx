@@ -1234,6 +1234,8 @@ export default function RoomStage() {
               key={carouselSet}
               items={carouselItems}
               initialKey={initialKey}
+              setKey={carouselSet}
+              forceInitial={!!cardPageKey}
               onSelect={handleSelect}
               t={t}
             />

@@ -4,12 +4,13 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import {
   hashOpaqueToken,
-  randomOtpCode,
-  hashOtpCode,
   maskEmail,
-  OTP_TTL_MINUTES
+  generateOpaqueToken
 } from "@/lib/auth/pin-login";
-import { getMailer } from "@/lib/mailer";
+import {
+  buildLoginConfirmUrl,
+  sendLoginLinkEmail
+} from "@/lib/auth/login-email-link";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { serverT, normalizeServerLocale } from "@/lib/i18n/serverMessages";
@@ -84,60 +85,10 @@ async function fetchToken(rawToken) {
       requiresOtp: true,
       expiresAt: true,
       usedAt: true,
-      otpVerifiedAt: true
+      otpVerifiedAt: true,
+      emailLinkTokenHash: true
     }
   });
-}
-
-async function resendOtp(email, userId, locale) {
-  const code = randomOtpCode();
-  const codeHash = await hashOtpCode(code);
-  const expiresAt = new Date(Date.now() + OTP_TTL_MINUTES * 60 * 1000);
-
-  const mailer = getMailer("login-otp");
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  const isDev = process.env.NODE_ENV === "development";
-
-  if (isDev) {
-    console.info("[login-otp][dev] resent otp", { email, code });
-  }
-
-  if (!from) {
-    if (isDev) return { code, expiresAt };
-    throw new Error("api.auth.login.email_from_missing");
-  }
-
-  const subject = serverT(locale, "email.auth.login_otp_resend.subject", {
-    minutes: OTP_TTL_MINUTES
-  });
-  const text = serverT(locale, "email.auth.login_otp_resend.text", {
-    code,
-    minutes: OTP_TTL_MINUTES
-  });
-  const html = serverT(locale, "email.auth.login_otp_resend.html", {
-    code,
-    minutes: OTP_TTL_MINUTES
-  });
-
-  if (!isDev) {
-    await mailer.sendMail({
-      to: email,
-      from,
-      subject,
-      text,
-      html
-    });
-  }
-
-  await prisma.emailOtpCode.create({
-    data: {
-      userId,
-      codeHash,
-      expiresAt
-    }
-  });
-
-  return { code, expiresAt };
 }
 
 export async function POST(request) {
@@ -202,11 +153,24 @@ export async function POST(request) {
       });
     }
 
-    const { expiresAt } = await resendOtp(user.email, loginToken.userId, locale);
+    const emailLinkToken = generateOpaqueToken(32);
+    await prisma.loginTempToken.update({
+      where: { id: loginToken.id },
+      data: {
+        emailLinkTokenHash: hashOpaqueToken(emailLinkToken)
+      }
+    });
+
+    await sendLoginLinkEmail(
+      user.email,
+      buildLoginConfirmUrl(request, emailLinkToken, locale),
+      locale
+    );
+
     return json({
       status: "resent",
       email_mask: maskEmail(user.email),
-      otp_expires_at: expiresAt.toISOString()
+      otp_expires_at: loginToken.expiresAt.toISOString()
     });
   } catch (error) {
     console.error("login-resend-otp error", safeError(error));

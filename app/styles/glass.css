@@ -41,14 +41,27 @@
     box-shadow: var(--input-highlight), var(--input-shadow);
     -webkit-backdrop-filter: blur(var(--input-blur));
     backdrop-filter: blur(var(--input-blur));
-    padding: 0.62em 1.1em;
+    width: 100%;
+    padding: 0.62em 1.2em;
+    caret-color: var(--input-text);
     transition:
       border-color var(--dur-fast) var(--ease-soft),
       background-color var(--dur-fast) var(--ease-soft),
       box-shadow var(--dur-fast) var(--ease-soft);
   }
+  /* ÜHERELINE input/select = login-välja kanooniline look kõikjal
+     (tellija 07.07): pill (tokenist), KESKJOONDATUD tekst, mugav suurem
+     font. Textarea ja #chat-input (mitmerealine kompositsioon) jäävad
+     välja — need pole pillid ega keskjoondu. Kuna :where() = 0
+     spetsiifilisus, kirjutab iga hilisem paigutusreegel selle üle. */
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only):not(#chat-input), select) {
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: clamp(1.05rem, 1rem + 0.45vw, 1.24rem);
+  }
   :where(textarea) {
     border-radius: 18px; /* mitmerealine pole pill */
+    text-align: left;
   }
   /* Hover: õrn tooni-tõus (fookuse ja baasi VAHEL) — sama sujuv üleminek
      mis nuppudel (tellija 2026-07-06: "nagu login-keypad"). Transition on
@@ -91,6 +104,76 @@
   html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :where(.glass-btn:not(.room-skip), .glass-iconbtn:not(.room-power):not(.room-walk-sound):not(.room-walk-next):not(.room-quick-btn), button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"]) {
     -webkit-backdrop-filter: url(#lg-bend);
     backdrop-filter: url(#lg-bend);
+  }
+
+  /* ---------- ÜKS blur, MITTE topelt (tellija 07.07) ----------
+     Ruum hägustub paneeli/lehe taga ISE (.room-stage filter: blur, kui
+     data-room-mode=panel) ja paneel on läbipaistev → klaas-primitiiv paneeli
+     SEES ei tohi tausta UUESTI blurrida/bend'ida, muidu tekib topelt-hägune,
+     mudane pind (tellija: "see probleem on igal pool"). Blur/bend jääb ainult
+     TERAVA tausta peale — avaleht ja ruumi-nupud VÄLJASPOOL paneeli. Klaasi-
+     ilme paneelis tuleb äärest + ülaserva läikest + gradiendist (mitte blurist).
+     Sama html:not(...) värav + kõrgem spetsiifilisus (.panel esivanem) kui
+     bend-reeglil → tühistab nii tavalise bluri kui #lg-bend'i. ÜKS koht, mitte
+     override iga elemendi peal. */
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .workspace-dashboard-card) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* ---------- Checkbox: ÜKS klaas-kujundus kõikjal (tellija 07.07) ----------
+     Katab natiivsed input[type=checkbox] (Checkbox-komponent → tellimus, kutse,
+     admin, heaolu jne). OptionCard'i span-indikaator (panel.css) ja endine
+     OTP-linnuke kasutavad SAMA ilmet + sama linnukese kuju (svg-path M6 12.5l4 4 8-8).
+     Heledam raam + suurem linnuke kui varem (tellija: "raam tuhm, linnuke väike").
+     sr-only peidetud sisendid (OptionCard'i natiiv) jäävad välja. */
+  input[type="checkbox"]:not(.sr-only) {
+    appearance: none;
+    -webkit-appearance: none;
+    flex: none;
+    width: 1.4em;
+    height: 1.4em;
+    margin: 0;
+    border-radius: 7px;
+    border: 1.6px solid rgba(255, 255, 255, 0.46);
+    background-color: rgba(255, 255, 255, 0.07);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 74%;
+    cursor: var(--cursor-pointer);
+    vertical-align: -0.28em;
+    transition:
+      border-color var(--dur-fast) var(--ease-soft),
+      background-color var(--dur-fast) var(--ease-soft),
+      box-shadow var(--dur-fast) var(--ease-soft);
+  }
+  input[type="checkbox"]:not(.sr-only):hover {
+    border-color: rgba(255, 255, 255, 0.64);
+  }
+  input[type="checkbox"]:not(.sr-only):checked {
+    border-color: rgba(255, 250, 240, 0.72);
+    background-color: rgba(255, 250, 240, 0.18);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4efe6' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-8'/%3E%3C/svg%3E");
+  }
+  /* Pooleldi-valitud ("vali kõik" osaline) — kriips-märk. Admini tabelid
+     võivad selle wire'ida ref.indeterminate=true kaudu (tellija 07.07). */
+  input[type="checkbox"]:not(.sr-only):indeterminate {
+    border-color: rgba(255, 250, 240, 0.72);
+    background-color: rgba(255, 250, 240, 0.18);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f4efe6' stroke-width='2.8' stroke-linecap='round'%3E%3Cpath d='M6 12h12'/%3E%3C/svg%3E");
+  }
+  input[type="checkbox"]:not(.sr-only):focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+  /* Checkbox-komponendi (components/ui/Checkbox.jsx) sildi paigutus:
+     kast + tekst ühel joonel. */
+  .ui-checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    cursor: var(--cursor-pointer);
+    color: var(--text-soft);
   }
 
   /* ---------- LIQUID GLASS NUPP — üks materjal kõikjal ----------
@@ -179,33 +262,42 @@
     box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
   }
 
-  /* Primary: sama liquid-materjal, heledam plaat (üks peategevus) */
+  /* Primary = SAMA tume liquid-klaas mis baas; hero-rõhk tuleb soojemast
+     servast + õrnast sisemisest kumast, MITTE valgest plaadist (tellija
+     07.07: "valge hele ei tohi kindlasti jääda"). Hover heledam ja SUJUV
+     (transition pärineb baasreeglist: background/border/box-shadow/color). */
   .glass-btn[data-variant="primary"],
   button[data-variant="primary"],
   a[data-variant="primary"] {
-    color: var(--text-ink);
-    background-color: rgba(255, 255, 255, 0.58);
+    color: var(--text-warm);
+    background-color: rgba(255, 255, 255, 0.08);
     background-image: linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.92) 0%,
-      rgba(255, 252, 246, 0.7) 50%,
-      rgba(255, 255, 255, 0.82) 100%
+      rgba(255, 250, 244, 0.22) 0%,
+      rgba(255, 255, 255, 0.06) 42%,
+      rgba(255, 255, 255, 0.03) 66%,
+      rgba(255, 244, 232, 0.14) 100%
     );
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    font-weight: 600;
+    border: 1px solid rgba(255, 242, 226, 0.38);
+    font-weight: 560;
     box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.9),
-      inset 0 -1px 2px rgba(0, 0, 0, 0.06),
+      inset 0 1px 1px rgba(255, 255, 255, 0.34),
+      inset 0 0 22px rgba(255, 233, 209, 0.07),
       0 6px 22px rgba(0, 0, 0, 0.3);
   }
   .glass-btn[data-variant="primary"]:hover,
   button[data-variant="primary"]:hover,
   a[data-variant="primary"]:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 242, 226, 0.55);
+    box-shadow:
+      inset 0 1px 1.5px rgba(255, 255, 255, 0.46),
+      inset 0 0 26px rgba(255, 233, 209, 0.13),
+      0 8px 28px rgba(0, 0, 0, 0.34);
   }
   .glass-btn[data-variant="primary"]:active,
   button[data-variant="primary"]:active {
-    background-color: rgba(228, 222, 212, 0.75);
+    background-color: rgba(0, 0, 0, 0.16);
     scale: 0.975;
   }
 

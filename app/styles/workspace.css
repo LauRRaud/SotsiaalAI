@@ -14,28 +14,29 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  /* Pealkirja EI ole (tellija) — ülaruba on VAID nii lai, et nurga-nupud
-     (ⓘ vasakul, S/P/T + × paremal) ei kata kaste; panel-body annab juba
-     osa vahet, seega siin minimaalne top (tellija 06.07: sisu tunduvalt
-     ülemeks) */
-  padding: clamp(0.9rem, 2lvh, 1.3rem) clamp(1rem, 2.6vw, 2.2rem)
-    clamp(0.9rem, 2vw, 1.6rem);
+  /* Pealkirja EI ole (tellija) — panel-body top-padding (chat.css) puhastab
+     juba nurga-nupud (ⓘ/×), seega siin MINIMAALNE top, et kastid algaksid
+     vahetult nuppude all (tellija 07.07: "suur padding üleval ära"). */
+  padding: clamp(0.2rem, 0.5vw, 0.4rem) clamp(1rem, 2.6vw, 2.2rem)
+    clamp(0.3rem, 0.8vw, 0.6rem);
 }
-/* Admini S/P/T — paneeli ülanurgas paremal, akna ×-ist vasakul.
-   NB: otsene laps on .admin-role-view-cycle mähis (mitte .workspace-role-switch)
-   — muidu lüliti jäi voogu ja lükkas kastid alla (tellija: sisu ülemeks). */
+/* Admini S/P/T — akna ⓘ-nupu KÕRVALE (tellija 07.07), samale ⓘ/×-reale.
+   NB: otsene laps on .admin-role-view-cycle mähis (mitte .workspace-role-switch).
+   Nihked peegeldavad panel-body clamp'e (chat.css .panel-body top/left) +
+   ⓘ nurga-clamp'i (panel.css .panel-menu), et lüliti püsiks ⓘ kõrval ka
+   teistel akna-laiustel/-kõrgustel. */
 .workspace-dashboard-panel > .admin-role-view-cycle {
   position: absolute;
-  top: clamp(0.5rem, 1.1vw, 0.85rem);
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(clamp(0.8rem, 1.6vw, 1.3rem) - clamp(3.8rem, 7lvh, 4.6rem) + 0.25rem);
+  left: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 3.1rem - clamp(1rem, 2.4vw, 2rem));
+  transform: none;
   z-index: 30;
 }
 .workspace-dashboard-panel[data-visible="false"] {
   display: none;
 }
 
-/* ---------- ⓘ — väike klaasnupp pealkirja kõrval ---------- */
+/* ---------- ⓘ — väike klaasnupp akna vasakus ülanurgas ---------- */
 .dashboard-info-trigger {
   align-self: flex-start;
   flex: none;
@@ -46,6 +47,19 @@
   --icon-size: 1.35rem;
   color: var(--room-text-soft, var(--text-soft));
   opacity: 0.85;
+}
+/* Alamlehtede ⓘ (SubpageHeader rightSlot) — nurka, TÄPSELT samale reale
+   sulgemisristiga (tellija 07.07: "info ikoon samale joonele mis sulge nupp,
+   nii kõikidel alalehtedel"). Nihked = sama clamp mis .panel-close/.panel-menu
+   (panel.css), ankur = .panel-body (position:relative, täidab paneeli).
+   AINULT siis, kui aknal EI OLE juba PanelFrame'i nurga-ⓘ (.panel-menu--info)
+   — muidu (nt /documents, /kovisioon, töölaua-sisesed alamvaated) tekiks
+   nurka kaks ⓘ-d üksteise peale. Nendel lehtedel on nurga-ⓘ juba olemas. */
+.panel:not(:has(.panel-menu--info)) .dashboard-info-trigger:not(.panel-menu) {
+  position: absolute;
+  top: clamp(0.8rem, 1.6vw, 1.3rem);
+  left: clamp(0.8rem, 1.6vw, 1.3rem);
+  z-index: 30;
 }
 .dashboard-info-trigger:hover {
   opacity: 1;
@@ -81,11 +95,33 @@
   letter-spacing: 0.02em;
 }
 
-/* Tööheaolu aken (/tooheaolu) on omaette tsentreeritud paneel — tõsta
-   sisu tunduvalt ülemeks, ankurda paneel ekraani ülaossa (tellija 06.07).
-   Puudutab AINULT tööriistade nimekirja lehte (workspace-dashboard-grid). */
+/* Tööheaolu ülevaade (/tooheaolu) = TÄPSELT sama aken/paigutus mis Töölaud
+   (tellija 07.07: "tee akna paigutus sama mis töölaual, aken oli nihkes").
+   Sama laius/kõrgus + tsentreeritud nagu chat-töölaud, paneeli-keha on
+   flex-veerg ja kõik vahekihid venivad, et ruudustik TÄIDAKS akna (mitte
+   sisu-mõõtu ülaserva ankurdatud). Puudutab AINULT tööriistade nimekirja
+   lehte (workspace-dashboard-grid), mitte üksik-tööriista töövooge. */
 .panel-scrim:has(.workspace-dashboard-grid) {
-  align-items: start;
+  align-items: center;
+}
+.panel-scrim:has(.workspace-dashboard-grid) .panel {
+  width: min(55rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
+  height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
+  max-height: 47.5rem;
+}
+.panel-scrim:has(.workspace-dashboard-grid) .panel-body {
+  display: flex;
+  flex-direction: column;
+  /* sama nurga-nuppude riba mis chat-töölaual */
+  padding-top: clamp(3.8rem, 7lvh, 4.6rem);
+}
+.panel-scrim:has(.workspace-dashboard-grid) .panel-body > div,
+.panel-scrim:has(.workspace-dashboard-grid) .panel-body > div > section,
+.panel-scrim:has(.workspace-dashboard-grid) .panel-body > div > section > div {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- Ruudustik: 2 veergu, õhk ridade vahel ---------- */
@@ -97,7 +133,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-auto-rows: 1fr; /* KÕIK kastid võrdsed (tellija) */
-  gap: clamp(0.8rem, 2.2lvh, 1.3rem) clamp(0.9rem, 2.4vw, 1.5rem);
+  gap: clamp(0.55rem, 1.4lvh, 0.85rem) clamp(0.9rem, 2.4vw, 1.5rem);
   /* Ruudustik TÄIDAB akna: kasvab kogu vaba kõrguse (tellija 06.07 —
      "täida see suur aken ära"); 1fr-read venivad ühtlaseks */
   flex: 1 1 auto;
@@ -112,83 +148,78 @@
   display: contents;
 }
 
-/* ---------- Rida: liquid-glass riba, graveeritud ikoonitahvel ---------- */
+/* ---------- Kaart = SAMA liquid-glass MATERJAL mis nupud (tellija 07.07:
+   "servad, visuaal ja hover nagu button, aga MITTE mõõdud/kuju"). Materjal
+   (taust, ääris, läige, hover/press) on glass.css nupu-baasist; kaardi OMA
+   jäävad ainult mõõt/kuju: ristküliku raadius, polster, keskjoondus, suurem
+   font, ruudustiku-venitus.
+   NB: kaardil EI OLE oma backdrop-blurit (tellija 07.07: ruum/paneeli taust on
+   juba hägus → kaardi blur teeks TOPELT-häguse mudase pinna). Klaasi-ilme tuleb
+   ilma blurita äärest + ülaserva läikest + gradiendist; hägu jääb ruumile. */
 .workspace-dashboard-card {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 1.1em;
-  text-align: left;
-  min-height: 5rem;
-  padding: 1.05em 1.4em;
+  min-height: 0;
+  padding: 0.72em 1.4em;
   border-radius: 18px;
-  background: linear-gradient(
-    165deg,
-    rgba(255, 253, 248, 0.055) 0%,
-    rgba(255, 253, 248, 0.03) 55%,
-    rgba(20, 16, 13, 0.12) 100%
-  );
-  border: 1px solid var(--glass-cell-border);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
   color: var(--text-warm);
-  font-size: calc(var(--fs-body) * 1.3);
+  font-size: calc(var(--fs-body) * 1.5);
   letter-spacing: 0.015em;
+  background-color: rgba(255, 255, 255, 0.03);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 36%,
+    rgba(255, 255, 255, 0.02) 62%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 0 16px rgba(255, 255, 255, 0.05),
+    0 6px 20px rgba(0, 0, 0, 0.26);
   transition:
     background-color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
     box-shadow var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft),
     translate var(--dur-fast) var(--ease-soft);
 }
 .workspace-dashboard-card:hover {
-  background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.36);
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.09),
-    0 6px 18px rgba(8, 5, 3, 0.28);
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.08),
+    0 8px 26px rgba(0, 0, 0, 0.3);
   translate: 0 -1px;
 }
 .workspace-dashboard-card:active {
+  background-color: rgba(0, 0, 0, 0.14);
   translate: 0 1px;
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 1.5px 4px rgba(0, 0, 0, 0.22),
+    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+    0 3px 12px rgba(0, 0, 0, 0.22);
 }
 .workspace-dashboard-card:focus-visible {
   outline: none;
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.09),
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
     var(--focus-ring);
 }
 
-/* Ikoon suurelt, ILMA tahvli-taustata (tellija 06.07 öö) */
-.workspace-dashboard-card [data-workspace-card-icon] {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 2.8em;
-  color: var(--text-soft);
-}
-.workspace-dashboard-card:hover [data-workspace-card-icon] {
-  color: var(--text-warm);
-}
-.workspace-dashboard-card [data-workspace-card-icon] svg {
-  width: 2.55rem;
-  height: 2.55rem;
-}
-/* Palju peenem joon (tellija 06.07): kärbi nähtavate kujundite stroke.
-   NB: AINULT nähtavad shape'id (svg otsesed lapsed + <g mask> sees) —
-   <defs><mask> sisemisi teid EI puutu, muidu lõikemaskid (kaart, pliiats)
-   moonduksid. */
-.workspace-dashboard-card [data-workspace-card-icon] svg > path,
-.workspace-dashboard-card [data-workspace-card-icon] svg > circle,
-.workspace-dashboard-card [data-workspace-card-icon] svg > rect,
-.workspace-dashboard-card [data-workspace-card-icon] svg > g > path,
-.workspace-dashboard-card [data-workspace-card-icon] svg > g > circle,
-.workspace-dashboard-card [data-workspace-card-icon] svg > g > rect {
-  stroke-width: 1.5;
-}
-
-/* Märgis (nt lugemata) — diskreetne helendav täpp */
+/* Märgis (nt lugemata) — diskreetne helendav täpp. Absoluutne (paremal,
+   püstkeskel), et keskjoondatud tekst jääks kastis TÄPSELT keskele. */
 .workspace-dashboard-card [data-badge-type] {
-  flex: none;
-  margin-left: auto;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   min-width: 0.55rem;
   height: 0.55rem;
   border-radius: 999px;
@@ -299,19 +330,8 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: 0.55rem;
 }
-.service-map-fields input {
-  width: 100%;
-  padding: 0.6em 1.05em;
-  border-radius: 999px;
-  background: var(--input-bg);
-  border: var(--input-border);
-  color: var(--input-text);
-}
-.service-map-fields input:focus {
-  outline: none;
-  background: var(--input-bg-focus);
-  border: var(--input-border-focus);
-}
+/* Teenusekaardi otsinguväljad = kanooniline input-baas (glass.css);
+   eraldi look-reeglit enam pole (tellija 07.07: üks input-kujundus). */
 /* Liigivalik kompaktsete pillidena (mitte täislaiuses ridadena) */
 .service-map-types {
   display: flex;
@@ -539,28 +559,9 @@
   color: var(--text-dim);
 }
 
-/* Kutse-vaate väljad — sama pill-keel ka portaalis (väljaspool
-   .panel-body renderduvas modaalis) */
-.invite-field-input {
-  width: 100%;
-  padding: 0.6em 1.05em;
-  border-radius: 999px;
-  background: var(--input-bg);
-  border: var(--input-border);
-  color: var(--input-text);
-  caret-color: var(--text-warm);
-  transition:
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft);
-}
-.invite-field-input::placeholder {
-  color: var(--input-placeholder);
-}
-.invite-field-input:focus {
-  outline: none;
-  background: var(--input-bg-focus);
-  border: var(--input-border-focus);
-}
+/* Kutse-vaate väljad = kanooniline input-baas (glass.css) — kehtib ka
+   portaalis renderduvas modaalis, sest baas on globaalne :where(input).
+   Eraldi look-reeglit enam pole (tellija 07.07: üks input-kujundus). */
 
 /* Kutse-modali tagasi-ikoonnupp (ainus tagasitee portaalis) */
 .invite-modal-back {

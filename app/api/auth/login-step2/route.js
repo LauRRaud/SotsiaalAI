@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import {
   hashOpaqueToken,
-  compareOtpCode,
   fingerprintUserAgent,
   computeIpFromHeaders,
   computeIpRange,
@@ -106,7 +105,6 @@ export async function POST(request) {
 
   try {
     const rawToken = String(body?.temp_login_token || "").trim();
-    const otpCode = String(body?.otp_code || "").trim();
     const rememberDevice = Boolean(body?.remember_device);
     const deviceName = normalizeTrustedDeviceName(body?.device_name);
     const ipAddress = computeIpFromHeaders(request.headers) || "unknown";
@@ -136,7 +134,7 @@ export async function POST(request) {
       }
     }
 
-    if (!rawToken || otpCode.length === 0) {
+    if (!rawToken) {
       return errorJson("api.auth.login.missing_fields", 400, locale, {
         code: "MISSING_FIELDS"
       });
@@ -156,34 +154,9 @@ export async function POST(request) {
       });
     }
 
-    if (!loginToken.requiresOtp || loginToken.otpVerifiedAt) {
-      return json({
-        status: "verified",
-        temp_login_token: rawToken
-      });
-    }
-
-    if (!/^\d{6}$/.test(otpCode)) {
-      return errorJson("api.auth.login.otp_invalid", 400, locale, {
-        code: "OTP_INVALID"
-      });
-    }
-
-    const latestOtp = await prisma.emailOtpCode.findFirst({
-      where: { userId: loginToken.userId },
-      orderBy: { createdAt: "desc" }
-    });
-
-    if (!latestOtp || latestOtp.usedAt || latestOtp.expiresAt <= now) {
-      return errorJson("api.auth.login.otp_invalid", 400, locale, {
-        code: "OTP_INVALID"
-      });
-    }
-
-    const otpOk = await compareOtpCode(otpCode, latestOtp.codeHash);
-    if (!otpOk) {
-      return errorJson("api.auth.login.otp_invalid", 401, locale, {
-        code: "OTP_INVALID"
+    if (loginToken.requiresOtp && !loginToken.otpVerifiedAt) {
+      return errorJson("api.auth.login.email_link_pending", 409, locale, {
+        code: "EMAIL_LINK_PENDING"
       });
     }
 
@@ -197,11 +170,6 @@ export async function POST(request) {
     let deviceCookieData = null;
 
     await prisma.$transaction(async (tx) => {
-      await tx.emailOtpCode.update({
-        where: { id: latestOtp.id },
-        data: { usedAt: now }
-      });
-
       let trustedDeviceId = null;
       if (rememberDevice) {
         const trustedDeviceMax = getTrustedDeviceMaxForUser(loginToken.user);

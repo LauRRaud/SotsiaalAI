@@ -37,6 +37,26 @@ function normalizePathname(pathname) {
   return raw.replace(/^\/(et|ru|en)(?=\/|$)/, "") || "/";
 }
 
+/* Töölaualt avatud täis-marsruut (nt /tooheaolu) märgib sisenemise (WorkspacePanel
+   markWorkspaceSubpageEntry). Sulge-rist peab siis viima TAGASI TÖÖLAUALE, mitte
+   ruumi (tellija 07.07). Restore-lipp paneb /vestlus taasavama töölaua-näo. */
+const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAALAI_WORKSPACE_SUBPAGE_ENTRY__";
+const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
+
+function cameFromWorkspace(normalizedPath) {
+  if (typeof window === "undefined") return false;
+  try {
+    const raw = window.sessionStorage.getItem(WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    const ts = Number(parsed?.ts || 0);
+    const fresh = Number.isFinite(ts) && Date.now() - ts < 30 * 60 * 1000;
+    return fresh && parsed?.source === "workspace" && parsed?.path === normalizedPath;
+  } catch {
+    return false;
+  }
+}
+
 export default function PanelFrame({ children }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -72,9 +92,26 @@ export default function PanelFrame({ children }) {
   const isProfileCardPage = normalized === "/uuenda-pin" || normalized === "/uuenda-epost";
 
   const closePanel = useCallback(() => {
-    // pin/e-post sulgub profiili-karusselli, muu (sh Ruumid) peavalikusse
-    router.push(localizePath(isProfileCardPage ? "/profiil" : "/", locale));
-  }, [router, locale, isProfileCardPage]);
+    // pin/e-post sulgub profiili-karusselli
+    if (isProfileCardPage) {
+      router.push(localizePath("/profiil", locale));
+      return;
+    }
+    // Töölaualt avatud alamleht (nt /tooheaolu) → TAGASI TÖÖLAUALE, mitte ruumi
+    if (cameFromWorkspace(normalized)) {
+      try {
+        window.sessionStorage.removeItem(WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY);
+        window.sessionStorage.setItem(
+          CHAT_WORKSPACE_RESTORE_STORAGE_KEY,
+          JSON.stringify({ ts: Date.now(), workspace: true, suppressOpenTransition: true, source: "panel-close" })
+        );
+      } catch {}
+      router.push(localizePath("/vestlus?workspace=1", locale));
+      return;
+    }
+    // muu (sh Ruumid) peavalikusse
+    router.push(localizePath("/", locale));
+  }, [router, locale, isProfileCardPage, normalized]);
 
   useEffect(() => {
     if (isHome || isProfileHub) return undefined;
