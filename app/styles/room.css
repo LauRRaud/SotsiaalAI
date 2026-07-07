@@ -576,14 +576,13 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
   display: none;
 }
 
-/* ---------- Ülaserva kiirriba: PEIDUS, vajub hoveril alla ----------
-   Tellija: paneel on vaikimisi ekraani ülaserva TAHA peidetud, näha jääb
-   ainult ümar ALASERV + sellel istuv allanool. Hiir sellele (või
-   klaviatuurifookus) → paneel vajub poolik-pillina alla (lame ülaserv jääb
-   serva taha, näha ümar alaosa + nupud). Materjal = sama mis klaaskaardil
-   (.gc-card): matt gradient + maskitud serv-rõngas (::after) + läige
-   (::before), ILMA backdrop-filtrita (glitch-kindel). Nupud on
-   klaasnupud (glass-iconbtn). */
+/* ---------- Ülaserva kiirriba: ÜKS klaaspaneel, vajub hoveril alla ----------
+   Tellija 07.07: EI enam eraldi klaaskaarte iga ikooni all + eraldi hõljuv
+   nool. Nüüd on ÜKS klaaspaneel, mille PEAL istuvad paljad ikoonid, ja nool
+   on paneeli ALASERVAL (mitte eraldi all). Paneel on vaikimisi ekraani
+   ülaserva TAHA peidetud, näha jääb ainult ümar alaserv + sellel istuv nool;
+   hiir/fookus/klõps → paneel vajub täies pikkuses alla. Ikoonid on paljad,
+   hoveril tekib ikooni ümber väike ümar nupp. */
 .room-topbar {
   position: fixed;
   top: 0;
@@ -594,7 +593,7 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
      none), hoveri püüab paneel + nool ise (nähtav alaserv on sihtala).
      Laius annab paneelile tsentreerimise viite. */
   width: min(30rem, 96vw);
-  height: 4.6rem;
+  height: 6rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-med) var(--ease-soft);
@@ -604,89 +603,157 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
   opacity: 1;
 }
 
-/* Nupud ISE — ILMA taustapaneelita (tellija: "kustuta menüü taust ära").
-   Rida klaas-ikoonnuppe. Vaikimisi PIILUVAD nuppude alaservad ~0.8rem
-   servast välja (avastatavuse vihje: näha, et siin on juhtnupud), hoveril/
-   fookusel/klõpsul vajub riba täies pikkuses alla. Pilli, serva ega varju
-   EI ole. */
+/* ÜKS klaaspaneel — ikoonide alus. Materjal = SAMA mis karusselli
+   klaaskaardil (.gc-card): soe matt tume gradient (--card-glass-*),
+   ILMA backdrop-filtrita — nii ei lähe külmaks/piimjaks ega glitchi
+   (tellija 07.07). Läige ::before'is, maskitud serv-rõngas ::after'is.
+   Vaikimisi peidetud ülaserva taha, näha ümar alaserv + nool. */
 .room-quickbar {
   position: absolute;
   top: 0;
   left: 50%;
   z-index: 1;
-  /* Nupp 3.2rem + polster (top 0.3rem) = alaserv 3.5rem quickbari ülaservast.
-     -2.7rem → nuppude alaservad piiluvad ~0.8rem ekraani serva alla. */
-  transform: translate(-50%, -2.7rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  padding: 0.3rem 0.5rem;
+  gap: 0.5rem;
+  /* Sümmeetriline polster — kompaktne tasakaalus pill. Ikoone EI peideta enam
+     asukohaga (imelik kõrge kuju), vaid opacity'ga: paneel võib olla normaalse
+     kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
+  padding: 0.45rem 0.95rem;
+  border-radius: 1.5rem;
+  background: var(--card-glass-bg);
+  box-shadow: var(--card-glass-shadow);
+  color: var(--room-text);
+  /* Peidus: näha ~1.55rem klaasi alaserv (paneel veidi allpool), ikoonid
+     jäävad serva taha peitu (peek < alaserva polster 1.9rem). Noole tükk
+     istub sellel serval ja liigub paneeliga koos. */
+  transform: translate(-50%, calc(-100% + 1.55rem));
   pointer-events: none;
   transition: transform var(--dur-med) var(--ease-soft);
+}
+/* Läige — valguse-poolne ülanurk (nagu gc-card) */
+.room-quickbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-glass-sheen);
+  pointer-events: none;
+}
+/* Liquid-serv — pehme gradient-rõngas maskiga */
+.room-quickbar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.6px;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 .room-topbar:hover .room-quickbar,
 .room-topbar:focus-within .room-quickbar,
 .room-topbar[data-open="1"] .room-quickbar {
-  transform: translate(-50%, 0.4rem);
+  transform: translate(-50%, 0.3rem);
   pointer-events: auto;
 }
 
-/* Püüdeala — katab kogu .room-topbari (päris <button>). Püüab hoveri/klõpsu,
-   et riba avada (klõps töötab ka puuteseadmetel, kus hoverit pole). Sees
-   STAATILINE vihjenool piiluvate nuppude all. */
+/* Püüdeala — katab kogu .room-topbari (päris <button>, läbipaistev). Püüab
+   hoveri/klõpsu, et paneel avada (klõps töötab ka puuteseadmetel). Nool ise
+   EI ela siin, vaid on ehitatud paneeli sisse (.room-quickbar-arrow). */
 .room-topbar-arrow {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  /* Nool piiluvate nuppude ALL (nupud piiluvad ~0.8rem, nool ~1.35rem) */
-  padding-top: 1.35rem;
   pointer-events: auto;
-  /* Nupu vaikimisi materjal nulli — läbipaistev püüdeala */
   appearance: none;
   background: none;
   border: 0;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-/* STAATILINE nool — EI vilgu ega hüple. Näha vaikimisi; kaob AINULT siis kui
-   riba avaneb (nupud tulevad välja): hover / fookus / data-open. */
-.room-topbar-arrow svg {
-  width: 1.8rem;
-  height: 1.8rem;
+/* Nool ehitatud paneeli SISSE — istub paneeli alaserval ja liigub paneeliga
+   koos (üks tükk, mitte eraldi hõljuv). Kaob AINULT siis kui paneel avaneb. */
+.room-quickbar-arrow {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  /* Nool istub klaasi alaserval, tõmmatud KÕRGEMALE glaasi peale (tellija
+     07.07: "noolt üles poole") */
+  transform: translate(-50%, -88%);
+  z-index: 2;
+  display: flex;
+  pointer-events: none;
+}
+.room-quickbar-arrow svg {
+  width: 2.1rem;
+  height: 2.1rem;
   color: var(--room-text-soft);
-  opacity: 0.55;
-  filter: drop-shadow(0 1px 3px rgba(8, 4, 2, 0.55));
+  opacity: 0.7;
+  filter: drop-shadow(0 1px 3px rgba(8, 4, 2, 0.5));
   transition: opacity var(--dur-med) var(--ease-soft);
 }
-.room-topbar:hover .room-topbar-arrow svg,
-.room-topbar:focus-within .room-topbar-arrow svg,
-.room-topbar[data-open="1"] .room-topbar-arrow svg {
+.room-topbar:hover .room-quickbar-arrow svg,
+.room-topbar:focus-within .room-quickbar-arrow svg,
+.room-topbar[data-open="1"] .room-quickbar-arrow svg {
   opacity: 0;
 }
 /* Avatuna ei püüa püüdeala klikke — sulgemine käib väljast-klõpsust/Esc,
-   nii ei toggle'da riba nuppude vahelt kogemata kinni. */
+   nii ei toggle'da paneeli nuppude vahelt kogemata kinni. */
 .room-topbar[data-open="1"] .room-topbar-arrow {
   pointer-events: none;
 }
-/* Klaasnupp (glass-iconbtn materjal jääb), nagu alguses — ainult mõõt */
+/* Paljas ikoon paneeli PEAL — klaasmaterjal maha (paneel ISE on klaas);
+   hoveril/fookusel tekib ikooni ümber väike ümar nupp. */
 .glass-iconbtn.room-quick-btn {
   position: relative;
   z-index: 1;
-  width: 3.2rem;
-  height: 3.2rem;
-  --icon-size: 1.5rem;
+  width: 3.1rem;
+  height: 3.1rem;
+  --icon-size: 1.7rem;
   color: var(--room-text-soft);
+  background-color: transparent;
+  background-image: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+  /* Ikoonid ilmuvad alles kui paneel on VÄLJAS (opacity-reveal) — nii ei pea
+     paneel olema imeliku kujuga, et neid peita (tellija 07.07) */
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity var(--dur-med) var(--ease-soft),
+    transform var(--dur-med) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft),
+    scale 160ms var(--ease-soft);
+}
+.room-topbar:hover .glass-iconbtn.room-quick-btn,
+.room-topbar:focus-within .glass-iconbtn.room-quick-btn,
+.room-topbar[data-open="1"] .glass-iconbtn.room-quick-btn {
+  opacity: 1;
+  transform: translateY(0);
 }
 .glass-iconbtn.room-quick-btn svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
 }
 .glass-iconbtn.room-quick-btn:hover,
 .glass-iconbtn.room-quick-btn:focus-visible {
   color: var(--room-text);
+  background-color: var(--glass-cell-bg-hover);
+  border-color: var(--glass-cell-border);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.16);
+}
+.glass-iconbtn.room-quick-btn:active {
+  background-color: rgba(0, 0, 0, 0.14);
+  box-shadow: inset 0 1.5px 4px rgba(0, 0, 0, 0.2);
 }
 .glass-iconbtn.room-quick-btn[data-on="0"] {
   color: var(--room-text-dim);

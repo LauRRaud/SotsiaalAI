@@ -654,13 +654,8 @@ export default function ChatSidebar() {
     return <li key={`${item.kind}:${item.id}`}>
         <div>
           <div>
-            {selectMode && !isRoom ? <label>
-                <input type="checkbox" className="sr-only" checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} />
-                <span aria-hidden="true">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 12.5l4 4 8-8" />
-                  </svg>
-                </span>
+            {selectMode && !isRoom ? <label className="drawer-select-check">
+                <input type="checkbox" checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} aria-label={t("chat.sidebar.selection.select")} />
               </label> : null}
             <div onClick={() => selectMode ? null : onPick(item)} onKeyDown={event => {
             if (selectMode) return;
@@ -701,33 +696,28 @@ export default function ChatSidebar() {
   };
   return <>
     <nav aria-label={t("chat.sidebar.aria_list")} aria-busy={isLoading || creating ? "true" : "false"}>
-      <div>
-        {isConversationView ? <Button variant="primary" size="md" onClick={onNew} disabled={busy || creating} aria-busy={creating ? "true" : "false"}>
-            {creating ? t("chat.sidebar.button.creating") : <>
-                <span>{t("chat.sidebar.button.new_short")}</span>
-              </>}
-          </Button> : null}
-        {isConversationView ? <Button variant="primary" size="md" onClick={toggleSelectMode} disabled={isActionBusy}>
-            {selectMode ? t("chat.sidebar.selection.cancel") : t("chat.sidebar.selection.select")}
-        </Button> : null}
-        <Button variant="primary" size="md" onClick={refreshAll} disabled={isLoading || creating} aria-label={t("chat.sidebar.button.refresh")} title={t("chat.sidebar.button.refresh")}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.05" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M3 12a9 9 0 0 1 15-6.2" />
-            <polyline points="18 3 18 9 12 9" />
-            <path d="M21 12a9 9 0 0 1-15 6.2" />
-            <polyline points="6 21 6 15 12 15" />
-          </svg>
-        </Button>
-        <Button variant="primary" size="md" onClick={() => setActiveView(prev => prev === "conversations" ? "groups" : "conversations")} disabled={isLoading}>
-          {isConversationView ? t("chat.sidebar.sections.groups") : t("chat.sidebar.sections.conversations")}
-        </Button>
+      <div className="drawer-viewtabs" role="tablist" aria-label={t("chat.menu.label")}>
+        <button type="button" role="tab" aria-selected={isConversationView ? "true" : "false"} data-active={isConversationView ? "true" : "false"} onClick={() => setActiveView("conversations")} disabled={isLoading}>
+          {t("chat.sidebar.sections.conversations")}
+        </button>
+        <button type="button" role="tab" aria-selected={!isConversationView ? "true" : "false"} data-active={!isConversationView ? "true" : "false"} onClick={() => setActiveView("groups")} disabled={isLoading}>
+          {t("chat.sidebar.sections.groups")}
+        </button>
       </div>
+      {isConversationView ? <div className="drawer-actions">
+        <Button className="drawer-new" variant="primary" size="md" onClick={onNew} disabled={busy || creating} aria-busy={creating ? "true" : "false"}>
+          {creating ? t("chat.sidebar.button.creating") : t("chat.sidebar.button.new_short")}
+        </Button>
+        <Button variant="primary" size="md" onClick={toggleSelectMode} disabled={isActionBusy}>
+          {selectMode ? t("chat.sidebar.selection.cancel") : t("chat.sidebar.selection.select")}
+        </Button>
+      </div> : null}
       {isConversationView ? <div>
           <div>
             <input id="chat-sidebar-search" name="chat-sidebar-search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder={t("chat.sidebar.search.placeholder", "Otsi vestlusi...")} aria-label={t("chat.sidebar.search.label", "Otsi vestlusi")} />
           </div>
         </div> : null}
-      {selectMode && isConversationView ? <div>
+      {selectMode && isConversationView ? <div className="drawer-actions">
           <Button variant="primary" size="md" onClick={handleDeleteSelected} disabled={!selectedCount || isActionBusy}>
             {t("chat.sidebar.selection.delete_selected")}
           </Button>

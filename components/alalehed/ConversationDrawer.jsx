@@ -4,7 +4,8 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { cn } from "@/components/ui/cn";
-import IconButton from "@/components/ui/IconButton";
+import IconButton from "@/components/glass/IconButton";
+import CloseIcon from "@/components/brand/icons/CloseIcon";
 export default function ConversationDrawer({
   children
 }) {
@@ -220,6 +221,11 @@ export default function ConversationDrawer({
     parkFocusOutsidePanel();
     setOpen(false);
   };
+  const requestRefresh = () => {
+    try {
+      window.dispatchEvent(new CustomEvent("sotsiaalai:refresh-conversations"));
+    } catch {}
+  };
   if (!drawerRoot) return null;
   const overlayClassName = "drawer-overlay fixed inset-0 z-[130]";
   const panelClassName = cn(
@@ -237,7 +243,19 @@ export default function ConversationDrawer({
           <h1 id={headerId} className="drawer-title">
             {drawerTitle}
           </h1>
-          <IconButton ref={closeBtnRef} onClick={close} label={t("buttons.close")} />
+          <div className="drawer-header-actions">
+            <IconButton layoutClassName="drawer-refresh" onClick={requestRefresh} aria-label={t("chat.sidebar.button.refresh")} title={t("chat.sidebar.button.refresh")}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.05" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 12a9 9 0 0 1 15-6.2" />
+                <polyline points="18 3 18 9 12 9" />
+                <path d="M21 12a9 9 0 0 1-15 6.2" />
+                <polyline points="6 21 6 15 12 15" />
+              </svg>
+            </IconButton>
+            <IconButton ref={closeBtnRef} onClick={close} aria-label={t("buttons.close")}>
+              <CloseIcon />
+            </IconButton>
+          </div>
         </header>
         <div className={contentClassName}>
           {children}

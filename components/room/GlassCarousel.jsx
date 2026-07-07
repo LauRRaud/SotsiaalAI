@@ -247,6 +247,18 @@ export default function GlassCarousel({
     // lasta rullikul/nooltel tagust karusselli pöörata (tellija 07.07).
     if (room.dataset.a11yOpen === "1" || room.dataset.infoOpen === "1") return false;
     if (document.documentElement.getAttribute("data-room-mode") === "panel") return false;
+    // Ülariba (kiirnuppude paneel) lahti/hoveril/fookuses → rullik ja nooled
+    // ei tohi tagust karusselli pöörata (tellija 07.07: "kaardid hakkasid
+    // liikuma"). :hover/:focus-within töötavad matches()-is.
+    const topbar = room.querySelector(".room-topbar");
+    if (
+      topbar &&
+      (topbar.dataset.open === "1" ||
+        topbar.matches?.(":hover") ||
+        topbar.matches?.(":focus-within"))
+    ) {
+      return false;
+    }
     return true;
   }, []);
 

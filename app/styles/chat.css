@@ -63,7 +63,9 @@
   max-width: min(78%, 46rem);
   padding: 0.8em 1.05em;
   border-radius: 18px;
-  line-height: 1.5;
+  line-height: 1.55;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
   color: var(--text-warm);
 }
 [role="article"][data-role="user"] {
@@ -297,8 +299,8 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
 /* Tööriistade menüü (portaal) — kompaktne klaasmenüü + nupu juures;
    ikoonid VÄIKESED rea ees (ilma mõõduta svg paisus ekraanisuuruseks) */
 [role="menu"] {
-  min-width: 15rem;
-  max-width: 20rem;
+  min-width: 11rem;
+  max-width: 15rem;
   max-height: min(60lvh, 26.25rem);
   overflow-y: auto;
   padding: 0.45rem;
@@ -317,14 +319,17 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   padding: 0.6em 0.9em;
   border-radius: 10px;
   color: var(--text-warm);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body);
+  letter-spacing: 0.03em;
   transition: background-color var(--dur-fast) var(--ease-soft);
 }
+/* Tellija 07.07: ikoonid menüüst ära, ainult tekst. Peida ka ikooni
+   ümbris-span (aria-hidden) — muidu jääb flex-gap ja tekst nihkub paremale
+   (osal ridadel ikoon, osal mitte → read pole ühel joonel). */
+[role="menu"] [role="menuitem"] > span[aria-hidden="true"],
 [role="menu"] [role="menuitem"] svg,
 [role="menu"] [role="menuitem"] img {
-  width: 1.15rem;
-  height: 1.15rem;
-  flex: none;
+  display: none;
 }
 [role="menu"] [role="menuitem"]:hover {
   background: var(--glass-cell-bg-hover);
@@ -404,26 +409,18 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   letter-spacing: 0.01em;
   color: var(--text-warm);
 }
-.drawer-header > button {
+/* Päise nurga-nupud (uuenda ⟳ + sulgemisrist ×) — paremas ülanurgas paaris,
+   mõlemad kanoonilised klaas-ikoonnupud (.glass-iconbtn, glass/IconButton),
+   SAMA materjal mis vestlusakna nurga-rist (tellija 07.07: "refresh sulge
+   nupu kõrvale"). Look tuleb glass.css baasist; siin ainult paigutus. */
+.drawer-header-actions {
   flex: none;
-  display: grid;
-  place-items: center;
-  width: 2.2rem;
-  height: 2.2rem;
-  border-radius: 50%;
-  color: var(--text-soft);
-  border: 1px solid transparent;
-  transition:
-    color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
-.drawer-header > button:hover {
-  color: var(--text-warm);
-  border-color: var(--glass-cell-border);
-}
-.drawer-header > button svg {
-  width: 1rem;
-  height: 1rem;
+.drawer-header-actions .glass-iconbtn {
+  flex: none;
 }
 .drawer-content {
   flex: 1 1 auto;
@@ -439,18 +436,69 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   gap: 0.65rem;
   padding: 0 1rem 1rem;
 }
-/* Tegevuspillid (Uus / Vali / uuenda / Grupivestlused) */
-.drawer-content > nav > div:first-child {
+/* Vaate-navigatsioon = segmentlüliti (Vestlused | Grupivestlused).
+   Tellija 07.07: vana paigutus mähkis "Grupivestlused" omaette reale ja
+   segas navigatsiooni tegevusnuppudega. Nüüd on navigatsioon ja tegevused
+   selgelt lahus: siin kaherealine grid-lüliti (EI mähku kunagi), all
+   eraldi tegevusrida. */
+.drawer-viewtabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  padding: 0.28rem;
+  border-radius: 999px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+}
+.drawer-viewtabs button {
+  padding: 0.5rem 0.4rem;
+  border: 1px solid transparent; /* reserveeri serv → aktiivne ei nihuta paigutust */
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft);
+}
+.drawer-viewtabs button:hover {
+  color: var(--text-soft);
+}
+/* Aktiivne segment = SAMA hele liquid-klaas mis "Uus" primary-nupp
+   (tellija 07.07: "tume valik samasuguseks klaasjaks ja heledaks nagu Uus").
+   Väärtused peegeldavad glass.css button[data-variant="primary"] reeglit. */
+.drawer-viewtabs button[data-active="true"] {
+  color: var(--text-warm);
+  font-weight: 560;
+  background-color: rgba(255, 255, 255, 0.08);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 250, 244, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 42%,
+    rgba(255, 255, 255, 0.03) 66%,
+    rgba(255, 244, 232, 0.14) 100%
+  );
+  border-color: rgba(255, 242, 226, 0.38);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.34),
+    inset 0 0 22px rgba(255, 233, 209, 0.07),
+    0 6px 22px rgba(0, 0, 0, 0.3);
+}
+
+/* Tegevusrida (Uus / Vali). Uus venib, Vali tema kõrval.
+   (Uuenda ⟳ kolis päisesse sulgemisristi kõrvale — tellija 07.07.) */
+.drawer-actions {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 0.4rem;
 }
-.drawer-content > nav > div:first-child button {
+/* Uus ja Vali = kaks võrdset poolt (nagu segmentlüliti üleval) — tellija
+   07.07: "ühel real imelikult laialt" oli Uus flex:1 + Vali auto. */
+.drawer-actions button {
+  flex: 1;
   font-size: var(--fs-small);
-}
-.drawer-content > nav > div:first-child button svg {
-  width: 0.95rem;
-  height: 0.95rem;
 }
 /* Otsing = kanooniline input-baas (glass.css) nagu kõik väljad
    (tellija 07.07: üks input-kujundus, eraldi look-reeglit pole). */
@@ -485,6 +533,34 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
 .drawer-content nav li [role="button"],
 .drawer-content nav li > div {
   cursor: pointer;
+}
+/* Rida = checkbox (vali-režiim) + sisu + kustuta-nupp ühel joonel.
+   Sisu venib, checkbox ja kustuta jäävad väikeseks nurka (tellija 07.07:
+   "linnuke vestluse kasti nurgas", mitte hiid-linnuke üle kogu kasti). */
+.drawer-content nav li > div > div {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.drawer-content nav li [role="button"] {
+  flex: 1;
+  min-width: 0;
+}
+/* Vestluse pealkiri ("tere" jne) suuremaks ja soojemaks — kuupäev jääb
+   väiksemaks/tuhmiks alla (tellija 07.07). */
+.drawer-content nav li [role="button"] > div:first-child {
+  font-size: var(--fs-body);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+/* Checkbox PAREMASSE otsa (tellija 07.07: oli vasakul). Sisu jääb order 0,
+   checkbox order 1 → rea lõppu. */
+.drawer-select-check {
+  flex: none;
+  order: 1;
+  display: inline-flex;
+  align-items: center;
 }
 .drawer-content nav li button {
   color: var(--text-dim);

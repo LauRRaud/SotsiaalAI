@@ -1172,12 +1172,27 @@ export default function RoomStage() {
               aria-label={t(topbarOpen ? "room.quickbar_close" : "room.quickbar_open")}
               aria-expanded={topbarOpen}
               onClick={() => setTopbarOpen((v) => !v)}
+            />
+            <div
+              className="room-quickbar"
+              onClick={(e) => {
+                /* Hiireklõps ei tohi jätta nuppu fookusesse: :focus-within
+                   hoiaks paneeli lahti ka pärast hiire lahkumist ("paneel ei
+                   taha kinni minna"). Klaviatuur (e.detail === 0) jääb
+                   puutumata — seal on fookus vajalik. */
+                if (e.detail > 0) {
+                  const btn = e.target.closest?.(".room-quick-btn");
+                  if (btn) requestAnimationFrame(() => btn.blur());
+                }
+              }}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            {/* Nool on ehitatud paneeli SISSE — istub paneeli alaserval ja
+                liigub paneeliga koos (tellija 07.07). Kaob paneeli avanedes. */}
+            <span className="room-quickbar-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m6 9 6 6 6-6" />
               </svg>
-            </button>
-            <div className="room-quickbar">
+            </span>
             <IconButton
               layoutClassName="room-quick-btn"
               aria-label={t(ambientOn ? "room.sound_off" : "room.sound_on")}
