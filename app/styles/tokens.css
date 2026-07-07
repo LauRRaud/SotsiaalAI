@@ -224,75 +224,25 @@
    TEEMAD: kolm tonaalset teemat (tellija 07.07).
      • Hämar (mid) = VAIKIMISI = :root ülal (stseeni loojang).
        Eraldi .theme-mid plokki EI vaja — mid pärib :root'i.
-     • Hele (light) ja Öö (dark) alt = KARKASS ("prep"): Fable 5
-       häälestab lõpliku paleti. Väärtused on ajutised lähteväärtused,
-       et lüliti oleks nähtavalt funktsionaalne — MITTE lõplik disain.
-   Ainult BAAS-tokeneid on vaja üle kirjutada; --room-* aliased on
-   var()-viited (nt --room-text: var(--text-warm)) ja pärivad kaasa.
+     • Hele (light) ja Öö (dark): KLAAS + TEKST on ÜKS materjal
+       KÕIGIS teemades (tellija otsus) — klaaskaardid jäävad tumedaks
+       ja läbipaistvaks, tekst valgeks/heledaks, sõltumata sellest,
+       mis stseen (päev/hämar/öö) klaasi taga paistab. Teemad erinevad
+       ainult ruumi enda taustapildist/dusk-paletist (tuleb hiljem
+       koos uute kaadritega) — klaasi- ja teksti-tokenid SIIN EI erine.
    Kõrgkontrast (data-contrast="hc") jääb ORTOGONAALSEKS — ta sunnib
    .theme-dark klassi, aga tema plokk (allpool) võidab hilisema
-   allika-järjekorra tõttu; Öö-karkass on :not([data-contrast="hc"]).
+   allika-järjekorra tõttu; Öö-plokk on :not([data-contrast="hc"]).
    ============================================================ */
 
-/* ---- KARKASS · Hele (light) — TODO Fable 5: lõplik palett ---- */
+/* ---- Hele (light) ---- */
 html.theme-light {
   color-scheme: light;
-  --text-warm: #241d17;
-  --text-soft: rgba(36, 29, 23, 0.72);
-  --text-dim: rgba(36, 29, 23, 0.5);
-  --glass-bg: linear-gradient(
-    165deg,
-    rgba(255, 253, 250, 0.62) 0%,
-    rgba(246, 242, 236, 0.72) 100%
-  );
-  --glass-bg-strong: linear-gradient(
-    165deg,
-    rgba(255, 254, 251, 0.86) 0%,
-    rgba(244, 240, 233, 0.92) 100%
-  );
-  --glass-border: rgba(60, 48, 38, 0.22);
-  --glass-border-soft: rgba(60, 48, 38, 0.12);
-  --glass-rim: rgba(255, 255, 255, 0.92);
-  --glass-rim-glow: 0 0 0.5px rgba(255, 255, 255, 0.9);
-  --glass-highlight: rgba(255, 255, 255, 0.5);
-  --glass-cell-bg: rgba(36, 29, 23, 0.05);
-  --glass-cell-bg-hover: rgba(36, 29, 23, 0.1);
-  --glass-cell-border: rgba(36, 29, 23, 0.14);
-  --btn-bg: rgba(36, 29, 23, 0.06);
-  --btn-bg-hover: rgba(36, 29, 23, 0.11);
-  --btn-bg-active: rgba(36, 29, 23, 0.16);
-  --btn-border: 1px solid rgba(36, 29, 23, 0.2);
-  --input-bg: rgba(255, 255, 255, 0.72);
-  --input-bg-hover: rgba(255, 255, 255, 0.82);
-  --input-bg-focus: rgba(255, 255, 255, 0.92);
-  --input-text: #241d17;
-  --input-placeholder: rgba(36, 29, 23, 0.55);
-  --input-border: 1px solid rgba(36, 29, 23, 0.18);
-  --input-border-hover: 1px solid rgba(36, 29, 23, 0.3);
-  --input-border-focus: 1px solid rgba(36, 29, 23, 0.45);
 }
 
-/* ---- KARKASS · Öö (dark) — TODO Fable 5: lõplik palett ----
-   :not(hc), et kõrgkontrast jääks puutumata. Tekst püsib soe/hele. */
+/* ---- Öö (dark) — :not(hc), et kõrgkontrast jääks puutumata ---- */
 html.theme-dark:not([data-contrast="hc"]) {
   --dusk-floor: #0a0604;
-  --glass-bg: linear-gradient(
-    165deg,
-    rgba(20, 18, 17, 0.6) 0%,
-    rgba(10, 9, 8, 0.72) 100%
-  );
-  --glass-bg-strong: linear-gradient(
-    165deg,
-    rgba(16, 14, 13, 0.88) 0%,
-    rgba(8, 7, 6, 0.94) 100%
-  );
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-border-soft: rgba(255, 255, 255, 0.09);
-  --glass-cell-bg: rgba(255, 255, 255, 0.04);
-  --glass-cell-bg-hover: rgba(255, 255, 255, 0.09);
-  --glass-cell-border: rgba(255, 255, 255, 0.11);
-  --text-soft: rgba(244, 241, 236, 0.68);
-  --text-dim: rgba(244, 241, 236, 0.46);
 }
 
 /* ============================================================

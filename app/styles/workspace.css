@@ -20,20 +20,33 @@
   padding: clamp(0.2rem, 0.5vw, 0.4rem) clamp(1rem, 2.6vw, 2.2rem)
     clamp(0.3rem, 0.8vw, 0.6rem);
 }
-/* Admini S/P/T — akna ⓘ-nupu KÕRVALE (tellija 07.07), samale ⓘ/×-reale.
-   NB: otsene laps on .admin-role-view-cycle mähis (mitte .workspace-role-switch).
-   Nihked peegeldavad panel-body clamp'e (chat.css .panel-body top/left) +
-   ⓘ nurga-clamp'i (panel.css .panel-menu), et lüliti püsiks ⓘ kõrval ka
-   teistel akna-laiustel/-kõrgustel. */
+/* Admini S/P/T — PAREMAS ülanurgas, ⓘ-nupust VASAKUL (tellija 07.07),
+   samal ⓘ/×-real. NB: otsene laps on .admin-role-view-cycle mähis.
+   Right-nihe: sama clamp mis .panel-close + risti(2.6) + ⓘ(2.6) + 2×vahe
+   (6.2rem), miinus wsPaneeli parem-inset (panel-body chat-külg clamp), et
+   lüliti püsiks ⓘ-st vasakul ka teistel akna-laiustel. Top peegeldab
+   panel-body clamp'i, et jääda ⓘ/×-reale. */
 .workspace-dashboard-panel > .admin-role-view-cycle {
   position: absolute;
   top: calc(clamp(0.8rem, 1.6vw, 1.3rem) - clamp(3.8rem, 7lvh, 4.6rem) + 0.25rem);
-  left: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 3.1rem - clamp(1rem, 2.4vw, 2rem));
+  left: auto;
+  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.2rem - clamp(1rem, 2.4vw, 2rem));
   transform: none;
   z-index: 30;
 }
 .workspace-dashboard-panel[data-visible="false"] {
   display: none;
+}
+/* Töölaud (chat-näos) täidab akna: ChatBodyView'l on üks klassita vahe-div
+   (chat-container'i vahetu mähis), mida chat.css flex-reegel EI taba, mistõttu
+   ruudustik jäi ~24px lühemaks kui Tööheaolu ülevaates (tellija 07.07: "sisu
+   erineva suurusega"). Venita KÕIK töölaua-paneeli esivanemad → kaardid täpselt
+   sama kõrgus. Scope :has(.workspace-dashboard-panel) → vestlusevaadet EI puuduta. */
+.panel-scrim[data-chat="1"] .panel-body div:has(.workspace-dashboard-panel) {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- ⓘ — väike klaasnupp akna vasakus ülanurgas ---------- */
@@ -44,21 +57,25 @@
      (tellija 06.07): ka "i" joonestiil vastab ristile (õhuke bränd) */
   width: 2.6rem;
   height: 2.6rem;
-  --icon-size: 1.35rem;
+  /* ⓘ-glüüf sama VISUAALSE suurusega kui × sulgemisristil (tellija 07.07).
+     Info-ring täidab viewBox'ist vähem kui rist (õhuke ring vs jäme X), seega
+     veidi suurem --icon-size, et rõngas mõjuks ristiga ühemõõduliselt. */
+  --icon-size: 1.5rem;
   color: var(--room-text-soft, var(--text-soft));
   opacity: 0.85;
 }
-/* Alamlehtede ⓘ (SubpageHeader rightSlot) — nurka, TÄPSELT samale reale
-   sulgemisristiga (tellija 07.07: "info ikoon samale joonele mis sulge nupp,
-   nii kõikidel alalehtedel"). Nihked = sama clamp mis .panel-close/.panel-menu
-   (panel.css), ankur = .panel-body (position:relative, täidab paneeli).
-   AINULT siis, kui aknal EI OLE juba PanelFrame'i nurga-ⓘ (.panel-menu--info)
-   — muidu (nt /documents, /kovisioon, töölaua-sisesed alamvaated) tekiks
-   nurka kaks ⓘ-d üksteise peale. Nendel lehtedel on nurga-ⓘ juba olemas. */
+/* Alamlehtede ⓘ (SubpageHeader rightSlot) — PAREMASSE ülanurka, sulgemis-
+   ristist vahetult VASAKUL (tellija 07.07: "info nupp sulge nupu kõrvale
+   vasakule, nii kõikidel alalehtedel"). Ankur = .panel-body (täidab paneeli,
+   position:relative). Right = sama clamp mis .panel-close + risti(2.6) + vahe,
+   miinus panel-body kerimisrenn (scrollbar-gutter ~0.85rem), et joonduks ×-ga.
+   AINULT siis, kui aknal EI OLE juba PanelFrame'i ⓘ (.panel-menu--info) —
+   muidu (nt /documents, /kovisioon) tekiks kaks ⓘ-d. */
 .panel:not(:has(.panel-menu--info)) .dashboard-info-trigger:not(.panel-menu) {
   position: absolute;
   top: clamp(0.8rem, 1.6vw, 1.3rem);
-  left: clamp(0.8rem, 1.6vw, 1.3rem);
+  left: auto;
+  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 3.1rem);
   z-index: 30;
 }
 .dashboard-info-trigger:hover {
@@ -105,15 +122,18 @@
   align-items: center;
 }
 .panel-scrim:has(.workspace-dashboard-grid) .panel {
-  width: min(55rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
+  /* SAMA laius mis chat-töölaual (panel.css .panel-scrim[data-chat] .panel =
+     42.5rem) — muidu Tööheaolu aken oli tunduvalt laiem (tellija 07.07). */
+  width: min(42.5rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
 .panel-scrim:has(.workspace-dashboard-grid) .panel-body {
   display: flex;
   flex-direction: column;
-  /* sama nurga-nuppude riba mis chat-töölaual */
-  padding-top: clamp(3.8rem, 7lvh, 4.6rem);
+  /* SAMA polster mis chat-töölaual (chat.css .panel-body): nurga-nuppude riba
+     üleval + chat-küljed/põhi, et ruudustiku inset ühtiks Töölauaga. */
+  padding: clamp(3.8rem, 7lvh, 4.6rem) clamp(1rem, 2.4vw, 2rem) clamp(1rem, 2vw, 1.6rem);
 }
 .panel-scrim:has(.workspace-dashboard-grid) .panel-body > div,
 .panel-scrim:has(.workspace-dashboard-grid) .panel-body > div > section,
@@ -122,6 +142,13 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
+}
+/* Ruudustiku vahetu mähis saab SAMA polstri mis .workspace-dashboard-panel
+   Töölaual → kaardid TÄPSELT sama mõõtu (tellija 07.07: "sisu on erineva
+   suurusega"). Töölaual on kaks polstri-kihti (panel-body + workspace-panel);
+   siin panel-body annab chat-küljed ja see mähis lisab workspace-panel-polstri. */
+.panel-scrim:has(.workspace-dashboard-grid) .panel-body > div > section > div {
+  padding: clamp(0.2rem, 0.5vw, 0.4rem) clamp(1rem, 2.6vw, 2.2rem) clamp(0.3rem, 0.8vw, 0.6rem);
 }
 
 /* ---------- Ruudustik: 2 veergu, õhk ridade vahel ---------- */
@@ -167,7 +194,7 @@
   padding: 0.72em 1.4em;
   border-radius: 18px;
   color: var(--text-warm);
-  font-size: calc(var(--fs-body) * 1.5);
+  font-size: calc(var(--fs-body) * 1.3);
   letter-spacing: 0.015em;
   background-color: rgba(255, 255, 255, 0.03);
   background-image: linear-gradient(
@@ -186,9 +213,10 @@
     background-color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
     box-shadow var(--dur-fast) var(--ease-soft),
-    color var(--dur-fast) var(--ease-soft),
-    translate var(--dur-fast) var(--ease-soft);
+    color var(--dur-fast) var(--ease-soft);
 }
+/* Hover/press EI liiguta kaarti (tellija 07.07: "ei meeldi et hoveriga kaardid
+   liiguvad") — tagasiside tuleb ainult heledusest/varjust, MITTE translate'ist. */
 .workspace-dashboard-card:hover {
   background-color: rgba(255, 255, 255, 0.11);
   border-color: rgba(255, 255, 255, 0.36);
@@ -196,11 +224,9 @@
     inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
     inset 0 0 20px rgba(255, 255, 255, 0.08),
     0 8px 26px rgba(0, 0, 0, 0.3);
-  translate: 0 -1px;
 }
 .workspace-dashboard-card:active {
   background-color: rgba(0, 0, 0, 0.14);
-  translate: 0 1px;
   box-shadow:
     inset 0 1.5px 4px rgba(0, 0, 0, 0.22),
     inset 0 -1px 1px rgba(255, 255, 255, 0.08),
@@ -230,15 +256,30 @@
 
 /* ---------- ⓘ selgitus: ILMA pealkirjata (tellija reegel), LAIEM,
    × oma ribal ja tekst kerib TÄPSELT servast servani riba all ---------- */
+/* Teate-akna TAUST tumeneb + hägustub → tagumised kaardid EI paista läbi
+   ("alumine ära kaduma", loetavus; tellija 07.07). Scope :has() → puudutab
+   AINULT info-teadet, mitte teisi modaale (login jm). */
+.glass-modal-layer:has(.dashboard-info-shell) {
+  background: rgba(8, 6, 4, 0.5);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
 .dashboard-info-shell {
-  width: min(46rem, 94vw);
+  /* SAMA mõõt mis Töölaud/Tööheaolu paneel (tellija 07.07). */
+  width: min(42.5rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
+  height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
+  max-height: 47.5rem;
   max-width: none;
-  aspect-ratio: auto; /* laiem kui kaart — sisu dikteerib */
+  top: 50%;
+  aspect-ratio: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 0; /* sisu lõikub kaardi servast */
   overflow: hidden;
+  /* LOETAV: peaaegu läbipaistmatu tume klaas, et tekst ei seguneks tagumiste
+     kaartidega (tellija 07.07: "ei suuda lugeda"). Klaasi-serv/läige jäävad. */
+  background: linear-gradient(165deg, rgba(34, 31, 28, 0.88), rgba(22, 20, 18, 0.92));
   animation: a11y-card-in 420ms var(--ease-soft) backwards;
 }
 .dashboard-info-top {
@@ -255,7 +296,8 @@
 .dashboard-info-body {
   flex: 1 1 auto;
   min-height: 0;
-  max-height: min(62lvh, 34rem);
+  /* Kõrgus tuleb kestast (= paneel), keha täidab ja kerib SEES. */
+  max-height: none;
   overflow-y: auto;
   padding: 0.2rem 1.6rem 1.5rem;
   font-size: 1.05rem; /* tellija: font veidi suuremaks */

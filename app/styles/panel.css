@@ -58,7 +58,7 @@
 
 /* Vestlus: aken nagu pildil 9 — EI täida ekraani, ruum jääb ümber */
 .panel-scrim[data-chat="1"] .panel {
-  width: min(55rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
+  width: min(42.5rem, calc(100vw - clamp(3rem, 12vw, 10rem)));
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
@@ -82,12 +82,24 @@
   /* Tellija 06.07 öö: MITTE mingit "kaart kasvab kaardi sees" efekti —
      sama kaardi sisu lihtsalt vahetub, raam ei liigu. */
   animation: none;
-  /* Kaardi-leht ON kaart: SAMA ilme mis .gc-card, ühisest allikast
-     (tokens.css --card-glass-*) — mitte eraldi paneeli-stiil, mitte
-     koopia. Nii ei näi see eraldi aknana, vaid keskkaardi sisuna. */
-  background: var(--card-glass-bg);
+  /* Kaardi-leht ON kaart (SAMA ilme mis .gc-card), AGA erinevalt karusselli-
+     klastrist hõljub see ÜKSI ruumi kohal, otse tumeda seinakunsti ees. Seetõttu
+     --card-glass-bg (üsna läbipaistev) laseb tumeda kunsti läbi ja --glass-shadow
+     (0 24px 70px, ligi-must) mõjub "liiga sügava mustana" (tellija 07.07:
+     "vari läheb sügavaks mustaks"). Siin veidi TIHEDAM täide (tume kunst ei
+     domineeri läbi klaasi) + PEHMEM/madalam vari — jääb klaasjaks, aga ei lähe
+     mustaks. Karusselli .gc-card jääb puutumata (seal klaster + liikumine). */
+  background: linear-gradient(
+    165deg,
+    rgba(56, 50, 44, 0.64) 0%,
+    rgba(43, 38, 34, 0.72) 60%,
+    rgba(35, 31, 28, 0.76) 100%
+  );
   border: none;
-  box-shadow: var(--card-glass-shadow);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.11),
+    0 16px 40px rgba(8, 4, 2, 0.3),
+    0 4px 14px rgba(8, 4, 2, 0.18);
 }
 /* Läige + liquid-serv — sama allikas mis .gc-card::before/::after */
 .panel-scrim[data-compact="1"] .panel::before {
@@ -184,13 +196,21 @@
 .panel-close:hover {
   rotate: 90deg;
 }
-/* Vestluste menüü — vasakul üleval (pilt 9) */
+/* Vestluste menüü (☰) — vasakul üleval (pilt 9) */
 .panel-menu {
   position: absolute;
   top: clamp(0.8rem, 1.6vw, 1.3rem);
   left: clamp(0.8rem, 1.6vw, 1.3rem);
   z-index: 30;
   --icon-size: 1rem;
+}
+/* Info-ⓘ elab nüüd PAREMAS ülanurgas — sulgemisristist vahetult vasakul
+   (tellija 07.07: "info nupp sulge nupu kõrvale vasakule"). ☰ vestlusmenüü
+   (.panel-menu ILMA --info) jääb vasakule. Nihe = sama clamp mis .panel-close
+   + risti laius (2.6rem) + vahe. */
+.panel-menu--info {
+  left: auto;
+  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 3.1rem);
 }
 
 /* Tagasi-noolt paneelis EI kuvata — sulgemisrist täidab rolli

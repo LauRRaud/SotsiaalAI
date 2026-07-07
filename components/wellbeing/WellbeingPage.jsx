@@ -93,16 +93,18 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
                07.07). Pealkiri jääb ekraanilugejale (sr-only). Üksik-tööriista
                vaates (activeTool) pealkiri kuvatakse tavaliselt. */
             headerClassName={activeTool ? undefined : "sr-only"}
+            /* Ülevaate ⓘ tuleb PanelFrame'ist (PANEL_INFO_IDS["/tooheaolu"]),
+               et Töölaualt sisenedes ⓘ EI laeks uuesti — seega siin ülevaates
+               ⓘ-d EI renderda (topelt vältimine). Üksik-tööriista vaates
+               (activeTool, marsruut pole PANEL_INFO_IDS-is) jääb ⓘ SubpageHeader'i. */
             rightSlot={
-              <DashboardInfoTrigger
-                infoId={infoId}
-                title={activeTitle}
-                label={
-                  activeTool
-                    ? t("chat.workspace.wellbeing_page.tool_info_label", "Ava tööriista info")
-                    : t("chat.workspace.wellbeing_page.info_label", "Ava Tööheaolu info")
-                }
-              />
+              activeTool ? (
+                <DashboardInfoTrigger
+                  infoId={infoId}
+                  title={activeTitle}
+                  label={t("chat.workspace.wellbeing_page.tool_info_label", "Ava tööriista info")}
+                />
+              ) : null
             }
           >
             {activeTitle}

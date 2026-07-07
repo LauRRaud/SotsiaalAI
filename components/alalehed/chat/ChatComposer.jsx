@@ -755,13 +755,7 @@ export default function ChatComposer({
       </div>
       <div>
         {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : t("chat.mic.start")} title={recording ? t("chat.mic.stop") : t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={!voiceEnabled || isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
-        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown}>
-          <span aria-hidden="true">
-            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="4.75" y="4.75" width="14.5" height="14.5" rx="3" />
-            </svg>
-          </span>
-        </button> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
+        {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
   return <form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
@@ -783,7 +777,7 @@ export default function ChatComposer({
           </>}
       </div> : null}
 
-      <input ref={fileInputRef} type="file" accept={acceptAttr} multiple onChange={onFileChange} className="hidden" />
+      <input ref={fileInputRef} type="file" accept={acceptAttr} multiple onChange={onFileChange} hidden />
 
       <label htmlFor="chat-input" className="sr-only">
         {t("chat.input.label")}

@@ -28,6 +28,12 @@
   will-change: transform;
 }
 
+/* Kaadrid 2-7: cover — pilt täidab kogu vaate ääreni. Nende
+   kompositsioonis ulatub sisu (seinapaneel, mööbel, kardin) servadeni,
+   nii et brauseri (16:9-st laiema) vaate korral maha lõigatav õhuke
+   üla-/alaserv on nähtamatu. Cover tähendab ka, et img katab kogu kasti
+   → madala resolutsiooniga LQIP-eelvaade EI paista kunagi servadest
+   läbi (varem tekitas see "lõigatud + hägune serv" mulje). */
 .room-frame {
   position: absolute;
   inset: 0;
@@ -39,15 +45,23 @@
 .room-frame--1 {
   transform-origin: 52% 50%;
 }
-.room-frame picture,
 .room-frame img {
   width: 100%;
   height: 100%;
-}
-.room-frame img {
   object-fit: cover;
   user-select: none;
   -webkit-user-drag: none;
+}
+/* Kaader 1 (ukseava) on ERAND: contain, sest tema kompositsioonis on
+   servades laiad peaaegu-mustad piidad, mille cover lõikaks ("juba
+   ukseavas"). Tekkiv külgtühik on TUME (piidad ise + LQIP servad on
+   samuti mustad) → sulab dusk-floor taustaga kokku, ilma pruuni hägu-
+   ribata nagu tuleks ruumikaadritel. */
+.room-frame--1 {
+  background-size: contain;
+}
+.room-frame--1 img {
+  object-fit: contain;
 }
 
 /* Mikroelu: väga aeglane hingav suum lõppseisus (paar promilli) */

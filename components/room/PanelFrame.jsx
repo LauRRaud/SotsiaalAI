@@ -30,6 +30,10 @@ const PANEL_INFO_IDS = {
   "/eelpoordumised": "intake",
   "/teenusekaart": "service_map",
   "/teenuseprofiil": "service_profile",
+  /* Tööheaolu ülevaate ⓘ elab PanelFrame'is (püsib layoutis), et Töölaualt
+     sisenedes ⓘ EI laeks uuesti — vahetub ainult sisu (tellija 07.07).
+     WellbeingPage ülevaade ei renderda enam oma ⓘ-d (topelt vältimine). */
+  "/tooheaolu": "wellbeing",
 };
 
 function normalizePathname(pathname) {

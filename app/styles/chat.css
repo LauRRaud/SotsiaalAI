@@ -14,10 +14,14 @@
   padding-top: clamp(3.8rem, 7lvh, 4.6rem);
 }
 /* Vahekihid venima, et komposer püsiks paneeli allservas.
-   NB: ChatBodyView-s on KAKS anonüümset vahekihti (aria-hidden mähis +
-   sisemähis) — mõlemad peavad venima, muidu jääb sisend keskele. */
+   NB: ChatBodyView-s on KOLM anonüümset vahekihti (välismähis + aria-hidden
+   mähis + sisemähis) enne [data-chat-container] — kõik kolm peavad venima,
+   muidu ei jõua #chat-window flex:1 paneeli põhja välja ja komposer jääb
+   keskele koos suure tühja alaga selle all (tellija 07.07: sisend peab
+   olema all servas). */
 .panel-scrim[data-chat="1"] .panel-body > div,
-.panel-scrim[data-chat="1"] .panel-body > div > div:has([data-chat-container]) {
+.panel-scrim[data-chat="1"] .panel-body > div > div:has([data-chat-container]),
+.panel-scrim[data-chat="1"] .panel-body > div > div:has([data-chat-container]) > div:has([data-chat-container]) {
   flex: 1;
   min-height: 0;
   display: flex;
@@ -130,7 +134,10 @@ form:has(#chat-input) {
 form:has(#chat-input) > div:first-child {
   position: absolute;
   left: 0.4rem;
-  bottom: 0.62rem;
+  /* Sama alläär mis pilli enda bottom-padding (0.4rem) — nupp on nüüd
+     SAMA kõrge (2.35rem) mis mikrofon/saada, seega peab ka nihe olema
+     sama, muidu jääb + nähtavalt kõrgemale (tellija 07.07). */
+  bottom: 0.4rem;
   z-index: 2;
   display: flex;
   gap: 0.2rem;
@@ -138,8 +145,8 @@ form:has(#chat-input) > div:first-child {
 form:has(#chat-input) > div:first-child button {
   display: grid;
   place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
+  width: 2.35rem;
+  height: 2.35rem;
   padding: 0;
   border-radius: 50%;
   color: var(--text-soft);
@@ -151,8 +158,8 @@ form:has(#chat-input) > div:first-child button:hover {
   color: var(--text-warm);
 }
 form:has(#chat-input) > div:first-child button svg {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.45rem;
+  height: 1.45rem;
 }
 /* Sisendiala venib; pill on selle esimene laps */
 form:has(#chat-input) > div:has(#chat-input) {
@@ -166,7 +173,7 @@ form:has(#chat-input) > div:has(#chat-input) > div {
   background: rgba(0, 0, 0, 0.3);
   border: 1px solid var(--glass-cell-border);
   border-radius: 1.55rem;
-  padding: 0.4rem 0.45rem 0.4rem 2.7rem;
+  padding: 0.4rem 0.45rem 0.4rem 2.95rem;
   transition: border-color var(--dur-fast) var(--ease-soft);
 }
 form:has(#chat-input) > div:has(#chat-input) > div:focus-within {
@@ -192,6 +199,12 @@ form:has(#chat-input) > div:has(#chat-input) > div > div:not(:has(#chat-input)) 
   padding: 0.45em 0;
   background: none;
   border: none;
+  /* glass.css baas-textarea reegel (:where(textarea)) annab sisemise
+     helk-äärise (inset box-shadow) — see nägi #chat-input SEES välja
+     nagu TEINE, pisem tekstiväli (tellija 07.07: "sees on ikka teine
+     tekstiinput" + serv liiga kontrastne). Pilli enda õrn äär (glass-
+     cell-border) jääb ainsaks piirjooneks. */
+  box-shadow: none;
   resize: none;
   color: var(--text-warm);
   caret-color: var(--text-warm);
@@ -248,25 +261,37 @@ form:has(#chat-input) button[type="submit"]:active {
 form:has(#chat-input) button[data-recording]::before,
 form:has(#chat-input) button[type="submit"]::before {
   content: "";
-  width: 1.05rem;
-  height: 1.05rem;
   background: currentColor;
   -webkit-mask: var(--glyph) center / contain no-repeat;
   mask: var(--glyph) center / contain no-repeat;
 }
 form:has(#chat-input) button[data-recording]::before {
+  /* Sama kastisuurus mis saada-noolel (1.5rem) — väiksem kast jättis
+     mikrofoni nupu kõrval olevast noolest silmnähtavalt väiksema
+     mulje (tellija 07.07). */
+  width: 1.5rem;
+  height: 1.5rem;
   --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Crect x='9' y='3.5' width='6' height='11' rx='3'/%3E%3Cpath d='M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6'/%3E%3C/svg%3E");
 }
 form:has(#chat-input) button[data-recording="true"] {
   color: #ff9d8a;
   border-color: rgba(255, 157, 138, 0.5);
 }
+/* Saada-nool = brändi "sabata" chevron (ChevronIcon/BackArrowIcon kuju,
+   mitte varasem joonega nool). Sabata kurv jääb visuaalselt kergemaks kui
+   sabaga nool, seega on glüüf siin TAHTLIKULT suurem (tellija 07.07). */
 form:has(#chat-input) button[type="submit"]::before {
-  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19V6M6.5 11.5 12 6l5.5 5.5'/%3E%3C/svg%3E");
+  width: 1.5rem;
+  height: 1.5rem;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 15l6-6 6 6'/%3E%3C/svg%3E");
 }
-/* Peatamise seisund (voogedastus): ruut */
+/* Peatamise seisund (voogedastus): puhas ümar ruut, ilma topeltglüüfita
+   (varem oli SAMAL nupul ka päris <svg> laps + see mask peal — kaks
+   kattuvat ruutu; tellija 07.07 "katkine, kaks valget ruutu"). */
 form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
-  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='7' y='7' width='10' height='10' rx='2'/%3E%3C/svg%3E");
+  width: 1.15rem;
+  height: 1.15rem;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='6.5' y='6.5' width='11' height='11' rx='2.75'/%3E%3C/svg%3E");
 }
 
 /* Tööriistade menüü (portaal) — kompaktne klaasmenüü + nupu juures;
@@ -315,26 +340,53 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
 }
 
 /* ---------- Vestluste sahtel (☰ → ConversationDrawer + ChatSidebar) ----------
-   Tellija 06.07 öö: sahtel oli stiilimata "imelik asi" — nüüd klaasikeeles:
-   tume matt paneel vasakul, taust hägustub, read klaasi-lahtritena. */
+   Tellija 07.07: sahtel peab olema ERALDI HÕLJUV klaaspaneel, SAMA materjal
+   mis vestluse aken (.panel, panel.css) — mitte servast servani kinnitatud
+   riba. Positsioon (top/bottom/left) elab SIIN, mitte Tailwindi fixed/inset
+   utiliitides (ConversationDrawer.jsx jättis need JSX-ist teadlikult välja —
+   utilities-kiht võidaks siinse reegli ära, kuna @layer järjekord on
+   theme,base,components,utilities). */
 .drawer-overlay {
-  background: rgba(8, 6, 5, 0.35);
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  background: rgba(8, 6, 5, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
 .drawer-panel {
-  width: min(20.625rem, 88vw);
+  position: fixed;
+  top: clamp(1rem, 3vh, 2rem);
+  bottom: clamp(1rem, 3vh, 2rem);
+  left: clamp(1rem, 3vw, 1.5rem);
+  width: min(21rem, calc(92vw - clamp(2rem, 6vw, 3rem)));
   display: flex;
   flex-direction: column;
-  background: linear-gradient(165deg, rgba(32, 28, 24, 0.94), rgba(18, 15, 13, 0.97));
-  border-right: 1px solid var(--glass-border-soft);
-  box-shadow: var(--glass-shadow);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--panel-radius);
+  box-shadow:
+    var(--glass-inner-light),
+    0 0 0.5px rgba(255, 251, 244, 0.65),
+    0 0 44px rgba(255, 246, 232, 0.1),
+    var(--glass-shadow);
   color: var(--text-warm);
-  transform: translateX(-102%);
+  transform: translateX(calc(-100% - 3rem));
   transition: transform 300ms var(--ease-soft);
 }
 .drawer-panel.open {
   transform: none;
+}
+.drawer-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, var(--glass-highlight), transparent 30%);
+  pointer-events: none;
+  z-index: 1;
+}
+.drawer-header,
+.drawer-content {
+  position: relative;
+  z-index: 2;
 }
 .drawer-header {
   flex: none;
@@ -448,10 +500,14 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   font-size: var(--fs-small);
 }
 
-/* Alla-kerimise nupp */
+/* Alla-kerimise nupp — KESKJOONDATUD (tellija 07.07: oli paremal),
+   üks sabata chevron (ConversationView.jsx päris <svg>). CSS ::before
+   mask andis SIIA VEEL teise, sabaga noole peale — sama topelt-glüüfi
+   viga mis saada/stop-nupul; ::before eemaldatud. */
 button[aria-controls="chat-window-scroll"] {
   position: absolute;
-  right: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 6.2rem;
   z-index: 20;
   display: grid;
@@ -460,14 +516,6 @@ button[aria-controls="chat-window-scroll"] {
   height: 2.5rem;
   border-radius: 50%;
   color: var(--text-soft);
-}
-button[aria-controls="chat-window-scroll"]::before {
-  content: "";
-  width: 1rem;
-  height: 1rem;
-  background: currentColor;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v13M6.5 12.5 12 18l5.5-5.5'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5v13M6.5 12.5 12 18l5.5-5.5'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 @media (max-width: 768px) {

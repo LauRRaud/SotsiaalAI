@@ -39,19 +39,29 @@ export default function GlassCarousel({
     [items]
   );
 
-  const [active, setActive] = useState(() => {
-    // Kaardilehel (forceInitial) tsentreeri ALATI avatud kaart.
-    if (!forceInitial && storageId && typeof window !== "undefined") {
-      try {
-        const saved = window.sessionStorage.getItem(storageId);
-        const savedIdx = indexOfKey(saved);
-        if (savedIdx >= 0) return savedIdx;
-      } catch {}
-    }
-    return Math.max(0, indexOfKey(initialKey));
-  });
+  /* Algne keskkaart on DETERMINISTLIK (initialKey) — sama serveris ja
+     kliendis. sessionStorage'i (viimane keskkaart) EI tohi lugeda siin, sest
+     see on klient-ainult → SSR tsentreeriks initialKey, klient salvestatud
+     kaardi ja tekiks HYDRATION-MISMATCH: React regenereerib karusselli puu,
+     kaardid virnaks hetkeks üksteise peale + topeltvarjud (tellija 07.07).
+     Salvestatud koht taastatakse allpool ALLES pärast hüdreerimist. */
+  const [active, setActive] = useState(() => Math.max(0, indexOfKey(initialKey)));
   const activeRef = useRef(active);
   activeRef.current = active;
+
+  /* Taasta viimane keskkaart (sessionStorage) — AINULT kliendis, pärast
+     esimest renderit, nii et hüdreerimine kattub serveriga. */
+  const restoredRef = useRef(false);
+  useEffect(() => {
+    if (restoredRef.current) return;
+    restoredRef.current = true;
+    if (forceInitial || !storageId || typeof window === "undefined") return;
+    try {
+      const saved = window.sessionStorage.getItem(storageId);
+      const savedIdx = indexOfKey(saved);
+      if (savedIdx >= 0 && savedIdx !== activeRef.current) setActive(savedIdx);
+    } catch {}
+  }, [forceInitial, storageId, indexOfKey]);
 
   /* Jäta iga vahetus meelde — tagasitulek samasse komplekti taastab koha. */
   useEffect(() => {

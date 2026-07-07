@@ -574,10 +574,16 @@ export default function RoomStage() {
   }, [setFrame7]);
 
 
-  /* Kiirkäskude riba "OFF": seade tagasi ooterežiimi (⏻), ILMA välja
-     logimata (erineb profiili "Välja"-st). Kodus rakendub kohe; mujalt
-     karussellilt naaseb koju ja maandub standby'sse (pendingStandby). */
+  /* Kiirkäskude riba "OFF": LOGI VÄLJA + seade tagasi ooterežiimi (⏻)
+     (tellija 07.07: OFF = logout, sama mis profiili "Välja"). Kodus
+     rakendub standby kohe; mujalt karussellilt naaseb koju ja maandub
+     standby'sse (pendingStandby). */
   const powerOff = useCallback(() => {
+    setAdminHub(false);
+    setInfoHub(false);
+    if (isAuthed) {
+      signOut({ redirect: false }).catch(() => {});
+    }
     if (!isHome) {
       pendingStandbyRef.current = true;
       router.push(localizePath("/", locale));
@@ -592,7 +598,7 @@ export default function RoomStage() {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [isHome, router, locale, setFrame7]);
+  }, [isHome, isAuthed, router, locale, setFrame7]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -1027,22 +1033,16 @@ export default function RoomStage() {
                 backgroundImage: `url(${frame.lqip})`,
               }}
             >
-              <picture>
-                <source type="image/avif" srcSet={frame.avifSrcSet} sizes="100vw" />
-                <source type="image/webp" srcSet={frame.webpSrcSet} sizes="100vw" />
-                <img
-                  src={frame.src}
-                  srcSet={frame.webpSrcSet}
-                  sizes="100vw"
-                  alt=""
-                  width={ROOM_FRAME_WIDTH}
-                  height={ROOM_FRAME_HEIGHT}
-                  loading="eager"
-                  fetchPriority={i === 0 || i === 6 ? "high" : "low"}
-                  decoding="async"
-                  draggable={false}
-                />
-              </picture>
+              <img
+                src={frame.src}
+                alt=""
+                width={ROOM_FRAME_WIDTH}
+                height={ROOM_FRAME_HEIGHT}
+                loading="eager"
+                fetchPriority={i === 0 || i === 6 ? "high" : "low"}
+                decoding="async"
+                draggable={false}
+              />
             </div>
           );
         })}

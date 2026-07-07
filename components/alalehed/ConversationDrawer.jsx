@@ -223,7 +223,7 @@ export default function ConversationDrawer({
   if (!drawerRoot) return null;
   const overlayClassName = "drawer-overlay fixed inset-0 z-[130]";
   const panelClassName = cn(
-    "drawer-panel fixed top-0 bottom-0 left-0 z-[131] overflow-hidden",
+    "drawer-panel fixed z-[131] overflow-hidden",
     open ? "visible pointer-events-auto" : "invisible pointer-events-none",
     open ? "open" : null
   );
