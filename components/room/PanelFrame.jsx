@@ -34,6 +34,13 @@ const PANEL_INFO_IDS = {
      sisenedes ⓘ EI laeks uuesti — vahetub ainult sisu (tellija 07.07).
      WellbeingPage ülevaade ei renderda enam oma ⓘ-d (topelt vältimine). */
   "/tooheaolu": "wellbeing",
+  /* RAG admin: iga leht saab oma juhendi (tellija 10.07) */
+  "/admin/rag": "rag_admin",
+  "/admin/rag/documents": "rag_admin_documents",
+  "/admin/rag/ingest": "rag_admin_ingest",
+  "/admin/rag/kov": "rag_admin_kov",
+  "/admin/rag/organizations": "rag_admin_organizations",
+  "/admin/rag/source-packages": "rag_admin_source_packages",
 };
 
 function normalizePathname(pathname) {
@@ -77,8 +84,11 @@ export default function PanelFrame({ children }) {
   const isAdmin = normalized.startsWith("/admin");
   const isChat = normalized.startsWith("/vestlus") || normalized.startsWith("/teekond");
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
-     teenusekaart = suur kaart; kovisioon = täisekraani lõuend */
-  const isWide = normalized === "/teenusekaart" || normalized === "/kovisioon";
+     teenusekaart = suur kaart; kovisioon ja teemaseemned = täisekraani lõuend */
+  const isWide =
+    normalized === "/teenusekaart" ||
+    normalized === "/kovisioon" ||
+    normalized === "/teemaseemned";
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
@@ -94,10 +104,12 @@ export default function PanelFrame({ children }) {
     normalized.startsWith("/taasta-parool");
 
   const isProfileCardPage = normalized === "/uuenda-pin" || normalized === "/uuenda-epost";
+  const isProfileSectionPage =
+    normalized === "/profiil" && Boolean(String(searchParams?.get("sektsioon") || "").trim());
 
   const closePanel = useCallback(() => {
     // pin/e-post sulgub profiili-karusselli
-    if (isProfileCardPage) {
+    if (isProfileCardPage || isProfileSectionPage) {
       router.push(localizePath("/profiil", locale));
       return;
     }
@@ -115,7 +127,7 @@ export default function PanelFrame({ children }) {
     }
     // muu (sh Ruumid) peavalikusse
     router.push(localizePath("/", locale));
-  }, [router, locale, isProfileCardPage, normalized]);
+  }, [router, locale, isProfileCardPage, isProfileSectionPage, normalized]);
 
   useEffect(() => {
     if (isHome || isProfileHub) return undefined;

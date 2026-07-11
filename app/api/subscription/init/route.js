@@ -16,6 +16,7 @@ import { logPaymentEvent } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
 import {
   getRoleMonthlyAmount,
+  getPlanDefinitionId,
   getRolePlanDescription,
   getRolePlanKey,
   normalizeSubscriptionRole
@@ -185,6 +186,7 @@ export async function POST(request) {
 
   const planRole = normalizeSubscriptionRole(user.role);
   const plan = normalizePlan(body?.plan, getRolePlanKey(planRole));
+  const planDefinitionId = getPlanDefinitionId(plan, planRole);
   const amount = getRoleMonthlyAmount(planRole).toFixed(2);
   const currency = normalizeCurrency(process.env.SUBSCRIPTION_CURRENCY || "EUR");
   const recurringEnabled = isRecurringBillingEnabled();
@@ -210,34 +212,50 @@ export async function POST(request) {
       orderBy: [{ updatedAt: "desc" }],
       select: {
         id: true,
-          status: true,
-          validUntil: true,
-          plan: true
-        }
-      });
+        status: true,
+        validUntil: true,
+        plan: true
+      }
+    });
 
     if (isSubscriptionActive(existing)) {
       return errorJson("api.subscription.already_active", 409, locale);
     }
 
-    const subscription =
-      existing ||
-      (await prisma.subscription.create({
-        data: {
-          userId: session.userId,
-          status: SubscriptionStatus.NONE,
-          plan,
-          billingMode: BillingMode.RECURRING,
-          billingInterval: BillingInterval.MONTHLY,
-          billingRetryCount: 0
-        },
-        select: {
-          id: true,
-          status: true,
-          validUntil: true,
-          plan: true
-        }
-      }));
+    const subscription = existing
+      ? await prisma.subscription.update({
+          where: { id: existing.id },
+          data: {
+            plan,
+            planDefinitionId,
+            billingMode: BillingMode.RECURRING,
+            billingInterval: BillingInterval.MONTHLY,
+            billingRetryCount: 0
+          },
+          select: {
+            id: true,
+            status: true,
+            validUntil: true,
+            plan: true
+          }
+        })
+      : await prisma.subscription.create({
+          data: {
+            userId: session.userId,
+            status: SubscriptionStatus.NONE,
+            plan,
+            planDefinitionId,
+            billingMode: BillingMode.RECURRING,
+            billingInterval: BillingInterval.MONTHLY,
+            billingRetryCount: 0
+          },
+          select: {
+            id: true,
+            status: true,
+            validUntil: true,
+            plan: true
+          }
+        });
 
     const providerPaymentId = makeProviderPaymentId(session.userId);
     paymentRecord = await prisma.payment.create({

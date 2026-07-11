@@ -1,43 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-import BackButton from "@/components/ui/BackButton";
 import { localizePath } from "@/lib/localizePath";
 
 import { getRagAdminCopy } from "./ragAdminCopy";
 import RagAdminRemediationContext from "./RagAdminRemediationContext";
 
-const NAV_ORDER = ["documents", "ingest", "kov", "organizations", "sourcePackages"];
+const NAV_ORDER = ["home", "documents", "ingest", "kov", "organizations", "sourcePackages"];
 
-function buildNav(locale, copy) {
-  const localized = path => localizePath(path, locale);
+const NAV_PATHS = {
+  home: "/admin/rag",
+  documents: "/admin/rag/documents",
+  ingest: "/admin/rag/ingest",
+  kov: "/admin/rag/kov",
+  organizations: "/admin/rag/organizations",
+  sourcePackages: "/admin/rag/source-packages"
+};
 
-  return {
-    documents: {
-      href: localized("/admin/rag/documents"),
-      label: copy.nav.documents
-    },
-    ingest: {
-      href: localized("/admin/rag/ingest"),
-      label: copy.nav.ingest
-    },
-    kov: {
-      href: localized("/admin/rag/kov"),
-      label: copy.nav.kov
-    },
-    organizations: {
-      href: localized("/admin/rag/organizations"),
-      label: copy.nav.organizations
-    },
-    sourcePackages: {
-      href: localized("/admin/rag/source-packages"),
-      label: copy.nav.sourcePackages
-    }
-  };
-}
-
+/* Täisekraani juhtimiskeskuse raam: kicker + pealkiri vasakul,
+   sektsiooninav klaas-pillidena paremal. Sisu paigutab iga vaade
+   ise ra-* võrgustikuga (rag-admin.css). */
 export default function RagAdminPageFrame({
   locale,
   activeKey = "documents",
@@ -45,47 +28,40 @@ export default function RagAdminPageFrame({
   subtitle,
   children
 }) {
-  const router = useRouter();
   const copy = getRagAdminCopy(locale);
-  const nav = buildNav(locale, copy);
 
   return (
-    <section>
-      <div>
-        <div>
-          <BackButton
-            ariaLabel={locale?.startsWith("et") ? "Tagasi" : "Back"}
-            onClick={() => router.push(localizePath("/", locale))}
-          />
-
+    <section className="ra-shell">
+      <header className="ra-head">
+        <div className="ra-head-text">
+          <div className="ra-head-kicker">SotsiaalAI · RAG</div>
           <h1>{title || copy.heading}</h1>
-          {subtitle ? <p>{subtitle}</p> : null}
-
-          <nav aria-label={copy.heading} className="rag-admin-nav">
-            {NAV_ORDER.map(key => {
-              const item = nav[key];
-              const isActive = activeKey === key;
-
-              return (
-                <Link
-                  key={key}
-                  prefetch={false}
-                  href={item.href}
-                  data-variant="default"
-                  data-selected={isActive ? "true" : undefined}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span>{item.label}</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          <RagAdminRemediationContext locale={locale} />
+          {subtitle ? <p className="ra-head-sub">{subtitle}</p> : null}
         </div>
 
-        {children}
-      </div>
+        <nav aria-label={copy.heading} className="ra-nav">
+          {NAV_ORDER.map(key => {
+            const isActive = activeKey === key;
+
+            return (
+              <Link
+                key={key}
+                prefetch={false}
+                href={localizePath(NAV_PATHS[key], locale)}
+                data-variant="default"
+                data-selected={isActive ? "true" : undefined}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <span>{copy.nav[key]}</span>
+              </Link>
+            );
+          })}
+        </nav>
+      </header>
+
+      <RagAdminRemediationContext locale={locale} />
+
+      {children}
     </section>
   );
 }

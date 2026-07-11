@@ -15,6 +15,27 @@ import {
 } from "@/components/admin/rag/ragDocumentStatusClient";
 import { KOV_FILE_ROLE_META } from "@/lib/admin/rag/kov/shared";
 
+/* "Vajab tähelepanu" = PÄRIS probleem, mitte "pole veel valmis" (tellija
+   10.07): vigased failid, tuvastatud allikamuudatused, ingest-vead,
+   kontrolli vead või selgelt ülevaatust nõudev seis. Jagatud statistika
+   ja maakonnakaardi vahel. */
+export function kovItemNeedsAttention(item) {
+  const webInvalid = Number(item?.validationSummary?.invalidCount || 0) > 0;
+  const rtInvalid = Number(item?.rtSummary?.invalidCount || 0) > 0;
+  const webChanges =
+    Number(item?.lightCheckSummary?.changedSourceCount || 0) > 0
+    || Number(item?.lightCheckSummary?.errorCount || 0) > 0;
+  const rtChanges =
+    Number(item?.rtLightCheckSummary?.changedSourceCount || 0) > 0
+    || Number(item?.rtLightCheckSummary?.errorCount || 0) > 0;
+  const ingestError = Boolean(item?.lastIngestError || item?.rtLastIngestError);
+  const reviewDue =
+    item?.status === "NEEDS_REVIEW"
+    || item?.reviewSchedule?.state === "CHANGES_DETECTED"
+    || item?.reviewSchedule?.state === "ERROR";
+  return webInvalid || rtInvalid || webChanges || rtChanges || ingestError || reviewDue;
+}
+
 const STATUS_LABELS = {
   NOT_STARTED: { et: "Alustamata", en: "Not started" },
   DRAFT: { et: "Mustand", en: "Draft" },
@@ -485,15 +506,9 @@ export function useKovAdminController(locale, initialItems = []) {
   const summaryCards = useMemo(() => {
     const visible = filteredItems.length;
     const ingestedAny = filteredItems.filter(item => item.ingestStatus === "INGESTED" || item.rtIngestStatus === "INGESTED").length;
-    const needsAttention = filteredItems.filter(
-      item =>
-        item?.combinedReadiness?.state !== "BOTH_INGESTED"
-        && (
-          ["NOT_STARTED", "DRAFT", "NEEDS_REVIEW"].includes(item.status)
-          || item?.combinedReadiness?.state !== "BOTH_READY"
-        )
-    ).length;
+    const needsAttention = filteredItems.filter(kovItemNeedsAttention).length;
     const completeFiles = filteredItems.filter(item => item?.validationSummary?.allFilesValid === true).length;
+    const bothReady = filteredItems.filter(item => item?.combinedReadiness?.state === "BOTH_READY" || item?.combinedReadiness?.state === "BOTH_INGESTED").length;
     return [
       {
         key: "visible",
@@ -504,21 +519,26 @@ export function useKovAdminController(locale, initialItems = []) {
       },
       {
         key: "attention",
-        label: et ? "Vajavad toimetamist" : "Needs work",
+        label: et ? "Vajab tähelepanu" : "Needs attention",
         value: needsAttention,
-        hint: et ? "Alustamata, mustandis või ülevaatust vajavad kirjed." : "Not started, draft, or review-needed entries.",
-        tone: needsAttention > 0 ? "warn" : "neutral"
+        total: visible,
+        hint: et
+          ? "Vigased failid, tuvastatud muudatused, ingest-vead või ülevaatust nõudev seis."
+          : "Invalid files, detected changes, ingest errors, or review-needed state.",
+        tone: needsAttention > 0 ? "warn" : "ok"
       },
       {
         key: "files",
         label: et ? "KOV failid valid" : "KOV files valid",
         value: completeFiles,
+        total: visible,
         hint: et ? "Admini või repo allikapakett; see ei ole sama mis RAG ingest staatus." : "Admin or repository source package; this is separate from RAG ingest status.",
         tone: completeFiles > 0 ? "success" : "neutral"
       },
       {
         key: "ingested",
         value: ingestedAny,
+        total: visible,
         label: et ? "RAG ingestitud" : "RAG ingested",
         hint: et ? "KOV-id, millel on vähemalt üks RAG kiht juba ingestitud." : "Municipalities with at least one RAG layer already ingested.",
         tone: ingestedAny > 0 ? "success" : "neutral"
@@ -526,7 +546,8 @@ export function useKovAdminController(locale, initialItems = []) {
       {
         key: "bothReady",
         label: et ? "Mõlemad kihid valmis" : "Both layers ready",
-        value: filteredItems.filter(item => item?.combinedReadiness?.state === "BOTH_READY" || item?.combinedReadiness?.state === "BOTH_INGESTED").length,
+        value: bothReady,
+        total: visible,
         hint: et ? "KOV veeb ja RT kiht on koos valmis või juba ingestitud." : "Both KOV web and RT are ready or already ingested.",
         tone: "success"
       }

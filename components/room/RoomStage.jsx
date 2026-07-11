@@ -52,7 +52,22 @@ import {
   BackArrowIcon,
   AdminSlidersIcon,
   AboutInfoIcon,
+  HelpRequestIcon,
+  HelpOfferIcon,
+  DocumentsIcon,
+  ComposeDocIcon,
+  InquiryIcon,
+  InvitePersonIcon,
+  KovisionIcon,
+  WellbeingIcon,
+  MaterialsIcon,
+  ServiceMapIcon,
+  JourneyPathIcon,
+  KovisionRoomIcon,
+  TopicSeedIcon,
+  BestPracticeIcon,
 } from "@/components/brand/icons/CardIcons";
+import { wellbeingTools } from "@/lib/wellbeingTools";
 import { ROOM_FRAMES, ROOM_FRAME_WIDTH, ROOM_FRAME_HEIGHT } from "@/lib/room-frames";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import GlassButton from "@/components/glass/GlassButton";
@@ -209,6 +224,14 @@ export default function RoomStage() {
   const [adminHub, setAdminHub] = useState(false);
   /* Avalikud infokaardid elavad sisselogitule profiili "Teave" kaardi all */
   const [infoHub, setInfoHub] = useState(false);
+  /* Töölaud ja Tööheaolu = kaardikomplektid SAMAS karussellis (tellija
+     10.07: "kaartide keritav rivi, mitte üks paneel väikeste nuppudega") —
+     sama muster mis Haldus. Tööheaolu avaneb Töölaua seest. */
+  const [workspaceHub, setWorkspaceHub] = useState(false);
+  const [wellbeingHub, setWellbeingHub] = useState(false);
+  /* Kovisiooni alamkomplekt (tellija 10.07): "Kovisioon" kaart avab
+     kolm valikut — Kovisiooni ruum, Teemaseemned, Parimad praktikad. */
+  const [kovisionHub, setKovisionHub] = useState(false);
   /* Taustaheli juhtnupud "ukse peal" ehk KÕNNIS (tellija 06.07 öö):
      vaigista/taasta + järgmine lugu. Viimane valitud lugu jääb meelde,
      et vaigistus→taastus ei viskaks alati Meloodia I peale. */
@@ -872,7 +895,7 @@ export default function RoomStage() {
   const workItems = useMemo(() => {
     const items = [
       { key: "ruumid", label: t("nav.rooms"), href: "/ruum", icon: <RoomsCardIcon /> },
-      { key: "toolaud", label: t("nav.workspace"), href: "/vestlus?workspace=avatud", icon: <WorkspaceCardIcon /> },
+      { key: "toolaud", label: t("nav.workspace"), action: "toolaud", icon: <WorkspaceCardIcon /> },
       { key: "vestlus", label: t("nav.chat"), href: "/vestlus", icon: <ChatCardIcon /> },
       { key: "profiil", label: t("nav.profile"), href: "/profiil", icon: <ProfileCardIcon /> },
     ];
@@ -881,6 +904,53 @@ export default function RoomStage() {
     }
     return items;
   }, [t, isAdmin]);
+
+  /* Töölaua komplekt — samad sihtkohad mis töölaua paneelil; paneeli-
+     sisesed tööriistad avanevad süvalingiga (/vestlus?workspace=<võti>). */
+  const workspaceItems = useMemo(
+    () => [
+      { key: "teekond", label: t("chat.workspace.cards.journey.title", "Teekond"), href: "/vestlus?workspace=journey", icon: <JourneyPathIcon /> },
+      { key: "teenusekaart", label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
+      { key: "abisoovid", label: t("chat.workspace.cards.help_requests.title", "Abisoovid"), href: "/vestlus?workspace=help_requests", icon: <HelpRequestIcon /> },
+      { key: "abipakkumised", label: t("chat.workspace.cards.help_offers.title", "Abipakkumised"), href: "/vestlus?workspace=help_offers", icon: <HelpOfferIcon /> },
+      { key: "dokumendid", label: t("chat.workspace.cards.documents.title", "Dokumendid"), href: "/vestlus?workspace=documents", icon: <DocumentsIcon /> },
+      { key: "koosta", label: t("chat.workspace.cards.document_drafting.title", "Koosta dokument"), href: "/vestlus?workspace=document_drafting", icon: <ComposeDocIcon /> },
+      { key: "poordumised", label: t("chat.workspace.cards.pre_inquiries.title_staff", "Pöördumised"), href: "/vestlus?workspace=pre_inquiries", icon: <InquiryIcon /> },
+      { key: "lisa", label: t("chat.workspace.cards.add_person.title", "Lisa inimene"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
+      { key: "kovisioon", label: t("chat.workspace.cards.kovision.title", "Kovisioon"), action: "kovisioon", icon: <KovisionIcon /> },
+      { key: "tooheaolu", label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), action: "tooheaolu", icon: <WellbeingIcon /> },
+      { key: "materjalid", label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },
+      { key: "tagasi", label: t("room.back_card"), action: "toolaud-tagasi", icon: <BackArrowIcon /> },
+    ],
+    [t]
+  );
+
+  /* Tööheaolu komplekt — tööriistad otse marsruutidele */
+  const wellbeingItems = useMemo(
+    () => [
+      ...wellbeingTools.map((tool) => ({
+        key: tool.id,
+        label: tool.title,
+        href: tool.route,
+        icon: <WellbeingIcon />,
+      })),
+      { key: "tagasi", label: t("room.back_card"), action: "tooheaolu-tagasi", icon: <BackArrowIcon /> },
+    ],
+    [t]
+  );
+
+  /* Kovisiooni komplekt — kolm valikut + tagasi. Kovisiooni ruum =
+     ehitatud 8-etapiline sessioon; teemaseemnetel on oma leht
+     (/teemaseemned); parimad praktikad ehitatakse eraldi. */
+  const kovisionItems = useMemo(
+    () => [
+      { key: "ruum", label: t("room.kovision_room_card", "Kovisiooni ruum"), href: "/kovisioon", icon: <KovisionRoomIcon /> },
+      { key: "teemaseemned", label: t("room.kovision_seeds_card", "Teemaseemned"), href: "/teemaseemned", icon: <TopicSeedIcon /> },
+      { key: "praktikad", label: t("room.kovision_practices_card", "Parimad praktikad"), href: "/kovisioon", icon: <BestPracticeIcon /> },
+      { key: "tagasi", label: t("room.back_card"), action: "kovisioon-tagasi", icon: <BackArrowIcon /> },
+    ],
+    [t]
+  );
 
   /* Halduse alamkomplekt — avaneb "Haldus" kaardilt, "Tagasi" viib
      peakomplekti (sama muster mis profiili "Tagasi") */
@@ -902,6 +972,7 @@ export default function RoomStage() {
       { key: "epost", label: t("profile.update_email_cta"), href: "/uuenda-epost", icon: <ContactMailIcon /> },
       { key: "konto", label: t("profile.account_settings"), href: "/profiil?sektsioon=konto", icon: <AccountGearIcon /> },
       { key: "pin", label: t("profile.change_password_cta"), href: "/uuenda-pin", icon: <PinLockIcon /> },
+      { key: "kasutus", label: t("profile.usage.title"), href: "/profiil?sektsioon=kasutus", icon: <AnalyticsIcon /> },
       { key: "tellimus", label: t("profile.manage_subscription"), href: "/tellimus", icon: <SubscriptionEuroIcon /> },
       { key: "teave", label: t("room.info_card"), action: "teave", icon: <AboutInfoIcon /> },
       { key: "valja", label: t("room.exit_card"), action: "valja", icon: <PowerIcon /> },
@@ -913,24 +984,39 @@ export default function RoomStage() {
   const isProfileContext = isProfileHub || isProfileCardPage;
   const isAdminHub = adminHub && isAdmin && !isProfileContext;
   const isInfoHub = infoHub && isProfileHub;
+  const isWorkspaceHub = workspaceHub && isAuthed && !isProfileContext && !isAdminHub;
+  const isWellbeingHub = wellbeingHub && isWorkspaceHub;
+  const isKovisionHub = kovisionHub && isWorkspaceHub && !isWellbeingHub;
   const carouselSet = isProfileContext
     ? isInfoHub
       ? "info"
       : "profile"
     : isAdminHub
       ? "admin"
-      : isAuthed
-        ? "work"
-        : "public";
+      : isWellbeingHub
+        ? "wellbeing"
+        : isKovisionHub
+          ? "kovision"
+          : isWorkspaceHub
+            ? "workspace"
+            : isAuthed
+              ? "work"
+              : "public";
   const carouselItems = isProfileContext
     ? isInfoHub
       ? teaveItems
       : profileItems
     : isAdminHub
       ? adminItems
-      : isAuthed
-        ? workItems
-        : publicItems;
+      : isWellbeingHub
+        ? wellbeingItems
+        : isKovisionHub
+          ? kovisionItems
+          : isWorkspaceHub
+            ? workspaceItems
+            : isAuthed
+              ? workItems
+              : publicItems;
   const initialKey =
     cardPageKey ||
     (isProfileHub
@@ -939,9 +1025,15 @@ export default function RoomStage() {
         : "pin"
       : isAdminHub
         ? "rag"
-        : isAuthed
-          ? "vestlus"
-          : "login");
+        : isWellbeingHub
+          ? "quick-check"
+          : isKovisionHub
+            ? "ruum"
+            : isWorkspaceHub
+              ? "abisoovid"
+              : isAuthed
+                ? "vestlus"
+                : "login");
 
   const handleSelect = useCallback(
     (item) => {
@@ -968,6 +1060,9 @@ export default function RoomStage() {
         pendingStandbyRef.current = true;
         setAdminHub(false);
         setInfoHub(false);
+        setWorkspaceHub(false);
+        setWellbeingHub(false);
+        setKovisionHub(false);
         signOut({ redirect: false }).catch(() => {});
         router.push(localizePath("/", locale));
         return;
@@ -976,6 +1071,9 @@ export default function RoomStage() {
         // "Tagasi" profiililt = peavaliku kaardid (seade jääb sisse)
         setAdminHub(false);
         setInfoHub(false);
+        setWorkspaceHub(false);
+        setWellbeingHub(false);
+        setKovisionHub(false);
         router.push(localizePath("/", locale));
         return;
       }
@@ -985,6 +1083,32 @@ export default function RoomStage() {
       }
       if (item.action === "haldus-tagasi") {
         setAdminHub(false);
+        return;
+      }
+      if (item.action === "toolaud") {
+        setWorkspaceHub(true);
+        return;
+      }
+      if (item.action === "toolaud-tagasi") {
+        setWellbeingHub(false);
+        setKovisionHub(false);
+        setWorkspaceHub(false);
+        return;
+      }
+      if (item.action === "tooheaolu") {
+        setWellbeingHub(true);
+        return;
+      }
+      if (item.action === "tooheaolu-tagasi") {
+        setWellbeingHub(false);
+        return;
+      }
+      if (item.action === "kovisioon") {
+        setKovisionHub(true);
+        return;
+      }
+      if (item.action === "kovisioon-tagasi") {
+        setKovisionHub(false);
         return;
       }
       if (item.action === "teave") {
@@ -1253,6 +1377,8 @@ export default function RoomStage() {
               forceInitial={!!cardPageKey}
               onSelect={handleSelect}
               t={t}
+              /* Suured komplektid: 5 nähtavat laial ekraanil (tellija) */
+              visible={carouselSet === "workspace" || carouselSet === "wellbeing" ? 5 : 3}
             />
           </div>
 

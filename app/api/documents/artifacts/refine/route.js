@@ -20,7 +20,12 @@ import { prisma } from "@/lib/prisma"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import { safeError } from "@/lib/privacy/safeError"
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard"
-import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server"
+import { errorJson, json, localeFromRequest, requireDocumentUser, usageErrorJson } from "@/lib/documents/server"
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest
+} from "@/lib/usage/routeAdapter"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -85,6 +90,9 @@ export async function POST(request) {
     return json(privacyConfirmationResponsePayload(privacy), 409)
   }
   refinementInstruction = privacy.processedText || refinementInstruction
+
+  let usageHandle = null
+  let refinementCompleted = false
 
   try {
     if (artifactId) {
@@ -176,6 +184,19 @@ export async function POST(request) {
       }
     }
 
+    try {
+      usageHandle = await reserveUsageForRequest({
+        request,
+        userId: auth.userId,
+        metric: "DOCUMENT_REFINE",
+        scope: "documents.refine",
+        idempotencyKey: body?.idempotencyKey,
+        metadata: { artifactId: artifactId || null, sourceCount: documents.length, type }
+      })
+    } catch (error) {
+      return usageErrorJson(error, "documents.refine", locale)
+    }
+
     const result = await refineArtifactDraftContent({
       type,
       documents,
@@ -192,6 +213,8 @@ export async function POST(request) {
       userRole: role,
       artifactId: artifactId || null
     })
+    refinementCompleted = true
+    await commitUsageForRequest(usageHandle)
     const content = result?.content || ""
     if (content && result?.debugMeta) {
       cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
@@ -215,6 +238,13 @@ export async function POST(request) {
       updatedAt: new Date().toISOString()
     })
   } catch (error) {
+    if (usageHandle && !refinementCompleted) {
+      try {
+        await releaseUsageForRequest(usageHandle, { reason: "document_refinement_failed" })
+      } catch (releaseError) {
+        console.error("[documents artifacts] usage release failed", safeError(releaseError))
+      }
+    }
     const status = Number(error?.status) || 500
     const messageKey =
       status === 500 ? "documents.artifacts.errors.update_failed" : error?.message || "documents.artifacts.errors.update_failed"

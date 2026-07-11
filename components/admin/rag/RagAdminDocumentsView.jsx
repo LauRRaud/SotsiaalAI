@@ -19,21 +19,21 @@ import {
 
 function renderTags(tags) {
   if (!tags || !tags.length) {
-    return <span>-</span>;
+    return <span className="ra-td-sub">-</span>;
   }
 
   const visible = tags.slice(0, 4);
   const extra = tags.length - visible.length;
 
   return (
-    <div>
+    <span className="ra-chiprow">
       {visible.map(tag => (
-        <span key={tag}>
+        <span key={tag} className="ra-chip" data-tone="dim">
           {tag}
         </span>
       ))}
-      {extra > 0 ? <span>+{extra}</span> : null}
-    </div>
+      {extra > 0 ? <span className="ra-chip" data-tone="dim">+{extra}</span> : null}
+    </span>
   );
 }
 
@@ -342,62 +342,55 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
   );
 
   return (
-    <div>
+    <div className="ra-shell-flow">
       {showMessage ? <RagAdminAlert message={message} onDismiss={resetMessage} /> : null}
 
-      <div>
+      <div className="ra-modules">
         <button
           type="button"
+          className="ra-module"
           onClick={() => document.getElementById("rag-documents-register")?.scrollIntoView({ behavior: "smooth", block: "start" })}
         >
-          <span>Register</span>
-          <div>
-            <div>Dokumendid</div>
-            <div>Olemasolevad dokumendid, detailvaade, meta muutmine, reindex ja source view.</div>
-          </div>
-          <div>
-            <span>{docMetrics.total} kokku</span>
-            <span>{docMetrics.filtered} filtris</span>
-          </div>
+          <span className="ra-module-title">Dokumendid</span>
+          <span className="ra-module-desc">Olemasolevad dokumendid, detailvaade, meta muutmine, reindex ja source view.</span>
+          <span className="ra-module-meta">
+            <span className="ra-chip" data-tone="dim">{docMetrics.total} kokku</span>
+            <span className="ra-chip" data-tone="dim">{docMetrics.filtered} filtris</span>
+          </span>
         </button>
 
         <button
           type="button"
+          className="ra-module"
           onClick={() => document.getElementById("rag-documents-sources")?.scrollIntoView({ behavior: "smooth", block: "start" })}
         >
-          <span>Allikad</span>
-          <div>
-            <div>Allikate loogika</div>
-            <div>Vaata, millistest failidest, URL-idest ja sisutüüpidest register praegu koosneb.</div>
-          </div>
-          <div>
-            <span>{sourceTypeSummary.length} peamist tüüpi</span>
-            <span>{topTags.length} kiiret silti</span>
-          </div>
+          <span className="ra-module-title">Allikate loogika</span>
+          <span className="ra-module-desc">Vaata, millistest failidest, URL-idest ja sisutüüpidest register praegu koosneb.</span>
+          <span className="ra-module-meta">
+            <span className="ra-chip" data-tone="dim">{sourceTypeSummary.length} peamist tüüpi</span>
+            <span className="ra-chip" data-tone="dim">{topTags.length} kiiret silti</span>
+          </span>
         </button>
 
         <button
           type="button"
+          className="ra-module"
           onClick={() => document.getElementById("rag-documents-settings")?.scrollIntoView({ behavior: "smooth", block: "start" })}
         >
-          <span>Seaded</span>
-          <div>
-            <div>Mallid ja reeglid</div>
-            <div>Koht metadata mallide, vaikevalikute ja dokumendihalduse reeglite jaoks.</div>
-          </div>
-          <div>
-            <span>{metaTemplates.length} malli</span>
-            <span>{audienceSelectOptions.length} audience valikut</span>
-          </div>
+          <span className="ra-module-title">Mallid ja reeglid</span>
+          <span className="ra-module-desc">Koht metadata mallide, vaikevalikute ja dokumendihalduse reeglite jaoks.</span>
+          <span className="ra-module-meta">
+            <span className="ra-chip" data-tone="dim">{metaTemplates.length} malli</span>
+            <span className="ra-chip" data-tone="dim">{audienceSelectOptions.length} audience valikut</span>
+          </span>
         </button>
       </div>
 
-      <div id="rag-documents-register">
-        <div>
-          <div>
+      <div id="rag-documents-register" className="ra-card">
+          <div className="ra-card-head">
             <div>
-              <CardTitle>{tr("admin.rag.documents.title")}</CardTitle>
-              <div>
+              <CardTitle className="ra-card-title">{tr("admin.rag.documents.title")}</CardTitle>
+              <p className="ra-card-sub">
                 {tr("admin.rag.documents.summary", {
                   total: docMetrics.total,
                   filtered: docMetrics.filtered,
@@ -406,15 +399,17 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                   completed: docMetrics.completed,
                   failed: docMetrics.failed
                 })}
-              </div>
+              </p>
             </div>
           </div>
           {topTags.length ? (
-            <div>
-              <span>{tr("admin.rag.documents.quick_tags")}</span>
+            <div className="ra-chiprow">
+              <span className="ra-label">{tr("admin.rag.documents.quick_tags")}</span>
               {topTags.map(tag => (
                 <button
                   type="button"
+                  className="ra-chip"
+                  data-checked={filterTags.includes(tag) ? "true" : "false"}
                   onClick={() => toggleFilterTag(tag)}
                   key={tag}
                 >
@@ -424,12 +419,14 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
             </div>
           ) : null}
 
-          <div>
+          <div className="ra-toolbar">
+            <div className="ra-toolbar-search">
             <Input
               value={searchQuery}
               onChange={event => setSearchQuery(event.target.value)}
               placeholder={tr("admin.rag.documents.search_placeholder")}
             />
+            </div>
             <DocumentsDropdown
               ariaLabel={tr("admin.rag.documents.filters.all_sections")}
               value={filterSection}
@@ -462,7 +459,7 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
             />
           </div>
 
-          <div>
+          <div className="ra-toolbar">
             <DocumentsDropdown
               ariaLabel={tr("admin.rag.documents.filters.all_issues")}
               value={filterIssue}
@@ -470,24 +467,27 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
               options={issueFilterOptions}
             />
             {allTags.length ? (
-              <div>
-                <div>
+              <div className="ra-form" style={{ flex: "1 1 16rem" }}>
+                <div className="ra-form-row">
                   <Button
                     type="button"
+                    size="xs"
                     aria-expanded={showAllTags ? "true" : "false"}
                     onClick={() => setShowAllTags(current => !current)}
                   >
                     {showAllTags ? "Peida sildid" : `Kõik sildid (${allTags.length})`}
                   </Button>
-                  <span>
+                  <span className="ra-td-sub">
                     {selectedFilterTags.length ? `Valitud ${selectedFilterTags.length}` : "Lisasildid on peidetud"}
                   </span>
                 </div>
                 {selectedFilterTags.length ? (
-                  <div aria-label="Valitud sildid">
+                  <div aria-label="Valitud sildid" className="ra-chiprow">
                     {selectedFilterTags.map(tag => (
                       <button
                         type="button"
+                        className="ra-chip"
+                        data-checked="true"
                         key={tag}
                         onClick={() => toggleFilterTag(tag)}
                       >
@@ -497,23 +497,23 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                   </div>
                 ) : null}
                 {showAllTags ? (
-                  <div>
-                    <div>
-                      {allTags.map(tag => (
-                        <button
-                          type="button"
-                          key={tag}
-                          onClick={() => toggleFilterTag(tag)}
-                        >
-                          {tag}
-                        </button>
-                      ))}
-                    </div>
+                  <div className="ra-chiprow">
+                    {allTags.map(tag => (
+                      <button
+                        type="button"
+                        className="ra-chip"
+                        data-checked={filterTags.includes(tag) ? "true" : "false"}
+                        key={tag}
+                        onClick={() => toggleFilterTag(tag)}
+                      >
+                        {tag}
+                      </button>
+                    ))}
                   </div>
                 ) : null}
               </div>
             ) : (
-              <div>Silte pole saadaval.</div>
+              <div className="ra-td-sub">Silte pole saadaval.</div>
             )}
             {selectedIds.size ? (
               <Button
@@ -525,9 +525,9 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
             ) : null}
           </div>
 
-          <div>
-            <div>
-              <label>
+          <div className="ra-form">
+            <div className="ra-bulkbar">
+              <label className="ui-checkbox">
                 <input
                   type="checkbox"
                   onChange={toggleSelectAllVisible}
@@ -535,7 +535,7 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                 />
                 <span>{tr("admin.rag.documents.select_visible")}</span>
               </label>
-              <div>
+              <div className="ra-toolbar-meta">
                 <span>{tr("admin.rag.documents.total", { total: docMetrics.total })}</span>
                 <span aria-hidden="true">|</span>
                 <span>{tr("admin.rag.documents.filtered", { count: filteredCount })}</span>
@@ -545,8 +545,8 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
               </div>
             </div>
 
-            <div>
-              <div>
+            <div className="ra-split">
+              <div className="ra-rowlist">
                 {visibleDocs.map(doc => {
                   const status = doc.status || "COMPLETED";
                   const syncedAt = doc.insertedAt || doc.lastIngested || doc.updatedAt || doc.createdAt || null;
@@ -561,6 +561,7 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                       role="button"
                       tabIndex={0}
                       aria-pressed={isActive}
+                      className="ra-row"
                       onClick={() => setPreviewId(doc.id)}
                       onKeyDown={event => {
                         if (event.target !== event.currentTarget) return;
@@ -577,34 +578,36 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                           onChange={() => toggleSelect(doc.id)}
                         />
                       </div>
-                      <div>
-                        <div>{doc.title || tr("admin.rag.documents.untitled")}</div>
-                        <div>
-                          <span>{statusLabels[status] || status}</span>
-                          {docType ? <span>{docType}</span> : null}
-                          {collectionLabel ? <span>{collectionLabel}</span> : null}
-                          {doc.section ? <span>{doc.section}</span> : null}
-                          {doc.year ? <span>{doc.year}</span> : null}
+                      <div className="ra-row-body">
+                        <div className="ra-row-title">{doc.title || tr("admin.rag.documents.untitled")}</div>
+                        <div className="ra-chiprow">
+                          <span className="ra-chip" data-tone={status === "FAILED" ? "err" : status === "COMPLETED" ? "ok" : "dim"}>
+                            {statusLabels[status] || status}
+                          </span>
+                          {docType ? <span className="ra-chip" data-tone="dim">{docType}</span> : null}
+                          {collectionLabel ? <span className="ra-chip" data-tone="dim">{collectionLabel}</span> : null}
+                          {doc.section ? <span className="ra-chip" data-tone="dim">{doc.section}</span> : null}
+                          {doc.year ? <span className="ra-chip" data-tone="dim">{doc.year}</span> : null}
                           {doc.issueLabel ? (
-                            <span>
+                            <span className="ra-chip" data-tone="dim">
                               {tr("admin.rag.documents.issue_label", { issue: doc.issueLabel })}
                             </span>
                           ) : null}
                         </div>
                       </div>
-                      {syncedAt ? <div>{formatDateTime(syncedAt, localeTag)}</div> : null}
+                      {syncedAt ? <div className="ra-row-time">{formatDateTime(syncedAt, localeTag)}</div> : null}
                     </div>
                   );
                 })}
 
                 {!visibleDocs.length ? (
-                  <div>
+                  <div className="ra-empty">
                     {loadingList ? tr("admin.common.loading_data") : tr("admin.rag.documents.no_results")}
                   </div>
                 ) : null}
               </div>
 
-              <div>
+              <div className="ra-card ra-card--sticky">
                 {previewDoc ? (
                   (() => {
                     const status = previewDoc.status || "COMPLETED";
@@ -622,18 +625,20 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                     const canDelete = !kovManagedDoc;
 
                     return (
-                      <div>
-                        <div>
+                      <div className="ra-form">
+                        <div className="ra-card-head">
                           <div>
-                            <div>{previewDoc.title || tr("admin.rag.documents.untitled")}</div>
-                            {previewDoc.description ? <div>{previewDoc.description}</div> : null}
+                            <div className="ra-row-title">{previewDoc.title || tr("admin.rag.documents.untitled")}</div>
+                            {previewDoc.description ? <div className="ra-td-sub">{previewDoc.description}</div> : null}
                           </div>
-                          <div>
-                            <span>{statusLabels[status] || status}</span>
-                            {syncedAt ? <span>{formatDateTime(syncedAt, localeTag)}</span> : null}
+                          <div className="ra-chiprow">
+                            <span className="ra-chip" data-tone={status === "FAILED" ? "err" : status === "COMPLETED" ? "ok" : "dim"}>
+                              {statusLabels[status] || status}
+                            </span>
+                            {syncedAt ? <span className="ra-td-sub">{formatDateTime(syncedAt, localeTag)}</span> : null}
                           </div>
                         </div>
-                        <div>
+                        <div className="ra-kv">
                           <div>
                             <span>{tr("admin.rag.details.section")}</span>
                             <span>{previewDoc.section || "-"}</span>
@@ -659,7 +664,7 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                           </div>
                           <div>
                             <span>DocId</span>
-                            <span>{previewDoc.docId || previewDoc.id || "-"}</span>
+                            <span className="ra-mono">{previewDoc.docId || previewDoc.id || "-"}</span>
                           </div>
                           {previewDoc.journalTitle ? (
                             <div>
@@ -694,26 +699,28 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                           {previewDoc.articleId ? (
                             <div>
                               <span>ArticleId</span>
-                              <span>{previewDoc.articleId}</span>
+                              <span className="ra-mono">{previewDoc.articleId}</span>
                             </div>
                           ) : null}
                         </div>
-                        <div>
-                          <span>{tr("admin.rag.details.tags")}</span>
+                        <div className="ra-chiprow">
+                          <span className="ra-label">{tr("admin.rag.details.tags")}</span>
                           {renderTags(previewDoc.tags)}
                         </div>
                         {source ? (
-                          <div>
-                            <span>{tr("admin.rag.details.source")}</span>
-                            <span>{source}</span>
+                          <div className="ra-kv">
+                            <div>
+                              <span>{tr("admin.rag.details.source")}</span>
+                              <span className="ra-mono">{source}</span>
+                            </div>
                           </div>
                         ) : null}
                         {kovManagedDoc ? (
-                          <div>
+                          <div className="ra-note">
                             KOV seotud RAG read hallatakse paketina KOV vaates. Documents lehel ei kustutata neid uhekaupa.
                           </div>
                         ) : null}
-                        <div>
+                        <div className="ra-actions">
                           <Button
                             onClick={() => openDetail(previewDoc)}
                             disabled={!canEdit}
@@ -752,14 +759,14 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                     );
                   })()
                 ) : (
-                  <div>{tr("admin.rag.details.select_material")}</div>
+                  <div className="ra-empty">{tr("admin.rag.details.select_material")}</div>
                 )}
               </div>
             </div>
           </div>
 
           {visibleCount < filteredDocs.length ? (
-            <div>
+            <div className="ra-actions" style={{ justifyContent: "center" }}>
               <Button
                 onClick={() => setVisibleCount(count => count + 25)}
               >
@@ -767,22 +774,21 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
               </Button>
             </div>
           ) : null}
-        </div>
       </div>
 
-      <div>
-        <div id="rag-documents-sources">
-          <div>
-            <div>
+      <div className="ra-grid">
+        <div id="rag-documents-sources" className="ra-col-6">
+          <div className="ra-card">
+            <div className="ra-card-head">
               <div>
-                <CardTitle>Allikate loogika</CardTitle>
-                <div>
+                <CardTitle className="ra-card-title">Allikate loogika</CardTitle>
+                <p className="ra-card-sub">
                   Documents ei ole ainult register. See osa koondab olemasolevast registrist nähtava allikapildi, mille otsa saab hiljem ehitada eraldi source registry.
-                </div>
+                </p>
               </div>
             </div>
 
-            <div>
+            <div className="ra-kv">
               {sourceLogicSignals.map(item => (
                 <div key={item.label}>
                   <div>{item.label}</div>
@@ -791,70 +797,70 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
               ))}
             </div>
 
-            <div>
+            <div className="ra-rowlist">
               {sourceRegistry.map(source => {
                 const isActive = filterSource === source.key;
 
                 return (
                   <button
                     type="button"
+                    className="ra-row"
                     key={source.key}
+                    aria-pressed={isActive ? "true" : "false"}
                     data-checked={isActive ? "true" : "false"}
                     onClick={() => setFilterSource(isActive ? "ALL" : source.key)}
                   >
-                    <div>
-                      <div>
+                    <div className="ra-row-body">
+                      <div className="ra-row-title">
                         {formatSourceLabel(source.key)}
                       </div>
-                      <div>
+                      <div className="ra-td-sub">
                         {source.kinds.slice(0, 3).join(", ") || "Tuup teadmata"}
                         {source.lastSeen ? ` | ${formatDateTime(source.lastSeen, localeTag)}` : ""}
                       </div>
                     </div>
-                    <span>{source.count}</span>
+                    <span className="ra-chip" data-tone="dim">{source.count}</span>
                   </button>
                 );
               })}
             </div>
 
             {activeSourceEntry && activeSourceDocSummary ? (
-              <div>
-                <div>
-                  <div>Valitud allikas</div>
-                  <div>{formatSourceLabel(activeSourceEntry.key)}</div>
-                  <div>
-                    {activeSourceDocSummary.count} dokumenti
-                    {activeSourceDocSummary.sections.length ? ` | sektsioonid: ${activeSourceDocSummary.sections.join(", ")}` : ""}
-                    {activeSourceDocSummary.audiences.length ? ` | audience: ${activeSourceDocSummary.audiences.join(", ")}` : ""}
-                    {activeSourceDocSummary.latestTitle ? ` | viimane: ${activeSourceDocSummary.latestTitle}` : ""}
-                  </div>
+              <div className="ra-note" data-tone="neutral">
+                <div className="ra-label">Valitud allikas</div>
+                <div className="ra-row-title">{formatSourceLabel(activeSourceEntry.key)}</div>
+                <div className="ra-td-sub">
+                  {activeSourceDocSummary.count} dokumenti
+                  {activeSourceDocSummary.sections.length ? ` | sektsioonid: ${activeSourceDocSummary.sections.join(", ")}` : ""}
+                  {activeSourceDocSummary.audiences.length ? ` | audience: ${activeSourceDocSummary.audiences.join(", ")}` : ""}
+                  {activeSourceDocSummary.latestTitle ? ` | viimane: ${activeSourceDocSummary.latestTitle}` : ""}
                 </div>
-                <Button
-                  onClick={() => setFilterSource("ALL")}
-                >
-                  Eemalda filter
-                </Button>
+                <div className="ra-actions" style={{ marginTop: "0.5rem" }}>
+                  <Button size="xs" onClick={() => setFilterSource("ALL")}>
+                    Eemalda filter
+                  </Button>
+                </div>
               </div>
             ) : null}
 
-            <div>
+            <div className="ra-td-sub">
               Järgmine samm siinses alas on eraldi allikaregister: millised domeenid, failitüübid ja sisukanalid toidavad dokumentide registrit ning mis seisus need allikad on.
             </div>
           </div>
         </div>
 
-        <div id="rag-documents-settings">
-          <div>
-            <div>
+        <div id="rag-documents-settings" className="ra-col-6">
+          <div className="ra-card">
+            <div className="ra-card-head">
               <div>
-                <CardTitle>Dokumendihalduse seaded</CardTitle>
-                <div>
+                <CardTitle className="ra-card-title">Dokumendihalduse seaded</CardTitle>
+                <p className="ra-card-sub">
                   Siia koonduvad metadata mallid, valideerimise piirid ja ingestiga seotud vaikeväärtused. MVP-s näitab see kaart olemasolevat alust, mitte veel eraldi seadistusmoodulit.
-                </div>
+                </p>
               </div>
             </div>
 
-            <div>
+            <div className="ra-kv">
               {settingsSignals.map(item => (
                 <div key={item.label}>
                   <div>{item.label}</div>
@@ -863,35 +869,30 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
               ))}
             </div>
 
-            <div>
+            <div className="ra-chiprow">
               {metaTemplates.slice(0, 3).map(template => (
-                <div key={template.key}>
-                  <span>{template.label}</span>
-                  <span>metadata mall</span>
-                </div>
+                <span key={template.key} className="ra-chip" data-tone="dim">
+                  {template.label} · metadata mall
+                </span>
               ))}
             </div>
 
-            <div>
+            <div className="ra-kv">
               <div>
+                <div>Registeri vaikevoog</div>
                 <div>
-                  <div>Registeri vaikevoog</div>
-                  <div>
-                    Uus sisu tuleb siia kas URL ingestist, PDF+metadata voost voi artiklite lisamisest. Registri detailvaade ja meta muutmine kasutavad sama andmekihti.
-                  </div>
+                  Uus sisu tuleb siia kas URL ingestist, PDF+metadata voost voi artiklite lisamisest. Registri detailvaade ja meta muutmine kasutavad sama andmekihti.
                 </div>
               </div>
               <div>
+                <div>Jargmised seadistusastmed</div>
                 <div>
-                  <div>Jargmised seadistusastmed</div>
-                  <div>
-                    Source registry, domeenipohised vaikeseaded, tugevamad metadata piirid ja dokumentide halduse reeglid.
-                  </div>
+                  Source registry, domeenipohised vaikeseaded, tugevamad metadata piirid ja dokumentide halduse reeglid.
                 </div>
               </div>
             </div>
 
-            <div>
+            <div className="ra-actions">
               <Button
                 as="a"
                 href={localizePath("/admin/rag/ingest", locale)}
@@ -907,7 +908,9 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
           </div>
         </div>
 
-        <MaterialsAdminSubmissionsPanel variant="ragAdmin" locale={locale} />
+        <div className="ra-col-12">
+          <MaterialsAdminSubmissionsPanel variant="ragAdmin" locale={locale} />
+        </div>
       </div>
 
       {deleteConfirmDocId ? (

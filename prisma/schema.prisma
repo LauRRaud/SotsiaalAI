@@ -23,6 +23,38 @@ enum SubscriptionStatus {
   PAST_DUE
 }
 
+enum UsageMetric {
+  CHAT_ASSISTANT_REPLY
+  DOCUMENT_GENERATE
+  DOCUMENT_REFINE
+  FILE_ANALYZE
+  DEEP_RESEARCH_RUN
+  RAG_SEARCH
+  STT_SECONDS
+  TTS_CHARS
+  STORAGE_BYTES
+}
+
+enum UsagePeriod {
+  DAILY
+  WEEKLY
+  MONTHLY
+  LIFETIME
+}
+
+enum UsageReservationStatus {
+  RESERVED
+  COMMITTED
+  RELEASED
+}
+
+enum UsageEventType {
+  RESERVED
+  COMMITTED
+  RELEASED
+  ADJUSTMENT
+}
+
 enum PaymentProvider {
   MAKSEKESKUS
   TEST
@@ -527,6 +559,9 @@ model User {
   role                    Role      @default(CLIENT)
   isAdmin                 Boolean   @default(false)
   sessionVersion          Int       @default(0)
+  accessSuspendedAt       DateTime?
+  accessSuspendedReason   String?
+  accessSuspendedByUserId String?
   acceptsPreInquiries     Boolean   @default(false)
 
   // NextAuth
@@ -551,7 +586,11 @@ model User {
   conversationRuns        ConversationRun[]
   conversationMessages    ConversationMessage[]
   conversations           Conversation[]
-  analyzeUsage            AnalyzeUsage[]
+  usageBuckets            UsageBucket[]
+  usageReservations       UsageReservation[]
+  usageEvents             UsageEvent[]
+  usageOverrides          UserEntitlementOverride[] @relation("UsageOverrideUser")
+  grantedUsageOverrides   UserEntitlementOverride[] @relation("UsageOverrideAdmin")
   emailOtpCodes           EmailOtpCode[]
   trustedDevices          TrustedDevice[]
   loginTempTokens         LoginTempToken[]
@@ -589,6 +628,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   @@index([acceptsPreInquiries])
+  @@index([accessSuspendedAt])
 }
 
 model Profile {
@@ -645,7 +685,7 @@ model Subscription {
   id                String             @id @default(cuid())
   userId            String
   status            SubscriptionStatus @default(NONE)
-  plan              String             @default("kuutellimus")
+  plan              String             @default("free")
   billingMode       BillingMode        @default(ONE_OFF)
   billingInterval   BillingInterval?
   billingMethodId   String?
@@ -660,12 +700,14 @@ model Subscription {
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   canceledAt        DateTime?
+  planDefinitionId  String?
 
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
-  billingMethod BillingMethod? @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
-  sponsorUser   User?          @relation("SubscriptionSponsorUser", fields: [sponsorUserId], references: [id], onDelete: SetNull)
-  invite        Invite?        @relation("InviteGrantedSubscription", fields: [inviteId], references: [id], onDelete: SetNull)
-  payments      Payment[]
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planDefinition PlanDefinition? @relation(fields: [planDefinitionId], references: [id], onDelete: SetNull)
+  billingMethod  BillingMethod?  @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
+  sponsorUser    User?           @relation("SubscriptionSponsorUser", fields: [sponsorUserId], references: [id], onDelete: SetNull)
+  invite         Invite?         @relation("InviteGrantedSubscription", fields: [inviteId], references: [id], onDelete: SetNull)
+  payments       Payment[]
 
   @@index([userId])
   @@index([status])
@@ -675,6 +717,160 @@ model Subscription {
   @@index([billingSource])
   @@index([sponsorUserId])
   @@index([inviteId])
+  @@index([planDefinitionId])
+}
+
+model PlanDefinition {
+  id            String    @id @default(cuid())
+  key           String
+  name          String
+  role          Role
+  price         Decimal   @db.Decimal(10, 2)
+  currency      String    @default("EUR")
+  version       Int       @default(1)
+  active        Boolean   @default(true)
+  effectiveFrom DateTime  @default(now())
+  effectiveTo   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  entitlements  PlanEntitlement[]
+  subscriptions Subscription[]
+
+  @@unique([key, version], name: "key_version")
+  @@index([role, active])
+  @@index([key, active])
+}
+
+model PlanEntitlement {
+  id               String      @id @default(cuid())
+  planDefinitionId String
+  metric           UsageMetric
+  enabled          Boolean     @default(true)
+  softLimit        BigInt?
+  hardLimit        BigInt?
+  period           UsagePeriod
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  planDefinition PlanDefinition @relation(fields: [planDefinitionId], references: [id], onDelete: Cascade)
+
+  @@unique([planDefinitionId, metric], name: "planDefinitionId_metric")
+  @@index([metric, enabled])
+}
+
+model UserEntitlementOverride {
+  id               String       @id @default(cuid())
+  userId           String
+  metric           UsageMetric
+  enabled          Boolean?
+  softLimit        BigInt?
+  hardLimit        BigInt?
+  period           UsagePeriod?
+  reason           String
+  validFrom        DateTime     @default(now())
+  validUntil       DateTime?
+  createdByAdminId String
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  user           User @relation("UsageOverrideUser", fields: [userId], references: [id], onDelete: Cascade)
+  createdByAdmin User @relation("UsageOverrideAdmin", fields: [createdByAdminId], references: [id], onDelete: Restrict)
+
+  @@index([userId, metric, validFrom])
+  @@index([createdByAdminId, createdAt])
+  @@index([validUntil])
+}
+
+model UsageBucket {
+  id          String      @id @default(cuid())
+  userId      String
+  metric      UsageMetric
+  period      UsagePeriod
+  periodStart DateTime
+  periodEnd   DateTime
+  softLimit   BigInt?
+  hardLimit   BigInt
+  used        BigInt      @default(0)
+  reserved    BigInt      @default(0)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user         User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  reservations UsageReservation[]
+  events       UsageEvent[]
+
+  @@unique([userId, metric, periodStart, periodEnd], name: "userId_metric_periodStart_periodEnd")
+  @@index([userId, periodEnd])
+  @@index([metric, periodStart])
+}
+
+model UsageReservation {
+  id              String                 @id @default(cuid())
+  userId          String
+  bucketId        String
+  metric          UsageMetric
+  idempotencyKey  String
+  reservedAmount  BigInt
+  committedAmount BigInt?
+  status          UsageReservationStatus @default(RESERVED)
+  expiresAt       DateTime?
+  committedAt     DateTime?
+  releasedAt      DateTime?
+  releaseReason   String?
+  metadata        Json?
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+
+  user   User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bucket UsageBucket  @relation(fields: [bucketId], references: [id], onDelete: Cascade)
+  events UsageEvent[]
+
+  @@unique([userId, idempotencyKey], name: "userId_idempotencyKey")
+  @@index([bucketId, status])
+  @@index([status, expiresAt])
+}
+
+model UsageEvent {
+  id             String         @id @default(cuid())
+  userId         String
+  bucketId       String
+  reservationId  String?
+  metric         UsageMetric
+  type           UsageEventType
+  amount         BigInt
+  idempotencyKey String         @unique
+  modelPriceId   String?
+  metadata       Json?
+  createdAt      DateTime       @default(now())
+
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bucket      UsageBucket       @relation(fields: [bucketId], references: [id], onDelete: Cascade)
+  reservation UsageReservation? @relation(fields: [reservationId], references: [id], onDelete: SetNull)
+  modelPrice  ModelPrice?       @relation(fields: [modelPriceId], references: [id], onDelete: SetNull)
+
+  @@index([userId, metric, createdAt])
+  @@index([bucketId, createdAt])
+  @@index([reservationId])
+  @@index([modelPriceId])
+}
+
+model ModelPrice {
+  id                    String    @id @default(cuid())
+  model                 String
+  currency              String    @default("EUR")
+  inputPerMillion       Decimal   @db.Decimal(18, 6)
+  cachedInputPerMillion Decimal   @db.Decimal(18, 6)
+  outputPerMillion      Decimal   @db.Decimal(18, 6)
+  reasoningPerMillion   Decimal   @db.Decimal(18, 6)
+  effectiveFrom         DateTime
+  effectiveTo           DateTime?
+  createdAt             DateTime  @default(now())
+
+  usageEvents UsageEvent[]
+
+  @@unique([model, effectiveFrom], name: "model_effectiveFrom")
+  @@index([model, effectiveTo])
 }
 
 model Payment {
@@ -1025,20 +1221,6 @@ model ConversationMessage {
 
   @@index([conversationId, createdAt])
   @@index([authorId])
-}
-
-/// Päevane analüüsi kasutus per kasutaja (püsiv kvoodi arvestus)
-model AnalyzeUsage {
-  id        String   @id @default(cuid())
-  userId    String
-  day       DateTime @db.Date
-  count     Int      @default(0)
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, day], name: "userId_day")
-  @@index([userId])
 }
 
 model EmailOtpCode {

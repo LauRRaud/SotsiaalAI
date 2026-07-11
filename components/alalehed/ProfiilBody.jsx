@@ -17,6 +17,7 @@ import { getFooterNote } from "@/lib/footerNote";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import UsageOverview from "@/components/profile/UsageOverview";
 
 const CHAT_SKIP_ENTRY_SETTLE_KEY = "sotsiaalai:chat:skip-entry-settle";
 const CHAT_BACK_HOVER_ARM_KEY = "sotsiaalai:chat:back-hover-arm-on-move";
@@ -109,6 +110,7 @@ export default function ProfiilBody({
   const [loggingOut, setLoggingOut] = useState(false);
   const [loggingOutEverywhere, setLoggingOutEverywhere] = useState(false);
   const [showAccountSettings, setShowAccountSettings] = useState(false);
+  const [showUsage, setShowUsage] = useState(false);
   const [showLogoutAll, setShowLogoutAll] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   // Keep the first render deterministic for SSR hydration; reconcile on mount.
@@ -142,6 +144,8 @@ export default function ProfiilBody({
      mille sihtkohad on karussellis juba eraldi kaartidena). */
   const kontoSection =
     String(searchParams?.get("sektsioon") || "").trim() === "konto";
+  const usageSection =
+    String(searchParams?.get("sektsioon") || "").trim() === "kasutus";
   const isAuthed = status === "authenticated" || !!session?.user;
   const currentTheme = prefs?.theme === "light" ? "light" : "dark";
   const isHighContrast = prefs?.contrast === "hc";
@@ -302,6 +306,10 @@ export default function ProfiilBody({
       setError("");
       setShowAccountSettings(true);
     }
+  }, {
+    key: "usage",
+    label: t("profile.usage.title"),
+    onClick: () => setShowUsage(true)
   }, {
     key: "subscription",
     label: t("profile.manage_subscription"),
@@ -497,6 +505,13 @@ export default function ProfiilBody({
             </div>
           </section>
         </>
+      ) : usageSection ? (
+        <>
+          <h1 className="konto-title">{t("profile.usage.title")}</h1>
+          <UsageOverview
+            onManageSubscription={() => navigateFromOrbit("/tellimus?return=profile")}
+          />
+        </>
       ) : (
         <>
           <div>
@@ -529,6 +544,29 @@ export default function ProfiilBody({
             {error}
           </div>}
       </div>
+
+      {showUsage ? (
+        <Modal
+          open
+          onClose={() => setShowUsage(false)}
+          aria-label={t("profile.usage.title")}
+        >
+          <div className="usage-modal__header">
+            <BackButton
+              onClick={() => setShowUsage(false)}
+              ariaLabel={t("buttons.back")}
+            />
+            <h2>{t("profile.usage.title")}</h2>
+          </div>
+          <UsageOverview
+            active={showUsage}
+            onManageSubscription={() => {
+              setShowUsage(false);
+              navigateFromOrbit(isMobileProfileMenu ? "/tellimus?return=profile&orbit=1" : `/tellimus${embedded ? "?return=profile" : ""}`);
+            }}
+          />
+        </Modal>
+      ) : null}
 
       {showAccountSettings ? (
         <Modal

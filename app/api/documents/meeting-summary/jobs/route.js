@@ -1,3 +1,4 @@
+import crypto from "node:crypto";
 import { effectiveRoleFromSession } from "@/lib/authz";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
 import {
@@ -5,11 +6,14 @@ import {
   getMeetingSummaryJobPublic,
   runMeetingSummaryJob,
 } from "@/lib/documents/meetingSummaryJobs";
-import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server";
+import { errorJson, json, localeFromRequest, requireDocumentUser, usageErrorJson } from "@/lib/documents/server";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { consumeRateLimit } from "@/lib/rate-limit";
-import { canSpendMonthlyBudget } from "@/lib/usageBudget";
 import { safeError } from "@/lib/privacy/safeError";
+import {
+  releaseUsageForRequest,
+  reserveUsageForRequest
+} from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,22 +29,6 @@ function isSupportedAudioMime(type) {
   if (!normalized) return true;
   if (normalized.startsWith("audio/")) return true;
   return normalized === "video/webm" || normalized === "video/mp4";
-}
-
-function buildMeetingSummaryBudgetIncrement(inputDurationSeconds) {
-  if (inputDurationSeconds != null && Number.isFinite(Number(inputDurationSeconds)) && Number(inputDurationSeconds) > 0) {
-    return {
-      sttRequests: 1,
-      sttMinutes: Number(inputDurationSeconds) / 60,
-      chatRequests: 1
-    };
-  }
-
-  return {
-    sttRequests: 1,
-    sttMinutes: 1,
-    chatRequests: 1
-  };
 }
 
 export async function POST(request) {
@@ -103,16 +91,31 @@ export async function POST(request) {
   }
 
   const inputDurationSeconds = await readAudioDurationSecondsFromBuffer(buffer, file.type || null);
-  const budgetCheck = await canSpendMonthlyBudget(
-    auth.userId,
-    buildMeetingSummaryBudgetIncrement(inputDurationSeconds)
-  );
-  if (!budgetCheck.allowed) {
-    return errorJson("api.common.monthly_budget_exceeded", 429, locale, {
-      budgetEur: budgetCheck.budgetEur,
-      usedEur: budgetCheck.usedEur,
-      remainingEur: budgetCheck.remainingEur,
-    });
+  const usageAttemptId = crypto.randomUUID();
+  const usageHandles = [];
+  try {
+    usageHandles.push(await reserveUsageForRequest({
+      request,
+      userId: auth.userId,
+      metric: "STT_SECONDS",
+      amount: Math.max(1, Math.ceil(Number(inputDurationSeconds) || 60)),
+      scope: "meeting_summary.stt",
+      idempotencyKey: usageAttemptId,
+      metadata: { fileSizeBytes: buffer.byteLength }
+    }));
+    usageHandles.push(await reserveUsageForRequest({
+      request,
+      userId: auth.userId,
+      metric: "DOCUMENT_GENERATE",
+      scope: "meeting_summary.document",
+      idempotencyKey: usageAttemptId,
+      metadata: { source: "meeting_summary" }
+    }));
+  } catch (error) {
+    await Promise.allSettled(
+      usageHandles.map(handle => releaseUsageForRequest(handle, { reason: "meeting_summary_reservation_failed" }))
+    );
+    return usageErrorJson(error, "meeting_summary", locale);
   }
 
   try {
@@ -127,6 +130,16 @@ export async function POST(request) {
         inputDurationSeconds,
         audioBuffer: buffer,
       },
+      usage: {
+        stt: {
+          idempotencyKey: usageHandles[0].idempotencyKey,
+          state: "reserved"
+        },
+        document: {
+          idempotencyKey: usageHandles[1].idempotencyKey,
+          state: "reserved"
+        }
+      }
     });
 
     queueMicrotask(() => {
@@ -142,6 +155,9 @@ export async function POST(request) {
       job: getMeetingSummaryJobPublic(job.id),
     });
   } catch (error) {
+    await Promise.allSettled(
+      usageHandles.map(handle => releaseUsageForRequest(handle, { reason: "meeting_summary_job_create_failed" }))
+    );
     const messageKey =
       error?.code === "ACTIVE_JOB_LIMIT"
         ? "documents.agent_workspace.meeting_summary.busy"

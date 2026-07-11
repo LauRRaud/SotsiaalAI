@@ -1,0 +1,91 @@
+name: quality-gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: quality-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: sotsiaal_user
+          POSTGRES_DB: sotsiaal_ai_ci
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U sotsiaal_user -d sotsiaal_ai_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://sotsiaal_user@127.0.0.1:5432/sotsiaal_ai_ci
+      NEXT_PUBLIC_SITE_URL: http://127.0.0.1:3000
+      APP_URL: http://127.0.0.1:3000
+      NEXTAUTH_URL: http://127.0.0.1:3000
+      NEXTAUTH_SECRET: ${{ github.sha }}
+      AUTH_SECRET: ${{ github.sha }}
+      OPENAI_API_KEY: ${{ github.sha }}
+      RAG_SERVICE_API_KEY: ${{ github.sha }}
+      RAG_INTERNAL_HOST: 127.0.0.1
+      RAG_API_BASE: http://127.0.0.1:8000
+      EMAIL_FROM: ci@sotsiaal.ai
+      DATA_RETENTION_DAYS: 90
+      CONVERSATION_TTL_DAYS: 90
+      PAYMENT_RETENTION_DAYS: 2555
+      PAYMENT_RAW_RETENTION_DAYS: 90
+      LOG_RETENTION_DAYS: 90
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Validate Prisma schema
+        run: npx prisma validate
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Apply full migration chain to empty PostgreSQL
+        run: npx prisma migrate deploy
+
+      - name: Verify migration status
+        run: npx prisma migrate status
+
+      - name: Run tests
+        run: npm test
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Check translation parity
+        run: npm run i18n:check
+
+      - name: Build production application
+        run: npm run build
+
+      - name: Start production application
+        run: npm start > next-start.log 2>&1 &
+
+      - name: Run production smoke
+        run: npm run ci:smoke
+
+      - name: Print server log after failure
+        if: failure()
+        run: test -f next-start.log && tail -n 200 next-start.log || true

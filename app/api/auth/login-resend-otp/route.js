@@ -145,9 +145,9 @@ export async function POST(request) {
 
     const user = await prisma.user.findUnique({
       where: { id: loginToken.userId },
-      select: { email: true }
+      select: { email: true, accessSuspendedAt: true }
     });
-    if (!user?.email) {
+    if (!user?.email || user.accessSuspendedAt) {
       return errorJson("api.auth.login.user_missing", 404, locale, {
         code: "USER_MISSING"
       });

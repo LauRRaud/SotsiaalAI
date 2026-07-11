@@ -200,12 +200,13 @@ export const authConfig = {
                 email: true,
                 role: true,
                 isAdmin: true,
-                sessionVersion: true
+                sessionVersion: true,
+                accessSuspendedAt: true
               }
             }
           }
         });
-        if (!loginToken?.user) return null;
+        if (!loginToken?.user || loginToken.user.accessSuspendedAt) return null;
         const now = new Date();
         if (loginToken.expiresAt <= now || loginToken.usedAt) return null;
         if (loginToken.requiresOtp && !loginToken.otpVerifiedAt) return null;
@@ -244,10 +245,11 @@ export const authConfig = {
           role: true,
           isAdmin: true,
           passwordHash: true,
-          sessionVersion: true
+          sessionVersion: true,
+          accessSuspendedAt: true
         }
       });
-      if (!user?.passwordHash) return null;
+      if (!user?.passwordHash || user.accessSuspendedAt) return null;
       const ok = await compare(pin, user.passwordHash);
       if (!ok) return null;
       return {
@@ -280,6 +282,7 @@ export const authConfig = {
               role: true,
               isAdmin: true,
               sessionVersion: true,
+              accessSuspendedAt: true,
               subscriptions: {
                 where: {
                   status: "ACTIVE",
@@ -300,6 +303,9 @@ export const authConfig = {
           });
           if (!currentUser) {
             throw new Error("SESSION_USER_MISSING");
+          }
+          if (currentUser.accessSuspendedAt) {
+            throw new Error("SESSION_REVOKED");
           }
           if (Number(token.sessionVersion ?? 0) !== Number(currentUser.sessionVersion ?? 0)) {
             throw new Error("SESSION_REVOKED");

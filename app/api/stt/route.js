@@ -6,9 +6,14 @@ import { logEvent } from "@/lib/chat/logger";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { canSpendMonthlyBudget } from "@/lib/usageBudget";
 import { readAudioDurationSecondsFromFile } from "@/lib/audio/duration";
 import { safeError } from "@/lib/privacy/safeError";
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest,
+  usageErrorDescriptor
+} from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -50,7 +55,7 @@ function localeFromRequest(req, fallback = "en") {
   return fromHeader || fallback;
 }
 
-function errorJson(messageKey, status, locale = "en", extras = {}) {
+function errorJson(messageKey, status, locale = "en", extras = {}, extraHeaders = {}) {
   const translated = serverT(locale, messageKey, undefined, messageKey);
   return NextResponse.json({
     ok: false,
@@ -59,8 +64,13 @@ function errorJson(messageKey, status, locale = "en", extras = {}) {
     ...extras
   }, {
     status,
-    headers: NO_STORE_HEADERS
+    headers: { ...NO_STORE_HEADERS, ...extraHeaders }
   });
+}
+
+function usageErrorJson(error, scope, locale) {
+  const descriptor = usageErrorDescriptor(error, scope);
+  return errorJson(descriptor.body.messageKey, descriptor.status, locale, descriptor.body, descriptor.headers);
 }
 
 function json(payload, status = 200, headers = {}) {
@@ -80,26 +90,6 @@ function toNullableNumber(value) {
 
 function readRequestSize(req) {
   return toNullableNumber(req.headers.get("content-length"));
-}
-
-function buildPreflightBudgetIncrement({ usesExternalProvider, inputDurationSeconds }) {
-  if (inputDurationSeconds != null && Number.isFinite(Number(inputDurationSeconds)) && Number(inputDurationSeconds) > 0) {
-    return {
-      sttRequests: 1,
-      sttMinutes: Number(inputDurationSeconds) / 60
-    };
-  }
-
-  if (usesExternalProvider) {
-    return {
-      sttRequests: 1
-    };
-  }
-
-  return {
-    sttRequests: 1,
-    sttMinutes: 1
-  };
 }
 
 export async function POST(req) {
@@ -169,20 +159,22 @@ export async function POST(req) {
     });
   }
   const inputDurationSeconds = await readAudioDurationSecondsFromFile(file);
-  const usesExternalProvider = Boolean(STT_URL);
-  const budgetCheck = await canSpendMonthlyBudget(
-    session.user.id,
-    buildPreflightBudgetIncrement({
-      usesExternalProvider,
-      inputDurationSeconds
-    })
-  );
-  if (!budgetCheck.allowed) {
-    return errorJson("api.common.monthly_budget_exceeded", 429, uiLocale, {
-      budgetEur: budgetCheck.budgetEur,
-      usedEur: budgetCheck.usedEur,
-      remainingEur: budgetCheck.remainingEur
+  const usageSeconds = Math.max(1, Math.ceil(Number(inputDurationSeconds) || 60));
+  const rawIdempotencyKey = form.get("idempotencyKey");
+  let usageHandle = null;
+  let transcriptionCompleted = false;
+  try {
+    usageHandle = await reserveUsageForRequest({
+      request: req,
+      userId: session.user.id,
+      metric: "STT_SECONDS",
+      amount: usageSeconds,
+      scope: "stt.transcribe",
+      idempotencyKey: typeof rawIdempotencyKey === "string" ? rawIdempotencyKey : null,
+      metadata: { fileSizeBytes: fileSize, mimeType: file.type || null }
     });
+  } catch (error) {
+    return usageErrorJson(error, "stt.transcribe", uiLocale);
   }
 
   if (STT_URL) {
@@ -199,6 +191,8 @@ export async function POST(req) {
       if (!res.ok || data?.ok === false || !data?.text) {
         throw new Error(data?.message || "api.stt.transcription_failed");
       }
+      transcriptionCompleted = true;
+      await commitUsageForRequest(usageHandle);
       await logEvent("stt_request", {
         userId: session.user.id,
         role,
@@ -218,6 +212,13 @@ export async function POST(req) {
       });
     } catch (err) {
       console.error("[stt] external provider failed", safeError(err));
+      if (usageHandle && !transcriptionCompleted) {
+        try {
+          await releaseUsageForRequest(usageHandle, { reason: "stt_provider_failed" });
+        } catch (releaseError) {
+          console.error("[stt] usage release failed", safeError(releaseError));
+        }
+      }
       return errorJson(err?.message || "api.stt.service_error", 502, uiLocale);
     }
   }
@@ -237,6 +238,8 @@ export async function POST(req) {
     });
     const text = String(transcription?.text || "").trim();
     if (!text) throw new Error("api.stt.transcription_failed");
+    transcriptionCompleted = true;
+    await commitUsageForRequest(usageHandle);
     const usage = transcription?.usage;
     const usageType = String(usage?.type || "").trim() || null;
     const isTokenUsage = usageType === "tokens";
@@ -285,6 +288,13 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("[stt] openai provider failed", safeError(err));
+    if (usageHandle && !transcriptionCompleted) {
+      try {
+        await releaseUsageForRequest(usageHandle, { reason: "stt_provider_failed" });
+      } catch (releaseError) {
+        console.error("[stt] usage release failed", safeError(releaseError));
+      }
+    }
     return errorJson(err?.message || "api.stt.service_error", 502, uiLocale);
   }
 }

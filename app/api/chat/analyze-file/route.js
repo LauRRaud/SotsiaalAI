@@ -4,11 +4,8 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { requireSubscription, resolveSessionRoleState } from "@/lib/authz";
-import { prisma } from "@/lib/prisma";
-import { getAnalyzeLimit, utcDayStart, secondsUntilUtcMidnight } from "@/lib/analyzeQuota";
-import { reserveAnalyzeQuota, refundAnalyzeQuota } from "@/lib/analyzeQuotaServer";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
-import { CHAT_NO_STORE_HEADERS, isChatDbOfflineError } from "@/lib/chat/routeServerUtils";
+import { CHAT_NO_STORE_HEADERS } from "@/lib/chat/routeServerUtils";
 import {
   DEFAULT_ANALYZE_ALLOWED_MIME_CSV,
   DEFAULT_ANALYZE_MAX_UPLOAD_MB,
@@ -18,6 +15,12 @@ import {
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
 import { RAG_SERVICE_KEY } from "@/lib/server/ragAuth";
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest,
+  usageErrorDescriptor
+} from "@/lib/usage/routeAdapter";
 
 const MAX_MB = readAnalyzeMaxUploadMb(
   process.env.RAG_SERVER_MAX_MB || process.env.RAG_MAX_UPLOAD_MB || process.env.NEXT_PUBLIC_RAG_MAX_UPLOAD_MB,
@@ -42,10 +45,10 @@ const CHAT_RATE_LIMIT_WINDOW_MS = readChatRateLimit(process.env.CHAT_RATE_LIMIT_
 const CHAT_ANALYZE_FILE_POST_RATE_LIMIT_MAX = readChatRateLimit(process.env.CHAT_RATE_LIMIT_ANALYZE_FILE_POST_MAX, 15);
 const CHAT_ANALYZE_MAX_CHUNKS = readChatRateLimit(process.env.CHAT_ANALYZE_MAX_CHUNKS, 80, 1);
 
-function json(data, status = 200) {
+function json(data, status = 200, extraHeaders = {}) {
   return NextResponse.json(data, {
     status,
-    headers: CHAT_NO_STORE_HEADERS
+    headers: { ...CHAT_NO_STORE_HEADERS, ...extraHeaders }
   });
 }
 
@@ -60,14 +63,25 @@ function localeFromRequest(req) {
   return fromHeader || "en";
 }
 
-function errorJson(messageKey, status, locale = "en", extras = {}) {
+function errorJson(messageKey, status, locale = "en", extras = {}, extraHeaders = {}) {
   const translated = serverT(locale, messageKey, undefined, messageKey);
   return json({
     ok: false,
     messageKey,
     message: translated,
     ...extras
-  }, status);
+  }, status, extraHeaders);
+}
+
+function usageErrorJson(error, scope, locale) {
+  const descriptor = usageErrorDescriptor(error, scope);
+  return errorJson(
+    descriptor.body.messageKey,
+    descriptor.status,
+    locale,
+    descriptor.body,
+    descriptor.headers
+  );
 }
 
 function normalizeBaseFromHost(host) {
@@ -197,41 +211,21 @@ export async function POST(request) {
   }
 
   const userId = String(session.user.id);
-  const day = utcDayStart();
-  const isAdmin = roleState.isAdmin;
-  const limit = getAnalyzeLimit(role, isAdmin);
-  let quotaReserved = false;
+  const rawIdempotencyKey = fd.get("idempotencyKey");
+  let usageHandle = null;
+  let analysisCompleted = false;
 
   try {
-    await prisma.$transaction(async tx => {
-      await reserveAnalyzeQuota(tx, { userId, day, limit });
+    usageHandle = await reserveUsageForRequest({
+      request,
+      userId,
+      metric: "FILE_ANALYZE",
+      scope: "chat.analyze_file",
+      idempotencyKey: typeof rawIdempotencyKey === "string" ? rawIdempotencyKey : null,
+      metadata: { mimeType: resolvedMimeType, sizeBytes: Number(file.size || 0) }
     });
-    quotaReserved = true;
   } catch (e) {
-    if (e?.code === "QUOTA") {
-      const retry = secondsUntilUtcMidnight();
-      return new NextResponse(JSON.stringify({
-        ok: false,
-        messageKey: "api.chat.analyze.quota_exceeded",
-        message: serverT(locale, "api.chat.analyze.quota_exceeded", undefined, "api.chat.analyze.quota_exceeded")
-      }), {
-        status: 429,
-        headers: {
-          ...CHAT_NO_STORE_HEADERS,
-          "Content-Type": "application/json",
-          "Retry-After": String(retry)
-        }
-      });
-    }
-
-    if (isChatDbOfflineError(e)) {
-      return errorJson("api.chat.db_unavailable", 503, locale, {
-        degraded: true
-      });
-    }
-
-    console.error("[analyze-file] quota check failed:", safeError(e));
-    return errorJson("api.chat.analyze.quota_check_failed", 503, locale);
+    return usageErrorJson(e, "chat.analyze_file", locale);
   }
 
   const forward = new FormData();
@@ -251,6 +245,8 @@ export async function POST(request) {
 
   try {
     const data = await callRagAnalyze(forward);
+    analysisCompleted = true;
+    await commitUsageForRequest(usageHandle);
     return json({
       ...(data && typeof data === "object" ? data : {}),
       ok: true,
@@ -261,11 +257,11 @@ export async function POST(request) {
     });
   } catch (e) {
     console.error("[analyze-file] RAG analyze error:", safeError(e));
-    if (quotaReserved) {
+    if (usageHandle && !analysisCompleted) {
       try {
-        await refundAnalyzeQuota(prisma, { userId, day });
-      } catch (refundError) {
-        console.error("[analyze-file] quota refund failed:", safeError(refundError));
+        await releaseUsageForRequest(usageHandle, { reason: "file_analysis_failed" });
+      } catch (releaseError) {
+        console.error("[analyze-file] usage release failed:", safeError(releaseError));
       }
     }
     const status = Number(e?.status) || 502;

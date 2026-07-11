@@ -1,0 +1,1780 @@
+/* ============================================================
+   Kovisiooni sessioonilõuend (.cvs) — spec: Kovisioon/kovisiooni
+   digitaalne lõuend.md. Monokroomne klaas, tokens.css muutujad;
+   nuppude PIND tuleb glass.css-ist (data-variant), siin paigutus.
+   Konteineripäring: paneelis kitsas → veerud virna.
+   ============================================================ */
+
+/* Kovisiooni leht on TÄISEKRAANI LÕUEND (tellija 11.07: lõuend peab
+   mahtuma ekraanile, kerimata; oma taustakasti EI OLE — ruum paistab
+   PanelFrame'i mattklaasi tagant läbi) */
+.covision-page {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-warm);
+}
+
+.cvs {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: 1.1rem;
+  color: var(--text-warm);
+}
+
+/* ---------- Püsiv kiht: etapirada + taimer + paus ---------- */
+.cvs-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+.cvs-rail {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cvs-rail-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+.cvs-rail-dot {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft);
+}
+.cvs-rail-label {
+  font-size: var(--fs-micro);
+  line-height: 1.25;
+  color: var(--text-dim);
+  max-width: 9.5em;
+}
+/* Tagasihoidlik soe aktsent AINULT aktiivsel etapil (spec §4) */
+.cvs-rail-step[data-state="active"] .cvs-rail-dot {
+  color: var(--text-warm);
+  border-color: rgba(255, 238, 216, 0.55);
+  box-shadow: 0 0 14px rgba(255, 238, 216, 0.14);
+}
+.cvs-rail-step[data-state="active"] .cvs-rail-label {
+  color: var(--text-soft);
+}
+.cvs-rail-step[data-state="done"] .cvs-rail-dot {
+  color: var(--text-soft);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.cvs-top-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+.cvs-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+  padding: 0.45em 0.9em;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+}
+.cvs-timer-label {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-timer-time {
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-warm);
+}
+/* Aeg üle: vaikne märguanne, mitte alarm (taimer on toetav) */
+.cvs-timer[data-over="1"] .cvs-timer-time {
+  color: rgba(255, 214, 178, 0.95);
+}
+.cvs-pause-btn {
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+
+/* ---------- Etapi pea ---------- */
+.cvs-stage-head {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+.cvs-stage-kicker {
+  margin: 0 0 0.2em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cvs-stage-title {
+  margin: 0;
+  font-size: 1.45rem;
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+.cvs-stage-lead {
+  margin: 0.5em 0 0;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- Kolm veergu: kohalolek | hero | info ---------- */
+.cvs-grid {
+  display: grid;
+  grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(12rem, 15rem);
+  gap: 0.9rem;
+  align-items: start;
+}
+.cvs-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+/* Klaaslahter (küljepaneelid) */
+.cvs-cell {
+  padding: 0.9rem 1rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+}
+.cvs-cell-title {
+  margin: 0 0 0.6em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cvs-cell-text {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.cvs-cell-btn {
+  margin-top: 0.7rem;
+  width: 100%;
+  padding: 0.45em 0.9em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+
+/* Kohalolek */
+.cvs-people {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cvs-person {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.cvs-person-name {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cvs-person-role {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-person-role[data-lead="1"] {
+  color: rgba(255, 238, 216, 0.8);
+}
+
+/* Kokkulepped */
+.cvs-agreements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cvs-agreement {
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* Sessiooni info */
+.cvs-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0;
+}
+.cvs-info > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.cvs-info dt {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-info dd {
+  margin: 0;
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+  text-align: right;
+}
+
+/* ---------- Hero: Tänane juhtum ---------- */
+.cvs-hero {
+  padding: 1.4rem 1.6rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: var(--card-glass-bg);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 14px 34px rgba(6, 4, 3, 0.4);
+}
+.cvs-hero-kicker {
+  margin: 0 0 0.3em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 238, 216, 0.75);
+}
+.cvs-hero-title {
+  margin: 0 0 0.9em;
+  font-size: 1.6rem;
+  color: var(--text-warm);
+}
+.cvs-hero-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1.4rem;
+  margin: 0;
+}
+.cvs-fact dt {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-fact dd {
+  margin: 0.15em 0 0;
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cvs-hero-note {
+  margin: 1.2rem 0 0;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- Püsiv fookusküsimuse ankur (etapid 3–8) ---------- */
+.cvs-anchor {
+  margin: 0 auto;
+  max-width: 42rem;
+  width: 100%;
+  padding: 0.6em 1.1em;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 238, 216, 0.28);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+  text-align: center;
+}
+.cvs-anchor-label {
+  display: block;
+  margin-bottom: 0.15em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 238, 216, 0.7);
+}
+
+/* ---------- Värava selgitus (keelatud primaarnupu põhjus) ---------- */
+.cvs-gate-hint {
+  margin: -0.4rem 0 0.4rem;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  text-align: center;
+}
+
+/* ---------- Kokkuvolditav lahter (kokkulepped etappides 2+) ---------- */
+.cvs-details-summary {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  cursor: var(--cursor-pointer);
+  list-style: none;
+}
+.cvs-details-summary::after {
+  content: " ▾";
+  color: var(--text-dim);
+}
+.cvs-details[open] .cvs-details-summary {
+  margin-bottom: 0.6em;
+}
+.cvs-details[open] .cvs-details-summary::after {
+  content: " ▴";
+}
+
+/* ---------- 2. etapp: kõneleja, fookusküsimus, märksõnad, märkmed ---------- */
+.cvs-hero-toprow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+.cvs-speaker {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  padding: 0.3em 0.85em;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  white-space: nowrap;
+}
+.cvs-speaker strong {
+  color: var(--text-soft);
+  font-weight: 560;
+}
+
+.cvs-focus {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cvs-focus-label {
+  display: block;
+  margin-bottom: 0.45em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 238, 216, 0.75);
+}
+.cvs-focus-sub {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+}
+.cvs-focus-input {
+  width: 100%;
+  resize: vertical;
+  font-size: 1.05rem;
+  color: var(--text-warm);
+}
+.cvs-focus-hint {
+  margin: 0.45em 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+
+.cvs-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cvs-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.28em 0.75em;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+/* Kinnitatud (avalik) märksõna: vaikselt soojem serv */
+.cvs-chip[data-public="1"] {
+  border-color: rgba(255, 238, 216, 0.35);
+  color: var(--text-warm);
+}
+.cvs-chip-x {
+  border: 0;
+  padding: 0 0.15em;
+  background: none;
+  color: var(--text-dim);
+  font-size: 1em;
+  line-height: 1;
+  cursor: var(--cursor-pointer);
+}
+.cvs-chip-x:hover {
+  color: var(--text-warm);
+}
+
+.cvs-chip-addrow {
+  margin-top: 0.6rem;
+}
+.cvs-chip-add {
+  width: 100%;
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+
+.cvs-notes {
+  width: 100%;
+  resize: vertical;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- 3. etapp: uurimisviisid, kompass, katvus ---------- */
+.cvs-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.cvs-mode {
+  padding: 0.4em 1em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+.cvs-mode-detail {
+  margin: 0.7em 0 0;
+  min-height: 2.4em;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.cvs-picture {
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cvs-picture-chips {
+  margin-bottom: 0.8rem;
+}
+/* Kvaliteedivihje toon: hoiatus soe, kinnitus vaikne */
+.cvs-focus-hint[data-tone="warn"] {
+  color: rgba(255, 214, 178, 0.9);
+}
+.cvs-focus-hint[data-tone="ok"] {
+  color: rgba(214, 255, 214, 0.65);
+}
+
+.cvs-coverage {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0 0 0.7em;
+}
+.cvs-coverage-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+}
+.cvs-coverage-dot[data-on="1"] {
+  background: rgba(255, 238, 216, 0.75);
+}
+.cvs-coverage-text {
+  margin-left: 0.35rem;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-compass-dir {
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.cvs-compass-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* Kompassi küsimus: vaikne tekstinupp; klõps = suund uuritud */
+.cvs-compass-q {
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 0.3em 0.5em;
+  border-radius: 10px;
+  text-align: left;
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+  cursor: var(--cursor-pointer);
+  transition: background-color var(--dur-fast) var(--ease-soft), color var(--dur-fast) var(--ease-soft);
+}
+.cvs-compass-q:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-warm);
+}
+.cvs-compass-q[aria-pressed="true"] {
+  color: rgba(255, 238, 216, 0.9);
+  background: rgba(255, 238, 216, 0.06);
+}
+.cvs-compass-lock {
+  margin-top: 0.5rem;
+}
+
+/* ---------- 3. etapp: kaetud küsimusekaardid ---------- */
+.cvs-qcards-wrap {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cvs-qcount {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+}
+.cvs-qcards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.6rem;
+  margin: 0.6rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cvs-qcard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  min-height: 6.5rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  text-align: left;
+  transition:
+    opacity var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+.cvs-qcard-q {
+  margin: 0;
+  font-size: var(--fs-micro);
+  line-height: 1.35;
+  color: var(--text-soft);
+}
+.cvs-qcard-author {
+  margin: 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+/* Kaetud kaart: sisu varjus, ootab ühist avamist */
+.cvs-qcard[data-state="covered"] .cvs-qcard-q,
+.cvs-qcard[data-state="empty"] .cvs-qcard-q {
+  color: var(--text-dim);
+  font-style: italic;
+}
+/* Sinu kaart valmis: vaikne soe serv annab märku */
+.cvs-qcard[data-state="ready"] {
+  border-color: rgba(255, 238, 216, 0.4);
+}
+.cvs-qcard[data-state="ready"] .cvs-qcard-q {
+  color: rgba(255, 238, 216, 0.85);
+  font-style: normal;
+}
+.cvs-qcard[data-state="open"] .cvs-qcard-q {
+  color: var(--text-warm);
+}
+/* Avatud kaart nupuna: klõps = arutatud (hajub, aga jääb loetavaks) */
+.cvs-qcard--btn {
+  cursor: var(--cursor-pointer);
+}
+.cvs-qcard--btn:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.cvs-qcard--btn[data-discussed="1"] {
+  opacity: 0.45;
+}
+
+/* Voo sammud: 1 kirjuta → 2 ava → 3 täpsustame (olekupõhine) */
+.cvs-qsteps {
+  display: flex;
+  justify-content: center;
+  gap: 1.6rem;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: qstep;
+}
+.cvs-qsteps li {
+  counter-increment: qstep;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cvs-qsteps li::before {
+  content: counter(qstep) " · ";
+  color: inherit;
+}
+.cvs-qsteps li[data-on="1"] {
+  color: rgba(255, 238, 216, 0.9);
+}
+.cvs-cell-text--quiet {
+  margin-top: 0.7rem;
+  color: var(--text-dim);
+  font-size: var(--fs-micro);
+}
+
+/* ---------- Abikiht ja tegevused ---------- */
+.cvs-support {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0.9rem 1.1rem 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  width: 100%;
+}
+.cvs-support-list {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.cvs-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  padding-bottom: 0.4rem;
+}
+.cvs-actions button {
+  padding: 0.6em 1.4em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+
+/* ---------- Platseholder (etapid 2–8) ---------- */
+.cvs-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 3rem 1rem 2rem;
+  text-align: center;
+}
+.cvs-placeholder .cvs-actions {
+  margin-top: 1.2rem;
+}
+
+/* ---------- Pausikate ---------- */
+.cvs-pause-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 20px;
+  background: rgba(14, 11, 9, 0.66);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.cvs-pause-title {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--text-warm);
+}
+.cvs-pause-text {
+  margin: 0 0 0.8em;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- Kitsas konteiner (paneel): veerud virna ---------- */
+@container (max-width: 52rem) {
+  .cvs-rail-label {
+    display: none;
+  }
+  .cvs-grid {
+    grid-template-columns: 1fr;
+  }
+  .cvs-hero {
+    order: -1;
+  }
+  .cvs-hero-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   CV1 — 1. etapi täisekraani lõuend (spec v1.1 §29 + Etapp 1 final).
+   Üks roll, üks olek; ausad olekud; kolm klaassügavust: hero eespool,
+   vasak kiht tagapool, parem kaks kihti eri sügavustel; valmisoleku-
+   riba hõljub madalamal. Aktsent (violett) on tagasihoidlik ja ainult
+   aktiivsel/primaarsel olekul — tähendus ei sõltu ainult värvist.
+   ============================================================ */
+.cv1 {
+  --cv1a: 172, 148, 255; /* aktsent */
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  /* Lõuendireegel (11.07): etapp täidab paneeli kõrguse, leht EI keri */
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: clamp(0.5rem, 1vw, 1rem) clamp(1rem, 2.2vw, 2rem) clamp(0.5rem, 1vw, 0.9rem);
+}
+
+/* ---------- Päis ---------- */
+.cv1-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cv1-brand {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+}
+.cv1-exit {
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  color: var(--text-dim);
+  border-radius: 999px;
+  padding: 0.35em 0.85em;
+  font-size: var(--fs-micro);
+  cursor: var(--cursor-pointer);
+  transition: color var(--dur-fast) var(--ease-soft), border-color var(--dur-fast) var(--ease-soft);
+}
+.cv1-exit:hover {
+  color: var(--text-warm);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.cv1-brand-name {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-warm);
+}
+.cv1-brand-sub {
+  margin: 0.1em 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+
+/* Etapirada ühendusjoonega */
+.cv1-rail {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  gap: 0;
+  margin: 0;
+  padding: 0 0.5rem;
+  list-style: none;
+  min-width: 0;
+}
+.cv1-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}
+.cv1-step:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 0.95rem;
+  right: calc(50% + 1.1rem);
+  left: calc(-50% + 1.1rem);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+}
+.cv1-step-dot {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-step-label {
+  font-size: var(--fs-micro);
+  line-height: 1.2;
+  color: var(--text-dim);
+  max-width: 9em;
+}
+.cv1-step[data-state="active"] .cv1-step-dot {
+  color: var(--text-warm);
+  border-color: rgba(var(--cv1a), 0.65);
+  box-shadow: 0 0 12px rgba(var(--cv1a), 0.28);
+}
+.cv1-step[data-state="active"] .cv1-step-label {
+  color: var(--text-soft);
+}
+.cv1-step[data-state="done"] .cv1-step-dot {
+  color: var(--text-soft);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.cv1-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.cv1-tools button {
+  padding: 0.5em 1.05em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.cv1-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.05rem;
+  padding: 0.4em 0.9em;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+}
+.cv1-chip-label {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-chip-value {
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-warm);
+}
+.cv1-chip[data-over="1"] .cv1-chip-value {
+  color: rgba(255, 214, 178, 0.95);
+}
+
+/* Aktsent-primaar: glass.css kanooniline pind + violetne serv */
+.cv1 .cv1-acc {
+  border-color: rgba(var(--cv1a), 0.5);
+  box-shadow: 0 0 18px rgba(var(--cv1a), 0.16);
+}
+.cv1 .cv1-acc:hover:not(:disabled) {
+  border-color: rgba(var(--cv1a), 0.75);
+  box-shadow: 0 0 26px rgba(var(--cv1a), 0.26);
+}
+
+/* ---------- Põhiala: kolm sügavuskihti ---------- */
+.cv1-main {
+  display: grid;
+  grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr) minmax(16rem, 21rem);
+  /* Üks definitiivne rida, et veerud saaks kõrguspiiri (lõuendireegel) */
+  grid-template-rows: minmax(0, 1fr);
+  gap: clamp(0.9rem, 1.6vw, 1.5rem);
+  align-items: start;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+/* Lõuend mahub ekraanile: pikk veerg EI venita lehte, vaid kerib
+   vaikselt oma klaasi sees (tellija lõuendireegel 11.07) */
+.cv1-main > * {
+  max-height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+.cv1-panel {
+  padding: 0.95rem 1.05rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  box-shadow: 0 10px 26px rgba(4, 3, 2, 0.35);
+}
+/* Sügavused: vasak taandub, parem kaks kihti eri kaugusel */
+.cv1-left {
+  transform: scale(0.985);
+  transform-origin: left center;
+  opacity: 0.96;
+}
+.cv1-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.cv1-right .cv1-panel:first-child {
+  transform: scale(0.99);
+  transform-origin: right center;
+}
+.cv1-right .cv1-panel:last-child {
+  transform: scale(0.975);
+  transform-origin: right center;
+  opacity: 0.94;
+}
+.cv1-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 0.65rem;
+}
+.cv1-panel-title {
+  margin: 0;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv1-panel-meta {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.cv1-panel-meta[data-done="1"] {
+  color: rgba(214, 255, 214, 0.75);
+}
+.cv1-panel-btn {
+  margin-top: 0.7rem;
+  width: 100%;
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+.cv1-mini-btn {
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+.cv1-quiet {
+  margin: 0.7rem 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+
+/* Osalejad */
+.cv1-people {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv1-person {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 12px;
+}
+.cv1-person[data-me="1"] {
+  background: rgba(255, 255, 255, 0.045);
+}
+.cv1-avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 50%;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.05em;
+  color: var(--text-soft);
+}
+.cv1-person-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+}
+.cv1-person-name {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv1-me-tag {
+  color: rgba(var(--cv1a), 0.85);
+  font-size: var(--fs-micro);
+}
+.cv1-role-chip {
+  align-self: flex-start;
+  padding: 0.12em 0.6em;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+.cv1-role-chip[data-role="Juhtumi tooja"] {
+  border-color: rgba(var(--cv1a), 0.45);
+  color: rgba(var(--cv1a), 0.9);
+}
+.cv1-role-chip[data-role="Sessiooni juht"] {
+  border-color: rgba(255, 214, 150, 0.4);
+  color: rgba(255, 224, 178, 0.9);
+}
+.cv1-role-chip[data-role="Kokkuvõtte hoidja"] {
+  border-color: rgba(150, 200, 255, 0.35);
+  color: rgba(190, 220, 255, 0.85);
+}
+.cv1-person-state {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-person-state[data-done="1"] {
+  color: rgba(214, 255, 214, 0.7);
+}
+.cv1-ready-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.6rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-cell-border);
+  background: rgba(0, 0, 0, 0.18);
+}
+.cv1-ready-menu button {
+  padding: 0.4em 0.8em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+
+/* Hero — eespool ja sügavama klaasiga */
+.cv1-hero {
+  padding: 1.5rem 1.7rem 1.4rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: var(--card-glass-bg);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    0 22px 54px rgba(4, 3, 2, 0.55);
+}
+.cv1-hero-kicker {
+  margin: 0 0 0.25em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv1-hero-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  color: var(--text-warm);
+}
+.cv1-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.cv1-hero-cols {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.6rem;
+  padding: 0.9rem 0;
+}
+.cv1-hero-fact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.cv1-fact-label {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-fact-value {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv1-seed {
+  border: 0;
+  background: none;
+  padding: 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  cursor: var(--cursor-pointer);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease-soft);
+}
+.cv1-seed:hover {
+  color: var(--text-warm);
+}
+.cv1-case-confirm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(var(--cv1a), 0.3);
+  background: rgba(var(--cv1a), 0.05);
+}
+.cv1-case-confirm button {
+  flex: none;
+  padding: 0.55em 1.2em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.cv1-case-title {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv1-case-sub {
+  margin: 0.2em 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-case-state {
+  margin: 1rem 0 0;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}
+.cv1-case-state[data-done="1"] {
+  border-color: rgba(214, 255, 214, 0.25);
+  color: rgba(214, 255, 214, 0.8);
+}
+
+/* Kokkulepped + seaded */
+.cv1-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv1-list-row {
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  padding-left: 1em;
+  position: relative;
+}
+.cv1-list-row::before {
+  content: "◇";
+  position: absolute;
+  left: 0;
+  color: var(--text-dim);
+  font-size: 0.7em;
+  top: 0.35em;
+}
+.cv1-note {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0;
+}
+.cv1-settings > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+.cv1-settings dt {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-settings dd {
+  margin: 0;
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+  text-align: right;
+}
+
+/* ---------- Valmisoleku riba + värav ---------- */
+.cv1-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.7rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+}
+.cv1-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv1-status button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  border: 0;
+  background: none;
+  padding: 0.25em 0.4em;
+  border-radius: 10px;
+  text-align: left;
+  cursor: var(--cursor-pointer);
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+.cv1-status button:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.cv1-status-k {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv1-status-v {
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+.cv1-gate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+}
+.cv1-gate-btn {
+  padding: 0.65em 2.2em;
+  border-radius: 999px;
+  font-size: 1rem;
+}
+.cv1-gate-hint {
+  margin: 0;
+  max-width: 26rem;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  text-align: right;
+}
+.cv1-gate-hint[data-ok="1"] {
+  color: rgba(214, 255, 214, 0.75);
+}
+
+/* ---------- Demo-vaatevahetaja ---------- */
+.cv1-view {
+  position: fixed;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+  background: rgba(10, 7, 5, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cv1-view-label {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  padding-left: 0.3em;
+}
+.cv1-view-btn {
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+}
+
+/* ---------- Kihid ---------- */
+.cv1-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(8, 6, 4, 0.55);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+}
+.cv1-layer-card {
+  width: min(34rem, 100%);
+  max-height: min(80dvh, 42rem);
+  overflow-y: auto;
+  padding: 1.1rem 1.3rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(165deg, rgba(44, 39, 34, 0.92), rgba(26, 22, 19, 0.94));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+}
+.cv1-layer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0 0 0.9rem;
+  padding: 0;
+  list-style: none;
+}
+.cv1-layer-item-title {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv1-layer-item-detail {
+  margin: 0.15em 0 0;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-layer-card > button[data-variant="primary"] {
+  width: 100%;
+  margin-top: 0.9rem;
+  padding: 0.6em 1.2em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.cv1-people-state {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0.8rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cv1-people-state li {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv1-people-state li[data-done="1"] {
+  color: rgba(214, 255, 214, 0.75);
+}
+.cv1-support-list {
+  margin: 0.8rem 0 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- Kitsas ekraan: kihid virna, rada numbriteks ---------- */
+@media (max-width: 68rem) {
+  .cv1-step-label {
+    display: none;
+  }
+  .cv1-main {
+    grid-template-columns: 1fr;
+  }
+  .cv1-hero {
+    order: -1;
+  }
+  .cv1-left,
+  .cv1-right .cv1-panel {
+    transform: none;
+    opacity: 1;
+  }
+  .cv1-hero-cols {
+    grid-template-columns: 1fr;
+  }
+  .cv1-gate {
+    align-items: stretch;
+    width: 100%;
+  }
+  .cv1-gate-hint {
+    text-align: left;
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv1-left,
+  .cv1-right .cv1-panel {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   CV2 — 2. etapi täisekraani lõuend (spec v1.1 §42.7–42.9).
+   Taaskasutab cv1 kroomi; siin ainult etapi-spetsiifiline:
+   ankrud allikasiltidega, nimetatud seosed, tööfookus, rollide
+   vastutused ja õhuke värav.
+   ============================================================ */
+.cv2-center {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-width: 0;
+}
+.cv2-core {
+  padding-bottom: 1.2rem;
+}
+.cv2-worklabel {
+  margin: -0.6rem 0 0.9rem;
+  font-size: var(--fs-micro);
+  font-style: italic;
+  color: var(--text-dim);
+}
+.cv2-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.cv2-actions button {
+  padding: 0.55em 1.3em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+.cv2-phase {
+  margin: 0.8rem 0 0;
+  padding: 0.55rem 0.7rem;
+  border-radius: 12px;
+  border: 1px solid var(--glass-cell-border);
+  background: rgba(0, 0, 0, 0.14);
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+
+/* Ankrud: klaaskaardid tüübi, sisu ja allikasildiga */
+.cv2-anchors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv2-anchor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.8rem 0.9rem;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  text-align: left;
+  color: inherit;
+  transition:
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+button.cv2-anchor {
+  cursor: var(--cursor-pointer);
+}
+button.cv2-anchor:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+.cv2-anchor[data-investigate="1"] {
+  border-color: rgba(255, 214, 150, 0.45);
+  background: rgba(255, 214, 150, 0.05);
+}
+.cv2-anchor-type {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv2-anchor[data-investigate="1"] .cv2-anchor-type {
+  color: rgba(255, 224, 178, 0.9);
+}
+.cv2-anchor-text {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+  line-height: 1.4;
+}
+.cv2-anchor-source {
+  margin-top: auto;
+  font-size: var(--fs-micro);
+  font-style: italic;
+  color: var(--text-dim);
+}
+.cv2-empty {
+  text-align: center;
+  padding: 1.2rem 0;
+}
+
+/* Nimetatud seosed — kiibirida; ebakindel seos on katkendlik */
+.cv2-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.cv2-links-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv2-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv2-links li {
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+  background: var(--glass-cell-bg);
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+.cv2-links li em {
+  font-style: normal;
+  color: var(--text-dim);
+}
+.cv2-links li[data-sure="0"] {
+  border-style: dashed;
+  border-color: rgba(255, 214, 150, 0.4);
+}
+
+/* Tööfookus — tuuma all, tegutseja nähtav */
+.cv2-focus {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(var(--cv1a), 0.3);
+  background: rgba(var(--cv1a), 0.05);
+}
+.cv2-focus-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--cv1a), 0.9);
+}
+.cv2-focus-wait {
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}
+.cv2-focus-text {
+  flex: 1 1 16rem;
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv2-focus-state {
+  font-size: var(--fs-micro);
+  color: rgba(214, 255, 214, 0.75);
+}
+.cv2-focus[data-state="temp"] .cv2-focus-state {
+  color: var(--text-dim);
+}
+.cv2-focus-input {
+  margin-top: 0.6rem;
+}
+.cv2-focus-btns {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+  flex-wrap: wrap;
+}
+.cv2-focus-btns button {
+  flex: 1 1 auto;
+  padding: 0.55em 1.1em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+}
+
+/* Etapi juhis + rollide vastutused */
+.cv2-guide {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+.cv2-duties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv2-duties li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: baseline;
+}
+.cv2-duties li span:first-child {
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+}
+.cv2-duties li span:last-child {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  text-align: right;
+  white-space: nowrap;
+}
+.cv2-duties li[data-done="1"] span:last-child {
+  color: rgba(214, 255, 214, 0.75);
+}
+
+/* Õhuke värav: vihje vasakul, nupp paremal */
+.cv2-gatebar {
+  justify-content: space-between;
+}
+.cv2-gate-hint {
+  text-align: left;
+  max-width: 40rem;
+}
+
+/* ============================================================
+   CV3 — 3. etapi täisekraani lõuend (spec v1.1 §51.8–51.10).
+   Hero on AKTIIVNE KÜSIMUS; juhtum + tööfookus on kompaktne
+   ankruriba; uurimiskohad on keskel olekutega; parem paneel
+   näitab ainult kompaktset konteksti. Klaas on siin õhulisem
+   (märkus 10: läbipaistvam, õrnem kontuur).
+   ============================================================ */
+.cv3-anchorbar {
+  margin: 0 auto;
+  max-width: 60rem;
+  width: 100%;
+  padding: 0.5em 1.1em;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  text-align: center;
+}
+.cv3-anchorbar strong {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+
+/* Uurimiskohad — olekuga kiibid keskel */
+.cv3-sites {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cv3-site {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+.cv3-site[data-state="active"] {
+  border-color: rgba(var(--cv1a), 0.55);
+  background: rgba(var(--cv1a), 0.06);
+}
+.cv3-site[data-state="done"] {
+  border-color: rgba(214, 255, 214, 0.25);
+}
+.cv3-site-label {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+}
+.cv3-site-state {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.cv3-site[data-state="active"] .cv3-site-state {
+  color: rgba(var(--cv1a), 0.9);
+}
+.cv3-site[data-state="done"] .cv3-site-state {
+  color: rgba(214, 255, 214, 0.7);
+}
+
+/* Faasi hero: kergem klaas kui cv1/cv2, aktiivne küsimus esiplaanil */
+.cv3-hero {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 36px rgba(4, 3, 2, 0.4);
+}
+.cv3-qhero {
+  border-color: rgba(var(--cv1a), 0.35);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.08),
+    0 24px 60px rgba(4, 3, 2, 0.6);
+}
+.cv3-qtext {
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.35;
+}
+.cv3-qmeta {
+  margin: 0 0 0.7em;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.cv3-qmeta strong {
+  color: var(--text-warm);
+  font-weight: 560;
+}
+.cv3-qmeta span {
+  color: var(--text-dim);
+}
+.cv3-qduration {
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+  padding: 0.25em 0.7em;
+  border-radius: 999px;
+  border: 1px solid var(--glass-cell-border);
+}
+.cv3-astate {
+  margin: 0 0 0.4em;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.cv3-astate[data-state="answered"] {
+  color: rgba(214, 255, 214, 0.75);
+}
+
+/* Uurimisplaani loend */
+.cv3-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0 0 0.4rem;
+  padding-left: 1.3em;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+  line-height: 1.45;
+}
+.cv3-plan strong {
+  color: var(--text-warm);
+  font-weight: 560;
+}

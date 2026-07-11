@@ -234,7 +234,8 @@ export async function POST(request) {
         email: true,
         passwordHash: true,
         isAdmin: true,
-        role: true
+        role: true,
+        accessSuspendedAt: true
       }
     });
 
@@ -244,7 +245,7 @@ export async function POST(request) {
       });
     }
 
-    if (!user.passwordHash) {
+    if (!user.passwordHash || user.accessSuspendedAt) {
       return errorJson("api.auth.login.pin_incorrect", 401, locale, {
         code: "PIN_INCORRECT"
       });

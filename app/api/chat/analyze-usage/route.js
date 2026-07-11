@@ -2,13 +2,13 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
-import { resolveSessionRoleState } from "@/lib/authz";
 import { isChatDbOfflineError } from "@/lib/chat/routeServerUtils";
 import { prisma } from "@/lib/prisma";
-import { getAnalyzeLimit, utcDayStart, secondsUntilUtcMidnight } from "@/lib/analyzeQuota";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
+import { getUsagePeriodRange } from "@/lib/usage/periods";
+import { usageService } from "@/lib/usage/service";
 function json(data, status = 200) {
   return NextResponse.json(data, {
     status,
@@ -55,31 +55,53 @@ export async function GET(req) {
     windowMs: CHAT_RATE_LIMIT_WINDOW_MS
   });
   if (rateLimitResponse) return rateLimitResponse;
-  const roleState = resolveSessionRoleState(session, req.cookies);
-  const role = roleState.effectiveRole;
-  const isAdmin = roleState.isAdmin;
-  const limit = getAnalyzeLimit(role, isAdmin);
-  const day = utcDayStart();
   try {
-    const record = await prisma.analyzeUsage.findUnique({
+    const entitlement = await usageService.resolveEntitlement({
+      userId: session.user.id,
+      metric: "FILE_ANALYZE"
+    });
+    const range = getUsagePeriodRange(entitlement.period, new Date(), "Europe/Tallinn");
+    const record = await prisma.usageBucket.findUnique({
       where: {
-        userId_day: {
+        userId_metric_periodStart_periodEnd: {
           userId: session.user.id,
-          day
+          metric: "FILE_ANALYZE",
+          periodStart: range.start,
+          periodEnd: range.end
         }
       },
       select: {
-        count: true
+        used: true,
+        reserved: true
       }
     });
-    const used = record?.count || 0;
+    const used = Number(record?.used || 0n);
+    const reserved = Number(record?.reserved || 0n);
+    const limit = Number(entitlement.hardLimit);
     return json({
       ok: true,
       used,
+      reserved,
       limit,
-      resetSeconds: secondsUntilUtcMidnight()
+      remaining: Math.max(0, limit - used - reserved),
+      resetSeconds: Math.max(1, Math.ceil((range.end.getTime() - Date.now()) / 1000)),
+      resetAt: range.end.toISOString(),
+      period: entitlement.period
     });
   } catch (err) {
+    if (err?.code === "USAGE_NOT_ENTITLED") {
+      return json({
+        ok: true,
+        entitled: false,
+        used: 0,
+        reserved: 0,
+        limit: 0,
+        remaining: 0,
+        resetSeconds: null,
+        resetAt: null,
+        period: null
+      });
+    }
     console.error("[chat/analyze-usage GET] failed", safeError(err));
     if (isChatDbOfflineError(err)) {
       return errorJson("api.chat.db_unavailable", 503, locale, {

@@ -21,7 +21,6 @@ function makeBootstrapDeps({ documentWorkflowState = null, helpWorkflowState = n
     enforceChatRateLimit: () => null,
     resolveSessionRoleState: () => ({ effectiveRole: "SOCIAL_WORKER", isAdmin: false }),
     requireSubscription: async () => ({ ok: true }),
-    canSpendMonthlyBudget: async () => ({ allowed: true }),
     getHelpWorkflowState: async () => helpWorkflowState,
     detectHelpChatIntent: () => null,
     shouldAllowChatWithoutSubscription: () => false,

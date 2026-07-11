@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import UsageAdminPanel from "@/components/admin/usage/UsageAdminPanel";
+import DeletionJobsPanel from "@/components/admin/usage/DeletionJobsPanel";
 
 function LoadingFallback() {
   const { t } = useI18n();
@@ -21,5 +23,9 @@ const AnalyticsDashboard = dynamic(() => import("@/components/admin/AnalyticsDas
   loading: () => <LoadingFallback />
 });
 export default function AdminAnalyticsClient() {
-  return <AnalyticsDashboard />;
+  return <>
+      <AnalyticsDashboard />
+      <UsageAdminPanel />
+      <DeletionJobsPanel />
+    </>;
 }

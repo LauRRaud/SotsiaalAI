@@ -46,26 +46,81 @@
     translate3d(calc(var(--pos) * var(--gc-spacing) + var(--drag)), 0, 0)
     rotateY(calc(var(--pos) * 19deg))
     scale(calc(1 - min(var(--abs), 2.2) * 0.19));
-  transition: transform 860ms var(--ease-soft), opacity 640ms var(--ease-soft);
+  /* Sisse-hajumine kiire (220 ms) — sisenev äärekaart ei tohi pöördest
+     maha jääda; välja-hajumine elab [data-hidden] reeglis (sihtoleku
+     transition võidab). */
+  transition: transform 480ms var(--ease-soft), opacity 220ms var(--ease-soft);
   opacity: 1;
   will-change: transform;
 }
 /* Rea peidus olevad kaardid: nähtamatud ja parkides serva taga
    (--pos on JS-is klammerdatud ±1.4 peale) — liikumine võib olla
-   sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. */
+   sujuv, sest opacity 0 katab ka ringi-ümberpaigutuse. Lahkuv kaart
+   hajub rahulikult (400 ms). */
 .gc-item[data-hidden="1"] {
   opacity: 0;
   pointer-events: none;
+  transition: transform 480ms var(--ease-soft), opacity 400ms var(--ease-soft);
 }
 /* Ringi-õmblus (data-warp): kaart hüppab üle poole ringi teisele poole —
    transform tehakse HETKEGA (ei lenda üle esiplaani), aga opacity hajub
    endiselt sujuvalt. Nii ei näe väikeses komplektis (haldus) äärmise
    kaardi ülelendu, vaid ta lihtsalt taandub/hajub oma poolel. */
 .gc-item[data-warp="1"] {
-  transition: opacity 640ms var(--ease-soft);
+  transition: opacity 400ms var(--ease-soft);
 }
 .gc-list[data-dragging="1"] .gc-item {
   transition: none;
+}
+
+/* ---------- 5 nähtavat kaarti (töölaud/tööheaolu komplektid, tellija
+   10.07): kitsamad kaardid, tihedam samm, lamedam pööre — viis klaasi
+   mahuvad ritta. data-visible tuleb GlassCarouselist (laiuse mõõt JS-is,
+   kitsas kukub tagasi 3 peale). ---------- */
+.gc[data-visible="5"] {
+  --gc-w: clamp(11.5rem, 16vw, 14.5rem);
+}
+.gc[data-visible="5"] .gc-list {
+  --gc-spacing: calc(var(--gc-w) * 1.04);
+}
+/* Lame pööre (10°) ja LEEBE kahanemine (7%/samm) — järsk skaala tegi
+   kaartide vahed silmale ebaühtlaseks (tellija 10.07). Välimine samm
+   (±1→±2) on SISSEPOOLE surutud (×0.78): äärekaardid ei valgu ekraani
+   servadesse (tellija 10.07); sisemine samm jääb täislaiuseks. */
+.gc[data-visible="5"] .gc-item {
+  transform: translate(-50%, -50%)
+    translate3d(
+      calc(
+        (clamp(-1, var(--pos), 1) + (var(--pos) - clamp(-1, var(--pos), 1)) * 0.86) *
+        var(--gc-spacing) + var(--drag)
+      ),
+      0,
+      0
+    )
+    rotateY(calc(var(--pos) * 10deg))
+    scale(calc(1 - min(var(--abs), 2.6) * 0.07));
+}
+/* Sisu kahaneb kaardiga kaasa: väiksem ikoon + silt, mis MAHUB kaardile
+   (tellija 10.07: "tekstid jooksevad kaartidelt välja") */
+.gc[data-visible="5"] .gc-icon svg {
+  width: clamp(3rem, 3.7vw, 3.7rem);
+  height: clamp(3rem, 3.7vw, 3.7rem);
+}
+.gc[data-visible="5"] .gc-label {
+  font-size: clamp(0.76rem, 0.62rem + 0.42vw, 0.95rem);
+  letter-spacing: 0.11em;
+  padding: 0 0.7em 0 calc(0.7em + 0.11em);
+}
+.gc[data-visible="5"] .gc-label[data-long="1"] {
+  font-size: clamp(0.7rem, 0.58rem + 0.36vw, 0.86rem);
+  letter-spacing: 0.09em;
+}
+/* Nooled kohe äärekaardi kõrval, mitte ekraani servas (tellija 10.07) */
+.gc[data-visible="5"] .gc-arrow--left {
+  right: calc(50% + var(--gc-w) * 2.42 + 0.4rem);
+}
+.gc[data-visible="5"] .gc-arrow--right {
+  left: calc(50% + var(--gc-w) * 2.42 + 0.4rem);
 }
 
 /* ---------- Käivituse faas 1: klaasid ilmuvad omal kohal, tühjadena,
@@ -152,7 +207,7 @@ html[data-reduce-motion="1"] .gc-item {
 }
 .gc-item[data-center="1"]::before {
   opacity: 1;
-  transition: opacity 480ms var(--ease-soft) 560ms;
+  transition: opacity 360ms var(--ease-soft) 300ms;
 }
 
 /* ---------- Ikoon + nimi (käivituse faas 2: sisu joonistub järele) ---------- */

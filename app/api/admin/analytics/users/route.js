@@ -3,7 +3,6 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
-import { getAnalyzeLimitDetails, utcDayStart } from "@/lib/analyzeQuota";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { getMailer } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
@@ -18,6 +17,8 @@ import {
   estimateUsageCostEur,
   getMonthlyCostBudgetForRole
 } from "@/lib/usageBudget";
+import { getUsagePeriodRange } from "@/lib/usage/periods";
+import { getRoleMonthlyAmount, PLAN_DEFINITION_IDS } from "@/lib/subscriptionPlans";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -192,8 +193,7 @@ export async function GET(req) {
     const offset = Math.max(0, Number.isFinite(offsetRaw) ? offsetRaw : 0);
     const periodDays = Math.min(MAX_PERIOD_DAYS, Math.max(1, Number.isFinite(daysRaw) ? daysRaw : DEFAULT_PERIOD_DAYS));
     const since = new Date(Date.now() - periodDays * 24 * 60 * 60 * 1000);
-    const sinceDay = utcDayStart(since);
-    const todayDay = utcDayStart(now);
+    const todayRange = getUsagePeriodRange("DAILY", now, "Europe/Tallinn");
 
     const userWhere = q
       ? {
@@ -248,7 +248,10 @@ export async function GET(req) {
     const [
       usageEventRows,
       usageAmountRows,
-      analyzeRows,
+      analyzePeriodRows,
+      analyzeTodayRows,
+      currentAnalyzeBuckets,
+      analyzeOverrides,
       subscriptions,
       paidByUser
     ] = await Promise.all([
@@ -275,15 +278,56 @@ export async function GET(req) {
           data: true
         }
       }),
-      prisma.analyzeUsage.findMany({
+      prisma.usageEvent.groupBy({
+        by: ["userId"],
         where: {
           userId: { in: userIds },
-          day: { gte: sinceDay }
+          metric: "FILE_ANALYZE",
+          type: "COMMITTED",
+          createdAt: { gte: since }
+        },
+        _sum: { amount: true }
+      }),
+      prisma.usageEvent.groupBy({
+        by: ["userId"],
+        where: {
+          userId: { in: userIds },
+          metric: "FILE_ANALYZE",
+          type: "COMMITTED",
+          createdAt: { gte: todayRange.start, lt: todayRange.end }
+        },
+        _sum: { amount: true }
+      }),
+      prisma.usageBucket.findMany({
+        where: {
+          userId: { in: userIds },
+          metric: "FILE_ANALYZE",
+          periodStart: { lte: now },
+          periodEnd: { gt: now }
         },
         select: {
           userId: true,
-          day: true,
-          count: true
+          period: true,
+          hardLimit: true,
+          used: true,
+          reserved: true,
+          periodEnd: true
+        },
+        orderBy: { updatedAt: "desc" }
+      }),
+      prisma.userEntitlementOverride.findMany({
+        where: {
+          userId: { in: userIds },
+          metric: "FILE_ANALYZE",
+          validFrom: { lte: now },
+          OR: [{ validUntil: null }, { validUntil: { gt: now } }]
+        },
+        orderBy: [{ validFrom: "desc" }, { createdAt: "desc" }],
+        select: {
+          userId: true,
+          enabled: true,
+          hardLimit: true,
+          period: true
         }
       }),
       prisma.subscription.findMany({
@@ -294,6 +338,13 @@ export async function GET(req) {
           userId: true,
           status: true,
           plan: true,
+          planDefinitionId: true,
+          planDefinition: {
+            select: {
+              key: true,
+              price: true
+            }
+          },
           validUntil: true,
           nextBilling: true,
           canceledAt: true,
@@ -362,14 +413,28 @@ export async function GET(req) {
       ])
     );
 
-    for (const row of analyzeRows) {
+    for (const row of analyzePeriodRows) {
       const userId = row?.userId;
       if (!userId || !analyzeUsageByUser[userId]) continue;
+      analyzeUsageByUser[userId].totalInPeriod = Number(row?._sum?.amount || 0n);
+    }
 
-      const count = Number(row?.count || 0);
-      analyzeUsageByUser[userId].totalInPeriod += count;
-      if (row?.day instanceof Date && row.day.getTime() === todayDay.getTime()) {
-        analyzeUsageByUser[userId].today += count;
+    for (const row of analyzeTodayRows) {
+      const userId = row?.userId;
+      if (!userId || !analyzeUsageByUser[userId]) continue;
+      analyzeUsageByUser[userId].today = Number(row?._sum?.amount || 0n);
+    }
+
+    const currentAnalyzeBucketByUser = {};
+    for (const row of currentAnalyzeBuckets) {
+      if (row?.userId && !currentAnalyzeBucketByUser[row.userId]) {
+        currentAnalyzeBucketByUser[row.userId] = row;
+      }
+    }
+    const analyzeOverrideByUser = {};
+    for (const row of analyzeOverrides) {
+      if (row?.userId && !analyzeOverrideByUser[row.userId]) {
+        analyzeOverrideByUser[row.userId] = row;
       }
     }
 
@@ -378,6 +443,26 @@ export async function GET(req) {
       if (!row?.userId) continue;
       if (!latestSubscriptionByUser[row.userId]) latestSubscriptionByUser[row.userId] = row;
     }
+
+    const planDefinitionIds = Array.from(new Set([
+      ...subscriptions.map(row => row.planDefinitionId).filter(Boolean),
+      PLAN_DEFINITION_IDS.admin_internal
+    ]));
+    const analyzePlanEntitlements = await prisma.planEntitlement.findMany({
+      where: {
+        planDefinitionId: { in: planDefinitionIds },
+        metric: "FILE_ANALYZE"
+      },
+      select: {
+        planDefinitionId: true,
+        enabled: true,
+        hardLimit: true,
+        period: true
+      }
+    });
+    const analyzePlanEntitlementByPlanId = Object.fromEntries(
+      analyzePlanEntitlements.map(row => [row.planDefinitionId, row])
+    );
 
     const paidByUserMap = {};
     for (const row of paidByUser) {
@@ -394,7 +479,22 @@ export async function GET(req) {
       const usage = usageByUser[user.id] || buildUsageSeed();
       const analyzeUsage = analyzeUsageByUser[user.id] || { totalInPeriod: 0, today: 0 };
       const latestSubscription = latestSubscriptionByUser[user.id] || null;
-      const analyzeLimit = getAnalyzeLimitDetails(String(user.role || "CLIENT").toUpperCase(), !!user.isAdmin);
+      const analyzeBucket = currentAnalyzeBucketByUser[user.id] || null;
+      const analyzeOverride = analyzeOverrideByUser[user.id] || null;
+      const planDefinitionId = user.isAdmin
+        ? PLAN_DEFINITION_IDS.admin_internal
+        : latestSubscription?.planDefinitionId || null;
+      const analyzePlanEntitlement = planDefinitionId
+        ? analyzePlanEntitlementByPlanId[planDefinitionId] || null
+        : null;
+      const analyzeEnabled = analyzeOverride?.enabled ?? analyzePlanEntitlement?.enabled ?? false;
+      const analyzeHardLimit = analyzeEnabled
+        ? Number(analyzeBucket?.hardLimit ?? analyzeOverride?.hardLimit ?? analyzePlanEntitlement?.hardLimit ?? 0n)
+        : 0;
+      const analyzeUsed = Number(analyzeBucket?.used || 0n);
+      const analyzeReserved = Number(analyzeBucket?.reserved || 0n);
+      const analyzePeriod = analyzeBucket?.period || analyzeOverride?.period || analyzePlanEntitlement?.period || null;
+      const analyzePeriodEnd = analyzeBucket?.periodEnd || null;
 
       const estimatedCosts = estimateUsageCostEur(usage);
       const chatCost = Number(estimatedCosts.chatEur || 0);
@@ -406,8 +506,10 @@ export async function GET(req) {
       const budget = Number(getMonthlyCostBudgetForRole(String(user.role || "CLIENT").toUpperCase(), !!user.isAdmin) || 0);
       const remainingBudget = Math.max(0, budget - totalCost);
       const utilizationPct = budget > 0 ? Math.min(100, (totalCost / budget) * 100) : 0;
-      const analyzeUtilizationPct = analyzeLimit.limit > 0 ? Math.min(100, (analyzeUsage.today / analyzeLimit.limit) * 100) : 0;
-      const analyzeRemainingToday = Math.max(0, analyzeLimit.limit - analyzeUsage.today);
+      const analyzeUtilizationPct = analyzeHardLimit > 0
+        ? Math.min(100, ((analyzeUsed + analyzeReserved) / analyzeHardLimit) * 100)
+        : 0;
+      const analyzeRemaining = Math.max(0, analyzeHardLimit - analyzeUsed - analyzeReserved);
 
       totalEstimatedCost += totalCost;
       totalPaidAmount += paidAmount;
@@ -435,12 +537,21 @@ export async function GET(req) {
             }
           : null,
         limits: {
-          analyzeDaily: analyzeLimit.limit,
-          analyzeBaseDaily: analyzeLimit.baseLimit,
-          analyzeToday: analyzeUsage.today,
-          analyzeRemainingToday,
+          analyzePeriod,
+          analyzePeriodEnd,
+          analyzeHardLimit,
+          analyzeUsed,
+          analyzeReserved,
+          analyzeRemaining,
+          analyzeDaily: analyzeHardLimit,
+          analyzeBaseDaily: analyzeHardLimit,
+          analyzeToday: analyzeUsed,
+          analyzeRemainingToday: analyzeRemaining,
           analyzeUtilizationPct: round2(analyzeUtilizationPct),
-          planAmountEur: round2(analyzeLimit.monthlyAmount || 0)
+          planAmountEur: round2(
+            latestSubscription?.planDefinition?.price ??
+            getRoleMonthlyAmount(String(user.role || "CLIENT").toUpperCase())
+          )
         },
         usage: {
           chatRequests: usage.chatRequests,
@@ -558,20 +669,27 @@ export async function DELETE(req) {
       });
     }
 
+    const deletionResults = [];
     for (const userId of deletableIds) {
-      await deleteUserWithPrivacyCleanup({
+      const result = await deleteUserWithPrivacyCleanup({
         actorUserId: ownUserId || String(session?.user?.id || ""),
         targetUserId: userId,
         reason: "admin_analytics_users_delete",
         ipAddress: req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || null,
         userAgent: req.headers.get("user-agent") || null
       });
+      deletionResults.push({ userId, ...result });
     }
+
+    const deletedIds = deletionResults.filter(result => result.ok).map(result => result.userId);
+    const pendingIds = deletionResults.filter(result => result.pending).map(result => result.userId);
 
     return json({
       ok: true,
-      deletedCount: deletableIds.length,
-      deletedIds: deletableIds,
+      deletedCount: deletedIds.length,
+      deletedIds,
+      pendingCount: pendingIds.length,
+      pendingIds,
       blocked: {
         self: selfSelected,
         admins: selectedUsers.filter(user => user.isAdmin).map(user => user.id)

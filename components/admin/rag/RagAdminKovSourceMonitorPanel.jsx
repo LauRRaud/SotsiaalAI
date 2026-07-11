@@ -94,39 +94,50 @@ export default function RagAdminKovSourceMonitorPanel() {
   const sourceMonitorDisabled = Boolean(status?.disabled);
 
   return (
-    <section aria-label="KOV veebiallikate seire">
-      <h2>KOV veebiallikate seire</h2>
-      <p>
+    <section aria-label="KOV veebiallikate seire" className="ra-card">
+      <h2 className="ra-card-title">KOV veebiallikate seire</h2>
+      <p className="ra-card-sub">
         Kontrollib kõigi `KOV/*/*.sources.json` allikate ametlikke URL-e ja kirjutab kõrvale kandidaatfailid.
         See ei uuenda teenuste JSON-i ega RAG markdowni, vaid loob lehtede muutuste baasjoone ja raporti.
       </p>
 
-      <div>
-        <div>
-          <div>Seis</div>
-          <div>{statusText(status)}</div>
+      <div className="ra-stats ra-stats--mini">
+        <div
+          className="ra-stat"
+          data-tone={
+            sourceMonitorDisabled
+              ? "dim"
+              : (status?.report?.baselineMissing || 0) > 0 || (status?.report?.changedSources || 0) > 0
+                ? "warn"
+                : "ok"
+          }
+        >
+          <span className="ra-stat-label">Seis</span>
+          <span className="ra-stat-value ra-stat-value--text">{statusText(status)}</span>
         </div>
-        <div>
-          <div>KOV failid</div>
-          <div>{formatValue(status?.sourceFiles)}</div>
+        <div className="ra-stat">
+          <span className="ra-stat-label">KOV failid</span>
+          <span className="ra-stat-value">{formatValue(status?.sourceFiles)}</span>
         </div>
-        <div>
-          <div>Muudatused</div>
-          <div>{formatValue(status?.report?.changedSources)}</div>
+        <div className="ra-stat" data-tone={Number(status?.report?.changedSources || 0) > 0 ? "warn" : "neutral"}>
+          <span className="ra-stat-label">Muudatused</span>
+          <span className="ra-stat-value">{formatValue(status?.report?.changedSources)}</span>
         </div>
-        <div>
-          <div>Baasjooneta</div>
-          <div>{formatValue(status?.report?.baselineMissing)}</div>
+        <div className="ra-stat" data-tone={Number(status?.report?.baselineMissing || 0) > 0 ? "warn" : "neutral"}>
+          <span className="ra-stat-label">Baasjooneta</span>
+          <span className="ra-stat-value">{formatValue(status?.report?.baselineMissing)}</span>
         </div>
       </div>
 
-      <div>
+      <div className="ra-form-row">
         <input
           value={slug}
           onChange={(event) => setSlug(event.target.value)}
           placeholder="slug, nt viimsi-vald"
           aria-label="KOV slug"
         />
+      </div>
+      <div className="ra-actions">
         <Button type="button" variant="primary" size="sm" onClick={loadStatus} disabled={busy}>
           Kontrolli seisu
         </Button>
@@ -138,11 +149,11 @@ export default function RagAdminKovSourceMonitorPanel() {
         </Button>
       </div>
 
-      {message ? <p>{message}</p> : null}
+      {message ? <p className="ra-status">{message}</p> : null}
       {items.length > 0 ? (
-        <div aria-label="KOV allikate muudatused">
+        <div aria-label="KOV allikate muudatused" className="ra-changes">
           {items.map((item, index) => (
-            <div key={`${item.slug}-${item.sourceKey}-${index}`}>
+            <div key={`${item.slug}-${item.sourceKey}-${index}`} className="ra-change">
               <div>{item.slug || "-"}</div>
               <div>{item.title || item.sourceKey || item.url || "-"}</div>
               <div>{item.status || "-"}</div>
@@ -150,10 +161,10 @@ export default function RagAdminKovSourceMonitorPanel() {
           ))}
         </div>
       ) : status?.reportExists ? (
-        <p>Viimases raportis muutunud allikaid ei olnud.</p>
+        <p className="ra-log">Viimases raportis muutunud allikaid ei olnud.</p>
       ) : null}
       {status?.reportExists ? (
-        <p>
+        <p className="ra-log">
           Raport: {status.report.reportFile}; kontrollitud URL-e: {formatValue(status.report.checkedUrls)}.
           {status.report.appliedAt ? ` Rakendatud: ${status.report.appliedAt}.` : ""}
         </p>

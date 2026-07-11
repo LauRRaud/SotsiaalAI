@@ -111,51 +111,52 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
     : remediationFocus?.focus || "";
 
   return (
-    <div>
+    <div className="ra-shell-flow">
       <RagAdminAlert message={message} onDismiss={() => setMessage(null)} />
 
-      <div>
-        <div>
-          <div>
-            <span>{et ? "Ettevalmistuskiht." : "Preparation layer."}</span>{" "}
-            {et
-              ? "Organisatsioonide RAG haldus on vanem paketipohine toovoog. KOV, RT ja knowledge-doc kihid on sellest eraldi ning see vaade ei tohiks naidata naidisridu pariselt ingestitud allikatena."
-              : "Organization RAG admin is an older package-based workflow. KOV, RT, and knowledge-doc layers are separate, and this view must not present example rows as real ingested sources."}
-          </div>
+      <div className="ra-note">
+        <strong>{et ? "Ettevalmistuskiht." : "Preparation layer."}</strong>{" "}
+        {et
+          ? "Organisatsioonide RAG haldus on vanem paketipohine toovoog. KOV, RT ja knowledge-doc kihid on sellest eraldi ning see vaade ei tohiks naidata naidisridu pariselt ingestitud allikatena."
+          : "Organization RAG admin is an older package-based workflow. KOV, RT, and knowledge-doc layers are separate, and this view must not present example rows as real ingested sources."}
+      </div>
 
-          <div>
-            <div>
-              {et ? `Kirjeid: ${filteredItems.length}` : `Entries: ${filteredItems.length}`}
-            </div>
-          </div>
-
-          <div>
+      <div className="ra-card">
+        <div className="ra-toolbar">
+          <div className="ra-toolbar-search">
             <Input
               value={query}
               onChange={event => setQuery(event.target.value)}
               placeholder={et ? "Otsi nime, fookuse voi marksona jargi" : "Search by name, focus, or keyword"}
               size="sm"
             />
-            <select value={type} onChange={event => setType(event.target.value)}>
-              {typeOptions.map(option => (
-                <option key={option.value} value={option.value}>
-                  {TYPE_LABELS[option.value] || option.label}
-                </option>
-              ))}
-            </select>
-            <select value={activity} onChange={event => setActivity(event.target.value)}>
-              <option value="ACTIVE">{et ? "Ainult aktiivsed" : "Active only"}</option>
-              <option value="INACTIVE">{et ? "Ainult mitteaktiivsed" : "Inactive only"}</option>
-              <option value="ALL">{et ? "Koik" : "All"}</option>
-            </select>
           </div>
+          <select value={type} onChange={event => setType(event.target.value)}>
+            {typeOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {TYPE_LABELS[option.value] || option.label}
+              </option>
+            ))}
+          </select>
+          <select value={activity} onChange={event => setActivity(event.target.value)}>
+            <option value="ACTIVE">{et ? "Ainult aktiivsed" : "Active only"}</option>
+            <option value="INACTIVE">{et ? "Ainult mitteaktiivsed" : "Inactive only"}</option>
+            <option value="ALL">{et ? "Koik" : "All"}</option>
+          </select>
+        </div>
 
-          <div>
-            <div>
+        <div className="ra-toolbar">
+          <span className="ra-chip" data-tone="dim">
+            {et ? `Kirjeid: ${filteredItems.length}` : `Entries: ${filteredItems.length}`}
+          </span>
+          <div className="ra-toolbar-meta">
+            <span>
               {et
                 ? "Naidisorganisatsioonid on vaikimisi peidetud. Ingest on lubatud ainult valmis paketile."
                 : "Example organizations are hidden by default. Ingest is available only for ready packages."}
-            </div>
+            </span>
+          </div>
+          <div className="ra-actions">
             {examplePlaceholderCount ? (
               <Button
                 variant="primary"
@@ -190,11 +191,10 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
         </div>
       </div>
 
-      <div>
-        <div>
-          <div>
-            <div>
-              <table>
+      <div className="ra-split">
+        <div className="ra-card">
+          <div className="ra-tablewrap">
+              <table className="ra-table">
                 <thead>
                   <tr>
                     <th>
@@ -217,6 +217,7 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                     return (
                       <tr
                         key={item.slug}
+                        data-selected={selectedEntry?.slug === item.slug ? "true" : undefined}
                         onClick={() => setSelectedSlug(item.slug)}
                       >
                         <td onClick={event => event.stopPropagation()}>
@@ -229,19 +230,47 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                           />
                         </td>
                         <td>
-                          <div>{item.displayName}</div>
-                          <div>{item.slug}</div>
+                          <div className="ra-td-main">{item.displayName}</div>
+                          <div className="ra-td-sub ra-mono">{item.slug}</div>
                         </td>
                         <td>{TYPE_LABELS[item.type] || item.type}</td>
                         <td>{item.focus || "-"}</td>
                         <td>
-                          <div>
+                          <div className="ra-chiprow">
                             {item.isSeedPlaceholder ? (
-                              <span>{et ? "Naidis" : "Example"}</span>
+                              <span className="ra-chip" data-tone="dim">{et ? "Naidis" : "Example"}</span>
                             ) : null}
-                            <span>{readinessLabel(item.crawlReadiness, et)}</span>
-                            <span>{packageLabel(item.packageSummary?.state, et)}</span>
-                            <span>{ingestLabel(item.ingestStatus, et)}</span>
+                            <span className="ra-chip" data-tone={item.crawlReadiness === "READY" ? "ok" : item.crawlReadiness === "REVIEW" ? "warn" : "dim"}>
+                              {readinessLabel(item.crawlReadiness, et)}
+                            </span>
+                            <span
+                              className="ra-chip"
+                              data-tone={
+                                item.packageSummary?.state === "READY" || item.packageSummary?.state === "FILES_READY"
+                                  ? "ok"
+                                  : item.packageSummary?.state === "INVALID"
+                                    ? "err"
+                                    : item.packageSummary?.state === "PARTIAL"
+                                      ? "warn"
+                                      : "dim"
+                              }
+                            >
+                              {packageLabel(item.packageSummary?.state, et)}
+                            </span>
+                            <span
+                              className="ra-chip"
+                              data-tone={
+                                item.ingestStatus === "INGESTED"
+                                  ? "ok"
+                                  : item.ingestStatus === "ERROR"
+                                    ? "err"
+                                    : item.ingestStatus === "READY" || item.ingestStatus === "INGESTING"
+                                      ? "warn"
+                                      : "dim"
+                              }
+                            >
+                              {ingestLabel(item.ingestStatus, et)}
+                            </span>
                           </div>
                         </td>
                       </tr>
@@ -249,38 +278,37 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                   })}
                 </tbody>
               </table>
-            </div>
           </div>
         </div>
 
-        <div>
-          <div>
+        <div className="ra-card">
+          <div className="ra-form">
             {selectedEntry ? (
               <>
                 {remediationFocus ? (
-                  <div>
-                    <span>{et ? "Quality queue siht" : "Quality queue target"}:</span>{" "}
+                  <div className="ra-note">
+                    <strong>{et ? "Quality queue siht" : "Quality queue target"}:</strong>{" "}
                     {focusHint || (et ? "kontrolli selle kirje metadata't" : "review this record metadata")}
                   </div>
                 ) : null}
 
-                <div>
+                <div className="ra-card-head">
                   <div>
-                    <div>{selectedEntry.displayName}</div>
-                    <div>
+                    <div className="ra-card-title">{selectedEntry.displayName}</div>
+                    <p className="ra-card-sub">
                       {selectedEntry.isSeedPlaceholder
                         ? et ? "Vanast seedist parit naidisrida. Lisa parispaketi failid voi kasuta uut knowledge-doc/KOV kihti vastavalt allikatubile."
                           : "Old seeded example row. Add a real package or use the KOV/knowledge-doc layer according to source type."
                         : et ? "Pusiandmed, tuumfailid ja lisafailid." : "Persistent data, core files, and attachments."}
-                    </div>
+                    </p>
                   </div>
-                  <span>{packageLabel(selectedEntry.packageSummary?.state, et)}</span>
+                  <span className="ra-chip">{packageLabel(selectedEntry.packageSummary?.state, et)}</span>
                 </div>
 
-                <div>
+                <div className="ra-kv">
                   <div>
                     <span>Slug</span>
-                    <span>{selectedEntry.slug}</span>
+                    <span className="ra-mono">{selectedEntry.slug}</span>
                   </div>
                   <div>
                     <span>{et ? "Tuup" : "Type"}</span>
@@ -306,8 +334,8 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                   </div>
                 </div>
 
-                <div>
-                  <div>
+                <div className="ra-form">
+                  <div className="ra-form-grid">
                     <Input
                       value={detailDraft.displayName}
                       onChange={event => updateDraft("displayName", event.target.value)}
@@ -375,7 +403,7 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                     rows={5}
                   />
 
-                  <div>
+                  <div className="ra-actions">
                     <Button
                       variant="primary"
                       size="sm"
@@ -401,20 +429,19 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                   </div>
                 </div>
 
-                <div>
-                  <div>
-                    <div>{et ? "Paketi valmidus" : "Package readiness"}</div>
-                    <span>{packageLabel(selectedEntry.packageSummary?.state, et)}</span>
+                <div className="ra-form">
+                  <div className="ra-card-head">
+                    <div className="ra-label">{et ? "Paketi valmidus" : "Package readiness"}</div>
+                    <span className="ra-chip">{packageLabel(selectedEntry.packageSummary?.state, et)}</span>
                   </div>
-                  <div>
+                  <div className="ra-td-sub">
                     {et ? `Tuumfailid: ${selectedEntry.packageSummary?.presentCount || 0}/${selectedEntry.packageSummary?.totalCount || 4}.`
                       : `Core files: ${selectedEntry.packageSummary?.presentCount || 0}/${selectedEntry.packageSummary?.totalCount || 4}.`}
-                  </div>
-                  <div>
+                    {" "}
                     {et ? `Valid: ${selectedEntry.packageSummary?.validCount || 0}/${selectedEntry.packageSummary?.totalCount || 4}.`
                       : `Valid: ${selectedEntry.packageSummary?.validCount || 0}/${selectedEntry.packageSummary?.totalCount || 4}.`}
                   </div>
-                  <div>
+                  <div className="ra-actions">
                     <Button
                       variant="primary"
                       size="sm"
@@ -436,21 +463,32 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                         : et ? "Ingest RAG-i" : "Ingest to RAG"}
                     </Button>
                   </div>
-                  <div>
-                    <div>
-                      <span>{ingestLabel(selectedEntry.ingestStatus, et)}</span>
-                      {selectedEntry.ragDocId ? <span>{selectedEntry.ragDocId}</span> : null}
+                  <div className="ra-form">
+                    <div className="ra-chiprow">
+                      <span
+                        className="ra-chip"
+                        data-tone={
+                          selectedEntry.ingestStatus === "INGESTED"
+                            ? "ok"
+                            : selectedEntry.ingestStatus === "ERROR"
+                              ? "err"
+                              : "dim"
+                        }
+                      >
+                        {ingestLabel(selectedEntry.ingestStatus, et)}
+                      </span>
+                      {selectedEntry.ragDocId ? <span className="ra-mono">{selectedEntry.ragDocId}</span> : null}
                     </div>
                     {selectedEntry.lastIngestedAt ? (
-                      <div>
+                      <div className="ra-td-sub">
                         {et ? "Viimati ingestitud" : "Last ingested"}: {formatDateTime(selectedEntry.lastIngestedAt, locale)}
                       </div>
                     ) : null}
                     {selectedEntry.lastIngestError ? (
-                      <div>{selectedEntry.lastIngestError}</div>
+                      <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>{selectedEntry.lastIngestError}</div>
                     ) : null}
                     {selectedEntry.ingestSummary?.blockingIssues?.length ? (
-                      <div>
+                      <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>
                         {selectedEntry.ingestSummary.blockingIssues.join(". ")}
                       </div>
                     ) : null}
@@ -458,27 +496,27 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                 </div>
 
                 {selectedEntry.packageValidation ? (
-                  <div>
-                    <div>
+                  <div className="ra-form">
+                    <div className="ra-card-head">
                       <div>
-                        <div>{et ? "Organisatsiooni metadata audit" : "Organization metadata audit"}</div>
-                        <div>
+                        <div className="ra-label">{et ? "Organisatsiooni metadata audit" : "Organization metadata audit"}</div>
+                        <div className="ra-td-sub">
                           {et ? "Kontrollib 4 tuumfaili, sourceKeys viiteid ja remote URL materjale." : "Checks the 4 core files, sourceKeys references, and remote URL materials."}
                         </div>
                       </div>
-                      <div>
-                        <span>
+                      <div className="ra-chiprow">
+                        <span className="ra-chip" data-tone={selectedEntry.packageValidation.ok ? "ok" : "err"}>
                           {selectedEntry.packageValidation.ok ? (et ? "Validation OK" : "Validation OK") : (et ? "Validation viga" : "Validation error")}
                         </span>
-                        <span>
+                        <span className="ra-chip" data-tone={selectedEntry.packageValidation.ingest_ready ? "ok" : "dim"}>
                           ingestReady: {selectedEntry.packageValidation.ingest_ready ? "true" : "false"}
                         </span>
                       </div>
                     </div>
-                    <div>
+                    <div className="ra-kv">
                       <div>
                         <span>RAG docId</span>
-                        <span>{selectedEntry.packageValidation.rag_doc_id}</span>
+                        <span className="ra-mono">{selectedEntry.packageValidation.rag_doc_id}</span>
                       </div>
                       <div>
                         <span>sourceCount</span>
@@ -490,61 +528,59 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                       </div>
                     </div>
                     {selectedEntry.packageValidation.errors?.length ? (
-                      <div>{selectedEntry.packageValidation.errors.join(". ")}</div>
+                      <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>{selectedEntry.packageValidation.errors.join(". ")}</div>
                     ) : null}
                     {selectedEntry.packageValidation.warnings?.length ? (
-                      <div>{selectedEntry.packageValidation.warnings.join(". ")}</div>
+                      <div className="ra-td-sub" style={{ color: "var(--dusk-glow)" }}>{selectedEntry.packageValidation.warnings.join(". ")}</div>
                     ) : null}
                   </div>
                 ) : null}
 
                 {selectedEntry.packageDocuments?.items?.length ? (
-                  <div>
-                    <div>
+                  <div className="ra-form">
+                    <div className="ra-card-head">
                       <div>
-                        <div>{et ? "Viidatud lisamaterjalid" : "Referenced materials"}</div>
-                        <div>
+                        <div className="ra-label">{et ? "Viidatud lisamaterjalid" : "Referenced materials"}</div>
+                        <div className="ra-td-sub">
                           {et
                             ? "Need on organisatsioonipaketi documents[] viited. Neid ei ingestita siin eraldi RAG dokumentidena."
                             : "These are organization package documents[] references. They are not ingested here as separate RAG documents."}
                         </div>
                       </div>
-                      <span>{selectedEntry.packageDocuments.total || 0}</span>
+                      <span className="ra-chip" data-tone="dim">{selectedEntry.packageDocuments.total || 0}</span>
                     </div>
-                    <div>
+                    <div className="ra-filelist">
                       {selectedEntry.packageDocuments.items.map(document => (
-                        <div key={document.id || document.title}>
-                          <div>
-                            <div>
-                              <div>{document.title || document.id}</div>
-                              <div>
-                                {document.source_url ? (et ? "remote URL" : "remote URL") : (et ? "kohalik fail" : "local file")} - {document.source_format || "-"}
-                              </div>
+                        <div key={document.id || document.title} className="ra-filerow">
+                          <div className="ra-filerow-info">
+                            <div className="ra-filerow-name">{document.title || document.id}</div>
+                            <div className="ra-filerow-meta">
+                              {document.source_url ? (et ? "remote URL" : "remote URL") : (et ? "kohalik fail" : "local file")} - {document.source_format || "-"}
                             </div>
-                            <div>
-                              <span>{document.document_status}</span>
-                              {document.source_url ? <span>URL</span> : null}
-                            </div>
+                            {document.source_url ? (
+                              <div className="ra-filerow-meta ra-mono">{document.source_url}</div>
+                            ) : null}
                           </div>
-                          {document.source_url ? (
-                            <div>{document.source_url}</div>
-                          ) : null}
+                          <div className="ra-chiprow">
+                            <span className="ra-chip" data-tone="dim">{document.document_status}</span>
+                            {document.source_url ? <span className="ra-chip" data-tone="dim">URL</span> : null}
+                          </div>
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : null}
 
-                <div>
-                  <div>
+                <div className="ra-form">
+                  <div className="ra-card-head">
                     <div>
-                      <div>{et ? "RAG dokumendi seis" : "RAG document status"}</div>
-                      <div>
+                      <div className="ra-label">{et ? "RAG dokumendi seis" : "RAG document status"}</div>
+                      <div className="ra-td-sub">
                         {et ? "Reaalajas kontroll RAG registrist." : "Live check from the RAG registry."}
                       </div>
                     </div>
-                    <div>
-                      <span>
+                    <div className="ra-actions">
+                      <span className="ra-td-sub">
                         {et ? "Värskendatud" : "Updated"}: {ragStatus?.checkedAt ? formatDateTime(ragStatus.checkedAt, locale) : "-"}
                       </span>
                       <Button
@@ -560,39 +596,55 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                     </div>
                   </div>
 
-                  <div>
-                    <div>
-                      <span>{ragDocStatusLabel(ragStatus?.doc, et)}</span>
-                      {selectedEntry.ragDocId ? <span>{selectedEntry.ragDocId}</span> : null}
-                    </div>
-                    <div>
-                      {et ? "Chunkid" : "Chunks"}: {Number(ragStatus?.doc?.chunks || 0)}
-                    </div>
-                    <div>
-                      {et ? "Pealkiri" : "Title"}: {ragStatus?.doc?.title || "-"}
-                    </div>
-                    <div>
-                      {et ? "Teenuse staatus" : "Service status"}: {ragStatus?.doc?.status || "-"}
-                    </div>
-                    <div>
-                      {et ? "Viimati ingestitud" : "Last ingested"}: {ragStatus?.doc?.lastIngested ? formatDateTime(ragStatus.doc.lastIngested, locale) : "-"}
-                    </div>
-                    <div>
-                      {et ? "Registri uuendus" : "Registry update"}: {ragStatus?.doc?.updatedAt ? formatDateTime(ragStatus.doc.updatedAt, locale) : "-"}
-                    </div>
-                    {ragStatus?.doc?.error ? (
-                      <div>{ragStatus.doc.error}</div>
-                    ) : null}
+                  <div className="ra-chiprow">
+                    <span
+                      className="ra-chip"
+                      data-tone={
+                        ragStatus?.doc?.error
+                          ? "err"
+                          : ragStatus?.doc?.exists && Number(ragStatus?.doc?.chunks || 0) > 0
+                            ? "ok"
+                            : "dim"
+                      }
+                    >
+                      {ragDocStatusLabel(ragStatus?.doc, et)}
+                    </span>
+                    {selectedEntry.ragDocId ? <span className="ra-mono">{selectedEntry.ragDocId}</span> : null}
                   </div>
+                  <div className="ra-kv">
+                    <div>
+                      <span>{et ? "Chunkid" : "Chunks"}</span>
+                      <span>{Number(ragStatus?.doc?.chunks || 0)}</span>
+                    </div>
+                    <div>
+                      <span>{et ? "Pealkiri" : "Title"}</span>
+                      <span>{ragStatus?.doc?.title || "-"}</span>
+                    </div>
+                    <div>
+                      <span>{et ? "Teenuse staatus" : "Service status"}</span>
+                      <span>{ragStatus?.doc?.status || "-"}</span>
+                    </div>
+                    <div>
+                      <span>{et ? "Viimati ingestitud" : "Last ingested"}</span>
+                      <span>{ragStatus?.doc?.lastIngested ? formatDateTime(ragStatus.doc.lastIngested, locale) : "-"}</span>
+                    </div>
+                    <div>
+                      <span>{et ? "Registri uuendus" : "Registry update"}</span>
+                      <span>{ragStatus?.doc?.updatedAt ? formatDateTime(ragStatus.doc.updatedAt, locale) : "-"}</span>
+                    </div>
+                  </div>
+                  {ragStatus?.doc?.error ? (
+                    <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>{ragStatus.doc.error}</div>
+                  ) : null}
                 </div>
 
-                <div>
-                  <div>{et ? "Tuumfailid" : "Core files"}</div>
-                  <div>
+                <div className="ra-form">
+                  <div className="ra-label">{et ? "Tuumfailid" : "Core files"}</div>
+                  <div className="ra-td-sub">
                     {et ? "Need 4 faili moodustavad pohipaketi." : "These 4 files form the core package."}
                   </div>
 
-                  <div>
+                  <div className="ra-filelist">
                     {ORGANIZATION_CORE_FILE_KEYS.map(key => {
                       const file = selectedEntry.coreFiles?.[key];
                       const roleMeta = ORGANIZATION_FILE_ROLE_META[key];
@@ -602,28 +654,36 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                       const focused = isFocusedFile(remediationFocus, key);
 
                       return (
-                        <div key={key}>
-                          <div>
-                            <div>
-                              <div>
-                                <div>{resolvedName}</div>
-                                {focused ? (
-                                  <span>{et ? "Quality queue siht" : "Quality queue target"}</span>
-                                ) : null}
-                              </div>
-                              <div>
-                                {file?.status === "missing"
-                                  ? et ? "Puudub" : "Missing"
-                                  : `${file.originalName} • ${(file.size / 1024).toFixed(1)} KB • ${file.uploadedAt ? formatDateTime(file.uploadedAt, locale) : "-"}`}
-                              </div>
-                              <div>
-                                <span>{validationLabel(file?.validationStatus, et)}</span>
-                              </div>
-                              {file?.validationStatus === "INVALID" && file?.validationMessage ? (
-                                <div>{file.validationMessage}</div>
-                              ) : null}
+                        <div key={key} className="ra-filerow" data-focused={focused ? "true" : undefined}>
+                          <div className="ra-filerow-info">
+                            <div className="ra-filerow-name ra-mono">{resolvedName}</div>
+                            {focused ? (
+                              <span className="ra-chip" data-tone="warn">{et ? "Quality queue siht" : "Quality queue target"}</span>
+                            ) : null}
+                            <div className="ra-filerow-meta">
+                              {file?.status === "missing"
+                                ? et ? "Puudub" : "Missing"
+                                : `${file.originalName} • ${(file.size / 1024).toFixed(1)} KB • ${file.uploadedAt ? formatDateTime(file.uploadedAt, locale) : "-"}`}
                             </div>
-                            <div>
+                            <div className="ra-chiprow">
+                              <span
+                                className="ra-chip"
+                                data-tone={
+                                  file?.validationStatus === "VALID"
+                                    ? "ok"
+                                    : file?.validationStatus === "INVALID"
+                                      ? "err"
+                                      : "dim"
+                                }
+                              >
+                                {validationLabel(file?.validationStatus, et)}
+                              </span>
+                            </div>
+                            {file?.validationStatus === "INVALID" && file?.validationMessage ? (
+                              <div className="ra-filerow-meta" style={{ color: "var(--status-error)" }}>{file.validationMessage}</div>
+                            ) : null}
+                          </div>
+                          <div className="ra-actions">
                               <input
                                 id={inputId}
                                 type="file"
@@ -661,7 +721,6 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                                   {et ? "Eemalda" : "Remove"}
                                 </Button>
                               ) : null}
-                            </div>
                           </div>
                         </div>
                       );
@@ -669,22 +728,24 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                   </div>
                 </div>
 
-                <div>
-                  <div>
+                <div className="ra-form">
+                  <div className="ra-card-head">
                     <div>
-                      <div>
-                        <div>{et ? "Lisafailid" : "Additional files"}</div>
+                      <div className="ra-label">
+                        {et ? "Lisafailid" : "Additional files"}
                         {attachmentsFocused ? (
-                          <span>{et ? "Quality queue siht" : "Quality queue target"}</span>
+                          <span className="ra-chip" data-tone="warn" style={{ marginLeft: "0.5em" }}>
+                            {et ? "Quality queue siht" : "Quality queue target"}
+                          </span>
                         ) : null}
                       </div>
-                      <div>
+                      <div className="ra-td-sub">
                         {et ? "Muud toofailid ja lisadokumendid." : "Other working files and supporting documents."}
                       </div>
                     </div>
-                    <div>
+                    <span className="ra-chip" data-tone="dim">
                       {et ? `Lisafaile: ${selectedEntry.files?.length || 0}` : `Attachments: ${selectedEntry.files?.length || 0}`}
-                    </div>
+                    </span>
                   </div>
 
                   <input
@@ -699,7 +760,7 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                     }}
                   />
 
-                  <div>
+                  <div className="ra-filepick">
                     <Button
                       variant="primary"
                       size="sm"
@@ -710,48 +771,46 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                         ? et ? "Laen..." : "Uploading..."
                         : et ? "Vali fail" : "Choose file"}
                     </Button>
-                    <span>
+                    <span className="ra-filepick-name">
                       {et ? "Toetatud: JSON, MD, TXT, PDF, DOCX, CSV" : "Supported: JSON, MD, TXT, PDF, DOCX, CSV"}
                     </span>
                   </div>
 
-                  <div>
+                  <div className="ra-filelist">
                     {selectedEntry.files?.length ? (
                       selectedEntry.files.map(file => {
                         const busy = fileBusyKey === `${selectedEntry.slug}:${file.id}`;
                         return (
-                          <div key={file.id}>
-                            <div>
-                              <div>
-                                <div>{file.originalName}</div>
-                                <div>
-                                  {file.mime} • {(file.size / 1024).toFixed(1)} KB • {file.uploadedAt ? formatDateTime(file.uploadedAt, locale) : "-"}
-                                </div>
+                          <div key={file.id} className="ra-filerow">
+                            <div className="ra-filerow-info">
+                              <div className="ra-filerow-name">{file.originalName}</div>
+                              <div className="ra-filerow-meta">
+                                {file.mime} • {(file.size / 1024).toFixed(1)} KB • {file.uploadedAt ? formatDateTime(file.uploadedAt, locale) : "-"}
                               </div>
-                              <div>
-                                <Button
-                                  variant="primary"
-                                  size="sm"
-                                  onClick={() => window.open(file.downloadUrl, "_blank", "noopener,noreferrer")}
-                                  disabled={busy}
-                                >
-                                  {et ? "Laadi alla" : "Download"}
-                                </Button>
-                                <Button
-                                  variant="primary"
-                                  size="sm"
-                                  onClick={() => removeFile(selectedEntry.slug, file.id)}
-                                  disabled={busy}
-                                >
-                                  {busy ? (et ? "Eemaldan..." : "Removing...") : et ? "Eemalda" : "Remove"}
-                                </Button>
-                              </div>
+                            </div>
+                            <div className="ra-actions">
+                              <Button
+                                variant="primary"
+                                size="sm"
+                                onClick={() => window.open(file.downloadUrl, "_blank", "noopener,noreferrer")}
+                                disabled={busy}
+                              >
+                                {et ? "Laadi alla" : "Download"}
+                              </Button>
+                              <Button
+                                variant="primary"
+                                size="sm"
+                                onClick={() => removeFile(selectedEntry.slug, file.id)}
+                                disabled={busy}
+                              >
+                                {busy ? (et ? "Eemaldan..." : "Removing...") : et ? "Eemalda" : "Remove"}
+                              </Button>
                             </div>
                           </div>
                         );
                       })
                     ) : (
-                      <div>
+                      <div className="ra-empty">
                         {et ? "Selle organisatsiooni juures ei ole veel lisafaile." : "There are no additional files on this organization yet."}
                       </div>
                     )}
@@ -759,7 +818,7 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                 </div>
               </>
             ) : (
-              <div>
+              <div className="ra-empty">
                 {examplePlaceholderCount && !showExamplePlaceholders
                   ? et ? "Aktiivseid parispakette ei ole. Vanad naidisread on peidetud."
                     : "No active real packages. Old example rows are hidden."

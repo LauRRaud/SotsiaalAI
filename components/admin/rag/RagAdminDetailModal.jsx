@@ -22,11 +22,11 @@ export default function RagAdminDetailModal({ controller }) {
 
   return (
     <Modal open={true} onClose={closeDetail} closeOnOverlayClick>
-      <div>
-        <div>
+      <div className="ra-form">
+        <div className="ra-card-head">
           <div>
-            <CardTitle>{tr("admin.rag.modal.edit_meta")}</CardTitle>
-            <div>
+            <CardTitle className="ra-card-title">{tr("admin.rag.modal.edit_meta")}</CardTitle>
+            <div className="ra-card-sub">
               {detailDoc.title || tr("admin.rag.documents.untitled")}
             </div>
           </div>
@@ -34,7 +34,7 @@ export default function RagAdminDetailModal({ controller }) {
             {tr("admin.rag.actions.close")}
           </Button>
         </div>
-        <div>
+        <div className="ra-form">
           <Input
             value={detailForm.title}
             onChange={event => setDetailForm(form => ({ ...form, title: event.target.value }))}
@@ -46,7 +46,7 @@ export default function RagAdminDetailModal({ controller }) {
             size="sm"
             rows={3}
           />
-          <div>
+          <div className="ra-form-grid">
             <Input
               value={detailForm.authors}
               onChange={event => setDetailForm(form => ({ ...form, authors: event.target.value }))}
@@ -58,7 +58,7 @@ export default function RagAdminDetailModal({ controller }) {
               size="sm"
             />
           </div>
-          <div>
+          <div className="ra-form-grid">
             <Input
               value={detailForm.section}
               onChange={event => setDetailForm(form => ({ ...form, section: event.target.value }))}
@@ -75,7 +75,7 @@ export default function RagAdminDetailModal({ controller }) {
               size="sm"
             />
           </div>
-          <div>
+          <div className="ra-form-grid">
             <Input
               value={detailForm.issueId}
               onChange={event => setDetailForm(form => ({ ...form, issueId: event.target.value }))}
@@ -92,7 +92,7 @@ export default function RagAdminDetailModal({ controller }) {
               size="sm"
             />
           </div>
-          <div>
+          <div className="ra-form-grid">
             <Input
               value={detailForm.pageRange}
               onChange={event => setDetailForm(form => ({ ...form, pageRange: event.target.value }))}
@@ -104,7 +104,7 @@ export default function RagAdminDetailModal({ controller }) {
               size="sm"
             />
           </div>
-          <div>
+          <div className="ra-form-grid">
             <DocumentsDropdown
               ariaLabel={tr("admin.rag.document_detail.audience")}
               value={detailForm.audience}
@@ -116,11 +116,11 @@ export default function RagAdminDetailModal({ controller }) {
               onChange={event => setDetailForm(form => ({ ...form, pdf_end_page: event.target.value }))}
               size="sm"
             />
-            <div>{tr("admin.rag.modal.doc_id")}: {detailDoc.docId || "-"}</div>
-            <div>{tr("admin.rag.modal.type")}: {detailDoc.source_type || detailDoc.type || "-"}</div>
-            <div>{tr("admin.rag.modal.language")}: {detailDoc.language || "-"}</div>
+            <div className="ra-td-sub">{tr("admin.rag.modal.doc_id")}: {detailDoc.docId || "-"}</div>
+            <div className="ra-td-sub">{tr("admin.rag.modal.type")}: {detailDoc.source_type || detailDoc.type || "-"}</div>
+            <div className="ra-td-sub">{tr("admin.rag.modal.language")}: {detailDoc.language || "-"}</div>
           </div>
-          <div>
+          <div className="ra-actions">
             <Button variant="primary" size="sm" onClick={saveDetail}>
               {tr("admin.rag.actions.save")}
             </Button>

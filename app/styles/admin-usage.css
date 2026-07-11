@@ -1,0 +1,246 @@
+@layer components {
+  .usage-admin {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.4rem;
+    padding: clamp(1rem, 2vw, 1.6rem);
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 22px;
+    background: var(--glass-bg);
+  }
+  .usage-admin__header,
+  .usage-admin__section-head,
+  .usage-admin__plan-meta,
+  .usage-admin__identity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .usage-admin__header p,
+  .usage-admin__header h2,
+  .usage-admin__section-head h3,
+  .usage-admin__section-head p,
+  .usage-admin__identity span,
+  .usage-admin__override-list p {
+    margin: 0;
+  }
+  .usage-admin__header p {
+    color: var(--text-dim);
+    font-size: var(--fs-small);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .usage-admin__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(19rem, 0.8fr);
+    gap: 1rem;
+    align-items: start;
+  }
+  .usage-admin__surface {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 18px;
+    background: var(--glass-cell-bg);
+  }
+  .usage-admin__section-head p,
+  .usage-admin__identity span {
+    color: var(--text-dim);
+    font-size: var(--fs-small);
+  }
+  .usage-admin__form,
+  .usage-admin__user,
+  .usage-admin__override-form {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .usage-admin label {
+    display: grid;
+    gap: 0.35rem;
+    color: var(--text-soft);
+    font-size: var(--fs-small);
+  }
+  .usage-admin__entitlements {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+  .usage-admin__entitlement {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0.8rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 14px;
+  }
+  .usage-admin__entitlement legend {
+    padding-inline: 0.35rem;
+    color: var(--text-warm);
+    font-weight: 600;
+  }
+  .usage-admin__toggle {
+    display: flex !important;
+    align-items: center;
+    align-self: end;
+    min-height: 2.7rem;
+  }
+  .usage-admin__search {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.6rem;
+  }
+  .usage-admin__metric-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .usage-admin__user-facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    margin: 0;
+  }
+  .usage-admin__user-facts div {
+    min-width: 0;
+    padding: 0.55rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 11px;
+  }
+  .usage-admin__user-facts dt { color: var(--text-dim); font-size: 0.74rem; }
+  .usage-admin__user-facts dd { margin: 0.2rem 0 0; overflow-wrap: anywhere; }
+  .usage-admin__suspension {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.7rem;
+    border: 1px solid var(--status-error);
+    border-radius: 12px;
+    color: var(--status-error);
+  }
+  .usage-admin__access-controls {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 0.6rem;
+  }
+  .usage-admin__metric-strip span {
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: 0.76rem;
+  }
+  .usage-admin__metric-strip span[data-state="warning"],
+  .usage-admin__metric-strip span[data-state="blocked"] {
+    border-color: var(--status-error);
+  }
+  .usage-admin__override-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .usage-admin__reason,
+  .usage-admin__actions {
+    grid-column: 1 / -1;
+  }
+  .usage-admin__actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .usage-admin__override-list {
+    display: grid;
+    gap: 0.55rem;
+  }
+  .usage-admin__audit {
+    display: grid;
+    gap: 0.45rem;
+    padding-top: 0.3rem;
+    border-top: 1px solid var(--glass-cell-border);
+  }
+  .usage-admin__audit h4 { margin: 0.35rem 0; }
+  .usage-admin__audit article {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    color: var(--text-soft);
+    font-size: var(--fs-small);
+  }
+  .usage-admin__audit article span { color: var(--text-dim); }
+  .usage-admin__override-list article {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 13px;
+  }
+  .usage-admin__override-list article[data-active="false"] {
+    opacity: 0.55;
+  }
+  .usage-admin__notice {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 12px;
+  }
+  .usage-admin__notice[data-tone="error"] { color: var(--status-error); }
+  .usage-admin__notice[data-tone="success"] { color: var(--status-success); }
+  .usage-admin__job-toolbar,
+  .usage-admin__job-counts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+  .usage-admin__job-counts span {
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: var(--fs-small);
+  }
+  .usage-admin__jobs {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .usage-admin__jobs article {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1.2fr) minmax(8rem, 0.6fr) minmax(12rem, 1fr) auto;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem;
+    border: 1px solid var(--glass-cell-border);
+    border-radius: 14px;
+    background: var(--glass-cell-bg);
+  }
+  .usage-admin__jobs article > div { display: grid; gap: 0.2rem; min-width: 0; }
+  .usage-admin__jobs article span { color: var(--text-dim); font-size: var(--fs-small); overflow-wrap: anywhere; }
+  .usage-admin__jobs article code { color: var(--status-error); white-space: normal; overflow-wrap: anywhere; }
+  .usage-admin__jobs article[data-status="failed"] { border-color: color-mix(in srgb, var(--status-error) 55%, transparent); }
+
+  @media (max-width: 960px) {
+    .usage-admin__layout,
+    .usage-admin__entitlements,
+    .usage-admin__jobs article {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 640px) {
+    .usage-admin__header,
+    .usage-admin__section-head,
+    .usage-admin__plan-meta,
+    .usage-admin__identity {
+      align-items: stretch;
+      flex-direction: column;
+    }
+    .usage-admin__entitlement,
+    .usage-admin__override-form,
+    .usage-admin__search,
+    .usage-admin__override-list article,
+    .usage-admin__user-facts,
+    .usage-admin__access-controls {
+      grid-template-columns: 1fr;
+    }
+  }
+}
