@@ -1904,6 +1904,18 @@ export default function ChatBody({
       window.removeEventListener("sotsiaalai:open-help-listings", onOpenHelpListings);
     };
   }, [openHelpPanelByKey]);
+  /* Süvalink ruumi Töölaua kaartidelt (tellija 10.07):
+     /vestlus?workspace=help_requests|help_offers avab kuulutuste paneeli
+     (need pole embedded-feature'd, vaid kuulutuste kihid töölaua kohal). */
+  const helpDeepLinkDoneRef = useRef(false);
+  useEffect(() => {
+    if (helpDeepLinkDoneRef.current) return;
+    if (typeof searchParams?.get !== "function") return;
+    const wp = String(searchParams.get("workspace") || "").trim();
+    if (wp !== "help_requests" && wp !== "help_offers") return;
+    helpDeepLinkDoneRef.current = true;
+    openHelpPanelByKey(wp, "workspace");
+  }, [searchParams, openHelpPanelByKey]);
   useEffect(() => {
     const onRestoreWorkspace = () => {
       restoreWorkspaceFromSharedPanel();

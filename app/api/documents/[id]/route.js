@@ -5,8 +5,8 @@ import { prisma } from "@/lib/prisma"
 import { isFrameworkAcceptanceSchemaError } from "@/lib/frameworkAcceptanceCompat"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { logDataAudit } from "@/lib/privacy/audit"
-import { createDataDeletionJob, DELETION_STATUS, markDataDeletionJob } from "@/lib/privacy/deletionJobs"
 import { deleteDocumentRagReference } from "@/lib/privacy/documentDeletion"
+import { deleteTrackedStorageFile } from "@/lib/privacy/fileDeletion"
 import { safeError } from "@/lib/privacy/safeError"
 import {
   deleteStoredDocument,
@@ -378,16 +378,6 @@ export async function DELETE(request, { params }) {
       kind: existing.kind
     })
 
-    const fileDeletionJob = await createDataDeletionJob({
-      actorUserId: auth.userId,
-      targetUserId: auth.userId,
-      action: "FILE_DELETE",
-      resourceType: "UserDocument",
-      resourceId: existing.id,
-      storagePath: existing.storagePath,
-      status: DELETION_STATUS.PENDING
-    })
-
     const deletedDocument = await deleteDocumentRecordAndFile({
       deleteRecord: () => prisma.userDocument.delete({
         where: { id },
@@ -400,18 +390,17 @@ export async function DELETE(request, { params }) {
         }
       }),
       deleteFile: async (document) => {
-        await deleteStoredDocument(document.storagePath)
-        await markDataDeletionJob(fileDeletionJob, {
-          status: DELETION_STATUS.DONE,
-          incrementAttempts: true
+        const result = await deleteTrackedStorageFile({
+          actorUserId: auth.userId,
+          targetUserId: auth.userId,
+          resourceType: "UserDocument",
+          resourceId: document.id,
+          storagePath: document.storagePath,
+          deleteFile: deleteStoredDocument
         })
+        if (!result.ok) throw result.error
       },
       onFileDeleteError: (cleanupError, document) => {
-        void markDataDeletionJob(fileDeletionJob, {
-          status: DELETION_STATUS.FAILED,
-          incrementAttempts: true,
-          lastError: safeError(cleanupError).message
-        })
         console.error("[documents] delete cleanup failed", {
           documentId: document?.id,
           storagePath: document?.storagePath,

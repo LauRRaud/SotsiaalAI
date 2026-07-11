@@ -19,7 +19,8 @@ const EMBEDDED_WORKSPACE_FEATURES = Object.freeze({
   "/documents": "documents",
   "/dokreziim": "document_drafting",
   "/eelpoordumised": "pre_inquiries",
-  "/kovisioon": "kovision",
+  /* /kovisioon EI ole enam paneeli-sisene feature (tellija 10.07:
+     kovisioon kasutab tervet ekraani) — navigateTo teeb täislehe push'i. */
   "/materjalid": "materials",
   "/teekond": "journey",
   "/teenuseprofiil": "service_profile",
@@ -462,11 +463,13 @@ export default function WorkspacePanel({
             holdPressedVisualDisabled
             titleId={activeTitleId}
             rightSlot={
-              <DashboardInfoTrigger
-                infoId={activeEmbeddedMeta?.infoId || "workspace"}
-                title={activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Toolaud")}
-                className={dashboardInfoTriggerCornerClassName}
-              />
+              activeEmbeddedFeature === "kovision" ? null : (
+                <DashboardInfoTrigger
+                  infoId={activeEmbeddedMeta?.infoId || "workspace"}
+                  title={activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Toolaud")}
+                  className={dashboardInfoTriggerCornerClassName}
+                />
+              )
             }
           >
             {activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Toolaud")}

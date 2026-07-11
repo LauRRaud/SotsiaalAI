@@ -7,6 +7,8 @@ import Button from "@/components/ui/Button";
 
 import { localizePath } from "@/lib/localizePath";
 
+import RagRowMenu from "./RagRowMenu";
+
 const ACCEPTANCE_DISPOSITIONS = [
   ["not_published", { et: "Pole KOV veebis avaldatud", en: "Not published on municipal site" }],
   ["not_applicable", { et: "Ei kohaldu", en: "Not applicable" }],
@@ -385,48 +387,57 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
     }
   }
 
+  const summaryTone = key => {
+    if (key === "needsReview" || key === "pending") return summary[key] > 0 ? "warn" : "neutral";
+    if (key.startsWith("missing")) return summary[key] > 0 ? "err" : "neutral";
+    if (key === "reviewed" || key === "active") return "ok";
+    return "neutral";
+  };
+
   return (
-    <div>
-      <section>
-        <div>
-          {copy.summary.map(([key, label]) => (
-            <div key={key}>
-              <div>{label}</div>
-              <div>{summary[key]}</div>
-            </div>
-          ))}
-        </div>
+    <div className="ra-shell-flow">
+      <section className="ra-stats ra-stats--mini" aria-label={copy.title}>
+        {copy.summary.map(([key, label]) => (
+          <div key={key} className="ra-stat" data-tone={summaryTone(key)}>
+            <span className="ra-stat-label">{label}</span>
+            <span className="ra-stat-value">{summary[key]}</span>
+          </div>
+        ))}
       </section>
 
-      <section>
-        <div>
+      <section className="ra-card">
+        <div className="ra-card-head">
           <div>
-            <h2>{copy.title}</h2>
-            {municipalityId ? <div>{copy.municipalityFilter}: {municipalityId}</div> : null}
+            <h2 className="ra-card-title">{copy.title}</h2>
+            {municipalityId ? (
+              <p className="ra-card-sub">{copy.municipalityFilter}: <span className="ra-mono">{municipalityId}</span></p>
+            ) : null}
           </div>
           <Button type="button" variant="primary" size="sm" onClick={load} disabled={loading}>
             {copy.refresh}
           </Button>
         </div>
-        <div>
-          <label>
+        <div className="ra-toolbar">
+          <label className="ui-checkbox">
             <input type="checkbox" checked={showInfoWarnings} onChange={event => setShowInfoWarnings(event.target.checked)} />
             {copy.showInfoWarnings}
           </label>
-          <label>
+          <label className="ui-checkbox">
             <input type="checkbox" checked={showArchived} onChange={event => setShowArchived(event.target.checked)} />
             {copy.showArchived}
           </label>
-          <span>{copy.defaultQueue}</span>
+          <div className="ra-toolbar-meta">
+            <span>{copy.defaultQueue}</span>
+          </div>
         </div>
 
         {error ? (
-          <div role="alert">{error}</div>
+          <div role="alert" className="ra-alert">{error}</div>
         ) : null}
-        {loading ? <div>{copy.loading}</div> : null}
+        {loading ? <div className="ra-empty">{copy.loading}</div> : null}
 
-        <div className="overflow-x-auto">
-          <table>
+        <div className="ra-tablewrap">
+          <table className="ra-table">
             <thead>
               <tr>
                 <th>{copy.columns.title}</th>
@@ -453,21 +464,25 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                 );
                 return (
                   <Fragment key={item.id}>
-                    <tr>
+                    <tr data-selected={expanded ? "true" : undefined}>
                       <td>
-                        <button type="button" onClick={() => toggleExpanded(item.id)}>
-                          {item.title || item.packageId}
+                        <button type="button" className="ra-rowlink" onClick={() => toggleExpanded(item.id)}>
+                          <span className="ra-td-main">{item.title || item.packageId}</span>
                         </button>
                       </td>
-                      <td>{item.municipalityId || "-"}</td>
+                      <td className="ra-mono">{item.municipalityId || "-"}</td>
                       <td>{item.packageType || "-"}</td>
                       <td>{formatSectionName(item.status)}</td>
                       <td>{effectiveReviewLabel(item, copy)}</td>
                       <td>
                         {visibleReasons.length ? (
-                          <div>
+                          <div className="ra-chiprow">
                             {visibleReasons.map(reason => (
-                              <span key={reason.code}>
+                              <span
+                                key={reason.code}
+                                className="ra-chip"
+                                data-tone={reason.accepted ? "dim" : reason.severity === "blocker" ? "err" : reason.severity === "review" ? "warn" : "dim"}
+                              >
                                 {copy.severity[reason.severity] || reason.severity}: {formatSectionName(reason.code)}{reason.accepted ? ` ${copy.detail.accepted}` : ""}
                               </span>
                             ))}
@@ -476,21 +491,41 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                       </td>
                       <td>{item.version}</td>
                       <td>{item.active ? copy.boolean.yes : copy.boolean.no}</td>
-                      <td>{formatDate(item.lastBuiltAt, localeTag)}</td>
+                      <td className="ra-td-sub">{formatDate(item.lastBuiltAt, localeTag)}</td>
                       <td>
-                        <div>
-                          <Button type="button" variant="primary" size="sm" disabled={!!busyId || effectiveReview === "reviewed" || effectiveReview === "archived"} onClick={() => runAction(item.id, "mark_reviewed")}>
+                        <div className="ra-actions" style={{ flexWrap: "nowrap" }}>
+                          <Button
+                            type="button"
+                            variant="primary"
+                            size="2xs"
+                            disabled={!!busyId || effectiveReview === "reviewed" || effectiveReview === "archived"}
+                            onClick={() => runAction(item.id, "mark_reviewed")}
+                          >
                             {busyId === `${item.id}:mark_reviewed` ? copy.actions.saving : copy.actions.markReviewed}
                           </Button>
-                          <Button type="button" variant="primary" size="sm" disabled={!!busyId || effectiveReview === "archived"} onClick={() => runAction(item.id, "archive")}>
-                            {busyId === `${item.id}:archive` ? copy.actions.saving : copy.actions.archive}
-                          </Button>
-                          <Button type="button" variant="primary" size="sm" disabled={!!busyId || item.active === true} onClick={() => runAction(item.id, "restore_active")}>
-                            {busyId === `${item.id}:restore_active` ? copy.actions.saving : copy.actions.restoreActive}
-                          </Button>
-                          <Button type="button" variant="primary" size="sm" disabled={!!busyId} onClick={() => runAction(item.id, "recompute")}>
-                            {busyId === `${item.id}:recompute` ? copy.actions.saving : copy.actions.recompute}
-                          </Button>
+                          <RagRowMenu
+                            ariaLabel={`${copy.columns.actions}: ${item.title || item.packageId}`}
+                            items={[
+                              {
+                                key: "archive",
+                                label: busyId === `${item.id}:archive` ? copy.actions.saving : copy.actions.archive,
+                                onSelect: () => runAction(item.id, "archive"),
+                                disabled: !!busyId || effectiveReview === "archived"
+                              },
+                              {
+                                key: "restore",
+                                label: busyId === `${item.id}:restore_active` ? copy.actions.saving : copy.actions.restoreActive,
+                                onSelect: () => runAction(item.id, "restore_active"),
+                                disabled: !!busyId || item.active === true
+                              },
+                              {
+                                key: "recompute",
+                                label: busyId === `${item.id}:recompute` ? copy.actions.saving : copy.actions.recompute,
+                                onSelect: () => runAction(item.id, "recompute"),
+                                disabled: !!busyId
+                              }
+                            ]}
+                          />
                         </div>
                       </td>
                     </tr>
@@ -498,23 +533,25 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                       <tr key={`${item.id}-detail`}>
                         <td colSpan={10}>
                           {detailLoadingId === item.id && !detailsById[item.id] ? (
-                            <div>{copy.loadingDetails}</div>
+                            <div className="ra-empty">{copy.loadingDetails}</div>
                           ) : (
-                          <div>
-                            <div>
-                              <div>{copy.detail.package}</div>
-                              <div>packageId: {detail.packageId}</div>
-                              <div>canonicalItemId: {detail.canonicalItemId}</div>
-                              <div>{copy.detail.reviewFlags}: {flags.length ? flags.join(", ") : "-"}</div>
-                              <div>
-                                <div>{copy.detail.reviewQueue}</div>
-                                <div>
+                          <div className="ra-grid" style={{ padding: "0.4rem 0" }}>
+                            <div className="ra-col-6 ra-form">
+                              <div className="ra-label">{copy.detail.package}</div>
+                              <div className="ra-mono">packageId: {detail.packageId}</div>
+                              <div className="ra-mono">canonicalItemId: {detail.canonicalItemId}</div>
+                              <div className="ra-td-sub">{copy.detail.reviewFlags}: {flags.length ? flags.join(", ") : "-"}</div>
+                              <div className="ra-form">
+                                <div className="ra-label">{copy.detail.reviewQueue}</div>
+                                <div className="ra-changes">
                                   {(detail.reviewReasons || []).length ? (
                                     detail.reviewReasons.map(reason => (
-                                      <div key={reason.code}>
-                                        <div>
-                                          <span>{copy.severity[reason.severity] || reason.severity}</span>
-                                          {reason.accepted ? <span>{copy.detail.accepted}</span> : null}
+                                      <div key={reason.code} className="ra-change">
+                                        <div className="ra-chiprow">
+                                          <span className="ra-chip" data-tone={reason.accepted ? "dim" : reason.severity === "blocker" ? "err" : "warn"}>
+                                            {copy.severity[reason.severity] || reason.severity}
+                                          </span>
+                                          {reason.accepted ? <span className="ra-chip" data-tone="dim">{copy.detail.accepted}</span> : null}
                                           <span>{reason.label}</span>
                                         </div>
                                         <div>{copy.detail.itemId}: {reason.repair?.canonicalItemId || detail.canonicalItemId || "-"}</div>
@@ -522,7 +559,7 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                                         <div>
                                           sourceKeys: {(reason.repair?.sourceKeys || []).join(", ") || "-"}
                                         </div>
-                                        <div>
+                                        <div className="ra-actions">
                                           <Button as="a" href={localizePath(reason.repair?.kovHref || "/admin/rag/kov", locale)} variant="primary" size="sm">
                                             {copy.actions.fix}
                                           </Button>
@@ -542,43 +579,41 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                                       </div>
                                     ))
                                   ) : (
-                                    <div>{copy.detail.noReviewReasons}</div>
+                                    <div className="ra-td-sub">{copy.detail.noReviewReasons}</div>
                                   )}
                                 </div>
                               </div>
-                              <div>
-                                <div>{copy.detail.attribution}</div>
-                                <div>
-                                  <span>
+                              <div className="ra-form">
+                                <div className="ra-label">{copy.detail.attribution}</div>
+                                <div className="ra-chiprow">
+                                  <span className="ra-chip" data-tone={detail.packageAttributionChecked ? "ok" : "warn"}>
                                     {copy.detail.packageAttribution}: {detail.packageAttributionChecked ? copy.detail.checked : copy.detail.notChecked}
                                   </span>
-                                  <span>
+                                  <span className="ra-chip" data-tone={detail.highRiskAttributionChecked ? "ok" : "warn"}>
                                     {copy.detail.highRiskAttribution}: {detail.highRiskAttributionChecked ? copy.detail.checked : copy.detail.notChecked}
                                   </span>
                                 </div>
                                 <div>
-                                  <div>{copy.detail.attributionFlags}</div>
-                                  <div>
+                                  <div className="ra-label">{copy.detail.attributionFlags}</div>
+                                  <div className="ra-chiprow">
                                     {(detail.attributionFlags || []).length ? (
                                       detail.attributionFlags.map(flag => (
-                                        <span key={flag}>{formatSectionName(flag)}</span>
+                                        <span key={flag} className="ra-chip" data-tone="warn">{formatSectionName(flag)}</span>
                                       ))
                                     ) : (
-                                      <span>-</span>
+                                      <span className="ra-td-sub">-</span>
                                     )}
                                   </div>
                                 </div>
-                                <div>
+                                <div className="ra-changes">
                                   {Object.entries(detail.sectionAttributionSummary || {}).map(([section, info]) => (
-                                    <div key={section}>
+                                    <div key={section} className="ra-change">
                                       <div>
-                                        <span>{formatSectionName(section)}</span>
-                                        <span>{info?.evidence_strength || "unknown"}</span>
+                                        {formatSectionName(section)}{" "}
+                                        <span className="ra-mono">{info?.evidence_strength || "unknown"}</span>
                                       </div>
                                       <div>
-                                        {(info?.evidence_statuses || []).map(status => (
-                                          <span key={status}>{formatSectionName(status)}</span>
-                                        ))}
+                                        {(info?.evidence_statuses || []).map(status => formatSectionName(status)).join(", ") || "-"}
                                       </div>
                                       <div>
                                         sources: {(info?.source_ids || []).join(", ") || "-"}
@@ -587,14 +622,14 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                                   ))}
                                 </div>
                               </div>
-                              <div>
-                                <div>{copy.detail.gapSummary}</div>
-                                <div>
+                              <div className="ra-form">
+                                <div className="ra-label">{copy.detail.gapSummary}</div>
+                                <div className="ra-changes">
                                   {Object.entries(detail.gapSummary || {}).map(([section, gap]) => (
-                                    <div key={section}>
+                                    <div key={section} className="ra-change">
                                       <div>
-                                        <span>{formatSectionName(section)}</span>
-                                        <span>{gap?.status || "unknown"}</span>
+                                        {formatSectionName(section)}{" "}
+                                        <span className="ra-mono">{gap?.status || "unknown"}</span>
                                       </div>
                                       <div>
                                         {copy.detail.reason}: {formatSectionName(gap?.likelyReason) || "-"}
@@ -604,48 +639,51 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
                                 </div>
                               </div>
                             </div>
-                            <div>
-                              <div>{copy.detail.sections}</div>
-                              {Object.entries(detail.sectionSummary || {}).map(([key, value]) => (
-                                <div key={key}>
-                                  <span>{key}</span>
-                                  <span>{value?.count || 0}</span>
+                            <div className="ra-col-6 ra-form">
+                              <div>
+                                <div className="ra-label">{copy.detail.sections}</div>
+                                <div className="ra-kv">
+                                  {Object.entries(detail.sectionSummary || {}).map(([key, value]) => (
+                                    <div key={key}>
+                                      <span>{key}</span>
+                                      <span>{value?.count || 0}</span>
+                                    </div>
+                                  ))}
                                 </div>
-                              ))}
-                            </div>
-                            <div>
-                              <div>{copy.detail.sources}</div>
-                              <div>
-                                {(detail.sourceMembership || []).map(source => (
-                                  <div key={source.source_id}>
-                                    <div>{source.source_id}</div>
-                                    <div>
-                                      {source.source_type || "-"} | {(source.sections || []).join(", ") || "-"}
-                                    </div>
-                                  </div>
-                                ))}
                               </div>
-                            </div>
-                            <div>
-                              <div>{copy.detail.reviewHistory}</div>
                               <div>
-                                {(detail.history || []).length ? (
-                                  detail.history.map(entry => (
-                                    <div key={entry.id}>
+                                <div className="ra-label">{copy.detail.sources}</div>
+                                <div className="ra-changes">
+                                  {(detail.sourceMembership || []).map(source => (
+                                    <div key={source.source_id} className="ra-change">
+                                      <div className="ra-mono">{source.source_id}</div>
                                       <div>
-                                        <span>{entry.action}</span>
-                                        <span>{formatDate(entry.createdAt, localeTag)}</span>
-                                        {entry.actor ? <span>{entry.actor}</span> : null}
+                                        {source.source_type || "-"} | {(source.sections || []).join(", ") || "-"}
                                       </div>
-                                      <div>
-                                        {entry.fromStatus || "-"} / {entry.fromReviewStatus || "-"} / {entry.fromActive ? "active" : "inactive"} {copy.detail.to} {entry.toStatus || "-"} / {entry.toReviewStatus || "-"} / {entry.toActive ? "active" : "inactive"}
-                                      </div>
-                                      {entry.note ? <div>{entry.note}</div> : null}
                                     </div>
-                                  ))
-                                ) : (
-                                  <div>{copy.detail.noReviewHistory}</div>
-                                )}
+                                  ))}
+                                </div>
+                              </div>
+                              <div>
+                                <div className="ra-label">{copy.detail.reviewHistory}</div>
+                                <div className="ra-changes">
+                                  {(detail.history || []).length ? (
+                                    detail.history.map(entry => (
+                                      <div key={entry.id} className="ra-change">
+                                        <div>
+                                          {entry.action} · <span className="ra-td-sub">{formatDate(entry.createdAt, localeTag)}</span>
+                                          {entry.actor ? <span className="ra-td-sub"> · {entry.actor}</span> : null}
+                                        </div>
+                                        <div>
+                                          {entry.fromStatus || "-"} / {entry.fromReviewStatus || "-"} / {entry.fromActive ? "active" : "inactive"} {copy.detail.to} {entry.toStatus || "-"} / {entry.toReviewStatus || "-"} / {entry.toActive ? "active" : "inactive"}
+                                        </div>
+                                        {entry.note ? <div>{entry.note}</div> : null}
+                                      </div>
+                                    ))
+                                  ) : (
+                                    <div className="ra-td-sub">{copy.detail.noReviewHistory}</div>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -658,7 +696,7 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
               })}
               {!loading && !visibleItems.length ? (
                 <tr>
-                  <td colSpan={10}>
+                  <td colSpan={10} className="ra-td-sub" style={{ textAlign: "center", padding: "1.6rem" }}>
                     {copy.empty}
                   </td>
                 </tr>

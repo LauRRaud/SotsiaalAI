@@ -28,8 +28,26 @@ export default function GlassCarousel({
   t,
   setKey = null,
   forceInitial = false,
+  visible = 3,
 }) {
   const n = items.length;
+
+  /* 5 nähtavat kaarti (keskmine fookuses, 2 kummalgi pool) suurte
+     komplektide jaoks (töölaud/tööheaolu, tellija 10.07); kitsas aknas
+     kukub tagasi 3 peale. SSR alustab 3-ga (deterministlik), laius
+     mõõdetakse pärast hüdreerimist. */
+  const [wideEnough, setWideEnough] = useState(false);
+  useEffect(() => {
+    if (visible !== 5 || typeof window === "undefined") return undefined;
+    const mq = window.matchMedia("(min-width: 1200px)");
+    const update = () => setWideEnough(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, [visible]);
+  const shown = visible === 5 && wideEnough && n >= 5 ? 5 : 3;
+  const posLimit = shown === 5 ? 2.4 : 1.4;
+  const hideBeyond = shown === 5 ? 2 : 1;
 
   /* Viimase keskkaardi mälu komplekti kohta (sessionStorage), et elaks
      üle karusselli remountide (key={carouselSet}) ja route-vahetuste. */
@@ -129,9 +147,9 @@ export default function GlassCarousel({
 
   /* Sammu lukk: iga pööre on ÜKS kaart ja animatsioon lõpetatakse
      enne järgmist sammu — kaarte ei saa läbi vuhistada. Kestus on
-     seotud kaardi transitioniga (860 ms, carousel.css). */
+     seotud kaardi transitioniga (480 ms, carousel.css). */
   const stepLockUntil = useRef(0);
-  const STEP_LOCK_MS = 840;
+  const STEP_LOCK_MS = 460;
   const stepAllowed = () => {
     const now = performance.now();
     if (now < stepLockUntil.current) return false;
@@ -321,7 +339,7 @@ export default function GlassCarousel({
   }, [t, active, n]);
 
   return (
-    <nav className="gc" aria-label={t("room.menu_label")} id="room-menu">
+    <nav className="gc" data-visible={shown} aria-label={t("room.menu_label")} id="room-menu">
       <IconButton
         layoutClassName="gc-arrow gc-arrow--left"
         aria-label={t("room.prev_panel")}
@@ -344,19 +362,19 @@ export default function GlassCarousel({
           const abs = Math.abs(pos);
           const isCenter = pos === 0;
           const isWarp = layout.warp[i] === true;
-          /* Peidus kaardid PARGIVAD kohe serva taga (±1.4 sammu), mitte
-             oma kaugel ringipositsioonil — sisenev kaart libiseb servast
-             ühe sammu ega lenda üle rea; lahkuv libiseb serva taha ja
-             hajub (tellija 06.07: "keritav karussell, mitte lennuk"). */
-          const posVis = Math.max(-1.4, Math.min(1.4, pos));
-          const absVis = Math.min(abs, 1.4);
+          /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
+             mitte oma kaugel ringipositsioonil — sisenev kaart libiseb
+             servast ühe sammu ega lenda üle rea; lahkuv libiseb serva
+             taha ja hajub (tellija 06.07: "keritav, mitte lennuk"). */
+          const posVis = Math.max(-posLimit, Math.min(posLimit, pos));
+          const absVis = Math.min(abs, posLimit);
           return (
             <li
               key={item.key}
               className="gc-item"
               style={{ "--pos": posVis, "--abs": absVis, zIndex: 40 - abs * 10 }}
               data-center={isCenter ? "1" : "0"}
-              data-hidden={abs > 1 ? "1" : "0"}
+              data-hidden={abs > hideBeyond ? "1" : "0"}
               data-warp={isWarp ? "1" : "0"}
             >
               <GlassCard

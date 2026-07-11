@@ -149,13 +149,23 @@
   text-align: center;
 }
 
-/* Admin-töövaated vajavad laiust (tabelid) */
+/* Admin-töövaated = täisekraani juhtimiskeskus (tellija 10.07: "kasutame
+   tervet ekraani ära", mitte kitsas vertikaalne torn). Sisu paigutus
+   elab rag-admin.css-is (.ra-* võrgustik). Laius 100% (mitte 100vw):
+   servad tulevad scrimi paddingust ja jäävad vasakul/paremal VÕRDSEKS
+   (100vw arvestas kerimisriba ja nihutas akent; tellija 10.07 õhtu). */
+.panel-scrim[data-admin="1"] {
+  padding: clamp(0.75rem, 2lvh, 1.4rem) clamp(0.75rem, 1.6vw, 1.4rem);
+}
 .panel-scrim[data-admin="1"] .panel {
-  /* Tellija 07.07: 90rem oli ~ekraani-lai (mõeldud laiade tabelite jaoks),
-     aga sisuvaated (nt KOV kontaktiregister) jäid tühja ette. Kont-
-     aineeritud laius; laiu tabeleid saab vajadusel horisontaalselt kerida. */
-  width: min(64rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
-  height: calc(100lvh - clamp(2rem, 6lvh, 4.5rem));
+  width: 100%;
+  height: calc(100lvh - clamp(1.5rem, 4lvh, 2.8rem));
+}
+.panel-scrim[data-admin="1"] .panel-body {
+  padding: clamp(1rem, 1.8vw, 1.9rem);
+  padding-top: clamp(2.8rem, 5.5lvh, 3.4rem); /* nurga-nuppude riba */
+  /* Kerimisriba ruum mõlemas servas — sisu püsib keskel */
+  scrollbar-gutter: stable both-edges;
 }
 
 /* Lai leht (Teenusekaart): SUUR kaart, aken täidab ekraani */
@@ -434,16 +444,8 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   opacity: 1;
 }
 
-/* RAG admini navi (RagAdminPageFrame): tab-rida klaas-pillidena — enne olid
-   need paljad kokkujooksnud lingid (shell-klassid olid tühjaks stripitud).
-   Pilli-materjal + aktiivne olek tulevad glass.css-ist (a[data-variant] +
-   [data-selected="true"]); siin ainult rea-paigutus (tellija 07.07). */
-.rag-admin-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 1rem 0 0.4rem;
-}
+/* RAG admini navi paigutus elab nüüd rag-admin.css-is (.ra-nav);
+   pilli-materjal + aktiivne olek tulevad endiselt glass.css-ist. */
 
 /* Konto seaded (profiili sektsioon): kolm toimingut, õhk vahel.
    Tellija 07.07: keskjoondatud kaart nagu ülejäänud redisain — pealkiri,
@@ -480,6 +482,111 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   color: var(--text-dim);
 }
 
+/* Profiili kasutusülevaade: sama paneeli klaas, mitte eraldi kujundussüsteem. */
+.usage-modal__header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.usage-modal__header h2 {
+  grid-column: 2;
+  margin: 0;
+  text-align: center;
+}
+.usage-overview {
+  display: grid;
+  gap: 1rem;
+  width: min(34rem, 100%);
+  margin-inline: auto;
+}
+.usage-overview__intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--glass-cell-border);
+}
+.usage-overview__intro h3,
+.usage-meter h4 {
+  margin: 0;
+  color: var(--text-warm);
+}
+.usage-overview__eyebrow,
+.usage-overview__billing,
+.usage-overview__empty p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: var(--fs-small);
+}
+.usage-overview__metrics {
+  display: grid;
+  gap: 0.8rem;
+}
+.usage-meter {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 16px;
+  background: var(--glass-cell-bg);
+}
+.usage-meter__line,
+.usage-meter__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8rem;
+}
+.usage-meter__line h4 {
+  font-size: var(--fs-body);
+}
+.usage-meter__line span,
+.usage-meter__meta {
+  color: var(--text-dim);
+  font-size: var(--fs-small);
+}
+.usage-meter__track {
+  height: 0.45rem;
+  margin: 0.65rem 0 0.5rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.usage-meter__track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--status-success);
+  transition: width var(--dur-med) var(--ease-soft);
+}
+.usage-meter[data-state="notice"] .usage-meter__track > span {
+  background: #d7bd81;
+}
+.usage-meter[data-state="warning"] .usage-meter__track > span,
+.usage-meter[data-state="blocked"] .usage-meter__track > span {
+  background: var(--status-error);
+}
+.usage-meter__notice {
+  margin: 0.55rem 0 0;
+  color: #e2c98e;
+  font-size: var(--fs-small);
+}
+.usage-meter[data-state="blocked"] .usage-meter__notice {
+  color: var(--status-error);
+}
+.usage-overview__empty {
+  padding: 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 16px;
+  background: var(--glass-cell-bg);
+}
+.usage-overview__action {
+  display: grid;
+  justify-items: center;
+  padding-top: 0.3rem;
+}
+
 /* Teated */
 .panel-body [role="alert"] {
   color: var(--status-error);
@@ -511,6 +618,13 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-body {
     padding: 1.1rem;
     padding-top: 3.6rem;
+  }
+  .usage-overview__intro,
+  .usage-meter__line,
+  .usage-meter__meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }
 

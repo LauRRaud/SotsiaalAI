@@ -114,40 +114,41 @@ export default function RagAdminContactRegistryPanel() {
   const canApplyCheck = Boolean(status?.check?.fileExists && status?.check?.reportExists && status?.check?.changedContacts > 0);
 
   return (
-    <section aria-label="KOV ja LOV kontaktiregister">
-      <h2>KOV/LOV kontaktiregister</h2>
-      <p>
+    <section aria-label="KOV ja LOV kontaktiregister" className="ra-card">
+      <h2 className="ra-card-title">KOV/LOV kontaktiregister</h2>
+      <p className="ra-card-sub">
         Kontrollib keskse kontaktfaili `officialUrl` lehti ja Tallinna `KOV/LOV` lähtefailide URL-e.
         Veebikontroll ei kirjuta põhifaili üle, vaid loob kõrvale `kov_kontaktid_loplik.kontroll.json` faili ja võrdlusraporti.
       </p>
 
-      <div>
-        <div>
-          <div>Seis</div>
-          <div>{statusText(status)}</div>
+      <div className="ra-stats ra-stats--mini">
+        <div className="ra-stat" data-tone={status?.needsRefresh || status?.check?.sourceChanged ? "warn" : "ok"}>
+          <span className="ra-stat-label">Seis</span>
+          <span className="ra-stat-value ra-stat-value--text">{statusText(status)}</span>
         </div>
-        <div>
-          <div>Kontaktfail</div>
-          <div>{formatValue(status?.counts?.existingContacts)}</div>
+        <div className="ra-stat">
+          <span className="ra-stat-label">Kontaktfail</span>
+          <span className="ra-stat-value">{formatValue(status?.counts?.existingContacts)}</span>
         </div>
-        <div>
-          <div>Viimati kontrollis</div>
-          <div>{formatValue(status?.check?.checkedUrls)}</div>
+        <div className="ra-stat">
+          <span className="ra-stat-label">Viimati kontrollis</span>
+          <span className="ra-stat-value">{formatValue(status?.check?.checkedUrls)}</span>
         </div>
-        <div>
-          <div>Raporti muutused</div>
-          <div>{formatValue(status?.check?.changedContacts)}</div>
+        <div className="ra-stat" data-tone={Number(status?.check?.changedContacts || 0) > 0 ? "warn" : "neutral"}>
+          <span className="ra-stat-label">Raporti muutused</span>
+          <span className="ra-stat-value">{formatValue(status?.check?.changedContacts)}</span>
         </div>
       </div>
 
       {status?.serviceMap?.ok ? (
-        <p>
-          Geokodeerimine: MATCHED {formatValue(geocoding.MATCHED || 0)}, PENDING {formatValue(geocoding.PENDING || 0)},
-          FAILED {formatValue(geocoding.FAILED || 0)}.
-        </p>
+        <div className="ra-chiprow">
+          <span className="ra-chip" data-tone="ok">MATCHED {formatValue(geocoding.MATCHED || 0)}</span>
+          <span className="ra-chip" data-tone={Number(geocoding.PENDING || 0) > 0 ? "warn" : "dim"}>PENDING {formatValue(geocoding.PENDING || 0)}</span>
+          <span className="ra-chip" data-tone={Number(geocoding.FAILED || 0) > 0 ? "err" : "dim"}>FAILED {formatValue(geocoding.FAILED || 0)}</span>
+        </div>
       ) : null}
 
-      <div>
+      <div className="ra-actions">
         <Button type="button" variant="primary" size="sm" onClick={loadStatus} disabled={busy}>
           Kontrolli seisu
         </Button>
@@ -164,13 +165,13 @@ export default function RagAdminContactRegistryPanel() {
         </Button>
       </div>
 
-      {message ? <p>{message}</p> : null}
+      {message ? <p className="ra-status">{message}</p> : null}
       {emailChanges.length > 0 ? (
-        <div aria-label="E-posti muudatused">
+        <div aria-label="E-posti muudatused" className="ra-changes">
           {emailChanges.map((change) => (
-            <div key={`${change.index}-${change.field}`}>
+            <div key={`${change.index}-${change.field}`} className="ra-change">
               <div>
-                {change.name || "Kontakt"} <span>({change.slug || "-"})</span>
+                {change.name || "Kontakt"} <span className="ra-mono">({change.slug || "-"})</span>
               </div>
               <div>Vana: {change.oldValue || "-"}</div>
               <div>Uus: {change.newValue || "-"}</div>
@@ -178,15 +179,15 @@ export default function RagAdminContactRegistryPanel() {
           ))}
         </div>
       ) : status?.check?.reportExists ? (
-        <p>Viimases raportis e-posti muudatusi ei olnud.</p>
+        <p className="ra-log">Viimases raportis e-posti muudatusi ei olnud.</p>
       ) : null}
       {status?.check?.reportExists ? (
-        <p>
+        <p className="ra-log">
           Viimane raport: {status.check.reportFile}; kandidaatfail: {status.check.outputFile}.
           {status.check.appliedAt ? ` Rakendatud: ${status.check.appliedAt}.` : ""}
         </p>
       ) : null}
-      {status?.generatedAt ? <p>Viimane koondamine: {status.generatedAt}</p> : null}
+      {status?.generatedAt ? <p className="ra-log">Viimane koondamine: {status.generatedAt}</p> : null}
     </section>
   );
 }

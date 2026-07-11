@@ -99,27 +99,33 @@ function ragDocStatusLabel(doc, et) {
 }
 
 function renderRagDocCard({ doc, label, et, locale }) {
+  const tone = doc?.error
+    ? "err"
+    : doc?.exists && Number(doc?.chunks || 0) > 0
+      ? "ok"
+      : "dim";
+
   return (
-    <div>
-      <div>
-        <div>{label}</div>
-        <span>
+    <div className="ra-change" style={{ gap: "0.4rem" }}>
+      <div className="ra-card-head">
+        <div className="ra-label">{label}</div>
+        <span className="ra-chip" data-tone={tone}>
           {ragDocStatusLabel(doc, et)}
         </span>
       </div>
-      <div>
-        <div>doc_id: {doc?.docId || "-"}</div>
-        <div>{et ? "Chunkid" : "Chunks"}: {Number(doc?.chunks || 0)}</div>
-        <div>{et ? "Pealkiri" : "Title"}: {doc?.title || "-"}</div>
-        <div>{et ? "Teenuse staatus" : "Service status"}: {doc?.status || "-"}</div>
-        <div>{et ? "Viimati ingestitud" : "Last ingested"}: {doc?.lastIngested ? formatDateTime(doc.lastIngested, locale) : "-"}</div>
-        <div>{et ? "Registri uuendus" : "Registry update"}: {doc?.updatedAt ? formatDateTime(doc.updatedAt, locale) : "-"}</div>
-        {doc?.error ? (
-          <div>
-            {doc.error}
-          </div>
-        ) : null}
+      <div className="ra-kv">
+        <div><span>doc_id</span><span className="ra-mono">{doc?.docId || "-"}</span></div>
+        <div><span>{et ? "Chunkid" : "Chunks"}</span><span>{Number(doc?.chunks || 0)}</span></div>
+        <div><span>{et ? "Pealkiri" : "Title"}</span><span>{doc?.title || "-"}</span></div>
+        <div><span>{et ? "Teenuse staatus" : "Service status"}</span><span>{doc?.status || "-"}</span></div>
+        <div><span>{et ? "Viimati ingestitud" : "Last ingested"}</span><span>{doc?.lastIngested ? formatDateTime(doc.lastIngested, locale) : "-"}</span></div>
+        <div><span>{et ? "Registri uuendus" : "Registry update"}</span><span>{doc?.updatedAt ? formatDateTime(doc.updatedAt, locale) : "-"}</span></div>
       </div>
+      {doc?.error ? (
+        <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>
+          {doc.error}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -133,46 +139,46 @@ function renderLightCheckDiffBlock(summary, { et, title }) {
   const hasItems = changedSources.length || removedSources.length || errorSources.length;
 
   return (
-    <div>
-      <div>{title}</div>
+    <div className="ra-form">
+      <div className="ra-label">{title}</div>
       {!hasItems ? (
-        <div>
+        <div className="ra-td-sub">
           {summary.mode === "BASELINE_CREATED"
-            ? (et ? "Esimene kontroll lĆµi baasvĆµrdluse. JĆ¤rgmised jooksud nĆ¤itavad diffi." : "The first check created the baseline. Future runs will show a diff.")
+            ? (et ? "Esimene kontroll lõi baasvõrdluse. Järgmised jooksud näitavad diffi." : "The first check created the baseline. Future runs will show a diff.")
             : et ? "Muutunud allikaid ega vigu ei tuvastatud." : "No changed sources or fetch errors were detected."}
         </div>
       ) : null}
       {changedSources.length ? (
-        <div>
-          <div>{et ? "Muutunud allikad" : "Changed sources"}</div>
+        <div className="ra-changes">
+          <div className="ra-label">{et ? "Muutunud allikad" : "Changed sources"}</div>
           {changedSources.map((item, index) => (
-            <div key={`${item.key || item.url || "changed"}-${index}`}>
+            <div key={`${item.key || item.url || "changed"}-${index}`} className="ra-change">
               <div>{item.key || item.url || "-"}</div>
               <div>{lightCheckReasonLabel(item.reason, et)}</div>
-              {item.url ? <div>{item.url}</div> : null}
+              {item.url ? <div className="ra-mono">{item.url}</div> : null}
             </div>
           ))}
         </div>
       ) : null}
       {removedSources.length ? (
-        <div>
-          <div>{et ? "Kadunud allikad" : "Removed sources"}</div>
+        <div className="ra-changes">
+          <div className="ra-label">{et ? "Kadunud allikad" : "Removed sources"}</div>
           {removedSources.map((item, index) => (
-            <div key={`${item.key || item.url || "removed"}-${index}`}>
+            <div key={`${item.key || item.url || "removed"}-${index}`} className="ra-change">
               <div>{item.key || item.url || "-"}</div>
-              {item.url ? <div>{item.url}</div> : null}
+              {item.url ? <div className="ra-mono">{item.url}</div> : null}
             </div>
           ))}
         </div>
       ) : null}
       {errorSources.length ? (
-        <div>
-          <div>{et ? "Allikad veaga" : "Sources with errors"}</div>
+        <div className="ra-changes">
+          <div className="ra-label">{et ? "Allikad veaga" : "Sources with errors"}</div>
           {errorSources.map((item, index) => (
-            <div key={`${item.key || item.url || "error"}-${index}`}>
+            <div key={`${item.key || item.url || "error"}-${index}`} className="ra-change">
               <div>{item.key || item.url || "-"}</div>
-              {item.url ? <div>{item.url}</div> : null}
-              <div>{item.error || "-"}</div>
+              {item.url ? <div className="ra-mono">{item.url}</div> : null}
+              <div style={{ color: "var(--status-error)" }}>{item.error || "-"}</div>
             </div>
           ))}
         </div>
@@ -201,7 +207,7 @@ function renderFileCards({
   remediationFocus
 }) {
   return (
-    <div>
+    <div className="ra-filelist">
       {definitions.map(file => {
         const state = files?.[file.key] || { status: "missing", version: 0, validationStatus: "MISSING", validationMessage: "" };
         const resolvedFileName = file.fileName.replace("{slug}", entry.slug);
@@ -211,49 +217,53 @@ function renderFileCards({
         const focused = isFocusedFile(remediationFocus, file.key);
 
         return (
-          <div key={file.key}>
-            <div>
-              <div>
-                <div>
-                  <div>{resolvedFileName}</div>
+          <div key={file.key} className="ra-filerow" data-focused={focused ? "true" : undefined}>
+              <div className="ra-filerow-info">
+                <div className="ra-chiprow">
+                  <span className="ra-filerow-name ra-mono">{resolvedFileName}</span>
                   {focused ? (
-                    <span>
+                    <span className="ra-chip" data-tone="warn">
                       {et ? "Quality queue siht" : "Quality queue target"}
                     </span>
                   ) : null}
                 </div>
-                <div>
-                  <div>
-                    {et ? "Staatus" : "Status"}:{" "}
-                    <span>
-                      {et
-                        ? state.status === "uploaded"
-                          ? "olemas"
-                          : state.status === "replaced"
-                            ? "asendatud"
-                            : "puudu"
-                        : fileStatusLabel(state.status)}
-                    </span>
-                  </div>
-                  <div>
-                    {et ? "Valideerimine" : "Validation"}:{" "}
-                    <span>
-                      {validationLabel(state.validationStatus, et)}
-                    </span>
-                  </div>
-                  <div>{et ? "Nimi" : "Name"}: {state.originalName || "-"}</div>
-                  <div>{et ? "Kiht" : "Layer"}: {file.shortLabel}</div>
-                  <div>{et ? "Versioon" : "Version"}: {state.version || 0}</div>
-                  <div>{et ? "Laetud" : "Uploaded"}: {state.uploadedAt ? formatDateTime(state.uploadedAt, locale) : "-"}</div>
-                  <div>{et ? "Valideeritud" : "Validated"}: {state.validatedAt ? formatDateTime(state.validatedAt, locale) : "-"}</div>
-                  {state.validationStatus === "INVALID" && state.validationMessage ? (
-                    <div>
-                      {state.validationMessage}
-                    </div>
-                  ) : null}
+                <div className="ra-chiprow">
+                  <span className="ra-chip" data-tone={state.status === "missing" ? "dim" : "ok"}>
+                    {et
+                      ? state.status === "uploaded"
+                        ? "olemas"
+                        : state.status === "replaced"
+                          ? "asendatud"
+                          : "puudu"
+                      : fileStatusLabel(state.status)}
+                  </span>
+                  <span
+                    className="ra-chip"
+                    data-tone={
+                      state.validationStatus === "VALID"
+                        ? "ok"
+                        : state.validationStatus === "INVALID"
+                          ? "err"
+                          : "dim"
+                    }
+                  >
+                    {validationLabel(state.validationStatus, et)}
+                  </span>
                 </div>
+                <div className="ra-filerow-meta">
+                  {et ? "Nimi" : "Name"}: {state.originalName || "-"} · {et ? "Kiht" : "Layer"}: {file.shortLabel} · {et ? "Versioon" : "Version"}: {state.version || 0}
+                </div>
+                <div className="ra-filerow-meta">
+                  {et ? "Laetud" : "Uploaded"}: {state.uploadedAt ? formatDateTime(state.uploadedAt, locale) : "-"} · {et ? "Valideeritud" : "Validated"}: {state.validatedAt ? formatDateTime(state.validatedAt, locale) : "-"}
+                </div>
+                <div className="ra-filerow-meta">{file.description}</div>
+                {state.validationStatus === "INVALID" && state.validationMessage ? (
+                  <div className="ra-filerow-meta" style={{ color: "var(--status-error)" }}>
+                    {state.validationMessage}
+                  </div>
+                ) : null}
               </div>
-              <div>
+              <div className="ra-actions">
                 <input
                   ref={node => {
                     fileInputRefs.current[file.key] = node;
@@ -304,7 +314,6 @@ function renderFileCards({
                   </Button>
                 ) : null}
               </div>
-            </div>
           </div>
         );
       })}
@@ -314,7 +323,7 @@ function renderFileCards({
 
 function renderSaveActions({ et, saveBusy, onSave, message, hint }) {
   return (
-    <div>
+    <div className="ra-actions">
       <Button
         variant="primary"
         size="sm"
@@ -323,9 +332,9 @@ function renderSaveActions({ et, saveBusy, onSave, message, hint }) {
       >
         {saveBusy ? "Salvestan..." : et ? "Salvesta muudatused" : "Save changes"}
       </Button>
-      <span>{hint}</span>
+      <span className="ra-td-sub">{hint}</span>
       {message?.text ? (
-        <span>
+        <span className="ra-status">
           {message.text}
         </span>
       ) : null}
@@ -384,10 +393,8 @@ export default function KovDetailPanel({
 
   if (!entry) {
     return (
-      <div>
-        <div>
-          <div>Vali KOV, et avada detailid.</div>
-        </div>
+      <div className="ra-empty">
+        Vali KOV, et avada detailid.
       </div>
     );
   }
@@ -426,30 +433,37 @@ export default function KovDetailPanel({
     : remediationFocus?.focus || "";
 
   return (
-    <div>
+    <div className="ra-shell-flow">
       {remediationFocus ? (
-        <div>
-          <span>{et ? "Quality queue siht" : "Quality queue target"}:</span>{" "}
+        <div className="ra-note">
+          <strong>{et ? "Quality queue siht" : "Quality queue target"}:</strong>{" "}
           {focusHint || (et ? "kontrolli selle kirje metadata't" : "review this record metadata")}
         </div>
       ) : null}
-      <div>
-        <div>
-          <div>
+      <div className="ra-card">
+          <div className="ra-card-head">
             <div>
-              <div>{entry.displayName}</div>
-              <div>KOV veeb ja Riigi Teataja kiht eraldi halduses.</div>
+              <div className="ra-card-title">{entry.displayName}</div>
+              <p className="ra-card-sub">KOV veeb ja Riigi Teataja kiht eraldi halduses.</p>
+            </div>
+            <div className="ra-chiprow">
+              <span className="ra-chip" data-tone={combinedReadiness.state === "BOTH_INGESTED" || combinedReadiness.state === "BOTH_READY" ? "ok" : "warn"}>
+                {readinessLabel(combinedReadiness.state, et)}
+              </span>
+              <span className="ra-chip" data-tone="dim">
+                {et ? "Valmis kihte" : "Ready layers"}: {combinedReadiness.readyLayerCount || 0}/2
+              </span>
             </div>
           </div>
 
-          <div>
+          <div className="ra-kv">
             <div>
               <span>KOV</span>
               <span>{entry.displayName}</span>
             </div>
             <div>
               <span>Slug</span>
-              <span>{entry.slug}</span>
+              <span className="ra-mono">{entry.slug}</span>
             </div>
             <div>
               <span>Maakond</span>
@@ -465,27 +479,15 @@ export default function KovDetailPanel({
             </div>
             <div>
               <span>{et ? "RT seis" : "RT status"}</span>
-              <span>
-                <span>
-                  {rtStatusLabel(detailDraft.rtStatus || entry.rtStatus)}
-                </span>
-              </span>
+              <span>{rtStatusLabel(detailDraft.rtStatus || entry.rtStatus)}</span>
             </div>
             <div>
               <span>{et ? "KOV ingest" : "Web ingest"}</span>
-              <span>
-                <span>
-                  {ingestStatusLabel(entry.ingestStatus)}
-                </span>
-              </span>
+              <span>{ingestStatusLabel(entry.ingestStatus)}</span>
             </div>
             <div>
               <span>{et ? "RT ingest" : "RT ingest"}</span>
-              <span>
-                <span>
-                  {ingestStatusLabel(entry.rtIngestStatus)}
-                </span>
-              </span>
+              <span>{ingestStatusLabel(entry.rtIngestStatus)}</span>
             </div>
             <div>
               <span>{et ? "Admin KOV failid" : "Admin KOV files"}</span>
@@ -495,39 +497,28 @@ export default function KovDetailPanel({
               <span>{et ? "Admin RT fail" : "Admin RT file"}</span>
               <span>{entry.rtFileCount || 0}/1</span>
             </div>
-            <div>
-              <span>{et ? "Koondvalmidus" : "Combined readiness"}</span>
-              <span>
-                <span>
-                  {readinessLabel(combinedReadiness.state, et)}
-                </span>
-              </span>
-            </div>
           </div>
-          <div>
-            <span>
-              {et ? "Valmis kihte" : "Ready layers"}: {combinedReadiness.readyLayerCount || 0}/2
-            </span>
-            <span>
+          <div className="ra-chiprow">
+            <span className="ra-chip" data-tone={combinedReadiness.webReady ? "ok" : "dim"}>
               KOV: {combinedReadiness.webReady ? (et ? "valmis" : "ready") : et ? "pooleli" : "pending"}
             </span>
-            <span>
+            <span className="ra-chip" data-tone={combinedReadiness.rtReady ? "ok" : "dim"}>
               RT: {combinedReadiness.rtReady ? (et ? "valmis" : "ready") : et ? "pooleli" : "pending"}
             </span>
           </div>
 
-          <div>
-            <div>
+          <div className="ra-form">
+            <div className="ra-card-head">
               <div>
-                <div>{et ? "RAG dokumendi seis" : "RAG document status"}</div>
-                <div>
+                <div className="ra-label">{et ? "RAG dokumendi seis" : "RAG document status"}</div>
+                <div className="ra-td-sub">
                   {et
                     ? "Reaalajas kontroll RAG registrist: doc_id, chunkide arv ja viimane ingest."
                     : "Live check from the RAG registry: doc_id, chunk count, and last ingest."}
                 </div>
               </div>
-              <div>
-                <span>
+              <div className="ra-actions">
+                <span className="ra-td-sub">
                   {et ? "Värskendatud" : "Updated"}: {ragSnapshot.checkedAt ? formatDateTime(ragSnapshot.checkedAt, locale) : "-"}
                 </span>
                 <Button
@@ -542,7 +533,7 @@ export default function KovDetailPanel({
                 </Button>
               </div>
             </div>
-            <div>
+            <div className="ra-form-grid">
               {renderRagDocCard({
                 doc: ragSnapshot.web || {
                   docId: entry.ragDocId || "",
@@ -574,24 +565,24 @@ export default function KovDetailPanel({
                 locale
               })}
             </div>
-            <div>
+            <div className="ra-note" data-tone="neutral">
               <div>
-                <div>{et ? "Paketipõhine KOV reset" : "Package-level KOV reset"}</div>
-                <div>
+                <div className="ra-label">{et ? "Paketipõhine KOV reset" : "Package-level KOV reset"}</div>
+                <div className="ra-td-sub">
                   {et
                     ? "Reset eemaldab ainult selle KOV RAG dokumendid, archiveerib aktiivsed SourcePackage snapshotid ja viib admin ingest-state'i tagasi mitte-ingestitud seisu. Repo faile see ei muuda."
                     : "Reset removes only this municipality's RAG documents, archives active SourcePackage snapshots, and returns admin ingest state to not ingested. Repo files are not touched."}
                 </div>
               </div>
               {resetSummary ? (
-                <div>
-                  <div><span>{et ? "RAG dokumendid" : "RAG documents"}:</span> {resetSummary.matched_rag_doc_ids || 0}</div>
-                  <div><span>{et ? "Aktiivsed snapshotid" : "Active snapshots"}:</span> {resetSummary.active_snapshot_count || 0}</div>
-                  <div><span>{et ? "Archiveeritud snapshotid" : "Archived snapshots"}:</span> {resetSummary.archived_snapshot_count || 0}</div>
-                  <div><span>{et ? "Admin reset" : "Admin reset"}:</span> {resetSummary.admin_row_will_reset ? (et ? "jah" : "yes") : (et ? "ei" : "no")}</div>
+                <div className="ra-kv" style={{ margin: "0.6rem 0" }}>
+                  <div><span>{et ? "RAG dokumendid" : "RAG documents"}</span><span>{resetSummary.matched_rag_doc_ids || 0}</span></div>
+                  <div><span>{et ? "Aktiivsed snapshotid" : "Active snapshots"}</span><span>{resetSummary.active_snapshot_count || 0}</span></div>
+                  <div><span>{et ? "Archiveeritud snapshotid" : "Archived snapshots"}</span><span>{resetSummary.archived_snapshot_count || 0}</span></div>
+                  <div><span>{et ? "Admin reset" : "Admin reset"}</span><span>{resetSummary.admin_row_will_reset ? (et ? "jah" : "yes") : (et ? "ei" : "no")}</span></div>
                 </div>
               ) : null}
-              <div>
+              <div className="ra-actions" style={{ marginTop: "0.5rem" }}>
                 <Button
                   variant="primary"
                   size="sm"
@@ -623,86 +614,96 @@ export default function KovDetailPanel({
               </div>
             </div>
           </div>
-        </div>
       </div>
 
-      <div>
-        <div>
-          <div>
-            <div>{et ? "Hooldusgraafik" : "Review schedule"}</div>
+      <div className="ra-card">
+          <div className="ra-card-head">
             <div>
+              <div className="ra-card-title">{et ? "Hooldusgraafik" : "Review schedule"}</div>
+              <p className="ra-card-sub">
                 {et ? "Aastane täisülevaatus jaanuari lõpus ja kergem automaatkontroll juuli lõpus." : "Annual full review at the end of January and a lighter automated check at the end of July."}
+              </p>
             </div>
-          </div>
-
-          <div>
-            <div>
-              <span>{et ? "Seis" : "State"}:</span>{" "}
-              <span>
+            <div className="ra-chiprow">
+              <span
+                className="ra-chip"
+                data-tone={
+                  reviewSchedule.state === "CHANGES_DETECTED" || reviewSchedule.state === "ERROR"
+                    ? "err"
+                    : reviewSchedule.state === "FULL_REVIEW_DUE" || reviewSchedule.state === "LIGHT_CHECK_DUE"
+                      ? "warn"
+                      : reviewSchedule.state === "NO_CHANGES"
+                        ? "ok"
+                        : "dim"
+                }
+              >
                 {reviewStateLabel(reviewSchedule.state, et)}
               </span>
             </div>
+          </div>
+
+          <div className="ra-kv">
             <div>
-              <span>{et ? "Automaatkontroll" : "Auto check"}:</span>{" "}
+              <span>{et ? "Automaatkontroll" : "Auto check"}</span>
+              <span>{autoCheckStatusLabel(entry.autoCheckStatus)}</span>
+            </div>
+            <div>
+              <span>{et ? "RT automaatkontroll" : "RT auto check"}</span>
+              <span>{autoCheckStatusLabel(entry.rtAutoCheckStatus)}</span>
+            </div>
+            <div>
+              <span>{et ? "Viimane täisülevaatus" : "Last full review"}</span>
+              <span>{entry.lastFullReviewAt ? formatDateTime(entry.lastFullReviewAt, locale) : "-"}</span>
+            </div>
+            <div>
+              <span>{et ? "Järgmine täisülevaatus" : "Next full review"}</span>
+              <span>{entry.nextFullReviewAt ? formatDateTime(entry.nextFullReviewAt, locale) : "-"}</span>
+            </div>
+            <div>
+              <span>{et ? "Viimane automaatkontroll" : "Last light check"}</span>
+              <span>{entry.lastLightCheckAt ? formatDateTime(entry.lastLightCheckAt, locale) : "-"}</span>
+            </div>
+            <div>
+              <span>{et ? "Järgmine automaatkontroll" : "Next light check"}</span>
+              <span>{entry.nextLightCheckAt ? formatDateTime(entry.nextLightCheckAt, locale) : "-"}</span>
+            </div>
+            <div>
+              <span>{et ? "Viimane tuvastatud muudatus" : "Last detected change"}</span>
+              <span>{entry.lastChangeDetectedAt ? formatDateTime(entry.lastChangeDetectedAt, locale) : "-"}</span>
+            </div>
+            <div>
+              <span>{et ? "Viimane automaatkontrolli kokkuvote" : "Last light check summary"}</span>
               <span>
-                {autoCheckStatusLabel(entry.autoCheckStatus)}
+                {entry.lightCheckSummary?.checkedAt
+                  ? (
+                    entry.lightCheckSummary.mode === "BASELINE_CREATED"
+                      ? (et
+                        ? `Loodi baasvõrdlus ${entry.lightCheckSummary.checkedSourceCount || 0} allikast.`
+                        : `Created a baseline from ${entry.lightCheckSummary.checkedSourceCount || 0} sources.`)
+                      : et
+                        ? `${entry.lightCheckSummary.changedSourceCount || 0} muudatust, ${entry.lightCheckSummary.errorCount || 0} veaga allikat.`
+                        : `${entry.lightCheckSummary.changedSourceCount || 0} changes, ${entry.lightCheckSummary.errorCount || 0} source errors.`)
+                  : "-"}
               </span>
             </div>
             <div>
-              <span>{et ? "RT automaatkontroll" : "RT auto check"}:</span>{" "}
+              <span>{et ? "Viimane RT kontrolli kokkuvote" : "Last RT check summary"}</span>
               <span>
-                {autoCheckStatusLabel(entry.rtAutoCheckStatus)}
+                {entry.rtLightCheckSummary?.checkedAt
+                  ? (
+                    entry.rtLightCheckSummary.mode === "BASELINE_CREATED"
+                      ? (et
+                        ? `Loodi RT baasvõrdlus ${entry.rtLightCheckSummary.checkedSourceCount || 0} allikast.`
+                        : `Created an RT baseline from ${entry.rtLightCheckSummary.checkedSourceCount || 0} sources.`)
+                      : et
+                        ? `${entry.rtLightCheckSummary.changedSourceCount || 0} RT muudatust, ${entry.rtLightCheckSummary.errorCount || 0} veaga allikat.`
+                        : `${entry.rtLightCheckSummary.changedSourceCount || 0} RT changes, ${entry.rtLightCheckSummary.errorCount || 0} source errors.`)
+                  : "-"}
               </span>
-            </div>
-            <div>
-              <span>{et ? "Viimane täisülevaatus" : "Last full review"}:</span>{" "}
-              {entry.lastFullReviewAt ? formatDateTime(entry.lastFullReviewAt, locale) : "-"}
-            </div>
-            <div>
-              <span>{et ? "Järgmine täisülevaatus" : "Next full review"}:</span>{" "}
-              {entry.nextFullReviewAt ? formatDateTime(entry.nextFullReviewAt, locale) : "-"}
-            </div>
-            <div>
-              <span>{et ? "Viimane automaatkontroll" : "Last light check"}:</span>{" "}
-              {entry.lastLightCheckAt ? formatDateTime(entry.lastLightCheckAt, locale) : "-"}
-            </div>
-            <div>
-              <span>{et ? "Järgmine automaatkontroll" : "Next light check"}:</span>{" "}
-              {entry.nextLightCheckAt ? formatDateTime(entry.nextLightCheckAt, locale) : "-"}
-            </div>
-            <div>
-              <span>{et ? "Viimane tuvastatud muudatus" : "Last detected change"}:</span>{" "}
-              {entry.lastChangeDetectedAt ? formatDateTime(entry.lastChangeDetectedAt, locale) : "-"}
-            </div>
-            <div>
-              <span>{et ? "Viimane automaatkontrolli kokkuvote" : "Last light check summary"}:</span>{" "}
-              {entry.lightCheckSummary?.checkedAt
-                ? (
-                  entry.lightCheckSummary.mode === "BASELINE_CREATED"
-                    ? (et
-                      ? `Loodi baasvõrdlus ${entry.lightCheckSummary.checkedSourceCount || 0} allikast.`
-                      : `Created a baseline from ${entry.lightCheckSummary.checkedSourceCount || 0} sources.`)
-                    : et
-                      ? `${entry.lightCheckSummary.changedSourceCount || 0} muudatust, ${entry.lightCheckSummary.errorCount || 0} veaga allikat.`
-                      : `${entry.lightCheckSummary.changedSourceCount || 0} changes, ${entry.lightCheckSummary.errorCount || 0} source errors.`)
-                : "-"}
-            </div>
-            <div>
-              <span>{et ? "Viimane RT kontrolli kokkuvote" : "Last RT check summary"}:</span>{" "}
-              {entry.rtLightCheckSummary?.checkedAt
-                ? (
-                  entry.rtLightCheckSummary.mode === "BASELINE_CREATED"
-                    ? (et
-                      ? `Loodi RT baasvõrdlus ${entry.rtLightCheckSummary.checkedSourceCount || 0} allikast.`
-                      : `Created an RT baseline from ${entry.rtLightCheckSummary.checkedSourceCount || 0} sources.`)
-                    : et
-                      ? `${entry.rtLightCheckSummary.changedSourceCount || 0} RT muudatust, ${entry.rtLightCheckSummary.errorCount || 0} veaga allikat.`
-                      : `${entry.rtLightCheckSummary.changedSourceCount || 0} RT changes, ${entry.rtLightCheckSummary.errorCount || 0} source errors.`)
-                : "-"}
             </div>
           </div>
 
-          <div>
+          <div className="ra-actions">
             <Button
               variant="primary"
               size="sm"
@@ -726,7 +727,7 @@ export default function KovDetailPanel({
           </div>
           {webLightCheckDiff}
           {hasWebDiffItems ? (
-            <div>
+            <div className="ra-actions">
               <Button
                 variant="primary"
                 size="sm"
@@ -745,7 +746,7 @@ export default function KovDetailPanel({
           ) : null}
           {rtLightCheckDiff}
           {hasRtDiffItems ? (
-            <div>
+            <div className="ra-actions">
               <Button
                 variant="primary"
                 size="sm"
@@ -762,29 +763,27 @@ export default function KovDetailPanel({
               </Button>
             </div>
           ) : null}
-        </div>
       </div>
 
-      <div>
-        <div>
-
+      <div className="ra-split ra-split--even">
+      <div className="ra-card">
           <div>
-            <div>{et ? "KOV veeb" : "KOV web"}</div>
-            <div>
+            <div className="ra-card-title">{et ? "KOV veeb" : "KOV web"}</div>
+            <p className="ra-card-sub">
               {et ? "Praktiline info: teenused, toetused, kontaktid, blanketid." : "Practical layer: services, benefits, contacts, forms."}
-            </div>
+            </p>
           </div>
 
-          <div>
+          <div className="ra-td-sub">
             {et
               ? "Siin hallad KOV veebikihti. Salvesta muudatused = salvesta lingid, märkused ja staatused. Kontrolli muudatusi = vaata, kas allikad on muutunud. Failikaartidel Lae üles = lisa või asenda konkreetne fail."
               : "This section manages the KOV web layer. Save changes stores links, notes, and statuses. Check for changes runs a source check. On file cards, Upload adds or replaces that specific file."}
           </div>
 
-            <div>
-            <div>
-              <div>
-                <label>Ametlik veebileht</label>
+            <div className="ra-form">
+            <div className="ra-form-grid">
+              <div className="ra-form">
+                <label className="ra-label">Ametlik veebileht</label>
                 <Input
                   value={detailDraft.officialWebsite || ""}
                   onChange={event => updateDraft(onDraftChange, { officialWebsite: event.target.value })}
@@ -793,7 +792,7 @@ export default function KovDetailPanel({
                   disabled={!editingLinks}
                 />
                 {!editingLinks ? (
-                  <div>See viide kirjeldab KOV veebikihi ametlikku allikat.</div>
+                  <div className="ra-td-sub">See viide kirjeldab KOV veebikihi ametlikku allikat.</div>
                 ) : null}
                 {detailDraft.officialWebsite ? (
                   <a
@@ -806,29 +805,29 @@ export default function KovDetailPanel({
                 ) : null}
               </div>
 
-              <div>
-                <label>{et ? "KOV veeb staatus" : "KOV web status"}</label>
+              <div className="ra-form">
+                <label className="ra-label">{et ? "KOV veeb staatus" : "KOV web status"}</label>
                 <DocumentsDropdown
                   ariaLabel="KOV veeb staatus"
                   value={detailDraft.status}
                   onChange={nextStatus => updateDraft(onDraftChange, { status: nextStatus })}
                   options={statusOptions}
                 />
-                <label>{et ? "Viimati kontrollitud" : "Last checked"}</label>
+                <label className="ra-label">{et ? "Viimati kontrollitud" : "Last checked"}</label>
                 <Input
                   type="datetime-local"
                   value={detailDraft.checkedAt || ""}
                   onChange={event => updateDraft(onDraftChange, { checkedAt: event.target.value })}
                   size="sm"
                 />
-                <label>{et ? "Markused" : "Notes"}</label>
+                <label className="ra-label">{et ? "Markused" : "Notes"}</label>
                 <Textarea
                   value={detailDraft.notes || ""}
                   onChange={event => updateDraft(onDraftChange, { notes: event.target.value })}
                   rows={4}
                   size="sm"
                 />
-                <label>
+                <label className="ui-checkbox">
                   <input
                     type="checkbox"
                     checked={detailDraft.readyForIngest === true}
@@ -849,37 +848,43 @@ export default function KovDetailPanel({
                 : "Saves the KOV website, status, checked time, notes, and ready-for-ingest checkbox."
             })}
 
-            <div>
+            <div className="ra-kv">
               <div>
-                <span>{et ? "Kokkuvote" : "Summary"}:</span>{" "}
-                {et
-                  ? `${webSummary.presentCount || 0}/4 olemas, ${webSummary.validCount || 0}/4 valid`
-                  : `${webSummary.presentCount || 0}/4 present, ${webSummary.validCount || 0}/4 valid`}
+                <span>{et ? "Kokkuvote" : "Summary"}</span>
+                <span>
+                  {et
+                    ? `${webSummary.presentCount || 0}/4 olemas, ${webSummary.validCount || 0}/4 valid`
+                    : `${webSummary.presentCount || 0}/4 present, ${webSummary.validCount || 0}/4 valid`}
+                </span>
               </div>
               <div>
-                <span>{et ? "Ingest" : "Ingest"}:</span>{" "}
-                {entry.ingestSummary?.canIngest
-                  ? et ? "valmis" : "ready"
-                  : (entry.ingestSummary?.blockingIssues || []).join("; ") || (et ? "pole valmis" : "not ready")}
+                <span>{et ? "Ingest" : "Ingest"}</span>
+                <span>
+                  {entry.ingestSummary?.canIngest
+                    ? et ? "valmis" : "ready"
+                    : (entry.ingestSummary?.blockingIssues || []).join("; ") || (et ? "pole valmis" : "not ready")}
+                </span>
               </div>
               <div>
-                <span>{et ? "Vigased failid" : "Invalid files"}:</span>{" "}
-                {webInvalidLabels.length ? webInvalidLabels.join(", ") : "-"}
+                <span>{et ? "Vigased failid" : "Invalid files"}</span>
+                <span>{webInvalidLabels.length ? webInvalidLabels.join(", ") : "-"}</span>
               </div>
               <div>
-                <span>{et ? "Puuduvad failid" : "Missing files"}:</span>{" "}
-                {webMissingLabels.length ? webMissingLabels.join(", ") : "-"}
+                <span>{et ? "Puuduvad failid" : "Missing files"}</span>
+                <span>{webMissingLabels.length ? webMissingLabels.join(", ") : "-"}</span>
               </div>
               <div>
-                <span>{et ? "Viimati ingestitud" : "Last ingested"}:</span>{" "}
-                {entry.lastIngestedAt ? formatDateTime(entry.lastIngestedAt, locale) : "-"}
+                <span>{et ? "Viimati ingestitud" : "Last ingested"}</span>
+                <span>{entry.lastIngestedAt ? formatDateTime(entry.lastIngestedAt, locale) : "-"}</span>
               </div>
               <div>
-                <span>RAG doc ID:</span> {entry.ragDocId || "-"}
+                <span>RAG doc ID</span>
+                <span className="ra-mono">{entry.ragDocId || "-"}</span>
               </div>
               {entry.lastIngestError ? (
                 <div>
-                  <span>{et ? "Viimane ingest viga" : "Last ingest error"}:</span> {entry.lastIngestError}
+                  <span>{et ? "Viimane ingest viga" : "Last ingest error"}</span>
+                  <span style={{ color: "var(--status-error)" }}>{entry.lastIngestError}</span>
                 </div>
               ) : null}
             </div>
@@ -897,28 +902,26 @@ export default function KovDetailPanel({
               remediationFocus
             })}
           </div>
-        </div>
       </div>
 
-      <div>
-        <div>
+      <div className="ra-card">
           <div>
-            <div>{et ? "Riigi Teataja" : "Riigi Teataja"}</div>
-            <div>
+            <div className="ra-card-title">{et ? "Riigi Teataja" : "Riigi Teataja"}</div>
+            <p className="ra-card-sub">
               {et ? "Oiguslik ja kinnitav kiht." : "Legal and confirming layer."}
-            </div>
+            </p>
           </div>
 
-          <div>
+          <div className="ra-td-sub">
             {et
               ? "Siin hallad Riigi Teataja kihti. XML on siin ainus kanoniline allikas. Ingest parsib RT XML-faili, lisab identiteedi ja ehitab paragrahvi- voi loikepohised chunkid ilma normiteksti umber kirjutamata."
               : "This section manages the Riigi Teataja layer. XML is the only canonical source here. Ingest parses the RT XML file, adds identity, and builds paragraph- or subsection-based chunks without rewriting the legal text."}
           </div>
 
-          <div>
-            <div>
-              <div>
-                <label>{et ? "Riigi Teataja link" : "Riigi Teataja URL"}</label>
+          <div className="ra-form">
+            <div className="ra-form-grid">
+              <div className="ra-form">
+                <label className="ra-label">{et ? "Riigi Teataja link" : "Riigi Teataja URL"}</label>
                 <Input
                   value={detailDraft.riigiTeatajaUrl || ""}
                   onChange={event => updateDraft(onDraftChange, { riigiTeatajaUrl: event.target.value })}
@@ -927,7 +930,7 @@ export default function KovDetailPanel({
                   disabled={!editingLinks}
                 />
                 {!editingLinks ? (
-                  <div>See viide kirjeldab kehtiva korra ametlikku RT allikat.</div>
+                  <div className="ra-td-sub">See viide kirjeldab kehtiva korra ametlikku RT allikat.</div>
                 ) : null}
                 {detailDraft.riigiTeatajaUrl ? (
                   <a
@@ -940,22 +943,22 @@ export default function KovDetailPanel({
                 ) : null}
               </div>
 
-              <div>
-                <label>{et ? "RT seis" : "RT status"}</label>
+              <div className="ra-form">
+                <label className="ra-label">{et ? "RT seis" : "RT status"}</label>
                 <DocumentsDropdown
                   ariaLabel="RT seis"
                   value={detailDraft.rtStatus}
                   onChange={nextStatus => updateDraft(onDraftChange, { rtStatus: nextStatus })}
                   options={rtStatusOptions}
                 />
-                <label>{et ? "RT kontrollitud" : "RT checked at"}</label>
+                <label className="ra-label">{et ? "RT kontrollitud" : "RT checked at"}</label>
                 <Input
                   type="datetime-local"
                   value={detailDraft.rtCheckedAt || ""}
                   onChange={event => updateDraft(onDraftChange, { rtCheckedAt: event.target.value })}
                   size="sm"
                 />
-                <label>{et ? "RT markused" : "RT notes"}</label>
+                <label className="ra-label">{et ? "RT markused" : "RT notes"}</label>
                 <Textarea
                   value={detailDraft.rtNotes || ""}
                   onChange={event => updateDraft(onDraftChange, { rtNotes: event.target.value })}
@@ -975,59 +978,63 @@ export default function KovDetailPanel({
                 : "Saves the RT link, RT status, checked time, and RT notes."
             })}
 
-            <div>
+            <div className="ra-kv">
               <div>
-                <span>{et ? "Kokkuvote" : "Summary"}:</span>{" "}
-                {et
-                  ? `${rtSummary.presentCount || 0}/1 olemas, ${rtSummary.validCount || 0}/1 valid`
-                  : `${rtSummary.presentCount || 0}/1 present, ${rtSummary.validCount || 0}/1 valid`}
-              </div>
-              <div>
-                <span>{et ? "Ingest" : "Ingest"}:</span>{" "}
-                {entry.rtIngestSummary?.canIngest
-                  ? et ? "valmis" : "ready"
-                  : (entry.rtIngestSummary?.blockingIssues || []).join("; ") || (et ? "pole valmis" : "not ready")}
-              </div>
-              <div>
-                <span>{et ? "RT vigased failid" : "RT invalid files"}:</span>{" "}
-                {rtInvalidLabels.length ? rtInvalidLabels.join(", ") : "-"}
-              </div>
-              <div>
-                <span>{et ? "RT puuduvad failid" : "RT missing files"}:</span>{" "}
-                {rtMissingLabels.length ? rtMissingLabels.join(", ") : "-"}
-              </div>
-            </div>
-            <div>
-              <div>
-                <span>{et ? "RT failid" : "RT files"}:</span> {entry.rtFileCount || 0}/1
-              </div>
-              <div>
-                <span>{et ? "RT kontrollitud" : "RT checked at"}:</span>{" "}
-                {entry.rtCheckedAt ? formatDateTime(entry.rtCheckedAt, locale) : "-"}
-              </div>
-              <div>
-                <span>{et ? "RT automaatkontroll" : "RT light check"}:</span>{" "}
-                {entry.rtLastLightCheckAt ? formatDateTime(entry.rtLastLightCheckAt, locale) : "-"}
-              </div>
-              <div>
-                <span>{et ? "RT viimati ingestitud" : "RT last ingested"}:</span>{" "}
-                {entry.rtLastIngestedAt ? formatDateTime(entry.rtLastIngestedAt, locale) : "-"}
-              </div>
-              <div>
-                <span>RT RAG doc ID:</span> {entry.rtRagDocId || "-"}
-              </div>
-              {entry.rtLastIngestError ? (
-                <div>
-                  <span>{et ? "RT viimane ingest viga" : "Last RT ingest error"}:</span> {entry.rtLastIngestError}
-                </div>
-              ) : (
-                <div>
+                <span>{et ? "Kokkuvote" : "Summary"}</span>
+                <span>
                   {et
-                    ? "RT plokk ingestitakse nuud XML algallikast. Chunke ei hallata kasitsi, vaid need regenereeritakse kogu akti kaupa."
-                    : "The RT block is now ingested from the XML source file. Chunks are not manually maintained and are regenerated for the whole act."}
-                </div>
-              )}
+                    ? `${rtSummary.presentCount || 0}/1 olemas, ${rtSummary.validCount || 0}/1 valid`
+                    : `${rtSummary.presentCount || 0}/1 present, ${rtSummary.validCount || 0}/1 valid`}
+                </span>
+              </div>
+              <div>
+                <span>{et ? "Ingest" : "Ingest"}</span>
+                <span>
+                  {entry.rtIngestSummary?.canIngest
+                    ? et ? "valmis" : "ready"
+                    : (entry.rtIngestSummary?.blockingIssues || []).join("; ") || (et ? "pole valmis" : "not ready")}
+                </span>
+              </div>
+              <div>
+                <span>{et ? "RT vigased failid" : "RT invalid files"}</span>
+                <span>{rtInvalidLabels.length ? rtInvalidLabels.join(", ") : "-"}</span>
+              </div>
+              <div>
+                <span>{et ? "RT puuduvad failid" : "RT missing files"}</span>
+                <span>{rtMissingLabels.length ? rtMissingLabels.join(", ") : "-"}</span>
+              </div>
+              <div>
+                <span>{et ? "RT failid" : "RT files"}</span>
+                <span>{entry.rtFileCount || 0}/1</span>
+              </div>
+              <div>
+                <span>{et ? "RT kontrollitud" : "RT checked at"}</span>
+                <span>{entry.rtCheckedAt ? formatDateTime(entry.rtCheckedAt, locale) : "-"}</span>
+              </div>
+              <div>
+                <span>{et ? "RT automaatkontroll" : "RT light check"}</span>
+                <span>{entry.rtLastLightCheckAt ? formatDateTime(entry.rtLastLightCheckAt, locale) : "-"}</span>
+              </div>
+              <div>
+                <span>{et ? "RT viimati ingestitud" : "RT last ingested"}</span>
+                <span>{entry.rtLastIngestedAt ? formatDateTime(entry.rtLastIngestedAt, locale) : "-"}</span>
+              </div>
+              <div>
+                <span>RT RAG doc ID</span>
+                <span className="ra-mono">{entry.rtRagDocId || "-"}</span>
+              </div>
             </div>
+            {entry.rtLastIngestError ? (
+              <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>
+                {et ? "RT viimane ingest viga" : "Last RT ingest error"}: {entry.rtLastIngestError}
+              </div>
+            ) : (
+              <div className="ra-td-sub">
+                {et
+                  ? "RT plokk ingestitakse nuud XML algallikast. Chunke ei hallata kasitsi, vaid need regenereeritakse kogu akti kaupa."
+                  : "The RT block is now ingested from the XML source file. Chunks are not manually maintained and are regenerated for the whole act."}
+              </div>
+            )}
 
             {renderFileCards({
               entry,
@@ -1042,7 +1049,7 @@ export default function KovDetailPanel({
               remediationFocus
             })}
           </div>
-        </div>
+      </div>
       </div>
     </div>
   );

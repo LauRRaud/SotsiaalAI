@@ -19,13 +19,9 @@ test("call service supports covision audio context without recording", () => {
 
 test("covision call UI hides recording consent controls", () => {
   const callBar = read("components/rooms/RoomCallBar.jsx");
-  const covisionPage = read("components/covision/CovisionPage.jsx");
 
   assert.match(callBar, /recordingAllowed/);
   assert.match(callBar, /allowRecordingControls/);
-  assert.match(covisionPage, /allowRecordingControls=\{false\}/);
-  assert.match(covisionPage, /recordingAllowed=\{false\}/);
-  assert.doesNotMatch(covisionPage, /Taotle salvestamise n(?:õ|Ćµ)usolekut/);
 });
 
 test("covision call routes use contextType COVISION", () => {

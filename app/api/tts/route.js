@@ -7,10 +7,15 @@ import { logEvent } from "@/lib/chat/logger";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { canSpendMonthlyBudget } from "@/lib/usageBudget";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest,
+  usageErrorDescriptor
+} from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -45,7 +50,7 @@ function localeFromRequest(req, fallback = "en") {
   return fromHeader || fallback;
 }
 
-function errorJson(messageKey, status, locale = "en", extras = {}) {
+function errorJson(messageKey, status, locale = "en", extras = {}, extraHeaders = {}) {
   const translated = serverT(locale, messageKey, undefined, messageKey);
   return NextResponse.json({
     ok: false,
@@ -54,8 +59,13 @@ function errorJson(messageKey, status, locale = "en", extras = {}) {
     ...extras
   }, {
     status,
-    headers: NO_STORE_HEADERS
+    headers: { ...NO_STORE_HEADERS, ...extraHeaders }
   });
+}
+
+function usageErrorJson(error, scope, locale) {
+  const descriptor = usageErrorDescriptor(error, scope);
+  return errorJson(descriptor.body.messageKey, descriptor.status, locale, descriptor.body, descriptor.headers);
 }
 
 function json(payload, status = 200, headers = {}) {
@@ -194,22 +204,29 @@ export async function POST(req) {
     });
   }
 
-  const preflightBudgetCheck = await canSpendMonthlyBudget(session.user.id, {
-    ttsRequests: 1
-  });
-  if (!preflightBudgetCheck.allowed) {
-    return errorJson("api.common.monthly_budget_exceeded", 429, localeFromRequest(req, locale), {
-      budgetEur: preflightBudgetCheck.budgetEur,
-      usedEur: preflightBudgetCheck.usedEur,
-      remainingEur: preflightBudgetCheck.remainingEur
+  let usageHandle = null;
+  let synthesisCompleted = false;
+  try {
+    usageHandle = await reserveUsageForRequest({
+      request: req,
+      userId: session.user.id,
+      metric: "TTS_CHARS",
+      amount: text.length,
+      scope: "tts.synthesize",
+      idempotencyKey: payload?.idempotencyKey,
+      metadata: { locale, provider: googleEnabled ? "google" : "openai" }
     });
+  } catch (error) {
+    return usageErrorJson(error, "tts.synthesize", localeFromRequest(req, locale));
   }
 
   try {
     const result = googleEnabled ? await synthGoogle({ text, locale }) : await synthOpenAI({ text });
     if (!result.ok) {
-      return errorJson(result.messageKey || "api.tts.synthesis_failed", 502, localeFromRequest(req, locale));
+      throw new Error(result.messageKey || "api.tts.synthesis_failed");
     }
+    synthesisCompleted = true;
+    await commitUsageForRequest(usageHandle);
     const durationSeconds = await readAudioDurationSecondsFromBuffer(result.audioBuffer, result.contentType);
     if (result.provider === "openai") {
       await logEvent("tts_cost_usage", {
@@ -251,6 +268,13 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("tts", safeError(err));
+    if (usageHandle && !synthesisCompleted) {
+      try {
+        await releaseUsageForRequest(usageHandle, { reason: "tts_provider_failed" });
+      } catch (releaseError) {
+        console.error("[tts] usage release failed", safeError(releaseError));
+      }
+    }
     return errorJson("api.tts.service_error", 500, localeFromRequest(req, locale));
   }
 }

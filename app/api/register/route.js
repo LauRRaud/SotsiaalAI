@@ -18,6 +18,7 @@ import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
+import { PLAN_DEFINITION_IDS } from "@/lib/subscriptionPlans";
 
 const ROLE_MAP = {
   specialist: Role.SOCIAL_WORKER,
@@ -237,7 +238,10 @@ export async function POST(request) {
             passwordHash,
             role,
             subscriptions: {
-              create: {}
+              create: {
+                plan: "free",
+                planDefinitionId: PLAN_DEFINITION_IDS.free
+              }
             }
           }
         });

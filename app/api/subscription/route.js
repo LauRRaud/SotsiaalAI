@@ -7,6 +7,7 @@ import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
 import {
   formatEuroAmount,
+  getPlanDefinitionId,
   getRoleMonthlyAmount,
   normalizeSubscriptionRole
 } from "@/lib/subscriptionPlans";
@@ -188,6 +189,14 @@ export async function POST(request) {
 
   try {
     const plan = normalizePlan(body?.plan);
+    const user = await prisma.user.findUnique({
+      where: { id: session.userId },
+      select: { role: true }
+    });
+    if (!user) {
+      return errorJson("api.subscription.user_not_found", 404, locale);
+    }
+    const planDefinitionId = getPlanDefinitionId(plan, user.role);
     const now = new Date();
     const validUntil = new Date(now);
     validUntil.setMonth(validUntil.getMonth() + 1);
@@ -203,6 +212,7 @@ export async function POST(request) {
           data: {
             status: ACTIVE_STATUS,
             plan,
+            planDefinitionId,
             validUntil,
             nextBilling: validUntil,
             canceledAt: null
@@ -213,6 +223,7 @@ export async function POST(request) {
             userId: session.userId,
             status: ACTIVE_STATUS,
             plan,
+            planDefinitionId,
             validUntil,
             nextBilling: validUntil
           }

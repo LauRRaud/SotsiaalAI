@@ -1,12 +1,15 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
-import { utcDayStart, secondsUntilUtcMidnight } from "@/lib/analyzeQuota";
 import { requireResearchAuth } from "@/lib/research/auth";
 import { createResearchJob, getActiveResearchJobCount } from "@/lib/research/jobStore";
-import { getResearchDailyLimit } from "@/lib/research/guardrails";
 import { runDeepResearchJob } from "@/lib/research/pipeline";
 import { safeError } from "@/lib/privacy/safeError";
+import {
+  releaseUsageForRequest,
+  reserveUsageForRequest,
+  usageErrorDescriptor
+} from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +26,7 @@ const RESEARCH_JOB_MODE = String(process.env.RESEARCH_JOB_MODE || process.env.RE
   .trim()
   .toLowerCase();
 
-function json(data, status = 200) {
+function json(data, status = 200, extraHeaders = {}) {
   return NextResponse.json(data, {
     status,
     headers: {
@@ -31,11 +34,12 @@ function json(data, status = 200) {
       Pragma: "no-cache",
       Expires: "0",
       Vary: "Authorization",
+      ...extraHeaders,
     },
   });
 }
 
-function errorJson(messageKey, status = 400, extras = {}) {
+function errorJson(messageKey, status = 400, extras = {}, extraHeaders = {}) {
   return json(
     {
       ok: false,
@@ -43,8 +47,14 @@ function errorJson(messageKey, status = 400, extras = {}) {
       message: messageKey,
       ...extras,
     },
-    status
+    status,
+    extraHeaders
   );
+}
+
+function usageErrorJson(error, scope) {
+  const descriptor = usageErrorDescriptor(error, scope);
+  return errorJson(descriptor.body.messageKey, descriptor.status, descriptor.body, descriptor.headers);
 }
 
 function isPlausibleConversationId(id) {
@@ -173,38 +183,21 @@ export async function POST(req) {
     userRole: auth.role,
   };
 
-  const dailyLimit = getResearchDailyLimit(auth.role);
-  const dayStart = utcDayStart();
+  let usageHandle = null;
   try {
-    const usedToday = await prisma.chatLog.count({
-      where: {
-        event: "research_request",
-        userId: auth.userId,
-        role: auth.role,
-        createdAt: {
-          gte: dayStart
-        }
-      }
+    usageHandle = await reserveUsageForRequest({
+      request: req,
+      userId: auth.userId,
+      metric: "DEEP_RESEARCH_RUN",
+      scope: "research.run",
+      idempotencyKey: payload?.idempotencyKey,
+      metadata: { profile, outputStyle, collectionCount: collectionIds.length }
     });
-
-    if (usedToday >= dailyLimit) {
-      const quotaError = new Error("research.error.daily_quota_exceeded");
-      quotaError.code = "DAILY_QUOTA";
-      quotaError.used = usedToday;
-      throw quotaError;
-    }
   } catch (error) {
-    if (error?.code === "DAILY_QUOTA") {
-      return errorJson("api.common.rate_limited", 429, {
-        scope: "research_daily_quota",
-        limit: dailyLimit,
-        used: error.used,
-        retryAfter: secondsUntilUtcMidnight()
-      });
-    }
-    console.error("[research] quota log failed", safeError(error));
-    return errorJson("research.error.failed", 503);
+    return usageErrorJson(error, "research.run");
   }
+
+  normalizedPayload.usageIdempotencyKey = usageHandle.idempotencyKey;
 
   let job;
   try {
@@ -213,6 +206,11 @@ export async function POST(req) {
       payload: normalizedPayload,
     });
   } catch (error) {
+    try {
+      await releaseUsageForRequest(usageHandle, { reason: "research_job_create_failed" });
+    } catch (releaseError) {
+      console.error("[research] usage release failed", safeError(releaseError));
+    }
     if (error?.code === "ACTIVE_JOB_LIMIT") {
       return errorJson("api.common.rate_limited", 429, {
         scope: "research_active_job",

@@ -22,6 +22,12 @@ import {
   buildMissingMunicipalitySystemInstruction,
   saveAssistantRoomMessage
 } from "@/lib/chat/mainRouteRuntime";
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest,
+  usageErrorDescriptor
+} from "@/lib/usage/routeAdapter";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -42,6 +48,31 @@ const CHAT_DOC_CONTEXT_WORKER_COMBINED_CHARS = readChatRateLimit(process.env.CHA
 const CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS = readChatRateLimit(process.env.CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS, 4, 1);
 const CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS = readChatRateLimit(process.env.CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS, 6, 1);
 const MAX_USER_MESSAGE_CHARS = 1500;
+
+function usageErrorResponse(error, scope) {
+  const descriptor = usageErrorDescriptor(error, scope);
+  return NextResponse.json(descriptor.body, {
+    status: descriptor.status,
+    headers: {
+      ...CHAT_NO_STORE_HEADERS,
+      ...descriptor.headers
+    }
+  });
+}
+
+async function releaseUsageSafely(handle, reason) {
+  if (!handle) return;
+  try {
+    await releaseUsageForRequest(handle, { reason });
+  } catch (error) {
+    logChatError("usage.release.error", {
+      metric: handle.metric,
+      reason,
+      error: error?.message || String(error)
+    });
+  }
+}
+
 export async function POST(req) {
   const bootstrapResult = await bootstrapChatRequest({
     req,
@@ -94,28 +125,52 @@ export async function POST(req) {
     shouldUseDocumentWorkflow,
     shouldUseHelpWorkflow
   } = bootstrapResult.data;
-  const documentWorkflowResponse = await handleDocumentWorkflowBranch({
-    shouldUseDocumentWorkflow,
-    message: effectiveMessage,
-    convId,
-    userId,
-    replyLang,
-    normalizedRole,
-    documentWorkflowState,
-    forcedMode,
-    ephemeralChunks,
-    ephemeralSource,
-    persist,
-    roomId,
-    wantStream,
-    clarifyingTurns,
-    requestedThoroughness,
-    prisma,
-    saveRoomMessage: saveAssistantRoomMessage,
-    buildOrchestrationMetadata: buildChatOrchestrationMetadata,
-    logInfo: logChatInfo,
-    logError: logChatError
-  });
+  let documentUsageHandle = null;
+  let documentWorkflowResponse;
+  try {
+    documentWorkflowResponse = await handleDocumentWorkflowBranch({
+      shouldUseDocumentWorkflow,
+      message: effectiveMessage,
+      convId,
+      userId,
+      replyLang,
+      normalizedRole,
+      documentWorkflowState,
+      forcedMode,
+      ephemeralChunks,
+      ephemeralSource,
+      persist,
+      roomId,
+      wantStream,
+      clarifyingTurns,
+      requestedThoroughness,
+      prisma,
+      saveRoomMessage: saveAssistantRoomMessage,
+      buildOrchestrationMetadata: buildChatOrchestrationMetadata,
+      logInfo: logChatInfo,
+      logError: logChatError,
+      onBeforeGenerate: async () => {
+        documentUsageHandle = await reserveUsageForRequest({
+          request: req,
+          userId,
+          metric: "DOCUMENT_GENERATE",
+          scope: "chat.document_generate",
+          idempotencyKey: payload?.idempotencyKey,
+          metadata: { convId, role: normalizedRole }
+        });
+      },
+      onGenerationComplete: () => commitUsageForRequest(documentUsageHandle),
+      onGenerationFailure: (reason) => releaseUsageForRequest(documentUsageHandle, { reason })
+    });
+  } catch (error) {
+    if (!error?.usageWorkCompleted) {
+      await releaseUsageSafely(documentUsageHandle, "chat_document_generation_failed");
+    }
+    if (String(error?.code || "").startsWith("USAGE_")) {
+      return usageErrorResponse(error, "chat.document_generate");
+    }
+    throw error;
+  }
   if (documentWorkflowResponse) return documentWorkflowResponse;
 
   const helpWorkflowResponse = await handleHelpWorkflowBranch({
@@ -176,6 +231,78 @@ export async function POST(req) {
       convId
     });
   }
+
+  let chatUsageHandle = null;
+  let ragUsageHandle = null;
+  try {
+    chatUsageHandle = await reserveUsageForRequest({
+      request: req,
+      userId,
+      metric: "CHAT_ASSISTANT_REPLY",
+      scope: "chat.reply",
+      idempotencyKey: payload?.idempotencyKey,
+      metadata: { convId, role: normalizedRole, stream: wantStream }
+    });
+  } catch (error) {
+    return usageErrorResponse(error, "chat.reply");
+  }
+
+  let retrievalResult;
+  try {
+    retrievalResult = await assembleRetrievalContext({
+      payloadAudience: payload?.audience,
+      graphChannelTestOverride: payload?.graphChannelTest === true,
+      normalizedRole,
+      rawHistory,
+      effectiveMessage,
+      forceSources,
+      forcedMode,
+      hasHistory,
+      replyLang,
+      ephemeralChunks,
+      ephemeralSource,
+      combineSources,
+      userId,
+      convId,
+      isCrisis,
+      logInfo: logChatInfo,
+      logError: logChatError,
+      logEvent,
+      buildMissingMunicipalityInstruction: buildMissingMunicipalitySystemInstruction,
+      buildSourceLookupInstruction: buildSourceLookupSystemInstruction,
+      docContextBudgets: {
+        clientChars: CHAT_DOC_CONTEXT_CLIENT_CHARS,
+        clientCombinedChars: CHAT_DOC_CONTEXT_CLIENT_COMBINED_CHARS,
+        workerChars: CHAT_DOC_CONTEXT_WORKER_CHARS,
+        workerCombinedChars: CHAT_DOC_CONTEXT_WORKER_COMBINED_CHARS,
+        clientMaxChunks: CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS,
+        workerMaxChunks: CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS,
+        maxInputChunks: CHAT_EPHEMERAL_CHUNKS_MAX,
+        chunkCharsMax: CHAT_EPHEMERAL_CHUNK_CHARS_MAX
+      },
+      onBeforeRag: async () => {
+        ragUsageHandle = await reserveUsageForRequest({
+          request: req,
+          userId,
+          metric: "RAG_SEARCH",
+          scope: "chat.rag_search",
+          idempotencyKey: payload?.idempotencyKey,
+          metadata: { convId, role: normalizedRole }
+        });
+      }
+    });
+  } catch (error) {
+    await Promise.all([
+      releaseUsageSafely(chatUsageHandle, "chat_retrieval_failed"),
+      releaseUsageSafely(ragUsageHandle, "rag_search_failed")
+    ]);
+    if (String(error?.code || "").startsWith("USAGE_")) {
+      return usageErrorResponse(error, ragUsageHandle ? "chat.reply" : "chat.rag_search");
+    }
+    logChatError("retrieval.unhandled_error", { error: error?.message || String(error) });
+    return makeChatError("chat.error.service_unavailable", 503);
+  }
+
   const {
     previousSourceUseRequest,
     sourceLookupRequest,
@@ -184,38 +311,21 @@ export async function POST(req) {
     grounding,
     sources,
     retrievalMeta
-  } = await assembleRetrievalContext({
-    payloadAudience: payload?.audience,
-    graphChannelTestOverride: payload?.graphChannelTest === true,
-    normalizedRole,
-    rawHistory,
-    effectiveMessage,
-    forceSources,
-    forcedMode,
-    hasHistory,
-    replyLang,
-    ephemeralChunks,
-    ephemeralSource,
-    combineSources,
-    userId,
-    convId,
-    isCrisis,
-    logInfo: logChatInfo,
-    logError: logChatError,
-    logEvent,
-    buildMissingMunicipalityInstruction: buildMissingMunicipalitySystemInstruction,
-    buildSourceLookupInstruction: buildSourceLookupSystemInstruction,
-    docContextBudgets: {
-      clientChars: CHAT_DOC_CONTEXT_CLIENT_CHARS,
-      clientCombinedChars: CHAT_DOC_CONTEXT_CLIENT_COMBINED_CHARS,
-      workerChars: CHAT_DOC_CONTEXT_WORKER_CHARS,
-      workerCombinedChars: CHAT_DOC_CONTEXT_WORKER_COMBINED_CHARS,
-      clientMaxChunks: CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS,
-      workerMaxChunks: CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS,
-      maxInputChunks: CHAT_EPHEMERAL_CHUNKS_MAX,
-      chunkCharsMax: CHAT_EPHEMERAL_CHUNK_CHARS_MAX
+  } = retrievalResult;
+
+  if (ragUsageHandle) {
+    try {
+      if (retrievalMeta.ragSearchFailed) {
+        await releaseUsageForRequest(ragUsageHandle, { reason: "rag_search_failed" });
+      } else {
+        await commitUsageForRequest(ragUsageHandle);
+      }
+    } catch (error) {
+      await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed");
+      logChatError("usage.rag_settlement.error", { error: error?.message || String(error) });
+      return usageErrorResponse(error, "chat.rag_search");
     }
-  });
+  }
   const genericIntent =
     forcedMode === "rag"
       ? WORK_MODES.SERVICE_GUIDANCE
@@ -281,7 +391,9 @@ export async function POST(req) {
     makeError: makeChatError,
     logInfo: logChatInfo,
     logError: logChatError,
-    logEvent
+    logEvent,
+    onUsageCommit: () => commitUsageForRequest(chatUsageHandle),
+    onUsageRelease: (reason) => releaseUsageForRequest(chatUsageHandle, { reason })
   });
 }
 export async function GET(req) {

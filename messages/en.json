@@ -144,6 +144,27 @@
     "login_to_view": "Sign in to view your profile.",
     "login": "Sign in",
     "manage_subscription": "Manage subscription",
+    "usage": {
+      "title": "My usage",
+      "loading": "Loading usage…",
+      "load_failed": "Usage data could not be loaded.",
+      "active_plan": "Active plan",
+      "free": "Free",
+      "internal": "Internal",
+      "sponsored": "Sponsored",
+      "per_month": "{price} / month",
+      "next_billing": "Next billing date: {date}",
+      "access_until": "Access valid until {date}",
+      "used_of": "{used} / {limit}",
+      "resets": "Resets {date}",
+      "free_description": "The free plan includes basic help requests and the service map. AI tools are available with a paid plan.",
+      "compare_plans": "Compare plans",
+      "plans": { "free": "Free", "client_monthly": "For people seeking help", "social_worker_monthly": "For specialists", "service_provider_monthly": "For service providers", "admin_internal": "Administrator" },
+      "metrics": { "CHAT_ASSISTANT_REPLY": "Assistant replies", "DOCUMENT_GENERATE": "Document generation", "DOCUMENT_REFINE": "Document refinement", "FILE_ANALYZE": "File analysis", "DEEP_RESEARCH_RUN": "Deep research", "RAG_SEARCH": "Knowledge base searches", "STT_SECONDS": "Audio transcription", "TTS_CHARS": "Text to speech", "STORAGE_BYTES": "File storage" },
+      "periods": { "DAILY": "Daily limit", "WEEKLY": "Weekly limit", "MONTHLY": "Monthly limit", "LIFETIME": "Storage allowance" },
+      "states": { "notice": "You have used at least 70% of this period's allowance.", "warning": "You have used at least 90% of this period's allowance.", "blocked": "This period's allowance is full. Usage will resume at the time shown." },
+      "units": { "minutes": "{count} min", "characters": "{count} characters" }
+    },
     "email": "Email",
     "saving": "Saving",
     "save": "Save",
@@ -2032,7 +2053,6 @@
         "included": "Included",
         "limited": "Limited",
         "extended": "Extended",
-        "unlimited": "Unlimited",
         "simple": "Simple",
         "client_view": "Help-seeker view",
         "worker_view": "Specialist view",
@@ -2041,7 +2061,7 @@
         "by_agreement": "By agreement",
         "not_included": "Not included"
       },
-      "note": "\"Limited\" means a smaller usage volume. SotsiaalAI is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices."
+      "note": "\"Limited\" means a smaller and \"Extended\" a larger usage volume; no AI allowance is unlimited. SotsiaalAI is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices."
     },
     "features_page": {
       "title": "SotsiaalAI features",
@@ -2581,7 +2601,8 @@
       "missing_room_id": "Room ID is missing.",
       "rate_limited": "Too many requests. Please try again later.",
       "subscription_required": "An active subscription is required.",
-      "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan."
+      "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
+      "usage_load_failed": "Usage data could not be loaded."
     },
     "chat": {
       "invalid_conv_id": "Invalid conversation ID.",
@@ -2734,6 +2755,21 @@
       "revoke_failed": "Failed to revoke invite."
     },
     "admin": {
+      "usage": {
+        "plans_load_failed": "Could not load plans.",
+        "invalid_input": "Check the limits, period and reason for change.",
+        "plan_update_failed": "Could not create the plan version.",
+        "user_not_found": "User was not found.",
+        "user_load_failed": "Could not load the user detail view.",
+        "user_action_forbidden": "This user's access cannot be changed here.",
+        "user_action_failed": "Could not change user access.",
+        "overrides_load_failed": "Could not load user overrides.",
+        "override_create_failed": "Could not create the user override.",
+        "override_end_failed": "Could not end the user override.",
+        "deletion_jobs_load_failed": "Could not load deletion jobs.",
+        "deletion_job_not_found": "Deletion job was not found.",
+        "deletion_job_retry_failed": "Could not retry the deletion job."
+      },
       "analytics": {
         "events_load_failed": "Failed to load analytics events.",
         "events_delete_invalid_payload": "Choose a filter or confirm deleting all logs.",
@@ -2785,6 +2821,7 @@
     "common": {
       "loading": "Loading...",
       "loading_data": "Loading data...",
+      "saving": "Saving...",
       "refresh": "Refresh",
       "back": "Back",
       "yes": "Yes",
@@ -2832,6 +2869,64 @@
         "opened": "Opened",
         "signed": "Framework agreement download",
         "id": "Acceptance ID"
+      }
+    },
+    "usage": {
+      "eyebrow": "Usage control layer",
+      "title": "Plans, limits and overrides",
+      "plans_title": "Plans and limits",
+      "plans_help": "Saving creates a new version and moves current subscriptions to it.",
+      "overrides_title": "User-specific overrides",
+      "overrides_help": "Search by exact user ID or email. Content is not displayed.",
+      "price": "Monthly price",
+      "subscriptions": "Linked subscriptions: {count}",
+      "enabled": "Enabled",
+      "period": "Period",
+      "soft_limit": "Soft limit",
+      "hard_limit": "Hard limit",
+      "change_reason": "Reason for change",
+      "create_version": "Create plan version",
+      "change_history": "Plan change history",
+      "no_plans": "No active plans found.",
+      "user_search_placeholder": "User ID or full email",
+      "find_user": "Find user",
+      "user_id": "User ID",
+      "email_verified": "Email verified",
+      "active_sessions": "Active sessions",
+      "last_activity": "Last activity",
+      "suspended": "Access suspended",
+      "access_reason": "Reason for suspension or restoration",
+      "suspend_user": "Suspend access",
+      "resume_user": "Restore access",
+      "user_suspended": "User access was suspended and sessions were ended.",
+      "user_resumed": "User access was restored.",
+      "metric": "Metric",
+      "valid_until": "Valid until (optional)",
+      "reason": "Override reason",
+      "add_override": "Add override",
+      "end_override": "End",
+      "override_end_reason": "Enter the reason for ending this override",
+      "plan_saved": "Plan version v{version} was created.",
+      "override_saved": "User override was added.",
+      "override_ended": "User override was ended.",
+      "background_eyebrow": "Privacy and background jobs",
+      "deletion_jobs_title": "Deletion and cleanup jobs",
+      "job_filter": "Deletion job filter",
+      "jobs_active": "Pending and failed",
+      "jobs_all": "All jobs",
+      "attempts": "Attempts: {count}",
+      "retry_job": "Retry",
+      "no_deletion_jobs": "No deletion jobs match the selected state.",
+      "job_status": { "pending": "Pending", "failed": "Failed", "done": "Done", "skipped": "Skipped" },
+      "errors": {
+        "plans_load": "Failed to load plans.",
+        "plan_save": "Failed to save the plan version.",
+        "user_load": "Failed to load user usage.",
+        "override_save": "Failed to save the override.",
+        "override_end": "Failed to end the override.",
+        "user_action": "Failed to change user access.",
+        "deletion_jobs_load": "Failed to load deletion jobs.",
+        "deletion_job_retry": "Failed to retry the deletion job."
       }
     },
     "analytics": {
@@ -3056,9 +3151,9 @@
           "analyze_today": "Analyses today"
         },
         "limits": {
-          "analyze_daily": "Analyze/day",
-          "analyze_usage_today": "Used today",
-          "analyze_remaining": "Remaining today",
+          "analyze_daily": "Analyze/period",
+          "analyze_usage_today": "Used this period",
+          "analyze_remaining": "Remaining this period",
           "plan_amount": "Monthly fee",
           "monthly_budget": "Monthly budget",
           "remaining_budget": "Remaining budget",

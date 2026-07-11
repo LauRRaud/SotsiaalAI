@@ -414,7 +414,7 @@ export async function DELETE(request) {
       }
     }
 
-    await deleteUserWithPrivacyCleanup({
+    const deletion = await deleteUserWithPrivacyCleanup({
       actorUserId: ctx.userId,
       targetUserId: ctx.userId,
       reason: "profile_delete",
@@ -422,7 +422,7 @@ export async function DELETE(request) {
       userAgent: request.headers.get("user-agent") || null
     });
 
-    if (current.email) {
+    if (deletion.ok && current.email) {
       try {
         await sendAccountDeletedEmail(current.email, requestLocale);
       } catch (sendError) {
@@ -432,8 +432,10 @@ export async function DELETE(request) {
 
     return json({
       ok: true,
-      deleted: true
-    });
+      deleted: deletion.ok,
+      pending: deletion.pending === true,
+      deletionJobId: deletion.deletionJobId || null
+    }, deletion.pending ? 202 : 200);
   } catch (error) {
     if (error?.code === "P2025") {
       return errorJson("profile.errors.user_not_found", 404, fallbackLocale);

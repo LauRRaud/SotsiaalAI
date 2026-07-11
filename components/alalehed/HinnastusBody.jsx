@@ -42,19 +42,19 @@ const featureRows = [
   },
   {
     key: "drafting",
-    values: ["dash", "limited", "extended", "unlimited"]
+    values: ["dash", "limited", "extended", "extended"]
   },
   {
     key: "analysis",
-    values: ["dash", "limited", "extended", "unlimited"]
+    values: ["dash", "limited", "extended", "extended"]
   },
   {
     key: "research",
-    values: ["dash", "limited", "extended", "unlimited"]
+    values: ["dash", "limited", "extended", "extended"]
   },
   {
     key: "documents",
-    values: ["dash", "limited", "extended", "unlimited"]
+    values: ["dash", "limited", "extended", "extended"]
   },
   {
     key: "pre_inquiry",

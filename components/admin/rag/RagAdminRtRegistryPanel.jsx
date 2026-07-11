@@ -95,33 +95,33 @@ export default function RagAdminRtRegistryPanel() {
   const canApplyCheck = Boolean(status?.checkFileExists && status?.reportExists && (status?.check?.changedEntries || 0) > 0);
 
   return (
-    <section aria-label="KOV RT register">
-      <h2>KOV/LOV Riigi Teataja register</h2>
-      <p>
+    <section aria-label="KOV RT register" className="ra-card">
+      <h2 className="ra-card-title">KOV/LOV Riigi Teataja register</h2>
+      <p className="ra-card-sub">
         Kontrollib `KOV/kov_rt/kov_rt_manifest.json` aktide `?leiaKehtiv` URL-e, leiab kehtiva XML-i ja võrdleb seda kohaliku XML failiga.
         Põhimanifesti ei muudeta enne, kui kontrollfail on üle vaadatud ja kinnitatud.
       </p>
 
-      <div>
-        <div>
-          <div>Seis</div>
-          <div>{statusText(status)}</div>
+      <div className="ra-stats ra-stats--mini">
+        <div className="ra-stat" data-tone={(status?.check?.changedEntries || 0) > 0 ? "warn" : status?.reportExists ? "ok" : "neutral"}>
+          <span className="ra-stat-label">Seis</span>
+          <span className="ra-stat-value ra-stat-value--text">{statusText(status)}</span>
         </div>
-        <div>
-          <div>RT kirjed</div>
-          <div>{formatValue(status?.counts?.entries)}</div>
+        <div className="ra-stat">
+          <span className="ra-stat-label">RT kirjed</span>
+          <span className="ra-stat-value">{formatValue(status?.counts?.entries)}</span>
         </div>
-        <div>
-          <div>Viimati kontrollis</div>
-          <div>{formatValue(status?.check?.checkedUrls)}</div>
+        <div className="ra-stat">
+          <span className="ra-stat-label">Viimati kontrollis</span>
+          <span className="ra-stat-value">{formatValue(status?.check?.checkedUrls)}</span>
         </div>
-        <div>
-          <div>Muudetud aktid</div>
-          <div>{formatValue(status?.check?.changedEntries)}</div>
+        <div className="ra-stat" data-tone={Number(status?.check?.changedEntries || 0) > 0 ? "warn" : "neutral"}>
+          <span className="ra-stat-label">Muudetud aktid</span>
+          <span className="ra-stat-value">{formatValue(status?.check?.changedEntries)}</span>
         </div>
       </div>
 
-      <div>
+      <div className="ra-actions">
         <Button type="button" variant="primary" size="sm" onClick={loadStatus} disabled={busy}>
           Kontrolli seisu
         </Button>
@@ -133,13 +133,13 @@ export default function RagAdminRtRegistryPanel() {
         </Button>
       </div>
 
-      {message ? <p>{message}</p> : null}
+      {message ? <p className="ra-status">{message}</p> : null}
       {changes.length > 0 ? (
-        <div aria-label="RT muudatused">
+        <div aria-label="RT muudatused" className="ra-changes">
           {changes.map((change) => (
-            <div key={`${change.slug}-${change.newActReference || change.actReference || change.xmlFile}`}>
+            <div key={`${change.slug}-${change.newActReference || change.actReference || change.xmlFile}`} className="ra-change">
               <div>
-                {change.slug || "KOV"} <span>({change.title || "-"})</span>
+                {change.slug || "KOV"} <span className="ra-mono">({change.title || "-"})</span>
               </div>
               <div>
                 {change.actReference || "-"} → {change.newActReference || "-"}
@@ -152,10 +152,10 @@ export default function RagAdminRtRegistryPanel() {
           ))}
         </div>
       ) : status?.reportExists ? (
-        <p>Viimases RT raportis muudatusi ei olnud.</p>
+        <p className="ra-log">Viimases RT raportis muudatusi ei olnud.</p>
       ) : null}
       {status?.reportExists ? (
-        <p>
+        <p className="ra-log">
           Viimane raport: {status.check.reportFile}; kandidaatmanifest: {status.check.outputFile}; XML kandidaadid: {status.check.candidateXmlDir}.
           {status.check.appliedAt ? ` Rakendatud: ${status.check.appliedAt}.` : ""}
         </p>

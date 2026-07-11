@@ -242,3 +242,129 @@ export const AdminSlidersIcon = (props) => (
     <circle {...P} cx="12" cy="15" r="1.15" />
   </Svg>
 );
+
+/* ---------- Töölaua komplekti kaardiikoonid (tellija 10.07:
+   Töölaud/Tööheaolu = keritavad kaardikomplektid ruumi karussellis) ---------- */
+
+/* Abisoovid — kõnemull südamega (abi küsimine) */
+export const HelpRequestIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 4.2c-4.4 0-7.7 2.9-7.7 6.6 0 2.1 1.1 3.9 2.9 5.1l-.6 3.6 3.6-1.9c.6.1 1.2.2 1.8.2 4.4 0 7.7-2.9 7.7-6.6S16.4 4.2 12 4.2Z" />
+    <path {...P} d="M12 13.4s-2.7-1.6-2.7-3.3c0-.9.7-1.6 1.5-1.6.5 0 .95.25 1.2.65.25-.4.7-.65 1.2-.65.8 0 1.5.7 1.5 1.6 0 1.7-2.7 3.3-2.7 3.3Z" />
+  </Svg>
+);
+
+/* Abipakkumised — käsi hoiab südant (abi pakkumine) */
+export const HelpOfferIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 10.6s-3.1-1.9-3.1-3.9c0-1.05.8-1.9 1.75-1.9.55 0 1.05.3 1.35.75.3-.45.8-.75 1.35-.75.95 0 1.75.85 1.75 1.9 0 2-3.1 3.9-3.1 3.9Z" />
+    <path {...P} d="M4.4 14.6h2.9c.7 0 2.1.5 3 .9.9.4 2.4.4 3.2 0l3.2-1.5a1.4 1.4 0 0 1 1.9.6c.35.7.05 1.5-.65 1.85l-4.6 2.35c-1 .5-2.6.55-3.6.1l-5.3-2.3" />
+    <path {...P} d="M4.4 13v6.5" />
+  </Svg>
+);
+
+/* Dokumendid — kaks lehte virnas */
+export const DocumentsIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M13.8 3.9H8.6a1.7 1.7 0 0 0-1.7 1.7v11a1.7 1.7 0 0 0 1.7 1.7h7a1.7 1.7 0 0 0 1.7-1.7V7.3l-3.5-3.4Z" />
+    <path {...P} d="M13.6 4v3.5h3.6" />
+    <path {...P} d="M9.6 20.4h6.1a2.6 2.6 0 0 0 2.6-2.6v-7" />
+  </Svg>
+);
+
+/* Koosta dokument — leht pliiatsiga */
+export const ComposeDocIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12.6 4H7.9a1.8 1.8 0 0 0-1.8 1.8v12.4A1.8 1.8 0 0 0 7.9 20h8.2a1.8 1.8 0 0 0 1.8-1.8v-5" />
+    <path {...P} d="m14.3 11.2 5.1-5.1a1.35 1.35 0 0 0-1.9-1.9l-5.1 5.1-.5 2.4 2.4-.5Z" />
+    <path {...P} d="M9.3 15.9h5.4" />
+  </Svg>
+);
+
+/* Pöördumised — postkast saabuva noolega */
+export const InquiryIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M3.9 13.2h4.3l1.3 2h5l1.3-2h4.3" />
+    <path {...P} d="M5.7 6.8h12.6l1.8 6.4v4.9a1.7 1.7 0 0 1-1.7 1.7H5.6a1.7 1.7 0 0 1-1.7-1.7v-4.9l1.8-6.4Z" />
+  </Svg>
+);
+
+/* Lisa inimene — inimene + pluss */
+export const InvitePersonIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="10" cy="8" r="3.1" />
+    <path {...P} d="M4.6 19.4c.55-3 2.8-4.6 5.4-4.6 1.4 0 2.7.45 3.7 1.3" />
+    <path {...P} d="M17.6 13.6v5.2M15 16.2h5.2" />
+  </Svg>
+);
+
+/* Kovisioon — kolm inimest ringis (grupi ühine töö) */
+export const KovisionIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="12" cy="5.9" r="2" />
+    <circle {...P} cx="6.1" cy="15.7" r="2" />
+    <circle {...P} cx="17.9" cy="15.7" r="2" />
+    <path {...P} d="M9.1 7.9a8.2 8.2 0 0 0-2.5 5.1M14.9 7.9a8.2 8.2 0 0 1 2.5 5.1M9 17.9a8.4 8.4 0 0 0 6 0" />
+  </Svg>
+);
+
+/* Tööheaolu — süda pulsijoonega */
+export const WellbeingIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 19.6s-7.6-4.6-7.6-9.5c0-2.5 1.9-4.4 4.2-4.4 1.4 0 2.7.7 3.4 1.9.7-1.2 2-1.9 3.4-1.9 2.3 0 4.2 1.9 4.2 4.4 0 4.9-7.6 9.5-7.6 9.5Z" />
+    <path {...P} d="M7.4 12h2.4l1.2-2.4 1.9 4.2 1.3-1.8h2.4" />
+  </Svg>
+);
+
+/* Materjalid — kihiline kogu (andmebaas) */
+export const MaterialsIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="m12 4.2 8 3.7-8 3.7-8-3.7 8-3.7Z" />
+    <path {...P} d="m5 11.6 7 3.2 7-3.2M5 15.5l7 3.2 7-3.2" />
+  </Svg>
+);
+
+/* Teenusekaart — kaardinõel */
+export const ServiceMapIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 20.6s6.4-6 6.4-10.4a6.4 6.4 0 1 0-12.8 0C5.6 14.6 12 20.6 12 20.6Z" />
+    <circle {...P} cx="12" cy="10" r="2.3" />
+  </Svg>
+);
+
+/* Teekond — punktiirrada peatuspunktidega */
+export const JourneyPathIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="5.6" cy="18.2" r="1.9" />
+    <circle {...P} cx="18.4" cy="5.8" r="1.9" />
+    <path {...P} strokeDasharray="0.1 3.1" d="M7.4 16.6C10.5 14 8 11.5 11 9.6c2.6-1.6 4.4-1.6 5.6-2.5" />
+  </Svg>
+);
+
+/* Kovisiooni ruum — grupp ringis (sama keel mis KovisionIcon, kuid raamitud) */
+export const KovisionRoomIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="12" cy="7.4" r="1.9" />
+    <circle {...P} cx="6.4" cy="16.4" r="1.9" />
+    <circle {...P} cx="17.6" cy="16.4" r="1.9" />
+    <path {...P} d="M9.2 9.1a7.6 7.6 0 0 0-2.2 4.6M14.8 9.1a7.6 7.6 0 0 1 2.2 4.6M9.1 17.9a7.8 7.8 0 0 0 5.8 0" />
+  </Svg>
+);
+
+/* Teemaseemned — idanev seeme (mõtte kasv) */
+export const TopicSeedIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 20.5v-7" />
+    <path {...P} d="M12 13.5c0-2.4 1.8-4.2 4.4-4.4-.2 2.6-2 4.4-4.4 4.4Z" />
+    <path {...P} d="M12 15.4c0-2-1.5-3.5-3.7-3.7.2 2.2 1.7 3.7 3.7 3.7Z" />
+    <circle {...P} cx="12" cy="6" r="2.1" />
+  </Svg>
+);
+
+/* Parimad praktikad — kvaliteedimärk (kilp + linnuke) */
+export const BestPracticeIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 3.6 5 6v5.2c0 4.3 2.9 7.6 7 9.4 4.1-1.8 7-5.1 7-9.4V6l-7-2.4Z" />
+    <path {...P} d="m9 11.6 2.1 2.1 4-4.2" />
+  </Svg>
+);

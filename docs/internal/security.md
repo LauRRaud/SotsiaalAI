@@ -130,7 +130,6 @@ CONVERSATION_TTL_DAYS=90
 PAYMENT_RETENTION_DAYS=2555
 PAYMENT_RAW_RETENTION_DAYS=90
 LOG_RETENTION_DAYS=90
-RAG_DELETE_ON_DOCUMENT_DELETE=true
 ```
 
 Tähendused:
@@ -141,8 +140,9 @@ Tähendused:
 - `PAYMENT_RAW_RETENTION_DAYS` määrab makseteenuse toorpayloadi eemaldamise
   aja.
 - `LOG_RETENTION_DAYS` määrab rakenduse `ChatLog` cleanup akna.
-- `RAG_DELETE_ON_DOCUMENT_DELETE=true` tähendab, et dokumendi kustutamisel
-  proovitakse kustutada ka seotud RAG/indeksi kirje.
+- Dokumendi kustutamisel proovitakse alati kustutada ka seotud RAG/indeksi
+  kirje. Konto kustutamisel jääb konto kuni väliste kustutuste õnnestumiseni
+  peatatud olekusse ning ebaõnnestunud tööd lähevad kordamisele.
 
 `BACKUP_RETENTION_DAYS` võib esineda ops dokumentatsiooni väljana, kuid
 rakendus ei jõusta backupide kustutamist. Backupide, journald logide, proxy
@@ -193,7 +193,7 @@ Andmekaitse-hardeningu kontrollis on productionis kinnitatud:
 - Production env sisaldab 90 päeva üldist, vestluste ja logide retention
   väärtust.
 - `PAYMENT_RETENTION_DAYS=2555` ja `PAYMENT_RAW_RETENTION_DAYS=90` on seatud.
-- `RAG_DELETE_ON_DOCUMENT_DELETE=true` on seatud.
+- RAG-kustutus on rakenduses kohustuslik ega sõltu keskkonnalipust.
 - Fiktiivse testkasutaja ja testdokumendiga kontrolliti dokumendi kustutust,
   `DOCUMENT_DELETE`, `RAG_DELETE`, `FILE_DELETE`, konto kustutust ning audit- ja
   deletion job ridade säilimist.

@@ -144,6 +144,27 @@
     "login_to_view": "Profiili vaatamiseks logi sisse.",
     "login": "Logi sisse",
     "manage_subscription": "Halda tellimust",
+    "usage": {
+      "title": "Minu kasutus",
+      "loading": "Laen kasutusandmeid…",
+      "load_failed": "Kasutusandmete laadimine ebaõnnestus.",
+      "active_plan": "Aktiivne pakett",
+      "free": "Tasuta",
+      "internal": "Sisemine",
+      "sponsored": "Sponsoreeritud",
+      "per_month": "{price} / kuu",
+      "next_billing": "Järgmine arveldus: {date}",
+      "access_until": "Ligipääs kehtib kuni {date}",
+      "used_of": "{used} / {limit}",
+      "resets": "Uueneb {date}",
+      "free_description": "Tasuta paketis saad kasutada põhilisi abisoove ja teenusekaarti. AI-tööriistade kasutus avaneb tasulise paketiga.",
+      "compare_plans": "Võrdle pakette",
+      "plans": { "free": "Tasuta", "client_monthly": "Pöördujale", "social_worker_monthly": "Spetsialistile", "service_provider_monthly": "Teenuseosutajale", "admin_internal": "Administraator" },
+      "metrics": { "CHAT_ASSISTANT_REPLY": "Assistendi vastused", "DOCUMENT_GENERATE": "Dokumentide koostamine", "DOCUMENT_REFINE": "Dokumentide täiustamine", "FILE_ANALYZE": "Failide analüüs", "DEEP_RESEARCH_RUN": "Süvauuringud", "RAG_SEARCH": "Teadmubaasi otsingud", "STT_SECONDS": "Heli transkribeerimine", "TTS_CHARS": "Teksti ettelugemine", "STORAGE_BYTES": "Failide salvestusruum" },
+      "periods": { "DAILY": "Päevane limiit", "WEEKLY": "Nädalane limiit", "MONTHLY": "Kuine limiit", "LIFETIME": "Salvestusmaht" },
+      "states": { "notice": "Oled kasutanud vähemalt 70% selle perioodi mahust.", "warning": "Oled kasutanud vähemalt 90% selle perioodi mahust.", "blocked": "Selle perioodi maht on täis. Kasutus avaneb uuesti näidatud ajal." },
+      "units": { "minutes": "{count} min", "characters": "{count} märki" }
+    },
     "email": "E-post",
     "saving": "Salvestan…",
     "save": "Salvesta",
@@ -2032,7 +2053,6 @@
         "included": "Sisaldub",
         "limited": "Piiratud",
         "extended": "Laiendatud",
-        "unlimited": "Piiramatu",
         "simple": "Lihtne",
         "client_view": "Pöörduja vaade",
         "worker_view": "Spetsialisti vaade",
@@ -2041,7 +2061,7 @@
         "by_agreement": "Kokkuleppel",
         "not_included": "Ei sisaldu"
       },
-      "note": "„Piiratud” tähendab väiksemat kasutusmahtu. SotsiaalAI areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu."
+      "note": "„Piiratud” tähendab väiksemat ja „Laiendatud” suuremat kasutusmahtu; ükski AI-maht ei ole piiramatu. SotsiaalAI areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu."
     },
     "features_page": {
       "title": "SotsiaalAI võimalused",
@@ -2581,7 +2601,8 @@
       "missing_room_id": "Ruumi ID puudub.",
       "rate_limited": "Liiga palju paringuid. Proovi hiljem uuesti.",
       "subscription_required": "Vajalik on aktiivne tellimus.",
-      "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti."
+      "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
+      "usage_load_failed": "Kasutusandmeid ei saanud laadida."
     },
     "chat": {
       "invalid_conv_id": "Vigane vestluse ID.",
@@ -2734,6 +2755,21 @@
       "revoke_failed": "Kutse tühistamine ebaõnnestus."
     },
     "admin": {
+      "usage": {
+        "plans_load_failed": "Pakette ei saanud laadida.",
+        "invalid_input": "Kontrolli limiite, perioodi ja muudatuse põhjust.",
+        "plan_update_failed": "Paketiversiooni ei saanud luua.",
+        "user_not_found": "Kasutajat ei leitud.",
+        "user_load_failed": "Kasutaja detailvaadet ei saanud laadida.",
+        "user_action_forbidden": "Selle kasutaja ligipääsu ei saa siin muuta.",
+        "user_action_failed": "Kasutaja ligipääsu ei saanud muuta.",
+        "overrides_load_failed": "Kasutaja erandeid ei saanud laadida.",
+        "override_create_failed": "Kasutaja erandit ei saanud luua.",
+        "override_end_failed": "Kasutaja erandit ei saanud lõpetada.",
+        "deletion_jobs_load_failed": "Kustutustöid ei saanud laadida.",
+        "deletion_job_not_found": "Kustutustööd ei leitud.",
+        "deletion_job_retry_failed": "Kustutustööd ei saanud uuesti käivitada."
+      },
       "analytics": {
         "events_load_failed": "Analüütika sündmusi ei saanud laadida.",
         "events_delete_invalid_payload": "Vali filter või kinnita kõigi logide kustutamine.",
@@ -2785,6 +2821,7 @@
     "common": {
       "loading": "Laen...",
       "loading_data": "Laen andmeid...",
+      "saving": "Salvestan...",
       "refresh": "Värskenda",
       "back": "Tagasi",
       "yes": "Jah",
@@ -2832,6 +2869,64 @@
         "opened": "Avatud",
         "signed": "Raamlepingu allalaadimine",
         "id": "Kinnituse ID"
+      }
+    },
+    "usage": {
+      "eyebrow": "Kasutuse juhtkiht",
+      "title": "Paketid, limiidid ja erandid",
+      "plans_title": "Paketid ja limiidid",
+      "plans_help": "Salvestamine loob uue versiooni ja viib aktiivsed tellimused sellele üle.",
+      "overrides_title": "Kasutajapõhised erandid",
+      "overrides_help": "Otsi täpse kasutaja ID või e-posti järgi. Sisu ei kuvata.",
+      "price": "Kuutasu",
+      "subscriptions": "Seotud tellimusi: {count}",
+      "enabled": "Lubatud",
+      "period": "Periood",
+      "soft_limit": "Soft limit",
+      "hard_limit": "Hard limit",
+      "change_reason": "Muudatuse põhjus",
+      "create_version": "Loo uus paketiversioon",
+      "change_history": "Paketimuudatuste ajalugu",
+      "no_plans": "Aktiivseid pakette ei leitud.",
+      "user_search_placeholder": "Kasutaja ID või täielik e-post",
+      "find_user": "Leia kasutaja",
+      "user_id": "Kasutaja ID",
+      "email_verified": "E-post kinnitatud",
+      "active_sessions": "Aktiivseid sessioone",
+      "last_activity": "Viimane aktiivsus",
+      "suspended": "Ligipääs peatatud",
+      "access_reason": "Peatamise või taastamise põhjus",
+      "suspend_user": "Peata ligipääs",
+      "resume_user": "Taasta ligipääs",
+      "user_suspended": "Kasutaja ligipääs on peatatud ja sessioonid lõpetatud.",
+      "user_resumed": "Kasutaja ligipääs on taastatud.",
+      "metric": "Mõõdik",
+      "valid_until": "Kehtib kuni (valikuline)",
+      "reason": "Erandi põhjus",
+      "add_override": "Lisa erand",
+      "end_override": "Lõpeta",
+      "override_end_reason": "Sisesta erandi lõpetamise põhjus",
+      "plan_saved": "Paketiversioon v{version} on loodud.",
+      "override_saved": "Kasutaja erand on lisatud.",
+      "override_ended": "Kasutaja erand on lõpetatud.",
+      "background_eyebrow": "Privaatsus ja taustatööd",
+      "deletion_jobs_title": "Kustutus- ja puhastustööd",
+      "job_filter": "Kustutustööde filter",
+      "jobs_active": "Ootel ja ebaõnnestunud",
+      "jobs_all": "Kõik tööd",
+      "attempts": "Katseid: {count}",
+      "retry_job": "Proovi uuesti",
+      "no_deletion_jobs": "Valitud olekuga kustutustöid ei ole.",
+      "job_status": { "pending": "Ootel", "failed": "Ebaõnnestunud", "done": "Tehtud", "skipped": "Vahele jäetud" },
+      "errors": {
+        "plans_load": "Pakettide laadimine ebaõnnestus.",
+        "plan_save": "Paketiversiooni salvestamine ebaõnnestus.",
+        "user_load": "Kasutaja kasutuse laadimine ebaõnnestus.",
+        "override_save": "Erandi salvestamine ebaõnnestus.",
+        "override_end": "Erandi lõpetamine ebaõnnestus.",
+        "user_action": "Kasutaja ligipääsu muutmine ebaõnnestus.",
+        "deletion_jobs_load": "Kustutustööde laadimine ebaõnnestus.",
+        "deletion_job_retry": "Kustutustöö kordamine ebaõnnestus."
       }
     },
     "analytics": {
@@ -3056,9 +3151,9 @@
           "analyze_today": "Analüüsid täna"
         },
         "limits": {
-          "analyze_daily": "Analüüs/päev",
-          "analyze_usage_today": "Tänane kasutus",
-          "analyze_remaining": "Täna jäänud",
+          "analyze_daily": "Analüüs/periood",
+          "analyze_usage_today": "Perioodil kasutatud",
+          "analyze_remaining": "Perioodil jäänud",
           "plan_amount": "Kuutasu",
           "monthly_budget": "Kuueelarve",
           "remaining_budget": "Järelejäänud eelarve",

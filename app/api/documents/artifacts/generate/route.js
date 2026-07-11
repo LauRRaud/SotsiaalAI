@@ -18,9 +18,14 @@ import {
 import { cacheRetrievalDebugMeta } from "@/lib/documents/retrievalObservability"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
-import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server"
+import { errorJson, json, localeFromRequest, requireDocumentUser, usageErrorJson } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard"
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest
+} from "@/lib/usage/routeAdapter"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -92,6 +97,9 @@ export async function POST(request) {
   }
   instruction = privacy.processedText || instruction
 
+  let usageHandle = null
+  let generationCompleted = false
+
   try {
     const documents = await prisma.userDocument.findMany({
       where: {
@@ -157,6 +165,19 @@ export async function POST(request) {
       }
     }
 
+    try {
+      usageHandle = await reserveUsageForRequest({
+        request,
+        userId: auth.userId,
+        metric: "DOCUMENT_GENERATE",
+        scope: "documents.generate",
+        idempotencyKey: body?.idempotencyKey,
+        metadata: { sourceCount: documents.length, type }
+      })
+    } catch (error) {
+      return usageErrorJson(error, "documents.generate", locale)
+    }
+
     const result = await generateArtifactDraftContent({
       type,
       documents,
@@ -171,6 +192,8 @@ export async function POST(request) {
       userId: auth.userId,
       userRole: role
     })
+    generationCompleted = true
+    await commitUsageForRequest(usageHandle)
     const content = result?.content || ""
     if (content && result?.debugMeta) {
       cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
@@ -209,6 +232,13 @@ export async function POST(request) {
       }
     })
   } catch (error) {
+    if (usageHandle && !generationCompleted) {
+      try {
+        await releaseUsageForRequest(usageHandle, { reason: "document_generation_failed" })
+      } catch (releaseError) {
+        console.error("[documents artifacts] usage release failed", safeError(releaseError))
+      }
+    }
     const status = Number(error?.status) || 500
     const messageKey =
       status === 500 ? "documents.artifacts.errors.create_failed" : error?.message || "documents.artifacts.errors.create_failed"

@@ -235,14 +235,6 @@ function main() {
     }
   }
 
-  const ragDeleteFlag = String(env.RAG_DELETE_ON_DOCUMENT_DELETE || "").trim().toLowerCase();
-  if (ragDeleteFlag && !["1", "0", "true", "false", "yes", "no", "on", "off"].includes(ragDeleteFlag)) {
-    errors.push("RAG_DELETE_ON_DOCUMENT_DELETE must be a boolean-like value");
-  }
-  if (env.NODE_ENV === "production" && !ragDeleteFlag) {
-    warnings.push("RAG_DELETE_ON_DOCUMENT_DELETE is not set; document deletes will leave RAG cleanup marked as skipped");
-  }
-
   if (isNonEmpty(env.BACKUP_RETENTION_DAYS)) {
     warnings.push("BACKUP_RETENTION_DAYS is documentation/ops policy only; the app does not enforce backup deletion");
   }

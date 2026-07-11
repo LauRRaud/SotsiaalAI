@@ -470,6 +470,8 @@ export default function AnalyticsDashboard() {
       { href: "#analytics-rag-docs", label: t("admin.analytics.rag_docs.title", "RAG documents") },
       { href: "#analytics-billing", label: t("admin.analytics.billing.title", "Subscriptions and payments") },
       { href: "#analytics-users", label: t("admin.analytics.users.title", "Users, costs and limits") },
+      { href: "#admin-usage-controls", label: t("admin.usage.title", "Packages and limits") },
+      { href: "#admin-deletion-jobs", label: t("admin.usage.deletion_jobs_title", "Deletion jobs") },
       { href: "#analytics-ai-costs", label: t("admin.analytics.ai_costs.title", "AI kuluaktiivsus") },
       { href: "#analytics-logs", label: t("admin.analytics.logs.title", "Logs") }
     ],

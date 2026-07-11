@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/Button";
+import RagRowMenu from "../RagRowMenu";
 import { formatDateTime } from "../ragAdminShared";
 
 function reviewStateLabel(state, et) {
@@ -13,6 +14,20 @@ function reviewStateLabel(state, et) {
   return et ? "Graafikus" : "On schedule";
 }
 
+function reviewStateTone(state) {
+  if (state === "CHANGES_DETECTED" || state === "ERROR") return "err";
+  if (state === "FULL_REVIEW_DUE" || state === "LIGHT_CHECK_DUE") return "warn";
+  if (state === "NO_CHANGES") return "ok";
+  return "dim";
+}
+
+function readinessTone(state) {
+  if (state === "BOTH_INGESTED") return "ok";
+  if (state === "BOTH_READY") return "ok";
+  if (state === "WEB_READY" || state === "RT_READY") return "warn";
+  return "dim";
+}
+
 function stopEvent(event, cb) {
   event.stopPropagation();
   cb?.();
@@ -21,6 +36,7 @@ function stopEvent(event, cb) {
 export default function KovTable({
   rows,
   locale,
+  selectedSlug,
   selectedSlugs,
   selectedCount,
   allVisibleSelected,
@@ -56,12 +72,12 @@ export default function KovTable({
   et
 }) {
   return (
-    <div>
-      <div>
-        <div>
-          <span>{et ? "Valitud" : "Selected"}:</span> {selectedCount}
+    <div className="ra-card">
+      <div className="ra-bulkbar">
+        <div className="ra-bulkbar-count">
+          {et ? "Valitud" : "Selected"}: <strong>{selectedCount}</strong>
         </div>
-        <div>
+        <div className="ra-actions">
           <Button
             variant="primary"
             size="sm"
@@ -136,8 +152,8 @@ export default function KovTable({
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-      <table>
+      <div className="ra-tablewrap">
+      <table className="ra-table">
         <thead>
           <tr>
             <th>
@@ -172,10 +188,13 @@ export default function KovTable({
             const rtMissingCount = Number(row.rtSummary?.missingCount || 0);
             const rtInvalidCount = Number(row.rtSummary?.invalidCount || 0);
             const rtValidCount = Number(row.rtSummary?.validCount || 0);
+            const reviewState = row.reviewSchedule?.state;
+            const readinessState = row.combinedReadiness?.state;
 
             return (
               <tr
                 key={row.slug}
+                data-selected={isSelected || selectedSlug === row.slug ? "true" : undefined}
                 onClick={() => onSelect(row.slug)}
               >
                 <td>
@@ -189,134 +208,131 @@ export default function KovTable({
                 <td>
                   <button
                     type="button"
+                    className="ra-rowlink"
                     onClick={event => stopEvent(event, () => onSelect(row.slug))}
                   >
-                    <div>{row.displayName}</div>
-                    <div>{row.slug}</div>
+                    <div className="ra-td-main">{row.displayName}</div>
+                    <div className="ra-td-sub ra-mono">{row.slug}</div>
                   </button>
                 </td>
                 <td>
                   <div>{row.county || "-"}</div>
-                  <div>{row.type === "LINN" ? "Linn" : "Vald"}</div>
+                  <div className="ra-td-sub">{row.type === "LINN" ? "Linn" : "Vald"}</div>
                 </td>
                 <td>
-                  <span>{statusLabel(row.status)}</span>
-                  {row.readyForIngest ? (
-                    <div>
-                      {et ? "Valmis" : "Ready"}
+                  <div className="ra-td-stack">
+                    <div className="ra-chiprow">
+                      <span className="ra-chip">{statusLabel(row.status)}</span>
+                      {row.readyForIngest ? (
+                        <span className="ra-chip" data-tone="ok">
+                          {et ? "Valmis" : "Ready"}
+                        </span>
+                      ) : null}
+                      <span className="ra-chip" data-tone={reviewStateTone(reviewState)}>
+                        {reviewStateLabel(reviewState, et)}
+                      </span>
                     </div>
-                  ) : null}
-                  <div>
-                    <span>
-                      {reviewStateLabel(row.reviewSchedule?.state, et)}
-                    </span>
-                  </div>
-                    <div>
+                    <div className="ra-td-sub">
                       {row.reviewSchedule?.nextFullReviewAt
-                      ? `${et ? "Järgmine täisülevaatus" : "Next full review"}: ${formatDateTime(row.reviewSchedule.nextFullReviewAt, locale)}`
-                      : row.checkedAt ? formatDateTime(row.checkedAt, locale) : "-"}
-                  </div>
-                  <div>
-                    {autoCheckStatusLabel(row.autoCheckStatus)}
-                  </div>
-                  {(Number(row.lightCheckSummary?.changedSourceCount || 0) > 0 || Number(row.lightCheckSummary?.errorCount || 0) > 0) ? (
-                    <div>
-                      {et
-                        ? `${row.lightCheckSummary?.changedSourceCount || 0} muudatust, ${row.lightCheckSummary?.errorCount || 0} viga`
-                        : `${row.lightCheckSummary?.changedSourceCount || 0} changes, ${row.lightCheckSummary?.errorCount || 0} errors`}
+                        ? `${et ? "Järgmine täisülevaatus" : "Next full review"}: ${formatDateTime(row.reviewSchedule.nextFullReviewAt, locale)}`
+                        : row.checkedAt ? formatDateTime(row.checkedAt, locale) : "-"}
                     </div>
-                  ) : null}
+                    {autoCheckStatusLabel(row.autoCheckStatus) !== reviewStateLabel(reviewState, et) ? (
+                      <div className="ra-td-sub">
+                        {autoCheckStatusLabel(row.autoCheckStatus)}
+                      </div>
+                    ) : null}
+                    {(Number(row.lightCheckSummary?.changedSourceCount || 0) > 0 || Number(row.lightCheckSummary?.errorCount || 0) > 0) ? (
+                      <span className="ra-chip" data-tone="warn">
+                        {et
+                          ? `${row.lightCheckSummary?.changedSourceCount || 0} muudatust, ${row.lightCheckSummary?.errorCount || 0} viga`
+                          : `${row.lightCheckSummary?.changedSourceCount || 0} changes, ${row.lightCheckSummary?.errorCount || 0} errors`}
+                      </span>
+                    ) : null}
+                  </div>
                 </td>
                 <td>
-                  <div>
-                    {webIngested ? (et ? "KOV ingestitud" : "KOV ingested") : `${row.fileCount}/4 KOV`}
-                  </div>
-                  <div>
-                    {rtIngested ? (et ? "RT ingestitud" : "RT ingested") : `${row.rtFileCount || 0}/${rtRequiredCount} RT`}
-                  </div>
-                  {webIngested && row.fileCount < 4 ? (
-                    <div>
-                      {et ? "Admin failid" : "Admin files"}: {row.fileCount}/4
-                    </div>
-                  ) : null}
-                  {rtIngested && (row.rtFileCount || 0) < rtRequiredCount ? (
-                    <div>
-                      {et ? "Admin RT fail" : "Admin RT file"}: {row.rtFileCount || 0}/{rtRequiredCount}
-                    </div>
-                  ) : null}
-                  {!webIngested ? (
-                    <div>
-                      <span>
-                        {allFilesValid
-                          ? et ? "Kõik failid korras" : "All files valid"
-                          : invalidFiles > 0
-                            ? et ? "Sisaldab vigaseid faile" : "Has invalid files"
-                            : et ? "Admin failid puuduvad" : "Admin files missing"}
+                  <div className="ra-td-stack">
+                    <div className="ra-chiprow">
+                      <span
+                        className="ra-chip"
+                        data-tone={webIngested ? "ok" : invalidFiles > 0 ? "err" : allFilesValid ? "ok" : "dim"}
+                        title={
+                          webIngested
+                            ? row.fileCount < 4
+                              ? `${et ? "Admin failid" : "Admin files"}: ${row.fileCount}/4`
+                              : undefined
+                            : allFilesValid
+                              ? et ? "Kõik failid korras" : "All files valid"
+                              : invalidFiles > 0
+                                ? et ? "Sisaldab vigaseid faile" : "Has invalid files"
+                                : et ? "Admin failid puuduvad" : "Admin files missing"
+                        }
+                      >
+                        {webIngested ? (et ? "KOV ingestitud" : "KOV ingested") : `${row.fileCount}/4 KOV`}
                       </span>
-                    </div>
-                  ) : null}
-                  {!rtIngested ? (
-                    <div>
-                      <span>
-                        {rtMissingCount > 0
-                            ? et ? "Admin RT fail puudub" : "Admin RT file missing"
+                      <span
+                        className="ra-chip"
+                        data-tone={
+                          rtIngested
+                            ? "ok"
                             : rtInvalidCount > 0
-                              ? et ? "RT vigane" : "RT invalid"
+                              ? "err"
                               : rtValidCount === rtRequiredCount
-                                ? et ? "RT korras" : "RT valid"
-                                : et ? "RT pooleli" : "RT pending"}
+                                ? "ok"
+                                : rtMissingCount > 0
+                                  ? "dim"
+                                  : "warn"
+                        }
+                        title={
+                          rtIngested
+                            ? (row.rtFileCount || 0) < rtRequiredCount
+                              ? `${et ? "Admin RT fail" : "Admin RT file"}: ${row.rtFileCount || 0}/${rtRequiredCount}`
+                              : undefined
+                            : rtMissingCount > 0
+                              ? et ? "Admin RT fail puudub" : "Admin RT file missing"
+                              : rtInvalidCount > 0
+                                ? et ? "RT vigane" : "RT invalid"
+                                : rtValidCount === rtRequiredCount
+                                  ? et ? "RT korras" : "RT valid"
+                                  : et ? "RT pooleli" : "RT pending"
+                        }
+                      >
+                        {rtIngested ? (et ? "RT ingestitud" : "RT ingested") : `${row.rtFileCount || 0}/${rtRequiredCount} RT`}
                       </span>
                     </div>
-                  ) : null}
-                  {(Number(row.rtLightCheckSummary?.changedSourceCount || 0) > 0 || Number(row.rtLightCheckSummary?.errorCount || 0) > 0) ? (
-                    <div>
-                      {et
-                        ? `RT: ${row.rtLightCheckSummary?.changedSourceCount || 0} muudatust, ${row.rtLightCheckSummary?.errorCount || 0} viga`
-                        : `RT: ${row.rtLightCheckSummary?.changedSourceCount || 0} changes, ${row.rtLightCheckSummary?.errorCount || 0} errors`}
-                    </div>
-                  ) : null}
-                  <div>
-                    <span>
-                      {row.combinedReadiness?.state === "BOTH_INGESTED"
+                    {(Number(row.rtLightCheckSummary?.changedSourceCount || 0) > 0 || Number(row.rtLightCheckSummary?.errorCount || 0) > 0) ? (
+                      <span className="ra-chip" data-tone="warn">
+                        {et
+                          ? `RT: ${row.rtLightCheckSummary?.changedSourceCount || 0} muudatust, ${row.rtLightCheckSummary?.errorCount || 0} viga`
+                          : `RT: ${row.rtLightCheckSummary?.changedSourceCount || 0} changes, ${row.rtLightCheckSummary?.errorCount || 0} errors`}
+                      </span>
+                    ) : null}
+                    <span
+                      className="ra-chip"
+                      data-tone={readinessTone(readinessState)}
+                      title={`KOV: ${ingestStatusLabel(row.ingestStatus)}${row.lastIngestedAt ? ` (${formatDateTime(row.lastIngestedAt, locale)})` : ""} · RT: ${ingestStatusLabel(row.rtIngestStatus)}${row.rtLastIngestedAt ? ` (${formatDateTime(row.rtLastIngestedAt, locale)})` : ""}`}
+                    >
+                      {readinessState === "BOTH_INGESTED"
                         ? et ? "Mõlemad ingestitud" : "Both ingested"
-                        : row.combinedReadiness?.state === "BOTH_READY"
+                        : readinessState === "BOTH_READY"
                           ? et ? "Mõlemad valmis" : "Both ready"
-                          : row.combinedReadiness?.state === "WEB_READY"
+                          : readinessState === "WEB_READY"
                             ? et ? "KOV veeb valmis" : "KOV web ready"
-                            : row.combinedReadiness?.state === "RT_READY"
+                            : readinessState === "RT_READY"
                               ? et ? "Ainult RT valmis" : "Only RT ready"
                               : et ? "Kihid pooleli" : "Layers incomplete"}
                     </span>
+                    {row.lastIngestError ? (
+                      <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>{row.lastIngestError}</div>
+                    ) : null}
+                    {row.rtLastIngestError ? (
+                      <div className="ra-td-sub" style={{ color: "var(--status-error)" }}>{row.rtLastIngestError}</div>
+                    ) : null}
                   </div>
-                  <div>
-                    <span>
-                      KOV: {ingestStatusLabel(row.ingestStatus)}
-                    </span>
-                    <div>
-                      {row.lastIngestedAt
-                        ? `${et ? "Viimane" : "Last"}: ${formatDateTime(row.lastIngestedAt, locale)}`
-                        : row.ingestSummary?.canIngest ? (et ? "Valmis ingestiks" : "Ready") : (et ? "Pole valmis" : "Not ready")}
-                    </div>
-                  </div>
-                  <div>
-                    <span>
-                      RT: {ingestStatusLabel(row.rtIngestStatus)}
-                    </span>
-                    <div>
-                      {row.rtLastIngestedAt
-                        ? `${et ? "Viimane" : "Last"}: ${formatDateTime(row.rtLastIngestedAt, locale)}`
-                        : row.rtIngestSummary?.canIngest ? (et ? "Valmis ingestiks" : "Ready") : (et ? "Pole valmis" : "Not ready")}
-                    </div>
-                  </div>
-                  {row.lastIngestError ? (
-                    <div>{row.lastIngestError}</div>
-                  ) : null}
-                  {row.rtLastIngestError ? (
-                    <div>{row.rtLastIngestError}</div>
-                  ) : null}
                 </td>
                 <td>
-                  <div>
+                  <div className="ra-actions" style={{ flexWrap: "nowrap" }}>
                     <Button
                       variant="primary"
                       size="2xs"
@@ -324,47 +340,47 @@ export default function KovTable({
                     >
                       {et ? "Ava" : "Open"}
                     </Button>
-                    <Button
-                      variant="primary"
-                      size="2xs"
-                      onClick={event => stopEvent(event, () => onRevalidateRow(row.slug))}
-                      disabled={rowBusy}
-                    >
-                      {rowBusy ? (et ? "Valideerin..." : "Revalidating...") : et ? "Valideeri" : "Revalidate"}
-                    </Button>
-                    <Button
-                      variant="primary"
-                      size="2xs"
-                      onClick={event => stopEvent(event, () => onRevalidateRtRow(row.slug))}
-                      disabled={rtRowBusy}
-                    >
-                      {rtRowBusy ? (et ? "RT val..." : "RT val...") : et ? "Valideeri RT" : "Validate RT"}
-                    </Button>
-                    <Button
-                      variant="primary"
-                      size="2xs"
-                      onClick={event => stopEvent(event, () => onIngestRow(row.slug))}
-                      disabled={!canIngest || ingestBusy}
-                    >
-                      {ingestBusy ? (et ? "Saadan..." : "Ingesting...") : et ? "Ingest" : "Ingest"}
-                    </Button>
-                    <Button
-                      variant="primary"
-                      size="2xs"
-                      onClick={event => stopEvent(event, () => onReplaceIngestRow?.(row.slug))}
-                      disabled={!canIngest || ingestBusy}
-                      title={et ? "Kustutab enne sama KOV-i vana veebikihi ja ingestib uuesti" : "Remove old web layer for this municipality before ingesting again"}
-                    >
-                      {ingestBusy ? (et ? "Asendan..." : "Replacing...") : et ? "Asenda" : "Replace"}
-                    </Button>
-                    <Button
-                      variant="primary"
-                      size="2xs"
-                      onClick={event => stopEvent(event, () => onIngestRtRow(row.slug))}
-                      disabled={!canRtIngest || rtIngestBusy}
-                    >
-                      {rtIngestBusy ? (et ? "RT saadan..." : "RT ingesting...") : "RT ingest"}
-                    </Button>
+                    <RagRowMenu
+                      ariaLabel={et ? `Toimingud: ${row.displayName}` : `Actions: ${row.displayName}`}
+                      items={[
+                        {
+                          key: "revalidate",
+                          label: rowBusy ? (et ? "Valideerin..." : "Revalidating...") : et ? "Valideeri KOV failid" : "Revalidate KOV files",
+                          onSelect: () => onRevalidateRow(row.slug),
+                          disabled: rowBusy
+                        },
+                        {
+                          key: "revalidate-rt",
+                          label: rtRowBusy ? (et ? "Valideerin RT..." : "Revalidating RT...") : et ? "Valideeri RT fail" : "Validate RT file",
+                          onSelect: () => onRevalidateRtRow(row.slug),
+                          disabled: rtRowBusy
+                        },
+                        {
+                          key: "ingest",
+                          label: ingestBusy ? (et ? "Saadan..." : "Ingesting...") : et ? "Ingest KOV veeb" : "Ingest KOV web",
+                          onSelect: () => onIngestRow(row.slug),
+                          disabled: !canIngest || ingestBusy
+                        },
+                        {
+                          key: "replace",
+                          label: ingestBusy ? (et ? "Asendan..." : "Replacing...") : et ? "Asenda veebikiht RAG-is" : "Replace web layer in RAG",
+                          onSelect: () => onReplaceIngestRow?.(row.slug),
+                          disabled: !canIngest || ingestBusy,
+                          title: et ? "Kustutab enne sama KOV-i vana veebikihi ja ingestib uuesti" : "Remove old web layer for this municipality before ingesting again"
+                        },
+                        {
+                          key: "ingest-rt",
+                          label: rtIngestBusy ? (et ? "RT saadan..." : "RT ingesting...") : "RT ingest",
+                          onSelect: () => onIngestRtRow(row.slug),
+                          disabled: !canRtIngest || rtIngestBusy
+                        }
+                      ]}
+                    />
+                    {(rowBusy || rtRowBusy || ingestBusy || rtIngestBusy) ? (
+                      <span className="ra-chip" data-tone="warn">
+                        {et ? "Töös..." : "Busy..."}
+                      </span>
+                    ) : null}
                   </div>
                 </td>
               </tr>

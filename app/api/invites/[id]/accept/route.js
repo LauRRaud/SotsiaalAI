@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
-import { getRolePlanKey, normalizeSubscriptionRole } from "@/lib/subscriptionPlans";
+import { getPlanDefinitionId, getRolePlanKey, normalizeSubscriptionRole } from "@/lib/subscriptionPlans";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -300,6 +300,10 @@ export async function POST(request, { params }) {
           const plan =
             invite.sponsoredPlan ||
             getRolePlanKey(inviteRole || normalizeSubscriptionRole(auth.role));
+          const planDefinitionId = getPlanDefinitionId(
+            plan,
+            inviteRole || normalizeSubscriptionRole(auth.role)
+          );
 
           if (existingSubscription) {
             await tx.subscription.update({
@@ -307,6 +311,7 @@ export async function POST(request, { params }) {
               data: {
                 status: "ACTIVE",
                 plan,
+                planDefinitionId,
                 billingSource: "SPONSORED_BY_HOST",
                 sponsorUserId,
                 inviteId: invite.id,
@@ -321,6 +326,7 @@ export async function POST(request, { params }) {
                 userId: auth.userId,
                 status: "ACTIVE",
                 plan,
+                planDefinitionId,
                 billingSource: "SPONSORED_BY_HOST",
                 sponsorUserId,
                 inviteId: invite.id,

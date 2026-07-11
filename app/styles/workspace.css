@@ -175,14 +175,12 @@
   display: contents;
 }
 
-/* ---------- Kaart = SAMA liquid-glass MATERJAL mis nupud (tellija 07.07:
-   "servad, visuaal ja hover nagu button, aga MITTE mõõdud/kuju"). Materjal
-   (taust, ääris, läige, hover/press) on glass.css nupu-baasist; kaardi OMA
-   jäävad ainult mõõt/kuju: ristküliku raadius, polster, keskjoondus, suurem
-   font, ruudustiku-venitus.
-   NB: kaardil EI OLE oma backdrop-blurit (tellija 07.07: ruum/paneeli taust on
-   juba hägus → kaardi blur teeks TOPELT-häguse mudase pinna). Klaasi-ilme tuleb
-   ilma blurita äärest + ülaserva läikest + gradiendist; hägu jääb ruumile. */
+/* ---------- Kaart = minimalistlik klaaspind, sama keel mis RAG moodul-
+   kaardil (tellija 10.07: "minimalistlikum, nagu RAG lehel kast"). Lame
+   klaas-täide + peen ääris, MITTE läikiv gradient. Hover toob õrna sooja
+   kuma ja üle pinna aeglaselt libiseva läike-sweepi.
+   NB: kaardil EI OLE oma backdrop-blurit (tellija 07.07: ruum on juba
+   hägus → kaardi blur teeks TOPELT-häguse mudase pinna). */
 .workspace-dashboard-card {
   position: relative;
   display: flex;
@@ -192,51 +190,72 @@
   gap: 1.1em;
   min-height: 0;
   padding: 0.72em 1.4em;
-  border-radius: 18px;
+  border-radius: 16px;
+  /* Läige-sweep (allpool ::before) klipitakse ümarate nurkade sisse */
+  overflow: hidden;
   color: var(--text-warm);
   font-size: calc(var(--fs-body) * 1.3);
   letter-spacing: 0.015em;
-  background-color: rgba(255, 255, 255, 0.03);
-  background-image: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 36%,
-    rgba(255, 255, 255, 0.02) 62%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.28),
-    inset 0 0 16px rgba(255, 255, 255, 0.05),
-    0 6px 20px rgba(0, 0, 0, 0.26);
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
   transition:
     background-color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
     box-shadow var(--dur-fast) var(--ease-soft),
     color var(--dur-fast) var(--ease-soft);
 }
+/* Peen valgusjoon ülaservas — sama diskreetne aktsent mis RAG kaartidel */
+.workspace-dashboard-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 248, 238, 0.28), transparent);
+  pointer-events: none;
+}
+/* Skaneeriv läige hover'il — sama keel mis RAG moodulkaartidel (tellija
+   10.07), AGA aeglasem (tellija 10.07: "liiga kiire"). Kaart ISE ei liigu
+   (tellija 07.07 reegel jääb kehtima), üle pinna libiseb ainult valgusriba. */
+.workspace-dashboard-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 34%,
+    rgba(255, 248, 238, 0.12) 50%,
+    transparent 66%
+  );
+  translate: -120% 0;
+  pointer-events: none;
+}
+.workspace-dashboard-card:hover::before,
+.workspace-dashboard-card:focus-visible::before {
+  transition: translate 2.3s var(--ease-drift);
+  translate: 120% 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .workspace-dashboard-card::before {
+    transition: none;
+    translate: -120% 0;
+  }
+}
 /* Hover/press EI liiguta kaarti (tellija 07.07: "ei meeldi et hoveriga kaardid
-   liiguvad") — tagasiside tuleb ainult heledusest/varjust, MITTE translate'ist. */
+   liiguvad") — tagasiside tuleb ainult heledusest/servast, MITTE translate'ist. */
 .workspace-dashboard-card:hover {
-  background-color: rgba(255, 255, 255, 0.11);
-  border-color: rgba(255, 255, 255, 0.36);
-  box-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
-    inset 0 0 20px rgba(255, 255, 255, 0.08),
-    0 8px 26px rgba(0, 0, 0, 0.3);
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 248, 238, 0.4);
+  box-shadow: 0 0 22px rgba(255, 246, 232, 0.09);
 }
 .workspace-dashboard-card:active {
   background-color: rgba(0, 0, 0, 0.14);
-  box-shadow:
-    inset 0 1.5px 4px rgba(0, 0, 0, 0.22),
-    inset 0 -1px 1px rgba(255, 255, 255, 0.08),
-    0 3px 12px rgba(0, 0, 0, 0.22);
+  box-shadow: inset 0 1.5px 4px rgba(0, 0, 0, 0.2);
 }
 .workspace-dashboard-card:focus-visible {
   outline: none;
-  box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.28),
-    var(--focus-ring);
+  box-shadow: var(--focus-ring);
 }
 
 /* Märgis (nt lugemata) — diskreetne helendav täpp. Absoluutne (paremal,

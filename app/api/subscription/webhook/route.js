@@ -32,6 +32,7 @@ import {
 } from "@/lib/payments/recurring";
 import { logPaymentEvent } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
+import { getPlanDefinitionId } from "@/lib/subscriptionPlans";
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
@@ -370,7 +371,12 @@ async function activateSubscriptionFromPayment(tx, payment) {
       validUntil: true,
       billingMode: true,
       billingInterval: true,
-      billingMethodId: true
+      billingMethodId: true,
+      plan: true,
+      planDefinitionId: true,
+      user: {
+        select: { role: true }
+      }
     }
   });
   if (!existing) return null;
@@ -379,11 +385,13 @@ async function activateSubscriptionFromPayment(tx, payment) {
   const anchor =
     existing.validUntil && new Date(existing.validUntil).getTime() > now.getTime() ? new Date(existing.validUntil) : now;
   const validUntil = addMonths(anchor, 1);
+  const planDefinitionId = existing.planDefinitionId || getPlanDefinitionId(existing.plan, existing.user.role);
 
   return tx.subscription.update({
     where: { id: existing.id },
     data: {
       status: SubscriptionStatus.ACTIVE,
+      planDefinitionId,
       validUntil,
       nextBilling: existing.billingMode === BillingMode.RECURRING ? validUntil : null,
       lastBilledAt: paidAtOrNow(payment.paidAt),

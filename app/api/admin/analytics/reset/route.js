@@ -87,8 +87,14 @@ const RESET_ACTIONS = {
     };
   },
   clear_usage_metrics: async tx => {
-    const deleted = await tx.analyzeUsage.deleteMany({});
-    return { AnalyzeUsage: deleted.count };
+    const deletedEvents = await tx.usageEvent.deleteMany({});
+    const deletedReservations = await tx.usageReservation.deleteMany({});
+    const deletedBuckets = await tx.usageBucket.deleteMany({});
+    return {
+      UsageEvent: deletedEvents.count,
+      UsageReservation: deletedReservations.count,
+      UsageBucket: deletedBuckets.count
+    };
   },
   clear_billing: async tx => {
     const deletedPayments = await tx.payment.deleteMany({});
@@ -122,7 +128,9 @@ const RESET_COUNT_QUERIES = {
     TrustedDevice: await tx.trustedDevice.count()
   }),
   clear_usage_metrics: async tx => ({
-    AnalyzeUsage: await tx.analyzeUsage.count()
+    UsageEvent: await tx.usageEvent.count(),
+    UsageReservation: await tx.usageReservation.count(),
+    UsageBucket: await tx.usageBucket.count()
   }),
   clear_billing: async tx => ({
     Payment: await tx.payment.count(),
