@@ -7,7 +7,6 @@ import { spawnSync } from "node:child_process";
 
 const repoRoot = process.cwd();
 const envCheckPath = path.join(repoRoot, "scripts", "check-env.mjs");
-const envExamplePath = path.join(repoRoot, ".env.example");
 const selftestRoutePath = path.join(repoRoot, "app", "api", "rag", "selftest", "route.js");
 const chatSettingsPath = path.join(repoRoot, "lib", "chat", "settings.js");
 const ragAuthPath = path.join(repoRoot, "lib", "server", "ragAuth.js");
@@ -20,9 +19,18 @@ function writeTempEnv(contents) {
 }
 
 function runEnvCheck(envFile) {
+  const env = { ...process.env };
+  for (const key of [
+    "NEXT_PUBLIC_SITE_URL", "APP_URL", "NEXTAUTH_URL", "NEXTAUTH_SECRET",
+    "AUTH_SECRET", "DATABASE_URL", "OPENAI_API_KEY", "RAG_SERVICE_API_KEY",
+    "RAG_API_KEY", "RAG_INTERNAL_HOST", "RAG_API_BASE", "EMAIL_FROM"
+  ]) {
+    delete env[key];
+  }
   return spawnSync(process.execPath, [envCheckPath, envFile], {
     cwd: repoRoot,
-    encoding: "utf8"
+    encoding: "utf8",
+    env
   });
 }
 
