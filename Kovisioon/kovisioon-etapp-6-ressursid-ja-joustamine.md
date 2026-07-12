@@ -1,7 +1,7 @@
 # Kovisioon — Etapp 6: ressursid ja jõustamine
 
 **Dokumendi staatus:** detailne funktsionaalne ja metoodiline spetsifikatsioon  
-**Versioon:** 1.0  
+**Versioon:** 1.1 — liidetud selgroo jõustamisring ressursipeegliga (§33, olek 8), lisatud rollipõhised vaated (§57.10), parem-paneeli ja värava tööjaotus (§57.11), referentsvaade „täpsustuse ja sidumise vaade” (§57.12), kaks eristatud aega (§22.7), kompass loendina (§24.8), olekusõnastike vastavustabel (§29.7), demo ühtlustatud kanoonilise koosseisu ja teede loendiga (§59) ning sisemiste vastuolude ja tellija pildikommentaari (11.07) parandused  
 **Seotud selgroodokument:** `uue-kovisiooni-funktsiooni-visioon-ja-8-etapiline-selgroog.md`  
 **Eelmine dokument:** `kovisioon-etapp-5-voimaluste-loomine.md`  
 **Seotud sisendfunktsioon:** `teemaseeme-professionaalne-funktsioon.md`  
@@ -285,7 +285,7 @@ Sisenemisel peavad olema olemas:
 - juhtumi tooja kinnitus, et võimaluste väli on piisavalt lai;
 - juhtumi tooja valmisolek uurida toetavaid ressursse ja tingimusi;
 - sessiooni juht;
-- kvoorum;
+- kvoorum (kvoorumi definitsioon: etapi 1 spetsifikatsiooni §13.4);
 - lahendamata turvalisus- või privaatsusblokeeringu puudumine.
 
 ---
@@ -339,8 +339,9 @@ Sisenemisel peavad olema olemas:
 9. **kriitilised turvalisuse, eetika, õiguse, nõusoleku ja pädevuse eeltingimused**;
 10. **võimaluste toetuse kirjeldav pilt ilma paremusjärjestuseta**;
 11. **juhtumi tooja privaatne ressursiresonants**;
-12. **juhtumi tooja kinnitus, et tal on valiku tegemiseks piisav tugipilt**;
-13. **alus 7. etapi iseseisvaks valikuks**.
+12. **jõustamisringis märgatud tugevused, kui ring toimus**;
+13. **juhtumi tooja kinnitus, et tal on valiku tegemiseks piisav tugipilt**;
+14. **alus 7. etapi iseseisvaks valikuks**.
 
 Etapi väljund ei ole valitud tee ega tegevusplaan.
 
@@ -760,6 +761,18 @@ Takistus võib:
 
 Mõni tingimus ei ole lihtsalt „takistus”, vaid vastutustundliku tegutsemise eeltingimus.
 
+Kriitilised eeltingimused moodustavad lõuendil **eraldi kihi** ega sula „vajalike tingimuste” hulka.
+
+Näidisloend:
+
+- lapse osalus ja nõusolek;
+- tundliku info jagamise õiguslik alus;
+- turvalisus;
+- meetodi kasutamise pädevus;
+- organisatsiooniline volitus.
+
+Kriitiline eeltingimus võib tee vastutustundliku kasutamise blokeerida (vt 16.7).
+
 ## 16.1. Turvalisus
 
 - vahetu oht on käsitletud;
@@ -1104,7 +1117,8 @@ Kasutatakse, kui võimalused puudutavad:
 ## Olek 3 — ressursside järjekorra loomine
 
 - osalejad annavad valmis ressursi-, tingimuse- või takistuskaardid järjekorda;
-- sessiooni juht koondab duplikaate;
+- ühise kaardi haldaja koondab duplikaadid (vt 18.4);
+- sessiooni juht kinnitab järjekorra;
 - kaardid seotakse teeharudega.
 
 ## Olek 4 — aktiivne ressursi või tingimuse jagamine
@@ -1135,12 +1149,14 @@ Olekud 4 ja 5 korduvad.
 - grupiliikmed saavad peegeldada nähtavat vastutuse jaotust;
 - kaart ei määra veel tegevuse omanikku.
 
-## Olek 8 — jõustav ressursipeegel
+## Olek 8 — jõustav ressursipeegel (jõustamisring)
 
-- grupiliikmed loovad ühe konkreetse tugevusepeegelduse;
-- juhtumi tooja kuulab ja tänab;
-- peegeldus seotakse võimaluse või tööfookusega;
-- üldine kiitus jääb privaatsesse mustandisse või sõnastatakse ümber.
+- ressursipeegel toimub ringivormis: iga grupiliige ütleb kordamööda ühe lause lubatud lausemalliga (vt 33.2);
+- juhtumi tooja ainult tänab („Aitäh, sain kätte”) ega kommenteeri;
+- ring on juhtumi toojale vabatahtlik ilma põhjendamata;
+- lause võib juhtumi tooja kinnitusel kanduda lõuendile tema sisemise ressursina (vt 33.7);
+- peegeldus seotakse võimalusel konkreetse teega või tööfookusega;
+- üldine või kohatu kiitmine peatatakse hoolivalt ning jääb privaatsesse mustandisse või sõnastatakse ümber.
 
 ## Olek 9 — juhtumi tooja tugipildi ülevaatus
 
@@ -1178,6 +1194,8 @@ Jätkub eelmistest etappidest.
 
 ## 22.2. Vaikse ressursiskanni taimer
 
+Seotud olekumasina olekuga 2 (vaikne ressursiskann).
+
 Soovituslikult 2–4 minutit.
 
 Kuvab:
@@ -1192,13 +1210,19 @@ Taimeri lõpp:
 
 ## 22.3. Ressursside jagamisring
 
+Seotud olekumasina olekutega 4–5 (aktiivne jagamine ning faktiline täpsustus ja sidumine).
+
 Soovituslikult 5–8 minutit.
 
 ## 22.4. Mõjuvälja ja tingimuste aeg
 
+Seotud olekumasina olekutega 6–7 (takistuste ja teadmata info kiht ning mõjuvälja ülevaatus).
+
 Soovituslikult 3–6 minutit.
 
 ## 22.5. Ressursipeegli aeg
+
+Seotud olekumasina olekuga 8 (jõustav ressursipeegel ringivormis).
 
 Soovituslikult 2–4 minutit.
 
@@ -1209,6 +1233,15 @@ Soovituslikult 20–60 sekundit.
 Sessiooni juht võib öelda:
 
 > „Palun sõnasta ressurss, selle allikas ja see, millist teed see võiks toetada.”
+
+## 22.7. Kaks eristatud aega
+
+Ülemises alas on alati kaks selgelt eristatud aega:
+
+- **Kohtumisest alles** — kohtumise jäänud aeg (`hh:mm`);
+- **Etapp 6** — etapi kulunud aeg koos soovitusliku ajaga (`kulunud / soovituslik`), faasi ajal faasi nimi (nt „Vaikne ressursiskann”).
+
+**Paus** ja **Vajan tuge** on eraldi toimingutena kättesaadavad kogu etapi vältel (nagu kõigis aktiivsetes etappides). Kasutaja profiil on paremal üleval. Ebamääraseid ajasilte ei kasutata.
 
 ---
 
@@ -1237,6 +1270,12 @@ Kuvatakse:
 - ressursside kompass;
 - kuni kolm privaatset ressursi- või tingimusmustandit.
 
+Privaatse vaate abiküsimus on:
+
+> Kuidas see ressurss praegu kaardistatavat teed toetab?
+
+mitte „Kuidas see aitab Mari juhtumit toetada?”.
+
 ## 23.3. Juhtumi tooja privaatne vaade
 
 Juhtumi tooja saab:
@@ -1261,7 +1300,7 @@ See on lubatud.
 
 Ressursside kompass on kokkupandav professionaalne abikiht.
 
-Kuvatakse korraga 3–5 asjakohast läätse.
+Sisuliselt avab kompass korraga 3–5 asjakohast läätse (24.1–24.7). Parem-paneelis kuvatakse kompass kompaktse klaaskihina **loendi kujul** (vt 24.8).
 
 ## 24.1. Mis on juba olemas?
 
@@ -1316,6 +1355,26 @@ Kuvatakse korraga 3–5 asjakohast läätse.
 - Milline väärtus on juhtumi tooja töös nähtav?
 - Milline varasem õnnestumine toetab?
 - Millist tuge oskab juhtumi tooja juba kasutada?
+
+## 24.8. Kompassi kuvavorm
+
+Parem-paneelis on kompass kompaktne klaaskiht **loendina**, milles on seitse rida:
+
+1. ressursid;
+2. toetavad tingimused;
+3. vajalikud tingimused;
+4. takistused;
+5. teadmata info;
+6. mõjuväli;
+7. kriitilised eeltingimused.
+
+Igal real on katvuse olek:
+
+- puudutatud;
+- veel avatud;
+- ei ole selle tee jaoks vajalik.
+
+Kompass ei ole radar, ei kuva protsente ega ole loenduritega filter.
 
 ---
 
@@ -1486,7 +1545,7 @@ Kuvab:
 
 ## 29.4. Juhtumi tooja faktiline täpsustus
 
-Valikud:
+Valikud (kanooniline sõnastus, vt 58.7):
 
 - See on olemas;
 - Osaliselt olemas;
@@ -1494,7 +1553,9 @@ Valikud:
 - Vajab kontrollimist;
 - Praegu puudub;
 - Ei ole minu mõjuväljas;
-- Palun täpsusta sõnastust.
+- Palun täpsusta.
+
+Seitse täpsustusvalikut on nähtavad ainult juhtumi toojale.
 
 ## 29.5. Paigutamine
 
@@ -1508,6 +1569,26 @@ Kaardi haldaja:
 ## 29.6. Järgmine kõnevoor
 
 Sessiooni juht avab järgmise kaardi.
+
+**Ava järgmine ressurss või tingimus** on lukus, kuni aktiivne kaart on saanud juhtumi tooja faktilise täpsustuse (29.4).
+
+Mitteaktiivse nupu põhjus nimetab tegutseja:
+
+> Ootab Mari täpsustust.
+
+## 29.7. Olekusõnastike vastavus
+
+Kolme olekusõnastiku vaheline vastavus:
+
+| Juhtumi tooja täpsustusvalik (29.4) | Ressursikaardi olek (26) | Tingimuskaardi olek (27) |
+|---|---|---|
+| See on olemas | Juhtumi tooja kinnitatud olemasolu (26.5) | olemas |
+| Osaliselt olemas | Kirjeldatud ressurss (26.4) osalisuse märkega | osaliselt olemas |
+| Võib olla mobiliseeritav | Mobiliseeritav (26.6) | saab luua või kokku leppida |
+| Vajab kontrollimist | Vajab kontrollimist (26.7) | vajab kontrollimist |
+| Praegu puudub | Praegu puudub (26.8) | puudub |
+| Ei ole minu mõjuväljas | Väljaspool mõjuvälja (26.9) | vajab teise osapoole otsust |
+| Palun täpsusta | kaart jääb aktiivseks (26.3), autor täpsustab sõnastust | — |
 
 ---
 
@@ -1616,7 +1697,7 @@ Seosed on:
 
 ---
 
-# 33. Jõustav ressursipeegel
+# 33. Jõustav ressursipeegel (jõustamisring)
 
 ## 33.1. Eesmärk
 
@@ -1627,9 +1708,21 @@ Ressursipeegel aitab juhtumi toojal näha:
 - milline varasem tegu näitab võimekust;
 - kuidas see võib toetada üht või mitut võimalust.
 
-## 33.2. Soovituslik vorm
+Ressursipeegel täidab selgroodokumendi §19 „Jõustamisring” nõude: peegel toimub etapi 6 lõpus ringivormis (olek 8) ja on juhtumi toojale vabatahtlik ilma põhjendamata.
 
-> Mina näen sinu ressursina {{oskust või tugevust}}, sest {{konkreetne näide}}. See võib toetada {{võimalust või tööfookust}}.
+## 33.2. Ringivorm ja lubatud lausemallid
+
+Peegel toimub ringivormis: iga grupiliige ütleb kordamööda ühe lause.
+
+Lubatud on kaks lausemalli:
+
+> Mina näen sinu ressursina {{oskus/tugevus}}, sest {{konkreetne näide sessioonist}}. See võib toetada {{võimalus/tee}}.
+
+või:
+
+> Mina usun, et sa saavutad soovitu, sest {{konkreetne sessioonis märgatud tugevus}}.
+
+Ressurss seotakse võimalusel konkreetse teega.
 
 ## 33.3. Näide
 
@@ -1639,6 +1732,8 @@ Ressursipeegel aitab juhtumi toojal näha:
 
 > Aitäh, sain kätte.
 
+Juhtumi tooja ainult tänab ega kommenteeri.
+
 Ta ei pea:
 
 - nõustuma;
@@ -1646,9 +1741,13 @@ Ta ei pea:
 - kommenteerima;
 - seda enda pakki võtma.
 
+Ring on juhtumi toojale vabatahtlik: ta võib selle ilma põhjendamata vahele jätta.
+
 ## 33.5. Ebasobiv vorm
 
 > Sa oled nii empaatiline ja tubli.
+
+Üldine või kohatu kiitmine on ringis keelatud; sessiooni juht peatab selle hoolivalt ja aitab konkretiseerida.
 
 ## 33.6. Süvakiitus ja professionaalne piir
 
@@ -1657,6 +1756,14 @@ Kui peegeldus liigub isiksuse või teraapilise tõlgenduse poole, aitab sessioon
 - nähtud tegevuse;
 - professionaalse rolli;
 - konkreetse võimalusega.
+
+## 33.7. Lause kandmine lõuendile
+
+Ringi lause võib kanda lõuendile juhtumi tooja **sisemise ressursina**.
+
+- kandmise kinnitab juhtumi tooja;
+- ressurss seotakse võimalusel konkreetse teega;
+- kinnitamata lause lõuendile ei jää.
 
 ---
 
@@ -1667,11 +1774,14 @@ Kui peegeldus liigub isiksuse või teraapilise tõlgenduse poole, aitab sessioon
 Tugevus märgitakse näiteks:
 
 - inimese enda sõnad;
-- lapse enda sõnad;
+- lapse enda sõnad — ainult siis, kui lapse hääl on otse dokumenteeritud;
+- juhtumi tooja vahendatud kirjeldus inimese või lapse sõnadest;
 - töötaja vaatlus;
 - lähedase kirjeldus;
 - dokumenteeritud info;
 - võimalik tugevus — vajab kinnitamist.
+
+Vahendatud kirjeldus ei muutu automaatselt lapse otseseks hääleks: kui juhtumi tooja vahendab lapse öeldut, on allikas „juhtumi tooja vahendatud kirjeldus lapse sõnadest”, mitte „lapse enda sõnad”.
 
 ## 34.2. Sobiv näide
 

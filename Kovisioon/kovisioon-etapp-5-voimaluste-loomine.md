@@ -1,7 +1,7 @@
 # Kovisioon — Etapp 5: võimaluste loomine
 
 **Dokumendi staatus:** detailne funktsionaalne ja metoodiline spetsifikatsioon  
-**Versioon:** 1.0  
+**Versioon:** 1.1 — lisatud rollipõhised vaated (§52.11), parem-paneeli ja värava tööjaotus (§52.12), lõpliku pildi referentsvaade „jagamisringi vaade” (§52.13), demo koosseisu ja kanoonilise teede loendi kaanon (§54), ajakroomi nõue (§19.7), tellija pildikommentaari parandused (loendurid, värvidistsipliin, seisunditekstid) ning sisemiste vastuolude parandused (§12, §16, §27, §35, §37, §45, §46, §53)  
 **Seotud selgroodokument:** `uue-kovisiooni-funktsiooni-visioon-ja-8-etapiline-selgroog.md`  
 **Eelmine dokument:** `kovisioon-etapp-4-moistmise-suvendamine.md`  
 **Alternatiivne sisend lihtsas voos:** `kovisioon-etapp-3-juhtumi-uurimine.md`  
@@ -362,6 +362,8 @@ Autori valitud esimene jagatav idee.
 
 Teine idee, mis jagatakse ainult vajadusel või teises ringis.
 
+Kui teist ringi ei toimu, jääb varuvõimalus autorile privaatseks. Süsteem ei avalda ega paku seda kellelegi automaatselt.
+
 ## 10.5. Aktiivne võimalus
 
 Üks parajasti jagatav võimaluskaart.
@@ -500,14 +502,20 @@ Toiming:
 - Vajan hetke;
 - Peatume korraks.
 
+**Peatume korraks** on sekkumissignaal: see peatab jagamisringi turvalisuse või professionaalse piiri põhjusel ja annab juhtimise sessiooni juhile. See on eraldi toiming Pausist, mis on üldine hingetõmbe- ja katkestustoiming.
+
 ## 12.5. Juhtumi tooja privaatsed märgid
+
+Resonantsimärkide kanooniline loend on määratletud §38.2 ja seda kasutatakse kõikjal muutmata kujul:
 
 - Kõnetab mind;
 - Täiesti uus suund;
 - Tahan 6. etapis uurida;
-- Võib sobida mõne teise ideega;
+- Võib sobida teise ideega;
 - Jätan praegu kõrvale;
-- Lisa privaatne märge.
+- Tahan oma võimaluse lisada.
+
+Lisaks märkidele saab juhtumi tooja kirjutada vaba privaatse märkme oma privaatsesse märkmikku. Privaatne märge ei ole resonantsimärk ega kuulu §38.2 loendisse.
 
 ## 12.6. Mida juhtumi tooja ei tee?
 
@@ -614,7 +622,7 @@ Ta ei:
 
 Vaatleja:
 
-- ei loo võimalusi, kui seda pole 1. etapis selgelt kokku lepitud;
+- ei loo võimalusi, kui seda pole 1. etapis selgelt kokku lepitud (see loomise erand on MVP-väline: esimeses teostuses vaatleja võimalusi ei loo);
 - ei näe privaatseid ideemustandeid;
 - ei kommenteeri ideid;
 - ei anna eksperthinnangut;
@@ -842,6 +850,19 @@ Sessiooni juht saab kasutada:
 - jätame ülejäänud ideed privaatsesse pakki.
 
 Taimer ei katkesta kõnet automaatselt.
+
+## 19.7. Ajakroomi kuvamine
+
+Ülal kuvatakse alati kaks eristatud aega:
+
+- **Kohtumisest alles hh:mm** — kohtumise JÄÄNUD aeg;
+- **Etapp 5 · kulunud / soovituslik** (nt `Etapp 5 · 08:12 / 15:00`) või aktiivse faasi nimi (nt `Vaikne ideeloome · 02:40`).
+
+Reeglid:
+
+- „Aeg valmis”-laadsed sildid on keelatud — aeg on alati kirjeldav, mitte hinnanguline;
+- **Paus** ja **Vajan tuge** on alati kaks eraldi toimingut;
+- paremal üleval on kasutajaprofiil: nimi ja sessiooniroll (nt `Jaanika Kask · sessiooni juht`).
 
 ---
 
@@ -1252,11 +1273,7 @@ Kaart on teise võimaluse kõrval teadlikult erineva rajana.
 
 ## 27.10. Juhtumi tooja privaatne resonants
 
-- kõnetab;
-- uus;
-- uurin 6. etapis;
-- võib sobida teise ideega;
-- jätan praegu kõrvale.
+Kaardil võib olla juhtumi tooja privaatne resonantsimärk. Märkide kanooniline loend on §38.2.
 
 ## 27.11. Tagasi võetud
 
@@ -1562,7 +1579,11 @@ Mitmekesisuse vaade aitab märgata, kui:
 
 ## 35.2. Võimalik kokkupandav vaade
 
+Mitmekesisuse vaade on **ainult sessiooni juhi abikiht**. Seda ei kuvata juhtumi toojale, grupiliikmetele ega ühisel lõuendil.
+
 # Milliseid teid oleme loonud?
+
+Kategooriate kanooniline loend (9), mida kasutavad ka kõik teised viited (sh §53.11):
 
 - väike katse;
 - vestlus või suhe;
@@ -1659,6 +1680,10 @@ Juhtumi tooja enda võimalus ei muutu automaatselt valitud teeks.
 
 Valik kuulub 7. etappi.
 
+## 37.4. Koht olekumasinas
+
+Juhtumi tooja enda võimaluse lisamine elab olekute 6 (võimaluste väli) ja 8 (juhtumi tooja resonants) vahel **eraldi sammuna** — ka siis, kui teist loovusringi (olek 7) ei tule. Teise ringi ärajäämine ei jäta seda sammu vahele.
+
 ---
 
 # 38. Juhtumi tooja privaatne resonants
@@ -1668,6 +1693,8 @@ Valik kuulub 7. etappi.
 Resonants aitab juhtumi toojal ideid vastu võtta ilma avaliku hindamiseta.
 
 ## 38.2. Märgid
+
+See on resonantsimärkide **kanooniline loend**; kõik teised viited (§12.5, §27.10, §53.12) kasutavad sama loendit muutmata kujul:
 
 - Kõnetab mind;
 - Täiesti uus suund;
@@ -2039,7 +2066,8 @@ Püsivad olekud:
 | Võimalused | `0 valmis` | `Järjekorras` · `Aktiivne` | `Jagamisring lõpetatud` |
 | Võimaluste väli | `Tühi` | `Kujuneb` | `Mitmekesine võimaluste ruum` |
 | Pargitud ideed | `Autoritele avatud` | `Muudetakse` | `Jagatud või jäetud privaatseks` |
-| Juhtumi tooja resonants | `Pole märgitud` | `Privaatne` | `Valmis edasi liikuma` |
+| Juhtumi tooja resonants (privaatne) | `Pole märgitud` | `Märgib privaatselt` | `Privaatne` |
+| Juhtumi tooja valmisolek | `Ootab resonantsiaega` | `Resonantsiaeg käib` | `Valmis edasi liikuma` |
 | Etapi turvalisus | `Kontrollitud` | `Vajab tähelepanu` | `Lahendatud` |
 
 Kõiki olekuid ei kuvata suure dashboard’ina.
@@ -2078,6 +2106,10 @@ Seejärel:
 8. juhtumi tooja on saanud privaatse resonantsiaja;
 9. juhtumi tooja on kinnitanud valmisolekut edasi liikuda;
 10. sessiooni juht on valmis etapi lõpetama.
+
+**Tingimuse 5 mehaanika.** Kui jagatud kaart on sõnastatud käsu või tegevusplaanina, saab sessiooni juht või kaardi haldaja märkida selle olekusse **vajab autorilt ümbersõnastust**. Kaart läheb autorile tagasi ja ei loe värava tingimuse 5 täitmisel enne, kui autor on selle uuesti sõnastanud või tagasi võtnud.
+
+**Tingimuse 6 mehaanika.** Kui jagamise ajal tekib teostatavuskommentaar, pargib sessiooni juht selle ühe toiminguga: **Pargi 6. etappi**. Pargitud kommentaar liigub autori nimega 6. etapi sisendisse. Väraval kuvatakse pargitud kommentaaride loendur.
 
 ## 46.4. Tingimused, mida ei nõuta
 
@@ -2457,6 +2489,7 @@ Pärast sessiooni:
 ## 52.1. Üldmulje
 
 - sama tume ja soe ruum ning taustamaal nagu etappides 1–4;
+- taustamaal on kõigil etappidel täpselt sama ja täpselt samas asendis — etapist etappi muutub ainult klaaslõuend;
 - heledad läbipaistvad glass morphism objektid;
 - kõik kaheksa etappi on ülal nähtavad;
 - etapid 1–4 on lõpetatud või 4. etapp lihtsas voos märgitud vahele jäetuks;
@@ -2568,6 +2601,7 @@ All:
 ## 52.8. Klaasi kasutus
 
 - klaas on läbipaistev, mitte täpiline;
+- paneelid on varasemast läbipaistvamad — taustamaal jääb klaasi alt nähtavaks;
 - aktiivne võimalus on selge ruumiline hero;
 - kõrvalkaardid on kergemad;
 - tekstil on piisav kontrast;
@@ -2597,6 +2631,108 @@ All:
 - tähenduseta ühendusjooni;
 - ühte suurt „grupi soovitust”.
 
+## 52.10. Loendurid ja värvidistsipliin
+
+Loendurid on alati **tekstilised**:
+
+- teeharu loendur: `5 võimalust`; aktiivsel harul `5 võimalust · 1 praegu jagamisel`;
+- paljas number ringis on keelatud — see loeks häälte või skoorina;
+- jagamisringi olekud kuvatakse tekstina, nt
+  `4 võimalust jagatud · 2 järjekorras · 3 ideed autoritele privaatselt pargitud`,
+  mitte värvitäppidena;
+- pargitud loenduri kanooniline sõnastus on
+  `{{n}} ideed on autoritele privaatselt pargitud` — see teeb selgeks, et sessiooni juht ei saa neid avada.
+
+Värvidistsipliin:
+
+- võimaluste kompassi ikoonid on neutraalsed;
+- ainult aktiivne lääts kannab merevaigu aktsenti;
+- võimaluste tüüpe ega olekuid ei eristata erksate värvidega (vt ka §52.8).
+
+## 52.11. Rollipõhised vaated
+
+Üks ekraanivaade (ja üks pilt) kujutab alati **ühte rolli ja ühte olekut**. Eri rollide personaalsed toimingud ei ole kunagi korraga nähtavad.
+
+| Element | Juhtumi tooja | Sessiooni juht | Kaardi haldaja | Grupiliige |
+|---|---|---|---|---|
+| „Olen valmis võimalusi kuulama” (vastuvõturežiimi kinnitus) | ✓ | – | – | – |
+| Vaikse ideeloome privaatsed mustandid, „Vali põhivõimalus”, „Hoia varuvõimalusena” | – | – | – | ✓ |
+| Järjekorra haldus + „Ava järgmine võimalus” | – | ✓ | – | – |
+| „Aitäh, sain kätte”, „Palun korda sõnastust”, „Vajan hetke”, „Peatume korraks” | ✓ | – | – | – |
+| Kaardi paigutamine, teeharule sidumine, virnastamine | – | – | ✓ | – |
+| Pargitud ideede avamine | – | – | – | ainult autor |
+| Resonantsimärgid (§38.2) | ✓ (privaatne) | – | – | – |
+| „Liigu ressursside ja jõustamise juurde” + puuduvad tingimused | – | ✓ | – | – |
+| Olekud (vastuvõturežiim, ring, loendurid) | ✓ | ✓ | ✓ | ✓ |
+| Paus ja Vajan tuge (eraldi toimingud) | ✓ | ✓ | ✓ | ✓ |
+
+Iga ootel oleku juures on nähtav **tegutseja**, mitte ainult seisund:
+
+- aktiivne võimalus → `Ootab Mari tänu`;
+- järjekord → `Jaanika avab järgmise võimaluse`;
+- resonantsiaeg → `Mari mõtiskleb kuuldu üle`;
+- värav → `Jaanika lõpetab etapi`.
+
+## 52.12. Parem-paneeli ja värava tööjaotus
+
+Et vältida dubleerimist:
+
+**Paremal** kuvatakse ainult:
+
+- võimaluste kompass (kokkupandav);
+- etapi praeguse oleku juhis (üks-kaks lauset);
+- rollipõhised vastutused, nt:
+  - Mari kuulab võimalusi;
+  - Jaanika avab ja jälgib võimalusi ükshaaval.
+
+Mitmekesisuse vaade (§35.2) on ainult sessiooni juhi abikiht ega kuulu ühisesse parem-paneeli.
+
+**All** on ÜKS lai õhuke klaasriba, mis jaguneb kolmeks:
+
+- vasakul kompaktne olek, nt
+  `Jagamisring käib · aktiivne võimalus ootab Mari tänu · 2 võimalust järjekorras`;
+- keskel sessiooni juhi toiming, nt **Ava järgmine võimalus**;
+- paremal etapivärav: puuduvad tingimused ja põhinupp
+  **Liigu ressursside ja jõustamise juurde** (ainult sessiooni juhi vaates).
+
+Pargitud ideede ja järjekorra loendurid elavad väraval/olekuribal, MITTE võimaluste kompassis. Parem-paneel ja värav EI dubleeri teineteist. Detailne olekuloend elab kihtides, mis avanevad värava puudutamisel.
+
+## 52.13. Referentsvaade — lõpliku pildi kaanon
+
+Lõplik 5. etapi pilt kannab nime **„Etapp 5 — jagamisringi vaade”** ja kujutab **sessiooni juhi (Jaanika) vaadet olekus 4 (aktiivne võimalus)**.
+
+Olukord pildil:
+
+- kaks eristatud aega (§19.7): `Kohtumisest alles 00:47` ja `Etapp 5 · 08:12 / 15:00`; silti „Aeg valmis” EI OLE;
+- **Paus** ja **Vajan tuge** on eraldi toimingutena nähtavad; paremal üleval kasutajaprofiil `Jaanika Kask · sessiooni juht`;
+- etapirada: etapid 1–4 lõpetatud (✓), etapp 5 aktiivne alapealkirjaga
+  `Vaikne ideeloome lõpetatud · võimaluste jagamisring käib`;
+- olekuchipid: `Juhtumi tooja: Mari Mets`, `Mari kuulab võimalusi`,
+  `Sessiooni juht avab ja jälgib võimalusi ükshaaval`;
+- keskel on ÜKS aktiivne võimalus:
+  - päis `JAGAB: Aveli Kivi · Tüüp: väike katse`;
+  - tekst: „Mina alustaksin lapsega ühe väikese, jõukohase koolinädala kokkuleppimisest ja teeksin selle edenemise lapse jaoks visuaalselt nähtavaks.”;
+  - jalus `Seotud: lapse kogemuse nähtavus`;
+  - olek `Ootab Mari tänu`;
+- varem jagatud võimalused on väiksemate kaartidena, igaühel autor ja tüüp (§54 kanooniline teede loend);
+- vasakul teeharud tekstiliste loenduritega (§52.10), nt aktiivsel harul
+  `5 võimalust · 1 praegu jagamisel`;
+- paremal võimaluste kompass (kokkupandav) ja loendur
+  `3 ideed on autoritele privaatselt pargitud`;
+- all üks lai klaasriba (§52.12):
+  `Jagamisring käib · aktiivne võimalus ootab Mari tänu · 2 võimalust järjekorras`
+  + **Ava järgmine võimalus** (mitteaktiivne, põhjus: „Ootab Mari tänu aktiivsele võimalusele”)
+  + värav lukus;
+- etapiseisundi tekst on kaanoni sõnastuses (§53.1), mitte „Kõik ideed on oodatud ja võrdsed”.
+
+Ruumilisus:
+
+- taustamaal on täpselt sama ja samas asendis nagu etappides 1–4 (§52.1);
+- aktiivne võimalus on selge ruumiline hero, kõrvalkaardid kergemad;
+- kaartide vahel EI ole dekoratiivjooni — seosed on jalustes.
+
+Märkus: tellija 11.07 pilt sellest vaatest oli ajutiselt failis „Kovisiooni etapp 8 pilt.png” (praegu kaustast eemaldatud). Referentsvaade on kaanon ka ilma pildifailita.
+
 ---
 
 # 53. Ekraanitekstid
@@ -2608,6 +2744,12 @@ All:
 # Võimaluste loomine
 
 > Loome erinevaid võimalikke teid. Me ei hinda, vali ega koosta veel tegevusplaani.
+
+Etapiseisundi tekst (kaanon):
+
+> Ideid selles etapis ei hinnata ega järjestata. Professionaalse piiri või turvalisuse rikkumisel protsess peatatakse.
+
+Sõnastus „Kõik ideed on oodatud ja võrdsed” on keelatud — see loob vale ootuse, et piiri või turvalisust rikkuv idee jääb protsessi.
 
 ## 53.2. Vastuvõturežiim
 
@@ -2629,16 +2771,22 @@ All:
 
 **Võimaluse tüüp**
 
+Tüübivalik järgib §24 kahtteist tüüpi:
+
 - Väike katse
-- Vestlus või suhe
-- Koostöö või võrgustik
-- Meetodi muutus
-- Roll või piir
-- Süsteemne tee
-- Toimiva võimendamine
-- Konsultatsioon või paus
+- Vestlus või suhtlemisviis
+- Koostöö- või võrgustikutee
+- Meetodi või töövõtte muutus
+- Rolli või piiri muutus
+- Süsteemne või organisatsiooniline tee
+- Toimiva säilitamine või laiendamine
+- Info või konsultatsiooni tee
+- Paus või lõpetamine
 - Stsenaarium
+- Juhtumi tooja enda võimalus
 - Muu
+
+**Juhtumi tooja enda võimalus** on süsteemi määratav tüüp: süsteem lisab selle automaatselt, kui kaardi loob juhtumi tooja (§37). Autor ei saa seda tüüpi ise valida.
 
 ## 53.5. Mustandi toimingud
 
@@ -2669,6 +2817,10 @@ All:
 
 **Vajan hetke**
 
+**Peatume korraks**
+
+„Peatume korraks” on sekkumissignaal (§12.4): see peatab ringi turvalisuse või professionaalse piiri põhjusel ja on eraldi toiming Pausist.
+
 ## 53.9. Pargitud idee
 
 **Varasem mõte on nüüd võimaluste etapis saadaval**
@@ -2686,14 +2838,18 @@ All:
 
 ## 53.11. Mitmekesisus
 
+Ainult sessiooni juhi abikihis (§35.2). Kategooriad on §35.2 kanooniline loend (9):
+
 **Milliseid teid oleme loonud?**
 
 - Väike katse
-- Koostöötee
+- Vestlus või suhe
+- Koostöö ja võrgustik
 - Meetodi muutus
 - Roll või piir
 - Süsteemne tee
 - Toimiva võimendamine
+- Konsultatsioon või paus
 - Muu
 
 ## 53.12. Juhtumi tooja privaatne resonants
@@ -2744,11 +2900,27 @@ Abitekst:
 
 # 54. Näidisvoog: katkendlik kooliskäimine
 
-## 54.1. Etappi tulev tööfookus
+## 54.1. Demo koosseis (kaanon)
+
+Demo koosseis on lukustatud (7 osalejat):
+
+- **Mari Mets** — juhtumi tooja;
+- **Jaanika Kask** — sessiooni juht;
+- **Liisa Laan** — kaardi haldaja / kokkuvõtte hoidja;
+- **Aveli Kivi** — grupiliige;
+- **Timo Tamm** — grupiliige;
+- **Marko Tamm** — grupiliige;
+- **Kati Põld** — grupiliige.
+
+Ametinimetusi kaartidel EI kuvata — positsioon ei tohi ideede kaalu mõjutada.
+
+Märkus: etappide 1–4 demo (Marko Suur, 6 inimest) uuendatakse sellele koosseisule ehituse järgmisel puutel.
+
+## 54.2. Etappi tulev tööfookus
 
 > Kuidas saan koos lapse, vanema ja kooliga selgitada vastutuse jaotust nii, et lapse enda kogemus oleks nähtav ja ma ei võtaks kõiki samme enda kanda?
 
-## 54.2. 4. etapist tulevad lähteankrud
+## 54.3. 4. etapist tulevad lähteankrud
 
 **Lapse hääle nähtavus — vaatlus**
 
@@ -2766,71 +2938,86 @@ Väiksem õpperühm, ette teada päevakava ja vanaema kohalolu on olnud seotud s
 
 Kiire puudumiste vähendamine ↔ lapse koormuse ja autonoomia arvestamine.
 
-## 54.3. Vaikse ideeloome võimalused
+## 54.4. Vaikse ideeloome võimalused
 
-### Aveli — väike katse
+See on **kanooniline teede loend**, mida kasutab kogu demo etappides 5–7 (viis jagatud võimalust):
 
-> Mina alustaksin lapsega ühe väikese jõukohase koolinädala kavandamisest, mitte kogu puudumiste plaani korraga muutmisest.
+### Aveli Kivi — väike katse
 
-### Timo — koostöötee
+**Vestlus lapsega jõukohasema koolinädala loomiseks**
 
-> Mina valmistaksin ette lühikese võrgustikukohtumise, mille ainus eesmärk on teha nähtavaks lapse hääl ning iga osapoole roll ja vastutus.
+> Mina alustaksin lapsega ühe väikese, jõukohase koolinädala kokkuleppimisest ja teeksin selle edenemise lapse jaoks visuaalselt nähtavaks.
 
-### Liisa — roll ja piir
+### Timo Tamm — koostöö ja võrgustik
 
-> Mina sõnastaksin enda rolli piirid ning lõpetaksin tegevuste automaatse ülevõtmise, kui nende eest vastutab teine osapool.
+**Võrgustikukohtumine kooli ja perega**
 
-### Marko — toimiva võimendamine
+> Mina valmistaksin koos kooli tugispetsialistiga ette ühe väikese ja selge kokkuleppe, mitte kogu olukorra lahendamise plaani.
 
-> Mina uuriksin koos lapse ja vanaemaga, milline osa toimivast hommikurutiinist on korratav ilma, et kogu vastutus jääks vanaemale.
+### Marko Tamm — väike katse
 
-### Aveli — meetodi muutus
+**Hommikurutiini lihtsustamine**
 
-> Mina muudaksin järgmise vestluse probleemide kontrollimisest lapse kogemuse ja etteaimatavuse kaardistamiseks.
+> Mina lihtsustaksin koos lapse ja vanaemaga hommikurutiini nii, et juba toimiv osa säiliks ja lapse hommikune koormus väheneks.
 
-### Timo — konsultatsioonitee
+### Kati Põld — süsteemne tee
 
-> Mina küsiksin enne uute kokkulepete loomist supervisioonis tuge enda koordineeriva rolli ja professionaalsete piiride mõtestamiseks.
+**Kohanduste võimaluste kaardistamine koolis**
 
-### Mari — juhtumi tooja enda võimalus
+> Mina vaataksin koos lapsega läbi ühe tavapärase koolipäeva ja uuriksin, milline osa sellest on talle jõukohane ning milline mitte.
+
+### Liisa Laan — roll või professionaalne piir
+
+**Enda rolli ja vastutuse piiri sõnastamine**
+
+> Mina sõnastaksin enda rolli ja vastutuse piiri ning lõpetaksin tegevuste automaatse ülevõtmise, kui nende eest vastutab teine osapool.
+
+### Mari Mets — juhtumi tooja enda võimalus
 
 > Mina võiksin alustada sellest, et sõnastan lapse ja kooliga kaks eraldi eesmärki: lapse jõukohane osalemine ning täiskasvanute selge vastutus.
 
-## 54.4. Võimaluste teeharud
+Mari enda võimalus ei kuulu viie jagatud võimaluse hulka — see lisatakse eraldi sammuna olekute 6 ja 8 vahel (§37.4).
 
-**LAPSE HÄÄL JA JÕUKOHASUS**
+## 54.5. Võimaluste teeharud
 
-- väike jõukohane koolinädal;
-- vestlus lapse kogemuse ja etteaimatavuse kohta;
-- kaks eraldi eesmärki.
+Teeharude kanoonilised kategooriad (demo, etapid 5–7):
 
-**VASTUTUSE SELGUS**
+**LAPSE HÄÄL JA JÕUKOHASUS** — `1 võimalus`
 
-- lühike rollidele keskenduv võrgustikukohtumine;
-- juhtumi tooja rolli piiride sõnastamine.
+- vestlus lapsega jõukohasema koolinädala loomiseks.
 
-**TOIMIVA SÄILITAMINE**
+**VASTUTUSE JA SELGUSE LOOMINE** — `1 võimalus`
 
-- hommikurutiini korratava osa uurimine.
+- kohanduste võimaluste kaardistamine koolis.
 
-**PROFESSIONAALNE TUGI**
+**KOOSTÖÖ JA VÕRGUSTIK** — `1 võimalus`
 
-- supervisioon koordineeriva rolli ja piiride mõtestamiseks.
+- võrgustikukohtumine kooli ja perega.
+
+**TÖÖTAJA ROLL VÕI PROFESSIONAALNE PIIR** — `1 võimalus`
+
+- enda rolli ja vastutuse piiri sõnastamine.
+
+**TOIMIVA SÄILITAMINE JA EDASIARENDAMINE** — `1 võimalus`
+
+- hommikurutiini lihtsustamine.
+
+Loendurid on tekstilised (§52.10); aktiivsel harul nt `1 võimalus · 1 praegu jagamisel`.
 
 Neid harusid ei järjestata.
 
-## 54.5. Juhtumi tooja privaatne resonants
+## 54.6. Juhtumi tooja privaatne resonants
 
 Mari märgib:
 
-- **Kõnetab:** kaks eraldi eesmärki;
-- **Täiesti uus suund:** jõukohase koolinädala katse;
-- **Tahan 6. etapis uurida:** võrgustikukohtumine ja enda rolli piir;
-- **Võib sobida teise ideega:** lapse vestlus + toimiva hommikurutiini kasutamine.
+- **Kõnetab mind:** enda rolli ja vastutuse piiri sõnastamine;
+- **Täiesti uus suund:** jõukohase koolinädala kokkulepe lapsega;
+- **Tahan 6. etapis uurida:** võrgustikukohtumine ning kohanduste kaardistamine koolis;
+- **Võib sobida teise ideega:** vestlus lapsega + hommikurutiini lihtsustamine.
 
 Grupp seda ei näe.
 
-## 54.6. Etapi lõpp
+## 54.7. Etapi lõpp
 
 Mari kinnitab:
 
@@ -2969,6 +3156,13 @@ Mari kinnitab:
 30. Aktiivne võimalus on visuaalne hero.
 31. Klaaspaneelid on taustast heledamad ja päriselt läbipaistvad.
 32. Kõik nähtavad elemendid täidavad selles dokumendis kirjeldatud ülesannet.
+33. Teeharude ja jagamisringi loendurid on tekstilised (nt `5 võimalust`, `4 võimalust jagatud · 2 järjekorras`); paljas number ringis on keelatud.
+34. All on ÜKS lai klaasriba: vasakul kompaktne olek, keskel sessiooni juhi toiming, paremal värav (§52.12).
+35. Pargitud loendur kasutab sõnastust `{{n}} ideed on autoritele privaatselt pargitud`.
+36. Etapiseisundi tekst on „Ideid selles etapis ei hinnata ega järjestata. Professionaalse piiri või turvalisuse rikkumisel protsess peatatakse.” — mitte „Kõik ideed on oodatud ja võrdsed”.
+37. Iga ootel oleku juures on tegutseja nähtav (nt `Ootab Mari tänu`), mitte ainult seisund.
+38. Resonantsimärgid on üksnes juhtumi tooja privaatses kihis; ühises vaates ei kuvata ühtegi resonantsimärki ega nende arvu.
+39. Kompassi ikoonid on neutraalsed; ainult aktiivne lääts kannab merevaigu aktsenti.
 
 ---
 

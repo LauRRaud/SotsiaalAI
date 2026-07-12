@@ -5,7 +5,6 @@ export default function sitemap() {
   const now = new Date().toISOString();
   const paths = [
     "/",
-    "/registreerimine",
     "/taasta-parool",
     "/kasutusjuhend",
     "/tooalase-kasutuse-raamistik",

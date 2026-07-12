@@ -1,0 +1,84 @@
+- generic [active] [ref=f1e1]:
+  - link "Liigu sisu juurde" [ref=f1e4]:
+    - /url: "#room-menu"
+  - generic [ref=f1e5]:
+    - generic:
+      - paragraph:
+        - generic: Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — astu sisse.
+      - paragraph:
+        - generic: Tere tulemast.
+      - paragraph:
+        - generic: Platvorm on arendamisjärgus ja avatakse peagi.
+      - paragraph:
+        - generic: Küsi teenuste, toetuste, õiguste või tööpraktika kohta.
+      - paragraph:
+        - generic: Saad koostada taotlusi ja dokumente — ning vestelda, kellega vaja.
+      - paragraph:
+        - generic: Teekonnal on sinu sammud selgelt näha.
+      - paragraph:
+        - generic: Saad alustada pöördumist või jagada abisoovi.
+      - paragraph:
+        - generic: Näed ise, kust info pärineb.
+      - paragraph:
+        - generic: Ja sina otsustad, mida jagad.
+      - paragraph:
+        - generic: Kõik vajalik on nüüd sinu ees.
+    - generic: Keri
+    - button "Jäta vahele" [ref=f1e14]
+    - generic [ref=f1e15]:
+      - button "Lülita taustaheli välja" [pressed] [ref=f1e16]
+      - button "Järgmine lugu" [ref=f1e21]
+    - generic:
+      - button "Käivita"
+      - paragraph: Ühenda SotsiaalAI platvormiga
+    - generic:
+      - navigation "Peamenüü":
+        - button "Eelmine paneel"
+        - list:
+          - listitem:
+            - link "Tutvu võimalustega":
+              - /url: /voimalused
+          - listitem:
+            - link "Kasutusjuhend":
+              - /url: /kasutusjuhend
+          - listitem:
+            - button "Logi sisse"
+          - listitem:
+            - link "Kasutustingimused":
+              - /url: /kasutustingimused
+          - listitem:
+            - link "Privaatsuspoliitika":
+              - /url: /privaatsustingimused
+          - listitem:
+            - link "Hinnastus":
+              - /url: /hinnastus
+          - listitem:
+            - button "Paigalda"
+          - listitem:
+            - button "Kontakt"
+          - listitem:
+            - link "Meist":
+              - /url: /meist
+        - button "Järgmine paneel"
+        - group "Peamenüü":
+          - generic:
+            - button "Tutvu võimalustega"
+            - button "Kasutusjuhend"
+            - button "Logi sisse"
+            - button "Kasutustingimused"
+            - button "Privaatsuspoliitika"
+            - button "Hinnastus"
+            - button "Paigalda"
+            - button "Kontakt"
+            - button "Meist"
+        - paragraph: Logi sisse — 3 / 9
+    - dialog [ref=f1e24]:
+      - img "SotsiaalAI" [ref=f1e26]
+      - paragraph [ref=f1e27]: Kõik algab selgusest.
+      - button "Sisenen" [disabled]
+  - main [ref=f1e28]:
+    - generic [ref=f1e29]:
+      - heading "Kõik algab selgusest." [level=1] [ref=f1e30]
+      - paragraph [ref=f1e31]: Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — astu sisse.
+      - paragraph [ref=f1e32]: Küsi teenuste, toetuste, õiguste või tööpraktika kohta. Saad koostada taotlusi ja dokumente — ning vestelda, kellega vaja.
+      - paragraph [ref=f1e33]: Näed ise, kust info pärineb. Ja sina otsustad, mida jagad.

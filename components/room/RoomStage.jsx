@@ -70,6 +70,8 @@ import {
 import { wellbeingTools } from "@/lib/wellbeingTools";
 import { ROOM_FRAMES, ROOM_FRAME_WIDTH, ROOM_FRAME_HEIGHT } from "@/lib/room-frames";
 import GlassCarousel from "@/components/room/GlassCarousel";
+import RoomQuickbar from "@/components/room/RoomQuickbar";
+import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
 import JourneyText from "@/components/glass/JourneyText";
 import MetallicPaint from "@/components/brand/MetallicPaint";
@@ -128,7 +130,7 @@ const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast kaadri 6 teksti
    data-stop kaupa (room.css: kaadripõhine häälestus). */
 const TEXT_STOPS = [
   { keys: ["walk_1"], sides: ["left"], from: 0.035, to: 0.165 },
-  { keys: ["walk_2a", "walk_2b"], sides: ["center", "right"], from: 0.2, to: 0.35 },
+  { keys: ["walk_2a", "walk_2b"], sides: ["center", "center"], from: 0.2, to: 0.35 },
   { keys: ["walk_3a", "walk_3b"], sides: ["right", "left"], from: 0.372, to: 0.528 },
   { keys: ["walk_4a", "walk_4b"], sides: ["left", "right"], from: 0.552, to: 0.708 },
   { keys: ["walk_5a", "walk_5b"], sides: ["left", "right"], from: 0.732, to: 0.85 },
@@ -695,23 +697,41 @@ export default function RoomStage() {
   useEffect(() => {
     if (!isHome || veil !== "shown" || veilReady) return undefined;
     let cancelled = false;
-    const firstFrame = readReduced() ? 6 : 0; // reduced-motion ootab kaadrit 7
-    const ready = () => !cancelled && setVeilReady(true);
+    const reduced = readReduced();
+    const firstFrame = reduced ? 6 : 0; // reduced-motion ootab kaadrit 7
+    let frameReady = false;
+    let revealDelayReady = false;
+    const ready = () => {
+      if (!cancelled && frameReady && revealDelayReady) setVeilReady(true);
+    };
+    /* Tavarežiimis ilmub SISENEN alles pärast osakestest lause
+       kujunemist. Liikumist vähendavas režiimis ei sunnita kasutajat
+       kunstilise lavastuse järel ootama. */
+    const revealTimer = window.setTimeout(() => {
+      revealDelayReady = true;
+      ready();
+    }, reduced ? 650 : 5200);
     const img = frameRefs.current[firstFrame]?.querySelector("img");
     if (img?.decode) {
-      const guard = window.setTimeout(ready, 2600); // LQIP katab, kui võrk venib
+      const guard = window.setTimeout(() => {
+        frameReady = true;
+        ready();
+      }, 2600); // LQIP katab, kui võrk venib
       img
         .decode()
         .catch(() => {})
         .finally(() => {
           window.clearTimeout(guard);
+          frameReady = true;
           ready();
         });
     } else {
+      frameReady = true;
       ready();
     }
     return () => {
       cancelled = true;
+      window.clearTimeout(revealTimer);
     };
   }, [isHome, veil, veilReady, readReduced]);
 
@@ -1017,6 +1037,18 @@ export default function RoomStage() {
             : isAuthed
               ? workItems
               : publicItems;
+  /* Tagasi ei ole enam karussellikaart. Eraldame selle ühe läbimisega
+     püsivaks alumise riba otseteeks; kaardiloend jääb puhas ja grid ei
+     reserveeri Tagasi jaoks kohta. */
+  const { carouselCards, carouselBackItem } = useMemo(() => {
+    let backItem = null;
+    const cards = [];
+    carouselItems.forEach((item) => {
+      if (item.key === "tagasi") backItem = item;
+      else cards.push(item);
+    });
+    return { carouselCards: cards, carouselBackItem: backItem };
+  }, [carouselItems]);
   const initialKey =
     cardPageKey ||
     (isProfileHub
@@ -1027,10 +1059,10 @@ export default function RoomStage() {
         ? "rag"
         : isWellbeingHub
           ? "quick-check"
-          : isKovisionHub
-            ? "ruum"
-            : isWorkspaceHub
-              ? "abisoovid"
+        : isKovisionHub
+          ? "ruum"
+          : isWorkspaceHub
+              ? "teekond"
               : isAuthed
                 ? "vestlus"
                 : "login");
@@ -1127,20 +1159,27 @@ export default function RoomStage() {
   );
 
   const showCarouselUi = isCarouselRoute;
+  /* Avastseeni/kõnni ajal jäävad kasutusse alumised heli- ja
+     vahelejätmisjuhikud. Püsiv ülariba ilmub alles töötavas ruumis:
+     karussellis pärast käivitust, paneelidel kohe. */
+  const showQuickbar =
+    !isLoginOpen &&
+    (mode === "panel" || (mode === "room" && power === "on" && cardsReady));
 
   return (
-    <div
-      className="room"
-      data-mode={mode}
-      data-veil={veil}
-      data-power={power}
-      data-walk-done={walkDone ? "1" : "0"}
-      data-login-open={isLoginOpen ? "1" : "0"}
-      data-info-open={openInfoModal ? "1" : "0"}
-      data-a11y-open={a11y?.isModalOpen ? "1" : "0"}
-      data-card-page={cardPageKey ? "1" : "0"}
-      data-cards-ready={cardsReady ? "1" : "0"}
-    >
+    <>
+      <div
+        className="room"
+        data-mode={mode}
+        data-veil={veil}
+        data-power={power}
+        data-walk-done={walkDone ? "1" : "0"}
+        data-login-open={isLoginOpen ? "1" : "0"}
+        data-info-open={openInfoModal ? "1" : "0"}
+        data-a11y-open={a11y?.isModalOpen ? "1" : "0"}
+        data-card-page={cardPageKey ? "1" : "0"}
+        data-cards-ready={cardsReady ? "1" : "0"}
+      >
       {/* Lavastus: kaadrid */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
         {ROOM_FRAMES.map((frame, i) => {
@@ -1280,105 +1319,24 @@ export default function RoomStage() {
               (tellija 06.07): profiililt viib "Tagasi" kaart, kaardi-lehe
               (pin/e-post) sulgeb kaardisisene × + Esc (PanelFrame). */}
 
-          {/* Ülaserva kiirriba — vaikimisi PEIDUS, aga nuppude ALASERVAD
-              PIILUVAD servast välja: nähtav vihje, et siin on juhtnupud (mitte
-              enam eksitav allanool, mis viitas alla kaartidele). Klõps/hover
-              tõmbab riba täies pikkuses alla. Koondab: heli sisse/välja,
-              järgmine lugu, keel & ligipääsetavus, ooterežiim (OFF). */}
-          <div className="room-topbar" data-room-ui data-open={topbarOpen ? "1" : "0"} ref={topbarRef}>
-            {/* Püüdeala katab kogu riba: KLÕPS avab/sulgeb (töötab
-                puuteseadmetel), hover/fookus avab töölaual. Sees STAATILINE
-                vihjenool (ei vilgu) — näha vaikimisi, kaob AINULT siis kui
-                nupud tulevad välja (riba avatud). */}
-            <button
-              type="button"
-              className="room-topbar-arrow"
-              aria-label={t(topbarOpen ? "room.quickbar_close" : "room.quickbar_open")}
-              aria-expanded={topbarOpen}
-              onClick={() => setTopbarOpen((v) => !v)}
-            />
-            <div
-              className="room-quickbar"
-              onClick={(e) => {
-                /* Hiireklõps ei tohi jätta nuppu fookusesse: :focus-within
-                   hoiaks paneeli lahti ka pärast hiire lahkumist ("paneel ei
-                   taha kinni minna"). Klaviatuur (e.detail === 0) jääb
-                   puutumata — seal on fookus vajalik. */
-                if (e.detail > 0) {
-                  const btn = e.target.closest?.(".room-quick-btn");
-                  if (btn) requestAnimationFrame(() => btn.blur());
-                }
-              }}
-            >
-            {/* Nool on ehitatud paneeli SISSE — istub paneeli alaserval ja
-                liigub paneeliga koos (tellija 07.07). Kaob paneeli avanedes. */}
-            <span className="room-quickbar-arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </span>
-            <IconButton
-              layoutClassName="room-quick-btn"
-              aria-label={t(ambientOn ? "room.sound_off" : "room.sound_on")}
-              aria-pressed={ambientOn}
-              data-on={ambientOn ? "1" : "0"}
-              onClick={toggleAmbient}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M4.6 9.4v5.2h3.2l4.6 3.8V5.6L7.8 9.4H4.6Z" />
-                {ambientOn ? (
-                  <>
-                    <path d="M15.6 9.2a4 4 0 0 1 0 5.6" />
-                    <path d="M18 6.8a7.4 7.4 0 0 1 0 10.4" />
-                  </>
-                ) : (
-                  <path d="m15.4 9.6 4.8 4.8m0-4.8-4.8 4.8" />
-                )}
-              </svg>
-            </IconButton>
-            {ambientOn ? (
-              <IconButton
-                layoutClassName="room-quick-btn"
-                aria-label={t("room.sound_next")}
-                onClick={nextAmbient}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M7 6.5 15 12 7 17.5V6.5Z" />
-                  <path d="M17.5 6.6v10.8" />
-                </svg>
-              </IconButton>
-            ) : null}
-            <IconButton
-              layoutClassName="room-quick-btn"
-              aria-label={t("room.settings_open")}
-              onClick={() => a11y?.openModal?.()}
-            >
-              <LanguageAccessIcon />
-            </IconButton>
-            <IconButton
-              layoutClassName="room-quick-btn"
-              aria-label={t("room.power_off")}
-              onClick={powerOff}
-            >
-              <PowerIcon />
-            </IconButton>
-            </div>
-          </div>
-
           {/* Karussell — süttib käivitusega (faas 1 klaasid, faas 2 sisu).
               Väljalülitus elab profiilikarusselli "Välja" kaardil (tellija);
               nurga-⏻ eemaldatud. */}
           <div className="room-carousel-wrap" ref={carouselWrapRef} data-room-ui>
             <GlassCarousel
               key={carouselSet}
-              items={carouselItems}
+              items={carouselCards}
+              backItem={carouselBackItem}
               initialKey={initialKey}
               setKey={carouselSet}
-              forceInitial={!!cardPageKey}
+              forceInitial={
+                !!cardPageKey || carouselSet === "workspace" || carouselSet === "wellbeing"
+              }
               onSelect={handleSelect}
               t={t}
-              /* Suured komplektid: 5 nähtavat laial ekraanil (tellija) */
-              visible={carouselSet === "workspace" || carouselSet === "wellbeing" ? 5 : 3}
+              /* Töölaud ja tööheaolu: laial ekraanil stabiilne 5 × 2. */
+              visible={carouselSet === "workspace" || carouselSet === "wellbeing" ? 10 : 3}
+              desktopArrows={carouselSet !== "workspace" && carouselSet !== "wellbeing"}
             />
           </div>
 
@@ -1411,8 +1369,15 @@ export default function RoomStage() {
         className="room-veil"
         data-state={veil}
         data-metal-ready={veilMetalReady ? "1" : "0"}
+        role="dialog"
+        aria-modal={veil !== "gone" ? "true" : undefined}
+        aria-labelledby="room-veil-message"
         aria-hidden={veil === "gone"}
       >
+        {/* „Selguse väli“: hajus info koguneb lauseks ja muutub kasutaja
+            kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
+            nupp jäävad selle kohal ligipääsetavaks. */}
+        {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} /> : null}
         <div className="room-veil-logo">
           <img
             src="/logo/sotsiaalai-h-valge.svg"
@@ -1423,6 +1388,9 @@ export default function RoomStage() {
           />
           {veil !== "gone" ? (
             <div className="room-veil-logo-metal" aria-hidden="true">
+              {/* Exact SVG geometry keeps the black AI base aligned with the metallic canvas. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="room-veil-logo-metal-base" src="/logo/ai-mark.svg" alt="" />
               {/* Tähed = platina (jahe hõbe-valge põhitoon: light/dark);
                   liikuv sära = šampanja/kuld (tintColor) — tellija 06.07.
                   chromaticSpread ~0: RGB-kanalite lahknemine tegi ROHELISI
@@ -1454,7 +1422,9 @@ export default function RoomStage() {
             </div>
           ) : null}
         </div>
-        <p className="room-veil-line">{t("room.loading_line")}</p>
+        <p id="room-veil-message" className="room-veil-line">
+          {t("room.loading_line")}
+        </p>
         <GlassButton
           layoutClassName="room-veil-enter"
           data-ready={veilReady ? "1" : "0"}
@@ -1501,6 +1471,19 @@ export default function RoomStage() {
       >
         <InstallAppLink />
       </GlassModal>
-    </div>
+      </div>
+      <RoomQuickbar
+        ambientOn={ambientOn}
+        containerRef={topbarRef}
+        onNextAmbient={nextAmbient}
+        onOpenAccessibility={() => a11y?.openModal?.()}
+        onPowerOff={powerOff}
+        onToggleAmbient={toggleAmbient}
+        onToggleOpen={() => setTopbarOpen((value) => !value)}
+        open={topbarOpen}
+        t={t}
+        visible={showQuickbar}
+      />
+    </>
   );
 }

@@ -1,7 +1,7 @@
 # Kovisioon — Etapp 7: valik ja järgmised sammud
 
 **Dokumendi staatus:** detailne funktsionaalne ja metoodiline spetsifikatsioon  
-**Versioon:** 1.0  
+**Versioon:** 1.1 — kaanon-otsuste ühtlustus (demo-koosseis, 5 kanoonilist teed, valitud suuna/sammu/märgi kaanontekstid, Teemaseemne payload §31.4), sisemiste vastuolude parandused (kestuste summa §7, võtmetaipamise pehme tingimus, olekuriba lahutus §46, suuna taimer §16.3, sortimissildid §18.1 — „Kombineeri suunaks” on toiming), mõjuvälja kaksikvorm (§25.5), ajaraami täpsustus (§28), rollipõhised vaated (§53.10), parem-paneeli ja värava tööjaotus (§53.11), referentsvaade „valiku kvaliteedikontrolli vaade” (§53.12) ning täiendatud vastuvõtukriteeriumid (tellija pildikommentaar 11.07 põhjal)  
 **Seotud selgroodokument:** `uue-kovisiooni-funktsiooni-visioon-ja-8-etapiline-selgroog.md`  
 **Eelmine dokument:** `kovisioon-etapp-6-ressursid-ja-joustamine.md`  
 **Seotud sisendfunktsioon:** `teemaseeme-professionaalne-funktsioon.md`  
@@ -163,7 +163,7 @@ Seetõttu on 7. etapp eraldi ruum:
 - fookus liigub kogu grupi õppimisele;
 - osalejad sõnastavad, mida nad enda töösse kaasa võtavad;
 - kinnitatakse säilitamise ja kustutamise valikud;
-- järgmine samm ning järelvaade kirjutatakse Teemaseemne juurde;
+- Teemaseemne juurde kirjutatakse §31.4 kirjeldatud payload (üldistatud järgmine samm, ajaraam, edenemise märk, järelvaade koos vastutaja ja kanaliga, õppimise peamine teema; Teemaseemne olek → **Järelvaates**);
 - sessioon suletakse.
 
 ## 5.3. Piir ametliku juhtumiplaaniga
@@ -198,7 +198,7 @@ Pärast juhtumi tooja avalikku kokkuvõtet:
 
 - antakse juhtumi toojale privaatne valikuaeg;
 - avatakse tema enda resonantsimärkmed;
-- juhtumi tooja märgib, milliseid võimalusi hoiab, kombineerib või jätab praegu kõrvale;
+- juhtumi tooja märgib, milliseid võimalusi hoiab, milline võib toetada, milline vajab kontrolli ja millise jätab praegu kõrvale;
 - juhtumi tooja valib ühe suuna või mõtlemisaja tee;
 - valitud suund seotakse võtmetaipamisega;
 - valitud suund muudetakse esimeseks professionaalseks sammuks;
@@ -242,7 +242,7 @@ Soovituslik jaotus:
 - juhtumi tooja avalik kokkuvõte: 2–4 minutit;
 - etapivärav: 1 minut.
 
-Kokku ligikaudu 9–18 minutit.
+Kokku ligikaudu 11–22 minutit.
 
 Lühemas baasmudelis:
 
@@ -323,7 +323,7 @@ Juhtumi tooja enda vaates avanevad tema privaatsed resonantsimärkmed uuesti.
 
 7. etapi lõpuks on olemas:
 
-1. **võtmetaipamine**;
+1. **võtmetaipamine** — sõnastatud, privaatseks jäetud või teadlikult vahele jäetud;
 2. **valitud suund või valiku olek**;
 3. **juhtumi tooja enda sõnastatud esimene professionaalne samm**;
 4. **mõjuvälja kontroll**;
@@ -552,6 +552,7 @@ Näitab:
 - valikukompassi;
 - teede kombineerimise ala;
 - järgmise sammu koostajat;
+- valiku kontrollnimekirja;
 - kinnitamisnuppe.
 
 ## 14.2. Sessiooni juhi vaade
@@ -629,7 +630,7 @@ Kui pildiseeria peab jääma sessiooni juhi Jaanika vaatesse, ei tohi seal näid
 
 ## Olek 2 — resonantsi sortimine
 
-- juhtumi tooja märgib, mida hoiab, kombineerib, kontrollib või jätab kõrvale;
+- juhtumi tooja märgib igale kaardile ühe sildi: hoiab, võib toetada, vajab kontrolli või jätab kõrvale;
 - valik on endiselt privaatne;
 - ükski kaart ei muutu ühisel lõuendil valituks.
 
@@ -731,15 +732,31 @@ Teistele:
 
 **Juhtumi tooja mõtleb**
 
-## 16.3. Järgmise sammu koostamise taimer
-
-Soovituslikult 3–6 minutit.
-
-## 16.4. Avaliku kokkuvõtte aeg
+## 16.3. Valitud suuna koostamise taimer
 
 Soovituslikult 2–4 minutit.
 
-## 16.5. Taimeri põhimõte
+## 16.4. Järgmise sammu koostamise taimer
+
+Soovituslikult 3–6 minutit.
+
+## 16.5. Avaliku kokkuvõtte aeg
+
+Soovituslikult 2–4 minutit.
+
+## 16.6. Kaks eristatud aega
+
+Ülemises alas on kogu etapi vältel kaks selgelt eristatud aega:
+
+- **Kohtumisest alles hh:mm** — kohtumise jäänud aeg;
+- **Etapp 7 · kulunud aeg** — või aktiivse faasi nimi: juhtumi toojale
+  „Privaatne valikuaeg”, teistele „Juhtumi tooja mõtleb”.
+
+Ebamääraseid ajasilte ei kasutata. **Paus** ja **Vajan tuge** on eraldi
+toimingutena kättesaadavad kogu etapi vältel. Kasutaja profiil on
+paremal üleval.
+
+## 16.7. Taimeri põhimõte
 
 Taimer:
 
@@ -802,11 +819,23 @@ Algmaterjalides võib juhtumi tooja lahendusi jaotada kategooriatesse „kuum”
 
 ## 18.1. Vaikimisi privaatsed sildid
 
+Silte on neli:
+
 - **Hoian** — kõnetab või väärib edasist kaalumist;
 - **Võib toetada** — pole põhisuund, kuid mõni osa võib olla kasulik;
 - **Vajab kontrolli** — sõltub teadmata tingimusest;
-- **Kombineerin** — tahan kasutada osana enda teest;
 - **Jätan praegu kõrvale** — ei võta praegu kaasa.
+
+Kaardil on korraga **üks** silt. Siltide loendurite summa peab klappima
+teede arvuga.
+
+**„Kombineerin” ei ole silt, vaid toiming** — **Kombineeri suunaks** —
+mis viib „Hoian” märgiga kaardid valitud suuna koostamisse (§19.2).
+
+Sildid kuvatakse kaartidel **tekstiliste olekutena** (nt „Lisatud minu
+suunda”, „Võib toetada”, „Vajab kontrolli”, „Praegu kõrvale jäetud”),
+mitte südame-ikoonide ega linnukestena, et vältida like’i või hääletuse
+muljet.
 
 ## 18.2. Valikuline metoodiline režiim
 
@@ -955,7 +984,7 @@ Kaart ei sisalda automaatselt:
 
 ## 21.2. Sobiv võtmetaipamine
 
-> Ma olen püüdnud korraga hoida lapse vajadust ja kontrollida kõigi täiskasvanute tegevusi. Minu järgmine professionaalne ülesanne on need kaks vastutust lahutada.
+> Olen püüdnud korraga hoida lapse vajadust ja kontrollida täiskasvanute vastutust. Minu järgmine professionaalne ülesanne on need kaks vastutust lahutada.
 
 ## 21.3. Ebasobiv süsteemi järeldus
 
@@ -977,17 +1006,22 @@ Juhtumi tooja võib öelda:
 
 See võib viia mõtlemisaja teeni.
 
+Võtmetaipamine on väljund, mis võib jääda privaatseks või teadlikult
+vahele. Etapi lõpetamiseks piisab, et taipamine on **sõnastatud või
+teadlikult vahele jäetud** (§47.3). Vahelejätt ei ole ebaõnnestumine
+ega blokeeri valikut.
+
 ---
 
 # 22. Valitud suund ja esimene samm on eri asjad
 
 ## 22.1. Valitud suund
 
-> Alustan lapse enda kogemuse ja jõukohase osaluse nähtavaks tegemisest ning hoian täiskasvanute vastutuse eraldi.
+> Alustan lapse enda jõukohase osaluse nähtavaks tegemisest ning hoian täiskasvanute vastutuse eraldi.
 
 ## 22.2. Esimene samm
 
-> Valmistan järgmise kolme tööpäeva jooksul ette 20-minutilise vestluse lapsega, kasutades visuaalset nädalakaarti, et kuulda, millised koolipäeva tingimused on talle jõukohasemad ja mida ta lubab võrgustikuga jagada.
+> Kolme tööpäeva jooksul küsin lapselt talle arusaadaval viisil, kas ta soovib osaleda visuaalses vestluses. Kui ta nõustub, lepime kokku sobiva aja ja selle, mida võib hiljem võrgustikuga jagada.
 
 ## 22.3. Miks eristus on vajalik?
 
@@ -1112,6 +1146,20 @@ Valikud:
 
 > Valmistan vanemaga vestluseks ette lihtsa teavituskokkuleppe variandid ja küsin, milline neist on tema jaoks jõukohane.
 
+## 25.5. Mõjuvälja kaksikvorm
+
+Kui samm sisaldab teise inimese otsust, kuvatakse mõjuväli
+**kaksikvormis**: minu mõjuväli + teise inimese otsus. See teeb
+enesemääramise piiri nähtavaks.
+
+Demo-sammu mõjuväli ei ole „saan ise otsustada”, vaid:
+
+> **Mõjuväli — Saan ette valmistada ja küsida.**
+
+ja selle kõrval eraldi märge:
+
+> **Vajab lapse otsust** — kas ta soovib osaleda ja mida ta lubab jagada.
+
 ---
 
 # 26. Kriitiliste eeltingimuste kontroll
@@ -1149,7 +1197,10 @@ kui Liisa pole nõustunud.
 
 Sobiv:
 
-> Küsin Liisalt, kas ta saab aidata mul kohtumise eesmärki läbi mõelda.
+> Kavatsen Liisalt küsida, kas ta saab olla vestluse eesmärgi sõnastamisel mõttepartner.
+
+Toetuskutse saadetakse alles pärast juhtumi tooja kinnitust; enne seda
+on toe olek **Kavatsen küsida** / **Pole veel küsitud**.
 
 ## 27.2. Kohal oleva grupiliikme tugi
 
@@ -1198,6 +1249,10 @@ Kui samm sõltub välisest otsusest, lisatakse:
 
 - millal juhtumi tooja päringu teeb;
 - millal ta vastuse puudumisel üle vaatab.
+
+Ajaraam vastab küsimusele **millal ma tegutsen või otsustan**
+(nt „3 tööpäeva jooksul”). Tegevuse enda kestus (nt 20-minutiline
+vestlus) ei ole ajaraam ja seda ajaraami kihis ei kuvata.
 
 ---
 
@@ -1275,13 +1330,33 @@ Märk võib puudutada juhtumi toojat:
 
 7. etapis:
 
-- mustand on sessiooni sees;
-- seda ei kirjutata veel Teemaseemnesse.
+- mustand on **ainult sessioonisisene**;
+- seda ei kirjutata veel Teemaseemnesse;
+- mustandi juures on UI-märge **„ei liigu veel Teemaseemnesse”**.
 
 8. etapis:
 
 - juhtumi tooja kinnitab säilitamise;
-- järgmine samm ja järelvaade liiguvad Teemaseemne juurde.
+- Teemaseemne juurde liigub §31.4 payload.
+
+## 31.4. Teemaseemne payload
+
+8. etapi kinnitusel liigub Teemaseemne juurde:
+
+- üldistatud järgmine samm;
+- ajaraam;
+- edenemise märk;
+- järelvaate kuupäev või sündmus + vastutaja + kanal;
+- õppimise peamine teema;
+- Teemaseemne olek → **Järelvaates**.
+
+Piirid:
+
+- **võtmetaipamine ei liigu vaikimisi** — ainult juhtumi tooja
+  teadlikul valikul;
+- üldistuse sõnastab juhtumi tooja; AI võib pakkuda mustandit;
+- mõtlemisaja tee korral on samm mõtlemisaja plaan ja olek on ikkagi
+  **Järelvaates** — järelvaade on otsustamishetk.
 
 ---
 
@@ -1449,7 +1524,7 @@ Juhtumi tooja ei pea avalikult jagama:
 
 Näiteks:
 
-> Minu peamine taipamine on, et olen püüdnud korraga hoida lapse vajadust ja kontrollida täiskasvanute vastutust. Alustan lapse enda jõukohase koolinädala kaardistamisest. Minu esimene samm on valmistada kolme tööpäeva jooksul ette 20-minutiline visuaalne vestlus lapsega. Enne võrgustikuga info jagamist lepin lapsega kokku, mida võib jagada. Järelvaate teen kahe nädala pärast.
+> Minu peamine taipamine on, et olen püüdnud korraga hoida lapse vajadust ja kontrollida täiskasvanute vastutust. Alustan lapse enda jõukohase osaluse nähtavaks tegemisest ning hoian täiskasvanute vastutuse eraldi. Minu esimene samm on kolme tööpäeva jooksul küsida lapselt talle arusaadaval viisil, kas ta soovib osaleda visuaalses vestluses. Kui ta nõustub, lepime kokku aja ja selle, mida võib hiljem võrgustikuga jagada. Järelvaate teen järgmise kovisiooni alguses.
 
 ## 37.2. Grupp kuulab
 
@@ -1836,13 +1911,15 @@ Püsivad olekud:
 | Olek | Algseis | Vaheolek | Valmis olek |
 |---|---|---|---|
 | Privaatne valik | `Pole alustatud` | `Mari valib` | `Valik kinnitatud` või `Mõtlemisaeg kinnitatud` |
-| Võtmetaipamine | `Puudub` | `Sõnastamisel` | `Kinnitatud` või `Jäetakse privaatseks` |
+| Võtmetaipamine | `Puudub` | `Sõnastamisel` | `Kinnitatud`, `Jäetakse privaatseks` või `Teadlikult vahele jäetud` |
 | Valitud suund | `Puudub` | `Koostamisel` | `Kinnitatud` |
 | Esimene samm | `Puudub` | `Sõnastamisel` | `Kinnitatud` |
 | Mõjuväli ja tingimused | `Kontrollimata` | `Ülevaatusel` | `Kontrollitud` |
 | Tugi | `Puudub` | `Küsimisel` | `Kinnitatud` või `Kavatsen küsida` |
 | Ajaraam ja järelvaade | `Puuduvad` | `Koostamisel` | `Kinnitatud` |
-| Avalik kokkuvõte | `Pole jagatud` | `Mari jagab` | `Juhtumitöö lõpetatud` |
+| Avalik kokkuvõte | `Pole jagatud` | `Mari jagab` | `Jagatud` või `Minimaalne jagamine` |
+| Toestamise nõusolek | `Pole küsitud` | `Ootab vastust` | `Vastatud` või `Ei kohaldu` |
+| Juhtumitöö | `Aktiivne` | `Lõpetamisel` | `Juhtumitöö lõpetatud` |
 
 Kõiki olekuid ei kuvata suure dashboard’ina.
 
@@ -1876,7 +1953,7 @@ Mõtlemisaja korral:
 2. valitud suund, mõtlemisaja tee või teadliku pausi tee on olemas;
 3. esimene professionaalne samm või järgmine otsustamishetk on olemas;
 4. samm on juhtumi tooja mõjuväljas või sõnastatud küsimise, kontrollimise või ettevalmistusena;
-5. kriitilised eeltingimused on täidetud, märgitud kontrollsammuks või teadlikult blokeerivaks;
+5. kriitilised eeltingimused on täidetud või märgitud kontrollsammuks; kui kriitiline eeltingimus blokeerib, valib juhtumi tooja kas mõtlemisaja tee **või** sammu, mille sisu ongi eeltingimuse käsitlemine (nagu demos: lapse nõusoleku küsimine on ise esimene samm);
 6. teise inimese või organisatsiooni tugi pole kinnitatuks märgitud ilma nõusolekuta;
 7. ajaraam on olemas;
 8. edenemise või õppimise märk on olemas või teadlikult mittekohalduv;
@@ -1885,7 +1962,8 @@ Mõtlemisaja korral:
 11. juhtumi tooja on enda valiku kinnitanud;
 12. avalik kokkuvõte on jagatud või juhtumi tooja on valinud põhjendatud minimaalse jagamise;
 13. lahendamata turvalisus- või privaatsusblokeering puudub;
-14. sessiooni juht on valmis juhtumitöö lõpetama.
+14. sessiooni juht on valmis juhtumitöö lõpetama;
+15. võtmetaipamine on sõnastatud **või** teadlikult vahele jäetud (§21.5) — vahelejätt ei blokeeri väravat.
 
 ## 47.4. Tingimused, mida ei nõuta
 
@@ -1903,12 +1981,20 @@ Etapi lõpetamiseks ei nõuta:
 
 ## 47.5. Mitteaktiivne nupp
 
-Näited:
+Nupu seisund on **aus**: kui mõni tingimus on täitmata, on nupp
+mitteaktiivne ja nimetab täpse põhjuse; kui kõik kontrollid on
+täidetud, on nupp aktiivne. Referentsolekus (§53.12) on demo-andmetega
+kõik kontrollid täidetud ja nupp aktiivne — see on põhjendatud, sest
+lapse nõusoleku saamine ongi sammu sisu, tugi on olekus „Kavatsen
+küsida” ja järelvaade on määratud.
+
+Näited täpsest põhjusest:
 
 - „Juhtumi tooja teeb veel privaatset valikut.”
 - „Esimene professionaalne samm puudub.”
 - „Samm eeldab teise osapoole otsust ja vajab ümber sõnastamist.”
 - „Üks kriitiline eeltingimus pole arvestatud.”
+- „Lapse osaluse ja jagamispiiri käsitlus vajab kinnitamist.”
 - „Järelvaate aeg puudub.”
 - „Avalik kokkuvõte sisaldab tuvastavat detaili.”
 - „3 tingimust on veel täitmata · Vaata.”
@@ -2262,12 +2348,12 @@ Keskel:
 - tööfookus;
 - võimaluste teeharud;
 - ressursikimbud;
-- privaatne valikukiht:
+- privaatne valikukiht (üks silt kaardi kohta):
   - Hoian;
   - Võib toetada;
   - Vajab kontrolli;
-  - Kombineerin;
-  - Jätan praegu kõrvale.
+  - Jätan praegu kõrvale;
+  - toiming **Kombineeri suunaks** (mitte silt).
 
 Esiplaanil:
 
@@ -2327,6 +2413,10 @@ Selle ümber on kontekstikihid:
 
 See ei tohi välja näha pika vormina. Kihid avanevad puudutamisel ühe korraga.
 
+**Erand:** oleku 8 (kvaliteedi ja vastutuse kontroll) ülevaates tohib
+kihte koos kuvada kompaktse ülevaatena — see on teadlik
+kvaliteedikontrolli vaade (§53.12), mitte täidetav vorm.
+
 ## 53.6. Avaliku kokkuvõtte vaade
 
 Kõigile kuvatakse:
@@ -2361,11 +2451,17 @@ All:
 ## 53.8. Klaasi kasutus
 
 - klaas on läbipaistev, mitte täpiline;
+- kõrvalpaneelid on keskvaatest läbipaistvamad ja nende kontuurid
+  õrnemad;
 - juhtumi tooja privaatne kiht on lukumärgi ja servastiiliga eristatav, mitte erksa värviga;
-- aktiivne hero on ühe tagasihoidliku merevaiguse aktsendiga;
-- teised teed on väiksema kontrastiga;
+- tugevaim merevaigu aktsent on **ainult** valitud suunal ja
+  kinnitusnupul;
+- mitteaktiivsed teed on väiksema kontrastiga ja ruumiliselt
+  tagaplaanil;
+- valiku olekud on kaartidel tekstilised (§18.1), mitte südame-ikoonid
+  ega linnukesed;
 - tähendus ei sõltu värvist;
-- taustamaal jääb nähtavaks.
+- taustamaal on sama kõigil etappidel ja jääb nähtavaks.
 
 ## 53.9. Mida pildil ei tohi olla?
 
@@ -2374,6 +2470,7 @@ All:
 - tekstitööriista;
 - grupi hääletust;
 - like’e;
+- südame-ikoone või linnukesi valiku olekute märkimiseks;
 - populaarsusskoori;
 - süsteemi soovitatud parimat teed;
 - mõju–pingutuse maatriksit;
@@ -2386,6 +2483,129 @@ All:
 - dekoratiivset täpivõrku;
 - tähenduseta ühendusjooni;
 - korraga nii Mari kui Jaanika personaalseid kinnitamisnuppe.
+
+## 53.10. Rollipõhised vaated
+
+Üks ekraanivaade (ja üks pilt) kujutab alati **ühte rolli ja ühte
+olekut**. Eri rollide personaalsed toimingud ei ole kunagi korraga
+nähtavad.
+
+| Element | Juhtumi tooja (Mari) | Sessiooni juht (Jaanika) | Kaardi haldaja (Liisa) | Grupiliige |
+|---|---|---|---|---|
+| Privaatne sortimine (§18) | ✓ | – | – | – |
+| Valitud suuna koostamine ja „Kombineeri suunaks” | ✓ | – | – | – |
+| Võtmetaipamise sõnastamine | ✓ | – | – | – |
+| Esimese sammu koostamine ja kihid | ✓ | – | – | – |
+| Valiku kontrollnimekiri (olek 8) | ✓ | – | – | – |
+| „See on minu valik ja järgmine samm” | ✓ | – | – | – |
+| Protsessiolek „Mari teeb privaatset valikut” | – | ✓ | ✓ | ✓ |
+| Etapivärav „Liigu kokkuvõtte ja õppimise juurde” | – | ✓ | – | – |
+| Avaliku kokkuvõtte kaardi loomine ühisele lõuendile | – | – | ✓ | – |
+| Toetuskutsele vastamine | – | – | – | ✓ |
+| Kaks aega, Paus ja Vajan tuge (§16.6) | ✓ | ✓ | ✓ | ✓ |
+
+Rõhuasetused:
+
+- Mari **privaatne vaade** sisaldab kogu valikutööd: sortimine, suund,
+  taipamine, samm, kihid, kontrollnimekiri, kinnitus;
+- Jaanika näeb **ainult protsessiolekut** („Mari teeb privaatset
+  valikut”) ja etapiväravat — mitte Mari sisu;
+- Liisa loob avaliku kokkuvõtte kaardi **alles Mari kinnitusel**;
+- grupiliige on selles etapis ainult toetuskutse vastaja.
+
+Iga ootel olek nimetab **tegutseja**, mitte ainult seisundi:
+
+- Privaatne valik → `Mari teeb privaatset valikut`;
+- Kokkuvõte → `Mari jagab enda kokkuvõtte`;
+- Etapi lõpetamine → `Jaanika lõpetab juhtumitöö`.
+
+## 53.11. Parem-paneeli ja värava tööjaotus
+
+Et vältida dubleerimist, on kolm kokkuvõtvat pinda eri rollides ja eri
+ülesannetega — ükski ei korda teist:
+
+**Mari vaates paremal** kuvatakse kompaktne **„Minu valiku ülevaade”**,
+mitte siltide kordus loenduritega:
+
+> Minu valiku ülevaade — 2 teed on minu suunas · 1 tee võib toetada ·
+> 1 tee vajab kontrolli · 1 tee jääb praegu kõrvale
+
+Loendurite summa klapib teede arvuga (§18.1). Lisaks on paremal toe
+olek ja mõtlemisaja võimalus.
+
+**Mari keskvaate osa** on valiku kontrollnimekiri (olek 8) — see on
+tema isiklik kvaliteedikontroll, **mitte värav**.
+
+**Jaanika vaates all** on üks õhuke etapivärav põhinupuga
+**Liigu kokkuvõtte ja õppimise juurde**, mis näitab ainult aktiivset
+hetke, puuduvat tingimust ja järgmist toimingut (§46).
+
+Kolme pinna rollid: Mari kontrollnimekiri = isiklik
+kvaliteedikontroll; Mari parem-paneel = valiku ülevaade; Jaanika värav
+= etapi tingimused.
+
+## 53.12. Referentsvaade — valiku kvaliteedikontrolli vaade
+
+Lõplik 7. etapi pilt kannab nime **„Etapp 7 — valiku
+kvaliteedikontrolli vaade”** ja kujutab **Mari (juhtumi tooja)
+privaatset vaadet olekus 8/9** — kõik valikutöö osad on koos,
+kinnitus on käeulatuses. Fail „Kovisiooni etapp 7 pilt.png” on
+lähtematerjal, mis vajab allpool loetletud parandusi.
+
+Olukord pildil:
+
+- privaatsusriba: „See on sinu privaatne vaade. Teised näevad alles
+  sinu kokkuvõtet pärast kinnitamist.”;
+- kaks eristatud aega (§16.6): `Kohtumisest alles hh:mm` ja
+  `Etapp 7 · kulunud aeg`; profiil paremal üleval; **Paus** ja
+  **Vajan tuge** nähtavad;
+- etapirada: etapid 1–6 lõpetatud (✓ — lähtepildil linnukesed
+  puudusid, referents nõuab neid), etapp 7 aktiivne;
+- vasakul viis kanoonilist teed (§55.1) tekstiliste olekusiltidega:
+  1. Vestlus lapsega jõukohasema koolinädala loomiseks —
+     `Lisatud minu suunda`;
+  2. Võrgustikukohtumine kooli ja perega — `Praegu kõrvale jäetud`;
+  3. Hommikurutiini lihtsustamine — `Võib toetada`;
+  4. Kohanduste võimaluste kaardistamine koolis — `Vajab kontrolli`;
+  5. Enda rolli ja vastutuse piiri sõnastamine —
+     `Lisatud minu suunda`;
+- keskel valitud suund: „Alustan lapse enda jõukohase osaluse
+  nähtavaks tegemisest ning hoian täiskasvanute vastutuse eraldi.” +
+  allikaviide „Koosneb teedest: Vestlus lapsega jõukohasema
+  koolinädala loomiseks + Enda rolli ja vastutuse piiri sõnastamine”
+  — mõlemad lähtekaardid on teede loendis olemas;
+- võtmetaipamise plokk: „Olen püüdnud korraga hoida lapse vajadust ja
+  kontrollida täiskasvanute vastutust. Minu järgmine professionaalne
+  ülesanne on need kaks vastutust lahutada.”;
+- esimene samm: „Kolme tööpäeva jooksul küsin lapselt talle
+  arusaadaval viisil, kas ta soovib osaleda visuaalses vestluses. Kui
+  ta nõustub, lepime kokku sobiva aja ja selle, mida võib hiljem
+  võrgustikuga jagada.” + kihid ülevaatena koos kuvatuna (§53.5
+  erand);
+- mõjuväli kaksikvormis (§25.5): „Mõjuväli — Saan ette valmistada ja
+  küsida.” + „Vajab lapse otsust — kas ta soovib osaleda ja mida ta
+  lubab jagada.”;
+- ajaraam: „3 tööpäeva jooksul” (millal tegutsen — vestluse kestus ei
+  ole ajaraam, §28);
+- järelvaade: `24. juuli 2026 · järgmise kovisiooni alguses` + märge
+  **„ei liigu veel Teemaseemnesse”** (§31.3);
+- tugi: „Kavatsen Liisalt küsida, kas ta saab olla vestluse eesmärgi
+  sõnastamisel mõttepartner.” — olek `Pole veel küsitud`;
+- nähtavuse kiht: „Jagan kovisioonigrupile üldistatud kokkuvõtte.
+  Lapse enda sõnu või tundlikku infot kasutan hiljem ainult temaga
+  kokkulepitud ulatuses.”;
+- kontrollnimekiri: **kõik kontrollid täidetud** (lapse nõusoleku
+  saamine ongi sammu sisu; tugi on olekus „Kavatsen küsida”;
+  järelvaade on määratud);
+- aktiivne kinnitusnupp **See on minu valik ja järgmine samm**;
+- parem-paneel järgib §53.11 tööjaotust („Minu valiku ülevaade”).
+
+Ruumilisus ja aktsent (§53.8):
+
+- kõrvalpaneelid läbipaistvamad, kontuurid õrnemad;
+- tugevaim merevaigu aktsent ainult valitud suunal ja kinnitusnupul;
+- mitteaktiivsed teed ruumiliselt tagaplaanil;
+- taustamaal on sama nagu kõigil etappidel.
 
 ---
 

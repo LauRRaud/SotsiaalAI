@@ -78,31 +78,126 @@ html.liquid-cursor-on * {
     filter 0.32s var(--ease-soft, ease);
 }
 
-/* Hover klikitaval elemendil: nool tõuseb õrnalt esile ja saab pehme
-   neutraalvalge kuma — "vedel klaas" reageerib puudutusele (mitte kollane). */
+/* Platvormi sees saab klikitava elemendi hover sooja kuldse klaasläike. */
 .liquid-cursor.is-active .liquid-cursor-svg {
   transform: scale(1.04);
-  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.3))
-    drop-shadow(0 0 5px rgba(255, 253, 248, 0.35));
+  filter:
+    drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 1.8px rgba(255, 226, 178, 0.68))
+    drop-shadow(0 0 4px rgba(211, 154, 73, 0.18));
 }
 
 .liquid-cursor-svg .lc-glow {
   opacity: 0.65;
-  transition: opacity 0.32s var(--ease-soft, ease);
+  transition:
+    opacity 0.32s var(--ease-soft, ease),
+    fill 0.32s var(--ease-soft, ease);
 }
 
 .liquid-cursor.is-active .lc-glow {
-  opacity: 0.82;
+  fill: #e7b96e;
+  opacity: 0.58;
 }
 
-/* Puhas läige: üks pehme valgusriba libiseb üle noole. Rahuolekus peidus;
-   hover'il klikitaval elemendil (.is-active) sujuvalt nähtav. */
+.liquid-cursor.is-active .lc-rim {
+  stroke: #ffe8c1;
+  stroke-opacity: 0.88;
+}
+
+/* Avakuva lävel helendab noole kuju ise. Lõuend ei joonista kursori
+   ümber valguskera; kuldne reaktsioon järgib SVG täpset kontuuri. */
+html.veil-cursor-gold .liquid-cursor-svg {
+  filter:
+    drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.38))
+    drop-shadow(0 0 2px rgba(255, 224, 169, 0.72))
+    drop-shadow(0 0 5px rgba(214, 157, 75, 0.2));
+}
+
+html.veil-cursor-gold .liquid-cursor-svg .lc-glow {
+  fill: #e7b96e;
+  opacity: 0.58;
+}
+
+html.veil-cursor-gold .liquid-cursor-svg .lc-rim {
+  stroke: #ffe8c1;
+  stroke-opacity: 0.88;
+}
+
+html.veil-cursor-gold .liquid-cursor-svg .lc-shine {
+  opacity: 0.78;
+}
+
+/* Ruumiline klaasläige käivitub ainult klikitava elemendi hoveril.
+   Valguskiht kordub ühtlase kiirusega tipu ja tagumise ristserva keskme vahel. */
 .lc-shine {
   opacity: 0;
-  transition: opacity 0.3s var(--ease-soft, ease);
+  transition: opacity 0.16s var(--ease-soft, ease);
+}
+
+.lc-shine-sweep {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transform: translate(-2px, -3px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes lc-shine-tip-to-heel {
+  0% {
+    transform: translate(-2px, -3px);
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.68;
+  }
+  38% {
+    opacity: 0.96;
+  }
+  70% {
+    opacity: 0.64;
+  }
+  78%,
+  100% {
+    transform: translate(13px, 24px);
+    opacity: 0;
+  }
 }
 
 .liquid-cursor.is-active .lc-shine {
+  opacity: 1;
+}
+
+.liquid-cursor.is-active .lc-shine-sweep {
+  animation: lc-shine-tip-to-heel 2.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* Laadimislooril on klikitava sõna hover algul neutraalne. VeilArt
+   eemaldab selle piirangu alles pärast lauseosakeste neeldumist. */
+html.veil-cursor-pending:not(.veil-cursor-gold)
+  .liquid-cursor.is-active
+  .liquid-cursor-svg {
+  filter:
+    drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.34))
+    drop-shadow(0 0 2.5px rgba(255, 253, 248, 0.24));
+}
+
+html.veil-cursor-pending:not(.veil-cursor-gold)
+  .liquid-cursor.is-active
+  .lc-glow {
+  fill: #fff4e2;
+  opacity: 0.72;
+}
+
+html.veil-cursor-pending:not(.veil-cursor-gold)
+  .liquid-cursor.is-active
+  .lc-rim {
+  stroke: #fff8ee;
+  stroke-opacity: 0.66;
+}
+
+html.veil-cursor-pending:not(.veil-cursor-gold)
+  .liquid-cursor.is-active
+  .lc-shine {
   opacity: 0.9;
 }
 

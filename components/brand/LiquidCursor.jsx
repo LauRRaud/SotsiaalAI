@@ -60,7 +60,11 @@ export default function LiquidCursor() {
     const isClickable = (node) => {
       if (!node || typeof node.closest !== "function") return false;
       if (node.closest(".no-liquid-cursor")) return false;
-      return !!node.closest(CLICKABLE);
+      const interactive = node.closest(CLICKABLE);
+      if (!interactive) return false;
+      if (interactive.matches(':disabled,[aria-disabled="true"]')) return false;
+      if (interactive.matches('.room-veil-enter[data-ready="0"]')) return false;
+      return true;
     };
     const sync = () => {
       rafRef.current = 0;
@@ -140,25 +144,60 @@ export default function LiquidCursor() {
             <feGaussianBlur in="o" stdDeviation="1.3" result="b" />
             <feComposite in="b" in2="SourceAlpha" operator="in" />
           </filter>
-          {/* Puhas läige: ÜKS pehme valgusriba (üks tipp, lai hajumine →
-             ei triibuta), libiseb diagonaalselt üle noole. */}
-          <linearGradient id="lc-shine" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#fffdf8" stopOpacity="0" />
-            <stop offset="0.5" stopColor="#fffdf8" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#fffdf8" stopOpacity="0" />
-            <animateTransform
-              attributeName="gradientTransform"
-              type="translate"
-              values="-1 -1; 1 1; 1 1"
-              keyTimes="0; 0.55; 1"
-              dur="3.2s"
-              repeatCount="indefinite"
-            />
+          <clipPath id="lc-arrow-clip">
+            <path d={ARROW_D} />
+          </clipPath>
+          <filter id="lc-reflection-blur" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="0.78" />
+          </filter>
+          {/* Sirgete servadega valguskiht liigub mööda kolmnurga keskjoont.
+             Lai tahk + pehmem sisemine peegeldus järgivad kursori geomeetriat
+             ega moodusta eraldi ovaalset valguspalli. */}
+          <linearGradient
+            id="lc-shine-surface"
+            gradientUnits="userSpaceOnUse"
+            x1="-4"
+            y1="-9"
+            x2="4"
+            y2="12"
+          >
+            <stop offset="0" stopColor="#fff8ea" stopOpacity="0" />
+            <stop offset="0.2" stopColor="#fff8ea" stopOpacity="0.08" />
+            <stop offset="0.48" stopColor="#fffdf8" stopOpacity="0.32" />
+            <stop offset="0.7" stopColor="#ffefd7" stopOpacity="0.1" />
+            <stop offset="1" stopColor="#ffefd7" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient
+            id="lc-shine-facet"
+            gradientUnits="userSpaceOnUse"
+            x1="-3"
+            y1="-7"
+            x2="3"
+            y2="9"
+          >
+            <stop offset="0" stopColor="#fff" stopOpacity="0" />
+            <stop offset="0.38" stopColor="#fffaf1" stopOpacity="0.12" />
+            <stop offset="0.52" stopColor="#fff" stopOpacity="0.42" />
+            <stop offset="0.68" stopColor="#fff0d8" stopOpacity="0.1" />
+            <stop offset="1" stopColor="#fff0d8" stopOpacity="0" />
           </linearGradient>
         </defs>
         <path d={ARROW_D} fill="url(#lc-glass)" />
         <path className="lc-glow" d={ARROW_D} fill="#fff4e2" filter="url(#lc-glow)" />
-        <path className="lc-shine" d={ARROW_D} fill="url(#lc-shine)" />
+        <g className="lc-shine" clipPath="url(#lc-arrow-clip)">
+          <g className="lc-shine-sweep">
+            <path
+              d="M -10 -2 L 12 -10.3 L 16 0.5 L -6 8.8 Z"
+              fill="url(#lc-shine-surface)"
+              filter="url(#lc-reflection-blur)"
+            />
+            <path
+              d="M -8 -1 L 10 -7.8 L 12.5 -1.2 L -5.5 5.6 Z"
+              fill="url(#lc-shine-facet)"
+              filter="url(#lc-reflection-blur)"
+            />
+          </g>
+        </g>
         <path
           className="lc-rim"
           d={ARROW_D}

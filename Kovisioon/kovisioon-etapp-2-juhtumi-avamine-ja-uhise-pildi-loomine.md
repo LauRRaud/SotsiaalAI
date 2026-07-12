@@ -1455,6 +1455,9 @@ Süsteem võib privaatselt küsida:
 - Kas fookus puudutab sinu professionaalset mõjuulatust?
 - Kas see annab lõpliku vastutuse sulle, mitte grupile?
 - Kas see on avatud?
+- Kas see algab vormis „Kuidas…”? („Kas” või „Miks” algus ei sobi
+  fookusküsimuseks — metoodiliste lähteallikate ühine nõue; soovitus,
+  mitte blokeering);
 - Kas selles on üks põhifookus?
 - Kas see väldib teise inimese diagnoosimist?
 - Kas see on seotud soovitud muutuse või õppimisega?

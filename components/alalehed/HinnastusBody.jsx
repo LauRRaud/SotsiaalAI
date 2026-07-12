@@ -136,10 +136,6 @@ export default function HinnastusBody() {
     panel.scrollTop = Math.max(0, Math.min(maxScrollTop, panel.scrollTop + event.deltaY));
   }, []);
 
-  const openRegistration = (pathname) => {
-    pushWithTransition(router, localizePath(pathname, locale));
-  };
-
   const openFeatures = (event) => {
     if (event.defaultPrevented) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -149,10 +145,10 @@ export default function HinnastusBody() {
   };
 
   const actions = [
-    { key: "free", type: "button", path: "/registreerimine" },
-    { key: "client", type: "button", path: "/registreerimine?role=client" },
-    { key: "worker", type: "button", path: "/registreerimine?role=specialist" },
-    { key: "provider", type: "button", path: "/registreerimine?role=provider" }
+    { key: "free", type: "button" },
+    { key: "client", type: "button" },
+    { key: "worker", type: "button" },
+    { key: "provider", type: "button" }
   ];
 
   return (
@@ -216,7 +212,8 @@ export default function HinnastusBody() {
                           type="button"
                           variant="primary"
                           size="sm"
-                          onClick={() => openRegistration(action.path)}
+                          disabled
+                          title={t("auth.register.closed_notice")}
                         >
                           {t(`about.pricing.actions.${action.key}`)}
                         </Button>

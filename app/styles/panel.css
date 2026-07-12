@@ -62,6 +62,60 @@
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
+/* Vestlus ei ole enam klaaspaneel, vaid ruumis hõljuv tööväli. Teekonna
+   leht kasutab endiselt data-chat raami; uus raamita keel rakendub ainult
+   päris /vestlus pinnale data-conversation kaudu. */
+.panel-scrim[data-conversation="1"] {
+  place-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+.panel-scrim[data-conversation="1"] .panel {
+  width: min(78rem, calc(100vw - 2rem));
+  height: calc(100lvh - 1.25rem);
+  max-height: none;
+  min-height: min(34rem, 100lvh);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.panel-scrim[data-conversation="1"] .panel::before {
+  content: none;
+}
+.panel-scrim[data-conversation="1"] .panel-body {
+  padding: clamp(4.8rem, 8lvh, 6.2rem) clamp(1rem, 3vw, 2.6rem)
+    clamp(0.8rem, 2lvh, 1.4rem);
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+/* Menüü ja sulgemine on eraldiseisvad navigatsiooni-orbid, mitte suure
+   paneeli nurkadesse kinnitatud juhtnupud. */
+.panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
+  top: clamp(1.1rem, 2.8lvh, 1.8rem);
+  width: 3rem;
+  height: 3rem;
+  color: rgba(247, 239, 231, 0.76);
+  background: rgba(26, 17, 13, 0.7);
+  border: 1px solid rgba(255, 241, 226, 0.14);
+  box-shadow: 0 12px 34px rgba(8, 4, 2, 0.26), 0 0 0 1px rgba(255, 247, 238, 0.025);
+  backdrop-filter: none;
+}
+.panel-scrim[data-conversation="1"] .panel-menu {
+  left: clamp(1.1rem, 2.8vw, 2rem);
+}
+.panel-scrim[data-conversation="1"] .panel-close {
+  right: clamp(1.1rem, 2.8vw, 2rem);
+}
+@media (min-width: 769px) {
+  .panel-scrim[data-conversation="1"] .panel-menu {
+    left: calc(50% - min(27rem, 42vw));
+  }
+  .panel-scrim[data-conversation="1"] .panel-close {
+    right: calc(50% - min(27rem, 42vw));
+  }
+}
 /* Kompaktne kaart: väikesed vormid (3 välja + nupp) võtavad TÄPSELT
    keskmise karusselli-kaardi geomeetria (sama laius, külgsuhe, raadius,
    asukoht) — sisu vahetub kaardi SEES, mitte eraldi kujuga aknas
@@ -192,6 +246,53 @@
   flex-direction: column;
 }
 .panel-scrim[data-wide="1"] .service-map-page {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Täisekraani LÕUEND (kovisioon, teemaseemned; tellija 11.07): paneel
+   katab TÄPSELT ekraani, servadeta ja läbipaistvalt — ruum paistab
+   scrimi tagant, sisu saab kogu kõrguse ega keri. Nurga-nupud (ⓘ/✕)
+   hõljuvad sisu kohal; lehe päised jätavad neile paremal ruumi
+   (covision.css .cv1-top / teemaseeme.css .ts-top varu). */
+.panel-scrim[data-canvas="1"] {
+  /* Kovisioon ja Teemaseemned on tööruumid, mitte tihedad vormilehed:
+     veidi suurem kohalik kirjarütm parandab loetavust suurel ekraanil. */
+  --fs-body: 1.04rem;
+  --fs-small: 0.925rem;
+  --fs-micro: 0.82rem;
+  padding: 0;
+}
+/* Ruumi taustapildid ulatuvad ~8px üle ekraani (teadlik bleed) —
+   lõuendil ei tohi leht selle võrra kerida */
+html:has(.panel-scrim[data-canvas="1"]),
+body:has(.panel-scrim[data-canvas="1"]) {
+  overflow-y: clip;
+}
+.panel-scrim[data-canvas="1"] .panel {
+  width: 100%;
+  height: 100lvh;
+  max-height: none;
+  min-height: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+.panel-scrim[data-canvas="1"] .panel::before {
+  content: none;
+}
+.panel-scrim[data-canvas="1"] .panel-body {
+  display: flex;
+  flex-direction: column;
+  /* Täisekraani töövaadete kohal elab ruumi püsiv juhtpaneel. Jätame
+     Kovisiooni etapirajale ja Teemaseemnete navile eraldi ohutu tsooni,
+     selle asemel et lasta neil ülaserva vihjepilli alla sattuda. */
+  padding: clamp(4.25rem, 7lvh, 5rem) 0 0;
+  font-size: var(--fs-body);
+  overflow: hidden;
+}
+.panel-scrim[data-canvas="1"] .panel-body > * {
   flex: 1;
   min-height: 0;
 }

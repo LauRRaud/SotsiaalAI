@@ -123,6 +123,67 @@
   left: calc(50% + var(--gc-w) * 2.42 + 0.4rem);
 }
 
+/* ---------- Töölaua ja tööheaolu kaherealine vaade (5 + 5) ----------
+   Kümme suuremat kaarti moodustavad päris töölaua. Desktopil grid ei pöörle;
+   võimalik lisavalik avaneb alumisest otseteeribast. Kitsamal ekraanil
+   rakendub endiselt tavaline 3-kaardiline karussell. */
+.gc[data-visible="10"] {
+  --gc-w: clamp(10rem, min(12.5vw, 24lvh), 13rem);
+  --gc-grid-gap-x: clamp(0.65rem, 0.9vw, 1.1rem);
+  --gc-grid-gap-y: clamp(0.7rem, 1.4lvh, 1rem);
+}
+.gc[data-visible="10"] .gc-item {
+  left: 50%;
+  top: 46%;
+  transform: translate(-50%, -50%)
+    translate3d(
+      calc((var(--grid-col) - 2) * (var(--gc-w) + var(--gc-grid-gap-x)) + var(--drag)),
+      calc((var(--grid-row) - 0.5) * (var(--gc-w) * 1.3889 + var(--gc-grid-gap-y))),
+      0
+    );
+  transition: transform 480ms var(--ease-soft), opacity 260ms var(--ease-soft);
+}
+.gc[data-visible="10"] .gc-item[data-hidden="1"] {
+  opacity: 0;
+  pointer-events: none;
+  transition: none;
+}
+.gc[data-visible="10"] .gc-item::before {
+  opacity: 0;
+}
+.gc[data-visible="10"] .gc-icon,
+.gc[data-visible="10"] .gc-label,
+.gc[data-visible="10"] .gc-item[data-center="0"] .gc-icon,
+.gc[data-visible="10"] .gc-item[data-center="0"] .gc-label {
+  color: var(--room-text);
+}
+.gc[data-visible="10"] .gc-icon svg {
+  width: clamp(3.2rem, 3.8vw, 4.1rem);
+  height: clamp(3.2rem, 3.8vw, 4.1rem);
+}
+.gc[data-visible="10"] .gc-label {
+  font-size: clamp(0.78rem, 0.67rem + 0.32vw, 1rem);
+  letter-spacing: 0.1em;
+  padding: 0 0.65em 0 calc(0.65em + 0.1em);
+}
+.gc[data-visible="10"] .gc-label[data-long="1"] {
+  font-size: clamp(0.72rem, 0.62rem + 0.26vw, 0.9rem);
+  letter-spacing: 0.075em;
+}
+.gc[data-visible="10"] .gc-arrow--left {
+  right: calc(50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) + 0.8rem);
+}
+.gc[data-visible="10"] .gc-arrow--right {
+  left: calc(50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) + 0.8rem);
+}
+
+/* Töölaud/tööheaolu: desktopil pole küljenooli ega juhuslikku pööramist. */
+@media (min-width: 769px) {
+  .gc[data-desktop-arrows="0"] .gc-arrow {
+    display: none;
+  }
+}
+
 /* ---------- Käivituse faas 1: klaasid ilmuvad omal kohal, tühjadena,
    keskmine esimesena (~180 ms sammuga viide). MITTE libisemist. ---------- */
 @keyframes gc-ignite {
@@ -284,17 +345,16 @@ html[data-reduce-motion="1"] .gc-label {
 .gc-arrow {
   position: absolute;
   top: 46%;
-  translate: 0 -50%;
   z-index: 60;
   width: 3.6rem;
   height: 3.6rem;
   --icon-size: 1.6rem;
   color: var(--room-text-soft);
-  opacity: 0.85;
-}
-.gc-arrow:hover {
-  opacity: 1;
-  color: var(--room-text);
+  opacity: var(--gc-nav-opacity, 0);
+  pointer-events: var(--gc-nav-pointer, none);
+  transition:
+    opacity 520ms var(--ease-soft) 80ms,
+    translate 620ms var(--ease-soft) 80ms;
 }
 /* Optiline tsentreering (tellija): chevroni KOLMNURGA raskuskese
    nupu keskele — bbox-keskjoondus jätab tipu keskele ja keha kõrvale.
@@ -304,6 +364,10 @@ html[data-reduce-motion="1"] .gc-label {
 .gc-arrow--left {
   left: auto;
   right: calc(50% + var(--gc-w) * 1.56 + 0.9rem);
+  /* Algab ühe sammu võrra kaartide poole sees ja liigub valmisolekul
+     väljapoole — juhikud ei ilmu tühjade klaaside kõrvale. */
+  --gc-arrow-start-x: 1.1rem;
+  translate: var(--gc-arrow-offset, var(--gc-arrow-start-x)) -50%;
 }
 .gc-arrow--left svg {
   translate: -12%;
@@ -311,9 +375,41 @@ html[data-reduce-motion="1"] .gc-label {
 .gc-arrow--right {
   right: auto;
   left: calc(50% + var(--gc-w) * 1.56 + 0.9rem);
+  --gc-arrow-start-x: -1.1rem;
+  translate: var(--gc-arrow-offset, var(--gc-arrow-start-x)) -50%;
 }
 .gc-arrow--right svg {
   translate: 12%;
+}
+
+/* Kaardi kest ilmub enne, kuid navigeerimine alles koos ikoonide ja
+   siltidega. Alumine otseteede riba kasutab sama hetke kui ülaserva
+   peidetud juhtpaneel. */
+.gc-shortcuts {
+  opacity: var(--gc-shortcuts-opacity, 0);
+  pointer-events: var(--gc-shortcuts-pointer, none);
+  translate: -50% var(--gc-shortcuts-offset, 1rem);
+  transition:
+    opacity 520ms var(--ease-soft) 80ms,
+    translate 620ms var(--ease-soft) 80ms;
+}
+.room[data-power="on"][data-cards-ready="1"] .gc-arrow {
+  --gc-nav-opacity: 0.85;
+  --gc-nav-pointer: auto;
+  --gc-arrow-offset: 0;
+}
+.room[data-power="on"][data-cards-ready="1"] .gc-arrow:hover {
+  opacity: 1;
+  color: var(--room-text);
+}
+.room[data-power="on"][data-cards-ready="1"] .gc-shortcuts {
+  --gc-shortcuts-opacity: 1;
+  --gc-shortcuts-pointer: auto;
+  --gc-shortcuts-offset: 0;
+}
+html[data-reduce-motion="1"] .gc-arrow,
+html[data-reduce-motion="1"] .gc-shortcuts {
+  transition: none;
 }
 
 /* ---------- Asukohaviide (punktid; >5 paneeli) ---------- */
@@ -341,6 +437,151 @@ html[data-reduce-motion="1"] .gc-label {
   scale: 1.25;
 }
 
+/* ---------- Kolme kaardi vaate otseteed ----------
+   Punktirea asemel väike klaasdokk: aktiivne nimi annab orientiiri,
+   teised valikud jäävad rahulikeks ikoonideks. Hover/fookus näitab nime;
+   klõps avab sihtkoha kohe. Alamkomplekti Tagasi on alati eraldi vasakul. */
+.gc-shortcuts {
+  position: absolute;
+  left: 50%;
+  bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: min(48rem, calc(100vw - 2rem));
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(54, 39, 31, 0.5), rgba(24, 17, 14, 0.38));
+  box-shadow: 0 9px 28px rgba(8, 4, 2, 0.2), inset 0 1px rgba(255, 245, 235, 0.08);
+  backdrop-filter: blur(15px) saturate(0.86);
+  -webkit-backdrop-filter: blur(15px) saturate(0.86);
+}
+.gc-shortcut-track {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.gc-shortcut {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex: 0 0 auto;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding: 0 0.62rem;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  background: transparent;
+  color: rgba(246, 238, 230, 0.58);
+  cursor: pointer;
+  transition:
+    color 220ms var(--ease-soft),
+    background-color 220ms var(--ease-soft),
+    box-shadow 220ms var(--ease-soft),
+    transform 220ms var(--ease-soft);
+}
+.gc-shortcut:hover,
+.gc-shortcut:focus-visible {
+  color: var(--room-text);
+  background: rgba(255, 246, 236, 0.09);
+  transform: translateY(-1px);
+  outline: none;
+}
+.gc-shortcut:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.gc-shortcut[data-on="1"] {
+  color: var(--room-text);
+  background: rgba(255, 246, 236, 0.115);
+  box-shadow: inset 0 0 0 1px rgba(255, 247, 238, 0.1);
+}
+.gc-shortcut-icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+}
+.gc-shortcut-icon svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+.gc-shortcut-icon svg * {
+  stroke-width: 1.45;
+}
+.gc-shortcut-mark {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+}
+.gc-shortcut-text {
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 520;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition:
+    max-width 300ms var(--ease-soft),
+    margin-left 300ms var(--ease-soft),
+    opacity 220ms var(--ease-soft);
+}
+.gc-shortcut[data-on="1"] .gc-shortcut-text {
+  max-width: 11rem;
+  margin-left: 0.48rem;
+  opacity: 1;
+}
+.gc-shortcut-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.55rem);
+  translate: -50% 0.25rem;
+  width: max-content;
+  max-width: 13rem;
+  padding: 0.38rem 0.58rem;
+  border: 1px solid rgba(255, 245, 235, 0.1);
+  border-radius: 0.5rem;
+  background: rgba(22, 15, 12, 0.82);
+  color: var(--room-text);
+  box-shadow: 0 8px 22px rgba(8, 4, 2, 0.28);
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-soft), translate 180ms var(--ease-soft);
+}
+.gc-shortcut:not([data-on="1"]):hover .gc-shortcut-tooltip,
+.gc-shortcut:not([data-on="1"]):focus-visible .gc-shortcut-tooltip,
+.gc-shortcut--back:hover .gc-shortcut-tooltip,
+.gc-shortcut--back:focus-visible .gc-shortcut-tooltip {
+  translate: -50% 0;
+  opacity: 1;
+}
+.gc-shortcut--back {
+  color: rgba(246, 238, 230, 0.78);
+}
+.gc-shortcut-divider {
+  width: 1px;
+  height: 1.2rem;
+  flex: 0 0 auto;
+  background: rgba(255, 245, 235, 0.13);
+}
+html[data-reduce-motion="1"] .gc-shortcut,
+html[data-reduce-motion="1"] .gc-shortcut-text,
+html[data-reduce-motion="1"] .gc-shortcut-tooltip {
+  transition: none;
+}
+
 /* ---------- Mobiil ---------- */
 @media (max-width: 768px) {
   :root {
@@ -355,8 +596,45 @@ html[data-reduce-motion="1"] .gc-label {
   .gc-arrow {
     display: none; /* svaip + punktid */
   }
+  /* Nendes suurtes komplektides on mobiilil nooled siiski abiks; desktopi
+     peitmise valikust saab siin ühtlasi mobiilse nähtavuse signaal. */
+  .gc[data-desktop-arrows="0"] .gc-arrow {
+    display: grid;
+    top: 44%;
+    width: 3rem;
+    height: 3rem;
+  }
+  .gc[data-desktop-arrows="0"] .gc-arrow--left {
+    left: 0.45rem;
+    right: auto;
+  }
+  .gc[data-desktop-arrows="0"] .gc-arrow--right {
+    right: 0.45rem;
+    left: auto;
+  }
   .gc-dots {
     bottom: max(11%, env(safe-area-inset-bottom, 0px) + 8%);
+  }
+  .gc-shortcuts {
+    bottom: max(7%, env(safe-area-inset-bottom, 0px) + 4.5%);
+    max-width: calc(100vw - 1rem);
+    padding: 0.3rem;
+  }
+  .gc-shortcut-track {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gc-shortcut-track::-webkit-scrollbar {
+    display: none;
+  }
+  .gc-shortcut {
+    min-width: 2.15rem;
+    height: 2.15rem;
+    padding: 0 0.53rem;
+  }
+  .gc-shortcut-text,
+  .gc-shortcut-tooltip {
+    display: none;
   }
 }
 
@@ -384,7 +662,8 @@ html[data-reduce-motion="1"] .gc-label {
    ilma küljekaarte muutmata. Pargitud kaardid jäävad vaikimisi peidus
    (.gc-item[data-hidden="1"]{opacity:0}). */
 .room[data-info-open="1"] .gc-arrow,
-.room[data-info-open="1"] .gc-dots {
+.room[data-info-open="1"] .gc-dots,
+.room[data-info-open="1"] .gc-shortcuts {
   opacity: 0;
 }
 .room[data-info-open="1"] .room-carousel-wrap {
@@ -393,15 +672,19 @@ html[data-reduce-motion="1"] .gc-label {
 .room[data-login-open="1"] .room-carousel-wrap,
 .room[data-login-open="1"] .gc-arrow,
 .room[data-login-open="1"] .gc-dots,
+.room[data-login-open="1"] .gc-shortcuts,
 .room[data-card-page="1"] .room-carousel-wrap,
 .room[data-card-page="1"] .gc-arrow,
-.room[data-card-page="1"] .gc-dots {
+.room[data-card-page="1"] .gc-dots,
+.room[data-card-page="1"] .gc-shortcuts {
   pointer-events: none !important;
 }
 .room[data-login-open="1"] .gc-arrow,
 .room[data-login-open="1"] .gc-dots,
+.room[data-login-open="1"] .gc-shortcuts,
 .room[data-card-page="1"] .gc-arrow,
-.room[data-card-page="1"] .gc-dots {
+.room[data-card-page="1"] .gc-dots,
+.room[data-card-page="1"] .gc-shortcuts {
   opacity: 0;
 }
 
@@ -426,6 +709,17 @@ html[data-contrast="hc"] .gc-dot {
 html[data-contrast="hc"] .gc-dot[data-on="1"] {
   background: #ffffff;
   box-shadow: none;
+}
+html[data-contrast="hc"] .gc-shortcuts {
+  border: 1px solid #ffffff;
+  background: #15100d;
+  backdrop-filter: none;
+}
+html[data-contrast="hc"] .gc-shortcut {
+  color: #ffffff;
+}
+html[data-contrast="hc"] .gc-shortcut[data-on="1"] {
+  box-shadow: inset 0 0 0 2px #ffffff;
 }
 
 }

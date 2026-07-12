@@ -291,6 +291,7 @@ export default function MetallicPaint({
   tintColor = '#feb3ff',
   tintPulse = 0,
   radial = 0,
+  preserveDrawingBuffer = false,
   onReady
 }) {
   const canvasRef = useRef(null);
@@ -305,6 +306,7 @@ export default function MetallicPaint({
   const speedRef = useRef(speed);
   const mouseRef = useRef({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
   const mouseAnimRef = useRef(mouseAnimation);
+  const firstFrameReadyRef = useRef(false);
 
   const [ready, setReady] = useState(false);
   const [textureReady, setTextureReady] = useState(false);
@@ -316,20 +318,21 @@ export default function MetallicPaint({
     mouseAnimRef.current = mouseAnimation;
   }, [mouseAnimation]);
 
-  // "Valmis"-signaal: tekstuur on töödeldud (processImage) ja üles laetud
-  // ehk metallik-muster hakkab renderduma. Vanem saab siis metalli SUJUVALT
-  // sisse tuua — enne seda pole musta/tühja alust näha (tellija 06.07).
+  // "Valmis"-signaal antakse alles pärast esimest päriselt joonistatud
+  // WebGL-kaadrit. Tekstuuri üleslaadimine üksi ei taga, et canvas ei näita
+  // värskendusel hetkeks brauseri puhastamata (heledat) puhvert.
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
-  useEffect(() => {
-    if (textureReady) onReadyRef.current?.();
-  }, [textureReady]);
 
   const initGL = useCallback(() => {
     const canvas = canvasRef.current;
     if (!canvas) return false;
 
-    const gl = canvas.getContext('webgl2', { antialias: true, alpha: true });
+    const gl = canvas.getContext('webgl2', {
+      antialias: true,
+      alpha: true,
+      preserveDrawingBuffer
+    });
     if (!gl) return false;
 
     const compile = (src, type) => {
@@ -369,6 +372,8 @@ export default function MetallicPaint({
     gl.bufferData(gl.ARRAY_BUFFER, verts, gl.STATIC_DRAW);
 
     gl.useProgram(prog);
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
     const pos = gl.getAttribLocation(prog, 'a_position');
     gl.enableVertexAttribArray(pos);
     gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
@@ -378,7 +383,7 @@ export default function MetallicPaint({
     uniformsRef.current = uniforms;
 
     return true;
-  }, []);
+  }, [preserveDrawingBuffer]);
 
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -478,6 +483,7 @@ export default function MetallicPaint({
   useEffect(() => {
     if (!ready || !imageSrc) return;
 
+    firstFrameReadyRef.current = false;
     setTextureReady(false);
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -572,6 +578,13 @@ export default function MetallicPaint({
 
       gl.uniform1f(u.u_time, animTimeRef.current);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      if (!firstFrameReadyRef.current) {
+        // onReady käivitab vanema opacity-ülemineku. Oota GPU lõpetamist,
+        // et esimene nähtav kaader oleks juba metall, mitte tühi canvas.
+        gl.finish();
+        firstFrameReadyRef.current = true;
+        onReadyRef.current?.();
+      }
       rafRef.current = requestAnimationFrame(render);
     };
 

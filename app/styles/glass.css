@@ -99,9 +99,10 @@
   /* SVG-bend backdrop-filter jätab ANIMEERITUD ruumi-lava kohal Chromiumis
      ghost-jälje (hover'i järel jääb hägu püsima ja kuhjub). Ruumi klaasnupud,
      mis hõljuvad liikuva lava kohal (⏻ toide, kõnni-heli, jäta vahele),
-     kasutavad seetõttu stabiilset plain-blurri (baasreegel). Loori kohal
-     olev SISENEN-nupp ei liigu ega glitchi — tema bend jääb alles. */
-  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :where(.glass-btn:not(.room-skip), .glass-iconbtn:not(.room-power):not(.room-walk-sound):not(.room-walk-next):not(.room-quick-btn), button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"]) {
+     kasutavad seetõttu stabiilset plain-blurri (baasreegel). SISENEN on
+     avakuval puhas tekstiline lävi, mitte klaasnupp: bend tekitaks selle
+     ümber nähtava ristküliku ja lõikaks osakestest valgusringi. */
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :where(.glass-btn:not(.room-skip):not(.room-veil-enter), .glass-iconbtn:not(.room-power):not(.room-walk-sound):not(.room-walk-next):not(.room-quick-btn), button[data-variant]:not(.room-veil-enter), a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"]) {
     -webkit-backdrop-filter: url(#lg-bend);
     backdrop-filter: url(#lg-bend);
   }

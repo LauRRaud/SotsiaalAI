@@ -1,7 +1,7 @@
 # Kovisioon — Etapp 4: mõistmise süvendamine
 
 **Dokumendi staatus:** detailne funktsionaalne ja metoodiline spetsifikatsioon  
-**Versioon:** 1.0  
+**Versioon:** 1.1 — lisatud rollipõhised vaated (§53.10), parem-paneeli ja värava tööjaotus (§53.11), lõpliku pildi referentsvaade „perspektiivivälja lõppvaade” (§53.12), kahe eristatud aja nõue (§18.6) ning täiendatud visuaalse vastuvõtu kriteeriume (tellija pildikriitika 11.07 põhjal)  
 **Seotud selgroodokument:** `uue-kovisiooni-funktsiooni-visioon-ja-8-etapiline-selgroog.md`  
 **Eelmine dokument:** `kovisioon-etapp-3-juhtumi-uurimine.md`  
 **Seotud sisendfunktsioon:** `teemaseeme-professionaalne-funktsioon.md`  
@@ -696,6 +696,18 @@ Soovituslikult 1–3 minutit.
 
 See aeg ei ole uus küsimustevoor.
 
+## 18.6. Kaks eristatud aega
+
+Ülemises alas on alati kaks selgelt eristatud aega:
+
+- **Kohtumine** — kohtumise kogutaimer (kulunud aeg);
+- **Etapp 4** — etapi kulunud aeg, vajadusel koos soovitusliku ajaga
+  (`x / soovituslik`), faasi ajal faasi nimi (nt „Vaikne refleksioon”).
+
+Ebamääraseid ajasilte (nt „Aeg valmis”) ei kasutata. **Paus** ja
+**Vajan tuge** on eraldi toimingutena kättesaadavad kogu etapi vältel
+(nagu kõigis aktiivsetes etappides).
+
 ---
 
 # 19. Hääl ja vestlus
@@ -801,6 +813,10 @@ Refleksioonikompass on kokkupandav abikiht.
 See ei ole kohustuslik küsimustik.
 
 Kuvatakse korraga ainult 3–5 juhtumi ja grupi jaoks sobivat läätse.
+
+Läätsede valik lähtub tööfookusest: kui tööfookus puudutab rolle,
+piire või vastutuse jaotust, kuulub valikusse kindlasti §21.6
+(„Milline roll või piir on nähtav?”).
 
 ## 21.1. Mida ma märkasin?
 
@@ -2552,7 +2568,135 @@ All:
 - tähenduseta ühendusjooni;
 - juhtumi tooja privaatset resonantsi ühises vaates;
 - korraga mitut aktiivset peegeldust;
-- ühte suurt konsensuslikku mustrit ilma hüpoteesi märgita.
+- ühte suurt konsensuslikku mustrit ilma hüpoteesi märgita;
+- kaht etapi olekut korraga (nt olek „Mari kuulab” ja aktiivne
+  etapivärav samas vaates — kui ring veel käib, on värav mitteaktiivne);
+- „Kuula ainult” nuppu lõppolekus (see on etapi ALGUSE režiimikinnitus);
+- defineerimata ajasilti (nt „Aeg valmis”) — vt §18.6;
+- peegelduskaarti ilma autori ja tüübita;
+- peegelduskaarti ilma objektiseoseta, kui seos on olemas
+  (jalus „Seotud: …”, mitte dekoratiivjoon).
+
+## 53.10. Rollipõhised vaated
+
+Üks ekraanivaade (ja üks pilt) kujutab alati **ühte rolli ja ühte
+olekut**. Eri rollide personaalsed toimingud ei ole kunagi korraga
+nähtavad.
+
+| Element | Juhtumi tooja | Sessiooni juht | Kaardi haldaja | Grupiliige |
+|---|---|---|---|---|
+| „Olen valmis kuulama” (etapi alguses) | ✓ | – | – | – |
+| Privaatsed resonantsitoimingud (§39.2) | ✓ | – | – | – |
+| Lõpurefleksioon / „Olen valmis võimalusi kuulama” | ✓ | – | – | – |
+| Peegelduse mustand, „Vali põhipeegeldus”, „Pargi võimaluseks” | – | – | – | ✓ |
+| „Ava järgmine peegeldus”, järjekorra haldus, ajamärguanded | – | ✓ | – | – |
+| „Tagasi üheks täpsustuseks” (§38) | – | ✓ | – | – |
+| Peegelduse sidumine, virnastamine, kõrvutamine | – | – | ✓ | – |
+| „Liigu võimaluste loomisse” + puuduvad tingimused | – | ✓ | – | – |
+| Olekud (kuulamisrežiim, ring, pargitud ideede arv) | ✓ | ✓ | ✓ | ✓ |
+| Paus ja Vajan tuge (eraldi toimingud) | ✓ | ✓ | ✓ | ✓ |
+
+Iga ootel oleku juures on nähtav **tegutseja**, mitte ainult seisund:
+
+- Kuulamisrežiim → `Mari kuulab` (ringi ajal) või
+  `Mari on valmis võimalusi kuulama` (lõpus);
+- Resonants → `Mari mõtiskleb kuuldu üle`;
+- Etapi avamine → `Jaanika avab järgmise etapi`.
+
+## 53.11. Parem-paneeli ja värava tööjaotus
+
+Et vältida dubleerimist:
+
+**Paremal** kuvatakse ainult:
+
+- refleksioonikompass (kokkupandav, 3–5 läätse);
+- etapi praeguse oleku juhis (üks-kaks lauset);
+- rollipõhised vastutused, nt:
+  - Mari võtab kuuldu vastu;
+  - Jaanika avab järgmise etapi.
+
+**All** kuvatakse ainult üks õhuke etapivärav:
+
+> Peegeldusring lõpetatud · {{n}} võimaluseideed pargitud ·
+> Mari on valmis võimalusi kuulama
+
+ja selle kõrval põhinupp **Liigu võimaluste loomisse** (mitteaktiivne,
+kuni tingimused on täidetud). Pargitud ideede loendur (§37.3) elab
+väraval/olekureal, MITTE refleksioonikompassi sees. Detailne olekuloend
+elab kihtides, mis avanevad värava puudutamisel.
+
+## 53.12. Referentsvaade — lõpliku pildi kaanon
+
+Lõplik 4. etapi pilt kannab nime **„Etapp 4 — perspektiivivälja
+lõppvaade”** ja kujutab **sessiooni juhi (Jaanika) vaadet pärast
+peegeldusringi ja Mari resonantsiaega, valmis 5. etappi liikuma**
+(olek 9). Aktiivse tööhetke jaoks (üks aktiivne peegeldus autori ja
+tüübiga keskel, §53.4) võib olla eraldi pilt — see EI ole kaanon.
+
+Olukord pildil:
+
+- kaks eristatud aega (§18.6): `Kohtumine 01:12:40` ja `Etapp 4 · 18:42`;
+  silti „Aeg valmis” EI OLE;
+- **Paus** ja **Vajan tuge** on eraldi toimingutena nähtavad;
+- vaate roll on tuvastatav (Jaanika on rollide paneelis märgitud
+  „(sina)”);
+- etapirada: etapid 1–3 lõpetatud (✓), etapp 4 aktiivne;
+- juhtumikaardil on olek
+  `Juhtumi tooja · Mari Mets · kuulamisrežiim lõpetatud ·
+  valmis võimalusi kuulama` — MITTE „Mari kuulab” ega „Kuula ainult”
+  nupp;
+- etapi juhis on ülemineku oma: „Oleme juhtumit vaadanud mitmest
+  küljest. Järgmisena loome erinevaid võimalikke teid.” — mitte
+  aktiivse ringi juhis;
+- juhtumi tuum on MUUTUMATA pealkirjaga „Katkendlik kooliskäimine”;
+  tööfookus on 3. etapis täpsustatud **uuritud tööfookus**: „Kuidas
+  saan koos lapse, vanema ja kooliga selgitada vastutuse jaotust nii,
+  et lapse enda kogemus oleks nähtav ja ma ei võtaks kõiki samme enda
+  kanda?”;
+- perspektiiviväljas on viis peegelduskaarti, igaühel tüüp, AUTOR,
+  ettevaatlik sõnastus ja objektiseose jalus:
+
+  1. **VAATLUS — Lapse hääle nähtavus** · Aveli Kivi · jagatud
+     peegeldus — „Lapse enda sõnastatud kogemus lisandus ühisele
+     lõuendile alles uurimisetapis. Täiskasvanute vaated olid nähtavad
+     juba loo avamisel.” — Seotud: lapse enda vaade;
+  2. **VÕIMALIK MUSTER — Vastutuse koondumine** · Liisa Laan ·
+     võimalik tõlgendus — „Mitme kokkuleppe järel on kontaktide
+     algatamine ja täitmise jälgimine liikunud juhtumi tooja kanda.
+     Üks võimalik vaade on, et tema suurem koordineerimine ja teiste
+     väiksem aktiivsus mõjutavad teineteist.” — Seotud: vastutuse
+     jaotus;
+  3. **VÕIMALIK VAJADUS — Etteaimatavus** · Timo Tamm · võimalik
+     vajadus — „Üks võimalik vajadus võib olla suurem etteaimatavus.
+     Väiksem õpperühm ja ette teada päevakava on olnud seotud
+     stabiilsema osalemisega.” — Seotud: lapse enda vaade;
+  4. **PINGE** · Marko Suur · nähtav pinge — „Kooliskäimise
+     järjepidevus ↔ lapse koormus, autonoomia ja tempo.” — Seotud:
+     tööfookus;
+  5. **TOIMIV ERAND — Mis juba toetas** · Aveli Kivi · jagatud
+     peegeldus — „Kahel perioodil oli osalemine stabiilsem, kui
+     vanaema toetas hommikurutiini ja päevakava oli selgem.” —
+     Seotud: toimiv hommikurutiin;
+
+- refleksioonikompassis on täpselt viis läätse: Mida ma märkasin? ·
+  Milline pinge on nähtav? · Milline roll või piir on nähtav? ·
+  Milline vajadus võib olla oluline? · Milline vaade on puudu?;
+- parem-paneel ja värav järgivad §53.11 tööjaotust; pargitud ideede
+  loendur (`3 võimaluseideed on hilisemaks pargitud`) on väraval,
+  mitte kompassis;
+- värava kompaktne olek: `Peegeldusring lõpetatud · 3 võimaluseideed
+  pargitud · Mari on valmis võimalusi kuulama` ja selle kõrval
+  aktiivne **Liigu võimaluste loomisse →**;
+- kui Mari valmisolek puuduks, oleks nupp mitteaktiivne põhjusega:
+  „Mari vajab enne jätkamist resonantsiaega.” (§48.5).
+
+Ruumilisus:
+
+- taustamaal, hõljuvad klaaskaardid ja vaba ruum säilivad (olemasoleva
+  pildi tugevused);
+- vaatluskaardid on juhtumi tuumale lähemal, tõlgendus- ja
+  mustrikaardid kaugemal (§53.5);
+- kaartide vahel EI ole dekoratiivjooni — seosed on jalustes.
 
 ---
 
@@ -2564,7 +2708,13 @@ All:
 
 # Mõistmise süvendamine
 
+Aktiivse ringi ajal:
+
 > Juhtumi tooja kuulab. Grupp jagab märkamisi ja võimalikke vaatenurki. Me ei küsi ega lahenda veel.
+
+Lõppolekus (peegeldusring lõpetatud, §53.12):
+
+> Oleme juhtumit vaadanud mitmest küljest. Järgmisena loome erinevaid võimalikke teid.
 
 ## 54.2. Kuulamisrežiim
 
@@ -2906,6 +3056,15 @@ See ei ole veel lahendus.
 28. Klaaspaneelid on taustast heledamad ja päriselt läbipaistvad.
 29. Aktiivne peegeldus on visuaalne hero.
 30. Kõik nähtavad elemendid täidavad selles dokumendis kirjeldatud ülesannet.
+31. Pilt kujutab korraga ühte rolli ja ühte olekut (§53.10); kaht etapi olekut korraga ei kuvata.
+32. Kohtumise koguaeg ja etapi aeg on kaks eristatud aega; defineerimata ajasilti pole (§18.6).
+33. Paus ja Vajan tuge on nähtavad eraldi toimingutena.
+34. Igal jagatud peegelduskaardil on autor, tüüp ja objektiseose jalus „Seotud: …”.
+35. Peegelduste sõnastused on võimalikkuse vormis (§22 lausealgused); teise inimese vajadust ei esitata kindla väitena.
+36. Refleksioonikompassis on korraga kuni viis läätse; rollipõhise tööfookuse korral on nende seas §21.6.
+37. Parem-paneel ja värav ei dubleeri sama olekuinfot (§53.11); pargitud ideede loendur on väraval.
+38. Iga ootel oleku juures on nähtav tegutseja, mitte ainult seisund.
+39. Lõppolekus ei ole „Kuula ainult” nuppu; kui ring veel käib, on etapivärav mitteaktiivne.
 
 ---
 

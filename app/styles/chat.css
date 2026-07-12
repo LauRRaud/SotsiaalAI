@@ -594,7 +594,207 @@ button[aria-controls="chat-window-scroll"] {
   color: var(--text-soft);
 }
 
+/* ============================================================
+   ÕHUS HÕLJUV VESTLUSVÄLI
+   Väline klaaskast kaob PanelFrame'is. Siin muutuvad sõnumid, sisend ja
+   juhtnupud üheks ruumiliseks signaaliväljaks: vaba tüpograafia, soe
+   orbitaalne valgus ning alumine sisend-horisont.
+   ============================================================ */
+.panel-scrim[data-conversation="1"] [data-chat-container] {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+/* Hajus valgusruum — ei moodusta ühtegi kasti ega pinda. */
+.panel-scrim[data-conversation="1"] [data-chat-container]::before {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  inset: 3% -4% 4%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 24%, rgba(225, 155, 105, 0.11), transparent 25%),
+    radial-gradient(circle at 76% 62%, rgba(252, 211, 171, 0.065), transparent 29%),
+    radial-gradient(circle at 48% 96%, rgba(188, 105, 62, 0.11), transparent 28%);
+  filter: blur(10px);
+}
+/* Varasem suur orbitaalkaar osutus liiga dekoratiivseks ja tekitas
+   ekraanile uue nähtava "raami". Hõljuv väli jääb teadlikult kaareta. */
+.panel-scrim[data-conversation="1"] [data-chat-container]::after {
+  content: none;
+}
+.panel-scrim[data-conversation="1"] [data-chat-container] > main {
+  width: min(58rem, 100%);
+  margin-inline: auto;
+}
+.panel-scrim[data-conversation="1"] #chat-window-scroll {
+  gap: clamp(1.1rem, 2.4lvh, 1.7rem);
+  padding: clamp(1.5rem, 3.5lvh, 2.8rem) clamp(2.2rem, 5vw, 5rem) 1.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 235, 216, 0.15) transparent;
+  mask-image: linear-gradient(to bottom, transparent 0, #000 2rem, #000 calc(100% - 2.8rem), transparent 100%);
+}
+
+/* Assistendi vastus on vabalt hõljuv tekst: ainult väike signaalpunkt ja
+   hääbuv telg, mitte mull ega klaaspind. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
+  max-width: min(84%, 50rem);
+  padding: 0.25rem 0.4rem 0.7rem 2.35rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-shadow: 0 2px 24px rgba(8, 4, 2, 0.42);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]::before {
+  content: "";
+  position: absolute;
+  left: 0.72rem;
+  top: 1.02rem;
+  width: 0.46rem;
+  height: 0.46rem;
+  border-radius: 50%;
+  background: #f5d4b7;
+  box-shadow: 0 0 0 0.35rem rgba(238, 180, 132, 0.07), 0 0 1.6rem rgba(240, 167, 111, 0.4);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]::after {
+  content: "";
+  position: absolute;
+  left: 0.93rem;
+  top: 1.75rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: linear-gradient(rgba(244, 199, 162, 0.24), transparent);
+}
+/* Kasutaja sõnum on väike soe ankur, mitte teine suur paneel. */
+.panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
+  max-width: min(68%, 38rem);
+  padding: 0.72em 1.05em;
+  border: 0;
+  border-radius: 1.2rem 1.2rem 0.38rem 1.2rem;
+  background: linear-gradient(135deg, rgba(105, 63, 42, 0.88), rgba(61, 37, 29, 0.9));
+  box-shadow: 0 14px 34px rgba(8, 4, 2, 0.24), inset 0 1px rgba(255, 231, 207, 0.08);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role] {
+  font-size: clamp(1rem, 0.92rem + 0.25vw, 1.12rem);
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role] [aria-label] > button {
+  padding: 0.28rem;
+  margin: 0.35rem 0.5rem 0 0;
+  border: 0;
+  background: transparent;
+  opacity: 0.65;
+}
+.panel-scrim[data-conversation="1"] [role="article"][data-role] [aria-label] > button:hover {
+  border: 0;
+  background: transparent;
+  opacity: 1;
+}
+
+/* Sisend-horisont: mitte lahter, vaid pehme valgusjoon. */
+.panel-scrim[data-conversation="1"] form:has(#chat-input) {
+  width: min(38rem, calc(100% - clamp(1rem, 3vw, 2rem)));
+  margin-inline: auto;
+  padding: clamp(0.65rem, 1.5lvh, 1rem) 0 0.15rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input)::before {
+  content: "";
+  position: absolute;
+  left: 11%;
+  right: 7%;
+  bottom: -1.15rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(178, 91, 47, 0.09), transparent 68%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child {
+  left: 0.55rem;
+  bottom: 0.46rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child button {
+  color: rgba(246, 226, 207, 0.7);
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div {
+  position: relative;
+  gap: 0.45rem;
+  padding: 0.5rem 0.45rem 0.58rem 3.15rem;
+  border: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, transparent, rgba(18, 11, 8, 0.56) 10%, rgba(18, 11, 8, 0.68) 79%, transparent);
+  box-shadow: none;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div::after {
+  content: "";
+  position: absolute;
+  left: 1.8rem;
+  right: 0.4rem;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246, 203, 169, 0.32) 14%, rgba(246, 203, 169, 0.12) 82%, transparent);
+  transition: opacity var(--dur-fast) var(--ease-soft), box-shadow var(--dur-fast) var(--ease-soft);
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:focus-within {
+  border: 0;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div:focus-within::after {
+  opacity: 1;
+  box-shadow: 0 0 1.1rem rgba(230, 147, 91, 0.38);
+}
+.panel-scrim[data-conversation="1"] #chat-input {
+  min-height: 1.75em;
+  font-size: 1.05rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"] {
+  color: rgba(249, 239, 229, 0.9);
+  background: rgba(29, 19, 15, 0.82);
+  border: 1px solid rgba(255, 238, 221, 0.2);
+  box-shadow: 0 7px 20px rgba(8, 4, 2, 0.28), inset 0 1px rgba(255, 245, 235, 0.08);
+  backdrop-filter: none;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"]:hover {
+  color: #fff7ef;
+  background: rgba(50, 32, 24, 0.9);
+  border-color: rgba(255, 238, 221, 0.34);
+  box-shadow: 0 8px 22px rgba(8, 4, 2, 0.32), inset 0 1px rgba(255, 245, 235, 0.12);
+}
+.panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"] {
+  bottom: 5.6rem;
+  border: 0;
+  background: rgba(36, 22, 16, 0.72);
+  box-shadow: 0 10px 28px rgba(8, 4, 2, 0.28);
+}
+
 @media (max-width: 768px) {
+  .panel-scrim[data-conversation="1"] #chat-window-scroll {
+    gap: 1rem;
+    /* Mobiilse orbitaalnavi sildid elavad ülaservas; vestlus algab nende
+       ohutsoonist allpool, mitte "Profiil" teksti alt. */
+    padding: clamp(5rem, 13vh, 6.8rem) 0.65rem 1.1rem;
+  }
+  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
+    max-width: 94%;
+    padding-left: 1.85rem;
+  }
+  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]::before {
+    left: 0.35rem;
+  }
+  .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]::after {
+    left: 0.56rem;
+  }
+  .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
+    max-width: 84%;
+  }
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) {
+    width: calc(100% - 0.7rem);
+  }
+  .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:has(#chat-input) > div {
+    padding-left: 3.05rem;
+    background: linear-gradient(90deg, transparent, rgba(18, 11, 8, 0.7) 8%, rgba(18, 11, 8, 0.78) 84%, transparent);
+  }
   [role="article"][data-role] {
     max-width: 88%;
   }

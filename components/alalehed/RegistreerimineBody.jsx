@@ -20,11 +20,10 @@ import { pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 // Funktsionaalne klass: CenteredScrollPicker kasutab ".register-step" itemSelector'ina.
 const registerStepClassName = "register-step";
-const isRegistrationOpen = !["false", "0", "off"].includes(
-  String(process.env.NEXT_PUBLIC_REGISTRATION_OPEN || "false")
-    .trim()
-    .toLowerCase(),
-);
+/* Avalik registreerimine jääb kuni ametliku avamiseni kooditasandil
+   suletuks. Admin saab lehe paigutust serveripoolse rollikontrolli järel
+   vaadata, kuid vormi esitada ei saa. */
+const isRegistrationOpen = false;
 const REGISTER_DRAFT_STORAGE_KEY = "sotsiaalai_register_draft";
 const initialForm = {
   email: "",

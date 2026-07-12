@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 function isLocalHostname(hostname = "") {
   const h = String(hostname).toLowerCase();
@@ -31,6 +32,23 @@ export async function proxy(req) {
   const {
     pathname
   } = req.nextUrl;
+
+  if (pathname === "/registreerimine") {
+    const token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET
+    });
+    const admin =
+      token?.isAdmin === true ||
+      String(token?.role || "").toUpperCase() === "ADMIN";
+    if (!admin) {
+      const destination = req.nextUrl.clone();
+      destination.pathname = "/";
+      destination.search = "";
+      return NextResponse.redirect(destination, 307);
+    }
+  }
+
   const m = pathname.match(/^\/(et|ru|en)(\/.*)?$/);
   if (m) {
     const locale = m[1];
@@ -48,5 +66,5 @@ export async function proxy(req) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: ["/(et|ru|en)", "/(et|ru|en)/:path*"]
+  matcher: ["/registreerimine", "/(et|ru|en)", "/(et|ru|en)/:path*"]
 };

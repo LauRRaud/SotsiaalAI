@@ -1,0 +1,6 @@
+- generic [active] [ref=e1]:
+  - link "Liigu sisu juurde" [ref=e4]:
+    - /url: "#main"
+  - main [ref=e5]:
+    - main "SotsiaalAI logo" [ref=e6]:
+      - img "SotsiaalAI" [ref=e8]

@@ -54,6 +54,7 @@
       "submit": "Sign in",
       "forgot": "Forgot PIN?",
       "register_link": "Create account",
+      "register_link_closed": "Create account — coming soon",
       "otp_title": "Confirm sign-in",
       "otp_description": "We sent a confirmation to {email}. Open the email and click the confirmation link.",
       "otp_spam_hint": "If the email landed in Spam, mark it as not spam.",
@@ -4130,7 +4131,7 @@
     "p8": "SotsiaalAI is developed as a social enterprise and a social innovation initiative. We combine technology with social field practice so that finding support and everyday work are clearer and more accessible. In developing the platform we hold safe use, data protection and clear rules of use as essential."
   },
   "room": {
-    "loading_line": "A room where social-field knowledge lives in one place.",
+    "loading_line": "Everything begins with clarity.",
     "skip": "Skip",
     "skip_to_content": "Skip to content",
     "menu_label": "Main menu",
@@ -4147,7 +4148,7 @@
     "admin_acceptances": "Acceptances",
     "walk_1": "Whether you come with a life question, as a social work specialist or as a service provider — step inside.",
     "walk_2a": "Welcome.",
-    "walk_2b": "Everything here is arranged around you.",
+    "walk_2b": "The platform is under development and will open soon.",
     "walk_3a": "Ask about services, benefits, rights or professional practice.",
     "walk_3b": "Draft applications and documents — and talk with whoever you need.",
     "walk_4a": "Your steps along the journey are laid out clearly.",

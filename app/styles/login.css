@@ -177,10 +177,10 @@
   display: grid;
   grid-template-columns: repeat(3, max-content);
   justify-content: center;
-  /* Veergude vahe laiem (tellija 07.07: "nupud veidi laiemalt") — MIN
-     jääb 1rem'i, et väikseim telefon (kaardi siselaius napp) ei ületaks;
-     desktop saab avarama vahe. */
-  gap: clamp(0.7rem, 1.8vh, 1.05rem) clamp(1rem, 4vw, 2.15rem);
+  /* Horisontaalne rütm EI kasuta enam 4vw: see ajas desktopil ringid
+     liiga laiali, samal ajal kui mobiil kukkus miinimumvahesse. Desktopil
+     on klahvistik nüüd kompaktsem; telefon saab allpool eraldi avarama vahe. */
+  gap: clamp(0.7rem, 1.8vh, 1.05rem) clamp(1.2rem, 1.5vw, 1.55rem);
   justify-items: center;
   padding: 0;
 }
@@ -323,6 +323,16 @@
 .login-register-link:hover {
   color: var(--text-warm);
   text-shadow: 0 0 18px rgba(255, 252, 246, 0.45);
+}
+.login-register-link[aria-disabled="true"] {
+  cursor: default;
+  color: var(--text-dim);
+  opacity: 0.76;
+  text-shadow: none;
+}
+.login-register-link[aria-disabled="true"]:hover {
+  color: var(--text-dim);
+  text-shadow: none;
 }
 
 /* Abipopover (?) — TUME ja loetav klahvistiku peal (tellija 07.07:
@@ -492,6 +502,9 @@
     width: min(94vw, 400px);
     top: 50%;
     max-height: 92lvh;
+  }
+  .login-modal-shell [role="group"] {
+    column-gap: clamp(1.35rem, 6vw, 1.6rem);
   }
 }
 

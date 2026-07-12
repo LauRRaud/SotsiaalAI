@@ -176,6 +176,30 @@ Kohtumise tasandil hoitakse:
 - juhtumite järjekorda;
 - kohtumise koguaega.
 
+### Kohtumise avaring — „Kuidas on vahepeal läinud?”
+
+(Lisatud 11.07 auditi järel; metoodiline alus: kovisiooni-juhend.docx
+kohtumise struktuur p 2, baasmudeli eeletapp.)
+
+Kohtumise alguses, ENNE esimese juhtumi 1. etappi, kuulatakse lühidalt
+eelmiste kohtumiste juhtumiomanikke, kelle Teemaseeme on olekus
+**Järelvaates**:
+
+- süsteem kuvab kohtumise tasandil kompaktsed järelvaatekaardid
+  (sama vorming ja skaala mis etapi 1 §19.2: tehtud / osaliselt tehtud /
+  tegemata / pole enam asjakohane / vajan veel aega + üks valikuline
+  üldistatud lause);
+- iga omanik räägib kuni 1–2 minutit;
+- juhtumit EI avata uuesti ega lahendata edasi — ring on edenemise
+  märkamine, mitte uus arutelu;
+- kui ühelgi seemnel pole saabunud järelvaadet, ringi ei kuvata
+  (tühja kaarti ei ole — sama reegel mis §19.1 etapi 1 spec'is).
+
+See ring on KOHTUMISE tasandi element ega kuulu ühegi üksiku juhtumi
+kaheksaetapilisse voogu. Kui kohtumisel käsitletav juhtum on sama
+Teemaseemne uus ring, käsitleb selle järelvaadet 1. etapp ise (etapi 1
+spec §19).
+
 ## 5.2. Ühe juhtumi kaheksaetapiline voog
 
 Igal juhtumil on:
@@ -889,10 +913,36 @@ VÕIMALUS: valmistada ette võrgustikukohtumine
     ← takistus: spetsialistide ajagraafikud
 ```
 
+## Jõustamisring
+
+(Lahtine otsus LAHENDATUD 11.07 auditiga: jõustamisrituaal kuulub
+6. etappi. Metoodiline alus: baasmudeli valikuline lisaetapp
+„Juhtumiomaniku võimestamine” (Kaljakin) ja kovisiooni-juhend.docx
+soovitus „jõustav ressursside etapp sobib lisada igale mudelile”.)
+
+Etapi lõpus, pärast ressursside sidumist võimalustega, toimub
+valikuline kuid soovituslik jõustamisring:
+
+- iga grupiliige ütleb kordamööda ühe lause vormis:
+
+> **„Mina usun, et sa saavutad soovitu, sest …”**
+
+- lause lõpetab KONKREETNE selles sessioonis märgatud tugevus või
+  ressurss (mitte üldine kiitus — sama reegel mis ressursikaartidel);
+- juhtumi tooja ainult tänab ega kommenteeri (sama rituaal mis
+  3. etapi „Aitäh” — vastu ei vaielda, ei täpsustata, ei hinnata);
+- lause sisu võib grupiliige või kaardi haldaja kanda lõuendile
+  juhtumi tooja sisemise ressursina; kandmise kinnitab juhtumi tooja;
+- ring on juhtumi toojale vabatahtlik — ta võib selle vahele jätta,
+  ilma et peaks põhjendama;
+- ringi ei kasutata kohatu kiitmisena (hinnangulise käitumise alaliik
+  metoodilistes allikates) — lause peab põhinema nähtul.
+
 ## Väljund
 
 - võimalustega seotud toed;
 - nähtavad tingimused ja takistused;
+- jõustamisringi märgatud tugevused, kui ring toimus;
 - realistlikum alus juhtumi tooja valikuks.
 
 ---

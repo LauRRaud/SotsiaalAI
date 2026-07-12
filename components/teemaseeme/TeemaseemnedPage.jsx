@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Link from "next/link";
 
 /**
@@ -147,6 +147,19 @@ const FILTERS = [
   { key: "minu", label: "Minu seemned" }
 ];
 
+const CARD_NUDGE = 14;
+const CARD_NUDGE_LARGE = 48;
+const CARD_MIN_WIDTH = 288;
+const CARD_MIN_HEIGHT = 360;
+const CARD_MAX_WIDTH = 760;
+const CARD_MAX_HEIGHT = 720;
+const CARD_RESIZE_STEP = 16;
+const CARD_RESIZE_STEP_LARGE = 48;
+
+function clampNumber(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
 function nextSeedId(seeds) {
   const highest = seeds.reduce((max, seed) => {
     const match = /^uus-(\d+)$/.exec(String(seed?.id || ""));
@@ -163,6 +176,16 @@ export default function TeemaseemnedPage() {
   const [helpOpen, setHelpOpen] = useState(false);
   const [detailSeed, setDetailSeed] = useState(null); // grupiliikme vaade üldistusele
   const [shareSeed, setShareSeed] = useState(null); // omaniku jagamiskiht
+  const [cardOffsets, setCardOffsets] = useState({});
+  const [cardSizes, setCardSizes] = useState({});
+  const [movingSeedId, setMovingSeedId] = useState(null);
+  const [resizingSeedId, setResizingSeedId] = useState(null);
+  const [frontSeedId, setFrontSeedId] = useState(null);
+  const [layoutNotice, setLayoutNotice] = useState("");
+  const spatialBoundsRef = useRef(null);
+  const cardRefs = useRef(new Map());
+  const dragRef = useRef(null);
+  const resizeRef = useRef(null);
 
   /* --- Loomisvaate olek (§33.5: ausad algolekud — kõik valimata) --- */
   const [gate, setGate] = useState(null); // etapp 0 vastus
@@ -269,6 +292,298 @@ export default function TeemaseemnedPage() {
     return c;
   }, [seeds]);
 
+  const hasAdjustedCards = useMemo(
+    () =>
+      Object.values(cardOffsets).some((offset) => offset.x !== 0 || offset.y !== 0) ||
+      Object.keys(cardSizes).length > 0,
+    [cardOffsets, cardSizes]
+  );
+
+  function getCardOffset(seedId) {
+    return cardOffsets[seedId] || { x: 0, y: 0 };
+  }
+
+  function getCardSize(seedId) {
+    return cardSizes[seedId] || null;
+  }
+
+  function getCardBounds(cardElement, currentOffset) {
+    const spatialBoundsElement = spatialBoundsRef.current;
+    if (!spatialBoundsElement || !cardElement) return null;
+
+    const spatialBoundsRect = spatialBoundsElement.getBoundingClientRect();
+    const cardRect = cardElement.getBoundingClientRect();
+    const baseLeft = cardRect.left - currentOffset.x;
+    const baseTop = cardRect.top - currentOffset.y;
+    const inset = 6;
+
+    return {
+      minX: spatialBoundsRect.left + inset - baseLeft,
+      maxX: spatialBoundsRect.right - inset - (baseLeft + cardRect.width),
+      minY: spatialBoundsRect.top + inset - baseTop,
+      maxY: spatialBoundsRect.bottom - inset - (baseTop + cardRect.height)
+    };
+  }
+
+  function constrainCardOffset(offset, bounds) {
+    if (!bounds) return offset;
+    return {
+      x: Math.round(clampNumber(offset.x, bounds.minX, bounds.maxX)),
+      y: Math.round(clampNumber(offset.y, bounds.minY, bounds.maxY))
+    };
+  }
+
+  function applyCardOffset(element, offset) {
+    if (!element) return;
+    element.style.setProperty("--ts-drag-x", `${offset.x}px`);
+    element.style.setProperty("--ts-drag-y", `${offset.y}px`);
+  }
+
+  function getCardResizeBounds(cardElement) {
+    const spatialBoundsElement = spatialBoundsRef.current;
+    if (!spatialBoundsElement || !cardElement) return null;
+
+    const spatialBoundsRect = spatialBoundsElement.getBoundingClientRect();
+    const cardRect = cardElement.getBoundingClientRect();
+    const inset = 6;
+
+    return {
+      minWidth: CARD_MIN_WIDTH,
+      maxWidth: Math.max(CARD_MIN_WIDTH, Math.min(CARD_MAX_WIDTH, spatialBoundsRect.right - cardRect.left - inset)),
+      minHeight: CARD_MIN_HEIGHT,
+      maxHeight: Math.max(CARD_MIN_HEIGHT, Math.min(CARD_MAX_HEIGHT, spatialBoundsRect.bottom - cardRect.top - inset))
+    };
+  }
+
+  function constrainCardSize(size, bounds) {
+    if (!bounds) return size;
+    return {
+      width: Math.round(clampNumber(size.width, bounds.minWidth, bounds.maxWidth)),
+      height: Math.round(clampNumber(size.height, bounds.minHeight, bounds.maxHeight))
+    };
+  }
+
+  function applyCardSize(element, size) {
+    if (!element) return;
+    element.style.width = `${size.width}px`;
+    element.style.height = `${size.height}px`;
+  }
+
+  function beginCardDrag(event, seed) {
+    if (event.button !== 0) return;
+
+    const cardElement = cardRefs.current.get(seed.id);
+    if (!cardElement) return;
+
+    const initialOffset = getCardOffset(seed.id);
+    const bounds = getCardBounds(cardElement, initialOffset);
+    dragRef.current = {
+      seed,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      initialOffset,
+      latestOffset: initialOffset,
+      bounds,
+      cardElement
+    };
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setFrontSeedId(seed.id);
+    setMovingSeedId(seed.id);
+    setLayoutNotice(`Liigutan kaarti „${seed.title}”.`);
+  }
+
+  function moveCardDrag(event) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    const nextOffset = constrainCardOffset(
+      {
+        x: drag.initialOffset.x + event.clientX - drag.startX,
+        y: drag.initialOffset.y + event.clientY - drag.startY
+      },
+      drag.bounds
+    );
+
+    drag.latestOffset = nextOffset;
+    applyCardOffset(drag.cardElement, nextOffset);
+  }
+
+  function endCardDrag(event, { cancelled = false } = {}) {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    const finalOffset = cancelled ? drag.initialOffset : drag.latestOffset;
+    applyCardOffset(drag.cardElement, finalOffset);
+    if (!cancelled) {
+      setCardOffsets((previous) => ({ ...previous, [drag.seed.id]: finalOffset }));
+      setLayoutNotice(
+        `Kaart „${drag.seed.title}” paigutatud: ${finalOffset.x}px külgsuunas ja ${finalOffset.y}px vertikaalselt.`
+      );
+    } else {
+      setLayoutNotice(`Kaardi „${drag.seed.title}” liigutamine katkestati.`);
+    }
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    dragRef.current = null;
+    setMovingSeedId(null);
+  }
+
+  function nudgeCard(event, seed) {
+    const direction = {
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+      ArrowUp: [0, -1],
+      ArrowDown: [0, 1]
+    }[event.key];
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      setFrontSeedId(seed.id);
+      setCardOffsets((previous) => ({ ...previous, [seed.id]: { x: 0, y: 0 } }));
+      setLayoutNotice(`Kaart „${seed.title}” on tagasi algses kohas.`);
+      return;
+    }
+
+    if (!direction) return;
+    event.preventDefault();
+    setFrontSeedId(seed.id);
+
+    const currentOffset = getCardOffset(seed.id);
+    const cardElement = cardRefs.current.get(seed.id);
+    const bounds = getCardBounds(cardElement, currentOffset);
+    const step = event.shiftKey ? CARD_NUDGE_LARGE : CARD_NUDGE;
+    const nextOffset = constrainCardOffset(
+      {
+        x: currentOffset.x + direction[0] * step,
+        y: currentOffset.y + direction[1] * step
+      },
+      bounds
+    );
+
+    setCardOffsets((previous) => ({ ...previous, [seed.id]: nextOffset }));
+    setLayoutNotice(`Kaart „${seed.title}” liigutatud nooleklahviga.`);
+  }
+
+  function beginCardResize(event, seed) {
+    if (event.button !== 0) return;
+    event.preventDefault();
+    event.stopPropagation();
+
+    const cardElement = cardRefs.current.get(seed.id);
+    if (!cardElement) return;
+
+    const cardRect = cardElement.getBoundingClientRect();
+    const initialSize = getCardSize(seed.id) || {
+      width: cardRect.width,
+      height: cardRect.height
+    };
+    const bounds = getCardResizeBounds(cardElement);
+
+    resizeRef.current = {
+      seed,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      initialSize,
+      latestSize: initialSize,
+      bounds,
+      cardElement
+    };
+
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setFrontSeedId(seed.id);
+    setResizingSeedId(seed.id);
+    setLayoutNotice(`Muudan kaardi „${seed.title}” suurust.`);
+  }
+
+  function resizeCard(event) {
+    const resize = resizeRef.current;
+    if (!resize || resize.pointerId !== event.pointerId) return;
+
+    const nextSize = constrainCardSize(
+      {
+        width: resize.initialSize.width + event.clientX - resize.startX,
+        height: resize.initialSize.height + event.clientY - resize.startY
+      },
+      resize.bounds
+    );
+
+    resize.latestSize = nextSize;
+    applyCardSize(resize.cardElement, nextSize);
+  }
+
+  function endCardResize(event, { cancelled = false } = {}) {
+    const resize = resizeRef.current;
+    if (!resize || resize.pointerId !== event.pointerId) return;
+
+    const finalSize = cancelled ? resize.initialSize : resize.latestSize;
+    applyCardSize(resize.cardElement, finalSize);
+    if (!cancelled) {
+      setCardSizes((previous) => ({ ...previous, [resize.seed.id]: finalSize }));
+      setLayoutNotice(`Kaardi „${resize.seed.title}” suurus on ${finalSize.width} × ${finalSize.height} pikslit.`);
+    } else {
+      setLayoutNotice(`Kaardi „${resize.seed.title}” suuruse muutmine katkestati.`);
+    }
+
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+    resizeRef.current = null;
+    setResizingSeedId(null);
+  }
+
+  function resizeCardWithKeyboard(event, seed) {
+    if (event.key === "Home") {
+      event.preventDefault();
+      setFrontSeedId(seed.id);
+      setCardSizes((previous) => {
+        const next = { ...previous };
+        delete next[seed.id];
+        return next;
+      });
+      setLayoutNotice(`Kaardi „${seed.title}” algne suurus on taastatud.`);
+      return;
+    }
+
+    const direction = {
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+      ArrowUp: [0, -1],
+      ArrowDown: [0, 1]
+    }[event.key];
+    if (!direction) return;
+    event.preventDefault();
+
+    const cardElement = cardRefs.current.get(seed.id);
+    if (!cardElement) return;
+    const cardRect = cardElement.getBoundingClientRect();
+    const currentSize = getCardSize(seed.id) || { width: cardRect.width, height: cardRect.height };
+    const bounds = getCardResizeBounds(cardElement);
+    const step = event.shiftKey ? CARD_RESIZE_STEP_LARGE : CARD_RESIZE_STEP;
+    const nextSize = constrainCardSize(
+      {
+        width: currentSize.width + direction[0] * step,
+        height: currentSize.height + direction[1] * step
+      },
+      bounds
+    );
+
+    setFrontSeedId(seed.id);
+    setCardSizes((previous) => ({ ...previous, [seed.id]: nextSize }));
+    setLayoutNotice(`Kaardi „${seed.title}” suurust muudeti nooleklahviga.`);
+  }
+
+  function resetCardLayout() {
+    setCardOffsets({});
+    setCardSizes({});
+    setFrontSeedId(null);
+    setLayoutNotice("Kõik kaardid on tagasi algses paigutuses.");
+  }
+
   /* ---------- Ühised tükid ---------- */
 
   const topBar = (
@@ -314,10 +629,66 @@ export default function TeemaseemnedPage() {
   );
 
   function seedCard(seed, { actions = true } = {}) {
+    const movable = actions;
+    const offset = movable ? getCardOffset(seed.id) : { x: 0, y: 0 };
+    const size = movable ? getCardSize(seed.id) : null;
+    const positioned = offset.x !== 0 || offset.y !== 0;
+
     return (
-      <article key={seed.id} className="ts-card" data-status={seed.status}>
+      <article
+        key={seed.id}
+        ref={
+          movable
+            ? (element) => {
+                if (element) cardRefs.current.set(seed.id, element);
+                else cardRefs.current.delete(seed.id);
+              }
+            : undefined
+        }
+        className="ts-card"
+        data-status={seed.status}
+        data-moving={movingSeedId === seed.id ? "true" : undefined}
+        data-resizing={resizingSeedId === seed.id ? "true" : undefined}
+        data-front={frontSeedId === seed.id ? "true" : undefined}
+        data-positioned={positioned ? "true" : undefined}
+        style={
+          movable
+            ? {
+                "--ts-drag-x": `${offset.x}px`,
+                "--ts-drag-y": `${offset.y}px`,
+                ...(size ? { width: `${size.width}px`, height: `${size.height}px` } : {})
+              }
+            : undefined
+        }
+      >
         <header className="ts-card-head">
-          <h3 className="ts-card-title">{seed.title}</h3>
+          <div className="ts-card-heading">
+            {movable ? (
+              <button
+                type="button"
+                className="ts-drag-handle"
+                aria-label={`Liiguta kaarti „${seed.title}”`}
+                aria-describedby="ts-move-instructions"
+                aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home"
+                title="Lohista kaarti. Nooleklahvid liigutavad, Home taastab kaardi."
+                onPointerDown={(event) => beginCardDrag(event, seed)}
+                onPointerMove={moveCardDrag}
+                onPointerUp={(event) => endCardDrag(event)}
+                onPointerCancel={(event) => endCardDrag(event, { cancelled: true })}
+                onKeyDown={(event) => nudgeCard(event, seed)}
+              >
+                <svg aria-hidden="true" viewBox="0 0 18 24" focusable="false">
+                  <circle cx="6" cy="6" r="1.6" />
+                  <circle cx="12" cy="6" r="1.6" />
+                  <circle cx="6" cy="12" r="1.6" />
+                  <circle cx="12" cy="12" r="1.6" />
+                  <circle cx="6" cy="18" r="1.6" />
+                  <circle cx="12" cy="18" r="1.6" />
+                </svg>
+              </button>
+            ) : null}
+            <h3 className="ts-card-title">{seed.title}</h3>
+          </div>
           <span className="ts-status" data-status={seed.status}>
             {STATUS_LABELS[seed.status]}
           </span>
@@ -368,6 +739,25 @@ export default function TeemaseemnedPage() {
             )}
           </div>
         ) : null}
+        {movable ? (
+          <button
+            type="button"
+            className="ts-resize-handle"
+            aria-label={`Muuda kaardi „${seed.title}” suurust`}
+            aria-describedby="ts-resize-instructions"
+            aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home"
+            title="Tiri kaardi suuruse muutmiseks. Nooleklahvid muudavad mõõtu, Home taastab suuruse."
+            onPointerDown={(event) => beginCardResize(event, seed)}
+            onPointerMove={resizeCard}
+            onPointerUp={(event) => endCardResize(event)}
+            onPointerCancel={(event) => endCardResize(event, { cancelled: true })}
+            onKeyDown={(event) => resizeCardWithKeyboard(event, seed)}
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <path d="M9 19 19 9M14 19l5-5M19 19h.01" />
+            </svg>
+          </button>
+        ) : null}
       </article>
     );
   }
@@ -375,41 +765,61 @@ export default function TeemaseemnedPage() {
   /* ---------- Vaade: loend (§26) ---------- */
 
   const listView = (
-    <section className="ts-shell" aria-label="Teemaseemnete leht">
+    <section ref={spatialBoundsRef} className="ts-shell ts-spatial-canvas" aria-label="Teemaseemnete leht">
       {topBar}
-      <div className="ts-list-head">
-        <div>
-          <h1 className="ts-h1">Teemaseemned</h1>
-          <p className="ts-intro">
-            Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja vii üldistatud kaart
-            kovisiooni. Grupp näeb ainult seda, mida sa ise jagad.
-          </p>
-        </div>
-        <button type="button" data-variant="primary" className="ts-acc" onClick={openCreate}>
-          Uus teemaseeme
-        </button>
-      </div>
-
-      {notice ? (
-        <p className="ts-notice" role="status">
-          {notice}
-        </p>
-      ) : null}
-
-      <div className="ts-filters" role="group" aria-label="Filtrid">
-        {FILTERS.map((f) => (
-          <button
-            key={f.key}
-            type="button"
-            className="ts-filter"
-            aria-pressed={filter === f.key}
-            onClick={() => setFilter(f.key)}
-          >
-            {f.label}
-            <span className="ts-filter-count">{counts[f.key] ?? 0}</span>
+      <section className="ts-context-panel" aria-label="Teemaseemnete ülevaade ja tööriistad">
+        <div className="ts-list-head">
+          <div>
+            <h1 className="ts-h1">Teemaseemned</h1>
+            <p className="ts-intro">
+              Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja vii üldistatud kaart
+              kovisiooni. Grupp näeb ainult seda, mida sa ise jagad.
+            </p>
+          </div>
+          <button type="button" data-variant className="ts-acc" onClick={openCreate}>
+            Uus teemaseeme
           </button>
-        ))}
-      </div>
+        </div>
+
+        {notice ? (
+          <p className="ts-notice" role="status">
+            {notice}
+          </p>
+        ) : null}
+
+        <div className="ts-filters" role="group" aria-label="Filtrid">
+          {FILTERS.map((f) => (
+            <button
+              key={f.key}
+              type="button"
+              className="ts-filter"
+              aria-pressed={filter === f.key}
+              onClick={() => setFilter(f.key)}
+            >
+              {f.label}
+              <span className="ts-filter-count">{counts[f.key] ?? 0}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="ts-spatial-tools">
+          <p id="ts-move-instructions" className="ts-spatial-hint">
+            Haara kaardi ülanurgast liigutamiseks või paremast alanurgast suuruse muutmiseks. Nooleklahvid
+            muudavad täpselt, Shift + nool suurema sammu.
+          </p>
+          <span id="ts-resize-instructions" className="ts-sr-status">
+            Paremas alanurgas olevat pidet tirides muudad kaardi laiust ja kõrgust.
+          </span>
+          {hasAdjustedCards ? (
+            <button type="button" className="ts-layout-reset" onClick={resetCardLayout}>
+              Taasta paigutus
+            </button>
+          ) : null}
+          <span className="ts-sr-status" role="status" aria-live="polite">
+            {layoutNotice}
+          </span>
+        </div>
+      </section>
 
       {visibleSeeds.length ? (
         <div className="ts-grid">{visibleSeeds.map((s) => seedCard(s))}</div>
@@ -560,8 +970,7 @@ export default function TeemaseemnedPage() {
           </span>
         </header>
         <p className="ts-side-sub">
-          Eelvaade on seemnekaart sellisena, nagu see ilmub Teemaseemnete lehel pärast sinu teadlikku
-          jagamist. Praegu ei näe seda keegi peale sinu.
+          Seemnekaart sellisena, nagu grupp seda pärast sinu teadlikku jagamist näeb.
         </p>
         {seedCard(
           {
@@ -592,8 +1001,7 @@ export default function TeemaseemnedPage() {
           </h2>
         </header>
         <p className="ts-side-sub">
-          Võid hiljem lisada ainult selle info, mis aitab sul juhtumit professionaalselt ette valmistada.
-          Jääb ainult sulle, kuni ise otsustad teisiti.
+          Võid hiljem lisada ainult vajaliku. Jääb ainult sulle, kuni ise otsustad teisiti.
         </p>
         <ul className="ts-private-list">
           {PRIVATE_MODULES.map((m) => (
@@ -601,6 +1009,7 @@ export default function TeemaseemnedPage() {
           ))}
         </ul>
       </section>
+      {boundaryNote}
     </aside>
   );
 
@@ -720,7 +1129,7 @@ export default function TeemaseemnedPage() {
                 id="ts-why"
                 className="ts-input ts-textarea"
                 maxLength={300}
-                rows={3}
+                rows={2}
                 value={whyNow}
                 placeholder="Kirjuta 1–3 lauset…"
                 onChange={(e) => setWhyNow(e.target.value)}
@@ -805,8 +1214,6 @@ export default function TeemaseemnedPage() {
 
         {previewColumn}
       </div>
-
-      {boundaryNote}
     </section>
   );
 
@@ -814,7 +1221,6 @@ export default function TeemaseemnedPage() {
 
   const prepView = (
     <section className="ts-shell ts-create" aria-label="Privaatne professionaalne ettevalmistus">
-      {topBar}
       <div className="ts-create-head">
         <div className="ts-create-intro">
           <button type="button" className="ts-back" onClick={() => setView("list")}>

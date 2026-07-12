@@ -398,6 +398,109 @@ const ROLE_SUPPORT3 = {
   }
 };
 
+/* ============================================================
+   4. ETAPI konstandid (spec v1.1 §21–22, §53.10–53.12)
+   ============================================================ */
+
+/* Uuritud tööfookus — 3. etapis täpsustatud versioon (§35, §53.12).
+   Demo näitab fookuse arengut: 2. etapi sõnastus → uuritud fookus. */
+const S4_FOCUS =
+  "Kuidas saan koos lapse, vanema ja kooliga selgitada vastutuse jaotust nii, et lapse enda kogemus oleks nähtav ja ma ei võtaks kõiki samme enda kanda?";
+
+/* Peegelduskaartide kaanon (§53.12): tüüp + AUTOR + ettevaatlik
+   sõnastus (§22 lausealgused, võimalikkuse vorm) + objektiseose
+   jalus "Seotud: …". Autorid: Aveli ×2, Liisa, Timo, Marko. */
+const S4_REFLECTIONS = [
+  {
+    id: "r1", type: "Vaatlus", title: "Lapse hääle nähtavus",
+    by: "aveli", byName: "Aveli Kivi", byRole: "jagatud peegeldus",
+    text: "Lapse enda sõnastatud kogemus lisandus ühisele lõuendile alles uurimisetapis. Täiskasvanute vaated olid nähtavad juba loo avamisel.",
+    linked: "Lapse enda vaade"
+  },
+  {
+    id: "r2", type: "Võimalik muster", title: "Vastutuse koondumine",
+    by: "liisa", byName: "Liisa Laan", byRole: "võimalik tõlgendus",
+    text: "Mitme kokkuleppe järel on kontaktide algatamine ja täitmise jälgimine liikunud juhtumi tooja kanda. Üks võimalik vaade on, et tema suurem koordineerimine ja teiste väiksem aktiivsus mõjutavad teineteist.",
+    linked: "Vastutuse jaotus"
+  },
+  {
+    id: "r3", type: "Võimalik vajadus", title: "Etteaimatavus",
+    by: "timo", byName: "Timo Tamm", byRole: "võimalik vajadus",
+    text: "Üks võimalik vajadus võib olla suurem etteaimatavus. Väiksem õpperühm ja ette teada päevakava on olnud seotud stabiilsema osalemisega.",
+    linked: "Lapse enda vaade"
+  },
+  {
+    id: "r4", type: "Pinge", title: "Kooliskäimise järjepidevus ↔ lapse koormus, autonoomia ja tempo",
+    by: "marko", byName: "Marko Suur", byRole: "nähtav pinge",
+    text: "Ma näen pinget täiskasvanute soovi vahel puudumisi kiiresti vähendada ning lapse koormuse, autonoomia ja tempo vahel.",
+    linked: "Tööfookus"
+  },
+  {
+    id: "r5", type: "Toimiv erand", title: "Mis juba toetas",
+    by: "aveli", byName: "Aveli Kivi", byRole: "jagatud peegeldus",
+    text: "Kahel perioodil oli osalemine stabiilsem, kui vanaema toetas hommikurutiini ja päevakava oli selgem.",
+    linked: "Toimiv hommikurutiin"
+  }
+];
+
+/* Refleksioonikompassi 5 läätse (§53.12; §21 — rollipõhise tööfookuse
+   korral on roll/piir kohustuslikus valikus). Klõps läätsel toob §22
+   lausealguse grupiliikme mustandisse. */
+const S4_LENSES = [
+  { name: "Mida ma märkasin?", start: "Mina märkasin, et " },
+  { name: "Milline pinge on nähtav?", start: "Ma näen pinget " },
+  { name: "Milline roll või piir on nähtav?", start: "Mulle jäi rollide juures kõlama, et " },
+  { name: "Milline vajadus võib olla oluline?", start: "Ma mõtlen, kas siin võib olla vajadus " },
+  { name: "Milline vaade on puudu?", start: "Vähe nähtavaks jäi " }
+];
+
+/* Mari privaatsed resonantsimärgid (§39.2) */
+const S4_MARKS = ["Kõnetab mind", "Üllatab mind", "Tahan hiljem uurida", "Jätan praegu kõrvale"];
+
+/* Rollipõhine abikiht 4. etapis (§11–13, §44–45) */
+const ROLE_SUPPORT4 = {
+  jaanika: {
+    title: "Sessiooni juhi tugi",
+    rows: [
+      "Kaitse Mari kuulamisruumi — keegi ei küsi temalt praegu midagi.",
+      "Ava korraga üks peegeldus ja hoia see lühike („mina”-vormis).",
+      "Peata diagnoos, õpetamine või lahendus hoolivalt; lahendusidee pargitakse.",
+      "Ära tõsta üht tõlgendust teistest õigemaks — erinevad vaated jäävad kõrvuti.",
+      "Anna Marile etapi lõpus rahulik resonantsiaeg."
+    ]
+  },
+  mari: {
+    title: "Juhtumi tooja tugi",
+    rows: [
+      "Sa ei pea peegeldustele vastama ega neid kinnitama.",
+      "Märgi privaatselt, mis sind kõnetab või üllatab — grupp seda ei näe.",
+      "Kui kõlab tuvastav detail või piir on ohus, ütle „Peatume korraks”.",
+      "„Jätan praegu kõrvale” ei tähenda, et peegeldus oli vale.",
+      "Etapi lõpus võid jagada, mida tahad hoida — või lihtsalt kinnitada, et võtsid kuuldu vastu."
+    ]
+  },
+  liisa: {
+    title: "Kaardi haldaja tugi",
+    rows: [
+      "Lisa igale jagatud peegeldusele autor ja tüüp.",
+      "Seo peegeldus olemasoleva juhtumiobjektiga (jalus „Seotud: …”).",
+      "Virnasta sarnased märkamised autorlust kaotamata.",
+      "Hoia erinevad vaated kõrvuti — ära sulata neid üheks järelduseks.",
+      "Ära märgi ühtegi mustrit kinnitatuks."
+    ]
+  },
+  default: {
+    title: "Grupiliikme tugi",
+    rows: [
+      "Räägi enda vaatenurgast „mina”-vormis, üks põhiteema korraga.",
+      "Erista, mida märkasid, mida ise tundsid ja millise tähenduse annad.",
+      "Ära esita küsimust ega soovitust — lahendusidee pargi 5. etappi.",
+      "Teise inimese vajadus jääb võimalikkuse vormi („võib olla oluline…”).",
+      "Võid ka lihtsalt kuulata — igalt inimeselt peegeldust ei nõuta."
+    ]
+  }
+};
+
 function formatTime(totalSeconds) {
   const m = Math.floor(totalSeconds / 60);
   const s = totalSeconds % 60;
@@ -744,6 +847,146 @@ export default function CovisionSession() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [elapsed, stage, paused]);
 
+  /* ============================================================
+     4. ETAPP — mõistmise süvendamine (spec v1.1 §53.10–53.12).
+     Faasid (§17): intro (rollimuutus, olekud 0–1) → silent (vaikne
+     refleksioon, olek 2) → ring (aktiivne peegeldus, olekud 3–5)
+     → resonance (Mari resonantsiaeg, olekud 7–8) → done (olek 9,
+     perspektiivivälja lõppvaade = referentsvaade §53.12).
+     ============================================================ */
+  const [s4Phase, setS4Phase] = useState("intro");
+  const [s4SilentStart, setS4SilentStart] = useState(0);
+  const [s4RingStart, setS4RingStart] = useState(0);
+  const [s4Tick, setS4Tick] = useState(0);
+  const [listenConfirmed, setListenConfirmed] = useState(false);
+  const [reflections, setReflections] = useState(() => S4_REFLECTIONS.map((r) => ({ ...r })));
+  const [s4Shared, setS4Shared] = useState(0);
+  const [s4Active, setS4Active] = useState(null); /* reflections'i indeks */
+  const [parked, setParked] = useState(0);
+  const [resonance, setResonance] = useState({}); /* id → märk (Mari PRIVAATNE, §39.3) */
+  const [mariReady, setMariReady] = useState(false);
+  const [myReflection, setMyReflection] = useState("");
+  const [draftsReady, setDraftsReady] = useState(0);
+
+  const confirmListen = () => {
+    setListenConfirmed(true);
+    setS4Tick(elapsed);
+  };
+  const startSilent = () => {
+    setS4Phase("silent");
+    setS4SilentStart(elapsed);
+  };
+  const openRing = () => {
+    setS4Phase("ring");
+    setS4RingStart(elapsed);
+    setS4Tick(elapsed);
+    /* Aveli esimene peegeldus = sinu kirjutatud mustand, kui vaatad
+       Avelina (sama muster mis 3. etapi q1) */
+    if (view === "aveli" && myReflection.trim()) {
+      setReflections((prev) =>
+        prev.map((r) => (r.id === "r1" ? { ...r, text: myReflection.trim() } : r))
+      );
+    }
+  };
+  const openNextReflection = () => {
+    if (s4Shared >= reflections.length) return;
+    setS4Active(s4Shared);
+    setS4Tick(elapsed);
+  };
+  const shareActive = () => {
+    if (s4Active == null) return;
+    /* Sim pargib lahendusideid ringi jooksul (§37): ühises vaates
+       ainult loendur, sisu jääb autorile privaatseks */
+    if ([1, 2, 4].includes(s4Active)) setParked((p) => p + 1);
+    const wasLast = s4Active >= reflections.length - 1;
+    setS4Shared(s4Active + 1);
+    setS4Active(null);
+    setS4Tick(elapsed);
+    if (wasLast) setS4Phase("resonance");
+  };
+  const cycleResonance = (id) => {
+    /* Mari privaatne märk: klõps liigub läbi märkide ja tühjaks */
+    setResonance((prev) => {
+      const current = S4_MARKS.indexOf(prev[id]);
+      const next = current + 1 >= S4_MARKS.length ? null : S4_MARKS[current + 1];
+      const copy = { ...prev };
+      if (next === null && current >= 0) delete copy[id];
+      else copy[id] = next ?? S4_MARKS[0];
+      return copy;
+    });
+  };
+  const confirmMariReady = () => {
+    setMariReady(true);
+    setS4Phase("done");
+    setS4Tick(elapsed);
+  };
+
+  /* 4. etapi värav (§48.3 demo-alamhulk; §48.4: peegelduste arvu ega
+     konsensust EI nõuta) */
+  const s4Missing = [];
+  if (!listenConfirmed) {
+    s4Missing.push("Mari pole veel kuulamisrežiimi kinnitanud.");
+  } else if (s4Phase === "intro") {
+    s4Missing.push("Vaikne refleksioon on alustamata.");
+  } else if (s4Phase === "silent") {
+    s4Missing.push("Vaikne refleksioon käib.");
+  } else if (s4Phase === "ring") {
+    if (s4Active != null) s4Missing.push("Üks peegeldus on veel aktiivne.");
+    else s4Missing.push("Peegeldusring on pooleli.");
+  } else if (s4Phase === "resonance") {
+    s4Missing.push("Mari vajab enne jätkamist resonantsiaega.");
+  }
+  const s4GateHint =
+    s4Missing.length === 0
+      ? `Peegeldusring lõpetatud · ${parked} võimaluseideed pargitud · Mari on valmis võimalusi kuulama`
+      : s4Missing.join(" ");
+
+  /* Demo-simulatsioon 4. etapis: mitte-vaadatavad rollid tegutsevad
+     viidetega; autor "räägib" ~6 s enne jagamist */
+  useEffect(() => {
+    if (stage !== 4 || paused) return;
+    if (s4Phase === "intro") {
+      if (!listenConfirmed && view !== "mari" && elapsed >= 4) {
+        confirmListen();
+        return;
+      }
+      if (listenConfirmed && view !== "jaanika" && elapsed >= s4Tick + 3) {
+        startSilent();
+      }
+      return;
+    }
+    if (s4Phase === "silent") {
+      const target = Math.min(4, Math.max(0, Math.floor((elapsed - s4SilentStart) / 3)));
+      if (draftsReady < target) {
+        setDraftsReady(target);
+        return;
+      }
+      if (view !== "jaanika" && elapsed >= s4SilentStart + 14) {
+        openRing();
+      }
+      return;
+    }
+    if (s4Phase === "ring") {
+      if (s4Active == null) {
+        if (view !== "jaanika" && s4Shared < reflections.length && elapsed >= s4Tick + 3) {
+          openNextReflection();
+        }
+        return;
+      }
+      const r = reflections[s4Active];
+      if (view !== r.by && view !== "jaanika" && elapsed >= s4Tick + 6) {
+        shareActive();
+      }
+      return;
+    }
+    if (s4Phase === "resonance") {
+      if (!mariReady && view !== "mari" && elapsed >= s4Tick + 8) {
+        confirmMariReady();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [elapsed, stage, paused]);
+
   /* 2. etapp: fookusküsimus (värav), märksõnade mustand, privaatsed
      märkmed. Elavad sessiooni tasandil, et etapivahetus neid ei kaotaks. */
   const [focusQuestion, setFocusQuestion] = useState("");
@@ -920,8 +1163,8 @@ export default function CovisionSession() {
 
   return (
     <div className="cvs" data-paused={paused ? "1" : "0"}>
-      {/* Püsiv kiht etappidele 4–8 (etappidel 1–3 on oma täisekraani päis) */}
-      {stage > 3 ? (
+      {/* Püsiv kiht etappidele 5–8 (etappidel 1–4 on oma täisekraani päis) */}
+      {stage > 4 ? (
       <header className="cvs-top">
         <ol className="cvs-rail" aria-label="Kovisiooni etapid">
           {STAGES.map((s, i) => {
@@ -957,9 +1200,9 @@ export default function CovisionSession() {
       </header>
       ) : null}
 
-      {/* Püsiv tööfookuse ankur etappidel 4–8 (etapil 3 on oma
-          ankruriba cv3 päises) */}
-      {stage >= 4 && focusQuestion.trim() ? (
+      {/* Püsiv tööfookuse ankur etappidel 5–8 (etappidel 3–4 on oma
+          ankruriba päises) */}
+      {stage >= 5 && focusQuestion.trim() ? (
         <p className="cvs-anchor">
           <span className="cvs-anchor-label">Fookusküsimus</span>
           {focusQuestion.trim()}
@@ -1101,6 +1344,15 @@ export default function CovisionSession() {
                   );
                 })}
               </ul>
+              {/* Rollirotatsiooni soovitus (§7.4): soovitus, mitte automaatne
+                  määramine; kaob, kui kõik rollid on kinnitatud (pole enam
+                  loogikat) */}
+              {DEMO_PARTICIPANTS.some((p) => !pState[p.id].role) ? (
+                <p className="cv1-rotation" role="note">
+                  Rotatsioonisoovitus: Jaanika pole viimase kolme juhtumi
+                  jooksul sessiooni juht olnud.
+                </p>
+              ) : null}
               {/* Isiklik valmisolek (§17) — avaneb rolli + kokkulepete järel */}
               {sessionStarted && my.role && my.agreed && my.status !== "ready" ? (
                 <button
@@ -2404,8 +2656,510 @@ export default function CovisionSession() {
             </div>
           ) : null}
         </section>
+      ) : stage === 4 ? (
+        <section className="cv1 cv4" aria-label="4. etapp — mõistmise süvendamine">
+          {/* Päis: sama kroom; rada näitab 4. aktiivsena; kaks aega (§18.6) */}
+          <header className="cv1-top">
+            <div className="cv1-brand">
+              <button
+                type="button"
+                className="cv1-exit"
+                title="Välju ruumist"
+                onClick={() => window.history.back()}
+              >
+                ← Välju
+              </button>
+              <div>
+                <p className="cv1-brand-name">Kovisioon</p>
+                <p className="cv1-brand-sub">Koos mõtestame. Koos leiame võimalusi.</p>
+              </div>
+            </div>
+            <ol className="cv1-rail" aria-label="Kovisiooni etapid">
+              {STAGES.map((s, i) => (
+                <li
+                  key={s.title}
+                  className="cv1-step"
+                  data-state={i + 1 === 4 ? "active" : i + 1 < 4 ? "done" : "todo"}
+                  aria-current={i + 1 === 4 ? "step" : undefined}
+                >
+                  <span className="cv1-step-dot">{i + 1 < 4 ? "✓" : i + 1}</span>
+                  <span className="cv1-step-label">{s.title}</span>
+                </li>
+              ))}
+            </ol>
+            <div className="cv1-tools">
+              <div className="cv1-chip">
+                <span className="cv1-chip-label">Kohtumine</span>
+                <span className="cv1-chip-value">{formatTime(meetingElapsed)}</span>
+              </div>
+              <div className="cv1-chip">
+                <span className="cv1-chip-label">
+                  {s4Phase === "silent"
+                    ? "Vaikne refleksioon"
+                    : s4Phase === "ring"
+                      ? "Peegeldusring"
+                      : s4Phase === "resonance"
+                        ? "Resonantsiaeg"
+                        : "Etapp 4"}
+                </span>
+                <span className="cv1-chip-value">
+                  {s4Phase === "silent"
+                    ? `${formatTime(Math.max(0, elapsed - s4SilentStart))} / 03:00`
+                    : s4Phase === "ring"
+                      ? `${formatTime(Math.max(0, elapsed - s4RingStart))} / 10:00`
+                      : s4Phase === "resonance"
+                        ? `${formatTime(Math.max(0, elapsed - s4Tick))} / 02:00`
+                        : formatTime(elapsed)}
+                </span>
+              </div>
+              <button
+                type="button"
+                data-variant
+                aria-pressed={paused}
+                onClick={() => setPaused((v) => !v)}
+              >
+                {paused ? "Jätka" : "Paus"}
+              </button>
+              <button
+                type="button"
+                data-variant
+                aria-expanded={supportOpen}
+                onClick={() => setSupportOpen((v) => !v)}
+              >
+                Vajan tuge
+              </button>
+            </div>
+          </header>
+
+          {/* Etapi juhis: aktiivne ring vs lõppolek (§54.1, §53.12) */}
+          <p className="cv3-anchorbar">
+            {s4Phase === "done" ? (
+              <span>
+                Oleme juhtumit vaadanud mitmest küljest. Järgmisena loome
+                erinevaid võimalikke teid.
+              </span>
+            ) : (
+              <span>
+                Juhtumi tooja kuulab. Grupp jagab märkamisi ja võimalikke
+                vaatenurki. Me ei küsi ega lahenda veel.
+              </span>
+            )}
+          </p>
+
+          <div className="cv1-main">
+            {/* Vasak: rollid + protsessi olek (tegutseja alati nähtav) */}
+            <aside className="cv1-panel cv1-left">
+              <header className="cv1-panel-head">
+                <h2 className="cv1-panel-title">Sessiooni rollid</h2>
+              </header>
+              <ul className="cv1-people">
+                {DEMO_PARTICIPANTS.slice(0, 3).map((p) => (
+                  <li key={p.id} className="cv1-person" data-me={p.id === view ? "1" : "0"}>
+                    <span className="cv1-avatar" aria-hidden="true">
+                      {p.name.split(" ").map((w) => w[0]).join("")}
+                    </span>
+                    <span className="cv1-person-main">
+                      <span className="cv1-person-name">
+                        {p.name}
+                        {p.id === view ? <span className="cv1-me-tag"> (sina)</span> : null}
+                      </span>
+                      <span className="cv1-role-chip" data-role={p.role}>{p.role}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="cv2-phase" role="status">
+                {s4Phase === "intro"
+                  ? listenConfirmed
+                    ? "Mari kuulab · Jaanika avab vaikse refleksiooni"
+                    : "Rollimuutus · Ootab Mari kinnitust"
+                  : s4Phase === "silent"
+                    ? "Vaikne refleksioon käib · mustandid on privaatsed"
+                    : s4Phase === "ring"
+                      ? `Mari kuulab · peegeldus ${Math.min(s4Shared + (s4Active != null ? 1 : 0), reflections.length)}/${reflections.length}`
+                      : s4Phase === "resonance"
+                        ? "Mari mõtiskleb kuuldu üle"
+                        : "Mari on valmis võimalusi kuulama"}
+              </p>
+            </aside>
+
+            {/* Keskel: juhtumikaart + faasi sisu + perspektiiviväli */}
+            <section className="cv2-center">
+              <div className="cv1-hero cv4-case">
+                <p className="cv1-hero-kicker">Tänane juhtum</p>
+                <h1 className="cv4-case-title">{DEMO_CASE.title}</h1>
+                <dl className="cv4-case-rows">
+                  <div>
+                    <dt>
+                      Uuritud tööfookus
+                      <span className="cv4-case-note"> · täpsustatud 3. etapis</span>
+                    </dt>
+                    <dd>{S4_FOCUS}</dd>
+                  </div>
+                  <div>
+                    <dt>Soovitud muutus</dt>
+                    <dd>Laps osaleb koolipäevades stabiilsemalt ja oma tempos.</dd>
+                  </div>
+                </dl>
+                <p className="cv1-case-state" data-done={s4Phase === "done" ? "1" : "0"}>
+                  Juhtumi tooja · Mari Mets ·{" "}
+                  {s4Phase === "done"
+                    ? "kuulamisrežiim lõpetatud · valmis võimalusi kuulama"
+                    : s4Phase === "resonance"
+                      ? "mõtiskleb kuuldu üle"
+                      : listenConfirmed
+                        ? "kuulab"
+                        : "ootab kuulamisrežiimi kinnitust"}
+                </p>
+              </div>
+
+              {/* Faas: rollimuutus (§11) */}
+              {s4Phase === "intro" ? (
+                view === "mari" && !listenConfirmed ? (
+                  <div className="cv1-panel cv4-stagecard">
+                    <h2 className="cv1-panel-title">Kuula ainult</h2>
+                    <p className="cv1-quiet">
+                      Sa ei pea peegeldustele vastama ega neid kinnitama. Kuula,
+                      tee privaatseid märkmeid ja märgi, mis sind kõnetab.
+                    </p>
+                    <button
+                      type="button"
+                      data-variant="primary"
+                      className="cv1-acc"
+                      onClick={confirmListen}
+                    >
+                      Olen valmis kuulama
+                    </button>
+                  </div>
+                ) : view === "jaanika" && listenConfirmed ? (
+                  <div className="cv1-panel cv4-stagecard">
+                    <p className="cv1-quiet">
+                      Mari on kuulamisrežiimis. Ava grupile vaikne refleksioon
+                      (2–4 minutit).
+                    </p>
+                    <button
+                      type="button"
+                      data-variant="primary"
+                      className="cv1-acc"
+                      onClick={startSilent}
+                    >
+                      Alusta vaikset refleksiooni
+                    </button>
+                  </div>
+                ) : (
+                  <p className="cv1-case-state">
+                    {listenConfirmed
+                      ? "Jaanika avab vaikse refleksiooni."
+                      : "Ootab Mari kuulamisrežiimi kinnitust."}
+                  </p>
+                )
+              ) : null}
+
+              {/* Faas: vaikne refleksioon (§20) */}
+              {s4Phase === "silent" ? (
+                <div className="cv1-panel cv4-stagecard">
+                  <header className="cv1-panel-head">
+                    <h2 className="cv1-panel-title">Vaikne refleksioon</h2>
+                    <span className="cv1-panel-meta">
+                      {Math.min(
+                        reflections.length,
+                        draftsReady + (view === "aveli" && myReflection.trim().length >= 5 ? 1 : 0)
+                      )}
+                      /{reflections.length} mustandit valmis
+                    </span>
+                  </header>
+                  {view === "aveli" ? (
+                    <>
+                      <p className="cv1-quiet">
+                        Erista, mida kuulsid, mida ise tundsid ja millise
+                        tähenduse sellele annad. Mustand on privaatne.
+                      </p>
+                      <textarea
+                        className="cvs-focus-input"
+                        rows={3}
+                        placeholder="Mina märkasin…"
+                        value={myReflection}
+                        onChange={(e) => setMyReflection(e.target.value)}
+                      />
+                    </>
+                  ) : view === "mari" ? (
+                    <p className="cv1-quiet">
+                      Grupp kirjutab vaikselt. Sina võid puhata või teha
+                      privaatseid märkmeid — sinult peegeldust ei oodata.
+                    </p>
+                  ) : (
+                    <p className="cv1-quiet">
+                      Grupp kirjutab peegelduse mustandeid. Mustandid on
+                      privaatsed ega avane automaatselt.
+                    </p>
+                  )}
+                  {view === "jaanika" ? (
+                    <button
+                      type="button"
+                      data-variant="primary"
+                      className="cv1-acc"
+                      onClick={openRing}
+                    >
+                      Ava peegeldusring
+                    </button>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {/* Faas: aktiivne peegeldus (§33) — üks korraga, autor + tüüp +
+                  seotud objekt; autor VÕI sessiooni juht sulgeb (§33.4) */}
+              {s4Phase === "ring" && s4Active != null
+                ? (() => {
+                    const r = reflections[s4Active];
+                    return (
+                      <article className="cv1-panel cv4-activecard" aria-label="Aktiivne peegeldus">
+                        <p className="cv4-card-type">{r.type}</p>
+                        <h2 className="cv4-card-title">{r.title}</h2>
+                        <p className="cv4-card-text">{r.text}</p>
+                        <footer className="cv4-card-foot">
+                          <span className="cv4-card-author">Peegeldab: {r.byName} · {r.byRole}</span>
+                          <span className="cv4-card-linked">Seotud: {r.linked}</span>
+                        </footer>
+                        {view === r.by || view === "jaanika" ? (
+                          <button
+                            type="button"
+                            data-variant
+                            className="cv1-mini-btn"
+                            onClick={shareActive}
+                          >
+                            Peegeldus jagatud
+                          </button>
+                        ) : (
+                          <p className="cv1-quiet">
+                            Kuulame. Vastust ega kommentaari ei järgne.
+                          </p>
+                        )}
+                      </article>
+                    );
+                  })()
+                : null}
+
+              {/* Faas: ring, järgmise avamine (§33.1) */}
+              {s4Phase === "ring" && s4Active == null ? (
+                view === "jaanika" ? (
+                  <div className="cv1-panel cv4-stagecard">
+                    <button
+                      type="button"
+                      data-variant="primary"
+                      className="cv1-acc"
+                      onClick={openNextReflection}
+                    >
+                      Ava järgmine peegeldus ({s4Shared + 1}/{reflections.length})
+                    </button>
+                  </div>
+                ) : (
+                  <p className="cv1-case-state">Jaanika avab järgmise peegelduse.</p>
+                )
+              ) : null}
+
+              {/* Faas: Mari resonantsiaeg (§39–40) */}
+              {s4Phase === "resonance" ? (
+                view === "mari" ? (
+                  <div className="cv1-panel cv4-stagecard">
+                    <h2 className="cv1-panel-title">Mida tahad kuuldu järel hoida?</h2>
+                    <p className="cv1-quiet">
+                      Märgi väljal olevaid kaarte privaatselt (klõps kaardi
+                      nupul liigub märkide vahel). Sa ei pea peegeldusi
+                      kommenteerima ega kõiki kaasa võtma.
+                    </p>
+                    <div className="cv2-focus-btns">
+                      <button
+                        type="button"
+                        data-variant="primary"
+                        className="cv1-acc"
+                        onClick={confirmMariReady}
+                      >
+                        Olen valmis võimalusi kuulama
+                      </button>
+                      <button type="button" data-variant onClick={confirmMariReady}>
+                        Olen kuuldu enda jaoks vastu võtnud
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="cv1-case-state">
+                    Mari mõtiskleb kuuldu üle · resonants on privaatne
+                  </p>
+                )
+              ) : null}
+
+              {/* Perspektiiviväli (§53.5): jagatud peegeldused autorite ja
+                  objektiseostega; Mari resonants ainult tema vaates */}
+              {s4Shared > 0 ? (
+                <div className="cv4-field" aria-label="Perspektiiviväli">
+                  {reflections.slice(0, s4Shared).map((r) => (
+                    <article
+                      key={r.id}
+                      className="cv4-card"
+                      data-marked={view === "mari" && resonance[r.id] ? "1" : "0"}
+                    >
+                      <p className="cv4-card-type">{r.type}</p>
+                      <h3 className="cv4-card-title">{r.title}</h3>
+                      <p className="cv4-card-text">{r.text}</p>
+                      <footer className="cv4-card-foot">
+                        <span className="cv4-card-author">{r.byName} · {r.byRole}</span>
+                        <span className="cv4-card-linked">Seotud: {r.linked}</span>
+                      </footer>
+                      {view === "mari" && s4Phase !== "intro" && s4Phase !== "silent" ? (
+                        <button
+                          type="button"
+                          data-variant
+                          className="cv1-mini-btn cv4-mark-btn"
+                          data-set={resonance[r.id] ? "1" : "0"}
+                          onClick={() => cycleResonance(r.id)}
+                        >
+                          {resonance[r.id] || "Märgi resonants"}
+                        </button>
+                      ) : null}
+                    </article>
+                  ))}
+                </div>
+              ) : null}
+            </section>
+
+            {/* Parem: kompass + rollide vastutused (§53.11 tööjaotus) */}
+            <div className="cv1-right">
+              <section className="cv1-panel">
+                <header className="cv1-panel-head">
+                  <h2 className="cv1-panel-title">Refleksioonikompass</h2>
+                </header>
+                <ul className="cv1-list cv4-lenses">
+                  {S4_LENSES.map((l) => (
+                    <li key={l.name}>
+                      {view === "aveli" && s4Phase === "silent" ? (
+                        <button
+                          type="button"
+                          className="cvs-compass-q"
+                          onClick={() =>
+                            setMyReflection((v) => (v.trim() ? v : l.start))
+                          }
+                        >
+                          {l.name}
+                        </button>
+                      ) : (
+                        <span className="cv1-list-row">{l.name}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+                {view === "aveli" && s4Phase === "silent" ? (
+                  <p className="cv1-quiet">Klõps toob lausealguse sinu mustandisse.</p>
+                ) : null}
+              </section>
+              <section className="cv1-panel">
+                <header className="cv1-panel-head">
+                  <h2 className="cv1-panel-title">Rollide vastutused</h2>
+                </header>
+                <ul className="cv2-duties">
+                  <li data-done={listenConfirmed ? "1" : "0"}>
+                    <span>Mari kuulab peegeldusi vastamiskohustuseta</span>
+                    <span>{listenConfirmed ? "✓ Kuulamisrežiimis" : "Ootab Mari kinnitust"}</span>
+                  </li>
+                  <li data-done={s4Shared >= reflections.length ? "1" : "0"}>
+                    <span>Grupp jagab peegeldusi ükshaaval</span>
+                    <span>
+                      {s4Shared >= reflections.length
+                        ? "✓ Ring lõpetatud"
+                        : s4Phase === "ring"
+                          ? `${s4Shared}/${reflections.length} jagatud`
+                          : "Pärast vaikset refleksiooni"}
+                    </span>
+                  </li>
+                  <li data-done={mariReady ? "1" : "0"}>
+                    <span>Mari võtab kuuldu vastu</span>
+                    <span>
+                      {mariReady
+                        ? "✓ Valmis võimalusi kuulama"
+                        : s4Phase === "resonance"
+                          ? "Mari mõtiskleb"
+                          : "Pärast ringi"}
+                    </span>
+                  </li>
+                  <li data-done={s4Phase === "done" ? "1" : "0"}>
+                    <span>Jaanika avab järgmise etapi</span>
+                    <span>{s4Phase === "done" ? "Valmis" : "Ootab"}</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+
+          {/* All: õhuke värav (§47–48); pargitud ideede loendur VÄRAVAL */}
+          <footer className="cv1-bottom cv2-gatebar">
+            <p className="cv1-gate-hint cv2-gate-hint" data-ok={s4Missing.length === 0 ? "1" : "0"}>
+              {s4Missing.length > 0 && parked > 0
+                ? `${s4GateHint} · ${parked} võimaluseideed pargitud`
+                : view !== "jaanika" && s4Missing.length === 0
+                  ? `${s4GateHint} · Sessiooni juht avab võimaluste loomise.`
+                  : s4GateHint}
+            </p>
+            {view === "jaanika" ? (
+              <button
+                type="button"
+                data-variant="primary"
+                className="cv1-acc cv1-gate-btn"
+                disabled={s4Missing.length > 0}
+                onClick={advance}
+              >
+                Liigu võimaluste loomisse
+              </button>
+            ) : null}
+          </footer>
+
+          {/* Demo-vaatevahetaja */}
+          <div className="cv1-view" role="group" aria-label="Demo vaade">
+            <span className="cv1-view-label">Demo vaade</span>
+            {DEMO_VIEWS.map((v) => (
+              <button
+                key={v.id}
+                type="button"
+                data-variant
+                data-selected={view === v.id ? "true" : undefined}
+                className="cv1-view-btn"
+                onClick={() => switchView(v.id)}
+              >
+                {v.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Rollipõhine tugi */}
+          {supportOpen ? (
+            <div className="cv1-layer" role="dialog" aria-modal="true" aria-label="Etapi tugi">
+              <div className="cv1-layer-card">
+                <header className="cv1-panel-head">
+                  <h2 className="cv1-panel-title">
+                    {(ROLE_SUPPORT4[view] || ROLE_SUPPORT4.default).title}
+                  </h2>
+                  <button
+                    type="button"
+                    data-variant
+                    className="cv1-mini-btn"
+                    onClick={() => setSupportOpen(false)}
+                  >
+                    Sulge
+                  </button>
+                </header>
+                <p className="cv1-quiet">
+                  Avame mitu võimalikku mõistmisviisi. Me ei vali veel lahendust
+                  ega otsusta, milline tõlgendus on tõde.
+                </p>
+                <ol className="cv1-support-list">
+                  {(ROLE_SUPPORT4[view] || ROLE_SUPPORT4.default).rows.map((row) => (
+                    <li key={row}>{row}</li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          ) : null}
+        </section>
       ) : (
-        /* Etapid 4–8: platseholder kuni ehitame */
+        /* Etapid 5–8: platseholder kuni ehitame */
         <div className="cvs-placeholder">
           <p className="cvs-stage-kicker">{stage}. etapp</p>
           <h2 className="cvs-stage-title">{stageMeta.title}</h2>
@@ -2413,7 +3167,7 @@ export default function CovisionSession() {
         </div>
       )}
 
-      {stage > 3 && supportOpen && support ? (
+      {stage > 4 && supportOpen && support ? (
         <section className="cvs-support" aria-label="Etapi tugi">
           <h3 className="cvs-cell-title">{support.title}</h3>
           <ol className="cvs-support-list">
@@ -2424,7 +3178,7 @@ export default function CovisionSession() {
         </section>
       ) : null}
 
-      {stage > 3 ? (
+      {stage > 4 ? (
       <footer className="cvs-actions">
         {stage > 1 ? (
           <button type="button" data-variant onClick={back}>

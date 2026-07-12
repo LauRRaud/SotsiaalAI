@@ -1,0 +1,138 @@
+.stage {
+  position: fixed;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  width: min(100vw, 262.82dvh);
+  height: min(100dvh, 38.05vw);
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #000;
+}
+
+/* Facebooki profiilipilt: eksportlõuend on alati ruut ning SAI on selle
+   keskmes. Puuduvad kaanefoto täheosakesed ja alumine ankur. */
+.stage[data-variant="profile"] {
+  width: min(100vw, 100dvh);
+  height: min(100dvh, 100vw);
+}
+
+/* Eksport ei tohi pärida avalehe juhtnuppe ega taustaruumi. */
+:global(html:has(main[aria-label="SotsiaalAI logo"])),
+:global(body:has(main[aria-label="SotsiaalAI logo"])) {
+  background: #000;
+}
+:global(body:has(main[aria-label="SotsiaalAI logo"]) .room),
+:global(body:has(main[aria-label="SotsiaalAI logo"]) .room-topbar) {
+  display: none;
+}
+
+:global(main#main:has(main[aria-label="SotsiaalAI logo"])) {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  height: 100%;
+}
+
+.wordmark {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  /* Facebooki kaane visuaalne ankur: sõnamärk istub teadlikult väga
+     madalal, peaaegu alaserval. */
+  bottom: 2.4%;
+  translate: -50%;
+  width: min(65%, 66rem);
+  opacity: 0.7;
+}
+
+/* Teine Facebooki cover: ainult sõnamärk samas alumises ankrus. */
+.stage[data-variant="centered"] .wordmark {
+  top: auto;
+  bottom: 2.4%;
+  translate: -50%;
+  width: min(65%, 66rem);
+}
+
+.stage[data-variant="profile"] .wordmark {
+  top: 50%;
+  bottom: auto;
+  translate: -50% -50%;
+  width: min(64%, 42rem);
+  opacity: 1;
+}
+
+.profileS {
+  clip-path: inset(0 65% 0 0);
+}
+
+/* Laadimisloori vaikimisi 29vh jätab Facebooki formaadis liiga suure
+   vahe. Ekspordis moodustavad tekst ja logo ühe kompaktse alumise paari. */
+:global(.room-veil-line).loadingLine {
+  top: 39%;
+  font-size: clamp(4rem, 3.1rem + 2.4vw, 5.4rem);
+  line-height: 1.15;
+}
+
+.wordmark > img,
+.metal > canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Sama AI-ala kui .room-veil-logo-metal laadimislooris. */
+.metal {
+  position: absolute;
+  top: 1.4%;
+  right: 0;
+  bottom: 2.6%;
+  left: 82.15%;
+  pointer-events: none;
+}
+
+.profileMetal {
+  top: 1.15%;
+  right: 0;
+  bottom: 4.2%;
+  left: 41.85%;
+}
+
+.metalBase {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.metal > canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-soft, ease);
+}
+
+.stage[data-metal-ready="1"] .metal > canvas {
+  opacity: 1;
+}
+
+@media (max-width: 700px) {
+  .wordmark {
+    bottom: 2.4%;
+    width: 72%;
+  }
+
+  .stage[data-variant="profile"] .wordmark {
+    width: 68%;
+  }
+
+  :global(.room-veil-line).loadingLine {
+    top: 34%;
+    font-size: clamp(2.15rem, 8vw, 3.4rem);
+  }
+}

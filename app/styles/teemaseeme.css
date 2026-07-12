@@ -3,7 +3,7 @@
    funktsioon.md v1.1. Kovisioonist ERALDI funktsioon: oma leht,
    viiesammuline loomisteekond, privaatne vs grupile nähtav kiht.
    Nuppude PIND tuleb glass.css-ist (data-variant); siin paigutus.
-   Üks aktsentvärv: soe merevaik (--tsa). Privaatset kihti eristab
+   Üks neutraalne soe klaasitoon (--tsa). Privaatset kihti eristab
    lukumärk + sügavam klaas, MITTE eraldi värv (§33.3).
 
    LÕUENDIREEGEL (tellija 11.07): leht on täisekraani lõuend, mis
@@ -13,7 +13,7 @@
    ============================================================ */
 
 .ts-page {
-  --tsa: 240, 178, 92; /* merevaigu aktsent */
+  --tsa: 235, 226, 216;
   height: 100%;
   min-height: 0;
   display: flex;
@@ -28,18 +28,23 @@
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
-  gap: 0.75rem;
-  padding: 0.7rem 1.2rem 0.9rem;
+  gap: 0.65rem;
+  padding: 0.6rem 1.2rem 0.6rem;
 }
 
-/* Aktsent-primaar: glass.css kanooniline pind + merevaigu serv */
+/* Üks nupukeel: sama neutraalne soe klaas kõikidel tegevustel. */
 .ts-page .ts-acc {
-  border-color: rgba(var(--tsa), 0.5);
-  box-shadow: 0 0 18px rgba(var(--tsa), 0.14);
+  border-color: rgba(var(--tsa), 0.3);
+  background: rgba(34, 30, 27, 0.58);
+  color: var(--room-text);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 .ts-page .ts-acc:hover:not(:disabled) {
-  border-color: rgba(var(--tsa), 0.75);
-  box-shadow: 0 0 26px rgba(var(--tsa), 0.24);
+  border-color: rgba(var(--tsa), 0.5);
+  background: rgba(44, 39, 34, 0.7);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.11),
+    0 10px 28px rgba(8, 4, 2, 0.3);
 }
 
 /* ---------- Ülariba: bränd + funktsioonide nav + abi/profiil ----------
@@ -51,6 +56,8 @@
   gap: 1rem;
   flex-wrap: wrap;
   flex: 0 0 auto;
+  /* Varu hõljuvale sulgemisristile (✕) canvas-paneelis */
+  padding-right: clamp(2.6rem, 3.5vw, 4rem);
 }
 .ts-brand {
   display: flex;
@@ -100,8 +107,8 @@ a.ts-nav-link:hover {
 }
 .ts-nav-link[data-active="1"] {
   color: var(--text-warm);
-  border-color: rgba(var(--tsa), 0.45);
-  background: rgba(var(--tsa), 0.08);
+  border-color: rgba(var(--tsa), 0.3);
+  background: rgba(34, 30, 27, 0.54);
 }
 .ts-nav-link[data-disabled="1"] {
   opacity: 0.55;
@@ -131,6 +138,44 @@ a.ts-nav-link:hover {
 }
 
 /* ---------- Loendivaade ---------- */
+.ts-context-panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.68rem;
+  flex: 0 0 auto;
+  padding: 0.95rem 1.08rem;
+  border-radius: clamp(20px, 1.8vw, 26px);
+  background: var(--card-glass-bg);
+  box-shadow: var(--card-glass-shadow);
+  overflow: hidden;
+}
+.ts-context-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-glass-sheen);
+  pointer-events: none;
+}
+.ts-context-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1.25px;
+  border-radius: inherit;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.ts-context-panel > * {
+  position: relative;
+  z-index: 1;
+}
 .ts-list-head {
   display: flex;
   align-items: center;
@@ -141,25 +186,29 @@ a.ts-nav-link:hover {
 }
 .ts-h1 {
   margin: 0 0 0.15rem;
-  font-size: 1.35rem;
-  font-weight: 600;
+  font-size: clamp(1.65rem, 1.35rem + 0.65vw, 2.15rem);
+  font-weight: 640;
+  line-height: 1.12;
   color: var(--text-warm);
+  text-wrap: balance;
+  text-shadow: 0 1px 16px rgba(8, 4, 2, 0.72);
 }
 .ts-intro {
   margin: 0;
   max-width: 72ch;
-  font-size: var(--fs-small);
-  line-height: 1.45;
-  color: var(--text-soft);
+  font-size: clamp(0.96rem, 0.9rem + 0.12vw, 1.05rem);
+  line-height: 1.52;
+  color: rgba(255, 248, 239, 0.86);
+  text-shadow: 0 1px 13px rgba(8, 4, 2, 0.68);
 }
 .ts-notice {
   flex: 0 0 auto;
   margin: 0;
   padding: 0.5em 0.9em;
   border-radius: 12px;
-  border: 1px solid rgba(var(--tsa), 0.4);
-  background: rgba(var(--tsa), 0.07);
-  font-size: var(--fs-micro);
+  border: 1px solid rgba(var(--tsa), 0.22);
+  background: rgba(34, 30, 27, 0.48);
+  font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
   color: var(--text-soft);
 }
 .ts-filters {
@@ -175,9 +224,9 @@ a.ts-nav-link:hover {
   padding: 0.4em 0.9em;
   border-radius: 999px;
   border: 1px solid var(--glass-cell-border);
-  background: var(--glass-cell-bg);
-  color: var(--text-soft);
-  font-size: var(--fs-micro);
+  background: rgba(34, 30, 27, 0.46);
+  color: rgba(255, 248, 239, 0.8);
+  font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
   cursor: pointer;
   transition: border-color var(--dur-fast) var(--ease-soft);
 }
@@ -186,12 +235,55 @@ a.ts-nav-link:hover {
 }
 .ts-filter[aria-pressed="true"] {
   color: var(--text-warm);
-  border-color: rgba(var(--tsa), 0.55);
-  background: rgba(var(--tsa), 0.09);
+  border-color: rgba(var(--tsa), 0.38);
+  background: rgba(54, 48, 42, 0.68);
 }
 .ts-filter-count {
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
+  font-size: 0.84em;
+  color: rgba(255, 248, 239, 0.62);
+}
+.ts-spatial-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.ts-spatial-hint {
+  margin: 0;
+  font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
+  line-height: 1.45;
+  color: rgba(255, 248, 239, 0.72);
+}
+.ts-layout-reset {
+  flex: 0 0 auto;
+  padding: 0.38em 0.85em;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--tsa), 0.28);
+  background: rgba(34, 30, 27, 0.52);
+  color: var(--text-soft);
+  font-size: clamp(0.84rem, 0.8rem + 0.08vw, 0.9rem);
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+.ts-layout-reset:hover,
+.ts-layout-reset:focus-visible {
+  border-color: rgba(var(--tsa), 0.48);
+  background: rgba(54, 48, 42, 0.68);
+}
+.ts-sr-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .ts-empty {
   margin: 0.8rem 0;
@@ -200,26 +292,123 @@ a.ts-nav-link:hover {
 }
 /* Seemnete kogu: AINUS ala, mis vajadusel kerib (lõuend ise ei keri) */
 .ts-grid {
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 22.5rem));
   gap: 0.75rem;
   align-content: start;
+  align-items: start;
+  justify-items: start;
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  padding-bottom: 0.2rem;
+  overflow: visible;
+  padding: 0.2rem 0 0.75rem;
 }
 
-/* ---------- Seemnekaart (§25 vorming, kompaktne) ---------- */
+/* ---------- Seemnekaart (§25 vorming, ruumiline mattklaas) ---------- */
 .ts-card {
+  --ts-drag-x: 0px;
+  --ts-drag-y: 0px;
+  --ts-drag-scale: 1;
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.45rem;
-  padding: 0.85rem 0.95rem;
-  border-radius: 16px;
-  border: 1px solid var(--glass-cell-border);
-  background: var(--glass-cell-bg);
+  gap: 0.62rem;
+  min-height: 25rem;
+  padding: 1rem 1.08rem;
+  border: none;
+  border-radius: clamp(20px, 1.8vw, 26px);
+  background: linear-gradient(
+    165deg,
+    rgba(44, 39, 34, 0.4) 0%,
+    rgba(32, 28, 25, 0.46) 55%,
+    rgba(24, 21, 19, 0.52) 100%
+  );
+  box-shadow: var(--card-glass-shadow);
+  color: var(--room-text);
+  overflow: hidden;
+  transform: translate3d(var(--ts-drag-x), var(--ts-drag-y), 0) scale(var(--ts-drag-scale));
+  transform-origin: center;
+  transition:
+    transform 180ms var(--ease-soft),
+    box-shadow 180ms var(--ease-soft);
+}
+.ts-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-glass-sheen);
+  pointer-events: none;
+}
+.ts-card::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  padding: 1.35px;
+  border-radius: inherit;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.ts-card > * {
+  position: relative;
+  z-index: 1;
+}
+.ts-card[data-positioned="true"] {
+  z-index: 20;
+  background: linear-gradient(
+    165deg,
+    rgba(44, 39, 34, 0.58) 0%,
+    rgba(32, 28, 25, 0.64) 55%,
+    rgba(24, 21, 19, 0.7) 100%
+  );
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.11),
+    0 28px 76px rgba(8, 4, 2, 0.66),
+    0 7px 24px rgba(8, 4, 2, 0.46);
+}
+.ts-card[data-front="true"] {
+  z-index: 60;
+  background: linear-gradient(
+    165deg,
+    rgba(48, 42, 36, 0.86) 0%,
+    rgba(34, 29, 25, 0.9) 55%,
+    rgba(24, 21, 19, 0.93) 100%
+  );
+  backdrop-filter: blur(8px) saturate(0.86);
+  -webkit-backdrop-filter: blur(8px) saturate(0.86);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.14),
+    0 32px 90px rgba(8, 4, 2, 0.72),
+    0 0 34px rgba(var(--tsa), 0.14);
+}
+.ts-card[data-moving="true"],
+.ts-card[data-resizing="true"] {
+  --ts-drag-scale: 1.018;
+  z-index: 100;
+  background: linear-gradient(
+    165deg,
+    rgba(52, 46, 40, 0.9) 0%,
+    rgba(38, 33, 28, 0.94) 55%,
+    rgba(26, 22, 19, 0.96) 100%
+  );
+  backdrop-filter: blur(10px) saturate(0.82);
+  -webkit-backdrop-filter: blur(10px) saturate(0.82);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.15),
+    0 38px 100px rgba(8, 4, 2, 0.78),
+    0 0 38px rgba(var(--tsa), 0.2);
+  transition: none;
+  will-change: transform;
 }
 .ts-card-head {
   display: flex;
@@ -227,20 +416,104 @@ a.ts-nav-link:hover {
   justify-content: space-between;
   gap: 0.6rem;
 }
+.ts-card-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.42rem;
+  min-width: 0;
+}
+.ts-drag-handle {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 1.85rem;
+  height: 1.85rem;
+  margin: -0.22rem 0 0 -0.35rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+.ts-drag-handle svg {
+  width: 0.86rem;
+  height: 1.15rem;
+  fill: currentcolor;
+}
+.ts-drag-handle:hover,
+.ts-drag-handle:focus-visible {
+  color: var(--text-warm);
+  border-color: rgba(var(--tsa), 0.34);
+  background: rgba(54, 48, 42, 0.58);
+}
+.ts-drag-handle:active,
+.ts-card[data-moving="true"] .ts-drag-handle {
+  color: var(--room-text);
+  cursor: grabbing;
+  background: rgba(64, 57, 50, 0.68);
+}
+.ts-resize-handle {
+  position: absolute;
+  right: 0.34rem;
+  bottom: 0.34rem;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: rgba(34, 30, 27, 0.42);
+  color: rgba(255, 248, 239, 0.62);
+  cursor: nwse-resize;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
+}
+.ts-resize-handle svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+.ts-resize-handle:hover,
+.ts-resize-handle:focus-visible,
+.ts-card[data-resizing="true"] .ts-resize-handle {
+  color: var(--room-text);
+  border-color: rgba(var(--tsa), 0.36);
+  background: rgba(64, 57, 50, 0.68);
+}
 .ts-card-title {
   margin: 0;
-  font-size: var(--fs-small);
-  font-weight: 600;
-  line-height: 1.3;
-  color: var(--text-warm);
+  font-size: clamp(1.16rem, 1.05rem + 0.25vw, 1.34rem);
+  font-weight: 640;
+  line-height: 1.28;
+  color: var(--room-text);
+  text-wrap: balance;
+  text-shadow: 0 1px 15px rgba(8, 4, 2, 0.72);
 }
 .ts-status {
   flex: 0 0 auto;
   padding: 0.22em 0.7em;
   border-radius: 999px;
   border: 1px solid var(--glass-cell-border);
-  font-size: var(--fs-micro);
-  color: var(--text-soft);
+  font-size: clamp(0.84rem, 0.8rem + 0.08vw, 0.9rem);
+  color: var(--room-text-soft);
   white-space: nowrap;
 }
 .ts-status[data-status="valitud"] {
@@ -256,13 +529,15 @@ a.ts-nav-link:hover {
 }
 .ts-card-meta {
   margin: 0;
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
+  font-size: clamp(0.92rem, 0.86rem + 0.12vw, 1rem);
+  line-height: 1.48;
+  color: rgba(245, 235, 224, 0.76);
+  text-shadow: 0 1px 12px rgba(8, 4, 2, 0.68);
 }
 .ts-card-rows {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.48rem;
   margin: 0;
 }
 .ts-card-rows > div {
@@ -271,14 +546,17 @@ a.ts-nav-link:hover {
   gap: 0.05rem;
 }
 .ts-card-rows dt {
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
+  font-size: clamp(0.88rem, 0.83rem + 0.1vw, 0.95rem);
+  font-weight: 560;
+  color: rgba(245, 235, 224, 0.7);
 }
 .ts-card-rows dd {
   margin: 0;
-  font-size: var(--fs-micro);
-  line-height: 1.4;
-  color: var(--text-soft);
+  font-size: clamp(0.96rem, 0.9rem + 0.12vw, 1.04rem);
+  font-weight: 470;
+  line-height: 1.46;
+  color: rgba(255, 248, 239, 0.92);
+  text-shadow: 0 1px 12px rgba(8, 4, 2, 0.72);
   /* Kompaktne kaart: pikk tekst ei venita lõuendit */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -291,21 +569,25 @@ a.ts-nav-link:hover {
   justify-content: space-between;
   gap: 0.6rem;
   margin-top: auto;
-  padding-top: 0.4rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  padding-top: 0.62rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.13);
 }
 .ts-card-owner {
-  font-size: var(--fs-micro);
-  color: var(--text-warm);
+  font-size: clamp(0.92rem, 0.86rem + 0.12vw, 1rem);
+  font-weight: 560;
+  color: var(--room-text);
 }
 .ts-card-wait {
-  font-size: var(--fs-micro);
-  color: var(--text-dim);
+  font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
+  color: rgba(245, 235, 224, 0.68);
 }
 .ts-card-actions {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.55rem;
   flex-wrap: wrap;
+}
+.ts-card-actions :where(button, a) {
+  font-size: clamp(0.92rem, 0.86rem + 0.12vw, 1rem);
 }
 .ts-link-btn {
   text-decoration: none;
@@ -320,6 +602,7 @@ a.ts-nav-link:hover {
   gap: 1.2rem;
   flex-wrap: wrap;
   flex: 0 0 auto;
+  padding-right: clamp(2.6rem, 3.5vw, 4rem);
 }
 .ts-create-intro {
   flex: 1 1 22rem;
@@ -356,7 +639,7 @@ a.ts-nav-link:hover {
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
-  flex: 0 1 8.5rem;
+  flex: 0 1 7rem;
   min-width: 0;
   text-align: center;
 }
@@ -442,7 +725,7 @@ a.ts-nav-link:hover {
    AINULT siis, kui sisu tõesti üle jääb (turvaklapp) */
 .ts-create-main {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-columns: minmax(0, 1fr) 380px;
   grid-template-rows: minmax(0, 1fr);
   gap: 0.9rem;
   align-items: start;
@@ -472,15 +755,15 @@ a.ts-nav-link:hover {
 .ts-form {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 0.6rem;
 }
 /* Kuus välja kahes veerus (mockup 11.07) — mahub ekraanile */
 .ts-fieldset {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.85rem 1.1rem;
+  gap: 0.7rem 1.1rem;
   margin: 0;
-  padding: 0.9rem 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 16px;
   border: 1px solid var(--glass-cell-border);
   background: var(--glass-cell-bg);
@@ -497,7 +780,7 @@ a.ts-nav-link:hover {
 .ts-field {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.25rem;
   min-width: 0;
 }
 .ts-label {
@@ -528,8 +811,8 @@ a.ts-nav-link:hover {
 }
 .ts-textarea {
   resize: vertical;
-  min-height: 3.4em;
-  line-height: 1.45;
+  min-height: 3em;
+  line-height: 1.4;
 }
 .ts-count {
   align-self: flex-end;
@@ -655,14 +938,14 @@ a.ts-nav-link:hover {
 .ts-side {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.55rem;
 }
 .ts-preview,
 .ts-private {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.8rem 0.9rem;
+  gap: 0.45rem;
+  padding: 0.7rem 0.85rem;
   border-radius: 16px;
   border: 1px solid var(--glass-cell-border);
   background: var(--glass-cell-bg);
@@ -696,7 +979,7 @@ a.ts-nav-link:hover {
 .ts-side-sub {
   margin: 0;
   font-size: var(--fs-micro);
-  line-height: 1.45;
+  line-height: 1.35;
   color: var(--text-dim);
 }
 /* Privaatsed moodulid kompaktsete siltidena (mahuvad ekraanile) */
@@ -709,7 +992,7 @@ a.ts-nav-link:hover {
   list-style: none;
 }
 .ts-private-list li {
-  padding: 0.3em 0.75em;
+  padding: 0.22em 0.7em;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.14);
   font-size: var(--fs-micro);
@@ -770,6 +1053,10 @@ a.ts-nav-link:hover {
     align-items: flex-start;
     flex-direction: column;
   }
+  .ts-spatial-tools {
+    align-items: flex-start;
+    flex-direction: column;
+  }
   .ts-fieldset {
     grid-template-columns: 1fr;
   }
@@ -778,5 +1065,16 @@ a.ts-nav-link:hover {
   }
   .ts-page {
     overflow-y: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ts-card,
+  .ts-layout-reset,
+  .ts-drag-handle {
+    transition: none;
+  }
+  .ts-card[data-moving="true"] {
+    --ts-drag-scale: 1;
   }
 }

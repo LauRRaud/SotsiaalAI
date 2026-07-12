@@ -131,8 +131,10 @@ html[data-reduce-motion="1"] .room-stage {
   transition: opacity var(--dur-slow) var(--ease-soft);
 }
 
-/* ---------- Laadimisloor (brief §4; tellija 06.07: nupp KESKEL,
-   tekstid selle all, logo täiesti ALASERVAS) ---------- */
+/* ---------- Laadimisloor: „Selguse väli“ ----------
+   Üks keskne lävi, üks tähenduslik liikumine. Hajus info koguneb
+   lauseks ja liigub kasutaja kutsel SISENEN ümber. Ei ole kerimist,
+   klaaskaarti ega dekoratiivset osakestemüra. */
 .room-veil {
   position: fixed;
   inset: 0;
@@ -141,8 +143,10 @@ html[data-reduce-motion="1"] .room-stage {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.4rem;
-  background: var(--dusk-void);
+  gap: clamp(2.8rem, 6.6vh, 4.9rem);
+  overflow: hidden;
+  isolation: isolate;
+  background: #090705;
   opacity: 1;
   transition: opacity 900ms var(--ease-soft);
 }
@@ -153,32 +157,44 @@ html[data-reduce-motion="1"] .room-stage {
 .room-veil[data-state="gone"] {
   display: none;
 }
-/* Visuaalne järjekord (DOM-i muutmata): nupp → tekstid; logo on
-   voost väljas alaserva ankurdatuna */
-.room-veil-enter {
+/* Lause eelneb lävele. Live-režiimis on DOM-rida osakeste mõõdupuu;
+   liikumise vähendamisel jääb see nähtavaks. */
+.room-veil-line {
   order: 1;
 }
-.room-veil-line {
+.room-veil-enter {
   order: 2;
 }
-/* Logo: SUUR, päris alaservas; UUS sõnamärk sotsiaalai-h-valge.svg
-   (Exo 2 + originaal-AI, tellija 07.07); "AI" saab MetallicPaint kihi. */
+/* Elav kunstikiht ei püüa klõpse ega kasuta püsijälgi. */
+.room-veil-art {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.room-veil-enter,
+.room-veil-line {
+  position: relative;
+  z-index: 2;
+}
+/* Sõnamärk on taas suur alumine ruumiankur. Toon jääb vaoshoitud,
+   kuid alt üles saabumine annab avakuvale algse lavastusliku mõõtme. */
 .room-veil-logo {
   position: absolute;
+  z-index: 2;
   left: 50%;
-  /* Tellija 07.07: logo istub serval (−0.1375rem ≈ −2.2px → 1px üles
-     eelmisest −3.2px-ist). env hoiab notch-turvaala. */
+  top: auto;
   bottom: max(-0.1375rem, env(safe-area-inset-bottom, 0px) - 0.1375rem);
   translate: -50%;
-  width: clamp(17rem, 40vw, 33rem); /* rem: allub ekraaniprofiilile */
+  width: clamp(17rem, 40vw, 33rem);
+  opacity: 0.7;
 }
 .room-veil-logo img {
   display: block;
   width: 100%;
   height: auto;
-  /* Kreemjas drop-shadow EEMALDATUD (tellija 07.07): tekitas heleda
-     halo, mis mõjus kui logol oleks teist värvi taust. Sära tuleb
-     metallik-AI-st, mitte võltskumast. */
 }
 /* Metall katab AINULT AI piirkonna (mask ai-mark.svg): shaderi
    voolamisväli arvutatakse siis AI enda kasti (mitte kogu laia logo)
@@ -201,28 +217,32 @@ html[data-reduce-motion="1"] .room-stage {
 .room-veil[data-metal-ready="1"] .room-veil-logo-metal {
   opacity: 1;
 }
-.room-veil-logo-metal canvas {
+.room-veil-logo-metal-base {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;
+}
+.room-veil-logo-metal canvas {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
   object-fit: contain;
 }
-/* ---- Saabumine: AEGLANE LUKSUSLIK TÕUS ALT (tellija 07.07) ----
-   Valguspühe asendatud: kogu logo (koos metallik-AI-ga) tõuseb ekraani
-   ALT SERVAST oma kohale — aeglane, pehme deceleratsioon. Metall
-   sillerdab juba tõusu ajal (WebGL jookseb pidevalt). translate hoiab
-   -50% horisontaalkeset; y 120% (ekraani all) → 0 (kohal). */
 @keyframes veil-logo-rise {
   0% {
     translate: -50% 120%;
     opacity: 0;
   }
   30% {
-    opacity: 1;
+    opacity: 0.18;
   }
   100% {
     translate: -50% 0;
-    opacity: 1;
+    opacity: 0.7;
   }
 }
 .room-veil[data-state="shown"] .room-veil-logo {
@@ -238,39 +258,160 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
     animation: none;
   }
 }
-/* Tekstid nupu all: ÜHTLANE plokk (sama perekond ja lähedane mõõt),
-   selge vahe nupust (tellija 06.07 öö: mitte nupu külje all) */
 .room-veil-line {
-  margin: 2.8rem 0 0;
+  position: absolute;
+  top: clamp(9.5rem, 29vh, 19rem);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: min(70rem, calc(100vw - 4rem));
+  min-height: 5rem;
+  margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.95rem);
-  font-weight: 390;
-  letter-spacing: 0.05em;
-  color: rgba(244, 241, 236, 0.85);
-  /* Tekstis olev \n annab käsitsi reamurru (tellija 06.07: "on ühes
-     kohas" teisele reale); mõlemad read keskele */
-  white-space: pre-line;
+  font-size: clamp(2.4rem, 1.7rem + 2vw, 3.75rem);
+  font-weight: 360;
+  line-height: 1.4;
+  letter-spacing: 0.075em;
+  color: rgba(246, 229, 205, 0.88);
   text-align: center;
+  text-shadow: 0 0 2rem rgba(236, 206, 158, 0.16);
+  /* Canvas kirjutab lause osakestega. Peida DOM-i mõõdutext juba
+     esimesel serverikaadril, et enne hüdratsiooni ei sähvataks ekraanil
+     tavaline pealkiri. Ligipääsetavates staatilistes režiimides toome
+     DOM-teksti allpool tagasi. */
+  opacity: 0;
+  transition: opacity 420ms var(--ease-soft);
 }
 
-/* "Sisenen" — kasutaja avab ruumi ise, kui on valmis */
+/* SISENEN on tekstiline lävi, mitte klaasnupp. */
 .glass-btn.room-veil-enter {
-  min-height: 3.4rem;
-  padding: 0 2.1em;
-  font-size: 1.18rem;
-  letter-spacing: 0.18em;
+  position: absolute;
+  top: 55.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 0;
+  min-height: 0;
+  padding: 0.44em 0.72em 0.5em;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  font-size: clamp(1.2rem, 0.98rem + 0.68vw, 1.75rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
   text-transform: uppercase;
+  color: rgba(255, 246, 226, 0.92);
+  text-shadow: none;
   opacity: 0;
-  translate: 0 8px;
+  translate: 0 0;
   transition:
-    opacity var(--dur-slow) var(--ease-soft),
-    translate var(--dur-slow) var(--ease-soft),
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft);
+    opacity 1.4s var(--ease-soft),
+    letter-spacing 800ms var(--ease-soft),
+    text-shadow 800ms var(--ease-soft),
+    color 800ms var(--ease-soft);
 }
 .glass-btn.room-veil-enter[data-ready="1"] {
   opacity: 1;
   translate: 0 0;
+}
+.glass-btn.room-veil-enter[data-ready="0"] {
+  pointer-events: none;
+}
+/* Üldine klaasnupu :disabled reegel annab muidu opacity: .42 ja ühe
+   heleda sisemise joone. Laadimislooril peab nupp enne valmisolekut
+   olema päriselt nähtamatu ning täiesti ilma klaasmaterjalita. */
+.glass-btn.room-veil-enter:disabled {
+  opacity: 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.glass-btn.room-veil-enter::before,
+.glass-btn.room-veil-enter::after {
+  display: none;
+}
+.glass-btn.room-veil-enter:hover,
+.glass-btn.room-veil-enter:focus-visible {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: #fffaf0;
+  letter-spacing: 0.43em;
+  text-indent: 0.43em;
+  text-shadow: none;
+}
+.glass-btn.room-veil-enter:active {
+  /* Üldine klaasnupu pressed-olek kahandab nuppu scale: .975 ja jätab
+     vajutamisel nihkuva mulje. Tekstiline SISENEN-lävi püsib täiesti paigal. */
+  scale: 1;
+  translate: 0 0;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.glass-btn.room-veil-enter:focus-visible {
+  /* Fookus jääb nähtavaks heledama teksti ja suurema sõrendusega.
+     Kastikujuline outline tekitas laadimisel eksitava joone. */
+  outline: none;
+}
+.room-veil[data-art-text="1"] .room-veil-line {
+  opacity: 0;
+}
+
+html[data-reduce-motion="1"] .room-veil-line,
+html[data-contrast="hc"] .room-veil-line {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .room-veil-line {
+    opacity: 1;
+  }
+}
+
+html[data-contrast="hc"] .room-veil {
+  background: #000;
+}
+html[data-contrast="hc"] .room-veil::before,
+html[data-contrast="hc"] .room-veil-art {
+  display: none;
+}
+html[data-contrast="hc"] .room-veil-line,
+html[data-contrast="hc"] .glass-btn.room-veil-enter {
+  color: #fff;
+  text-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .room-veil {
+    gap: clamp(2.25rem, 7vh, 3.5rem);
+  }
+  .room-veil-logo {
+    top: auto;
+    bottom: max(-0.1rem, env(safe-area-inset-bottom, 0px) - 0.1rem);
+    width: clamp(16rem, 72vw, 23rem);
+  }
+  .room-veil-line {
+    top: 30%;
+    min-width: min(25rem, calc(100vw - 2rem));
+    min-height: 3rem;
+    font-size: clamp(1.38rem, 6.2vw, 2rem);
+    letter-spacing: 0.055em;
+  }
+  .glass-btn.room-veil-enter {
+    top: 56%;
+    font-size: clamp(1rem, 4.5vw, 1.28rem);
+    letter-spacing: 0.26em;
+    text-indent: 0.26em;
+  }
+  .glass-btn.room-veil-enter:hover,
+  .glass-btn.room-veil-enter:focus-visible {
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+  }
 }
 
 /* Usaldusread EEMALDATUD loorilt (tellija 06.07 öö) — jääb ainult
@@ -447,8 +588,11 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
   text-align: center;
 }
 .room-text[data-stop="walk_2b"] {
-  right: clamp(3rem, 10vw, 12rem);
-  top: 58%;
+  left: 50%;
+  right: auto;
+  top: 57%;
+  max-width: min(35rem, 62vw);
+  text-align: center;
 }
 .room-text[data-stop="walk_3a"] {
   right: clamp(4rem, 12vw, 14rem);
@@ -588,19 +732,29 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: var(--z-panel);
+  /* RoomStage ise on taustakihis. Juhtpaneel on selle kõrval ning peab
+     jääma main-paneelist ühe kihi võrra ette, kuid modaalidest taha. */
+  z-index: calc(var(--z-panel) + 1);
   /* Positsiooni-/nähtavuse-konteiner: ise ei püüa klikke (pointer-events
      none), hoveri püüab paneel + nool ise (nähtav alaserv on sihtala).
      Laius annab paneelile tsentreerimise viite. */
   width: min(30rem, 96vw);
-  height: 6rem;
+  height: 1.8rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-med) var(--ease-soft);
 }
-/* Süttib (muutub kättesaadavaks) alles kui kaardid on interaktiivsed */
-.room[data-power="on"][data-cards-ready="1"] .room-topbar {
+/* Avastseeni ajal pole paneeli DOM-is vaja interaktiivseks jätta. */
+.room-topbar[data-visible="0"] {
+  display: none;
+}
+.room-topbar[data-visible="1"] {
   opacity: 1;
+}
+.room-topbar:hover,
+.room-topbar:focus-within,
+.room-topbar[data-open="1"] {
+  height: 6rem;
 }
 
 /* ÜKS klaaspaneel — ikoonide alus. Materjal = SAMA mis karusselli
@@ -667,7 +821,11 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
    EI ela siin, vaid on ehitatud paneeli sisse (.room-quickbar-arrow). */
 .room-topbar-arrow {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 50%;
+  width: min(18rem, 92vw);
+  height: 1.8rem;
+  transform: translateX(-50%);
   pointer-events: auto;
   appearance: none;
   background: none;
@@ -758,21 +916,6 @@ html[data-reduce-motion="1"] .room-veil[data-state="shown"] .room-veil-logo {
 .glass-iconbtn.room-quick-btn[data-on="0"] {
   color: var(--room-text-dim);
 }
-/* Kõnnis ja paneelirežiimis riba puudub */
-.room[data-mode="walk"] .room-topbar,
-.room[data-mode="panel"] .room-topbar {
-  display: none;
-}
-/* Login avaneb ülaserva ankurdatud poolik-pillina (login.css) samasse
-   kohta — peida ülariba (ka vihje ja hover-reveal) login'i ajaks. */
-.room[data-login-open="1"] .room-topbar {
-  opacity: 0;
-}
-.room[data-login-open="1"] .room-quickbar,
-.room[data-login-open="1"] .room-topbar-arrow {
-  pointer-events: none;
-}
-
 /* ---------- Karussell süttib KÄIVITUSEGA (⏻), mitte kerimisega ---------- */
 .room-carousel-wrap {
   position: fixed;

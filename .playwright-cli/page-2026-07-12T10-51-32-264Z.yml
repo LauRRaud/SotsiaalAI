@@ -1,0 +1,13 @@
+- generic [active] [ref=f5e1]:
+  - link "Liigu sisu juurde" [ref=f5e4]:
+    - /url: "#main"
+  - generic:
+    - button "Ava juhtnupud" [ref=f5e14] [cursor=pointer]
+    - generic:
+      - button "Lülita taustaheli välja" [pressed]
+      - button "Järgmine lugu"
+      - button "Keel ja ligipääsetavus"
+      - button "Ooterežiim"
+  - main:
+    - main "SotsiaalAI logo" [ref=f5e15]:
+      - img "SotsiaalAI" [ref=f5e17]

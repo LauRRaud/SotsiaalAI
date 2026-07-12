@@ -1346,15 +1346,19 @@ export default function LoginModal({
             </div>
           </form>}
 
-        {!isOtpStep && <>
-            <div className="login-register-row">
-              <AppLink href={`${localizePath("/registreerimine", locale)}?next=${encodeURIComponent(nextUrl)}`} variant="brand" className="login-register-link" onClick={() => onClose?.()}>
-                {t("auth.login.register_link")}
-              </AppLink>
-            </div>
+        {!isOtpStep ? (
+          <div className="login-register-row">
+            <span
+              className="login-register-link"
+              role="link"
+              aria-disabled="true"
+              title={t("auth.register.closed_notice")}
+            >
+              {t("auth.login.register_link_closed")}
+            </span>
+          </div>
+        ) : null}
 
-            {}
-          </>}
         </div>
       </div>
     </>, document.body);

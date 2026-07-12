@@ -23,29 +23,36 @@ const wrapPos = (i, active, n) => {
 
 export default function GlassCarousel({
   items,
+  backItem = null,
   initialKey,
   onSelect,
   t,
   setKey = null,
   forceInitial = false,
   visible = 3,
+  desktopArrows = true,
 }) {
   const n = items.length;
 
-  /* 5 nähtavat kaarti (keskmine fookuses, 2 kummalgi pool) suurte
-     komplektide jaoks (töölaud/tööheaolu, tellija 10.07); kitsas aknas
-     kukub tagasi 3 peale. SSR alustab 3-ga (deterministlik), laius
+  /* Suurte komplektide laiad paigutused: 5-kaardiline karussell või
+     töölaua 5 × 2 ruudustik. Kitsas aknas kukuvad mõlemad tagasi kolme
+     kaardiga karusselliks. SSR alustab 3-ga (deterministlik), laius
      mõõdetakse pärast hüdreerimist. */
   const [wideEnough, setWideEnough] = useState(false);
   useEffect(() => {
-    if (visible !== 5 || typeof window === "undefined") return undefined;
+    if ((visible !== 5 && visible !== 10) || typeof window === "undefined") return undefined;
     const mq = window.matchMedia("(min-width: 1200px)");
     const update = () => setWideEnough(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, [visible]);
-  const shown = visible === 5 && wideEnough && n >= 5 ? 5 : 3;
+  const shown = visible === 10 && wideEnough && n >= 10
+    ? 10
+    : visible === 5 && wideEnough && n >= 5
+      ? 5
+      : 3;
+  const isGrid = shown === 10;
   const posLimit = shown === 5 ? 2.4 : 1.4;
   const hideBeyond = shown === 5 ? 2 : 1;
 
@@ -254,6 +261,9 @@ export default function GlassCarousel({
      Aktiivne alles siis, kui käivitus on kaardid avanud (wrap pole inert)
      ja ükski modal/kaardi-leht ei kata; sammu lukk hoiab tempo. */
   const carouselInteractive = useCallback(() => {
+    /* 5 × 2 desktop on töölaud, mitte pöörlev karussell. Kõik nähtav
+       püsib paigal ja ülejäänud valikuni viib alumine otseteeriba. */
+    if (isGrid) return false;
     const list = listRef.current;
     if (!list) return false;
     const wrap = list.closest(".room-carousel-wrap");
@@ -268,7 +278,10 @@ export default function GlassCarousel({
     // Ülariba (kiirnuppude paneel) lahti/hoveril/fookuses → rullik ja nooled
     // ei tohi tagust karusselli pöörata (tellija 07.07: "kaardid hakkasid
     // liikuma"). :hover/:focus-within töötavad matches()-is.
-    const topbar = room.querySelector(".room-topbar");
+    /* Juhtpaneel elab ruumi ja main-kihi vahel eraldi kihis, et see oleks
+       kasutatav ka töövaadetes. Seetõttu otsime seda dokumendist, mitte
+       enam ainult .room elemendi seest. */
+    const topbar = document.querySelector(".room-topbar");
     if (
       topbar &&
       (topbar.dataset.open === "1" ||
@@ -278,7 +291,7 @@ export default function GlassCarousel({
       return false;
     }
     return true;
-  }, []);
+  }, [isGrid]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -315,6 +328,11 @@ export default function GlassCarousel({
         e.preventDefault();
         return;
       }
+      if (isGrid) {
+        e.preventDefault();
+        onSelect?.(item);
+        return;
+      }
       const pos = wrapPos(i, activeRef.current, n);
       if (pos !== 0 && e.detail > 0) {
         // Hiireklikk külgpaneelil pöörab selle enne keskele (brief §7)
@@ -327,7 +345,21 @@ export default function GlassCarousel({
       e.preventDefault();
       onSelect?.(item);
     },
-    [n, onSelect]
+    [isGrid, n, onSelect]
+  );
+
+  /* Kolme kaardi vaates on alumine riba päris otsetee, mitte pelgalt
+     asukohatäpp: valik avaneb kohe. Tagasi elab eraldi püsiva nupuna, et
+     alamkomplektis ei peaks selle leidmiseks karusselli läbi kerima. */
+  const shortcutEntries = useMemo(
+    () => items.map((item, index) => ({ item, index })),
+    [items]
+  );
+  const handleShortcut = useCallback(
+    (item) => {
+      onSelect?.(item);
+    },
+    [onSelect]
   );
 
   const showDots = n > 1;
@@ -339,7 +371,13 @@ export default function GlassCarousel({
   }, [t, active, n]);
 
   return (
-    <nav className="gc" data-visible={shown} aria-label={t("room.menu_label")} id="room-menu">
+    <nav
+      className="gc"
+      data-visible={shown}
+      data-desktop-arrows={desktopArrows ? "1" : "0"}
+      aria-label={t("room.menu_label")}
+      id="room-menu"
+    >
       <IconButton
         layoutClassName="gc-arrow gc-arrow--left"
         aria-label={t("room.prev_panel")}
@@ -360,7 +398,9 @@ export default function GlassCarousel({
         {items.map((item, i) => {
           const pos = layout.pos[i] ?? wrapPos(i, active, n);
           const abs = Math.abs(pos);
-          const isCenter = pos === 0;
+          const gridIndex = (i - active + n) % n;
+          const isGridVisible = isGrid && gridIndex < 10;
+          const isCenter = isGrid ? gridIndex === 0 : pos === 0;
           const isWarp = layout.warp[i] === true;
           /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
              mitte oma kaugel ringipositsioonil — sisenev kaart libiseb
@@ -372,9 +412,16 @@ export default function GlassCarousel({
             <li
               key={item.key}
               className="gc-item"
-              style={{ "--pos": posVis, "--abs": absVis, zIndex: 40 - abs * 10 }}
+              style={{
+                "--pos": posVis,
+                "--abs": absVis,
+                "--grid-col": gridIndex % 5,
+                "--grid-row": Math.floor(gridIndex / 5),
+                "--grid-index": gridIndex,
+                zIndex: isGrid ? 40 : 40 - abs * 10,
+              }}
               data-center={isCenter ? "1" : "0"}
-              data-hidden={abs > hideBeyond ? "1" : "0"}
+              data-hidden={isGrid ? (isGridVisible ? "0" : "1") : abs > hideBeyond ? "1" : "0"}
               data-warp={isWarp ? "1" : "0"}
             >
               <GlassCard
@@ -385,8 +432,8 @@ export default function GlassCarousel({
                 label={item.label}
                 icon={item.icon || null}
                 longLabel={item.label.length > 13}
-                tabIndex={isCenter ? 0 : -1}
-                aria-current={isCenter ? "true" : undefined}
+                tabIndex={isGridVisible || isCenter ? 0 : -1}
+                aria-current={!isGrid && isCenter ? "true" : undefined}
                 onClick={(e) => handleActivate(e, item, i)}
               />
             </li>
@@ -403,10 +450,50 @@ export default function GlassCarousel({
       </IconButton>
 
       {showDots ? (
-        <div className="gc-dots" aria-hidden="true">
-          {items.map((item, i) => (
-            <span key={item.key} className="gc-dot" data-on={i === active ? "1" : "0"} />
-          ))}
+        <div className="gc-shortcuts" role="group" aria-label={t("room.menu_label")}>
+          {backItem ? (
+            <button
+              type="button"
+              className="gc-shortcut gc-shortcut--back"
+              data-on="0"
+              aria-label={backItem.label}
+              onClick={() => handleShortcut(backItem)}
+            >
+              <span className="gc-shortcut-icon" aria-hidden="true">
+                {backItem.icon}
+              </span>
+              <span className="gc-shortcut-tooltip" aria-hidden="true">
+                {backItem.label}
+              </span>
+            </button>
+          ) : null}
+          {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
+          <div className="gc-shortcut-track">
+            {shortcutEntries.map(({ item, index }) => {
+              const isActive = index === active;
+              return (
+                <button
+                  key={item.key}
+                  type="button"
+                  className="gc-shortcut"
+                  data-on={isActive ? "1" : "0"}
+                  aria-label={item.label}
+                  aria-current={isActive ? "true" : undefined}
+                  onClick={() => handleShortcut(item)}
+                >
+                  <span className="gc-shortcut-icon" aria-hidden="true">
+                    {item.icon || <span className="gc-shortcut-mark" />}
+                  </span>
+                  <span className="gc-shortcut-text" aria-hidden="true">
+                    {item.label}
+                  </span>
+                  <span className="gc-shortcut-tooltip" aria-hidden="true">
+                    {item.label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       ) : null}
       <p className="sr-only" aria-live="polite">

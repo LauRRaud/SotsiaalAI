@@ -54,6 +54,7 @@
       "submit": "Sisenen",
       "forgot": "Unustasid PIN-i?",
       "register_link": "Registreeru",
+      "register_link_closed": "Registreeru — peagi",
       "clear": "Kustuta PIN",
       "otp_title": "Kinnita sisenemine",
       "otp_description": "Saadsime kinnituse aadressile {email}. Ava kiri ja vajuta kinnitamise linki.",
@@ -4130,7 +4131,7 @@
     "p8": "SotsiaalAI-d arendatakse sotsiaalse ettevõttena ja sotsiaalse innovatsiooni algatusena. Ühendame tehnoloogia ja sotsiaalvaldkonna praktika, et toe leidmine ja igapäevatöö oleksid selgemad ja ligipääsetavamad. Platvormi arendamisel peame oluliseks turvalist kasutust, andmekaitset ja selgeid kasutusreegleid."
   },
   "room": {
-    "loading_line": "Ruum, kus sotsiaalvaldkonna teadmine\non ühes kohas.",
+    "loading_line": "Kõik algab selgusest.",
     "skip": "Jäta vahele",
     "skip_to_content": "Liigu sisu juurde",
     "menu_label": "Peamenüü",
@@ -4147,7 +4148,7 @@
     "admin_acceptances": "Kinnitused",
     "walk_1": "Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — astu sisse.",
     "walk_2a": "Tere tulemast.",
-    "walk_2b": "Kõik siin on seatud sinu järgi.",
+    "walk_2b": "Platvorm on arendamisjärgus ja avatakse peagi.",
     "walk_3a": "Küsi teenuste, toetuste, õiguste või tööpraktika kohta.",
     "walk_3b": "Saad koostada taotlusi ja dokumente — ning vestelda, kellega vaja.",
     "walk_4a": "Teekonnal on sinu sammud selgelt näha.",

@@ -48,9 +48,9 @@ const REGISTER_RATE_LIMIT_PER_IP = Number(process.env.REGISTER_RATE_LIMIT_PER_IP
 const REGISTER_RATE_LIMIT_PER_EMAIL = Number(
   process.env.REGISTER_RATE_LIMIT_PER_EMAIL || 4
 );
-const REGISTRATION_OPEN = !["false", "0", "off"].includes(
-  String(process.env.REGISTRATION_OPEN || "false").trim().toLowerCase()
-);
+/* Teadlik launch-lukk: vana deploy-keskkonna REGISTRATION_OPEN=true ei
+   tohi platvormi enne avalikku avamist kogemata registreerimiseks avada. */
+const REGISTRATION_OPEN = false;
 const EMAIL_VERIFY_IDENTIFIER_PREFIX = "email-verify:";
 
 function json(payload = {}, status = 200) {

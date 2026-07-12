@@ -77,18 +77,21 @@ export default function PanelFrame({ children }) {
 
   const normalized = normalizePathname(pathname);
   const isHome = normalized === "/";
+  const isLogoExport = normalized === "/logo-eksport";
   /* Profiili-hub on karussell (RoomStage); lehe sisu avaneb alles
      sektsiooni valides (?sektsioon=konto). */
   const isProfileHub =
     normalized === "/profiil" && !String(searchParams?.get("sektsioon") || "").trim();
   const isAdmin = normalized.startsWith("/admin");
-  const isChat = normalized.startsWith("/vestlus") || normalized.startsWith("/teekond");
+  const isConversation = normalized.startsWith("/vestlus");
+  const isChat = isConversation || normalized.startsWith("/teekond");
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
-     teenusekaart = suur kaart; kovisioon ja teemaseemned = täisekraani lõuend */
-  const isWide =
-    normalized === "/teenusekaart" ||
-    normalized === "/kovisioon" ||
-    normalized === "/teemaseemned";
+     teenusekaart = suur kaart */
+  const isWide = normalized === "/teenusekaart";
+  /* Kovisioon + Teemaseemned = TÄISEKRAANI LÕUEND (tellija 11.07):
+     paneel täpselt ekraani suurune, paddinguta ja läbipaistev — sisu
+     saab kogu ruumi ega keri; nurga-nupud hõljuvad sisu kohal */
+  const isCanvas = normalized === "/kovisioon" || normalized === "/teemaseemned";
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
@@ -172,7 +175,7 @@ export default function PanelFrame({ children }) {
     };
   }, [isHome, normalized]);
 
-  if (isHome) return children;
+  if (isHome || isLogoExport) return children;
   if (isProfileHub) {
     // Sisu jääb monteerituks (seis säilib), aga on peidus ja inertne —
     // nähtav navigatsioon on RoomStage'i profiili-karussell.
@@ -187,7 +190,9 @@ export default function PanelFrame({ children }) {
     <div
       className="panel-scrim"
       data-admin={isAdmin ? "1" : "0"}
+      data-canvas={isCanvas ? "1" : "0"}
       data-chat={isChat ? "1" : "0"}
+      data-conversation={isConversation ? "1" : "0"}
       data-compact={isCompact ? "1" : "0"}
       data-wide={isWide ? "1" : "0"}
     >
