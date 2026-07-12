@@ -317,11 +317,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   /* Käivituse vahepala: pärast klaaside teket sähvatab keskele animeeritud
      SAI-monogramm, alles siis laetakse kaartidele sisu (tellija 06.07) */
   const [introSai, setIntroSai] = useState(false);
-  /* Metalli "valmis"-olek: loori metallik-AI (WebGL) tuuakse SUJUVALT sisse
-     alles kui muster on renderdatud — enne pole tühja/musta alust näha
-     (tellija 06.07). NB: vahepala monogramm on nüüd AINULT pöörlev S,
-     ilma AI-ta (tellija 07.07). */
+  /* Loori logo ilmub ühe tervikuna alles siis, kui nii sõnamärgi SVG kui
+     metallik-AI esimene WebGL-kaader on valmis. Vahepealseid kihte ei näidata. */
   const [veilMetalReady, setVeilMetalReady] = useState(false);
+  const [veilWordmarkReady, setVeilWordmarkReady] = useState(false);
+  const veilLogoReady = veilMetalReady && veilWordmarkReady;
 
   const displayed = useRef(0);
   const target = useRef(0);
@@ -778,7 +778,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     displayed.current = 0;
     applyScene(0);
     setVeil("fading");
-    window.setTimeout(() => setVeil("gone"), 900);
+    // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
+    window.setTimeout(() => setVeil("gone"), 1320);
   }, [applyScene]);
 
   /* Loori all ei saa kerida (kõnd algab alles sisenemisel) */
@@ -1404,7 +1405,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       <div
         className="room-veil"
         data-state={veil}
-        data-metal-ready={veilMetalReady ? "1" : "0"}
+        data-logo-ready={veilLogoReady ? "1" : "0"}
         role="dialog"
         aria-modal={veil !== "gone" ? "true" : undefined}
         aria-labelledby="room-veil-message"
@@ -1414,25 +1415,36 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
             nupp jäävad selle kohal ligipääsetavaks. */}
         {veil !== "gone" ? <VeilArt effect={VEIL_EFFECTS.DIRECT} /> : null}
-        <div className="room-veil-logo">
+        <div
+          className="room-veil-logo"
+          /* Critical pre-CSS guard: SSR must never expose the default canvas
+             rectangle while the stylesheet and WebGL texture are loading. */
+          style={veilLogoReady ? undefined : { opacity: 0 }}
+        >
           <img
+            ref={image => {
+              // Cached SVG can already be complete before React receives onLoad.
+              // In that case mark it ready immediately, while the parent stays
+              // fully transparent until the metallic canvas is ready as well.
+              if (image?.complete && image.naturalWidth > 0) {
+                setVeilWordmarkReady(true);
+              }
+            }}
             src="/logo/sotsiaalai-h-valge.svg"
             alt="SotsiaalAI"
             width={264}
             height={50}
             decoding="async"
+            onLoad={() => setVeilWordmarkReady(true)}
           />
           {veil !== "gone" ? (
             <div className="room-veil-logo-metal" aria-hidden="true">
-              {/* Exact SVG geometry keeps the black AI base aligned with the metallic canvas. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="room-veil-logo-metal-base" src="/logo/ai-mark.svg" alt="" />
               {/* Tähed = platina (jahe hõbe-valge põhitoon: light/dark);
                   liikuv sära = šampanja/kuld (tintColor) — tellija 06.07.
                   chromaticSpread ~0: RGB-kanalite lahknemine tegi ROHELISI
                   servi; blur/sharpness/noise pehmemaks (sujuvam helk).
-                  Alus-AI on LÄBIPAISTEV; metall tuleb SUJUVALT sisse alles
-                  kui muster on renderdatud (onReady → data-metal-ready). */}
+                  Kogu sõnamärk püsib LÄBIPAISTEV, kuni metall on renderdatud;
+                  seejärel ilmuvad SVG ja metall ühe tervikuna. */}
               <MetallicPaint
                 imageSrc="/logo/ai-mark.svg"
                 onReady={() => setVeilMetalReady(true)}
@@ -1454,6 +1466,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                 tintColor="#e6d3c0"
                 tintPulse={0.6}
                 radial={3.5}
+                preserveDrawingBuffer
               />
             </div>
           ) : null}

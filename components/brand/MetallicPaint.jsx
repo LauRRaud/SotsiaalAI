@@ -266,6 +266,8 @@ function hexToRgb(hex) {
     : [1, 1, 1];
 }
 
+const STABLE_FRAME_COUNT = 4;
+
 export default function MetallicPaint({
   imageSrc,
   className = 'block h-full w-full object-contain',
@@ -306,10 +308,11 @@ export default function MetallicPaint({
   const speedRef = useRef(speed);
   const mouseRef = useRef({ x: 0.5, y: 0.5, targetX: 0.5, targetY: 0.5 });
   const mouseAnimRef = useRef(mouseAnimation);
-  const firstFrameReadyRef = useRef(false);
+  const paintedFrameCountRef = useRef(0);
 
   const [ready, setReady] = useState(false);
   const [textureReady, setTextureReady] = useState(false);
+  const [visuallyReady, setVisuallyReady] = useState(false);
 
   useEffect(() => {
     speedRef.current = speed;
@@ -318,9 +321,9 @@ export default function MetallicPaint({
     mouseAnimRef.current = mouseAnimation;
   }, [mouseAnimation]);
 
-  // "Valmis"-signaal antakse alles pärast esimest päriselt joonistatud
+  // "Valmis"-signaal antakse alles pärast mitut päriselt joonistatud
   // WebGL-kaadrit. Tekstuuri üleslaadimine üksi ei taga, et canvas ei näita
-  // värskendusel hetkeks brauseri puhastamata (heledat) puhvert.
+  // refresh'il hetkeks brauseri puhastamata heledat puhvert.
   const onReadyRef = useRef(onReady);
   onReadyRef.current = onReady;
 
@@ -483,7 +486,8 @@ export default function MetallicPaint({
   useEffect(() => {
     if (!ready || !imageSrc) return;
 
-    firstFrameReadyRef.current = false;
+    paintedFrameCountRef.current = 0;
+    setVisuallyReady(false);
     setTextureReady(false);
     const img = new Image();
     img.crossOrigin = 'anonymous';
@@ -578,12 +582,16 @@ export default function MetallicPaint({
 
       gl.uniform1f(u.u_time, animTimeRef.current);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      if (!firstFrameReadyRef.current) {
-        // onReady käivitab vanema opacity-ülemineku. Oota GPU lõpetamist,
-        // et esimene nähtav kaader oleks juba metall, mitte tühi canvas.
+      if (paintedFrameCountRef.current < STABLE_FRAME_COUNT) {
+        // Hoia canvas ise nähtamatuna mitme lõpetatud GPU-kaadrini. Refresh'il
+        // võib esimene WebGL-puhver olla komposiidis veel hele tühi ristkülik;
+        // alles stabiilse kaadri järel vabastame nii canvase kui vanema reveal'i.
         gl.finish();
-        firstFrameReadyRef.current = true;
-        onReadyRef.current?.();
+        paintedFrameCountRef.current += 1;
+        if (paintedFrameCountRef.current === STABLE_FRAME_COUNT) {
+          setVisuallyReady(true);
+          onReadyRef.current?.();
+        }
       }
       rafRef.current = requestAnimationFrame(render);
     };
@@ -597,5 +605,11 @@ export default function MetallicPaint({
     };
   }, [ready, textureReady]);
 
-  return <canvas ref={canvasRef} className={className} />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className={className}
+      style={{ opacity: visuallyReady ? 1 : 0 }}
+    />
+  );
 }

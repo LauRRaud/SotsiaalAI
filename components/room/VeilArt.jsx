@@ -18,10 +18,10 @@
 
 import { useEffect, useRef } from "react";
 
-const WARM = { r: 236, g: 206, b: 158 };
-const GOLD = { r: 255, g: 204, b: 96 };
-const IVORY = { r: 255, g: 247, b: 230 };
-const COOL = { r: 154, g: 177, b: 199 };
+const WARM = { r: 229, g: 207, b: 170 };
+const GOLD = { r: 218, g: 171, b: 94 };
+const IVORY = { r: 248, g: 240, b: 223 };
+const BRONZE = { r: 163, g: 119, b: 72 };
 
 const TEXT_LIMIT = 780;
 const AMBIENT_COUNT = 112;
@@ -205,7 +205,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         const next = [];
         for (let y = 0; y < sample.height; y += step) {
           for (let x = 0; x < sample.width; x += step) {
-            if (pixels[(y * sample.width + x) * 4 + 3] > 120) next.push([x, y]);
+            if (pixels[(y * sample.width + x) * 4 + 3] > 165) next.push([x, y]);
           }
         }
         return next;
@@ -238,6 +238,11 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         const distance = 125 + Math.random() * Math.min(440, width * 0.32);
         const startX = target.x + Math.cos(angle) * distance;
         const startY = target.y + Math.sin(angle) * distance * 0.72;
+        /* Vedelkursori nool algab tipust (0,0) ning laieneb allapoole.
+           Iga osake saab noole sees oma neeldumispunkti, mitte ühist pikslit. */
+        const directEndY = 3 + Math.random() * 22;
+        const directEndX =
+          1 + Math.random() * Math.min(18, 2 + directEndY * 0.72);
         textParticles.push({
           x: startX,
           y: startY,
@@ -245,8 +250,8 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           startY,
           vx: 0,
           vy: 0,
-          size: 0.75 + Math.random() * 0.85,
-          alpha: 0.52 + Math.random() * 0.4,
+          size: 0.58 + Math.random() * 0.58,
+          alpha: 0.62 + Math.random() * 0.34,
           phase: Math.random() * Math.PI * 2,
           glowStartedAt: Number.NEGATIVE_INFINITY,
           glowDuration: 0,
@@ -255,6 +260,11 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           streamCurve: (Math.random() - 0.5) * 0.9,
           streamEndX: (Math.random() - 0.5) * 5,
           streamEndY: (Math.random() - 0.5) * 3,
+          directEndX,
+          directEndY,
+          directDriftX: (Math.random() - 0.5) * 18,
+          directApproachX: (Math.random() - 0.5) * 46,
+          directApproachLift: 54 + Math.random() * 38,
           scatterX: 0,
           scatterY: 0,
           scatterVx: 0,
@@ -268,10 +278,8 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         });
       });
 
-      /* Mõlemad lavastused kasutavad segatud osakeste järjekorda.
-         „laadimine-ring“ säilitab varasema pika ükshaaval voolamise;
-         „laadimine-otse“ käivitab kogu välja 20–240 ms aknas, nii et
-         liikumine tundub peaaegu ühine, kuid mitte mehaaniliselt samaaegne. */
+      /* Ring-lavastus kasutab segatud osakeste järjekorda. Otse-lavastuses
+         liigub laine SISENEN-i kohalt loomulikult lause välisservade poole. */
       const streamOrder = textParticles.map((_, index) => index);
       for (let index = streamOrder.length - 1; index > 0; index -= 1) {
         const swapIndex = Math.floor(Math.random() * (index + 1));
@@ -287,11 +295,15 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           textParticles[particleIndex].streamAt = nextStart;
         });
       } else {
-        streamOrder.forEach((particleIndex) => {
-          const particle = textParticles[particleIndex];
-          particle.streamAt = 0.02 + Math.random() * 0.22;
-          particle.streamDuration = 0.46 + Math.random() * 0.24;
-          particle.streamCurve = (Math.random() - 0.5) * 0.36;
+        textParticles.forEach((particle, particleIndex) => {
+          const target = textTargets[particleIndex];
+          const cascade =
+            0.5 +
+            Math.sin(target.x * 0.038 + particle.phase * 0.65) * 0.5;
+          particle.streamAt =
+            0.04 + cascade * 0.42 + Math.random() * 0.55;
+          particle.streamDuration = 0.78 + Math.random() * 0.28;
+          particle.streamCurve = (Math.random() - 0.5) * 0.7;
         });
       }
       gateDuration = Math.max(
@@ -316,8 +328,8 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           y: Math.random() * height,
           vx: Math.cos(driftAngle) * (0.12 + Math.random() * 0.18),
           vy: Math.sin(driftAngle) * (0.1 + Math.random() * 0.15),
-          size: 0.95 + Math.random() * 1.2,
-          alpha: 0.38 + Math.random() * 0.36,
+          size: 0.72 + Math.random() * 0.86,
+          alpha: 0.28 + Math.random() * 0.3,
           phase: Math.random() * Math.PI * 2,
           tone: Math.random() < 0.82 ? 0 : 1,
           driftAngle,
@@ -356,19 +368,23 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       mote.orbitDuration = 2.1 + Math.random() * 1.8;
     }
 
-    function limitTextScatter(particle, maxDistance = 52) {
+    function applyTextScatterBoundary(particle, dt, softDistance = 58) {
       const distance = Math.hypot(particle.scatterX, particle.scatterY);
-      if (distance <= maxDistance) return;
+      if (distance <= softDistance) return;
       const normalX = particle.scatterX / distance;
       const normalY = particle.scatterY / distance;
-      particle.scatterX = normalX * maxDistance;
-      particle.scatterY = normalY * maxDistance;
       const outwardSpeed =
         particle.scatterVx * normalX + particle.scatterVy * normalY;
       if (outwardSpeed > 0) {
-        /* Välimine piir on pehme pidur, mitte nähtav põrge. */
-        particle.scatterVx -= normalX * outwardSpeed * 0.78;
-        particle.scatterVy -= normalY * outwardSpeed * 0.78;
+        /* Kauguse kasvades suureneb pidurdus pidevalt; asukohta ei lõigata
+           kunagi ühe kaadriga piirile ja seetõttu ei teki nähtavat jõnksu. */
+        const excess = distance - softDistance;
+        const edgeDamping = 1 - Math.exp(-(2 + excess * 0.16) * dt);
+        particle.scatterVx -= normalX * outwardSpeed * edgeDamping;
+        particle.scatterVy -= normalY * outwardSpeed * edgeDamping;
+        const edgePull = Math.min(60, excess * 5);
+        particle.scatterVx -= normalX * edgePull * dt;
+        particle.scatterVy -= normalY * edgePull * dt;
       }
     }
 
@@ -458,7 +474,6 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         particle.scatterHitAt = elapsed;
         particle.scatterReturnAt =
           elapsed + 1.4 + particle.scatterBrakeDuration;
-        limitTextScatter(particle);
       });
     }
 
@@ -576,7 +591,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         if (mote.y > height + 12) mote.y = -10;
 
         const twinkle = 0.74 + Math.sin(elapsed * 0.45 + mote.phase) * 0.26;
-        const tone = mote.tone === 0 ? WARM : COOL;
+        const tone = mote.tone === 0 ? WARM : BRONZE;
         /* Üksikud punktid vilguvad aeg-ajalt kuldseks. Punkti mõõt ei
            muutu ja selle ümber ei joonistata halo ega lisakihti. */
         const flashWave = mote.flashEligible
@@ -645,6 +660,8 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       textParticles.forEach((particle, index) => {
         const target = textTargets[index];
         if (!target) return;
+        const previousDrawX = particle.x;
+        const previousDrawY = particle.y;
 
         const ringAngle =
           target.angle - Math.PI / 2 + (ringEffect ? elapsed * 0.045 : 0);
@@ -672,34 +689,68 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           streamProgress = clamp01(
             (gateTime - particle.streamAt) / particle.streamDuration,
           );
-          const travel = ease(streamProgress);
+          /* Otse-neeldumine alustab vaikselt ja kiireneb noole lähedal.
+             Ring-variant säilitab oma varasema ease-out liikumise. */
+          const travel = ringEffect
+            ? ease(streamProgress)
+            : streamProgress ** 3 *
+              (streamProgress * (streamProgress * 6 - 15) + 10);
           /* Otse-efekti neeldumispunkt on kursori tegelik asukoht
              SISENEN-alal. Klaviatuurifookuse või puuduva kursori korral
              jääb turvaliseks sihiks läve keskpunkt. Ringivariant säilitab
              oma varasema keskmesse voolamise. */
-          const directEndX = gateSink.ready ? gateSink.x : gate.x;
-          const directEndY = gateSink.ready ? gateSink.y : gate.y;
+          const directSinkX = gateSink.ready ? gateSink.x : gate.x;
+          const directSinkY = gateSink.ready ? gateSink.y : gate.y;
           const endX = ringEffect
             ? gate.x + particle.streamEndX
-            : directEndX;
+            : directSinkX + particle.directEndX;
           const endY = ringEffect
             ? gate.y + particle.streamEndY
-            : directEndY;
+            : directSinkY + particle.directEndY;
           sinkX = endX;
           sinkY = endY;
-          const middleX =
-            (startTargetX + endX) / 2 - Math.sin(ringAngle) * ringY * particle.streamCurve;
-          const middleY =
-            (startTargetY + endY) / 2 + Math.cos(ringAngle) * ringY * particle.streamCurve;
+          const pathX = endX - startTargetX;
+          const pathY = endY - startTargetY;
+          const pathDistance = Math.hypot(pathX, pathY) || 1;
+          const curveAmount = ringEffect
+            ? ringY * particle.streamCurve
+            : Math.min(36, pathDistance * 0.12) * particle.streamCurve;
+          const middleX = ringEffect
+            ? (startTargetX + endX) / 2 - Math.sin(ringAngle) * curveAmount
+            : (startTargetX + endX) / 2 - (pathY / pathDistance) * curveAmount;
+          const middleY = ringEffect
+            ? (startTargetY + endY) / 2 + Math.cos(ringAngle) * curveAmount
+            : (startTargetY + endY) / 2 + (pathX / pathDistance) * curveAmount;
           const oneMinus = 1 - travel;
-          activeTargetX =
-            oneMinus * oneMinus * startTargetX +
-            2 * oneMinus * travel * middleX +
-            travel * travel * endX;
-          activeTargetY =
-            oneMinus * oneMinus * startTargetY +
-            2 * oneMinus * travel * middleY +
-            travel * travel * endY;
+          if (ringEffect) {
+            activeTargetX =
+              oneMinus * oneMinus * startTargetX +
+              2 * oneMinus * travel * middleX +
+              travel * travel * endX;
+            activeTargetY =
+              oneMinus * oneMinus * startTargetY +
+              2 * oneMinus * travel * middleY +
+              travel * travel * endY;
+          } else {
+            const control1X =
+              startTargetX + particle.directDriftX;
+            const control1Y =
+              startTargetY + pathY * 0.34;
+            const control2X =
+              startTargetX + particle.directApproachX * 0.3;
+            const control2Y =
+              directSinkY - particle.directApproachLift;
+            activeTargetX =
+              oneMinus ** 3 * startTargetX +
+              3 * oneMinus * oneMinus * travel * control1X +
+              3 * oneMinus * travel * travel * control2X +
+              travel ** 3 * endX;
+            activeTargetY =
+              oneMinus ** 3 * startTargetY +
+              3 * oneMinus * oneMinus * travel * control1Y +
+              3 * oneMinus * travel * travel * control2Y +
+              travel ** 3 * endY;
+          }
         }
 
         /* Liikumisel on kolm loetavat faasi: pikem vaba triiv, selle lõpus
@@ -714,35 +765,58 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         );
         const returnStrength = returnProgress * returnProgress * (3 - 2 * returnProgress);
         const isReturning = elapsed >= particle.scatterReturnAt;
-        const isFreeDrifting = brakeProgress <= 0.001;
         const scatterSpring = 26 * returnStrength;
 
         /* Väike osakesepõhine pöördenurk murrab ühtlase sirgjoonelise rea,
            kuid säilitab hoo — tegemist on triivi, mitte juhusliku värinaga. */
-        if (isFreeDrifting) {
-          const turn = particle.scatterCurl * 0.58 * dt;
+        if (!isReturning) {
+          /* Ka trajektoorikaar hääbub pidurduse jooksul sujuvalt. */
+          const turn = particle.scatterCurl * 0.58 * (1 - brakeProgress) * dt;
           const cosine = Math.cos(turn);
           const sine = Math.sin(turn);
           const nextVx = particle.scatterVx * cosine - particle.scatterVy * sine;
           particle.scatterVy = particle.scatterVx * sine + particle.scatterVy * cosine;
           particle.scatterVx = nextVx;
         }
-        particle.scatterVx -= particle.scatterX * scatterSpring * dt;
-        particle.scatterVy -= particle.scatterY * scatterSpring * dt;
-        const scatterDistance = Math.hypot(
+        if (isReturning) {
+          /* Kriitiliselt summutatud vedru ei ületa sihtpunkti. Alguses
+             säilib pidurdusfaasi summutus, seejärel läheb see pidevalt üle
+             vedru enda kriitiliseks summutuseks. */
+          const criticalDamping = 2 * Math.sqrt(scatterSpring);
+          const returnDamping =
+            9 * (1 - returnStrength) + criticalDamping * returnStrength;
+          particle.scatterVx +=
+            (-particle.scatterX * scatterSpring -
+              particle.scatterVx * returnDamping) *
+            dt;
+          particle.scatterVy +=
+            (-particle.scatterY * scatterSpring -
+              particle.scatterVy * returnDamping) *
+            dt;
+        } else {
+          const scatterFriction = 0.3 + brakeProgress * 8.7;
+          const scatterDamping = Math.exp(-scatterFriction * dt);
+          particle.scatterVx *= scatterDamping;
+          particle.scatterVy *= scatterDamping;
+        }
+        particle.scatterX += particle.scatterVx * dt;
+        particle.scatterY += particle.scatterVy * dt;
+        applyTextScatterBoundary(particle, dt);
+
+        const finalDistance = Math.hypot(
           particle.scatterX,
           particle.scatterY,
         );
-        const settleStrength = 1 - clamp01(scatterDistance / 12);
-        const scatterFriction = isReturning
-          ? 7.6 - returnStrength * 4.4 + settleStrength * returnStrength * 4.5
-          : 0.3 + brakeProgress * 8.7;
-        const scatterDamping = Math.exp(-scatterFriction * dt);
-        particle.scatterVx *= scatterDamping;
-        particle.scatterVy *= scatterDamping;
-        particle.scatterX += particle.scatterVx * dt;
-        particle.scatterY += particle.scatterVy * dt;
-        limitTextScatter(particle);
+        const finalSpeed = Math.hypot(
+          particle.scatterVx,
+          particle.scatterVy,
+        );
+        if (isReturning && finalDistance < 0.06 && finalSpeed < 0.08) {
+          particle.scatterX = 0;
+          particle.scatterY = 0;
+          particle.scatterVx = 0;
+          particle.scatterVy = 0;
+        }
 
         const targetX = streaming
           ? activeTargetX
@@ -789,6 +863,14 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
              kui väljaliikumisel. Seetõttu süttivad punktid tagasi tulles
              järk-järgult juba kursori juurest eemaldumise ajal. */
           streamAlpha = (1 - proximityFade * ease(streamProgress)) * convergenceDim;
+          if (gateTarget < 0.5) {
+            /* Hoverilt lahkudes jääb kaugem tagasitee nähtamatuks. Punktid
+               ilmuvad uuesti alles oma tähe viimase kohaliku lõigu sees. */
+            const localReturnVisibility = clamp01(
+              (0.24 - streamProgress) / 0.18,
+            );
+            streamAlpha *= ease(localReturnVisibility);
+          }
           if (streamProgress >= 0.985) absorbedThisFrame += 1;
         }
 
@@ -807,6 +889,23 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
             streamAlpha,
         );
         const sparkleSize = particle.size * (1.04 + glint * 0.34);
+        const frameMoveX = particle.x - previousDrawX;
+        const frameMoveY = particle.y - previousDrawY;
+        const frameMove = Math.hypot(frameMoveX, frameMoveY);
+        if (
+          !ringEffect &&
+          streaming &&
+          streamProgress > 0.62 &&
+          index % 7 === 0 &&
+          frameMove > 0.35
+        ) {
+          ctx.strokeStyle = rgba(GOLD, alpha * 0.12);
+          ctx.lineWidth = 0.4;
+          ctx.beginPath();
+          ctx.moveTo(previousDrawX, previousDrawY);
+          ctx.lineTo(particle.x, particle.y);
+          ctx.stroke();
+        }
         const glowAge = elapsed - particle.glowStartedAt;
         const glowProgress = particle.glowDuration
           ? glowAge / particle.glowDuration
@@ -877,7 +976,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       ctx.clearRect(0, 0, width, height);
       elapsed = 4;
       for (const mote of motes) {
-        ctx.fillStyle = rgba(mote.tone === 0 ? WARM : COOL, mote.alpha * 0.45);
+        ctx.fillStyle = rgba(mote.tone === 0 ? WARM : BRONZE, mote.alpha * 0.45);
         ctx.beginPath();
         ctx.arc(mote.x, mote.y, mote.size, 0, Math.PI * 2);
         ctx.fill();
@@ -897,7 +996,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         0,
         Math.min(
           gateDuration,
-          gateTime + (gateTarget > 0.5 ? dt : -dt),
+          gateTime + (gateTarget > 0.5 ? dt * 1.18 : -dt * 1.35),
         ),
       );
       const nextFlowPhase =

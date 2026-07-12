@@ -108,18 +108,18 @@ html.liquid-cursor-on * {
 html.veil-cursor-gold .liquid-cursor-svg {
   filter:
     drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.38))
-    drop-shadow(0 0 2px rgba(255, 224, 169, 0.72))
-    drop-shadow(0 0 5px rgba(214, 157, 75, 0.2));
+    drop-shadow(0 0 2px rgba(246, 238, 223, 0.56))
+    drop-shadow(0 0 5px rgba(196, 174, 143, 0.14));
 }
 
 html.veil-cursor-gold .liquid-cursor-svg .lc-glow {
-  fill: #e7b96e;
-  opacity: 0.58;
+  fill: #e8e1d5;
+  opacity: 0.48;
 }
 
 html.veil-cursor-gold .liquid-cursor-svg .lc-rim {
-  stroke: #ffe8c1;
-  stroke-opacity: 0.88;
+  stroke: #f5eee4;
+  stroke-opacity: 0.82;
 }
 
 html.veil-cursor-gold .liquid-cursor-svg .lc-shine {
