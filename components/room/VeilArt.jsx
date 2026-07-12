@@ -90,8 +90,6 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       y: 0,
       targetX: 0,
       targetY: 0,
-      moveX: 0,
-      moveY: 0,
       seen: false,
     };
     const gate = { x: 0, y: 0, width: 0, height: 0, ready: false };
@@ -261,6 +259,12 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           scatterY: 0,
           scatterVx: 0,
           scatterVy: 0,
+          scatterReturnAt: 0,
+          scatterHitAt: Number.NEGATIVE_INFINITY,
+          scatterMass: 0.82 + Math.random() * 0.55,
+          scatterCurl: (Math.random() - 0.5) * 1.15,
+          scatterBrakeDuration: 0.18 + Math.random() * 0.14,
+          scatterReturnDuration: 0.28 + Math.random() * 0.18,
         });
       });
 
@@ -352,45 +356,108 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       mote.orbitDuration = 2.1 + Math.random() * 1.8;
     }
 
-    function limitTextScatter(particle, maxDistance = 36) {
+    function limitTextScatter(particle, maxDistance = 52) {
       const distance = Math.hypot(particle.scatterX, particle.scatterY);
       if (distance <= maxDistance) return;
-      particle.scatterX = (particle.scatterX / distance) * maxDistance;
-      particle.scatterY = (particle.scatterY / distance) * maxDistance;
+      const normalX = particle.scatterX / distance;
+      const normalY = particle.scatterY / distance;
+      particle.scatterX = normalX * maxDistance;
+      particle.scatterY = normalY * maxDistance;
+      const outwardSpeed =
+        particle.scatterVx * normalX + particle.scatterVy * normalY;
+      if (outwardSpeed > 0) {
+        /* Välimine piir on pehme pidur, mitte nähtav põrge. */
+        particle.scatterVx -= normalX * outwardSpeed * 0.78;
+        particle.scatterVy -= normalY * outwardSpeed * 0.78;
+      }
     }
 
-    function pushTextWithPointer(x, y, deltaX, deltaY) {
-      /* Impulss läheb osakestesse kohe pointermove sündmuse ajal. Nii ei
-         kao kiire hiireliigutus kaadritevahelisse silumisse ega mõju loiult. */
+    function sweepTextWithPointer(x, y, deltaX, deltaY) {
+      /* Vedelkursori tegelik nool on 24 × 28 px ja selle ankur on tipus.
+         Kolm kattuvat väikest keha järgivad noole kuju tipust kannani;
+         nende pühitud trajektoor tabab ka kiire liigutuse ajal ainult neid
+         osakesi, millest noole kuju päriselt läbi läheb. */
       if (elapsed < 5 || gateTime > 0.001) return;
       const moveSpeed = Math.hypot(deltaX, deltaY);
       if (moveSpeed < 0.2) return;
 
-      const sweepRadius = 108;
-      const impulseDistance = Math.min(12, 1.5 + moveSpeed * 0.48);
+      const previousX = x - deltaX;
+      const previousY = y - deltaY;
+      const directionX = deltaX / moveSpeed;
+      const directionY = deltaY / moveSpeed;
+      const cursorBodies = [
+        { x: 1.5, y: 2.5, radius: 3.8 },
+        { x: 6.5, y: 11.5, radius: 6.5 },
+        { x: 11, y: 20.5, radius: 9.5 },
+      ];
 
       textParticles.forEach((particle, index) => {
         const target = textTargets[index];
         if (!target) return;
-        const awayX = particle.x - x;
-        const awayY = particle.y - y;
-        const distance = Math.hypot(awayX, awayY);
-        if (distance >= sweepRadius) return;
+        if (elapsed - particle.scatterHitAt < 0.065) return;
+        let collision = null;
 
-        const closeness = (1 - distance / sweepRadius) ** 1.75;
-        const fallbackAngle = particle.phase + index * 0.37;
-        const radialX = distance > 0.5 ? awayX / distance : Math.cos(fallbackAngle);
-        const radialY = distance > 0.5 ? awayY / distance : Math.sin(fallbackAngle);
-        const sideways = Math.sin(particle.phase * 2.1 + elapsed * 2.2) * 0.12;
-        const impulseX =
-          (radialX - radialY * sideways) * impulseDistance * closeness;
-        const impulseY =
-          (radialY + radialX * sideways) * impulseDistance * closeness;
+        for (const body of cursorBodies) {
+          const startX = previousX + body.x;
+          const startY = previousY + body.y;
+          const endX = x + body.x;
+          const endY = y + body.y;
+          const segmentX = endX - startX;
+          const segmentY = endY - startY;
+          const segmentLengthSq = segmentX * segmentX + segmentY * segmentY;
+          const along = segmentLengthSq
+            ? clamp01(
+                ((particle.x - startX) * segmentX +
+                  (particle.y - startY) * segmentY) /
+                  segmentLengthSq,
+              )
+            : 1;
+          const closestX = startX + segmentX * along;
+          const closestY = startY + segmentY * along;
+          const offsetX = particle.x - closestX;
+          const offsetY = particle.y - closestY;
+          const distance = Math.hypot(offsetX, offsetY);
+          const contactRadius = body.radius + particle.size;
+          if (distance >= contactRadius) continue;
+          const penetration = 1 - distance / contactRadius;
+          if (!collision || penetration > collision.penetration) {
+            collision = { offsetX, offsetY, distance, penetration };
+          }
+        }
 
-        particle.scatterX += impulseX;
-        particle.scatterY += impulseY;
-        particle.scatterVx += impulseX * 9;
-        particle.scatterVy += impulseY * 9;
+        if (!collision) return;
+        const fallbackSide = Math.sin(particle.phase + index * 0.37) < 0 ? -1 : 1;
+        const normalX =
+          collision.distance > 0.35
+            ? collision.offsetX / collision.distance
+            : -directionY * fallbackSide;
+        const normalY =
+          collision.distance > 0.35
+            ? collision.offsetY / collision.distance
+            : directionX * fallbackSide;
+        const contact = collision.penetration ** 0.72;
+        const massFactor = 1 / particle.scatterMass;
+        const normalImpulse =
+          Math.min(92, 26 + moveSpeed * 1.8) * contact * massFactor;
+        const forwardImpulse =
+          Math.min(24, moveSpeed * 0.52) * contact * massFactor;
+        const edgeSlip = particle.scatterCurl * Math.min(11, moveSpeed * 0.26) * contact;
+
+        /* Liikuva noole serv lükkab punkti peamiselt enda kõrvale ja annab
+           vaid veidi liikumissuunalist hoogu. Punkt ei kleepu kursori külge. */
+        particle.scatterVx +=
+          normalX * normalImpulse +
+          directionX * forwardImpulse -
+          directionY * edgeSlip;
+        particle.scatterVy +=
+          normalY * normalImpulse +
+          directionY * forwardImpulse +
+          directionX * edgeSlip;
+        particle.scatterX += normalX * contact * 1.2;
+        particle.scatterY += normalY * contact * 1.2;
+        particle.scatterHitAt = elapsed;
+        particle.scatterReturnAt =
+          elapsed + 1.4 + particle.scatterBrakeDuration;
         limitTextScatter(particle);
       });
     }
@@ -635,12 +702,42 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
             travel * travel * endY;
         }
 
-        /* Sündmuse hetkel antud tugev impulss taastub kiiresti, kuid väikese
-           elava järelliikumisega. See vedru ei aeglusta esmast hiirereaktsiooni. */
-        const scatterSpring = 34;
+        /* Liikumisel on kolm loetavat faasi: pikem vaba triiv, selle lõpus
+           lühike pidurdus ning seejärel nullist kiirenev tagasitulek. */
+        const brakeStartsAt =
+          particle.scatterReturnAt - particle.scatterBrakeDuration;
+        const brakeProgress = clamp01(
+          (elapsed - brakeStartsAt) / particle.scatterBrakeDuration,
+        );
+        const returnProgress = clamp01(
+          (elapsed - particle.scatterReturnAt) / particle.scatterReturnDuration,
+        );
+        const returnStrength = returnProgress * returnProgress * (3 - 2 * returnProgress);
+        const isReturning = elapsed >= particle.scatterReturnAt;
+        const isFreeDrifting = brakeProgress <= 0.001;
+        const scatterSpring = 26 * returnStrength;
+
+        /* Väike osakesepõhine pöördenurk murrab ühtlase sirgjoonelise rea,
+           kuid säilitab hoo — tegemist on triivi, mitte juhusliku värinaga. */
+        if (isFreeDrifting) {
+          const turn = particle.scatterCurl * 0.58 * dt;
+          const cosine = Math.cos(turn);
+          const sine = Math.sin(turn);
+          const nextVx = particle.scatterVx * cosine - particle.scatterVy * sine;
+          particle.scatterVy = particle.scatterVx * sine + particle.scatterVy * cosine;
+          particle.scatterVx = nextVx;
+        }
         particle.scatterVx -= particle.scatterX * scatterSpring * dt;
         particle.scatterVy -= particle.scatterY * scatterSpring * dt;
-        const scatterDamping = Math.exp(-7.5 * dt);
+        const scatterDistance = Math.hypot(
+          particle.scatterX,
+          particle.scatterY,
+        );
+        const settleStrength = 1 - clamp01(scatterDistance / 12);
+        const scatterFriction = isReturning
+          ? 7.6 - returnStrength * 4.4 + settleStrength * returnStrength * 4.5
+          : 0.3 + brakeProgress * 8.7;
+        const scatterDamping = Math.exp(-scatterFriction * dt);
         particle.scatterVx *= scatterDamping;
         particle.scatterVy *= scatterDamping;
         particle.scatterX += particle.scatterVx * dt;
@@ -795,9 +892,6 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       elapsed += dt;
       pointer.x += (pointer.targetX - pointer.x) * Math.min(1, dt * 5.2);
       pointer.y += (pointer.targetY - pointer.y) * Math.min(1, dt * 5.2);
-      const moveDecay = Math.exp(-10 * dt);
-      pointer.moveX *= moveDecay;
-      pointer.moveY *= moveDecay;
       syncGateInteractivity();
       gateTime = Math.max(
         0,
@@ -834,13 +928,11 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       if (pointer.seen) {
         deltaX = nextX - pointer.targetX;
         deltaY = nextY - pointer.targetY;
-        pointer.moveX = pointer.moveX * 0.2 + deltaX * 0.8;
-        pointer.moveY = pointer.moveY * 0.2 + deltaY * 0.8;
       }
       pointer.seen = true;
       pointer.targetX = nextX;
       pointer.targetY = nextY;
-      pushTextWithPointer(nextX, nextY, deltaX, deltaY);
+      sweepTextWithPointer(nextX, nextY, deltaX, deltaY);
       syncGateInteractivity();
       const overGate = pointIsOverGate(pointer.targetX, pointer.targetY);
       if (gateNeedsReentry) {
