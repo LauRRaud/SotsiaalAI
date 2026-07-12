@@ -8,6 +8,7 @@ import styles from "./LogoExportStage.module.css";
 const FACEBOOK_COVER_WIDTH = 3280;
 const FACEBOOK_COVER_HEIGHT = 1248;
 const FACEBOOK_PROFILE_SIZE = 2048;
+const EXPORT_DELAY_MS = 34500;
 
 /**
  * SotsiaalAI logo ekspordilava.
@@ -24,6 +25,11 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
   const metalRef = useRef(null);
   const metalBaseRef = useRef(null);
   const downloadStartedRef = useRef(false);
+  const [downloadUrl, setDownloadUrl] = useState(null);
+
+  useEffect(() => () => {
+    if (downloadUrl) URL.revokeObjectURL(downloadUrl.url);
+  }, [downloadUrl]);
 
   const downloadRenderedLogo = useCallback((format) => {
     const stage = stageRef.current;
@@ -56,10 +62,12 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
     context.fillStyle = "#000";
     context.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
     if (artCanvas) context.drawImage(artCanvas, 0, 0, exportCanvas.width, exportCanvas.height);
-    context.globalAlpha = Number.parseFloat(getComputedStyle(wordmark).opacity) || 1;
+    const wordmarkOpacity = Number.parseFloat(getComputedStyle(wordmark.parentElement).opacity) || 1;
+    context.globalAlpha = wordmarkOpacity;
     if (isProfile) {
       // Profiilimärgi S on puhas valge. Ekspordis tuleb see samast SAI-SVG-st
       // lõigata, sest canvas ei arvesta HTML-i clip-path'i.
+      context.globalAlpha *= Number.parseFloat(getComputedStyle(wordmark).opacity) || 1;
       const sWidth = wordmark.naturalWidth * 0.35;
       context.drawImage(
         wordmark,
@@ -72,6 +80,7 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
         wordmarkRect.width * scale * 0.35,
         wordmarkRect.height * scale
       );
+      context.globalAlpha = wordmarkOpacity;
     } else {
       draw(wordmark, wordmarkRect);
     }
@@ -87,8 +96,13 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
         link.href = URL.createObjectURL(blob);
         const suffix = isProfile ? "-profiil" : variant === "centered" ? "-centered" : "";
         link.download = `sotsiaalai-facebook-logo${suffix}.${format}`;
+        setDownloadUrl({ url: link.href, name: link.download, format });
+        // Mõni brauser ei käivita eemaldatud ankruelemendi allalaadimist.
+        // Lisame selle hetkeks DOM-i, et ka 34,5 s viitega eksport jääks toimima.
+        link.style.display = "none";
+        document.body.appendChild(link);
         link.click();
-        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        link.remove();
       },
       mimeType,
       format === "jpg" ? 0.96 : undefined
@@ -97,8 +111,12 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
 
   useEffect(() => {
     if (!metalReady || downloadStartedRef.current) return undefined;
-    const format = new URLSearchParams(window.location.search).get("download");
-    if (format !== "png" && format !== "jpg") return undefined;
+    const params = new URLSearchParams(window.location.search);
+    const requestedFormat = params.get("download");
+    // Otse /logo-eksport avamine on kaanefoto PNG-eksport. Eelvaate saab
+    // vajadusel avada ?preview=1 abil, ilma et pilt automaatselt salvestuks.
+    const format = requestedFormat === "jpg" ? "jpg" : params.get("preview") === "1" ? null : "png";
+    if (!format) return undefined;
 
     let firstFrame = 0;
     let secondFrame = 0;
@@ -110,7 +128,7 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
           downloadRenderedLogo(format);
         });
       });
-    }, 34500);
+    }, EXPORT_DELAY_MS);
     return () => {
       window.clearTimeout(delay);
       cancelAnimationFrame(firstFrame);
@@ -173,6 +191,11 @@ export default function LogoExportStage({ loadingLine, variant = "cover" }) {
           />
         </div>
       </div>
+      {downloadUrl ? (
+        <a className={styles.manualDownload} href={downloadUrl.url} download={downloadUrl.name}>
+          Salvesta {downloadUrl.format.toUpperCase()}
+        </a>
+      ) : null}
     </main>
   );
 }

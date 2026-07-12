@@ -39,7 +39,9 @@
 .wordmark {
   position: absolute;
   z-index: 2;
-  left: 50%;
+  /* Facebooki profiilirõngas katab kaanefoto vasakut ala; sõnamärk peab
+     algama sellest turvatsoonist paremal. */
+  left: 56%;
   /* Facebooki kaane visuaalne ankur: sõnamärk istub teadlikult väga
      madalal, peaaegu alaserval. */
   bottom: 2.4%;
@@ -57,15 +59,20 @@
 }
 
 .stage[data-variant="profile"] .wordmark {
+  left: 50%;
   top: 50%;
   bottom: auto;
   translate: -50% -50%;
-  width: min(64%, 42rem);
+  /* Profiilipildis jääb SAI ümber suurem turvaala, sest Facebooki ringi
+     kärpimisvaates saab seda vajadusel ise lähemale tuua. */
+  width: min(54%, 36rem);
   opacity: 1;
 }
 
 .profileS {
   clip-path: inset(0 65% 0 0);
+  /* Sama 70% valge kui pika sõnamärgi S-tähel kaanefotos. */
+  opacity: 0.7;
 }
 
 /* Laadimisloori vaikimisi 29vh jätab Facebooki formaadis liiga suure
@@ -121,6 +128,21 @@
   opacity: 1;
 }
 
+/* Varuplaan vaid ekspordilingil: lõuendisse seda ei joonistata. */
+.manualDownload {
+  position: fixed;
+  z-index: 3;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: 999px;
+  color: #f4f1eb;
+  background: rgb(0 0 0 / 72%);
+  font: 600 0.75rem/1 system-ui, sans-serif;
+  text-decoration: none;
+}
+
 @media (max-width: 700px) {
   .wordmark {
     bottom: 2.4%;
@@ -128,7 +150,7 @@
   }
 
   .stage[data-variant="profile"] .wordmark {
-    width: 68%;
+    width: 58%;
   }
 
   :global(.room-veil-line).loadingLine {

@@ -110,10 +110,14 @@ const ChatMessageItem = memo(function ChatMessageItem({
   onSpeak,
   messageSources = [],
   onShowSources,
-  isStreaming = false
+  isStreaming = false,
+  entranceIndex = 0
 }) {
   const isAssistant = role === "ai";
   const isOwn = role === "user";
+  /* Pöördindeks (0 = uusim) juhib sisenemis-kaskaadi viidet chat.css-is;
+     CSS piirab efekti min()-iga, seega suur indeks on ohutu. */
+  const entranceStyle = { "--msg-ri": entranceIndex };
   const [userTimeVisible, setUserTimeVisible] = useState(false);
   const messageTime = useMemo(() => formatMessageTime(createdAt, locale), [createdAt, locale]);
   const normalizedAuthorName = String(authorName || "").trim();
@@ -255,7 +259,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
     toggleUserTimestamp();
   };
   if (!isAssistant && !isOwn) {
-    return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId}>
+    return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId} style={entranceStyle}>
         {displayAuthorName ? <div>{displayAuthorName}</div> : null}
         <div>
           <span className="sr-only">
@@ -267,7 +271,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
       </div>;
   }
   if (isOwn) {
-    return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId}>
+    return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId} style={entranceStyle}>
         <span className="sr-only">
           {authorLabel}
           {": "}
@@ -291,7 +295,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
           </div> : null}
       </div>;
   }
-  return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId} lang={locale}>
+  return <div role="article" tabIndex={0} data-role={role} data-chat-message-id={messageId} lang={locale} style={entranceStyle} data-thinking={showThinking ? "true" : undefined} data-streaming={isStreaming ? "true" : undefined}>
       <span className="sr-only">
         {authorLabel}
         {": "}

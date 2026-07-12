@@ -2263,11 +2263,11 @@ export default function ChatBody({
     } catch {}
   }, [emptyIntroSeenStorageKey]);
   const messageItems = useMemo(() => {
-    return renderedMessages.map(msg => {
+    return renderedMessages.map((msg, msgIndex, allMessages) => {
       const messageSources = msg.role === "ai"
         ? collectMessageSources(msg, analysis.uploadPreview)
         : [];
-      return <ChatMessageItem key={msg.id} messageId={msg.id} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} isStreaming={!!msg.isStreaming} />;
+      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} isStreaming={!!msg.isStreaming} />;
     });
   }, [analysis.uploadPreview, handleEmptyIntroTyped, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
   const activeModeLabel = useMemo(() => {
@@ -2634,11 +2634,24 @@ export default function ChatBody({
     workspaceOpen && (workspaceSurfaceReady || workspaceSuppressOpenTransition);
   const chatRingStyle = { ...chatVars };
   const chatContainerClassName = "chat-container";
+  /* Ruumiline kaheikooniline sisenemine (tellija 12.07): AINULT päris
+     vestlusvaates — mitte ruumirežiimis (roomId) ega manustatuna, kus
+     sisendriba peab jääma alati nähtavaks. Kaheikooniline VALIK näidatakse
+     ainult VÄRSKES vestluses (kasutaja pole veel midagi saatnud) — kui
+     vestlus on juba alanud, jääb sisendtriip püsivalt (tellija 12.07:
+     "võtab kogu mõtte ära kui vestlus on juba alanud"). */
+  const spatialEntry = !isRoomMode && !embedded;
+  const conversationStarted = useMemo(
+    () => visibleMessages.some(m => m?.role === "user"),
+    [visibleMessages]
+  );
   return <>
     <ChatBodyView
       embedded={embedded}
       t={t}
       locale={locale}
+      spatialEntry={spatialEntry}
+      conversationStarted={conversationStarted}
       profileOpen={profileOpen}
       closeProfile={closeProfile}
       workspaceOpen={workspaceOpen}

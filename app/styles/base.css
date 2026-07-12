@@ -80,11 +80,10 @@ html.liquid-cursor-on * {
 
 /* Platvormi sees saab klikitava elemendi hover sooja kuldse klaasläike. */
 .liquid-cursor.is-active .liquid-cursor-svg {
-  transform: scale(1.04);
+  transform: scale(1.02);
   filter:
-    drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.38))
-    drop-shadow(0 0 1.8px rgba(255, 226, 178, 0.68))
-    drop-shadow(0 0 4px rgba(211, 154, 73, 0.18));
+    drop-shadow(0 1.25px 1.5px rgba(0, 0, 0, 0.34))
+    drop-shadow(0 0 1.2px rgba(255, 226, 178, 0.34));
 }
 
 .liquid-cursor-svg .lc-glow {
@@ -95,13 +94,13 @@ html.liquid-cursor-on * {
 }
 
 .liquid-cursor.is-active .lc-glow {
-  fill: #e7b96e;
-  opacity: 0.58;
+  fill: #efd3a7;
+  opacity: 0.34;
 }
 
 .liquid-cursor.is-active .lc-rim {
-  stroke: #ffe8c1;
-  stroke-opacity: 0.88;
+  stroke: #ffedd2;
+  stroke-opacity: 0.72;
 }
 
 /* Avakuva lävel helendab noole kuju ise. Lõuend ei joonista kursori

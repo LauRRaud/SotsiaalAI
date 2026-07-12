@@ -19,6 +19,7 @@
 import { useEffect, useRef } from "react";
 
 const WARM = { r: 236, g: 206, b: 158 };
+const GOLD = { r: 255, g: 204, b: 96 };
 const IVORY = { r: 255, g: 247, b: 230 };
 const COOL = { r: 154, g: 177, b: 199 };
 
@@ -82,12 +83,15 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     let gateInteractive = false;
     let gateNeedsReentry = false;
     let flowPhase = "phrase";
+    let nextTextGlowAt = 5.05;
 
     const pointer = {
       x: 0,
       y: 0,
       targetX: 0,
       targetY: 0,
+      moveX: 0,
+      moveY: 0,
       seen: false,
     };
     const gate = { x: 0, y: 0, width: 0, height: 0, ready: false };
@@ -246,11 +250,17 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           size: 0.75 + Math.random() * 0.85,
           alpha: 0.52 + Math.random() * 0.4,
           phase: Math.random() * Math.PI * 2,
+          glowStartedAt: Number.NEGATIVE_INFINITY,
+          glowDuration: 0,
           streamAt: Number.POSITIVE_INFINITY,
           streamDuration: 0.55 + Math.random() * 0.35,
           streamCurve: (Math.random() - 0.5) * 0.9,
           streamEndX: (Math.random() - 0.5) * 5,
           streamEndY: (Math.random() - 0.5) * 3,
+          scatterX: 0,
+          scatterY: 0,
+          scatterVx: 0,
+          scatterVy: 0,
         });
       });
 
@@ -308,6 +318,8 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           tone: Math.random() < 0.82 ? 0 : 1,
           driftAngle,
           driftSpeed: 0.14 + Math.random() * 0.42,
+          flashEligible: Math.random() < 0.12,
+          flashRate: 0.38 + Math.random() * 0.34,
           orbitDirection: Math.random() < 0.5 ? -1 : 1,
           orbitMode: "free",
           orbitAge: 0,
@@ -338,6 +350,49 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       mote.orbitAge = 0;
       mote.orbitCooldown = 1.2 + Math.random() * 1.5;
       mote.orbitDuration = 2.1 + Math.random() * 1.8;
+    }
+
+    function limitTextScatter(particle, maxDistance = 36) {
+      const distance = Math.hypot(particle.scatterX, particle.scatterY);
+      if (distance <= maxDistance) return;
+      particle.scatterX = (particle.scatterX / distance) * maxDistance;
+      particle.scatterY = (particle.scatterY / distance) * maxDistance;
+    }
+
+    function pushTextWithPointer(x, y, deltaX, deltaY) {
+      /* Impulss läheb osakestesse kohe pointermove sündmuse ajal. Nii ei
+         kao kiire hiireliigutus kaadritevahelisse silumisse ega mõju loiult. */
+      if (elapsed < 5 || gateTime > 0.001) return;
+      const moveSpeed = Math.hypot(deltaX, deltaY);
+      if (moveSpeed < 0.2) return;
+
+      const sweepRadius = 108;
+      const impulseDistance = Math.min(12, 1.5 + moveSpeed * 0.48);
+
+      textParticles.forEach((particle, index) => {
+        const target = textTargets[index];
+        if (!target) return;
+        const awayX = particle.x - x;
+        const awayY = particle.y - y;
+        const distance = Math.hypot(awayX, awayY);
+        if (distance >= sweepRadius) return;
+
+        const closeness = (1 - distance / sweepRadius) ** 1.75;
+        const fallbackAngle = particle.phase + index * 0.37;
+        const radialX = distance > 0.5 ? awayX / distance : Math.cos(fallbackAngle);
+        const radialY = distance > 0.5 ? awayY / distance : Math.sin(fallbackAngle);
+        const sideways = Math.sin(particle.phase * 2.1 + elapsed * 2.2) * 0.12;
+        const impulseX =
+          (radialX - radialY * sideways) * impulseDistance * closeness;
+        const impulseY =
+          (radialY + radialX * sideways) * impulseDistance * closeness;
+
+        particle.scatterX += impulseX;
+        particle.scatterY += impulseY;
+        particle.scatterVx += impulseX * 9;
+        particle.scatterVy += impulseY * 9;
+        limitTextScatter(particle);
+      });
     }
 
     function resize() {
@@ -381,8 +436,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         mote.orbitCooldown = Math.max(0, mote.orbitCooldown - dt);
 
         if (pointer.seen) {
-          const dx = pointer.x - mote.x;
-          const dy = pointer.y - mote.y;
+          /* Füüsika kasutab päris kursori koordinaati. Silutud pointer.x/y
+             jäi nähtavast SVG-kursorist maha ja tekitas vale neeldumiskoha. */
+          const dx = pointer.targetX - mote.x;
+          const dy = pointer.targetY - mote.y;
           const distance = Math.hypot(dx, dy) || 1;
           const influenceRadius = 220;
           const orbitRadius = 22;
@@ -452,14 +509,30 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         if (mote.y > height + 12) mote.y = -10;
 
         const twinkle = 0.74 + Math.sin(elapsed * 0.45 + mote.phase) * 0.26;
-        ctx.fillStyle = rgba(mote.tone === 0 ? WARM : COOL, mote.alpha * twinkle);
+        const tone = mote.tone === 0 ? WARM : COOL;
+        /* Üksikud punktid vilguvad aeg-ajalt kuldseks. Punkti mõõt ei
+           muutu ja selle ümber ei joonistata halo ega lisakihti. */
+        const flashWave = mote.flashEligible
+          ? clamp01(
+              (Math.sin(elapsed * mote.flashRate + mote.phase) - 0.68) / 0.32,
+            )
+          : 0;
+        const flashTone = {
+          r: Math.round(tone.r + (GOLD.r - tone.r) * flashWave),
+          g: Math.round(tone.g + (GOLD.g - tone.g) * flashWave),
+          b: Math.round(tone.b + (GOLD.b - tone.b) * flashWave),
+        };
+        ctx.fillStyle = rgba(
+          flashTone,
+          clamp01(mote.alpha * twinkle + flashWave * 0.34),
+        );
         ctx.beginPath();
         ctx.arc(mote.x, mote.y, mote.size, 0, Math.PI * 2);
         ctx.fill();
       }
     }
 
-    function updateAndDrawText() {
+    function updateAndDrawText(dt) {
       /* Logo saab esmalt ruumi. Lause kogunemine algab hiljem ning
          kestab ligi neli sekundit, et kaugemalt saabuvad osakesed oleksid
          päriselt jälgitavad, mitte ei ilmuks juba valmis tekstina. */
@@ -473,6 +546,33 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       const ringEffect = effect === VEIL_EFFECTS.RING;
       /* Ring-efektis saab ring enne tervikuna kohal olla. Otse-efektis
          on lähtepunkt osakese koht lauses ja vahepealset ringi ei teki. */
+
+      /* Üks-kaks juhuslikku tekstipunkti süttivad korraga pehmelt ning
+         kustuvad enne, kui järgmised juhuslikud punktid nende koha võtavad. */
+      if (
+        formationProgress >= 1 &&
+        gateTime <= 0.001 &&
+        elapsed >= nextTextGlowAt &&
+        textParticles.length
+      ) {
+        const glowCount = Math.random() < 0.22 ? 2 : 1;
+        let activated = 0;
+        let attempts = 0;
+        while (activated < glowCount && attempts < 16) {
+          attempts += 1;
+          const particle =
+            textParticles[Math.floor(Math.random() * textParticles.length)];
+          if (
+            elapsed - particle.glowStartedAt < particle.glowDuration + 0.4
+          ) {
+            continue;
+          }
+          particle.glowStartedAt = elapsed;
+          particle.glowDuration = 1.05 + Math.random() * 0.85;
+          activated += 1;
+        }
+        nextTextGlowAt = elapsed + 0.45 + Math.random() * 1.15;
+      }
 
       let absorbedThisFrame = 0;
       textParticles.forEach((particle, index) => {
@@ -534,8 +634,25 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
             2 * oneMinus * travel * middleY +
             travel * travel * endY;
         }
-        const targetX = streaming ? activeTargetX : target.x + driftX;
-        const targetY = streaming ? activeTargetY : target.y + driftY;
+
+        /* Sündmuse hetkel antud tugev impulss taastub kiiresti, kuid väikese
+           elava järelliikumisega. See vedru ei aeglusta esmast hiirereaktsiooni. */
+        const scatterSpring = 34;
+        particle.scatterVx -= particle.scatterX * scatterSpring * dt;
+        particle.scatterVy -= particle.scatterY * scatterSpring * dt;
+        const scatterDamping = Math.exp(-7.5 * dt);
+        particle.scatterVx *= scatterDamping;
+        particle.scatterVy *= scatterDamping;
+        particle.scatterX += particle.scatterVx * dt;
+        particle.scatterY += particle.scatterVy * dt;
+        limitTextScatter(particle);
+
+        const targetX = streaming
+          ? activeTargetX
+          : target.x + driftX + particle.scatterX;
+        const targetY = streaming
+          ? activeTargetY
+          : target.y + driftY + particle.scatterY;
 
         if (formationProgress < 1 && gateTime <= 0.001) {
           /* Esimene moodustumine järgib üht katkematut trajektoori
@@ -578,9 +695,9 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           if (streamProgress >= 0.985) absorbedThisFrame += 1;
         }
 
-        /* Eri faasis sätendus muudab lause elavaks ilma osakeste ümber
-           eraldi halo joonistamata. Harvad elevandiluukarva punktid
-           annavad lühikese tugevama valgussähvatuse. */
+        /* Ainult mõni üksik tekstiosake kannab kuldset kuma. Ülejäänud
+           jäävad väikesteks soojadeks punktideks, et lause ei muutuks
+           ühtlaseks neoonkirjaks. */
         const shimmer = 0.72 + Math.sin(elapsed * 1.35 + particle.phase) * 0.22;
         const glint =
           index % 17 === 0
@@ -592,8 +709,38 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
             (shimmer + glint + streamProgress * 0.04) *
             streamAlpha,
         );
-        const sparkleSize = particle.size * (1 + glint * 0.28);
-        ctx.fillStyle = rgba(index % 17 === 0 ? IVORY : WARM, alpha);
+        const sparkleSize = particle.size * (1.04 + glint * 0.34);
+        const glowAge = elapsed - particle.glowStartedAt;
+        const glowProgress = particle.glowDuration
+          ? glowAge / particle.glowDuration
+          : -1;
+        const glowPresence =
+          glowProgress >= 0 && glowProgress <= 1
+            ? Math.sin(glowProgress * Math.PI) ** 0.72
+            : 0;
+        if (glowPresence > 0.01 && alpha > 0.025) {
+          const glowRadius = sparkleSize * 5.2;
+          const glow = ctx.createRadialGradient(
+            particle.x,
+            particle.y,
+            0,
+            particle.x,
+            particle.y,
+            glowRadius,
+          );
+          glow.addColorStop(0, rgba(GOLD, alpha * glowPresence * 0.46));
+          glow.addColorStop(0.24, rgba(GOLD, alpha * glowPresence * 0.25));
+          glow.addColorStop(0.62, rgba(GOLD, alpha * glowPresence * 0.075));
+          glow.addColorStop(1, rgba(GOLD, 0));
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(particle.x, particle.y, glowRadius, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.fillStyle = rgba(
+          glowPresence > 0.01 ? GOLD : index % 17 === 0 ? IVORY : WARM,
+          clamp01(alpha * 1.08),
+        );
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, sparkleSize, 0, Math.PI * 2);
         ctx.fill();
@@ -648,6 +795,9 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       elapsed += dt;
       pointer.x += (pointer.targetX - pointer.x) * Math.min(1, dt * 5.2);
       pointer.y += (pointer.targetY - pointer.y) * Math.min(1, dt * 5.2);
+      const moveDecay = Math.exp(-10 * dt);
+      pointer.moveX *= moveDecay;
+      pointer.moveY *= moveDecay;
       syncGateInteractivity();
       gateTime = Math.max(
         0,
@@ -670,16 +820,27 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       ctx.clearRect(0, 0, width, height);
       ctx.globalCompositeOperation = "lighter";
       updateAndDrawMotes(dt);
-      updateAndDrawText();
+      updateAndDrawText(dt);
       updateAndDrawRipples(dt);
       ctx.globalCompositeOperation = "source-over";
     }
 
     function onPointerMove(event) {
       const rect = veil.getBoundingClientRect();
+      const nextX = event.clientX - rect.left;
+      const nextY = event.clientY - rect.top;
+      let deltaX = 0;
+      let deltaY = 0;
+      if (pointer.seen) {
+        deltaX = nextX - pointer.targetX;
+        deltaY = nextY - pointer.targetY;
+        pointer.moveX = pointer.moveX * 0.2 + deltaX * 0.8;
+        pointer.moveY = pointer.moveY * 0.2 + deltaY * 0.8;
+      }
       pointer.seen = true;
-      pointer.targetX = event.clientX - rect.left;
-      pointer.targetY = event.clientY - rect.top;
+      pointer.targetX = nextX;
+      pointer.targetY = nextY;
+      pushTextWithPointer(nextX, nextY, deltaX, deltaY);
       syncGateInteractivity();
       const overGate = pointIsOverGate(pointer.targetX, pointer.targetY);
       if (gateNeedsReentry) {

@@ -98,6 +98,7 @@ const InstallAppLink = dynamic(() => import("@/components/pwa/InstallAppLink"), 
 /* Kerimisruumi pikkus tuleb CSS-ist (--walk-vh, room.css spacer). */
 const LERP = 0.11;
 const LERP_SKIP = 0.17;
+const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —
  * mitte mingit "olen näinud" salvestust. Ainult sama laadimise sees
@@ -181,7 +182,7 @@ function normalizePathname(pathname) {
   return raw.replace(/^\/(et|ru|en)(?=\/|$)/, "") || "/";
 }
 
-export default function RoomStage() {
+export default function RoomStage({ initiallyCompletedArrival = false }) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -203,6 +204,13 @@ export default function RoomStage() {
   const isProfileCardPage = cardPageKey === "pin" || cardPageKey === "epost";
   const isCarouselRoute = isHome || isProfileHub || !!cardPageKey;
   const isAuthed = status === "authenticated" && !!session;
+  /* Saabumisloor on seansipõhine, mitte sisselogimispõhine: ka pikalt
+     sisselogitud inimene näeb seda uues seansis ühe korra, kuid mitte iga
+     lehe värskendusega pärast kaartide avanemist. */
+  const [arrivalCompleted, setArrivalCompleted] = useState(() =>
+    Boolean(initiallyCompletedArrival)
+  );
+  const shouldResumeHome = isHome && arrivalCompleted;
   const isAdmin = useMemo(() => {
     const u = session?.user;
     const role = typeof u?.role === "string" ? u.role.toLowerCase() : "";
@@ -211,8 +219,12 @@ export default function RoomStage() {
   }, [session]);
 
   /* --- režiim --- */
-  const [mode, setMode] = useState(isHome ? "walk" : "panel");
-  const [veil, setVeil] = useState(isHome ? "shown" : "gone");
+  const [mode, setMode] = useState(() =>
+    isHome ? (shouldResumeHome ? "room" : "walk") : "panel"
+  );
+  const [veil, setVeil] = useState(() =>
+    isHome && !shouldResumeHome ? "shown" : "gone"
+  );
   const [veilReady, setVeilReady] = useState(false);
   const [walkDone, setWalkDone] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -284,7 +296,9 @@ export default function RoomStage() {
   }, [isHome, veil]);
   /* Käivitus (teekonna-tekstid §Käivitus): "standby" = ooterežiim (⏻),
      "igniting" = süttimine, "on" = klaasid sees. OFF ≠ logout. */
-  const [power, setPower] = useState(isHome ? "standby" : "on");
+  const [power, setPower] = useState(() =>
+    isHome && !shouldResumeHome ? "standby" : "on"
+  );
 
   const stageRef = useRef(null);
   const frameRefs = useRef([]);
@@ -299,7 +313,7 @@ export default function RoomStage() {
   /* "Välja" kaart profiililt → koju ooterežiimi (mitte kaartidele) */
   const pendingStandbyRef = useRef(false);
   /* Interaktiivsus avaneb alles pärast käivituse MÕLEMAT faasi */
-  const [cardsReady, setCardsReady] = useState(false);
+  const [cardsReady, setCardsReady] = useState(() => shouldResumeHome);
   /* Käivituse vahepala: pärast klaaside teket sähvatab keskele animeeritud
      SAI-monogramm, alles siis laetakse kaartidele sisu (tellija 06.07) */
   const [introSai, setIntroSai] = useState(false);
@@ -536,10 +550,30 @@ export default function RoomStage() {
     } else if (!isHome) {
       next = "room"; // profiili-karussell: ruum fookuses, ilma kõnnita
     } else {
-      next = walkDoneThisLoad || reducedRef.current ? "room" : "walk";
+      next = shouldResumeHome || walkDoneThisLoad || reducedRef.current
+        ? "room"
+        : "walk";
     }
     setMode(next);
-  }, [isCarouselRoute, isHome, readReduced]);
+  }, [isCarouselRoute, isHome, readReduced, shouldResumeHome]);
+
+  /* Märgi saabumine lõpetatuks alles siis, kui avalehe kaardid on päriselt
+     nähtavad. Ilma Max-Age'ta cookie kaob brauseri seansi lõpus ning on
+     järgmisel seansil taas esimese külastuse loor. */
+  useEffect(() => {
+    if (!isHome || mode !== "room" || power !== "on" || !cardsReady || arrivalCompleted) return;
+    try {
+      document.cookie = `${ROOM_ARRIVAL_COMPLETE_COOKIE}=1; Path=/; SameSite=Lax`;
+    } catch {}
+    setArrivalCompleted(true);
+  }, [arrivalCompleted, cardsReady, isHome, mode, power]);
+
+  const clearCompletedArrival = useCallback(() => {
+    setArrivalCompleted(false);
+    try {
+      document.cookie = `${ROOM_ARRIVAL_COMPLETE_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
+    } catch {}
+  }, []);
 
   /* Kaader 7 kuulub käivitusele: sujuv süttimine/kustumine WAAPI-ga. */
   const setFrame7 = useCallback((visible, animate = true) => {
@@ -606,6 +640,7 @@ export default function RoomStage() {
   const powerOff = useCallback(() => {
     setAdminHub(false);
     setInfoHub(false);
+    clearCompletedArrival();
     if (isAuthed) {
       signOut({ redirect: false }).catch(() => {});
     }
@@ -623,7 +658,7 @@ export default function RoomStage() {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [isHome, isAuthed, router, locale, setFrame7]);
+  }, [clearCompletedArrival, isHome, isAuthed, router, locale, setFrame7]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -1095,6 +1130,7 @@ export default function RoomStage() {
         setWorkspaceHub(false);
         setWellbeingHub(false);
         setKovisionHub(false);
+        clearCompletedArrival();
         signOut({ redirect: false }).catch(() => {});
         router.push(localizePath("/", locale));
         return;
@@ -1155,7 +1191,7 @@ export default function RoomStage() {
         router.push(localizePath(item.href, locale));
       }
     },
-    [router, locale, a11y]
+    [router, locale, a11y, clearCompletedArrival]
   );
 
   const showCarouselUi = isCarouselRoute;

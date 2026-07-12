@@ -21,9 +21,10 @@ const fontExo2 = Exo_2({
   variable: "--font-exo2",
   display: "swap"
 });
-const ICON_VERSION = "v20260706";
+const ICON_VERSION = "v20260712";
 const UI_SCALE_STORAGE_KEY = "sotsiaalai.uiScale";
 const UI_PROFILE_STORAGE_KEY = "sotsiaalai.uiProfile";
+const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
 const UI_SCALE_INIT_SCRIPT = `(function () {
   var SCALE_KEY = ${JSON.stringify(UI_SCALE_STORAGE_KEY)};
   var PROFILE_KEY = ${JSON.stringify(UI_PROFILE_STORAGE_KEY)};
@@ -236,6 +237,14 @@ export const metadata = {
   manifest: `/site.webmanifest?${ICON_VERSION}`,
   icons: {
     icon: [{
+      url: `/favicon-16x16.png?${ICON_VERSION}`,
+      sizes: "16x16",
+      type: "image/png"
+    }, {
+      url: `/favicon-32x32.png?${ICON_VERSION}`,
+      sizes: "32x32",
+      type: "image/png"
+    }, {
       url: `/icons/icon-192-${ICON_VERSION}.png`,
       sizes: "192x192",
       type: "image/png"
@@ -304,6 +313,10 @@ export default async function RootLayout({
     messages = (await MESSAGES[locale]()).default ?? {};
   } catch {}
   const session = await getServerSession(authConfig).catch(() => null);
+  /* Session-cookie without Max-Age: the arrival flow runs once per browser
+     session, independent of how long the user has been signed in. */
+  const initiallyCompletedRoomArrival =
+    jar.get(ROOM_ARRIVAL_COMPLETE_COOKIE)?.value === "1";
   const initialA11yPrefs = parseA11yPrefs(jar);
   const initialTheme = initialA11yPrefs?.theme || "mid";
   const initialUiProfile = normalizeUiProfile(initialA11yPrefs?.uiProfile);
@@ -341,7 +354,7 @@ export default async function RootLayout({
           <LiquidCursor />
           <SkipLink />
           <AmbientAudio />
-          <RoomStage />
+          <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
           <main id="main" role="main" tabIndex={-1}>
             <PanelFrame>{children}</PanelFrame>
           </main>

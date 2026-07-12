@@ -84,23 +84,47 @@
 .panel-scrim[data-conversation="1"] .panel::before {
   content: none;
 }
-.panel-scrim[data-conversation="1"] .panel-body {
-  padding: clamp(4.8rem, 8lvh, 6.2rem) clamp(1rem, 3vw, 2.6rem)
-    clamp(0.8rem, 2lvh, 1.4rem);
+/* [data-conversation][data-chat] tõstab spetsiifilisust (0,4,0), et
+   võita chat.css `.panel-scrim[data-chat] .panel-body` reegel (0,3,0),
+   mis muidu sunnib padding-top: 3.8–4.6rem. */
+.panel-scrim[data-conversation="1"][data-chat="1"] .panel-body {
+  /* Ülapolster oli 4.8–6.2rem → lükkas sisu liiga alla (tellija 12.07:
+     "üleval kaovad liiga vara, saaks ekraani paremini kasutada"). Nüüd
+     kompaktne; nurga-orbid on läbipaistev klaas, mille alt sõnum võib
+     õrnalt läbi paista (maski pehmendus katab). */
+  padding: clamp(1.4rem, 3lvh, 2rem) clamp(1rem, 3vw, 2.6rem)
+    clamp(0.5rem, 1.4lvh, 1rem);
   overflow: hidden;
   scrollbar-gutter: auto;
 }
 /* Menüü ja sulgemine on eraldiseisvad navigatsiooni-orbid, mitte suure
    paneeli nurkadesse kinnitatud juhtnupud. */
+/* Nurga-orbid = SAMA hele klaas mis mujal platvormil (tellija 12.07:
+   sulge/info olid liiga tumedad, ei läinud kokku). Väärtused peegeldavad
+   glass.css .glass-iconbtn baasi: valge läbipaistev + ülaserva läige. */
 .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
   top: clamp(1.1rem, 2.8lvh, 1.8rem);
   width: 3rem;
   height: 3rem;
-  color: rgba(247, 239, 231, 0.76);
-  background: rgba(26, 17, 13, 0.7);
-  border: 1px solid rgba(255, 241, 226, 0.14);
-  box-shadow: 0 12px 34px rgba(8, 4, 2, 0.26), 0 0 0 1px rgba(255, 247, 238, 0.025);
-  backdrop-filter: none;
+  color: rgba(247, 239, 231, 0.92);
+  background-color: rgba(255, 255, 255, 0.04);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 36%,
+    rgba(255, 255, 255, 0.02) 62%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    0 6px 20px rgba(8, 4, 2, 0.26);
+  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+}
+.panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close):hover {
+  background-color: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.36);
 }
 .panel-scrim[data-conversation="1"] .panel-menu {
   left: clamp(1.1rem, 2.8vw, 2rem);
@@ -109,11 +133,14 @@
   right: clamp(1.1rem, 2.8vw, 2rem);
 }
 @media (min-width: 769px) {
+  /* Kaugemale sõnumiveerust (min(58rem) → pool = 29rem), et nupud EI
+     kattuks mullidega (tellija 12.07). 31rem paneb nad veeru servast
+     ~2rem väljapoole. */
   .panel-scrim[data-conversation="1"] .panel-menu {
-    left: calc(50% - min(27rem, 42vw));
+    left: calc(50% - min(31rem, 47vw));
   }
   .panel-scrim[data-conversation="1"] .panel-close {
-    right: calc(50% - min(27rem, 42vw));
+    right: calc(50% - min(31rem, 47vw));
   }
 }
 /* Kompaktne kaart: väikesed vormid (3 välja + nupp) võtavad TÄPSELT
