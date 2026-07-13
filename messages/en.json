@@ -607,6 +607,8 @@
         "assist_failed": "The assistant could not prepare the pre-inquiry.",
         "accept_failed": "Pre-inquiry could not be accepted.",
         "room_failed": "Conversation room could not be opened.",
+        "recipient_locked_by_room": "The recipient can no longer be changed because this pre-inquiry already has a shared conversation room.",
+        "room_requires_platform_recipient": "A shared room needs the pre-inquiry to have a recipient who receives it on the platform.",
         "internal_recipient_required": "To send in the platform, choose a contact whose account receives pre-inquiries.",
         "workflow_save_failed": "Receiver workflow could not be saved.",
         "preferences_load_failed": "Receiving settings could not be loaded.",

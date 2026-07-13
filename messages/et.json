@@ -607,6 +607,8 @@
         "assist_failed": "Assistent ei saanud eelpöördumist ette valmistada.",
         "accept_failed": "Eelpöördumist ei saanud vastu võtta.",
         "room_failed": "Vestlusruumi ei saanud avada.",
+        "recipient_locked_by_room": "Adressaati ei saa enam muuta, sest sellel eelpöördumisel on juba ühine vestlusruum.",
+        "room_requires_platform_recipient": "Ühise ruumi loomiseks peab eelpöördumisel olema platvormil vastuvõttev adressaat.",
         "internal_recipient_required": "Platvormis saatmiseks vali kontakt, kelle konto võtab eelpöördumisi vastu.",
         "workflow_save_failed": "Vastuvõtja tööplaani ei saanud salvestada.",
         "preferences_load_failed": "Vastuvõtu seadeid ei saanud laadida.",

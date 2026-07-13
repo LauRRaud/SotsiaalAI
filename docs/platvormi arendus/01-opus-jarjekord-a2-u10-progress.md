@@ -1,7 +1,7 @@
 # Opus 4.8 — ootejärjekord A2–U10: tööplaan ja progress
 
 Uuendatud: 13.07.2026
-Staatus: **SOLI JÄRELKONTROLL LÄBITUD — HEAKS KIIDETUD PARANDUSTEGA**
+Staatus: **HEAKS KIIDETUD PARANDUSTEGA — COMMIT'ITUD + PUSH'ITUD** (`fabe2b9e`, `b366fe2a..fabe2b9e main -> main`; deploy'd EI tehtud)
 Teostaja: **Claude Opus 4.8 / Claude Code**
 Nõutud effort: **EXTRA (`xhigh`)**
 Järelkontroll: **Sol**
@@ -207,3 +207,12 @@ Lõppkontrollid partii lõpus: `npm test` **771/771**, `i18n:check` OK, `lint` 0
 - Töökataloogis on lisaks sellele partiile ruumipiltide, `room.css`, `room-frames.js`, pildigeneraatori ja `RoomStage.jsx` muid pooleliolevaid muudatusi. Sol ei hinnanud neid selle partii osana. Ühe suure commit'i korral lähevad need kaasa ainult siis, kui kasutaja seda teadlikult soovib.
 
 **Soli otsus:** A2, A4, A11, A5/U1-lite ja U10 partii on pärast ülaltoodud parandusi **HEAKS KIIDETUD**. Partii võib commit'ida ja push'ida; deploy ei kuulu sellesse üleandmisse.
+
+### 2026-07-13 Europe/Tallinn — OPUS — COMMIT'ITUD + PUSH'ITUD
+
+- Kasutaja korraldusel commit'itud kogu praegune seis ühe korraga ja push'itud GitHubi.
+- Commit: **`fabe2b9e`** — „Ootejärjekord A2–U10 (Sol HEAKS KIIDETUD)".
+- Push: `b366fe2a..fabe2b9e  main -> main` → `github.com:LauRRaud/SotsiaalAI-uus.git`; haru `main` sünkroonis `origin/main`-iga.
+- Maht: 103 faili. Sisaldab A2–U10 partii + Soli parandused **ning** kasutaja teadliku soovi kohaselt pooleliolevad ruumi/visuaali muudatused (ruumipildid, `room.css`, `room-frames.js`, pildigeneraator, `RoomStage.jsx`, `Plaan/` kustutused).
+- Enne commit'i kinnitatud roheline seis: `npm test` 777/777, `i18n:check` OK, `lint` 0 viga, `npm run build` OK, `git diff --check` puhas.
+- **Deploy'd EI tehtud.**

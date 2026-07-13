@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json, localeFromRequest, publicErrorMessageKey, publicErrorStatus } from "@/lib/documents/server";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
@@ -74,7 +74,20 @@ export async function POST(request, context) {
       room
     }, created ? 201 : 200);
   } catch (error) {
-    console.error("[pre-inquiries] room open failed", safeError(error));
-    return errorJson("pre_inquiries.errors.room_failed", 500, locale);
+    // Controlled pre-inquiry-room 409 that the public-key whitelist (api.*/
+    // documents.*) does not cover — surfaced explicitly so it never becomes a 500.
+    if (Number(error?.status) === 409 && error?.message === "pre_inquiries.errors.room_requires_platform_recipient") {
+      return errorJson(error.message, 409, locale);
+    }
+    // Only whitelisted public error keys (api.*/documents.*) are surfaced with
+    // their status — e.g. the helper's generic 403 (api.common.forbidden) / 404
+    // (api.common.not_found). Anything else is a generic 500; no room existence
+    // or raw error message is leaked.
+    const status = publicErrorStatus(error, 500);
+    if (status >= 500) {
+      console.error("[pre-inquiries] room open failed", safeError(error));
+      return errorJson("pre_inquiries.errors.room_failed", 500, locale);
+    }
+    return errorJson(publicErrorMessageKey(error, "pre_inquiries.errors.room_failed"), status, locale);
   }
 }
