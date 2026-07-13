@@ -4205,5 +4205,70 @@
     "theme_light": "Hele",
     "theme_mid": "Hämar",
     "theme_dark": "Öö"
+  },
+  "topic_seeds": {
+    "list_intro": "Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja kinnita üldistatud kaart kovisioonijärjekorda. Seeme jääb ainult sulle, kuni Kovisiooni grupinähtavus on ehitatud.",
+    "notices": {
+      "draft_saved": "Mustand salvestatud. See on nähtav ainult sulle.",
+      "created": "Teemaseeme on loodud ja praegu ainult sulle nähtav. Jagamiseks vali kaardil „Lisa kovisioonijärjekorda”.",
+      "updated": "Teemaseemne muudatused on salvestatud.",
+      "queued": "Üldistus on kinnitatud ja külmutatud. Praegu pole see veel teistele nähtav — grupinähtavus tekib hilisemas Kovisiooni sidumises."
+    },
+    "ui": {
+      "loading": "Laadin sinu teemaseemneid…",
+      "untitled": "(Pealkirjata mustand)",
+      "missing_value": "—",
+      "draft_meta": "Loodud",
+      "waiting_meta": "Kinnitatud järjekorda",
+      "new_seed": "Uus teemaseeme",
+      "empty_mine": "Sul ei ole veel ühtegi teemaseemet. Alusta nupuga „Uus teemaseeme”.",
+      "empty_filter": "Selle filtri all ei ole praegu ühtegi seemet.",
+      "filters_aria": "Teemaseemnete filtrid",
+      "queue_action": "Lisa kovisioonijärjekorda",
+      "edit_quick": "Ava või muuda kiiret seemet",
+      "complete_before_queue": "Täida kiire seemne kohustuslikud väljad enne järjekorda lisamist.",
+      "save_and_exit": "Salvestan mustandi ja väljun",
+      "create_heading": "Uus teemaseeme",
+      "edit_heading": "Muuda kiiret seemet",
+      "create_view_aria": "Uue teemaseemne loomine",
+      "edit_view_aria": "Teemaseemne muutmine",
+      "save_draft": "Salvesta mustand",
+      "create_action": "Loo Teemaseeme",
+      "save_changes": "Salvesta muudatused",
+      "saving": "Salvestan…",
+      "conflict_help": "Laadi leht uuesti, et jätkata värske versiooniga.",
+      "reload": "Laadi leht uuesti",
+      "create_error_aria": "Teemaseemne salvestamise viga",
+      "share_error_aria": "Järjekorda lisamise viga",
+      "detail_dialog_aria": "Kinnitatud seemnekaart",
+      "share_dialog_aria": "Järjekorda lisamise kinnitamine"
+    },
+    "share": {
+      "title": "Kinnita külmutatav üldistus",
+      "sub": "Kinnitamisel külmutatakse see seemnekaart kovisioonijärjekorra jaoks. Privaatne ettevalmistus jääb jagamata.",
+      "not_shared_note": "Kinnitamine ei jaga seemet veel teiste kasutajatega — grupinähtavus lisandub hiljem.",
+      "confirm_no_identifiers": "Kinnitan, et see kaart ei sisalda nime, isikukoodi, täpset aadressi ega muud otsest tuvastajat.",
+      "confirm_action": "Kinnitan üldistuse ja lisan ootejärjekorda",
+      "keep_private": "Jäta praegu ainult endale"
+    },
+    "preview": {
+      "title": "Külmutatava kaardi eelvaade",
+      "sub": "Seemnekaart sellisena, nagu see kovisioonijärjekorda külmutatakse."
+    },
+    "detail": {
+      "title": "Kinnitatud seemnekaart",
+      "sub": "See on sinu külmutatud üldistus. Praegu pole see veel teistele nähtav.",
+      "view_action": "Vaata kinnitatud kaarti"
+    },
+    "errors": {
+      "request_failed": "Teemaseemne toiming ebaõnnestus. Proovi uuesti.",
+      "invalid": "Vigane väli. Kontrolli valikuid ja proovi uuesti.",
+      "incomplete": "Enne järjekorda lisamist täida kõik kohustuslikud väljad.",
+      "confirmation_required": "Kinnita, et kaart ei sisalda otseseid tuvastajaid.",
+      "queue_conflict": "Seeme muutus vahepeal. Värskenda ja proovi uuesti.",
+      "edit_conflict": "Seeme muutus vahepeal või ei ole enam muudetav. Laadi leht uuesti.",
+      "save_failed": "Teemaseemet ei saanud salvestada. Proovi uuesti.",
+      "load_failed": "Teemaseemneid ei saanud laadida."
+    }
   }
 }

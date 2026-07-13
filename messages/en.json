@@ -4205,5 +4205,70 @@
     "theme_light": "Light",
     "theme_mid": "Dusk",
     "theme_dark": "Night"
+  },
+  "topic_seeds": {
+    "list_intro": "Professional work seeds: notice a theme, prepare it privately, and confirm a generalized card for the covision queue. The seed stays private to you until covision group visibility is built.",
+    "notices": {
+      "draft_saved": "Draft saved. It is visible only to you.",
+      "created": "The topic seed is created and currently visible only to you. To share it, choose “Add to covision queue” on the card.",
+      "updated": "The topic seed changes have been saved.",
+      "queued": "The generalization is confirmed and frozen. It is not yet visible to others — group visibility will come in a later covision linking."
+    },
+    "ui": {
+      "loading": "Loading your topic seeds…",
+      "untitled": "(Untitled draft)",
+      "missing_value": "—",
+      "draft_meta": "Created",
+      "waiting_meta": "Confirmed for the queue",
+      "new_seed": "New topic seed",
+      "empty_mine": "You do not have any topic seeds yet. Start with “New topic seed”.",
+      "empty_filter": "There are currently no seeds under this filter.",
+      "filters_aria": "Topic seed filters",
+      "queue_action": "Add to covision queue",
+      "edit_quick": "Open or edit quick seed",
+      "complete_before_queue": "Complete the required quick seed fields before adding it to the queue.",
+      "save_and_exit": "Save draft and exit",
+      "create_heading": "New topic seed",
+      "edit_heading": "Edit quick seed",
+      "create_view_aria": "Create a new topic seed",
+      "edit_view_aria": "Edit topic seed",
+      "save_draft": "Save draft",
+      "create_action": "Create topic seed",
+      "save_changes": "Save changes",
+      "saving": "Saving…",
+      "conflict_help": "Reload the page to continue with the latest version.",
+      "reload": "Reload page",
+      "create_error_aria": "Topic seed save error",
+      "share_error_aria": "Queue submission error",
+      "detail_dialog_aria": "Confirmed topic seed card",
+      "share_dialog_aria": "Confirm adding to queue"
+    },
+    "share": {
+      "title": "Confirm the card to be frozen",
+      "sub": "Confirming freezes this seed card for the covision queue. Your private preparation stays unshared.",
+      "not_shared_note": "Confirming does not yet share the seed with other users — group visibility is added later.",
+      "confirm_no_identifiers": "I confirm this card contains no name, personal ID, exact address, or other direct identifier.",
+      "confirm_action": "Confirm the generalization and add to the queue",
+      "keep_private": "Keep it to myself for now"
+    },
+    "preview": {
+      "title": "Preview of the card to be frozen",
+      "sub": "The seed card exactly as it will be frozen into the covision queue."
+    },
+    "detail": {
+      "title": "Confirmed seed card",
+      "sub": "This is your frozen generalization. It is not yet visible to others.",
+      "view_action": "View the confirmed card"
+    },
+    "errors": {
+      "request_failed": "The topic seed action failed. Please try again.",
+      "invalid": "Invalid field. Check the selections and try again.",
+      "incomplete": "Fill in all required fields before adding to the queue.",
+      "confirmation_required": "Confirm that the card contains no direct identifiers.",
+      "queue_conflict": "The seed changed in the meantime. Refresh and try again.",
+      "edit_conflict": "The seed changed in the meantime or can no longer be edited. Reload the page.",
+      "save_failed": "The topic seed could not be saved. Please try again.",
+      "load_failed": "Topic seeds could not be loaded."
+    }
   }
 }

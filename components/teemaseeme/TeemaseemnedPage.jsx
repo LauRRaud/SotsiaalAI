@@ -1,7 +1,13 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+
+function readText(t, key, fallback) {
+  return typeof t === "function" ? t(key, fallback) : fallback;
+}
 
 /**
  * TeemaseemnedPage — Teemaseemnete leht + uue seemne loomisvaade.
@@ -16,8 +22,6 @@ import Link from "next/link";
  * teadlikku tegevust (§5.6); olulisus/kontekst/liik algolekus valimata
  * (§33.5); kiire seemne saab luua ilma ettevalmistuseta (§8.1).
  */
-
-const DEMO_USER = { name: "Jaanika Kask", title: "Lastekaitsetöötaja" };
 
 /* Loomisvaate viis sammu (§8.1). Etapp 0 (sobivuskontroll) ei ole
    stepperi samm — see on värav enne sammu 1. */
@@ -47,20 +51,35 @@ const KINDS = [
   { key: "future", label: "Tulevikueesmärk" }
 ];
 
-/* Soovitud tugi (§9.5 kaanon) */
+/* Soovitud tugi (§9.5 kaanon). Stabiilne võti + kuvatav ET-silt: server salvestab
+   AINULT võtme (whitelist), klient kuvab sildi. */
 const SUPPORT_OPTIONS = [
-  "Olukorra parem mõistmine",
-  "Uued vaatenurgad",
-  "Oma rolli mõtestamine",
-  "Professionaalsete piiride selgitamine",
-  "Võrgustikutöö analüüs",
-  "Kasutatud meetodi refleksioon",
-  "Eetilise dilemma uurimine",
-  "Võimalike teede loomine",
-  "Järgmise sammu leidmine",
-  "Edukogemusest õppimine",
-  "Muu"
+  { key: "understanding", label: "Olukorra parem mõistmine" },
+  { key: "perspectives", label: "Uued vaatenurgad" },
+  { key: "role", label: "Oma rolli mõtestamine" },
+  { key: "boundaries", label: "Professionaalsete piiride selgitamine" },
+  { key: "network", label: "Võrgustikutöö analüüs" },
+  { key: "method", label: "Kasutatud meetodi refleksioon" },
+  { key: "ethics", label: "Eetilise dilemma uurimine" },
+  { key: "paths", label: "Võimalike teede loomine" },
+  { key: "next_step", label: "Järgmise sammu leidmine" },
+  { key: "success_learning", label: "Edukogemusest õppimine" },
+  { key: "other", label: "Muu" }
 ];
+
+/* Serveri whitelistidele vastavad key -> ET-silt kaardid (kuvamiseks). */
+const CONTEXT_LABEL = Object.fromEntries(CONTEXTS.map((c) => [c.key, c.label]));
+const KIND_LABEL = Object.fromEntries(KINDS.map((k) => [k.key, k.label]));
+const SUPPORT_LABEL = Object.fromEntries(SUPPORT_OPTIONS.map((s) => [s.key, s.label]));
+
+/* Etapp 0 sobivuskontrolli lahendus -> serveri safetyGate whitelist-võti. */
+const GATE_TO_KEY = {
+  ei: "no_immediate_risk",
+  teadmata: "risk_unknown",
+  "sekkumine-kaivitatud": "intervention_started",
+  "risk-hinnatud": "risk_assessed"
+};
+const KEY_TO_GATE = Object.fromEntries(Object.entries(GATE_TO_KEY).map(([gate, key]) => [key, gate]));
 
 /* Privaatse ettevalmistuse moodulid (§33.3 — valikuline, ainult omanikule) */
 const PRIVATE_MODULES = [
@@ -82,62 +101,9 @@ const STATUS_LABELS = {
   suletud: "Suletud"
 };
 
-/* Näidisseemned (§25 kaardivorming). Katkendlik kooliskäimine on sama
-   juhtum, mis jookseb kovisiooni sessioonidemos. */
-const DEMO_SEEDS = [
-  {
-    id: "s1",
-    title: "Katkendlik kooliskäimine",
-    owner: "Mari Mets",
-    mine: false,
-    context: "Lapse või noore klienditöö",
-    kind: "Aktuaalne väljakutse",
-    whyNow: "Puudumised on sagenenud ja koostöö vanemaga on nõrgenenud.",
-    support: ["Olukorra parem mõistmine", "Uued vaatenurgad"],
-    importance: 9,
-    status: "valitud",
-    meta: "Seotud tänase kovisiooniga"
-  },
-  {
-    id: "s2",
-    title: "Eluaseme säilimine ja vastutuse jagamine",
-    owner: "Marko Suur",
-    mine: false,
-    context: "Täisealise inimese klienditöö",
-    kind: "Aktuaalne väljakutse",
-    whyNow: "Eluaseme kaotamise risk on suurenenud.",
-    support: ["Võrgustikutöö analüüs", "Järgmise sammu leidmine"],
-    importance: 9,
-    status: "ootel",
-    meta: "Ootab 11 päeva"
-  },
-  {
-    id: "s3",
-    title: "Toimiva töövõtte kordamise mõistmine",
-    owner: "Aveli Kivi",
-    mine: false,
-    context: "Täisealise inimese klienditöö",
-    kind: "Edukogemus",
-    whyNow: "Soovin mõista, mis täpselt toimis, et seda teadlikult korrata.",
-    support: ["Edukogemusest õppimine"],
-    importance: 6,
-    status: "ootel",
-    meta: "Ootab 4 päeva"
-  },
-  {
-    id: "s4",
-    title: "Võrgustiku rollide ebaselgus",
-    owner: "Liisa Laan",
-    mine: false,
-    context: "Võrgustiku või koostöö juhtum",
-    kind: "Minevikus toimunud keeruline olukord",
-    whyNow: "Kokkulepped jäid ellu viimata ja vastutus koondus ühele inimesele.",
-    support: ["Oma rolli mõtestamine", "Võrgustikutöö analüüs"],
-    importance: 7,
-    status: "jarelvaates",
-    meta: "Järelvaade 24.07"
-  }
-];
+/* A6.1: päris seemned laaditakse serverist (GET /api/topic-seeds) ja on ainult
+   omanikule nähtavad. Varasem DEMO_SEEDS näidismassiiv on eemaldatud — ükski
+   demo-kaart ei tohi esineda päris kasutajaandmena. */
 
 const FILTERS = [
   { key: "koik", label: "Kõik" },
@@ -160,22 +126,23 @@ function clampNumber(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-function nextSeedId(seeds) {
-  const highest = seeds.reduce((max, seed) => {
-    const match = /^uus-(\d+)$/.exec(String(seed?.id || ""));
-    return match ? Math.max(max, Number(match[1])) : max;
-  }, 0);
-  return `uus-${highest + 1}`;
-}
+export default function TeemaseemnedPage({ owner = null }) {
+  const { locale, t } = useI18n();
+  const ownerName = owner?.name || "";
+  const ownerTitle = owner?.title || "";
 
-export default function TeemaseemnedPage() {
   const [view, setView] = useState("list"); // list | create | prep
-  const [seeds, setSeeds] = useState(DEMO_SEEDS);
+  const [seeds, setSeeds] = useState([]); // päris omaniku seemned serverist
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [conflictScope, setConflictScope] = useState(null); // edit | share | null
   const [filter, setFilter] = useState("koik");
   const [notice, setNotice] = useState("");
   const [helpOpen, setHelpOpen] = useState(false);
-  const [detailSeed, setDetailSeed] = useState(null); // grupiliikme vaade üldistusele
+  const [detailSeed, setDetailSeed] = useState(null); // omaniku külmutatud kaardi vaade
   const [shareSeed, setShareSeed] = useState(null); // omaniku jagamiskiht
+  const [shareConfirmed, setShareConfirmed] = useState(false); // „ei sisalda tuvastajaid" kinnitus
   const [cardOffsets, setCardOffsets] = useState({});
   const [cardSizes, setCardSizes] = useState({});
   const [movingSeedId, setMovingSeedId] = useState(null);
@@ -186,6 +153,97 @@ export default function TeemaseemnedPage() {
   const cardRefs = useRef(new Map());
   const dragRef = useRef(null);
   const resizeRef = useRef(null);
+  const dataVersionRef = useRef(0);
+
+  /* Server TopicSeed -> ruumilise kaardi kuju. Kõik seemned on omaniku enda omad;
+     DB-staatus DRAFT/WAITING -> ajaloolised kliendisildid mustand/ootel. */
+  const toCardSeed = useCallback((seed) => {
+    if (!seed) return null;
+    const frozenSnapshot =
+      seed.status === "WAITING" &&
+      seed.sharedCardSnapshot &&
+      typeof seed.sharedCardSnapshot === "object" &&
+      !Array.isArray(seed.sharedCardSnapshot)
+        ? seed.sharedCardSnapshot
+        : null;
+    // WAITING is defined by its frozen card. Never silently fall back to mutable
+    // top-level fields if a persisted row is corrupt or missing its snapshot.
+    const displaySeed = seed.status === "WAITING" ? frozenSnapshot || {} : seed;
+    const requestedSupport = Array.isArray(seed.requestedSupport) ? seed.requestedSupport : [];
+    const displaySupport = Array.isArray(displaySeed.requestedSupport) ? displaySeed.requestedSupport : [];
+    const supportLabels = displaySupport.map((key) => SUPPORT_LABEL[key] || key);
+    return {
+      id: seed.id,
+      title: displaySeed.title || readText(t, "topic_seeds.ui.untitled", "(Pealkirjata mustand)"),
+      owner: ownerName,
+      mine: true,
+      context: CONTEXT_LABEL[displaySeed.contextType] || readText(t, "topic_seeds.ui.missing_value", "—"),
+      kind: KIND_LABEL[displaySeed.caseType] || readText(t, "topic_seeds.ui.missing_value", "—"),
+      whyNow: displaySeed.whyNow || readText(t, "topic_seeds.ui.missing_value", "—"),
+      support: supportLabels.length
+        ? supportLabels
+        : [readText(t, "topic_seeds.ui.missing_value", "—")],
+      importance: displaySeed.importance ?? null,
+      status: seed.status === "WAITING" ? "ootel" : "mustand",
+      serverStatus: seed.status,
+      meta:
+        seed.status === "WAITING"
+          ? readText(t, "topic_seeds.ui.waiting_meta", "Kinnitatud järjekorda")
+          : readText(t, "topic_seeds.ui.draft_meta", "Loodud"),
+      updatedAt: seed.updatedAt || null,
+      contextType: seed.contextType ?? null,
+      caseType: seed.caseType ?? null,
+      rawWhyNow: seed.whyNow ?? "",
+      requestedSupport,
+      safetyGate: seed.safetyGate ?? null,
+      rawTitle: seed.title ?? "",
+      isComplete: Boolean(
+        seed.title &&
+          seed.contextType &&
+          seed.caseType &&
+          seed.whyNow &&
+          requestedSupport.length &&
+          seed.importance != null &&
+          seed.safetyGate
+      ),
+      sharedCardSnapshot: frozenSnapshot
+    };
+  }, [ownerName, t]);
+
+  /* Laadi omaniku päris seemned serverist. Demoandmeid ei kuvata kunagi. */
+  useEffect(() => {
+    let active = true;
+    const versionAtStart = dataVersionRef.current;
+    (async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("/api/topic-seeds", {
+          headers: { Accept: "application/json", "x-ui-locale": locale }
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!active) return;
+        if (response.ok && Array.isArray(payload?.seeds)) {
+          if (dataVersionRef.current === versionAtStart) {
+            setSeeds(payload.seeds.map(toCardSeed).filter(Boolean));
+          }
+        } else {
+          setError(resolveApiMessage({
+            payload,
+            t,
+            fallbackKey: "topic_seeds.errors.load_failed",
+            fallbackText: "Teemaseemneid ei saanud laadida."
+          }));
+        }
+      } catch {
+        if (active) setError(readText(t, "topic_seeds.errors.load_failed", "Teemaseemneid ei saanud laadida."));
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+    };
+  }, [locale, toCardSeed, t]);
 
   /* --- Loomisvaate olek (§33.5: ausad algolekud — kõik valimata) --- */
   const [gate, setGate] = useState(null); // etapp 0 vastus
@@ -197,6 +255,8 @@ export default function TeemaseemnedPage() {
   const [support, setSupport] = useState([]);
   const [importance, setImportance] = useState(null);
   const [continuePrep, setContinuePrep] = useState(false);
+  const [editingSeedId, setEditingSeedId] = useState(null);
+  const [editingUpdatedAt, setEditingUpdatedAt] = useState(null);
 
   const contextLabel = CONTEXTS.find((c) => c.key === contextKey)?.label || null;
   const kindLabel = KINDS.find((k) => k.key === kindKey)?.label || null;
@@ -226,58 +286,180 @@ export default function TeemaseemnedPage() {
     setSupport([]);
     setImportance(null);
     setContinuePrep(false);
+    setEditingSeedId(null);
+    setEditingUpdatedAt(null);
   }
 
   function openCreate() {
     resetCreate();
     setNotice("");
+    setError("");
+    setConflictScope(null);
     setView("create");
   }
 
-  function buildSeed(status, id) {
+  function openEdit(seed) {
+    if (!seed || seed.status !== "mustand") return;
+    const restoredGate = KEY_TO_GATE[seed.safetyGate] || null;
+    setEditingSeedId(seed.id);
+    setEditingUpdatedAt(seed.updatedAt || null);
+    setGate(restoredGate);
+    setGateResolved(Boolean(restoredGate));
+    setTitle(seed.rawTitle || "");
+    setContextKey(seed.contextType || null);
+    setKindKey(seed.caseType || null);
+    setWhyNow(seed.rawWhyNow || "");
+    setSupport(Array.isArray(seed.requestedSupport) ? seed.requestedSupport : []);
+    setImportance(seed.importance ?? null);
+    setContinuePrep(false);
+    setNotice("");
+    setError("");
+    setConflictScope(null);
+    setView("create");
+  }
+
+  // Create/save payload from the form state. The server validates these keys and
+  // ALWAYS stores status DRAFT — the client can never mint WAITING here.
+  function buildCreatePayload(complete) {
     return {
-      id,
-      title: title.trim() || "(Pealkirjata mustand)",
-      owner: DEMO_USER.name,
-      mine: true,
-      context: contextLabel || "—",
-      kind: kindLabel || "—",
-      whyNow: whyNow.trim() || "—",
-      support: support.length ? support : ["—"],
+      complete,
+      title: title.trim(),
+      contextType: contextKey,
+      caseType: kindKey,
+      whyNow: whyNow.trim(),
+      requestedSupport: support,
       importance,
-      status,
-      meta: "Loodud täna"
+      safetyGate: gate ? GATE_TO_KEY[gate] || null : null
     };
   }
 
-  function saveDraft() {
-    setSeeds((prev) => [buildSeed("mustand", nextSeedId(prev)), ...prev]);
-    setNotice("Mustand salvestatud. See on nähtav ainult sulle.");
+  async function submitSeed({ complete }) {
+    if (saving) return null;
+    const isEditing = Boolean(editingSeedId);
+    setSaving(true);
+    setError("");
+    setConflictScope(null);
+    try {
+      const response = await fetch(
+        isEditing ? `/api/topic-seeds/${encodeURIComponent(editingSeedId)}` : "/api/topic-seeds",
+        {
+          method: isEditing ? "PATCH" : "POST",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale },
+          body: JSON.stringify({
+            ...buildCreatePayload(complete),
+            ...(isEditing ? { expectedUpdatedAt: editingUpdatedAt } : {})
+          })
+        }
+      );
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.seed) {
+        if (response.status === 409) setConflictScope("edit");
+        setError(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "topic_seeds.errors.save_failed",
+          fallbackText: "Teemaseemet ei saanud salvestada. Proovi uuesti."
+        }));
+        return null;
+      }
+      // Server response (not a local id) defines the seed's id/status.
+      dataVersionRef.current += 1;
+      const card = toCardSeed(payload.seed);
+      setSeeds((prev) => [card, ...prev.filter((s) => s.id !== card.id)]);
+      setEditingSeedId(card.id);
+      setEditingUpdatedAt(card.updatedAt);
+      return card;
+    } catch {
+      setError(readText(t, "topic_seeds.errors.save_failed", "Teemaseemet ei saanud salvestada. Proovi uuesti."));
+      return null;
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  function reloadAfterConflict() {
+    window.location.reload();
+  }
+
+  function conflictAction(scope) {
+    if (conflictScope !== scope) return null;
+    return (
+      <div className="ts-actions-btns">
+        <p className="ts-reason">
+          {readText(t, "topic_seeds.ui.conflict_help", "Laadi leht uuesti, et jätkata värske versiooniga.")}
+        </p>
+        <button type="button" data-variant onClick={reloadAfterConflict}>
+          {readText(t, "topic_seeds.ui.reload", "Laadi leht uuesti")}
+        </button>
+      </div>
+    );
+  }
+
+  async function saveDraft() {
+    const card = await submitSeed({ complete: false });
+    if (!card) return; // network/server error already surfaced; no misleading success
+    setNotice(readText(t, "topic_seeds.notices.draft_saved", "Mustand salvestatud. See on nähtav ainult sulle."));
     setView("list");
     setFilter("minu");
   }
 
-  function createSeed() {
+  async function createSeed() {
     if (!canCreate) return;
-    setSeeds((prev) => [buildSeed("mustand", nextSeedId(prev)), ...prev]);
+    const card = await submitSeed({ complete: true });
+    if (!card) return;
     if (continuePrep) {
       setView("prep");
       setNotice("");
     } else {
-      setNotice(
-        "Teemaseeme on loodud ja praegu ainult sulle nähtav. Jagamiseks vali kaardil „Lisa kovisioonijärjekorda”."
-      );
+      setNotice(readText(
+        t,
+        editingSeedId ? "topic_seeds.notices.updated" : "topic_seeds.notices.created",
+        editingSeedId
+          ? "Teemaseemne muudatused on salvestatud."
+          : "Teemaseeme on loodud ja praegu ainult sulle nähtav. Jagamiseks vali kaardil „Lisa kovisioonijärjekorda”."
+      ));
       setView("list");
       setFilter("minu");
     }
   }
 
-  /* Omaniku teadlik jagamine (§33.3): kinnitus → mustand muutub ootel-olekuks */
-  function confirmShare() {
-    if (!shareSeed) return;
-    setSeeds((prev) => prev.map((s) => (s.id === shareSeed.id ? { ...s, status: "ootel", meta: "Ootab valikut" } : s)));
-    setShareSeed(null);
-    setNotice("Üldistus on kinnitatud ja seeme on kovisioonijärjekorras. Grupp näeb ainult seemnekaarti.");
+  /* Omaniku teadlik, versioonikindel jagamine (§7.4): DRAFT -> WAITING + külmutatud
+     hetktõmmis. Nõuab „ei sisalda tuvastajaid" kinnitust ja saadab
+     expectedUpdatedAt fingerprint'i. WAITING EI tee seemet veel teistele nähtavaks. */
+  async function confirmShare() {
+    if (!shareSeed || saving || !shareConfirmed) return;
+    setSaving(true);
+    setError("");
+    setConflictScope(null);
+    try {
+      const response = await fetch(`/api/topic-seeds/${encodeURIComponent(shareSeed.id)}/queue`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale },
+        body: JSON.stringify({ expectedUpdatedAt: shareSeed.updatedAt || null, confirmedNoIdentifiers: true })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.seed) {
+        // No misleading WAITING on failure (incl. a 409 version conflict).
+        if (response.status === 409) setConflictScope("share");
+        setError(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "topic_seeds.errors.request_failed",
+          fallbackText: "Teemaseemne toiming ebaõnnestus. Proovi uuesti."
+        }));
+        return;
+      }
+      dataVersionRef.current += 1;
+      const card = toCardSeed(payload.seed);
+      setSeeds((prev) => prev.map((s) => (s.id === card.id ? card : s)));
+      setShareSeed(null);
+      setShareConfirmed(false);
+      setNotice(readText(t, "topic_seeds.notices.queued", "Üldistus on kinnitatud ja külmutatud. Praegu pole see veel teistele nähtav — grupinähtavus tekib hilisemas Kovisiooni sidumises."));
+    } catch {
+      setError(readText(t, "topic_seeds.errors.request_failed", "Teemaseemne toiming ebaõnnestus. Proovi uuesti."));
+    } finally {
+      setSaving(false);
+    }
   }
 
   const visibleSeeds = useMemo(() => {
@@ -612,10 +794,12 @@ export default function TeemaseemnedPage() {
         <button type="button" data-variant aria-expanded={helpOpen} onClick={() => setHelpOpen(true)}>
           Abi
         </button>
-        <div className="ts-user">
-          <span className="ts-user-name">{DEMO_USER.name}</span>
-          <span className="ts-user-title">{DEMO_USER.title}</span>
-        </div>
+        {ownerName ? (
+          <div className="ts-user">
+            <span className="ts-user-name">{ownerName}</span>
+            {ownerTitle ? <span className="ts-user-title">{ownerTitle}</span> : null}
+          </div>
+        ) : null}
       </div>
     </header>
   );
@@ -721,20 +905,41 @@ export default function TeemaseemnedPage() {
           <div className="ts-card-actions">
             {seed.mine && seed.status === "mustand" ? (
               <>
-                <button type="button" data-variant className="ts-acc" onClick={() => setShareSeed(seed)}>
-                  Lisa kovisioonijärjekorda
+                <button
+                  type="button"
+                  data-variant
+                  className="ts-acc"
+                  disabled={!seed.isComplete}
+                  aria-describedby={!seed.isComplete ? `ts-incomplete-${seed.id}` : undefined}
+                  onClick={() => {
+                    if (!seed.isComplete) return;
+                    setError("");
+                    setConflictScope(null);
+                    setShareConfirmed(false);
+                    setShareSeed(seed);
+                  }}
+                >
+                  {readText(t, "topic_seeds.ui.queue_action", "Lisa kovisioonijärjekorda")}
+                </button>
+                <button type="button" data-variant onClick={() => openEdit(seed)}>
+                  {readText(t, "topic_seeds.ui.edit_quick", "Ava või muuda kiiret seemet")}
                 </button>
                 <button type="button" data-variant onClick={() => setView("prep")}>
                   Jätka ettevalmistust
                 </button>
+                {!seed.isComplete ? (
+                  <p id={`ts-incomplete-${seed.id}`} className="ts-reason">
+                    {readText(
+                      t,
+                      "topic_seeds.ui.complete_before_queue",
+                      "Täida kiire seemne kohustuslikud väljad enne järjekorda lisamist."
+                    )}
+                  </p>
+                ) : null}
               </>
-            ) : seed.status === "valitud" ? (
-              <Link className="ts-link-btn" data-variant href="/kovisioon">
-                Ava kovisioonis
-              </Link>
             ) : (
               <button type="button" data-variant onClick={() => setDetailSeed(seed)}>
-                Vaata üldistust
+                {readText(t, "topic_seeds.detail.view_action", "Vaata kinnitatud kaarti")}
               </button>
             )}
           </div>
@@ -772,12 +977,15 @@ export default function TeemaseemnedPage() {
           <div>
             <h1 className="ts-h1">Teemaseemned</h1>
             <p className="ts-intro">
-              Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja vii üldistatud kaart
-              kovisiooni. Grupp näeb ainult seda, mida sa ise jagad.
+              {readText(
+                t,
+                "topic_seeds.list_intro",
+                "Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja kinnita üldistatud kaart kovisioonijärjekorda. Seeme jääb ainult sulle, kuni Kovisiooni grupinähtavus on ehitatud."
+              )}
             </p>
           </div>
-          <button type="button" data-variant className="ts-acc" onClick={openCreate}>
-            Uus teemaseeme
+          <button type="button" data-variant className="ts-acc" disabled={loading} onClick={openCreate}>
+            {readText(t, "topic_seeds.ui.new_seed", "Uus teemaseeme")}
           </button>
         </div>
 
@@ -787,7 +995,22 @@ export default function TeemaseemnedPage() {
           </p>
         ) : null}
 
-        <div className="ts-filters" role="group" aria-label="Filtrid">
+        {error ? (
+          <div className="ts-notice" role="alert" data-tone="error">
+            <p>{error}</p>
+            {!loading && seeds.length === 0 ? (
+              <button type="button" data-variant onClick={reloadAfterConflict}>
+                {readText(t, "topic_seeds.ui.reload", "Laadi leht uuesti")}
+              </button>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div
+          className="ts-filters"
+          role="group"
+          aria-label={readText(t, "topic_seeds.ui.filters_aria", "Teemaseemnete filtrid")}
+        >
           {FILTERS.map((f) => (
             <button
               key={f.key}
@@ -821,13 +1044,21 @@ export default function TeemaseemnedPage() {
         </div>
       </section>
 
-      {visibleSeeds.length ? (
+      {loading ? (
+        <p className="ts-empty" role="status">
+          {readText(t, "topic_seeds.ui.loading", "Laadin sinu teemaseemneid…")}
+        </p>
+      ) : error && seeds.length === 0 ? null : visibleSeeds.length ? (
         <div className="ts-grid">{visibleSeeds.map((s) => seedCard(s))}</div>
       ) : (
         <p className="ts-empty">
           {filter === "minu"
-            ? "Sul ei ole veel ühtegi teemaseemet. Alusta nupuga „Uus teemaseeme”."
-            : "Selle filtri all ei ole praegu ühtegi seemet."}
+            ? readText(
+                t,
+                "topic_seeds.ui.empty_mine",
+                "Sul ei ole veel ühtegi teemaseemet. Alusta nupuga „Uus teemaseeme”."
+              )
+            : readText(t, "topic_seeds.ui.empty_filter", "Selle filtri all ei ole praegu ühtegi seemet.")}
         </p>
       )}
     </section>
@@ -928,8 +1159,8 @@ export default function TeemaseemnedPage() {
             >
               Risk on hinnatud ning professionaalne refleksioon võib jätkuda
             </button>
-            <button type="button" data-variant onClick={() => setView("list")}>
-              Salvestan mustandi ja väljun
+            <button type="button" data-variant disabled={saving} onClick={saveDraft}>
+              {readText(t, "topic_seeds.ui.save_and_exit", "Salvestan mustandi ja väljun")}
             </button>
           </div>
         </div>
@@ -962,26 +1193,26 @@ export default function TeemaseemnedPage() {
 
   const previewColumn = (
     <aside className="ts-side">
-      <section className="ts-preview" aria-label="Grupile nähtava kaardi eelvaade">
+      <section className="ts-preview" aria-label="Külmutatava kaardi eelvaade">
         <header className="ts-side-head">
-          <h2 className="ts-side-title">Mida grupp näeb pärast jagamist?</h2>
+          <h2 className="ts-side-title">{readText(t, "topic_seeds.preview.title", "Külmutatava kaardi eelvaade")}</h2>
           <span className="ts-status" data-status="mustand">
             Pole veel jagatud
           </span>
         </header>
         <p className="ts-side-sub">
-          Seemnekaart sellisena, nagu grupp seda pärast sinu teadlikku jagamist näeb.
+          {readText(t, "topic_seeds.preview.sub", "Seemnekaart sellisena, nagu see kovisioonijärjekorda külmutatakse.")}
         </p>
         {seedCard(
           {
             id: "eelvaade",
             title: title.trim() || "—",
-            owner: DEMO_USER.name,
+            owner: ownerName,
             mine: true,
             context: contextLabel || "—",
             kind: kindLabel || "—",
             whyNow: whyNow.trim() || "—",
-            support: support.length ? support : ["—"],
+            support: support.length ? support.map((key) => SUPPORT_LABEL[key] || key) : ["—"],
             importance,
             status: "mustand",
             meta: "Eelvaade"
@@ -1014,7 +1245,14 @@ export default function TeemaseemnedPage() {
   );
 
   const createView = (
-    <section className="ts-shell ts-create" aria-label="Uue teemaseemne loomine">
+    <section
+      className="ts-shell ts-create"
+      aria-label={readText(
+        t,
+        editingSeedId ? "topic_seeds.ui.edit_view_aria" : "topic_seeds.ui.create_view_aria",
+        editingSeedId ? "Teemaseemne muutmine" : "Uue teemaseemne loomine"
+      )}
+    >
       {/* Loomisvaates EI OLE platvorminavi ega sessioonikroomi (§33.2 +
           lõuendireegel: kõik mahub ekraanile) — tagasi-nupp ja Abi on käes */}
       <div className="ts-create-head">
@@ -1022,7 +1260,13 @@ export default function TeemaseemnedPage() {
           <button type="button" className="ts-back" onClick={() => setView("list")}>
             ← Tagasi Teemaseemnete lehele
           </button>
-          <h1 className="ts-h1">Uus teemaseeme</h1>
+          <h1 className="ts-h1">
+            {readText(
+              t,
+              editingSeedId ? "topic_seeds.ui.edit_heading" : "topic_seeds.ui.create_heading",
+              editingSeedId ? "Muuda kiiret seemet" : "Uus teemaseeme"
+            )}
+          </h1>
           <p className="ts-intro">
             Loo lühike ja üldistatud kirjeldus teemast — privaatne täiendamine on hiljem valikuline.
           </p>
@@ -1048,6 +1292,18 @@ export default function TeemaseemnedPage() {
 
       {gateChip}
       {gateBlock}
+
+      {error ? (
+        <div
+          className="ts-notice"
+          role="alert"
+          data-tone="error"
+          aria-label={readText(t, "topic_seeds.ui.create_error_aria", "Teemaseemne salvestamise viga")}
+        >
+          <p>{error}</p>
+          {conflictAction("edit")}
+        </div>
+      ) : null}
 
       <div className="ts-create-main">
         <form
@@ -1145,15 +1401,15 @@ export default function TeemaseemnedPage() {
               <div className="ts-chips" role="group" aria-labelledby="ts-sup-label">
                 {SUPPORT_OPTIONS.map((s) => (
                   <button
-                    key={s}
+                    key={s.key}
                     type="button"
                     className="ts-chip"
-                    aria-pressed={support.includes(s)}
+                    aria-pressed={support.includes(s.key)}
                     onClick={() =>
-                      setSupport((prev) => (prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]))
+                      setSupport((prev) => (prev.includes(s.key) ? prev.filter((x) => x !== s.key) : [...prev, s.key]))
                     }
                   >
-                    {s}
+                    {s.label}
                   </button>
                 ))}
               </div>
@@ -1197,13 +1453,21 @@ export default function TeemaseemnedPage() {
               <button
                 type="button"
                 data-variant
-                disabled={!gateResolved || gateBlocked}
+                disabled={!gateResolved || gateBlocked || saving}
                 onClick={saveDraft}
               >
-                Salvesta mustand
+                {saving
+                  ? readText(t, "topic_seeds.ui.saving", "Salvestan…")
+                  : readText(t, "topic_seeds.ui.save_draft", "Salvesta mustand")}
               </button>
-              <button type="submit" data-variant="primary" className="ts-acc" disabled={!canCreate}>
-                Loo Teemaseeme
+              <button type="submit" data-variant="primary" className="ts-acc" disabled={!canCreate || saving}>
+                {saving
+                  ? readText(t, "topic_seeds.ui.saving", "Salvestan…")
+                  : readText(
+                      t,
+                      editingSeedId ? "topic_seeds.ui.save_changes" : "topic_seeds.ui.create_action",
+                      editingSeedId ? "Salvesta muudatused" : "Loo Teemaseeme"
+                    )}
               </button>
             </div>
             {gateResolved && !gateBlocked && missing.length ? (
@@ -1287,16 +1551,21 @@ export default function TeemaseemnedPage() {
   ) : null;
 
   const detailLayer = detailSeed ? (
-    <div className="ts-layer" role="dialog" aria-modal="true" aria-label="Seemne üldistus">
+    <div
+      className="ts-layer"
+      role="dialog"
+      aria-modal="true"
+      aria-label={readText(t, "topic_seeds.ui.detail_dialog_aria", "Kinnitatud seemnekaart")}
+    >
       <div className="ts-layer-card">
         <header className="ts-layer-head">
-          <h2 className="ts-side-title">Grupile nähtav üldistus</h2>
+          <h2 className="ts-side-title">{readText(t, "topic_seeds.detail.title", "Kinnitatud seemnekaart")}</h2>
           <button type="button" data-variant onClick={() => setDetailSeed(null)}>
             Sulge
           </button>
         </header>
         <p className="ts-side-sub">
-          Näed ainult omaniku kinnitatud seemnekaarti. Detailne ettevalmistus jääb omanikule.
+          {readText(t, "topic_seeds.detail.sub", "See on sinu külmutatud üldistus. Praegu pole see veel teistele nähtav.")}
         </p>
         {seedCard(detailSeed, { actions: false })}
       </div>
@@ -1304,25 +1573,77 @@ export default function TeemaseemnedPage() {
   ) : null;
 
   const shareLayer = shareSeed ? (
-    <div className="ts-layer" role="dialog" aria-modal="true" aria-label="Jagamise kinnitamine">
+    <div
+      className="ts-layer"
+      role="dialog"
+      aria-modal="true"
+      aria-label={readText(t, "topic_seeds.ui.share_dialog_aria", "Järjekorda lisamise kinnitamine")}
+    >
       <div className="ts-layer-card">
         <header className="ts-layer-head">
-          <h2 className="ts-side-title">Kinnita grupile nähtav üldistus</h2>
-          <button type="button" data-variant onClick={() => setShareSeed(null)}>
+          <h2 className="ts-side-title">{readText(t, "topic_seeds.share.title", "Kinnita külmutatav üldistus")}</h2>
+          <button
+            type="button"
+            data-variant
+            onClick={() => {
+              setShareSeed(null);
+              setShareConfirmed(false);
+              setError("");
+              setConflictScope(null);
+            }}
+          >
             Sulge
           </button>
         </header>
         <p className="ts-side-sub">
-          Kovisioonijärjekorda lisamisel näeb grupp seda seemnekaarti. Privaatne ettevalmistus jääb
-          jagamata. Saad seemne igal ajal järjekorrast tagasi võtta.
+          {readText(t, "topic_seeds.share.sub", "Kinnitamisel külmutatakse see seemnekaart kovisioonijärjekorra jaoks. Privaatne ettevalmistus jääb jagamata.")}
+        </p>
+        <p className="ts-side-sub">
+          {readText(t, "topic_seeds.share.not_shared_note", "Kinnitamine ei jaga seemet veel teiste kasutajatega — grupinähtavus lisandub hiljem.")}
         </p>
         {seedCard(shareSeed, { actions: false })}
+        {error ? (
+          <div
+            className="ts-notice"
+            role="alert"
+            data-tone="error"
+            aria-label={readText(t, "topic_seeds.ui.share_error_aria", "Järjekorda lisamise viga")}
+          >
+            <p>{error}</p>
+            {conflictAction("share")}
+          </div>
+        ) : null}
+        <label className="ts-toggle">
+          <input
+            type="checkbox"
+            checked={shareConfirmed}
+            onChange={(e) => setShareConfirmed(e.target.checked)}
+          />
+          <span>
+            {readText(t, "topic_seeds.share.confirm_no_identifiers", "Kinnitan, et see kaart ei sisalda nime, isikukoodi, täpset aadressi ega muud otsest tuvastajat.")}
+          </span>
+        </label>
         <div className="ts-actions-btns">
-          <button type="button" data-variant="primary" className="ts-acc" onClick={confirmShare}>
-            Kinnitan üldistuse ja lisan ootejärjekorda
+          <button
+            type="button"
+            data-variant="primary"
+            className="ts-acc"
+            disabled={!shareConfirmed || saving}
+            onClick={confirmShare}
+          >
+            {readText(t, "topic_seeds.share.confirm_action", "Kinnitan üldistuse ja lisan ootejärjekorda")}
           </button>
-          <button type="button" data-variant onClick={() => setShareSeed(null)}>
-            Jäta praegu ainult endale
+          <button
+            type="button"
+            data-variant
+            onClick={() => {
+              setShareSeed(null);
+              setShareConfirmed(false);
+              setError("");
+              setConflictScope(null);
+            }}
+          >
+            {readText(t, "topic_seeds.share.keep_private", "Jäta praegu ainult endale")}
           </button>
         </div>
       </div>

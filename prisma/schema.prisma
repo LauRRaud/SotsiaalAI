@@ -334,6 +334,11 @@ enum PreInquiryStatus {
   ARCHIVED
 }
 
+enum TopicSeedStatus {
+  DRAFT
+  WAITING
+}
+
 enum CovisionCaseStatus {
   DRAFT
   ACTIVE
@@ -623,6 +628,7 @@ model User {
   covisionParticipants    CovisionParticipant[]    @relation("CovisionParticipantUser")
   covisionMessages        CovisionMessage[]        @relation("CovisionMessageAuthor")
   effectivePractices      EffectivePractice[]      @relation("EffectivePracticeAuthor")
+  topicSeeds              TopicSeed[]              @relation("TopicSeedOwner")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1739,6 +1745,34 @@ model PreInquiry {
   @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// A6.1 — Teemaseeme: an owner-private persistent core (O2 variant B: a SEPARATE
+// model, never a CovisionCase). A6.1 implements only DRAFT -> WAITING. WAITING
+// means the owner has frozen a shareable generalized card for the queue; it does
+// NOT yet publish the seed to any other user (no group scope exists yet).
+model TopicSeed {
+  id                 String          @id @default(cuid())
+  ownerId            String
+  title              String?
+  contextType        String?
+  caseType           String?
+  whyNow             String?         @db.Text
+  requestedSupport   String[]        @default([])
+  importance         Int?
+  safetyGate         String?
+  status             TopicSeedStatus @default(DRAFT)
+  sharedCardSnapshot Json?
+  ownerConfirmedAt   DateTime?
+  sharedAt           DateTime?
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+
+  owner User @relation("TopicSeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId, updatedAt])
   @@index([status])
   @@index([createdAt])
 }

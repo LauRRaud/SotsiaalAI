@@ -35,5 +35,10 @@ export default async function TeemaseemnedRoute() {
     redirect(localizePath("/vestlus", locale));
   }
 
-  return <TeemaseemnedPage />;
+  // Pass the REAL signed-in owner name (no demo identity). Falls back to the email
+  // local part; the page hides the user chip entirely when nothing is available.
+  const email = String(session.user.email || "");
+  const ownerName = String(session.user.name || "").trim() || (email ? email.split("@")[0] : "");
+
+  return <TeemaseemnedPage owner={{ name: ownerName }} />;
 }
