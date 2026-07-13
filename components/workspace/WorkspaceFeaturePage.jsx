@@ -30,6 +30,7 @@ import {
   buildPreInquiryAssessmentExportText,
   buildPreInquiryAssessmentReview,
   buildPreInquiryAssessmentSituation,
+  buildPreInquiryDownloadContent,
   createEmptyPreInquiryAssessmentState,
   getPreInquiryQuestionFollowUpQuestions,
   normalizePreInquiryAssessmentState
@@ -809,12 +810,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     }),
     [draft, effectiveSituation, selectedRecipient, topic]
   );
+  // THE canonical downloadable text for the editor's current state — same helper
+  // the saved-records list and the server-side change check use, so "what was
+  // downloaded" and "did it change" can never drift apart (A3 Sol round: point 4).
   const assessmentExportText = useMemo(
-    () => buildPreInquiryAssessmentExportText(normalizedAssessmentState, {
+    () => buildPreInquiryDownloadContent({
+      assessmentState: normalizedAssessmentState,
       topic,
       situation: effectiveSituation,
-      draft,
-      recipientName: selectedRecipient?.title || ""
+      userEditedDraft: draft,
+      selectedRecipientName: selectedRecipient?.title || ""
     }),
     [draft, effectiveSituation, normalizedAssessmentState, selectedRecipient?.title, topic]
   );
@@ -1462,11 +1467,55 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setNotice(readText(t, "workspace_feature_pages.pre_inquiries.copy_success", "Draft copied."));
   }
 
-  function handleDownload() {
-    const content = assessmentExportText || draft;
-    if (downloadTextFile(content, buildPreInquiryDownloadName(topic))) {
-      setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Draft downloaded."));
+  // A3: mark a SAVED pre-inquiry DOWNLOADED (author-only, server-enforced). The
+  // saved snapshot's updatedAt is sent so the server marks ONLY that exact version
+  // (version-safety; a stale snapshot -> 409). Any failure (409 / network) is
+  // silent: the file already downloaded and we must never surface a misleading
+  // DOWNLOADED state (semantics #10).
+  async function markSavedInquiryDownloaded(inquiry) {
+    const inquiryId = String(inquiry?.id || "").trim();
+    if (!inquiryId) return;
+    try {
+      const response = await fetch(`/api/pre-inquiries/${encodeURIComponent(inquiryId)}/downloaded`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expectedUpdatedAt: inquiry?.updatedAt || null })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (response.ok && payload?.inquiry) {
+        setInquiries((current) => current.map((item) => (item.id === payload.inquiry.id ? payload.inquiry : item)));
+      }
+    } catch {
+      // network error — leave the inquiry status as-is.
     }
+  }
+
+  async function handleDownload() {
+    const content = assessmentExportText;
+    // A3 point 10: only proceed once the file has actually downloaded.
+    if (!downloadTextFile(content, buildPreInquiryDownloadName(topic))) return;
+    setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Draft downloaded."));
+    // An unsaved draft (no id) stays a plain file download with no global state.
+    if (!activeInquiryId) return;
+    const saved = inquiries.find((item) => item.id === activeInquiryId) || null;
+    if (!saved) return;
+    // Mark DOWNLOADED only when the editor matches the saved snapshot EXACTLY.
+    // With unsaved edits the downloaded file differs from the stored record, so we
+    // must not mark it (A3 Sol round: point 1). The saved snapshot is what the
+    // server would version-check against.
+    if (content !== buildPreInquiryDownloadContent(saved)) return;
+    await markSavedInquiryDownloaded(saved);
+  }
+
+  // A3: the saved-records list "Laadi alla" downloads the canonical text of the
+  // STORED snapshot (which is, by definition, the saved version) and marks it
+  // DOWNLOADED through the same version-safe flow (A3 Sol round: point 1).
+  async function handleDownloadSavedInquiry(inquiry) {
+    if (!inquiry) return;
+    const content = buildPreInquiryDownloadContent(inquiry);
+    if (!downloadTextFile(content, buildPreInquiryDownloadName(inquiry.topic))) return;
+    setNotice(readText(t, "workspace_feature_pages.pre_inquiries.download_success", "Draft downloaded."));
+    await markSavedInquiryDownloaded(inquiry);
   }
 
   async function handleArchiveAuthoredInquiry(inquiry) {
@@ -2667,7 +2716,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 <Button type="button" size="sm" variant="primary" onClick={() => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")}>
                   Kopeeri
                 </Button>
-                <Button type="button" size="sm" variant="primary" onClick={() => downloadTextFile(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "", buildPreInquiryDownloadName(inquiry.topic))}>
+                <Button type="button" size="sm" variant="primary" onClick={() => handleDownloadSavedInquiry(inquiry)}>
                   Laadi alla
                 </Button>
                 <Button

@@ -1,7 +1,7 @@
 # A2 DB-taseme unikaalsuse ettevalmistav audit — progress
 
 Uuendatud: 13.07.2026
-Staatus: **SOLI JÄRELKONTROLL LÄBITUD — HEAKS KIIDETUD** (migratsioon + canonical-loogika + P2002 + atomaarne adressaadi-lukk + luku-all-re-lugemine + i18n). Commit/push/deploy EI tehtud.
+Staatus: **HEAKS KIIDETUD — COMMIT'ITUD + PUSH'ITUD** (`6a8e9fca`, `fabe2b9e..6a8e9fca main -> main`). Tootmis-deploy ega `migrate deploy` EI tehtud (eraldi samm; enne seda korrata read-only auditit + küsida luba).
 Teostaja: **Claude Opus 4.8 / Claude Code**
 Nõutud effort: **EXTRA (`xhigh`)**
 Tooteotsused: **kasutaja**
@@ -249,3 +249,14 @@ Palun kinnita, kas soovid, et valmistan/rakendan §6 migratsiooni (ja kas kaasat
 - Töökataloogis on A2-väliseid ruumipiltide kustutusi ja `output/imagegen` / kaadriskripti faile. Neid Sol selle A2 järelkontrolli osana ei hinnanud.
 
 **Soli otsus:** A2 DB partial UNIQUE hardening on **HEAKS KIIDETUD**. A2 failid võib kasutaja loal commit'ida ja push'ida. Tootmise deploy ning `migrate deploy` jäävad eraldi otsuseks ja vajavad vahetult enne uut read-only duplikaadiauditit.
+
+### 2026-07-13 20:33 Europe/Tallinn — OPUS — COMMIT'ITUD + PUSH'ITUD
+
+- Kasutaja loal (Soli heakskiidu järel) commit'itud ja push'itud A2 muudatused + progressidokumendid.
+- Commit: **`6a8e9fca`** — „A2: Room origin partial UNIQUE hardening (Sol HEAKS KIIDETUD)".
+- Push: `fabe2b9e..6a8e9fca  main -> main` → `github.com:LauRRaud/SotsiaalAI-uus.git`; `main` sünkroonis `origin/main`-iga.
+- **Selektiivne commit (12 faili):** `prisma/migrations/20260713193000_room_origin_partial_unique/`, `lib/rooms/preInquiryRoom.js`, `lib/preInquiries.js`, `app/api/pre-inquiries/[id]/room/route.js`, `messages/{et,en,ru}.json`, `tests/rooms/preInquiryRoomDedup.test.js`, `tests/preInquiries/recipientRoomLock.test.js`, `tests/preInquiries/updateRecipientAtomicity.test.js`, `docs/platvormi arendus/{01,02}-…-progress.md`.
+- **Teadlikult välja jäetud (A2-välised, kasutaja korraldus):** `public/room/frame-*.webp` kustutused, `output/imagegen/**`, `scripts/build-room-locked-frames.mjs`. Need jäid stage'imata.
+- Enne commit'i kinnitatud roheline seis: `npm test` 788/788, sihttestid 18/18, `i18n:check` OK, lint 0, build ✓, `db:migrate:check` OK, `git diff --check` puhas.
+- **EI tehtud:** tootmis-deploy, `migrate deploy`.
+- **Tootmis-deploy = eraldi samm:** enne seda tuleb (1) korrata read-only duplikaadiauditit (§4/§6.3.1) ja (2) küsida kasutajalt selge luba; alles siis `migrate deploy` tootmises.
