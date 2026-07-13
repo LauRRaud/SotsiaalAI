@@ -9,7 +9,7 @@
 import { forwardRef } from "react";
 
 const GlassCard = forwardRef(function GlassCard(
-  { href, label, icon = null, longLabel = false, children, ...props },
+  { href, label, icon = null, longLabel = false, badge = null, children, ...props },
   ref
 ) {
   const Tag = href ? "a" : "button";
@@ -24,6 +24,7 @@ const GlassCard = forwardRef(function GlassCard(
       <span className="gc-label" data-long={longLabel ? "1" : "0"}>
         {label ?? children}
       </span>
+      {badge ? <span className="gc-card-badge">{badge}</span> : null}
     </Tag>
   );
 });

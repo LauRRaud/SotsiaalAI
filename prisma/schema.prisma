@@ -2181,6 +2181,7 @@ model Room {
   @@index([ownerId])
   @@index([originType])
   @@index([originId])
+  @@index([originType, originId])
 }
 
 model RoomMember {

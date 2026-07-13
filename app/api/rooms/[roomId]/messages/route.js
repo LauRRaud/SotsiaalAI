@@ -7,6 +7,7 @@ import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { hasRoomBillingAccess } from "@/lib/rooms/access";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
+import { resolveConfirmedMeetingSummaryContent } from "@/lib/rooms/meetingSummaryShare";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
 
@@ -294,7 +295,21 @@ export async function POST(req, { params }) {
   } catch {
     return errorJson("api.common.invalid_json", 400);
   }
-  const rawContent = String(payload?.content || "").trim();
+  // U10: sharing a confirmed meeting summary posts the specialist-owned FINAL
+  // MEETING_SUMMARY artifact's content into the room; otherwise a plain message.
+  let rawContent;
+  const artifactId = String(payload?.summaryArtifactId || "").trim();
+  if (artifactId) {
+    try {
+      rawContent = await resolveConfirmedMeetingSummaryContent(auth.userId, artifactId, {
+        role: auth.userRole
+      });
+    } catch (shareError) {
+      return errorJson(shareError?.message || "api.rooms.summary_share_failed", Number(shareError?.status) || 500);
+    }
+  } else {
+    rawContent = String(payload?.content || "").trim();
+  }
   const privacy = evaluateTextPrivacy(rawContent, {
     workflow: "room_private",
     privacyDecision: payload?.privacyDecision

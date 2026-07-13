@@ -385,8 +385,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       el.style.filter = "";
     }
 
-    // Tekstipeatused: üks kompaktne fookusplokk korraga. Mitmelauselise
-    // peatuse read liiguvad ja hajuvad ühe tervikuna.
+    // Tekstipeatused: üks kompaktne fookusplokk korraga. CSS määrab igale
+    // stopile kasutaja kompositsioonietaloni järgi eraldi keskpunkti.
     for (let s = 0; s < TEXT_STOPS.length; s++) {
       const el = textRefs.current[s];
       if (!el) continue;
@@ -398,7 +398,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
       const drift = clamp01((p - stop.from) / (stop.to - stop.from));
       el.style.opacity = String(alpha);
-      el.style.transform = `translate3d(-50%, ${(1 - alpha) * 10 - drift * 5}px, 0)`;
+      el.style.transform = `translate3d(-50%, calc(-50% + ${(1 - alpha) * 10 - drift * 5}px), 0)`;
       el.style.filter = "none";
     }
 
@@ -974,7 +974,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     () => [
       { key: "ruum", label: t("room.kovision_room_card", "Kovisiooni ruum"), href: "/kovisioon", icon: <KovisionRoomIcon /> },
       { key: "teemaseemned", label: t("room.kovision_seeds_card", "Teemaseemned"), href: "/teemaseemned", icon: <TopicSeedIcon /> },
-      { key: "praktikad", label: t("room.kovision_practices_card", "Parimad praktikad"), href: "/kovisioon", icon: <BestPracticeIcon /> },
+      {
+        key: "praktikad",
+        label: t("room.kovision_practices_card", "Parimad praktikad"),
+        icon: <BestPracticeIcon />,
+        comingSoon: true,
+        badge: t("room.kovision_practices_building", "ehitamisel"),
+        comingSoonHint: t("room.kovision_practices_building_hint", "Parimate praktikate leht on ehitamisel")
+      },
       { key: "tagasi", label: t("room.back_card"), action: "kovisioon-tagasi", icon: <BackArrowIcon /> },
     ],
     [t]

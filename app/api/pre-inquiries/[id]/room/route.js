@@ -4,7 +4,7 @@ import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
-import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
+import { ensureRoomForPreInquiry } from "@/lib/rooms/preInquiryRoom";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,14 +31,6 @@ async function readId(context) {
   return String(params?.id || "").trim();
 }
 
-function buildRoomTitle(inquiry) {
-  const topic = String(inquiry?.topic || "").trim();
-  if (topic) return `Eelpoordumine: ${topic.slice(0, 72)}`;
-  const authorEmail = String(inquiry?.author?.email || "").trim();
-  if (authorEmail) return `Eelpoordumine: ${authorEmail}`;
-  return "Eelpoordumine";
-}
-
 export async function POST(request, context) {
   const locale = localeFromRequest(request);
   const auth = await requireUser();
@@ -62,72 +54,25 @@ export async function POST(request, context) {
       return errorJson("pre_inquiries.errors.room_requires_platform_recipient", 409, locale);
     }
 
-    const marker = `preInquiry:${inquiry.id}`;
-    const existingRoom = await prisma.room.findFirst({
-      where: {
-        description: {
-          contains: marker
-        },
-        members: {
-          some: {
-            userId: auth.userId,
-            leftAt: null
-          }
-        }
-      },
-      select: {
-        id: true,
-        title: true
-      }
+    const { room, created } = await ensureRoomForPreInquiry({
+      userId: auth.userId,
+      inquiry,
+      participantIds: uniqueParticipantIds
     });
 
-    if (existingRoom) {
-      return json({
-        ok: true,
-        room: existingRoom
-      });
+    if (created) {
+      await prisma.preInquiry.update({
+        where: { id: inquiry.id },
+        data: {
+          status: inquiry.status === "DRAFT" ? "READY" : inquiry.status
+        }
+      }).catch(() => null);
     }
-
-    const room = await prisma.room.create({
-      data: {
-        ownerId: auth.userId,
-        title: buildRoomTitle(inquiry),
-        description: `${marker}\nSotsiaalAI eelpoordumise vestlusruum.`,
-        ...buildRoomOrigin({
-          originType: inquiry.recipientType === "SERVICE_PROVIDER"
-            ? ROOM_ORIGIN_TYPES.SERVICE_PROVIDER_INQUIRY
-            : ROOM_ORIGIN_TYPES.PRE_INQUIRY,
-          originId: inquiry.id,
-          originMeta: {
-            recipientType: inquiry.recipientType || "",
-            selectedRecipientName: inquiry.selectedRecipientName || ""
-          }
-        }),
-        members: {
-          create: uniqueParticipantIds.map((userId) => ({
-            userId,
-            role: userId === auth.userId ? "OWNER" : "MEMBER",
-            billingSource: "SELF"
-          }))
-        }
-      },
-      select: {
-        id: true,
-        title: true
-      }
-    });
-
-    await prisma.preInquiry.update({
-      where: { id: inquiry.id },
-      data: {
-        status: inquiry.status === "DRAFT" ? "READY" : inquiry.status
-      }
-    }).catch(() => null);
 
     return json({
       ok: true,
       room
-    }, 201);
+    }, created ? 201 : 200);
   } catch (error) {
     console.error("[pre-inquiries] room open failed", safeError(error));
     return errorJson("pre_inquiries.errors.room_failed", 500, locale);

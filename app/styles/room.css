@@ -28,20 +28,25 @@
   will-change: transform;
 }
 
-/* Kõik uued kaadrid on sama 16:9 kompositsiooniga ja täidavad lava
-   cover-režiimis. Suured digisuumid on eemaldatud. */
+/* Kõik kaadrid on sama laiformaadiga. LQIP täidab tausta pehme servaväljana,
+   täiskaader ise kasutab contain-režiimi: nii ei lõigata laias ega kõrges
+   brauseriaknas kompositsiooni üla-/alaserva või külgi ära. */
 .room-frame {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  background-color: #0e0907;
   background-size: cover;
   background-position: center;
   will-change: transform, opacity;
   transform-origin: 50% 47%;
 }
 .room-frame img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -544,13 +549,32 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .room-text--center {
   left: 50%;
 }
-/* Pöörde ja istumise ajal kolib sama fookusväli alumisse kolmandikku,
-   et maal jääks puhtalt nähtavaks. Horisontaalselt tekst ei hüppa. */
-.room-text[data-stop="stop-4"],
-.room-text[data-stop="stop-5"],
+
+/* Kasutaja paranduspiltidelt mõõdetud stopipõhised keskpunktid. Transformi
+   vertikaalne -50% elab RoomStage'i rAF-tsüklis, et fade-drift säiliks. */
+.room-text[data-stop="stop-1"] {
+  left: 48%;
+  top: 34%;
+}
+.room-text[data-stop="stop-2"] {
+  left: 37%;
+  top: 33%;
+}
+.room-text[data-stop="stop-3"] {
+  left: 57%;
+  top: 38%;
+}
+.room-text[data-stop="stop-4"] {
+  left: 54%;
+  top: 37%;
+}
+.room-text[data-stop="stop-5"] {
+  left: 36%;
+  top: 38%;
+}
 .room-text[data-stop="stop-6"] {
-  top: auto;
-  bottom: clamp(5.8rem, 12vh, 8.6rem);
+  left: 50%;
+  top: 50%;
 }
 /* Tekstikandja: puhas tekstikiht mulli sees. Kogu klaas-välimus
    (taust, blur, ääris, vari) elab .room-text peal — vt kommentaari
@@ -1024,6 +1048,21 @@ html[data-reduce-motion="1"] .room-walk-audio {
 @media (max-width: 768px) {
   .room-text {
     max-width: min(26rem, 78vw);
+  }
+  .room-text[data-stop] {
+    left: 50%;
+  }
+  .room-text[data-stop="stop-1"],
+  .room-text[data-stop="stop-2"],
+  .room-text[data-stop="stop-3"] {
+    top: 31%;
+  }
+  .room-text[data-stop="stop-4"],
+  .room-text[data-stop="stop-5"] {
+    top: 42%;
+  }
+  .room-text[data-stop="stop-6"] {
+    top: 50%;
   }
   .room-text--intro {
     left: 1.1rem;

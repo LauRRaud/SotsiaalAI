@@ -432,8 +432,12 @@ export default function GlassCarousel({
                 label={item.label}
                 icon={item.icon || null}
                 longLabel={item.label.length > 13}
+                badge={item.badge || null}
                 tabIndex={isGridVisible || isCenter ? 0 : -1}
                 aria-current={!isGrid && isCenter ? "true" : undefined}
+                {...(item.comingSoon
+                  ? { "data-coming-soon": "1", "aria-disabled": "true", title: item.comingSoonHint || undefined }
+                  : {})}
                 onClick={(e) => handleActivate(e, item, i)}
               />
             </li>

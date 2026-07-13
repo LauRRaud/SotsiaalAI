@@ -7,6 +7,7 @@ import BackButton from "@/components/ui/BackButton"
 import Button from "@/components/ui/Button"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
+import MeetingSummaryRoomShare from "@/components/documents/MeetingSummaryRoomShare"
 import { localizePath } from "@/lib/localizePath"
 
 function formatDate(value, locale) {
@@ -286,6 +287,9 @@ export default function ArtifactDetailPage({ artifactId }) {
                         {t("documents.actions.delete")}
                       </Button>
                     </div>
+                    {artifact.type === "MEETING_SUMMARY" ? (
+                      <MeetingSummaryRoomShare artifactId={artifactId} />
+                    ) : null}
                   </>
                 )}
 

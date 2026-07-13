@@ -1,25 +1,29 @@
 #!/usr/bin/env node
 /**
- * Ruumikaadrite kõrgekvaliteedilised WebP-versioonid:
- * output/imagegen/room-walk-final-selected-v3/*.png → public/room/frame-N.webp
+ * Ruumikaadrite veebiversioonid:
+ * output/imagegen/room-walk-rebuild-2026-07-13-selected/*.png
+ *   → public/room/frame-N.webp
  *
- * Iga kaadri kohta genereeritakse ÜKS suur, maksimaalse kvaliteediga
+ * Iga kaadri kohta genereeritakse ÜKS maksimaalse kvaliteediga
  * WebP-fail (mitte responsive srcset mitmes laiuses + AVIF). Ruumi-
  * scroll on täisekraani visuaalne kogemus, mitte tavaline sisupilt —
  * seetõttu eelistatakse siin kvaliteeti agressiivsele failisuuruse
  * optimeerimisele.
  *
  * Töötlus kaadri kohta:
- *   1) Lanczos3 2x suurendus originaalilt (Sharp, mitte AI upscale)
- *   2) sellelt puhvrilt lõplik resize laiuseks 2560px (kuvasuhe säilib)
- *   3) WebP kodeering (quality 90, effort 6, lossy)
+ *   1) kontroll, et kõik allikad on sama 1672 × 941 kompositsiooniga
+ *   2) WebP kodeering originaalmõõdus (quality 92, effort 6, lossy)
+ *
+ * Teadlikult ei tehta 2560px Lanczos-suurendust: see kasvataks faili,
+ * kuid ei looks päris QHD-detaili. Brauser kuvab kogu kompositsiooni
+ * aspect-safe contain-režiimis (vt app/styles/room.css).
  *
  * Lisaks kirjutab skript lib/room-frames.js manifesti (ROOM_FRAMES +
  * ROOM_FRAME_WIDTH/HEIGHT), mida RoomStage.jsx kaadrite renderdamiseks
  * loeb — iga kaadri kohta üks src + LQIP (hägune base64 eelvaade, mis
  * on nähtav enne täispildi laadimist).
  *
- * Aktiivne v3 rida sisaldab tellija valitud 12 kaadrit. Loogilised
+ * Aktiivne 13.07 rida sisaldab tellija valitud 12 loogilist kaadrit. Loogilised
  * kaadrid 11–12 kasutavad sama varem kinnitatud lukustatud lõppkaadrit;
  * istumise/laskumise liikumine tehakse RoomStage'is väikese kontrollitud
  * transformiga. Nii ei saa diivan, laud, maal ega riiul ristsulanduses
@@ -39,7 +43,7 @@ const SRC_DIR = path.join(
   ROOT,
   "output",
   "imagegen",
-  "room-walk-final-selected-v3"
+  "room-walk-rebuild-2026-07-13-selected"
 );
 const OUT_DIR = path.join(ROOT, "public", "room");
 const MANIFEST_PATH = path.join(ROOT, "lib", "room-frames.js");
@@ -56,9 +60,9 @@ const SOURCE_FRAMES = [
 const LOGICAL_FRAME_COUNT = 12;
 const STABLE_TAIL_FROM = 11;
 
-const UPSCALE_FACTOR = 2;
-const FINAL_WIDTH = 2560;
-const WEBP_OPTS = { quality: 90, effort: 6, lossless: false };
+const EXPECTED_WIDTH = 1672;
+const EXPECTED_HEIGHT = 941;
+const WEBP_OPTS = { quality: 92, effort: 6, lossless: false };
 
 function formatSize(bytes) {
   if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
@@ -85,7 +89,7 @@ async function resolveFrames() {
   return { frames, totalPngFound: pngFiles.length };
 }
 
-/** Töötleb ühe kaadri: 2x Lanczos3 suurendus → 2560px laiune lõplik WebP. */
+/** Töötleb ühe kaadri originaalmõõdus WebP-ks. */
 async function processFrame({ n, file }) {
   const srcPath = path.join(SRC_DIR, file);
   const outName = `frame-${n}.webp`;
@@ -96,20 +100,14 @@ async function processFrame({ n, file }) {
     throw new Error(`Ei suutnud lugeda mõõtmeid failist: ${file}`);
   }
 
-  // Samm 1: Lanczos3 2x suurendus. Väljund hoitakse raw-puhvrina (ilma
-  // vahepealse formaadi taaskodeerimiseta), et suurenduse ja lõpliku
-  // resize'i vahele ei tekiks lisakadu.
-  const { data, info } = await sharp(srcPath)
-    .resize({ width: srcMeta.width * UPSCALE_FACTOR, kernel: "lanczos3" })
-    .raw()
-    .toBuffer({ resolveWithObject: true });
+  if (srcMeta.width !== EXPECTED_WIDTH || srcMeta.height !== EXPECTED_HEIGHT) {
+    throw new Error(
+      `Kaadri ${file} mõõtmed on ${srcMeta.width}x${srcMeta.height}; ` +
+        `oodatud on ${EXPECTED_WIDTH}x${EXPECTED_HEIGHT}.`
+    );
+  }
 
-  // Samm 2: lõplik resize laiuseks FINAL_WIDTH (kuvasuhe säilib automaatselt,
-  // sest kõrgust ei anta ette) + WebP kodeering.
-  const outputInfo = await sharp(data, {
-    raw: { width: info.width, height: info.height, channels: info.channels },
-  })
-    .resize({ width: FINAL_WIDTH, kernel: "lanczos3" })
+  const outputInfo = await sharp(srcPath)
     .webp(WEBP_OPTS)
     .toFile(outPath);
 

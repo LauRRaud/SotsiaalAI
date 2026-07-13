@@ -1565,6 +1565,18 @@
     "sources_section_title": "Sources",
     "sources_label": "Sources: {count}",
     "empty_sources": "No source documents linked.",
+    "meeting_summary_share": {
+      "title": "Share the summary to a shared room",
+      "hint": "The person sees the confirmed summary in the room and can reply.",
+      "loading": "Loading rooms…",
+      "room_label": "Room",
+      "select_room": "Select a shared room",
+      "share": "Share to room",
+      "sharing": "Sharing…",
+      "success": "The summary was shared to the room.",
+      "error": "Sharing the summary failed.",
+      "no_rooms": "You don't have any rooms yet."
+    },
     "filters": {
       "all": "All"
     },
@@ -4173,6 +4185,8 @@
     "kovision_room_card": "Co-vision room",
     "kovision_seeds_card": "Topic seeds",
     "kovision_practices_card": "Best practices",
+    "kovision_practices_building": "under construction",
+    "kovision_practices_building_hint": "The best practices page is under construction",
     "admin_card": "Admin",
     "info_card": "Info",
     "framework_card": "Framework agreement",

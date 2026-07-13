@@ -1565,6 +1565,18 @@
     "sources_section_title": "Исходные документы",
     "sources_label": "Источников: {count}",
     "empty_sources": "Связанных исходных документов нет.",
+    "meeting_summary_share": {
+      "title": "Поделиться сводкой в общей комнате",
+      "hint": "Обратившийся видит подтверждённую сводку в комнате и может ответить.",
+      "loading": "Загрузка комнат…",
+      "room_label": "Комната",
+      "select_room": "Выберите общую комнату",
+      "share": "Поделиться в комнате",
+      "sharing": "Отправка…",
+      "success": "Сводка отправлена в комнату.",
+      "error": "Не удалось поделиться сводкой.",
+      "no_rooms": "У вас пока нет комнат."
+    },
     "filters": {
       "all": "Все"
     },
@@ -4173,6 +4185,8 @@
     "kovision_room_card": "Комната ковизии",
     "kovision_seeds_card": "Тематические семена",
     "kovision_practices_card": "Лучшие практики",
+    "kovision_practices_building": "в разработке",
+    "kovision_practices_building_hint": "Страница лучших практик в разработке",
     "admin_card": "Управление",
     "info_card": "Информация",
     "framework_card": "Рамочное соглашение",

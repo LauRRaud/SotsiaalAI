@@ -318,20 +318,42 @@ html[data-reduce-motion="1"] .gc-item {
    ilmub varem (power igniting/on); sisu siin, väikese kese-esimese
    astaki (var(--abs)) ja lühikese üldviitega. Toon sulab viiteta kaasa. */
 .gc-icon,
-.gc-label {
+.gc-label,
+.gc-card-badge {
   opacity: 0;
   transition:
     opacity 620ms var(--ease-soft) calc(var(--abs) * 160ms + 80ms),
     color 640ms var(--ease-soft) 0ms;
 }
 .room[data-power="on"][data-cards-ready="1"] .gc-icon,
-.room[data-power="on"][data-cards-ready="1"] .gc-label {
+.room[data-power="on"][data-cards-ready="1"] .gc-label,
+.room[data-power="on"][data-cards-ready="1"] .gc-card-badge {
   opacity: 1;
 }
 html[data-reduce-motion="1"] .gc-icon,
-html[data-reduce-motion="1"] .gc-label {
+html[data-reduce-motion="1"] .gc-label,
+html[data-reduce-motion="1"] .gc-card-badge {
   transition: none;
   opacity: 1;
+}
+
+/* A11: "Parimad praktikad" leht on veel ehitamisel — aus märgis
+   karussellikaardil (sama selgus mis Teemaseemnete alamnavis). Kaart jääb
+   keritavaks (pöördub keskele), kuid ei navigeeri kuhugi. */
+.gc-card[data-coming-soon="1"] {
+  cursor: default;
+}
+.gc-card-badge {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: clamp(0.58rem, 0.5rem + 0.28vw, 0.7rem);
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--room-text-soft);
+  border: 1px solid var(--card-glass-rim-soft, rgba(255, 244, 228, 0.22));
+  border-radius: 999px;
+  padding: 0.18em 0.72em;
 }
 
 .gc-card:focus-visible {

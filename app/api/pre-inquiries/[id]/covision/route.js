@@ -1,6 +1,7 @@
 import { json } from "@/lib/documents/server";
 import {
   buildCaseFromPreInquiryDraft,
+  buildPreInquiryCovisionCaseInput,
   createCovisionCase
 } from "@/lib/covision";
 import {
@@ -29,12 +30,10 @@ export async function POST(request, context) {
     }
     const body = await request.json().catch(() => ({}));
     const draft = buildCaseFromPreInquiryDraft(inquiry);
-    const covisionCase = await createCovisionCase(auth, {
-      ...draft,
-      title: body?.title || draft.title,
-      centralQuestion: body?.centralQuestion || draft.centralQuestion,
-      participants: []
-    });
+    const covisionCase = await createCovisionCase(
+      auth,
+      buildPreInquiryCovisionCaseInput(draft, body)
+    );
     return json({
       ok: true,
       case: covisionCase,

@@ -1565,6 +1565,18 @@
     "sources_section_title": "Allikdokumendid",
     "sources_label": "Allikaid: {count}",
     "empty_sources": "Allikdokumente pole seotud.",
+    "meeting_summary_share": {
+      "title": "Jaga kokkuvõte ühisesse ruumi",
+      "hint": "Pöörduja näeb kinnitatud kokkuvõtet ruumis ja saab vastata.",
+      "loading": "Laen ruume…",
+      "room_label": "Ruum",
+      "select_room": "Vali ühine ruum",
+      "share": "Jaga ruumi",
+      "sharing": "Jagan…",
+      "success": "Kokkuvõte jagati ruumi.",
+      "error": "Kokkuvõtte jagamine ebaõnnestus.",
+      "no_rooms": "Sul pole veel ühtegi ruumi."
+    },
     "filters": {
       "all": "Kõik"
     },
@@ -4173,6 +4185,8 @@
     "kovision_room_card": "Kovisiooni ruum",
     "kovision_seeds_card": "Teemaseemned",
     "kovision_practices_card": "Parimad praktikad",
+    "kovision_practices_building": "ehitamisel",
+    "kovision_practices_building_hint": "Parimate praktikate leht on ehitamisel",
     "admin_card": "Haldus",
     "info_card": "Teave",
     "framework_card": "Raamleping",
