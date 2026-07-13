@@ -669,6 +669,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const fileInputRef = useRef(null);
   const composerDraftApiRef = useRef(null);
   const [activeInquiryId, setActiveInquiryId] = useState("");
+  const [journeySourceId, setJourneySourceId] = useState("");
   const [topic, setTopic] = useState("");
   const [situation, setSituation] = useState("");
   const [recipientType, setRecipientType] = useState("");
@@ -709,6 +710,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [journeyShareSelections, setJourneyShareSelections] = useState(["summary", "domains", "personWish", "missingInfo"]);
   const journeyPrefillLoadedRef = useRef(false);
   const recipientPrefillLoadedRef = useRef(false);
+  const openInquiryLoadedRef = useRef(false);
+  const handleOpenInquiryRef = useRef(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -1083,6 +1086,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         nextAssessmentState.sharedJourneyInfo = normalizePreInquiryJourneySharedInfo(prefill.sharedJourneyInfo);
 
         setActiveInquiryId("");
+        setJourneySourceId(String(prefill.sourceJourneyId || fromJourney || ""));
         setTopic(String(prefill.topic || ""));
         setSituation(String(prefill.situation || ""));
         setRecipientType(["KOV_CONTACT", "SERVICE_PROVIDER"].includes(prefill.recipientType) ? prefill.recipientType : "");
@@ -1160,6 +1164,53 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setAssessmentPathChosen(false);
     setNotice("Valitud adressaat on eelpöördumise töövoogu kaasa võetud. Saad seda enne saatmist muuta.");
   }, [entries]);
+
+  // Deep-link from a journey's "Seotud eelpöördumised" list: open the requested
+  // authored inquiry once the list has loaded. handleOpenInquiry is reached via a
+  // ref so the effect only depends on `inquiries`.
+  handleOpenInquiryRef.current = handleOpenInquiry;
+  useEffect(() => {
+    if (openInquiryLoadedRef.current || typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search || "");
+    const requestedId = String(params.get("openInquiry") || "").trim();
+    if (!requestedId) return;
+    const inquiry = inquiries.find((item) => item.id === requestedId);
+    if (inquiry) {
+      openInquiryLoadedRef.current = true;
+      handleOpenInquiryRef.current?.(inquiry);
+      return;
+    }
+
+    // The visible list is capped, so a valid journey back-link may point to an
+    // older authored inquiry that is not in the first page. Load that exact
+    // inquiry instead of leaving the "Ava" action as a silent no-op.
+    openInquiryLoadedRef.current = true;
+    let cancelled = false;
+    async function loadRequestedInquiry() {
+      const response = await fetch(`/api/pre-inquiries/${encodeURIComponent(requestedId)}`, {
+        cache: "no-store"
+      }).catch(() => null);
+      const payload = await response?.json().catch(() => ({}));
+      const requestedInquiry = payload?.inquiry || null;
+      if (
+        cancelled ||
+        !response?.ok ||
+        !requestedInquiry ||
+        (currentUserId && requestedInquiry.authorId !== currentUserId)
+      ) {
+        return;
+      }
+      setInquiries((current) => [
+        requestedInquiry,
+        ...current.filter((item) => item.id !== requestedInquiry.id)
+      ]);
+      handleOpenInquiryRef.current?.(requestedInquiry);
+    }
+    loadRequestedInquiry();
+    return () => {
+      cancelled = true;
+    };
+  }, [currentUserId, inquiries]);
 
   function updateAssessmentState(updater) {
     setAssessmentState((current) => {
@@ -1252,6 +1303,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
   function handleNewInquiry() {
     setActiveInquiryId("");
+    setJourneySourceId("");
     setTopic("");
     setSituation("");
     setRecipientType("");
@@ -1280,6 +1332,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
   function handleOpenInquiry(inquiry) {
     setActiveInquiryId(inquiry.id || "");
+    setJourneySourceId("");
     setTopic(inquiry.topic || "");
     setSituation(inquiry.situation || "");
     setRecipientType(inquiry.recipientType || "");
@@ -1340,7 +1393,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           selectedRecipientEmail: selectedRecipient?.email || "",
           userEditedDraft: draft,
           status: nextStatus,
-          privacyDecision: options?.privacyDecision
+          privacyDecision: options?.privacyDecision,
+          // Persist the Teekond -> eelpöördumine link only when creating from a
+          // journey prefill. On edits (PATCH) the existing link is left intact.
+          ...(!activeInquiryId && journeySourceId ? { sourceJourneyId: journeySourceId } : {})
         })
       });
       const payload = await response.json().catch(() => ({}));
@@ -1360,6 +1416,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       if (inquiry) {
         setInquiries((current) => [inquiry, ...current.filter((item) => item.id !== inquiry.id)]);
         setActiveInquiryId(inquiry.id || "");
+        setJourneySourceId("");
         setTopic(inquiry.topic || topic);
         setSituation(inquiry.situation || situation);
         setAssessmentState(normalizePreInquiryAssessmentState(inquiry.assessmentState || normalizedAssessmentState));
@@ -4544,11 +4601,18 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
     String(session?.user?.role || "").toUpperCase() === "ADMIN"
   );
   const [adminWorkspaceRole, setAdminWorkspaceRole] = useState("SOCIAL_WORKER");
+  const [clientAuthoringRequested, setClientAuthoringRequested] = useState(false);
   const adminQueryRoleAppliedRef = useRef(false);
   const featureKey =
     feature === "service_map" || feature === "service_profile"
       ? feature
       : "pre_inquiries";
+
+  useEffect(() => {
+    setClientAuthoringRequested(
+      featureKey === "pre_inquiries" && readRequestedWorkspaceRole() === "CLIENT"
+    );
+  }, [featureKey]);
 
   useEffect(() => {
     if (!isAdmin || !isRoleResolved) return;
@@ -4587,7 +4651,9 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
   const title = readText(t, `workspace_feature_pages.${featureKey}.title`, "Workspace feature");
   const activeWorkspaceRole = isAdmin
     ? adminWorkspaceRole
-    : normalizeWorkspaceRole(session?.user?.role);
+    : clientAuthoringRequested
+      ? "CLIENT"
+      : normalizeWorkspaceRole(session?.user?.role);
   const showAdminRoleSelector = !embedded && isAdmin && (
     featureKey === "pre_inquiries"
   );

@@ -3821,7 +3821,17 @@
       "help_requests": "Related help requests",
       "help_offers": "Related help offers",
       "rooms": "Related rooms",
-      "empty": "Pre-inquiries, documents, or contacts linked to this journey will appear here."
+      "empty": "Pre-inquiries, documents, or contacts linked to this journey will appear here.",
+      "open": "Open",
+      "pre_inquiries_empty": "When you start a pre-inquiry from this journey, it will appear here with its topic and status.",
+      "pre_inquiry_untitled": "Pre-inquiry",
+      "pre_inquiry_status": {
+        "DRAFT": "draft",
+        "READY": "ready to send",
+        "SENT": "sent",
+        "DOWNLOADED": "downloaded",
+        "ARCHIVED": "archived"
+      }
     },
     "share": {
       "title": "Choose which information to use in the pre-inquiry.",

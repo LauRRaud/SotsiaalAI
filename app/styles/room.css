@@ -28,12 +28,8 @@
   will-change: transform;
 }
 
-/* Kaadrid 2-7: cover — pilt täidab kogu vaate ääreni. Nende
-   kompositsioonis ulatub sisu (seinapaneel, mööbel, kardin) servadeni,
-   nii et brauseri (16:9-st laiema) vaate korral maha lõigatav õhuke
-   üla-/alaserv on nähtamatu. Cover tähendab ka, et img katab kogu kasti
-   → madala resolutsiooniga LQIP-eelvaade EI paista kunagi servadest
-   läbi (varem tekitas see "lõigatud + hägune serv" mulje). */
+/* Kõik uued kaadrid on sama 16:9 kompositsiooniga ja täidavad lava
+   cover-režiimis. Suured digisuumid on eemaldatud. */
 .room-frame {
   position: absolute;
   inset: 0;
@@ -42,9 +38,6 @@
   will-change: transform, opacity;
   transform-origin: 50% 47%;
 }
-.room-frame--1 {
-  transform-origin: 52% 50%;
-}
 .room-frame img {
   width: 100%;
   height: 100%;
@@ -52,18 +45,6 @@
   user-select: none;
   -webkit-user-drag: none;
 }
-/* Kaader 1 (ukseava) on ERAND: contain, sest tema kompositsioonis on
-   servades laiad peaaegu-mustad piidad, mille cover lõikaks ("juba
-   ukseavas"). Tekkiv külgtühik on TUME (piidad ise + LQIP servad on
-   samuti mustad) → sulab dusk-floor taustaga kokku, ilma pruuni hägu-
-   ribata nagu tuleks ruumikaadritel. */
-.room-frame--1 {
-  background-size: contain;
-}
-.room-frame--1 img {
-  object-fit: contain;
-}
-
 /* Mikroelu: väga aeglane hingav suum lõppseisus (paar promilli) */
 @keyframes room-breathe {
   from {
@@ -73,11 +54,11 @@
     transform: scale(1.006);
   }
 }
-.room[data-mode="room"] .room-frame--7 img {
+.room[data-mode="room"] .room-frame--12 img {
   animation: room-breathe 22s var(--ease-drift) infinite alternate;
 }
-html[data-reduce-motion="1"] .room-frame--7 img,
-html[data-contrast="hc"] .room-frame--7 img {
+html[data-reduce-motion="1"] .room-frame--12 img,
+html[data-contrast="hc"] .room-frame--12 img {
   animation: none;
 }
 
@@ -126,7 +107,7 @@ html[data-reduce-motion="1"] .room-stage {
   transition: none;
 }
 
-/* Paneelirežiimis on kaader 7 ainus nähtav; sujuv üleandmine */
+/* Paneelirežiimis on lõppkaader ainus nähtav; sujuv üleandmine */
 .room[data-mode="panel"] .room-frame {
   transition: opacity var(--dur-slow) var(--ease-soft);
 }
@@ -505,7 +486,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   backdrop-filter: none;
 }
 /* Vajutusel kaob KOGU ooterežiim KOHE (tellija 06.07 öö: nupp ei tohi
-   ekraanile ripakile jääda); lühike sähvatus jääb kaadri 6→7 süttimisele */
+   ekraanile ripakile jääda); lõppfoto ise püsib käivituse ajal paigal */
 .room[data-power="igniting"] .room-standby {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -523,8 +504,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 }
 
 
-/* ---------- Tekstipeatused (teekonna-tekstid: EELISTATULT plaadita;
-   tekst istub ruumis — kohalik toon + vari annavad loetavuse) ---------- */
+/* ---------- Tekstipeatused: üks kompaktne fookusväli ---------- */
 .room-texts {
   position: fixed;
   inset: 0;
@@ -533,104 +513,53 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 }
 .room-text {
   position: absolute;
+  left: 50%;
+  top: clamp(5.5rem, 13vh, 8.5rem);
+  width: min(42rem, calc(100vw - 3rem));
   margin: 0;
   opacity: 0;
-  /* Laiem mull → tekst murdub 2–3 laiaks reaks, mitte kõrgeks kitsaks
-     tulbaks (tellija 07.07: "liiga pikalt vertikaalne") */
-  max-width: min(30rem, 42vw);
+  max-width: none;
   font-family: var(--font-display);
   font-weight: 390;
-  font-size: clamp(1.1rem, 0.9rem + 0.9vw, 1.5rem);
-  line-height: 1.46;
-  letter-spacing: 0.055em;
+  font-size: clamp(1.05rem, 0.91rem + 0.62vw, 1.42rem);
+  line-height: 1.42;
+  letter-spacing: 0.045em;
+  text-align: center;
   color: var(--room-text);
-  padding: 0.72em 1.05em;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 20px;
-  /* OLULINE: taust JA blur peavad elama SAMAL elemendil, mis kannab
-     transformi + opacity't. Kui blur on lapsel (.room-text-body), teeb
-     transformitud/opacity'ga vanem "backdrop root'i" ja backdrop-filter
-     EI rakendu — ruum paistab teravalt läbi (tellija 07.07 viga). */
-  background: rgba(34, 31, 28, 0.4);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  backdrop-filter: blur(20px) saturate(1.2);
+  padding: 0.9em 1.25em 0.96em;
+  border: 1px solid rgba(255, 244, 224, 0.15);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(26, 23, 20, 0.66), rgba(20, 18, 16, 0.48));
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  backdrop-filter: blur(18px) saturate(1.12);
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.55),
-    0 2px 16px rgba(0, 0, 0, 0.4);
+    0 2px 14px rgba(0, 0, 0, 0.36);
   box-shadow:
-    inset 0 1px 1px rgba(255, 255, 255, 0.1),
-    0 10px 34px rgba(8, 5, 3, 0.34);
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 14px 44px rgba(8, 5, 3, 0.28);
   will-change: transform, opacity, filter;
 }
-.room-text--left {
-  left: clamp(3rem, 14vw, 15rem);
-  top: 44%;
-  border-bottom-left-radius: 8px; /* vestlusmulli saba vihje */
-}
-.room-text--right {
-  right: clamp(3rem, 14vw, 15rem);
-  top: 44%;
-  text-align: left; /* mulli sees loomulik joondus */
-  border-bottom-right-radius: 8px;
-}
-/* Kaadripõhine häälestus (tellija 07.07): tekstid silmade kõrgusele
-   (mitte lae alla), laiemad mullid, tervitus RUUMI KESKELE. Kohad
-   kaadripiltide järgi, vaiksematesse aladesse. */
-.room-text[data-stop="walk_1"] {
-  left: clamp(2.5rem, 8vw, 10rem);
-  top: 40%;
-}
-/* Tervitus: ruumi keskel, silmade kõrgusel (tellija 07.07) */
-.room-text[data-stop="walk_2a"] {
-  left: 50%;
-  top: 46%;
-  text-align: center;
-}
-.room-text[data-stop="walk_2b"] {
-  left: 50%;
-  right: auto;
-  top: 57%;
-  max-width: min(35rem, 62vw);
-  text-align: center;
-}
-.room-text[data-stop="walk_3a"] {
-  right: clamp(4rem, 12vw, 14rem);
-  top: 34%;
-}
-/* Tellija 07.07: see mull TUGITOOLI KOHALE — kõrgemale, tooli pea
-   kohale, et see hõljuks tooli kohal, mitte peatoel. */
-.room-text[data-stop="walk_3b"] {
-  left: clamp(4rem, 12vw, 14rem);
-  top: 24%;
-}
-.room-text[data-stop="walk_4a"] {
-  left: clamp(3rem, 10vw, 12rem);
-  top: 38%;
-}
-.room-text[data-stop="walk_4b"] {
-  right: clamp(3rem, 9vw, 11rem);
-  top: 50%;
-}
-.room-text[data-stop="walk_5a"] {
-  left: clamp(3rem, 9vw, 10rem);
-  top: 34%;
-}
-.room-text[data-stop="walk_5b"] {
-  right: clamp(3rem, 9vw, 11rem);
-  top: 46%;
-}
-/* Ainus keskpaigutuse erand: kaadri 6 tekst (istuja vaatab seina).
-   X-tsentreering elab JS-i transformis (inline kirjutaks CSS-i üle). */
 .room-text--center {
   left: 50%;
-  top: 42%;
-  text-align: center;
-  max-width: min(34rem, 70vw);
+}
+/* Pöörde ja istumise ajal kolib sama fookusväli alumisse kolmandikku,
+   et maal jääks puhtalt nähtavaks. Horisontaalselt tekst ei hüppa. */
+.room-text[data-stop="stop-4"],
+.room-text[data-stop="stop-5"],
+.room-text[data-stop="stop-6"] {
+  top: auto;
+  bottom: clamp(5.8rem, 12vh, 8.6rem);
 }
 /* Tekstikandja: puhas tekstikiht mulli sees. Kogu klaas-välimus
    (taust, blur, ääris, vari) elab .room-text peal — vt kommentaari
    sealt (backdrop-filter nõuab transformi-kandjaga sama elementi). */
 .room-text-body {
+  display: grid;
+  gap: 0.28em;
+}
+.room-text-line {
   display: block;
 }
 

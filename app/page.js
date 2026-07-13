@@ -29,18 +29,24 @@ export default async function HomeRoot() {
   const locale = getLocaleFromCookies(cookieStore);
   const messages = getMessagesSync(locale);
   const room = messages?.room || {};
+  const walkCopy = [
+    ["walk_1"],
+    ["walk_2a", "walk_2b"],
+    ["walk_3a", "walk_3b"],
+    ["walk_4a", "walk_4b"],
+    ["walk_5a", "walk_5b"],
+    ["walk_6"],
+  ];
 
   return (
     <>
       <div className="room-static-copy">
         <h1>{room.loading_line || "SotsiaalAI"}</h1>
-        <p>{room.walk_1 || ""}</p>
-        <p>
-          {[room.walk_3a, room.walk_3b].filter(Boolean).join(" ")}
-        </p>
-        <p>
-          {[room.walk_5a, room.walk_5b].filter(Boolean).join(" ")}
-        </p>
+        {walkCopy.map((keys) => (
+          <p key={keys.join("-")}>
+            {keys.map((key) => room[key]).filter(Boolean).join(" ")}
+          </p>
+        ))}
       </div>
       <div className="room-scroll-spacer" aria-hidden="true" />
     </>

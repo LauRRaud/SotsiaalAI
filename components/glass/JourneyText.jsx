@@ -4,7 +4,7 @@
  * JourneyText — saabumiskõnni tekstipeatus (teekonna-tekstid §stiil).
  * EELISTATUD: ILMA plaadita — tekst istub ruumis, loetavuse annab
  * peen kohalik toon + vari (CSS). `plate` ainult heleda ala (akna)
- * ette sattudes. position: "left" | "right" | "center" (walk_6 erand).
+ * ette sattudes. Saabumisstseen kasutab üht kompaktset keskset plokki.
  */
 
 import { forwardRef } from "react";

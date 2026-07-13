@@ -3821,7 +3821,17 @@
       "help_requests": "Seotud abisoovid",
       "help_offers": "Seotud abipakkumised",
       "rooms": "Seotud ruumid",
-      "empty": "Siia ilmuvad eelpöördumised, dokumendid või kontaktid, mille seod selle teekonnaga."
+      "empty": "Siia ilmuvad eelpöördumised, dokumendid või kontaktid, mille seod selle teekonnaga.",
+      "open": "Ava",
+      "pre_inquiries_empty": "Kui alustad sellest teekonnast eelpöördumise, ilmub see siia koos teema ja staatusega.",
+      "pre_inquiry_untitled": "Eelpöördumine",
+      "pre_inquiry_status": {
+        "DRAFT": "mustand",
+        "READY": "valmis saatmiseks",
+        "SENT": "saadetud",
+        "DOWNLOADED": "alla laaditud",
+        "ARCHIVED": "arhiveeritud"
+      }
     },
     "share": {
       "title": "Vali, millist infot soovid eelpöördumises kasutada.",

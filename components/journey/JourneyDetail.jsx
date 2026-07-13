@@ -361,12 +361,56 @@ function ActivityHistory({ journey, t, locale }) {
   );
 }
 
-function RelatedObjectsPanel({ journey, t }) {
+function preInquiryStatusLabel(t, status) {
+  const normalized = String(status || "").toUpperCase();
+  return t(
+    `journey.related.pre_inquiry_status.${normalized}`,
+    t("journey.related.pre_inquiry_status.DRAFT", "mustand")
+  );
+}
+
+function LinkedPreInquiries({ journey, t, locale }) {
+  const items = Array.isArray(journey?.linkedPreInquiries) ? journey.linkedPreInquiries : [];
+
+  if (!items.length) {
+    return (
+      <p>
+        {t(
+          "journey.related.pre_inquiries_empty",
+          "Kui alustad sellest teekonnast eelpöördumise, ilmub see siia koos teema ja staatusega."
+        )}
+      </p>
+    );
+  }
+
+  return (
+    <ul>
+      {items.map((item) => {
+        const topic = String(item?.topic || "").trim()
+          || t("journey.related.pre_inquiry_untitled", "Eelpöördumine");
+        const href = localizePath(
+          `/eelpoordumised?openInquiry=${encodeURIComponent(item.id)}&workspaceRole=CLIENT`,
+          locale
+        );
+        return (
+          <li key={item.id}>
+            <span>{topic}</span>
+            <span>{preInquiryStatusLabel(t, item?.status)}</span>
+            <Button as="a" href={href} variant="linkBrand">
+              {t("journey.related.open", "Ava")}
+            </Button>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+function RelatedObjectsPanel({ journey, t, locale }) {
   const context = journey?.context && typeof journey.context === "object" && !Array.isArray(journey.context)
     ? journey.context
     : {};
   const groups = [
-    ["linkedPreInquiryIds", t("journey.related.pre_inquiries", "Seotud eelpöördumised")],
     ["linkedDocumentIds", t("journey.related.documents", "Seotud dokumendid")],
     ["linkedServiceMapEntryIds", t("journey.related.service_contacts", "Seotud teenusekaardi kontaktid")],
     ["linkedHelpRequestIds", t("journey.related.help_requests", "Seotud abisoovid")],
@@ -380,6 +424,10 @@ function RelatedObjectsPanel({ journey, t }) {
         {t("journey.related.title", "Seotud asjad")}
       </h2>
       <div>
+        <div>
+          <h3>{t("journey.related.pre_inquiries", "Seotud eelpöördumised")}</h3>
+          <LinkedPreInquiries journey={journey} t={t} locale={locale} />
+        </div>
         {groups.map(([key, title]) => {
           const items = normalizeDisplayItems(context[key]);
           return (
@@ -1549,7 +1597,7 @@ export default function JourneyDetail({ journeyId }) {
                   </div>
                   <div>
                     <ActivityHistory journey={journey} t={t} locale={locale} />
-                    <RelatedObjectsPanel journey={journey} t={t} />
+                    <RelatedObjectsPanel journey={journey} t={t} locale={locale} />
                   </div>
                 </>
               )}

@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
-import { getJourneyForUser, updateJourneyForUser } from "@/lib/journey/service";
+import { getJourneyDetailForUser, updateJourneyForUser } from "@/lib/journey/service";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -41,7 +41,7 @@ export async function GET(_request, context) {
 
   try {
     const params = await resolveParams(context);
-    const journey = await getJourneyForUser(auth.userId, params?.id);
+    const journey = await getJourneyDetailForUser(auth.userId, params?.id);
     return json({ ok: true, journey });
   } catch (error) {
     const status = Number(error?.status) || 500;

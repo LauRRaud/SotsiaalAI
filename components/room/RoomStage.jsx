@@ -5,9 +5,9 @@
  *
  * Elab root-layoutis KÕIGI marsruutide taga, et navigeerimine ei
  * laadiks ruumi uuesti. Kolm režiimi (html[data-room-mode]):
- *  - "walk"  — avaleht, saabumiskõnd: kerimine juhib kaadreid 1→6→7
- *  - "room"  — avaleht, lõppseis: kaader 7 + karussell (+ mikroelu)
- *  - "panel" — iga muu marsruut: kaader 7 hämardatuna paneeli taga
+ *  - "walk"  — avaleht, saabumiskõnd: kerimine juhib 12 loogilist kaadrit
+ *  - "room"  — avaleht, lõppseis: lõppkaader + karussell (+ mikroelu)
+ *  - "panel" — iga muu marsruut: lõppkaader hämardatuna paneeli taga
  *
  * Kõik kaadri-transformid käivad imperatiivselt rAF+lerp silmusega
  * (transform/opacity/filter ainult), React uuendab vaid diskreetseid
@@ -105,47 +105,41 @@ const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
  * (paneeli avamine ja sulgemine) kõndi ei korrata. */
 let walkDoneThisLoad = false;
 
-/* Kaadrisegmendid: [algus, lõpp, suumAlgus, suumLõpp] progressi teljel.
-   Tellija 06.07: kaadrivahetused SUJUVAMAD (tõksud maha) — ülekate
-   ~19% segmendist, sisenev kaader settib madalamalt (1.035), haripunktis
-   õrn fookus-blur. Kaader 7 EI kuulu kõndi — süttib käivitusega (⏻). */
-const SEGS = [
-  [0.0, 0.185, 1.0, 1.78], // 1 — ukseava: piidad servadest välja
-  [0.185, 0.36, 1.0, 1.1], // 2 — ruum avaneb
-  [0.36, 0.54, 1.0, 1.1], // 3 — kõnd
-  [0.54, 0.72, 1.0, 1.1], // 4 — tool suurelt ees
-  [0.72, 0.86, 1.0, 1.09], // 5 — tooli juures
-  [0.86, 1.0, 1.05, 1.0], // 6 — istun: settimine; lõpus TERAV ruum
-];
-const BLEND = 0.034; // ~19% segmendist — pikem, pehmem ristsulandus
-const SIT_BLEND = 0.045; // 5→6 pööre veel veidi pikem
-const ENTER_SCALE = 1.035; // sisenev kaader settib segmendi algusesse
-const BLEND_BLUR_PX = 5; // fookus-blur sulanduse haripunktis
-const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast kaadri 6 teksti
-
-/* Tekstipeatused (sotsiaalai-teekonna-tekstid.md sõnastused; tellija
-   06.07 õhtu korrektuurid: kaadripaarid KOOS ühes mullis (pikem
-   ekraaniaeg), tervitus KESKEL, küljed sissepoole toodud). */
-/* Mitmelauseline peatus = ERALDI mullid, üks vasakul ja teine paremal
-   (tellija 07.07); mõlemad kuvatakse samal ajal. Kohad on CSS-is
-   data-stop kaupa (room.css: kaadripõhine häälestus). */
-const TEXT_STOPS = [
-  { keys: ["walk_1"], sides: ["left"], from: 0.035, to: 0.165 },
-  { keys: ["walk_2a", "walk_2b"], sides: ["center", "center"], from: 0.2, to: 0.35 },
-  { keys: ["walk_3a", "walk_3b"], sides: ["right", "left"], from: 0.372, to: 0.528 },
-  { keys: ["walk_4a", "walk_4b"], sides: ["left", "right"], from: 0.552, to: 0.708 },
-  { keys: ["walk_5a", "walk_5b"], sides: ["left", "right"], from: 0.732, to: 0.85 },
-  { keys: ["walk_6"], sides: ["center"], from: 0.875, to: 0.945 },
-];
-/* Lame mullide loend: iga lause = oma mull oma kohaga (data-stop=võti) */
-const WALK_BUBBLES = TEXT_STOPS.flatMap((stop) =>
-  stop.keys.map((key, j) => ({
-    key,
-    side: stop.sides[j],
-    from: stop.from,
-    to: stop.to,
-  }))
+/* 12 loogilist kaadrit jagavad progressi ühtlaselt. Kaadrid 11–12
+   kasutavad sama lukustatud lõppfotot ja ainult väikest kontrollitud
+   kaameratransformi: nii ei morfi diivan ega kohvilaud istumise ajal. */
+const FINAL_FRAME_INDEX = ROOM_FRAMES.length - 1;
+const TAIL_START_INDEX = Math.max(
+  0,
+  ROOM_FRAMES.findIndex((frame) => frame.stableTail)
 );
+const FRAME_SPAN = 1 / ROOM_FRAMES.length;
+const TAIL_FINAL_SCALE = 1;
+const TAIL_SCALES = [1.04, 1.02];
+const TAIL_Y = [1.2, 0.6];
+const SEGS = ROOM_FRAMES.map((frame, i) => {
+  const from = i * FRAME_SPAN;
+  const to = (i + 1) * FRAME_SPAN;
+  if (!frame.stableTail) return [from, to, 1, 1];
+  const tailIndex = i - TAIL_START_INDEX;
+  const z0 = TAIL_SCALES[tailIndex] ?? 1;
+  const z1 = TAIL_SCALES[tailIndex + 1] ?? TAIL_FINAL_SCALE;
+  return [from, to, z0, z1];
+});
+const BLEND = FRAME_SPAN * 0.18;
+const SIT_BLEND = FRAME_SPAN * 0.32;
+const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast viimast teksti
+
+/* Tekstipeatused püsivad ühes kompaktses fookusväljas. Mitmelauselise
+   peatuse read ei lenda enam eri ekraaniservadesse. */
+const TEXT_STOPS = [
+  { keys: ["walk_1"], from: 0.035, to: 0.165 },
+  { keys: ["walk_2a", "walk_2b"], from: 0.2, to: 0.35 },
+  { keys: ["walk_3a", "walk_3b"], from: 0.372, to: 0.528 },
+  { keys: ["walk_4a", "walk_4b"], from: 0.552, to: 0.708 },
+  { keys: ["walk_5a", "walk_5b"], from: 0.732, to: 0.85 },
+  { keys: ["walk_6"], from: 0.875, to: 0.945 },
+];
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const ease = (t) => t * t * (3 - 2 * t); // smoothstep
@@ -154,20 +148,27 @@ const seglerp = (a, b, t) => a + (b - a) * t;
 /* Sulanduse aken kaadri i ja i+1 vahel → järgmise kihi opacity. */
 function blendAmount(i, p) {
   const boundary = SEGS[i][1];
-  const w = i === 4 ? SIT_BLEND : BLEND;
+  const w = i >= TAIL_START_INDEX - 1 ? SIT_BLEND : BLEND;
   return ease(clamp01((p - (boundary - w)) / w));
 }
 
-/* Kaadri suum: oma segmendis z0→z1; ENNE segmenti (sulanduse ajal)
-   settib ENTER_SCALE → z0 ("silm fokuseerib sammul uuesti"). */
+/* Tavakaadrid püsivad 1:1. Lukustatud lõppfoto suumib väga mõõdukalt
+   välja, et imiteerida toolile laskumist ilma mööbli morfimiseta. */
 function frameZoom(i, p) {
   const [from, to, z0, z1] = SEGS[i];
-  if (p < from && i > 0) {
-    const tb = blendAmount(i - 1, p);
-    return seglerp(ENTER_SCALE, z0, tb);
-  }
+  if (p < from) return z0;
   const t = clamp01((p - from) / (to - from));
   return seglerp(z0, z1, t);
+}
+
+function frameY(i, p) {
+  if (i < TAIL_START_INDEX) return 0;
+  const [from, to] = SEGS[i];
+  const tailIndex = i - TAIL_START_INDEX;
+  const y0 = TAIL_Y[tailIndex] ?? 0;
+  const y1 = TAIL_Y[tailIndex + 1] ?? 0;
+  if (p < from) return y0;
+  return seglerp(y0, y1, clamp01((p - from) / (to - from)));
 }
 
 /* Teksti sisse/välja hajumine: [from,to] aknas, pehme servaga. */
@@ -355,51 +356,24 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       if (p >= SEGS[i][0]) active = i;
     }
 
-    // Sulanduse haripunkti fookus-blur (0 → max → 0 üle akna)
-    const boundary = SEGS[active][1];
-    const bw = active === 4 ? SIT_BLEND : BLEND;
-    const blendT = active < SEGS.length - 1 ? clamp01((p - (boundary - bw)) / bw) : 0;
-    const focusBlur = reducedRef.current
-      ? 0
-      : Math.sin(Math.PI * blendT) * BLEND_BLUR_PX;
-
     for (let i = 0; i < layers.length; i++) {
       const el = layers[i];
       if (!el) continue;
-      // Kaader 7 ei osale kõnnis — teda juhib käivitus (⏻)
-      if (i === 6) continue;
       let opacity = 0;
       let scale = 1;
       let x = 0;
-      let y = 0;
-      let blur = 0;
+      let y = frameY(i, p);
 
       if (i === active) {
         opacity = 1;
         scale = frameZoom(i, p);
-        blur = focusBlur;
       } else if (i === active + 1) {
         opacity = blendAmount(active, p);
         scale = frameZoom(i, p);
-        blur = focusBlur;
       } else if (i === active - 1) {
         // Eelmine püsib all kuni sulandus katab (järgmine on peal)
         opacity = blendAmount(i, p) < 1 ? 1 : 0;
         scale = frameZoom(i, p);
-      }
-
-      // Istumise pööre 5→6: nihe + laskumine (brief §5)
-      if (i === 4 || i === 5) {
-        const sit = blendAmount(4, p);
-        if (sit > 0 && sit < 1.0001) {
-          if (i === 4) {
-            x = -9 * sit;
-            y = -2.4 * sit;
-          } else {
-            x = 7 * (1 - sit);
-            y = 2.6 * (1 - sit);
-          }
-        }
       }
 
       if (opacity <= 0.0001) {
@@ -408,26 +382,24 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
       el.style.opacity = String(opacity);
       el.style.transform = `translate3d(${x}%, ${y}%, 0) scale(${scale})`;
-      el.style.filter = blur > 0.25 ? `blur(${blur.toFixed(1)}px)` : "";
+      el.style.filter = "";
     }
 
-    // Tekstipeatused: korraga nähtav üks peatus; mitmelauselise peatuse
-    // laused on ERALDI mullid (vasak + parem) ja hajuvad koos. Keskne
-    // (walk_6) on erand, mis hajub täielikult enne käivituselemente.
-    for (let s = 0; s < WALK_BUBBLES.length; s++) {
+    // Tekstipeatused: üks kompaktne fookusplokk korraga. Mitmelauselise
+    // peatuse read liiguvad ja hajuvad ühe tervikuna.
+    for (let s = 0; s < TEXT_STOPS.length; s++) {
       const el = textRefs.current[s];
       if (!el) continue;
-      const bubble = WALK_BUBBLES[s];
-      const alpha = fadeWindow(p, bubble.from, bubble.to, 0.022);
+      const stop = TEXT_STOPS[s];
+      const alpha = fadeWindow(p, stop.from, stop.to, 0.022);
       if (alpha <= 0.001) {
         if (el.style.opacity !== "0") el.style.opacity = "0";
         continue;
       }
-      const drift = clamp01((p - bubble.from) / (bubble.to - bubble.from));
-      const xBase = bubble.side === "center" ? "-50%" : "0px";
+      const drift = clamp01((p - stop.from) / (stop.to - stop.from));
       el.style.opacity = String(alpha);
-      el.style.transform = `translate3d(${xBase}, ${(1 - alpha) * 12 - drift * 8}px, 0)`;
-      el.style.filter = alpha >= 0.999 ? "none" : `blur(${(1 - alpha) * 4}px)`;
+      el.style.transform = `translate3d(-50%, ${(1 - alpha) * 10 - drift * 5}px, 0)`;
+      el.style.filter = "none";
     }
 
     // Kerimisvihje ainult alguses
@@ -575,9 +547,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     } catch {}
   }, []);
 
-  /* Kaader 7 kuulub käivitusele: sujuv süttimine/kustumine WAAPI-ga. */
-  const setFrame7 = useCallback((visible, animate = true) => {
-    const el = frameRefs.current[6];
+  /* Lõppkaader jääb käivituse ja kõigi paneelide ruumitaustaks. */
+  const setFinalFrame = useCallback((visible, animate = true) => {
+    const el = frameRefs.current[FINAL_FRAME_INDEX];
     if (!el) return;
     const to = visible ? "1" : "0";
     el.style.transform = "translate3d(0, 0, 0) scale(1)";
@@ -593,14 +565,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     });
   }, []);
 
-  /* Käivitus: sähvatus → kaader 6→7 → klaasid (faas 1) → sisu (faas 2).
+  /* Käivitus: sama lukustatud maalivaade → klaasid (faas 1) → sisu (faas 2).
      CSS lavastab faasid [data-power] atribuudi järgi. Käivitusega
      lõpeb ka kõnd LÕPLIKULT (mode → room): kerimisruum kaob ja vanu
      teekonnatekste ei saa kaartide all tagasi kerida (tellija 06.07). */
   const igniteOn = useCallback(() => {
     if (powerRef.current === "on" || powerRef.current === "igniting") return;
     if (reducedRef.current) {
-      setFrame7(true, false);
+      setFinalFrame(true, false);
       setPower("on");
       setCardsReady(true);
       setMode("room");
@@ -616,7 +588,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     setIntroSai(false);
     setPower("igniting");
     setMode("room");
-    window.setTimeout(() => setFrame7(true), 200);
+    window.setTimeout(() => setFinalFrame(true), 200);
     window.setTimeout(() => setPower("on"), 900);      // klaaskaardid (kestad) tekivad
     // Vahepala (tellija 06.07): SAI-monogramm mount'ib, teeb münt-pöörde
     // (SMIL 1.7 s, freeze), pööre SEISAB ja logo hoiab end veel ~2 s
@@ -630,7 +602,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     window.setTimeout(() => setIntroSai(false), 5200);
     // Väike paus pärast logo kadumist enne kaardisisu (tellija 06.07)
     window.setTimeout(() => setCardsReady(true), 5900);
-  }, [setFrame7]);
+  }, [setFinalFrame]);
 
 
   /* Kiirkäskude riba "OFF": LOGI VÄLJA + seade tagasi ooterežiimi (⏻)
@@ -649,7 +621,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       router.push(localizePath("/", locale));
       return;
     }
-    setFrame7(false, false);
+    setFinalFrame(true, false);
     setPower("standby");
     setCardsReady(false);
     setIntroSai(false);
@@ -658,7 +630,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [clearCompletedArrival, isHome, isAuthed, router, locale, setFrame7]);
+  }, [clearCompletedArrival, isHome, isAuthed, router, locale, setFinalFrame]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -674,7 +646,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       window.scrollTo(0, 0);
       displayed.current = target.current = 0;
       setPower("standby");
-      setFrame7(false, false);
+      setFinalFrame(false, false);
       applyScene(0);
       wake();
     } else {
@@ -686,7 +658,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           // Käivituse rituaal käib (kõnni lõpust) — ära katkesta faase
         } else if (!pendingStandbyRef.current) {
           // Profiili-hub / sessioonisisene naasmine: seade on juba sees
-          setFrame7(true, false);
+          setFinalFrame(true, false);
           setPower("on");
           setCardsReady(true);
         }
@@ -694,7 +666,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         // room→room üleminekul see efekt uuesti ei jookse.
       }
       if (mode === "panel") {
-        setFrame7(true, false);
+        setFinalFrame(true, false);
         setPower("on");
         if (stageRef.current) {
           // CSS omab paneelirežiimi transformi (hägu + kerge suum)
@@ -705,7 +677,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
     }
     return () => {};
-  }, [mode, cardPageKey, applyScene, wake, setFrame7]);
+  }, [mode, cardPageKey, applyScene, wake, setFinalFrame]);
 
   /* "Välja" (profiilikaardilt) → kodu PUHKESEISUS. Elab pathname'i,
      mitte mode'i küljes: profiililt (room) koju (room) tulles mode ei
@@ -714,7 +686,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   useEffect(() => {
     if (!isHome || !pendingStandbyRef.current) return;
     pendingStandbyRef.current = false;
-    setFrame7(false, false);
+    setFinalFrame(true, false);
     setPower("standby");
     setCardsReady(false);
     setIntroSai(false);
@@ -724,7 +696,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [isHome, setFrame7]);
+  }, [isHome, setFinalFrame]);
 
   /* ---------- loor (laadimisekraan) ----------
      Tellija otsus: loor püsib, kuni kasutaja ISE vajutab "Sisenen" —
@@ -733,7 +705,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     if (!isHome || veil !== "shown" || veilReady) return undefined;
     let cancelled = false;
     const reduced = readReduced();
-    const firstFrame = reduced ? 6 : 0; // reduced-motion ootab kaadrit 7
+    const firstFrame = reduced ? FINAL_FRAME_INDEX : 0;
     let frameReady = false;
     let revealDelayReady = false;
     const ready = () => {
@@ -1220,7 +1192,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       {/* Lavastus: kaadrid */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
         {ROOM_FRAMES.map((frame, i) => {
-          const initialVisible = mode === "walk" ? i === 0 : i === 6;
+          const initialVisible = mode === "walk" ? i === 0 : i === FINAL_FRAME_INDEX;
           return (
             <div
               key={frame.n}
@@ -1239,7 +1211,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                 width={ROOM_FRAME_WIDTH}
                 height={ROOM_FRAME_HEIGHT}
                 loading="eager"
-                fetchPriority={i === 0 || i === 6 ? "high" : "low"}
+                fetchPriority={i < 2 || i === FINAL_FRAME_INDEX ? "high" : "auto"}
                 decoding="async"
                 draggable={false}
               />
@@ -1255,20 +1227,23 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         <>
           {isHome ? (
             <>
-              {/* Tekstipeatused (kinnitatud sõnastused) — visuaalne kiht;
-                  sisuline tekst on lehel sr-only. Iga lause = oma mull
-                  (vasak + parem koos, tellija 07.07); walk_6 ainus keskel. */}
+              {/* Tekstipeatused — üks kompaktne keskne fookusplokk korraga;
+                  sisuline tekst on lehel sr-only. */}
               <div className="room-texts" aria-hidden="true" data-room-ui>
-                {WALK_BUBBLES.map((bubble, i) => (
+                {TEXT_STOPS.map((stop, i) => (
                   <JourneyText
-                    key={bubble.key}
-                    position={bubble.side}
-                    data-stop={bubble.key}
+                    key={stop.keys.join("-")}
+                    position="center"
+                    data-stop={`stop-${i + 1}`}
                     ref={(el) => {
                       textRefs.current[i] = el;
                     }}
                   >
-                    {t(`room.${bubble.key}`)}
+                    {stop.keys.map((key) => (
+                      <span className="room-text-line" key={key}>
+                        {t(`room.${key}`)}
+                      </span>
+                    ))}
                   </JourneyText>
                 ))}
               </div>

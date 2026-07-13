@@ -1113,6 +1113,7 @@ model Journey {
 
   owner        User          @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
   conversation Conversation? @relation(fields: [conversationId], references: [id], onDelete: SetNull)
+  preInquiries PreInquiry[]
 
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, status, updatedAt])
@@ -1708,6 +1709,7 @@ model PreInquiry {
   authorId                String
   recipientOwnerId        String?
   recipientEntryId        String?
+  sourceJourneyId         String?
   recipientType           PreInquiryRecipientType
   deliveryChannel         PreInquiryDeliveryChannel @default(INTERNAL)
   selectedRecipientEmail  String?
@@ -1728,11 +1730,13 @@ model PreInquiry {
   author         User             @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: Cascade)
   recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
   recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
+  sourceJourney  Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)
   covisionCases  CovisionCase[]
 
   @@index([authorId, updatedAt])
   @@index([recipientOwnerId, updatedAt])
   @@index([recipientEntryId])
+  @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
   @@index([status])
