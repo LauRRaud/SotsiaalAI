@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
   open,
   t,
+  locale = "et",
   conversationSources,
   latestAnswerSources,
   allConversationSources,
@@ -15,6 +16,11 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
   const closeRef = useRef(null);
   const prevFocusRef = useRef(null);
   const [activeScope, setActiveScope] = useState("latest");
+  const [reportingKey, setReportingKey] = useState("");
+  const [reportCategory, setReportCategory] = useState("outdated");
+  const [reportNote, setReportNote] = useState("");
+  const [reportState, setReportState] = useState({});
+  const [ownFeedback, setOwnFeedback] = useState({});
   const latestSources = Array.isArray(latestAnswerSources)
     ? latestAnswerSources
     : Array.isArray(conversationSources)
@@ -103,6 +109,61 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
       count: historySources.length
     }
   ], [historySources.length, latestSources.length, t]);
+
+  const formatCheckedAt = useCallback(value => {
+    if (!value) return null;
+    const date = new Date(value);
+    if (!Number.isFinite(date.getTime())) return null;
+    const dateLocale = locale === "et" ? "et-EE" : locale === "ru" ? "ru-RU" : "en-GB";
+    return new Intl.DateTimeFormat(dateLocale, {
+      day: "2-digit",
+      month: "long",
+      year: "numeric"
+    }).format(date);
+  }, [locale]);
+
+  const submitReport = useCallback(async source => {
+    if (!source?.messageId || !source?.sourceId) return;
+    const key = String(source.key || source.sourceId);
+    setReportState(current => ({ ...current, [key]: "sending" }));
+    try {
+      const response = await fetch("/api/source-feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messageId: source.messageId,
+          sourceId: source.sourceId,
+          category: reportCategory,
+          note: reportNote.trim()
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error("feedback_failed");
+      setReportState(current => ({ ...current, [key]: "sent" }));
+      setOwnFeedback(current => ({ ...current, [source.sourceId]: payload.item }));
+      setReportingKey("");
+      setReportNote("");
+    } catch {
+      setReportState(current => ({ ...current, [key]: "failed" }));
+    }
+  }, [reportCategory, reportNote]);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const controller = new AbortController();
+    fetch("/api/source-feedback", { cache: "no-store", signal: controller.signal })
+      .then(response => response.ok ? response.json() : null)
+      .then(payload => {
+        if (!payload?.ok || !Array.isArray(payload.items)) return;
+        const bySource = {};
+        for (const item of payload.items) {
+          if (item?.sourceId && !bySource[item.sourceId]) bySource[item.sourceId] = item;
+        }
+        setOwnFeedback(bySource);
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, [open]);
   if (!open || typeof document === "undefined") return null;
   return createPortal(
     <div
@@ -162,8 +223,20 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                   !/^0+(?:\s*[-,]\s*0+)*$/.test(pageText) &&
                   !`${src.label}`.toLowerCase().includes("lk");
                 return (
-                  <li key={src.key || idx}>
+                  <li key={src.key || idx} data-source-trust={src.freshness || "unknown"}>
                     <div>{src.label}</div>
+                    <div className="chat-source-trust-row">
+                      <span>
+                        {formatCheckedAt(src.checkedAt)
+                          ? t("chat.sources.checked_at").replace("{date}", formatCheckedAt(src.checkedAt))
+                          : t("chat.sources.checked_unknown")}
+                      </span>
+                      {src.warning ? (
+                        <span role="status" className="chat-source-warning">
+                          {t(`chat.sources.warning_${src.warning}`)}
+                        </span>
+                      ) : null}
+                    </div>
                     {src.occurrences > 1 ? (
                       <div>
                         {t("chat.sources.used_multiple").replace(
@@ -198,6 +271,65 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                               : t("chat.sources.open_single")}
                           </a>
                         ))}
+                      </div>
+                    ) : null}
+                    {src.messageId && src.sourceId ? (
+                      <div className="chat-source-feedback">
+                        {ownFeedback[src.sourceId] ? (
+                          <span className="chat-source-feedback-status">
+                            {ownFeedback[src.sourceId].status === "RESOLVED"
+                              ? t("chat.sources.report_resolved")
+                              : t("chat.sources.report_open")}
+                          </span>
+                        ) : null}
+                        <button
+                          type="button"
+                          aria-expanded={reportingKey === src.key}
+                          onClick={() => {
+                            setReportingKey(current => current === src.key ? "" : src.key);
+                            setReportState(current => ({ ...current, [src.key]: "idle" }));
+                          }}
+                        >
+                          {t("chat.sources.report_action")}
+                        </button>
+                        {reportingKey === src.key ? (
+                          <form onSubmit={event => {
+                            event.preventDefault();
+                            submitReport(src);
+                          }}>
+                            <label>
+                              <span>{t("chat.sources.report_category")}</span>
+                              <select value={reportCategory} onChange={event => setReportCategory(event.target.value)}>
+                                {["outdated", "wrong_content", "broken_link", "wrong_source", "other"].map(category => (
+                                  <option key={category} value={category}>
+                                    {t(`chat.sources.report_${category}`)}
+                                  </option>
+                                ))}
+                              </select>
+                            </label>
+                            <label>
+                              <span>{t("chat.sources.report_note")}</span>
+                              <textarea
+                                value={reportNote}
+                                onChange={event => setReportNote(event.target.value)}
+                                maxLength={500}
+                                rows={3}
+                              />
+                            </label>
+                            <button type="submit" disabled={reportState[src.key] === "sending"}>
+                              {reportState[src.key] === "sending"
+                                ? t("chat.sources.report_sending")
+                                : t("chat.sources.report_send")}
+                            </button>
+                          </form>
+                        ) : null}
+                        <span role="status" aria-live="polite">
+                          {reportState[src.key] === "sent"
+                            ? t("chat.sources.report_sent")
+                            : reportState[src.key] === "failed"
+                              ? t("chat.sources.report_failed")
+                              : ""}
+                        </span>
                       </div>
                     ) : null}
                   </li>

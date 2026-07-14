@@ -3,6 +3,8 @@ import { CHAT_NO_STORE_HEADERS, isChatDbOfflineError, isPlausibleChatId, require
 import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
+import { getSourceAttributionId } from "@/lib/chat/sourceAttribution";
+import { serializeDisplayedSourceTrust } from "@/lib/chat/sourceTrust";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -69,7 +71,9 @@ function normalizeSources(value) {
 
 function readDisplayedSources(metadata) {
   if (!metadata || typeof metadata !== "object") return [];
-  return normalizeSources(metadata.displayed_sources || metadata.sources || []);
+  return normalizeSources(metadata.displayed_sources || metadata.sources || []).map((source, index) =>
+    serializeDisplayedSourceTrust(source, getSourceAttributionId(source, index))
+  );
 }
 
 async function requireUser() {

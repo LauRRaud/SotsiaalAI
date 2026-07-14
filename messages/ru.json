@@ -1019,6 +1019,11 @@
       "social_worker": "Специалист по социальной работе"
     }
   },
+  "content_trust": {
+    "ai_draft": "Черновик ИИ",
+    "human_edited": "Изменено человеком",
+    "human_confirmed": "Подтверждено человеком"
+  },
   "chat": {
     "title": "SotsiaalAI",
     "crisis": {
@@ -1214,7 +1219,27 @@
       "used_multiple": "Использовано в {count} фрагментах беседы.",
       "pages": "Страницы: {pages}",
       "open_single": "Открыть источник",
-      "open_indexed": "Открыть ({index})"
+      "open_indexed": "Открыть ({index})",
+      "checked_at": "Последняя проверка: {date}",
+      "checked_unknown": "Дата проверки неизвестна",
+      "warning_inactive": "Источник больше не активен",
+      "warning_historical": "Исторический источник",
+      "warning_expired": "Срок действия источника истёк",
+      "warning_stale": "Источник нужно проверить заново",
+      "report_action": "Сообщить об ошибке источника",
+      "report_category": "Тип проблемы",
+      "report_outdated": "Информация может быть устаревшей",
+      "report_wrong_content": "Содержание источника не соответствует",
+      "report_broken_link": "Ссылка не открывается",
+      "report_wrong_source": "К ответу привязан неверный источник",
+      "report_other": "Другая проблема",
+      "report_note": "Краткое примечание (необязательно)",
+      "report_send": "Отправить сообщение",
+      "report_sending": "Отправка…",
+      "report_sent": "Сообщение отправлено. Спасибо.",
+      "report_failed": "Не удалось отправить сообщение. Попробуйте ещё раз.",
+      "report_open": "Ваше сообщение ожидает проверки",
+      "report_resolved": "Ваше сообщение проверено"
     },
     "sidebar": {
       "error": {

@@ -1019,6 +1019,11 @@
       "social_worker": "Sotsiaaltöö spetsialist"
     }
   },
+  "content_trust": {
+    "ai_draft": "AI mustand",
+    "human_edited": "Inimese muudetud",
+    "human_confirmed": "Inimese kinnitatud"
+  },
   "chat": {
     "title": "SotsiaalAI",
     "crisis": {
@@ -1257,7 +1262,27 @@
       "used_multiple": "Kasutatud {count} vestluse lõigus.",
       "pages": "Leheküljed: {pages}",
       "open_single": "Ava allikas",
-      "open_indexed": "Ava ({index})"
+      "open_indexed": "Ava ({index})",
+      "checked_at": "Viimati kontrollitud {date}",
+      "checked_unknown": "Kontrollimise aeg teadmata",
+      "warning_inactive": "Allikas ei ole enam aktiivne",
+      "warning_historical": "Ajalooline allikas",
+      "warning_expired": "Allika kehtivus on lõppenud",
+      "warning_stale": "Allikas vajab uut kontrolli",
+      "report_action": "Teata allika veast",
+      "report_category": "Vea liik",
+      "report_outdated": "Info võib olla aegunud",
+      "report_wrong_content": "Allika sisu ei vasta",
+      "report_broken_link": "Link ei avane",
+      "report_wrong_source": "Vastusega on seotud vale allikas",
+      "report_other": "Muu probleem",
+      "report_note": "Lühike märkus (valikuline)",
+      "report_send": "Saada teade",
+      "report_sending": "Saadan…",
+      "report_sent": "Teade saadeti. Aitäh.",
+      "report_failed": "Teadet ei õnnestunud saata. Proovi uuesti.",
+      "report_open": "Sinu teade ootab kontrolli",
+      "report_resolved": "Sinu teade on kontrollitud"
     },
     "upload": {
       "aria": "Laadi dokument",

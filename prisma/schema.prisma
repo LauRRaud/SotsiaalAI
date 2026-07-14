@@ -736,6 +736,8 @@ model User {
   practiceCapabilityAuditsTarget PracticeCapabilityAudit[]      @relation("PracticeCapabilityAuditTarget")
   practiceCapabilityAuditsActor PracticeCapabilityAudit[]       @relation("PracticeCapabilityAuditActor")
   effectivePracticeAuditEvents EffectivePracticeAuditEvent[]    @relation("EffectivePracticeAuditActor")
+  sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
+  sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1424,6 +1426,30 @@ model DataAuditLog {
   @@index([actorUserId, createdAt])
   @@index([targetUserId, createdAt])
   @@index([action, createdAt])
+}
+
+model SourceFeedback {
+  id             String    @id @default(cuid())
+  reporterId     String
+  messageId      String
+  sourceId       String
+  sourceType     String
+  category       String
+  note           String?   @db.VarChar(500)
+  status         String    @default("OPEN")
+  dedupeKey      String    @unique
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  resolvedAt     DateTime?
+  resolvedById   String?
+  resolutionNote String?   @db.VarChar(1000)
+
+  reporter   User  @relation("SourceFeedbackReporter", fields: [reporterId], references: [id], onDelete: Cascade)
+  resolvedBy User? @relation("SourceFeedbackResolver", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  @@index([reporterId, createdAt])
+  @@index([status, createdAt])
+  @@index([sourceId, status])
 }
 
 model DataDeletionJob {

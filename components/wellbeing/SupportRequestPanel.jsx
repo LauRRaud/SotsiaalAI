@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import { buildWellbeingShareableDraft } from "@/lib/wellbeing/supportDraftText";
 
@@ -277,6 +278,12 @@ export default function SupportRequestPanel({
 
       {selected ? (
         <div>
+          <ContentTrustBadge
+            generatedText={draft?.generatedText || preview}
+            editedText={draft?.editedText}
+            currentText={editedText || preview}
+            userConfirmed={draft?.userConfirmed === true}
+          />
           <label>
             <span>{t("wellbeing.support.preview_label", "Jagatava versiooni eelvaade")}</span>
             <textarea

@@ -158,6 +158,19 @@ function getSourceKey(src, fallback) {
     fallback;
 }
 
+function trustFields(src, message) {
+  return {
+    messageId: String(message?.id || message?.messageId || "").trim() || null,
+    sourceId: String(src?.source_id || src?.sourceId || "").trim() || null,
+    sourceType: String(
+      src?.source_trust_type || src?.source_type || src?.sourceType || src?.origin || src?.type || "unknown"
+    ).trim() || "unknown",
+    checkedAt: typeof src?.source_checked_at === "string" ? src.source_checked_at : null,
+    freshness: String(src?.source_freshness || "unknown").trim() || "unknown",
+    warning: String(src?.source_warning || "").trim() || null
+  };
+}
+
 export function collectMessageSources(message, uploadPreview) {
   const map = new Map();
   const uploadName = typeof uploadPreview?.fileName === "string" ? uploadPreview.fileName.trim().toLowerCase() : "";
@@ -178,6 +191,7 @@ export function collectMessageSources(message, uploadPreview) {
       label,
       pageText,
       section,
+      ...trustFields(src, message),
       allUrls: [],
       occurrences: 0
     };
@@ -264,6 +278,7 @@ export function collectConversationSources(messages, uploadPreview) {
         label,
         pageText,
         section,
+        ...trustFields(src, message),
         allUrls: [],
         occurrences: 0
       };

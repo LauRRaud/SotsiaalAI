@@ -1019,6 +1019,11 @@
       "social_worker": "Social worker specialist"
     }
   },
+  "content_trust": {
+    "ai_draft": "AI draft",
+    "human_edited": "Human edited",
+    "human_confirmed": "Human confirmed"
+  },
   "chat": {
     "title": "SotsiaalAI",
     "crisis": {
@@ -1257,7 +1262,27 @@
       "used_multiple": "Used in {count} parts of the conversation.",
       "pages": "Pages: {pages}",
       "open_single": "Open source",
-      "open_indexed": "Open ({index})"
+      "open_indexed": "Open ({index})",
+      "checked_at": "Last checked {date}",
+      "checked_unknown": "Check date unknown",
+      "warning_inactive": "This source is no longer active",
+      "warning_historical": "Historical source",
+      "warning_expired": "This source is no longer valid",
+      "warning_stale": "This source needs a new check",
+      "report_action": "Report a source error",
+      "report_category": "Problem type",
+      "report_outdated": "Information may be outdated",
+      "report_wrong_content": "Source content does not match",
+      "report_broken_link": "Link does not open",
+      "report_wrong_source": "Wrong source linked to the answer",
+      "report_other": "Other problem",
+      "report_note": "Short note (optional)",
+      "report_send": "Send report",
+      "report_sending": "Sending…",
+      "report_sent": "Report sent. Thank you.",
+      "report_failed": "The report could not be sent. Please try again.",
+      "report_open": "Your report is awaiting review",
+      "report_resolved": "Your report has been reviewed"
     },
     "upload": {
       "aria": "Upload document",
