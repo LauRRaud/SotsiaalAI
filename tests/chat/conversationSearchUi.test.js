@@ -64,7 +64,6 @@ test("a failed search offers a working retry", () => {
   assert.match(sidebar, /onClick=\{\(\) => fetchList\(\{ reset: true \}\)\}/,
     "retry re-runs the current search from page 1");
 });
-
 test("the route rejects an over-long query before touching the database", () => {
   assert.match(route, /normalizeConversationSearchQuery\(url\.searchParams\.get\("q"\)\)/);
   assert.match(route, /if \(!search\.ok\)[\s\S]*api\.chat\.search_query_too_long/);

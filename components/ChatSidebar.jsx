@@ -84,6 +84,11 @@ export default function ChatSidebar() {
   const [selectMode, setSelectMode] = useState(false);
   const [selectedIds, setSelectedIds] = useState(() => new Set());
   const [searchQuery, setSearchQuery] = useState("");
+  // U6: `searchQuery` is what the user is typing; `committedSearch` is what the
+  // server was actually asked for. They differ while debouncing, which is what
+  // lets the empty state say "no results for X" instead of guessing.
+  const [committedSearch, setCommittedSearch] = useState("");
+  const searchRef = useRef("");
   const [activeView, setActiveView] = useState(() => String(searchParams?.get("roomId") || "").trim() ? "groups" : "conversations");
   const [bulkDeleting, setBulkDeleting] = useState(false);
   const [confirmState, setConfirmState] = useState(null);
@@ -138,6 +143,11 @@ export default function ChatSidebar() {
         limit: String(pageSize)
       });
       params.set("role", conversationListRole);
+      // U6: the search runs on the server over ALL of the user's conversations.
+      // It rides the same cursor, so "load more" keeps working while searching.
+      if (searchRef.current) {
+        params.set("q", searchRef.current);
+      }
       if (!reset && cursorRef.current) {
         params.set("cursor", cursorRef.current);
       }
@@ -292,6 +302,20 @@ export default function ChatSidebar() {
     if (!searchQuery) return;
     setSearchQuery("");
   }, [activeView, searchQuery]);
+  // U6: debounce typing, then re-run the owner-scoped server search from page 1.
+  // `fetchList` aborts the in-flight request, so a slow earlier keystroke can
+  // never overwrite a newer result.
+  useEffect(() => {
+    if (activeView !== "conversations") return undefined;
+    const next = searchQuery.trim();
+    if (next === searchRef.current) return undefined;
+    const timer = setTimeout(() => {
+      searchRef.current = next;
+      setCommittedSearch(next);
+      fetchList({ reset: true });
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [activeView, searchQuery, fetchList]);
   useEffect(() => {
     try {
       window.dispatchEvent(new CustomEvent("sotsiaalai:conversation-drawer-title", {
@@ -625,22 +649,17 @@ export default function ChatSidebar() {
     const t = new Date(v).getTime();
     return Number.isFinite(t) ? t : 0;
   };
-  const normalizedSearchQuery = searchQuery.trim().toLowerCase();
   const sortedConversations = useMemo(() => [...items].map(item => ({
     ...item,
     kind: "conversation"
   })).sort((a, b) => safeDate(b?.lastActivityAt) - safeDate(a?.lastActivityAt)), [items]);
   const sortedRooms = useMemo(() => [...roomItems].sort((a, b) => safeDate(b?.lastActivityAt) - safeDate(a?.lastActivityAt)), [roomItems]);
   const isConversationView = activeView === "conversations";
-  const filteredConversations = useMemo(() => {
-    if (!normalizedSearchQuery) return sortedConversations;
-    return sortedConversations.filter(item => {
-      const haystack = [item?.title, item?.preview, item?.id].filter(Boolean).join(" ").toLowerCase();
-      return haystack.includes(normalizedSearchQuery);
-    });
-  }, [normalizedSearchQuery, sortedConversations]);
-  const hasConversationSearch = isConversationView && Boolean(normalizedSearchQuery);
-  const currentItems = isConversationView ? filteredConversations : sortedRooms;
+  // U6: no client-side filtering. The old filter ran over the loaded page only
+  // (default 30), so a match further down produced a confident empty result.
+  // The server now searches every conversation the user owns.
+  const hasConversationSearch = isConversationView && Boolean(committedSearch);
+  const currentItems = isConversationView ? sortedConversations : sortedRooms;
   const currentBusy = isConversationView ? busy : roomsBusy;
   // A failed request proves nothing about whether results exist, so `error`
   // outranks `no_matches` here — otherwise a technical failure would render as
