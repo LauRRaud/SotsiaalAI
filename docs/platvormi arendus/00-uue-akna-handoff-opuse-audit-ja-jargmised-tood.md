@@ -134,6 +134,12 @@ Mõlemas auditis:
 
 ## 5. Mida teha auditi järel
 
+Opuse auditi-järgne teostuspakett on eraldi lukustatud failis:
+
+`docs/platvormi arendus/01-opus-parast-auditit-operatsioon-u4-u8-tooplaan-ja-progress.md`
+
+Kui mõlemad auditid on puhtad või sisaldavad ainult teadlikult aktsepteeritud P2 leide, jätkab Opus selle faili järgi automaatselt järjekorras: Parimate praktikate operatsioonipakett → U4 → U8-lite. P0/P1 leid katkestab uue arenduse kuni Soli paranduse ja kordusauditini.
+
 ### 5.1 Kui Opus leiab P0 või P1
 
 Sol parandab ainult tõendatud vead, lisab regressioonitestid ja teeb uue täieliku kontrolli. Paranduste järel läheb sama diff uuesti Opusele või teisele sõltumatule järelkontrollile.
