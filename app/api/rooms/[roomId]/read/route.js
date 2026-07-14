@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { markNotificationSourceRead } from "@/lib/notifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -143,16 +144,20 @@ export async function PUT(_req, { params }) {
       member.lastReadAt && member.lastReadAt > latestReadAt
         ? member.lastReadAt
         : latestReadAt;
-    await prisma.roomMember.update({
-      where: {
-        roomId_userId: {
-          roomId,
-          userId: auth.userId
-        }
-      },
-      data: {
-        lastReadAt: nextLastReadAt
-      }
+    await prisma.$transaction(async (tx) => {
+      await tx.roomMember.update({
+        where: {
+          roomId_userId: {
+            roomId,
+            userId: auth.userId
+          }
+        },
+        data: { lastReadAt: nextLastReadAt }
+      });
+      await markNotificationSourceRead(auth.userId, {
+        sourceType: "ROOM",
+        sourceId: roomId
+      }, { db: tx, now: nextLastReadAt });
     });
     return json({
       ok: true

@@ -540,7 +540,8 @@
         "existing_support": "Existing support",
         "support_adequacy": "Whether support is sufficient",
         "person_wish": "Person's own wish",
-        "receiver_note": "Internal note"
+        "receiver_note": "Internal note",
+        "next_contact_on": "Next contact date"
       },
       "placeholders": {
         "topic": "Short subject",
@@ -631,6 +632,7 @@
       "send_success": "Pre-inquiry sent.",
       "received_download": "Download pre-information",
       "receiver_workflow_note": "Use this block to prepare for a meeting or next contact. Notes are visible in the receiver workflow, not in the inquirer's draft.",
+      "next_contact_hint": "The date is visible only in the receiver workspace.",
       "workflow_save_success": "Receiver workflow saved.",
       "errors": {
         "load_failed": "Pre-inquiries could not be loaded.",
@@ -2967,6 +2969,40 @@
       "written_discussion": "Written discussion"
     }
   },
+  "notifications": {
+    "events": {
+      "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
+      "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
+      "room_invite": "You received a room invitation",
+      "room_activity": "There is new activity in your room",
+      "help_match_created": "A match was found for your help listing",
+      "next_contact_due": "The next contact is due",
+      "practice_review_assigned": "A practice review was assigned to you",
+      "practice_review_overdue": "A practice review is overdue",
+      "service_availability_stale": "Service availability needs confirmation"
+    },
+    "email_preference": "Also send optional work-queue notifications by email",
+    "email_preference_hint": "Emails never include inquiry, room, or draft content.",
+    "email_subject": "SotsiaalAI notification",
+    "email_intro": "There is a new notification for you in SotsiaalAI.",
+    "email_action": "Sign in securely to view it:"
+  },
+  "workspace_continuity": {
+    "title": "Continue here",
+    "limit": "Up to 7 next steps",
+    "loading": "Collecting your unfinished work…",
+    "error": "Your unfinished work is not available right now.",
+    "empty": "You have no unfinished activities right now.",
+    "next_contact_overdue": "The next contact needs attention",
+    "next_contact_upcoming": "Prepare for the next contact",
+    "pre_inquiry_received": "Review a received pre-inquiry",
+    "practice_review": "Continue an assigned practice review",
+    "room_unread": "Read new room messages",
+    "service_availability": "Confirm service availability",
+    "pre_inquiry_draft": "Continue a pre-inquiry draft",
+    "wellbeing_draft": "Continue a wellbeing draft",
+    "journey": "Continue your Journey"
+  },
   "api": {
     "common": {
       "unauthorized": "Please sign in to continue.",
@@ -2978,6 +3014,15 @@
       "subscription_required": "An active subscription is required.",
       "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
       "usage_load_failed": "Usage data could not be loaded."
+    },
+    "notifications": {
+      "load_failed": "Notifications could not be loaded.",
+      "update_failed": "The notification could not be updated.",
+      "preference_load_failed": "Notification preference could not be loaded.",
+      "preference_conflict": "The notification preference changed. Refresh and try again.",
+      "invalid_preference": "The notification preference is invalid.",
+      "preference_update_failed": "The notification preference could not be saved.",
+      "continuity_failed": "Unfinished activities could not be loaded."
     },
     "chat": {
       "invalid_conv_id": "Invalid conversation ID.",
@@ -4835,7 +4880,8 @@
       "opened_cannot_be_edited": "An opened or already corrected pre-inquiry cannot be edited directly. Send a new correction.",
       "correction_failed": "The correction could not be sent.",
       "not_sent": "The pre-inquiry has not been sent yet.",
-      "open_conflict": "The pre-inquiry changed in the meantime. Refresh and try again."
+      "open_conflict": "The pre-inquiry changed in the meantime. Refresh and try again.",
+      "next_contact_invalid": "Enter a real date in YYYY-MM-DD format."
     }
   },
   "my_sharings": {

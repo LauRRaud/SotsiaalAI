@@ -33,6 +33,8 @@
     "service-map:geocode": "node scripts/geocode-service-map-entries.mjs",
     "service-availability:remind": "tsx --tsconfig jsconfig.json scripts/service-availability-reminders.mjs",
     "service-availability:remind:dry": "tsx --tsconfig jsconfig.json scripts/service-availability-reminders.mjs --dry-run",
+    "notifications:dispatch": "node scripts/notification-job.mjs",
+    "notifications:dispatch:dry": "node scripts/notification-job.mjs --dry-run",
     "build": "npm run i18n:check && next build --turbopack",
     "build:webpack": "npm run i18n:check && next build --webpack",
     "video:dev:timeline": "node scripts/make-dev-video.mjs",

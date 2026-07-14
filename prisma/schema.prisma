@@ -656,6 +656,8 @@ model User {
   accessSuspendedReason   String?
   accessSuspendedByUserId String?
   acceptsPreInquiries     Boolean   @default(false)
+  notificationEmailEnabled Boolean?
+  notificationPreferenceVersion Int @default(0)
 
   // NextAuth
   accounts Account[]
@@ -738,6 +740,7 @@ model User {
   effectivePracticeAuditEvents EffectivePracticeAuditEvent[]    @relation("EffectivePracticeAuditActor")
   sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
   sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
+  notificationEvents           NotificationEvent[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1875,6 +1878,7 @@ model PreInquiry {
   userEditedDraft         String?                   @db.Text
   receiverNote            String?                   @db.Text
   receiverChecklist       Json?
+  nextContactOn           String?
   status                  PreInquiryStatus          @default(DRAFT)
   sentAt                  DateTime?
   openedAt                DateTime?
@@ -1896,12 +1900,42 @@ model PreInquiry {
   @@index([authorId, sentAt])
   @@index([recipientOwnerId, updatedAt])
   @@index([recipientOwnerId, recalledAt, updatedAt])
+  @@index([recipientOwnerId, nextContactOn, status])
   @@index([recipientEntryId])
   @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
   @@index([status])
   @@index([createdAt])
+}
+
+model NotificationEvent {
+  id                 String    @id @default(cuid())
+  userId             String
+  type               String
+  sourceType         String
+  sourceId           String
+  dedupeKey          String    @unique
+  targetKind         String
+  targetId           String
+  readAt             DateTime?
+  expiresAt          DateTime?
+  emailPolicy        String    @default("NONE")
+  emailStatus        String    @default("NOT_REQUESTED")
+  emailAttempts      Int       @default(0)
+  emailNextAttemptAt DateTime?
+  emailClaimedAt     DateTime?
+  emailedAt          DateTime?
+  emailLastErrorCode String?
+  emailMessageId     String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, readAt, createdAt, id])
+  @@index([emailStatus, emailNextAttemptAt, id])
+  @@index([userId, sourceType, sourceId, readAt])
 }
 
 // Teemaseeme remains an owner-private preparation object. WAITING freezes the

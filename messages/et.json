@@ -540,7 +540,8 @@
         "existing_support": "Olemasolev abi",
         "support_adequacy": "Kas abist piisab",
         "person_wish": "Inimese enda soov",
-        "receiver_note": "Sisemine märge"
+        "receiver_note": "Sisemine märge",
+        "next_contact_on": "Järgmise kontakti kuupäev"
       },
       "placeholders": {
         "topic": "Lühike pealkiri",
@@ -631,6 +632,7 @@
       "send_success": "Eelpöördumine saadetud.",
       "received_download": "Laadi eelinfo alla",
       "receiver_workflow_note": "Kasuta seda plokki kohtumise või järgmise kontakti ettevalmistamiseks. Märkmed on nähtavad vastuvõtja töövaates, mitte pöörduja mustandis.",
+      "next_contact_hint": "Kuupäev on nähtav ainult vastuvõtja töövaates.",
       "workflow_save_success": "Vastuvõtja tööplaan salvestati.",
       "errors": {
         "load_failed": "Eelpöördumisi ei saanud laadida.",
@@ -2967,6 +2969,40 @@
       "summary_intro": "Kokkuvõte põhineb juhtumilõuendil ja tekstiliselt sisestatud arutelul. Kovisiooni heli ei salvestata, ei transkribeerita ja seda ei kasutata kokkuvõtte koostamiseks."
     }
   },
+  "notifications": {
+    "events": {
+      "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
+      "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
+      "room_invite": "Sulle saadeti ruumikutse",
+      "room_activity": "Sinu ruumis on uut tegevust",
+      "help_match_created": "Sinu abikuulutusele tekkis sobitus",
+      "next_contact_due": "Järgmise kontakti aeg on kätte jõudnud",
+      "practice_review_assigned": "Sulle määrati praktika ülevaatus",
+      "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
+      "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist"
+    },
+    "email_preference": "Saada valikulised tööjärje märguanded ka e-postiga",
+    "email_preference_hint": "Kirjad ei sisalda pöördumiste, ruumide ega mustandite sisu.",
+    "email_subject": "SotsiaalAI märguanne",
+    "email_intro": "SotsiaalAI-s on sulle uus märguanne.",
+    "email_action": "Logi selle vaatamiseks turvaliselt sisse:"
+  },
+  "workspace_continuity": {
+    "title": "Jätka siit",
+    "limit": "Kuni 7 järgmist sammu",
+    "loading": "Koondan sinu pooleliolevaid tegevusi…",
+    "error": "Pooleliolevate tegevuste koond ei ole praegu saadaval.",
+    "empty": "Hetkel ei ole pooleliolevaid tegevusi.",
+    "next_contact_overdue": "Järgmine kontakt vajab tähelepanu",
+    "next_contact_upcoming": "Valmistu järgmiseks kontaktiks",
+    "pre_inquiry_received": "Vaata saabunud eelpöördumine üle",
+    "practice_review": "Jätka määratud praktika ülevaatust",
+    "room_unread": "Vaata ruumi uusi sõnumeid",
+    "service_availability": "Kinnita teenuse kättesaadavus",
+    "pre_inquiry_draft": "Jätka eelpöördumise mustandit",
+    "wellbeing_draft": "Jätka Tööheaolu mustandit",
+    "journey": "Jätka oma Teekonda"
+  },
   "api": {
     "common": {
       "unauthorized": "Jätkamiseks logi sisse.",
@@ -2978,6 +3014,15 @@
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
       "usage_load_failed": "Kasutusandmeid ei saanud laadida."
+    },
+    "notifications": {
+      "load_failed": "Teavitusi ei saanud laadida.",
+      "update_failed": "Teavitust ei saanud uuendada.",
+      "preference_load_failed": "Teavituseelistust ei saanud laadida.",
+      "preference_conflict": "Teavituseelistus muutus vahepeal. Värskenda ja proovi uuesti.",
+      "invalid_preference": "Teavituseelistus ei ole sobiv.",
+      "preference_update_failed": "Teavituseelistust ei saanud salvestada.",
+      "continuity_failed": "Pooleliolevate tegevuste koondit ei saanud laadida."
     },
     "chat": {
       "invalid_conv_id": "Vigane vestluse ID.",
@@ -4857,7 +4902,8 @@
       "opened_cannot_be_edited": "Avatud või juba parandatud pöördumist ei saa otse muuta. Saada uus parandus.",
       "correction_failed": "Parandust ei saanud saata.",
       "not_sent": "Pöördumist ei ole veel saadetud.",
-      "open_conflict": "Pöördumise olek muutus vahepeal. Värskenda ja proovi uuesti."
+      "open_conflict": "Pöördumise olek muutus vahepeal. Värskenda ja proovi uuesti.",
+      "next_contact_invalid": "Sisesta tegelik kuupäev kujul AAAA-KK-PP."
     }
   },
   "my_sharings": {
