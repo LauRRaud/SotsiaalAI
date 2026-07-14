@@ -1,6 +1,6 @@
 # SotsiaalAI ruumilise kogemuse lähtekoht
 
-Seis: kontseptuaalne lähtealus, täiendatud 11.07.2026 õhtul  
+Seis: kontseptuaalne lähtealus, täiendatud 14.07.2026
 Ulatus: kogu platvormi tulevane kasutuskogemus  
 Staatus: uus lähtekoht edasiseks kaardistamiseks ja arendamiseks
 
@@ -163,6 +163,39 @@ Lennuteekond sobib eriti:
 - teenuseprofiili esmaseks loomiseks.
 
 Ühes vaates kuvatakse üks põhiülesanne või selgelt seotud lõuendipaar. Varasemad sammud jäävad alles ning nende juurde saab naasta.
+
+#### Olemasolev flight-efekti prototüübisisend
+
+Staatus: **KANDIDAAT JÄRGMISE RUUMILISE PROTOTÜÜBI JAOKS**, mitte kinnitatud tooteotsus.
+
+Repos on tehniline lähteallikas [`public/room/flight-effect.md`](../../public/room/flight-effect.md) ning kaks visuaalset ruumireferentsi kaustas [`public/room/ruumi pildid`](../../public/room/ruumi%20pildid). Kirjeldatud lahendus loob kerimisega juhitava lennu läbi eri sügavustele paigutatud 3D-plaanide. Selles on juba arvestatud iOS Safari 3D-lamendamise, jõudluse, piltide eellaadimise, klaviatuurinavigatsiooni, vahelejätmise ja `prefers-reduced-motion` varuvaatega.
+
+See ei ole platvormis täiesti kasutamata idee. Aktiivse `main`-i `RoomStage` kasutab sama ühe tasandi perspektiivi põhimõtet saabumisteekonna tekstipeatuste `translateZ`-liikumiseks. Järgmine prototüüp peab seetõttu **laiendama olemasolevat RoomStage'i rAF- ja kerimisloogikat**, mitte lisama selle kõrvale teist konkureerivat animatsioonimootorit.
+
+Sobivad võimalikud kasutused:
+
+- harv ja tähenduslik liikumine ühest ruumivööndist teise, näiteks fuajee → isiklik tööruum → ühine koostööruum;
+- juhendatud mitmeastmeline teekond, kus iga sügavusplaan on päris tööetapp, mitte dekoratiivne slaid;
+- valmis töö liikumise visualiseerimine aktiivsest tööruumist lõpetatud juhtumi või praktikate alale;
+- ruumide avastuslik eelvaade, mille kõrval säilib alati otselink või ruumiindeks.
+
+Efekti ei kasutata vaikimisi:
+
+- iga kaardikliki või tavapärase lehevahetuse vahel;
+- pika vormi peitmiseks animatsiooni sisse;
+- olukorras, kus kasutaja peab kiiresti tagasi pöörduma, kriitilist infot leidma või paralleelselt eri andmeid võrdlema;
+- privaatsus- või rollipiiri ainsa selgitusena — ruumivahetusega peab kaasnema ka nähtav tekstiline kinnitus, kellele järgmine ala ja selle objektid nähtavad on.
+
+Prototüübi kohustuslikud piirid:
+
+1. iga plaan peab olema avatav otselingi, klaviatuuri ja „jäta vahele” teega;
+2. brauseri tagasi-edasi liikumine ning poolelioleva töö seis peavad säilima;
+3. vähendatud liikumise korral kasutatakse sama sisu lamedat järjestust, mitte tühja või kärbitud varianti;
+4. mobiilil mõõdetakse enne kasutuselevõttu kaadrisagedust, mälukulu ja piltide dekodeerimise aega;
+5. kaks PNG-referentsi (ligikaudu 1,9 MB kumbki) on ideepildid, mitte otse tootmisse saadetavad varad — tootmisvara vajab sobivat mõõtu ja WebP/AVIF-versiooni;
+6. sügavus ja liikumine peavad kandma töövoo tähendust; kui sama tulemus on selgem ühe rahuliku vahetusega, ei kasutata täislendu.
+
+Järgmise ruumiülesande esimene otsus on seega: **kas kasutusjuht vajab päriselt ruumidevahelist lendu või piisab praegu kasutusel olevast kergest sügavusüleminekust?** Alles pärast seda valitakse täis-FlightScene'i prototüüp või RoomStage'i olemasoleva efekti tagasihoidlik laiendus.
 
 ### 4.4. Vabalt kasutatav lõuend
 
