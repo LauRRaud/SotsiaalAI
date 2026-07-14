@@ -4,15 +4,16 @@
 > **Tööpuu:** `C:/Users/rauds/Desktop/SotsiaalAI-integration`
 > **Haru:** `codex/integration-u3-p1-u8-u4-rehearsal`
 > **Baas:** `origin/main` @ `df2f45c0`
-> **Main-merge / deploy:** tegemata
+> **Remote main / production deploy:** tehtud 2026-07-14, commit `22958456`
 
 ## 1. Otsus
 
 Neli kasutaja poolt integratsiooniks lubatud paketti on värske `origin/main`
 peal üheks rehearsal-haruks ühendatud ja kogu kontrollpaketiga testitud.
-Integratsioon on **merge-review-valmis**, kuid seda ei ole `main`-i ühendatud ega
-deploy'tud. U1/U2 teostust ei ole alustatud; see ootab Opuse read-only
-ülesannete 2–5 lõppüleandmist.
+Pärast kasutaja eraldi deploy-luba viidi integratsioon kontrollitud
+fast-forward'ina remote `main`-i ja production-serverisse commit'il `22958456`.
+U1/U2 teostust ei ole alustatud; see ootab Opuse read-only ülesannete 2–5
+lõppüleandmist.
 
 Pakettide auditeerimismärgendid jäävad muutmata:
 
@@ -96,23 +97,73 @@ paketist ei muuda lukufaili; see ei ole käesoleva integratsiooni regressioon.
 
 ## 5. Täpne jätkamispunkt
 
-1. Push'i rehearsal-haru koos käesoleva doki ja kahe integratsiooniparandusega.
-2. Ära ühenda nelja feature-haru hiljem eraldi ilma siinsete lahendusteta.
-   Eelistatud ühendusobjekt on
-   `codex/integration-u3-p1-u8-u4-rehearsal`, sest see säilitab lähteharude
-   merge-ajaloo, U8 migratsiooni uue nime ja CSS budget lahenduse.
-3. `main`-i ühendamine toimub alles kasutaja eraldi otsusel; deploy on eraldi
-   tegevus ja ei kuulu siia.
-4. Opus lõpetab read-only ülesanded 2–5 ning annab U1/U2 privaatsus- ja
+1. Remote `main` ja production on commit'il `22958456`; neli feature-haru ei
+   vaja enam eraldi ühendamist.
+2. Opus lõpetab read-only ülesanded 2–5 ning annab U1/U2 privaatsus- ja
    arhitektuurilepingu Solile üle.
-5. Pärast seda loob Sol värskest, integratsiooni sisaldavast `origin/main`-ist
+3. Pärast seda loob Sol värskest, integratsiooni sisaldavast `origin/main`-ist
    uue eraldi U1/U2 tööpuu. Esimesed parandused on SOL-U1U2-P1-1 serializeri
    audience-värav ja OPUS-U1U2-P1-2 tootmise maileri fail-closed leping.
+4. Jälgi esimeste automaatsete scheduler-käivituste järel systemd `Result` ja
+   rakenduse auditikirjeid; käsitsi kordussaatmist ega deploy-erandit pole vaja.
 
 ## 6. Piirid
 
-- `main` HEAD ja dirty põhitööpuu jäid puutumata;
+- lokaalse dirty põhitööpuu HEAD, staging ja kõrvalmuudatused jäid puutumata;
+- remote `main` viidi fast-forward'ina `df2f45c0 -> 22958456`;
 - kõrvalisi ruumipilte, imagegen-väljundeid ega CSS-ruumifaile ei lisatud;
 - feature-harude ajalugu ei kirjutatud ümber;
-- deploy'd, production-migratsiooni ega väliseid sõnumeid ei tehtud;
+- production-migratsioon ja build tehti repo deploy-skriptiga; productioni
+  kasutajaandmeid käsitsi ei muudetud ning väliseid sõnumeid ei saadetud;
 - U1/U2 rakenduskoodi ei alustatud enne Opuse üleandmist.
+
+## 7. Production deploy — 2026-07-14
+
+### 7.1 Git, migratsioon ja build
+
+- remote `main`: `229584569fe497f78b4888d45872b32ad9601781`;
+- server: `ssh sotsiaalai`, `/home/ubuntu/apps/sotsiaalai`, haru `main`;
+- server tegi puhta fast-forward'i `e5fa1c59 -> 22958456`;
+- `prisma migrate deploy` rakendas ahela 91. migratsioonini;
+- `prisma migrate status`: **Database schema is up to date**;
+- serveri production build läbis, 54 lehte genereeriti;
+- `sotsiaalai-rag.service` ja `sotsiaalai-frontend.service`: **active**;
+- build-logi: `/home/ubuntu/apps/sotsiaalai/deploy-build-logs/build-20260714T150127Z.log`.
+
+### 7.2 Keskkonnamuutujad
+
+`/etc/sotsiaalai/frontend.env` sai ainult puuduvad võtmed; väärtusi reposse ega
+logisse ei kirjutatud:
+
+- `PRACTICE_REVIEW_JOB_KEY` — serveris genereeritud 256-bitine juhuslik saladus;
+- `PRACTICE_REVIEW_BATCH_SIZE=50`;
+- `PRACTICE_DEPLOY_MAX_RAG_RESIDUE=0`;
+- `PRACTICE_DEPLOY_ALLOW_RAG_DISABLED=false`;
+- `SERVICE_AVAILABILITY_FRESH_DAYS=28`.
+
+Varukoopia:
+`/etc/sotsiaalai/frontend.env.bak-20260714T150110Z`.
+
+### 7.3 Deploy-järgsed väravad
+
+- väline HTTPS: `/`, `/minu-jagamised`, `/admin/rag/source-feedback` ja
+  `/admin/service-availability` tagastasid **200**;
+- RAG health: `ok=true`, teenus aktiivne;
+- frontend/RAG journalis pärast deploy'd error-taseme kirjeid polnud;
+- practice scheduler dry-run: HTTP **200**, `reviewsDue=0`,
+  `assignmentsOverdue=0`;
+- availability reminder dry-run ja esimene päriskäivitus: `due=0`, `sent=0`,
+  `notSent=0`;
+- P1 deploy-gate: `ok=true`, kõik residue/mismatch/unlinked/repair loendurid 0,
+  migratsioonid ajakohased.
+
+### 7.4 Ajastajad
+
+Serveris lisati ja valideeriti:
+
+- `sotsiaalai-practice-reviews.timer` — iga päev 03:15, kuni 15 min juhuslik nihe;
+- `sotsiaalai-service-availability.timer` — iga päev 04:00, kuni 15 min
+  juhuslik nihe;
+- mõlemal `Persistent=true`, seotud oneshot-service töötab kasutajana `ubuntu`;
+- job-secret ei lähe protsessi argumenti ega journalisse;
+- mõlema esimene päriskäivitus lõpetas `Result=success`, `ExecMainStatus=0`.
