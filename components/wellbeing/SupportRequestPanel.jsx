@@ -1,8 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import { buildWellbeingShareableDraft } from "@/lib/wellbeing/supportDraftText";
 
 const supportOptions = [
@@ -46,6 +47,7 @@ export default function SupportRequestPanel({
   const [userConfirmed, setUserConfirmed] = useState(false);
   const [confirmedNoIdentifiers, setConfirmedNoIdentifiers] = useState(false);
   const [status, setStatus] = useState("idle");
+  const requestGateRef = useRef(createLatestRequestGate());
 
   const preview = useMemo(() => {
     if (!selected) return "";
@@ -63,6 +65,7 @@ export default function SupportRequestPanel({
   const isBusy = status === "saving" || status === "starting_covision";
 
   function changeEditedText(value) {
+    if (isBusy) return;
     setEditedText(value);
     setUserReviewed(false);
     setUserConfirmed(false);
@@ -75,6 +78,7 @@ export default function SupportRequestPanel({
   }
 
   function chooseOption(option) {
+    requestGateRef.current.invalidate();
     setSelected(option);
     setDraft(null);
     setEditedText("");
@@ -85,6 +89,7 @@ export default function SupportRequestPanel({
   }
 
   function leavePrivate() {
+    requestGateRef.current.invalidate();
     setSelected(null);
     setDraft(null);
     setEditedText("");
@@ -97,6 +102,7 @@ export default function SupportRequestPanel({
   async function saveDraft() {
     const textToSave = String(editedText || preview).trim();
     if (!selected || !textToSave || isBusy) return;
+    const request = requestGateRef.current.begin("save-draft");
     setStatus("saving");
     try {
       const response = await fetch(
@@ -106,6 +112,7 @@ export default function SupportRequestPanel({
         {
         method: draft?.id ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
+        signal: request.signal,
         body: JSON.stringify(draft?.id
           ? {
             editedText: textToSave,
@@ -121,6 +128,7 @@ export default function SupportRequestPanel({
           })
       });
       const payload = await response.json().catch(() => ({}));
+      if (!request.isCurrent()) return;
       if (!response.ok || !payload?.ok) {
         const error = new Error(payload?.message || "wellbeing.errors.output_draft_failed");
         error.status = response.status;
@@ -133,6 +141,7 @@ export default function SupportRequestPanel({
       setConfirmedNoIdentifiers(false);
       setStatus("draft_saved");
     } catch (error) {
+      if (isAbortError(error) || !request.isCurrent()) return;
       setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
     }
   }
@@ -140,11 +149,13 @@ export default function SupportRequestPanel({
   async function confirmDraft() {
     const textToConfirm = String(editedText || preview).trim();
     if (!draft?.id || !textToConfirm || !userReviewed || !userConfirmed || isBusy) return;
+    const request = requestGateRef.current.begin("confirm-draft");
     setStatus("saving");
     try {
       const response = await fetch(`/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
+        signal: request.signal,
         body: JSON.stringify({
           editedText: textToConfirm,
           userReviewed,
@@ -153,6 +164,7 @@ export default function SupportRequestPanel({
         })
       });
       const payload = await response.json().catch(() => ({}));
+      if (!request.isCurrent()) return;
       if (!response.ok || !payload?.ok) {
         const error = new Error(payload?.message || "wellbeing.errors.output_confirm_failed");
         error.status = response.status;
@@ -163,6 +175,7 @@ export default function SupportRequestPanel({
       setConfirmedNoIdentifiers(false);
       setStatus("ready");
     } catch (error) {
+      if (isAbortError(error) || !request.isCurrent()) return;
       setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
     }
   }
@@ -177,6 +190,7 @@ export default function SupportRequestPanel({
       || hasUnconfirmedEdits
       || isBusy
     ) return;
+    const request = requestGateRef.current.begin("start-covision");
     setStatus("starting_covision");
     try {
       const response = await fetch(
@@ -184,6 +198,7 @@ export default function SupportRequestPanel({
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
+          signal: request.signal,
           body: JSON.stringify({
             expectedUpdatedAt: draft.updatedAt,
             confirmedNoIdentifiers: true
@@ -191,6 +206,7 @@ export default function SupportRequestPanel({
         }
       );
       const payload = await response.json().catch(() => ({}));
+      if (!request.isCurrent()) return;
       if (!response.ok || !payload?.ok || !payload?.covisionCaseId) {
         const error = new Error(payload?.message || "wellbeing.errors.covision_handoff_failed");
         error.status = response.status;
@@ -201,6 +217,7 @@ export default function SupportRequestPanel({
       if (typeof onNavigate === "function") onNavigate(href);
       else window.location.assign(href);
     } catch (error) {
+      if (isAbortError(error) || !request.isCurrent()) return;
       setStatus(
         error?.message === "wellbeing.errors.identifiers_detected"
           ? "covision_identifiers"
@@ -245,7 +262,10 @@ export default function SupportRequestPanel({
         <Button
           type="button"
           className="wellbeing-choice-btn"
-          onClick={() => onNavigate?.("/tooheaolu/taastumine")}
+          onClick={() => {
+            requestGateRef.current.invalidate();
+            onNavigate?.("/tooheaolu/taastumine");
+          }}
           disabled={isBusy}
         >
           <span>{t("wellbeing.support.open_recovery", "Ava Taastumine")}</span>
@@ -264,6 +284,7 @@ export default function SupportRequestPanel({
               onChange={(event) => changeEditedText(event.target.value)}
               rows={11}
               maxLength={4000}
+              disabled={isBusy}
             />
           </label>
           <div>
@@ -272,6 +293,7 @@ export default function SupportRequestPanel({
                 type="checkbox"
                 checked={userReviewed}
                 onChange={(event) => setUserReviewed(event.target.checked)}
+                disabled={isBusy}
               />
               {t("wellbeing.support.reviewed", "Olen teksti üle vaadanud ja liigsed detailid eemaldanud.")}
             </label>
@@ -280,6 +302,7 @@ export default function SupportRequestPanel({
                 type="checkbox"
                 checked={userConfirmed}
                 onChange={(event) => setUserConfirmed(event.target.checked)}
+                disabled={isBusy}
               />
               {t("wellbeing.support.confirmed", "Kinnitan, et see versioon sobib jagatavaks sisendiks.")}
             </label>
@@ -316,6 +339,7 @@ export default function SupportRequestPanel({
                     type="checkbox"
                     checked={confirmedNoIdentifiers}
                     onChange={(event) => setConfirmedNoIdentifiers(event.target.checked)}
+                    disabled={isBusy}
                   />
                   {t(
                     "wellbeing.support.confirm_no_identifiers",

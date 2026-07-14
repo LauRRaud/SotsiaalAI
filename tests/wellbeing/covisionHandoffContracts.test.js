@@ -147,6 +147,52 @@ test("SupportRequestPanel sends only the handoff contract and navigates to the e
   assert.doesNotMatch(supportPanel, /onNavigate\?\.\(["']\/kovisioon["']\)/);
 });
 
+test("SupportRequestPanel invalidates stale writes and freezes editable state while busy", () => {
+  const changeEditedText = between(
+    supportPanel,
+    "function changeEditedText(value)",
+    "function chooseOption(option)"
+  );
+  const chooseOption = between(
+    supportPanel,
+    "function chooseOption(option)",
+    "function leavePrivate()"
+  );
+  const leavePrivate = between(
+    supportPanel,
+    "function leavePrivate()",
+    "async function saveDraft()"
+  );
+  const saveDraft = between(
+    supportPanel,
+    "async function saveDraft()",
+    "async function confirmDraft()"
+  );
+  const confirmDraft = between(
+    supportPanel,
+    "async function confirmDraft()",
+    "async function startCovision()"
+  );
+  const startCovision = between(
+    supportPanel,
+    "async function startCovision()",
+    "  return ("
+  );
+
+  assert.match(supportPanel, /createLatestRequestGate/);
+  assert.match(supportPanel, /useRef\(createLatestRequestGate\(\)\)/);
+  assert.match(changeEditedText, /if \(isBusy\) return/);
+  assert.match(chooseOption, /requestGateRef\.current\.invalidate\(\)/);
+  assert.match(leavePrivate, /requestGateRef\.current\.invalidate\(\)/);
+  for (const source of [saveDraft, confirmDraft, startCovision]) {
+    assert.match(source, /requestGateRef\.current\.begin\(/);
+    assert.match(source, /signal:\s*request\.signal/);
+    assert.match(source, /if \(!request\.isCurrent\(\)\) return/);
+    assert.match(source, /isAbortError\(error\) \|\| !request\.isCurrent\(\)/);
+  }
+  assert.match(supportPanel, /<textarea[\s\S]*?disabled=\{isBusy\}/);
+});
+
 test("both wellbeing confirmation callers submit their saved draft fingerprint", () => {
   const supportConfirm = between(
     supportPanel,

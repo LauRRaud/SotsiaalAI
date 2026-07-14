@@ -37,6 +37,18 @@ test("covision call routes use contextType COVISION", () => {
   assert.doesNotMatch(routes, /recording\/request/);
 });
 
+test("covision call serialization maps account ids to opaque call participant ids", () => {
+  const service = read("lib/calls/service.js");
+
+  assert.match(service, /const isCovision = call\.contextType === CALL_CONTEXT_COVISION/);
+  assert.match(service, /participantIdForUser/);
+  assert.match(service, /startedByParticipantId/);
+  assert.match(service, /participantId:\s*participantIdForUser\(request\.userId\)/);
+  assert.match(service, /resolvedByParticipantId/);
+  assert.match(service, /!isCovision \? \{ userId: participant\.userId \} : \{\}/);
+  assert.doesNotMatch(service, /entry\?\.user\?\.email\s*\|\|\s*entry\?\.email/);
+});
+
 test("every activity-creating covision call route rechecks terminal state under the shared lock", () => {
   const mutatingRoutes = [
     "app/api/covision/[id]/calls/start/route.js",

@@ -465,6 +465,34 @@ Opus uuendab seda osa pärast iga suuremat sammu.
 - Aktiivne pakett: puudub.
 - Järgmine samm: auditite lõpetamine ning P0/P1 värava otsus.
 
+### 2026-07-14 — OPUS — PAKETIVÄRAV: BLOKEERITUD (2 P1)
+
+- Kuupäev/kell: 2026-07-14, Europe/Tallinn.
+- Mudel/effort: Claude Opus 4.8, Extra (`xhigh`).
+- Aktiivne pakett ja etapp: §1 kvaliteedivärav — **read-only audit lõpetatud**; uut koodi EI alustatud.
+- Lähte-HEAD: `main` @ `3b52f399` (auditeeritud fikseeritud `7f20d7ce` ja `9a46192b`).
+- Loetud/kontrollitud: vt auditidokid `06-opus-...jarelkontroll.md` (Audit A) ja `07-opus-...jarelkontroll.md` (Audit B) — täielikud, 6 sõltumatut adversaalset lugejat + Opuse objektiivsed kontrollid + migratsioonide struktuurne audit + 401 runtime-smoke.
+- Tehtud muudatused: ainult kaks auditi-väljunddokki + see progressikirje. **Koodi EI muudetud.**
+- Käivitatud kontrollid ja täpsed tulemused: `npm test` 1070/1070; `i18n:check` OK; `lint` 0 viga / 359 hoiatust; `prisma validate`/`generate` OK; `db:migrate:check` 87 migratsiooni, drift puudub; `build` OK; `git diff --check` puhas; runtime-smoke uued marsruudid → 401.
+- Leitud riskid/P0/P1/P2: **P0 puudub.** 2 kitsast P1: **A-P1-1** (`lib/calls/service.js` `serializeCallSession` väljastab sisemised `userId`-d covision-kõne osalejatele) ja **B-P1-1** (`SupportRequestPanel.jsx` mustandi-salvestusel puudub request-gate → hiline vastus taastab oleku). Ülejäänu P2 (valikuline/edasilükatu; sh RAG-reconcile-lüngad, mis kattuvad selle paketi P1-A/P1-E-ga).
+- Kõrvaliste failide seis: `public/room/frame-*.webp`, `output/imagegen/**`, `scripts/build-room-locked-frames.mjs` — puutumata, stage'imata.
+- Järgmine konkreetne samm: **Sol parandab mõlemad P1 + lisab regressioonitestid + teeb täieliku kontrollipaketi.** Seejärel Opus teeb paranduste kordusauditi. **Operatsioonipakett (P1) algab alles pärast mõlema P1 sulgemist** (doc 01 §1).
+- Commit/push/deploy seis: TEGEMATA (kasutaja otsus: peatu).
+
+### 2026-07-14 — SOL — 2 P1 PARANDATUD, OOTAB OPUSE KORDUSAUDITIT
+
+- Kuupäev/kell: 2026-07-14, Europe/Tallinn.
+- Mudel/effort: Sol 5.6, väga kõrge.
+- Aktiivne pakett ja etapp: §1 kvaliteedivärava parandusring; uut operatsioonipaketi arendust ei alustatud.
+- Lähte-HEAD: `main` @ `11381100` (paralleelne dokumentatsiooni-commit oli enne parandust juba HEAD-is).
+- Loetud/kontrollitud: Opuse Audit A ja Audit B täielikud P1 kirjeldused; kõneserializer, Kovisiooni kõne API teed, tavaruumi kõneklient, `SupportRequestPanel`, jagatud `latestRequestGate` muster ja olemasolevad testid.
+- Tehtud muudatused: A-P1-1 sulgemine kontekstipõhise opaakse kõneosaleja-ID lepinguga + e-posti fallbacki eemaldus; B-P1-1/B-P2-1 sulgemine request-generatsiooni värava, abortimise, aegunud vastuse kontrolli ja sisendite külmutamisega; regressioonitestid mõlemale.
+- Käivitatud kontrollid ja täpsed tulemused: sihttestid 35/35; `npm test` 1074/1074; `i18n:check` OK; muudetud failide ESLint 0 viga/0 hoiatust; kogu lint 0 viga; build OK; `db:migrate:check` 87 migratsiooni, drift puudub; `git diff --check` kontrollitakse vahetult enne commit'i.
+- Leitud riskid/P0/P1/P2: uusi P0/P1 leide ei tekkinud. A-P1-1, B-P1-1 ja sama juurega B-P2-1 on koodis parandatud; lõplik staatus jääb Opuse kordusauditi otsustada.
+- Kõrvaliste failide seis: `public/room/frame-*.webp`, `output/imagegen/**`, `scripts/build-room-locked-frames.mjs` — puutumata ja jäävad commit'ist välja.
+- Järgmine konkreetne samm: täpne commit + push; seejärel Opus auditeerib paranduste commit'i. Operatsioonipakett püsib kuni heakskiiduni ootel.
+- Commit/push/deploy seis: commit/push tehakse pärast lõpp-diffi; deploy'd ei tehta.
+
 ### Kohustuslik sissekandevorm
 
 ```text

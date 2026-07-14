@@ -8,7 +8,8 @@ import {
   cancelSpeakRequest,
   createCallService,
   createRecordingRequest,
-  createSpeakRequest
+  createSpeakRequest,
+  serializeCallSession
 } from "../../lib/calls/service.js";
 
 function createModel(initial = []) {
@@ -101,6 +102,85 @@ function createPrisma() {
     $transaction: async callback => callback(createPrisma())
   };
 }
+
+test("Covision call payload exposes only opaque participant identifiers", () => {
+  const call = serializeCallSession(
+    {
+      id: "call_covision",
+      contextType: "COVISION",
+      contextId: "case_1",
+      status: "ACTIVE",
+      startedByUserId: "user_owner"
+    },
+    {
+      participants: [
+        {
+          id: "call_participant_owner",
+          userId: "user_owner",
+          joinedAt: new Date("2026-07-14T10:00:00.000Z"),
+          user: { email: "owner@example.test", profile: {} }
+        },
+        {
+          id: "call_participant_guest",
+          userId: "user_guest",
+          joinedAt: new Date("2026-07-14T10:01:00.000Z"),
+          user: { email: "guest@example.test", profile: { firstName: "Mari", lastName: "Mets" } }
+        }
+      ],
+      speakRequests: [
+        {
+          id: "speak_1",
+          userId: "user_guest",
+          resolvedByUserId: "user_owner",
+          status: "RESOLVED",
+          requestedAt: new Date("2026-07-14T10:02:00.000Z"),
+          user: { email: "guest@example.test", profile: { firstName: "Mari", lastName: "Mets" } }
+        }
+      ]
+    }
+  );
+
+  assert.equal(call.startedByParticipantId, "call_participant_owner");
+  assert.equal("startedByUserId" in call, false);
+  assert.deepEqual(call.participants.map(participant => participant.id), [
+    "call_participant_owner",
+    "call_participant_guest"
+  ]);
+  assert.equal(call.participants.every(participant => !("userId" in participant)), true);
+  assert.equal(call.participants[0].displayName, "");
+  assert.equal(call.participants[1].displayName, "Mari Mets");
+  assert.equal(call.speakRequests[0].participantId, "call_participant_guest");
+  assert.equal(call.speakRequests[0].resolvedByParticipantId, "call_participant_owner");
+  assert.equal("userId" in call.speakRequests[0], false);
+  assert.equal("resolvedByUserId" in call.speakRequests[0], false);
+  assert.doesNotMatch(JSON.stringify(call), /owner@example\.test|guest@example\.test|user_owner|user_guest/);
+});
+
+test("room call payload retains its user identifier contract", () => {
+  const call = serializeCallSession(
+    {
+      id: "call_room",
+      contextType: "ROOM",
+      roomId: "room_1",
+      status: "ACTIVE",
+      startedByUserId: "user_owner"
+    },
+    {
+      participants: [{ id: "participant_1", userId: "user_owner" }],
+      speakRequests: [{
+        id: "speak_1",
+        userId: "user_owner",
+        resolvedByUserId: "user_owner",
+        status: "RESOLVED"
+      }]
+    }
+  );
+
+  assert.equal(call.startedByUserId, "user_owner");
+  assert.equal(call.participants[0].userId, "user_owner");
+  assert.equal(call.speakRequests[0].userId, "user_owner");
+  assert.equal(call.speakRequests[0].resolvedByUserId, "user_owner");
+});
 
 test("starting a room call reuses the existing active session", async () => {
   const prisma = createPrisma();
