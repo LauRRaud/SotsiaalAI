@@ -793,3 +793,92 @@ commit/main/deploy seisu. Alles pärast seda on järgmine pakett U7.
 - deploy: endiselt **5/12**; U1/U2 ei ole produktsioonis;
 - U1 ja U2 staatus: **SOL VALMIS — OOTAB OPUSE AUDITIT**;
 - järgmine teostus pärast auditit ja integratsiooni: **U7**.
+
+---
+
+## 23. OPUSE SÕLTUMATU AUDIT — U1/U2 (2026-07-14)
+
+> **VERDIKT: `OPUS HEAKS KIIDETUD`** — P0 puudub, P1 puudub. Merge on lubatud.
+> Üksteist P2-d on kirjas allpool; ükski ei blokeeri, aga kaks väärivad parandust enne kui e-kirjad kasutajatele sisse lülitatakse.
+> **Üks värav jääb lahtiseks:** §22.8 p10 (päris DB migratsioonikontroll) — vt §23.5.
+
+- Auditeeritud: `codex/u1-u2-events-continuity` @ `4d81eaab`, baas `main` @ `87a8f7cb`. Read-only.
+- Mudel/effort: Opus 4.8, Extra (xhigh).
+- Jooksutasin ise: sihttestid **122/122**, kogu repo `npm test` **exit 0**.
+
+### 23.1 Mõlemad P1-eeltingimused on SULETUD (kinnitatud koodist)
+
+**`SOL-U1U2-P1-1` + `OPUS-U1U2-P1-1-EXT` — suletud.** `serializePreInquiry(inquiry, { viewerId })`; `receiverNote`/`receiverChecklist`/`nextContactOn` ainult `isRecipient` korral. Minu EXT on lahendatud **rangemalt kui nõudsin**: kumbki pool näeb ainult **oma** e-posti (`isAuthor`/`isRecipient` väravad). Kontrollisin lisaks: (a) `viewerId = null` vaikeväärtus on **fail-closed**; (b) **iga** kutsuja annab `viewerId` (0 erandit); (c) ükski kood ei loe `author.email`/`recipientOwner.email` → **regressiooni ei teki**. Regressioonitest `tests/preInquiries/audienceSerialization.test.js` olemas.
+
+**`OPUS-U1U2-P1-2` — suletud.** `createTransporter`: prod ilma SMTP-ta → `createUnavailableTransporter()` → `sendMail` viskab `EmailTransportUnavailableError` (`retryable: false`). Dev-mock nõuab **explicit `EMAIL_DEV_MOCK`** ja on prod-is võimatu. Mock logib ainult loendureid — kogu sõnumi logimine kadus. Boonus: `normalizeMessageId` valideerib **CRLF-i vastu** (päise-injektsiooni kaitse).
+
+**Kõik neli minu §11.3 skeemiparandust on rakendatud:** `occurredAt` eemaldatud; `emailClaimToken` eemaldatud; kolmas indeks on **täpselt** `[userId, sourceType, sourceId, readAt]` (allika-põhine, nagu nõudsin); `emailMessageId` jäi ja mailer aktsepteerib kutsuja ID-d.
+
+**Minu „kaks saatjat" leid on lahendatud:** `SERVICE_AVAILABILITY_STALE` → `emailPolicy: "NONE"` → **U4 jääb kättesaadavuskirja ainsaks omanikuks**. Sama muster katab `PRE_INQUIRY_ARRIVED`, `ROOM_INVITE`, `HELP_MATCH_CREATED` → ükski olemasolev kiri ei dubleeru.
+
+### 23.2 §22.8 punktid 1–9 — kontrollitud
+
+| # | Nõue | Tulemus |
+|---|---|---|
+| 1 | värske source-owner kontroll kõigile tüüpidele | ✅ 9/9 tüübist loeb adressaadi **allikobjektist**, mitte kutsujalt; fail-closed (`allowed = false` → 404) |
+| 2 | stabiilne cursor, 6 h koond, saatja välistamine | ✅ keyset-cursor kõigil; saatja välistatud; **6 h aknal on P2-defekt (vt 23.3-1)** |
+| 3 | claim/CAS, UNKNOWN, värske opt-out, PII-vaba | ✅ CAS enne saatmist (`count !== 1 → continue`); `UNKNOWN` on **terminaalne** (ei ole ühtegi requeue-teed); eelistus loetakse **pärast claim'i, vahetult enne saatmist**; logides ja vastuses ainult loendurid |
+| 4 | U4 kui kättesaadavuskirja ainus omanik | ✅ vt 23.1 |
+| 5 | kutse target pärast vastuvõtmist/aegumist | ✅ kontroll nõuab `status: "SENT"` + **värsket konto e-posti**; aegunud/vastuvõetud kutse sündmus kaob lugemisel |
+| 6 | room read + notification read samas tehingus | ✅ `prisma.$transaction` katab mõlemad (`read/route.js:147–161`), tagasiliikumise klamber säilis |
+| 7 | next-contact CAS, cancellation, Tallinn boundary | ✅ `sameUpdatedAtFingerprint` + `expectedUpdatedAt`; `tallinnDate` kasutab `Intl.DateTimeFormat` + `formatToParts` → **DST-kindel** |
+| 8 | continuity omanikuskoobid ja stale-target | ✅ **kõik 7 päringut on omanikuskoobis**; ristkasutaja lekke ei leidnud; admin ei saa võõrast tööjärge (route võtab ainult `session.user.id`); DTO kannab ainult `{kind, id, href, labelKey, date, overdue}` — vabateksti ei ole |
+| 9 | konto kustutamise cascade | ✅ `onDelete: Cascade` → `deleteUserAfterFinalPracticeSweep`'i `tx.user.delete` hävitab read |
+
+### 23.3 P2 leiud (ei blokeeri merge'i; **1 ja 2 soovitan parandada enne e-kirjade sisselülitamist**)
+
+1. **Ruumi 6 h aken võib anda ühe sõnumi kohta kaks sündmust.** `roomWindow` on **fikseeritud UTC-ämber** (00/06/12/18), aga skann on **libisev** `now − 6 h` (`notificationReconciler.js:14–17` vs `:43`). Sõnum kell 11:30 UTC → tick 11:35 (ämber T06) loob sündmuse #1; tick 12:05 (sõnum on veel aknas, ämber T12) loob #2 — erinev `dedupeKey`, seega DB ei püüa. Piiritletud 2×-ga (mitte piiramatu voog), seega leping „koondub" on sisuliselt täidetud, kuid **§22.4 „koondub 6-tunnisesse aknasse" on rikutud**. Täna on mõju ainult topelt-badge, sest e-kirjad on vaikimisi väljas.
+2. **„Lähenev järgmine kontakt" ei jõua kunagi ekraanile.** `workspaceContinuity.js:145–170` lisab ühele pöördumisele **kaks kandidaati sama `href`-iga**: `next_contact` (prioriteet 4, kui pole üle tähtaja) ja `pre_inquiry_received` (prioriteet 2). Dedupe (`:241–246`) jookseb **pärast sortimist** → p2 võidab alati → `workspace_continuity.next_contact_upcoming` on **surnud i18n-võti** ja §10.1 järjestusreegel 4 („lähenevad tähtajad") ei käivitu kunagi. Ainult `overdue` (p0) jõuab kohale. Kirje ise ei kao (kuvatakse „pre_inquiry_received"-ina), seega valeinfot ei teki.
+3. **Reconciler skannib `matches`/`assignments`/`services` iga käivitusega id 0-st**, ilma aja- või staatusepiiranguta; cursor on päringu-lokaalne (`route.js:38`), lehepiir 100. Kui kõlblik hulk ületab ~`batchSize × 100`, jääb saba **jäädavalt** sündmusteta. Signaliseeritud `truncated: true`-ga. Pilootmahus ei avaldu.
+4. **`emit`-il puudub try/catch** → üks võistlev rida (nt vahepeal tagasi võetud pöördumine) laseb **kogu ticki 500-ga põhja**. Ise-tervenev (järgmine tick õnnestub), aga habras.
+5. **Lease-taaste võib üle kirjutada elava claim'i** (`notificationDelivery.js:77–80`): puudub kaitse värskete claim'ide vastu, seega paralleelne worker võib märkida saadetava rea `UNKNOWN`-iks; saatja terminaalne CAS ei taba ridu, kuid `counters.sent += 1` jookseb ikka. **Duplikaatkirja ei teki** (`UNKNOWN` on terminaalne).
+6. **Loendureid ei väravata CAS-tulemusega** (`:126/:134/:157/:169`) → job'i JSON võib üle raporteerida.
+7. **`targetId` ei ole 4 tüübi puhul allikobjektiga seotud** (`notifications.js:114–136`) — ainult kuju- ja liigikontroll. **Ei ole ekspluateeritav:** `createNotificationEvent` on kutsutud ainult `notificationReconciler.js:53`-st ja ükski route ei loo sündmusi kasutaja bodyst. Kaitsekihi auk, mitte haavatavus.
+8. **`verifyRecipient` on väljalülitatav** (`:179`, `:197`), kuigi dok ütleb „iga create kontrollib". Vaikeväärtus on turvaline, ükski kutsuja ei kasuta seda.
+9. `emailLastErrorCode` taandub SMTP-vigadel alati `"ERROR"`-iks (mailer viskab `.code`-ta vigu) → diagnostiline väärtus kaob (turvalisus säilib).
+10. `HELP_MATCH_CREATED` ignoreerib `HelpMatchStatus`-t ja ruumi liikmelisust → ruumist eemaldatud kasutaja võib saada elava lingi ruumi, mida ta avada ei saa.
+11. Continuity ehitab `href`-id käsitsi, mitte `targetHref` registri kaudu → kaks tõeallikat (täna identsed).
+
+### 23.4 Tähelepanek, mis ei ole viga, aga mõjutab deploy'd
+
+**Kogu U1 e-kirjakiht on vaikimisi VÄLJAS.** `notificationEmailEnabled` on nullable ja `null !== true` → `SKIPPED_PREFERENCE`. Reconciler kasutab ainult `NONE` ja `OPTIONAL` policy't — **`TRANSACTIONAL` ei ole kasutusel**. Järeldus: **ükski U1 e-kiri ei lähe välja enne, kui kasutaja selle ise sisse lülitab.** See on §22.2-s dokumenteeritud teadlik valik ja väga ohutu vaikeväärtus, aga see tähendab, et delivery-vertikaali ei saa prod-is smoke-testida ilma opt-in'ita.
+
+### 23.5 Ainus lahtine värav
+
+**§22.8 p10 — päris DB migratsioonikontroll on TEGEMATA.** Harul puudub `.env`, seega `db:migrate:check`/`prisma migrate deploy` ei olnud auditi ajal võimalik. Skeem ja migratsioon on **koodina üle vaadatud ja korrektsed** (aditiivne, rollback-märkusega, `NOT NULL DEFAULT 0` on olemasolevatele ridadele ohutu, indeksid vastavad päringutele), kuid **ahela päris-DB kontroll peab toimuma enne deploy'd**, koos U3/U8 sama-ajatempliga migratsioonide järjekorra kinnitamisega.
+
+### 23.6 Otsus
+
+- **Merge `main`-i: LUBATUD.**
+- **Enne deploy'd kohustuslik:** `npm run db:migrate:check` (või päris `prisma migrate deploy` staging'is) — §22.8 p10.
+- **Soovituslik enne e-kirjade sisselülitamist:** P2-1 (ruumi ämber) ja P2-2 (lähenev tähtaeg).
+- Ülejäänud P2-d on teadlikud follow-up'id.
+
+---
+
+## 24. Integratsiooni- ja deploy-otsuse märkus (2026-07-14)
+
+Opuse sõltumatu audit oli **read-only**: rakenduskoodi, skeemi ega migratsioone
+auditi käigus ei muudetud. Lõppotsus on **`OPUS HEAKS KIIDETUD`** — P0 ja P1
+puuduvad ning U1/U2 haru võib `main`-i ühendada.
+
+Edasine kohustuslik järjekord on:
+
+1. ühenda auditeeritud U1/U2 haru `main`-i;
+2. käivita päris andmebaasi vastu `npm run db:migrate:check` ja kinnita sealhulgas
+   U3 ning U8 sama ajatempliga migratsioonide tegelik rakendumisjärjekord;
+3. alles eduka andmebaasikontrolli järel uuenda vajadusel serveri env-i, lülita
+   scheduler sisse ja tee deploy;
+4. tee autenditud smoke-kontroll mõlema rolliga ning jäädvusta main/deploy seis.
+
+Oluline käitamispiirang: U1 e-kirjad on vaikimisi välja lülitatud. Delivery
+prod-smoke eeldab teadlikku kasutaja opt-in'i; scheduler'i edukas töö üksi ei
+tõesta e-kirja saatmist. Enne e-kirjade laiemat sisselülitamist on soovitatav
+sulgeda §23.3 P2-1 (ruumi 6 h topeltsündmus) ja P2-2 (läheneva järgmise
+kontakti dedupe). Need ei blokeeri merge'i ega praegust ohutu vaikeväärtusega
+deploy'd.
