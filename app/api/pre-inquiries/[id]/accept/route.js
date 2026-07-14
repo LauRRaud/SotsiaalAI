@@ -1,13 +1,18 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { getVisiblePreInquiry, serializePreInquiry } from "@/lib/preInquiries";
-import { prisma } from "@/lib/prisma";
+import { acceptPreInquiry } from "@/lib/preInquiries";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
+
+const PUBLIC_ERRORS = new Set([
+  "api.common.not_found",
+  "pre_inquiries.errors.not_sent",
+  "pre_inquiries.errors.open_conflict"
+]);
 
 async function requireUser() {
   const session = await getServerSession(authConfig).catch(() => null);
@@ -36,42 +41,22 @@ export async function POST(request, context) {
   if (!auth.ok) return errorJson(auth.message, auth.status, locale);
 
   try {
-    const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));
-    if (!inquiry) return errorJson("api.common.not_found", 404, locale);
-    if (inquiry.recipientOwnerId !== auth.userId) {
-      return errorJson("api.common.forbidden", 403, locale);
-    }
-
-    const updated = await prisma.preInquiry.update({
-      where: { id: inquiry.id },
-      data: {
-        status: "READY"
-      },
-      include: {
-        recipientEntry: true,
-        author: {
-          select: {
-            id: true,
-            email: true,
-            role: true
-          }
-        },
-        recipientOwner: {
-          select: {
-            id: true,
-            email: true,
-            role: true
-          }
-        }
-      }
-    });
+    const updated = await acceptPreInquiry(auth.userId, await readId(context));
 
     return json({
       ok: true,
-      inquiry: serializePreInquiry(updated)
+      inquiry: updated
     });
   } catch (error) {
-    console.error("[pre-inquiries] accept failed", safeError(error));
-    return errorJson("pre_inquiries.errors.accept_failed", 500, locale);
+    const status = Number(error?.status) || 500;
+    if (status >= 500) console.error("[pre-inquiries] accept failed", safeError(error));
+    const messageKey = status < 500 && PUBLIC_ERRORS.has(error?.message)
+      ? error.message
+      : "pre_inquiries.errors.accept_failed";
+    return errorJson(
+      messageKey,
+      status,
+      locale
+    );
   }
 }

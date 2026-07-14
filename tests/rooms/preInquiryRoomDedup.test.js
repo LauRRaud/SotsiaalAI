@@ -56,6 +56,17 @@ function createFakeDb({ inquiry = defaultInquiry(), rooms = [], members = [], cr
       const row = inquiries.find((i) => i.id === where.id);
       if (row) Object.assign(row, data);
       return row ? { ...row } : null;
+    },
+    async updateMany({ where, data }) {
+      const row = inquiries.find((i) =>
+        i.id === where.id &&
+        i.recipientOwnerId === where.recipientOwnerId &&
+        (where.openedAt !== null || i.openedAt == null) &&
+        (where.recalledAt !== null || i.recalledAt == null)
+      );
+      if (!row) return { count: 0 };
+      Object.assign(row, data);
+      return { count: 1 };
     }
   };
 

@@ -1600,7 +1600,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
   async function handleAcceptInquiry(inquiry) {
     const inquiryId = String(inquiry?.id || "").trim();
-    if (!inquiryId || acceptingInquiryId) return;
+    if (!inquiryId || acceptingInquiryId || ["READY", "ARCHIVED"].includes(inquiry?.status)) return;
     setAcceptingInquiryId(inquiryId);
     setNotice("");
     setError("");
@@ -1921,7 +1921,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   <Button type="button" size="sm" onClick={() => handleOpenInquiry(inquiry)}>
                     {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
                   </Button>
-                  <Button type="button" size="sm" disabled={acceptingInquiryId === inquiry.id || inquiry.status === "READY"} onClick={() => handleAcceptInquiry(inquiry)}>
+                  <Button type="button" size="sm" disabled={acceptingInquiryId === inquiry.id || ["READY", "ARCHIVED"].includes(inquiry.status)} onClick={() => handleAcceptInquiry(inquiry)}>
                     {acceptingInquiryId === inquiry.id
                       ? readText(t, "workspace_feature_pages.pre_inquiries.actions.saving", "Salvestan...")
                       : readText(t, "workspace_feature_pages.pre_inquiries.actions.accept", "Märgi vastuvõetuks")}
