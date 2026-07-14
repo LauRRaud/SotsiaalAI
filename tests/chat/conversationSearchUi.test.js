@@ -29,16 +29,40 @@ test("search rides the existing cursor so 'load more' still works", () => {
   assert.match(route, /applyConversationSearch\(where, search\.query\)/);
 });
 
-test("loading, empty-vs-no-results and error states are distinct", () => {
-  assert.match(sidebar, /currentBusy && currentItems\.length === 0/, "loading state");
+test("the component delegates both racy decisions to the tested pure module", () => {
+  // The decisions themselves are proven in tests/chat/sidebarListState.test.js.
+  // Here we only lock that the component actually routes through them instead
+  // of re-inlining the conditions that produced SOL-U6-P1-2.
+  assert.match(sidebar, /from "@\/lib\/chat\/sidebarListState"/);
+  assert.match(sidebar, /const listState = resolveListState\(\{/, "render is driven by the resolver");
+  // The list fetch's finally must clear loading only through the guard. (The
+  // delete handler's own setBusy(false) is a one-shot action with no
+  // latest-request semantics, so it is deliberately not covered here.)
   assert.match(
     sidebar,
-    /hasConversationSearch \? t\("chat\.sidebar\.search\.no_matches"/,
+    /if \(shouldSettleRequest\(abortRef\.current, ac\)\) \{\s*abortRef\.current = null;\s*setBusy\(false\);/,
+    "only the current request may clear loading"
+  );
+  assert.match(sidebar, /e\?\.name !== "AbortError" && shouldSettleRequest\(abortRef\.current, ac\)/,
+    "a superseded request may not write an error either");
+});
+
+test("loading, empty-vs-no-results and error states are distinct", () => {
+  assert.match(sidebar, /listState === LIST_STATE\.LOADING/, "loading state");
+  assert.match(
+    sidebar,
+    /listState === LIST_STATE\.NO_MATCHES \? t\("chat\.sidebar\.search\.no_matches"/,
     "no-results is distinct from the empty list"
   );
   assert.match(sidebar, /hasConversationSearch = isConversationView && Boolean\(committedSearch\)/,
     "no-results reflects what the server was actually asked, not what is being typed");
   assert.match(sidebar, /setError\(/, "error state is surfaced");
+});
+
+test("a failed search offers a working retry", () => {
+  assert.match(sidebar, /t\("chat\.sidebar\.search\.retry"/, "retry is labelled");
+  assert.match(sidebar, /onClick=\{\(\) => fetchList\(\{ reset: true \}\)\}/,
+    "retry re-runs the current search from page 1");
 });
 
 test("the route rejects an over-long query before touching the database", () => {

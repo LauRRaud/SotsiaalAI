@@ -202,3 +202,66 @@ Tööplaan lubas `createLatestRequestGate` mustrit. **Ei kasutanud.** Põhjus: `
 **Commit/push/merge/deploy seis:** commit + push tehtud; **merge ja deploy TEGEMATA** (keelatud).
 
 **Järgmine samm:** Sol teeb sõltumatu järelkontrolli. Opus auditeerib Soli U7 paketti alles siis, kui Sol märgib selle valmis ja külmutatuks.
+
+---
+
+## 9. OPUS — SOL-U6-P1-1 ja SOL-U6-P1-2 parandusring (2026-07-14)
+
+**Mõlemad P1-d suletud. Verdikt: OPUS PARANDATUD, ootab Soli sihitud korduskontrolli.**
+
+Soli mõlemad leiud olid **tõesed ja teravad**. Kontrollisin need ise koodist üle enne parandamist; kumbagi ei vaidlusta.
+
+### 9.1 SOL-U6-P1-1 — suletud
+
+**Kinnitasin:** `route.js:72` kutsus `isPlausibleConversationId`, mida fail ei impordi ega defineeri (import real 9 toob `isPlausibleChatId`). Viga oli `origin/main`-is juba enne minu diffi (`git show origin/main:app/api/chat/conversations/route.js:71`).
+
+**Sol-il on õigus, et see on sellegipoolest minu paketi kohustus:** minu lukustatud §3.1 väidab, et otsing töötab koos cursoriga, ja minu UI saadab teisel lehel `q`+`cursor` koos. Katkise route'i peale ei saa seda lepingut heaks kiita.
+
+- **Parandus:** `isPlausibleChatId` (`route.js:72`) — sama validaator, mida fail juba impordib ja mida ülejäänud route kasutab.
+- **Regressioon:** `tests/chat/conversationSearchRoute.test.js` — **5 testi, mis kutsuvad päris `GET` eksporti** süstitud sõltuvustega (`deps.requireUser`, `deps.prisma`, `deps.enforceChatRateLimit`, rolli-resolverid). Katab: päris cursor-päring ei viska ja jõuab DB-ni; leht 1 → `nextCursor` → leht 2 koos `q`-ga; omanikuskoop mõlemal lehel; `archivedAt`/`expiresAt` säilivad; identne `orderBy` mõlemal lehel; **vigane cursor fail-closed** (5 kuju, route ei kuku); ülipikk `q` → 400 ilma DB-kutseta.
+
+**Tõestasin, et test püüab vea päriselt:** keerasin paranduse ajutiselt tagasi → **4/5 testi kukkusid** `ReferenceError: isPlausibleConversationId is not defined`-iga; parandusega **5/5 roheline**.
+
+**Miks minu eelmine test oli valepositiivne — õppetund, mille kirjutan välja:** `search keeps working alongside cursor pagination` **koostas `where`-objekti käsitsi** ega käivitanud kunagi `parseCursor`-it. See testis minu enda mudelit koodist, mitte koodi. Puhta mooduli test ja lähtekooditeksti test **ei asenda integratsioonipiiri läbivat testi**. 1238/1238 roheline oli selle vea suhtes sisutu.
+
+### 9.2 SOL-U6-P1-2 — suletud
+
+**Kinnitasin mõlemad harud:**
+
+1. `finally { setBusy(false) }` oli **tingimusteta** → asendatud päring A sai kustutada laadimislipu ajal, mil B veel käis → UI renderdas kindla väite „Otsingule vastavaid vestlusi ei leitud" **poolelioleva otsingu peale**;
+2. tehnilise vea korral renderdusid **korraga** `role="alert"` veateade **ja** `no_matches` → tehniline viga muutus sisuliseks valenegatiivseks. See on **täpselt see vea klass, mille eemaldamiseks U6 üldse olemas on** — oleksin selle veapoolel taastanud.
+
+Lisaks: lukustatud §3.3 nõudis eraldi veaolekut **kordusvõimalusega** ja viit i18n-võtit; tarnisin ühe võtme ja mitte ühtegi kordusnuppu. Soli etteheide on põhjendatud.
+
+**Parandus:**
+
+- uus **puhas moodul** `lib/chat/sidebarListState.js` kahe otsusega:
+  - `shouldSettleRequest(activeToken, token)` — ainult aktuaalne päring tohib olekut kirjutada;
+  - `resolveListState({ busy, error, itemCount, hasSearch })` — **`loading` > `error` > `results` > `no_matches` > `empty`**. `error` edestab `no_matches`-i teadlikult: ebaõnnestunud päring **ei tõesta midagi** tulemuste olemasolu kohta.
+- `ChatSidebar` kutsub mõlemat: `finally` on gate'itud, ka `setError` on gate'itud (asendatud päring ei kirjuta enam viga), render käib `listState` kaudu;
+- **kordusnupp** veaoleku juures → `fetchList({ reset: true })` sama viimase `q`-ga;
+- `chat.sidebar.search.retry` lisatud ET/EN/RU.
+
+**Regressioon:** `tests/chat/sidebarListState.test.js` — **10 testi**, sh Soli nõutud stsenaarium juhitavate märkidega: A pooleli → B asendab A → A katkeb → **UI jääb `loading`-usse, `no_matches` ei teki**; 500/network → `error` nähtav, `no_matches` puudub; kordus → uus päring, vana viga kaob; ning eraldi test, mis **jäädvustab vana vigase käitumise** („ilma gate'ita väidab UI poolelioleva otsingu peale, et tulemusi ei ole"), et valve ei saaks vaikselt kaduda.
+
+**Miks otsused on eraldi moodulis:** Sol-il on õigus, et source-regex ei tõenda seda lepingut. Repos ei ole jsdom-i ega testing-library't, seega ei saa komponendi olekut otse juhtida. Tõin mõlemad otsused sinna, kus neid **saab deterministlikult juhtida**, ja jätsin komponenti ainult juhtmestuse — mida lepingutest omakorda kontrollib.
+
+### 9.3 Kontrollid pärast parandusi
+
+| Kontroll | Enne | Pärast |
+|---|---|---|
+| `npm test` | 1238/1238 (valepositiivne) | **1255/1255** (+17: 5 route, 10 olek, 2 lepingut) |
+| U6 sihttestid | 16 | **31** |
+| Regressiooni tõendatus | — | **vigase koodi vastu 4/5 kukub, parandusega 5/5** |
+| `i18n:check` | OK | OK (retry ET/EN/RU) |
+| lint / build / `diff --check` | OK | **0 viga / kompileerus / puhas** |
+
+### 9.4 Soli mitteblokeerivad tähelepanekud
+
+Vaatasin need üle; ükski ei muuda paranduse suunda. Jäävad teadlikeks follow-up'ideks samas vormis nagu §7 piirangud.
+
+### 9.5 Aus märge ulatuse kohta
+
+`isPlausibleConversationId` viga **puudutab ka tavalist „laadi veel" teed**, mis oli katki juba enne U6-t. Parandasin selle, sest minu pakett sõltub sellest lepingust — aga see tähendab, et **see haru parandab ka pre-existing vea väljaspool U6 algset skoopi**. See on teadlik ja siin kirjas, mitte peidetud.
+
+**Commit/push/merge/deploy:** commit + push tehtud; **merge ja deploy TEGEMATA**.

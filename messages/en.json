@@ -1132,7 +1132,8 @@
       "search": {
         "placeholder": "Search conversations...",
         "label": "Search conversations",
-        "no_matches": "No conversations matched your search."
+        "no_matches": "No conversations matched your search.",
+        "retry": "Try again"
       }
     },
     "aria": {
