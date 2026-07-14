@@ -87,3 +87,49 @@
 4. F3/F4/U3/U4 on valikulised (võib jätta teadlikuks follow-up'iks).
 
 **Protsess (doc 00 §6.6 / doc 01 §1):** Sol parandab tõendatud vead + lisab regressioonitestid + teeb täieliku kontrollipaketi harul. Seejärel Opus teeb paranduste kordusauditi. Alles pärast F1 sulgemist ja kordusauditit on U12/U3 diff merge-review-valmis. **Opus peatub kuni Soli paranduseni; kood/merge/deploy tegemata.**
+
+---
+
+## 8. Kordusaudit paranduste järel (2026-07-14, Opus 4.8, Extra)
+
+**LÕPPOTSUS: `OPUS HEAKS KIIDETUD` — F1 ja F2 on suletud. Uusi P0/P1 leide ei tekkinud. Haru on merge-review-valmis.**
+
+- Kuupäev/kell: 2026-07-14, Europe/Tallinn.
+- Mudel/effort: Opus 4.8, Extra (xhigh). Sõltumatu read-only kordusaudit.
+- Auditeeritud: haru `codex/u12-u3-trust-package`, parandus-commit `d2dd13e3` („Close Opus U12 U3 audit findings"), diff `2d889a81..d2dd13e3` (9 faili, +230/−17).
+- Loetud/kontrollitud: `lib/preInquiries.js` (updatePreInquiry tervikuna, kõik `preInquiry.update*` kirjutajad, correction/recall/accept/download-teed), `app/api/pre-inquiries/[id]/route.js`, `app/api/pre-inquiries/[id]/room/route.js`, `messages/{et,en,ru}.json`, `MySharingsPage.jsx` + moodul-CSS, kõik lisatud testid.
+- Käivitatud kontrollid: harul `tests/preInquiries/*.test.js` — **90/90 läbitud** (jooksutasin ise, mitte väite põhjal).
+
+### F1 — SULETUD (kinnitatud)
+
+- Parandus: `lib/preInquiries.js:1069–1073` (eel-lugemine) ja `:1111–1115` (VÄRSKE lugemine advisory-luku all) väravavad `openedAt || supersededById` → 409 `pre_inquiries.errors.opened_cannot_be_edited`. Täpselt see topeltvärav, mida audit nõudis (sama muster kui olemasolev SENT-värav `:1064`/`:1106`).
+- **Katvuse kontroll (adversaalne):** loendasin kõik `preInquiry` sisukirjutajad — `:688` (recall), `:732` (accept/open), `:839` (send), `:917` (download), `:1211` (updatePreInquiry), `:1277` (correction-link), `:1352` (väline saatmiskinnitus), `preInquiryRoom.js:121` ja `room/route.js:64` (ainult staatus). **Ainus topic/situation/draft kirjutaja on `updatePreInquiry`** ja see on nüüd mõlemal pool väravatud → otsest möödaminekuteed ei ole alles.
+- **Regressiooni kontroll:** `updatePreInquiry` on kutsutud AINULT PATCH-route'ist (`route.js:68`), correction-tee on eraldi funktsioon, mis ise NÕUAB `openedAt`-i (`:790`) → uus värav ei saa correction-teed lõhkuda. `DOWNLOADED` on A3 autori-eelne olek (DRAFT/READY → DOWNLOADED, `:904–920`), `openedAt` on null → mustandi muutmine jääb korrektselt lubatuks, A3 ei regressi.
+- **Nõutud testid olemas ja sisulised:** (1) avatud READY PATCH → 409, `updates === 0`, `topic` muutmata, `openedAt` puutumata; (2) superseded rida → 409, 0 kirjutust; (3) **„the under-lock fresh read blocks a concurrent open before direct PATCH"** — katab TOCTOU-akna, mis oli leiu tuum; (4) avamata DRAFT ja READY jäävad muudetavaks (`updates === 1`) → ei regressi.
+- Veavõti pindub korrektselt: PATCH-route annab `error.message` i18n-võtmena `errorJson`-i (`route.js:76–81`), võti on ET/EN/RU-s.
+
+### F2 — SULETUD (kinnitatud)
+
+- `pre_inquiries.errors.situation_required` lisatud ET/EN/RU-sse; lisaks `opened_cannot_be_edited` ja `my_sharings.errors.refresh_failed` kõigis kolmes.
+- Test „correction with an empty situation returns the localized contract key" kinnitab käitumist (0 create'i, 0 update'i) ning eraldi test kinnitab kõigi kolme lokaali olemasolu — see sulgeb ka algse juure (`i18n:check` läbis varem just seetõttu, et võti puudus KÕIGIS lokaalides).
+
+### Lisaks (ei olnud blokeerivad, aga tehtud)
+
+- **U1** (a11y): modaali-viga renderdatakse nüüd overlay SEES (`className={styles.modalError} role="alert"`), liveRegion vahetab `alert`/`status` rolli — kontrolli-testid olemas.
+- **U2** (UX): `loadSharings({ preserveData: true })` + eraldi `refresh_failed` → mutatsiooni-järgne võrgu-blip ei kustuta enam loendit.
+- F3/F4/U3/U4 jäid teadlikult tegemata (olid auditis „valikuline"/pre-existing) — see on ootuspärane ega blokeeri.
+
+- Leitud riskid/P0/P1/P2 selles kordusauditis: **P0 puudub, P1 puudub, uusi P2 ei tekkinud.**
+- Kõrvaliste failide seis: ruumifailid puutumata; audit oli read-only, koodi ei muudetud.
+- Järgmine konkreetne samm: haru `codex/u12-u3-trust-package` @ `d2dd13e3` on merge-review-valmis (doc 00 §6.6). Merge/deploy on kasutaja otsus.
+- Commit/push/deploy seis: **TEGEMATA** (audit ei muutnud koodi; see dokk on ainus muudatus).
+
+---
+
+## 9. Hilisem integratsiooniseis (2026-07-14)
+
+Käesoleva kordusauditi otsuse alusel ühendati U12/U3 pakett hiljem `main`-i
+ning deploy'ti productionisse osana koondrelease'ist `22958456`. Auditirea
+„TEGEMATA” seis kirjeldab ainult read-only auditi lõpetamise hetke.
+
+Lõppseis: **OPUS HEAKS KIIDETUD — MAIN-IS JA PRODUCTIONIS**.
