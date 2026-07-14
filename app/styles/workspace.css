@@ -820,6 +820,105 @@
   background: rgba(25, 73, 51, 0.72);
   color: #e8fff2;
 }
+
+/* U7 — selge keele režiim vähendab eelpöördumises korraga nähtavat
+   infotihedust. Lüliti vahetab ainult esitust; vormi sisu ja salvestusloogika
+   jäävad samaks. */
+.pre-inquiry-plain-mode {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.72fr);
+  align-items: end;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  padding: clamp(1rem, 2.8vw, 1.35rem);
+  border: 1px solid color-mix(in srgb, var(--text-warm) 24%, transparent);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--text-warm) 8%, transparent), transparent 58%),
+    color-mix(in srgb, var(--surface-elevated, #28211c) 82%, transparent);
+}
+
+.pre-inquiry-plain-mode__copy h2 {
+  margin: 0.18rem 0 0.45rem;
+  color: var(--text-warm);
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.55rem);
+  font-weight: 480;
+  line-height: 1.2;
+}
+
+.pre-inquiry-plain-mode__copy p {
+  max-width: 54ch;
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.pre-inquiry-plain-mode__copy .pre-inquiry-plain-mode__eyebrow {
+  color: color-mix(in srgb, var(--text-warm) 78%, transparent);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pre-inquiry-plain-mode__switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  padding: 0.35rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 18%, transparent);
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, #090807 26%, transparent);
+}
+
+.pre-inquiry-plain-mode__switch button {
+  min-height: 3.25rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 0.68rem;
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-weight: 650;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease, color 160ms ease;
+}
+
+.pre-inquiry-plain-mode__switch button:hover {
+  color: var(--text-warm);
+  background: color-mix(in srgb, var(--text-warm) 7%, transparent);
+}
+
+.pre-inquiry-plain-mode__switch button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 34%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 14%, transparent);
+  color: var(--text-warm);
+  box-shadow: 0 0.35rem 1rem rgba(10, 8, 7, 0.16);
+}
+
+.pre-inquiry-plain-mode__switch button:focus-visible {
+  outline: 2px solid var(--text-warm);
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .pre-inquiry-plain-mode {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .pre-inquiry-plain-mode__switch {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pre-inquiry-plain-mode__switch button {
+    transition: none;
+  }
+}
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
   color: var(--text-soft);
 }

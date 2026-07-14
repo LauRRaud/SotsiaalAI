@@ -18,6 +18,7 @@ import {
   logChatInfo,
   logChatError,
   buildChatOrchestrationMetadata,
+  buildPlainLanguageSystemInstruction,
   buildSourceLookupSystemInstruction,
   buildMissingMunicipalitySystemInstruction,
   saveAssistantRoomMessage
@@ -111,6 +112,7 @@ export async function POST(req) {
     history,
     helpWorkflowState,
     replyLang,
+    plainLanguage,
     greeting,
     clarifyingTurns,
     requestedThoroughness,
@@ -312,6 +314,10 @@ export async function POST(req) {
     sources,
     retrievalMeta
   } = retrievalResult;
+  const responseSystemInstructions = [
+    ...(Array.isArray(extraSystemInstructions) ? extraSystemInstructions : []),
+    ...(plainLanguage ? [buildPlainLanguageSystemInstruction(replyLang)] : [])
+  ].filter(Boolean);
 
   if (ragUsageHandle) {
     try {
@@ -373,7 +379,7 @@ export async function POST(req) {
     includeSources,
     replyLang,
     isCrisis,
-    extraSystemInstructions,
+    extraSystemInstructions: responseSystemInstructions,
     sources,
     retrievalMeta,
     metadataExtra: mainMetadataExtra,
