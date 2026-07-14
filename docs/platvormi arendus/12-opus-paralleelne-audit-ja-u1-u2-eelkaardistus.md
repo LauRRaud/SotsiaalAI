@@ -1,6 +1,6 @@
 # Opuse paralleelne tööplaan — U1/U2 eelkaardistus ja Fable'i järgmised tööd
 
-> **Staatus:** AKTIIVNE JÄRJEKORD
+> **Staatus:** ÜLESANDED 1–5 VALMIS; INTEGRATSIOONI- JA DEPLOY-SEIS LEPITATUD
 >
 > **Koostatud:** 2026-07-14
 >
@@ -10,7 +10,7 @@
 >
 > **Koodi teostamine:** keelatud selles tööpaketis
 >
-> **Commit/push/merge/deploy:** keelatud ilma kasutaja eraldi loata
+> **Commit/push/merge/deploy:** Opuse read-only tööpaketis tegemata; hilisem integratsioon ja deploy tehti Soli poolt kasutaja eraldi loal
 
 ## 0. Eesmärk
 
@@ -206,18 +206,30 @@ Kui limiit või aknavahetus katkestab töö:
 - **Jätkamispunkt:** Opuse ülesanded 2–5 on **lõpetatud**. Järgmine Opuse töö on Soli teostuse sõltumatu audit doc 10 §16 järgi — see algab alles pärast Soli teostust.
 - **Commit/push/merge/deploy seis:** TEGEMATA. Muudetud ainult dokid 10, 12, 13.
 
+### 2026-07-14 — SOL järellepitus: Opuse auditi ajal muutunud integratsiooni- ja deploy-seis
+
+- Opuse ülesannete 2–5 auditibaas `main` @ `df2f45c0` + commit'imata P1 diff `b6847805` jääb ajaloolise tõendina muutmata.
+- Pärast Opuse read-only kontrolli ühendati kasutaja loal U3/U12 (`d2dd13e3`), P1 (`0fd73ccf`), U8-lite (`02f40a21`) ja U4 (`a3529ac0`) integratsiooniharul ning `main`-is.
+- Rakendusintegratsiooni dokumenteeritud `main`-seis on `fb8809a6`; produktsiooni rakenduskood vastab commit'ile `22958456`, sest `fb8809a6` on ainult dokumentatsioon.
+- Clean migration kontroll läbis **91/91** migratsiooni. U8-lite migratsioon nimetati integratsioonis ümber `20260714223000_source_feedback_trust_layer`, mistõttu Opuse leitud identse `20260714220000` ajatempliga kataloogide konflikt on lahendatud.
+- Integratsiooni sihttestid läbisid **235/235**, täistestid **1190/1190**, CSS kontroll **52/52**, lint **0 viga** (359 olemasolevat hoiatust) ja production build **54 lehte**.
+- Produktsioonis on migratsioonid rakendatud, frontend ja RAG aktiivsed, neli kontrollitud HTTPS rada annavad 200 ning P1 deploy-värava loendurid on nullis. Täpne serveri-, env-, timeri- ja rollback-tõend on doc 14-s.
+- Opuse ülesannete 2–5 sisulised otsused ei muutunud. Aegusid ainult väited „null paketti main-is”, „deploy 0/12” ja „integratsioon on järgmine blokeerija”.
+- **U1/U2 järgmine teostussamm:** sulgeda esmalt `SOL-U1U2-P1-1` + `OPUS-U1U2-P1-1-EXT` ning `OPUS-U1U2-P1-2`; alles seejärel luua `NotificationEvent`.
+
 ---
 
 ## 8. OPUSE ÜLEANDMINE SOLILE — U1/U2 teostuse sisend
 
 > Koostatud pärast Opuse ülesannete 2–5 lõpetamist. Kõik viited on kontrollitud `main` @ `df2f45c0` + commit'imata P1 diff `b6847805` vastu.
 
-### 8.1 Enne koodi — integratsioon on esimene
+### 8.1 Enne koodi — integratsioonieeldused on täidetud
 
-**Ära alusta U1/U2 teostust praegusest seisust.** Viis paketti on koodina valmis ja **null neist on `main`-is**. U1/U2 §7 kaheksast sündmusest kolme lähtefakti ei eksisteeri `main`-is (`openedAt`/accept → U3; kättesaadavus → U4; praktika markerid → commit'imata P1).
+Opuse audit hetkel leidis õigesti, et U1/U2 ei tohtinud alata `df2f45c0` seisust: §7 kaheksast sündmusest kolme lähtefakti ei eksisteerinud tollases `main`-is (`openedAt`/accept → U3; kättesaadavus → U4; praktika markerid → P1).
 
-Järjekord: **U3 + P1 → `main`** (kohustuslik) → U4 + U8 → clean migration check → alles siis U1-A.
-Migratsioonide märkus: U3 `20260714220000_pre_inquiry_recall_and_correction` ja U8 `20260714220000_source_feedback_trust_layer` on **sama ajatempliga**; P1 `20260714230000` on juba peapuu kaustas. Merge'i järel kinnita deterministlik järjekord `npm run db:migrate:check`-iga.
+See järjekord on nüüd täidetud: **U3 + P1 → U4 + U8 → clean migration check → produktsiooni deploy**. U3 migratsioon on `20260714220000_pre_inquiry_recall_and_correction`, U8 migratsioon on integratsioonis ümber nimetatud `20260714223000_source_feedback_trust_layer` ning P1 on `20260714230000_practice_ops_retry_and_justification`; `npm run db:migrate:check` läbis 91/91.
+
+U1/U2 võib alata värskest `origin/main`-ist eraldi harul, kuid §8.2 kaks P1-eeltingimust tuleb sulgeda enne `NotificationEvent` migratsiooni.
 
 ### 8.2 Esimesed kaks tööd EI OLE NotificationEvent
 
@@ -242,9 +254,9 @@ Enne migratsiooni kirjutamist rakenda need (põhjendused doc 13 §11.3):
 3. **kolmas indeks peab olema `@@index([userId, sourceType, sourceId, readAt])`**, mitte target-põhine — §4.7 read-semantika märgib loetuks **allika** järgi (ruumi read → selle ruumi sündmused);
 4. `emailMessageId` jääb, aga sõltub §8.2 punktist 2.
 
-### 8.4 Mida saab kohe teha, kui merge blokeerub
+### 8.4 U7 sõltumatus
 
-**U7 võib alata täna** — see ei puuduta ühtegi U1/U2 ega merge'imata haru faili (`AccessibilityProvider`, prompt builder, chat request bootstrap). Kui U3/U4/P1 merge venib, on U7 ainus lukus otsusega töö, mis ei oota kedagi. Opuse sisend: doc 13 §13.
+**U7 võib alata U1/U2-st sõltumatul harul** — see ei puuduta ühtegi U1/U2 faili (`AccessibilityProvider`, prompt builder, chat request bootstrap). Integratsioon ei blokeeri enam kumbagi rada. Käesoleva üleandmise põhijärjekord on siiski U1/U2 kinnitatud P1-eeltingimused; U7 sisend on valmis doc 13 §13-s.
 
 ### 8.5 Mida MITTE teha
 

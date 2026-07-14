@@ -549,21 +549,23 @@ Kasuta ühte neist seisunditest:
 ### 20.2 Hetkeseis 2026-07-14 — **OPUSE KONTROLLITUD KOONDSEIS**
 
 > Uuendatud 2026-07-14 Opus 4.8 (Extra) poolt pärast sõltumatut read-only auditit `main` @ `df2f45c0` + commit'imata P1 diff `b6847805` vastu. Iga rida on kas koodist kontrollitud või on kontrollimata seis eraldi välja öeldud. Tõendid: doc 09 §8 (U3/U12 audit), doc 11 (U4 audit), doc 12 (U8-lite audit), doc 13 §11–§13 (U1/U2 + U5/U6/U7/U9/U11).
+>
+> **Integratsiooni- ja deploy-järgne lepitus:** Opuse auditi ajalooline tõendibaas jääb ülal muutmata. Pärast auditit ühendas Sol kasutaja loal U3/U12, P1, U8-lite ja U4 paketi `main`-i ning deploy'is rakenduse. Rakendusintegratsiooni dokumenteeritud `main`-seis on `fb8809a6`; produktsiooni rakenduskood vastab commit'ile `22958456` (`fb8809a6` on ainult dokumentatsioon). Täpne kontrollpakett on doc 14-s.
 
 | ID | Fable'i võimalus | Hetkeseis | Kontrollitud? | Järgmine samm |
 |---|---|---|---|---|
-| U1 | Sündmuse- ja teavituskiht | **TÖÖPLAAN VALMIS + ETAPP 0 VALMIS** | jah (doc 13) | teostus alles pärast U3+P1 merge'i; ees on `SOL-U1U2-P1-1` ja `OPUS-U1U2-P1-2` |
+| U1 | Sündmuse- ja teavituskiht | **TÖÖPLAAN VALMIS + ETAPP 0 VALMIS** | jah (doc 13) | U3+P1 integratsioon on tehtud; sulgeda esmalt `SOL-U1U2-P1-1` ja `OPUS-U1U2-P1-2` |
 | U2 | „Jätka siit” + järgmine kontakt | **TÖÖPLAAN VALMIS + ETAPP 0 VALMIS** | jah (doc 13) | `nextContactOn` skeemiotsus tehtud; blokeerib `SOL-U1U2-P1-1` (serializer) + puuduv versioonivalve |
-| U3 | Saadetud pöördumise tagasivõtmine ja parandamine | **OPUS HEAKS KIIDETUD** (haru `d2dd13e3`, merge'imata) | jah (doc 09 §8) | **ainult kasutaja merge-otsus** — F1/F2 suletud, 90/90 testi |
-| U4 | Kättesaadavuse ja ooteaja signaal + värskuskinnitus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA** (haru `3208c08c`) | esmane audit jah (doc 11); parandused ei | lõppkontroll, selektiivne commit, merge-otsus |
-| U5 | Teenusepuudujäägi märge ja anonüümne koond | **TEOSTAMATA** | jah — `ServiceGapReport` = 0 vastet | tööplaan **pärast U4 merge'i**; k-lävi on tooteotsus |
+| U3 | Saadetud pöördumise tagasivõtmine ja parandamine | **OPUS HEAKS KIIDETUD — MAIN-IS + DEPLOY'ITUD** (allikas `d2dd13e3`) | jah (doc 09 §8) | jälgida regressioone U1 sündmuseadapteri juures |
+| U4 | Kättesaadavuse ja ooteaja signaal + värskuskinnitus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA — MAIN-IS + DEPLOY'ITUD** (allikas `a3529ac0`) | esmane audit jah (doc 11); parandused kasutaja aktsepteeritud | otsustada enne U1-B-d, kas U4 või U1 omab kättesaadavuse kirja |
+| U5 | Teenusepuudujäägi märge ja anonüümne koond | **TEOSTAMATA** | jah — `ServiceGapReport` = 0 vastet | U4 sõltuvus on täidetud; järgmine blokeerija on k-läve tooteotsus |
 | U6 | Isiklik otsing enda objektide üle | **TEOSTAMATA** | jah — GET-il pole `q`; `ChatSidebar:626–633` on klient-filter | **Opus tõstab prioriteeti:** praegune filter annab vale negatiivse (otsib ainult 1. lehte, vaikimisi 30) |
 | U7 | Selge keele režiim | **TEOSTAMATA — järgmine esmane kandidaat** | jah — `plainLanguage` = 0 vastet; `tone="plain"` alus olemas | **Opuse sisend valmis** (doc 13 §13); võib alata **U1/U2-st sõltumatult** |
-| U8 | Allika-tagasiside silmus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA** (commit'imata tööpuu) | esmane audit jah (doc 12); parandused ei | U8-P2-1 tooteotsus, lõppkontroll, commit, merge-otsus |
+| U8 | Allika-tagasiside silmus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA — MAIN-IS + DEPLOY'ITUD** (allikas `02f40a21`) | esmane audit jah (doc 12); parandused kasutaja aktsepteeritud | U8-P2-1 jääb teadlikuks tooteotsuseks |
 | U9 | Tugiisiku kaasamise rada | **TEOSTAMATA** (mehhanism olemas, U9-spetsiifiline võimekus puudub) | jah — kutse-POST ei saada `relationship_type` | **Opuse lahknevus:** `Invite.relationshipType` on tarbijata väli → U9 v1 väärtus on **ainult copy/UX** |
-| U10 | Kohtumise kokkuvõte pöördujale | **MAIN-IS** | **ei — selles ringis Opuse poolt üle kontrollimata** | jälgida regressioone U1 digest-adapteri juures |
+| U10 | Kohtumise kokkuvõte pöördujale | **MAIN-IS + DEPLOY'ITUD** | **ei — selles ringis Opuse poolt üle kontrollimata** | jälgida regressioone U1 digest-adapteri juures |
 | U11 | Töö üleandmine kolleegile | **TEOSTAMATA** | jah — owner on dubleeritud (`Room.ownerId` + `RoomRole.OWNER`); `assertRecipientChangeAllowed:803` blokeerib | **sõltub U1-st**; „kaks PATCH-i" hinnang on vale — vajab tooteotsust ruumiligipääsu kohta |
-| U12 | „Minu jagamised” läbipaistvusvaade | **OPUS HEAKS KIIDETUD** (haru `d2dd13e3`, merge'imata) | jah (doc 09 §8) | **ainult kasutaja merge-otsus** |
+| U12 | „Minu jagamised” läbipaistvusvaade | **OPUS HEAKS KIIDETUD — MAIN-IS + DEPLOY'ITUD** (allikas `d2dd13e3`) | jah (doc 09 §8) | regressioonijälgimine |
 
 **Opuse märkus §20.1 staatusemudeli kohta:** mudelis puudub „osaliselt olemas" seis. U9 on formaalselt `TEOSTAMATA` (U9-spetsiifilist võimekust ei tarni), kuigi selle alusmehhanism (kutse → ruum) töötab. Kui seda vahet on vaja jälgida, tuleb mudelisse lisada üheksas seis; praegu on see kirjas veerus „Järgmine samm".
 
@@ -584,7 +586,7 @@ Kui kasutatakse ligikaudset protsenti, lisa alati juurde, millised U-tööd on:
 
 Nimekirja liikmed ei ole töömahult võrdsed. Seetõttu on „5 tööd 12-st” ainult katvuse näitaja, mitte täpne kulutatud töötundide protsent. Vajadusel anna nii lihtne U-katvus kui ka töömahuga kaalutud hinnang.
 
-### 20.4 Progressihinnang 2026-07-14 — **OPUSE ARVUTUS**
+### 20.4 Progressihinnang 2026-07-14 — **OPUSE ARVUTUS + INTEGRATSIOONIJÄRGNE LEPITUS**
 
 > Koostatud §20.3 reegli järgi: kaks eraldi näitajat, deploy eraldi, ligikaudse protsendi juurde kuulub alati jaotus.
 
@@ -592,20 +594,20 @@ Nimekirja liikmed ei ole töömahult võrdsed. Seetõttu on „5 tööd 12-st”
 
 Loeb: U3, U4, U8, U10, U12 = 5 tervikuna; U9 = 0,5 (alusmehhanism töötab, U9-spetsiifiline võimekus puudub). Kõik ülejäänud = 0.
 
-**2. Lõplik valmidus (nõutud audit läbitud JA `main`-is): ≈ 8 %** (1 / 12)
+**2. Lõplik valmidus (nõutud kontroll läbitud või kasutaja erandina aktsepteeritud JA `main`-is): ≈ 42 %** (5 / 12)
 
-Loeb ainult **U10**. U3 ja U12 on `OPUS HEAKS KIIDETUD`, aga **merge'imata**; U4 ja U8 on kasutaja aktsepteeritud, aga **merge'imata**. §20.1 järgi ei ole ükski neist 100 %.
+Loeb **U3, U4, U8, U10 ja U12**. U3/U12 on Opuse heakskiiduga; U4/U8 puhul kehtib dokumenteeritud kasutaja otsus võtta Soli sihitud parandused vastu ilma uue täismahus kordusauditita. See erand ei muuda neid märgendiks `OPUS HEAKS KIIDETUD`, kuid lubab need koondseisus lõplikuks lugeda.
 
-**Deploy: 0 / 12** — ühtegi neist töödest ei ole deploy'itud (deploy on eraldi seis, kasutaja eraldi loal).
+**Deploy: 5 / 12 (≈ 42 %)** — U3, U4, U8, U10 ja U12 on produktsioonis. P1 operatsioonipakett on samuti deploy'itud, kuid ei ole U1–U12 loendi eraldi liige.
 
 **Jaotus:**
 
-- **Valmis (audit + `main`):** U10.
-- **Koodina valmis, kuid merge'imata:** U3, U12 (Opus heaks kiidetud) · U4, U8 (kasutaja aktsepteeris ilma kordusauditita).
+- **Valmis ja deploy'itud:** U3, U12 (Opus heaks kiidetud) · U4, U8 (kasutaja aktsepteeris ilma kordusauditita) · U10.
+- **Koodina valmis, kuid merge'imata:** puudub.
 - **Osaliselt:** U9 (kutse→ruum mehhanism olemas; puudub CLIENT-semantika ja scope-selgitus).
 - **Teostamata:** U1, U2 (tööplaan + Etapp 0 valmis, koodi ei ole), U5, U6, U7, U11.
 
-**Opuse peamine järeldus arvudest — kitsaskoht ei ole arendus, vaid integratsioon.** Vahe 46 % ja 8 % vahel ei tulene pooleliolevast tööst: **viis paketti on koodina valmis ja null neist on `main`-is.** Neli neist ootab ainult kasutaja merge-otsust. Enne uut arendust annab integratsioon oluliselt rohkem tegelikku valmidust kui uus kood.
+**Integratsioonijärgne järeldus:** Opuse tuvastatud integratsioonipudelikael on U3/U4/U8/U12 ja P1 jaoks kõrvaldatud. Funktsionaalse ja lõpliku valmiduse vahe on nüüd umbes 4 protsendipunkti ning järgmine suurim sisuline lünk on U1/U2 teostus. U7 võib eraldi harul sõltumatult alata, kuid ei asenda U1/U2 kinnitatud P1-eeltingimuste sulgemist.
 
 **Töömahuga kaalutud hoiatus (§20.3 nõue):** lihtne U-katvus **ülehindab** edenemist, sest suurim allesjäänud töö — **U1** (püsiv sündmusekiht + delivery job + adapterid + koond + UI; doc 10 §15 järgi kaheksa kontrollpunkti) — on 0 %. Väikesed tööd (U6, U7, U9) on odavad, U5/U11 keskmised. Kaalutud hinnanguna on tegelik edenemine **madalam kui 46 %**; täpset kaalu ei ole mõtet välja mõelda enne, kui U1 tööplaan on teostuseks lahti kirjutatud.
 

@@ -3,10 +3,10 @@
 > **Kuupäev:** 2026-07-14  
 > **Töörežiim:** read-only arhitektuuri- ja privaatsusaudit  
 > **Rakenduskoodi, skeemi, migratsioonide ja testide muudatused:** puuduvad  
-> **Commit / push / merge / deploy:** tegemata  
+> **Opuse auditipaketi commit / push / merge / deploy:** tegemata; hilisem integratsioon ja deploy on lepitatud §14-s
 > **Eelnevate SOL paranduste seis:** `SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA`; see ei võrdu märgendiga `OPUS HEAKS KIIDETUD`.
 
-See fail on kahe sõltumatu **Etapp 0 kaardistuse** kanooniline koond. Kattuvad järeldused on deduplitseeritud, erinevad leiud on ühendatud ning loendite või aktiivse koodi lahknevuse korral lähtutakse 2026-07-14 uuesti kontrollitud `main` tööpuust. See ei märgi automaatselt lõpetatuks Opuse ülejäänud iseseisvaid ülesandeid: eraldi privaatsusring, U5/U6/U7/U9/U11 audit, U7 tööplaani sisend ja täielik U1–U12 progressihinnang on Opusel veel tegemata. §6–§8 on nende tööde **Soli sisend**, mida Opus peab aktiivse koodi vastu sõltumatult kontrollima.
+See fail on kahe sõltumatu **Etapp 0 kaardistuse** kanooniline koond. Kattuvad järeldused on deduplitseeritud, erinevad leiud on ühendatud ning loendite või aktiivse koodi lahknevuse korral lähtutakse 2026-07-14 uuesti kontrollitud `main` tööpuust. Opus lõpetas eraldi privaatsusringi, U5/U6/U7/U9/U11 auditi ja U7 tööplaani sisendi §11–§13-s; U1–U12 progressihinnang on failis 10. §6–§8 on säilitatud **Soli sisendina**, §11–§13 Opuse sõltumatu kontrollina ja §14 auditi järel muutunud integratsiooni- ning deploy-seisu lepitusena.
 
 ---
 
@@ -16,10 +16,10 @@ U1/U2 teostus võib alata pärast allpool kirjeldatud sõltuvuste ühendamist ja
 
 Kõige olulisemad järeldused:
 
-1. **SOL-U1U2-P1-1 — uus privaatsusblokeerija.** `serializePreInquiry()` väljastab `receiverNote` ja `receiverChecklist` nii autorile kui vastuvõtjale. `GET /api/pre-inquiries` ja detail-GET kasutavad sama vaatajakontekstita serialiseerijat. UI kirjeldab neid samal ajal vastuvõtja sisemise töövaatena. Enne U2 järgmise kontakti välja lisamist tuleb leping teha vaatajapõhiseks ning regressioonitestiga lukustada, et autor ei saa vastuvõtja sisemist märget, checklist'i ega kuupäeva API kaudu. See on Soli leid ja ootab Opuse eraldi privaatsusringi sõltumatut kinnitust.
+1. **SOL-U1U2-P1-1 — uus privaatsusblokeerija, Opuse poolt kinnitatud ja laiendatud.** `serializePreInquiry()` väljastab `receiverNote` ja `receiverChecklist` nii autorile kui vastuvõtjale. `GET /api/pre-inquiries` ja detail-GET kasutavad sama vaatajakontekstita serialiseerijat. UI kirjeldab neid samal ajal vastuvõtja sisemise töövaatena. Enne U2 järgmise kontakti välja lisamist tuleb leping teha vaatajapõhiseks ning regressioonitestiga lukustada, et autor ei saa vastuvõtja sisemist märget, checklist'i ega kuupäeva API kaudu. Opuse §11 kontroll kinnitas lisaks, et sama serializer lekitab mõlema poole konto-e-posti.
 2. **OPUS-U1U2-P1-2 — mailer on tootmises fail-open.** Kui SMTP konfiguratsioon puudub, tagastab `getMailer()` ka `production` keskkonnas mock-transpordi, mis logib kogu kirja koos adressaadiga ja resolve'ib saatmise õnnestunuks. U1 delivery job võiks seetõttu märkida `emailedAt`, kuigi kirja ei saadetud, ning rikkuda logide PII-lepingut. Enne U1 e-kirjakanalit peab tootmise mailer puuduliku konfiguratsiooni korral katkema, dev-mock peab olema selgelt piiratud ja logid redigeeritud ning regressioonitest peab tõendama, et valet `SENT` olekut ei teki.
-3. **U3 on U1/U2 otsene merge-eeltingimus.** Recall/correction/opened olekud muudavad saabumise ja olekusündmuste dedupe- ning read-lepingut. Puhas U3 haru on olemas, kuid pole `main`-is.
-4. **U4 on kättesaadavusmeeldetuletuse otsene merge-eeltingimus.** U4 haru kasutab praegu otse-SMTP saatmist ja `availabilityReminderSentAt` claim'i. U1 peab pärast merge'i selle kanali püsiva sündmuse/delivery lepingu alla tooma või selgelt adapteriga ühitama.
+3. **U3 oli U1/U2 otsene merge-eeltingimus ja on nüüd täidetud.** Recall/correction/opened olekud muudavad saabumise ja olekusündmuste dedupe- ning read-lepingut; U3 on `main`-is ja produktsioonis.
+4. **U4 oli kättesaadavusmeeldetuletuse otsene merge-eeltingimus ja on nüüd täidetud.** U4 kasutab otse-SMTP saatmist ja `availabilityReminderSentAt` claim'i. U1 peab selle kanali püsiva sündmuse/delivery lepingu alla tooma või selgelt adapteriga ühitama; U4 ja U1 ei tohi saata kahte paralleelset kirja.
 5. **SMTP peal ei ole crash-after-send täpselt-üks-kord tõendatav.** Praegune mailer loob igal katsel juhusliku `Message-ID`. Kui SMTP on kirja vastu võtnud, kuid protsess sureb enne DB `SENT` märget, ei saa rakendus teada, kas uuesti saata. V1 soovitus on fail-closed: stagneerunud `SENDING` läheb `UNKNOWN` olekusse ega lähe automaatselt kordussaatmisele; administraator saab teha teadliku käsitsi korduse. Kui toode eelistab „vähemalt üks kord”, tuleb võimalik duplikaat ausalt aktsepteerida.
 6. **Praegune receiver checklist on JSON-is array ning ei kanna kuupäeva.** Kuupäeva peitmine array elemendi sisse lõhuks normaliseerija lepingu. Kõige väiksem ohutu kuju on eraldi nullable `PreInquiry.nextContactOn String?`, range `YYYY-MM-DD`, koos adressaadi/kuupäeva indeksiga. See väldib UTC/DST tähendusmuutust ja on ausam kui olemasoleva JSON-kuju varjatud vahetamine.
 7. **U5/U6/U7/U9/U11 pole valmis.** U9-l on suur osa mehaanikast olemas ja U7-l head prompt/a11y liidesed; U5, U6 ja U11 vajavad uusi serverivertikaale. U7 on endiselt mõistlik järgmine esmane kandidaat pärast U1/U2.
@@ -566,20 +566,20 @@ U3/U12, P1, U4 ja U8-lite aktsepteeritud paranduste märgend jääb kasutaja ots
 ### 9.1 Tegelik tööjaotus
 
 - Opuse U1/U2 Etapp 0 eelkaardistus: **tehtud ja Soli kaardistusega koondatud**.
-- Opuse eraldi U1/U2 privaatsusring: **tegemata**; Soli SOL-U1U2-P1-1 on kontrollitav sisend.
-- Opuse U5/U6/U7/U9/U11 sõltumatu aktiivse koodi audit: **tegemata**; Soli audit on §6.
-- Opuse U7 tööplaani sisend: **tegemata**; Soli soovituslik sisend on §7.
-- Opuse täielik U1–U12 progressihinnang: **tegemata**; osaline Soli sisend on §8.
+- Opuse eraldi U1/U2 privaatsusring: **tehtud**; `SOL-U1U2-P1-1` kinnitatud ja laiendatud konto-e-posti lekkega (§11).
+- Opuse U5/U6/U7/U9/U11 sõltumatu aktiivse koodi audit: **tehtud** (§12).
+- Opuse U7 tööplaani sisend: **tehtud** (§13).
+- Opuse täielik U1–U12 progressihinnang: **tehtud** failis 10 ning integratsioonijärgselt lepitatud.
 - Rakenduskood/skeem/migratsioonid: **muutmata**.
-- Commit/push/merge/deploy: **tegemata**.
+- Opuse auditidokkide commit/push: **tegemata Opuse tööplokis**; Sol tõstis need hiljem eraldi harule. Rakenduse integratsioon/deploy on §14 järgi tehtud.
 
 ### 9.2 Opuse järgmine lubatud samm
 
-Opus jätkab read-only režiimis ülesannetega 2–5: teeb eraldi privaatsusringi, kontrollib sõltumatult U5/U6/U7/U9/U11 aktiivse koodi vastu, valmistab oma U7 tööplaani sisendi ning uuendab failis 10 kõigi U1–U12 progressihinnangu. Iga ploki järel uuendab ta faili 12 progressipäevikut. Soli §6–§8 võib kasutada kontrollnimekirjana, kuid mitte sõltumatu kontrolli asendusena.
+Opuse ülesanded 1–5 on lõpetatud. Järgmine Opuse töö on Soli U1/U2 teostuse sõltumatu doc 10 §16 audit pärast seda, kui Sol on paketi testinud ja üle andnud. U7 audit algab eraldi ainult siis, kui U7 teostus käivitatakse.
 
 ### 9.3 Soli järgmine lubatud samm pärast Opuse üleandmist
 
-Kui jätkatakse teostusega, alusta alles pärast Opuse ülesannete 2–5 lõpetamist värskest `origin/main`-ist eraldi Soli worktree/harus ning pärast U3, U4, U8-lite ja P1 ops pakettide commit/merge otsust. Esimesed koodiparandused peavad sulgema **SOL-U1U2-P1-1** ja **OPUS-U1U2-P1-2**, mitte alustama NotificationEvent migratsioonist: vastasel juhul ehitatakse privaatne järgmise kontakti info lekkiva serializeri ning delivery näiliselt õnnestuva transpordi peale.
+Opuse ülesanded 2–5 ning U3, U4, U8-lite ja P1 integratsioon on lõpetatud. Alusta värskest `origin/main`-ist eraldi Soli worktree/harus. Esimesed koodiparandused peavad sulgema **SOL-U1U2-P1-1** + **OPUS-U1U2-P1-1-EXT** ja **OPUS-U1U2-P1-2**, mitte alustama `NotificationEvent` migratsioonist: vastasel juhul ehitatakse privaatne järgmise kontakti info lekkiva serializeri ning delivery näiliselt õnnestuva transpordi peale.
 
 Esimesed täpsed failid/funktsioonid:
 
@@ -789,3 +789,45 @@ Põhjendus: `tone` on **dokumendi omadus**, `plainLanguage` on **lugeja omadus**
 ### 13.5 Opuse muudatus 4 — U7 järjekord
 
 Sol paneb U7 „järgmiseks esmaseks kandidaadiks pärast U1/U2". **Nõustun**, aga lisan tingimuse: U7 võib alata **U1/U2-st sõltumatult ja paralleelselt**, sest ta ei puuduta ühtegi U1/U2 faili (a11y provider, prompt builder, chat request bootstrap). Kui U1/U2 blokeerub merge-eeltingimuste taga (U3/U4/P1), on U7 **ainus lukus otsusega töö, mis saab kohe alata**. See on praeguses olukorras oluline.
+
+---
+
+## 14. SOLI INTEGRATSIOONI- JA DEPLOY-JÄRGNE LEPITUS
+
+> See jaotis ei kirjuta ümber Opuse audititõendeid ega tee kasutaja aktsepteeritud U4/U8 parandusi tagantjärele märgendiks `OPUS HEAKS KIIDETUD`. See fikseerib ainult pärast read-only auditit muutunud repositooriumi- ja produktsiooniseisu.
+
+### 14.1 Ühendatud paketid
+
+| Pakett | Allikaseis | Tänane seis |
+|---|---|---|
+| U3 + U12 | `d2dd13e3` | `main`-is, produktsioonis, Opuse heaks kiidetud |
+| P1 operatsioonipakett | `0fd73ccf` | `main`-is ja produktsioonis; kasutaja aktsepteeris parandused ilma uue täismahus kordusauditita |
+| U8-lite | `02f40a21` | `main`-is ja produktsioonis; kasutaja aktsepteeris parandused ilma uue täismahus kordusauditita |
+| U4 | `a3529ac0` | `main`-is ja produktsioonis; kasutaja aktsepteeris parandused ilma uue täismahus kordusauditita |
+
+Integratsiooni rakenduscommit on `22958456`; rakendusintegratsiooni dokumenteeritud `main`-seis on `fb8809a6`. Põhitööpuu `C:/Users/rauds/Desktop/SotsiaalAI` jäi dirty ja selle HEAD/indexit ei kasutatud integratsiooniks.
+
+### 14.2 Kontrollitud integratsiooni- ja produktsioonitõend
+
+- ühendatud sihttestid **235/235**;
+- täistestid **1190/1190**;
+- migratsioonikontroll **91/91**;
+- CSS kontroll **52/52**;
+- lint **0 viga**, 359 olemasolevat hoiatust;
+- production build **54 lehte**;
+- produktsioonis 91 migratsiooni rakendatud ja skeem ajakohane;
+- frontend ning RAG teenused aktiivsed;
+- `/`, `/minu-jagamised`, `/admin/rag/source-feedback` ja `/admin/service-availability` vastavad HTTPS kaudu 200;
+- P1 deploy-värav läbis: unlinked, mismatch ja residue loendurid on nullis;
+- praktikaülevaatuse ning kättesaadavusmeeldetuletuse timerid on aktiivsed ja esimene päris käivitus lõppes edukalt.
+
+Täielik env-, systemd-, tervisekontrolli- ja rollback-üleandmine on failis `14-sol-u3-p1-u8-u4-integratsioonirehearsal.md`.
+
+### 14.3 Täpne jätkamispunkt
+
+1. Loo värskest `origin/main`-ist U1/U2 jaoks uus eraldi worktree ja `codex/` haru.
+2. Paranda vaatajakontekstiga `serializePreInquiry`: vastuvõtja sisemärge, checklist, tulevane `nextContactOn` ja mõlema poole konto-e-post ei tohi valele poolele lekkida.
+3. Tee mailer tootmises fail-closed, dev-mock eksplitsiitseks ja redigeerituks ning `Message-ID` kutsuja määratavaks.
+4. Lukusta mõlemad P1-d liidesetasandi regressioonitestidega.
+5. Alles pärast seda alusta `NotificationEvent` mudelit ja U1/U2 vertikaali.
+6. Anna valmis pakett Opusele doc 10 §16 järgi sõltumatuks auditiks.
