@@ -700,6 +700,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [savingReceiverWorkflowId, setSavingReceiverWorkflowId] = useState("");
   const [receiverNoteDraft, setReceiverNoteDraft] = useState("");
   const [receiverChecklistDraft, setReceiverChecklistDraft] = useState([]);
+  const [nextContactOnDraft, setNextContactOnDraft] = useState("");
   const [acceptsPreInquiries, setAcceptsPreInquiries] = useState(false);
   const [draftTouched, setDraftTouched] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
@@ -1037,6 +1038,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     if (!activeReceivedInquiry) {
       setReceiverNoteDraft("");
       setReceiverChecklistDraft([]);
+      setNextContactOnDraft("");
       return;
     }
     setReceiverNoteDraft(activeReceivedInquiry.receiverNote || "");
@@ -1044,6 +1046,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       activeReceivedInquiry.receiverChecklist,
       activeReceivedInquiry
     ));
+    setNextContactOnDraft(activeReceivedInquiry.nextContactOn || "");
   }, [activeReceivedInquiry]);
 
   useEffect(() => {
@@ -1682,6 +1685,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         body: JSON.stringify({
           receiverNote: receiverNoteDraft,
           receiverChecklist: receiverChecklistDraft,
+          nextContactOn: nextContactOnDraft,
           status: status || inquiry.status || "READY",
           expectedUpdatedAt: inquiry.updatedAt
         })
@@ -2004,6 +2008,15 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 onChange={(event) => setReceiverNoteDraft(event.target.value)}
                 placeholder={readText(t, "workspace_feature_pages.pre_inquiries.placeholders.receiver_note", "Mida on vaja enne järgmist kontakti täpsustada või ette valmistada?")}
               />
+            </Label>
+            <Label>
+              <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.next_contact_on", "Järgmise kontakti kuupäev")}</span>
+              <input
+                type="date"
+                value={nextContactOnDraft}
+                onChange={(event) => setNextContactOnDraft(event.target.value)}
+              />
+              <small>{readText(t, "workspace_feature_pages.pre_inquiries.next_contact_hint", "Kuupäev on nähtav ainult vastuvõtja töövaates.")}</small>
             </Label>
             <div>
               <Button type="button" size="sm" disabled={savingReceiverWorkflowId === activeReceivedInquiry.id} onClick={() => handleSaveReceiverWorkflow(activeReceivedInquiry)}>

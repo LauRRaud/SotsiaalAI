@@ -14,6 +14,7 @@ import { localizePath } from "@/lib/localizePath";
 import { createWorkspaceDashboardRows, WORKSPACE_ROUTE_PREFETCH_PATHS } from "@/lib/workspaceDashboardCards";
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton";
 import WorkspaceFeaturePage from "@/components/workspace/WorkspaceFeaturePage";
+import WorkspaceContinuity from "@/components/workspace/WorkspaceContinuity";
 
 const EMBEDDED_WORKSPACE_FEATURES = Object.freeze({
   "/documents": "documents",
@@ -191,6 +192,7 @@ export default function WorkspacePanel({
   const router = useRouter();
   const panelRef = useRef(null);
   const cardActivationGuardRef = useRef({ key: "", ts: 0 });
+  const preferenceRequestRef = useRef(0);
   const defaultDashboardRole = useMemo(() => {
     const actualRole = String(userActualRole || "").trim().toUpperCase();
     const currentRole = String(userRole || "").trim().toUpperCase();
@@ -200,6 +202,12 @@ export default function WorkspacePanel({
   }, [userActualRole, userRole]);
   const [dashboardRole, setDashboardRole] = useState(defaultDashboardRole);
   const [activeEmbeddedFeature, setActiveEmbeddedFeature] = useState("");
+  const [continuity, setContinuity] = useState({
+    status: "idle",
+    items: [],
+    badges: {}
+  });
+  const [notificationPreference, setNotificationPreference] = useState(null);
   const syncEmbeddedFeatureFromUrl = useCallback(() => {
     if (typeof window === "undefined") return;
     try {
@@ -354,6 +362,63 @@ export default function WorkspacePanel({
   }, [defaultDashboardRole]);
 
   useEffect(() => {
+    if (!visible || activeEmbeddedFeature) return undefined;
+    const controller = new AbortController();
+    setContinuity((current) => ({ ...current, status: "loading" }));
+    Promise.all([
+      fetch("/api/workspace/continuity", {
+        cache: "no-store", signal: controller.signal, headers: { Accept: "application/json" }
+      }),
+      fetch("/api/notifications/preferences", {
+        cache: "no-store", signal: controller.signal, headers: { Accept: "application/json" }
+      })
+    ])
+      .then(async ([continuityResponse, preferenceResponse]) => {
+        const [payload, preferencePayload] = await Promise.all([
+          continuityResponse.json().catch(() => ({})),
+          preferenceResponse.json().catch(() => ({}))
+        ]);
+        if (!continuityResponse.ok || payload?.ok !== true) throw new Error("continuity_failed");
+        setContinuity({
+          status: "ready",
+          items: Array.isArray(payload.items) ? payload.items.slice(0, 7) : [],
+          badges: payload.badges && typeof payload.badges === "object" ? payload.badges : {}
+        });
+        if (preferenceResponse.ok && preferencePayload?.ok === true) {
+          setNotificationPreference({ status: "ready", ...preferencePayload.preference });
+        }
+      })
+      .catch((error) => {
+        if (error?.name === "AbortError") return;
+        setContinuity({ status: "error", items: [], badges: {} });
+      });
+    return () => controller.abort();
+  }, [activeEmbeddedFeature, visible]);
+
+  const updateEmailPreference = useCallback(async (emailEnabled) => {
+    if (!notificationPreference || notificationPreference.status === "saving") return;
+    const requestId = ++preferenceRequestRef.current;
+    const expectedVersion = notificationPreference.version;
+    setNotificationPreference((current) => ({ ...current, emailEnabled, status: "saving" }));
+    try {
+      const response = await fetch("/api/notifications/preferences", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ emailEnabled, expectedVersion })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (requestId !== preferenceRequestRef.current) return;
+      if (!response.ok || payload?.ok !== true) throw new Error("preference_failed");
+      setNotificationPreference({ status: "ready", ...payload.preference });
+    } catch {
+      if (requestId !== preferenceRequestRef.current) return;
+      setNotificationPreference((current) => ({
+        ...current, emailEnabled: !emailEnabled, status: "error", version: expectedVersion
+      }));
+    }
+  }, [notificationPreference]);
+
+  useEffect(() => {
     if (!visible || typeof router.prefetch !== "function") return;
     for (const path of WORKSPACE_ROUTE_PREFETCH_PATHS) {
       try {
@@ -382,6 +447,13 @@ export default function WorkspacePanel({
     : normalizeDashboardRole(userActualRole || userRole || "", "CLIENT");
   const hasPaidAccess = Boolean(isAdmin || subActive);
 
+  const resolvedDashboardBadges = useMemo(() => {
+    const fetched = continuity.badges || {};
+    if (typeof dashboardBadges === "function") {
+      return (input) => fetched[input.cardKey] || dashboardBadges(input);
+    }
+    return { ...(dashboardBadges || {}), ...fetched };
+  }, [continuity.badges, dashboardBadges]);
   const cardRows = useMemo(() => createWorkspaceDashboardRows({
     activeRole,
     hasPaidAccess,
@@ -389,8 +461,13 @@ export default function WorkspacePanel({
     navigateTo,
     openHelpPanel,
     openInvite,
-    dashboardBadges
-  }), [activeRole, dashboardBadges, hasPaidAccess, navigateTo, openHelpPanel, openInvite, t]);
+    dashboardBadges: resolvedDashboardBadges
+  }), [activeRole, hasPaidAccess, navigateTo, openHelpPanel, openInvite, resolvedDashboardBadges, t]);
+  const openContinuityItem = useCallback((href) => {
+    const normalized = String(href || "").trim();
+    if (!normalized.startsWith("/")) return;
+    router.push(localizePath(normalized, locale));
+  }, [locale, router]);
   const activeEmbeddedMeta = useMemo(() => {
     if (!activeEmbeddedFeature) return null;
     const meta = EMBEDDED_WORKSPACE_HEADER_META[activeEmbeddedFeature] || null;
@@ -532,6 +609,16 @@ export default function WorkspacePanel({
         {text(t, "chat.workspace.title", "Töölaud")}
       </h1>
       {roleMenu}
+
+      <WorkspaceContinuity
+        t={t}
+        locale={locale}
+        status={continuity.status}
+        items={continuity.items}
+        onOpen={openContinuityItem}
+        preference={notificationPreference}
+        onPreferenceChange={updateEmailPreference}
+      />
 
       <div>
         {cardRows.map((row, index) => (

@@ -27,6 +27,7 @@ function fixture() {
     userEditedDraft: "Edited draft",
     receiverNote: "Receiver private note",
     receiverChecklist: [{ id: "review", label: "Review", checked: true }],
+    nextContactOn: "2026-07-20",
     status: "READY",
     sentAt: new Date("2026-07-14T10:00:00.000Z"),
     openedAt: new Date("2026-07-14T10:05:00.000Z"),
@@ -59,6 +60,7 @@ test("author view omits receiver-private workflow and the recipient account emai
 
   assert.equal("receiverNote" in result, false);
   assert.equal("receiverChecklist" in result, false);
+  assert.equal("nextContactOn" in result, false);
   assert.equal(result.author.email, "author-account@example.test");
   assert.equal("email" in result.recipientOwner, false);
   assert.equal(result.recipientEntry.email, "public-service@example.test");
@@ -70,6 +72,7 @@ test("recipient view includes its workflow but omits the author's account email"
   assert.equal(result.receiverNote, "Receiver private note");
   assert.ok(Array.isArray(result.receiverChecklist));
   assert.ok(result.receiverChecklist.length > 0);
+  assert.equal(result.nextContactOn, "2026-07-20");
   assert.equal("email" in result.author, false);
   assert.equal(result.recipientOwner.email, "recipient-account@example.test");
 });
@@ -79,6 +82,7 @@ test("missing or unrelated audience fails closed", () => {
     const result = serializePreInquiry(fixture(), options);
     assert.equal("receiverNote" in result, false);
     assert.equal("receiverChecklist" in result, false);
+    assert.equal("nextContactOn" in result, false);
     assert.equal("email" in result.author, false);
     assert.equal("email" in result.recipientOwner, false);
   }

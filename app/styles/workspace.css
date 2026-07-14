@@ -273,6 +273,183 @@
   opacity: 0.9;
 }
 
+.workspace-dashboard-card [data-badge-type="number"],
+.workspace-dashboard-card [data-badge-type="attention"] {
+  min-width: 1.45rem;
+  height: 1.45rem;
+  padding: 0 0.38rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--surface-deep, #19130e);
+  font-size: 0.72rem;
+  font-weight: 760;
+  line-height: 1;
+}
+
+.workspace-continuity {
+  width: min(100%, 45rem);
+  margin: 0 auto clamp(1rem, 2.4vh, 1.6rem);
+  padding: 0.8rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--text-warm) 28%, transparent);
+}
+
+.workspace-continuity > header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+}
+
+.workspace-continuity > header > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.workspace-continuity h2 {
+  margin: 0;
+  color: var(--text-warm);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-weight: 520;
+  letter-spacing: 0.01em;
+}
+
+.workspace-continuity header small {
+  color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+  font-size: 0.73rem;
+}
+
+.workspace-continuity ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workspace-continuity li {
+  min-width: 0;
+}
+
+.workspace-continuity li button {
+  position: relative;
+  width: 100%;
+  min-height: 3.15rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.72rem 0.75rem 0.72rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 18%, transparent);
+  border-radius: 0.2rem 0.75rem 0.75rem 0.2rem;
+  color: var(--text-warm);
+  background:
+    linear-gradient(100deg, color-mix(in srgb, var(--text-warm) 8%, transparent), transparent 45%),
+    color-mix(in srgb, var(--surface-elevated, #28211c) 86%, transparent);
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.12);
+  transition: transform 180ms var(--ease-soft), border-color 180ms ease, background 180ms ease;
+}
+
+.workspace-continuity li button:hover {
+  transform: translateY(-1px) rotate(-0.2deg);
+  border-color: color-mix(in srgb, var(--text-warm) 42%, transparent);
+}
+
+.workspace-continuity li button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.workspace-continuity li button > span:nth-of-type(2) {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.workspace-continuity time {
+  color: color-mix(in srgb, var(--text-warm) 64%, transparent);
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.workspace-continuity-fold {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: 0.6rem;
+  height: calc(100% + 2px);
+  background: color-mix(in srgb, var(--text-warm) 30%, transparent);
+  clip-path: polygon(0 0, 100% 0.35rem, 70% 50%, 100% calc(100% - 0.35rem), 0 100%);
+  opacity: 0.62;
+}
+
+.workspace-continuity-state,
+.workspace-continuity-loading {
+  margin: 0;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.55rem;
+  color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+  font-size: 0.82rem;
+}
+
+.workspace-continuity-loading {
+  overflow: hidden;
+}
+
+.workspace-continuity-loading span {
+  animation: workspace-continuity-breathe 1.6s ease-in-out infinite;
+}
+
+.workspace-continuity-preference {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin: 0.7rem 0 1rem;
+  color: color-mix(in srgb, var(--text-warm) 82%, transparent);
+  cursor: pointer;
+}
+
+.workspace-continuity-preference input {
+  inline-size: 1.05rem;
+  block-size: 1.05rem;
+  margin-block-start: 0.15rem;
+  accent-color: var(--accent-warm, #ba8068);
+}
+
+.workspace-continuity-preference span,
+.workspace-continuity-preference small {
+  display: block;
+}
+
+.workspace-continuity-preference small {
+  margin-block-start: 0.18rem;
+  color: color-mix(in srgb, var(--text-warm) 58%, transparent);
+}
+
+@keyframes workspace-continuity-breathe {
+  50% { opacity: 0.48; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-continuity li button,
+  .workspace-continuity-loading span {
+    transition: none;
+    animation: none;
+  }
+}
+
 /* ---------- ⓘ selgitus: ILMA pealkirjata (tellija reegel), LAIEM,
    × oma ribal ja tekst kerib TÄPSELT servast servani riba all ---------- */
 /* Teate-akna TAUST tumeneb + hägustub → tagumised kaardid EI paista läbi

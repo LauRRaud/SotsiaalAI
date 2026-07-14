@@ -33,6 +33,7 @@ function baseInquiry(overrides = {}) {
     userEditedDraft: "Original user draft",
     receiverNote: "Receiver-only note",
     receiverChecklist: { contacted: true },
+    nextContactOn: null,
     status: "SENT",
     sentAt: new Date("2026-07-14T09:00:00.000Z"),
     openedAt: null,
@@ -374,6 +375,31 @@ test("receiver workflow rejects missing and stale client snapshots before writin
   );
   assert.equal(updated.receiverNote, "Fresh fingerprint");
   assert.equal(db.counters.updates, 1);
+});
+
+test("receiver alone can set, replace, and remove a strict calendar next-contact date", async () => {
+  const db = createDb([baseInquiry({ status: "READY", openedAt: new Date("2026-07-14T10:30:00.000Z") })]);
+  const invalidDates = ["2026-02-30", "14.07.2026", "2026-13-01"];
+  for (const nextContactOn of invalidDates) {
+    await rejectsWith(updatePreInquiryReceiverWorkflow(RECIPIENT, "inq_original", {
+      nextContactOn,
+      expectedUpdatedAt: db.row().updatedAt
+    }, { db: db.client }), 400, "pre_inquiries.errors.next_contact_invalid");
+  }
+  const set = await updatePreInquiryReceiverWorkflow(RECIPIENT, "inq_original", {
+    nextContactOn: "2026-07-20", expectedUpdatedAt: db.row().updatedAt
+  }, { db: db.client });
+  assert.equal(set.nextContactOn, "2026-07-20");
+
+  const replaced = await updatePreInquiryReceiverWorkflow(RECIPIENT, "inq_original", {
+    nextContactOn: "2026-07-21", expectedUpdatedAt: db.row().updatedAt
+  }, { db: db.client });
+  assert.equal(replaced.nextContactOn, "2026-07-21");
+
+  const removed = await updatePreInquiryReceiverWorkflow(RECIPIENT, "inq_original", {
+    nextContactOn: "", expectedUpdatedAt: db.row().updatedAt
+  }, { db: db.client });
+  assert.equal(removed.nextContactOn, null);
 });
 
 test("repeated acceptance never resurrects an archived receiver workflow", async () => {
