@@ -202,3 +202,84 @@ Tööplaan lubas `createLatestRequestGate` mustrit. **Ei kasutanud.** Põhjus: `
 **Commit/push/merge/deploy seis:** commit + push tehtud; **merge ja deploy TEGEMATA** (keelatud).
 
 **Järgmine samm:** Sol teeb sõltumatu järelkontrolli. Opus auditeerib Soli U7 paketti alles siis, kui Sol märgib selle valmis ja külmutatuks.
+
+## 8. SOL — sõltumatu järelkontroll: parandused vajalikud
+
+Kuupäev: 2026-07-14
+
+Auditeeritud commit: `21b9f62f` (`origin/opus/u6-personal-search`)
+
+Baas: `aef93393` (`origin/main`)
+
+Auditiharu: `codex/u6-independent-audit`
+
+**Verdikt: PARANDUSED VAJALIKUD. P0 puudub; kaks P1-leidu blokeerivad merge'i.**
+
+Omanikuskoop, rolli-/arhiivi-/aegumisskoop, esimese lehe serveriotsing, 200 märgi serveripiir ja `title ∪ summary ∪ messages.content` valik on koodis korrektsed. Päris `GET`-route'i süstitud fake-DB kontroll kinnitas, et `q` ANDitakse omaniku skoobi peale ja ülipikk päring tagastab 400 enne DB-kutset. Blokeerijad on integratsioonipiiridel, mida praegused puhta mooduli ja lähtekooditeksti testid ei käivita.
+
+### SOL-U6-P1-1 — päris cursor-päring kukub enne DB-d `ReferenceError`-iga
+
+`app/api/chat/conversations/route.js:72` kutsub `parseCursor`-is funktsiooni `isPlausibleConversationId`, mida fail ei impordi ega defineeri. Route impordib hoopis samaväärse `isPlausibleChatId` funktsiooni. Esimene leht töötab, kuid iga kehtivat `cursor`-parameetrit sisaldav päring katkeb enne `try`-plokki ja enne `findMany`-kutset:
+
+```text
+ReferenceError: isPlausibleConversationId is not defined
+    at parseCursor (.../app/api/chat/conversations/route.js:72:3)
+    at GET (.../app/api/chat/conversations/route.js:139:24)
+```
+
+See rida oli juba baasis, kuid U6 lukustatud nõue §4.7 ja valmisolekuväide ütlevad sõnaselgelt, et otsing töötab koos cursor-lehitsemisega. U6 UI saadab teisel otsingulehel `q` ja `cursor` koos. Seega ei saa pakett seda lepingut katkise päris route'i peale heaks kiita, isegi kui algne defekt ei tekkinud U6 diffis. Sama defekt lõhub ka tavalise vestlusloendi „laadi veel” tee.
+
+Nõutud parandus ja regressioon:
+
+1. kasuta parseris olemasolevat `isPlausibleChatId` validaatorit või impordi üks kanooniline validaator;
+2. lisa route-tasandi test, mis kutsub päris `GET` eksporti süstitud sõltuvustega, laseb esimesel lehel luua `nextCursor`-i ja kutsub teist lehte selle cursoriga;
+3. test peab tõendama vähemalt `q + cursor`, omaniku-/rolli-/aegumisskoobi säilimise, stabiilse järjestuse ja selle, et teine DB-kutse päriselt toimub;
+4. lisa vigase cursori fail-closed juhtum, mis ei tohi route'i kokku kukutada.
+
+Praegune test `search keeps working alongside cursor pagination` koostab käsitsi `where`-objekti ega käivita `parseCursor`-it. UI source-contract kontrollib ainult kahe tekstijupi olemasolu. Seetõttu on 1238/1238 roheline tulemus selle vea suhtes valepositiivne.
+
+### SOL-U6-P1-2 — otsingu request-state näitab tehnilise vea või katkestatud eelkäija korral eksitavat „tulemusi ei leitud” olekut
+
+`fetchList` katkestab vana päringu ja käivitab uue, kuid iga päringu `finally` teeb tingimusteta `setBusy(false)`:
+
+```js
+finally {
+  if (abortRef.current === ac) abortRef.current = null;
+  setBusy(false);
+}
+```
+
+Kui aeglane päring A asendatakse päringuga B, seab B `busy=true` ja tühjendab tulemused. Seejärel lõpetab A `AbortError`-iga ning A `finally` seab B töötamise ajal `busy=false`. Kuna `committedSearch` juba tähistab päringut B ja tulemused on tühjad, renderdab UI kuni B vastuseni kindla väite „Otsingule vastavaid vestlusi ei leitud.” Samal ajal muutuvad lubatuks ka nupud, mida `busy` pidi kaitsma.
+
+Teine sama olekumudeli viga on deterministlik: kui otsingupäring ebaõnnestub, renderdatakse korraga `role="alert"` veateade **ja** `no_matches`, sest tühja tulemuse tingimus ei välista `error`-olekut. See muudab tehnilise vea sisuliseks valenegatiivseks. Lukustatud §3.3 nõudis eraldiseisvat veaolekut kordusvõimalusega, kuid kordusnuppu ei ole ning viiest kavandatud i18n-võtmest lisati ainult API 200-märgi veateade.
+
+Nõutud parandus ja regressioon:
+
+1. ainult aktuaalne päring tohib muuta `busy`, tulemusi, cursorit ja veateadet; minimaalne parandussuund on siduda ka `setBusy(false)` kontrolliga `abortRef.current === ac`, kuid kogu olekukirjutuste latest-request leping peab jääma üheselt testitavaks;
+2. päringu vea korral ei tohi renderduda `no_matches`; kuva üks selge veaolek koos toimiva korduskatsega või dokumenteeri ja teosta muu sama turvaline taastetee;
+3. lisa käitumistest kahe juhitava/deferred fetch'iga: A on pooleli, B asendab A, A katkeb, B on endiselt pooleli — UI peab jätkuvalt näitama laadimist ega tohi näidata `no_matches`;
+4. lisa 500/network-error test: veateade on nähtav, `no_matches` puudub ja kordus käivitab sama viimase `q`-ga uue päringu;
+5. source-regex test ei ole selle lepingu tõendamiseks piisav.
+
+### Mitteblokeerivad tähelepanekud
+
+- `messages.some.content contains` ilma otsinguindeksita on reaalne jõudluspiir, kuid see on dokumendis ausalt kirjas ja päring jääb omaniku skoobi sisse. Ilma mõõdetud tootmisprobleemita ei tõsta audit seda P1-ks.
+- `q` pikkust mõõdetakse JavaScripti UTF-16 koodiühikutes, mitte kasutaja tajutud tähemärkides; astripaari kasutavad märgid jõuavad piirini varem. See ei ole turva- ega andmeleke.
+- Kliendi `sortedConversations` eirab serveri `isPinned` järjestust, kuid see on baasis olemasolev ja U6 diff ei muuda seda.
+
+### Soli jooksutatud kontrollid
+
+| Kontroll | Tulemus |
+|---|---|
+| U6 sihttestid | 16/16 |
+| Kogu `npm test` | 1238/1238 |
+| Esimese lehe päris `GET` + owner/role/search/limit + ülipikk `q` | 8/8 assertion'it |
+| Päris `GET` kehtiva cursoriga | **FAIL** — `ReferenceError` enne DB-d |
+| `npm run i18n:check` | OK |
+| `npm run lint` | 0 viga, 359 baasihoiatust |
+| `npm run build` | OK |
+| `git diff --check origin/main...HEAD` | puhas |
+
+Audit kasutas värskes eraldi worktree's sünteetilist `DATABASE_URL`-i ainult Prisma kliendi genereerimiseks; päris andmebaasi ega serverit ei puudutatud. Auditiharu muudab ainult seda dokumenti. **U6 koodi ei parandatud, merge'i ega deploy'd ei tehtud.**
+
+**Jätkamispunkt Opusele:** sulge `SOL-U6-P1-1` ja `SOL-U6-P1-2` koos ülal nõutud route- ja käitumistasandi regressioonidega, korda siht- ja täiskontroll ning külmuta uus commit Soli sihitud korduskontrolliks. U7 auditit ei ole vaja selle parandusringiga segada.
