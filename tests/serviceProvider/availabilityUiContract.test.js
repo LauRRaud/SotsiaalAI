@@ -6,13 +6,14 @@ const workspace = fs.readFileSync(new URL("../../components/workspace/WorkspaceF
 const map = fs.readFileSync(new URL("../../components/workspace/ServiceMapLeaflet.jsx", import.meta.url), "utf8");
 const workspaceCss = fs.readFileSync(new URL("../../app/styles/workspace.css", import.meta.url), "utf8");
 const adminRoute = fs.readFileSync(new URL("../../app/api/admin/service-availability/route.js", import.meta.url), "utf8");
+const availabilityUi = fs.readFileSync(new URL("../../lib/serviceAvailabilityUi.js", import.meta.url), "utf8");
 
 test("service map and pre-inquiry show textual availability, age and warning", () => {
   assert.match(map, /serviceAvailabilityPresentation/);
   assert.match(map, /availability\.ageText/);
   assert.match(map, /availability\.warning/);
-  assert.match(map, /marker\.on\("popupopen", applyServiceMapPopupTheme\)/);
-  assert.match(workspace, /getPreInquiryAvailabilityNotices/);
+  assert.doesNotMatch(map, /\.style\.(?:background|color)\s*=/);
+  assert.match(workspace, /preInquiryAvailabilityNotices/);
   assert.match(workspace, /selectedRecipientAvailabilityNotices/);
   assert.match(workspace, /presentation\.ageText/);
   assert.match(workspace, /presentation\.warning/);
@@ -21,7 +22,7 @@ test("service map and pre-inquiry show textual availability, age and warning", (
 });
 
 test("not_accepting remains a warning and is not used as a map filter", () => {
-  assert.match(workspace, /status === "not_accepting"/);
+  assert.match(availabilityUi, /status === "not_accepting"/);
   assert.doesNotMatch(map, /filter\([^\n]*not_accepting/);
   assert.doesNotMatch(workspace, /disabled=.*not_accepting/);
 });

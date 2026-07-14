@@ -15,6 +15,7 @@ import { serviceAvailabilityFingerprint } from "../../lib/serviceAvailability.se
 
 const NOW = new Date("2026-07-14T12:00:00.000Z");
 const profileSource = fs.readFileSync(new URL("../../lib/serviceProviderProfiles.js", import.meta.url), "utf8");
+const reminderScriptSource = fs.readFileSync(new URL("../../scripts/service-availability-reminders.mjs", import.meta.url), "utf8");
 
 test("availability has exactly three canonical application-layer states", () => {
   assert.equal(isCanonicalServiceAvailabilityStatus("accepting"), true);
@@ -115,4 +116,9 @@ test("full profile saves cannot silently overwrite a concurrent freshness confir
   assert.match(profileSource, /\{ isolationLevel: "Serializable" \}/);
   assert.match(profileSource, /error\?\.code === "P2034"/);
   assert.match(profileSource, /MAX_PROFILE_SAVE_ATTEMPTS = 3/);
+});
+
+test("reminder CLI always releases its Prisma connection", () => {
+  assert.match(reminderScriptSource, /import \{ prisma \} from "\.\.\/lib\/prisma\.js"/);
+  assert.match(reminderScriptSource, /finally \{[\s\S]*await prisma\.\$disconnect\(\)/);
 });

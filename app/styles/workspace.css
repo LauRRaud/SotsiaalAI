@@ -554,10 +554,15 @@
 .service-profile-availability {
   margin-top: 0.65rem;
   padding: 0.7rem 0.8rem;
-  border: 1px solid color-mix(in srgb, var(--border, #9aa6a0) 55%, transparent);
+  border: 1px solid color-mix(in srgb, #9aa6a0 55%, transparent);
   border-radius: 0.8rem;
-  background: color-mix(in srgb, var(--surface, #fff) 88%, #dfe8e2);
+  background: color-mix(in srgb, #fff 88%, #dfe8e2);
   color: #2b2925;
+}
+
+.service-map-popup__availability p,
+.service-profile-availability p {
+  color: inherit;
 }
 
 .service-map-popup__availability[data-tone="warning"],

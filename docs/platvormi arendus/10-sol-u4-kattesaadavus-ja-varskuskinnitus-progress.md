@@ -242,3 +242,38 @@ kontrollida eelkõige:
 
 Auditibaas: `codex/u4-availability-trust`, lähtebaas `df2f45c0`, teostuscommit
 `47b51dba`. Main-i ühendamist ega deploy'd ei ole tehtud.
+
+## 12. Opuse auditi parandusring — 2026-07-14
+
+Olek: **U4-P1-1 ja U4-P2-1…3 parandatud; kasutaja aktsepteeris parandused 2026-07-14 ilma uue kordusauditita.** See ei võrdu märgendiga `OPUS HEAKS KIIDETUD`.
+
+- `assistPreInquiry` valib nüüd Prisma päringus `availabilityStatus`,
+  `availabilityDescription` ja `availabilityCheckedAt` ning loob nii
+  `providerServiceItems` kui ka `providerProfile.serviceItems` väljundisse sama
+  `serializePublicServiceAvailability` projektsiooni.
+- Päring–mapper–UI liidesetest kasutab nelja teenust: värske `accepting` ei
+  tekita hoiatust, stale tekitab stale-hoiatuse, värske `not_accepting` tekitab
+  hoiatuse ning kinnitamata teenus jääb ausalt `unknown` olekusse.
+- Reminder CLI sulgeb Prisma ühenduse `finally` plokis.
+- Reminder'i piiratud päring võtab ainult `availabilityReminderSentAt: null`
+  read; varem saadetud ja alati skipitavad read ei saa enam tööakent täita.
+- Kättesaadavuse ploki heleda pinna kontrast on nüüd CSS-is otsene leping;
+  fantoom-tokenid ja JavaScripti/JSX-i inline-värvid eemaldati.
+
+Kontrollid:
+
+- `tests/serviceProvider/*.test.js`: **27/27 läbitud**;
+- kogu `npm test`: **1097/1097 läbitud**;
+- `npm run i18n:check`: ET/EN/RU korras;
+- `npm run build`: tootmisbuild korras;
+- muudetud failide ESLint: **0 viga**; failis varem olnud 27 i18n-hoiatust;
+- `git diff --check`: puhas (ainult Windowsi reavahetuse hoiatused).
+
+`npm run css:budget` ei ole selle U4 tööpuu kontrollvärav, sest harul puudub
+`reports/css-cleanup/important-budget.json` baasfail; parandusring ei loonud
+seda kõrvalise artefaktina juurde.
+
+Kõrvalisi ruumifaile ei puudutatud. Haru ei ole pärast parandusringi commit'itud
+ega push'itud; main-i ühendamist ja deploy'd ei tehtud. Järgmine samm on
+parandusringi commit/push ning hilisem kontrollitud integratsioonirehearsal;
+main-i ühendamine ja deploy jäävad eraldi otsuseks.

@@ -389,9 +389,6 @@ function appendServiceItems(parent, entry, t) {
     }
     appendText(availabilityBlock, "p", "service-map-popup__availability-age", availability.ageText);
     appendText(availabilityBlock, "p", "service-map-popup__availability-warning", availability.warning);
-    for (const line of availabilityBlock.querySelectorAll("p")) {
-      line.style.color = "#2b2925";
-    }
     item.appendChild(availabilityBlock);
     section.appendChild(item);
   }
@@ -637,20 +634,6 @@ function markerHtml(group, selected) {
   ].join("");
 }
 
-function applyServiceMapPopupTheme(event) {
-  const popupElement = event?.popup?.getElement?.();
-  if (!popupElement) return;
-  const wrapper = popupElement.querySelector(".leaflet-popup-content-wrapper");
-  const tip = popupElement.querySelector(".leaflet-popup-tip");
-  const closeButton = popupElement.querySelector(".leaflet-popup-close-button");
-  if (wrapper) {
-    wrapper.style.background = "rgba(24, 20, 17, 0.96)";
-    wrapper.style.color = "rgba(244, 241, 236, 0.86)";
-  }
-  if (tip) tip.style.background = "rgba(24, 20, 17, 0.96)";
-  if (closeButton) closeButton.style.color = "rgba(244, 241, 236, 0.86)";
-}
-
 function ensureStylesheet(href) {
   if (typeof document === "undefined") return;
   if (document.querySelector(`link[data-service-map-leaflet="1"][href="${href}"]`)) return;
@@ -888,7 +871,6 @@ export default function ServiceMapLeaflet({
         autoPanPaddingTopLeft: [28, 128],
         autoPanPaddingBottomRight: [28, 84]
       });
-      marker.on("popupopen", applyServiceMapPopupTheme);
       marker.on("click", () => {
         onSelectEntryRef.current?.(group.primaryEntry?.id);
       });

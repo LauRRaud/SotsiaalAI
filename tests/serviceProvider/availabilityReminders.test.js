@@ -31,10 +31,13 @@ function staleService() {
 
 function reminderDb(service) {
   const audits = [];
+  const queries = [];
   return {
     audits,
+    queries,
     serviceProviderService: {
-      async findMany() {
+      async findMany(args) {
+        queries.push(args);
         return [service];
       },
       async updateMany({ where, data }) {
@@ -83,6 +86,8 @@ test("successful reminder is claimed once and audited without recipient PII in m
   assert.equal(first.sent, 1);
   assert.equal(second.sent, 0);
   assert.equal(sent.length, 1);
+  assert.equal(db.queries[0].where.availabilityReminderSentAt, null);
+  assert.equal("OR" in db.queries[0].where, false, "already-reminded rows cannot fill the bounded query window");
   assert.equal(db.audits[0].action, "service_availability_reminder_sent");
   assert.equal(JSON.stringify(db.audits[0].meta).includes("owner@example.test"), false);
 });

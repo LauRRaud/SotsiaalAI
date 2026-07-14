@@ -16,7 +16,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
 import { localizePath } from "@/lib/localizePath";
-import { serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
+import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
 import {
@@ -456,18 +456,6 @@ function getPreInquiryReferralNotice(entry) {
   ));
   if (!requiresReferral) return "";
   return "Selle teenuse saamine võib vajada KOV-i otsust, SKA suunamist või spetsialisti hinnangut.";
-}
-
-function getPreInquiryAvailabilityNotices(entry, t) {
-  return (entry?.providerProfile?.serviceItems || [])
-    .filter((service) => service?.mapVisible !== false && String(service?.status || "PUBLISHED").toUpperCase() === "PUBLISHED")
-    .map((service) => ({ service, presentation: serviceAvailabilityPresentation(t, service.availability) }))
-    .filter(({ service, presentation }) =>
-      service?.availability?.status === "not_accepting" ||
-      presentation.freshness === "stale" ||
-      presentation.freshness === "unknown"
-    )
-    .slice(0, 3);
 }
 
 function getPreInquiryStatusLabel(status) {
@@ -1026,7 +1014,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }, [activeDraftJourneySharedInfo]);
   const selectedRecipientReferralNotice = getPreInquiryReferralNotice(selectedRecipient);
   const selectedRecipientAvailabilityNotices = useMemo(
-    () => getPreInquiryAvailabilityNotices(selectedRecipient, t),
+    () => preInquiryAvailabilityNotices(selectedRecipient, t),
     [selectedRecipient, t]
   );
   const selectedRecipientSupportsPlatform =
@@ -2563,13 +2551,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                     {getPreInquiryReferralNotice(entry)}
                   </span>
                 ) : null}
-                {getPreInquiryAvailabilityNotices(entry, t).map(({ service, presentation }) => (
+                {preInquiryAvailabilityNotices(entry, t).map(({ service, presentation }) => (
                   <span
                     key={`${service.id || service.name}-availability`}
                     className="pre-inquiry-recipient-card__availability"
                     data-tone={presentation.tone}
                     role="status"
-                    style={{ color: presentation.tone === "positive" ? "#e8fff2" : "#fff4df" }}
                   >
                     {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
                   </span>
