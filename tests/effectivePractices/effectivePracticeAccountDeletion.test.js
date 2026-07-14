@@ -34,6 +34,24 @@ test("account deletion deletes private candidates and atomically scrubs formerly
   const deleted = [];
   const jobs = [];
   const scrubbedReviews = [];
+  const auditEvents = [
+    {
+      id: "audit-1",
+      practiceId: "historical-1",
+      action: "REVIEW_JUSTIFICATION",
+      decisionType: "NEEDS_CHANGES",
+      contentVersion: 2,
+      justification: "Autori tagasiside vabatekst"
+    },
+    {
+      id: "audit-2",
+      practiceId: "historical-1",
+      action: "REVIEW_APPROVED",
+      decisionType: null,
+      contentVersion: 2,
+      justification: null
+    }
+  ];
   const tx = {
     effectivePractice: {
       findMany: async () => rows.map(({ id }) => ({ id })),
@@ -60,6 +78,17 @@ test("account deletion deletes private candidates and atomically scrubs formerly
     },
     effectivePracticeReview: {
       updateMany: async ({ where, data }) => { scrubbedReviews.push({ where, data }); return { count: 1 }; }
+    },
+    effectivePracticeAuditEvent: {
+      updateMany: async ({ where, data }) => {
+        const matches = auditEvents.filter((event) => (
+          event.practiceId === where.practiceId &&
+          event.action === where.action &&
+          event.justification !== null
+        ));
+        for (const event of matches) Object.assign(event, data);
+        return { count: matches.length };
+      }
     }
   };
   const db = {
@@ -84,6 +113,10 @@ test("account deletion deletes private candidates and atomically scrubs formerly
     where: { practiceId: "historical-1" },
     data: { authorFeedback: null, privateNotes: null, conflictNote: null }
   });
+  assert.equal(auditEvents[0].justification, null, "retained practice loses copied review free text");
+  assert.equal(auditEvents[0].decisionType, "NEEDS_CHANGES", "decision audit survives text redaction");
+  assert.equal(auditEvents[0].contentVersion, 2, "version audit survives text redaction");
+  assert.equal(auditEvents[1].action, "REVIEW_APPROVED", "unrelated audit rows survive unchanged");
   assert.notEqual(historical.authorId, "user-1", "an in-flight author update can no longer match after scrub commit");
 });
 
@@ -121,7 +154,8 @@ test("account scrub never republishes a row when concurrent re-review wins the f
       findFirst: async () => null,
       create: async ({ data }) => { jobs.push(data); return { id: `job-${jobs.length}`, ...data }; }
     },
-    effectivePracticeReview: { updateMany: async () => ({ count: 1 }) }
+    effectivePracticeReview: { updateMany: async () => ({ count: 1 }) },
+    effectivePracticeAuditEvent: { updateMany: async () => ({ count: 1 }) }
   };
   await scrubOrDeleteEffectivePractices("user-1", { $transaction: async (callback) => callback(tx) });
   assert.equal(row.status, "ARCHIVED");

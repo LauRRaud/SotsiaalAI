@@ -17,7 +17,7 @@
 //
 // Wire into CI / `npm test` to enforce. Budget file: reports/css-cleanup/important-budget.json
 
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 
 const ROOTS = ["app/styles", "components"];
@@ -56,6 +56,7 @@ const setMode = process.argv.includes("--set");
 const { total, perFile } = countImportant();
 
 if (setMode) {
+  mkdirSync(path.dirname(BUDGET_FILE), { recursive: true });
   writeFileSync(BUDGET_FILE, JSON.stringify({ budget: total, setAt: new Date().toISOString(), note: "!important ceiling; lower as the count drops, never raise without justification" }, null, 2) + "\n");
   console.log(`✓ budget set to ${total} (${Object.keys(perFile).length} files)`);
   process.exit(0);
