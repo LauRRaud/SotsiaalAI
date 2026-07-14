@@ -337,6 +337,9 @@ enum PreInquiryStatus {
 enum TopicSeedStatus {
   DRAFT
   WAITING
+  IN_COVISION
+  FOLLOW_UP
+  CLOSED
 }
 
 enum CovisionCaseStatus {
@@ -396,13 +399,98 @@ enum CovisionMessageType {
   NETWORK_NOTE
 }
 
+enum CovisionClosureLifecycleStatus {
+  FOLLOW_UP_PENDING
+  DECISION_PENDING
+  CLOSED
+  CONTINUATION_PENDING
+  ARCHIVED
+}
+
+enum CovisionFollowUpStatus {
+  SCHEDULED
+  COMPLETED
+  RESCHEDULED
+  CANCELLED
+}
+
+enum CovisionPracticeCandidateStatus {
+  NONE
+  PRIVATE_DRAFT
+  REVIEW_PENDING
+  PUBLISHED
+}
+
+enum CovisionPackageStatus {
+  NOT_CREATED
+  CONFIRMED
+}
+
+enum CovisionRetentionStatus {
+  RETAINED_SELECTED_OUTPUT
+  DELETION_PENDING
+  DELETED
+  ERROR
+}
+
 enum EffectivePracticeStatus {
   DRAFT
+  SUBMITTED
+  IN_REVIEW
+  NEEDS_CHANGES
+  READY_TO_PUBLISH
   ANONYMITY_CHECK
   REVIEW
   PUBLISHED
+  RE_REVIEW
   HIDDEN
   ARCHIVED
+}
+
+enum PracticeCapabilityType {
+  REVIEWER
+  ETHICS
+  EDITOR
+  APPROVER
+}
+
+enum EffectivePracticeRiskLevel {
+  LOW
+  HIGH
+}
+
+enum EffectivePracticeReviewDecision {
+  PENDING
+  APPROVED
+  NEEDS_CHANGES
+  DECLINED
+  CONFLICT
+}
+
+enum EffectivePracticeConflictStatus {
+  NONE
+  MANAGEABLE
+  DECLINED
+}
+
+enum PracticeCapabilityAuditAction {
+  GRANTED
+  REVOKED
+}
+
+enum EffectivePracticeReviewAssignmentStatus {
+  ASSIGNED
+  COMPLETED
+  DECLINED
+}
+
+enum EffectivePracticeApplicationStatus {
+  DRAFT
+  WAITING_FOR_REVIEW
+  SUBMITTED
+  ACCEPTED
+  NEEDS_CHANGES
+  REJECTED
 }
 
 enum HelpRecordStatus {
@@ -629,6 +717,25 @@ model User {
   covisionMessages        CovisionMessage[]        @relation("CovisionMessageAuthor")
   effectivePractices      EffectivePractice[]      @relation("EffectivePracticeAuthor")
   topicSeeds              TopicSeed[]              @relation("TopicSeedOwner")
+  covisionPrivateStates   CovisionPrivateState[]   @relation("CovisionPrivateStateUser")
+  covisionStageSnapshots  CovisionStageSnapshot[]  @relation("CovisionStageSnapshotCompleter")
+  covisionClosuresOwned   CovisionClosure[]        @relation("CovisionClosureOwner")
+  covisionClosuresClosed  CovisionClosure[]        @relation("CovisionClosureClosedBy")
+  covisionClosuresAssigned CovisionClosure[]       @relation("CovisionClosureAssignee")
+  covisionFollowUps       CovisionFollowUp[]       @relation("CovisionFollowUpAssignee")
+  covisionFollowUpsDone   CovisionFollowUp[]       @relation("CovisionFollowUpCompleter")
+  covisionOwnerPackages   CovisionOwnerPackage[]   @relation("CovisionOwnerPackageOwner")
+  practiceCapabilities       PracticeCapability[]           @relation("PracticeCapabilityUser")
+  practiceCapabilitiesGranted PracticeCapability[]          @relation("PracticeCapabilityGranter")
+  effectivePracticeReviews   EffectivePracticeReview[]      @relation("EffectivePracticeReviewer")
+  effectivePracticeReviewAssignments EffectivePracticeReviewAssignment[] @relation("EffectivePracticeReviewAssignee")
+  effectivePracticeVersions  EffectivePracticeVersion[]     @relation("EffectivePracticeVersionPublisher")
+  effectivePracticeApplications EffectivePracticeApplication[] @relation("EffectivePracticeApplicationAuthor")
+  effectivePracticeApplicationsReviewed EffectivePracticeApplication[] @relation("EffectivePracticeApplicationReviewer")
+  effectivePracticeApplicationsAssigned EffectivePracticeApplication[] @relation("EffectivePracticeApplicationAssignee")
+  practiceCapabilityAuditsTarget PracticeCapabilityAudit[]      @relation("PracticeCapabilityAuditTarget")
+  practiceCapabilityAuditsActor PracticeCapabilityAudit[]       @relation("PracticeCapabilityAuditActor")
+  effectivePracticeAuditEvents EffectivePracticeAuditEvent[]    @relation("EffectivePracticeAuditActor")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1749,10 +1856,8 @@ model PreInquiry {
   @@index([createdAt])
 }
 
-// A6.1 — Teemaseeme: an owner-private persistent core (O2 variant B: a SEPARATE
-// model, never a CovisionCase). A6.1 implements only DRAFT -> WAITING. WAITING
-// means the owner has frozen a shareable generalized card for the queue; it does
-// NOT yet publish the seed to any other user (no group scope exists yet).
+// Teemaseeme remains an owner-private preparation object. WAITING freezes the
+// generalized card; IN_COVISION links that immutable card to exactly one case.
 model TopicSeed {
   id                 String          @id @default(cuid())
   ownerId            String
@@ -1767,10 +1872,14 @@ model TopicSeed {
   sharedCardSnapshot Json?
   ownerConfirmedAt   DateTime?
   sharedAt           DateTime?
+  covisionCaseId     String?         @unique
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt
 
-  owner User @relation("TopicSeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  owner        User          @relation("TopicSeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  covisionCase CovisionCase? @relation("TopicSeedCovisionCase", fields: [covisionCaseId], references: [id], onDelete: SetNull)
+  sourceForClosures CovisionClosure[] @relation("CovisionClosureSourceTopicSeed")
+  continuationForClosure CovisionClosure? @relation("CovisionClosureContinuationTopicSeed")
 
   @@index([ownerId, updatedAt])
   @@index([status])
@@ -1804,6 +1913,9 @@ model CovisionCase {
   messages         CovisionMessage[]
   summaryRecord    CovisionSummary?
   practices        EffectivePractice[]
+  sourceTopicSeed  TopicSeed?             @relation("TopicSeedCovisionCase")
+  sessionState     CovisionSessionState?
+  closure          CovisionClosure?
 
   @@index([ownerId, updatedAt])
   @@index([sourcePreInquiryId])
@@ -1880,12 +1992,210 @@ model CovisionParticipant {
 
   covisionCase CovisionCase @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
   user         User?        @relation("CovisionParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
+  sessionState CovisionParticipantState?
+  workItems    CovisionWorkItem[]
 
   @@unique([covisionCaseId, userId])
   @@unique([covisionCaseId, email])
   @@index([userId])
   @@index([email])
   @@index([inviteStatus])
+}
+
+// Persistent server-owned Kovisioon state. The browser submits commands with an
+// expected integer version; it never replaces this object wholesale.
+model CovisionSessionState {
+  id                  String   @id @default(cuid())
+  covisionCaseId      String   @unique
+  stage               Int      @default(1)
+  phase               String   @default("waiting_room")
+  version             Int      @default(0)
+  startedAt           DateTime?
+  stageStartedAt      DateTime @default(now())
+  pausedAt            DateTime?
+  totalPausedMs       Int      @default(0)
+  settings            Json?
+  caseConfirmedAt     DateTime?
+  settingsConfirmedAt DateTime?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  covisionCase      CovisionCase               @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  participantStates CovisionParticipantState[]
+  workItems         CovisionWorkItem[]
+  privateStates     CovisionPrivateState[]
+  stageSnapshots    CovisionStageSnapshot[]
+
+  @@index([stage, phase])
+  @@index([updatedAt])
+}
+
+model CovisionParticipantState {
+  id                   String    @id @default(cuid())
+  sessionId            String
+  participantId        String    @unique
+  presentAt            DateTime?
+  roleConfirmedAt      DateTime?
+  agreementConfirmedAt DateTime?
+  readyAt              DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  session     CovisionSessionState @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  participant CovisionParticipant  @relation(fields: [participantId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+}
+
+model CovisionWorkItem {
+  id                  String   @id @default(cuid())
+  sessionId           String
+  stage               Int
+  kind                String
+  status              String   @default("shared_draft")
+  visibility          String   @default("shared")
+  authorParticipantId String
+  content             Json
+  sourceLabel         String?
+  order               Int      @default(0)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  session           CovisionSessionState @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  authorParticipant CovisionParticipant  @relation(fields: [authorParticipantId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, stage, status])
+  @@index([authorParticipantId])
+  @@index([visibility])
+}
+
+// Private drafts, resonance and individual learning are stored separately so a
+// shared session serializer cannot accidentally return them to another user.
+model CovisionPrivateState {
+  id        String   @id @default(cuid())
+  sessionId String
+  userId    String
+  stage     Int
+  kind      String
+  content   Json
+  version   Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  session CovisionSessionState @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  user    User                 @relation("CovisionPrivateStateUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([sessionId, userId, stage, kind])
+  @@index([userId, updatedAt])
+  @@index([sessionId, stage])
+}
+
+model CovisionStageSnapshot {
+  id             String   @id @default(cuid())
+  sessionId      String
+  stage          Int
+  phase          String
+  sessionVersion Int
+  payload        Json
+  completedById  String?
+  completedAt    DateTime @default(now())
+
+  session     CovisionSessionState @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  completedBy User?                @relation("CovisionStageSnapshotCompleter", fields: [completedById], references: [id], onDelete: SetNull)
+
+  @@unique([sessionId, stage])
+  @@index([completedById])
+  @@index([completedAt])
+}
+
+// A server-confirmed, generalized and immutable-by-default summary created
+// only from the frozen stage 7/8 output. It deliberately has no message,
+// transcript or raw-case-content relation.
+model CovisionClosure {
+  id                       String                           @id @default(cuid())
+  covisionCaseId           String                           @unique
+  sourceTopicSeedId        String?
+  continuationTopicSeedId  String?                          @unique
+  ownerId                  String
+  assignedFollowUpUserId   String?
+  closedById               String?
+  generalizedTitle         String
+  workFocus                String                           @db.Text
+  selectedDirection        String                           @db.Text
+  nextStep                 String                           @db.Text
+  timeframe                String
+  progressMarker           String                           @db.Text
+  decisionNote             String?                          @db.Text
+  sessionStartedAt         DateTime?
+  closedAt                 DateTime                         @default(now())
+  ownerConfirmedAt         DateTime
+  lifecycleStatus          CovisionClosureLifecycleStatus  @default(FOLLOW_UP_PENDING)
+  practiceStatus           CovisionPracticeCandidateStatus @default(NONE)
+  packageStatus            CovisionPackageStatus            @default(NOT_CREATED)
+  retentionStatus          CovisionRetentionStatus
+  version                  Int                              @default(0)
+  createdAt                DateTime                         @default(now())
+  updatedAt                DateTime                         @updatedAt
+
+  covisionCase          CovisionCase       @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  sourceTopicSeed       TopicSeed?          @relation("CovisionClosureSourceTopicSeed", fields: [sourceTopicSeedId], references: [id], onDelete: SetNull)
+  continuationTopicSeed TopicSeed?          @relation("CovisionClosureContinuationTopicSeed", fields: [continuationTopicSeedId], references: [id], onDelete: SetNull)
+  owner                 User                @relation("CovisionClosureOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  assignedFollowUpUser  User?               @relation("CovisionClosureAssignee", fields: [assignedFollowUpUserId], references: [id], onDelete: SetNull)
+  closedBy              User?               @relation("CovisionClosureClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
+  followUps             CovisionFollowUp[]
+  ownerPackage          CovisionOwnerPackage?
+  effectivePractice     EffectivePractice?
+
+  @@index([ownerId, updatedAt])
+  @@index([assignedFollowUpUserId, updatedAt])
+  @@index([sourceTopicSeedId])
+  @@index([lifecycleStatus, closedAt])
+  @@index([practiceStatus])
+}
+
+model CovisionFollowUp {
+  id                String                 @id @default(cuid())
+  closureId         String
+  assignedToUserId  String?
+  status            CovisionFollowUpStatus @default(SCHEDULED)
+  scheduleLabel     String
+  scheduledFor      DateTime?
+  responsibleParty  String
+  channel           String
+  whatWasDone       String?                @db.Text
+  whatChanged       String?                @db.Text
+  learning          String?                @db.Text
+  resourceUsed      String?                @db.Text
+  conditionChanged  String?                @db.Text
+  completedById     String?
+  completedAt       DateTime?
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  closure    CovisionClosure @relation(fields: [closureId], references: [id], onDelete: Cascade)
+  assignedTo User?           @relation("CovisionFollowUpAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  completedBy User?           @relation("CovisionFollowUpCompleter", fields: [completedById], references: [id], onDelete: SetNull)
+
+  @@index([closureId, createdAt])
+  @@index([assignedToUserId, status])
+  @@index([status, scheduledFor])
+}
+
+model CovisionOwnerPackage {
+  id          String                @id @default(cuid())
+  closureId   String                @unique
+  ownerId     String
+  status      CovisionPackageStatus @default(CONFIRMED)
+  content     Json
+  confirmedAt DateTime
+  createdAt   DateTime              @default(now())
+  updatedAt   DateTime              @updatedAt
+
+  closure CovisionClosure @relation(fields: [closureId], references: [id], onDelete: Cascade)
+  owner   User            @relation("CovisionOwnerPackageOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId, updatedAt])
 }
 
 model CovisionMessage {
@@ -1927,36 +2237,218 @@ model CovisionSummary {
 }
 
 model EffectivePractice {
-  id                   String                  @id @default(cuid())
-  authorId             String
-  sourceCovisionCaseId String?
-  title                String
-  background           String?                 @db.Text
-  mainChallenge        String?                 @db.Text
-  whatHelped           String?                 @db.Text
-  networkOrServiceRole String?                 @db.Text
-  outcome              String?                 @db.Text
-  learningPoints       String?                 @db.Text
-  limitations          String?                 @db.Text
-  sources              String?                 @db.Text
-  topics               String[]                @default([])
-  tags                 String[]                @default([])
-  status               EffectivePracticeStatus @default(DRAFT)
-  ragSourceId          String?
-  ragMetadata          Json?
-  anonymityCheckedAt   DateTime?
-  reviewedAt           DateTime?
-  createdAt            DateTime                @default(now())
-  updatedAt            DateTime                @updatedAt
+  id                            String                          @id @default(cuid())
+  publicId                      String                          @unique @default(uuid())
+  authorId                      String?
+  sourceCovisionCaseId          String?
+  sourceClosureId               String?                         @unique
+  title                         String
+  summary                       String?                         @db.Text
+  background                    String?                         @db.Text
+  mainChallenge                 String?                         @db.Text
+  whatHelped                    String?                         @db.Text
+  networkOrServiceRole          String?                         @db.Text
+  outcome                       String?                         @db.Text
+  learningPoints                String?                         @db.Text
+  limitations                   String?                         @db.Text
+  sources                       String?                         @db.Text
+  suitableContext               String?                         @db.Text
+  conditions                    String[]                        @default([])
+  steps                         String[]                        @default([])
+  practiceType                  String?
+  targetGroups                  String[]                        @default([])
+  environments                  String[]                        @default([])
+  maturityLevel                 String                          @default("practice_candidate")
+  riskLevel                     EffectivePracticeRiskLevel      @default(LOW)
+  topics                        String[]                        @default([])
+  tags                          String[]                        @default([])
+  status                        EffectivePracticeStatus         @default(DRAFT)
+  version                       Int                             @default(0)
+  contentVersion                Int                             @default(0)
+  publishedVersion              Int?
+  ownerConfirmedNoIdentifiersAt DateTime?
+  ownerConfirmedNoIdentifiersVersion Int?
+  anonymityCheckedAt            DateTime?
+  anonymityCheckedVersion       Int?
+  professionalReviewedAt        DateTime?
+  reviewedAt                    DateTime?
+  publishedAt                   DateTime?
+  nextReviewAt                  DateTime?
+  ragSourceId                   String?
+  ragMetadata                   Json?
+  createdAt                     DateTime                        @default(now())
+  updatedAt                     DateTime                        @updatedAt
 
-  author             User          @relation("EffectivePracticeAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  sourceCovisionCase CovisionCase? @relation(fields: [sourceCovisionCaseId], references: [id], onDelete: SetNull)
+  author             User?                          @relation("EffectivePracticeAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  sourceCovisionCase CovisionCase?                  @relation(fields: [sourceCovisionCaseId], references: [id], onDelete: SetNull)
+  sourceClosure      CovisionClosure?               @relation(fields: [sourceClosureId], references: [id], onDelete: SetNull)
+  reviews            EffectivePracticeReview[]
+  reviewAssignments  EffectivePracticeReviewAssignment[]
+  versions           EffectivePracticeVersion[]
+  applications       EffectivePracticeApplication[]
+  auditEvents        EffectivePracticeAuditEvent[]
 
   @@index([authorId, updatedAt])
   @@index([sourceCovisionCaseId])
-  @@index([status])
+  @@index([status, publishedAt])
+  @@index([riskLevel, status])
   @@index([ragSourceId])
   @@index([createdAt])
+}
+
+model PracticeCapability {
+  id              String                 @id @default(cuid())
+  userId          String
+  grantedByUserId String?
+  type            PracticeCapabilityType
+  scope           String                 @default("")
+  validFrom       DateTime               @default(now())
+  validUntil      DateTime?
+  revokedAt       DateTime?
+  grantBasis      String?                @db.Text
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+
+  user      User @relation("PracticeCapabilityUser", fields: [userId], references: [id], onDelete: Cascade)
+  grantedBy User? @relation("PracticeCapabilityGranter", fields: [grantedByUserId], references: [id], onDelete: SetNull)
+
+  @@unique([userId, type, scope])
+  @@index([userId, revokedAt, validUntil])
+  @@index([type, scope])
+}
+
+model EffectivePracticeReview {
+  id              String                           @id @default(cuid())
+  practiceId      String
+  reviewerId      String?
+  capabilityType  PracticeCapabilityType
+  scope           String                           @default("")
+  reviewedVersion Int
+  decision        EffectivePracticeReviewDecision @default(PENDING)
+  conflictStatus  EffectivePracticeConflictStatus @default(NONE)
+  authorFeedback  String?                          @db.Text
+  privateNotes    String?                          @db.Text
+  conflictNote    String?                          @db.Text
+  decidedAt       DateTime?
+  createdAt       DateTime                         @default(now())
+  updatedAt       DateTime                         @updatedAt
+
+  practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  reviewer User?             @relation("EffectivePracticeReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@index([practiceId, reviewedVersion, decision])
+  @@index([reviewerId, decision, updatedAt])
+}
+
+model EffectivePracticeReviewAssignment {
+  id              String                                  @id @default(cuid())
+  practiceId      String
+  reviewerId      String?
+  capabilityType  PracticeCapabilityType
+  scope           String                                  @default("")
+  contentVersion  Int
+  status          EffectivePracticeReviewAssignmentStatus @default(ASSIGNED)
+  assignedAt      DateTime                                @default(now())
+  completedAt     DateTime?
+  createdAt       DateTime                                @default(now())
+  updatedAt       DateTime                                @updatedAt
+
+  practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  reviewer User?             @relation("EffectivePracticeReviewAssignee", fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@unique([practiceId, reviewerId, capabilityType, contentVersion])
+  @@index([reviewerId, status, updatedAt])
+  @@index([practiceId, contentVersion, status])
+}
+
+model EffectivePracticeVersion {
+  id                       String   @id @default(cuid())
+  practiceId               String
+  version                  Int
+  publicSnapshot           Json
+  professionalReviewRoles  String[] @default([])
+  publishedById            String?
+  publishedAt              DateTime @default(now())
+  nextReviewAt             DateTime?
+  createdAt                DateTime @default(now())
+
+  practice   EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  publishedBy User?            @relation("EffectivePracticeVersionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+
+  @@unique([practiceId, version])
+  @@index([practiceId, publishedAt])
+}
+
+model EffectivePracticeApplication {
+  id               String                             @id @default(cuid())
+  publicId         String                             @unique @default(uuid())
+  practiceId       String
+  authorId         String
+  reviewedById     String?
+  assignedReviewerId String?
+  assignedCapabilityType PracticeCapabilityType?
+  versionUsed      Int
+  practiceSnapshot Json
+  context          String                             @db.Text
+  targetGroup      String                             @db.Text
+  adaptations      String                             @db.Text
+  whatWorked       String                             @db.Text
+  whatDidNot       String                             @db.Text
+  limitationOrRisk String                             @db.Text
+  followUpAt       DateTime?
+  needsReview      Boolean                            @default(false)
+  status           EffectivePracticeApplicationStatus @default(DRAFT)
+  version          Int                                @default(0)
+  reviewNote       String?                            @db.Text
+  reviewedAt       DateTime?
+  createdAt        DateTime                           @default(now())
+  updatedAt        DateTime                           @updatedAt
+
+  practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  author   User              @relation("EffectivePracticeApplicationAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  reviewedBy User?           @relation("EffectivePracticeApplicationReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  assignedReviewer User?      @relation("EffectivePracticeApplicationAssignee", fields: [assignedReviewerId], references: [id], onDelete: SetNull)
+
+  @@index([practiceId, status, createdAt])
+  @@index([authorId, updatedAt])
+  @@index([assignedReviewerId, status, createdAt])
+  @@index([needsReview, status])
+}
+
+model PracticeCapabilityAudit {
+  id           String                        @id @default(cuid())
+  targetUserId String?
+  actorUserId  String?
+  action       PracticeCapabilityAuditAction
+  type         PracticeCapabilityType
+  scope        String                        @default("")
+  validUntil   DateTime?
+  grantBasis   String?                       @db.Text
+  createdAt    DateTime                      @default(now())
+
+  targetUser User? @relation("PracticeCapabilityAuditTarget", fields: [targetUserId], references: [id], onDelete: SetNull)
+  actorUser  User? @relation("PracticeCapabilityAuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([targetUserId, createdAt])
+  @@index([actorUserId, createdAt])
+}
+
+model EffectivePracticeAuditEvent {
+  id           String   @id @default(cuid())
+  practiceId   String
+  actorId      String?
+  action       String
+  fromStatus   String?
+  toStatus     String?
+  contentVersion Int
+  metadata     Json?
+  createdAt    DateTime @default(now())
+
+  practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  actor    User?             @relation("EffectivePracticeAuditActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([practiceId, createdAt])
+  @@index([actorId, createdAt])
 }
 
 model HelpCategory {

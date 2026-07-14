@@ -36,3 +36,33 @@ test("covision call routes use contextType COVISION", () => {
   assert.match(routes, /startContextCall\(\{ contextType: "COVISION"/);
   assert.doesNotMatch(routes, /recording\/request/);
 });
+
+test("every activity-creating covision call route rechecks terminal state under the shared lock", () => {
+  const mutatingRoutes = [
+    "app/api/covision/[id]/calls/start/route.js",
+    "app/api/covision/[id]/calls/join/route.js",
+    "app/api/covision/[id]/calls/[callSessionId]/mute/route.js",
+    "app/api/covision/[id]/calls/[callSessionId]/speak-requests/route.js",
+    "app/api/covision/[id]/calls/[callSessionId]/speak-requests/[requestId]/resolve/route.js"
+  ];
+  for (const path of mutatingRoutes) {
+    assert.match(read(path), /withCovisionCallMutation\(/, path);
+  }
+  const lifecycle = read("lib/calls/covisionLifecycle.js");
+  assert.match(lifecycle, /pg_advisory_xact_lock/);
+  assert.match(lifecycle, /covisionSession:/);
+  assert.match(lifecycle, /isCovisionCaseTerminal\(covisionCase\)/);
+});
+
+test("terminal call reads are empty while leave, end and cancel recheck under the shared lock", () => {
+  assert.match(read("app/api/covision/[id]/calls/route.js"), /access\.terminal[\s\S]*call:\s*null/);
+  for (const path of [
+    "app/api/covision/[id]/calls/end/route.js",
+    "app/api/covision/[id]/calls/leave/route.js",
+    "app/api/covision/[id]/calls/[callSessionId]/speak-requests/me/route.js"
+  ]) {
+    assert.match(read(path), /allowTerminal:\s*true/);
+    assert.match(read(path), /withCovisionCallMutation\(/);
+    assert.match(read(path), /onTerminal:/);
+  }
+});

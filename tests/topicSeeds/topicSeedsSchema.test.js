@@ -12,11 +12,11 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
 const schema = readFileSync(join(root, "prisma/schema.prisma"), "utf8");
 const migration = readFileSync(join(root, "prisma/migrations/20260714040000_topic_seed/migration.sql"), "utf8");
 
-test("schema: TopicSeedStatus enum has exactly DRAFT and WAITING (A6.1 slice)", () => {
+test("schema: TopicSeedStatus keeps A6.1 states and adds the Kovisioon lifecycle", () => {
   const match = schema.match(/enum TopicSeedStatus \{([^}]*)\}/);
   assert.ok(match, "TopicSeedStatus enum missing");
   const values = match[1].split(/\s+/).filter(Boolean);
-  assert.deepEqual(values.sort(), ["DRAFT", "WAITING"]);
+  assert.deepEqual(values.sort(), ["CLOSED", "DRAFT", "FOLLOW_UP", "IN_COVISION", "WAITING"]);
 });
 
 test("schema: TopicSeed is a separate owner-cascaded model with the required fields", () => {

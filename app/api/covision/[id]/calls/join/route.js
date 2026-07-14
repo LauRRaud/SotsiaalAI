@@ -1,12 +1,12 @@
 import {
   callError,
   callJson,
-  createCovisionCallService,
   emitCovisionCallEvent,
   readCovisionCaseId,
   requireCallInCovision,
   requireCovisionCallAccess,
-  statusForCallError
+  statusForCallError,
+  withCovisionCallMutation
 } from "@/lib/calls/covisionRoutes";
 
 export const runtime = "nodejs";
@@ -20,16 +20,17 @@ export async function POST(req, { params }) {
   const body = await req.json().catch(() => ({}));
 
   try {
-    const service = createCovisionCallService();
-    let callSessionId = String(body?.callSessionId || "").trim();
-    if (!callSessionId) {
-      const active = await service.getContextCall({ contextType: "COVISION", contextId: covisionCaseId });
-      callSessionId = active?.id || "";
-    }
-    if (!callSessionId) return callError("call.not_active", 404);
-    const callAccess = await requireCallInCovision(callSessionId, covisionCaseId);
-    if (!callAccess.ok) return callError(callAccess.message, callAccess.status);
-    const result = await service.joinCall({ callSessionId, userId: access.userId });
+    const result = await withCovisionCallMutation(covisionCaseId, access, async ({ db, service, access: freshAccess }) => {
+      let callSessionId = String(body?.callSessionId || "").trim();
+      if (!callSessionId) {
+        const active = await service.getContextCall({ contextType: "COVISION", contextId: covisionCaseId });
+        callSessionId = active?.id || "";
+      }
+      if (!callSessionId) throw Object.assign(new Error("call.not_active"), { status: 404 });
+      const callAccess = await requireCallInCovision(callSessionId, covisionCaseId, { db });
+      if (!callAccess.ok) throw Object.assign(new Error(callAccess.message), { status: callAccess.status });
+      return service.joinCall({ callSessionId, userId: freshAccess.userId });
+    });
     await emitCovisionCallEvent(covisionCaseId, result.call);
     return callJson({
       ok: true,

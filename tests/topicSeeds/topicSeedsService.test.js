@@ -505,6 +505,7 @@ test("serializeTopicSeed: exposes the owner-facing shape without inventing field
     createdAt: new Date(), updatedAt: new Date()
   });
   assert.equal(out.status, "DRAFT");
+  assert.equal(out.covisionCaseId, null);
   assert.equal(out.safetyGate, "risk_assessed");
   assert.deepEqual(out.requestedSupport, ["role"]);
 });

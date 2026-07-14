@@ -786,9 +786,9 @@ export default function TeemaseemnedPage({ owner = null }) {
         <span className="ts-nav-link" aria-current="page" data-active="1">
           Teemaseemned
         </span>
-        <span className="ts-nav-link" data-disabled="1" title="Parimate praktikate leht on ehitamisel">
-          Parimad praktikad · ehitamisel
-        </span>
+        <Link className="ts-nav-link" href="/parimad-praktikad">
+          {readText(t, "room.kovision_practices_card", "Parimad praktikad")}
+        </Link>
       </nav>
       <div className="ts-tools">
         <button type="button" data-variant aria-expanded={helpOpen} onClick={() => setHelpOpen(true)}>

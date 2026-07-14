@@ -1,10 +1,10 @@
 import { json } from "@/lib/documents/server";
-import { updateEffectivePractice } from "@/lib/covision";
+import { updateEffectivePracticeCandidate } from "@/lib/effectivePractices";
 import {
-  covisionErrorResponse,
-  covisionLocale,
-  requireCovisionAuth
-} from "@/lib/covisionApi";
+  effectivePracticeErrorResponse,
+  effectivePracticeLocale,
+  requireEffectivePracticeAuth
+} from "@/lib/effectivePracticeApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -16,16 +16,16 @@ async function readId(context) {
 }
 
 export async function PATCH(request, context) {
-  const locale = covisionLocale(request);
+  const locale = effectivePracticeLocale(request);
   try {
-    const auth = await requireCovisionAuth();
+    const auth = await requireEffectivePracticeAuth();
     const body = await request.json().catch(() => ({}));
-    const practice = await updateEffectivePractice(auth, await readId(context), body);
+    const practice = await updateEffectivePracticeCandidate(auth, await readId(context), body);
     return json({
       ok: true,
       practice
     });
   } catch (error) {
-    return covisionErrorResponse(error, locale, "[covision] practice update failed", "covision.errors.practice_save_failed");
+    return effectivePracticeErrorResponse(error, locale, "[effective-practices] legacy update failed");
   }
 }

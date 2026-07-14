@@ -1,43 +1,43 @@
 import { json } from "@/lib/documents/server";
 import {
-  createEffectivePractice,
-  listCovisionWorkspace
-} from "@/lib/covision";
+  createEffectivePracticeCandidate,
+  listEffectivePracticeWorkspace
+} from "@/lib/effectivePractices";
 import {
-  covisionErrorResponse,
-  covisionLocale,
-  requireCovisionAuth
-} from "@/lib/covisionApi";
+  effectivePracticeErrorResponse,
+  effectivePracticeLocale,
+  requireEffectivePracticeAuth
+} from "@/lib/effectivePracticeApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET(request) {
-  const locale = covisionLocale(request);
+  const locale = effectivePracticeLocale(request);
   try {
-    const auth = await requireCovisionAuth();
-    const workspace = await listCovisionWorkspace(auth);
+    const auth = await requireEffectivePracticeAuth();
+    const workspace = await listEffectivePracticeWorkspace(auth);
     return json({
       ok: true,
       practices: workspace.practices
     });
   } catch (error) {
-    return covisionErrorResponse(error, locale, "[covision] practice load failed", "covision.errors.practice_load_failed");
+    return effectivePracticeErrorResponse(error, locale, "[effective-practices] legacy list failed");
   }
 }
 
 export async function POST(request) {
-  const locale = covisionLocale(request);
+  const locale = effectivePracticeLocale(request);
   try {
-    const auth = await requireCovisionAuth();
+    const auth = await requireEffectivePracticeAuth();
     const body = await request.json().catch(() => ({}));
-    const practice = await createEffectivePractice(auth, body);
+    const practice = await createEffectivePracticeCandidate(auth, body);
     return json({
       ok: true,
       practice
     }, 201);
   } catch (error) {
-    return covisionErrorResponse(error, locale, "[covision] practice create failed", "covision.errors.practice_save_failed");
+    return effectivePracticeErrorResponse(error, locale, "[effective-practices] legacy create failed");
   }
 }

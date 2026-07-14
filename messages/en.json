@@ -2514,7 +2514,300 @@
       "request_failed": "The covision request failed.",
       "load_failed": "Could not load the covision workspace.",
       "save_failed": "Could not save the covision workspace.",
+      "case_read_only": "A completed or archived Covision is read-only.",
       "schema_missing": "Covision database tables are missing or the server is using the wrong database. Run Prisma migrations and reload the page."
+    },
+    "workspace": {
+      "kicker": "Private professional workspace",
+      "title": "Covision",
+      "lead": "Choose an active case or start a new covision from an owner-approved Topic Seed.",
+      "navigation": "Covision main pages",
+      "loading": "Opening the covision workspace…",
+      "back_to_cases": "Back to covision selection",
+      "nav": {
+        "new": "New covision",
+        "seeds": "Topic Seeds",
+        "completed": "Completed cases",
+        "practices": "Best practices"
+      },
+      "active": {
+        "kicker": "Continue where you left off",
+        "title": "Active covisions",
+        "empty": "You do not currently have an active covision.",
+        "no_focus": "The working focus will be clarified in the session.",
+        "updated": "Last opened",
+        "role": "My role",
+        "open": "Open covision"
+      },
+      "queue": {
+        "kicker": "Owner-approved generalisations",
+        "title": "Covision queue",
+        "ready": "Ready for covision",
+        "start": "Create covision",
+        "invite_only": "In this role you can join a covision by invitation, but you cannot start a new session yourself.",
+        "empty": "There are no owner-approved Topic Seeds in the queue yet.",
+        "open_seeds": "Open Topic Seeds",
+        "privacy": "Only the frozen generalisation moves into covision. Private preparation remains with the Topic Seed owner."
+      },
+      "errors": {
+        "load_failed": "Could not load the covision workspace.",
+        "start_failed": "Could not start the covision."
+      }
+    },
+    "live": {
+      "exit": { "label": "Exit", "aria": "Exit covision" },
+      "ui": {
+        "sigil": "C",
+        "private_professional_workspace": "Private professional workspace",
+        "session_fallback": "Covision session",
+        "session_times_aria": "Session times",
+        "meeting_elapsed": "Meeting elapsed",
+        "meeting_remaining": "Meeting remaining",
+        "stage_elapsed": "Stage {number} elapsed",
+        "stages_aria": "Covision stages",
+        "stage_number": "Stage {number}",
+        "shared_circle": "Shared circle",
+        "participants": "Participants",
+        "participant_fallback": "Participant {number}",
+        "current_user_suffix": " · you",
+        "invited_suffix": " · invitation pending",
+        "ready": "Ready",
+        "readiness_unconfirmed": "Readiness not confirmed",
+        "my_confirmations": "My confirmations",
+        "shared_cards_count": "{count} shared cards",
+        "supporting_cards_aria": "Supporting cards",
+        "stage_focus": "Stage focus",
+        "first_shared_card_hint": "The first shared card will appear here.",
+        "card_content_hidden": "This card's content has not been published in the shared view.",
+        "related_prefix": "Linked to:",
+        "follow_up_prefix": "Follow-up",
+        "only_your_workspace": "Your private workspace",
+        "to_shared_circle": "To the shared circle",
+        "private_draft": "Private draft",
+        "add_shared_card": "Add a shared card",
+        "private_aria": "Private",
+        "card_visibility_aria": "Card visibility",
+        "shared": "Shared",
+        "private": "Private",
+        "optional": "(optional)",
+        "private_draft_notice": "This draft is not sent to other participants. Sharing is a separate deliberate action.",
+        "personal_responsibility": "Personal responsibility",
+        "opening_confirmations": "Opening confirmations",
+        "owner_confirms_boundary": "The case owner confirms the case boundary.",
+        "shared_case_title": "Shared case title",
+        "title_missing": "Title missing",
+        "only_your_confirmation": "Your confirmation only",
+        "only_summary_reviewer_confirmation": "Summary keeper confirmation only",
+        "owner_checkpoint": "Owner checkpoint",
+        "summary_reviewer_checkpoint": "Privacy boundary checkpoint",
+        "private_gate_notice": "The group sees only whether the gate is ready, not your private notes.",
+        "compass": "Compass",
+        "hold_now": "Keep this in focus",
+        "your_role": "Your role",
+        "private_drafts": "Private drafts",
+        "private_boundary_notice": "Private content stays in your view. The shared field contains only deliberately shared cards.",
+        "choose": "Choose…",
+        "shared_queue": "Shared queue",
+        "card_field": "Card field"
+      },
+      "actions": {
+        "confirm_role": "Confirm my role",
+        "accept_agreement": "Accept the agreement",
+        "ready": "I am ready",
+        "focus_card": "Bring to the centre",
+        "mark_shared": "Mark as shared",
+        "park": "Park",
+        "save_private": "Save for me",
+        "share_with_circle": "Share with the circle",
+        "confirm_case_boundary": "The case boundary and anonymity are correct",
+        "settings_confirmed": "✓ Settings confirmed",
+        "confirm_settings": "Confirm settings",
+        "start_meeting": "Start meeting",
+        "send_invite": "Send invitation",
+        "save_direction": "Save direction",
+        "save_step": "Save step",
+        "save_marker": "Save marker",
+        "save_follow_up": "Save follow-up",
+        "confirm_owner_direction": "Confirm and share this summary with the group",
+        "confirm_owner_package": "Confirm the owner package and follow-up",
+        "continue_prefix": "Continue:",
+        "complete_stage": "Complete stage",
+        "need_support": "I need support",
+        "pause": "Pause",
+        "resume": "Resume",
+        "refresh_aria": "Refresh session",
+        "support_received": "I have the support I need"
+      },
+      "fields": {
+        "card_kind": "Card type",
+        "wording": "Wording",
+        "source": "Link or source",
+        "duration_minutes": "Duration in minutes",
+        "support_agreement": "Support agreement",
+        "email": "Email",
+        "role": "Role",
+        "group_generalization": "Group generalisation",
+        "learning_circle": "Learning circle",
+        "retention": "Retention of session material",
+        "practice_candidate": "Best-practice candidate"
+      },
+      "placeholders": {
+        "question": "What would be useful to clarify?",
+        "clear_thought": "Write one clear thought…",
+        "direction": "A direction I want to explore further…",
+        "next_step": "What can I do myself?",
+        "timeframe": "Timeframe, for example within the next 7 days",
+        "progress_marker": "How will I notice a small sign of progress?",
+        "follow_up_when": "When will we review progress?",
+        "email": "name@organisation.org"
+      },
+      "defaults": {
+        "support_rule": "Anyone may ask for a pause at any time.",
+        "privacy_boundary": "The case remains within the session's private professional circle."
+      },
+      "support": {
+        "pause_title": "Pause for a moment.",
+        "body": "You can name what you need, ask for silence, or speak privately with the session leader.",
+        "paused_notice": "The session is paused. You may continue a private draft while the shared field waits."
+      },
+      "invitation": {
+        "kicker": "Private invitation",
+        "title": "You have been invited to a covision",
+        "privacy_notice": "The case title, content and participants become visible only after you confirm your role and the confidentiality agreement.",
+        "access": "Access",
+        "access_locked": "content is locked",
+        "access_accepted": "agreement confirmed",
+        "steps_aria": "Invitation acceptance steps",
+        "reload_notice": "Each confirmation is saved on the server. If the session changes at the same time, the latest state is loaded."
+      },
+      "invite_participant": {
+        "title": "Invite a participant",
+        "privacy_notice": "The invitee cannot see the case title, content, or other participants before accepting the agreement.",
+        "session_required": "Participants can be invited after the Kovisioon workspace has been created."
+      },
+      "phase_control": {
+        "kicker": "Session leader tool",
+        "title": "Work phase",
+        "stage_gate": "stage gate",
+        "leader_decision": "leader decision required",
+        "exception_notice": "This exceptional state cannot be skipped with the ordinary Continue button. Resolve the cause or resume from the pause control.",
+        "gate_ready_notice": "The work phases are complete. Use the evidence gate at the bottom to complete the stage.",
+        "no_next_phase": "There is no automatic next work phase from the current state."
+      },
+      "gate": {
+        "completed": "The case is closed and its immutable review is available on the Completed cases page.",
+        "leader_only": "Only the meeting or session leader can complete this stage.",
+        "resume_first": "End the pause before continuing.",
+        "phase_required": "The work phase must first reach “{phase}”.",
+        "evidence_missing": "Required stage evidence is missing.",
+        "stage_label": "Stage {number} gate",
+        "visible_conditions_met": "All visible conditions are met.",
+        "server_checks_private": "The server checks the owner's private confirmation when the stage is completed.",
+        "more_conditions": "{count} more conditions need to be completed."
+      },
+      "stage7": {
+        "private_choice": "Private choice",
+        "owner_drafting": "The case owner is formulating their direction",
+        "group_wait_notice": "The group cannot see or vote on the options. A confirmed summary appears in the shared view when the owner is ready.",
+        "only_your_decision": "Your decision space only",
+        "title": "Define the next movement",
+        "selected_direction": "1 · Selected direction",
+        "first_step": "2 · My first step",
+        "progress_marker": "3 · Sign of progress",
+        "follow_up": "4 · Follow-up",
+        "follow_up_when": "Follow-up time or event",
+        "follow_up_responsible": "Person responsible for follow-up",
+        "follow_up_channel": "Follow-up channel",
+        "share_notice": "Confirming makes only the selected direction, first step, progress marker and follow-up visible to the group. Your private reasoning is not shared."
+      },
+      "stage8": {
+        "shared_ending": "Shared ending",
+        "learning_and_generalization": "Learning and generalisation",
+        "participant_notice": "Add your learning note using the shared-card composer. The case owner confirms the owner package and retention.",
+        "owner_only": "Owner confirmation only",
+        "title": "Final package decisions",
+        "not_close_notice": "Saving the owner package does not close the case. The session leader closes it only through the final stage gate."
+      },
+      "continuity": {
+        "kicker": "Confirmed prior context",
+        "title": "The spine of the work",
+        "read_only_notice": "This was confirmed in an earlier stage and is read-only here.",
+        "selected_direction": "Selected direction",
+        "next_step": "First step",
+        "timeframe": "Timeframe",
+        "progress_marker": "Progress marker",
+        "follow_up": "Follow-up",
+        "completed_title": "Case completed",
+        "completed_body": "The session workspace is now read-only. The immutable final review is available on the Completed cases page.",
+        "open_completed": "Open completed cases"
+      },
+      "checkpoints": {
+        "owner_picture": "The shared picture reflects my account",
+        "owner_focus": "The work focus is right for me",
+        "privacy_reviewed": "The privacy boundary has been reviewed",
+        "owner_enough": "The exploration is sufficient to continue",
+        "owner_ready_possibilities": "I am ready to hear possibilities",
+        "resonance_complete": "I have completed the resonance period",
+        "impact_reviewed": "Impact and boundaries have been reviewed",
+        "support_picture_ready": "My support picture is sufficient for choosing"
+      },
+      "stages": {
+        "1": { "short": "Opening", "title": "Presence and agreements", "eyebrow": "A safe shared beginning", "lead": "We confirm roles, confidentiality and the case boundary before opening substantive work.", "hero": "The case owner confirms that the shared picture is accurate and sufficiently anonymous.", "gate": "Open the case story" },
+        "2": { "short": "Story", "title": "Building the case picture", "eyebrow": "Owner's story, shared group picture", "lead": "We collect facts, perspectives and professional tensions on separate cards.", "hero": "One active anchor keeps the centre of the story visible. Supporting cards clarify rather than compete.", "gate": "Move to exploratory questions" },
+        "3": { "short": "Explore", "title": "Exploratory questions", "eyebrow": "Question before interpretation", "lead": "We prepare questions privately and share them one at a time to broaden the case picture.", "hero": "Only one question is central at a time. Its answer may change the shared picture.", "gate": "Move to the reflection circle" },
+        "4": { "short": "Reflect", "title": "Reflection circle", "eyebrow": "Listening mode", "lead": "Participants share observations and possible meanings; the case owner does not have to decide yet.", "hero": "A reflection is a tentative perspective, not a diagnosis or solution.", "gate": "Move to creating possibilities" },
+        "5": { "short": "Options", "title": "Creating possibilities", "eyebrow": "Plurality before choice", "lead": "We create possibilities in different directions without voting, ranking or immediate feasibility scoring.", "hero": "One possibility is central; others wait visibly for their turn to be shared.", "gate": "Move to resources" },
+        "6": { "short": "Resources", "title": "Resources and conditions", "eyebrow": "What can genuinely support this direction?", "lead": "We connect possibilities with resources, supporting conditions, limits and critical prerequisites.", "hero": "The resource picture does not assess a person. It shows influence, support and what needs agreement.", "gate": "Move to the owner's choice" },
+        "7": { "short": "Choice", "title": "Direction and first step", "eyebrow": "Owner's private decision space", "lead": "The case owner defines the chosen direction, a first step within their influence and an honest follow-up.", "hero": "The group does not vote. The owner decides and shares only the confirmed summary.", "gate": "Confirm the case-work outcome" },
+        "8": { "short": "Ending", "title": "Learning and handover", "eyebrow": "Freezing the session output", "lead": "We confirm the owner package, follow-up, group learning and retention decisions.", "hero": "The final review prepares an immutable output. The session leader closes the case only through the final gate.", "gate": "Close case" }
+      },
+      "roles": {
+        "OWNER": "case owner", "case_owner": "case owner", "CO_MODERATOR": "session leader", "session_leader": "session leader", "meeting_leader": "meeting leader", "meeting_starter": "meeting starter", "SUMMARY_REVIEWER": "summary keeper", "summary_keeper": "summary keeper", "PARTICIPANT": "participant", "participant": "participant", "OBSERVER": "observer", "observer": "observer"
+      },
+      "kinds": {
+        "participant_state": "Participant readiness", "agreement": "Agreement", "session_setting": "Session setting", "case_anchor": "Case anchor", "case_core": "Case core", "party_or_role": "Party or role", "event_or_timepoint": "Event or time point", "known_information": "Known information", "person_perspective": "Person's perspective", "worker_observation": "Worker observation", "worker_interpretation": "Worker interpretation", "prior_action": "Prior action", "described_outcome": "Described outcome", "support_or_condition": "Support or condition", "barrier_or_limit": "Barrier or limit", "desired_change": "Desired change", "professional_tension": "Professional tension", "method": "Method", "free_card": "Free card", "research_site": "Area to explore", "question": "Exploratory question", "clarification": "Clarification", "open_question": "Open question", "source": "Source", "reflection": "Reflection", "observation": "Observation", "reaction": "Reaction", "possible_interpretation": "Possible interpretation", "possible_need_or_value": "Possible need or value", "possible_pattern": "Possible pattern", "alternative_perspective": "Alternative perspective", "parked_possibility": "Parked possibility", "possibility": "Possibility", "main_possibility": "Main possibility", "backup_possibility": "Backup possibility", "possibility_cluster": "Possibility cluster", "feasibility_note": "Feasibility note", "resource": "Resource", "supporting_condition": "Supporting condition", "required_condition": "Required condition", "barrier": "Barrier", "critical_prerequisite": "Critical prerequisite", "resource_reflection": "Resource reflection", "resource_bundle": "Resource bundle", "selected_direction": "Selected direction", "key_insight": "Key insight", "next_step": "First step", "support_request": "Support request", "progress_marker": "Progress marker", "fallback_or_stop_condition": "Fallback or stop condition", "follow_up": "Follow-up", "owner_package": "Owner package", "learning_note": "Learning note", "process_reflection": "Process reflection", "group_generalization": "Group generalisation", "topic_seed_follow_up": "Follow-up topic", "retention_decision": "Retention decision", "practice_candidate_decision": "Practice-candidate decision"
+      },
+      "statuses": {
+        "draft": "draft", "private_draft": "private draft", "shared_draft": "shared draft", "ready": "ready", "queued": "queued", "active": "active", "shared": "shared", "completed": "completed", "answered": "answered", "open": "open", "owner_confirmed": "owner confirmed", "needs_review": "needs review", "needs_rephrase": "needs rephrasing", "resolved": "resolved", "not_applicable": "not applicable", "parked": "parked", "closed": "closed", "withdrawn": "withdrawn", "removed": "removed"
+      },
+      "phases": {
+        "waiting_room": "waiting room", "meeting_started": "meeting started", "confirmations_pending": "confirmations pending", "ready_to_open_case": "ready to open the case", "transition_to_stage_2": "transition to stage 2", "ready_to_share_story": "ready to share the story", "story_sharing": "story sharing", "story_paused": "story paused", "story_complete": "story complete", "picture_review": "shared-picture review", "focus_formulation": "formulating the focus", "ready_to_explore": "ready to explore", "transition_to_stage_3": "transition to stage 3", "exploration_plan": "exploration plan", "silent_preparation": "silent preparation", "question_queue": "question queue", "active_question": "active question", "canvas_clarification": "canvas clarification", "coverage_review": "coverage review", "focus_confirmation": "focus confirmation", "ready_to_continue": "ready to continue", "ready_to_deepen": "ready to deepen", "role_change": "role change", "silent_reflection": "silent reflection", "reflection_queue": "reflection queue", "active_reflection": "active reflection", "reflection_placement": "placing the reflection", "perspective_linking": "linking perspectives", "owner_resonance": "owner resonance", "owner_review": "owner review", "ready_for_possibilities": "ready for possibilities", "creation_open": "creation open", "silent_ideation": "silent ideation", "possibility_queue": "possibility queue", "active_possibility": "active possibility", "thanks_and_placement": "thanks and placement", "possibility_field": "possibility field", "second_creative_round": "second creative round", "ready_for_resources": "ready for resources", "scope_selection": "scope selection", "silent_resource_scan": "silent resource scan", "resource_queue": "resource queue", "active_resource": "active resource", "factual_clarification": "factual clarification", "barriers_and_unknowns": "barriers and unknowns", "impact_review": "impact review", "resource_mirror": "resource mirror", "owner_support_picture_review": "owner's support-picture review", "ready_for_selection": "ready for selection", "private_selection": "private selection", "resonance_sorting": "resonance sorting", "direction_drafting": "drafting direction", "key_insight": "key insight", "next_step_drafting": "drafting the first step", "support_timeframe_progress": "support, timeframe and progress", "follow_up_draft": "follow-up draft", "quality_responsibility_review": "quality and responsibility review", "owner_confirmation": "owner confirmation", "public_summary": "shared summary", "support_consent": "support consent", "case_work_completed": "case work complete", "ready_to_summarize": "ready to summarise", "owner_package_review": "owner-package review", "follow_up_generalization_confirmation": "follow-up and generalisation confirmation", "silent_learning_reflection": "silent learning reflection", "learning_queue": "learning queue", "active_learning_share": "active learning share", "process_reflection": "process reflection", "group_generalization": "group generalisation", "retention_choice": "retention choice", "practice_candidate_decision": "practice-candidate decision", "final_review": "final review", "case_closed": "case closed", "meeting_closed": "meeting closed", "next_case": "next case", "paused": "paused", "blocked": "blocked", "stage_incomplete": "stage incomplete", "complete": "session output confirmed"
+      },
+      "missing": {
+        "participants_required": "At least one participant must be confirmed.", "participant_roles_unconfirmed": "Not all roles are confirmed.", "participant_agreements_unconfirmed": "Not all agreements are confirmed.", "participants_not_ready": "Not all participants are ready.", "observer_consent_missing": "Observer consent is missing.", "case_unconfirmed": "The case owner has not confirmed the case boundary.", "settings_unconfirmed": "Session settings are not confirmed.", "shared_anchor_required": "A shared case anchor is missing.", "owner_picture_unconfirmed": "The owner's picture confirmation is missing.", "owner_focus_unconfirmed": "The owner's focus confirmation is missing.", "privacy_review_required": "The privacy review is not confirmed.", "shared_question_required": "At least one exploratory question must be shared.", "owner_enough_unconfirmed": "The owner has not confirmed that exploration is sufficient.", "shared_reflection_required": "At least one reflection must be shared.", "owner_not_ready": "The owner is not ready.", "shared_possibility_required": "At least one possibility must be shared.", "active_object_present": "The active card must be completed or parked first.", "owner_resonance_not_ready": "The owner's resonance period is not complete.", "shared_resource_or_condition_required": "A resource or supporting condition is missing.", "impact_review_required": "The impact review is not confirmed.", "critical_prerequisite_unresolved": "A critical prerequisite is unresolved.", "selected_direction_required": "The selected direction is missing.", "next_step_required": "The first step is missing.", "next_step_outside_owner_influence": "The first step must be within the owner's influence.", "timeframe_required": "A timeframe is missing.", "progress_marker_required": "A progress marker is missing.", "follow_up_required": "A follow-up is missing.", "owner_confirmation_required": "The owner's final confirmation is missing.", "package_confirmation_required": "The owner package is not confirmed.", "owner_package_metadata_required": "A confirmed owner package has not been shared.", "follow_up_confirmation_required": "The follow-up is not confirmed.", "generalization_decision_required": "The generalisation decision is missing.", "completed_generalization_metadata_required": "The completed generalisation must be shared.", "learning_completion_or_skip_required": "The learning-circle decision is missing.", "retention_decision_required": "The retention decision is missing.", "practice_decision_required": "The best-practice decision is missing.", "practice_candidate_metadata_required": "Practice-candidate metadata is missing.", "owner_final_confirmation_required": "The owner's final confirmation is missing.", "blocking_safety_or_privacy_issue": "A safety or privacy issue remains unresolved.", "stage_evidence_unavailable": "Stage evidence cannot currently be checked."
+      },
+      "follow_up_responsible": { "owner": "case owner", "meeting_leader": "meeting leader", "session_leader": "session leader", "designated_professional": "designated professional", "group": "group" },
+      "follow_up_channels": { "platform": "platform", "meeting": "meeting", "phone": "phone", "email": "email", "other_agreed_channel": "other agreed channel" },
+      "decisions": {
+        "generalization": { "completed": "generalisation completed and shared", "skipped_unsafe": "skipped for safety reasons", "not_retained": "do not retain the generalisation" },
+        "learning": { "completed": "completed", "skipped": "deliberately skipped" },
+        "retention": { "retain": "retain the agreed output", "do_not_retain": "do not retain" },
+        "practice": { "create_draft": "create a candidate draft", "skip": "do not create" }
+      }
+    },
+    "session": {
+      "loading": "Opening the covision session…",
+      "notices": {
+        "saved": "Saved."
+      },
+      "errors": {
+        "load_failed": "Could not load the covision session.",
+        "action_failed": "Could not save the action."
+      }
+    },
+    "status": {
+      "draft": "In preparation",
+      "active": "Active",
+      "summary_ready": "Summary in progress",
+      "closed": "Closed",
+      "archived": "Archived"
+    },
+    "participant_roles": {
+      "owner": "Case owner",
+      "co_moderator": "Session facilitator",
+      "summary_reviewer": "Summary keeper",
+      "participant": "Group member",
+      "observer": "Observer"
     },
     "knowledge": {
       "intro": "Search the knowledge base for relevant laws, guidelines, methods, practice descriptions, services, and support options.",
@@ -4187,6 +4480,7 @@
     "back_card": "Back",
     "kovision_room_card": "Co-vision room",
     "kovision_seeds_card": "Topic seeds",
+    "kovision_completed_card": "Completed cases",
     "kovision_practices_card": "Best practices",
     "kovision_practices_building": "under construction",
     "kovision_practices_building_hint": "The best practices page is under construction",
@@ -4270,5 +4564,167 @@
       "save_failed": "The topic seed could not be saved. Please try again.",
       "load_failed": "Topic seeds could not be loaded."
     }
+  },
+  "completed_cases": {
+    "brand": "COVISION",
+    "title": "Completed cases",
+    "lead": "These Covision sessions have finished their active work. The next step or follow-up may still be in progress.",
+    "navigation": "Covision main pages",
+    "privacy": "Privacy and data protection",
+    "search": "Search by title, keyword or case presenter…",
+    "loading": "Opening completed cases…",
+    "empty": "There are no completed Covisions in this view yet.",
+    "results": "Showing",
+    "metrics": { "title": "Case overview" },
+    "filters": { "title": "Status filters", "all": "All", "attention": "Needs attention", "practice": "With a practice candidate" },
+    "status": {
+      "follow_up_pending": "In follow-up",
+      "decision_pending": "Follow-up completed · awaiting a continuation decision",
+      "closed": "Closed",
+      "continuation_pending": "Awaiting continuation",
+      "archived": "Archived"
+    },
+    "attention": {
+      "title": "Needs attention",
+      "overdue": "Follow-up needs attention",
+      "today": "Follow-up is today",
+      "empty": "No follow-up or continuation decision needs prompt attention."
+    },
+    "scope": { "title": "My views", "mine": "My cases", "group": "My group’s cases", "visible": "All visible" },
+    "sort": {
+      "title": "Sort",
+      "attention": "Attention first",
+      "follow_up": "Nearest follow-up",
+      "newest": "Newest Covision",
+      "oldest": "Oldest Covision",
+      "title_alpha": "Title"
+    },
+    "view": { "title": "View", "cards": "Card view", "list": "List view" },
+    "profile": {
+      "you": "You",
+      "social_worker": "Social work professional",
+      "service_provider": "Service provider",
+      "admin": "Platform administrator",
+      "professional": "Professional"
+    },
+    "help": {
+      "title": "Help",
+      "text": "Completed means the Covision process has ended — not that the person’s situation has necessarily been resolved."
+    },
+    "labels": {
+      "case_owner": "Case presenter",
+      "owner": "Case presenter",
+      "covision": "Covision",
+      "follow_up": "Follow-up",
+      "work_focus": "Work focus",
+      "direction": "Chosen direction",
+      "next_step": "Next step",
+      "timeframe": "Timeframe",
+      "progress_marker": "Progress marker",
+      "channel": "Channel",
+      "responsible": "Responsible person",
+      "time": "Date or event"
+    },
+    "actions": {
+      "open_follow_up": "Open follow-up",
+      "do_follow_up": "Complete follow-up",
+      "view_follow_up": "View follow-up",
+      "decide": "Make continuation decision",
+      "open_continuation": "Open continuation topic",
+      "confirm_follow_up": "Confirm follow-up",
+      "reschedule": "Set a new time",
+      "close_topic": "Close topic",
+      "create_practice": "Create private practice candidate",
+      "open_practice": "Open private draft",
+      "create_continuation": "Create linked Topic Seed",
+      "new_follow_up": "Schedule another follow-up",
+      "archive": "Archive",
+      "open_covision": "Open Covision"
+    },
+    "package": {
+      "mine_confirmed": "My Covision package · confirmed",
+      "confirmed_private": "Covision package confirmed · content visible only to its owner",
+      "visible_owner": "This package content is visible only to you.",
+      "hidden_other": "You can see the package’s technical status, not its content."
+    },
+    "practice": {
+      "private_draft": "Private practice candidate",
+      "none": "No candidate has been created.",
+      "private_note": "The private draft awaits separate de-identification and review."
+    },
+    "calendar": { "title": "Follow-up calendar", "empty": "No follow-up dates have been set yet." },
+    "quick": { "title": "Quick links", "seeds": "Go to Topic Seeds", "practices": "Go to the practice library" },
+    "detail": {
+      "read_only": "Closed Covision · confirmed snapshot",
+      "navigation": "Completed case sections",
+      "loading": "Opening the confirmed summary…",
+      "tabs": { "summary": "Summary", "follow_up": "Follow-up", "links": "Links", "data": "Data and retention" }
+    },
+    "follow_up": {
+      "unscheduled": "Time to be confirmed",
+      "completed": "Follow-up completed",
+      "do_now": "Complete follow-up",
+      "what_done": "What was actually done",
+      "what_changed": "What changed or did not change",
+      "learning": "What was learned",
+      "detail_private": "The follow-up reflection is visible only to the case owner and the assigned follow-up professional.",
+      "reschedule": "Set a new time",
+      "schedule_placeholder": "e.g. 24 Aug 2026 or at the start of the next meeting"
+    },
+    "decision": {
+      "title": "Continuation decision",
+      "lead": "The follow-up is complete. Choose the professional next state — this is not a rating of success.",
+      "new_question": "New generalized question",
+      "new_follow_up_time": "Date or event for the new follow-up",
+      "close_reason": "Professional reason for closing",
+      "close_confirm": "I confirm that I reviewed the follow-up and am making a deliberate decision to close this topic."
+    },
+    "links": {
+      "source": "Original Topic Seed",
+      "source_note": "The link is visible only to the owner and does not expose private preparation to others.",
+      "continuation": "Continuation topic",
+      "continuation_ready": "A new linked Topic Seed has been created.",
+      "continuation_empty": "No continuation topic has been created.",
+      "practice": "Practice candidate"
+    },
+    "data": {
+      "retention": "Retention status",
+      "deleted": "Detailed session work has been deleted. Only the confirmed minimal summary remains.",
+      "selected_only": "Only the confirmed minimal summary and the owner’s selected package remain.",
+      "package": "Covision package",
+      "archive_confirm": "I confirm that I want to archive this completed case from the active view."
+    },
+    "errors": {
+      "invalid": "Check the entered information and try again.",
+      "not_ready": "The confirmed Covision output is not ready yet.",
+      "conflict": "The case changed in the meantime. Refresh and try again.",
+      "request_failed": "The completed-case action failed.",
+      "load_failed": "Completed cases could not be loaded.",
+      "detail_failed": "The case summary could not be opened.",
+      "action_failed": "The action could not be saved."
+    }
+  },
+  "effective_practices": {
+    "brand": "COVISION", "navigation": "Covision main pages", "kicker": "Professional knowledge library", "title": "Best practices", "lead": "The library contains professional approaches at different maturity and review levels. Each practice shows its context, conditions and limitations.", "privacy": "Privacy and data protection", "search": "Search by practice, topic, target group or focus…", "search_label": "Search the practice library", "loading": "Opening the practice library…", "detail_loading": "Opening practice…",
+    "quality": { "title": "Quality assurance", "text": "Every published practice passes a pre-publication check. Its professional review level remains visible." },
+    "help": { "title": "Help", "text": "A practice is not a universal solution. Check its context, conditions, limitations and version before use." },
+    "tabs": { "title": "Practice library views", "library": "Practice library", "candidates": "My work", "review": "Review" },
+    "profile": { "you": "You", "social_worker": "Social work professional", "service_provider": "Service provider", "admin": "Platform administrator", "professional": "Professional" },
+    "capability": { "title": "Verified platform capabilities", "reviewer": "Subject reviewer", "ethics": "Ethics and privacy reviewer", "editor": "Methodology editor", "approver": "Final approver", "professional": "Professional reviewer", "all_scopes": "all fields" },
+    "status": { "draft": "Private draft", "waiting": "Waiting for reviewer assignment", "submitted": "Submitted for review", "in_review": "In review", "needs_changes": "Needs changes", "ready": "Ready for approval", "published": "Approved practice", "re_review": "Under renewed review", "archived": "Archived", "candidate": "Experience-based candidate", "expert_reviewed": "Expert reviewed", "accepted": "Reviewed and accepted", "rejected": "Rejected" },
+    "risk": { "low": "Lower risk", "high": "Higher risk" },
+    "version_history": "Published version history",
+    "filters": { "maturity": "Maturity level", "all_levels": "All maturity levels" },
+    "sort": { "title": "Sort", "updated": "Recently updated", "reviewed": "Recently reviewed", "applications": "Most documented applications", "alpha": "Alphabetical", "review_due": "Review due" },
+    "labels": { "professional_method": "Professional approach", "suitable": "Suitable when", "limitation": "Important limitation", "conditions": "Conditions", "steps": "Application steps", "applications": "{count} documented applications", "followups": "{count} follow-ups", "version": "Version", "updated": "Last updated", "reviewed": "Professionally reviewed", "next_review": "Next review", "review_overdue": "The next professional review is overdue.", "risk": "Risk level", "identifiers": "Identifiability", "confirmed": "Author check confirmed", "unconfirmed": "Unchecked", "modified": "Last modified", "review_task": "Review assignment", "review_workspace": "Review workspace", "summary_missing": "The summary needs completion.", "review_basis": "Professional review basis" },
+    "actions": { "open": "Open practice", "open_draft": "Open draft", "review": "Open for review", "create": "Create practice candidate", "edit": "Edit", "save_private": "Save private draft", "submit_review": "Submit for review", "save_review": "Save review", "publish": "Approve and publish version", "submit_application": "Submit application experience for review", "archive": "Archive", "archive_confirm": "Archive this practice candidate?", "re_review": "Start a new review", "re_review_confirm": "Remove this version from the knowledge base and start a new review?" },
+    "fields": { "title": "Title", "summary": "Summary", "type": "Practice type", "risk": "Risk level", "context": "Suitable context", "conditions": "Required conditions", "steps": "Application steps", "limitations": "Important limitation or risk", "targets": "Target groups", "environments": "Application settings", "topics": "Topics and keywords", "background": "Generalised background", "challenge": "Main professional challenge", "what_helped": "What helped", "network_role": "Network or service role", "outcome": "Generalised outcome", "learning": "Learning and evidence basis", "sources": "Sources and professional basis" },
+    "editor": { "private": "Private practice candidate", "create": "Create practice candidate", "edit": "Complete candidate", "one_per_line": "One entry per line", "identifiers_confirm": "After the latest changes, I confirm that this candidate contains no details that identify a client, child, family or specific case." },
+    "candidate": { "next": "Candidate's next step", "from_closure": "The draft was created from an approved generalisation of a completed case. The case story was not copied.", "from_experience": "The draft is based on your generalised professional experience.", "my_candidates": "My practice candidates" },
+    "review": { "title": "Professional review", "role": "Review role", "decision": "Decision", "approve": "Pass to the next check", "changes": "Needs changes", "decline": "Not suitable for publication", "conflict": "Conflict of interest", "conflict_status": "Conflict-of-interest check", "choose_conflict": "Choose the check result", "no_conflict": "No conflict of interest", "manageable_conflict": "A connection exists but is manageable", "declined_conflict": "I recuse myself due to a conflict", "author_feedback": "Feedback visible to the author", "private_notes": "Private workflow notes", "candidates": "Practice candidates", "applications": "Application experiences" },
+    "publish": { "title": "Final approval", "note": "Publishing locks a separate version. Knowledge-base sync begins only after successful publication and is reported separately." },
+    "application": { "title": "Add a structured application experience", "note": "This is not a rating or comment. Describe context, adaptations, limitations and follow-up.", "context": "Application context", "target": "Target group", "adaptations": "What I adapted", "worked": "What worked", "not_worked": "What did not work", "limitation": "Observed limitation or risk", "follow_up": "Follow-up date", "needs_review": "The experience reveals a new risk or a need to review the practice.", "review_task": "Application experience review", "review_note": "Feedback to the contributor", "accept": "Accept as documented experience", "reject": "Not suitable for publication", "my_applications": "My application experiences", "my_experience": "My application experience", "reviewer_feedback": "Reviewer feedback", "resubmit": "Resubmit the completed experience" },
+    "empty": { "candidates_title": "You have no practice candidates yet", "review_title": "You have no assigned reviews", "library_title": "The practice library is taking shape", "library_text": "Only locked and publication-approved versions appear here.", "personal_text": "New work items appear after deliberate creation or assignment." },
+    "errors": { "request_failed": "The practice-library action failed.", "load_failed": "The practice library could not be loaded.", "detail_failed": "The practice could not be opened.", "save_failed": "The draft could not be saved.", "action_failed": "The action could not be saved.", "application_failed": "The application experience could not be saved.", "conflict": "The practice changed in the meantime. Refresh and try again.", "incomplete": "Required candidate fields or the privacy check are incomplete.", "capability_required": "You lack a valid verified capability for this action.", "self_review": "You cannot professionally approve your own work.", "conflict_of_interest": "You must recuse yourself because of a conflict of interest.", "review_chain": "The required professional review chain is not complete.", "rag_sync_failed": "Syncing the published version to the knowledge base failed." }
   }
 }

@@ -7,8 +7,12 @@ export const revalidate = 0;
 
 export async function GET(_req, { params }) {
   const covisionCaseId = await readCovisionCaseId(params);
-  const access = await requireCovisionCallAccess(covisionCaseId);
+  const access = await requireCovisionCallAccess(covisionCaseId, { allowTerminal: true });
   if (!access.ok) return callError(access.message, access.status);
+
+  if (access.terminal) {
+    return callJson({ ok: true, call: null, config: null, canModerate: access.canModerate });
+  }
 
   const service = createCovisionCallService();
   const call = await service.getContextCall({ contextType: "COVISION", contextId: covisionCaseId });

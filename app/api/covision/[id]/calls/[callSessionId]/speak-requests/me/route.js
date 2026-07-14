@@ -1,14 +1,14 @@
 import {
   callError,
   callJson,
-  createCovisionCallService,
   emitCovisionCallEvent,
   loadCallForResponse,
   readCallSessionId,
   readCovisionCaseId,
   requireCallInCovision,
   requireCovisionCallAccess,
-  statusForCallError
+  statusForCallError,
+  withCovisionCallMutation
 } from "@/lib/calls/covisionRoutes";
 
 export const runtime = "nodejs";
@@ -18,14 +18,27 @@ export const revalidate = 0;
 export async function DELETE(_req, { params }) {
   const covisionCaseId = await readCovisionCaseId(params);
   const callSessionId = await readCallSessionId(params);
-  const access = await requireCovisionCallAccess(covisionCaseId);
+  const access = await requireCovisionCallAccess(covisionCaseId, { allowTerminal: true });
   if (!access.ok) return callError(access.message, access.status);
-  const callAccess = await requireCallInCovision(callSessionId, covisionCaseId);
-  if (!callAccess.ok) return callError(callAccess.message, callAccess.status);
 
   try {
-    const service = createCovisionCallService();
-    await service.cancelSpeakRequest({ callSessionId, userId: access.userId });
+    const result = await withCovisionCallMutation(
+      covisionCaseId,
+      access,
+      async ({ db, service, access: freshAccess }) => {
+        const callAccess = await requireCallInCovision(callSessionId, covisionCaseId, { db });
+        if (!callAccess.ok) {
+          throw Object.assign(new Error(callAccess.message), { status: callAccess.status });
+        }
+        await service.cancelSpeakRequest({
+          callSessionId,
+          userId: freshAccess.userId
+        });
+        return { terminal: false };
+      },
+      { onTerminal: () => ({ terminal: true }) }
+    );
+    if (result.terminal) return callJson({ ok: true, call: null });
     const payload = await loadCallForResponse(callSessionId);
     await emitCovisionCallEvent(covisionCaseId, payload);
     return callJson({ ok: true, call: payload });

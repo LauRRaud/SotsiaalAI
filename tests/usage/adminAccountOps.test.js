@@ -4,8 +4,8 @@ import test from "node:test";
 
 import { createDeletionJobRetryService } from "../../lib/privacy/deletionJobRetryService.js";
 
-function fakeDeletionDb(job) {
-  const state = { job: { ...job }, audits: [] };
+function fakeDeletionDb(job, { failTransaction = false } = {}) {
+  const state = { job: { ...job }, audits: [], practice: { id: job.resourceId, ragSourceId: job.externalRef, ragMetadata: null } };
   const db = {
     state,
     dataDeletionJob: {
@@ -19,7 +19,17 @@ function fakeDeletionDb(job) {
     dataAuditLog: {
       async create({ data }) { state.audits.push(data); return data; }
     },
-    async $transaction(callback) { return callback(db); }
+    effectivePractice: {
+      async updateMany({ where, data }) {
+        if (state.practice.id !== where.id || state.practice.ragSourceId !== where.ragSourceId) return { count: 0 };
+        Object.assign(state.practice, data);
+        return { count: 1 };
+      }
+    },
+    async $transaction(callback) {
+      if (failTransaction) throw new Error("database_unavailable");
+      return callback(db);
+    }
   };
   return db;
 }
@@ -76,6 +86,29 @@ test("unsupported deletion retry remains failed instead of reporting false succe
   assert.equal(db.state.audits[0].action, "DATA_DELETION_JOB_RETRY_FAILED");
 });
 
+test("effective-practice RAG retry atomically clears the stale reference when the job becomes done", async () => {
+  const db = fakeDeletionDb({
+    id: "job_rag_1", action: "RAG_DELETE", resourceType: "EffectivePractice",
+    resourceId: "practice-1", externalRef: "effective-practice::p1::v1", attempts: 0, status: "failed"
+  });
+  const retry = createDeletionJobRetryService({ db, deleteRag: async () => ({ ok: true }) });
+  const result = await retry({ jobId: "job_rag_1", actorUserId: "admin-1" });
+  assert.equal(result.status, "done");
+  assert.equal(db.state.practice.ragSourceId, null);
+  assert.equal(db.state.practice.ragMetadata.syncStatus, "removed");
+});
+
+test("effective-practice RAG retry stays pending when the atomic final transaction fails", async () => {
+  const db = fakeDeletionDb({
+    id: "job_rag_2", action: "RAG_DELETE", resourceType: "EffectivePractice",
+    resourceId: "practice-2", externalRef: "effective-practice::p2::v1", attempts: 0, status: "failed"
+  }, { failTransaction: true });
+  const retry = createDeletionJobRetryService({ db, deleteRag: async () => ({ ok: true }) });
+  await assert.rejects(retry({ jobId: "job_rag_2", actorUserId: "admin-1" }), /database_unavailable/);
+  assert.equal(db.state.job.status, "pending");
+  assert.equal(db.state.practice.ragSourceId, "effective-practice::p2::v1");
+});
+
 test("account deletion retry delegates to the privacy cleanup before completing", async () => {
   const db = fakeDeletionDb({
     id: "job_3", action: "USER_DELETE", resourceType: "User", resourceId: "user_1",
@@ -98,8 +131,9 @@ test("account deletion retry delegates to the privacy cleanup before completing"
 });
 
 test("account deletion is suspended first and only completes after external cleanup", async () => {
-  const [userDeletion, documentDeletion, profileRoute] = await Promise.all([
+  const [userDeletion, practiceCleanup, documentDeletion, profileRoute] = await Promise.all([
     readFile(new URL("../../lib/privacy/userDeletion.js", import.meta.url), "utf8"),
+    readFile(new URL("../../lib/privacy/effectivePracticeAccountCleanup.js", import.meta.url), "utf8"),
     readFile(new URL("../../lib/privacy/documentDeletion.js", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/profile/route.js", import.meta.url), "utf8")
   ]);
@@ -107,7 +141,8 @@ test("account deletion is suspended first and only completes after external clea
   assert.match(userDeletion, /accessSuspendedReason: `deletion_pending:/);
   assert.match(userDeletion, /await tx\.session\.deleteMany/);
   assert.match(userDeletion, /if \(!result\.ok\)[\s\S]*USER_DELETE_PENDING/);
-  assert.match(userDeletion, /performUserPrivacyCleanup[\s\S]*prisma\.user\.delete/);
+  assert.match(userDeletion, /deleteUser: userId => deleteUserAfterFinalPracticeSweepPure\(userId, prisma\)/);
+  assert.match(practiceCleanup, /FOR UPDATE[\s\S]*scrubOrDeleteEffectivePracticesTx[\s\S]*tx\.user\.delete/);
   assert.doesNotMatch(documentDeletion, /RAG_DELETE_ON_DOCUMENT_DELETE/);
   assert.match(profileRoute, /deleteUserWithPrivacyCleanup/);
 });

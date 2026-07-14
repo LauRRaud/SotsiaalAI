@@ -967,20 +967,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     [t]
   );
 
-  /* Kovisiooni komplekt — kolm valikut + tagasi. Kovisiooni ruum =
-     ehitatud 8-etapiline sessioon; teemaseemnetel on oma leht
-     (/teemaseemned); parimad praktikad ehitatakse eraldi. */
+  /* Kovisiooni komplekt — töövoo päris põhilehed + tagasi. */
   const kovisionItems = useMemo(
     () => [
       { key: "ruum", label: t("room.kovision_room_card", "Kovisiooni ruum"), href: "/kovisioon", icon: <KovisionRoomIcon /> },
       { key: "teemaseemned", label: t("room.kovision_seeds_card", "Teemaseemned"), href: "/teemaseemned", icon: <TopicSeedIcon /> },
+      { key: "lopetatud", label: t("room.kovision_completed_card", "Lõpetatud juhtumid"), href: "/lopetatud-juhtumid", icon: <DocumentsIcon /> },
       {
         key: "praktikad",
         label: t("room.kovision_practices_card", "Parimad praktikad"),
+        href: "/parimad-praktikad",
         icon: <BestPracticeIcon />,
-        comingSoon: true,
-        badge: t("room.kovision_practices_building", "ehitamisel"),
-        comingSoonHint: t("room.kovision_practices_building_hint", "Parimate praktikate leht on ehitamisel")
       },
       { key: "tagasi", label: t("room.back_card"), action: "kovisioon-tagasi", icon: <BackArrowIcon /> },
     ],

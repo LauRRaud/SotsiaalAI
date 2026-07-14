@@ -1,7 +1,6 @@
 import {
   callError,
   callJson,
-  createCovisionCallService,
   emitCovisionCallEvent,
   loadCallForResponse,
   readCallSessionId,
@@ -9,7 +8,8 @@ import {
   readRequestId,
   requireCallInCovision,
   requireCovisionCallAccess,
-  statusForCallError
+  statusForCallError,
+  withCovisionCallMutation
 } from "@/lib/calls/covisionRoutes";
 
 export const runtime = "nodejs";
@@ -22,16 +22,16 @@ export async function PATCH(_req, { params }) {
   const requestId = await readRequestId(params);
   const access = await requireCovisionCallAccess(covisionCaseId);
   if (!access.ok) return callError(access.message, access.status);
-  const callAccess = await requireCallInCovision(callSessionId, covisionCaseId);
-  if (!callAccess.ok) return callError(callAccess.message, callAccess.status);
-
   try {
-    const service = createCovisionCallService();
-    await service.resolveSpeakRequest({
-      callSessionId,
-      requestId,
-      userId: access.userId,
-      canModerate: access.canModerate
+    await withCovisionCallMutation(covisionCaseId, access, async ({ db, service, access: freshAccess }) => {
+      const callAccess = await requireCallInCovision(callSessionId, covisionCaseId, { db });
+      if (!callAccess.ok) throw Object.assign(new Error(callAccess.message), { status: callAccess.status });
+      return service.resolveSpeakRequest({
+        callSessionId,
+        requestId,
+        userId: freshAccess.userId,
+        canModerate: freshAccess.canModerate
+      });
     });
     const payload = await loadCallForResponse(callSessionId);
     await emitCovisionCallEvent(covisionCaseId, payload);

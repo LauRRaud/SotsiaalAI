@@ -1,15 +1,14 @@
 "use client";
 
-import CovisionSession from "@/components/covision/CovisionSession";
+import CovisionWorkspace from "@/components/covision/CovisionWorkspace";
 
-/* Kovisiooni leht = uus 8-etapiline sessioonilõuend (spec:
-   Kovisioon/kovisiooni digitaalne lõuend.md). Paneeli kroom
-   (pealkiri, ⓘ, sulgemine) tuleb WorkspacePanel/PanelFrame'ist. */
-export default function CovisionPage({ embedded = false, onBack = null, hideHeader = false }) {
+/* Production entry: an explicit real-case/queued-seed chooser followed by the
+   server-backed eight-stage session. The old local demo is intentionally not
+   mounted on this path. */
+export default function CovisionPage() {
   return (
     <div className="covision-page">
-      {hideHeader ? null : <h1 className="sr-only">Kovisioon</h1>}
-      <CovisionSession />
+      <CovisionWorkspace />
     </div>
   );
 }

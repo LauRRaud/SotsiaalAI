@@ -9,6 +9,7 @@ import {
   covisionLocale,
   requireCovisionAuth
 } from "@/lib/covisionApi";
+import { assertCovisionCreator } from "@/lib/covisionSession";
 import { getVisiblePreInquiry } from "@/lib/preInquiries";
 
 export const runtime = "nodejs";
@@ -24,6 +25,7 @@ export async function POST(request, context) {
   const locale = covisionLocale(request);
   try {
     const auth = await requireCovisionAuth();
+    assertCovisionCreator(auth);
     const inquiry = await getVisiblePreInquiry(auth.userId, await readId(context));
     if (!inquiry) {
       return covisionErrorResponse({ message: "api.common.not_found", status: 404 }, locale);
@@ -32,7 +34,8 @@ export async function POST(request, context) {
     const draft = buildCaseFromPreInquiryDraft(inquiry);
     const covisionCase = await createCovisionCase(
       auth,
-      buildPreInquiryCovisionCaseInput(draft, body)
+      buildPreInquiryCovisionCaseInput(draft, body),
+      { sourcePreInquiryId: inquiry.id }
     );
     return json({
       ok: true,

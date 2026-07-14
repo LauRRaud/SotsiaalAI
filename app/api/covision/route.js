@@ -8,6 +8,7 @@ import {
   covisionLocale,
   requireCovisionAuth
 } from "@/lib/covisionApi";
+import { assertCovisionCreator } from "@/lib/covisionSession";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -31,6 +32,7 @@ export async function POST(request) {
   const locale = covisionLocale(request);
   try {
     const auth = await requireCovisionAuth();
+    assertCovisionCreator(auth);
     const body = await request.json().catch(() => ({}));
     const covisionCase = await createCovisionCase(auth, body);
     return json({

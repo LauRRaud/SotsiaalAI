@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-test("best-practices carousel card is marked as coming soon and has no misleading href", async () => {
+test("best-practices carousel card opens the completed page without a stale coming-soon state", async () => {
   const source = await readFile(
     new URL("../../components/room/RoomStage.jsx", import.meta.url),
     "utf8"
@@ -11,18 +11,14 @@ test("best-practices carousel card is marked as coming soon and has no misleadin
     /\{\s*key: "praktikad",(?<body>[\s\S]*?)\n\s*\},/u
   )?.groups?.body || "";
 
-  assert.match(card, /comingSoon: true/u);
-  assert.match(card, /room\.kovision_practices_building/u);
-  assert.doesNotMatch(card, /href:/u);
+  assert.match(card, /href: "\/parimad-praktikad"/u);
+  assert.doesNotMatch(card, /comingSoon|kovision_practices_building/u);
+  assert.match(source, /key: "ruum"[\s\S]*href: "\/kovisioon"/u);
+  assert.match(source, /key: "lopetatud"[\s\S]*href: "\/lopetatud-juhtumid"/u);
 });
 
-test("carousel exposes the coming-soon state and visible badge accessibly", async () => {
-  const [carousel, card] = await Promise.all([
-    readFile(new URL("../../components/room/GlassCarousel.jsx", import.meta.url), "utf8"),
-    readFile(new URL("../../components/glass/GlassCard.jsx", import.meta.url), "utf8")
-  ]);
-
-  assert.match(carousel, /"aria-disabled": "true"/u);
-  assert.match(carousel, /badge=\{item\.badge \|\| null\}/u);
-  assert.match(card, /className="gc-card-badge"/u);
+test("topic-seeds navigation links to the completed best-practices page", async () => {
+  const source = await readFile(new URL("../../components/teemaseeme/TeemaseemnedPage.jsx", import.meta.url), "utf8");
+  assert.match(source, /<Link className="ts-nav-link" href="\/parimad-praktikad">/u);
+  assert.doesNotMatch(source, /Parimad praktikad · ehitamisel/u);
 });

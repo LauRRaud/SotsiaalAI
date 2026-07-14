@@ -85,9 +85,10 @@ export default function PanelFrame({ children }) {
   const isAdmin = normalized.startsWith("/admin");
   const isConversation = normalized.startsWith("/vestlus");
   const isChat = isConversation || normalized.startsWith("/teekond");
+  const isCovision = normalized === "/kovisioon";
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
      teenusekaart = suur kaart */
-  const isWide = normalized === "/teenusekaart";
+  const isWide = ["/teenusekaart", "/lopetatud-juhtumid", "/parimad-praktikad"].includes(normalized);
   /* Kovisioon + Teemaseemned = TÄISEKRAANI LÕUEND (tellija 11.07):
      paneel täpselt ekraani suurune, paddinguta ja läbipaistev — sisu
      saab kogu ruumi ega keri; nurga-nupud hõljuvad sisu kohal */
@@ -191,6 +192,7 @@ export default function PanelFrame({ children }) {
       className="panel-scrim"
       data-admin={isAdmin ? "1" : "0"}
       data-canvas={isCanvas ? "1" : "0"}
+      data-covision={isCovision ? "1" : "0"}
       data-chat={isChat ? "1" : "0"}
       data-conversation={isConversation ? "1" : "0"}
       data-compact={isCompact ? "1" : "0"}
@@ -219,13 +221,26 @@ export default function PanelFrame({ children }) {
             className="panel-menu panel-menu--info"
           />
         ) : null}
-        <IconButton
-          layoutClassName="panel-close"
-          aria-label={t("room.close_panel")}
-          onClick={closePanel}
-        >
-          <CloseIcon />
-        </IconButton>
+        {isCovision ? (
+          <button
+            type="button"
+            data-variant
+            className="panel-exit"
+            aria-label={t("covision.live.exit.aria")}
+            onClick={closePanel}
+          >
+            <span aria-hidden="true">←</span>
+            {t("covision.live.exit.label")}
+          </button>
+        ) : (
+          <IconButton
+            layoutClassName="panel-close"
+            aria-label={t("room.close_panel")}
+            onClick={closePanel}
+          >
+            <CloseIcon />
+          </IconButton>
+        )}
         <div className="panel-body" ref={bodyRef}>
           {children}
         </div>

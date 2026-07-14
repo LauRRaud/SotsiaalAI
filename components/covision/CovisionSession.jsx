@@ -1214,14 +1214,6 @@ export default function CovisionSession() {
           {/* Päis: ruumikontroll + bränd, etapirada, taimerid + toimingud */}
           <header className="cv1-top">
             <div className="cv1-brand">
-              <button
-                type="button"
-                className="cv1-exit"
-                title="Välju ruumist"
-                onClick={() => window.history.back()}
-              >
-                ← Välju
-              </button>
               <div>
                 <p className="cv1-brand-name">Kovisioon</p>
                 <p className="cv1-brand-sub">Koos mõtestame. Koos leiame võimalusi.</p>
@@ -1700,14 +1692,6 @@ export default function CovisionSession() {
           {/* Päis: sama kroom mis 1. etapil, rada näitab 2. aktiivsena */}
           <header className="cv1-top">
             <div className="cv1-brand">
-              <button
-                type="button"
-                className="cv1-exit"
-                title="Välju ruumist"
-                onClick={() => window.history.back()}
-              >
-                ← Välju
-              </button>
               <div>
                 <p className="cv1-brand-name">Kovisioon</p>
                 <p className="cv1-brand-sub">Koos mõtestame. Koos leiame võimalusi.</p>
@@ -2179,14 +2163,6 @@ export default function CovisionSession() {
           {/* Päis: sama kroom; rada näitab 3. aktiivsena */}
           <header className="cv1-top">
             <div className="cv1-brand">
-              <button
-                type="button"
-                className="cv1-exit"
-                title="Välju ruumist"
-                onClick={() => window.history.back()}
-              >
-                ← Välju
-              </button>
               <div>
                 <p className="cv1-brand-name">Kovisioon</p>
                 <p className="cv1-brand-sub">Koos mõtestame. Koos leiame võimalusi.</p>
@@ -2661,14 +2637,6 @@ export default function CovisionSession() {
           {/* Päis: sama kroom; rada näitab 4. aktiivsena; kaks aega (§18.6) */}
           <header className="cv1-top">
             <div className="cv1-brand">
-              <button
-                type="button"
-                className="cv1-exit"
-                title="Välju ruumist"
-                onClick={() => window.history.back()}
-              >
-                ← Välju
-              </button>
               <div>
                 <p className="cv1-brand-name">Kovisioon</p>
                 <p className="cv1-brand-sub">Koos mõtestame. Koos leiame võimalusi.</p>

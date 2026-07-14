@@ -1,12 +1,12 @@
 import {
   callError,
   callJson,
-  createCovisionCallService,
   emitCovisionCallEvent,
   loadCallForResponse,
   readCovisionCaseId,
   requireCovisionCallAccess,
-  statusForCallError
+  statusForCallError,
+  withCovisionCallMutation
 } from "@/lib/calls/covisionRoutes";
 
 export const runtime = "nodejs";
@@ -19,8 +19,9 @@ export async function POST(_req, { params }) {
   if (!access.ok) return callError(access.message, access.status);
 
   try {
-    const service = createCovisionCallService();
-    const call = await service.startContextCall({ contextType: "COVISION", contextId: covisionCaseId, userId: access.userId });
+    const call = await withCovisionCallMutation(covisionCaseId, access, ({ service, access: freshAccess }) => (
+      service.startContextCall({ contextType: "COVISION", contextId: covisionCaseId, userId: freshAccess.userId })
+    ));
     const payload = await loadCallForResponse(call.id);
     await emitCovisionCallEvent(covisionCaseId, payload);
     return callJson({ ok: true, call: payload });

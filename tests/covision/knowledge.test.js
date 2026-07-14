@@ -55,7 +55,8 @@ test("covision knowledge results keep usable source details and drop empty hits"
 
 test("published effective practice rag text is structured as a reusable practice example", () => {
   const text = buildEffectivePracticeRagText({
-    id: "practice-1",
+    publicId: "practice-public-1",
+    version: 2,
     title: "Võrgustikukohtumine hoolduskoormuse vähendamiseks",
     background: "Pere hoolduskoormus oli kasvanud.",
     mainChallenge: "Abi osapooled ei olnud samas infoväljas.",
@@ -67,5 +68,9 @@ test("published effective practice rag text is structured as a reusable practice
   assert.match(text, /Praktikanäide/);
   assert.match(text, /Mis aitas/);
   assert.match(text, /hoolduskoormus/);
-  assert.equal(buildEffectivePracticeRagDocId({ id: "practice-1" }), "effective-practice::practice-1");
+  assert.equal(
+    buildEffectivePracticeRagDocId({ publicId: "practice-public-1", version: 2 }),
+    "effective-practice::practice-public-1::v2"
+  );
+  assert.equal(buildEffectivePracticeRagDocId({ id: "internal-row-id" }), "");
 });

@@ -2514,7 +2514,300 @@
       "request_failed": "Kovisiooni päring ebaõnnestus.",
       "load_failed": "Kovisiooni tööruumi laadimine ebaõnnestus.",
       "save_failed": "Kovisiooni salvestamine ebaõnnestus.",
+      "case_read_only": "Lõpetatud või arhiveeritud Kovisioon on ainult vaatamiseks.",
       "schema_missing": "Kovisiooni andmetabelid puuduvad või server kasutab vale andmebaasi. Käivita Prisma migratsioonid ja laadi leht uuesti."
+    },
+    "workspace": {
+      "kicker": "Kinnine professionaalne tööruum",
+      "title": "Kovisioon",
+      "lead": "Vali aktiivne juhtum või alusta omaniku kinnitatud Teemaseemnest uus Kovisioon.",
+      "navigation": "Kovisiooni põhilehed",
+      "loading": "Kovisiooni tööruum avaneb…",
+      "back_to_cases": "Tagasi Kovisiooni valikusse",
+      "nav": {
+        "new": "Uus Kovisioon",
+        "seeds": "Teemaseemned",
+        "completed": "Lõpetatud juhtumid",
+        "practices": "Parimad praktikad"
+      },
+      "active": {
+        "kicker": "Jätka sealt, kus pooleli jäi",
+        "title": "Aktiivsed Kovisioonid",
+        "empty": "Sul ei ole praegu aktiivset Kovisiooni.",
+        "no_focus": "Tööfookus täpsustub sessioonis.",
+        "updated": "Viimati avatud",
+        "role": "Minu roll",
+        "open": "Ava Kovisioon"
+      },
+      "queue": {
+        "kicker": "Omaniku kinnitatud üldistused",
+        "title": "Kovisioonijärjekord",
+        "ready": "Valmis Kovisiooniks",
+        "start": "Loo Kovisioon",
+        "invite_only": "Selles rollis saad Kovisiooniga liituda kutse kaudu; uut sessiooni ise käivitada ei saa.",
+        "empty": "Järjekorras ei ole veel omaniku kinnitatud Teemaseemneid.",
+        "open_seeds": "Ava Teemaseemned",
+        "privacy": "Kovisiooni liigub ainult külmutatud üldistus. Privaatne ettevalmistus jääb Teemaseemne omanikule."
+      },
+      "errors": {
+        "load_failed": "Kovisiooni tööruumi ei saanud laadida.",
+        "start_failed": "Kovisiooni ei saanud alustada."
+      }
+    },
+    "live": {
+      "exit": { "label": "Välju", "aria": "Välju Kovisioonist" },
+      "ui": {
+        "sigil": "K",
+        "private_professional_workspace": "Kinnine professionaalne tööruum",
+        "session_fallback": "Kovisiooni sessioon",
+        "session_times_aria": "Sessiooni ajad",
+        "meeting_elapsed": "Kohtumine kestnud",
+        "meeting_remaining": "Kohtumisest alles",
+        "stage_elapsed": "Etapp {number} kestnud",
+        "stages_aria": "Kovisiooni etapid",
+        "stage_number": "Etapp {number}",
+        "shared_circle": "Ühine ring",
+        "participants": "Osalejad",
+        "participant_fallback": "Osaleja {number}",
+        "current_user_suffix": " · sina",
+        "invited_suffix": " · kutse ootel",
+        "ready": "Valmis",
+        "readiness_unconfirmed": "Valmisolek kinnitamata",
+        "my_confirmations": "Minu kinnitused",
+        "shared_cards_count": "{count} jagatud kaarti",
+        "supporting_cards_aria": "Toetavad kaardid",
+        "stage_focus": "Etapi kese",
+        "first_shared_card_hint": "Esimene jagatud kaart ilmub siia.",
+        "card_content_hidden": "Selle kaardi sisu ei ole ühises vaates avaldatud.",
+        "related_prefix": "Seotud:",
+        "follow_up_prefix": "Järelvaade",
+        "only_your_workspace": "Ainult sinu tööruum",
+        "to_shared_circle": "Ühisesse ringi",
+        "private_draft": "Privaatne mustand",
+        "add_shared_card": "Lisa jagatud kaart",
+        "private_aria": "Privaatne",
+        "card_visibility_aria": "Kaardi nähtavus",
+        "shared": "Jagatud",
+        "private": "Privaatne",
+        "optional": "(valikuline)",
+        "private_draft_notice": "Seda mustandit ei saadeta teistele osalejatele. Jagamine on eraldi teadlik tegevus.",
+        "personal_responsibility": "Isiklik vastutus",
+        "opening_confirmations": "Alguse kinnitused",
+        "owner_confirms_boundary": "Juhtumi piiri kinnitab juhtumi tooja.",
+        "shared_case_title": "Juhtumi ühine pealkiri",
+        "title_missing": "Pealkiri puudub",
+        "only_your_confirmation": "Ainult sinu kinnitus",
+        "only_summary_reviewer_confirmation": "Ainult kokkuvõtte hoidja kinnitus",
+        "owner_checkpoint": "Omaniku kontrollpunkt",
+        "summary_reviewer_checkpoint": "Privaatsuspiiri kontrollpunkt",
+        "private_gate_notice": "Rühm näeb ainult seda, kas värav on valmis — mitte sinu privaatseid märkmeid.",
+        "compass": "Kompass",
+        "hold_now": "Praegu hoia seda",
+        "your_role": "Sinu roll",
+        "private_drafts": "Privaatseid mustandeid",
+        "private_boundary_notice": "Privaatne sisu jääb sinu vaatesse. Ühises väljas on ainult teadlikult jagatud kaardid.",
+        "choose": "Vali…",
+        "shared_queue": "Ühine järjekord",
+        "card_field": "Kaardiväli"
+      },
+      "actions": {
+        "confirm_role": "Kinnitan oma rolli",
+        "accept_agreement": "Nõustun kokkuleppega",
+        "ready": "Olen valmis",
+        "focus_card": "Tõsta keskmesse",
+        "mark_shared": "Märgi jagatuks",
+        "park": "Pargi",
+        "save_private": "Salvesta mulle",
+        "share_with_circle": "Jaga ringiga",
+        "confirm_case_boundary": "Juhtumi piir ja anonüümsus on õiged",
+        "settings_confirmed": "✓ Seaded kinnitatud",
+        "confirm_settings": "Kinnita seaded",
+        "start_meeting": "Alusta kohtumist",
+        "send_invite": "Saada kutse",
+        "save_direction": "Salvesta suund",
+        "save_step": "Salvesta samm",
+        "save_marker": "Salvesta märk",
+        "save_follow_up": "Salvesta järelvaade",
+        "confirm_owner_direction": "Kinnitan ja jagan selle kokkuvõtte rühmaga",
+        "confirm_owner_package": "Kinnitan omaniku paketi ja järelvaate",
+        "continue_prefix": "Jätka:",
+        "complete_stage": "Lõpeta etapp",
+        "need_support": "Vajan tuge",
+        "pause": "Paus",
+        "resume": "Jätka",
+        "refresh_aria": "Värskenda sessiooni",
+        "support_received": "Sain toe kätte"
+      },
+      "fields": {
+        "card_kind": "Kaardi liik",
+        "wording": "Sõnastus",
+        "source": "Seos või allikas",
+        "duration_minutes": "Kestus minutites",
+        "support_agreement": "Toe kokkulepe",
+        "email": "E-post",
+        "role": "Roll",
+        "group_generalization": "Rühma üldistus",
+        "learning_circle": "Õppimisring",
+        "retention": "Sessiooni materjali säilitamine",
+        "practice_candidate": "Parima praktika kandidaat"
+      },
+      "placeholders": {
+        "question": "Mida oleks kasulik täpsustada?",
+        "clear_thought": "Kirjuta üks selge mõte…",
+        "direction": "Suund, mida soovin edasi uurida…",
+        "next_step": "Mida saan ise teha?",
+        "timeframe": "Ajaraam, nt järgmise 7 päeva jooksul",
+        "progress_marker": "Mille järgi märkan väikest edenemist?",
+        "follow_up_when": "Millal vaatame edenemise üle?",
+        "email": "nimi@asutus.ee"
+      },
+      "defaults": {
+        "support_rule": "Pausi võib küsida igal ajal.",
+        "privacy_boundary": "Juhtum jääb sessiooni kinnisesse professionaalsesse ringi."
+      },
+      "support": {
+        "pause_title": "Peatu korraks.",
+        "body": "Võid sõnastada vajaduse, paluda vaikust või kutsuda sessiooni juhi privaatselt kõrvale.",
+        "paused_notice": "Sessioon on pausil. Privaatset mustandit saad jätkata; ühine väli ootab."
+      },
+      "invitation": {
+        "kicker": "Privaatne kutse",
+        "title": "Sind on kutsutud Kovisiooni",
+        "privacy_notice": "Juhtumi pealkiri, sisu ja osalejad avanevad alles pärast rolli ning konfidentsiaalsuskokkuleppe kinnitamist.",
+        "access": "Ligipääs",
+        "access_locked": "sisu on lukus",
+        "access_accepted": "kokkulepe kinnitatud",
+        "steps_aria": "Kutse vastuvõtmise sammud",
+        "reload_notice": "Iga kinnitus salvestatakse serveris. Kui keegi muudab sessiooni samal ajal, laaditakse värske olek."
+      },
+      "invite_participant": {
+        "title": "Kutsu osaleja",
+        "privacy_notice": "Kutsutu ei näe juhtumi pealkirja, sisu ega teisi osalejaid enne kokkuleppe kinnitamist.",
+        "session_required": "Osalejaid saab kutsuda pärast Kovisiooni tööruumi loomist."
+      },
+      "phase_control": {
+        "kicker": "Sessiooni juhi tööriist",
+        "title": "Tööfaas",
+        "stage_gate": "etapi värav",
+        "leader_decision": "vajab juhi otsust",
+        "exception_notice": "Seda erandolekut ei jäeta tavalise edasi-nupuga. Lahenda põhjus või jätka pausinupust.",
+        "gate_ready_notice": "Tööfaasid on läbitud. Etapi lõpetab allservas olev tõenditega värav.",
+        "no_next_phase": "Praegusest olekust pole automaatset järgmist tööfaasi."
+      },
+      "gate": {
+        "completed": "Juhtum on lõpetatud ja muutmatu ülevaade on saadaval Lõpetatud juhtumite lehel.",
+        "leader_only": "Etappi saab lõpetada kohtumise või sessiooni juht.",
+        "resume_first": "Jätkamiseks lõpeta paus.",
+        "phase_required": "Tööfaas peab enne jõudma olekusse „{phase}”.",
+        "evidence_missing": "Etapi kohustuslik tõend on puudu.",
+        "stage_label": "Etapi {number} värav",
+        "visible_conditions_met": "Kõik nähtavad tingimused on täidetud.",
+        "server_checks_private": "Omaniku privaatse kinnituse kontrollib server lõpetamise hetkel.",
+        "more_conditions": "Veel {count} tingimust vajab lõpetamist."
+      },
+      "stage7": {
+        "private_choice": "Privaatne valik",
+        "owner_drafting": "Juhtumi tooja sõnastab oma suunda",
+        "group_wait_notice": "Rühm ei näe valikuid ega hääleta. Kinnitatud kokkuvõte ilmub ühisesse vaatesse siis, kui omanik on valmis.",
+        "only_your_decision": "Ainult sinu otsustusruum",
+        "title": "Pane järgmine liikumine paika",
+        "selected_direction": "1 · Valitud suund",
+        "first_step": "2 · Minu esimene samm",
+        "progress_marker": "3 · Edenemise märk",
+        "follow_up": "4 · Järelvaade",
+        "follow_up_when": "Järelvaate aeg või sündmus",
+        "follow_up_responsible": "Järelvaate vastutaja",
+        "follow_up_channel": "Järelvaate kanal",
+        "share_notice": "Kinnitamisel muutuvad rühmale nähtavaks ainult valitud suund, esimene samm, edenemise märk ja järelvaade. Privaatset kaalumist ei jagata."
+      },
+      "stage8": {
+        "shared_ending": "Ühine lõpp",
+        "learning_and_generalization": "Õppimine ja üldistus",
+        "participant_notice": "Lisa oma õppimismärkus ühise kaardi loojast. Omaniku paketi ja säilitamise kinnitab juhtumi tooja.",
+        "owner_only": "Ainult omaniku kinnitus",
+        "title": "Lõpppaketi otsused",
+        "not_close_notice": "Omaniku paketi salvestamine ei sulge juhtumit. Juhtumi sulgeb sessiooni juht alles etapi lõpuväravast."
+      },
+      "continuity": {
+        "kicker": "Kinnitatud varasem kontekst",
+        "title": "Töö selgroog",
+        "read_only_notice": "See on varasemast etapist kinnitatud ja siin ainult loetav.",
+        "selected_direction": "Valitud suund",
+        "next_step": "Esimene samm",
+        "timeframe": "Ajaraam",
+        "progress_marker": "Edenemise märk",
+        "follow_up": "Järelvaade",
+        "completed_title": "Juhtum on lõpetatud",
+        "completed_body": "Sessiooni tööväli on nüüd ainult loetav. Muutmatu lõppülevaade avaneb Lõpetatud juhtumite lehel.",
+        "open_completed": "Ava lõpetatud juhtumid"
+      },
+      "checkpoints": {
+        "owner_picture": "Ühine pilt vastab minu loole",
+        "owner_focus": "Tööfookus on minu jaoks õige",
+        "privacy_reviewed": "Privaatsuspiir on üle vaadatud",
+        "owner_enough": "Uurimisest piisab jätkamiseks",
+        "owner_ready_possibilities": "Olen valmis võimalusi kuulama",
+        "resonance_complete": "Olen resonantsiaja lõpetanud",
+        "impact_reviewed": "Mõju ja piirid on üle vaadatud",
+        "support_picture_ready": "Minu tugipilt on valikuks piisav"
+      },
+      "stages": {
+        "1": { "short": "Algus", "title": "Kohalolu ja kokkulepped", "eyebrow": "Turvaline ühine algus", "lead": "Kinnitame rollid, konfidentsiaalsuse ja juhtumi piiri enne sisulise töö avamist.", "hero": "Juhtumi tooja kinnitab, et ühine tööpilt on õige ja piisavalt anonüümne.", "gate": "Ava juhtumi lugu" },
+        "2": { "short": "Lugu", "title": "Juhtumi pildi loomine", "eyebrow": "Tooja lugu, rühma ühine pilt", "lead": "Kogume fakti, vaatepunkti ja professionaalse pinge eraldi kaartidele.", "hero": "Üks aktiivne ankur hoiab loo keskme nähtaval. Kõrvalkaardid täpsustavad, mitte ei võistle.", "gate": "Liigu uurivatesse küsimustesse" },
+        "3": { "short": "Uurimine", "title": "Uurivad küsimused", "eyebrow": "Küsimus enne tõlgendust", "lead": "Valmistame küsimused privaatselt ja jagame neid ükshaaval, et juhtumi pilti avardada.", "hero": "Aktiivne küsimus on korraga ainus keskne objekt. Vastus võib muuta ühist pilti.", "gate": "Liigu peegeldusringi" },
+        "4": { "short": "Peegeldus", "title": "Peegeldusring", "eyebrow": "Kuulamisrežiim", "lead": "Osalejad jagavad tähelepanekuid ja võimalikke tähendusi; juhtumi tooja ei pea veel otsustama.", "hero": "Peegeldus on ettevaatlik vaatenurk, mitte diagnoos ega lahendus.", "gate": "Liigu võimaluste loomisse" },
+        "5": { "short": "Võimalused", "title": "Võimaluste loomine", "eyebrow": "Paljusus enne valikut", "lead": "Loome eri suundades võimalusi ilma hääletamise, pingerea või kohese teostatavushinnanguta.", "hero": "Üks võimalus on keskmes; teised ootavad nähtavas väljas oma jagamiskorda.", "gate": "Liigu ressursside juurde" },
+        "6": { "short": "Ressursid", "title": "Ressursid ja tingimused", "eyebrow": "Mis saab suunda päriselt toetada?", "lead": "Seome võimalused ressursside, toetavate tingimuste, piiride ja kriitiliste eeldustega.", "hero": "Ressursipilt ei hinda inimest. See näitab mõjuulatust, tuge ja seda, mis vajab kokkulepet.", "gate": "Liigu omaniku valikusse" },
+        "7": { "short": "Valik", "title": "Suund ja esimene samm", "eyebrow": "Omaniku privaatne otsustusruum", "lead": "Juhtumi tooja sõnastab valitud suuna, enda mõjuväljas esimese sammu ja ausa järelvaate.", "hero": "Rühm ei hääleta. Omanik otsustab ning jagab alles kinnitatud kokkuvõtte.", "gate": "Kinnita juhtumitöö tulemus" },
+        "8": { "short": "Lõpp", "title": "Õppimine ja üleandmine", "eyebrow": "Sessiooni väljundi külmutamine", "lead": "Kinnitame omaniku paketi, järelvaate, rühma õppimise ja säilitamisotsused.", "hero": "Lõppülevaade valmistab ette muutmatu väljundi. Sessiooni juht sulgeb juhtumi alles lõpuväravast.", "gate": "Sulge juhtum" }
+      },
+      "roles": {
+        "OWNER": "juhtumi tooja", "case_owner": "juhtumi tooja", "CO_MODERATOR": "sessiooni juht", "session_leader": "sessiooni juht", "meeting_leader": "kohtumise juht", "meeting_starter": "kohtumise algataja", "SUMMARY_REVIEWER": "kokkuvõtte hoidja", "summary_keeper": "kokkuvõtte hoidja", "PARTICIPANT": "osaleja", "participant": "osaleja", "OBSERVER": "vaatleja", "observer": "vaatleja"
+      },
+      "kinds": {
+        "participant_state": "Osaleja valmisolek", "agreement": "Kokkulepe", "session_setting": "Sessiooni seadistus", "case_anchor": "Juhtumi ankur", "case_core": "Juhtumi kese", "party_or_role": "Osapool või roll", "event_or_timepoint": "Sündmus või ajapunkt", "known_information": "Teadaolev info", "person_perspective": "Inimese vaatenurk", "worker_observation": "Töötaja tähelepanek", "worker_interpretation": "Töötaja tõlgendus", "prior_action": "Varasem tegevus", "described_outcome": "Kirjeldatud tulemus", "support_or_condition": "Tugi või tingimus", "barrier_or_limit": "Piir või takistus", "desired_change": "Soovitud muutus", "professional_tension": "Professionaalne pinge", "method": "Meetod", "free_card": "Vaba kaart", "research_site": "Uurimiskoht", "question": "Uuriv küsimus", "clarification": "Täpsustus", "open_question": "Avatud küsimus", "source": "Allikas", "reflection": "Peegeldus", "observation": "Märkamus", "reaction": "Reaktsioon", "possible_interpretation": "Võimalik tõlgendus", "possible_need_or_value": "Võimalik vajadus või väärtus", "possible_pattern": "Võimalik muster", "alternative_perspective": "Alternatiivne vaade", "parked_possibility": "Pargitud võimalus", "possibility": "Võimalus", "main_possibility": "Põhivõimalus", "backup_possibility": "Varuvõimalus", "possibility_cluster": "Võimaluste rühm", "feasibility_note": "Teostatavuse märkus", "resource": "Ressurss", "supporting_condition": "Toetav tingimus", "required_condition": "Vajalik tingimus", "barrier": "Takistus", "critical_prerequisite": "Kriitiline eeldus", "resource_reflection": "Ressursipeegel", "resource_bundle": "Ressursikimp", "selected_direction": "Valitud suund", "key_insight": "Võtmetaipamine", "next_step": "Esimene samm", "support_request": "Toevajadus", "progress_marker": "Edenemise märk", "fallback_or_stop_condition": "Peatumis- või varutingimus", "follow_up": "Järelvaade", "owner_package": "Omaniku pakett", "learning_note": "Õppimismärkus", "process_reflection": "Protsessipeegeldus", "group_generalization": "Rühma üldistus", "topic_seed_follow_up": "Jätkuteema", "retention_decision": "Säilitamisotsus", "practice_candidate_decision": "Praktikakandidaadi otsus"
+      },
+      "statuses": {
+        "draft": "mustand", "private_draft": "privaatne mustand", "shared_draft": "jagatud mustand", "ready": "valmis", "queued": "järjekorras", "active": "aktiivne", "shared": "jagatud", "completed": "lõpetatud", "answered": "vastatud", "open": "avatud", "owner_confirmed": "omanik kinnitas", "needs_review": "vajab ülevaatust", "needs_rephrase": "vajab ümbersõnastamist", "resolved": "lahendatud", "not_applicable": "ei kohaldu", "parked": "pargitud", "closed": "suletud", "withdrawn": "tagasi võetud", "removed": "eemaldatud"
+      },
+      "phases": {
+        "waiting_room": "ooteruum", "meeting_started": "kohtumine alustatud", "confirmations_pending": "kinnitused ootel", "ready_to_open_case": "valmis juhtumit avama", "transition_to_stage_2": "üleminek 2. etappi", "ready_to_share_story": "valmis lugu jagama", "story_sharing": "loo jagamine", "story_paused": "loo paus", "story_complete": "lugu lõpetatud", "picture_review": "ühise pildi ülevaade", "focus_formulation": "fookuse sõnastamine", "ready_to_explore": "valmis uurima", "transition_to_stage_3": "üleminek 3. etappi", "exploration_plan": "uurimisplaan", "silent_preparation": "vaikne ettevalmistus", "question_queue": "küsimuste järjekord", "active_question": "aktiivne küsimus", "canvas_clarification": "lõuendi täpsustamine", "coverage_review": "kaetuse ülevaade", "focus_confirmation": "fookuse kinnitamine", "ready_to_continue": "valmis jätkama", "ready_to_deepen": "valmis süvendama", "role_change": "rollimuutus", "silent_reflection": "vaikne refleksioon", "reflection_queue": "peegelduste järjekord", "active_reflection": "aktiivne peegeldus", "reflection_placement": "peegelduse paigutamine", "perspective_linking": "vaadete sidumine", "owner_resonance": "omaniku resonants", "owner_review": "omaniku ülevaade", "ready_for_possibilities": "valmis võimalusteks", "creation_open": "loomine avatud", "silent_ideation": "vaikne ideeloome", "possibility_queue": "võimaluste järjekord", "active_possibility": "aktiivne võimalus", "thanks_and_placement": "tänu ja paigutamine", "possibility_field": "võimaluste väli", "second_creative_round": "teine loomering", "ready_for_resources": "valmis ressurssideks", "scope_selection": "ulatuse valik", "silent_resource_scan": "vaikne ressursivaade", "resource_queue": "ressursside järjekord", "active_resource": "aktiivne ressurss", "factual_clarification": "faktiline täpsustus", "barriers_and_unknowns": "takistused ja teadmatus", "impact_review": "mõjuülevaade", "resource_mirror": "ressursipeegel", "owner_support_picture_review": "omaniku tugipildi ülevaade", "ready_for_selection": "valmis valikuks", "private_selection": "privaatne valik", "resonance_sorting": "resonantsi sortimine", "direction_drafting": "suuna mustand", "key_insight": "võtmetaipamine", "next_step_drafting": "esimese sammu mustand", "support_timeframe_progress": "tugi, ajaraam ja edenemine", "follow_up_draft": "järelvaate mustand", "quality_responsibility_review": "kvaliteedi ja vastutuse ülevaade", "owner_confirmation": "omaniku kinnitus", "public_summary": "ühine kokkuvõte", "support_consent": "toe nõusolek", "case_work_completed": "juhtumitöö lõpetatud", "ready_to_summarize": "valmis kokku võtma", "owner_package_review": "omaniku paketi ülevaade", "follow_up_generalization_confirmation": "järelvaate ja üldistuse kinnitus", "silent_learning_reflection": "vaikne õppimispeegeldus", "learning_queue": "õppimise järjekord", "active_learning_share": "aktiivne õppimisjagamine", "process_reflection": "protsessipeegeldus", "group_generalization": "rühma üldistus", "retention_choice": "säilitamisvalik", "practice_candidate_decision": "praktikakandidaadi otsus", "final_review": "lõppülevaade", "case_closed": "juhtum suletud", "meeting_closed": "kohtumine suletud", "next_case": "järgmine juhtum", "paused": "pausil", "blocked": "blokeeritud", "stage_incomplete": "etapp pooleli", "complete": "sessiooni väljund kinnitatud"
+      },
+      "missing": {
+        "participants_required": "Vähemalt üks osaleja peab olema kinnitatud.", "participant_roles_unconfirmed": "Kõik rollid ei ole kinnitatud.", "participant_agreements_unconfirmed": "Kõik kokkulepped ei ole kinnitatud.", "participants_not_ready": "Kõik osalejad ei ole valmis.", "observer_consent_missing": "Vaatleja nõusolek puudub.", "case_unconfirmed": "Juhtumi tooja pole juhtumi piiri kinnitanud.", "settings_unconfirmed": "Sessiooni seaded pole kinnitatud.", "shared_anchor_required": "Ühine juhtumi ankur puudub.", "owner_picture_unconfirmed": "Omaniku pildikinnitus puudub.", "owner_focus_unconfirmed": "Omaniku fookuse kinnitus puudub.", "privacy_review_required": "Privaatsusülevaade on kinnitamata.", "shared_question_required": "Vähemalt üks uuriv küsimus peab olema jagatud.", "owner_enough_unconfirmed": "Omanik pole kinnitanud, et uurimisest piisab.", "shared_reflection_required": "Vähemalt üks peegeldus peab olema jagatud.", "owner_not_ready": "Omaniku valmisolek puudub.", "shared_possibility_required": "Vähemalt üks võimalus peab olema jagatud.", "active_object_present": "Aktiivne kaart tuleb enne lõpetada või parkida.", "owner_resonance_not_ready": "Omaniku resonantsiaeg pole lõpetatud.", "shared_resource_or_condition_required": "Ressurss või toetav tingimus puudub.", "impact_review_required": "Mõjuülevaade on kinnitamata.", "critical_prerequisite_unresolved": "Kriitiline eeldus on lahendamata.", "selected_direction_required": "Valitud suund puudub.", "next_step_required": "Esimene samm puudub.", "next_step_outside_owner_influence": "Esimene samm peab olema omaniku mõjuväljas.", "timeframe_required": "Ajaraam puudub.", "progress_marker_required": "Edenemise märk puudub.", "follow_up_required": "Järelvaade puudub.", "owner_confirmation_required": "Omaniku lõplik kinnitus puudub.", "package_confirmation_required": "Omaniku pakett on kinnitamata.", "owner_package_metadata_required": "Kinnitatud omaniku pakett pole jagatud.", "follow_up_confirmation_required": "Järelvaade on kinnitamata.", "generalization_decision_required": "Üldistuse otsus puudub.", "completed_generalization_metadata_required": "Valmis üldistus tuleb jagada.", "learning_completion_or_skip_required": "Õppimisringi otsus puudub.", "retention_decision_required": "Säilitamisotsus puudub.", "practice_decision_required": "Parima praktika otsus puudub.", "practice_candidate_metadata_required": "Praktikakandidaadi metaandmed puuduvad.", "owner_final_confirmation_required": "Omaniku lõppkinnitus puudub.", "blocking_safety_or_privacy_issue": "Turvalisuse või privaatsuse takistus on lahendamata.", "stage_evidence_unavailable": "Etapi tõendit ei saa praegu kontrollida."
+      },
+      "follow_up_responsible": { "owner": "juhtumi tooja", "meeting_leader": "kohtumise juht", "session_leader": "sessiooni juht", "designated_professional": "kokkulepitud spetsialist", "group": "rühm" },
+      "follow_up_channels": { "platform": "platvorm", "meeting": "kohtumine", "phone": "telefon", "email": "e-post", "other_agreed_channel": "muu kokkulepitud kanal" },
+      "decisions": {
+        "generalization": { "completed": "üldistus on valmis ja jagatud", "skipped_unsafe": "jätsime turvalisuse tõttu vahele", "not_retained": "ei säilita üldistust" },
+        "learning": { "completed": "läbitud", "skipped": "teadlikult vahele jäetud" },
+        "retention": { "retain": "säilita kokkulepitud väljund", "do_not_retain": "ära säilita" },
+        "practice": { "create_draft": "loo kandidaatmustand", "skip": "ära loo" }
+      }
+    },
+    "session": {
+      "loading": "Kovisiooni sessioon avaneb…",
+      "notices": {
+        "saved": "Salvestatud."
+      },
+      "errors": {
+        "load_failed": "Kovisiooni sessiooni ei saanud laadida.",
+        "action_failed": "Toimingut ei saanud salvestada."
+      }
+    },
+    "status": {
+      "draft": "Ettevalmistamisel",
+      "active": "Aktiivne",
+      "summary_ready": "Kokkuvõte valmib",
+      "closed": "Suletud",
+      "archived": "Arhiveeritud"
+    },
+    "participant_roles": {
+      "owner": "Juhtumi tooja",
+      "co_moderator": "Sessiooni juht",
+      "summary_reviewer": "Kokkuvõtte hoidja",
+      "participant": "Grupiliige",
+      "observer": "Vaatleja"
     },
     "knowledge": {
       "intro": "Otsi teadmistebaasist seotud seadusi, juhendeid, metoodikamaterjale, praktikakirjeldusi, teenuseid ja toetusi.",
@@ -4187,6 +4480,7 @@
     "back_card": "Tagasi",
     "kovision_room_card": "Kovisiooni ruum",
     "kovision_seeds_card": "Teemaseemned",
+    "kovision_completed_card": "Lõpetatud juhtumid",
     "kovision_practices_card": "Parimad praktikad",
     "kovision_practices_building": "ehitamisel",
     "kovision_practices_building_hint": "Parimate praktikate leht on ehitamisel",
@@ -4270,5 +4564,198 @@
       "save_failed": "Teemaseemet ei saanud salvestada. Proovi uuesti.",
       "load_failed": "Teemaseemneid ei saanud laadida."
     }
+  },
+  "completed_cases": {
+    "brand": "KOVISIOON",
+    "title": "Lõpetatud juhtumid",
+    "lead": "Siin on kovisioonisessioonid, mille aktiivne töö on lõpetatud. Juhtumi järgmine samm või järelvaade võib veel olla pooleli.",
+    "navigation": "Kovisiooni põhilehed",
+    "privacy": "Privaatsus ja andmekaitse",
+    "search": "Otsi pealkirja, märksõna või juhtumi tooja järgi…",
+    "loading": "Lõpetatud juhtumid avanevad…",
+    "empty": "Selles vaates pole veel lõpetatud Kovisioone.",
+    "results": "Kuvatakse",
+    "metrics": { "title": "Juhtumite ülevaade" },
+    "filters": {
+      "title": "Olekufiltrid",
+      "all": "Kõik",
+      "attention": "Vajab tähelepanu",
+      "practice": "Praktikakandidaadiga"
+    },
+    "status": {
+      "follow_up_pending": "Järelvaates",
+      "decision_pending": "Järelvaade tehtud · ootab jätkuotsust",
+      "closed": "Suletud",
+      "continuation_pending": "Ootel jätkuks",
+      "archived": "Arhiveeritud"
+    },
+    "attention": {
+      "title": "Vajab tähelepanu",
+      "overdue": "Järelvaade vajab tähelepanu",
+      "today": "Järelvaade on täna",
+      "empty": "Praegu pole kiiret järelvaadet ega jätkuotsust."
+    },
+    "scope": {
+      "title": "Minu vaated",
+      "mine": "Minu juhtumid",
+      "group": "Minu grupi juhtumid",
+      "visible": "Kõik nähtavad"
+    },
+    "sort": {
+      "title": "Sortimine",
+      "attention": "Tähelepanu vajavad ees",
+      "follow_up": "Lähim järelvaade",
+      "newest": "Uusim Kovisioon",
+      "oldest": "Vanim Kovisioon",
+      "title_alpha": "Pealkiri"
+    },
+    "view": { "title": "Vaade", "cards": "Kaardivaade", "list": "Nimekirjavaade" },
+    "profile": {
+      "you": "Sina",
+      "social_worker": "Sotsiaaltöö spetsialist",
+      "service_provider": "Teenuseosutaja",
+      "admin": "Platvormi administraator",
+      "professional": "Spetsialist"
+    },
+    "help": {
+      "title": "Abi",
+      "text": "Lõpetatud tähendab, et Kovisiooni protsess on lõppenud — mitte seda, et inimese olukord on kindlasti lahendatud."
+    },
+    "labels": {
+      "case_owner": "Juhtumi tooja",
+      "owner": "Juhtumi tooja",
+      "covision": "Kovisioon",
+      "follow_up": "Järelvaade",
+      "work_focus": "Tööfookus",
+      "direction": "Valitud suund",
+      "next_step": "Järgmine samm",
+      "timeframe": "Ajaraam",
+      "progress_marker": "Edenemise märk",
+      "channel": "Kanal",
+      "responsible": "Vastutaja",
+      "time": "Kuupäev või sündmus"
+    },
+    "actions": {
+      "open_follow_up": "Ava järelvaade",
+      "do_follow_up": "Tee järelvaade",
+      "view_follow_up": "Vaata järelvaadet",
+      "decide": "Tee jätkuotsus",
+      "open_continuation": "Ava jätkuteema",
+      "confirm_follow_up": "Kinnita järelvaade",
+      "reschedule": "Määra uus aeg",
+      "close_topic": "Sulge teema",
+      "create_practice": "Loo privaatne praktikakandidaat",
+      "open_practice": "Ava privaatne mustand",
+      "create_continuation": "Loo seotud Teemaseeme",
+      "new_follow_up": "Määra uus järelvaade",
+      "archive": "Arhiveeri",
+      "open_covision": "Ava Kovisioon"
+    },
+    "package": {
+      "mine_confirmed": "Minu Kovisioonipakk · kinnitatud",
+      "confirmed_private": "Kovisioonipakk kinnitatud · sisu ainult omanikule",
+      "visible_owner": "Selle paki sisu on nähtav ainult sulle.",
+      "hidden_other": "Näed paki tehnilist olekut, mitte selle sisu."
+    },
+    "practice": {
+      "private_draft": "Privaatne praktikakandidaat",
+      "none": "Kandidaati pole loodud.",
+      "private_note": "Privaatne mustand ootab eraldi isikustamist ja kontrolli."
+    },
+    "calendar": {
+      "title": "Järelvaadete kalender",
+      "empty": "Järelvaate kuupäevi pole veel määratud."
+    },
+    "quick": {
+      "title": "Kiirlingid",
+      "seeds": "Mine Teemaseemnetesse",
+      "practices": "Mine praktikakogusse"
+    },
+    "detail": {
+      "read_only": "Suletud Kovisioon · kinnitatud hetktõmmis",
+      "navigation": "Lõpetatud juhtumi osad",
+      "loading": "Kinnitatud kokkuvõte avaneb…",
+      "tabs": {
+        "summary": "Kokkuvõte",
+        "follow_up": "Järelvaade",
+        "links": "Seosed",
+        "data": "Andmed ja säilitamine"
+      }
+    },
+    "follow_up": {
+      "unscheduled": "Aeg täpsustub",
+      "completed": "Järelvaade tehtud",
+      "do_now": "Tee järelvaade",
+      "what_done": "Mida tegelikult tehti",
+      "what_changed": "Mis muutus või ei muutunud",
+      "learning": "Mida sellest õpiti",
+      "detail_private": "Järelvaate refleksioon on nähtav ainult juhtumi omanikule ja määratud järelvaate tegijale.",
+      "reschedule": "Määra uus aeg",
+      "schedule_placeholder": "nt 24.08.2026 või järgmise kohtumise alguses"
+    },
+    "decision": {
+      "title": "Jätkuotsus",
+      "lead": "Järelvaade on tehtud. Vali professionaalne järgmine olek — see ei hinda juhtumi edukust.",
+      "new_question": "Uus üldistatud küsimus",
+      "new_follow_up_time": "Uue järelvaate kuupäev või sündmus",
+      "close_reason": "Sulgemise professionaalne põhjendus",
+      "close_confirm": "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus."
+    },
+    "links": {
+      "source": "Algne Teemaseeme",
+      "source_note": "Seos on nähtav ainult omanikule ega ava teistele privaatset ettevalmistust.",
+      "continuation": "Jätkuteema",
+      "continuation_ready": "Uus seotud Teemaseeme on loodud.",
+      "continuation_empty": "Jätkuteemat pole loodud.",
+      "practice": "Praktikakandidaat"
+    },
+    "data": {
+      "retention": "Säilitamise olek",
+      "deleted": "Detailne sessioonitöö on kustutatud. Säilib ainult kinnitatud minimaalne kokkuvõte.",
+      "selected_only": "Säilib ainult kinnitatud minimaalne kokkuvõte ja omaniku valitud pakett.",
+      "package": "Kovisioonipakk",
+      "archive_confirm": "Kinnitan, et soovin selle lõpetatud juhtumi aktiivvaatest arhiveerida."
+    },
+    "errors": {
+      "invalid": "Kontrolli sisestatud andmeid ja proovi uuesti.",
+      "not_ready": "Kovisiooni kinnitatud lõppväljund ei ole veel valmis.",
+      "conflict": "Juhtum muutus vahepeal. Värskenda ja proovi uuesti.",
+      "request_failed": "Lõpetatud juhtumi toiming ebaõnnestus.",
+      "load_failed": "Lõpetatud juhtumeid ei saanud laadida.",
+      "detail_failed": "Juhtumi kokkuvõtet ei saanud avada.",
+      "action_failed": "Toimingut ei saanud salvestada."
+    }
+  },
+  "effective_practices": {
+    "brand": "KOVISIOON",
+    "navigation": "Kovisiooni põhilehed",
+    "kicker": "Professionaalne teadmistekogu",
+    "title": "Parimad praktikad",
+    "lead": "Praktikakogu sisaldab eri küpsus- ja ülevaatustasemel professionaalseid tööviise. Iga praktika juures on nähtav kontekst, tingimused ja piirangud.",
+    "privacy": "Privaatsus ja andmekaitse",
+    "search": "Otsi praktikat, teemat, sihtrühma või tööfookust…",
+    "search_label": "Otsi praktikakogust",
+    "loading": "Praktikakogu avaneb…",
+    "detail_loading": "Praktika avaneb…",
+    "quality": { "title": "Kvaliteedi tagamine", "text": "Iga avaldatud praktika läbib avaldamiseelse kontrolli. Professionaalse retsenseerimise tase on praktika juures nähtav." },
+    "help": { "title": "Abi", "text": "Praktika ei ole universaalne lahendus. Kontrolli enne kasutamist sobivat konteksti, tingimusi, piiranguid ja versiooni." },
+    "tabs": { "title": "Praktikakogu vaated", "library": "Praktikakogu", "candidates": "Minu tööd", "review": "Retsenseerimine" },
+    "profile": { "you": "Sina", "social_worker": "Sotsiaaltöö spetsialist", "service_provider": "Teenuseosutaja", "admin": "Platvormi administraator", "professional": "Spetsialist" },
+    "capability": { "title": "Kinnitatud platvormiõigused", "reviewer": "Valdkondlik retsensent", "ethics": "Eetika ja privaatsuse kontrollija", "editor": "Metoodiline toimetaja", "approver": "Lõplik kinnitaja", "professional": "Professionaalne ülevaataja", "all_scopes": "kõik valdkonnad" },
+    "status": { "draft": "Privaatne mustand", "waiting": "Ootab retsensendi määramist", "submitted": "Esitatud ülevaatamiseks", "in_review": "Retsenseerimisel", "needs_changes": "Vajab täiendamist", "ready": "Kinnitamiseks valmis", "published": "Kinnitatud praktika", "re_review": "Uuesti ülevaatamisel", "archived": "Arhiveeritud", "candidate": "Kogemuspõhine praktikakandidaat", "expert_reviewed": "Ekspertide poolt üle vaadatud", "accepted": "Üle vaadatud ja vastu võetud", "rejected": "Tagasi lükatud" },
+    "risk": { "low": "Madalam risk", "high": "Kõrgem risk" },
+    "version_history": "Avaldatud versioonide ajalugu",
+    "filters": { "maturity": "Küpsustase", "all_levels": "Kõik küpsustasemed" },
+    "sort": { "title": "Sortimine", "updated": "Hiljuti uuendatud", "reviewed": "Viimati üle vaadatud", "applications": "Enim dokumenteeritud kogemusi", "alpha": "Tähestikuline", "review_due": "Vajab uut ülevaatust" },
+    "labels": { "professional_method": "Professionaalne tööviis", "suitable": "Sobib, kui", "limitation": "Oluline piirang", "conditions": "Tingimused", "steps": "Rakendamissammud", "applications": "{count} rakendamiskogemust", "followups": "{count} järelvaadet", "version": "Versioon", "updated": "Viimati uuendatud", "reviewed": "Professionaalselt üle vaadatud", "next_review": "Järgmine ülevaatus", "review_overdue": "Uue professionaalse ülevaatuse tähtaeg on möödunud.", "risk": "Riskitase", "identifiers": "Isikustamine", "confirmed": "Autori kontroll kinnitatud", "unconfirmed": "Kontrollimata", "modified": "Viimati muudetud", "review_task": "Ülevaatuse ülesanne", "review_workspace": "Retsenseerimise tööruum", "summary_missing": "Lühikokkuvõte vajab täiendamist.", "review_basis": "Professionaalse ülevaatuse alus" },
+    "actions": { "open": "Ava praktika", "open_draft": "Ava mustand", "review": "Ava ülevaatamiseks", "create": "Loo praktikakandidaat", "edit": "Täienda", "save_private": "Salvesta privaatne mustand", "submit_review": "Esita ülevaatamiseks", "save_review": "Salvesta ülevaatus", "publish": "Kinnita ja avalda versioon", "submit_application": "Saada rakendamiskogemus ülevaatamiseks", "archive": "Arhiveeri", "archive_confirm": "Kas arhiveerida see praktikakandidaat?", "re_review": "Alusta uut ülevaatust", "re_review_confirm": "Kas eemaldada versioon teadmistekogust ja alustada uut ülevaatust?" },
+    "fields": { "title": "Pealkiri", "summary": "Lühikokkuvõte", "type": "Praktika tüüp", "risk": "Riskitase", "context": "Sobiv kontekst", "conditions": "Vajalikud tingimused", "steps": "Rakendamissammud", "limitations": "Oluline piirang või risk", "targets": "Sihtrühmad", "environments": "Rakendamiskeskkonnad", "topics": "Teemad ja märksõnad", "background": "Üldistatud taust", "challenge": "Peamine professionaalne väljakutse", "what_helped": "Mis aitas", "network_role": "Võrgustiku või teenuse roll", "outcome": "Üldistatud tulemus", "learning": "Õppimis- ja tõendusalus", "sources": "Allikad ja professionaalne alus" },
+    "editor": { "private": "Privaatne praktikakandidaat", "create": "Loo praktikakandidaat", "edit": "Täienda kandidaati", "one_per_line": "Üks kirje reale", "identifiers_confirm": "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile." },
+    "candidate": { "next": "Kandidaadi järgmine samm", "from_closure": "Mustand loodi lõpetatud juhtumi kinnitatud üldistusest. Juhtumilugu ei ole kopeeritud.", "from_experience": "Mustand põhineb sinu üldistatud professionaalsel kogemusel.", "my_candidates": "Minu praktikakandidaadid" },
+    "review": { "title": "Professionaalne ülevaatus", "role": "Ülevaatuse roll", "decision": "Otsus", "approve": "Sobib järgmisse kontrolli", "changes": "Vajab täiendamist", "decline": "Ei sobi avaldamiseks", "conflict": "Huvide konflikt", "conflict_status": "Huvide konflikti kontroll", "choose_conflict": "Vali kontrolli tulemus", "no_conflict": "Huvide konflikti ei ole", "manageable_conflict": "Seos on olemas, kuid juhitav", "declined_conflict": "Taandun huvide konflikti tõttu", "author_feedback": "Autorile nähtav tagasiside", "private_notes": "Privaatsed märkmed ülevaatuse töövoole", "candidates": "Praktikakandidaadid", "applications": "Rakendamiskogemused" },
+    "publish": { "title": "Lõplik kinnitamine", "note": "Avaldamine lukustab eraldi versiooni. Teadmistekogu sünk käivitub alles pärast edukat avaldamist ja selle olek raporteeritakse eraldi." },
+    "application": { "title": "Lisa struktureeritud rakendamiskogemus", "note": "See ei ole hinne ega kommentaar. Kirjelda konteksti, kohandusi, piiranguid ja järelvaadet.", "context": "Kasutamise kontekst", "target": "Sihtrühm", "adaptations": "Mida kohandasin", "worked": "Mis toimis", "not_worked": "Mis ei toiminud", "limitation": "Ilmnenud piirang või risk", "follow_up": "Järelvaate aeg", "needs_review": "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.", "review_task": "Rakendamiskogemuse ülevaatus", "review_note": "Tagasiside lisajale", "accept": "Sobib dokumenteeritud kogemuseks", "reject": "Ei sobi avaldamiseks", "my_applications": "Minu rakendamiskogemused", "my_experience": "Minu rakendamiskogemus", "reviewer_feedback": "Retsensendi tagasiside", "resubmit": "Saada täiendatud kogemus uuesti" },
+    "empty": { "candidates_title": "Sul pole veel praktikakandidaate", "review_title": "Sul pole praegu määratud ülevaatusi", "library_title": "Praktikakogu alles kujuneb", "library_text": "Siia ilmuvad ainult lukustatud ja avaldamiseks kinnitatud praktikaversioonid.", "personal_text": "Uued tööobjektid ilmuvad siia pärast teadlikku loomist või määramist." },
+    "errors": { "request_failed": "Praktikakogu toiming ebaõnnestus.", "load_failed": "Praktikakogu ei õnnestunud laadida.", "detail_failed": "Praktikat ei saanud avada.", "save_failed": "Mustandit ei saanud salvestada.", "action_failed": "Toimingut ei saanud salvestada.", "application_failed": "Rakendamiskogemust ei saanud salvestada.", "conflict": "Praktika muutus vahepeal. Värskenda ja proovi uuesti.", "incomplete": "Kandidaadi kohustuslikud väljad või privaatsuskontroll on lõpetamata.", "capability_required": "Selle toimingu jaoks puudub kehtiv kinnitatud õigus.", "self_review": "Oma tööd ei saa ise professionaalselt kinnitada.", "conflict_of_interest": "Selle töö puhul tuleb huvide konflikti tõttu taanduda.", "review_chain": "Nõutud professionaalne ülevaatusahel ei ole veel täidetud.", "rag_sync_failed": "Avaldatud versiooni teadmistekogusse sünkroniseerimine ebaõnnestus." }
   }
 }
