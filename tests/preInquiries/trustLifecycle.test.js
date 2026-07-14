@@ -6,6 +6,7 @@ import {
   listVisiblePreInquiries,
   recallPreInquiry,
   sendPreInquiryCorrection,
+  updatePreInquiry,
   updatePreInquiryReceiverWorkflow
 } from "../../lib/preInquiries.js";
 
@@ -64,10 +65,15 @@ function matches(row, where = {}) {
   });
 }
 
-function createDb(initial, { failCorrectionLink = false, canonicalRoom = null } = {}) {
+function createDb(initial, {
+  failCorrectionLink = false,
+  canonicalRoom = null,
+  freshUpdateOverride = null
+} = {}) {
   const rows = new Map(initial.map((row) => [row.id, structuredClone(row)]));
   let sequence = initial.length;
   let clock = new Date("2026-07-14T11:00:00.000Z").getTime();
+  let pendingFreshUpdateOverride = freshUpdateOverride;
   const counters = { creates: 0, updates: 0 };
 
   const hydrate = (row) => row ? structuredClone(row) : null;
@@ -77,6 +83,11 @@ function createDb(initial, { failCorrectionLink = false, canonicalRoom = null } 
         return hydrate([...rows.values()].find((row) => matches(row, where)));
       },
       async findUnique({ where }) {
+        if (pendingFreshUpdateOverride) {
+          const row = rows.get(where.id);
+          if (row) Object.assign(row, structuredClone(pendingFreshUpdateOverride));
+          pendingFreshUpdateOverride = null;
+        }
         return hydrate(rows.get(where.id));
       },
       async findMany({ where }) {
@@ -88,6 +99,13 @@ function createDb(initial, { failCorrectionLink = false, canonicalRoom = null } 
         Object.assign(row, structuredClone(data), { updatedAt: new Date(++clock) });
         counters.updates += 1;
         return { count: 1 };
+      },
+      async update({ where, data }) {
+        const row = rows.get(where.id);
+        if (!row) throw new Error("missing fake pre-inquiry");
+        Object.assign(row, structuredClone(data), { updatedAt: new Date(++clock) });
+        counters.updates += 1;
+        return hydrate(row);
       },
       async create({ data }) {
         const id = `inq_correction_${++sequence}`;
@@ -117,8 +135,23 @@ function createDb(initial, { failCorrectionLink = false, canonicalRoom = null } 
       }
     },
     user: {
-      async findUnique() {
+      async findUnique({ where }) {
+        if (where.email === "recipient@example.test") {
+          return { id: RECIPIENT, acceptsPreInquiries: true };
+        }
         return null;
+      }
+    },
+    serviceMapEntry: {
+      async findUnique({ where }) {
+        if (where.id !== "entry_1") return null;
+        return {
+          id: "entry_1",
+          type: "KOV_CONTACT",
+          title: "Test service",
+          email: "recipient@example.test",
+          providerProfile: null
+        };
       }
     },
     room: {
@@ -196,6 +229,70 @@ test("an assigned draft is visible to its author but not to the recipient", asyn
   const db = createDb([baseInquiry({ status: "DRAFT", sentAt: null })]);
   assert.deepEqual(await listVisiblePreInquiries(RECIPIENT, { db: db.client }), []);
   assert.equal((await listVisiblePreInquiries(AUTHOR, { db: db.client })).length, 1);
+});
+
+test("direct PATCH cannot rewrite an opened READY pre-inquiry", async () => {
+  const openedAt = new Date("2026-07-14T10:30:00.000Z");
+  const original = baseInquiry({ status: "READY", openedAt, topic: "Original topic" });
+  const db = createDb([original]);
+
+  await rejectsWith(
+    updatePreInquiry(AUTHOR, original.id, { topic: "Rewritten topic" }, { db: db.client }),
+    409,
+    "pre_inquiries.errors.opened_cannot_be_edited"
+  );
+  assert.equal(db.counters.updates, 0);
+  assert.equal(db.row().topic, "Original topic");
+  assert.equal(new Date(db.row().openedAt).getTime(), openedAt.getTime());
+});
+
+test("direct PATCH cannot rewrite a superseded pre-inquiry", async () => {
+  const original = baseInquiry({
+    status: "READY",
+    openedAt: null,
+    supersededById: "inq_correction_existing",
+    topic: "Original topic"
+  });
+  const db = createDb([original]);
+
+  await rejectsWith(
+    updatePreInquiry(AUTHOR, original.id, { topic: "Rewritten topic" }, { db: db.client }),
+    409,
+    "pre_inquiries.errors.opened_cannot_be_edited"
+  );
+  assert.equal(db.counters.updates, 0);
+  assert.equal(db.row().topic, "Original topic");
+});
+
+test("the under-lock fresh read blocks a concurrent open before direct PATCH", async () => {
+  const original = baseInquiry({ status: "READY", openedAt: null, topic: "Original topic" });
+  const db = createDb([original], {
+    freshUpdateOverride: { openedAt: new Date("2026-07-14T10:30:00.000Z") }
+  });
+
+  await rejectsWith(
+    updatePreInquiry(AUTHOR, original.id, { topic: "Rewritten topic" }, { db: db.client }),
+    409,
+    "pre_inquiries.errors.opened_cannot_be_edited"
+  );
+  assert.equal(db.counters.updates, 0);
+  assert.equal(db.row().topic, "Original topic");
+});
+
+test("unopened DRAFT and READY pre-inquiries remain directly editable", async () => {
+  for (const status of ["DRAFT", "READY"]) {
+    const original = baseInquiry({ status, sentAt: null, openedAt: null, topic: "Original topic" });
+    const db = createDb([original]);
+    const updated = await updatePreInquiry(
+      AUTHOR,
+      original.id,
+      { topic: `${status} edited`, situation: original.situation },
+      { db: db.client }
+    );
+
+    assert.equal(updated.topic, `${status} edited`);
+    assert.equal(db.counters.updates, 1);
+  }
 });
 
 test("trusted accept wins before recall and preserves the first openedAt", async () => {
@@ -326,6 +423,23 @@ test("correction creates exactly one clean SENT version and repeats return it", 
   assert.equal(repeated.inquiry.id, first.inquiry.id);
   assert.equal(repeated.inquiry.recipientOwnerId, RECIPIENT);
   assert.equal(db.counters.creates, 1);
+});
+
+test("correction with an empty situation returns the localized contract key", async () => {
+  const opened = baseInquiry({ openedAt: new Date("2026-07-14T10:30:00.000Z") });
+  const db = createDb([opened]);
+
+  await rejectsWith(
+    sendPreInquiryCorrection(AUTHOR, opened.id, {
+      expectedUpdatedAt: FIRST_UPDATED_AT,
+      situation: "   ",
+      correctionText: "Corrected general message"
+    }, { db: db.client }),
+    400,
+    "pre_inquiries.errors.situation_required"
+  );
+  assert.equal(db.counters.creates, 0);
+  assert.equal(db.counters.updates, 0);
 });
 
 test("a failed correction link rolls the replacement back", async () => {

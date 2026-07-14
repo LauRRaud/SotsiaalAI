@@ -66,8 +66,8 @@ export default function MySharingsPage() {
       : t("my_sharings.labels.unknown_time");
   }, [formatter, t]);
 
-  const loadSharings = useCallback(async ({ signal } = {}) => {
-    setLoadError("");
+  const loadSharings = useCallback(async ({ signal, preserveData = false } = {}) => {
+    if (!preserveData) setLoadError("");
     try {
       const response = await fetch("/api/my-sharings", { cache: "no-store", signal });
       const payload = await response.json().catch(() => ({}));
@@ -82,7 +82,9 @@ export default function MySharingsPage() {
       return true;
     } catch (error) {
       if (error?.name === "AbortError") return false;
-      setLoadError(error?.message || t("my_sharings.errors.load_failed"));
+      if (!preserveData) {
+        setLoadError(error?.message || t("my_sharings.errors.load_failed"));
+      }
       return false;
     } finally {
       if (!signal?.aborted) setLoading(false);
@@ -97,8 +99,9 @@ export default function MySharingsPage() {
 
   useEffect(() => {
     if (!feedback && !actionError) return;
+    if (confirmAction) return;
     feedbackRef.current?.focus({ preventScroll: true });
-  }, [actionError, feedback]);
+  }, [actionError, confirmAction, feedback]);
 
   const ownershipLabels = useMemo(() => ({
     visibility: t("my_sharings.ownership.visibility"),
@@ -110,6 +113,11 @@ export default function MySharingsPage() {
     setFeedback("");
     setActionError("");
   }, []);
+
+  const openConfirmAction = useCallback((action) => {
+    resetMessages();
+    setConfirmAction(action);
+  }, [resetMessages]);
 
   const runConfirmedAction = useCallback(async () => {
     const action = confirmAction;
@@ -142,7 +150,8 @@ export default function MySharingsPage() {
       }
       setConfirmAction(null);
       setFeedback(t(`my_sharings.notice.${action.kind === "recall" ? "recalled" : action.kind === "revoke" ? "invite_revoked" : "room_left"}`));
-      await loadSharings();
+      const refreshed = await loadSharings({ preserveData: true });
+      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
     } catch (error) {
       setActionError(error?.message || t("my_sharings.errors.action_failed"));
     } finally {
@@ -198,7 +207,8 @@ export default function MySharingsPage() {
       setCorrection(null);
       setPrivacyPrompt(null);
       setFeedback(t("my_sharings.notice.corrected"));
-      await loadSharings();
+      const refreshed = await loadSharings({ preserveData: true });
+      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
     } catch (error) {
       setActionError(error?.message || t("my_sharings.errors.action_failed"));
     } finally {
@@ -232,11 +242,11 @@ export default function MySharingsPage() {
         <div
           ref={feedbackRef}
           className={styles.liveRegion}
-          role={actionError ? "alert" : "status"}
+          role={actionError && !confirmAction ? "alert" : "status"}
           aria-live="polite"
           tabIndex={-1}
         >
-          {actionError || feedback}
+          {confirmAction ? feedback : actionError || feedback}
         </div>
 
         {loading ? <p className={styles.loading}>{t("my_sharings.loading")}</p> : null}
@@ -283,7 +293,7 @@ export default function MySharingsPage() {
                         <Button
                           variant="secondary"
                           disabled={Boolean(busyKey)}
-                          onClick={() => setConfirmAction({ kind: "recall", item })}
+                          onClick={() => openConfirmAction({ kind: "recall", item })}
                         >
                           {t("my_sharings.actions.recall")}
                         </Button>
@@ -338,7 +348,7 @@ export default function MySharingsPage() {
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}><h3>{item.title || t("my_sharings.sections.rooms")}</h3><span className={styles.eyebrow}>{t(item.role === "OWNER" ? "my_sharings.labels.room_owner" : "my_sharings.labels.room_member")}</span></div>
                   <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.room_members")} origin={t("my_sharings.ownership.you_joined")} validity={t(item.canLeave ? "my_sharings.ownership.active" : "my_sharings.ownership.owner")} />
-                  {item.canLeave ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "leave", item })}>{t("my_sharings.actions.leave_room")}</Button></div> : null}
+                  {item.canLeave ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openConfirmAction({ kind: "leave", item })}>{t("my_sharings.actions.leave_room")}</Button></div> : null}
                 </Panel>
               ))}
             </Section>
@@ -348,7 +358,7 @@ export default function MySharingsPage() {
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span><h3>{item.roomTitle || item.inviteeEmail}</h3></div><time dateTime={item.expiresAt}>{formatDate(item.expiresAt)}</time></div>
                   <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.invite_recipient", { name: item.inviteeEmail })} origin={t("my_sharings.ownership.you_invited")} validity={t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) })} />
-                  {item.canRevoke ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div> : null}
+                  {item.canRevoke ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div> : null}
                 </Panel>
               ))}
             </Section>
@@ -385,7 +395,9 @@ export default function MySharingsPage() {
           actionsClassName={styles.modalActions}
           onConfirm={runConfirmedAction}
           onCancel={() => { if (!mutationInFlightRef.current) setConfirmAction(null); }}
-        />
+        >
+          {actionError ? <p className={styles.modalError} role="alert">{actionError}</p> : null}
+        </ModalConfirm>
       ) : null}
     </main>
   );

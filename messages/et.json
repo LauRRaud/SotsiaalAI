@@ -4764,6 +4764,8 @@
       "correction_requires_open": "Avamata pöördumise saad paranduse asemel tagasi võtta.",
       "correction_conflict": "Pöördumine muutus või sellele on parandus juba saadetud. Värskenda ülevaadet.",
       "correction_required": "Parandatud pöördumise tekst on kohustuslik.",
+      "situation_required": "Parandatud olukorra kirjeldus on kohustuslik.",
+      "opened_cannot_be_edited": "Avatud või juba parandatud pöördumist ei saa otse muuta. Saada uus parandus.",
       "correction_failed": "Parandust ei saanud saata.",
       "not_sent": "Pöördumist ei ole veel saadetud.",
       "open_conflict": "Pöördumise olek muutus vahepeal. Värskenda ja proovi uuesti."
@@ -4849,7 +4851,7 @@
     "correction": {
       "title": "Parandatud versioon", "topic": "Teema", "situation": "Olukorra parandatud kirjeldus", "text": "Parandatud pöördumise tekst", "privacy_title": "Kontrolli jagatavat infot", "privacy_body": "Tekstis võib olla isikuandmeid. Muuda teksti, kasuta varjatud versiooni või kinnita teadlikult algse teksti saatmine."
     },
-    "errors": { "load_failed": "Sinu jagamisi ei saanud laadida.", "action_failed": "Toiming ebaõnnestus. Proovi uuesti." }
+    "errors": { "load_failed": "Sinu jagamisi ei saanud laadida.", "action_failed": "Toiming ebaõnnestus. Proovi uuesti.", "refresh_failed": "Toiming õnnestus, kuid uuendatud ülevaadet ei saanud laadida. Proovi vaadet uuesti laadida." }
   },
   "effective_practices": {
     "brand": "KOVISIOON",

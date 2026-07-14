@@ -89,4 +89,26 @@ test("My sharings page is linked from profile and uses the single aggregate endp
   assert.match(component, /<textarea required disabled=\{Boolean\(busyKey\)\}/);
   assert.doesNotMatch(component, /\sanchorBack(?:\s|\/>)/);
   assert.match(component, /overlayClassName=\{styles\.modalOverlay\}/);
+  assert.match(component, /if \(confirmAction\) return;[\s\S]*feedbackRef\.current\?\.focus/);
+  assert.match(component, /className=\{styles\.modalError\} role="alert"/);
+  assert.match(component, /role=\{actionError && !confirmAction \? "alert" : "status"\}/);
+  assert.match(component, /\{confirmAction \? feedback : actionError \|\| feedback\}/);
+  assert.match(component, /preserveData = false/);
+  assert.match(component, /if \(!preserveData\) setLoadError\(""\)/);
+  assert.match(component, /loadSharings\(\{ preserveData: true \}\)/);
+  assert.match(component, /my_sharings\.errors\.refresh_failed/);
+  assert.match(component, /const openConfirmAction = useCallback\([\s\S]*resetMessages\(\);[\s\S]*setConfirmAction\(action\)/);
+  assert.match(component, /onClick=\{\(\) => openConfirmAction\(\{ kind: "recall", item \}\)\}/);
+});
+
+test("post-open edit and correction errors have ET, EN and RU translations", async () => {
+  const messages = await Promise.all(
+    ["et", "en", "ru"].map(async (locale) => JSON.parse(await source(`messages/${locale}.json`)))
+  );
+
+  for (const catalog of messages) {
+    assert.ok(catalog.pre_inquiries.errors.opened_cannot_be_edited);
+    assert.ok(catalog.pre_inquiries.errors.situation_required);
+    assert.ok(catalog.my_sharings.errors.refresh_failed);
+  }
 });

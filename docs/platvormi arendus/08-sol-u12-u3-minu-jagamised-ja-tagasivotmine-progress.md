@@ -340,3 +340,44 @@ Enne seda haru ei täitnud INTERNAL saatmisteed järjekindlalt `sentAt` väärtu
 - `npm run build`: läbis, U12/U3 leht ja API marsruudid route-loendis;
 - runtime-smoke: `/minu-jagamised` → 200; autentimata `/api/my-sharings`, recall, correction ja accept → 401 enne keha/objekti töötlemist; kontrollport suleti;
 - `git diff --check`: puhas.
+
+## 17. 2026-07-14 Opuse sõltumatu järelkontrolli parandusring
+
+Värske `origin/main` tipp `df2f45c0` lisas sõltumatu auditi `09-opus-u12-u3-jarelkontroll.md` otsusega **OPUS PARANDUSED VAJALIKUD**. Audit ei leidnud P0-turvaviga, kuid kasutaja määras F1 otsese post-open PATCH-i ajaloo tervikluse tõttu blokeerivaks P1-ks. Käesolev ring sulgeb F1 ja F2 ning samas ringis ka auditi U1 ja U2 kasutatavusleiud. Opuse auditidokumenti sellel harul ei muudeta ja see enesekontroll ei asenda nõutud uut sõltumatut järelkontrolli.
+
+### Suletud leiud
+
+1. **F1 — avatud või asendatud pöördumise otsene PATCH:** `updatePreInquiry` keeldub nüüd kontrollitud 409 võtmega `pre_inquiries.errors.opened_cannot_be_edited`, kui `openedAt` on täidetud või `supersededById` on olemas. Sama kontroll jookseb nii enne lukku kui ka advisory-lock'i all värskelt loetud real, mistõttu kahe kontrolli vahel toimuv avamine ei luba ajalugu tagantjärele ümber kirjutada. Avamisjärgne muudatus jääb ainult `sendPreInquiryCorrection` uue SENT-versiooni teeks.
+2. **F2 — puuduva olukorra tõlge:** `pre_inquiries.errors.situation_required` on lisatud ET/EN/RU kataloogidesse. Samades kataloogides on F1 uus avalik veavõti.
+3. **U1 — modaalis nähtav toimingu viga:** recall/revoke/leave serveriviga kuvatakse kinnituskasti sees `role="alert"` olekus; dialoog jääb avatuks ja toimingut saab korrata. Taustal oleva live-region'i fookust ei liigutata avatud modaali taha. Uue kinnituse avamine puhastab varasema toimingu või värskenduse teate, et vana viga ei kanduks järgmisse dialoogi.
+4. **U2 — mutatsioon õnnestub, koondi värskendus ebaõnnestub:** järelvärskendus kasutab `preserveData` režiimi. Olemasolev ledger jääb nähtavaks ning kasutaja saab eraldi lokaliseeritud `my_sharings.errors.refresh_failed` teate; leht ei kuku eksitavalt alglaadimise täisvea olekusse.
+
+### Lisatud regressioonipiirid
+
+- avatud READY otsene PATCH → 409, null kirjutust ja muutumatu sisu;
+- superseded vana rida → 409 ja null kirjutust;
+- luku-eelse kontrolli järel konkureeriv avamine → luku all 409 ja null sisukirjutust;
+- avamata DRAFT ja READY jäävad otse muudetavaks;
+- correction loob endiselt ühe uue SENT-versiooni ja vana `supersededById` seose;
+- avamata SENT recall jääb idempotentselt toimivaks;
+- tühi correction-situation tagastab 400 `situation_required` võtme;
+- UI lepingutestid katavad modaalivea, fookuse, säilitatud ledger'i, eraldi refresh-vea ja vana teate puhastamise;
+- ET/EN/RU lepingutest kinnitab kõigi kolme uue võtme olemasolu igas kataloogis.
+
+### Kolmanda ringi kontrolltulemused
+
+- U12/U3 sihttestid: **26/26 läbis**;
+- kogu `npm test`: **1096/1096 läbis**;
+- muudetud JS/JSX failide ESLint: **0 viga, 0 hoiatust**;
+- `npm run lint`: **0 viga**, repos püsib **359 varasemat hoiatust**;
+- `npm run i18n:check`: ET/EN/RU pariteet korras;
+- Prisma `validate` ja `generate`: korras;
+- `npm run db:migrate:check`: kõik **88 migratsiooni** rakendusid puhtasse ajutisse PostgreSQL andmebaasi, skeem oli ajakohane ja proovibaas eemaldati;
+- `npm run build`: Next 16.2 Turbopack build läbis ning `/minu-jagamised` ja U12/U3 API marsruudid on route-loendis;
+- production-runtime smoke: `/minu-jagamised` → 200; autentimata koond-GET, otsene PATCH ja vigase JSON-kehaga correction-POST → 401 JSON enne objekti või keha töötlemist;
+- Playwright CLI kontroll: 1440 px ja 390 px vaates jäi toimingu viga dialoogi sisse, korduskatse oli alles, nurjunud järelvärskendus säilitas ledgeri ning järgmine dialoog ei pärinud vana teadet. API vastused mock'iti ainult nende kahe deterministliku UI veaoleku esilekutsumiseks;
+- `git diff --check`: puhas.
+
+### Värava hetkeseis
+
+F1, F2, U1 ja U2 on Soli harul parandatud ning lokaalselt täielikult kontrollitud. Haru ei ühendata, rebase'ita ega deploy'ta. Järgmine lubatud samm on selle parandusringi commit ja push samale `codex/u12-u3-trust-package` harule, seejärel uus sõltumatu U12+U3 järelkontroll. Main-i ühendamise otsus jääb selle järelkontrolli taha.

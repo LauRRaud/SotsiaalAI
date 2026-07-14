@@ -196,6 +196,14 @@
   line-height: 1.6;
 }
 
+.modalContent .modalError {
+  padding: 0.8rem 0.95rem;
+  border: 1px solid rgba(244, 198, 144, 0.42);
+  border-radius: 0.85rem;
+  color: var(--text-warm);
+  background: rgba(201, 92, 74, 0.16);
+}
+
 .modalActions {
   display: flex;
   flex-wrap: wrap;

@@ -4742,6 +4742,8 @@
       "correction_requires_open": "You can recall an unopened pre-inquiry instead of correcting it.",
       "correction_conflict": "The pre-inquiry changed or a correction has already been sent. Refresh the overview.",
       "correction_required": "The corrected pre-inquiry text is required.",
+      "situation_required": "The corrected situation description is required.",
+      "opened_cannot_be_edited": "An opened or already corrected pre-inquiry cannot be edited directly. Send a new correction.",
       "correction_failed": "The correction could not be sent.",
       "not_sent": "The pre-inquiry has not been sent yet.",
       "open_conflict": "The pre-inquiry changed in the meantime. Refresh and try again."
@@ -4775,7 +4777,7 @@
     "confirm": { "recall": "Recall this unopened pre-inquiry? It will disappear from the recipient's active list, but its audit trail remains.", "revoke": "Revoke this invite? The invite link will stop working.", "leave": "Leave this room? You will no longer see new room content." },
     "notice": { "memory": "Recall cannot erase information the recipient may already have seen or remembered.", "correction": "A correction is sent as a new version. The previous opened version remains in the history.", "recalled": "The pre-inquiry was recalled.", "corrected": "The corrected version was sent.", "invite_revoked": "The invite was revoked.", "room_left": "You left the room." },
     "correction": { "title": "Corrected version", "topic": "Topic", "situation": "Corrected situation description", "text": "Corrected pre-inquiry text", "privacy_title": "Review the information being shared", "privacy_body": "The text may contain personal data. Edit it, use the redacted version or knowingly confirm sending the original text." },
-    "errors": { "load_failed": "Your shares could not be loaded.", "action_failed": "The action failed. Try again." }
+    "errors": { "load_failed": "Your shares could not be loaded.", "action_failed": "The action failed. Try again.", "refresh_failed": "The action succeeded, but the updated overview could not be loaded. Try reloading the view." }
   },
   "effective_practices": {
     "brand": "COVISION", "navigation": "Covision main pages", "kicker": "Professional knowledge library", "title": "Best practices", "lead": "The library contains professional approaches at different maturity and review levels. Each practice shows its context, conditions and limitations.", "privacy": "Privacy and data protection", "search": "Search by practice, topic, target group or focus…", "search_label": "Search the practice library", "loading": "Opening the practice library…", "detail_loading": "Opening practice…",
