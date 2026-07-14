@@ -8,6 +8,10 @@ import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
+import {
+  canInviteRelationshipType,
+  normalizeInviteRelationshipType
+} from "@/lib/invites/participantTypes";
 import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
 
 export const runtime = "nodejs";
@@ -121,13 +125,6 @@ function normalizeEmails(emails) {
         .filter(Boolean)
     )
   ];
-}
-
-function normalizeRelationship(value) {
-  const raw = String(value || "").trim().toUpperCase();
-  if (raw === "COLLEAGUE") return "COLLEAGUE";
-  if (raw === "CLIENT") return "CLIENT";
-  return null;
 }
 
 function normalizePaymentMode(value) {
@@ -418,6 +415,19 @@ export async function POST(request) {
     });
   }
 
+  const relationshipValue = payload?.relationship_type ?? payload?.relationshipType;
+  const relationshipType = normalizeInviteRelationshipType(relationshipValue);
+  if (relationshipValue != null && !relationshipType) {
+    return errorJson("invite.error.relationship_required", 400, locale, {
+      code: "INVALID_RELATIONSHIP_TYPE"
+    });
+  }
+  if (relationshipType && !canInviteRelationshipType(auth.role, relationshipType)) {
+    return errorJson("invite.error.relationship_not_allowed", 403, locale, {
+      code: "RELATIONSHIP_NOT_ALLOWED"
+    });
+  }
+
   const roomId = String(payload?.room_id ?? payload?.roomId ?? "").trim();
   const roomTitle =
     typeof payload?.room_title === "string"
@@ -474,9 +484,6 @@ export async function POST(request) {
       });
     }
 
-    const relationshipType = normalizeRelationship(
-      payload?.relationship_type || payload?.relationshipType
-    );
     const paymentMode = normalizePaymentMode(
       payload?.payment_mode || payload?.paymentMode
     );

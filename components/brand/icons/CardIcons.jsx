@@ -289,7 +289,7 @@ export const InquiryIcon = (props) => (
   </Svg>
 );
 
-/* Lisa inimene — inimene + pluss */
+/* Kutsu osaleja — inimene + pluss */
 export const InvitePersonIcon = (props) => (
   <Svg {...props}>
     <circle {...P} cx="10" cy="8" r="3.1" />
