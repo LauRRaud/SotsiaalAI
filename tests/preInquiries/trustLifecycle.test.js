@@ -224,6 +224,16 @@ test("trusted accept wins before recall and preserves the first openedAt", async
   assert.equal(workflow.status, "ARCHIVED");
 });
 
+test("repeated acceptance never resurrects an archived receiver workflow", async () => {
+  const openedAt = new Date("2026-07-14T10:30:00.000Z");
+  const db = createDb([baseInquiry({ status: "ARCHIVED", openedAt })]);
+
+  const accepted = await acceptPreInquiry(RECIPIENT, "inq_original", { db: db.client });
+  assert.equal(accepted.status, "ARCHIVED");
+  assert.equal(new Date(accepted.openedAt).getTime(), openedAt.getTime());
+  assert.equal(db.counters.updates, 0);
+});
+
 test("stale recall and foreign ids fail without mutating state", async () => {
   const db = createDb([baseInquiry()]);
   await rejectsWith(

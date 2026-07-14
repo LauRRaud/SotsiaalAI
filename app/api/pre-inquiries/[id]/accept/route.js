@@ -8,6 +8,12 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
+const PUBLIC_ERRORS = new Set([
+  "api.common.not_found",
+  "pre_inquiries.errors.not_sent",
+  "pre_inquiries.errors.open_conflict"
+]);
+
 async function requireUser() {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = session?.user?.id ? String(session.user.id) : "";
@@ -44,8 +50,11 @@ export async function POST(request, context) {
   } catch (error) {
     const status = Number(error?.status) || 500;
     if (status >= 500) console.error("[pre-inquiries] accept failed", safeError(error));
+    const messageKey = status < 500 && PUBLIC_ERRORS.has(error?.message)
+      ? error.message
+      : "pre_inquiries.errors.accept_failed";
     return errorJson(
-      status < 500 ? error.message : "pre_inquiries.errors.accept_failed",
+      messageKey,
       status,
       locale
     );

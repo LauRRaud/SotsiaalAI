@@ -311,3 +311,32 @@ Põhifailid sõltumatuks järelkontrolliks:
 - Opuse auditid `06-opus-kovisioon-lopetatud-juhtumid-parimad-praktikad-jarelkontroll.md` ja `07-opus-tooheaolu-kovisioon-jarelkontroll.md` ning operatsiooniprogress `01-opus-parast-auditit-operatsioon-u4-u8-tooplaan-ja-progress.md` loeti värskelt `origin/main`-ist lõpuni.
 - Dokumenteeritud väravaseis on endiselt **ootab Opuse kordusauditit**: Soli A-P1-1 ning B-P1-1/B-P2-1 parandused on main-is ja testitud, kuid sõltumatu Opuse kordusauditi lõppotsust ei ole neisse dokumentidesse veel lisatud. Commit'i pealkirja ei käsitleta auditi heakskiiduna.
 - Seetõttu ei tehta merge'i, rebase'i, cherry-pick'i ega deploy'd. Järgmine lubatud kvaliteedisamm on Opuse kordusauditi lõppotsus; pärast selle sulgumist peab U12+U3 haru kontrollima teine sõltumatu ülevaataja. Käesolev Soli/Codexi enesekontroll ei kvalifitseeru sõltumatuks järelkontrolliks.
+
+## 16. 2026-07-14 adversaalne enesekontroll ja teine parandusring
+
+See ring parandab haru enne sõltumatut ülevaatust, kuid **ei asenda sõltumatut U12+U3 järelkontrolli**.
+
+### Leitud ja suletud vead
+
+1. Korduv vastuvõtu POST võis juba arhiveeritud receiver-workflow tagasi `READY` olekusse viia. `acceptPreInquiry` on nüüd pärast esimest avamist idempotentne, säilitab `ARCHIVED` oleku ja ei tee kordusel kirjutust. Vastuvõtja UI ei paku `READY` ega `ARCHIVED` reale uut vastuvõtutoimingut.
+2. `busyKey` Reacti state ei olnud üksi sünkroonne topeltklõpsuvärav. Recall/revoke/leave/correction kasutavad nüüd kohe seatavat `mutationInFlightRef` väravat; enne esimest renderdust saabuv teine sündmus ei tee teist päringut.
+3. Paranduse teksti sai correction POST-i ajal edasi muuta, mis võimaldas hilise edu järel uuema lokaalse teksti kadumist. Kõik paranduse sisendid on päringu ajal külmutatud ja kannavad serveri pikkuspiiridega samu `maxLength` väärtusi.
+4. Koond võis näidata recall-nuppu ka siis, kui kanooniline eelpöördumise ruum oli juba olemas. Aktiivse ruumiliikmesuse päringust tuletatakse nüüd kanoonilise ruumi päritolu-ID ning selline rida ei paku eksitavat recall-toimingut; serveri ruumiguard jääb autoriteetseks.
+5. Kasutaja enda saadetud kutse võis jääda koondisse pärast ruumi moderaatoriõiguse kaotamist, kuid UI pakkus endiselt revoke-nuppu, mille server õigesti keelaks. Koond arvutab nüüd `canRevoke` väärtuse värskest ruumi omandist või aktiivsest OWNER/MODERATOR liikmesusest; kutse ajalugu jääb nähtavaks, lubamatu toiming mitte.
+6. Accept-route'i 4xx vead ei läbinud eraldi avalikku allowlist'i. Nüüd väljastatakse ainult `not_found`, `not_sent` ja `open_conflict`; kõik muu saab üldise `accept_failed` võtme.
+
+### Ajaloolise andmestiku fail-closed piir
+
+Enne seda haru ei täitnud INTERNAL saatmisteed järjekindlalt `sentAt` väärtust ning vastuvõtt muutis `SENT` rea `READY`-ks. Seetõttu ei saa vanast paljast `READY` või `ARCHIVED` reast alati tõendada, kas adressaat sai selle päriselt või oli see autori saatmata ettevalmistus. Migratsioon backfill'ib ainult üheselt `SENT` read; ebakindlaid ajaloolisi ridu adressaadile oletuslikult ei avaldata. See võib jätta mõne vana vastuvõetud rea nii recipient-loendist kui ka autori U12 ajaloolisest koondist välja, kuid väldib saatmata mustandi privaatsusleket ja vale jagamisväidet. Laiem ajalooline taastamine vajab eraldi toote-/andmeotsust või usaldusväärset audititõendit.
+
+### Teise ringi kontrolltulemused
+
+- täiendatud sihttestid: **20/20**;
+- kogu `npm test`: **1090/1090**;
+- `npm run i18n:check`: ET/EN/RU pariteet korras;
+- Prisma `validate` ja `generate`: korras;
+- `npm run db:migrate:check`: kõik **88 migratsiooni** rakendusid puhtasse ajutisse localhost-PostgreSQL andmebaasi, skeem ajakohane ja proovibaas eemaldatud;
+- `npm run lint`: **0 viga**, 359 varasemat hoiatust; muudetud `WorkspaceFeaturePage.jsx` failis on 27 varasemat hardcoded-string hoiatust, selle ringi read uusi hoiatusi ei lisanud;
+- `npm run build`: läbis, U12/U3 leht ja API marsruudid route-loendis;
+- runtime-smoke: `/minu-jagamised` → 200; autentimata `/api/my-sharings`, recall, correction ja accept → 401 enne keha/objekti töötlemist; kontrollport suleti;
+- `git diff --check`: puhas.

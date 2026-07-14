@@ -45,7 +45,13 @@ function fixtureDb() {
     roomMember: model("roomMember", [{
       role: "MEMBER",
       joinedAt: sentAt,
-      room: { id: "room_1", title: "Support room" }
+      room: {
+        id: "room_1",
+        title: "Support room",
+        ownerId: "room_owner",
+        originType: null,
+        originId: null
+      }
     }], calls),
     invite: model("invite", [{
       id: "invite_1",
@@ -54,7 +60,7 @@ function fixtureDb() {
       status: "SENT",
       createdAt: sentAt,
       expiresAt: new Date("2026-07-20T10:00:00.000Z"),
-      room: { title: "Support room" }
+      room: { title: "Support room", ownerId: USER_ID }
     }], calls),
     helpRequest: model("helpRequest", [{
       id: "request_1",
@@ -105,6 +111,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   assert.equal(result.preInquiries[0].canRecall, false);
   assert.equal(result.preInquiries[0].canCorrect, true);
   assert.equal(result.rooms[0].canLeave, true);
+  assert.equal(result.invites[0].canRevoke, true);
   assert.equal(result.helpListings.length, 2);
   assert.deepEqual(Object.keys(result), [
     "preInquiries",
@@ -117,6 +124,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
 
 test("unopened internal SENT inquiry is recallable but external delivery is not", async () => {
   const { db } = fixtureDb();
+  db.roomMember.findMany = async () => [];
   db.preInquiry.findMany = async () => [
     {
       id: "internal",
@@ -165,12 +173,72 @@ test("unopened internal SENT inquiry is recallable but external delivery is not"
   assert.equal(result.preInquiries[1].canCorrect, false);
 });
 
+test("a canonical shared room removes the optimistic recall action", async () => {
+  const { db } = fixtureDb();
+  db.preInquiry.findMany = async () => [{
+    id: "internal",
+    topic: "Internal",
+    situation: "General",
+    userEditedDraft: "Text",
+    generatedDraft: null,
+    selectedRecipientName: "Worker",
+    selectedRecipientEmail: null,
+    deliveryChannel: "INTERNAL",
+    status: "SENT",
+    sentAt: NOW,
+    openedAt: null,
+    recalledAt: null,
+    supersededById: null,
+    updatedAt: NOW,
+    recipientEntry: null,
+    recipientOwner: { email: "worker@example.test" },
+    supersedes: null
+  }];
+  db.roomMember.findMany = async () => [{
+    role: "OWNER",
+    joinedAt: NOW,
+    room: {
+      id: "room_pre_inquiry",
+      title: "Shared inquiry",
+      ownerId: USER_ID,
+      originType: "PRE_INQUIRY",
+      originId: "internal"
+    }
+  }];
+
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  assert.equal(result.preInquiries[0].canRecall, false);
+});
+
+test("an invite remains visible but is not revocable after room authority is lost", async () => {
+  const { db } = fixtureDb();
+  db.roomMember.findMany = async () => [];
+  db.invite.findMany = async () => [{
+    id: "invite_without_authority",
+    roomId: "room_other",
+    inviteeEmail: "invitee@example.test",
+    status: "SENT",
+    createdAt: NOW,
+    expiresAt: new Date("2026-07-20T10:00:00.000Z"),
+    room: { title: "Other room", ownerId: "another_owner" }
+  }];
+
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  assert.equal(result.invites[0].canRevoke, false);
+});
+
 test("room owners cannot leave and an empty user id is rejected before queries", async () => {
   const { db, calls } = fixtureDb();
   db.roomMember.findMany = async () => [{
     role: "OWNER",
     joinedAt: NOW,
-    room: { id: "room_owner", title: "Owned room" }
+    room: {
+      id: "room_owner",
+      title: "Owned room",
+      ownerId: USER_ID,
+      originType: null,
+      originId: null
+    }
   }];
   const result = await loadMySharings(USER_ID, { db, now: NOW });
   assert.equal(result.rooms[0].canLeave, false);

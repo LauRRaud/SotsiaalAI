@@ -52,6 +52,7 @@ export default function MySharingsPage() {
   const [correction, setCorrection] = useState(null);
   const [privacyPrompt, setPrivacyPrompt] = useState(null);
   const feedbackRef = useRef(null);
+  const mutationInFlightRef = useRef("");
 
   const formatter = useMemo(
     () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
@@ -112,8 +113,9 @@ export default function MySharingsPage() {
 
   const runConfirmedAction = useCallback(async () => {
     const action = confirmAction;
-    if (!action || busyKey) return;
+    if (!action || mutationInFlightRef.current) return;
     const key = `${action.kind}:${action.item.id}`;
+    mutationInFlightRef.current = key;
     setBusyKey(key);
     resetMessages();
     try {
@@ -144,9 +146,12 @@ export default function MySharingsPage() {
     } catch (error) {
       setActionError(error?.message || t("my_sharings.errors.action_failed"));
     } finally {
-      setBusyKey("");
+      if (mutationInFlightRef.current === key) {
+        mutationInFlightRef.current = "";
+        setBusyKey("");
+      }
     }
-  }, [busyKey, confirmAction, loadSharings, locale, resetMessages, t]);
+  }, [confirmAction, loadSharings, locale, resetMessages, t]);
 
   const openCorrection = useCallback((item) => {
     resetMessages();
@@ -161,8 +166,9 @@ export default function MySharingsPage() {
   }, [resetMessages]);
 
   const sendCorrection = useCallback(async (privacyDecision = null) => {
-    if (!correction || busyKey) return;
+    if (!correction || mutationInFlightRef.current) return;
     const key = `correct:${correction.id}`;
+    mutationInFlightRef.current = key;
     setBusyKey(key);
     resetMessages();
     try {
@@ -196,9 +202,12 @@ export default function MySharingsPage() {
     } catch (error) {
       setActionError(error?.message || t("my_sharings.errors.action_failed"));
     } finally {
-      setBusyKey("");
+      if (mutationInFlightRef.current === key) {
+        mutationInFlightRef.current = "";
+        setBusyKey("");
+      }
     }
-  }, [busyKey, correction, loadSharings, resetMessages, t]);
+  }, [correction, loadSharings, resetMessages, t]);
 
   const allEmpty = Object.values(sharings).every((items) => !Array.isArray(items) || items.length === 0);
 
@@ -293,15 +302,15 @@ export default function MySharingsPage() {
                         </div>
                         <label>
                           <span>{t("my_sharings.correction.topic")}</span>
-                          <input value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
+                          <input disabled={Boolean(busyKey)} maxLength={1000} value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
                         </label>
                         <label>
                           <span>{t("my_sharings.correction.situation")}</span>
-                          <textarea required rows={4} value={correction.situation} onChange={(event) => setCorrection((current) => ({ ...current, situation: event.target.value }))} />
+                          <textarea required disabled={Boolean(busyKey)} maxLength={12000} rows={4} value={correction.situation} onChange={(event) => setCorrection((current) => ({ ...current, situation: event.target.value }))} />
                         </label>
                         <label>
                           <span>{t("my_sharings.correction.text")}</span>
-                          <textarea required rows={7} value={correction.text} onChange={(event) => setCorrection((current) => ({ ...current, text: event.target.value }))} />
+                          <textarea required disabled={Boolean(busyKey)} maxLength={12000} rows={7} value={correction.text} onChange={(event) => setCorrection((current) => ({ ...current, text: event.target.value }))} />
                         </label>
                         {privacyPrompt ? (
                           <div className={styles.privacyPrompt} role="alert">
@@ -339,7 +348,7 @@ export default function MySharingsPage() {
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span><h3>{item.roomTitle || item.inviteeEmail}</h3></div><time dateTime={item.expiresAt}>{formatDate(item.expiresAt)}</time></div>
                   <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.invite_recipient", { name: item.inviteeEmail })} origin={t("my_sharings.ownership.you_invited")} validity={t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) })} />
-                  <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div>
+                  {item.canRevoke ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div> : null}
                 </Panel>
               ))}
             </Section>
@@ -375,7 +384,7 @@ export default function MySharingsPage() {
           contentClassName={styles.modalContent}
           actionsClassName={styles.modalActions}
           onConfirm={runConfirmedAction}
-          onCancel={() => { if (!busyKey) setConfirmAction(null); }}
+          onCancel={() => { if (!mutationInFlightRef.current) setConfirmAction(null); }}
         />
       ) : null}
     </main>

@@ -35,6 +35,18 @@ test("mutation routes authenticate before reading bodies and expose only allowli
     assert.match(route, /safeError\(error\)/);
     assert.doesNotMatch(route, /errorJson\(error\.message/);
   }
+
+  const acceptRoute = await source("app/api/pre-inquiries/[id]/accept/route.js");
+  assert.match(acceptRoute, /const PUBLIC_ERRORS = new Set/);
+  assert.match(acceptRoute, /PUBLIC_ERRORS\.has\(error\?\.message\)/);
+  assert.match(acceptRoute, /safeError\(error\)/);
+  assert.doesNotMatch(acceptRoute, /status < 500 \? error\.message/);
+});
+
+test("receiver UI does not offer acceptance for an archived workflow", async () => {
+  const workspace = await source("components/workspace/WorkspaceFeaturePage.jsx");
+  assert.match(workspace, /\["READY", "ARCHIVED"\]\.includes\(inquiry\?\.status\)/);
+  assert.match(workspace, /\["READY", "ARCHIVED"\]\.includes\(inquiry\.status\)/);
 });
 
 test("all trust mutations share the pre-inquiry advisory lock", async () => {
@@ -70,6 +82,11 @@ test("My sharings page is linked from profile and uses the single aggregate endp
   assert.match(component, /aria-live="polite"/);
   assert.match(component, /expectedUpdatedAt/);
   assert.match(component, /privacyDecision/);
+  assert.match(component, /mutationInFlightRef\.current/);
+  assert.match(component, /if \(!action \|\| mutationInFlightRef\.current\) return/);
+  assert.match(component, /if \(!correction \|\| mutationInFlightRef\.current\) return/);
+  assert.match(component, /<input disabled=\{Boolean\(busyKey\)\}/);
+  assert.match(component, /<textarea required disabled=\{Boolean\(busyKey\)\}/);
   assert.doesNotMatch(component, /\sanchorBack(?:\s|\/>)/);
   assert.match(component, /overlayClassName=\{styles\.modalOverlay\}/);
 });
