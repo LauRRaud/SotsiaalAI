@@ -882,3 +882,73 @@ tõesta e-kirja saatmist. Enne e-kirjade laiemat sisselülitamist on soovitatav
 sulgeda §23.3 P2-1 (ruumi 6 h topeltsündmus) ja P2-2 (läheneva järgmise
 kontakti dedupe). Need ei blokeeri merge'i ega praegust ohutu vaikeväärtusega
 deploy'd.
+
+---
+
+## 25. Main-integratsioon ja production deploy (2026-07-14)
+
+U1/U2 sõltumatu audit oli roheline ning kasutaja andis loa koondada valmis
+paketid `main`-i ja productionisse. U12/U3, P1, U8-lite ja U4 olid juba
+integratsioonijadana `main`-is; U1/U2 lisandus sellele puhta fast-forward'ina.
+
+### 25.1 GitHub ja kontrollid
+
+- auditeeritud rakenduse release-commit: `a53d40b0`;
+- GitHubi `main`: fast-forward `87a8f7cb -> a53d40b0`;
+- enne ühendamist: kogu `npm test` **1222/1222**, CSS budget **52/52**,
+  Prisma validate, ET/EN/RU pariteet ja production build korras;
+- serveris eraldi tühja proovibaasi vastu rakendus kogu **92 migratsiooni**
+  ahel ning `prisma migrate status` kinnitas ajakohase skeemi;
+- U3 ja U8 varasem sama ajatempel oli integratsioonis juba lahendatud
+  järjestuseks `20260714220000` ja `20260714223000`; U1/U2 migratsioon järgneb
+  neile nimega `20260715120000_u1_u2_notification_continuity`.
+
+### 25.2 Production migratsioon ja build
+
+- server: `/home/ubuntu/apps/sotsiaalai`, haru `main`, release `a53d40b0`;
+- enne migratsiooni tehti õigustega `0600` täisvarukoopia:
+  `/home/ubuntu/apps/sotsiaalai-deploy-backups/db-before-u1u2-20260714T161346Z.dump`;
+- `prisma migrate deploy` rakendas 92. migratsiooni ja järelkontroll kinnitas
+  **Database schema is up to date**;
+- production build läbis; logi:
+  `/home/ubuntu/apps/sotsiaalai/deploy-build-logs/build-20260714T161354Z.log`;
+- `sotsiaalai-frontend.service` ja `sotsiaalai-rag.service`: **active**;
+- deploy-järgses frontend/RAG/notification error-journalis kirjeid ei olnud.
+
+### 25.3 Notification scheduler ja env
+
+Serveris lisati väärtusi logimata:
+
+- juhuslik 256-bitine `NOTIFICATION_JOB_KEY`;
+- `NOTIFICATION_JOB_BATCH_SIZE=40`;
+- env-varukoopia:
+  `/etc/sotsiaalai/frontend.env.bak-20260714T161507Z-u1u2`;
+- env-faili senine omanik ja režiim säilisid: `root:ubuntu`, `0640`.
+
+Lisati ja lubati `sotsiaalai-notifications.timer`, mis käivitab
+`sotsiaalai-notifications.service` iga viie minuti järel. Esimene päriskäivitus
+ja sellele järgnenud dry-run lõpetasid mõlemad edukalt:
+
+- `reconcilePages=1`, `deliveryPages=1`, `truncated=false`;
+- `created=0`, `sent=0`, `failed=0`, `retried=0`.
+
+U1 optional e-kirjad jäävad endiselt kasutaja teadliku opt-in'ini vaikimisi
+välja. Serveri scheduler'i aktiveerimine ei muutnud seda tooteotsust.
+
+### 25.4 Production smoke
+
+- `/`, `/minu-jagamised`, `/vestlus`: **200**;
+- autentimata `/api/notifications`, `/api/notifications/preferences` ja
+  `/api/workspace/continuity`: **401**;
+- võtmeta `POST /api/jobs/notifications`: **401**;
+- notification timer, frontend ja RAG: **active**;
+- serveri git-tööpuu: puhas.
+
+### 25.5 Lõppseis
+
+- U1: **MAIN-IS JA PRODUCTIONIS**;
+- U2: **MAIN-IS JA PRODUCTIONIS**;
+- kõik seni valminud U12/U3, P1, U4, U8-lite, U1 ja U2 paketid on ühes
+  `main`-harus;
+- §23.3 P2-1 ja P2-2 jäävad teadlikeks mitteblokeerivateks parandusteks enne
+  U1 e-kirjade laiemat sisselülitamist.
