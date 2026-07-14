@@ -123,6 +123,9 @@ if [ -f "$FRONTEND_ENV" ]; then
   set +a
 fi
 
+echo "[deploy:server] Installing locked dependencies"
+npm ci --include=dev --no-audit --no-fund
+
 echo "[deploy:server] Applying Prisma migrations"
 npx prisma migrate deploy
 
