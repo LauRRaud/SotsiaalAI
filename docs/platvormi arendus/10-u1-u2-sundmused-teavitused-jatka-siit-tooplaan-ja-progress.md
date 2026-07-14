@@ -620,3 +620,176 @@ Kui U1 + U2 on Soli poolt lõpetatud, Opuse poolt P0/P1 osas heaks kiidetud ja s
 **U7 — lihtsa ja selge keele režiim.**
 
 U7 ei kuulu käesoleva paketi skoopi ning sellele koostatakse eraldi tööplaan pärast U1 + U2 lõpetamist.
+
+---
+
+## 22. SOL — U1 + U2 TEOSTUS VALMIS, OOTAB OPUSE SÕLTUMATUT AUDITIT (2026-07-14)
+
+### 22.1 Haru, baas ja kontrollpunktcommit'id
+
+- eraldi worktree: `C:\Users\rauds\Desktop\SotsiaalAI-u1-u2`;
+- haru: `codex/u1-u2-events-continuity`;
+- värske baas: `origin/main` @ `87a8f7cb`;
+- P1-eeltingimused (serializer + receiver-workflow CAS + mailer fail-closed): `30faf508`;
+- U1 püsiv sündmuse-, adapteri- ja delivery-vertikaal: `8e479886`;
+- U2 „Jätka siit” + järgmine kontakt + UI: `0afc2ff1`;
+- põhitööpuud teostuse ajal ei vahetatud ega kasutatud arenduseks.
+
+Seis: **SOL VALMIS**. Haru ei ole `main`-i ühendatud ega deploy'itud. Järgmine
+lubatud samm on Opuse §16 read-only P0/P1 audit selle haru vastu.
+
+### 22.2 Skeem ja migratsioon
+
+Additiivne migratsioon:
+`prisma/migrations/20260715120000_u1_u2_notification_continuity/migration.sql`.
+
+- uus `NotificationEvent`, millel ei ole vabateksti ega metadata-JSON-i;
+- adressaat kustub konto kustutamisel `ON DELETE CASCADE` abil;
+- unikaalne `dedupeKey`;
+- kasutaja/lugemata/aja, source-read ja delivery indeksid;
+- püsiv delivery-seis: policy, status, attempts, next attempt, claim, sent time,
+  ohutu error code ja stabiilne Message-ID;
+- `User.notificationEmailEnabled` on nullable ning vaikimisi `null` = valikuline
+  e-kiri **väljas**; CAS-i versioon on `notificationPreferenceVersion`;
+- `PreInquiry.nextContactOn` on range kuupäevastring ning receiver-skoobis;
+- rollback-märkus on migratsioonis; rakenduse rollback on additiivsete väljade
+  allesjätmisel ohutu.
+
+### 22.3 Sündmused, adressaadid ja kanalipoliitika
+
+| Sündmus | Õigus/allikas | Dedupe | E-kirja omanik |
+|---|---|---|---|
+| saabunud eelpöördumine | värske `recipientOwnerId`, recall puudub | pöördumine + `sentAt` | olemasolev transaktsioonikiri; U1 ei dubleeri |
+| eelpöördumise oluline olek | pöördumise autor | olek + versioon | U1 optional |
+| ruumikutse | konto värske e-post = aktiivse kutse adressaat | invite ID + sent | olemasolev kutsekiri; U1 ei dubleeri |
+| ruumi tegevus | aktiivne liige, mitte akna sõnumite autor | ruum + adressaat + 6 h UTC aken | U1 optional digest |
+| abisobitus | ainult `requesterId`/`offererId` | match + adressaat | aktiivne abisobituse leping; U1 platvormisündmus |
+| järgmine kontakt | pöördumise receiver/workflow omanik | pöördumine + kuupäev | U1 optional |
+| praktika ülesanne/tähtaeg | assignment'i värske reviewer | assignment + marker | U1 optional |
+| kättesaadavuse värskus | teenuseprofiili värske omanik | teenus + kontrolliperiood | **U4 legacy reminder**, U1 `NONE` |
+
+Kättesaadavuse kirja omanikuks jäi selles paketis teadlikult U4. U1 loob sama
+fakti kohta ainult platvormisisese sündmuse. Nii ei teki kahte kirja ega muudeta
+U4 `availabilityReminderSentAt` lepingut auditita. Opus peab selle otsuse §16
+auditil eraldi üle vaatama.
+
+Iga `createNotificationEvent` kontrollib enne kirjutamist allikobjektist uuesti
+adressaati ja source/target allowlist'i. Caller ei saa sisestada sündmuseteksti,
+URL-i ega Message-ID-d. Lugemis-API kontrollib nii event-owner'it kui ka allika
+värsket ligipääsu; stale/kustunud allikas jäetakse vastusest välja.
+
+### 22.4 Idempotentsus, scheduler ja delivery
+
+- DB unikaalsus sulgeb sama `dedupeKey` paralleelse loomise;
+- reconcile kasutab iga allikamudeli jaoks stabiilset ID-cursor'it ja kuni 100
+  piiratud lehte, mitte muutuvat offset'i;
+- room activity koondub 6-tunnisesse aknasse ja saatja ei ole adressaat;
+- delivery valib stabiilses ID-järjekorras, claim'ib `updateMany` CAS-iga ning
+  ainult claim'i võitja saadab;
+- crash pärast võimalikku SMTP vastuvõttu ei põhjusta pimesi kordussaatmist:
+  aegunud `SENDING` muutub `UNKNOWN`-iks;
+- enne optional saatmist loetakse kasutaja eelistus värskelt;
+- timeout 15 s, max 3 katset, eksponentsiaalne piiratud backoff;
+- olematu adressaat ja transpordi puudumine lõpetavad ohutu olekuga;
+- dry-run ei saada ega kirjuta;
+- job-route kasutab puuduva võtme korral fail-closed timing-safe kontrolli ning
+  tagastab ainult loendurid, mitte e-posti, source ID-sid ega cursoreid;
+- e-kiri kasutab ET/EN/RU kataloogi, üldist sündmusefakti ja platvormi
+  sisselogimislinki; tööobjekti sisu sinna ei lähe.
+
+Pärast auditit vajab server:
+
+- 256-bitist juhuslikku `NOTIFICATION_JOB_KEY` väärtust;
+- soovi korral `NOTIFICATION_JOB_BATCH_SIZE=40`;
+- olemasolevat korrektset `APP_URL`/`NEXTAUTH_URL` ja SMTP seadistust;
+- perioodilist `npm run notifications:dispatch` käivitust. Timerit ja env-i ei
+  lisatud enne auditit ning deploy'd ei tehtud.
+
+### 22.5 API, märgid ja „Jätka siit”
+
+- `GET/PATCH /api/notifications`: owner-skoobiga nimekiri, badge'id ja read-state;
+- `GET/PATCH /api/notifications/preferences`: ainult konto omanik, version-CAS;
+- `GET /api/workspace/continuity`: ainult sessiooni kasutaja, private no-store;
+- `POST /api/jobs/notifications`: secret-gated reconcile + delivery;
+- room read uuendab samas tehingus `lastReadAt` ja vastava U1 source-read'i;
+- badge-konks kasutab tegelikke serveriloendureid ning numbriline märk on
+  tekstiline/ruumiline, mitte ainult värv;
+- „Jätka siit” tagastab kuni 7 allowlist'itud DTO-d ilma vabateksti ja PII-ta;
+- järjestus: üle tähtaja kontakt, praktikaülesanne, saabunud pöördumine,
+  lugemata ruum, lähenev kontakt / stale service, mustandid ja aktiivne Teekond;
+- sama href deduplitakse kõrgema prioriteedi kasuks;
+- admin ei saa endpoint'i kaudu valida teise inimese `userId`-d.
+
+UI-l on laadimis-, vea- ja tühiolek, klaviatuurifookus, reduced-motion leping,
+serveri loodud kohalikud teed ning request-ID valvur, et hiline preference-vastus
+ei kirjutaks uuemat olekut üle. ET/EN/RU võtmed on pariteedis.
+
+### 22.6 Järgmine kontakt
+
+- ainult aktiivne platform-recipient saab receiver-workflow route'i kaudu muuta;
+- server aktsepteerib ainult tegelikku `YYYY-MM-DD` kalendrikuupäeva või tühja
+  väärtust;
+- sama `expectedUpdatedAt` CAS kaitseb checklist'i, märget, staatust ja kuupäeva
+  ühe ühise stale-write'i eest;
+- autorile, kõrvalisele kasutajale ja fail-closed serializerile kuupäeva ei anta;
+- muutmisel/eemaldamisel suletakse vana lugemata sündmus ja pending email samas
+  tehingus olekuga `CANCELLED`;
+- uus tähtaeg saab dedupe-võtmesse kuupäeva ning server võrdleb seda
+  `Europe/Tallinn` kalendripäevaga;
+- UI kuupäevaväli on ainult receiver-workflow plokis.
+
+### 22.7 Kontrollipakett
+
+Läbitud:
+
+- U1/U2 sihttestid koos P1-regressioonidega: **43/43**;
+- kogu `npm test`: **1222/1222**;
+- `npm run i18n:check`: ET/EN/RU pariteet korras;
+- muudetud failide lint: 0 viga;
+- kogu `npm run lint`: 0 viga, **359 varasemat repo hoiatust**;
+- `npx prisma validate`: korras;
+- `npx prisma generate`: korras;
+- `npm run css:budget`: **52/52**;
+- `npm run build`: tootmisbuild korras, kõik uued route'id buildis;
+- `git diff --check`: korras;
+- autentimata runtime-smoke: notifications GET/PATCH, preferences GET,
+  continuity GET ja job POST andsid kõik **401** enne andmepäringut.
+
+Keskkonnapiirangud, mida ei nimetata läbituks:
+
+- `npm run db:migrate:check` käivitus, kuid lokaalses worktree's ei olnud päris
+  DB mandaati; dummy ühendus jõudis PostgreSQL-i ja lõppes `28P01` auth-veaga;
+- autenditud pöörduja/spetsialisti brauserisuitsu ei tehtud, sest sellel puhtal
+  worktree'l ei olnud kasutajasessiooni;
+- produktsioonimigratsiooni, env-i, timerit ega deploy'd ei tehtud enne auditit.
+
+### 22.8 Täpne jätkamispunkt Opusele
+
+Auditeeri `codex/u1-u2-events-continuity` tervikuna, baasiga `87a8f7cb`, eelkõige:
+
+1. `lib/notifications.js` värske source-owner kontroll kõikidele tüüpidele;
+2. `lib/notificationReconciler.js` stabiilne multi-model cursor, ruumi 6 h koond
+   ja saatja välistamine;
+3. `lib/notificationDelivery.js` claim/CAS, `UNKNOWN` crash-semantika, värske
+   opt-out ja PII-vaba e-kiri/logi;
+4. U4 kui kättesaadavuskirja ainus omanik;
+5. kutse sündmuse target pärast kutse vastuvõtmist/aegumist;
+6. room read + notification read sama tehing;
+7. next-contact CAS, cancellation ja Tallinn day-boundary;
+8. continuity kõigi seitsme päringu omanikuskoobid ja stale-target käitumine;
+9. konto kustutamise cascade;
+10. migratsiooni päris DB deploy-check ja indeksid.
+
+P0/P1 leid peatab merge'i. Heakskiidu järel: fast-forward/merge haru `main`-i,
+käivita päris `prisma migrate deploy`, lisa serveri env + perioodiline job,
+tee autenditud kahe rolli smoke, seejärel deploy ja uuenda käesoleva doki
+commit/main/deploy seisu. Alles pärast seda on järgmine pakett U7.
+
+### 22.9 U1–U12 koondseis pärast Soli teostust
+
+- funktsionaalne valmidus: ligikaudu **62,5%** (U1, U2, U3, U4, U8, U10,
+  U12 + U9 alus 0,5);
+- lõplik valmidus: endiselt ligikaudu **42%**, sest U1/U2 audit ja merge puuduvad;
+- deploy: endiselt **5/12**; U1/U2 ei ole produktsioonis;
+- U1 ja U2 staatus: **SOL VALMIS — OOTAB OPUSE AUDITIT**;
+- järgmine teostus pärast auditit ja integratsiooni: **U7**.
