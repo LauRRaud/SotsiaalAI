@@ -88,3 +88,17 @@ Serveripool on põhjalik, defense-in-depth vertikaal, mis peab adversaalsele sur
 - Kontrollid enne commit'i: sihttestid **35/35**, kogu `npm test` **1074/1074**, `i18n:check` OK, muudetud failide ESLint 0 viga/0 hoiatust, kogu lint 0 viga, build OK, `db:migrate:check` 87 migratsiooni OK.
 
 Kordusauditi ülesanne: reprodutseeri algne PUT → sisestus → „Jäta privaatseks" võistlus ning kinnita, et hiline vastus ei taasta olekut ega kirjuta kasutaja uuemat sisendit üle.
+
+## 9. Opuse kordusaudit — B-P1-1/B-P2-1 SULETUD (2026-07-14)
+
+**Kontrollitav commit:** `d6c2c695`. Read-only; koodi ei muudetud.
+
+Sõltumatult verifitseeritud (diff + testid):
+
+1. **Hiline vastus ei taasta olekut pärast lahkumist.** `SupportRequestPanel` loob `requestGateRef = useRef(createLatestRequestGate())`. `leavePrivate`, `chooseOption` ja Taastumisse navigeerimine kutsuvad `requestGateRef.current.invalidate()`. Iga kolm asünkroonset kirjutust (`saveDraft`/`confirmDraft`/`startCovision`) teevad `const request = requestGateRef.current.begin(...)`, edastavad `signal: request.signal` ja pärast `await`-i `if (!request.isCurrent()) return;` **enne** oleku kirjutamist; catch: `if (isAbortError(error) || !request.isCurrent()) return;`. Stsenaarium PUT → „Jäta privaatseks": `leavePrivate` tühistab generatsiooni → hiline PUT `isCurrent()` on false → `setDraft/setStatus` EI käivitu.
+2. **Uuemat sisendit ei kirjutata üle (B-P2-1).** `changeEditedText` algab `if (isBusy) return;` ning tekstiväli + kolm kinnituskasti on `disabled={isBusy}` → salvestuse ajal ei saa trükkida, seega serveri kaja ei kustuta lennult tehtud sisendit.
+3. Source-contract regressioontest (`tests/wellbeing/covisionHandoffContracts.test.js`) kinnitab kõik: `createLatestRequestGate`, `useRef`, `changeEditedText`-i `isBusy`-return, `invalidate` `chooseOption`/`leavePrivate`-is, iga tee `begin/signal/isCurrent`, tekstivälja `disabled={isBusy}`.
+
+**Objektiivsed kontrollid (Opus, `main` @ `d6c2c695`):** sihttestid 35/35; `npm test` **1074/1074**; ESLint (`SupportRequestPanel.jsx`) 0 viga/0 hoiatust; `i18n:check` OK; `npm run build` OK; `git diff --check` puhas.
+
+**Kordusauditi otsus: B-P1-1 ja B-P2-1 SULETUD.** Hiline vastus ei taasta olekut ega kirjuta sisendit üle; regressioonitestid lisatud. P0/P1 blokeerijaid selles auditis enam ei ole. **`OPUS HEAKS KIIDETUD`.**

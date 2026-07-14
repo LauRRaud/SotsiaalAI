@@ -114,3 +114,17 @@ Pakett on kvaliteetne ja invariandirikkalt terve: **P0 puudub**, kõik dokumente
 - Kontrollid enne commit'i: sihttestid **35/35**, kogu `npm test` **1074/1074**, `i18n:check` OK, muudetud failide ESLint 0 viga/0 hoiatust, kogu lint 0 viga, build OK, `db:migrate:check` 87 migratsiooni OK.
 
 Kordusauditi ülesanne: kontrolli A-P1-1 kolme nõuet, sh et ükski Kovisiooni kõne API vastusetee ei serialiseeri sisemist kasutaja-ID-d ja `ROOM` kontekst ei regressi.
+
+## 10. Opuse kordusaudit — A-P1-1 SULETUD (2026-07-14)
+
+**Kontrollitav commit:** `d6c2c695` (`Fix audited Covision privacy and wellbeing races`), `main`-i esivanem. Read-only; koodi ei muudetud.
+
+Sõltumatult verifitseeritud (diff + testid + choke-point-analüüs, mitte pelgalt roheliste testide kinnitus):
+
+1. **Sisemist userId-d ei serialiseerita üheski Kovisiooni kõne vastuses.** `serializeCallSession` (`lib/calls/service.js:161`) eristab `isCovision = call.contextType === CALL_CONTEXT_COVISION`. Covision-harus: `startedByUserId` → `startedByParticipantId` (opaakne), `participants[].userId` **välja jäetud**, `speakRequests[].userId` → `participantId`, `resolvedByUserId` → `resolvedByParticipantId`. Kõik covision-kõne API-vastusteed lähevad läbi selle ainsa serializer-choke-pointi (`service.js:913/925/1036`); marsruutide `userId` on kõik **sisend** (`freshAccess.userId` teenusele), mitte väljund. Käitumustest `tests/calls/covisionCallContracts.test.js` kutsub `serializeCallSession`-i ja kinnitab `assert.doesNotMatch(JSON.stringify(call), /…e-post…|user_owner|user_guest/)` — **payloadis pole ühtki sisemist ID-d ega e-posti**.
+2. **Opaaksed `callParticipant.id` seosed töötavad:** `participantIdForUser` maps userId → `participant.id`; test kinnitab `startedByParticipantId`/`participantId`/`resolvedByParticipantId` õiged opaaksed väärtused; klient saab audio-rajad korreleerida.
+3. **ROOM-leping ei regressi:** eraldi test „room call payload retains its user identifier contract" kinnitab, et `contextType:"ROOM"` säilitab `startedByUserId`/`participants[].userId`/`speakRequests[].userId`/`resolvedByUserId`. Lisaks `displayNameFor` e-posti fallback eemaldatud (`return ""`) → e-post ei ilmu kunagi `displayName`-ina (A-P2-1 samuti suletud).
+
+**Objektiivsed kontrollid (Opus, `main` @ `d6c2c695`):** sihttestid 35/35; `npm test` **1074/1074**; ESLint (`lib/calls/service.js`) 0 viga/0 hoiatust; `i18n:check` OK; `npm run build` OK; `git diff --check` puhas.
+
+**Kordusauditi otsus: A-P1-1 SULETUD.** Kolm nõuet täidetud, ROOM ei regressi, regressioonitestid lisatud. P0/P1 blokeerijaid selles auditis enam ei ole; allesjäänud leiud on P2 (valikuline / teadlikult edasilükatud). **`OPUS HEAKS KIIDETUD`** (P1-värav avatud; P2-d ei blokeeri uut arendust doc 00 §5 järgi).

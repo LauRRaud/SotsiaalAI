@@ -479,6 +479,20 @@ Opus uuendab seda osa pärast iga suuremat sammu.
 - Järgmine konkreetne samm: **Sol parandab mõlemad P1 + lisab regressioonitestid + teeb täieliku kontrollipaketi.** Seejärel Opus teeb paranduste kordusauditi. **Operatsioonipakett (P1) algab alles pärast mõlema P1 sulgemist** (doc 01 §1).
 - Commit/push/deploy seis: TEGEMATA (kasutaja otsus: peatu).
 
+### 2026-07-14 — OPUS — PAKETIVÄRAV: AVATUD (mõlemad P1 suletud)
+
+- Kuupäev/kell: 2026-07-14, Europe/Tallinn.
+- Mudel/effort: Claude Opus 4.8, Extra (`xhigh`).
+- Aktiivne pakett ja etapp: §1 kvaliteedivärav — **kordusaudit läbitud**; algab P1 Parimate praktikate operatsioonipakett.
+- Lähte-HEAD: `main` @ `d6c2c695` (`Fix audited Covision privacy and wellbeing races`).
+- Loetud/kontrollitud: Sol'i parandus-commit `d6c2c695` diff (`lib/calls/service.js`, `SupportRequestPanel.jsx`) + uued testid; auditidokkide 06/07 „Soli paranduse üleandmine" osad; choke-point-analüüs (kõik covision-kõne vastused läbi `serializeCallSession`-i).
+- Tehtud muudatused: ainult kordusauditi tulemus dokkidesse (06 §10, 07 §9, see kirje). **Koodi EI muudetud.**
+- Käivitatud kontrollid ja täpsed tulemused: sihttestid (calls/service + covisionCallContracts + wellbeing/covisionHandoffContracts) 35/35; `npm test` **1074/1074**; ESLint muudetud koodifailidel 0/0; `i18n:check` OK; `npm run build` OK; `git diff --check` puhas.
+- Leitud riskid/P0/P1/P2: **mõlemad P1 SULETUD** (A-P1-1 covision-kõne serializer; B-P1-1/B-P2-1 SupportRequestPanel request-gate) — sõltumatult koodist + testidest verifitseeritud. **P0/P1 blokeerijaid ei ole.** Allesjäänud leiud P2 (valikuline/edasilükatu; sh RAG-reconcile A-P2-9/-10, mis on selle paketi P1-A/P1-E sisu).
+- Kõrvaliste failide seis: `public/room/frame-*.webp`, `output/imagegen/**`, `scripts/build-room-locked-frames.mjs` — puutumata, stage'imata.
+- Järgmine konkreetne samm: commit'i + push'i AINULT auditi/progressi dokid; seejärel alusta P1 operatsioonipaketti Etapp 0 kaardistusega (doc 01 §3.2).
+- Commit/push/deploy seis: dokid commit'itakse+push'itakse; kood/deploy TEGEMATA.
+
 ### 2026-07-14 — SOL — 2 P1 PARANDATUD, OOTAB OPUSE KORDUSAUDITIT
 
 - Kuupäev/kell: 2026-07-14, Europe/Tallinn.
