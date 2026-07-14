@@ -1104,3 +1104,43 @@ body.ra-drawer-open .panel-close {
 }
 
 }
+.ra-source-feedback-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.ra-source-feedback-item {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1rem;
+  background: var(--glass-cell-bg);
+}
+
+.ra-source-feedback-item > div:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.8rem;
+  align-items: baseline;
+}
+
+.ra-source-feedback-item code {
+  overflow-wrap: anywhere;
+  color: var(--text-dim);
+}
+
+.ra-source-feedback-item label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ra-source-feedback-item textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 0.7rem;
+  background: var(--glass-bg);
+  color: inherit;
+  font: inherit;
+}

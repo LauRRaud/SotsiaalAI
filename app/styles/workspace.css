@@ -582,6 +582,36 @@
   padding: 0.85em 1.15em;
   border-radius: 16px;
 }
+
+.content-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: fit-content;
+  margin-block: 0.45rem 0.7rem;
+  padding: 0.32rem 0.65rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 999px;
+  background: var(--glass-cell-bg);
+  color: var(--text-soft);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.content-trust-badge > span {
+  width: 0.48rem;
+  height: 0.48rem;
+  border-radius: 50%;
+  background: var(--dusk-sunset);
+}
+
+.content-trust-badge[data-content-trust="human_edited"] > span {
+  background: var(--text-soft);
+}
+
+.content-trust-badge[data-content-trust="human_confirmed"] > span {
+  background: var(--success, #5da879);
+}
 .wellbeing-choice-btn > span:first-child {
   color: var(--text-warm);
 }

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
 import { WellbeingOutputCard as OutputCard } from "./WellbeingControls";
 
@@ -244,6 +245,12 @@ export default function OverviewWorkflow() {
           />
         </div>
         <div>
+          <ContentTrustBadge
+            generatedText={draft?.generatedText || managerMemo?.text || ""}
+            editedText={draft?.editedText}
+            currentText={memoText}
+            userConfirmed={draft?.userConfirmed === true}
+          />
           <label>
             <span>{t("wellbeing.overview.memo_preview_label", "Memo mustand")}</span>
             <textarea

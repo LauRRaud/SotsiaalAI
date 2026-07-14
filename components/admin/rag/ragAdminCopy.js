@@ -13,7 +13,8 @@ export function getRagAdminCopy(locale) {
         ingest: "Sisestus",
         kov: "KOV",
         organizations: "Organisatsioonid",
-        sourcePackages: "Lähtepaketid"
+        sourcePackages: "Lähtepaketid",
+        sourceFeedback: "Veateated"
       },
       landing: {
         title: "Töölaud",
@@ -77,6 +78,10 @@ export function getRagAdminCopy(locale) {
         sourcePackages: {
           title: "Lähtepakettide ülevaatus",
           subtitle: "Vaata salvestatud SourcePackage'i hetktõmmiseid, ülevaatuse märke ja vajalikke toiminguid."
+        },
+        sourceFeedback: {
+          title: "Allikate veateated",
+          subtitle: "Vaata kasutajate allikapõhiseid veateateid ja märgi kontrollitud juhtumid auditeeritavalt lahendatuks."
         }
       },
       kov: {
@@ -94,7 +99,8 @@ export function getRagAdminCopy(locale) {
       ingest: "Ingest",
       kov: "Municipal",
       organizations: "Organizations",
-      sourcePackages: "Source packages"
+      sourcePackages: "Source packages",
+      sourceFeedback: "Source reports"
     },
       landing: {
         title: "Workspace",
@@ -158,6 +164,10 @@ export function getRagAdminCopy(locale) {
       sourcePackages: {
         title: "SourcePackage review",
         subtitle: "Inspect persisted SourcePackage snapshots, review flags, and minimal review actions."
+      },
+      sourceFeedback: {
+        title: "Source error reports",
+        subtitle: "Review source-specific user reports and resolve checked items with an audit trail."
       }
     },
     kov: {

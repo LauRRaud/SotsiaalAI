@@ -184,6 +184,7 @@ export default function ChatBodyView({
               {showChatInterface ? <ChatSourcesPanel
                 open={showSourcesPanel}
                 t={t}
+                locale={locale}
                 conversationSources={panelSources || conversationSources}
                 latestAnswerSources={panelSources || latestAnswerSources}
                 allConversationSources={panelSources || allConversationSources}
