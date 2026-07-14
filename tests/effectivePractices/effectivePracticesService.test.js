@@ -398,7 +398,7 @@ test("publication is blocked while an old RAG deletion job is pending or failed"
   assert.equal(db.state.versions.length, 0);
 });
 
-test("publish response loss compensates the deterministic RAG id even when the adapter returned no document id", async () => {
+test("P1-A: a failed/timed-out publish ingest becomes a durable RAG_INGEST retry job", async () => {
   const practice = basePractice({
     status: "READY_TO_PUBLISH", version: 4, contentVersion: 2,
     anonymityCheckedAt: NOW, anonymityCheckedVersion: 2, professionalReviewedAt: NOW
@@ -406,21 +406,24 @@ test("publish response loss compensates the deterministic RAG id even when the a
   const reviews = [
     ["reviewer-1", "REVIEWER"], ["editor-1", "EDITOR"], ["ethics-1", "ETHICS"]
   ].map(([reviewerId, capabilityType], index) => ({ id: `r-${index}`, practiceId: practice.id, reviewerId, capabilityType, reviewedVersion: 2, decision: "APPROVED", decidedAt: NOW }));
-  const removed = [];
   const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")] });
   const service = createEffectivePracticeService(db, {
     now: () => NOW,
-    syncPublishedSnapshot: async () => { throw new Error("ingested_then_timeout"); },
-    removePublishedSnapshot: async (docId) => { removed.push(docId); return { ok: true }; }
+    syncPublishedSnapshot: async () => { throw new Error("ingested_then_timeout"); }
   });
   const result = await service.actionCandidate(
     { userId: "approver-1", role: "SOCIAL_WORKER" },
     practice.publicId,
     { action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01" }
   );
-  assert.equal(result.publication.ragSync, "compensated");
-  assert.deepEqual(removed, ["effective-practice::practice-public-1::v1"]);
-  assert.equal(db.state.deletionJobs[0].status, "done");
+  // P1-A: instead of abandoning the published practice outside RAG, the durable
+  // guard row is converted into a version-guarded RAG_INGEST retry job.
+  assert.equal(result.publication.ragSync, "ingest_retry_pending");
+  const job = db.state.deletionJobs[0];
+  assert.equal(job.action, "RAG_INGEST");
+  assert.equal(job.status, "pending");
+  assert.equal(job.externalRef, "effective-practice::practice-public-1::v1");
+  assert.ok(job.nextAttemptAt, "retry is scheduled");
 });
 
 test("successful RAG link and publish guard completion commit together", async () => {
@@ -443,7 +446,7 @@ test("successful RAG link and publish guard completion commit together", async (
   assert.equal(db.state.deletionJobs[0].status, "done");
 });
 
-test("failed publish link and failed compensation leave the durable guard retryable", async () => {
+test("P1-A: a failed publish LINK also becomes a durable RAG_INGEST retry job", async () => {
   const practice = basePractice({
     status: "READY_TO_PUBLISH", version: 4, contentVersion: 2,
     anonymityCheckedAt: NOW, anonymityCheckedVersion: 2, professionalReviewedAt: NOW
@@ -453,15 +456,18 @@ test("failed publish link and failed compensation leave the durable guard retrya
   const db = makeDb({ practice, reviews, capabilities: [capability("approver-1", "APPROVER")], failRagLink: true });
   const service = createEffectivePracticeService(db, {
     now: () => NOW,
-    syncPublishedSnapshot: async () => ({ status: "synced", docId: "effective-practice::practice-public-1::v1" }),
-    removePublishedSnapshot: async () => ({ ok: false, error: "delete_unavailable" })
+    syncPublishedSnapshot: async () => ({ status: "synced", docId: "effective-practice::practice-public-1::v1" })
   });
   const result = await service.actionCandidate({ userId: "approver-1", role: "SOCIAL_WORKER" }, practice.publicId, {
     action: "publish", expectedVersion: 4, nextReviewAt: "2027-01-01"
   });
-  assert.equal(result.publication.ragSync, "compensation_failed");
-  assert.equal(db.state.deletionJobs[0].status, "failed");
-  assert.equal(db.state.deletionJobs[0].externalRef, "effective-practice::practice-public-1::v1");
+  // The ingest succeeded but the DB link failed (count!==1). The retry re-ingests
+  // (idempotent upsert) and links on a later run rather than giving up.
+  assert.equal(result.publication.ragSync, "ingest_retry_pending");
+  const job = db.state.deletionJobs[0];
+  assert.equal(job.action, "RAG_INGEST");
+  assert.equal(job.status, "pending");
+  assert.equal(job.externalRef, "effective-practice::practice-public-1::v1");
 });
 
 test("application keeps the immutable published version even after the live candidate fields change", async () => {

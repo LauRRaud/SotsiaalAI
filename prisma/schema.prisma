@@ -1440,10 +1440,18 @@ model DataDeletionJob {
   status       String   @default("pending")
   attempts     Int      @default(0)
   lastError    String?
+  // P1-A: durable retry scheduling for the RAG ingest/delete recovery worker.
+  // Generic (used by RAG_DELETE and the new RAG_INGEST action). nextAttemptAt is
+  // when the job becomes eligible again; maxAttempts caps retries; lastErrorCode
+  // is a short machine code (never practice text).
+  nextAttemptAt DateTime?
+  lastErrorCode String?
+  maxAttempts   Int?
 
   @@index([status, createdAt])
   @@index([targetUserId, createdAt])
   @@index([resourceType, resourceId])
+  @@index([action, status, nextAttemptAt])
 }
 
 model ResearchJob {
@@ -2446,6 +2454,14 @@ model EffectivePracticeAuditEvent {
   toStatus     String?
   contentVersion Int
   metadata     Json?
+  // P1-D: immutable review-justification ledger. Append-only (never updated), the
+  // actor is nullable (SetNull on account deletion, keeping the decision audit).
+  // justificationVisibility gates who may read the text: "private" (reviewer-only),
+  // "author" (author-visible feedback) or "public". Reviewer-private reasoning must
+  // never reach the author or a public serializer.
+  decisionType            String?
+  justification           String? @db.Text
+  justificationVisibility String?
   createdAt    DateTime @default(now())
 
   practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
