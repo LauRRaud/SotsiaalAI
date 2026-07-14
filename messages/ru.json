@@ -3032,6 +3032,7 @@
       "db_unavailable": "База данных временно недоступна.",
       "db_error_run_read": "Не удалось загрузить контекст диалога.",
       "db_error_analyze_usage": "Не удалось загрузить использование анализа.",
+      "search_query_too_long": "Поисковый запрос слишком длинный. Сократите его и повторите попытку.",
       "db_error_conversations_list": "Не удалось загрузить диалоги.",
       "db_error_conversation_create": "Не удалось создать диалог.",
       "db_error_conversation_read": "Не удалось загрузить диалог.",
