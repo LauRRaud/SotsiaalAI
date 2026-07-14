@@ -1,0 +1,620 @@
+# U1 + U2 — sündmused, teavitused ja „Jätka siit”
+
+> **Staatus:** VALITUD JÄRGMISEKS UUEKS ARENDUSPAKETIKS — TEOSTAMATA
+>
+> **Koostatud:** 2026-07-14
+>
+> **Põhiteostaja:** Sol 5.6, vähemalt **väga kõrge** effort
+>
+> **Sõltumatu järelkontroll:** Claude Opus 4.8, eelistatult **Max**, minimaalselt Extra (`xhigh`)
+>
+> **Deploy:** keelatud ilma kasutaja eraldi selge loata
+>
+> **Lähteallikas:** `fable-5-avastamata-vajadused-ja-uued-voimalused.md`, U1 + U2
+
+## 0. Otsus
+
+Fable'i auditist valitud järgmine arenduspakett on:
+
+**U1 + U2 — püsiv sündmuse- ja teavituskiht koos töölaua „Jätka siit” koondiga.**
+
+See valik on lukustatud. U1 on puuduv aluskiht, millest sõltuvad mitme mooduli märguanded. U2 teeb selle aluse kohe kasutajale nähtavaks ja ühendab olemasolevad pooleliolevad tööd üheks turvaliseks tööjärjeks.
+
+Pakett ei ole üldine sõnumisüsteem ega ülesandehaldur. See on kitsas, kasutaja enda õigustega piiratud sündmuste, märguannete ja järgmiste tegevuste kiht.
+
+## 1. Millal tohib alustada
+
+Teostus algab uuelt `codex/` harult alles siis, kui teostaja on kontrollinud tegelikku `main` seisu.
+
+Enne koodi:
+
+1. kontrolli `git status`, `git log`, `origin/main` ja aktiivsed worktree'd;
+2. veendu, et Parimate praktikate operatsioonipaketi P1 parandused on Soli kontrolli läbinud ja sihtharusse jõudnud;
+3. veendu, et U12/U3, U4 ja U8-lite lõppseisud on kas `main`-is või kaardista täpselt, millise haru peale töö rajatakse;
+4. ära kopeeri pooleliolevatest worktree'dest faile käsitsi;
+5. ära stage'i ega muuda kõrvalisi ruumipilte, imagegen-väljundeid ega teise töö commit'imata faile;
+6. kirjuta allolevasse progressipäevikusse lähteharu ja commit.
+
+Kui mõni eelnev haru pole veel ühendatud, ei tohi selle eeldatavat API-t või skeemi välja mõelda. Kas oota integratsioon ära või dokumenteeri teadlikult eraldi integratsioonisõltuvus.
+
+## 2. Kasutajad ja kasu
+
+### 2.1 Pöörduja
+
+- näeb, kus ta pooleli jäi;
+- saab teada, et pöördumise, kutse, sobituse või ühise ruumiga on midagi juhtunud;
+- ei pea eri lehti juhuslikult kontrollima;
+- teavitus ei paljasta e-kirjas ega lukukuval tundlikku sisu.
+
+### 2.2 Spetsialist
+
+- alustab tööpäeva selge, kuni seitsme kirjega tööjärjega;
+- näeb saabunud või tegevust vajavaid pöördumisi, lugemata ruume ja järgmise kontakti tähtaegu;
+- saab Parimate praktikate ülevaatusülesannete ja tähtaegade märguanded;
+- tööjärg ei ole AI riskiskoor ega ametlik menetlusregister.
+
+### 2.3 Teenuseosutaja
+
+- saab kättesaadavuse värskendamise meeldetuletuse;
+- näeb ainult enda teenusekirjetega seotud tegevusi;
+- ei saa selle kihi kaudu ligipääsu pöörduja privaatsele sisule.
+
+## 3. Muutumatu privaatsus- ja tooteleping
+
+1. Teavitus kannab ainult sündmuse fakti, turvalist liiki, aega ja serveri loodud sihtviidet — mitte pöördumise, sõnumi, juhtumi, heaolumustandi ega praktikakandidaadi vabateksti.
+2. E-kirja teema ja sisu on minimaalsed: „Sulle on SotsiaalAI-s uus tegevus” + sisselogimislink. Tundlikku teemat ega kokkuvõtet e-kirja ei panda.
+3. Kõik päringud on kasutajapõhiselt skoopitud. Võõrast ja puuduvat privaatset objekti ei eristata.
+4. UI peitmine ei ole õigusekontroll. Server kontrollib nii sündmuse loomist, lugemist, loetuks märkimist kui ka sihtobjekti avamist.
+5. Teavitus ei anna sihtobjektile uusi õigusi. Link võib pärast õiguse lõppemist anda üldise 404/403 vastavalt olemasolevale avalikule lepingule.
+6. Sündmuse liik ja sihttee tulevad serveri allowlist'ist. Klient ei saada salvestamiseks suvalist URL-i, teksti ega sündmuseliiki.
+7. Sündmuste ja „Jätka siit” järjekord ei ole AI hinnang kiireloomulisusele. Kasuta deterministlikke oleku- ja tähtajareegleid.
+8. Tööheaolu privaatne mustand jääb rangelt omanikule. Selle olemasolu, pealkiri ega olek ei leki teisele rollile.
+9. Parimate praktikate privaatne retsensendimärkus ei tohi jõuda sündmuse payload'i, e-kirja ega töölaua koondisse.
+10. Konto kustutamise ja andmete minimeerimise leping laieneb uutele mudelitele; orvuks jäänud kasutajate teavitusi ei säilitata põhjendamatult.
+
+## 4. Mitte-eesmärgid
+
+Selles paketis ei ehitata:
+
+- eraldi täismahus teavituskeskuse lehte;
+- üldist DM-i ega uut vestluskanalit;
+- kalendrit, väliskalendri sünkroniseerimist või CRM-i;
+- vabalt koostatavaid admini mass-teavitusi;
+- AI-põhist prioriteedi-, riski- ega kiireloomulisuse skoori;
+- kogu platvormi üldist event-bus'i või universaalset sõnumijärjekorda;
+- push-teavitusi brauserisse või telefoni;
+- tundliku sisu kopeerimist sündmusetabelisse;
+- uut ametlikku menetlusolekut.
+
+## 5. Etapp 0 — kohustuslik read-only kaardistus
+
+Enne skeemi või koodi muutmist loe aktiivsest lähteharust vähemalt:
+
+- `prisma/schema.prisma`: `User`, `PreInquiry`, `Room`, `RoomMember`, Teekonna, Tööheaolu, teenusekirje ja Parimate praktikate mudelid;
+- `lib/workspaceDashboardCards.js` ja selle kõik kasutajad;
+- `lib/preInquiries.js` ning eelpöördumise saatmise, vastuvõtmise ja checklist'i marsruudid;
+- ruumikutse, ruumisõnumi ja `/read` teenused/marsruudid;
+- `RoomMember.lastReadAt` ja olemasolev lugemata sõnumite loogika;
+- help-match/sobituse loomise teenus ja omanikuskoobid;
+- aktiivse Teekonna ja Tööheaolu mustandite loendid;
+- U4 teenuseosutaja kättesaadavuse värskuse lõppkood;
+- Parimate praktikate review-scheduler'i lõppkood ja audit-markerid;
+- kõik `getMailer` kasutuskohad, olemasolevad e-kirja retry/idempotentsuse mustrid ja job-route autentimine;
+- `app/api/jobs/subscription-renewals/route.js` või selle aktiivne järeltulija;
+- ET/EN/RU sõnumid ja `i18n:check` leping;
+- olemasolevad API veavõtmete allowlist-helperid;
+- kasutaja kustutamise/cascade'i loogika;
+- seotud testitaristu ja fake-Prisma mustrid.
+
+Kaardistuse lõpus kirjuta progressipäevikusse:
+
+- milline olemasolev endpoint koostab tööruumi kaardid ja badge'id;
+- millised viis U1 algsündmust tekivad juba aktiivses koodis;
+- millised sündmused saadetakse praegu ainult e-kirjana;
+- kus on iga sündmuse õige transaktsiooniline loomispunkt;
+- kuidas välditakse duplikaatsündmust retry või topeltkliki korral;
+- kuidas ruumi lugemata olek praegu tekib ja nullitakse;
+- milline aktiivne mudel kannab receiver checklist'i;
+- kuidas P1 scheduler ja U4 reminder annavad U1-le fakti ilma vabatekstita;
+- milline e-kirja saatmise retry-muster on repos päriselt kasutatav;
+- millised dokumendi eeldused erinevad aktiivsest koodist.
+
+**Etapp 0 on read-only.** Kui leitakse oluline dokumendi ja koodi vastuolu, jäädvusta see enne teostamist. P0/P1 turvariski korral peatu ja anna see Solile või kasutajale otsustada.
+
+## 6. Etapp 1 — püsiv sündmuse- ja kohaletoimetamise tuum (U1-A)
+
+### 6.1 Andmemudel
+
+Etapp 0 järel lisa väikseim mudel, mis kannab vähemalt:
+
+- adressaat (`userId`);
+- rakenduskihi allowlist'itud `type`;
+- `sourceType` ja `sourceId`;
+- deterministlik `dedupeKey` või samaväärne unikaalsusleping;
+- serveri loodud allowlist'itud siht (`targetKind` + minimaalne ID või turvaline tee);
+- `createdAt`;
+- `readAt`;
+- e-kirja kohaletoimetamise seis vähemalt `emailedAt`, katsete arv, järgmise katse aeg ja ohutu veakood, kui e-kiri on selle sündmuse jaoks lubatud.
+
+Soovituslik nimi on `NotificationEvent`, kuid nimi ei ole olulisem kui leping.
+
+Nõuded:
+
+- ära kasuta PostgreSQL enum'i; sündmuseliigid on rakenduskihi whitelist;
+- tabelisse ei lähe sündmuse vabateksti, e-kirja koopiaid ega tundlikku metadata-JSON-i;
+- kasutaja kustutamisel rakenda põhjendatud cascade või dokumenteeritud anonümiseerimine;
+- lisa päringuid toetavad indeksid: kasutaja + lugemata + aeg ning pending email delivery;
+- migratsioon peab olema additiivne ja olemasolevate kasutajate jaoks ohutu;
+- migratsioonil peab olema rollback-märkus, isegi kui Prisma ei genereeri automaatset rollback'i.
+
+### 6.2 Kanalieelistus
+
+Lisa minimaalne kasutajapõhine eelistus:
+
+- platvormisiseseid märguandeid ei saa täielikult välja lülitada, kui need on tööjärje jaoks vajalikud;
+- e-kirja saab kasutaja välja lülitada, välja arvatud juhul, kui olemasolev juriidiline/tooteleping nõuab konkreetset transaktsioonikirja;
+- vaikimisi valik peab olema dokumenteeritud;
+- eelistuse muutmine on ainult kasutaja enda toiming;
+- eelistusse ei lisata esimese versiooniga sündmusetüüpide keerulist maatriksit, kui üks `emailEnabled` või kitsas kategooriajaotus täidab vajaduse.
+
+Täpset skeemikuju otsusta aktiivse `User` ja preference-mustri põhjal pärast Etapp 0 kaardistust.
+
+### 6.3 Teenusekiht
+
+Loo üks keskne serveriteenus, mis:
+
+- valideerib sündmuseliigi ja allikaliigi;
+- loob või leiab idempotentselt sama sündmuse;
+- ehitab sihtviite ainult allowlist'i järgi;
+- ei võta caller'ilt kasutajale näidatavat teksti;
+- ei loo sündmust inimesele, kellel pole sündmuse fakti suhtes õigust;
+- võimaldab lugemata kokkuvõtet ning ühe või mitme sündmuse loetuks märkimist omanikuskoobis;
+- ei tagasta sisemisi teiste kasutajate ID-sid;
+- on testitav süstitud andmekihi ja kellaga.
+
+Sündmus luuakse võimalusel samas tehingus ärisündmusega. Kui see pole välise süsteemi või olemasoleva piiri tõttu võimalik, kasuta püsivat reconcile/retry rada; ära kasuta protsessimälu ega „fire and forget” lubadust ainsa garantiina.
+
+## 7. Etapp 2 — esimese versiooni sündmusetüübid (U1-B)
+
+Vähemalt järgmised sündmused peavad olema kaetud:
+
+| Sündmus | Adressaat | Deduplikatsiooni alus | E-kiri |
+|---|---|---|---|
+| Eelpöördumine saabus | platvormisisene adressaat | pöördumine + saatmisversioon | jah, ilma sisuta |
+| Eelpöördumine võeti vastu või selle olek muutus saatjale oluliselt | autor | pöördumine + uus olek/versioon | tootelepingu järgi, minimaalselt |
+| Ruumikutse | kutsutu | kutse ID või ruum + liikmelisuse versioon | jah, ilma ruumisisuta |
+| Ruumi uus tegevus | aktiivne liige, mitte sündmuse tekitaja | ruum + adressaat + koondaken | koondatult, mitte iga sõnum eraldi |
+| Sobitus tekkis | sobituse lubatud osapool | match ID + adressaat | jah või platvormisisene vastavalt aktiivsele lepingule |
+| Järgmise kontakti tähtaeg | checklist'i omanik/spetsialist | objekt + kuupäev + adressaat | tähtajaline koond |
+| Praktika ülevaatusülesanne või tähtaeg | määratud retsensent | assignment/audit-marker + adressaat | jah, ilma praktikatekstita |
+| Kättesaadavuse värskendamise meeldetuletus | teenusekirje lubatud haldaja | teenusekirje + kontrolliperiood | jah, ilma privaatsete pöördumisteta |
+
+Täpsed nimed kinnita aktiivse koodi järgi. Ära loo sündmust „igaks juhuks”. Igal sündmusel peab olema dokumenteeritud:
+
+- tekitaja;
+- adressaat;
+- õiguse alus;
+- idempotentsusvõti;
+- loetuks saamise hetk;
+- e-kirja poliitika;
+- kustutamise või aegumise poliitika.
+
+## 8. Etapp 3 — ohutu e-kirja kohaletoimetamine (U1-C)
+
+Loo kitsas notification-delivery job olemasoleva job-route mustri järgi.
+
+Nõuded:
+
+- salajase võtme võrdlus kasutab olemasolevat fail-closed ja timing-safe mustrit;
+- töö on partiipõhine, cursor'iga ja korduvalt ohutult käivitatav;
+- sama sündmus ei saada topeltkirja ka paralleelse job'i korral;
+- töö lease/claim või CAS takistab kahe töötleja võistlust;
+- väliskutse kasutab timeout'i;
+- katsetel on piir, backoff, `nextAttemptAt` ja ohutu `lastErrorCode`;
+- logides ja job'i vastuses pole e-posti aadressi ega sündmuse tundlikku allikasisu;
+- eelistuse muutmine enne saatmist peatab mittekohustusliku kirja;
+- olematu/kustutatud adressaat lõpetab töö ohutult;
+- dry-run ei saada ega muuda andmeid;
+- töö vastus sisaldab ainult loendureid.
+
+E-kirja tekst peab kasutama ET/EN/RU sõnumeid ning sisaldama ainult sündmuse üldist fakti ja platvormi turvalist sisselogimislinki.
+
+## 9. Etapp 4 — teavituste lugemis-API ja märgid (U1-D)
+
+Lisa väikseim API, mida vajavad tööruumi märgid ja „Jätka siit”:
+
+- kasutaja lugemata sündmuste koond liikide või sihtkaartide kaupa;
+- minimaalsed viimased sündmused ainult siis, kui „Jätka siit” neid päriselt vajab;
+- omanikuskoobiga ühe sündmuse või allika sündmuste loetuks märkimine;
+- serveripoolne lehekülg/limiit;
+- kontrollitud 400/401/403/404/409 vead;
+- cache'i vältimine kasutajapõhisel vastusel.
+
+Eraldi teavituskeskuse lehte ei tehta. Kasuta olemasolevat `workspaceDashboardCards` badge-konksu ja quickbari tagasihoidlikku märki.
+
+Märk peab olema tekstiliselt arusaadav ega tohi sõltuda ainult värvist. Ruumiline metafoor on „ukse alla lükatud kiri”, mitte häirete voog.
+
+## 10. Etapp 5 — „Jätka siit” koond (U2-A)
+
+### 10.1 Serveri koond
+
+Loo üks kasutajapõhine koondteenus ja sellele sobiv endpoint või laienda olemasolevat tööruumi koond-API-t.
+
+Esimese versiooni kandidaadid:
+
+- kasutaja enda DRAFT-eelpöördumised;
+- adressaadi READY/tegevust vajavad eelpöördumised;
+- lugemata ühised ruumid;
+- kasutaja enda kinnitamata Tööheaolu mustandid;
+- kasutaja aktiivne Teekond;
+- saabunud või lähenev järgmise kontakti tähtaeg;
+- määratud Parimate praktikate ülevaatusülesanne;
+- teenuseosutaja enda aegunud kättesaadavuse kinnitus.
+
+Koond tagastab maksimaalselt seitse kirjet.
+
+Iga kirje DTO sisaldab ainult:
+
+- allowlist'itud `kind`;
+- serveri loodud `href`;
+- lokaliseeritavat oleku-/tegevusvõtit;
+- ohutut kuupäeva;
+- lubatud minimaalset esitlusinfot;
+- deterministlikku järjestuse põhjust, mitte AI skoori.
+
+Järjestus:
+
+1. üle tähtaja tegevused;
+2. kasutaja otsest tegevust vajavad uued sündmused;
+3. lugemata ruumid;
+4. lähenevad tähtajad;
+5. mustandid ja aktiivne töö.
+
+Sama prioriteedi sees kasuta stabiilset aega ja ID-d. Ära nimeta seda „kiireloomulisuse hinnanguks”.
+
+### 10.2 Rollipiirid
+
+- pöörduja näeb ainult enda mustandeid, osalusega ruume, enda Teekonda ja talle lubatud sündmusi;
+- spetsialist näeb ainult talle saadetud või talle määratud tegevusi ja enda privaatseid mustandeid;
+- teenuseosutaja näeb ainult enda hallatavate teenusekirjete tegevusi;
+- admini roll ei saa selle endpoint'i kaudu vaikimisi kõigi inimeste isiklikku tööjärge;
+- teenus kasutab samu omanikupiire nagu allikloendid, mitte laiemaid koondpäringuid.
+
+## 11. Etapp 6 — „järgmine kontakt” (U2-B)
+
+Laienda aktiivset receiver checklist'i väikseima ühilduva väljaga, eelistatult olemasolevas JSON-lepingus ja ilma migratsioonita, kui aktiivne mudel seda lubab.
+
+Nõuded:
+
+- kuupäev valideeritakse serveris range `YYYY-MM-DD` kalendrikuupäevana;
+- väärtuse saab määrata ainult pöördumise lubatud vastuvõtja/tööplaani omanik;
+- klient ei otsusta, kas tähtaeg on saabunud;
+- muutmine on versioonikindel ja ei kirjuta paralleelset checklist'i üle;
+- väärtuse eemaldamine lõpetab vana tulevikusündmuse või muudab selle mitteaktiivseks idempotentselt;
+- kuupäeva muutmine ei tekita topeltmeeldetuletusi;
+- kuupäev tõuseb „Jätka siit” koondisse ning loob U1 tähtajasündmuse;
+- kuupäeva ei näidata pöördujale ega e-kirjas, kui aktiivne õiguse-/tooteleping seda ei luba;
+- ajavöönd on serveris selgelt `Europe/Tallinn` või olemasolev rakenduse ajavöönd; UTC piirid dokumenteeritakse.
+
+See ei ole kalender ega kohtumise broneering.
+
+## 12. Etapp 7 — UI
+
+UI muudatus on minimaalne ja kasutab olemasolevat tööruumi visuaalset grammatikat.
+
+Kohustuslik:
+
+- tööruumi ülaosas „Pooleli” / „Jätka siit” ala kuni seitsme kirjega;
+- kaardid avavad täpse olemasoleva tööobjekti;
+- tühiolek selgitab, et hetkel pole pooleliolevaid tegevusi;
+- laadimis-, vea- ja tühiolek ei hüppa omavahel eksitavalt;
+- badge'id olemasolevatel tööruumikaartidel;
+- quickbari vaikne märgutuli, kui aktiivne disain seda toetab;
+- järgmise kontakti kuupäeva sisestus ainult õige rolli tööplaanis;
+- e-kirja eelistuse minimaalne lüliti kasutaja seadetes, kui Etapp 0 leiab sobiva olemasoleva koha;
+- klaviatuur, fookus, ekraanilugeja tekst ja `prefers-reduced-motion`;
+- märk ei tugine ainult värvile;
+- ET/EN/RU täielik pariteet, uut hard-coded kasutajateksti ei lisata.
+
+UI ei kuva tehnilisi sündmuseliike, sisemisi ID-sid, e-posti aadresse ega teise inimese identifikaatoreid.
+
+## 13. Kohustuslikud testid
+
+### 13.1 Sündmuse tuum
+
+1. sama `dedupeKey` loob ühe sündmuse;
+2. paralleelne loomine jätab ühe sündmuse;
+3. tundmatu sündmuseliik lükatakse tagasi;
+4. caller ei saa salvestada suvalist teksti ega URL-i;
+5. sündmus läheb ainult õigele adressaadile;
+6. võõras kasutaja ei näe ega märgi sündmust loetuks;
+7. konto kustutamise leping töötab;
+8. serializer ei väljasta teiste kasutajate sisemisi ID-sid ega e-posti.
+
+### 13.2 E-kiri ja job
+
+9. e-kiri ei sisalda pöördumise, ruumisõnumi, heaolumustandi ega praktikakandidaadi sisu;
+10. eelistus `emailEnabled=false` peatab mittekohustusliku kirja;
+11. retry ei saada pärast edukat claim'i sama sündmust kaks korda;
+12. paralleelsed worker'id ei saada duplikaati;
+13. timeout/backoff/max-attempts töötavad;
+14. job'i vale või puuduv võti on fail-closed;
+15. dry-run ei saada ega muuda ridu;
+16. job'i vastus ja logid ei leki PII-d.
+
+### 13.3 Sündmuse adapterid
+
+17. saabunud eelpöördumine loob ühe adressaadisündmuse;
+18. retry/topeltklikk ei dubleeri seda;
+19. ruumi oma sõnum ei loo saatjale märguannet;
+20. ruumi tegevus koondub, mitte ei tekita piiramatut kirjade voogu;
+21. ruumi avamine/read-toiming lõpetab vastava lugemata märgi;
+22. sobitus jõuab ainult lubatud osapooltele;
+23. review-scheduler'i marker loob ühe õigesti skoopitud sündmuse;
+24. U4 reminder loob sündmuse ainult teenusekirje lubatud haldajale.
+
+### 13.4 „Jätka siit”
+
+25. koondis on maksimaalselt seitse kirjet;
+26. järjestus on deterministlik;
+27. pöörduja ei näe teise inimese ega spetsialisti privaatset tööd;
+28. spetsialist ei näe võõrast pöördumist;
+29. teenuseosutaja ei näe võõrast teenusekirjet;
+30. admin ei saa vaikimisi isiklikke tööjärgi;
+31. DRAFT-pöördumine, READY-pöördumine, lugemata ruum, Tööheaolu mustand ja aktiivne Teekond käituvad lepingu järgi;
+32. stale või kustunud sihtobjekt jäetakse koondist välja või kuvatakse ohutu aegunud tegevusena, mitte katkise lingina;
+33. badge-loendurid vastavad serveri koondile.
+
+### 13.5 Järgmine kontakt
+
+34. ainult lubatud vastuvõtja saab kuupäeva määrata;
+35. vigane või võimatu kuupäev annab kontrollitud 400;
+36. stale checklist'i muutmine annab 409;
+37. kuupäeva muutmine asendab vana tähtaja idempotentselt;
+38. kuupäeva eemaldamine takistab tulevast märguannet;
+39. tähtaja piir töötab valitud ajavööndis;
+40. kuupäev ei leki rollile, kellel pole õigust seda näha.
+
+### 13.6 Kliendileping
+
+41. „Jätka siit” kirje avab õige marsruudi;
+42. loetuks märkimise hiline vastus ei kirjuta uuemat UI olekut üle;
+43. e-kirja eelistuse hiline vastus ei kirjuta uuemat valikut üle;
+44. klaviatuuri/fookuse ja mitte ainult värviga badge'i leping on testitud vähemalt source-contract või DOM tasemel;
+45. ET/EN/RU võtmete pariteet on kontrollitud.
+
+Testide täpne jaotus võib aktiivse arhitektuuri järgi muutuda, kuid ükski ülaltoodud turva-, idempotentsus-, võistlus- ega rollijuhtum ei tohi kaduda.
+
+## 14. Kontrollipakett
+
+Iga vertikaali järel käivita sihttestid. Lõpus vähemalt:
+
+- kõik uued U1/U2 sihttestid;
+- `npm test`;
+- `npm run i18n:check`;
+- lint vähemalt kõigile muudetud failidele ning võimalusel kogu repo leping;
+- `npx prisma validate`;
+- `npx prisma generate`, kui skeem muutus;
+- `npm run db:migrate:check`, kui skeem või migratsioon muutus;
+- `npm run build`;
+- `git diff --check`;
+- autentimata runtime-smoke kõigile uutele API-dele ja job-route'ile;
+- võimalusel autenditud brauseri-smoke vähemalt pöörduja ja spetsialisti vaates.
+
+Kui mõni kontroll pole keskkonna tõttu võimalik, ära nimeta seda läbituks. Kirjuta täpne piirang ja asenduskontroll.
+
+Olemasolevad hoiatused võrdle lähtebaasiga. Uusi vigu ega uusi põhjendamata hoiatusi ei lisata.
+
+## 15. Teostuse kontrollpunktid ja commit'id
+
+Soovituslikud eraldi kontrollpunktid:
+
+1. Etapp 0 kaardistus ja lõplik skeemiotsus;
+2. U1-A sündmuse tuum + migratsioon + teenusetestid;
+3. U1-B sündmuse adapterid;
+4. U1-C e-kirja delivery job;
+5. U1-D API + badge'id;
+6. U2-A „Jätka siit” server + UI;
+7. U2-B järgmise kontakti väli + tähtajasündmus;
+8. konsolideeritud regressioon ja üleandmine.
+
+Ära tee läbipaistmatut ühte hiigelcommit'i. Samas ära push'i ega merge'i enne, kui kasutaja antud töökorraldus seda lubab. Deploy on alati eraldi selge loaga samm.
+
+## 16. Opuse sõltumatu järelkontroll
+
+Opus peab pärast Soli teostust tegema read-only auditi vähemalt järgmiste nurkade alt:
+
+1. kõigi sündmusetüüpide adressaadi- ja õigusearvutus;
+2. tundliku sisu puudumine DB-st, serializer'ist, e-kirjast ja logist;
+3. idempotentsus topeltkliki, route-retry ja paralleelse worker'i korral;
+4. e-kirja claim/CAS ja crash-after-send risk;
+5. ruumisõnumite koondamise ning read-state'i kooskõla;
+6. checklist'i concurrent update ja tähtaja ajavöönd;
+7. „Jätka siit” ristmooduli päringu omanikuskoobid;
+8. stale/kustunud objektide käitumine;
+9. konto kustutamine;
+10. job-route fail-closed autentimine;
+11. U4, U8-lite, U12/U3 ja Parimate praktikate scheduler'i regressioonid;
+12. migratsiooni deploy-ohutus ja indeksid.
+
+Verdikt on üks kolmest:
+
+- `OPUS HEAKS KIIDETUD`;
+- `OPUS PARANDUSED VAJALIKUD`;
+- `OPUS BLOKEERITUD`.
+
+P0/P1 leid peatab merge'i ja järgmise uue paketi. P2 võib jääda teadlikuks follow-up'iks ainult siis, kui mõju ja otsus on dokumendis ausalt kirjas.
+
+## 17. Valmisoleku definitsioon
+
+Pakett on valmis ainult siis, kui:
+
+- püsiv sündmusemudel ja migratsioon on rakendatavad;
+- vähemalt tabelis §7 loetletud sündmused on ühendatud või konkreetne erand on kasutaja poolt otsustatud;
+- e-kirjad on minimaalsed, eelistust austavad ja retry-kindlad;
+- tööruumi märgid kasutavad päris sündmusi;
+- „Jätka siit” näitab kuni seitset õigesti skoopitud tegevust;
+- järgmise kontakti kuupäev toimib versiooni- ja ajavööndikindlalt;
+- ET/EN/RU on täielikud;
+- kogu kontrollipakett on roheline;
+- progressipäevik ja üleandmine on täidetud;
+- Opuse sõltumatu P0/P1 audit on suletud;
+- commit/push/merge/deploy seis on üheselt dokumenteeritud.
+
+## 18. Progressipäevik
+
+### 2026-07-14 — pakett valitud ja tööplaan loodud
+
+- Fable'i järgmise arenduspaketina lukustatud U1 + U2.
+- Põhjendus: U1 on suurim allesjäänud süsteemne alusauk; U2 annab sellele kohe nähtava igapäevase väärtuse.
+- Teostust ei alustatud.
+- Koodi, skeemi, migratsioone ega teste ei muudetud.
+- Põhitööpuus on teise paketi commit'imata muudatusi; käesoleva dokumendi loomisel neid ei puudutatud ega stage'itud.
+
+### Etapp 0 — täidab teostaja
+
+- Kuupäev:
+- Teostaja/mudel/effort:
+- Lähteharu ja commit:
+- `origin/main` seis:
+- Aktiivsed sõltuvusharud:
+- Kaardistatud sündmuste tekitajad:
+- Valitud skeem ja miks:
+- Dokumendi ja koodi lahknevused:
+- Blokeerijad:
+- Järgmine täpne samm:
+
+### Teostuse kontrollpunkt — täidab teostaja iga etapi järel
+
+- Etapp:
+- Muudetud failid:
+- Valmis funktsioonid:
+- Tehtud testid ja tulemused:
+- Teadlikud piirangud:
+- Commit/push/deploy seis:
+- Järgmine täpne samm:
+
+## 19. Lõppüleandmise mall
+
+Täida töö lõpus:
+
+- **Verdikt:** SOL VALMIS / PARANDUSED VAJALIKUD / BLOKEERITUD
+- **Mudel ja effort:**
+- **Baas ja lõpp-HEAD:**
+- **Muudetud failid:**
+- **Migratsioonid:**
+- **Sündmuseliigid:**
+- **Rolli- ja privaatsusleping:**
+- **Idempotentsus- ja võistlusgarantiid:**
+- **E-kirja kohaletoimetamise leping:**
+- **„Jätka siit” allikad ja järjestus:**
+- **Järgmise kontakti leping:**
+- **Sihttestid:**
+- **Täiskontroll:**
+- **Ajamata kontrollid ja miks:**
+- **Teadlikud follow-up'id:**
+- **Kõrvalised failid, mida ei puudutatud:**
+- **Commit/push/merge/deploy seis:**
+- **Opusele auditeerimiseks vajalikud riskikohad:**
+
+## 20. Fable'i U1–U12 põhinimekirja jälgimine
+
+U1 + U2 ei ole eraldiseisev lõpp-punkt. Edaspidi mõõdetakse arenduse edenemist kogu Fable'i U1–U12 ideenimekirja vastu.
+
+Igas järgmises tööplaanis, progressiraportis ja üleandmises tuleb uuendada vähemalt:
+
+- iga U-töö sisuline seis;
+- haru ja commit, kui teostus on alanud;
+- kas töö on Soli poolt valmis;
+- kas Opuse sõltumatu audit on läbitud;
+- kas töö on `main`-i ühendatud;
+- kas töö on deploy'itud või ainult koodina valmis;
+- blokeerija või järgmine konkreetne samm.
+
+### 20.1 Ühtne staatusemudel
+
+Kasuta ühte neist seisunditest:
+
+1. `TEOSTAMATA`;
+2. `TÖÖPLAAN VALMIS`;
+3. `ARENDUS KÄIB`;
+4. `SOL VALMIS`;
+5. `OPUS PARANDUSED VAJALIKUD`;
+6. `OPUS HEAKS KIIDETUD`;
+7. `MAIN-IS`;
+8. `DEPLOY'ITUD`.
+
+„Kood on olemas” ei võrdu „lõpetatud”. Lõpliku valmiduse protsendis loetakse töö 100% valmis alles siis, kui nõutud audit on läbitud ja töö on `main`-i ühendatud. Deploy seisu näidatakse eraldi.
+
+### 20.2 Hetkeseis 2026-07-14 — **OPUSE KONTROLLITUD KOONDSEIS**
+
+> Uuendatud 2026-07-14 Opus 4.8 (Extra) poolt pärast sõltumatut read-only auditit `main` @ `df2f45c0` + commit'imata P1 diff `b6847805` vastu. Iga rida on kas koodist kontrollitud või on kontrollimata seis eraldi välja öeldud. Tõendid: doc 09 §8 (U3/U12 audit), doc 11 (U4 audit), doc 12 (U8-lite audit), doc 13 §11–§13 (U1/U2 + U5/U6/U7/U9/U11).
+
+| ID | Fable'i võimalus | Hetkeseis | Kontrollitud? | Järgmine samm |
+|---|---|---|---|---|
+| U1 | Sündmuse- ja teavituskiht | **TÖÖPLAAN VALMIS + ETAPP 0 VALMIS** | jah (doc 13) | teostus alles pärast U3+P1 merge'i; ees on `SOL-U1U2-P1-1` ja `OPUS-U1U2-P1-2` |
+| U2 | „Jätka siit” + järgmine kontakt | **TÖÖPLAAN VALMIS + ETAPP 0 VALMIS** | jah (doc 13) | `nextContactOn` skeemiotsus tehtud; blokeerib `SOL-U1U2-P1-1` (serializer) + puuduv versioonivalve |
+| U3 | Saadetud pöördumise tagasivõtmine ja parandamine | **OPUS HEAKS KIIDETUD** (haru `d2dd13e3`, merge'imata) | jah (doc 09 §8) | **ainult kasutaja merge-otsus** — F1/F2 suletud, 90/90 testi |
+| U4 | Kättesaadavuse ja ooteaja signaal + värskuskinnitus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA** (haru `3208c08c`) | esmane audit jah (doc 11); parandused ei | lõppkontroll, selektiivne commit, merge-otsus |
+| U5 | Teenusepuudujäägi märge ja anonüümne koond | **TEOSTAMATA** | jah — `ServiceGapReport` = 0 vastet | tööplaan **pärast U4 merge'i**; k-lävi on tooteotsus |
+| U6 | Isiklik otsing enda objektide üle | **TEOSTAMATA** | jah — GET-il pole `q`; `ChatSidebar:626–633` on klient-filter | **Opus tõstab prioriteeti:** praegune filter annab vale negatiivse (otsib ainult 1. lehte, vaikimisi 30) |
+| U7 | Selge keele režiim | **TEOSTAMATA — järgmine esmane kandidaat** | jah — `plainLanguage` = 0 vastet; `tone="plain"` alus olemas | **Opuse sisend valmis** (doc 13 §13); võib alata **U1/U2-st sõltumatult** |
+| U8 | Allika-tagasiside silmus | **SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA** (commit'imata tööpuu) | esmane audit jah (doc 12); parandused ei | U8-P2-1 tooteotsus, lõppkontroll, commit, merge-otsus |
+| U9 | Tugiisiku kaasamise rada | **TEOSTAMATA** (mehhanism olemas, U9-spetsiifiline võimekus puudub) | jah — kutse-POST ei saada `relationship_type` | **Opuse lahknevus:** `Invite.relationshipType` on tarbijata väli → U9 v1 väärtus on **ainult copy/UX** |
+| U10 | Kohtumise kokkuvõte pöördujale | **MAIN-IS** | **ei — selles ringis Opuse poolt üle kontrollimata** | jälgida regressioone U1 digest-adapteri juures |
+| U11 | Töö üleandmine kolleegile | **TEOSTAMATA** | jah — owner on dubleeritud (`Room.ownerId` + `RoomRole.OWNER`); `assertRecipientChangeAllowed:803` blokeerib | **sõltub U1-st**; „kaks PATCH-i" hinnang on vale — vajab tooteotsust ruumiligipääsu kohta |
+| U12 | „Minu jagamised” läbipaistvusvaade | **OPUS HEAKS KIIDETUD** (haru `d2dd13e3`, merge'imata) | jah (doc 09 §8) | **ainult kasutaja merge-otsus** |
+
+**Opuse märkus §20.1 staatusemudeli kohta:** mudelis puudub „osaliselt olemas" seis. U9 on formaalselt `TEOSTAMATA` (U9-spetsiifilist võimekust ei tarni), kuigi selle alusmehhanism (kutse → ruum) töötab. Kui seda vahet on vaja jälgida, tuleb mudelisse lisada üheksas seis; praegu on see kirjas veerus „Järgmine samm".
+
+### 20.3 Protsendi esitamise reegel
+
+Edaspidi esita alati kaks eraldi näitajat:
+
+1. **funktsionaalne valmidus** — kui palju U1–U12 sisust on koodina teostatud;
+2. **lõplik valmidus** — kui palju on nõutud auditi läbinud ja `main`-i ühendatud.
+
+Ära liida deploy'd samasse protsenti. Deploy on eraldi seis, sest kasutaja selge loata seda ei tehta.
+
+Kui kasutatakse ligikaudset protsenti, lisa alati juurde, millised U-tööd on:
+
+- valmis;
+- osaliselt valmis;
+- teostamata.
+
+Nimekirja liikmed ei ole töömahult võrdsed. Seetõttu on „5 tööd 12-st” ainult katvuse näitaja, mitte täpne kulutatud töötundide protsent. Vajadusel anna nii lihtne U-katvus kui ka töömahuga kaalutud hinnang.
+
+### 20.4 Progressihinnang 2026-07-14 — **OPUSE ARVUTUS**
+
+> Koostatud §20.3 reegli järgi: kaks eraldi näitajat, deploy eraldi, ligikaudse protsendi juurde kuulub alati jaotus.
+
+**1. Funktsionaalne valmidus (kood olemas, sõltumata auditist ja merge'ist): ≈ 46 %** (5,5 / 12)
+
+Loeb: U3, U4, U8, U10, U12 = 5 tervikuna; U9 = 0,5 (alusmehhanism töötab, U9-spetsiifiline võimekus puudub). Kõik ülejäänud = 0.
+
+**2. Lõplik valmidus (nõutud audit läbitud JA `main`-is): ≈ 8 %** (1 / 12)
+
+Loeb ainult **U10**. U3 ja U12 on `OPUS HEAKS KIIDETUD`, aga **merge'imata**; U4 ja U8 on kasutaja aktsepteeritud, aga **merge'imata**. §20.1 järgi ei ole ükski neist 100 %.
+
+**Deploy: 0 / 12** — ühtegi neist töödest ei ole deploy'itud (deploy on eraldi seis, kasutaja eraldi loal).
+
+**Jaotus:**
+
+- **Valmis (audit + `main`):** U10.
+- **Koodina valmis, kuid merge'imata:** U3, U12 (Opus heaks kiidetud) · U4, U8 (kasutaja aktsepteeris ilma kordusauditita).
+- **Osaliselt:** U9 (kutse→ruum mehhanism olemas; puudub CLIENT-semantika ja scope-selgitus).
+- **Teostamata:** U1, U2 (tööplaan + Etapp 0 valmis, koodi ei ole), U5, U6, U7, U11.
+
+**Opuse peamine järeldus arvudest — kitsaskoht ei ole arendus, vaid integratsioon.** Vahe 46 % ja 8 % vahel ei tulene pooleliolevast tööst: **viis paketti on koodina valmis ja null neist on `main`-is.** Neli neist ootab ainult kasutaja merge-otsust. Enne uut arendust annab integratsioon oluliselt rohkem tegelikku valmidust kui uus kood.
+
+**Töömahuga kaalutud hoiatus (§20.3 nõue):** lihtne U-katvus **ülehindab** edenemist, sest suurim allesjäänud töö — **U1** (püsiv sündmusekiht + delivery job + adapterid + koond + UI; doc 10 §15 järgi kaheksa kontrollpunkti) — on 0 %. Väikesed tööd (U6, U7, U9) on odavad, U5/U11 keskmised. Kaalutud hinnanguna on tegelik edenemine **madalam kui 46 %**; täpset kaalu ei ole mõtet välja mõelda enne, kui U1 tööplaan on teostuseks lahti kirjutatud.
+
+---
+
+## 21. Järgmine pakett pärast U1 + U2
+
+Kui U1 + U2 on Soli poolt lõpetatud, Opuse poolt P0/P1 osas heaks kiidetud ja sihtharusse ühendatud, on järgmine esmane kandidaat:
+
+**U7 — lihtsa ja selge keele režiim.**
+
+U7 ei kuulu käesoleva paketi skoopi ning sellele koostatakse eraldi tööplaan pärast U1 + U2 lõpetamist.
