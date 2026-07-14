@@ -6,9 +6,9 @@
 >
 > **Handoffi lähte-HEAD:** `42fe884a`
 >
-> **Praegune kvaliteedivärav:** Opuse sõltumatu read-only audit
+> **Praegune töökorraldus:** kaks paralleelset rada — Opuse read-only audit fikseeritud commit'idel ja Soli U12 + U3 teostus eraldi worktree/harus
 >
-> **Järgmine soovitatud uus arendus pärast auditit:** pöörduja **U12 + U3 usalduspakett**
+> **Paralleelselt lubatud uus arendus:** pöörduja **U12 + U3 usalduspakett** eraldi `codex/u12-u3-trust-package` harus
 >
 > **Deploy:** ainult kasutaja eraldi selgel loal
 
@@ -21,9 +21,10 @@ Seejärel:
 1. kontrolli `git status`, `git log` ja `origin/main`;
 2. veendu, et commit'id `848de7a6`, `7f20d7ce`, `9a46192b` ja `42fe884a` on `main` harus olemas;
 3. säilita kasutaja kõrvalised commit'imata ruumifailid;
-4. tee esmalt allpool kirjeldatud Opuse audit või töötle selle auditi tulemusi;
-5. ära alusta U12 + U3 ehitamist enne, kui auditist ei ole jäänud lahendamata P0/P1 blokeerijat;
-6. jäädvusta iga suurema etapi seis progressidokki, et töö oleks jätkatav ka konteksti või limiidi lõppemisel.
+4. kui see on Opuse aken, tee allpool kirjeldatud read-only audit fikseeritud commit'idele;
+5. kui see on uus Soli aken, loo enne muudatusi eraldi worktree ja haru `codex/u12-u3-trust-package` ning alusta U12 + U3 teostust §6 järgi;
+6. Sol võib auditi ajal ehitada, testida, commit'ida ja oma haru push'ida, kuid ei tohi seda `main` harusse ühendada enne Opuse auditit ja Soli töö sõltumatut järelkontrolli;
+7. jäädvusta iga suurema etapi seis progressidokki, et töö oleks jätkatav ka konteksti või limiidi lõppemisel.
 
 ## 2. Tegelik hetkeseis
 
@@ -156,7 +157,24 @@ Enne võimalikku Kovisiooni deploy'd tee operatsiooniline valmidus:
 4. migratsioonide deploy-eelne read-only audit;
 5. deploy ainult kasutaja selgel loal.
 
-## 6. Järgmine soovitatud uus arendus — U12 + U3
+## 6. Paralleelne uus arendus — U12 + U3
+
+### 6.0 Paralleeltöö ohutusleping
+
+U12 + U3 võib alata kohe Opuse auditi ajal, sest Opus auditeerib read-only kujul fikseeritud commit'e `7f20d7ce` ja `9a46192b`. Paralleeltöö eeltingimused:
+
+1. ära vaheta Opuse kasutatavas `C:\Users\rauds\Desktop\SotsiaalAI` tööpuus haru;
+2. loo Soli töö jaoks eraldi git worktree ja haru `codex/u12-u3-trust-package` värskest `origin/main` seisust;
+3. kui uus aken ei ole päriselt eraldi worktree's, peatu enne failide muutmist;
+4. Soli branch ei muuda Opuse auditeeritavaid commit'e ega Opuse auditidokumente;
+5. Sol võib oma haru commit'ida ja push'ida, et progress ei kaoks;
+6. ära merge'i, rebase'i ega cherry-pick'i Soli tööd `main` harusse enne, kui:
+   - Opuse mõlemad auditid on lõpetatud;
+   - auditite P0/P1 leiud on lahendatud ja korduskontrollitud;
+   - U12 + U3 diff on saanud sõltumatu järelkontrolli;
+7. kui Opuse parandused muudavad Soli kasutatud jagatud serverilepingut, too need Soli harusse alles pärast auditiparanduste commit'i ja korda kogu kontrollipakett.
+
+Soovituslik Soli effort: **väga kõrge**, mitte Ultra.
 
 ### 6.1 Roll
 
@@ -274,5 +292,5 @@ Uus aken ei tohi eeldada, et need arvud jäävad pärast uusi commit'e samaks. I
 ## 11. Lühike alustussõnum uude aknasse
 
 ```text
-Loe täielikult docs/platvormi arendus/00-uue-akna-handoff-opuse-audit-ja-jargmised-tood.md ning kontrolli aktiivset main haru. Ära lähtu vanast ef660414 seisust. Jätka handoffi järjekorras: esmalt Opuse audit või selle P0/P1 parandused; kui audit on puhas, järgmine uus vertikaal on pöörduja U12 + U3 usalduspakett. Jäädvusta progress enne koodimuudatusi, ära puutu kõrvalisi ruumifaile ja ära deploy ilma minu eraldi loata.
+Loe täielikult docs/platvormi arendus/00-uue-akna-handoff-opuse-audit-ja-jargmised-tood.md. Sina oled Soli paralleelne arendusaken, mitte Opuse audit. Loo enne failimuudatusi värskest origin/main seisust eraldi git worktree ja haru codex/u12-u3-trust-package; ära vaheta ega määri Opuse kasutatavat põhitööpuud. Kasuta väga kõrget effort-taset. Loo ja uuenda docs/platvormi arendus/08-sol-u12-u3-minu-jagamised-ja-tagasivotmine-progress.md ning ehita §6 järgi pöörduja U12 + U3 usalduspakett täieliku serveri-, UI-, i18n-, migratsiooni- ja testivertikaalina. Võid oma haru commit'ida ja push'ida, kuid ära ühenda main-i enne Opuse auditite lõppu ja U12 + U3 sõltumatut järelkontrolli. Ära puutu kõrvalisi ruumifaile ega deploy ilma minu eraldi loata. Ära jää seisma enne, kui töö on harul testitud ja progressidokis üle antud, välja arvatud päris tooteotsus või turvablokeerija.
 ```
