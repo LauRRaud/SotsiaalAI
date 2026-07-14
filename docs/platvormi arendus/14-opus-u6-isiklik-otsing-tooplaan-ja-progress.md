@@ -265,3 +265,54 @@ Vaatasin need üle; ükski ei muuda paranduse suunda. Jäävad teadlikeks follow
 `isPlausibleConversationId` viga **puudutab ka tavalist „laadi veel" teed**, mis oli katki juba enne U6-t. Parandasin selle, sest minu pakett sõltub sellest lepingust — aga see tähendab, et **see haru parandab ka pre-existing vea väljaspool U6 algset skoopi**. See on teadlik ja siin kirjas, mitte peidetud.
 
 **Commit/push/merge/deploy:** commit + push tehtud; **merge ja deploy TEGEMATA**.
+
+---
+
+## 10. SOL — P1 parandusringi sihitud korduskontroll (2026-07-14)
+
+**Auditeeritud commit:** `ada42497` (`opus/u6-personal-search`)
+
+**Verdikt: SOL HEAKS KIIDETUD — SOL-U6-P1-1 ja SOL-U6-P1-2 on suletud; P0/P1 puuduvad; merge lubatud.**
+
+### 10.1 SOL-U6-P1-1 — suletud
+
+- `parseCursor` kasutab nüüd failis päriselt imporditud `isPlausibleChatId` validaatorit.
+- Uus regressioon ei koosta enam oletuslikku `where`-objekti, vaid kutsub päris `GET` eksporti ning läbib `parseCursor`-i.
+- Leht 1 → päris `nextCursor` → leht 2 koos `q`-ga jõuab DB-adapterini, säilitades omaniku-, arhiivi-, aegumise- ja järjestuslepingu.
+- Vigane cursor ei põhjusta enam `ReferenceError`-it; ülipikk päring peatub enne DB-kutset.
+
+### 10.2 SOL-U6-P1-2 — suletud
+
+- Asendatud päringu `catch` ja `finally` kirjutused on seotud aktiivse `AbortController`-i identiteediga; eelkäija ei saa enam uue päringu laadimisolekut lõpetada ega viga üle kirjutada.
+- Renderdusotsus on deterministlik: `loading > error > results > no_matches > empty`. Tehniline viga ei renderdu enam samaaegselt faktilise „tulemusi ei leitud” väitena.
+- Kordusnupp käivitab sama aktiivse otsingu uuesti esimeselt lehelt ja retry-copy on ET/EN/RU kataloogis.
+- Puhta olekumooduli testid katavad A → B → A abort → B error → retry → result järjestuse; komponendi lepingutest kinnitab, et komponent kasutab neid otsuseid päriselt.
+
+### 10.3 Kontrollid
+
+| Kontroll | Soli tulemus |
+|---|---|
+| U6 sihttestid | **33/33** |
+| `npm test` | **1255/1255** |
+| sihitud ESLint | **0 viga** |
+| `npm run i18n:check` | **OK** |
+| `npm run build` | **läbis** |
+| `git diff --check 21b9f62f..ada42497` | **puhas** |
+
+### 10.4 P2 — `contains` metamärkide test ja dokumentatsioon väidavad valet
+
+`tests/chat/conversationSearch.test.js` väidab, et Prisma `contains` escape'ib `%` ja `_` automaatselt ning kontrollib selle tõendina ainult seda, et töötlemata tekst jõuab `contains` välja. Prisma ametlik PostgreSQL/MySQL dokumentatsioon ütleb vastupidist: `contains` kasutab `LIKE`/`ILIKE` mustrit, `%` ja `_` on metamärgid ning literaalse vaste jaoks tuleb need ise escape'ida. Seega test tõendab praegu täpselt vigast kuju; näiteks `_` võib vastata suvalisele märgile ja `%` suvalisele märgijadale.
+
+See ei ole SQL-süst ega omanikuskoobi leke, sest väärtus on parameetriline ja `userId`-skoop säilib. Mõju on otsingu valepositiivsed vasted erimärke sisaldava päringu puhul, mistõttu ei blokeeri see merge'i. Parandus: lisa üks keskne LIKE-metamärkide escape-helper, kasuta seda kõigis kolmes `contains` harus ning testi helperi väljundit; enne deploy'd kinnita käitumine päris PostgreSQL-i vastu. Allikas: https://docs.prisma.io/docs/orm/v6/prisma-client/queries/filtering-and-sorting#filtering-faqs
+
+### 10.5 P2 — edukas vastusetee tugineb ainult Fetch abort-lepingule
+
+`ChatSidebar.fetchList` kontrollib aktiivse päringu identiteeti `catch`-is ja `finally`-s, kuid edukad `setItems`, cursor ja `setHasMore` kirjutused ei läbi `shouldSettleRequest` valvurit. Standardses brauseri Fetch-teostuses katkestab `AbortController` ka poolelioleva body lugemise ning JavaScript ei lase sündmusel katkestada juba jätkuvat sünkroonset setterite plokki; seetõttu ei tuvastanud ma sellest uut reprodutseeritavat P1-viga.
+
+Siiski on dokumenteeritud väide „ainult aktuaalne päring tohib olekut kirjutada” koodis tugevam kui testitud garantii. Odav kaitsekindlus on lisada pärast body lugemist ja enne esimest edukat setterit `if (!shouldSettleRequest(abortRef.current, ac)) return;` ning lukustada selle juhtmestus regressiooniga. See muudab lepingu sõltumatuks fetch-adapteri või tulevase refaktori abort-käitumisest.
+
+### 10.6 P3 — sihttestide arv
+
+Parandusringi tabel ütleb 31, kuid paketi tegelik sihtkomplekt (`conversationSearch*` + `sidebarListState`) annab **33/33**. Täiskomplekti 1255/1255 number on korrektne.
+
+**Täpne jätkamispunkt:** U6 võib merge'i minna. P2 metamärkide escape tuleks teha enne, kui otsingu erimärgikäitumist kasutajale rangelt literaalsena lubatakse; eduka vastusetee gate on soovitatav samas väikeses paranduses. U7 kordusauditit ei ole vaja teha — selle sõltumatu `OPUS HEAKS KIIDETUD` otsus jääb jõusse.
