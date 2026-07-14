@@ -88,51 +88,75 @@ export default function OverviewWorkflow() {
   const memoText = editedMemo || stripManagerMemoHeading(managerMemo?.text || "");
 
   async function saveManagerMemoDraft() {
-    if (!managerMemo?.text || draftStatus === "saving") return;
+    const textToSave = String(memoText || "").trim();
+    if (!textToSave || draftStatus === "saving") return;
     setDraftStatus("saving");
     try {
-      const response = await fetch("/api/wellbeing/output-drafts", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          sourceWorkflowType: "overview",
-          outputType: "manager_memo",
-          recipientType: "manager",
-          generatedText: managerMemo.text,
-          context: overview
-        })
-      });
+      const response = await fetch(
+        draft?.id
+          ? `/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}`
+          : "/api/wellbeing/output-drafts",
+        {
+          method: draft?.id ? "PUT" : "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(draft?.id
+            ? {
+              editedText: textToSave,
+              expectedUpdatedAt: draft.updatedAt
+            }
+            : {
+              sourceWorkflowType: "overview",
+              outputType: "manager_memo",
+              recipientType: "manager",
+              generatedText: textToSave,
+              context: overview
+            })
+        }
+      );
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_failed");
+      if (!response.ok || !payload?.ok) {
+        const error = new Error(payload?.message || "wellbeing.errors.output_draft_failed");
+        error.status = response.status;
+        throw error;
+      }
       setDraft(payload.draft);
-      setEditedMemo(stripManagerMemoHeading(payload.draft?.generatedText || managerMemo.text));
+      setEditedMemo(stripManagerMemoHeading(
+        payload.draft?.editedText || payload.draft?.generatedText || textToSave
+      ));
       setUserReviewed(false);
       setUserConfirmed(false);
       setDraftStatus("draft_saved");
-    } catch {
-      setDraftStatus("error");
+    } catch (error) {
+      setDraftStatus(Number(error?.status) === 409 ? "conflict" : "error");
     }
   }
 
   async function confirmManagerMemoDraft() {
-    if (!draft?.id || !userReviewed || !userConfirmed || draftStatus === "saving") return;
+    const textToConfirm = String(memoText || "").trim();
+    if (!draft?.id || !textToConfirm || !userReviewed || !userConfirmed || draftStatus === "saving") return;
     setDraftStatus("saving");
     try {
       const response = await fetch(`/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          editedText: memoText,
+          editedText: textToConfirm,
           userReviewed,
-          userConfirmed
+          userConfirmed,
+          expectedUpdatedAt: draft.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_confirm_failed");
+      if (!response.ok || !payload?.ok) {
+        const error = new Error(payload?.message || "wellbeing.errors.output_draft_confirm_failed");
+        error.status = response.status;
+        throw error;
+      }
       setDraft(payload.draft);
+      setEditedMemo(stripManagerMemoHeading(payload.draft?.editedText || payload.draft?.generatedText || ""));
       setDraftStatus("ready");
-    } catch {
-      setDraftStatus("error");
+    } catch (error) {
+      setDraftStatus(Number(error?.status) === 409 ? "conflict" : "error");
     }
   }
 
@@ -226,9 +250,12 @@ export default function OverviewWorkflow() {
               value={memoText}
               onChange={(event) => {
                 setEditedMemo(event.target.value);
-                if (draftStatus === "ready") setDraftStatus("draft_saved");
+                setUserReviewed(false);
+                setUserConfirmed(false);
+                if (draft?.id) setDraftStatus("editing");
               }}
               rows={11}
+              maxLength={4000}
             />
           </label>
           <div>
@@ -253,7 +280,7 @@ export default function OverviewWorkflow() {
             <Button
               type="button"
               onClick={saveManagerMemoDraft}
-              disabled={!managerMemo?.text || draftStatus === "saving"}
+              disabled={!String(memoText || "").trim() || draftStatus === "saving"}
             >
               {t("wellbeing.overview.save_memo_draft", "Salvesta memo mustand")}
             </Button>
@@ -270,6 +297,8 @@ export default function OverviewWorkflow() {
               ? t("wellbeing.overview.memo_draft_saved", "Memo mustand salvestati privaatselt. Enne kasutamist kinnita jagatav versioon.")
               : draftStatus === "ready"
                 ? t("wellbeing.overview.memo_draft_ready", "Juhiga jagatav memo on kinnitatud, kuid seda ei saadeta automaatselt.")
+                : draftStatus === "conflict"
+                  ? t("wellbeing.overview.memo_draft_conflict", "Memo mustand muutus teises vaates. Kopeeri oma parandused, laadi Ülevaade uuesti ja proovi värske versiooniga.")
                 : draftStatus === "error"
                   ? t("wellbeing.overview.memo_draft_error", "Memo mustandi salvestamine või kinnitamine ebaõnnestus.")
                   : ""}

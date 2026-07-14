@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import {
@@ -661,20 +661,42 @@ function ContinuityPanel({ stage, items, snapshots, completed, copy }) {
   );
 }
 
-function Composer({ stage, canWrite, isOwner, paused, busy, dispatchAction, copy }) {
+function Composer({ stage, canWrite, isOwner, paused, busy, dispatchAction, copy, prefillText = "" }) {
   const kinds = stageKinds(stage);
-  const [mode, setMode] = useState(stage === 7 ? "private" : "shared");
+  const [mode, setMode] = useState(
+    stage === 7 || (stage === 2 && Boolean(prefillText.trim())) ? "private" : "shared"
+  );
   const [kind, setKind] = useState(kinds[0] || "");
-  const [text, setText] = useState("");
+  const [text, setText] = useState(stage === 2 ? prefillText : "");
   const [sourceLabel, setSourceLabel] = useState("");
+  const previousStageRef = useRef(stage);
+  const appliedPrefillRef = useRef(stage === 2 ? prefillText : "");
+  const modeTouchedRef = useRef(false);
 
   useEffect(() => {
+    if (previousStageRef.current === stage) {
+      if (stage === 2 && prefillText && appliedPrefillRef.current !== prefillText) {
+        appliedPrefillRef.current = prefillText;
+        setText((current) => current.trim() ? current : prefillText);
+        if (!modeTouchedRef.current) setMode("private");
+      }
+      return;
+    }
+
+    previousStageRef.current = stage;
+    appliedPrefillRef.current = stage === 2 ? prefillText : "";
+    modeTouchedRef.current = false;
     const nextKinds = stageKinds(stage);
-    setMode(stage === 7 ? "private" : "shared");
+    setMode(stage === 7 || (stage === 2 && Boolean(prefillText.trim())) ? "private" : "shared");
     setKind(nextKinds[0] || "");
-    setText("");
+    setText(stage === 2 ? prefillText : "");
     setSourceLabel("");
-  }, [stage]);
+  }, [prefillText, stage]);
+
+  const chooseMode = (nextMode) => {
+    modeTouchedRef.current = true;
+    setMode(nextMode);
+  };
 
   if (!canWrite || stage === 1 || (stage === 7 && !isOwner)) return null;
 
@@ -708,8 +730,8 @@ function Composer({ stage, canWrite, isOwner, paused, busy, dispatchAction, copy
         {mode === "private" ? <span className="cvl-lock" aria-label={copyValue(copy, "ui.private_aria")}>⌁</span> : null}
       </header>
       <div className="cvl-mode-switch" aria-label={copyValue(copy, "ui.card_visibility_aria")}>
-        <button type="button" disabled={paused} className={mode === "shared" ? "is-active" : ""} onClick={() => setMode("shared")}>{copyValue(copy, "ui.shared")}</button>
-        <button type="button" className={mode === "private" ? "is-active" : ""} onClick={() => setMode("private")}>{copyValue(copy, "ui.private")}</button>
+        <button type="button" disabled={paused} className={mode === "shared" ? "is-active" : ""} onClick={() => chooseMode("shared")}>{copyValue(copy, "ui.shared")}</button>
+        <button type="button" className={mode === "private" ? "is-active" : ""} onClick={() => chooseMode("private")}>{copyValue(copy, "ui.private")}</button>
       </div>
       <form onSubmit={submit}>
         <label>
@@ -1271,6 +1293,11 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
   );
   const role = model.me?.role || "PARTICIPANT";
   const isOwner = OWNER_ROLES.has(role) || model.me?.userId === model.covisionCase?.ownerId;
+  const caseAnchorPrefill = useMemo(() => {
+    if (!isOwner || stage !== 2 || items.some((item) => item.kind === "case_anchor")) return "";
+    const content = contentOf(stateByKind(privateStates, "case_anchor"));
+    return typeof content.text === "string" ? content.text : "";
+  }, [isOwner, items, privateStates, stage]);
   const serverOnlyPrivacyReview = model.participants.some((participant) => (
     participant.role === "SUMMARY_REVIEWER" && participant.inviteStatus === "ACCEPTED"
   ));
@@ -1485,6 +1512,7 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
             busy={busy}
             dispatchAction={dispatchAction}
             copy={copy}
+            prefillText={caseAnchorPrefill}
           />
         ) : null}
       </div>

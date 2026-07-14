@@ -9,21 +9,24 @@ const supportOptions = [
   {
     outputType: "manager_memo",
     recipientType: "manager",
-    label: "Koosta juhiga arutelu memo",
+    labelKey: "wellbeing.support.manager_memo_label",
+    labelFallback: "Koosta juhiga arutelu memo",
     descriptionKey: "wellbeing.support.manager_memo_meta",
     descriptionFallback: "Neutraalne kokkuvõte juhiga arutamiseks"
   },
   {
     outputType: "covision_input",
     recipientType: "covision",
-    label: "Koosta kovisiooni sisend",
+    labelKey: "wellbeing.support.covision_input_label",
+    labelFallback: "Koosta kovisiooni sisend",
     descriptionKey: "wellbeing.support.covision_input_meta",
     descriptionFallback: "Juhtum, küsimus ja õppimiskoht rühmale"
   },
   {
     outputType: "support_request",
     recipientType: "pilot_support_contact",
-    label: "Koosta abipalve",
+    labelKey: "wellbeing.support.support_request_label",
+    labelFallback: "Koosta abipalve",
     descriptionKey: "wellbeing.support.support_request_meta",
     descriptionFallback: "Lühike sisend toe või nõu küsimiseks"
   }
@@ -41,6 +44,7 @@ export default function SupportRequestPanel({
   const [editedText, setEditedText] = useState("");
   const [userReviewed, setUserReviewed] = useState(false);
   const [userConfirmed, setUserConfirmed] = useState(false);
+  const [confirmedNoIdentifiers, setConfirmedNoIdentifiers] = useState(false);
   const [status, setStatus] = useState("idle");
 
   const preview = useMemo(() => {
@@ -53,6 +57,22 @@ export default function SupportRequestPanel({
       context
     }).generatedText;
   }, [context, selected, sourceRecordId, sourceWorkflowType]);
+  const savedConfirmedText = String(draft?.editedText || draft?.generatedText || "").trim();
+  const hasUnconfirmedEdits = draft?.status === "ready_to_share"
+    && String(editedText || preview).trim() !== savedConfirmedText;
+  const isBusy = status === "saving" || status === "starting_covision";
+
+  function changeEditedText(value) {
+    setEditedText(value);
+    setUserReviewed(false);
+    setUserConfirmed(false);
+    setConfirmedNoIdentifiers(false);
+    if (draft?.status === "ready_to_share") {
+      setStatus(String(value || preview).trim() === savedConfirmedText ? "editing" : "needs_reconfirm");
+    } else if (draft?.id) {
+      setStatus("editing");
+    }
+  }
 
   function chooseOption(option) {
     setSelected(option);
@@ -60,6 +80,7 @@ export default function SupportRequestPanel({
     setEditedText("");
     setUserReviewed(false);
     setUserConfirmed(false);
+    setConfirmedNoIdentifiers(false);
     setStatus("idle");
   }
 
@@ -69,54 +90,124 @@ export default function SupportRequestPanel({
     setEditedText("");
     setUserReviewed(false);
     setUserConfirmed(false);
+    setConfirmedNoIdentifiers(false);
     setStatus("private");
   }
 
   async function saveDraft() {
-    if (!selected || status === "saving") return;
+    const textToSave = String(editedText || preview).trim();
+    if (!selected || !textToSave || isBusy) return;
     setStatus("saving");
     try {
-      const response = await fetch("/api/wellbeing/output-drafts", {
-        method: "POST",
+      const response = await fetch(
+        draft?.id
+          ? `/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}`
+          : "/api/wellbeing/output-drafts",
+        {
+        method: draft?.id ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          sourceWorkflowType,
-          sourceRecordId,
-          outputType: selected.outputType,
-          recipientType: selected.recipientType,
-          generatedText: editedText || preview,
-          context
-        })
+        body: JSON.stringify(draft?.id
+          ? {
+            editedText: textToSave,
+            expectedUpdatedAt: draft.updatedAt
+          }
+          : {
+            sourceWorkflowType,
+            sourceRecordId,
+            outputType: selected.outputType,
+            recipientType: selected.recipientType,
+            generatedText: textToSave,
+            context
+          })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_draft_failed");
+      if (!response.ok || !payload?.ok) {
+        const error = new Error(payload?.message || "wellbeing.errors.output_draft_failed");
+        error.status = response.status;
+        throw error;
+      }
       setDraft(payload.draft);
-      setEditedText(payload.draft?.generatedText || editedText || preview);
+      setEditedText(String(payload.draft?.editedText || payload.draft?.generatedText || textToSave));
+      setUserReviewed(false);
+      setUserConfirmed(false);
+      setConfirmedNoIdentifiers(false);
       setStatus("draft_saved");
-    } catch {
-      setStatus("error");
+    } catch (error) {
+      setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
     }
   }
 
   async function confirmDraft() {
-    if (!draft?.id || status === "saving") return;
+    const textToConfirm = String(editedText || preview).trim();
+    if (!draft?.id || !textToConfirm || !userReviewed || !userConfirmed || isBusy) return;
     setStatus("saving");
     try {
       const response = await fetch(`/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          editedText: editedText || preview,
+          editedText: textToConfirm,
           userReviewed,
-          userConfirmed
+          userConfirmed,
+          expectedUpdatedAt: draft.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.output_confirm_failed");
+      if (!response.ok || !payload?.ok) {
+        const error = new Error(payload?.message || "wellbeing.errors.output_confirm_failed");
+        error.status = response.status;
+        throw error;
+      }
       setDraft(payload.draft);
+      setEditedText(String(payload.draft?.editedText || payload.draft?.generatedText || ""));
+      setConfirmedNoIdentifiers(false);
       setStatus("ready");
-    } catch {
-      setStatus("error");
+    } catch (error) {
+      setStatus(Number(error?.status) === 409 ? "draft_conflict" : "error");
+    }
+  }
+
+  async function startCovision() {
+    if (
+      !draft?.id
+      || !draft?.updatedAt
+      || !confirmedNoIdentifiers
+      || !userReviewed
+      || !userConfirmed
+      || hasUnconfirmedEdits
+      || isBusy
+    ) return;
+    setStatus("starting_covision");
+    try {
+      const response = await fetch(
+        `/api/wellbeing/output-drafts/${encodeURIComponent(draft.id)}/covision`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            expectedUpdatedAt: draft.updatedAt,
+            confirmedNoIdentifiers: true
+          })
+        }
+      );
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok || !payload?.covisionCaseId) {
+        const error = new Error(payload?.message || "wellbeing.errors.covision_handoff_failed");
+        error.status = response.status;
+        throw error;
+      }
+      const href = `/kovisioon?case=${encodeURIComponent(payload.covisionCaseId)}`;
+      setStatus("covision_started");
+      if (typeof onNavigate === "function") onNavigate(href);
+      else window.location.assign(href);
+    } catch (error) {
+      setStatus(
+        error?.message === "wellbeing.errors.identifiers_detected"
+          ? "covision_identifiers"
+          : Number(error?.status) === 409
+            ? "covision_conflict"
+            : "covision_error"
+      );
     }
   }
 
@@ -132,7 +223,7 @@ export default function SupportRequestPanel({
             )}
           </p>
         </div>
-        <Button type="button" size="sm" onClick={leavePrivate}>
+        <Button type="button" size="sm" onClick={leavePrivate} disabled={isBusy}>
           {t("wellbeing.support.leave_private", "Jäta privaatseks")}
         </Button>
       </div>
@@ -145,8 +236,9 @@ export default function SupportRequestPanel({
             className="wellbeing-choice-btn"
             aria-pressed={selected?.outputType === option.outputType}
             onClick={() => chooseOption(option)}
+            disabled={isBusy}
           >
-            <span>{option.label}</span>
+            <span>{t(option.labelKey, option.labelFallback)}</span>
             <span>{t(option.descriptionKey, option.descriptionFallback)}</span>
           </Button>
         ))}
@@ -154,6 +246,7 @@ export default function SupportRequestPanel({
           type="button"
           className="wellbeing-choice-btn"
           onClick={() => onNavigate?.("/tooheaolu/taastumine")}
+          disabled={isBusy}
         >
           <span>{t("wellbeing.support.open_recovery", "Ava Taastumine")}</span>
           <span>
@@ -168,8 +261,9 @@ export default function SupportRequestPanel({
             <span>{t("wellbeing.support.preview_label", "Jagatava versiooni eelvaade")}</span>
             <textarea
               value={editedText || preview}
-              onChange={(event) => setEditedText(event.target.value)}
+              onChange={(event) => changeEditedText(event.target.value)}
               rows={11}
+              maxLength={4000}
             />
           </label>
           <div>
@@ -191,20 +285,59 @@ export default function SupportRequestPanel({
             </label>
           </div>
           <div>
-            <Button type="button" onClick={saveDraft} disabled={status === "saving"}>
+            <Button
+              type="button"
+              onClick={saveDraft}
+              disabled={isBusy || !String(editedText || preview).trim()}
+            >
               {t("wellbeing.support.save_draft", "Salvesta privaatne mustand")}
             </Button>
             <Button
               type="button"
               onClick={confirmDraft}
-              disabled={!draft?.id || !userReviewed || !userConfirmed || status === "saving"}
+              disabled={
+                !draft?.id
+                || !userReviewed
+                || !userConfirmed
+                || !String(editedText || preview).trim()
+                || isBusy
+              }
             >
               {t("wellbeing.support.confirm_draft", "Kinnita jagatav versioon")}
             </Button>
-            {selected.outputType === "covision_input" && status === "ready" ? (
-              <Button type="button" onClick={() => onNavigate?.("/kovisioon")}>
-                {t("wellbeing.support.open_covision", "Ava olemasolevas Kovisioonis")}
-              </Button>
+            {selected.outputType === "covision_input"
+              && draft?.status === "ready_to_share"
+              && userReviewed
+              && userConfirmed
+              && !hasUnconfirmedEdits ? (
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={confirmedNoIdentifiers}
+                    onChange={(event) => setConfirmedNoIdentifiers(event.target.checked)}
+                  />
+                  {t(
+                    "wellbeing.support.confirm_no_identifiers",
+                    "Kinnitan, et Kovisiooni viidav tekst ei sisalda otseseid tuvastajaid."
+                  )}
+                </label>
+                <p>
+                  {t(
+                    "wellbeing.support.covision_handoff_notice",
+                    "Kovisiooni liigub ainult ülal kinnitatud üldistus. Tööheaolu lähteandmed jäävad privaatseks."
+                  )}
+                </p>
+                <Button
+                  type="button"
+                  onClick={startCovision}
+                  disabled={!confirmedNoIdentifiers || isBusy}
+                >
+                  {status === "starting_covision"
+                    ? t("wellbeing.support.starting_covision", "Loon Kovisiooni…")
+                    : t("wellbeing.support.start_covision", "Loo Kovisioon ja ava")}
+                </Button>
+              </div>
             ) : null}
           </div>
         </div>
@@ -217,9 +350,23 @@ export default function SupportRequestPanel({
             ? t("wellbeing.support.status_saved", "Privaatne mustand salvestati. Enne kasutamist kinnita jagatav versioon.")
             : status === "ready"
               ? t("wellbeing.support.status_ready", "Jagatav versioon on kinnitatud, kuid seda ei saadeta automaatselt.")
-              : status === "error"
-                ? t("wellbeing.support.status_error", "Mustandi salvestamine või kinnitamine ebaõnnestus.")
-                : ""}
+              : status === "needs_reconfirm"
+                ? t("wellbeing.support.status_needs_reconfirm", "Tekst muutus pärast kinnitamist. Kinnita jagatav versioon uuesti.")
+                : status === "draft_conflict"
+                  ? t("wellbeing.support.status_draft_conflict", "Mustand muutus teises vaates. Salvesta või laadi värske versioon enne uut kinnitamist.")
+                  : status === "starting_covision"
+                    ? t("wellbeing.support.status_starting_covision", "Loon privaatset Kovisiooni juhtumit…")
+                    : status === "covision_started"
+                      ? t("wellbeing.support.status_covision_started", "Kovisiooni juhtum loodi.")
+                      : status === "covision_conflict"
+                        ? t("wellbeing.support.status_covision_conflict", "Mustand muutus vahepeal. Värskenda kinnitatud versiooni ja proovi uuesti.")
+                        : status === "covision_identifiers"
+                          ? t("wellbeing.support.status_covision_identifiers", "Tekstis võib olla otseseid tuvastajaid. Eemalda või üldista need ja kinnita tekst uuesti.")
+                          : status === "covision_error"
+                            ? t("wellbeing.support.status_covision_error", "Kovisiooni loomine ebaõnnestus. Mustand jäi privaatseks.")
+                            : status === "error"
+                              ? t("wellbeing.support.status_error", "Mustandi salvestamine või kinnitamine ebaõnnestus.")
+                              : ""}
       </p>
     </section>
   );

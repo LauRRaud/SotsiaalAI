@@ -1273,10 +1273,13 @@ model WellbeingOutputDraft {
   visibility         String   @default("private")
   status             String   @default("draft")
   schemaVersion      String   @default("1.0")
+  covisionCaseId     String?  @unique
+  handedOffAt        DateTime?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  covisionCase CovisionCase? @relation("WellbeingOutputDraftCovisionCase", fields: [covisionCaseId], references: [id], onDelete: SetNull)
 
   @@index([userId, outputType, createdAt])
   @@index([userId, recipientType, createdAt])
@@ -1914,6 +1917,7 @@ model CovisionCase {
   summaryRecord    CovisionSummary?
   practices        EffectivePractice[]
   sourceTopicSeed  TopicSeed?             @relation("TopicSeedCovisionCase")
+  sourceWellbeingOutputDraft WellbeingOutputDraft? @relation("WellbeingOutputDraftCovisionCase")
   sessionState     CovisionSessionState?
   closure          CovisionClosure?
 
