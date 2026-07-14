@@ -298,6 +298,11 @@
     "motion": "Liikumine ja jõudlus",
     "theme": "Teema",
     "ambient": "Taustaheli",
+    "plain_language": {
+      "title": "Selge keel",
+      "option": "Kasuta selge keele režiimi",
+      "description": "Assistent kasutab lühemaid lauseid ja selgemaid samme. Allikad, tähtajad, tingimused ja olulised hoiatused jäävad alles."
+    },
     "options": {
       "language": {
         "et": "Eesti",
@@ -512,6 +517,14 @@
       "journey_prefill": {
         "loaded": "Eelpöördumise mustand koostati teekonna põhjal. Vaata see enne saatmist üle ja muuda vajadusel.",
         "load_failed": "Teekonna põhjal eelpöördumise mustandit ei saanud laadida."
+      },
+      "plain_language": {
+        "status": "Selge keele režiim on sees",
+        "title": "Vali üks tegevus korraga",
+        "description": "Sinu vastused jäävad alles. Saad põhiinfo ja assistendi vahel liikuda igal ajal.",
+        "switch_label": "Eelinfo täpsustamise vaade",
+        "form_view": "Täida põhiinfo",
+        "assistant_view": "Küsi assistendilt"
       },
       "sections": {
         "input": "Pöördumise sisend",
@@ -2264,7 +2277,7 @@
       "sections_v2": {
         "accessibility": {
           "title": "1. Keel ja ligipääsetavus",
-          "body": "<p>Esimesel külastusel avaneb automaatselt <a href=\"#\" data-a11y-open=\"1\">Keel ja ligipääsetavus</a> aken. Sama vaate saad hiljem uuesti avada lehel <a href=\"/profiil\">Profiil</a>.</p><ul><li><strong>Keel.</strong> Vali kasutajaliidese keel: eesti, vene või inglise.</li><li><strong>Ekraani profiil.</strong> Vali \"Mobiil / sülearvuti ekraan\", \"Apple’i sülearvuti\" või \"Väline monitor / PC\", et kuva sobituks paremini sinu seadmega.</li><li><strong>Teksti suurus.</strong> Kohanda kirjasuurust endale mugavaks.</li><li><strong>Kontrast.</strong> Vali <strong>Tavaline</strong> või <strong>Kõrge kontrast</strong>. Kõrge kontrast suurendab teksti ja tausta eristatavust.</li><li><strong>Liikumine ja jõudlus.</strong> Selles jaotises on kaks eraldi valikut: <strong>\"Vähenda animatsioone\"</strong> ja <strong>\"Vähenda läbipaistvust\"</strong>.</li><li><strong>Jõudlus vanemas seadmes.</strong> Läbipaistvuse ja animatsioonide vähendamine võib vanemas seadmes jõudlust parandada.</li><li><strong>Teema.</strong> Vali värvirežiimiks <strong>Hele</strong> või <strong>Tume</strong>.</li><li><strong>Salvestamine ja lähtestamine.</strong> Muudatused rakenduvad kohe, kuid vajadusel saad eelistusi profiili lehel muuta ja uuesti salvestada.</li></ul>"
+          "body": "<p>Esimesel külastusel avaneb automaatselt <a href=\"#\" data-a11y-open=\"1\">Keel ja ligipääsetavus</a> aken. Sama vaate saad hiljem uuesti avada lehel <a href=\"/profiil\">Profiil</a>.</p><ul><li><strong>Keel.</strong> Vali kasutajaliidese keel: eesti, vene või inglise.</li><li><strong>Ekraani profiil.</strong> Vali \"Mobiil / sülearvuti ekraan\", \"Apple’i sülearvuti\" või \"Väline monitor / PC\", et kuva sobituks paremini sinu seadmega.</li><li><strong>Teksti suurus.</strong> Kohanda kirjasuurust endale mugavaks.</li><li><strong>Selge keel.</strong> Selge keele režiim annab assistendile juhise kasutada lühemaid lauseid ja selgemaid samme. Allikad, tähtajad, tingimused ja olulised hoiatused jäävad alles.</li><li><strong>Kontrast.</strong> Vali <strong>Tavaline</strong> või <strong>Kõrge kontrast</strong>. Kõrge kontrast suurendab teksti ja tausta eristatavust.</li><li><strong>Liikumine ja jõudlus.</strong> Selles jaotises on kaks eraldi valikut: <strong>\"Vähenda animatsioone\"</strong> ja <strong>\"Vähenda läbipaistvust\"</strong>.</li><li><strong>Jõudlus vanemas seadmes.</strong> Läbipaistvuse ja animatsioonide vähendamine võib vanemas seadmes jõudlust parandada.</li><li><strong>Teema.</strong> Vali värvirežiimiks <strong>Hele</strong> või <strong>Tume</strong>.</li><li><strong>Salvestamine ja lähtestamine.</strong> Muudatused rakenduvad kohe, kuid vajadusel saad eelistusi profiili lehel muuta ja uuesti salvestada.</li></ul>"
         },
         "home": {
           "title": "2. Avaleht",

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import ChatComposer from "@/components/alalehed/chat/ChatComposer";
 import ChatMessageItem from "@/components/alalehed/chat/ChatMessageItem";
 import ConversationView from "@/components/alalehed/chat/ConversationView";
@@ -665,6 +666,8 @@ function JourneySharedInfoBlock({ info, t, audience = "client", serviceLabel = "
 
 function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", isAdmin = false, currentUserId = "", embedded = false }) {
   const router = useRouter();
+  const { prefs } = useAccessibility();
+  const plainLanguage = prefs?.plainLanguage === true;
   const chatWindowRef = useRef(null);
   const inputBarRef = useRef(null);
   const inputRef = useRef(null);
@@ -709,6 +712,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [savePrivacyPrompt, setSavePrivacyPrompt] = useState(null);
   const [workflowMode, setWorkflowMode] = useState("");
   const [activeWorkflowStep, setActiveWorkflowStep] = useState("collect");
+  const [plainCollectView, setPlainCollectView] = useState("form");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
   const [journeyShareSelections, setJourneyShareSelections] = useState(["summary", "domains", "personWish", "missingInfo"]);
   const journeyPrefillLoadedRef = useRef(false);
@@ -1174,6 +1178,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     });
     setWorkflowMode("known_contact");
     setActiveWorkflowStep("collect");
+    setPlainCollectView("form");
     setAssessmentPathChosen(false);
     setNotice("Valitud adressaat on eelpöördumise töövoogu kaasa võetud. Saad seda enne saatmist muuta.");
   }, [entries]);
@@ -2048,7 +2053,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   }
 
   return (
-    <div>
+    <div className="pre-inquiry-workflow" data-plain-language={plainLanguage ? "true" : undefined}>
       <Button type="button" size="sm" onClick={handleNewInquiry}>
         {readText(t, "workspace_feature_pages.pre_inquiries.actions.new", "Uus")}
       </Button>
@@ -2114,6 +2119,38 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         </aside>
         <div>
 
+      {activeWorkflowStep === "collect" && plainLanguage ? (
+        <section className="pre-inquiry-plain-mode" aria-labelledby="pre-inquiry-plain-mode-title">
+          <div className="pre-inquiry-plain-mode__copy">
+            <p className="pre-inquiry-plain-mode__eyebrow">
+              {readText(t, "workspace_feature_pages.pre_inquiries.plain_language.status", "Selge keele režiim on sees")}
+            </p>
+            <h2 id="pre-inquiry-plain-mode-title">
+              {readText(t, "workspace_feature_pages.pre_inquiries.plain_language.title", "Vali üks tegevus korraga")}
+            </h2>
+            <p>
+              {readText(t, "workspace_feature_pages.pre_inquiries.plain_language.description", "Sinu vastused jäävad alles. Saad põhiinfo ja assistendi vahel liikuda igal ajal.")}
+            </p>
+          </div>
+          <div className="pre-inquiry-plain-mode__switch" role="group" aria-label={readText(t, "workspace_feature_pages.pre_inquiries.plain_language.switch_label", "Eelinfo täpsustamise vaade")}>
+            <button
+              type="button"
+              aria-pressed={plainCollectView === "form"}
+              onClick={() => setPlainCollectView("form")}
+            >
+              {readText(t, "workspace_feature_pages.pre_inquiries.plain_language.form_view", "Täida põhiinfo")}
+            </button>
+            <button
+              type="button"
+              aria-pressed={plainCollectView === "assistant"}
+              onClick={() => setPlainCollectView("assistant")}
+            >
+              {readText(t, "workspace_feature_pages.pre_inquiries.plain_language.assistant_view", "Küsi assistendilt")}
+            </button>
+          </div>
+        </section>
+      ) : null}
+
       {activeWorkflowStep === "journey" ? (
         <SectionCard flat={embedded} title="Vali, mida soovid eelpöördumises kasutada">
           <p className={bodyTextClassName}>
@@ -2155,7 +2192,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         </SectionCard>
       ) : null}
 
-      {activeWorkflowStep === "collect" ? (
+      {activeWorkflowStep === "collect" && (!plainLanguage || plainCollectView === "form") ? (
       <>
       <SectionCard flat={embedded} title="Aitan sul pöördumise ette valmistada">
         <p className={bodyTextClassName}>
@@ -2381,7 +2418,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         note={readText(t, "workspace_feature_pages.pre_inquiries.assessment.review_note", "Ülevaade koondab täpselt need eelkaardistuse vastused ja täpsustused, mis lähevad salvestatud eelpöördumise ning allalaaditava eelinfo juurde.")}
       />
       </details>
-      <details open style={{ display: activeWorkflowStep === "collect" ? undefined : "none" }}>
+      <details
+        className="pre-inquiry-assistant-panel"
+        open
+        style={{ display: activeWorkflowStep === "collect" && (!plainLanguage || plainCollectView === "assistant") ? undefined : "none" }}
+      >
         <summary>Täpsusta eelinfot</summary>
       <SectionCard flat={embedded} title="Aita pöördumist selgemaks teha">
         <div>

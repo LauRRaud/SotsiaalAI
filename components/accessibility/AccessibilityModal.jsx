@@ -41,6 +41,7 @@ export default function AccessibilityModal({
   const [uiScale, setUiScale] = useState(initialUiScale);
   const [uiProfile, setUiProfile] = useState(initialUiProfile);
   const [contrast, setContrast] = useState(initialContrast);
+  const [plainLanguage, setPlainLanguage] = useState(prefs.plainLanguage === true);
   const [reduceMotion, setReduceMotion] = useState(!!prefs.reduceMotion);
   /* Taustaheli (tellija 06.07 öö): rakendub KOHE, elab localStorage's,
      mitte a11y-prefsides — sõltumatu salvestusnupust */
@@ -73,6 +74,7 @@ export default function AccessibilityModal({
     setUiScale(current => current ?? initialUiScale);
     setUiProfile(current => current ?? initialUiProfile);
     setContrast(current => current ?? initialContrast);
+    setPlainLanguage(prefs.plainLanguage === true);
     setReduceMotion(!!prefs.reduceMotion);
     setReduceTransparency(!!prefs.reduceTransparency);
     setTheme(current => current ?? initialTheme);
@@ -288,6 +290,7 @@ export default function AccessibilityModal({
       uiScale: uiScale || prefs.uiScale || "md",
       uiProfile: uiProfile || prefs.uiProfile || normalizeUiProfile(prefs.uiScale),
       contrast: contrast || prefs.contrast || "normal",
+      plainLanguage,
       reduceMotion,
       reduceTransparency,
       theme: theme || prefs.theme || "mid"
@@ -319,11 +322,12 @@ export default function AccessibilityModal({
       uiScale: uiScale || prefs.uiScale || "md",
       uiProfile: uiProfile || prefs.uiProfile || normalizeUiProfile(prefs.uiScale),
       contrast: contrast || prefs.contrast || "normal",
+      plainLanguage,
       reduceMotion,
       reduceTransparency,
       theme: theme || prefs.theme || "mid"
     });
-  }, [contrast, onPreview, prefs.contrast, prefs.theme, prefs.uiProfile, prefs.uiScale, reduceMotion, reduceTransparency, theme, uiProfile, uiScale]);
+  }, [contrast, onPreview, plainLanguage, prefs.contrast, prefs.theme, prefs.uiProfile, prefs.uiScale, reduceMotion, reduceTransparency, theme, uiProfile, uiScale]);
   useEffect(() => () => {
     onPreviewEnd?.();
   }, [onPreviewEnd]);
@@ -460,6 +464,20 @@ export default function AccessibilityModal({
           </fieldset>
 
           <fieldset className={`csp-step ${getA11yStepClassName(5)}`.trim()}>
+            <legend>{t("accessibility.plain_language.title")}</legend>
+            <div>
+              <OptionCard
+                type="checkbox"
+                checked={plainLanguage}
+                onChange={event => setPlainLanguage(event.target.checked)}
+              >
+                <span>{t("accessibility.plain_language.option")}</span>
+                <small>{t("accessibility.plain_language.description")}</small>
+              </OptionCard>
+            </div>
+          </fieldset>
+
+          <fieldset className={`csp-step ${getA11yStepClassName(6)}`.trim()}>
             <legend>{t("accessibility.motion")}</legend>
             <div>
               <OptionCard
@@ -479,7 +497,7 @@ export default function AccessibilityModal({
             </div>
           </fieldset>
 
-          <fieldset className={`csp-step ${getA11yStepClassName(6)}`.trim()}>
+          <fieldset className={`csp-step ${getA11yStepClassName(7)}`.trim()}>
             <legend>{t("accessibility.ambient")}</legend>
             <div>
               <OptionCard type="radio" name="amb" value="off" checked={ambient === "off"} onChange={() => chooseAmbient("off")}>
@@ -497,7 +515,7 @@ export default function AccessibilityModal({
             </div>
           </fieldset>
 
-          <div className={`csp-step ${getA11yStepClassName(7)}`.trim()}>
+          <div className={`csp-step ${getA11yStepClassName(8)}`.trim()}>
               <Button
               type="button"
               variant="primary"
