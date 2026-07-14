@@ -124,7 +124,8 @@ seda ligikaudse ooteajana, kuid U4 ei loo ootenimekirja kirjeid.
 - [x] sihttestid, kogu testipakk, Prisma, migratsioonikontroll, lint ja build;
 - [x] autentitud Playwrighti kontroll QA-andmetega;
 - [x] käesoleva dokumendi lõplik tõenduspakk;
-- [ ] commit ja push (täidetakse kohe pärast selle dokumendi lukustamist).
+- [x] teostuscommit `47b51dba`;
+- [x] progressidokk lukustatud ja haru auditiks üleandmiseks valmis.
 
 ## 7. Kontrollmaatriks
 
@@ -239,5 +240,5 @@ kontrollida eelkõige:
 7. stale/unknown semantika võrdsust kaardil, eelpöördumises, adminis ja RAG-is;
 8. migratsiooni additiivsust ja 88 migratsiooni puhast ahelat.
 
-Auditibaas: `codex/u4-availability-trust`, lähtebaas `df2f45c0`. Commit'i SHA
-lisatakse pärast teostuscommit'i; main-i ühendamist ega deploy'd ei ole tehtud.
+Auditibaas: `codex/u4-availability-trust`, lähtebaas `df2f45c0`, teostuscommit
+`47b51dba`. Main-i ühendamist ega deploy'd ei ole tehtud.
