@@ -1705,6 +1705,8 @@ model ServiceProviderService {
   priceDescription            String?                      @db.Text
   availabilityStatus          String?
   availabilityDescription     String?                      @db.Text
+  availabilityCheckedAt       DateTime?
+  availabilityReminderSentAt  DateTime?
   directContactAllowed        String?
   requiresKovAssessment       String?
   requiresKovDecision         String?
@@ -1731,6 +1733,8 @@ model ServiceProviderService {
   @@index([status])
   @@index([mapVisible])
   @@index([feeType])
+  @@index([status, availabilityCheckedAt])
+  @@index([availabilityReminderSentAt])
   @@index([sortOrder])
 }
 

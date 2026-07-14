@@ -53,7 +53,7 @@ export async function GET(request) {
     const profile = await getServiceProviderProfileForOwner(auth.userId);
     return json({
       ok: true,
-      profile: serializeServiceProviderProfile(profile),
+      profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true }),
       canManageServiceProfile: true
     });
   } catch (error) {
@@ -74,7 +74,7 @@ export async function PUT(request) {
     const profile = await upsertServiceProviderProfileForOwner(auth.userId, body);
     return json({
       ok: true,
-      profile: serializeServiceProviderProfile(profile)
+      profile: serializeServiceProviderProfile(profile, { includeAvailabilityOperations: true })
     });
   } catch (error) {
     const status = Number(error?.status) || 500;

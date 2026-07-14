@@ -517,6 +517,12 @@
   border: 1px solid var(--glass-border-soft);
   box-shadow: var(--glass-shadow);
 }
+.service-map-canvas .leaflet-popup-content {
+  max-height: min(65vh, 32rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
 .service-map-canvas .leaflet-popup-tip {
   background: rgba(24, 20, 17, 0.96);
 }
@@ -542,6 +548,95 @@
 .service-map-popup__action:hover,
 .service-map-popup__contact-button:hover {
   background: rgba(255, 255, 255, 0.14);
+}
+
+.service-map-popup__availability,
+.service-profile-availability {
+  margin-top: 0.65rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--border, #9aa6a0) 55%, transparent);
+  border-radius: 0.8rem;
+  background: color-mix(in srgb, var(--surface, #fff) 88%, #dfe8e2);
+  color: #2b2925;
+}
+
+.service-map-popup__availability[data-tone="warning"],
+.service-profile-availability[data-tone="warning"] {
+  border-color: #a56828;
+  background: #fff6e8;
+}
+
+.service-map-popup__availability[data-tone="positive"],
+.service-profile-availability[data-tone="positive"] {
+  border-color: #3f725b;
+  background: #edf7f1;
+}
+
+.service-map-popup__availability-status,
+.service-profile-availability__status {
+  margin: 0;
+  font-weight: 700;
+}
+
+.service-map-popup__availability-age,
+.service-map-popup__availability-wait,
+.service-map-popup__availability-warning,
+.service-profile-availability p {
+  margin: 0.25rem 0 0;
+}
+
+.service-map-popup__availability > p,
+.service-profile-availability > p {
+  color: #2b2925;
+}
+
+.panel .service-profile-availability > button[data-variant] {
+  border-color: rgba(43, 41, 37, 0.32);
+  background: rgba(255, 255, 255, 0.92);
+  color: #2b2925;
+  box-shadow: 0 0.3rem 0.8rem rgba(43, 41, 37, 0.12);
+}
+
+.pre-inquiry-recipient-card {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  background: rgba(18, 15, 13, 0.58);
+}
+
+.pre-inquiry-recipient-card > span {
+  display: block;
+  line-height: 1.45;
+}
+
+.pre-inquiry-recipient-card > span:first-child {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+
+.pre-inquiry-recipient-card > span:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pre-inquiry-recipient-card__availability {
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(214, 156, 81, 0.58);
+  border-radius: 0.75rem;
+  background: rgba(76, 50, 22, 0.72);
+  color: #fff4df;
+}
+
+.pre-inquiry-recipient-card__availability[data-tone="positive"] {
+  border-color: rgba(111, 183, 145, 0.55);
+  background: rgba(25, 73, 51, 0.72);
+  color: #e8fff2;
 }
 .service-map-canvas .leaflet-container a.leaflet-popup-close-button {
   color: var(--text-soft);

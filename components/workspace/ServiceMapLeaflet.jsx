@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { normalizeServiceMapAccessPath, serviceMapAccessPathHasDetails } from "@/lib/serviceMap/accessPath";
+import { serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 
 const ESTONIA_BOUNDS = [
   [57.45, 21.35],
@@ -368,6 +369,30 @@ function appendServiceItems(parent, entry, t) {
       service.priceDescription
     ].filter(Boolean).join(" | ");
     appendText(item, "p", "service-map-popup__service-meta", meta);
+    const availability = serviceAvailabilityPresentation(t, service.availability);
+    const availabilityBlock = document.createElement("div");
+    availabilityBlock.className = "service-map-popup__availability";
+    availabilityBlock.dataset.tone = availability.tone;
+    appendText(
+      availabilityBlock,
+      "p",
+      "service-map-popup__availability-status",
+      `${availability.icon} ${availability.label}`
+    );
+    if (service.availability?.status === "waitlist" && availability.description) {
+      appendText(
+        availabilityBlock,
+        "p",
+        "service-map-popup__availability-wait",
+        `${readText(t, "service_availability.wait_label", "Ligikaudne ooteaeg")}: ${availability.description}`
+      );
+    }
+    appendText(availabilityBlock, "p", "service-map-popup__availability-age", availability.ageText);
+    appendText(availabilityBlock, "p", "service-map-popup__availability-warning", availability.warning);
+    for (const line of availabilityBlock.querySelectorAll("p")) {
+      line.style.color = "#2b2925";
+    }
+    item.appendChild(availabilityBlock);
     section.appendChild(item);
   }
 
@@ -612,6 +637,20 @@ function markerHtml(group, selected) {
   ].join("");
 }
 
+function applyServiceMapPopupTheme(event) {
+  const popupElement = event?.popup?.getElement?.();
+  if (!popupElement) return;
+  const wrapper = popupElement.querySelector(".leaflet-popup-content-wrapper");
+  const tip = popupElement.querySelector(".leaflet-popup-tip");
+  const closeButton = popupElement.querySelector(".leaflet-popup-close-button");
+  if (wrapper) {
+    wrapper.style.background = "rgba(24, 20, 17, 0.96)";
+    wrapper.style.color = "rgba(244, 241, 236, 0.86)";
+  }
+  if (tip) tip.style.background = "rgba(24, 20, 17, 0.96)";
+  if (closeButton) closeButton.style.color = "rgba(244, 241, 236, 0.86)";
+}
+
 function ensureStylesheet(href) {
   if (typeof document === "undefined") return;
   if (document.querySelector(`link[data-service-map-leaflet="1"][href="${href}"]`)) return;
@@ -849,6 +888,7 @@ export default function ServiceMapLeaflet({
         autoPanPaddingTopLeft: [28, 128],
         autoPanPaddingBottomRight: [28, 84]
       });
+      marker.on("popupopen", applyServiceMapPopupTheme);
       marker.on("click", () => {
         onSelectEntryRef.current?.(group.primaryEntry?.id);
       });

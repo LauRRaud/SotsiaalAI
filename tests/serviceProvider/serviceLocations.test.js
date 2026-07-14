@@ -33,6 +33,34 @@ test("service provider map marker represents a location with linked services", (
   assert.deepEqual(entries[0].providerProfile.serviceLocations.map((location) => location.id), ["loc-1"]);
 });
 
+test("location markers retain the public availability projection for linked services", () => {
+  const availability = {
+    status: "waitlist",
+    freshness: "stale",
+    stale: true,
+    ageDays: 64,
+    checkedAt: "2026-05-10T10:00:00.000Z"
+  };
+  const entries = splitServiceLocationMapEntries({
+    id: "provider-entry",
+    providerProfile: {
+      serviceItems: [{ id: "service-1", name: "Tugiisikuteenus", availability }],
+      serviceLocations: [{
+        id: "loc-1",
+        latitude: 59.4,
+        longitude: 24.7,
+        geocodingStatus: "MATCHED",
+        serviceLinks: [{
+          providerServiceId: "service-1",
+          providerService: { id: "service-1", name: "Tugiisikuteenus", availabilityStatus: "waitlist" }
+        }]
+      }]
+    }
+  });
+
+  assert.deepEqual(entries[0].providerProfile.serviceItems[0].availability, availability);
+});
+
 test("service provider map creates one marker per published confirmed location", () => {
   const entries = splitServiceLocationMapEntries({
     id: "provider-entry",
