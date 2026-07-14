@@ -145,6 +145,7 @@
     "login_to_view": "Profiili vaatamiseks logi sisse.",
     "login": "Logi sisse",
     "manage_subscription": "Halda tellimust",
+    "my_sharings": "Minu jagamised",
     "usage": {
       "title": "Minu kasutus",
       "loading": "Laen kasutusandmeid…",
@@ -4750,6 +4751,105 @@
       "detail_failed": "Juhtumi kokkuvõtet ei saanud avada.",
       "action_failed": "Toimingut ei saanud salvestada."
     }
+  },
+  "pre_inquiries": {
+    "errors": {
+      "external_cannot_be_recalled": "Välise e-kirjana saadetud pöördumist ei saa platvormilt tagasi kutsuda.",
+      "already_opened": "Adressaat on pöördumise avanud. Ajalugu ei saa kustutada, kuid saad saata paranduse.",
+      "not_recallable": "Seda pöördumist ei saa praeguses olekus tagasi võtta.",
+      "recall_conflict": "Pöördumine muutus vahepeal. Värskenda ülevaadet ja proovi uuesti.",
+      "recall_failed": "Pöördumist ei saanud tagasi võtta.",
+      "recalled_cannot_be_corrected": "Tagasi võetud pöördumisele ei saa parandust saata.",
+      "external_cannot_be_corrected": "Välise e-kirja parandust ei saa selle vaate kaudu saata.",
+      "correction_requires_open": "Avamata pöördumise saad paranduse asemel tagasi võtta.",
+      "correction_conflict": "Pöördumine muutus või sellele on parandus juba saadetud. Värskenda ülevaadet.",
+      "correction_required": "Parandatud pöördumise tekst on kohustuslik.",
+      "correction_failed": "Parandust ei saanud saata.",
+      "not_sent": "Pöördumist ei ole veel saadetud.",
+      "open_conflict": "Pöördumise olek muutus vahepeal. Värskenda ja proovi uuesti."
+    }
+  },
+  "my_sharings": {
+    "meta": {
+      "title": "Minu jagamised",
+      "description": "Vaata, kes sinu jagatud infot näeb, ning halda eelpöördumisi, ruume ja kutseid."
+    },
+    "title": "Minu jagamised",
+    "lead": "Siin näed ühes kohas, kellele oled infot jaganud, millal see juhtus ja mida saad veel kontrollida.",
+    "back": "Tagasi profiili",
+    "loading": "Laen sinu jagamisi…",
+    "empty_all": "Sul ei ole praegu aktiivseid ega varasemaid jagamisi, mida siin näidata.",
+    "sections": {
+      "pre_inquiries": "Saadetud eelpöördumised",
+      "rooms": "Aktiivsed ruumid",
+      "invites": "Aktiivsed kutsed",
+      "help": "Avaldatud abisoovid ja -pakkumised",
+      "frameworks": "Minu kinnitused"
+    },
+    "section_help": {
+      "pre_inquiries": "Tagasivõtt eemaldab avamata platvormisisese pöördumise adressaadi aktiivsest loendist. Auditijälg jääb alles.",
+      "rooms": "Ruumis näevad jagatud sisu selle aktiivsed liikmed.",
+      "invites": "Kutse annab ligipääsu alles pärast vastuvõtmist.",
+      "help": "Need kirjed on avalikud kuni sulgemise või aegumiseni.",
+      "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest."
+    },
+    "empty": {
+      "pre_inquiries": "Saadetud eelpöördumisi ei ole.",
+      "rooms": "Aktiivseid ruumiliikmesusi ei ole.",
+      "invites": "Aktiivseid saadetud kutseid ei ole.",
+      "help": "Avaldatud abisoove ega -pakkumisi ei ole.",
+      "frameworks": "Raamistikukinnitusi ei ole."
+    },
+    "ownership": {
+      "visibility": "Kes näeb",
+      "origin": "Päritolu",
+      "validity": "Kehtivus",
+      "shared_with": "Jagatud: {name}",
+      "external_email": "Saadetud välisele e-postile: {name}",
+      "room_members": "Jagatud ruumi aktiivsete liikmetega",
+      "invite_recipient": "Kutse saadetud: {name}",
+      "public_map": "Avalik abikaardil",
+      "private_record": "Privaatne kinnitus sinu kontol",
+      "you_sent": "Sina saatsid",
+      "you_joined": "Sina liitusid",
+      "you_invited": "Sina kutsusid",
+      "you_published": "Sina avaldasid",
+      "you_confirmed": "Sina kinnitasid",
+      "until_recall": "Tagasivõetav kuni adressaadi avamiseni",
+      "opened": "Avatud {date}; ajalugu säilib",
+      "recalled": "Tagasi võetud {date}",
+      "superseded": "Parandus saadetud; vana versioon säilib",
+      "external_final": "Välist e-kirja ei saa platvormilt tagasi kutsuda",
+      "active": "Aktiivne kuni lahkumise või ruumi lõpetamiseni",
+      "owner": "Oled ruumi omanik; lahkumine vajab omandi üleandmist",
+      "expires": "Aegub {date}",
+      "no_expiry": "Aegumistähtaega pole määratud",
+      "accepted": "Kinnitatud {date}"
+    },
+    "labels": {
+      "recipient": "Adressaat", "sent": "Saadetud", "opened": "Avatud", "joined": "Liitusid", "expires": "Aegub", "version": "Versioon {version}",
+      "request": "Abisoov", "offer": "Abipakkumine", "room_owner": "Ruumi omanik", "room_member": "Ruumi liige", "unknown_recipient": "Adressaat täpsustamata", "unknown_time": "Aeg teadmata"
+    },
+    "status": {
+      "sent": "Saadetud", "ready": "Vastu võetud", "archived": "Arhiveeritud", "recalled": "Tagasi võetud", "superseded": "Parandatud", "pending_payment": "Ootab makset", "open": "Avaldatud", "matched": "Sobitus leitud"
+    },
+    "actions": {
+      "recall": "Võta tagasi", "correct": "Saada parandus", "send_correction": "Saada parandatud versioon", "cancel": "Katkesta", "revoke_invite": "Võta kutse tagasi", "leave_room": "Lahku ruumist", "retry": "Proovi uuesti", "use_redacted": "Kasuta varjatud versiooni", "send_original": "Saada algne tekst"
+    },
+    "confirm": {
+      "recall": "Kas võtta see avamata pöördumine tagasi? See kaob adressaadi aktiivsest loendist, kuid auditijälg säilib.",
+      "revoke": "Kas võtta kutse tagasi? Kutse link lõpetab töötamise.",
+      "leave": "Kas lahkuda ruumist? Sa ei näe pärast lahkumist ruumi uut sisu."
+    },
+    "notice": {
+      "memory": "Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada.",
+      "correction": "Parandus saadetakse uue versioonina. Varasem avatud versioon jääb ajalukku.",
+      "recalled": "Pöördumine võeti tagasi.", "corrected": "Parandatud versioon saadeti.", "invite_revoked": "Kutse võeti tagasi.", "room_left": "Lahkusid ruumist."
+    },
+    "correction": {
+      "title": "Parandatud versioon", "topic": "Teema", "situation": "Olukorra parandatud kirjeldus", "text": "Parandatud pöördumise tekst", "privacy_title": "Kontrolli jagatavat infot", "privacy_body": "Tekstis võib olla isikuandmeid. Muuda teksti, kasuta varjatud versiooni või kinnita teadlikult algse teksti saatmine."
+    },
+    "errors": { "load_failed": "Sinu jagamisi ei saanud laadida.", "action_failed": "Toiming ebaõnnestus. Proovi uuesti." }
   },
   "effective_practices": {
     "brand": "KOVISIOON",

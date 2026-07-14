@@ -311,6 +311,10 @@ export default function ProfiilBody({
     label: t("profile.usage.title"),
     onClick: () => setShowUsage(true)
   }, {
+    key: "sharings",
+    label: t("profile.my_sharings"),
+    onClick: () => navigateFromOrbit("/minu-jagamised")
+  }, {
     key: "subscription",
     label: t("profile.manage_subscription"),
     onClick: () => navigateFromOrbit(isMobileProfileMenu ? "/tellimus?return=profile&orbit=1" : `/tellimus${embedded ? "?return=profile" : ""}`)

@@ -1839,6 +1839,9 @@ model PreInquiry {
   receiverChecklist       Json?
   status                  PreInquiryStatus          @default(DRAFT)
   sentAt                  DateTime?
+  openedAt                DateTime?
+  recalledAt              DateTime?
+  supersededById          String?                   @unique
   externalSendConfirmedAt DateTime?
   createdAt               DateTime                  @default(now())
   updatedAt               DateTime                  @updatedAt
@@ -1847,10 +1850,14 @@ model PreInquiry {
   recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
   recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
   sourceJourney  Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)
+  supersededBy   PreInquiry?      @relation("PreInquirySupersession", fields: [supersededById], references: [id], onDelete: SetNull)
+  supersedes     PreInquiry?      @relation("PreInquirySupersession")
   covisionCases  CovisionCase[]
 
   @@index([authorId, updatedAt])
+  @@index([authorId, sentAt])
   @@index([recipientOwnerId, updatedAt])
+  @@index([recipientOwnerId, recalledAt, updatedAt])
   @@index([recipientEntryId])
   @@index([sourceJourneyId])
   @@index([recipientType])

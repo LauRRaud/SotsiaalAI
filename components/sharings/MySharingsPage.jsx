@@ -1,0 +1,383 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
+import ModalConfirm from "@/components/ui/ModalConfirm";
+import Panel from "@/components/ui/Panel";
+import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { localizePath } from "@/lib/localizePath";
+import { pushWithTransition } from "@/lib/routeTransition";
+import OwnershipBar from "./OwnershipBar";
+import styles from "./MySharingsPage.module.css";
+
+const EMPTY_SHARINGS = Object.freeze({
+  preInquiries: [],
+  rooms: [],
+  invites: [],
+  helpListings: [],
+  frameworkAcceptances: []
+});
+
+function statusKey(item) {
+  if (item.recalledAt) return "recalled";
+  if (item.supersededById) return "superseded";
+  return String(item.status || "sent").toLowerCase();
+}
+
+function Section({ title, help, empty, items, children }) {
+  return (
+    <section className={styles.section}>
+      <div className={styles.sectionHeading}>
+        <h2>{title}</h2>
+        <p>{help}</p>
+      </div>
+      {items.length ? <div className={styles.cards}>{children}</div> : <p className={styles.empty}>{empty}</p>}
+    </section>
+  );
+}
+
+export default function MySharingsPage() {
+  const router = useRouter();
+  const { t, locale } = useI18n();
+  const [sharings, setSharings] = useState(EMPTY_SHARINGS);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+  const [feedback, setFeedback] = useState("");
+  const [actionError, setActionError] = useState("");
+  const [busyKey, setBusyKey] = useState("");
+  const [confirmAction, setConfirmAction] = useState(null);
+  const [correction, setCorrection] = useState(null);
+  const [privacyPrompt, setPrivacyPrompt] = useState(null);
+  const feedbackRef = useRef(null);
+
+  const formatter = useMemo(
+    () => new Intl.DateTimeFormat(locale || "et", { dateStyle: "medium", timeStyle: "short" }),
+    [locale]
+  );
+  const formatDate = useCallback((value) => {
+    if (!value) return t("my_sharings.labels.unknown_time");
+    const date = new Date(value);
+    return Number.isFinite(date.getTime())
+      ? formatter.format(date)
+      : t("my_sharings.labels.unknown_time");
+  }, [formatter, t]);
+
+  const loadSharings = useCallback(async ({ signal } = {}) => {
+    setLoadError("");
+    try {
+      const response = await fetch("/api/my-sharings", { cache: "no-store", signal });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) {
+        throw new Error(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "my_sharings.errors.load_failed"
+        }));
+      }
+      setSharings(payload?.sharings || EMPTY_SHARINGS);
+      return true;
+    } catch (error) {
+      if (error?.name === "AbortError") return false;
+      setLoadError(error?.message || t("my_sharings.errors.load_failed"));
+      return false;
+    } finally {
+      if (!signal?.aborted) setLoading(false);
+    }
+  }, [t]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    void loadSharings({ signal: controller.signal });
+    return () => controller.abort();
+  }, [loadSharings]);
+
+  useEffect(() => {
+    if (!feedback && !actionError) return;
+    feedbackRef.current?.focus({ preventScroll: true });
+  }, [actionError, feedback]);
+
+  const ownershipLabels = useMemo(() => ({
+    visibility: t("my_sharings.ownership.visibility"),
+    origin: t("my_sharings.ownership.origin"),
+    validity: t("my_sharings.ownership.validity")
+  }), [t]);
+
+  const resetMessages = useCallback(() => {
+    setFeedback("");
+    setActionError("");
+  }, []);
+
+  const runConfirmedAction = useCallback(async () => {
+    const action = confirmAction;
+    if (!action || busyKey) return;
+    const key = `${action.kind}:${action.item.id}`;
+    setBusyKey(key);
+    resetMessages();
+    try {
+      const target = action.kind === "recall"
+        ? `/api/pre-inquiries/${encodeURIComponent(action.item.id)}/recall`
+        : action.kind === "revoke"
+          ? `/api/invites/${encodeURIComponent(action.item.id)}/revoke`
+          : `/api/rooms/${encodeURIComponent(action.item.id)}/leave`;
+      const body = action.kind === "recall"
+        ? { expectedUpdatedAt: action.item.updatedAt }
+        : { locale };
+      const response = await fetch(target, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) {
+        throw new Error(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "my_sharings.errors.action_failed"
+        }));
+      }
+      setConfirmAction(null);
+      setFeedback(t(`my_sharings.notice.${action.kind === "recall" ? "recalled" : action.kind === "revoke" ? "invite_revoked" : "room_left"}`));
+      await loadSharings();
+    } catch (error) {
+      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+    } finally {
+      setBusyKey("");
+    }
+  }, [busyKey, confirmAction, loadSharings, locale, resetMessages, t]);
+
+  const openCorrection = useCallback((item) => {
+    resetMessages();
+    setPrivacyPrompt(null);
+    setCorrection({
+      id: item.id,
+      expectedUpdatedAt: item.updatedAt,
+      topic: item.topic || "",
+      situation: item.situation || "",
+      text: item.sharedText || ""
+    });
+  }, [resetMessages]);
+
+  const sendCorrection = useCallback(async (privacyDecision = null) => {
+    if (!correction || busyKey) return;
+    const key = `correct:${correction.id}`;
+    setBusyKey(key);
+    resetMessages();
+    try {
+      const response = await fetch(`/api/pre-inquiries/${encodeURIComponent(correction.id)}/corrections`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          expectedUpdatedAt: correction.expectedUpdatedAt,
+          topic: correction.topic,
+          situation: correction.situation,
+          userEditedDraft: correction.text,
+          privacyDecision
+        })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) {
+        if (payload?.needsPrivacyConfirmation) {
+          setPrivacyPrompt(payload);
+          return;
+        }
+        throw new Error(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "my_sharings.errors.action_failed"
+        }));
+      }
+      setCorrection(null);
+      setPrivacyPrompt(null);
+      setFeedback(t("my_sharings.notice.corrected"));
+      await loadSharings();
+    } catch (error) {
+      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+    } finally {
+      setBusyKey("");
+    }
+  }, [busyKey, correction, loadSharings, resetMessages, t]);
+
+  const allEmpty = Object.values(sharings).every((items) => !Array.isArray(items) || items.length === 0);
+
+  const preInquiryValidity = useCallback((item) => {
+    if (item.recalledAt) return t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) });
+    if (item.supersededById) return t("my_sharings.ownership.superseded");
+    if (item.deliveryChannel === "EXTERNAL_EMAIL") return t("my_sharings.ownership.external_final");
+    if (item.openedAt) return t("my_sharings.ownership.opened", { date: formatDate(item.openedAt) });
+    return t("my_sharings.ownership.until_recall");
+  }, [formatDate, t]);
+
+  return (
+    <main className={styles.page}>
+      <div className={styles.shell} data-glass-back-anchor>
+        <SubpageHeader
+          title={t("my_sharings.title")}
+          onBack={() => pushWithTransition(router, localizePath("/profiil", locale))}
+          backAriaLabel={t("my_sharings.back")}
+        />
+        <p className={styles.lead}>{t("my_sharings.lead")}</p>
+
+        <div
+          ref={feedbackRef}
+          className={styles.liveRegion}
+          role={actionError ? "alert" : "status"}
+          aria-live="polite"
+          tabIndex={-1}
+        >
+          {actionError || feedback}
+        </div>
+
+        {loading ? <p className={styles.loading}>{t("my_sharings.loading")}</p> : null}
+        {!loading && loadError ? (
+          <Panel variant="subpage" padding="sm" className={styles.loadError}>
+            <p role="alert">{loadError}</p>
+            <Button variant="secondary" onClick={() => { setLoading(true); void loadSharings(); }}>
+              {t("my_sharings.actions.retry")}
+            </Button>
+          </Panel>
+        ) : null}
+
+        {!loading && !loadError && allEmpty ? <p className={styles.emptyAll}>{t("my_sharings.empty_all")}</p> : null}
+
+        {!loading && !loadError ? (
+          <div className={styles.ledger}>
+            <Section
+              title={t("my_sharings.sections.pre_inquiries")}
+              help={t("my_sharings.section_help.pre_inquiries")}
+              empty={t("my_sharings.empty.pre_inquiries")}
+              items={sharings.preInquiries}
+            >
+              {sharings.preInquiries.map((item) => {
+                const isCorrecting = correction?.id === item.id;
+                const recipient = item.recipientLabel || t("my_sharings.labels.unknown_recipient");
+                return (
+                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                    <div className={styles.cardTopline}>
+                      <div>
+                        <span className={styles.eyebrow}>{t(`my_sharings.status.${statusKey(item)}`)}</span>
+                        <h3>{item.topic || recipient}</h3>
+                      </div>
+                      <time dateTime={item.sentAt || undefined}>{formatDate(item.sentAt)}</time>
+                    </div>
+                    <OwnershipBar
+                      labels={ownershipLabels}
+                      visibility={t(item.deliveryChannel === "EXTERNAL_EMAIL" ? "my_sharings.ownership.external_email" : "my_sharings.ownership.shared_with", { name: recipient })}
+                      origin={t("my_sharings.ownership.you_sent")}
+                      validity={preInquiryValidity(item)}
+                    />
+                    <p className={styles.memoryNote}>{t("my_sharings.notice.memory")}</p>
+                    <div className={styles.actions}>
+                      {item.canRecall ? (
+                        <Button
+                          variant="secondary"
+                          disabled={Boolean(busyKey)}
+                          onClick={() => setConfirmAction({ kind: "recall", item })}
+                        >
+                          {t("my_sharings.actions.recall")}
+                        </Button>
+                      ) : null}
+                      {item.canCorrect ? (
+                        <Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => openCorrection(item)}>
+                          {t("my_sharings.actions.correct")}
+                        </Button>
+                      ) : null}
+                    </div>
+                    {isCorrecting ? (
+                      <form className={styles.correctionForm} onSubmit={(event) => { event.preventDefault(); void sendCorrection(); }}>
+                        <div className={styles.correctionHeading}>
+                          <h4>{t("my_sharings.correction.title")}</h4>
+                          <p>{t("my_sharings.notice.correction")}</p>
+                        </div>
+                        <label>
+                          <span>{t("my_sharings.correction.topic")}</span>
+                          <input value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
+                        </label>
+                        <label>
+                          <span>{t("my_sharings.correction.situation")}</span>
+                          <textarea required rows={4} value={correction.situation} onChange={(event) => setCorrection((current) => ({ ...current, situation: event.target.value }))} />
+                        </label>
+                        <label>
+                          <span>{t("my_sharings.correction.text")}</span>
+                          <textarea required rows={7} value={correction.text} onChange={(event) => setCorrection((current) => ({ ...current, text: event.target.value }))} />
+                        </label>
+                        {privacyPrompt ? (
+                          <div className={styles.privacyPrompt} role="alert">
+                            <h5>{t("my_sharings.correction.privacy_title")}</h5>
+                            <p>{t("my_sharings.correction.privacy_body")}</p>
+                            <div className={styles.actions}>
+                              <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => void sendCorrection({ action: "use_redacted" })}>{t("my_sharings.actions.use_redacted")}</Button>
+                              {privacyPrompt.allowOriginal ? <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => void sendCorrection({ action: "send_original" })}>{t("my_sharings.actions.send_original")}</Button> : null}
+                            </div>
+                          </div>
+                        ) : null}
+                        <div className={styles.actions}>
+                          <Button type="submit" disabled={Boolean(busyKey)}>{t("my_sharings.actions.send_correction")}</Button>
+                          <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => { setCorrection(null); setPrivacyPrompt(null); }}>{t("my_sharings.actions.cancel")}</Button>
+                        </div>
+                      </form>
+                    ) : null}
+                  </Panel>
+                );
+              })}
+            </Section>
+
+            <Section title={t("my_sharings.sections.rooms")} help={t("my_sharings.section_help.rooms")} empty={t("my_sharings.empty.rooms")} items={sharings.rooms}>
+              {sharings.rooms.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><h3>{item.title || t("my_sharings.sections.rooms")}</h3><span className={styles.eyebrow}>{t(item.role === "OWNER" ? "my_sharings.labels.room_owner" : "my_sharings.labels.room_member")}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.room_members")} origin={t("my_sharings.ownership.you_joined")} validity={t(item.canLeave ? "my_sharings.ownership.active" : "my_sharings.ownership.owner")} />
+                  {item.canLeave ? <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "leave", item })}>{t("my_sharings.actions.leave_room")}</Button></div> : null}
+                </Panel>
+              ))}
+            </Section>
+
+            <Section title={t("my_sharings.sections.invites")} help={t("my_sharings.section_help.invites")} empty={t("my_sharings.empty.invites")} items={sharings.invites}>
+              {sharings.invites.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span><h3>{item.roomTitle || item.inviteeEmail}</h3></div><time dateTime={item.expiresAt}>{formatDate(item.expiresAt)}</time></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.invite_recipient", { name: item.inviteeEmail })} origin={t("my_sharings.ownership.you_invited")} validity={t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) })} />
+                  <div className={styles.actions}><Button variant="secondary" disabled={Boolean(busyKey)} onClick={() => setConfirmAction({ kind: "revoke", item })}>{t("my_sharings.actions.revoke_invite")}</Button></div>
+                </Panel>
+              ))}
+            </Section>
+
+            <Section title={t("my_sharings.sections.help")} help={t("my_sharings.section_help.help")} empty={t("my_sharings.empty.help")} items={sharings.helpListings}>
+              {sharings.helpListings.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.kind}:${item.id}`}>
+                  <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.labels.${item.kind}`)}</span><h3>{item.title || t(`my_sharings.labels.${item.kind}`)}</h3></div><span>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.public_map")} origin={t("my_sharings.ownership.you_published")} validity={item.expiresAt ? t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) }) : t("my_sharings.ownership.no_expiry")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section title={t("my_sharings.sections.frameworks")} help={t("my_sharings.section_help.frameworks")} empty={t("my_sharings.empty.frameworks")} items={sharings.frameworkAcceptances}>
+              {sharings.frameworkAcceptances.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><h3>{item.frameworkKey}</h3><span>{item.frameworkVersion}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.private_record")} origin={t("my_sharings.ownership.you_confirmed")} validity={t("my_sharings.ownership.accepted", { date: formatDate(item.acceptedAt) })} />
+                </Panel>
+              ))}
+            </Section>
+          </div>
+        ) : null}
+      </div>
+
+      {confirmAction ? (
+        <ModalConfirm
+          message={t(`my_sharings.confirm.${confirmAction.kind}`)}
+          confirmLabel={t(`my_sharings.actions.${confirmAction.kind === "recall" ? "recall" : confirmAction.kind === "revoke" ? "revoke_invite" : "leave_room"}`)}
+          cancelLabel={t("my_sharings.actions.cancel")}
+          disabled={Boolean(busyKey)}
+          overlayClassName={styles.modalOverlay}
+          contentClassName={styles.modalContent}
+          actionsClassName={styles.modalActions}
+          onConfirm={runConfirmedAction}
+          onCancel={() => { if (!busyKey) setConfirmAction(null); }}
+        />
+      ) : null}
+    </main>
+  );
+}

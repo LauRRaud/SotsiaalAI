@@ -143,8 +143,8 @@ test("best-effort dispatch waits for and contains a mail transport failure", asy
   assert.deepEqual(result, { sent: false, reason: "send_failed" });
 });
 
-test("create and update paths await the internal arrival attempt before returning", async () => {
+test("create, update, and correction paths await the internal arrival attempt before returning", async () => {
   const source = await readFile(new URL("../../lib/preInquiries.js", import.meta.url), "utf8");
   const awaitedDispatches = source.match(/await dispatchInternalArrivalEmail\(/gu) || [];
-  assert.equal(awaitedDispatches.length, 2);
+  assert.equal(awaitedDispatches.length, 3);
 });
