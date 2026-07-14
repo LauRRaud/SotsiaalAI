@@ -243,3 +243,46 @@ kontrollid:
 Merge main-i ja deploy on enne `OPUS HEAKS KIIDETUD` otsust keelatud. U7 ei
 vaja DB migratsiooni ega env-muudatust. Täpne jätkamispunkt on Opuse audit;
 Soli teostuses ei ole teadaolevat P0/P1 blokeerijat.
+
+---
+
+## OPUSE SÕLTUMATU AUDIT — U7 (2026-07-14)
+
+> **VERDIKT: `OPUS HEAKS KIIDETUD`** — P0 puudub, P1 puudub. Merge on lubatud.
+> Kolm P2-tähelepanekut allpool; ükski ei blokeeri.
+
+- Auditeeritud: `codex/u7-plain-language` @ `657d3c68`, baas `aef93393`. Read-only.
+- Mudel/effort: Opus 4.8, Extra (xhigh).
+- Jooksutasin ise: U7 sihttestid **12/12**, kogu repo `npm test` **1234/1234**, `i18n:check` OK.
+
+### 1. Kõik neli minu §13 sisendi muudatust on rakendatud
+
+| Minu nõue (doc 13 §13) | Teostus | Otsus |
+|---|---|---|
+| Golden-testid vajavad **masinloetavat negatiivset invarianti** | `lib/chat/plainLanguage.js` — `evaluatePlainLanguageInvariant` viie kaitstud klassiga: allikaviited, arvud/tähtajad, tingimuslaused, ebakindluse markerid, kriisijuhis | ✅ |
+| **U7-D (dokumendid/U10) v1-st välja** | dokumendi-/generation-/meeting-faile diffis **ei ole** (kontrollisin faililoendit) | ✅ |
+| Test, et `plainLanguage` **ei ole seotud** `simple_language` filtriga | `tests/preInquiries/plainLanguageModeContract.test.js` — „reader preference is not coupled to provider simple-language capability": eelpöördumise pind ei viita `simple_language`-le, teenuseprofiil ei viita `plainLanguage`-le, ja `simple_language` on endiselt osutaja võimekusena alles | ✅ |
+| U7 võib alata **U1/U2-st sõltumatult** | baas `aef93393`, ei puuduta ühtegi U1/U2 faili | ✅ |
+
+### 2. Turvakontroll — puhas
+
+- **Prompt-injektsioon on võimatu.** `normalizePlainLanguagePreference(value) → value === true` (`plainLanguage.js:26`) ja `requestBootstrap.js:155` kutsub seda kliendi payload'i peal. **Iga mitte-`true` väärtus — string, objekt, süstitud tekst — muutub `false`-iks.** Kliendilt ei jõua promptini ühtegi baiti teksti.
+- **Instruktsioon on serveri oma.** `buildPlainLanguageSystemInstruction(replyLang)` → `buildLocalizedExtraSystemInstruction("PLAIN_LANGUAGE_MODE")` → külmutatud ET/EN/RU kataloog. Test tõendab, et instruktsioon jõuab `input.at(-2)` system-rolli sõnumina täpselt sellisena.
+- **Adapter on päriselt juhtmestatud** — `app/api/chat/route.js:319`: `...(plainLanguage ? [buildPlainLanguageSystemInstruction(replyLang)] : [])`. (Kontrollisin seda eraldi, sest just selle klassi viga — valmis moodul, mida keegi ei kutsu — oli U4-P1-1 ja U8-P1-1 juur.)
+- **Eelistus ei anna uusi õigusi ega jäta jälge:** `plainLanguage` ei salvestata andmebaasi, ei logita ega lisata metadata'sse (kontrollisin `console.`/`prisma.`/`create(`/`update(`/`log`/`metadata` mustrite vastu). **Skeemi ei muudetud** — nagu §13-s soovitasin.
+- **Hydration fail-closed:** vaikeväärtus `plainLanguage: false`, ja **iga** lugemiskoht kasutab `=== true` (cookie, DOM-dataset, merge, preview). Puuduv väli → `false`.
+- **Juhendatud eelpöördumine ei peida kohustuslikku:** test tõendab `fields.consent`, `fields.urgency`, `riskGate.userVisibleMessage` ja muutmata `assessmentState` salvestuspayload'i säilimist. Režiim ei muuda salvestatud sisu.
+
+### 3. Golden-invariant — korrektne mõlemas suunas
+
+12 golden-juhtumit tõendavad, et kontrollija **ei anna valepositiive** legitiimsete lihtsustuste peal; „invariant gate fails closed" tõendab viie kaitstud klassi kohta eraldi, et kontrollija **püüab** rikkumise (`[SHS § 15]` → „seadust", `10 päeva` → „varsti", `kui` kaob, `võib` → `muutub`, kriisitekst asendatud). Kriisijuhis võetakse päris prompt-kataloogist (`langStrings(locale, "CLIENT").crisis`), mitte fixture'ist.
+
+### 4. P2 — kolm tähelepanekut (ei blokeeri)
+
+1. **Golden-testid tõendavad kontrollijat, mitte mudelit.** `GOLDEN_CASES` on **käsitsi kirjutatud** source/candidate paarid; mudelit testis ei kutsuta (repos ei ole live-mudeli teste, samamoodi nagu ei ole elavat DB-d). See on õige ja aus viis seda CI-s teha, ja **dokk ei ülepaku** — ütleb „masinloetavad golden-testid", mitte „tõendab, et mudel säilitab faktid". **Aga:** §7.4 valmisoleku kriteerium („golden testid näitavad, et faktid/allikad/erandid ei kao") on praegu täidetud ainult **tööriista tasemel**. Enne kui režiimi saab pidada tootmises tõendatuks, tuleb harness päris mudeli väljundite vastu jooksutada — see eval on veel võlgu. Soovitan selle kirjutada §7.4 juurde ausalt välja.
+2. **Kriisijuhise invariant kontrollib olemasolu, mitte asukohta.** ET-prompt nõuab: „säilita see juhis sõna-sõnalt **ja esimesena**". `evaluatePlainLanguageInvariant` kontrollib ainult `candidateText.includes(exactCrisisInstruction)` (`plainLanguage.js:34–38`). Ümbersõnastus, mis matab 112-juhise vastuse lõppu, **läbib värava**. Kontrollija katab „sõna-sõnalt", mitte „esimesena" — lubaduse ja tõendi vahel on vahe. Parandus on väike (positsioonikontroll), aga see on tooteotsus: kas „esimesena" on kõva nõue või juhis.
+3. **Merge-konflikti risk U6-ga.** U7 ja minu U6 muudavad mõlemad `messages/{et,en,ru}.json`. Konflikt on ootuspärane ja triviaalne, aga integratsiooni järjekord tuleb teadlikult valida.
+
+### 5. Otsus
+
+Merge on lubatud. P2-2 (kriisijuhise positsioon) tasub sulgeda enne, kui režiim laiemalt sisse lülitatakse; P2-1 (päris eval) on U7 valmisoleku aus järelejäänud võlg, mitte selle haru defekt.
