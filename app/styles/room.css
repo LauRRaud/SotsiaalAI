@@ -488,7 +488,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .room-text {
   position: absolute;
   left: 50%;
-  top: clamp(5.5rem, 13vh, 8.5rem);
+  top: 50%;
   width: min(42rem, calc(100vw - 3rem));
   margin: 0;
   opacity: 0;
@@ -519,32 +519,9 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   left: 50%;
 }
 
-/* Kasutaja paranduspiltidelt mõõdetud stopipõhised keskpunktid. Transformi
-   vertikaalne -50% elab RoomStage'i rAF-tsüklis, et fade-drift säiliks. */
-.room-text[data-stop="stop-1"] {
-  left: 48%;
-  top: 34%;
-}
-.room-text[data-stop="stop-2"] {
-  left: 37%;
-  top: 33%;
-}
-.room-text[data-stop="stop-3"] {
-  left: 57%;
-  top: 38%;
-}
-.room-text[data-stop="stop-4"] {
-  left: 54%;
-  top: 37%;
-}
-.room-text[data-stop="stop-5"] {
-  left: 36%;
-  top: 38%;
-}
-.room-text[data-stop="stop-6"] {
-  left: 50%;
-  top: 50%;
-}
+/* Kõik peatused ilmuvad ekraani keskele (galaktika-taustal pole enam
+   fotokompositsiooni ankruid) — transformi -50%/-50% elab RoomStage'i
+   rAF-tsüklis koos lennuefekti translateZ-iga. */
 /* Tekstikandja: puhas tekstikiht mulli sees. Kogu klaas-välimus
    (taust, blur, ääris, vari) elab .room-text peal — vt kommentaari
    sealt (backdrop-filter nõuab transformi-kandjaga sama elementi). */
@@ -1017,21 +994,6 @@ html[data-reduce-motion="1"] .room-walk-audio {
 @media (max-width: 768px) {
   .room-text {
     max-width: min(26rem, 78vw);
-  }
-  .room-text[data-stop] {
-    left: 50%;
-  }
-  .room-text[data-stop="stop-1"],
-  .room-text[data-stop="stop-2"],
-  .room-text[data-stop="stop-3"] {
-    top: 31%;
-  }
-  .room-text[data-stop="stop-4"],
-  .room-text[data-stop="stop-5"] {
-    top: 42%;
-  }
-  .room-text[data-stop="stop-6"] {
-    top: 50%;
   }
   .room-text--intro {
     left: 1.1rem;

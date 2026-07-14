@@ -203,6 +203,30 @@ export default function Galaxy({
   const targetMouseActive = useRef(0.0);
   const smoothMouseActive = useRef(0.0);
 
+  /* Elavad väärtused käivad REFI kaudu, mitte effecti deps'i kaudu.
+     RoomStage renderdab käivituse ja marsruudivahetuse ajal mitu korda;
+     iga uus deps-identiteet (focal/rotation on massiiv-vaikeväärtused —
+     uus identiteet IGAL renderil!) ehitaks WebGL-konteksti maha ja
+     uuesti, mis sähvatab valgelt. Kontekst luuakse ainult üks kord. */
+  const propsRef = useRef(null);
+  propsRef.current = {
+    focal,
+    rotation,
+    starSpeed,
+    density,
+    hueShift,
+    disableAnimation,
+    speed,
+    mouseInteraction,
+    glowIntensity,
+    saturation,
+    mouseRepulsion,
+    repulsionStrength,
+    twinkleIntensity,
+    rotationSpeed,
+    autoCenterRepulsion,
+  };
+
   useEffect(() => {
     if (!ctnDom.current) return;
     const ctn = ctnDom.current;
@@ -236,6 +260,7 @@ export default function Galaxy({
     window.addEventListener("resize", resize, false);
     resize();
 
+    const init = propsRef.current;
     const geometry = new Triangle(gl);
     program = new Program(gl, {
       vertex: vertexShader,
@@ -245,23 +270,23 @@ export default function Galaxy({
         uResolution: {
           value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height),
         },
-        uFocal: { value: new Float32Array(focal) },
-        uRotation: { value: new Float32Array(rotation) },
-        uStarSpeed: { value: starSpeed },
-        uDensity: { value: density },
-        uHueShift: { value: hueShift },
-        uSpeed: { value: speed },
+        uFocal: { value: new Float32Array(init.focal) },
+        uRotation: { value: new Float32Array(init.rotation) },
+        uStarSpeed: { value: init.starSpeed },
+        uDensity: { value: init.density },
+        uHueShift: { value: init.hueShift },
+        uSpeed: { value: init.speed },
         uMouse: {
           value: new Float32Array([smoothMousePos.current.x, smoothMousePos.current.y]),
         },
-        uGlowIntensity: { value: glowIntensity },
-        uSaturation: { value: saturation },
-        uMouseRepulsion: { value: mouseRepulsion },
-        uTwinkleIntensity: { value: twinkleIntensity },
-        uRotationSpeed: { value: rotationSpeed },
-        uRepulsionStrength: { value: repulsionStrength },
+        uGlowIntensity: { value: init.glowIntensity },
+        uSaturation: { value: init.saturation },
+        uMouseRepulsion: { value: init.mouseRepulsion },
+        uTwinkleIntensity: { value: init.twinkleIntensity },
+        uRotationSpeed: { value: init.rotationSpeed },
+        uRepulsionStrength: { value: init.repulsionStrength },
         uMouseActiveFactor: { value: 0.0 },
-        uAutoCenterRepulsion: { value: autoCenterRepulsion },
+        uAutoCenterRepulsion: { value: init.autoCenterRepulsion },
         uTransparent: { value: transparent },
       },
     });
@@ -271,10 +296,31 @@ export default function Galaxy({
 
     function update(t) {
       animateId = requestAnimationFrame(update);
-      if (!disableAnimation) {
-        program.uniforms.uTime.value = t * 0.001;
-        program.uniforms.uStarSpeed.value = (t * 0.001 * starSpeed) / 10.0;
+      const p = propsRef.current;
+      const u = program.uniforms;
+
+      if (!p.disableAnimation) {
+        u.uTime.value = t * 0.001;
+        u.uStarSpeed.value = (t * 0.001 * p.starSpeed) / 10.0;
       }
+
+      // Häälestus tuleb refist: prop'i muutus jõuab kohale ilma remountita
+      u.uFocal.value[0] = p.focal[0];
+      u.uFocal.value[1] = p.focal[1];
+      u.uRotation.value[0] = p.rotation[0];
+      u.uRotation.value[1] = p.rotation[1];
+      u.uDensity.value = p.density;
+      u.uHueShift.value = p.hueShift;
+      u.uSpeed.value = p.speed;
+      u.uGlowIntensity.value = p.glowIntensity;
+      u.uSaturation.value = p.saturation;
+      u.uMouseRepulsion.value = p.mouseRepulsion;
+      u.uTwinkleIntensity.value = p.twinkleIntensity;
+      u.uRotationSpeed.value = p.rotationSpeed;
+      u.uRepulsionStrength.value = p.repulsionStrength;
+      u.uAutoCenterRepulsion.value = p.autoCenterRepulsion;
+
+      if (!p.mouseInteraction) targetMouseActive.current = 0.0;
 
       const lerpFactor = 0.05;
       smoothMousePos.current.x += (targetMousePos.current.x - smoothMousePos.current.x) * lerpFactor;
@@ -282,9 +328,9 @@ export default function Galaxy({
 
       smoothMouseActive.current += (targetMouseActive.current - smoothMouseActive.current) * lerpFactor;
 
-      program.uniforms.uMouse.value[0] = smoothMousePos.current.x;
-      program.uniforms.uMouse.value[1] = smoothMousePos.current.y;
-      program.uniforms.uMouseActiveFactor.value = smoothMouseActive.current;
+      u.uMouse.value[0] = smoothMousePos.current.x;
+      u.uMouse.value[1] = smoothMousePos.current.y;
+      u.uMouseActiveFactor.value = smoothMouseActive.current;
 
       renderer.render({ scene: mesh });
     }
@@ -292,6 +338,7 @@ export default function Galaxy({
     ctn.appendChild(gl.canvas);
 
     function handleMouseMove(e) {
+      if (!propsRef.current.mouseInteraction) return;
       const rect = ctn.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
@@ -303,39 +350,20 @@ export default function Galaxy({
       targetMouseActive.current = 0.0;
     }
 
-    if (mouseInteraction) {
-      ctn.addEventListener("mousemove", handleMouseMove);
-      ctn.addEventListener("mouseleave", handleMouseLeave);
-    }
+    /* Kuulajad on alati küljes; mouseInteraction'i väravab handler ise —
+       nii ei nõua selle lülitamine konteksti taasehitust. */
+    ctn.addEventListener("mousemove", handleMouseMove);
+    ctn.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       cancelAnimationFrame(animateId);
       window.removeEventListener("resize", resize);
-      if (mouseInteraction) {
-        ctn.removeEventListener("mousemove", handleMouseMove);
-        ctn.removeEventListener("mouseleave", handleMouseLeave);
-      }
+      ctn.removeEventListener("mousemove", handleMouseMove);
+      ctn.removeEventListener("mouseleave", handleMouseLeave);
       ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [
-    focal,
-    rotation,
-    starSpeed,
-    density,
-    hueShift,
-    disableAnimation,
-    speed,
-    mouseInteraction,
-    glowIntensity,
-    saturation,
-    mouseRepulsion,
-    twinkleIntensity,
-    rotationSpeed,
-    repulsionStrength,
-    autoCenterRepulsion,
-    transparent,
-  ]);
+  }, [transparent]);
 
   return <div ref={ctnDom} className={`galaxy-container${className ? ` ${className}` : ""}`} {...rest} />;
 }
