@@ -168,34 +168,43 @@ Lennuteekond sobib eriti:
 
 Staatus: **KANDIDAAT JÄRGMISE RUUMILISE PROTOTÜÜBI JAOKS**, mitte kinnitatud tooteotsus.
 
-Repos on tehniline lähteallikas [`public/room/flight-effect.md`](../../public/room/flight-effect.md) ning kaks visuaalset ruumireferentsi kaustas [`public/room/ruumi pildid`](../../public/room/ruumi%20pildid). Kirjeldatud lahendus loob kerimisega juhitava lennu läbi eri sügavustele paigutatud 3D-plaanide. Selles on juba arvestatud iOS Safari 3D-lamendamise, jõudluse, piltide eellaadimise, klaviatuurinavigatsiooni, vahelejätmise ja `prefers-reduced-motion` varuvaatega.
+Repos on tehniline lähteallikas [`public/room/flight-effect.md`](../../public/room/flight-effect.md). Kirjeldatud lahendus loob kerimisega juhitava lennu läbi eri sügavustele paigutatud 3D-plaanide. Selles on juba arvestatud iOS Safari 3D-lamendamise, jõudluse, piltide eellaadimise, klaviatuurinavigatsiooni, vahelejätmise ja `prefers-reduced-motion` varuvaatega.
 
-See ei ole platvormis täiesti kasutamata idee. Aktiivse `main`-i `RoomStage` kasutab sama ühe tasandi perspektiivi põhimõtet saabumisteekonna tekstipeatuste `translateZ`-liikumiseks. Järgmine prototüüp peab seetõttu **laiendama olemasolevat RoomStage'i rAF- ja kerimisloogikat**, mitte lisama selle kõrvale teist konkureerivat animatsioonimootorit.
+**Flight ei tähenda siin tingimata füüsilisest ruumist teise lendamist.** Selle põhikasutus on tavalise pika allapoole keritava lehe asendamine sügavuses vahetuvate sisupindadega: kasutaja kerib järgmise leheosa, tööetapi, tabeli või analüüsipaneeli enda ette ning eelmine taandub. Nii ei pea suur hulk tihedat sisu korraga ühel ekraanil olema.
+
+See on eraldi süsteem ruumi enda kerimisega juhitud pildikaadrite vahetusest. Kausta [`public/room/ruumi pildid`](../../public/room/ruumi%20pildid) referentsid ja `lib/room-frames.js` kuuluvad poolelioleva ruumikontseptsiooni juurde, kus kerimine võib muuta ruumi vaadet või taustakaadrit. Need ei ole flight-efekti valmis disain ega selle kasutamise eeltingimus. Järgmistes ülesannetes käsitletakse neid kahe eraldi prototüübina:
+
+1. **ruumikaadrite teekond** — ruumi enda visuaal ja pildid muutuvad kerides;
+2. **flight-sisuteekond** — lehe päris sisupinnad vahetuvad sügavuses ükshaaval.
+
+Flight-mehaanika väike osa on aktiivses `main`-is juba tõestatud: `RoomStage` kasutab ühe tasandi perspektiivi saabumisteekonna tekstipeatuste `translateZ`-liikumiseks. See tõestab tehnilist võtet, kuid ei tähenda, et sisulehtede flight peab elama samas komponendis. Prototüüp peab otsustama, kas vajatakse lehepõhist `FlightStack`-laadset komponenti või olemasoleva loogika jagatud abifunktsioone; samal lehel ei tohi kaks süsteemi korraga kerimist juhtida.
 
 Sobivad võimalikud kasutused:
 
-- harv ja tähenduslik liikumine ühest ruumivööndist teise, näiteks fuajee → isiklik tööruum → ühine koostööruum;
+- pikk töö- või ülevaateleht, mille suured sisublokid avanevad ühekaupa;
+- mitu mahukat tabelit või analüüsipaneeli, mida ei ole vaja samal ajal võrrelda;
 - juhendatud mitmeastmeline teekond, kus iga sügavusplaan on päris tööetapp, mitte dekoratiivne slaid;
-- valmis töö liikumise visualiseerimine aktiivsest tööruumist lõpetatud juhtumi või praktikate alale;
-- ruumide avastuslik eelvaade, mille kõrval säilib alati otselink või ruumiindeks.
+- ühe töövoo järjestikused vaated, näiteks sisend → analüüs → otsus → tulemus;
+- tähenduslik üleminek ruumivööndite vahel ainult siis, kui üleminek aitab mõista konteksti või nähtavuse muutust.
 
 Efekti ei kasutata vaikimisi:
 
-- iga kaardikliki või tavapärase lehevahetuse vahel;
-- pika vormi peitmiseks animatsiooni sisse;
+- iga kaardikliki või lühikese tavapärase lehevahetuse vahel;
+- pika vormi pelgalt animatsiooni sisse peitmiseks — jaotus peab vastama sisulistele osadele;
 - olukorras, kus kasutaja peab kiiresti tagasi pöörduma, kriitilist infot leidma või paralleelselt eri andmeid võrdlema;
 - privaatsus- või rollipiiri ainsa selgitusena — ruumivahetusega peab kaasnema ka nähtav tekstiline kinnitus, kellele järgmine ala ja selle objektid nähtavad on.
 
 Prototüübi kohustuslikud piirid:
 
-1. iga plaan peab olema avatav otselingi, klaviatuuri ja „jäta vahele” teega;
+1. iga sisupind peab olema avatav otselingi või ankruga, klaviatuuri ja nähtava sisunavigatsiooniga;
 2. brauseri tagasi-edasi liikumine ning poolelioleva töö seis peavad säilima;
 3. vähendatud liikumise korral kasutatakse sama sisu lamedat järjestust, mitte tühja või kärbitud varianti;
-4. mobiilil mõõdetakse enne kasutuselevõttu kaadrisagedust, mälukulu ja piltide dekodeerimise aega;
-5. kaks PNG-referentsi (ligikaudu 1,9 MB kumbki) on ideepildid, mitte otse tootmisse saadetavad varad — tootmisvara vajab sobivat mõõtu ja WebP/AVIF-versiooni;
-6. sügavus ja liikumine peavad kandma töövoo tähendust; kui sama tulemus on selgem ühe rahuliku vahetusega, ei kasutata täislendu.
+4. kasutaja näeb alati, milline osa on aktiivne ning mitu osa on ees ja taga;
+5. tabeli päis, veerunimed ja tegevused peavad jääma loetavaks ka ülemineku ajal; aktiivseks saab ainult parajasti ees olev pind;
+6. mobiilil mõõdetakse enne kasutuselevõttu kaadrisagedust, mälukulu ja piltide dekodeerimise aega;
+7. sügavus ja liikumine peavad kandma töövoo tähendust; kui sama tulemus on selgem sakkide, akordioni või rahuliku vahetusega, ei kasutata täislendu.
 
-Järgmise ruumiülesande esimene otsus on seega: **kas kasutusjuht vajab päriselt ruumidevahelist lendu või piisab praegu kasutusel olevast kergest sügavusüleminekust?** Alles pärast seda valitakse täis-FlightScene'i prototüüp või RoomStage'i olemasoleva efekti tagasihoidlik laiendus.
+Järgmise ülesande esimene otsus on seega: **kas prototüüp käsitleb ruumi pildikaadrite muutumist või lehe sisupindade flight-vahetust?** Flight-prototüübi puhul valitakse seejärel üks päris tiheda sisuga leht ning võrreldakse, kas tabelite või etappide ühekaupa sügavuses esitamine on tavalisest pikast lehest arusaadavam.
 
 ### 4.4. Vabalt kasutatav lõuend
 
