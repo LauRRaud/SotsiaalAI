@@ -470,6 +470,36 @@
       "body": "<p>Before AI processing, RAG search, document drafting, logging, or saving a public help listing, SotsiaalAI may check whether the input contains personal data or other sensitive information. The check may use the platform's own local rules and, where deployed on the server, the locally running OpenAI Privacy Filter model.</p><p>If the check finds a name, personal identification code, address, phone number, email address, or another identifiable detail, the platform may show a warning and offer choices: edit the text, send a masked version, or continue with the original text in an allowed private workflow. Continuing with the original sensitive text may not be available for public help requests or help offers.</p><p>Masking is a data-minimisation aid, not full anonymisation or a legal guarantee. The user remains responsible for ensuring that the information entered is necessary for the workflow and that there is an appropriate basis for processing it.</p>"
     }
   },
+  "service_provider_profile": {
+    "errors": {
+      "availability_status_invalid": "Choose one of the three availability states.",
+      "availability_confirmation_invalid": "The availability confirmation was incomplete.",
+      "availability_confirmation_failed": "Availability could not be confirmed.",
+      "availability_conflict": "Availability changed in the meantime. Load the latest state and confirm again.",
+      "service_not_found": "The service was not found in your service profile."
+    }
+  },
+  "service_availability": {
+    "status": {
+      "accepting": "Accepting new inquiries",
+      "waitlist": "Intake with an estimated wait",
+      "not_accepting": "Not accepting new inquiries now",
+      "unknown": "Availability not confirmed"
+    },
+    "age": {
+      "unknown": "Confirmation time unknown",
+      "today": "Confirmed today",
+      "yesterday": "Confirmed yesterday",
+      "days": "Confirmed {count} days ago",
+      "weeks": "Confirmed {count} weeks ago"
+    },
+    "warning": {
+      "stale": "This information may be outdated. Check with the provider.",
+      "unknown": "Availability has not been confirmed yet. Check before contacting the provider.",
+      "not_accepting": "The service remains discoverable, but it is not accepting new inquiries now."
+    },
+    "wait_label": "Estimated wait"
+  },
   "workspace_feature_pages": {
     "back_to_workspace": "Back to workspace",
     "pre_inquiries": {
@@ -949,10 +979,9 @@
       },
       "availability_options": {
         "unspecified": "Unspecified",
-        "available": "Available",
-        "queue": "Waiting list",
-        "limited": "Limited intake",
-        "paused": "Paused"
+        "accepting": "Accepting new inquiries",
+        "waitlist": "Intake with an estimated wait",
+        "not_accepting": "Not accepting new inquiries now"
       },
       "requirement_options": {
         "unspecified": "Unspecified",
@@ -981,7 +1010,18 @@
       "errors": {
         "load_failed": "Service profile could not be loaded.",
         "save_failed": "Service profile could not be saved.",
-        "address_suggestions_failed": "Address suggestions could not be loaded."
+        "address_suggestions_failed": "Address suggestions could not be loaded.",
+        "availability_conflict": "Availability changed in the meantime. The latest state was loaded; review it and confirm again.",
+        "availability_confirmation_failed": "Availability could not be confirmed.",
+        "availability_status_invalid": "Choose one of the three availability states."
+      },
+      "availability": {
+        "legacy": "Previous unconfirmed value",
+        "wait_description": "Estimated wait",
+        "save_before_confirm": "Save the changed state or wait estimate before confirming it separately.",
+        "confirm": "I confirm this information is current",
+        "confirming": "Confirming...",
+        "confirmed": "Availability was confirmed."
       },
       "choice_summary": {
         "selected": "Selected",
@@ -3174,6 +3214,29 @@
         "meta_description": "Upload and manage RAG materials."
       }
     },
+    "service_availability": {
+      "eyebrow": "U4 trust layer",
+      "title": "Service availability freshness",
+      "lead": "Outdated and unconfirmed services. Admins can inspect the state and send reminders, but cannot confirm on a provider's behalf.",
+      "dispatch": "Send reminders for overdue services",
+      "dispatching": "Sending reminders...",
+      "dispatch_result": "Sent: {sent}; not sent: {notSent}; skipped: {skipped}.",
+      "table_caption": "Outdated or unconfirmed services",
+      "empty": "Availability is current for every published service.",
+      "read_only_note": "This view is read-only: only the service profile owner can confirm availability.",
+      "reason_unknown": "The availability reason needs clarification.",
+      "columns": {
+        "service": "Service and organisation",
+        "owner": "Owner",
+        "state": "State",
+        "checked": "Last confirmation",
+        "reason": "Reason for attention"
+      },
+      "errors": {
+        "load_failed": "The availability overview could not be loaded.",
+        "dispatch_failed": "The reminders could not be processed."
+      }
+    },
     "framework_acceptances": {
       "title": "Framework acceptances",
       "subtitle": "Admin audit view for worker-use framework confirmations created during registration.",
@@ -4514,6 +4577,7 @@
     "install_card": "Install",
     "admin_analytics": "Analytics",
     "admin_rag": "RAG",
+    "admin_service_availability": "Service freshness",
     "admin_acceptances": "Acceptances",
     "walk_1": "Whether you come with a life question, as a social work specialist or as a service provider — step inside.",
     "walk_2a": "Welcome.",

@@ -16,6 +16,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
 import { localizePath } from "@/lib/localizePath";
+import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
 import {
@@ -1012,6 +1013,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     return Boolean(new URLSearchParams(window.location.search || "").get("fromJourney"));
   }, [activeDraftJourneySharedInfo]);
   const selectedRecipientReferralNotice = getPreInquiryReferralNotice(selectedRecipient);
+  const selectedRecipientAvailabilityNotices = useMemo(
+    () => preInquiryAvailabilityNotices(selectedRecipient, t),
+    [selectedRecipient, t]
+  );
   const selectedRecipientSupportsPlatform =
     selectedRecipient?.deliveryChannel === "INTERNAL" ||
     selectedRecipient?.providerProfile?.acceptsPlatformPreInquiries === true;
@@ -2506,6 +2511,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             return (
               <article
                 key={entry.id}
+                className="pre-inquiry-recipient-card"
                 data-selected={isSelectedRecipient ? "true" : undefined}
               >
                 <span>
@@ -2545,6 +2551,16 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                     {getPreInquiryReferralNotice(entry)}
                   </span>
                 ) : null}
+                {preInquiryAvailabilityNotices(entry, t).map(({ service, presentation }) => (
+                  <span
+                    key={`${service.id || service.name}-availability`}
+                    className="pre-inquiry-recipient-card__availability"
+                    data-tone={presentation.tone}
+                    role="status"
+                  >
+                    {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
+                  </span>
+                ))}
                 <span>
                   <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
                     Vali see kontakt
@@ -2628,6 +2644,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           {selectedRecipientReferralNotice ? (
             <p>{selectedRecipientReferralNotice} Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.</p>
           ) : null}
+          {selectedRecipientAvailabilityNotices.map(({ service, presentation }) => (
+            <p key={`${service.id || service.name}-preview-availability`} role="status">
+              {presentation.icon} {service.name}: {presentation.label}. {presentation.ageText}. {presentation.warning}
+            </p>
+          ))}
         </div>
         <div>
           {selectedRecipientMailto ? (
@@ -3272,10 +3293,9 @@ function serviceProfileServiceAreaTypeOptions(t) {
 function serviceProfileAvailabilityOptions(t) {
   return [
     { value: "", label: readText(t, "workspace_feature_pages.service_profile.availability_options.unspecified", "Täpsustamata") },
-    { value: "Saadaval", label: readText(t, "workspace_feature_pages.service_profile.availability_options.available", "Saadaval") },
-    { value: "Järjekord", label: readText(t, "workspace_feature_pages.service_profile.availability_options.queue", "Järjekord") },
-    { value: "Piiratud vastuvõtt", label: readText(t, "workspace_feature_pages.service_profile.availability_options.limited", "Piiratud vastuvõtt") },
-    { value: "Peatatud", label: readText(t, "workspace_feature_pages.service_profile.availability_options.paused", "Peatatud") }
+    { value: "accepting", label: readText(t, "workspace_feature_pages.service_profile.availability_options.accepting", "Võtab uusi pöördumisi vastu") },
+    { value: "waitlist", label: readText(t, "workspace_feature_pages.service_profile.availability_options.waitlist", "Ooteajaga vastuvõtt") },
+    { value: "not_accepting", label: readText(t, "workspace_feature_pages.service_profile.availability_options.not_accepting", "Praegu ei võta uusi pöördumisi") }
   ];
 }
 
@@ -3329,6 +3349,7 @@ function createServiceProfileServiceForm(service = null, index = 0, profile = nu
     String(service?.website || "").trim()
   );
   return {
+    id: service?.id || "",
     name: service?.name || "",
     description: service?.description || "",
     longDescription: service?.longDescription || "",
@@ -3355,6 +3376,8 @@ function createServiceProfileServiceForm(service = null, index = 0, profile = nu
     priceDescription: service?.priceDescription || "",
     availabilityStatus: service?.availabilityStatus || "",
     availabilityDescription: service?.availabilityDescription || "",
+    availability: service?.availability || null,
+    availabilityFingerprint: service?.availabilityFingerprint || "",
     directContactAllowed: service?.directContactAllowed || "",
     requiresKovAssessment: service?.requiresKovAssessment || "",
     requiresKovDecision: service?.requiresKovDecision || "",
@@ -3693,6 +3716,7 @@ function ServiceProfileSurface({ t }) {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [confirmingServiceId, setConfirmingServiceId] = useState("");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const feeOptions = useMemo(
@@ -3738,6 +3762,11 @@ function ServiceProfileSurface({ t }) {
   const selectedSummaryLabel = readText(t, "workspace_feature_pages.service_profile.choice_summary.selected", "Valitud");
   const selectedSummaryEmptyLabel = readText(t, "workspace_feature_pages.service_profile.choice_summary.empty", "-");
 
+  const applyLoadedProfile = useCallback((loadedProfile) => {
+    setProfile(loadedProfile || null);
+    setForm(createServiceProfileForm(loadedProfile || null));
+  }, []);
+
   useEffect(() => {
     let cancelled = false;
     async function loadProfile() {
@@ -3751,8 +3780,7 @@ function ServiceProfileSurface({ t }) {
         }
         if (!cancelled) {
           const loadedProfile = payload?.profile || null;
-          setProfile(loadedProfile);
-          setForm(createServiceProfileForm(loadedProfile));
+          applyLoadedProfile(loadedProfile);
         }
       } catch (loadError) {
         if (!cancelled) {
@@ -3767,7 +3795,7 @@ function ServiceProfileSurface({ t }) {
     return () => {
       cancelled = true;
     };
-  }, [t]);
+  }, [applyLoadedProfile, t]);
 
   const updateField = useCallback((field, value) => {
     setForm((current) => ({
@@ -3860,6 +3888,35 @@ function ServiceProfileSurface({ t }) {
         .map((item, itemIndex) => ({ ...item, sortOrder: itemIndex }))
     }));
   }, []);
+  async function confirmServiceAvailability(service) {
+    if (!service?.id || !service?.availabilityFingerprint || confirmingServiceId) return;
+    setConfirmingServiceId(service.id);
+    setNotice("");
+    setError("");
+    try {
+      const response = await fetch(`/api/service-provider/profile/services/${encodeURIComponent(service.id)}/availability-confirmation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fingerprint: service.availabilityFingerprint })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (response.status === 409) {
+        const freshResponse = await fetch("/api/service-provider/profile", { cache: "no-store" });
+        const freshPayload = await freshResponse.json().catch(() => ({}));
+        if (freshResponse.ok) applyLoadedProfile(freshPayload?.profile || null);
+        throw new Error(readText(t, "workspace_feature_pages.service_profile.errors.availability_conflict", "Kättesaadavuse info muutus vahepeal. Laadisin värske seisu; vaata see üle ja kinnita uuesti."));
+      }
+      if (!response.ok) {
+        throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.availability_confirmation_failed", "Kättesaadavust ei saanud kinnitada."));
+      }
+      applyLoadedProfile(payload?.profile || null);
+      setNotice(readText(t, "workspace_feature_pages.service_profile.availability.confirmed", "Kättesaadavuse info kinnitati."));
+    } catch (confirmationError) {
+      setError(confirmationError?.message || readText(t, "workspace_feature_pages.service_profile.errors.availability_confirmation_failed", "Kättesaadavust ei saanud kinnitada."));
+    } finally {
+      setConfirmingServiceId("");
+    }
+  }
   async function handleSubmit(event) {
     event.preventDefault();
     if (saving) return;
@@ -3934,8 +3991,7 @@ function ServiceProfileSurface({ t }) {
         throw new Error(payload?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
       }
       const savedProfile = payload?.profile || null;
-      setProfile(savedProfile);
-      setForm(createServiceProfileForm(savedProfile));
+      applyLoadedProfile(savedProfile);
       setNotice(readText(t, "workspace_feature_pages.service_profile.save_success", "Teenuseprofiil salvestati."));
     } catch (saveError) {
       setError(saveError?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
@@ -4329,16 +4385,56 @@ function ServiceProfileSurface({ t }) {
                     ariaLabel={readText(t, "workspace_feature_pages.service_profile.service_items.availability_status", "Kättesaadavus")}
                     value={service.availabilityStatus}
                     onChange={(nextValue) => updateServiceItem(index, "availabilityStatus", nextValue)}
-                    options={availabilityOptions}
+                    options={availabilityOptions.some((option) => option.value === service.availabilityStatus) || !service.availabilityStatus
+                      ? availabilityOptions
+                      : [
+                          ...availabilityOptions,
+                          {
+                            value: service.availabilityStatus,
+                            label: `${readText(t, "workspace_feature_pages.service_profile.availability.legacy", "Varasem kinnitamata väärtus")}: ${service.availabilityStatus}`
+                          }
+                        ]}
                   />
                 </Label>
                 <Label>
-                  <span>{readText(t, "workspace_feature_pages.service_profile.service_items.availability_description", "Kättesaadavuse täpsustus")}</span>
+                  <span>{service.availabilityStatus === "waitlist"
+                    ? readText(t, "workspace_feature_pages.service_profile.availability.wait_description", "Ligikaudne ooteaeg")
+                    : readText(t, "workspace_feature_pages.service_profile.service_items.availability_description", "Kättesaadavuse täpsustus")}</span>
                   <ServiceProfileTextarea
                     value={service.availabilityDescription}
                     onChange={(event) => updateServiceItem(index, "availabilityDescription", event.target.value)}
                   />
                 </Label>
+                {(() => {
+                  const savedService = (profile?.serviceItems || []).find((item) => item.id === service.id);
+                  const presentation = serviceAvailabilityPresentation(t, savedService?.availability || service.availability);
+                  const availabilityChanged = Boolean(savedService) && (
+                    savedService.availabilityStatus !== service.availabilityStatus ||
+                    String(savedService.availabilityDescription || "") !== String(service.availabilityDescription || "")
+                  );
+                  return (
+                    <div className="service-profile-availability" data-tone={presentation.tone} role="status">
+                      <p className="service-profile-availability__status">
+                        <span aria-hidden="true">{presentation.icon}</span> {presentation.label}
+                      </p>
+                      <p>{presentation.ageText}</p>
+                      {presentation.warning ? <p>{presentation.warning}</p> : null}
+                      {availabilityChanged ? (
+                        <p>{readText(t, "workspace_feature_pages.service_profile.availability.save_before_confirm", "Salvesta muudetud olek või ooteaeg enne eraldi kinnitamist.")}</p>
+                      ) : null}
+                      <Button
+                        type="button"
+                        size="sm"
+                        disabled={!savedService?.availabilityFingerprint || availabilityChanged || Boolean(confirmingServiceId)}
+                        onClick={() => confirmServiceAvailability(savedService)}
+                      >
+                        {confirmingServiceId === service.id
+                          ? readText(t, "workspace_feature_pages.service_profile.availability.confirming", "Kinnitan...")
+                          : readText(t, "workspace_feature_pages.service_profile.availability.confirm", "Kinnitan, et info kehtib")}
+                      </Button>
+                    </div>
+                  );
+                })()}
               </div>
               <div>
                 <Label>

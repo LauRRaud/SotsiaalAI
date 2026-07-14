@@ -31,6 +31,8 @@
     "service-map:sync:rag": "node scripts/sync-service-map-from-rag.mjs",
     "service-map:geocode:dry": "node scripts/geocode-service-map-entries.mjs --dry-run",
     "service-map:geocode": "node scripts/geocode-service-map-entries.mjs",
+    "service-availability:remind": "tsx --tsconfig jsconfig.json scripts/service-availability-reminders.mjs",
+    "service-availability:remind:dry": "tsx --tsconfig jsconfig.json scripts/service-availability-reminders.mjs --dry-run",
     "build": "npm run i18n:check && next build --turbopack",
     "build:webpack": "npm run i18n:check && next build --webpack",
     "video:dev:timeline": "node scripts/make-dev-video.mjs",

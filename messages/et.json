@@ -470,6 +470,36 @@
       "body": "<p>SotsiaalAI võib enne AI-töötlust, RAG-otsingut, dokumendi koostamist, logimist või avaliku abikirje salvestamist kontrollida, kas sisend sisaldab isikuandmeid või muud tundlikku infot. Kontroll võib kasutada nii platvormi enda lokaalseid reegleid kui ka serveris lokaalselt töötavat OpenAI Privacy Filteri mudelit, kui see on kasutusele võetud.</p><p>Kui kontroll leiab näiteks nime, isikukoodi, aadressi, telefoninumbri, e-posti aadressi või muu äratuntava detaili, võib platvorm kuvada hoiatuse ja pakkuda valikuid: muuta teksti, saata tekst maskeeritult või lubatud privaatses töövoos jätkata algse tekstiga. Avalikes abisoovides ja abipakkumistes ei pruugi algse tundliku tekstiga jätkamine olla lubatud.</p><p>Maskeerimine on andmete minimeerimise abivahend, mitte täielik anonüümimine ega õiguslik garantii. Kasutaja vastutab jätkuvalt selle eest, et sisestatav info oleks töövoo jaoks vajalik ja et tal oleks selle töötlemiseks asjakohane alus.</p>"
     }
   },
+  "service_provider_profile": {
+    "errors": {
+      "availability_status_invalid": "Vali üks kolmest kättesaadavuse olekust.",
+      "availability_confirmation_invalid": "Kättesaadavuse kinnitus ei olnud täielik.",
+      "availability_confirmation_failed": "Kättesaadavust ei saanud kinnitada.",
+      "availability_conflict": "Kättesaadavuse info muutus vahepeal. Laadi värske seis ja kinnita uuesti.",
+      "service_not_found": "Teenust ei leitud sinu teenuseprofiilist."
+    }
+  },
+  "service_availability": {
+    "status": {
+      "accepting": "Võtab uusi pöördumisi vastu",
+      "waitlist": "Ooteajaga vastuvõtt",
+      "not_accepting": "Praegu uusi pöördumisi vastu ei võta",
+      "unknown": "Kättesaadavus kinnitamata"
+    },
+    "age": {
+      "unknown": "Kinnitamise aeg teadmata",
+      "today": "Kinnitatud täna",
+      "yesterday": "Kinnitatud eile",
+      "days": "Kinnitatud {count} päeva tagasi",
+      "weeks": "Kinnitatud {count} nädalat tagasi"
+    },
+    "warning": {
+      "stale": "Info võib olla aegunud. Küsi teenuseosutajalt üle.",
+      "unknown": "Kättesaadavuse infot ei ole veel kinnitatud. Küsi enne pöördumist üle.",
+      "not_accepting": "Teenus jääb leitavaks, kuid uusi pöördumisi praegu vastu ei võeta."
+    },
+    "wait_label": "Ligikaudne ooteaeg"
+  },
   "workspace_feature_pages": {
     "back_to_workspace": "Tagasi töölauale",
     "pre_inquiries": {
@@ -949,10 +979,9 @@
       },
       "availability_options": {
         "unspecified": "Täpsustamata",
-        "available": "Saadaval",
-        "queue": "Järjekord",
-        "limited": "Piiratud vastuvõtt",
-        "paused": "Peatatud"
+        "accepting": "Võtab uusi pöördumisi vastu",
+        "waitlist": "Ooteajaga vastuvõtt",
+        "not_accepting": "Praegu ei võta uusi pöördumisi"
       },
       "requirement_options": {
         "unspecified": "Täpsustamata",
@@ -981,7 +1010,18 @@
       "errors": {
         "load_failed": "Teenuseprofiili laadimine ebaõnnestus.",
         "save_failed": "Teenuseprofiili salvestamine ebaõnnestus.",
-        "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida."
+        "address_suggestions_failed": "Aadressisoovitusi ei saanud laadida.",
+        "availability_conflict": "Kättesaadavuse info muutus vahepeal. Värske seis laaditi; vaata see üle ja kinnita uuesti.",
+        "availability_confirmation_failed": "Kättesaadavust ei saanud kinnitada.",
+        "availability_status_invalid": "Vali üks kolmest kättesaadavuse olekust."
+      },
+      "availability": {
+        "legacy": "Varasem kinnitamata väärtus",
+        "wait_description": "Ligikaudne ooteaeg",
+        "save_before_confirm": "Salvesta muudetud olek või ooteaeg enne eraldi kinnitamist.",
+        "confirm": "Kinnitan, et info kehtib",
+        "confirming": "Kinnitan...",
+        "confirmed": "Kättesaadavuse info kinnitati."
       },
       "choice_summary": {
         "selected": "Valitud",
@@ -3174,6 +3214,29 @@
         "meta_description": "Lae üles ja halda RAG-materjale."
       }
     },
+    "service_availability": {
+      "eyebrow": "U4 usalduskiht",
+      "title": "Teenuste kättesaadavuse värskus",
+      "lead": "Aegunud ja kinnitamata teenused. Admin näeb seisu ja saab käivitada meeldetuletused, kuid ei kinnita teenuseosutaja eest.",
+      "dispatch": "Saada tähtaja ületanud teenustele meeldetuletus",
+      "dispatching": "Saadan meeldetuletusi...",
+      "dispatch_result": "Saadetud: {sent}; saatmata: {notSent}; vahele jäetud: {skipped}.",
+      "table_caption": "Aegunud või kinnitamata teenuste nimekiri",
+      "empty": "Kõigi avaldatud teenuste kättesaadavus on värske.",
+      "read_only_note": "See vaade on read-only: kättesaadavuse saab kinnitada ainult teenuseprofiili omanik.",
+      "reason_unknown": "Kättesaadavuse põhjus vajab täpsustamist.",
+      "columns": {
+        "service": "Teenus ja organisatsioon",
+        "owner": "Omanik",
+        "state": "Olek",
+        "checked": "Viimane kinnitus",
+        "reason": "Tähelepanu põhjus"
+      },
+      "errors": {
+        "load_failed": "Kättesaadavuse ülevaadet ei saanud laadida.",
+        "dispatch_failed": "Meeldetuletusi ei saanud töödelda."
+      }
+    },
     "framework_acceptances": {
       "title": "Tööalase kasutuse kinnitused",
       "subtitle": "Admini auditivaade kasutajate tööalase kasutuse ja andmetöötluse kinnitustele.",
@@ -4514,6 +4577,7 @@
     "install_card": "Paigalda",
     "admin_analytics": "Analüütika",
     "admin_rag": "RAG",
+    "admin_service_availability": "Teenuste värskus",
     "admin_acceptances": "Kinnitused",
     "walk_1": "Kui oled eluküsimusega pöörduja, sotsiaaltöö spetsialist või teenuseosutaja — astu sisse.",
     "walk_2a": "Tere tulemast.",

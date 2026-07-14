@@ -990,6 +990,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     () => [
       { key: "analytics", label: t("room.admin_analytics"), href: "/admin/analytics", icon: <AnalyticsIcon /> },
       { key: "rag", label: t("room.admin_rag"), href: "/admin/rag", icon: <RagDbIcon /> },
+      { key: "service-availability", label: t("room.admin_service_availability"), href: "/admin/service-availability", icon: <ServiceMapIcon /> },
       { key: "kinnitused", label: t("room.admin_acceptances"), href: "/admin/framework-acceptances", icon: <AcceptShieldIcon /> },
       { key: "tagasi", label: t("room.back_card"), action: "haldus-tagasi", icon: <BackArrowIcon /> },
     ],

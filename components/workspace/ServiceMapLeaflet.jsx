@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { normalizeServiceMapAccessPath, serviceMapAccessPathHasDetails } from "@/lib/serviceMap/accessPath";
+import { serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 
 const ESTONIA_BOUNDS = [
   [57.45, 21.35],
@@ -368,6 +369,27 @@ function appendServiceItems(parent, entry, t) {
       service.priceDescription
     ].filter(Boolean).join(" | ");
     appendText(item, "p", "service-map-popup__service-meta", meta);
+    const availability = serviceAvailabilityPresentation(t, service.availability);
+    const availabilityBlock = document.createElement("div");
+    availabilityBlock.className = "service-map-popup__availability";
+    availabilityBlock.dataset.tone = availability.tone;
+    appendText(
+      availabilityBlock,
+      "p",
+      "service-map-popup__availability-status",
+      `${availability.icon} ${availability.label}`
+    );
+    if (service.availability?.status === "waitlist" && availability.description) {
+      appendText(
+        availabilityBlock,
+        "p",
+        "service-map-popup__availability-wait",
+        `${readText(t, "service_availability.wait_label", "Ligikaudne ooteaeg")}: ${availability.description}`
+      );
+    }
+    appendText(availabilityBlock, "p", "service-map-popup__availability-age", availability.ageText);
+    appendText(availabilityBlock, "p", "service-map-popup__availability-warning", availability.warning);
+    item.appendChild(availabilityBlock);
     section.appendChild(item);
   }
 
