@@ -1,6 +1,6 @@
 # 08 — Sol: U12 + U3 „Minu jagamised” ja eelpöördumise tagasivõtmine
 
-> **Staatus:** SOL VALMIS ÜLEANDMISEKS — täisvertikaal harul teostatud ja kontrollitud; main-i ei ole ühendatud
+> **Staatus:** SOL VALMIS ÜLEANDMISEKS — täisvertikaal harul teostatud, kontrollitud ja push'itud; main-i ei ole ühendatud; Opuse kordusaudit ning sõltumatu U12+U3 järelkontroll on veel avatud väravad
 >
 > **Mudel / effort:** Codex, väga kõrge
 >
@@ -298,8 +298,16 @@ Põhifailid sõltumatuks järelkontrolliks:
 
 ## 14. Jätkamiskoht
 
-**Hetk:** U12+U3 täisvertikaal on harul `codex/u12-u3-trust-package` teostatud, testitud ja pushimiseks valmis. Põhitööpuu teadaolevad ruumikaadrite muudatused jäid samaks ning neid ei puudutatud.
+**Hetk:** U12+U3 täisvertikaal on harul `codex/u12-u3-trust-package` teostatud, testitud ja commit'iga `c21883b2` originisse push'itud. Põhitööpuu teadaolevad ruumikaadrite muudatused jäid samaks ning neid ei puudutatud.
 
 **Järgmine konkreetne samm:** Opuse auditite lõppedes teha selle haru sõltumatu U12+U3 järelkontroll, pöörates eraldi tähelepanu recall/open/correction paralleeljärjestustele, owner-only koondile, privaatsusväravale ja päris autentitud andmetega UI-le. Alles seejärel otsustada merge/cherry-pick.
 
 **Ära tee jätkamisel:** ära ühenda main-i enne auditite ja sõltumatu järelkontrolli lõppu; ära deploy; ära muuda Opuse auditidokumente ega kõrvalisi ruumifaile.
+
+## 15. 2026-07-14 jätkukontroll pärast `origin/main` edenemist
+
+- Värske `origin/main` tipp on `d6c2c695` (`Fix audited Covision privacy and wellbeing races`); U12+U3 haru alus jääb teadlikult `11381100` peale ning haru ei rebase'itud ega ühendatud main-iga.
+- `11381100..origin/main` ja `11381100..codex/u12-u3-trust-package` muudetud failide nimekirjadel puudub kattuvus. Main-i uus commit puudutab Kovisiooni kõneserializerit, Tööheaolu paneeli, nende teste ja Opuse auditidokumente, mitte U12+U3 vertikaali faile.
+- Opuse auditid `06-opus-kovisioon-lopetatud-juhtumid-parimad-praktikad-jarelkontroll.md` ja `07-opus-tooheaolu-kovisioon-jarelkontroll.md` ning operatsiooniprogress `01-opus-parast-auditit-operatsioon-u4-u8-tooplaan-ja-progress.md` loeti värskelt `origin/main`-ist lõpuni.
+- Dokumenteeritud väravaseis on endiselt **ootab Opuse kordusauditit**: Soli A-P1-1 ning B-P1-1/B-P2-1 parandused on main-is ja testitud, kuid sõltumatu Opuse kordusauditi lõppotsust ei ole neisse dokumentidesse veel lisatud. Commit'i pealkirja ei käsitleta auditi heakskiiduna.
+- Seetõttu ei tehta merge'i, rebase'i, cherry-pick'i ega deploy'd. Järgmine lubatud kvaliteedisamm on Opuse kordusauditi lõppotsus; pärast selle sulgumist peab U12+U3 haru kontrollima teine sõltumatu ülevaataja. Käesolev Soli/Codexi enesekontroll ei kvalifitseeru sõltumatuks järelkontrolliks.
