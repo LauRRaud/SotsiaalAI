@@ -48,7 +48,7 @@ export async function GET(request, context) {
     }
     return json({
       ok: true,
-      inquiry: serializePreInquiry(inquiry)
+      inquiry: serializePreInquiry(inquiry, { viewerId: auth.userId })
     });
   } catch (error) {
     console.error("[pre-inquiries] detail load failed", safeError(error));

@@ -1682,7 +1682,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         body: JSON.stringify({
           receiverNote: receiverNoteDraft,
           receiverChecklist: receiverChecklistDraft,
-          status: status || inquiry.status || "READY"
+          status: status || inquiry.status || "READY",
+          expectedUpdatedAt: inquiry.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));

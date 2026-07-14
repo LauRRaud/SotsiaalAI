@@ -300,6 +300,9 @@ test("trusted accept wins before recall and preserves the first openedAt", async
   const accepted = await acceptPreInquiry(RECIPIENT, "inq_original", { db: db.client });
   assert.equal(accepted.status, "READY");
   assert.ok(accepted.openedAt);
+  assert.equal(accepted.receiverNote, "Receiver-only note");
+  assert.equal("email" in accepted.author, false);
+  assert.equal(accepted.recipientOwner.email, "recipient@example.test");
 
   await rejectsWith(
     recallPreInquiry(AUTHOR, "inq_original", {
@@ -314,11 +317,63 @@ test("trusted accept wins before recall and preserves the first openedAt", async
   const workflow = await updatePreInquiryReceiverWorkflow(
     RECIPIENT,
     "inq_original",
-    { receiverNote: "Reviewed", status: "ARCHIVED" },
+    {
+      receiverNote: "Reviewed",
+      status: "ARCHIVED",
+      expectedUpdatedAt: accepted.updatedAt
+    },
     { db: db.client }
   );
   assert.equal(new Date(workflow.openedAt).getTime(), new Date(firstOpenedAt).getTime());
   assert.equal(workflow.status, "ARCHIVED");
+});
+
+test("receiver workflow rejects missing and stale client snapshots before writing", async () => {
+  const db = createDb([baseInquiry({
+    status: "READY",
+    openedAt: new Date("2026-07-14T10:30:00.000Z")
+  })]);
+
+  await rejectsWith(
+    updatePreInquiryReceiverWorkflow(
+      RECIPIENT,
+      "inq_original",
+      { receiverNote: "Missing fingerprint", status: "READY" },
+      { db: db.client }
+    ),
+    409,
+    "pre_inquiries.errors.open_conflict"
+  );
+  await rejectsWith(
+    updatePreInquiryReceiverWorkflow(
+      RECIPIENT,
+      "inq_original",
+      {
+        receiverNote: "Stale fingerprint",
+        status: "READY",
+        expectedUpdatedAt: "2000-01-01T00:00:00.000Z"
+      },
+      { db: db.client }
+    ),
+    409,
+    "pre_inquiries.errors.open_conflict"
+  );
+
+  assert.equal(db.counters.updates, 0);
+  assert.equal(db.row().receiverNote, "Receiver-only note");
+
+  const updated = await updatePreInquiryReceiverWorkflow(
+    RECIPIENT,
+    "inq_original",
+    {
+      receiverNote: "Fresh fingerprint",
+      status: "READY",
+      expectedUpdatedAt: db.row().updatedAt
+    },
+    { db: db.client }
+  );
+  assert.equal(updated.receiverNote, "Fresh fingerprint");
+  assert.equal(db.counters.updates, 1);
 });
 
 test("repeated acceptance never resurrects an archived receiver workflow", async () => {
@@ -409,8 +464,10 @@ test("correction creates exactly one clean SENT version and repeats return it", 
   assert.equal(first.created, true);
   assert.equal(first.inquiry.status, "SENT");
   assert.equal(first.inquiry.recipientOwnerId, RECIPIENT);
-  assert.equal(first.inquiry.receiverNote, "");
-  assert.notDeepEqual(first.inquiry.receiverChecklist, opened.receiverChecklist);
+  assert.equal("receiverNote" in first.inquiry, false);
+  assert.equal("receiverChecklist" in first.inquiry, false);
+  assert.equal(first.inquiry.author.email, "author@example.test");
+  assert.equal("email" in first.inquiry.recipientOwner, false);
   assert.equal(first.inquiry.assessmentState, null);
   assert.equal(db.row().supersededById, first.inquiry.id);
 
