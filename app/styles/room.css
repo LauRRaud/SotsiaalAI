@@ -28,43 +28,12 @@
   will-change: transform;
 }
 
-/* Kõik kaadrid on sama laiformaadiga. LQIP täidab tausta pehme servaväljana,
-   täiskaader ise kasutab contain-režiimi: nii ei lõigata laias ega kõrges
-   brauseriaknas kompositsiooni üla-/alaserva või külgi ära. */
-.room-frame {
+/* Galaxy-taust täidab lava servast servani, kõikides režiimides. */
+.room-galaxy {
   position: absolute;
   inset: 0;
   overflow: hidden;
   background-color: #0e0907;
-  background-size: cover;
-  background-position: center;
-  will-change: transform, opacity;
-  transform-origin: 50% 47%;
-}
-.room-frame img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-/* Mikroelu: väga aeglane hingav suum lõppseisus (paar promilli) */
-@keyframes room-breathe {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.006);
-  }
-}
-.room[data-mode="room"] .room-frame--12 img {
-  animation: room-breathe 22s var(--ease-drift) infinite alternate;
-}
-html[data-reduce-motion="1"] .room-frame--12 img,
-html[data-contrast="hc"] .room-frame--12 img {
-  animation: none;
 }
 
 /* Vinjett istutab liidese ruumi ja parandab servade kontrasti */
@@ -110,11 +79,6 @@ html[data-contrast="hc"] .room-frame--12 img {
 }
 html[data-reduce-motion="1"] .room-stage {
   transition: none;
-}
-
-/* Paneelirežiimis on lõppkaader ainus nähtav; sujuv üleandmine */
-.room[data-mode="panel"] .room-frame {
-  transition: opacity var(--dur-slow) var(--ease-soft);
 }
 
 /* ---------- Laadimisloor: „Selguse väli“ ----------
@@ -509,12 +473,17 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 }
 
 
-/* ---------- Tekstipeatused: üks kompaktne fookusväli ---------- */
+/* ---------- Tekstipeatused: üks kompaktne fookusväli ----------
+   Lennuefekt (public/room/flight-effect.md): perspective elab OTSE
+   tekstiplaanide vanemal, üks tasand, ilma pesastatud preserve-3d'ta —
+   RoomStage'i rAF-tsükkel kirjutab igale .room-text translateZ-i. */
 .room-texts {
   position: fixed;
   inset: 0;
   z-index: var(--z-home-ui);
   pointer-events: none;
+  perspective: 1400px;
+  perspective-origin: 50% 46%;
 }
 .room-text {
   position: absolute;

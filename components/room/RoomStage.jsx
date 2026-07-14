@@ -68,7 +68,7 @@ import {
   BestPracticeIcon,
 } from "@/components/brand/icons/CardIcons";
 import { wellbeingTools } from "@/lib/wellbeingTools";
-import { ROOM_FRAMES, ROOM_FRAME_WIDTH, ROOM_FRAME_HEIGHT } from "@/lib/room-frames";
+import Galaxy from "@/components/room/Galaxy";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
@@ -105,71 +105,23 @@ const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
  * (paneeli avamine ja sulgemine) kõndi ei korrata. */
 let walkDoneThisLoad = false;
 
-/* 12 loogilist kaadrit jagavad progressi ühtlaselt. Kaadrid 11–12
-   kasutavad sama lukustatud lõppfotot ja ainult väikest kontrollitud
-   kaameratransformi: nii ei morfi diivan ega kohvilaud istumise ajal. */
-const FINAL_FRAME_INDEX = ROOM_FRAMES.length - 1;
-const TAIL_START_INDEX = Math.max(
-  0,
-  ROOM_FRAMES.findIndex((frame) => frame.stableTail)
-);
-const FRAME_SPAN = 1 / ROOM_FRAMES.length;
-const TAIL_FINAL_SCALE = 1;
-const TAIL_SCALES = [1.04, 1.02];
-const TAIL_Y = [1.2, 0.6];
-const SEGS = ROOM_FRAMES.map((frame, i) => {
-  const from = i * FRAME_SPAN;
-  const to = (i + 1) * FRAME_SPAN;
-  if (!frame.stableTail) return [from, to, 1, 1];
-  const tailIndex = i - TAIL_START_INDEX;
-  const z0 = TAIL_SCALES[tailIndex] ?? 1;
-  const z1 = TAIL_SCALES[tailIndex + 1] ?? TAIL_FINAL_SCALE;
-  return [from, to, z0, z1];
-});
-const BLEND = FRAME_SPAN * 0.18;
-const SIT_BLEND = FRAME_SPAN * 0.32;
 const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast viimast teksti
 
 /* Tekstipeatused püsivad ühes kompaktses fookusväljas. Mitmelauselise
-   peatuse read ei lenda enam eri ekraaniservadesse. */
+   peatuse read ei lenda enam eri ekraaniservadesse. Iga peatus "lendab
+   läbi" kaamera ees (flight-effect: vt public/room/flight-effect.md) —
+   depth on translateZ-i lõppväärtus peatuse tsooni lõpus. */
 const TEXT_STOPS = [
-  { keys: ["walk_1"], from: 0.035, to: 0.165 },
-  { keys: ["walk_2a", "walk_2b"], from: 0.2, to: 0.35 },
-  { keys: ["walk_3a", "walk_3b"], from: 0.372, to: 0.528 },
-  { keys: ["walk_4a", "walk_4b"], from: 0.552, to: 0.708 },
-  { keys: ["walk_5a", "walk_5b"], from: 0.732, to: 0.85 },
-  { keys: ["walk_6"], from: 0.875, to: 0.945 },
+  { keys: ["walk_1"], from: 0.035, to: 0.165, depth: 620 },
+  { keys: ["walk_2a", "walk_2b"], from: 0.2, to: 0.35, depth: 620 },
+  { keys: ["walk_3a", "walk_3b"], from: 0.372, to: 0.528, depth: 620 },
+  { keys: ["walk_4a", "walk_4b"], from: 0.552, to: 0.708, depth: 620 },
+  { keys: ["walk_5a", "walk_5b"], from: 0.732, to: 0.85, depth: 620 },
+  { keys: ["walk_6"], from: 0.875, to: 0.945, depth: 620 },
 ];
 
 const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
 const ease = (t) => t * t * (3 - 2 * t); // smoothstep
-const seglerp = (a, b, t) => a + (b - a) * t;
-
-/* Sulanduse aken kaadri i ja i+1 vahel → järgmise kihi opacity. */
-function blendAmount(i, p) {
-  const boundary = SEGS[i][1];
-  const w = i >= TAIL_START_INDEX - 1 ? SIT_BLEND : BLEND;
-  return ease(clamp01((p - (boundary - w)) / w));
-}
-
-/* Tavakaadrid püsivad 1:1. Lukustatud lõppfoto suumib väga mõõdukalt
-   välja, et imiteerida toolile laskumist ilma mööbli morfimiseta. */
-function frameZoom(i, p) {
-  const [from, to, z0, z1] = SEGS[i];
-  if (p < from) return z0;
-  const t = clamp01((p - from) / (to - from));
-  return seglerp(z0, z1, t);
-}
-
-function frameY(i, p) {
-  if (i < TAIL_START_INDEX) return 0;
-  const [from, to] = SEGS[i];
-  const tailIndex = i - TAIL_START_INDEX;
-  const y0 = TAIL_Y[tailIndex] ?? 0;
-  const y1 = TAIL_Y[tailIndex + 1] ?? 0;
-  if (p < from) return y0;
-  return seglerp(y0, y1, clamp01((p - from) / (to - from)));
-}
 
 /* Teksti sisse/välja hajumine: [from,to] aknas, pehme servaga. */
 function fadeWindow(p, from, to, edge = 0.035) {
@@ -302,7 +254,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   );
 
   const stageRef = useRef(null);
-  const frameRefs = useRef([]);
   const textRefs = useRef([]);
   const hintRef = useRef(null);
   const skipRef = useRef(null);
@@ -347,46 +298,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
 
   /* ---------- stseeni arvutus ja rakendamine ---------- */
   const applyScene = useCallback((p) => {
-    const layers = frameRefs.current;
-    if (!layers.length) return;
+    if (!stageRef.current) return;
 
-    // Milline segment on aktiivne?
-    let active = 0;
-    for (let i = 0; i < SEGS.length; i++) {
-      if (p >= SEGS[i][0]) active = i;
-    }
-
-    for (let i = 0; i < layers.length; i++) {
-      const el = layers[i];
-      if (!el) continue;
-      let opacity = 0;
-      let scale = 1;
-      let x = 0;
-      let y = frameY(i, p);
-
-      if (i === active) {
-        opacity = 1;
-        scale = frameZoom(i, p);
-      } else if (i === active + 1) {
-        opacity = blendAmount(active, p);
-        scale = frameZoom(i, p);
-      } else if (i === active - 1) {
-        // Eelmine püsib all kuni sulandus katab (järgmine on peal)
-        opacity = blendAmount(i, p) < 1 ? 1 : 0;
-        scale = frameZoom(i, p);
-      }
-
-      if (opacity <= 0.0001) {
-        if (el.style.opacity !== "0") el.style.opacity = "0";
-        continue;
-      }
-      el.style.opacity = String(opacity);
-      el.style.transform = `translate3d(${x}%, ${y}%, 0) scale(${scale})`;
-      el.style.filter = "";
-    }
-
-    // Tekstipeatused: üks kompaktne fookusplokk korraga. CSS määrab igale
-    // stopile kasutaja kompositsioonietaloni järgi eraldi keskpunkti.
+    // Tekstipeatused: üks kompaktne fookusplokk korraga, "lennates" läbi
+    // kaadri ees (flight-effect: vt public/room/flight-effect.md §3-4).
+    // drift 0→1 peatuse tsoonis: z liigub kaugelt (-depth/2) läbi kaamera
+    // (0, täisnähtavus) edasi (+depth/2), nagu tekst lendaks vaatajast läbi.
     for (let s = 0; s < TEXT_STOPS.length; s++) {
       const el = textRefs.current[s];
       if (!el) continue;
@@ -397,8 +314,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         continue;
       }
       const drift = clamp01((p - stop.from) / (stop.to - stop.from));
+      const flightT = ease(drift);
+      const z = (flightT - 0.5) * stop.depth;
+      const scale = 0.96 + flightT * 0.08;
       el.style.opacity = String(alpha);
-      el.style.transform = `translate3d(-50%, calc(-50% + ${(1 - alpha) * 10 - drift * 5}px), 0)`;
+      el.style.transform = `translate3d(-50%, calc(-50% + ${(1 - alpha) * 10 - drift * 5}px), ${z.toFixed(1)}px) scale(${scale.toFixed(3)})`;
       el.style.filter = "none";
     }
 
@@ -547,24 +467,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     } catch {}
   }, []);
 
-  /* Lõppkaader jääb käivituse ja kõigi paneelide ruumitaustaks. */
-  const setFinalFrame = useCallback((visible, animate = true) => {
-    const el = frameRefs.current[FINAL_FRAME_INDEX];
-    if (!el) return;
-    const to = visible ? "1" : "0";
-    el.style.transform = "translate3d(0, 0, 0) scale(1)";
-    if (!animate || reducedRef.current || typeof el.animate !== "function") {
-      el.style.opacity = to;
-      return;
-    }
-    const from = el.style.opacity || "0";
-    el.style.opacity = to;
-    el.animate([{ opacity: from }, { opacity: to }], {
-      duration: visible ? 700 : 550,
-      easing: "cubic-bezier(0.22, 0.61, 0.36, 1)",
-    });
-  }, []);
-
   /* Käivitus: sama lukustatud maalivaade → klaasid (faas 1) → sisu (faas 2).
      CSS lavastab faasid [data-power] atribuudi järgi. Käivitusega
      lõpeb ka kõnd LÕPLIKULT (mode → room): kerimisruum kaob ja vanu
@@ -572,7 +474,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const igniteOn = useCallback(() => {
     if (powerRef.current === "on" || powerRef.current === "igniting") return;
     if (reducedRef.current) {
-      setFinalFrame(true, false);
       setPower("on");
       setCardsReady(true);
       setMode("room");
@@ -588,7 +489,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     setIntroSai(false);
     setPower("igniting");
     setMode("room");
-    window.setTimeout(() => setFinalFrame(true), 200);
     window.setTimeout(() => setPower("on"), 900);      // klaaskaardid (kestad) tekivad
     // Vahepala (tellija 06.07): SAI-monogramm mount'ib, teeb münt-pöörde
     // (SMIL 1.7 s, freeze), pööre SEISAB ja logo hoiab end veel ~2 s
@@ -602,7 +502,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     window.setTimeout(() => setIntroSai(false), 5200);
     // Väike paus pärast logo kadumist enne kaardisisu (tellija 06.07)
     window.setTimeout(() => setCardsReady(true), 5900);
-  }, [setFinalFrame]);
+  }, []);
 
 
   /* Kiirkäskude riba "OFF": LOGI VÄLJA + seade tagasi ooterežiimi (⏻)
@@ -621,7 +521,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       router.push(localizePath("/", locale));
       return;
     }
-    setFinalFrame(true, false);
     setPower("standby");
     setCardsReady(false);
     setIntroSai(false);
@@ -630,7 +529,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [clearCompletedArrival, isHome, isAuthed, router, locale, setFinalFrame]);
+  }, [clearCompletedArrival, isHome, isAuthed, router, locale]);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -646,7 +545,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       window.scrollTo(0, 0);
       displayed.current = target.current = 0;
       setPower("standby");
-      setFinalFrame(false, false);
       applyScene(0);
       wake();
     } else {
@@ -658,7 +556,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           // Käivituse rituaal käib (kõnni lõpust) — ära katkesta faase
         } else if (!pendingStandbyRef.current) {
           // Profiili-hub / sessioonisisene naasmine: seade on juba sees
-          setFinalFrame(true, false);
           setPower("on");
           setCardsReady(true);
         }
@@ -666,7 +563,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         // room→room üleminekul see efekt uuesti ei jookse.
       }
       if (mode === "panel") {
-        setFinalFrame(true, false);
         setPower("on");
         if (stageRef.current) {
           // CSS omab paneelirežiimi transformi (hägu + kerge suum)
@@ -677,7 +573,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
     }
     return () => {};
-  }, [mode, cardPageKey, applyScene, wake, setFinalFrame]);
+  }, [mode, cardPageKey, applyScene, wake]);
 
   /* "Välja" (profiilikaardilt) → kodu PUHKESEISUS. Elab pathname'i,
      mitte mode'i küljes: profiililt (room) koju (room) tulles mode ei
@@ -686,7 +582,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   useEffect(() => {
     if (!isHome || !pendingStandbyRef.current) return;
     pendingStandbyRef.current = false;
-    setFinalFrame(true, false);
     setPower("standby");
     setCardsReady(false);
     setIntroSai(false);
@@ -696,46 +591,21 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       standbyRef.current.style.pointerEvents = "";
     }
     window.scrollTo(0, 0);
-  }, [isHome, setFinalFrame]);
+  }, [isHome]);
 
   /* ---------- loor (laadimisekraan) ----------
      Tellija otsus: loor püsib, kuni kasutaja ISE vajutab "Sisenen" —
-     nupp ilmub, kui esimene kaader on dekodeeritud. */
+     nupp ilmub pärast osakestest lause kujunemist. */
   useEffect(() => {
     if (!isHome || veil !== "shown" || veilReady) return undefined;
     let cancelled = false;
     const reduced = readReduced();
-    const firstFrame = reduced ? FINAL_FRAME_INDEX : 0;
-    let frameReady = false;
-    let revealDelayReady = false;
-    const ready = () => {
-      if (!cancelled && frameReady && revealDelayReady) setVeilReady(true);
-    };
     /* Tavarežiimis ilmub SISENEN alles pärast osakestest lause
        kujunemist. Liikumist vähendavas režiimis ei sunnita kasutajat
        kunstilise lavastuse järel ootama. */
     const revealTimer = window.setTimeout(() => {
-      revealDelayReady = true;
-      ready();
+      if (!cancelled) setVeilReady(true);
     }, reduced ? 650 : 5200);
-    const img = frameRefs.current[firstFrame]?.querySelector("img");
-    if (img?.decode) {
-      const guard = window.setTimeout(() => {
-        frameReady = true;
-        ready();
-      }, 2600); // LQIP katab, kui võrk venib
-      img
-        .decode()
-        .catch(() => {})
-        .finally(() => {
-          window.clearTimeout(guard);
-          frameReady = true;
-          ready();
-        });
-    } else {
-      frameReady = true;
-      ready();
-    }
     return () => {
       cancelled = true;
       window.clearTimeout(revealTimer);
@@ -767,26 +637,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     }
     return undefined;
   }, [isHome, veil]);
-
-  /* Ülejäänud kaadrite eeldekodeerimine (brief §9: enne teekonda). */
-  useEffect(() => {
-    if (veil !== "gone" || mode === "panel") return undefined;
-    let cancelled = false;
-    (async () => {
-      for (const layer of frameRefs.current) {
-        if (cancelled) break;
-        const img = layer?.querySelector("img");
-        if (img?.decode) {
-          try {
-            await img.decode();
-          } catch {}
-        }
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [veil, mode]);
 
   /* ---------- vahelejätt (klahv viib lõppseisu) ----------
      Tellija 06.07: kogemata hiireklõps EI tohi kõndi läbi kerida —
@@ -1194,35 +1044,24 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         data-card-page={cardPageKey ? "1" : "0"}
         data-cards-ready={cardsReady ? "1" : "0"}
       >
-      {/* Lavastus: kaadrid */}
+      {/* Lavastus: taust */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
-        {ROOM_FRAMES.map((frame, i) => {
-          const initialVisible = mode === "walk" ? i === 0 : i === FINAL_FRAME_INDEX;
-          return (
-            <div
-              key={frame.n}
-              className={`room-frame room-frame--${frame.n}`}
-              ref={(el) => {
-                frameRefs.current[i] = el;
-              }}
-              style={{
-                opacity: initialVisible ? 1 : 0,
-                backgroundImage: `url(${frame.lqip})`,
-              }}
-            >
-              <img
-                src={frame.src}
-                alt=""
-                width={ROOM_FRAME_WIDTH}
-                height={ROOM_FRAME_HEIGHT}
-                loading="eager"
-                fetchPriority={i < 2 || i === FINAL_FRAME_INDEX ? "high" : "auto"}
-                decoding="async"
-                draggable={false}
-              />
-            </div>
-          );
-        })}
+        <Galaxy
+          className="room-galaxy"
+          density={0.45}
+          hueShift={28}
+          saturation={0.5}
+          glowIntensity={0.22}
+          twinkleIntensity={0.18}
+          rotationSpeed={0.04}
+          starSpeed={0.35}
+          speed={0.6}
+          mouseInteraction={!a11y?.reduceMotion}
+          mouseRepulsion
+          repulsionStrength={0.55}
+          disableAnimation={!!a11y?.reduceMotion}
+          transparent
+        />
         <div className="room-vignette" />
         <div className="room-dim" />
       </div>
