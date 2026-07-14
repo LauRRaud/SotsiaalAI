@@ -22,7 +22,7 @@ test("source report UI has semantic status and bounded fields", () => {
 });
 
 test("migration is additive and source feedback has owner, status and audit fields", () => {
-  const migration = fs.readFileSync("prisma/migrations/20260714220000_source_feedback_trust_layer/migration.sql", "utf8");
+  const migration = fs.readFileSync("prisma/migrations/20260714223000_source_feedback_trust_layer/migration.sql", "utf8");
   assert.match(migration, /CREATE TABLE "SourceFeedback"/);
   assert.doesNotMatch(migration, /DROP TABLE|DROP COLUMN|ALTER COLUMN/);
   const schema = fs.readFileSync("prisma/schema.prisma", "utf8");
