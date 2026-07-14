@@ -267,7 +267,7 @@ Kontrollid:
 
 ## 13. Soli lõplik koondüleandmine
 
-**Otsus:** kolm osa on ühe integreeritud paketina commit'i ja GitHubi push'i jaoks heaks kiidetud. Deploy'd ei tehtud. Commit'i täpne hash on välises lõppüleandmises.
+**Otsus:** kolm osa on ühe integreeritud paketina commit'itud ja GitHubi `main` harusse push'itud. Implementatsiooni commit on `7f20d7ce14e00262a5e4851a05eb59425968e770`. Deploy'd ei tehtud.
 
 Lõplik kontrollipakett:
 
@@ -302,3 +302,64 @@ Teadlikult järgmisse operatsioonietappi jäetud P2 tööd:
 - rakendamiskogemuse ülevaatuse põhjenduse eraldi muutmatu ajalugu.
 
 Enne võimalikku deploy'd tuleb endiselt läbida §11 kohustuslik migratsiooni-, RAG drain/verify 0/0- ja assignment-repair-värav. Kasutaja pooleliolevaid `public/room/frame-*.webp`, `output/imagegen/**` ega `scripts/build-room-locked-frames.mjs` faile ei lisata commit'i.
+
+## 14. Opuse hilisem järelkontroll — valmis ülesanne
+
+**Staatus:** OPUS JÄRELKONTROLL OOTEL
+
+**Soovituslik mudel / effort:** Opus 4.8, Max. Kui Max pole saadaval, vähemalt Extra (`xhigh`).
+
+**Kontrollitav implementatsioon:** `main` alates commit'ist `7f20d7ce14e00262a5e4851a05eb59425968e770`. Vaata Kovisiooni, Lõpetatud juhtumeid ja Parimaid praktikaid ühe andme- ja privaatsusvoona, mitte kolme eraldiseisva kasutajaliidesena.
+
+### 14.1. Kohustuslik lugemine enne hinnangut
+
+1. käesolev progressi- ja üleandmisdokument täies mahus;
+2. `Kovisioon/HANDOFF-kovisiooni-louend.md`;
+3. `Kovisioon/kovisioon-etapp-1-...md` kuni `kovisioon-etapp-8-...md`;
+4. `Kovisioon/Uus leht-lopetatud-juhtumid-pohileht.md`;
+5. `Kovisioon/Uus leht-parimad-praktikad-pohileht-ja-loogika.md`;
+6. aktiivne skeem ja kuus `2026071412...`–`2026071419...` migratsiooni;
+7. aktiivsed serveriteenused, API marsruudid, kolm tootmisvaadet, privaatsuspuhastus, RAG-kustutusvoog ja kogu vastav testipakett.
+
+### 14.2. Esimese kontrolliringi ülesanne
+
+Alusta **read-only auditiga**. Ära muuda koodi, skeemi ega dokumente enne, kui oled kogu kohustusliku materjali ja aktiivse teostuse läbi lugenud.
+
+Kontrolli vähemalt:
+
+- Teemaseeme → Kovisioon 1–8 → minimaalne closure → järelvaade/jätkuotsus → privaatne praktikakandidaat → kontrollitud avaldamine;
+- omaniku, kutsutu, osaleja, järelvaate tegija, retsensendi, kinnitaja ja kõrvalise kasutaja õigused ning no-leak 404/403/401 piirid;
+- privaatsete mustandite, resonantsi, õppimise, sõnumite, e-posti, sisemiste ID-de ja RAG-tehniliste viidete serializer-piirid;
+- etapiväravate, versioonide, advisory-lock'ide, CAS-ide ja paralleelsete toimingute determinism;
+- etapi 8 atomaarne lõpetamine, detailandmete puhastus, kõne sulgemine ja closure'i idempotentsus;
+- praktikate huvide konflikt, eneseülevaatuse keeld, kõrge riski kahe retsensendi nõue, muutmatu avalik snapshot ja konto kustutamise võistlusolukorrad;
+- töölaua- ja mobiilivaadete klaviatuurikasutus, fookus, URL-ajalugu, hilinenud vastused, kerimine ning ühe `Välju` toimingu reegel;
+- kas §13 tulemused vastavad praegusele `main` koodile.
+
+Korda sõltumatult:
+
+```text
+npm test
+npm run i18n:check
+npm run lint
+npx prisma validate
+npx prisma generate
+npm run db:migrate:check
+npm run build
+git diff --check
+```
+
+Võimalusel tee autenditud brauserikontroll vähemalt omaniku põhivoole ning 1536 px ja 390 × 844 vaadetele. Ära kasuta kontrolliks päris kasutajaandmeid ja eemalda loodud QA-andmed pärast kontrolli.
+
+### 14.3. Opuse väljund
+
+Loo samasse `docs/platvormi arendus` kausta uus `06-opus-kovisioon-lopetatud-juhtumid-parimad-praktikad-jarelkontroll.md` ning jäädvusta sinna:
+
+- kontrollitud commit ja tööpuu algseis;
+- loetud materjalid;
+- käivitatud kontrollid koos täpsete tulemustega;
+- leiud tähtsusega P0/P1/P2, täpsed failid ja põhjendus;
+- eraldi loend: päris vead, teadlikult edasi lükatud operatsioonitööd ja valikulised UX-parandused;
+- lõppotsus kujul `OPUS HEAKS KIIDETUD` või `OPUS PARANDUSED VAJALIKUD`.
+
+Kui ülesanne on ainult „vaata üle”, siis ära tee leitud parandusi, commit'i, push'i ega deploy'd. Parandused tehakse alles kasutaja eraldi käsul ning nende järel peab Sol tegema uue sõltumatu kontrolli. Deploy on igal juhul eraldi otsus ja peab järgima §11 väravat.
