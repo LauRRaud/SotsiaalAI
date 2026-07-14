@@ -758,3 +758,36 @@ Commit/push/deploy seis:
 - Järgmine konkreetne samm: Opuse kitsas OPUS-P1-6 kordusaudit. P1 paketti ei
   commit'ita ega push'ita enne auditi luba.
 - Commit/push/main-merge/deploy seis: **TEGEMATA**.
+
+### 2026-07-14 — SOL — P1 PAKETT ERALDATUD, TESTITUD JA KASUTAJA POOLT AKTSEPTEERITUD
+
+- Kuupäev/kell: 2026-07-14, Europe/Tallinn.
+- Aktiivne pakett ja etapp: P1 Parimate praktikate operatsioonipaketi ohutu
+  eraldamine dirty `main` tööpuust pärast OPUS-P1-6 parandust.
+- Kasutaja otsus: OPUS-P1-6 ning varasemad SOL-P1-1…5 parandused aktsepteeriti
+  ilma uue kordusauditita. Märgend on
+  `SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA`; see ei võrdu
+  märgendiga `OPUS HEAKS KIIDETUD`.
+- Lähtebaas: värske `origin/main` @ `df2f45c0`.
+- Eraldi tööpuu ja haru:
+  `C:/Users/rauds/Desktop/SotsiaalAI-p1`, `codex/p1-ops-final`.
+- Isolatsioon: ajutise Git-indeksiga tõsteti eraldi harule ainult 20 P1 rada —
+  operatsioonikood, job-route, migratsioon, deploy-värav, regressioonitestid,
+  käskude paketikirjed, progressidokument ning kasutaja nõutud CSS budget
+  generaator/52-baastase. Dirty `main` HEAD ja päris staging-ala ei muutunud.
+- Kõrvaliste failide seis: U12/U3 auditidokk, U1/U2/Opuse dokid,
+  `public/room/frame-*.webp`, `output/imagegen/**` ja
+  `scripts/build-room-locked-frames.mjs` jäid paketist välja ning puutumata.
+- Käivitatud kontrollid:
+  - `tests/effectivePractices/*.test.js`: **81/81 läbitud**;
+  - kogu `npm test`: **1122/1122 läbitud**;
+  - `npm run css:budget`: **52/52 läbitud**;
+  - `npx prisma validate`: skeem korras;
+  - `git diff --check`: puhas.
+- Leitud riskid: uusi P0/P1 leide ei tekkinud. `npm ci` raporteeris baasi
+  sõltuvuspuus 7 mõõdukat auditileidu; lukufaili selles paketis ei muudetud.
+- Commit/push/main-merge/deploy seis: P1 snapshot-commit `5b18e5d0` loodud;
+  lõplik progressidoki commit ja push järgnevad. Main-i ühendamist ega deploy'd
+  ei tehta.
+- Järgmine konkreetne samm: P1 haru push; seejärel nelja aktsepteeritud paketi
+  integratsioonirehearsal värskest `origin/main`-ist eraldi harul.
