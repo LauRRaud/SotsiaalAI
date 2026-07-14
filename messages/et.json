@@ -1132,7 +1132,8 @@
       "search": {
         "placeholder": "Otsi vestlusi...",
         "label": "Otsi vestlusi",
-        "no_matches": "Otsingule vastavaid vestlusi ei leitud."
+        "no_matches": "Otsingule vastavaid vestlusi ei leitud.",
+        "retry": "Proovi uuesti"
       }
     },
     "aria": {

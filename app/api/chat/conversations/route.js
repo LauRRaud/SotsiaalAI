@@ -68,7 +68,9 @@ function parseCursor(token) {
   const pinPart = token.slice(0, firstSep);
   const msPart = token.slice(firstSep + 1, secondSep);
   const id = token.slice(secondSep + 1);
-  if (!isPlausibleConversationId(id)) return null;
+  // `isPlausibleConversationId` never existed — this threw a ReferenceError for
+  // every cursor request, breaking both "load more" and paged search.
+  if (!isPlausibleChatId(id)) return null;
   const ms = Number(msPart);
   if (!Number.isFinite(ms)) return null;
   const date = new Date(ms);

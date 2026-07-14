@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { LIST_STATE, resolveListState, shouldSettleRequest } from "@/lib/chat/sidebarListState";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import Button from "@/components/ui/Button";
@@ -160,12 +161,19 @@ export default function ChatSidebar() {
         setError(resolveErrorMessage(data, "chat.sidebar.error.history"));
       }
     } catch (e) {
-      if (e?.name !== "AbortError") {
+      // A superseded request must not write anything: its replacement is still
+      // in flight and owns the state now.
+      if (e?.name !== "AbortError" && shouldSettleRequest(abortRef.current, ac)) {
         setError(e?.message || t("chat.sidebar.error.load"));
       }
     } finally {
-      if (abortRef.current === ac) abortRef.current = null;
-      setBusy(false);
+      // Gated on purpose. An unconditional setBusy(false) let an aborted request
+      // clear the loading flag while its replacement was still loading, which
+      // rendered a confident "no results" over an in-flight search.
+      if (shouldSettleRequest(abortRef.current, ac)) {
+        abortRef.current = null;
+        setBusy(false);
+      }
     }
   }, [conversationListRole, pageSize, resolveErrorMessage, t]);
   const fetchRooms = useCallback(async () => {
@@ -634,6 +642,15 @@ export default function ChatSidebar() {
   const hasConversationSearch = isConversationView && Boolean(normalizedSearchQuery);
   const currentItems = isConversationView ? filteredConversations : sortedRooms;
   const currentBusy = isConversationView ? busy : roomsBusy;
+  // A failed request proves nothing about whether results exist, so `error`
+  // outranks `no_matches` here — otherwise a technical failure would render as
+  // the very false negative this package removes.
+  const listState = resolveListState({
+    busy: currentBusy,
+    error,
+    itemCount: currentItems.length,
+    hasSearch: hasConversationSearch
+  });
   const isLoading = busy || roomsBusy;
   const selectedCount = selectedIds.size;
   const renderLoadingSkeleton = (prefix, count = 3) => Array.from({ length: count }).map((_, i) => <div key={`${prefix}-${i}`} />);
@@ -727,15 +744,18 @@ export default function ChatSidebar() {
         </div> : null}
       {error ? <div role="alert" aria-live="assertive">
           {error}
+          {isConversationView ? <Button type="button" size="sm" variant="ghost" onClick={() => fetchList({ reset: true })} disabled={busy}>
+              {t("chat.sidebar.search.retry", "Proovi uuesti")}
+            </Button> : null}
         </div> : null}
       <div>
         <div aria-label={isConversationView ? t("chat.sidebar.sections.conversations") : t("chat.sidebar.sections.groups")}>
           <div>
-            {currentBusy && currentItems.length === 0 ? <div>
+            {listState === LIST_STATE.LOADING ? <div>
                 {renderLoadingSkeleton(isConversationView ? "conv" : "room", isConversationView ? 3 : 2)}
               </div> : <ul>
-                {!currentBusy && currentItems.length === 0 ? <li>
-                    <span>{hasConversationSearch ? t("chat.sidebar.search.no_matches", "Otsingule vastavaid vestlusi ei leitud.") : isConversationView ? t("chat.sidebar.empty") : t("rooms.empty")}</span>
+                {listState === LIST_STATE.NO_MATCHES || listState === LIST_STATE.EMPTY ? <li>
+                    <span>{listState === LIST_STATE.NO_MATCHES ? t("chat.sidebar.search.no_matches", "Otsingule vastavaid vestlusi ei leitud.") : isConversationView ? t("chat.sidebar.empty") : t("rooms.empty")}</span>
                   </li> : currentItems.map(renderListItem)}
               </ul>}
           </div>
