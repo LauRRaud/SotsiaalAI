@@ -7,6 +7,7 @@ import {
   deleteHelpRequest,
   getHelpOfferById,
   getHelpRequestById,
+  loadHelpListingDetailForViewer,
   toHelpListingDetailView,
   updateHelpOffer,
   updateHelpRequest
@@ -133,19 +134,30 @@ export async function GET(_request, context) {
   }
 
   const params = await context.params;
-  const kind = normalizeKind(params?.kind);
-  const id = String(params?.id || "").trim();
   const locale = String(new URL(_request.url).searchParams.get("locale") || "et").trim();
-  const record = await loadRecord(kind, id);
-  if (!record) {
+
+  // Siduv nähtavusleping elab teenusekihis (loadHelpListingDetailForViewer):
+  // omanik näeb oma kirjet igas staatuses omanikuprojektsiooniga; võõras (sh
+  // ADMIN, sh anonüümne oleks) näeb ainult OPEN kirjet fail-closed avaliku
+  // projektsiooniga; muu -> ühetaoline 404 (ei paljasta olemasolu ega staatust).
+  const result = await loadHelpListingDetailForViewer({
+    kind: params?.kind,
+    id: params?.id,
+    viewerId: auth.userId,
+    locale
+  });
+  if (result.outcome !== "ok") {
     return json({ ok: false, message: "HELP_LISTING_NOT_FOUND" }, 404);
   }
 
   return json({
     ok: true,
-    listing: toHelpListingDetailView(record, { kind, locale }),
-    isOwn: record.userId === auth.userId,
-    canDelete: record.userId === auth.userId || auth.isAdmin
+    listing: result.listing,
+    isOwn: result.isOwner,
+    // ADMIN säilitab olemasoleva kustutamisõiguse AVALIKELE kirjetele
+    // (DELETE-käsitleja jõustab selle eraldi). GET ei anna ADMIN-ile uut
+    // ligipääsu mitteavaliku mustandi SISULE — see 404-b enne siia jõudmist.
+    canDelete: result.isOwner || auth.isAdmin
   });
 }
 
