@@ -741,6 +741,19 @@ model User {
   sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
   sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
   notificationEvents           NotificationEvent[]
+  supervisorGrants                      SupervisorGrant[]                   @relation("SupervisorGrantUser")
+  supervisorGrantsGranted               SupervisorGrant[]                   @relation("SupervisorGrantGrantedBy")
+  supervisorGrantsRevoked               SupervisorGrant[]                   @relation("SupervisorGrantRevokedBy")
+  supervisionProcessesSupervised        SupervisionProcess[]                @relation("SupervisionProcessSupervisor")
+  supervisionContractVersionsCreated    SupervisionContractVersion[]        @relation("SupervisionContractCreatedBy")
+  supervisionParticipations             SupervisionParticipation[]          @relation("SupervisionParticipationUser")
+  supervisionInvitationsSent            SupervisionParticipation[]          @relation("SupervisionParticipationInvitedBy")
+  supervisionPrivateItems               SupervisionPrivateItem[]            @relation("SupervisionPrivateItemOwner")
+  supervisionMeetingsMarkedHeld         SupervisionMeeting[]                @relation("SupervisionMeetingMarkedHeldBy")
+  supervisionSummariesCreated           SupervisionSummary[]                @relation("SupervisionSummaryCreatedBy")
+  supervisionClosuresClosed             SupervisionClosure[]                @relation("SupervisionClosureClosedBy")
+  supervisionPersonalOutcomes           SupervisionPersonalOutcome[]        @relation("SupervisionPersonalOutcomeOwner")
+  supervisionAuditEvents                SupervisionAuditEvent[]             @relation("SupervisionAuditActor")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -3285,4 +3298,327 @@ model RagChunkEntity {
 
   @@unique([chunkId, entityId])
   @@index([entityId])
+}
+
+// ---------------------------------------------------------------------------
+// Supervisioon V0 (SUP-P0): additive schema foundation.
+// Private M6/M12 reverse relations are ignored by Prisma Client so shared
+// serializers cannot traverse an include path into owner-private content.
+// The M6 WellbeingOutputDraft foreign key is defined in the migration without
+// changing the existing WellbeingOutputDraft model.
+// ---------------------------------------------------------------------------
+
+enum SupervisionProcessType {
+  INDIVIDUAL
+  GROUP
+}
+
+enum SupervisionProcessStatus {
+  DRAFT
+  ACTIVE
+  CLOSED
+}
+
+enum SupervisionContractStatus {
+  DRAFT
+  ACTIVE
+  SUPERSEDED
+}
+
+enum SupervisionParticipationStatus {
+  INVITED
+  ACCEPTED
+  DECLINED
+  LEFT
+  WITHDRAWN
+}
+
+enum SupervisionPrivateItemKind {
+  PREP_TOPIC
+  PRIVATE_NOTE
+  CLOSING_REFLECTION
+}
+
+enum SupervisionTopicAudience {
+  SUPERVISOR_ONLY
+  PROCESS
+}
+
+enum SupervisionTopicSourceKind {
+  MANUAL
+  WELLBEING_HANDOFF
+}
+
+enum SupervisionTopicStatus {
+  SHARED
+  WITHDRAWN
+}
+
+enum SupervisionMeetingStatus {
+  PLANNED
+  HELD
+  CANCELLED
+}
+
+enum SupervisionSummaryKind {
+  MEETING
+  FINAL
+}
+
+enum SupervisionSummaryStatus {
+  DRAFT
+  PENDING_APPROVAL
+  APPROVED
+  DISCARDED
+}
+
+model SupervisorGrant {
+  id              String    @id @default(cuid())
+  userId          String
+  grantedByUserId String?
+  grantBasis      String    @db.Text
+  validFrom       DateTime  @default(now())
+  validUntil      DateTime?
+  revokedAt       DateTime?
+  revokedByUserId String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user          User  @relation("SupervisorGrantUser", fields: [userId], references: [id], onDelete: Cascade)
+  grantedByUser User? @relation("SupervisorGrantGrantedBy", fields: [grantedByUserId], references: [id], onDelete: SetNull)
+  revokedByUser User? @relation("SupervisorGrantRevokedBy", fields: [revokedByUserId], references: [id], onDelete: SetNull)
+
+  @@index([userId, revokedAt, validUntil])
+}
+
+model SupervisionProcess {
+  id                      String                   @id @default(cuid())
+  supervisorId            String
+  type                    SupervisionProcessType
+  title                   String
+  goal                    String?                  @db.Text
+  plannedMeetingCount     Int                      @default(5)
+  status                  SupervisionProcessStatus @default(DRAFT)
+  activeContractVersionId String?                  @unique
+  version                 Int                      @default(0)
+  lastActivityAt          DateTime                 @default(now())
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  closedAt                DateTime?
+
+  supervisor            User                         @relation("SupervisionProcessSupervisor", fields: [supervisorId], references: [id], onDelete: Cascade)
+  activeContractVersion SupervisionContractVersion?  @relation("SupervisionActiveContractVersion", fields: [activeContractVersionId], references: [id], onDelete: SetNull)
+  contractVersions      SupervisionContractVersion[] @relation("SupervisionContractVersions")
+  participations       SupervisionParticipation[]
+  sharedTopics         SupervisionSharedTopic[]
+  meetings             SupervisionMeeting[]
+  summaries            SupervisionSummary[]
+  closure              SupervisionClosure?
+  auditEvents          SupervisionAuditEvent[]
+  privateItems         SupervisionPrivateItem[]     @relation("SupervisionPrivateItemProcess") @ignore
+  personalOutcomes     SupervisionPersonalOutcome[] @relation("SupervisionPersonalOutcomeProcess") @ignore
+
+  @@index([supervisorId, status, updatedAt])
+  @@index([status, lastActivityAt])
+}
+
+model SupervisionContractVersion {
+  id              String                    @id @default(cuid())
+  processId       String
+  versionNumber   Int
+  body            String                    @db.Text
+  createdByUserId String?
+  status          SupervisionContractStatus @default(DRAFT)
+  activatedAt     DateTime?
+  createdAt       DateTime                  @default(now())
+
+  process          SupervisionProcess              @relation("SupervisionContractVersions", fields: [processId], references: [id], onDelete: Cascade)
+  activeForProcess SupervisionProcess?             @relation("SupervisionActiveContractVersion")
+  createdByUser    User?                           @relation("SupervisionContractCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  acceptances      SupervisionContractAcceptance[]
+
+  @@unique([processId, versionNumber])
+  @@index([processId, status])
+}
+
+model SupervisionParticipation {
+  id              String                         @id @default(cuid())
+  processId       String
+  userId          String
+  invitedByUserId String?
+  status          SupervisionParticipationStatus @default(INVITED)
+  invitedAt       DateTime                       @default(now())
+  respondedAt     DateTime?
+  leftAt          DateTime?
+  createdAt       DateTime                       @default(now())
+  updatedAt       DateTime                       @updatedAt
+
+  process          SupervisionProcess             @relation(fields: [processId], references: [id], onDelete: Cascade)
+  user             User                           @relation("SupervisionParticipationUser", fields: [userId], references: [id], onDelete: Cascade)
+  invitedByUser    User?                          @relation("SupervisionParticipationInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  acceptances      SupervisionContractAcceptance[]
+  authoredTopics   SupervisionSharedTopic[]
+  summaryApprovals SupervisionSummaryApproval[]
+
+  @@unique([processId, userId])
+  @@index([userId, status, updatedAt])
+}
+
+model SupervisionContractAcceptance {
+  id                String   @id @default(cuid())
+  participationId   String
+  contractVersionId String
+  acceptedAt        DateTime @default(now())
+
+  participation   SupervisionParticipation   @relation(fields: [participationId], references: [id], onDelete: Cascade)
+  contractVersion SupervisionContractVersion @relation(fields: [contractVersionId], references: [id], onDelete: Cascade)
+
+  @@unique([participationId, contractVersionId])
+  @@index([contractVersionId])
+}
+
+model SupervisionPrivateItem {
+  id                     String                     @id @default(cuid())
+  processId              String
+  ownerUserId            String
+  kind                   SupervisionPrivateItemKind
+  title                  String?
+  body                   String                     @db.Text
+  sharedTopicId          String?
+  sourceKind             SupervisionTopicSourceKind @default(MANUAL)
+  sourceWellbeingDraftId String?                    @unique
+  version                Int                        @default(0)
+  createdAt              DateTime                   @default(now())
+  updatedAt              DateTime                   @updatedAt
+
+  owner       User                    @relation("SupervisionPrivateItemOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  process     SupervisionProcess      @relation("SupervisionPrivateItemProcess", fields: [processId], references: [id], onDelete: Cascade)
+  sharedTopic SupervisionSharedTopic? @relation("SupervisionPrivateItemSharedTopic", fields: [sharedTopicId], references: [id], onDelete: SetNull)
+
+  @@index([processId, ownerUserId, updatedAt])
+}
+
+model SupervisionSharedTopic {
+  id                    String                     @id @default(cuid())
+  processId             String
+  authorParticipationId String
+  title                 String
+  body                  String                     @db.Text
+  audience              SupervisionTopicAudience
+  sourceKind            SupervisionTopicSourceKind
+  status                SupervisionTopicStatus     @default(SHARED)
+  sharedAt              DateTime                   @default(now())
+  withdrawnAt           DateTime?
+  version               Int                        @default(0)
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
+
+  process             SupervisionProcess       @relation(fields: [processId], references: [id], onDelete: Cascade)
+  authorParticipation SupervisionParticipation @relation(fields: [authorParticipationId], references: [id], onDelete: Cascade)
+  sourcePrivateItems  SupervisionPrivateItem[] @relation("SupervisionPrivateItemSharedTopic") @ignore
+
+  @@index([processId, status, sharedAt])
+  @@index([authorParticipationId])
+}
+
+model SupervisionMeeting {
+  id                 String                   @id @default(cuid())
+  processId          String
+  seq                Int
+  plannedAt          DateTime?
+  heldAt             DateTime?
+  markedHeldByUserId String?
+  status             SupervisionMeetingStatus @default(PLANNED)
+  agendaTopicIds     String[]                 @default([])
+  note               String?                  @db.Text
+  topicCountAtClose  Int?
+  version            Int                      @default(0)
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  process          SupervisionProcess @relation(fields: [processId], references: [id], onDelete: Cascade)
+  markedHeldByUser User?              @relation("SupervisionMeetingMarkedHeldBy", fields: [markedHeldByUserId], references: [id], onDelete: SetNull)
+  summary          SupervisionSummary?
+
+  @@unique([processId, seq])
+}
+
+model SupervisionSummary {
+  id              String                   @id @default(cuid())
+  processId       String
+  meetingId       String?                  @unique
+  kind            SupervisionSummaryKind
+  body            String                   @db.Text
+  status          SupervisionSummaryStatus @default(DRAFT)
+  createdByUserId String?
+  submittedAt     DateTime?
+  approvedAt      DateTime?
+  version         Int                      @default(0)
+  createdAt       DateTime                 @default(now())
+  updatedAt       DateTime                 @updatedAt
+
+  process       SupervisionProcess  @relation(fields: [processId], references: [id], onDelete: Cascade)
+  meeting       SupervisionMeeting? @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  createdByUser User?               @relation("SupervisionSummaryCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  approvals     SupervisionSummaryApproval[]
+
+  @@index([processId, kind, status])
+}
+
+model SupervisionSummaryApproval {
+  id              String   @id @default(cuid())
+  summaryId       String
+  participationId String
+  approvedAt      DateTime @default(now())
+
+  summary       SupervisionSummary       @relation(fields: [summaryId], references: [id], onDelete: Cascade)
+  participation SupervisionParticipation @relation(fields: [participationId], references: [id], onDelete: Cascade)
+
+  @@unique([summaryId, participationId])
+  @@index([summaryId])
+}
+
+model SupervisionClosure {
+  id              String   @id @default(cuid())
+  processId       String   @unique
+  closedByUserId  String?
+  closedAt        DateTime @default(now())
+  factsJson       Json
+  purgeReport     Json
+  retentionStatus String   @default("AWAITING_POLICY")
+
+  process      SupervisionProcess @relation(fields: [processId], references: [id], onDelete: Cascade)
+  closedByUser User?              @relation("SupervisionClosureClosedBy", fields: [closedByUserId], references: [id], onDelete: SetNull)
+}
+
+model SupervisionPersonalOutcome {
+  id                      String   @id @default(cuid())
+  ownerUserId             String
+  processId               String?
+  processTitleGeneralized String
+  contentJson             Json
+  createdAt               DateTime @default(now())
+
+  owner   User                @relation("SupervisionPersonalOutcomeOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  process SupervisionProcess? @relation("SupervisionPersonalOutcomeProcess", fields: [processId], references: [id], onDelete: SetNull)
+
+  @@unique([processId, ownerUserId])
+  @@index([ownerUserId, createdAt])
+}
+
+model SupervisionAuditEvent {
+  id          String   @id @default(cuid())
+  processId   String?
+  actorUserId String?
+  action      String
+  targetKind  String?
+  targetId    String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  process SupervisionProcess? @relation(fields: [processId], references: [id], onDelete: Cascade)
+  actor   User?               @relation("SupervisionAuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([processId, createdAt])
+  @@index([actorUserId, createdAt])
 }
