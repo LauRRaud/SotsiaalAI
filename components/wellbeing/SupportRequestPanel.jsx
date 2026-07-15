@@ -48,6 +48,9 @@ export default function SupportRequestPanel({
   const [userConfirmed, setUserConfirmed] = useState(false);
   const [confirmedNoIdentifiers, setConfirmedNoIdentifiers] = useState(false);
   const [status, setStatus] = useState("idle");
+  /* Serveri tuvastajakontrolli leiu TÜÜBID (mitte kunagi tekst/väärtus) —
+     kuvatakse covision_identifiers staatuse all i18n kaudu. */
+  const [identifierIssueTypes, setIdentifierIssueTypes] = useState([]);
   const requestGateRef = useRef(createLatestRequestGate());
 
   const preview = useMemo(() => {
@@ -71,6 +74,7 @@ export default function SupportRequestPanel({
     setUserReviewed(false);
     setUserConfirmed(false);
     setConfirmedNoIdentifiers(false);
+    setIdentifierIssueTypes([]);
     if (draft?.status === "ready_to_share") {
       setStatus(String(value || preview).trim() === savedConfirmedText ? "editing" : "needs_reconfirm");
     } else if (draft?.id) {
@@ -86,6 +90,7 @@ export default function SupportRequestPanel({
     setUserReviewed(false);
     setUserConfirmed(false);
     setConfirmedNoIdentifiers(false);
+    setIdentifierIssueTypes([]);
     setStatus("idle");
   }
 
@@ -97,6 +102,7 @@ export default function SupportRequestPanel({
     setUserReviewed(false);
     setUserConfirmed(false);
     setConfirmedNoIdentifiers(false);
+    setIdentifierIssueTypes([]);
     setStatus("private");
   }
 
@@ -211,6 +217,9 @@ export default function SupportRequestPanel({
       if (!response.ok || !payload?.ok || !payload?.covisionCaseId) {
         const error = new Error(payload?.message || "wellbeing.errors.covision_handoff_failed");
         error.status = response.status;
+        error.issueTypes = Array.isArray(payload?.details?.issueTypes)
+          ? payload.details.issueTypes.filter((type) => typeof type === "string" && type).slice(0, 3)
+          : [];
         throw error;
       }
       const href = `/kovisioon?case=${encodeURIComponent(payload.covisionCaseId)}`;
@@ -219,8 +228,10 @@ export default function SupportRequestPanel({
       else window.location.assign(href);
     } catch (error) {
       if (isAbortError(error) || !request.isCurrent()) return;
+      const identifiersDetected = error?.message === "wellbeing.errors.identifiers_detected";
+      setIdentifierIssueTypes(identifiersDetected && Array.isArray(error?.issueTypes) ? error.issueTypes : []);
       setStatus(
-        error?.message === "wellbeing.errors.identifiers_detected"
+        identifiersDetected
           ? "covision_identifiers"
           : Number(error?.status) === 409
             ? "covision_conflict"
@@ -399,6 +410,26 @@ export default function SupportRequestPanel({
                               ? t("wellbeing.support.status_error", "Mustandi salvestamine või kinnitamine ebaõnnestus.")
                               : ""}
       </p>
+      {status === "covision_identifiers" && identifierIssueTypes.length > 0 ? (
+        <ul aria-label={t("wellbeing.support.identifier_hints_label", "Kontrolli leitud kohad")}>
+          {identifierIssueTypes.map((issueType) => (
+            <li key={issueType}>
+              {t(
+                `wellbeing.support.identifier_types.${issueType}`,
+                t("wellbeing.support.identifier_types.other", "Võimalik otsene tuvastaja")
+              )}
+              {" — "}
+              {t(
+                `wellbeing.support.identifier_suggestions.${issueType}`,
+                t(
+                  "wellbeing.support.identifier_suggestions.other",
+                  "Hinda, kas detail on vajalik, või üldista see."
+                )
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </section>
   );
 }

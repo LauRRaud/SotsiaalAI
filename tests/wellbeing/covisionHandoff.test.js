@@ -2,7 +2,11 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { getCovisionSessionForUser } from "../../lib/covisionSession.js";
-import { startCovisionFromWellbeingDraft } from "../../lib/wellbeing/covisionHandoff.js";
+import {
+  startCovisionFromWellbeingDraft,
+  wellbeingCovisionHandoffPublicError
+} from "../../lib/wellbeing/covisionHandoff.js";
+import { buildWellbeingShareableDraft } from "../../lib/wellbeing/supportDraftText.js";
 import { confirmWellbeingOutputDraftForUser } from "../../lib/wellbeing/supportDrafts.js";
 
 const OWNER = "wellbeing_owner";
@@ -487,6 +491,77 @@ test("server-side identifier detection blocks a confirmed draft before any Covis
   assert.equal(db.store.cases.length, 0);
   assert.equal(db.store.privateStates.length, 0);
   assert.equal(db.store.drafts[0].covisionCaseId, null);
+});
+
+/* ---- E0: V17 regressioon + lekketa tuvastaja-detailid ---- */
+
+test("the unedited standard covision template passes the gate end-to-end (V17 regression)", async () => {
+  const template = buildWellbeingShareableDraft({
+    sourceWorkflowType: "quick-check",
+    outputType: "covision_input",
+    recipientType: "covision",
+    context: {}
+  }).generatedText;
+  const db = makeDb({ draft: makeDraft({ generatedText: template, editedText: null }) });
+
+  const result = await startCovisionFromWellbeingDraft(
+    ownerActor(), DRAFT_ID, requestFor(db.store.drafts[0]), { db }
+  );
+
+  assert.equal(result.created, true);
+  assert.equal(db.store.cases.length, 1);
+  assert.equal(db.store.privateStates[0].content.text, template);
+  assert.equal(db.store.drafts[0].status, "in_covision");
+});
+
+test("identifier rejection exposes only issue types and count, never the detected value", async () => {
+  const db = makeDb({
+    draft: makeDraft({ editedText: "Klient Mari Mets helistas ja jättis numbri +372 5123 4567." })
+  });
+
+  const error = await startCovisionFromWellbeingDraft(
+    ownerActor(), DRAFT_ID, requestFor(db.store.drafts[0]), { db }
+  ).then(() => null, (caught) => caught);
+
+  assert.equal(error?.status, 400);
+  assert.equal(error?.message, "wellbeing.errors.identifiers_detected");
+  assert.equal(Array.isArray(error?.details?.issueTypes), true);
+  assert.equal(error.details.issueTypes.includes("name"), true);
+  assert.equal(error.details.issueTypes.includes("phone"), true);
+  assert.equal(Number(error.details.issueCount) >= 2, true);
+  assert.deepEqual(Object.keys(error.details).sort(), ["issueCount", "issueTypes"]);
+  const serialized = JSON.stringify(error.details);
+  assert.equal(serialized.includes("Mari"), false);
+  assert.equal(serialized.includes("Mets"), false);
+  assert.equal(serialized.includes("5123"), false);
+
+  const publicPayload = wellbeingCovisionHandoffPublicError(error);
+  assert.equal(publicPayload.status, 400);
+  assert.equal(publicPayload.messageKey, "wellbeing.errors.identifiers_detected");
+  assert.deepEqual(Object.keys(publicPayload).sort(), ["details", "messageKey", "status"]);
+  assert.deepEqual(Object.keys(publicPayload.details).sort(), ["issueCount", "issueTypes"]);
+  assert.equal(JSON.stringify(publicPayload).includes("Mari"), false);
+  assert.equal(db.store.cases.length, 0);
+});
+
+test("only the identifiers error can carry details through the public error mapper", () => {
+  const conflict = new Error("wellbeing.errors.covision_handoff_conflict");
+  conflict.status = 409;
+  conflict.details = { issueTypes: ["name"], issueCount: 1 };
+
+  assert.deepEqual(
+    wellbeingCovisionHandoffPublicError(conflict),
+    { messageKey: "wellbeing.errors.covision_handoff_conflict", status: 409 }
+  );
+
+  const malformed = new Error("wellbeing.errors.identifiers_detected");
+  malformed.status = 400;
+  malformed.details = { issueTypes: [42, "", null], issueCount: "paljud" };
+
+  assert.deepEqual(
+    wellbeingCovisionHandoffPublicError(malformed),
+    { messageKey: "wellbeing.errors.identifiers_detected", status: 400 }
+  );
 });
 
 test("an idempotent retry returns the already linked case without minting duplicates", async () => {

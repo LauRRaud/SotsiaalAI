@@ -12,8 +12,12 @@ export async function POST(request) {
 
   try {
     const body = await request.json().catch(() => ({}));
-    const record = await createStarterSupportRecordForUser(auth.userId, body);
-    return wellbeingJson({ ok: true, record }, 201);
+    const { record, deduplicated } = await createStarterSupportRecordForUser(auth.userId, body);
+    return wellbeingJson({
+      ok: true,
+      record,
+      ...(deduplicated ? { deduplicated: true } : {})
+    }, deduplicated ? 200 : 201);
   } catch (error) {
     const status = Number(error?.status) || 500;
     if (status >= 500) {

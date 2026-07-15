@@ -4534,7 +4534,32 @@
       "status_covision_conflict": "Mustand muutus vahepeal. Värskenda kinnitatud versiooni ja proovi uuesti.",
       "status_covision_identifiers": "Tekstis võib olla otseseid tuvastajaid. Eemalda või üldista need ja kinnita tekst uuesti.",
       "status_covision_error": "Kovisiooni loomine ebaõnnestus. Mustand jäi privaatseks.",
-      "status_error": "Mustandi salvestamine või kinnitamine ebaõnnestus."
+      "status_error": "Mustandi salvestamine või kinnitamine ebaõnnestus.",
+      "identifier_hints_label": "Kontrolli leitud kohad",
+      "identifier_types": {
+        "personal_code": "Võimalik isikukood",
+        "email": "E-posti aadress",
+        "phone": "Võimalik telefoninumber",
+        "exact_date": "Väga konkreetne kuupäev",
+        "address": "Võimalik täpne aadress",
+        "name": "Võimalik nimi",
+        "small_place": "Väike asula või kitsas piirkond",
+        "institution": "Konkreetne kool, töökoht või asutus",
+        "rare_detail": "Võimalik äratuntav haruldane detail",
+        "other": "Võimalik otsene tuvastaja"
+      },
+      "identifier_suggestions": {
+        "personal_code": "Eemalda isikukood täielikult.",
+        "email": "Asenda e-posti aadress rolli või kontaktikanaliga.",
+        "phone": "Eemalda telefoninumber või jäta ainult kontaktikanali kirjeldus.",
+        "exact_date": "Kasuta perioodi, näiteks kuu, aasta või sündmuse järjekord.",
+        "address": "Üldista aadress piirkonnaks või teenuse liigiks.",
+        "name": "Asenda nimi rolliga, näiteks klient, lapsevanem või hooldaja.",
+        "small_place": "Kasuta laiemat piirkonda, kui väike asula võib inimest tuvastada.",
+        "institution": "Üldista asutus rolliks, näiteks kool, tööandja või teenuseosutaja.",
+        "rare_detail": "Hinda, kas haruldane detail on vajalik, või kirjelda seda üldisemalt.",
+        "other": "Hinda, kas detail on vajalik, või üldista see."
+      }
     },
     "errors": {
       "output_draft_conflict": "Mustand muutus vahepeal või on juba Kovisiooni viidud.",

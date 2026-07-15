@@ -131,3 +131,52 @@ test("starter support API saves the current user's private 100 day support plan"
   assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
+
+/* ---- E0 leping: salvestuse idempotentsus + lekketa tuvastaja-detailid ---- */
+
+const WELLBEING_SAVE_ROUTES = [
+  "app/api/wellbeing/quick-check/route.js",
+  "app/api/wellbeing/hard-case/route.js",
+  "app/api/wellbeing/workplace-violence/route.js",
+  "app/api/wellbeing/recovery/route.js",
+  "app/api/wellbeing/work-boundaries/route.js",
+  "app/api/wellbeing/interruptions/route.js",
+  "app/api/wellbeing/work-processes/route.js",
+  "app/api/wellbeing/role-boundaries/route.js",
+  "app/api/wellbeing/starter-support/route.js"
+];
+
+test("every wellbeing save API answers a deduplicated repeat with 200 + deduplicated flag", () => {
+  for (const path of WELLBEING_SAVE_ROUTES) {
+    const source = read(path);
+    assert.match(
+      source,
+      /const \{ record, deduplicated \} = await create\w+RecordForUser\(auth\.userId,\s*body\)/,
+      path
+    );
+    assert.match(source, /\.\.\.\(deduplicated \? \{ deduplicated: true \} : \{\}\)/, path);
+    assert.match(source, /deduplicated \? 200 : 201/, path);
+  }
+});
+
+test("the record service dedupes inside an owner+workflow advisory lock without schema changes", () => {
+  const source = read("lib/wellbeing/records.js");
+
+  assert.match(source, /withWellbeingAdvisoryLock\(prisma,\s*lockKey/);
+  assert.match(source, /wellbeingRecord:\$\{data\.ownerUserId\}:\$\{data\.workflowType\}/);
+  assert.match(source, /isDeepStrictEqual\(existing\?\.standardizedFields,\s*data\.standardizedFields\)/);
+  assert.match(source, /DEDUPE_WINDOW_MS = 30_000/);
+});
+
+test("the covision handoff error path exposes sanitized details and never the detected text", () => {
+  const route = read("app/api/wellbeing/output-drafts/[id]/covision/route.js");
+  const lib = read("lib/wellbeing/covisionHandoff.js");
+
+  assert.match(route, /\.\.\.\(details \? \{ details \} : \{\}\)/);
+  assert.match(route, /message:\s*messageKey/);
+  assert.match(lib, /issueTypes/);
+  assert.match(lib, /issueCount/);
+  assert.doesNotMatch(lib, /snippet\s*:/);
+  assert.doesNotMatch(lib, /issue\.snippet|\.label\b/);
+  assert.match(lib, /wellbeing\.errors\.identifiers_detected/);
+});

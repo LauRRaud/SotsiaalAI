@@ -30,10 +30,14 @@ export async function POST(request, context) {
     }, await readId(context), body);
     return wellbeingJson({ ok: true, ...result }, result.created ? 201 : 200);
   } catch (error) {
-    const { messageKey, status } = wellbeingCovisionHandoffPublicError(error);
+    const { messageKey, status, details } = wellbeingCovisionHandoffPublicError(error);
     if (status >= 500) {
       console.error("[wellbeing] covision handoff failed", safeError(error));
     }
-    return wellbeingJson({ ok: false, message: messageKey }, status);
+    return wellbeingJson({
+      ok: false,
+      message: messageKey,
+      ...(details ? { details } : {})
+    }, status);
   }
 }
