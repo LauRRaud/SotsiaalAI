@@ -677,6 +677,131 @@
   align-items: center;
   gap: 0.3rem;
 }
+
+/* Teenusekaardi neli tähenduslikku markerit. Leafleti vaikimisi divIcon on
+   valge ruut; meie marker on graveeritud tähega värviline kaardinõel. Värv
+   ei kanna tähendust üksi: K = KOV, T = teenuseosutaja, ? = abisoov ja
+   + = abipakkumine. */
+.service-map-canvas .leaflet-div-icon {
+  border: 0;
+  background: transparent;
+}
+.service-map-leaflet__legend-marker {
+  display: block;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+.service-map-leaflet__marker {
+  --service-map-marker-fill: #475569;
+  --service-map-marker-ring: rgba(30, 41, 59, 0.9);
+  --service-map-marker-hole-bg: rgba(255, 250, 244, 0.78);
+  --service-map-marker-hole-diameter: 28.4px;
+  --service-map-marker-label-padding: 3px;
+  --service-map-marker-label-max-size: calc(
+    var(--service-map-marker-hole-diameter) - (2 * var(--service-map-marker-label-padding))
+  );
+  --service-map-marker-label-size: min(20.2px, var(--service-map-marker-label-max-size));
+  --service-map-marker-label-weight: 820;
+  --service-map-marker-label-tracking: 0;
+  --service-map-legend-marker-label-size: min(20.2px, var(--service-map-marker-label-max-size));
+  position: relative;
+  display: grid;
+  width: 2.34rem;
+  height: 2.93rem;
+  place-items: center;
+  border: 0;
+  color: var(--service-map-marker-fill);
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.52))
+    drop-shadow(0 0 7px color-mix(in srgb, currentColor 32%, transparent));
+  font-family: var(--font-aino), system-ui, sans-serif;
+  isolation: isolate;
+  overflow: visible;
+  pointer-events: auto;
+  text-align: center;
+  user-select: none;
+}
+.service-map-leaflet__marker::before {
+  display: none;
+}
+.service-map-leaflet__marker-shape {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.service-map-leaflet__marker-pin {
+  fill: currentColor;
+  stroke: var(--service-map-marker-ring);
+  stroke-width: 1.35;
+  vector-effect: non-scaling-stroke;
+}
+.service-map-leaflet__marker-hole {
+  fill: var(--service-map-marker-hole-bg);
+  pointer-events: none;
+}
+.service-map-leaflet__marker-label {
+  fill: currentColor;
+  font-size: var(--service-map-marker-label-size);
+  font-weight: var(--service-map-marker-label-weight);
+  letter-spacing: var(--service-map-marker-label-tracking);
+  dominant-baseline: central;
+  text-anchor: middle;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.service-map-leaflet__marker--kov {
+  --service-map-marker-fill: #2f5f8f;
+  --service-map-marker-ring: rgba(22, 65, 104, 0.94);
+}
+.service-map-leaflet__marker--provider {
+  --service-map-marker-fill: #168a72;
+  --service-map-marker-ring: rgba(10, 94, 77, 0.96);
+}
+.service-map-leaflet__marker--help-request {
+  --service-map-marker-fill: #b45309;
+  --service-map-marker-ring: rgba(146, 64, 14, 0.96);
+  --service-map-marker-label-padding: 0px;
+  --service-map-marker-label-size: min(24.2px, var(--service-map-marker-label-max-size));
+  --service-map-legend-marker-label-size: min(22.8px, var(--service-map-marker-label-max-size));
+}
+.service-map-leaflet__marker--help-offer {
+  --service-map-marker-fill: #a23b72;
+  --service-map-marker-ring: rgba(111, 36, 78, 0.96);
+  --service-map-marker-label-padding: 0px;
+  --service-map-marker-label-size: 35px;
+  --service-map-marker-label-weight: 500;
+  --service-map-legend-marker-label-size: 32px;
+}
+.service-map-leaflet__marker--help-offer .service-map-leaflet__marker-label {
+  transform: translate(0.35px, -0.25px);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.service-map-leaflet__marker--mixed {
+  --service-map-marker-fill: #475569;
+  --service-map-marker-ring: rgba(30, 41, 59, 0.92);
+  --service-map-marker-label-padding: 7.2px;
+  --service-map-marker-label-size: min(13.8px, var(--service-map-marker-label-max-size));
+}
+.service-map-leaflet__marker--group {
+  outline: 0;
+}
+.service-map-leaflet__marker--selected {
+  filter:
+    drop-shadow(0 2px 3px rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 10px color-mix(in srgb, currentColor 58%, transparent));
+}
+.service-map-leaflet__legend-marker .service-map-leaflet__marker {
+  width: 1.72rem;
+  height: 2.15rem;
+  filter: drop-shadow(0 0 0.45px var(--service-map-marker-ring));
+}
+.service-map-leaflet__legend-marker .service-map-leaflet__marker-label {
+  font-size: var(--service-map-legend-marker-label-size);
+}
 .service-map-leaflet__status {
   position: absolute;
   inset: 0;
