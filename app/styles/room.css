@@ -28,14 +28,6 @@
   will-change: transform;
 }
 
-/* Galaxy-taust täidab lava servast servani, kõikides režiimides. */
-.room-galaxy {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background-color: #0e0907;
-}
-
 /* Vinjett istutab liidese ruumi ja parandab servade kontrasti */
 .room-vignette {
   position: absolute;

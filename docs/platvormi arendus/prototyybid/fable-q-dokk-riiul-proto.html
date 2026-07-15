@@ -1,0 +1,1174 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>FABLE-Q prototüüp — dokk · faasid · võrdlusriiul</title>
+<style>
+/* ============================================================
+   FABLE-Q FQ11 samm 1 prototüüp (eraldiseisev; mock-sisu, 0 API-t)
+   Tume ruumiline keel: Teemaseemnete vaatega kooskõlaline halltoonides klaas.
+   Lõuendireegel: keha ei keri; sisekerimine ainult loendites.
+   Platvormi kiirriba on all keskel; D-FQ3: riiul = ainult vaateseis.
+   ============================================================ */
+:root{
+  --bg:#090908;
+  --glass:rgba(24,23,22,.70);
+  --glass-2:rgba(31,30,29,.82);
+  --glass-deep:rgba(13,13,12,.90);
+  --line:rgba(238,235,231,.18);
+  --line-strong:rgba(238,235,231,.34);
+  --text:#f2efeb;
+  --dim:rgba(242,239,235,.70);
+  --faint:rgba(242,239,235,.46);
+  --accent:#ddd8d2;
+  --accent-hi:#faf8f5;
+  --accent-soft:rgba(255,255,255,.10);
+  --lock:#ddd8d2;
+  --ok:#cbd5c6;
+  --r:18px;
+  --dur:.28s;
+  --ease:cubic-bezier(.33,.8,.3,1);
+  --focus:0 0 0 2px #090908,0 0 0 4px rgba(250,248,245,.78);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);
+  font:400 15px/1.45 "Segoe UI",system-ui,-apple-system,sans-serif;
+  overflow:hidden;-webkit-font-smoothing:antialiased}
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(1200px 700px at 78% 12%, rgba(124,137,129,.09), transparent 60%),
+    radial-gradient(900px 600px at 12% 85%, rgba(118,114,108,.08), transparent 60%),
+    radial-gradient(1400px 900px at 50% 45%, rgba(38,37,35,.48), transparent 70%),
+    var(--bg);}
+.sky::before,.sky::after{content:"";position:absolute;inset:0;background-repeat:repeat;opacity:.7}
+.sky::before{background-image:
+  radial-gradient(1.3px 1.3px at 22px 34px, rgba(255,244,220,.55) 50%, transparent 51%),
+  radial-gradient(1px 1px at 120px 90px, rgba(200,255,230,.35) 50%, transparent 51%),
+  radial-gradient(1.6px 1.6px at 210px 160px, rgba(255,230,190,.40) 50%, transparent 51%),
+  radial-gradient(1px 1px at 300px 60px, rgba(255,244,220,.28) 50%, transparent 51%);
+  background-size:340px 240px;}
+.sky::after{background-image:
+  radial-gradient(1px 1px at 60px 200px, rgba(190,230,255,.22) 50%, transparent 51%),
+  radial-gradient(1.4px 1.4px at 260px 120px, rgba(160,220,180,.30) 50%, transparent 51%);
+  background-size:420px 300px;}
+
+#app{position:relative;z-index:1;height:100%;display:grid;
+  grid-template-rows:auto minmax(0,1fr) auto;
+  gap:10px;padding:14px 24px 10px;max-width:1920px;margin:0 auto}
+.zone{border-radius:var(--r)}
+
+/* ---------- 1) ANKRURIBA ---------- */
+#ankur{display:flex;align-items:center;gap:14px;min-height:52px;width:min(100%,1320px);justify-self:center;margin-inline:auto;
+  background:var(--glass);border:1px solid var(--line);
+  padding:9px 16px;backdrop-filter:blur(16px);box-shadow:inset 0 1px rgba(255,255,255,.035),0 18px 45px rgba(0,0,0,.18)}
+#ankur .sigil{width:30px;height:30px;border-radius:9px;flex:0 0 auto;
+  background:linear-gradient(145deg,#ece9e4,#aaa59f);
+  display:grid;place-items:center;font:inherit;font-size:18px;font-weight:700;color:#171615;border:0;cursor:pointer;
+  box-shadow:inset 0 1px rgba(255,255,255,.62)}
+#ankur .sigil:hover{filter:brightness(1.08)}
+#ankur .tit{min-width:220px}
+.eyebrow{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.save-state{color:var(--dim)}
+#ankur h1{font-size:17px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ankur .final-selection{min-width:0;flex:1 1 560px;max-width:620px;display:flex;flex-direction:column;align-items:center;gap:4px;padding-inline:10px}
+.selection-label{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+.selection-values{display:flex;align-items:center;justify-content:center;gap:6px;max-width:100%;min-width:0}
+.selection-choice{font-size:11.5px;color:var(--dim);border:1px solid var(--line);border-radius:999px;
+  padding:4px 9px;background:rgba(255,255,255,.03);white-space:nowrap}
+.selection-choice b{color:var(--text);font-weight:620}
+.selection-choice.pending{border-style:dashed;color:var(--faint)}
+.chip{font-size:12px;color:var(--dim);border:1px solid var(--line);border-radius:999px;
+  padding:3px 10px;background:rgba(255,255,255,.03);white-space:nowrap}
+.chip b{color:var(--text);font-weight:600}
+.sp{flex:1}
+.iconbtn,.btn,.pill{font:inherit;color:var(--text);background:rgba(255,255,255,.04);
+  border:1px solid var(--line);border-radius:999px;cursor:pointer;
+  transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.iconbtn{width:34px;height:34px;display:grid;place-items:center;font-size:15px}
+.btn{padding:7px 14px;font-size:13.5px}
+.btn.small{padding:4px 10px;font-size:12px}
+.btn.primary{background:linear-gradient(160deg,#f1eee9,#bdb8b2);color:#171615;border-color:rgba(255,255,255,.34);font-weight:650}
+.btn.primary[aria-disabled="true"]{opacity:.45;cursor:not-allowed;filter:saturate(.6)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn:hover,.iconbtn:hover,.pill:hover{background:rgba(255,255,255,.08)}
+.btn.primary:hover{filter:brightness(1.06)}
+:is(button,[tabindex],a,input,select,textarea):focus-visible{outline:none;box-shadow:var(--focus)}
+button:focus-visible{border-radius:999px}
+
+#modeCtl{display:flex;gap:4px;background:rgba(0,0,0,.25);border:1px solid var(--line);
+  border-radius:999px;padding:3px}
+#modeCtl .pill{border:none;padding:5px 12px;font-size:12.5px;color:var(--dim)}
+#modeCtl .pill[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-hi)}
+#modeCtl .pill[disabled]{opacity:.4;cursor:not-allowed}
+
+/* ---------- 2) ALUMINE FAASIDOKK ---------- */
+#phaseDock{display:flex;align-items:center;gap:4px;width:min(100%,1100px);margin-inline:auto;
+  min-width:0;min-height:48px;padding:5px 7px;border:1px solid var(--line);border-radius:999px;
+  background:rgba(22,21,20,.90);backdrop-filter:blur(20px);
+  box-shadow:inset 0 1px rgba(255,255,255,.045),0 18px 44px rgba(0,0,0,.38)}
+#phaseDock #gateCta{flex:0 0 auto;white-space:nowrap;margin-left:5px;padding-inline:18px}
+#phaseDock #gateCta[data-guidance="true"]{background:rgba(255,255,255,.045);color:var(--text);
+  border-color:var(--line-strong);font-weight:600}
+#phaseEelmine,#phaseJargmine{flex:0 0 38px;width:38px;height:36px;border:1px solid transparent;border-radius:50%;
+  color:var(--dim);background:transparent;display:grid;place-items:center;cursor:pointer}
+#phaseEelmine:hover,#phaseJargmine:hover{background:rgba(255,255,255,.07);color:var(--text)}
+#phaseEelmine[disabled]{opacity:.28;cursor:not-allowed}
+#phaseJargmine[data-locked="true"]{opacity:.48}
+#phaseEelmine svg,#phaseJargmine svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+#faasid{display:flex;align-items:stretch;gap:4px;flex:1;min-width:0;background:transparent;border:0;padding:0}
+.faas{flex:1;display:flex;gap:9px;align-items:center;border:1px solid transparent;
+  border-radius:999px;padding:6px 10px;cursor:pointer;background:transparent;color:inherit;font:inherit;
+  text-align:left;min-width:0;position:relative;transition:background var(--dur) var(--ease)}
+.faas:hover{background:rgba(255,255,255,.05)}
+.faas .n{width:24px;height:24px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;
+  font-size:12px;border:1px solid var(--line-strong);color:var(--dim)}
+.faas .t{min-width:0}
+.faas .t b{display:block;font-size:13.2px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.faas[data-st="done"] .n{background:rgba(191,227,176,.12);border-color:rgba(191,227,176,.4);color:var(--ok)}
+.faas[data-st="active"]{background:rgba(255,255,255,.022);border-color:rgba(242,239,235,.16)}
+.faas[data-st="active"] .n{border-color:rgba(242,239,235,.62);color:var(--text);font-weight:700}
+.faas[data-st="active"]::after{content:"";position:absolute;right:7px;top:5px;width:4px;height:4px;
+  border-radius:50%;background:var(--accent-hi);opacity:.72}
+.faas[data-st="future"]{opacity:.55}
+.faas[data-view="1"]{background:var(--accent-soft);border-color:rgba(242,239,235,.52);opacity:1;
+  box-shadow:inset 0 0 0 1px rgba(242,239,235,.12)}
+.faas[data-view="1"] .n{background:#e8e4df;border-color:#f5f2ed;color:#171615;font-weight:700}
+.faas[data-cmp]{border-color:rgba(242,239,235,.42);opacity:1}
+.cmpmark{position:absolute;right:5px;top:4px;width:18px;height:16px;border-radius:5px;display:grid;place-items:center;
+  background:#ece8e3;color:#151413;box-shadow:0 0 0 2px rgba(15,15,14,.8)}
+.cmpmark svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.5}
+
+/* ---------- 3) LAVA ---------- */
+#lava{position:relative;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:8px}
+#lava.yksi{grid-template-columns:minmax(0,1fr)}
+#lava.focus-card{display:flex;align-items:center;justify-content:center;padding:clamp(12px,3.5vh,34px) clamp(0px,5vw,72px)}
+#lava.focus-card>.pind{width:min(100%,920px);max-height:100%;flex:0 1 auto;
+  background:linear-gradient(150deg,rgba(42,40,38,.78),rgba(19,18,17,.68));
+  border-color:rgba(242,239,235,.28);box-shadow:inset 0 1px rgba(255,255,255,.07),0 30px 90px rgba(0,0,0,.38)}
+#lava.focus-card>.pind[data-phase="1"]{width:min(100%,980px)}
+#lava.focus-card>.pind[data-phase="2"]{width:min(100%,760px)}
+#lava.focus-card>.pind[data-phase="3"]{width:min(100%,940px)}
+#lava.focus-card>.pind[data-phase="4"]{width:min(100%,900px)}
+#lava.focus-card>.pind[data-phase="5"]{width:min(100%,900px)}
+#lava.focus-card>.pind .pind-sisu{flex:0 1 auto;overflow:auto;max-height:calc(100vh - 250px)}
+#lava.focus-card>.pind .pind-sisu>.list-scroll{flex:0 1 auto}
+.pind{position:relative;min-height:0;background:var(--glass);border:1px solid var(--line);
+  border-radius:var(--r);backdrop-filter:blur(18px);display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:inset 0 1px rgba(255,255,255,.035),0 24px 60px rgba(0,0,0,.16)}
+.pind-pais{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.pind-pais h2{font-size:16.5px;font-weight:600}
+.silt{font-size:11px;color:var(--dim);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.silt::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.7}
+.silt.edit{color:var(--text);font-weight:600}
+.silt.ro{color:var(--faint)}
+.silt.laVi{color:var(--faint)}
+.pind-sisu{flex:1;min-height:0;padding:14px 16px;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.pind-sisu>.list-scroll{flex:1}
+.juhtlause{color:var(--dim);font-size:13.5px}
+.list-scroll{min-height:0;overflow:auto;scrollbar-width:thin;scrollbar-color:rgba(238,235,231,.28) transparent;padding-right:4px}
+.locked-state{flex:1;min-height:220px;display:grid;place-items:center;padding:24px}
+.locked-card{width:min(100%,520px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;
+  padding:18px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.028);box-shadow:inset 0 1px rgba(255,255,255,.025)}
+.locked-mark{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-strong);
+  color:var(--dim);font-weight:650;background:rgba(255,255,255,.035)}
+.locked-card h3{font-size:16px;font-weight:600;margin:3px 0 5px}
+.locked-card p{color:var(--dim);font-size:13px;max-width:48ch}
+.locked-card .btn{margin-top:12px}
+
+/* tüübikaardid (faas 1) */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;align-content:start}
+.tkaart{border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(255,255,255,.03);
+  cursor:pointer;color:inherit;font:inherit;text-align:left;display:flex;flex-direction:column;gap:4px}
+.tkaart small{color:var(--faint);font-size:11px}
+.tkaart[aria-pressed="true"]{background:var(--accent-soft);border-color:rgba(242,239,235,.40)}
+.tkaart[aria-pressed="true"] b{color:var(--accent-hi)}
+.tkaart[disabled]{cursor:default;opacity:.85}
+
+/* kiipvalikud (faas 2) */
+.krida{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.krida .nimi{width:92px;flex:0 0 auto;color:var(--faint);font-size:12px}
+.kval{border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.03);
+  color:var(--dim);padding:5px 12px;font-size:12.5px;cursor:pointer}
+.kval[aria-pressed="true"]{background:var(--accent-soft);border-color:rgba(242,239,235,.40);color:var(--accent-hi)}
+.kval[disabled]{cursor:default}
+
+/* dokumendiread (faas 3) */
+.dokirida{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:11px;
+  padding:9px 12px;background:rgba(255,255,255,.02)}
+.dokirida input{width:16px;height:16px;accent-color:var(--accent)}
+.dokirida .meta{min-width:0}
+.dokirida .meta b{font-size:13.5px;font-weight:600;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dokirida .meta span{font-size:11.5px;color:var(--faint)}
+.plokk{border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(255,255,255,.02)}
+.plokk h3{font-size:13px;font-weight:600;margin-bottom:6px}
+.plokk.himm{opacity:.55}
+
+/* komposer (faas 4) */
+.vestlus{display:flex;flex-direction:column;gap:10px;min-height:0}
+.repliik{border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;background:rgba(255,255,255,.025);max-width:56ch}
+.repliik.agent{border-color:rgba(191,227,176,.28)}
+.repliik .kes{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:block;margin-bottom:3px}
+.komposer{display:flex;gap:8px;align-items:flex-end}
+.komposer textarea{flex:1;min-height:56px;max-height:96px;resize:none;background:rgba(0,0,0,.3);
+  border:1px solid var(--line);border-radius:12px;color:var(--text);font:inherit;padding:10px 12px}
+
+.mtekst{white-space:pre-wrap;font-size:13.5px;line-height:1.6;color:var(--text);
+  background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+
+/* ---------- VÕRDLUS: poolitatud tööpind ---------- */
+#split{display:grid;min-height:0}
+.pool{min-height:0;display:flex;flex-direction:column}
+.pool .pind{flex:1;min-height:0}
+.pool[data-active="0"] .pind{opacity:.94}
+.pool[data-active="1"] .pind{border-color:rgba(242,239,235,.42);box-shadow:inset 0 0 0 1px rgba(242,239,235,.18)}
+#jaotur{width:14px;cursor:col-resize;display:grid;place-items:center;border-radius:8px;touch-action:none}
+#jaotur::before{content:"";width:4px;height:64px;border-radius:4px;background:var(--line-strong)}
+#jaotur:hover::before,#jaotur:focus-visible::before{background:var(--accent-hi)}
+#jaotur:focus-visible{box-shadow:var(--focus)}
+.pool .pais2{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.pool .pais2 .eti{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.pool .pais2 b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:32ch}
+#abLyliti{display:none;align-items:center;gap:4px;padding:3px;border:1px solid var(--line);border-radius:999px;background:rgba(0,0,0,.22)}
+#abLyliti .pill{padding:4px 12px;font-size:12px}
+#abLyliti .pill[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent-hi)}
+
+/* ---------- ÜLEVAADE ---------- */
+#ylevaade .pind-sisu{gap:14px}
+.ygrupp{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
+.ygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.ykaart{border:1px solid var(--line);border-radius:12px;padding:12px;background:rgba(255,255,255,.03);
+  display:flex;flex-direction:column;gap:6px}
+.ykaart small{color:var(--faint);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.ykaart b{font-size:14px;font-weight:600}
+.ykaart .rida{display:flex;gap:6px;margin-top:4px}
+.ykaart[data-st="active"]{background:var(--accent-soft);border-color:rgba(242,239,235,.38)}
+.ykaart[data-st="future"]{opacity:.6;border-style:dashed}
+
+/* ---------- 4) FAASI INFOKIHT ---------- */
+#phaseInfo{position:absolute;z-index:30;left:50%;bottom:calc(100% + 10px);width:min(620px,calc(100% - 24px));
+  transform:translate(-50%,8px);opacity:0;visibility:hidden;pointer-events:none;
+  background:rgba(20,19,18,.96);border:1px solid var(--line-strong);border-radius:15px;padding:12px 15px;
+  backdrop-filter:blur(22px);box-shadow:0 22px 54px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.04);
+  transition:opacity .16s ease,transform .16s ease,visibility .16s step-end}
+#phaseInfo.show{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .16s ease,transform .16s ease}
+#phaseInfo::after{content:"";position:absolute;left:50%;top:100%;width:10px;height:10px;
+  background:rgba(20,19,18,.96);border-right:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong);
+  transform:translate(-50%,-5px) rotate(45deg)}
+#phaseInfo .selg{min-width:0}
+#phaseInfo .selg b{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);display:block}
+#gateList{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--dim);margin-top:2px}
+#gateList .ok{color:var(--ok)}
+#gateList .puudu{color:var(--accent-hi)}
+
+/* ---------- 5) PLATVORMIKIHT ---------- */
+#platvorm{position:relative;display:flex;flex-direction:column;gap:7px;min-width:0}
+#riiul{display:none!important;align-items:center;gap:10px;background:var(--glass-2);
+  border:1px solid var(--line-strong);border-radius:12px;padding:6px 12px;backdrop-filter:blur(12px)}
+#riiul.show{display:flex}
+#riiul .nimi{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-hi);white-space:nowrap}
+.rchip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;
+  padding:4px 8px;font-size:12.5px;background:rgba(0,0,0,.25);min-width:0}
+.rchip .k{color:var(--faint);font-size:11px}
+.rchip b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:26ch}
+.rchip .x{border:none;background:none;color:var(--dim);cursor:pointer;font-size:14px;padding:0 2px}
+.rchip .x:hover{color:var(--text)}
+#riiul .vihje{font-size:12px;color:var(--faint)}
+.alaKaart{display:flex;flex-direction:column;gap:2px;border:1px solid var(--line);border-radius:13px;
+  padding:9px 15px;background:rgba(255,255,255,.035);cursor:pointer;color:inherit;font:inherit;min-width:120px;text-align:left}
+.alaKaart small{color:var(--faint);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.alaKaart b{font-size:13.5px;font-weight:600}
+.alaKaart[aria-current="true"]{background:var(--accent-soft);border-color:rgba(242,239,235,.38)}
+.alaKaart[aria-current="true"] b{color:var(--accent-hi)}
+
+/* ---------- Töölaua tasand ---------- */
+#toolaud{display:none;position:fixed;inset:0;z-index:5;background:
+  radial-gradient(1000px 600px at 50% 30%, rgba(55,54,52,.36), transparent 65%),var(--bg)}
+#toolaud.show{display:grid;place-items:center}
+#toolaud .kast{max-width:560px;text-align:center;display:flex;flex-direction:column;gap:18px;align-items:center;padding:24px}
+#toolaud h1{font-size:26px;font-weight:600}
+#toolaud p{color:var(--dim)}
+#toolaud .dokkDemo{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+
+#teated{position:fixed;left:50%;bottom:118px;transform:translateX(-50%);z-index:60;display:flex;flex-direction:column;gap:6px;align-items:center;pointer-events:none}
+.teade{background:var(--glass-deep);border:1px solid var(--line-strong);border-radius:10px;
+  padding:8px 14px;font-size:13px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+
+.anim-sisse{animation:sisse var(--dur) var(--ease)}
+@keyframes sisse{from{opacity:0;transform:translateY(6px) scale(.995)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html[data-motion="off"] *{animation:none!important;transition:none!important}
+
+@media (max-width:80rem){#lava{grid-template-columns:minmax(0,1fr) 260px}}
+@media (max-width:68rem){
+  #faasid .t span{display:none}
+  #lava{grid-template-columns:minmax(0,1fr)}
+  #ankur .selection-choice:nth-child(3){display:none}
+}
+@media (max-width:44rem){
+  #app{padding:8px;gap:7px;min-width:0}
+  #ankur{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:7px;padding:8px 10px;min-width:0}
+  #ankur .sigil{width:28px;height:28px}
+  #ankur .sp{display:none}
+  #ankur .tit{grid-column:2;min-width:0}
+  #ankur .eyebrow{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #ankur h1{font-size:15px}
+  #ankur .final-selection{grid-column:1/-1;grid-row:2;width:100%;align-items:flex-start;padding:3px 0 0}
+  .selection-values{justify-content:flex-start;width:100%;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .selection-values::-webkit-scrollbar{display:none}
+  .selection-label{padding-left:4px}
+  #modeCtl{grid-column:1/-1;grid-row:3;justify-self:center;max-width:100%}
+  #modeCtl .pill{padding-inline:10px}
+  #abLyliti{grid-column:1/-1;grid-row:4;justify-self:center;margin:0}
+  #phaseDock{max-width:100%;padding:5px}
+  #faasid{overflow-x:auto;scrollbar-width:none;overscroll-behavior-inline:contain}
+  #faasid::-webkit-scrollbar{display:none}
+  .faas{flex:0 0 46px;justify-content:center;padding:6px}
+  .faas .t{display:none}
+  #lava{min-width:0}
+  #lava.focus-card{padding:6px 0;align-items:flex-start}
+  #lava.focus-card>.pind{width:100%!important;max-height:100%}
+  #lava.focus-card>.pind .pind-sisu{max-height:none}
+  .pind-pais{padding:9px 11px;gap:7px}
+  .pind-pais h2{font-size:15px}
+  .pind-sisu{padding:11px;gap:10px}
+  #phaseDock #gateCta{padding-inline:12px;font-size:12px}
+  #phaseInfo{width:calc(100% - 12px);padding:10px 12px}
+  #gateList{gap:6px 10px}
+  #riiul{flex-wrap:wrap;gap:7px;padding:7px 9px;min-width:0}
+  #riiulKiibid{order:2;width:100%;overflow-x:auto}
+  #riiul .vihje{display:none}
+  #teated{bottom:112px;max-width:calc(100vw - 24px)}
+}
+.peidus{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+
+<section id="toolaud" aria-label="Töölaud (platvormitase)">
+  <div class="kast">
+    <div class="eyebrow">SotsiaalAI · platvormitase (demo)</div>
+    <h1>Töölaud</h1>
+    <p>See vaade simuleerib doki tagasi-tee sihti. Valikuruumis on dokk avatud.</p>
+    <div class="dokkDemo" role="navigation" aria-label="Ruumi dokk (avatud)">
+      <button class="alaKaart" data-ala="toolaud" aria-current="true"><small>ala</small><b>Töölaud</b></button>
+      <button class="alaKaart" data-ala="vestlus"><small>ala</small><b>Vestlus</b></button>
+      <button class="alaKaart" data-ala="dokumendid"><small>ala</small><b>Dokumendid</b></button>
+      <button class="alaKaart" data-ala="koosta"><small>ala</small><b>Koosta dokument</b></button>
+      <button class="alaKaart" data-ala="kovisioon"><small>ala</small><b>Kovisioon</b></button>
+      <button class="alaKaart" data-ala="teekond"><small>ala</small><b>Teekond</b></button>
+    </div>
+    <p style="font-size:12px;color:var(--faint)">Ava „Koosta dokument", et naasta prototüübi lehele.</p>
+  </div>
+</section>
+
+<div id="app">
+  <header id="ankur" class="zone">
+    <button class="sigil" id="workBack" aria-label="Tagasi töölauale" title="Tagasi töölauale">←</button>
+    <div class="tit">
+      <div class="eyebrow">Privaatne tööruum · <span class="save-state" id="saveStatus" role="status">Automaatselt salvestatud</span></div>
+      <h1>Dokumendi koostamine</h1>
+    </div>
+    <div class="final-selection" id="ankruKiibid" aria-label="Lõppdokumendi valikud"></div>
+    <div id="modeCtl" role="group" aria-label="Vaaterežiim">
+      <button class="pill" id="mFookus" aria-pressed="true">Üks etapp</button>
+      <button class="pill" id="mVordlus" aria-pressed="false" disabled title="Vali kaks etappi kõrvutamiseks">Kõrvuti</button>
+      <button class="pill" id="mYlevaade" aria-pressed="false">Tulemused</button>
+    </div>
+    <span id="abLyliti" role="radiogroup" aria-label="Kõrvuti vaate pool kitsal ekraanil">
+      <button class="pill" id="abA" aria-pressed="true">Vasak vaade</button>
+      <button class="pill" id="abB" aria-pressed="false">Parem vaade</button>
+    </span>
+    <button class="iconbtn" id="motionBtn" title="Liikumine sees/väljas" aria-pressed="false">✦</button>
+    <button class="iconbtn" id="abiBtn" title="Klahvid ja abi">?</button>
+  </header>
+
+  <main id="lava" class="zone"></main>
+
+  <div id="platvorm">
+    <div id="riiul" role="toolbar" aria-label="Võrdlusriiul">
+      <span class="nimi" id="riiulNimi">Võrdlusriiul 0/2</span>
+      <span id="riiulKiibid" style="display:flex;gap:8px;min-width:0"></span>
+      <span class="vihje" id="riiulVihje"></span>
+      <span class="sp"></span>
+      <button class="btn small" id="riiulVaheta" hidden>⇄ Vaheta pooled</button>
+      <button class="btn small" id="riiulSulge" hidden>Sulge võrdlus</button>
+      <button class="btn small" id="riiulAva" disabled>Ava võrdlus</button>
+      <button class="btn small" id="riiulTyhi">Tühjenda</button>
+    </div>
+    <div id="phaseInfo" role="tooltip" aria-hidden="true">
+      <div class="selg">
+        <b id="gatePealkiri">Faasi teave</b>
+        <div id="gateList"></div>
+      </div>
+    </div>
+    <div id="phaseDock">
+      <button id="phaseEelmine" aria-label="Eelmine faas" title="Eelmine faas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <nav id="faasid" aria-label="Tööprotsessi faaside valik"></nav>
+      <button id="phaseJargmine" aria-label="Järgmine faas" title="Järgmine faas">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+      </button>
+      <button class="btn primary" id="gateCta" aria-disabled="true">—</button>
+    </div>
+  </div>
+</div>
+
+<div id="teated" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   FABLE-Q prototüüp — lõppsamm: Fookus + Võrdlus + Ülevaade + kitsas A/B
+   Alumine dokk = etapid (kus töös) · päis = režiim (kuidas vaatan)
+   Hash kannab AINULT vaadet; tööolek elab sessionStorage's (mock-server).
+   D-FQ3: riiul/võrdlus ei loo auditit — ainult URL-viited + sessioonimälu.
+   ===================================================================== */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+const PHASES=[
+  {id:1,nimi:"Väljund",kys:"Mida koostame?"},
+  {id:2,nimi:"Suund",kys:"Kellele ja kuidas?"},
+  {id:3,nimi:"Lähtematerjal",kys:"Millest lähtume?"},
+  {id:4,nimi:"Koostamine",kys:"Tee koos agendiga"},
+  {id:5,nimi:"Ülevaatus",kys:"Kas sobib?"}
+];
+const TYYBID=["Kohtumise kokkuvõte","Juhtumikokkuvõte","Eelpöördumise kokkuvõte","Ametlik kiri","Selge keele selgitus","Teenuse taotluse mustand"];
+const DOKID=[
+  {id:"d1",nimi:"kohtumise-markmed.pdf",info:"üles laaditud täna 10:12"},
+  {id:"d2",nimi:"intervjuu-kokkuvote.docx",info:"üles laaditud eile"},
+  {id:"d3",nimi:"eelmine-kokkuvote.docx",info:"arhiivist"}
+];
+
+/* ---- tööolek (mock-server) ---- */
+const TO_KEY="fq-tooolek-v3";
+let too=loadToo();
+function loadToo(){
+  try{
+    const s=JSON.parse(sessionStorage.getItem(TO_KEY));
+    if(s&&s.workPhase){
+      if(s.workPhase===3&&s.dokid?.length)s.workPhase=4;
+      return s;
+    }
+  }catch(e){}
+  return {
+    workPhase:3,
+    valik:{tyyp:"Kohtumise kokkuvõte",siht:"perele",toon:"lihtne keel",keel:"eesti",pikkus:"lühike",mall:"Ilma mallita"},
+    dokid:[],
+    versioonid:[],
+    finalizedAt:null,
+    finalVersionId:null
+  };
+}
+let saveStatusTimer=null;
+function saveToo(){
+  sessionStorage.setItem(TO_KEY,JSON.stringify(too));
+  const status=$("#saveStatus");
+  if(!status)return;
+  status.textContent="Salvestatud praegu";
+  clearTimeout(saveStatusTimer);
+  saveStatusTimer=setTimeout(()=>{status.textContent="Automaatselt salvestatud";},1400);
+}
+function salvestaLopp(){
+  const viimane=too.versioonid[too.versioonid.length-1];
+  if(!viimane)return teade("Lõppdokumendi salvestamiseks peab mustand olemas olema.");
+  too.finalizedAt="praegu";too.finalVersionId=viimane.id;saveToo();render();
+  teade("Lõppdokument salvestatud: "+too.valik.tyyp+".");
+}
+
+/* ---- viited ---- */
+function refInfo(id){
+  if(/^f\d$/.test(id)){
+    const n=Number(id.slice(1));const f=PHASES.find(p=>p.id===n);
+    if(!f)return null;
+    const st=n<too.workPhase?"kaust":n===too.workPhase?"elav":"lävi";
+    return {id,liik:"faas",n,tit:`Faas ${n} · ${f.nimi}`,sub:st==="elav"?"aktiivne tööpind":st==="kaust"?"läbitud · kaust":"ees · lävi",st};
+  }
+  const v=too.versioonid.find(v=>v.id===id);
+  if(!v)return null;
+  return {id,liik:"versioon",tit:v.nimi,sub:v.aeg,st:"versioon"};
+}
+function refEditable(id){const i=refInfo(id);return !!i&&i.liik==="faas"&&i.st==="elav";}
+
+/* ---- vaate olek (hash) ---- */
+function parseHash(){
+  const p=new URLSearchParams(location.hash.replace(/^#/,""));
+  let ratio=Number(p.get("r")||50);if(!Number.isFinite(ratio))ratio=50;
+  ratio=Math.min(65,Math.max(35,ratio));
+  return {
+    tase:p.get("tase")||"koosta",
+    vf:p.get("vf")||("f"+too.workPhase),
+    mode:p.get("mode")||"fookus",
+    cmp:(p.get("cmp")||"").split(",").filter(Boolean),
+    ap:p.get("ap")==="B"?"B":"A",
+    ratio,
+    side:p.get("side")==="B"?"B":"A"
+  };
+}
+function hashStr(v){
+  const p=new URLSearchParams();
+  p.set("tase",v.tase);
+  if(v.tase==="koosta"){
+    p.set("vf",v.vf);
+    if(v.mode!=="fookus")p.set("mode",v.mode);
+    if(v.mode==="vordlus"&&v.cmp.length===2){p.set("cmp",v.cmp.join(","));p.set("ap",v.ap);
+      if(v.ratio&&v.ratio!==50)p.set("r",String(Math.round(v.ratio)));
+      if(v.side!=="A")p.set("side",v.side);}
+  }
+  return "#"+p.toString();
+}
+let vaade=parseHash();
+let eelmineMode=vaade.mode;
+function nav(next,replace=false){
+  const h=hashStr({...vaade,...next});
+  if(h===location.hash)return render();
+  if(replace){history.replaceState(null,"",h);vaade=parseHash();render();}
+  else location.hash=h;
+}
+window.addEventListener("hashchange",()=>{vaade=parseHash();render();});
+
+/* ---- teated ---- */
+function teade(txt){
+  const el=document.createElement("div");el.className="teade anim-sisse";el.textContent=txt;
+  $("#teated").append(el);setTimeout(()=>el.remove(),2600);
+}
+
+/* ---- ajutine etapivõrdlus (sessionStorage; vaatekiht; auditit ei teki) ---- */
+const R_KEY="fq-etapivordlus-v2";
+let riiul=[];
+try{riiul=(JSON.parse(sessionStorage.getItem(R_KEY))||[]).filter(id=>/^f\d$/.test(id));}catch(e){riiul=[];}
+function saveRiiul(){sessionStorage.setItem(R_KEY,JSON.stringify(riiul));}
+function lisaVordlusse(id){
+  const info=refInfo(id);
+  if(!info)return;
+  if(info.st==="lävi")return teade("Tulevast faasi ei saa võrdlusse lisada — see avaneb väravaga.");
+  if(riiul.includes(id))return eemaldaRiiulist(id);
+  if(riiul.length>=2){
+    const asenda=confirm(`Võrdluseks on juba kaks pinda.\n\nOK = asenda „${refInfo(riiul[1])?.tit||riiul[1]}"\nLoobu = jäta nii`);
+    if(!asenda)return;
+    riiul[1]=id;saveRiiul();teade("Võrdluspind asendatud: "+info.tit);
+    if(vaade.mode==="vordlus")return nav({cmp:[...riiul],ap:"A"},true);
+    return render();
+  }
+  riiul.push(id);saveRiiul();
+  teade(`Valitud võrdluseks: ${info.tit} (${riiul.length}/2)`);
+  render();
+  if(riiul.length===2)avaVordlus();     /* teise valiku järel avaneb split automaatselt */
+}
+function eemaldaRiiulist(id){
+  riiul=riiul.filter(r=>r!==id);saveRiiul();
+  if(vaade.mode==="vordlus")history.back();else render();
+}
+function tyhjendaRiiul(){riiul=[];saveRiiul();
+  if(vaade.mode==="vordlus")history.back();else render();}
+function avaVordlus(){
+  if(riiul.length!==2)return;
+  nav({mode:"vordlus",cmp:[...riiul],ap:refEditable(riiul[0])?"A":refEditable(riiul[1])?"B":"A",ratio:50,side:"A"});
+}
+function renderRiiul(){
+  const cmpOn=vaade.mode==="vordlus";
+  const bar=$("#riiul");
+  bar.classList.toggle("show",cmpOn);
+  $("#riiulNimi").textContent="Kõrvuti";
+  const kiibid=$("#riiulKiibid");kiibid.innerHTML="";
+  (cmpOn?vaade.cmp:riiul).forEach((id,ix)=>{
+    const i=refInfo(id);if(!i)return;
+    const c=document.createElement("span");c.className="rchip";
+    c.innerHTML=`<span class="k">${cmpOn?(ix===0?"A":"B"):(i.liik==="faas"?"faas":"versioon")}</span><b>${esc(i.tit)}</b>
+      <button class="x" aria-label="Eemalda ${esc(i.tit)} riiulilt">×</button>`;
+    c.querySelector(".x").addEventListener("click",()=>eemaldaRiiulist(id));
+    kiibid.append(c);
+  });
+  $("#riiulVihje").textContent=cmpOn?"":riiul.length===1?"Vali teine pind võrdlemiseks.":riiul.length===2?"Kaks pinda valmis.":"";
+  $("#riiulAva").hidden=cmpOn;
+  $("#riiulAva").disabled=riiul.length!==2;
+  $("#riiulVaheta").hidden=!cmpOn;
+  $("#riiulSulge").hidden=!cmpOn;
+  $("#riiulTyhi").hidden=cmpOn;
+  const mv=$("#mVordlus");
+  mv.disabled=riiul.length!==2&&!cmpOn;
+  mv.textContent=cmpOn?"Kõrvuti":riiul.length?`Kõrvuti ${riiul.length}/2`:"Kõrvuti";
+  mv.title=mv.disabled?"Vali kaks etappi võrdluseks":"Ava etapid kõrvuti";
+  renderAB();
+}
+$("#riiulAva").addEventListener("click",avaVordlus);
+$("#riiulTyhi").addEventListener("click",tyhjendaRiiul);
+$("#riiulVaheta").addEventListener("click",()=>{
+  nav({cmp:[vaade.cmp[1],vaade.cmp[0]],ap:vaade.ap==="A"?"B":"A",side:vaade.side==="A"?"B":"A"},true);
+});
+$("#riiulSulge").addEventListener("click",()=>history.back());
+
+/* ---- A/B lüliti (kitsas ekraan) ---- */
+const kitsasMq=window.matchMedia("(max-width:68rem)");
+function renderAB(){
+  const on=vaade.mode==="vordlus"&&kitsasMq.matches;
+  $("#abLyliti").style.display=on?"flex":"none";
+  const vasak=refInfo(vaade.cmp[0])?.tit||"Vasak vaade";
+  const parem=refInfo(vaade.cmp[1])?.tit||"Parem vaade";
+  $("#abA").textContent=vasak;
+  $("#abB").textContent=parem;
+  $("#abA").setAttribute("aria-label",`Näita võrdluses: ${vasak}`);
+  $("#abB").setAttribute("aria-label",`Näita võrdluses: ${parem}`);
+  $("#abA").setAttribute("aria-pressed",vaade.side==="A"?"true":"false");
+  $("#abB").setAttribute("aria-pressed",vaade.side==="B"?"true":"false");
+}
+$("#abA").addEventListener("click",()=>nav({side:"A"},true));
+$("#abB").addEventListener("click",()=>nav({side:"B"},true));
+if(kitsasMq.addEventListener)kitsasMq.addEventListener("change",()=>render());
+else if(kitsasMq.addListener)kitsasMq.addListener(()=>render());
+
+/* ---- etapidokk + demo-töölaud ---- */
+$("#workBack").addEventListener("click",()=>nav({tase:"toolaud"}));
+$$("#toolaud .alaKaart").forEach(b=>b.addEventListener("click",()=>{
+  const ala=b.dataset.ala;
+  if(ala==="toolaud")return nav({tase:"toolaud"});
+  if(ala==="koosta")return nav({tase:"koosta",vf:"f"+too.workPhase,mode:"fookus",cmp:[]});
+  const nimi=b.getAttribute("aria-label")||b.querySelector("b")?.textContent||ala;
+  teade(`Demo: ala „${nimi}" ei ole prototüübis.`);
+}));
+
+/* ---- liikumine + abi ---- */
+$("#motionBtn").addEventListener("click",()=>{
+  const off=document.documentElement.dataset.motion==="off";
+  document.documentElement.dataset.motion=off?"":"off";
+  $("#motionBtn").setAttribute("aria-pressed",off?"false":"true");
+  teade(off?"Liikumine sees":"Liikumine väljas");
+});
+$("#abiBtn").addEventListener("click",()=>teade("Liigu faaside vahel: ← / → või hiireratta ja puuteplaadi kerimine. O = Tulemused · Esc = sulge režiim."));
+
+/* ---- režiimilülitid ---- */
+$("#mFookus").addEventListener("click",()=>{ if(vaade.mode!=="fookus")history.back(); });
+$("#mYlevaade").addEventListener("click",()=>{ vaade.mode==="ylevaade"?history.back():nav({mode:"ylevaade"}); });
+$("#mVordlus").addEventListener("click",()=>{ if(vaade.mode!=="vordlus")avaVordlus(); });
+
+/* ---- faaside vahel liikumine: nooled, klahvid ja kerimine ---- */
+function currentPhaseNumber(){
+  const m=/^f([1-5])$/.exec(String(vaade.vf||""));
+  return m?Number(m[1]):too.workPhase;
+}
+function liiguFaasis(delta){
+  if(vaade.tase!=="koosta")return;
+  const cur=currentPhaseNumber();
+  const next=cur+delta;
+  if(next<1)return;
+  if(next>too.workPhase){
+    const g=gateSeis();
+    showPhaseInfo(too.workPhase);
+    teade(g.vihje||"Järgmine faas avaneb pärast tegevust „"+g.cta+"”.");
+    return;
+  }
+  nav({mode:"fookus",vf:"f"+next});
+}
+$("#phaseEelmine").addEventListener("click",()=>liiguFaasis(-1));
+$("#phaseJargmine").addEventListener("click",()=>liiguFaasis(1));
+
+/* ---- faasiriba ---- */
+function renderFaasid(){
+  hidePhaseInfo();
+  const wrap=$("#faasid");wrap.innerHTML="";
+  wrap.onmouseleave=hidePhaseInfo;
+  PHASES.forEach(f=>{
+    const st=f.id<too.workPhase?"done":f.id===too.workPhase?"active":"future";
+    const cmpIx=riiul.indexOf("f"+f.id);
+    const b=document.createElement("button");
+    b.className="faas";b.dataset.st=st;
+    b.type="button";
+    if(cmpIx>=0)b.dataset.cmp=cmpIx===0?"A":"B";
+    const viewed=vaade.mode==="fookus"&&vaade.vf==="f"+f.id;
+    b.dataset.view=viewed?"1":"0";
+    if(viewed)b.setAttribute("aria-current","step");
+    b.setAttribute("aria-label",`Faas ${f.id}: ${f.nimi} — ${viewed?"praegu ekraanil":st==="done"?"läbitud":st==="active"?"tööjärg":"veel suletud"}${cmpIx>=0?" — võrdluseks valitud":""}`);
+    b.setAttribute("aria-describedby","phaseInfo");
+    b.innerHTML=`<span class="n">${st==="done"?"✓":f.id}</span>
+      <span class="t"><b>${f.nimi}</b></span>${cmpIx>=0?`<span class="cmpmark" aria-hidden="true"><svg viewBox="0 0 16 16"><rect x="2.5" y="3" width="11" height="10" rx="2"/><path d="M8 3v10"/></svg></span>`:""}`;
+    b.addEventListener("mouseenter",()=>showPhaseInfo(f.id));
+    b.addEventListener("focus",()=>showPhaseInfo(f.id));
+    b.addEventListener("blur",hidePhaseInfo);
+    b.addEventListener("click",()=>{
+      if(f.id>too.workPhase){
+        const gate=gateSeis();
+        showPhaseInfo(f.id);
+        teade(gate.vihje||"See faas avaneb pärast tegevust „"+gate.cta+"”.");
+        return;
+      }
+      nav({mode:"fookus",vf:"f"+f.id});
+    });
+    wrap.append(b);
+  });
+  const cur=currentPhaseNumber();
+  $("#phaseEelmine").disabled=cur<=1;
+  const nextLocked=cur>=too.workPhase;
+  const gate=gateSeis();
+  $("#phaseJargmine").dataset.locked=nextLocked?"true":"false";
+  $("#phaseJargmine").setAttribute("aria-label",nextLocked?"Järgmine faas on värava taga":"Järgmine faas");
+  $("#phaseJargmine").title=nextLocked?(gate.vihje||"Edasi pärast tegevust „"+gate.cta+"”"):"Järgmine faas";
+}
+
+/* ---- ankru kiibid ---- */
+function renderAnkur(){
+  const c=$("#ankruKiibid");c.innerHTML="";
+  const lahted=too.dokid.length
+    ?`${too.dokid.length} lähtedokument${too.dokid.length>1?"i":""}`
+    :"lähted valimata";
+  c.innerHTML=`<div class="selection-label">Lõppdokumendi valikud</div>
+    <div class="selection-values">
+      <span class="selection-choice"><b>${esc(too.valik.tyyp)}</b></span>
+      <span class="selection-choice">Saaja: <b>${esc(too.valik.siht)}</b></span>
+      <span class="selection-choice">${esc(too.valik.toon)} · ${esc(too.valik.keel)} · ${esc(too.valik.pikkus)}</span>
+      <span class="selection-choice ${too.dokid.length?"":"pending"}">${esc(lahted)}</span>
+    </div>`;
+}
+
+/* ---- faasipindade sisu ---- */
+function faasiSisuHTML(n,{readonly}){
+  if(n===1){
+    return `<div class="juhtlause">Vali, mida koostame. Üks otsus — üks faas.</div>
+    <div class="tgrid list-scroll">${TYYBID.map(t=>`
+      <button class="tkaart" data-tyyp="${esc(t)}" aria-pressed="${t===too.valik.tyyp}" ${readonly?"disabled":""}>
+        <small>väljund</small><b>${esc(t)}</b></button>`).join("")}
+    </div>`;
+  }
+  if(n===2){
+    const rida=(nimi,key,valikud)=>`<div class="krida"><span class="nimi">${nimi}</span>
+      ${valikud.map(v=>`<button class="kval" data-k="${key}" data-v="${esc(v)}" aria-pressed="${too.valik[key]===v}" ${readonly?"disabled":""}>${esc(v)}</button>`).join("")}</div>`;
+    return `<div class="juhtlause">Kellele ja kuidas? Neli kompaktset valikut ühel pinnal.</div>
+      ${rida("Sihtrühm","siht",["perele","kliendile","võrgustikule","asutusele"])}
+      ${rida("Toon","toon",["lihtne keel","ametlik","soe"])}
+      ${rida("Keel","keel",["eesti","vene","inglise"])}
+      ${rida("Pikkus","pikkus",["lühike","tavaline","põhjalik"])}`;
+  }
+  if(n===3){
+    return `<div class="juhtlause">Millest lähtume? Vali lähtedokumendid — see avab värava.</div>
+      <div class="plokk"><h3>Mall</h3>
+        <div class="krida">${["Ilma mallita","KOV põhi","Pere lihtne"].map((m,i)=>`
+          <button class="kval" data-mall="${esc(m)}" aria-pressed="${m===(too.valik.mall||"Ilma mallita")}" ${readonly?"disabled":""}>${esc(m)}</button>`).join("")}</div>
+      </div>
+      <div class="plokk" style="min-height:0;display:flex;flex-direction:column"><h3>Dokumendid</h3>
+        <div class="list-scroll" style="display:flex;flex-direction:column;gap:8px">
+        ${DOKID.map(d=>`<label class="dokirida"><input type="checkbox" data-dok="${d.id}" ${too.dokid.includes(d.id)?"checked":""} ${readonly?"disabled":""}>
+          <span class="meta"><b>${esc(d.nimi)}</b><span>${esc(d.info)}</span></span></label>`).join("")}
+        </div>
+      </div>
+      <div class="plokk himm"><h3>Heli</h3><div class="juhtlause">Pole selle väljunditüübi juures kasutusel.</div></div>`;
+  }
+  if(n===4){
+    if(!too.versioonid.length)return `<div class="juhtlause">Koostamise tööpind on avatud. Kerimine tõi sind siia, kuid mustand käivitub ainult sinu kinnitusel.</div>
+      <div class="locked-state"><div class="locked-card">
+        <div class="locked-mark">4</div><div><div class="eyebrow">Valmis koostama</div>
+        <h3>Lähtematerjal on valitud</h3>
+        <p>„Koosta mustand” loob esimese versiooni. See on eraldi tegevus, mitte faaside vahel liikumine.</p></div>
+      </div></div>`;
+    return `<div class="juhtlause">Tee koos agendiga. Mustand kasvab versioonipaneelis — mitte lehe all.</div>
+      <div class="vestlus list-scroll">
+        <div class="repliik"><span class="kes">sina</span>Lisa kokkuvõttesse lapse enda soov päevade valiku kohta.</div>
+        <div class="repliik agent"><span class="kes">agent</span>Lisasin lapse soovi teisipäevast alustada ja ise päevi valida. Uuendasin kokkulepet — vaata mustandi uut versiooni.</div>
+      </div>
+      <div class="komposer">
+        <textarea aria-label="Sõnum agendile" placeholder="Kirjuta agendile… (demo)" ${readonly?"disabled":""}></textarea>
+        <button class="btn" data-saada ${readonly?"disabled":""}>Saada</button>
+        <button class="btn" data-uusver ${readonly?"disabled":""}>Uus versioon</button>
+      </div>`;
+  }
+  const vk=too.versioonid[too.versioonid.length-1];
+  return `<div class="juhtlause">Kas sobib? See on tulemuse leht — mitte lehe lõpp.</div>
+    <div class="mtekst list-scroll">${esc(vk.sisu)}</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <span class="juhtlause">${too.finalizedAt?"Lõppdokument on salvestatud ja leitav Tulemuste vaatest.":"Kinnita lõppdokument alumise faasivärava kaudu."}</span>
+      <button class="btn" data-laadi ${readonly||!too.finalizedAt?"disabled":""}>Laadi lõppdokument alla (demo)</button>
+    </div>`;
+}
+function pindPaisHTML(info,{silt,lisaVordlus=true}){
+  const valitud=lisaVordlus&&riiul.includes(info.lvId);
+  return `<div class="pind-pais">
+    <div><div class="eyebrow">${esc(info.eyebrow||"")}</div><h2>${esc(info.tit)}</h2></div>
+    <div class="sp"></div>${silt||""}
+    ${lisaVordlus?`<button class="btn small" data-lv="${info.lvId}" aria-pressed="${valitud}">${valitud?"Eemalda võrdlusest":"Vali võrdluseks"}</button>`:""}
+  </div>`;
+}
+function faasiPind(n){
+  const f=PHASES.find(p=>p.id===n)||PHASES[2];
+  n=f.id;
+  const elav=n===too.workPhase, kaust=n<too.workPhase, lavi=n>too.workPhase;
+  const silt=elav?`<span class="silt edit">Muudetav</span>`
+    :kaust?`<span class="silt ro">Kaust · kirjutuskaitstud</span>`
+    :`<span class="silt laVi">Lävi — avaneb väravaga</span>`;
+  const sisu=lavi
+    ?`<div class="locked-state"><div class="locked-card">
+        <div class="locked-mark">${n}</div><div><div class="eyebrow">Järgmine tööpind</div>
+        <h3>${esc(f.nimi)} ootab eelmist kinnitust</h3>
+        <p>See pind avaneb pärast faasi ${too.workPhase} värava läbimist. Praegune töö jääb aktiivsesse faasi nähtavaks ja midagi ei lähe kaduma.</p>
+        <button class="btn small" data-active-phase>Tagasi aktiivsesse faasi</button></div>
+      </div></div>`
+    :faasiSisuHTML(n,{readonly:!elav});
+  const sec=document.createElement("section");
+  sec.className="pind anim-sisse";
+  sec.dataset.phase=String(n);
+  sec.setAttribute("aria-label",`Faas ${n}: ${f.nimi}`);
+  sec.innerHTML=pindPaisHTML({eyebrow:`Faas ${n} / 5 · ${f.nimi}${kaust?" · läbitud":lavi?" · ees":""}`,tit:f.kys,lvId:"f"+n},{silt,lisaVordlus:!lavi})
+    +`<div class="pind-sisu">${sisu}</div>`;
+  sec.querySelector("[data-active-phase]")?.addEventListener("click",()=>nav({mode:"fookus",vf:"f"+too.workPhase}));
+  sidumine(sec,!elav);
+  return sec;
+}
+function versiooniPind(vid){
+  const v=too.versioonid.find(x=>x.id===vid);
+  const sec=document.createElement("section");
+  sec.className="pind anim-sisse";
+  sec.setAttribute("aria-label",v?v.nimi:"Versioon");
+  if(!v){sec.innerHTML=`<div class="pind-sisu"><p class="juhtlause">Versiooni ei leitud.</p></div>`;return sec;}
+  sec.innerHTML=pindPaisHTML({eyebrow:"Mustandi versioon · "+v.aeg,tit:v.nimi,lvId:v.id},
+      {silt:`<span class="silt ro">Versioon · alati kirjutuskaitstud</span>`,lisaVordlus:false})
+    +`<div class="pind-sisu"><div class="mtekst list-scroll">${esc(v.sisu)}</div>
+      <div><button class="btn" data-tagasi>Tagasi tööpinnale</button></div></div>`;
+  sec.querySelector("[data-lv]").addEventListener("click",()=>lisaVordlusse(v.id));
+  sec.querySelector("[data-tagasi]").addEventListener("click",()=>nav({vf:"f"+too.workPhase}));
+  return sec;
+}
+function sidumine(sec,readonly){
+  sec.querySelectorAll("[data-lv]").forEach(b=>b.addEventListener("click",()=>lisaVordlusse(b.dataset.lv)));
+  if(readonly)return;
+  sec.querySelectorAll(".tkaart").forEach(b=>b.addEventListener("click",()=>{
+    too.valik.tyyp=b.dataset.tyyp;saveToo();render();
+  }));
+  sec.querySelectorAll(".kval[data-k]").forEach(b=>b.addEventListener("click",()=>{
+    too.valik[b.dataset.k]=b.dataset.v;saveToo();render();
+  }));
+  sec.querySelectorAll(".kval[data-mall]").forEach(b=>b.addEventListener("click",()=>{
+    sec.querySelectorAll(".kval[data-mall]").forEach(x=>x.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    too.valik.mall=b.dataset.mall;saveToo();renderAnkur();
+  }));
+  sec.querySelectorAll("[data-dok]").forEach(ch=>ch.addEventListener("change",()=>{
+    const id=ch.dataset.dok;
+    too.dokid=ch.checked?[...new Set([...too.dokid,id])]:too.dokid.filter(x=>x!==id);
+    if(!too.versioonid.length)too.workPhase=too.dokid.length?4:3;
+    saveToo();renderFaasid();renderVarav();renderAnkur();
+  }));
+  sec.querySelector("[data-saada]")?.addEventListener("click",()=>teade("Demo: agent vastas. Mustand uueneb versioonina."));
+  sec.querySelector("[data-uusver]")?.addEventListener("click",()=>{
+    const n2=too.versioonid.length+1;
+    too.versioonid.push({id:"v"+n2,nimi:"Mustand v"+n2,aeg:"praegu",sisu:too.versioonid[too.versioonid.length-1].sisu.replace(/\(v\d+\)/,"(v"+n2+")")+"\n\nTäiendus: agent täpsustas järgmise sammu sõnastust."});
+    saveToo();render();teade("Uus versioon: Mustand v"+n2);
+  });
+  sec.querySelector("[data-salvesta]")?.addEventListener("click",salvestaLopp);
+  sec.querySelector("[data-laadi]")?.addEventListener("click",()=>teade("Demo: allalaadimist prototüübis ei ole."));
+}
+
+/* ---- VÕRDLUS: pool ---- */
+function poolPind(id,taht){
+  const i=refInfo(id);
+  const wrap=document.createElement("div");
+  wrap.className="pool";wrap.dataset.taht=taht;
+  const aktiivne=vaade.ap===taht;
+  const voibMuuta=refEditable(id);
+  const muudetav=aktiivne&&voibMuuta;
+  wrap.dataset.active=muudetav?"1":"0";
+  if(!i){
+    wrap.innerHTML=`<section class="pind"><div class="pind-sisu">
+      <p class="juhtlause">Seda pinda ei ole enam (viide aegus). Eemalda pool või sulge võrdlus.</p>
+      <div><button class="btn small" data-x>Eemalda pool</button></div></div></section>`;
+    wrap.querySelector("[data-x]").addEventListener("click",()=>eemaldaRiiulist(id));
+    return wrap;
+  }
+  const sisu=i.liik==="versioon"
+    ?`<div class="mtekst list-scroll">${esc(too.versioonid.find(v=>v.id===id).sisu)}</div>`
+    :i.st==="lävi"
+      ?`<div class="juhtlause">Lävi — sisu ei renderdata enne väravat.</div>`
+      :faasiSisuHTML(i.n,{readonly:!muudetav});
+  const muudaNupp=muudetav?"":voibMuuta
+    ?`<button class="btn small" data-muuda>Muuda seda poolt</button>`
+    :`<button class="btn small" disabled title="${i.liik==="versioon"?"Versioon on alati kirjutuskaitstud":"Muuta saab ainult aktiivset faasi — läbitud faas on kaust"}">Muuda seda poolt</button>`;
+  const sec=document.createElement("section");
+  sec.className="pind";
+  const pooleNimi=taht==="A"?"Vasak vaade":"Parem vaade";
+  sec.setAttribute("aria-label",`Võrdluse ${pooleNimi.toLowerCase()}: ${i.tit}${muudetav?" (muudetav)":" (kirjutuskaitstud)"}`);
+  sec.innerHTML=`<div class="pais2">
+      <span class="eti">${pooleNimi}</span><b>${esc(i.tit)}</b>
+      ${muudetav?`<span class="silt edit">Muudetav</span>`:`<span class="silt ro">Vaatad · kirjutuskaitstud</span>`}
+      <span class="sp"></span>
+      ${muudaNupp}
+      <button class="btn small" data-fookus>Ava täisfookuses</button>
+      <button class="btn small x" data-x aria-label="Eemalda võrdlusest: ${esc(i.tit)}">×</button>
+    </div>
+    <div class="pind-sisu">${sisu}</div>`;
+  sec.querySelector("[data-muuda]")?.addEventListener("click",()=>nav({ap:taht},true));
+  sec.querySelector("[data-fookus]").addEventListener("click",()=>nav({mode:"fookus",vf:id}));
+  sec.querySelector("[data-x]").addEventListener("click",()=>eemaldaRiiulist(id));
+  sidumine(sec,!muudetav);
+  wrap.append(sec);
+  return wrap;
+}
+function renderVordlus(lava){
+  lava.classList.add("yksi");
+  const kitsas=kitsasMq.matches;
+  const host=document.createElement("div");
+  host.id="split";host.className="anim-sisse";
+  if(kitsas){
+    host.style.gridTemplateColumns="minmax(0,1fr)";
+    const id=vaade.side==="A"?vaade.cmp[0]:vaade.cmp[1];
+    host.append(poolPind(id,vaade.side));
+  }else{
+    const r=vaade.ratio;
+    host.style.gridTemplateColumns=`minmax(0,${r}fr) auto minmax(0,${100-r}fr)`;
+    host.style.columnGap="8px";
+    const A=poolPind(vaade.cmp[0],"A");
+    const jaotur=document.createElement("div");
+    jaotur.id="jaotur";jaotur.tabIndex=0;
+    jaotur.setAttribute("role","separator");
+    jaotur.setAttribute("aria-orientation","vertical");
+    jaotur.setAttribute("aria-label","Poolte suuruse jaotur (35–65)");
+    jaotur.setAttribute("aria-valuemin","35");
+    jaotur.setAttribute("aria-valuemax","65");
+    jaotur.setAttribute("aria-valuenow",String(Math.round(r)));
+    const B=poolPind(vaade.cmp[1],"B");
+    host.append(A,jaotur,B);
+    let drag=null;
+    jaotur.addEventListener("pointerdown",e=>{
+      drag={x0:e.clientX,r0:vaade.ratio,w:host.getBoundingClientRect().width};
+      jaotur.setPointerCapture(e.pointerId);
+    });
+    jaotur.addEventListener("pointermove",e=>{
+      if(!drag)return;
+      const d=(e.clientX-drag.x0)/drag.w*100;
+      const nr=Math.min(65,Math.max(35,drag.r0+d));
+      vaade.ratio=nr;
+      host.style.gridTemplateColumns=`minmax(0,${nr}fr) auto minmax(0,${100-nr}fr)`;
+      jaotur.setAttribute("aria-valuenow",String(Math.round(nr)));
+    });
+    const lopeta=()=>{if(drag){drag=null;nav({ratio:vaade.ratio},true);}};
+    jaotur.addEventListener("pointerup",lopeta);
+    jaotur.addEventListener("pointercancel",lopeta);
+    jaotur.addEventListener("dblclick",()=>nav({ratio:50},true));
+    jaotur.addEventListener("keydown",e=>{
+      let nr=null;
+      if(e.key==="ArrowLeft")nr=Math.max(35,vaade.ratio-5);
+      if(e.key==="ArrowRight")nr=Math.min(65,vaade.ratio+5);
+      if(e.key==="Home")nr=35;
+      if(e.key==="End")nr=65;
+      if(nr!==null){e.preventDefault();nav({ratio:nr},true);
+        requestAnimationFrame(()=>$("#jaotur")?.focus());}
+    });
+  }
+  lava.append(host);
+}
+
+/* ---- TULEMUSED ---- */
+function renderYlevaade(lava){
+  lava.classList.add("yksi");
+  const sec=document.createElement("section");
+  sec.className="pind anim-sisse";sec.id="ylevaade";
+  sec.setAttribute("aria-label","Tulemused — mustandid ja lõppdokument");
+  const finalV=too.versioonid.find(v=>v.id===too.finalVersionId);
+  const lopp=too.finalizedAt&&finalV
+    ?`<div class="ykaart" data-st="active"><small>Lõppdokument · salvestatud ${esc(too.finalizedAt)}</small>
+        <b>${esc(too.valik.tyyp)} ${esc(too.valik.siht)}</b>
+        <span style="font-size:12px;color:var(--dim)">${esc(too.valik.toon)} · ${esc(too.valik.keel)} · ${esc(too.valik.pikkus)}</span>
+        <span class="rida"><button class="btn small" data-ava="${finalV.id}">Ava lõppdokument</button></span></div>`
+    :`<div class="ykaart" data-st="future"><small>Lõppdokument</small><b>Veel salvestamata</b>
+        <span style="font-size:12px;color:var(--dim)">Lõppdokument kinnitatakse etapis 5 „Ülevaatus”.</span></div>`;
+  const vk=too.versioonid.length?too.versioonid.slice().reverse().map(v=>`
+    <div class="ykaart"><small>mustandi versioon · ${esc(v.aeg)}</small><b>${esc(v.nimi)}</b>
+      <span class="rida">
+        <button class="btn small" data-ava="${v.id}">Ava mustand</button>
+      </span></div>`).join("")
+    :`<div class="ykaart" data-st="future"><small>Mustandite ajalugu</small><b>Mustandit pole veel loodud</b>
+        <span style="font-size:12px;color:var(--dim)">Vali lähtedokument ja kasuta faasi 3 väravat „Koosta mustand”.</span></div>`;
+  sec.innerHTML=`<div class="pind-pais">
+      <div><div class="eyebrow">Tulemused · ainult sina näed</div><h2>Mustandid ja lõppdokument</h2></div>
+      <div class="sp"></div>
+      <button class="btn small" data-sulge>Tagasi etappi (Esc)</button>
+    </div>
+    <div class="pind-sisu list-scroll">
+      <div class="ygrupp">Lõppdokument</div><div class="ygrid">${lopp}</div>
+      <div class="ygrupp">Mustandite ajalugu</div><div class="ygrid">${vk}</div>
+    </div>`;
+  sec.querySelector("[data-sulge]").addEventListener("click",()=>history.back());
+  sec.querySelectorAll("[data-ava]").forEach(b=>b.addEventListener("click",()=>nav({mode:"fookus",vf:b.dataset.ava})));
+  lava.append(sec);
+}
+
+/* ---- lava ---- */
+function renderLava(){
+  const lava=$("#lava");lava.innerHTML="";lava.classList.remove("yksi","focus-card");
+  if(vaade.mode==="vordlus"&&vaade.cmp.length===2)return renderVordlus(lava);
+  if(vaade.mode==="ylevaade")return renderYlevaade(lava);
+  lava.classList.add("yksi","focus-card");
+  const vf=vaade.vf;
+  lava.append(/^v\d+$/.test(vf)?versiooniPind(vf):faasiPind(Number(String(vf).slice(1))||too.workPhase));
+}
+
+/* ---- järgmine samm + faasinupu infokiht ---- */
+function gateSeis(){
+  const wp=too.workPhase;
+  if(wp===3){
+    const ok=too.dokid.length>0;
+    return {read:[{ok:true,t:"Väljund valitud"},{ok:true,t:"Suund valitud"},{ok,t:"Vähemalt üks dokument valitud"}],
+      cta:"Jätka koostamisse",lubatud:ok,
+      puuduCta:"Vali lähtedokument",
+      vihje:"Vali vähemalt üks lähtedokument. See avab faasi 4.",
+      juhata(){
+        const fookusta=()=>{
+          const esimene=$("[data-dok]");
+          esimene?.closest(".dokirida")?.scrollIntoView({block:"center",behavior:"smooth"});
+          esimene?.focus();
+          showPhaseInfo(3);
+        };
+        if(currentPhaseNumber()!==3){
+          nav({mode:"fookus",vf:"f3"});
+          setTimeout(fookusta,40);
+        }else fookusta();
+        teade("Vali vähemalt üks lähtedokument. Faas 4 avaneb automaatselt.");
+      },
+      edasi(){
+        too.workPhase=4;saveToo();nav({vf:"f4",mode:"fookus"});teade("Faas 4 on avatud.");}};
+  }
+  if(wp===4){
+    if(!too.versioonid.length){
+      return {read:[{ok:too.dokid.length>0,t:"Lähtematerjal valitud"}],
+        cta:"Koosta mustand",lubatud:too.dokid.length>0,
+        edasi(){
+          too.versioonid.push({id:"v1",nimi:"Mustand v1",aeg:"praegu",
+            sisu:`${too.valik.tyyp.toUpperCase()} — MUSTAND V1\n\nSaaja: ${too.valik.siht}.\nStiil: ${too.valik.toon}, ${too.valik.keel}, ${too.valik.pikkus}.\nMall: ${too.valik.mall||"Ilma mallita"}.\nLähted: ${too.dokid.length} valitud dokumenti.\n\nKohtumisel lepiti kokku järgmised sammud. Tekst vajab veel kasutaja ülevaatust ja täpsustamist.`});
+          saveToo();render();teade("Mustand v1 loodud — jätka koostamist.");}};
+    }
+    return {read:[{ok:true,t:"Mustand olemas ("+too.versioonid[too.versioonid.length-1].nimi+")"}],
+      cta:"Vii ülevaatusse",lubatud:true,
+      edasi(){too.workPhase=5;saveToo();nav({vf:"f5",mode:"fookus"});teade("Värav läbitud — faas 5: Ülevaatus.");}};
+  }
+  return {read:[{ok:true,t:"Mustand valmis ülevaatuseks"}],cta:too.finalizedAt?"Lõppdokument salvestatud":"Salvesta lõppversioon",lubatud:!too.finalizedAt,
+    edasi(){salvestaLopp();}};
+}
+function renderPhaseInfo(n=too.workPhase){
+  const info=$("#phaseInfo");
+  const f=PHASES.find(p=>p.id===n)||PHASES[too.workPhase-1];
+  const vordluses=riiul.includes("f"+f.id);
+  const vordlusMark=vordluses?`<span>▣ Võrdluseks valitud</span>`:"";
+  info.dataset.phase=String(f.id);
+  if(f.id===too.workPhase){
+    const g=gateSeis();
+    $("#gatePealkiri").textContent=`Faas ${f.id} · ${f.nimi} · järgmine samm`;
+    $("#gateList").innerHTML=g.read.map(r=>`<span class="${r.ok?"ok":"puudu"}">${r.ok?"✓":"◇"} ${esc(r.t)}</span>`).join("")+vordlusMark;
+    return;
+  }
+  if(f.id<too.workPhase){
+    $("#gatePealkiri").textContent=`Faas ${f.id} · ${f.nimi} · läbitud`;
+    $("#gateList").innerHTML=`<span class="ok">✓ Valikud on talletatud</span><span>Liigu noole või kerimisega · võrdluse saad valida faasi seest</span>${vordlusMark}`;
+    return;
+  }
+  $("#gatePealkiri").textContent=`Faas ${f.id} · ${f.nimi} · veel suletud`;
+  $("#gateList").innerHTML=`<span class="puudu">◇ Avaneb pärast faasi ${too.workPhase} kinnitamist</span>`;
+}
+function showPhaseInfo(n){
+  renderPhaseInfo(n);
+  const info=$("#phaseInfo");
+  info.classList.add("show");
+  info.setAttribute("aria-hidden","false");
+}
+function hidePhaseInfo(){
+  const info=$("#phaseInfo");
+  if(!info)return;
+  info.classList.remove("show");
+  info.setAttribute("aria-hidden","true");
+}
+function renderVarav(){
+  const g=gateSeis();
+  const shown=$("#phaseInfo").classList.contains("show");
+  renderPhaseInfo(shown?Number($("#phaseInfo").dataset.phase):too.workPhase);
+  const cta=$("#gateCta");
+  const guidance=!g.lubatud&&typeof g.juhata==="function";
+  cta.textContent=guidance?g.puuduCta:g.cta;
+  cta.dataset.guidance=guidance?"true":"false";
+  cta.setAttribute("aria-disabled",g.lubatud||guidance?"false":"true");
+  cta.onclick=()=>{
+    if(guidance)return g.juhata();
+    if(cta.getAttribute("aria-disabled")==="true")return teade("Värav on lukus — vaata puuduvaid tingimusi.");
+    g.edasi();
+  };
+}
+
+/* ---- režiiminupud ---- */
+function renderMode(){
+  $("#mFookus").setAttribute("aria-pressed",vaade.mode==="fookus"?"true":"false");
+  $("#mYlevaade").setAttribute("aria-pressed",vaade.mode==="ylevaade"?"true":"false");
+  $("#mVordlus").setAttribute("aria-pressed",vaade.mode==="vordlus"?"true":"false");
+}
+
+/* ---- render ---- */
+function render(){
+  const tool=vaade.tase==="toolaud";
+  $("#toolaud").classList.toggle("show",tool);
+  $("#app").style.visibility=tool?"hidden":"visible";
+  document.title=(tool?"Töölaud":"Koosta dokument")+" — FABLE-Q prototüüp";
+  if(!tool){
+    if(vaade.mode==="vordlus"&&vaade.cmp.length===2&&(riiul[0]!==vaade.cmp[0]||riiul[1]!==vaade.cmp[1])){
+      riiul=[...vaade.cmp];saveRiiul();
+    }
+    renderAnkur();renderFaasid();renderLava();renderVarav();renderRiiul();renderMode();
+    /* fookusehaldus režiimivahetusel (ekraanilugeja/klaviatuuri tugi) */
+    if(vaade.mode!==eelmineMode){
+      if(vaade.mode==="vordlus")requestAnimationFrame(()=>$("#split [data-fookus]")?.focus());
+      if(vaade.mode==="ylevaade")requestAnimationFrame(()=>$("#ylevaade [data-sulge]")?.focus());
+    }
+  }
+  eelmineMode=vaade.mode;
+}
+
+/* ---- kerimine ja klahvid ---- */
+function sisemineKerimineSaabLiikuda(target,delta){
+  let el=target instanceof Element?target:null;
+  while(el&&el!==$("#lava")){
+    if(el.matches(".list-scroll,.pind-sisu")&&el.scrollHeight>el.clientHeight+1){
+      if(delta>0&&el.scrollTop+el.clientHeight<el.scrollHeight-1)return true;
+      if(delta<0&&el.scrollTop>1)return true;
+    }
+    el=el.parentElement;
+  }
+  return false;
+}
+let wheelAccum=0,wheelSign=0,wheelLockUntil=0,wheelReset=null;
+$("#lava").addEventListener("wheel",e=>{
+  if(vaade.tase!=="koosta"||vaade.mode!=="fookus"||e.ctrlKey)return;
+  if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||Math.abs(e.deltaY)<2)return;
+  const factor=e.deltaMode===1?16:e.deltaMode===2?innerHeight:1;
+  const delta=e.deltaY*factor;
+  if(sisemineKerimineSaabLiikuda(e.target,delta))return;
+  e.preventDefault();
+  const now=performance.now();
+  if(now<wheelLockUntil)return;
+  const sign=Math.sign(delta);
+  if(sign!==wheelSign){wheelAccum=0;wheelSign=sign;}
+  wheelAccum+=delta;
+  clearTimeout(wheelReset);
+  wheelReset=setTimeout(()=>{wheelAccum=0;wheelSign=0;},180);
+  if(Math.abs(wheelAccum)<40)return;
+  wheelAccum=0;wheelLockUntil=now+520;
+  liiguFaasis(sign>0?1:-1);
+},{passive:false});
+
+document.addEventListener("keydown",e=>{
+  if(e.target.matches("input,textarea,select,[contenteditable='true'],[role='separator']"))return;
+  if(e.key==="Escape"&&vaade.mode!=="fookus"&&vaade.tase==="koosta"){history.back();return;}
+  if((e.key==="o"||e.key==="O")&&vaade.tase==="koosta"){vaade.mode==="ylevaade"?history.back():nav({mode:"ylevaade"});return;}
+  if(vaade.tase==="koosta"&&(e.key==="ArrowLeft"||e.key==="ArrowRight"||e.key==="["||e.key==="]")){
+    e.preventDefault();
+    liiguFaasis(e.key==="ArrowRight"||e.key==="]"?1:-1);
+  }
+});
+
+/* ---- käivitus: ajalukku Töölaud → Koosta (back-demo) ---- */
+(function boot(){
+  if(!location.hash){
+    history.replaceState(null,"","#tase=toolaud");
+    try{history.pushState(null,"",hashStr({tase:"koosta",vf:"f"+too.workPhase,mode:"fookus",cmp:[],ap:"A",ratio:50,side:"A"}));}
+    catch(e){location.hash=hashStr({tase:"koosta",vf:"f"+too.workPhase,mode:"fookus",cmp:[],ap:"A",ratio:50,side:"A"});}
+  }
+  vaade=parseHash();eelmineMode=vaade.mode;render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heaolu hinnang — faasiteekonna demo</title>
+<style>
+html,body{margin:0;height:100%;background:#0c111e;font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,sans-serif;color:#e8ecf5;overflow:hidden;overscroll-behavior:none}
+.ic{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+#sky{position:fixed;inset:0;width:100%;height:100%}
+#controls{position:fixed;top:14px;left:16px;z-index:30;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#controls button{font-family:inherit;font-size:13px;font-weight:500;padding:8px 15px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#e8ecf5;cursor:pointer}
+#controls button.act{background:#EF9F27;border-color:#EF9F27;color:#412402}
+#controls label{display:flex;align-items:center;gap:6px;font-size:12px;color:#8f9ab3;cursor:pointer}
+#controls input{accent-color:#EF9F27}
+#hint{position:fixed;top:56px;left:18px;z-index:30;font-size:11px;color:#6f7a94}
+#panel{position:fixed;left:50%;top:72px;bottom:84px;transform:translateX(-50%);width:min(440px,88vw);background:rgba(255,255,255,.055);border:.5px solid rgba(255,255,255,.16);border-radius:20px;display:flex;flex-direction:column;z-index:10}
+#phead{padding:14px 18px 10px;border-bottom:.5px solid rgba(255,255,255,.1)}
+#phead .row{display:flex;align-items:center;justify-content:space-between}
+#phead .t{font-size:13px;font-weight:500;color:#f2f4fa}
+#phead .priv{font-size:11px;color:#8f9ab3;display:flex;align-items:center;gap:5px}
+#chips{display:flex;gap:6px;margin-top:8px;min-height:22px;flex-wrap:wrap}
+.chip{font-size:11px;padding:3px 10px;border-radius:999px;border:.5px solid rgba(239,159,39,.45);background:rgba(239,159,39,.13);color:#FAC775;white-space:nowrap}
+#deck{position:relative;flex:1;perspective:1000px;overflow:hidden}
+.sec{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:13px;padding:14px 38px;text-align:center;transition:transform .6s cubic-bezier(.22,.9,.3,1),opacity .6s ease;opacity:0;pointer-events:none}
+.sec.on{opacity:1;pointer-events:auto}
+body[data-rm="1"] .sec,body[data-rm="1"] #dockLayer{transition-duration:.01s}
+body[data-mode="kate"] .sec{transform:none}
+body[data-mode="kate"] .sec.peek{opacity:.22}
+body[data-mode="dolly"] .sec{transform:translateZ(-430px)}
+body[data-mode="dolly"] .sec.nxt{opacity:.16;transform:translateZ(-265px)}
+body[data-mode="dolly"] .sec.on{opacity:1;transform:translateZ(0)}
+body[data-mode="dolly"] .sec.past{opacity:0;transform:translateZ(250px)}
+body[data-mode="dolly"] .sec.peek{opacity:.3;transform:translateZ(-205px)}
+.kick{font-size:11px;letter-spacing:.12em;color:#8f9ab3;text-transform:uppercase}
+.tit{font-size:19px;font-weight:500;color:#f2f4fa;margin:0}
+.pill{font-family:inherit;font-size:13px;padding:8px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:transparent;color:#e8ecf5;cursor:pointer}
+.pill.sel{background:#EF9F27;border-color:#EF9F27;color:#412402;font-weight:500}
+#why{width:100%;min-height:56px;border:.5px solid rgba(255,255,255,.22);border-radius:12px;padding:10px 14px;font-size:13px;color:#e8ecf5;text-align:left;outline:none}
+#frail{position:fixed;left:0;right:0;bottom:0;height:56px;display:flex;align-items:center;justify-content:center;gap:10px;background:#070b14;border-top:.5px solid rgba(255,255,255,.08);z-index:20}
+.st{display:flex;align-items:center;gap:8px;cursor:pointer;border:1px solid transparent;border-radius:999px;transition:background .3s,border-color .3s,opacity .3s}
+.st .num{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.38);display:flex;align-items:center;justify-content:center;font-size:11px;color:#dbe2f2;flex:none}
+.st .num svg{width:14px;height:14px}
+.st .lbl{display:none;font-size:12px;font-weight:500;color:#f2f4fa;white-space:nowrap;padding-right:10px}
+.st.fut{opacity:.45}
+.st.act{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.3);padding:3px}
+.st.act .lbl{display:block}
+.st.done .num{border-color:#e8ecf5}
+.st.miss .num{border-color:#EF9F27;color:#FAC775}
+.st.rdy .num{border-color:rgba(239,159,39,.8);color:#EF9F27}
+.st.show{background:rgba(255,255,255,.08);border-color:rgba(239,159,39,.6);padding:3px}
+.st.show .lbl{display:block}
+.stcon{width:16px;height:1px;background:rgba(255,255,255,.2);flex:none}
+#dockHandle{position:fixed;left:14px;bottom:13px;width:30px;height:30px;border-radius:8px;border:.5px solid rgba(255,255,255,.15);background:transparent;color:#6f7a94;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:26}
+#dockHandle svg{width:15px;height:15px}
+#dockLayer{position:fixed;left:0;right:0;bottom:0;height:56px;background:#070b14;border-top:.5px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;gap:22px;color:#8b94aa;transform:translateY(100%);transition:transform .35s ease;cursor:pointer;z-index:25}
+#dockLayer.open{transform:none}
+#dockLayer svg{width:17px;height:17px}
+#dockLayer .apill{display:flex;align-items:center;gap:7px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.10);border:.5px solid rgba(255,255,255,.2);color:#eef1f8;font-size:11px;letter-spacing:.1em}
+#dockLayer .apill svg{width:14px;height:14px}
+@media (max-width:560px){.stcon{width:8px}.st{gap:6px}#hint{display:none}}
+</style>
+</head>
+<body data-mode="dolly" data-rm="0">
+<canvas id="sky"></canvas>
+<div id="controls">
+  <button id="mKate">Kate (paigal)</button>
+  <button id="mDolly" class="act">Teekond (edasi)</button>
+  <label><input type="checkbox" id="rm"> Vähendatud liikumine</label>
+</div>
+<div id="hint">rullik · nooleklahvid · jaamaklõps · hover jaamal = piilu</div>
+<div id="panel">
+  <div id="phead">
+    <div class="row">
+      <span class="t">Heaolu hinnang</span>
+      <span class="priv"><svg class="ic" viewBox="0 0 24 24" width="11" height="11" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> ainult sina näed</span>
+    </div>
+    <div id="chips"></div>
+  </div>
+  <div id="deck">
+    <section class="sec" data-i="0">
+      <span class="kick">1 · Enesetunne</span>
+      <h3 class="tit">Kuidas sa end täna tunned?</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <button class="pill f">Rahulik</button><button class="pill f">Väsinud</button><button class="pill f">Pinges</button><button class="pill f">Rõõmus</button>
+      </div>
+    </section>
+    <section class="sec" data-i="1">
+      <span class="kick">2 · Põhjus</span>
+      <h3 class="tit">Miks just täna nii?</h3>
+      <div id="why" contenteditable="true" role="textbox" aria-label="Põhjus"></div>
+      <div style="display:flex;gap:8px">
+        <button class="pill w" style="font-size:11px;padding:5px 12px">Töökoormus</button><button class="pill w" style="font-size:11px;padding:5px 12px">Uni</button><button class="pill w" style="font-size:11px;padding:5px 12px">Suhted</button>
+      </div>
+    </section>
+    <section class="sec" data-i="2">
+      <span class="kick">3 · Homme</span>
+      <h3 class="tit">Hinda homset</h3>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+        <button class="pill t">Tuleb kergem</button><button class="pill t">Umbes sama</button><button class="pill t">Raskem</button>
+      </div>
+    </section>
+  </div>
+</div>
+<div id="frail" role="navigation" aria-label="Teekonna jaamad">
+  <div class="st" data-i="0" role="button" tabindex="0"><span class="num">1</span><span class="lbl">Enesetunne</span></div>
+  <div class="stcon"></div>
+  <div class="st" data-i="1" role="button" tabindex="0"><span class="num">2</span><span class="lbl">Põhjus</span></div>
+  <div class="stcon"></div>
+  <div class="st" data-i="2" role="button" tabindex="0"><span class="num">3</span><span class="lbl">Homme</span></div>
+  <div class="stcon"></div>
+  <div class="st" id="gate" role="button" tabindex="0" aria-label="Salvesta"><span class="num" id="gnum"></span><span class="lbl" id="glbl">Salvesta</span></div>
+</div>
+<button id="dockHandle" aria-label="Ava dokk"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></button>
+<div id="dockLayer" aria-hidden="true">
+  <svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M4 20c0-3 2-5 5-5s5 2 5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 15.2c.5-.2 1-.2 1.5-.2 2.5 0 4 1.7 4 4"/></svg>
+  <svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+  <span class="apill"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20l-6.5-6.5a4 4 0 0 1 5.7-5.7l.8.8.8-.8a4 4 0 0 1 5.7 5.7z"/></svg>TÖÖHEAOLU</span>
+  <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.2 2.5-5.2 6-5.2s6 2 6 5.2"/></svg>
+  <svg class="ic" viewBox="0 0 24 24"><path d="M5 17a8 8 0 1 1 14 0"/><path d="M12 13l3.5-3.5"/><circle cx="12" cy="14" r="1"/></svg>
+</div>
+<script>
+(function(){
+var IC={
+ check:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>',
+ walk:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4" r="1.7"/><path d="M13 7l-1.5 5 2.5 3 1 5"/><path d="M11.5 12l-3 1-1.5 3"/><path d="M13 7l3 2 2.5.5"/><path d="M11.5 17l-2 4"/></svg>',
+ flag:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4"/><path d="M6 5h10l-2 3.5L16 12H6"/></svg>'
+};
+var deck=document.getElementById('deck');
+var secs=[].slice.call(deck.querySelectorAll('.sec')),sts=[].slice.call(document.querySelectorAll('.st[data-i]'));
+var gate=document.getElementById('gate'),glbl=document.getElementById('glbl'),gnum=document.getElementById('gnum');
+gnum.innerHTML=IC.flag;
+var idx=0,lock=0,acc=0,warp=0,dir=1,saved=false,gtimer=0;
+var ans={f:[],w:'',t:''};
+function done(i){return i===0?!!ans.f.length:i===1?!!ans.w:!!ans.t;}
+function missing(){var m=[];for(var i=0;i<3;i++)if(!done(i))m.push(i);return m;}
+function paint(){
+ secs.forEach(function(s,i){
+  var keep=s.classList.contains('peek');
+  s.className='sec'+(i===idx?' on':i<idx?' past':i===idx+1?' nxt':'')+(keep&&i!==idx?' peek':'');
+ });
+ sts.forEach(function(d,i){
+  d.className='st'+(i===idx?' act':i>idx&&!done(i)?' fut':'')+(done(i)||saved?' done':'');
+  var n=d.querySelector('.num');
+  if(saved){n.innerHTML=IC.check;}
+  else if(i===idx){n.innerHTML=IC.walk;}
+  else if(done(i)){n.innerHTML=IC.check;}
+  else{n.textContent=''+(i+1);}
+ });
+ if(!gtimer){
+  gate.className='st'+(saved?' show done':missing().length?'':' rdy');
+  if(saved){gnum.innerHTML=IC.check;glbl.textContent='Salvestatud';}
+ }
+}
+function go(n){
+ n=Math.max(0,Math.min(secs.length-1,n));
+ if(n===idx||lock)return;
+ dir=n>idx?1:-1;idx=n;
+ secs.forEach(function(s){s.classList.remove('peek');});
+ if(document.body.dataset.mode==='dolly'&&document.body.dataset.rm==='0')warp=1;
+ lock=1;setTimeout(function(){lock=0;},document.body.dataset.rm==='1'?60:620);
+ paint();
+}
+window.addEventListener('wheel',function(e){
+ e.preventDefault();acc+=e.deltaY;
+ if(Math.abs(acc)>70){go(idx+(acc>0?1:-1));acc=0;}
+},{passive:false});
+setInterval(function(){acc*=0.6;},220);
+window.addEventListener('keydown',function(e){
+ if(e.target&&e.target.id==='why')return;
+ if(e.key==='Escape'){document.getElementById('dockLayer').classList.remove('open');return;}
+ if(e.target===gate&&(e.key==='Enter'||e.key===' '))return;
+ if(e.key==='ArrowDown'||e.key==='PageDown'||e.key==='ArrowRight'){e.preventDefault();go(idx+1);}
+ if(e.key==='ArrowUp'||e.key==='PageUp'||e.key==='ArrowLeft'){e.preventDefault();go(idx-1);}
+});
+var ty=0;
+window.addEventListener('touchstart',function(e){ty=e.touches[0].clientY;},{passive:true});
+window.addEventListener('touchend',function(e){var d=ty-e.changedTouches[0].clientY;if(Math.abs(d)>45)go(idx+(d>0?1:-1));},{passive:true});
+sts.forEach(function(d,i){
+ d.addEventListener('click',function(){go(i);});
+ d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go(i);}});
+ d.addEventListener('mouseenter',function(){if(i!==idx&&!lock){secs[i].classList.add('peek');}});
+ d.addEventListener('mouseleave',function(){secs[i].classList.remove('peek');});
+});
+function chips(){
+ var c=document.getElementById('chips'),h='';
+ if(ans.f.length)h+='<span class="chip">'+ans.f.join(' · ')+'</span>';
+ if(ans.w)h+='<span class="chip">põhjus ✓</span>';
+ if(ans.t)h+='<span class="chip">homme: '+ans.t.toLowerCase()+'</span>';
+ c.innerHTML=h;gmsg();
+}
+function gmsg(){
+ var m=missing();
+ if(saved)return;
+ if(!gtimer)glbl.textContent='Salvesta';
+}
+function gateClick(){
+ var m=missing();
+ if(saved)return;
+ if(m.length){
+  m.forEach(function(i){sts[i].classList.add('miss');});
+  glbl.textContent='Puudu: '+m.map(function(i){return i+1;}).join(' · ');
+  gate.className='st show';gtimer=1;
+  setTimeout(function(){gtimer=0;glbl.textContent='Salvesta';paint();},1700);
+  go(m[0]);return;
+ }
+ saved=true;paint();
+}
+gate.addEventListener('click',gateClick);
+gate.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();gateClick();}});
+[].slice.call(document.querySelectorAll('.pill.f')).forEach(function(b){b.addEventListener('click',function(){
+ b.classList.toggle('sel');ans.f=[].slice.call(document.querySelectorAll('.pill.f.sel')).map(function(x){return x.textContent;});chips();paint();});});
+[].slice.call(document.querySelectorAll('.pill.w')).forEach(function(b){b.addEventListener('click',function(){
+ [].slice.call(document.querySelectorAll('.pill.w')).forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');ans.w=b.textContent;chips();paint();});});
+document.getElementById('why').addEventListener('input',function(){ans.w=this.textContent.trim();chips();paint();});
+[].slice.call(document.querySelectorAll('.pill.t')).forEach(function(b){b.addEventListener('click',function(){
+ [].slice.call(document.querySelectorAll('.pill.t')).forEach(function(x){x.classList.remove('sel');});b.classList.add('sel');ans.t=b.textContent;chips();paint();});});
+var dl=document.getElementById('dockLayer');
+document.getElementById('dockHandle').addEventListener('click',function(){dl.classList.toggle('open');});
+dl.addEventListener('click',function(){dl.classList.remove('open');});
+var mk=document.getElementById('mKate'),md=document.getElementById('mDolly');
+function mode(m){document.body.dataset.mode=m;
+ mk.className=m==='kate'?'act':'';md.className=m==='dolly'?'act':'';}
+mk.addEventListener('click',function(){mode('kate');});
+md.addEventListener('click',function(){mode('dolly');});
+var rmBox=document.getElementById('rm');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){rmBox.checked=true;document.body.dataset.rm='1';}
+rmBox.addEventListener('change',function(){document.body.dataset.rm=this.checked?'1':'0';});
+paint();
+var cv=document.getElementById('sky'),cx=cv.getContext('2d'),st=[],pathT=0;
+function fit(){cv.width=window.innerWidth;cv.height=window.innerHeight;}
+fit();window.addEventListener('resize',fit);
+for(var i=0;i<160;i++)st.push({x:(Math.random()-.5),y:(Math.random()-.5),z:.3+Math.random()*.7,tw:Math.random()*6.28});
+function tick(t){
+ var w=cv.width,h=cv.height;
+ cx.clearRect(0,0,w,h);
+ var rm=document.body.dataset.rm==='1';
+ var vx=w*0.5,vy=h*0.40;
+ [[w*0.06,h*1.04],[w*0.94,h*1.04]].forEach(function(E){
+  for(var i=0;i<14;i++){
+   var u=(i/14+pathT)%1;if(u<0.34)continue;
+   var e=u*u,px=vx+(E[0]-vx)*e,py=vy+(E[1]-vy)*e;
+   cx.fillStyle='rgba(205,216,240,'+((0.06+0.3*u)).toFixed(2)+')';
+   cx.beginPath();cx.arc(px,py,0.6+2.4*u,0,6.28);cx.fill();
+  }
+ });
+ st.forEach(function(s){
+  if(!rm){
+   var g=0.00025*s.z+warp*0.022*s.z*dir;
+   s.x*=(1+g);s.y*=(1+g);
+   if(Math.abs(s.x)>0.56||Math.abs(s.y)>0.56){s.x=(Math.random()-.5)*0.16;s.y=(Math.random()-.5)*0.16;}
+  }
+  var a=0.25+0.45*s.z*(0.7+0.3*Math.sin(t/900+s.tw));
+  var px=(0.5+s.x)*w,py=(0.5+s.y)*h,r=s.z*1.4;
+  if(warp>0.04){
+   var f=dir>0?1/(1+warp*0.24*s.z):(1+warp*0.24*s.z);
+   var qx=(0.5+s.x*f)*w,qy=(0.5+s.y*f)*h;
+   cx.strokeStyle='rgba(226,233,248,'+a.toFixed(2)+')';cx.lineWidth=r;
+   cx.beginPath();cx.moveTo(qx,qy);cx.lineTo(px,py);cx.stroke();
+  }else{
+   cx.fillStyle='rgba(226,233,248,'+a.toFixed(2)+')';
+   cx.beginPath();cx.arc(px,py,r,0,6.28);cx.fill();
+  }
+ });
+ if(!rm)pathT=(pathT+warp*0.018*dir+1)%1;
+ warp*=0.93;requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

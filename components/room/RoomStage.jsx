@@ -68,7 +68,6 @@ import {
   BestPracticeIcon,
 } from "@/components/brand/icons/CardIcons";
 import { wellbeingTools } from "@/lib/wellbeingTools";
-import Galaxy from "@/components/room/Galaxy";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
@@ -1044,24 +1043,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         data-card-page={cardPageKey ? "1" : "0"}
         data-cards-ready={cardsReady ? "1" : "0"}
       >
-      {/* Lavastus: taust */}
+      {/* Lavastus: rahulik tume taust ilma tähistaevata */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
-        <Galaxy
-          className="room-galaxy"
-          density={0.45}
-          hueShift={28}
-          saturation={0.5}
-          glowIntensity={0.22}
-          twinkleIntensity={0.18}
-          rotationSpeed={0.04}
-          starSpeed={0.35}
-          speed={0.6}
-          mouseInteraction={!a11y?.reduceMotion}
-          mouseRepulsion
-          repulsionStrength={0.55}
-          disableAnimation={!!a11y?.reduceMotion}
-          transparent
-        />
         <div className="room-vignette" />
         <div className="room-dim" />
       </div>

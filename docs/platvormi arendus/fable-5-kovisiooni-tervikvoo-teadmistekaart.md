@@ -404,3 +404,843 @@ Iga tulevane kovisiooni-liidese otsus (sh ruumiline) tuleb kontrollida Q1.0 kahe
 3. **KOV-Q1-DEC-3 — nõuandmise paradigma.** Allikate ainus sisuline paradigmaerinevus on nõuannete lubatavus. KOV-Q1 soovitab lukustada rangema coaching-vormi: „Sina peaksid“ nõuande asemel jagab iga osaleja oma kogemust vormis „MINA teeksin“. See soovitus vajab enne lõpliku sisestus- ja juhendikeele kinnitamist teadlikku tooteotsust.
 
 *Peatükk KOV-Q1 lisatud 14.07.2026 hilisõhtul; põhineb ainult neljal loetletud allikal (loetud täies mahus) ja seob need platvormi olemasolevate mõistetega ilma koodi muutmata ja ptk 1–11 tehnilist sihtkontrolli kordamata.*
+
+---
+
+## KOV-Q2 — Kovisiooni ruumilised kujundusvariandid
+
+Kuupäev: 14.07.2026 (öö)
+Koostaja: Fable 5
+Küsimus: **milline ruumiline kasutajaliidese mudel säilitaks kõige paremini KOV-Q1 kaksteist metodoloogilist invarianti ning muudaks kogu valmis raja — Teemaseeme → etapid 1–8 → Lõpetatud juhtum → Parim praktika — arusaadavaks, rahulikuks ja juhitavaks?**
+
+Alused: metodoloogia = **KOV-Q1** (eriti Q1.0 invariandid, Q1.9 nähtavuspõhimõtted, Q1.10 automatiseerimiskeelud); tehniline tõeallikas = ptk 1–11 (koodi ei muudetud, auditit ei korratud). Ruumilise disaini sisendid, loetud täies mahus: `ruumilise-kogemuse-lahtekoht.md` (edaspidi **[RL]**), `public/room/flight-effect.md` (**[FE]**), `uue-kovisiooni-funktsiooni-visioon-ja-8-etapiline-selgroog.md` (**[VIS]**), `teemaseeme-professionaalne-funktsioon.md` (**[TS]**), `Uus leht-lopetatud-juhtumid-pohileht.md` (**[LJ]**), `Uus leht-parimad-praktikad-pohileht-ja-loogika.md` (**[PP]**). Visuaalsed lähtepildid (Teemaseemne loomisvaade, etapid 1–8, Lõpetatud juhtumid, Parim praktika) on vaadatud kujundusliku **kavatsusena, mitte koodiseisuna** — tähelepanekud allpool.
+
+**Terminipiir (kohustuslik):** selles peatükis tähendab *flight-sisuteekond* täpselt [FE]/[RL] §4.3 mõistet — **järgmine päris tööetapp, tabel või sisupind keritakse sügavusest ette ja eelmine taandub**. See EI ole (a) pooleliolev *ruumikaadrite teekond* (ruumi taustapildid vahetuvad kerides; `lib/room-frames.js` + `public/room/ruumi pildid` — eraldi prototüüp) ega (b) *helix-galerii*. [RL] §4.3 loetleb flight-prototüübi kohustuslikud piirid (otselingid, back/forward, reduced-motion lame variant, aktiivne on ainult eesolev pind, mobiilimõõtmised) — need kehtivad allpool V1-le täies mahus.
+
+**Tähelepanekud visuaalsetest lähtepiltidest** (kavatsuse lugemiseks, mitte etteheiteks):
+
+1. Piltides on **kaks põlvkonda**: etapid 1–4 on rahulik „pruun galerii" (üks hero, klaaskihid, soe abstraktne taust — kooskõlas [VIS] §26 kaanoniga); etapid 5–6 on tihe tume dashboard mitme samaaegse paneeli, rohelise/punase olekuvärvi ja loendurite virnaga — see läheb vastuollu [VIS] §26.1 („üks tagasihoidlik aktsent") ja §26.4 vältimisloendiga („staatilised infopaneelide read"). Kaanon on dokument, mitte pilt.
+2. „Kovisiooni etapp 8.png" ja „etapp 8 lisa.png" näitavad kahte eri kesta (HUD-riba vs külgmenüü) ning „etapp 8 lisa" kasutab **vana etapinimestikku** (Ühenduse loomine, Fookuse seadmine, …) — ajalooline iteratsioon, mitte kehtiv 8 etapi kaart ([VIS] §13).
+3. Teemaseemne pilt näitab loomisvaates „Paus/Vajan tuge" nuppe ja „Sessiooni juht" rolli — [TS] v1.1 §33.2 on selle juba tagasi pööranud (loomisvaates sessioonifunktsioone EI ole). Sama muster kordub: spetsifikatsioon on piltidest värskem.
+4. Läbivalt kinnistunud head mustrid, mida iga variant peaks pärima: 8-etapi stepper linnukestega; „Tänane juhtum" hero; kokkulepete loend isikukinnitustega; alumine väravariba „mitteaktiivne CTA + nähtav põhjus"; etapi juhis („mida teeme / mida veel ei tee"); etapi 7 privaatvaate hoiatusriba; etapi 8 sulgemise ülevaade koos säilitamisolekutega; „Parimad praktikad" kui *teadmiste raamatukogu* (mitte juhtumihaldus) [PP] §35.1.
+5. Aktsendivärvi lahtine küsimus: [TS] §33.3 ütleb „violett jääb kovisioonisessiooni aktsendiks", pildid kasutavad sessioonis merevaiku. **[OTSUS?]** — ei blokeeri ühtegi varianti, tuleb lukustada enne prototüübi viimistlust.
+
+### Q2.0 Ühine selgroog — variandist sõltumatud kaitsed
+
+Kõik kolm varianti jagavad sama alusgrammatikat; ilma selleta ei päästa ükski ruumiline mudel invariante. Need on ühtlasi vastus Q1.9 variandineutraalsetele põhimõtetele (nr 1, 2, 4, 6, 7, 9, 13 osaliselt):
+
+1. **Vaatamine ≠ tegutsemine.** Kaamera, kihi või suumi liikumine ei muuda kunagi sessiooni olekut; ainus edasiviija on serveri värav (`COMPLETE_STAGE` + `missing[]`). Ükski üleminek ei käivitu ajast ega kerimisest. (Kaitseb invariante 1 ja 4; Q1.10 p 5.)
+2. **Ankrukapsel.** Omaniku küsimus + tööfookus elavad fikseeritud kihis, mis on igas etapis samas kohas nähtav (platvormi vaste: `case_anchor` tööobjekt; [VIS] §6.2). Enne 2. etappi näitab kapsel ausalt „täpsustub loo järel".
+3. **Privaatkiht** on eristatud lukumärgi ja sügavama klaasiga, mitte värviga ([TS] §33.3); privaatse sisu serveripiir on juba olemas (serializer laadib ainult vaataja `privateStates`).
+4. **Hinnanguvaba pind.** Teise inimese panusekaardil ei ole ühtegi tegevusnuppu peale omaniku „Tänan" (õiges faasis); ei ühtegi reaktsiooni, emotikoni, skoori, edetabelit ega „aktiivsuse" mõõdikut (Q1.0 inv 6; Q1.10 p 9). See on ruumilise UI kõige kergemini rikutav koht — tavapärased sotsiaal-UI mustrid on siin keelatud tsoonis.
+5. **Aeglustuse disain.** Vaikuseseisund on esmaklassiline UI-olek („Vaikne kirjutamine käib — teised ei näe su mustandit"), mitte tühi ootamine; taimerid on informatiivsed juhi tööriistad; „Vajan mõtlemisaega" on nähtav ja auväärne valik (etapi 7 pilt näitab seda juba).
+6. **Aus olek + väravapõhjus.** Mitteaktiivne edasiliikumisnupp ütleb alati, mis puudu on ([VIS] §12.1–12.2; piltide alumine riba). Purge on nähtav rituaal, aga „kustutatud" kuvatakse alles päriskustutuse järel ([LJ] §25).
+7. **AI ainult privaatse mustandi abilisena**, märgistatud ja kinnitatav ([VIS] §24; Q1.10). Ühisele pinnale AI otse ei kirjuta.
+8. **Ligipääsetavusleping** ([RL] §10 + [FE] piirid): iga etapp/olek on otselingiga avatav; brauseri tagasi-edasi töötab; klaviatuuriga saab teha samu sisulisi tegevusi; `prefers-reduced-motion` annab sama sisu rahuliku/lameda esituse, mitte kärbitud variandi; lõuendireegel (aktiivne tööpind ei keri) kehtib pinna sees; ruumiülene juhtpaneel + ohutu ülatsoon ([RL] §9.1–9.2) jäävad.
+9. **Nähtavustekst ruumipiiril.** Iga sisenemine jagatud alasse kannab tekstilist kinnitust, kes sisu näeb ([RL] §4.3 piir 4 analoog) — ruumivahetus üksi ei ole kunagi privaatsuspiiri selgitus.
+10. **MINA-vorm (KOV-Q1-DEC-3).** Võimaluste/lahenduste sisendid algavad malliga „Mina …" („Mina alustaksin…", „Mina prooviksin…"); „Sina peaksid…" mustrit märkav mikrotugi on privaatne vihje kirjutajale ([VIS] §9.1), mitte avalik korrektsioon. Erand on jõustamisring — „Mina usun, et sa saavutad soovitu, sest …" on lubatud pöördumine, sest see peegeldab nähtud tugevust, mitte ei anna nõu ([VIS] §19).
+
+### Q2.1 V1 — „Süvarada": lineaarne flight-sisuteekond
+
+Idee: kogu juhtumi rada on üks sügavusse laotud jada. Iga **etapp on üks päris tööpind** (mitte dekoratiivne slaid), mis keritakse värava avanedes ette; läbitud etapp taandub, kuid jääb loetavaks. Tehniline alus: [FE] ühetasandi-`translateZ` retsept (juba tõestatud `RoomStage`'i saabumisteekonnas), lehepõhine „FlightStack"; sama lehe kerimist juhib ainult see süsteem ([RL] §4.3).
+
+1. **Sisenemine Teemaseemnest:** omanik valib seemne ja Kovisioonipaki **enne lendu** (praeguses Teemaseemnete vaates; [TS] §27.1 hetktõmmis). „Alusta sessiooni" → seemnekaart ise on esimene plaan: see taandub sügavusse ja selle asemele keritakse 1. etapi „Tänane juhtum" — sama objekt jätkub, mitte uus leht.
+2. **Asukoht etappides:** fikseeritud HUD-stepper 1–8 (mitte plaan) + „etapp N/8, taga X, ees Y"; kaamera asendid on **ainult** etapipeatused (snap), etapisisesed faasid on sama plaani olekud, mitte eraldi sügavused. Ees olevaid plaane ei renderdata enne värava avanemist — ees paistab vaid tuhm „järgmise etapi lävi" nimega.
+3. **Omaniku küsimus:** ankrukapsel (Q2.0 p 2) on HUD-i osa, seega iga plaani kohal samas kohas — lend ei vii küsimust kunagi kaadrist välja.
+4. **Faaside eristus:** vaikne kirjutamine = **privaatne lähikiht** kaamera ja ühisplaani vahel (ühisplaan hämardub; HUD ütleb olekut); jagamine = kaardi nähtav liikumine lähikihilt ühisplaanile (üleandmisrituaal, kinnitusega); refleksioon = punkt 6; lahendused = ühisplaani harud, mis ilmuvad alles ettelugemise järjekorras.
+5. **Rollid, reeglid, kinnitused:** rolliriba HUD-i servas; kokkulepped on 1. etapi plaani sisu ja hiljem HUD-ist avatav kiht; värav on plaani „serv": edasikerimine peatub pehmelt vastu suletud värava ja kuvab serveri `missing[]` põhjused; etapi lõpetab ainult juhi teadlik nupp. Kerimine on alati ainult vaatamine (Q2.0 p 1).
+6. **Refleksiooniring, omanik kohal ega sekku:** omaniku kaamera astub poole sammu taha-kõrvale — ta näeb ühisplaani täielikult, kuid tema sisendid on lukus ja aktiivne on ainult privaatne märkmekiht; grupi vaates seisab omaniku marker plaani serval olekuga „kuulab eemal". Ringi naasmine toimub etapi lõpetamisega, mitte omaniku klõpsuga.
+7. **Reaktsioonide ja kiirenduse vältimine:** Q2.0 p 4–5 + flight-spetsiifiline reegel: kaamera ei liigu kunagi ajast, taimerist ega „valmiduse protsendist"; järgmist plaani ei eksisteeri enne väravat, seega pole „ette kerimist", mida ihaldada; automaatkokkuvõtteid ei looda — 8. etapi plaan täitub ainult inimeste kinnitatud sisuga.
+8. **Rituaalne lõpp:** 8. etapi plaan = kokkuvõte + sulgemise ülevaade (etapi 8 pildi muster). „Sulge kohtumine" → plaanid 2–7 tuhmuvad ja lahustuvad nähtavalt (purge visualiseering), alles jäävad üldistatud closure-kaart ja omaniku pakk; viimane lühike lend viib closure-kaardi „Lõpetatud juhtumite riiulile" (sihtleht = praegune [LJ] leht). Praktikakandidaadi otsus on 8. etapi plaani element, mitte lennuosa.
+9. **Võrreldavus:** reegel — **võrdlus elab plaani sees, järgnevus sügavuses.** Korraga peavad koos olema: juhtumikaart + küsimused (etapp 3), kõik võimaluste harud (etapp 5), teed + ressursid + tingimused (etapp 6), omaniku teede võrdlus (etapp 7 privaatvaade), sulgemise kontroll-loend (etapp 8). Ühekaupa tulevad: aktiivne küsimus, ressursiringi kõneleja, lahenduste ettelugemine. Flight EI tohi kunagi jagada võrdlust vajavat sisu eri sügavustele.
+10. **Otselingid, back/forward, klaviatuur, puude, mobiil, reduced-motion:** iga etapp on ankur-URL (`…?stage=N` laadne); back/forward liigub etapivaadete vahel (läbitud = lugemisrežiimis snapshot); klaviatuuril nooled/PageUp-Down etappide vahel, Tab plaani sees; puutel vertikaalne kerimine = kaamera; mobiilis kohustuslikud FPS/mälu/dekodeerimismõõtmised enne kasutuselevõttu ([FE] §5–6; NB: Galaxy-WebGL taust + suured plaanid on topeltkoormus); reduced-motion → sama sisu lame järjestus ([FE] `--flat` muster). Live-sessioonis järgib jagatud fookus juhi väravaid; tahapoole vaatav osaleja saab püsiva „Naase aktiivsesse etappi" nupu.
+11. **Olemasolevast säilib:** kogu andme- ja väravakiht 1:1 (SessionState/phase-kataloog, COMPLETE_STAGE väravad, WorkItem/PrivateState/StageSnapshot, atomaarne purge); stepper ja etapijuhised; `RoomStage`'i tõestatud võte. Teemaseemnete, Lõpetatud ja Praktikate lehed jäävad esialgu praegusele kujule — lend katab ainult sessiooni ja sisenemis-/väljumisrituaalid.
+12. **Keerukus ja riskid:** tehniline keerukus **kõrge** (uus FlightStack; jagatud fookuse sünk; kahe kerimissüsteemi konflikti oht; jõudlus koos WebGL-taustaga; paani-verifitseerimise piirang KOV-LIMIT-1 → kontroll ainult päris brauseris). Kasutatavusrisk: liikumisväsimus 60–90-minutilises sessioonis; tabelite loetavus üleminekul ([FE] tekstivõbeluse lõksud). **Metodoloogiline moonutusrisk: keskmine** — liikumiskeel võib tekitada „läbimise tempo" tunde ja etappide slaidistumise; maandus on range Q2.0 p 1 + punkt 2 (ees renderdamata).
+
+### Q2.2 V2 — „Ümarlaud-stuudio": püsiv Kovisiooniruum
+
+Idee: **üks püsiv ruum, kus kasutaja jääb paigale ja töö tuleb laua peale.** Keskel ühine laud (juhtumi ankur + aktiivse etapi töökiht), all igaühe privaatne sahtel, külgedel rollide/kokkulepete sein ja etapi juhise sein, laes 8-etapi valgusriba. Etapi vahetus = laua katte vahetus + eelmise kihi voltimine laua serva „kaustaks" ([VIS] §6: etapp on sama lõuendi töörežiim, mitte uus lehekülg; [RL] §4.2 muutuv stuudio). See on olemasoleva `CovisionWorkspace`'i otsene spatialiseerimine — piltide 1–4 kavatsus ongi sisuliselt see mudel.
+
+1. **Sisenemine Teemaseemnest:** seeme + pakk valitakse praeguses Teemaseemnete vaates; „Alusta sessiooni" avab **ukse**: lühike valgus-/sügavusüleminek (võib kasutada ühte [FE] tõuget rituaalina, kuid pole nõutav) + kohustuslik läve-tekst „Sisened sessiooniruumi. Sinu jagatud sisu näevad: {osalejad}" (Q2.0 p 9). Ruumis on laual juba 1. etapi „Tänane juhtum".
+2. **Asukoht etappides:** lae valgusriba = praegune stepper, spatialiseeritud (läbitud linnukestega, aktiivne valgustatud); etapi nimi + lühijuhis püsivalt paremal seinal; laual on **ainult aktiivse etapi kate** — „kus ma olen" = „mis laual on".
+3. **Omaniku küsimus:** ankrukaart on füüsiliselt laua keskne püsiobjekt; kõik etapikihid paigutuvad selle ümber, mitte peale. Küsimus ei lahku kunagi lauast.
+4. **Faaside eristus:** privaatne vaikne kirjutamine = **sahtel** — alaserva privaatala (lukk + sügavam klaas), mis vaikefaasis tõuseb esile, samal ajal ühislaud hämardub; jagamine = kaardi nähtav tõstmine sahtlist lauale (kinnitusega; [VIS] §7.3 „üleandmine"); refleksioon = ringirežiim (p 6); lahendused = „MINA …" harud laual, nähtavale alles ettelugemisega. Neli faasi on seega neli *füüsiliselt eri kohta/olekut*: sahtel → laud → ring → harud.
+5. **Rollid, reeglid, kinnitused:** vasak sein = osalejad + rollid + valmisolekukinnitused (etapi 1 pildi muster); parem sein = kokkulepped (isikukinnituste loend) + etapi juhis + avatav kompass; alumine väravariba = tingimused + mitteaktiivne „Liigu järgmisse etappi" koos nähtava põhjusega (etapi 2 pildi „edasiliikumise valmidus"). Kõik kinnitused on isiklikud teadlikud klõpsud; etapi sulgeb juht.
+6. **Refleksiooniring, omanik kohal ega sekku:** omaniku **iste liigub laua ringist väljapoole** — tema vaates nihkub laud veidi kaugemale, sisendid asenduvad privaatse märkmikuga („Kuulad eemalt. Märkmed jäävad sulle"); grupi vaates istub omaniku marker ringist taga, halli sildiga „kuulab". Grupi kaardid ei ole selles faasis omanikule adresseeritavad (pole „küsi omanikult" toimingut). See on allikate füüsilise ruumi žesti („istub ringist väljas, seljaga") kõige otsesem digitaalne tõlge.
+7. **Reaktsioonide ja kiirenduse vältimine:** Q2.0 p 4–5 täies mahus; lisaks „üks hero korraga" distsipliin ([VIS] §26.3) — fookuskapsel laua kohal (aktiivne küsimus / kõneleja / ettelugemine) hoiab ühekaupa-elemendid ühes kohas ega lase lehel dashboardistuda (etappide 5–6 piltide õppetund).
+8. **Rituaalne lõpp:** 8. etapis laud **koristatakse nähtavalt** — detailkaardid kogunevad ja lahustuvad (purge), alles jäävad closure-kaart ja omaniku pakk (kohvriobjekt, „ainult sulle"); lõpuring käib ümber laua (igaüks sõnastab oma õppimise; jagamine vabatahtlik); „Sulge kohtumine" → valgus vaibub, closure-kaart liigub ruumi serval nähtavale „Lõpetatud juhtumite riiulile" ja uks avaneb [LJ] lehele; soovi korral tekib privaatne praktikakandidaadi mustand (märgitud „privaatne kandidaat", nagu etapi 8 pildil).
+9. **Võrreldavus:** laud ON võrdluspind — kõik, mida tuleb kõrvutada, elab samal kihil (p 9 loetelu = sama mis V1 p 9); varasemad kihid on laua serva kaustad, avatavad lugemiseks (mitte redigeerimiseks). Ühekaupa-elemendid elavad fookuskapslis laua kohal.
+10. **Otselingid, back/forward, klaviatuur, puude, mobiil, reduced-motion:** URL kannab sessiooni + etappi; back/forward vahetab etapivaateid (läbitud = kausta lugemisrežiim); klaviatuur: tsoonide vahel tsükkel (à la F6), laua sees Tab/nooled; **ükski toiming ei nõua lohistamist** — igal ruumilisel žestil on nupualternatiiv ([RL] §5); mobiil: tsoonid = lehed (laud keskel, sahtel = bottom-sheet, seinad = külgpaneelid), sama olekumasin; reduced-motion: kihivahetused hetkelised, valgusrituaalid staatiliste olekumärgistena.
+11. **Olemasolevast säilib kõige rohkem:** see variant ON `CovisionWorkspace` ümberpaigutatuna — kogu serverileping, stepper, väravaribad, rollipaneelid, privaatseisud jäävad; Teemaseemnete/Lõpetatud/Praktikate lehed jäävad praegusteks „maja tubadeks" (seemneriiul → stuudio → järelvaate töölaud [LJ] → teadmiste raamatukogu [PP]), mille ruumilise identiteedi saab lisada hiljem ilma sessioonimudelit muutmata.
+12. **Keerukus ja riskid:** tehniline keerukus **madal–keskmine** (CSS-kihid ja kerged üleminekud; uut kerimissüsteemi ei teki; blur-kihtidele ei panda transform-animatsioone — /vestlus lepingu õppetund). Kasutatavusrisk: paneelitihedus ja „ruumilisuse" alaladastamine (võib jääda „ilusaks dashboardiks", kui sahtli/ringi/kaustade füüsilisus jääb nõrgaks). **Metodoloogiline moonutusrisk: madal** — mudel kattub allikate füüsilise ruumi grammatikaga (laud, ring, eemale istumine, seinad, kinnine uks) peaaegu üks-ühele.
+
+### Q2.3 V3 — „Teekonnakaart": suumitav tervikrada (mitte-flight)
+
+Idee: kogu juhtumi elutsükkel on **üks suumitav kaart** (ZUI): vasakul Teemaseeme, keskel 8 „jaama" sessiooni jaoks, paremal järelvaade → Lõpetatud juhtum → (haruna) praktika-raamatukogu. Suum välja = kogu rada ühe pilguga; suum sisse = jaam avaneb töölauana (jaama sisemus taaskasutab V2 laua mustreid). Erinevalt V1-st ei ole liikumine lineaarne sundlend, vaid vaba orienteerumine — **mis ongi ühtaegu tugevus (tervikpilt, järelkaja) ja põhirisk (live-fookuse hajumine).**
+
+1. **Sisenemine Teemaseemnest:** seemnekaart on raja algusjaam; „Alusta sessiooni" suumib sessiooni esimesse jaama, mis avaneb töölauana. Ilma aktiivse sessioonita on rada lugemisrežiimis.
+2. **Asukoht etappides:** suum-välja vaade näitab kogu rada; jaamas olles on nurgas püsiv **minikaart** (aktiivne jaam esile tõstetud, läbitud linnukestega, ees lukus). Orientatsioon = alati üks suum kaugusel.
+3. **Omaniku küsimus:** iga jaama päises sama ankrukapsel; suum-välja vaates on küsimus kogu raja pealkiri — küsimus on seega nähtav mõlemal kõrgusel.
+4. **Faaside eristus:** jaama sees samad mustrid mis V2 (sahtel, fookuskapsel, harud); vaikse kirjutamise ajal minikaart tuhmub ja suum lukustub (keegi ei „rända" faasi ajal minema).
+5. **Rollid, reeglid, kinnitused:** jaama sissepääsul „väravapost" — tingimused + kinnitused + `missing[]` põhjused; ees olevad jaamad on kaardil ainult nimega kestad (sisu ei renderdata enneaegselt); rollid ja kokkulepped jaama seintel nagu V2.
+6. **Refleksiooniring:** jaamasisene, sama mis V2 p 6; lisaks kaardi eripära — refleksioonifaasis kehtib **fookuslukk kõigile**: suumida ei saa, kuni ring kestab.
+7. **Reaktsioonide ja kiirenduse vältimine:** Q2.0 p 4–5 + kaardireeglid: live-sessioonis on vaba suum lukustatud aktiivse jaama külge (vaba uurimine ainult enne/pärast sessiooni); kaardil pole „progressi protsenti" ega jaamadevahelisi kiirusenäitajaid; rada ei võrdle juhtumeid omavahel (ei mingit „kiirem grupp" vaadet — [LJ] §15 keelud).
+8. **Rituaalne lõpp:** 8. jaama sulgemine kustutab jaamade 2–7 sisu — kaardile jäävad **tühjad kestad märkega „detailid kustutatud"** (aus jälg, [LJ] §25); rada pikeneb nähtavalt järelvaate jaamani; suum-välja vaade ONGI hiljem Lõpetatud juhtumi detailvaate loomulik kuju; praktikakandidaat on raja haru raamatukogu suunas.
+9. **Võrreldavus:** kaardi ainulaadne tugevus on **makrovõrdlus** — kogu raja seis ühe pilguga, mitme juhtumi rajad hiljem [LJ] lehel kõrvuti; jaama sees samad võrdluspinnad mis V2; ühekaupa-elemendid samad (fookuskapsel).
+10. **Otselingid, back/forward, klaviatuur, puude, mobiil, reduced-motion:** URL = jaam (suumiajalugu EI lähe brauseriajalukku — ainult jaamatase, muidu back/forward mürab); klaviatuur: nooled jaamade vahel, +/− suum; mobiilis on pinch-suum konfliktne ja kaart taandub jaamaloendiks (= tavaline leht); reduced-motion: suumianimatsioonid asenduvad lõigetega. ZUI tüpograafia vahesuumidel on eraldi loetavusrisk.
+11. **Olemasolevast säilib:** andmekiht 1:1; jaamasisu = V2/praeguse workspace'i komponendid; praegune stepper muutub minikaardiks; [LJ] leht saaks hiljem radade lisavaate; [PP] jääb raamatukoguks.
+12. **Keerukus ja riskid:** tehniline keerukus **kõrgeim** (ZUI-mootor, suumitasemete tüpograafia ja jõudlus, fookusluku sünk); kasutatavusrisk: orienteerumiskadu suumides, mobiili taandvariant „kaotab" põhivõlu; **metodoloogiline moonutusrisk: keskmine** — vaba liikumine töötab live-ringi vastu ja vajab fookuslukku, mis võtab sessiooni ajaks ära just selle vabaduse, mille pärast mudel valiti. Mudeli tegelik jõud on **asünkroonsetes faasides** (ettevalmistus, järelvaade, õppimise ülevaade), mitte elavas ringis.
+
+### Q2.4 Hindamine KOV-Q1 invariantide ja Q1.9 nähtavuspõhimõtete vastu
+
+Sümbolid: **●** variandi loomus toetab; **◐** toetatav nimetatud lisameetmega; **○** variandi loomusega pinges (püsiv risk). Hindamise kaal on metodoloogial, mitte visuaalsel efektil.
+
+**12 invarianti (Q1.0):**
+
+| # | Invariant | V1 Süvarada | V2 Ümarlaud | V3 Teekonnakaart |
+|---|---|---|---|---|
+| 1 | Struktuur ON meetod | ● sügavusjärjestus kehastab; värav peatab kerimise | ● kihid + väravariba | ◐ vajab live-fookuslukku |
+| 2 | Omanik ainuekspert | ● 7. etapi privaatplaan | ● privaatvaade laual | ● jaamas sama |
+| 3 | MINA-vorm, mitte nõu | ◐ ühiskiht (Q2.0 p 10) | ◐ ühiskiht | ◐ ühiskiht |
+| 4 | Uurimine enne lahendusi | ● tulevasi plaane ei renderdata | ● tööriistad lukus kihiti | ◐ ees paistavad kestad (nimi) |
+| 5 | Vaikne-kirjalik enne jagamist | ◐ privaat-lähikiht liikuvas süsteemis | ● sahtel on mudeli tuum | ● jaamasisene sahtel |
+| 6 | Hinnanguvabadus (ka kiitus) | ● ühiskiht (0 reaktsiooni) | ● ühiskiht | ● ühiskiht |
+| 7 | Võrdsus ja roteerumine | ◐ „juhi kaamera" võib juhikeskseks kalduda | ● ümarlaud kehastab võrdsust | ◐ neutraalne |
+| 8 | Vabatahtlikkus ja pühendumine | ● kinnituskiht | ● kinnituskiht | ● kinnituskiht |
+| 9 | Konfidentsiaalsus ja kinnisus | ◐ vajab läve-tekste; avar liikumiskeel | ● suletud ruum + uks + riiul | ◐ „maastikustumine" vajab selgeid piire |
+| 10 | Refleksioon ja lõpuring | ◐ kaameranihe toimib, ring vähem kehaline | ● ring ümber laua on loomulik | ◐ jaamasisene + fookuslukk |
+| 11 | Regulaarsus, protsessilisus, järelkaja | ◐ riiul lennu lõpus | ◐ riiul + eeskoja liitekoht | ● rada näitab elutsüklit parimini |
+| 12 | Piirid (mitte teraapia/otsus) | ● tekstikiht | ● tekstikiht | ● tekstikiht |
+
+**13 nähtavuspõhimõtet (Q1.9):**
+
+| # | Põhimõte | V1 | V2 | V3 |
+|---|---|---|---|---|
+| 1 | Aktiivne etapp + töösisend | ● HUD-stepper + plaanijuhis | ● valgusriba + juhise sein | ● minikaart + jaamajuhis |
+| 2 | Rollid nähtavad | ◐ HUD-i servas, väike | ● rollisein | ● jaama sein |
+| 3 | Omaniku küsimus püsivalt | ● ankrukapsel HUD-is | ● laua keskobjekt | ● jaama päis + raja nimi |
+| 4 | Ajaraamid inimese käes | ● ühiskiht | ● ühiskiht | ● ühiskiht |
+| 5 | Vaikse-kirjaliku faasi eristus | ◐ lähikiht | ● sahtel + laua hämardus | ● sahtel + suumilukk |
+| 6 | „MINA …" vorm | ◐ ühiskiht | ◐ ühiskiht | ◐ ühiskiht |
+| 7 | Hinnanguvaba tsoon | ● ühiskiht | ● ühiskiht | ● ühiskiht |
+| 8 | Refleksiooniringi eristaatus | ◐ kaameranihe + lukk | ● iste ringist väljas | ◐ rõdu + fookuslukk |
+| 9 | Kokkulepped kättesaadavad | ◐ kihina HUD-ist | ● püsiv sein | ● jaama sein |
+| 10 | Kinnisus ja jälg nähtavana | ◐ läve-tekstid + lahustumine | ● uks + riiul + nähtav purge | ◐ kestad „kustutatud" märkega |
+| 11 | Lõpetamise rituaalid + suletus | ● lõpp-plaan + lahustumine | ● laua koristus + valguse vaibumine | ● raja pikenemine + kestad |
+| 12 | Järelkaja järgmisel kohtumisel | ◐ liitekoht [KAVAS] | ◐ eeskoda [KAVAS] | ● raja loomulik osa |
+| 13 | Ettevalmistuse koht | ● seemneplaan enne lendu | ● seemneriiul enne ust | ● raja algusjaam |
+
+**Kokkuvõte hindamisest.** V2 on ainus variant, millel pole ühtegi püsivat pingekohta ühegi invariandiga, ja ta katab 13 nähtavuspõhimõttest 11 loomuldasa. V1 tugevus on järgnevuse kehastamine ja rituaalide jõud, nõrkus tempo- ja juhikesksuse surve ning kõrgeim tehniline hind. V3 on ületamatu tervikraja ja järelkaja näitamisel (inv 11, põhimõte 12), kuid elava ringi ajal töötab tema põhiloomus (vaba liikumine) metoodika vastu ja vajab pidevat lukustamist.
+
+### Q2.5 Avatud otsuste käsitlus
+
+**KOV-Q1-DEC-1 (üksiksessioon vs grupi/kohtumise elutsükkel).** Kõik kolm varianti on kirjeldatud **praeguse üksiksessiooni tasandil** ja töötavad ilma grupi- või kohtumiseobjektita (nagu praegune andmekiht). Liitepunktid hilisemaks, kujutamata neid valmis funktsioonidena: (a) *kohtumise tasand* = „eeskoda" enne sessiooniruumi — sinna kuuluks avaring „kuidas on vahepeal läinud" järelvaatekaartidega ([VIS] §5.1); V1-s eellend enne juhtumi rada, V2-s eraldi ruum enne ust, V3-s kohtumise rada jaamade kohal; (b) *grupi tasand* = kokkulepete sein hakkab hiljem lugema grupi koostöölepingu objekti; seni näitab see sessioonipõhiseid kokkuleppeid (nagu praegu). Prototüüpi eeskoda EI ehitata.
+**KOV-Q1-DEC-2 (vaatleja/külaline ainult konsensusega).** Üheski variandis ei ole omanikul ega juhil „lisa vaatleja" nuppu. Ruumiline reegel: vaatleja iste/marker renderdatakse alles siis, kui **iga** ACCEPTED-osaleja on andnud eraldi kinnituse (sama muster nagu kokkulepete isikukinnitused); kuni sellist konsensusvoogu pole ehitatud, jääb vaatleja roll ruumilisest UI-st **välja** — andmemudeli OBSERVER-rolli olemasolu ei kohusta liidest seda pakkuma. Läve-tekst (Q2.0 p 9) peab vaatleja olemasolu alati eraldi nimetama.
+**KOV-Q1-DEC-3 (MINA-vorm).** Lahendatud ühiskihis (Q2.0 p 10) — kehtib kõigis variantides ühtemoodi; jõustamisringi „Mina usun, et sa saavutad soovitu, sest …" jääb ainsa lubatud omaniku poole pöörduva vormelina.
+
+### Q2.6 Soovitus
+
+**Põhivariant: V2 „Ümarlaud-stuudio".** Põhjendus (mitte visuaalne efekt, vaid invariandid): (1) ainus variant ilma püsiva invariandipingeta — allikate füüsilise ruumi grammatika (laud, ring, eemale istumine, kinnine uks, riiul) tõlgitakse otse, mitte metafoori kaudu; (2) väikseim metodoloogilise moonutuse ja tehnilise riski korrutis; (3) see on runtime-tõendatud `CovisionWorkspace`'i evolutsioon, mitte asendus — serverileping, väravad ja privaatsuskiht jäävad 1:1; (4) piltide 1–4 kujunduskavatsus ongi sisuliselt see mudel, st visuaalne suund on juba olemas.
+
+**Teistest variantidest võetakse üle:**
+
+- **V1-st:** üleminekurituaal — värava läbimisel üks lühike sügavustõuge (läbitud kiht taandub laua taha „kaustaks", uus kate saabub; sama tõestatud `translateZ` võte, EI täislendu) + sisenemis- ja väljumisrituaal (seemnekaart → laud; closure-kaart → riiul). Nii saab liikumiskeel rituaali jõu ilma tempo-surveta.
+- **V3-st:** suum-välja **teekonnakaart lugemisrežiimis** kahes kohas: Teemaseemne ettevalmistuses („kus mu juhtum rajal on") ja Lõpetatud juhtumi detailvaates (kogu läbitud rada + järelvaade + kestad); hiljem sama kaart eeskoja avaringi taustaks [KAVAS]. Live-sessiooni sisse suumi ei tooda.
+
+**Ausalt nimetatud V2 nõrkused, mida tuleb teadlikult valvata:** dashboardistumise oht (etappide 5–6 piltide tihedus EI ole eeskuju — „üks hero korraga" on kohustuslik); „ruumilisuse" alaladastamine (kui sahtel, ring ja kaustad jäävad pelgalt paneelistiiliks, kaob mudeli mõte — füüsilisustunne tuleb just neist kolmest žestist); järelkaja/kohtumise tasand jääb esialgu katmata (DEC-1 liitekoht, mitte puudus).
+
+### Q2.7 Esimene väikese riskiga prototüüp
+
+**Ulatus:** V2 tuum kolme kõige hapramate invariandi peal — etappide **4 → värav → 5** lõik ühes sessioonis:
+
+1. püsiv **ankrukapsel** (omaniku küsimus + tööfookus);
+2. **privaatsahtel** vaikse kirjutamise faasis (PrivateState UI + laua hämardus + olekutekst „teised ei näe su mustandit");
+3. **refleksiooniringi omaniku-olek** etapis 4 (iste ringist väljas: sisendid lukus, privaatmärkmik aktiivne, grupi vaates „kuulab eemal");
+4. **väravarituaal** COMPLETE_STAGE-il: aktiivse kihi üks sügavustõuge kausta + uue katte saabumine (~0,5 s; reduced-motion: hetkeline vahetus), värava põhjused nähtavad enne;
+5. **„MINA …" sisestusmall** etapi 5 võimalustel + privaatne mikrovihje „Sina peaksid" mustri peale;
+6. **hinnanguvaba pind**: teiste kaartidel 0 tegevusnuppu (omaniku „Tänan" alles etapi 6 ringis — prototüübi ulatusest väljas, kuid nuppude puudumine on juba tõendatav).
+
+**Millist olemasolevat vaadet prototüüp muudab:** ainult aktiivset **`CovisionWorkspace`'i** `/kovisioon` lehel (see, mis on `main`-is andmekihiga seotud; surnud `CovisionSession.jsx` demot ei puudutata). Ei mingeid skeemimuudatusi, uusi marsruute ega API-lepingu muudatusi — kõik kuus elementi istuvad olemasolevate `stage/phase/PrivateState/COMPLETE_STAGE` peale. Teemaseemnete, Lõpetatud juhtumite ja Parimate praktikate lehti prototüüp ei puuduta.
+
+**Mida prototüüp peab kasutajatega tõendama enne päris ehitamist** (läbiviimine päris brauseris — paani hüdratsioonipiirang KOV-LIMIT-1 ja ruumitausta screenshot-timeout välistavad paani-põhise kontrolli; server käivitada `preview_start` config'iga `next-dev`):
+
+1. **Etapiteadlikkus:** osaleja oskab igal hetkel öelda, mis etapp käib ja mida praegu tohib/ei tohi (sihiks ≥9/10 õiget vastust vahekontrollides).
+2. **Privaatsuse eksimatus (kriitiline, 0 viga):** kasutaja ütleb iga kaardi kohta õigesti, kas grupp näeb seda — sahtli ja laua eristus ei tohi jätta ühtegi kahtlusjuhtu.
+3. **Küsimuse püsivus:** omaniku küsimus on meenutatav ilma vaatamata ka etapi 5 keskel (ankrukapsel täidab rolli).
+4. **Ringi puutumatus:** refleksioonifaasis omanik ei ürita sekkuda ja grupp ei adresseeri teda — vaatlusandmed, mitte küsitlus.
+5. **Värav ≠ dekoratsioon:** kasutajad kirjeldavad üleminekut kui „etapp lõppes/algas", mitte „ilus animatsioon"; keegi ei oota, et aeg või kerimine ise edasi viiks.
+6. **MINA-vormi loomulikkus:** võimalused algavad mina-vormis ilma juhi meeldetuletuseta või mikrovihje toimib märkamatult.
+7. **Pariteet:** sama stsenaarium on läbitav ainult klaviatuuriga ja reduced-motion režiimis ilma sisu kaotamata.
+8. **Rahu:** osalejad ei taju süsteemi kiirustavana; vaikuseminutid tunduvad toetatud, mitte „ootamisena" (lühiküsitlus sessiooni järel).
+9. **Jõudlus:** üleminekud sujuvad päris masinatel koos Galaxy-taustaga (blur-kihtidel transform-animatsioone ei ole; mõõdetakse enne/pärast).
+
+Kui punktid 2, 4 ja 5 ei tõendu, ei päästa ükski suurem ruumiline ehitus mudelit — need kolm ongi kogu ruumilise Kovisiooni mõte.
+
+---
+
+*Peatükk KOV-Q2 lisatud 14.07.2026 öösel; disainianalüüs ainult — rakenduskoodi ei muudetud, teste ei korratud, uut auditit ei alustatud. Metodoloogiline tõeallikas on KOV-Q1, tehniline ptk 1–11; kuus ruumilise disaini dokumenti on loetud täies mahus ja 11 lähtepilti vaadatud kujundusliku kavatsusena.*
+
+---
+
+# KOV-R — Kovisiooni ruumiline tervikmudel
+
+STATUS: COMPLETE
+
+Kuupäev: 15.07.2026 (varahommik)
+Koostaja: Fable 5
+Ülesanne: Kovisiooni etappide 1–8 tööruumi ruumiline, visuaalne ja navigatsiooniline tervikmudel + rakendusvalmis kujundusplaan. Rakenduskoodi, skeemi ega migratsioone ei muudetud; ei commit'itud ega deploy'itud.
+
+**Lähtealus (kõik läbi töötatud):** ptk 1–11 tehniline tervikvoog; **KOV-Q1** metodoloogiline alus (12 invarianti, Q1.7 kinnitused, Q1.9 nähtavus, Q1.10 automatiseerimiskeelud); **KOV-Q2** ruumivariandid ja soovitus (V2 + V1/V3 laenud); aktiivse `main`-i Kovisiooni UI kood (`CovisionWorkspace.jsx` 470 r, `CovisionLiveSession.jsx` 1536 r, `TeemaseemnedPage.jsx`, `CompletedCasesPage.jsx`, `EffectivePracticesPage.jsx`, `app/styles/covision.css` 1920 r, `teemaseeme.css`) **[KOOD]**; `fable-pildid/kovisioon-tervikvoog/README.md` täies mahus + **kõik 15 PNG-d ükshaaval täissuuruses** (põhivoog 01–10 = päriselt läbi mängitud rada localhost'is; 4 kasutaja kuvatõmmist = loomisvaade ×2, Parimad praktikad, Lõpetatud juhtumid sortimisega; `error-edasi-ei-saa.png` = UX-tupik) **[PILT]**; `ruumilise-kogemuse-lahtekoht.md` **[RL]**; Flight/heliks ainult interaktsioonimustrite võrdluseks KOV-Q2 terminipiiri kaudu. Kasutaja kuvatõmmised kinnitavad põhivoo pilte 1:1 (sama kest, sama sisu, sama tupik) — lahknevusi failide 01–10 ja kasutaja tõmmiste vahel ei leitud. Serveri-, andme-, õiguste-, RAG- ja regressiooniauditit ei korrata (tõendatud ptk 1–11).
+
+Tõendusmärgised selles osas: **[KOOD]** aktiivsest koodist · **[PILT nr]** kuvatõendist · **[Q1/Q2]** varasemast peatükist · **[RL]** ruumilise kogemuse lähtekohast · **[OTSUS?]** tooteomaniku otsust vajav.
+
+---
+
+## R1. Praeguse ruumilise lahenduse hinnang
+
+### R1.1 Milline praegune lahendus tegelikult on
+
+Kovisiooni tervikvoog elab täna **neljas eri kestas**, mis ei jaga ühist ruumikeelt:
+
+| Kest | Leht | Paradigma | Tõend |
+|---|---|---|---|
+| A. Seemneväli | `/teemaseemned` | kosmosetaust + päisekaart + filtripillid + **vabalt liigutatavad kaardid** tühjal väljal; ülal pill-nav „Kovisiooni ruum · Teemaseemned · Parimad praktikad" | [PILT 01] |
+| B. Loomisvaade | „Uus teemaseeme" | vormileht 5-sammulise rajaga (ehitatud on ainult samm 1), turvavärav, 6 küsimust, külmutatava kaardi eelvaade, privaatse ettevalmistuse pillid; **sisemine kerimisriba** | [PILT 010717, 010728] |
+| C. Sessioonikest | `/kovisioon?case=…` | HUD-tööruum: identiteediriba (sigil + juhtumi pealkiri + 2 kella + Vajan tuge/Paus/↻ + rollikiip), 8-etapi stepper nimedega, 3 veergu (Ühine ring · töölõuend orbiitidega · Kompass), **püsiv alumine väravariba** | [PILT 02–09; KOOD cvl-shell, grid :891] |
+| D. Järelkihi dashboard | `/lopetatud-juhtumid`, `/parimad-praktikad` | SaaS-külgmenüü (KOVISIOON, Uus Kovisioon, Teemaseemned, …, MINU VAATED), 5 KPI-kasti, serif-display pealkirjad, otsing+filtrid+vaatelülitid | [PILT 10, 010802, 011446] |
+
+**Etappide 1–8 vahel liikumine** on serveri tõde: stepper näitab etappi, alumine väravariba nimetab nõutava oleku (nt „Tööfaas peab enne jõudma olekusse ‚valmis uurima'") ja **järgmise etapi nimelise CTA** („Liigu uurivatesse küsimustesse" → „…peegeldusringi" → „…võimaluste loomisse" → „…ressursside juurde" → „…omaniku valikusse" → „Kinnita juhtumitöö tulemus" → „Sulge juhtum") [PILT 02–09]. Etapi viib edasi ainult juht (LEADER) läbi serveri värava; kerimine/klõps vaadet ei muuda [KOOD ptk 3]. Etapisisesed **faasid** vahetuvad juhi ühe nupuga „Jätka: ‹järgmine faas›" keskveeru allosas [KOOD :1184–1213].
+
+**Kas üks ruum või kaheksa vormilehte?** Sessiooni sees on vastus selge: **üks püsiv ruum** — kest, stepper, osalejad, kompass ja väravariba püsivad; vahetub ainult keskveeru kate ja alumise tööala etapipaneelid [PILT 02→09 järjepidevus; KOOD]. See EI ole kaheksa järjestikust vormilehte. Probleem on tasand kõrgemal: **tervikvoog (seeme → sessioon → lõpetatud → praktika) on neli eri rakendust**, mitte üks Kovisiooni ruum.
+
+### R1.2 Mis aitab tööprotsessi (säilitada)
+
+1. **Püsiv etapikontekst:** stepper linnukestega + aktiivne etapp; juhtumi pealkiri alati identiteediribal [PILT 02–09].
+2. **Kompass** — iga etapi metoodiline juhis on erakordselt hea tekstikiht: „Küsimus enne tõlgendust… Vastus võib pilti avardada", „Peegeldus on ettevaatlik vaatenurk, mitte diagnoos ega lahendus", „Loome eri suundades võimalusi **ilma hääletamise, pingerea või kohese teostatavushinnanguta**", „Ressursipilt ei hinda inimest", „Rühm ei hääleta. Omanik otsustab ning jagab alles kinnitatu" [PILT 04–08] — Q1 invariandid 2–6 on juba sõnastatud.
+3. **Aus väravariba:** mitteaktiivne CTA + nõutav olek + tingimuste arv; etapp 8 roheline „Kõik nähtavad tingimused on täidetud" [PILT 09]; server annab `missing[]` [KOOD].
+4. **Kaks kella** (kohtumine + etapp) ja **rollikiip** („juhtumi tooja") on püsivalt nähtavad [PILT 02–09].
+5. **Privaatala märgistus:** lukk ⌁ + „ainult sina näed" tekstid etapi 7/8 paneelidel ja loomisvaate „Valikuline privaatne ettevalmistus. Jääb ainult sulle" [KOOD :998–1074; PILT 010728].
+6. **Hero-slot + kuni 5 tugikaarti** — „üks fookus korraga" muster on lõuendil olemas [KOOD WorkField :547–599; PILT 09 kaks jagatud kaarti, hero esiletõstetud].
+7. **URL kannab juhtumit** (`?case=`, pushState + popstate) ja **F5 taastab serveri tõe** (stage/phase tulevad serverist); 5 s nähtavuspõhine polling sünkroniseerib teised osalejad [KOOD CovisionWorkspace :26, :142–177, :198–216].
+8. Osalejakinnituste 1-2-3 jada (roll → kokkulepe → valmis) järjestatud lukustusega [KOOD :470–494].
+
+### R1.3 Mis tekitab segadust või on pooleli (parandada)
+
+| # | Probleem | Tõend |
+|---|---|---|
+| **R1-P0** | **Lõuendireegel on uues kestas rikutud (kasutaja kinnitatud põhihäiring, 15.07):** etappide 1–8 sisu EI mahu ekraanile — tabeleid/kaste tuleb alla kerida; lõuend on „poolikult ekraanil". Koodijuur: kogu kest on ise kerimiskonteiner (`.cvl-shell { overflow-y: auto }` covision-live.css:17) ja tsoonid (topbar+stepper+3 veergu+lower-workspace komposeri/etapipaneelidega) on VIRNAS, ilma kõrgusgridita; lisaks surub `.cvl-canvas { min-height: clamp(29rem, 57vh, 43rem) }` (:614) tööpaneelid ekraanist välja. Vana `cv1-*` demo täitis reeglit teadlikult (veerud `max-height:100%` + sisekerimise turvaklapp, koodikommentaar „tellija lõuendireegel 11.07" — covision.css:892–905); uus kest seda mustrit ei pärinud. Sama rikkumine loomisvaates (sisekerimisriba [PILT 010717]). | [KOOD covision-live.css:14–17, :614; covision.css:892–905; PILT 02–09 lõigatud alaosa; kasutaja 15.07] |
+| R1-P1 | **Neli kesta, kolm navigatsiooniparadigmat** (pill-nav ↔ HUD „Tagasi Kovisiooni valikusse" ↔ külgmenüü) + kaks tüpograafiakeelt (sessiooni sans-HUD vs järelkihi serif-display) — kasutaja õpib sama toote sees kolm eri „maja" | [PILT 01 vs 02 vs 10] |
+| R1-P2 | **UX-tupik (kriitiline):** loomisvaate 5-sammuline rada + lõpu checkbox „Pärast loomist jätkan privaatse ettevalmistusega" viivad lehele, mille sammud 2–5 on platseholder; ainus CTA on „Tagasi Teemaseemnete lehele"; sealt peab kasutaja ISE teadma: leia seeme → pane järjekorda → alusta Kovisiooni | [PILT error; 010728 checkbox; README] |
+| R1-P3 | **Faasid on nähtamatud:** stepper näitab etappe, aga mitte etapisiseseid faase; faasi vahetab juhi nupp keskveeru sisekerimise all; osaleja ei näe püsivalt, MIS faas käib, KES parasjagu tegutseb ja MIDA temalt oodatakse (kompass ütleb ainult etapi üldjuhise) | [KOOD :1184–1213; PILT 02–09 — faasiriba puudub] |
+| R1-P4 | **Tühi lõuend ei juhenda:** „0 jagatud kaarti" + tühi hero („Esimene jagatud kaart…") on etappide ainus sisuolek enne panuseid; komposer (kirjutamiskoht!) on sisekerimise all peidus — „mida ma praegu teen?" vastus pole esimesel ekraanil | [PILT 02–08] |
+| R1-P5 | **Pöördloendur „Kohtumisest alles 01:2x"** (etapist 2 alates; etapil 1 „Kohtumine kestnud") — kaks eri ajaloogikat + tempo-surve, mis on Q1.10 p 5 vastane signaal (kell ei tohi protsessi juhtida) | [PILT 02 vs 03–09] |
+| R1-P6 | **Väravariba näitab tingimuste ARVU, mitte loendit** („Veel 4 tingimust vajab lõpetamist") — server teab `missing[]` nimekirja, kasutaja mitte; juht peab ära arvama, mis puudu | [PILT 02–07; KOOD gate `missing[]`] |
+| R1-P7 | **Vaikne vs ühine töö pole ruumiliselt eristatud:** komposeril on shared/private lüliti ja tekstid, kuid vaikse kirjutamise faasis ei muutu ruum (lõuend ei hämardu, privaatala ei tõuse esile) — Q1 inv 5 elab ainult tekstis | [KOOD Composer :724–761; PILT] |
+| R1-P8 | **Refleksiooniringi „omanik kohal, ei sekku" pole teostatud:** etapp 4 on sama paigutus samade õigustega; omaniku eemalolek on ainult kompassi lause | [PILT 05; KOOD — eraldi olekut pole] |
+| R1-P9 | **Teiste osalejate seis on ainult täpp** (●/○ readiness); faasivalmidust („kirjutab veel / valmis") ei ole — mitme osalejaga vaikefaasis ei tea juht sisuvabalt, kas võib edasi viia | [KOOD serializeParticipant; PILT 02 vasak rail] |
+| R1-P10 | **Reduced-motion/mobiili kate on tehniline, mitte sisuline:** `covision-live.css`-il on globaalne kiirenduskate (:1193 — kõik animatsioonid 0.01ms) ja `prefers-contrast` plokk (:1204) ning 3 breakpointi (1180/820/560) — need on OLEMAS; `covision.css` reduced-motion katab ainult surnud `cv1`. Puudu on SISULINE lame variant (rituaalide tähendus staatiliselt, R10) ja mobiilimudel, mis ei süvendaks P0-kerimist (tsoonid virnastuvad kitsalt veelgi pikemaks) | [KOOD covision-live.css :1062, :1083, :1143, :1193–1204; covision.css :1421] |
+| R1-P11 | **Järelkihi KPI-värvid** (punane hoiatuskolmnurk, roheline linnuke) toovad hinnangu-esteetika Kovisiooni kõrvale; „Juhtumi tooja: Juhtumi tooja" duplikaat-tekst kaardil | [PILT 10, 011446] |
+| R1-P12 | **Ankur on pealkiri, mitte küsimus:** identiteediribal püsib juhtumi PEALKIRI; omaniku „Kuidas…?" fookusküsimus (Q1.9 p 3 keskne nõue) ei ole pärast etappi 2 püsivalt nähtav element | [PILT 02–09; KOOD — eraldi ankruelementi pole] |
+| R1-P13 | Sessioonil puudub etapi-URL (ainult `?case=`) — otselinki konkreetsesse etappi/vaatesse pole; back/forward töötab ainult hub↔sessioon tasandil | [KOOD :26, :198–216] |
+
+**Professionaalse ettevalmistuse katkise raja erikäsitlus (R1-P2).** Rada lubab visuaalselt viit sammu (1 Kiire seeme → 2 Professionaalne ettevalmistus → 3 Võrgustik ja senine töö → 4 Fookus ja soovitud muutus → 5 Eelvaade, jagamine ja töövorm) ja loomisvaate checkbox saadab kasutaja otse sammu 2, mis ütleb: moodulid on „järgmises ehitusjärgus" ning ainus toimiv tegevus on tagasi. See ei ole kasutaja eksimus — vaade lubab jätkuvat protsessi, kuid käitub tupikuna; esmakasutaja jaoks katkeb kogu Kovisiooni sisenemise lugu just kohas, kus metoodika nõuab omaniku ettevalmistust (Q1.4). Lahendus on R12 paketis 1 (tupiku eemaldus) + tooteotsus R13-D1 (kas sammud 2–5 ehitatakse või rada kärbitakse üheks sammuks kuni ehituseni).
+
+### R1.4 Kas kasutaja mõistab? (seitsme küsimuse kontroll)
+
+| Küsimus | Praegu | Alus |
+|---|---|---|
+| Kus ma asun? | **Jah** etapi tasandil (stepper+kompass); **ei** faasi tasandil | R1-P3 |
+| Kes parajasti tegutseb? | **Ei** — pole „praegu räägib / kirjutatakse vaikselt / juht otsustab" signaali | R1-P3/P9 |
+| Mida minult oodatakse? | **Osaliselt** — kompassi üldjuhis jah, konkreetne „sinu järgmine tegevus" ei (komposer peidus) | R1-P4 |
+| Mis on privaatne? | **Jah** seal, kus lukk ⌁ ja tekstid on (etapp 7/8, ettevalmistus); **nõrk** vaikefaasides | R1-P7 |
+| Mis on jagatud? | **Jah** — „jagatud" sildid kaartidel, „N jagatud kaarti" loendur | [PILT 09] |
+| Millal etapp lõpeb? | **Osaliselt** — värav+CTA jah, aga tingimused arvuna, mitte nimekirjana | R1-P6 |
+| Mida teised näevad? | **Osaliselt** — jagatud/privaatne piir jah; teiste REAALAJAS-vaade (kes mida näeb faasis) ei | R1-P7/P9 |
+
+### R1.5 Verdikt
+
+**`SIHITULT ÜMBER EHITADA`** — mitte asendada. Põhjendus kolmes lauses: (1) sessioonikest C on juba **üks püsiv ruum** õigete püsielementidega (stepper, kompass, värav, rollikiip, kaks kella) ja serveri-tõe navigatsiooniga — see on KOV-Q2 V2 „Ümarlaud-stuudio" poolik teostus, mida tuleb süvendada (ankur-küsimus, faasiriba, sahtel, ring), mitte välja vahetada; (2) `ASENDADA` oleks põhjendatud ainult siis, kui kest töötaks metoodika vastu — ta ei tööta, ta on lihtsalt **poolnähtav** (faasid, tingimused, vaikefaas on tekstis, mitte ruumis); (3) `SÄILITADA` muutmata kujul välistavad lõuendireegli rikkumine R1-P0, kriitiline tupik R1-P2 ja nelja kesta killustatus R1-P1. Ümberehituse siht: **üks Kovisiooni maja** (A–D ühes ruumikeeles), sessiooniruumi kolm puuduvat füüsilist žesti (sahtel-vaiketöö, ring-refleksioon, ankur-küsimus) **ja lõuendireegli taastamine: iga etapp mahub tervikuna ekraanile** (R5.0).
+
+---
+
+## R2. Etappide 1–8 ruumiline kaart
+
+Ühine leping enne tabeleid: kõik kaheksa etappi toimuvad **samas ruumis** — vahetub laua kate ja fookus, mitte ruum (R5). „Serveri värav" all on ptk 3 tõendatud tingimused; „nähtav tingimus" tähendab sama loendi kuvamist väravaribal nimekirjana (R1-P6 parandus). Faaside arvud on koodi faasikataloogist [KOOD covisionSessionShared].
+
+**Etapp 1 — Algus** (7 faasi / 4 põhirada)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | turvaline ühine algus: kohalolu, rollid, kokkulepped, juhtumi piir enne sisulist tööd (Q1 inv 7–9; [PILT 02] „Kinnitame rollid, konfidentsiaalsuse ja juhtumi piiri") |
+| Osalejad | saabuvad; kinnitavad 1-2-3 (roll → kokkulepe → valmis) |
+| Juhtumiomanik | kinnitab juhtumi piiri ja anonüümsuse („ühine tööpilt on õige ja piisavalt anonüümne" [PILT 02]) |
+| Protsessijuht | avab sessiooni, kinnitab seaded, kutsub vajadusel osalejaid, viib faase edasi |
+| Vaikne/ühine | ühine (saabumis-häälestus) |
+| Privaatne/jagatud | jagatud: osalejate seis, kokkulepped; privaatset sisu veel pole |
+| Praeguse UI tugevus | 1-2-3 järjestatud kinnitused; „ÜHINE RING Osalejad" rail; kompass [PILT 02] |
+| Praeguse UI probleem | kokkulepete tekst ja seaded sisekerimises; värava 4 tingimust arvuna (R1-P6) |
+| Soovitatud ruumiline võte | **lävi + ring**: sisenemisel läve-tekst („Kinnine ruum. Sisu näevad: …"); osalejad ümber tühja laua; iga kinnitus süütab osaleja markeri; laual ainult juhtumikaart (seemne külmutatud kaart) |
+| Etapi lõpu nähtav tingimus | tingimuste NIMEKIRI: iga osaleja kohal+roll+kokkulepe+valmis; juhtum kinnitatud; seaded kinnitatud → CTA „Ava juhtumi lugu" |
+| Kaasa liigub | kinnitatud raam: kokkulepped, seaded, osalejad, juhtumi piir |
+
+**Etapp 2 — Lugu** (9/6)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | omaniku segamatu lugu → rühma ühine pilt; fookusküsimuse sõnastamine (Q1.3 baasmudel e1; inv 2) |
+| Osalejad | kuulavad; täpsustavad kaarte ainult pildi jaoks („Kõrvalkaardid täpsustavad, mitte ei võistle" [PILT 03]) |
+| Juhtumiomanik | räägib loo; sõnastab ISE küsimuse; kinnitab pildi ja fookuse; privaatsuse ülevaatus |
+| Protsessijuht | hoiab lugu segamatuna; viib faasid lugu→pilt→fookus |
+| Vaikne/ühine | ühine (kuulamine); lühike vaikne täpsustuskaartide loomine |
+| Privaatne/jagatud | jagatud: case_anchor + pildikaardid; privaatne: omaniku kinnituse-eelsed mustandid |
+| UI tugevus | eyebrow „TOOJA LUGU, RÜHMA ÜHINE PILT"; ankru-kaart hero-slotis [KOOD] |
+| UI probleem | küsimus ei „tõuse" püsiankruks (R1-P12); jutustamisfaasi kuulamisolek pole ruumis nähtav |
+| Ruumiline võte | **ankru sünd**: loo lõpus omaniku küsimus „naelutatakse" identiteediriba alla püsiribale (edaspidi igal etapil sama koht); laual ankur keskel, pildikaardid ringis ümber |
+| Lõpu nähtav tingimus | jagatud ankur ✓; omaniku pildikinnitus ✓; fookusekinnitus ✓; privaatsuse ülevaatus ✓ → „Liigu uurivatesse küsimustesse" |
+| Kaasa liigub | ankur (küsimus) + ühine pilt (kaardid jäävad laua „aluskihiks") |
+
+**Etapp 3 — Uurimine** (11/9)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | küsimus enne tõlgendust; pilt avardub omaniku vastustega (Q1 inv 4–5; baasmudel e2–3) |
+| Osalejad | **kirjutavad küsimused vaikselt**; jagavad ükshaaval; ei arenda teemat |
+| Juhtumiomanik | vastab lühidalt; võib jätta vastamata (õigus nähtav!) |
+| Protsessijuht | hoiab järjekorda „üks küsimus korraga"; peatab varjatud soovitused; küsib omanikult „kas piisab?" |
+| Vaikne/ühine | vaikne (silent_preparation) → ühine (question_queue → active_question) |
+| Privaatne/jagatud | privaatne: küsimusemustandid sahtlis; jagatud: esitatud küsimused + vastusemärkmed |
+| UI tugevus | kompass „Aktiivne küsimus on korraga ainus keskne objekt" [PILT 04]; hero-slot toetab seda [KOOD] |
+| UI probleem | vaikefaas pole ruumiline (R1-P7); järjekord ja „kelle kord" nähtamatu (R1-P3/P9) |
+| Ruumiline võte | **sahtel + kõnejärjekord**: vaikefaasis laud hämardub, igaühe sahtel esile; jagamisel kaart liigub sahtlist järjekorda; aktiivne küsimus hero-fookuses, vastus kinnitub selle külge |
+| Lõpu nähtav tingimus | ≥1 jagatud küsimus ✓; omaniku „piisab uurimisest" ✓ → „Liigu peegeldusringi" |
+| Kaasa liigub | avardunud pilt (küsimused+vastused kokkuvolditult ankru all) |
+
+**Etapp 4 — Peegeldus** (12/10)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | ring ilma omanikuta: tähelepanekud ja võimalikud tähendused, ühisseisukohta otsimata (Q1 inv 9; baasmudel e4) |
+| Osalejad | jagavad peegeldusi „ettevaatliku vaatenurgana, mitte diagnoosina" [PILT 05]; toetuvad üksteise omadele |
+| Juhtumiomanik | **kohal, kuulab, EI sekku**; teeb privaatseid märkmeid; lõpus märgib resonantsi |
+| Protsessijuht | avab/sulgeb ringi; valvab, et omanikku ei kõnetata |
+| Vaikne/ühine | vaikne mustand → ühine ring |
+| Privaatne/jagatud | privaatne: omaniku märkmik + resonants; jagatud: peegelduskaardid |
+| UI tugevus | kompass „Kuulamisrežiim" [PILT 05] |
+| UI probleem | omaniku eemalolek pole teostatud üheski kihis (R1-P8); NB: ka server ei keela omaniku panust siin — invariant elab ainult tekstis |
+| Ruumiline võte | **ringinihe**: omaniku iste liigub ringist väljapoole (tema vaates laud kaugeneb, sisendid lukus, aktiivne ainult märkmik „Kuulad eemalt. Märkmed jäävad sulle"); grupi vaates omaniku marker laua taga sildiga „kuulab"; peegelduskaardid ei ole omanikule adresseeritavad |
+| Lõpu nähtav tingimus | ≥1 jagatud peegeldus ✓; omaniku „valmis edasi" (resonants märgitud) ✓ → „Liigu võimaluste loomisse" |
+| Kaasa liigub | peegelduste kiht (sh pargitud ideed) omaniku resonantsimärkidega |
+
+**Etapp 5 — Võimalused** (12/10)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | paljusus enne valikut; „MINA …" vormis kogemuspanused ilma hääletuse/pingereata (Q1 inv 3, 6; [PILT 06]) |
+| Osalejad | kirjutavad võimalusi vaikselt; loevad ette ükshaaval; ka sarnased loetakse |
+| Juhtumiomanik | võtab vastu, vastab ainult „tänan"; resonantsivalmidus lõpus |
+| Protsessijuht | hoiab loomisfaasi hinnanguvabana; teine loominguring vajadusel |
+| Vaikne/ühine | vaikne (silent_ideation) → ühine (queue → field) |
+| Privaatne/jagatud | privaatne: mustandid; jagatud: võimaluste väli |
+| UI tugevus | kompass keelab pingerea/hääletuse otse [PILT 06] |
+| UI probleem | „MINA …" mall puudub sisendist (ainult kompassi vihje); väli vs hero tasakaal — võimalused vajavad KÕRVUTI-vaadet |
+| Ruumiline võte | **võimaluste väli**: kaardid laotuvad lauale võrdsete kaartidena (mitte virna); hero-fookus ainult ettelugemise hetkel; „Tänan" on omaniku ainuke nupp kaardil; sisendiväli algab malliga „Mina …" |
+| Lõpu nähtav tingimus | ≥1 jagatud võimalus ✓; ükski kaart pole „aktiivne" ✓; omaniku resonantsivalmidus ✓ → „Liigu ressursside juurde" |
+| Kaasa liigub | võimaluste väli tervikuna (võrdsena, järjestamata) |
+
+**Etapp 6 — Ressursid** (13/11)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | „mis saab suunda päriselt toetada" — ressursid, tingimused, piirid, kriitilised eeldused; jõustamine ([PILT 07]; Q1.3 lisaetapp) |
+| Osalejad | seovad võimalusi ressursside/tingimustega; jõustamisring („Mina usun, et sa saavutad soovitu, sest …") |
+| Juhtumiomanik | vaatab tugipilti; märgib mõjuulatuse |
+| Protsessijuht | faktitäpsustused; kriitiliste eelduste lahendatus |
+| Vaikne/ühine | vaikne skann → ühine sidumine |
+| Privaatne/jagatud | jagatud: ressursi-/tingimuse-/barjäärikaardid seostena võimaluste küljes |
+| UI tugevus | kompass „Ressursipilt ei hinda inimest" [PILT 07] |
+| UI probleem | seosed (võimalus↔ressurss) pole visuaalselt seotavad — kaardid on lamedas loendis |
+| Ruumiline võte | **sidumislaud**: ressursikaart dokitakse võimaluse külge (nähtav seos); kriitiline eeldus saab markeri, mis peab enne väravat „rohestuma"; jõustamiskaardid omaniku poole suunatud |
+| Lõpu nähtav tingimus | ≥1 ressurss/tingimus ✓; mõju ülevaadatud ✓; kriitilised eeldused lahendatud ✓; omanik valmis ✓ → „Liigu omaniku valikusse" |
+| Kaasa liigub | võimalused + nende tugipilt (omaniku privaatvalikusse) |
+
+**Etapp 7 — Valik** (15/13)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | omaniku privaatne otsus: suund, esimene samm omaniku mõjuväljas, ajaraam, edenemismärk, järeltegevus; rühm EI hääleta (Q1 inv 2; [PILT 08]) |
+| Osalejad | ootel / toetavas kohalolus; näevad ainult seda, mille omanik kinnitab |
+| Juhtumiomanik | privaatses otsustusruumis täidab 4 plokki; kinnitus peab olema muudatustest värskem [KOOD stage7 fresh] |
+| Protsessijuht | hoiab ruumi vaikse; ei kiirusta |
+| Vaikne/ühine | omaniku privaatne töö; lühike ühine kinnitushetk lõpus |
+| Privaatne/jagatud | privaatne: kogu otsustustöö [KOOD ⌁ :998]; jagatud: ainult kinnitatud tulemus |
+| UI tugevus | privaatpaneel lukuga; 4 vormi + värskuse-loogika on olemas [KOOD :1007–1072] |
+| UI probleem | osalejate „ootel-olek" pole kujundatud (mida NEMAD näevad/teevad sel ajal?) |
+| Ruumiline võte | **omaniku kabinet**: omaniku vaates avaneb privaatlaud (ühislaud taandub); teiste vaates laud hämardub + olekutekst „Omanik teeb valikut — ruum ootab vaikselt"; kinnitusel naaseb ühislaud kinnitatud suunakaardiga |
+| Lõpu nähtav tingimus | suund ✓ samm (omaniku mõjuväljas) ✓ ajaraam ✓ märk ✓ järeltegevus ✓ omaniku kinnitus ✓ → „Kinnita juhtumitöö tulemus" |
+| Kaasa liigub | kinnitatud suunapakett (5 välja) — ainus, mis etapist 7 ühisruumi naaseb |
+
+**Etapp 8 — Lõpp** (17/11)
+
+| Väli | Sisu |
+|---|---|
+| Metoodiline eesmärk | õppimine ja üleandmine: omaniku pakett, järelvaade, rühma üldistus, säilitus- ja praktikaotsus; lõpuring sulgeb (Q1 inv 10, 12–13) |
+| Osalejad | lõpuring: igaüks sõnastab OMA õppimise; juhtumit edasi ei lahendata |
+| Juhtumiomanik | kinnitab paketi, järelvaate, 4 otsust (üldistus/õppimine/säilitus/praktika) [KOOD StageEightPanel] |
+| Protsessijuht | loeb rituaalid lõpuni; sulgeb kohtumise |
+| Vaikne/ühine | ühine ring + omaniku privaatsed lõppotsused |
+| Privaatne/jagatud | jagatud: omaniku pakett + rühma üldistus [PILT 09]; privaatne: otsustepaneel ⌁ |
+| UI tugevus | „SESSIOONI VÄLJUNDI KÜLMUTAMINE"; 2 jagatud kaarti; roheline värav „Kõik nähtavad tingimused täidetud"; „Sulge juhtum" [PILT 09] |
+| UI probleem | purge (detailide kustumine) pole rituaalina nähtav — sulgemine on nupp, mitte „laua koristus"; lõpuringi järjekord pole kujundatud |
+| Ruumiline võte | **koristusrituaal**: sulgemisel detailkaardid kogunevad ja lahustuvad nähtavalt; alles jäävad closure-kaart + omaniku pakk; kaart liigub „riiulile" (Lõpetatud juhtumid); tekst ütleb ausalt, mis kustus ja mis säilis |
+| Lõpu nähtav tingimus | pakett ✓ järelvaade ✓ üldistusotsus ✓ õppimisotsus ✓ säilitusotsus ✓ praktikaotsus ✓ lõppkinnitus ✓ → „Sulge juhtum" (atomaarne, ptk 4) |
+| Kaasa liigub | AINULT closure + omanikupakk (+ soovil praktikakandidaat + jätkuseeme); kõik muu kustub — see ON kaasaliikumise leping |
+
+**Sidususe reegel:** iga etapi „kaasa liigub" rida on järgmise etapi laua ALUSKIHT (kokkuvolditud, avatav lugemiseks) — nii moodustavad kaheksa etappi ühe kasvava laua, mitte kaheksa ekraani; ja etapi 8 leping pöörab kasvu teadlikult tagasi (purge kui meetodi osa).
+
+---
+
+## R3. Metoodiliste invariantide nähtavus
+
+Kategooriad: **S** = serveris jõustatud (ptk 1–11 tõendatud) · **T** = tekstilise juhisega (kompass/juhised) · **R** = ruumiliselt/visuaalselt nähtav · **✗** = praegu nähtamatu või puuduv. Sihtveerg näitab R5 mudeli katet.
+
+| Põhimõte | S | T | R | Praegu puudu | Siht R5-s |
+|---|---|---|---|---|---|
+| Struktuur on meetodi osa | ✓ faasikataloog+väravad | ✓ kompass | ◐ stepper (etapid) | faasid nähtamatud (R1-P3) | faasiriba stepperi all + väravanimekiri |
+| Omanik on oma olukorra ekspert | ✓ etapi 7 privaatotsus; omaniku kinnitused | ✓ „Rühm ei hääleta" | ◐ ⌁ paneel | osalejate ootevaade | omaniku kabinet + „ruum ootab" olek |
+| Uurimine enne lahendusi | ✓ kind-whitelist etapiti | ✓ | ◐ tulevased etapid lukus stepperis | — | + tulevane etapp „lävi" (nimi, sisu ei renderdata) |
+| Nõu ei anta | ✗ (vorm pole jõustatav) | ✓ kompass | ✗ | „MINA …" mall sisendis | komposeri mall + privaatne mikrovihje |
+| Vaikne kirjutamine enne arutelu | ✓ PrivateState piir | ✓ | ✗ | ruumiolek (R1-P7) | sahtel + laua hämardus + olekutekst |
+| Kõik rollid võrdsed | ✓ võrdsed mutatsiooniõigused | — | ✓ ühine ring; 0 edetabelit | — | ring säilib; ei lisata mõõdikuid |
+| Protsessijuht juhib vormi, mitte sisu | ✓ LEADER=faasid/värav | ✓ | ◐ rollikiip | juhi „vormipult" hajus | juhipult = faasid+värav ühes kohas, sisutööst eraldi |
+| Omaniku küsimus püsivalt nähtav | ✓ case_anchor olemas | — | ✗ (R1-P12) | püsiankur | ankruriba igal etapil samas kohas |
+| Refleksiooniringis omanik ei sekku | **✗ server ei keela** | ✓ kompass | ✗ (R1-P8) | kogu teostus | ringinihe (UI-lukk); serveri jõustus = otsus R13-D4 |
+| Hinnanguid/aktiivsusmõõdikuid ei ole | ✓ mudelis pole skoore | — | ✓ sessioonis 0 reaktsiooni [KOOD ItemCard] | järelkihi KPI-värvid (R1-P11) | KPI→neutraalsed loendurid; värvireegel R9 |
+| Panusele vastatakse neutraalselt | ✗ | ◐ kompass | ✗ | „Tänan" rituaal | omaniku ainunupp „Tänan" panusekaardil (e5–6) |
+| Lõpuring lõpetab sessiooni | ✓ värav+purge+lukk (409) | ✓ | ✓ roheline värav + „Sulge juhtum" | lõpuringi järjekord | ringi kord + koristusrituaal |
+| Konfidentsiaalsus ei kao lõppedes | ✓ purge, closure-whitelist, IDOR | ✓ „jääb ainult sulle" | ◐ „KINNINE …TÖÖRUUM" silt | läve-tekst sisenemisel; purge nähtavus | uks+lävi tekstiga „kes näeb"; koristusrituaal + aus järeltekst |
+
+Kokkuvõte: serverikiht on tugev (11/13 vähemalt osaliselt S), tekstikiht hea, **ruumiline kiht on nõrgim** — täpselt nagu R1 verdikt ütles: mitte vale ruum, vaid poolnähtav ruum. Kaks tõsist auku: omaniku küsimuse püsiankur ja refleksiooniringi teostus (kus ka server ei jõusta).
+
+---
+
+## R4. Ruumilised variandid
+
+Kolm sisuliselt erinevat varianti on defineeritud ja invariantide vastu hinnatud KOV-Q2-s (Q2.1–Q2.4): **V1 „Süvarada"** (lineaarne flight-sisuteekond), **V2 „Ümarlaud-stuudio"** (püsiv ühine ruum + keskne laud + etappidega muutuv fookus — ülesande nõutud baasvariant), **V3 „Teekonnakaart"** (suumitav tervikrada). KOV-R ei defineeri neid ümber; siin lisandub **uus tõendusbaas** (päris kuvatõendid 01–10 + kood), mis hinnangut täpsustab, ning kümne kriteeriumi koondtabel.
+
+**Uue tõendi mõju hinnangule:**
+
+1. Sessioonikest C **juba ON** V2 poolik teostus (püsiv kest, stepper, kompass, värav, kaks kella, hero+tugikaardid) [PILT 02–09] → V2 teostushind langeb veelgi: puudu on ankruriba, faasiriba, sahtel, ring, kabinet-olek ja väravanimekiri — mitte kest.
+2. V1 täislennuna tähendaks töötava kesta ASENDAMIST (uus FlightStack + kerimissüsteem) — verdikt R1.5 („ümber ehitada, mitte asendada") välistab selle põhivariandina; flight jääb **rituaalilaenuks** (üks sügavustõuge väravaüleminekul; sisenemine/väljumine).
+3. V3 tegelik jõud on asünkroonne tervikpilt — ja järelkihi dashboard [PILT 10] ongi selle vale-esteetikaga eelvorm: KPI-kastide asemel peaks seal olema **rada/riiul** (V3 lugemisrežiim). V3 element saab järelkihi ümberkujunduse aluseks, mitte live-sessiooni mudeliks.
+4. Heliks / pöörlev galerii (võrdluseks, KOV-Q2 terminipiiri järgi): pöörlev sirvimine tähendab, et osa sisu on alati „selja taga" — ühisfaasides rikub see võrdse nähtavuse (inv 6–7: kõik panused võrdselt väljas, [PILT 06] kompassinõue) ja koormab liikumistundlikke kasutajaid; lubatav kasutuskoht on ainult **ühe kasutaja privaatne sirvimine suletud hulgas** (nt Praktikakogu sirvimine raamatukogus, omaniku enda seemnete riiul) — mitte kunagi ringifaasi ega võimaluste välja esitus. Live-sessiooni ükski faas heliksit ei kasuta.
+
+**Kümme kriteeriumi (● hea · ◐ lisameetmega · ○ püsiv risk):**
+
+| Kriteerium | V1 Süvarada | V2 Ümarlaud | V3 Teekonnakaart |
+|---|---|---|---|
+| Metoodiline sobivus (Q2.4 koond) | ◐ tempo-surve risk | **●** ainus ilma püsipingeta | ◐ vaba liikumine vs ring |
+| Privaatsuspiir | ◐ lähikiht liikuvas süsteemis | ● sahtel/kabinet = füüsiline piir | ● jaamasisene sahtel |
+| Töömälu säilimine (eelmiste etappide sisu) | ◐ taanduvad plaanid loetavad | ● laua aluskihid/kaustad | ● kogu rada nähtav |
+| Grupitöö sobivus (live) | ◐ jagatud kaamera sünk | ● kõik samas ruumis, fookus juhilt | ○ vajab fookuslukku |
+| Navigeerimise selgus | ◐ lineaarne, aga „kus ma olen sügavuses" | ● „mis laual, see käib" | ◐ suum + minikaart |
+| Ligipääsetavus | ◐ lame variant kohustuslik | ● väikseim liikumissõltuvus | ○ ZUI klaviatuur/lugeja raske |
+| Mobiilivaade | ○ sügavus kitsalt ekraanil | ● tsoonid→lehed loomulikult | ○ pinch-konflikt, taandub loendiks |
+| Tehniline risk | ○ kõrge (uus mootor, 2 kerimissüsteemi) | ● madal–keskmine (CSS-kihid olemasoleva peal) | ○ kõrgeim (ZUI) |
+| Jõudlus (koos Galaxy-WebGL taustaga) | ○ suured plaanid + taust | ● kerged kihid; blur-transform keeld kehtib | ○ suumitasemete renderdus |
+| Reduced-motion variant | ◐ lame jada (sisu sama) | ● olekud toimivad ka ilma liikumiseta | ◐ lõiked suumide asemel |
+
+**Valik:** V2 kinnitatakse (kooskõlas Q2.6) — nüüd ka empiirilise lisapõhjendusega: see on ainus variant, mille poole olemasolev kood juba liigub, seega ainus, mis täidab R1.5 verdikti „sihitult ümber ehitada".
+
+---
+
+## R5. Soovitatud ruumimudel: „Kovisiooni maja + ümarlaud"
+
+Põhivariant = **V2 Ümarlaud-stuudio** sessioonile + **üks ühine majakest** kõigile neljale kestale (R1-P1 parandus) + V1 rituaalilaenud + V3 lugemiskaart järelkihile.
+
+### R5.0 Lõuendireegel — lukustatud lähtepiirang (R1-P0 parandus)
+
+Kasutaja lukustatud reegel (11.07, kinnitatud uuesti 15.07) kehtib ka uuele kestale: **iga etapp 1–8 mahub tervikuna ekraanile; lehte ega kesta ei kerita** (referentsresolutsioonid 1920×1080 ja 1536×864; mobiilierand R10 järgi). See ei ole viimistlusdetail, vaid mudeli piirang, mille vastu iga paigutusotsus kontrollitakse:
+
+1. **Kest ei keri kunagi:** `.cvl-shell` overflow → hidden; kõrgus = ekraan; tsoonid saavad kõrguse grid'ist (vana `cv1-main` muster: veerud `max-height:100%`, `min-height:0` — pretsedent on repos olemas, covision.css:892–905).
+2. **Alati nähtavad (fikseeritud kõrgusega):** identiteediriba, ankruriba, stepper+faasiriba, osalejate ring, kompass, juhipult/väravariba, sahtli serv. Need EI tohi kunagi olla „allpool".
+3. **Ainus muutuv pind on laua kate** — ja faasipõhisus ONGI mahutamise mehhanism: kuna korraga näidatakse ainult aktiivse faasi tööpinda (mitte kõiki etapipaneele virnas — praeguse `cvl-lower-workspace` viga), väheneb samaaegne sisu loomulikult. Etapipaneelid (e1 seaded, e7 kabinet, e8 otsused) ei ole laua ALL, vaid ON laua kate oma faasis.
+4. **Sisekerimise turvaklapp** on lubatud AINULT kaartide loendi sees laua piires (palju panuseid) ja kausta lugemisvaates — mitte kunagi primaartegevuste (komposer, faasinupp, värav, kinnitused) kättesaamiseks.
+5. **`.cvl-canvas min-height 57vh` asendub** paindliku `flex/grid`-kõrgusega (laud võtab järelejäänud ruumi, mitte ei nõua miinimumi, mis teisi välja surub).
+6. **Samaaegse info vähendamine käib etappideks/faasideks jagamisega, mitte kirja vähendamisega** [RL §-viide: „vähendatakse etappideks jagamisega, mitte teksti liiga väikeseks tegemisega"] — kui faasi sisu ei mahu, jagatakse faas, mitte ei kahandata teksti ega lisata kerimist.
+7. **Kontrollmõõt on kohustuslik** igas paketis, mis paigutust puudutab (R12 P2–P6), mõlemal referentsresolutsioonil; rikkumine = pakett pole valmis.
+
+### R5.1 Ruumi üldplaan
+
+Kovisioon on **üks maja nelja toaga**, mida seob sama kest (ülal püsiv majanavigatsioon, sama tüpograafia, sama aktsent, sama kaardikeel):
+
+1. **Seemneriiul** (praegune `/teemaseemned`) — omaniku privaatne ettevalmistustuba: riiul (seisude kaupa: mustandid / järjekorras / kovisioonis / järelvaates / suletud) + vaba väli kaartidele; loomisvaade on sama toa süvenemisrežiim, MITTE eraldi 5-sammuline rakendus (R1-P2 kaob: rada kärbitakse üheks „Kiire seeme" sammuks + valikuline „privaatne ettevalmistus" avaneb sama seemnekaardi TAGAKÜLJENA, kui moodulid valmivad — kuni selleta ühtegi lubavat sammunumbrit ei kuvata).
+2. **Sessiooniruum** (praegune `/kovisioon?case=`) — ümarlaud (allpool R5.2–R5.8).
+3. **Riiulituba / Lõpetatud juhtumid** — closure-kaardid riiulil + järelvaadete kalender; V3 lugemiskaart (juhtumi läbitud rada kestadena „detailid kustutatud" märkega) on detailvaate selgroog; KPI-värvirida asendub neutraalsete loenduritega (R9).
+4. **Raamatukogu / Parimad praktikad** — avaldatud praktikate lugemistuba (serif-display võib JÄÄDA siia kui „raamatukogu hääl" — vt R9); heliks-sirvimine lubatav siin ainult privaatse lisavaatena.
+
+Uksed tubade vahel on majanavigatsioon; sessiooniruumi uks kannab läve-teksti (kes näeb). „Kovisiooni valik" (praegune `CovisionWorkspace` hub) jääb sessiooniruumi **eeskojaks**: aktiivsed juhtumid + järjekorras seemned — st mitte viies tuba, vaid sessioonitoa esik.
+
+### R5.2 Korruseplaan
+
+```mermaid
+flowchart LR
+    subgraph MAJA["KOVISIOONI MAJA — üks kest, üks keel"]
+        direction LR
+        SR["1 · SEEMNERIIUL\n(privaatne)\nriiul + vaba väli\n+ kaardi tagakülg =\nettevalmistus"]
+        EK["ESIK\n(Kovisiooni valik)\naktiivsed juhtumid\n+ järjekord"]
+        subgraph SESS["2 · SESSIOONIRUUM (kinnine)"]
+            direction TB
+            ANK["ANKRURIBA — omaniku küsimus\n(püsib igal etapil samas kohas)"]
+            LAUD["ÜMARLAUD\naktiivse etapi kate\n+ eelmiste etappide aluskihid"]
+            RING["OSALEJATE RING\nmarkerid + valmisolek\n(omanik e4: ringist väljas)"]
+            SAHTEL["MINU SAHTEL (privaatne)\nvaikse töö mustandid\n+ märkmik"]
+            KAB["OMANIKU KABINET (e7)\nprivaatne otsustuslaud"]
+            PULT["JUHIPULT\nfaas edasi · väravanimekiri\n· paus · tugi"]
+            ANK --- LAUD
+            RING --- LAUD
+            SAHTEL -- "jagamiskinnitus\n(lävi + eelvaade)" --> LAUD
+            LAUD --- KAB
+            PULT --- LAUD
+        end
+        RT["3 · RIIULITUBA\nLõpetatud juhtumid\nclosure-kaardid + kalender\n+ V3 lugemisrada"]
+        RK["4 · RAAMATUKOGU\nParimad praktikad\n(lugemine, retsensioon)"]
+        SR -- "järjekorda →" --> EK
+        EK -- "uks + läve-tekst" --> SESS
+        SESS -- "sulgemisrituaal:\ndetailid lahustuvad,\ncloure-kaart riiulile" --> RT
+        RT -- "praktikakandidaat" --> RK
+        RT -- "jätkuseeme" --> SR
+    end
+```
+
+### R5.3 Sisenemine sessiooniruumi
+
+Esikust (või seemneriiulilt „Alusta") → **uks**: üks lühike sügavustõuge (V1 laen; reduced-motion: hetkvahetus) + kohustuslik lävi-kaart: „Sisened kinnisesse sessiooniruumi. Siin jagatut näevad ainult: ‹osalejad rollidega›. Ruumist jääb pärast sulgemist alles ainult üldistatud kokkuvõte." + „Sisenen" kinnitus. Seemnekaart ise liigub kasutajaga kaasa ja asetub lauale — sama objekt jätkub (mitte uus leht).
+
+### R5.4 Ruumi anatoomia sees (tsoonide leping)
+
+| Tsoon | Sisu | Püsivus |
+|---|---|---|
+| **Ankruriba** (identiteediriba all, kogu laius) | omaniku „Kuidas…?" küsimus + tööfookus; enne etappi 2: „täpsustub loo järel" | püsib KÕIGIL etappidel samas kohas; ei keri kunagi ära |
+| **Stepper + faasiriba** | 8 etappi (praegune) + AKTIIVSE etapi faasid punktireana stepperi all: läbitud · **aktiivne (nimi + kes tegutseb)** · ees | püsiv; faasinimi + tegutseja („Vaikne kirjutamine — igaüks oma sahtlis" / „Ring — räägib ‹nimi›" / „Juht otsustab") |
+| **Ümarlaud** (keskveerg) | aktiivse etapi kate: ankur keskel, panused ümber; eelmiste etappide kihid volditud „kaustadeks" laua serval (avatavad lugemiseks) | kate vahetub väravaga; laud ise mitte kunagi |
+| **Osalejate ring** (vasak) | markerid + rollid + kinnitused; faasivalmiduse täpp („kirjutab / valmis") ilma sisuta | püsiv; e4-s omaniku marker ringist väljas |
+| **Minu sahtel** (alaserv, ⌁) | privaatsed mustandid, märkmik, resonantsimärgid; vaikefaasis tõuseb esile ja laud hämardub | püsiv, alati ühe žestiga avatav |
+| **Juhipult** (väravariba laiendus) | faasinupp „Jätka: ‹faas›" + **väravanimekiri** (`missing[]` inimloetavana, iga rida ✓/◇) + paus/tugi | ainult LEADER-il aktiivne; teistele loetav olek |
+| **Kompass** (parem) | etapi+faasi metoodiline juhis (praegused tekstid säilivad) + kokkulepete avamine | püsiv |
+
+### R5.5 Nõutud elementide vastavus (ülesande kontrollnimekiri)
+
+- **Osalejate paiknemine:** ring vasakul rail'ina (mitte dekoratiivne ringjoon — loend, mille järjekord on neutraalne liitumisjärjekord; edetabelivaba).
+- **Keskne küsimus:** ankruriba (R5.4) — Q1.9 p 3 täidetud.
+- **Ühine laud:** keskveeru lõuend praeguse hero+tugikaartide mustri peal; etapil 5 „väli" (võrdsed kaardid), etapil 6 „sidumislaud" (dokitavad seosed).
+- **Juhtumiomaniku ala:** sahtel (nagu kõigil) + kabinet (e7) + ringist-väljas iste (e4) + „Tänan" ainunupp (e5–6).
+- **Protsessijuhi juhtnupud:** juhipult — faasid, väravanimekiri, paus, tugi; sisutöö nupud on tal SAMAD mis osalejail (vorm vs sisu lahusus nähtav).
+- **Vaikse töö ala:** sahtel + laua hämardus + faasiriba tekst „teised ei näe su mustandit".
+- **Jagatud panuste ala:** laud; jagamine = kaardi tõstmine sahtlist lauale läbi kinnituslävendi (eelvaade + „Jaga ruumi").
+- **Privaatsed märkmed:** sahtli märkmik — elab kogu sessiooni, ei jagata kunagi automaatselt; sulgemisel kustub koos detailidega (tekst ütleb seda ette).
+- **Etappide näitamine:** stepper + faasiriba + laua kate.
+- **Lõpetatud etappide mälu:** kaustad laua serval (loetav snapshot; pärast sulgemist kestad „detailid kustutatud").
+- **Kinnitatud väljundite asukoht:** ankru alla kogunev „kinnitatud rida" (pildikinnitus → fookus → suunapakett → pakett/üldistus) — see, mis closure'i läheb, on kogu aeg ühes kohas näha.
+- **Väljumine ja naasmine:** „Välju ruumist" (sessioon jääb käima; esik näitab „käimas" olekut; naasmine samasse faasi — server-tõde); lõplik „Sulge juhtum" = koristusrituaal → riiulituba.
+
+### R5.6 Mida mudel teadlikult EI tee
+
+Ei lisa: reaktsioone/emotikone/skoore; osalejate aktiivsusmõõdikuid; automaatset faasivahetust; taimeripõhist sundi (kellad jäävad informatiivseks — vaikimisi kulunud aeg, mitte pöördloendur, R13-D3); AI-panuseid ühislauale; heliksit/karusselli ühisfaasidesse; eraldi „vestlusakent" (panused ON kaardid; vaba jutt käib häälega päris ruumis või kõnes — mitte paralleelchatis, mis killustaks fookuse ja tekitaks modereerimiskihi).
+
+### R5.7 Etapi lehed — info liigutamine ühe ekraani piires (kasutaja hüpoteesid, 15.07)
+
+Kasutaja suund: kui elemendid ei mahu ühele ekraanile, ei ole lahendus kerimine, vaid **info liigutamine ekraani piires** — etapp võib koosneda mitmest pinnast/lehest, millest kuvatakse ühte ja teisele saab igal hetkel minna; osade vahel liigutakse loogilises järjekorras ja neid saab vajadusel vahetada. See tõstetakse siin mudeli osaks järgmisel kujul (hüpoteesid H1–H3, testitakse prototüübis, otsus R13-D8):
+
+**H1 — Iga etapp = kaks püsivat lehte: ÜHINE LEHT ja MINU LEHT.** See kattub metoodika kahesusega (ühine ring ↔ vaikne individuaaltöö, Q1 inv 5): sahtel (R5.4) üldistub täisleheks. Üks leht on korraga ekraanil, teine on ALATI ühe žestiga käes (püsiv lehevahetuskontroll kesta servas — sama koht igal etapil; klahvi-, puute- ja nupualternatiiv). Lehe vahetamine on **ainult vaatamine** — see ei muuda kunagi sessiooni olekut (Q2.0 p 1 kehtib).
+
+**H2 — Töö järjekord on lineaarne, vaatamine vaba.** „Loogiline järjekord osade vahel" = serveri faasijärjekord (juba jõustatud, samm-sammult); „vahetamine vajadusel" = vaba lehe-flip igal hetkel. Need kaks EI segune: faase viib edasi juht (töö), lehte vahetab igaüks ise (vaade). Faasiriba (R5.4) näitab alati, kummal lehel aktiivne TÖÖ parasjagu käib („Vaikne kirjutamine — sinu leht" / „Ring — ühine leht").
+
+**H3 — Pindade grammatika** (millal millist liigutusvõtet kasutada):
+
+| Võte | Kasutus | Kus mudelis |
+|---|---|---|
+| **Lehevahetus (flip)** | kahe võrdse töökonteksti vahel: Ühine ↔ Minu | H1, iga etapp |
+| **Kate** | etapi/faasi vahetus SAMA lehe sees (laua sisu vahetub) | R5.4 laud |
+| **Esiletõus + hämardus** | ajutine fookusnihe lehe sees (aktiivne küsimus, ettelugemine) | hero-slot |
+| **Voltimine** | minevik kättesaadavaks ilma ruumi võtmata (eelmiste etappide kaustad; seemne „tagakülg") | laua serv |
+| **Dokk** | seose loomine kahe objekti vahel samal lehel | e6 sidumislaud |
+| Keelatud | kerimine primaarsisu kättesaamiseks; kolmas+ paralleelne täisleht (killustab); karussell/heliks ühisfaasis | R5.0; R4 p 4 |
+
+**Lehtede jaotus etapiti** (Ühine leht = laud + ring; Minu leht = minu tööpind + märkmik; mõlemal püsivad ankruriba/faasiriba/värav):
+
+| Etapp | ÜHINE LEHT | MINU LEHT |
+|---|---|---|
+| 1 Algus | ring + juhtumi piir + seadete seis | kokkulepete tekst + MINU kinnitused 1-2-3 |
+| 2 Lugu | omaniku lugu → ankru sünd + pildikaardid | kuulamismärkmed; (omanikul) seemne tugipunktid |
+| 3 Uurimine | aktiivne küsimus + järjekord + vastused | minu küsimuste mustandid |
+| 4 Peegeldus | peegelduste ring | osalejal: peegelduse mustand; **omanikul: märkmik+resonants — tema flip on ringi ajaks LUKUS Minu lehele** (ringinihke teostus!) |
+| 5 Võimalused | võimaluste väli + ettelugemisfookus | „Mina …" mustandid |
+| 6 Ressursid | sidumislaud + kriitilised eeldused | minu ressursi-/jõustamiskaardi mustand |
+| 7 Valik | „ruum ootab" + kinnitatud suund saabudes | osalejal: ootejuhis+märkmik; **omanikul: kabinet (4 plokki)** |
+| 8 Lõpp | pakett + üldistus + lõpuring | minu õppimise sõnastus; (omanikul) otsustepaneel |
+
+Märgid: lehevahetuskontroll kannab alati mõlema lehe nime + väikest täppi, kui TEISEL lehel on uut (nt aktiivne küsimus vahetus) — täpp, mitte arv ega värvihäire (inv 6); ekraanilugejale on lehed kaks nimega `region`-it/tab'i; reduced-motion: flip = hetkvahetus. E4 omaniku-lukk teeb ringinihke (R7) tehniliselt lihtsaks: mitte eraldi „eemale liikuv laud", vaid flip-luku + Ühise lehe read-only kombinatsioon.
+
+### R5.8 Liikumiskeele hierarhia ja info kolm kihti (kasutaja täpsustus, 15.07)
+
+Kasutaja täpsustas flight'i algse motiivi: see oli mõeldud **ühe etapi ruumi SEES eri faaside/osade vahel liikumiseks** (mitte etappide vahel), lisades et võib olla paremaid variante; ning nõudis igale etapile oma info-nuppu + üldist Kovisiooni infot.
+
+**H4 — Liikumise suurus kannab struktuuri taset.** Etapisisene faasiliikumine saab flight'i ruumitunde ilma täislennu tempo-surveta: sama sügavuskeel, eri amplituudiga. Nii muutub struktuur (inv 1) füüsiliselt loetavaks — kasutaja TUNNEB, kas vahetus oli faas, etapp või ainult vaade:
+
+| Tase | Liikumine | Käivitaja | Mida muudab |
+|---|---|---|---|
+| Maja: tuba ↔ tuba | uks (üleminek + läve-tekst) | kasutaja | asukoht majas |
+| **Etapp → etapp** | **suur sügavustõuge** (~0,5 s; kate + kaust voltub) | juht (värav) | sessiooni olek |
+| **Faas → faas etapi sees** | **mikro-tõuge / õrn nihe** (~0,2 s; sama laua kate teiseneb) | juht (faasinupp) | sessiooni olek |
+| Leht: Ühine ↔ Minu | flip | igaüks, igal hetkel | AINULT vaade |
+| Fookus lehe sees | hero esiletõus / hämardus | faasi loogika | rõhuasetus |
+
+Kõik tasemed reduced-motion režiimis = hetkvahetus sama tähendusega; kerimist ei kasutata liikumiseks üheski tasemes (R5.0); täispidev kaamerasõit (V1) jääb kõrvale — kui prototüüp näitab, et mikro-tõuge ei anna piisavat „liigun etapi sees" tunnet, on alternatiivid õrn külgnihe või valgusfookuse rändamine (test R11 kriteerium 14; kuulub D8 otsustuspaketti).
+
+**Info kolm kihti** (iga kiht avaneb KIHINA ruumi peal — ei lahku, ei keri; Esc sulgeb; sama sisu ekraanilugeja `region`-ina; ükski ei hüppa ise ette):
+
+| Kiht | Kus | Sisu | Allikas |
+|---|---|---|---|
+| 1. **Kovisiooni teejuht** (üldine) | maja kesta ⓘ — koht on esikul juba olemas [PILT hub 15.07] | mis on kovisioon ja mis EI ole; 12 põhimõtet lihtkeeles; 8 etapi kaart; rollid; konfidentsiaalsus ja jälje-leping („mis salvestub, mis kustub"); avatav igast toast, ka enne sessiooni | KOV-Q1 (Q1.0/Q1.8) kokkuvõte |
+| 2. **Etapi kaart** (igal etapil oma ⓘ) | stepperi aktiivsel sõlmel + etapi pealkirja kõrval | selle etapi eesmärk; „mida teeme / mida veel EI tee"; MINU roll selles etapis (rollide kaupa); tüüpilised libastumised (nt soovitus küsimuse kujul e3-s); soovituslik aeg | olemasolev stage-meta + kompass, laiendatuna KOV-Q1 etapikirjeldustega |
+| 3. **Faasi mikrojuhis** | faasiriba + kompass (olemas, jääb) | mis faas, kes tegutseb, mida minult oodatakse | olemasolevad tekstid |
+
+Piir: info-kihid on abimaterjal, mitte protsessijuhi asendus (Q1.9 p 1 — juhi „töösisend" jääb inimese ülesandeks; liides toetab). Etapi kaart EI sisalda edenemisnõudeid ega kiirustamist — ainult mõistmist.
+
+**Esiku tähelepanek [PILT hub 15.07]:** „Kovisiooni valik" lehel on neljatoaline navigatsioon juba koos (Uus Kovisioon · Teemaseemned · Lõpetatud juhtumid · Parimad praktikad) ja järjekorra paneelil on eeskujulik jälje-lause („Kovisiooni liigub ainult külmutatud üldistus. Privaatne ettevalmistus jääb Teemaseemne omanikule."). P1 maja-kest üldistab täpselt selle mustri kõigile tubadele; kesta ⓘ ülal paremal on teejuhi loomulik kodu.
+
+**Platvormiülene üldistus:** sama mustri (faasid + flip + voltimine + värav, 0 kerimist) rakendus SUVALISELE pikale lehele on eraldi failis `ruumilised-lehe-faasid.md` — teooria, teisendusretsept ja kolm töönäidet (Kovisiooni etapp kui referents; Dokumendi koostamine; Tööheaolu Tööprotsessid). Kovisiooni prototüüp (R11) testib aluse; B/C näited on järgmised kandidaadid.
+
+---
+
+## R6. Etappidevaheline liikumine
+
+| Küsimus | Leping |
+|---|---|
+| Vahetusmehhanism | **Klikk, mitte kerimine.** Etapp: juhi värava-CTA (praegune, nimeline); faas: juhi faasinupp juhipuldis. Flight-tõuge on ainult ülemineku VISUAAL (V1 laen), mitte sisend; kerimine/suum ei muuda kunagi olekut [Q2.0 p 1]. |
+| Kes viib edasi | LEADER (omanik/kaasjuht) — serveris juba jõustatud [KOOD ptk 3]; teised näevad sama nuppu loetava, kuid mitteaktiivsena („Etapi sulgeb protsessijuht"). |
+| Mida näeb enne üleminekut | Väravanimekiri: iga tingimus reana ✓/◇ inimkeeles (serveri `missing[]` tõlgituna — R1-P6 parandus); CTA nimetab sihi („Liigu peegeldusringi"); faasiribal paistab järgmise etapi nimi tuhmi „lävena" (sisu ei renderdata — inv 4). |
+| Millal nõutakse kinnitust | Tavaline etapivärav = juhi teadlik klõps (lisamodalita — Q1.10 p 6 keelab kinnituste devalveerimise). AINUS topeltkinnitus on etapi 8 „Sulge juhtum": modal ütleb, mis säilib (closure+pakk) ja mis kustub jäädavalt (detailid), nõuab teadlikku kinnitust [Q1.7 p 9; ptk 4 pöördumatus]. |
+| Kogemata edasiliikumise vältimine | CTA on lukus kuni värav täis (praegu olemas); väravanimekiri näitab põhjuseid; faasinupp näitab alati sihtfaasi nime (mitte anonüümne „Edasi"); 409 kaitseb topeltklõpsu eest (snapshot-unikaalsus [KOOD]). |
+| Back / Forward | Praegu: esik ↔ sessioon (`?case=` + popstate [KOOD :198–216]). Siht: + **vaatetasand** `view=stage-N` — back/forward liigub VAADETE vahel (läbitud etapi kaust avaneb lugemisrežiimis), mitte kunagi sessiooni OLEKU vahel; „Naase aktiivsesse" nupp on alati nähtav, kui vaade ≠ aktiivne faas. |
+| URL | `/kovisioon?case=‹id›&view=‹stage-N|live›` — `case` = ruum, `view` = ainult vaatekoht. Otselink läbitud etappi avab kausta (lugemine); aktiivsesse — elava laua; tulevasse — läve („avaneb väravaga"). Ilma `view`-ta = alati elav seis. |
+| F5 taastumine | Server on tõde: stage/phase/version tulevad `GET /session`-ist (praegu töötab [KOOD]); `view` taastub URL-ist. Mustandikaitse: sahtli pooleliolev tekst hoitakse enne jagamist localStorage-mustandina (kaotsimineku vastu; serverisse EI saadeta enne jagamiskinnitust — privaatsusleping). |
+| Stale / 409 | Praegune CAS+lock jääb [KOOD ptk 3]. UI-leping: 409 → vaikne refetch + riba „Ruum liikus edasi — värskendasin seisu" (mitte veamodal); tegevusnupud lukus kuni uus `version` käes; 5 s nähtavuspõhine polling katab passiivsed osalejad [KOOD :165–177]. |
+| Teiste valmisolek ilma hindamiseta | Faasivalmiduse märk osaleja markeril: „kirjutab" (sahtel avatud) / „valmis" — **ilma sisuta, ajata ja järjestuseta** (ei „kes esimesena", ei kestust — inv 6, Q1.10 p 9). Juht näeb koondina „3/5 valmis"; nimeline järjekord puudub teadlikult. Vajab uut kerget signaali (PrivateState olemasolu-fakt faasi kohta, mitte sisu) — teostuspakett R12-7, serverileping R13-D5. |
+| **Etapisisene lehevahetus (R5.7)** | Ühine ↔ Minu leht: püsiv kontroll kesta servas (sama koht igal etapil) + klahv + puude; **ainult vaade, olekut ei muuda**; ei lähe URL-i ega brauseriajalukku (efemeerne, nagu sahtli avamine); F5 → vaikimisi leht, kus aktiivne töö käib (faasiriba järgi); e4-s omaniku flip lukus Minu lehele. |
+
+## R7. Rollide visuaalne käitumine
+
+Ühine reegel: rollimärgid on **funktsioonisildid, mitte staatused** — sama kaardikeel, sama suurus, sama toon kõigil; erineb ainult sildi tekst ja tööriistade komplekt. Ei mingit „juht suurem/esimene" paigutust; osalejate järjekord = liitumisjärjekord.
+
+| Roll | Näeb | Saab muuta | Kirjutab | Ainult kuulab | Kinnitab | Nähtavus ilma hierarhiata |
+|---|---|---|---|---|---|---|
+| **Juhtumiomanik** | kõik jagatu + OMA sahtel/kabinet; väravanimekiri loetav | oma kaardid; „Tänan" teiste panustel (e5–6 ainunupp) | lugu (e2), vastused (e3), resonants/märkmik (e4 privaatne), kabinet (e7), otsused (e8) | **e4 ring: jah** — sisendid lukus, ainult märkmik | juhtumi piir (e1), pilt+fookus (e2), „piisab" (e3), suunapakett (e7), pakett+4 otsust+lõpp (e8) | kiip „juhtumi tooja" (olemas); e4-s marker ringist väljas sildiga „kuulab" |
+| **Protsessijuht** (omanik või kaasjuht) | sama mis osaleja + juhipult aktiivne | faasid, väravad, paus, kutsed [KOOD LEADER] | sisupanused SAMADEL õigustel kui osaleja (vorm≠sisu lahusus nähtav: pult on eraldi tsoon) | ringifaasides nagu kõik | seaded (e1); etapiväravad | kiip „protsessijuht"; pult on tema juures nähtav, teistele loetav-lukus |
+| **Osaleja** | kõik jagatu + OMA sahtel | oma kaardid (sisu ainult autor [KOOD :1180–1188]) | küsimused (e3), peegeldused (e4), võimalused „Mina …" (e5), ressursid+jõustamine (e6), õppimine (e8) | e2 lugu; e7 omaniku töö ajal („ruum ootab") | roll+kokkulepe+valmis (e1); vajadusel observer-konsensus | marker ringis; faasivalmiduse täpp |
+| **Vaatleja** (kui säilib — R13-D2) | jagatud laud read-only | ei midagi | ei | alati | oma kohaloleku + konfidentsiaalsuse kinnitus | iste ringi TAGA, silt „vaatleja (kokkuleppel)"; läve-tekst nimetab teda alati; ilma kõigi osalejate kinnituseta ruumi ei renderdata [Q2.5 DEC-2] |
+
+**Refleksiooniringi erikontroll (e4, „kohal, aga ei sekku"):** omaniku vaates — laud astub poole sammu kaugemale, komposer/„Tänan"/kõik sisendid lukus, aktiivne AINULT privaatmärkmik + resonantsimärgid; faasiriba ütleb „Peegeldusring — sina kuulad"; grupi vaates — omaniku marker väljaspool ringi, halli sildiga „kuulab", peegelduskaartidel pole ühtegi omanikule suunatud toimingut. Ringist naasmine toimub AINULT faasivahetusega (juht), mitte omaniku klõpsuga. NB: praegu ei jõusta seda ei UI ega server (R3) — UI-lukk tuleb paketiga R12-3; kas lisada ka serveripiir (omaniku SUBMIT_WORK_ITEM keeld e4 ringifaasides), on tooteotsus R13-D4, sest see muudaks API-lepingut.
+
+## R8. Privaatsuse ruumiline esitus
+
+Platvormi andmemudelis on **kaks jagamistaset** (privaatseis = rangelt isiklik; tööobjekt = kogu ruum [KOOD ptk 7]) + väljundi- ja kustumisleping. Vahetasemeid „ainult omanik näeb" / „ainult juht näeb" EI OLE ega looda — see kaitseb võrdsust (inv 7) ja hoiab piiri õpitavana. Iga tase = **ikoon + sõna + asukoht** (mitte kunagi ainult värv/animatsioon):
+
+| Tase | Märk | Sõnaline leping (alati kaardil/tsoonil) | Asukoht ruumis | Saatus sulgemisel |
+|---|---|---|---|---|
+| 1. Ainult mina | ⌁ lukk | „Ainult sina näed. Kustub sessiooni sulgemisel." | Sahtel / kabinet (alaserv, sügavam klaas) | kustub (purge) — öeldakse ETTE |
+| 2. Kogu ruum | ring-ikoon + „jagatud" silt (olemas [PILT 09]) | „Näevad kõik selle ruumi osalejad: ‹n›" | Laud | kustub, KUI ei kuulu väljundisse — kaustad kannavad märget „detailid kustuvad sulgemisel" |
+| 3. Kinnitatud väljundisse | ✓-rida ankru all | „Läheb üldistatud kokkuvõttesse" | Ankru kinnitusrida (pilt→fookus→suund→pakett) | säilib closure'is |
+| 4. Säilib riiulil | riiuli-ikoon | „Jääb alles Lõpetatud juhtumites: pealkiri, fookus, suund, samm, järelvaade" | Closure-kaart + omanikupakk | säilib (whitelist [KOOD ptk 4]) |
+| 5. Ruumist välja | raamatukogu-ikoon | „Praktikakandidaat — vajab sinu kinnitusi ja retsensiooni enne avaldamist" | e8 otsus → raamatukogu | eraldi elutsükkel (ptk 6) |
+
+**Jagamisülemineku lävi (1→2):** kaart liigub sahtlist lauale ainult läbi kinnituskaardi: EELVAADE (täpselt see tekst) + saajate loend („näevad: Mari, Jaan, …") + „Jaga ruumi" / „Jäta sahtlisse". Sama muster, mis platvormi shareKeys-etalon (ptk „üleandmise muster"). Tagasivõtt: jagatud kaardi saab autor „parkida" (olemas [KOOD]), mis viib ta laua servale märkega „tagasi võetud" — sisu jääb nähtavaks (ausus: ruum nägi seda juba), kuid ei osale edasises töös.
+
+**Semantiline kiht:** iga tsoon kannab `aria`-kirjeldust sama sõnalise lepinguga; ekraanilugeja kuuleb kaardi juures alati taset („privaatne mustand — ainult sina…"). Värv/hämardus on toetav, mitte kandev (R10).
+
+---
+
+## R9. Visuaalne kujunduskeel
+
+**Lähtekoht on olemas, mitte leiutamist vajav:** sessioonikesta soe tume klaas + merevaigu-aktsent [PILT 02–09] on rahulik ja professionaalne; probleem on kihtide killustatus (R1-P1) ja järelkihi dashboard-esteetika [PILT 10]. Suund:
+
+1. **Materjal ja valgus.** Üks tume soe ruum (praegune Galaxy-taust jääb maja ühiseks „õhuks"); pinnad = klaasikihid kolmes sügavuses: ruum (taust) → laud (põhipind) → sahtel/kabinet (sügavaim + ⌁). Valgus on oleku keel: aktiivne faasitsoon on valgustatud, ülejäänu hämardub kraadi võrra; blur-kihtidel EI OLE transform-animatsioone (kehtiv leping).
+2. **Keskse küsimuse hierarhia.** Ankruriba on ainus alati-esiletõstetud tekstielement: suurim püsiv kiri pärast lehe pealkirja, soe ääris, mitte kastikaart teiste seas. Kõik muu (sh kellad) on sellest visuaalselt madalamal.
+3. **Rollitähistus.** Ainult kiibid (olemas) — sama kuju/suurus kõigil; erineb tekst. Omaniku e4-eemalolek = asend + hall „kuulab" silt, mitte värvikood.
+4. **Etapi- ja faasitähistus.** Stepper (olemas) + faasiriba punktid; läbitud = ✓ + tuhm, aktiivne = valgus, ees = kontuur „lävi". Faasinimi alati sõnana (mitte ainult punkt).
+5. **Kaardid ja panused.** Üks kaardikeel kogu majas (seemnekaart = sama perekond [PILT 01]); kaardi päis = liik (KÜSIMUS/PEEGELDUS/VÕIMALUS/RESSURSS — olemas [KOOD kindLabel]) + jagamistase (R8); autor jaluses väikselt — panus ees, autor taga (hinnanguvabadus).
+6. **Aktiivne vs lõpetatud töö.** Aktiivne = valgustatud + täisklaas; lõpetatud = kaust laua serval (madalam, jahedam, ✓); kustunud = kest kontuurjoonega + „detailid kustutatud" (aus jälg [Q2 V3 laen]).
+7. **Välditav.** Punane/roheline olekusemantika inimtöö peal (praegused KPI-kastid [PILT 10] → neutraalsed loendurid; punane jääb AINULT päris veaseisunditele); pulseerivad/hüplevad elemendid; konfeti-laadsed „edu" efektid; progressiprotsendid; skoorid; avatari-emotikonid; SaaS-tabelite zebra-esteetika sessioonis. Mänguline liikumine on lubatud AINULT rituaalihetkedel (uks, jagamine, koristus) ja reduced-motion peab andma sama tähenduse staatiliselt.
+8. **Tüpograafia.** Sessioon + seemned + esik: praegune sans-HUD keel. Raamatukogu serif-display [PILT 010802] võib jääda SELLE toa hääleks (lugemisruum), aga Lõpetatud juhtumid (töötuba) liigub sessiooni keelde — kaks häält majas (töö vs lugemine), mitte kolm. **[OTSUS? R13-D6]**
+9. **Aktsent.** Pildid kasutavad sessioonis merevaiku; varasem spec ütles „violett jääb kovisioonile" [Q2 tähelepanek 5]. Kujunduskeel toimib kummagagi; vajab lukustamist enne viimistluspaketti. **[OTSUS? R13-D6]**
+10. **Mitte-SaaS-dashboard.** Kontrollküsimus igale uuele paneelile: „kas see on ruumi ese (laud/sahtel/riiul/uks) või mõõdik?" Mõõdikud, mis ei teeni käimasolevat faasi, ei tule sessiooniruumi.
+
+## R10. Mobiil ja ligipääsetavus
+
+**Põhimõte:** ruumiline esitus on sama olekumasina RIKASTATUD vaade; iga seisund on mõistetav ja kasutatav ka lamedas esituses [RL §10; Q2.0 p 8].
+
+| Sihtrühm | Mudel |
+|---|---|
+| Kitsas ekraan (≤68rem; praegu ainus breakpoint [KOOD :1393]) | Tsoonid = lehed-sektsioonid ühes kerimisjärjekorras: (1) ankur + faasiriba (kleepuv päis), (2) laud, (3) minu sahtel (bottom-sheet, ⌁ nupp püsivalt ekraani allservas), (4) osalejad + kompass (avatavad paneelid), (5) juhipult (juhil kleepuv jalus). Sama olekumasin; ükski funktsioon ei kao. E4 omaniku-olek: laud read-only + sheet=märkmik. |
+| Klaviatuur | Tsoonitsükkel (F6-laadne): ankur → laud → sahtel → ring → pult → kompass; laua sees nooled kaartide vahel, Enter avab; jagamislävi = tavaline dialoog fookuslõksuga; faasi-/väravanupud tavalised nupud. Ei ühtegi ainult-lohistatavat toimingut (kehtiv [RL §5] leping). |
+| Ekraanilugeja | Iga tsoon = `region` + nimi; faasivahetus ja „ruum liikus edasi" = `aria-live=polite` teated; kaardi loetav kuju: „‹liik›, ‹jagamistase R8›, ‹tekst›"; väravanimekiri = list ✓/◇ tekstidena; omaniku e4-lukk teatatakse („sisendid suletud — kuulamisfaas"). |
+| `prefers-reduced-motion` | KÕIK cvl-liikumine (orbiidid, tõuked, rituaalid) → staatilised olekud: uks=hetkvahetus+lävikaart, jagamine=kaart ilmub lauale + kinnitusteade, koristus=loendtekst „kustutatud: …". Praegu katmata (R1-P10 — reduced-motion käib ainult surnud cv1 kohta) → pakett R12-6 kohustuslik. |
+| Suurendatud tekst (200%) | Tsoonid murduvad samas järjekorras nagu kitsas ekraan; ankur ja faasiriba ei tohi kärpuda (need on orientatsioon); sisekerimine ainult laua sees, mitte lehel tervikuna. |
+| Vähene kontrastitaju | Jagamistase ja olek EI sõltu värvist: ⌁/silt/asukoht (R8), ✓/◇ kujud, faasipunktid + sõna. Kontrasti alammäär tekstidel klaasil ≥ WCAG AA; hämardus ei vii kunagi teksti alla AA. |
+| Otselink etappi | `?case=…&view=stage-N` (R6): läbitud → kaust-lugemine; aktiivne → elav; tulevane → lävi. Link on jagatav ainult osalejate ringis (server 404 võõrale — olemas). |
+| Lame täisvariant | `view=flat` (või reduced-motion auto): järjestikused sektsioonid ilma ruumikihtideta — ankur, faas, laud-loend, sahtel, värav; 100% sama funktsioonihulk. See EI ole eraldi rakendus, vaid sama komponendipuu teine paigutus. |
+
+## R11. Väikseim kasulik prototüüp
+
+Ulatus = KOV-Q2 Q2.7 prototüüp (e4 → värav → e5), **laiendatud kolme KOV-R kriitilise lisandiga**: väravanimekiri (R1-P6), faasiriba (R1-P3) ja URL-`view` (R6) — sest need on uue mudeli kõige riskantsemad *navigatsiooni*-otsused, mida Q2.7 ei katnud.
+
+**Tõestatavad otsused (8 nõutut + 3 lisa):**
+
+1. Üks püsiv ruum: e4→e5 üleminek vahetab AINULT laua katte + kausta voltumise; kest/ankur/ring püsivad → kasutaja kirjeldab „etapp vahetus", mitte „uus leht".
+2. Keskse küsimuse püsimine: ankruriba mõlemal etapil; kontrollküsimus osalejale suvalisel hetkel.
+3. Vaikse ja ühise töö eristus: e5 silent_ideation → sahtel esile + laud hämardub + faasiriba „teised ei näe su mustandit"; jagamislävi eelvaatega.
+4. Rollide tegevusõigus: juhil pult (faas+värav), osalejal mitte (loetav-lukus); omanikul e4-lukk + märkmik; e5-l „Tänan" ainunupp.
+5. Etapi vahetamine: väravanimekiri ✓/◇ → juhi CTA → rituaaltõuge (≤0,5 s).
+6. Privaatse/jagatud lävi: sahtlikaart → eelvaade+saajad → laud; „pargi" tagasivõtt.
+7. Reduced-motion: kogu stsenaarium lamedas variandis (sama sisu, hetkvahetused).
+8. Back/Forward + URL: `view=stage-4` kaust-lugemine pärast e5-le liikumist; back → kaust, „Naase aktiivsesse" nähtav; F5 mõlemas seisus õige.
+9. (lisa) Faasiriba arusaadavus: osaleja nimetab faasi ja tegutseja ilma kompassi lugemata.
+10. (lisa) 409-rahu: kaks akent, üks juht viib faasi edasi → teine saab riba „ruum liikus", mitte vea.
+11. (lisa) „Ruum ootab" olek (e7 eelvaadeldav e5 lõpus ei ole vajalik — jääb välja; piisab e4 omaniku-olekust).
+12. (lisa, **blokeeriv**) Lõuendireegel R5.0: mõlemal etapil (4 ja 5) mahub KÕIK ekraanile 1920×1080 JA 1536×864 juures — kest ei keri; komposer/sahtel, faasinupp ja värav on alati nähtavad; ainus kerimine on kaartide loend laua sees. Kui see ei täitu, on prototüüp läbi kukkunud sõltumata muust.
+13. (lisa) Kahe lehe hüpotees H1–H2 (R5.7): Ühine↔Minu flip töötab ühe žestiga mõlemal etapil; kasutaja oskab öelda, kummal lehel ta on ja kus töö käib; flip ei muuda kunagi olekut; e4-s omaniku flip on lukus Minu lehele ja ta kirjeldab seda kui „kuulan eemalt", mitte kui viga. Kui flip tekitab segadust („kuhu mu asjad kadusid?"), kukub H1 ja naastakse sahtel-overlay variandile — SEE ongi hüpoteesi test.
+14. (lisa) Liikumishierarhia + info-kihid (R5.8 H4): kasutaja eristab pimesi, kas toimus faasi- või etapivahetus (liikumise suurus loetav); etapi ⓘ kaart avaneb mõlemal etapil ja vastab küsimusele „mida siin tehakse / mida veel ei tehta" ilma kompassi lugemata; teejuht avaneb kestast ega vii ruumist välja. Kui mikro-tõuge ei anna „liigun etapi sees" tunnet, proovitakse alternatiive (õrn nihe / valgusfookus) enne D8 lukustamist.
+
+**Olemasolevast kasutatakse:** `CovisionWorkspace`+`CovisionLiveSession` kest, session-API täies mahus (ühtegi serverimuudatust pole vaja — faasiriba/värav loevad juba tagastatavat `stage/phase/missing`+`version`; valmisoleku-signaal R6 viimane rida JÄÄB prototüübist välja, et serverit mitte puutuda), PrivateState/WorkItem UI, jagamiskinnituse muster, covision.css kihid.
+**Simuleeritakse:** teine osaleja = teine brauseriaken kahe testkontoga (ptk 2 retsept); „kirjutab/valmis" täpp näidatakse ainult lokaalse teadmisena (oma aken) või jäetakse prototüübis välja.
+**Etapid päriselt:** 4 ja 5 (päris andmekiht, päris värav COMPLETE_STAGE-ga); teised stepperis tuhmid.
+**Stseenid:** (a) juht+osaleja+omanik kolmes aknas: e4 ring → omanik lukus/märkmik; (b) e4 värav nimekirjaga → tõuge → e5; (c) e5 vaiketöö → jagamislävi → väli → omaniku „Tänan"; (d) sama klaviatuuriga; (e) sama reduced-motion; (f) back/F5/409 stsenaarium.
+**Õnnestumise lävi:** Q2.7 mõõdikud (eriti privaatsuse 0-viga, ringi puutumatus, värav≠dekoratsioon) + uus: 9/10 osalejat vastab faasiküsimusele õigesti; back/F5 ei tekita ühtegi „kuhu ma sattusin?" juhtumit. Läbiviimine päris brauseris (KOV-LIMIT-1 välistab paani).
+
+---
+
+## R12. Rakendusvalmis teostusplaan (10 paketti)
+
+Ühised reeglid: serverilepingut EI muudeta pakettides 1–10 (erandid ainult otsuste D4/D5 järel eraldi paketina); iga pakett on eraldi harus, eraldi auditiga; ükski pakett ei nimeta ehitamata osa valmiks. „Puutepind" = tõenäolised failid aktiivses main-is.
+
+**P1 — Ruumikest, majanavigatsioon ja tupiku kõrvaldus.**
+Eesmärk: neli kesta → üks maja (R5.1); loomisvaate 5-sammu rada asendub ausa ühe-sammu vooga (D1 järgi); „Kovisiooni valik" = esik.
+Puutepind: `TeemaseemnedPage.jsx` (loomisvaade+rada), `CovisionWorkspace.jsx` (esik), `CompletedCasesPage.jsx`/`EffectivePracticesPage.jsx` (kest), `app/styles/teemaseeme.css`, `covision.css`, majanavi komponent (uus, väike).
+Säilitada: kõik andmevood, seemne turvavärav+küsimused, filtrid.
+Asendada: pill-nav/külgmenüü/HUD-tagasi → üks majanavi; sammurada; „järgmises ehitusjärgus" tekstid.
+Sõltuvused: D1, D7. Invariant: Q1.9 p 13 (ettevalmistuse koht); tupik = sisenemisloo katkestus.
+Valmis: R1-P1/P2 suletud; esmakasutaja jõuab seemnest sessioonini ilma juhendita; loomisvaade mahub ekraanile ilma sisekerimiseta (R5.0 laieneb ka sinna — turvavärav + küsimused faasidena, mitte pika vormina); **Kovisiooni teejuht (R5.8 kiht 1) elab maja kesta ⓘ all ja avaneb igast toast** (esiku muster [PILT hub] üldistatuna).
+Test: klient-lepingutest „rada ei luba ehitamata sammu"; navigatsiooni smoke kolmes toas.
+Audit: sõltumatu read-only UI-lepingu audit (Opus-muster, nagu U-pakettidel).
+
+**P2 — Kõrgusmudel (lõuendireegel), ankruriba, faasiriba ja rolliriba.**
+Eesmärk: **R1-P0 sulgemine — kest lõpetab kerimise** (R5.0 p 1–5: shell overflow→hidden, tsoonid kõrgusgridi, canvas min-height maha, etapipaneelid laua katteks) + R1-P3/P12 — omaniku küsimus püsiankruna; faasid nähtavaks (nimi+tegutseja); kellad D3 järgi.
+Puutepind: **`covision-live.css` (kõrgusmudel :3–17, :614, tsoonigrid)**, `CovisionLiveSession.jsx` (topbar+stepper tsoon; lower-workspace → faasikate), `messages/et|en|ru`.
+Säilitada: stepper, kompass, rollikiip, kaks kella (loogika D3); cv1 kõrguspretsedent mustrina.
+Asendada: „Kohtumisest alles" pöördloendur (D3); ankru puudumine; kesta kerimine + paneelivirn.
+Sõltuvused: D3; serverist tulevad `stage/phase` (olemas).
+Invariant: Q1.9 p 1–3; **R5.0**.
+Valmis: R1.4 tabeli read 1–3 → „jah"; **0 kesta-kerimist mõlemal referentsresolutsioonil igal etapil 1–8** (mõõdetud); **liikumishierarhia H4 teostatud (mikro-tõuge faasil, suur tõuge väraval, mõlemad reduced-motion hetkvahetusega) + etapi ⓘ kaart igal etapil (R5.8 kiht 2)**.
+Test: faasiriba kuvab kõik faasikataloogi nimed õigesti (source-contract test kataloogi vastu); ankur renderdub igal etapil; **kõrguslepingu CSS-test (shell'il pole overflow-y:auto; primaartsoonid fikseeritud)**; etapi kaardi sisu olemas kõigil 8 etapil (i18n-pariteet).
+Audit: tekstide metoodiline ülevaatus (KOV-Q1 vastu) + UI-audit + resolutsioonimõõt.
+
+**P3 — Vaikse ja ühise töö alad: Ühine/Minu leht (R5.7 H1–H2), ring, kabinet.**
+Eesmärk: R1-P7/P8 — kahe lehe mudel flip-kontrolliga (või sahtel-overlay, kui prototüüp H1 kummutab); e4 ringinihe = omaniku flip-lukk + Ühise lehe read-only; e7 „ruum ootab" + omaniku kabinet Minu lehel.
+Puutepind: `CovisionLiveSession.jsx` (Composer→Minu leht; WorkField=Ühine leht; flip-kontroll kesta; e4/e7 olekukihid), `covision-live.css`.
+Säilitada: PrivateState/WorkItem lepingud, jagamisnupud, ⌁ märgid.
+Asendada: komposeri „režiimilüliti" → leheflip; e4 tavapaigutus.
+Sõltuvused: P2 (faasiriba ütleb oleku); D4 (serverilukk — EI kuulu siia paketti).
+Invariant: Q1 inv 5, 9 (kohal-ei-sekku UI-tasand), 2; R5.0 (sahtel ei tohi kesta kerima panna).
+Valmis: R11 stseenid a+c toimivad; privaatsuse 0-viga kontroll; 0 kesta-kerimist säilib.
+Test: e4 omaniku vaates sisendid disabled (DOM-lepingutest); sahtli sisu ei renderdu teise kasutaja serialiseeringus (olemas serveripiir — klienditest kinnitab kuvamata jätmist).
+Audit: privaatsuspiiri UI-audit kahes aknas.
+
+**P4 — Etappide sisupaneelid (katted).**
+Eesmärk: R2 „soovitatud ruumiline võte" igale etapile: e2 ankru sünd; e3 kõnejärjekord; e5 väli+„Tänan"+„Mina …" mall; e6 sidumislaud+kriitilise eelduse marker; e8 kinnitusrida ankru all.
+Puutepind: `CovisionLiveSession.jsx` (WorkField/ItemCard/StageEight jt paneelid), `covision.css`, sõnumid.
+Säilitada: hero+tugikaardid muster, kind-whitelist, olemasolevad vormid (e7 4 plokki, e8 4 otsust).
+Asendada: lame kaardiloend seal, kus etapp nõuab välja/sidumist.
+Sõltuvused: P2, P3. Invariant: inv 3–6, 10–11; Q1.9 p 6–7; R5.0.
+Valmis: iga etapi tabelirea „ruumiline võte" on ekraanil tuvastatav; „Tänan" on omaniku ainunupp e5–6 kaartidel; **iga kate mahub ekraanile ilma kesta kerimata (turvaklapp ainult kaardiloendis)**.
+Test: e5 sisend algab malliga „Mina " (source-contract); teiste kaartidel 0 tegevusnuppu mitte-juhile.
+Audit: metoodiline läbimäng (kolm rolli) juhendite vastu.
+
+**P5 — Privaatsuse ja jagamise läved.**
+Eesmärk: R8 täielikult — tasemete märgid, jagamis-eelvaade saajate loendiga, park-tagasivõtu esitus, ukse läve-tekst, e8 koristusrituaal + aus järeltekst.
+Puutepind: `CovisionLiveSession.jsx`, esiku sisenemistee (`CovisionWorkspace.jsx`), `covision.css`, sõnumid.
+Säilitada: purge-loogika (server, ptk 4) — UI ainult NÄITAB seda ausalt.
+Sõltuvused: P3. Invariant: inv 9, 13; Q1.7 p 4, 9–10.
+Valmis: R8 tabeli iga tase leitav ekraanilt tekst+ikoon+asukoht kujul; sulgemismodal loetleb säiliva/kustuva.
+Test: jagamislävi ei lase kaarti lauale ilma eelvaate-kinnituseta (klienditest); läve-tekst sisaldab osalejate loendit.
+Audit: R8 semantika ekraanilugejaga läbi.
+
+**P6 — Mobiil ja reduced-motion.**
+Eesmärk: R10 mudel; R1-P10 sulgemine (tehniline kiirenduskate on olemas — lisada SISULINE lame variant, mille rituaalid kannavad tähendust staatiliselt; kitsas ekraan tsoonid-lehtedena ilma P0-kerimist taastootmata; flat-view).
+Puutepind: `covision.css` (media-plokid), `CovisionLiveSession.jsx` (sheet/järjekord), võimalik `view=flat` haru.
+Säilitada: 68rem murdepunkt alusena.
+Sõltuvused: P2–P5 (katab nende olekud). Invariant: [RL §10]; struktuur mõistetav liikumiseta.
+Valmis: R11 stseenid d+e läbitavad; ükski cvl-animatsioon ei mängi reduced-motion all.
+Test: CSS-lepingutest „prefers-reduced-motion katab cvl-*"; klaviatuuri tsoonitsükli DOM-test.
+Audit: a11y-audit (lugeja+klaviatuur+200%).
+
+**P7 — URL-olek, jätkamine ja mitmeosaleja rahu.**
+Eesmärk: R6 — `view=stage-N|flat`, back/forward vaadete vahel, „Naase aktiivsesse", 409-riba, mustandi localStorage-kaitse; (valikuline, D5 järel eraldi serveripakett: sisuvaba faasivalmiduse signaal).
+Puutepind: `CovisionWorkspace.jsx` (URL-loogika laieneb), `CovisionLiveSession.jsx` (kaust-lugemisvaade snapshotitest), sõnumid.
+Säilitada: `?case=` + popstate + 5 s poll + server-tõde.
+Sõltuvused: P2 (kaustad), D5 (ainult valikosa). Invariant: [RL] otselingid/back-forward leping; Q2.0 p 8.
+Valmis: R11 stseen f; otselink igasse läbitud etappi avab kausta.
+Test: popstate/pushState lepingutest; 409→refetch→riba (mock-API klienditest).
+Audit: navigatsiooni sõltumatu läbimäng kahes aknas.
+
+**P8 — Visuaalne viimistlus.**
+Eesmärk: R9 — KPI-värvid→neutraalsed, tüpograafia kaks häält, aktsendi lukustus (D6), valguskeel, kaartide ühtlus majas.
+Puutepind: `covision.css`, `teemaseeme.css`, järelkihi lehed, `CardIcons` jm väiksed.
+Sõltuvused: D6, D7; P1–P5 valmis kujud. Invariant: inv 6 (hinnanguvärvid maha); R9 p 7 vältimisloend.
+Valmis: R9 kontrollküsimus läbib kõik paneelid; kontrastid AA.
+Test: css:budget + kontrasti-kontroll; „punane ainult veal" lepingu grep-test.
+Audit: disainiülevaatus piltide 01–10 uue põlvkonna vastu (uued kuvatõendid samasse kausta).
+
+**P9 — Regressioonitestid.**
+Eesmärk: uue UI-lepingu lukustus: faasiriba↔faasikataloog, väravanimekiri↔`missing[]` võtmed, e4-lukk, jagamislävi, R8 tekstid, aria-lepingud, reduced-motion kate.
+Puutepind: `tests/covision/*` (uued klient-lepingutestid olemasoleva 265 kõrvale), vajadusel `tests/topicSeeds/*` (P1 rada).
+Sõltuvused: P1–P7. Valmis: kõik uued testid + olemasolev komplekt rohelised; i18n:check pariteet.
+Test: ise ongi. Audit: testide veaavastusvõime pistelised mutatsioonid (käsitsi).
+
+**P10 — Autenditud brauserikontroll.**
+Eesmärk: R11 stseenid a–f päris brauseris kahe kontoga (ptk 2 temp-tokeni retsept); **lõuendireegli mõõt igal etapil 1–8 mõlemal referentsresolutsioonil (1920×1080, 1536×864)**; uued kuvatõendid kausta `fable-pildid/kovisioon-tervikvoog/` (v2 alamkaust); README uuendus jätkamispunktiga.
+Sõltuvused: P1–P9. Valmis: kõik R11 läviväärtused (sh blokeeriv nr 12) täidetud ja dokumenteeritud; ükski „kuhu ma sattusin?" juhtum.
+Audit: sõltumatu läbimängija (mitte ehitaja) + kasutaja enda kinnitus.
+
+**Järjekord ja rööpsus:** P1 → P2 → P3 → P4 → P5 on jada (iga järgmine ehitab eelmise peale); P6 ja P7 võivad käia rööbiti alates P3 lõpust; P8 pärast P5; P9 jooksvalt + koond enne P10. Prototüüp (R11) = P2+P3 tuum e4–e5 peal enne täies mahus P4 ehitust — kui prototüübi läviväärtused ei täitu, peatutakse ja korrigeeritakse mudelit, mitte ei ehitata edasi.
+
+## R13. Tooteomaniku otsused
+
+| ID | Otsus | Valikud | Mõju | Soovitus | Mõjutatud paketid |
+|---|---|---|---|---|---|
+| R13-D1 | Ettevalmistusraja saatus (tupik R1-P2) | (a) ehitada sammud 2–5 päriselt; (b) kärpida rada üheks sammuks + ettevalmistus hiljem seemnekaardi „tagaküljena"; (c) jätta rada, lisada „ehitamisel" lukud | sisenemisloo terviklikkus; esmakasutaja usaldus | **(b)** — aus ja väike; (c) jätab lubaduse õhku; (a) on eraldi suur funktsioon (Q1.4 ettevalmistus väärib ehitamist, aga mitte tupiku hinnaga) | P1 |
+| R13-D2 | OBSERVER ruumis | (a) eemaldada UI-st kuni konsensusvoog olemas (Q2.5); (b) ehitada konsensusvoog kohe; (c) kuvada read-only istmena omaniku loal | inv 7, 9; kinnisuse selgus | **(a)** — andmemudel jääb, UI ei paku; (b) on eraldi pakett hiljem | P2, P4 |
+| R13-D3 | Kellade loogika | (a) kulunud aeg (mõlemad kellad); (b) praegune pöördloendur; (c) kulunud + juhi puldis valikuline sihtaeg (näitab ainult juhile) | Q1.10 p 5 tempo-surve vs ajajuhtimise tugi | **(c)** — aeg on juhi tööriist, mitte ruumi surve | P2 |
+| R13-D4 | Refleksiooniringi serveripiir | (a) ainult UI-lukk (P3); (b) + serveris omaniku panusekeeld e4 ringifaasides (API-lepingu muudatus) | inv 9 jõustusaste; API stabiilsus | **(a) nüüd, (b) eraldi otsustuspakett** pärast prototüüpi — kui UI-lukk osutub piisavaks, ei muudeta API-t | P3 (+uus serveripakett kui b) |
+| R13-D5 | Faasivalmiduse signaal | (a) ilma (juht küsib häälega); (b) sisuvaba „valmis" fakt serverisse (uus kerge action/väli) | mitmeosaleja vaikefaaside juhitavus vs andmeminimalism | **(b)**, kuid alles pärast prototüüpi — prototüüp mõõdab, kas (a) piisab | P7 valikosa |
+| R13-D6 | Aktsent + tüpograafia hääled | merevaik vs violett sessioonis; raamatukogu serif jääb/ei jää | maja ühtsus; [Q2 tähelepanek 5] | merevaik sessioonis (piltide järjepidevus), serif ainult raamatukogus | P8 |
+| R13-D7 | Järelkihi ümberehituse ulatus esimeses ringis | (a) ainult kest+värvid (P1/P8 miinimum); (b) + V3 lugemisrada detailvaatesse kohe | maht vs tervikpilt | **(a)** esimeses ringis; V3-rada eraldi paketina pärast P10 | P1, P8 |
+| R13-D8 | Etapi lehtede mudel (kasutaja hüpoteesid R5.7) | (a) kaks püsivat täislehte Ühine/Minu + flip (H1); (b) üks leht + sahtel-overlay (Q2 algne); (c) etapiti erinev (nt ainult e4/e7 täisleht) | mahutamine (R5.0), vaiketöö selgus, õpitavus | **(a) prototüüpi H1–H2 kujul; otsus tehakse prototüübi tulemusega** (R11 kriteerium 13 on test); (c) on tagavara, kui flip võidab ainult privaatrasketes etappides | P3, P4, P6 |
+
+## R14. Lõppväljund (koond ja jätkamispunkt)
+
+1. **Verdikt:** `SIHITULT ÜMBER EHITADA` (R1.5) — sessioonikest säilib ja süveneb; maja ühendatakse; tupik kaob.
+2. **Kaheksa etapi ruumiline kaart:** R2 (võte + nähtav värav + kaasa liikuv iga etapi kohta).
+3. **Variandid:** V1/V2/V3 [KOV-Q2] + KOV-R kümne kriteeriumi tabel ja uue tõendi mõju (R4).
+4. **Põhivariant:** „Kovisiooni maja + ümarlaud" = V2 + V1 rituaalilaenud + V3 lugemiskaart järelkihis (R5).
+5. **Ruumiplaan:** R5.2 Mermaid-korruseplaan + R5.4 tsoonide leping.
+6. **Navigeerimismudel:** R6 (klikk-väravad; `case`+`view` URL; back/forward=vaated; F5=server-tõde; 409=rahulik riba).
+7. **Rollide mudel:** R7 (funktsioonisildid; omaniku e4-lukk; juhi pult=vorm, mitte sisu; vaatleja ainult konsensusega).
+8. **Privaatsuse nähtav mudel:** R8 (5 taset; tekst+ikoon+asukoht; jagamislävi eelvaatega; aus kustumisleping).
+9. **Kujunduskeel:** R9 (soe tume klaas; valgus=olek; hinnanguvärvide keeld; kaks tüpograafiahäält).
+10. **Mobiil ja ligipääsetavus:** R10 (tsoonid-lehed; flat-view; reduced-motion täiskate; aria-lepingud).
+11. **Prototüüp:** R11 (e4→värav→e5 + faasiriba + väravanimekiri + URL-view; läviväärtused).
+12. **Teostuspakettide järjekord:** R12 (P1→P5 jada; P6/P7 rööbiti; P8→P9→P10; prototüüp enne P4 täismahtu).
+13. **Tooteotsused:** R13 (D1–D7 koos soovitustega).
+14. **Täpne jätkamispunkt prototüübi ehitamiseks:** loo värskest `main`-ist haru `codex/kov-r-prototype`; ehita AINULT R11 ulatus (P2+P3 tuum etappidel 4–5) failides `CovisionLiveSession.jsx` + `covision-live.css` + sõnumikataloogid, ilma ühegi serveri-/skeemimuudatuseta; **esimene töö on kõrgusmudel (R5.0: shell ei keri, tsoonid gridi, canvas min-height maha) ja teine Ühine/Minu leheflip (R5.7 H1) — kõik muu ehitub nende peale**; D8 otsustatakse prototüübi tulemusega (kriteerium 13), mitte ette; ära puuduta `CovisionSession.jsx` (surnud demo) ega järelkihi lehti; kontrolli kahe olemasoleva testkontoga (ptk 2 temp-tokeni retsept, `?case=` URL); mõõda R11 läviväärtused päris brauseris; jäädvusta kuvatõendid `fable-pildid/kovisioon-tervikvoog/v2-prototype/` + uuenda selle kausta README jätkamispunkt; seejärel R12-P9 sihttestid ja sõltumatu audit enne mis tahes merge-otsust. Enne ehitust vajavad kasutaja vastust ainult D1 ja D3 (ülejäänud otsused ei blokeeri prototüüpi).
+
+*KOV-R lisatud 15.07.2026 varahommikul. Ainult dokumendimuudatus: rakenduskoodi, skeemi, migratsioone ei puudutatud; ei commit'itud ega deploy'itud. Tõendusbaas: aktiivse main-i UI-kood ridade täpsusega, 15 kuvatõendit täissuuruses, KOV-Q1 metodoloogia, KOV-Q2 variandianalüüs, [RL] ruumigrammatika. Serveri-, õiguste- ja RAG-kihti ei auditeeritud uuesti (ptk 1–11).*
