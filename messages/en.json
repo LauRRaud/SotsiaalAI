@@ -3194,7 +3194,15 @@
         "events_load_failed": "Failed to load analytics events.",
         "events_delete_invalid_payload": "Choose a filter or confirm deleting all logs.",
         "events_delete_failed": "Failed to delete analytics logs.",
+        "dangerous_reason_required": "Enter a reason of at least 3 characters.",
+        "dangerous_confirmation_required": "Enter the written confirmation.",
+        "dangerous_confirmation_invalid": "The written confirmation does not match.",
+        "dangerous_preview_required": "Preview the impact before running this action.",
+        "dangerous_preview_invalid": "The impact preview is invalid.",
+        "dangerous_preview_stale": "The impact changed or the preview expired. Preview again.",
+        "dangerous_gate_unavailable": "The server-side safety gate is not configured.",
         "reset_invalid_action": "Invalid reset action.",
+        "reset_disabled_in_production": "Reset actions are disabled in production.",
         "reset_failed": "Failed to run reset action.",
         "summary_load_failed": "Failed to load analytics summary.",
         "users_load_failed": "Failed to load users analytics.",
@@ -3374,6 +3382,16 @@
     },
     "analytics": {
       "title": "Analytics",
+      "dangerous": {
+        "reason": "Reason",
+        "reason_placeholder": "Explain why this action is needed",
+        "preview": "Preview impact",
+        "previewing": "Previewing...",
+        "impact": "Affected records: {count}.",
+        "type_confirmation": "Type exactly: {confirmation}",
+        "confirmation": "Written confirmation",
+        "execute": "Confirm action"
+      },
       "errors": {
         "summary_fetch_failed": "Summary fetch failed.",
         "events_fetch_failed": "Events fetch failed.",
@@ -3644,6 +3662,8 @@
         "actions": {
           "delete_filtered": "Delete filtered logs",
           "delete_all": "Delete all logs",
+          "preview_filtered": "Preview filtered log deletion",
+          "preview_all": "Preview deletion of all logs",
           "deleting": "Deleting...",
           "delete_filtered_confirm": "Delete logs matching current filters? This cannot be undone.",
           "delete_all_confirm": "Delete ALL analytics logs? This cannot be undone.",
@@ -3666,7 +3686,8 @@
       },
       "reset": {
         "title": "Pre-launch reset",
-        "subtitle": "Run targeted cleanup actions before launch. Each action asks for two confirmations.",
+        "subtitle": "Enter a reason, preview the impact, then type the server-provided confirmation.",
+        "production_disabled": "Reset execution is disabled in production.",
         "running": "Running...",
         "confirm": "Run reset action: {action}?",
         "confirm_with_count": "Action \"{action}\" will delete about {count} rows. Continue?",
