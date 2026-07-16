@@ -3,6 +3,11 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import {
+  DangerousActionError,
+  executeBulkEmail,
+  previewBulkEmail
+} from "@/lib/admin/dangerousAnalyticsActions";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { getMailer } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
@@ -29,8 +34,6 @@ const MAX_PERIOD_DAYS = 180;
 const DEFAULT_LIMIT = 100;
 const MAX_LIMIT = 500;
 const MAX_BULK_USER_IDS = 500;
-const MAX_BULK_SUBJECT_LEN = 180;
-const MAX_BULK_BODY_LEN = 8000;
 const ADMIN_ANALYTICS_SHOW_FULL_EMAILS =
   String(process.env.ADMIN_ANALYTICS_SHOW_FULL_EMAILS || "")
     .trim()
@@ -148,26 +151,6 @@ function normalizeIds(value) {
     if (out.length >= MAX_BULK_USER_IDS) break;
   }
   return out;
-}
-
-function normalizeBulkTarget(value) {
-  return String(value || "").trim().toLowerCase() === "all" ? "all" : "selected";
-}
-
-function escapeHtml(value) {
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
-
-function textToHtml(value) {
-  const lines = String(value || "")
-    .split(/\r?\n/)
-    .map(line => escapeHtml(line.trimEnd()));
-  return `<div>${lines.map(line => (line ? `<p>${line}</p>` : "<p>&nbsp;</p>")).join("")}</div>`;
 }
 
 export async function GET(req) {
@@ -714,84 +697,21 @@ export async function POST(req) {
 
   try {
     const body = await req.json().catch(() => ({}));
-    const target = normalizeBulkTarget(body?.target);
-    const subject = String(body?.subject || "").trim();
-    const text = String(body?.text || "").trim();
-    const selectedIds = normalizeIds(body?.userIds);
-
-    if (!subject || !text) {
-      return errorJson("api.admin.analytics.users_email_invalid_payload", 400, locale);
-    }
-    if (subject.length > MAX_BULK_SUBJECT_LEN || text.length > MAX_BULK_BODY_LEN) {
-      return errorJson("api.admin.analytics.users_email_too_large", 400, locale, {
-        limits: {
-          subject: MAX_BULK_SUBJECT_LEN,
-          text: MAX_BULK_BODY_LEN
-        }
-      });
-    }
-    if (target === "selected" && !selectedIds.length) {
-      return errorJson("api.admin.analytics.users_email_no_recipients", 400, locale);
-    }
-
-    const where =
-      target === "all"
-        ? { email: { not: null } }
-        : { id: { in: selectedIds }, email: { not: null } };
-
-    const recipients = await prisma.user.findMany({
-      where,
-      select: { id: true, email: true }
-    });
-
-    const recipientEmails = [];
-    const seen = new Set();
-    for (const row of recipients) {
-      const email = String(row?.email || "").trim().toLowerCase();
-      if (!email || seen.has(email)) continue;
-      seen.add(email);
-      recipientEmails.push(email);
-      if (recipientEmails.length >= MAX_BULK_USER_IDS) break;
-    }
-
-    if (!recipientEmails.length) {
-      return errorJson("api.admin.analytics.users_email_no_recipients", 404, locale);
-    }
-
-    const from = String(process.env.EMAIL_FROM || process.env.SMTP_FROM || "").trim();
-    if (!from) {
-      return errorJson("api.admin.analytics.email_from_missing", 500, locale);
-    }
-
-    const mailer = getMailer("admin-analytics-bulk");
-    const failed = [];
-
-    for (const to of recipientEmails) {
-      try {
-        await mailer.sendMail({
-          to,
-          from,
-          subject,
-          text,
-          html: textToHtml(text)
+    const dryRun = body?.dryRun === true;
+    const result = dryRun
+      ? await previewBulkEmail({ db: prisma, body })
+      : await executeBulkEmail({
+          db: prisma,
+          mailer: getMailer("admin-analytics-bulk"),
+          from: process.env.EMAIL_FROM || process.env.SMTP_FROM,
+          body,
+          actorUserId: session.user.id
         });
-      } catch (error) {
-        failed.push({
-          email: to,
-          error: String(error?.message || "send_failed")
-        });
-      }
-    }
-
-    return json({
-      ok: true,
-      target,
-      requestedCount: recipientEmails.length,
-      sentCount: recipientEmails.length - failed.length,
-      failedCount: failed.length,
-      failed
-    });
+    return json({ ok: true, dryRun, ...result });
   } catch (error) {
+    if (error instanceof DangerousActionError) {
+      return errorJson(error.messageKey, error.status, locale, { debugCode: error.code });
+    }
     console.error("admin analytics users POST failed", error);
     return errorJson("api.admin.analytics.users_email_send_failed", 500, locale, {
       debugCode: "ADMIN_ANALYTICS_USERS_EMAIL_FAILED"

@@ -525,6 +525,30 @@ export default function AnalyticsDashboard() {
   const [emailTarget, setEmailTarget] = useState("selected");
   const [bulkEmailSubject, setBulkEmailSubject] = useState("");
   const [bulkEmailText, setBulkEmailText] = useState("");
+  const [bulkEmailReason, setBulkEmailReason] = useState("");
+  const [bulkEmailPreview, setBulkEmailPreview] = useState(null);
+  const [bulkEmailConfirmation, setBulkEmailConfirmation] = useState("");
+  const [logsReason, setLogsReason] = useState("");
+  const [logsPreview, setLogsPreview] = useState(null);
+  const [logsConfirmation, setLogsConfirmation] = useState("");
+  const [resetReason, setResetReason] = useState("");
+  const [resetPreview, setResetPreview] = useState(null);
+  const [resetConfirmation, setResetConfirmation] = useState("");
+
+  const invalidateBulkEmailPreview = useCallback(() => {
+    setBulkEmailPreview(null);
+    setBulkEmailConfirmation("");
+  }, []);
+
+  const invalidateLogsPreview = useCallback(() => {
+    setLogsPreview(null);
+    setLogsConfirmation("");
+  }, []);
+
+  const invalidateResetPreview = useCallback(() => {
+    setResetPreview(null);
+    setResetConfirmation("");
+  }, []);
 
   const requestJson = useCallback(
     async (url, options = {}, fallbackKey) => {
@@ -1546,17 +1570,19 @@ export default function AnalyticsDashboard() {
   );
 
   const toggleUserSelection = useCallback(userId => {
+    invalidateBulkEmailPreview();
     setSelectedUserIds(prev => (prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]));
-  }, []);
+  }, [invalidateBulkEmailPreview]);
 
   const toggleAllVisibleUsers = useCallback(() => {
+    invalidateBulkEmailPreview();
     setSelectedUserIds(prev => {
       if (allVisibleSelected) return prev.filter(id => !visibleUserIdSet.has(id));
       const merged = new Set(prev);
       for (const id of visibleUserIds) merged.add(id);
       return Array.from(merged);
     });
-  }, [allVisibleSelected, visibleUserIdSet, visibleUserIds]);
+  }, [allVisibleSelected, invalidateBulkEmailPreview, visibleUserIdSet, visibleUserIds]);
 
   const handleUsersSearch = useCallback(
     event => {
@@ -1619,7 +1645,7 @@ export default function AnalyticsDashboard() {
     }
   }, [deletingUsers, loadSummary, loadUsers, locale, requestJson, selectedUserIds, t]);
 
-  const handleSendBulkEmail = useCallback(async () => {
+  const handlePreviewBulkEmail = useCallback(async () => {
     if (sendingUsersEmail) return;
     const subject = bulkEmailSubject.trim();
     const text = bulkEmailText.trim();
@@ -1650,7 +1676,61 @@ export default function AnalyticsDashboard() {
             target: emailTarget,
             userIds: emailTarget === "selected" ? selectedUserIds : [],
             subject,
-            text
+            text,
+            reason: bulkEmailReason,
+            dryRun: true
+          })
+        },
+        "admin.analytics.errors.users_email_send_failed"
+      );
+      setBulkEmailPreview(data);
+      setBulkEmailConfirmation("");
+      setUsersNotice({
+        tone: "warn",
+        message: data?.truncated
+          ? t(
+              "admin.analytics.users.actions.email_recipient_limit_warning",
+              {
+                eligible: toNumber(data?.eligibleRecipientCount || 0),
+                send: toNumber(data?.sendRecipientCount || data?.recipientCount || 0)
+              },
+              "Warning: {eligible} recipients are eligible, but only {send} will receive this email."
+            )
+          : t(
+              "admin.analytics.dangerous.impact",
+              { count: toNumber(data?.sendRecipientCount || data?.recipientCount || 0) },
+              "Affected records: {count}."
+            )
+      });
+    } catch (error) {
+      setUsersNotice({
+        tone: "error",
+        message: error?.message || t("admin.analytics.errors.users_email_send_failed", "Failed to send bulk email.")
+      });
+    } finally {
+      setSendingUsersEmail(false);
+    }
+  }, [bulkEmailReason, bulkEmailSubject, bulkEmailText, emailTarget, locale, requestJson, selectedUserIds, sendingUsersEmail, t]);
+
+  const handleSendBulkEmail = useCallback(async () => {
+    if (sendingUsersEmail || !bulkEmailPreview) return;
+    setSendingUsersEmail(true);
+    setUsersNotice(null);
+    try {
+      const data = await requestJson(
+        "/api/admin/analytics/users",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            locale,
+            target: emailTarget,
+            userIds: emailTarget === "selected" ? selectedUserIds : [],
+            subject: bulkEmailSubject.trim(),
+            text: bulkEmailText.trim(),
+            reason: bulkEmailReason,
+            confirmation: bulkEmailConfirmation,
+            previewToken: bulkEmailPreview.previewToken,
+            dryRun: false
           })
         },
         "admin.analytics.errors.users_email_send_failed"
@@ -1660,17 +1740,16 @@ export default function AnalyticsDashboard() {
         tone: toNumber(data?.failedCount) > 0 ? "warn" : "success",
         message: t(
           "admin.analytics.users.actions.email_done",
-          {
-            sent: toNumber(data?.sentCount || 0),
-            failed: toNumber(data?.failedCount || 0)
-          },
+          { sent: toNumber(data?.sentCount || 0), failed: toNumber(data?.failedCount || 0) },
           "Bulk email finished."
         )
       });
       if (!toNumber(data?.failedCount || 0)) {
         setBulkEmailSubject("");
         setBulkEmailText("");
+        setBulkEmailReason("");
       }
+      invalidateBulkEmailPreview();
     } catch (error) {
       setUsersNotice({
         tone: "error",
@@ -1679,18 +1758,24 @@ export default function AnalyticsDashboard() {
     } finally {
       setSendingUsersEmail(false);
     }
-  }, [bulkEmailSubject, bulkEmailText, emailTarget, locale, requestJson, selectedUserIds, sendingUsersEmail, t]);
+  }, [
+    bulkEmailConfirmation,
+    bulkEmailPreview,
+    bulkEmailReason,
+    bulkEmailSubject,
+    bulkEmailText,
+    emailTarget,
+    invalidateBulkEmailPreview,
+    locale,
+    requestJson,
+    selectedUserIds,
+    sendingUsersEmail,
+    t
+  ]);
 
-  const handleDeleteLogs = useCallback(
+  const handlePreviewLogDeletion = useCallback(
     async deleteAll => {
       if (deletingLogs) return;
-      const confirmed = window.confirm(
-        deleteAll
-          ? t("admin.analytics.logs.actions.delete_all_confirm", "Delete all logs?")
-          : t("admin.analytics.logs.actions.delete_filtered_confirm", "Delete filtered logs?")
-      );
-      if (!confirmed) return;
-
       setDeletingLogs(true);
       setLogsNotice(null);
       try {
@@ -1702,7 +1787,54 @@ export default function AnalyticsDashboard() {
               locale,
               all: deleteAll,
               event: deleteAll || eventFilter === "all" ? "" : eventFilter,
-              isCrisis: deleteAll ? "all" : isCrisisFilter
+              isCrisis: deleteAll ? "all" : isCrisisFilter,
+              reason: logsReason,
+              dryRun: true
+            })
+          },
+          "admin.analytics.errors.logs_delete_failed"
+        );
+        setLogsPreview({ ...data, all: deleteAll });
+        setLogsConfirmation("");
+        setLogsNotice({
+          tone: "warn",
+          message: t(
+            "admin.analytics.dangerous.impact",
+            { count: toNumber(data?.count || 0) },
+            "Affected records: {count}."
+          )
+        });
+      } catch (error) {
+        setLogsNotice({
+          tone: "error",
+          message: error?.message || t("admin.analytics.errors.logs_delete_failed", "Failed to delete logs.")
+        });
+      } finally {
+        setDeletingLogs(false);
+      }
+    },
+    [deletingLogs, eventFilter, isCrisisFilter, locale, logsReason, requestJson, t]
+  );
+
+  const handleDeleteLogs = useCallback(
+    async () => {
+      if (deletingLogs || !logsPreview) return;
+      setDeletingLogs(true);
+      setLogsNotice(null);
+      try {
+        const data = await requestJson(
+          "/api/admin/analytics/events",
+          {
+            method: "DELETE",
+            body: JSON.stringify({
+              locale,
+              all: logsPreview.all,
+              event: logsPreview.all || eventFilter === "all" ? "" : eventFilter,
+              isCrisis: logsPreview.all ? "all" : isCrisisFilter,
+              reason: logsReason,
+              confirmation: logsConfirmation,
+              previewToken: logsPreview.previewToken,
+              dryRun: false
             })
           },
           "admin.analytics.errors.logs_delete_failed"
@@ -1715,6 +1847,8 @@ export default function AnalyticsDashboard() {
             "Logs deleted."
           )
         });
+        invalidateLogsPreview();
+        setLogsReason("");
         await refreshAll();
       } catch (error) {
         setLogsNotice({
@@ -1725,18 +1859,25 @@ export default function AnalyticsDashboard() {
         setDeletingLogs(false);
       }
     },
-    [deletingLogs, eventFilter, isCrisisFilter, locale, refreshAll, requestJson, t]
+    [
+      deletingLogs,
+      eventFilter,
+      invalidateLogsPreview,
+      isCrisisFilter,
+      locale,
+      logsConfirmation,
+      logsPreview,
+      logsReason,
+      refreshAll,
+      requestJson,
+      t
+    ]
   );
 
-  const handleRunReset = useCallback(
+  const handlePreviewReset = useCallback(
     async action => {
       if (!action || runningResetAction) return;
       const actionLabel = t(`admin.analytics.reset.actions.${action}`, action);
-      const firstConfirm = window.confirm(
-        t("admin.analytics.reset.confirm", { action: actionLabel }, "Run reset action?")
-      );
-      if (!firstConfirm) return;
-
       setRunningResetAction(action);
       setResetNotice(null);
       try {
@@ -1747,54 +1888,69 @@ export default function AnalyticsDashboard() {
             body: JSON.stringify({
               locale,
               action,
-              dryRun: true
+              dryRun: true,
+              reason: resetReason
             })
           },
           "admin.analytics.errors.reset_failed"
         );
-
-        const secondConfirm = window.confirm(
-          t(
-            "admin.analytics.reset.confirm_with_count",
-            {
-              action: actionLabel,
-              count: toNumber(dryRun?.total || 0)
-            },
-            "Confirm reset action?"
+        setResetPreview({ ...dryRun, action, actionLabel });
+        setResetConfirmation("");
+        setResetNotice({
+          tone: dryRun?.executionAllowed === false ? "error" : "warn",
+          message: t(
+            dryRun?.executionAllowed === false
+              ? "admin.analytics.reset.production_disabled"
+              : "admin.analytics.dangerous.impact",
+            { count: toNumber(dryRun?.total || 0) },
+            dryRun?.executionAllowed === false
+              ? "Reset execution is disabled in production."
+              : "Affected records: {count}."
           )
-        );
-        if (!secondConfirm) {
-          setResetNotice({
-            tone: "warn",
-            message: t("admin.analytics.reset.cancelled", "Reset cancelled.")
-          });
-          return;
-        }
+        });
+      } catch (error) {
+        setResetNotice({
+          tone: "error",
+          message: error?.message || t("admin.analytics.errors.reset_failed", "Failed to run reset action.")
+        });
+      } finally {
+        setRunningResetAction("");
+      }
+    },
+    [locale, requestJson, resetReason, runningResetAction, t]
+  );
 
+  const handleRunReset = useCallback(
+    async () => {
+      if (!resetPreview || runningResetAction || resetPreview.executionAllowed === false) return;
+      setRunningResetAction(resetPreview.action);
+      setResetNotice(null);
+      try {
         const result = await requestJson(
           "/api/admin/analytics/reset",
           {
             method: "POST",
             body: JSON.stringify({
               locale,
-              action,
-              dryRun: false
+              action: resetPreview.action,
+              dryRun: false,
+              reason: resetReason,
+              confirmation: resetConfirmation,
+              previewToken: resetPreview.previewToken
             })
           },
           "admin.analytics.errors.reset_failed"
         );
-
         setResetNotice({
           tone: "success",
           message: t(
             "admin.analytics.reset.done",
-            {
-              action: actionLabel,
-              count: toNumber(result?.total || 0)
-            },
+            { action: resetPreview.actionLabel, count: toNumber(result?.total || 0) },
             "Reset completed."
           )
         });
+        invalidateResetPreview();
+        setResetReason("");
         await refreshAll();
       } catch (error) {
         setResetNotice({
@@ -1805,7 +1961,17 @@ export default function AnalyticsDashboard() {
         setRunningResetAction("");
       }
     },
-    [locale, refreshAll, requestJson, runningResetAction, t]
+    [
+      invalidateResetPreview,
+      locale,
+      refreshAll,
+      requestJson,
+      resetConfirmation,
+      resetPreview,
+      resetReason,
+      runningResetAction,
+      t
+    ]
   );
 
   return (
@@ -2999,7 +3165,10 @@ export default function AnalyticsDashboard() {
                   className={compactDropdownClassName}
                   id="analytics-bulk-email-target"
                   value={emailTarget}
-                  onChange={nextValue => setEmailTarget(nextValue === "all" ? "all" : "selected")}
+                  onChange={nextValue => {
+                    invalidateBulkEmailPreview();
+                    setEmailTarget(nextValue === "all" ? "all" : "selected");
+                  }}
                   options={emailTargetOptions}
                   ariaLabel={t("admin.analytics.users.actions.email_target", "Email target")}
                   disabled={sendingUsersEmail || deletingUsers}
@@ -3070,7 +3239,10 @@ export default function AnalyticsDashboard() {
                 id="analytics-email-subject"
                 className={inputClassName}
                 value={bulkEmailSubject}
-                onChange={event => setBulkEmailSubject(event.target.value)}
+                onChange={event => {
+                  invalidateBulkEmailPreview();
+                  setBulkEmailSubject(event.target.value);
+                }}
                 placeholder={t("admin.analytics.users.actions.email_subject_ph", "Enter subject")}
                 maxLength={180}
               />
@@ -3083,21 +3255,91 @@ export default function AnalyticsDashboard() {
                 id="analytics-email-text"
                 className={textAreaClassName}
                 value={bulkEmailText}
-                onChange={event => setBulkEmailText(event.target.value)}
+                onChange={event => {
+                  invalidateBulkEmailPreview();
+                  setBulkEmailText(event.target.value);
+                }}
                 placeholder={t("admin.analytics.users.actions.email_text_ph", "Write a message...")}
                 maxLength={8000}
+              />
+            </div>
+            <div>
+              <label className={cellSubClassName} htmlFor="analytics-email-reason">
+                {t("admin.analytics.dangerous.reason", "Reason")}
+              </label>
+              <textarea
+                id="analytics-email-reason"
+                className={textAreaClassName}
+                value={bulkEmailReason}
+                onChange={event => {
+                  invalidateBulkEmailPreview();
+                  setBulkEmailReason(event.target.value);
+                }}
+                placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
+                maxLength={500}
+                required
               />
             </div>
             <Button
               variant="primary"
               className={actionButtonClassName}
-              onClick={handleSendBulkEmail}
-              disabled={sendingUsersEmail || deletingUsers}
+              onClick={handlePreviewBulkEmail}
+              disabled={sendingUsersEmail || deletingUsers || bulkEmailReason.trim().length < 3}
             >
               {sendingUsersEmail
-                ? t("admin.analytics.users.actions.sending", "Sending...")
-                : t("admin.analytics.users.actions.send_email", "Send email")}
+                ? t("admin.analytics.dangerous.previewing", "Previewing...")
+                : t("admin.analytics.dangerous.preview", "Preview impact")}
             </Button>
+            {bulkEmailPreview ? (
+              <div>
+                <p>
+                  {t(
+                    "admin.analytics.users.actions.email_preview_counts",
+                    {
+                      eligible: toNumber(bulkEmailPreview.eligibleRecipientCount || 0),
+                      send: toNumber(bulkEmailPreview.sendRecipientCount || bulkEmailPreview.recipientCount || 0)
+                    },
+                    "Eligible recipients: {eligible}. Emails to be sent: {send}."
+                  )}
+                </p>
+                {bulkEmailPreview.truncated ? (
+                  <p role="alert">
+                    {t(
+                      "admin.analytics.users.actions.email_recipient_limit_warning",
+                      {
+                        eligible: toNumber(bulkEmailPreview.eligibleRecipientCount || 0),
+                        send: toNumber(bulkEmailPreview.sendRecipientCount || bulkEmailPreview.recipientCount || 0)
+                      },
+                      "Warning: {eligible} recipients are eligible, but only {send} will receive this email."
+                    )}
+                  </p>
+                ) : null}
+                <p>
+                  {t(
+                    "admin.analytics.dangerous.type_confirmation",
+                    { confirmation: bulkEmailPreview.confirmation },
+                    "Type exactly: {confirmation}"
+                  )}
+                </p>
+                <input
+                  className={inputClassName}
+                  value={bulkEmailConfirmation}
+                  onChange={event => setBulkEmailConfirmation(event.target.value)}
+                  aria-label={t("admin.analytics.dangerous.confirmation", "Written confirmation")}
+                  autoComplete="off"
+                />
+                <Button
+                  variant="danger"
+                  className={actionButtonClassName}
+                  onClick={handleSendBulkEmail}
+                  disabled={sendingUsersEmail || bulkEmailConfirmation !== bulkEmailPreview.confirmation}
+                >
+                  {sendingUsersEmail
+                    ? t("admin.analytics.users.actions.sending", "Sending...")
+                    : t("admin.analytics.users.actions.send_email", "Send email")}
+                </Button>
+              </div>
+            ) : null}
           </div>
           <div className={tableHeaderClassName}>
             <div className={tableScrollHintClassName}>
@@ -3830,14 +4072,20 @@ export default function AnalyticsDashboard() {
             <DocumentsDropdown
               className={dropdownClassName}
               value={eventFilter}
-              onChange={setEventFilter}
+              onChange={value => {
+                invalidateLogsPreview();
+                setEventFilter(value);
+              }}
               options={eventFilterOptions}
               ariaLabel={t("admin.analytics.logs.filter.all_events", "All events")}
             />
             <DocumentsDropdown
               className={compactDropdownClassName}
               value={isCrisisFilter}
-              onChange={setIsCrisisFilter}
+              onChange={value => {
+                invalidateLogsPreview();
+                setIsCrisisFilter(value);
+              }}
               options={crisisFilterOptions}
               ariaLabel={t("admin.analytics.logs.filter.crisis_all", "Crisis: all")}
             />
@@ -3845,25 +4093,73 @@ export default function AnalyticsDashboard() {
               size="sm"
               variant="danger"
               className={actionButtonClassName}
-              onClick={() => handleDeleteLogs(false)}
-              disabled={deletingLogs || !canDeleteFilteredLogs}
+              onClick={() => handlePreviewLogDeletion(false)}
+              disabled={deletingLogs || !canDeleteFilteredLogs || logsReason.trim().length < 3}
             >
               {deletingLogs
                 ? t("admin.analytics.logs.actions.deleting", "Deleting...")
-                : t("admin.analytics.logs.actions.delete_filtered", "Delete filtered logs")}
+                : t("admin.analytics.logs.actions.preview_filtered", "Preview filtered log deletion")}
             </Button>
             <Button
               size="sm"
               variant="danger"
               className={actionButtonClassName}
-              onClick={() => handleDeleteLogs(true)}
-              disabled={deletingLogs}
+              onClick={() => handlePreviewLogDeletion(true)}
+              disabled={deletingLogs || logsReason.trim().length < 3}
             >
               {deletingLogs
                 ? t("admin.analytics.logs.actions.deleting", "Deleting...")
-                : t("admin.analytics.logs.actions.delete_all", "Delete all logs")}
+                : t("admin.analytics.logs.actions.preview_all", "Preview deletion of all logs")}
             </Button>
           </div>
+
+          <div>
+            <label className={cellSubClassName} htmlFor="analytics-logs-reason">
+              {t("admin.analytics.dangerous.reason", "Reason")}
+            </label>
+            <textarea
+              id="analytics-logs-reason"
+              className={textAreaClassName}
+              value={logsReason}
+              onChange={event => {
+                invalidateLogsPreview();
+                setLogsReason(event.target.value);
+              }}
+              placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
+              maxLength={500}
+              required
+            />
+          </div>
+
+          {logsPreview ? (
+            <div>
+              <p>
+                {t(
+                  "admin.analytics.dangerous.type_confirmation",
+                  { confirmation: logsPreview.confirmation },
+                  "Type exactly: {confirmation}"
+                )}
+              </p>
+              <input
+                className={inputClassName}
+                value={logsConfirmation}
+                onChange={event => setLogsConfirmation(event.target.value)}
+                aria-label={t("admin.analytics.dangerous.confirmation", "Written confirmation")}
+                autoComplete="off"
+              />
+              <Button
+                size="sm"
+                variant="danger"
+                className={actionButtonClassName}
+                onClick={handleDeleteLogs}
+                disabled={deletingLogs || logsConfirmation !== logsPreview.confirmation}
+              >
+                {deletingLogs
+                  ? t("admin.analytics.logs.actions.deleting", "Deleting...")
+                  : t("admin.analytics.dangerous.execute", "Confirm action")}
+              </Button>
+            </div>
+          ) : null}
 
           <SectionAlert tone={logsNotice?.tone} message={logsNotice?.message} />
 
@@ -3954,6 +4250,24 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
 
+          <div>
+            <label className={cellSubClassName} htmlFor="analytics-reset-reason">
+              {t("admin.analytics.dangerous.reason", "Reason")}
+            </label>
+            <textarea
+              id="analytics-reset-reason"
+              className={textAreaClassName}
+              value={resetReason}
+              onChange={event => {
+                invalidateResetPreview();
+                setResetReason(event.target.value);
+              }}
+              placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
+              maxLength={500}
+              required
+            />
+          </div>
+
           <div className={resetActionGridClassName}>
             {PRELAUNCH_RESET_ACTIONS.map(item => {
               const isRunning = runningResetAction === item.value;
@@ -3963,14 +4277,57 @@ export default function AnalyticsDashboard() {
                   size="sm"
                   variant="danger"
                   className={resetActionButtonClassName}
-                  onClick={() => handleRunReset(item.value)}
-                  disabled={Boolean(runningResetAction)}
+                  onClick={() => handlePreviewReset(item.value)}
+                  disabled={Boolean(runningResetAction) || resetReason.trim().length < 3}
                 >
-                  {isRunning ? t("admin.analytics.reset.running", "Running...") : t(item.labelKey, item.value)}
+                  {isRunning
+                    ? t("admin.analytics.dangerous.previewing", "Previewing...")
+                    : t(item.labelKey, item.value)}
                 </Button>
               );
             })}
           </div>
+
+          {resetPreview ? (
+            <div>
+              <p>
+                {t(
+                  "admin.analytics.dangerous.impact",
+                  { count: toNumber(resetPreview.total || 0) },
+                  "Affected records: {count}."
+                )}
+              </p>
+              <p>
+                {t(
+                  "admin.analytics.dangerous.type_confirmation",
+                  { confirmation: resetPreview.confirmation },
+                  "Type exactly: {confirmation}"
+                )}
+              </p>
+              <input
+                className={inputClassName}
+                value={resetConfirmation}
+                onChange={event => setResetConfirmation(event.target.value)}
+                aria-label={t("admin.analytics.dangerous.confirmation", "Written confirmation")}
+                autoComplete="off"
+              />
+              <Button
+                size="sm"
+                variant="danger"
+                className={resetActionButtonClassName}
+                onClick={handleRunReset}
+                disabled={
+                  Boolean(runningResetAction) ||
+                  resetPreview.executionAllowed === false ||
+                  resetConfirmation !== resetPreview.confirmation
+                }
+              >
+                {runningResetAction
+                  ? t("admin.analytics.reset.running", "Running...")
+                  : t("admin.analytics.dangerous.execute", "Confirm action")}
+              </Button>
+            </div>
+          ) : null}
 
           <SectionAlert tone={resetNotice?.tone} message={resetNotice?.message} />
         </div>

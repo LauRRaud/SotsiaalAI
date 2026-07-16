@@ -3,6 +3,11 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import {
+  DangerousActionError,
+  executeLogDeletion,
+  previewLogDeletion
+} from "@/lib/admin/dangerousAnalyticsActions";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
 
@@ -118,29 +123,20 @@ export async function DELETE(req) {
 
   try {
     const body = await req.json().catch(() => ({}));
-    const event = String(body?.event || "").trim();
-    const crisisParam = String(body?.isCrisis || "all").trim().toLowerCase();
-    const deleteAll = body?.all === true;
-
-    if (!deleteAll && !event && crisisParam === "all") {
-      return errorJson("api.admin.analytics.events_delete_invalid_payload", 400, locale);
-    }
-
-    const where = {};
-    if (event) where.event = event;
-    if (crisisParam === "true" || crisisParam === "false") {
-      where.data = {
-        path: ["isCrisis"],
-        equals: crisisParam === "true"
-      };
-    }
-
-    const result = await prisma.chatLog.deleteMany({ where });
-    return json({
-      ok: true,
-      deletedCount: Number(result?.count || 0)
-    });
+    const dryRun = body?.dryRun === true;
+    const result = dryRun
+      ? await previewLogDeletion({ db: prisma, body })
+      : await executeLogDeletion({
+          db: prisma,
+          body,
+          actorUserId: session.user.id,
+          request: req
+        });
+    return json({ ok: true, dryRun, ...result });
   } catch (error) {
+    if (error instanceof DangerousActionError) {
+      return errorJson(error.messageKey, error.status, locale, { debugCode: error.code });
+    }
     console.error("admin analytics events DELETE failed", error);
     return errorJson("api.admin.analytics.events_delete_failed", 500, locale, {
       debugCode: "ADMIN_ANALYTICS_EVENTS_DELETE_FAILED"
