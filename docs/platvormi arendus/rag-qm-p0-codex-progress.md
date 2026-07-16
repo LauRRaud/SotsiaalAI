@@ -47,7 +47,7 @@ CLI elava andmebaasi päring projitseerib täpselt järgmised väljad; muid JSON
 - Lisa A ning kogu alusdokument: täielikult loetud.
 - Koodi- ja telemeetrialepingu audit: valmis.
 - Baseline-CLI `scripts/rag-quality-baseline.mjs` ja paketikäsk `rag:qm:baseline`: valmis.
-- JSON-/Markdown-raport, JSON-skeem, väljundvalidaator ja atomaarne paariskirjutaja: valmis.
+- JSON-/Markdown-raport, JSON-skeem, fail-closed väljundvalidaator ja ühe kataloogirenimeerimisega atomaarne paariskirjutaja: valmis.
 - Sanitiseeritud fixture ja deterministlik oodatud JSON-/Markdown-raport: valmis.
 - A.5 töövihik: 72 `not_run` rida (37 golden + 35 kataloog), päringu- ja vastusetekstita.
 - Sihttestid: 28/28.
@@ -57,7 +57,7 @@ CLI elava andmebaasi päring projitseerib täpselt järgmised väljad; muid JSON
 
 - Ajavahemik: `2026-06-15T00:00:00.000Z` kuni `2026-07-15T00:00:00.000Z`, algus kaasatud ja lõpp välistatud.
 - Allikas: ainult `ChatLog`, staatilised piiritletud `SELECT` päringud.
-- Keskkonnaspetsiifiline väljund: `logs/rag-quality-baseline-2026-07-15.json` ja `.md`; `logs/` on gitignore'itud ja kumbki fail ei kuulu commit'i.
+- Keskkonnaspetsiifiline väljund: kataloog `logs/rag-quality-baseline-2026-07-15/`, milles on samanimelised `.json`- ja `.md`-failid; `logs/` on gitignore'itud ja väljund ei kuulu commit'i.
 - Raporti andmeräsi: `7479e0c939801f1429a06a3061d3503249d8783d9df9460b7e4767c93f18f71e`.
 - Avaldatav sündmuseridade koguarv: 41.
 - Avaldatavad n≥20 jaotused: sündmuserea roll `SOCIAL_WORKER` 41; päev `2026-07-12` 25.
@@ -82,7 +82,7 @@ CLI elava andmebaasi päring projitseerib täpselt järgmised väljad; muid JSON
 - `npm run i18n:check`: ET/EN/RU korras.
 - `prisma validate`: skeem korras.
 - `db:migrate:check` jäeti ühendusega käivitamata, sest kontrollskript loob ja kustutab ajutise andmebaasi; see oleks vastuolus P0 andmebaasikirjutuse keeluga. Prisma skeemi ega migratsioone ei muudetud.
-- fixture'i täis-CLI jooks: JSON ja Markdown genereeriti, valideeriti ja nende kanooniline objekt kattub bait-baidilt oodatud väljundiga.
+- fixture'i täis-CLI jooks: JSON ja Markdown genereeriti ning valideeriti ühe atomaarse raportikataloogina; nende kanooniline objekt kattub reavahetustest sõltumatu semantilise võrdlusega oodatud väljundiga ja generaator väljastab LF-i.
 - päris CLI jooks: exit 0, ainult read-only `SELECT`, gitignore'itud väljund.
 - `git diff --check`: korras enne stage'imist; staged-kontroll korratakse enne commit'i.
 
