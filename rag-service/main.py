@@ -38,6 +38,12 @@ from pydantic import BaseModel, Field, ValidationError, field_validator
 
 import chromadb
 
+from search_security import (
+    build_agent_document_search_where,
+    build_general_search_where,
+    is_general_search_metadata_allowed,
+)
+
 # OpenAI embeddings
 from openai import OpenAI, OpenAIError, RateLimitError
 
@@ -1707,6 +1713,31 @@ class SearchIn(BaseModel):
                 out.append(s)
         return out
 
+
+class AgentDocumentSearchIn(BaseModel):
+    model_config = {"extra": "forbid"}
+
+    query: str
+    doc_ids: List[str] = Field(min_length=1, max_length=50)
+    top_k: int = 5
+    include: Optional[List[str]] = None
+    retrievers: Optional[List[str]] = None
+
+    @field_validator("doc_ids")
+    @classmethod
+    def validate_doc_ids(cls, value):
+        cleaned = []
+        seen = set()
+        for item in list(value or []):
+            doc_id = str(item or "").strip()
+            if not doc_id or doc_id in seen:
+                continue
+            seen.add(doc_id)
+            cleaned.append(doc_id)
+        if not cleaned:
+            raise ValueError("at least one agent document id is required")
+        return cleaned
+
 # --------------------
 # Core ingest (shared)
 # --------------------
@@ -2532,6 +2563,24 @@ def _metadata_matches_filter(metadata: Dict[str, object], where: Optional[Dict[s
                     if not any(item in normalized_expected for item in normalized_actual):
                         return False
                 elif actual not in normalized_expected:
+                    return False
+                continue
+            if "$ne" in expected:
+                normalized_expected = _normalize_metadata_scalar(expected.get("$ne"))
+                if isinstance(actual, list):
+                    normalized_actual = [_normalize_metadata_scalar(item) for item in actual]
+                    if normalized_expected in normalized_actual:
+                        return False
+                elif actual == normalized_expected:
+                    return False
+                continue
+            if "$nin" in expected:
+                normalized_expected = [_normalize_metadata_scalar(item) for item in list(expected.get("$nin") or [])]
+                if isinstance(actual, list):
+                    normalized_actual = [_normalize_metadata_scalar(item) for item in actual]
+                    if any(item in normalized_expected for item in normalized_actual):
+                        return False
+                elif actual in normalized_expected:
                     return False
                 continue
             return False
@@ -4436,8 +4485,13 @@ def delete_doc(doc_id: str):
 
     return {"ok": True, "deleted": doc_id, "hadEntry": had}
 
-@app.post("/search", dependencies=[Depends(_require_key)])
-def search(payload: SearchIn, request: Request):
+def _execute_search(
+    payload: SearchIn,
+    request: Request,
+    *,
+    agent_document_ids: Optional[List[str]] = None,
+):
+    is_general_search = agent_document_ids is None
     md_where: Dict[str, object] = {}
     requested_retrievers = _normalize_requested_retrievers(payload.retrievers)
 
@@ -4526,10 +4580,17 @@ def search(payload: SearchIn, request: Request):
     )
     result_count = 0
 
-    chroma_where = _compose_chroma_where(md_where)
+    client_where = _compose_chroma_where(md_where)
+    chroma_where = (
+        build_general_search_where(client_where)
+        if is_general_search
+        else build_agent_document_search_where(agent_document_ids or [])
+    )
 
     try:
-        include_items = payload.include or ["documents", "metadatas", "distances"]
+        include_items = list(payload.include or ["documents", "metadatas", "distances"])
+        if "metadatas" not in include_items:
+            include_items.append("metadatas")
 
         res = collection.query(
             query_embeddings=[q_emb],
@@ -4567,6 +4628,8 @@ def search(payload: SearchIn, request: Request):
     for i, _id in enumerate(ids):
         ch = docs[i] if i < len(docs) and isinstance(docs[i], str) else ""
         md = metas[i] if i < len(metas) and isinstance(metas[i], dict) else {}
+        if is_general_search and not is_general_search_metadata_allowed(md):
+            continue
         if not _metadata_matches_filter(md, chroma_where):
             continue
         source_path = md.get("source_path")
@@ -4684,6 +4747,8 @@ def search(payload: SearchIn, request: Request):
         if not item_id:
             continue
         candidate_md = candidate.get("metadata") if isinstance(candidate.get("metadata"), dict) else {}
+        if is_general_search and not is_general_search_metadata_allowed(candidate_md):
+            continue
         if not _metadata_matches_filter(candidate_md, chroma_where):
             continue
         channels = [str(item) for item in candidate.get("channels") or [] if str(item or "").strip()]
@@ -4888,3 +4953,19 @@ def search(payload: SearchIn, request: Request):
         "merge_strategy": _build_hybrid_merge_strategy(requested_retrievers),
         "channel_stats": _build_channel_stats(flat),
     }
+
+
+@app.post("/search", dependencies=[Depends(_require_key)])
+def search(payload: SearchIn, request: Request):
+    return _execute_search(payload, request, agent_document_ids=None)
+
+
+@app.post("/search/agent-documents", dependencies=[Depends(_require_key)])
+def search_agent_documents(payload: AgentDocumentSearchIn, request: Request):
+    exact_payload = SearchIn(
+        query=payload.query,
+        top_k=payload.top_k,
+        include=payload.include,
+        retrievers=payload.retrievers,
+    )
+    return _execute_search(exact_payload, request, agent_document_ids=payload.doc_ids)

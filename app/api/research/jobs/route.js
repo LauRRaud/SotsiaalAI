@@ -25,6 +25,10 @@ const RESEARCH_API_ENABLED = RESEARCH_API_ENABLED_RAW
 const RESEARCH_JOB_MODE = String(process.env.RESEARCH_JOB_MODE || process.env.RESEARCH_RUNNER_MODE || "inline")
   .trim()
   .toLowerCase();
+const AGENT_RAG_COLLECTION_ID = String(process.env.AGENT_RAG_COLLECTION_ID || "agent_documents")
+  .trim()
+  .toLowerCase();
+const PRIVATE_AGENT_RAG_COLLECTION_IDS = new Set(["agent_documents", AGENT_RAG_COLLECTION_ID]);
 
 function json(data, status = 200, extraHeaders = {}) {
   return NextResponse.json(data, {
@@ -156,6 +160,7 @@ export async function POST(req) {
     ? payload.collection_ids
         .map(v => String(v || "").trim())
         .filter(Boolean)
+        .filter(v => !PRIVATE_AGENT_RAG_COLLECTION_IDS.has(v.toLowerCase()))
         .slice(0, 3)
     : [];
   const activeJobCount = await getActiveResearchJobCount(auth.userId);
