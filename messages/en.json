@@ -1408,7 +1408,8 @@
     },
     "fallback": {
       "no_context_client": "I could not find an exact answer in the materials right now. Please describe your situation in a bit more detail and include at least your municipality or city.",
-      "no_context_worker": "I could not find an exact answer in the materials right now. Please specify the topic, source type, or, if relevant, the municipality and service or situation type."
+      "no_context_worker": "I could not find an exact answer in the materials right now. Please specify the topic, source type, or, if relevant, the municipality and service or situation type.",
+      "crisis_no_context": "If you are in immediate danger or thinking about harming yourself, call 112 now. For concerns involving children or families, call the Child Helpline at 116 111 (free, 24/7). Victims of violence or crime can call Victim Support at 116 006. If you can, tell me your municipality or city — I will look for the nearest support contacts."
     },
     "empty_intro": "Hello! Briefly describe what you want to know or what guidance you need. For a help request, help offer, deep research, or document analysis, choose it from the + menu. Other tools are in the Workspace.",
     "empty_intro_help_request": "Describe as clearly as possible what help you need. Include the key details so that your situation and need for help are easy to understand. If needed, I will ask for more.",

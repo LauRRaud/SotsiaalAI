@@ -61,12 +61,12 @@ function usageErrorResponse(error, scope) {
   });
 }
 
-async function releaseUsageSafely(handle, reason) {
+async function releaseUsageSafely(handle, reason, releaseUsage = releaseUsageForRequest, logError = logChatError) {
   if (!handle) return;
   try {
-    await releaseUsageForRequest(handle, { reason });
+    await releaseUsage(handle, { reason });
   } catch (error) {
-    logChatError("usage.release.error", {
+    logError("usage.release.error", {
       metric: handle.metric,
       reason,
       error: error?.message || String(error)
@@ -74,13 +74,25 @@ async function releaseUsageSafely(handle, reason) {
   }
 }
 
-export async function POST(req) {
-  const bootstrapResult = await bootstrapChatRequest({
+export async function POST(req, deps = {}) {
+  const routeRuntime = {
+    bootstrapChatRequest: deps.bootstrapChatRequest || bootstrapChatRequest,
+    handleDocumentWorkflowBranch: deps.handleDocumentWorkflowBranch || handleDocumentWorkflowBranch,
+    handleHelpWorkflowBranch: deps.handleHelpWorkflowBranch || handleHelpWorkflowBranch,
+    reserveUsageForRequest: deps.reserveUsageForRequest || reserveUsageForRequest,
+    commitUsageForRequest: deps.commitUsageForRequest || commitUsageForRequest,
+    releaseUsageForRequest: deps.releaseUsageForRequest || releaseUsageForRequest,
+    assembleRetrievalContext: deps.assembleRetrievalContext || assembleRetrievalContext,
+    handleMainChatResponse: deps.handleMainChatResponse || handleMainChatResponse,
+    logEvent: deps.logEvent || logEvent
+  };
+
+  const bootstrapResult = await routeRuntime.bootstrapChatRequest({
     req,
     prisma,
     makeError: makeChatError,
     logInfo: logChatInfo,
-    logEvent,
+    logEvent: routeRuntime.logEvent,
     limits: {
       chatPostRateLimitMax: CHAT_POST_RATE_LIMIT_MAX,
       chatRateLimitWindowMs: CHAT_RATE_LIMIT_WINDOW_MS,
@@ -130,7 +142,7 @@ export async function POST(req) {
   let documentUsageHandle = null;
   let documentWorkflowResponse;
   try {
-    documentWorkflowResponse = await handleDocumentWorkflowBranch({
+    documentWorkflowResponse = await routeRuntime.handleDocumentWorkflowBranch({
       shouldUseDocumentWorkflow,
       message: effectiveMessage,
       convId,
@@ -142,6 +154,7 @@ export async function POST(req) {
       ephemeralChunks,
       ephemeralSource,
       persist,
+      isCrisis,
       roomId,
       wantStream,
       clarifyingTurns,
@@ -152,7 +165,7 @@ export async function POST(req) {
       logInfo: logChatInfo,
       logError: logChatError,
       onBeforeGenerate: async () => {
-        documentUsageHandle = await reserveUsageForRequest({
+        documentUsageHandle = await routeRuntime.reserveUsageForRequest({
           request: req,
           userId,
           metric: "DOCUMENT_GENERATE",
@@ -161,12 +174,12 @@ export async function POST(req) {
           metadata: { convId, role: normalizedRole }
         });
       },
-      onGenerationComplete: () => commitUsageForRequest(documentUsageHandle),
-      onGenerationFailure: (reason) => releaseUsageForRequest(documentUsageHandle, { reason })
+      onGenerationComplete: () => routeRuntime.commitUsageForRequest(documentUsageHandle),
+      onGenerationFailure: (reason) => routeRuntime.releaseUsageForRequest(documentUsageHandle, { reason })
     });
   } catch (error) {
     if (!error?.usageWorkCompleted) {
-      await releaseUsageSafely(documentUsageHandle, "chat_document_generation_failed");
+      await releaseUsageSafely(documentUsageHandle, "chat_document_generation_failed", routeRuntime.releaseUsageForRequest);
     }
     if (String(error?.code || "").startsWith("USAGE_")) {
       return usageErrorResponse(error, "chat.document_generate");
@@ -175,7 +188,7 @@ export async function POST(req) {
   }
   if (documentWorkflowResponse) return documentWorkflowResponse;
 
-  const helpWorkflowResponse = await handleHelpWorkflowBranch({
+  const helpWorkflowResponse = await routeRuntime.handleHelpWorkflowBranch({
     shouldUseHelpWorkflow,
     message: effectiveMessage,
     convId,
@@ -187,6 +200,7 @@ export async function POST(req) {
     clarifyingTurns,
     requestedThoroughness,
     persist,
+    isCrisis,
     normalizedRole,
     roomId,
     wantStream,
@@ -237,7 +251,7 @@ export async function POST(req) {
   let chatUsageHandle = null;
   let ragUsageHandle = null;
   try {
-    chatUsageHandle = await reserveUsageForRequest({
+    chatUsageHandle = await routeRuntime.reserveUsageForRequest({
       request: req,
       userId,
       metric: "CHAT_ASSISTANT_REPLY",
@@ -251,7 +265,7 @@ export async function POST(req) {
 
   let retrievalResult;
   try {
-    retrievalResult = await assembleRetrievalContext({
+    retrievalResult = await routeRuntime.assembleRetrievalContext({
       payloadAudience: payload?.audience,
       graphChannelTestOverride: payload?.graphChannelTest === true,
       normalizedRole,
@@ -269,7 +283,7 @@ export async function POST(req) {
       isCrisis,
       logInfo: logChatInfo,
       logError: logChatError,
-      logEvent,
+      logEvent: routeRuntime.logEvent,
       buildMissingMunicipalityInstruction: buildMissingMunicipalitySystemInstruction,
       buildSourceLookupInstruction: buildSourceLookupSystemInstruction,
       docContextBudgets: {
@@ -283,7 +297,7 @@ export async function POST(req) {
         chunkCharsMax: CHAT_EPHEMERAL_CHUNK_CHARS_MAX
       },
       onBeforeRag: async () => {
-        ragUsageHandle = await reserveUsageForRequest({
+        ragUsageHandle = await routeRuntime.reserveUsageForRequest({
           request: req,
           userId,
           metric: "RAG_SEARCH",
@@ -295,8 +309,8 @@ export async function POST(req) {
     });
   } catch (error) {
     await Promise.all([
-      releaseUsageSafely(chatUsageHandle, "chat_retrieval_failed"),
-      releaseUsageSafely(ragUsageHandle, "rag_search_failed")
+      releaseUsageSafely(chatUsageHandle, "chat_retrieval_failed", routeRuntime.releaseUsageForRequest),
+      releaseUsageSafely(ragUsageHandle, "rag_search_failed", routeRuntime.releaseUsageForRequest)
     ]);
     if (String(error?.code || "").startsWith("USAGE_")) {
       return usageErrorResponse(error, ragUsageHandle ? "chat.reply" : "chat.rag_search");
@@ -322,12 +336,12 @@ export async function POST(req) {
   if (ragUsageHandle) {
     try {
       if (retrievalMeta.ragSearchFailed) {
-        await releaseUsageForRequest(ragUsageHandle, { reason: "rag_search_failed" });
+        await routeRuntime.releaseUsageForRequest(ragUsageHandle, { reason: "rag_search_failed" });
       } else {
-        await commitUsageForRequest(ragUsageHandle);
+        await routeRuntime.commitUsageForRequest(ragUsageHandle);
       }
     } catch (error) {
-      await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed");
+      await releaseUsageSafely(chatUsageHandle, "rag_usage_settlement_failed", routeRuntime.releaseUsageForRequest);
       logChatError("usage.rag_settlement.error", { error: error?.message || String(error) });
       return usageErrorResponse(error, "chat.rag_search");
     }
@@ -363,7 +377,7 @@ export async function POST(req) {
         }
       : {})
   };
-  return handleMainChatResponse({
+  return routeRuntime.handleMainChatResponse({
     req,
     wantStream,
     persist,
@@ -397,9 +411,9 @@ export async function POST(req) {
     makeError: makeChatError,
     logInfo: logChatInfo,
     logError: logChatError,
-    logEvent,
-    onUsageCommit: () => commitUsageForRequest(chatUsageHandle),
-    onUsageRelease: (reason) => releaseUsageForRequest(chatUsageHandle, { reason })
+    logEvent: routeRuntime.logEvent,
+    onUsageCommit: () => routeRuntime.commitUsageForRequest(chatUsageHandle),
+    onUsageRelease: (reason) => routeRuntime.releaseUsageForRequest(chatUsageHandle, { reason })
   });
 }
 export async function GET(req) {
