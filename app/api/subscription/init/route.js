@@ -16,13 +16,10 @@ import { logPaymentEvent } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
 import {
   getRoleMonthlyAmount,
-  getPlanDefinitionId,
   getRolePlanDescription,
-  getRolePlanKey,
-  normalizeSubscriptionRole
+  resolveRoleBoundSubscriptionPlan
 } from "@/lib/subscriptionPlans";
 
-const PLAN_MAX_LEN = 80;
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
   Pragma: "no-cache",
@@ -96,15 +93,6 @@ async function requireUser(request) {
   } catch {
     return null;
   }
-}
-
-function normalizePlan(value, fallbackPlan) {
-  const raw = typeof value === "string" ? value.trim() : "";
-  const fallback = String(
-    fallbackPlan || process.env.SUBSCRIPTION_DEFAULT_PLAN || "monthly"
-  ).trim();
-  const plan = raw || fallback || "monthly";
-  return plan.length > PLAN_MAX_LEN ? plan.slice(0, PLAN_MAX_LEN) : plan;
 }
 
 function normalizeCurrency(value) {
@@ -184,9 +172,11 @@ export async function POST(request) {
     return errorJson("api.subscription.user_not_found", 404, locale);
   }
 
-  const planRole = normalizeSubscriptionRole(user.role);
-  const plan = normalizePlan(body?.plan, getRolePlanKey(planRole));
-  const planDefinitionId = getPlanDefinitionId(plan, planRole);
+  const roleBoundPlan = resolveRoleBoundSubscriptionPlan(user.role, body?.plan);
+  if (!roleBoundPlan) {
+    return errorJson("api.subscription.plan_not_allowed", 400, locale);
+  }
+  const { planRole, plan, planDefinitionId } = roleBoundPlan;
   const amount = getRoleMonthlyAmount(planRole).toFixed(2);
   const currency = normalizeCurrency(process.env.SUBSCRIPTION_CURRENCY || "EUR");
   const recurringEnabled = isRecurringBillingEnabled();

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+import { resolveRoleBoundSubscriptionPlan } from "../../lib/subscriptionPlans.js";
 import { createUsageSnapshotService } from "../../lib/usage/snapshot.js";
 import { getUsagePeriodRange } from "../../lib/usage/periods.js";
 
@@ -96,6 +97,66 @@ test("usage snapshot merges plan limits, current buckets, and actual storage", a
   assert.equal(byMetric.STORAGE_BYTES.used, "75");
   assert.equal(byMetric.STORAGE_BYTES.state, "notice");
   assert.equal(byMetric.STORAGE_BYTES.resetAt, null);
+});
+
+test("usage snapshots expose the same canonical package stored for every role", async () => {
+  for (const role of ["CLIENT", "SOCIAL_WORKER", "SERVICE_PROVIDER"]) {
+    const binding = resolveRoleBoundSubscriptionPlan(role);
+    const planDefinition = {
+      id: binding.planDefinitionId,
+      key: binding.plan,
+      name: binding.plan,
+      price: "1.00",
+      currency: "EUR",
+      version: 1,
+      entitlements: []
+    };
+    const subscription = {
+      id: `subscription_${role}`,
+      userId: `user_${role}`,
+      status: "ACTIVE",
+      plan: binding.plan,
+      planDefinitionId: binding.planDefinitionId,
+      validUntil: new Date("2026-08-01T00:00:00.000Z"),
+      nextBilling: new Date("2026-08-01T00:00:00.000Z"),
+      planDefinition
+    };
+    const db = {
+      user: {
+        async findUnique() {
+          return { id: `user_${role}`, role, isAdmin: false };
+        }
+      },
+      subscription: {
+        async findFirst() {
+          return subscription;
+        }
+      },
+      userEntitlementOverride: {
+        async findMany() {
+          return [];
+        }
+      },
+      usageBucket: {
+        async findMany() {
+          return [];
+        }
+      },
+      planDefinition: {
+        async findFirst() {
+          assert.fail("matching canonical plan relation must not fall back by another key");
+        }
+      }
+    };
+    const service = createUsageSnapshotService({
+      prismaClient: db,
+      storageUsageResolver: async () => ({ totalBytes: 0 })
+    });
+    const result = await service.getUserSnapshot(`user_${role}`, { now });
+
+    assert.equal(result.plan.id, binding.planDefinitionId);
+    assert.equal(result.plan.key, binding.plan);
+  }
 });
 
 test("free plan snapshot has no AI usage metrics", async () => {

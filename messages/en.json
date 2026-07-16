@@ -3154,6 +3154,7 @@
       "webhook_invalid_payload": "Webhook payload is invalid.",
       "webhook_process_failed": "Could not process payment webhook.",
       "direct_activation_disabled": "Direct activation is disabled. Start checkout first.",
+      "plan_not_allowed": "The selected subscription plan does not match your account role.",
       "checkout_terms_required": "Please agree to the terms before starting payment."
     },
     "invites": {
