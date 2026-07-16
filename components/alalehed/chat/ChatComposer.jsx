@@ -178,18 +178,11 @@ export default function ChatComposer({
   isHelpMatchRoom = false,
   sendToAssistant = false,
   setSendToAssistant,
-  aiNote = "",
-  spatialEntry = false,
-  conversationStarted = false
+  aiNote = ""
 }) {
   const [draft, setDraft] = useState("");
   const [composerExpanded, setComposerExpanded] = useState(false);
   const [toolsOpen, setToolsOpen] = useState(false);
-  /* Ruumilise sisenemise (tellija 12.07) olek: /vestlus algab KAHE
-     ikooniga (Räägi + Kirjuta). "Kirjuta" avab kirjutusrežiimi;
-     "Räägi" käivitab dikteerimise; stop → tekst tekib joonele. */
-  const [writeModeActive, setWriteModeActive] = useState(false);
-  const [recSeconds, setRecSeconds] = useState(0);
   const [privacyPrompt, setPrivacyPrompt] = useState(null);
   const [toolsMenuPosition, setToolsMenuPosition] = useState(null);
   const submitInFlightRef = useRef(false);
@@ -476,155 +469,6 @@ export default function ChatComposer({
     };
   }, [inputRef, onDraftStateChange]);
   const hasInput = Boolean(draft.trim());
-  /* Ruumilise sisenemise olekumasin (ainult spatialEntry korral):
-       idle      = kaks ikooni (Räägi + Kirjuta), sisendriba peidus
-       recording = "Salvestan…" + Stopp
-       write     = kuldne sisendtriip nähtav
-     Kirjutusrežiim on aktiivne, kui kasutaja on selle avanud, tal on
-     mustand, sisend on fookuses või käib genereerimine. */
-  const composerBusy = isGenerating || isStreamingAny;
-  /* Kaheikooniline VALIK (idle) AINULT värskes vestluses. Kui vestlus on
-     juba alanud (conversationStarted), jääb sisendtriip püsivalt — kahe
-     ikooni juurde EI naaseta (tellija 12.07). NB: EI sõltu inputFocused
-     prop'ist — see uueneb vanemas viivitusega. */
-  const entryState = !spatialEntry
-    ? "write"
-    : recording
-      ? "recording"
-      : writeModeActive || hasInput || composerBusy || conversationStarted
-        ? "write"
-        : "idle";
-  useEffect(() => {
-    if (!recording) {
-      setRecSeconds(0);
-      return undefined;
-    }
-    const id = window.setInterval(() => setRecSeconds(s => s + 1), 1000);
-    return () => window.clearInterval(id);
-  }, [recording]);
-  const enterWriteMode = useCallback(() => {
-    setWriteModeActive(true);
-  }, []);
-  /* Fookus kirjutusrežiimi lülitudes — useEffect (mitte rAF), et sisend
-     oleks juba renderdatud/nähtav ja fookus töötaks ka siis, kui brauser
-     ei joonista kaadreid. Ainult "Kirjuta"-kaudsel avamisel (writeModeActive),
-     mitte igal fookusel. */
-  const writeModeFocusPendingRef = useRef(false);
-  useEffect(() => {
-    if (writeModeActive) {
-      if (!writeModeFocusPendingRef.current) {
-        writeModeFocusPendingRef.current = true;
-        const node = inputRef?.current;
-        if (node && document.activeElement !== node) {
-          try {
-            node.focus({ preventScroll: true });
-          } catch {
-            node.focus?.();
-          }
-        }
-      }
-    } else {
-      writeModeFocusPendingRef.current = false;
-    }
-  }, [writeModeActive, inputRef]);
-  /* Suur kohandatud kursor (tellija 12.07: "vilkuv kriipsuke pidi palju
-     suurem olema"). CSS ei luba caret'i laiust muuta → peidame natiivse
-     kursori (#chat-input caret-color: transparent) ja joonistame paksu
-     kuldkriipsu, mis järgib teksti. Asukoht mõõdetakse peegel-diviga
-     (sama font/polster/laius kui textareal). Ainult spatialEntry korral. */
-  const fatCaretRef = useRef(null);
-  useEffect(() => {
-    if (!spatialEntry || typeof document === "undefined") return undefined;
-    const ta = inputRef?.current;
-    const caret = fatCaretRef.current;
-    if (!ta || !caret) return undefined;
-    const mirror = document.createElement("div");
-    mirror.setAttribute("aria-hidden", "true");
-    Object.assign(mirror.style, {
-      position: "absolute",
-      top: "0",
-      left: "-9999px",
-      visibility: "hidden",
-      whiteSpace: "pre-wrap",
-      overflowWrap: "break-word",
-      wordWrap: "break-word"
-    });
-    document.body.appendChild(mirror);
-    const COPY = [
-      "fontFamily", "fontSize", "fontWeight", "fontStyle", "letterSpacing",
-      "textTransform", "wordSpacing", "textIndent", "lineHeight",
-      "paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "boxSizing"
-    ];
-    const measure = () => {
-      if (ta.clientWidth <= 0) return; // peidetud (idle) — mõõtmine mõttetu
-      const cs = window.getComputedStyle(ta);
-      COPY.forEach(p => { mirror.style[p] = cs[p]; });
-      mirror.style.width = `${ta.clientWidth}px`;
-      const pos = typeof ta.selectionStart === "number" ? ta.selectionStart : ta.value.length;
-      mirror.textContent = ta.value.substring(0, pos);
-      const marker = document.createElement("span");
-      marker.textContent = "​";
-      mirror.appendChild(marker);
-      const fs = parseFloat(cs.fontSize) || 20;
-      const lh = parseFloat(cs.lineHeight) || fs * 1.4;
-      /* Kursori kõrgus ~teksti kõrgus (mitte täis reakõrgus), et poleks
-         "liiga suur" (tellija 12.07); tsentreeri reale. */
-      const ch = Math.round(fs * 1.15);
-      const x = marker.offsetLeft - ta.scrollLeft;
-      const y = marker.offsetTop - ta.scrollTop + Math.max(0, (lh - ch) / 2);
-      caret.style.height = `${ch}px`;
-      caret.style.transform = `translate(${x}px, ${y}px)`;
-      // taaskäivita vilkumine, et kursor oleks liikudes/kirjutades kohe täis
-      caret.style.animation = "none";
-      void caret.offsetWidth;
-      caret.style.animation = "";
-    };
-    // Otsekutse (mitte rAF) — töökindel ka siis, kui brauser ei joonista
-    const update = () => { measure(); };
-    const show = () => { caret.dataset.on = "true"; measure(); };
-    const hide = () => { caret.dataset.on = "false"; };
-    ta.addEventListener("focus", show);
-    ta.addEventListener("blur", hide);
-    ta.addEventListener("input", update);
-    ta.addEventListener("keyup", update);
-    ta.addEventListener("click", update);
-    ta.addEventListener("scroll", update);
-    ta.addEventListener("select", update);
-    window.addEventListener("resize", update);
-    if (document.activeElement === ta) show();
-    return () => {
-      ta.removeEventListener("focus", show);
-      ta.removeEventListener("blur", hide);
-      ta.removeEventListener("input", update);
-      ta.removeEventListener("keyup", update);
-      ta.removeEventListener("click", update);
-      ta.removeEventListener("scroll", update);
-      ta.removeEventListener("select", update);
-      window.removeEventListener("resize", update);
-      mirror.remove();
-    };
-  }, [spatialEntry, inputRef]);
-  const handleVoiceEntry = useCallback(event => {
-    /* Hoia kirjutusrežiim aktiivsena, et pärast dikteerimise lõppu
-       tekiks tekst joonele (mitte ei hüppaks tagasi kahe ikooni juurde). */
-    setWriteModeActive(true);
-    handleMic?.(event);
-  }, [handleMic]);
-  const handleComposerBlur = useCallback(event => {
-    onBlurInput?.(event);
-    if (spatialEntry && !draft.trim() && !recording) {
-      setWriteModeActive(false);
-    }
-  }, [onBlurInput, spatialEntry, draft, recording]);
-  const readEntryLabel = (key, fallback) => {
-    const value = typeof t === "function" ? t(key) : "";
-    return value && value !== key ? value : fallback;
-  };
-  const voiceEntryLabel = readEntryLabel("chat.entry.voice", locale === "en" ? "Speak" : locale === "ru" ? "Голос" : "Räägi");
-  const writeEntryLabel = readEntryLabel("chat.entry.write", locale === "en" ? "Write" : locale === "ru" ? "Написать" : "Kirjuta");
-  const recordingLabel = readEntryLabel("chat.mic.recording", locale === "en" ? "Recording…" : locale === "ru" ? "Запись…" : "Salvestan…");
-  const stopEntryLabel = readEntryLabel("chat.mic.stop", locale === "en" ? "Stop" : locale === "ru" ? "Стоп" : "Stopp");
-  const recTimeLabel = `${Math.floor(recSeconds / 60)}:${String(recSeconds % 60).padStart(2, "0")}`;
   const closeToolsMenu = useCallback(() => {
     setToolsOpen(false);
   }, []);
@@ -907,50 +751,14 @@ export default function ChatComposer({
       <div>
         <textarea id="chat-input" ref={inputRef} value={draft} placeholder={placeholderText ?? ""} onChange={e => setDraft(e.target.value)} onKeyDown={handleKeyDown} onFocus={e => {
         onFocusInput?.(e);
-      }} onBlur={handleComposerBlur} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
-        {spatialEntry ? <span ref={fatCaretRef} className="conv-fatcaret" aria-hidden="true" data-on="false" /> : null}
+      }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
       </div>
       <div>
         {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : t("chat.mic.start")} title={recording ? t("chat.mic.stop") : t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={!voiceEnabled || isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
         {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
-  const spatialEntryNode = spatialEntry ? (
-    <div className="conv-entry" data-entry-state={entryState} aria-hidden={entryState === "write" ? "true" : undefined}>
-      {/* Idle: kaks ikooni — Räägi (dikteerimine) + Kirjuta (kirjutusrežiim) */}
-      <div className="conv-entry-idle">
-        {showDictationButton && voiceEnabled ? (
-          <button type="button" className="conv-entry-btn conv-entry-voice" onClick={handleVoiceEntry} aria-label={voiceEntryLabel} title={voiceEntryLabel}>
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="9" y="3" width="6" height="11" rx="3" />
-              <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" />
-            </svg>
-            <span>{voiceEntryLabel}</span>
-          </button>
-        ) : null}
-        <button type="button" className="conv-entry-btn conv-entry-write" onClick={enterWriteMode} aria-label={writeEntryLabel} title={writeEntryLabel}>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 20h16" />
-            <path d="M14.5 4.5a2.12 2.12 0 0 1 3 3L8 17l-4 1 1-4Z" />
-          </svg>
-          <span>{writeEntryLabel}</span>
-        </button>
-      </div>
-      {/* Recording: "Salvestan…" + aeg + Stopp */}
-      <div className="conv-entry-recording" role="status" aria-live="polite">
-        <span className="conv-rec-dot" aria-hidden="true" />
-        <span className="conv-rec-label">{recordingLabel}</span>
-        <span className="conv-rec-time">{recTimeLabel}</span>
-        <button type="button" className="conv-entry-stop" onClick={handleVoiceEntry} aria-label={stopEntryLabel} title={stopEntryLabel}>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="7" y="7" width="10" height="10" rx="2.5" />
-          </svg>
-          <span>{stopEntryLabel}</span>
-        </button>
-      </div>
-    </div>
-  ) : null;
-  return <form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off" data-entry={spatialEntry ? entryState : undefined}>
+  return <form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
       {showSideControls ? <div>
         {hideTools ? null : <>
             <button ref={toolsButtonRef} type="button" aria-label={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.aria")} title={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.tooltip")} aria-haspopup={modeToggleShowsActiveState ? undefined : "menu"} aria-expanded={modeToggleShowsActiveState ? undefined : toolsOpen ? "true" : "false"} onMouseDown={preserveDesktopInputFocusOnMouseDown} onClick={handleToolsButtonClick}>
@@ -988,6 +796,5 @@ export default function ChatComposer({
             <span aria-hidden="true">{displayModeLabel}</span>
           </div>
         </div> : null}
-      {spatialEntryNode}
     </form>;
 }

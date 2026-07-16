@@ -7,7 +7,7 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole"
 import { useI18n } from "@/components/i18n/I18nProvider"
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import Button from "@/components/ui/Button"
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay"
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Input from "@/components/ui/Input"
@@ -472,7 +472,9 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
     handleUploadFileSelection(nextFile)
   }, [handleUploadFileSelection])
 
-  const frameworkInfoPanel = (
+  /* Memoiseeritud, sest see läheb paneeli ⓘ-le usePanelInfoSlot'i kaudu:
+     uus viide igal renderdusel paneks registreerimis-effecti tsüklisse. */
+  const frameworkInfoPanel = useMemo(() => (
     <div>
       <div>
         <h3>{t("documents.framework_acceptance.manage_title")}</h3>
@@ -506,7 +508,18 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
         ) : null}
       </div>
     </div>
-  )
+  ), [t, frameworkStatus.loading, hasFrameworkAcceptance, frameworkAcceptedAtLabel, frameworkAcceptance, frameworkPageHref])
+
+  /* Paneeli ainus ⓘ (PanelFrame, × kõrval) saab siit dokumendilehe sisu +
+     elava raamistiku-lisapaneeli. Hook peab olema ENNE isClientRole-i
+     varajast returni. */
+  const infoDetailExtras = useMemo(() => ({ 3: frameworkInfoPanel }), [frameworkInfoPanel])
+  usePanelInfoSlot({
+    infoId: "documents",
+    title: t("documents.page_title"),
+    detailExtras: infoDetailExtras,
+    active: !embedded
+  })
 
   if (isClientRole) {
     if (embedded) {
@@ -537,13 +550,8 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
               onBack={handleBack}
               backAriaLabel={t("buttons.back")}
               anchorBack={false}
-              rightSlot={
-                <DashboardInfoTrigger
-                  infoId="documents"
-                  title={t("documents.page_title")}
-                  detailExtras={{ 3: frameworkInfoPanel }}
-                />
-              }
+              /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
+                 usePanelInfoSlot'iga ülalpool. */
             >
               {t("documents.page_title")}
             </SubpageHeader>

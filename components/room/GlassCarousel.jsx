@@ -14,6 +14,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import IconButton from "@/components/glass/IconButton";
 import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 
 const wrapPos = (i, active, n) => {
   let pos = (((i - active) % n) + n) % n;
@@ -454,50 +455,53 @@ export default function GlassCarousel({
       </IconButton>
 
       {showDots ? (
-        <div className="gc-shortcuts" role="group" aria-label={t("room.menu_label")}>
-          {backItem ? (
-            <button
-              type="button"
-              className="gc-shortcut gc-shortcut--back"
-              data-on="0"
-              aria-label={backItem.label}
-              onClick={() => handleShortcut(backItem)}
-            >
-              <span className="gc-shortcut-icon" aria-hidden="true">
-                {backItem.icon}
-              </span>
-              <span className="gc-shortcut-tooltip" aria-hidden="true">
-                {backItem.label}
-              </span>
-            </button>
-          ) : null}
-          {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
-          <div className="gc-shortcut-track">
-            {shortcutEntries.map(({ item, index }) => {
-              const isActive = index === active;
-              return (
-                <button
-                  key={item.key}
-                  type="button"
-                  className="gc-shortcut"
-                  data-on={isActive ? "1" : "0"}
-                  aria-label={item.label}
-                  aria-current={isActive ? "true" : undefined}
-                  onClick={() => handleShortcut(item)}
-                >
-                  <span className="gc-shortcut-icon" aria-hidden="true">
-                    {item.icon || <span className="gc-shortcut-mark" />}
-                  </span>
-                  <span className="gc-shortcut-text" aria-hidden="true">
-                    {item.label}
-                  </span>
-                  <span className="gc-shortcut-tooltip" aria-hidden="true">
-                    {item.label}
-                  </span>
-                </button>
-              );
-            })}
+        <div className="gc-shortcuts">
+          <div className="gc-shortcut-menu" role="group" aria-label={t("room.menu_label")}>
+            {backItem ? (
+              <button
+                type="button"
+                className="gc-shortcut gc-shortcut--back"
+                data-on="0"
+                aria-label={backItem.label}
+                onClick={() => handleShortcut(backItem)}
+              >
+                <span className="gc-shortcut-icon" aria-hidden="true">
+                  {backItem.icon}
+                </span>
+                <span className="gc-shortcut-tooltip" aria-hidden="true">
+                  {backItem.label}
+                </span>
+              </button>
+            ) : null}
+            {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
+            <div className="gc-shortcut-track">
+              {shortcutEntries.map(({ item, index }) => {
+                const isActive = index === active;
+                return (
+                  <button
+                    key={item.key}
+                    type="button"
+                    className="gc-shortcut"
+                    data-on={isActive ? "1" : "0"}
+                    aria-label={item.label}
+                    aria-current={isActive ? "true" : undefined}
+                    onClick={() => handleShortcut(item)}
+                  >
+                    <span className="gc-shortcut-icon" aria-hidden="true">
+                      {item.icon || <span className="gc-shortcut-mark" />}
+                    </span>
+                    <span className="gc-shortcut-text" aria-hidden="true">
+                      {item.label}
+                    </span>
+                    <span className="gc-shortcut-tooltip" aria-hidden="true">
+                      {item.label}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
+          <RoleViewSwitcher placement="cards" />
         </div>
       ) : null}
       <p className="sr-only" aria-live="polite">

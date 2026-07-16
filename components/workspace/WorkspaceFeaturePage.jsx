@@ -11,7 +11,7 @@ import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
@@ -4813,11 +4813,17 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
     : clientAuthoringRequested
       ? "CLIENT"
       : normalizeWorkspaceRole(session?.user?.role);
+  /* Teenusekaart EI ole siin: tal on oma lüliti kaardi juhtribas (AdminRoleSelector
+     ~3126) — siin lisamine annaks kaks lülitit samasse nurka. */
   const showAdminRoleSelector = !embedded && isAdmin && (
-    featureKey === "pre_inquiries"
+    featureKey === "pre_inquiries" || featureKey === "service_profile"
   );
   const isServiceMap = featureKey === "service_map";
   const infoId = getWorkspaceFeatureInfoId(featureKey, activeWorkspaceRole);
+  /* Anna paneeli ainsale ⓘ-le ROLLIPÕHINE sisu (pöördujal "pre_inquiry",
+     spetsialistil/osutajal "intake"). Manustatud režiimis on ⓘ omanik
+     Töölaud (WorkspacePanel), seega siis ei registreeri. */
+  usePanelInfoSlot({ infoId, title, active: !embedded });
 
   const content = (
     <>
@@ -4838,14 +4844,9 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
               showBack={embedded || !isServiceMap}
               holdPressedVisualDisabled
               anchorBack={!embedded && isServiceMap}
-              rightSlot={
-                !embedded && isServiceMap ? null : (
-                  <DashboardInfoTrigger
-                    infoId={infoId}
-                    title={title}
-                  />
-                )
-              }
+              /* ⓘ EI ole enam siin: platvormi ainus lehe-ⓘ elab paneeli
+                 nurgas × kõrval (PanelFrame). Rollipõhise sisu (pre_inquiry
+                 vs intake) annab talle usePanelInfoSlot ülalpool. */
             >
               {title}
             </SubpageHeader>

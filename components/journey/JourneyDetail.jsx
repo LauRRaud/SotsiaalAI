@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
@@ -705,13 +705,13 @@ export default function JourneyDetail({ journeyId }) {
     pushWithTransition(router, localizePath("/teekond", locale));
   }, [locale, router]);
 
-  const infoSlot = (
-    <DashboardInfoTrigger
-      infoId="journey"
-      title={t("journey.title", "Teekond")}
-      label={t("journey.info.label", "Open journey info")}
-    />
-  );
+  /* /teekond/[id] EI ole PanelFrame'i marsruudikaardis — ilma selle
+     registreerimiseta jääks leht hoopis ilma ⓘ-ta. */
+  usePanelInfoSlot({
+    infoId: "journey",
+    title: t("journey.title", "Teekond"),
+    label: t("journey.info.label", "Open journey info")
+  });
 
   const loadJourney = useCallback(async () => {
     if (status !== "authenticated" || !journeyId) return;
@@ -948,7 +948,6 @@ export default function JourneyDetail({ journeyId }) {
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
               holdPressedVisualDisabled
-              rightSlot={infoSlot}
             >
               {t("journey.title", "Teekond")}
             </SubpageHeader>
@@ -968,7 +967,6 @@ export default function JourneyDetail({ journeyId }) {
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
               holdPressedVisualDisabled
-              rightSlot={infoSlot}
             >
               {t("journey.title", "Teekond")}
             </SubpageHeader>
@@ -998,7 +996,6 @@ export default function JourneyDetail({ journeyId }) {
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
               holdPressedVisualDisabled
-              rightSlot={infoSlot}
             >
               {t("journey.title", "Teekond")}
             </SubpageHeader>
@@ -1025,7 +1022,6 @@ export default function JourneyDetail({ journeyId }) {
             onBack={handleBack}
             backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
             holdPressedVisualDisabled
-            rightSlot={infoSlot}
           >
             {t("journey.title", "Teekond")}
           </SubpageHeader>

@@ -13,7 +13,7 @@ import ConversationView from "@/components/alalehed/chat/ConversationView"
 import { detectMobileViewport } from "@/components/alalehed/chat/chatLayoutVars"
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
 import Button from "@/components/ui/Button"
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay"
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
@@ -104,6 +104,12 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const { prefs } = useAccessibility()
   const { effectiveRole, isAdmin, refresh: refreshEffectiveRole } = useEffectiveRole()
   const isClientRole = effectiveRole === "CLIENT"
+  /* Paneeli ainus ⓘ (PanelFrame, × kõrval). Manustatuna on ⓘ omanik Töölaud. */
+  usePanelInfoSlot({
+    infoId: "document_drafting",
+    title: t("chat.tools.agent_mode"),
+    active: !embedded
+  })
   const documentsHref = localizePath("/documents", locale)
   const chatHref = localizePath("/vestlus", locale)
   const backHref = chatHref
@@ -1622,12 +1628,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
               onBack={handleBack}
               backAriaLabel={t("documents.agent_workspace.back_to_chat")}
               anchorBack={false}
-              rightSlot={
-                <DashboardInfoTrigger
-                  infoId="document_drafting"
-                  title={t("chat.tools.agent_mode")}
-                />
-              }
+              /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
+                 usePanelInfoSlot ülalpool. */
             >
               {t("chat.tools.agent_mode")}
             </SubpageHeader>

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { DashboardInfoTrigger, dashboardInfoTriggerCornerClassName } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import DocumentsPage from "@/components/documents/DocumentsPage";
 import MaterialsPage from "@/components/materials/MaterialsPage";
@@ -485,9 +485,32 @@ export default function WorkspacePanel({
   const embeddedPanelTitle = embeddedPanelMeta?.title || "";
   const embeddedPanelInfoId = embeddedPanelMeta?.infoId || "workspace";
 
-  /* S/P/T vaatelülitid elavad pealkirjareal (mitte body-portalis —
-     stiilimata portal jättis lehele nähtamatuid artefakte) */
-  const showRoleMenu = isAdmin && activeEmbeddedFeature !== "journey";
+  /* Paneeli ainsale ⓘ-le (PanelFrame, × kõrval) õige sisu: avatud kuulutuste-
+     paneel või manustatud moodul. Paljas Töölaud EI registreeri — siis kehtib
+     PanelFrame'i vaikeväärtus "workspace". Kovisioonil ⓘ-d ei ole. */
+  const activeInfoSlot = embeddedPanelNode
+    ? {
+        infoId: embeddedPanelInfoId,
+        title: embeddedPanelTitle || text(t, "chat.workspace.title", "Töölaud")
+      }
+    : activeEmbeddedFeature && activeEmbeddedFeature !== "kovision"
+    ? {
+        infoId: activeEmbeddedMeta?.infoId || "workspace",
+        title: activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Töölaud")
+      }
+    : null;
+  usePanelInfoSlot({
+    infoId: activeInfoSlot?.infoId,
+    title: activeInfoSlot?.title,
+    active: Boolean(activeInfoSlot)
+  });
+
+  /* S/P/T vaatelülitid: paigutuse annab .admin-role-view-cycle (workspace.css)
+     — ekraani alumine parem nurk, sama koht mis kõigil rollilehtedel. Element
+     portaalitakse <body>'sse, seega paneeli `data-visible="false"` display:none
+     EI peida teda enam: väravame `visible`-lipuga käsitsi, et lüliti ei vilguks
+     nurgas ajal, mil töölaud alles morfib kohale. */
+  const showRoleMenu = isAdmin && visible && activeEmbeddedFeature !== "journey";
   const roleMenu = showRoleMenu ? (
     <AdminRoleViewCycleButton
       t={t}
@@ -517,13 +540,8 @@ export default function WorkspacePanel({
             anchorBack={false}
             holdPressedVisualDisabled
             titleId={activeTitleId}
-            rightSlot={
-              <DashboardInfoTrigger
-                infoId={embeddedPanelInfoId}
-                title={embeddedPanelTitle || text(t, "chat.workspace.title", "Toolaud")}
-                className={dashboardInfoTriggerCornerClassName}
-              />
-            }
+            /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
+               usePanelInfoSlot'iga ülalpool. */
           >
             {embeddedPanelTitle || text(t, "chat.workspace.title", "Toolaud")}
           </SubpageHeader>
@@ -539,15 +557,8 @@ export default function WorkspacePanel({
             anchorBack={false}
             holdPressedVisualDisabled
             titleId={activeTitleId}
-            rightSlot={
-              activeEmbeddedFeature === "kovision" ? null : (
-                <DashboardInfoTrigger
-                  infoId={activeEmbeddedMeta?.infoId || "workspace"}
-                  title={activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Toolaud")}
-                  className={dashboardInfoTriggerCornerClassName}
-                />
-              )
-            }
+            /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
+               usePanelInfoSlot'iga ülalpool. */
           >
             {activeEmbeddedMeta?.title || text(t, "chat.workspace.title", "Toolaud")}
           </SubpageHeader>
@@ -604,7 +615,7 @@ export default function WorkspacePanel({
         <>
       {/* Juurvaade: pealkirja EI kuvata (kastidele rohkem ruumi, tellija
           06.07 öö) — sr-only h1 jääb ariale; ⓘ elab akna nurgas
-          (PanelFrame); admini S/P/T lülitid paneeli ülanurgas paremal */}
+          (PanelFrame); admini S/P/T lülitid paneeli all vasakul. */}
       <h1 id="chat-workspace-title" className="sr-only">
         {text(t, "chat.workspace.title", "Töölaud")}
       </h1>

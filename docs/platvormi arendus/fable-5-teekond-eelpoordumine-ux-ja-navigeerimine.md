@@ -455,3 +455,328 @@ Küsimus: kui homme on vaja leke sulgeda ühe väikese muudatusega, siis kus tä
 **Säilib täielikult:** side ise (`sourceJourneyId` → „Seotud eelpöördumised" + `openInquiry` tagasilink), tavaline vormirada, vestlusassistent, adressaadivalik ja kättesaadavusmärgid, privaatsuse 409-kontroll, salvestamine/saatmine/allalaadimine/koopia, U3 tagasivõtt ja parandus, vastuvõtja töövoog. Kärbe on ühesuunaline ja tagasipööratav: kui ptk 13.5 fail-closed leping valmis saab, taastuvad eeltäited võti võtme haaval koos ptk 13.6 testidega.
 
 *13.8 kontrollitud `main` @ 7ae76d5b vastu 15.07.2026 (grep-kasutuskohad, prefill-tagastusobjekt, UI-fallback'id, skeem 1864–1889, testifailide olemasolu). See on piiritõmbe analüüs, mitte teostus — koodi ei muudetud.*
+
+## 14. Teekonna puuduv funktsionaalsus ja tulevikumudel
+
+PEATÜKI STATUS: COMPLETE (15.07.2026 öö)
+
+Skoop: mida peab Teekond kasutajale terviklikult võimaldama ja mis on aktiivses `main`-is puudu — sh võimalused, mida senised dokumendid ei nimeta. UX-, kerimis- ja jagamislekke analüüsi (ptk 1–13) EI korrata; ptk 13.8 jääb ajutise fail-closed piiri kanooniliseks lähtekohaks. Sihitud kontrollid selle peatüki tarbeks: Journey mudel + enum'id (schema.prisma:1214–1239, 294–302), API-pind (`app/api/journeys` — ainult GET/POST/PATCH + 2 draft-marsruuti), teenusekiht (lib/journey/service.js), valideerimine (validation.js:135–188), U2 tööjärg (lib/workspaceContinuity.js:105, 228–236), teavituskiht (lib/notifications.js — 0 journey-vastet), vestlustöövoo salvestus (ChatBody.jsx:2132–2145), seotud objektide kirjutajad (grep: `linked*Ids` ainult lugejas JourneyDetail.jsx:414–418), sündmuslogi kirjutajad (draft.js:254; JourneyDashboard.jsx:59–68), kustutusrajad (grep: `journey.delete` — 0 vastet tootekoodis) ja avalik lubadus (messages/et.json:4572 → VoimalusedBody.jsx:31–32).
+
+### 14.1. Teekonna selge tooteroll
+
+**Mis Teekond ON:** kasutaja privaatne, ajas püsiv olukorra-mälu — koht, kus tema elusituatsiooni kirjeldus, senised sammud, seotud materjalid ja järgmised valikud püsivad koos, ning ainus koht, kust ta saab teha kontrollitud, külmutatud väljavõtteid teistele (eelpöördumine, abisoov).
+
+**Mis Teekond EI OLE:** mitte juhtumitoimik (ametlik menetlus ja hindamine elavad STAR2-s — püsiv piir); mitte AI hinnang ega triaaž (püsiv keeld); mitte suhtluskanal (selleks on pöördumised ja ruumid); mitte spetsialisti tööriist inimese KOHTA (vastuvõtja ei näe Teekonda kunagi); mitte kohustuslik eeltingimus teiste funktsioonide kasutamiseks (ruumilise lähtekoha §7.1).
+
+**Lahendatav kasutajaprobleem:** abivajaduse hajusus. Info, tehtud katsed, kontaktid, dokumendid ja vastused on laiali peas, paberites ja postkastis; iga uus pöördumine algab nullist ümberjutustamisest. Teekond kaotab „räägi kõik uuesti" koormuse ja annab pikas protsessis järjepidevuse.
+
+**Erinevus naabritest:** vestlus on *hetkeline mõtestamine* (voolav, konteksti kaotav); eelpöördumine on *ühekordne külmutatud väljavõte adressaadile*; ülesannete loend on *kohustuste haldus ilma loota*; juhtumitoimik on *teise osapoole tööriist inimese kohta*. Teekond on *inimese enda jätkuv seis ja suund* — ainus neist, mille omanik, toimetaja ja jagamisotsustaja on läbivalt kasutaja ise.
+
+**Üks olukord, eesmärk või protsess?** Soovitus: Teekond = **üks elusituatsioon**, mis võib kesta kaua ja sisaldada mitut suunda (praegune `primaryPath` on üks väli — st kood toetab täna üht suunda korraga; mitu aktiivset Teekonda on juba lubatud). Mitu sõltumatut muret = mitu Teekonda; ühe olukorra harud (nt „ema hooldus" sees koduteenus JA toetus) vajavad tulevikus kerget alamstruktuuri (vt 14.4/14.5), mitte eraldi Teekondi.
+
+**Ühe lause lubadus (ettepanek):** „See on sinu privaatne Teekond: sinu olukord, sammud ja järgmised valikud püsivad siin koos, ja midagi ei liigu siit edasi ilma sinu kinnituseta." — sisult sama, mis avalik lubadus /voimalused lehel (et.json:4572), kuid lühem; NB: ptk 14.9 näitab, et praegune teostus seda lubadust veel ei täida.
+
+### 14.2. Praegune funktsionaalne elutsükkel (aktiivse koodi vastu)
+
+| Võime | Seis | Tõend |
+|---|---|---|
+| Loomine | **OLEMAS** | 3 rada: töölauavorm (`POST /api/journeys/draft` heuristika + `POST /api/journeys`), vestlustöövoog (ChatBody.jsx:2132), API. NB: „AI korrastab" on sünkroonne reegel, mitte LLM (lib/journey/draft.js) |
+| Nimetamine ja kokkuvõte | **OLEMAS** | review-ekraani pealkiri+kokkuvõte; heuristiline pealkiri nõrk („hoolduskoormus") |
+| Muutmine | **OSALINE** | detailvaate vorm katab title/summary/primaryPath/domains/missingInfo/suggestedActions; `riskSignals` on UI-s ainult loetav (PATCH lubaks, validation.js:186); context'i muudab ainult jätkumiskontrolli vorm |
+| Salvestamine | **OLEMAS** (automaatsalvestus **PUUDUB**) | eksplitsiitne salvestus töötab; mustand kaob tagasi/F5/Esc-iga (ptk 2 P1-3) |
+| Jätkamine | **OSALINE / EKSITAVALT LUBATUD** | loend + „Jätka viimast" OLEMAS; U2 „Jätka siit" kirje viitab `/teekond?journey=<id>` (workspaceContinuity.js:232), aga redirect kaotab parameetri (app/teekond/page.jsx:4) ja ükski komponent ei loe seda — süvalink viib loendisse, mitte Teekonda |
+| Järgmised sammud | **EKSITAVALT LUBATUD** | roadmap ei loe päris andmeid (P2-1), review-suunanupud on vormiväli (P2-2); suggestedActions on pelgalt tekstiread |
+| Eelpöördumise alustamine | **OLEMAS** (leping vigane) | share-panel + prefill töötavad; sisu liigub valikust sõltumata (ptk 13; ajutine piir 13.8) |
+| Jagamine (Teekond ise) | **PUUDUB** (teadlikult) | `JourneySharingStatus` enum = ainult PRIVATE (schema:300–302); jagatav on ainult väljavõte pöördumise kujul |
+| Hilisem tagasivõtmine | **OSALINE** | pöördumise U3 recall/parandus OLEMAS (pöördumise poolel); Teekonna-poolset „mida ma jaganud olen" koondvaadet pole (on üldine „Minu jagamised") |
+| Lõpetamine | **PUUDUB** | pole lõpetatud-olekut, lõpetamispõhjust ega kasutaja hinnangut tulemusele; ainus väljund on ARCHIVED ilma põhjuseta |
+| Taasavamine | **OSALINE** | PATCH lubab status→ACTIVE (validation.js:172–173), aga UI-s taasavamise nuppu pole (JourneyCard/detail pakuvad ainult „Arhiveeri") |
+| Arhiveerimine | **OLEMAS** | PATCH status=ARCHIVED + UI nupud mõlemas vaates |
+| Kustutamine | **PUUDUB** | ei API-t, ei UI-d (`journey.delete` — 0 vastet); ainus rada on konto kustutamise kaskaad (schema onDelete: Cascade) |
+| Ajalugu / versioonid | **EKSITAVALT LUBATUD** | „Tehtud sammud" paneel kuvab activityLog'i, kuid kirjutajaid on ainult loomishetkel (draft.js:254; JourneyDashboard.jsx:59–68) — logi ei kasva kunagi; versioone ei ole (ainult updatedAt) |
+| Seotud objektid (dokumendid, kontaktid, ruumid, abisoovid) | **EKSITAVALT LUBATUD** | „Seotud asjad" paneel loeb `context.linked*Ids` võtmeid, mida ükski koodirada ei kirjuta (ainus vaste = lugeja ise, JourneyDetail.jsx:414–418); ainus PÄRIS seos on `PreInquiry.sourceJourneyId` |
+| Vestlusega sidumine | **OSALINE** | andmemudel valmis (`conversationId` + ensureOwnedConversation, service.js:17–52), aga ükski voog ei saada seda — ka vestlustöövoost salvestatud Teekond jääb vestlusega sidumata (ChatBody.jsx:2132–2145 ei pane conversationId kaasa) |
+| Teavitused / „mis muutus" | **PUUDUB** | lib/notifications.js ei tunne ühtegi journey-sündmust; Teekond ei tekita ega saa teavitusi (U2 tööjärje-kirje on ainus, ja selle link on katki) |
+
+### 14.3. Kasutaja tegelikud tööd (kus Teekond aitab, kus katkeb)
+
+1. **„Ma ei tea, kuhu pöörduda."** Aitab: alustusekraan + heuristiline korrastus + teenusekaardi/eelpöördumise CTA-d. Katkeb: „järgmine samm" on kolme vastuolulise süsteemi vahel (P2-1/P2-2); adressaadi leidmise abi elab alles eelpöördumise pinnal, mitte Teekonnal.
+2. **Olukord areneb mitu nädalat.** Aitab: Teekond püsib loendis, „Jätka viimast" olemas. Katkeb: naastes pole „mis vahepeal muutus" vaadet; sündmuslogi ei kasva; U2 süvalink viib valesse kohta; saadetud pöördumise seis ei peegeldu Teekonnale (roadmap valetab).
+3. **Korraga mitu seotud muret.** Aitab: mitu aktiivset Teekonda on lubatud. Katkeb: ühe olukorra sees pole harusid; kaks Teekonda ei tea teineteisest midagi; sama dokument/kontakt ei ole kummagagi seotav (linked*Ids surnud).
+4. **Osa samme ise, osa spetsialistiga.** Aitab: väljavõtte-põhimõte (ainult kinnitatud osa liigub) on disainis olemas. Katkeb: leping ei pea (ptk 13, kuni 13.8 piir kehtib); privaatmärkmete ja jagatava sisu eristust Teekonna sees pole — kõik väljad on ühesuguse staatusega.
+5. **Katkestab ja tuleb hiljem tagasi.** Aitab: salvestatud Teekond püsib. Katkeb: salvestamata mustand kaob jäljetult (P1-3); pooleliolevat eelpöördumist ei saa Teekonnalt jätkata (koostamisseis pole püsiv); „kus ma pooleli jäin" vastust ei anta.
+6. **Pöördumine ei aidanud, vaja uut rada.** Aitab: võib alustada uue pöördumise. Katkeb: tulemust („ei vastatud", „ei sobinud") ei saa kuhugi kirja panna; süsteem ei paku alternatiivi (teenusekaart, abisoov) senise katse KONTEKSTIS; iga uus katse algab taas tühjalt.
+7. **„Mis on vahepeal muutunud?"** Katkeb täielikult: teavitusi journey-sündmustest pole, avamiste/vastuste diff'i pole; ainus signaal on pöördumise staatusesilt teisel lehel.
+8. **Teekond puudutab last/hooldatavat.** Aitab: personContext väli eksisteerib. Katkeb: kolmanda isiku andmed ei ole kuidagi märgistatud ega erikaitstud — runtime-tõend (ptk 13.3) näitas, et just see väli lekkis adressaadile („84-aastane, dementsuse diagnoosiga"); jagamislävel pole kolmanda isiku hoiatust.
+
+### 14.4. Puuduvad põhivõimed (väärtus / risk / etapp)
+
+Väärtus ja risk skaalal K/keskmine/M; etapid: **P0** (= ptk 13.7/13.8), **V1** (enne pilooti), **PILOOT** (piloodi käigus katsetatav), **HILISEM**, **VÄLISTATUD**.
+
+| Võime | Väärtus | Peamine risk | Etapp |
+|---|---|---|---|
+| Automaatsalvestus + taastatav mustand | K (P1-3 andmekao ravim) | serverimustandi privaatsusleping (T4) — algul seadmesisene | **V1** |
+| Tegevuste ajajoon (päris sündmuslogi kirjutajatega) | K (elutsükli selgroog) | ei tohi muutuda jälgimislogiks — ainult kasutaja enda ja tema algatatud sündmused | **V1** |
+| „Mis muutus pärast viimast korda?" | K | ainult loetav diff, mitte push-surve | **PILOOT** (eeldab ajajoont) |
+| Järgmise sammu teadlik valimine (rada päris andmetest, 1 samm = 1 tegevus) | K | soovitus ≠ kohustus; mitte survestada | **V1** |
+| Tähtajad ja meeldetuletused (kasutaja seatud) | keskmine | survestamise oht; U1 opt-in leping | **PILOOT** |
+| Kontaktide/teenuste sidumine (viitena) | keskmine | viide, mitte koopia; kontakti kadumisel SetNull-loogika | **PILOOT** |
+| Dokumentide sidumine (viitena) | K (praegu surnud lubadus) | dokumendi kustutamise käitumine; mitte kopeerida sisu | **V1** (kirjutajad linked*Ids-ile või selle asendus) |
+| Vestluste sidumine (conversationId kasutusele) | keskmine | ainult viide „pärineb vestlusest"; vestluse kustutus → SetNull (skeemis valmis) | **PILOOT** |
+| Eelpöördumiste JA nende tulemuste sidumine | K (kasutuslugu 6) | tulemus on kasutaja OMA hinnang, mitte adressaadi kohustus | **V1** (staatuse peegeldus) + **PILOOT** (tulemuse kirje) |
+| Mitu paralleelset eesmärki/haru ühe Teekonna sees | keskmine | struktuuri ülekaal lihtsuse arvelt; MITTE juhtumiplaani jäljendus | **HILISEM** |
+| Lõpetamise põhjus + kasutaja hinnang tulemusele | keskmine | hinnang on vabatahtlik, mitte skoor | **PILOOT** |
+| Jätkamise soovitus pärast ebaõnnestunud pöördumist | keskmine | soovitus konteksti põhjal, mitte automaatne eskalatsioon | **PILOOT** |
+| Privaatmärkmed (väli, mis EI OLE kunagi jagatav) | keskmine | selgus, et „privaatne on vaikimisi kõik" — märkmete eriklass alles siis, kui jagamine taastub | **PILOOT** |
+| Jagatud väljavõte (külmutatud snapshot) | K | ptk 13.5 leping on eeldus | **V1** (= P0 jätk) |
+| Jagamise manifest + hilisem tagasivõtmine Teekonna vaatest | K | U3 olemas pöördumise poolel; Teekonnale ainult koondvaade viidetega | **PILOOT** |
+| Ajaloo/versioonide vaatamine | M–keskmine | versioonihoidla maksumus; enne piisab sündmuslogist | **HILISEM** |
+| Eksport (tekst/fail „minu kaust") | keskmine (omanditunne, paberil kaasavõtt) | sama allalaadimisleping mis pöördumisel (A3 muster olemas) | **V1** (lihtne tekst) |
+| Kustutamine + retention | K (õiguslik ja usalduse baas) | seotud pöördumiste side (sourceJourneyId SetNull on skeemis olemas); vajab O-TK2 otsust | **V1** |
+| Ligipääsetav lihtvaade (1 veerg, suur kiri, TTS) | keskmine | mitte eraldi „vaene versioon", vaid sama struktuuri teine esitus | **PILOOT** |
+
+### 14.5. Funktsioonid, millele me pole veel mõelnud (ideering)
+
+Kümme ideed, mida senised Teekonna-dokumendid (ideed.md §2.3, ruumiline lähtekoht §7.1, teadmistekaart) otseselt ei kirjelda. Välistatud on pingeread, survestavad skoorid, kasutaja teadmata jagamine ja automaatsed otsused.
+
+1. **Pöördumise tulemuse kirje** („sain vastuse / ei vastatud / ei sobinud / sain abi"). Probleem: tsükkel ei sulgu, iga katse kaob. Kellele: pöörduja. Kontroll: tugevdab (kasutaja enda hinnang, vabatekst + valik). Etapp: **V1-lähedane (PILOOT)**.
+2. **Ootel-kaardid** („Ootan vastust Harku vallalt — saadetud 6 päeva tagasi" + kasutaja seatav meeldetuletus). Probleem: ootamise ebamäärasus, unustamine. Kellele: pöörduja. Kontroll: tugevdab, KUI meeldetuletus on kasutaja seatud ja vaikselt platvormisisene. Etapp: **PILOOT**.
+3. **Käsitsi ajajoone-sissekanne** („käisin kohapeal, kokkulepe oli…"). Probleem: päris elu sammud (kõne, visiit, paberkiri) ei jõua Teekonnale. Kellele: pöörduja. Kontroll: tugevdab (ainult kasutaja sisestatud). Etapp: **PILOOT**.
+4. **Kolmanda isiku märgis** (väli/plokk „puudutab teist inimest: laps/hooldatav/muu") + eraldi hoiatus jagamislävel. Probleem: 14.3 lugu 8 ja ptk 13 leke näitavad, et kõige tundlikum info on kellegi teise oma. Kellele: hooldajad, lapsevanemad. Kontroll: tugevdab. Etapp: **V1 märgisena lävel, PILOOT täiskujul**.
+5. **Selgituskaart** — kasutaja koostatud taaskasutatav lühitutvustus („mida olen juba selgitanud"), mida saab külmutatud väljavõttena lisada eri pöördumistesse. Probleem: „räägi kõik uuesti" korduvus eri adressaatidega. Kontroll: tugevdab (üks tekst, kasutaja hallatav). Etapp: **HILISEM** (eeldab manifest-jagamist).
+6. **„Kui vastust ei tule" turvavõrk** — kasutaja seatav reegel „kui N päeva pole vastust, NÄITA mulle alternatiive" (teenusekaart, abisoov, uus adressaat). Probleem: ummikusse jäämine. Kontroll: piiripealne — lubatud ainult kuvamisena, mitte automaatse tegevusena. Etapp: **PILOOT/HILISEM**.
+7. **Kriisi-kiirkaart kasutajale endale** — kui riskisignaal tuvastatakse, kuvatakse see KASUTAJALE rahuliku „kiire abi" kaardina (112, ohvriabi, kriisiliinid), mitte kunagi adressaadile. Probleem: praegu riskisignaalid ainult lekivad väljapoole ega aita inimest ennast. Kontroll: tugevdab (info inimesele endale). Etapp: **V1** (odav, olemasolev tuvastus).
+8. **Kohtumise ettevalmistuskaart** — enne kokkulepitud kohtumist koostab kasutaja kinnitusel ühe „kaasavõtu-lehe" (minu küsimused, dokumendid, soovid); allalaaditav/prinditav. Probleem: kohtumisel unustamine; U10 katab kohtumise JÄRELpoole, mitte pöörduja EELpoolt. Kellele: pöörduja (ja kaudselt spetsialist). Kontroll: tugevdab. Etapp: **PILOOT**.
+9. **„Loe ette" Teekonna vaates** — olemasoleva TTS-API (/api/tts) rakendus kokkuvõttele ja järgmistele sammudele. Probleem: lugemisraskus/väsimus sihtrühmas. Kontroll: neutraalne. Etapp: **PILOOT** (tehniliselt odav, kasutab olemasolevat).
+10. **Paberilt Teekonnale** — foto/skaneeringu lisamine sündmuseks (olemasolev dokumendianalüüs teeb kokkuvõtte; Teekonnale jääb VIIDE dokumendile, mitte koopia). Probleem: ametlik suhtlus käib sageli paberil. Kontroll: tugevdab. Etapp: **HILISEM**.
+11. **Teekonna ühisvaade lähedasega** (vaatamisõigus usaldusisikule). Probleem: eakas kasutaja tahab, et tütar näeks seisu. Kontroll: OHTLIK ilma rolli- ja audience-lepinguta (kehtiv tooteotsus: pöörduja↔pöörduja rada EI ole toetatud). Etapp: **TEADLIKULT VÄLJA JÄTTA** kuni eraldi otsus; vahevorm = eksport/allalaadimine, mida inimene ise näitab.
+12. **Anonüümsed rajamustrid** („sinu olukorras aitas teisi sageli X") koondstatistikast. Probleem: teadmatus, mis üldse võimalik on. Kontroll: automatiseerimise ja normaliseerimise risk (varjatud soovitusskoor). Etapp: **TEADLIKULT VÄLJA JÄTTA** V1/piloodist; kaaluda alles k-anonüümse kihi ja eetikaotsusega.
+
+### 14.6. Seosed ülejäänud platvormiga (seosekaart)
+
+Iga rida: mis liigub / kelle kinnitusel / originaal–viide–külmutatud / kuidas eemaldatakse / mida teine pool näeb / tõeallikas. PRAEGU = aktiivne kood; SIHT = soovitatav leping.
+
+| Ühendus | Mis liigub | Kinnitus | Kuju | Eemaldamine | Teine pool näeb | Tõeallikas |
+|---|---|---|---|---|---|---|
+| Vestlus → Teekond | olukorra tekst mustandiks | kasutaja („Salvesta teekond") | külmutatud sisend loomisel | Teekonna kustutus (O-TK2) | — (mõlemad kasutaja omad) | Teekond |
+| Teekond → vestlus (SIHT) | viide „pärineb vestlusest" (conversationId, skeemis valmis) | kasutaja | viide | vestluse kustutus → SetNull | — | vestlus |
+| Teekond → eelpöördumine | valitud väljavõte (PRAEGU: kõik, vt ptk 13; 13.8 piir; SIHT: manifest-põhine snapshot) | kasutaja lävel + saatmisel (2 kinnitust) | **külmutatud väljavõte** + viide sourceJourneyId | U3 tagasivõtt enne avamist; side katkeb SetNull-iga Teekonna kustutusel | ainult kinnitatud väljavõtte | pöördumine (saadetud versioon) |
+| Eelpöördumine → Teekond (tagasiside) | staatus/tulemus (PRAEGU: ainult loend „Seotud eelpöördumised"; SIHT: staatuse peegeldus rajal + tulemuse kirje) | automaatne staatus, kasutaja hinnang käsitsi | viide | pöördumise arhiveerimine | — | pöördumine |
+| Teekond → Teenusekaart | filtrivihjed (teemad, piirkond) URL-parameetritena | kasutaja (klõps) | tuletis, ei salvestu | — (stateless) | mitte midagi (teenusekaart ei näe Teekonda) | Teekond |
+| Teenusekaart → Teekond (SIHT) | valitud kontakt viitena („Seo Teekonnaga") | kasutaja | viide | kasutaja eemaldab; kirje kadumisel SetNull | — | teenusekaart |
+| Teekond ↔ dokumendid | PRAEGU: mitte midagi (linked*Ids surnud); SIHT: dokumendiviide + jagamisel dokumendi LISAMINE väljavõttesse eraldi kinnitusega | kasutaja | viide (privaatselt); külmutatud koopia ainult saadetud pöördumises | viite eemaldamine; dokumendi kustutus → viide kaob | adressaat näeb ainult pöördumisse kinnitatud dokumenti | dokumendihoidla |
+| Teekond → abisoov/abipakkumine | valitud väljavõte (shareKeys-muster olemas HelpRequestSharePanel-is; sama lekkerisk — kontrollimata selles analüüsis, märgitud ptk 14.10 TK-P0 laienduseks) | kasutaja + avaldamise kinnitus | külmutatud väljavõte | kuulutuse mahavõtt | avalik kaart näeb ainult kuulutust | kuulutus |
+| Eelpöördumine → vestlusruum | ruumi loomine vastuvõtja poolt; pöördumise sisu EI kopeeru ruumi | vastuvõtja avab, pöörduja osaleb | viide (ruum ↔ pöördumine) | ruumist lahkumine / U12 | ruumi liikmed näevad ruumi sisu, mitte Teekonda | ruum |
+| Teekond ↔ teavitused | PRAEGU: ainult U2 tööjärje-kirje (katkise lingiga); SIHT: journey-sündmused (vastus saabus, tähtaeg läheneb) fakti+viitena, sisuta | süsteem (fakt), kasutaja avab | viide | teavituse lugemine/aegumine | — | sündmuse allikas |
+
+Läbiv reegel: **Teekonna sisu originaal ei lahku kunagi Teekonnalt**; teistesse moodulitesse liigub kas tuletis (filtrivihje), viide (id) või kasutaja kinnitatud külmutatud väljavõte. Ükski sissetulev ühendus ei kirjuta Teekonda ilma kasutaja tegevuseta.
+
+### 14.7. Privaatne tööruum ja jagatav väljund
+
+Neli rangelt eristatud kihti:
+
+1. **Privaatne Teekond** — elav, muudetav, ainult omanik. Sisaldab ka AI tuletisi (riskisignaalid, soovitused), mis on märgistatud AI omadena ja EI OLE kunagi vaikimisi jagatavad.
+2. **Kinnitatud jagatav väljavõte** — kasutaja lävel kokku pandud **külmutatud snapshot + manifest** (millised võtmed, mis ajahetkel, mis sisuga). See on AINUS koht, kus Teekonna sisu tohib duplitseeruda. Tehniliselt on kandja juba olemas: `assessmentState.sharedJourneyInfo` (`userConfirmed:true`) — see tuleb muuta ainukanaliks (ptk 13.5), mitte lisada uut skeemi.
+3. **Saadetud eelpöördumine** — väljavõtte kandja koos kasutaja OMA kirjutatud tekstiga. Pärast saatmist külmutatud (U3 parandus loob uue versiooni, mitte ei muuda vana); viide `sourceJourneyId` seob tagasi ilma sisu jagamata.
+4. **Saatmisjärgne uus info** — adressaadi märkmed/checklist jäävad adressaadi poolele (juba nii: receiverNote on vaatajapõhine); kasutaja uus info EI voola pöördumisse ega Teekonda automaatselt — kasutaja lisab ise (parandus U3 kaudu pöördumisse; sündmus/tulemus Teekonda).
+
+Mudel ühe lausega: **üks allikas (Teekond) → üks külmutus (manifest-väljavõte) → üks kandja (pöördumine); tagasi liiguvad ainult faktid ja viited, mitte sisu.** See kaotab praeguse nelja-konteineri-kopeerimise (ptk 13.1) ilma uue andmemudelita; ptk 13.5 fail-closed leping on selle kohustuslik eeldus.
+
+### 14.8. Kolm võimalikku tulevikumudelit
+
+**M1 — lihtne kronoloogiline ajajoon.** Teekond = sündmuste jada (kirjeldused, pöördumised, vastused, märkmed), uusim üleval.
+- Pluss: kõige arusaadavam metafoor; „mis on juhtunud" saab lõpliku vastuse; tehniliselt odav (sündmuslogi + kirjutajad).
+- Miinus: ei vasta „mis edasi?"; pika venimise korral muutub logiks, mille algusest kaob ülevaade; olukorra HETKESEIS (kokkuvõte, teemad) jääb kirjete alla mattuma.
+
+**M2 — eesmärkide ja järgmiste sammude töölaud.** Teekond = eesmärgid, sammud olekutega (kavas/tehtud), tähtajad.
+- Pluss: tegevuskeskne, vastab „mis edasi?" otse.
+- Miinus: suurim risk muutuda varjatud juhtumiplaaniks/ülesannete-halduriks — spetsialisti loogika hiilib kasutaja privaatruumi; „eesmärkide" keel on koormatud inimesele võõras ja survestav; tegemata sammud muutuvad süütundegeneraatoriks. Vastuolus piiranguga „mitte varjatud juhtumitoimik".
+
+**M3 — privaatne olukorralõuend + külmutatud jagatavad väljavõtted.** Keskmes olukorra HETKESEIS (kokkuvõte, teemad, seotud asjad viidetena), mille küljes on väljavõtete/jagamiste ajalugu.
+- Pluss: vastab platvormi ruumilisele keelele (ptk 5 „kaks ruumi, üks lävi" jätkub loomulikult); privaatsuspiir on struktuuris endas (lõuend = privaatne, väljavõte = jagatud); praegune andmemudel katab pea kõik.
+- Miinus: üksi ei vasta „mis on juhtunud/muutunud" — vajab ajaloo-selgroogu.
+
+**M4 (soovitus) — olukorralõuend, mille selgroog on ajajoon:** M3 + M1 kombinatsioon, M2 teadlikult kõrvale jättes. Lõuend näitab HETKESEISU ja kuni kaht järgmist VALIKUT (mitte ülesannet); ajajoon (kasutaja ja tema algatatud sündmused + pöördumiste faktid) elab lõuendi all/kõrval ja toidab „mis muutus" vaadet; jagatavad väljavõtted on lõuendi servas külmutatud kaartidena (manifest + staatus + tagasivõtu viide).
+- **Põhjendus:** (a) *arusaadavus* — kolm põhiküsimust saavad igaüks oma koha (seis=lõuend, minevik=ajajoon, edasi=valikud); (b) *privaatsus* — jagatu on füüsiliselt eraldi kaardirida, mitte lõuendi sees laiali; (c) *teostatavus* — Journey mudel + sharedJourneyInfo + sündmuslogi kirjutajad katavad selle ilma skeemimuutuseta (versioonid hiljem); (d) *ühendatavus* — viidete-põhine seosekaart (14.6) sobib dokumentide, teenusekaardi, ruumide ja U1/U2-ga; kovisiooni „privaatala + jagatud objektid" muster on sama grammatika.
+
+### 14.9. Soovitatud minimaalne tervikversioon (aus lubadus)
+
+Avalik lubadus (messages/et.json:4572, kuvatakse /voimalused lehel): *„Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad, ning midagi ei liigu edasi ilma sinu kinnituseta."* Praegu on sellest aus ainult „kokkuvõte + teemad püsivad" osa; „sammud püsivad koos", „järgmised sammud" ja „midagi ei liigu ilma kinnituseta" ei ole täidetud (14.2, ptk 13).
+
+**Enne pilooti vajalik (= lubaduse miinimum):**
+1. jagamislekke P0 suletud (13.7 p 1 või 13.8 ajutine piir) — „midagi ei liigu ilma kinnituseta" muutub tõeseks;
+2. kerimisblokk parandatud (Etapp 0) — voog on füüsiliselt läbitav;
+3. automaatsalvestus + oleku-URL + U2 süvalingi parandus — „püsivad" muutub tõeseks ka poolelioleva töö kohta;
+4. aus rada: roadmap loeb linkedPreInquiries + pöördumise staatust; review-suunanupud eemaldatud; „Tehtud sammud" saab päris kirjutajad (loomine, muutmine, pöördumine saadetud/vastu võetud);
+5. kustutamine (O-TK2 vaikevariandiga) + lihtne teksti-eksport — omanditunne ja õiguslik baas;
+6. kriisi-kiirkaart kasutajale endale (14.5 idee 7) — riskisignaalid hakkavad inimest ennast teenima.
+
+**Piloodi käigus katsetatav:** ootel-kaardid + tulemuse kirje; „mis muutus" vaade; käsitsi ajajoone-sissekanne; kolmanda isiku märgis lävel; dokumendiviited; kohtumise ettevalmistuskaart; lihtvaade + „loe ette".
+
+**Hilisem:** harud/peatükid; selgituskaart; versioonivaade; teenusekaardi kontakti sidumine; „kui vastust ei tule" turvavõrk; paberilt-sisse.
+
+**Teadlikult välistatud:** edenemis-/riskiskoorid ja pingeread; adressaadile nähtav Teekonna vaade mis tahes kujul; lähedase vaatamisõigus ilma eraldi rollilepinguta; automaatsed otsused/saatmised; anonüümsed rajamustrid enne k-anon+eetika otsust.
+
+### 14.10. Rakendamise järjestus (sõltuvusteadlikud paketid)
+
+Etteantud piirangud: (1) jagamislekke P0 enne uut jagamisfunktsionaalsust; (2) kerimisblokk enne ruumilist prototüüpi; (3) automaatsalvestus/taastatav olek enne Flight- või faasiliikumist; (4) Teekond ei tohi muutuda varjatud juhtumitoimikuks; (5) vastuvõtja vaadet ei laiendata ilma eraldi audience-lepinguta.
+
+- **TK-P0 — usalduspiir** (= ptk 13.7 p 1 / 13.8; kiip olemas): prefill fail-closed VÕI ajutine kärbe + markeri-testid. *Laiendus:* sama kontroll abisoovi-üleandmisele (HelpRequestSharePanel, 14.6 rida 8). DoD: adressaadi serialiseering ei sisalda ühtegi märkimata Teekonna markerit.
+- **TK-P1 — füüsiline ligipääs** (= Etapp 0; kiip olemas): kerimine + Esc + karusselli valve. DoD: review-ekraan ja detailvaade läbitavad ratta/puute/klaviatuuriga.
+- **TK-P2 — püsivus:** automaatsalvestus (seadmesisene), sammud URL-i, U2 süvalink (`/teekond/[id]` või parameetri lugeja), taasavamise nupp. Sõltub: TK-P1 (muidu parandatakse lehte, mida ei saa kasutada). DoD: F5/tagasi/Esc ei kaota kunagi sisestust; „Jätka siit" avab õige Teekonna.
+- **TK-P3 — aus elutsükkel:** sündmuslogi kirjutajad; roadmap päris andmetest; suunanuppude eemaldus; pöördumise staatuse peegeldus; kustutamine + eksport; kriisi-kiirkaart. Sõltub: TK-P2 (sündmused vajavad püsivat olekut). Piirang 4 valve: sündmused on ainult kasutaja omad ja tema algatatud; ei mingeid olekuid „täidetud/täitmata" kohustuste keeles. DoD: 14.2 tabelis kaovad kõik EKSITAVALT LUBATUD read.
+- **TK-P4 — sidumised ja manifest-jagamine:** dokumendiviited; väljavõtte-manifest ainukanalina + võtmehaaval taastatud eeltäited (kui TK-P0 oli ajutine kärbe); „mida olen sellest Teekonnast jaganud" koondplokk; kolmanda isiku märgis lävel. Sõltub: TK-P0 + TK-P3. Piirang 5 valve: adressaadi vaade EI muutu — kõik uus on autori-poolne. DoD: 13.6 täistestid rohelised; JourneyDetaili „Seotud asjad" näitab ainult päris seoseid.
+- **TK-P5 — esitluskiht ja ruumiline keel:** stepperi/kiipide/roadmapi CSS, i18n, topelt-ⓘ; seejärel lõuend+lävi (ptk 5–6) ja ALLES SIIS flight-prototüüp (piirang 2+3 täidetud). DoD: ptk 12 Etapp 3–4 kriteeriumid.
+
+Paketid TK-P0 ja TK-P1 on juba eraldi ülesannetena pakutud (kiibid); TK-P2 on järgmise teostaja esimene uus ülesanne (vt 14.12).
+
+### 14.11. Tooteomaniku otsused (mittetuletatavad; soovitatud vaikevariant + tagajärg)
+
+- **O-TK1. Teekonna granulaarsus:** üks Teekond = üks elusituatsioon (mitu aktiivset lubatud) VÕI üks üldine „minu teekond"? *Vaikevariant:* üks olukord, mitu lubatud. *Tagajärg:* loend jääb; harud (14.4) muutuvad hilisemaks alamstruktuuriks, mitte uuteks Teekondadeks.
+- **O-TK2. Kustutamine ja retention:** kas kasutaja saab Teekonna jäädavalt kustutada, ja mis saab seotud pöördumistest? *Vaikevariant:* jah, kahesammulise kinnitusega; pöördumised jäävad (õiguslik jälg adressaadi jaoks), side katkeb (`sourceJourneyId` SetNull on skeemis juba olemas); arhiveerimine jääb pehmeks vaikevalikuks. *Tagajärg:* „Seotud eelpöördumised" tagasilink kaob kustutatud Teekonnalt; retention-tähtaega (nt arhiveeritud N kuud) saab lisada hiljem.
+- **O-TK3. AI riskisignaalide saatus:** kas need jäävad kasutajale nähtavaks kihiks („ettevaatlikud tähelepanekud" + kriisi-kiirkaart) ja mitte kunagi automaatselt väljavõttesse? *Vaikevariant:* jah. *Tagajärg:* 13.5 leping fikseerib; kui kasutaja tahab neid jagada, kirjutab oma sõnadega.
+- **O-TK4. Vestlusseose sisselülitamine:** kas vestlusest loodud Teekond seotakse conversationId-ga ja kuvatakse viide „pärineb vestlusest"? *Vaikevariant:* jah, viitena (mudel valmis, service.js:17–52). *Tagajärg:* vestluse kustutus → SetNull; vestluse SISU Teekonnale ei kopeeru.
+- **O-TK5. Meeldetuletuste kanal:** kas Teekonna tähtajad/ootel-kaardid kasutavad U1 kihti (platvormisisene + olemasolev opt-in e-kiri) või ainult platvormisisest? *Vaikevariant:* U1 platvormisisene; e-kiri ainult üldise opt-in'iga, sisuvaba. *Tagajärg:* uusi kanaleid ei teki; survestamise risk püsib madal.
+- **O-TK6. Kolmanda isiku märgis:** vabatahtlik või kohustuslik küsimus? *Vaikevariant:* V1-s vabatahtlik Teekonnal, KOHUSTUSLIK kinnitus jagamislävel, kui personContext/laps-signaal olemas. *Tagajärg:* lävele lisandub üks tingimuslik samm; loomata jääb „laste-erirežiim" enne eraldi analüüsi.
+- **O-TK7. Avaliku lubaduse ajastus:** kas /voimalused s3 tekst pehmendatakse kuni TK-P3 valmimiseni? *Vaikevariant:* jah (nt „hakkavad püsima" asemel praegune absoluutne sõnastus maha). *Tagajärg:* turundus ja tegelikkus on kooskõlas; pärast TK-P3 taastatakse täislubadus.
+- **O-TK8. Ajutise kärpe valik (13.8 vs kohene täisparandus):** kas homme rakendatakse 13.8 kärbe (eeltäited kaovad ajutiselt) või minnakse otse 13.5 täislepingule? *Vaikevariant:* 13.8 kohe + täisleping TK-P4-s, KUI täisparandust ei jõuta ühe päevaga testida; muidu otse täisleping. *Tagajärg:* vahepealsel perioodil on Teekonnast-alustamine tühja vormiga (funktsionaalsuse ajutine kadu, 13.8 p 6).
+
+### 14.12. Lõpphinnang ja jätkamispunkt
+
+- **Kas praegune tootelubadus on täidetud?** Ei. Neljast lubaduse osast peab ainult „kokkuvõte ja teemad püsivad": „sammud püsivad koos" (sündmusi ei koguta, seosed on surnud võtmed), „järgmised sammud" (kolm vastuolulist ja osalt petlikku süsteemi) ja „midagi ei liigu ilma kinnituseta" (ptk 13 runtime-tõend) ei pea. Lisaks on voog töölauapaneelis füüsiliselt läbimatu (kerimisblokk).
+- **Kolm suurima väärtusega puuduvat võimet:** (1) automaatsalvestus + taastatav olek (iga teine võime on kasutu, kui sisestus kaob); (2) aus sündmuste- ja seosekiht (päris ajajoon + pöördumise staatuse peegeldus → „mis muutus"); (3) manifest-põhine jagamisväljavõte (13.5) — usalduse alus.
+- **Seni nimetamata funktsioon, mis väärib kõige rohkem prototüüpi:** ootel-kaardid + pöördumise tulemuse kirje (14.5 ideed 1–2) — see sulgeb kasutaja põhitsükli (saatsin → ootan → sain/ei saanud → mis edasi), mida ükski praegune moodul ei kata.
+- **Ohtlik või eksitav, teadlikult välja jätta:** M2-stiilis eesmärkide/ülesannete töölaud kohustuste keeles (varjatud juhtumiplaan + süütunde-generaator); edenemis-/riskiskoorid ja pingeread; adressaadile nähtav Teekonna vaade; lähedase vaatamisõigus ilma rollilepinguta; anonüümsed rajamustrid enne k-anon+eetika otsust. Ohtlik on ka praegusel kujul JÄTTA alles asju, mis teesklevad töötamist (surnud „Seotud asjad", kasvamatu „Tehtud sammud", valetav rada) — eemaldamine on odavam kui usalduse kaotus.
+- **Järgmise teostaja esimene piiritletud ülesanne pärast jagamislekke parandust:** **TK-P2 püsivuspakett** — Teekonna mustandi automaatsalvestus (seadmesisene), loomise/koostamise sammud URL-i, U2 süvalingi parandus, taasavamise nupp. Väike, mõõdetav, disainist sõltumatu; DoD: F5/tagasi/Esc ei kaota sisestust ja „Jätka siit" avab õige Teekonna.
+
+**Jätkamispunkt järgmisele aknale:** ptk 14 on COMPLETE seisuga 15.07.2026 öö, `main` @ 7ae76d5b. Kontrollimata jäi kaks kõrvalharu, mis tasub järgmisena üle vaadata: (a) abisoovi-üleandmise (`buildHelpMediationHandoff` + HelpRequestSharePanel) shareKeys-lekke kontroll sama markeritehnikaga (14.6 eeldab, et muster kordub); (b) DataDeletionJob/konto-kustutuse rada Teekonna andmete osas (skeemi kaskaad on olemas, töövoo käitumine kontrollimata). Tooteomaniku laual: O-TK1…O-TK8 (eriti O-TK2 kustutamine ja O-TK8 ajutise kärpe valik). **See peatükk on analüüs ja soovitus — mitte rakendamise, merge'i ega deploy otsus; rakenduskoodi, skeemi ega migratsioone ei muudetud.**
+
+# 15. TK-P0 turvasabade järelkontroll ja rakendusvalmis leping
+
+PEATÜKI STATUS: COMPLETE (15.07.2026 öö). Skoop: AINULT ptk 14.12 kaks kontrollimata saba + nende põhjal TK-P0 lõplik leping. Ptk 1–14 ja Teenusekaardi üldanalüüsi ei korrata; teadaolevat V1/V2 help-listingu mustandinähtavuse leidu (memory: teenusekaart-abivahendus tervikvoog) ei dubleerita.
+
+## 15.1. Teekond → abisoov või abipakkumine
+
+**Tulemus ette: Teekonna SISU siin EI leki — voog on pre-inquiry vastand.** Pre-inquiry rajal voolas kõik võtmetest hoolimata; siin ei voola valitud võtmetega MITTE MIDAGI. Kontroll oli staatiline ja ammendav: `lib/help/` kataloogis pole ühtegi `journey`-viidet (grep: 0 vastet) — help-torustikul puudub üldse koodirada Journey ridade lugemiseks. Runtime-markerikatse polnud seetõttu vajalik: leket ei saa käivitada, sest lugejat ei eksisteeri.
+
+Andmevoog lülihaaval (`main` @ 7ae76d5b):
+
+1. **Teekonna väljad → handoff:** `buildHelpMediationHandoff` LOEB kogu Teekonna teksti (title, summary, domains, missingInfo, **riskSignals**, suggestedActions, context.needTags/keywords — helpMediationHandoff.js:40–52), kuid AINULT regex-klassifikatsiooniks. Väljund (read 92–101) sisaldab ainult: `categoryCode` (enum), `taxonomy` (staatiline sild), `municipalityName` (context'ist, read 62–73) ja URL-id. Ükski sisulause ei välju.
+2. **shareKeys, mida kasutaja näeb:** HelpRequestSharePanel 6 märkeruutu — summary, category, region, timing, conditions, ownWords (JourneyDetail.jsx:535–542) → URL `share=...`.
+3. **Mida server jõustab:** mitte midagi — `share` parameeter jõuab AINULT literaalse stringina `draft.extraNotes` välja („fromJourney:<id>; share:<võtmed>", ChatBody.jsx:144–147). Ükski võti ei juhi ühtegi andmevoogu. Märkeruudud on **teater mõlemas suunas**: valimine ei too midagi kaasa, mittevalimine ei hoia midagi tagasi (sest midagi ei liigugi).
+4. **Mis salvestatakse:** kuulutuse loomine (lib/help/requests.js:203–236, offers.js:202) ei võta vastu ega salvesta ÜHTEGI Teekonna välja; `HelpRequest`/`HelpOffer` mudelitel (schema:2586–2668) pole `extraNotes` ega `sourceJourneyId` veergu — extraNotes jääb vestlustöövoo mustandiolekusse ega jõua kuulutusse.
+5. **Nähtavus:** omanik näeb oma kuulutust; teine autenditud kasutaja ja autentimata kaardikülastaja näevad kuulutust/kaardikirjet (`HelpMapEntry`: kategooria, piirkond, taksonoomia needTags — schema:2669–2708) — Teekonna sisu pole üheski. Teadaolevat V1/V2 mustandinähtavuse leidu see EI muuda ega võimenda: Teekonna handoff ei lisa sellele eraldi sisuleket.
+6. **Külmutatud snapshot/manifest:** PUUDUB, sest sidet ennast ei salvestata — kuulutus ei tea, et ta Teekonnast alguse sai (kooskõlas 14.2 leiuga: Teekonna „Seotud abisoovid" jääb igavesti tühjaks).
+7. **Eemaldamine:** kuulutuse kustutus kustutab kaardikirje ja sobitused kaskaadiga (`HelpMapEntry.request/offer onDelete: Cascade`; `HelpMatch.request/offer Cascade`, schema:2697–2698, 2768–2769); sobitusruum jääb alles (`HelpMatch.room SetNull`), kuid ei sisalda Teekonna sisu. Kuna Teekonna sisu koopiat ei teki, pole midagi, mis „järele jääks".
+
+**Mis siiski liigub (tuletised, mitte sisu):** (a) `categoryCode` — tuletatakse regex-iga ka **riskisignaalidest** (helpMediationHandoff.js:47): AI hüpotees võib üksi lülitada kategooria (nt CARE_SUPPORT) sisse — kategooria-tasemel minimaalne infovihje, mille kasutaja töövoo väljal näeb ja enne avaldamist kinnitab; (b) `municipalityName` — asukoht, samuti nähtav ja kinnitatav (`rawPlace` väli + confirmationPending enne avaldamist); (c) **Teekonna ID + share-valikute string** draft-olekus (`extraNotes`) — ei persisti kuulutusse, jääb kasutaja enda vestlustöövoo olekusse; leke puudub, aga sisemine ID võõras kohas on kraam, mille TK-P0 võib ühes käigus koristada.
+
+**15.1 leiud:** L1 (UX, mitte leke): 6 jagamis-märkeruutu ilma ühegi juhtmeta — sama muster mis P2-2 „suunanupud"; irooniline pööre: paneeli privaatsuslubadus („kogu Teekonda ei kopeerita kuulutusse") on siin sõna-sõnalt TÕENE. L2 (nüanss): kategooria tuletamine riskisignaalidest — soovitus piirata tuletuse sisend summary+domains-iga. L3 (hügieen): `fromJourney`/`share` stringid extraNotes'is — eemaldada või asendada puhta viitega, kui side kunagi päriselt ehitatakse.
+
+## 15.2. Konto kustutamine ja Teekonna andmed
+
+**Teenusejada (lib/privacy/userDeletion.js:179–275):** `deleteUserWithPrivacyCleanup` → DataDeletionJob (PENDING) + ligipääsu peatamine + sessioonide kustutus → `performUserPrivacyCleanup` (read 68–140: dokumentide RAG-viited ja failid, materjalifailid, artefaktide märge, verifitseerimistokenid, **chatLogs kustutatakse eksplitsiitselt**, praktikakandidaatide scrub) → lõpuks `user.delete` → **kõik ülejäänu teeb Prisma kaskaad**. Teenuses pole ühtegi journey-viidet (grep: 0) — Teekond toetub täielikult skeemile.
+
+**Runtime-tõend (sünteetilised kasutajad, otse kaskaadi vastu; kõik koristatud, 0 jääki):** autori kustutamisel `journey_cascades:true`, `sent_inquiry_cascades_with_recipient_note:true`; vastassuunal `reverse_setnull_keeps_deleted_users_note:true`.
+
+Andmeklasside kaupa:
+
+| Andmeklass | Saatus autori konto kustutamisel | Alus |
+|---|---|---|
+| Journey (privaatne originaal, sh `context`/`personContext`/`activityLog`/riskisignaalid) | **kustub** (Cascade) | schema:1232; runtime-tõend |
+| Teekonna mustandid (pooleliolev olek) | serveris ei eksisteerigi (14.2); kliendi sessionStorage jääb SEADMESSE — väljaspool serveri vastutust | ptk 14.2 |
+| Teekonnast loodud eelpöördumised (ka **SENT**, adressaadi kätte jõudnud) | **kustuvad täielikult** (author Cascade) — koos külmutatud väljavõttega (`assessmentState.sharedJourneyInfo`) JA **adressaadi enda receiverNote/checklist/nextContactOn väljadega**, mis elavad samal real | schema:1891; runtime-tõend |
+| Saadud pöördumised (kustutatav kasutaja oli adressaat) | jäävad autorile, `recipientOwnerId` → null (SetNull); **kustutatud kasutaja kirjutatud receiverNote JÄÄB reale alles** — serializer ei näita seda enam kellelegi (isRecipient ei saa enam tõeseks), aga tekst püsib DB-s orvuna | schema:1892; serializePreInquiry:565–572; runtime-tõend |
+| Teekonnast alustatud abisoovid/abipakkumised | **kustuvad** (user Cascade) + kaardikirje ja sobitused kaskaadiga; sobitusruum jääb (SetNull) — Teekonna sisu seal pole (15.1) | schema:2612, 2697–2698, 2768–2769 |
+| Seotud dokumendiviited | Teekonnal päris dokumendiviiteid ei eksisteeri (14.2 surnud võtmed); dokumendid ise kustutatakse teenuses (failid + RAG-viited) | userDeletion.js:88–107 |
+| Teavitused (kasutaja enda) | **kustuvad** (Cascade) | schema:1935 |
+| Teavitused (TEISTE kasutajate omad, mis viitavad kustutatud objektidele, nt adressaadi „uus pöördumine saabus") | jäävad alles **rippuva `sourceId` viitega** — sisu ei leki (U1 kannab ainult fakti+viidet), aga sihtobjekti avamine annab tühja/404 | NotificationEvent mudel (sourceId ilma FK-ta) |
+| Auditikirjed (DataAuditLog, DataDeletionJob) | jäävad alles õigusliku kandjana — sisaldavad ainult ID-sid ja metat, MITTE sisu | schema:1416–1432; userDeletion.js:203–214 |
+| Otsingu-/RAG-jäljed | Teekond ei sisene RAG-i üheski koodirajas; vestluslogid kustutatakse eksplitsiitselt; U6 isiklik otsing on harul, mitte main-is | grep + userDeletion.js:134 |
+| Pöördumisest avatud ruum | ruum püsib (iseseisev objekt); `originId` võib jääda rippuma kustutatud pöördumisele — ruumi SISU on osaliste oma, Teekonna sisu seal pole | Room.origin* väljad |
+
+**Kolme kihi eristus:** (1) *privaatne originaal* (Journey) kustub õigesti ja täielikult; (2) *kasutaja kinnitatud snapshot* elab ainult pöördumise real ja kustub koos sellega — st kustub KA adressaadi käest; (3) *teise osapoole õiguspäraselt säilitatav saadetud pöördumine* — **sellist kihti praegu ei eksisteeri**: autori kustutus võtab adressaadilt kätte saadud dokumenteeritava kontakti (ideed.md §11.8 ootus) ja hävitab adressaadi ENDA töömärkmed. Vastupidises suunas jääb kustutatud inimese kirjutatud märge põhjendamatult orvuks.
+
+**15.2 leiud:** L4 — autori Cascade hävitab adressaadi kättesaadud SENT-pöördumise + adressaadi töömärkmed (andmekadu teisele osapoolele; retention-tooteotsus); L5 — kustutatud adressaadi receiverNote jääb autori kirje külge nähtamatu orvuna (põhjendamatu jääk); L6 — teiste kasutajate teavitused jäävad rippuvate viidetega (sisulekketa orb; UX-serv).
+
+## 15.3. Leidude raskusaste
+
+Kontekstiks: ptk 13 pre-inquiry leke jääb ainsaks **kinnitatud aktiivseks lekkeks** (P0). Selle peatüki UUED leiud:
+
+| # | Leid | Raskus | Klass ja põhjendus |
+|---|---|---|---|
+| L1 | Abisoovi jagamis-märkeruudud (6 tk) ilma ühegi juhtmeta | **P3** | puhas UX-puudus; ohutu suund (midagi ei liigu); sama pere mis P2-2 teater, aga privaatsuslubadus on siin tõene |
+| L2 | Abi-kategooria tuletatakse regex-iga ka riskisignaalidest | **P3** | teoreetiline tuletise-vihje (enum, mitte sisu); kasutaja näeb ja kinnitab kategooria enne avaldamist; mitte käivitatav lekkena |
+| L3 | `fromJourney:<id>; share:<võtmed>` literaalstring draft-oleku `extraNotes` väljas | **P3** | hügieen; ei persisti kuulutusse (mudelil pole veergu); kontrollimata jäi, kas draft-väljad lähevad AI-patcheri prompti — ka siis on sisu vaid ID-string |
+| L4 | Autori konto kustutus hävitab adressaadi kättesaadud SENT-pöördumise + adressaadi enda töömärkmed (runtime-tõendatud) | **P1** | tooteotsust vajav retention-küsimus (uus otsus **O-TK9**); privaatsus-esimene vaikimisi kustutus on kaitstav, aga TEISE osapoole töö ja §11.8 „dokumenteeritava kontakti" hävimine ei ole teadlikult otsustatud |
+| L5 | Kustutatud adressaadi kirjutatud receiverNote jääb autori kirje külge nähtamatu orvuna (runtime-tõendatud) | **P2** | põhjendamatu privaatandmete jääk — kustutatud inimese tekst püsib DB-s; parandus väike ja serveripoolne |
+| L6 | Teiste kasutajate teavitused jäävad kustutatud objektidele rippuvate viidetega | **P3** | sisulekketa orb (U1 kannab ainult fakti+viidet); UX-serv sihtobjekti avamisel |
+
+## 15.4. TK-P0 lõplik parandusleping (fail-closed)
+
+Väikseim serverileping, mis sulgeb neli asja: (1) Teekond→eelpöördumine sisulekke; (2) Teekond→abisoov suuna — **lekkena EI kinnitunud**, seega siin ainult regressioonivalve + hügieen, et see nii jääks; (3) markerita/tundmatu välja vaikimisi edasiliikumise; (4) kustutuse põhjendamatud jäägid (L5; L4 jääb tooteotsuseks O-TK9).
+
+**Jõustamiskohad (täpselt kolm + valikuline neljas):**
+1. `buildPreInquiryPrefillFromJourney` (lib/journey/preInquiryHandoff.js) — muutub puhtaks funktsiooniks `(journey, shareKeys ⊆ ALLOWLIST) → prefill`; iga fragment väärtustatakse AINULT oma võtmega; ilma võtmeta fragment ei satu `situation`'i, mustandisse, `sharedJourneyInfo`'sse, topic'usse ega municipality'sse.
+2. `POST /api/journeys/[id]/pre-inquiry-draft` (route.js) — valideerib võtmed: tundmatud võtmed EIRATAKSE (fail-closed: käsitle kui puuduvat) ja tagastatakse vastuses `ignoredKeys` loeteluna (läbipaistvus ilma käitumist avamata); mitte-massiiv → 400.
+3. `normalizePreInquiryJourneySharedInfo` (lib/preInquiryJourneySharedInfo.js) — manifest muutub püsivaks: `sharedJourneyInfo.confirmedKeys: string[]` (elab olemasoleva `assessmentState` Json-i sees) salvestub koos sisuga `createPreInquiry`/`updatePreInquiry` kaudu — hiljem tõendatav, mida kasutaja kinnitas. Serializeri vaatajaloogikat EI muudeta.
+4. *(valikuline D-plokk, L5)* `lib/privacy/userDeletion.js` — adressaadi kustutamisel nullitakse tema kirjutatud `receiverNote`/`receiverChecklist`/`nextContactOn` väljad ridadel, kus ta oli `recipientOwnerId` (üks `updateMany` enne `user.delete`'i).
+
+**Lubatud võtmete ALLOWLIST (ainus lubatud hulk):** `summary`, `domains`, `missingInfo`, `wish` (ainult supportContext.personWish tekst kasutaja soovina), `personContext` (**eraldi võti eraldi kinnitusega — kolmanda isiku info**; `wish` EI too seda kaasa), `assistiveDevices`, `serviceContinuity`, `municipality`, `document` (=contextNote), `title` (topic'u eeltäide). **`riskSignals` EI OLE allowlistis** — ei liigu mitte ühegi võtmega; kui toode tahab neid kunagi jagatavaks, on see eraldi otsus eraldi eelvaatega.
+
+**Tühi või vigane manifest:** `shareKeys=[]` (või kõik tundmatud) → prefill = ainult `sourceJourneyId`, `sourceNotice`, `recipientType`; kõik sisukandjad tühjad/null. See on ka 13.8 ajutise kärpe püsiv erijuht — kärbe JA täisleping annavad tühja manifesti korral identse tulemuse.
+
+**Kliendi roll:** klient võib kuvada märkeruute, elavat payload-eelvaadet ja „Kaasas:" kiipe, kuid EI OLE turvapiir — `filterJourneySharedInfoForPreInquiry` kliendifiltrina kaotab turvatähenduse (võib jääda esituseks); topeltvalik (journey-samm) kaob ühe läve kasuks. Ükski kliendi saadetud „lisasisu" ei saa taastada võtmeta fragmente, sest server ei pane neid prefilli — kasutaja OMA kirjutatud tekst on tema oma (seda ei politseita).
+
+**Abisoovi suund:** uus invariant — help-torustikku (lib/help/) ei tohi tekkida ühtegi Journey-lugejat ilma sama allowlist-väravata (regressioonivalve testiga); hügieen: `extraNotes` ei kanna enam `fromJourney`/`share` stringe (ChatBody.jsx:144–147 eemaldus) ja kategooria-tuletuse sisend piiratakse `summary+domains`-iga (L2).
+
+**Skeem/migratsioon:** EI OLE VAJA — allowlist elab koodis, manifest `assessmentState` Json-i sees, side `sourceJourneyId` on olemas; D-plokk on `updateMany`. Taaskasutatavad väljad: `sharedJourneyInfo` (+confirmedKeys), `sourceJourneyId`, `userConfirmed`. Kontroll: `npx prisma migrate status` peab jääma puhtaks.
+
+**Vastuvõetav ajutine kadu:** kui teostatakse kõigepealt 13.8 kärbe, kaovad eeltäited (sh assistiveDevices) kuni täislepingu valmimiseni; täislepinguga taastuvad võtmehaaval. Muud kadu ei ole — tavarada, käsitsi tekst, saatmine, U3 ja vastuvõtja vaade ei muutu.
+
+## 15.5. Kohustuslikud regressioonitestid
+
+Taristu: `npm test` (node:test, süstitav `{db}` fake-prisma); kaskaadid EI OLE fake-prismaga testitavad → kustutustestid on env-väravaga integratsiooniklass (jooksevad ainult kui test-Postgres on saadaval; sama muster mis `db:migrate:check`). Markeritehnika = ptk 13.6.
+
+1. **`shareKeys=[]` → 0 Teekonna markerit** üheski prefilli väljas (uus `tests/journey/preInquiryHandoffContract.test.js`, tabelipõhine).
+2. **Iga allowlist-võti liigub ainult oma võtmega** — võti K sees ⇒ ainult K markerid; teised väljad puhtad (sama fail, iga võtme rida).
+3. **Tundmatu võti ei liigu** — `shareKeys:["summary","xyz"]` ⇒ ainult summary; route-vastuses `ignoredKeys:["xyz"]`.
+4. **`riskSignals` ei liigu MITTE ÜHEGI kombinatsiooniga** (kõik allowlist-alamhulgad; property-stiilis loop).
+5. **`personContext` nõuab oma võtit** — `wish` üksi EI too personContexti; `personContext` võti toob.
+6. **Autor ja adressaat näevad ainult oma audience'i** — `serializePreInquiry` laiendus (tests/preInquiries/audienceSerialization.test.js): confirmedKeys nähtav mõlemale, receiverNote ainult adressaadile, konto-e-postid nagu seni.
+7. **Avalik kaart ei näe Teekonna sisu** — `buildHelpMediationHandoff` markeri-unit (tests/journey/helpMediation.test.js laiendus): väljund ei sisalda ühtegi journey-teksti markerit; + invariant-test, et handoff'i väljundvõtmete hulk on suletud loend.
+8. **Topelt-handoff on idempotentne** — kaks järjestikust prefill-kutset sama (journey, keys) paariga → deepEqual; DB kirjete arv ei muutu (persisted:false püsib).
+9. **Konto kustutamine eemaldab privaatse originaali** — integratsioonitest (UXPROBE3 sondi kuju): autori kustutus ⇒ journey 0, authored preInquiry 0 (fikseerib KEHTIVA kaskaadi kuni O-TK9 otsuseni).
+10. **Õiguspäraselt säiliv objekt ilma põhjendamatu privaatkoopiata** — pärast adressaadi kustutust: kirje jääb autorile, `recipientOwnerId=null` JA (D-ploki järel) `receiverNote/checklist/nextContactOn = null`.
+11. **Orphan-kirjeid ei jää** — pärast autori kustutust: 0 journey/preInquiry ridu markeriga; teavituste rippuvad `sourceId` viited on kas koristatud (kui D-plokk laieneb) või dokumenteeritult fakti-only (test fikseerib valitud käitumise).
+12. **ET/EN/RU ja ligipääsetav jagamisvärav** — läve/checkboxide tekstid `t()`-võtmetega (P3-1 kõvakodeeringud kaovad sellel pinnal), `npm run i18n:check` pariteet; render-test: igal märkeruudul on label ja värava kinnitusnupul aria-nimi.
+
+## 15.6. Täpne teostuspakett (järgmisele teostajale)
+
+**Puutepind (failid/funktsioonid):** lib/journey/preInquiryHandoff.js (`buildPreInquiryPrefillFromJourney` — allowlist); app/api/journeys/[id]/pre-inquiry-draft/route.js (võtmete valideerimine + ignoredKeys); lib/preInquiryJourneySharedInfo.js (confirmedKeys manifest); components/journey/JourneyDetail.jsx (share-paneeli võtmenimed allowlisti järgi; personContext eraldi ruut + kolmanda isiku hoiatustekst); components/workspace/WorkspaceFeaturePage.jsx (journey-sammu topeltvaliku eemaldus VÕI selle muutmine puhtaks eelvaateks — minimaalne UI-puude); lib/journey/helpMediationHandoff.js (tuletuse sisend summary+domains); components/alalehed/ChatBody.jsx:144–147 (extraNotes stringide eemaldus); *(D-plokk)* lib/privacy/userDeletion.js (receiverNote-orvu nullimine); testid: tests/journey/preInquiryHandoffContract.test.js (uus), tests/journey/assistiveDevices.test.js (ootuste uuendus), tests/journey/helpMediation.test.js (markerid), tests/preInquiries/audienceSerialization.test.js (laiendus), tests/privacy/journeyDeletionCascade.integration.test.js (uus, env-väravaga).
+
+**Tööjärjekord (punane → roheline):**
+1. Kirjuta testid 15.5 p 1–5 ja 7–8 UUE lepingu ootustega → punased (fikseerivad praeguse lekke).
+2. Allowlist-värav handoff'i (p 1–2, 4–5 rohelised).
+3. Route'i võtmevalidatsioon + ignoredKeys (p 3 roheline).
+4. Manifest confirmedKeys normalizesse + save-rajale (p 6 laiendus roheline).
+5. UI võtmete ühtlustus + topeltvaliku eemaldus/eelvaadeks muutmine (visuaalne kontroll; mitte turvapiir).
+6. Help-hügieen (extraNotes + tuletuse sisend) (p 7 roheline).
+7. Integratsioonitestid 9–11 (env-väravaga; D-plokk kui O-TK9/L5 heaks kiidetud — muidu p 10 fikseerib kehtiva käitumise).
+8. i18n-võtmed + render-test (p 12), `npm run i18n:check`.
+
+**Kontrollkäsud:** `npm test`; `npm run i18n:check`; `npx prisma migrate status` (peab olema puhas — skeemimuutust ei tohi tekkida); lõpuks ptk 13 meetodil käsitsi SENT-markerisond (kaks kontot, minimaalsed võtmed, adressaadi GET).
+
+**Teadlikult EI muudeta:** `serializePreInquiry` vaatajaloogika; vastuvõtja UI ja töövoog; retention-/kustutuskäitumine peale L5 D-ploki (L4/O-TK9 on tooteotsus); Teenusekaardi V1/V2 mustandinähtavuse leiud (eraldi töö); kerimisblokk (TK-P1 kiip); Teekonna UI ümberdisain (TK-P2+).
+
+**Lõpetamiskriteeriumid:** kõik 15.5 testid rohelised; korratud SENT-markerisond annab adressaadi vastuses 0 märkimata markerit; prefill idempotentne; migrate status puhas; i18n pariteet; `npm test` täiskomplekt roheline (sh vanade testide teadlikud ootuse-uuendused dokumenteeritud commit-sõnumis).
+
+**Sõltumatu järelkontrolli fookus:** (a) korda markerisondi teise akna poolt; (b) grep, et help-/muudesse torudesse pole tekkinud uusi Journey-lugejaid; (c) kontrolli, et journey-sammu muudatus ei murdnud salvestatud pöördumise avamist (`workflowMode:"existing"`); (d) kinnita, et ignoredKeys ei avalda midagi peale staatiliste võtmenimede.
+
+**Jätkamiskäsk järgmisele koodi teostavale aknale (kopeeritav):**
+
+```text
+Loe docs/platvormi arendus/fable-5-teekond-eelpoordumine-ux-ja-navigeerimine.md peatükid 13.5, 13.8 ja 15.4–15.6 ning teosta TK-P0 pakett täpselt 15.6 tööjärjekorras (punane→roheline). Piirid: ära muuda serializePreInquiry vaatajaloogikat, vastuvõtja UI-d, retention-käitumist (v.a L5 D-plokk, kui tellija kinnitab) ega skeemi/migratsioone. Lõpuks: npm test, npm run i18n:check, npx prisma migrate status, ja korda ptk 13 SENT-markerisondi kahe kontoga (sünteetilised andmed, korista kõik).
+```
+
+PEATÜKI 15 STATUS: **COMPLETE** — blokeerijaid ei ole. Mõlemad 14.12 sabad on suletud: abisoovi suund EI leki (staatiliselt ammendav tõestus + kolm P3 kõrvalleidu), kustutuse suund andis kaks uut leidu (L4 = tooteotsus O-TK9: kas SENT-pöördumine peab autori kustutuse üle elama anonüümitud/õigusliku kandjana; L5 = väike D-plokk paketis). See peatükk on sihitud turvajärelkontroll ja tööleping — MITTE koodi rakendamise, merge'i ega deploy otsus; rakenduskoodi, skeemi ega migratsioone ei muudetud; runtime-katsed kasutasid ainult sünteetilisi andmeid ja kõik loodud kirjed on kustutatud (cleanup: users=1 järelejäänu kustutatud, 0 jääki).

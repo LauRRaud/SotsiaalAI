@@ -18,6 +18,7 @@ import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
 import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlotValue } from "@/components/ui/PanelInfoSlot";
 
 /* ⓘ akna vasakus ülanurgas (tellija 06.07 öö: peaaegu igal lehel);
    sisu on olemas ainult neil id-del (lib/dashboardInfoContent). */
@@ -98,7 +99,13 @@ export default function PanelFrame({ children }) {
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
   const isWorkspaceView = normalized.startsWith("/vestlus") && Boolean(workspaceParam);
   const showConversationsMenu = normalized.startsWith("/vestlus") && !workspaceParam;
-  const panelInfoId = isWorkspaceView ? "workspace" : PANEL_INFO_IDS[normalized] || null;
+  /* Lehe registreeritud ⓘ-sisu võidab staatilise marsruudikaardi: nii saavad
+     rollipõhised (/eelpoordumised), dünaamilised (?workspace=X) ja kaardis
+     puuduvad (/teekond/[id], /tooheaolu/[tool]) pinnad õige sisu ILMA teist
+     ikooni renderdamata. Vt components/ui/PanelInfoSlot. */
+  const infoSlot = usePanelInfoSlotValue();
+  const fallbackInfoId = isWorkspaceView ? "workspace" : PANEL_INFO_IDS[normalized] || null;
+  const panelInfoId = infoSlot?.infoId || fallbackInfoId;
   /* Väikese sisuga lehed avanevad kaardi-mõõtu aknas, mitte üle
      ekraani (tellija otsus; 06.07 öö: ka Ruumid keskmises kaardis). */
   const isCompact =
@@ -214,10 +221,15 @@ export default function PanelFrame({ children }) {
             <MenuIcon />
           </IconButton>
         ) : panelInfoId ? (
-          /* Lehe ⓘ — samas nurgas, avab selgituse klaasmodaalis */
+          /* Platvormi AINUS lehe-ⓘ: paremas ülanurgas, sulgemisristist
+             vahetult vasakul, ristiga sama mõõtu. Leht ei renderda oma
+             ikooni — ta annab sisu usePanelInfoSlot'i kaudu. */
           <DashboardInfoTrigger
+            key={panelInfoId}
             infoId={panelInfoId}
-            label={t("room.panel_info_label")}
+            title={infoSlot?.title}
+            label={infoSlot?.label || t("room.panel_info_label")}
+            detailExtras={infoSlot?.detailExtras}
             className="panel-menu panel-menu--info"
           />
         ) : null}

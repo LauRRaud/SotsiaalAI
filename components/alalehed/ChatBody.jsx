@@ -2634,24 +2634,11 @@ export default function ChatBody({
     workspaceOpen && (workspaceSurfaceReady || workspaceSuppressOpenTransition);
   const chatRingStyle = { ...chatVars };
   const chatContainerClassName = "chat-container";
-  /* Ruumiline kaheikooniline sisenemine (tellija 12.07): AINULT päris
-     vestlusvaates — mitte ruumirežiimis (roomId) ega manustatuna, kus
-     sisendriba peab jääma alati nähtavaks. Kaheikooniline VALIK näidatakse
-     ainult VÄRSKES vestluses (kasutaja pole veel midagi saatnud) — kui
-     vestlus on juba alanud, jääb sisendtriip püsivalt (tellija 12.07:
-     "võtab kogu mõtte ära kui vestlus on juba alanud"). */
-  const spatialEntry = !isRoomMode && !embedded;
-  const conversationStarted = useMemo(
-    () => visibleMessages.some(m => m?.role === "user"),
-    [visibleMessages]
-  );
   return <>
     <ChatBodyView
       embedded={embedded}
       t={t}
       locale={locale}
-      spatialEntry={spatialEntry}
-      conversationStarted={conversationStarted}
       profileOpen={profileOpen}
       closeProfile={closeProfile}
       workspaceOpen={workspaceOpen}

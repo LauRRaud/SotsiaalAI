@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 
 import { useI18n } from "@/components/i18n/I18nProvider"
 import Button from "@/components/ui/Button"
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay"
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Textarea from "@/components/ui/Textarea"
 import { localizePath } from "@/lib/localizePath"
@@ -27,6 +27,12 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
   const router = useRouter()
   const { t, locale: activeLocale } = useI18n()
   const resolvedLocale = activeLocale || locale
+  /* Paneeli ainus ⓘ (PanelFrame, × kõrval). Manustatuna on ⓘ omanik Töölaud. */
+  usePanelInfoSlot({
+    infoId: "materials",
+    title: t("materials_page.title"),
+    active: !embedded
+  })
 
   const fileInputRef = useRef(null)
   const [comment, setComment] = useState("")
@@ -99,12 +105,8 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
               backAriaLabel={t("profile.back_to_chat")}
               holdPressedVisualDisabled
               anchorBack={false}
-              rightSlot={
-                <DashboardInfoTrigger
-                  infoId="materials"
-                  title={t("materials_page.title")}
-                />
-              }
+              /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); vt
+                 usePanelInfoSlot ülalpool. */
             >
               {t("materials_page.title")}
             </SubpageHeader>

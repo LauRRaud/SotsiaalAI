@@ -5,6 +5,7 @@ import ChatComposer from "./ChatComposer";
 import ConversationView from "./ConversationView";
 import ChatSourcesPanel from "./ChatSourcesPanel";
 import WorkspacePanel from "@/components/chat/WorkspacePanel";
+import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import { ChatRecordingNotice, ChatTopNotices } from "./view/ChatNotices";
 import ChatMobileTopNav from "./view/ChatMobileTopNav";
 
@@ -111,9 +112,7 @@ export default function ChatBodyView({
   aiNote,
   recordingError,
   closeSourcesPanel,
-  analysisPanelWidth,
-  spatialEntry = false,
-  conversationStarted = false
+  analysisPanelWidth
 }) {
   const showChatFace = !profileOpen;
   const showProfileFace = profileOpen;
@@ -166,6 +165,11 @@ export default function ChatBodyView({
                   visible={workspaceSurfaceReady}
                 />
               ) : null}
+              {/* Admini S/P/T — vestlusepinnal, kus roll juhib süsteemipromptit,
+                  RAG-sihtrühma ja vastuse pikkust (lib/chat/requestBootstrap).
+                  Töölaua-näol on oma lüliti (WorkspacePanel), seega ainult
+                  vestlusevaates; ruumis roll ei mängi (liikmesuspõhine). */}
+              {showChatInterface && isAdmin && !isRoomMode ? <RoleViewSwitcher /> : null}
               {listingsPanelNode}
               {selectedListingContextNode}
 
@@ -177,7 +181,7 @@ export default function ChatBodyView({
 
               {showChatInterface && showVisibleAnalysisPanel && !analysis.uploadPreview ? <ChatAnalysisPanel {...chatAnalysisPanelProps} /> : null}
 
-              {showChatInterface ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} spatialEntry={spatialEntry} conversationStarted={conversationStarted} /> : null}
+              {showChatInterface ? <ChatComposer key={roomId ? `room:${roomId}:${isHelpMatchRoom ? "help" : "standard"}` : "chat:default"} t={t} locale={locale} isLightTheme={isLightTheme} hideTools={hideComposerTools} inputGlow placeholderText={placeholderText} forcePlaceholderVisible={forcePlaceholderVisible} acceptAttr={analysis.acceptAttr} ensureAnalysisPanelVisible={analysis.ensureAnalysisPanelVisible} fileInputRef={analysis.fileInputRef} onFileChange={analysis.onFileChange} inputRowRef={inputRowRef} inputBarRef={inputBarRef} inputRef={inputRef} onFocusInput={onFocusComposer} onBlurInput={onBlurInput} isGenerating={isGenerating} isStreamingAny={isStreamingAny} isRoomMode={isRoomMode} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} onStop={onStop} onSend={onSend} onActivateInfoMode={onActivateInfoMode} onActivateDeepResearchMode={onActivateDeepResearchMode} onActivateHelpRequestMode={onActivateHelpRequestMode} onActivateHelpOfferMode={onActivateHelpOfferMode} showDocumentAttachButton={documentFlowActive} onPickDocumentFile={onPickDocumentFile} voiceEnabled={voiceEnabled} recording={recording} recordingPulse={recordingPulse} handleMic={handleMic} draftApiRef={composerDraftApiRef} onDraftStateChange={onDraftStateChange} onLayoutChange={onComposerLayoutChange} inputFocused={inputFocused} isMobile={isMobile} activeModeLabel={activeModeLabel} roomModeLabel={roomModeLabel} activeModeKey={activeModeKey} focusActive={focusActive} allowAssistantForward={allowAssistantForward} isHelpMatchRoom={isHelpMatchRoom} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} /> : null}
               {showChatInterface ? <ChatRecordingNotice recordingError={recordingError} floating /> : null}
 
               {showChatInterface ? <footer /> : null}

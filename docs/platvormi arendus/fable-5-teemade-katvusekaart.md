@@ -25,7 +25,7 @@ Staatusemärgid:
 | Vestlusaken ja RAG-vastused | **ÜLDISELT KAETUD** | orientatsioonikaart; platvormiloogika dokid; dokumentide tervikvoo RAG-leid | Vajab eraldi tänase vestlus-UX, allikakuvamise, kriisiraja, töövoogude käivitamise ja veaseisude süvaanalüüsi |
 | Häälvestlus, STT ja TTS | **ÜLDISELT KAETUD** | `lokaalsed-mudelid-ja-multimodaalne-interaktiivsus.md`; orientatsioonikaart | STT/TTS töötab osadena, kuid tervikliku reaalajahäälvestluse toote-, privaatsus- ja UX-analüüs on tegemata |
 | SotsiaalAI teadmusbaas, allikate värskus ja RAG-haldus | **OSALISELT KAETUD** | usaldusmudel; Kovisiooni praktika→RAG kontroll; dokumentide RAG-leid; U8-lite auditid | Vajab eraldi RAG-i edasiarendus- ja testimisprogrammi: allika lisamine/versioon/aegumine/eemaldamine, automaatne muutusekontroll, tenant- ja audience-eraldatus, päris ingest/update/delete/retry, retrieval'i kvaliteet, allikaviited, kõrge riskiga väidete värskus, rollback ja deploy-väravad |
-| Teekond → eelpöördumine → adressaat → eelvaade → saatmine → jätkamine | **KAETUD** | `fable-5-teekond-eelpoordumine-ux-ja-navigeerimine.md` | Analüüs tõendas P0/P1 jagamisleppe ja kerimise probleeme; parandused pole selle dokumendi põhjal veel teostatud |
+| Teekond → eelpöördumine → adressaat → eelvaade → saatmine → jätkamine | **KAETUD ANALÜÜSI, TURVALEPINGU JA TULEVIKUMUDELI TASEMEL** | `fable-5-teekond-eelpoordumine-ux-ja-navigeerimine.md`, ptk 1–15 `COMPLETE`: praegune UX, runtime-jagamisjärelkontroll, fail-closed piir, M4 tulevikumudel, turvasabade kontroll ja TK-P0…P5 järjestus. Teekond→abivahendus ei leki sisu, kuid selle kuus märkeruutu ei juhi praegu midagi | Rakenduskood on tegemata. Järjekord: TK-P0 jagamispiir → TK-P1 kerimine → TK-P2 automaatsalvestus/URL/U2 süvalink → TK-P3 aus elutsükkel → TK-P4 seosed ja manifest → TK-P5 esitluskiht. Konto kustutamise L4 vajab O-TK9 retention-otsust; L5 privaatmärkme orb vajab serveriparandust |
 | Pöördumiste vastuvõtja töölaud ja hilisem menetluseelne koostöö | **OSALISELT KAETUD** | Teekonna/eelpöördumise analüüs; U3/U4/U10 auditid | Autorivaade on põhjalikumalt kaetud kui vastuvõtja igapäevane töövoog; vajab eraldi receiver-workbench UX-ringi |
 | Abisoovid + abipakkumised + sobitus + ühine ruum | **KAETUD** | `fable-5-teenusekaart-profiil-ja-abivahendus-tervikvoog.md` | Tuum runtime-tõendatud; V1/V2 mustandite ja mitteavalike kirjete leke on blokeeriv; lisaks vajab tooteotsust match-nõusolek ja eraldi väärkasutuse/modereerimise mudel |
 | Teenusekaart + KOV-kontaktid + markerid + detailvaade | **KAETUD** | sama Teenusekaardi tervikvoo fail | V5 katkine in-app pöördumise lüli ja V6 puuduva marker-CSS-i integratsioon; loendivaade/klasterdamine hilisemad paketid |
@@ -86,7 +86,7 @@ Kokkuvõte: funktsionaalsete põhimoodulite route'id on enamasti vähemalt osali
 
 | Teema | Katvus | Mis on olemas | Mis on puudu |
 |---|---|---|---|
-| Supervisioon | **OSALISELT KAETUD** | Q1 tootemudel ja ruumiline teekond `COMPLETE`; Q2 andmemudel, õigused, API ja purge kirjutatud | Q2 mustrite kontroll, eeskambri UI, U1/U2, migratsioonijärjekord, testiplaan ja teostuspaketid on `NOT_STARTED` |
+| Supervisioon | **KAETUD ANALÜÜSI JA RAKENDUSVALMIS TÖÖPLAANI TASEMEL** | Q1 tootemudel ja ruumiline teekond `COMPLETE`; Q2 V0 tehniline tööplaan `COMPLETE (v2)`: M1–M13, eeskambri privaatsuspiir, õigused, API-d, additiivne migratsioon, purge, i18n, ligipääsetavus, testimaatriks ja SUP-P0…P9 paketid | Rakenduskood on alustamata. Järgmine samm on ainult SUP-P0 skeemi- ja migratsioonipakett; retention, grandi tõendusstandard ja piloodi ulatus jäävad hilisemateks tooteotsusteks ega blokeeri P0 alustamist |
 | Mentorlus ja ESTA mentorite viitamine | **OSALISELT KAETUD** | ESTA tegelik roll ja `EXTERNAL_REFERENCE` piir supervisiooni dokis | Eraldi mentorluse kasutajateekond, kvaliteedipiir, kataloog ja kontaktivõtt puuduvad |
 | Organisatsiooni- ja meeskonnakiht | **ÜLDISELT KAETUD kontseptsioonina** | `fable-5-lisavastused-organisatsioon-ja-piloot.md`; ideed | Pole aktiivse koodi vastu V0 tervikplaani, õiguste mudelit ega kasutajaliidese analüüsi |
 | Esimene KOV-piloot ja ESTA tutvustuspäev | **ÜLDISELT KAETUD kontseptsioonina** | piloodi soovitus ja ulatus dokumenteeritud | Partner, ajakava, mõõdikud, andmekaitse ja operatiivne valmisolek kinnitamata |
@@ -116,7 +116,7 @@ Kokkuvõte: funktsionaalsete põhimoodulite route'id on enamasti vähemalt osali
 
 | Läbiv teema | Katvus | Mis vajab veel terviklikku käsitlust |
 |---|---|---|
-| Privaatsus, GDPR, säilitustähtajad ja konto kustutamine | **OSALISELT KAETUD** | Jagamise, auditijälje, RAG-koopiate, kinnitatud väljundite, varukoopiate ja konto kustutamise üks ühine andmete elutsükli kaart |
+| Privaatsus, GDPR, säilitustähtajad ja konto kustutamine | **OSALISELT KAETUD** | Jagamise, auditijälje, RAG-koopiate, kinnitatud väljundite, varukoopiate ja konto kustutamise üks ühine andmete elutsükli kaart. Teekonna ptk 15 tõendas eraldi L4 P1: autori kustutus hävitab adressaadi SENT-pöördumise ja tema töömärkmed, ning L5 P2: kustutatud adressaadi privaatmärge jääb autori kirjele orvuks |
 | Rakendusturvalisus ja ohumudel | **OSALISELT KAETUD auditite kaudu** | Platvormiülene threat model: autentimine, IDOR, rollitõus, rate-limit, failid, prompt injection, SSRF, webhook'id, saladused ja kuritarvituse käsitlus |
 | Operatiivne valmisolek | **OSALISELT KAETUD** | Keskkonnamuutujate register, migratsioonijärjekord, backup/restore, health-check'id, teenuste sõltuvused, deploy/rollback ja intsidendijuhis |
 | Monitooring ja auditijälg | **OSALISELT KAETUD** | Ühine sündmuste, veakoodide, RAG-i jääkide, scheduler'ite, e-kirjade, privaatsustoimingute ja turvaintsidentide vaatlusmudel |
@@ -145,10 +145,10 @@ Soovitatud järjekord pärast praegu töös oleva Teenusekaardi teema lõppu:
 | Töö | Seis | Õige jätkamine |
 |---|---|---|
 | Teenusekaart/profiil/abivahendus | `COMPLETE` | Mitte korrata auditit; sulgeda esmalt V1–V3 turva-/ühenduspakett, seejärel V4–V7 ja kujundus |
-| Supervisiooni Q2 tehniline plaan | `IN_PROGRESS` | Jätkata Q2.1, Q2.6–Q2.12 olemasolevas supervisiooni failis |
+| Supervisiooni Q2 tehniline plaan | `COMPLETE (v2)` | Analüüsi mitte korrata. Rakendamise esimene eraldiseisev pakett on SUP-P0; eeskambri invariant on: Tööheaolu üleandmine loob ainult omaniku M6 privaatkirje, jagamine loob hiljem külmutatud M7 koopia ning alles siis U12- ja sisuvaba auditikirje |
 | Tööheaolu TO-1…TO-10 otsustusleht | Pole loodud | Vajadusel eraldi lühike otsustusülesanne; mitte korrata tervikanalüüsi |
 | Tööheaolu E0 sõltumatu järelkontroll | Tegemata | Auditeerida külmutatud haru; mitte lasta E0 autoril ise heaks kiita |
-| Teekonna jagamisleppe P0/P1 parandused | Analüüs valmis, kood tegemata | Teostada ptk 13.5–13.8 järgi eraldi harul |
+| Teekonna tervikmudel ja TK-P0 tööleping | `COMPLETE`, kood tegemata | Üldanalüüsi ega turvasabade kontrolli mitte korrata. TK-P0 on ptk 15.4–15.6 järgi rakendusvalmis ja skeemimuutuseta; O-TK9 otsustab eraldi, kas SENT-pöördumine peab autori konto kustutamise üle elama. Pärast TK-P0/TK-P1 sulgemist on järgmine uus pakett TK-P2 püsivus |
 | Dokumentide RAG cross-tenant leid | Analüüs valmis, runtime-kinnitus/parandus tegemata | Prioriteetne sõltumatu turvakontroll enne uut dokumendi-UX tööd |
 
 ### RAG ja abivahendus on seotud, kuid mitte sama teema
@@ -172,7 +172,6 @@ Enne uue ülesande andmist kontrolli seda faili:
 
 Uuenda seda kaarti kohe, kui:
 
-1. Teenusekaardi analüüs saab `STATUS: COMPLETE`;
-2. Supervisiooni Q2 lõpetatakse;
-3. mõni katmata teema saab oma väljundfaili;
-4. analüüsist tuletatud parandus merge'itakse või deploy'itakse — siis muutub rakenduse seis, mitte ainult analüüsi katvus.
+1. mõni katmata teema saab oma väljundfaili;
+2. mõni pooleliolev tehniline plaan või sõltumatu järelkontroll lõpetatakse;
+3. analüüsist tuletatud parandus merge'itakse või deploy'itakse — siis muutub rakenduse seis, mitte ainult analüüsi katvus.

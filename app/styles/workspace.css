@@ -20,19 +20,26 @@
   padding: clamp(0.2rem, 0.5vw, 0.4rem) clamp(1rem, 2.6vw, 2.2rem)
     clamp(0.3rem, 0.8vw, 0.6rem);
 }
-/* Admini S/P/T — PAREMAS ülanurgas, ⓘ-nupust VASAKUL (tellija 07.07),
-   samal ⓘ/×-real. NB: otsene laps on .admin-role-view-cycle mähis.
-   Right-nihe: sama clamp mis .panel-close + risti(2.6) + ⓘ(2.6) + 2×vahe
-   (6.2rem), miinus wsPaneeli parem-inset (panel-body chat-külg clamp), et
-   lüliti püsiks ⓘ-st vasakul ka teistel akna-laiustel. Top peegeldab
-   panel-body clamp'i, et jääda ⓘ/×-reale. */
-.workspace-dashboard-panel > .admin-role-view-cycle {
+/* Admini S/P/T vaatevalik lehtedel — ⓘ-nupust vahetult VASAKUL samal real.
+   Komponent portaalib end .panel-i otseseks lapseks, seega absoluutne ankur
+   on täpselt sama mis ⓘ ja × nuppudel ning lehe sisu kerimine seda ei liiguta. */
+.admin-role-view-cycle {
   position: absolute;
-  top: calc(clamp(0.8rem, 1.6vw, 1.3rem) - clamp(3.8rem, 7lvh, 4.6rem) + 0.25rem);
+  top: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 0.25rem);
   left: auto;
-  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.2rem - clamp(1rem, 2.4vw, 2rem));
+  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.2rem);
+  bottom: auto;
   transform: none;
   z-index: 30;
+}
+.panel-scrim[data-conversation="1"] .admin-role-view-cycle {
+  top: calc(clamp(1.1rem, 2.8lvh, 1.8rem) + 0.45rem);
+  right: calc(clamp(1.1rem, 2.8vw, 2rem) + 7rem);
+}
+@media (min-width: 769px) {
+  .panel-scrim[data-conversation="1"] .admin-role-view-cycle {
+    right: calc(50% - min(31rem, 47vw) + 7rem);
+  }
 }
 .workspace-dashboard-panel[data-visible="false"] {
   display: none;

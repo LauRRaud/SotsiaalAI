@@ -279,18 +279,18 @@ Alustatud ja lõpetatud: 15.07.2026. Alus: Q1 (osad 1–13 eespool) + 12 lukusta
 
 | Osa | Seis | Viimane tõend | Jätkamispunkt |
 |---|---|---|---|
-| 1. Olemasolevad mustrid | COMPLETE | 13 mustrit tabelis; kood-tasandi importi ei tule (otsus 5) | → osa 6 (UI) |
+| 1. Olemasolevad mustrid | COMPLETE (v2) | 15 mustrit + taaskasutatav/kohandatav/sobimatu klassifikatsioon | — |
 | 2. Andmemudel | COMPLETE | 13 mudelit; kanoonid schema:2382 (PracticeCapability), 2066 (CovisionParticipant), 2157 (PrivateState), 1954 (TopicSeed snapshot), 2268 (OwnerPackage) | → osa 3 |
 | 3. Õiguste maatriks | COMPLETE | 8 tegijat × 23 toimingut; ADMIN=VÕÕR sisus (kovisiooni runtime-etalon) | → osa 5 (sulgemine) |
 | 4. API ja teenusekiht | COMPLETE | 27 rida + ühislepingud; allowlist-kanoon lib/wellbeing/covisionHandoff.js:7 | → osa 10 (testid) |
 | 5. Sulgemine ja purge | COMPLETE | 10 sammu ühes tehingus; xact-lukk lib/covisionLegacyWrite.js:6 kanoonil; V0-l välist cleanup'i pole | → osa 4 (API) |
-| 6. Eeskambri UI | COMPLETE | 10+1 vaadet; ?ala= ankrud; ilma Flight/lõuendimootorita | → osa 7 (Tööheaolu) |
-| 7. Tööheaolu üleandmine | COMPLETE | 9 vastust; peegel covisionHandoff.js kanoonile; WellbeingOutputDraft ei muutu | → osa 8 |
+| 6. Eeskambri UI | COMPLETE (v2) | 10+1 vaadet + sisu neljane jaotus (privaatne/grupp/SV/kustub) | — |
+| 7. Tööheaolu üleandmine | COMPLETE (v2 — PARANDATUD) | siht = EESKAMBER (M6 privaatkirje); superviisor ei näe enne jagamisväravat; unique-tõke M6-s | — |
 | 8. U1/U2 | COMPLETE | 5 teavitust + 1 continuity-allikas; sisuvaba invariant | → osa 9 |
-| 9. Migratsioonijärjekord | COMPLETE | viimane migratsioon 20260715120000; uus = 20260716090000_supervision_v0 | → osa 12 |
-| 10. Testiplaan | COMPLETE | 18 kohustuslikku + 6 kategooriat; node:test + fake-prisma + db:migrate:check (repo kord) | → osa 11 (paketid) |
-| 11. Teostuspaketid | COMPLETE | SUP-P0…P11 + järjekord/paralleelsus; P0 detailseim | → osa 1 (mustrid) |
-| 12. Lõppväljund | COMPLETE | 11-punktine koond + SUP-P0 jätkamispunkt | Q2 valmis; järgmine töö = SUP-P0 |
+| 9. Migratsioonijärjekord | COMPLETE (v2) | + additiivsus/indeksikoond/rollback/andmemõju; uus = 20260716090000_supervision_v0 | — |
+| 10. Testiplaan | COMPLETE (v2) | 18 testi + 15-klassi maatriks (sh T19 auditijälg, T20 indiv/grupp, T21 ET/EN/RU, T22 a11y) | — |
+| 11. Teostuspaketid | COMPLETE (v2) | P0…P11 + lisaväljad (migratsioon/UI/i18n/ei-tee); P9 siht = M6 | — |
+| 12. Lõppväljund | COMPLETE (v2) | + lõplik hinnang (rakendusvalmis: JAH tingimustega) + kopeeritav käsk teostajale | järgmine töö = SUP-P0 |
 
 ## Q2 lukustatud tooteotsused (siduvad)
 
@@ -333,6 +333,14 @@ Sihtkontroll (mitte üldaudit); kanoonid on peatüki koostamisel koodist üle va
 | Atomaarne sulgemine + purge | `CovisionClosure` (schema:2197–2238) + runtime-tõendatud üks-tehing-sulgemine (orientatsioonikaart ptk 8: closure+pakk+kandidaat+kustutus ühes tehingus) | tehingupiir; purge-põhimõte; `retentionStatus` staatus-ilma-scheduler'ita | Q2.5 oma järjestus (M11+M12) | practiceDecision/FollowUp/jätkuseemne/RAG-sünk rajad (otsused 5 ja 18: supervisioonil pole praktika- ega RAG-rada) |
 | Konto kustutamine | privacy_audit_and_deletion_jobs (migratsioon 20260424193000) + `DataAuditLog` (schema:1416) + Cascade/SetNull distsipliin | Cascade-disain M-mudelites; deletion-jobs kontroll | test #17 stsenaariumid | — |
 | Auditikirjed | `EffectivePracticeAuditEvent` (schema:2519–2543: append-only, actor SetNull, justificationVisibility värav) | append-only + SetNull-actor | M13 (sisuvaba) | justification-vabatekst ja selle visibility-värav (M13-s vabatekst KEELATUD) |
+| Väljundmustandid | `WellbeingOutputDraft` (schema:1267–1292: userReviewed/userConfirmed/recipientType/handedOffAt/covisionCaseId; `recipientType="supervisor"` juba olemas — lib/wellbeing/supportDrafts.js:15–21) + `lib/wellbeing/covisionHandoff.js` voog | mustandi kinnituse-elutsükkel + handoff-mehaanika (allowlist, sameInstant, handedOffAt) | supervisiooni-poolne vastuvõtt (M6 sihtkirje, Q2.7 v2) | covisionCaseId 1:1-juhtumiseose kuju (supervisioonis on siht privaatkirje, mitte protsess/juhtum) |
+| Kutsed ja ruumiliikmesus (Room-pool) | `Room`/`RoomMember`/`Invite` (schema:2779–2857: RoomRole, leftAt, lastReadAt, tokenHash, arveldusväljad) | leftAt-nähtavuspiiri IDEE (lahkunu ei näe uut sisu) | — (V0 EI kasuta ruume: kohtumine on platvormiväline fakt, otsused 1–2) | origin-singleton, token-kutsed, billing/sponsor-kiht, sõnumivoog — kõik V0-le sobimatu |
+
+**Klassifikatsioon (taaskasutatav / kohandatav / sobimatu):**
+
+- **Taaskasutatav** (muster üle sellisena): NotificationEvent + U2 koostur (ainult uued type'id/allikad); advisory-lock + version-CAS idioom; append-only auditikuju; konto kustutamise Cascade/SetNull distsipliin; väljundmustandi handoff-mehaanika (allowlist + sameInstant + handedOffAt).
+- **Kohandatav** (muster sobib, semantika muutub): admin-grant (PracticeCapability → M1: ilma scope'ita, kohustuslik grantBasis); osalejad/kutsed (CovisionParticipant → M4: ilma email-kutseta); privaatoleku eraldus (CovisionPrivateState → M6: ilma stage'ita); külmutatud jagamissnapshot (TopicSeed → M7: koopia-kirje, mitte snapshot-väli); mitme-kinnituse lävi (praktikate rollipõhine → M10 osaluspõhine); atomaarne sulgemine + purge (CovisionClosure → M11+M12: ilma praktika/RAG-rajata); tingimuste versioonikinnitus (FrameworkAcceptance idee → M3+M5).
+- **Sobimatu** (ära kasuta V0-s): Room/Invite token- ja arvelduskiht; ruumiliikmesus tervikuna; kovisiooni etapimasin (stage/phase/StageSnapshot); praktikate autor-ei-publitseeri reegel; `assertCovisionCreator` ADMIN-luba; auditite justification-vabatekst.
 
 Kokkuvõte: taaskasutus on mustri-, mitte kooditasandil — supervisioon EI impordi kovisiooni teenusefaile, vaid kordab nende lepinguid omas moodulis (otsus 5). Ainsad jagatud runtime-sõltuvused: NotificationEvent-kiht, continuity-koostur, User/Role, advisory-lock idioom.
 
@@ -419,7 +427,7 @@ Põhimõtted: Prisma-enum'id nagu Kovisioonis; privaatne, jagatud ja püsiv sisu
 - **Eesmärk:** teadlikult jagatud teema = külmutatud koopia jagamishetkel (manifest ON kirje ise; TopicSeed.sharedCardSnapshot + ownerConfirmedAt muster, schema:1954–1956).
 - **Väljad:** id; processId; authorParticipationId; title String; body String @db.Text; audience enum {SUPERVISOR_ONLY, PROCESS}; sourceKind enum {MANUAL, WELLBEING_HANDOFF} (kopeeritakse jagamisel allikaks olnud M6 kirjest — v2: otsest Tööheaolu-viidet M7-s EI OLE, see elab M6-s); status enum {SHARED, WITHDRAWN}; sharedAt; withdrawnAt?; version Int; createdAt/updatedAt.
 - **Olekud:** SHARED → WITHDRAWN (autor võtab tagasi; sisu jääb DB-s kuni purge'ini, aga serializer peidab teistelt).
-- **Omanik/nähtavus:** autor + superviisor alati; teised ACCEPTED osalejad ainult kui audience=PROCESS ja status=SHARED. SUPERVISOR_ONLY on vaikeväärtus Tööheaolu-üleandmisel (Q2.7 lähtekoht: superviisorile ≠ grupile).
+- **Omanik/nähtavus:** autor + superviisor alati; teised ACCEPTED osalejad ainult kui audience=PROCESS ja status=SHARED. Audience'i valib autor jagamisväraval; Tööheaolu-päritolu (sourceKind=WELLBEING_HANDOFF) EI muuda väravat ega anna kiirteed (Q2.7 v2).
 - **Indeksid:** @@index([processId, status, sharedAt]); @@index([authorParticipationId]).
 - **Unikaalsus:** — (v2: topeltüleandmise tõke kolis M6.sourceWellbeingDraftId peale).
 - **Kustutus:** process Cascade; authorParticipation Cascade; **purge sulgemisel kustutab KÕIK protsessi SharedTopic-read** (toorsisu, otsus 11).
@@ -488,12 +496,12 @@ Põhimõtted: Prisma-enum'id nagu Kovisioonis; privaatne, jagatud ja püsiv sisu
 ### M13. SupervisionAuditEvent
 
 - **Eesmärk:** append-only sündmusteregister (EffectivePracticeAuditEvent muster, schema:2519–2543, ILMA justification-vabatekstita; grant-sündmustele PracticeCapabilityAudit muster, schema:2501–2517).
-- **Väljad:** id; processId String? (SetNull või Cascade — vt allpool); actorUserId? (SetNull — kustutatud konto ei kustuta otsusejälge); action String (PROCESS_CREATED, CONTRACT_ACTIVATED, INVITE_SENT, INVITE_WITHDRAWN, CONTRACT_ACCEPTED, PARTICIPANT_LEFT, TOPIC_SHARED, TOPIC_WITHDRAWN, MEETING_PLANNED, MEETING_HELD, SUMMARY_SUBMITTED, SUMMARY_APPROVED, PROCESS_CLOSED, HANDOFF_ATTACHED); targetKind/targetId String?; metadata Json? (AINULT id-d/arvud/olekud — vabateksti keeld on invariant); createdAt.
+- **Väljad:** id; processId String? (SetNull või Cascade — vt allpool); actorUserId? (SetNull — kustutatud konto ei kustuta otsusejälge); action String (PROCESS_CREATED, CONTRACT_ACTIVATED, INVITE_SENT, INVITE_WITHDRAWN, CONTRACT_ACCEPTED, PARTICIPANT_LEFT, TOPIC_SHARED, TOPIC_WITHDRAWN, MEETING_PLANNED, MEETING_HELD, SUMMARY_SUBMITTED, SUMMARY_APPROVED, PROCESS_CLOSED — v2: HANDOFF-sündmust EI OLE, üleandmine on privaatala toiming); targetKind/targetId String?; metadata Json? (AINULT id-d/arvud/olekud — vabateksti keeld on invariant); createdAt.
 - **Kustutus:** processId Cascade (kui protsess kustub konto kustutusega, kaovad ka sündmused — privaatsus ennekõike); grant-sündmused (GRANT_ISSUED, GRANT_REVOKED) elavad processId=NULL kirjetena SetNull-loogikata.
 - **Nähtavus:** V0-s UI-d ei ole; server/diagnostika; ADMIN näeb grant-sündmusi, protsessisündmusi EI sirvita sisuvaadetes.
 - **Vabatekst:** keelatud (invariant, testitav).
 
-**Kokkuvõte:** 13 mudelit, 0 muudatust olemasolevatele mudelitele peale kahe: (a) `WellbeingOutputDraft` saab OLEMASOLEVA mustri laienduse (Q2.7: uus nullable viide `supervisionSharedTopicId` VÕI vastassuunaline @unique-viide M7-s — valitud on M7-poolne viide, seega **WellbeingOutputDraft EI muutu üldse**; handedOffAt semantika laieneb teenusekoodis); (b) `User` saab ~10 uut nimelist tagasi-relatsiooni (Prisma nõue, ainult skeemirida, mitte andmemuudatus).
+**Kokkuvõte:** 13 mudelit, 0 muudatust olemasolevatele mudelitele peale kahe: (a) Tööheaolu-viide elab vastassuunalise @unique-viitena **M6-s** (Q2.7 v2), seega **WellbeingOutputDraft EI muutu üldse** (handedOffAt semantika laieneb teenusekoodis); (b) `User` saab ~10 uut nimelist tagasi-relatsiooni (Prisma nõue, ainult skeemirida, mitte andmemuudatus).
 
 ## Q2.3 Õiguste ja privaatsuse maatriks
 
@@ -527,7 +535,7 @@ Server jõustab kõik read teenusekihis (mitte UI peitmisega). Tegijate legend: 
 | Sulgemise eelvaade (mis kustub/jääb) | ✓ | ✓ (read-only) | ✓ | – | – | 404 | 404 | 404 |
 | Isiklik püsiväljund (M12) | ainult OMA | ainult OMA | ainult OMA | – | OMA (kui lahkus pärast sulgemist — ei teki: pakk luuakse ainult sulgemishetkel ACCEPTED-osalustele + SV-le) | 404 | 404 | **404 — EI MÖÖDU** |
 | Auditisündmused (M13) | – (V0-s UI-ta) | – | – | – | – | – | – | grant-sündmused jah; protsessisündmusi sisuvaadetes ei sirvi |
-| Tööheaolu-mustandi üleandmine (Q2.7) | – | ✓ (ainult OMA mustand, OMA osalusega protsessi) | ei | – | – | 404 | 404 (Tööheaolu on niigi SW-only) | 404 |
+| Tööheaolu-mustandi üleandmine (Q2.7 v2 — loob M6 PRIVAATkirje) | – | ✓ (ainult OMA mustand, OMA osalusega protsessi) | ✓ (privaatala kirjutus on lubatud nagu M6 CRUD) | – | – | 404 | 404 (Tööheaolu on niigi SW-only) | 404 |
 
 ¹ **KUT piiratud kaart:** protsessi pealkiri, superviisori nimi, tüüp, aktiivne kontraktitekst — EI osalejate nimekirja, EI teemasid, EI kohtumisi, EI kokkuvõtteid.
 ² **LAHK:** näeb protsessi kaarti, oma vanu M6 kirjeid (read-only), lahkumiseelseid APPROVED-kokkuvõtteid; EI näe uusi teemasid/kokkuvõtteid/kohtumisi pärast leftAt-i (serializer filtreerib leftAt-iga).
@@ -572,7 +580,7 @@ SEIS: COMPLETE
 | 13 | POST `/api/supervision/processes/[id]/contract-acceptance` | OS† ise | {contractVersionId} | unique [participation, version] → kordus 200 | ✓ CONTRACT_ACCEPTED |
 | 14 | GET/POST `/api/supervision/processes/[id]/private-items` | omanik-skoop (liige) | POST: {kind, title?, body} | — | EI auditit (privaatsisu; sisuvaba invariant kaaluks üles) |
 | 15 | PATCH/DELETE `/api/supervision/private-items/[itemId]` | AINULT omanik | {title?, body?, expectedVersion} | CAS 409 | EI auditit |
-| 16 | POST `/api/supervision/processes/[id]/topics` | OS/SV (kehtiv kinnitus) | {title, body, audience, sourcePrivateItemId?} | koopia-semantika; Tööheaolu-allikas AINULT rea 26 kaudu | ✓ TOPIC_SHARED (metadata: topicId, audience — MITTE sisu) |
+| 16 | POST `/api/supervision/processes/[id]/topics` | OS/SV (kehtiv kinnitus) | {title, body, audience, sourcePrivateItemId?} | koopia-semantika; Tööheaolu-päritoluga M6 kirje jagatakse SAMA rea kaudu (sourceKind kopeerub; v2) | ✓ TOPIC_SHARED (metadata: topicId, audience — MITTE sisu) |
 | 17 | POST `/api/supervision/topics/[id]/withdraw` | autor | {expectedVersion} | idempotentne | ✓ TOPIC_WITHDRAWN |
 | 18 | POST `/api/supervision/processes/[id]/meetings` | SV | {plannedAt?} (seq arvutab server) | unique [processId, seq] | ✓ MEETING_PLANNED |
 | 19 | PATCH `/api/supervision/meetings/[id]` | SV | {status?, plannedAt?, heldAt?, note?, agendaTopicIds?, expectedVersion} | CAS; HELD on lõplik (tagasi → 409) | ✓ MEETING_HELD |
@@ -582,7 +590,7 @@ SEIS: COMPLETE
 | 23 | POST `/api/supervision/summaries/[id]/approve` | OS (kehtiv kinnitus) | {} | unique [summary, participation] → kordus 200; viimane kinnitus → APPROVED samas tehingus | ✓ SUMMARY_APPROVED |
 | 24 | GET `/api/supervision/processes/[id]/close-preview` | liige | — | — | — |
 | 25 | POST `/api/supervision/processes/[id]/close` | SV | {expectedVersion, generalizedTitle} | Q2.5 järjestus; closure olemas → 409 | ✓ PROCESS_CLOSED |
-| 26 | POST `/api/wellbeing/output-drafts/[id]/supervision` | mustandi omanik + OS sihtprotsessis | {processId, expectedUpdatedAt, confirmedNoIdentifiers} | peegel olemasolevale covision-handoff'ile (app/api/wellbeing/output-drafts/[id]/covision/route.js); topelt → 409 (M7 unique) | ✓ HANDOFF_ATTACHED |
+| 26 | POST `/api/wellbeing/output-drafts/[id]/supervision` | mustandi omanik + OS/OS† sihtprotsessis | {processId, expectedUpdatedAt} | **loob M6 PRIVAATkirje (Q2.7 v2)**; mehaanika peegel covision-handoff'ile (app/api/wellbeing/output-drafts/[id]/covision/route.js); topelt → 409 (M6 unique) | EI auditit (privaatala) |
 | 27 | GET `/api/supervision/outcomes` (+ `/[id]`) | AINULT omanik | — | — | — |
 
 **Serializer-väljade miinimum (näited):** rida 6 KUT-vaatajale: {id, title, type, supervisorName, activeContract:{versionNumber, body}, myParticipation:{status}} — EI participants[], topics[], meetings[], summaries[]. Rida 6 OS-vaatajale: + participants (nimed+staatus), meetings (faktid), topics (audience-filtreeritud), summaries (PENDING/APPROVED), myPrivateItems EI OLE selles vastuses (eraldi rida 14 — privaatsisu ei sõida jagatud vastuses).
@@ -633,6 +641,22 @@ V0 teostab variandi A (Q1 osa 9/10) LIHTSA vaadetekomplektina — ruumigrammatik
 | 10 | Suletud protsessi vaade | faktid + kapp + MINU isiklik pakk (M12) | „Protsess on suletud; toorsisu on kustutatud" + purgeReport arvud | „Ava minu pakk" | `/supervisioon/[id]` (CLOSED-serializer) ja `/supervisioon/valjundid/[outcomeId]` | — | sama |
 
 **Navigeerimisleping:** `?ala=` väärtused on püsivad ankrud (eeskamber/kontrakt/kohtumised/kokkuvotted/kapp); U2 „Jätka siit" sihib alati täpset `?ala=...&summary=...` oleku-URL-i (Q2.8). Ruumikeel V0-s: eeskamber-ala visuaalselt eristatud (hämaram paneel) + lävi = vaade 5 eraldi sammuna — sellest piisab, et Q1 variandi A tähendus (privaatne koht → nähtav lävi → ühine ala → kapp) oleks olemas ilma 3D-tööta.
+
+**Sisu neljane jaotus (siduv piir igale UI-elemendile; iga vaade kannab vastavat märgist):**
+
+| Sisuelement | Mudel | Kes näeb | Sulgemisel |
+|---|---|---|---|
+| Eeskambri mustandid ja privaatmärkmed | M6 | AINULT omanik (mitte SV, mitte ADMIN) | jääb omanikule |
+| Tööheaolust toodud küsimus (jagamata) | M6 (sourceKind=WELLBEING_HANDOFF) | AINULT omanik | jääb omanikule |
+| Jagatud teema, audience=SUPERVISOR_ONLY | M7 | autor + superviisor | **kustub** |
+| Jagatud teema, audience=PROCESS | M7 | kõik ACCEPTED liikmed | **kustub** |
+| Kontrakt (versioonid + kinnitusfaktid) | M3 + M5 | liikmed; kutsutu ainult aktiivset versiooni | jääb (kinnitatud raam) |
+| Kohtumise fakt (seq, ajad, staatus) | M8 | liikmed | jääb |
+| Kohtumise töömärge | M8.note | liikmed | **kustub** (NULL) |
+| Kokkuvõtte mustand (DRAFT) | M9 | AINULT superviisor | **kustub** (PENDING ei saa sulgemisel eksisteerida — 409) |
+| Kinnitatud kokkuvõte (APPROVED) | M9 (+M10 faktid) | liikmed | jääb (külmutatud) |
+| Isiklik püsiväljund | M12 | AINULT omanik | tekib sulgemisel |
+| Faktijälg (osalus, closure, purgeReport arvud) | M4/M11 | liikmed | jääb |
 
 ## Q2.7 Tööheaolu üleandmise piir
 
@@ -704,6 +728,14 @@ SEIS: COMPLETE
 
 **Ristumiskohad olemasolevate harudega (15.07 seis):** `opus/u6-personal-search`, `codex/u7-plain-language`, `codex/role-aware-invite-copy` ootavad merge'i — ükski ei puuduta supervisiooni tabeleid ega `lib/supervision/` kausta; ainus jagatud puutepunkt on `prisma/schema.prisma` User-mudeli relatsiooniplokk (tekstikonflikti võimalus, sisulist mitte) ja migratsioonide järjekord. Reegel: P0 haru rebase'itakse vahetult enne merge'i ja migratsioonikaust nummerdatakse vajadusel ümber.
 
+**Additiivsus, indeksid, rollback ja andmemõju:**
+
+- **Rangelt additiivne:** migratsioon sisaldab AINULT CREATE TYPE (11 enumit), CREATE TABLE (13 tabelit), CREATE INDEX/UNIQUE ning FK-sid uutelt tabelitelt olemasolevatele (User, WellbeingOutputDraft) — MITTE ÜHTEGI ALTER-it olemasolevatele tabelitele ega andmete backfill'i. P0 auditipunkt kontrollib seda migration.sql-ist rida-realt.
+- **Indeksite koond (allikas Q2.2):** M1 [userId,revokedAt,validUntil]; M2 [supervisorId,status,updatedAt]+[status,lastActivityAt]; M3 unique[processId,versionNumber]+[processId,status]; M4 unique[processId,userId]+[userId,status,updatedAt]; M5 unique[participationId,contractVersionId]+[contractVersionId]; M6 [processId,ownerUserId,updatedAt]+unique(sourceWellbeingDraftId); M7 [processId,status,sharedAt]+[authorParticipationId]; M8 unique[processId,seq]; M9 unique(meetingId)+[processId,kind,status]; M10 unique[summaryId,participationId]; M11 unique(processId); M12 unique[processId,ownerUserId]+[ownerUserId,createdAt]; M13 [processId,createdAt]+[actorUserId,createdAt].
+- **Rollback:** kuna migratsioon on puhtalt additiivne, on tagasitee = uute tabelite+enumite DROP vastupidises FK-järjekorras (M13→M12→M11→M10→M9→M8→M7→M6→M5→M4→M3→M2→M1→enumid); kaotsi läheb ainult supervisiooni enda sisu. Repo praktika on forward-only — rollback on erakorraline käsitsi-protseduur, mille järjekord dokumenteeritakse P0 PR-kirjelduses.
+- **Olemasolevate andmete mõju:** NULL — ühtegi olemasolevat rida ei loeta ega muudeta; User ja WellbeingOutputDraft saavad ainult sissetulevaid FK-viiteid (SetNull/Cascade suunad kavandatud nii, et olemasolevate kirjete kustutuskäitumine ei muutu).
+- **Sõltuvused:** P0 eeldab ainult main'i hetkeseisu (viimane 20260715120000_u1_u2_notification_continuity); ükski hilisem pakett EI lisa oma migratsiooni (üks migratsioon V0 peale; kui parandus on vältimatu, tuleb uus hilisem timestamp, mitte olemasoleva ümberkirjutus).
+
 ## Q2.10 Kohustuslik testiplaan
 
 SEIS: COMPLETE
@@ -729,7 +761,7 @@ SEIS: COMPLETE
 | 13 | Sulgemine ühes tehingus: APPROVED jääb muutumatuna, M7 kõik kustunud, M8.note NULL, M9 DRAFT/PENDING kustunud, M12 pakid loodud, M2 title üldistatud — JA vahepealse vea korral rollback (fake-prisma tx-katkestus) | U | closure.test.js |
 | 14 | Sulgemise kordus → 409 + sama closure; teist M12 pakki ei teki | U | closure.test.js |
 | 15 | Ükski NotificationEvent ei sisalda vabateksti: type/sourceType/sourceId/targetKind/targetId AINULT (leping kõigile Q2.8 sündmustele) | U | notifications.test.js |
-| 16 | Tööheaolu üleandmine → M7 audience=SUPERVISOR_ONLY vaikimisi; OS-serializer teistele osalejatele EI tagasta seda teemat | U+S | handoff.test.js |
+| 16 | Tööheaolu üleandmine loob AINULT M6 privaatkirje (superviisori päring → 404; grupp ei näe midagi); toorkirje väljad ei liigu; topelt → 409 (M6 unique); jagatuks saab AINULT rida-16 värava kaudu | U+S | handoff.test.js |
 | 17 | Konto kustutamine: osaleja kustutus → tema M4/M5/M6/M12 kadunud, M7 autor-cascade, protsess terve; SV kustutus → protsess+alamad kadunud, teiste M12 pakid ALLES (processId SetNull) | M+I | db:migrate:check + integratsioon |
 | 18 | Supervisiooni teksti EI saadeta RAG-i: teenusekiht ei impordi RAG-sünki; grep-invariant `lib/supervision/` → 0 RAG-viidet; runtime: ükski supervision-action ei loo RAG-tööjärjekorra kirjet | U+I | ragIsolation.test.js + grep CI-reeglina |
 
@@ -741,6 +773,26 @@ SEIS: COMPLETE
 - **Migratsioonitestid:** `db:migrate:check` — FK-d, cascade'id (test 17), unique-piirangud (M5, M10, M11.processId, M12 [processId,ownerUserId], M7.sourceWellbeingDraftId), NULL-käitumised (M12 processId SetNull).
 - **UI olekulepingud:** Q2.6 vaadete olekud (laadimine/viga/409-konflikt/tühi) — komponenditestid andmelepingu vastu (mitte visuaal); „privaatne/jagatud" märgise kohalolu eeskambri ja jagamis-eelvaate vaadetes.
 - **Päris-DB integratsioonikontrollid enne deploy'd (käsitsi/e2e, temp-login-token):** täisvoog grant→loomine→kutse→accept→prep→jagamine→kohtumine→kokkuvõte→kinnitused→sulgemine kahe päris kontoga; DB-tasandi kinnitus purge järel (raw SQL: M7 count=0, M8.note NULL, M9 ainult APPROVED); IDOR-sviip admin-kontoga; test 18 runtime-pool.
+
+**Klassimaatriks (15 nõutud klassi → katvus; uued testid T19–T22):**
+
+| Klass | Katvus |
+|---|---|
+| Rollid ja võõra objekti 404 | #1, #3, #5 + route-lepingute 404-read |
+| Privaatse eeskambri eraldatus | #6, #7 + S-kategooria täpne-võtmehulk M6-le |
+| Kontrakti versioon ja taaskinnitus | #9 + M5 unique-leping |
+| Jagamissnapshot | #8 (koopia külmub; M6 hilisem muudatus ei levi) |
+| CAS ja paralleelsus | #10, #11 |
+| Kutsed | #3, #4, #11(respond) + **T19a**: kutse tagasivõtt (WITHDRAWN) lõpetab kutsutu ligipääsu kontraktile |
+| Teavituste sisutus | #15 |
+| Sulgemine ja purge | #13, #14 |
+| Konto kustutamine | #17 |
+| Auditijälg | **T19**: iga Q2.4 „✓"-rida loob täpselt ÜHE M13 kirje õige action'iga; M13.metadata vabateksti-keeld (regex-invariant kõigi stringiväärtuste peal: ainult id/enum/arv); M6- ja handoff-toimingud EI loo M13 kirjet |
+| Tööheaolu no-leak | #16 (v2: ainult M6; superviisor 404 enne jagamist) + toorkirje väljade allowlist-test |
+| Admin ei näe supervisiooni sisu | #6 + IDOR-sviip (I-kategooria) |
+| Individuaal- ja grupisupervisioon | **T20**: INDIVIDUAL — 1 osaleja kinnitus viib M9 APPROVED-iks ja sulgemine loob 2 pakki (osaleja+SV); GROUP — lävi on KÕIK ACCEPTED; type ei muuda ühtegi õigusrida |
+| ET/EN/RU | **T21**: `i18n:check` pariteet (repo kord: et-baas, lint keelab hard-coded JSX-teksti); väravavaadete (3b kontraktinõusolek, 5 jagamise eelvaade, 9 sulgemise eelvaade) tekstid olemas kõigis kolmes keeles |
+| Ligipääsetavus | **T22**: vaadete 4/5/9 täielik klaviatuurirada (tab-järjekord, Enter kinnitab, Escape katkestab), nähtav fookus, jagamisväraval aria-tekst „kes näeb pärast jagamist"; `prefers-reduced-motion` = sama sisu ilma üleminekuteta |
 
 ## Q2.11 Teostuspaketid
 
@@ -840,10 +892,10 @@ Iga pakett on eraldi harul tehtav (Sol/Codex) ja sõltumatult auditeeritav (Opus
 
 ### SUP-P9 — Tööheaolu üleandmine
 
-- **Eesmärk:** rida 26 (Q2.7 leping): mustand → M7 SUPERVISOR_ONLY teema.
+- **Eesmärk:** rida 26 (Q2.7 v2 leping): kinnitatud mustand → M6 EESKAMBRI privaatkirje (superviisor ei näe enne jagamisväravat).
 - **Puutepind:** `lib/supervision/wellbeingHandoff.js`; `app/api/wellbeing/output-drafts/[id]/supervision/route.js`. `lib/wellbeing/covisionHandoff.js` jääb PUUTUMATA (peegel, mitte refaktor).
-- **Sõltub:** P4.
-- **Invariant:** expectedUpdatedAt-CAS; topelt → 409; grupile ei leki.
+- **Sõltub:** P3 (eeskamber).
+- **Invariant:** expectedUpdatedAt-fingerprint; topelt → 409 (M6 unique); superviisorile ega grupile EI leki enne rida-16 jagamist; toorkirje ei liigu; M13 kirjet ei teki.
 - **Valmis:** rida 26 töötab; handedOffAt semantika dokumenteeritud.
 - **Testid:** Q2.10 #16, #11(handoff).
 - **Audit:** võrdlus covisionHandoff'i lepinguga (allowlist, sameInstant).
@@ -869,6 +921,23 @@ Iga pakett on eraldi harul tehtav (Sol/Codex) ja sõltumatult auditeeritav (Opus
 
 **Järjekord ja paralleelsus:** P0 → P1 → P2 → {P3, P5 paralleelselt} → P4 → P6 → P7 → {P8, P9, P10 paralleelselt} → P11. Iga pakett eraldi harul; merge alles pärast paketi auditipunkti läbimist.
 
+**Pakettide lisaväljad (migratsioon / UI / i18n / mida teadlikult EI tee):**
+
+| Pakett | Migratsioon | UI | i18n | Teadlikult EI tee |
+|---|---|---|---|---|
+| P0 | `20260716090000_supervision_v0` (V0 AINUS) | — | — | ei muuda olemasolevaid tabeleid; null teenuskoodi |
+| P1 | — | — (API-only) | veateated et/en/ru | admin-UI-d; grandi avalikku kuvamist (otsus 4) |
+| P2 | — | — | veateated | UI-d; teemasid/kohtumisi/kokkuvõtteid |
+| P3 | — | — | — | jagamist (ainult privaat-CRUD); M13 auditit |
+| P4 | — | — | — | audience-muutmise UI-d (API olemas) |
+| P5 | — | — | — | kalendrit/meeldetuletusi (U1 tuleb P8-s) |
+| P6 | — | — | — | mitut FINAL-it; AI-kokkuvõttemustandit (V0-väline) |
+| P7 | — | — | — | retention-automaatikat (otsus 12) |
+| P8 | — | — | teavituste sildid | e-kirjade sisselülitamist (jääb olemasoleva opt-in korra taha) |
+| P9 | — | Tööheaolu mustandivaatesse 1 nupp + eelvaade (olemasoleva voo jätk) | eelvaate tekstid | `covisionHandoff.js` muutmist; jagamiskiirteed superviisorile |
+| P10 | — | 10+1 vaadet (Q2.6) | TÄISMAHT (suurim i18n-pakett; T21) | Flight/3D; tellijavaadet; uut lõuendimootorit |
+| P11 | — | — | — | uut funktsionaalsust (ainult kontroll ja raport) |
+
 ## Q2.12 Lõppväljund
 
 SEIS: COMPLETE
@@ -884,8 +953,8 @@ SEIS: COMPLETE
 | M3 ContractVersion | →M2 | jääb (kinnitatud raam) |
 | M4 Participation | →M2, →User; unique[process,user] | jääb (fakt) |
 | M5 ContractAcceptance | →M4, →M3; unique paar | jääb (fakt) |
-| M6 PrivateItem | →M2, →User(omanik) | **jääb omanikule** |
-| M7 SharedTopic | →M2, →M4(autor), →WellbeingOutputDraft? unique | **kustub täielikult** |
+| M6 PrivateItem | →M2, →User(omanik), →WellbeingOutputDraft? unique (v2) | **jääb omanikule** |
+| M7 SharedTopic | →M2, →M4(autor) | **kustub täielikult** |
 | M8 Meeting | →M2; unique[process,seq] | faktid jäävad; note/viited nullitakse |
 | M9 Summary | →M2, →M8? unique | APPROVED jääb; muud kustuvad |
 | M10 SummaryApproval | →M9, →M4; unique paar | jääb APPROVED-i küljes |
@@ -919,3 +988,25 @@ SEIS: COMPLETE
 5. kontrolli `git diff --stat`: TÄPSELT 2 puudet (schema.prisma + uus migratsioonikaust);
 6. auditipunkt (Opus): väli-väljalt võrdlus Q2.2 vastu + Cascade/SetNull/unique käitumiste kontroll test #17 stsenaariumiga.
 7. Enne SUP-P1 algust: fikseeri `lib/effectivePractices.js` grant-funktsioonide täpsed nimed (Q2.1 tabeli „→ P1" märge).
+
+**12. Lõplik hinnang (v2):**
+
+1. **Kas V0 plaan on rakendusvalmis?** JAH, tingimustega: andmemudel (Q2.2), õigused (Q2.3), API (Q2.4), sulgemine (Q2.5), UI-piirid (Q2.6), liidesed (Q2.7 v2, Q2.8), migratsioonikord (Q2.9), testid (Q2.10) ja paketid (Q2.11) on teostaja jaoks piisava täpsusega kirjas. Kaks teadlikult teostuse-aegset lahtist kohta (mitte blokeerijad): grant-funktsioonide täpsed nimed `lib/effectivePractices.js`-is (P1 esimene samm) ja U2 continuity-koosturi täpne liides (P8 esimene samm).
+2. **Blokeerivad toote-/õigusotsused:** (a) **retention** (otsus 12) — ei blokeeri ehitust, ainult hilisemat kustutuspoliitikat; (b) **grandi tõendusstandard** (mis dokument kõlbab grantBasis'eks — Q1 osa 12 k1) — vaja HILJEMALT enne esimest päris granti, mitte enne P0–P2; (c) **piloodi ulatus** (Q1 osa 12 k3) — määrab V0 vs V1 järjekorra pärast P11. Ükski ei peata P0 alustamist.
+3. **Esimene pakett:** SUP-P0 (skeem + migratsioon) — samm-sammult juhis p 11 ülal.
+4. **Täpne käsk järgmisele teostajale (kopeeritav):**
+
+```text
+Loe docs/platvormi arendus/fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md
+peatükk Q2 (kohustuslikult Q2.2, Q2.9, Q2.11 SUP-P0, Q2.12 p11).
+Teosta AINULT pakett SUP-P0:
+1) loo värskest main'ist haru codex/supervision-v0-p0-schema;
+2) jooksuta lokaalis: npx prisma migrate deploy (lokaal peab olema main'iga tasa);
+3) lisa prisma/schema.prisma lõppu M1–M13 + enumid + User tagasi-relatsioonid
+   TÄPSELT Q2.2 järgi (Tööheaolu-viide on M6-s, MITTE M7-s ega WellbeingOutputDraftis);
+4) npx prisma migrate dev --name supervision_v0;
+5) npm run db:migrate:check && npm test (mõlemad rohelised);
+6) git diff --stat = AINULT schema.prisma + uus migratsioonikaust;
+7) commit'i harule; ÄRA merge'i main'i, ära push'i ilma ülevaatuseta, ära deploy'i;
+8) raporteeri: diff-stat, migrate-check väljund, kõrvalekalded Q2.2-st (kui oli).
+```

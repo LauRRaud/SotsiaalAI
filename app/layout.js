@@ -7,6 +7,7 @@ import ViewportLayoutSetter from "@/components/ViewportLayoutSetter";
 import ServiceWorkerRegistrar from "@/components/pwa/ServiceWorkerRegistrar";
 import RoomStage from "@/components/room/RoomStage";
 import PanelFrame from "@/components/room/PanelFrame";
+import { PanelInfoSlotProvider } from "@/components/ui/PanelInfoSlot";
 import SkipLink from "@/components/room/SkipLink";
 import AmbientAudio from "@/components/room/AmbientAudio";
 import LiquidCursor from "@/components/brand/LiquidCursor";
@@ -356,7 +357,11 @@ export default async function RootLayout({
           <AmbientAudio />
           <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
           <main id="main" role="main" tabIndex={-1}>
-            <PanelFrame>{children}</PanelFrame>
+            {/* Provider mähib PanelFrame'i JA lapsi: leht registreerib ⓘ sisu,
+                PanelFrame'i ainus nurga-ⓘ loeb selle (components/ui/PanelInfoSlot). */}
+            <PanelInfoSlotProvider>
+              <PanelFrame>{children}</PanelFrame>
+            </PanelInfoSlotProvider>
           </main>
         </Providers>
       </body>

@@ -470,14 +470,37 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   z-index: 70;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
-  max-width: min(48rem, calc(100vw - 2rem));
+  gap: 0.55rem;
+  max-width: calc(100vw - 2rem);
+}
+.gc-shortcut-menu,
+.admin-role-view-cycle.admin-role-view-cycle--cards {
+  display: flex;
+  align-items: center;
   padding: 0.35rem;
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(54, 39, 31, 0.5), rgba(24, 17, 14, 0.38));
   box-shadow: 0 9px 28px rgba(8, 4, 2, 0.2), inset 0 1px rgba(255, 245, 235, 0.08);
   backdrop-filter: blur(15px) saturate(0.86);
   -webkit-backdrop-filter: blur(15px) saturate(0.86);
+}
+.gc-shortcut-menu {
+  gap: 0.35rem;
+  min-width: 0;
+  max-width: min(48rem, calc(100vw - 10.5rem));
+}
+.admin-role-view-cycle.admin-role-view-cycle--cards {
+  position: static;
+  flex: 0 0 auto;
+  inset: auto;
+  z-index: auto;
+}
+.admin-role-view-cycle--cards .workspace-role-switch {
+  gap: 0.2rem;
+}
+.admin-role-view-cycle--cards .workspace-role-switch button {
+  width: 2.25rem;
+  height: 2.25rem;
 }
 .gc-shortcut-track {
   display: flex;
@@ -640,7 +663,18 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
   .gc-shortcuts {
     bottom: max(7%, env(safe-area-inset-bottom, 0px) + 4.5%);
     max-width: calc(100vw - 1rem);
+    gap: 0.35rem;
+  }
+  .gc-shortcut-menu,
+  .admin-role-view-cycle.admin-role-view-cycle--cards {
     padding: 0.3rem;
+  }
+  .gc-shortcut-menu {
+    max-width: calc(100vw - 8.6rem);
+  }
+  .admin-role-view-cycle--cards .workspace-role-switch button {
+    width: 2.05rem;
+    height: 2.15rem;
   }
   .gc-shortcut-track {
     overflow-x: auto;
@@ -732,7 +766,7 @@ html[data-contrast="hc"] .gc-dot[data-on="1"] {
   background: #ffffff;
   box-shadow: none;
 }
-html[data-contrast="hc"] .gc-shortcuts {
+html[data-contrast="hc"] :is(.gc-shortcut-menu, .admin-role-view-cycle.admin-role-view-cycle--cards) {
   border: 1px solid #ffffff;
   background: #15100d;
   backdrop-filter: none;

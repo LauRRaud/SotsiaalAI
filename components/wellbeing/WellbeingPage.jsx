@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
 import { WELLBEING_INFO_ID, wellbeingTools } from "@/lib/wellbeingTools";
@@ -60,6 +60,15 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
   const { t } = useI18n();
   const activeTitle = activeTool?.title || t("chat.workspace.wellbeing_page.title", "Tööheaolu");
   const infoId = activeTool?.infoId || WELLBEING_INFO_ID;
+  /* Üksik-tööriista marsruut (/tooheaolu/[tool]) pole PanelFrame'i kaardis —
+     ilma registreerimiseta näitaks nurga-ⓘ üldist tööheaolu sisu. Ülevaates
+     jääb PanelFrame'i vaikeväärtus. */
+  usePanelInfoSlot({
+    infoId,
+    title: activeTitle,
+    label: t("chat.workspace.wellbeing_page.tool_info_label", "Ava tööriista info"),
+    active: Boolean(activeTool)
+  });
 
   const navigate = useCallback((path) => {
     router.push(localizePath(path, locale));
@@ -93,19 +102,9 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
                07.07). Pealkiri jääb ekraanilugejale (sr-only). Üksik-tööriista
                vaates (activeTool) pealkiri kuvatakse tavaliselt. */
             headerClassName={activeTool ? undefined : "sr-only"}
-            /* Ülevaate ⓘ tuleb PanelFrame'ist (PANEL_INFO_IDS["/tooheaolu"]),
-               et Töölaualt sisenedes ⓘ EI laeks uuesti — seega siin ülevaates
-               ⓘ-d EI renderda (topelt vältimine). Üksik-tööriista vaates
-               (activeTool, marsruut pole PANEL_INFO_IDS-is) jääb ⓘ SubpageHeader'i. */
-            rightSlot={
-              activeTool ? (
-                <DashboardInfoTrigger
-                  infoId={infoId}
-                  title={activeTitle}
-                  label={t("chat.workspace.wellbeing_page.tool_info_label", "Ava tööriista info")}
-                />
-              ) : null
-            }
+            /* ⓘ elab paneeli nurgas × kõrval (PanelFrame) — nii ülevaates
+               (PANEL_INFO_IDS["/tooheaolu"]) kui üksik-tööriista vaates
+               (usePanelInfoSlot ülalpool annab tööriista sisu). */
           >
             {activeTitle}
           </SubpageHeader>

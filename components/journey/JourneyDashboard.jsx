@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -407,15 +407,16 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   const normalizedRole = String(roleOverride || effectiveRole || "CLIENT").toUpperCase();
   const isClientRole = normalizedRole === "CLIENT";
   const latestJourney = activeJourneys[0] || journeys[0] || null;
-  const headerRightSlot = useMemo(() => (
-    <span>
-      <DashboardInfoTrigger
-        infoId="journey"
-        title={t("journey.title", "Teekond")}
-        label={t("journey.info.label", "Open journey info")}
-      />
-    </span>
-  ), [t]);
+  /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); siin ainult sisu.
+     Manustatuna registreerib Töölaud (WorkspacePanel) — sama reegel mis
+     kõigil teistel moodulitel. Ilma `active`-väravata registreeriksid MÕLEMAD
+     samasse pesasse ja võidaks see, kelle effect juhtub viimasena jooksma. */
+  usePanelInfoSlot({
+    infoId: "journey",
+    title: t("journey.title", "Teekond"),
+    label: t("journey.info.label", "Open journey info"),
+    active: !embedded
+  });
 
   const handleBack = useCallback(() => {
     if (typeof onBack === "function") {
@@ -587,7 +588,6 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
             onBack={handleBack}
             backAriaLabel={t("workspace_feature_pages.back_to_workspace", "Back to workspace")}
             holdPressedVisualDisabled
-            rightSlot={headerRightSlot}
           >
             {t("journey.title", "Teekond")}
           </SubpageHeader>
