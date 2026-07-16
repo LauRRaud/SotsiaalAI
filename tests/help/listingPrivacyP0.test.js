@@ -255,8 +255,9 @@ test("6. võõras loeb OPEN kirjet -> lubatud, kuid privaatväljad puuduvad", as
   assert.equal(result.isOwner, false);
   assert.equal(result.listing.isOwn, false);
   // Avalik sisu on olemas
-  assert.equal(result.listing.title, "Vajan transporti");
-  assert.equal(result.listing.description, "Avalik kirjeldus transpordist.");
+  assert.equal(result.listing.title, "Abipalve: Transport - Paide");
+  assert.equal(result.listing.description, "Paide | Transport | Eakas | Vabatahtlik abi | Regulaarne");
+  assert.equal(result.listing.roleLabel, "");
   // Privaatväljad fail-closed puuduvad
   assert.equal(result.listing.rawPlace, undefined);
   assert.equal(result.listing.editableRawPlace, undefined);
@@ -265,6 +266,7 @@ test("6. võõras loeb OPEN kirjet -> lubatud, kuid privaatväljad puuduvad", as
   assert.equal(result.listing.skillsOrBackground, undefined);
   assert.equal(result.listing.structuredSummary, undefined);
   assert.equal(result.listing.municipalityId, undefined);
+  assert.equal(result.listing.region?.municipalityIds, undefined);
   assert.equal(result.listing.primaryCategoryId, undefined);
   // Täpne asukoht/koordinaat ei tohi kusagil olla
   assert.equal(result.listing.mapEntry, undefined);
@@ -403,6 +405,8 @@ test("14. globaalne loend ei väljasta rawPlace ega privaatvälju", async () => 
     assert.equal(item.rawPlace, undefined);
     assert.equal(item.beneficiaryLabel, undefined);
     assert.equal(item.urgency, undefined);
+    assert.equal(item.municipalityId, undefined);
+    assert.equal(item.region?.municipalityIds, undefined);
   }
 });
 
@@ -485,4 +489,6 @@ test("17. teenusekaart saab jätkuvalt ainult avaldamiseks lubatud kirjed", asyn
   const ids = entries.map((entry) => entry.id);
   assert.ok(ids.includes("hme-published"), "avaldatud kaardikirje peab olema nähtav");
   assert.ok(!ids.includes("hme-review"), "REVIEW kaardikirje ei tohi olla nähtav");
+  assert.equal(entries[0]?.municipalityId, undefined);
+  assert.equal(entries[0]?.municipalityIds, undefined);
 });
