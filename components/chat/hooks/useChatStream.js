@@ -157,6 +157,16 @@ function dispatchHelpListingsRefresh(workflow) {
   } catch {}
 }
 
+export function resolveCrisisStateAfterEvent(currentIsCrisis, {
+  phase,
+  isCrisis
+} = {}) {
+  if (phase === "success" || phase === "done") return !!isCrisis;
+  if (phase === "conversation-switch") return false;
+  if (phase === "meta" && isCrisis === true) return true;
+  return !!currentIsCrisis;
+}
+
 export function useChatStream(config) {
   const cfgRef = useRef(config);
 
@@ -205,7 +215,6 @@ export function useChatStream(config) {
     if (isGeneratingRef.current) return false;
 
     cfg.setErrorBanner?.(null);
-    cfg.setIsCrisis?.(false);
 
     if (cfg.isRoomMode) {
       if (cfg.roomBlocked) {
@@ -577,6 +586,8 @@ export function useChatStream(config) {
     let attachments = [];
     let cards = [];
     let workflow = null;
+    let pendingCrisisState = null;
+    let streamCompleted = false;
     streamingMessageId = cfg.appendMessage?.({
       role: "ai",
       text: "",
@@ -725,7 +736,10 @@ export function useChatStream(config) {
           const cards = normalizeCards(data?.cards);
           const workflow = normalizeWorkflow(data?.workflow);
 
-          cfg.setIsCrisis?.(!!data?.isCrisis);
+          cfg.setIsCrisis?.(currentIsCrisis => resolveCrisisStateAfterEvent(currentIsCrisis, {
+            phase: "success",
+            isCrisis: !!data?.isCrisis
+          }));
 
           cfg.mutateMessage?.(streamingMessageId, msg => ({
             ...msg,
@@ -781,7 +795,13 @@ export function useChatStream(config) {
                 }));
               }
               if (typeof payload?.isCrisis !== "undefined") {
-                cfg.setIsCrisis?.(!!payload.isCrisis);
+                pendingCrisisState = !!payload.isCrisis;
+                if (pendingCrisisState) {
+                  cfg.setIsCrisis?.(currentIsCrisis => resolveCrisisStateAfterEvent(currentIsCrisis, {
+                    phase: "meta",
+                    isCrisis: true
+                  }));
+                }
               }
             } catch {}
           } else if (ev.event === "delta") {
@@ -795,6 +815,7 @@ export function useChatStream(config) {
           } else if (ev.event === "error") {
             throw createLocalizedError("chat.error.stream_failed");
           } else if (ev.event === "done") {
+            streamCompleted = true;
             try {
               const payload = ev?.data ? JSON.parse(ev.data) : {};
               attachments = normalizeAttachments(payload?.attachments);
@@ -811,6 +832,13 @@ export function useChatStream(config) {
             } catch {}
             break;
           }
+        }
+
+        if (streamCompleted && pendingCrisisState !== null) {
+          cfg.setIsCrisis?.(currentIsCrisis => resolveCrisisStateAfterEvent(currentIsCrisis, {
+            phase: "done",
+            isCrisis: pendingCrisisState
+          }));
         }
 
         flushAllPending();

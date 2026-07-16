@@ -1394,7 +1394,8 @@
     },
     "fallback": {
       "no_context_client": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Kirjelda palun oma olukorda veidi täpsemalt ja lisa vähemalt vald või linn.",
-      "no_context_worker": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Palun täpsusta teemat, allikatüüpi või vajadusel omavalitsust ja teenuse või olukorra tüüpi."
+      "no_context_worker": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Palun täpsusta teemat, allikatüüpi või vajadusel omavalitsust ja teenuse või olukorra tüüpi.",
+      "crisis_no_context": "Kui sa oled otseses ohus või mõtled enesevigastamisele, helista kohe 112. Lapsi ja peresid puudutav mure: lasteabi 116 111 (ööpäevaringne, tasuta). Vägivalla või kuriteo ohvrile: ohvriabi 116 006. Kui saad, ütle mulle oma vald või linn — otsin sulle lähima abi kontaktid."
     },
     "empty_intro": "Tere! Kirjelda lühidalt, mida soovid teada või milles juhendamist vajad. Kui soovid abisoovi, abipakkumist, süvauuringut või dokumendi analüüsi, vali see + märgi alt. Muud tööriistad leiad Töölaualt.",
     "empty_intro_help_request": "Kirjelda võimalikult selgelt, millist abi vajad. Pane kirja oluline teave, et sinu olukord ja abivajadus oleksid arusaadavad. Vajadusel küsin lisa.",
