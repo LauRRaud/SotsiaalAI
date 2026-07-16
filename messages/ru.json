@@ -3200,6 +3200,7 @@
         "dangerous_preview_required": "Сначала просмотрите влияние действия.",
         "dangerous_preview_invalid": "Предварительный просмотр влияния недействителен.",
         "dangerous_preview_stale": "Влияние изменилось или просмотр истёк. Повторите просмотр.",
+        "dangerous_preview_already_used": "Этот предварительный просмотр уже использован. Создайте новый просмотр.",
         "dangerous_gate_unavailable": "Серверный защитный шлюз не настроен.",
         "reset_invalid_action": "Некорректное действие сброса.",
         "reset_disabled_in_production": "Действия сброса отключены в production.",
@@ -3653,6 +3654,8 @@
           "send_email": "Отправить письмо",
           "sending": "Отправляю...",
           "email_done": "Отправлено: {sent}. Не удалось: {failed}.",
+          "email_preview_counts": "Подходящих получателей: {eligible}. Письмо будет отправлено: {send}.",
+          "email_recipient_limit_warning": "Предупреждение: найдено {eligible} подходящих получателей, но из-за лимита в 500 письмо получат только {send}.",
           "select_user": "Выбрать пользователя {user}"
         }
       },

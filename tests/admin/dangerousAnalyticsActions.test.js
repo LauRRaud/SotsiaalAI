@@ -130,14 +130,17 @@ function makeLogDb() {
   return db;
 }
 
-function makeEmailDb() {
+function makeEmailDb(users) {
   const state = {
-    users: [
-      { id: "u1", email: "first@example.test" },
-      { id: "u2", email: "second@example.test" },
-      { id: "u3", email: null }
-    ],
-    audits: []
+    users:
+      users ||
+      [
+        { id: "u1", email: "first@example.test" },
+        { id: "u2", email: "second@example.test" },
+        { id: "u3", email: null }
+      ],
+    audits: [],
+    auditUpdates: 0
   };
   return {
     state,
@@ -152,8 +155,18 @@ function makeEmailDb() {
     },
     dataAuditLog: {
       async create({ data }) {
+        if (state.audits.some(row => row.id === data.id)) {
+          throw Object.assign(new Error("unique constraint"), { code: "P2002" });
+        }
         state.audits.push(data);
         return data;
+      },
+      async update({ where, data }) {
+        const index = state.audits.findIndex(row => row.id === where.id);
+        if (index < 0) throw new Error("audit row not found");
+        state.audits[index] = { ...state.audits[index], ...data };
+        state.auditUpdates += 1;
+        return state.audits[index];
       }
     }
   };
@@ -167,6 +180,21 @@ function makeMailer() {
       sent.push(message);
     }
   };
+}
+
+function decodePreviewToken(previewToken) {
+  const [encodedPayload, signature] = String(previewToken || "").split(".");
+  return {
+    encodedPayload,
+    signature,
+    payload: JSON.parse(Buffer.from(encodedPayload, "base64url").toString("utf8"))
+  };
+}
+
+function replacePreviewJti(previewToken, jti) {
+  const decoded = decodePreviewToken(previewToken);
+  const encodedPayload = Buffer.from(JSON.stringify({ ...decoded.payload, jti })).toString("base64url");
+  return `${encodedPayload}.${decoded.signature}`;
 }
 
 async function expectGate(promise, code, status = 400) {
@@ -380,6 +408,7 @@ test("successful bulk email writes one content-free audit with actual recipient 
   assert.equal(result.sentCount, 2);
   assert.equal(mailer.sent.length, 2);
   assert.equal(db.state.audits.length, 1);
+  assert.equal(db.state.auditUpdates, 1);
   const audit = db.state.audits[0];
   assert.equal(audit.action, "ADMIN_ANALYTICS_BULK_EMAIL_SENT");
   assert.equal(audit.actorUserId, "admin-1");
@@ -391,6 +420,251 @@ test("successful bulk email writes one content-free audit with actual recipient 
   assert.equal(audit.userAgent, undefined);
   const serializedAudit = JSON.stringify(audit);
   assert.doesNotMatch(serializedAudit, /Private subject|Private body|first@example|second@example/);
+});
+
+test("bulk email preview token is single-use across sequential requests", async () => {
+  const db = makeEmailDb();
+  const sent = [];
+  const mailer = {
+    sent,
+    async sendMail(message) {
+      assert.equal(db.state.audits.length, 1);
+      assert.equal(db.state.audits[0].meta.result.status, "started");
+      sent.push(message);
+    }
+  };
+  const body = {
+    target: "all",
+    subject: "Service notice",
+    text: "Scheduled maintenance",
+    reason: "Notify all active recipients"
+  };
+  const preview = await previewBulkEmail({ db, body, now: NOW, env: ENV });
+  const execution = {
+    db,
+    mailer,
+    from: "service@example.test",
+    body: { ...body, confirmation: preview.confirmation, previewToken: preview.previewToken },
+    actorUserId: "admin-1",
+    now: NOW,
+    env: ENV
+  };
+
+  await executeBulkEmail(execution);
+  await expectGate(executeBulkEmail(execution), "DANGEROUS_PREVIEW_ALREADY_USED", 409);
+
+  assert.equal(mailer.sent.length, 2);
+  assert.equal(db.state.audits.length, 1);
+  assert.equal(db.state.audits[0].meta.result.status, "success");
+});
+
+test("parallel bulk email requests reserve the preview token at most once", async () => {
+  const db = makeEmailDb();
+  const mailer = makeMailer();
+  const body = {
+    target: "all",
+    subject: "Service notice",
+    text: "Scheduled maintenance",
+    reason: "Notify all active recipients"
+  };
+  const preview = await previewBulkEmail({ db, body, now: NOW, env: ENV });
+  const execute = () => executeBulkEmail({
+    db,
+    mailer,
+    from: "service@example.test",
+    body: { ...body, confirmation: preview.confirmation, previewToken: preview.previewToken },
+    actorUserId: "admin-1",
+    now: NOW,
+    env: ENV
+  });
+
+  const results = await Promise.allSettled([execute(), execute()]);
+  assert.equal(results.filter(result => result.status === "fulfilled").length, 1);
+  const rejection = results.find(result => result.status === "rejected");
+  assert.ok(rejection);
+  assert.equal(rejection.reason?.code, "DANGEROUS_PREVIEW_ALREADY_USED");
+  assert.equal(rejection.reason?.status, 409);
+  assert.equal(mailer.sent.length, 2);
+  assert.equal(db.state.audits.length, 1);
+});
+
+test("modified and expired preview jti values are rejected before reservation", async () => {
+  const db = makeEmailDb();
+  const mailer = makeMailer();
+  const body = {
+    target: "all",
+    subject: "Service notice",
+    text: "Scheduled maintenance",
+    reason: "Notify all active recipients"
+  };
+  const preview = await previewBulkEmail({ db, body, now: NOW, env: ENV });
+  const decoded = decodePreviewToken(preview.previewToken);
+  assert.match(decoded.payload.jti, /^[0-9a-f-]{36}$/i);
+
+  await expectGate(
+    executeBulkEmail({
+      db,
+      mailer,
+      from: "service@example.test",
+      body: {
+        ...body,
+        confirmation: preview.confirmation,
+        previewToken: replacePreviewJti(preview.previewToken, "00000000-0000-4000-8000-000000000000")
+      },
+      actorUserId: "admin-1",
+      now: NOW,
+      env: ENV
+    }),
+    "DANGEROUS_PREVIEW_INVALID"
+  );
+  await expectGate(
+    executeBulkEmail({
+      db,
+      mailer,
+      from: "service@example.test",
+      body: { ...body, confirmation: preview.confirmation, previewToken: preview.previewToken },
+      actorUserId: "admin-1",
+      now: new Date(NOW.getTime() + 6 * 60 * 1000),
+      env: ENV
+    }),
+    "DANGEROUS_PREVIEW_STALE"
+  );
+  assert.equal(mailer.sent.length, 0);
+  assert.equal(db.state.audits.length, 0);
+});
+
+test("bulk email preview binds the actual recipient identity without exposing addresses", async () => {
+  const db = makeEmailDb();
+  const mailer = makeMailer();
+  const body = {
+    target: "all",
+    subject: "Service notice",
+    text: "Scheduled maintenance",
+    reason: "Notify all active recipients"
+  };
+  const preview = await previewBulkEmail({ db, body, now: NOW, env: ENV });
+  const serializedPayload = JSON.stringify(decodePreviewToken(preview.previewToken).payload);
+  assert.doesNotMatch(serializedPayload, /first@example|second@example/);
+
+  db.state.users[0].email = "replacement@example.test";
+  await expectGate(
+    executeBulkEmail({
+      db,
+      mailer,
+      from: "service@example.test",
+      body: { ...body, confirmation: preview.confirmation, previewToken: preview.previewToken },
+      actorUserId: "admin-1",
+      now: NOW,
+      env: ENV
+    }),
+    "DANGEROUS_PREVIEW_STALE"
+  );
+  assert.equal(mailer.sent.length, 0);
+  assert.equal(db.state.audits.length, 0);
+});
+
+test("bulk email preview reports eligible, send and truncation counts above 500", async () => {
+  const users = Array.from({ length: 503 }, (_, index) => ({
+    id: `u${String(index).padStart(4, "0")}`,
+    email: `recipient${index}@example.test`
+  }));
+  const db = makeEmailDb(users);
+  const preview = await previewBulkEmail({
+    db,
+    body: {
+      target: "all",
+      subject: "Service notice",
+      text: "Scheduled maintenance",
+      reason: "Notify all active recipients"
+    },
+    now: NOW,
+    env: ENV
+  });
+
+  assert.equal(preview.eligibleRecipientCount, 503);
+  assert.equal(preview.sendRecipientCount, 500);
+  assert.equal(preview.recipientCount, 500);
+  assert.equal(preview.truncated, true);
+  assert.equal(preview.confirmation, "SEND BULK EMAIL 500");
+  assert.doesNotMatch(JSON.stringify(decodePreviewToken(preview.previewToken).payload), /recipient\d+@example/);
+});
+
+test("selected bulk email targets above 500 are reported instead of silently truncated", async () => {
+  const users = Array.from({ length: 502 }, (_, index) => ({
+    id: `u${String(index).padStart(4, "0")}`,
+    email: `selected${index}@example.test`
+  }));
+  const db = makeEmailDb(users);
+  const preview = await previewBulkEmail({
+    db,
+    body: {
+      target: "selected",
+      userIds: users.map(user => user.id),
+      subject: "Service notice",
+      text: "Scheduled maintenance",
+      reason: "Notify selected recipients"
+    },
+    now: NOW,
+    env: ENV
+  });
+
+  assert.equal(preview.eligibleRecipientCount, 502);
+  assert.equal(preview.sendRecipientCount, 500);
+  assert.equal(preview.truncated, true);
+});
+
+test("ET, EN and RU expose the 500-recipient warning contract in the dashboard", async () => {
+  const [et, en, ru, dashboard] = await Promise.all([
+    readFile(new URL("../../messages/et.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../../messages/en.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../../messages/ru.json", import.meta.url), "utf8").then(JSON.parse),
+    readFile(new URL("../../components/admin/AnalyticsDashboard.jsx", import.meta.url), "utf8")
+  ]);
+  for (const messages of [et, en, ru]) {
+    const actions = messages.admin.analytics.users.actions;
+    assert.match(actions.email_preview_counts, /\{eligible\}/);
+    assert.match(actions.email_preview_counts, /\{send\}/);
+    assert.match(actions.email_recipient_limit_warning, /500/);
+    assert.match(actions.email_recipient_limit_warning, /\{eligible\}/);
+    assert.match(actions.email_recipient_limit_warning, /\{send\}/);
+  }
+  assert.match(dashboard, /admin\.analytics\.users\.actions\.email_recipient_limit_warning/);
+  assert.match(dashboard, /bulkEmailPreview\.truncated/);
+});
+
+test("failed bulk email recipients are address-free in the response and audit", async () => {
+  const db = makeEmailDb();
+  const mailer = {
+    async sendMail(message) {
+      if (message.to === "first@example.test") {
+        throw new Error(`Delivery failed for ${message.to}`);
+      }
+    }
+  };
+  const body = {
+    target: "all",
+    subject: "Private subject",
+    text: "Private body",
+    reason: "Notify all active recipients"
+  };
+  const preview = await previewBulkEmail({ db, body, now: NOW, env: ENV });
+  const result = await executeBulkEmail({
+    db,
+    mailer,
+    from: "service@example.test",
+    body: { ...body, confirmation: preview.confirmation, previewToken: preview.previewToken },
+    actorUserId: "admin-1",
+    now: NOW,
+    env: ENV
+  });
+
+  assert.equal(result.failedCount, 1);
+  assert.equal(result.failed[0].email, undefined);
+  assert.deepEqual(result.failed[0], { recipientIndex: 0, error: "send_failed" });
+  assert.doesNotMatch(JSON.stringify(result), /first@example|second@example/);
+  assert.doesNotMatch(JSON.stringify(db.state.audits), /first@example|second@example|Private subject|Private body/);
+  assert.equal(db.state.audits[0].ipAddress, undefined);
+  assert.equal(db.state.audits[0].userAgent, undefined);
 });
 
 test("log deletion cannot run without a matching server preview", async () => {

@@ -3200,6 +3200,7 @@
         "dangerous_preview_required": "Enne toimingut vaata mõju eelvaadet.",
         "dangerous_preview_invalid": "Mõju eelvaade ei kehti.",
         "dangerous_preview_stale": "Mõju muutus või eelvaade aegus. Tee uus eelvaade.",
+        "dangerous_preview_already_used": "Seda mõju eelvaadet on juba kasutatud. Tee uus eelvaade.",
         "dangerous_gate_unavailable": "Serveripoolne turvavärav pole seadistatud.",
         "reset_invalid_action": "Vigane reset-toiming.",
         "reset_disabled_in_production": "Reset-toimingud on tootmiskeskkonnas keelatud.",
@@ -3653,6 +3654,8 @@
           "send_email": "Saada e-kiri",
           "sending": "Saadan...",
           "email_done": "Saadetud: {sent}. Ebaõnnestus: {failed}.",
+          "email_preview_counts": "Kõlblikke saajaid: {eligible}. Tegelikult saadetakse: {send}.",
+          "email_recipient_limit_warning": "Hoiatus: kõlblikke saajaid on {eligible}, kuid 500 saaja piirangu tõttu saab selle e-kirja ainult {send} saajat.",
           "select_user": "Vali kasutaja {user}"
         }
       },

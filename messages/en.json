@@ -3200,6 +3200,7 @@
         "dangerous_preview_required": "Preview the impact before running this action.",
         "dangerous_preview_invalid": "The impact preview is invalid.",
         "dangerous_preview_stale": "The impact changed or the preview expired. Preview again.",
+        "dangerous_preview_already_used": "This impact preview has already been used. Create a new preview.",
         "dangerous_gate_unavailable": "The server-side safety gate is not configured.",
         "reset_invalid_action": "Invalid reset action.",
         "reset_disabled_in_production": "Reset actions are disabled in production.",
@@ -3653,6 +3654,8 @@
           "send_email": "Send email",
           "sending": "Sending...",
           "email_done": "Email sent: {sent}. Failed: {failed}.",
+          "email_preview_counts": "Eligible recipients: {eligible}. Emails to be sent: {send}.",
+          "email_recipient_limit_warning": "Warning: {eligible} recipients are eligible, but the 500-recipient limit means only {send} will receive this email.",
           "select_user": "Select user {user}"
         }
       },

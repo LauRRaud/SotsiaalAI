@@ -1687,11 +1687,20 @@ export default function AnalyticsDashboard() {
       setBulkEmailConfirmation("");
       setUsersNotice({
         tone: "warn",
-        message: t(
-          "admin.analytics.dangerous.impact",
-          { count: toNumber(data?.recipientCount || 0) },
-          "Affected records: {count}."
-        )
+        message: data?.truncated
+          ? t(
+              "admin.analytics.users.actions.email_recipient_limit_warning",
+              {
+                eligible: toNumber(data?.eligibleRecipientCount || 0),
+                send: toNumber(data?.sendRecipientCount || data?.recipientCount || 0)
+              },
+              "Warning: {eligible} recipients are eligible, but only {send} will receive this email."
+            )
+          : t(
+              "admin.analytics.dangerous.impact",
+              { count: toNumber(data?.sendRecipientCount || data?.recipientCount || 0) },
+              "Affected records: {count}."
+            )
       });
     } catch (error) {
       setUsersNotice({
@@ -3283,6 +3292,28 @@ export default function AnalyticsDashboard() {
             </Button>
             {bulkEmailPreview ? (
               <div>
+                <p>
+                  {t(
+                    "admin.analytics.users.actions.email_preview_counts",
+                    {
+                      eligible: toNumber(bulkEmailPreview.eligibleRecipientCount || 0),
+                      send: toNumber(bulkEmailPreview.sendRecipientCount || bulkEmailPreview.recipientCount || 0)
+                    },
+                    "Eligible recipients: {eligible}. Emails to be sent: {send}."
+                  )}
+                </p>
+                {bulkEmailPreview.truncated ? (
+                  <p role="alert">
+                    {t(
+                      "admin.analytics.users.actions.email_recipient_limit_warning",
+                      {
+                        eligible: toNumber(bulkEmailPreview.eligibleRecipientCount || 0),
+                        send: toNumber(bulkEmailPreview.sendRecipientCount || bulkEmailPreview.recipientCount || 0)
+                      },
+                      "Warning: {eligible} recipients are eligible, but only {send} will receive this email."
+                    )}
+                  </p>
+                ) : null}
                 <p>
                   {t(
                     "admin.analytics.dangerous.type_confirmation",
