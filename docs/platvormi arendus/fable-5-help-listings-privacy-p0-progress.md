@@ -1,10 +1,34 @@
-# P0 turvapakett — help-listing privaatsuslekked (V1 + V2 + HELP-P0a avalik projektsioon)
+# P0 turvapakett — help-listing privaatsuslekked (V1 + V2 + HELP-P0a + HELP-P0b browse-väljund)
 
 STATUS: COMPLETE
 
-Progressidokument turvapaketile, mis sulgeb tõestatud privaatsuslekked abivahenduse kuulutustes. Algne V1/V2 teostus sulges võtme- ja staatusetaseme lekke, kuid sõltumatu audit `2f9323a6` leidis avaliku projektsiooni ristvälja-lekke ning sisemise KOV-ID lekke. HELP-P0a parandab ainult need kaks integratsiooni blokeerivat leidu. V3–V10, nõusolekuvoog, markerite CSS, kujundus ja uus funktsionaalsus jäävad välistatuks.
+Progressidokument turvapaketile, mis sulgeb tõestatud privaatsuslekked abivahenduse kuulutustes. Algne V1/V2 teostus sulges võtme- ja staatusetaseme lekke, kuid sõltumatu audit `2f9323a6` leidis avaliku projektsiooni ristvälja-lekke ning sisemise KOV-ID lekke. HELP-P0a sulges väärtuselekke; kordusaudit `8e442bb3` leidis browse-workflow ümbrisest alles null-väärtusega `municipalityId` võtme. HELP-P0b eemaldab selle võtme ühiselt HTTP-vastuse ja persistence'i piirilt. V3–V10, nõusolekuvoog, markerite CSS, kujundus ja uus funktsionaalsus jäävad välistatuks.
 
-## 0. HELP-P0a järelparandus
+## 0. HELP-P0b browse-workflow võtme-eemaldus
+
+| Väli | Väärtus |
+|---|---|
+| Baas | `8e442bb3d9ca1f86d43b4c4e83145759e5529e9c` |
+| Haru | `codex/help-listings-privacy-p0b-workflow-key-removal` |
+| Kordusauditi tõeallikas | `sol-help-listings-privacy-p0a-kordusaudit.md` |
+| HELP-P0-01 | suletud; ei muudeta selles järelparanduses |
+| HELP-P0-02 | suletud browse-väljundi piiril: `municipalityId` ja `municipalityIds` võtmed puuduvad |
+
+`lib/help/chatWorkflow.js` kasutab mõlema browse-intendi jaoks üht `toBrowseWorkflowOutputProjection` allowlist-projektsiooni. Projektsioon kannab väljundisse ainult workflow jätkamiseks vajalikud juhtväljad, lähtekuulutuse viited ja juba avalikuks projitseeritud `browseResults` väljad. Sisemist `municipalityId` väärtust, `municipalityCandidates` ridu, draft'i ega tundmatuid välju ei kopeerita. Sama `buildHelpWorkflowMetadata` tulemus läheb `/api/chat` vastuse `workflow` väljaks ja `metadataExtra` kaudu assistendi persisted metadata'sse. Create/edit, asukohatuvastus, matching, salvestus ja omanikuvaade jäävad muutmata; sisemine `createHelpWorkflowDraftState.municipalityId` säilib.
+
+Automaatkontrollid:
+
+- privaatsuse sihttestid: **31/31 PASS**;
+- Help/Teenusekaart/vestluse regressioonid: **44/44 PASS**;
+- kogu `npm test`: **1253/1253 PASS**, 0 fail, 0 skip;
+- sihtlint muudetud JS-failidele: **PASS**, 0 viga, 0 hoiatust;
+- omanikuvaade isoleeritud HTTP-smoke'is: request **16/16**, offer **15/15** privaatmarkerit nähtavad.
+
+Isoleeritud autenditud HTTP-smoke `helpp0b1784213164507` kontrollis nelja kohustuslikku rada. Offer-browse vastus, offer-browse persisted metadata, request-browse vastus ja request-browse persisted metadata andsid igaüks eraldi: `municipalityId` võtmetabamusi **0**, `municipalityIds` võtmetabamusi **0**, sünteetilise KOV-ID väärtusetabamusi **0** ja privaatmarkerite tabamusi **0**. Vastustes oli vastavalt 1 offer'i ja 2 request'i `browseResults` kirjet.
+
+Run'i koristuseelsed sihtread olid: kasutajad 3, sessioonid 3, login-tokenid 3, request'id 2, offer'id 1, kaardikirjed 3, match'id 1, vestlused 2, sõnumid 4, kategooriad 1, sihtrühmad 1 ja KOV-id 1. Pärast koristust oli iga loendur **0**; ajutine DB eemaldati, kuulavaid protsesse oli 0 ning runtime-failijääke 0.
+
+## 0.1 HELP-P0a järelparandus
 
 | Väli | Väärtus |
 |---|---|

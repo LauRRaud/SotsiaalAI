@@ -156,13 +156,13 @@ function assertNoMunicipalityIdKey(value) {
   }
 }
 
-function assertPublicPayloadIsSafe(value, markers = ALL_PRIVATE_MARKERS, { forbidMunicipalityKeys = true } = {}) {
+function assertPublicPayloadIsSafe(value, markers = ALL_PRIVATE_MARKERS) {
   const serialized = JSON.stringify(value);
   for (const marker of markers) {
     assert.ok(!serialized.includes(marker), `avalik väljund lekitas markeri ${marker}`);
   }
   assert.ok(!serialized.includes(MUNICIPALITY_INTERNAL_ID), "avalik väljund lekitas KOV-i sisemise ID");
-  if (forbidMunicipalityKeys) assertNoMunicipalityIdKey(value);
+  assertNoMunicipalityIdKey(value);
 }
 
 function assertOwnerStillSeesMarkers(listing, markers) {
@@ -252,6 +252,12 @@ async function runBrowseWorkflow({ sourceKind, source, candidate }) {
       intent: isRequestSource ? "browse_help_offers" : "browse_help_requests",
       mode: "browse",
       step: "browse",
+      municipalityId: MUNICIPALITY_INTERNAL_ID,
+      municipalityCandidates: [{
+        id: MUNICIPALITY_INTERNAL_ID,
+        displayName: "Turvaline vald",
+        county: "Turvaline maakond"
+      }],
       sourceRecordId: source.id,
       linkedRequestId: isRequestSource ? source.id : null,
       linkedOfferId: isRequestSource ? null : source.id
@@ -259,30 +265,38 @@ async function runBrowseWorkflow({ sourceKind, source, candidate }) {
   }, db);
 }
 
-test("HELP-P0a vestluse offer browse reply ja workflow metadata ei sisalda offer'i privaatmarkereid", async () => {
+test("HELP-P0b vestluse offer browse HTTP-vastus ja persisted metadata on fail-closed", async () => {
   const request = privateRecord("request", REQUEST_MARKERS);
   const offer = privateRecord("offer", OFFER_MARKERS);
   const result = await runBrowseWorkflow({ sourceKind: "request", source: request, candidate: offer });
-  const metadata = buildHelpWorkflowMetadata(result.workflowState);
+  const persistedMetadata = buildHelpWorkflowMetadata(result.workflowState);
+  const httpResponse = {
+    reply: result.reply,
+    workflow: persistedMetadata.workflow
+  };
 
   assert.equal(result.handled, true);
   assert.equal(result.workflowState.browseResults.length, 1);
-  assertPublicPayloadIsSafe(result.reply, Object.values(OFFER_MARKERS));
-  assertPublicPayloadIsSafe(result.workflowState.browseResults, Object.values(OFFER_MARKERS));
-  assertPublicPayloadIsSafe(metadata, Object.values(OFFER_MARKERS), { forbidMunicipalityKeys: false });
+  assert.equal(result.workflowState.municipalityId, MUNICIPALITY_INTERNAL_ID);
+  assertPublicPayloadIsSafe(httpResponse, Object.values(OFFER_MARKERS));
+  assertPublicPayloadIsSafe(persistedMetadata, Object.values(OFFER_MARKERS));
 });
 
-test("HELP-P0a vestluse request browse reply ja workflow metadata ei sisalda request'i privaatmarkereid", async () => {
+test("HELP-P0b vestluse request browse HTTP-vastus ja persisted metadata on fail-closed", async () => {
   const request = privateRecord("request", REQUEST_MARKERS);
   const offer = privateRecord("offer", OFFER_MARKERS);
   const result = await runBrowseWorkflow({ sourceKind: "offer", source: offer, candidate: request });
-  const metadata = buildHelpWorkflowMetadata(result.workflowState);
+  const persistedMetadata = buildHelpWorkflowMetadata(result.workflowState);
+  const httpResponse = {
+    reply: result.reply,
+    workflow: persistedMetadata.workflow
+  };
 
   assert.equal(result.handled, true);
   assert.equal(result.workflowState.browseResults.length, 1);
-  assertPublicPayloadIsSafe(result.reply, Object.values(REQUEST_MARKERS));
-  assertPublicPayloadIsSafe(result.workflowState.browseResults, Object.values(REQUEST_MARKERS));
-  assertPublicPayloadIsSafe(metadata, Object.values(REQUEST_MARKERS), { forbidMunicipalityKeys: false });
+  assert.equal(result.workflowState.municipalityId, MUNICIPALITY_INTERNAL_ID);
+  assertPublicPayloadIsSafe(httpResponse, Object.values(REQUEST_MARKERS));
+  assertPublicPayloadIsSafe(persistedMetadata, Object.values(REQUEST_MARKERS));
 });
 
 test("HELP-P0a legacy kirje jääb fail-closed ka siis, kui algsed privaatväljad puuduvad", () => {
