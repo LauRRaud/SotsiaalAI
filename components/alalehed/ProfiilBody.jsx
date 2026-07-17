@@ -107,6 +107,7 @@ export default function ProfiilBody({
   const [loadFailed, setLoadFailed] = useState(false);
   const [error, setError] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [deletionOutcome, setDeletionOutcome] = useState("");
   const [loggingOut, setLoggingOut] = useState(false);
   const [loggingOutEverywhere, setLoggingOutEverywhere] = useState(false);
   const [showAccountSettings, setShowAccountSettings] = useState(false);
@@ -155,6 +156,10 @@ export default function ProfiilBody({
     session?.user?.isAdmin ? "ADMIN" : "CLIENT"
   );
   const roleLabel = t(ROLE_SHORT_KEYS[actualRole] || "profile.role_short.unknown");
+  const adminPreviewActive = Boolean(profileUser?.isRoleViewActive && profileUser?.isAdmin);
+  const adminPreviewRoleLabel = adminPreviewActive
+    ? t(ROLE_SHORT_KEYS[normalizeProfileRole(profileUser?.adminViewRole, actualRole)] || "profile.role_short.unknown")
+    : "";
   const trustedDevices = Array.isArray(profileUser?.trustedDevices)
     ? profileUser.trustedDevices
     : [];
@@ -423,6 +428,19 @@ export default function ProfiilBody({
       }
     })();
   }, [embedded, initialProfile, initialProfileUser, isActive, status, t]);
+  if (deletionOutcome) {
+    return <ProfileShell locale={locale} embedded={embedded} ariaLabel={t("profile.title")} footerNote={footerNote}>
+        <div role="status" aria-live="polite">
+          <h1>{t(deletionOutcome === "pending" ? "profile.delete_pending_title" : "profile.delete_done_title")}</h1>
+          <p>{t(deletionOutcome === "pending" ? "profile.delete_pending_body" : "profile.delete_done_body")}</p>
+          <div>
+            <Button type="button" variant="primary" onClick={() => { window.location.href = localizePath("/", locale); }}>
+              <span>{t("profile.delete_continue")}</span>
+            </Button>
+          </div>
+        </div>
+      </ProfileShell>;
+  }
   if (isAuthed && (status === "loading" && !initialProfile || loading)) {
     return <ProfileShell locale={locale} embedded={embedded} ariaLabel={t("profile.title")} footerNote={footerNote} />;
   }
@@ -453,6 +471,11 @@ export default function ProfiilBody({
       </ProfileShell>;
   }
   return <ProfileShell locale={locale} ariaLabel={t("profile.title")} innerRef={profileContainerRef} embedded={embedded} footerNote={footerNote}>
+      {adminPreviewActive ? (
+        <p className="konto-admin-preview" role="status">
+          {t("profile.admin_preview_banner", { role: adminPreviewRoleLabel })}
+        </p>
+      ) : null}
       {kontoSection ? (
         <>
           <h1 className="konto-title">{t("profile.account_settings")}</h1>
@@ -682,12 +705,11 @@ export default function ProfiilBody({
         }
         setDeletePin("");
         setShowDelete(false);
-        const signOutResult = await signOut({
-          redirect: false,
-          callbackUrl: localizePath("/", locale)
-        });
-        const redirectUrl = signOutResult?.url || localizePath("/", locale);
-        window.location.href = redirectUrl;
+        // 202 = access already suspended but privacy cleanup is still queued;
+        // 200 = deletion finished. End the session, then show an anonymous
+        // localized confirmation. No deletionJobId or account data is surfaced.
+        setDeletionOutcome(res.status === 202 ? "pending" : "done");
+        await signOut({ redirect: false });
       } catch (err) {
         console.error("profile DELETE", err);
         setError(t("profile.server_unreachable"));
