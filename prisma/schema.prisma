@@ -1864,7 +1864,8 @@ model ServiceMapEntry {
 
 model PreInquiry {
   id                      String                    @id @default(cuid())
-  authorId                String
+  authorId                String?
+  authorErasedAt          DateTime?
   recipientOwnerId        String?
   recipientEntryId        String?
   sourceJourneyId         String?
@@ -1889,7 +1890,7 @@ model PreInquiry {
   createdAt               DateTime                  @default(now())
   updatedAt               DateTime                  @updatedAt
 
-  author         User             @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  author         User?            @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: SetNull)
   recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
   recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
   sourceJourney  Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)

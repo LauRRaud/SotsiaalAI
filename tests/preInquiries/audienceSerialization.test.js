@@ -77,6 +77,25 @@ test("recipient view includes its workflow but omits the author's account email"
   assert.equal(result.recipientOwner.email, "recipient-account@example.test");
 });
 
+test("anonymised delivered inquiry exposes only the erased timestamp and recipient-owned notes", () => {
+  const erased = fixture();
+  erased.authorId = null;
+  erased.author = null;
+  erased.authorErasedAt = new Date("2026-07-17T12:00:00.000Z");
+  erased.topic = null;
+  erased.situation = "";
+  erased.assessmentState = null;
+  erased.generatedDraft = null;
+  erased.userEditedDraft = null;
+  const result = serializePreInquiry(erased, { viewerId: RECIPIENT });
+  assert.equal(result.authorId, null);
+  assert.equal(result.authorErasedAt.toISOString(), "2026-07-17T12:00:00.000Z");
+  assert.equal(result.situation, "");
+  assert.equal(result.assessmentState, null);
+  assert.equal(result.receiverNote, "Receiver private note");
+  assert.doesNotMatch(JSON.stringify(result), /Housing support|General situation|Edited draft/u);
+});
+
 test("missing or unrelated audience fails closed", () => {
   for (const options of [undefined, { viewerId: "other-user" }]) {
     const result = serializePreInquiry(fixture(), options);

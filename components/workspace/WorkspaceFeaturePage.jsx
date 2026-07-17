@@ -1915,7 +1915,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                     <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
                     <p>
                       {[
-                        inquiry.author?.email,
+                        inquiry.author?.email || (inquiry.authorErasedAt
+                          ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
+                          : ""),
                         inquiry.selectedRecipientName,
                         formatDate(inquiry.updatedAt, locale)
                       ].filter(Boolean).join(" · ")}
@@ -2699,7 +2701,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   <h3>{inquiry.topic || readText(t, "workspace_feature_pages.pre_inquiries.untitled", "Pealkirjata")}</h3>
                   <p>
                     {[
-                      inquiry.author?.email,
+                      inquiry.author?.email || (inquiry.authorErasedAt
+                        ? readText(t, "workspace_feature_pages.pre_inquiries.deleted_author", "Kustutatud kasutaja pöördumine")
+                        : ""),
                       inquiry.selectedRecipientName,
                       formatDate(inquiry.updatedAt)
                     ].filter(Boolean).join(" · ")}
