@@ -12,6 +12,68 @@
   "routes": {
     "password_reset_path": "/taasta-parool"
   },
+  "meta": {
+    "home": {
+      "title": "SotsiaalAI",
+      "description": "SotsiaalAI помогает найти поддержку, услуги и инструменты для решения повседневных жизненных вопросов."
+    },
+    "chat": {
+      "title": "Чат | SotsiaalAI",
+      "description": "Обсуждайте ваши вопросы и следующие шаги в чате SotsiaalAI."
+    },
+    "profile": {
+      "title": "Профиль | SotsiaalAI",
+      "description": "Управляйте профилем, настройками и учётной записью SotsiaalAI."
+    },
+    "pricing": {
+      "title": "Тарифы | SotsiaalAI",
+      "description": "Ознакомьтесь с тарифами и стоимостью подписок SotsiaalAI."
+    },
+    "features": {
+      "title": "Возможности | SotsiaalAI",
+      "description": "Ознакомьтесь с возможностями и инструментами SotsiaalAI."
+    },
+    "register": {
+      "title": "Регистрация | SotsiaalAI",
+      "description": "Создайте учётную запись SotsiaalAI и начните пользоваться платформой."
+    },
+    "subscription": {
+      "title": "Подписка | SotsiaalAI",
+      "description": "Управляйте подпиской и платёжными данными SotsiaalAI."
+    },
+    "terms": {
+      "title": "Условия использования | SotsiaalAI",
+      "description": "Прочитайте условия использования SotsiaalAI."
+    },
+    "privacy": {
+      "title": "Условия конфиденциальности | SotsiaalAI",
+      "description": "Узнайте, как SotsiaalAI обрабатывает и защищает персональные данные."
+    },
+    "guide": {
+      "title": "Руководство пользователя | SotsiaalAI",
+      "description": "Найдите руководство по использованию SotsiaalAI."
+    },
+    "author": {
+      "title": "От автора | SotsiaalAI",
+      "description": "Прочитайте пояснения и мысли автора SotsiaalAI."
+    },
+    "rooms": {
+      "title": "Комнаты | SotsiaalAI",
+      "description": "Просматривайте комнаты и общие диалоги SotsiaalAI."
+    },
+    "reset": {
+      "title": "Восстановление PIN-кода | SotsiaalAI",
+      "description": "Восстановите PIN-код учётной записи SotsiaalAI."
+    },
+    "email_update": {
+      "title": "Обновление адреса эл. почты | SotsiaalAI",
+      "description": "Обновите адрес эл. почты учётной записи SotsiaalAI."
+    },
+    "pin_update": {
+      "title": "Обновление PIN-кода | SotsiaalAI",
+      "description": "Обновите PIN-код учётной записи SotsiaalAI."
+    }
+  },
   "buttons": {
     "save": "Сохранить",
     "close": "Закрыть",
@@ -3008,6 +3070,7 @@
     "common": {
       "unauthorized": "Для продолжения войдите в систему.",
       "forbidden": "У вас нет прав для этого действия.",
+      "not_found": "Запрошенный ресурс не найден.",
       "invalid_request": "Некорректный запрос.",
       "invalid_json": "Некорректный JSON payload.",
       "missing_room_id": "Отсутствует ID комнаты.",
