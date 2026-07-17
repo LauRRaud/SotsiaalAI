@@ -62,7 +62,14 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   seadme puudumine / toe puudumine / tehniline (`chat.mic.permission_denied`/`no_device`/…).
   i18n ET/EN/RU + 2 testi (classifyMicError, piirikonstandid). **Runtime NOT_PROVEN** (päris heli/mikri
   puudub sünteetilises keskkonnas). Väike jääk: `.conv-entry-cancel`/`.conv-char-counter` CSS vormistus.
-- [ ] E5 — a11y/keeled/jõudlus: klaviatuur, reduced-motion, ET/EN/RU sümmeetria, reservatsioonileping
+- [x] E5 — a11y/keeled/jõudlus. **Reduced-motion:** uus `useReducedMotion` ChatMessageItem-is
+  eemaldab JS-kirjutusefekti (näitab kogu teksti kohe, teatab „valmis" ikka); sisenemiskaskaad on
+  chat.css `@media (prefers-reduced-motion)` all juba neutraliseeritud. **Klaviatuur/SR:** kõik uued
+  seisud on päris `<button>`-id aria-label'iga (Retry, Cancel), loendur `role=status`/`aria-live`,
+  kriisibänner `role=alert`, katkestus/viga-markerid `role=status`. **Keeled:** kõik uus copy ET/EN/RU
+  sümmeetriline (`i18n:check` roheline); U7 selge keel puutumata (ei mõjuta osutaja `simple_language`).
+  **PERF-P0:** abort vabastab reservatsiooni (mitte commit), SSE suletakse, taimerid puhastuvad,
+  Retry ei dubleeri pööret ega reservatsiooni.
 
 ## Verifitseerimine
 

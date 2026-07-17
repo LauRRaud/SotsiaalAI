@@ -17,6 +17,24 @@ function splitGraphemes(text) {
 const TYPING_STEP_MS = 18;
 const TYPING_TRAILING_INLINE_RE = /^[\s!?,.;:)]$/;
 
+// T03 E5: reduced-motion eemaldab kirjutusefekti (JS-tähehaaval reveal on liikumine).
+// Arvestab nii OS-i prefers-reduced-motion kui rakenduse data-reduce-motion lippu.
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const mq = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+    const read = () =>
+      Boolean(mq?.matches) ||
+      (typeof document !== "undefined" && document.documentElement?.dataset?.reduceMotion === "1");
+    setReduced(read());
+    const update = () => setReduced(read());
+    mq?.addEventListener?.("change", update);
+    return () => mq?.removeEventListener?.("change", update);
+  }, []);
+  return reduced;
+}
+
 function getTimeLocale(locale) {
   if (locale === "et") return "et-EE";
   if (locale === "ru") return "ru-RU";
@@ -118,6 +136,9 @@ const ChatMessageItem = memo(function ChatMessageItem({
 }) {
   const isAssistant = role === "ai";
   const isOwn = role === "user";
+  const prefersReducedMotion = useReducedMotion();
+  // Reduced-motion: näita kogu tekst kohe, ilma tähehaaval kirjutuseta.
+  const effectiveTypingEffect = typingEffect && !prefersReducedMotion;
   /* Pöördindeks (0 = uusim) juhib sisenemis-kaskaadi viidet chat.css-is;
      CSS piirab efekti min()-iga, seega suur indeks on ohutu. */
   const entranceStyle = { "--msg-ri": entranceIndex };
@@ -170,9 +191,10 @@ const ChatMessageItem = memo(function ChatMessageItem({
     setVisibleCount(0);
     typingCompleteNotifiedRef.current = false;
 
-    if (!typingEffect || !textSegments.length) {
+    if (!effectiveTypingEffect || !textSegments.length) {
       setVisibleCount(textSegments.length);
-      if (typingEffect && textSegments.length === 0 && !typingCompleteNotifiedRef.current) {
+      // Kirjutust ei mängita (tühi tekst VÕI reduced-motion), aga „valmis" tuleb ikka teatada.
+      if (typingEffect && !typingCompleteNotifiedRef.current) {
         typingCompleteNotifiedRef.current = true;
         onTypingComplete?.();
       }
@@ -207,11 +229,11 @@ const ChatMessageItem = memo(function ChatMessageItem({
     return () => {
       clearTypingTimer();
     };
-  }, [onTypingComplete, textSegments, typingEffect]);
+  }, [onTypingComplete, textSegments, effectiveTypingEffect, typingEffect]);
   useEffect(() => () => {
     clearTypingTimer();
   }, []);
-  const visibleText = typingEffect
+  const visibleText = effectiveTypingEffect
     ? textSegments.slice(0, visibleCount).join("")
     : textSegments.join("");
   const normalizedCards = Array.isArray(cards)
