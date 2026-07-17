@@ -43,7 +43,16 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   markeri korral) + i18n `chat.error.retry`/`message_too_long` ET/EN/RU. Hüdreerimine kannab
   `completionStatus` üle (`useChatConversationState`). Testid: +2 retry-otsust (kokku 12 E2 testi).
   **Runtime NOT_PROVEN** — brauseri läbiklikk vajab päris/võltsi providerit (sünteetiline keskkond).
-- [ ] E3 — 4000-piir + 413, jagatud `isFreeHelpWorkflowEligible`, töövoo eelvaade→kinnitus, PII-võtmed
+- [x] E3 — piirid, vead, töövoo käivitus. **4000-piir:** jagatud `lib/chat/messageLimits.js`;
+  `requestBootstrap` jõustab 413 (`chat.error.message_too_long`) ENNE püsistust/providerit; eemaldatud
+  vaikne mudeli-kärbe (route `MAX_USER_MESSAGE_CHARS` 1500→4000, slice = ohutu piir); komposeris nähtav
+  loendur (`role=status`/`aria-live`, over-limit olek) + over-limit send-guard. **Jagatud predikaat:**
+  `isFreeHelpWorkflowEligible` otsustab NII tellimusevärava kui marsruudi — suletud tagauks, kus paljas
+  tuvastatud abikavatsus andis tasuta üldise RAG/LLM vastuse; predikaat OR-itud marsruutijasse
+  (tasuta ⇒ abivoog, mitte LLM). PII/veasildid on API-võtmed (413 = `messageKey`, klient tõlgib).
+  Eelvaade→kinnitus muster puutumata. Testid: freeHelpBoundary (3) + messageLimit (2).
+  **Teadlik jääk:** aktiivse abi-oleku + „sisuka küsimuse" bypass võib anda tellijata RAG-i — vajab
+  tellimusseisu läbivedu, dokumenteeritud lõpparuandes (väljaspool seda viilu).
 - [ ] E4 — hääl: TTS locale server/fallback aus viga, STT discard + 2,5 min piir + taimeripuhastus
 - [ ] E5 — a11y/keeled/jõudlus: klaviatuur, reduced-motion, ET/EN/RU sümmeetria, reservatsioonileping
 
