@@ -13,6 +13,7 @@ import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
 import { buildHelpMediationHandoff } from "@/lib/journey/helpMediationHandoff";
 import { buildHealthContactQuestionsDraft, hasHealthContactSignal } from "@/lib/journey/healthContact";
 import { pushWithTransition } from "@/lib/routeTransition";
+import { canExplainJourneySummary } from "@/lib/journey/plainLanguageExplanation";
 
 const PRIMARY_PATH_VALUES = Object.freeze([
   "SERVICE_MAP",
@@ -645,8 +646,35 @@ export default function JourneyDetail({ journeyId }) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [notFound, setNotFound] = useState(false);
+  const [plainLanguagePreviewOpen, setPlainLanguagePreviewOpen] = useState(false);
+  const [plainLanguageReadingAid, setPlainLanguageReadingAid] = useState([]);
+  const [plainLanguageLoading, setPlainLanguageLoading] = useState(false);
+  const [plainLanguageError, setPlainLanguageError] = useState("");
 
   const updatedAt = useMemo(() => formatDate(journey?.updatedAt, locale), [journey?.updatedAt, locale]);
+  const plainLanguageAvailable = Boolean(journey && canExplainJourneySummary({
+    source: journey.summary,
+    isOfficial: journey?.context?.isOfficial === true
+  }));
+  const requestPlainLanguageReadingAid = useCallback(async () => {
+    if (!journeyId) return;
+    setPlainLanguageLoading(true);
+    setPlainLanguageError("");
+    try {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}/plain-language`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirmed: true })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok !== true) throw new Error(payload?.messageKey || "journeys.plain_language.unavailable");
+      setPlainLanguageReadingAid(Array.isArray(payload.readingAid) ? payload.readingAid : []);
+    } catch {
+      setPlainLanguageError(t("journey.plain_language.error", "Selgitust ei saanud praegu avada."));
+    } finally {
+      setPlainLanguageLoading(false);
+    }
+  }, [journeyId, t]);
   const serviceMapHandoff = useMemo(
     () => (journey ? buildServiceMapHandoff(journey) : null),
     [journey]
@@ -1566,6 +1594,28 @@ export default function JourneyDetail({ journeyId }) {
                       {t("journey.labels.summary", "Situation summary")}
                     </h2>
                     <p>{journey.summary}</p>
+                    {plainLanguageAvailable ? (
+                      <div>
+                        <Button type="button" variant="linkBrand" onClick={() => setPlainLanguagePreviewOpen((current) => !current)}>
+                          {t("journey.plain_language.open", "Selgita lihtsalt")}
+                        </Button>
+                        {plainLanguagePreviewOpen ? (
+                          <div role="region" aria-label={t("journey.plain_language.title", "Selge lugemisabi")}>
+                            <p>{t("journey.plain_language.preview", "Allikas: selle Teekonna kokkuvõte. Algne tekst jääb muutmata ja nähtavaks.")}</p>
+                            <p>{t("journey.plain_language.version", { date: updatedAt }, "Versioon: {date}")}</p>
+                            <Button type="button" onClick={requestPlainLanguageReadingAid} disabled={plainLanguageLoading}>
+                              {t("journey.plain_language.confirm", "Nõustun ja ava lugemisabi")}
+                            </Button>
+                            {plainLanguageError ? <p role="alert">{plainLanguageError}</p> : null}
+                            {plainLanguageReadingAid.length ? (
+                              <ol aria-label={t("journey.plain_language.title", "Selge lugemisabi")}>
+                                {plainLanguageReadingAid.map((line, index) => <li key={`${index}-${line}`}>{line}</li>)}
+                              </ol>
+                            ) : null}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : null}
                   </section>
 
                   <div>
