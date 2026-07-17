@@ -65,6 +65,8 @@ test("API and UI contracts include GET filters, read, dismiss, badge and all sta
   assert.match(route, /operation === "dismiss"/u);
   assert.match(route, /\["dismiss", "read", "source_read"\]\.includes\(operation\)/u);
   assert.match(ui, /event\.ackMode === "read"/u);
+  assert.match(ui, /error\?\.status === 404/u);
+  assert.match(ui, /aria-live="polite"/u);
   assert.doesNotMatch(ui, /\["read", "target_open"\]/u);
   for (const contract of ["loading", "error", "empty", "notification-center-badge", "ackMode"]) assert.match(ui, new RegExp(contract));
 });

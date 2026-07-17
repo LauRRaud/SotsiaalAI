@@ -15,8 +15,9 @@ function formatDate(value, locale) {
   }).format(date);
 }
 
-export default function NotificationCenter({ t, locale = "et", onOpen }) {
+export default function NotificationCenter({ t, locale = "et", onOpen, onStale, refreshKey = "" }) {
   const [state, setState] = useState({ status: "loading", events: [] });
+  const [announcement, setAnnouncement] = useState("");
 
   const load = useCallback(async (signal) => {
     try {
@@ -33,9 +34,11 @@ export default function NotificationCenter({ t, locale = "et", onOpen }) {
 
   useEffect(() => {
     const controller = new AbortController();
+    setState({ status: "loading", events: [] });
+    setAnnouncement("");
     load(controller.signal);
     return () => controller.abort();
-  }, [load]);
+  }, [load, refreshKey]);
 
   const unread = useMemo(
     () => state.events.reduce((count, event) => count + (event.readAt ? 0 : 1), 0),
@@ -49,7 +52,11 @@ export default function NotificationCenter({ t, locale = "et", onOpen }) {
       body: JSON.stringify({ eventId, operation })
     });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok || payload?.ok !== true) throw new Error("notification_update_failed");
+    if (!response.ok || payload?.ok !== true) {
+      const error = new Error("notification_update_failed");
+      error.status = response.status;
+      throw error;
+    }
   }, []);
 
   const openEvent = useCallback(async (event) => {
@@ -62,13 +69,19 @@ export default function NotificationCenter({ t, locale = "et", onOpen }) {
           events: current.events.map((item) => item.id === event.id
             ? { ...item, readAt: new Date().toISOString() } : item)
         }));
-      } catch {
+      } catch (error) {
+        if (error?.status === 404) {
+          setState((current) => ({ status: "ready", events: current.events.filter((item) => item.id !== event.id) }));
+          setAnnouncement(text(t, "notifications.center.target_gone", "See tegevus ei ole enam saadaval. Töölaud on värskendatud."));
+          onStale?.();
+          return;
+        }
         setState((current) => ({ ...current, status: "error" }));
         return;
       }
     }
     onOpen?.(event.href);
-  }, [onOpen, update]);
+  }, [onOpen, onStale, t, update]);
 
   const dismiss = useCallback(async (eventId) => {
     try {
@@ -76,10 +89,16 @@ export default function NotificationCenter({ t, locale = "et", onOpen }) {
       setState((current) => ({
         status: "ready", events: current.events.filter((event) => event.id !== eventId)
       }));
-    } catch {
+    } catch (error) {
+      if (error?.status === 404) {
+        setState((current) => ({ status: "ready", events: current.events.filter((event) => event.id !== eventId) }));
+        setAnnouncement(text(t, "notifications.center.target_gone", "See tegevus ei ole enam saadaval. Töölaud on värskendatud."));
+        onStale?.();
+        return;
+      }
       setState((current) => ({ ...current, status: "error" }));
     }
-  }, [update]);
+  }, [onStale, t, update]);
 
   return (
     <section className="notification-center" aria-labelledby="notification-center-title" aria-busy={state.status === "loading"}>
@@ -92,10 +111,15 @@ export default function NotificationCenter({ t, locale = "et", onOpen }) {
         <small>{text(t, "notifications.center.limit", "Viimased 7")}</small>
       </header>
 
+      <p className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</p>
+
       {state.status === "loading" ? (
         <p className="notification-center-state" role="status">{text(t, "notifications.center.loading", "Laadin teavitusi…")}</p>
       ) : state.status === "error" ? (
-        <p className="notification-center-state" role="alert">{text(t, "notifications.center.error", "Teavitusi ei saanud laadida.")}</p>
+        <div className="notification-center-state" role="alert">
+          <span>{text(t, "notifications.center.error", "Teavitusi ei saanud laadida.")}</span>
+          <button type="button" onClick={() => load()}>{text(t, "notifications.center.retry", "Proovi uuesti")}</button>
+        </div>
       ) : state.events.length ? (
         <ul>
           {state.events.map((event) => (

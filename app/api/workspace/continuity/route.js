@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { getWorkspaceContinuity } from "@/lib/workspaceContinuity";
+import { resolveSessionRoleState } from "@/lib/authz";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -14,12 +15,13 @@ function json(payload, status = 200) {
   return NextResponse.json(payload, { status, headers: NO_STORE_HEADERS });
 }
 
-export async function GET() {
+export async function GET(request) {
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = String(session?.user?.id || "").trim();
   if (!userId) return json({ ok: false, message: "api.common.unauthorized" }, 401);
   try {
-    const continuity = await getWorkspaceContinuity(userId);
+    const roleState = resolveSessionRoleState(session, request.cookies);
+    const continuity = await getWorkspaceContinuity(userId, { role: roleState.effectiveRole });
     return json({ ok: true, ...continuity });
   } catch (error) {
     console.error("[workspace-continuity] load failed", safeError(error));

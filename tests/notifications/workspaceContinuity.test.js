@@ -103,7 +103,8 @@ test("continuity is owner-scoped, deterministic, content-free, deduplicated, and
     "journey continuity must use the existing detail route and encode its id as a path segment"
   );
   assert.deepEqual(result.badges.effective_practices, { type: "number", value: 1, label: "1" });
-  assert.deepEqual(result.badges.add_person, { type: "number", value: 1, label: "1" });
+  assert.deepEqual(result.badges.room_unread, { type: "number", value: 1, label: "1" });
+  assert.equal(result.badges.add_person, undefined, "room activity must not badge the invite action");
 
   const serializedCalls = JSON.stringify(db.calls);
   assert.match(serializedCalls, /"authorId":"user-1"/u);
@@ -114,12 +115,45 @@ test("continuity is owner-scoped, deterministic, content-free, deduplicated, and
   assert.match(serializedCalls, /"ownerId":"user-1"/u);
 });
 
+test("continuity applies server-owned role prioritization and removes other role work", async () => {
+  const socialWorker = await getWorkspaceContinuity("user-1", {
+    db: createDb().client,
+    now: NOW,
+    role: "SOCIAL_WORKER"
+  });
+  assert.equal(socialWorker.role, "SOCIAL_WORKER");
+  assert.equal(socialWorker.items[0].kind, "next_contact");
+  assert.equal(socialWorker.items.some((item) => item.kind === "service_availability"), false);
+  assert.equal(socialWorker.items.some((item) => item.kind === "journey"), false);
+  assert.equal(socialWorker.items.some((item) => item.kind === "pre_inquiry_draft"), false);
+
+  const client = await getWorkspaceContinuity("user-1", {
+    db: createDb().client,
+    now: NOW,
+    role: "CLIENT"
+  });
+  assert.equal(client.role, "CLIENT");
+  assert.equal(client.items[0].kind, "journey");
+  assert.equal(client.items.some((item) => item.kind === "next_contact"), false);
+
+  const provider = await getWorkspaceContinuity("user-1", {
+    db: createDb().client,
+    now: NOW,
+    role: "SERVICE_PROVIDER"
+  });
+  assert.equal(provider.role, "SERVICE_PROVIDER");
+  assert.equal(provider.items.some((item) => item.kind === "practice_review"), false);
+  assert.equal(provider.items.some((item) => item.kind === "service_availability"), true);
+  assert.equal(provider.items.some((item) => item.kind === "pre_inquiry_draft"), false);
+});
+
 test("continuity API authenticates before querying and returns private no-store responses", async () => {
   const route = await readFile(
     new URL("../../app/api/workspace/continuity/route.js", import.meta.url),
     "utf8"
   );
-  assert.ok(route.indexOf("getServerSession") < route.indexOf("getWorkspaceContinuity(userId)"));
+  assert.ok(route.indexOf("getServerSession") < route.indexOf("getWorkspaceContinuity(userId,"));
+  assert.match(route, /resolveSessionRoleState\(session, request\.cookies\)/u);
   assert.match(route, /private, no-store/u);
   assert.doesNotMatch(route, /searchParams\.get\(["']userId/u);
 });
