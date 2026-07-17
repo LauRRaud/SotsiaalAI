@@ -1795,7 +1795,8 @@ export default function ChatBody({
       const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : null;
       setSelectedListingState((prev) => ({
         ...prev,
-        busyAction: ""
+        busyAction: "",
+        error: roomTarget ? "" : helpUi.connectPending
       }));
       if (roomTarget) {
         if (activeListingsPanel) {
@@ -1819,7 +1820,7 @@ export default function ChatBody({
         error: error?.message || helpUi.connectFailed
       }));
     }
-  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
+  }, [activeListingsPanel, closeListingsPanel, dismissSelectedListing, helpUi.connectFailed, helpUi.connectPending, locale, router, selectedListingState.listing, selectedListingState.selectedConnectListingId]);
   const openGlobalRequestsPanel = useCallback((source = "chat") => {
     const returnTarget = getHelpListingsReturnTarget(source);
     openListingsPanel({

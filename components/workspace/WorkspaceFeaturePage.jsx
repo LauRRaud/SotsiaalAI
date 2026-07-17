@@ -40,6 +40,7 @@ import {
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
@@ -2860,6 +2861,8 @@ function ServiceMapSurface({
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [counterpartSelection, setCounterpartSelection] = useState(null);
   const workspaceRef = useRef(null);
   const filtersShellRef = useRef(null);
   const keywordPlaceholder = readText(t, "workspace_feature_pages.service_map.placeholders.keyword", "Service, contact or need");
@@ -3040,6 +3043,28 @@ function ServiceMapSurface({
     if (entryId && isMobilePanel) setPanelOpen(false);
   }, [isMobilePanel]);
 
+  const submitHelpMatch = useCallback(async (entry, ownListing) => {
+    if (!entry || !ownListing?.id) return;
+    const payload = entry.type === "HELP_REQUEST"
+      ? { requestId: entry.listingId, offerId: ownListing.id }
+      : { requestId: ownListing.id, offerId: entry.listingId };
+    const response = await fetch("/api/help/matches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok || body?.ok === false || !body?.match) {
+      throw new Error(readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
+    }
+    const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : "";
+    if (roomTarget) {
+      pushWithTransition(router, roomTarget);
+    } else {
+      setNotice(readText(t, "workspace_feature_pages.service_map.match.pending_sent", "Nõusolekupäring saadeti. Ruum avaneb alles siis, kui teine inimene nõustub."));
+    }
+  }, [locale, router, t]);
+
   const handleConnectHelpMapEntry = useCallback(async (entry) => {
     if (!entry || (entry.type !== "HELP_REQUEST" && entry.type !== "HELP_OFFER")) return;
     if (entry.isOwn) {
@@ -3048,40 +3073,26 @@ function ServiceMapSurface({
     }
 
     setError("");
+    setNotice("");
     try {
       const ownKind = entry.type === "HELP_REQUEST" ? "offer" : "request";
       const optionsResponse = await fetch(`/api/help/listings?kind=${encodeURIComponent(ownKind)}&scope=mine&status=OPEN&locale=${encodeURIComponent(locale)}&limit=20`, {
         cache: "no-store"
       });
       const optionsPayload = await optionsResponse.json().catch(() => ({}));
-      const ownListing = Array.isArray(optionsPayload?.items) ? optionsPayload.items[0] : null;
-      if (!optionsResponse.ok || optionsPayload?.ok === false || !ownListing?.id) {
+      const options = Array.isArray(optionsPayload?.items) ? optionsPayload.items.filter((item) => item?.id) : [];
+      if (!optionsResponse.ok || optionsPayload?.ok === false || !options.length) {
         throw new Error(readText(t, "workspace_feature_pages.service_map.errors.no_counterpart_listing", "Ühenduse loomiseks peab sul olema vastav avatud abisoov või abipakkumine."));
       }
-
-      const payload = entry.type === "HELP_REQUEST"
-        ? { requestId: entry.listingId, offerId: ownListing.id }
-        : { requestId: ownListing.id, offerId: entry.listingId };
-      const response = await fetch("/api/help/matches", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-      const body = await response.json().catch(() => ({}));
-      if (!response.ok || body?.ok === false || !body?.match) {
-        throw new Error(readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
-      }
-
-      const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : "";
-      if (roomTarget) {
-        pushWithTransition(router, roomTarget);
+      if (options.length > 1) {
+        setCounterpartSelection({ entry, options, selectedId: "" });
+      } else {
+        await submitHelpMatch(entry, options[0]);
       }
     } catch (connectError) {
       setError(connectError?.message || readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
     }
-  }, [locale, router, t]);
+  }, [locale, submitHelpMatch, t]);
 
   const hasResultFilter = Boolean(keyword.trim() || region.trim());
   const showResults = !loading && !error && hasResultFilter && filteredEntries.length > 0;
@@ -3178,6 +3189,36 @@ function ServiceMapSurface({
         <div role="status" aria-live="polite">
           {error}
         </div>
+      ) : null}
+
+      {notice ? (
+        <div className="service-map-match-status" role="status" aria-live="polite">
+          {notice}
+        </div>
+      ) : null}
+
+      <HelpMatchDecisionPanel t={t} />
+
+      {counterpartSelection ? (
+        <section className="service-map-match-panel" aria-label={readText(t, "workspace_feature_pages.service_map.match.choose_title", "Vali oma kuulutus")}>
+          <h2>{readText(t, "workspace_feature_pages.service_map.match.choose_title", "Vali oma kuulutus")}</h2>
+          <p>{readText(t, "workspace_feature_pages.service_map.match.choose_note", "Vali, millise avatud kuulutusega soovid ühendust võtta.")}</p>
+          <label className="service-map-match-choice">
+            <span>{readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}</span>
+            <select value={counterpartSelection.selectedId} onChange={(event) => setCounterpartSelection((current) => current ? { ...current, selectedId: event.target.value } : current)}>
+              <option value="">{readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}</option>
+              {counterpartSelection.options.map((item) => <option key={item.id} value={item.id}>{item.title || item.categoryLabel || item.id}</option>)}
+            </select>
+          </label>
+          <div className="service-map-match-actions">
+            <Button type="button" size="sm" disabled={!counterpartSelection.selectedId} onClick={async () => {
+              const selected = counterpartSelection.options.find((item) => item.id === counterpartSelection.selectedId);
+              if (!selected) return;
+              try { await submitHelpMatch(counterpartSelection.entry, selected); setCounterpartSelection(null); } catch (connectError) { setError(connectError?.message || readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus.")); }
+            }}>{readText(t, "workspace_feature_pages.service_map.match.continue", "Jätka")}</Button>
+            <Button type="button" size="sm" variant="secondary" onClick={() => setCounterpartSelection(null)}>{readText(t, "common.cancel", "Loobu")}</Button>
+          </div>
+        </section>
       ) : null}
 
       <div className="service-map-canvas" aria-label={readText(t, "workspace_feature_pages.service_map.sections.map", "Kaart")}>
