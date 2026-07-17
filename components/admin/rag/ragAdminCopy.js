@@ -86,6 +86,18 @@ export function getRagAdminCopy(locale) {
       },
       kov: {
         searchPlaceholder: "Otsi KOV nime, slugi või märksõna järgi"
+      },
+      masterSources: {
+        title: "Master-allikate tööjärjekord",
+        body: "Näitab korjekandidaate, aegunud vasteid ja ülevaatust vajavaid allikaid. Kinnitamine ja ingest jäävad eraldi, inimese juhitud toiminguks.",
+        refresh: "Värskenda",
+        loading: "Laadin tööjärjekorda…",
+        loadError: "Master-allikate tööjärjekorra laadimine ebaõnnestus.",
+        degraded: "Tööjärjekorra failid pole selles keskkonnas lubatud või on kontrollimata.",
+        empty: "Inventuur pole veel tööjärjekorra allikaid loonud.",
+        queueLabel: "Master-allikate ülevaatusjärjekord",
+        review: "Vajab ülevaatust",
+        truncated: "Näidatakse esimest 100 tööjärjekorra rida."
       }
     };
   }
@@ -172,6 +184,18 @@ export function getRagAdminCopy(locale) {
     },
     kov: {
       searchPlaceholder: "Search by municipality name, slug, or keyword"
+    },
+    masterSources: {
+      title: "Master source work queue",
+      body: "Shows collection candidates, stale matches, and sources requiring review. Approval and ingest remain separate human-controlled actions.",
+      refresh: "Refresh",
+      loading: "Loading work queue…",
+      loadError: "Could not load the master source work queue.",
+      degraded: "Work-queue files are disabled or not yet verified in this environment.",
+      empty: "The inventory has not created any work-queue sources yet.",
+      queueLabel: "Master source review queue",
+      review: "Needs review",
+      truncated: "Showing the first 100 work-queue rows."
     }
   };
 }

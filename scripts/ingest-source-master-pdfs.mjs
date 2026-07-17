@@ -12,6 +12,7 @@ import {
   analyzePdfSectionIndex,
   applyPdfSectionAnalysisToMetadata
 } from "./lib/pdf-section-index.mjs";
+import { safeFetch } from "./lib/safe-fetch.mjs";
 import { validateKnowledgeMetadata } from "./lib/knowledge-docs.mjs";
 
 const RAW_RAG_HOST = String(process.env.RAG_INTERNAL_HOST || process.env.RAG_API_BASE || "127.0.0.1:8000").trim();
@@ -162,18 +163,16 @@ async function isDocumentExisting(baseUrl, docId, timeoutMs) {
 }
 
 async function downloadPdf(url, timeoutMs) {
-  const response = await fetchWithTimeout(url, {
-    method: "GET",
+  const response = await safeFetch(url, {
+    timeoutMs,
+    maxBytes: 50 * 1024 * 1024,
     headers: {
       "Accept": "application/pdf,application/octet-stream;q=0.9,*/*;q=0.1",
       "User-Agent": "SotsiaalAI-RAG-ingest/1.0"
     }
-  }, timeoutMs);
-  if (!response.ok) {
-    const text = await response.text().catch(() => "");
-    throw new Error(`download failed HTTP ${response.status}: ${text.slice(0, 200)}`);
-  }
-  const buffer = Buffer.from(await response.arrayBuffer());
+  });
+  if (!response.ok) throw new Error(`download failed HTTP ${response.status}`);
+  const buffer = response.body;
   if (buffer.subarray(0, 5).toString("latin1") !== "%PDF-") {
     const contentType = response.headers.get("content-type") || "unknown";
     throw new Error(`download did not return a PDF: content-type=${contentType}`);

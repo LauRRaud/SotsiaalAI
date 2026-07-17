@@ -842,6 +842,46 @@ test("does not drop the only candidate source", () => {
   assert.equal("evidenceText" in filtered[0], false);
 });
 
+test("does not display a registry reference as the only substantive source", () => {
+  const attribution = buildSourceAttribution("Materjalide register sisaldab seda teemat.", [
+    {
+      id: "source-master-pdf",
+      title: "SotsiaalAI master-allikate register",
+      evidence_role: "registry_reference",
+      evidenceText: "Register loetleb materjalid ja nende URL-id."
+    }
+  ], { query: "materjalid" });
+
+  assert.deepEqual(attribution.displayed_source_ids, []);
+  assert.equal(
+    attribution.filter_reasons["source-master-pdf"],
+    "registry_reference_requires_substantive_source"
+  );
+});
+
+test("keeps a registry reference only as an additional displayed source", () => {
+  const attribution = buildSourceAttribution("Juhend selgitab koduteenuse korraldust.", [
+    {
+      id: "source-master-pdf",
+      title: "SotsiaalAI master-allikate register",
+      evidence_role: "registry_reference",
+      evidenceText: "Register loetleb juhendi URL-i."
+    },
+    {
+      id: "official-guide",
+      title: "Koduteenuse juhend",
+      source_type: "official_guideline",
+      evidenceText: "Koduteenuse juhend selgitab teenuse korraldust."
+    }
+  ], {
+    query: "koduteenuse juhend",
+    packageAwareAnsweringUsed: true,
+    packageDisplayedSourceIds: ["source-master-pdf", "official-guide"]
+  });
+
+  assert.deepEqual(new Set(attribution.displayed_source_ids), new Set(["source-master-pdf", "official-guide"]));
+});
+
 test("returns attribution decisions and filtered-out source ids", () => {
   const reply = "Tartu linn koduteenus: taotlus käib sotsiaal- ja tervishoiuosakonna kaudu.";
   const sources = [

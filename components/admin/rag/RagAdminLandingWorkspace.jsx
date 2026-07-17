@@ -6,6 +6,7 @@ import { localizePath } from "@/lib/localizePath";
 
 import RagAdminContactRegistryPanel from "./RagAdminContactRegistryPanel";
 import RagAdminKovSourceMonitorPanel from "./RagAdminKovSourceMonitorPanel";
+import RagAdminMasterSourcesPanel from "./RagAdminMasterSourcesPanel";
 import RagAdminRtRegistryPanel from "./RagAdminRtRegistryPanel";
 import RagAdminPageFrame from "./RagAdminPageFrame";
 import { getRagAdminCopy } from "./ragAdminCopy";
@@ -80,6 +81,9 @@ export default function RagAdminLandingWorkspace({ locale }) {
       </div>
 
       <div className="ra-grid">
+        <div className="ra-col-4">
+          <RagAdminMasterSourcesPanel locale={locale} />
+        </div>
         <div className="ra-col-4">
           <RagAdminContactRegistryPanel />
         </div>
