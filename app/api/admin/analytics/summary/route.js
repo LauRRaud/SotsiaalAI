@@ -3,6 +3,14 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { getDocumentStorageSnapshot } from "@/lib/admin/documentStorageSnapshot";
+import {
+  buildExclusiveRequestSplit,
+  countServiceAvailabilityStates,
+  createCrisisCountMetric,
+  createMetric,
+  createMetricBasis
+} from "@/lib/admin/analyticsMetrics";
+import { projectAdminEmail } from "@/lib/admin/emailProjection";
 import { assertAdmin } from "@/lib/authz";
 import { buildPaymentAlerts, buildPaymentPipelineFromCounts } from "@/lib/admin/payment-alerts";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
@@ -13,6 +21,7 @@ import {
 } from "@/lib/rag/sourceFreshness";
 import { fetchRagServiceDocumentsForFreshness } from "@/lib/rag/ragServiceFreshnessFallback";
 import { summarizeRagTraceSourceQuality } from "@/lib/rag/sourceQualityMetrics";
+import { getServiceAvailabilityState } from "@/lib/serviceAvailability";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,18 +85,18 @@ function arrayLength(value) {
 async function getSourcePackageSnapshotSummary() {
   const delegate = prisma.sourcePackageSnapshot;
   const empty = {
-    sourcePackageCount: 0,
-    activeSourcePackageCount: 0,
-    needsReviewSourcePackageCount: 0,
-    reviewedSourcePackageCount: 0,
-    pendingReviewSourcePackageCount: 0,
-    archivedSourcePackageCount: 0,
-    missingFormsCount: 0,
-    missingContactsCount: 0,
-    missingLegalBasisCount: 0,
-    missingFeesCount: 0,
-    missingDeadlinesCount: 0,
-    packageConflictCount: 0,
+    sourcePackageCount: null,
+    activeSourcePackageCount: null,
+    needsReviewSourcePackageCount: null,
+    reviewedSourcePackageCount: null,
+    pendingReviewSourcePackageCount: null,
+    archivedSourcePackageCount: null,
+    missingFormsCount: null,
+    missingContactsCount: null,
+    missingLegalBasisCount: null,
+    missingFeesCount: null,
+    missingDeadlinesCount: null,
+    packageConflictCount: null,
     packagesByMunicipality: {},
     packagesByType: {},
     packagesByReviewStatus: {},
@@ -237,6 +246,7 @@ export async function GET(req) {
   try {
     const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
     const now = new Date();
+    const unopenedPreInquiryCutoff = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     const storageSnapshotPromise = getDocumentStorageSnapshot();
 
     const [
@@ -305,7 +315,14 @@ export async function GET(req) {
       frameworkAcceptances30d,
       frameworkAcceptancesSigned30d,
       recentFrameworkAcceptances,
-      storageSnapshot
+      storageSnapshot,
+      usersTotal,
+      usersByRole,
+      materialsPending,
+      sourceFeedbackOpen,
+      deletionBacklogByStatus,
+      serviceAvailabilityRows,
+      sentUnopenedPreInquiries
     ] = await Promise.all([
       prisma.chatLog.count({
         where: {
@@ -315,8 +332,11 @@ export async function GET(req) {
       }),
       prisma.chatLog.count({
         where: {
-          event: "crisis_detected",
-          createdAt: { gte: since }
+          createdAt: { gte: since },
+          OR: [
+            { event: "crisis_detected" },
+            { data: { path: ["isCrisis"], equals: true } }
+          ]
         }
       }),
       prisma.chatLog.count({
@@ -718,8 +738,38 @@ export async function GET(req) {
           }
         }
       }),
-      storageSnapshotPromise
+      storageSnapshotPromise,
+      prisma.user.count(),
+      prisma.user.groupBy({ by: ["role"], _count: { _all: true } }),
+      prisma.materialSubmission.count({ where: { status: "pending" } }),
+      prisma.sourceFeedback.count({ where: { status: "OPEN" } }),
+      prisma.dataDeletionJob.groupBy({
+        by: ["status"],
+        where: { status: { in: ["pending", "failed"] } },
+        _count: { _all: true }
+      }),
+      prisma.serviceProviderService.findMany({
+        where: { status: "PUBLISHED" },
+        select: { availabilityStatus: true, availabilityCheckedAt: true }
+      }),
+      prisma.preInquiry.count({
+        where: {
+          status: "SENT",
+          openedAt: null,
+          sentAt: { lt: unopenedPreInquiryCutoff }
+        }
+      })
     ]);
+
+    const crisisMetric = createCrisisCountMetric(totalCrisis, { computedAt: now, window: "30d" });
+    const deletionBacklogCounts = toCountMap(deletionBacklogByStatus, "status");
+    const deletionBacklogTotal = Object.values(deletionBacklogCounts)
+      .reduce((sum, value) => sum + Number(value || 0), 0);
+    const serviceAvailabilityCounts = countServiceAvailabilityStates(
+      serviceAvailabilityRows,
+      row => getServiceAvailabilityState(row, { now })
+    );
+    const liveBasis = source => createMetricBasis({ source, window: "live", computedAt: now });
 
     const ragLogs = await prisma.chatLog.findMany({
       where: {
@@ -887,11 +937,56 @@ export async function GET(req) {
     return json({
       ok: true,
       periodDays: 30,
+      basis: createMetricBasis({
+        source: "Prisma aggregates and operational ChatLog",
+        window: "30d with live operational counters",
+        computedAt: now,
+        degraded: Boolean(ragServiceFallbackError || sourcePackageSummary.unavailable),
+        degradationReason: ragServiceFallbackError
+          ? "rag_service_fallback_failed"
+          : sourcePackageSummary.unavailable
+            ? "source_package_snapshot_unavailable"
+            : null
+      }),
+      sampledBasis: createMetricBasis({
+        source: "ChatLog rag_search and rag_trace plus RAG freshness inputs",
+        window: "30d",
+        computedAt: now,
+        sampleLimit: 1000,
+        degraded: Boolean(ragServiceFallbackError),
+        degradationReason: ragServiceFallbackError ? "rag_service_fallback_failed" : null
+      }),
       totalRequests,
-      totalCrisis,
+      totalCrisis: crisisMetric.value,
+      crisis: crisisMetric,
       noContextCount,
       ragSearchCount,
       ragTraceCount,
+      requestSplit: buildExclusiveRequestSplit({ totalRequests, ragSearchCount, noContextCount }),
+      users: {
+        total: usersTotal,
+        byRole: toCountMap(usersByRole, "role")
+      },
+      operations: {
+        materialsPending: createMetric(materialsPending, liveBasis("MaterialSubmission status=pending")),
+        sourceFeedbackOpen: createMetric(sourceFeedbackOpen, liveBasis("SourceFeedback status=OPEN")),
+        deletionBacklog: {
+          ...createMetric(deletionBacklogTotal, liveBasis("DataDeletionJob status pending or failed")),
+          counts: deletionBacklogCounts
+        },
+        serviceConfirmations: {
+          ...createMetric(serviceAvailabilityCounts.total, liveBasis("published ServiceProviderService availability")),
+          counts: serviceAvailabilityCounts
+        },
+        sentUnopenedPreInquiries: createMetric(
+          sentUnopenedPreInquiries,
+          createMetricBasis({
+            source: "PreInquiry status=SENT and openedAt=null",
+            window: "sent more than 7d ago",
+            computedAt: now
+          })
+        )
+      },
       chat: {
         conversationsTotal: conversationTotal,
         activeConversations30d,
@@ -910,11 +1005,19 @@ export async function GET(req) {
         byType: toCountMap(ragDocsByType, "type"),
         recent: ragDocsRecent,
         freshness: {
+          basis: createMetricBasis({
+            source: ragDocsFreshnessSource,
+            window: "current RAG document snapshot",
+            computedAt: now,
+            sampleLimit: 1000,
+            degraded: Boolean(ragServiceFallbackError),
+            degradationReason: ragServiceFallbackError ? "rag_service_fallback_failed" : null
+          }),
           auditSource: ragDocsFreshnessSource,
-          audited: ragFreshnessAudit.summary.total,
+          audited: ragServiceFallbackError ? null : ragFreshnessAudit.summary.total,
           ragServiceFallbackCount,
           ragServiceFallbackError,
-          summary: ragFreshnessAudit.summary,
+          summary: ragServiceFallbackError ? null : ragFreshnessAudit.summary,
           issues: ragFreshnessIssues,
           highRisk: highRiskFreshness.summary,
           highRiskIssues: highRiskFreshness.issues
@@ -963,7 +1066,12 @@ export async function GET(req) {
           total: frameworkAcceptancesTotal,
           accepted30d: frameworkAcceptances30d,
           signedDownloaded30d: frameworkAcceptancesSigned30d,
-          recent: recentFrameworkAcceptances
+          recent: recentFrameworkAcceptances.map(row => ({
+            ...row,
+            user: row.user
+              ? { ...row.user, email: projectAdminEmail(row.user.email) }
+              : null
+          }))
         },
         storage: storageSnapshot
       },

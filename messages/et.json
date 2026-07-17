@@ -3573,6 +3573,7 @@
         "cancellations_30d": "Tühistamised (30p)",
         "payment_statuses_30d": "Maksete olekud (30p)",
         "paid_amount_30d": "Laekunud summa (PAID, 30p)",
+        "recent_payments_window": "Viimased 20 makset (kogu ajaloo vaade)",
         "pipeline": {
           "checkout_ready": "Makse algatatud (30p)",
           "webhook_paid": "Webhookiga kinnitatud maksed (30p)",
@@ -3627,7 +3628,7 @@
           "admin": "Admin",
           "subscription": "Tellimus",
           "usage_30d": "Kasutus (30p)",
-          "cost_30d": "Kulu hinnang (30p)",
+          "cost_30d": "Eelarvemudeli hinnang (30p)",
           "limits": "Limiidid",
           "paid_30d": "Laekunud (30p)",
           "empty": "Kasutajaid ei leitud."
@@ -3736,12 +3737,12 @@
         "title": "AI kuluaktiivsus",
         "subtitle": "ChatLogi-põhine OpenAI, RAG-i, TTS-i ja STT jälgitavus.",
         "unit_model_note": "internal_usage_units on sisemine normaliseeritud analüütikaühik eelarve jälgimiseks. See ei ole täpne teenusepakkuja arveldus.",
-        "units": "Sisemised kasutusühikud",
+        "units": "Kasutatud eelarveühikud (sisemudel)",
         "budget_units": "Eelarveühikud / kuu",
         "utilization": "Kasutusmäär",
         "package": "Pakett",
         "package_users": "Kasutajad",
-        "users_title": "Kasutajate eelarvejälgimine",
+        "users_title": "Vähemalt 85% eelarvelävendil kasutajad",
         "packages_title": "Pakettide eelarvejälgimine",
         "average_usage": "Keskmine kasutus",
         "cards": {
@@ -3765,7 +3766,7 @@
         },
         "approx": {
           "title": "Ligikaudne EUR vaade",
-          "short": "Ligik.",
+          "short": "Ligikaudne AI kulu",
           "total": "Kokku",
           "direct": "Otsene",
           "estimated": "Hinnanguline",

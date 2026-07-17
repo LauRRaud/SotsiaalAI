@@ -170,6 +170,25 @@ function formatCount(value, localeTag) {
   }
 }
 
+function formatMetricCount(metric, localeTag) {
+  if (!metric || metric.value == null) return "—";
+  return formatCount(metric.value, localeTag);
+}
+
+function formatNullableCount(value, localeTag) {
+  return value == null ? "—" : formatCount(value, localeTag);
+}
+
+function metricBasisStatus(metric) {
+  const basis = metric?.basis;
+  if (!basis) return "";
+  if (basis.suppressed) return `suppressed (${basis.suppressionReason || "privacy threshold"})`;
+  if (basis.stale) return "stale";
+  if (basis.degraded) return `degraded (${basis.degradationReason || "source unavailable"})`;
+  if (basis.sampleLimit) return `sample up to ${basis.sampleLimit}`;
+  return `${basis.window || "live"} · ${basis.source || "server"}`;
+}
+
 function formatPercent(value, localeTag, digits = 0) {
   try {
     return new Intl.NumberFormat(localeTag, {
@@ -224,6 +243,10 @@ function formatMoney(amount, currency = "EUR", localeTag = "en-US") {
   } catch {
     return `${toNumber(amount).toFixed(2)} ${currency}`;
   }
+}
+
+function formatNullableMoney(amount, currency = "EUR", localeTag = "en-US") {
+  return amount == null ? "—" : formatMoney(amount, currency, localeTag);
 }
 
 function formatDate(value, localeTag = "en-US") {
@@ -502,6 +525,7 @@ export default function AnalyticsDashboard() {
 
   const [summary, setSummary] = useState(null);
   const [events, setEvents] = useState([]);
+  const [eventsCrisis, setEventsCrisis] = useState(null);
   const [usersAnalytics, setUsersAnalytics] = useState(null);
   const [aiCosts, setAiCosts] = useState(null);
   const [loadingSummary, setLoadingSummary] = useState(false);
@@ -519,6 +543,9 @@ export default function AnalyticsDashboard() {
   const [resetNotice, setResetNotice] = useState(null);
   const [selectedUserIds, setSelectedUserIds] = useState([]);
   const [deletingUsers, setDeletingUsers] = useState(false);
+  const [bulkDeleteReason, setBulkDeleteReason] = useState("");
+  const [bulkDeletePreview, setBulkDeletePreview] = useState(null);
+  const [bulkDeleteConfirmation, setBulkDeleteConfirmation] = useState("");
   const [deletingLogs, setDeletingLogs] = useState(false);
   const [runningResetAction, setRunningResetAction] = useState("");
   const [sendingUsersEmail, setSendingUsersEmail] = useState(false);
@@ -538,6 +565,11 @@ export default function AnalyticsDashboard() {
   const invalidateBulkEmailPreview = useCallback(() => {
     setBulkEmailPreview(null);
     setBulkEmailConfirmation("");
+  }, []);
+
+  const invalidateBulkDeletePreview = useCallback(() => {
+    setBulkDeletePreview(null);
+    setBulkDeleteConfirmation("");
   }, []);
 
   const invalidateLogsPreview = useCallback(() => {
@@ -890,6 +922,7 @@ export default function AnalyticsDashboard() {
         "admin.analytics.errors.events_fetch_failed"
       );
       setEvents(Array.isArray(data.items) ? data.items : []);
+      setEventsCrisis(data?.crisis || null);
       setPageError("");
     } catch (error) {
       setPageError(error?.message || t("admin.analytics.errors.events_fetch_failed", "Events fetch failed."));
@@ -1002,11 +1035,12 @@ export default function AnalyticsDashboard() {
   );
 
   const requestSplit = useMemo(() => {
-    const total = toNumber(summary?.totalRequests);
+    const total = toNumber(summary?.requestSplit?.total);
     if (!total) return null;
     return {
-      rag: Math.round((100 * toNumber(summary?.ragSearchCount)) / total),
-      noContext: Math.round((100 * toNumber(summary?.noContextCount)) / total),
+      rag: toNumber(summary?.requestSplit?.percentages?.ragWithContext),
+      noContext: toNumber(summary?.requestSplit?.percentages?.noContext),
+      other: toNumber(summary?.requestSplit?.percentages?.other),
       stt: Math.round((100 * toNumber(summary?.chat?.sttRequests30d)) / total),
       tts: Math.round((100 * toNumber(summary?.chat?.ttsRequests30d)) / total)
     };
@@ -1024,6 +1058,7 @@ export default function AnalyticsDashboard() {
   const paymentAlerts = Array.isArray(summary?.billing?.paymentAlerts30d) ? summary.billing.paymentAlerts30d : [];
   const documentStorage = summary?.documents?.storage || null;
   const ragFreshness = useMemo(() => summary?.ragDocs?.freshness || null, [summary]);
+  const ragFreshnessUnavailable = Boolean(ragFreshness?.basis?.degraded && ragFreshness?.audited == null);
   const ragSourceQuality = useMemo(() => summary?.ragDocs?.sourceQuality?.summary || {}, [summary]);
   const ragFreshnessSummary = useMemo(() => ragFreshness?.summary || {}, [ragFreshness]);
   const ragMetadataQuality = useMemo(() => ragFreshnessSummary?.metadata_quality || {}, [ragFreshnessSummary]);
@@ -1239,15 +1274,15 @@ export default function AnalyticsDashboard() {
         value: loadingSummary ? loadingLabel : formatCount(summary?.billing?.activeSubscriptions || 0, localeTag)
       },
       {
-        label: t("admin.analytics.users.summary.users", "Users in table"),
-        value: loadingUsers ? loadingLabel : formatCount(visibleUserRows.length, localeTag)
+        label: t("admin.analytics.users.summary.users", "Total users"),
+        value: loadingSummary ? loadingLabel : formatCount(summary?.users?.total, localeTag)
       },
       {
-        label: t("admin.analytics.logs.title", "Logs"),
-        value: loadingEvents ? loadingLabel : formatCount(events.length, localeTag)
+        label: t("admin.analytics.users.summary.roles", "Roles"),
+        value: loadingSummary ? loadingLabel : joinCounts(summary?.users?.byRole, {}, localeTag)
       }
     ];
-  }, [events.length, loadingEvents, loadingSummary, loadingUsers, localeTag, summary, t, visibleUserRows.length]);
+  }, [loadingSummary, localeTag, summary, t]);
 
   const liveSnapshotItems = useMemo(() => {
     const loadingLabel = t("admin.common.loading", "Loading...");
@@ -1276,6 +1311,28 @@ export default function AnalyticsDashboard() {
       {
         label: t("admin.analytics.platform.help.matches_30d", "Matches (30d)"),
         value: loadingSummary ? loadingLabel : formatCount(summary?.help?.matches30d || 0, localeTag)
+      },
+      {
+        label: t("admin.analytics.operations.materials_pending", "Materials awaiting review"),
+        value: loadingSummary ? loadingLabel : formatMetricCount(summary?.operations?.materialsPending, localeTag)
+      },
+      {
+        label: t("admin.analytics.operations.source_feedback_open", "OPEN source feedback"),
+        value: loadingSummary ? loadingLabel : formatMetricCount(summary?.operations?.sourceFeedbackOpen, localeTag)
+      },
+      {
+        label: t("admin.analytics.operations.deletion_backlog", "Deletion backlog"),
+        value: loadingSummary ? loadingLabel : formatMetricCount(summary?.operations?.deletionBacklog, localeTag)
+      },
+      {
+        label: t("admin.analytics.operations.service_confirmations", "Service confirmations"),
+        value: loadingSummary
+          ? loadingLabel
+          : joinCounts(summary?.operations?.serviceConfirmations?.counts, {}, localeTag, ["fresh", "stale", "unknown"])
+      },
+      {
+        label: t("admin.analytics.operations.sent_unopened", "SENT, unopened over 7d"),
+        value: loadingSummary ? loadingLabel : formatMetricCount(summary?.operations?.sentUnopenedPreInquiries, localeTag)
       }
     ];
   }, [loadingSummary, localeTag, summary, t]);
@@ -1307,7 +1364,7 @@ export default function AnalyticsDashboard() {
         value:
           loadingAiCosts
             ? t("admin.common.loading", "Loading...")
-            : formatMoney(aiCosts?.summary?.approximate_cost_eur?.total || 0, "EUR", localeTag),
+            : formatNullableMoney(aiCosts?.summary?.approximate_cost_eur?.total, "EUR", localeTag),
         meta: t(
           "admin.analytics.ai_costs.cards.approx_eur_meta",
           `Approximate provider-cost-equivalent over ${formatCount(aiCosts?.periodDays || 0, localeTag)} days`
@@ -1325,7 +1382,7 @@ export default function AnalyticsDashboard() {
           loadingAiCosts || aiCosts?.summary?.averages?.openai_per_response?.input_tokens == null
             ? loadingAiCosts
               ? t("admin.common.loading", "Loading...")
-              : "-"
+              : "—"
             : formatPercent(aiCosts.summary.averages.openai_per_response.input_tokens, localeTag, 1)
       },
       {
@@ -1334,7 +1391,7 @@ export default function AnalyticsDashboard() {
           loadingAiCosts || aiCosts?.summary?.averages?.openai_per_response?.output_tokens == null
             ? loadingAiCosts
               ? t("admin.common.loading", "Loading...")
-              : "-"
+              : "—"
             : formatPercent(aiCosts.summary.averages.openai_per_response.output_tokens, localeTag, 1)
       },
       {
@@ -1343,7 +1400,7 @@ export default function AnalyticsDashboard() {
           loadingAiCosts || aiCosts?.summary?.averages?.tts_per_job?.duration_seconds == null
             ? loadingAiCosts
               ? t("admin.common.loading", "Loading...")
-              : "-"
+              : "—"
             : formatMinutes(aiCosts.summary.averages.tts_per_job.duration_seconds / 60, localeTag, 2)
       },
       {
@@ -1352,7 +1409,7 @@ export default function AnalyticsDashboard() {
           loadingAiCosts || aiCosts?.summary?.averages?.stt_per_job?.total_tokens == null
             ? loadingAiCosts
               ? t("admin.common.loading", "Loading...")
-              : "-"
+              : "—"
             : formatPercent(aiCosts.summary.averages.stt_per_job.total_tokens, localeTag, 1)
       },
       {
@@ -1361,7 +1418,7 @@ export default function AnalyticsDashboard() {
           loadingAiCosts || aiCosts?.summary?.averages?.stt_per_job?.duration_seconds == null
             ? loadingAiCosts
               ? t("admin.common.loading", "Loading...")
-              : "-"
+              : "—"
             : formatMinutes(aiCosts.summary.averages.stt_per_job.duration_seconds / 60, localeTag, 2)
       }
     ],
@@ -1458,7 +1515,7 @@ export default function AnalyticsDashboard() {
             loadingAiCosts
               ? loadingLabel
               : userIdPct == null
-                ? "-"
+                ? "—"
                 : `${formatPercent(userIdPct, localeTag, 1)}% (${formatCount(completeness?.with_userId || 0, localeTag)})`
         },
         {
@@ -1467,7 +1524,7 @@ export default function AnalyticsDashboard() {
             loadingAiCosts
               ? loadingLabel
               : rolePct == null
-                ? "-"
+                ? "—"
                 : `${formatPercent(rolePct, localeTag, 1)}% (${formatCount(completeness?.with_role || 0, localeTag)})`
         },
         {
@@ -1571,18 +1628,20 @@ export default function AnalyticsDashboard() {
 
   const toggleUserSelection = useCallback(userId => {
     invalidateBulkEmailPreview();
+    invalidateBulkDeletePreview();
     setSelectedUserIds(prev => (prev.includes(userId) ? prev.filter(id => id !== userId) : [...prev, userId]));
-  }, [invalidateBulkEmailPreview]);
+  }, [invalidateBulkDeletePreview, invalidateBulkEmailPreview]);
 
   const toggleAllVisibleUsers = useCallback(() => {
     invalidateBulkEmailPreview();
+    invalidateBulkDeletePreview();
     setSelectedUserIds(prev => {
       if (allVisibleSelected) return prev.filter(id => !visibleUserIdSet.has(id));
       const merged = new Set(prev);
       for (const id of visibleUserIds) merged.add(id);
       return Array.from(merged);
     });
-  }, [allVisibleSelected, invalidateBulkEmailPreview, visibleUserIdSet, visibleUserIds]);
+  }, [allVisibleSelected, invalidateBulkDeletePreview, invalidateBulkEmailPreview, visibleUserIdSet, visibleUserIds]);
 
   const handleUsersSearch = useCallback(
     event => {
@@ -1597,13 +1656,8 @@ export default function AnalyticsDashboard() {
     setUsersQuery("");
   }, []);
 
-  const handleDeleteSelectedUsers = useCallback(async () => {
+  const handlePreviewSelectedUsersDeletion = useCallback(async () => {
     if (!selectedUserIds.length || deletingUsers) return;
-    const confirmed = window.confirm(
-      t("admin.analytics.users.actions.delete_confirm", { count: selectedUserIds.length }, "Delete selected users?")
-    );
-    if (!confirmed) return;
-
     setDeletingUsers(true);
     setUsersNotice(null);
     try {
@@ -1613,28 +1667,24 @@ export default function AnalyticsDashboard() {
           method: "DELETE",
           body: JSON.stringify({
             locale,
-            userIds: selectedUserIds
+            userIds: selectedUserIds,
+            reason: bulkDeleteReason,
+            dryRun: true
           })
         },
         "admin.analytics.errors.users_delete_failed"
       );
 
-      const blockedAdmins = Array.isArray(data?.blocked?.admins) ? data.blocked.admins.length : 0;
-      const blockedSelf = data?.blocked?.self ? 1 : 0;
-      const deletedIds = Array.isArray(data?.deletedIds) ? data.deletedIds : [];
-      setSelectedUserIds(prev => prev.filter(id => !deletedIds.includes(id)));
+      setBulkDeletePreview(data);
+      setBulkDeleteConfirmation("");
       setUsersNotice({
-        tone: "success",
+        tone: "warn",
         message: t(
-          "admin.analytics.users.actions.delete_done",
-          {
-            deleted: toNumber(data?.deletedCount || 0),
-            blocked: blockedAdmins + blockedSelf
-          },
-          "Users deleted."
+          "admin.analytics.users.actions.delete_preview_done",
+          { count: toNumber(data?.deletableCount) },
+          "Deletion impact preview is ready."
         )
       });
-      await Promise.all([loadSummary(), loadUsers()]);
     } catch (error) {
       setUsersNotice({
         tone: "error",
@@ -1643,7 +1693,45 @@ export default function AnalyticsDashboard() {
     } finally {
       setDeletingUsers(false);
     }
-  }, [deletingUsers, loadSummary, loadUsers, locale, requestJson, selectedUserIds, t]);
+  }, [bulkDeleteReason, deletingUsers, locale, requestJson, selectedUserIds, t]);
+
+  const handleDeleteSelectedUsers = useCallback(async () => {
+    if (!bulkDeletePreview || deletingUsers) return;
+    setDeletingUsers(true);
+    setUsersNotice(null);
+    try {
+      const data = await requestJson(
+        "/api/admin/analytics/users",
+        {
+          method: "DELETE",
+          body: JSON.stringify({
+            locale,
+            userIds: selectedUserIds,
+            reason: bulkDeleteReason,
+            previewToken: bulkDeletePreview.previewToken,
+            confirmation: bulkDeleteConfirmation
+          })
+        },
+        "admin.analytics.errors.users_delete_failed"
+      );
+      const deletedIds = Array.isArray(data?.deletedIds) ? data.deletedIds : [];
+      setSelectedUserIds(prev => prev.filter(id => !deletedIds.includes(id)));
+      invalidateBulkDeletePreview();
+      setUsersNotice({
+        tone: data?.failedCount || data?.pendingCount ? "warn" : "success",
+        message: t(
+          "admin.analytics.users.actions.delete_done",
+          { deleted: toNumber(data?.deletedCount), blocked: toNumber(data?.blocked?.adminCount) + (data?.blocked?.self ? 1 : 0) },
+          "Users deleted."
+        )
+      });
+      await Promise.all([loadSummary(), loadUsers()]);
+    } catch (error) {
+      setUsersNotice({ tone: "error", message: error?.message || t("admin.analytics.errors.users_delete_failed", "Failed to delete selected users.") });
+    } finally {
+      setDeletingUsers(false);
+    }
+  }, [bulkDeleteConfirmation, bulkDeletePreview, bulkDeleteReason, deletingUsers, invalidateBulkDeletePreview, loadSummary, loadUsers, locale, requestJson, selectedUserIds, t]);
 
   const handlePreviewBulkEmail = useCallback(async () => {
     if (sendingUsersEmail) return;
@@ -2019,6 +2107,30 @@ export default function AnalyticsDashboard() {
       </div>
 
       <SectionAlert tone="error" message={pageError} />
+      <SectionAlert
+        tone="warn"
+        message={summary?.basis?.degraded
+          ? `${t("admin.analytics.basis.degraded", "Some summary metrics are degraded")}: ${summary.basis.degradationReason || "source unavailable"}. ${summary.basis.computedAt || ""}`
+          : ""}
+      />
+      <SectionAlert
+        tone="info"
+        message={summary?.sampledBasis?.sampleLimit
+          ? `${t("admin.analytics.basis.sampled", "RAG derived metrics use a bounded sample")}: ${metricBasisStatus({ basis: summary.sampledBasis })}.`
+          : ""}
+      />
+      <SectionAlert
+        tone="warn"
+        message={usersAnalytics?.basis?.degraded
+          ? `${t("admin.analytics.basis.degraded", "Some user metrics are degraded")}: ${usersAnalytics.basis.degradationReason || "source unavailable"}. ${usersAnalytics.basis.computedAt || ""}`
+          : ""}
+      />
+      <SectionAlert
+        tone="warn"
+        message={aiCosts?.basis?.degraded
+          ? `${t("admin.analytics.basis.degraded", "Some AI-cost metrics are degraded")}: ${aiCosts.basis.degradationReason || "source unavailable"}. ${aiCosts.basis.computedAt || ""}`
+          : ""}
+      />
 
       <div className={summaryPanelClassName}>
         <div className={summaryPanelBodyClassName}>
@@ -2034,7 +2146,7 @@ export default function AnalyticsDashboard() {
                 value={loadingSummary ? t("admin.common.loading", "Loading...") : formatCount(summary?.ragSearchCount || 0, localeTag)}
                 meta={
                   requestSplit
-                    ? t("admin.analytics.kpis.share", { percent: requestSplit.rag }, "Share {percent}%")
+                    ? t("admin.analytics.kpis.share", { percent: requestSplit.rag }, "Exclusive request class {percent}%")
                     : t("admin.analytics.kpis.share_missing", "Share unavailable")
                 }
               />
@@ -2054,8 +2166,8 @@ export default function AnalyticsDashboard() {
               />
               <KpiCard
                 title={t("admin.analytics.kpis.crisis.title", "Crisis")}
-                value={loadingSummary ? t("admin.common.loading", "Loading...") : formatCount(summary?.totalCrisis || 0, localeTag)}
-                meta={t("admin.analytics.kpis.crisis.meta", "Detected crisis risk")}
+                value={loadingSummary ? t("admin.common.loading", "Loading...") : formatMetricCount(summary?.crisis, localeTag)}
+                meta={loadingSummary ? "" : metricBasisStatus(summary?.crisis)}
               />
               <KpiCard
                 title={t("admin.analytics.kpis.stt_requests.title", "STT requests")}
@@ -2089,6 +2201,8 @@ export default function AnalyticsDashboard() {
               meta={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
+                  : ragFreshnessUnavailable
+                    ? metricBasisStatus({ basis: ragFreshness?.basis })
                   : t(
                       "admin.analytics.kpis.rag_averages.meta",
                       {
@@ -2379,15 +2493,19 @@ export default function AnalyticsDashboard() {
             />
             <KpiCard
               title={t("admin.analytics.rag_docs.freshness_audited", "Freshness audited")}
-              value={loadingSummary ? t("admin.common.loading", "Loading...") : formatCount(ragFreshness?.audited || 0, localeTag)}
-              meta={t("admin.analytics.rag_docs.freshness_audited_meta", "Latest RAG documents checked for source metadata freshness.")}
+              value={loadingSummary ? t("admin.common.loading", "Loading...") : formatNullableCount(ragFreshness?.audited, localeTag)}
+              meta={ragFreshnessUnavailable
+                ? metricBasisStatus({ basis: ragFreshness?.basis })
+                : t("admin.analytics.rag_docs.freshness_audited_meta", "Latest RAG documents checked for source metadata freshness.")}
             />
             <KpiCard
               title={t("admin.analytics.rag_docs.metadata_contract", "Metadata contract")}
               value={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
-                  : `${formatPercent(toNumber(ragMetadataQuality.completeness_rate) * 100, localeTag, 1)}%`
+                  : ragFreshnessUnavailable
+                    ? "—"
+                    : `${formatPercent(toNumber(ragMetadataQuality.completeness_rate) * 100, localeTag, 1)}%`
               }
               meta={
                 loadingSummary
@@ -2408,12 +2526,14 @@ export default function AnalyticsDashboard() {
               value={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
-                  : formatCount(Object.keys(ragMetadataByCollection).length, localeTag)
+                  : ragFreshnessUnavailable ? "—" : formatCount(Object.keys(ragMetadataByCollection).length, localeTag)
               }
               meta={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
-                  : ragMetadataCollectionSummary || t("admin.analytics.rag_docs.metadata_by_collection_empty", "No collection-level metadata gaps found.")
+                  : ragFreshnessUnavailable
+                    ? metricBasisStatus({ basis: ragFreshness?.basis })
+                    : ragMetadataCollectionSummary || t("admin.analytics.rag_docs.metadata_by_collection_empty", "No collection-level metadata gaps found.")
               }
             />
             <KpiCard
@@ -2421,12 +2541,14 @@ export default function AnalyticsDashboard() {
               value={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
-                  : formatCount(Object.keys(ragMetadataByFileType).length, localeTag)
+                  : ragFreshnessUnavailable ? "—" : formatCount(Object.keys(ragMetadataByFileType).length, localeTag)
               }
               meta={
                 loadingSummary
                   ? t("admin.common.loading", "Loading...")
-                : ragMetadataFileTypeSummary || t("admin.analytics.rag_docs.metadata_by_file_type_empty", "No file-type metadata gaps found.")
+                  : ragFreshnessUnavailable
+                    ? metricBasisStatus({ basis: ragFreshness?.basis })
+                    : ragMetadataFileTypeSummary || t("admin.analytics.rag_docs.metadata_by_file_type_empty", "No file-type metadata gaps found.")
               }
             />
             <KpiCard
@@ -3018,6 +3140,9 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
+            <div className={sectionSubClassName}>
+              {t("admin.analytics.billing.recent_payments_window", "Latest 20 payments (all time)")}
+            </div>
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -3190,12 +3315,12 @@ export default function AnalyticsDashboard() {
                   size="sm"
                   variant="danger"
                   className={actionButtonClassName}
-                  onClick={handleDeleteSelectedUsers}
-                  disabled={deletingUsers || !selectedUserIds.length}
+                  onClick={handlePreviewSelectedUsersDeletion}
+                  disabled={deletingUsers || !selectedUserIds.length || bulkDeleteReason.trim().length < 3}
                 >
                   {deletingUsers
-                    ? t("admin.analytics.users.actions.deleting", "Deleting...")
-                    : t("admin.analytics.users.actions.delete_selected", "Delete selected")}
+                    ? t("admin.analytics.dangerous.previewing", "Previewing...")
+                    : t("admin.analytics.users.actions.preview_delete", "Preview selected deletion")}
                 </Button>
               </div>
             </div>
@@ -3211,6 +3336,62 @@ export default function AnalyticsDashboard() {
                 )}
               </span>
             </div>
+            <div>
+              <label className={cellSubClassName} htmlFor="analytics-users-delete-reason">
+                {t("admin.analytics.dangerous.reason", "Reason")}
+              </label>
+              <textarea
+                id="analytics-users-delete-reason"
+                className={textAreaClassName}
+                value={bulkDeleteReason}
+                onChange={event => {
+                  invalidateBulkDeletePreview();
+                  setBulkDeleteReason(event.target.value);
+                }}
+                placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
+                maxLength={500}
+                required
+              />
+            </div>
+            {bulkDeletePreview ? (
+              <div>
+                <p>
+                  {t(
+                    "admin.analytics.users.actions.delete_preview_counts",
+                    {
+                      requested: toNumber(bulkDeletePreview.requestedCount),
+                      deletable: toNumber(bulkDeletePreview.deletableCount)
+                    },
+                    "Requested: {requested}. Deletable: {deletable}."
+                  )}
+                </p>
+                <p>
+                  {t(
+                    "admin.analytics.dangerous.type_confirmation",
+                    { confirmation: bulkDeletePreview.confirmation },
+                    "Type exactly: {confirmation}"
+                  )}
+                </p>
+                <input
+                  className={inputClassName}
+                  value={bulkDeleteConfirmation}
+                  onChange={event => setBulkDeleteConfirmation(event.target.value)}
+                  aria-label={t("admin.analytics.dangerous.confirmation", "Written confirmation")}
+                  autoComplete="off"
+                />
+                <Button
+                  size="sm"
+                  variant="danger"
+                  className={actionButtonClassName}
+                  onClick={handleDeleteSelectedUsers}
+                  disabled={deletingUsers || bulkDeleteConfirmation !== bulkDeletePreview.confirmation}
+                >
+                  {deletingUsers
+                    ? t("admin.analytics.users.actions.deleting", "Deleting...")
+                    : t("admin.analytics.users.actions.delete_selected", "Delete selected")}
+                </Button>
+              </div>
+            ) : null}
           </div>
 
           <SectionAlert tone={usersNotice?.tone} message={usersNotice?.message} />
@@ -3364,7 +3545,7 @@ export default function AnalyticsDashboard() {
                     <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.role", "Role")}</th>
                     <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.subscription", "Subscription")}</th>
                     <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.usage_30d", "Usage (30d)")}</th>
-                    <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.cost_30d", "Cost estimate (30d)")}</th>
+                    <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.cost_30d", "Budget model estimate (30d)")}</th>
                     <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.limits", "Limits")}</th>
                     <th className={tableHeadCellClassName}>{t("admin.analytics.users.table.paid_30d", "Paid (30d)")}</th>
                   </tr>
@@ -3437,18 +3618,18 @@ export default function AnalyticsDashboard() {
                           </div>
                         </td>
                         <td className={tableCellClassName}>
-                          <div>{formatMoney(row?.costs?.totalEur || 0, "EUR", localeTag)}</div>
+                          <div>{formatMoney(row?.budgetEstimate?.totalEur || 0, "EUR", localeTag)}</div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.usage.chat", "Chat")}: {formatMoney(row?.costs?.chatEur || 0, "EUR", localeTag)}
+                            {t("admin.analytics.users.usage.chat", "Chat")}: {formatMoney(row?.budgetEstimate?.chatEur || 0, "EUR", localeTag)}
                           </div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.usage.rag", "RAG")}: {formatMoney(row?.costs?.ragEur || 0, "EUR", localeTag)}
+                            {t("admin.analytics.users.usage.rag", "RAG")}: {formatMoney(row?.budgetEstimate?.ragEur || 0, "EUR", localeTag)}
                           </div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.usage.stt", "STT")}: {formatMoney(row?.costs?.sttEur || 0, "EUR", localeTag)}
+                            {t("admin.analytics.users.usage.stt", "STT")}: {formatMoney(row?.budgetEstimate?.sttEur || 0, "EUR", localeTag)}
                           </div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.usage.tts", "TTS")}: {formatMoney(row?.costs?.ttsEur || 0, "EUR", localeTag)}
+                            {t("admin.analytics.users.usage.tts", "TTS")}: {formatMoney(row?.budgetEstimate?.ttsEur || 0, "EUR", localeTag)}
                           </div>
                         </td>
                         <td className={tableCellClassName}>
@@ -3457,16 +3638,16 @@ export default function AnalyticsDashboard() {
                             {row.isAdmin ? "-" : formatMoney(row?.limits?.planAmountEur || 0, "EUR", localeTag)}
                           </div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.limits.analyze_daily", "Analyze/day")}:{" "}
-                            {formatCount(row?.limits?.analyzeDaily || 0, localeTag)}
+                            {t("admin.analytics.users.limits.analyze_daily", "Analyze limit / entitlement period")}:{" "}
+                            {formatCount(row?.limits?.analyzeHardLimit || 0, localeTag)}
                           </div>
                           <div className={cellSubClassName}>
-                            {t("admin.analytics.users.limits.analyze_usage_today", "Used today")}:{" "}
-                            {formatCount(row?.limits?.analyzeToday || 0, localeTag)}
+                            {t("admin.analytics.users.limits.analyze_usage_today", "Used in entitlement period")}:{" "}
+                            {formatCount(row?.limits?.analyzeUsed || 0, localeTag)}
                           </div>
                           <div className={cellSubClassName}>
                             {t("admin.analytics.users.limits.analyze_remaining", "Remaining today")}:{" "}
-                            {formatCount(row?.limits?.analyzeRemainingToday || 0, localeTag)}
+                            {formatCount(row?.limits?.analyzeRemaining || 0, localeTag)}
                           </div>
                           <UsageBar value={row?.limits?.analyzeUtilizationPct || 0} />
                           <div className={cellSubClassName}>
@@ -3577,27 +3758,27 @@ export default function AnalyticsDashboard() {
                     }
                   />
                   <MobileInfoField
-                    label={t("admin.analytics.users.table.cost_30d", "Cost estimate (30d)")}
+                    label={t("admin.analytics.users.table.cost_30d", "Budget model estimate (30d)")}
                     value={
                       <>
-                        <div className={compactMetricLeadValueClassName}>{formatMoney(row?.costs?.totalEur || 0, "EUR", localeTag)}</div>
+                        <div className={compactMetricLeadValueClassName}>{formatMoney(row?.budgetEstimate?.totalEur || 0, "EUR", localeTag)}</div>
                         <CompactMetricGrid
                           items={[
                             {
                               label: t("admin.analytics.users.usage.chat", "Chat"),
-                              value: formatMoney(row?.costs?.chatEur || 0, "EUR", localeTag)
+                              value: formatMoney(row?.budgetEstimate?.chatEur || 0, "EUR", localeTag)
                             },
                             {
                               label: t("admin.analytics.users.usage.rag", "RAG"),
-                              value: formatMoney(row?.costs?.ragEur || 0, "EUR", localeTag)
+                              value: formatMoney(row?.budgetEstimate?.ragEur || 0, "EUR", localeTag)
                             },
                             {
                               label: t("admin.analytics.users.usage.stt", "STT"),
-                              value: formatMoney(row?.costs?.sttEur || 0, "EUR", localeTag)
+                              value: formatMoney(row?.budgetEstimate?.sttEur || 0, "EUR", localeTag)
                             },
                             {
                               label: t("admin.analytics.users.usage.tts", "TTS"),
-                              value: formatMoney(row?.costs?.ttsEur || 0, "EUR", localeTag)
+                              value: formatMoney(row?.budgetEstimate?.ttsEur || 0, "EUR", localeTag)
                             }
                           ]}
                         />
@@ -3616,15 +3797,15 @@ export default function AnalyticsDashboard() {
                             },
                             {
                               label: t("admin.analytics.users.limits.analyze_daily", "Analyze/day"),
-                              value: formatCount(row?.limits?.analyzeDaily || 0, localeTag)
+                              value: formatCount(row?.limits?.analyzeHardLimit || 0, localeTag)
                             },
                             {
                               label: t("admin.analytics.users.limits.analyze_usage_today", "Used today"),
-                              value: formatCount(row?.limits?.analyzeToday || 0, localeTag)
+                              value: formatCount(row?.limits?.analyzeUsed || 0, localeTag)
                             },
                             {
                               label: t("admin.analytics.users.limits.analyze_remaining", "Remaining today"),
-                              value: formatCount(row?.limits?.analyzeRemainingToday || 0, localeTag)
+                              value: formatCount(row?.limits?.analyzeRemaining || 0, localeTag)
                             }
                           ]}
                         />
@@ -3832,7 +4013,7 @@ export default function AnalyticsDashboard() {
 
           <div className={tableHeaderClassName}>
             <div className={sectionSubClassName}>
-              {t("admin.analytics.ai_costs.users_title", "Kasutajate eelarvejälgimine")}
+              {t("admin.analytics.ai_costs.users_title", "Users at or above the 85% budget threshold")}
             </div>
           </div>
           <div className={tableDesktopWrapClassName}>
@@ -3857,8 +4038,8 @@ export default function AnalyticsDashboard() {
                         {t("admin.common.loading_data", "Loading...")}
                       </td>
                     </tr>
-                  ) : (aiCosts?.top_users || []).length ? (
-                    aiCosts.top_users.map(row => (
+                  ) : (aiCosts?.threshold_users || []).length ? (
+                    aiCosts.threshold_users.map(row => (
                       <tr key={row.user_id}>
                         <td className={tableCellClassName}>
                           <div>{row.email || row.user_id || "-"}</div>
@@ -3904,8 +4085,8 @@ export default function AnalyticsDashboard() {
           <div className={mobileListClassName}>
             {loadingAiCosts ? (
               <div className={mobileRowCardClassName}>{t("admin.common.loading_data", "Loading...")}</div>
-            ) : (aiCosts?.top_users || []).length ? (
-              aiCosts.top_users.map(row => (
+            ) : (aiCosts?.threshold_users || []).length ? (
+              aiCosts.threshold_users.map(row => (
                 <div key={row.user_id} className={mobileRowCardClassName}>
                   <div className={mobileRowHeadClassName}>
                     <div>
@@ -4162,6 +4343,12 @@ export default function AnalyticsDashboard() {
           ) : null}
 
           <SectionAlert tone={logsNotice?.tone} message={logsNotice?.message} />
+          <SectionAlert
+            tone="info"
+            message={eventsCrisis
+              ? `${t("admin.analytics.logs.crisis_aggregate", "Crisis aggregate")}: ${formatMetricCount(eventsCrisis, localeTag)}. ${metricBasisStatus(eventsCrisis)}.`
+              : ""}
+          />
 
           <div className={tableHeaderClassName}>
             <div className={tableScrollHintClassName}>

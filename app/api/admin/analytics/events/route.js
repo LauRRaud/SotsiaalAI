@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import { buildCrisisSafeEventWhere, createCrisisCountMetric } from "@/lib/admin/analyticsMetrics";
 import {
   DangerousActionError,
   executeLogDeletion,
@@ -76,35 +77,41 @@ export async function GET(req) {
     const sinceDays = Math.min(180, Math.max(1, Number.isFinite(daysRaw) ? daysRaw : 30));
     const since = new Date(Date.now() - sinceDays * 24 * 60 * 60 * 1000);
 
-    const where = {
+    const baseWhere = {
       createdAt: { gte: since }
     };
 
-    if (event) where.event = event;
-    if (role) where.role = role;
-    if (crisisParam === "true" || crisisParam === "false") {
-      where.data = {
-        path: ["isCrisis"],
-        equals: crisisParam === "true"
-      };
-    }
+    if (event) baseWhere.event = event;
+    if (role) baseWhere.role = role;
 
-    const items = await prisma.chatLog.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip: offset,
-      take: limit,
-      select: {
-        id: true,
-        createdAt: true,
-        event: true,
-        role: true,
-        userId: true,
-        data: true
-      }
+    const { safeWhere, crisisWhere } = buildCrisisSafeEventWhere(baseWhere, crisisParam);
+
+    const [items, crisisCount] = await Promise.all([
+      prisma.chatLog.findMany({
+        where: safeWhere,
+        orderBy: { createdAt: "desc" },
+        skip: offset,
+        take: limit,
+        select: {
+          id: true,
+          createdAt: true,
+          event: true,
+          role: true,
+          userId: true,
+          data: true
+        }
+      }),
+      crisisWhere ? prisma.chatLog.count({ where: crisisWhere }) : Promise.resolve(0)
+    ]);
+
+    return json({
+      ok: true,
+      items,
+      crisis: createCrisisCountMetric(crisisCount, {
+        computedAt: new Date(),
+        window: `${sinceDays}d`
+      })
     });
-
-    return json({ ok: true, items });
   } catch {
     return errorJson("api.admin.analytics.events_load_failed", 500, locale, {
       debugCode: "ADMIN_ANALYTICS_EVENTS_GET_FAILED"

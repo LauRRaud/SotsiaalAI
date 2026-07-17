@@ -3573,6 +3573,7 @@
         "cancellations_30d": "Cancellations (30d)",
         "payment_statuses_30d": "Payment statuses (30d)",
         "paid_amount_30d": "Collected (PAID 30d)",
+        "recent_payments_window": "Latest 20 payments (all-time view)",
         "pipeline": {
           "checkout_ready": "Checkout ready (30d)",
           "webhook_paid": "Webhook paid (30d)",
@@ -3627,7 +3628,7 @@
           "admin": "Admin",
           "subscription": "Subscription",
           "usage_30d": "Usage (30d)",
-          "cost_30d": "Cost estimate (30d)",
+          "cost_30d": "Budget model estimate (30d)",
           "limits": "Limits",
           "paid_30d": "Paid (30d)",
           "empty": "No users found."
@@ -3736,12 +3737,12 @@
         "title": "AI Cost Activity",
         "subtitle": "ChatLog-based OpenAI, RAG, TTS and STT observability.",
         "unit_model_note": "internal_usage_units are normalized internal analytics units for budget tracking. They are not exact provider billing.",
-        "units": "Internal usage units",
+        "units": "Used budget units (internal model)",
         "budget_units": "Budget units / month",
         "utilization": "Utilization",
         "package": "Package",
         "package_users": "Users",
-        "users_title": "User budget tracking",
+        "users_title": "Users at or above the 85% budget threshold",
         "packages_title": "Package budget tracking",
         "average_usage": "Average usage",
         "cards": {
@@ -3765,7 +3766,7 @@
         },
         "approx": {
           "title": "Approximate EUR view",
-          "short": "Approx.",
+          "short": "Approximate AI cost",
           "total": "Total",
           "direct": "Direct",
           "estimated": "Estimated",

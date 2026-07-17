@@ -719,7 +719,8 @@ test("admin protection and the explicit dry-run route contract remain in place",
   }
   assert.match(resetRoute, /previewResetAction/);
   assert.match(usersRoute, /previewBulkEmail/);
+  assert.match(usersRoute, /previewBulkUserDeletion/);
   assert.match(eventsRoute, /previewLogDeletion/);
-  assert.equal((dashboard.match(/window\.confirm/g) || []).length, 1);
+  assert.equal((dashboard.match(/window\.confirm/g) || []).length, 0);
   assert.doesNotMatch(dashboard, /admin\.analytics\.reset\.confirm_with_count/);
 });

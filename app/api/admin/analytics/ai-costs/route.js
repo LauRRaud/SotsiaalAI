@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
+import { createMetricBasis } from "@/lib/admin/analyticsMetrics";
+import { projectAdminEmail } from "@/lib/admin/emailProjection";
 import { assertAdmin } from "@/lib/authz";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
@@ -684,7 +686,7 @@ export async function GET(req) {
       const route = toText(data?.route, "unknown");
       const stage = toText(data?.stage, "unknown");
       const model = toText(data?.model, "unknown");
-      const userLabel = user?.email || userId || "anonymous";
+        const userLabel = projectAdminEmail(user?.email) || userId || "anonymous";
       const featureKey = `${route}::${stage}`;
 
       if (eventCounts[event] != null) eventCounts[event] += 1;
@@ -699,7 +701,7 @@ export async function GET(req) {
 
       if (userId) {
         const userBucket = getOrCreate(byUser, userId, userLabel);
-        userBucket.email = user?.email || null;
+        userBucket.email = projectAdminEmail(user?.email);
         userBucket.role = role;
         userBucket.isAdmin = Boolean(user?.isAdmin);
         if (!userBucket.packageKeys) userBucket.packageKeys = new Set();
@@ -866,6 +868,13 @@ export async function GET(req) {
     return json({
       ok: true,
       periodDays,
+      basis: createMetricBasis({
+        source: "ChatLog AI usage events",
+        window: `${periodDays}d`,
+        computedAt: new Date(),
+        degraded: !ragCostIncluded,
+        degradationReason: ragCostIncluded ? null : "rag_cost_usage_not_mirrored"
+      }),
       filters: {
         days: periodDays,
         included_events: includedEvents
@@ -926,7 +935,7 @@ export async function GET(req) {
           estimated: round2(summary.internal_usage_units_estimated)
         },
         approximate_cost_eur: {
-          total: round2(summary.approximate_cost_eur),
+          total: ragCostIncluded ? round2(summary.approximate_cost_eur) : null,
           direct: round2(summary.approximate_cost_eur_direct),
           estimated: round2(summary.approximate_cost_eur_estimated),
           openai: round2(summary.openai_approximate_cost_eur),
@@ -948,8 +957,9 @@ export async function GET(req) {
       },
       feature_spotlights: featureSpotlights,
       top_features: topFeatures,
-      top_users: userBudgetTracking.slice(0, TOP_LIMIT),
-      user_budget_tracking: userBudgetTracking,
+      threshold_users: userBudgetTracking
+        .filter(row => row?.threshold_flags?.at_or_above_85)
+        .sort((left, right) => String(left.user_id).localeCompare(String(right.user_id))),
       package_budget_tracking: packageBudgetTracking
     });
   } catch (error) {
