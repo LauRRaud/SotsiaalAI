@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import { register } from "node:module";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -21,8 +19,6 @@ const [
   import("../../lib/chat/promptBuilder.js"),
   import("../../lib/chat/workflowBranchHandlers.js")
 ]);
-
-const repoRoot = path.resolve(process.cwd());
 
 function baseBootstrapData(overrides = {}) {
   return {
@@ -93,34 +89,36 @@ test("ET, EN and RU crisis fallbacks are non-empty and contain 112", () => {
   }
 });
 
-test("persistDone saves a crisis fallback assistant message with crisis metadata", async () => {
-  let createdMessage = null;
-  const fakePrisma = {
-    $transaction: async callback => callback({
-      conversation: {
-        findUnique: async () => ({ userId: "user-1" }),
-        update: async () => ({})
-      },
-      conversationMessage: {
-        create: async ({ data }) => {
-          createdMessage = data;
-          return { id: "assistant-1" };
+test("persistDone saves the localized crisis fallback with crisis metadata", async () => {
+  for (const replyLang of ["et", "en", "ru"]) {
+    let createdMessage = null;
+    const fakePrisma = {
+      $transaction: async callback => callback({
+        conversation: {
+          findUnique: async () => ({ userId: "user-1" }),
+          update: async () => ({})
+        },
+        conversationMessage: {
+          create: async ({ data }) => {
+            createdMessage = data;
+            return { id: `assistant-${replyLang}` };
+          }
         }
-      }
-    })
-  };
+      })
+    };
 
-  const result = await persistDone({
-    convId: "conv-1",
-    userId: "user-1",
-    finalText: "",
-    isCrisis: true
-  }, { prisma: fakePrisma });
+    const result = await persistDone({
+      convId: "conv-1",
+      userId: "user-1",
+      finalText: "",
+      isCrisis: true,
+      replyLang
+    }, { prisma: fakePrisma });
 
-  assert.equal(result.assistantMessageId, "assistant-1");
-  assert.ok(createdMessage.content.trim());
-  assert.match(createdMessage.content, /112/);
-  assert.equal(createdMessage.metadata.isCrisis, true);
+    assert.equal(result.assistantMessageId, `assistant-${replyLang}`);
+    assert.equal(createdMessage.content, langStrings(replyLang).crisisNoCtx);
+    assert.equal(createdMessage.metadata.isCrisis, true);
+  }
 });
 
 test("persistDone keeps the existing empty non-crisis behavior", async () => {
@@ -334,22 +332,16 @@ test("only a successful non-crisis response or conversation switch lowers crisis
     phase: "conversation-switch"
   }), false);
 
-  const chatBodySource = fs.readFileSync(
-    path.join(repoRoot, "components", "alalehed", "ChatBody.jsx"),
-    "utf8"
-  );
-  const freshConversationBlock = chatBodySource.match(
-    /const startFreshConversation[\s\S]*?return nextConvId;\s*}, \[[^\]]+\]\);/
-  );
-  assert.ok(freshConversationBlock);
-  assert.match(freshConversationBlock[0], /setIsCrisis\(false\)/);
 });
 
-test("chat send start has no eager crisis reset and non-crisis stream meta is deferred", () => {
-  const streamSource = fs.readFileSync(
-    path.join(repoRoot, "components", "chat", "hooks", "useChatStream.js"),
-    "utf8"
-  );
-  assert.doesNotMatch(streamSource, /cfg\.setIsCrisis\?\.\(false\)/);
-  assert.match(streamSource, /if \(streamCompleted && pendingCrisisState !== null\)/);
+test("non-crisis stream metadata defers lowering an active crisis state until done", () => {
+  const afterMeta = resolveCrisisStateAfterEvent(true, {
+    phase: "meta",
+    isCrisis: false
+  });
+  assert.equal(afterMeta, true);
+  assert.equal(resolveCrisisStateAfterEvent(afterMeta, {
+    phase: "done",
+    isCrisis: false
+  }), false);
 });
