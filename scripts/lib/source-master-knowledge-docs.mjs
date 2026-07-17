@@ -246,7 +246,7 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
   const evidenceRole = chooseEvidenceRole(record, collectionId);
   const year = extractYear(record);
   const sourceId = clean(record.source_id);
-  const url = clean(record.url);
+  const url = clean(options.sourceUrl) || clean(record.url);
   const title = clean(record.title) || sourceId;
   const topics = unique([
     ...arrayValue(record.topic_tags),
@@ -285,8 +285,8 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     document_kind: chooseDocumentKind(sourceType, collectionId),
     resource_type: resourceType,
     source_type: sourceType,
-    source_origin_type: "source_master_pdf",
-    source_format: "pdf",
+    source_origin_type: clean(options.sourceOriginType) || "source_master_pdf",
+    source_format: clean(options.sourceFormat) || "pdf",
     collection_id: collectionId,
     jurisdiction_level: "NATIONAL",
     country: "EE",
@@ -304,7 +304,7 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     target_groups: [],
     source_url: url,
     url,
-    url_canonical: clean(record.normalized_url) || url,
+    url_canonical: clean(options.urlCanonical) || clean(record.normalized_url) || url,
     source_path: null,
     source_status: sourceStatusFromRecord(record),
     historical: false,

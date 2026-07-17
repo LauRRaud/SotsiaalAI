@@ -90,6 +90,7 @@
     "rag:smoke:source-packages": "node scripts/smoke-rag-source-packages.mjs",
     "rag:master:inventory": "node scripts/inventory-master-sources.mjs",
     "rag:master:check": "node scripts/check-master-sources.mjs",
+    "rag:master:recheck": "node scripts/check-master-sources.mjs --recheck",
     "rag:qm:baseline": "node scripts/rag-quality-baseline.mjs",
     "rag:inventory:kov": "node scripts/inventory-kov-rag-state.mjs",
     "rag:cleanup:kov": "node scripts/cleanup-kov-rag-state.mjs",

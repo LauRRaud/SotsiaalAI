@@ -1,0 +1,11 @@
+[Unit]
+Description=Schedule SotsiaalAI master-source review recheck
+
+[Timer]
+OnCalendar=*-*-* 03:17:00 UTC
+RandomizedDelaySec=20m
+Persistent=true
+Unit=sotsiaalai-rag-master-source-check.service
+
+[Install]
+WantedBy=timers.target
