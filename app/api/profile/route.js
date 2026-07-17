@@ -1,7 +1,6 @@
 export const runtime = "nodejs";
 
 import crypto from "node:crypto";
-import { compare, hash } from "bcrypt";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
@@ -10,15 +9,14 @@ import {
   DEVICE_COOKIE_NAME,
   getActiveSessionMaxForUser,
   getTrustedDeviceMaxForUser,
-  hashOpaqueToken,
-  isValidPin,
-  normalizePin
+  hashOpaqueToken
 } from "@/lib/auth/pin-login";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
 import { deleteUserWithPrivacyCleanup } from "@/lib/privacy/userDeletion";
 import { safeError } from "@/lib/privacy/safeError";
+import { deleteProfileForUser, updateProfileForUser } from "@/lib/profile/accountLifecycle";
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
@@ -255,114 +253,35 @@ export async function PUT(request) {
     const currentPassword =
       typeof body?.currentPassword === "string" ? body.currentPassword : undefined;
 
-    if (!nextEmail && !nextPassword) {
-      return errorJson("profile.errors.no_changes", 400, requestLocale);
-    }
-
-    const current = await prisma.user.findUnique({
-      where: { id: ctx.userId },
-      select: {
-        email: true,
-        passwordHash: true
-      }
-    });
-
-    if (!current) {
-      return errorJson("profile.errors.user_not_found", 404, requestLocale);
-    }
-
-    const data = {};
-    let requiresReauth = false;
-    let mustCheckCurrent = false;
-
-    if (nextEmail) {
-      if (!nextEmail.includes("@")) {
-        return errorJson("profile.email_update.error_email_invalid", 400, requestLocale);
-      }
-
-      if (nextEmail !== current.email) {
-        const exists = await prisma.user.findUnique({
-          where: { email: nextEmail }
-        });
-        if (exists && exists.id !== ctx.userId) {
-          return errorJson("profile.email_update.error_email_in_use", 409, requestLocale);
-        }
-
-        data.email = nextEmail;
-        data.emailVerified = null;
-        data.emailVerificationSentAt = null;
-        requiresReauth = true;
-      }
-    }
-
-    if (nextPassword) {
-      const normalizedPin = nextPassword.replace(/\s+/g, "");
-      if (!isValidPin(normalizedPin)) {
-        return errorJson("profile.errors.pin_invalid", 400, requestLocale, {
-          code: "PIN_INVALID"
-        });
-      }
-
-      if (current.passwordHash) {
-        mustCheckCurrent = true;
-      }
-      data.passwordHash = await hash(normalizedPin, 12);
-      requiresReauth = true;
-    }
-
-    if (mustCheckCurrent) {
-      if (!currentPassword) {
-        return errorJson("profile.errors.current_pin_required", 400, requestLocale, {
-          code: "CURRENT_PASSWORD_REQUIRED"
-        });
-      }
-
-      const currentOk = await compare(normalizePin(currentPassword), current.passwordHash);
-      if (!currentOk) {
-        return errorJson("profile.errors.current_pin_invalid", 401, requestLocale, {
-          code: "CURRENT_PASSWORD_INVALID"
-        });
-      }
-    }
-
-    if (Object.keys(data).length === 0) {
-      return json({
-        ok: true,
-        user: {
-          email: current.email,
-          role: undefined
-        },
-        requiresReauth: false
-      });
-    }
-
-    if (requiresReauth) {
-      data.sessionVersion = {
-        increment: 1
-      };
-    }
-
-    const updated = await prisma.user.update({
-      where: { id: ctx.userId },
-      data,
-      select: {
-        email: true,
-        role: true
-      }
-    });
-
-    if (data.email) {
-      try {
-        await sendVerificationEmail(data.email, requestLocale);
-      } catch (sendError) {
+    const result = await updateProfileForUser({
+      db: prisma,
+      userId: ctx.userId,
+      request,
+      nextEmail,
+      nextPassword,
+      currentPassword,
+      onEmailChanged: async (email) => {
+        try {
+          await sendVerificationEmail(email, requestLocale);
+        } catch (sendError) {
           console.error("profile verification email send failed", safeError(sendError));
+        }
       }
+    });
+
+    if (!result.ok) {
+      return errorJson(
+        result.error.messageKey,
+        result.error.status,
+        requestLocale,
+        result.error.extras
+      );
     }
 
     return json({
       ok: true,
-      user: updated,
-      requiresReauth
+      user: result.user,
+      requiresReauth: result.requiresReauth
     });
   } catch (error) {
     if (error?.code === "P2002") {
@@ -387,48 +306,31 @@ export async function DELETE(request) {
     const currentPassword =
       typeof body?.currentPassword === "string" ? body.currentPassword : undefined;
 
-    const current = await prisma.user.findUnique({
-      where: { id: ctx.userId },
-      select: {
-        email: true,
-        passwordHash: true
+    const result = await deleteProfileForUser({
+      db: prisma,
+      userId: ctx.userId,
+      request,
+      currentPassword,
+      deleteUser: deleteUserWithPrivacyCleanup,
+      onAccountDeleted: async (email) => {
+        try {
+          await sendAccountDeletedEmail(email, requestLocale);
+        } catch (sendError) {
+          console.error("profile account-deleted email send failed", safeError(sendError));
+        }
       }
     });
 
-    if (!current) {
-      return errorJson("profile.errors.user_not_found", 404, requestLocale);
+    if (!result.ok) {
+      return errorJson(
+        result.error.messageKey,
+        result.error.status,
+        requestLocale,
+        result.error.extras
+      );
     }
 
-    if (current.passwordHash) {
-      if (!currentPassword) {
-        return errorJson("profile.errors.current_pin_required", 400, requestLocale, {
-          code: "CURRENT_PASSWORD_REQUIRED"
-        });
-      }
-
-      const currentOk = await compare(normalizePin(currentPassword), current.passwordHash);
-      if (!currentOk) {
-        return errorJson("profile.errors.current_pin_invalid", 401, requestLocale, {
-          code: "CURRENT_PASSWORD_INVALID"
-        });
-      }
-    }
-
-    const deletion = await deleteUserWithPrivacyCleanup({
-      actorUserId: ctx.userId,
-      targetUserId: ctx.userId,
-      reason: "profile_delete",
-      ipAddress: request.headers.get("x-forwarded-for") || request.headers.get("x-real-ip") || null,
-      userAgent: request.headers.get("user-agent") || null
-    });
-
-    if (deletion.ok && current.email) {
-      try {
-        await sendAccountDeletedEmail(current.email, requestLocale);
-      } catch (sendError) {
-        console.error("profile account-deleted email send failed", safeError(sendError));
-      }
-    }
+    const { deletion } = result;
 
     return json({
       ok: true,
