@@ -3058,6 +3058,9 @@
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
       "usage_load_failed": "Kasutusandmeid ei saanud laadida."
     },
+    "exports": {
+      "pdf_content_not_supported": "PDF ei toeta selle sisu märke. Kasuta Wordi/DOCX-i."
+    },
     "notifications": {
       "load_failed": "Teavitusi ei saanud laadida.",
       "update_failed": "Teavitust ei saanud uuendada.",

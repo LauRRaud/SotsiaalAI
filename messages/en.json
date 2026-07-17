@@ -3058,6 +3058,9 @@
       "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
       "usage_load_failed": "Usage data could not be loaded."
     },
+    "exports": {
+      "pdf_content_not_supported": "PDF does not support the characters in this content. Use Word/DOCX instead."
+    },
     "notifications": {
       "load_failed": "Notifications could not be loaded.",
       "update_failed": "The notification could not be updated.",

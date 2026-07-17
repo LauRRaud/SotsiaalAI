@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   buildWellbeingExportDataset,
+  csvCell,
   exportWellbeingCsv,
   exportWellbeingJson
 } from "../../lib/wellbeing/aggregateExport.js";
@@ -65,6 +66,19 @@ test("exportWellbeingCsv serializes metrics without identities or free text", as
   assert.match(csv, /^metricKey,metricValue,sampleSize,aggregationLevel,exportEligible/m);
   assert.match(csv, /signal\.red\.count,1,3,role_group,true/);
   assert.equal(csv.includes("ownerUserId"), false);
+});
+
+test("csvCell neutralizes formula-looking strings after leading spaces or tabs", () => {
+  for (const value of ["=SUM(A1:A2)", "+1+1", "-cmd", "@reference", "  =SUM(A1:A2)", "\t@reference"]) {
+    assert.equal(csvCell(value), `'${value}`);
+  }
+});
+
+test("csvCell preserves ordinary numeric and system values", () => {
+  assert.equal(csvCell(42), "42");
+  assert.equal(csvCell(-1), "-1");
+  assert.equal(csvCell("signal.red.count"), "signal.red.count");
+  assert.equal(csvCell("line one\nline two"), '"line one\nline two"');
 });
 
 test("exportWellbeingJson preserves suppression without leaking suppressed metric keys", () => {
