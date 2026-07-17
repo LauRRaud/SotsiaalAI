@@ -145,6 +145,12 @@
     "login_to_view": "Sign in to view your profile.",
     "login": "Sign in",
     "manage_subscription": "Manage subscription",
+    "delete_pending_title": "Account deletion in progress",
+    "delete_pending_body": "Your access is closed and the account is being deleted. Final cleanup of some data is still queued.",
+    "delete_done_title": "Account deleted",
+    "delete_done_body": "Your account and its data have been deleted.",
+    "delete_continue": "Continue",
+    "admin_preview_banner": "You are viewing as {role}. Your actual role is administrator and permissions are unchanged.",
     "my_sharings": "My shares",
     "usage": {
       "title": "My usage",
@@ -157,6 +163,8 @@
       "per_month": "{price} / month",
       "next_billing": "Next billing date: {date}",
       "access_until": "Access valid until {date}",
+      "expired": "Subscription has expired.",
+      "expired_on": "Subscription expired on {date}.",
       "used_of": "{used} / {limit}",
       "resets": "Resets {date}",
       "free_description": "The free plan includes basic help requests and the service map. AI tools are available with a paid plan.",
@@ -233,7 +241,24 @@
       "error_pin_required": "Please enter your PIN.",
       "error_pin_length": "PIN must be between 4 and 8 digits.",
       "error_failed": "Email update failed.",
-      "error_email_in_use": "This email is already in use."
+      "error_email_in_use": "This email is already in use.",
+      "pending_title": "Awaiting confirmation",
+      "pending_body": "We sent a confirmation link to {email}. Open it in the new inbox to apply the change.",
+      "pending_hint": "Until you confirm, sign-in stays on your current email.",
+      "resend": "Resend",
+      "resending": "Sending…",
+      "resent": "We sent the confirmation link again.",
+      "cancel": "Cancel change",
+      "cancelling": "Cancelling…",
+      "cancelled": "Email change cancelled.",
+      "no_pending": "There is no pending email change.",
+      "confirm_page": {
+        "success_title": "Email changed",
+        "success_body": "Your new email address is confirmed and now applies at sign-in. For your security, previous sessions have been ended.",
+        "error_title": "Link is not valid",
+        "error_body": "This confirmation link is invalid, expired or already used. Start the email change again from your profile.",
+        "continue": "Continue"
+      }
     },
     "current_pin_label": "Current PIN",
     "new_pin_label": "New PIN",
@@ -246,7 +271,8 @@
       "pin_mismatch": "PIN entries do not match.",
       "no_changes": "Nothing to update.",
       "current_pin_invalid": "Current PIN is invalid.",
-      "user_not_found": "User not found."
+      "user_not_found": "User not found.",
+      "pin_setup_required": "Before changing your email or deleting your account, please create a PIN via recovery from your current email."
     }
   },
   "materials_page": {
@@ -2512,6 +2538,23 @@
     }
   },
   "email": {
+    "account": {
+      "email_change_confirm": {
+        "subject": "Confirm your new email address",
+        "text": "Hello!\n\nWe received a request to change your SotsiaalAI account email. Confirm the new address using the link below:\n{confirmUrl}\n\nIf you did not request this, you can ignore this email — nothing changes until you confirm.",
+        "html": "<p>Hello!</p><p>We received a request to change your SotsiaalAI account email. Confirm the new address using the link below:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>If you did not request this, you can ignore this email — nothing changes until you confirm.</p>"
+      },
+      "pin_changed": {
+        "subject": "Your SotsiaalAI PIN was changed",
+        "text": "Hello!\n\nThe PIN for your SotsiaalAI account was just changed.\n\nIf this was not you, write to info@sotsiaal.ai immediately and reset your PIN.",
+        "html": "<p>Hello!</p><p>The PIN for your SotsiaalAI account was just changed.</p><p>If this was not you, write to <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> immediately and reset your PIN.</p>"
+      },
+      "email_changed_notice": {
+        "subject": "Your SotsiaalAI account email was changed",
+        "text": "Hello!\n\nThe email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.\n\nIf you did not request this, write to info@sotsiaal.ai immediately.",
+        "html": "<p>Hello!</p><p>The email address for your SotsiaalAI account has been changed. This notice was sent to your previous address.</p><p>If you did not request this, write to <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> immediately.</p>"
+      }
+    },
     "auth": {
       "reset": {
         "subject": "SotsiaalAI PIN reset",
