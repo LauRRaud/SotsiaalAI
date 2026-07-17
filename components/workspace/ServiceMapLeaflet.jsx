@@ -448,7 +448,7 @@ function createHelpListingPopupContent(entry, t, onConnectHelpEntry) {
   return root;
 }
 
-function createPopupContent(entry, t, onConnectHelpEntry) {
+function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
   if (isHelpMapEntry(entry)) {
     return createHelpListingPopupContent(entry, t, onConnectHelpEntry);
   }
@@ -471,9 +471,15 @@ function createPopupContent(entry, t, onConnectHelpEntry) {
   appendAccessPath(root, entry, t);
 
   const websiteUrl = safeWebsiteUrl(entry.website);
-  if (websiteUrl || entry.email) {
+  if (websiteUrl || entry.email || onStartPreInquiry) {
     const actions = document.createElement("div");
     actions.className = "service-map-popup__actions";
+
+    appendActionButton(
+      actions,
+      readText(t, "workspace_feature_pages.service_map.popup.start_pre_inquiry", "Alusta pöördumist"),
+      () => onStartPreInquiry?.(entry)
+    );
 
     if (entry.email) {
       appendActionLink(
@@ -558,9 +564,9 @@ function appendGroupedPopupContact(parent, entry, t, onSelectEntry, selectedEntr
   return item;
 }
 
-function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onConnectHelpEntry) {
+function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onConnectHelpEntry, onStartPreInquiry) {
   if (!group || group.entries.length <= 1) {
-    return createPopupContent(group?.primaryEntry || group?.entries?.[0] || {}, t, onConnectHelpEntry);
+    return createPopupContent(group?.primaryEntry || group?.entries?.[0] || {}, t, onConnectHelpEntry, onStartPreInquiry);
   }
 
   const root = document.createElement("article");
@@ -685,6 +691,7 @@ export default function ServiceMapLeaflet({
   selectedEntryId = "",
   onSelectEntry,
   onConnectHelpEntry,
+  onStartPreInquiry,
   t
 }) {
   const containerRef = useRef(null);
@@ -696,6 +703,7 @@ export default function ServiceMapLeaflet({
   const selectedEntryIdRef = useRef(selectedEntryId);
   const onSelectEntryRef = useRef(onSelectEntry);
   const onConnectHelpEntryRef = useRef(onConnectHelpEntry);
+  const onStartPreInquiryRef = useRef(onStartPreInquiry);
   const tRef = useRef(t);
   const [leaflet, setLeaflet] = useState(null);
   const [ready, setReady] = useState(false);
@@ -716,6 +724,10 @@ export default function ServiceMapLeaflet({
   useEffect(() => {
     onConnectHelpEntryRef.current = onConnectHelpEntry;
   }, [onConnectHelpEntry]);
+
+  useEffect(() => {
+    onStartPreInquiryRef.current = onStartPreInquiry;
+  }, [onStartPreInquiry]);
 
   useEffect(() => {
     let cancelled = false;
@@ -857,7 +869,8 @@ export default function ServiceMapLeaflet({
         tRef.current,
         onSelectEntryRef.current,
         selectedEntryIdRef.current,
-        onConnectHelpEntryRef.current
+        onConnectHelpEntryRef.current,
+        onStartPreInquiryRef.current
       ), {
         className: [
           "service-map-leaflet__popup",
@@ -930,7 +943,8 @@ export default function ServiceMapLeaflet({
           tRef.current,
           onSelectEntryRef.current,
           selectedEntryId,
-          onConnectHelpEntryRef.current
+          onConnectHelpEntryRef.current,
+          onStartPreInquiryRef.current
         ));
         return;
       }

@@ -687,7 +687,9 @@
         "kov": "Municipality contact",
         "kov_social": "Local welfare department",
         "provider": "Services",
-        "help_listings": "Help requests and offers"
+        "help_listings": "Help requests and offers",
+        "help_request": "Help requests",
+        "help_offer": "Help offers"
       },
       "marker_kov": "KOV",
       "marker_provider": "Provider",
@@ -734,6 +736,7 @@
         "email": "Email",
         "write": "Write",
         "website": "Website",
+        "start_pre_inquiry": "Start pre-inquiry",
         "services": "Services",
         "group_title": "{count} contacts"
       },

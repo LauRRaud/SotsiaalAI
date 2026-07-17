@@ -70,6 +70,17 @@ test("peer match stays pending without a room until the other participant accept
   assert.equal(rooms.length, 1);
 });
 
+test("the same pair is idempotent and only the first pending request is new", async () => {
+  const { client, rooms } = createPrisma();
+  const first = await createHelpMatchAndRoom({ requestId: request.id, offerId: offer.id, initiatedByUserId: request.userId }, client);
+  const duplicate = await createHelpMatchAndRoom({ requestId: request.id, offerId: offer.id, initiatedByUserId: request.userId }, client);
+
+  assert.equal(first.wasCreated, true);
+  assert.equal(duplicate.wasCreated, false);
+  assert.equal(duplicate.id, first.id);
+  assert.equal(rooms.length, 0);
+});
+
 test("initiator cannot decide and decline never creates a room", async () => {
   const { client, rooms } = createPrisma();
   const pending = await createHelpMatchAndRoom({ requestId: request.id, offerId: offer.id, initiatedByUserId: offer.userId }, client);

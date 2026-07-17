@@ -5,6 +5,7 @@ import { createHelpMatchAndRoom, listIncomingHelpMatches } from "@/lib/help";
 import { createNotificationEvent, NOTIFICATION_EVENT_TYPES } from "@/lib/notifications";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
+import { logDataAudit } from "@/lib/privacy/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -59,10 +60,14 @@ export async function POST(request) {
       initiatedByUserId: auth.userId
     });
 
+    if (match.status === "DECLINED" || match.status === "CLOSED") {
+      return json({ ok: false, message: "HELP_MATCH_NOT_AVAILABLE" }, 409);
+    }
+
     const recipientUserId = match.initiatedByUserId === match.requesterId
       ? match.offererId
       : match.requesterId;
-    if (match.status === "PENDING" && recipientUserId) {
+    if (match.wasCreated && match.status === "PENDING" && recipientUserId) {
       await createNotificationEvent({
         userId: recipientUserId,
         type: NOTIFICATION_EVENT_TYPES.HELP_MATCH_CONSENT_REQUEST,
@@ -70,6 +75,17 @@ export async function POST(request) {
         targetId: match.id,
         dedupeSuffix: "pending",
         emailPolicy: "NONE"
+      });
+    }
+    if (match.wasCreated) {
+      void logDataAudit({
+        actorUserId: auth.userId,
+        targetUserId: recipientUserId || null,
+        action: "HELP_MATCH_PENDING_CREATED",
+        resourceType: "HELP_MATCH",
+        resourceId: match.id,
+        ipAddress: getRequestIpFromRequest(request),
+        meta: { requestId: match.requestId, offerId: match.offerId }
       });
     }
 

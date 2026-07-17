@@ -687,7 +687,9 @@
         "kov": "KOV",
         "kov_social": "KOV sotsiaalhoolekanne",
         "provider": "Teenused",
-        "help_listings": "Abisoovid ja pakkumised"
+        "help_listings": "Abisoovid ja pakkumised",
+        "help_request": "Abisoovid",
+        "help_offer": "Abipakkumised"
       },
       "marker_kov": "KOV",
       "marker_provider": "Teenuseosutaja",
@@ -734,6 +736,7 @@
         "email": "E-post",
         "write": "Kirjuta",
         "website": "Veeb",
+        "start_pre_inquiry": "Alusta pöördumist",
         "services": "Teenused",
         "group_title": "{count} kontakti"
       },

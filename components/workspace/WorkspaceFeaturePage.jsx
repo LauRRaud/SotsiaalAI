@@ -44,8 +44,8 @@ import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
-const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 2000;
-const SERVICE_MAP_RESULT_BUTTON_LIMIT = 56;
+const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 500;
+const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 // Kujundus stripitud (Fable 5 teeb visuaali). Allesjäänud klassikonstandid on
 // tühjendatud; kasutuskohad jäävad alles, et struktuur ja loogika säiliksid.
@@ -2834,12 +2834,12 @@ function readInitialServiceMapFilters() {
     entryType === "SERVICES_CONTACTS"
       ? "KOV_SOCIAL_CONTACT"
       : entryType === "HELP_REQUEST" || entryType === "HELP_OFFER"
-        ? "HELP_LISTINGS"
+      ? entryType
         : entryType;
   return {
     keyword: params.get("q") || params.get("keyword") || "",
     region: params.get("municipalityName") || params.get("municipality") || params.get("county") || "",
-    entryType: ["KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_LISTINGS"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
+    entryType: ["KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_REQUEST", "HELP_OFFER"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
   };
 }
 
@@ -3043,6 +3043,12 @@ function ServiceMapSurface({
     if (entryId && isMobilePanel) setPanelOpen(false);
   }, [isMobilePanel]);
 
+  const handleStartPreInquiry = useCallback((entry) => {
+    const recipientEntryId = String(entry?.parentEntryId || entry?.id || "").trim();
+    if (!recipientEntryId) return;
+    pushWithTransition(router, `/eelpoordumised?recipientEntryId=${encodeURIComponent(recipientEntryId)}`);
+  }, [router]);
+
   const submitHelpMatch = useCallback(async (entry, ownListing) => {
     if (!entry || !ownListing?.id) return;
     const payload = entry.type === "HELP_REQUEST"
@@ -3094,8 +3100,7 @@ function ServiceMapSurface({
     }
   }, [locale, submitHelpMatch, t]);
 
-  const hasResultFilter = Boolean(keyword.trim() || region.trim());
-  const showResults = !loading && !error && hasResultFilter && filteredEntries.length > 0;
+  const showResults = !error;
 
   return (
     <div ref={workspaceRef} className="service-map-page">
@@ -3131,7 +3136,8 @@ function ServiceMapSurface({
             {[
               ["KOV_SOCIAL_CONTACT", readText(t, "workspace_feature_pages.service_map.types.kov", "KOV")],
               ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused")],
-              ["HELP_LISTINGS", readText(t, "workspace_feature_pages.service_map.types.help_listings", "Abisoovid ja pakkumised")]
+              ["HELP_REQUEST", readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoovid")],
+              ["HELP_OFFER", readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumised")]
             ].map(([value, label]) => (
               <OptionCard
                 key={value}
@@ -3149,6 +3155,8 @@ function ServiceMapSurface({
 
           {showResults ? (
             <div className="service-map-results" aria-label={readText(t, "workspace_feature_pages.service_map.results", "Tulemused")}>
+              {loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loading", "Laen kirjeid…")}</p> : null}
+              {!loading && !filteredEntries.length ? <p role="status">{readText(t, "workspace_feature_pages.service_map.empty", "Selle filtriga kirjeid ei leitud.")}</p> : null}
               {filteredEntries.slice(0, SERVICE_MAP_RESULT_BUTTON_LIMIT).map((entry) => (
                 <button
                   key={entry.id}
@@ -3156,7 +3164,7 @@ function ServiceMapSurface({
                   data-selected={selectedEntryId === entry.id ? "true" : "false"}
                   onClick={() => handleSelectEntry(entry.id)}
                 >
-                  <span>{entry.title}</span>
+                  <span>{[entry.type === "HELP_REQUEST" ? readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoov") : entry.type === "HELP_OFFER" ? readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumine") : entry.type === "SERVICE_PROVIDER" ? readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused") : readText(t, "workspace_feature_pages.service_map.types.kov", "KOV"), entry.title, entry.regionLabel || entry.municipalityName || entry.county].filter(Boolean).join(" · ")}</span>
                 </button>
               ))}
             </div>
@@ -3227,6 +3235,7 @@ function ServiceMapSurface({
           selectedEntryId={selectedEntryId}
           onSelectEntry={handleSelectEntry}
           onConnectHelpEntry={handleConnectHelpMapEntry}
+          onStartPreInquiry={handleStartPreInquiry}
           t={t}
         />
       </div>
