@@ -119,3 +119,15 @@ test("detail route and workflow client pass their viewer/version boundary explic
   assert.match(detailRoute, /serializePreInquiry\(inquiry, \{ viewerId: auth\.userId \}\)/u);
   assert.match(workspace, /expectedUpdatedAt:\s*inquiry\.updatedAt/u);
 });
+
+test("openInquiry fallback accepts only the server-authorized author or recipient", async () => {
+  const workspace = await readFile(
+    new URL("../../components/workspace/WorkspaceFeaturePage.jsx", import.meta.url),
+    "utf8"
+  );
+
+  assert.match(workspace, /!response\?\.ok[\s\S]*?!requestedInquiry[\s\S]*?!currentUserId/u);
+  assert.match(workspace, /requestedInquiry\.authorId !== currentUserId && requestedInquiry\.recipientOwnerId !== currentUserId/u);
+  assert.match(workspace, /setInquiries\(\(current\) => \[[\s\S]*?requestedInquiry[\s\S]*?handleOpenInquiryRef\.current\?\.\(requestedInquiry\)/u);
+  assert.match(workspace, /const receivedInquiries = useMemo\(\(\) => \{[\s\S]*?inquiry\.recipientOwnerId === currentUserId/u);
+});

@@ -49,13 +49,11 @@ function createDb() {
         }
       },
       wellbeingOutputDraft: {
-        findMany: track("wellbeingOutputDraft", [
-          { id: "wellbeing-1", updatedAt: "2026-07-09T10:00:00.000Z" }
-        ])
+        findMany: track("wellbeingOutputDraft", [])
       },
       journey: {
         findMany: track("journey", [
-          { id: "journey-1", updatedAt: "2026-07-08T10:00:00.000Z" }
+          { id: "journey/1?shared", updatedAt: "2026-07-08T10:00:00.000Z" }
         ])
       },
       effectivePracticeReviewAssignment: {
@@ -99,6 +97,11 @@ test("continuity is owner-scoped, deterministic, content-free, deduplicated, and
   );
   assert.equal(JSON.stringify(result).includes("topic"), false);
   assert.equal(JSON.stringify(result).includes("situation"), false);
+  assert.equal(
+    result.items.find((item) => item.kind === "journey")?.href,
+    "/teekond/journey%2F1%3Fshared",
+    "journey continuity must use the existing detail route and encode its id as a path segment"
+  );
   assert.deepEqual(result.badges.effective_practices, { type: "number", value: 1, label: "1" });
   assert.deepEqual(result.badges.add_person, { type: "number", value: 1, label: "1" });
 
