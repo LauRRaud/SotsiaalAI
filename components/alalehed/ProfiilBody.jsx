@@ -18,6 +18,7 @@ import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import UsageOverview from "@/components/profile/UsageOverview";
+import DataExportPanel from "@/components/profile/DataExportPanel";
 
 const CHAT_SKIP_ENTRY_SETTLE_KEY = "sotsiaalai:chat:skip-entry-settle";
 const CHAT_BACK_HOVER_ARM_KEY = "sotsiaalai:chat:back-hover-arm-on-move";
@@ -102,6 +103,7 @@ export default function ProfiilBody({
   const [profileUser, setProfileUser] = useState(initialProfileUser);
   const [_hasPassword, setHasPassword] = useState(!!initialProfileUser?.hasPassword);
   const [showDelete, setShowDelete] = useState(false);
+  const [showDeleteChoice, setShowDeleteChoice] = useState(false);
   const [deletePin, setDeletePin] = useState("");
   const [loading, setLoading] = useState(!initialProfile);
   const [loadFailed, setLoadFailed] = useState(false);
@@ -485,6 +487,9 @@ export default function ProfiilBody({
           </p>
           <section className="konto-actions" aria-label={t("profile.account_settings")}>
             <div>
+              <DataExportPanel active={isActive} />
+            </div>
+            <div>
               <Button
                 type="button"
                 onClick={handleLogout}
@@ -522,7 +527,7 @@ export default function ProfiilBody({
                   setError("");
                   setDeleting(false);
                   setDeletePin("");
-                  setShowDelete(true);
+                  setShowDeleteChoice(true);
                 }}
                 disabled={loggingOut || loggingOutEverywhere || deleting}
               >
@@ -613,6 +618,9 @@ export default function ProfiilBody({
           </div>
           <div>
               <section>
+                <DataExportPanel active={showAccountSettings} />
+              </section>
+              <section>
                 <div>
                   <Button
                     type="button"
@@ -660,7 +668,7 @@ export default function ProfiilBody({
                       setError("");
                       setDeleting(false);
                       setDeletePin("");
-                      setShowDelete(true);
+                      setShowDeleteChoice(true);
                     }}
                     disabled={loggingOut || loggingOutEverywhere || deleting}
                   >
@@ -673,6 +681,48 @@ export default function ProfiilBody({
         </Modal>
       ) : null}
 
+      {showDeleteChoice ? (
+        <Modal
+          open
+          onClose={() => setShowDeleteChoice(false)}
+          aria-label={t("profile.delete_account")}
+        >
+          <div className="konto-delete-choice">
+            <h2 className="konto-delete-choice__title">{t("profile.delete_account")}</h2>
+            {/* The copy is obtained while still signed in: once deletion runs,
+                access closes immediately (T02) and the ZIP can no longer be
+                downloaded. This step never starts the deletion itself. */}
+            <p>{t("profile.data_export.delete_choice")}</p>
+            <div className="konto-delete-choice__actions">
+              <Button
+                type="button"
+                onClick={() => {
+                  setShowDeleteChoice(false);
+                  setError("");
+                  setShowAccountSettings(true);
+                }}
+              >
+                {t("profile.data_export.delete_copy")}
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  setShowDeleteChoice(false);
+                  setError("");
+                  setDeleting(false);
+                  setDeletePin("");
+                  setShowDelete(true);
+                }}
+              >
+                {t("profile.data_export.delete_without_copy")}
+              </Button>
+              <Button type="button" onClick={() => setShowDeleteChoice(false)}>
+                {t("buttons.cancel")}
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      ) : null}
       {showDelete && <ModalConfirm message={t("profile.delete_confirm")} confirmLabel={deleting ? t("profile.deleting") : t("profile.delete_account")} cancelLabel={t("buttons.cancel")} onConfirm={async () => {
       if (deleting) return;
       setError("");

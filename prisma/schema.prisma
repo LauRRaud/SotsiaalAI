@@ -742,6 +742,7 @@ model User {
   sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
   notificationEvents           NotificationEvent[]
   pendingEmailChange           PendingEmailChange?
+  dataExportJobs               DataExportJob[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1501,6 +1502,35 @@ model DataDeletionJob {
   @@index([targetUserId, createdAt])
   @@index([resourceType, resourceId])
   @@index([action, status, nextAttemptAt])
+}
+
+// A private, owner-requested portable data copy. The output reference is kept
+// separately from the public API and is removed with the ZIP at expiry.
+model DataExportJob {
+  id              String   @id @default(cuid())
+  userId          String
+  idempotencyKey  String
+  status          String   @default("queued")
+  requestedAt     DateTime @default(now())
+  startedAt       DateTime?
+  readyAt         DateTime?
+  downloadedAt    DateTime?
+  cancelledAt     DateTime?
+  expiresAt       DateTime?
+  outputPath      String?
+  outputSha256    String?
+  outputBytes     Int?
+  manifest        Json?
+  failureCode     String?
+  attempts        Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, idempotencyKey])
+  @@index([userId, status, updatedAt])
+  @@index([status, expiresAt])
 }
 
 model ResearchJob {

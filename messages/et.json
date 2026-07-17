@@ -152,6 +152,30 @@
     "delete_continue": "Jätka",
     "admin_preview_banner": "Vaatad praegu {role} vaates. Sinu tegelik roll on administraator ja õigused ei muutu.",
     "my_sharings": "Minu jagamised",
+    "data_export": {
+      "title": "Minu andmekoopia",
+      "description": "See on sinu tervikandmete ZIP-koopia, mitte üksiku faili või vestluse allalaadimine.",
+      "included": "Koopias on profiil ja nõustumised, sinu vestlused, Teekonnad, dokumendid ja artefaktid, Tööheaolu kirjed ning sinu saadetud eelpöördumised.",
+      "excluded": "Koopiast jäävad välja teiste inimeste ruumisõnumid ja andmed, adressaadi märkmed, auditilogid, teavituste ajalugu, salvestised ja admini koondid.",
+      "request": "Taotle andmekoopia",
+      "requesting": "Taotlen…",
+      "pin_hint": "Turvalisuse huvides sisesta taotluse kinnitamiseks praegune PIN.",
+      "status": "Olek: {status}",
+      "queued": "Koopia on järjekorras.",
+      "running": "Koopiat koostatakse.",
+      "ready": "Koopia on valmis ja saadaval kuni {date}.",
+      "failed": "Koopia koostamine ebaõnnestus. Andmeid ei ole kustutatud.",
+      "cancelled": "Koopia taotlus on tühistatud. Andmeid ei ole kustutatud.",
+      "expired": "Koopia aegus ning ZIP eemaldati.",
+      "download": "Laadi andmekoopia alla",
+      "cancel": "Tühista taotlus",
+      "load_failed": "Andmekoopia olekut ei saanud laadida.",
+      "request_failed": "Andmekoopia taotlemine ebaõnnestus.",
+      "cancel_failed": "Taotlust ei saanud tühistada.",
+      "delete_choice": "Enne konto lõplikku kustutamist: kas soovid andmekoopiat? Koopia ootamine ei hoia sinu ligipääsu avatuna.",
+      "delete_copy": "Koosta koopia enne kustutamist",
+      "delete_without_copy": "Jätka ilma koopiata"
+    },
     "usage": {
       "title": "Minu kasutus",
       "loading": "Laen kasutusandmeid…",
@@ -3023,6 +3047,7 @@
       "practice_review_assigned": "Sulle määrati praktika ülevaatus",
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
       "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist"
+      ,"data_export_ready": "Sinu andmekoopia on valmis"
     },
     "email_preference": "Saada valikulised tööjärje märguanded ka e-postiga",
     "email_preference_hint": "Kirjad ei sisalda pöördumiste, ruumide ega mustandite sisu.",

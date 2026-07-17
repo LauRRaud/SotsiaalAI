@@ -152,6 +152,30 @@
     "delete_continue": "Continue",
     "admin_preview_banner": "You are viewing as {role}. Your actual role is administrator and permissions are unchanged.",
     "my_sharings": "My shares",
+    "data_export": {
+      "title": "My data copy",
+      "description": "This is a ZIP copy of your own data, not a download of one file or one conversation.",
+      "included": "It includes your profile and consents, conversations, Journeys, documents and artifacts, wellbeing records, and pre-inquiries you sent.",
+      "excluded": "It excludes other people’s room messages and data, recipient notes, audit logs, notification history, recordings, and admin aggregates.",
+      "request": "Request data copy",
+      "requesting": "Requesting…",
+      "pin_hint": "For security, enter your current PIN to confirm the request.",
+      "status": "Status: {status}",
+      "queued": "Your copy is queued.",
+      "running": "Your copy is being prepared.",
+      "ready": "Your copy is ready and available until {date}.",
+      "failed": "The copy could not be prepared. Your data has not been deleted.",
+      "cancelled": "The copy request was cancelled. Your data has not been deleted.",
+      "expired": "The copy expired and the ZIP was removed.",
+      "download": "Download data copy",
+      "cancel": "Cancel request",
+      "load_failed": "The data-copy status could not be loaded.",
+      "request_failed": "The data-copy request failed.",
+      "cancel_failed": "The request could not be cancelled.",
+      "delete_choice": "Before final account deletion: do you want a data copy? Waiting for a copy does not keep your access open.",
+      "delete_copy": "Create a copy before deletion",
+      "delete_without_copy": "Continue without a copy"
+    },
     "usage": {
       "title": "My usage",
       "loading": "Loading usage…",
@@ -3023,6 +3047,7 @@
       "practice_review_assigned": "A practice review was assigned to you",
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation"
+      ,"data_export_ready": "Your data copy is ready"
     },
     "email_preference": "Also send optional work-queue notifications by email",
     "email_preference_hint": "Emails never include inquiry, room, or draft content.",
