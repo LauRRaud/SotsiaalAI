@@ -4059,6 +4059,11 @@
   },
   "journey": {
     "title": "Teekond",
+    "autosave": { "restored": "Taastasime selle sessiooni pooleli jäänud töö.", "discard_confirm": "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?" },
+    "quick_help": { "label": "Kiire abi", "emergency": "112", "child": "116 111", "victim": "116 006" },
+    "steps": { "label": "Teekonna sammud", "describe": "Kirjelda", "review": "Vaata üle" },
+    "risk_card": { "title": "Kui vajad kohe abi", "body": "Need tähelepanekud jäävad ainult sulle nähtavaks ega liigu eelpöördumise adressaadile." },
+    "delete": { "title": "Kustuta Teekond jäädavalt?", "body": "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.", "confirm": "Jah, kustuta jäädavalt" },
     "chatTool": {
       "label": "Teekond"
     },
@@ -4125,6 +4130,10 @@
       "one_item_per_line": "Üks kirje reale"
     },
     "actions": {
+      "previous_step": "← Eelmine samm",
+      "reopen": "Taasava",
+      "export": "Ekspordi tekstina",
+      "delete": "Kustuta jäädavalt",
       "archive": "Arhiveeri",
       "archive_named": "Arhiveeri teekond {title}",
       "save_private": "Salvesta teekond",
@@ -4148,6 +4157,9 @@
       "archive_failed": "Teekonna arhiveerimine ebaõnnestus.",
       "updated": "Teekond uuendati.",
       "archived": "Teekond arhiveeriti.",
+      "reopened": "Teekond taasavati.",
+      "reopen_failed": "Teekonna taasavamine ebaõnnestus.",
+      "delete_failed": "Teekonna kustutamine ebaõnnestus.",
       "no_active": "Ühtegi privaatset teekonda ei ole veel salvestatud.",
       "no_archived": "Arhiveeritud teekondi ei ole.",
       "not_found_title": "Teekonda ei leitud",
@@ -4349,6 +4361,13 @@
       "domains": "seotud teemad",
       "missing_info": "puuduolev info",
       "wish": "inimese soov",
+      "person_context": "kolmanda isiku kontekst",
+      "person_context_ack": "Kinnitan, et mul on õigus seda teise isiku teavet jagada.",
+      "service_continuity": "teenuse jätkumise info",
+      "municipality": "KOV või piirkond",
+      "title_field": "Teekonna pealkiri",
+      "recipient_preview": "Adressaat näeb",
+      "empty_preview": "Valitud Teekonna sisu ei lisata.",
       "service_contact": "valitud teenusekaardi kontakt",
       "document": "seotud dokument",
       "assistive_devices": "abivahendid ja kohandused",

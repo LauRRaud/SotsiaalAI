@@ -35,6 +35,15 @@ const DEFAULT_LIFE_DOMAINS = Object.freeze([
 ]);
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
+const JOURNEY_DRAFT_STORAGE_KEY = "sotsiaalai:journey-v1:draft";
+
+function setJourneyStepInUrl(step = "") {
+  if (typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  if (step) url.searchParams.set("samm", step);
+  else url.searchParams.delete("samm");
+  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+}
 
 function normalizeListItems(value) {
   if (!Array.isArray(value)) return [];
@@ -463,6 +472,37 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   }, [isClientRole, isRoleResolved, loadJourneys, status, t]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const step = new URL(window.location.href).searchParams.get("samm");
+    let saved = null;
+    try {
+      saved = JSON.parse(window.sessionStorage.getItem(JOURNEY_DRAFT_STORAGE_KEY) || "null");
+    } catch {}
+    if (saved?.situation) setSituation(String(saved.situation));
+    if (saved?.draft && typeof saved.draft === "object") setDraft(saved.draft);
+    if (step === "kirjelda" || step === "ulevaade") {
+      setMode(step === "ulevaade" && saved?.draft ? "review" : "start");
+      if (saved) setNotice(t("journey.autosave.restored", "Taastasime selle sessiooni pooleli jäänud töö."));
+    }
+  }, [t]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !["start", "review"].includes(mode)) return;
+    window.sessionStorage.setItem(JOURNEY_DRAFT_STORAGE_KEY, JSON.stringify({ mode, situation, draft }));
+  }, [draft, mode, situation]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const guard = (event) => {
+      if (!["start", "review"].includes(mode) || (!situation.trim() && !draft.summary)) return;
+      event.preventDefault();
+      event.returnValue = "";
+    };
+    window.addEventListener("beforeunload", guard);
+    return () => window.removeEventListener("beforeunload", guard);
+  }, [draft.summary, mode, situation]);
+
+  useEffect(() => {
     if (mode !== "start") return;
     const frame = window.requestAnimationFrame(() => {
       situationInputRef.current?.focus?.();
@@ -493,6 +533,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
         ...payload.draft
       }));
       setMode("review");
+      setJourneyStepInUrl("ulevaade");
     } catch (draftError) {
       setError(draftError.message || t("journey.messages.draft_failed", "Teekonna ülevaate koostamine ebaõnnestus."));
     } finally {
@@ -525,6 +566,8 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       setSituation("");
       setDraft(DEFAULT_DRAFT);
       setMode("list");
+      window.sessionStorage.removeItem(JOURNEY_DRAFT_STORAGE_KEY);
+      setJourneyStepInUrl("");
       pushWithTransition(router, localizePath(`/teekond/${encodeURIComponent(payload.journey.id)}`, locale));
     } catch (saveError) {
       setError(saveError.message || t("journey.messages.save_failed", "Saving the journey failed."));
@@ -564,16 +607,25 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     setError("");
     setNotice("");
     setDraft(DEFAULT_DRAFT);
+    setJourneyStepInUrl("kirjelda");
   }, []);
 
   const handleCancel = useCallback(() => {
+    if (typeof window !== "undefined" && (situation.trim() || draft.summary)) {
+      const confirmed = window.confirm(t("journey.autosave.discard_confirm", "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?"));
+      if (!confirmed) return;
+      window.sessionStorage.removeItem(JOURNEY_DRAFT_STORAGE_KEY);
+    }
     setMode("list");
+    setSituation("");
     setDraft(DEFAULT_DRAFT);
     setError("");
-  }, []);
+    setJourneyStepInUrl("");
+  }, [draft.summary, situation, t]);
 
   const handleEditDescription = useCallback(() => {
     setMode("start");
+    setJourneyStepInUrl("kirjelda");
     setError("");
     setNotice("");
   }, []);
@@ -581,7 +633,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
   const renderPage = (children, options = {}) => {
     const minimal = options.minimal === true;
     const content = (
-      <div>
+      <div className="journey-content">
         {!hideHeader && !minimal ? (
           <SubpageHeader
             onBack={handleBack}
@@ -592,21 +644,37 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
             {t("journey.title", "Teekond")}
           </SubpageHeader>
         ) : null}
+        {["start", "review"].includes(mode) ? (
+          <>
+            <aside className="journey-quick-help" aria-label={t("journey.quick_help.label", "Kiire abi")}>
+              <strong>{t("journey.quick_help.label", "Kiire abi")}</strong>
+              <span>{t("journey.quick_help.emergency", "112")}</span>
+              <span>{t("journey.quick_help.child", "116 111")}</span>
+              <span>{t("journey.quick_help.victim", "116 006")}</span>
+            </aside>
+            <nav aria-label={t("journey.steps.label", "Teekonna sammud")}>
+              <ol className="journey-stepper">
+                <li aria-current={mode === "start" ? "step" : undefined}>{t("journey.steps.describe", "Kirjelda")}</li>
+                <li aria-current={mode === "review" ? "step" : undefined}>{t("journey.steps.review", "Vaata üle")}</li>
+              </ol>
+            </nav>
+          </>
+        ) : null}
         {children}
       </div>
     );
 
     if (embedded) {
       return (
-        <div>
+        <div className="journey-content">
           {content}
         </div>
       );
     }
 
     return (
-      <main>
-        <div>
+      <main className="journey-page">
+        <div className="journey-shell">
           {content}
         </div>
       </main>
@@ -748,6 +816,17 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
                 </p>
               </div>
             </div>
+
+            <Button variant="linkBrand" onClick={handleEditDescription} disabled={busy}>
+              {t("journey.actions.previous_step", "← Eelmine samm")}
+            </Button>
+
+            {Array.isArray(draft.riskSignals) && draft.riskSignals.length ? (
+              <aside className="journey-risk-card" role="alert">
+                <strong>{t("journey.risk_card.title", "Kui vajad kohe abi")}</strong>
+                <p>{t("journey.risk_card.body", "Need tähelepanekud jäävad ainult sulle nähtavaks ega liigu eelpöördumise adressaadile.")}</p>
+              </aside>
+            ) : null}
 
             <DraftReview
               draft={draft}

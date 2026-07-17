@@ -4059,6 +4059,11 @@
   },
   "journey": {
     "title": "Journey",
+    "autosave": { "restored": "We restored unfinished work from this session.", "discard_confirm": "Stop composing and delete this session draft?" },
+    "quick_help": { "label": "Quick help", "emergency": "112", "child": "116 111", "victim": "116 006" },
+    "steps": { "label": "Journey steps", "describe": "Describe", "review": "Review" },
+    "risk_card": { "title": "If you need help now", "body": "These observations remain visible only to you and are never sent to the inquiry recipient." },
+    "delete": { "title": "Permanently delete this Journey?", "body": "The Journey's private content is deleted. Related pre-inquiries remain, but their link to this Journey is removed. We recommend exporting first.", "confirm": "Yes, delete permanently" },
     "chatTool": {
       "label": "Journey"
     },
@@ -4125,6 +4130,10 @@
       "one_item_per_line": "One item per line"
     },
     "actions": {
+      "previous_step": "← Previous step",
+      "reopen": "Reopen",
+      "export": "Export as text",
+      "delete": "Delete permanently",
       "archive": "Archive",
       "archive_named": "Archive journey {title}",
       "save_private": "Save journey",
@@ -4148,6 +4157,9 @@
       "archive_failed": "Archiving the journey failed.",
       "updated": "Journey updated.",
       "archived": "Journey archived.",
+      "reopened": "Journey reopened.",
+      "reopen_failed": "Failed to reopen the Journey.",
+      "delete_failed": "Failed to delete the Journey.",
       "no_active": "No private journey has been saved yet.",
       "no_archived": "There are no archived journeys.",
       "not_found_title": "Journey was not found",
@@ -4349,6 +4361,13 @@
       "domains": "related topics",
       "missing_info": "missing information",
       "wish": "person's wish",
+      "person_context": "third-party context",
+      "person_context_ack": "I confirm that I have the right to share this other person's information.",
+      "service_continuity": "service-continuity information",
+      "municipality": "municipality or area",
+      "title_field": "Journey title",
+      "recipient_preview": "The recipient sees",
+      "empty_preview": "No selected Journey content is included.",
       "service_contact": "selected service-map contact",
       "document": "related document",
       "assistive_devices": "assistive devices and adaptations",
