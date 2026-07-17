@@ -4,8 +4,12 @@ import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import {
   createPdfBufferFromText,
-  createWordBufferFromText
+  createChatDocxBuffer,
+  isPdfTextSupported
 } from "@/lib/chat/exportDocument";
+import { logDocumentsAudit } from "@/lib/documents/audit";
+import { DOCX_MIME_TYPE } from "@/lib/documents/constants";
+import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -51,12 +55,24 @@ function isDbOffline(err) {
   return isChatDbOfflineError(err);
 }
 
-function jsonError(messageKey, status) {
+function localeFromRequest(request) {
+  const url = request?.url ? new URL(request.url) : null;
+  return normalizeServerLocale(
+    url?.searchParams?.get("locale") ||
+    url?.searchParams?.get("lang") ||
+    request?.headers?.get("x-ui-locale") ||
+    request?.headers?.get("x-locale") ||
+    request?.headers?.get("accept-language")
+  ) || "en";
+}
+
+function jsonError(request, messageKey, status) {
+  const message = serverT(localeFromRequest(request), messageKey, undefined, messageKey);
   return NextResponse.json(
     {
       ok: false,
       messageKey,
-      message: messageKey
+      message
     },
     {
       status,
@@ -75,7 +91,7 @@ function buildDownloadHeaders(fileName, contentType) {
 
 export async function GET(req) {
   const auth = await requireUser();
-  if (!auth.ok) return jsonError("api.common.unauthorized", 401);
+  if (!auth.ok) return jsonError(req, "api.common.unauthorized", 401);
 
   const rateLimitResponse = enforceChatRateLimit(req, {
     scope: "chat_export_get",
@@ -90,10 +106,10 @@ export async function GET(req) {
   const messageId = String(url.searchParams.get("messageId") || "").trim();
   const format = parseFormat(url.searchParams.get("format"));
   if (!isPlausibleId(convId) || !isPlausibleId(messageId)) {
-    return jsonError("api.chat.invalid_id", 400);
+    return jsonError(req, "api.chat.invalid_id", 400);
   }
   if (!format) {
-    return jsonError("api.common.invalid_request", 400);
+    return jsonError(req, "api.common.invalid_request", 400);
   }
 
   try {
@@ -106,10 +122,10 @@ export async function GET(req) {
       }
     });
     if (!conversation || conversation.archivedAt) {
-      return jsonError("api.chat.not_found", 404);
+      return jsonError(req, "api.chat.not_found", 404);
     }
     if (conversation.userId !== auth.userId) {
-      return jsonError("api.common.forbidden", 403);
+      return jsonError(req, "api.common.forbidden", 403);
     }
 
     const msg = await prisma.conversationMessage.findFirst({
@@ -123,30 +139,48 @@ export async function GET(req) {
       }
     });
     if (!msg?.content?.trim()) {
-      return jsonError("api.chat.not_found", 404);
+      return jsonError(req, "api.chat.not_found", 404);
     }
 
     const fileBase = sanitizeFileBase(
       String(url.searchParams.get("fileName") || "")
     );
     if (format === "pdf") {
+      if (!isPdfTextSupported(msg.content)) {
+        return jsonError(req, "api.exports.pdf_content_not_supported", 409);
+      }
       const pdf = createPdfBufferFromText(msg.content);
+      await logDocumentsAudit("chat.exported", {
+        userId: auth.userId,
+        conversationId: convId,
+        messageId,
+        format
+      });
       return new NextResponse(pdf, {
         status: 200,
         headers: buildDownloadHeaders(`${fileBase}.pdf`, "application/pdf")
       });
     }
 
-    const word = createWordBufferFromText(msg.content, "SotsiaalAI summary");
-    return new NextResponse(word, {
+    const docx = createChatDocxBuffer(msg.content, "SotsiaalAI summary");
+    await logDocumentsAudit("chat.exported", {
+      userId: auth.userId,
+      conversationId: convId,
+      messageId,
+      format
+    });
+    return new NextResponse(docx, {
       status: 200,
-      headers: buildDownloadHeaders(`${fileBase}.doc`, "application/msword; charset=utf-8")
+      headers: buildDownloadHeaders(`${fileBase}.docx`, DOCX_MIME_TYPE)
     });
   } catch (err) {
+    if (err?.code === "PDF_UNSUPPORTED_TEXT") {
+      return jsonError(req, "api.exports.pdf_content_not_supported", 409);
+    }
     if (isDbOffline(err)) {
-      return jsonError("api.chat.db_unavailable", 503);
+      return jsonError(req, "api.chat.db_unavailable", 503);
     }
     console.error("[chat export GET] failed", safeError(err));
-    return jsonError("api.common.server_error", 500);
+    return jsonError(req, "api.common.server_error", 500);
   }
 }

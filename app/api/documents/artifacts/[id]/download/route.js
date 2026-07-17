@@ -3,7 +3,7 @@ import { logDocumentsAudit } from "@/lib/documents/audit"
 import { buildArtifactFileName } from "@/lib/documents/artifacts"
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "@/lib/documents/constants"
 import { createArtifactDocxBuffer } from "@/lib/documents/docxExport"
-import { createArtifactPdfBuffer } from "@/lib/documents/pdfExport"
+import { canCreateArtifactPdf, createArtifactPdfBuffer } from "@/lib/documents/pdfExport"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import {
@@ -106,6 +106,10 @@ export async function GET(request, { params }) {
     const sources = artifact.sourceDocuments
       .map((link) => link.document)
       .filter(Boolean)
+
+    if (format === "pdf" && !canCreateArtifactPdf({ artifact, sources })) {
+      return errorJson("api.exports.pdf_content_not_supported", 409, locale)
+    }
 
     const fileBuffer = format === "pdf"
       ? createArtifactPdfBuffer({
