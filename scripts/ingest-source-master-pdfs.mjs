@@ -44,7 +44,7 @@ Options:
   --require-section-index
                         Mark an item as invalid if no reliable sectionIndex is found.
   --json <path>         Write plan/result JSON.
-  --skip-existing       With --ingest, skip docId already in RAG registry.
+  --force-reingest      With --ingest, permit a write to an existing docId (unsafe legacy override).
   --base-url <url>      RAG service URL. Default from env or http://127.0.0.1:8000
   --request-timeout-ms <n>
   --help
@@ -73,7 +73,7 @@ function parseArgs(argv = []) {
     limit: 0,
     metadataDir: "",
     json: "",
-    skipExisting: false,
+    skipExisting: true,
     baseUrl: normalizeBaseFromHost(RAW_RAG_HOST),
     requestTimeoutMs: DEFAULT_TIMEOUT_MS,
     analyzePdf: null,
@@ -115,6 +115,8 @@ function parseArgs(argv = []) {
       args.json = String(argv[++index] || "").trim();
     } else if (arg === "--skip-existing") {
       args.skipExisting = true;
+    } else if (arg === "--force-reingest") {
+      args.skipExisting = false;
     } else if (arg === "--base-url") {
       args.baseUrl = normalizeBaseFromHost(String(argv[++index] || ""));
     } else if (arg === "--request-timeout-ms") {
