@@ -53,7 +53,15 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   Eelvaade→kinnitus muster puutumata. Testid: freeHelpBoundary (3) + messageLimit (2).
   **Teadlik jääk:** aktiivse abi-oleku + „sisuka küsimuse" bypass võib anda tellijata RAG-i — vajab
   tellimusseisu läbivedu, dokumenteeritud lõpparuandes (väljaspool seda viilu).
-- [ ] E4 — hääl: TTS locale server/fallback aus viga, STT discard + 2,5 min piir + taimeripuhastus
+- [x] E4 — hääl. **TTS:** proovib serveriteed KÕIGI keelte jaoks (RU/EN ei jää enam vaikselt ainult
+  brauserile); brauseri varu tagastab õnnestumise, ebaõnnestumisel aus viga `chat.tts.unavailable`
+  (mitte vaikus). **STT:** uus `discardRecording` viskab blobi ära ENNE transkribeerimist (providerit
+  ei kutsuta, kuvatakse kinnitatud katkestus), Cancel-nupp salvestus-UI-s; 2,5 min pehme piir +
+  hoiatus (`chat.mic.approaching_limit`/`max_duration`), taimerid puhastuvad kõigil radadel (abort/
+  error/success/unmount). **Mikrofoni veaseisud** eristatud pure `classifyMicError`-iga: loakeeld /
+  seadme puudumine / toe puudumine / tehniline (`chat.mic.permission_denied`/`no_device`/…).
+  i18n ET/EN/RU + 2 testi (classifyMicError, piirikonstandid). **Runtime NOT_PROVEN** (päris heli/mikri
+  puudub sünteetilises keskkonnas). Väike jääk: `.conv-entry-cancel`/`.conv-char-counter` CSS vormistus.
 - [ ] E5 — a11y/keeled/jõudlus: klaviatuur, reduced-motion, ET/EN/RU sümmeetria, reservatsioonileping
 
 ## Verifitseerimine

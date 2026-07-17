@@ -1406,7 +1406,16 @@
       "unsupported": "Mikrofon pole selles brauseris toetatud.",
       "silence": "Dikteerimine: heli ei tuvastatud.",
       "error": "Dikteerimine ebaõnnestus.",
-      "cannot_start": "Mikrofoni ei saanud avada."
+      "cannot_start": "Mikrofoni ei saanud avada.",
+      "permission_denied": "Mikrofoni luba on brauseris keelatud. Luba mikrofon brauseri seadetes ja proovi uuesti.",
+      "no_device": "Mikrofoni ei leitud. Ühenda mikrofon ja proovi uuesti.",
+      "max_duration": "Salvestuse pehme piir (2,5 min) sai täis. Salvestus peatati ja saadetakse transkribeerimiseks.",
+      "approaching_limit": "Salvestus läheneb 2,5 min piirile. Lõpeta varsti või tühista.",
+      "cancelled": "Salvestus tühistatud. Heli ei saadetud.",
+      "cancel": "Tühista salvestus"
+    },
+    "tts": {
+      "unavailable": "Ettelugemine pole praegu saadaval ei serveris ega brauseris."
     },
     "fallback": {
       "no_context_client": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Kirjelda palun oma olukorda veidi täpsemalt ja lisa vähemalt vald või linn.",

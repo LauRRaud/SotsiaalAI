@@ -1277,7 +1277,8 @@ export default function ChatBody({
     recording,
     recordingPulse,
     recordingError,
-    handleMic
+    handleMic,
+    discardRecording
   } = useSpeech({
     locale,
     latestAiText,
@@ -2764,6 +2765,7 @@ export default function ChatBody({
       recording={recording}
       recordingPulse={recordingPulse}
       handleMic={voiceEnabled ? handleMic : undefined}
+      onDiscardRecording={voiceEnabled ? discardRecording : undefined}
       composerDraftApiRef={composerDraftApiRef}
       onDraftStateChange={handleDraftStateChange}
       onComposerLayoutChange={handleComposerLayoutChange}

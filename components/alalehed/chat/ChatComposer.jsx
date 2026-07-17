@@ -166,6 +166,7 @@ export default function ChatComposer({
   recording,
   recordingPulse,
   handleMic,
+  onDiscardRecording,
   draftApiRef,
   onDraftStateChange,
   onLayoutChange,
@@ -630,6 +631,7 @@ export default function ChatComposer({
   const writeEntryLabel = readEntryLabel("chat.entry.write", locale === "en" ? "Write" : locale === "ru" ? "Написать" : "Kirjuta");
   const recordingLabel = readEntryLabel("chat.mic.recording", locale === "en" ? "Recording…" : locale === "ru" ? "Запись…" : "Salvestan…");
   const stopEntryLabel = readEntryLabel("chat.mic.stop", locale === "en" ? "Stop" : locale === "ru" ? "Стоп" : "Stopp");
+  const cancelEntryLabel = readEntryLabel("chat.mic.cancel", locale === "en" ? "Cancel recording" : locale === "ru" ? "Отменить запись" : "Tühista salvestus");
   const recTimeLabel = `${Math.floor(recSeconds / 60)}:${String(recSeconds % 60).padStart(2, "0")}`;
   const closeToolsMenu = useCallback(() => {
     setToolsOpen(false);
@@ -955,6 +957,14 @@ export default function ChatComposer({
           </svg>
           <span>{stopEntryLabel}</span>
         </button>
+        {typeof onDiscardRecording === "function" ? (
+          <button type="button" className="conv-entry-cancel" onClick={onDiscardRecording} aria-label={cancelEntryLabel} title={cancelEntryLabel}>
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 6l12 12M18 6 6 18" />
+            </svg>
+            <span>{cancelEntryLabel}</span>
+          </button>
+        ) : null}
       </div>
     </div>
   ) : null;
