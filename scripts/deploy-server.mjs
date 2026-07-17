@@ -123,6 +123,15 @@ if [ -f "$FRONTEND_ENV" ]; then
   set +a
 fi
 
+research_job_mode="\${RESEARCH_JOB_MODE:-}"
+if [ -z "$research_job_mode" ]; then
+  research_job_mode="\${RESEARCH_RUNNER_MODE:-inline}"
+fi
+research_job_mode="$(printf '%s' "$research_job_mode" | tr '[:upper:]' '[:lower:]')"
+if [ "$research_job_mode" = "worker" ] && ! systemctl list-unit-files sotsiaalai-research-worker.service >/dev/null 2>&1; then
+  echo "[deploy:server] WARNING: worker mode is selected but sotsiaalai-research-worker.service is missing; research jobs will remain queued." >&2
+fi
+
 echo "[deploy:server] Installing locked dependencies"
 npm ci --include=dev --no-audit --no-fund
 
