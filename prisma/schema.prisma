@@ -741,6 +741,7 @@ model User {
   sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
   sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
   notificationEvents           NotificationEvent[]
+  pendingEmailChange           PendingEmailChange?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -797,6 +798,25 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// Verify-then-swap email change (T02 ACCOUNT-V1 E2). The login identity
+// (User.email) stays unchanged until the owner of the new address confirms via
+// the emailed link. One pending change per user; tokenHash is sha256 of the
+// opaque token (the raw token only ever lives in the emailed link).
+model PendingEmailChange {
+  id          String   @id @default(cuid())
+  userId      String   @unique
+  newEmail    String
+  tokenHash   String   @unique
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+  requestedIp String?
+  requestedUa String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
 }
 
 model Subscription {
