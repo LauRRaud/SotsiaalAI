@@ -367,8 +367,12 @@ export async function POST(req, deps = {}) {
     reasoning: mainOrchestrationPlan.reasoning,
     capability: mainOrchestrationPlan.capability
   });
+  const retryOf = typeof payload?.retryOf === "string" && payload.retryOf.trim()
+    ? payload.retryOf.trim().slice(0, 64)
+    : null;
   const mainMetadataExtra = {
     ...buildChatOrchestrationMetadata(mainOrchestrationPlan),
+    ...(retryOf ? { retryOf } : {}),
     ...(retrievalMeta?.ragRiskPolicy
       ? {
           rag_risk_policy: retrievalMeta.ragRiskPolicy,

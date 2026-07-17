@@ -36,7 +36,13 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   ega püsista täisvastust — salvestab ainult kuvatud osalise `completionStatus: ABORTED`-iga; non-stream
   abort → ABORTED; ERROR/kriis säilib. `persistDone` kirjutab iga lõppseisu markeri (+`retryOf`).
   Uus `lib/chat/turnStatus.js` (`resolveRunStatus`) + `/api/chat/run` eristab COMPLETED/ERROR/ABORTED
-  ja stall-guard väldib igavest RUNNING-ut. **Klient (Retry UI + hüdreerimine): pooleli.**
+  ja stall-guard väldib igavest RUNNING-ut. **Klient VALMIS:** `useChatStream` märgib pöörde
+  `completionStatus`-e (COMPLETED/ERROR/ABORTED), pure `resolveRetryTarget` + `retryLast` kordab
+  sama viimast kasutajasõnumit ühe pöördena (isGeneratingRef guard topeltkliki/hilise-SSE vastu),
+  `retryOf` liigub päringus serverisse (`route` → metadata). `ChatMessageItem` Retry-nupp (ka tühja
+  markeri korral) + i18n `chat.error.retry`/`message_too_long` ET/EN/RU. Hüdreerimine kannab
+  `completionStatus` üle (`useChatConversationState`). Testid: +2 retry-otsust (kokku 12 E2 testi).
+  **Runtime NOT_PROVEN** — brauseri läbiklikk vajab päris/võltsi providerit (sünteetiline keskkond).
 - [ ] E3 — 4000-piir + 413, jagatud `isFreeHelpWorkflowEligible`, töövoo eelvaade→kinnitus, PII-võtmed
 - [ ] E4 — hääl: TTS locale server/fallback aus viga, STT discard + 2,5 min piir + taimeripuhastus
 - [ ] E5 — a11y/keeled/jõudlus: klaviatuur, reduced-motion, ET/EN/RU sümmeetria, reservatsioonileping

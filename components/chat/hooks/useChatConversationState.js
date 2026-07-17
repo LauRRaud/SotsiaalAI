@@ -434,6 +434,9 @@ export function useChatConversationState({
                 normalizedRole === "ai" && msg.workflow && typeof msg.workflow === "object"
                   ? msg.workflow
                   : undefined,
+              ...(normalizedRole === "ai" && msg.completionStatus
+                ? { completionStatus: msg.completionStatus }
+                : {}),
               isStreaming: false,
               ...(Number.isFinite(rawCreatedAt) ? {
                 createdAt: rawCreatedAt

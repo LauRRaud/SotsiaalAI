@@ -1992,7 +1992,8 @@ export default function ChatBody({
   const {
     isGenerating: isChatGenerating,
     sendMessage,
-    stop: stopChatStream
+    stop: stopChatStream,
+    retryLast
   } = useChatStream({
     convId,
     historyPayload,
@@ -2269,14 +2270,21 @@ export default function ChatBody({
       window.sessionStorage.setItem(emptyIntroSeenStorageKey, "1");
     } catch {}
   }, [emptyIntroSeenStorageKey]);
+  // Aus Retry (T03 E2): kordab sama viimast kasutajasõnumit ühe uue teadliku pöördena.
+  // retryLast leiab ise viimase ERROR/ABORTED pöörde ega dubleeri kasutaja sõnumit; kui
+  // pööre juba käib, ei tee midagi (topeltklikk/hiline SSE turvatud).
+  const handleRetry = useCallback(() => {
+    if (typeof retryLast !== "function") return;
+    retryLast(renderedMessages);
+  }, [retryLast, renderedMessages]);
   const messageItems = useMemo(() => {
     return renderedMessages.map((msg, msgIndex, allMessages) => {
       const messageSources = msg.role === "ai"
         ? collectMessageSources(msg, analysis.uploadPreview)
         : [];
-      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} isStreaming={!!msg.isStreaming} />;
+      return <ChatMessageItem key={msg.id} messageId={msg.id} entranceIndex={allMessages.length - 1 - msgIndex} role={msg.role} text={msg.text} attachments={msg.attachments} cards={msg.cards} createdAt={msg.createdAt} aiVisible={!!msg.aiVisible} typingEffect={!!msg.typingEffect} onTypingComplete={msg.onTypingComplete === "emptyIntro" ? handleEmptyIntroTyped : undefined} authorName={msg.authorName} authorRole={msg.authorRole} isRoomMode={isRoomMode} t={t} locale={locale} isLightTheme={isLightTheme} voiceEnabled={voiceEnabled} canSpeak={Boolean(voiceEnabled && speechReady && String(msg.text || "").trim())} isSpeaking={isSpeaking} onSpeak={speakText} messageSources={messageSources} onShowSources={openMessageSources} isStreaming={!!msg.isStreaming} completionStatus={msg.completionStatus} onRetry={msg.role === "ai" && !isRoomMode ? handleRetry : undefined} retryPending={isChatGenerating} />;
     });
-  }, [analysis.uploadPreview, handleEmptyIntroTyped, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
+  }, [analysis.uploadPreview, handleEmptyIntroTyped, handleRetry, isChatGenerating, isLightTheme, isRoomMode, isSpeaking, locale, openMessageSources, renderedMessages, speakText, speechReady, t, voiceEnabled]);
   const activeModeLabel = useMemo(() => {
     return getWorkflowModeLabel(t, activeWorkflow);
   }, [activeWorkflow, t]);
