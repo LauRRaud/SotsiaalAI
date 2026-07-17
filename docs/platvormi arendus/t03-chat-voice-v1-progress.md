@@ -30,7 +30,13 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   (`requestBootstrap` r290) tava-, abi- ja dokumenditöövoogu (workflowBranchHandlers r83/98/281/296).
   Banner `role="alert"` on olemas (`ChatNotices.jsx` r61), on eraldi determinstlik UI → U7 ei kirjuta
   ega paiguta seda ümber; PLAIN_LANGUAGE_MODE tekst juba lubab "olulised hoiatused jäävad alles".
-- [ ] E2 — aus pöörde elutsükkel, Stop (server-abort), Retry (retryOf, idempotentne)
+- [~] E2 — aus pöörde elutsükkel, Stop, Retry. **Server VALMIS + tõendatud (10 testi):**
+  `openaiRuntime` võtab `signal` ja katkestab päris provideri voo; `mainResponseHandler` streaming-
+  abort katkestab iteratsiooni, vabastab reservatsiooni (mitte commit), EI käivita COMPLETED-finalize'i
+  ega püsista täisvastust — salvestab ainult kuvatud osalise `completionStatus: ABORTED`-iga; non-stream
+  abort → ABORTED; ERROR/kriis säilib. `persistDone` kirjutab iga lõppseisu markeri (+`retryOf`).
+  Uus `lib/chat/turnStatus.js` (`resolveRunStatus`) + `/api/chat/run` eristab COMPLETED/ERROR/ABORTED
+  ja stall-guard väldib igavest RUNNING-ut. **Klient (Retry UI + hüdreerimine): pooleli.**
 - [ ] E3 — 4000-piir + 413, jagatud `isFreeHelpWorkflowEligible`, töövoo eelvaade→kinnitus, PII-võtmed
 - [ ] E4 — hääl: TTS locale server/fallback aus viga, STT discard + 2,5 min piir + taimeripuhastus
 - [ ] E5 — a11y/keeled/jõudlus: klaviatuur, reduced-motion, ET/EN/RU sümmeetria, reservatsioonileping

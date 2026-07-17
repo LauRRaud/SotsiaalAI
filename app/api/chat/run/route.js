@@ -5,6 +5,7 @@ import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-lim
 import { safeError } from "@/lib/privacy/safeError";
 import { getSourceAttributionId } from "@/lib/chat/sourceAttribution";
 import { serializeDisplayedSourceTrust } from "@/lib/chat/sourceTrust";
+import { normalizeCompletionStatus, resolveRunStatus } from "@/lib/chat/turnStatus";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -102,6 +103,15 @@ function normalizeCards(value) {
 function normalizeWorkflow(value) {
   return value && typeof value === "object" ? value : null;
 }
+
+function readCompletionStatus(metadata, fallback = "COMPLETED") {
+  return normalizeCompletionStatus(metadata?.completionStatus, fallback);
+}
+
+// Aus pöörde-elutsükkel (T03 E2): kui viimane sõnum on kasutajalt ja pööre on tegelikult
+// aegunud (server suri enne lõppmarkeri kirjutamist), ei jää olek igavesse RUNNING-usse.
+// Sünkroonis kliendi 180s stream-timeoutiga.
+const CHAT_RUN_STALL_MS = readChatRateLimit(process.env.CHAT_RUN_STALL_MS, 180_000, 30_000);
 
 async function requireUser() {
   return requireChatUser();
@@ -202,6 +212,13 @@ export async function GET(req) {
               attachments: normalizedRole === "ai" ? normalizeAttachments(msg.metadata?.attachments) : [],
               cards: normalizedRole === "ai" ? normalizeCards(msg.metadata?.cards) : [],
               workflow: normalizedRole === "ai" ? normalizeWorkflow(msg.metadata?.workflow) : null,
+              ...(normalizedRole === "ai"
+                ? {
+                    completionStatus: readCompletionStatus(msg.metadata),
+                    retryOf: msg.metadata?.retryOf ? String(msg.metadata.retryOf) : null,
+                    isCrisis: !!msg.metadata?.isCrisis
+                  }
+                : {}),
               createdAt: msg.createdAt
             };
           })
@@ -210,17 +227,21 @@ export async function GET(req) {
     const latestTurnRole = String(latestMessage?.role || "").trim().toUpperCase();
     const latestAssistantIsCurrent = latestTurnRole === "ASSISTANT";
     const currentAssistant = latestAssistantIsCurrent ? latestMessage : null;
-    const status = latestAssistantIsCurrent
-      ? "COMPLETED"
-      : latestTurnRole === "USER"
-        ? "RUNNING"
-        : "IDLE";
+    const lastActivityMs = conversation.lastActivityAt ? new Date(conversation.lastActivityAt).getTime() : 0;
+    const status = resolveRunStatus({
+      latestTurnRole,
+      metadata: currentAssistant?.metadata,
+      lastActivityMs,
+      nowMs: Date.now(),
+      stallMs: CHAT_RUN_STALL_MS
+    });
     const text = currentAssistant?.content || (!latestMessage ? conversation.summary || "" : "");
 
     return json({
       ok: true,
       convId: conversation.id,
       status,
+      completionStatus: status,
       role: conversation.role,
       text,
       sources: readDisplayedSources(currentAssistant?.metadata),
