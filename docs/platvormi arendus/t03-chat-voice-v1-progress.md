@@ -71,12 +71,39 @@ Kumbki cherry-pick **ei tekitanud konflikti** — git auto-merge lahendas kattuv
   **PERF-P0:** abort vabastab reservatsiooni (mitte commit), SSE suletakse, taimerid puhastuvad,
   Retry ei dubleeri pööret ega reservatsiooni.
 
-## Verifitseerimine
+## Verifitseerimine (kõik roheline)
 
-- [ ] T03 sihttestid
-- [ ] muudetud failide lint
-- [ ] `npm run i18n:check`
-- [ ] Prisma validate (+ migrate:check kui skeem muutub)
-- [ ] `git diff --check`
-- [ ] production build
-- [ ] sünteetiline runtime (või aus NOT_RUN/NOT_PROVEN)
+- [x] T03 sihttestid + kogu `tests/chat/**` — **320/320 pass** (uued: safety EN/RU, stopRetryLifecycle,
+  freeHelpBoundary, messageLimit, voiceRecording).
+- [x] Muudetud failide lint — **0 viga** (ainult varasemad kasutamata-propi hoiatused).
+- [x] `npm run i18n:check` — kõik locale'id vastavad et-baasile.
+- [x] Prisma validate — skeem valid. **Migrate:check EI vaja** — skeemi ei muudetud
+  (completionStatus/retryOf elavad `ConversationMessage.metadata` JSON-is).
+- [x] `git diff --check` — puhas.
+- [x] Production build — **✓ Compiled successfully** + 54/54 staatilist lehte + route-manifest.
+  NB: worktree vajas päris `node_modules`-i (`npm ci`) — junction lõhkus Turbopacki
+  (`Symlink node_modules ... points out of the filesystem root`).
+- [x] Sünteetiline runtime — tõendatud node:test'iga (deterministlikud provider-stub'id + fake-prisma):
+  ET/EN/RU kriis, provider-abort + ABORTED osaline püsistus, retry-otsus, tasuta-abi värav/marsruut,
+  4000/413 piir, mikrofonivea/-piiri klassifikaator. **Cleanup: mitte midagi** — ühtki päris
+  vestlust/sõnumit/usage't/autentimist ei loodud (fake-prisma). **NOT_PROVEN** = brauseri läbiklikk,
+  päris heli/mikker, mobiil, päris OpenAI/TTS/STT võtmed (sünteetiline keskkond, väliskutseid ei tehtud).
+
+## Lõpparuanne koordinaatorile
+
+- **Worktree:** `C:\Users\rauds\Desktop\SotsiaalAI-chat-voice-v1`; **haru:** `codex/chat-voice-v1`
+  (push'itud `origin/codex/chat-voice-v1`).
+- **T17 alus-SHA:** `ed95d6aa` (= remote). **VEST cherry-pick'id:** `ef01fc42`→`80107cbf`,
+  `043f0dce`→`96eef909` (konflikte polnud; T17/U7 + kriisi keeled säilitatud).
+- **Lõppcommit/remote SHA:** `f89f2ced`. **Migratsioonid:** puuduvad (skeemi ei muudetud).
+- **E1–E5 kokkuvõte:** vt ülal iga etapi rida.
+- **Stop'i salvestusleping:** abort → server katkestab provideri (signal), püsistab AINULT kuvatud
+  osalise `completionStatus: ABORTED`-iga, vabastab reservatsiooni, EI käivita COMPLETED-finalize'i;
+  refresh/hüdreerimine ei too hiljem täisvastust (tõendatud stopRetryLifecycle testis).
+- **Kriisierand:** `detectCrisis` ET muutmata; EN/RU fail-closed lisatud; kriis püsib
+  tava/abi/dokumenditöövoos ja ERROR/ABORTED radadel; banner `role=alert`; U7 ei kirjuta ümber.
+- **Muutmata:** väliseid AI/hääle-kutseid ei tehtud; tootmisandmeid ei puudutatud; `main`, server,
+  merge ja deploy on puutumata; põhitööpuud ei muudetud.
+- **Teadlik jääk (dokumenteeritud, väljaspool viilu):** (1) aktiivse abi-oleku + „sisuka küsimuse"
+  bypass võib anda tellijata RAG-i — vajab tellimusseisu läbivedu bypass'i; (2) `.conv-entry-cancel`/
+  `.conv-char-counter` CSS-vormistus; (3) brauseri/heli runtime NOT_PROVEN.
