@@ -2973,6 +2973,10 @@
     "events": {
       "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
+      "pre_inquiry_opened": "Sinu eelpöördumine avati",
+      "pre_inquiry_replied": "Sinu eelpöördumisele vastati",
+      "pre_inquiry_archived": "Sinu eelpöördumine arhiveeriti",
+      "pre_inquiry_recalled": "Eelpöördumine kutsuti tagasi",
       "room_invite": "Sulle saadeti ruumikutse",
       "room_activity": "Sinu ruumis on uut tegevust",
       "help_match_created": "Sinu abikuulutusele tekkis sobitus",
@@ -2980,6 +2984,15 @@
       "practice_review_assigned": "Sulle määrati praktika ülevaatus",
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
       "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist"
+    },
+    "center": {
+      "title": "Teavitused",
+      "limit": "Viimased 7",
+      "loading": "Laadin teavitusi…",
+      "error": "Teavitusi ei saanud laadida.",
+      "empty": "Uusi teavitusi ei ole.",
+      "unread": "Lugemata teavitused",
+      "dismiss": "Peida teavitus"
     },
     "email_preference": "Saada valikulised tööjärje märguanded ka e-postiga",
     "email_preference_hint": "Kirjad ei sisalda pöördumiste, ruumide ega mustandite sisu.",
@@ -3255,6 +3268,14 @@
       "back": "Tagasi",
       "yes": "Jah",
       "no": "No"
+    },
+    "notifications": {
+      "title": "Teavituste saatmise vead",
+      "description": "UNKNOWN ja FAILED kirjed ilma adressaadi või privaatse sisuta.",
+      "empty": "Saatmise käsitööd ei ole.",
+      "requeue": "Proovi uuesti",
+      "load_failed": "Teavituste saatmise seisu ei saanud laadida.",
+      "requeue_failed": "Teavitust ei saanud uuesti järjekorda panna."
     },
     "pages": {
       "analytics": {

@@ -294,6 +294,140 @@
   border-top: 1px solid color-mix(in srgb, var(--text-warm) 28%, transparent);
 }
 
+.notification-center {
+  width: min(100%, 45rem);
+  margin: 0 auto clamp(0.9rem, 2vh, 1.25rem);
+  padding: 0.8rem 0 0;
+  border-top: 1px solid color-mix(in srgb, var(--accent-warm, #ba8068) 42%, transparent);
+}
+
+.notification-center > header,
+.notification-center > header > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notification-center > header {
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.notification-center h2 {
+  margin: 0;
+  color: var(--text-warm);
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-weight: 520;
+}
+
+.notification-center header small,
+.notification-center time {
+  color: color-mix(in srgb, var(--text-warm) 58%, transparent);
+  font-size: 0.7rem;
+}
+
+.notification-center-badge {
+  min-width: 1.35rem;
+  height: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--surface-deep, #19130e);
+  background: var(--accent-warm, #ba8068);
+  font-size: 0.7rem;
+  font-weight: 760;
+}
+
+.notification-center ul {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notification-center li {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  border: 1px solid color-mix(in srgb, var(--text-warm) 16%, transparent);
+  border-radius: 0.65rem;
+  background: color-mix(in srgb, var(--surface-elevated, #28211c) 84%, transparent);
+  overflow: hidden;
+}
+
+.notification-center li[data-unread="true"] {
+  border-color: color-mix(in srgb, var(--accent-warm, #ba8068) 58%, transparent);
+  background: linear-gradient(100deg, color-mix(in srgb, var(--accent-warm, #ba8068) 12%, transparent), transparent 55%);
+}
+
+.notification-center button {
+  color: var(--text-warm);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.notification-center-open {
+  min-width: 0;
+  min-height: 2.9rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.65rem 0.5rem 0.65rem 0.75rem;
+  text-align: left;
+}
+
+.notification-center-open > span:nth-of-type(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.notification-center-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: transparent;
+}
+
+[data-unread="true"] .notification-center-dot {
+  background: var(--accent-warm, #ba8068);
+  box-shadow: 0 0 0.65rem color-mix(in srgb, var(--accent-warm, #ba8068) 70%, transparent);
+}
+
+.notification-center-dismiss {
+  width: 2.6rem;
+  font-size: 1.2rem;
+  color: color-mix(in srgb, var(--text-warm) 58%, transparent) !important;
+}
+
+.notification-center button:hover,
+.notification-center button:focus-visible {
+  background: color-mix(in srgb, var(--text-warm) 7%, transparent);
+}
+
+.notification-center button:focus-visible {
+  outline: none;
+  box-shadow: inset var(--focus-ring);
+}
+
+.notification-center-state {
+  margin: 0;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.55rem;
+  color: color-mix(in srgb, var(--text-warm) 72%, transparent);
+  background: color-mix(in srgb, var(--text-warm) 5%, transparent);
+  font-size: 0.82rem;
+}
+
 .workspace-continuity > header {
   display: flex;
   align-items: baseline;

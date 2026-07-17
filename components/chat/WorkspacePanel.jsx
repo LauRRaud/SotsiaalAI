@@ -15,6 +15,7 @@ import { createWorkspaceDashboardRows, WORKSPACE_ROUTE_PREFETCH_PATHS } from "@/
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton";
 import WorkspaceFeaturePage from "@/components/workspace/WorkspaceFeaturePage";
 import WorkspaceContinuity from "@/components/workspace/WorkspaceContinuity";
+import NotificationCenter from "@/components/workspace/NotificationCenter";
 
 const EMBEDDED_WORKSPACE_FEATURES = Object.freeze({
   "/documents": "documents",
@@ -609,6 +610,12 @@ export default function WorkspacePanel({
         {text(t, "chat.workspace.title", "Töölaud")}
       </h1>
       {roleMenu}
+
+      <NotificationCenter
+        t={t}
+        locale={locale}
+        onOpen={openContinuityItem}
+      />
 
       <WorkspaceContinuity
         t={t}

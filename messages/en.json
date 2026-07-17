@@ -2973,6 +2973,10 @@
     "events": {
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
+      "pre_inquiry_opened": "Your pre-inquiry was opened",
+      "pre_inquiry_replied": "Your pre-inquiry received a response",
+      "pre_inquiry_archived": "Your pre-inquiry was archived",
+      "pre_inquiry_recalled": "A pre-inquiry was recalled",
       "room_invite": "You received a room invitation",
       "room_activity": "There is new activity in your room",
       "help_match_created": "A match was found for your help listing",
@@ -2980,6 +2984,15 @@
       "practice_review_assigned": "A practice review was assigned to you",
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation"
+    },
+    "center": {
+      "title": "Notifications",
+      "limit": "Latest 7",
+      "loading": "Loading notifications…",
+      "error": "Notifications could not be loaded.",
+      "empty": "There are no new notifications.",
+      "unread": "Unread notifications",
+      "dismiss": "Dismiss notification"
     },
     "email_preference": "Also send optional work-queue notifications by email",
     "email_preference_hint": "Emails never include inquiry, room, or draft content.",
@@ -3255,6 +3268,14 @@
       "back": "Back",
       "yes": "Yes",
       "no": "No"
+    },
+    "notifications": {
+      "title": "Notification delivery failures",
+      "description": "UNKNOWN and FAILED records without recipient or private content.",
+      "empty": "No delivery operations need attention.",
+      "requeue": "Retry",
+      "load_failed": "Notification delivery status could not be loaded.",
+      "requeue_failed": "The notification could not be requeued."
     },
     "pages": {
       "analytics": {
