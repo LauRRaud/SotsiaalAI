@@ -2971,6 +2971,10 @@
   },
   "notifications": {
     "events": {
+      "workspace_created": "Teekond loodi",
+      "workspace_activated": "Teekond taasavati",
+      "workspace_archived": "Teekond arhiveeriti",
+      "workspace_deleted": "Teekond kustutati",
       "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
       "pre_inquiry_opened": "Sinu eelpöördumine avati",

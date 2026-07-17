@@ -2971,6 +2971,10 @@
   },
   "notifications": {
     "events": {
+      "workspace_created": "Маршрут создан",
+      "workspace_activated": "Маршрут открыт повторно",
+      "workspace_archived": "Маршрут архивирован",
+      "workspace_deleted": "Маршрут удалён",
       "pre_inquiry_arrived": "Вам поступило предобращение",
       "pre_inquiry_status_changed": "Статус вашего предобращения изменился",
       "pre_inquiry_opened": "Ваше предобращение открыли",

@@ -21,6 +21,10 @@ import {
 import {
   listWorkspaces as listRoomWorkspaces
 } from "../../lib/workspaces/adapters/roomAdapter.js";
+import {
+  listWorkspaces as listJourneyWorkspaces,
+  toJourneyWorkspaceDescriptor
+} from "../../lib/workspaces/adapters/journeyAdapter.js";
 
 const OWNER = "user_owner";
 const PARTICIPANT = "user_participant";
@@ -79,9 +83,8 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "field_visit",
     "org_space"
   ]);
-  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, ["room", "covision_case"]);
+  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, ["room", "covision_case", "journey"]);
   assert.deepEqual(RESERVED_WORKSPACE_KINDS, [
-    "journey",
     "pre_inquiry",
     "wellbeing_space",
     "supervision_process",
@@ -96,6 +99,27 @@ test("K1 registry contains every approved kind and separates supported adapters 
   assert.deepEqual(Object.values(WorkspaceLifecycle), [
     "DRAFT", "ACTIVE", "PAUSED", "CLOSED", "ARCHIVED", "PURGED", "DELETED"
   ]);
+});
+
+test("Journey adapter is owner-scoped, private, descriptor-only and read-only", async () => {
+  const privateRow = {
+    id: "journey_1",
+    ownerUserId: OWNER,
+    title: "My journey",
+    status: "ACTIVE",
+    updatedAt: "2026-07-17T09:00:00.000Z",
+    summary: "PRIVATE_SUMMARY",
+    riskSignals: ["PRIVATE_RISK"]
+  };
+  const calls = [];
+  const db = { journey: { async findMany(query) { calls.push(query); return [privateRow]; } } };
+  const [descriptor] = await listJourneyWorkspaces(OWNER, { db });
+  assertDescriptorContract(descriptor);
+  assert.equal(descriptor.visibility, "PRIVATE");
+  assert.equal(descriptor.lifecycle, "ACTIVE");
+  assert.doesNotMatch(JSON.stringify(descriptor), /PRIVATE_SUMMARY|PRIVATE_RISK/u);
+  assert.deepEqual(calls[0].where, { ownerUserId: OWNER });
+  assert.doesNotThrow(() => toJourneyWorkspaceDescriptor({ ...privateRow, status: "ARCHIVED" }));
 });
 
 test("descriptor validation rejects unknown kinds and invalid or extra fields fail closed", () => {

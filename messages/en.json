@@ -2971,6 +2971,10 @@
   },
   "notifications": {
     "events": {
+      "workspace_created": "A journey was created",
+      "workspace_activated": "A journey was reopened",
+      "workspace_archived": "A journey was archived",
+      "workspace_deleted": "A journey was deleted",
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
       "pre_inquiry_opened": "Your pre-inquiry was opened",
