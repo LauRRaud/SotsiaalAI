@@ -1209,7 +1209,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         cancelled ||
         !response?.ok ||
         !requestedInquiry ||
-        (currentUserId && requestedInquiry.authorId !== currentUserId)
+        !currentUserId ||
+        (requestedInquiry.authorId !== currentUserId && requestedInquiry.recipientOwnerId !== currentUserId)
       ) {
         return;
       }

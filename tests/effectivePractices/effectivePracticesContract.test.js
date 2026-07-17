@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+import { parseEffectivePracticeView } from "../../lib/client/effectivePracticeView.js";
+
 const read = (path) => readFile(new URL(`../../${path}`, import.meta.url), "utf8");
 
 test("schema models explicit capabilities, immutable reviews, assignments, versions and application assignees", async () => {
@@ -126,6 +128,17 @@ test("detail, editor and mutation lifecycles cannot revive a closed or switched 
   assert.doesNotMatch(source, /await openDetail\(selected\.practice\.id\)/);
   assert.match(source, /function LoadingDialog[\s\S]*useModalFocusTrap\(dialogRef\)/);
   assert.match(source, /aria-modal="true"[\s\S]*autoFocus onClick=\{onClose\}/);
+});
+
+test("practice deep links deterministically open the existing detail path without a router loop", async () => {
+  const source = await read("components/covision/EffectivePracticesPage.jsx");
+
+  assert.deepEqual(parseEffectivePracticeView("?practice=practice-1"), { kind: "detail", id: "practice-1" });
+  assert.deepEqual(parseEffectivePracticeView("?practice=%20%20"), { kind: "list", id: "" });
+  assert.match(source, /const view = parseEffectivePracticeView\(window\.location\.search\);[\s\S]*?view\.kind === "detail"[\s\S]*?openDetail\(view\.id, \{ history: "none" \}\)/);
+  assert.match(source, /if \(!response\.ok\) throw Object\.assign\(new Error\("detail"\), \{ payload \}\)/);
+  assert.match(source, /window\.addEventListener\("popstate", syncFromLocation\)/);
+  assert.doesNotMatch(source, /openDetail\(view\.id, \{ history: "push" \}\)/);
 });
 
 test("admin does not receive a candidate creation affordance before or after capability load", async () => {
