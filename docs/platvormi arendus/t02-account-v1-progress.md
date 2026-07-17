@@ -46,29 +46,34 @@ git log --oneline -8      # kontrolli, kuhu E-etapid on jõudnud
 
 | Etapp | Sisu | Seis | Commit |
 |---|---|---|---|
-| **E1** | PROF-P1 samas teemas (serveripoolne PIN-kontroll e-posti muutmisel + rate-limit enne bcrypti; sama e-post ei reauth'i) | ✅ olemas (cherry-pick) — vt märkus E2 all | `69c11be0` |
-| **E2** | verify-then-swap e-posti elutsükkel (uus mudel + migratsioon + kinnitusendpoint + UI „ootab kinnitust") | ⬜ TEGEMATA (disain ptk 3) — vajab DB-d | — |
-| **E3** | PIN, taastamine ja sessioonid | ⏳ OSALINE: reset-PUT sessioonitühistus ✅ (5 testi rohelised). PIN-muutuse turvateade + paroolita step-up ⬜ (pesitseb E2 mailer/i18n-tööga) | `86193732` |
-| **E4** | Profiili ausad olekud (aegunud tellimus, admini eelvaateriba, kustutuse 202 pending) | ⬜ TEGEMATA (disain ptk 5) | — |
-| **E5** | Konto dialoogide ligipääsetavus (Modal fookuslõks/-taaste/Escape; busy ei sulgu) | ✅ KOOD + lint; runtime klaviatuuri-QA `NOT_PROVEN` | `6b2ee543` |
-| **E6** | Keeled (ET/EN/RU pariteet uutele tekstidele) + mobiil/klaviatuur | ⬜ jookseb E2–E5 kõrval; lõppkontroll enne DoD-i | — |
+| **E1** | PROF-P1 samas teemas (serveripoolne PIN-kontroll e-posti muutmisel + rate-limit enne bcrypti; sama e-post ei reauth'i) | ✅ + E2-ga verify-then-swap'iks laiendatud | `69c11be0` |
+| **E2** | verify-then-swap e-posti elutsükkel (uus mudel + migratsioon + kinnitusendpoint + UI „ootab kinnitust") | ✅ VALMIS (migratsioon rakendatud + runtime-tõendatud) | E2-blokk |
+| **E3** | PIN, taastamine ja sessioonid (reset revoke + PIN-muutuse turvateade + paroolita step-up) | ✅ VALMIS | `86193732` + E2-blokk |
+| **E4** | Profiili ausad olekud (aegunud tellimus, admini eelvaateriba, kustutuse 202 pending) | ✅ VALMIS | E4-blokk |
+| **E5** | Konto dialoogide ligipääsetavus (Modal fookuslõks/-taaste/Escape; busy ei sulgu) | ✅ KOOD + lint + build; runtime klaviatuuri-QA `NOT_PROVEN` | `6b2ee543` |
+| **E6** | Keeled (ET/EN/RU pariteet uutele tekstidele) + mobiil/klaviatuur | ✅ i18n pariteet roheline (kirurgiline insert, 0 reformatti); mobiili/klaviatuuri runtime-QA `NOT_PROVEN` | E2/E4-blokk |
 
-### Selle sessiooni tehtu (2026-07-17)
-- **E3 reset-revoke (`86193732`):** `PUT /api/auth/password/reset` tühistab nüüd kõik vanad sessiooniseisud (`sessionVersion++` + `Session/TrustedDevice/LoginTempToken/EmailOtpCode` deleteMany) ühes tehingus enne ühekordse tokeni tarbimist — nagu `logout-all`. Loogika eraldatud testitavaks `lib/auth/passwordResetLifecycle.js`-i; 5 sihttesti rohelised (`tests/auth/passwordResetLifecycle.test.js`). Skeemimuutust pole.
-- **E5 modal-a11y (`6b2ee543`):** `Modal` liigutab fookuse dialoogi, lõksustab Tab/Shift+Tab, taastab avaja fookuse, sulgub Escape'iga (`closeOnEscape`, vaikimisi true). `ModalConfirm` delegeerib Escape'i Modalile ja väravab `!busy && !disabled` — pooleliolevat kustutust ei saa Escape/overlay enam sulgeda.
+### Sessioon 1 (2026-07-17): E3 reset-revoke + E5
+- **E3 reset-revoke (`86193732`):** `PUT /api/auth/password/reset` tühistab kõik vanad sessiooniseisud ühes tehingus enne ühekordse tokeni tarbimist. Loogika `lib/auth/passwordResetLifecycle.js`.
+- **E5 modal-a11y (`6b2ee543`):** `Modal` fookuslõks/-taaste/Escape; `ModalConfirm` väravab busy/disabled.
 
-### Verifikatsiooni seis
-- ✅ `tests/auth/passwordResetLifecycle.test.js` (5) + `tests/profile/accountLifecycle.test.js` (8) + `tests/auth/sessionErrors.test.js` (2) = **15/15 PASS**.
-- ✅ lint 0/0 muudetud failidel; `git diff --check` puhas.
-- ⚠️ `NOT_RUN`: laiem sviit (nt `tests/usage/**`), sest **worktree'l puudub genereeritud Prisma-klient** (`generated/prisma/client.ts`) ja `.env` (`DATABASE_URL`). See EI ole regressioon — vt „Keskkonna seadistus" all. Reset-route'il eraldi integratsioonitesti polnud.
-- ⚠️ `NOT_PROVEN`: E5 klaviatuuri-runtime (fookus sisse/lõks/taaste/Escape päris brauseris) — vt allpool.
+### Sessioon 2 (2026-07-17): E2 + E3 lõpuni + E4 + E6 — TEEMA VALMIS
+- **Keskkond:** junction asendatud päris `npm ci`-ga; worktree'sse lisatud gitignore'itud `.env`, mis osutab **isoleeritud lokaalsele DB-le `sotsiaal_ai_account_v1`** (mitte jagatud dev-DB `sotsiaal_ai`). `npx prisma generate` = klient `generated/prisma` (Prisma 7.8.0).
+- **E2 migratsioon:** `prisma/migrations/20260717120000_add_pending_email_change` — `PendingEmailChange` (userId unique, newEmail, tokenHash unique, expiresAt, requestedIp/Ua; FK Cascade). Genereeritud offline `migrate diff`-iga (ainult see delta, mitte repo VerificationToken-triiv), rakendatud `migrate deploy`-ga isoleeritud DB-sse. `db:migrate:check` = **Full migration chain: OK** (93 migratsiooni värskes probe-DB-s + koristus). `prisma validate` = valid.
+- **E2 verify-then-swap:** `lib/profile/emailChange.js` (createPendingEmailChange/confirmEmailChangeByToken/cancel), `updateProfileForUser` e-posti haru loob ainult pending'i (login-identiteet, `emailVerified`, sessioonid puutumata), saadab kinnituslingi AINULT uuele aadressile. `app/api/profile/email-change/confirm` (avalik GET, aatomne swap+`emailVerified=now`+kõigi sessioonide tühistus, turvateade VANALE aadressile ilma saladusteta, geneeriline viga kehtetu/aegunud/võõra/võistleva tokeni puhul). `app/api/profile/email-change` (POST resend rate-limit, DELETE cancel). UI `UuendaEpostiBody` = „ootab kinnitust" + resend + cancel.
+- **E3 lõpetatud:** PIN-muutuse turvateade kontol kehtivale aadressile; paroolita konto step-up (`pin_setup_required` 409) e-posti muutmisel ja PIN-muutmisel; DELETE step-up juba PROF-P1-s.
+- **E4:** `snapshot.js` aus `expired/expiredAt` (ainult kui aktiivne puudub JA viimane on lõppenud — eristub „tasuta/NONE"-st); `UsageOverview` „tellimus aegus {date}" + paketihalduse CTA; `ProfiilBody` 202 → anonüümne post-logout kinnitusvaade (pending vs done, **`deletionJobId` eemaldatud ka serverivastusest**); admini eelvaateriba (`isRoleViewActive`).
+- **E6:** kõik uued võtmed ET/EN/RU-s kirurgilise insertiga (0 reformatti, `i18n:check` OK).
 
-### Keskkonna seadistus (OLULINE järgmisele sessioonile)
-- `node_modules` on selle sessiooni jaoks **junction** põhitööpuu omale (`SotsiaalAI/node_modules`), et testid jookseks ilma raske `npm install`-ita. **See on ajutine ja jagatud.**
-- **Enne E2-t (skeemimuutus) ja enne prisma-importivate testide jooksu:** asenda junction päris `npm install`-iga selles worktree's (või vähemalt `npx prisma generate`), lisa worktree'sse `.env` `DATABASE_URL`-iga. Ära jooksuta `prisma generate/migrate` junction'i peal — see kirjutaks põhitööpuu klienti.
-- E5 runtime-QA jäi tegemata, sest `preview_start`/`next-dev` teenindab PÕHITÖÖPUUD (port 3000, määrdunud), mitte seda worktree'd; teine dev-server jagatud `.next`/`node_modules` peal riskiks vahemälukonfliktiga. Klaviatuuri-QA teeb järgmine sessioon worktree'st käivitatud serveriga või pärast merge-eelset koondkontrolli.
+### Verifikatsiooni seis (sessioon 2 lõpp)
+- ✅ **90/90 sihttesti PASS**: `tests/profile/**` (accountLifecycle 12 ümberkirjutatud + emailChange 6 uut), `tests/auth/**` (passwordResetLifecycle 5 + sessionErrors 2), `tests/usage/**`.
+- ✅ lint 0/0 kõigil muudetud/uutel failidel; `prisma validate` OK; `db:migrate:check` OK; `i18n:check` OK.
+- ✅ **production build (`next build --turbopack`) = exit 0** (kõik uued route'id/komponendid kompileeruvad).
+- ✅ **runtime isoleeritud DB vastu (PROVEN):** E2 request→pending (tokenHash=sha256, login-identiteet püsib) → confirm (swap+verify+kõik sessiooniseisud tühjaks+`sessionVersion++`) → korduskasutatud token inert → E3 reset (sessioonid tühjaks, token consumed). **Cleanup: 0 jääkkasutajat, 0 jääktokenit.**
+- ⚠️ `NOT_PROVEN`: brauseripõhine klaviatuuri/mobiil-QA (E5 fookuslõks, E2 UI voog päris brauseris) — `next-dev` teenindab põhitööpuud, mitte seda worktree'd; build + lint + loogikatestid katavad staatilise korrektsuse. Jääb T27 koondväravasse või eraldi worktree-serveri QA-sse.
 
-> **NB E1 vs E2:** PROF-P1 (`69c11be0`) teostab praegu **swap-then-verify** — `updateProfileForUser` seab e-posti haru korral kohe `data.email = nextEmail`. E2 asendab selle harul verify-then-swap loogikaga (e-post EI muutu enne kinnitust). PROF-P1 rate-limit + reauth + „sama e-post = no-op" jäävad kehtima. E1 vastuvõtukriteeriumid (õige/vale PIN, rate-limit enne bcrypti) tuleb pärast E2-t uuesti roheliseks tõestada.
+### Keskkonnamärkus
+- Isoleeritud DB `sotsiaal_ai_account_v1` jääb lokaalsesse Postgresi (ei puuduta jagatud dev-DB-d). `.env` on gitignore'itud (ei commit'ita).
 
 ---
 
@@ -191,4 +196,5 @@ Kasuta ainult lokaalseid sünteetilisi testkontosid (`docs/platvormi arendus/teh
 
 ## 11. Muudatuste logi (selle faili)
 - 2026-07-17: fail loodud; worktree/haru/cherry-pick seadistatud (E1 `69c11be0`); E2–E6 disain kirja pandud.
-- 2026-07-17: E3 reset-revoke teostatud + testitud (`86193732`); E5 modal-a11y teostatud (`6b2ee543`). Verifikatsiooni- ja keskkonnaseis (junction, Prisma-klient, E5 runtime NOT_PROVEN) dokumenteeritud ptk 2. Järgmine: E2 (vajab DB-d) või E3 jääk (turvateade + paroolita step-up).
+- 2026-07-17: E3 reset-revoke teostatud + testitud (`86193732`); E5 modal-a11y teostatud (`6b2ee543`).
+- 2026-07-17 (sessioon 2): E2 verify-then-swap (migratsioon + emailChange lib + confirm/resend/cancel endpoint'id + UI), E3 lõpetatud (PIN-turvateade + paroolita step-up), E4 ausad olekud (aegunud tellimus + admini riba + 202), E6 i18n. Isoleeritud DB, migratsioon rakendatud + runtime-tõendatud, build+testid+lint rohelised. **TEEMA VALMIS** (v.a brauseri klaviatuuri-QA = NOT_PROVEN). Järgmine: push remote'i + T27 koondväravas täissviit/sõltumatu audit/merge otsus.
