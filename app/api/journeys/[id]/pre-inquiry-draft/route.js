@@ -2,7 +2,10 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import { getJourneyForUser } from "@/lib/journey/service";
-import { buildPreInquiryPrefillFromJourney } from "@/lib/journey/preInquiryHandoff";
+import {
+  buildPreInquiryPrefillFromJourney,
+  partitionJourneyShareKeys
+} from "@/lib/journey/preInquiryHandoff";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -42,16 +45,18 @@ export async function POST(request, context) {
 
   try {
     const body = await request.json().catch(() => ({}));
+    const keys = partitionJourneyShareKeys(body?.shareKeys ?? body?.share ?? []);
     const params = await resolveParams(context);
     const journey = await getJourneyForUser(auth.userId, params?.id);
     const prefill = buildPreInquiryPrefillFromJourney(journey, {
-      shareKeys: body?.shareKeys || body?.share || []
+      shareKeys: keys.confirmedKeys
     });
     return json({
       ok: true,
       prefill,
       persisted: false,
-      shared: false
+      shared: false,
+      ignoredKeys: keys.ignoredKeys
     });
   } catch (error) {
     const status = Number(error?.status) || 500;
