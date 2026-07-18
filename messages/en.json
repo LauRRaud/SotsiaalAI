@@ -2785,6 +2785,18 @@
         "final_read_only": "Approved artifacts are read-only."
       }
     },
+    "analyses": {
+      "errors": {
+        "content_required": "The analysis text is empty — add content before saving.",
+        "content_too_large": "The analysis is too large to save.",
+        "sources_not_found": "One or more referenced source documents were not found.",
+        "list_failed": "Failed to load saved analyses.",
+        "save_failed": "Failed to save the analysis.",
+        "read_failed": "Failed to load the analysis.",
+        "delete_failed": "Failed to delete the analysis.",
+        "not_found": "The analysis was not found or does not belong to your account."
+      }
+    },
     "call_recording": {
       "purpose": "Recording purpose",
       "consent_status": "Consent status",

@@ -2785,6 +2785,18 @@
         "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks."
       }
     },
+    "analyses": {
+      "errors": {
+        "content_required": "Analüüsi tekst on tühi — salvestamiseks lisa sisu.",
+        "content_too_large": "Analüüs on salvestamiseks liiga suur.",
+        "sources_not_found": "Üht või mitut viidatud allikdokumenti ei leitud.",
+        "list_failed": "Salvestatud analüüside laadimine ebaõnnestus.",
+        "save_failed": "Analüüsi salvestamine ebaõnnestus.",
+        "read_failed": "Analüüsi laadimine ebaõnnestus.",
+        "delete_failed": "Analüüsi kustutamine ebaõnnestus.",
+        "not_found": "Analüüsi ei leitud või see ei kuulu sinu kontole."
+      }
+    },
     "call_recording": {
       "purpose": "Salvestamise eesmärk",
       "consent_status": "Nõusoleku staatus",
