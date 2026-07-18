@@ -26,6 +26,7 @@ KOV/key.json/
 # Logs and local outputs
 *.log
 logs/
+/Andmebaasi/Admebaasi-materjali-lisa/master_sources.state.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

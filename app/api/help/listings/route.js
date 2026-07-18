@@ -55,6 +55,8 @@ function createStatusFilter(status = "") {
   return normalized ? { status: normalized } : {};
 }
 
+// 'mine' skoop: omanik näeb oma kirjeid soovitud staatuses. Nähtavuspõrand
+// teenusekihis lubab mitteavalikke staatuseid AINULT selle skoobi puhul.
 async function loadMineListings({
   kind,
   userId,
@@ -65,6 +67,7 @@ async function loadMineListings({
 }) {
   const listViews = resolveListingLoader(kind);
   const filters = {
+    scope: "mine",
     userId,
     limit: limit + 1,
     offset,
@@ -80,32 +83,39 @@ async function loadMineListings({
   };
 }
 
+// Ainult OPEN + aegumata kirjete count-tingimus. Peab kattuma listHelpRequests/
+// listHelpOffers OPEN-põrandaga, et lehekülgede loend jääks õigeks.
+function globalOpenCountWhere(extra = {}) {
+  return {
+    status: "OPEN",
+    OR: [
+      { expiresAt: null },
+      { expiresAt: { gt: new Date() } }
+    ],
+    ...extra
+  };
+}
+
+// 'global' skoop: kliendi saadetud status'i EI kasutata. Nähtavus on põrandatud
+// OPEN-ile nii count'ides kui teenusekihi päringus (scope: "global"), nii et
+// võõraste DRAFT/CLOSED/CANCELLED/ARCHIVED ei leki ega saa status-parameetriga
+// laieneda. Oma OPEN kirjed jäävad esimesena kinnitatuks.
 async function loadGlobalListingsWithOwnPinned({
   kind,
   userId,
-  status,
   locale,
   limit,
   offset
 }) {
   const model = resolveModel(kind);
   const listViews = resolveListingLoader(kind);
-  const statusFilter = createStatusFilter(status);
 
   const [ownTotal, othersTotal] = await Promise.all([
     model.count({
-      where: {
-        userId,
-        ...statusFilter
-      }
+      where: globalOpenCountWhere({ userId })
     }),
     model.count({
-      where: {
-        NOT: {
-          userId
-        },
-        ...statusFilter
-      }
+      where: globalOpenCountWhere({ NOT: { userId } })
     })
   ]);
 
@@ -124,10 +134,10 @@ async function loadGlobalListingsWithOwnPinned({
   if (ownOffset < ownTotal) {
     ownItems = await listViews(
       {
+        scope: "global",
         userId,
         limit: pageWithSentinel,
-        offset: ownOffset,
-        ...statusFilter
+        offset: ownOffset
       },
       { locale }
     );
@@ -145,10 +155,10 @@ async function loadGlobalListingsWithOwnPinned({
   if (remainingSlots > 0) {
     otherItems = await listViews(
       {
+        scope: "global",
         excludeUserId: userId,
         limit: remainingSlots,
-        offset: othersOffset,
-        ...statusFilter
+        offset: othersOffset
       },
       { locale }
     );
