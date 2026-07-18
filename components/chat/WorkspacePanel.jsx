@@ -67,7 +67,7 @@ const EMBEDDED_WORKSPACE_HEADER_META = Object.freeze({
   },
   invite: {
     titleKey: "invite.eyebrow",
-    fallback: "Grupivestlus",
+    fallback: "Kutsu osaleja",
     infoId: "invites"
   }
 });

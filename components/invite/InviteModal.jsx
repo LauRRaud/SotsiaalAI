@@ -12,6 +12,11 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Modal from "@/components/ui/Modal";
 import OptionCard from "@/components/ui/OptionCard";
+import {
+  INVITE_RELATIONSHIP_CLIENT,
+  inviteRelationshipTypesForInviter,
+  sponsoredRolesForInviteRelationship,
+} from "@/lib/invites/participantTypes";
 import { localizePath } from "@/lib/localizePath";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -55,6 +60,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [relationshipType, setRelationshipType] = useState("");
   const [targetRole, setTargetRole] = useState(null);
   const [invites, setInvites] = useState([]);
   const [loadingList, setLoadingList] = useState(false);
@@ -75,17 +81,34 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
     Number.isFinite(sponsoredAmount) && sponsoredAmount > 0 ? sponsoredAmount : 4,
     locale,
   );
-  const sponsoredRoleOptions = [
-    {
-      value: "SOCIAL_WORKER",
-      label: `${t("invite.sponsored.role.worker")} - ${sponsoredAmountLabel}`,
-    },
-    {
-      value: "CLIENT",
-      label: `${t("invite.sponsored.role.client")} - ${sponsoredAmountLabel}`,
-    },
-  ];
+  const allowedRelationshipTypes = useMemo(
+    () => inviteRelationshipTypesForInviter(session?.user?.role),
+    [session?.user?.role],
+  );
+  const effectiveRelationshipType = allowedRelationshipTypes.includes(relationshipType)
+    ? relationshipType
+    : allowedRelationshipTypes.length === 1
+      ? allowedRelationshipTypes[0]
+      : "";
+  const sponsoredRoleOptions = useMemo(() => {
+    const roleKey = {
+      CLIENT: "client",
+      SOCIAL_WORKER: "worker",
+      SERVICE_PROVIDER: "provider",
+    };
+    return sponsoredRolesForInviteRelationship(effectiveRelationshipType).map((value) => ({
+      value,
+      label: `${t(`invite.sponsored.role.${roleKey[value]}`)} - ${sponsoredAmountLabel}`,
+    }));
+  }, [effectiveRelationshipType, sponsoredAmountLabel, t]);
+  const allowedSponsoredRoles = sponsoredRoleOptions.map((option) => option.value);
+  const effectiveTargetRole = allowedSponsoredRoles.includes(targetRole)
+    ? targetRole
+    : allowedSponsoredRoles.length === 1
+      ? allowedSponsoredRoles[0]
+      : null;
   const inviteEmailsRequiredError = error === t("invite.error.emails_required");
+  const inviteRelationshipRequiredError = error === t("invite.error.relationship_required");
   const inviteCheckoutAgreementReplacements = useMemo(
     () => ({
       terms: {
@@ -201,19 +224,28 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   const startSponsoredFlow = useCallback(() => {
     setError("");
     setMessage("");
+    if (!effectiveRelationshipType) {
+      setError(t("invite.error.relationship_required"));
+      return;
+    }
     if (multipleEmailsForSponsored) {
       setError(t("invite.error.sponsored_single_email_required"));
       return;
     }
-    setTargetRole(null);
+    const roles = sponsoredRolesForInviteRelationship(effectiveRelationshipType);
+    setTargetRole(roles.length === 1 ? roles[0] : null);
     setSponsoredCheckoutAgreed(false);
     setPaymentMode("SPONSORED_BY_HOST");
-  }, [multipleEmailsForSponsored, t]);
+  }, [effectiveRelationshipType, multipleEmailsForSponsored, t]);
   async function submit(e) {
     e.preventDefault();
     setError("");
     setMessage("");
     const parsed = emailsParsed;
+    if (!effectiveRelationshipType) {
+      setError(t("invite.error.relationship_required"));
+      return;
+    }
     if (!parsed.length) {
       setError(t("invite.error.emails_required"));
       return;
@@ -232,7 +264,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       setError(t("invite.error.sponsored_single_email_required"));
       return;
     }
-    if (paymentMode === "SPONSORED_BY_HOST" && !targetRole) {
+    if (paymentMode === "SPONSORED_BY_HOST" && !effectiveTargetRole) {
       setError(t("invite.error.sponsor_plan_required"));
       return;
     }
@@ -261,7 +293,8 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
             host_display_name: !roomId
               ? trimmedHostName || undefined
               : undefined,
-            targetRole,
+            relationship_type: effectiveRelationshipType,
+            targetRole: effectiveTargetRole,
             acceptedTerms: sponsoredCheckoutAgreed,
           }),
         });
@@ -302,6 +335,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
           room_id: roomId || undefined,
           room_title: trimmedRoomTitle || undefined,
           host_display_name: !roomId ? trimmedHostName || undefined : undefined,
+          relationship_type: effectiveRelationshipType,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -366,7 +400,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   }
   if (!open) return null;
   const content = (
-    <div>
+    <div className="invite-participant-workbench">
       {!hideHeader ? (
         <>
           {/* Modaalis (portaal, väljaspool paneeli) on see ainus tagasitee —
@@ -399,7 +433,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
             <p>{t("invite.login_required")}</p>
           </div>
         ) : (
-          <form onSubmit={submit}>
+          <form className="invite-participant-form" onSubmit={submit}>
             {!roomId ? (
               <>
                 <div>
@@ -426,6 +460,47 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
                 </div>
               </>
             ) : null}
+            <fieldset
+              className="invite-participant-type"
+              aria-describedby="invite-participant-scope"
+              aria-invalid={inviteRelationshipRequiredError ? "true" : undefined}
+              disabled={busy}
+            >
+              <legend>{t("invite.participant.question")}</legend>
+              <div className="invite-participant-options">
+                {allowedRelationshipTypes.map((type) => (
+                  <OptionCard
+                    key={type}
+                    type="radio"
+                    name="inviteRelationshipType"
+                    value={type}
+                    checked={effectiveRelationshipType === type}
+                    onChange={(event) => {
+                      setError("");
+                      setMessage("");
+                      setRelationshipType(event.target.value);
+                      setTargetRole(null);
+                    }}
+                    disabled={busy}
+                    fitTextLines={2}
+                  >
+                    <span>
+                      {type === INVITE_RELATIONSHIP_CLIENT
+                        ? t("invite.participant.client")
+                        : t("invite.participant.professional")}
+                    </span>
+                  </OptionCard>
+                ))}
+              </div>
+              <p id="invite-participant-scope" className="invite-participant-scope">
+                {t("invite.participant.scope")}
+              </p>
+              {inviteRelationshipRequiredError ? (
+                <p role="alert" className="invite-participant-error">
+                  {error}
+                </p>
+              ) : null}
+            </fieldset>
             <div>
               <input
                 id="invite-emails"
@@ -477,7 +552,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
                           type="radio"
                           name="targetRole"
                           value={option.value}
-                          checked={targetRole === option.value}
+                          checked={effectiveTargetRole === option.value}
                           onChange={(e) => setTargetRole(e.target.value)}
                           disabled={busy}
                           fitTextLines={2}
@@ -511,7 +586,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
                       <div>
                         <Button
                           type="submit"
-                          disabled={sponsoredCheckoutDisabled || busy || !targetRole || !sponsoredCheckoutAgreed}
+                          disabled={sponsoredCheckoutDisabled || busy || !effectiveTargetRole || !sponsoredCheckoutAgreed}
                         >
                           {busy
                             ? t("invite.sending")
@@ -524,9 +599,9 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
               ) : null}
             </div>
 
-            {((error && !inviteEmailsRequiredError) || message || !sponsoredSelected) ? (
+            {((error && !inviteEmailsRequiredError && !inviteRelationshipRequiredError) || message || !sponsoredSelected) ? (
               <div>
-                {error && !inviteEmailsRequiredError ? (
+                {error && !inviteEmailsRequiredError && !inviteRelationshipRequiredError ? (
                   <p role="alert">
                     {error}
                   </p>

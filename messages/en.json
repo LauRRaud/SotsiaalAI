@@ -1280,7 +1280,7 @@
           "meta": "Offers"
         },
         "add_person": {
-          "title": "Add person",
+          "title": "Invite participant",
           "meta": "Invites"
         },
         "service_map": {
@@ -2492,7 +2492,7 @@
     "title": "Rooms",
     "error": "Failed to load rooms",
     "loading": "Loading rooms...",
-    "empty": "No rooms available. Add a person in chat to start a group conversation.",
+    "empty": "No rooms yet. Invite a participant to start collaborating in a room.",
     "fallback_title": "Room",
     "back_to_chats": "Back to chats",
     "unread": "New",
@@ -2525,11 +2525,17 @@
   },
   "invite": {
     "success": "Invites sent",
-    "eyebrow": "Group chat",
+    "eyebrow": "Invite participant",
     "login_required": "Sign in to send invites.",
     "classic": {
-      "emails": "Invite people to the conversation",
+      "emails": "Participant email address",
       "emails_ph": "Email, separate with commas"
+    },
+    "participant": {
+      "question": "Who would you like to invite?",
+      "client": "Person seeking support",
+      "professional": "Specialist or service provider",
+      "scope": "The participant will only get access to this collaboration room. The invitation does not grant access to your other rooms, private conversations, documents or Journey."
     },
     "pay": {
       "host": "I'll pay for them"
@@ -2545,6 +2551,7 @@
       },
       "role": {
         "worker": "Social work specialist subscription",
+        "provider": "Service provider subscription",
         "client": "Person seeking help subscription"
       }
     },
@@ -2578,6 +2585,8 @@
     },
     "error": {
       "rate_limited": "Too many requests. Please try again later.",
+      "relationship_required": "Choose who you would like to invite.",
+      "relationship_not_allowed": "Your role cannot invite this participant type.",
       "emails_required": "Add at least one email address.",
       "sponsored_single_email_required": "Sponsored invites can only be sent to one person at a time.",
       "sponsor_plan_required": "Choose the sponsored subscription role before starting payment.",
@@ -2627,15 +2636,20 @@
       }
     },
     "invite": {
+      "create": {
+        "subject": "Invitation to a collaboration room: {roomTitle}",
+        "text": "Hello!\n\n{inviterName} invited you to the SotsiaalAI collaboration room \"{roomTitle}\".\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nIf you did not expect this invitation, you can ignore this email.",
+        "html": "<p>Hello!</p><p>{inviterName} invited you to the SotsiaalAI collaboration room <strong>{roomTitle}</strong>.</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>If you did not expect this invitation, you can ignore this email.</p>"
+      },
       "sponsored": {
         "subject": "Sponsored invite: {roomTitle}",
-        "text": "Hello!\n\n{inviterName} invited you to the room \"{roomTitle}\" and paid for one month of access.\nSelected role: {roleLabel}\n\nJoin: {joinLink}\n\nAfter the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.\n\nIf you did not expect this email, you can ignore it.",
-        "html": "<p>Hello!</p><p>{inviterName} invited you to the room <strong>{roomTitle}</strong> and paid for one month of access.</p><p><strong>Selected role:</strong> {roleLabel}</p><p><a href=\"{joinLink}\">Join the room</a></p><p>After the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.</p><p>If you did not expect this email, you can ignore it.</p>"
+        "text": "Hello!\n\n{inviterName} invited you to the room \"{roomTitle}\" and paid for one month of access.\nSelected role: {roleLabel}\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nAfter the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.\n\nIf you did not expect this email, you can ignore it.",
+        "html": "<p>Hello!</p><p>{inviterName} invited you to the room <strong>{roomTitle}</strong> and paid for one month of access.</p><p><strong>Selected role:</strong> {roleLabel}</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>After the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.</p><p>If you did not expect this email, you can ignore it.</p>"
       },
       "resend": {
         "subject": "Invitation reminder: {roomTitle}",
-        "text": "Hello!\n\n{inviterName} sent you a new invite link for the room \"{roomTitle}\".\n\nJoin: {joinLink}\n\nIf you did not expect this email, you can ignore it.",
-        "html": "<p>Hello!</p><p>{inviterName} sent you a new invite link for the room <strong>{roomTitle}</strong>.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>If you did not expect this email, you can ignore it.</p>"
+        "text": "Hello!\n\n{inviterName} sent you a new invitation link for the room \"{roomTitle}\".\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nIf you did not expect this email, you can ignore it.",
+        "html": "<p>Hello!</p><p>{inviterName} sent you a new invitation link for the room <strong>{roomTitle}</strong>.</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>If you did not expect this email, you can ignore it.</p>"
       }
     },
     "payment": {

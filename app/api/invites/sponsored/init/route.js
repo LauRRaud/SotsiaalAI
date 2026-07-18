@@ -9,6 +9,10 @@ import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import {
+  canInviteRelationshipType,
+  inviteRelationshipTypeForSponsoredRole
+} from "@/lib/invites/participantTypes";
+import {
   createMaksekeskusCheckout,
   makeProviderPaymentId
 } from "@/lib/payments/maksekeskus";
@@ -391,6 +395,12 @@ export async function POST(request) {
   }
 
   const targetRole = normalizeSubscriptionRole(payload?.targetRole);
+  const relationshipType = inviteRelationshipTypeForSponsoredRole(targetRole);
+  if (!canInviteRelationshipType(auth.role, relationshipType)) {
+    return errorJson("invite.error.relationship_not_allowed", 403, locale, {
+      code: "RELATIONSHIP_NOT_ALLOWED"
+    });
+  }
   const roomId = String(payload?.room_id ?? payload?.roomId ?? "").trim();
   const roomTitle =
     typeof payload?.room_title === "string"
@@ -494,6 +504,7 @@ export async function POST(request) {
         inviteeEmail: emails[0],
         tokenHash: hash,
         status: "PENDING_PAYMENT",
+        relationshipType,
         paymentMode: "SPONSORED_BY_HOST",
         sponsoredByUserId: auth.userId,
         sponsoredRole: targetRole,

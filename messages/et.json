@@ -1280,7 +1280,7 @@
           "meta": "Pakkumised"
         },
         "add_person": {
-          "title": "Lisa inimene",
+          "title": "Kutsu osaleja",
           "meta": "Kutsed"
         },
         "service_map": {
@@ -2492,7 +2492,7 @@
     "title": "Ruumid",
     "error": "Ruumide laadimine ebaõnnestus",
     "loading": "Laadin ruume...",
-    "empty": "Ruumid puuduvad. Grupivestluse jaoks lisa vestlusesse inimene.",
+    "empty": "Ruumid puuduvad. Koostöö alustamiseks kutsu osaleja ruumi.",
     "fallback_title": "Ruum",
     "back_to_chats": "Tagasi vestlustesse",
     "unread": "Uusi",
@@ -2525,11 +2525,17 @@
   },
   "invite": {
     "success": "Kutsed saadetud",
-    "eyebrow": "Grupivestlus",
+    "eyebrow": "Kutsu osaleja",
     "login_required": "Kutsumiseks logi sisse.",
     "classic": {
-      "emails": "Kutsu inimesi vestlusesse",
+      "emails": "Osaleja e-posti aadress",
       "emails_ph": "E-post, eralda komaga"
+    },
+    "participant": {
+      "question": "Keda soovid kutsuda?",
+      "client": "Pöörduja",
+      "professional": "Spetsialist või teenuseosutaja",
+      "scope": "Osaleja saab ligipääsu ainult sellele koostööruumile. Kutse ei anna ligipääsu sinu teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale."
     },
     "pay": {
       "host": "Tasun tema eest"
@@ -2545,6 +2551,7 @@
       },
       "role": {
         "worker": "Sotsiaaltöö spetsialist",
+        "provider": "Teenuseosutaja",
         "client": "Eluküsimusega pöörduja"
       }
     },
@@ -2578,6 +2585,8 @@
     },
     "error": {
       "rate_limited": "Liiga palju päringuid. Proovi hiljem uuesti.",
+      "relationship_required": "Vali, keda soovid kutsuda.",
+      "relationship_not_allowed": "Selle osalejarolli kutsumine ei ole sinu rolliga lubatud.",
       "emails_required": "Lisa vähemalt üks e-posti aadress.",
       "sponsored_single_email_required": "Sponsoreeritud kutse puhul saad korraga kutsuda ühe inimese.",
       "sponsor_plan_required": "Vali sponsoreeritud tellimuse roll enne makse alustamist.",
@@ -2627,15 +2636,20 @@
       }
     },
     "invite": {
+      "create": {
+        "subject": "Kutse koostööruumi: {roomTitle}",
+        "text": "Tere!\n\n{inviterName} kutsus sind SotsiaalAI koostööruumi \"{roomTitle}\".\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nKui sa seda kutset ei oodanud, võid kirja eirata.",
+        "html": "<p>Tere!</p><p>{inviterName} kutsus sind SotsiaalAI koostööruumi <strong>{roomTitle}</strong>.</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Kui sa seda kutset ei oodanud, võid kirja eirata.</p>"
+      },
       "sponsored": {
         "subject": "Sponsoreeritud kutse: {roomTitle}",
-        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu tellimuse.\nValitud roll: {roleLabel}\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
-        "html": "<p>Tere!</p><p>{inviterName} kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu tellimuse.</p><p><strong>Valitud roll:</strong> {roleLabel}</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Pärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.</p><p>Kui sa ei oodanud seda kirja, võid selle eirata.</p>"
+        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu tellimuse.\nValitud roll: {roleLabel}\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
+        "html": "<p>Tere!</p><p>{inviterName} kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu tellimuse.</p><p><strong>Valitud roll:</strong> {roleLabel}</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Pärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.</p><p>Kui sa ei oodanud seda kirja, võid selle eirata.</p>"
       },
       "resend": {
         "subject": "Kutse meeldetuletus: {roomTitle}",
-        "text": "Tere!\n\n{inviterName} saatis sulle ruumi \"{roomTitle}\" jaoks uue kutselingi.\n\nLiitu: {joinLink}\n\nKui sa seda e-kirja ei oodanud, võid seda eirata.",
-        "html": "<p>Tere!</p><p>{inviterName} saatis sulle ruumi <strong>{roomTitle}</strong> jaoks uue kutselingi.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Kui sa seda e-kirja ei oodanud, võid seda eirata.</p>"
+        "text": "Tere!\n\n{inviterName} saatis sulle ruumi \"{roomTitle}\" jaoks uue kutselingi.\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nKui sa seda e-kirja ei oodanud, võid seda eirata.",
+        "html": "<p>Tere!</p><p>{inviterName} saatis sulle ruumi <strong>{roomTitle}</strong> jaoks uue kutselingi.</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Kui sa seda e-kirja ei oodanud, võid seda eirata.</p>"
       }
     },
     "payment": {

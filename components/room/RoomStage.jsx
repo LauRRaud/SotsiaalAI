@@ -793,7 +793,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "dokumendid", label: t("chat.workspace.cards.documents.title", "Dokumendid"), href: "/vestlus?workspace=documents", icon: <DocumentsIcon /> },
       { key: "koosta", label: t("chat.workspace.cards.document_drafting.title", "Koosta dokument"), href: "/vestlus?workspace=document_drafting", icon: <ComposeDocIcon /> },
       { key: "poordumised", label: t("chat.workspace.cards.pre_inquiries.title_staff", "Pöördumised"), href: "/vestlus?workspace=pre_inquiries", icon: <InquiryIcon /> },
-      { key: "lisa", label: t("chat.workspace.cards.add_person.title", "Lisa inimene"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
+      { key: "lisa", label: t("chat.workspace.cards.add_person.title", "Kutsu osaleja"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
       { key: "kovisioon", label: t("chat.workspace.cards.kovision.title", "Kovisioon"), action: "kovisioon", icon: <KovisionIcon /> },
       { key: "tooheaolu", label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), action: "tooheaolu", icon: <WellbeingIcon /> },
       { key: "materjalid", label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },

@@ -1258,6 +1258,71 @@
   margin-bottom: 0.6rem;
 }
 
+/* Kutsevormi rollivalik — üks rahulik otsustusplokk enne e-posti ja makset.
+   Semantika on nähtav tekstina; värv ei ole ainus valiku tunnus. */
+.invite-participant-form {
+  display: grid;
+  gap: clamp(0.7rem, 1.5vw, 1rem);
+  width: min(100%, 36rem);
+  margin-inline: auto;
+}
+
+.invite-participant-type {
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.invite-participant-type > legend {
+  margin-bottom: 0.55rem;
+  color: var(--text-warm);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.invite-participant-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.65rem;
+}
+
+.invite-participant-options > label {
+  min-height: 3.25rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 14px;
+  background: var(--glass-cell-bg);
+  cursor: pointer;
+}
+
+.invite-participant-options > label[data-checked="true"] {
+  border-color: color-mix(in srgb, var(--text-warm) 62%, transparent);
+  background: var(--glass-cell-bg-hover);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text-warm) 18%, transparent);
+}
+
+.invite-participant-options > label[data-focus-visible="true"] {
+  box-shadow: var(--focus-ring);
+}
+
+.invite-participant-scope {
+  margin: 0.7rem 0 0;
+  padding: 0.7rem 0.85rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--text-warm) 48%, transparent);
+  border-radius: 0 10px 10px 0;
+  color: var(--text-muted);
+  background: color-mix(in srgb, var(--glass-cell-bg) 72%, transparent);
+  font-size: calc(var(--fs-body) * 0.9);
+  line-height: 1.5;
+}
+
+.invite-participant-error {
+  margin: 0.45rem 0 0;
+  color: var(--status-error);
+}
+
 
 /* ============================================================
    Kovisiooni TÄISEKRAANI LÕUEND (tellija 06.07 öö): liigutatavad

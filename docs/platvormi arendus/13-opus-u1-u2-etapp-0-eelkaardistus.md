@@ -443,22 +443,26 @@ Omanikuskoobid on allikteenustes olemas, kuid neid ei tohi asendada ühe laia OR
 
 Väikseim turvaline vertikaal ei vaja uut DB mudelit. V1 võib lisada `plainLanguage: boolean` olemasolevasse a11y localStorage/cookie lepingusse, serverile saadetakse ainult boolean. Kontoülene/multi-device sync on hilisem otsus.
 
-### 6.4 U9 — tugiisiku kaasamise rada
+### 6.4 U9 — rolliteadlik osalejakutse
 
-**Seis: OSALISELT OLEMAS, kasutusleping puudulik.**
+> **Tooteotsuse täpsustus 2026-07-14:** varasem „tugiisiku kaasamise raja” tõlgendus on tühistatud. Funktsioon on mõeldud pöörduja ja spetsialisti ning spetsialistide või teenuseosutajate omavaheliseks koostööks valitud ruumis, mitte kahe pöörduja ega pöörduja ja mitteametliku tugiisiku vestluseks.
 
-**MAIN-IST KINNITATUD:** CLIENT tööruumis on juba kaart `Lisa inimene`; InviteModal võib luua ruumi või kutsuda olemasolevasse ruumi. Server kontrollib owner/moderator rolli, kutse aegumist, konto e-posti, subscription/sponsorlust ja loob ainult selle ruumi liikmelisuse.
+**Seis: SOL HARUL VALMIS; main-i ühendamata.**
 
-**MAIN-IST KINNITATUD:** klassikaline InviteModal ei saada `relationship_type`; API default on `COLLEAGUE`. Seega pöörduja „Lisa inimene” ei jää andmetes tugiisiku/CLIENT suhteks. UI ega e-kiri ei selgita, et kutsutu näeb ainult valitud ruumi, mitte Teekonda, isiklikke vestlusi, dokumente või teisi ruume.
+**MAIN-IST KINNITATUD:** tööruumis on osaleja kutsumise kaart; InviteModal võib luua ruumi või kutsuda olemasolevasse ruumi. Server kontrollib owner/moderator rolli, kutse aegumist, konto e-posti, subscription/sponsorlust ja loob ainult selle ruumi liikmelisuse.
+
+**MAIN-IST KINNITATUD:** klassikaline InviteModal ei saada `relationship_type`; API default on `COLLEAGUE`. Seega ei jää osaleja tegelik roll andmetes üheselt eristatavaks. UI ega e-kiri ei selgita, et kutsutu näeb ainult valitud ruumi, mitte Teekonda, isiklikke vestlusi, dokumente või teisi ruume.
 
 Väikseim vertikaal on endiselt peamiselt UI/i18n:
 
-- CLIENT rollis kaart „Kutsu tugiisik”;
-- enne saatmist selge scope-copy;
-- `relationship_type: CLIENT` serveripayloadis ja testis;
-- kutsekiri ET/EN/RU lihtsas keeles;
+- neutraalne kaart „Kutsu osaleja”;
+- rolliküsimus „Pöörduja” või „Spetsialist või teenuseosutaja” vastavalt kutsuja rollile;
+- valitud `relationship_type` serveripayloadis ja testis;
+- selge scope-copy modaalis ja kutsekirjas ET/EN/RU;
 - olemasolev room membership jääb ainsaks õiguseks;
 - ametlik esindusõigus, volitus ja kontoülene ligipääs jäävad rangelt välja.
+
+**SOL TEOSTUS 2026-07-14:** haru `codex/role-aware-invite-copy` rakendab selle vertikaali klassikalisele ja sponsoreeritud kutserajale. Pöörduja saab kutsuda ainult spetsialisti või teenuseosutaja; spetsialist ja teenuseosutaja saavad kutsuda pöörduja või teise professionaali. Sama piir on jõustatud nii UI-s kui serveris. Kutse scope-copy ja tavakutse varem puudunud e-kirjamall on lisatud ET/EN/RU. Migratsiooni ega keskkonnamuutust ei ole. Kontrollid: osalejakutse testid 12/12, kogu repo 1234/1234, i18n, sihitud lint, CSS-väravad ja tootmisbuild rohelised.
 
 ### 6.5 U11 — töö üleandmine kolleegile
 
@@ -554,7 +558,7 @@ Selle Soli auditi põhjal peaks koondseisu järgmine muutus olema alljärgnev. T
 | U5 | TEOSTAMATA; aggregate/privacy alus olemas; ootab U4 merge'i ja k-läve otsust |
 | U6 | TEOSTAMATA; ainult laetud vestluste kliendifilter olemas |
 | U7 | TEOSTAMATA; tugevad a11y/prompt/plain-tone liidesed olemas; järgmise plaani sisend valmis |
-| U9 | OSALISELT OLEMAS; room invite mehaanika olemas, tugiisiku semantika/scope-copy puudub |
+| U9 | SOL HARUL VALMIS; rolliteadlik osalejakutse, serveripoolne rollipiir ja ET/EN/RU scope-copy ootavad merge'i |
 | U11 | TEOSTAMATA; vajab rohkem kui kaks PATCH-i ning sõltub U1-st |
 
 U3/U12, P1, U4 ja U8-lite aktsepteeritud paranduste märgend jääb kasutaja otsuse järgi: `SOL PARANDATUD — KASUTAJA AKTSEPTEERIS ILMA KORDUSAUDITITA`, välja arvatud U12/U3 eraldiseisev varasem `OPUS HEAKS KIIDETUD` auditiotsus seal, kus see juba dokumenteeriti. Käesolevad uued SOL-U1U2-P1-1 ja OPUS-U1U2-P1-2 on U1/U2 eeltingimused ega muuda tagantjärele kasutaja aktsepteerimismärgendit.
