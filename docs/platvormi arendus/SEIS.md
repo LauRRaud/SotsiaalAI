@@ -140,7 +140,26 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 **T07 korrastus 18.07** (ainult tehniline, sisu EI arendatud): haru rebase'itud main-i tipule `032a1e6d` (konflikte 0) ja **push'itud** → `origin/codex/documents-research-v1 @ e49834e3`. **Parandatud migratsiooni ajatempli põrge:** `20260719130000_documents_research_v1` kandis SAMA ajatemplit kui juba main-i liidetud `20260719130000_mentoring_v1` ja sorteerus sellest tähestikuliselt ETTE (`documents_` < `mentoring_`) → ümber nimetatud `20260719150000_documents_research_v1`. Rebase'i-järgsed väravad: **1710/1710 testi + i18n OK + 102-migratsiooni ahel OK**.
 
-**T07 lahtine küsimus, mis vajab vastust enne teema lõpetamist:** lepingu E1 esimene punkt on „Sulge Fable'i tuvastatud cross-tenant RAG-leke serveris". Harus **ei ole muudetud ühtegi RAG/retrieval-faili** (muudetud on ainult `app/api/documents/*`, `app/api/research/jobs/*` ja kolm `lib/`-faili) ning ülal on kirjas „T28 cross-tenant piir puutumata". Kaks võimalust: kas T28 sulges lekke juba enne T07 lepingu kirjutamist, või on see endiselt lahti. **Seda ei tohi oletada** — vajab üht sihitud kontrolli retrieval-rajal. Ka E1 päritolu/privaatsusriba on tegemata (sõltub E3-st).
+**T07 E1 cross-tenant RAG-küsimus — VASTATUD 18.07: leket EI OLE, piir oli juba suletud (DOK-XTEN P0, mitte T28).** Seetõttu ei olnudki T07 harus ühtegi RAG-faili vaja muuta. Jälitatud tervikahel:
+
+1. Kasutaja dokumendid **on** RAG-is, aga **eraldi privaatses kollektsioonis** — päring käib `/search/agent-documents` pihta serveris koostatud `doc_ids` lubatute-loendiga (`lib/documents/search.js`); kliendipoolset `where`-filtrit ei saadeta.
+2. `searchDocumentChunks`-il on **täpselt üks kutsuja** (`buildRetrievedEvidence`, `lib/documents/generation.js:228`), mille `documents` tuleb kahest eksporditud sisenemispunktist.
+3. **Kõik neli kutsujat on omaniku-skoobitud:** `artifacts/generate/route.js:104`, `artifacts/refine/route.js:132`, `artifacts/route.js:235` (kõik `ownerId: auth.userId`) ja chat-töövoog `lib/chat/workflowBranchHandlers.js`, mis annab **tühja loendi** (`agentDocuments = []`, kunagi ei täideta) → dokumendi-retrieval'it seal ei toimu.
+4. **Süvauuring on eraldi kaitstud:** `app/api/research/jobs/route.js` filtreerib `PRIVATE_AGENT_RAG_COLLECTION_IDS` välja enne geo-variantide koostamist.
+5. **Jagatud teadmusbaas `RagDocument` kannab `adminId`-d, mitte kasutaja omandit** — see on kureeritud sisu, mitte cross-tenant pind.
+6. **Kaitse on serveripoolne ja testitud:** `rag-service/main.py` `AgentDocumentSearchIn` on `extra: forbid` ja **ilma** `owner_id`/`tenant_id`/`where` väljadeta (klient ei saa skoopi süstida); `tests/rag/agentDocumentIsolation.test.js` **4/4 roheline**, sh Python-poolne `test_search_security.py`.
+
+**Tagajärg T07-le:** E1 esimene punkt on juba täidetud — **mitte tegemata töö**. E1-st jääb alles ainult päritolu/privaatsusriba, mis sõltub E3-st. Varasem märge „T28 cross-tenant piir puutumata" oli eksitav: piiri ei puudutatud sellepärast, et see oli juba korras. Vt ka `sol-dok-xten-p0-kordusaudit.md`.
+
+### Väikesed sulgemised 18.07 (kolm nimekirjarida maha)
+
+| Rida | Tulemus |
+|---|---|
+| **M1** admini bulk-email tokeni replay | **SULETUD ILMA TÖÖTA — oli juba parandatud.** `lib/admin/dangerousAnalyticsActions.js` paneb `jti` tokenisse ja `reserveBulkEmailPreview` kirjutab `DataAuditLog`-i `id: jti`-ga ENNE saatmist; `DataAuditLog.id` on primaarvõti → kordus annab P2002 → `DANGEROUS_PREVIEW_ALREADY_USED` 409. Kaetud 3 testiga. **Kontrollimeetodi õppetund:** marsruudifaili (`app/api/admin/analytics/users/route.js`) grep'imine EI näita seda — kogu loogika on lib-is. Varasem „M1 jääb lahtiseks" oli aegunud. |
+| **T07 E1** cross-tenant RAG | **LEKET EI OLE** — piir suleti juba DOK-XTEN P0-s (vt eespool täisahel + `tests/rag/agentDocumentIsolation.test.js` 4/4). T07 E1-st jääb ainult päritolu/privaatsusriba (sõltub E3-st). |
+| **P2-6** `receiverChecklist` ET-only | **PARANDATUD** — `codex/receiver-checklist-i18n @ 39c1085a` → main `c429bf4a`. 5 ET-only lauset (mis läksid ka DB-sse) on nüüd võtmete taga: serveripoolne `labelKey` + `labelVars`, ET-tekst jääb fallback'iks vanadele ridadele; `clarify_missing` jagatud kolmeks variandiks (loenduriga lauseosa ei saa tõlkes tingimuslikuks teha); võtit ei saa kliendist süstida. 9 võtit × 3 keelt + 4 testi. Väravad: **1700/1700**, lint 0 viga, i18n OK, build OK. |
+
+**Reeglimärkus:** P2-6 muudatus tehti põhitööpuus, mitte eraldi worktree's (reegel „uus kooditöö ainult eraldi värskes worktree's"). Maht oli 6 faili; commit läks siiski korralikule harule ja sealt merge'iga main-i. Kirjas, et muster oleks nähtav, mitte vaikimisi normiks.
 
 **Backup'id:** `backup/main-pre-cleanup-2026-07-18` (uus, = `662b6e8a`, main enne kahe pargitud haru liitmist), `backup/documents-research-pre-rebase-2026-07-18` (uus, = T07 `db3589f5`), `backup/field-v1-pre-rebase-2026-07-18` (= T24 WIP `cb99b092`), `backup/main-pre-t02t16-merge-2026-07-18`, `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
