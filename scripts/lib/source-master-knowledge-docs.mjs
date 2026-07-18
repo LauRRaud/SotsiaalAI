@@ -246,7 +246,7 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
   const evidenceRole = chooseEvidenceRole(record, collectionId);
   const year = extractYear(record);
   const sourceId = clean(record.source_id);
-  const url = clean(record.url);
+  const url = clean(options.sourceUrl) || clean(record.url);
   const title = clean(record.title) || sourceId;
   const topics = unique([
     ...arrayValue(record.topic_tags),
@@ -263,13 +263,14 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     collection_id: collectionId
   });
 
+  const sourceDocumentId = clean(options.docId) || sourceId;
   return {
     schemaVersion: "knowledge-doc-v1",
     metadata_schema_version: "v2.5",
-    docId: sourceId,
-    document_id: sourceId,
+    docId: sourceDocumentId,
+    document_id: sourceDocumentId,
     source_id: sourceId,
-    canonical_source_id: sourceId,
+    canonical_source_id: clean(options.canonicalSourceId) || sourceId,
     title,
     description: buildDescription(record),
     publisher,
@@ -284,8 +285,8 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     document_kind: chooseDocumentKind(sourceType, collectionId),
     resource_type: resourceType,
     source_type: sourceType,
-    source_origin_type: "source_master_pdf",
-    source_format: "pdf",
+    source_origin_type: clean(options.sourceOriginType) || "source_master_pdf",
+    source_format: clean(options.sourceFormat) || "pdf",
     collection_id: collectionId,
     jurisdiction_level: "NATIONAL",
     country: "EE",
@@ -303,7 +304,7 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     target_groups: [],
     source_url: url,
     url,
-    url_canonical: clean(record.normalized_url) || url,
+    url_canonical: clean(options.urlCanonical) || clean(record.normalized_url) || url,
     source_path: null,
     source_status: sourceStatusFromRecord(record),
     historical: false,
@@ -313,7 +314,7 @@ export function buildKnowledgeMetadataFromSourceMasterRecord(record = {}, option
     display_full_text: false,
     allow_excerpts: "short_only",
     user_facing_knowledge: true,
-    content_hash: stableHash(contentHashInput),
+    content_hash: clean(options.contentHash) || stableHash(contentHashInput),
     source_master: {
       registry_schema_version: clean(record.registry_schema_version) || "source-master-v1",
       registry_role: clean(record.registry_role) || "dedupe_seed_and_ingest_planning",
