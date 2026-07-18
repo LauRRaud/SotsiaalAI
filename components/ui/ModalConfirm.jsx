@@ -28,14 +28,9 @@ export default function ModalConfirm({
       document.body.style.overflow = prev;
     };
   }, []);
-  useEffect(() => {
-    function onKey(e) {
-      if (e.key === "Escape" && onCancel && !disabled) onCancel();
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onCancel, disabled]);
-  const modal = <Modal open onClose={onCancel} closeOnOverlayClick={false} aria-label={typeof message === "string" ? message : "Confirm dialog"} className={cn(overlayClassName)} contentClassName={cn(contentClassName)}>
+  // Escape is handled by Modal; a busy or disabled confirm must not be
+  // dismissible so a pending action (e.g. account deletion) can't be aborted.
+  const modal = <Modal open onClose={onCancel} closeOnOverlayClick={false} closeOnEscape={!busy && !disabled} aria-label={typeof message === "string" ? message : "Confirm dialog"} className={cn(overlayClassName)} contentClassName={cn(contentClassName)}>
       {!busy ? <p>{message}</p> : null}
       {!busy && children ? children : null}
       {busy ? <div role="status" aria-live="polite" aria-atomic="true">

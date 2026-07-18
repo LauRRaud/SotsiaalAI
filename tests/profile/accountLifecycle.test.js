@@ -18,28 +18,37 @@ function makeDb({
   id = "user-1",
   email = "current@example.test",
   passwordHash = "stored-pin-hash",
-  emailVerified = new Date("2026-01-01T00:00:00.000Z"),
   sessionVersion = 4,
-  role = "CLIENT"
+  role = "CLIENT",
+  emailOwners = {},
+  pendingConflict = null
 } = {}) {
-  const user = { id, email, passwordHash, emailVerified, sessionVersion, role };
-  const calls = { findUnique: [], update: [] };
+  const user = { id, email, passwordHash, sessionVersion, role };
+  const calls = { findUnique: [], update: [], pendingFindFirst: [] };
   const db = {
     user: {
       async findUnique(args) {
         calls.findUnique.push(args);
         if (args.where.id) return args.where.id === user.id ? { ...user } : null;
-        if (args.where.email) return args.where.email === user.email ? { ...user } : null;
+        if (args.where.email) {
+          if (args.where.email === user.email) return { ...user };
+          const ownerId = emailOwners[args.where.email];
+          return ownerId ? { id: ownerId, email: args.where.email } : null;
+        }
         return null;
       },
       async update(args) {
         calls.update.push(args);
-        const { sessionVersion: sessionVersionUpdate, ...scalarData } = args.data;
-        Object.assign(user, scalarData);
-        if (sessionVersionUpdate?.increment) {
-          user.sessionVersion += sessionVersionUpdate.increment;
-        }
+        const { sessionVersion: sv, ...scalar } = args.data;
+        Object.assign(user, scalar);
+        if (sv?.increment) user.sessionVersion += sv.increment;
         return { email: user.email, role: user.role };
+      }
+    },
+    pendingEmailChange: {
+      async findFirst(args) {
+        calls.pendingFindFirst.push(args);
+        return pendingConflict;
       }
     }
   };
@@ -53,36 +62,47 @@ function verifier(result, calls = []) {
   };
 }
 
-test("actual email change requires a current PIN before any update or verification mail", async () => {
+function pendingSpy(calls = []) {
+  return async (args) => {
+    calls.push(args);
+    return {
+      token: `token-for-${args.newEmail}`,
+      tokenHash: "hash",
+      expiresAt: new Date("2999-01-01T00:00:00.000Z"),
+      newEmail: args.newEmail
+    };
+  };
+}
+
+test("email change requires the current PIN before any pending change or mail", async () => {
   const fixture = makeDb();
   const reauthCalls = [];
   const emailCalls = [];
+  const pendingCalls = [];
 
   const result = await updateProfileForUser({
     db: fixture.db,
     userId: fixture.user.id,
     request: request(),
     nextEmail: "new@example.test",
-    currentPassword: undefined,
     verifyCurrentPassword: verifier({ ok: false, reason: "required" }, reauthCalls),
-    onEmailChanged: async (email) => emailCalls.push(email)
+    createPendingChange: pendingSpy(pendingCalls),
+    onEmailChangeRequested: async (payload) => emailCalls.push(payload)
   });
 
   assert.equal(result.ok, false);
   assert.equal(result.error.messageKey, "profile.errors.current_pin_required");
   assert.equal(result.error.status, 400);
-  assert.equal(reauthCalls.length, 1);
   assert.equal(reauthCalls[0].operation, "put");
-  assert.equal(reauthCalls[0].currentPassword, undefined);
-  assert.equal(fixture.calls.update.length, 0);
+  assert.equal(pendingCalls.length, 0);
   assert.deepEqual(emailCalls, []);
+  assert.equal(fixture.calls.update.length, 0);
   assert.equal(fixture.user.email, "current@example.test");
-  assert.ok(fixture.user.emailVerified);
-  assert.equal(fixture.user.sessionVersion, 4);
 });
 
-test("wrong current PIN blocks a real email change without DB or email side effects", async () => {
+test("wrong current PIN blocks an email change with no pending, mail or session change", async () => {
   const fixture = makeDb();
+  const pendingCalls = [];
   const emailCalls = [];
 
   const result = await updateProfileForUser({
@@ -92,22 +112,23 @@ test("wrong current PIN blocks a real email change without DB or email side effe
     nextEmail: "new@example.test",
     currentPassword: "0000",
     verifyCurrentPassword: verifier({ ok: false, reason: "invalid" }),
-    onEmailChanged: async (email) => emailCalls.push(email)
+    createPendingChange: pendingSpy(pendingCalls),
+    onEmailChangeRequested: async (payload) => emailCalls.push(payload)
   });
 
   assert.equal(result.ok, false);
-  assert.equal(result.error.messageKey, "profile.errors.current_pin_invalid");
   assert.equal(result.error.status, 401);
-  assert.equal(fixture.calls.update.length, 0);
+  assert.equal(pendingCalls.length, 0);
   assert.deepEqual(emailCalls, []);
+  assert.equal(fixture.calls.update.length, 0);
   assert.equal(fixture.user.email, "current@example.test");
-  assert.ok(fixture.user.emailVerified);
   assert.equal(fixture.user.sessionVersion, 4);
 });
 
-test("correct current PIN keeps the existing email-change session and verification flow", async () => {
+test("verify-then-swap: correct PIN records a pending change and mails the new address only", async () => {
   const fixture = makeDb();
   const emailCalls = [];
+  const pendingCalls = [];
 
   const result = await updateProfileForUser({
     db: fixture.db,
@@ -116,27 +137,31 @@ test("correct current PIN keeps the existing email-change session and verificati
     nextEmail: "new@example.test",
     currentPassword: "1234",
     verifyCurrentPassword: verifier({ ok: true }),
-    onEmailChanged: async (email) => emailCalls.push(email)
+    createPendingChange: pendingSpy(pendingCalls),
+    onEmailChangeRequested: async (payload) => emailCalls.push(payload)
   });
 
   assert.equal(result.ok, true);
-  assert.equal(result.requiresReauth, true);
-  assert.deepEqual(emailCalls, ["new@example.test"]);
-  assert.equal(fixture.calls.update.length, 1);
-  assert.deepEqual(fixture.calls.update[0].data, {
-    email: "new@example.test",
-    emailVerified: null,
-    emailVerificationSentAt: null,
-    sessionVersion: { increment: 1 }
-  });
-  assert.equal(fixture.user.email, "new@example.test");
-  assert.equal(fixture.user.emailVerified, null);
-  assert.equal(fixture.user.sessionVersion, 5);
+  assert.equal(result.emailChangeRequested, true);
+  assert.equal(result.requiresReauth, false); // login identity not swapped yet
+  assert.equal(result.pendingEmail, "new@example.test");
+
+  // login identity, verification and sessions are untouched
+  assert.equal(fixture.calls.update.length, 0);
+  assert.equal(fixture.user.email, "current@example.test");
+  assert.equal(fixture.user.sessionVersion, 4);
+
+  assert.equal(pendingCalls.length, 1);
+  assert.equal(pendingCalls[0].newEmail, "new@example.test");
+  assert.equal(emailCalls.length, 1);
+  assert.equal(emailCalls[0].newEmail, "new@example.test");
+  assert.equal(emailCalls[0].token, "token-for-new@example.test");
 });
 
-test("submitting the current email does not reauthenticate, revoke sessions, or send mail", async () => {
+test("submitting the current email does not reauthenticate, record a pending change or mail", async () => {
   const fixture = makeDb();
   const reauthCalls = [];
+  const pendingCalls = [];
   const emailCalls = [];
 
   const result = await updateProfileForUser({
@@ -145,18 +170,61 @@ test("submitting the current email does not reauthenticate, revoke sessions, or 
     request: request(),
     nextEmail: fixture.user.email,
     verifyCurrentPassword: verifier({ ok: false, reason: "invalid" }, reauthCalls),
-    onEmailChanged: async (email) => emailCalls.push(email)
+    createPendingChange: pendingSpy(pendingCalls),
+    onEmailChangeRequested: async (payload) => emailCalls.push(payload)
   });
 
   assert.equal(result.ok, true);
+  assert.equal(result.emailChangeRequested, false);
   assert.equal(result.requiresReauth, false);
   assert.deepEqual(reauthCalls, []);
-  assert.equal(fixture.calls.update.length, 0);
+  assert.equal(pendingCalls.length, 0);
   assert.deepEqual(emailCalls, []);
-  assert.equal(fixture.user.sessionVersion, 4);
 });
 
-test("PIN change still requires the current PIN and only hashes after it passes", async () => {
+test("a target address already used by another account is rejected before creating a pending change", async () => {
+  const fixture = makeDb({ emailOwners: { "taken@example.test": "someone-else" } });
+  const pendingCalls = [];
+
+  const result = await updateProfileForUser({
+    db: fixture.db,
+    userId: fixture.user.id,
+    request: request(),
+    nextEmail: "taken@example.test",
+    currentPassword: "1234",
+    verifyCurrentPassword: verifier({ ok: true }),
+    createPendingChange: pendingSpy(pendingCalls)
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "profile.email_update.error_email_in_use");
+  assert.equal(result.error.status, 409);
+  assert.equal(pendingCalls.length, 0);
+});
+
+test("a competing pending change on the same target address is rejected", async () => {
+  const fixture = makeDb({
+    pendingConflict: { id: "other-pending", userId: "someone-else", newEmail: "new@example.test" }
+  });
+  const pendingCalls = [];
+
+  const result = await updateProfileForUser({
+    db: fixture.db,
+    userId: fixture.user.id,
+    request: request(),
+    nextEmail: "new@example.test",
+    currentPassword: "1234",
+    verifyCurrentPassword: verifier({ ok: true }),
+    createPendingChange: pendingSpy(pendingCalls)
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "profile.email_update.error_email_in_use");
+  assert.equal(result.error.status, 409);
+  assert.equal(pendingCalls.length, 0);
+});
+
+test("PIN change requires the current PIN, hashes only after it passes, revokes sessions and notifies", async () => {
   const rejected = makeDb();
   let rejectedHashCalls = 0;
   const rejectedResult = await updateProfileForUser({
@@ -171,13 +239,13 @@ test("PIN change still requires the current PIN and only hashes after it passes"
       return "new-hash";
     }
   });
-
   assert.equal(rejectedResult.ok, false);
-  assert.equal(rejectedResult.error.messageKey, "profile.errors.current_pin_invalid");
+  assert.equal(rejectedResult.error.status, 401);
   assert.equal(rejectedHashCalls, 0);
   assert.equal(rejected.calls.update.length, 0);
 
   const accepted = makeDb();
+  const pinNotices = [];
   const acceptedResult = await updateProfileForUser({
     db: accepted.db,
     userId: accepted.user.id,
@@ -185,15 +253,56 @@ test("PIN change still requires the current PIN and only hashes after it passes"
     nextPassword: "5678",
     currentPassword: "1234",
     verifyCurrentPassword: verifier({ ok: true }),
-    hashPin: async (pin) => `hash:${pin}`
+    hashPin: async (pin) => `hash:${pin}`,
+    onPinChanged: async (payload) => pinNotices.push(payload)
   });
-
   assert.equal(acceptedResult.ok, true);
   assert.equal(acceptedResult.requiresReauth, true);
   assert.deepEqual(accepted.calls.update[0].data, {
     passwordHash: "hash:5678",
     sessionVersion: { increment: 1 }
   });
+  assert.equal(accepted.user.sessionVersion, 5);
+  assert.deepEqual(pinNotices, [{ email: "current@example.test" }]);
+});
+
+test("passwordless account cannot change email; it must set up a PIN first (step-up)", async () => {
+  const fixture = makeDb({ passwordHash: null });
+  const reauthCalls = [];
+  const pendingCalls = [];
+
+  const result = await updateProfileForUser({
+    db: fixture.db,
+    userId: fixture.user.id,
+    request: request(),
+    nextEmail: "new@example.test",
+    verifyCurrentPassword: verifier({ ok: true }, reauthCalls),
+    createPendingChange: pendingSpy(pendingCalls)
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "profile.errors.pin_setup_required");
+  assert.equal(result.error.status, 409);
+  assert.equal(result.error.extras.code, "PIN_SETUP_REQUIRED");
+  assert.deepEqual(reauthCalls, []); // no reauth attempted; blocked earlier
+  assert.equal(pendingCalls.length, 0);
+  assert.equal(fixture.user.email, "current@example.test");
+});
+
+test("passwordless account cannot change its PIN without recovery step-up", async () => {
+  const fixture = makeDb({ passwordHash: null });
+  const result = await updateProfileForUser({
+    db: fixture.db,
+    userId: fixture.user.id,
+    request: request(),
+    nextPassword: "5678",
+    verifyCurrentPassword: verifier({ ok: true }),
+    hashPin: async () => "x"
+  });
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "profile.errors.pin_setup_required");
+  assert.equal(result.error.status, 409);
+  assert.equal(fixture.calls.update.length, 0);
 });
 
 test("PUT current-PIN failures are limited before bcrypt and isolate user/IP keys", async () => {
@@ -208,6 +317,7 @@ test("PUT current-PIN failures are limited before bcrypt and isolate user/IP key
       request: request(ip),
       nextEmail: `new-${userId.replace(/[^a-z0-9]/gi, "-")}@example.test`,
       currentPassword: "0000",
+      createPendingChange: pendingSpy(),
       reauthOptions: {
         comparePin: async () => {
           compareCalls += 1;
@@ -266,26 +376,4 @@ test("DELETE current-PIN failures are rate limited and do not start cleanup", as
   assert.equal(limited.error.messageKey, "api.common.rate_limited");
   assert.equal(compareCalls, 10);
   assert.equal(deletionCalls, 0);
-});
-
-test("passwordless user retains the existing profile update path", async () => {
-  const fixture = makeDb({ passwordHash: null });
-  const reauthCalls = [];
-  const emailCalls = [];
-
-  const result = await updateProfileForUser({
-    db: fixture.db,
-    userId: fixture.user.id,
-    request: request(),
-    nextEmail: "passwordless-new@example.test",
-    verifyCurrentPassword: verifier({ ok: false, reason: "invalid" }, reauthCalls),
-    onEmailChanged: async (email) => emailCalls.push(email)
-  });
-
-  assert.equal(result.ok, true);
-  assert.deepEqual(reauthCalls, []);
-  assert.equal(fixture.user.email, "passwordless-new@example.test");
-  assert.equal(fixture.user.emailVerified, null);
-  assert.equal(fixture.user.sessionVersion, 5);
-  assert.deepEqual(emailCalls, ["passwordless-new@example.test"]);
 });

@@ -2,8 +2,8 @@ export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import crypto from "node:crypto";
-import { hash } from "bcrypt";
 import { prisma } from "@/lib/prisma";
+import { resetPasswordWithToken } from "@/lib/auth/passwordResetLifecycle";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
@@ -237,61 +237,10 @@ export async function PUT(request) {
       return err("api.auth.reset.pin_invalid", 400, locale);
     }
 
-    const verificationToken = await prisma.verificationToken.findFirst({
-      where: {
-        token,
-        identifier: {
-          startsWith: RESET_IDENTIFIER_PREFIX
-        }
-      }
-    });
-    if (!verificationToken) {
-      return err("api.auth.reset.token_invalid", 400, locale);
+    const result = await resetPasswordWithToken({ db: prisma, token, pin });
+    if (!result.ok) {
+      return err(result.error.messageKey, result.error.status, locale);
     }
-
-    if (verificationToken.expires < new Date()) {
-      await prisma.verificationToken.delete({
-        where: {
-          identifier_token: {
-            identifier: verificationToken.identifier,
-            token: verificationToken.token
-          }
-        }
-      });
-      return err("api.auth.reset.token_expired", 410, locale);
-    }
-
-    const email = normalizeEmail(
-      String(verificationToken.identifier || "").replace(RESET_IDENTIFIER_PREFIX, "")
-    );
-    const user = await prisma.user.findUnique({ where: { email } });
-    if (!user) {
-      await prisma.verificationToken.delete({
-        where: {
-          identifier_token: {
-            identifier: verificationToken.identifier,
-            token: verificationToken.token
-          }
-        }
-      });
-      return err("api.auth.reset.user_not_found", 404, locale);
-    }
-
-    const passwordHash = await hash(pin, 12);
-    await prisma.$transaction(async (tx) => {
-      await tx.user.update({
-        where: { id: user.id },
-        data: { passwordHash }
-      });
-      await tx.verificationToken.delete({
-        where: {
-          identifier_token: {
-            identifier: verificationToken.identifier,
-            token: verificationToken.token
-          }
-        }
-      });
-    });
 
     return ok({ requiresReauth: true });
   } catch (error) {

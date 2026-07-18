@@ -25,7 +25,9 @@ export default function UuendaEpostiBody() {
   const [email, setEmail] = useState("");
   const [pin, setPin] = useState("");
   const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [pendingEmail, setPendingEmail] = useState("");
+  const [actionBusy, setActionBusy] = useState("");
+  const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [loginOpen, setLoginOpen] = useState(false);
   const errorId = error ? "update-email-error" : undefined;
@@ -51,6 +53,7 @@ export default function UuendaEpostiBody() {
         if (!isActive) return;
         if (res.ok) {
           setCurrentEmail(payload?.user?.email || "");
+          setPendingEmail(payload?.user?.pendingEmailChange?.email || "");
         }
       } catch (err) {
         console.error("update email profile load", err);
@@ -68,6 +71,7 @@ export default function UuendaEpostiBody() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+    setNotice("");
     if (status !== "authenticated") {
       setError(t("profile.login_to_view"));
       setLoginOpen(true);
@@ -116,12 +120,63 @@ export default function UuendaEpostiBody() {
         }));
         return;
       }
-      setSubmitted(true);
+      setPendingEmail(payload?.pendingEmail || nextEmail);
+      setEmail("");
+      setPin("");
     } catch (err) {
       console.error("update email error", err);
       setError(t("profile.email_update.error_failed"));
     } finally {
       setLoading(false);
+    }
+  }
+  async function handleResend() {
+    setActionBusy("resend");
+    setError("");
+    setNotice("");
+    try {
+      const res = await fetch("/api/profile/email-change", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ locale })
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok || payload?.ok === false) {
+        setError(resolveApiMessage({ payload, t, fallbackKey: "profile.email_update.error_failed" }));
+        return;
+      }
+      setNotice(t("profile.email_update.resent"));
+    } catch (err) {
+      console.error("resend email change", err);
+      setError(t("profile.email_update.error_failed"));
+    } finally {
+      setActionBusy("");
+    }
+  }
+  async function handleCancel() {
+    setActionBusy("cancel");
+    setError("");
+    setNotice("");
+    try {
+      const res = await fetch("/api/profile/email-change", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ locale })
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok || payload?.ok === false) {
+        setError(resolveApiMessage({ payload, t, fallbackKey: "profile.email_update.error_failed" }));
+        return;
+      }
+      setPendingEmail("");
+      setEmail("");
+      setPin("");
+      setNotice(t("profile.email_update.cancelled"));
+    } catch (err) {
+      console.error("cancel email change", err);
+      setError(t("profile.email_update.error_failed"));
+    } finally {
+      setActionBusy("");
     }
   }
   const unauthenticated = status === "unauthenticated";
@@ -141,10 +196,28 @@ export default function UuendaEpostiBody() {
               <Button type="button" variant="primary" onClick={() => setLoginOpen(true)}>
                 <span>{t("auth.login.title")}</span>
               </Button>
-            </div> : submitted ? <div>
+            </div> : pendingEmail ? <div aria-live="polite">
+              <h2>{t("profile.email_update.pending_title")}</h2>
               <p>
-                {t("profile.email_update.success")}
+                {t("profile.email_update.pending_body", { email: pendingEmail })}
               </p>
+              <p>
+                {t("profile.email_update.pending_hint")}
+              </p>
+              {notice && <p role="status">{notice}</p>}
+              {error && <p id={errorId} role="alert">{error}</p>}
+              <div>
+                <Button type="button" variant="primary" onClick={handleResend} disabled={actionBusy !== ""}>
+                  <span>
+                    {actionBusy === "resend" ? t("profile.email_update.resending") : t("profile.email_update.resend")}
+                  </span>
+                </Button>
+                <Button type="button" variant="secondary" onClick={handleCancel} disabled={actionBusy !== ""}>
+                  <span>
+                    {actionBusy === "cancel" ? t("profile.email_update.cancelling") : t("profile.email_update.cancel")}
+                  </span>
+                </Button>
+              </div>
             </div> : <form onSubmit={handleSubmit} autoComplete="on" aria-busy={loading ? "true" : "false"}>
               <input aria-label={usernameLabel} id="email-username" name="username" type="email" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-email" className="sr-only">
