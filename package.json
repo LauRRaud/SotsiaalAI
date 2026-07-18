@@ -75,7 +75,7 @@
     "payments:test-users": "node scripts/create-payment-test-users.mjs",
     "payments:alerts:dispatch": "node scripts/payment-alert-dispatch.mjs",
     "payments:renewals": "node scripts/subscription-renewals.mjs",
-    "research:worker": "tsx --tsconfig jsconfig.json scripts/research-worker.mjs",
+    "research:worker": "cross-env NODE_OPTIONS=--conditions=react-server tsx --tsconfig jsconfig.json scripts/research-worker.mjs",
     "rag:validate:kov": "node scripts/validate-kov-rag.mjs",
     "rag:ingest:kov": "node scripts/ingest-kov-rag.mjs",
     "rag:ingest:rt-national": "node scripts/ingest-national-rt-xml.mjs",

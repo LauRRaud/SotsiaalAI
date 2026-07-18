@@ -1,0 +1,23 @@
+[Unit]
+Description=SotsiaalAI deep research worker (queue processor)
+After=network.target postgresql.service sotsiaalai-rag.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+# Long-running poll loop: claimNextResearchJob -> runDeepResearchJob -> repeat.
+# RESEARCH_JOB_MODE=worker makes the Next.js route enqueue only; this unit drains
+# the queue out-of-process so deep research never blocks the frontend request path.
+ExecStart=/usr/bin/npm run research:worker
+Restart=always
+RestartSec=5
+# The worker traps SIGTERM (sets stopping=true, lets the in-flight job's lease
+# heartbeat stop and releases cleanly). Give it room before systemd SIGKILLs.
+# A job killed mid-run has its lease expire via RESEARCH_WORKER_STALE_MS and is retried.
+TimeoutStopSec=90
+
+[Install]
+WantedBy=multi-user.target
