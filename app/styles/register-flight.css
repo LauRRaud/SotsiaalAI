@@ -1,0 +1,260 @@
+/* ============================================================
+   Registreerimine = jaamalend (register-flight): täisekraani
+   AR-paneelide teekond läbi sügavuse. Iga vormisamm on ruumis
+   hõljuv jaam; valik lennutab kaamera järgmise juurde — kerimist
+   EI OLE. Mootor: components/register/useStationFlight.js
+   (public/room/flight-effect.md adaptsioon, jaama-target mitte
+   scrollY). NB: .rgf-* klassid on AINULT registreerimise omad —
+   teised lennuteekonnad (nt Kovisioon) saavad oma stiilikihi.
+   Kest: PanelFrame canvas-režiim (panel.css [data-canvas]).
+   Taust jääb PUUTUMATA (VR/AR põhjatäht: sinna tuleb kunagi
+   päris tuba) — ruumilisus tuleb plaanidest endist.
+   Haagid: .rgf-*.
+   ============================================================ */
+
+/* --- Lava -------------------------------------------------- */
+.rgf-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  /* Svaip = jaamavahetus; pan'itavat sisu pole. Manipulation jätab
+     tapid kiireks, ratta-listener on ise passive:false. */
+  touch-action: manipulation;
+}
+
+/* Tiitel + suletud-teade: fikseeritud üleval keskel; hajuvad
+   esimese lennuga välja (flight-effect brändi-fadeout muster).
+   h1 jääb DOM-i (a11y), värav kordab suletud-teadet täies mahus. */
+.rgf-top {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4100; /* plaanide (≤4000) kohal */
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity var(--dur-med) var(--ease-soft);
+}
+.rgf-stage[data-flown="1"] .rgf-top {
+  opacity: 0;
+}
+.rgf-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.5rem);
+  letter-spacing: 0.01em;
+  color: var(--text-warm);
+}
+.rgf-closed-note {
+  max-width: 32rem;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+
+/* --- Dolly + plaanid (flight-effect.md §3) ------------------ */
+/* Perspektiiv plaanide OTSESEL vanemal; kaamera --cam muutujana.
+   MITTE pesastatud preserve-3d (iOS lamendab). */
+.rgf-dolly {
+  --cam: 0px;
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 46%;
+}
+.rgf-plane {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(92vw, 25.5rem);
+  visibility: hidden; /* JS/flat-reeglid lülitavad sisse */
+}
+/* 3D: iga plaan arvutab oma sügavuse ise; will-change AINULT
+   plaanidel (komposiitkiht → tekst ei võbele), mitte ümbristel. */
+.rgf-stage[data-mode="3d"] .rgf-plane {
+  transform: translate(-50%, -50%) translateZ(calc(var(--z) + var(--cam, 0px)));
+  opacity: var(--o, 0);
+  will-change: transform, opacity;
+}
+/* Flat-fallback (reduced-motion või lame 3D): sama jaamamudel,
+   ainult ristsulandus — ikka üks samm korraga. */
+.rgf-stage[data-mode="flat"] .rgf-plane {
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition:
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
+}
+.rgf-stage[data-mode="flat"] .rgf-plane[data-active="1"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+/* Lennureegel (vestluse ruumikeele leping): blur-kihti EI
+   transformita. Plaanid liiguvad igal kaadril → nende sees
+   backdrop-filter maha (nii lg-bend kui tavaline blur). Rahuliku
+   tumeda tausta kohal pole blur'il nähtavat panust; klaasilook
+   säilib gradientide/äärise kaudu. Spetsiifilisus (0,3,2) võidab
+   glass.css lg-bend reegli (0,3,1). */
+html:not([data-contrast="hc"]) .rgf-plane :is(button[data-variant], a[data-variant], [role="radio"], label[data-control-type], .glass-btn, input, textarea, select) {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* --- Jaama sisu --------------------------------------------- */
+/* Küsimus hõljub ruumis juhtelementide kohal — kuvakiri, õrn
+   soe kuma (AR-paneeli presence). */
+.rgf-question {
+  /* Ka <label> peab olema plokk — inline-label'il text-align ei mõju
+     (tellija 16.07: pealkirjad keskele). */
+  display: block;
+  margin: 0 0 1.05rem;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.7rem);
+  letter-spacing: 0.015em;
+  color: var(--text-warm);
+  text-shadow: 0 0 26px rgba(255, 240, 220, 0.14); /* soe holo-kuma */
+}
+.rgf-controls {
+  display: grid;
+  gap: 0.6rem;
+}
+/* Rolli-nuppude häälestus = vana registrivormi oma (tellija 07.07:
+   suurem tekst, hõredam tähevahe, keskel). */
+.rgf-plane [role="radio"] {
+  justify-content: center;
+  text-align: center;
+  font-size: clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
+  letter-spacing: 0.04em;
+}
+/* Tingimuste/juhendi valikkaartide tekst suurem (tellija 07.07). */
+.rgf-plane label[data-control-type] {
+  font-size: calc(var(--fs-body) * 1.05);
+}
+.rgf-field-error {
+  display: block;
+  margin-top: 0.45rem;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--status-error);
+}
+.rgf-hint {
+  margin: 0.15rem 0 0;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}
+.rgf-next {
+  display: grid;
+  justify-items: center;
+  margin-top: 0.9rem;
+}
+
+/* --- Värav: kokkuvõte + CTA --------------------------------- */
+.rgf-summary {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 1.15rem;
+}
+.rgf-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin: 0;
+}
+.rgf-summary-row dt {
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}
+.rgf-summary-row dd {
+  margin: 0;
+  font-size: var(--fs-body);
+  color: var(--text-warm);
+  overflow-wrap: anywhere;
+}
+.rgf-gate-status {
+  margin: 0 0 0.9rem;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.rgf-gate-error {
+  margin: 0 0 0.9rem;
+  text-align: center;
+  font-size: var(--fs-small);
+  color: var(--status-error);
+}
+.rgf-submit {
+  display: grid;
+  justify-items: center;
+}
+/* Registreeru-CTA suurem ja kaalukam (tellija 07.07). */
+.rgf-submit button {
+  padding: 0.85em 2.6em;
+  font-size: calc(var(--fs-body) * 1.05);
+  min-width: 13rem;
+}
+
+/* --- Edu-jaam ------------------------------------------------ */
+.rgf-success {
+  display: grid;
+  gap: 1.1rem;
+  justify-items: center;
+  text-align: center;
+  color: var(--text-warm);
+}
+
+/* --- Dokk: ruumi kaardimenüü DNA ------------------------------ */
+/* Välimus tuleb TERVENISTI carousel.css .gc-shortcut-* klassidest
+   (sama riba mis avalehe kaardimenüüs); siin ainult positsioon lava
+   allservas + registri-spetsiifilised olekunüansid. Staatiline kiht
+   → gc backdrop-blur on siin lubatud (ei transformi). */
+.rgf-dock {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(0.9rem, 2.6lvh, 1.8rem));
+  transform: translateX(-50%);
+  z-index: 4200;
+  max-width: calc(100vw - 2rem);
+}
+/* Läbitud jaam = sama helendus mis tagasi-noolel; tulevane jaam
+   tuhmub ega reageeri (värav avaneb ainult rada läbides). */
+.rgf-dock .gc-shortcut[data-state="done"] {
+  color: rgba(246, 238, 230, 0.78);
+}
+.rgf-dock .gc-shortcut:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+/* Lukustatud rolli chip (?role= param) doki alguses. */
+.rgf-dock-chip {
+  flex: none;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  margin-inline: 0.35rem 0.2rem;
+  white-space: nowrap;
+}
+
+/* --- Mobiil --------------------------------------------------- */
+@media (max-width: 720px) {
+  .rgf-dolly {
+    perspective: 950px; /* lainurksem sügavus väikesel ekraanil */
+  }
+  .rgf-plane {
+    width: min(92vw, 23rem);
+  }
+  .rgf-dock {
+    max-width: calc(100vw - 1.6rem);
+  }
+}

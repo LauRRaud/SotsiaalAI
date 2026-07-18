@@ -20,6 +20,7 @@ spetsiifisuskonflikte (kujundusreeglid §1):
 | `carousel.css` | `components` | Klaaskaartide karussell: geomeetria (`--gc-spacing`, 19° sissepoole kalle), kuma, punktid, nooled kaartide kõrval. |
 | `panel.css` | `components` | Avatud paneeli raam (×, menüü), sisu tüpograafia, vormid, OptionCard. Tagasi-nool paneelis peidetakse. |
 | `login.css` | `components` | Login = keskmine kaart klahvistikuga (pilt 12); ilma katteta. |
+| `register-flight.css` | (kihita) | Registreerimise jaamalend: 3D-plaanid (`.rgf-*`), dokk, flat-fallback. Mootor `components/register/useStationFlight.js`. |
 | `a11y-modal.css` | `components` | Keel ja ligipääsetavus modal (esmakülastus + profiil). |
 | `chat.css` | `components` | Vestlusaken (pilt 9): mullid `[role="article"][data-role]`, komposer (+ pilli sees, liquid saada-nupp), tööriistamenüü. |
 | `workspace.css` | `components` | Töölaud (pilt 10): 2-veeruline `.workspace-dashboard-card` ruudustik. |

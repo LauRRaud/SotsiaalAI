@@ -34,7 +34,10 @@
      Checkbox/radio/range/file/color ja sr-only/peidetud väljad
      jäävad välja. */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select) {
-    background: var(--input-bg);
+    /* background-color + eraldi background-image (specular-helk), et
+       hover/focus (mis muudavad ainult värvi) ei pühiks helki maha. */
+    background-color: var(--input-bg);
+    background-image: var(--specular-layer);
     border: var(--input-border);
     border-radius: var(--input-radius);
     color: var(--input-text);
@@ -68,13 +71,13 @@
      juba baasreeglil; :not(:focus) hoiab fookuse tugevama seisu peal. */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):hover:not(:focus) {
     border: var(--input-border-hover);
-    background: var(--input-bg-hover);
+    background-color: var(--input-bg-hover);
   }
   /* Fookus MAHE (tellija 07.07): pehme ääris + õrn kuma (nagu nupu
      rim), MITTE kõva ere joon mis servad pikslises tegi */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):focus {
     border: var(--input-border-focus);
-    background: var(--input-bg-focus);
+    background-color: var(--input-bg-focus);
     box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
   }
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select)::placeholder {
@@ -204,13 +207,18 @@
     cursor: var(--cursor-pointer);
     /* Läbipaistev + tausta hajutus ja murre */
     background-color: rgba(255, 255, 255, 0.03);
-    background-image: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.05) 36%,
-      rgba(255, 255, 255, 0.02) 62%,
-      rgba(255, 255, 255, 0.1) 100%
-    );
+    /* Specular-helk on ÜLEMINE taustakiht (--spec=0 → nähtamatu);
+       hover/active muudavad ainult background-color'i, nii et see kiht
+       püsib läbi olekute. */
+    background-image:
+      var(--specular-layer),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.05) 36%,
+        rgba(255, 255, 255, 0.02) 62%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
     -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
     backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
     border: 1px solid rgba(255, 255, 255, 0.2);

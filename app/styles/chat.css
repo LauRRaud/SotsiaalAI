@@ -367,11 +367,8 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--panel-radius);
-  box-shadow:
-    var(--glass-inner-light),
-    0 0 0.5px rgba(255, 251, 244, 0.65),
-    0 0 44px rgba(255, 246, 232, 0.1),
-    var(--glass-shadow);
+  /* Vestluste külgpaneel jääb selge raamiga, ilma ümbrusse hajuvat kumata. */
+  box-shadow: var(--glass-inner-light);
   color: var(--text-warm);
   transform: translateX(calc(-100% - 3rem));
   transition: transform 300ms var(--ease-soft);
@@ -654,29 +651,8 @@ button[aria-controls="chat-window-scroll"] {
     --conv-arrive: 0;
   }
 }
-/* Hajus valgusruum — staatiline. (Transformi animatsioon suurel
-   blur-kihil rasterdaks hiigelpinna igal kaadril uuesti — GPU hangub.)
-
-   AINULT päris vestlusevaates. [data-conversation="1"] kehtib IGAL /vestlus
-   teel (PanelFrame: isConversation = path.startsWith("/vestlus")), seega ka
-   töölauapindadel ?workspace=X (Töölaud, kutsed, dokumendid, eelpöördumine…).
-   Seal ei ole sõnumimulle, mille taga valgus elaks, ja kolm sooja radiaali
-   paistavad paljalt tühjal taustal (tellija 16.07: "imelikud helepruunid
-   laigud"). :not(:has(.workspace-dashboard-panel)) = töölaua-nägu on sama
-   [data-chat-container]'i sees, seega glow kaob täpselt siis, kui ruudustik
-   või manustatud moodul on ees. */
-.panel-scrim[data-conversation="1"] [data-chat-container]:not(:has(.workspace-dashboard-panel))::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  inset: 2% -5% 3%;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 16% 22%, rgba(225, 155, 105, 0.13), transparent 26%),
-    radial-gradient(circle at 78% 58%, rgba(252, 211, 171, 0.07), transparent 30%),
-    radial-gradient(circle at 46% 97%, rgba(188, 105, 62, 0.12), transparent 30%);
-  filter: blur(12px);
-}
+/* Vestluse taust jääb ühtlaselt rahulik: hajusad radiaalsed valguslaigud
+   eemaldatud nii päris vestlusest kui töölaua-alamvaadetest. */
 /* (Sisenemise valgusvöönd EEMALDATUD — tellija 12.07: "suur läige mis
    klaaskastist üle jookseb" ei meeldinud. Lava dokib nüüd ilma sähvatuseta.) */
 .panel-scrim[data-conversation="1"] [data-chat-container] > main {
@@ -1252,6 +1228,8 @@ button[aria-controls="chat-window-scroll"] {
   padding-bottom: 0.18em;
   padding-left: 0.15em;
   line-height: 1.4;
+  /* Kursor kuldjoone toonis, mitte valge (tellija 16.07) */
+  caret-color: #f6c694;
   /* Loetavus otse ruumi ees */
   text-shadow: 0 1px 8px rgba(8, 4, 2, 0.5);
 }

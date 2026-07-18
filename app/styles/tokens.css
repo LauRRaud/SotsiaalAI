@@ -66,9 +66,8 @@
     rgba(32, 28, 25, 0.52) 55%,
     rgba(24, 21, 19, 0.58) 100%
   );
-  --card-glass-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.09),
-    var(--glass-shadow);
+  /* Kaardid jäävad matid ja selge servaga; väline kuma/vari puudub. */
+  --card-glass-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.09);
   --card-glass-sheen: radial-gradient(
     120% 90% at 12% 0%,
     rgba(255, 250, 242, 0.1),
@@ -218,6 +217,24 @@
   --room-cell-bg: var(--glass-cell-bg);
   --room-cell-hover: var(--glass-cell-bg-hover);
   --room-cell-border: var(--glass-cell-border);
+
+  /* ---- Specular-helk: kursorit jälgiv läige nuppudel ja väljadel
+     (react-bits Specular Button adaptsioon — canvas asemel üks
+     taustakiht). Globaalne kursorijälgija (components/glass/
+     SpecularHighlight.jsx) tõstab --spec 0→1 ja seab --spec-x/-y
+     protsendina hõljutava elemendi kohal. Kiht ise on --specular-
+     layer, mida nupu/input-primitiiv taustakihina kasutab. Soe valge,
+     et haakuda klaasi rim-kumaga (--glass-rim). ---- */
+  --spec: 0;
+  --spec-x: 50%;
+  --spec-y: 50%;
+  --spec-peak: 0.5; /* tipuheledus; 0 lülitab efekti välja */
+  --spec-size: 120px;
+  --specular-layer: radial-gradient(
+    circle var(--spec-size) at var(--spec-x) var(--spec-y),
+    rgba(255, 249, 240, calc(var(--spec-peak) * var(--spec))),
+    rgba(255, 249, 240, 0) 68%
+  );
 }
 
 /* ============================================================
@@ -287,4 +304,12 @@ html[data-reduce-transparency="1"] {
   --input-bg-hover: rgba(42, 39, 34, 0.96);
   --input-bg-focus: rgba(46, 42, 37, 0.97);
   --input-highlight: none;
+  --spec-peak: 0; /* läbipaistmatu pind → specular-helk välja */
+}
+
+/* Kõrgkontrast ja liikumise vähendus lülitavad kursorihelgi välja
+   (react-bits Specular Button vajab liikumist + läbipaistvat pinda). */
+html[data-contrast="hc"],
+html[data-reduce-motion="1"] {
+  --spec-peak: 0;
 }

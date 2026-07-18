@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
-<title>FABLE-Q prototüüp — dokk · faasid · võrdlusriiul</title>
+<title>Ruumilise töölaua prototüüp — fookus · dokk · võrdlus</title>
 <style>
 /* ============================================================
-   FABLE-Q FQ11 samm 1 prototüüp (eraldiseisev; mock-sisu, 0 API-t)
+   Ruumilise töölaua fookuse ja võrdluse alusproov (mock-sisu, 0 API-t)
    Tume ruumiline keel: Teemaseemnete vaatega kooskõlaline halltoonides klaas.
    Lõuendireegel: keha ei keri; sisekerimine ainult loendites.
    Platvormi kiirriba on all keskel; D-FQ3: riiul = ainult vaateseis.
@@ -423,7 +423,7 @@ html[data-motion="off"] *{animation:none!important;transition:none!important}
 
 <script>
 /* =====================================================================
-   FABLE-Q prototüüp — lõppsamm: Fookus + Võrdlus + Ülevaade + kitsas A/B
+   Ruumilise töölaua alusproov — Fookus + Võrdlus + Ülevaade + kitsas A/B
    Alumine dokk = etapid (kus töös) · päis = režiim (kuidas vaatan)
    Hash kannab AINULT vaadet; tööolek elab sessionStorage's (mock-server).
    D-FQ3: riiul/võrdlus ei loo auditit — ainult URL-viited + sessioonimälu.
@@ -1103,7 +1103,7 @@ function render(){
   const tool=vaade.tase==="toolaud";
   $("#toolaud").classList.toggle("show",tool);
   $("#app").style.visibility=tool?"hidden":"visible";
-  document.title=(tool?"Töölaud":"Koosta dokument")+" — FABLE-Q prototüüp";
+  document.title=(tool?"Töölaud":"Koosta dokument")+" — ruumilise töölaua prototüüp";
   if(!tool){
     if(vaade.mode==="vordlus"&&vaade.cmp.length===2&&(riiul[0]!==vaade.cmp[0]||riiul[1]!==vaade.cmp[1])){
       riiul=[...vaade.cmp];saveRiiul();

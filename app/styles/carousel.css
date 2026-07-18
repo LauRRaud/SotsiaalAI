@@ -148,9 +148,6 @@
   pointer-events: none;
   transition: none;
 }
-.gc[data-visible="10"] .gc-item::before {
-  opacity: 0;
-}
 .gc[data-visible="10"] .gc-icon,
 .gc[data-visible="10"] .gc-label,
 .gc[data-visible="10"] .gc-item[data-center="0"] .gc-icon,
@@ -219,8 +216,7 @@ html[data-reduce-motion="1"] .gc-item {
   color: var(--room-text);
   text-decoration: none;
   overflow: hidden;
-  /* NB: box-shadow'd EI animeerita — varjulistide üleminek pani
-     aluvarju virvendama (tellija 06.07); kuma elab .gc-item::before'is */
+  /* Välise kumata matt kaart: alles jääb vaid vaikne sisemine ülaserv. */
 }
 
 /* Läige AINULT valguse-poolses ülanurgas (aknad üleval-vasakul),
@@ -249,26 +245,6 @@ html[data-reduce-motion="1"] .gc-item {
   mask-composite: exclude;
   pointer-events: none;
   transition: opacity var(--dur-med) var(--ease-soft);
-}
-
-/* Fookuskaardi kuma: ERALDI kiht, mille OPACITY süttib viitega pärast
-   pöörde settimist ja kaotajal kustub kohe — mitte box-shadow' vahetus,
-   mis interpoleeris eri pikkusega varjuliste ja pani varju vilkuma. */
-.gc-item::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: clamp(20px, 2.4vw, 30px);
-  box-shadow:
-    0 0 22px rgba(255, 244, 228, 0.1),
-    0 0 52px rgba(255, 238, 216, 0.06);
-  opacity: 0;
-  transition: opacity 260ms var(--ease-soft) 0ms;
-  pointer-events: none;
-}
-.gc-item[data-center="1"]::before {
-  opacity: 1;
-  transition: opacity 360ms var(--ease-soft) 300ms;
 }
 
 /* ---------- Ikoon + nimi (käivituse faas 2: sisu joonistub järele) ---------- */

@@ -106,7 +106,25 @@
       },
       "submit": "Registreeru",
       "success_message": "Konto loodud! Kinnita oma e-post ja logi sisse PIN-koodiga. Kui kiri sattus rämpsposti, ava see ja vajuta \"Teavitan, et pole rämpspost\".",
-      "closed_notice": "Registreerimine on ajutiselt peatatud. Palun proovi uuesti peagi."
+      "closed_notice": "Registreerimine on ajutiselt peatatud. Palun proovi uuesti peagi.",
+      "email_question": "Sinu e-posti aadress",
+      "pin_question": "Vali PIN-kood",
+      "gate_question": "Valmis registreeruma?",
+      "next": "Edasi",
+      "optional_hint": "Vabatahtlik samm — kinnita, kui kasutad platvormi kliendi isikuandmetega.",
+      "progress_label": "Registreerimise sammud",
+      "step_announce": "Samm {current}/{total}: {label}",
+      "pin_masked": "{count}-kohaline PIN",
+      "steps": {
+        "role": "Roll",
+        "email": "E-post",
+        "pin": "PIN",
+        "agree": "Tingimused",
+        "guide": "Kasutusjuhend",
+        "worker": "Töökasutus",
+        "gate": "Kinnitus",
+        "success": "Valmis"
+      }
     },
     "reset": {
       "title": "Uuenda PIN",
