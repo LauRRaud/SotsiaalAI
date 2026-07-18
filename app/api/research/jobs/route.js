@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { requireResearchAuth } from "@/lib/research/auth";
-import { createResearchJob, getActiveResearchJobCount } from "@/lib/research/jobStore";
+import { createResearchJob, getActiveResearchJobCount, listResearchJobsForOwner } from "@/lib/research/jobStore";
+import { buildPaginationMeta, parseListLimit, parseListOffset } from "@/lib/documents/listing";
 import { runDeepResearchJob } from "@/lib/research/pipeline";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -18,6 +19,7 @@ export const fetchCache = "force-no-store";
 
 const RATE_LIMIT_WINDOW_MS = readChatRateLimit(process.env.RESEARCH_RATE_LIMIT_WINDOW_MS, 60_000, 1000);
 const RATE_LIMIT_POST_MAX = readChatRateLimit(process.env.RESEARCH_RATE_LIMIT_POST_MAX, 12);
+const RATE_LIMIT_LIST_MAX = readChatRateLimit(process.env.RESEARCH_RATE_LIMIT_LIST_MAX, 60);
 const RESEARCH_API_ENABLED_RAW = String(process.env.RESEARCH_API_ENABLED || "").trim().toLowerCase();
 const RESEARCH_API_ENABLED = RESEARCH_API_ENABLED_RAW
   ? ["true", "1", "yes", "on"].includes(RESEARCH_API_ENABLED_RAW)
@@ -110,6 +112,47 @@ function normalizeOutputStyle(rawStyle, authRole) {
   const value = String(rawStyle || "").trim().toUpperCase();
   if (value === "SOCIAL_WORKER" || value === "CLIENT") return value;
   return authRole === "SOCIAL_WORKER" ? "SOCIAL_WORKER" : "CLIENT";
+}
+
+// Owner-scoped list of the caller's own research jobs for the unified "My documents"
+// workspace (E3). Reading past jobs is allowed even when creating new ones is disabled
+// (RESEARCH_API_ENABLED off) — the `enabled` flag lets the UI show an honest "cannot start
+// new research right now" state without hiding the objects the user already has.
+export async function GET(req) {
+  const auth = await requireResearchAuth();
+  if (!auth.ok) {
+    return errorJson(auth.message, auth.status, {
+      requireSubscription: auth.requireSubscription,
+      redirect: auth.redirect,
+    });
+  }
+
+  const rateLimit = enforceChatRateLimit(req, {
+    scope: "research_list",
+    userId: auth.userId,
+    limit: RATE_LIMIT_LIST_MAX,
+    windowMs: RATE_LIMIT_WINDOW_MS,
+  });
+  if (rateLimit) return rateLimit;
+
+  const requestUrl = new URL(req.url);
+  const limit = parseListLimit(requestUrl.searchParams.get("limit"), { fallback: 20, maxLimit: 100 });
+  const offset = parseListOffset(requestUrl.searchParams.get("offset"));
+
+  let listing;
+  try {
+    listing = await listResearchJobsForOwner({ userId: auth.userId, limit, offset });
+  } catch (error) {
+    console.error("[research] list failed", safeError(error));
+    return errorJson("research.error.failed", 500);
+  }
+
+  return json({
+    ok: true,
+    enabled: RESEARCH_API_ENABLED,
+    jobs: listing.jobs,
+    pagination: buildPaginationMeta({ total: listing.total, limit, offset }),
+  });
 }
 
 export async function POST(req) {

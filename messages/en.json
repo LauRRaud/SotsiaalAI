@@ -2786,6 +2786,9 @@
       }
     },
     "analyses": {
+      "disclaimer": "An AI explanation, not an official decision.",
+      "confirm_delete": "Delete this saved analysis permanently? This cannot be undone.",
+      "feedback_deleted": "Analysis deleted.",
       "errors": {
         "content_required": "The analysis text is empty — add content before saving.",
         "content_too_large": "The analysis is too large to save.",
@@ -2795,6 +2798,91 @@
         "read_failed": "Failed to load the analysis.",
         "delete_failed": "Failed to delete the analysis.",
         "not_found": "The analysis was not found or does not belong to your account."
+      }
+    },
+    "workspace": {
+      "entry_title": "What would you like to do?",
+      "entry_description": "Choose an action or add a file. Everything you create collects in one list below.",
+      "entry": {
+        "analyze_title": "Understand a document",
+        "analyze_desc": "Upload a file into the chat and let the AI explain its content, risks and next steps.",
+        "compose_title": "Draft a document",
+        "compose_desc": "Open the drafting workspace to prepare a draft with the AI and review it.",
+        "transcribe_title": "Transcribe audio",
+        "transcribe_desc": "Turn an audio file into a transcript and review it before use.",
+        "research_title": "Run deep research",
+        "research_desc": "Start deep research over the knowledge base in chat, with sources and uncertainty.",
+        "add_file_title": "Add a file",
+        "add_file_desc": "Upload a new document, template or audio file here."
+      },
+      "research_disabled": "Deep research can't be started right now. Earlier jobs stay visible.",
+      "list_title": "Your documents",
+      "filter_label": "Filter by type",
+      "filters": {
+        "files": "Files",
+        "analysis": "Analyses",
+        "artifacts": "Drafted",
+        "research": "Research"
+      },
+      "empty_all": "Nothing here yet. Start from an action above or add a file.",
+      "empty_filtered": "No items in this view.",
+      "truncated": "Showing the latest items. Older ones may be hidden.",
+      "untitled": "Untitled",
+      "compose_from": "Draft from this",
+      "hide": "Hide",
+      "rag_toggle": "Allow in work mode (goes into shared search)",
+      "research_open": "Open in chat",
+      "research_load_failed": "Failed to load research jobs.",
+      "research_confirm_delete": "Delete this research permanently?",
+      "research_delete_failed": "Failed to delete the research.",
+      "research_deleted": "Research deleted.",
+      "types": {
+        "source": "Source file",
+        "transcript": "Transcript",
+        "analysis": "Analysis",
+        "draft": "Draft",
+        "final": "Approved",
+        "research": "Research"
+      },
+      "research_status": {
+        "queued": "Queued",
+        "running": "Running",
+        "done": "Done",
+        "error": "Failed",
+        "cancelled": "Cancelled"
+      },
+      "state": {
+        "analysis_saved": "Saved"
+      }
+    },
+    "provenance": {
+      "labels": {
+        "audience": "Who sees it",
+        "origin": "Origin",
+        "state": "State",
+        "retention": "Kept",
+        "rag": "Search"
+      },
+      "audience": {
+        "owner_only": "Only you",
+        "owner_and_worktree": "You and work mode"
+      },
+      "origin": {
+        "uploaded": "Uploaded file",
+        "transcript": "Transcript from audio",
+        "analysis": "AI analysis",
+        "ai_draft": "AI-drafted",
+        "ai_final": "AI-drafted, you approved",
+        "research": "Deep research from the knowledge base"
+      },
+      "retention": {
+        "days": "{days} days",
+        "until_deleted": "Until you delete it"
+      },
+      "rag": {
+        "not_in_search": "Not in shared search",
+        "in_search_when_shared": "Goes into shared search when you use it for drafting",
+        "reads_kb": "Uses the knowledge base, the result stays yours"
       }
     },
     "call_recording": {
