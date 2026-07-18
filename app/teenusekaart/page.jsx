@@ -18,5 +18,5 @@ export async function generateMetadata() {
 }
 
 export default function ServiceMapPage() {
-  return <WorkspaceFeaturePage feature="service_map" />;
+  return <WorkspaceFeaturePage feature="service_map" hideHeader />;
 }

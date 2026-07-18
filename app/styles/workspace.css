@@ -547,52 +547,104 @@
    nupud ülaservas"): juhtriba üleval, kaart täidab ülejäänu;
    Leaflet saab hämariku tumeda tooni + klaas-popupid.
    ============================================================ */
-.service-map-page {
+.workspace-feature-service-map-section,
+.workspace-feature-service-map-section > div,
+.workspace-feature-service-map-section > div > div {
   display: flex;
-  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
   min-height: 0;
-  gap: 0.7rem;
+}
+.workspace-feature-service-map-section {
+  height: 100%;
+}
+.service-map-page {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  gap: 0.55rem;
 }
 .service-map-topbar {
   position: relative;
   flex: none;
   display: flex;
-  align-items: flex-start;
-  gap: 0.7rem;
-  padding-right: 0.2rem;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  margin-right: 6.4rem;
+  padding: 0.46rem 0.52rem;
+  border: 1px solid var(--glass-cell-border);
+  border-radius: 1.2rem;
+  background:
+    linear-gradient(105deg, rgba(255, 255, 255, 0.07), transparent 48%),
+    rgba(20, 16, 13, 0.76);
+  box-shadow:
+    0 0.8rem 2rem rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(1.08);
+  -webkit-backdrop-filter: blur(18px) saturate(1.08);
 }
 .service-map-topbar-inner {
-  flex: 1;
+  flex: 1 1 auto;
   min-width: 0;
-  display: grid;
-  gap: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
 }
 .service-map-topbar[data-open="0"] .service-map-topbar-inner {
   display: none;
 }
 .service-map-fields {
+  flex: 1 1 25rem;
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 0.55rem;
+  grid-template-columns: minmax(13rem, 1.2fr) minmax(11rem, 1fr);
+  gap: 0.48rem;
+  min-width: 24.5rem;
 }
-/* Teenusekaardi otsinguväljad = kanooniline input-baas (glass.css);
-   eraldi look-reeglit enam pole (tellija 07.07: üks input-kujundus). */
-/* Liigivalik kompaktsete pillidena (mitte täislaiuses ridadena) */
-.service-map-types {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
+.service-map-fields label {
+  min-width: 0;
 }
-.service-map-types label[data-control-type] {
-  width: auto;
-  padding: 0.45em 1.05em;
+.service-map-fields input {
+  width: 100%;
+  height: 3rem;
+  min-width: 0;
+  min-height: 3rem;
   border-radius: 999px;
   font-size: var(--fs-small);
+  padding-block: 0;
+  padding-inline: 1rem;
+}
+/* Otsinguväljade materjal tuleb kanoonilisest input-baasist (glass.css);
+   siin määrame ainult vana täiskaardi tööriistariba mõõdu ja paigutuse. */
+/* Liigivalik kompaktsete pillidena (mitte täislaiuses ridadena) */
+.service-map-types {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+.service-map-types label[data-control-type] {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  height: 3rem;
+  min-height: 3rem;
+  padding: 0 1em;
+  border-radius: 999px;
+  font-size: var(--fs-small);
+  white-space: nowrap;
 }
 .service-map-types label[data-control-type] > span[aria-hidden="true"] {
   display: none; /* pill ise näitab valikut */
 }
 .service-map-results {
+  flex: 1 0 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
@@ -619,7 +671,7 @@
 }
 .service-map-toggle {
   flex: none;
-  display: grid;
+  display: none;
   place-items: center;
   width: 2.25rem;
   height: 2.25rem;
@@ -641,6 +693,7 @@
 /* Kaart täidab kogu ülejäänud ala */
 .service-map-canvas {
   flex: 1;
+  width: 100%;
   min-height: 18rem;
   border-radius: 18px;
   overflow: hidden;
@@ -683,6 +736,131 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
+}
+
+/* Teenusekaardi neli tähenduslikku markerit. Leafleti vaikimisi divIcon on
+   valge ruut; meie marker on graveeritud tähega värviline kaardinõel. Värv
+   ei kanna tähendust üksi: K = KOV, T = teenuseosutaja, ? = abisoov ja
+   + = abipakkumine. */
+.service-map-canvas .leaflet-div-icon {
+  border: 0;
+  background: transparent;
+}
+.service-map-leaflet__legend-marker {
+  display: block;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+.service-map-leaflet__marker {
+  --service-map-marker-fill: #475569;
+  --service-map-marker-ring: rgba(30, 41, 59, 0.9);
+  --service-map-marker-hole-bg: rgba(255, 250, 244, 0.78);
+  --service-map-marker-hole-diameter: 28.4px;
+  --service-map-marker-label-padding: 3px;
+  --service-map-marker-label-max-size: calc(
+    var(--service-map-marker-hole-diameter) - (2 * var(--service-map-marker-label-padding))
+  );
+  --service-map-marker-label-size: min(20.2px, var(--service-map-marker-label-max-size));
+  --service-map-marker-label-weight: 820;
+  --service-map-marker-label-tracking: 0;
+  --service-map-legend-marker-label-size: min(20.2px, var(--service-map-marker-label-max-size));
+  position: relative;
+  display: grid;
+  width: 2.34rem;
+  height: 2.93rem;
+  place-items: center;
+  border: 0;
+  color: var(--service-map-marker-fill);
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.52))
+    drop-shadow(0 0 7px color-mix(in srgb, currentColor 32%, transparent));
+  font-family: var(--font-aino), system-ui, sans-serif;
+  isolation: isolate;
+  overflow: visible;
+  pointer-events: auto;
+  text-align: center;
+  user-select: none;
+}
+.service-map-leaflet__marker::before {
+  display: none;
+}
+.service-map-leaflet__marker-shape {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.service-map-leaflet__marker-pin {
+  fill: currentColor;
+  stroke: var(--service-map-marker-ring);
+  stroke-width: 1.35;
+  vector-effect: non-scaling-stroke;
+}
+.service-map-leaflet__marker-hole {
+  fill: var(--service-map-marker-hole-bg);
+  pointer-events: none;
+}
+.service-map-leaflet__marker-label {
+  fill: currentColor;
+  font-size: var(--service-map-marker-label-size);
+  font-weight: var(--service-map-marker-label-weight);
+  letter-spacing: var(--service-map-marker-label-tracking);
+  dominant-baseline: central;
+  text-anchor: middle;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+.service-map-leaflet__marker--kov {
+  --service-map-marker-fill: #2f5f8f;
+  --service-map-marker-ring: rgba(22, 65, 104, 0.94);
+}
+.service-map-leaflet__marker--provider {
+  --service-map-marker-fill: #168a72;
+  --service-map-marker-ring: rgba(10, 94, 77, 0.96);
+}
+.service-map-leaflet__marker--help-request {
+  --service-map-marker-fill: #b45309;
+  --service-map-marker-ring: rgba(146, 64, 14, 0.96);
+  --service-map-marker-label-padding: 0px;
+  --service-map-marker-label-size: min(24.2px, var(--service-map-marker-label-max-size));
+  --service-map-legend-marker-label-size: min(22.8px, var(--service-map-marker-label-max-size));
+}
+.service-map-leaflet__marker--help-offer {
+  --service-map-marker-fill: #a23b72;
+  --service-map-marker-ring: rgba(111, 36, 78, 0.96);
+  --service-map-marker-label-padding: 0px;
+  --service-map-marker-label-size: 35px;
+  --service-map-marker-label-weight: 500;
+  --service-map-legend-marker-label-size: 32px;
+}
+.service-map-leaflet__marker--help-offer .service-map-leaflet__marker-label {
+  transform: translate(0.35px, -0.25px);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.service-map-leaflet__marker--mixed {
+  --service-map-marker-fill: #475569;
+  --service-map-marker-ring: rgba(30, 41, 59, 0.92);
+  --service-map-marker-label-padding: 7.2px;
+  --service-map-marker-label-size: min(13.8px, var(--service-map-marker-label-max-size));
+}
+.service-map-leaflet__marker--group {
+  outline: 0;
+}
+.service-map-leaflet__marker--selected {
+  filter:
+    drop-shadow(0 2px 3px rgba(0, 0, 0, 0.58))
+    drop-shadow(0 0 10px color-mix(in srgb, currentColor 58%, transparent));
+}
+.service-map-leaflet__legend-marker .service-map-leaflet__marker {
+  width: 1.72rem;
+  height: 2.15rem;
+  filter: drop-shadow(0 0 0.45px var(--service-map-marker-ring));
+}
+.service-map-leaflet__legend-marker .service-map-leaflet__marker-label {
+  font-size: var(--service-map-legend-marker-label-size);
 }
 .service-map-leaflet__status {
   position: absolute;
@@ -930,9 +1108,46 @@
   color: var(--text-soft);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1120px) {
   .service-map-fields {
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .workspace-feature-service-map-section {
+    height: auto;
+    min-height: 100%;
+  }
+  .service-map-page {
+    min-height: clamp(34rem, calc(100dvh - 7rem), 48rem);
+  }
+  .service-map-topbar {
+    align-items: flex-start;
+    margin-right: 5.9rem;
+    padding: 0.42rem;
+  }
+  .service-map-topbar-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .service-map-fields {
+    flex: 0 0 auto;
+    min-width: 0;
+    width: 100%;
     grid-template-columns: 1fr;
+  }
+  .service-map-types {
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+  .service-map-types label[data-control-type] {
+    flex: 0 0 auto;
+  }
+  .service-map-toggle {
+    display: grid;
   }
 }
 

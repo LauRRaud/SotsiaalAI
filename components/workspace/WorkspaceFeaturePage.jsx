@@ -4903,7 +4903,10 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
   if (embedded) return content;
 
   return (
-    <section lang={locale}>
+    <section
+      lang={locale}
+      className={isServiceMap ? "workspace-feature-service-map-section" : undefined}
+    >
       {content}
     </section>
   );
