@@ -153,6 +153,7 @@ export default function InterruptionsWorkflow({ onNavigate }) {
   const { t } = useI18n();
   const [fields, setFields] = useState(initialFields);
   const [saveState, setSaveState] = useState("idle");
+  const [savedRecordId, setSavedRecordId] = useState(null);
   const record = useMemo(
     () => buildInterruptionsRecord({
       period: "current",
@@ -193,6 +194,7 @@ export default function InterruptionsWorkflow({ onNavigate }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.interruptions_save_failed");
+      setSavedRecordId(payload.record?.id || null);
       setSaveState("saved");
     } catch {
       setSaveState("error");
@@ -288,6 +290,7 @@ export default function InterruptionsWorkflow({ onNavigate }) {
 
       <SupportRequestPanel
         sourceWorkflowType="interruptions"
+        sourceRecordId={saveState === "saved" ? savedRecordId : null}
         context={record}
         onNavigate={onNavigate}
       />

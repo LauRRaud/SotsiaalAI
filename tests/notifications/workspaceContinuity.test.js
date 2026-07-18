@@ -167,3 +167,31 @@ test("continuity API authenticates before querying and returns private no-store 
   assert.match(route, /private, no-store/u);
   assert.doesNotMatch(route, /searchParams\.get\(["']userId/u);
 });
+
+test("wellbeing draft continuity opens the specific draft in My records, not the bare page (V6)", async () => {
+  const emptyList = async () => [];
+  const db = {
+    preInquiry: { findMany: emptyList },
+    roomMember: { findMany: emptyList },
+    roomMessage: { async count() { return 0; } },
+    wellbeingOutputDraft: {
+      findMany: async () => [{ id: "draft-xyz", updatedAt: "2026-07-12T10:00:00.000Z" }]
+    },
+    journey: { findMany: emptyList },
+    effectivePracticeReviewAssignment: { findMany: emptyList },
+    serviceProviderService: { findMany: emptyList },
+    mentoringRequest: { findMany: emptyList },
+    mentoringRelation: { findMany: emptyList },
+    mentoringSummary: { findMany: emptyList },
+    mentoringMeeting: { findMany: emptyList },
+    fieldVisit: { findMany: emptyList }
+  };
+
+  const result = await getWorkspaceContinuity("user-1", { db, now: NOW });
+  const draftItem = result.items.find((item) => item.kind === "wellbeing_draft");
+  assert.ok(draftItem, "the wellbeing draft candidate must be present");
+  assert.equal(draftItem.id, "draft-xyz");
+  // V6: the door opens on the specific draft, not the empty /tooheaolu page.
+  assert.equal(draftItem.href, "/tooheaolu/minu-kirjed?draft=draft-xyz");
+  assert.notEqual(draftItem.href, "/tooheaolu");
+});

@@ -593,7 +593,8 @@
   },
   "workspace": {
     "kind": {
-      "mentoring_process": "Менторские отношения"
+      "mentoring_process": "Менторские отношения",
+      "wellbeing_space": "Моё пространство благополучия"
     }
   },
   "common": {
@@ -5399,6 +5400,70 @@
     }
   },
   "wellbeing": {
+    "my_records": {
+      "title": "Мои записи",
+      "intro": "Здесь вы видите свои прежние записи о рабочем благополучии и незавершённые черновики. Записи приватны, их можно продолжить или удалить.",
+      "drafts_heading": "Незавершённые черновики",
+      "drafts_empty": "Незавершённых черновиков нет.",
+      "open_related_record": "Открыть связанную запись",
+      "filters_label": "Фильтры записей",
+      "filter_workflow_label": "Рабочий процесс",
+      "filter_workflow_all": "Все процессы",
+      "filter_period_label": "Период",
+      "filter_period_all": "Все",
+      "filter_period_week": "Неделя",
+      "filter_period_month": "Месяц",
+      "records_heading": "Хронология записей",
+      "records_empty": "Записей по этому фильтру пока нет.",
+      "loading": "Загрузка…",
+      "load_failed": "Не удалось загрузить записи.",
+      "detail_heading": "Детали записи",
+      "detail_failed": "Не удалось открыть запись.",
+      "created_at": "Создано",
+      "workflow_label": "Рабочий процесс",
+      "signal": "Сигнал",
+      "load_factors": "Факторы нагрузки",
+      "no_load_factors": "Факторы нагрузки не отмечены.",
+      "resource_factors": "Ресурсы и сильные стороны",
+      "no_resource_factors": "Ресурсные факторы не отмечены.",
+      "risk_markers": "Маркеры риска",
+      "no_risk_markers": "Маркеры риска не отмечены.",
+      "recommended": "Рекомендуемые следующие шаги",
+      "no_recommended": "Отдельных рекомендаций не возникло.",
+      "related_drafts": "Связанные черновики",
+      "no_related_drafts": "С этой записью нет связанных черновиков.",
+      "handoff_history": "История передачи",
+      "handoff_covision": "Передано в Ковизию",
+      "close_detail": "Закрыть",
+      "delete": "Удалить запись",
+      "deleting": "Удаление…",
+      "deleted": "Запись удалена.",
+      "delete_failed": "Не удалось удалить запись.",
+      "privacy": "Записи по умолчанию приватны. Их видите только вы; удаление записи также убирает её из анонимной сводки.",
+      "workflow": {
+        "quick_check": "Экспресс-проверка",
+        "overview": "Обзор",
+        "hard_case": "Тяжёлый случай",
+        "workplace_violence": "Насилие на работе",
+        "recovery": "Восстановление",
+        "work_boundaries": "Рабочие границы",
+        "interruptions": "Прерывания",
+        "work_processes": "Рабочие процессы",
+        "role_boundaries": "Границы роли",
+        "starter_support": "Поддержка начинающего"
+      },
+      "signal_level": {
+        "green": "Зелёный",
+        "yellow": "Жёлтый",
+        "red": "Красный",
+        "insufficient_data": "Недостаточно данных"
+      },
+      "draft_status": {
+        "draft": "Черновик",
+        "ready_to_share": "Подтверждённая версия для передачи",
+        "in_covision": "Передано в Ковизию"
+      }
+    },
     "overview": {
       "title": "Обзор",
       "intro": "Обзор объединяет ваши приватные записи о рабочем благополучии и показывает требования работы, ресурсы и повторяющиеся закономерности.",
