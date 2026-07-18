@@ -29,15 +29,17 @@ Valmis kogemus tähendab:
 7. T02 lõpparuanne ja `codex/account-v1 @ 929793f1339ce5754ae0206b87450e8ee1689e48`.
 7. `components/alalehed/RegistreerimineBody.jsx`, `components/pages/RegistreeriminePageClient.jsx`, `components/LoginModal.jsx`, `app/api/register/route.js`
 8. `app/kasutusjuhend/page.jsx`, `app/privaatsustingimused/page.js`, `app/kasutustingimused/page.js`, `app/tooalase-kasutuse-raamistik/page.jsx`, `app/sitemap.js`, `lib/metadata.js`
-9. valmis aluscommit'id `15ab986f111c41eb7eb0c493486ca59cda858067` (meta) ja `8cae87123c6c6d7eefd3ea14fe77a8e4c8525ce7` (sitemap).
+9. valmis aluscommit'id `15ab986f111c41eb7eb0c493486ca59cda858067` (meta) ja `8cae87123c6c6d7eefd3ea14fe77a8e4c8525ce7` (sitemap) — **mõlemad on 18.07 seisuga juba `main`-baasis sees**.
 
 ## Alus ja worktree
 
-1. Kontrolli enne alustamist `origin/main` SHA-d. Ülesande koostamise hetkel on see `fe4eb4fa7997a7eada9417a27c6cea75ccd23cbe`.
-2. Ära kasuta ega muuda määrdunud põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI`.
-3. Loo uus worktree, näiteks `C:\Users\rauds\Desktop\SotsiaalAI-public-v1`, ja värske haru `codex/public-v1` aktiivsest `origin/main`-ist.
-4. Too samasse harusse esmalt `cherry-pick -x 15ab986f111c41eb7eb0c493486ca59cda858067`, seejärel `cherry-pick -x 8cae87123c6c6d7eefd3ea14fe77a8e4c8525ce7`. Ära muuda algseid A11Y- ega AVALIK-harusid.
-5. Kui üks commit ei rakendu puhtalt, lahenda konflikt ainult T10 avalike failide piires ja raporteeri see. Ära rebase'i ega kasuta põhitööpuud alusena.
+> **BAAS UUENDATUD 2026-07-18 (integratsiooni järel).** Kohalik `main` konsolideeriti 18.07: 26 valmis haru (sh meta `15ab986f` ja sitemap `8cae8712`) on nüüd `main`-is sees. Cherry-pick'e EI ole enam vaja. `origin/main` (server) on kohalikust `main`-ist taga; baas on KOHALIK `main`.
+
+1. Kontrolli enne alustamist kohaliku `main` SHA-d. Ülesande väljastamise hetkel on see `0ea13453639be6d7758d8051284df78008fb0b32`.
+2. Ära muuda põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` — see on `main`-i peal ja puhas; kasuta seda ainult read-only baasina.
+3. Loo uus worktree, näiteks `C:\Users\rauds\Desktop\SotsiaalAI-public-v1`, ja värske haru `codex/public-v1` kohalikust `main`-ist (`git worktree add ../SotsiaalAI-public-v1 -b codex/public-v1 main`).
+4. Cherry-pick'e ei tehta: meta-title/description commit `15ab986f` ja sitemap'i commit `8cae8712` on juba baasis. Sinu kohustus on need terveks hoida (meta kõigil T10 lehtedel ET/EN/RU mittetühi; sitemap'i kanoonilised URL-id kooskõlas).
+5. Ära rebase'i ega kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`) alusena.
 
 ## Lukustatud V1 valikud
 
@@ -130,7 +132,7 @@ Kasuta ainult lokaalset sünteetilist keskkonda. Kontrolli kolm rolliteekonda, s
 ## Definition of Done
 
 1. E1–E6 on samas harus teostatud.
-2. Meta `15ab986f` ja sitemap `8cae8712` on T10 stack'is, mitte eraldi unustatud harud.
+2. Meta `15ab986f` ja sitemap `8cae8712` panus on baasist terve: meta kõigil T10 lehtedel ET/EN/RU mittetühi, sitemap'i kanoonilised URL-id kooskõlas.
 3. Avalik tegevusteekond on ühe fookusega, SotsiaalAI brändikeeles ning reduced-motion/mobiili varuvaatega.
 4. Registreerimise avatus on ühtne serveritõde; avatud raja nõustumised on serveris tõendatavad.
 5. Hinnastus, juhend ja avalikud lubadused räägivad sama, praegu tegelikult olemasolevat juttu.
@@ -142,6 +144,6 @@ Kasuta ainult lokaalset sünteetilist keskkonda. Kontrolli kolm rolliteekonda, s
 
 ## Lõpparuanne koordinaatorile
 
-Esita worktree, haru, täpne baas-SHA, mõlema aluscommiti cherry-pick SHA ning lõppcommit/remote SHA; migratsiooni nimi või kinnitus, et seda ei tehtud; E1–E6 kasutajateekonna kokkuvõte; testide/lindi/i18n/Prisma/diff-check/buildi tulemused; runtime ja cleanup või `NOT_RUN`/`NOT_PROVEN`; juristi lõppkinnituse piir; ning kinnitus, et põhitööpuud, `main`-i, serverit, merge'i ega deploy'd ei muudetud.
+Esita worktree, haru, täpne baas-SHA (peab olema `0ea13453…` või uuem kohalik `main`) ning lõppcommit/remote SHA; migratsiooni nimi või kinnitus, et seda ei tehtud; E1–E6 kasutajateekonna kokkuvõte; testide/lindi/i18n/Prisma/diff-check/buildi tulemused; runtime ja cleanup või `NOT_RUN`/`NOT_PROVEN`; juristi lõppkinnituse piir; ning kinnitus, et põhitööpuud, `main`-i, serverit, merge'i ega deploy'd ei muudetud.
 
 Koordinaator kontrollib pärast aruannet ainult haru, parent'i, commit'i ja remote SHA-d. Ta ei korda automaatselt sinu teste, buildi ega runtime'i.

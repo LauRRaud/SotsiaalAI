@@ -2,7 +2,7 @@
 
 STATUS: ACTIVE TRANSFER TASK
 
-Viimati uuendatud: 2026-07-17
+Viimati uuendatud: 2026-07-18 (integratsiooni järel; koordineerib kasutaja ise)
 
 ## Ülesanne
 
@@ -25,8 +25,8 @@ Kanoonilise handoff'i alguses on peatükk „Järgmise akna käivitusseis — 20
 
 ## Kriitilised tööreeglid
 
-- Kohalik põhitööpuu on kasutaja muudatustega määrdunud ja `origin/main`-ist maas.
-- Põhitööpuud ei puhastata, stage'ita, commit'ita, merge'ita ega kasutata uue arendusharu baasina.
+- **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main @ 0ea13453` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). `origin/main` (server) on kohalikust `main`-ist 66 commit'i TAGA ja jääb puutumata kuni eraldi deploy-otsuseni.
+- Uued teemaharud luuakse kohalikust `main`-ist (mitte `origin/main`-ist); põhitööpuud ennast kasutatakse ainult read-only baasina.
 - Uus kooditöö tehakse ainult eraldi värskes worktree's ja ülesandes nimetatud baascommit'i pealt.
 - Ära merge'i ega deploy ilma kasutaja eraldi selgesõnalise loata.
 - Ära käivita `OPS-FINAL-A0`; see jääb release candidate'i lõppväravaks.
@@ -54,6 +54,16 @@ Kontrolli odavalt ja read-only viisil muutlikud Git-faktid:
 Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontrollitud fakti ja uuenda pärast vastuvõttu kõik kanoonilised dokumendid.
 
 ## Praegune jätkamispunkt
+
+### 18.07 integratsioon (ülimuslik allolevate "ei ole main'is" märgete suhtes)
+
+Kohalik `main @ 0ea13453` sisaldab nüüd 26 liidetud haru: kogu Faas-1 P0/P1 kiht (admin-v1-core, a11y-i18n-p0, u6/u7, perf-p0, maksed-p1a, k1-p0, prof-p1, avalik-p1s, vest-p0/p0a, rag-qm-p0/p0a, tooheaolu-e0 jt), T17 search-language, T11 service-mediation, T04+T05 workspace-stack, T06 journey, T28 rag-v1, supervision-v0-skeem ja registreerimise jaamalend. Allpool olevad „ei ole main'is” laused kehtisid 17.07 seisuga; Git-seis on ülimuslik.
+
+**Edasi lükatud (disainikollisioon, EI liidetud):** T03 `chat-voice-v1` (kannab vanemat Räägi/Kirjuta spatial-entry mudelit; main'is on uuem mic-nupu lahendus), T02 `account-v1` + T16 `export-v1` (verify-then-swap e-postimudel vs main'i kohene swap; export sõltub account'ist). Kõik kolm haru on remote'is alles; igaüks vajab sihitud rebase+lepitussessiooni, mitte mehaanilist merge'i.
+
+**Teadaolev .env-leid:** `SUBSCRIPTION_RECURRING_ENABLED` on seatud, aga `MAKSEKESKUS_PUBLIC_KEY` puudub → maksed-p1a uus check-env reegel kukutab deploy-kontrolli. Enne deploy'd lisada võti või keelata recurring.
+
+**Backup'id:** `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18` (= main).
 
 ### Valmis alus
 
@@ -96,6 +106,8 @@ T28 `RAG-V1` on `CODE_READY`, mitte aktiivne jätkuülesanne.
 - T06 jääb külmutatuks `f17a3c36`; selle runtime-/migratsioonitõend tehakse T27-s, mitte eraldi auditiülesandena.
 
 T24 `FIELD-V1` on aktiivne, kuid pausil Fable'i worktree's testide alguses. Skeemi-, teenuse-, API-, retention-, service worker'i ja UI töö on teostaja vaheinfo järgi pooleli; lõppcommit'i, remote SHA-d ja tööpuu lõppseisu pole veel üle antud. Uus konto ei dubleeri seda tööd; algne Fable jätkab samast worktree'st.
+
+**Järgmine väljastatav tervikteema on T10 `PUBLIC-V1`** — leping `t10-public-v1-ulesanne.md` on 18.07 uuendatud uuele baasile (kohalik `main @ 0ea13453`; meta+sitemap cherry-pick'e enam ei vajata, need on baasis). Paralleelaknasse sobib ka T07 `DOCUMENTS-RESEARCH-V1` (`t07-documents-research-v1-ulesanne.md`) — NB: selle baasiviited (T28 `8c3e5f77` worktree-baas) tuleb enne väljastamist samuti uuendada kohalikule `main`-ile, sest T28 on nüüd main'is. T09 `PAYMENTS-V1` on blokeeritud kuni T02 account-lepitus on tehtud.
 
 T23 `ESTA-MENTOR-V1` on samuti pooleli ning seda ei anta uue teemana välja. Worktree `C:\Users\rauds\Desktop\SotsiaalAI-esta-mentor-v1`, haru `codex/esta-mentor-v1 @ 33f7fb82` (T05 baas), remote-haru puudub. Worktree sisaldab 12 muudetud faili ning uusi mentorluse API/UI/teenuse/migratsiooni faile; enne jätkamist loe olemasolev diff ja ESTA-MENTOR-V1 algne leping. Ära puhasta, rebase'i ega tee uut mentorluse worktree'd.
 
