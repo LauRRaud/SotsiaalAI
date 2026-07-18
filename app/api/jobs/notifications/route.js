@@ -8,6 +8,7 @@ import { runNotificationDelivery } from "@/lib/notificationDelivery";
 import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
 import { projectDomainEvents } from "@/lib/events/projector";
 import { runMentoringSweep } from "@/lib/mentoring/sweep";
+import { runFieldSafetySweep } from "@/lib/field/safety";
 import { safeError } from "@/lib/privacy/safeError";
 
 const NO_STORE = { "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0" };
@@ -65,6 +66,9 @@ export async function POST(request) {
       deliveryCursor = deliveryPage.nextCursor || null;
       if (!deliveryCursor) break;
     }
+    // FIELD-V1 safety check-in sweep rides the same production timer so the
+    // dead-man escalation needs no new ops surface.
+    const fieldSafety = await runFieldSafetySweep({ dryRun, batchSize });
     const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
     projected.truncated = Boolean(projectorCursor);
     if (truncated) console.error("[jobs/notifications] processing truncated", {
@@ -80,7 +84,8 @@ export async function POST(request) {
       reconciled,
       projected,
       mentoring,
-      delivery
+      delivery,
+      fieldSafety
     });
   } catch (error) {
     console.error("[jobs/notifications] failed", safeError(error));

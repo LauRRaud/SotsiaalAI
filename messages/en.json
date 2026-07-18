@@ -1,4 +1,219 @@
 {
+  "field": {
+    "meta": {
+      "title": "Field work",
+      "visitTitle": "Field visit",
+      "description": "Mobile field-work shell: visit preparation, offline notes and safe handover."
+    },
+    "title": "Field work",
+    "lead": "Prepare a visit, work offline and hand the material over to an existing workspace.",
+    "loading": "Loading…",
+    "saving": "Saving…",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "loginRequired": "The field-work view requires signing in.",
+    "roleRequired": "The field-work shell is a professional surface and is not available for this account.",
+    "storeUnsupported": "This browser does not support the secure local store — offline work is unavailable; online work still works.",
+    "errors": {
+      "loadFailed": "Loading failed.",
+      "saveFailed": "Saving failed.",
+      "deleteFailed": "Deleting failed.",
+      "handoverFailed": "Handover failed.",
+      "notFound": "Visit not found.",
+      "needsOnline": "This action needs a connection.",
+      "offlineNoPack": "You are offline and this visit's pack is not on the device. Open the visit online and take the pack to the device.",
+      "ocrFailed": "Reading text from the photo failed.",
+      "transcribeFailed": "Transcription failed."
+    },
+    "sync": {
+      "online": "Online — everything sent.",
+      "onlinePending": "Online — {count} items waiting to send.",
+      "offline": "Offline — everything is saved on this device.",
+      "needsLogin": "Sending requires signing in; the data stays on the device.",
+      "failed": "{count} items need attention"
+    },
+    "prepare": {
+      "open": "Prepare a visit",
+      "title": "New visit",
+      "goal": "Purpose of the visit",
+      "location": "Place (in your own words)",
+      "locationHint": "The place text stays in your workspace only; the device location is never read or stored.",
+      "create": "Create visit",
+      "needsOnline": "Creating a visit needs a connection."
+    },
+    "list": {
+      "open": "Visits in progress",
+      "closed": "Finished",
+      "empty": "No visits yet — start with preparation."
+    },
+    "visit": {
+      "untitled": "Untitled visit",
+      "close": "Close visit",
+      "cancel": "Visit did not happen",
+      "closeBlocked": "Closing becomes available once every item is sent or removed."
+    },
+    "status": {
+      "DRAFT": "In preparation",
+      "PLANNED": "Planned",
+      "IN_PROGRESS": "On site",
+      "WRAP_UP": "Wrap-up",
+      "CLOSED": "Closed",
+      "CANCELLED": "Cancelled"
+    },
+    "phases": {
+      "label": "Visit phases"
+    },
+    "phase": {
+      "prep": "Preparation",
+      "on_site": "On site",
+      "follow_up": "Wrap-up"
+    },
+    "pack": {
+      "take": "Take the pack to this device",
+      "refresh": "Refresh the pack on this device",
+      "taken": "The pack is on the device.",
+      "onDevice": "The pack is on this device and works offline.",
+      "needsOnline": "Taking the pack needs a connection.",
+      "stale": "The pack is stale — the source has changed since",
+      "questions": "Key questions",
+      "summary": "Preparation summary"
+    },
+    "markers": {
+      "confirmArrival": "Confirm arrival",
+      "arrived": "Arrival confirmed",
+      "confirmDeparture": "Confirm departure",
+      "departed": "Departure confirmed",
+      "storedOffline": "The confirmation is on the device; it reaches the server when the connection returns.",
+      "pendingSync": "The confirmation has NOT reached the server yet — if the deadline passes before you are online, the trusted contact will be notified."
+    },
+    "note": {
+      "title": "Quick note",
+      "body": "Note text",
+      "provenance": "Origin of the information",
+      "save": "Save the note to the device"
+    },
+    "provenance": {
+      "KLIENDI_OELDUD": "Said by the client",
+      "KLIENDI_KINNITATUD": "Confirmed by the client",
+      "DOKUMENDIST": "From a document",
+      "TEISE_SPETSIALISTI_INFO": "From another professional",
+      "TOOTAJA_TAHELEPANEK": "My observation",
+      "TOOTAJA_TOLGENDUS": "My interpretation",
+      "AI_MUSTAND": "AI draft (unconfirmed)",
+      "AMETLIKULT_KONTROLLITUD": "Officially verified"
+    },
+    "inputs": {
+      "title": "Voice and photo",
+      "alternative": "All inputs are optional — text and the checklist always work."
+    },
+    "photo": {
+      "take": "Take a photo",
+      "saved": "The photo is on the device and awaits your review.",
+      "failed": "Saving the photo failed.",
+      "policy": "Photos are for documents or the environment; people are not photographed by default."
+    },
+    "audio": {
+      "start": "Start an audio draft",
+      "stop": "Stop recording",
+      "saved": "The audio draft is on the device. You can transcribe it after sending.",
+      "failed": "Recording failed.",
+      "consentFirst": "Add a consent record before recording audio."
+    },
+    "consent": {
+      "title": "Consent",
+      "kindLabel": "For what",
+      "kind": {
+        "audio": "audio recording",
+        "photo": "photographing"
+      },
+      "subject": "From whom (role or name in your own words)",
+      "save": "Record the consent",
+      "saved": "The consent is recorded.",
+      "recordBody": "Verbal consent: {kind}."
+    },
+    "safety": {
+      "title": "Safety signal (check-in window)",
+      "explain": "If you do not confirm your departure by the deadline, the server e-mails your chosen trusted contact. The signal works even when your device is offline.",
+      "notEmergency": "This is NOT an emergency service and does not replace one — in danger, call 112.",
+      "deadline": "I will confirm departure by",
+      "contactEmail": "Trusted contact's e-mail",
+      "contactName": "Trusted contact's name",
+      "instructions": "Your instructions for the contact (e.g. whom to call)",
+      "arm": "Turn the safety signal on",
+      "armed": "The safety signal is on.",
+      "armedUntil": "The safety signal is on until {time}.",
+      "armedBadge": "safety signal on",
+      "cancel": "Turn the safety signal off",
+      "escalated": "The contact has been notified. If everything is fine, confirm departure — the contact then receives a “resolved” notice.",
+      "escalationFailed": "The notice could NOT be sent to the contact. Reach out to them yourself.",
+      "fillRequired": "Set the deadline and the contact's e-mail.",
+      "needsOnline": "Arming the safety signal needs a connection — a deliberate limit so the signal truly lives on the server."
+    },
+    "review": {
+      "title": "Review before sending",
+      "empty": "There are no items on this device.",
+      "approve": "Send",
+      "remove": "Remove"
+    },
+    "item": {
+      "note": "Note",
+      "checklist": "Checklist",
+      "consent": "Consent",
+      "photo": "Photo",
+      "audio": "Audio"
+    },
+    "itemState": {
+      "DEVICE_ONLY": "Device only — awaits your review",
+      "QUEUED": "Waiting to send",
+      "UPLOADING": "Syncing",
+      "SYNCED": "Synced",
+      "CONFLICT": "Conflict — pick a version",
+      "FAILED": "Failed",
+      "CANCELLED": "Sending cancelled",
+      "PURGE_PENDING": "Waiting for deletion",
+      "REMOVED": "Removed from the device"
+    },
+    "conflict": {
+      "keepDevice": "Keep this device's version",
+      "keepServer": "Keep the server version"
+    },
+    "attachments": {
+      "title": "Sent files",
+      "gone": "The file has been deleted"
+    },
+    "ai": {
+      "title": "AI draft — review before confirming",
+      "disclaimer": "This text is an unverified draft (AI/OCR/STT). Fix mistakes and confirm only when the content matches reality.",
+      "draft": "Draft text",
+      "confirm": "I confirm — save as a note",
+      "discard": "Discard",
+      "confirmed": "The draft was confirmed and saved as a note (origin: AI draft)."
+    },
+    "ocr": {
+      "run": "Read text from the photo"
+    },
+    "transcribe": {
+      "run": "Transcribe"
+    },
+    "handover": {
+      "title": "Hand over to a workspace",
+      "toArtifact": "Create a visit summary draft (artifact)",
+      "toPreInquiry": "Addition to the pre-inquiry work plan (appended AFTER the existing text)",
+      "notePlaceholder": "The summary you hand over to the pre-inquiry…",
+      "nextContact": "Next contact",
+      "noPreInquiry": "The visit is not linked to a pre-inquiry — handover only creates the summary draft.",
+      "send": "Hand over",
+      "done": "Handover succeeded.",
+      "alreadyDone": "The handover is done; you can repeat it if needed.",
+      "pickTarget": "Pick at least one handover target."
+    },
+    "purge": {
+      "title": "Remove local copies",
+      "explain": "Deletes the synced copies and the visit pack from this device. Nothing is deleted on the server. Unsent content is NOT deleted.",
+      "run": "Remove from this device",
+      "done": "Local copies have been removed."
+    }
+  },
   "mentoring": {
     "meta": {
       "title": "Mentoring",
@@ -3542,6 +3757,7 @@
       "practice_review_assigned": "A practice review was assigned to you",
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation",
+      "field_checkin_due": "The field-work check-in window is approaching — confirm departure or extend the deadline.",
       "data_export_ready": "Your data copy is ready",
       "mentoring_request_created": "You received a mentoring request",
       "mentoring_request_accepted": "Your mentoring request was accepted",
@@ -3581,6 +3797,8 @@
     "email_action": "Sign in securely to view it:"
   },
   "workspace_continuity": {
+    "field_visit": "A field visit awaits continuation",
+    "field_visit_active": "A field visit is in progress",
     "mentoring_request": "A mentoring request awaits your decision",
     "mentoring_agreement": "A mentoring agreement awaits your confirmation",
     "mentoring_summary": "A mentoring summary awaits your confirmation",

@@ -587,6 +587,7 @@ enum DocumentKind {
   AUDIO_TRANSCRIPT
   TRANSCRIPT_SUMMARY
   UPLOADED_AUDIO_SOURCE
+  FIELD_PHOTO
   OTHER
 }
 
@@ -770,6 +771,7 @@ model User {
   mentoringSummaryConfirmations MentoringSummaryConfirmation[] @relation("MentoringSummaryConfirmationUser")
   mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
   mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
+  fieldVisits                  FieldVisit[]               @relation("FieldVisitOwner")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -2005,6 +2007,7 @@ model PreInquiry {
   supersededBy   PreInquiry?      @relation("PreInquirySupersession", fields: [supersededById], references: [id], onDelete: SetNull)
   supersedes     PreInquiry?      @relation("PreInquirySupersession")
   covisionCases  CovisionCase[]
+  fieldVisits    FieldVisit[]
 
   @@index([authorId, updatedAt])
   @@index([authorId, sentAt])
@@ -2084,6 +2087,118 @@ model DomainEvent {
   @@index([sourceType, sourceId, occurredAt])
   @@index([retentionClass, occurredAt])
   @@index([actorUserId, occurredAt])
+}
+
+// FIELD-V1 (T24): a field visit is the worker's PRIVATE mobile workspace shell
+// over existing carriers (pre-inquiry workflow, UserDocument, AgentArtifact).
+// Visit statuses, item states and provenance values are application-level
+// constants (lib/field/constants.js) — deliberately NOT PostgreSQL enums.
+// Retention defaults follow O-FD-1: server rows sweep 90 days after
+// CLOSED/CANCELLED; raw audio purges 7 days after upload or immediately after
+// a confirmed transcript.
+model FieldVisit {
+  id                            String    @id @default(cuid())
+  ownerUserId                   String
+  status                        String    @default("DRAFT")
+  version                       Int       @default(1)
+  goal                          String?   @db.Text
+  locationText                  String?
+  plannedStartAt                DateTime?
+  plannedEndAt                  DateTime?
+  preInquiryId                  String?
+  packKeyQuestions              Json?
+  packSummaryText               String?   @db.Text
+  packTakenAt                   DateTime?
+  packSourceUpdatedAt           DateTime?
+  arrivedConfirmedAt            DateTime?
+  departedConfirmedAt           DateTime?
+  safetyArmedAt                 DateTime?
+  safetyDeadlineAt              DateTime?
+  safetyContactName             String?
+  safetyContactEmail            String?
+  safetyInstructions            String?   @db.Text
+  safetyRemindedAt              DateTime?
+  safetyEscalatedAt             DateTime?
+  safetyEscalationAttempts      Int       @default(0)
+  safetyEscalationNextAttemptAt DateTime?
+  safetyEscalationStatus        String?
+  safetyResolvedNotifiedAt      DateTime?
+  safetyCancelledAt             DateTime?
+  handoverArtifactAt            DateTime?
+  handoverPreInquiryAt          DateTime?
+  closedAt                      DateTime?
+  cancelledAt                   DateTime?
+  retentionClass                String    @default("standard90")
+  createdAt                     DateTime  @default(now())
+  updatedAt                     DateTime  @updatedAt
+
+  owner       User                   @relation("FieldVisitOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  preInquiry  PreInquiry?            @relation(fields: [preInquiryId], references: [id], onDelete: SetNull)
+  notes       FieldVisitNote[]
+  attachments FieldVisitAttachment[]
+
+  @@index([ownerUserId, updatedAt])
+  @@index([ownerUserId, status, updatedAt])
+  @@index([status, closedAt])
+  @@index([status, cancelledAt])
+  @@index([safetyArmedAt, safetyDeadlineAt])
+  @@index([preInquiryId])
+}
+
+// One row per synced item: (visitId, clientItemId) is the idempotency key the
+// device generated. A concurrent second-device edit is preserved in the
+// conflict* sibling fields until the owner resolves — nothing is overwritten
+// silently. Body text is class-1 working draft content; it never goes to logs.
+model FieldVisitNote {
+  id                 String    @id @default(cuid())
+  visitId            String
+  clientItemId       String
+  revision           Int       @default(1)
+  kind               String    @default("note")
+  provenance         String
+  body               String    @db.Text
+  contentSha256      String?
+  consentKind        String?
+  consentSubject     String?
+  consentForm        String?
+  consentWithdrawnAt DateTime?
+  aiConfirmedAt      DateTime?
+  conflictState      String?
+  conflictRevision   Int?
+  conflictBody       String?   @db.Text
+  conflictProvenance String?
+  deviceCreatedAt    DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  visit FieldVisit @relation(fields: [visitId], references: [id], onDelete: Cascade)
+
+  @@unique([visitId, clientItemId])
+  @@index([visitId, createdAt])
+  @@index([visitId, kind])
+}
+
+// Thin join between a visit and an existing UserDocument carrier — FIELD does
+// not build a parallel file system. Deleting the document leaves an honest
+// dangling marker (documentId null) instead of hiding the removal.
+model FieldVisitAttachment {
+  id                    String    @id @default(cuid())
+  visitId               String
+  clientItemId          String
+  role                  String
+  documentId            String?
+  consentClientItemId   String?
+  transcriptConfirmedAt DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  visit    FieldVisit    @relation(fields: [visitId], references: [id], onDelete: Cascade)
+  document UserDocument? @relation("FieldVisitAttachmentDocument", fields: [documentId], references: [id], onDelete: SetNull)
+
+  @@unique([visitId, clientItemId])
+  @@index([visitId, createdAt])
+  @@index([documentId])
+  @@index([role, createdAt])
 }
 
 // Teemaseeme remains an owner-private preparation object. WAITING freezes the
@@ -3191,6 +3306,7 @@ model UserDocument {
   transcriptTranscriptionJobs TranscriptionJob[]         @relation("TranscriptionJobTranscript")
   audits              DocumentAudit[]
   callRecordingFiles  CallRecordingFile[]
+  fieldVisitAttachments FieldVisitAttachment[]         @relation("FieldVisitAttachmentDocument")
 
   @@index([ownerId, updatedAt])
   @@index([ownerId, kind, updatedAt])
