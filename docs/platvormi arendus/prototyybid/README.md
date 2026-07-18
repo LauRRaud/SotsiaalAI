@@ -1,8 +1,14 @@
 # Ruumilise töölaua prototüübid
 
-STATUS: ACTIVE PROTOTYPE INDEX
+STATUS: DEFERRED — HISTORICAL REFERENCE (tooteomaniku otsus 2026-07-18)
 
-Kuupäev: 2026-07-17
+Kuupäev: 2026-07-17 · Staatus uuendatud: 2026-07-18
+
+> **T19 on `DEFERRED — OWNER_DECISION 2026-07-18`.** Tooteomanik otsustas, et kogu T19 ruumilise esitlusmootori suund on praegu ebaoluline. Selle kausta failid on **ajalooline viitematerjal, mitte kinnitatud tootedisain ega pooleliolev töö**. `RUUM-VIS-D1` disainiringi ei väljastata ja väljunddokumenti `fable-5-uhe-teema-fookusruum-ja-brandisuund.md` ei kirjutata.
+>
+> Kanooniline `ruumilise-toolaua-prototuup.html` **on olemas ja valmis** (commit `faeaf04c`, main'is) — allolev „Jätkamispunkt" kirjeldab seda ekslikult tulevase iteratsioonina ja on aegunud.
+>
+> Ükski arendusteema ei oota T19 järele: kuni teema on edasi lükatud, lahendab iga teema oma esitluse ise, järgides `app/styles/tokens.css` ja `glass.css` mustreid.
 
 ## Eesmärk
 
@@ -61,6 +67,8 @@ Esimeses ühises HTML-is katsetatakse neid vähemalt kahes eri töövoos, et tõ
 Kui referentsist saab hiljem tootmiskoodi kandidaat, tehakse enne eraldi sobivusotsus: võrreldakse seda olemasoleva `components/room/GlassCarousel.jsx`-iga, kontrollitakse sõltuvusi, lähtekoodi ja litsentsi ning lisatakse ainult vajalik kohandatud kood. React Bitsi projekt pakub komponente kopeeritava lähtekoodina ja kasutab MIT + Commons Clause'i litsentsi; CLI-käsku ei käivitata selle prototüübimärkme alusel.
 
 ## Jätkamispunkt
+
+> **AEGUNUD 18.07:** see peatükk kirjutati enne, kui `ruumilise-toolaua-prototuup.html` valmis sai. Fail on nüüd olemas ja main'is (`faeaf04c`); T19 on edasi lükatud, nii et jätkamispunkti ei kasutata. Peatükk on alles ainult ajaloolise kontekstina.
 
 Järgmise HTML-iteratsiooni kanooniline sihtnimi on `ruumilise-toolaua-prototuup.html`. See fail peab alustama näitevalikust ja koondama praeguste alusproovide tõendatud käitumised; seda ei nimetata ühe lehe järgi.
 

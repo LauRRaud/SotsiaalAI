@@ -623,7 +623,7 @@ Neid tehakse selles järjekorras, kui uus P0 regressioon ei muuda prioriteeti:
 9. **Koordinaator otsustab T17 kaasamise release-rehearsal'i.**
 10. **Pärast PASS-i tehakse üks integratsioon ja deploy**, ainult kasutaja loal.
 11. T04 `87d9a141`, T05 `33f7fb82`, T06 `f17a3c36` ja T28 `8c3e5f77` on koodina valmis. T28 on remote'il `codex/rag-v1`, local=remote ja tööpuu puhas; P8.6 päris proovipakk jääb omaniku otsuseks. RAG-QM auditit ei korrata.
-12. **FIELD-A0, FIELD-D0, ORG-A0, PILOT-PARTNER-A0 ja JOURNEY-D0 on `COMPLETE`; T06 on `CODE_READY @ f17a3c36`**. T23 ESTA-MENTOR-V1 on `IN_PROGRESS_LOCAL` worktree's `SotsiaalAI-esta-mentor-v1` ja T24 FIELD-V1 on `IN_PROGRESS` samas Fable'i worktree's ning pausil testide alguses; T25 ORG-V1 ja T26 PILOT-PARTNER-V1 on `ANALYSIS_READY`. T06 autentitud runtime, cleanup ja migratsiooni DB-seis jäävad T27 koondväravasse. T26 ei ava enne release candidate'i uut koodipaketti; päris piloot ootab O-PP-1/2/3 ja G3 PASS-i. T19 pooleliolev prototüüp jätkub algses aknas; `SUP-V1-A0` ootab SUP-P0 push'i ja auditit ning tooteomanik lükkas `KOV-V2-A0` hilisemaks.
+12. **FIELD-A0, FIELD-D0, ORG-A0, PILOT-PARTNER-A0 ja JOURNEY-D0 on `COMPLETE`; T06 on `CODE_READY @ f17a3c36`**. T23 ESTA-MENTOR-V1 on `IN_PROGRESS_LOCAL` worktree's `SotsiaalAI-esta-mentor-v1` ja T24 FIELD-V1 on `IN_PROGRESS` samas Fable'i worktree's ning pausil testide alguses; T25 ORG-V1 ja T26 PILOT-PARTNER-V1 on `ANALYSIS_READY`. T06 autentitud runtime, cleanup ja migratsiooni DB-seis jäävad T27 koondväravasse. T26 ei ava enne release candidate'i uut koodipaketti; päris piloot ootab O-PP-1/2/3 ja G3 PASS-i. **T19 on 18.07 `DEFERRED — OWNER_DECISION`** (kogu suund praegu ebaoluline; prototüüp main'is ajaloolise viitena, RUUM-VIS-D1 ei jätku); `SUP-V1-A0` ootab SUP-P0 push'i ja auditit ning tooteomanik lükkas `KOV-V2-A0` hilisemaks.
 
 ### Aktiivne ja järgmine kooditegevus
 
@@ -635,7 +635,7 @@ Neid tehakse selles järjekorras, kui uus P0 regressioon ei muuda prioriteeti:
 
 ### Fable'i seis praegu
 
-> **PERF-COST-A0, COLLAB-A0, CASEWORK-A0, WELLBEING-V2-A0, ESTA-MENTOR-A0, FIELD-A0, FIELD-D0, ORG-A0, PILOT-PARTNER-A0 ja JOURNEY-D0 on lõpetatud; T06 JOURNEY-V1 on `CODE_READY @ f17a3c36`. T23 ESTA-MENTOR-V1 on `IN_PROGRESS_LOCAL` (commit'imata mentorluse diff olemas) ning T24 FIELD-V1 on `IN_PROGRESS` ja pausil testide alguses; T25 ORG-V1 ja T26 PILOT-PARTNER-V1 on `ANALYSIS_READY`. T26 soovitatud piloot on 1 KOV-osakond + olemasolev eelpöördumise täisrada ning enne release candidate'i eraldi koodi ei vaja. T19 pooleliolev prototüüp jätkub algses aknas. SUP-V1-A0 jääb SUP-P0 sõltuvuse taha ja KOV-V2-A0 on hilisem.
+> **PERF-COST-A0, COLLAB-A0, CASEWORK-A0, WELLBEING-V2-A0, ESTA-MENTOR-A0, FIELD-A0, FIELD-D0, ORG-A0, PILOT-PARTNER-A0 ja JOURNEY-D0 on lõpetatud; T06 JOURNEY-V1 on `CODE_READY @ f17a3c36`. T23 ESTA-MENTOR-V1 on `IN_PROGRESS_LOCAL` (commit'imata mentorluse diff olemas) ning T24 FIELD-V1 on `IN_PROGRESS` ja pausil testide alguses; T25 ORG-V1 ja T26 PILOT-PARTNER-V1 on `ANALYSIS_READY`. T26 soovitatud piloot on 1 KOV-osakond + olemasolev eelpöördumise täisrada ning enne release candidate'i eraldi koodi ei vaja. **T19 on 18.07 `DEFERRED — OWNER_DECISION`; RUUM-VIS-D1 disainiringi ei väljastata ja ükski teema ei oota T19 järele.** SUP-V1-A0 jääb SUP-P0 sõltuvuse taha ja KOV-V2-A0 on hilisem.
 > Olemasoleva platvormi OPS-FINAL-A0 jääb release-candidate'i lõppväravaks.**
 
 ## 17. Muudatuslogi

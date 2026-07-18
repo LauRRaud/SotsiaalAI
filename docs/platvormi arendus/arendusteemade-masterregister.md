@@ -341,11 +341,11 @@ Kõiki teemasid ei sunnita kunstlikult route'iks. Leheta platvormi- ja ops-teema
 
 ### T19 — `SPATIAL-WORKSPACE-V1`: ühine ruumiline töölaud ja esitlusmootor
 
-- **Olek:** `ANALYSIS_READY`; alusproovid olemas, tootmiskoodi luba puudub.
-- **Allikad:** RUUM-VIS; ruumilised lehefaasid; prototüüpide README; ruumilise kogemuse lähtekoht.
-- **Üks arendus:** esmalt üks `ruumilise-toolaua-prototuup.html`, mille valikus on Dokumendi koostamine, Tööheaolu, Teekond, Kovisioon, Registreerimine ja lugemiskiht; sama dokk, faasiriba, Fookus/Ülevaade/Võrdlus, URL ja flat/reduced-motion kõigis näidetes.
-- **Referentsid:** Carousel tööobjektide/versioonide sirvimiseks ja Animated List sündmuste/„mis muutus” jaoks; need pole uued lehed ega sõltuvusluba.
-- **Pärast prototüüpi:** üks ühine production-komponentide teema, mitte iga route'i eraldi flight-demo.
+- **Olek:** `DEFERRED — OWNER_DECISION 2026-07-18`. Tooteomanik otsustas, et **kogu T19 suund on praegu ebaoluline**. Ei ole `ANALYSIS_READY` ega ootel ülesanne: uut disainiringi (`RUUM-VIS-D1`) ei väljastata ja ühist esitlusmootorit ei ehitata enne, kui tooteomanik teema ise taasavab.
+- **Prototüüp:** `prototyybid/ruumilise-toolaua-prototuup.html` (commit `faeaf04c`, main'is) on **valmis ja ajalooline viide**, mitte pooleliolev töö ega kinnitatud tootedisain. Varasemad väited „prototüüp jäi pooleli / jätkub algses aknas” on aegunud ja tühistatud. RUUM-VIS-D1 väljunddokumenti (`fable-5-uhe-teema-fookusruum-ja-brandisuund.md`) ei kirjutatud ega hakata kirjutama.
+- **Mõju teistele teemadele (OLULINE):** T19 on mitmes vastutuskaardi reas märgitud toetavaks teemaks (T05, T06, T07, T10, T13, T14, T22 jt). **Ükski teema ei oota T19 järele.** Kuni T19 on `DEFERRED`, lahendab iga teema oma esitluse ja ruumilisuse ise oma lepingu piires; „kasutab T19 esitluslepingut” tähendab praegu ainult seda, et olemasolevaid tokeneid ja `glass.css`/`tokens.css` mustreid järgitakse.
+- **Allikad (säilivad viitena):** RUUM-VIS; ruumilised lehefaasid; prototüüpide README; ruumilise kogemuse lähtekoht.
+- **Kui teema taasavatakse:** siht on üks ühine `ruumilise-toolaua-prototuup.html` (dokumendi koostamine, tööheaolu, teekond, kovisioon, registreerimine, lugemiskiht) ja seejärel üks ühine production-komponentide teema, mitte iga route'i eraldi flight-demo. Referentsid (Carousel, Animated List) ei ole sõltuvusluba.
 
 ### T28 — `RAG-V1`: teadmusbaasi elutsükkel, kvaliteet ja automaatne allikavärskus
 

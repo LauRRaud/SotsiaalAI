@@ -102,7 +102,7 @@ Kontrollitud faktid:
 - `JOURNEY-D0` on vastu võetud: `fable-5-teekond-ja-eelpoordumine-v1-arendusleping.md`, tööpuus 368 rida, `STATUS: COMPLETE`.
 - T06 fail-closed jagamisleping on otsustevaba ja üheselt määratud.
 - JOURNEY-D1 vaikevalikud kinnitati 17.07.2026: O-J1=B, O-J2=iseseisev Teekonna leht + rajasisene tagasi-nool ja O-J3=2-sammuline kustutamine + eksport.
-- T19 `RUUM-VIS-D1` prototüüp jäi algses Fable'i aknas limiidi tõttu pooleli. Seda ei alustata uues aknas nullist; algne aken jätkab pärast limiidi taastumist.
+- T19 `RUUM-VIS-D1` on **`DEFERRED — OWNER_DECISION 2026-07-18`**: tooteomanik otsustas, et kogu T19 suund on praegu ebaoluline. Prototüüp `prototyybid/ruumilise-toolaua-prototuup.html` on valmis ja main'is (`faeaf04c`) — see on ajalooline viide, MITTE pooleliolev töö. Varasem juhis „jätkub algses aknas pärast limiidi taastumist" on tühistatud. Ei väljastata, ei jätkata, ei alustata nullist. Ükski teine teema ei oota T19 järele.
 - Uut sõltumatut Fable'i süvaanalüüsi praegu ei avata.
 
 ### T28 vastuvõetud kood

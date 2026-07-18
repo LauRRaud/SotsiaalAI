@@ -16,7 +16,7 @@ Lähteseis (17.07.2026 kanoonilised kontrollid, ei korratud):
 | T05 `WORKBENCH-V1` | järgmine aktiivne Sol/Terra teema; stack `87d9a141` pealt, portib TÖÖLAUD-P1 `a2393301` süvalingiparandused | masterregister ptk 8 |
 | T06 `JOURNEY-V1` | tuleb pärast T05; **serveris on täna lekkega jagamisrada piloodi tuumvoos** | masterregister T26; PILOT-A0 12.2 p2 |
 | T26 esimene partnerpiloot | G3 värav nõuab TK-P0 jagamispiiri release'is | PILOT-A0 ptk 12.2 |
-| T19 ruumiline prototüüp | `ANALYSIS_READY`; pooleli teises aknas; EI tohi T06 põhifunktsionaalsust blokeerida | masterregister T19; programm ptk 16 |
+| T19 ruumiline prototüüp | **`DEFERRED — OWNER_DECISION 2026-07-18`**; T06 EI oota T19 järele ega kasuta seda sõltuvusena; T06 lahendab oma esitluse ise `tokens.css`/`glass.css` mustritega | masterregister T19; programm ptk 16 |
 | O-K1-1 / O-U1-1 / O-U1-2 | **KINNITATUD 17.07.2026** (sõnastik; DomainEvent kiht + retention-klassid; eelpöördumise vertikaal) | programm ptk 11 |
 | O-TK1…O-TK9 | **ükski pole formaalselt kinnitatud**; O-TK9 soovitus on B | UX-analüüs 14.11; O-TK9 leht; programm ptk 11 |
 
