@@ -1,9 +1,9 @@
 # ÜLESANNE: T07 `DOCUMENTS-RESEARCH-V1` — Minu dokumendid, analüüs ja süvauuring
 
-**Olek:** `READY_TO_ASSIGN_AFTER_T17`  
+**Olek:** `READY_TO_ASSIGN` (18.07: T17 ja T28 on mõlemad kohalikus `main`-is — järjekorratingimus täidetud)  
 **Teostus:** üks worktree, üks haru, üks terviklik lõppüleandmine  
-**Soovitatud teostaja:** Opus või Terra High  
-**Järjekord:** alusta alles siis, kui T17 lõppcommit on pushitud. T28 `RAG-V1` on vajalik alus. See on dokumenditeema täielik V1, mitte eraldi RAG-i, faili- ega kõnepakett.
+**Soovitatud teostaja:** Opus, Terra High või Fable 5 High  
+**Järjekord:** eeldused täidetud. T28 `RAG-V1` on vajalik alus ja sisaldub baasis. See on dokumenditeema täielik V1, mitte eraldi RAG-i, faili- ega kõnepakett.
 
 ## Eesmärk
 
@@ -15,17 +15,20 @@ Kasutajal on üks rahulik **Minu dokumendid** ruum: ta saab dokumenti mõista, k
 2. `docs/platvormi arendus/teemaarenduse-jatkamise-kord.md`
 3. `docs/platvormi arendus/lisafunktsioonid/fable-5-dokumendid-analuus-ja-syvauuring-tervikvoog.md` — tervikuna, eriti ptk 8–17 ja A–E.
 4. `docs/platvormi arendus/arendusteemade-masterregister.md` — T07.
-5. T17 lõpparuanne ning selle tegelik remote SHA; ära eelda poolelioleva haru SHA-d.
-6. T28 lõpparuanne ja `codex/rag-v1 @ 8c3e5f778d1a85eb1281ee076f578ed227aeec55`.
-7. T06 `codex/journey-v1 @ f17a3c365928433fbe5a9a681d6f8a91bb762010`, `lib/rag/**`, `app/api/documents/**`, `app/api/research/**`, `components/alalehed/ChatBody.jsx`, `app/dokreziim/**`, dokumentide kustutus- ja retention-rajad.
+5. T17 lõpparuanne (T17 `ed95d6aa` sisaldub 18.07 seisuga `main`-baasis; eraldi cherry-pick'i ei tehta).
+6. T28 lõpparuanne (T28 `codex/rag-v1 @ 8c3e5f77` sisaldub samuti `main`-baasis).
+7. T06 panus (samuti baasis), `lib/rag/**`, `app/api/documents/**`, `app/api/research/**`, `components/alalehed/ChatBody.jsx`, `app/dokreziim/**`, dokumentide kustutus- ja retention-rajad.
 8. `docs/platvormi arendus/tehis-testkontod.md` enne lokaalset autentitud kontrolli.
 
 ## Alus ja worktree
 
-1. Kontrolli enne alustamist `origin/main`, T17 remote SHA-d ja T28 remote SHA-d. Määrdunud põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` ei kasutata ega muudeta.
-2. Loo uus worktree T28 commit'ist `8c3e5f77`, näiteks `C:\Users\rauds\Desktop\SotsiaalAI-documents-research-v1`, haruga `codex/documents-research-v1`. See sisaldab ka T06 alust.
-3. Too T17 kinnitatud lõppcommit stack'i `cherry-pick -x` abil. Kui T17 pole veel pushitud või selle lõpparuanne puudub, peatu — ära tee oma tõlgendust poolelioleva otsingu diffist.
+> **BAAS UUENDATUD 2026-07-18 (integratsiooni järel).** Kohalik `main` konsolideeriti 18.07: T17 `ed95d6aa`, T28 `8c3e5f77` ja T06 `f17a3c36` on kõik `main`-is sees. Cherry-pick'e ega T28-commit'ist hargnemist EI ole enam vaja; baas on KOHALIK `main` (mitte `origin/main`, mis on serverina taga).
+
+1. Kontrolli enne alustamist kohaliku `main` SHA-d. Ülesande väljastamise hetkel on see `b8563cce` (täispikk SHA: kontrolli `git rev-parse main`). Põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` kasutatakse ainult read-only baasina; seda ei muudeta.
+2. Loo uus worktree kohalikust `main`-ist: `git worktree add ../SotsiaalAI-documents-research-v1 -b codex/documents-research-v1 main`. See sisaldab T06, T17 ja T28 alust.
+3. Cherry-pick'e ei tehta. Kui `main`-i tipp erineb ülal nimetatust, kasuta värsket `main`-i ja raporteeri kasutatud SHA lõpparuandes.
 4. Ära re-ingesti päris allikaid, ära käivita RAG-i masskorjet ega aktiveeri research-workerit või selle systemd timerit. Need on eraldi ops-otsused.
+5. NB: paralleelselt on väljas T10 `PUBLIC-V1` (avalikud lehed). Teemade failialad ei kattu peale `messages/*.json` tõlkefailide; hoia oma tõlkemuudatused ainult T07 võtmetes, et hilisem liitmine oleks puhas. Ära kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`, `SotsiaalAI-public-v1`) alusena.
 
 ## Lukustatud V1 valikud
 
@@ -104,6 +107,6 @@ Valmis on siis, kui E1–E5 on samas harus, privaatse dokumendi cross-tenant pii
 
 ## Lõpparuanne
 
-Esita worktree, haru, baas/T17/T28 SHA-d, lõppcommit/remote SHA, migratsioonid, E1–E5 kokkuvõte, testid/lint/i18n/Prisma/diff-check/build, sünteetiline runtime/cleanup või `NOT_RUN`/`NOT_PROVEN`, välja jäetud ops- ja failielutsükli osad ning kinnitus, et tootmisandmeid, merge'i ega deploy'd ei puudutatud.
+Esita worktree, haru, kasutatud `main`-baasi SHA, lõppcommit/remote SHA, migratsioonid, E1–E5 kokkuvõte, testid/lint/i18n/Prisma/diff-check/build, sünteetiline runtime/cleanup või `NOT_RUN`/`NOT_PROVEN`, välja jäetud ops- ja failielutsükli osad ning kinnitus, et tootmisandmeid, merge'i ega deploy'd ei puudutatud.
 
 Pärast lõpparuannet teeb Fable fokuseeritud lepingu kontrolli: cross-tenant RAG-piir, owner-404, DRAFT/analüüsi püsivus, soft-nav/Stop ning snapshot-kustutus. Ta ei korda täissviiti, buildi ega tervikauditit.
