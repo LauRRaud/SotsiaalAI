@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 VÄLJASTATUD** — aktiivne kooditeema, baas `cdbd9139`. T23 mentorlus valmis + pushitud)
+Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 VÄLJASTATUD** — aktiivne kooditeema, baas `cdbd9139`. **Ops-fixid: research-worker live + Turbopack puhas; server `efd275f1`.** T23 mentorlus valmis + pushitud)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -89,7 +89,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ## SEISUTABEL — 2026-07-18
 
-`main @ adc83829`; **server `origin/main @ adc83829` — DEPLOY TEHTUD 18.07** (ff `fe4eb4fa`→`adc83829`, 6 migratsiooni rakendatud, build 24.9s / 57 lehte, frontend+rag `active`, smoke roheline: `/` `/vestlus` `/meist` → 200). Rollback-SHA `fe4eb4fa`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-adc83829-20260718T111528Z.dump` (2,69 MB, taastatav).
+`main @ efd275f1`; **server `origin/main @ efd275f1` — LIVE**. Põhi-deploy 18.07 (`adc83829`): ff `fe4eb4fa`→`adc83829`, 6 migratsiooni rakendatud, build/57 lehte, smoke roheline (`/` `/vestlus` `/meist` → 200); seejärel `efd275f1` ops-fix rebuild. **Ops-fixid 18.07 (live+tõendatud):** (1) `sotsiaalai-research-worker.service` paigaldatud + `active`+stabiilne (fix: `--conditions=react-server`, sest `pipeline.js`→`@/lib/server/ragAuth`→`server-only` crash-loopis standalone node's; repo alla `ops/systemd/`) — [[perf-cost-audit]] L1 **worker-osa** lahendatud, **kvoodileke JÄÄB** (PERF-P0); (2) Turbopack NFT-hoiatused 10→0 (`lib/dataExport/service.js`). Rollback-SHA `fe4eb4fa`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-adc83829-20260718T111528Z.dump` (2,69 MB, taastatav).
 
 ### Töö järjekord (jadatöö)
 
