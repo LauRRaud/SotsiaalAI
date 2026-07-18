@@ -1,4 +1,3 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { buildArtifactDownloadUrl, serializeArtifact } from "@/lib/documents/artifacts"
 import { prisma } from "@/lib/prisma"
@@ -68,15 +67,13 @@ export async function POST(request, { params }) {
   }
 
   try {
-    const existing = await prisma.agentArtifact.findUnique({
-      where: { id }
+    const existing = await prisma.agentArtifact.findFirst({
+      where: { id, ownerId: auth.userId }
     })
 
     if (!existing) {
       return errorJson("documents.artifacts.errors.not_found", 404, locale)
     }
-
-    assertOwnedByUser(existing, auth.userId)
 
     if (existing.status === "FINAL") {
       const artifact = await prisma.agentArtifact.findUnique({

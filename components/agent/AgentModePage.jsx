@@ -1208,11 +1208,14 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.create_artifact_failed"))
 
       const nextDraft = payload?.draft || null
+      // The draft is now persisted the instant it is generated, so it already carries a real id:
+      // record it (not ""), so a later save updates this row instead of creating a duplicate.
+      const nextDraftId = String(nextDraft?.id || "").trim()
       applyWorkspaceResult(nextDraft)
       resetWorkspaceVersionsFromResult(nextDraft, historyKind)
-      setPersistedArtifactId("")
+      setPersistedArtifactId(nextDraftId)
       setRunFeedback({ message: t(feedbackKey) })
-      router.replace(buildWorkspaceHref(""), { scroll: false })
+      router.replace(buildWorkspaceHref(nextDraftId), { scroll: false })
       if (isClientRole) await refreshRecentArtifacts()
       return nextDraft
     } catch (error) {

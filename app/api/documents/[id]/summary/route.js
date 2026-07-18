@@ -93,8 +93,8 @@ export async function POST(request, { params }) {
   } catch {}
 
   try {
-    const transcript = await prisma.userDocument.findUnique({
-      where: { id },
+    const transcript = await prisma.userDocument.findFirst({
+      where: { id, ownerId: auth.userId },
       select: {
         id: true,
         ownerId: true,
@@ -108,7 +108,6 @@ export async function POST(request, { params }) {
     })
 
     if (!transcript) return errorJson("documents.errors.not_found", 404, locale)
-    if (transcript.ownerId !== auth.userId) return errorJson("api.common.forbidden", 403, locale)
     if (!TRANSCRIPT_KINDS.has(transcript.kind)) return errorJson("documents.errors.transcript_required", 400, locale)
 
     const transcriptText = String(body?.content || transcript.content || "").trim()

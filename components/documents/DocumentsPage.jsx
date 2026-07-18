@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole"
 import { useI18n } from "@/components/i18n/I18nProvider"
@@ -13,20 +13,31 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
 import OptionCard from "@/components/ui/OptionCard"
-import { ARTIFACT_LIST_LIMIT, ARTIFACT_LIST_LIMIT_ALL, DOCUMENT_KIND_VALUES, DOCUMENT_LIST_LIMIT, TEMPLATE_FOR_VALUES } from "@/lib/documents/constants"
+import { ARTIFACT_LIST_LIMIT_ALL, TEMPLATE_FOR_VALUES } from "@/lib/documents/constants"
 import {
-  artifactStatusLabel,
-  artifactTypeLabel,
+  describeProvenance,
   formatDate,
   formatFileSize,
   kindLabel,
-  templateForLabel
+  templateForLabel,
+  workspaceTypeLabel
 } from "@/lib/documents/presentation"
+import { buildWorkspaceItems } from "@/lib/documents/workspace"
 import { WORKER_FRAMEWORK_SIGNED_HREF, WORKER_FRAMEWORK_VERSION } from "@/lib/frameworkAcceptances"
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__"
+const WORKSPACE_WINDOW = 50
+
+// Ühtse loendi kerge rühmafilter (mitte tabeli-juhtpaneel — üks selge loend, valikuline vaade).
+const FILTER_GROUPS = {
+  ALL: null,
+  FILES: new Set(["source", "transcript"]),
+  ANALYSIS: new Set(["analysis"]),
+  ARTIFACTS: new Set(["draft", "final"]),
+  RESEARCH: new Set(["research"])
+}
 
 function markChatWorkspaceRestore() {
   if (typeof window === "undefined") return
@@ -38,253 +49,154 @@ function markChatWorkspaceRestore() {
   } catch {}
 }
 
-function normalizeSearchValue(value) {
-  return String(value || "").trim().toLowerCase()
+function emptyFamily(extra = {}) {
+  return { items: [], total: 0, error: "", ...extra }
 }
 
-function ChipLabel({ label, count }) {
-  return (
-    <>
-      <span>{label}</span>
-      {typeof count === "number" ? <span>&nbsp;({count})</span> : null}
-    </>
-  )
-}
-
-function createPaginationState(limit) {
-  return {
-    total: 0,
-    limit,
-    offset: 0,
-    hasPrevious: false,
-    hasNext: false,
-    previousOffset: 0,
-    nextOffset: 0
-  }
-}
-
-function normalizePaginationState(payload, fallbackLimit, fallbackOffset = 0) {
-  const pagination = payload?.pagination || {}
-  const limit = Number.isFinite(Number(pagination.limit)) ? Math.max(1, Number(pagination.limit)) : fallbackLimit
-  const offset = Number.isFinite(Number(pagination.offset)) ? Math.max(0, Number(pagination.offset)) : fallbackOffset
-  const total = Number.isFinite(Number(pagination.total)) ? Math.max(0, Number(pagination.total)) : 0
-  const hasPrevious = Boolean(pagination.hasPrevious)
-  const hasNext = Boolean(pagination.hasNext)
-
-  return {
-    total,
-    limit,
-    offset,
-    hasPrevious,
-    hasNext,
-    previousOffset: hasPrevious ? Math.max(0, Number(pagination.previousOffset) || offset - limit) : 0,
-    nextOffset: hasNext ? Math.max(offset + limit, Number(pagination.nextOffset) || offset + limit) : offset
-  }
-}
-
-function PaginationControls({ itemCount, pagination, t, onPrevious, onNext }) {
-  if (!pagination || pagination.total <= pagination.limit) return null
-  const start = pagination.total > 0 ? pagination.offset + 1 : 0
-  const end = pagination.total > 0 ? Math.min(pagination.offset + itemCount, pagination.total) : 0
-
-  return (
-    <div>
-      <span>
-        {t("documents.pagination.range", { start, end, total: pagination.total }, `${start}-${end} / ${pagination.total}`)}
-      </span>
-      <div>
-        <Button
-          type="button"
-          size="sm"
-          variant="primary"
-          disabled={!pagination.hasPrevious}
-          onClick={onPrevious}
-        >
-          {t("documents.pagination.previous", "Eelmine")}
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant="primary"
-          disabled={!pagination.hasNext}
-          onClick={onNext}
-        >
-          {t("documents.pagination.next", "Jargmine")}
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIMIT, artifactsExpanded = false, embedded = false, onBack = null, hideHeader = false }) {
+export default function DocumentsPage({ embedded = false, onBack = null, hideHeader = false }) {
   const router = useRouter()
   const { t, locale } = useI18n()
   const { effectiveRole, isAdmin, isRoleResolved, refresh: refreshEffectiveRole } = useEffectiveRole()
   const isClientRole = effectiveRole === "CLIENT"
-  const isArtifactsExpanded = artifactsExpanded || initialArtifactLimit >= ARTIFACT_LIST_LIMIT_ALL
-  const artifactPageSize = isArtifactsExpanded ? ARTIFACT_LIST_LIMIT_ALL : initialArtifactLimit
-  const [kindFilter, setKindFilter] = useState("ALL")
-  const [artifactFilter, setArtifactFilter] = useState("ALL")
-  const [artifactSearch, setArtifactSearch] = useState("")
-  const [artifactSort, setArtifactSort] = useState("updated_desc")
-  const [documentsOffset, setDocumentsOffset] = useState(0)
-  const [artifactsOffset, setArtifactsOffset] = useState(0)
-  const [documents, setDocuments] = useState([])
-  const [artifacts, setArtifacts] = useState([])
-  const [documentsPagination, setDocumentsPagination] = useState(() => createPaginationState(DOCUMENT_LIST_LIMIT))
-  const [artifactsPagination, setArtifactsPagination] = useState(() => createPaginationState(artifactPageSize))
-  const [artifactCounts, setArtifactCounts] = useState({
-    all: 0,
-    draft: 0,
-    final: 0
-  })
-  const [documentsLoading, setDocumentsLoading] = useState(true)
-  const [artifactsLoading, setArtifactsLoading] = useState(true)
-  const [documentsError, setDocumentsError] = useState("")
-  const [artifactsError, setArtifactsError] = useState("")
+
+  const [docsState, setDocsState] = useState(() => emptyFamily())
+  const [artifactsState, setArtifactsState] = useState(() => emptyFamily())
+  const [analysesState, setAnalysesState] = useState(() => emptyFamily())
+  const [researchState, setResearchState] = useState(() => emptyFamily({ enabled: true }))
+  const [loading, setLoading] = useState(true)
+
+  const [typeFilter, setTypeFilter] = useState("ALL")
   const [successNotice, setSuccessNotice] = useState(null)
+  const [actionError, setActionError] = useState("")
+
+  const [uploadOpen, setUploadOpen] = useState(false)
   const [uploading, setUploading] = useState(false)
-  const [editingId, setEditingId] = useState(null)
-  const [editingTitle, setEditingTitle] = useState("")
   const [uploadTitle, setUploadTitle] = useState("")
   const [uploadKind, setUploadKind] = useState("MATERIAL")
   const [uploadTemplateFor, setUploadTemplateFor] = useState("")
   const [uploadFile, setUploadFile] = useState(null)
   const [uploadDragActive, setUploadDragActive] = useState(false)
-  const [selectedDocumentIds, setSelectedDocumentIds] = useState([])
-  const [frameworkStatus, setFrameworkStatus] = useState({
-    loading: false,
-    acceptance: null
-  })
   const uploadInputRef = useRef(null)
-  const deferredArtifactSearch = useDeferredValue(artifactSearch)
-  const trimmedArtifactSearch = String(deferredArtifactSearch || "").trim()
-  const roleScope = effectiveRole === "CLIENT" ? "client" : "worker"
-  const handoffHelpText = selectedDocumentIds.length
-    ? t(`documents.agent_handoff.ready_help_${roleScope}`)
-    : t(`documents.agent_handoff.empty_help_${roleScope}`)
 
-  const loadDocuments = useCallback(async (options = {}) => {
-    const nextKind = options.kind ?? kindFilter
-    const nextOffset = options.offset ?? documentsOffset
-    setDocumentsLoading(true)
-    setDocumentsError("")
+  const [editingId, setEditingId] = useState(null)
+  const [editingTitle, setEditingTitle] = useState("")
+  const [analysisView, setAnalysisView] = useState({ id: null, content: "", loading: false, error: "" })
+
+  const [frameworkStatus, setFrameworkStatus] = useState({ loading: false, acceptance: null })
+
+  const uploadKindOptions = useMemo(
+    () => ["TEMPLATE", "MATERIAL", "OTHER"].map((kind) => ({ value: kind, label: kindLabel(kind, t) })),
+    [t]
+  )
+  const templateForOptions = useMemo(
+    () => TEMPLATE_FOR_VALUES.map((value) => ({ value, label: templateForLabel(value, t) })),
+    [t]
+  )
+
+  const loadDocuments = useCallback(async () => {
     try {
-      const params = new URLSearchParams({
-        limit: String(DOCUMENT_LIST_LIMIT),
-        offset: String(nextOffset)
-      })
-      if (nextKind !== "ALL") params.set("kind", nextKind)
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
       const response = await fetch(`/api/documents?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_documents"))
-      const nextDocuments = Array.isArray(payload?.documents) ? payload.documents : []
-      const nextPagination = normalizePaginationState(payload, DOCUMENT_LIST_LIMIT, nextOffset)
-      if (!nextDocuments.length && nextPagination.total > 0 && nextOffset >= nextPagination.total) {
-        setDocumentsOffset(nextPagination.previousOffset)
-        return
-      }
-      setDocuments(nextDocuments)
-      setDocumentsPagination(nextPagination)
-    } catch (error) {
-      setDocuments([])
-      setDocumentsPagination(createPaginationState(DOCUMENT_LIST_LIMIT))
-      setDocumentsError(error?.message || t("documents.errors.load_documents"))
-    } finally {
-      setDocumentsLoading(false)
-    }
-  }, [documentsOffset, kindFilter, t])
-
-  const loadArtifacts = useCallback(async (options = {}) => {
-    const nextOffset = isArtifactsExpanded ? (options.offset ?? artifactsOffset) : 0
-    const nextFilter = options.filter ?? artifactFilter
-    const nextSort = options.sort ?? artifactSort
-    const nextSearch = options.search ?? trimmedArtifactSearch
-    setArtifactsLoading(true)
-    setArtifactsError("")
-    try {
-      const params = new URLSearchParams({
-        limit: String(artifactPageSize),
-        offset: String(nextOffset),
-        sort: nextSort
+      setDocsState({
+        items: Array.isArray(payload?.documents) ? payload.documents : [],
+        total: Number(payload?.pagination?.total) || 0,
+        error: ""
       })
-      if (nextFilter !== "ALL") params.set("status", nextFilter)
-      if (nextSearch) params.set("search", nextSearch)
+    } catch (error) {
+      setDocsState(emptyFamily({ error: error?.message || t("documents.errors.load_documents") }))
+    }
+  }, [t])
+
+  const loadArtifacts = useCallback(async () => {
+    try {
+      const params = new URLSearchParams({ limit: String(ARTIFACT_LIST_LIMIT_ALL), offset: "0", sort: "updated_desc" })
       const response = await fetch(`/api/documents/artifacts?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_artifacts"))
-      const nextArtifacts = Array.isArray(payload?.artifacts) ? payload.artifacts : []
-      const nextPagination = normalizePaginationState(payload, artifactPageSize, nextOffset)
-      if (!nextArtifacts.length && nextPagination.total > 0 && nextOffset >= nextPagination.total) {
-        setArtifactsOffset(nextPagination.previousOffset)
-        return
-      }
-      setArtifacts(nextArtifacts)
-      setArtifactsPagination(nextPagination)
-      setArtifactCounts({
-        all: Number(payload?.counts?.all) || 0,
-        draft: Number(payload?.counts?.draft) || 0,
-        final: Number(payload?.counts?.final) || 0
+      setArtifactsState({
+        items: Array.isArray(payload?.artifacts) ? payload.artifacts : [],
+        total: Number(payload?.pagination?.total) || 0,
+        error: ""
       })
     } catch (error) {
-      setArtifacts([])
-      setArtifactsPagination(createPaginationState(artifactPageSize))
-      setArtifactCounts({
-        all: 0,
-        draft: 0,
-        final: 0
-      })
-      setArtifactsError(error?.message || t("documents.errors.load_artifacts"))
-    } finally {
-      setArtifactsLoading(false)
+      setArtifactsState(emptyFamily({ error: error?.message || t("documents.errors.load_artifacts") }))
     }
-  }, [artifactFilter, artifactPageSize, artifactSort, artifactsOffset, isArtifactsExpanded, t, trimmedArtifactSearch])
+  }, [t])
 
-  useEffect(() => { void loadDocuments() }, [loadDocuments])
-  useEffect(() => { void loadArtifacts() }, [loadArtifacts])
+  const loadAnalyses = useCallback(async () => {
+    try {
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
+      const response = await fetch(`/api/documents/analyses?${params.toString()}`, { cache: "no-store" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.list_failed"))
+      setAnalysesState({
+        items: Array.isArray(payload?.analyses) ? payload.analyses : [],
+        total: Number(payload?.pagination?.total) || 0,
+        error: ""
+      })
+    } catch (error) {
+      setAnalysesState(emptyFamily({ error: error?.message || t("documents.analyses.errors.list_failed") }))
+    }
+  }, [t])
+
+  const loadResearch = useCallback(async () => {
+    try {
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
+      const response = await fetch(`/api/research/jobs?${params.toString()}`, { cache: "no-store" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_load_failed"))
+      setResearchState({
+        items: Array.isArray(payload?.jobs) ? payload.jobs : [],
+        total: Number(payload?.pagination?.total) || 0,
+        enabled: payload?.enabled !== false,
+        error: ""
+      })
+    } catch (error) {
+      setResearchState(emptyFamily({ enabled: true, error: error?.message || t("documents.workspace.research_load_failed") }))
+    }
+  }, [t])
+
+  const loadWorkspace = useCallback(async () => {
+    setLoading(true)
+    await Promise.allSettled([loadDocuments(), loadArtifacts(), loadAnalyses(), loadResearch()])
+    setLoading(false)
+  }, [loadDocuments, loadArtifacts, loadAnalyses, loadResearch])
+
+  useEffect(() => { void loadWorkspace() }, [loadWorkspace])
+
+  // Säilita vanad süvalingid /documents?artifacts=all#artifacts (chat + koostamine): maandu
+  // ühtsel loendil, eelvalitud koostatud objektidele — sama tööruumi tähendusega.
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    const params = new URLSearchParams(window.location.search)
+    if (window.location.hash === "#artifacts" || params.has("artifacts")) {
+      setTypeFilter("ARTIFACTS")
+    }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
-
     async function loadFrameworkStatus() {
       if (isClientRole) {
-        setFrameworkStatus({
-          loading: false,
-          acceptance: null
-        })
+        setFrameworkStatus({ loading: false, acceptance: null })
         return
       }
-
-      setFrameworkStatus((current) => ({
-        ...current,
-        loading: true
-      }))
-
+      setFrameworkStatus((current) => ({ ...current, loading: true }))
       try {
-        const response = await fetch("/api/framework-acceptances/worker", {
-          cache: "no-store"
-        })
+        const response = await fetch("/api/framework-acceptances/worker", { cache: "no-store" })
         const payload = await response.json().catch(() => ({}))
         if (!response.ok) throw new Error(payload?.message || t("documents.framework_acceptance.load_failed"))
         if (cancelled) return
-        setFrameworkStatus({
-          loading: false,
-          acceptance: payload?.acceptance || null
-        })
+        setFrameworkStatus({ loading: false, acceptance: payload?.acceptance || null })
       } catch {
         if (cancelled) return
-        setFrameworkStatus({
-          loading: false,
-          acceptance: null
-        })
+        setFrameworkStatus({ loading: false, acceptance: null })
       }
     }
-
     void loadFrameworkStatus()
-
-    return () => {
-      cancelled = true
-    }
+    return () => { cancelled = true }
   }, [isClientRole, t])
 
   useEffect(() => {
@@ -293,37 +205,28 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
     return () => window.clearTimeout(timer)
   }, [successNotice])
 
-  useEffect(() => {
-    const blockedIds = new Set(documents.filter((document) => !document.agentAllowed).map((document) => document.id))
-    if (!blockedIds.size) return
-    setSelectedDocumentIds((current) => current.filter((id) => !blockedIds.has(id)))
-  }, [documents])
+  const items = useMemo(
+    () => buildWorkspaceItems({
+      documents: docsState.items,
+      artifacts: artifactsState.items,
+      analyses: analysesState.items,
+      research: researchState.items
+    }),
+    [docsState.items, artifactsState.items, analysesState.items, researchState.items]
+  )
 
-  const kindOptions = useMemo(() => DOCUMENT_KIND_VALUES.map((kind) => ({ value: kind, label: kindLabel(kind, t) })), [t])
-  const uploadKindOptions = useMemo(() => ["TEMPLATE", "MATERIAL", "OTHER"].map((kind) => ({ value: kind, label: kindLabel(kind, t) })), [t])
-  const templateForOptions = useMemo(() => TEMPLATE_FOR_VALUES.map((value) => ({ value, label: templateForLabel(value, t) })), [t])
-  const artifactSortOptions = useMemo(() => ([
-    { value: "updated_desc", label: t("documents.artifacts.sort_updated_desc") },
-    { value: "updated_asc", label: t("documents.artifacts.sort_updated_asc") },
-    { value: "approved_desc", label: t("documents.artifacts.sort_approved_desc") },
-    { value: "title_asc", label: t("documents.artifacts.sort_title_asc") }
-  ]), [t])
-  const agentModeHref = useMemo(() => {
-    const basePath = localizePath("/dokreziim", locale)
-    if (!selectedDocumentIds.length) return basePath
-    const params = new URLSearchParams({ documents: selectedDocumentIds.join(",") })
-    return `${basePath}?${params.toString()}`
-  }, [locale, selectedDocumentIds])
-  const filteredArtifacts = artifacts
-  const artifactFilteredTotal = artifactsPagination.total
-  const artifactHasSearch = normalizeSearchValue(artifactSearch).length > 0
-  const showArtifactsToolbar = isArtifactsExpanded && (artifactCounts.all > 0 || artifactHasSearch || artifactFilter !== "ALL")
-  const frameworkAcceptance = frameworkStatus.acceptance
-  const hasFrameworkAcceptance = frameworkAcceptance?.accepted === true
-  const frameworkAcceptedAtLabel = frameworkAcceptance?.acceptedAt
-    ? formatDate(frameworkAcceptance.acceptedAt, locale)
-    : ""
-  const frameworkPageHref = localizePath("/tooalase-kasutuse-raamistik", locale)
+  const filteredItems = useMemo(() => {
+    const group = FILTER_GROUPS[typeFilter]
+    if (!group) return items
+    return items.filter((item) => group.has(item.type))
+  }, [items, typeFilter])
+
+  const anyFamilyError = docsState.error || artifactsState.error || analysesState.error || researchState.error
+  const anyTruncated =
+    docsState.total > docsState.items.length ||
+    artifactsState.total > artifactsState.items.length ||
+    analysesState.total > analysesState.items.length ||
+    researchState.total > researchState.items.length
 
   const handleBack = useCallback(() => {
     if (typeof onBack === "function") {
@@ -350,7 +253,7 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
     if (!uploadFile || uploading) return
     setUploading(true)
     setSuccessNotice(null)
-    setDocumentsError("")
+    setActionError("")
     try {
       const formData = new FormData()
       formData.append("file", uploadFile)
@@ -364,11 +267,11 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
       setUploadKind("MATERIAL")
       setUploadTemplateFor("")
       setUploadFile(null)
+      setUploadOpen(false)
       setSuccessNotice({ message: t("documents.feedback.uploaded") })
-      setDocumentsOffset(0)
-      await loadDocuments({ offset: 0 })
+      await loadDocuments()
     } catch (error) {
-      setDocumentsError(error?.message || t("documents.errors.upload_failed"))
+      setActionError(error?.message || t("documents.errors.upload_failed"))
     } finally {
       setUploading(false)
     }
@@ -376,7 +279,7 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
 
   async function patchDocument(id, data, successKey = "documents.feedback.saved") {
     setSuccessNotice(null)
-    setDocumentsError("")
+    setActionError("")
     try {
       const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, {
         method: "PATCH",
@@ -389,8 +292,16 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
       await loadDocuments()
       return true
     } catch (error) {
-      setDocumentsError(error?.message || t("documents.errors.save_failed"))
+      setActionError(error?.message || t("documents.errors.save_failed"))
       return false
+    }
+  }
+
+  async function saveRename(id) {
+    const ok = await patchDocument(id, { title: editingTitle })
+    if (ok) {
+      setEditingId(null)
+      setEditingTitle("")
     }
   }
 
@@ -400,11 +311,10 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
       const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, { method: "DELETE" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.delete_failed"))
-      setSelectedDocumentIds((current) => current.filter((item) => item !== id))
       setSuccessNotice({ message: t("documents.feedback.deleted") })
       await loadDocuments()
     } catch (error) {
-      setDocumentsError(error?.message || t("documents.errors.delete_failed"))
+      setActionError(error?.message || t("documents.errors.delete_failed"))
     }
   }
 
@@ -417,7 +327,7 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
       setSuccessNotice({ message: t("documents.feedback.artifact_deleted") })
       await loadArtifacts()
     } catch (error) {
-      setArtifactsError(error?.message || t("documents.errors.delete_artifact_failed"))
+      setActionError(error?.message || t("documents.errors.delete_artifact_failed"))
     }
   }
 
@@ -427,26 +337,54 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.copy_failed"))
       await navigator.clipboard.writeText(String(payload?.artifact?.content || ""))
-      setArtifactsError("")
+      setActionError("")
       setSuccessNotice({ message: t("documents.feedback.copied") })
     } catch (error) {
-      setArtifactsError(error?.message || t("documents.errors.copy_failed"))
+      setActionError(error?.message || t("documents.errors.copy_failed"))
     }
   }
 
-  async function saveRename(id) {
-    const ok = await patchDocument(id, { title: editingTitle })
-    if (ok) {
-      setEditingId(null)
-      setEditingTitle("")
+  async function viewAnalysis(id) {
+    if (analysisView.id === id) {
+      setAnalysisView({ id: null, content: "", loading: false, error: "" })
+      return
+    }
+    setAnalysisView({ id, content: "", loading: true, error: "" })
+    try {
+      const response = await fetch(`/api/documents/analyses/${encodeURIComponent(id)}`, { cache: "no-store" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.read_failed"))
+      setAnalysisView({ id, content: String(payload?.analysis?.content || ""), loading: false, error: "" })
+    } catch (error) {
+      setAnalysisView({ id, content: "", loading: false, error: error?.message || t("documents.analyses.errors.read_failed") })
     }
   }
 
-  function toggleDocumentSelection(documentId, checked) {
-    setSelectedDocumentIds((current) => {
-      if (checked) return current.includes(documentId) ? current : [...current, documentId]
-      return current.filter((id) => id !== documentId)
-    })
+  async function deleteAnalysis(id) {
+    if (!window.confirm(t("documents.analyses.confirm_delete"))) return
+    try {
+      const response = await fetch(`/api/documents/analyses/${encodeURIComponent(id)}`, { method: "DELETE" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.delete_failed"))
+      if (analysisView.id === id) setAnalysisView({ id: null, content: "", loading: false, error: "" })
+      setSuccessNotice({ message: t("documents.analyses.feedback_deleted") })
+      await loadAnalyses()
+    } catch (error) {
+      setActionError(error?.message || t("documents.analyses.errors.delete_failed"))
+    }
+  }
+
+  async function deleteResearch(id) {
+    if (!window.confirm(t("documents.workspace.research_confirm_delete"))) return
+    try {
+      const response = await fetch(`/api/research/jobs/${encodeURIComponent(id)}`, { method: "DELETE" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_delete_failed"))
+      setSuccessNotice({ message: t("documents.workspace.research_deleted") })
+      await loadResearch()
+    } catch (error) {
+      setActionError(error?.message || t("documents.workspace.research_delete_failed"))
+    }
   }
 
   const handleUploadFileSelection = useCallback((file) => {
@@ -454,26 +392,17 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
     setUploadDragActive(false)
   }, [])
 
-  const handleUploadDragOver = useCallback((event) => {
-    event.preventDefault()
-    setUploadDragActive(true)
-  }, [])
-
-  const handleUploadDragLeave = useCallback((event) => {
-    event.preventDefault()
-    const relatedTarget = event.relatedTarget
-    if (relatedTarget && event.currentTarget.contains?.(relatedTarget)) return
-    setUploadDragActive(false)
-  }, [])
-
   const handleUploadDrop = useCallback((event) => {
     event.preventDefault()
-    const nextFile = event.dataTransfer?.files?.[0] || null
-    handleUploadFileSelection(nextFile)
+    handleUploadFileSelection(event.dataTransfer?.files?.[0] || null)
   }, [handleUploadFileSelection])
 
-  /* Memoiseeritud, sest see läheb paneeli ⓘ-le usePanelInfoSlot'i kaudu:
-     uus viide igal renderdusel paneks registreerimis-effecti tsüklisse. */
+  /* Memoiseeritud: läheb paneeli ⓘ-le usePanelInfoSlot'i kaudu. */
+  const frameworkAcceptance = frameworkStatus.acceptance
+  const hasFrameworkAcceptance = frameworkAcceptance?.accepted === true
+  const frameworkAcceptedAtLabel = frameworkAcceptance?.acceptedAt ? formatDate(frameworkAcceptance.acceptedAt, locale) : ""
+  const frameworkPageHref = localizePath("/tooalase-kasutuse-raamistik", locale)
+
   const frameworkInfoPanel = useMemo(() => (
     <div>
       <div>
@@ -497,12 +426,7 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
           {t("auth.register.worker_framework_download_signed")}
         </Button>
         {hasFrameworkAcceptance && frameworkAcceptance?.documentDownloadUrl ? (
-          <Button
-            as="a"
-            href={frameworkAcceptance.documentDownloadUrl}
-            size="sm"
-            variant="linkBrand"
-            >
+          <Button as="a" href={frameworkAcceptance.documentDownloadUrl} size="sm" variant="linkBrand">
             {t("documents.framework_acceptance.download_record")}
           </Button>
         ) : null}
@@ -510,9 +434,6 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
     </div>
   ), [t, frameworkStatus.loading, hasFrameworkAcceptance, frameworkAcceptedAtLabel, frameworkAcceptance, frameworkPageHref])
 
-  /* Paneeli ainus ⓘ (PanelFrame, × kõrval) saab siit dokumendilehe sisu +
-     elava raamistiku-lisapaneeli. Hook peab olema ENNE isClientRole-i
-     varajast returni. */
   const infoDetailExtras = useMemo(() => ({ 3: frameworkInfoPanel }), [frameworkInfoPanel])
   usePanelInfoSlot({
     infoId: "documents",
@@ -522,13 +443,165 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
   })
 
   if (isClientRole) {
-    if (embedded) {
-      return <div />
-    }
+    if (embedded) return <div />
     return (
       <section>
         <div />
       </section>
+    )
+  }
+
+  const entryCards = [
+    { key: "analyze", href: localizePath("/vestlus", locale) },
+    { key: "compose", href: localizePath("/dokreziim", locale) },
+    { key: "transcribe", href: localizePath("/dokreziim", locale) },
+    { key: "research", href: localizePath("/vestlus", locale), disabled: !researchState.enabled }
+  ]
+
+  const filterChips = [
+    { key: "ALL", label: t("documents.filters.all") },
+    { key: "FILES", label: t("documents.workspace.filters.files") },
+    { key: "ANALYSIS", label: t("documents.workspace.filters.analysis") },
+    { key: "ARTIFACTS", label: t("documents.workspace.filters.artifacts") },
+    { key: "RESEARCH", label: t("documents.workspace.filters.research") }
+  ]
+
+  function renderRowActions(item) {
+    const raw = item.raw || {}
+    if (item.type === "source" || item.type === "transcript") {
+      const composeHref = `${localizePath("/dokreziim", locale)}?documents=${encodeURIComponent(item.id)}`
+      return (
+        <>
+          <Button as="a" href={`/api/documents/${encodeURIComponent(item.id)}/download`} size="sm" variant="linkBrand">
+            {t("documents.actions.download")}
+          </Button>
+          {!item.readOnly && raw.agentAllowed ? (
+            <Button as="a" href={composeHref} size="sm">{t("documents.workspace.compose_from")}</Button>
+          ) : null}
+          {!item.readOnly ? (
+            <Button type="button" size="sm" variant="primary" onClick={() => { setEditingId(item.id); setEditingTitle(item.title || "") }}>
+              {t("documents.actions.rename")}
+            </Button>
+          ) : null}
+          {!item.readOnly ? (
+            <Button type="button" size="sm" variant="danger" onClick={() => void deleteDocument(item.id)}>
+              {t("documents.actions.delete")}
+            </Button>
+          ) : null}
+        </>
+      )
+    }
+    if (item.type === "analysis") {
+      const open = analysisView.id === item.id
+      return (
+        <>
+          <Button
+            type="button"
+            size="sm"
+            onClick={() => void viewAnalysis(item.id)}
+            aria-expanded={open}
+          >
+            {open ? t("documents.workspace.hide") : t("documents.actions.open")}
+          </Button>
+          <Button type="button" size="sm" variant="danger" onClick={() => void deleteAnalysis(item.id)}>
+            {t("documents.actions.delete")}
+          </Button>
+        </>
+      )
+    }
+    if (item.type === "draft" || item.type === "final") {
+      return (
+        <>
+          <Link href={localizePath(`/documents/artifacts/${encodeURIComponent(item.id)}`, locale)}>
+            {t("documents.actions.open")}
+          </Link>
+          {raw.downloadUrls?.docx ? <Button as="a" href={raw.downloadUrls.docx} size="sm">{t("documents.actions.download_docx")}</Button> : null}
+          {raw.downloadUrls?.pdf ? <Button as="a" href={raw.downloadUrls.pdf} size="sm" variant="linkBrand">{t("documents.actions.download_pdf")}</Button> : null}
+          <Button type="button" size="sm" variant="primary" onClick={() => void copyArtifact(item.id)}>{t("documents.actions.copy")}</Button>
+          <Button type="button" size="sm" variant="danger" onClick={() => void deleteArtifact(item.id)}>{t("documents.actions.delete")}</Button>
+        </>
+      )
+    }
+    if (item.type === "research") {
+      const isTerminal = ["done", "error", "cancelled"].includes(String(raw.status))
+      return (
+        <>
+          {raw.convId ? (
+            <Button as="a" href={`${localizePath("/vestlus", locale)}?conv=${encodeURIComponent(raw.convId)}`} size="sm">
+              {t("documents.workspace.research_open")}
+            </Button>
+          ) : null}
+          {isTerminal ? (
+            <Button type="button" size="sm" variant="danger" onClick={() => void deleteResearch(item.id)}>
+              {t("documents.actions.delete")}
+            </Button>
+          ) : null}
+        </>
+      )
+    }
+    return null
+  }
+
+  function renderRow(item) {
+    const prov = describeProvenance(item, t)
+    const raw = item.raw || {}
+    const isEditing = editingId === item.id && (item.type === "source" || item.type === "transcript")
+    return (
+      <article key={item.key} className="documents-item">
+        <div className="documents-item__head">
+          <div>
+            <span className="documents-item__type">{workspaceTypeLabel(item.type, t)}</span>
+            {isEditing ? (
+              <div className="documents-item__rename">
+                <Input value={editingTitle} onChange={(event) => setEditingTitle(event.target.value)} aria-label={t("documents.form.title_label", "Pealkiri")} />
+                <Button type="button" size="sm" variant="primary" onClick={() => void saveRename(item.id)}>{t("buttons.save")}</Button>
+                <Button type="button" size="sm" variant="linkBrand" onClick={() => { setEditingId(null); setEditingTitle("") }}>{t("buttons.cancel")}</Button>
+              </div>
+            ) : (
+              <h3>{item.title || t("documents.workspace.untitled")}</h3>
+            )}
+            {(item.type === "source" || item.type === "transcript") && raw.originalName ? (
+              <p className="documents-item__meta">{raw.originalName} · {formatFileSize(raw.size)}</p>
+            ) : null}
+          </div>
+          <span className="documents-item__updated">{t("documents.updated_at")} {formatDate(item.updatedAt, locale)}</span>
+        </div>
+
+        {item.type === "analysis" ? (
+          <p className="documents-item__disclaimer">{t("documents.analyses.disclaimer")}</p>
+        ) : null}
+
+        <dl className="documents-provenance">
+          <div><dt>{t("documents.provenance.labels.audience")}</dt><dd>{prov.audience}</dd></div>
+          <div><dt>{t("documents.provenance.labels.origin")}</dt><dd>{prov.origin}</dd></div>
+          <div><dt>{t("documents.provenance.labels.state")}</dt><dd>{prov.state}</dd></div>
+          <div><dt>{t("documents.provenance.labels.retention")}</dt><dd>{prov.retention}</dd></div>
+          <div><dt>{t("documents.provenance.labels.rag")}</dt><dd>{prov.rag}</dd></div>
+        </dl>
+
+        {(item.type === "source" || item.type === "transcript") && !item.readOnly ? (
+          <label className="documents-item__ragtoggle">
+            <input
+              type="checkbox"
+              checked={Boolean(raw.agentAllowed)}
+              onChange={(event) => void patchDocument(item.id, { agentAllowed: event.target.checked })}
+            />
+            <span>{t("documents.workspace.rag_toggle")}</span>
+          </label>
+        ) : null}
+
+        {item.type === "analysis" && analysisView.id === item.id ? (
+          <div className="documents-item__analysis" role="region" aria-live="polite">
+            {analysisView.loading ? <p>{t("documents.loading")}</p> : null}
+            {analysisView.error ? <p role="alert">{analysisView.error}</p> : null}
+            {analysisView.content ? <p className="documents-item__analysis-text">{analysisView.content}</p> : null}
+          </div>
+        ) : null}
+
+        <div className="documents-item__actions">
+          {renderRowActions(item)}
+        </div>
+      </article>
     )
   }
 
@@ -540,388 +613,153 @@ export default function DocumentsPage({ initialArtifactLimit = ARTIFACT_LIST_LIM
           locale={locale}
           value={effectiveRole}
           onRoleChanged={refreshEffectiveRole}
-          ariaLabel={t("chat.workspace.view_role.label", "TĆ¶Ć¶laua vaade")}
+          ariaLabel={t("chat.workspace.view_role.label", "Töölaua vaade")}
         />
       ) : null}
-      <div>
-        <div>
-          {!hideHeader ? (
-            <SubpageHeader
-              onBack={handleBack}
-              backAriaLabel={t("buttons.back")}
-              anchorBack={false}
-              /* ⓘ elab paneeli nurgas × kõrval (PanelFrame); sisu antakse
-                 usePanelInfoSlot'iga ülalpool. */
-            >
-              {t("documents.page_title")}
-            </SubpageHeader>
-          ) : null}
-          <section>
-            {successNotice ? (
-              <div>
-                <span>{successNotice.message}</span>
-                <div>
-                  {successNotice.actionUrl ? <Link href={successNotice.actionUrl}>{successNotice.actionLabel || t("documents.actions.open")}</Link> : null}
-                  <Button type="button" size="sm" variant="linkBrand" onClick={() => setSuccessNotice(null)}>{t("common.close")}</Button>
-                </div>
+
+      <div className="documents-page">
+        {!hideHeader ? (
+          <SubpageHeader onBack={handleBack} backAriaLabel={t("buttons.back")} anchorBack={false}>
+            {t("documents.page_title")}
+          </SubpageHeader>
+        ) : null}
+
+        {successNotice ? (
+          <div className="documents-notice" role="status" aria-live="polite">
+            <span>{successNotice.message}</span>
+            <Button type="button" size="sm" variant="linkBrand" onClick={() => setSuccessNotice(null)}>{t("common.close")}</Button>
+          </div>
+        ) : null}
+        {actionError ? <div className="documents-error" role="alert">{actionError}</div> : null}
+
+        {/* Sisenemine küsimusest, mitte valikutest — vood on selle ruumi sissepääsud. */}
+        <Panel as="section" variant="secondary" padding="sm">
+          <h2>{t("documents.workspace.entry_title")}</h2>
+          <p>{t("documents.workspace.entry_description")}</p>
+          <div className="documents-entry">
+            {entryCards.map((card) => (
+              <Link key={card.key} href={card.href} className="documents-entry__card">
+                <span className="documents-entry__card-title">{t(`documents.workspace.entry.${card.key}_title`)}</span>
+                <span className="documents-entry__card-desc">{t(`documents.workspace.entry.${card.key}_desc`)}</span>
+                {card.disabled ? <span className="documents-entry__card-note">{t("documents.workspace.research_disabled")}</span> : null}
+              </Link>
+            ))}
+            <button type="button" className="documents-entry__card" onClick={() => setUploadOpen((open) => !open)} aria-expanded={uploadOpen}>
+              <span className="documents-entry__card-title">{t("documents.workspace.entry.add_file_title")}</span>
+              <span className="documents-entry__card-desc">{t("documents.workspace.entry.add_file_desc")}</span>
+            </button>
+          </div>
+
+          {uploadOpen ? (
+            <form onSubmit={submitUpload} className="documents-upload">
+              <div className="documents-upload__row">
+                <label>
+                  <span>{t("documents.form.title_label", "Pealkiri")}</span>
+                  <Input value={uploadTitle} onChange={(event) => setUploadTitle(event.target.value)} placeholder={t("documents.form.title_placeholder")} />
+                </label>
+                <label>
+                  <span>{t("documents.form.kind_label")}</span>
+                  <DocumentsDropdown
+                    ariaLabel={t("documents.form.kind_label")}
+                    value={uploadKind}
+                    onChange={(nextValue) => { setUploadKind(nextValue); if (nextValue !== "TEMPLATE") setUploadTemplateFor("") }}
+                    options={uploadKindOptions}
+                    align="end"
+                  />
+                </label>
               </div>
-            ) : null}
-            {documentsError ? <div>{documentsError}</div> : null}
-            {artifactsError ? <div>{artifactsError}</div> : null}
-
-            <div>
-              <div>
-                <div>
-                <Panel as="section" variant="secondary" padding="sm">
-                  <div>
-                    <h3>{t("documents.library_sections.upload_title")}</h3>
-                    <p>{t("documents.library_sections.upload_description")}</p>
-                  </div>
-                <form onSubmit={submitUpload}>
-                  <div>
-                    <label>
-                      <span>{t("documents.form.title_label", "Pealkiri")}</span>
-                      <Input
-                        value={uploadTitle}
-                        onChange={(event) => setUploadTitle(event.target.value)}
-                        placeholder={t("documents.form.title_placeholder")}
-                      />
-                    </label>
-                    <label>
-                      <span>{t("documents.form.kind_label")}</span>
-                      <DocumentsDropdown
-                        ariaLabel={t("documents.form.kind_label")}
-                        value={uploadKind}
-                        onChange={(nextValue) => {
-                          setUploadKind(nextValue)
-                          if (nextValue !== "TEMPLATE") setUploadTemplateFor("")
-                        }}
-                        options={uploadKindOptions}
-                        align="end"
-                      />
-                    </label>
-                  </div>
-
-                  {uploadKind === "TEMPLATE" ? (
-                    <label>
-                      <span>{t("documents.form.template_for_placeholder")}</span>
-                      <DocumentsDropdown
-                        ariaLabel={t("documents.form.template_for_placeholder")}
-                        value={uploadTemplateFor}
-                        onChange={setUploadTemplateFor}
-                        options={templateForOptions}
-                        placeholder={t("documents.form.template_for_placeholder")}
-                        align="end"
-                      />
-                    </label>
-                  ) : null}
-
-                  <div
-                    onDragOver={handleUploadDragOver}
-                    onDragEnter={handleUploadDragOver}
-                    onDragLeave={handleUploadDragLeave}
-                    onDrop={handleUploadDrop}
-                  >
-                    <input
-                      ref={uploadInputRef}
-                      className="sr-only"
-                      type="file"
-                      accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
-                      onChange={(event) => handleUploadFileSelection(event.target.files?.[0] || null)}
-                    />
-                    <button
-                      type="button"
-                      className="documents-dropzone"
-                      data-drag-active={uploadDragActive ? "true" : undefined}
-                      onClick={() => uploadInputRef.current?.click()}
-                    >
-                      <div>
-                        {uploadDragActive ? t("documents.form.dropzone_active") : t("documents.form.dropzone_idle")}
-                      </div>
-                      <p>{t("documents.form.file_help")}</p>
-                    </button>
-                    <div>
-                      {uploadFile ? `${uploadFile.name} Ā· ${formatFileSize(uploadFile.size)}` : t("documents.form.no_file_selected")}
-                    </div>
-                    <div>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="primary"
-                        onClick={() => uploadInputRef.current?.click()}
-                      >
-                        {t("documents.form.choose_file")}
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <Button
-                      type="submit"
-                      size="sm"
-                      disabled={!uploadFile || uploading}
-                    >
-                      {uploading ? t("documents.form.uploading") : t("documents.actions.upload")}
-                    </Button>
-                  </div>
-                </form>
-                </Panel>
-
-                <Panel as="section" variant="secondary" padding="sm">
-                  <div>
-                    <h3>{t("documents.library_sections.list_title")}</h3>
-                    <p>{t("documents.library_sections.list_description")}</p>
-                  </div>
-                <div>
-                  <div>
-                    {["ALL", ...DOCUMENT_KIND_VALUES].map((kind) => (
-                      <OptionCard
-                        key={kind}
-                        type="radio"
-                        name="documents-kind-filter"
-                        value={kind}
-                        checked={kindFilter === kind}
-                        onChange={(event) => {
-                          setKindFilter(event.target.value)
-                          setDocumentsOffset(0)
-                        }}
-                        fitTextLines={1}
-                      >
-                        <span>
-                          {kind === "ALL" ? t("documents.filters.all") : kindLabel(kind, t)}
-                        </span>
-                      </OptionCard>
-                    ))}
-                  </div>
-                </div>
-                <div>
-              {documentsLoading ? <div>{t("documents.loading")}</div> : null}
-              {!documentsLoading && documents.length === 0 ? <div>{t("documents.empty_documents")}</div> : null}
-              {documents.map((document) => {
-                const isReadOnly = Boolean(document.readOnly)
-                const frameworkAcceptance = document.frameworkAcceptance || null
-                return <article key={document.id}>
-                  <div>
-                    <div>
-                      <div>
-                        {editingId === document.id && !isReadOnly ? (
-                          <div>
-                            <Input value={editingTitle} onChange={(event) => setEditingTitle(event.target.value)} />
-                            <Button type="button" size="sm" variant="primary" onClick={() => void saveRename(document.id)}>{t("buttons.save")}</Button>
-                            <Button type="button" size="sm" variant="linkBrand" onClick={() => { setEditingId(null); setEditingTitle("") }}>{t("buttons.cancel")}</Button>
-                          </div>
-                        ) : (
-                          <>
-                            <div>
-                              <h3>{document.title}</h3>
-                              <span>{kindLabel(document.kind, t)}</span>
-                              {isReadOnly ? <span>{t("documents.framework_acceptance.system_chip", "Acceptance")}</span> : null}
-                              {document.templateFor ? <span>{templateForLabel(document.templateFor, t)}</span> : null}
-                            </div>
-                            <p>{document.originalName} Ā· {formatFileSize(document.size)} Ā· {formatDate(document.updatedAt, locale)}</p>
-                            {frameworkAcceptance ? <p>{t("documents.framework_acceptance.accepted_at", "Accepted")}: {formatDate(frameworkAcceptance.acceptedAt, locale)} Ā· {t("documents.framework_acceptance.framework_version", "Version")}: {frameworkAcceptance.frameworkVersion} Ā· {t("documents.framework_acceptance.status_confirmed", "Confirmed")}</p> : null}
-                            {document.callRecording ? <p>{t("documents.call_recording.purpose", "Salvestamise eesmärk")}: {document.callRecording.purposeText || document.callRecording.purpose || "-"} Ā· {t("documents.call_recording.consent_status", "Nõusoleku staatus")}: {document.callRecording.consentStatus || "-"}{document.callRecording.retentionUntil ? ` Ā· ${t("documents.call_recording.retention_until", "Säilitustähtaeg")}: ${formatDate(document.callRecording.retentionUntil, locale)}` : ""}</p> : null}
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    <div>
-                      {!isReadOnly ? <label>
-                        <input type="checkbox" checked={document.agentAllowed} onChange={(event) => { void patchDocument(document.id, { agentAllowed: event.target.checked }) }} />
-                        <span>{t("documents.actions.agent_allowed")}</span>
-                      </label> : <p>{t("documents.framework_acceptance.read_only_note", "This record was created by the system and cannot be changed or deleted.")}</p>}
-                    </div>
-                  </div>
-                  <div>
-                    {!isReadOnly && document.agentAllowed ? (
-                      <label>
-                        <input type="checkbox" checked={selectedDocumentIds.includes(document.id)} onChange={(event) => toggleDocumentSelection(document.id, event.target.checked)} aria-label={t("documents.actions.select_document", { title: document.title })} />
-                        <span>
-                          <span>{t("documents.actions.select_for_agent")}</span>
-                        </span>
-                      </label>
-                    ) : (
-                      <p>{isReadOnly ? t("documents.framework_acceptance.read_only_note", "This record was created by the system and cannot be changed or deleted.") : t("documents.multi_doc.enable_agent_allowed")}</p>
-                    )}
-                  </div>
-                  <div>
-                    {!isReadOnly ? <div>
-                      <DocumentsDropdown ariaLabel={t("documents.form.kind_label")} value={document.kind} onChange={(nextKind) => { void patchDocument(document.id, { kind: nextKind, templateFor: nextKind === "TEMPLATE" ? document.templateFor : null }) }} options={kindOptions} />
-                      {document.kind === "TEMPLATE" ? <DocumentsDropdown ariaLabel={t("documents.form.template_for_placeholder")} value={document.templateFor || ""} onChange={(nextValue) => { void patchDocument(document.id, { templateFor: nextValue || null }) }} options={templateForOptions} placeholder={t("documents.form.template_for_placeholder")} align="end" /> : null}
-                    </div> : null}
-                    <div>
-                      <Button as="a" href={`/api/documents/${encodeURIComponent(document.id)}/download`} size="sm" variant="linkBrand">{t("documents.actions.download")}</Button>
-                      {!isReadOnly ? <Button type="button" size="sm" variant="primary" onClick={() => { setEditingId(document.id); setEditingTitle(document.title || "") }}>{t("documents.actions.rename")}</Button> : null}
-                      {!isReadOnly ? <Button type="button" size="sm" variant="danger" onClick={() => void deleteDocument(document.id)}>{t("documents.actions.delete")}</Button> : null}
-                    </div>
-                  </div>
-                </article>
-              })}
-                </div>
-                <PaginationControls
-                  itemCount={documents.length}
-                  pagination={documentsPagination}
-                  t={t}
-                  onPrevious={() => setDocumentsOffset(documentsPagination.previousOffset)}
-                  onNext={() => setDocumentsOffset(documentsPagination.nextOffset)}
+              {uploadKind === "TEMPLATE" ? (
+                <label>
+                  <span>{t("documents.form.template_for_placeholder")}</span>
+                  <DocumentsDropdown
+                    ariaLabel={t("documents.form.template_for_placeholder")}
+                    value={uploadTemplateFor}
+                    onChange={setUploadTemplateFor}
+                    options={templateForOptions}
+                    placeholder={t("documents.form.template_for_placeholder")}
+                    align="end"
+                  />
+                </label>
+              ) : null}
+              <div
+                className="documents-dropzone-wrap"
+                onDragOver={(event) => { event.preventDefault(); setUploadDragActive(true) }}
+                onDragEnter={(event) => { event.preventDefault(); setUploadDragActive(true) }}
+                onDragLeave={(event) => { event.preventDefault(); if (!event.currentTarget.contains?.(event.relatedTarget)) setUploadDragActive(false) }}
+                onDrop={handleUploadDrop}
+              >
+                <input
+                  ref={uploadInputRef}
+                  className="sr-only"
+                  type="file"
+                  accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+                  onChange={(event) => handleUploadFileSelection(event.target.files?.[0] || null)}
                 />
-                </Panel>
-
+                <button
+                  type="button"
+                  className="documents-dropzone"
+                  data-drag-active={uploadDragActive ? "true" : undefined}
+                  onClick={() => uploadInputRef.current?.click()}
+                >
+                  <span>{uploadDragActive ? t("documents.form.dropzone_active") : t("documents.form.dropzone_idle")}</span>
+                  <span>{t("documents.form.file_help")}</span>
+                </button>
+                <div className="documents-upload__file">
+                  {uploadFile ? `${uploadFile.name} · ${formatFileSize(uploadFile.size)}` : t("documents.form.no_file_selected")}
                 </div>
               </div>
-            </div>
-          </section>
+              <div className="documents-upload__actions">
+                <Button type="submit" size="sm" disabled={!uploadFile || uploading}>
+                  {uploading ? t("documents.form.uploading") : t("documents.actions.upload")}
+                </Button>
+                <Button type="button" size="sm" variant="linkBrand" onClick={() => setUploadOpen(false)}>{t("common.close")}</Button>
+              </div>
+            </form>
+          ) : null}
+        </Panel>
 
-          <Panel as="section" variant="secondary" padding="sm">
-            <div>
-            <div>
-            <div>
-              <h3>{t("documents.agent_handoff.title")}</h3>
-              <p>{handoffHelpText}</p>
-            </div>
-            <div>
-              <div>
-                <span>{t("documents.agent_handoff.selected_count", { count: selectedDocumentIds.length })}</span>
-              </div>
-              <div>
-                {selectedDocumentIds.length ? (
-                  <Button as="a" href={agentModeHref} size="sm">{t("documents.actions.open_agent_mode")}</Button>
-                ) : (
-                  <Button type="button" size="sm" disabled>{t("documents.actions.open_agent_mode")}</Button>
-                )}
-              </div>
-            </div>
-            </div>
-            </div>
-          </Panel>
-
-          <Panel as="section" id="artifacts" variant="secondary" padding="sm">
-            <div>
-            <div>
-            <div>
-              <h3>{t("documents.outputs_title")}</h3>
-              <p>{t("documents.outputs_description")}</p>
-            </div>
-            <div>
-              <div>
-                {[{ key: "ALL", label: t("documents.filters.all"), count: artifactCounts.all }, { key: "DRAFT", label: artifactStatusLabel("draft", t), count: artifactCounts.draft }, { key: "FINAL", label: artifactStatusLabel("final", t), count: artifactCounts.final }].map((item) => (
-                  <OptionCard
-                    key={item.key}
-                    type="radio"
-                    name="documents-artifact-filter"
-                    value={item.key}
-                    checked={artifactFilter === item.key}
-                    onChange={(event) => {
-                      setArtifactFilter(event.target.value)
-                      setArtifactsOffset(0)
-                    }}
-                    fitTextLines={1}
-                  >
-                    <span>
-                      <ChipLabel label={item.label} count={item.count} />
-                    </span>
-                  </OptionCard>
-                ))}
-              </div>
-              <div>
-                <Link href={localizePath(isArtifactsExpanded ? "/documents#artifacts" : "/documents?artifacts=all#artifacts", locale)}>{isArtifactsExpanded ? t("documents.actions.show_latest") : t("documents.actions.open_all_results")}</Link>
-                <span>{t("documents.artifacts.results_count", { shown: filteredArtifacts.length, total: artifactFilteredTotal })}</span>
-              </div>
-            </div>
-            {showArtifactsToolbar ? (
-              <div>
-                <p>
-                  {artifactFilter === "FINAL" ? t("documents.artifacts.final_search_hint") : t("documents.artifacts.search_help")}
-                </p>
-                <div>
-                  <label>
-                    <span>{t("documents.actions.search")}</span>
-                    <Input
-                      value={artifactSearch}
-                      onChange={(event) => {
-                        setArtifactSearch(event.target.value)
-                        setArtifactsOffset(0)
-                      }}
-                      placeholder={t("documents.artifacts.search_placeholder")}
-                    />
-                  </label>
-                  <label>
-                    <span>{t("documents.artifacts.sort_label")}</span>
-                    <DocumentsDropdown
-                      ariaLabel={t("documents.artifacts.sort_label")}
-                      value={artifactSort}
-                      onChange={(nextValue) => {
-                        setArtifactSort(nextValue)
-                        setArtifactsOffset(0)
-                      }}
-                      options={artifactSortOptions}
-                      align="end"
-                    />
-                  </label>
-                  {artifactHasSearch ? (
-                    <div>
-                      <Button
-                        type="button"
-                        size="sm"
-                        variant="primary"
-                                      onClick={() => {
-                          setArtifactSearch("")
-                          setArtifactsOffset(0)
-                        }}
-                      >
-                        {t("documents.actions.clear_search", "Puhasta otsing")}
-                      </Button>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            ) : null}
-            <div>
-              {artifactsLoading ? <div>{t("documents.loading")}</div> : null}
-              {!artifactsLoading && filteredArtifacts.length === 0 ? <div>{artifactHasSearch || artifactFilter !== "ALL" ? t("documents.artifacts.no_matches") : t("documents.empty_artifacts")}</div> : null}
-              {filteredArtifacts.map((artifact) => (
-                <article key={artifact.id}>
-                  <div>
-                    <h3>{artifact.title || artifactTypeLabel(artifact.type, t)}</h3>
-                    <span>{artifactTypeLabel(artifact.type, t)}</span>
-                    <span>{artifactStatusLabel(artifact.status, t)}</span>
-                  </div>
-                  <p>{formatDate(artifact.createdAt, locale)} Ā· {t("documents.updated_at")} {formatDate(artifact.updatedAt, locale)}{artifact.approvedAt ? ` Ā· ${t("documents.approved_at")} ${formatDate(artifact.approvedAt, locale)}` : ""}</p>
-                  <p>{artifact.snippet}</p>
-                  <p>{t("documents.sources_label", { count: artifact.sourceCount || 0 })}</p>
-                  {isArtifactsExpanded && artifact.sources?.length ? <div>{artifact.sources.slice(0, 4).map((source) => <span key={source.id}>{source.title || source.originalName}</span>)}{artifact.sources.length > 4 ? <span>{t("documents.artifacts.source_preview_more", { count: artifact.sources.length - 4 })}</span> : null}</div> : null}
-                  <div>
-                    {artifact.downloadUrls?.docx ? <Button as="a" href={artifact.downloadUrls.docx} size="sm">{t("documents.actions.download_docx")}</Button> : null}
-                    {artifact.downloadUrls?.pdf ? <Button as="a" href={artifact.downloadUrls.pdf} size="sm" variant="linkBrand">{t("documents.actions.download_pdf")}</Button> : null}
-                    <Link href={localizePath(`/documents/artifacts/${encodeURIComponent(artifact.id)}`, locale)}>{t("documents.actions.open")}</Link>
-                    <Button type="button" size="sm" variant="primary" onClick={() => void copyArtifact(artifact.id)}>{t("documents.actions.copy")}</Button>
-                    <Button type="button" size="sm" variant="danger" onClick={() => void deleteArtifact(artifact.id)}>{t("documents.actions.delete")}</Button>
-                  </div>
-                </article>
+        {/* Üks ühtne objektiloend — igal real valdusriba ja üks järgmine toiming. */}
+        <Panel as="section" id="artifacts" variant="secondary" padding="sm">
+          <div className="documents-list__head">
+            <h2>{t("documents.workspace.list_title")}</h2>
+            <div className="documents-list__filters" role="group" aria-label={t("documents.workspace.filter_label")}>
+              {filterChips.map((chip) => (
+                <OptionCard
+                  key={chip.key}
+                  type="radio"
+                  name="documents-type-filter"
+                  value={chip.key}
+                  checked={typeFilter === chip.key}
+                  onChange={(event) => setTypeFilter(event.target.value)}
+                  fitTextLines={1}
+                >
+                  <span>{chip.label}</span>
+                </OptionCard>
               ))}
             </div>
-            {isArtifactsExpanded ? (
-              <PaginationControls
-                itemCount={filteredArtifacts.length}
-                pagination={artifactsPagination}
-                t={t}
-                onPrevious={() => setArtifactsOffset(artifactsPagination.previousOffset)}
-                onNext={() => setArtifactsOffset(artifactsPagination.nextOffset)}
-              />
-            ) : null}
+          </div>
+
+          {anyFamilyError ? <div className="documents-error" role="alert">{anyFamilyError}</div> : null}
+
+          {loading ? (
+            <div className="documents-list__status">{t("documents.loading")}</div>
+          ) : filteredItems.length === 0 ? (
+            <div className="documents-list__status">
+              {typeFilter === "ALL" ? t("documents.workspace.empty_all") : t("documents.workspace.empty_filtered")}
             </div>
+          ) : (
+            <div className="documents-list">
+              {filteredItems.map((item) => renderRow(item))}
             </div>
-          </Panel>
-        </div>
+          )}
+
+          {anyTruncated ? <p className="documents-list__truncated">{t("documents.workspace.truncated")}</p> : null}
+        </Panel>
       </div>
     </>
   )
 
   if (embedded) return content
 
-  return (
-    <section>
-      {content}
-    </section>
-  )
+  return <section>{content}</section>
 }

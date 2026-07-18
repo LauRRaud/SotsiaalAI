@@ -99,8 +99,8 @@ export async function POST(request, { params }) {
   }
 
   try {
-    const source = await prisma.userDocument.findUnique({
-      where: { id },
+    const source = await prisma.userDocument.findFirst({
+      where: { id, ownerId: auth.userId },
       select: {
         id: true,
         ownerId: true,
@@ -149,7 +149,6 @@ export async function POST(request, { params }) {
     })
 
     if (!source) return errorJson("documents.errors.not_found", 404, locale)
-    if (source.ownerId !== auth.userId) return errorJson("api.common.forbidden", 403, locale)
     if (!isAudioDocument(source)) return errorJson("documents.errors.audio_source_required", 400, locale)
 
     const existingTranscript = source.derivedDocuments?.[0] || null

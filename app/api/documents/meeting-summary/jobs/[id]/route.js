@@ -32,7 +32,14 @@ export async function GET(request, { params }) {
     );
   }
   if (!assertMeetingSummaryAccess(job, auth.userId)) {
-    return errorJson("api.common.forbidden", 403, locale);
+    return json(
+      {
+        ok: false,
+        messageKey: "documents.agent_workspace.meeting_summary.not_found",
+        message: "documents.agent_workspace.meeting_summary.not_found",
+      },
+      404
+    );
   }
 
   return json({

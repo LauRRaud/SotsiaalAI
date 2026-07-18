@@ -4,9 +4,11 @@ import {
   getMaxArtifactSourceDocumentsForRole,
   normalizeArtifactTitle,
   normalizeArtifactType,
-  normalizeSelectedDocumentIds,
-  serializeArtifactSource
+  normalizeSelectedDocumentIds
 } from "@/lib/documents/artifacts"
+import { persistArtifactDraft } from "@/lib/documents/persistDraft"
+import { getStorageQuotaBytes } from "@/lib/storageGuardrails"
+import { getUserStorageUsageBytes } from "@/lib/storageUsage"
 import {
   generateArtifactDraftContent,
   normalizeAgentAudience,
@@ -15,7 +17,6 @@ import {
   normalizeAgentLength,
   normalizeAgentTone
 } from "@/lib/documents/generation"
-import { cacheRetrievalDebugMeta } from "@/lib/documents/retrievalObservability"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { errorJson, json, localeFromRequest, requireDocumentUser, usageErrorJson } from "@/lib/documents/server"
@@ -165,6 +166,16 @@ export async function POST(request) {
       }
     }
 
+    const storageQuotaBytes = getStorageQuotaBytes(role)
+    const storageUsageBytes = await getUserStorageUsageBytes(auth.userId)
+    if (storageUsageBytes.totalBytes >= storageQuotaBytes) {
+      return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
+        scope: "storage_quota",
+        limit: storageQuotaBytes,
+        used: storageUsageBytes.totalBytes
+      })
+    }
+
     try {
       usageHandle = await reserveUsageForRequest({
         request,
@@ -195,42 +206,25 @@ export async function POST(request) {
     generationCompleted = true
     await commitUsageForRequest(usageHandle)
     const content = result?.content || ""
-    if (content && result?.debugMeta) {
-      cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
-    }
 
-    const now = new Date()
-    const sources = documents.map((document) => serializeArtifactSource({ document })).filter(Boolean)
-
-    return json({
-      ok: true,
-      draft: {
-        id: null,
-        type,
-        title,
-        status: "DRAFT",
-        approvedAt: null,
-        templateId: template?.id || null,
-        template: template
-          ? {
-              id: template.id,
-              title: template.title,
-              originalName: template.originalName
-            }
-          : null,
-        content,
-        snippet: "",
-        createdAt: now,
-        updatedAt: now,
-        sourceCount: sources.length,
-        sources,
-        canDownload: false,
-        downloadFormats: [],
-        downloadUrl: null,
-        downloadUrls: {},
-        isTransient: true
-      }
+    // Persist immediately: the committed generation cost is now bound to a durable DRAFT the owner
+    // can find, continue, rename, delete or approve — it never evaporates on navigation. enforceQuota
+    // is false here because the pre-generation check above already gated an over-quota owner.
+    const { artifact } = await persistArtifactDraft({
+      userId: auth.userId,
+      role,
+      type,
+      title,
+      templateId: template?.id || null,
+      documentIds: documents.map((document) => document.id),
+      content,
+      debugMeta: result?.debugMeta || null,
+      idempotencyKey: body?.idempotencyKey,
+      enforceQuota: false
     })
+
+    // `draft` mirrors `artifact` for the workspace client, which keys save-vs-update off draft.id.
+    return json({ ok: true, artifact, draft: artifact }, 201)
   } catch (error) {
     if (usageHandle && !generationCompleted) {
       try {

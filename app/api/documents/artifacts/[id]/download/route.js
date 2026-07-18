@@ -1,4 +1,3 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { buildArtifactFileName } from "@/lib/documents/artifacts"
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "@/lib/documents/constants"
@@ -83,16 +82,14 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const artifact = await prisma.agentArtifact.findUnique({
-      where: { id },
+    const artifact = await prisma.agentArtifact.findFirst({
+      where: { id, ownerId: auth.userId },
       include: artifactInclude
     })
 
     if (!artifact) {
       return errorJson("documents.artifacts.errors.not_found", 404, locale)
     }
-
-    assertOwnedByUser(artifact, auth.userId)
 
     if (artifact.status !== "FINAL" || !artifact.approvedAt) {
       return errorJson("documents.artifacts.errors.download_requires_approval", 409, locale)

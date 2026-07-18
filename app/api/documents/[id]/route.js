@@ -1,6 +1,6 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { deleteDocumentRecordAndFile } from "@/lib/documents/deleteDocumentRecord"
+import { purgeMeetingSummarySnapshotsForDocument } from "@/lib/documents/meetingSummaryJobs"
 import { prisma } from "@/lib/prisma"
 import { isFrameworkAcceptanceSchemaError } from "@/lib/frameworkAcceptanceCompat"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
@@ -62,10 +62,10 @@ function serializeDocument(document) {
   }
 }
 
-async function findDocumentWithFrameworkState(id) {
+async function findDocumentWithFrameworkState(id, ownerId) {
   try {
-    const document = await prisma.userDocument.findUnique({
-      where: { id },
+    const document = await prisma.userDocument.findFirst({
+      where: { id, ownerId },
       select: {
         id: true,
         ownerId: true,
@@ -103,8 +103,8 @@ async function findDocumentWithFrameworkState(id) {
   } catch (error) {
     if (!isFrameworkAcceptanceSchemaError(error)) throw error
 
-    const document = await prisma.userDocument.findUnique({
-      where: { id },
+    const document = await prisma.userDocument.findFirst({
+      where: { id, ownerId },
       select: {
         id: true,
         ownerId: true,
@@ -153,11 +153,10 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const { document } = await findDocumentWithFrameworkState(id)
+    const { document } = await findDocumentWithFrameworkState(id, auth.userId)
     if (!document) {
       return errorJson("documents.errors.not_found", 404, locale)
     }
-    assertOwnedByUser(document, auth.userId)
 
     return json({
       ok: true,
@@ -203,11 +202,10 @@ export async function PATCH(request, { params }) {
   }
 
   try {
-    const { document: existing, frameworkSchemaAvailable } = await findDocumentWithFrameworkState(id)
+    const { document: existing, frameworkSchemaAvailable } = await findDocumentWithFrameworkState(id, auth.userId)
     if (!existing) {
       return errorJson("documents.errors.not_found", 404, locale)
     }
-    assertOwnedByUser(existing, auth.userId)
     if (frameworkSchemaAvailable && existing.frameworkAcceptance) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
@@ -336,13 +334,29 @@ export async function DELETE(request, { params }) {
   }
 
   try {
-    const { document: existing, frameworkSchemaAvailable } = await findDocumentWithFrameworkState(id)
+    const { document: existing, frameworkSchemaAvailable } = await findDocumentWithFrameworkState(id, auth.userId)
     if (!existing) {
       return errorJson("documents.errors.not_found", 404, locale)
     }
-    assertOwnedByUser(existing, auth.userId)
     if (frameworkSchemaAvailable && existing.frameworkAcceptance) {
       return errorJson("documents.errors.read_only_document", 403, locale)
+    }
+
+    // A meeting-summary document has a sibling <jobId>.json snapshot holding the same summary
+    // text. Purge it before the record so a failure blocks the delete (honest, retryable) instead
+    // of leaving silent content behind. Only MATERIAL documents can be meeting-summary outputs.
+    if (existing.kind === "MATERIAL") {
+      const snapshotPurge = await purgeMeetingSummarySnapshotsForDocument({
+        userId: auth.userId,
+        documentId: existing.id
+      })
+      if (!snapshotPurge.ok) {
+        console.error("[documents] meeting-summary snapshot purge failed", {
+          documentId: existing.id,
+          failures: snapshotPurge.failures
+        })
+        return errorJson("documents.errors.delete_failed", 503, locale)
+      }
     }
 
     await deleteDocumentRagReference({

@@ -2796,6 +2796,106 @@
         "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks."
       }
     },
+    "analyses": {
+      "disclaimer": "AI selgitus, mitte ametlik otsus.",
+      "confirm_delete": "Kas kustutada see salvestatud analüüs jäädavalt? Toimingut ei saa tagasi võtta.",
+      "feedback_deleted": "Analüüs kustutati.",
+      "errors": {
+        "content_required": "Analüüsi tekst on tühi — salvestamiseks lisa sisu.",
+        "content_too_large": "Analüüs on salvestamiseks liiga suur.",
+        "sources_not_found": "Üht või mitut viidatud allikdokumenti ei leitud.",
+        "list_failed": "Salvestatud analüüside laadimine ebaõnnestus.",
+        "save_failed": "Analüüsi salvestamine ebaõnnestus.",
+        "read_failed": "Analüüsi laadimine ebaõnnestus.",
+        "delete_failed": "Analüüsi kustutamine ebaõnnestus.",
+        "not_found": "Analüüsi ei leitud või see ei kuulu sinu kontole."
+      }
+    },
+    "workspace": {
+      "entry_title": "Mida soovid teha?",
+      "entry_description": "Vali tegevus või lisa fail. Kõik tulemused kogunevad allpool ühte loendisse.",
+      "entry": {
+        "analyze_title": "Mõista dokumenti",
+        "analyze_desc": "Lae fail vestlusesse ja lase AI-l selgitada sisu, riske ja järgmisi samme.",
+        "compose_title": "Koosta dokument",
+        "compose_desc": "Ava koostamisruum, et AI abil valmistada mustand ja see üle vaadata.",
+        "transcribe_title": "Transkribeeri heli",
+        "transcribe_desc": "Koosta helifailist transkript ja vaata see enne kasutamist üle.",
+        "research_title": "Tee süvauuring",
+        "research_desc": "Käivita vestluses teadmusbaasi põhjal süvauuring koos allikate ja ebakindlusega.",
+        "add_file_title": "Lisa fail",
+        "add_file_desc": "Lae siia uus dokument, mall või helifail."
+      },
+      "research_disabled": "Süvauuringut ei saa praegu käivitada. Varasemad tööd jäävad nähtavaks.",
+      "list_title": "Sinu dokumendid",
+      "filter_label": "Filtreeri tüübi järgi",
+      "filters": {
+        "files": "Failid",
+        "analysis": "Analüüsid",
+        "artifacts": "Koostatud",
+        "research": "Uuringud"
+      },
+      "empty_all": "Siin ei ole veel ühtegi objekti. Alusta tegevusest ülal või lisa fail.",
+      "empty_filtered": "Selle vaate all ei ole ühtegi objekti.",
+      "truncated": "Kuvatud on viimased objektid. Vanemad võivad olla varjatud.",
+      "untitled": "Pealkirjata",
+      "compose_from": "Koosta sellest",
+      "hide": "Peida",
+      "rag_toggle": "Luba töörežiimis (läheb jagatud otsingusse)",
+      "research_open": "Ava vestluses",
+      "research_load_failed": "Süvauuringute laadimine ebaõnnestus.",
+      "research_confirm_delete": "Kas kustutada see süvauuring jäädavalt?",
+      "research_delete_failed": "Süvauuringu kustutamine ebaõnnestus.",
+      "research_deleted": "Süvauuring kustutati.",
+      "types": {
+        "source": "Algfail",
+        "transcript": "Transkript",
+        "analysis": "Analüüs",
+        "draft": "Mustand",
+        "final": "Kinnitatud",
+        "research": "Uuring"
+      },
+      "research_status": {
+        "queued": "Ootel",
+        "running": "Töös",
+        "done": "Valmis",
+        "error": "Ebaõnnestus",
+        "cancelled": "Katkestatud"
+      },
+      "state": {
+        "analysis_saved": "Salvestatud"
+      }
+    },
+    "provenance": {
+      "labels": {
+        "audience": "Kes näeb",
+        "origin": "Päritolu",
+        "state": "Olek",
+        "retention": "Kehtivus",
+        "rag": "Otsing"
+      },
+      "audience": {
+        "owner_only": "Ainult sina",
+        "owner_and_worktree": "Sina ja töörežiim"
+      },
+      "origin": {
+        "uploaded": "Üles laaditud fail",
+        "transcript": "Transkript helist",
+        "analysis": "AI analüüs",
+        "ai_draft": "AI koostatud mustand",
+        "ai_final": "AI koostatud, sinu kinnitatud",
+        "research": "Süvauuring teadmusbaasist"
+      },
+      "retention": {
+        "days": "{days} päeva",
+        "until_deleted": "Kuni kustutad"
+      },
+      "rag": {
+        "not_in_search": "Ei lähe jagatud otsingusse",
+        "in_search_when_shared": "Läheb jagatud otsingusse, kui kasutad koostamisel",
+        "reads_kb": "Kasutab teadmusbaasi, tulemus jääb sinule"
+      }
+    },
     "call_recording": {
       "purpose": "Salvestamise eesmärk",
       "consent_status": "Nõusoleku staatus",

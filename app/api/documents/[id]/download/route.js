@@ -1,4 +1,3 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
@@ -47,8 +46,8 @@ export async function GET(request, { params }) {
   }
 
   try {
-    const document = await prisma.userDocument.findUnique({
-      where: { id },
+    const document = await prisma.userDocument.findFirst({
+      where: { id, ownerId: auth.userId },
       select: {
         id: true,
         ownerId: true,
@@ -62,7 +61,6 @@ export async function GET(request, { params }) {
     if (!document) {
       return errorJson("documents.errors.not_found", 404, locale)
     }
-    assertOwnedByUser(document, auth.userId)
 
     const fileBuffer = await readStoredDocument(document.storagePath)
     await logDocumentsAudit("document.downloaded", {

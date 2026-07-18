@@ -98,8 +98,8 @@ export async function GET(req, { params }) {
   }
   if (!assertResearchAccess(jobSnapshot, auth.userId)) {
     return json(
-      { ok: false, messageKey: "api.common.forbidden", message: "api.common.forbidden" },
-      403
+      { ok: false, messageKey: "research.error.not_found", message: "research.error.not_found" },
+      404
     );
   }
 

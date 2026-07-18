@@ -49,7 +49,7 @@ async function getAndAuthorizeJob(params, userId) {
     return { ok: false, response: errorJson("research.error.not_found", 404) };
   }
   if (!assertResearchAccess(job, userId)) {
-    return { ok: false, response: errorJson("api.common.forbidden", 403) };
+    return { ok: false, response: errorJson("research.error.not_found", 404) };
   }
   return { ok: true, jobId, job };
 }

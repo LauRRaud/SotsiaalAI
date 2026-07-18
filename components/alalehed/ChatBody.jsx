@@ -1989,7 +1989,8 @@ export default function ChatBody({
   const {
     isGenerating: isChatGenerating,
     sendMessage,
-    stop: stopChatStream
+    stop: stopChatStream,
+    detach: detachChatStream
   } = useChatStream({
     convId,
     historyPayload,
@@ -2026,6 +2027,11 @@ export default function ChatBody({
   const stop = useCallback(() => {
     stopChatStream();
   }, [stopChatStream]);
+  // Leaving the page or switching conversations must NOT cancel a running deep-research job:
+  // detach the local stream and let the durable job finish and persist to its conversation.
+  const detach = useCallback(() => {
+    detachChatStream();
+  }, [detachChatStream]);
   const startFreshConversation = useCallback((nextWorkflow = "default", options = {}) => {
     const {
       convId: requestedConvId = null,
@@ -2033,7 +2039,7 @@ export default function ChatBody({
     } = options;
     const nextConvId = String(requestedConvId || "").trim() || createConversationId();
 
-    stop();
+    detach();
     setErrorBanner(null);
     setIsCrisis(false);
     setShowSourcesPanel(false);
@@ -2058,7 +2064,7 @@ export default function ChatBody({
     }
 
     return nextConvId;
-  }, [analysis, setConvId, setIsCrisis, setMessages, stop]);
+  }, [analysis, setConvId, setIsCrisis, setMessages, detach]);
   useEffect(() => {
     if (isRoomMode) return;
     const workflow = readWorkflowFromSearchParams(searchParams);
@@ -2420,9 +2426,9 @@ export default function ChatBody({
   }, [convId, startFreshConversation]);
   useEffect(() => {
     return () => {
-      stop();
+      detach();
     };
-  }, [stop]);
+  }, [detach]);
   useEffect(() => {
     if (!analysis.showAnalysisPanel || suppressCareerCvPreview || keepCareerUploadFocus) return;
     try {

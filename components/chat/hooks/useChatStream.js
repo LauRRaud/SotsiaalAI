@@ -214,13 +214,9 @@ export function useChatStream(config) {
   const researchJobIdRef = useRef(null);
   const researchStreamingMessageIdRef = useRef(null);
 
-  const stop = useCallback(() => {
-    const activeResearchJobId = researchJobIdRef.current;
-    if (activeResearchJobId && typeof fetch === "function") {
-      fetch(`/api/research/jobs/${encodeURIComponent(activeResearchJobId)}`, {
-        method: "DELETE"
-      }).catch(() => {});
-    }
+  // Local-only teardown: stop reading the current stream and reset generating state, WITHOUT
+  // touching any durable server-side research job.
+  const teardownLocalStream = useCallback(() => {
     try {
       abortRef.current?.abort?.();
     } catch {}
@@ -230,6 +226,24 @@ export function useChatStream(config) {
     isGeneratingRef.current = false;
     setIsGenerating(false);
   }, []);
+
+  // Explicit user Stop: additionally cancel the durable research job on the server.
+  const stop = useCallback(() => {
+    const activeResearchJobId = researchJobIdRef.current;
+    if (activeResearchJobId && typeof fetch === "function") {
+      fetch(`/api/research/jobs/${encodeURIComponent(activeResearchJobId)}`, {
+        method: "DELETE"
+      }).catch(() => {});
+    }
+    teardownLocalStream();
+  }, [teardownLocalStream]);
+
+  // Soft detach (unmount, soft-nav, conversation switch): leave the durable research job running so
+  // it survives navigation. Its report is persisted to the conversation on completion, and the job
+  // is only ever cancelled by an explicit Stop — never by simply leaving the page.
+  const detach = useCallback(() => {
+    teardownLocalStream();
+  }, [teardownLocalStream]);
 
   const sendMessage = useCallback(async (rawText, options = {}) => {
     const cfg = cfgRef.current;
@@ -986,6 +1000,7 @@ export function useChatStream(config) {
   return {
     isGenerating,
     sendMessage,
-    stop
+    stop,
+    detach
   };
 }
