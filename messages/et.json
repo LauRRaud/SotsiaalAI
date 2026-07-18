@@ -593,7 +593,8 @@
   },
   "workspace": {
     "kind": {
-      "mentoring_process": "Mentorlussuhe"
+      "mentoring_process": "Mentorlussuhe",
+      "wellbeing_space": "Minu tööheaolu ruum"
     }
   },
   "common": {
@@ -5399,6 +5400,70 @@
     }
   },
   "wellbeing": {
+    "my_records": {
+      "title": "Minu kirjed",
+      "intro": "Siit näed oma varasemaid tööheaolu kirjeid ja pooleli jäänud mustandeid. Kirjed on privaatsed ja neid saab jätkata või kustutada.",
+      "drafts_heading": "Pooleli jäänud mustandid",
+      "drafts_empty": "Pooleli jäänud mustandeid ei ole.",
+      "open_related_record": "Ava seotud kirje",
+      "filters_label": "Kirjete filtrid",
+      "filter_workflow_label": "Töövoog",
+      "filter_workflow_all": "Kõik töövood",
+      "filter_period_label": "Periood",
+      "filter_period_all": "Kõik",
+      "filter_period_week": "Nädal",
+      "filter_period_month": "Kuu",
+      "records_heading": "Kirjete kronoloogia",
+      "records_empty": "Selle filtriga kirjeid ei ole veel.",
+      "loading": "Laadin…",
+      "load_failed": "Kirjete laadimine ebaõnnestus.",
+      "detail_heading": "Kirje detail",
+      "detail_failed": "Kirje avamine ebaõnnestus.",
+      "created_at": "Loodud",
+      "workflow_label": "Töövoog",
+      "signal": "Signaal",
+      "load_factors": "Koormustegurid",
+      "no_load_factors": "Koormustegureid ei märgitud.",
+      "resource_factors": "Ressursid ja tugevused",
+      "no_resource_factors": "Ressursitegureid ei märgitud.",
+      "risk_markers": "Riskimärgid",
+      "no_risk_markers": "Riskimärke ei märgitud.",
+      "recommended": "Soovitatud järgmised sammud",
+      "no_recommended": "Eraldi soovitusi ei tekkinud.",
+      "related_drafts": "Seotud mustandid",
+      "no_related_drafts": "Selle kirjega ei ole seotud mustandeid.",
+      "handoff_history": "Üleandmise ajalugu",
+      "handoff_covision": "Viidi Kovisiooni",
+      "close_detail": "Sulge",
+      "delete": "Kustuta kirje",
+      "deleting": "Kustutan…",
+      "deleted": "Kirje kustutati.",
+      "delete_failed": "Kirje kustutamine ebaõnnestus.",
+      "privacy": "Kirjed on vaikimisi privaatsed. Ainult sina näed neid; kustutamine eemaldab kirje ka anonüümsest koondist.",
+      "workflow": {
+        "quick_check": "Kiirkontroll",
+        "overview": "Ülevaade",
+        "hard_case": "Raske juhtum",
+        "workplace_violence": "Töövägivald",
+        "recovery": "Taastumine",
+        "work_boundaries": "Tööpiirid",
+        "interruptions": "Katkestused",
+        "work_processes": "Tööprotsessid",
+        "role_boundaries": "Rollipiirid",
+        "starter_support": "Alustaja tugi"
+      },
+      "signal_level": {
+        "green": "Roheline",
+        "yellow": "Kollane",
+        "red": "Punane",
+        "insufficient_data": "Andmeid vähe"
+      },
+      "draft_status": {
+        "draft": "Mustand",
+        "ready_to_share": "Kinnitatud jagatav versioon",
+        "in_covision": "Viidud Kovisiooni"
+      }
+    },
     "overview": {
       "title": "Ülevaade",
       "intro": "Ülevaade koondab sinu privaatsed tööheaolu sisestused ja näitab töö nõudmiste, ressursside ning korduvate mustrite seisu.",

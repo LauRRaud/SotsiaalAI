@@ -28,6 +28,9 @@ import {
 import {
   listWorkspaces as listFieldVisitWorkspaces
 } from "../../lib/workspaces/adapters/fieldVisitAdapter.js";
+import {
+  listWorkspaces as listWellbeingSpaceWorkspaces
+} from "../../lib/workspaces/adapters/wellbeingAdapter.js";
 
 const OWNER = "user_owner";
 const PARTICIPANT = "user_participant";
@@ -91,12 +94,12 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "room",
     "covision_case",
     "journey",
+    "wellbeing_space",
     "mentoring_process",
     "field_visit"
   ]);
   assert.deepEqual(RESERVED_WORKSPACE_KINDS, [
     "pre_inquiry",
-    "wellbeing_space",
     "supervision_process",
     "topic_seed",
     "meeting",
@@ -152,6 +155,76 @@ test("FieldVisit adapter is owner-scoped, private, descriptor-only and read-only
   assert.deepEqual(calls[0].where, { ownerUserId: OWNER });
   const empty = await listFieldVisitWorkspaces("", { db });
   assert.deepEqual(empty, []);
+});
+
+test("Wellbeing space adapter is owner-scoped, private, contentless and descriptor-only", async () => {
+  const calls = { record: [], draft: [] };
+  const db = {
+    wellbeingRecord: {
+      async findFirst(query) {
+        calls.record.push(query);
+        // Fake honours `select`: only the requested column is returned, so if
+        // the adapter ever asked for signal/answer columns they would surface.
+        return { createdAt: "2026-07-15T09:00:00.000Z" };
+      }
+    },
+    wellbeingOutputDraft: {
+      async findFirst(query) {
+        calls.draft.push(query);
+        return { updatedAt: "2026-07-18T09:00:00.000Z" };
+      }
+    }
+  };
+
+  const [descriptor] = await listWellbeingSpaceWorkspaces(OWNER, { db });
+  assertDescriptorContract(descriptor);
+  assert.deepEqual(descriptor.ref, { kind: "wellbeing_space", id: OWNER });
+  assert.equal(descriptor.title, "workspace.kind.wellbeing_space");
+  assert.equal(descriptor.ownerId, OWNER);
+  assert.equal(descriptor.responsibleId, OWNER);
+  assert.equal(descriptor.visibility, "PRIVATE");
+  assert.equal(descriptor.lifecycle, "ACTIVE");
+  assert.equal(descriptor.phase, null);
+  assert.equal(descriptor.goal, null);
+  assert.equal(descriptor.progress, null);
+  assert.equal(descriptor.nextAction, null);
+  assert.deepEqual(descriptor.participants, { active: 1, invited: 0 });
+  // lastMeaningfulActivityAt = max(record.createdAt, draft.updatedAt).
+  assert.equal(descriptor.lastMeaningfulActivityAt, "2026-07-18T09:00:00.000Z");
+  assert.deepEqual(descriptor.href, { action: "open_workspace", target: "wellbeing_space:user_owner" });
+
+  // Owner-scoped queries; only timestamp columns selected (W-INV-7 contentless).
+  assert.deepEqual(calls.record[0].where, { ownerUserId: OWNER });
+  assert.deepEqual(calls.record[0].select, { createdAt: true });
+  assert.deepEqual(calls.draft[0].where, { userId: OWNER });
+  assert.deepEqual(calls.draft[0].select, { updatedAt: true });
+  const queryText = JSON.stringify(calls);
+  for (const forbidden of [
+    "standardizedFields", "computedSignal", "loadFactors", "resourceFactors",
+    "riskMarkers", "recommendedActions", "workflowType", "generatedText", "editedText"
+  ]) {
+    assert.equal(queryText.includes(forbidden), false, `${forbidden} must not be selected`);
+  }
+  const serialized = JSON.stringify(descriptor);
+  assert.doesNotMatch(serialized, /workflowType|signal|loadFactor|riskMarker|quick-check/iu);
+});
+
+test("Wellbeing space adapter returns an empty list for outsiders and empty rooms", async () => {
+  const emptyRoomDb = {
+    wellbeingRecord: { async findFirst() { return null; } },
+    wellbeingOutputDraft: { async findFirst() { return null; } }
+  };
+  // A user with no records and no drafts yields no descriptor (canonical
+  // ISO timestamp required; empty-room-null is not representable).
+  assert.deepEqual(await listWellbeingSpaceWorkspaces(OWNER, { db: emptyRoomDb }), []);
+  // Missing user id never touches the database.
+  let touched = false;
+  const guardDb = {
+    wellbeingRecord: { async findFirst() { touched = true; return null; } },
+    wellbeingOutputDraft: { async findFirst() { touched = true; return null; } }
+  };
+  assert.deepEqual(await listWellbeingSpaceWorkspaces("", { db: guardDb }), []);
+  assert.equal(touched, false);
 });
 
 test("descriptor validation rejects unknown kinds and invalid or extra fields fail closed", () => {

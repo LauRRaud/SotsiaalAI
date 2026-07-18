@@ -10,6 +10,7 @@ import { localizePath } from "@/lib/localizePath";
 import { WELLBEING_INFO_ID, wellbeingTools } from "@/lib/wellbeingTools";
 import HardCaseWorkflow from "./HardCaseWorkflow";
 import InterruptionsWorkflow from "./InterruptionsWorkflow";
+import MyRecordsWorkflow from "./MyRecordsWorkflow";
 import OverviewWorkflow from "./OverviewWorkflow";
 import QuickCheckWorkflow from "./QuickCheckWorkflow";
 import RecoveryWorkflow from "./RecoveryWorkflow";
@@ -109,7 +110,9 @@ export default function WellbeingPage({ activeTool = null, locale = "et" }) {
             {activeTitle}
           </SubpageHeader>
 
-          {activeTool?.id === "quick-check" ? (
+          {activeTool?.id === "my-records" ? (
+            <MyRecordsWorkflow onNavigate={navigate} locale={locale} />
+          ) : activeTool?.id === "quick-check" ? (
             <QuickCheckWorkflow onNavigate={navigate} />
           ) : activeTool?.id === "overview" ? (
             <OverviewWorkflow />

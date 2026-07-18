@@ -178,6 +178,7 @@ export default function WorkProcessesWorkflow({ onNavigate }) {
   const { t } = useI18n();
   const [fields, setFields] = useState(initialFields);
   const [saveState, setSaveState] = useState("idle");
+  const [savedRecordId, setSavedRecordId] = useState(null);
   const record = useMemo(
     () => buildWorkProcessesRecord({
       period: "current",
@@ -218,6 +219,7 @@ export default function WorkProcessesWorkflow({ onNavigate }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.work_processes_save_failed");
+      setSavedRecordId(payload.record?.id || null);
       setSaveState("saved");
     } catch {
       setSaveState("error");
@@ -300,6 +302,7 @@ export default function WorkProcessesWorkflow({ onNavigate }) {
 
       <SupportRequestPanel
         sourceWorkflowType="work-processes"
+        sourceRecordId={saveState === "saved" ? savedRecordId : null}
         context={record}
         onNavigate={onNavigate}
       />

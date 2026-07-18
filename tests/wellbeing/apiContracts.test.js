@@ -40,6 +40,25 @@ test("wellbeing output draft API keeps support requests user controlled", () => 
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
+test("wellbeing records API lists, reads and deletes only the current user's private records", () => {
+  const list = `${read("app/api/wellbeing/records/route.js")}\n${read("app/api/wellbeing/_shared.js")}`;
+  assert.match(list, /export async function GET\(request\)/);
+  assert.match(list, /listWellbeingRecordsForUser\(auth\.userId/);
+  assert.match(list, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
+  assert.match(list, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  assert.match(list, /"Cache-Control":\s*"no-store/);
+
+  const detail = `${read("app/api/wellbeing/records/[id]/route.js")}\n${read("app/api/wellbeing/_shared.js")}`;
+  assert.match(detail, /export async function GET\(request,\s*context\)/);
+  assert.match(detail, /export async function DELETE\(request,\s*context\)/);
+  assert.match(detail, /getWellbeingRecordForUser\(auth\.userId/);
+  assert.match(detail, /deleteWellbeingRecordForUser\(auth\.userId/);
+  assert.match(detail, /listWellbeingOutputDraftsForRecord\(auth\.userId/);
+  // A missing or foreign record answers 404, never a leak.
+  assert.match(detail, /wellbeing\.errors\.record_not_found"\s*\},\s*404/);
+  assert.match(detail, /"Cache-Control":\s*"no-store/);
+});
+
 test("admin wellbeing aggregate API exposes suppressed JSON and CSV exports", () => {
   const source = read("app/api/admin/wellbeing/aggregate/route.js");
 

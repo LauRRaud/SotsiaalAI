@@ -143,6 +143,7 @@ export default function WorkBoundariesWorkflow({ onNavigate }) {
   const { t } = useI18n();
   const [fields, setFields] = useState(initialFields);
   const [saveState, setSaveState] = useState("idle");
+  const [savedRecordId, setSavedRecordId] = useState(null);
   const record = useMemo(
     () => buildWorkBoundariesRecord({
       period: "current",
@@ -173,6 +174,7 @@ export default function WorkBoundariesWorkflow({ onNavigate }) {
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload?.ok) throw new Error(payload?.message || "wellbeing.errors.work_boundaries_save_failed");
+      setSavedRecordId(payload.record?.id || null);
       setSaveState("saved");
     } catch {
       setSaveState("error");
@@ -264,6 +266,7 @@ export default function WorkBoundariesWorkflow({ onNavigate }) {
 
       <SupportRequestPanel
         sourceWorkflowType="work-boundaries"
+        sourceRecordId={saveState === "saved" ? savedRecordId : null}
         context={record}
         onNavigate={onNavigate}
       />

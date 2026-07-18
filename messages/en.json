@@ -593,7 +593,8 @@
   },
   "workspace": {
     "kind": {
-      "mentoring_process": "Mentoring relationship"
+      "mentoring_process": "Mentoring relationship",
+      "wellbeing_space": "My wellbeing space"
     }
   },
   "common": {
@@ -5399,6 +5400,70 @@
     }
   },
   "wellbeing": {
+    "my_records": {
+      "title": "My records",
+      "intro": "Here you can see your earlier wellbeing records and unfinished drafts. Records are private and can be continued or deleted.",
+      "drafts_heading": "Unfinished drafts",
+      "drafts_empty": "There are no unfinished drafts.",
+      "open_related_record": "Open related record",
+      "filters_label": "Record filters",
+      "filter_workflow_label": "Workflow",
+      "filter_workflow_all": "All workflows",
+      "filter_period_label": "Period",
+      "filter_period_all": "All",
+      "filter_period_week": "Week",
+      "filter_period_month": "Month",
+      "records_heading": "Record timeline",
+      "records_empty": "There are no records for this filter yet.",
+      "loading": "Loading…",
+      "load_failed": "Loading records failed.",
+      "detail_heading": "Record detail",
+      "detail_failed": "Opening the record failed.",
+      "created_at": "Created",
+      "workflow_label": "Workflow",
+      "signal": "Signal",
+      "load_factors": "Load factors",
+      "no_load_factors": "No load factors were noted.",
+      "resource_factors": "Resources and strengths",
+      "no_resource_factors": "No resource factors were noted.",
+      "risk_markers": "Risk markers",
+      "no_risk_markers": "No risk markers were noted.",
+      "recommended": "Recommended next steps",
+      "no_recommended": "No separate recommendations were generated.",
+      "related_drafts": "Related drafts",
+      "no_related_drafts": "This record has no related drafts.",
+      "handoff_history": "Handoff history",
+      "handoff_covision": "Taken to Covision",
+      "close_detail": "Close",
+      "delete": "Delete record",
+      "deleting": "Deleting…",
+      "deleted": "The record was deleted.",
+      "delete_failed": "Deleting the record failed.",
+      "privacy": "Records are private by default. Only you can see them; deleting a record also removes it from the anonymous aggregate.",
+      "workflow": {
+        "quick_check": "Quick check",
+        "overview": "Overview",
+        "hard_case": "Hard case",
+        "workplace_violence": "Workplace violence",
+        "recovery": "Recovery",
+        "work_boundaries": "Work boundaries",
+        "interruptions": "Interruptions",
+        "work_processes": "Work processes",
+        "role_boundaries": "Role boundaries",
+        "starter_support": "Starter support"
+      },
+      "signal_level": {
+        "green": "Green",
+        "yellow": "Yellow",
+        "red": "Red",
+        "insufficient_data": "Not enough data"
+      },
+      "draft_status": {
+        "draft": "Draft",
+        "ready_to_share": "Confirmed shareable version",
+        "in_covision": "Taken to Covision"
+      }
+    },
     "overview": {
       "title": "Overview",
       "intro": "Overview combines your private wellbeing entries and shows work demands, resources, and recurring patterns.",
