@@ -4489,6 +4489,12 @@
           "budget_capacity": "Total budget capacity",
           "near_limits": "Near limits"
         },
+        "pagination": {
+          "showing": "Showing {from}-{to} of {total}",
+          "truncated_note": "Not all matching users fit on one page. Use the page controls, or narrow the search, to review everyone.",
+          "prev": "Previous",
+          "next": "Next"
+        },
         "active": "Active",
         "inactive": "Inactive",
         "usage": {
