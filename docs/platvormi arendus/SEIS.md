@@ -110,14 +110,14 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T11 | SERVICE-MEDIATION-V1 | **LIVE** | |
 | T12 | ROOMS-CALLS-V1 | **LEPING VALMIS (ootel)** | otsustering + leping `t12-rooms-calls-v1-ulesanne.md` valmis 18.07; omanik lükkas T22 ette — T12 ootab järge |
 | T13 | COVISION-V2 | **ANALÜÜS** | V1 LIVE ja runtime-tõendatud; V2 ruumiline lõppmudel alustamata |
-| T14 | WELLBEING-V2 | **ANALÜÜS** | E0 kriitiline parandus LIVE; E1–E6 tegemata |
+| T14 | WELLBEING-V2 | **LEPING VALMIS (tuum)** | E0 LIVE + K1-P0 main'is (mõlemad eeldused täidetud); leping `t14-wellbeing-v2-ulesanne.md` = otsustevaba tuum P0+P1 (kirjete lugemisrada + adapter); rütmikiht P2–P5 vajab TO-1/TO-2 |
 | T15 | A11Y/RV | osaliselt LIVE | a11y-i18n P0 LIVE; RV-P1+ ja tõlkestrateegia tegemata |
 | T16 | EXPORT-V1 | **LIVE** | lepituse kaudu |
 | T17 | SEARCH-LANGUAGE-V1 | **LIVE** | |
 | T18 | PERF | osaliselt LIVE | L1 worker LIVE; L4 reaper-kood serveris (units INAKTIIVSED, vaikimisi väljas); kvoodileke + L3 timerid + L5 kuluajalugu tegemata |
 | T19 | SPATIAL-WORKSPACE-V1 | **OOTEL** | DEFERRED omaniku otsusega; prototüüp main'is viitena; ükski teema ei oota |
 | T20 | COLLAB-V1 | **—** | O-CO otsused lahtised |
-| T21 | CASEWORK-V1 | **ANALÜÜS** | CASEWORK-A0 valmis |
+| T21 | CASEWORK-V1 | **LEPING VALMIS (tuum)** | K1-P0 main'is; leping `t21-casework-v1-ulesanne.md` = otsustevaba tuum P0+P1 (provenance-konsolideerimine + adapterid + ettevalmistuspaneel); ⚠ P0 peab FIELD_PROVENANCE JAGATUSSE tõstma; P2–P6 vajavad O-CW/õigusanalüüsi |
 | T22 | SUPERVISION-V1 | **JÄRGMINE — LEPING VALMIS** | omaniku valik 18.07: esimene suur teema; P0 skeem JUBA main'is + prod'is; leping `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10) valmis; V0 ei vaja otsusteringi (12 otsust lukus) — vt „T22 eeltöö 18.07" |
 | T23 | ESTA-MENTOR-V1 | **LIVE** | oli juba `104d69d8`-ga serveris (avastatud 18.07 õhtul) |
 | T24 | FIELD-V1 | **LIVE** | õhtu-deploy 18.07 (`ae59516f`) |
@@ -150,7 +150,7 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).** Ükski kooditeema pole enam aktiivne → T12 võib alata.
 2. **T22 SUPERVISION-V1** — **JÄRGMINE täisteema (omaniku valik 18.07); EELTÖÖ VALMIS.** P0 skeem juba main'is+prod'is; leping `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10) koostatud; V0 decision-complete (12 otsust lukus, otsusteringi EI vaja). **Valmis väljastamiseks** — järgmine samm = teostaja käivitamine (Sol/Fable High) uue worktree'ga `main`-i praeguselt tipult.
 3. **T12 ROOMS-CALLS-V1** — leping valmis, ootab T22 järge (omanik lükkas T22 ette).
-4. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
+4. **T14 WELLBEING-V2 ja T21 CASEWORK-V1** — **lepingud VALMIS (otsustevabad tuumad)**, ootel; `t14-…` = kirjete lugemisrada+adapter (P0+P1), `t21-…` = provenance-konsolideerimine+adapterid+ettevalmistuspaneel (P0+P1). Mõlema hilisemad viilud vajavad otsuseid (T14: TO-1/TO-2 rütmiks; T21: O-CW-2/3/4/10 + O-CW-7 õigusanalüüs võrgustikuvaadetele). T13 Kovisioon V2 võib T19 tagasi lauale tuua.
 5. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule".**
 
 **C. VAHEPALAD teemade vahele (väikesed, otsustevabad, sobivad ka ootepäevadele):**
@@ -258,6 +258,21 @@ Auditi (`fable-5-ruumid-liitumine-ja-konevoog.md`, 20 ptk) pingerea ja registri 
 | 6 | **Omanikuvahetus** | **JAH** — OWNER saab rolli üle anda enne lahkumist (katab 16 K6). |
 
 **Etapid E1–E7** (auditi parandusjärjekord 20.5 = selgroog): E1 elutsükli ristkoristus, E2 race-migratsioon (osalised unikaalindeksid), E3 vealeping+väravaring, E4 kutse+kustutuspoliitika+omanikuvahetus, E5 salvestuse kestev nõusolek, E6 failipool+egress+retention, E7 kokkuvõtte privaatkoopia+T04-sündmused. **Kergemad vaikevalikud lepingus** (omanik võib üle vaadata): billing-kadumise aus kuva (15 K2), moderatsioon = olemasolev filter (3 K6b), SSE ei kanna kõneseisu (4 K7). Soovitatud teostaja: **Sol/Fable High** (salvestus+egress+olekumasin = kõrge privaatsus-/turvaraskus).
+
+### Lepingupank 18.07 (valmis lepingud, järjekord ees ootamas)
+
+Omaniku soovil valmistatud ette rida lepinguid, et suurte teemade järjekord oleks olemas. **Neli lepingut valmis; kolm ootavad väljastamist.**
+
+| Teema | Leping | Skoop | Eeldused | Lahtised otsused |
+|---|---|---|---|---|
+| **T22** SUPERVISION | `t22-supervision-v1-ulesanne.md` | E1–E7 (P1–P10) täis-V0 | P0 skeem main'is+prod'is ✓ | — (decision-complete) |
+| **T12** ROOMS-CALLS | `t12-rooms-calls-v1-ulesanne.md` | E1–E7, salvestus SEES | audit valmis ✓ | — (6 otsust tehtud) |
+| **T14** WELLBEING-V2 | `t14-wellbeing-v2-ulesanne.md` | E1–E2 = tuum P0+P1 | E0 LIVE ✓ + K1-P0 main'is ✓ | rütmiviil (P2–P5) vajab TO-1/TO-2 |
+| **T21** CASEWORK | `t21-casework-v1-ulesanne.md` | E1–E2 = tuum P0+P1 | K1-P0 main'is ✓ | võrgustikuvaated (P4/P5) vajavad O-CW-7 õigusanalüüsi |
+
+Kontrollitud aegunud väited, mis said parandatud: T22 „SUP-P0 remote puudub" (on main'is+prod'is), T14 „E0 [BRANCH]" (E0 on main'is `fe8c7df2`), T21 „K1-P0 [BRANCH]" (K1-P0 `ef5973c9` on main'is). **T21 kriitiline:** P0 peab `FIELD_PROVENANCE` (praegu `lib/field/constants.js`-s) tõstma jagatud `lib/workspaces/provenance.js`-i ja suunama FIELD-i sinna — MITTE teist sõnastikku looma.
+
+Väljastusjärjekord (omaniku prioriteet: suured funktsioonid enne release'i): **T22 → siis omaniku valik {T12, T14, T21}**. T14/T21 tuumad on väiksemad (P0+P1); nende rütmi-/võrgustikuviilud avanevad hilisemate otsuste järel.
 
 ### T22 eeltöö 18.07 (SUPERVISION-V1 — leping valmis, otsusteringi EI vajanud)
 
