@@ -318,7 +318,8 @@ export default function WorkspacePanel({
       pre_inquiries: "/eelpoordumised",
       service_map: "/teenusekaart",
       service_profile: "/teenuseprofiil",
-      wellbeing: "/tooheaolu"
+      wellbeing: "/tooheaolu",
+      mentoring: "/mentorlus"
     };
 
     if (cardKey === "help_requests" || cardKey === "help_offers") {

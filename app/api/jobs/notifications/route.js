@@ -7,6 +7,7 @@ import { NextResponse } from "next/server";
 import { runNotificationDelivery } from "@/lib/notificationDelivery";
 import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
 import { projectDomainEvents } from "@/lib/events/projector";
+import { runMentoringSweep } from "@/lib/mentoring/sweep";
 import { safeError } from "@/lib/privacy/safeError";
 
 const NO_STORE = { "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0" };
@@ -39,6 +40,7 @@ export async function POST(request) {
     const projected = {
       considered: 0, created: 0, existing: 0, failed: 0, zeroRecipients: 0
     };
+    const mentoring = await runMentoringSweep({ dryRun, batchSize });
     let reconcileCursor = null;
     let projectorCursor = null;
     let deliveryCursor = null;
@@ -77,6 +79,7 @@ export async function POST(request) {
       truncated,
       reconciled,
       projected,
+      mentoring,
       delivery
     });
   } catch (error) {

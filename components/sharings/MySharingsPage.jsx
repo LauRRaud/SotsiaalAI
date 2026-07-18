@@ -18,7 +18,8 @@ const EMPTY_SHARINGS = Object.freeze({
   rooms: [],
   invites: [],
   helpListings: [],
-  frameworkAcceptances: []
+  frameworkAcceptances: [],
+  mentoringPreparations: []
 });
 
 function statusKey(item) {
@@ -368,6 +369,51 @@ export default function MySharingsPage() {
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.kind}:${item.id}`}>
                   <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.labels.${item.kind}`)}</span><h3>{item.title || t(`my_sharings.labels.${item.kind}`)}</h3></div><span>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span></div>
                   <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.public_map")} origin={t("my_sharings.ownership.you_published")} validity={item.expiresAt ? t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) }) : t("my_sharings.ownership.no_expiry")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section title={t("my_sharings.mentoring.section_title")} help={t("my_sharings.mentoring.section_help")} empty={t("my_sharings.mentoring.empty")} items={sharings.mentoringPreparations || []}>
+              {(sharings.mentoringPreparations || []).map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}>
+                    <div>
+                      <span className={styles.eyebrow}>
+                        {t(item.recalledAt
+                          ? "my_sharings.mentoring.recalled"
+                          : item.openedAt
+                            ? "my_sharings.mentoring.opened"
+                            : item.sharedAt
+                              ? "my_sharings.mentoring.shared"
+                              : "my_sharings.mentoring.private")}
+                      </span>
+                      <h3>{t("my_sharings.mentoring.item_title")}</h3>
+                    </div>
+                    <time dateTime={item.createdAt}>{formatDate(item.createdAt)}</time>
+                  </div>
+                  <OwnershipBar
+                    labels={ownershipLabels}
+                    visibility={t(item.sharedAt && !item.recalledAt
+                      ? "my_sharings.mentoring.visible_to_mentor"
+                      : "my_sharings.ownership.private_record")}
+                    origin={t("my_sharings.mentoring.origin")}
+                    validity={item.sharedAt
+                      ? t("my_sharings.mentoring.shared_at", { date: formatDate(item.sharedAt) })
+                      : t("my_sharings.ownership.active")}
+                  />
+                  {item.relationId ? (
+                    <div className={styles.actions}>
+                      <Button
+                        variant="secondary"
+                        disabled={Boolean(busyKey)}
+                        onClick={() => {
+                          pushWithTransition(router, localizePath(`/mentorlus/suhe/${item.relationId}`, locale));
+                        }}
+                      >
+                        {t("my_sharings.mentoring.open_relation")}
+                      </Button>
+                    </div>
+                  ) : null}
                 </Panel>
               ))}
             </Section>
