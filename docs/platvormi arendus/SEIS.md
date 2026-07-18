@@ -208,7 +208,14 @@ T28 `RAG-V1` on `CODE_READY`, mitte aktiivne jätkuülesanne.
 - **SW-leping tõendatud käitumuslikult:** `swContract.test.js` käivitab `public/sw.js` võltsitud worker-globaalis ja surub läbi päris fetch-sündmused; **mutatsioonikontroll tehtud** — värava eemaldamisel kukuvad mõlemad põhitesti.
 - **`NOT_PROVEN` (ausalt):** seadme-/brauserimaatriks (Android Chrome, iOS Safari 16.4+ PWA ja sakk, töölaud), päris kaamera/mikrofon/OCR runtime, Playwright sünteetiline offline↔online tervikvoog, päris-DB runtime väljaspool migratsiooniahelat. Need on lepingu käsitsi-QA osa ja kuuluvad T27 koondväravasse.
 - **Teadlik kõrvalekalle lepingust:** online-dikteerimine taaskasutab `/api/documents/[id]/transcribe` (salvestatud helimanus), mitte lepingus nimetatud `/api/stt` (live-vootee). Funktsionaalselt kaetud, kirjas siin, et see ei kaoks.
-- **EI main'is, EI serveris, EI push'itud** — ootab vastuvõttu.
+- **Push'itud + liidetud kohalikku `main`-i** (`662b6e8a`); **EI serveris**.
+
+**T24 lepingu-kõrvalekalded — tooteomanik VAATAS ÜLE JA VÕTTIS VASTU 18.07 („las jääb nii"). Need EI ole avastamata vead; ära „paranda" neid järgmises sessioonis ilma uue otsuseta:**
+
+1. **DoD p7 („EI merge'i — koordinaator võtab vastu") — teadlikult üle astutud.** T24 liideti kohalikku `main`-i teostaja poolt. Omanik kinnitas, et jääb; tagasipööramist ei tehta.
+2. **`lib/workspaces/provenance.js` jäi loomata.** Leping nõudis, et 8-väärtuseline päritolusõnastik elaks selles jagatud failis („EI kahte sõnastikku"). Praegu on see `lib/field/constants.js`-is (`FIELD_PROVENANCE`, väärtused ÕIGED, asukoht lepingu-vastane). Omanik võttis vastu. **⚠ TAGAJÄRG CASEWORK-P0-le:** see pakett plaanib luua `provenance.js` — kui ta teeb seda nullist, tekib teine sõnastik. CASEWORK-P0 peab kas taaskasutama `FIELD_PROVENANCE`-i või tõstma selle jagatud faili ja suunama FIELD-i sinna.
+3. **DoD p1 ja p3 ei ole täidetud:** seadme-/brauserimaatriks ja Playwright sünteetiline tervikvoog on `NOT_RUN`. Seetõttu on aus nimi `CODE_READY`, mitte „valmis" → T27 koondväravasse.
+4. Väiksemad, kirja pandud: E6 dikteerimine kasutab `/api/documents/[id]/transcribe` (mitte `/api/stt`); `syncApi` kvoodikatted testimata (jagatud `documents`-abilised pole süstitavad); `swContract` tehtud käitumusliku, mitte staatilise testina (ületab nõuet); DoD p6 lubatud-nimekirjast väljas 5 faili (`app/api/jobs/notifications/route.js`, `lib/notifications.js`, `lib/actions/registry.js`, `app/styles/globals.css`, `public/sw.js`) — kõik E4/E7/E8 poolt nõutud.
 
 T23 `ESTA-MENTOR-V1` — **UUENDATUD 18.07: see lõik on aegunud, kehtib seisutabeli T23 rida.** Teema on terviklikult teostatud, rebase'itud `main`-i tipule (`e18acc3f`) ja **liidetud `main`-i** (`main @ 13d59449`, haru `codex/esta-mentor-v1 @ 8af9bcb5`, local=remote); ei ole serveris (push=deploy). (Ajalooline algseis oli: 18.07 WIP-kontrollpunkt `adc44f69`, väravaid pole jooksutatud, remote puudub.)
 
