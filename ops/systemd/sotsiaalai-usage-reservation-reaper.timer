@@ -1,0 +1,12 @@
+[Unit]
+Description=Schedule SotsiaalAI usage reservation-reaper
+
+[Timer]
+# Leaked holds are not urgent; a 10-minute sweep keeps quota accurate without churn.
+OnCalendar=*:0/10
+RandomizedDelaySec=90s
+Persistent=true
+Unit=sotsiaalai-usage-reservation-reaper.service
+
+[Install]
+WantedBy=timers.target
