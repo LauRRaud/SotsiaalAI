@@ -2,8 +2,7 @@ import { prisma } from "@/lib/prisma"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import {
   ARTIFACT_LIST_LIMIT,
-  ARTIFACT_LIST_LIMIT_ALL,
-  MAX_ARTIFACT_SOURCE_DOCUMENTS
+  ARTIFACT_LIST_LIMIT_ALL
 } from "@/lib/documents/constants"
 import {
   buildArtifactOrderBy,
@@ -14,7 +13,7 @@ import {
   parseListLimit,
   parseListOffset
 } from "@/lib/documents/listing"
-import { logDocumentsAudit } from "@/lib/documents/audit"
+import { persistArtifactDraft } from "@/lib/documents/persistDraft"
 import {
   normalizeArtifactContent,
   normalizeArtifactTitle,
@@ -79,18 +78,6 @@ const artifactInclude = {
 function parseIncludeContent(value) {
   const normalized = String(value || "").trim().toLowerCase()
   return normalized === "1" || normalized === "true" || normalized === "yes"
-}
-
-function buildRetrievalAuditFields(debugMeta) {
-  if (!debugMeta) return {}
-  return {
-    retrievalMode: debugMeta.retrieval_mode || null,
-    chunksUsed: Number(debugMeta.chunks_used) || 0,
-    fallbackUsed: debugMeta.retrieval_mode === "fallback_source_material",
-    fallbackReason: debugMeta.fallback_reason || null,
-    documentsIndexed: Number(debugMeta.documents_indexed) || 0,
-    tokenBudget: Number(debugMeta.token_budget) || 0
-  }
 }
 
 export async function GET(request) {
@@ -345,39 +332,23 @@ export async function POST(request) {
       })
     }
 
-    const artifact = await prisma.agentArtifact.create({
-      data: {
-        ownerId: auth.userId,
-        type,
-        title,
-        status: "DRAFT",
-        content: finalContent,
-        templateId: template?.id || null,
-        sourceDocuments: {
-          createMany: {
-            data: documents.slice(0, MAX_ARTIFACT_SOURCE_DOCUMENTS).map((document) => ({
-              documentId: document.id
-            }))
-          }
-        }
-      },
-      include: artifactInclude
-    })
-
-    await logDocumentsAudit("artifact.created", {
+    const { artifact } = await persistArtifactDraft({
       userId: auth.userId,
-      artifactId: artifact.id,
-      type: artifact.type,
-      title: artifact.title,
-      templateId: artifact.templateId,
-      sourceCount: artifact.sourceDocuments.length,
-      ...buildRetrievalAuditFields(debugMeta)
+      role,
+      type,
+      title,
+      templateId: template?.id || null,
+      documentIds: documents.map((document) => document.id),
+      content: finalContent,
+      debugMeta,
+      idempotencyKey: body?.idempotencyKey,
+      enforceQuota: false
     })
 
     return json(
       {
         ok: true,
-        artifact: serializeArtifact(artifact, { includeContent: true })
+        artifact
       },
       201
     )

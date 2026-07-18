@@ -27,8 +27,8 @@ export async function POST(request, { params }) {
   if (!id) return errorJson("documents.errors.missing_id", 400, locale)
 
   try {
-    const document = await prisma.userDocument.findUnique({
-      where: { id },
+    const document = await prisma.userDocument.findFirst({
+      where: { id, ownerId: auth.userId },
       select: {
         id: true,
         ownerId: true,
@@ -39,7 +39,6 @@ export async function POST(request, { params }) {
       }
     })
     if (!document) return errorJson("documents.errors.not_found", 404, locale)
-    if (document.ownerId !== auth.userId) return errorJson("api.common.forbidden", 403, locale)
     if (!AUDIO_SOURCE_KINDS.includes(document.kind)) return errorJson("documents.errors.audio_source_required", 400, locale)
 
     await logDocumentsAudit("document.audio_selected", {

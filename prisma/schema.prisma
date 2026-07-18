@@ -677,6 +677,7 @@ model User {
   documentAudits         DocumentAudit[]
   frameworkAcceptances   FrameworkAcceptance[]
   materialSubmissions    MaterialSubmission[]
+  savedAnalyses          SavedAnalysis[]
 
   // Chat / runs
   conversationRuns        ConversationRun[]
@@ -3350,6 +3351,7 @@ model AgentArtifact {
   metadata   Json?
   approvedAt DateTime?
   templateId String?
+  idempotencyKey String?
   createdAt  DateTime            @default(now())
   updatedAt  DateTime            @updatedAt
 
@@ -3358,6 +3360,7 @@ model AgentArtifact {
   sourceDocuments AgentArtifactSourceDocument[]
   audits          DocumentAudit[]
 
+  @@unique([ownerId, idempotencyKey])
   @@index([ownerId, updatedAt])
   @@index([ownerId, type, updatedAt])
   @@index([ownerId, status, updatedAt])
@@ -3419,6 +3422,21 @@ model DocumentAudit {
   @@index([documentId, createdAt])
   @@index([artifactId, createdAt])
   @@index([action, createdAt])
+}
+
+model SavedAnalysis {
+  id                String   @id @default(cuid())
+  ownerId           String
+  title             String?
+  content           String   @db.Text
+  sourceDocumentIds Json?
+  metadata          Json?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId, updatedAt])
 }
 
 model MaterialSubmission {

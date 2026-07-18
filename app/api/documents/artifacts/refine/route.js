@@ -1,4 +1,3 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { buildDocumentAuditRecord } from "@/lib/documents/auditShared"
 import {
   getMaxArtifactSourceDocumentsForRole,
@@ -96,9 +95,10 @@ export async function POST(request) {
 
   try {
     if (artifactId) {
-      const artifact = await prisma.agentArtifact.findUnique({
+      const artifact = await prisma.agentArtifact.findFirst({
         where: {
-          id: artifactId
+          id: artifactId,
+          ownerId: auth.userId
         },
         select: {
           id: true,
@@ -109,8 +109,6 @@ export async function POST(request) {
       if (!artifact) {
         return errorJson("documents.artifacts.errors.not_found", 404, locale)
       }
-
-      assertOwnedByUser(artifact, auth.userId)
 
       const usedRefinements = await prisma.documentAudit.count({
         where: {

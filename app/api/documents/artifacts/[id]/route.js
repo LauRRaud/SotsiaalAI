@@ -1,4 +1,3 @@
-import { assertOwnedByUser } from "@/lib/documents/access"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import {
@@ -54,14 +53,12 @@ const artifactInclude = {
 }
 
 async function findOwnedArtifact(id, userId) {
-  const artifact = await prisma.agentArtifact.findUnique({
-    where: { id },
+  const artifact = await prisma.agentArtifact.findFirst({
+    where: { id, ownerId: userId },
     include: artifactInclude
   })
 
-  if (!artifact) return null
-  assertOwnedByUser(artifact, userId)
-  return artifact
+  return artifact || null
 }
 
 function buildRetrievalAuditFields(debugMeta) {
