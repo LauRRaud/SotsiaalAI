@@ -1,0 +1,18 @@
+[Unit]
+Description=SotsiaalAI payment/invite email outbox delivery (T09)
+Wants=network-online.target
+After=network-online.target sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/node scripts/payment-emails.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+
+# Off unless PAYMENT_EMAIL_WORKER_ENABLED=1. Delivery is idempotent (claim + retry +
+# terminal state); a retry only re-sends an email, never re-runs a payment or grant.
+# Needs EMAIL_FROM / SMTP configured; writes nothing to disk.

@@ -1,0 +1,18 @@
+[Unit]
+Description=SotsiaalAI subscription reconciliation (stuck INITIATED payments, T09)
+Wants=network-online.target
+After=network-online.target sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/node scripts/subscription-reconcile.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+
+# Off unless SUBSCRIPTION_RECONCILE_ENABLED=1. The job only touches expired INITIATED
+# payments and never marks a payment PAID without a verified provider result
+# (SUBSCRIPTION_RECONCILE_QUERY_PROVIDER, operator-gated). It writes nothing to disk.

@@ -1,0 +1,12 @@
+[Unit]
+Description=Schedule SotsiaalAI subscription reconciliation
+
+[Timer]
+# Stuck payments are not time-critical; a quarter-hourly sweep is plenty.
+OnCalendar=*:0/15
+RandomizedDelaySec=2m
+Persistent=true
+Unit=sotsiaalai-subscription-reconcile.service
+
+[Install]
+WantedBy=timers.target
