@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (T23 mentorlus valmis + pushitud; T02+T16 liidetud local `main`-i `d2860b0b`; DEPLOY-A0 `COMPLETE` = tingimuslik GO)
+Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. T23 mentorlus valmis + pushitud)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -49,7 +49,7 @@ Reeglid:
 
 ## Kriitilised tööreeglid
 
-- **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). `origin/main` (server) on kohalikust `main`-ist ~66 commit'i TAGA ja jääb puutumata kuni eraldi deploy-otsuseni.
+- **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). **DEPLOY TEHTUD 18.07:** `origin/main` ja server on nüüd `adc83829` (= kohalik `main`); rollback-SHA `fe4eb4fa`.
 - Uued teemaharud luuakse kohalikust `main`-ist (mitte `origin/main`-ist); põhitööpuud ennast kasutatakse ainult read-only baasina.
 - Uus kooditöö tehakse ainult eraldi värskes worktree's ja ülesandes nimetatud baascommit'i pealt.
 
@@ -89,14 +89,14 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ## SEISUTABEL — 2026-07-18
 
-`main @ d2860b0b` (T02+T16 liidetud + DEPLOY-A0 dokk); **server `origin/main @ fe4eb4fa` on 88 commit'i TAGA ja puutumata** kuni eraldi deploy-otsuseni.
+`main @ adc83829`; **server `origin/main @ adc83829` — DEPLOY TEHTUD 18.07** (ff `fe4eb4fa`→`adc83829`, 6 migratsiooni rakendatud, build 24.9s / 57 lehte, frontend+rag `active`, smoke roheline: `/` `/vestlus` `/meist` → 200). Rollback-SHA `fe4eb4fa`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-adc83829-20260718T111528Z.dump` (2,69 MB, taastatav).
 
 ### Töö järjekord (jadatöö)
 
 | # | Teema | Olek | Haru / SHA | Avab |
 |---|---|---|---|---|
 | 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
-| 2 | T02+T16 `LEPITUS` | **`MERGED_LOCAL` — liidetud local `main`-i `d2860b0b` (puhas merge), väravad rohelised: 1582 testi, 98-migr ahel, build. Push = deploy-otsuse taga** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
+| 2 | T02+T16 `LEPITUS` | **`DEPLOYED` — main'is `d2860b0b`, **LIVE serveris 18.07** (`adc83829`). Väravad: 1582 testi, 98-migr ahel, build; 6 migratsiooni rakendatud prod-DB-le** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
 | 3 | T10 `PUBLIC-V1` | `QUEUED` | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 | 4 | T07 `DOCUMENTS-RESEARCH-V1` | `QUEUED` | leping `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
 
@@ -104,16 +104,16 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 | Teema | Olek | Leping | Teenib |
 |---|---|---|---|
-| DEPLOY-A0 valmiduse audit | **`COMPLETE` 18.07 — tingimuslik GO** | väljund: `deploy-a0-valmiduse-audit-2026-07-18.md` (leping: `…-ulesanne.md`) | omaniku deploy-otsust (lahtine otsus nr 1); server oli RANGELT READ-ONLY, midagi ei kirjutatud |
+| DEPLOY-A0 valmiduse audit | **`EXECUTED` 18.07 — GO täidetud, deploy LIVE** | väljund: `deploy-a0-valmiduse-audit-2026-07-18.md` | mõlemad eeltingimused täidetud (DB `pg_dump` võetud+verifitseeritud; server-build madala koormusega, 4.5 GB vaba); server `adc83829`, smoke roheline |
 
 ### Pooleli, ei ole järjekorras
 
 | Teema | Olek | Haru / SHA | Märkus |
 |---|---|---|---|
 | T23 `ESTA-MENTOR-V1` | **`CODE_READY` — pushitud, väravad rohelised** | `codex/esta-mentor-v1 @ 32b9800d` (local=remote), baas T05 `33f7fb82` | üks commit; 1582/1582 testi (24 uut) + build + i18n + lint + 98-migr ahel + **päris-DB sünteetiline runtime PASS** (mentor+mentee+admin täisteekond, IDOR/purge/continuity/U12/handoff); `NOT_PROVEN`: brauseri-QA, seadme-a11y. Ei ole `main`-is ega serveris |
-| T03 `CHAT-VOICE-V1` | `BLOCKED_DECISION` | `codex/chat-voice-v1 @ 7bdd1288` | vajab tooteomaniku otsust: main'i mic-nupp vs T03 spatial-entry. Lepingut ei vormistata enne otsust |
+| T03 `CHAT-VOICE-V1` | **`DECISION_MADE` 18.07 — ühtne mikker võidab** | `codex/chat-voice-v1 @ 7bdd1288` | omanik otsustas: sisenemine = alati-nähtav tekstiväli + VALIKULINE mikker (main). Spatial-entry hüljatud. T03 rebase peab main'i komposeri säilitama; skoop = ainult E1–E5 (kriis/Stop/hääl), MITTE sisenemis-UX |
 | T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
-| T09 `PAYMENTS-V1` | `BLOCKED` | leping `t09-payments-v1-ulesanne.md` | avaneb, kui T02+T16 on main'is |
+| T09 `PAYMENTS-V1` | `QUEUED` — T02+T16 nüüd main'is + deployed | leping `t09-payments-v1-ulesanne.md` | järgmine kooditeema (alusta `main`-i praegusest tipust) |
 | T25, T26 | `ANALYSIS_READY` | — | ootavad T27 release candidate'i |
 | T27 `OPS-FINAL-A0` | ei käivitata | — | release candidate'i lõppvärav |
 
@@ -130,9 +130,11 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ### Lahtised omaniku otsused
 
-1. **Deploy** — server 88 taga. **DEPLOY-A0 audit `COMPLETE` (`deploy-a0-valmiduse-audit-2026-07-18.md`) → tingimuslik GO.** Faktid: 6 migratsiooni rakenduks, kõik additiivsed/ohutud; Prisma kinnitab serveri „up to date"; **MAKSEKESKUS EI ole enam blokeer** — prod-env-il on `SUBSCRIPTION_RECURRING_ENABLED=0`, seega check-env läbib (blokeer puudutas ainult dev-`.env`-i). **Kaks eeltingimust:** (a) kohustuslik käsitsi DB `pg_dump` enne migrate'i (automaatset DB-varundust EI ole), (b) build-strateegia (soovitus kohalik/CI, mitte jagatud VPS-il). Deploy-otsuse ja push'i teeb omanik.
-2. **T02+T16 push** — local merge on **tehtud** (`main @ d2860b0b`, T09 avatud). Jääb ainult `git push origin main`, mis == deploy → kuulub otsuse 1 juurde.
-3. **T03 disainiotsus** — mic vs spatial-entry (muutmata).
+1. ~~**Deploy**~~ — **TEHTUD 18.07.** `git push origin main` + `npm run deploy:server` → server `adc83829` LIVE. DB `pg_dump` võetud+verifitseeritud ENNE migrate'i; 6 migratsiooni rakendatud (kõik additiivsed); server-build (4.5 GB vaba, kaas-saite ei häirinud); frontend+rag `active`; smoke roheline. MAKSEKESKUS jäi variant A (`SUBSCRIPTION_RECURRING_ENABLED=0`).
+2. ~~**T02+T16 push**~~ — **TEHTUD** (kuulus deploy'sse).
+3. ~~**T03 disainiotsus**~~ — **OTSUSTATUD 18.07:** ühtne alati-nähtav tekstiväli + valikuline mikker (main) võidab; kaheikooniline „Räägi/Kirjuta — pead valima" spatial-entry lõplikult hüljatud. Segaduse allikas oli deploy-vahe (main eemaldas selle 16.07, aga toodangus jooksis veel eemalduse-eelne `fe4eb4fa`) — nüüd deploy'ga lahendatud.
+
+**Uus lahtine otsus:** järgmise kooditeema väljastamine — jadatöö järjekord ütleb **T09 `PAYMENTS-V1`** (alusta `main`-i praegusest tipust).
 
 **Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
