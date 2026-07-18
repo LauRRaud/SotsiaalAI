@@ -108,7 +108,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T09 | PAYMENTS-V1 | **LIVE** | `7b49e9f7`; recurring teadlikult väljas; töölise-timerid inaktiivsed |
 | T10 | PUBLIC-V1 | **OOTEL** | 18.07 õhtu ümberprioriseerimine: release-raja algus, käivitub kui omanik tahab turule (EI ole enam T07 järel) |
 | T11 | SERVICE-MEDIATION-V1 | **LIVE** | |
-| T12 | ROOMS-CALLS-V1 | **JÄRGMINE** | omaniku valik 18.07 õhtul: järgmine täisteema T07 järel; audit valmis (ruum-audit.md 20 ptk); vajab otsusteringi + lepingut |
+| T12 | ROOMS-CALLS-V1 | **JÄRGMINE — LEPING VALMIS** | otsustering tehtud 18.07 (6 otsust), leping `t12-rooms-calls-v1-ulesanne.md` (E1–E7) koostatud; valmis väljastamiseks — vt „T12 otsustering 18.07" |
 | T13 | COVISION-V2 | **ANALÜÜS** | V1 LIVE ja runtime-tõendatud; V2 ruumiline lõppmudel alustamata |
 | T14 | WELLBEING-V2 | **ANALÜÜS** | E0 kriitiline parandus LIVE; E1–E6 tegemata |
 | T15 | A11Y/RV | osaliselt LIVE | a11y-i18n P0 LIVE; RV-P1+ ja tõlkestrateegia tegemata |
@@ -148,7 +148,7 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 
 **B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
 1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).** Ükski kooditeema pole enam aktiivne → T12 võib alata.
-2. **T12 ROOMS-CALLS-V1** — **JÄRGMINE täisteema.** Eeltöö = lühike otsustering (rollimaatriks; salvestise/kokkuvõtte kandja; kutsed/egress/revoke) + lepingu `t12-…-ulesanne.md` koostamine ruum-auditi ptk 20 parandusjärjekorra pealt (mittekooditöö). Koodi alustus P0-turvaväravatest (salvestusväravad enne `RECORDING_ENABLED=true`, elutsükli ristkoristus, race-migratsioon).
+2. **T12 ROOMS-CALLS-V1** — **JÄRGMINE täisteema; EELTÖÖ VALMIS.** Otsustering tehtud 18.07 (6 otsust, vt „T12 otsustering 18.07"), leping `t12-rooms-calls-v1-ulesanne.md` koostatud (E1–E7). **Valmis väljastamiseks** — järgmine samm = teostaja käivitamine (Sol/Fable High) uue worktree'ga `main`-i praeguselt tipult.
 3. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
 4. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule"** — EI ole enam automaatselt T07 järel.
 
@@ -242,6 +242,21 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 6. **Kaitse on serveripoolne ja testitud:** `rag-service/main.py` `AgentDocumentSearchIn` on `extra: forbid` ja **ilma** `owner_id`/`tenant_id`/`where` väljadeta (klient ei saa skoopi süstida); `tests/rag/agentDocumentIsolation.test.js` **4/4 roheline**, sh Python-poolne `test_search_security.py`.
 
 **Tagajärg T07-le:** E1 esimene punkt on juba täidetud — **mitte tegemata töö**. E1-st jääb alles ainult päritolu/privaatsusriba, mis sõltub E3-st. Varasem märge „T28 cross-tenant piir puutumata" oli eksitav: piiri ei puudutatud sellepärast, et see oli juba korras. Vt ka `sol-dok-xten-p0-kordusaudit.md`.
+
+### T12 otsustering 18.07 (ROOMS-CALLS-V1 eeltöö — 6 otsust)
+
+Auditi (`fable-5-ruumid-liitumine-ja-konevoog.md`, 20 ptk) pingerea ja registri T12-otsuste pealt tehtud otsustering. **Leping `t12-rooms-calls-v1-ulesanne.md` (E1–E7) koostatud nende otsuste alusel.**
+
+| # | Otsus | Valik |
+|---|---|---|
+| 1 | **Salvestus V1-s** | **SEES — täismudel.** `RECORDING_ENABLED=true` (alles kui E5+E6 tõendatud); nõusolek kehtib kogu kestuse, egress-peatus, withdraw-UI, retention-purge. Auditi #1/#2 = V1 tuum. |
+| 2 | **Voo-ruumi kustutus** | **Keela + arhiveeri.** Voo-põhises ruumis (`originType != MANUAL_INVITE`) omanik ei saa ühepoolselt kustutada; „arhiveeri/lahku". Ühine ajalugu säilib. |
+| 3 | **Kokkuvõtte kandja** | **Iga osaleja privaatne koopia** → Minu dokumendid (T07 pind); elab üle ruumi kustutuse. |
+| 4 | **Kutseõigus** | **Ainult OWNER kutsub.** Sponsorlus käib Subscription'i kaudu (liikmesuse sponsor-väljad informatiivsed). |
+| 5 | **Salvestise ligipääs + retention** | **Nõusoleku-osalised + auto-purge.** Ligipääs ainult kohal-olnud-ja-nõustunul; withdraw eemaldab; auto-purge 90 p (ühtne dokumentidega) + omaniku käsitsi kustutus. |
+| 6 | **Omanikuvahetus** | **JAH** — OWNER saab rolli üle anda enne lahkumist (katab 16 K6). |
+
+**Etapid E1–E7** (auditi parandusjärjekord 20.5 = selgroog): E1 elutsükli ristkoristus, E2 race-migratsioon (osalised unikaalindeksid), E3 vealeping+väravaring, E4 kutse+kustutuspoliitika+omanikuvahetus, E5 salvestuse kestev nõusolek, E6 failipool+egress+retention, E7 kokkuvõtte privaatkoopia+T04-sündmused. **Kergemad vaikevalikud lepingus** (omanik võib üle vaadata): billing-kadumise aus kuva (15 K2), moderatsioon = olemasolev filter (3 K6b), SSE ei kanna kõneseisu (4 K7). Soovitatud teostaja: **Sol/Fable High** (salvestus+egress+olekumasin = kõrge privaatsus-/turvaraskus).
 
 ### Väikesed sulgemised 18.07 (kolm nimekirjarida maha)
 
@@ -340,7 +355,7 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
 | ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
 | ✓ | **T07 `DOCUMENTS-RESEARCH-V1` — `CLOSED_SCOPED` 18.07** | `t07-documents-research-v1-ulesanne.md` | tuum+DoD LIVE; 3 naaberpinna-jääki edasi lükatud; avab T12 |
-| ▶ | **T12 `ROOMS-CALLS-V1` — JÄRGMINE** | leping veel koostamata (ruum-audit ptk 20 pealt) | ruumid/kõned; algab otsusteringiga |
+| ▶ | **T12 `ROOMS-CALLS-V1` — JÄRGMINE, leping VALMIS** | `t12-rooms-calls-v1-ulesanne.md` (E1–E7, 6 otsust lukus) | ruumid/kõned/salvestus; valmis väljastamiseks |
 | — | T10 `PUBLIC-V1` — release-ootel | `t10-public-v1-ulesanne.md` | avalikud pinnad (ei enam automaatselt järgmine) |
 
 **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` = server LIVE; `origin/main` on hiljem liikunud → `104d69d8`, mis sisaldab `7b49e9f7`; haru `origin/codex/payments-v1` push'itud; worktree `SotsiaalAI-payments-v1` puhas). Baas = `538ec4bb` (leping ütles `fe4eb4fa`/`cdbd9139` — JADATÖÖ reegel: praegune tipp). P1a `0aca8c4b` ja T02 olid juba main'is → cherry-pick'i EI tehtud. E1–E6 kõik teostatud (lukustatud O-M1…O-M6/O-J1…O-J4, testilepingud 1–9, DoD); väravad rohelised + päris-DB throwaway runtime 33/33; deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup + rollback `538ec4bb`. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
