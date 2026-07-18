@@ -749,7 +749,9 @@
         "kov": "Municipality contact",
         "kov_social": "Local welfare department",
         "provider": "Services",
-        "help_listings": "Help requests and offers"
+        "help_listings": "Help requests and offers",
+        "help_request": "Help requests",
+        "help_offer": "Help offers"
       },
       "marker_kov": "KOV",
       "marker_provider": "Provider",
@@ -768,6 +770,21 @@
         "hide_filters": "Hide filters",
         "show_filters": "Show filters"
       },
+      "match": {
+        "loading": "Checking consent requests…",
+        "error": "Consent requests could not be loaded right now.",
+        "title": "Consent requests waiting for you",
+        "note": "A room opens only after your consent.",
+        "generic": "Help contact",
+        "accept": "Accept",
+        "decline": "Decline",
+        "pending_sent": "The consent request was sent. A room opens only after the other person accepts.",
+        "choose_title": "Choose your listing",
+        "choose_note": "Choose which open listing you want to use for this contact.",
+        "choose_label": "My listing",
+        "choose_placeholder": "Choose a listing",
+        "continue": "Continue"
+      },
       "errors": {
         "load_failed": "Map entries could not be loaded.",
         "map_failed": "The map could not be loaded."
@@ -781,6 +798,7 @@
         "email": "Email",
         "write": "Write",
         "website": "Website",
+        "start_pre_inquiry": "Start pre-inquiry",
         "services": "Services",
         "group_title": "{count} contacts"
       },
@@ -1346,6 +1364,7 @@
       "loadFailed": "Failed to load listings.",
       "detailLoadFailed": "Failed to open the listing.",
       "connectFailed": "Failed to create the connection.",
+      "connectPending": "The consent request has been sent. The conversation opens after the other person agrees.",
       "category": "Category",
       "municipality": "Municipality",
       "location": "Location",
@@ -1660,9 +1679,9 @@
         "confirmSoftMatches": "Among the selected listings, {count} similar listings have slightly different conditions.",
         "confirmHelpTypeMismatchRetry": "If this still works for you, reply \"yes\" and I will create the match. Otherwise reply \"no\".",
         "cancelledSoftMatch": "Understood. I will leave this similar but slightly different listing unconnected.",
-        "created": "The connection has been created. The shared conversation is now available on the Rooms page.",
-        "createdMultiple": "The connections have been created. {count} shared conversations are now available on the Rooms page.",
-        "createdPartial": "I created {createdCount} connections, but {failedCount} selections could not be connected.",
+        "created": "The consent request has been sent. The shared conversation opens only after the other person agrees.",
+        "createdMultiple": "The consent requests have been sent. Each shared conversation opens after the other person agrees.",
+        "createdPartial": "I sent {createdCount} consent requests, but {failedCount} selections could not be connected right now.",
         "selectionFallbackTitle": "Selected listing",
         "alreadyActive": "There is already an active match for this listing.",
         "failed": "Failed to create the connection."
@@ -3067,6 +3086,7 @@
       "room_invite": "You received a room invitation",
       "room_activity": "There is new activity in your room",
       "help_match_created": "A match was found for your help listing",
+      "help_match_consent_request": "A help-contact request is waiting for your consent",
       "next_contact_due": "The next contact is due",
       "practice_review_assigned": "A practice review was assigned to you",
       "practice_review_overdue": "A practice review is overdue",

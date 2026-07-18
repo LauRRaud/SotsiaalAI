@@ -40,11 +40,12 @@ import {
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
+import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
-const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 2000;
-const SERVICE_MAP_RESULT_BUTTON_LIMIT = 56;
+const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 500;
+const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 // Kujundus stripitud (Fable 5 teeb visuaali). Allesjäänud klassikonstandid on
 // tühjendatud; kasutuskohad jäävad alles, et struktuur ja loogika säiliksid.
@@ -2834,12 +2835,12 @@ function readInitialServiceMapFilters() {
     entryType === "SERVICES_CONTACTS"
       ? "KOV_SOCIAL_CONTACT"
       : entryType === "HELP_REQUEST" || entryType === "HELP_OFFER"
-        ? "HELP_LISTINGS"
+      ? entryType
         : entryType;
   return {
     keyword: params.get("q") || params.get("keyword") || "",
     region: params.get("municipalityName") || params.get("municipality") || params.get("county") || "",
-    entryType: ["KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_LISTINGS"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
+    entryType: ["KOV_SOCIAL_CONTACT", "SERVICE_PROVIDER", "HELP_REQUEST", "HELP_OFFER"].includes(normalizedEntryType) ? normalizedEntryType : "KOV_SOCIAL_CONTACT"
   };
 }
 
@@ -2861,6 +2862,8 @@ function ServiceMapSurface({
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [counterpartSelection, setCounterpartSelection] = useState(null);
   const workspaceRef = useRef(null);
   const filtersShellRef = useRef(null);
   const keywordPlaceholder = readText(t, "workspace_feature_pages.service_map.placeholders.keyword", "Service, contact or need");
@@ -3041,6 +3044,34 @@ function ServiceMapSurface({
     if (entryId && isMobilePanel) setPanelOpen(false);
   }, [isMobilePanel]);
 
+  const handleStartPreInquiry = useCallback((entry) => {
+    const recipientEntryId = String(entry?.parentEntryId || entry?.id || "").trim();
+    if (!recipientEntryId) return;
+    pushWithTransition(router, `/eelpoordumised?recipientEntryId=${encodeURIComponent(recipientEntryId)}`);
+  }, [router]);
+
+  const submitHelpMatch = useCallback(async (entry, ownListing) => {
+    if (!entry || !ownListing?.id) return;
+    const payload = entry.type === "HELP_REQUEST"
+      ? { requestId: entry.listingId, offerId: ownListing.id }
+      : { requestId: ownListing.id, offerId: entry.listingId };
+    const response = await fetch("/api/help/matches", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const body = await response.json().catch(() => ({}));
+    if (!response.ok || body?.ok === false || !body?.match) {
+      throw new Error(readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
+    }
+    const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : "";
+    if (roomTarget) {
+      pushWithTransition(router, roomTarget);
+    } else {
+      setNotice(readText(t, "workspace_feature_pages.service_map.match.pending_sent", "Nõusolekupäring saadeti. Ruum avaneb alles siis, kui teine inimene nõustub."));
+    }
+  }, [locale, router, t]);
+
   const handleConnectHelpMapEntry = useCallback(async (entry) => {
     if (!entry || (entry.type !== "HELP_REQUEST" && entry.type !== "HELP_OFFER")) return;
     if (entry.isOwn) {
@@ -3049,43 +3080,28 @@ function ServiceMapSurface({
     }
 
     setError("");
+    setNotice("");
     try {
       const ownKind = entry.type === "HELP_REQUEST" ? "offer" : "request";
       const optionsResponse = await fetch(`/api/help/listings?kind=${encodeURIComponent(ownKind)}&scope=mine&status=OPEN&locale=${encodeURIComponent(locale)}&limit=20`, {
         cache: "no-store"
       });
       const optionsPayload = await optionsResponse.json().catch(() => ({}));
-      const ownListing = Array.isArray(optionsPayload?.items) ? optionsPayload.items[0] : null;
-      if (!optionsResponse.ok || optionsPayload?.ok === false || !ownListing?.id) {
+      const options = Array.isArray(optionsPayload?.items) ? optionsPayload.items.filter((item) => item?.id) : [];
+      if (!optionsResponse.ok || optionsPayload?.ok === false || !options.length) {
         throw new Error(readText(t, "workspace_feature_pages.service_map.errors.no_counterpart_listing", "Ühenduse loomiseks peab sul olema vastav avatud abisoov või abipakkumine."));
       }
-
-      const payload = entry.type === "HELP_REQUEST"
-        ? { requestId: entry.listingId, offerId: ownListing.id }
-        : { requestId: ownListing.id, offerId: entry.listingId };
-      const response = await fetch("/api/help/matches", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
-      const body = await response.json().catch(() => ({}));
-      if (!response.ok || body?.ok === false || !body?.match) {
-        throw new Error(readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
-      }
-
-      const roomTarget = body?.match?.roomId ? buildRoomChatPath(body.match.roomId, locale) : "";
-      if (roomTarget) {
-        pushWithTransition(router, roomTarget);
+      if (options.length > 1) {
+        setCounterpartSelection({ entry, options, selectedId: "" });
+      } else {
+        await submitHelpMatch(entry, options[0]);
       }
     } catch (connectError) {
       setError(connectError?.message || readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus."));
     }
-  }, [locale, router, t]);
+  }, [locale, submitHelpMatch, t]);
 
-  const hasResultFilter = Boolean(keyword.trim() || region.trim());
-  const showResults = !loading && !error && hasResultFilter && filteredEntries.length > 0;
+  const showResults = !error;
 
   return (
     <div ref={workspaceRef} className="service-map-page">
@@ -3121,7 +3137,8 @@ function ServiceMapSurface({
             {[
               ["KOV_SOCIAL_CONTACT", readText(t, "workspace_feature_pages.service_map.types.kov", "KOV")],
               ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused")],
-              ["HELP_LISTINGS", readText(t, "workspace_feature_pages.service_map.types.help_listings", "Abisoovid ja pakkumised")]
+              ["HELP_REQUEST", readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoovid")],
+              ["HELP_OFFER", readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumised")]
             ].map(([value, label]) => (
               <OptionCard
                 key={value}
@@ -3139,6 +3156,8 @@ function ServiceMapSurface({
 
           {showResults ? (
             <div className="service-map-results" aria-label={readText(t, "workspace_feature_pages.service_map.results", "Tulemused")}>
+              {loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loading", "Laen kirjeid…")}</p> : null}
+              {!loading && !filteredEntries.length ? <p role="status">{readText(t, "workspace_feature_pages.service_map.empty", "Selle filtriga kirjeid ei leitud.")}</p> : null}
               {filteredEntries.slice(0, SERVICE_MAP_RESULT_BUTTON_LIMIT).map((entry) => (
                 <button
                   key={entry.id}
@@ -3146,7 +3165,7 @@ function ServiceMapSurface({
                   data-selected={selectedEntryId === entry.id ? "true" : "false"}
                   onClick={() => handleSelectEntry(entry.id)}
                 >
-                  <span>{entry.title}</span>
+                  <span>{[entry.type === "HELP_REQUEST" ? readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoov") : entry.type === "HELP_OFFER" ? readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumine") : entry.type === "SERVICE_PROVIDER" ? readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused") : readText(t, "workspace_feature_pages.service_map.types.kov", "KOV"), entry.title, entry.regionLabel || entry.municipalityName || entry.county].filter(Boolean).join(" · ")}</span>
                 </button>
               ))}
             </div>
@@ -3181,12 +3200,43 @@ function ServiceMapSurface({
         </div>
       ) : null}
 
+      {notice ? (
+        <div className="service-map-match-status" role="status" aria-live="polite">
+          {notice}
+        </div>
+      ) : null}
+
+      <HelpMatchDecisionPanel t={t} />
+
+      {counterpartSelection ? (
+        <section className="service-map-match-panel" aria-label={readText(t, "workspace_feature_pages.service_map.match.choose_title", "Vali oma kuulutus")}>
+          <h2>{readText(t, "workspace_feature_pages.service_map.match.choose_title", "Vali oma kuulutus")}</h2>
+          <p>{readText(t, "workspace_feature_pages.service_map.match.choose_note", "Vali, millise avatud kuulutusega soovid ühendust võtta.")}</p>
+          <label className="service-map-match-choice">
+            <span>{readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}</span>
+            <select value={counterpartSelection.selectedId} onChange={(event) => setCounterpartSelection((current) => current ? { ...current, selectedId: event.target.value } : current)}>
+              <option value="">{readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}</option>
+              {counterpartSelection.options.map((item) => <option key={item.id} value={item.id}>{item.title || item.categoryLabel || item.id}</option>)}
+            </select>
+          </label>
+          <div className="service-map-match-actions">
+            <Button type="button" size="sm" disabled={!counterpartSelection.selectedId} onClick={async () => {
+              const selected = counterpartSelection.options.find((item) => item.id === counterpartSelection.selectedId);
+              if (!selected) return;
+              try { await submitHelpMatch(counterpartSelection.entry, selected); setCounterpartSelection(null); } catch (connectError) { setError(connectError?.message || readText(t, "workspace_feature_pages.service_map.errors.connect_failed", "Ühenduse loomine ebaõnnestus.")); }
+            }}>{readText(t, "workspace_feature_pages.service_map.match.continue", "Jätka")}</Button>
+            <Button type="button" size="sm" variant="secondary" onClick={() => setCounterpartSelection(null)}>{readText(t, "common.cancel", "Loobu")}</Button>
+          </div>
+        </section>
+      ) : null}
+
       <div className="service-map-canvas" aria-label={readText(t, "workspace_feature_pages.service_map.sections.map", "Kaart")}>
         <ServiceMapLeaflet
           entries={mappableEntries}
           selectedEntryId={selectedEntryId}
           onSelectEntry={handleSelectEntry}
           onConnectHelpEntry={handleConnectHelpMapEntry}
+          onStartPreInquiry={handleStartPreInquiry}
           t={t}
         />
       </div>

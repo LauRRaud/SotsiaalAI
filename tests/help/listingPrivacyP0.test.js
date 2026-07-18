@@ -23,6 +23,7 @@ function matchesCondition(value, cond) {
     if ("lt" in cond) return value != null && new Date(value).getTime() < new Date(cond.lt).getTime();
     if ("in" in cond) return Array.isArray(cond.in) && cond.in.includes(value);
     if ("has" in cond) return Array.isArray(value) && value.includes(cond.has);
+    if ("is" in cond) return matchesWhere(value, cond.is);
     if ("not" in cond) {
       if (cond.not === null) return value !== null && value !== undefined;
       return value !== cond.not;
@@ -484,11 +485,17 @@ test("17. teenusekaart saab jätkuvalt ainult avaldamiseks lubatud kirjed", asyn
     status: "REVIEW",
     request: requestRecord({ id: "req-review", status: "OPEN" })
   };
-  const db = makeDb({ mapEntries: [publishedEntry, reviewEntry] });
+  const closedSourceEntry = {
+    ...publishedEntry,
+    id: "hme-closed-source",
+    request: requestRecord({ id: "req-closed", status: "CLOSED" })
+  };
+  const db = makeDb({ mapEntries: [publishedEntry, reviewEntry, closedSourceEntry] });
   const entries = await listPublishedHelpMapEntries({ locale: "et" }, db);
   const ids = entries.map((entry) => entry.id);
   assert.ok(ids.includes("hme-published"), "avaldatud kaardikirje peab olema nähtav");
   assert.ok(!ids.includes("hme-review"), "REVIEW kaardikirje ei tohi olla nähtav");
+  assert.ok(!ids.includes("hme-closed-source"), "suletud lähtekuulutuse kaardikirje ei tohi olla nähtav");
   assert.equal(entries[0]?.municipalityId, undefined);
   assert.equal(entries[0]?.municipalityIds, undefined);
 });

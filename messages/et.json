@@ -749,7 +749,9 @@
         "kov": "KOV",
         "kov_social": "KOV sotsiaalhoolekanne",
         "provider": "Teenused",
-        "help_listings": "Abisoovid ja pakkumised"
+        "help_listings": "Abisoovid ja pakkumised",
+        "help_request": "Abisoovid",
+        "help_offer": "Abipakkumised"
       },
       "marker_kov": "KOV",
       "marker_provider": "Teenuseosutaja",
@@ -768,6 +770,21 @@
         "hide_filters": "Peida filtrid",
         "show_filters": "Näita filtreid"
       },
+      "match": {
+        "loading": "Kontrollin nõusolekupäringuid…",
+        "error": "Nõusolekupäringuid ei saanud praegu laadida.",
+        "title": "Ootavad nõusolekupäringud",
+        "note": "Ruum avaneb alles pärast sinu nõusolekut.",
+        "generic": "Abikontakt",
+        "accept": "Nõustu",
+        "decline": "Keeldu",
+        "pending_sent": "Nõusolekupäring saadeti. Ruum avaneb alles siis, kui teine inimene nõustub.",
+        "choose_title": "Vali oma kuulutus",
+        "choose_note": "Vali, millise avatud kuulutusega soovid ühendust võtta.",
+        "choose_label": "Minu kuulutus",
+        "choose_placeholder": "Vali kuulutus",
+        "continue": "Jätka"
+      },
       "errors": {
         "load_failed": "Kaardikirjeid ei saanud laadida.",
         "map_failed": "Kaarti ei saanud laadida."
@@ -781,6 +798,7 @@
         "email": "E-post",
         "write": "Kirjuta",
         "website": "Veeb",
+        "start_pre_inquiry": "Alusta pöördumist",
         "services": "Teenused",
         "group_title": "{count} kontakti"
       },
@@ -1346,6 +1364,7 @@
       "loadFailed": "Kuulutuste laadimine ebaõnnestus.",
       "detailLoadFailed": "Kuulutuse avamine ebaõnnestus.",
       "connectFailed": "Ühenduse loomine ebaõnnestus.",
+      "connectPending": "Nõusolekupäring on saadetud. Vestlus avaneb pärast teise osalise nõusolekut.",
       "category": "Põhikategooria",
       "municipality": "Omavalitsus",
       "location": "Asukoht",
@@ -1656,9 +1675,9 @@
       "connect": {
         "needBrowse": "Enne ühendamist pean kõigepealt näitama sobivaid tulemusi.",
         "askWhich": "Kirjuta palun tulemuse number, näiteks \"1\", \"1,2\" või \"kõigiga\".",
-        "created": "Ühendus on loodud. Ühine vestlus on nüüd leitav Ruumide lehel.",
-        "createdMultiple": "Ühendused on loodud. {count} ühist vestlust on nüüd leitavad Ruumide lehel.",
-        "createdPartial": "Lõin {createdCount} ühendust, aga {failedCount} valikut ei õnnestunud ühendada.",
+        "created": "Nõusolekupäring on saadetud. Ühine vestlus avaneb alles siis, kui teine osaline nõustub.",
+        "createdMultiple": "Nõusolekupäringud on saadetud. Iga ühine vestlus avaneb pärast teise osalise nõusolekut.",
+        "createdPartial": "Saatsin {createdCount} nõusolekupäringut, kuid {failedCount} valikut ei saanud praegu ühendada.",
         "confirmHelpTypeMismatch": "Leidsin sarnase kuulutuse, aga mõni tingimus erineb.",
         "confirmSoftMatches": "Valitud kuulutuste hulgas on {count} sarnast kuulutust, aga mõni tingimus erineb.",
         "confirmHelpTypeMismatchRetry": "Kui see sobib siiski, vasta \"jah\" ja teen matchi. Kui mitte, vasta \"ei\".",
@@ -3067,6 +3086,7 @@
       "room_invite": "Sulle saadeti ruumikutse",
       "room_activity": "Sinu ruumis on uut tegevust",
       "help_match_created": "Sinu abikuulutusele tekkis sobitus",
+      "help_match_consent_request": "Sinu nõusolekut ootab abikontakti päring",
       "next_contact_due": "Järgmise kontakti aeg on kätte jõudnud",
       "practice_review_assigned": "Sulle määrati praktika ülevaatus",
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",

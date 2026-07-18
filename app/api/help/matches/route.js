@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
-import { createHelpMatchAndRoom } from "@/lib/help";
+import { createHelpMatchAndRoom, listIncomingHelpMatches } from "@/lib/help";
+import { createNotificationEvent, NOTIFICATION_EVENT_TYPES } from "@/lib/notifications";
+import { consumeRateLimit } from "@/lib/rate-limit";
+import { getRequestIpFromRequest } from "@/lib/request-ip";
+import { logDataAudit } from "@/lib/privacy/audit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -12,6 +16,8 @@ const NO_STORE_HEADERS = {
   Pragma: "no-cache",
   Expires: "0"
 };
+const RATE_LIMIT_MAX = 12;
+const RATE_LIMIT_WINDOW_MS = 60_000;
 
 function json(payload, status = 200) {
   return NextResponse.json(payload, {
@@ -38,6 +44,13 @@ export async function POST(request) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
 
+  const limiter = consumeRateLimit(
+    `help-match:create:${auth.userId}:${getRequestIpFromRequest(request)}`,
+    RATE_LIMIT_MAX,
+    RATE_LIMIT_WINDOW_MS
+  );
+  if (!limiter.allowed) return json({ ok: false, message: "api.common.rate_limited" }, 429);
+
   const payload = await request.json().catch(() => ({}));
 
   try {
@@ -47,15 +60,54 @@ export async function POST(request) {
       initiatedByUserId: auth.userId
     });
 
+    if (match.status === "DECLINED" || match.status === "CLOSED") {
+      return json({ ok: false, message: "HELP_MATCH_NOT_AVAILABLE" }, 409);
+    }
+
+    const recipientUserId = match.initiatedByUserId === match.requesterId
+      ? match.offererId
+      : match.requesterId;
+    if (match.wasCreated && match.status === "PENDING" && recipientUserId) {
+      await createNotificationEvent({
+        userId: recipientUserId,
+        type: NOTIFICATION_EVENT_TYPES.HELP_MATCH_CONSENT_REQUEST,
+        sourceId: match.id,
+        targetId: match.id,
+        dedupeSuffix: "pending",
+        emailPolicy: "NONE"
+      });
+    }
+    if (match.wasCreated) {
+      void logDataAudit({
+        actorUserId: auth.userId,
+        targetUserId: recipientUserId || null,
+        action: "HELP_MATCH_PENDING_CREATED",
+        resourceType: "HELP_MATCH",
+        resourceId: match.id,
+        ipAddress: getRequestIpFromRequest(request),
+        meta: { requestId: match.requestId, offerId: match.offerId }
+      });
+    }
+
     return json({
       ok: true,
       match
     });
   } catch (error) {
-    const status = error?.code === "HELP_MATCH_NOT_COMPATIBLE" ? 409 : 400;
+    const status = error?.code === "HELP_MATCH_NOT_COMPATIBLE" ? 409 : error?.code === "HELP_MATCH_INITIATOR_INVALID" ? 404 : 400;
     return json({
       ok: false,
       message: error?.code || "HELP_MATCH_CREATE_FAILED"
     }, status);
+  }
+}
+
+export async function GET() {
+  const auth = await requireUser();
+  if (!auth) return json({ ok: false, message: "api.common.unauthorized" }, 401);
+  try {
+    return json({ ok: true, items: await listIncomingHelpMatches(auth.userId) });
+  } catch {
+    return json({ ok: false, message: "HELP_MATCH_LIST_FAILED" }, 500);
   }
 }

@@ -161,6 +161,27 @@ test("public serializer exposes only allowlisted presentation fields", () => {
   assert.equal("emailLastErrorCode" in result, false);
 });
 
+test("help-match consent notification is content-free and points only to the decision surface", () => {
+  const result = serializeNotificationEvent({
+    id: "event-2",
+    userId: "private-user",
+    type: "HELP_MATCH_CONSENT_REQUEST",
+    sourceType: "HELP_MATCH",
+    sourceId: "match-1",
+    targetKind: "SERVICE_MAP",
+    targetId: "match-1",
+    createdAt: new Date("2026-07-14T10:00:00.000Z"),
+    readAt: null,
+    description: "private listing text",
+    rawPlace: "private address"
+  });
+  assert.equal(result.href, "/teenusekaart?match=match-1");
+  assert.equal(result.labelKey, "notifications.events.help_match_consent_request");
+  assert.equal("description" in result, false);
+  assert.equal("rawPlace" in result, false);
+  assert.equal("sourceId" in result, false);
+});
+
 test("owner-scoped reads do not reveal a foreign event", async () => {
   const db = fakeDb();
   const created = await createNotificationEvent(arrival, { db: db.client });

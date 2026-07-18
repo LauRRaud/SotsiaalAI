@@ -2756,6 +2756,7 @@ model HelpMatch {
   offerId       String
   requesterId   String
   offererId     String
+  initiatedByUserId String
   roomId        String?         @unique
   status        HelpMatchStatus @default(PENDING)
   scoreSnapshot Float?
@@ -2772,6 +2773,7 @@ model HelpMatch {
   @@unique([requestId, offerId])
   @@index([requesterId])
   @@index([offererId])
+  @@index([initiatedByUserId])
   @@index([roomId])
   @@index([status])
 }

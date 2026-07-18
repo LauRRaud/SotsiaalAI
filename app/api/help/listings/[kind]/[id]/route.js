@@ -13,6 +13,8 @@ import {
   updateHelpRequest
 } from "@/lib/help";
 import { redactPersonalData } from "@/lib/privacy/piiFilter";
+import { consumeRateLimit } from "@/lib/rate-limit";
+import { getRequestIpFromRequest } from "@/lib/request-ip";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -132,6 +134,13 @@ export async function GET(_request, context) {
   if (!auth) {
     return json({ ok: false, message: "api.common.unauthorized" }, 401);
   }
+
+  const limiter = consumeRateLimit(
+    `help-listing:detail:${auth.userId}:${getRequestIpFromRequest(_request)}`,
+    60,
+    60_000
+  );
+  if (!limiter.allowed) return json({ ok: false, message: "api.common.rate_limited" }, 429);
 
   const params = await context.params;
   const locale = String(new URL(_request.url).searchParams.get("locale") || "et").trim();
