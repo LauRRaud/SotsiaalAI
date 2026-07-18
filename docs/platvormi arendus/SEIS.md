@@ -99,16 +99,16 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 |---|---|---|---|
 | T01 | ADMIN-V1-CORE | **LIVE** | 18.07 integratsioon |
 | T02 | ACCOUNT-V1 | **LIVE** | T02+T16 lepituse kaudu |
-| T03 | CHAT-VOICE-V1 | **OTSUS** | kood valmis harul `7bdd1288`, 109 commit'i main'ist taga — rebase või E1–E5 uuesti |
+| T03 | CHAT-VOICE-V1 | **OOTEL** | omaniku otsus 18.07 õhtul: TEADLIKULT PARGITUD — voice = hiljem; haru `7bdd1288` = arhiiv/retsept; mitte-häälne sisu (kriis EN/RU, aus Stop, kvoodivärav) nopitakse tulevikus väikese paketina |
 | T04 | WORKSPACE-EVENTS-V1 | **LIVE** | |
 | T05 | WORKBENCH-V1 | **LIVE** | |
 | T06 | JOURNEY-V1 | **LIVE** | |
 | T07 | DOCUMENTS-RESEARCH-V1 | **TÖÖS** | E3 main'is (`729b09f0`, push'itud `origin @ 6dbb6752`); SKOOBIOTSUS LAHTINE — vt T07 rida allpool |
 | T08 | FILES-MEDIA (Failid) | **OOTEL** | omaniku otsusega hilisemaks; riskid jäävad registrisse |
 | T09 | PAYMENTS-V1 | **LIVE** | `7b49e9f7`; recurring teadlikult väljas; töölise-timerid inaktiivsed |
-| T10 | PUBLIC-V1 | **OOTEL** | järjekorras T07 järel (omaniku otsus: lõputeema) |
+| T10 | PUBLIC-V1 | **OOTEL** | 18.07 õhtu ümberprioriseerimine: release-raja algus, käivitub kui omanik tahab turule (EI ole enam T07 järel) |
 | T11 | SERVICE-MEDIATION-V1 | **LIVE** | |
-| T12 | ROOMS-CALLS-V1 | **ANALÜÜS** | ruum-audit.md 20 ptk; teemaarendus alustamata |
+| T12 | ROOMS-CALLS-V1 | **JÄRGMINE** | omaniku valik 18.07 õhtul: järgmine täisteema T07 järel; audit valmis (ruum-audit.md 20 ptk); vajab otsusteringi + lepingut |
 | T13 | COVISION-V2 | **ANALÜÜS** | V1 LIVE ja runtime-tõendatud; V2 ruumiline lõppmudel alustamata |
 | T14 | WELLBEING-V2 | **ANALÜÜS** | E0 kriitiline parandus LIVE; E1–E6 tegemata |
 | T15 | A11Y/RV | osaliselt LIVE | a11y-i18n P0 LIVE; RV-P1+ ja tõlkestrateegia tegemata |
@@ -141,24 +141,27 @@ Kokku: 11 LIVE, 2 MAIN (deploy ootel), 1 TÖÖS, 1 OTSUS, 6 ANALÜÜS, 3 OOTEL, 
 
 Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad langeda igal ajal.
 
-**A. OTSUSED EES (omanik, minutid):**
-1. **O1 — T07 skoop:** sulge praegusega VÕI tee 4 lepingu-jääki (E2 Journey-side + chat-nupp, provenance-riba, E5 T04-sündmused, E4 geo-UI). Sulgemine avab T10.
-2. **O2 — deploy-aken:** kohalik `main` on serverist 20 commit'i ees (T23 mentorlus, T24 välitöö, admin-honesty M2, reaper L4, P2-6, T07 E3, lint-debt). 3 additiivset migratsiooni ootel (`mentoring_v1`, `field_v1_mobile_shell`, `documents_research_v1`). Retsept = T09 deploy oma (DB-backup ENNE migrate'i → push → `npm run deploy:server` → smoke).
-3. **O3 — T03 saatus:** rebase lähipäevil VÕI E1–E5 uuesti main'i peal. Lahknevus kasvab iga merge'iga (praegu 113+ commit'i).
+**A. OTSUSED (omanik, 18.07 õhtu — kaks kolmest langetatud):**
+1. **O1 — T07 skoop: LAHTINE.** Sulge praegusega VÕI tee 4 lepingu-jääki (E2 Journey-side + chat-nupp, provenance-riba, E5 T04-sündmused, E4 geo-UI). Peab langema enne T12 koodi algust.
+2. ~~**O2 — deploy-aken**~~ — **OTSUSTATUD 18.07 õhtul: JAH, deploy enne uut teemat** (T09 retsept: DB-backup ENNE migrate'i → push → `npm run deploy:server` → smoke). Teostus vt seisutabel.
+3. ~~**O3 — T03 saatus**~~ — **OTSUSTATUD 18.07 õhtul: TEADLIK PARKIMINE.** Omanik: sisenemisvalikut (hääl-vs-tekst) ei kasutata (oli juba 18.07 hommikul hüljatud); voice-vestlus ise = „kunagi tuleb arendada", MITTE praegu. Haru `codex/chat-voice-v1 @ 7bdd1288` jääb arhiiviks/retseptiks; rebase'i EI tule. **NB mitte-häälne sisu nopitakse tulevikus välja väikese paketina värske main'i peal:** E1 kriis EN/RU fail-closed + E2 aus Stop (=PERF L2 kulukaitse) + E3 kvoodivärava sulgemine — need EI ole hääle-spetsiifilised.
 
-**B. KOODIJÄRJEKORD (jadatöö, üks korraga):**
+**B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 õhtul — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
 1. **T07 lõpetamine** O1 järgi (jäägid samas worktree's VÕI sulgemiskirje).
-2. **T03 rebase/lepitus** O3 järgi — soovitus enne T10: iga edasilükkamine teeb kallimaks.
-3. **T10 PUBLIC-V1** — lõputeema enne RC-d (leping `t10-public-v1-ulesanne.md`).
+2. **T12 ROOMS-CALLS-V1** — järgmine täisteema (omaniku valik). Eeltöö = lühike otsustering (rollimaatriks; salvestise/kokkuvõtte kandja; kutsed/egress/revoke) + lepingu `t12-…-ulesanne.md` koostamine ruum-auditi ptk 20 parandusjärjekorra pealt — see on mittekooditöö, lubatud paralleelselt T07 lõpetamisega. Koodi alustus P0-turvaväravatest (salvestusväravad enne `RECORDING_ENABLED=true`, elutsükli ristkoristus, race-migratsioon).
+3. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
+4. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule"** — EI ole enam automaatselt T07 järel.
 
 **C. VAHEPALAD teemade vahele (väikesed, otsustevabad, sobivad ka ootepäevadele):**
 - lint-debt jätk: `WorkspaceFeaturePage.jsx` 27 hardcoded-stringi + ülejäänud (50 → 0 hoiatust);
 - PERF-P0 ülejäänu: kvoodileke, L3 renewals-timerid, L5 kuluajaloo retention;
+- T03-st nopitav mitte-häälne pakett (värske main'i peal, haru `7bdd1288` = retsept): kriis EN/RU fail-closed + aus Stop (kattub PERF L2-ga) + kvoodivärava sulgemine;
 - EXPORT-P0 (5 punkti): GDPR-andmekoopia rada + PDF kirillitsa;
 - A11Y-I18N-P0: ainult tõlkefailid, 0 tooteotsust;
 - RAG-QM-P0 baasjoon (enne mistahes otsinguparandusi).
 
-**D. RELEASE-RADA (T10 järel):**
+**D. RELEASE-RADA (käivitub omaniku otsusel „lähme turule"; algab T10-ga):**
+0. **T10 PUBLIC-V1** — avalikud pinnad (leping `t10-public-v1-ulesanne.md` valmis).
 1. **T27 OPS-FINAL-A0** — RC koondvärav: kõik edasi lükatud QA-d (brauseri-/seadmematriks, Playwright, päris Maksekeskus/e-kirjad, juristi kinnitused, täissviidid+sõltumatud auditid).
 2. **P8.6** päris allikate proovipakk + RAG-timerite aktiveerimine (omaniku otsus, sobib RC ümber).
 3. **T25 ORG + T26 PILOT** — alles RC järel (G3 eeldused: T27 RC + TK-P0 + U1-P0).
@@ -179,7 +182,7 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 | `admin-analytics-honesty` | **`MERGED_LOCAL` 18.07 — korrastatud pargist** | `origin/codex/admin-analytics-honesty` → `main @ a1533356` | M2 vaikiv 500-lagi: aus „Kuvatud X-Y / N" + paginatsioon + truncated-hoiatus; rebase puhas, 5 faili `+97/−2` |
 | `usage-reservation-reaper` | **`MERGED_LOCAL` 18.07 — korrastatud pargist** | `origin/codex/usage-reservation-reaper` → `main @ 032a1e6d` | PERF-P0 kvoodileke (L4): aegunud RESERVED-hoidude koristaja; **vaikimisi VÄLJAS** (unit'id inaktiivsed, lipp seadmata); puhtalt additiivne, 7 uut faili `+515/−0` |
 | `lint-debt-cleanup` | **`MERGED_LOCAL` 18.07 õhtul** | `codex/lint-debt-cleanup @ c674a3ec` → **main `072ec70e`** (push'imata remote'i) | Lint-võla koristus: surnud CovisionSession.jsx kustutus (`3cd035ac`, `−3187`) + TeemaseemnedPage i18n-ekstraktsioon (`c674a3ec`, 4 faili `+504/−90`, 88 võtit ×3 keelt). **Lint-hoiatused 359 → 50 (0 viga)**; väravad merge'itud main'il rohelised. Suurim allesjäänud hoiatuspesa: `WorkspaceFeaturePage.jsx` 27 hardcoded-stringi. Reeglimärkus: töö käis põhitööpuus (sama muster mis P2-6) |
-| T03 `CHAT-VOICE-V1` | **`DECISION_MADE` 18.07 — ühtne mikker võidab; HARU LAHKNEB** | `origin/codex/chat-voice-v1 @ 7bdd1288` — **109 commit'i main-ist taga** | omanik otsustas: sisenemine = alati-nähtav tekstiväli + VALIKULINE mikker (main). Spatial-entry hüljatud. Skoop = ainult E1–E5 (kriis/Stop/hääl), MITTE sisenemis-UX. **OTSUST VAJAV:** 109 commit'i lahknemine on sama muster mis T02/T16 enne lepitust — kas rebase'ida lähipäevil või teha E1–E5 main'i peal uuesti; iga päev nihutab vastust teise poole |
+| T03 `CHAT-VOICE-V1` | **`PARKED_DELIBERATE` 18.07 õhtul (omaniku otsus)** | `origin/codex/chat-voice-v1 @ 7bdd1288` — 113+ commit'i main-ist taga, jääb NII | omanik 18.07 õhtul: voice-vestlus = „kunagi tuleb arendada", MITTE praegu; sisenemisvalik (hääl-vs-tekst) oli juba hommikul hüljatud (ühtne mikker main'is). **Rebase'i EI tule; haru = arhiiv/retsept.** Kui voice avaneb, tehakse E1–E5 uuesti värske main'i peal, haru diff on disainiretsept. **Mitte-häälne sisu läheb varem väikese paketina** (kriis EN/RU fail-closed + aus Stop (=PERF L2) + kvoodivärav) — vt tegevusjärjekord C |
 | T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
 | T09 `PAYMENTS-V1` | **`DEPLOYED` 18.07 — LIVE serveris `7b49e9f7`** | `main @ 7b49e9f7` (= `origin/main` = server); haru `origin/codex/payments-v1` push'itud; baas `538ec4bb` | 36 faili `+2488/−566`; **väravad: 1618/1618 testi (+36), lint 0, i18n OK, prisma validate, 99-migr ahel, diff-check, build** + **päris-DB throwaway runtime 33/33** (plaani-eskaleerimise keeld, webhook FOR UPDATE race/idempotents, revoked-sponsor ei ärka, refund-clawback, PAST_DUE/period-end, outbox retry, token-krüpto); **deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup `pre-deploy-7b49e9f7-…141532Z.dump`, rollback `538ec4bb`**. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). P1a `0aca8c4b`/T02 olid juba main'is — cherry-pick'i EI tehtud |
 | T25, T26 | `ANALYSIS_READY` | — | ootavad T27 release candidate'i |
