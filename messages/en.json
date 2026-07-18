@@ -12,6 +12,68 @@
   "routes": {
     "password_reset_path": "/taasta-parool"
   },
+  "meta": {
+    "home": {
+      "title": "SotsiaalAI",
+      "description": "SotsiaalAI helps you find support, services and tools for everyday life questions."
+    },
+    "chat": {
+      "title": "Chat | SotsiaalAI",
+      "description": "Discuss your questions and next steps in SotsiaalAI chat."
+    },
+    "profile": {
+      "title": "Profile | SotsiaalAI",
+      "description": "Manage your SotsiaalAI profile, preferences and account settings."
+    },
+    "pricing": {
+      "title": "Pricing | SotsiaalAI",
+      "description": "View SotsiaalAI plans and subscription pricing."
+    },
+    "features": {
+      "title": "Features | SotsiaalAI",
+      "description": "Explore SotsiaalAI features and tools."
+    },
+    "register": {
+      "title": "Register | SotsiaalAI",
+      "description": "Create a SotsiaalAI account and start using the platform."
+    },
+    "subscription": {
+      "title": "Subscription | SotsiaalAI",
+      "description": "Manage your SotsiaalAI subscription and payment details."
+    },
+    "terms": {
+      "title": "Terms of use | SotsiaalAI",
+      "description": "Read the SotsiaalAI terms of use."
+    },
+    "privacy": {
+      "title": "Privacy terms | SotsiaalAI",
+      "description": "Read how SotsiaalAI processes and protects personal data."
+    },
+    "guide": {
+      "title": "User guide | SotsiaalAI",
+      "description": "Find guidance for using SotsiaalAI."
+    },
+    "author": {
+      "title": "From the author | SotsiaalAI",
+      "description": "Read explanations and thoughts from the author of SotsiaalAI."
+    },
+    "rooms": {
+      "title": "Rooms | SotsiaalAI",
+      "description": "View your SotsiaalAI rooms and shared conversations."
+    },
+    "reset": {
+      "title": "Reset PIN | SotsiaalAI",
+      "description": "Reset the PIN for your SotsiaalAI account."
+    },
+    "email_update": {
+      "title": "Update email address | SotsiaalAI",
+      "description": "Update the email address for your SotsiaalAI account."
+    },
+    "pin_update": {
+      "title": "Update PIN | SotsiaalAI",
+      "description": "Update the PIN for your SotsiaalAI account."
+    }
+  },
   "buttons": {
     "save": "Save",
     "close": "Close",
@@ -1394,7 +1456,8 @@
     },
     "fallback": {
       "no_context_client": "I could not find an exact answer in the materials right now. Please describe your situation in a bit more detail and include at least your municipality or city.",
-      "no_context_worker": "I could not find an exact answer in the materials right now. Please specify the topic, source type, or, if relevant, the municipality and service or situation type."
+      "no_context_worker": "I could not find an exact answer in the materials right now. Please specify the topic, source type, or, if relevant, the municipality and service or situation type.",
+      "crisis_no_context": "If you are in immediate danger or thinking about harming yourself, call 112 now. For concerns involving children or families, call the Child Helpline at 116 111 (free, 24/7). Victims of violence or crime can call Victim Support at 116 006. If you can, tell me your municipality or city — I will look for the nearest support contacts."
     },
     "empty_intro": "Hello! Briefly describe what you want to know or what guidance you need. For a help request, help offer, deep research, or document analysis, choose it from the + menu. Other tools are in the Workspace.",
     "empty_intro_help_request": "Describe as clearly as possible what help you need. Include the key details so that your situation and need for help are easy to understand. If needed, I will ask for more.",
@@ -2393,7 +2456,7 @@
     "worker": "Social work specialist",
     "provider": "Service provider",
     "client": "Person with a life question",
-    "unknown": ""
+    "unknown": "—"
   },
   "join": {
     "missing_title": "Invitation link missing",
@@ -3007,6 +3070,7 @@
     "common": {
       "unauthorized": "Please sign in to continue.",
       "forbidden": "You do not have permission for this action.",
+      "not_found": "The requested resource was not found.",
       "invalid_request": "Invalid request.",
       "invalid_json": "Invalid JSON payload.",
       "missing_room_id": "Room ID is missing.",

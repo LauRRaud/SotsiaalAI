@@ -12,6 +12,68 @@
   "routes": {
     "password_reset_path": "/taasta-parool"
   },
+  "meta": {
+    "home": {
+      "title": "SotsiaalAI",
+      "description": "SotsiaalAI aitab leida tuge, teenuseid ja tööriistu igapäevaste eluküsimuste lahendamiseks."
+    },
+    "chat": {
+      "title": "Vestlus | SotsiaalAI",
+      "description": "Arutage oma küsimusi ja järgmisi samme SotsiaalAI vestluses."
+    },
+    "profile": {
+      "title": "Profiil | SotsiaalAI",
+      "description": "Halda oma SotsiaalAI profiili, eelistusi ja konto seadeid."
+    },
+    "pricing": {
+      "title": "Hinnastus | SotsiaalAI",
+      "description": "Vaata SotsiaalAI pakette ja tellimuste hinnastust."
+    },
+    "features": {
+      "title": "Võimalused | SotsiaalAI",
+      "description": "Tutvu SotsiaalAI võimaluste ja tööriistadega."
+    },
+    "register": {
+      "title": "Registreeru | SotsiaalAI",
+      "description": "Loo SotsiaalAI konto ja alusta platvormi kasutamist."
+    },
+    "subscription": {
+      "title": "Tellimus | SotsiaalAI",
+      "description": "Halda oma SotsiaalAI tellimust ja makseandmeid."
+    },
+    "terms": {
+      "title": "Kasutustingimused | SotsiaalAI",
+      "description": "Loe SotsiaalAI kasutustingimusi."
+    },
+    "privacy": {
+      "title": "Privaatsustingimused | SotsiaalAI",
+      "description": "Loe, kuidas SotsiaalAI töötleb ja kaitseb isikuandmeid."
+    },
+    "guide": {
+      "title": "Kasutusjuhend | SotsiaalAI",
+      "description": "Leia juhised SotsiaalAI kasutamiseks."
+    },
+    "author": {
+      "title": "Autorilt | SotsiaalAI",
+      "description": "Loe SotsiaalAI autori selgitusi ja mõtteid."
+    },
+    "rooms": {
+      "title": "Ruumid | SotsiaalAI",
+      "description": "Vaata oma SotsiaalAI ruume ja ühiseid vestlusi."
+    },
+    "reset": {
+      "title": "Taasta PIN-kood | SotsiaalAI",
+      "description": "Taasta oma SotsiaalAI konto PIN-kood."
+    },
+    "email_update": {
+      "title": "Uuenda e-posti aadressi | SotsiaalAI",
+      "description": "Uuenda oma SotsiaalAI konto e-posti aadressi."
+    },
+    "pin_update": {
+      "title": "Uuenda PIN-koodi | SotsiaalAI",
+      "description": "Uuenda oma SotsiaalAI konto PIN-koodi."
+    }
+  },
   "buttons": {
     "save": "Salvesta",
     "close": "Sulge",
@@ -1394,7 +1456,8 @@
     },
     "fallback": {
       "no_context_client": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Kirjelda palun oma olukorda veidi täpsemalt ja lisa vähemalt vald või linn.",
-      "no_context_worker": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Palun täpsusta teemat, allikatüüpi või vajadusel omavalitsust ja teenuse või olukorra tüüpi."
+      "no_context_worker": "Ma ei leidnud praegu materjalidest sellele täpset vastust. Palun täpsusta teemat, allikatüüpi või vajadusel omavalitsust ja teenuse või olukorra tüüpi.",
+      "crisis_no_context": "Kui sa oled otseses ohus või mõtled enesevigastamisele, helista kohe 112. Lapsi ja peresid puudutav mure: lasteabi 116 111 (ööpäevaringne, tasuta). Vägivalla või kuriteo ohvrile: ohvriabi 116 006. Kui saad, ütle mulle oma vald või linn — otsin sulle lähima abi kontaktid."
     },
     "empty_intro": "Tere! Kirjelda lühidalt, mida soovid teada või milles juhendamist vajad. Kui soovid abisoovi, abipakkumist, süvauuringut või dokumendi analüüsi, vali see + märgi alt. Muud tööriistad leiad Töölaualt.",
     "empty_intro_help_request": "Kirjelda võimalikult selgelt, millist abi vajad. Pane kirja oluline teave, et sinu olukord ja abivajadus oleksid arusaadavad. Vajadusel küsin lisa.",
@@ -3006,7 +3069,8 @@
   "api": {
     "common": {
       "unauthorized": "Jätkamiseks logi sisse.",
-      "forbidden": "Sul puudub selle tegevuse jaoks oigus.",
+      "forbidden": "Sul puudub selle tegevuse jaoks õigus.",
+      "not_found": "Soovitud ressurssi ei leitud.",
       "invalid_request": "Vigane paring.",
       "invalid_json": "Vigane JSON payload.",
       "missing_room_id": "Ruumi ID puudub.",

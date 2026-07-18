@@ -18,6 +18,59 @@ function hasMeaningfulMessageContent(message) {
   return false;
 }
 
+function normalizedMessageRole(message) {
+  const role = String(message?.role || "").trim().toUpperCase();
+  if (role === "USER") return "user";
+  if (role === "AI" || role === "ASSISTANT") return "ai";
+  return "";
+}
+
+function messageTimestamp(message) {
+  const value = message?.createdAt;
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  const parsed = value ? new Date(value).getTime() : NaN;
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+export function resolveHydratedCrisisState(currentIsCrisis, {
+  serverIsCrisis = false,
+  localMessages = [],
+  serverMessages = []
+} = {}) {
+  if (serverIsCrisis) return true;
+  if (!currentIsCrisis) return false;
+
+  const latestLocalUser = [...localMessages]
+    .reverse()
+    .find(message => normalizedMessageRole(message) === "user" && String(message?.text || "").trim());
+  if (!latestLocalUser) return false;
+
+  const localText = String(latestLocalUser.text || "").trim();
+  const localCreatedAt = messageTimestamp(latestLocalUser);
+  let matchingServerUserIndex = -1;
+  for (let index = serverMessages.length - 1; index >= 0; index -= 1) {
+    const message = serverMessages[index];
+    if (normalizedMessageRole(message) !== "user") continue;
+    if (String(message?.text ?? message?.content ?? "").trim() !== localText) continue;
+    const serverCreatedAt = messageTimestamp(message);
+    if (
+      localCreatedAt !== null &&
+      serverCreatedAt !== null &&
+      serverCreatedAt < localCreatedAt - 5000
+    ) {
+      continue;
+    }
+    matchingServerUserIndex = index;
+    break;
+  }
+
+  if (matchingServerUserIndex === -1) return true;
+  const serverHasReplyForLocalTurn = serverMessages
+    .slice(matchingServerUserIndex + 1)
+    .some(message => normalizedMessageRole(message) === "ai");
+  return !serverHasReplyForLocalTurn;
+}
+
 function makeChatStorage(key = "sotsiaalai:chat:v1") {
   const storage = typeof window !== "undefined" ? window.sessionStorage : null;
   function load() {
@@ -349,7 +402,11 @@ export function useChatConversationState({
         : [];
       const serverCrisis = !!data.isCrisis;
       const serverMessages = Array.isArray(data.messages) ? data.messages : [];
-      setIsCrisis?.(serverCrisis);
+      setIsCrisis?.(currentIsCrisis => resolveHydratedCrisisState(currentIsCrisis, {
+        serverIsCrisis: serverCrisis,
+        localMessages: messagesRef.current,
+        serverMessages
+      }));
       if (serverMessages.length) {
         setMessages(prev => {
           let nextId = 1;
