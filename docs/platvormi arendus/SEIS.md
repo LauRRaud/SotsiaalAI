@@ -103,7 +103,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T04 | WORKSPACE-EVENTS-V1 | **LIVE** | |
 | T05 | WORKBENCH-V1 | **LIVE** | |
 | T06 | JOURNEY-V1 | **LIVE** | |
-| T07 | DOCUMENTS-RESEARCH-V1 | **TÖÖS** | E1–E5 senine töö (sh E3) LIVE serveris õhtu-deploy'ga; SKOOBIOTSUS LAHTINE — vt T07 rida allpool |
+| T07 | DOCUMENTS-RESEARCH-V1 | **LIVE (skoobitud)** | tuum + DoD kõvad nõuded LIVE (`ae59516f`); 3 naaberpinna-integratsiooni teadlikult edasi lükatud — vt „T07 sulgemine 18.07" |
 | T08 | FILES-MEDIA (Failid) | **OOTEL** | omaniku otsusega hilisemaks; riskid jäävad registrisse |
 | T09 | PAYMENTS-V1 | **LIVE** | `7b49e9f7`; recurring teadlikult väljas; töölise-timerid inaktiivsed |
 | T10 | PUBLIC-V1 | **OOTEL** | 18.07 õhtu ümberprioriseerimine: release-raja algus, käivitub kui omanik tahab turule (EI ole enam T07 järel) |
@@ -126,7 +126,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T27 | OPS-FINAL-A0 | värav | teadlikult käivitamata; koondab edasi lükatud QA-d |
 | T28 | RAG-V1 | **LIVE** | saba: P8.6 päris allikate proovipakk + timeri aktiveerimine (omaniku otsus) |
 
-Kokku (18.07 õhtu-deploy järel): **12 LIVE**, 1 TÖÖS (T07), 1 JÄRGMINE (T12), 6 ANALÜÜS, 4 OOTEL (sh T03 pargitud, T10 release-ootel), 2 osaliselt, 1 alustamata (T20), 1 värav (T27). Harutasandi korrastus `lint-debt-cleanup` on main'is JA serveris.
+Kokku (18.07 hilisõhtu, T07 sulgemise järel): **13 LIVE** (sh T07 skoobitud), 0 aktiivset kooditeemat, 1 JÄRGMINE (T12), 6 ANALÜÜS, 4 OOTEL (sh T03 pargitud, T10 release-ootel), 2 osaliselt, 1 alustamata (T20), 1 värav (T27). T07-l 3 edasi lükatud naaberpinna-integratsiooni (mitte augud). Harutasandi korrastus `lint-debt-cleanup` on main'is JA serveris.
 
 ### Töö järjekord (jadatöö)
 
@@ -134,21 +134,21 @@ Kokku (18.07 õhtu-deploy järel): **12 LIVE**, 1 TÖÖS (T07), 1 JÄRGMINE (T12
 |---|---|---|---|---|
 | ✓ | T24 `FIELD-V1` | **`MERGED_LOCAL` 18.07 — push'itud + liidetud kohalikku `main`-i** | `origin/codex/field-v1 @ 919aa806` → `main @ 662b6e8a`, baas `082d8efa`, 45 faili `+7367/−22` | — |
 | 2 | T02+T16 `LEPITUS` | **`DEPLOYED` — main'is `d2860b0b`, **LIVE serveris 18.07** (`adc83829`). Väravad: 1582 testi, 98-migr ahel, build; 6 migratsiooni rakendatud prod-DB-le** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
-| ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — E3 TEHTUD, push'itud ja MAIN-IS 18.07 õhtul; SKOOBIOTSUS LAHTINE (vt „T07 E3 18.07 õhtul")** | `codex/documents-research-v1 @ 6dbb6752` = remote (push'itud), **merge main-i `729b09f0`**, baas `032a1e6d`, worktree puhas; väravad merge'itud main'il: **1727/1727 testi + i18n OK + prisma validate OK + build OK + lint 0 viga** (E3 ei lisa migratsiooni; 102-migr ahel kehtib rebase'ist) | skoobiotsus → sulgemine avab T10 |
+| ✓ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`CLOSED_SCOPED` 18.07 hilisõhtul (omanik: „sulge T07")** — sisuline tuum + DoD kõvad nõuded VALMIS ja LIVE; 3 naaberpinna-integratsiooni teadlikult edasi lükatud (vt „T07 sulgemine 18.07") | `codex/documents-research-v1 @ 6dbb6752` = remote, merge main-i `729b09f0`, LIVE server `ae59516f`; väravad: **1727/1727 testi + i18n + prisma + build + lint 0 viga** | **sulgemine avab T12** |
 | — | T10 `PUBLIC-V1` | `QUEUED` — T07 järel | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 
 ### Tegevusjärjekord orienteerumiseks (koostatud 18.07 õhtul)
 
 Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad langeda igal ajal.
 
-**A. OTSUSED (omanik, 18.07 õhtu — kaks kolmest langetatud):**
-1. **O1 — T07 skoop: LAHTINE.** Sulge praegusega VÕI tee 4 lepingu-jääki (E2 Journey-side + chat-nupp, provenance-riba, E5 T04-sündmused, E4 geo-UI). Peab langema enne T12 koodi algust.
+**A. OTSUSED (omanik, 18.07 — KÕIK KOLM LANGETATUD):**
+1. ~~**O1 — T07 skoop**~~ — **OTSUSTATUD 18.07 hilisõhtul: SULETUD kitsendatud skoobiga (`CLOSED_SCOPED`).** Sisuline tuum + DoD kõvad nõuded (sh E1 provenance-riba, mis oli tegelikult koodis) VALMIS ja LIVE; 3 naaberpinna-integratsiooni (chat „Salvesta analüüs", E5 T04-sündmused, E4 geo-UI) teadlikult edasi lükatud — vt „T07 sulgemine 18.07". **T12 nüüd vaba.**
 2. ~~**O2 — deploy-aken**~~ — **OTSUSTATUD JA TEOSTATUD 18.07 õhtul:** server = `ae59516f`, 2 migratsiooni, smoke 8/8, backup + rollback `104d69d8` (vt seisutabel).
 3. ~~**O3 — T03 saatus**~~ — **OTSUSTATUD 18.07 õhtul: TEADLIK PARKIMINE.** Omanik: sisenemisvalikut (hääl-vs-tekst) ei kasutata (oli juba 18.07 hommikul hüljatud); voice-vestlus ise = „kunagi tuleb arendada", MITTE praegu. Haru `codex/chat-voice-v1 @ 7bdd1288` jääb arhiiviks/retseptiks; rebase'i EI tule. **NB mitte-häälne sisu nopitakse tulevikus välja väikese paketina värske main'i peal:** E1 kriis EN/RU fail-closed + E2 aus Stop (=PERF L2 kulukaitse) + E3 kvoodivärava sulgemine — need EI ole hääle-spetsiifilised.
 
-**B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 õhtul — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
-1. **T07 lõpetamine** O1 järgi (jäägid samas worktree's VÕI sulgemiskirje).
-2. **T12 ROOMS-CALLS-V1** — järgmine täisteema (omaniku valik). Eeltöö = lühike otsustering (rollimaatriks; salvestise/kokkuvõtte kandja; kutsed/egress/revoke) + lepingu `t12-…-ulesanne.md` koostamine ruum-auditi ptk 20 parandusjärjekorra pealt — see on mittekooditöö, lubatud paralleelselt T07 lõpetamisega. Koodi alustus P0-turvaväravatest (salvestusväravad enne `RECORDING_ENABLED=true`, elutsükli ristkoristus, race-migratsioon).
+**B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
+1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).** Ükski kooditeema pole enam aktiivne → T12 võib alata.
+2. **T12 ROOMS-CALLS-V1** — **JÄRGMINE täisteema.** Eeltöö = lühike otsustering (rollimaatriks; salvestise/kokkuvõtte kandja; kutsed/egress/revoke) + lepingu `t12-…-ulesanne.md` koostamine ruum-auditi ptk 20 parandusjärjekorra pealt (mittekooditöö). Koodi alustus P0-turvaväravatest (salvestusväravad enne `RECORDING_ENABLED=true`, elutsükli ristkoristus, race-migratsioon).
 3. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
 4. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule"** — EI ole enam automaatselt T07 järel.
 
@@ -205,11 +205,32 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 2. ~~**T02+T16 push**~~ — **TEHTUD** (kuulus deploy'sse).
 3. ~~**T03 disainiotsus**~~ — **OTSUSTATUD 18.07:** ühtne alati-nähtav tekstiväli + valikuline mikker (main) võidab; kaheikooniline „Räägi/Kirjuta — pead valima" spatial-entry lõplikult hüljatud. Segaduse allikas oli deploy-vahe (main eemaldas selle 16.07, aga toodangus jooksis veel eemalduse-eelne `fe4eb4fa`) — nüüd deploy'ga lahendatud.
 
-**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **T07 `DOCUMENTS-RESEARCH-V1` — WIP-kontrollpunkt 18.07** (*SHA-d selles lõigus on AJALOOLISED, rebase'i-eelsed; kehtiv seis = seisutabeli T07 rida ja allpool „T07 korrastus 18.07"*) (`codex/documents-research-v1 @ db3589f5`; baas `180d668f` = T09 sees; worktree `SotsiaalAI-documents-research-v1` puhas; alusdependents T28/T17/T16 juba main'is; **2 commit'i**: WIP `b94f9370` + E2 analüüs `db3589f5`). **TEHTUD** (väravad rohelised: **täissviit 1632/1632** + lint + i18n + 100-migr ahel + build + diff-check): E1 owner-404 (12 rada, foreign-id == missing-id, T28 cross-tenant piir puutumata), E2 püsiv mustand (`persistArtifactDraft`, `AgentArtifact.idempotencyKey` + `SavedAnalysis` mudel), **E2 salvestatav analüüsiobjekt** (`lib/documents/savedAnalysis.js` + `/api/documents/analyses` CRUD, owner-404, püsiv disclaimer "AI selgitus, mitte ametlik otsus", allika-omandikontroll, 6 uut testi), E4 uuring elab üle nav (stop vs detach), E5 meeting-summary snapshot fail-closed kustutus. **NOT_DONE:** E2 Journey "Lisa dokument analüüsiks" side (sõltub E3 analüüsiraja URL-ist) + chat "Salvesta analüüs" nupp, **~~E3 ühtne /documents tööruum (suurim tükk, puutumata)~~ → E3 TEHTUD 18.07 õhtul (`6dbb6752`); provenance/privaatsus-riba jäi E3-st VÄLJA (commit seda ei sisalda)**, E5 T04-sündmused (tihe registry/projector-integratsioon), E4 ulatuse/geo-UI. **NOT_PROVEN:** autenditud brauser + päris-RAG/worker runtime. T10 `PUBLIC-V1` = lõputeema (omaniku otsus 18.07), EI järgmine.
+**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **T07 `DOCUMENTS-RESEARCH-V1` — WIP-kontrollpunkt 18.07** (*SHA-d selles lõigus on AJALOOLISED, rebase'i-eelsed; kehtiv seis = seisutabeli T07 rida ja allpool „T07 korrastus 18.07"*) (`codex/documents-research-v1 @ db3589f5`; baas `180d668f` = T09 sees; worktree `SotsiaalAI-documents-research-v1` puhas; alusdependents T28/T17/T16 juba main'is; **2 commit'i**: WIP `b94f9370` + E2 analüüs `db3589f5`). **TEHTUD** (väravad rohelised: **täissviit 1632/1632** + lint + i18n + 100-migr ahel + build + diff-check): E1 owner-404 (12 rada, foreign-id == missing-id, T28 cross-tenant piir puutumata), E2 püsiv mustand (`persistArtifactDraft`, `AgentArtifact.idempotencyKey` + `SavedAnalysis` mudel), **E2 salvestatav analüüsiobjekt** (`lib/documents/savedAnalysis.js` + `/api/documents/analyses` CRUD, owner-404, püsiv disclaimer "AI selgitus, mitte ametlik otsus", allika-omandikontroll, 6 uut testi), E4 uuring elab üle nav (stop vs detach), E5 meeting-summary snapshot fail-closed kustutus. **NOT_DONE:** E2 Journey "Lisa dokument analüüsiks" side (sõltub E3 analüüsiraja URL-ist) + chat "Salvesta analüüs" nupp, **~~E3 ühtne /documents tööruum (suurim tükk, puutumata)~~ → E3 TEHTUD 18.07 õhtul (`6dbb6752`); provenance/privaatsus-riba on koodis OLEMAS (varasem „jäi välja" oli vale — vt „T07 sulgemine 18.07")**, E5 T04-sündmused (tihe registry/projector-integratsioon), E4 ulatuse/geo-UI. **NOT_PROVEN:** autenditud brauser + päris-RAG/worker runtime. T10 `PUBLIC-V1` = lõputeema (omaniku otsus 18.07), EI järgmine.
 
 **T07 korrastus 18.07** (ainult tehniline, sisu EI arendatud): haru rebase'itud main-i tipule `032a1e6d` (konflikte 0) ja **push'itud** → `origin/codex/documents-research-v1 @ e49834e3`. **Parandatud migratsiooni ajatempli põrge:** `20260719130000_documents_research_v1` kandis SAMA ajatemplit kui juba main-i liidetud `20260719130000_mentoring_v1` ja sorteerus sellest tähestikuliselt ETTE (`documents_` < `mentoring_`) → ümber nimetatud `20260719150000_documents_research_v1`. Rebase'i-järgsed väravad: **1710/1710 testi + i18n OK + 102-migratsiooni ahel OK**.
 
-**T07 E3 18.07 õhtul — TEHTUD ja commit'itud** (`6dbb6752`, 11 faili `+1153/−665`, EI skeemimuudatust ega migratsiooni): `lib/documents/workspace.js` ühtse tööruumi mudel (dokumendid+artefaktid+analüüsid+uuringud), `DocumentsPage` ümber ehitatud ühtseks tööruumiks, `GET /api/research/jobs` owner-scoped loend paginatsiooniga (lugemine lubatud ka siis, kui uute loomine väljas), 2 uut testifaili + 88 tõlkevõtit ×3 keelt. Väravad E3 peal worktree's: **1723/1723 testi, lint 0 viga / 359 hoiatust, i18n OK, prisma validate OK**; 102-migr ahel kehtib rebase'ist. **18.07 õhtul omaniku loal: push'itud (`origin @ 6dbb6752`) + liidetud kohalikku main-i (`729b09f0`)**; merge'itud main'i väravad: 1727/1727 + i18n + prisma + build + lint 0 viga. **Kahe sessiooni intsident:** koodi kirjutas üks sessioon, commit'is teine (sisu bait-täpselt, väravad üle jooksutatud); õppetund = üks worktree, üks sessioon korraga. **SKOOBIOTSUS LAHTINE:** lepingu järgi jääks veel (1) E2 Journey „Lisa dokument analüüsiks" side + chat „Salvesta analüüs" nupp, (2) E1/E3 provenance/privaatsus-riba, (3) E5 T04-sündmused, (4) E4 ulatuse/geo-UI — omanik otsustab, kas T07 suletakse praeguse skoobiga (kitsendus kirja siia) või jätkub samas worktree's.
+**T07 E3 18.07 õhtul — TEHTUD ja commit'itud** (`6dbb6752`, 11 faili `+1153/−665`, EI skeemimuudatust ega migratsiooni): `lib/documents/workspace.js` ühtse tööruumi mudel (dokumendid+artefaktid+analüüsid+uuringud), `DocumentsPage` ümber ehitatud ühtseks tööruumiks, `GET /api/research/jobs` owner-scoped loend paginatsiooniga (lugemine lubatud ka siis, kui uute loomine väljas), 2 uut testifaili + 88 tõlkevõtit ×3 keelt. Väravad E3 peal worktree's: **1723/1723 testi, lint 0 viga / 359 hoiatust, i18n OK, prisma validate OK**; 102-migr ahel kehtib rebase'ist. **18.07 õhtul omaniku loal: push'itud (`origin @ 6dbb6752`) + liidetud kohalikku main-i (`729b09f0`) + LIVE serveris (`ae59516f`)**; merge'itud main'i väravad: 1727/1727 + i18n + prisma + build + lint 0 viga. **Kahe sessiooni intsident:** koodi kirjutas üks sessioon, commit'is teine (sisu bait-täpselt, väravad üle jooksutatud); õppetund = üks worktree, üks sessioon korraga.
+
+### T07 sulgemine 18.07 (omanik: „sulge T07") → `CLOSED_SCOPED`
+
+**Enne sulgemist kontrollisin lepingu jäägid koodist (mitte oletusest) — pilt oli parem kui varasem märge.** Sulgemine on aus, sest sisuline tuum ja DoD kõvad nõuded on täidetud ja LIVE:
+
+| Lepingu tükk | Tegelik seis (kontrollitud) |
+|---|---|
+| **E1 päritolu/privaatsusriba** | ✅ **KOODIS OLEMAS** — `describeProvenance()` ([DocumentsPage.jsx:546](components/documents/DocumentsPage.jsx)) + `documents-provenance` dl 5 väljaga (kes näeb/päritolu/olek/kehtivus/otsing); täidab `lib/documents/presentation.js` + `workspace.js` iga objektitüübi kohta; i18n 3 keeles. **Varasem SEIS-märge „provenance jäi E3-st välja" oli VALE — parandatud.** |
+| E2 salvestatav analüüs (tuum) | ✅ SavedAnalysis CRUD + püsiv mustand |
+| E2 Journey „Lisa dokument analüüsiks" | ✅ **JUBA wire'itud** — `components/journey/JourneyDetail.jsx:1446` + link `/documents` |
+| E3 ühtne tööruum | ✅ LIVE |
+| E4 uuring elab üle nav (tuum) | ✅ stop-vs-detach |
+| E5 kustutus + snapshot-purge (tuum) | ✅ |
+| **DoD kõva nõue: cross-tenant piir serveris** | ✅ tõendatud (DOK-XTEN P0, `tests/rag/agentDocumentIsolation.test.js` 4/4) |
+
+**Teadlikult edasi lükatud (3 naaberpinna-integratsiooni — EI augud dokumendifunktsioonis, EI privaatsus/korrektsus; ära „paranda" järgmises sessioonis ilma uue otsuseta):**
+1. **Chat „Salvesta analüüs" nupp** — sisenemispunkt vestlusest → dokumentidesse. SavedAnalysis API (`/api/documents/analyses`) OLEMAS, UI-päästik chat'is puudub. Kuulub chat-pinna järgmisse töösse.
+2. **E5 T04 tööruumisündmused** — dokumendimuutus → T05 töölaua „mis muutus" voog. Registris dokumendi-domeenisündmusi pole. Kuulub T05/U1-sündmuskihi järgmisse töösse.
+3. **E4 ulatuse/geo-UI viimistlus** — polish, mitte tuum.
+
+**NOT_PROVEN (T27 koondväravasse):** autenditud brauser + päris-RAG/worker runtime. **DoD-kõrvalekalle (nagu T24):** leping ütles „main/server/merge/deploy puutumata" — tegelikult merge'itud + deploy'tud omaniku selgel loal; kirjas, et nähtav oleks. **Sulgemine avab T12 ROOMS-CALLS-V1.**
 
 **T07 E1 cross-tenant RAG-küsimus — VASTATUD 18.07: leket EI OLE, piir oli juba suletud (DOK-XTEN P0, mitte T28).** Seetõttu ei olnudki T07 harus ühtegi RAG-faili vaja muuta. Jälitatud tervikahel:
 
@@ -318,8 +339,9 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 | ✓ | T24 `FIELD-V1` — **CODE_READY + MERGED_LOCAL 18.07** | `919aa806` → main `662b6e8a`, baas `082d8efa` | omaniku selgesõnaline jadatöö-erand (T07 jäi puutumata) |
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
 | ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
-| ▶ | **T07 `DOCUMENTS-RESEARCH-V1` — TÖÖSSE 18.07 (aktiivne)** | `t07-documents-research-v1-ulesanne.md` | dokumendiruum; `codex/documents-research-v1`, baas `180d668f` |
-| 1 | T10 `PUBLIC-V1` — T07 järel | `t10-public-v1-ulesanne.md` | avalikud pinnad |
+| ✓ | **T07 `DOCUMENTS-RESEARCH-V1` — `CLOSED_SCOPED` 18.07** | `t07-documents-research-v1-ulesanne.md` | tuum+DoD LIVE; 3 naaberpinna-jääki edasi lükatud; avab T12 |
+| ▶ | **T12 `ROOMS-CALLS-V1` — JÄRGMINE** | leping veel koostamata (ruum-audit ptk 20 pealt) | ruumid/kõned; algab otsusteringiga |
+| — | T10 `PUBLIC-V1` — release-ootel | `t10-public-v1-ulesanne.md` | avalikud pinnad (ei enam automaatselt järgmine) |
 
 **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` = server LIVE; `origin/main` on hiljem liikunud → `104d69d8`, mis sisaldab `7b49e9f7`; haru `origin/codex/payments-v1` push'itud; worktree `SotsiaalAI-payments-v1` puhas). Baas = `538ec4bb` (leping ütles `fe4eb4fa`/`cdbd9139` — JADATÖÖ reegel: praegune tipp). P1a `0aca8c4b` ja T02 olid juba main'is → cherry-pick'i EI tehtud. E1–E6 kõik teostatud (lukustatud O-M1…O-M6/O-J1…O-J4, testilepingud 1–9, DoD); väravad rohelised + päris-DB throwaway runtime 33/33; deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup + rollback `538ec4bb`. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
 
