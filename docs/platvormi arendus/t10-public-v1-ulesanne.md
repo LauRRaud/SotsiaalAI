@@ -1,6 +1,6 @@
 # ÜLESANNE: T10 `PUBLIC-V1` — avalik platvorm ja liitumine
 
-**Olek:** `READY_TO_ASSIGN` — T02 `ACCOUNT-V1 @ 929793f1` on valmis; võta see samasse stack'i, sest mõlemad puudutavad registreerimise ja LoginModal'i kasutajateed.  
+**Olek:** `QUEUED` — järjekorranumber **3** jadatöö järjekorras (vt allpool). Ei alustata enne, kui T02+T16 lepitus on `main`-i liidetud.  
 **Teostus:** üks worktree, üks haru, üks terviklik lõppüleandmine  
 **Soovitatud teostaja:** Terra Medium või Fable Medium
 
@@ -26,7 +26,7 @@ Valmis kogemus tähendab:
 4. `docs/platvormi arendus/arendusteemade-masterregister.md` — T10
 5. `docs/platvormi arendus/ruumilise-kogemuse-lahtekoht.md` ptk 167–205
 6. `app/page.js`, `app/meist/page.jsx`, `app/autorilt/page.jsx`, `app/voimalused/page.jsx`, `app/hinnastus/page.jsx`, `app/registreerimine/page.js`
-7. T02 lõpparuanne ja `codex/account-v1 @ 929793f1339ce5754ae0206b87450e8ee1689e48`.
+7. T02 lõpparuanne (haru `codex/account-v1 @ 929793f1…` — taustaks; T02 sisu ise jõuab `main`-i lepituse kaudu enne T10 algust, loe see baasist).
 7. `components/alalehed/RegistreerimineBody.jsx`, `components/pages/RegistreeriminePageClient.jsx`, `components/LoginModal.jsx`, `app/api/register/route.js`
 8. `app/kasutusjuhend/page.jsx`, `app/privaatsustingimused/page.js`, `app/kasutustingimused/page.js`, `app/tooalase-kasutuse-raamistik/page.jsx`, `app/sitemap.js`, `lib/metadata.js`
 9. valmis aluscommit'id `15ab986f111c41eb7eb0c493486ca59cda858067` (meta) ja `8cae87123c6c6d7eefd3ea14fe77a8e4c8525ce7` (sitemap) — **mõlemad on 18.07 seisuga juba `main`-baasis sees**.
@@ -35,11 +35,15 @@ Valmis kogemus tähendab:
 
 > **BAAS UUENDATUD 2026-07-18 (integratsiooni järel).** Kohalik `main` konsolideeriti 18.07: 26 valmis haru (sh meta `15ab986f` ja sitemap `8cae8712`) on nüüd `main`-is sees. Cherry-pick'e EI ole enam vaja. `origin/main` (server) on kohalikust `main`-ist taga; baas on KOHALIK `main`.
 
-1. Kontrolli enne alustamist kohaliku `main` SHA-d. Ülesande väljastamise hetkel on see `0ea13453639be6d7758d8051284df78008fb0b32`.
+> **JADATÖÖ REEGEL (18.07, ülimuslik).** See teema on järjekorras **kolmas**: T24 FIELD → T02+T16 lepitus → **T10** → T07. Ära alusta enne, kui eelmine teema on `main`-i liidetud. Korraga kirjutab koodi ainult üks teema — 18.07 integratsioon näitas, et paralleelsed harud eri baasidelt tekitavad kollisioone, mida keegi ei näe enne lõppu.
+
+1. **Baas = `main`-i PRAEGUNE tipp alustamise hetkel.** Jooksuta `git rev-parse main` ja raporteeri kasutatud SHA. Ülesande koostamise ajal oli see `0ea13453…`, kuid `main` on vahepeal liikunud (T24/T23 kontrollpunktid, dokumendid) ja liigub veel enne, kui T10 alustab — **see ei ole viga, see on ootuspärane**. Ära hargne vanast SHA-st.
 2. Ära muuda põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` — see on `main`-i peal ja puhas; kasuta seda ainult read-only baasina.
 3. Loo uus worktree, näiteks `C:\Users\rauds\Desktop\SotsiaalAI-public-v1`, ja värske haru `codex/public-v1` kohalikust `main`-ist (`git worktree add ../SotsiaalAI-public-v1 -b codex/public-v1 main`).
 4. Cherry-pick'e ei tehta: meta-title/description commit `15ab986f` ja sitemap'i commit `8cae8712` on juba baasis. Sinu kohustus on need terveks hoida (meta kõigil T10 lehtedel ET/EN/RU mittetühi; sitemap'i kanoonilised URL-id kooskõlas).
-5. Ära rebase'i ega kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`) alusena.
+5. T02 `ACCOUNT-V1` jõuab `main`-i enne T10 algust (lepitus on järjekorras teine). See on oluline, sest T02 ja T10 puudutavad mõlemad registreerimise ja `LoginModal`-i kasutajateed — kontrolli baasist, milline konto/e-posti mudel seal kehtib, ja ehita selle peale. Ära võta T02 haru eraldi stack'i.
+6. Ära rebase'i ega kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`) alusena.
+7. Lõpetamisel: väravad rohelised → merge `main`-i **samal päeval** → alles siis avatakse järgmine teema. Haru ei jäeta päevadeks lahku seisma.
 
 ## Lukustatud V1 valikud
 

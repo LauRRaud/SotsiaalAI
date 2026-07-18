@@ -1,9 +1,9 @@
 # ÜLESANNE: T07 `DOCUMENTS-RESEARCH-V1` — Minu dokumendid, analüüs ja süvauuring
 
-**Olek:** `READY_TO_ASSIGN` (18.07: T17 ja T28 on mõlemad kohalikus `main`-is — järjekorratingimus täidetud)  
+**Olek:** `QUEUED` — järjekorranumber **4** jadatöö järjekorras (vt allpool). Sisulised eeldused (T17, T28) on täidetud; ootab ainult järjekorda.  
 **Teostus:** üks worktree, üks haru, üks terviklik lõppüleandmine  
 **Soovitatud teostaja:** Opus, Terra High või Fable 5 High  
-**Järjekord:** eeldused täidetud. T28 `RAG-V1` on vajalik alus ja sisaldub baasis. See on dokumenditeema täielik V1, mitte eraldi RAG-i, faili- ega kõnepakett.
+**Järjekord:** T24 FIELD → T02+T16 lepitus → T10 PUBLIC → **T07**. T28 `RAG-V1` on vajalik alus ja sisaldub baasis. See on dokumenditeema täielik V1, mitte eraldi RAG-i, faili- ega kõnepakett.
 
 ## Eesmärk
 
@@ -24,11 +24,14 @@ Kasutajal on üks rahulik **Minu dokumendid** ruum: ta saab dokumenti mõista, k
 
 > **BAAS UUENDATUD 2026-07-18 (integratsiooni järel).** Kohalik `main` konsolideeriti 18.07: T17 `ed95d6aa`, T28 `8c3e5f77` ja T06 `f17a3c36` on kõik `main`-is sees. Cherry-pick'e ega T28-commit'ist hargnemist EI ole enam vaja; baas on KOHALIK `main` (mitte `origin/main`, mis on serverina taga).
 
-1. Kontrolli enne alustamist kohaliku `main` SHA-d. Ülesande väljastamise hetkel on see `b8563cce` (täispikk SHA: kontrolli `git rev-parse main`). Põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` kasutatakse ainult read-only baasina; seda ei muudeta.
+> **JADATÖÖ REEGEL (18.07, ülimuslik).** T07 on järjekorras **neljas**. Ära alusta enne, kui T10 `PUBLIC-V1` on `main`-i liidetud. Korraga kirjutab koodi ainult üks teema — 18.07 integratsioon näitas, et paralleelsed harud eri baasidelt tekitavad kollisioone, mida keegi ei näe enne lõppu. Varasem märkus „paralleelselt on väljas T10" on sellega **tühistatud**: T10 jõuab `main`-i enne T07 algust.
+
+1. **Baas = `main`-i PRAEGUNE tipp alustamise hetkel.** Jooksuta `git rev-parse main` ja raporteeri kasutatud SHA. Ülesande koostamise ajal oli see `b8563cce`, kuid `main` liigub enne T07 algust vältimatult edasi (T24, lepitus, T10) — **see on ootuspärane, mitte viga**. Ära hargne vanast SHA-st. Põhitööpuud `C:\Users\rauds\Desktop\SotsiaalAI` kasutatakse ainult read-only baasina; seda ei muudeta.
 2. Loo uus worktree kohalikust `main`-ist: `git worktree add ../SotsiaalAI-documents-research-v1 -b codex/documents-research-v1 main`. See sisaldab T06, T17 ja T28 alust.
-3. Cherry-pick'e ei tehta. Kui `main`-i tipp erineb ülal nimetatust, kasuta värsket `main`-i ja raporteeri kasutatud SHA lõpparuandes.
+3. Cherry-pick'e ei tehta.
 4. Ära re-ingesti päris allikaid, ära käivita RAG-i masskorjet ega aktiveeri research-workerit või selle systemd timerit. Need on eraldi ops-otsused.
-5. NB: paralleelselt on väljas T10 `PUBLIC-V1` (avalikud lehed). Teemade failialad ei kattu peale `messages/*.json` tõlkefailide; hoia oma tõlkemuudatused ainult T07 võtmetes, et hilisem liitmine oleks puhas. Ära kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`, `SotsiaalAI-public-v1`) alusena.
+5. Tõlkefailid `messages/*.json` on ainus pind, mida ka teised teemad puudutavad. Kuigi jadatöös ei jookse keegi sinuga korraga, hoia oma tõlkemuudatused ikkagi ainult T07 võtmetes — see hoiab diffi loetavana. Ära kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`) alusena.
+6. Lõpetamisel: väravad rohelised → merge `main`-i **samal päeval**. Haru ei jäeta päevadeks lahku seisma.
 
 ## Lukustatud V1 valikud
 

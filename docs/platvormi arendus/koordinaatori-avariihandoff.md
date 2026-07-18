@@ -25,9 +25,19 @@ Kanoonilise handoff'i alguses on peatükk „Järgmise akna käivitusseis — 20
 
 ## Kriitilised tööreeglid
 
-- **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main @ 0ea13453` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). `origin/main` (server) on kohalikust `main`-ist 66 commit'i TAGA ja jääb puutumata kuni eraldi deploy-otsuseni.
+- **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). `origin/main` (server) on kohalikust `main`-ist ~66 commit'i TAGA ja jääb puutumata kuni eraldi deploy-otsuseni.
 - Uued teemaharud luuakse kohalikust `main`-ist (mitte `origin/main`-ist); põhitööpuud ennast kasutatakse ainult read-only baasina.
 - Uus kooditöö tehakse ainult eraldi värskes worktree's ja ülesandes nimetatud baascommit'i pealt.
+
+### JADATÖÖ REEGEL (kehtestatud 2026-07-18, ülimuslik varasema paralleelmudeli suhtes)
+
+18.07 integratsioon maksis 24 konfliktiplokki ja 3 edasilükatud disainikollisiooni (T02/T03/T16). Juurpõhjus ei olnud harude olemasolu, vaid see, et **mitu teemat jooksid korraga, igaüks eri baasilt, ja ükski ei näinud teiste muudatusi enne lõppu**. Tooteomaniku otsus 18.07: see mudel lõpetatakse.
+
+- **Korraga kirjutab koodi ainult ÜKS teema.** Järgmist teemat ei väljastata enne, kui eelmine on väravad läbinud ja `main`-i liidetud.
+- **Iga teema algab `main`-i PRAEGUSEST tipust.** Ülesandes nimetatud baas-SHA peab alustamise hetkel võrduma `git rev-parse main` tulemusega. Kui ei võrdu, on `main` vahepeal liikunud → alusta praegusest tipust ja raporteeri kasutatud SHA. Cherry-pick'i ahelaid ega vanemast commit'ist hargnemist ei kasutata.
+- **Haru elab tunde, mitte päevi.** Merge `main`-i samal päeval, kui väravad on rohelised — nii ei jõua miski lahkneda.
+- **Paralleelselt tohib joosta ainult see, mis koodi ei kirjuta:** analüüsid, auditid, dokumenditöö, tooteotsuste ettevalmistus.
+- Erand paralleelsuseks nõuab tooteomaniku selgesõnalist luba ja eeldab, et failialad on tõendatult lahus (mitte ainult eeldatavalt).
 - Ära merge'i ega deploy ilma kasutaja eraldi selgesõnalise loata.
 - Ära käivita `OPS-FINAL-A0`; see jääb release candidate'i lõppväravaks.
 - Ära loe tootmiskasutajate sisu ega kasuta päris kasutajaid testimiseks.
@@ -105,11 +115,26 @@ T28 `RAG-V1` on `CODE_READY`, mitte aktiivne jätkuülesanne.
 - P8.6 päris kümne allika proovipakk on `NOT_DONE — OWNER_DECISION`; päris korje/ingest ja timeri aktiveerimine pole tehtud. Täissviit ja sõltumatu audit kuuluvad T27-sse.
 - T06 jääb külmutatuks `f17a3c36`; selle runtime-/migratsioonitõend tehakse T27-s, mitte eraldi auditiülesandena.
 
-T24 `FIELD-V1` on aktiivne, kuid pausil Fable'i worktree's testide alguses. Skeemi-, teenuse-, API-, retention-, service worker'i ja UI töö on teostaja vaheinfo järgi pooleli; lõppcommit'i, remote SHA-d ja tööpuu lõppseisu pole veel üle antud. Uus konto ei dubleeri seda tööd; algne Fable jätkab samast worktree'st.
+T24 `FIELD-V1` on aktiivne, kuid pausil Fable'i worktree's testide alguses. Skeemi-, teenuse-, API-, retention-, service worker'i ja UI töö on pooleli; väravaid EI ole jooksutatud.
 
-**Järgmine väljastatav tervikteema on T10 `PUBLIC-V1`** — leping `t10-public-v1-ulesanne.md` on 18.07 uuendatud uuele baasile (kohalik `main @ 0ea13453`; meta+sitemap cherry-pick'e enam ei vajata, need on baasis). Paralleelaknasse on väljastatud ka T07 `DOCUMENTS-RESEARCH-V1` (`t07-documents-research-v1-ulesanne.md`, baas uuendatud 18.07 kohalikule `main`-ile; worktree `SotsiaalAI-documents-research-v1`, haru `codex/documents-research-v1`). T09 `PAYMENTS-V1` on blokeeritud kuni T02 account-lepitus on tehtud. Selleks on 18.07 väljastatud kolmas ülesanne: **T02+T16 LEPITUS** (`t02-t16-account-export-lepitus-ulesanne.md`, worktree `SotsiaalAI-t02-t16-remerge`, haru `codex/t02-t16-remerge`; verify-then-swap võidab, PROF-P1 kaitsed säilivad).
+**18.07 kontrollpunkt:** senine ainult-kettal töö on nüüd commit'itud harusse `codex/field-v1 @ cb99b092` (worktree `C:\Users\rauds\Desktop\SotsiaalAI-field-v1`, tööpuu puhas, remote-haru puudub). See on kaotusriski maandav WIP-kontrollpunkt, MITTE valmis etapp — lõpparuannet, väravaid ega vastuvõttu ei ole. Uus konto ei dubleeri seda tööd; algne aken jätkab samast worktree'st.
 
-T23 `ESTA-MENTOR-V1` on samuti pooleli ning seda ei anta uue teemana välja. Worktree `C:\Users\rauds\Desktop\SotsiaalAI-esta-mentor-v1`, haru `codex/esta-mentor-v1 @ 33f7fb82` (T05 baas), remote-haru puudub. Worktree sisaldab 12 muudetud faili ning uusi mentorluse API/UI/teenuse/migratsiooni faile; enne jätkamist loe olemasolev diff ja ESTA-MENTOR-V1 algne leping. Ära puhasta, rebase'i ega tee uut mentorluse worktree'd.
+T23 `ESTA-MENTOR-V1` on samuti pooleli ning seda ei anta uue teemana välja. Worktree `C:\Users\rauds\Desktop\SotsiaalAI-esta-mentor-v1`, haru `codex/esta-mentor-v1`, baas T05 `33f7fb82`, remote-haru puudub. **18.07 kontrollpunkt:** senine ainult-kettal töö (12 muudetud faili + mentorluse API/UI/teenuse/migratsiooni failid) on commit'itud `adc44f69`; tööpuu puhas. Sama hoiatus kehtib: WIP, mitte valmis etapp. Enne jätkamist loe olemasolev diff ja ESTA-MENTOR-V1 algne leping. Ära puhasta, rebase'i ega tee uut mentorluse worktree'd.
+
+### Väljastusjärjekord (JADATÖÖ, kinnitatud 18.07)
+
+Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegli jõustumisel need **järjestati ümber**; lepingud jäävad kehtima, kuid neid ei alustata korraga. Väljastatakse ükshaaval, iga järgmine alles siis, kui eelmine on `main`-i liidetud:
+
+| Järjek. | Teema | Leping | Avab |
+|---|---|---|---|
+| 1 | T24 `FIELD-V1` (juba käigus) | algne FIELD-V1 leping | — |
+| 2 | **T02+T16 LEPITUS** | `t02-t16-account-export-lepitus-ulesanne.md` | T09 `PAYMENTS-V1` |
+| 3 | T10 `PUBLIC-V1` | `t10-public-v1-ulesanne.md` | avalikud pinnad |
+| 4 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+
+T09 `PAYMENTS-V1` on blokeeritud kuni T02 account-lepitus on tehtud (järjekord 2). T03 `chat-voice-v1` lepitus vajab enne tooteomaniku disainiotsust (main'i mic-nupp vs T03 spatial-entry); lepingut ei vormistata enne seda otsust.
+
+Kui mõni neist teemadest jõuab alustada ajal, mil `main` on vahepeal liikunud, kehtib jadatöö reegel: baas = `main`-i praegune tipp, mitte lepingus kirjas olev SHA.
 
 ## T06 vastuvõtu lõpetus
 

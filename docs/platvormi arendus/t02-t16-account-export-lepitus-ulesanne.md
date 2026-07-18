@@ -1,9 +1,9 @@
 # ÜLESANNE: T02+T16 LEPITUS — konto elutsükkel ja andmete eksport uuele main-baasile
 
-**Olek:** `READY_TO_ASSIGN` (loodud 2026-07-18)  
+**Olek:** `NEXT_IN_QUEUE` — järjekorranumber **2** jadatöö järjekorras. Alustatakse, kui T24 `FIELD-V1` on `main`-i liidetud.  
 **Teostus:** üks worktree, üks haru, üks terviklik lõppüleandmine  
 **Soovitatud teostaja:** Fable 5 High (turvatundlik e-postivahetus, migratsioonid, kustutusahel)  
-**Järjekord:** sõltumatu T10-st ja T07-st; selle valmimine AVAB T09 `PAYMENTS-V1` (mis vajab account-alust).
+**Järjekord:** T24 FIELD → **T02+T16 lepitus** → T10 PUBLIC → T07 DOCUMENTS. Selle valmimine AVAB T09 `PAYMENTS-V1` (mis vajab account-alust) ja annab T10-le õige registreerimis-/LoginModal-baasi.
 
 ## Taust — miks see ülesanne olemas on
 
@@ -31,16 +31,19 @@ Kui leiad koha, kus PROF-P1 ja T02 leping on päriselt vastuolus (mitte lihtsalt
 1. `CLAUDE.md`
 2. `docs/platvormi arendus/t02-account-v1-ulesanne.md` (algne T02 leping)
 3. `docs/platvormi arendus/t16-export-v1-ulesanne.md` + `t16-export-v1-jatkuulesanne.md`
-4. T02 ja T16 lõpparuanded (worktree'des `SotsiaalAI-account-v1`, `SotsiaalAI-export-v1` või dokiregistris)
+4. T02 ja T16 lõpparuanded. **NB: 18.07 koristuses eemaldati kõik ammendunud worktree'd, sh `SotsiaalAI-account-v1` ja `SotsiaalAI-export-v1`. Harud ja commit'id on täielikult alles** (kohalikult ja `origin`is). Loe sisu otse harudest, nt `git show codex/account-v1 --stat`, `git log codex/export-v1 --oneline`, `git show codex/account-v1:<failitee>`, või tee vajadusel endale ajutine lugemis-worktree — algseid harusid ennast ei muudeta.
 5. `main`-i praegune profiilikood: `app/api/profile/route.js`, `lib/profile/accountLifecycle.js`, `tests/profile/accountLifecycle.test.js` (PROF-P1 seis, mis tuleb säilitada)
 
 ## Alus ja worktree
 
-1. Baas on KOHALIK `main` (väljastamise hetkel `d0b0af3f`; kontrolli `git rev-parse main` ja raporteeri kasutatud SHA). `origin/main` on serverina taga; seda ei kasutata.
+> **JADATÖÖ REEGEL (18.07, ülimuslik).** See lepitus on täpselt see arve, mille paralleelmudel esitas: kolm teemat kirjutasid samu pindu eri baasidelt ja keegi ei näinud teiste tööd enne lõppu. Edaspidi kirjutab koodi korraga ainult üks teema. Varasem märkus „paralleelsed teemad T10/T07 on väljas" on **tühistatud** — need on järjekorras sinu järel.
+
+1. **Baas = `main`-i PRAEGUNE tipp alustamise hetkel.** Jooksuta `git rev-parse main` ja raporteeri kasutatud SHA. Ülesande koostamise ajal oli see `d0b0af3f`, kuid `main` on vahepeal liikunud (T24/T23 kontrollpunktid, dokumendid, koristus) — **see on ootuspärane**. `origin/main` on serverina taga; seda ei kasutata.
 2. Loo uus worktree: `git worktree add ../SotsiaalAI-t02-t16-remerge -b codex/t02-t16-remerge main`
 3. Lepitusstrateegia on sinu valida (merge konfliktilahendusega VÕI sihitud cherry-pick/port), aga tulemus peab olema **auditeeritav**: lõpparuandes kirjeldad, kuidas iga konfliktifail lahenes ja kummalt poolelt iga otsus tuli.
-4. Algseid harusid `codex/account-v1` ja `codex/export-v1` EI muudeta, EI rebase'ita ega force-push'ita — need on vastuvõetud tõendusmaterjal.
-5. Ära kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`, `SotsiaalAI-public-v1`, `SotsiaalAI-documents-research-v1`) alusena. Paralleelsed teemad T10/T07 on väljas; tõlkemuudatused hoia T02/T16 võtmetes.
+4. Algseid harusid `codex/account-v1` ja `codex/export-v1` EI muudeta, EI rebase'ita ega force-push'ita — need on vastuvõetud tõendusmaterjal. Nende worktree-kaustad on kustutatud, harud ise on puutumata alles.
+5. Ära kasuta teiste teemade poolelolevaid worktree'sid (`SotsiaalAI-field-v1`, `SotsiaalAI-esta-mentor-v1`) alusena.
+6. Lõpetamisel: väravad rohelised → merge `main`-i **samal päeval** → alles siis avatakse T10. Haru ei jäeta päevadeks lahku seisma.
 
 ## Teadaolevad konfliktipesad (18.07 proovimerge põhjal)
 
