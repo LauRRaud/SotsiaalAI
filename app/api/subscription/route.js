@@ -7,15 +7,14 @@ import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
 import {
   formatEuroAmount,
-  getPlanDefinitionId,
   getRoleMonthlyAmount,
-  normalizeSubscriptionRole
+  normalizeSubscriptionRole,
+  resolveRoleBoundSubscriptionPlan
 } from "@/lib/subscriptionPlans";
 import { safeError } from "@/lib/privacy/safeError";
 
 const ACTIVE_STATUS = SubscriptionStatus.ACTIVE;
 const CANCELED_STATUS = SubscriptionStatus.CANCELED;
-const PLAN_MAX_LEN = 80;
 const ALLOW_DIRECT_ACTIVATION = process.env.SUBSCRIPTION_ALLOW_DIRECT_ACTIVATION === "1";
 
 const NO_STORE_HEADERS = {
@@ -127,13 +126,6 @@ function shape(subscription) {
   };
 }
 
-function normalizePlan(value) {
-  const raw = typeof value === "string" ? value.trim() : "";
-  const fallback = String(process.env.SUBSCRIPTION_DEFAULT_PLAN || "monthly").trim();
-  const plan = raw || fallback || "monthly";
-  return plan.length > PLAN_MAX_LEN ? plan.slice(0, PLAN_MAX_LEN) : plan;
-}
-
 export async function GET(request) {
   const locale = localeFromRequest(request);
   const session = await requireUser(request);
@@ -181,14 +173,8 @@ export async function POST(request) {
   if (!session) {
     return errorJson("api.common.unauthorized", 401, locale);
   }
-  if (!ALLOW_DIRECT_ACTIVATION) {
-    return errorJson("api.subscription.direct_activation_disabled", 409, locale, {
-      initPath: "/api/subscription/init"
-    });
-  }
 
   try {
-    const plan = normalizePlan(body?.plan);
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
       select: { role: true }
@@ -196,7 +182,16 @@ export async function POST(request) {
     if (!user) {
       return errorJson("api.subscription.user_not_found", 404, locale);
     }
-    const planDefinitionId = getPlanDefinitionId(plan, user.role);
+    const roleBoundPlan = resolveRoleBoundSubscriptionPlan(user.role, body?.plan);
+    if (!roleBoundPlan) {
+      return errorJson("api.subscription.plan_not_allowed", 400, locale);
+    }
+    if (!ALLOW_DIRECT_ACTIVATION) {
+      return errorJson("api.subscription.direct_activation_disabled", 409, locale, {
+        initPath: "/api/subscription/init"
+      });
+    }
+    const { plan, planDefinitionId } = roleBoundPlan;
     const now = new Date();
     const validUntil = new Date(now);
     validUntil.setMonth(validUntil.getMonth() + 1);

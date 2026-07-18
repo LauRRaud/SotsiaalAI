@@ -3233,6 +3233,7 @@
       "webhook_invalid_payload": "Webhooki payload on vigane.",
       "webhook_process_failed": "Maksete webhooki töötlemine ebaõnnestus.",
       "direct_activation_disabled": "Otse aktiveerimine on keelatud. Alusta kõigepealt makse algatamisest.",
+      "plan_not_allowed": "Valitud tellimuspakett ei vasta sinu kontorollile.",
       "checkout_terms_required": "Enne maksmist peab tingimustega nõustuma."
     },
     "invites": {

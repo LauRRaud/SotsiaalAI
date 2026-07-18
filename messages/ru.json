@@ -3233,6 +3233,7 @@
       "webhook_invalid_payload": "Некорректный payload webhook.",
       "webhook_process_failed": "Не удалось обработать платежный webhook.",
       "direct_activation_disabled": "Прямая активация отключена. Сначала запустите checkout оплаты.",
+      "plan_not_allowed": "Выбранный тариф подписки не соответствует роли вашей учётной записи.",
       "checkout_terms_required": "Перед оплатой нужно согласиться с условиями."
     },
     "invites": {

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { resolveRoleBoundSubscriptionPlan } from "../../lib/subscriptionPlans.js";
 import { createUsageService } from "../../lib/usage/service.js";
 
 function createFakePrisma() {
@@ -207,6 +208,64 @@ test("entitlement resolver maps a legacy plan by role and applies an active over
   assert.equal(resolved.hardLimit, 6n);
   assert.equal(resolved.period, "WEEKLY");
   assert.equal(resolved.overrideId, "override_1");
+});
+
+test("usage enforcement resolves every role-bound subscription from the stored plan definition", async () => {
+  for (const role of ["CLIENT", "SOCIAL_WORKER", "SERVICE_PROVIDER"]) {
+    const binding = resolveRoleBoundSubscriptionPlan(role);
+    const calls = { definitionId: null };
+    const db = {
+      user: {
+        async findUnique() {
+          return { id: `user_${role}`, role, isAdmin: false };
+        }
+      },
+      userEntitlementOverride: {
+        async findFirst() {
+          return null;
+        }
+      },
+      subscription: {
+        async findFirst() {
+          return {
+            plan: binding.plan,
+            planDefinitionId: binding.planDefinitionId
+          };
+        }
+      },
+      planDefinition: {
+        async findUnique({ where }) {
+          calls.definitionId = where.id;
+          return { id: binding.planDefinitionId, key: binding.plan };
+        },
+        async findFirst() {
+          assert.fail("canonical subscriptions must resolve by planDefinitionId");
+        }
+      },
+      planEntitlement: {
+        async findUnique() {
+          return {
+            enabled: true,
+            softLimit: 5n,
+            hardLimit: 10n,
+            period: "MONTHLY"
+          };
+        }
+      },
+      $transaction(callback) {
+        return callback(db);
+      }
+    };
+    const service = createUsageService({ prismaClient: db });
+    const resolved = await service.resolveEntitlement({
+      userId: `user_${role}`,
+      metric: "CHAT_ASSISTANT_REPLY",
+      now
+    });
+
+    assert.equal(calls.definitionId, binding.planDefinitionId);
+    assert.equal(resolved.planDefinitionId, binding.planDefinitionId);
+  }
 });
 
 test("ten parallel reservations cannot exceed the hard limit", async () => {
