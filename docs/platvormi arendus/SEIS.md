@@ -97,7 +97,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 |---|---|---|---|---|
 | 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
 | 2 | T02+T16 `LEPITUS` | **`DEPLOYED` — main'is `d2860b0b`, **LIVE serveris 18.07** (`adc83829`). Väravad: 1582 testi, 98-migr ahel, build; 6 migratsiooni rakendatud prod-DB-le** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
-| ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — AKTIIVNE kooditeema (töösse 18.07)** | `codex/documents-research-v1` (baas main-tipp `180d668f`, worktree `SotsiaalAI-documents-research-v1`, 0 commit'i veel) | dokumendiruum |
+| ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — WIP-kontrollpunkt, väravad rohelised** | `codex/documents-research-v1 @ b94f9370` (local; remote puudub), baas `180d668f`, worktree puhas; 1 commit, 25 faili `+543/−144` (migr `20260719130000` additiivne) | dokumendiruum |
 | — | T10 `PUBLIC-V1` | `QUEUED` — T07 järel | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 
 ### Paralleelne mittekooditöö (jadatöö reegel lubab)
@@ -134,7 +134,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 2. ~~**T02+T16 push**~~ — **TEHTUD** (kuulus deploy'sse).
 3. ~~**T03 disainiotsus**~~ — **OTSUSTATUD 18.07:** ühtne alati-nähtav tekstiväli + valikuline mikker (main) võidab; kaheikooniline „Räägi/Kirjuta — pead valima" spatial-entry lõplikult hüljatud. Segaduse allikas oli deploy-vahe (main eemaldas selle 16.07, aga toodangus jooksis veel eemalduse-eelne `fe4eb4fa`) — nüüd deploy'ga lahendatud.
 
-**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **Järgmine kooditeema läks töösse: T07 `DOCUMENTS-RESEARCH-V1`** (`codex/documents-research-v1`, baas main-tipp `180d668f` = T09 sees, worktree `SotsiaalAI-documents-research-v1`, 0 commit'i veel). T07 alusdependents (T28 RAG, T17 Search, T16 Export) on juba main'is. T10 `PUBLIC-V1` jääb T07 järele.
+**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **T07 `DOCUMENTS-RESEARCH-V1` — WIP-kontrollpunkt 18.07** (`codex/documents-research-v1 @ b94f9370`, local; baas `180d668f` = T09 sees; worktree `SotsiaalAI-documents-research-v1` puhas; alusdependents T28/T17/T16 juba main'is). **TEHTUD** (väravad rohelised: 1626 testi/8 uut + lint + i18n + 100-migr ahel + build + diff-check): E1 owner-404 (12 rada, foreign-id == missing-id, T28 cross-tenant piir puutumata), E2 püsiv mustand (`persistArtifactDraft`, `AgentArtifact.idempotencyKey` + `SavedAnalysis` mudel, migr `20260719130000` additiivne), E4 uuring elab üle nav (stop vs detach), E5 meeting-summary snapshot fail-closed kustutus. **NOT_DONE:** E2 analüüsiobjekti CRUD + Journey-side, **E3 ühtne /documents tööruum + provenance/privaatsus-riba (suurim tükk, puutumata)**, E5 T04-sündmused, E4 ulatuse/geo-UI. **NOT_PROVEN:** autenditud brauser + päris-RAG/worker runtime (sünteetiline runtime jäi jooksmata). Ei main'is/serveris; push'imata. T10 `PUBLIC-V1` = lõputeema (omaniku otsus 18.07: valmis platvormi kirjeldus tuleb, kui platvorm valmis), EI järgmine.
 
 **Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
