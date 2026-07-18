@@ -4110,6 +4110,14 @@
     }
   },
   "journey": {
+    "plain_language": {
+      "open": "Selgita lihtsalt",
+      "title": "Selge lugemisabi",
+      "preview": "Allikas: selle Teekonna kokkuvõte. Algne tekst jääb muutmata ja nähtavaks.",
+      "version": "Versioon: {date}",
+      "confirm": "Nõustun ja ava lugemisabi",
+      "error": "Selgitust ei saanud praegu avada."
+    },
     "title": "Teekond",
     "chatTool": {
       "label": "Teekond"
@@ -5163,5 +5171,19 @@
     "application": { "title": "Lisa struktureeritud rakendamiskogemus", "note": "See ei ole hinne ega kommentaar. Kirjelda konteksti, kohandusi, piiranguid ja järelvaadet.", "context": "Kasutamise kontekst", "target": "Sihtrühm", "adaptations": "Mida kohandasin", "worked": "Mis toimis", "not_worked": "Mis ei toiminud", "limitation": "Ilmnenud piirang või risk", "follow_up": "Järelvaate aeg", "needs_review": "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.", "review_task": "Rakendamiskogemuse ülevaatus", "review_note": "Tagasiside lisajale", "accept": "Sobib dokumenteeritud kogemuseks", "reject": "Ei sobi avaldamiseks", "my_applications": "Minu rakendamiskogemused", "my_experience": "Minu rakendamiskogemus", "reviewer_feedback": "Retsensendi tagasiside", "resubmit": "Saada täiendatud kogemus uuesti" },
     "empty": { "candidates_title": "Sul pole veel praktikakandidaate", "review_title": "Sul pole praegu määratud ülevaatusi", "library_title": "Praktikakogu alles kujuneb", "library_text": "Siia ilmuvad ainult lukustatud ja avaldamiseks kinnitatud praktikaversioonid.", "personal_text": "Uued tööobjektid ilmuvad siia pärast teadlikku loomist või määramist." },
     "errors": { "request_failed": "Praktikakogu toiming ebaõnnestus.", "load_failed": "Praktikakogu ei õnnestunud laadida.", "detail_failed": "Praktikat ei saanud avada.", "save_failed": "Mustandit ei saanud salvestada.", "action_failed": "Toimingut ei saanud salvestada.", "application_failed": "Rakendamiskogemust ei saanud salvestada.", "conflict": "Praktika muutus vahepeal. Värskenda ja proovi uuesti.", "incomplete": "Kandidaadi kohustuslikud väljad või privaatsuskontroll on lõpetamata.", "capability_required": "Selle toimingu jaoks puudub kehtiv kinnitatud õigus.", "self_review": "Oma tööd ei saa ise professionaalselt kinnitada.", "conflict_of_interest": "Selle töö puhul tuleb huvide konflikti tõttu taanduda.", "review_chain": "Nõutud professionaalne ülevaatusahel ei ole veel täidetud.", "rag_sync_failed": "Avaldatud versiooni teadmistekogusse sünkroniseerimine ebaõnnestus." }
+  },
+  "personal_search": {
+    "title": "Minu otsing",
+    "card_meta": "Minu tööobjektid",
+    "intro": "Otsi oma vestlusi, Teekondi ja dokumente pealkirja järgi.",
+    "label": "Otsing",
+    "submit": "Otsi",
+    "loading": "Otsin sinu objekte…",
+    "empty": "Vasteid ei leitud.",
+    "error": "Otsingut ei saanud praegu teha. Proovi uuesti.",
+    "retry": "Proovi uuesti",
+    "results": "Otsingutulemused",
+    "kinds": { "conversation": "Vestlus", "journey": "Teekond", "document": "Dokument" },
+    "status": { "active": "Aktiivne", "pinned": "Kinnitatud", "draft": "Mustand", "archived": "Arhiveeritud", "material": "Materjal", "template": "Mall", "call_audio_recording": "Kõnesalvestis", "call_transcript": "Kõne üleskirjutus", "audio_transcript": "Heli üleskirjutus", "transcript_summary": "Üleskirjutuse kokkuvõte", "uploaded_audio_source": "Üleslaaditud helifail", "other": "Muu" }
   }
 }

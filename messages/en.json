@@ -4110,6 +4110,14 @@
     }
   },
   "journey": {
+    "plain_language": {
+      "open": "Explain simply",
+      "title": "Plain-language reading aid",
+      "preview": "Source: this Journey's summary. The original text stays unchanged and visible.",
+      "version": "Version: {date}",
+      "confirm": "I agree — open the reading aid",
+      "error": "The explanation could not be opened right now."
+    },
     "title": "Journey",
     "chatTool": {
       "label": "Journey"
@@ -5080,5 +5088,19 @@
     "application": { "title": "Add a structured application experience", "note": "This is not a rating or comment. Describe context, adaptations, limitations and follow-up.", "context": "Application context", "target": "Target group", "adaptations": "What I adapted", "worked": "What worked", "not_worked": "What did not work", "limitation": "Observed limitation or risk", "follow_up": "Follow-up date", "needs_review": "The experience reveals a new risk or a need to review the practice.", "review_task": "Application experience review", "review_note": "Feedback to the contributor", "accept": "Accept as documented experience", "reject": "Not suitable for publication", "my_applications": "My application experiences", "my_experience": "My application experience", "reviewer_feedback": "Reviewer feedback", "resubmit": "Resubmit the completed experience" },
     "empty": { "candidates_title": "You have no practice candidates yet", "review_title": "You have no assigned reviews", "library_title": "The practice library is taking shape", "library_text": "Only locked and publication-approved versions appear here.", "personal_text": "New work items appear after deliberate creation or assignment." },
     "errors": { "request_failed": "The practice-library action failed.", "load_failed": "The practice library could not be loaded.", "detail_failed": "The practice could not be opened.", "save_failed": "The draft could not be saved.", "action_failed": "The action could not be saved.", "application_failed": "The application experience could not be saved.", "conflict": "The practice changed in the meantime. Refresh and try again.", "incomplete": "Required candidate fields or the privacy check are incomplete.", "capability_required": "You lack a valid verified capability for this action.", "self_review": "You cannot professionally approve your own work.", "conflict_of_interest": "You must recuse yourself because of a conflict of interest.", "review_chain": "The required professional review chain is not complete.", "rag_sync_failed": "Syncing the published version to the knowledge base failed." }
+  },
+  "personal_search": {
+    "title": "My search",
+    "card_meta": "My work items",
+    "intro": "Search your conversations, Journeys and documents by title.",
+    "label": "Search",
+    "submit": "Search",
+    "loading": "Searching your items…",
+    "empty": "No matches found.",
+    "error": "Search is unavailable right now. Please try again.",
+    "retry": "Try again",
+    "results": "Search results",
+    "kinds": { "conversation": "Conversation", "journey": "Journey", "document": "Document" },
+    "status": { "active": "Active", "pinned": "Pinned", "draft": "Draft", "archived": "Archived", "material": "Material", "template": "Template", "call_audio_recording": "Call recording", "call_transcript": "Call transcript", "audio_transcript": "Audio transcript", "transcript_summary": "Transcript summary", "uploaded_audio_source": "Uploaded audio", "other": "Other" }
   }
 }

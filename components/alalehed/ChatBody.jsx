@@ -2074,6 +2074,12 @@ export default function ChatBody({
       closeAnalysis: false
     });
   }, [activeWorkflow, isRoomMode, searchParams, startFreshConversation, visibleMessages.length]);
+  useEffect(() => {
+    if (isRoomMode || typeof searchParams?.get !== "function") return;
+    const requestedConversation = String(searchParams.get("conversation") || "").trim();
+    if (!requestedConversation || requestedConversation === convId) return;
+    startFreshConversation("default", { convId: requestedConversation, closeAnalysis: false });
+  }, [convId, isRoomMode, searchParams, startFreshConversation]);
   const activateInfoMode = useCallback((options = null) => {
     const preserveConversation = Boolean(options?.preserveConversation);
     const stopActiveRun = Boolean(options?.stopActiveRun);
