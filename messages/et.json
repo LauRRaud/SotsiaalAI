@@ -1235,6 +1235,17 @@
   "workspace_feature_pages": {
     "back_to_workspace": "Tagasi töölauale",
     "pre_inquiries": {
+      "receiver_checklist": {
+        "review_preinfo": "Vaatasin olukorra kirjelduse, eelkaardistuse ja pöördumise mustandi läbi.",
+        "check_consent": "Kontrollisin nõusoleku või pöördumise aluse ja vajadusel täpsustan seda.",
+        "check_urgency": "Hindasin, kas olukord vajab kiiremat ühendust või kriisisuunamist.",
+        "check_urgency_risk": "Kontrollisin kiireloomulisuse või ohusignaali ja otsustasin, kas on vaja kiiremat ühendust.",
+        "clarify_missing": "Märkisin küsimused või info, mida tuleb enne järgmist sammu täpsustada.",
+        "clarify_missing_unknown": "Märkisin täpsustamist vajava info ({unknown} ebaselget vastust).",
+        "clarify_missing_unanswered": "Märkisin täpsustamist vajava info ({unanswered} vastamata põhiküsimust).",
+        "clarify_missing_both": "Märkisin täpsustamist vajava info ({unknown} ebaselget vastust, {unanswered} vastamata põhiküsimust).",
+        "choose_next_step": "Valisin järgmise tegevuse: kontakt, vestlusruum, kohtumine, teenusesuund või muu jätk."
+      },
       "deleted_author": "Kustutatud kasutaja pöördumine",
       "title": "Eelpöördumine",
       "lead": "Koosta eelkaardistuse põhjal kontrollitav pöördumise mustand sobivale KOV kontaktile või teenuseosutajale.",
