@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (T02+T16 lepitus valmis; DEPLOY-A0 väljastatud)
+Viimati uuendatud: 2026-07-18 (T23 mentorlus valmis + pushitud; T02+T16 liidetud local `main`-i `d2860b0b`; DEPLOY-A0 `COMPLETE` = tingimuslik GO)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -89,14 +89,14 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ## SEISUTABEL — 2026-07-18
 
-`main @ fc398505` + T19-dokid; **server `origin/main` on ~66 commit'i TAGA ja puutumata** kuni eraldi deploy-otsuseni.
+`main @ d2860b0b` (T02+T16 liidetud + DEPLOY-A0 dokk); **server `origin/main @ fe4eb4fa` on 88 commit'i TAGA ja puutumata** kuni eraldi deploy-otsuseni.
 
 ### Töö järjekord (jadatöö)
 
 | # | Teema | Olek | Haru / SHA | Avab |
 |---|---|---|---|---|
 | 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
-| 2 | T02+T16 `LEPITUS` | **`CODE_READY` — väravad rohelised, ootab vastuvõttu + push-luba** | `codex/t02-t16-remerge @ a6f683a6`, baas `main @ 89edb9c3` | **T09** |
+| 2 | T02+T16 `LEPITUS` | **`MERGED_LOCAL` — liidetud local `main`-i `d2860b0b` (puhas merge), väravad rohelised: 1582 testi, 98-migr ahel, build. Push = deploy-otsuse taga** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
 | 3 | T10 `PUBLIC-V1` | `QUEUED` | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 | 4 | T07 `DOCUMENTS-RESEARCH-V1` | `QUEUED` | leping `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
 
@@ -104,13 +104,13 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 | Teema | Olek | Leping | Teenib |
 |---|---|---|---|
-| DEPLOY-A0 valmiduse audit | `ISSUED` 18.07 | `deploy-a0-valmiduse-audit-ulesanne.md` | omaniku deploy-otsust (lahtine otsus nr 1); server READ-ONLY, repo-s muutub ainult väljunddokument + see fail |
+| DEPLOY-A0 valmiduse audit | **`COMPLETE` 18.07 — tingimuslik GO** | väljund: `deploy-a0-valmiduse-audit-2026-07-18.md` (leping: `…-ulesanne.md`) | omaniku deploy-otsust (lahtine otsus nr 1); server oli RANGELT READ-ONLY, midagi ei kirjutatud |
 
 ### Pooleli, ei ole järjekorras
 
 | Teema | Olek | Haru / SHA | Märkus |
 |---|---|---|---|
-| T23 `ESTA-MENTOR-V1` | `IN_PROGRESS_LOCAL` | `codex/esta-mentor-v1 @ adc44f69` | WIP-kontrollpunkt, väravaid pole jooksutatud; remote puudub |
+| T23 `ESTA-MENTOR-V1` | **`CODE_READY` — pushitud, väravad rohelised** | `codex/esta-mentor-v1 @ 32b9800d` (local=remote), baas T05 `33f7fb82` | üks commit; 1582/1582 testi (24 uut) + build + i18n + lint + 98-migr ahel + **päris-DB sünteetiline runtime PASS** (mentor+mentee+admin täisteekond, IDOR/purge/continuity/U12/handoff); `NOT_PROVEN`: brauseri-QA, seadme-a11y. Ei ole `main`-is ega serveris |
 | T03 `CHAT-VOICE-V1` | `BLOCKED_DECISION` | `codex/chat-voice-v1 @ 7bdd1288` | vajab tooteomaniku otsust: main'i mic-nupp vs T03 spatial-entry. Lepingut ei vormistata enne otsust |
 | T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
 | T09 `PAYMENTS-V1` | `BLOCKED` | leping `t09-payments-v1-ulesanne.md` | avaneb, kui T02+T16 on main'is |
@@ -130,11 +130,11 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ### Lahtised omaniku otsused
 
-1. **Deploy** — server 73 taga; enne vajab `.env` `MAKSEKESKUS_PUBLIC_KEY` lahendust (võti lisada VÕI recurring keelata), muidu maksed-p1a check-env kukutab deploy-kontrolli. **DEPLOY-A0 audit väljastatud 18.07** — annab go/no-go faktid (migratsioonid, env-pariteet, ressursid, rollback).
-2. **T02+T16 push** origin'isse + merge main'i → avab T09.
-3. **T03 disainiotsus** — mic vs spatial-entry.
+1. **Deploy** — server 88 taga. **DEPLOY-A0 audit `COMPLETE` (`deploy-a0-valmiduse-audit-2026-07-18.md`) → tingimuslik GO.** Faktid: 6 migratsiooni rakenduks, kõik additiivsed/ohutud; Prisma kinnitab serveri „up to date"; **MAKSEKESKUS EI ole enam blokeer** — prod-env-il on `SUBSCRIPTION_RECURRING_ENABLED=0`, seega check-env läbib (blokeer puudutas ainult dev-`.env`-i). **Kaks eeltingimust:** (a) kohustuslik käsitsi DB `pg_dump` enne migrate'i (automaatset DB-varundust EI ole), (b) build-strateegia (soovitus kohalik/CI, mitte jagatud VPS-il). Deploy-otsuse ja push'i teeb omanik.
+2. **T02+T16 push** — local merge on **tehtud** (`main @ d2860b0b`, T09 avatud). Jääb ainult `git push origin main`, mis == deploy → kuulub otsuse 1 juurde.
+3. **T03 disainiotsus** — mic vs spatial-entry (muutmata).
 
-**Backup'id:** `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
+**Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
 ## Varasem taust (ajalooline, ei uuendata)
 
@@ -192,7 +192,7 @@ T24 `FIELD-V1` on aktiivne, kuid pausil Fable'i worktree's testide alguses. Skee
 
 **18.07 kontrollpunkt:** senine ainult-kettal töö on nüüd commit'itud harusse `codex/field-v1 @ cb99b092` (worktree `C:\Users\rauds\Desktop\SotsiaalAI-field-v1`, tööpuu puhas, remote-haru puudub). See on kaotusriski maandav WIP-kontrollpunkt, MITTE valmis etapp — lõpparuannet, väravaid ega vastuvõttu ei ole. Uus konto ei dubleeri seda tööd; algne aken jätkab samast worktree'st.
 
-T23 `ESTA-MENTOR-V1` on samuti pooleli ning seda ei anta uue teemana välja. Worktree `C:\Users\rauds\Desktop\SotsiaalAI-esta-mentor-v1`, haru `codex/esta-mentor-v1`, baas T05 `33f7fb82`, remote-haru puudub. **18.07 kontrollpunkt:** senine ainult-kettal töö (12 muudetud faili + mentorluse API/UI/teenuse/migratsiooni failid) on commit'itud `adc44f69`; tööpuu puhas. Sama hoiatus kehtib: WIP, mitte valmis etapp. Enne jätkamist loe olemasolev diff ja ESTA-MENTOR-V1 algne leping. Ära puhasta, rebase'i ega tee uut mentorluse worktree'd.
+T23 `ESTA-MENTOR-V1` — **UUENDATUD 18.07: see lõik on aegunud, kehtib seisutabeli T23 rida.** Teema on nüüd `CODE_READY`, terviklikult teostatud, väravad rohelised ja **pushitud** (`codex/esta-mentor-v1 @ 32b9800d`, local=remote, üks puhas commit `adc44f69` asemel; worktree `C:\Users\rauds\Desktop\SotsiaalAI-esta-mentor-v1`, tööpuu puhas). WIP-kontrollpunkt on asendatud lõppüleandmisega; ei ole `main`-is ega serveris. (Ajalooline algseis oli: 18.07 WIP-kontrollpunkt `adc44f69`, väravaid pole jooksutatud, remote puudub.)
 
 ### Väljastusjärjekord (JADATÖÖ, kinnitatud 18.07)
 
