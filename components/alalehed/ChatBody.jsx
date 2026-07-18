@@ -129,7 +129,6 @@ function buildHelpWorkflowPrefillState(searchParams) {
   const categoryCode = String(searchParams.get("category") || "").trim().toUpperCase();
   const municipalityName = String(searchParams.get("municipalityName") || "").trim();
   const fromJourney = String(searchParams.get("fromJourney") || "").trim();
-  const share = String(searchParams.get("share") || "").trim();
 
   return createHelpWorkflowDraftState({
     intent,
@@ -141,10 +140,7 @@ function buildHelpWorkflowPrefillState(searchParams) {
       categoryCode,
       category: categoryCode,
       rawPlace: municipalityName,
-      extraNotes: [
-        fromJourney ? `fromJourney:${fromJourney}` : "",
-        share ? `share:${share}` : ""
-      ].filter(Boolean).join("; ")
+      extraNotes: ""
     }
   });
 }

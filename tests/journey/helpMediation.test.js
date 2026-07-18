@@ -29,7 +29,7 @@ test("journey draft does not add help mediation for a general information need",
 test("help mediation handoff reads existing suggested actions and municipality text", () => {
   const handoff = buildHelpMediationHandoff({
     id: "journey-1",
-    summary: "Olukord vajab täpsustamist.",
+    summary: "Olukord vajab koduabi täpsustamist.",
     suggestedActions: [
       { title: "Loo abisoov koduabi leidmiseks" }
     ],
@@ -43,4 +43,19 @@ test("help mediation handoff reads existing suggested actions and municipality t
   assert.equal(handoff.municipalityName, "Tartu linn");
   assert.match(handoff.viewOffersHref, /type=HELP_OFFER/);
   assert.match(handoff.createRequestHref, /fromJourney=journey-1/);
+});
+
+test("help mediation never derives public output from journey risk or private context", () => {
+  const marker = "JOURNEY_PRIVATE_MARKER_991";
+  const handoff = buildHelpMediationHandoff({
+    id: "journey-private",
+    summary: "General information request",
+    domains: [],
+    riskSignals: [`transport ${marker}`],
+    missingInfo: [marker],
+    suggestedActions: [{ title: marker }],
+    context: { personContext: marker, keywords: [`transport ${marker}`] }
+  });
+  assert.equal(handoff.hasPracticalNeed, false);
+  assert.doesNotMatch(JSON.stringify(handoff), new RegExp(marker));
 });

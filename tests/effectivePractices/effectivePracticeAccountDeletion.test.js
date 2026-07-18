@@ -169,6 +169,7 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   const deletedPractices = [];
   let userExists = true;
   let locked = false;
+  const preInquiryUpdates = [];
   const tx = {
     $queryRaw: async () => {
       rows.push({
@@ -192,6 +193,12 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
     },
     dataDeletionJob: { findFirst: async () => null, create: async ({ data }) => data },
     effectivePracticeReview: { updateMany: async () => ({ count: 1 }) },
+    preInquiry: {
+      updateMany: async (input) => {
+        preInquiryUpdates.push(input);
+        return { count: 1 };
+      }
+    },
     user: {
       delete: async ({ where }) => {
         assert.equal(locked, true);
@@ -205,6 +212,16 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   await deleteUserAfterFinalPracticeSweep("user-1", db);
   assert.deepEqual(deletedPractices, ["created-before-lock"]);
   assert.equal(userExists, false);
+  assert.deepEqual(preInquiryUpdates[0].where, { authorId: "user-1", sentAt: { not: null } });
+  assert.equal(preInquiryUpdates[0].data.authorId, null);
+  assert.equal(preInquiryUpdates[0].data.situation, "");
+  assert.ok(preInquiryUpdates[0].data.assessmentState);
+  assert.deepEqual(preInquiryUpdates[1].where, { recipientOwnerId: "user-1" });
+  assert.deepEqual(preInquiryUpdates[1].data, {
+    receiverNote: null,
+    receiverChecklist: null,
+    nextContactOn: null
+  });
   const createAfterDelete = () => {
     if (!userExists) throw Object.assign(new Error("foreign_key_violation"), { code: "P2003" });
   };

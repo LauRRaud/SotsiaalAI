@@ -1,7 +1,11 @@
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
-import { getJourneyDetailForUser, updateJourneyForUser } from "@/lib/journey/service";
+import {
+  deleteJourneyForUser,
+  getJourneyDetailForUser,
+  updateJourneyForUser
+} from "@/lib/journey/service";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -69,5 +73,20 @@ export async function PATCH(request, context) {
       console.error("[journeys] update failed", safeError(error));
     }
     return json({ ok: false, message: error?.message || "journeys.errors.save_failed" }, status);
+  }
+}
+
+export async function DELETE(request, context) {
+  const auth = await requireJourneyUser();
+  if (!auth) return json({ ok: false, message: "api.common.unauthorized" }, 401);
+  try {
+    const params = await resolveParams(context);
+    const body = await request.json().catch(() => ({}));
+    const result = await deleteJourneyForUser(auth.userId, params?.id, body?.confirmation);
+    return json({ ok: true, ...result });
+  } catch (error) {
+    const status = Number(error?.status) || 500;
+    if (status >= 500) console.error("[journeys] delete failed", safeError(error));
+    return json({ ok: false, message: error?.message || "journeys.errors.delete_failed" }, status);
   }
 }

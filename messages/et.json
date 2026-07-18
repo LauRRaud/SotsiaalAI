@@ -247,7 +247,7 @@
       "item": "Seade {number}"
     },
     "back_to_chat": "Tagasi vestlusesse",
-    "delete_confirm": "Kas oled kindel, et soovid oma konto jäädavalt kustutada? Seda toimingut ei saa tagasi võtta.",
+    "delete_confirm": "Kas oled kindel, et soovid oma konto jäädavalt kustutada? Enne jätkamist saad oma Teekonnad eksportida. Kohale toimetatud pöördumisest jääb adressaadile anonüümitud fakt ja tema enda märkmed, kuid sinu sisu kustub. Seda toimingut ei saa tagasi võtta.",
     "deleting": "Kustutan…",
     "delete_account": "Kustuta konto",
     "delete_account_hint": "Kustutab konto ja eemaldab ligipääsu püsivalt – seda ei saa tagasi võtta.",
@@ -446,7 +446,7 @@
     },
     "section7": {
       "heading": "7. Säilitamine",
-      "body": "<p><strong>7.1 Konto- ja profiiliandmed.</strong> Konto- ja profiiliandmeid säilitame üldjuhul kuni konto kustutamiseni, välja arvatud ulatuses, mida seadus nõuab pikemaks säilitamiseks.</p><p><strong>7.2 Autentimise ajutised andmed.</strong> E-posti kinnituse link säilib üldjuhul kuni 24 tundi, PIN-i lähtestamise token kuni 60 minutit, ühekordne sisselogimise kood kuni 15 minutit, ajutine sisselogimistoken kuni 15 minutit ja usaldatud seadme kirje kuni 30 päeva. Aegunud autentimiskirjed eemaldatakse regulaarselt.</p><p><strong>7.3 Vestlused ja jooksvad tööandmed.</strong> Vestlused, vestlussõnumid, vestluse jooksvad olekukirjed ja üldised kasutuslogid säilivad üldjuhul kuni 90 päeva alates viimasest aktiivsusest või vastava kirje loomise või uuendamise ajast.</p><p><strong>7.4 Ruumid ja abiandmed.</strong> Mitteaktiivsed ruumid ja nendega seotud sõnumid säilivad üldjuhul kuni 90 päeva pärast viimast sisulist aktiivsust. Suletud, tühistatud või arhiveeritud abisoovid ja abipakkumised ning lõpetatud või tagasi lükatud sobitused säilivad üldjuhul kuni 90 päeva pärast viimast uuendust.</p><p><strong>7.5 Dokumendid ja agendi tulemused.</strong> Dokumentide teeki laaditud failid, mallid, dokumendi koostamise tööruumi mustandid ning kinnitatud agendi tulemused säilivad üldjuhul kuni 90 päeva alates viimasest muutmisest. Kui vana dokument on tehniliselt seotud uuema tulemusega, võib seda säilitada lühiajaliselt seni, kuni uuem seos lõpeb.</p><p><strong>7.6 Kustutamine ja kustutustööde jälg.</strong> Kui kasutaja kustutab dokumendi, eemaldatakse see rakenduse aktiivsest dokumendihaldusest ning käivitatakse seotud faili ja RAG- või otsinguindeksi viite kustutamine, kui selline viide on olemas. Kui välise indeksi kustutamine ei õnnestu kohe, võib jääda tehniline kustutustöö kirje, et ebaõnnestunud või ootel kustutus oleks nähtav ja järelkäsitletav.</p><p><strong>7.7 Konto kustutamine.</strong> Konto kustutamisel eemaldatakse kasutajakonto ja sellega seotud aktiivsed kasutajaandmed rakenduse kustutusloogika kohaselt. Tehnilised auditikirjed ja kustutustööde kirjed võivad alles jääda piiratud metaandmetena, et tõendada kustutustoimingut, käsitleda pooleliolevaid kustutustöid, tagada turvalisus või täita õiguslikke kohustusi.</p><p><strong>7.8 Varukoopiad ja töölogid.</strong> Kui kasutaja kustutab sisu, konto kustutatakse või kirje eemaldatakse kvoodi- või puhastusreeglite tõttu, võib see lühiajaliselt jääda varukoopiasse, süsteemi- või proxy-logidesse või teenusepakkuja tehnilistesse logidesse taastamise, turvalisuse, veaotsingu või õigusliku kohustuse tõttu ning seejärel eemaldatakse või muudetakse anonüümseks vastavalt vastavale ops- või teenusepakkuja seadistusele.</p><p><strong>7.9 Auditid, aktsepteerimised ja maksed.</strong> Üldised dokumentide auditikirjed, tehnilised töötluslogid ning tööalase kasutuse või andmetöötluse raamistikuga seotud tõendikirjed säilitatakse üldjuhul kuni 90 päeva, välja arvatud juhul, kui konkreetse aktsepteerimise, lepingulise suhte või õigusliku kohustuse tõendamiseks on mõistlikult vaja pikemat säilitamist. Makse teenusepakkujalt saadud detailne toores vastus või payload kärbitakse või eemaldatakse üldjuhul pärast 90 päeva. Minimaalne makse- ja raamatupidamisalune kirje säilib kuni 7 aastat või kauem, kui kohaldatav seadus seda nõuab.</p>"
+      "body": "<p><strong>7.1 Konto- ja profiiliandmed.</strong> Konto- ja profiiliandmeid säilitame üldjuhul kuni konto kustutamiseni, välja arvatud ulatuses, mida seadus nõuab pikemaks säilitamiseks.</p><p><strong>7.2 Autentimise ajutised andmed.</strong> E-posti kinnituse link säilib üldjuhul kuni 24 tundi, PIN-i lähtestamise token kuni 60 minutit, ühekordne sisselogimise kood kuni 15 minutit, ajutine sisselogimistoken kuni 15 minutit ja usaldatud seadme kirje kuni 30 päeva. Aegunud autentimiskirjed eemaldatakse regulaarselt.</p><p><strong>7.3 Vestlused ja jooksvad tööandmed.</strong> Vestlused, vestlussõnumid, vestluse jooksvad olekukirjed ja üldised kasutuslogid säilivad üldjuhul kuni 90 päeva alates viimasest aktiivsusest või vastava kirje loomise või uuendamise ajast.</p><p><strong>7.4 Ruumid ja abiandmed.</strong> Mitteaktiivsed ruumid ja nendega seotud sõnumid säilivad üldjuhul kuni 90 päeva pärast viimast sisulist aktiivsust. Suletud, tühistatud või arhiveeritud abisoovid ja abipakkumised ning lõpetatud või tagasi lükatud sobitused säilivad üldjuhul kuni 90 päeva pärast viimast uuendust.</p><p><strong>7.5 Dokumendid ja agendi tulemused.</strong> Dokumentide teeki laaditud failid, mallid, dokumendi koostamise tööruumi mustandid ning kinnitatud agendi tulemused säilivad üldjuhul kuni 90 päeva alates viimasest muutmisest. Kui vana dokument on tehniliselt seotud uuema tulemusega, võib seda säilitada lühiajaliselt seni, kuni uuem seos lõpeb.</p><p><strong>7.6 Kustutamine ja kustutustööde jälg.</strong> Kui kasutaja kustutab dokumendi, eemaldatakse see rakenduse aktiivsest dokumendihaldusest ning käivitatakse seotud faili ja RAG- või otsinguindeksi viite kustutamine, kui selline viide on olemas. Kui välise indeksi kustutamine ei õnnestu kohe, võib jääda tehniline kustutustöö kirje, et ebaõnnestunud või ootel kustutus oleks nähtav ja järelkäsitletav.</p><p><strong>7.7 Konto kustutamine.</strong> Konto kustutamisel eemaldatakse kasutajakonto ja sellega seotud aktiivsed kasutajaandmed rakenduse kustutusloogika kohaselt. Tehnilised auditikirjed ja kustutustööde kirjed võivad alles jääda piiratud metaandmetena, et tõendada kustutustoimingut, käsitleda pooleliolevaid kustutustöid, tagada turvalisus või täita õiguslikke kohustusi. Kohale toimetatud eelpöördumisest jääb adressaadile anonüümitud faktikiht ja tema enda töömärkmed; autori sisu kustutatakse.</p><p><strong>7.8 Varukoopiad ja töölogid.</strong> Kui kasutaja kustutab sisu, konto kustutatakse või kirje eemaldatakse kvoodi- või puhastusreeglite tõttu, võib see lühiajaliselt jääda varukoopiasse, süsteemi- või proxy-logidesse või teenusepakkuja tehnilistesse logidesse taastamise, turvalisuse, veaotsingu või õigusliku kohustuse tõttu ning seejärel eemaldatakse või muudetakse anonüümseks vastavalt vastavale ops- või teenusepakkuja seadistusele.</p><p><strong>7.9 Auditid, aktsepteerimised ja maksed.</strong> Üldised dokumentide auditikirjed, tehnilised töötluslogid ning tööalase kasutuse või andmetöötluse raamistikuga seotud tõendikirjed säilitatakse üldjuhul kuni 90 päeva, välja arvatud juhul, kui konkreetse aktsepteerimise, lepingulise suhte või õigusliku kohustuse tõendamiseks on mõistlikult vaja pikemat säilitamist. Makse teenusepakkujalt saadud detailne toores vastus või payload kärbitakse või eemaldatakse üldjuhul pärast 90 päeva. Minimaalne makse- ja raamatupidamisalune kirje säilib kuni 7 aastat või kauem, kui kohaldatav seadus seda nõuab.</p>"
     },
     "section8": {
       "heading": "8. Kasutaja õigused",
@@ -570,6 +570,7 @@
   "workspace_feature_pages": {
     "back_to_workspace": "Tagasi töölauale",
     "pre_inquiries": {
+      "deleted_author": "Kustutatud kasutaja pöördumine",
       "title": "Eelpöördumine",
       "lead": "Koosta eelkaardistuse põhjal kontrollitav pöördumise mustand sobivale KOV kontaktile või teenuseosutajale.",
       "meta": {
@@ -3081,6 +3082,10 @@
   },
   "notifications": {
     "events": {
+      "workspace_created": "Teekond loodi",
+      "workspace_activated": "Teekond taasavati",
+      "workspace_archived": "Teekond arhiveeriti",
+      "workspace_deleted": "Teekond kustutati",
       "pre_inquiry_arrived": "Sulle saabus eelpöördumine",
       "pre_inquiry_status_changed": "Sinu eelpöördumise olek muutus",
       "pre_inquiry_opened": "Sinu eelpöördumine avati",
@@ -4177,6 +4182,11 @@
       "error": "Selgitust ei saanud praegu avada."
     },
     "title": "Teekond",
+    "autosave": { "restored": "Taastasime selle sessiooni pooleli jäänud töö.", "discard_confirm": "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?" },
+    "quick_help": { "label": "Kiire abi", "emergency": "112", "child": "116 111", "victim": "116 006" },
+    "steps": { "label": "Teekonna sammud", "describe": "Kirjelda", "review": "Vaata üle" },
+    "risk_card": { "title": "Kui vajad kohe abi", "body": "Need tähelepanekud jäävad ainult sulle nähtavaks ega liigu eelpöördumise adressaadile." },
+    "delete": { "title": "Kustuta Teekond jäädavalt?", "body": "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.", "confirm": "Jah, kustuta jäädavalt" },
     "chatTool": {
       "label": "Teekond"
     },
@@ -4243,6 +4253,10 @@
       "one_item_per_line": "Üks kirje reale"
     },
     "actions": {
+      "previous_step": "← Eelmine samm",
+      "reopen": "Taasava",
+      "export": "Ekspordi tekstina",
+      "delete": "Kustuta jäädavalt",
       "archive": "Arhiveeri",
       "archive_named": "Arhiveeri teekond {title}",
       "save_private": "Salvesta teekond",
@@ -4266,6 +4280,9 @@
       "archive_failed": "Teekonna arhiveerimine ebaõnnestus.",
       "updated": "Teekond uuendati.",
       "archived": "Teekond arhiveeriti.",
+      "reopened": "Teekond taasavati.",
+      "reopen_failed": "Teekonna taasavamine ebaõnnestus.",
+      "delete_failed": "Teekonna kustutamine ebaõnnestus.",
       "no_active": "Ühtegi privaatset teekonda ei ole veel salvestatud.",
       "no_archived": "Arhiveeritud teekondi ei ole.",
       "not_found_title": "Teekonda ei leitud",
@@ -4467,6 +4484,13 @@
       "domains": "seotud teemad",
       "missing_info": "puuduolev info",
       "wish": "inimese soov",
+      "person_context": "kolmanda isiku kontekst",
+      "person_context_ack": "Kinnitan, et mul on õigus seda teise isiku teavet jagada.",
+      "service_continuity": "teenuse jätkumise info",
+      "municipality": "KOV või piirkond",
+      "title_field": "Teekonna pealkiri",
+      "recipient_preview": "Adressaat näeb",
+      "empty_preview": "Valitud Teekonna sisu ei lisata.",
       "service_contact": "valitud teenusekaardi kontakt",
       "document": "seotud dokument",
       "assistive_devices": "abivahendid ja kohandused",

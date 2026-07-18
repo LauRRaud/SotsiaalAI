@@ -42,6 +42,22 @@ function formatDate(value, locale = "et") {
   }
 }
 
+function downloadJourneyText(journey, filename = "journey.txt") {
+  const sections = [
+    journey?.title,
+    journey?.summary,
+    (journey?.domains || []).join("\n"),
+    (journey?.missingInfo || []).join("\n"),
+    (journey?.suggestedActions || []).map((item) => typeof item === "string" ? item : item?.title).filter(Boolean).join("\n")
+  ].filter(Boolean);
+  const url = URL.createObjectURL(new Blob([sections.join("\n\n")], { type: "text/plain;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
 function primaryPathLabel(t, value) {
   return t(`journey.primary_paths.${value || "UNKNOWN"}`, t("journey.primary_paths.UNKNOWN", "Not clear yet"));
 }
@@ -453,7 +469,10 @@ function RelatedObjectsPanel({ journey, t, locale }) {
 
 function PreInquirySharePanel({ journey, href, t }) {
   const assistiveDevices = buildAssistiveDevicesHandoff(journey);
-  const [selectedShareKeys, setSelectedShareKeys] = useState(["summary", "domains", "missingInfo", "wish"]);
+  const [selectedShareKeys, setSelectedShareKeys] = useState(["summary", "domains", "missingInfo"]);
+  const [preview, setPreview] = useState(null);
+  const [thirdPartyAcknowledged, setThirdPartyAcknowledged] = useState(false);
+  const selectedPersonContext = selectedShareKeys.includes("personContext");
   const reviewedHref = useMemo(() => {
     const selected = selectedShareKeys.filter(Boolean);
     const [path, query = ""] = String(href || "").split("?");
@@ -478,10 +497,28 @@ function PreInquirySharePanel({ journey, href, t }) {
     ...(assistiveDevices.hasAssistiveDeviceNeed
       ? [["assistiveDevices", t("journey.share.assistive_devices", "abivahendid ja kohandused"), true]]
       : []),
-    ["wish", t("journey.share.wish", "inimese soov"), true],
-    ["serviceContact", t("journey.share.service_contact", "valitud teenusekaardi kontakt"), false],
-    ["document", t("journey.share.document", "seotud dokument"), false]
+    ["wish", t("journey.share.wish", "inimese soov"), Boolean(journey?.context?.personWish)],
+    ["personContext", t("journey.share.person_context", "kolmanda isiku kontekst"), Boolean(journey?.context?.personContext)],
+    ["serviceContinuity", t("journey.share.service_continuity", "teenuse jätkumise info"), Boolean(journey?.context?.serviceContinuity)],
+    ["municipality", t("journey.share.municipality", "KOV või piirkond"), Boolean(journey?.context?.municipality || journey?.context?.municipalityName)],
+    ["document", t("journey.share.document", "seotud dokument"), Boolean(journey?.context?.contextNote)],
+    ["title", t("journey.share.title_field", "Teekonna pealkiri"), Boolean(journey?.title)]
   ];
+
+  useEffect(() => {
+    if (!journey?.id) return undefined;
+    const controller = new AbortController();
+    fetch(`/api/journeys/${encodeURIComponent(journey.id)}/pre-inquiry-draft`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ shareKeys: selectedShareKeys }),
+      signal: controller.signal
+    })
+      .then((response) => response.json().catch(() => ({})))
+      .then((payload) => { if (!controller.signal.aborted && payload?.ok) setPreview(payload.prefill || null); })
+      .catch(() => { if (!controller.signal.aborted) setPreview(null); });
+    return () => controller.abort();
+  }, [journey?.id, selectedShareKeys]);
 
   return (
     <section>
@@ -494,7 +531,7 @@ function PreInquirySharePanel({ journey, href, t }) {
         </p>
       </div>
       <div>
-        {shareOptions.map(([key, label]) => (
+        {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
           <label key={key}>
             <input
               type="checkbox"
@@ -505,8 +542,18 @@ function PreInquirySharePanel({ journey, href, t }) {
           </label>
         ))}
       </div>
+      {selectedPersonContext ? (
+        <label>
+          <input type="checkbox" checked={thirdPartyAcknowledged} onChange={(event) => setThirdPartyAcknowledged(event.target.checked)} />
+          <span>{t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}</span>
+        </label>
+      ) : null}
+      <section aria-live="polite">
+        <h4>{t("journey.share.recipient_preview", "Adressaat näeb")}</h4>
+        <pre>{preview?.situation || preview?.topic || t("journey.share.empty_preview", "Valitud Teekonna sisu ei lisata.")}</pre>
+      </section>
       <div>
-        <Button as="a" href={reviewedHref} disabled={!selectedShareKeys.length}>
+        <Button as="a" href={reviewedHref} disabled={!selectedShareKeys.length || (selectedPersonContext && !thirdPartyAcknowledged)}>
           {t("journey.share.continue", "Jätka eelpöördumise koostamisega")}
         </Button>
       </div>
@@ -650,6 +697,7 @@ export default function JourneyDetail({ journeyId }) {
   const [plainLanguageReadingAid, setPlainLanguageReadingAid] = useState([]);
   const [plainLanguageLoading, setPlainLanguageLoading] = useState(false);
   const [plainLanguageError, setPlainLanguageError] = useState("");
+  const [deleteArmed, setDeleteArmed] = useState(false);
 
   const updatedAt = useMemo(() => formatDate(journey?.updatedAt, locale), [journey?.updatedAt, locale]);
   const plainLanguageAvailable = Boolean(journey && canExplainJourneySummary({
@@ -834,7 +882,8 @@ export default function JourneyDetail({ journeyId }) {
           primaryPath: form.primaryPath,
           domains: textToLines(form.domains),
           missingInfo: textToLines(form.missingInfo),
-          suggestedActions: textToActions(form.suggestedActions)
+          suggestedActions: textToActions(form.suggestedActions),
+          expectedUpdatedAt: journey?.updatedAt
         })
       });
       const payload = await response.json().catch(() => ({}));
@@ -851,7 +900,7 @@ export default function JourneyDetail({ journeyId }) {
     } finally {
       setBusy(false);
     }
-  }, [form, journeyId, t]);
+  }, [form, journey?.updatedAt, journeyId, t]);
 
   const handleArchive = useCallback(async () => {
     if (!journeyId || journey?.status === "ARCHIVED") return;
@@ -865,7 +914,7 @@ export default function JourneyDetail({ journeyId }) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ status: "ARCHIVED" })
+        body: JSON.stringify({ status: "ARCHIVED", expectedUpdatedAt: journey.updatedAt })
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.ok) {
@@ -881,7 +930,38 @@ export default function JourneyDetail({ journeyId }) {
     } finally {
       setBusy(false);
     }
-  }, [journey?.status, journeyId, t]);
+  }, [journey?.status, journey?.updatedAt, journeyId, t]);
+
+  const handleReopen = useCallback(async () => {
+    if (!journeyId || journey?.status !== "ARCHIVED") return;
+    setBusy(true); setError(""); setNotice("");
+    try {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status: "ACTIVE", expectedUpdatedAt: journey.updatedAt })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.reopen_failed", "Teekonna taasavamine ebaõnnestus."));
+      setJourney(payload.journey); setDeleteArmed(false);
+      setNotice(t("journey.messages.reopened", "Teekond taasavati."));
+    } catch (reopenError) { setError(reopenError.message); } finally { setBusy(false); }
+  }, [journey?.status, journey?.updatedAt, journeyId, t]);
+
+  const handleDelete = useCallback(async () => {
+    if (!journeyId) return;
+    setBusy(true); setError("");
+    try {
+      const response = await fetch(`/api/journeys/${encodeURIComponent(journeyId)}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ confirmation: "DELETE" })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload.ok) throw new Error(payload.message || t("journey.messages.delete_failed", "Teekonna kustutamine ebaõnnestus."));
+      pushWithTransition(router, localizePath("/teekond", locale));
+    } catch (deleteError) { setError(deleteError.message); setBusy(false); }
+  }, [journeyId, locale, router, t]);
 
   const handleCancelEdit = useCallback(() => {
     setForm(createFormState(journey));
@@ -975,6 +1055,7 @@ export default function JourneyDetail({ journeyId }) {
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
+              showBack={false}
               holdPressedVisualDisabled
             >
               {t("journey.title", "Teekond")}
@@ -994,6 +1075,7 @@ export default function JourneyDetail({ journeyId }) {
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
+              showBack={false}
               holdPressedVisualDisabled
             >
               {t("journey.title", "Teekond")}
@@ -1023,6 +1105,7 @@ export default function JourneyDetail({ journeyId }) {
             <SubpageHeader
               onBack={handleBack}
               backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
+              showBack={false}
               holdPressedVisualDisabled
             >
               {t("journey.title", "Teekond")}
@@ -1043,12 +1126,13 @@ export default function JourneyDetail({ journeyId }) {
   }
 
   return (
-    <main>
-      <div>
-        <div>
+    <main className="journey-page">
+      <div className="journey-shell">
+        <div className="journey-content">
           <SubpageHeader
             onBack={handleBack}
             backAriaLabel={t("journey.actions.back_to_list", "Back to journey")}
+            showBack={false}
             holdPressedVisualDisabled
           >
             {t("journey.title", "Teekond")}
@@ -1091,10 +1175,38 @@ export default function JourneyDetail({ journeyId }) {
                       <Button variant="danger" onClick={handleArchive} disabled={busy}>
                         {t("journey.actions.archive", "Archive")}
                       </Button>
+                    ) : (
+                      <Button onClick={handleReopen} disabled={busy}>
+                        {t("journey.actions.reopen", "Taasava")}
+                      </Button>
+                    )}
+                    <Button onClick={() => downloadJourneyText(journey, `teekond-${journey.id}.txt`)} disabled={busy}>
+                      {t("journey.actions.export", "Ekspordi tekstina")}
+                    </Button>
+                    {!deleteArmed ? (
+                      <Button variant="danger" onClick={() => setDeleteArmed(true)} disabled={busy}>
+                        {t("journey.actions.delete", "Kustuta jäädavalt")}
+                      </Button>
                     ) : null}
                   </div>
                 </div>
               </section>
+
+              {deleteArmed ? (
+                <section className="journey-risk-card" role="alertdialog" aria-labelledby="journey-delete-title">
+                  <h2 id="journey-delete-title">{t("journey.delete.title", "Kustuta Teekond jäädavalt?")}</h2>
+                  <p>{t("journey.delete.body", "Teekonna privaatne sisu kustub. Seotud eelpöördumised jäävad alles, kuid side Teekonnaga katkeb. Soovitame enne eksportida.")}</p>
+                  <Button onClick={() => downloadJourneyText(journey, `teekond-${journey.id}.txt`)}>
+                    {t("journey.actions.export", "Ekspordi tekstina")}
+                  </Button>
+                  <Button variant="danger" onClick={handleDelete} disabled={busy}>
+                    {t("journey.delete.confirm", "Jah, kustuta jäädavalt")}
+                  </Button>
+                  <Button variant="linkBrand" onClick={() => setDeleteArmed(false)} disabled={busy}>
+                    {t("journey.actions.cancel", "Tühista")}
+                  </Button>
+                </section>
+              ) : null}
 
               <section>
                 <h2>
