@@ -6,6 +6,8 @@ BeyondFrames'i avalehe implementatsioonil
 "BFL"), kuid kirjeldab kõik raamistikuvabalt — lõpus on iseseisev
 vanilla-JS näide.
 
+> **SotsiaalAI prototüübipiir (17.07.2026):** see fail kirjeldab üht kerimispõhist liikumismootorit, mitte ühe konkreetse lehe demo ega kogu ruumilise töölaua ainsat navigatsiooniviisi. Platvormiülene siht on `docs/platvormi arendus/prototyybid/ruumilise-toolaua-prototuup.html`, kus kasutaja valib töövoonäite ja ühine kest valib sellele sobiva liikumisprofiili. Registreerimise praegune katse kasutab valikupõhist jaamalendu; Dokumendi koostamine, Tööheaolu, Teekond, Kovisioon ja lugemiskiht on sama prototüübi teised näited. Lugemissisu võib jääda tavaliselt keritavaks ning reduced-motion peab alati saama lameda vaste.
+
 ---
 
 ## 1. Idee ühe lausega

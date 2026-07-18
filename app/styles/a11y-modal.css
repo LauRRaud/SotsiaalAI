@@ -112,19 +112,72 @@ div[role="presentation"][aria-hidden="true"] {
   gap: 0.55rem;
 }
 
-/* Valikukaardid (OptionCard) modalis: liquid-glass materjal tuleb
-   globaalselt (panel.css label[data-control-type]) — siin AINULT
-   paigutus (tekst keskele), et pind jääks samaks mis nupud. */
+/* Eelistuste valikud on tagasihoidlik liquid-glass: sisemine vedel läige
+   ja gradient jäävad, kuid väliseid varje ega kuma ei ole. */
 .csp-step label[data-control-type] {
   justify-content: center;
   text-align: center;
-  /* Suurem nupu-tekst modalis (tellija 07.07) — scoped .csp-step'ile,
-     et teised paneelid (registreerimine, teenusekaart) ei muutuks. */
-  font-size: clamp(1.12rem, 1.02rem + 0.5vw, 1.32rem);
+  padding: 0.72em 1em;
+  border-radius: 14px;
+  font-size: clamp(1.06rem, 0.98rem + 0.34vw, 1.2rem);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step label[data-control-type] {
+  background-color: rgba(255, 255, 255, 0.03);
+  background-image: linear-gradient(
+    165deg,
+    rgba(255, 250, 244, 0.08) 0%,
+    rgba(255, 255, 255, 0.025) 48%,
+    rgba(255, 244, 232, 0.045) 100%
+  );
+  border-color: rgba(255, 250, 240, 0.17);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px) saturate(104%);
+  backdrop-filter: blur(8px) saturate(104%);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step label[data-control-type]:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 250, 240, 0.27);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step label[data-control-type][data-checked="true"] {
+  background-color: rgba(255, 255, 255, 0.065);
+  background-image: linear-gradient(
+    165deg,
+    rgba(255, 250, 244, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 244, 232, 0.065) 100%
+  );
+  border-color: rgba(255, 250, 240, 0.34);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.21), inset 0 -1px 2px rgba(0, 0, 0, 0.11);
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step label[data-control-type][data-focus-visible="true"] {
+  outline: 2px solid rgba(255, 250, 240, 0.82);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+html[data-contrast="hc"] .csp-step label[data-control-type][data-checked="true"] {
+  background: #26201b;
+  border-color: #ffffff;
 }
 
-/* Salvesta-nupp kasutab globaalset liquid-glass primary-nuppu (glass.css)
-   — eraldi ülekirjutust EI ole, et pind oleks sama mis mujal. */
+/* Salvesta on sama õrn liquid-glass: nähtav sisemine peegeldus, ilma kumata. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step button[data-variant="primary"] {
+  background-color: rgba(255, 255, 255, 0.055);
+  background-image: linear-gradient(
+    165deg,
+    rgba(255, 250, 244, 0.13) 0%,
+    rgba(255, 255, 255, 0.04) 52%,
+    rgba(255, 244, 232, 0.06) 100%
+  );
+  border-color: rgba(255, 250, 240, 0.29);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 520;
+}
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .csp-step button[data-variant="primary"]:hover {
+  background-color: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 250, 240, 0.38);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+}
 
 /* Salvesta-samm (tellija 07.07): eraldatud viimasest sektsioonist üleval
    ja istub kaardi alaservast sama kaugel kui sisu külgedest — enam ei ole

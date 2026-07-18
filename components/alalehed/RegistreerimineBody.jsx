@@ -1,14 +1,26 @@
 "use client";
 
+/**
+ * Registreerimine = jaamalend: iga vormisamm on ruumis hõljuv jaam,
+ * valik lennutab kaamera järgmise juurde. Kerimist EI OLE — edasi
+ * viib vastamine, tagasi dokk. Mootor: useStationFlight (flight-effect
+ * adaptsioon, jaama-target); kest: PanelFrame canvas-režiim; stiilid:
+ * app/styles/register-flight.css (.rgf-*).
+ *
+ * Vormiloogika (mustand sessionStorage'is, raamistiku-detour,
+ * /api/register leping, veakoodide kaardistus) on endise keritava
+ * vormi omaga identne — muutus ainult lavastus.
+ */
+
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState, useId } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useId } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import OptionCard from "@/components/ui/OptionCard";
 import RichText from "@/components/i18n/RichText";
 import Button from "@/components/ui/Button";
 import { localizePath } from "@/lib/localizePath";
-import CenteredScrollPicker from "@/components/CenteredScrollPicker";
-import useSmoothWheelProxy from "@/components/ui/useSmoothWheelProxy";
+import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import useStationFlight from "@/components/register/useStationFlight";
 import {
   WORKER_FRAMEWORK_REGISTER_ACK_STORAGE_KEY,
   WORKER_FRAMEWORK_REGISTER_CONTEXT_STORAGE_KEY,
@@ -18,8 +30,7 @@ import {
 } from "@/lib/frameworkAcceptances";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
-// Funktsionaalne klass: CenteredScrollPicker kasutab ".register-step" itemSelector'ina.
-const registerStepClassName = "register-step";
+
 /* Avalik registreerimine jääb kuni ametliku avamiseni kooditasandil
    suletuks. Admin saab lehe paigutust serveripoolse rollikontrolli järel
    vaadata, kuid vormi esitada ei saa. */
@@ -36,6 +47,9 @@ const initialForm = {
 };
 const REGISTER_ROLE_OPTIONS = ["CLIENT", "SOCIAL_WORKER", "SERVICE_PROVIDER"];
 const PROFESSIONAL_ROLE_VALUES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
+/* Linnukese-jaamad lendavad edasi väikese pausiga, et valik jõuaks
+   visuaalselt kohale enne kaamera liikumist. */
+const AUTO_ADVANCE_MS = 240;
 
 function isProfessionalRole(role) {
   return PROFESSIONAL_ROLE_VALUES.has(String(role || "").trim().toUpperCase());
@@ -81,11 +95,75 @@ export default function RegistreerimineBody({}) {
   const { t, locale } = useI18n();
   const lockedRole = normalizeRegistrationRoleParam(searchParams?.get("role"));
   const isRoleLocked = Boolean(lockedRole);
-  const ringRef = useRef(null);
-  const scrollRef = useRef(null);
+  const stageRef = useRef(null);
+  const PIN_MIN = 4;
+  const PIN_MAX = 8;
+  const [form, setForm] = useState(initialForm);
+  const [draftReady, setDraftReady] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState({
+    email: "",
+    pin: "",
+  });
+  const [successMessage, setSuccessMessage] = useState("");
+  const showSuccessState = Boolean(successMessage);
+  const [frameworkReviewOpenedAt, setFrameworkReviewOpenedAt] = useState("");
+  const [frameworkSignedDownloadedAt, setFrameworkSignedDownloadedAt] =
+    useState("");
+  const roleLabelId = useId();
+  const roleHintId = useId();
+  const emailErrorId = useId();
+  const pinErrorId = useId();
+  const isProfessionalUser = isProfessionalRole(form.role);
+  const requiresFramework =
+    isProfessionalUser && form.workerUse === "ORG_IDENTIFIABLE";
+  const hasConfirmedFramework = requiresFramework && form.frameworkAck;
+
+  /* Jaamade järjekord ehitatakse olekust: lukustatud roll jätab
+     rollijaama vahele (roll = chip dokis); töökasutuse jaam ainult
+     professionaalirollidel; edu-jaam lisandub pärast õnnestumist. */
+  const stations = useMemo(() => {
+    const list = [];
+    if (!isRoleLocked) list.push("role");
+    list.push("email", "pin", "agree", "guide");
+    if (isProfessionalUser) list.push("worker");
+    list.push("gate");
+    if (showSuccessState) list.push("success");
+    return list;
+  }, [isRoleLocked, isProfessionalUser, showSuccessState]);
+
+  const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
+    count: stations.length,
+    initialIndex: 0,
+  });
+
+  /* Kõik navigeerimine käib siit läbi: ootel auto-lend tühistatakse,
+     siht püsib jaamaloendi piires. */
+  const advanceTimerRef = useRef(0);
+  const goTo = useCallback(
+    (index, opts) => {
+      window.clearTimeout(advanceTimerRef.current);
+      const clamped = Math.max(0, Math.min(index, stations.length - 1));
+      flyTo(clamped, opts);
+    },
+    [flyTo, stations.length],
+  );
+  const scheduleAdvance = useCallback(
+    (toIndex) => {
+      window.clearTimeout(advanceTimerRef.current);
+      advanceTimerRef.current = window.setTimeout(() => {
+        flyTo(Math.max(0, Math.min(toIndex, stations.length - 1)));
+      }, AUTO_ADVANCE_MS);
+    },
+    [flyTo, stations.length],
+  );
+  useEffect(() => () => window.clearTimeout(advanceTimerRef.current), []);
+
   const handleClose = () => {
     pushWithTransition(router, localizePath("/", locale));
   };
+
   const openFrameworkPage = (overrides = {}) => {
     if (typeof window !== "undefined") {
       const liveForm = {
@@ -125,55 +203,6 @@ export default function RegistreerimineBody({}) {
     }
     router.push(localizePath("/tooalase-kasutuse-raamistik", locale));
   };
-  const PIN_MIN = 4;
-  const PIN_MAX = 8;
-  const [form, setForm] = useState(initialForm);
-  const [draftReady, setDraftReady] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState("");
-  const [fieldErrors, setFieldErrors] = useState({
-    email: "",
-    pin: "",
-  });
-  const [successMessage, setSuccessMessage] = useState("");
-  const showSuccessState = Boolean(successMessage);
-  const [frameworkReviewOpenedAt, setFrameworkReviewOpenedAt] = useState("");
-  const [frameworkSignedDownloadedAt, setFrameworkSignedDownloadedAt] =
-    useState("");
-  const [scrollPad, setScrollPad] = useState(0);
-  const [scrollPadTop, setScrollPadTop] = useState(0);
-  const [scrollPadBottom, setScrollPadBottom] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [hasUserStartedScroll, setHasUserStartedScroll] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const initViewportModeRef = useRef(null);
-  const initialScrollTopRef = useRef(0);
-  const hasInitialScrollTopRef = useRef(false);
-  const initialFirstStepAlignDoneRef = useRef(false);
-  const roleLabelId = useId();
-  const roleHintId = useId();
-  const emailErrorId = useId();
-  const pinErrorId = useId();
-  const roleLabelText = t("auth.register.role_label_question");
-  const isProfessionalUser = isProfessionalRole(form.role);
-  const requiresFramework =
-    isProfessionalUser && form.workerUse === "ORG_IDENTIFIABLE";
-  const hasConfirmedFramework = requiresFramework && form.frameworkAck;
-  const roleStepIndex = 0;
-  const emailStepIndex = 1;
-  const pinStepIndex = 2;
-  const agreementStepIndex = 3;
-  const guideStepIndex = 4;
-  const workerStepIndex = 5;
-  const submitStepIndex = isProfessionalUser ? 6 : 5;
-  const proxyWheelToRegisterScroll = useSmoothWheelProxy({
-    scrollRef,
-    disabled: isMobileViewport,
-    // Hiir sisu (nupud/väljad) kohal → natiivne keritav ala kerib ise;
-    // proxy sekkub AINULT väljaspool keritavat ala (tellija: elementide
-    // peal ei saanud alla kerida)
-    passthroughNativeTargets: true,
-  });
 
   useEffect(() => {
     if (!draftReady || !lockedRole) return;
@@ -220,7 +249,10 @@ export default function RegistreerimineBody({}) {
       );
     }
   }
-  const handleRoleSelect = (role) => {
+
+  /* Puhas valik (nooleklahvid liiguvad valikute vahel ILMA lennuta);
+     klikk/Enter valib JA lendab edasi. */
+  const selectRole = (role) => {
     setForm((prev) => ({
       ...prev,
       role,
@@ -232,6 +264,10 @@ export default function RegistreerimineBody({}) {
         : null),
     }));
   };
+  const handleRoleSelect = (role, stationIdx) => {
+    selectRole(role);
+    scheduleAdvance(stationIdx + 1);
+  };
   const handleRoleKeyDown = (event, role) => {
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown" && event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
       return;
@@ -241,10 +277,123 @@ export default function RegistreerimineBody({}) {
     const direction = event.key === "ArrowUp" || event.key === "ArrowLeft" ? -1 : 1;
     const nextIndex =
       (currentIndex + direction + REGISTER_ROLE_OPTIONS.length) % REGISTER_ROLE_OPTIONS.length;
-    handleRoleSelect(REGISTER_ROLE_OPTIONS[nextIndex]);
+    selectRole(REGISTER_ROLE_OPTIONS[nextIndex]);
   };
-  async function handleSubmit(e) {
+
+  /* Linnuke → väike paus → auto-lend; lahtivõtmine jätab paigale. */
+  const handleAckChange = (e, stationIdx) => {
+    handleChange(e);
+    if (e.target.checked) scheduleAdvance(stationIdx + 1);
+    else window.clearTimeout(advanceTimerRef.current);
+  };
+
+  /* Vaikne valiidsuskontroll tühikäigu-autolennuks (vigu EI kuvata —
+     need ilmuvad ainult Enteril/kerimisel/esitamisel). */
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isEmailComplete = EMAIL_REGEX.test(form.email.trim().toLowerCase());
+  const pinDigits = form.pin.replace(/\D/g, "");
+  const isPinComplete = pinDigits.length >= PIN_MIN && pinDigits.length <= PIN_MAX;
+
+  /* Sisendjaamad valideeritakse ENNE lendu — vigasena ei lenda. */
+  const validateEmailStation = () => {
+    const email = form.email.trim().toLowerCase();
+    if (!email) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        email: t("profile.email_update.error_email_required"),
+      }));
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        email: t("profile.email_update.error_email_invalid"),
+      }));
+      return false;
+    }
+    return true;
+  };
+  const validatePinStation = () => {
+    const pin = form.pin.replace(/\D/g, "");
+    if (!pin) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        pin: t("profile.email_update.error_pin_required"),
+      }));
+      return false;
+    }
+    if (pin.length < PIN_MIN || pin.length > PIN_MAX) {
+      setFieldErrors((prev) => ({
+        ...prev,
+        pin: t("profile.email_update.error_pin_length", {
+          min: PIN_MIN,
+          max: PIN_MAX,
+        }),
+      }));
+      return false;
+    }
+    return true;
+  };
+  const advanceFrom = (stationKey, stationIdx) => {
+    if (stationKey === "email" && !validateEmailStation()) return;
+    if (stationKey === "pin" && !validatePinStation()) return;
+    goTo(stationIdx + 1);
+  };
+
+  /* Tühikäigu-autolend (tellija 16.07: „ei taha Edasi-nuppu pidevalt
+     vajutada"): kui e-post/PIN on valiidne ja tippimises tekib paus,
+     lennatakse ise edasi. Iga klahvivajutus nullib taimeri; Enter ja
+     kerimine jäävad kiiremaks teeks. Autolend AINULT siis, kui väärtus
+     on SELLES jaamas muutunud — tagasi tulles (dokk/viga) ei röövita
+     kasutajat kohe edasi. */
+  const arrivalValuesRef = useRef({ email: "", pin: "" });
+  useEffect(() => {
+    arrivalValuesRef.current = { email: form.email, pin: form.pin };
+    // Snapshot jaamavahetusel JA mustandi taastumisel (draftReady) —
+    // taastatud väärtus ei tohi paista „tipituna" ja autolendu käivitada.
+    // Form-deps lisamine nullaks valvuri.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeIndex, draftReady]);
+  useEffect(() => {
+    if (!draftReady) return;
+    const key = stations[activeIndex];
+    const typedHere =
+      key === "email"
+        ? form.email !== arrivalValuesRef.current.email
+        : key === "pin"
+          ? form.pin !== arrivalValuesRef.current.pin
+          : false;
+    const ready =
+      typedHere &&
+      ((key === "email" && isEmailComplete) || (key === "pin" && isPinComplete));
+    if (!ready) return;
+    const idx = activeIndex;
+    const timer = window.setTimeout(() => {
+      goTo(idx + 1);
+    }, key === "email" ? 1150 : 1000);
+    return () => window.clearTimeout(timer);
+  }, [draftReady, stations, activeIndex, form.email, form.pin, isEmailComplete, isPinComplete, goTo]);
+
+  /* Enter teeb igal jaamal õige asja: väraval esitab, mujal liigub
+     edasi (valideerides). Nii ei pääse vormi natiivne submit kunagi
+     poolelt jaamalt läbi. */
+  function handleFormSubmit(e) {
     e.preventDefault();
+    const key = stations[activeIndex];
+    if (key === "gate") {
+      void doSubmit();
+      return;
+    }
+    if (key && key !== "success") advanceFrom(key, activeIndex);
+  }
+
+  const jumpToStation = (key) => {
+    const idx = stations.indexOf(key);
+    if (idx >= 0) goTo(idx);
+  };
+
+  async function doSubmit() {
     setError("");
     setFieldErrors({
       email: "",
@@ -257,12 +406,9 @@ export default function RegistreerimineBody({}) {
     }
     const email = form.email.trim().toLowerCase();
     const pin = form.pin.replace(/\D/g, "");
-    const jumpToStep = (index) => {
-      scrollToIndex(index);
-    };
     if (!form.role) {
       setError(t("auth.register.error.role_required"));
-      jumpToStep(roleStepIndex);
+      jumpToStation("role");
       return;
     }
     if (!email) {
@@ -270,7 +416,7 @@ export default function RegistreerimineBody({}) {
         ...prev,
         email: t("profile.email_update.error_email_required"),
       }));
-      jumpToStep(emailStepIndex);
+      jumpToStation("email");
       return;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -279,7 +425,7 @@ export default function RegistreerimineBody({}) {
         ...prev,
         email: t("profile.email_update.error_email_invalid"),
       }));
-      jumpToStep(emailStepIndex);
+      jumpToStation("email");
       return;
     }
     if (!pin) {
@@ -287,7 +433,7 @@ export default function RegistreerimineBody({}) {
         ...prev,
         pin: t("profile.email_update.error_pin_required"),
       }));
-      jumpToStep(pinStepIndex);
+      jumpToStation("pin");
       return;
     }
     if (pin.length < PIN_MIN || pin.length > PIN_MAX) {
@@ -298,17 +444,17 @@ export default function RegistreerimineBody({}) {
           max: PIN_MAX,
         }),
       }));
-      jumpToStep(pinStepIndex);
+      jumpToStation("pin");
       return;
     }
     if (requiresFramework && !form.frameworkAck) {
       setError(t("auth.register.error.framework_ack_required"));
-      jumpToStep(workerStepIndex);
+      jumpToStation("worker");
       return;
     }
     if (!form.agree || !form.guideAck) {
       setError(t("auth.register.error.agree_required"));
-      jumpToStep(!form.agree ? agreementStepIndex : guideStepIndex);
+      jumpToStation(!form.agree ? "agree" : "guide");
       return;
     }
     setSubmitting(true);
@@ -347,7 +493,7 @@ export default function RegistreerimineBody({}) {
             ...prev,
             email: resolvedMessage,
           }));
-          jumpToStep(emailStepIndex);
+          jumpToStation("email");
           return;
         }
         if (
@@ -358,7 +504,7 @@ export default function RegistreerimineBody({}) {
             ...prev,
             pin: resolvedMessage,
           }));
-          jumpToStep(pinStepIndex);
+          jumpToStation("pin");
           return;
         }
         setError(resolvedMessage);
@@ -392,38 +538,17 @@ export default function RegistreerimineBody({}) {
       setSubmitting(false);
     }
   }
-  const {
-    canScrollUp,
-    canScrollDown,
-    getItemClassName,
-    scrollToIndex,
-  } = CenteredScrollPicker({
-    containerRef: scrollRef,
-    itemSelector: ".register-step",
-    applyItemVisibility: isMobileViewport,
-    neighborDistance: isMobileViewport ? 2 : 1,
-    lockWheelToSteps: false,
-    settleOnScroll: false,
-    applyEdgeVisibility: !isMobileViewport,
-    edgeVisibilityMin: 0.06,
-    enableArrowKeys: isMobileViewport,
-    allowArrowKeysInInputs: true,
-    captureArrowKeys: isMobileViewport,
-    settleMs: isMobileViewport ? 420 : 360,
-    maxStepPerSettle: isMobileViewport ? 99 : 1,
-    wheelCooldownMs: isMobileViewport ? 300 : 340,
-    minWheelDelta: isMobileViewport ? 10 : 16,
-    manageHiddenFocus: isMobileViewport,
-    pauseSettleOnInputFocus: isMobileViewport,
-    pauseSettleWhileTouch: isMobileViewport,
-  });
-  const getRegisterStepClassName = (index) =>
-    isMobileViewport ? getItemClassName(index) : "";
+
+  /* Mustandi taastus + raamistiku-detourist naasmine (verbatim leping
+     endise vormiga). Naasmisel lennatakse otse töökasutuse jaama. */
+  const pendingDetourReturnRef = useRef(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
     const rawDraft = window.sessionStorage.getItem(REGISTER_DRAFT_STORAGE_KEY);
     const registerFrameworkAck =
       window.sessionStorage.getItem(WORKER_FRAMEWORK_REGISTER_ACK_STORAGE_KEY) === "1";
+    const registerContext =
+      window.sessionStorage.getItem(WORKER_FRAMEWORK_REGISTER_CONTEXT_STORAGE_KEY) === "1";
     if (rawDraft || registerFrameworkAck) {
       try {
         const parsedDraft = rawDraft ? JSON.parse(rawDraft) : null;
@@ -450,6 +575,7 @@ export default function RegistreerimineBody({}) {
         }
       }
     }
+    if (registerContext) pendingDetourReturnRef.current = true;
     setDraftReady(true);
     setFrameworkReviewOpenedAt(
       window.sessionStorage.getItem(WORKER_FRAMEWORK_REVIEW_STORAGE_KEY) || "",
@@ -461,142 +587,43 @@ export default function RegistreerimineBody({}) {
     );
   }, []);
   useEffect(() => {
+    if (!pendingDetourReturnRef.current || !draftReady) return;
+    const idx = stations.indexOf("worker");
+    if (idx >= 0) {
+      pendingDetourReturnRef.current = false;
+      goTo(idx, { drift: true });
+    }
+  }, [draftReady, stations, goTo]);
+  useEffect(() => {
     if (typeof window === "undefined" || showSuccessState || !draftReady) return;
     window.sessionStorage.setItem(REGISTER_DRAFT_STORAGE_KEY, JSON.stringify(form));
   }, [draftReady, form, showSuccessState]);
+
+  /* Õnnestumine = lend väravast LÄBI edu-jaama (teekond jätkub). */
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    const query = window.matchMedia("(max-width: 768px)");
-    const apply = () => setIsMobileViewport(query.matches);
-    apply();
-    if (typeof query.addEventListener === "function") {
-      query.addEventListener("change", apply);
-      return () => query.removeEventListener("change", apply);
-    }
-    query.addListener(apply);
-    return () => query.removeListener(apply);
-  }, []);
-  useLayoutEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const updatePad = () => {
-      const steps = Array.from(scrollEl.querySelectorAll(".register-step"));
-      const firstStep = steps[0] || null;
-      const lastStep = steps[steps.length - 1] || firstStep;
-      if (!firstStep || !lastStep) return;
-      const firstH = firstStep.getBoundingClientRect().height || 0;
-      const lastH = lastStep.getBoundingClientRect().height || 0;
-      const viewH = Math.max(0, scrollEl.clientHeight || 0);
-      if (!viewH || !firstH || !lastH) return;
-      const targetCenter = viewH / 2 - 5;
-      const nextPadTopBase = Math.max(0, Math.floor(targetCenter - firstH / 2));
-      const nextPadBottomBase = Math.max(
-        0,
-        Math.floor(viewH - targetCenter - lastH / 2),
+    if (!showSuccessState) return;
+    const idx = stations.indexOf("success");
+    if (idx >= 0 && activeIndex !== idx) goTo(idx);
+  }, [showSuccessState, stations, activeIndex, goTo]);
+
+  /* Saabumisel fookus jaama esimesele juhtelemendile ([data-autofocus];
+     OptionCardi puhul label → sisemine input). Ainult jaamavahetusel,
+     mitte mount'il — leht ei röövi fookust. */
+  const prevIndexRef = useRef(activeIndex);
+  useEffect(() => {
+    if (prevIndexRef.current === activeIndex) return;
+    prevIndexRef.current = activeIndex;
+    const delay = mode === "3d" ? 420 : 80;
+    const timer = window.setTimeout(() => {
+      const host = stageRef.current?.querySelector(
+        '.rgf-plane[data-active="1"] [data-autofocus]',
       );
-      const nextPad = Math.max(0, Math.floor((viewH - firstH) / 2));
-      setScrollPad((prev) => (prev === nextPad ? prev : nextPad));
-      setScrollPadTop((prev) => (prev === nextPadTopBase ? prev : nextPadTopBase));
-      setScrollPadBottom((prev) =>
-        prev === nextPadBottomBase ? prev : nextPadBottomBase,
-      );
-    };
-    updatePad();
-    const ro =
-      typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(updatePad)
-        : null;
-    ro?.observe(scrollEl);
-    window.addEventListener("resize", updatePad);
-    return () => {
-      ro?.disconnect?.();
-      window.removeEventListener("resize", updatePad);
-    };
-  }, [isMobileViewport, isRoleLocked]);
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const mode = isMobileViewport ? "mobile" : "desktop";
-    if (initViewportModeRef.current === mode) return;
-    initViewportModeRef.current = mode;
-    initialFirstStepAlignDoneRef.current = false;
-    const resetToFirstStep = () => {
-      scrollEl.scrollTop = 0;
-      if (isMobileViewport) {
-        scrollToIndex(0, "auto");
-      } else {
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "auto",
-        });
-      }
-      setIsScrolled(false);
-      setHasUserStartedScroll(false);
-      hasInitialScrollTopRef.current = true;
-      initialScrollTopRef.current = scrollEl.scrollTop || 0;
-      initialFirstStepAlignDoneRef.current = true;
-    };
-    resetToFirstStep();
-    const rafA = requestAnimationFrame(resetToFirstStep);
-    const rafB = requestAnimationFrame(() =>
-      requestAnimationFrame(resetToFirstStep),
-    );
-    const settleTimer = window.setTimeout(resetToFirstStep, 120);
-    return () => {
-      cancelAnimationFrame(rafA);
-      cancelAnimationFrame(rafB);
-      window.clearTimeout(settleTimer);
-    };
-  }, [scrollToIndex, isMobileViewport]);
-  useEffect(() => {
-    if (
-      !isMobileViewport ||
-      hasUserStartedScroll ||
-      initialFirstStepAlignDoneRef.current
-    ) {
-      return;
-    }
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const alignToFirst = () => {
-      scrollToIndex(0, "auto");
-      setIsScrolled(false);
-      hasInitialScrollTopRef.current = true;
-      initialScrollTopRef.current = scrollEl.scrollTop || 0;
-      initialFirstStepAlignDoneRef.current = true;
-    };
-    const raf = requestAnimationFrame(alignToFirst);
-    return () => cancelAnimationFrame(raf);
-  }, [scrollPadTop, scrollPadBottom, hasUserStartedScroll, scrollToIndex, isMobileViewport]);
-  useEffect(() => {
-    const scrollEl = scrollRef.current;
-    if (!scrollEl || typeof window === "undefined") return;
-    const onScroll = () => {
-      const top = scrollEl.scrollTop || 0;
-      if (!hasInitialScrollTopRef.current) {
-        hasInitialScrollTopRef.current = true;
-        initialScrollTopRef.current = top;
-      }
-      const delta = Math.abs(top - initialScrollTopRef.current);
-      const thresholdOn = isMobileViewport ? 14 : 8;
-      const thresholdOff = isMobileViewport ? 9 : 5;
-      if (delta > thresholdOn) {
-        setHasUserStartedScroll((prev) => prev || true);
-      }
-      setIsScrolled((prev) => {
-        const next = prev ? delta > thresholdOff : delta > thresholdOn;
-        return prev === next ? prev : next;
-      });
-    };
-    onScroll();
-    scrollEl.addEventListener("scroll", onScroll, {
-      passive: true,
-    });
-    return () => {
-      scrollEl.removeEventListener("scroll", onScroll);
-    };
-  }, [isMobileViewport]);
+      const target = host?.matches?.("label") ? host.querySelector("input") : host;
+      if (target && !target.disabled) target.focus({ preventScroll: true });
+    }, delay);
+    return () => window.clearTimeout(timer);
+  }, [activeIndex, mode]);
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key !== "Escape") return;
@@ -606,6 +633,72 @@ export default function RegistreerimineBody({}) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [router, locale]);
+
+  /* Kerimine/svaip = jaamavahetus (tellija 16.07): alla kerides või
+     üles svaibates edasi (SAMA valideerimine mis Enteril — vigasena ei
+     lenda), üles kerides tagasi. Diskreetne samm cooldown'iga; värav
+     EI esita kerimisega kunagi; edu-jaamas kerimine lukus. Ref hoiab
+     värske oleku, listener registreeritakse üks kord. */
+  const wheelNavRef = useRef(() => {});
+  wheelNavRef.current = (dir) => {
+    if (showSuccessState) return;
+    if (dir > 0) {
+      const key = stations[activeIndex];
+      if (!key || key === "gate" || key === "success") return;
+      advanceFrom(key, activeIndex);
+      return;
+    }
+    if (activeIndex > 0) goTo(activeIndex - 1);
+  };
+  useEffect(() => {
+    const el = stageRef.current;
+    if (!el) return;
+    let acc = 0;
+    let lockUntil = 0;
+    const step = (dir) => {
+      lockUntil = performance.now() + 560;
+      acc = 0;
+      wheelNavRef.current(dir);
+    };
+    const onWheel = (e) => {
+      /* Lava ei keri kunagi natiivselt — kogu ratas on navigatsioon. */
+      e.preventDefault();
+      if (performance.now() < lockUntil) {
+        acc = 0;
+        return;
+      }
+      acc += e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+      if (Math.abs(acc) < 42) return;
+      step(acc > 0 ? 1 : -1);
+    };
+    let touchY = null;
+    let touchX = null;
+    const onTouchStart = (e) => {
+      touchY = e.touches[0]?.clientY ?? null;
+      touchX = e.touches[0]?.clientX ?? null;
+    };
+    const onTouchEnd = (e) => {
+      if (touchY == null) return;
+      const endY = e.changedTouches[0]?.clientY ?? touchY;
+      const endX = e.changedTouches[0]?.clientX ?? touchX;
+      const dy = touchY - endY;
+      const dx = Math.abs((touchX ?? endX) - endX);
+      touchY = null;
+      touchX = null;
+      if (Math.abs(dy) < 64 || Math.abs(dy) < dx * 1.4) return;
+      if (performance.now() < lockUntil) return;
+      step(dy > 0 ? 1 : -1);
+    };
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, []);
+
   const handleWorkerUseToggle = (checked) => {
     if (checked) {
       const registerFrameworkAck =
@@ -642,287 +735,368 @@ export default function RegistreerimineBody({}) {
       frameworkAck: false,
     }));
   };
-  return (
-    <section lang={locale} className="register-page">
-      <div
-        ref={ringRef}
-        className="register-ring"
-        data-scrolled={hasUserStartedScroll && isScrolled ? "1" : "0"}
-        onWheel={proxyWheelToRegisterScroll}
-      >
-        {showSuccessState ? (
-          <>
-            <div className="register-title">
-              <h1>
-                {t("auth.register.title")}
-              </h1>
-            </div>
-            <div className="register-success">
-              <div role="status">
-                <p>
-                  {successMessage}
-                </p>
-              </div>
-              <div>
-                <Button
-                  type="button"
-                  onClick={handleClose}
-                >
-                  <span>{t("buttons.back_home")}</span>
-                </Button>
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="register-title">
-              <h1>
-                {t("auth.register.title")}
-              </h1>
-            </div>
 
-            <>
-              {canScrollUp ? (
-                <div className="register-cue" aria-hidden="true" />
-              ) : null}
-              {canScrollDown ? (
-                <div className="register-cue" aria-hidden="true" data-scroll-cue={!isScrolled ? "1" : "0"} />
-              ) : null}
-            </>
+  const activeStationKey = stations[Math.min(activeIndex, stations.length - 1)];
+  const stepAnnouncement = t("auth.register.step_announce", {
+    current: Math.min(activeIndex, stations.length - 1) + 1,
+    total: stations.length,
+    label: t(`auth.register.steps.${activeStationKey}`),
+  });
 
-            <div className="register-scrollwrap">
-              <div
-                ref={scrollRef}
-                className="register-scroll"
-                style={{
-                  "--csp-pad": `${scrollPad}px`,
-                  "--csp-pad-top": `${scrollPadTop || scrollPad}px`,
-                  "--csp-pad-bottom": `${scrollPadBottom || scrollPad}px`,
-                  "--csp-center-offset": `${isMobileViewport ? -5 : 0}px`,
-                  overflowAnchor: "none",
+  function renderStation(key, i) {
+    const props = planeProps(i);
+    if (key === "role") {
+      return (
+        <section key={key} {...props}>
+          <div id={roleLabelId} className="rgf-question">
+            {t("auth.register.role_label_question")}
+          </div>
+          <div
+            className="rgf-controls"
+            role="radiogroup"
+            aria-labelledby={roleLabelId}
+            aria-describedby={roleHintId}
+          >
+            <div id={roleHintId} className="sr-only">
+              {t("auth.register.role_hint")}
+            </div>
+            {REGISTER_ROLE_OPTIONS.map((role, optionIdx) => (
+              <button
+                key={role}
+                type="button"
+                role="radio"
+                aria-checked={form.role === role}
+                data-checked={form.role === role ? "true" : "false"}
+                data-autofocus={optionIdx === 0 ? "" : undefined}
+                onClick={() => handleRoleSelect(role, i)}
+                onKeyDown={(event) => handleRoleKeyDown(event, role)}
+              >
+                <span>{t(roleLabelKey(role))}</span>
+              </button>
+            ))}
+          </div>
+        </section>
+      );
+    }
+    if (key === "email") {
+      return (
+        <section key={key} {...props}>
+          <label className="rgf-question" htmlFor="email">
+            {t("auth.register.email_question")}
+          </label>
+          <div className="rgf-controls">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder={fieldErrors.email ? "" : t("auth.email_placeholder")}
+              value={form.email}
+              onChange={handleChange}
+              required
+              inputMode="email"
+              autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              data-autofocus=""
+              aria-invalid={fieldErrors.email ? "true" : "false"}
+              aria-describedby={fieldErrors.email ? emailErrorId : undefined}
+            />
+            {fieldErrors.email ? (
+              <span id={emailErrorId} className="rgf-field-error">
+                {fieldErrors.email}
+              </span>
+            ) : null}
+          </div>
+        </section>
+      );
+    }
+    if (key === "pin") {
+      return (
+        <section key={key} {...props}>
+          <label className="rgf-question" htmlFor="pin">
+            {t("auth.register.pin_question")}
+          </label>
+          <div className="rgf-controls">
+            <input
+              type="text"
+              id="pin"
+              name="pin"
+              placeholder={
+                fieldErrors.pin
+                  ? ""
+                  : t("auth.register.pin_placeholder", {
+                      min: PIN_MIN,
+                      max: PIN_MAX,
+                    })
+              }
+              value={form.pin}
+              onChange={handleChange}
+              required
+              minLength={PIN_MIN}
+              maxLength={PIN_MAX}
+              autoComplete="new-password"
+              inputMode="numeric"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              data-autofocus=""
+              aria-invalid={fieldErrors.pin ? "true" : "false"}
+              aria-describedby={fieldErrors.pin ? pinErrorId : undefined}
+            />
+            {fieldErrors.pin ? (
+              <span id={pinErrorId} className="rgf-field-error">
+                {fieldErrors.pin}
+              </span>
+            ) : null}
+          </div>
+        </section>
+      );
+    }
+    if (key === "agree") {
+      return (
+        <section key={key} {...props}>
+          <div className="rgf-question">{t("auth.register.steps.agree")}</div>
+          <div className="rgf-controls">
+            <OptionCard
+              type="checkbox"
+              name="agree"
+              checked={form.agree}
+              onChange={(e) => handleAckChange(e, i)}
+              data-autofocus=""
+            >
+              <RichText
+                value={t("auth.register.agreement")}
+                replacements={{
+                  terms: {
+                    open: `<a href="${localizePath("/kasutustingimused", locale)}">`,
+                    close: "</a>",
+                  },
+                  privacy: {
+                    open: `<a href="${localizePath("/privaatsustingimused", locale)}">`,
+                    close: "</a>",
+                  },
                 }}
-                tabIndex={0}
-                aria-label={t("auth.register.title")}
-              >
-                <form
-                  onSubmit={handleSubmit}
-                  autoComplete="on"
-                  noValidate
-                >
-              <section
-                className={`${registerStepClassName} ${getRegisterStepClassName(roleStepIndex)}`}
-              >
-                {!isRegistrationOpen ? (
-                  <div role="status">
-                    {t("auth.register.closed_notice")}
-                  </div>
-                ) : null}
-                {!isRoleLocked ? (
-                  <>
-                    <div id={roleLabelId} className="register-question">
-                      {roleLabelText}
-                    </div>
-                    <div
-                      role="radiogroup"
-                      aria-labelledby={roleLabelId}
-                      aria-describedby={roleHintId}
-                    >
-                      <div id={roleHintId} className="sr-only">
-                        {t("auth.register.role_hint")}
-                      </div>
-                      {REGISTER_ROLE_OPTIONS.map((role) => (
-                        <button
-                          key={role}
-                          type="button"
-                          role="radio"
-                          aria-checked={form.role === role}
-                          data-checked={form.role === role ? "true" : "false"}
-                          onClick={() => handleRoleSelect(role)}
-                          onKeyDown={(event) => handleRoleKeyDown(event, role)}
-                        >
-                          <span>
-                            {t(roleLabelKey(role))}
-                          </span>
-                        </button>
-                      ))}
-                    </div>
-                  </>
-                ) : (
-                  <div aria-label={t(roleLabelKey(lockedRole))}>
-                    <span>
-                      {t(roleLabelKey(lockedRole))}
-                    </span>
-                  </div>
-                )}
-              </section>
-
-              <section
-                className={`${registerStepClassName} ${getRegisterStepClassName(emailStepIndex)}`}
-              >
-                <div>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder={fieldErrors.email ? "" : t("auth.email_placeholder")}
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    inputMode="email"
-                    autoComplete="email"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    aria-invalid={fieldErrors.email ? "true" : "false"}
-                    aria-describedby={fieldErrors.email ? emailErrorId : undefined}
-                  />
-                  {fieldErrors.email ? (
-                    <span id={emailErrorId} className="register-field-error">
-                      {fieldErrors.email}
-                    </span>
-                  ) : null}
-                </div>
-              </section>
-
-              <section
-                className={`${registerStepClassName} ${getRegisterStepClassName(pinStepIndex)}`}
-              >
-                <div>
-                  <input
-                    type="text"
-                    id="pin"
-                    name="pin"
-                    placeholder={
-                      fieldErrors.pin
-                        ? ""
-                        : t("auth.register.pin_placeholder", {
-                            min: PIN_MIN,
-                            max: PIN_MAX,
-                          })
-                    }
-                    value={form.pin}
-                    onChange={handleChange}
-                    required
-                    minLength={PIN_MIN}
-                    maxLength={PIN_MAX}
-                    autoComplete="new-password"
-                    inputMode="numeric"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    pattern={`\\d{${PIN_MIN},${PIN_MAX}}`}
-                    aria-invalid={fieldErrors.pin ? "true" : "false"}
-                    aria-describedby={fieldErrors.pin ? pinErrorId : undefined}
-                  />
-                  {fieldErrors.pin ? (
-                    <span id={pinErrorId} className="register-field-error">
-                      {fieldErrors.pin}
-                    </span>
-                  ) : null}
-                </div>
-              </section>
-
-              <section
-                className={`${registerStepClassName} ${getRegisterStepClassName(agreementStepIndex)}`}
-              >
-                <OptionCard
-                  type="checkbox"
-                  name="agree"
-                  checked={form.agree}
-                  onChange={handleChange}
-                >
-                  <RichText
-                    value={t("auth.register.agreement")}
-                    replacements={{
-                      terms: {
-                        open: `<a href="${localizePath("/kasutustingimused", locale)}">`,
-                        close: "</a>",
-                      },
-                      privacy: {
-                        open: `<a href="${localizePath("/privaatsustingimused", locale)}">`,
-                        close: "</a>",
-                      },
-                    }}
-                  />
-                </OptionCard>
-              </section>
-
-              <section
-                className={`${registerStepClassName} ${getRegisterStepClassName(guideStepIndex)}`}
-              >
-                <OptionCard
-                  type="checkbox"
-                  name="guideAck"
-                  checked={form.guideAck}
-                  onChange={handleChange}
-                >
-                  <RichText
-                    value={t("auth.register.guide_ack")}
-                    replacements={{
-                      guide: {
-                        open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
-                        close: "</a>",
-                      },
-                      guide1: {
-                        open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
-                        close: "</a>",
-                      },
-                      guide2: {
-                        open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
-                        close: "</a>",
-                      },
-                    }}
-                  />
-                </OptionCard>
-              </section>
-
-              {isProfessionalUser ? (
-                <section
-                  className={`${registerStepClassName} ${getRegisterStepClassName(workerStepIndex)}`}
-                >
-                  <div>
-                    <OptionCard
-                      type="checkbox"
-                      name="workerUseOrg"
-                      checked={hasConfirmedFramework}
-                      onChange={(e) => handleWorkerUseToggle(e.target.checked)}
-                    >
-                      {t("auth.register.worker_use_org")}
-                    </OptionCard>
-                  </div>
-                </section>
-              ) : null}
-
-                  <section
-                    className={`${registerStepClassName} ${getRegisterStepClassName(submitStepIndex)}`}
-                  >
-                    {!isRegistrationOpen && (
-                      <div role="status">
-                        {t("auth.register.closed_notice")}
-                      </div>
-                    )}
-                    {error && (
-                      <div role="alert">
-                        {error}
-                      </div>
-                    )}
-                    <div className="register-submit">
-                      <Button
-                        type="submit"
-                        disabled={submitting || !isRegistrationOpen}
-                      >
-                        <span>
-                          {t("auth.register.submit")}
-                        </span>
-                      </Button>
-                    </div>
-                  </section>
-                </form>
-              </div>
+              />
+            </OptionCard>
+          </div>
+        </section>
+      );
+    }
+    if (key === "guide") {
+      return (
+        <section key={key} {...props}>
+          <div className="rgf-question">{t("auth.register.steps.guide")}</div>
+          <div className="rgf-controls">
+            <OptionCard
+              type="checkbox"
+              name="guideAck"
+              checked={form.guideAck}
+              onChange={(e) => handleAckChange(e, i)}
+              data-autofocus=""
+            >
+              <RichText
+                value={t("auth.register.guide_ack")}
+                replacements={{
+                  guide: {
+                    open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
+                    close: "</a>",
+                  },
+                  guide1: {
+                    open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
+                    close: "</a>",
+                  },
+                  guide2: {
+                    open: `<a href="${localizePath("/kasutusjuhend", locale)}">`,
+                    close: "</a>",
+                  },
+                }}
+              />
+            </OptionCard>
+          </div>
+        </section>
+      );
+    }
+    if (key === "worker") {
+      return (
+        <section key={key} {...props}>
+          <div className="rgf-question">{t("auth.register.steps.worker")}</div>
+          <div className="rgf-controls">
+            <OptionCard
+              type="checkbox"
+              name="workerUseOrg"
+              checked={hasConfirmedFramework}
+              onChange={(e) => handleWorkerUseToggle(e.target.checked)}
+              data-autofocus=""
+            >
+              {t("auth.register.worker_use_org")}
+            </OptionCard>
+            <p className="rgf-hint">{t("auth.register.optional_hint")}</p>
+          </div>
+          <div className="rgf-next">
+            <Button type="button" onClick={() => goTo(i + 1)}>
+              <span>{t("auth.register.next")}</span>
+            </Button>
+          </div>
+        </section>
+      );
+    }
+    if (key === "gate") {
+      return (
+        <section key={key} {...props}>
+          <div className="rgf-question">{t("auth.register.gate_question")}</div>
+          <dl className="rgf-summary">
+            <div className="rgf-summary-row">
+              <dt>{t("auth.register.steps.role")}</dt>
+              <dd>{form.role ? t(roleLabelKey(form.role)) : "—"}</dd>
             </div>
-          </>
-        )}
+            <div className="rgf-summary-row">
+              <dt>{t("auth.register.steps.email")}</dt>
+              <dd>{form.email.trim() || "—"}</dd>
+            </div>
+            <div className="rgf-summary-row">
+              <dt>{t("auth.register.steps.pin")}</dt>
+              <dd
+                aria-label={t("auth.register.pin_masked", {
+                  count: form.pin.length,
+                })}
+              >
+                {form.pin ? "•".repeat(form.pin.length) : "—"}
+              </dd>
+            </div>
+          </dl>
+          {!isRegistrationOpen ? (
+            <p className="rgf-gate-status" role="status">
+              {t("auth.register.closed_notice")}
+            </p>
+          ) : null}
+          {error ? (
+            <p className="rgf-gate-error" role="alert">
+              {error}
+            </p>
+          ) : null}
+          <div className="rgf-submit">
+            <Button
+              type="submit"
+              disabled={submitting || !isRegistrationOpen}
+              data-autofocus=""
+            >
+              <span>{t("auth.register.submit")}</span>
+            </Button>
+          </div>
+        </section>
+      );
+    }
+    if (key === "success") {
+      return (
+        <section key={key} {...props}>
+          <div className="rgf-success">
+            <div role="status">
+              <p>{successMessage}</p>
+            </div>
+            <div>
+              <Button type="button" onClick={handleClose} data-autofocus="">
+                <span>{t("buttons.back_home")}</span>
+              </Button>
+            </div>
+          </div>
+        </section>
+      );
+    }
+    return null;
+  }
+
+  return (
+    <section
+      lang={locale}
+      ref={stageRef}
+      className="rgf-stage"
+      data-mode={mode}
+      data-flown={activeIndex > 0 ? "1" : "0"}
+    >
+      <div className="rgf-top">
+        <h1 className="rgf-title">{t("auth.register.title")}</h1>
+        {!isRegistrationOpen ? (
+          <p className="rgf-closed-note">{t("auth.register.closed_notice")}</p>
+        ) : null}
       </div>
+      <p className="sr-only" aria-live="polite">
+        {stepAnnouncement}
+      </p>
+      {/* Vorm ON dolly: perspective nõuab, et plaanid oleksid tema
+          OTSESED lapsed (vahekiht lamendaks 3D — flight-effect §3). */}
+      <form
+        ref={dollyRef}
+        className="rgf-dolly"
+        onSubmit={handleFormSubmit}
+        autoComplete="on"
+        noValidate
+        aria-label={t("auth.register.title")}
+      >
+        {stations.map((key, i) => renderStation(key, i))}
+      </form>
+      {/* Dokk = ruumi kaardimenüü DNA (carousel.css .gc-shortcut-*):
+          sama riba, täpid ja laienev caps-pill nagu avalehe menüüs.
+          .rgf-dock annab ainult positsiooni ja oleku-nüansid. */}
+      {!showSuccessState ? (
+        <nav className="rgf-dock gc-shortcut-menu" aria-label={t("auth.register.progress_label")}>
+          {isRoleLocked ? (
+            <span className="rgf-dock-chip">{t(roleLabelKey(lockedRole))}</span>
+          ) : null}
+          <button
+            type="button"
+            className="gc-shortcut gc-shortcut--back"
+            data-on="0"
+            disabled={activeIndex === 0}
+            onClick={() => goTo(activeIndex - 1)}
+            aria-label={t("buttons.back")}
+          >
+            <span className="gc-shortcut-icon" aria-hidden="true">
+              <ChevronIcon direction="left" />
+            </span>
+            <span className="gc-shortcut-tooltip" aria-hidden="true">
+              {t("buttons.back")}
+            </span>
+          </button>
+          <span className="gc-shortcut-divider" aria-hidden="true" />
+          <div className="gc-shortcut-track">
+            {stations.map((key, i) => {
+              const state =
+                i < activeIndex ? "done" : i === activeIndex ? "active" : "future";
+              const label = t(`auth.register.steps.${key}`);
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  className="gc-shortcut"
+                  data-on={state === "active" ? "1" : "0"}
+                  data-state={state}
+                  disabled={state === "future"}
+                  aria-current={state === "active" ? "step" : undefined}
+                  aria-label={t("auth.register.step_announce", {
+                    current: i + 1,
+                    total: stations.length,
+                    label,
+                  })}
+                  onClick={() => {
+                    if (state === "done") goTo(i);
+                  }}
+                >
+                  <span className="gc-shortcut-icon" aria-hidden="true">
+                    <span className="gc-shortcut-mark" />
+                  </span>
+                  <span className="gc-shortcut-text" aria-hidden="true">
+                    {label}
+                  </span>
+                  <span className="gc-shortcut-tooltip" aria-hidden="true">
+                    {label}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </nav>
+      ) : null}
     </section>
   );
 }

@@ -168,7 +168,25 @@
       },
       "submit": "Create account",
       "success_message": "Account created! Please confirm your email and log in with your PIN. If the email landed in Spam, open it and click \"Not spam\".",
-      "closed_notice": "Registration is temporarily paused. Please try again soon."
+      "closed_notice": "Registration is temporarily paused. Please try again soon.",
+      "email_question": "Your email address",
+      "pin_question": "Choose a PIN",
+      "gate_question": "Ready to register?",
+      "next": "Continue",
+      "optional_hint": "Optional step — confirm if you use the platform with identifiable client data.",
+      "progress_label": "Registration steps",
+      "step_announce": "Step {current}/{total}: {label}",
+      "pin_masked": "{count}-digit PIN",
+      "steps": {
+        "role": "Role",
+        "email": "Email",
+        "pin": "PIN",
+        "agree": "Terms",
+        "guide": "User guide",
+        "worker": "Work use",
+        "gate": "Confirmation",
+        "success": "Done"
+      }
     },
     "reset": {
       "title": "Update PIN",

@@ -90,10 +90,14 @@ export default function PanelFrame({ children }) {
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
      teenusekaart = suur kaart */
   const isWide = ["/teenusekaart", "/lopetatud-juhtumid", "/parimad-praktikad"].includes(normalized);
-  /* Kovisioon + Teemaseemned = TÄISEKRAANI LÕUEND (tellija 11.07):
-     paneel täpselt ekraani suurune, paddinguta ja läbipaistev — sisu
-     saab kogu ruumi ega keri; nurga-nupud hõljuvad sisu kohal */
-  const isCanvas = normalized === "/kovisioon" || normalized === "/teemaseemned";
+  /* Kovisioon + Teemaseemned + Registreerimine = TÄISEKRAANI LÕUEND
+     (tellija 11.07; registreerimine 16.07 jaamalennuna): paneel täpselt
+     ekraani suurune, paddinguta ja läbipaistev — sisu saab kogu ruumi
+     ega keri; nurga-nupud hõljuvad sisu kohal */
+  const isCanvas =
+    normalized === "/kovisioon" ||
+    normalized === "/teemaseemned" ||
+    normalized === "/registreerimine";
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();

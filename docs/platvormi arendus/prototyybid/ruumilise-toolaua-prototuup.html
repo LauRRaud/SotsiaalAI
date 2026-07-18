@@ -1,0 +1,1847 @@
+<!doctype html>
+<!-- ============================================================
+  SotsiaalAI ruumilise töölaua ÜHINE prototüüp (T19 / RUUM-VIS-D1)
+  Kuupäev: 17.07.2026 · Staatus: kanooniline prototüüp, MITTE tootmiskood
+
+  Üks kest + näiteadapterid: avaneb näidete valikusse; iga töövoog
+  kasutab sama fookusruumi, edenemisteekonda, kontekstisahtlit,
+  ülevaate- ja võrdluskihti ning sama liikumis-/flat-mootorit.
+
+  BRÄND: kõik värvid, klaas, nupud, fookus ja liikumine on tuletatud
+  failidest app/styles/tokens.css ja app/styles/glass.css (hämariku
+  palett, neutraalne tume klaas, soe serv primary'l). Vanade
+  prototüüpide sinine/oranž ja lõpetatud juhtumite kollane/roheline
+  dashboard-keel on teadlikult kõrvale jäetud.
+
+  LIIKUMINE: components/register/useStationFlight.js adaptsioon
+  (jaama-target, MITTE scrollY; flight-effect.md §3–§5 reeglid:
+  perspective otsesel vanemal, staatiline z-index, --o ainult
+  muutumisel, rAF magab, reduced-motion → flat-ristsulandus).
+  Plaanide sees EI OLE backdrop-filterit (register-flight lennureegel).
+============================================================ -->
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>SotsiaalAI — ruumilise töölaua prototüüp</title>
+<style>
+/* ---------- 1. Bränditokenid (tokens.css tuletis) ---------- */
+:root{
+  color-scheme:dark;
+  --dusk-void:#0f0805;
+  --dusk-floor:#140b07;
+  --dusk-shadow:#1e110a;
+  --dusk-wood:#4a2e1c;
+  --dusk-amber:#c97f4a;
+  --dusk-sunset:#e8a86a;
+  --dusk-glow:#f4c690;
+  --dusk-cream:#e9d7bf;
+  --text-warm:#f4f1ec;
+  --text-soft:rgba(244,241,236,.76);
+  --text-dim:rgba(244,241,236,.55);
+  --text-ink:#241d17;
+  --glass-bg:linear-gradient(165deg,rgba(40,37,33,.44) 0%,rgba(24,22,20,.56) 55%,rgba(15,14,12,.64) 100%);
+  --glass-bg-strong:linear-gradient(165deg,rgba(34,31,28,.8) 0%,rgba(20,18,16,.88) 100%);
+  --glass-border:rgba(255,255,255,.26);
+  --glass-border-soft:rgba(255,255,255,.13);
+  --glass-rim:rgba(255,248,238,.9);
+  --glass-rim-glow:0 0 .5px rgba(255,248,238,.9),0 0 22px rgba(255,240,222,.2),0 0 60px rgba(255,234,210,.1);
+  --glass-inner-light:inset 0 1px 0 rgba(255,255,255,.16);
+  --glass-shadow:0 24px 70px rgba(8,4,2,.55),0 6px 22px rgba(8,4,2,.35);
+  --cell-bg:rgba(255,255,255,.055);
+  --cell-bg-hover:rgba(255,255,255,.11);
+  --cell-border:rgba(255,255,255,.14);
+  --font-ui:"Exo 2",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --track-caps:.24em;
+  --fs-body:1rem;
+  --fs-small:.875rem;
+  --fs-micro:.78rem;
+  --ease-soft:cubic-bezier(.22,.61,.36,1);
+  --dur-fast:240ms;
+  --dur-med:560ms;
+  --focus-ring:0 0 0 2px rgba(15,13,11,.9),0 0 0 4.5px rgba(246,241,233,.95);
+  --status-error:#eb9a76;
+  --status-success:#c5cf9b;
+  --z-plane:10;
+  --z-chrome:40;
+  --z-drawer:60;
+  --z-overlay:70;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--font-ui);
+  font-size:var(--fs-body);
+  line-height:1.5;
+  color:var(--text-warm);
+  overflow:hidden;
+  overscroll-behavior:none;
+  -webkit-font-smoothing:antialiased;
+  /* Rahulik hämarik-tuba: staatiline, ilma dekoratiivse animatsioonita.
+     Taust jääb puutumata (VR/AR põhjatäht) — ruumilisus tuleb pindadest. */
+  background:
+    radial-gradient(58rem 32rem at 72% 10%,rgba(232,168,106,.10),transparent 62%),
+    radial-gradient(44rem 28rem at 14% 86%,rgba(201,127,74,.08),transparent 60%),
+    linear-gradient(180deg,#19100a 0%,var(--dusk-floor) 52%,var(--dusk-void) 100%);
+}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);overflow:hidden;white-space:nowrap}
+.ic{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+:is(button,a,[tabindex],input,textarea,select):focus-visible{outline:none;box-shadow:var(--focus-ring)}
+
+/* ---------- 2. Nupukeel (glass.css tuletis: tume liquid-klaas) ---------- */
+.pr-btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+  padding:.66em 1.5em;border-radius:999px;
+  font-family:var(--font-ui);font-size:var(--fs-small);font-weight:520;letter-spacing:.04em;
+  color:var(--text-warm);text-decoration:none;cursor:pointer;
+  background-color:rgba(255,255,255,.03);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.15) 0%,rgba(255,255,255,.05) 36%,rgba(255,255,255,.02) 62%,rgba(255,255,255,.1) 100%);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.28),inset 0 0 16px rgba(255,255,255,.05),0 6px 20px rgba(0,0,0,.26);
+  transition:background-color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft),box-shadow var(--dur-fast) var(--ease-soft),scale 160ms var(--ease-soft);
+}
+.pr-btn:hover{background-color:rgba(255,255,255,.11);border-color:rgba(255,255,255,.36)}
+.pr-btn:active{background-color:rgba(0,0,0,.14);scale:.975}
+.pr-btn:disabled{opacity:.42;pointer-events:none}
+/* Primary = SAMA tume klaas, hero-rõhk soojast servast (mitte valgest plaadist) */
+.pr-btn[data-variant="primary"]{
+  font-weight:560;
+  background-color:rgba(255,255,255,.08);
+  background-image:linear-gradient(180deg,rgba(255,250,244,.22) 0%,rgba(255,255,255,.06) 42%,rgba(255,255,255,.03) 66%,rgba(255,244,232,.14) 100%);
+  border:1px solid rgba(255,242,226,.38);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.34),inset 0 0 22px rgba(255,233,209,.07),0 6px 22px rgba(0,0,0,.3);
+}
+.pr-btn[data-variant="primary"]:hover{background-color:rgba(255,255,255,.15);border-color:rgba(255,242,226,.55)}
+/* Vaikne teisene tegevus: ainult tekst + õrn ääris hoveril */
+.pr-btn[data-variant="quiet"]{
+  background:none;border-color:transparent;box-shadow:none;color:var(--text-dim);font-weight:440;
+}
+.pr-btn[data-variant="quiet"]:hover{color:var(--text-soft);border-color:var(--cell-border);background:none}
+.pr-iconbtn{
+  display:grid;place-items:center;width:2.45rem;height:2.45rem;padding:0;border-radius:50%;
+  color:var(--text-soft);cursor:pointer;
+  background-color:rgba(255,255,255,.03);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 40%,rgba(255,255,255,.02) 64%,rgba(255,255,255,.09) 100%);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.26),0 6px 18px rgba(0,0,0,.24);
+  transition:color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft);
+}
+.pr-iconbtn:hover{color:var(--text-warm);background-color:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+.pr-iconbtn[aria-pressed="true"],.pr-iconbtn[aria-expanded="true"]{background-color:rgba(255,255,255,.13);border-color:rgba(255,255,255,.46);color:var(--text-warm)}
+.pr-iconbtn svg{width:1.05rem;height:1.05rem}
+
+/* ---------- 3. Vaadete kest ---------- */
+#rakendus{position:relative;height:100%;display:flex;flex-direction:column}
+[hidden]{display:none !important}
+
+/* ---------- 4. NÄIDETE VALIK ---------- */
+#valik{
+  flex:1;min-height:0;overflow-y:auto;
+  padding:clamp(1.2rem,4lvh,3rem) clamp(1rem,4vw,3rem) clamp(2rem,6lvh,4rem);
+  scrollbar-width:thin;scrollbar-color:rgba(244,241,236,.25) transparent;
+}
+.pr-valik-pea{max-width:64rem;margin:0 auto 1.6rem;text-align:center}
+.pr-valik-kicker{
+  margin:0 0 .4em;font-size:var(--fs-micro);letter-spacing:var(--track-caps);
+  text-transform:uppercase;color:var(--text-dim);padding-left:var(--track-caps);
+}
+.pr-valik-pea h1{
+  margin:0;font-weight:430;letter-spacing:.01em;
+  font-size:clamp(1.4rem,1.1rem+1.4vw,2.1rem);color:var(--text-warm);
+  text-shadow:0 0 26px rgba(255,240,220,.14);
+}
+.pr-valik-pea p{margin:.55em auto 0;max-width:44rem;font-size:var(--fs-small);color:var(--text-soft)}
+.pr-valik-grid{
+  display:grid;gap:.8rem;max-width:72rem;margin:0 auto;
+  grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));
+}
+.pr-kaart{
+  position:relative;display:flex;flex-direction:column;gap:.45rem;min-height:8.6rem;
+  padding:1rem 1.1rem;border-radius:18px;text-align:left;cursor:pointer;
+  font-family:var(--font-ui);font-size:var(--fs-body);color:var(--text-warm);
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border-soft);
+  box-shadow:var(--glass-inner-light),0 14px 40px rgba(8,4,2,.35);
+  transition:border-color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft),box-shadow var(--dur-fast) var(--ease-soft);
+}
+.pr-kaart:hover{border-color:rgba(255,242,226,.4);box-shadow:var(--glass-inner-light),var(--glass-rim-glow)}
+.pr-kaart b{font-weight:530;letter-spacing:.015em}
+.pr-kaart small{font-size:var(--fs-micro);color:var(--text-dim);line-height:1.45}
+.pr-kaart-liik{
+  display:inline-flex;align-items:center;gap:.4em;margin-top:auto;
+  font-size:var(--fs-micro);color:var(--text-dim);
+}
+.pr-kaart-liik::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.7}
+.pr-kaart[data-liik="taielik"] .pr-kaart-liik{color:var(--text-soft)}
+.pr-kaart-jatka{
+  position:absolute;top:.7rem;right:.7rem;
+  font-size:var(--fs-micro);color:var(--dusk-glow);
+  border:1px solid rgba(244,198,144,.4);border-radius:999px;padding:.14em .6em;
+  background:rgba(244,198,144,.09);white-space:nowrap;
+}
+.pr-valik-jalus{max-width:72rem;margin:1.4rem auto 0;text-align:center;font-size:var(--fs-micro);color:var(--text-dim)}
+
+/* ---------- 5. ANKUR (ülariba fookusruumis) ---------- */
+#ankur{
+  position:relative;z-index:var(--z-chrome);flex:0 0 auto;
+  display:flex;align-items:center;gap:.8rem;
+  padding:.65rem clamp(.8rem,2vw,1.4rem);
+  min-height:3.3rem;
+}
+.pr-ankur-tiitel{display:flex;flex-direction:column;min-width:0}
+.pr-ankur-nimi{
+  font-size:var(--fs-small);font-weight:530;letter-spacing:.02em;color:var(--text-warm);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.pr-ankur-silt{display:inline-flex;align-items:center;gap:.35em;font-size:var(--fs-micro);color:var(--text-dim)}
+.pr-ankur-silt svg{width:.72rem;height:.72rem;flex:none}
+#kiibid{
+  display:flex;align-items:center;gap:.4rem;flex:1;min-width:0;
+  overflow-x:auto;scrollbar-width:none;padding:.15rem 0;
+}
+#kiibid::-webkit-scrollbar{display:none}
+.pr-kiip{
+  flex:none;display:inline-flex;align-items:center;gap:.4em;
+  font-family:var(--font-ui);font-size:var(--fs-micro);color:var(--text-soft);
+  border:1px solid var(--cell-border);border-radius:999px;
+  padding:.28em .8em;background:var(--cell-bg);cursor:pointer;white-space:nowrap;
+  transition:border-color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft);
+}
+.pr-kiip:hover{background:var(--cell-bg-hover);border-color:rgba(255,255,255,.3)}
+.pr-kiip b{font-weight:540;color:var(--text-warm)}
+.pr-ankur-parem{display:flex;align-items:center;gap:.45rem;margin-left:auto}
+
+/* ---------- 6. LAVA + jaamalend ---------- */
+#lava{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:manipulation}
+#dolly{
+  --cam:0px;
+  position:absolute;inset:0;
+  perspective:1100px;perspective-origin:50% 46%;
+}
+.pr-jaam{
+  position:absolute;left:50%;top:50%;
+  width:min(92vw,27rem);
+  visibility:hidden;
+}
+#lava[data-mode="3d"] .pr-jaam{
+  transform:translate(-50%,-50%) translateZ(calc(var(--z) + var(--cam,0px)));
+  opacity:var(--o,0);
+  will-change:transform,opacity;
+}
+#lava[data-mode="flat"] .pr-jaam{
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity 260ms var(--ease-soft),visibility 0s linear 260ms;
+}
+#lava[data-mode="flat"] .pr-jaam[data-active="1"]{visibility:visible;opacity:1;transition:opacity 260ms var(--ease-soft)}
+.pr-jaam[data-active="0"]{pointer-events:none}
+/* Jaama sisu: küsimus hõljub ruumis (AR-paneeli presence, rgf-question) */
+.pr-kicker{
+  display:block;margin:0 0 .5rem;text-align:center;
+  font-size:var(--fs-micro);letter-spacing:var(--track-caps);text-transform:uppercase;
+  color:var(--text-dim);padding-left:var(--track-caps);
+}
+.pr-kysimus{
+  display:block;margin:0 0 1.05rem;text-align:center;
+  font-weight:430;font-size:clamp(1.25rem,1.05rem+.9vw,1.6rem);letter-spacing:.015em;
+  color:var(--text-warm);text-shadow:0 0 26px rgba(255,240,220,.14);
+}
+.pr-juhtlause{margin:-.6rem 0 1rem;text-align:center;font-size:var(--fs-small);color:var(--text-soft)}
+.pr-juhtimine{display:grid;gap:.6rem}
+/* Valikupillid (register [role=radio] kaanon): keskel, suurem tekst.
+   Valitud olek = heledam täide + ✓ märk (värv EI ole ainus kandja). */
+.pr-valiknupp{
+  position:relative;display:flex;align-items:center;justify-content:center;gap:.55em;
+  width:100%;padding:.72em 1.4em;border-radius:999px;cursor:pointer;
+  font-family:var(--font-ui);font-size:clamp(1rem,.95rem+.3vw,1.15rem);letter-spacing:.04em;font-weight:480;
+  color:var(--text-warm);text-align:center;
+  background-color:rgba(255,255,255,.04);
+  background-image:linear-gradient(180deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 40%,rgba(255,255,255,.02) 64%,rgba(255,255,255,.08) 100%);
+  border:1px solid rgba(255,255,255,.2);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.24),0 6px 18px rgba(0,0,0,.22);
+  transition:background-color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft);
+}
+.pr-valiknupp:hover{background-color:rgba(255,255,255,.1);border-color:rgba(255,255,255,.34)}
+.pr-valiknupp[aria-checked="true"],.pr-valiknupp[aria-pressed="true"]{
+  background-color:rgba(255,255,255,.13);border-color:rgba(255,255,255,.46);
+}
+.pr-valiknupp .pr-mark{display:none;width:1em;height:1em;flex:none}
+.pr-valiknupp[aria-checked="true"] .pr-mark,.pr-valiknupp[aria-pressed="true"] .pr-mark{display:inline-block}
+.pr-valiknupp small{display:block;width:100%;font-size:var(--fs-micro);font-weight:420;letter-spacing:.02em;color:var(--text-dim)}
+/* Kiipvalikute rida (suund-tüüpi faas): nimi + väikesed pillid */
+.pr-kiiprida{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.pr-kiiprida .pr-kiiprida-nimi{flex:0 0 6.2rem;font-size:var(--fs-micro);letter-spacing:.06em;text-transform:uppercase;color:var(--text-dim)}
+.pr-kiipvalik{
+  display:inline-flex;align-items:center;gap:.4em;
+  font-family:var(--font-ui);font-size:var(--fs-small);color:var(--text-soft);
+  border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.34em 1em;
+  background:rgba(255,255,255,.04);cursor:pointer;
+  transition:background-color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft);
+}
+.pr-kiipvalik:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.34)}
+.pr-kiipvalik[aria-pressed="true"]{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.46);color:var(--text-warm)}
+.pr-kiipvalik .pr-mark{display:none;width:.85em;height:.85em}
+.pr-kiipvalik[aria-pressed="true"] .pr-mark{display:inline-block}
+/* Tekstiväli: liquid glass (ümarad nurgad, mitte pill; plaani sees blurita) */
+.pr-tekst{
+  width:100%;min-height:6.2rem;resize:vertical;
+  font-family:var(--font-ui);font-size:var(--fs-body);color:var(--text-warm);
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.18);border-radius:18px;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.2),inset 0 -1px 1px rgba(255,255,255,.05);
+  padding:.8em 1em;caret-color:var(--text-warm);
+  transition:border-color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft);
+}
+.pr-tekst:hover:not(:focus){border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.09)}
+.pr-tekst:focus{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.11)}
+.pr-tekst::placeholder{color:rgba(255,255,255,.55)}
+/* Üherealine sisend: login-kaanon (pill, keskel) */
+.pr-sisend{
+  width:100%;padding:.62em 1.2em;border-radius:999px;text-align:center;
+  font-family:var(--font-ui);font-size:clamp(1.05rem,1rem+.45vw,1.24rem);color:var(--text-warm);
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.26),inset 0 -1px 1px rgba(255,255,255,.05);
+  transition:border-color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft);
+}
+.pr-sisend:hover:not(:focus){border-color:rgba(255,255,255,.3)}
+.pr-sisend:focus{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.13)}
+.pr-sisend::placeholder{color:rgba(255,255,255,.55)}
+.pr-viga{display:block;margin-top:.45rem;text-align:center;font-size:var(--fs-small);color:var(--status-error)}
+.pr-vihje{margin:.3rem 0 0;text-align:center;font-size:var(--fs-small);color:var(--text-dim)}
+.pr-edasi{display:grid;justify-items:center;margin-top:1rem}
+/* Info-jaam */
+.pr-info{font-size:var(--fs-small);color:var(--text-soft);text-align:center}
+.pr-info p{margin:0 0 .7em}
+/* Sündmusteloend (Animated List muster: read lisanduvad ainult päris
+   sündmusega, fookus ja järg säilivad, SR kuuleb teksti) */
+.pr-sundmused{display:grid;gap:.45rem;margin:0;padding:0;list-style:none;text-align:left}
+.pr-sundmused li{
+  display:flex;gap:.7em;align-items:baseline;
+  border:1px solid var(--cell-border);border-radius:14px;
+  background:var(--cell-bg);padding:.6em .9em;font-size:var(--fs-small);
+}
+.pr-sundmused time{flex:none;font-size:var(--fs-micro);color:var(--text-dim);font-variant-numeric:tabular-nums}
+/* Versiooniriiul (Carousel-muster: nupud + positsioon, autoplay'ta) */
+.pr-riiul{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.6rem;align-items:center}
+.pr-riiul-kaart{
+  border:1px solid var(--cell-border);border-radius:16px;background:var(--cell-bg);
+  padding:.85em 1em;min-height:5.4rem;text-align:left;font-size:var(--fs-small);color:var(--text-soft);
+}
+.pr-riiul-kaart b{display:block;color:var(--text-warm);font-weight:530;margin-bottom:.25em}
+.pr-riiul-pos{grid-column:1/-1;text-align:center;font-size:var(--fs-micro);color:var(--text-dim)}
+/* Kokkuvõte (värav) */
+.pr-kokkuvote{display:grid;gap:.5rem;margin:0 0 1rem}
+.pr-kokkuvote-rida{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;margin:0}
+.pr-kokkuvote-rida dt{font-size:var(--fs-small);color:var(--text-dim)}
+.pr-kokkuvote-rida dd{margin:0;font-size:var(--fs-small);color:var(--text-warm);text-align:right;overflow-wrap:anywhere}
+.pr-kokkuvote-rida dd[data-puudu]{color:var(--status-error)}
+.pr-varav-pohjused{
+  margin:0 0 1rem;padding:.7em 1em;border-radius:14px;text-align:left;
+  border:1px solid rgba(235,154,118,.35);background:rgba(235,154,118,.07);
+  font-size:var(--fs-small);color:var(--text-soft);
+}
+.pr-varav-pohjused b{color:var(--status-error);font-weight:530}
+.pr-varav-pohjused ul{margin:.3em 0 0;padding-left:1.2em}
+.pr-varav-pohjused button{
+  background:none;border:0;padding:0;margin:0;cursor:pointer;
+  color:var(--text-warm);text-decoration:underline;text-underline-offset:2px;font:inherit;
+}
+.pr-edu{display:grid;gap:1rem;justify-items:center;text-align:center;color:var(--text-warm)}
+.pr-edu-mark{
+  width:3rem;height:3rem;border-radius:50%;display:grid;place-items:center;
+  border:1px solid rgba(255,242,226,.45);background:rgba(255,244,230,.08);
+  box-shadow:var(--glass-rim-glow);color:var(--dusk-glow);
+}
+.pr-edu-mark svg{width:1.3rem;height:1.3rem}
+/* Lühendatud näite märge */
+.pr-luhendatud{
+  margin:0 0 1rem;padding:.55em .95em;border-radius:12px;text-align:center;
+  border:1px dashed rgba(255,255,255,.25);font-size:var(--fs-micro);color:var(--text-dim);
+}
+
+/* ---------- 7. DOKK (alumine edenemisriba; gc-shortcut DNA) ---------- */
+#dokk{
+  position:relative;z-index:var(--z-chrome);flex:0 0 auto;
+  display:flex;justify-content:center;
+  padding:.5rem .8rem calc(env(safe-area-inset-bottom,0px) + clamp(.7rem,2.2lvh,1.3rem));
+  pointer-events:none;
+}
+.pr-dokk-riba{
+  pointer-events:auto;
+  display:flex;align-items:center;gap:.15rem;
+  max-width:calc(100vw - 1.6rem);
+  padding:.35rem .55rem;border-radius:999px;
+  background:var(--glass-bg-strong);
+  -webkit-backdrop-filter:blur(18px) saturate(112%);
+  backdrop-filter:blur(18px) saturate(112%);
+  border:1px solid var(--glass-border-soft);
+  box-shadow:var(--glass-inner-light),0 18px 44px rgba(8,4,2,.5);
+}
+.pr-dokk-nupp{
+  display:inline-flex;align-items:center;gap:.45em;
+  padding:.42em .6em;border-radius:999px;border:1px solid transparent;
+  background:none;color:var(--text-dim);cursor:pointer;
+  font-family:var(--font-ui);font-size:var(--fs-micro);letter-spacing:.05em;
+  transition:color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft);
+}
+.pr-dokk-nupp:hover:not(:disabled){color:var(--text-warm);background:var(--cell-bg)}
+.pr-dokk-nupp:disabled{opacity:.4;cursor:default}
+.pr-dokk-nupp svg{width:.95rem;height:.95rem}
+.pr-dokk-eraldi{width:1px;height:1.2rem;background:var(--glass-border-soft);margin:0 .3rem;flex:none}
+#jaamarada{display:flex;align-items:center;gap:.28rem;min-width:0;overflow-x:auto;scrollbar-width:none}
+#jaamarada::-webkit-scrollbar{display:none}
+.pr-jaamatapp{
+  display:inline-flex;align-items:center;gap:.45em;flex:none;
+  border:1px solid transparent;border-radius:999px;background:none;cursor:pointer;
+  padding:.3em .42em;color:var(--text-dim);
+  font-family:var(--font-ui);font-size:var(--fs-micro);letter-spacing:.04em;
+  transition:color var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft),border-color var(--dur-fast) var(--ease-soft);
+}
+.pr-jaamatapp .pr-tapp{
+  width:.55rem;height:.55rem;border-radius:50%;flex:none;
+  border:1px solid rgba(255,255,255,.4);background:transparent;
+  display:grid;place-items:center;
+}
+.pr-jaamatapp .pr-tapp svg{width:.5rem;height:.5rem;display:none}
+.pr-jaamatapp[data-state="done"]{color:rgba(246,238,230,.78)}
+.pr-jaamatapp[data-state="done"] .pr-tapp{border-color:rgba(244,198,144,.7);background:rgba(244,198,144,.12)}
+.pr-jaamatapp[data-state="done"] .pr-tapp svg{display:block}
+.pr-jaamatapp[data-state="active"]{
+  color:var(--text-warm);border-color:rgba(255,238,216,.5);background:var(--cell-bg);
+  box-shadow:0 0 14px rgba(255,238,216,.12);
+}
+.pr-jaamatapp[data-state="active"] .pr-tapp{border-color:rgba(255,238,216,.8);background:rgba(255,244,230,.16)}
+.pr-jaamatapp[data-state="future"]{opacity:.5}
+.pr-jaamatapp[data-state="future"]{cursor:default}
+.pr-jaamatapp .pr-jaamanimi{display:none;white-space:nowrap}
+.pr-jaamatapp[data-state="active"] .pr-jaamanimi{display:inline}
+.pr-jaamatapp:hover:not([data-state="future"]) .pr-jaamanimi{display:inline}
+
+/* ---------- 8. KONTEKSTISAHTEL ---------- */
+#sahtel{
+  position:absolute;top:0;right:0;bottom:0;z-index:var(--z-drawer);
+  width:min(24rem,92vw);
+  display:flex;flex-direction:column;
+  background:var(--glass-bg-strong);
+  -webkit-backdrop-filter:blur(22px) saturate(112%);
+  backdrop-filter:blur(22px) saturate(112%);
+  border-left:1px solid var(--glass-border-soft);
+  box-shadow:-24px 0 60px rgba(8,4,2,.45);
+  transform:translateX(100%);
+  transition:transform var(--dur-med) var(--ease-soft);
+}
+#sahtel[data-avatud="1"]{transform:none}
+.pr-sahtel-pea{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1rem 1.1rem .7rem;border-bottom:1px solid var(--glass-border-soft)}
+.pr-sahtel-pea h2{margin:0;font-size:var(--fs-small);font-weight:530;letter-spacing:.08em;text-transform:uppercase;color:var(--text-soft)}
+.pr-sahtel-keha{flex:1;min-height:0;overflow-y:auto;padding:1rem 1.1rem 1.4rem;scrollbar-width:thin}
+.pr-sahtel-keha h3{margin:1.1em 0 .35em;font-size:var(--fs-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);font-weight:520}
+.pr-sahtel-keha h3:first-child{margin-top:0}
+.pr-sahtel-keha p{margin:0 0 .6em;font-size:var(--fs-small);color:var(--text-soft)}
+.pr-sahtel-keha ul{margin:0 0 .6em;padding-left:1.15em;font-size:var(--fs-small);color:var(--text-soft)}
+.pr-sahtel-keha li{margin-bottom:.3em}
+.pr-nahtavus{
+  display:flex;gap:.6em;align-items:flex-start;
+  border:1px solid var(--cell-border);border-radius:14px;background:var(--cell-bg);
+  padding:.7em .9em;font-size:var(--fs-small);color:var(--text-soft);
+}
+.pr-nahtavus svg{width:1rem;height:1rem;flex:none;margin-top:.15em;color:var(--dusk-glow)}
+
+/* ---------- 9. ÜLEVAADE ja VÕRDLUS (kihid fookuse peal) ---------- */
+.pr-kiht{
+  position:absolute;inset:0;z-index:var(--z-overlay);
+  display:flex;flex-direction:column;
+  background:rgba(15,8,5,.6);
+  -webkit-backdrop-filter:blur(14px) saturate(112%);
+  backdrop-filter:blur(14px) saturate(112%);
+}
+.pr-kiht-pea{
+  flex:0 0 auto;display:flex;align-items:center;gap:.8rem;
+  padding:.9rem clamp(.9rem,2.4vw,1.6rem) .6rem;
+}
+.pr-kiht-pea h2{margin:0;font-size:var(--fs-small);font-weight:530;letter-spacing:.12em;text-transform:uppercase;color:var(--text-soft)}
+.pr-kiht-pea .pr-kiht-vihje{font-size:var(--fs-micro);color:var(--text-dim)}
+.pr-kiht-pea .pr-btn{margin-left:auto}
+.pr-kiht-keha{flex:1;min-height:0;overflow-y:auto;padding:.4rem clamp(.9rem,2.4vw,1.6rem) 1.4rem;scrollbar-width:thin}
+/* Ülevaate faasikaardid */
+.pr-yle-grid{display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(14.5rem,1fr));max-width:72rem;margin:0 auto}
+.pr-yle-kaart{
+  display:flex;flex-direction:column;gap:.4rem;text-align:left;cursor:pointer;
+  font-family:var(--font-ui);color:var(--text-warm);
+  padding:.85rem 1rem;border-radius:16px;
+  background:var(--glass-bg);border:1px solid var(--glass-border-soft);
+  box-shadow:var(--glass-inner-light);
+  transition:border-color var(--dur-fast) var(--ease-soft);
+}
+.pr-yle-kaart:hover{border-color:rgba(255,242,226,.4)}
+.pr-yle-kaart[data-state="active"]{border-color:rgba(255,238,216,.55);box-shadow:var(--glass-inner-light),0 0 18px rgba(255,238,216,.1)}
+.pr-yle-seis{display:inline-flex;align-items:center;gap:.4em;font-size:var(--fs-micro);color:var(--text-dim)}
+.pr-yle-seis svg{width:.8rem;height:.8rem}
+.pr-yle-kaart b{font-size:var(--fs-small);font-weight:530}
+.pr-yle-kaart small{font-size:var(--fs-micro);color:var(--text-dim)}
+.pr-yle-kaart .pr-yle-vaartus{font-size:var(--fs-micro);color:var(--text-soft)}
+.pr-yle-tegevused{display:flex;gap:.4rem;margin-top:.2rem}
+.pr-yle-tegevused .pr-btn{font-size:var(--fs-micro);padding:.34em .9em}
+.pr-yle-tabel-wrap{max-width:72rem;margin:1.2rem auto 0}
+.pr-yle-tabel-wrap h3{margin:0 0 .5em;font-size:var(--fs-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);font-weight:520}
+.pr-tabel-kest{overflow-x:auto;border:1px solid var(--glass-border-soft);border-radius:16px;background:var(--glass-bg)}
+.pr-tabel{width:100%;border-collapse:collapse;font-size:var(--fs-small);min-width:34rem}
+.pr-tabel th,.pr-tabel td{padding:.6em .9em;text-align:left;border-bottom:1px solid var(--glass-border-soft)}
+.pr-tabel th{font-size:var(--fs-micro);letter-spacing:.08em;text-transform:uppercase;color:var(--text-dim);font-weight:520}
+.pr-tabel td{color:var(--text-soft)}
+.pr-tabel tr:last-child td{border-bottom:0}
+/* Võrdlus: kaks poolt kõrvuti; kitsal A/B */
+#vordlus-keha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.8rem;max-width:76rem;margin:0 auto;width:100%}
+.pr-pool{
+  display:flex;flex-direction:column;min-width:0;
+  border:1px solid var(--glass-border-soft);border-radius:18px;
+  background:var(--glass-bg);box-shadow:var(--glass-inner-light);
+}
+.pr-pool-pea{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.7rem 1rem;border-bottom:1px solid var(--glass-border-soft)}
+.pr-pool-pea b{font-size:var(--fs-small);font-weight:530}
+.pr-pool-silt{display:inline-flex;align-items:center;gap:.35em;font-size:var(--fs-micro);color:var(--text-dim)}
+.pr-pool-silt::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.7}
+.pr-pool-keha{flex:1;min-height:0;overflow-y:auto;padding:.9rem 1rem;font-size:var(--fs-small);color:var(--text-soft);scrollbar-width:thin}
+.pr-pool-keha p{margin:0 0 .6em;white-space:pre-wrap}
+.pr-pool-keha ul{margin:0;padding-left:1.1em}
+#ab-lyliti{display:none;align-items:center;gap:.25rem;border:1px solid var(--glass-border-soft);border-radius:999px;padding:.2rem;background:rgba(0,0,0,.25)}
+#ab-lyliti .pr-btn{font-size:var(--fs-micro);padding:.3em .95em;border:0;box-shadow:none;background:none}
+#ab-lyliti .pr-btn[aria-pressed="true"]{background-color:rgba(255,255,255,.13)}
+
+/* ---------- 10. LUGEMISKIHT (kasutusjuhendi näide) ---------- */
+#lugeja{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1rem}
+.pr-lugeja-kest{position:relative;width:min(38rem,94vw);height:min(42rem,86%)}
+.pr-lugeja-paneel{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  background:var(--glass-bg);border:1px solid var(--glass-border-soft);border-radius:20px;
+  box-shadow:var(--glass-inner-light),var(--glass-shadow);
+}
+.pr-lugeja-pea{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1rem 1.2rem .7rem;border-bottom:1px solid var(--glass-border-soft)}
+.pr-lugeja-pea h2{margin:0;font-size:var(--fs-body);font-weight:500;color:var(--text-warm)}
+#lugeja-keha{flex:1;min-height:0;overflow-y:auto;padding:1rem 1.4rem 1.6rem;scrollbar-width:none}
+#lugeja-keha::-webkit-scrollbar{display:none}
+#lugeja-keha h3{margin:1.3em 0 .4em;font-size:var(--fs-body);font-weight:530;color:var(--text-warm)}
+#lugeja-keha h3:first-child{margin-top:0}
+#lugeja-keha h4{margin:.9em 0 .3em;font-size:var(--fs-small);font-weight:530;color:var(--text-soft)}
+#lugeja-keha p{margin:0 0 .6em;font-size:var(--fs-small);line-height:1.6;color:var(--text-soft);max-width:62ch}
+.pr-lugeja-vihje{position:absolute;left:50%;bottom:.6rem;transform:translateX(-50%);display:flex;align-items:center;gap:.35em;font-size:var(--fs-micro);color:var(--text-dim);pointer-events:none;transition:opacity var(--dur-fast) var(--ease-soft)}
+.pr-lugeja-vihje svg{width:.8rem;height:.8rem}
+#lugeja-rada{position:absolute;right:-2.6rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap.4rem;gap:.4rem;align-items:flex-end}
+.pr-rada-tik{position:relative;height:.7rem;width:2.2rem;display:flex;align-items:center;justify-content:flex-end;background:none;border:0;padding:0;cursor:pointer}
+.pr-rada-tik i{display:block;width:1.1rem;height:1.5px;background:rgba(244,198,144,.42);transition:width var(--dur-fast) var(--ease-soft),background-color var(--dur-fast) var(--ease-soft)}
+.pr-rada-tik:hover i,.pr-rada-tik:focus-visible i{width:1.6rem;background:var(--dusk-glow)}
+.pr-rada-tik[data-on="1"] i{background:var(--dusk-sunset);width:1.6rem}
+.pr-rada-tik em{position:absolute;right:2.6rem;top:50%;transform:translateY(-50%);font-style:normal;font-size:var(--fs-micro);color:var(--text-warm);background:rgba(20,11,7,.95);border:1px solid var(--glass-border-soft);border-radius:8px;padding:.2em .7em;white-space:nowrap;display:none}
+.pr-rada-tik:hover em,.pr-rada-tik:focus-visible em{display:block}
+
+/* ---------- 11. Mobiil ---------- */
+@media (max-width:720px){
+  #dolly{perspective:950px}
+  .pr-jaam{width:min(92vw,23rem)}
+  .pr-dokk-riba{max-width:calc(100vw - 1rem);padding:.3rem .4rem}
+  .pr-jaamatapp:hover:not([data-state="active"]) .pr-jaamanimi{display:none}
+  .pr-ankur-parem .pr-btn span.pr-btn-tekst{display:none}
+  #vordlus-keha{grid-template-columns:minmax(0,1fr)}
+  .pr-pool[data-kitsas-peidus="1"]{display:none}
+  #ab-lyliti{display:inline-flex}
+  #lugeja-rada{right:.4rem}
+  .pr-rada-tik em{display:none !important}
+  .pr-kiiprida .pr-kiiprida-nimi{flex-basis:100%}
+}
+/* ---------- 12. Vähendatud liikumine: sama sisu, hetkvahetused ---------- */
+@media (prefers-reduced-motion:reduce){
+  #sahtel,.pr-jaam,.pr-kiht,.pr-lugeja-paneel{transition-duration:1ms !important}
+}
+html[data-motion="flat"] #sahtel{transition-duration:1ms}
+</style>
+</head>
+<body>
+<div id="rakendus">
+  <p class="sr-only" role="status" aria-live="polite" id="teade"></p>
+
+  <!-- ============ KIHT 1: NÄIDETE VALIK ============ -->
+  <main id="valik" aria-labelledby="valik-pealkiri">
+    <div class="pr-valik-pea">
+      <p class="pr-valik-kicker">SotsiaalAI · ruumiline töölaud</p>
+      <h1 id="valik-pealkiri">Vali töövoonäide</h1>
+      <p>Üks ühine fookusruum: korraga on ees üks teema ja üks tegevus. Iga näide kasutab sama kesta — muutuvad ainult faasid, tööobjektid ja nähtavusreeglid. Prototüüp ei salvesta midagi serverisse.</p>
+    </div>
+    <div class="pr-valik-grid" id="valik-grid" role="list"></div>
+    <p class="pr-valik-jalus">Prototüüp · 17.07.2026 · bränd: app/styles/tokens.css · Esc viib alati siia tagasi</p>
+  </main>
+
+  <!-- ============ KIHT 2: FOOKUSRUUM ============ -->
+  <header id="ankur" hidden>
+    <div class="pr-ankur-tiitel">
+      <span class="pr-ankur-nimi" id="ankur-nimi"></span>
+      <span class="pr-ankur-silt" id="ankur-silt"></span>
+    </div>
+    <div id="kiibid" aria-label="Kinnitatud valikud"></div>
+    <div class="pr-ankur-parem">
+      <button type="button" class="pr-iconbtn" id="nupp-liikumine" aria-pressed="false" title="Lame vaade (ilma lennuta)">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16"/><path d="M4 7h16"/><path d="M4 17h16"/></svg>
+        <span class="sr-only">Lame vaade ilma lennuta</span>
+      </button>
+      <button type="button" class="pr-iconbtn" id="nupp-sahtel" aria-expanded="false" aria-controls="sahtel" title="Kontekst ja materjalid">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r=".4"/></svg>
+        <span class="sr-only">Kontekst ja materjalid</span>
+      </button>
+      <button type="button" class="pr-iconbtn" id="nupp-ylevaade" aria-pressed="false" title="Ülevaade (O)">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>
+        <span class="sr-only">Ülevaade</span>
+      </button>
+    </div>
+  </header>
+
+  <section id="lava" data-mode="3d" hidden aria-label="Fookusruum">
+    <div id="dolly"></div>
+
+    <!-- Lugemiskiht (ainult lugemis-tüüpi näitel) -->
+    <div id="lugeja" hidden>
+      <div class="pr-lugeja-kest">
+        <div class="pr-lugeja-paneel">
+          <div class="pr-lugeja-pea">
+            <h2 id="lugeja-pealkiri">Kasutusjuhend</h2>
+            <span class="pr-ankur-silt">rahulik lugemiskiht — kerid sisu, mitte struktuuri</span>
+          </div>
+          <div id="lugeja-keha" tabindex="0"></div>
+          <p class="pr-lugeja-vihje" id="lugeja-vihje"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg> veel allpool</p>
+        </div>
+        <nav id="lugeja-rada" aria-label="Peatükid"></nav>
+      </div>
+    </div>
+
+    <!-- Kontekstisahtel -->
+    <aside id="sahtel" data-avatud="0" aria-labelledby="sahtel-pealkiri">
+      <div class="pr-sahtel-pea">
+        <h2 id="sahtel-pealkiri">Kontekst</h2>
+        <button type="button" class="pr-iconbtn" id="sahtel-sulge" title="Sulge (Esc)">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          <span class="sr-only">Sulge kontekst</span>
+        </button>
+      </div>
+      <div class="pr-sahtel-keha" id="sahtel-keha"></div>
+    </aside>
+
+    <!-- Ülevaatekiht -->
+    <div class="pr-kiht" id="ylevaade" hidden role="dialog" aria-modal="true" aria-labelledby="ylevaade-pealkiri">
+      <div class="pr-kiht-pea">
+        <h2 id="ylevaade-pealkiri" tabindex="-1">Ülevaade</h2>
+        <span class="pr-kiht-vihje">kogu teekond ühe pilguga · vaatamine ei muuda midagi</span>
+        <button type="button" class="pr-btn" id="ylevaade-sulge">Sulge <span aria-hidden="true">Esc</span></button>
+      </div>
+      <div class="pr-kiht-keha" id="ylevaade-keha"></div>
+    </div>
+
+    <!-- Võrdluskiht -->
+    <div class="pr-kiht" id="vordlus" hidden role="dialog" aria-modal="true" aria-labelledby="vordlus-pealkiri">
+      <div class="pr-kiht-pea">
+        <h2 id="vordlus-pealkiri" tabindex="-1">Võrdlus</h2>
+        <span class="pr-kiht-vihje" id="vordlus-vihje"></span>
+        <div id="ab-lyliti" role="radiogroup" aria-label="Kumba poolt vaatad">
+          <button type="button" class="pr-btn" id="ab-a" aria-pressed="true">A</button>
+          <button type="button" class="pr-btn" id="ab-b" aria-pressed="false">B</button>
+        </div>
+        <button type="button" class="pr-btn" id="vordlus-sulge">Sulge võrdlus</button>
+      </div>
+      <div class="pr-kiht-keha">
+        <div id="vordlus-keha"></div>
+      </div>
+    </div>
+  </section>
+
+  <nav id="dokk" hidden aria-label="Edenemisteekond">
+    <div class="pr-dokk-riba">
+      <button type="button" class="pr-dokk-nupp" id="dokk-valik" title="Näidete valik (Esc)">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        <span>Valik</span>
+      </button>
+      <button type="button" class="pr-dokk-nupp" id="dokk-tagasi" title="Eelmine samm">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 7l-5 5 5 5"/></svg>
+        <span class="sr-only">Eelmine samm</span>
+      </button>
+      <span class="pr-dokk-eraldi" aria-hidden="true"></span>
+      <div id="jaamarada" role="list" aria-label="Sammud"></div>
+    </div>
+  </nav>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ======================================================================
+   NÄITEADAPTERID — iga näide annab ainult sisu: faasid, tööobjektid,
+   väravad, nähtavussildid, võrdluspaarid. Kest on kõigil sama.
+   type: valik | mitu | read | tekst | sisend | info | sundmused |
+         riiul | varav | edu
+   ====================================================================== */
+var CHECK='<svg class="ic pr-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>';
+var LOCK='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+var EYE='<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.6"/></svg>';
+
+var EXAMPLES=[
+ {id:"dokument",nimi:"Dokumendi koostamine",kirjeldus:"Väljund, suund, lähtematerjal, mustand ja ülevaatus — üks otsus korraga.",
+  liik:"taielik",liikSilt:"Täielikult läbitav",privaatsus:{ikoon:"lock",tekst:"Mustand on ainult sinu oma, kuni jagad"},
+  abitekst:"Dokumendi koostamise ruumiline ümberlõige (ruumilised-lehe-faasid §7): pikk vorm on jagatud viieks faasiks. Mustand kasvab omaette pinnal, mida saad võrrelda varasema versiooniga.",
+  materjalid:["intervjuu-2026-07-02.m4a (transkriptsioon)","kohtumise-margukiri.docx","mall: kohtumise kokkuvõte v3"],
+  vordlus:{silt:"Mustand v1 ↔ v2",vihje:"sama dokumendi kaks versiooni",
+    a:{tiitel:"Mustand v1",silt:"kirjutuskaitstud",sisu:"Kohtumise kokkuvõte (mustand v1)\n\nOsalejad: klient, spetsialist.\nArutati eluasemetoetuse taotluse seisu ja järgmisi samme.\n\nJärgmised sammud:\n– klient esitab puuduvad dokumendid;\n– spetsialist broneerib jätkuaja."},
+    b:{tiitel:"Mustand v2",silt:"muudetav Fookuses",sisu:"Kohtumise kokkuvõte (mustand v2)\n\nOsalejad: klient, spetsialist.\nArutati eluasemetoetuse taotluse seisu, puuduvaid dokumente ja kliendi soovi kaasata tugiisik.\n\nKokkulepped:\n– klient esitab sissetulekutõendi 21.07;\n– spetsialist saadab tugiisiku kontakti;\n– jätkukohtumine 28.07 kell 10."}},
+  faasid:[
+   {id:"valjund",nimi:"Väljund",kicker:"1 · Väljund",q:"Mida koostame?",type:"valik",required:true,
+    valikud:[{v:"kohtumine",n:"Kohtumise kokkuvõte"},{v:"juhtum",n:"Juhtumikokkuvõte"},{v:"eelpoordumine",n:"Eelpöördumise kokkuvõte"},{v:"vaba",n:"Vaba dokument"}]},
+   {id:"suund",nimi:"Suund",kicker:"2 · Suund",q:"Kellele ja kuidas?",type:"read",required:true,
+    read:[{id:"siht",nimi:"Sihtrühm",valikud:["kliendile","kolleegile","ametiasutusele"]},
+          {id:"toon",nimi:"Toon",valikud:["lihtne","ametlik"]},
+          {id:"pikkus",nimi:"Pikkus",valikud:["lühike","põhjalik"]}]},
+   {id:"materjal",nimi:"Lähtematerjal",kicker:"3 · Lähtematerjal",q:"Millest lähtume?",type:"mitu",required:true,
+    juhtlause:"Vali vähemalt üks materjal. Täisloend on kontekstisahtlis (ⓘ).",
+    valikud:[{v:"intervjuu",n:"intervjuu-2026-07-02"},{v:"margukiri",n:"kohtumise-margukiri"},{v:"mall",n:"mall: kokkuvõte v3"}]},
+   {id:"koostamine",nimi:"Koostamine",kicker:"4 · Koostamine",q:"Tööta mustand koos agendiga valmis",type:"tekst",
+    juhtlause:"Agent pakub struktuuri; sina otsustad sisu. Mustand kasvab omaette pinnal.",
+    placeholder:"Lisa täpsustus või palu agendil midagi muuta…",
+    tegevus:{n:"Uuenda mustandit",teade:"Mustand uuenes: v2"}},
+   {id:"ylevaatus",nimi:"Ülevaatus",kicker:"5 · Ülevaatus",q:"Kas mustand sobib?",type:"riiul",
+    riiul:[{tiitel:"Mustand v1",tekst:"Esimene struktuur: osalejad, arutelu, järgmised sammud."},
+           {tiitel:"Mustand v2",tekst:"Täiendatud kokkulepetega: tähtajad, tugiisik, jätkukohtumine."}],
+    vordlusNupp:"Võrdle versioone"},
+   {id:"varav",nimi:"Kinnitus",kicker:"Värav",q:"Kinnita mustand",type:"varav",
+    kokkuvote:["valjund","suund","materjal"],cta:"Kinnita mustand",
+    eduTekst:"Mustand on kinnitatud. Leiad selle dokumentide arhiivist; jagamine on alati eraldi teadlik otsus."}]},
+
+ {id:"tooheaolu",nimi:"Tööheaolu kiirkontroll",kirjeldus:"Privaatne faasiteekond: lävi, kaks küsimust, pilt alles pärast vastamist.",
+  liik:"taielik",liikSilt:"Täielikult läbitav",privaatsus:{ikoon:"lock",tekst:"Ainult sina näed"},
+  abitekst:"Tööheaolu kiirkontroll on privaatne refleksiooniruum. Tõlgendus ilmub alles pärast sinu vastuseid — mitte enne (ausad algolekud). Kirjet ei jagata kellegagi.",
+  vordlus:{silt:"Täna ↔ 9. juuli kirje",vihje:"sinu enda kaks kirjet · mõlemad ainult sulle",
+    a:{tiitel:"Tänane kirje",silt:"ainult sina · muudetav Fookuses",sisu:"Fookus: dokumenteerimine\nEnesetunne: pinges\nKoormus: suur\n\nMärkasid suurt dubleerimist ja sagedasi ümberlülitusi."},
+    b:{tiitel:"9. juuli kirje",silt:"ainult sina · kirjutuskaitstud",sisu:"Fookus: koosolekud\nEnesetunne: väsinud\nKoormus: paras\n\nMärkisid, et koosolekud killustasid päeva, kuid õhtu jäi vabaks."}},
+  faasid:[
+   {id:"lavi",nimi:"Lävi",kicker:"1 · Lävi",q:"Mida täna uurime?",type:"valik",required:true,
+    juhtlause:"Ainult sina näed. Midagi ei saadeta ega jagata.",
+    valikud:[{v:"dok",n:"Dokumenteerimine"},{v:"katkestused",n:"Katkestused"},{v:"koosolekud",n:"Koosolekud"},{v:"koormus",n:"Üldine koormus"}]},
+   {id:"tunne",nimi:"Enesetunne",kicker:"2 · Enesetunne",q:"Kuidas sa end täna tunned?",type:"valik",required:true,
+    valikud:[{v:"rahulik",n:"Rahulik"},{v:"vasinud",n:"Väsinud"},{v:"pinges",n:"Pinges"},{v:"roomus",n:"Rõõmus"}]},
+   {id:"koormus",nimi:"Koormus",kicker:"3 · Koormus",q:"Kui suur oli tänane koormus?",type:"valik",required:true,
+    valikud:[{v:"kerge",n:"Kerge"},{v:"paras",n:"Paras"},{v:"suur",n:"Suur"},{v:"ylemaarane",n:"Ülemäärane"}]},
+   {id:"pilt",nimi:"Pilt",kicker:"4 · Pilt",q:"Sinu tänane pilt",type:"info",soltubVastustest:true,
+    vordlusNupp:"Võrdle eelmise korraga",
+    tekstFn:function(a){var t=a&&a.tunne?a.tunne.n:null,k=a&&a.koormus?a.koormus.n:null;
+      if(!t||!k)return null;
+      return "Märkisid: enesetunne „"+t.toLowerCase()+"” ja koormus „"+k.toLowerCase()+"”. See on kirjeldus, mitte skoor.\n\nÜks võimalik järgmine samm: pane homme hommikuks kirja üks asi, mille saad delegeerida või edasi lükata."},
+    puuduTekst:"Pilt avaneb pärast seda, kui oled enesetunde ja koormuse ise märkinud — tõlgendus ei jookse sinu vastustest ette."},
+   {id:"varav",nimi:"Otsus",kicker:"Värav",q:"Mida selle kirjega teeme?",type:"varav",
+    kokkuvote:["lavi","tunne","koormus"],cta:"Salvesta privaatselt",
+    eduTekst:"Kirje on salvestatud. Ainult sina näed seda; juht ega organisatsioon ei näe kunagi üksikkirjeid."}]},
+
+ {id:"teekond",nimi:"Teekond",kirjeldus:"Kompass: kus ma olen, mis on muutunud ja mis on järgmine samm.",
+  liik:"taielik",liikSilt:"Täielikult läbitav",privaatsus:{ikoon:"lock",tekst:"Sinu privaatne tervikvaade"},
+  abitekst:"Teekond on sinu privaatne terviklugu. Kompass vastab neljale küsimusele: kus ma olen, mis on oluline või muutunud, millised suunad on võimalikud, mis on järgmine samm. Jagamine on alati eraldi teadlik otsus koos eelvaatega.",
+  faasid:[
+   {id:"kompass",nimi:"Kompass",kicker:"1 · Kompass",q:"Millega sa praegu tegeled?",type:"valik",required:true,
+    valikud:[{v:"eluase",n:"Eluase"},{v:"too",n:"Töö ja sissetulek"},{v:"pere",n:"Pere ja suhted"},{v:"tervis",n:"Tervis ja jaksamine"}]},
+   {id:"kirje",nimi:"Sissekanne",kicker:"2 · Sissekanne",q:"Mis on vahepeal muutunud?",type:"tekst",
+    placeholder:"Kirjuta oma sõnadega. See jääb ainult sulle…"},
+   {id:"muutused",nimi:"Mis muutus",kicker:"3 · Mis muutus",q:"Sinu viimased sündmused",type:"sundmused",
+    juhtlause:"Iga rida vastab päris sündmusele; loend ei liigu ega kao iseenesest.",
+    sundmused:[{aeg:"14.07",tekst:"Eelpöördumine sai vastuse: aeg pakutud"},{aeg:"11.07",tekst:"Dokument „sissetulekutõend” laaditud üles"},{aeg:"08.07",tekst:"Vestluses kokkuvõte salvestatud Teekonda"}],
+    lisa:{aeg:"täna",tekst:"Uus sissekanne (see, mille just kirjutasid)"}},
+   {id:"samm",nimi:"Järgmine samm",kicker:"4 · Järgmine samm",q:"Mis on sinu järgmine samm?",type:"valik",required:true,
+    valikud:[{v:"aeg",n:"Broneerin pakutud aja"},{v:"kysin",n:"Küsin vestluses täpsustust"},{v:"ootan",n:"Jätan praegu; tulen tagasi"}]},
+   {id:"varav",nimi:"Salvestus",kicker:"Värav",q:"Salvesta see seis",type:"varav",
+    kokkuvote:["kompass","samm"],cta:"Salvesta Teekonda",
+    eduTekst:"Seis on salvestatud. Järgmisel avamisel jätkad täpselt siit — kompass näitab, mis on vahepeal muutunud."}]},
+
+ {id:"kovisioon",nimi:"Kovisioon — 8 etappi",kirjeldus:"Töötav kaheksaetapiline põhivoog ruumilise lavastusena, üks etapp korraga.",
+  liik:"taielik",liikSilt:"Täielikult läbitav",privaatsus:{ikoon:"eye",tekst:"Näevad ruumi osalejad · Minu leht ainult sina"},
+  abitekst:"Kovisiooni kaheksaetapiline sisuline loogika EI muutu — see prototüüp muudab ainult lavastust: iga etapp on omaette jaam, mitte üks tihe juhtpaneel. Ühine kiht on osalejatele nähtav; Minu leht jääb alati ainult sulle.",
+  faasid:[
+   {id:"e1",nimi:"Häälestumine",kicker:"Etapp 1 · 8-st",q:"Vali juhtum, millega ring töötab",type:"riiulvalik",required:true,
+    riiul:[{v:"a",tiitel:"Juhtum A — vastutuse piir",tekst:"„Kuidas hoida vastutust selgena, kui võrgustik venib?”"},{v:"b",tiitel:"Juhtum B — koostöö katkestus",tekst:"„Mida teha, kui partner ei vasta kokkulepetele?”"}]},
+   {id:"e2",nimi:"Tutvustus",kicker:"Etapp 2 · 8-st",q:"Juhtumi omanik tutvustab",type:"info",
+    tekst:"Kuula. Fookusküsimus ja märksõnad koguneb ankrusse; sinu märkmed jäävad Minu lehele (ainult sina)."},
+   {id:"e3",nimi:"Uurimine",kicker:"Etapp 3 · 8-st",q:"Sõnasta oma uuriv küsimus",type:"tekst",
+    placeholder:"Sinu küsimus juhtumi omanikule…",juhtlause:"Vaikne kirjutamine — mustand on Minu lehel, jagad ise."},
+   {id:"e4",nimi:"Süvendamine",kicker:"Etapp 4 · 8-st",q:"Millise pilgu läbi juhtumit vaatad?",type:"valik",required:true,
+    valikud:[{v:"klient",n:"Kliendi pilk"},{v:"vorgustik",n:"Võrgustiku pilk"},{v:"piirid",n:"Piiride ja rollide pilk"}]},
+   {id:"e5",nimi:"Võimaluste väli",kicker:"Etapp 5 · 8-st",q:"Milliseid võimalusi näed?",type:"mitu",required:true,
+    valikud:[{v:"kolmepoolne",n:"Kolmepoolne kohtumine"},{v:"kirjalik",n:"Kirjalik kokkulepe rollidest"},{v:"supervisioon",n:"Teema supervisiooni"},{v:"piir",n:"Selge „ei” sõnastamine"}]},
+   {id:"e6",nimi:"Sidumine",kicker:"Etapp 6 · 8-st",q:"Millise võimaluse omanik esimesena valib?",type:"valik",required:true,
+    valikud:[{v:"kolmepoolne",n:"Kolmepoolne kohtumine"},{v:"kirjalik",n:"Kirjalik kokkulepe"},{v:"muu",n:"Muu / otsustab hiljem"}]},
+   {id:"e7",nimi:"Kokkulepped",kicker:"Etapp 7 · 8-st",q:"Ringi kokkulepped",type:"info",soltubVastustest:true,
+    tekstFn:function(a){var v=a&&a.e6?a.e6.n:null;return v?("Omanik valis esimeseks sammuks: „"+v+"”. Kokkulepe läheb ühisele lehele; ruum näeb sama sõnastust."):null},
+    puuduTekst:"Kokkulepe sõnastub pärast sidumise etappi."},
+   {id:"e8",nimi:"Refleksioon",kicker:"Etapp 8 · 8-st",q:"Mida sina sellest ringist kaasa võtad?",type:"varav",vabatekst:true,
+    kokkuvote:["e1","e4","e6"],cta:"Lõpeta etapiring",
+    eduTekst:"Ring on lõpetatud. Kokkuvõte ja kokkulepped jäävad järelvaatesse; sinu refleksioon jääb Minu lehele."}]},
+
+ {id:"register",nimi:"Registreerimine — jaamalend",kirjeldus:"Valikupõhise flight-liikumise referents: vastamine viib edasi, kerimist pole.",
+  liik:"referents",liikSilt:"Liikumisreferents",privaatsus:{ikoon:"eye",tekst:"Prototüüp ei saada midagi"},
+  abitekst:"See on /registreerimine lehe jaamalennu liikumisreferents sama kestaga. Päris vorm elab rakenduses; siin ei saadeta midagi. Vastamine lennutab edasi; dokk viib tagasi; värav kordab kõik üle.",
+  faasid:[
+   {id:"roll",nimi:"Roll",kicker:"1 · Roll",q:"Kellena soovid liituda?",type:"valik",required:true,
+    valikud:[{v:"client",n:"Eluküsimusega pöörduja"},{v:"worker",n:"Sotsiaaltöö spetsialist"},{v:"provider",n:"Teenuseosutaja"}]},
+   {id:"epost",nimi:"E-post",kicker:"2 · E-post",q:"Sinu e-posti aadress",type:"sisend",sisendiliik:"email",required:true,
+    placeholder:"nimi@asutus.ee",viga:"Sisesta toimiv e-posti aadress"},
+   {id:"pin",nimi:"PIN",kicker:"3 · PIN",q:"Vali 4–8-kohaline PIN",type:"sisend",sisendiliik:"pin",required:true,
+    placeholder:"••••",viga:"PIN peab olema 4–8 numbrit"},
+   {id:"tingimused",nimi:"Tingimused",kicker:"4 · Tingimused",q:"Kinnita tingimused",type:"mitu",required:true,requireAll:true,
+    valikud:[{v:"kasutus",n:"Nõustun kasutustingimustega"},{v:"privaatsus",n:"Olen privaatsustingimustega tutvunud"}]},
+   {id:"varav",nimi:"Värav",kicker:"Värav",q:"Vaata üle ja kinnita",type:"varav",
+    kokkuvote:["roll","epost","pin","tingimused"],cta:"Registreeru (näidis)",
+    eduTekst:"See oli liikumisreferents — päris registreerimist siin ei toimunud. Sama muster: üks samm korraga, värav kordab kõik üle, edu on omaette jaam."}]},
+
+ {id:"juhend",nimi:"Kasutusjuhend — lugemiskiht",kirjeldus:"Rahulik lugemispind: loomulik kerimine on siin õige, sest kerid sisu, mitte struktuuri.",
+  liik:"lugemine",liikSilt:"Lugemiskiht",privaatsus:{ikoon:"eye",tekst:"Avalik abisisu"},
+  abitekst:"Pikk ühtlane lugemistekst jääb keritavaks — flight-vahetust siin ei kasutata, sest kerimine ON siin sisu, mitte struktuuri asendaja. Peatükirada paremal viib otse peatükini; asukoht püsib URL-is.",
+  peatykid:[
+   {id:"alustamine",tase:3,pealkiri:"1. Alustamine",tekst:"SotsiaalAI avaneb rahulikku ruumi: korraga on ees üks teema ja üks tegevus. Iga vaade ütleb, kes sisu näeb."},
+   {id:"keel",tase:4,pealkiri:"1.1 Keel ja ligipääsetavus",tekst:"Vali eesti, vene või inglise keel. „Vähenda animatsioone” annab sama sisu lameda liikumisega; kõrge kontrast tugevdab piirjooni."},
+   {id:"konto",tase:4,pealkiri:"1.2 Konto",tekst:"Konto loomiseks vajad e-posti ja PIN-koodi. Rolli määrab see, kellena liitud: pöörduja, spetsialist või teenuseosutaja."},
+   {id:"vestlus",tase:3,pealkiri:"2. Vestlus ja tööriistad",tekst:"Küsi oma sõnadega; vastused tuginevad allikatele, mida näed iga vastuse juures. Vestlusest saab sinu kinnitusel luua tööobjekte."},
+   {id:"dokumendid",tase:4,pealkiri:"2.1 Dokumenditöö",tekst:"Dokumendi koostamine liigub üks otsus korraga: väljund, suund, lähtematerjal, mustand, ülevaatus. Mustand kasvab omaette pinnal."},
+   {id:"heaolu",tase:4,pealkiri:"2.2 Tööheaolu",tekst:"Tööheaolu kirjed on ainult sinu omad. Juht ega organisatsioon ei näe kunagi üksikkirjeid — ainult k-anonüümset koondit, kui see on eraldi otsusega lubatud."},
+   {id:"privaatsus",tase:3,pealkiri:"3. Privaatsus",tekst:"Iga pind ütleb, kes sisu näeb. Jagamine on alati sinu teadlik otsus koos eelvaatega ja seda saab tagasi võtta."}]},
+
+ {id:"juhtum",nimi:"Juhtumitugi ja Meetodipeegel",kirjeldus:"Spetsialisti privaatne ettevalmistusruum; meetod kui lääts, mille läbi juhtumit vaadata.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"lock",tekst:"Sinu tööruum · ametlikku registrit ei dubleerita"},
+  abitekst:"Lühendatud näide: kaks esimest faasi on läbitavad, ülejäänud teekond on kirjas ülevaates. Juhtumitugi on privaatne ettevalmistusruum — SotsiaalAI ei ole STAR2 paralleelregister.",
+  taisteekond:["Olukorra pilt","Võrgustik","Eesmärgid","Meetodipeegel","Kokkuvõte ülekandmiseks"],
+  faasid:[
+   {id:"olukord",nimi:"Olukorra pilt",kicker:"1 · Olukorra pilt",q:"Kirjelda olukorda oma sõnadega",type:"tekst",
+    placeholder:"Mis on juhtunud? Kes on seotud? Mis teeb muret?"},
+   {id:"peegel",nimi:"Meetodipeegel",kicker:"2 · Meetodipeegel",q:"Millise läätse läbi olukorda vaatad?",type:"valik",required:true,
+    valikud:[{v:"vajadus",n:"Kliendi vajadus"},{v:"tugevused",n:"Tugevuste vaade"},{v:"vorgustik",n:"Võrgustiku vaade"}],
+    luhendatud:"Siit edasi (võrgustik, eesmärgid, kokkuvõte) on selles prototüübis ainult ülevaates."}]},
+
+ {id:"yhistegevus",nimi:"Kohtumise ühisvaade",kirjeldus:"Professionaalne ühistegevus: päevakord, ühised märkmed ja kinnitatav kokkulepe.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"eye",tekst:"Näevad kohtumise osalejad"},
+  abitekst:"Lühendatud näide: kohtumise ühisvaade näitab sama kesta jagatud kontekstis. Kokkulepe kinnitatakse nimeliselt; vaatamine ei muuda kunagi olekut.",
+  taisteekond:["Kutse ja osalejad","Päevakord","Ühismärkmed","Kokkulepped","Kinnitusring"],
+  faasid:[
+   {id:"paevakord",nimi:"Päevakord",kicker:"1 · Päevakord",q:"Tänane kohtumine",type:"info",
+    tekst:"Võrgustikukohtumine: 3 osalejat. Päevakorras üks teema — toe jätkamine pärast suve. Osalejad ja nähtavus on kirjas kontekstisahtlis (ⓘ)."},
+   {id:"kokkulepe",nimi:"Kokkulepe",kicker:"2 · Kokkulepe",q:"Kas kinnitad kokkuleppe?",type:"valik",required:true,
+    juhtlause:"„Tugi jätkub augustis senises mahus; vaheülevaade 15.08.”",
+    valikud:[{v:"jah",n:"Kinnitan"},{v:"tapsustus",n:"Vajan täpsustust"}],
+    luhendatud:"Kinnitusring ja ülesannete jagamine on selles prototüübis ainult ülevaates."}]},
+
+ {id:"mentorlus",nimi:"Mentorlus",kirjeldus:"Kaitstud mentorlussuhe: ootused, kohtumised ja kahepoolselt kinnitatud kokkuvõtted.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"lock",tekst:"Näete sina ja mentor"},
+  abitekst:"Lühendatud näide: mentorlus on kahepoolne kaitstud suhe. Kokkuvõte kehtib alles siis, kui mõlemad on kinnitanud; privaatmärkmed jäävad kummalegi endale.",
+  taisteekond:["Taotlus","Mõlemapoolne nõusolek","Kokkulepe","Kohtumised","Kinnitatud kokkuvõtted","Lõpetamine"],
+  faasid:[
+   {id:"ootused",nimi:"Ootused",kicker:"1 · Ootused",q:"Mida sa mentorlusest ootad?",type:"valik",required:true,
+    valikud:[{v:"alustamine",n:"Tuge alustamisel"},{v:"juhtumid",n:"Keeruliste juhtumite arutelu"},{v:"areng",n:"Pikemat arenguvaadet"}]},
+   {id:"kirje",nimi:"Kohtumise kirje",kicker:"2 · Kohtumise kirje",q:"Viimane kohtumine",type:"info",
+    tekst:"10.07 · 45 min · teemad: piiride hoidmine, esimene raske vestlus. Kokkuvõte ootab sinu kinnitust — kehtib alles siis, kui mõlemad on kinnitanud.",
+    luhendatud:"Kokkulepe, kinnitusvoog ja lõpetamine on selles prototüübis ainult ülevaates."}]},
+
+ {id:"supervisioon",nimi:"Supervisioon",kirjeldus:"Leping, eeskamber, kohtumised ja teadlikult jagatud materjal ühe teekonnana.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"lock",tekst:"Näevad protsessis osalejad · eeskamber ainult sina"},
+  abitekst:"Lühendatud näide: supervisiooniprotsess on sama kesta pikem teekond. Eeskambrisse kirjutad ainult endale; jagamine on alati eraldi otsus.",
+  taisteekond:["Grant ja leping","Kontrakt","Eeskamber","Kohtumised","Kinnitatud kokkuvõtted","Sulgemine"],
+  faasid:[
+   {id:"leping",nimi:"Leping",kicker:"1 · Leping",q:"Protsessi raam",type:"info",
+    tekst:"Grupisupervisioon · 6 kohtumist · kokkulepitud teemad ja konfidentsiaalsus. Osalejad näevad sama raami."},
+   {id:"eeskamber",nimi:"Eeskamber",kicker:"2 · Eeskamber",q:"Mida tahad järgmisse kohtumisse kaasa võtta?",type:"tekst",
+    placeholder:"Kirjuta ainult endale. Jagad siis, kui ise otsustad…",
+    luhendatud:"Kohtumised, kokkuvõtted ja sulgemine on selles prototüübis ainult ülevaates."}]},
+
+ {id:"valitoo",nimi:"Mobiilne välitöö",kirjeldus:"Külastuse kest telefonis: märkmed kohapeal, ülevaatus ja üleandmine tööruumi.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"lock",tekst:"Seadmes krüptitud, kuni sünkroonid"},
+  abitekst:"Lühendatud näide: välitöö on olemasolevate tööruumide mobiilne kest, mitte uus andmesilo. Märkmed püsivad seadmes krüptituna ja lähevad ülevaatuse kaudu tööruumi.",
+  taisteekond:["Külastuse alustamine","Märkmed kohapeal","Ülevaatus","Üleandmine tööruumi","Sünkroonimine ja kustutus"],
+  faasid:[
+   {id:"alustus",nimi:"Külastus",kicker:"1 · Külastus",q:"Alusta külastust",type:"valik",required:true,
+    valikud:[{v:"kodu",n:"Kodukülastus"},{v:"asutus",n:"Kohtumine asutuses"}]},
+   {id:"marge",nimi:"Märge",kicker:"2 · Märge",q:"Pane kirja, mida nägid ja kuulsid",type:"tekst",
+    placeholder:"Fakt eraldi, tõlgendus eraldi…",
+    juhtlause:"Tekst, hääl või foto — kõik jäävad seadmesse, kuni ise sünkroonid.",
+    luhendatud:"Ülevaatus, üleandmine ja sünkroonimine on selles prototüübis ainult ülevaates."}]},
+
+ {id:"org",nimi:"Organisatsiooni koondvaade",kirjeldus:"Ainult k≥5 anonüümne koond: tabel elab ülevaatekihis, mitte vaikevaates.",
+  liik:"luhendatud",liikSilt:"Lühendatud näide",privaatsus:{ikoon:"eye",tekst:"Ainult k≥5 koond · üksikkirjeid ei eksisteeri siin"},
+  abitekst:"Lühendatud näide: organisatsioonivaade näitab reeglit „tabel ei ole vaikevaade”. Fookuses on üks küsimus perioodi kohta; koondtabel avaneb teadlikult ülevaatekihis. Individuaalset töötaja jälgimist ei ehitata kunagi.",
+  taisteekond:["Perioodi valik","Koondpilt","Baromeeter","Eksport"],
+  orgTabel:{pealkiri:"Koond (k≥5, külmutatud perioodid)",
+    veerud:["Näitaja","Kevad 2026","Suvi 2026"],
+    read:[["Aktiivseid töötajaid (≥5)","12","14"],["Tööheaolu kirjeid (koond)","86","64"],["Kovisiooniringe","7","4"],["Teenusekaardi päringuid","210","190"]]},
+  faasid:[
+   {id:"periood",nimi:"Periood",kicker:"1 · Periood",q:"Millist perioodi vaatame?",type:"valik",required:true,
+    valikud:[{v:"kevad",n:"Kevad 2026"},{v:"suvi",n:"Suvi 2026"}]},
+   {id:"koond",nimi:"Koondpilt",kicker:"2 · Koondpilt",q:"Koond on ülevaatekihis",type:"info",
+    tekst:"Fookusruum hoiab ühte küsimust korraga. Koondtabel, ajalugu ja võrdlus avanevad Ülevaatest (⌘ parem ülal või O) — tabel ei ole kunagi vaikimisi põhivaade.",
+    luhendatud:"Baromeeter ja eksport on selles prototüübis ainult ülevaates."}]}
+];
+
+/* ======================================================================
+   OLEK + PÜSIVUS
+   ====================================================================== */
+var LS_KEY="sai-ruumiline-toolaud-proto-v1";
+var state={ex:null,j:0,view:"valik",answers:{},motion:"auto",overlayPushed:false};
+function loadStore(){try{return JSON.parse(localStorage.getItem(LS_KEY)||"{}")}catch(e){return{}}}
+function saveStore(){
+  if(!state.ex)return;
+  var store=loadStore();
+  store[state.ex.id]={j:state.j,answers:state.answers[state.ex.id]||{},savedAt:new Date().toISOString()};
+  try{localStorage.setItem(LS_KEY,JSON.stringify(store))}catch(e){}
+}
+function clearExampleStore(id){var s=loadStore();delete s[id];try{localStorage.setItem(LS_KEY,JSON.stringify(s))}catch(e){}}
+
+/* ======================================================================
+   LENNUMOOTOR — useStationFlight.js vanilla-adaptsioon
+   ====================================================================== */
+var STATION_DEPTH=1300,FADE_IN_START=-1250,FADE_IN_LEN=550,
+    FADE_OUT_START=240,FADE_OUT_LEN=360,VISIBLE_MIN=-1320,VISIBLE_MAX=640,
+    LERP=0.11,ARRIVAL_DRIFT=120;
+var dolly=document.getElementById("dolly"),lava=document.getElementById("lava");
+var planes=[],cam=0,camTarget=0,running=false,frame=0,flightMode="3d";
+function clamp01(v){return v<0?0:v>1?1:v}
+function envelope(rel){
+  var fi=clamp01((rel-FADE_IN_START)/FADE_IN_LEN);
+  var fo=1-clamp01((rel-FADE_OUT_START)/FADE_OUT_LEN);
+  return fi*fo;
+}
+function perspectiveWorks(){
+  var probe=document.createElement("div");
+  probe.style.cssText="position:absolute;width:100px;height:100px;transform:translateZ(-1100px);visibility:hidden";
+  dolly.appendChild(probe);
+  var w=probe.getBoundingClientRect().width;
+  probe.remove();
+  return w<80;
+}
+function prefersReduced(){return matchMedia("(prefers-reduced-motion: reduce)").matches}
+function resolveMode(){
+  if(state.motion==="flat")return "flat";
+  if(prefersReduced())return "flat";
+  return perspectiveWorks()?"3d":"flat";
+}
+function tick(){
+  if(flightMode!=="3d"){running=false;return}
+  cam+=(camTarget-cam)*LERP;
+  if(Math.abs(camTarget-cam)<0.2)cam=camTarget;
+  dolly.style.setProperty("--cam",cam.toFixed(2)+"px");
+  for(var i=0;i<planes.length;i++){
+    var p=planes[i],rel=p.z+cam;
+    if(rel<VISIBLE_MIN||rel>VISIBLE_MAX){
+      if(p.visible!==false){p.visible=false;p.el.style.visibility="hidden"}
+      continue;
+    }
+    if(p.visible!==true){p.visible=true;p.el.style.visibility="visible"}
+    var o=envelope(rel);
+    if(Math.abs(o-p.lastO)>0.002){p.lastO=o;p.el.style.setProperty("--o",o.toFixed(3))}
+  }
+  if(cam===camTarget){running=false;return}
+  frame=requestAnimationFrame(tick);
+}
+function wake(){if(running||flightMode!=="3d")return;running=true;frame=requestAnimationFrame(tick)}
+document.addEventListener("visibilitychange",function(){
+  if(document.hidden)cancelAnimationFrame(frame);
+  else{running=false;wake()}
+});
+
+/* ======================================================================
+   DOM-VIITED
+   ====================================================================== */
+var el={
+  valik:document.getElementById("valik"),
+  valikGrid:document.getElementById("valik-grid"),
+  ankur:document.getElementById("ankur"),
+  ankurNimi:document.getElementById("ankur-nimi"),
+  ankurSilt:document.getElementById("ankur-silt"),
+  kiibid:document.getElementById("kiibid"),
+  lava:lava,dokk:document.getElementById("dokk"),
+  jaamarada:document.getElementById("jaamarada"),
+  dokkTagasi:document.getElementById("dokk-tagasi"),
+  dokkValik:document.getElementById("dokk-valik"),
+  sahtel:document.getElementById("sahtel"),
+  sahtelKeha:document.getElementById("sahtel-keha"),
+  nuppSahtel:document.getElementById("nupp-sahtel"),
+  nuppYlevaade:document.getElementById("nupp-ylevaade"),
+  nuppLiikumine:document.getElementById("nupp-liikumine"),
+  ylevaade:document.getElementById("ylevaade"),
+  ylevaadeKeha:document.getElementById("ylevaade-keha"),
+  vordlus:document.getElementById("vordlus"),
+  vordlusKeha:document.getElementById("vordlus-keha"),
+  vordlusVihje:document.getElementById("vordlus-vihje"),
+  lugeja:document.getElementById("lugeja"),
+  lugejaKeha:document.getElementById("lugeja-keha"),
+  lugejaRada:document.getElementById("lugeja-rada"),
+  lugejaVihje:document.getElementById("lugeja-vihje"),
+  lugejaPealkiri:document.getElementById("lugeja-pealkiri"),
+  teade:document.getElementById("teade"),
+  abA:document.getElementById("ab-a"),abB:document.getElementById("ab-b")
+};
+function announce(txt){el.teade.textContent="";requestAnimationFrame(function(){el.teade.textContent=txt})}
+
+/* ======================================================================
+   URL-OLEK (hash) — näide + samm + vaade taastuvad otselingiga
+   ====================================================================== */
+var applyingHash=false;
+function hashStr(o){
+  if(!o.n)return "#valik";
+  var p=new URLSearchParams();
+  p.set("n",o.n);p.set("j",String(o.j||0));
+  if(o.v&&o.v!=="fookus")p.set("v",o.v);
+  return "#"+p.toString();
+}
+function parseHash(){
+  var h=location.hash.replace(/^#/,"");
+  if(!h||h==="valik")return{n:null};
+  var p=new URLSearchParams(h);
+  var n=p.get("n");
+  if(!n)return{n:null};
+  return{n:n,j:Math.max(0,parseInt(p.get("j")||"0",10)||0),v:p.get("v")||"fookus"};
+}
+function nav(o,opts){
+  opts=opts||{};
+  var h=hashStr(o);
+  if(h===location.hash){apply(parseHash());return}
+  if(opts.replace){history.replaceState(null,"",h);apply(parseHash())}
+  else location.hash=h; /* hashchange käivitab apply */
+}
+window.addEventListener("hashchange",function(){apply(parseHash())});
+
+/* ======================================================================
+   VAADETE RAKENDAMINE
+   ====================================================================== */
+function findExample(id){for(var i=0;i<EXAMPLES.length;i++)if(EXAMPLES[i].id===id)return EXAMPLES[i];return null}
+function apply(target){
+  if(applyingHash)return;applyingHash=true;
+  try{
+    var ex=target.n?findExample(target.n):null;
+    if(!ex){showPicker();return}
+    if(!state.ex||state.ex.id!==ex.id)openExample(ex,target.j);
+    else if(ex.liik!=="lugemine"&&target.j!==state.j)flyTo(target.j,{});
+    setView(target.v||"fookus");
+  }finally{applyingHash=false}
+}
+function setView(v){
+  var oli=state.view;state.view=v;
+  el.ylevaade.hidden=v!=="ylevaade";
+  el.vordlus.hidden=v!=="vordlus";
+  el.nuppYlevaade.setAttribute("aria-pressed",v==="ylevaade"?"true":"false");
+  if(v==="ylevaade"&&oli!=="ylevaade"){renderOverview();announce("Ülevaade avatud");
+    setTimeout(function(){document.getElementById("ylevaade-pealkiri").focus()},60)}
+  if(v==="vordlus"&&oli!=="vordlus"){renderCompare();announce("Võrdlus avatud");
+    setTimeout(function(){document.getElementById("vordlus-pealkiri").focus()},60)}
+  if(v==="fookus"&&oli!=="fookus"&&state.ex)focusActivePlane();
+}
+function openOverlay(v){state.overlayPushed=true;nav({n:state.ex.id,j:state.j,v:v})}
+function closeOverlay(){
+  if(state.overlayPushed){state.overlayPushed=false;history.back()}
+  else nav({n:state.ex.id,j:state.j,v:"fookus"},{replace:true});
+}
+
+/* ======================================================================
+   NÄIDETE VALIK
+   ====================================================================== */
+function renderPicker(){
+  var store=loadStore();
+  el.valikGrid.innerHTML="";
+  EXAMPLES.forEach(function(ex){
+    var b=document.createElement("button");
+    b.type="button";b.className="pr-kaart";b.setAttribute("role","listitem");
+    b.dataset.liik=ex.liik==="taielik"?"taielik":"muu";
+    var saved=store[ex.id];
+    var jatka=saved&&ex.liik!=="lugemine"&&saved.j>0&&saved.j<ex.faasid.length?'<span class="pr-kaart-jatka">Pooleli · samm '+(saved.j+1)+"/"+ex.faasid.length+"</span>":"";
+    b.innerHTML=jatka+"<b>"+ex.nimi+"</b><small>"+ex.kirjeldus+"</small>"+
+      '<span class="pr-kaart-liik">'+ex.liikSilt+"</span>";
+    b.addEventListener("click",function(){
+      var j=saved&&ex.liik!=="lugemine"?Math.min(saved.j,ex.faasid.length-1):0;
+      nav({n:ex.id,j:j,v:"fookus"});
+    });
+    el.valikGrid.appendChild(b);
+  });
+}
+function showPicker(){
+  if(state.ex)saveStore();
+  teardownExample();
+  state.ex=null;state.view="valik";
+  el.valik.hidden=false;el.ankur.hidden=true;el.lava.hidden=true;el.dokk.hidden=true;
+  el.ylevaade.hidden=true;el.vordlus.hidden=true;closeDrawer();
+  renderPicker();
+  document.title="SotsiaalAI — ruumilise töölaua prototüüp";
+  announce("Näidete valik");
+}
+
+/* ======================================================================
+   NÄITE AVAMINE / SULGEMINE
+   ====================================================================== */
+var advanceTimer=0;
+function teardownExample(){
+  window.clearTimeout(advanceTimer);
+  cancelAnimationFrame(frame);running=false;
+  planes=[];dolly.innerHTML="";
+  el.lugeja.hidden=true;el.lugejaKeha.innerHTML="";el.lugejaRada.innerHTML="";
+}
+function openExample(ex,startJ){
+  teardownExample();
+  state.ex=ex;
+  if(!state.answers[ex.id]){
+    var saved=loadStore()[ex.id];
+    state.answers[ex.id]=saved&&saved.answers?saved.answers:{};
+  }
+  el.valik.hidden=true;el.ankur.hidden=false;el.lava.hidden=false;el.dokk.hidden=false;
+  el.ankurNimi.textContent=ex.nimi;
+  el.ankurSilt.innerHTML=(ex.privaatsus.ikoon==="lock"?LOCK:EYE)+"<span>"+ex.privaatsus.tekst+"</span>";
+  renderDrawerContent();
+  document.title=ex.nimi+" — SotsiaalAI prototüüp";
+  if(ex.liik==="lugemine"){buildReader();state.j=0;renderDock();renderChips();return}
+  buildPlanes();
+  flightMode=resolveMode();
+  lava.dataset.mode=flightMode;
+  state.j=Math.max(0,Math.min(startJ||0,ex.faasid.length-1));
+  camTarget=state.j*STATION_DEPTH;
+  cam=Math.max(0,camTarget-ARRIVAL_DRIFT);
+  if(flightMode==="3d"){dolly.style.setProperty("--cam",cam.toFixed(2)+"px");wake()}
+  syncPlanes();renderDock();renderChips();announceStation();
+  focusActivePlane();
+}
+
+/* ======================================================================
+   JAAMADE EHITUS
+   ====================================================================== */
+function ansOf(){return state.answers[state.ex.id]||{}}
+function setAns(fid,val){state.answers[state.ex.id][fid]=val;saveStore();renderChips();renderDock();refreshDependents()}
+function buildPlanes(){
+  var ex=state.ex;
+  planes=[];dolly.innerHTML="";
+  ex.faasid.forEach(function(f,i){
+    var sec=document.createElement("section");
+    sec.className="pr-jaam";
+    sec.style.setProperty("--z",(-(i*STATION_DEPTH))+"px");
+    sec.style.zIndex=String(4000-i*10);
+    sec.dataset.j=String(i);
+    sec.setAttribute("aria-label","Samm "+(i+1)+"/"+ex.faasid.length+": "+f.nimi);
+    sec.appendChild(renderStation(f,i));
+    dolly.appendChild(sec);
+    planes.push({el:sec,z:-(i*STATION_DEPTH),lastO:-1,visible:null});
+  });
+}
+function renderStation(f,i){
+  var wrap=document.createElement("div");
+  var a=ansOf();
+  var kick=document.createElement("p");kick.className="pr-kicker";kick.textContent=f.kicker;wrap.appendChild(kick);
+  var q=document.createElement("h2");q.className="pr-kysimus";q.textContent=f.q;wrap.appendChild(q);
+  if(f.juhtlause){var jl=document.createElement("p");jl.className="pr-juhtlause";jl.textContent=f.juhtlause;wrap.appendChild(jl)}
+  var box=document.createElement("div");box.className="pr-juhtimine";wrap.appendChild(box);
+
+  if(f.type==="valik"){
+    box.setAttribute("role","radiogroup");box.setAttribute("aria-label",f.q);
+    f.valikud.forEach(function(o,oi){
+      var b=document.createElement("button");
+      b.type="button";b.className="pr-valiknupp";b.setAttribute("role","radio");
+      var sel=a[f.id]&&a[f.id].v===o.v;
+      b.setAttribute("aria-checked",sel?"true":"false");
+      if(oi===0)b.dataset.autofocus="";
+      b.innerHTML=CHECK+"<span>"+o.n+"</span>";
+      b.addEventListener("click",function(){
+        setAns(f.id,{v:o.v,n:o.n});
+        markChecked(box,b);
+        scheduleAdvance(i+1);
+      });
+      b.addEventListener("keydown",function(ev){radioArrows(ev,box)});
+      box.appendChild(b);
+    });
+  }
+  else if(f.type==="riiulvalik"){ /* Carousel-muster: sirvi + vali */
+    var st={pos:a[f.id]&&a[f.id].pos!=null?a[f.id].pos:0};
+    var riiul=document.createElement("div");riiul.className="pr-riiul";
+    var prev=iconBtn("‹","Eelmine"),next=iconBtn("›","Järgmine");
+    var kaart=document.createElement("div");kaart.className="pr-riiul-kaart";kaart.setAttribute("aria-live","polite");
+    var pos=document.createElement("p");pos.className="pr-riiul-pos";
+    function draw(){
+      var it=f.riiul[st.pos];
+      kaart.innerHTML="<b>"+it.tiitel+"</b>"+it.tekst;
+      pos.textContent=(st.pos+1)+" / "+f.riiul.length;
+      prev.disabled=st.pos===0;next.disabled=st.pos===f.riiul.length-1;
+    }
+    prev.addEventListener("click",function(){if(st.pos>0){st.pos--;draw()}});
+    next.addEventListener("click",function(){if(st.pos<f.riiul.length-1){st.pos++;draw()}});
+    riiul.appendChild(prev);riiul.appendChild(kaart);riiul.appendChild(next);riiul.appendChild(pos);
+    box.appendChild(riiul);
+    var vali=document.createElement("div");vali.className="pr-edasi";
+    var vb=document.createElement("button");vb.type="button";vb.className="pr-btn";vb.dataset.variant="primary";vb.dataset.autofocus="";
+    vb.textContent=a[f.id]?"Valitud: "+a[f.id].n:"Vali see juhtum";
+    vb.addEventListener("click",function(){
+      var it=f.riiul[st.pos];
+      setAns(f.id,{v:it.v,n:it.tiitel,pos:st.pos});
+      vb.textContent="Valitud: "+it.tiitel;
+      scheduleAdvance(i+1);
+    });
+    vali.appendChild(vb);box.appendChild(vali);
+    draw();
+  }
+  else if(f.type==="mitu"){
+    f.valikud.forEach(function(o){
+      var b=document.createElement("button");
+      b.type="button";b.className="pr-valiknupp";
+      var cur=a[f.id]&&a[f.id].v?a[f.id].v:[];
+      b.setAttribute("aria-pressed",cur.indexOf(o.v)>=0?"true":"false");
+      b.innerHTML=CHECK+"<span>"+o.n+"</span>";
+      b.addEventListener("click",function(){
+        var cur=(a[f.id]&&a[f.id].v?a[f.id].v:[]).slice();
+        var ix=cur.indexOf(o.v);
+        if(ix>=0)cur.splice(ix,1);else cur.push(o.v);
+        b.setAttribute("aria-pressed",ix>=0?"false":"true");
+        var nimed=f.valikud.filter(function(x){return cur.indexOf(x.v)>=0}).map(function(x){return x.n});
+        setAns(f.id,cur.length?{v:cur,n:nimed.join(" · ")}:undefined);
+        a=ansOf();
+      });
+      box.appendChild(b);
+    });
+    var ed=edasiNupp(i,f);box.appendChild(ed);
+  }
+  else if(f.type==="read"){
+    f.read.forEach(function(r){
+      var rida=document.createElement("div");rida.className="pr-kiiprida";
+      rida.innerHTML='<span class="pr-kiiprida-nimi">'+r.nimi+"</span>";
+      r.valikud.forEach(function(v){
+        var b=document.createElement("button");
+        b.type="button";b.className="pr-kiipvalik";
+        var cur=a[f.id]&&a[f.id].v?a[f.id].v:{};
+        b.setAttribute("aria-pressed",cur[r.id]===v?"true":"false");
+        b.innerHTML=CHECK+"<span>"+v+"</span>";
+        b.addEventListener("click",function(){
+          var cur=(a[f.id]&&a[f.id].v)?JSON.parse(JSON.stringify(a[f.id].v)):{};
+          cur[r.id]=v;
+          rida.querySelectorAll(".pr-kiipvalik").forEach(function(x){x.setAttribute("aria-pressed","false")});
+          b.setAttribute("aria-pressed","true");
+          var koik=f.read.every(function(rr){return cur[rr.id]});
+          var nimi=f.read.map(function(rr){return cur[rr.id]||"—"}).join(" · ");
+          setAns(f.id,{v:cur,n:nimi,valmis:koik});
+          a=ansOf();
+          if(koik)scheduleAdvance(i+1);
+        });
+        rida.appendChild(b);
+      });
+      box.appendChild(rida);
+    });
+  }
+  else if(f.type==="tekst"){
+    var ta=document.createElement("textarea");
+    ta.className="pr-tekst";ta.placeholder=f.placeholder||"";ta.dataset.autofocus="";
+    ta.setAttribute("aria-label",f.q);
+    ta.value=a[f.id]&&a[f.id].v?a[f.id].v:"";
+    ta.addEventListener("input",function(){
+      var t=ta.value.trim();
+      setAns(f.id,t?{v:t,n:t.length>26?t.slice(0,24)+"…":t}:undefined);
+      a=ansOf();
+    });
+    box.appendChild(ta);
+    if(f.tegevus){
+      var tg=document.createElement("div");tg.className="pr-edasi";
+      var tb=document.createElement("button");tb.type="button";tb.className="pr-btn";
+      tb.textContent=f.tegevus.n;
+      tb.addEventListener("click",function(){
+        setAns("mustandVersioon",{v:2,n:"mustand v2"});
+        announce(f.tegevus.teade);
+        tb.textContent=f.tegevus.teade;
+        scheduleAdvance(i+1);
+      });
+      tg.appendChild(tb);box.appendChild(tg);
+    } else box.appendChild(edasiNupp(i,f));
+  }
+  else if(f.type==="sisend"){
+    var inp=document.createElement("input");
+    inp.className="pr-sisend";inp.placeholder=f.placeholder||"";inp.dataset.autofocus="";
+    inp.setAttribute("aria-label",f.q);
+    if(f.sisendiliik==="email"){inp.type="email";inp.autocomplete="email"}
+    if(f.sisendiliik==="pin"){inp.type="password";inp.inputMode="numeric";inp.maxLength=8}
+    inp.value=a[f.id]&&a[f.id].raw?a[f.id].raw:"";
+    var viga=document.createElement("span");viga.className="pr-viga";viga.hidden=true;viga.textContent=f.viga||"Täida see väli";
+    inp.addEventListener("input",function(){
+      var v=inp.value.trim();
+      if(f.sisendiliik==="pin")v=v.replace(/\D/g,"").slice(0,8);
+      var ok=f.sisendiliik==="email"?/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v):v.length>=4;
+      viga.hidden=true;
+      setAns(f.id,v?{raw:v,ok:ok,n:f.sisendiliik==="pin"?"•".repeat(v.length):v}:undefined);
+      a=ansOf();
+    });
+    box.appendChild(inp);box.appendChild(viga);
+    var ed2=document.createElement("div");ed2.className="pr-edasi";
+    var eb=document.createElement("button");eb.type="button";eb.className="pr-btn";
+    eb.innerHTML="Edasi";
+    eb.addEventListener("click",function(){
+      var cur=ansOf()[f.id];
+      if(!cur||!cur.ok){viga.hidden=false;announce(viga.textContent);return}
+      flyTo(i+1,{});
+    });
+    ed2.appendChild(eb);box.appendChild(ed2);
+    inp.addEventListener("keydown",function(ev){if(ev.key==="Enter"){ev.preventDefault();eb.click()}});
+  }
+  else if(f.type==="info"){
+    var info=document.createElement("div");info.className="pr-info";
+    info.dataset.infoFor=f.id;
+    fillInfo(info,f);
+    box.appendChild(info);
+    box.appendChild(edasiNupp(i,f));
+  }
+  else if(f.type==="sundmused"){
+    var ul=document.createElement("ul");ul.className="pr-sundmused";ul.setAttribute("aria-live","polite");
+    f.sundmused.forEach(function(s){ul.appendChild(sundmusRida(s))});
+    box.appendChild(ul);
+    if(f.lisa){
+      var lb=document.createElement("div");lb.className="pr-edasi";
+      var lbtn=document.createElement("button");lbtn.type="button";lbtn.className="pr-btn";lbtn.dataset.variant="quiet";
+      lbtn.textContent="Lisa tänane sissekanne loendisse";
+      lbtn.addEventListener("click",function(){
+        ul.insertBefore(sundmusRida(f.lisa),ul.firstChild);
+        lbtn.disabled=true;
+        announce("Loendisse lisandus: "+f.lisa.tekst);
+      });
+      lb.appendChild(lbtn);box.appendChild(lb);
+    }
+    box.appendChild(edasiNupp(i,f));
+  }
+  else if(f.type==="riiul"){
+    var st2={pos:f.riiul.length-1};
+    var riiul2=document.createElement("div");riiul2.className="pr-riiul";
+    var prev2=iconBtn("‹","Eelmine versioon"),next2=iconBtn("›","Järgmine versioon");
+    var kaart2=document.createElement("div");kaart2.className="pr-riiul-kaart";kaart2.setAttribute("aria-live","polite");
+    var pos2=document.createElement("p");pos2.className="pr-riiul-pos";
+    function draw2(){
+      var it=f.riiul[st2.pos];
+      kaart2.innerHTML="<b>"+it.tiitel+"</b>"+it.tekst;
+      pos2.textContent=(st2.pos+1)+" / "+f.riiul.length+" · versioonid";
+      prev2.disabled=st2.pos===0;next2.disabled=st2.pos===f.riiul.length-1;
+    }
+    prev2.addEventListener("click",function(){if(st2.pos>0){st2.pos--;draw2()}});
+    next2.addEventListener("click",function(){if(st2.pos<f.riiul.length-1){st2.pos++;draw2()}});
+    riiul2.appendChild(prev2);riiul2.appendChild(kaart2);riiul2.appendChild(next2);riiul2.appendChild(pos2);
+    box.appendChild(riiul2);draw2();
+    var rida2=document.createElement("div");rida2.className="pr-edasi";
+    if(f.vordlusNupp&&state.ex.vordlus){
+      var vb2=document.createElement("button");vb2.type="button";vb2.className="pr-btn";
+      vb2.textContent=f.vordlusNupp;
+      vb2.addEventListener("click",function(){openOverlay("vordlus")});
+      rida2.appendChild(vb2);
+    }
+    var eb2=document.createElement("button");eb2.type="button";eb2.className="pr-btn";eb2.dataset.variant="primary";eb2.dataset.autofocus="";
+    eb2.textContent="Edasi väravasse";
+    eb2.addEventListener("click",function(){flyTo(i+1,{})});
+    rida2.appendChild(eb2);
+    rida2.style.display="flex";rida2.style.gap=".6rem";rida2.style.justifyContent="center";
+    box.appendChild(rida2);
+  }
+  else if(f.type==="varav"){
+    box.appendChild(renderGate(f,i));
+  }
+  if(f.vordlusNupp&&f.type!=="riiul"&&state.ex.vordlus){
+    var vr=document.createElement("div");vr.className="pr-edasi";
+    var vrb=document.createElement("button");vrb.type="button";vrb.className="pr-btn";vrb.dataset.variant="quiet";
+    vrb.textContent=f.vordlusNupp;
+    vrb.addEventListener("click",function(){openOverlay("vordlus")});
+    vr.appendChild(vrb);wrap.appendChild(vr);
+  }
+  if(f.luhendatud){
+    var lyh=document.createElement("p");lyh.className="pr-luhendatud";
+    lyh.textContent="Lühendatud näide — "+f.luhendatud;
+    wrap.appendChild(lyh);
+    var tagasi=document.createElement("div");tagasi.className="pr-edasi";
+    var tb2=document.createElement("button");tb2.type="button";tb2.className="pr-btn";
+    tb2.textContent="Ava täisteekond ülevaates";
+    tb2.addEventListener("click",function(){openOverlay("ylevaade")});
+    tagasi.appendChild(tb2);wrap.appendChild(tagasi);
+  }
+  return wrap;
+}
+function sundmusRida(s){
+  var li=document.createElement("li");
+  li.innerHTML="<time>"+s.aeg+"</time><span>"+s.tekst+"</span>";
+  return li;
+}
+function iconBtn(glyph,label){
+  var b=document.createElement("button");
+  b.type="button";b.className="pr-iconbtn";
+  b.innerHTML='<span aria-hidden="true" style="font-size:1.2rem;line-height:1">'+glyph+'</span><span class="sr-only">'+label+"</span>";
+  return b;
+}
+function edasiNupp(i,f){
+  var d=document.createElement("div");d.className="pr-edasi";
+  var b=document.createElement("button");b.type="button";b.className="pr-btn";
+  if(f.type==="info"&&!f.luhendatud)b.dataset.autofocus="";
+  b.textContent="Edasi";
+  b.addEventListener("click",function(){flyTo(i+1,{})});
+  d.appendChild(b);
+  if(f.luhendatud)b.hidden=true;
+  return d;
+}
+function markChecked(group,btn){
+  group.querySelectorAll('[role="radio"]').forEach(function(x){x.setAttribute("aria-checked","false")});
+  btn.setAttribute("aria-checked","true");
+}
+function radioArrows(ev,group){
+  var keys=["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"];
+  if(keys.indexOf(ev.key)<0)return;
+  ev.preventDefault();ev.stopPropagation();
+  var items=[].slice.call(group.querySelectorAll('[role="radio"]'));
+  var cur=items.indexOf(document.activeElement);
+  var dir=(ev.key==="ArrowUp"||ev.key==="ArrowLeft")?-1:1;
+  var next=(cur+dir+items.length)%items.length;
+  items[next].focus();
+}
+function fillInfo(node,f){
+  var a=ansOf();
+  var txt=f.tekstFn?f.tekstFn(a):f.tekst;
+  if(f.soltubVastustest&&!txt){
+    node.innerHTML="<p>"+(f.puuduTekst||"Vasta enne eelmistele küsimustele.")+"</p>";
+    node.dataset.puudu="1";
+  } else {
+    node.innerHTML=(txt||"").split("\n\n").map(function(p){return "<p>"+p+"</p>"}).join("");
+    delete node.dataset.puudu;
+  }
+}
+function refreshDependents(){
+  if(!state.ex||state.ex.liik==="lugemine")return;
+  state.ex.faasid.forEach(function(f){
+    if(f.soltubVastustest){
+      var node=dolly.querySelector('[data-info-for="'+f.id+'"]');
+      if(node)fillInfo(node,f);
+    }
+    if(f.type==="varav"){
+      var plane=dolly.querySelector('.pr-jaam[data-j="'+state.ex.faasid.indexOf(f)+'"]');
+      if(plane){
+        var host=plane.querySelector("[data-varav]");
+        if(host){var uus=renderGate(f,state.ex.faasid.indexOf(f));host.replaceWith(uus)}
+      }
+    }
+  });
+}
+
+/* ---------- Värav: kokkuvõte + ausad põhjused ---------- */
+function missingOf(f){
+  var a=ansOf(),puudu=[];
+  state.ex.faasid.forEach(function(ff,ix){
+    if(!ff.required)return;
+    var v=a[ff.id];
+    var ok=!!v&&(ff.type!=="read"||v.valmis)&&(ff.type!=="sisend"||v.ok)&&(!ff.requireAll||(v.v&&v.v.length===ff.valikud.length));
+    if(!ok)puudu.push({f:ff,ix:ix});
+  });
+  return puudu;
+}
+function renderGate(f,i){
+  var host=document.createElement("div");host.dataset.varav="1";
+  var a=ansOf();
+  var dl=document.createElement("dl");dl.className="pr-kokkuvote";
+  (f.kokkuvote||[]).forEach(function(fid){
+    var ff=null;state.ex.faasid.forEach(function(x){if(x.id===fid)ff=x});
+    if(!ff)return;
+    var row=document.createElement("div");row.className="pr-kokkuvote-rida";
+    var v=a[fid];
+    row.innerHTML="<dt>"+ff.nimi+"</dt><dd"+(v?"":" data-puudu='1'")+">"+(v?v.n:"— vastamata")+"</dd>";
+    dl.appendChild(row);
+  });
+  host.appendChild(dl);
+  if(f.vabatekst){
+    var ta=document.createElement("textarea");
+    ta.className="pr-tekst";ta.placeholder="Sinu refleksioon (jääb Minu lehele)…";
+    ta.setAttribute("aria-label","Refleksioon");
+    ta.value=a["refleksioon"]&&a["refleksioon"].v?a["refleksioon"].v:"";
+    ta.addEventListener("input",function(){
+      var t=ta.value.trim();
+      setAns("refleksioon",t?{v:t,n:"refleksioon ✓"}:undefined);
+    });
+    host.appendChild(ta);
+  }
+  var puudu=missingOf(f);
+  if(puudu.length){
+    var ph=document.createElement("div");ph.className="pr-varav-pohjused";
+    var list=puudu.map(function(p){
+      return "<li><button type='button' data-goto='"+p.ix+"'>"+p.f.nimi+"</button> — vastamata</li>";
+    }).join("");
+    ph.innerHTML="<b>Värav on lukus.</b> Enne kinnitamist on puudu:<ul>"+list+"</ul>";
+    ph.querySelectorAll("[data-goto]").forEach(function(b){
+      b.addEventListener("click",function(){flyTo(parseInt(b.dataset.goto,10),{})});
+    });
+    host.appendChild(ph);
+  }
+  var cta=document.createElement("div");cta.className="pr-edasi";
+  var btn=document.createElement("button");
+  btn.type="button";btn.className="pr-btn";btn.dataset.variant="primary";btn.dataset.autofocus="";
+  btn.textContent=f.cta;
+  btn.disabled=puudu.length>0;
+  btn.setAttribute("aria-disabled",puudu.length>0?"true":"false");
+  btn.addEventListener("click",function(){
+    if(missingOf(f).length)return;
+    showSuccess(f);
+  });
+  cta.appendChild(btn);host.appendChild(cta);
+  return host;
+}
+function showSuccess(f){
+  var i=state.ex.faasid.length; /* edu-jaam lisandub raja lõppu */
+  if(!dolly.querySelector('[data-edu="1"]')){
+    var sec=document.createElement("section");
+    sec.className="pr-jaam";sec.dataset.edu="1";sec.dataset.j=String(i);
+    sec.style.setProperty("--z",(-(i*STATION_DEPTH))+"px");
+    sec.style.zIndex=String(4000-i*10);
+    sec.setAttribute("aria-label","Valmis");
+    var w=document.createElement("div");w.className="pr-edu";
+    w.innerHTML='<div class="pr-edu-mark"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></div><p role="status">'+f.eduTekst+"</p>";
+    var b=document.createElement("button");b.type="button";b.className="pr-btn";b.dataset.autofocus="";
+    b.textContent="Tagasi näidete valikusse";
+    b.addEventListener("click",function(){clearExampleStore(state.ex.id);delete state.answers[state.ex.id];nav({n:null})});
+    w.appendChild(b);sec.appendChild(w);
+    dolly.appendChild(sec);
+    planes.push({el:sec,z:-(i*STATION_DEPTH),lastO:-1,visible:null});
+  }
+  flyTo(i,{eduOk:true});
+}
+
+/* ======================================================================
+   LENDAMINE + DOKK + KIIBID
+   ====================================================================== */
+function totalStations(){return planes.length}
+function flyTo(n,opts){
+  opts=opts||{};
+  window.clearTimeout(advanceTimer);
+  var max=totalStations()-1;
+  var eduOlemas=!!dolly.querySelector('[data-edu="1"]');
+  if(!opts.eduOk&&eduOlemas)max=Math.min(max,state.ex.faasid.length-1);
+  else if(!opts.eduOk)max=Math.min(max,state.ex.faasid.length-1);
+  n=Math.max(0,Math.min(n,max));
+  if(n===state.j&&camTarget===n*STATION_DEPTH){syncPlanes();return}
+  state.j=n;
+  camTarget=n*STATION_DEPTH;
+  if(opts.instant)cam=camTarget;
+  if(opts.drift)cam=Math.max(0,camTarget-ARRIVAL_DRIFT);
+  wake();
+  syncPlanes();renderDock();announceStation();saveStore();
+  if(!applyingHash&&state.view==="fookus")history.replaceState(null,"",hashStr({n:state.ex.id,j:state.j,v:"fookus"}));
+  focusActivePlane();
+}
+function syncPlanes(){
+  planes.forEach(function(p,i){
+    var act=i===state.j;
+    p.el.dataset.active=act?"1":"0";
+    if(act){p.el.removeAttribute("inert");p.el.removeAttribute("aria-hidden")}
+    else{p.el.setAttribute("inert","");p.el.setAttribute("aria-hidden","true")}
+    if(flightMode==="flat")return;
+  });
+}
+function focusActivePlane(){
+  var delay=flightMode==="3d"?420:80;
+  window.setTimeout(function(){
+    if(state.view!=="fookus")return;
+    var host=dolly.querySelector('.pr-jaam[data-active="1"] [data-autofocus]');
+    if(host&&!host.disabled)host.focus({preventScroll:true});
+  },delay);
+}
+function announceStation(){
+  if(!state.ex||state.ex.liik==="lugemine")return;
+  var f=state.ex.faasid[state.j];
+  var kokku=state.ex.faasid.length;
+  if(f)announce("Samm "+(state.j+1)+"/"+kokku+": "+f.nimi+" — "+f.q);
+  else announce("Valmis");
+}
+function renderDock(){
+  if(!state.ex)return;
+  el.dokkTagasi.disabled=state.j===0;
+  el.jaamarada.innerHTML="";
+  if(state.ex.liik==="lugemine"){
+    var s=document.createElement("span");
+    s.className="pr-dokk-nupp";s.style.cursor="default";
+    s.textContent="Lugemiskiht — kerimine on siin õige";
+    el.jaamarada.appendChild(s);return;
+  }
+  var a=ansOf();
+  state.ex.faasid.forEach(function(f,i){
+    var stt=i<state.j?"done":i===state.j?"active":"future";
+    var b=document.createElement("button");
+    b.type="button";b.className="pr-jaamatapp";b.dataset.state=stt;
+    b.setAttribute("role","listitem");
+    if(stt==="future"){b.disabled=true}
+    if(stt==="active")b.setAttribute("aria-current","step");
+    var vastatud=a[f.id]?" (vastatud)":"";
+    b.setAttribute("aria-label","Samm "+(i+1)+"/"+state.ex.faasid.length+": "+f.nimi+vastatud);
+    b.innerHTML='<span class="pr-tapp"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></span><span class="pr-jaamanimi">'+f.nimi+"</span>";
+    b.addEventListener("click",function(){if(stt!=="future")flyTo(i,{})});
+    el.jaamarada.appendChild(b);
+  });
+}
+function renderChips(){
+  el.kiibid.innerHTML="";
+  if(!state.ex||state.ex.liik==="lugemine")return;
+  var a=ansOf();
+  state.ex.faasid.forEach(function(f,i){
+    var v=a[f.id];
+    if(!v||f.type==="varav")return;
+    var c=document.createElement("button");
+    c.type="button";c.className="pr-kiip";
+    c.setAttribute("aria-label",f.nimi+": "+v.n+". Ava samm uuesti.");
+    c.innerHTML="<b>"+f.nimi+"</b> "+v.n;
+    c.addEventListener("click",function(){flyTo(i,{})});
+    el.kiibid.appendChild(c);
+  });
+}
+function scheduleAdvance(to){
+  window.clearTimeout(advanceTimer);
+  advanceTimer=window.setTimeout(function(){flyTo(to,{})},240);
+}
+
+/* ======================================================================
+   ÜLEVAADE
+   ====================================================================== */
+var STATE_ICON={done:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg>',
+  active:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/></svg>',
+  future:'<svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" stroke-dasharray="2 3"/></svg>'};
+function renderOverview(){
+  var ex=state.ex;if(!ex)return;
+  var a=ansOf();
+  var html='<div class="pr-yle-grid">';
+  if(ex.liik==="lugemine"){
+    el.ylevaadeKeha.innerHTML="<p class='pr-info'>Lugemiskihil on ülevaade peatükirada paremal servas.</p>";return;
+  }
+  ex.faasid.forEach(function(f,i){
+    var stt=i<state.j?"done":i===state.j?"active":"future";
+    var seis=stt==="done"?"Läbitud":stt==="active"?"Praegune samm":"Ees";
+    var v=a[f.id];
+    html+='<div class="pr-yle-kaart" data-state="'+stt+'" role="group" aria-label="'+f.nimi+'">'+
+      '<span class="pr-yle-seis">'+STATE_ICON[stt]+seis+" · "+(i+1)+"/"+ex.faasid.length+"</span>"+
+      "<b>"+f.nimi+"</b><small>"+f.q+"</small>"+
+      (v?'<span class="pr-yle-vaartus">'+v.n+"</span>":"")+
+      '<div class="pr-yle-tegevused"><button type="button" class="pr-btn" data-ava="'+i+'">Ava</button>'+
+      (ex.vordlus&&(f.vordlusNupp||f.type==="riiul")?'<button type="button" class="pr-btn" data-variant="quiet" data-vordle="1">Võrdle</button>':"")+
+      "</div></div>";
+  });
+  html+="</div>";
+  if(ex.taisteekond){
+    html+='<div class="pr-yle-tabel-wrap"><h3>Täisteekond (prototüübis lühendatud)</h3><div class="pr-tabel-kest"><table class="pr-tabel"><tbody>';
+    ex.taisteekond.forEach(function(t,ix){
+      var olemas=ix<ex.faasid.length-0&&ex.faasid.some(function(f){return f.nimi===t||f.nimi.indexOf(t.split(" ")[0])===0});
+      html+="<tr><td>"+(ix+1)+". "+t+"</td><td>"+(olemas?"prototüübis läbitav":"kirjeldatud, sisu tuleb hiljem")+"</td></tr>";
+    });
+    html+="</tbody></table></div></div>";
+  }
+  if(ex.orgTabel){
+    var ot=ex.orgTabel;
+    html+='<div class="pr-yle-tabel-wrap"><h3>'+ot.pealkiri+"</h3><div class='pr-tabel-kest'><table class='pr-tabel'><thead><tr>";
+    ot.veerud.forEach(function(v){html+="<th scope='col'>"+v+"</th>"});
+    html+="</tr></thead><tbody>";
+    ot.read.forEach(function(r){html+="<tr>"+r.map(function(c){return "<td>"+c+"</td>"}).join("")+"</tr>"});
+    html+="</tbody></table></div></div>";
+  }
+  el.ylevaadeKeha.innerHTML=html;
+  el.ylevaadeKeha.querySelectorAll("[data-ava]").forEach(function(b){
+    b.addEventListener("click",function(){
+      var i=parseInt(b.dataset.ava,10);
+      closeOverlay();
+      setTimeout(function(){flyTo(i,{})},30);
+    });
+  });
+  el.ylevaadeKeha.querySelectorAll("[data-vordle]").forEach(function(b){
+    b.addEventListener("click",function(){nav({n:state.ex.id,j:state.j,v:"vordlus"},{replace:true})});
+  });
+}
+
+/* ======================================================================
+   VÕRDLUS — teadlik, viitepõhine; kitsal A/B
+   ====================================================================== */
+var abActive="A";
+function renderCompare(){
+  var ex=state.ex;
+  if(!ex||!ex.vordlus){el.vordlusKeha.innerHTML="<p class='pr-info'>Sellel näitel ei ole võrreldavat paari.</p>";return}
+  el.vordlusVihje.textContent=ex.vordlus.silt+" · "+ex.vordlus.vihje;
+  function pool(ref,taht){
+    return '<div class="pr-pool" data-taht="'+taht+'"><div class="pr-pool-pea"><b>'+ref.tiitel+"</b>"+
+      '<span class="pr-pool-silt">'+ref.silt+"</span></div>"+
+      '<div class="pr-pool-keha"><p>'+ref.sisu.replace(/\n/g,"\n")+"</p></div></div>";
+  }
+  el.vordlusKeha.innerHTML=pool(ex.vordlus.a,"A")+pool(ex.vordlus.b,"B");
+  applyAb();
+}
+function applyAb(){
+  var kitsas=matchMedia("(max-width:720px)").matches;
+  var pools=el.vordlusKeha.querySelectorAll(".pr-pool");
+  pools.forEach(function(p){
+    p.dataset.kitsasPeidus=kitsas&&p.dataset.taht!==abActive?"1":"0";
+  });
+  el.abA.setAttribute("aria-pressed",abActive==="A"?"true":"false");
+  el.abB.setAttribute("aria-pressed",abActive==="B"?"true":"false");
+}
+el.abA.addEventListener("click",function(){abActive="A";applyAb()});
+el.abB.addEventListener("click",function(){abActive="B";applyAb()});
+matchMedia("(max-width:720px)").addEventListener("change",applyAb);
+
+/* ======================================================================
+   LUGEMISKIHT
+   ====================================================================== */
+function buildReader(){
+  var ex=state.ex;
+  el.lugeja.hidden=false;
+  el.lugejaPealkiri.textContent=ex.nimi.replace(/ — .*/,"");
+  var html="";
+  ex.peatykid.forEach(function(p){
+    html+=(p.tase===3?"<h3":"<h4")+' id="'+p.id+'">'+p.pealkiri+(p.tase===3?"</h3>":"</h4>")+"<p>"+p.tekst+"</p>";
+  });
+  el.lugejaKeha.innerHTML=html;
+  el.lugejaRada.innerHTML="";
+  var heads=[].slice.call(el.lugejaKeha.querySelectorAll("h3,h4"));
+  var smooth=prefersReduced()||state.motion==="flat"?"auto":"smooth";
+  var ticks=heads.map(function(hd){
+    var t=document.createElement("button");
+    t.type="button";t.className="pr-rada-tik";
+    t.setAttribute("aria-label",hd.textContent);
+    t.innerHTML="<em>"+hd.textContent+"</em><i></i>";
+    t.addEventListener("click",function(){
+      el.lugejaKeha.scrollTo({top:hd.offsetTop-el.lugejaKeha.offsetTop-6,behavior:smooth});
+      history.replaceState(null,"",hashStr({n:ex.id,j:0,v:"fookus"})+"&pt="+hd.id);
+    });
+    el.lugejaRada.appendChild(t);return t;
+  });
+  function spy(){
+    var stTop=el.lugejaKeha.scrollTop,max=el.lugejaKeha.scrollHeight-el.lugejaKeha.clientHeight;
+    el.lugejaVihje.style.opacity=(max>0&&stTop/max>0.94)?"0":"1";
+    var aI=0;
+    heads.forEach(function(hd,i){if(hd.offsetTop-el.lugejaKeha.offsetTop<=stTop+90)aI=i});
+    ticks.forEach(function(t,i){t.dataset.on=i===aI?"1":"0"});
+  }
+  el.lugejaKeha.addEventListener("scroll",spy);
+  var m=location.hash.match(/[&?]pt=([a-z-]+)/);
+  if(m){var tgt=document.getElementById(m[1]);if(tgt)setTimeout(function(){el.lugejaKeha.scrollTo({top:tgt.offsetTop-el.lugejaKeha.offsetTop-6,behavior:"auto"});spy()},50)}
+  spy();
+  setTimeout(function(){el.lugejaKeha.focus({preventScroll:true})},80);
+}
+
+/* ======================================================================
+   KONTEKSTISAHTEL
+   ====================================================================== */
+function renderDrawerContent(){
+  var ex=state.ex;if(!ex)return;
+  var html="<h3>Mis see on</h3><p>"+ex.abitekst+"</p>";
+  html+='<h3>Nähtavus</h3><div class="pr-nahtavus">'+(ex.privaatsus.ikoon==="lock"?LOCK:EYE)+"<span>"+ex.privaatsus.tekst+"</span></div>";
+  if(ex.materjalid){
+    html+="<h3>Lähtematerjalid</h3><ul>";
+    ex.materjalid.forEach(function(m){html+="<li>"+m+"</li>"});
+    html+="</ul>";
+  }
+  html+="<h3>Liikumine</h3><p>Rullik, svaip või nooleklahvid liigutavad sammu kaupa; O avab ülevaate; Esc sulgeb kihi või viib valikusse. Vaatamine ei muuda kunagi olekut.</p>";
+  html+='<h3>Alusta uuesti</h3><p><button type="button" class="pr-btn" data-variant="quiet" id="sahtel-nulli">Tühjenda selle näite vastused</button></p>';
+  el.sahtelKeha.innerHTML=html;
+  var nulli=document.getElementById("sahtel-nulli");
+  if(nulli)nulli.addEventListener("click",function(){
+    clearExampleStore(ex.id);state.answers[ex.id]={};
+    closeDrawer();
+    openExample(ex,0);
+    history.replaceState(null,"",hashStr({n:ex.id,j:0,v:"fookus"}));
+  });
+}
+function openDrawer(){
+  el.sahtel.dataset.avatud="1";
+  el.nuppSahtel.setAttribute("aria-expanded","true");
+  announce("Kontekst avatud");
+  setTimeout(function(){document.getElementById("sahtel-sulge").focus()},80);
+}
+function closeDrawer(){
+  el.sahtel.dataset.avatud="0";
+  el.nuppSahtel.setAttribute("aria-expanded","false");
+}
+el.nuppSahtel.addEventListener("click",function(){
+  if(el.sahtel.dataset.avatud==="1")closeDrawer();else openDrawer();
+});
+document.getElementById("sahtel-sulge").addEventListener("click",function(){closeDrawer();el.nuppSahtel.focus()});
+
+/* ======================================================================
+   SISENDID: rullik, svaip, klaviatuur, nupud
+   ====================================================================== */
+var wheelAcc=0,wheelLock=0;
+lava.addEventListener("wheel",function(e){
+  if(!state.ex||state.ex.liik==="lugemine"||state.view!=="fookus")return;
+  if(el.sahtel.dataset.avatud==="1")return;
+  e.preventDefault();
+  var now=performance.now();
+  if(now<wheelLock){wheelAcc=0;return}
+  wheelAcc+=e.deltaMode===1?e.deltaY*16:e.deltaY;
+  if(Math.abs(wheelAcc)<42)return;
+  var dir=wheelAcc>0?1:-1;wheelAcc=0;wheelLock=now+560;
+  var f=state.ex.faasid[state.j];
+  if(dir>0){
+    if(!f||f.type==="varav")return; /* värav EI esita kerimisega */
+    if(state.j>=state.ex.faasid.length-1)return;
+    flyTo(state.j+1,{});
+  } else if(state.j>0)flyTo(state.j-1,{});
+},{passive:false});
+var touchY=null,touchX=null;
+lava.addEventListener("touchstart",function(e){touchY=e.touches[0].clientY;touchX=e.touches[0].clientX},{passive:true});
+lava.addEventListener("touchend",function(e){
+  if(touchY==null||!state.ex||state.ex.liik==="lugemine"||state.view!=="fookus")return;
+  var dy=touchY-(e.changedTouches[0]?e.changedTouches[0].clientY:touchY);
+  var dx=Math.abs(touchX-(e.changedTouches[0]?e.changedTouches[0].clientX:touchX));
+  touchY=null;touchX=null;
+  if(Math.abs(dy)<64||Math.abs(dy)<dx*1.4)return;
+  var f=state.ex.faasid[state.j];
+  if(dy>0){if(f&&f.type!=="varav"&&state.j<state.ex.faasid.length-1)flyTo(state.j+1,{})}
+  else if(state.j>0)flyTo(state.j-1,{});
+},{passive:true});
+
+document.addEventListener("keydown",function(e){
+  var t=e.target;
+  var kirjutab=t&&(t.tagName==="TEXTAREA"||t.tagName==="INPUT"||t.isContentEditable);
+  if(e.key==="Escape"){
+    if(el.sahtel.dataset.avatud==="1"){closeDrawer();el.nuppSahtel.focus();return}
+    if(state.view==="vordlus"||state.view==="ylevaade"){closeOverlay();return}
+    if(state.ex){nav({n:null});return}
+    return;
+  }
+  if(!state.ex||kirjutab)return;
+  if((e.key==="o"||e.key==="O")&&state.view!=="vordlus"){
+    e.preventDefault();
+    state.view==="ylevaade"?closeOverlay():openOverlay("ylevaade");return;
+  }
+  if(state.view!=="fookus"||state.ex.liik==="lugemine")return;
+  if(t&&t.getAttribute&&t.getAttribute("role")==="radio")return; /* nooled = valikuvahetus */
+  var next=["ArrowDown","ArrowRight","PageDown","]"];
+  var prev=["ArrowUp","ArrowLeft","PageUp","["];
+  if(next.indexOf(e.key)>=0){
+    e.preventDefault();
+    var f=state.ex.faasid[state.j];
+    if(f&&f.type!=="varav"&&state.j<state.ex.faasid.length-1)flyTo(state.j+1,{});
+  }
+  if(prev.indexOf(e.key)>=0){e.preventDefault();if(state.j>0)flyTo(state.j-1,{})}
+  if(e.key==="Home"){e.preventDefault();flyTo(0,{})}
+});
+
+el.dokkTagasi.addEventListener("click",function(){if(state.j>0)flyTo(state.j-1,{})});
+el.dokkValik.addEventListener("click",function(){nav({n:null})});
+el.nuppYlevaade.addEventListener("click",function(){
+  state.view==="ylevaade"?closeOverlay():openOverlay("ylevaade");
+});
+document.getElementById("ylevaade-sulge").addEventListener("click",closeOverlay);
+document.getElementById("vordlus-sulge").addEventListener("click",closeOverlay);
+
+/* Liikumisrežiimi lüliti: lame vaade = sama sisu ilma lennuta */
+function setMotion(m){
+  state.motion=m;
+  document.documentElement.dataset.motion=m==="flat"?"flat":"auto";
+  el.nuppLiikumine.setAttribute("aria-pressed",m==="flat"?"true":"false");
+  if(state.ex&&state.ex.liik!=="lugemine"){
+    flightMode=resolveMode();
+    lava.dataset.mode=flightMode;
+    if(flightMode==="3d"){
+      cam=camTarget;dolly.style.setProperty("--cam",cam.toFixed(2)+"px");
+      planes.forEach(function(p){p.lastO=-1;p.visible=null});
+      wake();
+    }
+    syncPlanes();
+  }
+  announce(m==="flat"?"Lame vaade: liikumised on hetkelised":"Ruumiline liikumine sees");
+}
+el.nuppLiikumine.addEventListener("click",function(){setMotion(state.motion==="flat"?"auto":"flat")});
+matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change",function(){
+  if(state.ex&&state.ex.liik!=="lugemine"){flightMode=resolveMode();lava.dataset.mode=flightMode;syncPlanes()}
+});
+
+/* ======================================================================
+   KÄIVITUS
+   ====================================================================== */
+renderPicker();
+var start=parseHash();
+if(start.n)apply(start);else showPicker();
+})();
+</script>
+</body>
+</html>

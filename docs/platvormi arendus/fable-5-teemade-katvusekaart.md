@@ -51,7 +51,7 @@ Staatusemärgid:
 | Selge keele režiim | **OSALISELT KAETUD** | U7 pakett ja Opuse audit | Tehniline moodul olemas harul; päris mudeliväljundite eval ning laiem kasutuspiir vajab otsust |
 | Profiil, rollid ja rollivahetus lehtedel | **KATMATA** | ainult orientatsioon ja töölaua olemasolev rollivalik | Vajab eraldi lehekaarti: kus roll muudab sisu/õigusi, kus rollivahetaja peab nähtav olema ja kus see oleks ohtlik või eksitav |
 | Tööalase kasutuse raamistik / raamleping | **OSALISELT KAETUD tehnilise vertikaalina** | `/tooalase-kasutuse-raamistik`; `FrameworkAcceptance`; töötaja GET/POST API; registreerimise kinnitus; kirjutuskaitstud dokumendikirje; „Minu jagamised”; admini auditivaade ja analüütika | Vajab eraldi õigusliku tähenduse, sõnastuse, rollisobivuse, versiooniuuenduse/taaskinnituse, tõendijälje, allalaadimise, säilitamise, kustutamise ja UX-i tervikanalüüsi. ASiC allalaadimine ja platvormi klõps-kinnitus ei tohi kasutajale näida sama toiminguna |
-| Kasutusjuhend ja abikiht | **OSALISELT KAETUD** | `prototyybid/kasutusjuhend-lugemispaneel-demo.html`; üldine orientatsioon | Prototüüp olemas, kuid päris sisu, rollipõhine juhend, otsing ja rakendusse ühendamine on katmata |
+| Kasutusjuhend ja abikiht | **OSALISELT KAETUD** | `prototyybid/ruumilise-toolaua-lugemiskihi-prototuup.html`; `prototyybid/README.md`; üldine orientatsioon | Lugemiskihi alusproov on olemas, kuid päris sisu, rollipõhine juhend, otsing ja rakendusse ühendamine on katmata; kasutusjuhend on ühise prototüübi üks valitav näide, mitte eraldi lehedemo |
 | Admini analüütika, haldus- ja koondvaated | **KATMATA süvaanalüüsina** | üksikud auditid ja orientatsioon | Kõrge prioriteet: kasutaja sõnul puudub terviklik kujundus ja funktsionaalsus; vajab eraldi andme-, õiguste-, privaatsus- ja UX-teemat |
 | Tellimus, paketid, kasutuspiirid ja hinnastus | **ÜLDISELT KAETUD tehniliselt** | varasemad P0/P1 paketikaardistused; hinnastuse lehed | Fable’i toote- ja kasutaja-UX tervikanalüüs puudub |
 
@@ -105,8 +105,8 @@ Kokkuvõte: funktsionaalsete põhimoodulite route'id on enamasti vähemalt osali
 
 | Teema | Katvus | Jätkamispunkt |
 |---|---|---|
-| Ruumilised lehefaasid, flight ja ühe ekraani tööpind | **KAETUD teooria/prototüübina** | `ruumilised-lehe-faasid.md`; prototüübid. Vajab kasutajatesti ja üht päris-lehe pilooti |
-| Alumine dokk, faasiriba ja võrdlusriiul | **KAETUD kontseptsioonina** | `fable-q-dokk-riiul-proto.html`; enne päris koodi otsustada doki kohalolu ja ajalookäitumine |
+| Ruumilised lehefaasid, flight ja ühe ekraani tööpind | **KAETUD teooria/alusproovidena** | `ruumilised-lehe-faasid.md`; `prototyybid/README.md`; `prototyybid/ruumilise-toolaua-faasiliikumise-prototuup.html`. Vajab ühist näitevalikuga prototüüpi, kasutajatesti ja hiljem üht päris töövoo pilooti |
+| Alumine dokk, faasiriba ja võrdlusriiul | **KAETUD kontseptsioonina** | `prototyybid/ruumilise-toolaua-fookuse-ja-vordluse-prototuup.html`; see on käitumise alusproov, mille Dokumendi koostamise mock-sisu ei piira lahendust ühe lehega. Enne päris koodi otsustada doki kohalolu ja ajalookäitumine |
 | Kerimise kasutuspiir | **KAETUD põhimõttena** | tööfaas ei ole pikk leherull; pikk lugemissisu võib kerida oma konteineris |
 | Ühine visuaalne süsteem paneelidele, klaaspindadele, menüüdele ja markeritele | **OSALISELT KAETUD** | üksikud prototüübid ja kuvatõendid | Vajab platvormiülest UI-inventuuri ja disainitokenite/komponentide otsust |
 | Rollivahetaja nähtavus ja asukoht | **KATMATA** | kasutaja soov: vajadusel paremas alanurgas rollitundlikel lehtedel | Enne taastamist tuleb kaardistada kõik lehed, rollimõju ja serveri tegelikud õigused |
