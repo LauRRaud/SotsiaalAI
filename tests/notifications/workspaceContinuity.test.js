@@ -79,7 +79,13 @@ function createDb() {
       mentoringRequest: { findMany: track("mentoringRequest", []) },
       mentoringRelation: { findMany: track("mentoringRelation", []) },
       mentoringSummary: { findMany: track("mentoringSummary", []) },
-      mentoringMeeting: { findMany: track("mentoringMeeting", []) }
+      mentoringMeeting: { findMany: track("mentoringMeeting", []) },
+      // FIELD-V1: the continuity query set now includes field visits; this
+      // fixture keeps the pre-existing ordering assertions unchanged, and the
+      // field-specific candidates are covered in tests/field/.
+      fieldVisit: {
+        findMany: track("fieldVisit", [])
+      }
     }
   };
 }

@@ -25,6 +25,9 @@ import {
   listWorkspaces as listJourneyWorkspaces,
   toJourneyWorkspaceDescriptor
 } from "../../lib/workspaces/adapters/journeyAdapter.js";
+import {
+  listWorkspaces as listFieldVisitWorkspaces
+} from "../../lib/workspaces/adapters/fieldVisitAdapter.js";
 
 const OWNER = "user_owner";
 const PARTICIPANT = "user_participant";
@@ -84,7 +87,13 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "field_visit",
     "org_space"
   ]);
-  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, ["room", "covision_case", "journey", "mentoring_process"]);
+  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
+    "room",
+    "covision_case",
+    "journey",
+    "mentoring_process",
+    "field_visit"
+  ]);
   assert.deepEqual(RESERVED_WORKSPACE_KINDS, [
     "pre_inquiry",
     "wellbeing_space",
@@ -92,7 +101,6 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "topic_seed",
     "meeting",
     "network_case",
-    "field_visit",
     "org_space"
   ]);
   assert.equal(WORKSPACE_KIND_REGISTRY.room.status, WorkspaceKindStatus.SUPPORTED);
@@ -121,6 +129,29 @@ test("Journey adapter is owner-scoped, private, descriptor-only and read-only", 
   assert.doesNotMatch(JSON.stringify(descriptor), /PRIVATE_SUMMARY|PRIVATE_RISK/u);
   assert.deepEqual(calls[0].where, { ownerUserId: OWNER });
   assert.doesNotThrow(() => toJourneyWorkspaceDescriptor({ ...privateRow, status: "ARCHIVED" }));
+});
+
+test("FieldVisit adapter is owner-scoped, private, descriptor-only and read-only", async () => {
+  const privateRow = {
+    id: "visit_1",
+    ownerUserId: OWNER,
+    status: "IN_PROGRESS",
+    goal: "Kodukülastus",
+    updatedAt: "2026-07-18T09:00:00.000Z",
+    locationText: "PRIVATE_LOCATION",
+    safetyContactEmail: "PRIVATE_CONTACT"
+  };
+  const calls = [];
+  const db = { fieldVisit: { async findMany(query) { calls.push(query); return [privateRow]; } } };
+  const [descriptor] = await listFieldVisitWorkspaces(OWNER, { db });
+  assertDescriptorContract(descriptor);
+  assert.equal(descriptor.visibility, "PRIVATE");
+  assert.equal(descriptor.lifecycle, "ACTIVE");
+  assert.equal(descriptor.phase?.key, "on_site");
+  assert.doesNotMatch(JSON.stringify(descriptor), /PRIVATE_LOCATION|PRIVATE_CONTACT/u);
+  assert.deepEqual(calls[0].where, { ownerUserId: OWNER });
+  const empty = await listFieldVisitWorkspaces("", { db });
+  assert.deepEqual(empty, []);
 });
 
 test("descriptor validation rejects unknown kinds and invalid or extra fields fail closed", () => {
