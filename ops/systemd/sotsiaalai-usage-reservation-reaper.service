@@ -1,0 +1,18 @@
+[Unit]
+Description=SotsiaalAI usage reservation-reaper (release expired RESERVED holds, PERF-P0)
+Wants=network-online.target
+After=network-online.target sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/node scripts/usage-reservation-reaper.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+
+# Off unless USAGE_REAPER_ENABLED=1. Releases only expired RESERVED reservations
+# through the atomic usage service (restores bucket capacity); never touches
+# COMMITTED rows and writes nothing to disk.
