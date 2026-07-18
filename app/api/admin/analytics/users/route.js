@@ -5,13 +5,16 @@ import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
 import {
   DangerousActionError,
+  executeBulkUserDeletion,
   executeBulkEmail,
+  previewBulkUserDeletion,
   previewBulkEmail
 } from "@/lib/admin/dangerousAnalyticsActions";
+import { createMetricBasis } from "@/lib/admin/analyticsMetrics";
+import { projectAdminEmail } from "@/lib/admin/emailProjection";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { getMailer } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
-import { deleteUserWithPrivacyCleanup } from "@/lib/privacy/userDeletion";
 import { safeError } from "@/lib/privacy/safeError";
 import {
   MONTHLY_COST_BUDGET_EUR_PER_USER,
@@ -33,17 +36,6 @@ const DEFAULT_PERIOD_DAYS = 30;
 const MAX_PERIOD_DAYS = 180;
 const DEFAULT_LIMIT = 100;
 const MAX_LIMIT = 500;
-const MAX_BULK_USER_IDS = 500;
-const ADMIN_ANALYTICS_SHOW_FULL_EMAILS =
-  String(process.env.ADMIN_ANALYTICS_SHOW_FULL_EMAILS || "")
-    .trim()
-    .toLowerCase() === "true" ||
-  String(process.env.ADMIN_ANALYTICS_SHOW_FULL_EMAILS || "")
-    .trim()
-    .toLowerCase() === "1" ||
-  String(process.env.ADMIN_ANALYTICS_SHOW_FULL_EMAILS || "")
-    .trim()
-    .toLowerCase() === "yes";
 
 function localeFromRequest(req) {
   const url = new URL(req.url);
@@ -95,7 +87,6 @@ function buildUsageSeed() {
     chatRequests: 0,
     ragSearches: 0,
     noContext: 0,
-    crisisDetected: 0,
     sttRequests: 0,
     sttAudioBytes: 0,
     sttMinutes: 0,
@@ -106,51 +97,11 @@ function buildUsageSeed() {
   };
 }
 
-function maskEmail(email) {
-  const value = String(email || "").trim();
-  if (!value || !value.includes("@")) return null;
-
-  const [localRaw, domainRaw] = value.split("@");
-  const local = String(localRaw || "");
-  const domain = String(domainRaw || "");
-  if (!local || !domain) return null;
-
-  const localMasked =
-    local.length <= 2
-      ? `${local.slice(0, 1)}***`
-      : `${local.slice(0, 1)}${"*".repeat(Math.min(8, Math.max(2, local.length - 2)))}${local.slice(-1)}`;
-
-  const domainParts = domain.split(".");
-  const host = String(domainParts.shift() || "");
-  const tld = domainParts.join(".");
-  const hostMasked =
-    host.length <= 2
-      ? `${host.slice(0, 1)}***`
-      : `${host.slice(0, 1)}***${host.slice(-1)}`;
-
-  if (!tld) return `${localMasked}@${hostMasked}`;
-  return `${localMasked}@${hostMasked}.${tld}`;
-}
-
 function toActiveSubscription(subscription, now = new Date()) {
   if (!subscription) return false;
   if (String(subscription.status || "").toUpperCase() !== "ACTIVE") return false;
   if (!subscription.validUntil) return true;
   return new Date(subscription.validUntil).getTime() > now.getTime();
-}
-
-function normalizeIds(value) {
-  const list = Array.isArray(value) ? value : [];
-  const out = [];
-  const seen = new Set();
-  for (const raw of list) {
-    const id = String(raw || "").trim();
-    if (!id || seen.has(id)) continue;
-    seen.add(id);
-    out.push(id);
-    if (out.length >= MAX_BULK_USER_IDS) break;
-  }
-  return out;
 }
 
 export async function GET(req) {
@@ -205,6 +156,13 @@ export async function GET(req) {
       return json({
         ok: true,
         periodDays,
+        basis: createMetricBasis({
+          source: "User, ChatLog, UsageEvent, UsageBucket, Subscription and Payment",
+          window: `${periodDays}d`,
+          computedAt: now,
+          degraded: true,
+          degradationReason: "chatlog_metrics_without_retention_contract"
+        }),
         totalUsers,
         items: [],
         totals: {
@@ -244,7 +202,7 @@ export async function GET(req) {
           userId: { in: userIds },
           createdAt: { gte: since },
           event: {
-            in: ["chat_request", "rag_search", "no_context", "crisis_detected", "stt_request", "tts_request"]
+            in: ["chat_request", "rag_search", "no_context", "stt_request", "tts_request"]
           }
         },
         _count: { _all: true }
@@ -356,7 +314,6 @@ export async function GET(req) {
       if (event === "chat_request") usageByUser[userId].chatRequests = count;
       if (event === "rag_search") usageByUser[userId].ragSearches = count;
       if (event === "no_context") usageByUser[userId].noContext = count;
-      if (event === "crisis_detected") usageByUser[userId].crisisDetected = count;
       if (event === "stt_request") usageByUser[userId].sttRequests = count;
       if (event === "tts_request") usageByUser[userId].ttsRequests = count;
     }
@@ -503,7 +460,7 @@ export async function GET(req) {
 
       return {
         userId: user.id,
-        email: ADMIN_ANALYTICS_SHOW_FULL_EMAILS ? user.email || null : maskEmail(user.email),
+        email: projectAdminEmail(user.email),
         role: user.role,
         isAdmin: !!user.isAdmin,
         createdAt: user.createdAt,
@@ -526,10 +483,6 @@ export async function GET(req) {
           analyzeUsed,
           analyzeReserved,
           analyzeRemaining,
-          analyzeDaily: analyzeHardLimit,
-          analyzeBaseDaily: analyzeHardLimit,
-          analyzeToday: analyzeUsed,
-          analyzeRemainingToday: analyzeRemaining,
           analyzeUtilizationPct: round2(analyzeUtilizationPct),
           planAmountEur: round2(
             latestSubscription?.planDefinition?.price ??
@@ -540,7 +493,6 @@ export async function GET(req) {
           chatRequests: usage.chatRequests,
           ragSearches: usage.ragSearches,
           noContext: usage.noContext,
-          crisisDetected: usage.crisisDetected,
           sttRequests: usage.sttRequests,
           sttMinutes: round3(usage.sttMinutes),
           ttsRequests: usage.ttsRequests,
@@ -549,7 +501,7 @@ export async function GET(req) {
           analyses30d: analyzeUsage.totalInPeriod,
           analysesToday: analyzeUsage.today
         },
-        costs: {
+        budgetEstimate: {
           chatEur: round2(chatCost),
           ragEur: round2(ragCost),
           sttEur: round2(sttCost),
@@ -570,6 +522,13 @@ export async function GET(req) {
     return json({
       ok: true,
       periodDays,
+      basis: createMetricBasis({
+        source: "User, ChatLog, UsageEvent, UsageBucket, Subscription and Payment",
+        window: `${periodDays}d`,
+        computedAt: now,
+        degraded: true,
+        degradationReason: "chatlog_metrics_without_retention_contract"
+      }),
       totalUsers,
       items,
       totals: {
@@ -607,78 +566,16 @@ export async function DELETE(req) {
 
   try {
     const body = await req.json().catch(() => ({}));
-    const userIds = normalizeIds(body?.userIds);
-    if (!userIds.length) {
-      return errorJson("api.admin.analytics.users_delete_invalid_payload", 400, locale);
-    }
-
-    const selectedUsers = await prisma.user.findMany({
-      where: { id: { in: userIds } },
-      select: { id: true, email: true, isAdmin: true }
-    });
-
-    if (!selectedUsers.length) {
-      return errorJson("api.admin.analytics.users_delete_not_found", 404, locale);
-    }
-
-    const ownUserId = String(session?.user?.id || "");
-    const selfSelected = ownUserId ? userIds.includes(ownUserId) : false;
-    const protectedAdminIds = new Set(
-      selectedUsers.filter(user => user.isAdmin || user.id === ownUserId).map(user => user.id)
-    );
-    const deletableUsers = selectedUsers.filter(user => !protectedAdminIds.has(user.id));
-    if (!deletableUsers.length) {
-      return errorJson("api.admin.analytics.users_delete_forbidden_targets", 409, locale, {
-        blocked: {
-          self: selfSelected,
-          admins: selectedUsers.filter(user => user.isAdmin).map(user => user.id)
-        }
-      });
-    }
-
-    const deletableIds = deletableUsers.map(user => user.id);
-    const emailsToCleanup = deletableUsers
-      .map(user => String(user.email || "").trim().toLowerCase())
-      .filter(Boolean);
-
-    if (emailsToCleanup.length) {
-      await prisma.verificationToken.deleteMany({
-        where: {
-          OR: [
-            { identifier: { in: emailsToCleanup } },
-            { identifier: { in: emailsToCleanup.map(email => `email-verify:${email}`) } }
-          ]
-        }
-      });
-    }
-
-    const deletionResults = [];
-    for (const userId of deletableIds) {
-      const result = await deleteUserWithPrivacyCleanup({
-        actorUserId: ownUserId || String(session?.user?.id || ""),
-        targetUserId: userId,
-        reason: "admin_analytics_users_delete",
-        ipAddress: req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || null,
-        userAgent: req.headers.get("user-agent") || null
-      });
-      deletionResults.push({ userId, ...result });
-    }
-
-    const deletedIds = deletionResults.filter(result => result.ok).map(result => result.userId);
-    const pendingIds = deletionResults.filter(result => result.pending).map(result => result.userId);
-
-    return json({
-      ok: true,
-      deletedCount: deletedIds.length,
-      deletedIds,
-      pendingCount: pendingIds.length,
-      pendingIds,
-      blocked: {
-        self: selfSelected,
-        admins: selectedUsers.filter(user => user.isAdmin).map(user => user.id)
-      }
-    });
+    const dryRun = body?.dryRun === true;
+    const actorUserId = String(session?.user?.id || "");
+    const result = dryRun
+      ? await previewBulkUserDeletion({ db: prisma, body, actorUserId })
+      : await executeBulkUserDeletion({ db: prisma, body, actorUserId, request: req });
+    return json({ ok: true, dryRun, ...result });
   } catch (error) {
+    if (error instanceof DangerousActionError) {
+      return errorJson(error.messageKey, error.status, locale, { debugCode: error.code });
+    }
     console.error("admin analytics users DELETE failed", safeError(error));
     return errorJson("api.admin.analytics.users_delete_failed", 500, locale, {
       debugCode: "ADMIN_ANALYTICS_USERS_DELETE_FAILED"

@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 
 import { authConfig } from "@/auth";
 import { assertAdmin } from "@/lib/authz";
+import { projectAdminEmail } from "@/lib/admin/emailProjection";
 import { isFrameworkAcceptanceSchemaError } from "@/lib/frameworkAcceptanceCompat";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
@@ -61,7 +62,7 @@ function serializeAcceptance(row) {
   return {
     id: row.id,
     userId: row.userId,
-    userEmail: row.user?.email || null,
+    userEmail: projectAdminEmail(row.user?.email),
     roleAtAcceptance: row.roleAtAcceptance,
     frameworkKey: row.frameworkKey,
     frameworkVersion: row.frameworkVersion,
