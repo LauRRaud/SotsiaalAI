@@ -31,6 +31,14 @@ const supportOptions = [
     labelFallback: "Koosta abipalve",
     descriptionKey: "wellbeing.support.support_request_meta",
     descriptionFallback: "Lühike sisend toe või nõu küsimiseks"
+  },
+  {
+    outputType: "support_request",
+    recipientType: "mentor",
+    labelKey: "wellbeing.support.mentor_input_label",
+    labelFallback: "Koosta mentorile sisend",
+    descriptionKey: "wellbeing.support.mentor_input_meta",
+    descriptionFallback: "Küsimused ja teemad mentorlussuhtesse üleandmiseks"
   }
 ];
 
@@ -260,10 +268,10 @@ export default function SupportRequestPanel({
       <div aria-label={t("wellbeing.support.options_label", "Toe küsimise valikud")}>
         {supportOptions.map((option) => (
           <Button
-            key={option.outputType}
+            key={`${option.outputType}:${option.recipientType}`}
             type="button"
             className="wellbeing-choice-btn"
-            aria-pressed={selected?.outputType === option.outputType}
+            aria-pressed={selected?.outputType === option.outputType && selected?.recipientType === option.recipientType}
             onClick={() => chooseOption(option)}
             disabled={isBusy}
           >

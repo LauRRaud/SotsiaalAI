@@ -75,7 +75,11 @@ function createDb() {
             updatedAt: "2026-07-02T10:00:00.000Z"
           }
         ])
-      }
+      },
+      mentoringRequest: { findMany: track("mentoringRequest", []) },
+      mentoringRelation: { findMany: track("mentoringRelation", []) },
+      mentoringSummary: { findMany: track("mentoringSummary", []) },
+      mentoringMeeting: { findMany: track("mentoringMeeting", []) }
     }
   };
 }

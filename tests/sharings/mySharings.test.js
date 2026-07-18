@@ -86,7 +86,8 @@ function fixtureDb() {
       frameworkVersion: "1",
       acceptanceType: "ACCEPTED",
       acceptedAt: sentAt
-    }], calls)
+    }], calls),
+    mentoringPrivateNote: model("mentoringPrivateNote", [], calls)
   };
   return { db, calls };
 }
@@ -95,7 +96,8 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const { db, calls } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(calls.length, 6);
+  assert.equal(calls.length, 7);
+  assert.equal(calls.find((call) => call.name === "mentoringPrivateNote").query.where.ownerId, USER_ID);
   assert.equal(calls.find((call) => call.name === "preInquiry").query.where.authorId, USER_ID);
   assert.equal(calls.find((call) => call.name === "roomMember").query.where.userId, USER_ID);
   assert.equal(calls.find((call) => call.name === "invite").query.where.inviterId, USER_ID);
@@ -118,7 +120,8 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
     "rooms",
     "invites",
     "helpListings",
-    "frameworkAcceptances"
+    "frameworkAcceptances",
+    "mentoringPreparations"
   ]);
 });
 
@@ -248,5 +251,7 @@ test("room owners cannot leave and an empty user id is rejected before queries",
     assert.equal(error.message, "api.common.unauthorized");
     return true;
   });
-  assert.equal(calls.length, 5);
+  // preInquiry, invite, helpRequest, helpOffer, frameworkAcceptance,
+  // mentoringPrivateNote (roomMember is overridden and does not push).
+  assert.equal(calls.length, 6);
 });

@@ -77,13 +77,14 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "pre_inquiry",
     "wellbeing_space",
     "supervision_process",
+    "mentoring_process",
     "topic_seed",
     "meeting",
     "network_case",
     "field_visit",
     "org_space"
   ]);
-  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, ["room", "covision_case", "journey"]);
+  assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, ["room", "covision_case", "journey", "mentoring_process"]);
   assert.deepEqual(RESERVED_WORKSPACE_KINDS, [
     "pre_inquiry",
     "wellbeing_space",

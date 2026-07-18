@@ -757,6 +757,19 @@ model User {
   supervisionClosuresClosed             SupervisionClosure[]                @relation("SupervisionClosureClosedBy")
   supervisionPersonalOutcomes           SupervisionPersonalOutcome[]        @relation("SupervisionPersonalOutcomeOwner")
   supervisionAuditEvents                SupervisionAuditEvent[]             @relation("SupervisionAuditActor")
+  mentorProfile                MentorProfile?             @relation("MentorProfileUser")
+  mentorProfilesReviewed       MentorProfile[]            @relation("MentorProfileReviewer")
+  mentoringRequestsSent        MentoringRequest[]         @relation("MentoringRequestMentee")
+  mentoringRequestsReceived    MentoringRequest[]         @relation("MentoringRequestMentorUser")
+  mentoringRelationsAsMentor   MentoringRelation[]        @relation("MentoringRelationMentor")
+  mentoringRelationsAsMentee   MentoringRelation[]        @relation("MentoringRelationMentee")
+  mentoringRelationsClosed     MentoringRelation[]        @relation("MentoringRelationClosedBy")
+  mentoringAgreementAcceptances MentoringAgreementAcceptance[] @relation("MentoringAgreementAcceptanceUser")
+  mentoringMeetingsCreated     MentoringMeeting[]         @relation("MentoringMeetingCreator")
+  mentoringSummariesCreated    MentoringSummary[]         @relation("MentoringSummaryCreator")
+  mentoringSummaryConfirmations MentoringSummaryConfirmation[] @relation("MentoringSummaryConfirmationUser")
+  mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
+  mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -2931,6 +2944,7 @@ model Room {
   messages  RoomMessage[]
   helpMatch HelpMatch?
   calls     CallSession[]
+  mentoringMeetings MentoringMeeting[] @relation("MentoringMeetingRoom")
 
   @@index([ownerId])
   @@index([originType])
@@ -3745,4 +3759,244 @@ model SupervisionAuditEvent {
 
   @@index([processId, createdAt])
   @@index([actorUserId, createdAt])
+}
+
+// ===========================================================================
+// Mentorlus (ESTA-MENTOR-V1, EM1–EM8). Kõik olekud on rakenduskihi konstandid
+// (lib/mentoring/constants.js), MITTE PostgreSQL enum'id. Osalised
+// unikaalindeksid (1 PENDING taotlus paari kohta; 1 mitte-CLOSED suhe suuna
+// kohta) elavad raw-SQL migratsioonis, mitte siin.
+// ===========================================================================
+
+// EM1 — mentoriprofiil. SELF-profiil kuulub kasutajale (userId täidetud);
+// EXTERNAL_REFERENCE (origin=ESTA_IMPORT, userId=null) on admin-hallatav viide
+// välisele avalikule profiilile. publicContact on ADMIN-ONLY väli — see ei tohi
+// sisalduda üheski mitte-admin serializeris.
+model MentorProfile {
+  id                    String    @id @default(cuid())
+  userId                String?   @unique
+  origin                String    @default("SELF")
+  status                String    @default("DRAFT")
+  consentStatus         String?
+  displayName           String
+  title                 String?
+  organization          String?
+  fields                String[]  @default([])
+  topics                String[]  @default([])
+  languages             String[]  @default([])
+  formats               String[]  @default([])
+  bioShort              String?   @db.Text
+  bioFull               String?   @db.Text
+  experienceSummary     String?   @db.Text
+  capacity              String    @default("OPEN")
+  externalProfileUrl    String?
+  externalSlug          String?   @unique
+  publicContact         Json?
+  contactDisplayAllowed Boolean   @default(false)
+  checkedAt             DateTime?
+  consentNote           String?   @db.Text
+  reviewedByUserId      String?
+  reviewedAt            DateTime?
+  reviewReasonKey       String?
+  version               Int       @default(0)
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user       User? @relation("MentorProfileUser", fields: [userId], references: [id], onDelete: Cascade)
+  reviewedBy User? @relation("MentorProfileReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  requests   MentoringRequest[]
+
+  @@index([status, updatedAt])
+  @@index([origin, consentStatus])
+}
+
+// EM2 — mentorlustaotlus. message anonümiseeritakse 90p pärast terminaalset
+// olekut (sweep); faktirida jääb.
+model MentoringRequest {
+  id              String    @id @default(cuid())
+  menteeId        String
+  mentorProfileId String
+  mentorUserId    String
+  message         String?   @db.Text
+  status          String    @default("PENDING")
+  expiresAt       DateTime
+  respondedAt     DateTime?
+  cancelledAt     DateTime?
+  anonymizedAt    DateTime?
+  version         Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  mentee        User          @relation("MentoringRequestMentee", fields: [menteeId], references: [id], onDelete: Cascade)
+  mentorUser    User          @relation("MentoringRequestMentorUser", fields: [mentorUserId], references: [id], onDelete: Cascade)
+  mentorProfile MentorProfile @relation(fields: [mentorProfileId], references: [id], onDelete: Cascade)
+  relation      MentoringRelation?
+
+  @@index([mentorUserId, status, updatedAt])
+  @@index([menteeId, status, updatedAt])
+  @@index([status, expiresAt])
+}
+
+// EM3 — mentorlussuhe. Poolte FK-d on SetNull: konto kustutamisel jääb teisele
+// poolele faktikiri + kinnitatud kandjad märkega "autor kustutatud" (K1 4.5).
+model MentoringRelation {
+  id                String    @id @default(cuid())
+  mentorUserId      String?
+  menteeUserId      String?
+  requestId         String?   @unique
+  status            String    @default("DRAFT")
+  goalSummary       String?   @db.Text
+  agreementText     String?   @db.Text
+  agreementVersion  Int       @default(0)
+  pausedAt          DateTime?
+  closedAt          DateTime?
+  closedByUserId    String?
+  closeReasonKey    String?
+  purgedAt          DateTime?
+  inactivityCheckAt DateTime?
+  lastActivityAt    DateTime  @default(now())
+  version           Int       @default(0)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  mentorUser User? @relation("MentoringRelationMentor", fields: [mentorUserId], references: [id], onDelete: SetNull)
+  menteeUser User? @relation("MentoringRelationMentee", fields: [menteeUserId], references: [id], onDelete: SetNull)
+  closedBy   User? @relation("MentoringRelationClosedBy", fields: [closedByUserId], references: [id], onDelete: SetNull)
+  request    MentoringRequest? @relation(fields: [requestId], references: [id], onDelete: SetNull)
+
+  agreementAcceptances MentoringAgreementAcceptance[]
+  meetings             MentoringMeeting[]
+  summaries            MentoringSummary[]
+
+  @@index([mentorUserId, status, updatedAt])
+  @@index([menteeUserId, status, updatedAt])
+  @@index([status, lastActivityAt])
+}
+
+// EM4 — kokkuleppekinnitus (versioonipõhine; FrameworkAcceptance muster).
+// textSnapshot on kinnitushetke tekst (RUUM-A0 5 K4: snapshot kasutaja keeles).
+model MentoringAgreementAcceptance {
+  id               String   @id @default(cuid())
+  relationId       String
+  userId           String?
+  agreementVersion Int
+  textSnapshot     String   @db.Text
+  locale           String   @default("et")
+  acceptedAt       DateTime @default(now())
+
+  relation MentoringRelation @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  user     User?             @relation("MentoringAgreementAcceptanceUser", fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([relationId, userId, agreementVersion])
+  @@index([relationId, agreementVersion])
+}
+
+// EM5 — kohtumine (faktikirje; roomId on viide, MITTE omandus — SetNull).
+// Kustutamist ei ole; vale kirje parandatakse muutmisega.
+model MentoringMeeting {
+  id              String    @id @default(cuid())
+  relationId      String
+  occurredAt      DateTime
+  mode            String    @default("EXTERNAL")
+  roomId          String?
+  topicSummary    String?   @db.Text
+  status          String    @default("PLANNED")
+  createdByUserId String?
+  version         Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  relation  MentoringRelation @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  room      Room?             @relation("MentoringMeetingRoom", fields: [roomId], references: [id], onDelete: SetNull)
+  createdBy User?             @relation("MentoringMeetingCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  summaries MentoringSummary[]
+
+  @@index([relationId, occurredAt])
+  @@index([status, occurredAt])
+}
+
+// EM6 — kokkuvõte. CONFIRMED on külmutatud klass-2 kandja; parandus = uus
+// versioon supersedes-viitega. DRAFT/PENDING_CONFIRM purge'itakse sulgemisel.
+model MentoringSummary {
+  id              String    @id @default(cuid())
+  relationId      String
+  meetingId       String?
+  kind            String    @default("MEETING")
+  content         String    @db.Text
+  status          String    @default("DRAFT")
+  supersededById  String?
+  createdByUserId String?
+  confirmedAt     DateTime?
+  version         Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  relation     MentoringRelation  @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  meeting      MentoringMeeting?  @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  supersededBy MentoringSummary?  @relation("MentoringSummarySupersedes", fields: [supersededById], references: [id], onDelete: SetNull)
+  supersedes   MentoringSummary[] @relation("MentoringSummarySupersedes")
+  createdBy    User?              @relation("MentoringSummaryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  confirmations MentoringSummaryConfirmation[]
+
+  @@index([relationId, status, updatedAt])
+}
+
+// EM6b — kokkuvõtte kahepoolne kinnitus (append-only tõendikirjed).
+model MentoringSummaryConfirmation {
+  id          String   @id @default(cuid())
+  summaryId   String
+  userId      String?
+  confirmedAt DateTime @default(now())
+
+  summary MentoringSummary @relation(fields: [summaryId], references: [id], onDelete: Cascade)
+  user    User?            @relation("MentoringSummaryConfirmationUser", fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([summaryId, userId])
+}
+
+// EM7 — privaatmärge / mentee ettevalmistus. AINULT omanik näeb sisu (content).
+// kind=PREPARATION kirjel: sourceDraftId seob Tööheaolu mustandiga (unique =
+// topelt-handoff'i tõke); jagamine külmutab sharedContent'i; recall on lubatud
+// ainult enne openedByOtherAt'i. Suhte sulgemine EI puuduta sisu; märge jääb
+// omanikule ka pärast suhte lõppu.
+model MentoringPrivateNote {
+  id              String    @id @default(cuid())
+  ownerId         String
+  relationId      String?
+  kind            String    @default("NOTE")
+  content         String    @db.Text
+  sourceDraftId   String?   @unique
+  sharedContent   String?   @db.Text
+  sharedAt        DateTime?
+  openedByOtherAt DateTime?
+  recalledAt      DateTime?
+  version         Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  owner User @relation("MentoringPrivateNoteOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId, relationId, updatedAt])
+  @@index([relationId, sharedAt])
+}
+
+// EM8 — auditisündmus (append-only; actor SetNull; meta AINULT koodid/ID-d,
+// vabatekst keelatud). Mentorlusobjektidele FK-sid EI ole — audit elab
+// purge/kustutuse üle.
+model MentoringAuditEvent {
+  id          String   @id @default(cuid())
+  action      String
+  actorUserId String?
+  profileId   String?
+  relationId  String?
+  requestId   String?
+  summaryId   String?
+  meta        Json?
+  createdAt   DateTime @default(now())
+
+  actor User? @relation("MentoringAuditActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([profileId, createdAt])
+  @@index([relationId, createdAt])
+  @@index([action, createdAt])
 }
