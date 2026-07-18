@@ -97,8 +97,8 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 |---|---|---|---|---|
 | 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
 | 2 | T02+T16 `LEPITUS` | **`DEPLOYED` — main'is `d2860b0b`, **LIVE serveris 18.07** (`adc83829`). Väravad: 1582 testi, 98-migr ahel, build; 6 migratsiooni rakendatud prod-DB-le** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
-| 3 | T10 `PUBLIC-V1` | `QUEUED` | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
-| 4 | T07 `DOCUMENTS-RESEARCH-V1` | `QUEUED` | leping `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+| ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — AKTIIVNE kooditeema (töösse 18.07)** | `codex/documents-research-v1` (baas main-tipp `180d668f`, worktree `SotsiaalAI-documents-research-v1`, 0 commit'i veel) | dokumendiruum |
+| — | T10 `PUBLIC-V1` | `QUEUED` — T07 järel | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 
 ### Paralleelne mittekooditöö (jadatöö reegel lubab)
 
@@ -134,7 +134,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 2. ~~**T02+T16 push**~~ — **TEHTUD** (kuulus deploy'sse).
 3. ~~**T03 disainiotsus**~~ — **OTSUSTATUD 18.07:** ühtne alati-nähtav tekstiväli + valikuline mikker (main) võidab; kaheikooniline „Räägi/Kirjuta — pead valima" spatial-entry lõplikult hüljatud. Segaduse allikas oli deploy-vahe (main eemaldas selle 16.07, aga toodangus jooksis veel eemalduse-eelne `fe4eb4fa`) — nüüd deploy'ga lahendatud.
 
-**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. Jadatöö avab järgmise: **T10 `PUBLIC-V1`** on nüüd järgmine väljastatav kooditeema (alusta `main`-i praegusest tipust `7b49e9f7`).
+**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **Järgmine kooditeema läks töösse: T07 `DOCUMENTS-RESEARCH-V1`** (`codex/documents-research-v1`, baas main-tipp `180d668f` = T09 sees, worktree `SotsiaalAI-documents-research-v1`, 0 commit'i veel). T07 alusdependents (T28 RAG, T17 Search, T16 Export) on juba main'is. T10 `PUBLIC-V1` jääb T07 järele.
 
 **Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
@@ -205,8 +205,8 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 | — | T24 `FIELD-V1` | `cb99b092` (WIP) | **PARGITUD** — EI aktiivne (jadatöö: 1 korraga) |
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
 | ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
-| 1 | **T10 `PUBLIC-V1` — järgmine väljastada** | `t10-public-v1-ulesanne.md` | avalikud pinnad; baas = `main @ 7b49e9f7` |
-| 2 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+| ▶ | **T07 `DOCUMENTS-RESEARCH-V1` — TÖÖSSE 18.07 (aktiivne)** | `t07-documents-research-v1-ulesanne.md` | dokumendiruum; `codex/documents-research-v1`, baas `180d668f` |
+| 1 | T10 `PUBLIC-V1` — T07 järel | `t10-public-v1-ulesanne.md` | avalikud pinnad |
 
 **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` = `origin/main` = server LIVE; haru `origin/codex/payments-v1` push'itud; worktree `SotsiaalAI-payments-v1` puhas). Baas = `538ec4bb` (leping ütles `fe4eb4fa`/`cdbd9139` — JADATÖÖ reegel: praegune tipp). P1a `0aca8c4b` ja T02 olid juba main'is → cherry-pick'i EI tehtud. E1–E6 kõik teostatud (lukustatud O-M1…O-M6/O-J1…O-J4, testilepingud 1–9, DoD); väravad rohelised + päris-DB throwaway runtime 33/33; deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup + rollback `538ec4bb`. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
 
