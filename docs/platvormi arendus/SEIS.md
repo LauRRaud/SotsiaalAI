@@ -137,6 +137,34 @@ Kokku: 11 LIVE, 2 MAIN (deploy ootel), 1 TÖÖS, 1 OTSUS, 6 ANALÜÜS, 3 OOTEL, 
 | ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — E3 TEHTUD, push'itud ja MAIN-IS 18.07 õhtul; SKOOBIOTSUS LAHTINE (vt „T07 E3 18.07 õhtul")** | `codex/documents-research-v1 @ 6dbb6752` = remote (push'itud), **merge main-i `729b09f0`**, baas `032a1e6d`, worktree puhas; väravad merge'itud main'il: **1727/1727 testi + i18n OK + prisma validate OK + build OK + lint 0 viga** (E3 ei lisa migratsiooni; 102-migr ahel kehtib rebase'ist) | skoobiotsus → sulgemine avab T10 |
 | — | T10 `PUBLIC-V1` | `QUEUED` — T07 järel | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 
+### Tegevusjärjekord orienteerumiseks (koostatud 18.07 õhtul)
+
+Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad langeda igal ajal.
+
+**A. OTSUSED EES (omanik, minutid):**
+1. **O1 — T07 skoop:** sulge praegusega VÕI tee 4 lepingu-jääki (E2 Journey-side + chat-nupp, provenance-riba, E5 T04-sündmused, E4 geo-UI). Sulgemine avab T10.
+2. **O2 — deploy-aken:** kohalik `main` on serverist 20 commit'i ees (T23 mentorlus, T24 välitöö, admin-honesty M2, reaper L4, P2-6, T07 E3, lint-debt). 3 additiivset migratsiooni ootel (`mentoring_v1`, `field_v1_mobile_shell`, `documents_research_v1`). Retsept = T09 deploy oma (DB-backup ENNE migrate'i → push → `npm run deploy:server` → smoke).
+3. **O3 — T03 saatus:** rebase lähipäevil VÕI E1–E5 uuesti main'i peal. Lahknevus kasvab iga merge'iga (praegu 113+ commit'i).
+
+**B. KOODIJÄRJEKORD (jadatöö, üks korraga):**
+1. **T07 lõpetamine** O1 järgi (jäägid samas worktree's VÕI sulgemiskirje).
+2. **T03 rebase/lepitus** O3 järgi — soovitus enne T10: iga edasilükkamine teeb kallimaks.
+3. **T10 PUBLIC-V1** — lõputeema enne RC-d (leping `t10-public-v1-ulesanne.md`).
+
+**C. VAHEPALAD teemade vahele (väikesed, otsustevabad, sobivad ka ootepäevadele):**
+- lint-debt jätk: `WorkspaceFeaturePage.jsx` 27 hardcoded-stringi + ülejäänud (50 → 0 hoiatust);
+- PERF-P0 ülejäänu: kvoodileke, L3 renewals-timerid, L5 kuluajaloo retention;
+- EXPORT-P0 (5 punkti): GDPR-andmekoopia rada + PDF kirillitsa;
+- A11Y-I18N-P0: ainult tõlkefailid, 0 tooteotsust;
+- RAG-QM-P0 baasjoon (enne mistahes otsinguparandusi).
+
+**D. RELEASE-RADA (T10 järel):**
+1. **T27 OPS-FINAL-A0** — RC koondvärav: kõik edasi lükatud QA-d (brauseri-/seadmematriks, Playwright, päris Maksekeskus/e-kirjad, juristi kinnitused, täissviidid+sõltumatud auditid).
+2. **P8.6** päris allikate proovipakk + RAG-timerite aktiveerimine (omaniku otsus, sobib RC ümber).
+3. **T25 ORG + T26 PILOT** — alles RC järel (G3 eeldused: T27 RC + TK-P0 + U1-P0).
+
+**E. RC/PILOODI JÄREL, omaniku prioriseerimisel:** T12 (audit+pingerida ptk 20 olemas), T13 COVISION-V2, T14 E1–E6, T21 CASEWORK (CASEWORK-P0 tehniliselt vaba — K1-P0 main'is; NB `provenance.js` hoiatus T24 lõigus), T22 SUPERVISION (SUP-P0 skeemipakett valmis), T15 RV-P1 + tõlkestrateegia, T20 COLLAB (O-CO otsused lahtised), T08 FAILID (omaniku otsusega hilisemaks), T19 (DEFERRED, keegi ei oota).
+
 ### Paralleelne mittekooditöö (jadatöö reegel lubab)
 
 | Teema | Olek | Leping | Teenib |
