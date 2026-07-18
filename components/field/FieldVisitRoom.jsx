@@ -75,7 +75,9 @@ export default function FieldVisitRoom({ visitId }) {
   const [aiDraft, setAiDraft] = useState(null);
 
   const visit = detail?.visit || null;
-  const serverNotes = detail?.notes || [];
+  // Stable identity: a bare `|| []` allocates a new array every render, which
+  // invalidated the consentFor callback on each pass.
+  const serverNotes = useMemo(() => detail?.notes || [], [detail]);
   const attachments = detail?.attachments || [];
 
   const loadDetail = useCallback(async () => {
