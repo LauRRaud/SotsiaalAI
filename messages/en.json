@@ -1235,6 +1235,17 @@
   "workspace_feature_pages": {
     "back_to_workspace": "Back to workspace",
     "pre_inquiries": {
+      "receiver_checklist": {
+        "review_preinfo": "I reviewed the situation description, the pre-assessment and the inquiry draft.",
+        "check_consent": "I checked the consent or the basis for the inquiry and will clarify it if needed.",
+        "check_urgency": "I assessed whether the situation needs faster contact or crisis routing.",
+        "check_urgency_risk": "I checked the urgency or danger signal and decided whether faster contact is needed.",
+        "clarify_missing": "I noted the questions or information that must be clarified before the next step.",
+        "clarify_missing_unknown": "I noted the information that needs clarifying ({unknown} unclear answers).",
+        "clarify_missing_unanswered": "I noted the information that needs clarifying ({unanswered} unanswered main questions).",
+        "clarify_missing_both": "I noted the information that needs clarifying ({unknown} unclear answers, {unanswered} unanswered main questions).",
+        "choose_next_step": "I chose the next action: contact, chat room, meeting, service referral or another follow-up."
+      },
       "deleted_author": "Inquiry from a deleted user",
       "title": "Pre-inquiry",
       "lead": "Create a reviewable inquiry draft for the right municipality contact or service provider.",

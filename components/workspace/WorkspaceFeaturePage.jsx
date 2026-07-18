@@ -89,6 +89,15 @@ function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
 }
 
+// The receiver checklist is stored with its Estonian text for legacy rows, but
+// the visible label is resolved from the item's server-assigned key so the
+// checklist is not an untranslated island.
+function readChecklistLabel(t, item) {
+  const fallback = item?.label || "";
+  if (!item?.labelKey || typeof t !== "function") return fallback;
+  return t(item.labelKey, item.labelVars || {}, fallback);
+}
+
 function normalizeWorkspaceRole(role) {
   const normalized = String(role || "").trim().toUpperCase();
   return ADMIN_WORKSPACE_ROLES.includes(normalized) ? normalized : "SOCIAL_WORKER";
@@ -2006,7 +2015,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   name={`receiver-workflow-${item.id}`}
                   checked={item.checked}
                   onChange={(checked) => updateReceiverChecklistItem(item.id, checked)}
-                  label={item.label}
+                  label={readChecklistLabel(t, item)}
                 />
               ))}
             </div>
