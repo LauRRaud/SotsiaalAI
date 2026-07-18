@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 VÄLJASTATUD** — aktiivne kooditeema, baas `cdbd9139`. **Ops-fixid: research-worker live + Turbopack puhas; server `efd275f1`.** T23 mentorlus valmis + pushitud)
+Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 DEPLOYED** — `main @ 7b49e9f7` LIVE serveris (baas `538ec4bb`), väravad + päris-DB runtime 33/33; migratsioon rakendatud, smoke roheline, DB-backup võetud, rollback `538ec4bb`; järgmine kooditeema = T10. **Ops-fixid: research-worker live + Turbopack puhas; server `efd275f1`.** T23 mentorlus valmis + pushitud)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -89,7 +89,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ## SEISUTABEL — 2026-07-18
 
-`main @ efd275f1`; **server `origin/main @ efd275f1` — LIVE**. Põhi-deploy 18.07 (`adc83829`): ff `fe4eb4fa`→`adc83829`, 6 migratsiooni rakendatud, build/57 lehte, smoke roheline (`/` `/vestlus` `/meist` → 200); seejärel `efd275f1` ops-fix rebuild. **Ops-fixid 18.07 (live+tõendatud):** (1) `sotsiaalai-research-worker.service` paigaldatud + `active`+stabiilne (fix: `--conditions=react-server`, sest `pipeline.js`→`@/lib/server/ragAuth`→`server-only` crash-loopis standalone node's; repo alla `ops/systemd/`) — [[perf-cost-audit]] L1 **worker-osa** lahendatud, **kvoodileke JÄÄB** (PERF-P0); (2) Turbopack NFT-hoiatused 10→0 (`lib/dataExport/service.js`). Rollback-SHA `fe4eb4fa`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-adc83829-20260718T111528Z.dump` (2,69 MB, taastatav).
+`main @ 7b49e9f7`; **server `origin/main @ 7b49e9f7` — LIVE (T09 PAYMENTS-V1 deploy'tud 18.07)**. **T09-deploy 18.07** (`538ec4bb`→`7b49e9f7`): ff, 1 additiivne migratsioon (`20260719120000_payments_v1`) rakendatud prod-DB-le, npm ci + build roheline, 3 teenust `active`, smoke roheline (`/` `/vestlus` `/meist` `/tellimus` `/voimalused` → 200). Rollback-SHA `538ec4bb`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-7b49e9f7-20260718T141532Z.dump` (2,75 MB, 1114 kirjet, taastatav). Server `SUBSCRIPTION_RECURRING_ENABLED=0` (variant A) + `PAYMENT_TOKEN_ENC_KEY` seadmata → recurring-token krüpto on **fail-closed dormant** (recurring rada ei aktiivne; enne recurring'u sisselülitamist tuleb võti seada). Eelmine deploy (ajalooline): põhi-deploy `adc83829` + ops-fix `efd275f1`. **Ops-fixid 18.07 (live+tõendatud):** (1) `sotsiaalai-research-worker.service` paigaldatud + `active`+stabiilne (fix: `--conditions=react-server`, sest `pipeline.js`→`@/lib/server/ragAuth`→`server-only` crash-loopis standalone node's; repo alla `ops/systemd/`) — [[perf-cost-audit]] L1 **worker-osa** lahendatud, **kvoodileke JÄÄB** (PERF-P0); (2) Turbopack NFT-hoiatused 10→0 (`lib/dataExport/service.js`). Rollback-SHA `fe4eb4fa`; DB-backup `~/sotsiaalai-db-backups/pre-deploy-adc83829-20260718T111528Z.dump` (2,69 MB, taastatav).
 
 ### Töö järjekord (jadatöö)
 
@@ -113,7 +113,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 | T23 `ESTA-MENTOR-V1` | **`CODE_READY` — pushitud, väravad rohelised** | `codex/esta-mentor-v1 @ 32b9800d` (local=remote), baas T05 `33f7fb82` | üks commit; 1582/1582 testi (24 uut) + build + i18n + lint + 98-migr ahel + **päris-DB sünteetiline runtime PASS** (mentor+mentee+admin täisteekond, IDOR/purge/continuity/U12/handoff); `NOT_PROVEN`: brauseri-QA, seadme-a11y. Ei ole `main`-is ega serveris |
 | T03 `CHAT-VOICE-V1` | **`DECISION_MADE` 18.07 — ühtne mikker võidab** | `codex/chat-voice-v1 @ 7bdd1288` | omanik otsustas: sisenemine = alati-nähtav tekstiväli + VALIKULINE mikker (main). Spatial-entry hüljatud. T03 rebase peab main'i komposeri säilitama; skoop = ainult E1–E5 (kriis/Stop/hääl), MITTE sisenemis-UX |
 | T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
-| T09 `PAYMENTS-V1` | **`VÄLJASTATUD` 18.07 (AKTIIVNE kooditeema)** | leping `t09-payments-v1-ulesanne.md` | **baas = main-tipp `cdbd9139`** (leping ütleb `fe4eb4fa` = aegunud); **ÄRA cherry-pick'i P1a `0aca8c4b`/T02 — juba main'is**; haru `codex/payments-v1`, worktree `SotsiaalAI-payments-v1` |
+| T09 `PAYMENTS-V1` | **`DEPLOYED` 18.07 — LIVE serveris `7b49e9f7`** | `main @ 7b49e9f7` (= `origin/main` = server); haru `origin/codex/payments-v1` push'itud; baas `538ec4bb` | 36 faili `+2488/−566`; **väravad: 1618/1618 testi (+36), lint 0, i18n OK, prisma validate, 99-migr ahel, diff-check, build** + **päris-DB throwaway runtime 33/33** (plaani-eskaleerimise keeld, webhook FOR UPDATE race/idempotents, revoked-sponsor ei ärka, refund-clawback, PAST_DUE/period-end, outbox retry, token-krüpto); **deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup `pre-deploy-7b49e9f7-…141532Z.dump`, rollback `538ec4bb`**. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). P1a `0aca8c4b`/T02 olid juba main'is — cherry-pick'i EI tehtud |
 | T25, T26 | `ANALYSIS_READY` | — | ootavad T27 release candidate'i |
 | T27 `OPS-FINAL-A0` | ei käivitata | — | release candidate'i lõppvärav |
 
@@ -134,7 +134,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 2. ~~**T02+T16 push**~~ — **TEHTUD** (kuulus deploy'sse).
 3. ~~**T03 disainiotsus**~~ — **OTSUSTATUD 18.07:** ühtne alati-nähtav tekstiväli + valikuline mikker (main) võidab; kaheikooniline „Räägi/Kirjuta — pead valima" spatial-entry lõplikult hüljatud. Segaduse allikas oli deploy-vahe (main eemaldas selle 16.07, aga toodangus jooksis veel eemalduse-eelne `fe4eb4fa`) — nüüd deploy'ga lahendatud.
 
-**Uus lahtine otsus:** järgmise kooditeema väljastamine — jadatöö järjekord ütleb **T09 `PAYMENTS-V1`** (alusta `main`-i praegusest tipust).
+**T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. Jadatöö avab järgmise: **T10 `PUBLIC-V1`** on nüüd järgmine väljastatav kooditeema (alusta `main`-i praegusest tipust `7b49e9f7`).
 
 **Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
@@ -204,11 +204,11 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 |---|---|---|---|
 | — | T24 `FIELD-V1` | `cb99b092` (WIP) | **PARGITUD** — EI aktiivne (jadatöö: 1 korraga) |
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
-| 1 | **T09 `PAYMENTS-V1` — VÄLJASTATUD 18.07 (AKTIIVNE)** | `t09-payments-v1-ulesanne.md` | baas `cdbd9139`; ära cherry-pick'i P1a/T02 |
-| 2 | T10 `PUBLIC-V1` | `t10-public-v1-ulesanne.md` | avalikud pinnad |
-| 3 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+| ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
+| 1 | **T10 `PUBLIC-V1` — järgmine väljastada** | `t10-public-v1-ulesanne.md` | avalikud pinnad; baas = `main @ 7b49e9f7` |
+| 2 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
 
-**T09 `PAYMENTS-V1` — VÄLJASTATUD 18.07** (T02+T16 deployed → blokeer kadus). **Baas = main-tipp `cdbd9139`** (leping ütleb `fe4eb4fa` — AEGUNUD). **KRIITILINE: ära cherry-pick'i MAKSED-P1a `0aca8c4b` ega T02 — mõlemad on JUBA main'is** (lepingu read 5/28/35–37 aegunud); branch'i värskest main-tipust, kõik on juba olemas. Haru `codex/payments-v1`, worktree `SotsiaalAI-payments-v1`; muu leping (E1–E6, lukustatud O-M/O-J valikud, testilepingud, DoD) kehtib. T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
+**T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` = `origin/main` = server LIVE; haru `origin/codex/payments-v1` push'itud; worktree `SotsiaalAI-payments-v1` puhas). Baas = `538ec4bb` (leping ütles `fe4eb4fa`/`cdbd9139` — JADATÖÖ reegel: praegune tipp). P1a `0aca8c4b` ja T02 olid juba main'is → cherry-pick'i EI tehtud. E1–E6 kõik teostatud (lukustatud O-M1…O-M6/O-J1…O-J4, testilepingud 1–9, DoD); väravad rohelised + päris-DB throwaway runtime 33/33; deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup + rollback `538ec4bb`. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
 
 Kui mõni neist teemadest jõuab alustada ajal, mil `main` on vahepeal liikunud, kehtib jadatöö reegel: baas = `main`-i praegune tipp, mitte lepingus kirjas olev SHA.
 
