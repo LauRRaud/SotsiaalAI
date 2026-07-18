@@ -628,6 +628,7 @@ export function useChatStream(config) {
             persist: true,
             convId: cfg.convId,
             uiLocale: cfg.locale || "et",
+            plainLanguage: cfg.plainLanguage === true,
             chatMode: selectedChatMode,
             helpWorkflowState: !cfg.isRoomMode && latestHelpWorkflowState && typeof latestHelpWorkflowState === "object"
               ? latestHelpWorkflowState

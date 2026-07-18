@@ -141,6 +141,7 @@ const THEME_INIT_SCRIPT = `(function () {
   root.setAttribute("data-theme-mode", contrast === "hc" ? "dark" : theme);
   root.setAttribute("data-contrast", contrast);
   if (prefs) {
+    root.setAttribute("data-plain-language", prefs.plainLanguage === true ? "1" : "0");
     root.setAttribute("data-reduce-motion", prefs.reduceMotion ? "1" : "0");
     root.setAttribute(
       "data-reduce-transparency",
@@ -295,6 +296,7 @@ function parseA11yPrefs(jar) {
       uiScale: obj?.uiScale ?? obj?.textScale,
       uiProfile: obj?.uiProfile ?? obj?.screenProfile ?? obj?.uiScale ?? obj?.textScale,
       contrast,
+      plainLanguage: obj?.plainLanguage === true,
       reduceMotion: !!obj?.reduceMotion,
       reduceTransparency: obj?.reduceTransparency == null ? !!obj?.reduceMotion : !!obj?.reduceTransparency,
       theme: contrast === "hc" ? "dark" : "mid"
@@ -322,7 +324,7 @@ export default async function RootLayout({
   const initialTheme = initialA11yPrefs?.theme || "mid";
   const initialUiProfile = normalizeUiProfile(initialA11yPrefs?.uiProfile);
   const initialTextScale = normalizeTextScale(initialA11yPrefs?.uiScale);
-  return <html lang={locale} data-theme-mode={initialTheme} data-ui-scale={initialUiProfile} data-ui-profile={initialUiProfile} data-text-scale={initialTextScale} data-ui-scale-auto="0" data-contrast={initialA11yPrefs?.contrast || "normal"} data-reduce-motion={initialA11yPrefs?.reduceMotion ? "1" : "0"} data-reduce-transparency={initialA11yPrefs?.reduceTransparency ? "1" : "0"} className={`${initialTheme === "light" ? "theme-light" : initialTheme === "dark" ? "theme-dark" : "theme-mid"} ${fontExo2.variable}`.trim()} suppressHydrationWarning>
+  return <html lang={locale} data-theme-mode={initialTheme} data-ui-scale={initialUiProfile} data-ui-profile={initialUiProfile} data-text-scale={initialTextScale} data-ui-scale-auto="0" data-contrast={initialA11yPrefs?.contrast || "normal"} data-plain-language={initialA11yPrefs?.plainLanguage ? "1" : "0"} data-reduce-motion={initialA11yPrefs?.reduceMotion ? "1" : "0"} data-reduce-transparency={initialA11yPrefs?.reduceTransparency ? "1" : "0"} className={`${initialTheme === "light" ? "theme-light" : initialTheme === "dark" ? "theme-dark" : "theme-mid"} ${fontExo2.variable}`.trim()} suppressHydrationWarning>
       <head>
         <meta
           name="format-detection"
