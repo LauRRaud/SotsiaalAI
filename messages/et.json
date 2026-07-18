@@ -1207,7 +1207,8 @@
       "search": {
         "placeholder": "Otsi vestlusi...",
         "label": "Otsi vestlusi",
-        "no_matches": "Otsingule vastavaid vestlusi ei leitud."
+        "no_matches": "Otsingule vastavaid vestlusi ei leitud.",
+        "retry": "Proovi uuesti"
       }
     },
     "aria": {
@@ -3109,6 +3110,7 @@
       "db_unavailable": "Andmebaas ei ole ajutiselt saadaval.",
       "db_error_run_read": "Vestluse konteksti ei saanud laadida.",
       "db_error_analyze_usage": "Analyysi kasutust ei saanud laadida.",
+      "search_query_too_long": "Otsingusõna on liiga pikk. Lühenda seda ja proovi uuesti.",
       "db_error_conversations_list": "Vestlusi ei saanud laadida.",
       "db_error_conversation_create": "Vestlust ei saanud luua.",
       "db_error_conversation_read": "Vestlust ei saanud laadida.",

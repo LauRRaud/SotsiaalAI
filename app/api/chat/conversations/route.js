@@ -7,6 +7,7 @@ import {
   resolveConversationWriteRole
 } from "@/lib/chat/conversationRoles";
 import { CHAT_NO_STORE_HEADERS, isChatDbOfflineError, isPlausibleChatId, requireChatUser } from "@/lib/chat/routeServerUtils";
+import { applyConversationSearch, normalizeConversationSearchQuery } from "@/lib/chat/conversationSearch";
 import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
@@ -68,7 +69,9 @@ function parseCursor(token) {
   const pinPart = token.slice(0, firstSep);
   const msPart = token.slice(firstSep + 1, secondSep);
   const id = token.slice(secondSep + 1);
-  if (!isPlausibleConversationId(id)) return null;
+  // `isPlausibleConversationId` never existed — this threw a ReferenceError for
+  // every cursor request, breaking both "load more" and paged search.
+  if (!isPlausibleChatId(id)) return null;
   const ms = Number(msPart);
   if (!Number.isFinite(ms)) return null;
   const date = new Date(ms);
@@ -136,6 +139,12 @@ export async function GET(req, deps = {}) {
   const limit = Math.max(1, Math.min(100, Number.isFinite(limitParam) ? limitParam : 30));
   const cursorToken = url.searchParams.get("cursor");
   const parsedCursor = parseCursor(cursorToken);
+  // U6: optional owner-scoped search. Rejected before any DB work so an oversized
+  // query cannot reach the EXISTS subquery.
+  const search = normalizeConversationSearchQuery(url.searchParams.get("q"));
+  if (!search.ok) {
+    return errorJson("api.chat.search_query_too_long", 400, { code: search.code });
+  }
   const roleState = resolveRoleState(auth.session, req.cookies);
   const roleParam = url.searchParams.get("role");
   const roleFilter = resolveListRoleFilter(roleParam, roleState.effectiveRole, roleState.isAdmin);
@@ -189,6 +198,8 @@ export async function GET(req, deps = {}) {
       ]
     };
   }
+  // The owner scope above is never replaced — the search is only ANDed on top.
+  where = applyConversationSearch(where, search.query);
 
   try {
     const rows = await prismaClient.conversation.findMany({

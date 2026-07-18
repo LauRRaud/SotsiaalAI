@@ -1207,7 +1207,8 @@
       "search": {
         "placeholder": "Search conversations...",
         "label": "Search conversations",
-        "no_matches": "No conversations matched your search."
+        "no_matches": "No conversations matched your search.",
+        "retry": "Try again"
       }
     },
     "aria": {
@@ -3109,6 +3110,7 @@
       "db_unavailable": "Database is temporarily unavailable.",
       "db_error_run_read": "Could not load conversation context.",
       "db_error_analyze_usage": "Could not load analysis usage.",
+      "search_query_too_long": "The search term is too long. Shorten it and try again.",
       "db_error_conversations_list": "Could not load conversations.",
       "db_error_conversation_create": "Could not create conversation.",
       "db_error_conversation_read": "Could not load conversation.",
