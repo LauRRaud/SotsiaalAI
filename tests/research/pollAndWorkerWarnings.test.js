@@ -78,13 +78,27 @@ test("worker mode warns while inline mode remains unchanged", () => {
     writeFileSync(workerFile, environmentFile("worker"));
     writeFileSync(inlineFile, environmentFile("inline"));
 
+    // Spawn check-env with a hermetic environment so the real .env loaded by
+    // imported app code (e.g. SUBSCRIPTION_RECURRING_ENABLED) cannot override the
+    // fixture file under test. Mirrors tests/chat/ragAuthConfig.test.js.
+    const spawnEnv = { ...process.env };
+    for (const key of [
+      "NODE_ENV", "NEXT_PUBLIC_SITE_URL", "APP_URL", "NEXTAUTH_URL", "NEXTAUTH_SECRET",
+      "AUTH_SECRET", "DATABASE_URL", "OPENAI_API_KEY", "RAG_SERVICE_API_KEY", "RAG_API_KEY",
+      "RAG_INTERNAL_HOST", "RAG_API_BASE", "EMAIL_FROM", "RESEARCH_JOB_MODE",
+      "SUBSCRIPTION_RECURRING_ENABLED", "MAKSEKESKUS_PUBLIC_KEY"
+    ]) {
+      delete spawnEnv[key];
+    }
     const worker = spawnSync(process.execPath, ["scripts/check-env.mjs", workerFile], {
       cwd: process.cwd(),
-      encoding: "utf8"
+      encoding: "utf8",
+      env: spawnEnv
     });
     const inline = spawnSync(process.execPath, ["scripts/check-env.mjs", inlineFile], {
       cwd: process.cwd(),
-      encoding: "utf8"
+      encoding: "utf8",
+      env: spawnEnv
     });
     assert.equal(worker.status, 0, worker.stderr);
     assert.equal(inline.status, 0, inline.stderr);
