@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (T02+T16 lepitus valmis)
+Viimati uuendatud: 2026-07-18 (T02+T16 lepitus valmis; DEPLOY-A0 väljastatud)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -100,6 +100,12 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 | 3 | T10 `PUBLIC-V1` | `QUEUED` | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
 | 4 | T07 `DOCUMENTS-RESEARCH-V1` | `QUEUED` | leping `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
 
+### Paralleelne mittekooditöö (jadatöö reegel lubab)
+
+| Teema | Olek | Leping | Teenib |
+|---|---|---|---|
+| DEPLOY-A0 valmiduse audit | `ISSUED` 18.07 | `deploy-a0-valmiduse-audit-ulesanne.md` | omaniku deploy-otsust (lahtine otsus nr 1); server READ-ONLY, repo-s muutub ainult väljunddokument + see fail |
+
 ### Pooleli, ei ole järjekorras
 
 | Teema | Olek | Haru / SHA | Märkus |
@@ -124,7 +130,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 ### Lahtised omaniku otsused
 
-1. **Deploy** — server 66 taga; enne vajab `.env` `MAKSEKESKUS_PUBLIC_KEY` lahendust (võti lisada VÕI recurring keelata), muidu maksed-p1a check-env kukutab deploy-kontrolli.
+1. **Deploy** — server 73 taga; enne vajab `.env` `MAKSEKESKUS_PUBLIC_KEY` lahendust (võti lisada VÕI recurring keelata), muidu maksed-p1a check-env kukutab deploy-kontrolli. **DEPLOY-A0 audit väljastatud 18.07** — annab go/no-go faktid (migratsioonid, env-pariteet, ressursid, rollback).
 2. **T02+T16 push** origin'isse + merge main'i → avab T09.
 3. **T03 disainiotsus** — mic vs spatial-entry.
 
