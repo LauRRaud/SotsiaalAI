@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 DEPLOYED** — `main @ 7b49e9f7` LIVE serveris (baas `538ec4bb`), väravad + päris-DB runtime 33/33; migratsioon rakendatud, smoke roheline, DB-backup võetud, rollback `538ec4bb`; järgmine kooditeema = T10. **Ops-fixid: research-worker live + Turbopack puhas; server `efd275f1`.** **T23 mentorlus rebase'itud + liidetud local `main`-i `13d59449` (1642/1642 testi), EI serveris**)
+Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 DEPLOYED** — `main @ 7b49e9f7` LIVE serveris (baas `538ec4bb`), väravad + päris-DB runtime 33/33; migratsioon rakendatud, smoke roheline, DB-backup võetud, rollback `538ec4bb`; järgmine kooditeema = T10. **Ops-fixid: research-worker live + Turbopack puhas; server `efd275f1`.** **T23 mentorlus rebase'itud + liidetud local `main`-i `13d59449` (1642/1642 testi), EI serveris**. **T24 FIELD-V1 = `CODE_READY`** — `codex/field-v1 @ e11d0ee4` rebase'itud `104d69d8` peale, E10 testid kirjutatud, 42 puuduvat veatõlget parandatud; väravad 1691/1691 + lint 0 viga + build + 101-migratsiooni ahel; **push'imata, EI main'is**)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -95,7 +95,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 | # | Teema | Olek | Haru / SHA | Avab |
 |---|---|---|---|---|
-| 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
+| 1 | T24 `FIELD-V1` | **`CODE_READY` — rebase'itud main-i tipule, kõik väravad rohelised** | `codex/field-v1 @ e11d0ee4` (local; remote puudub), baas `104d69d8`, worktree puhas, 4 commit'i, 45 faili `+7367/−22` | — |
 | 2 | T02+T16 `LEPITUS` | **`DEPLOYED` — main'is `d2860b0b`, **LIVE serveris 18.07** (`adc83829`). Väravad: 1582 testi, 98-migr ahel, build; 6 migratsiooni rakendatud prod-DB-le** | `codex/t02-t16-remerge @ a6f683a6` → `main` | **T09 avatud** |
 | ▶ | **T07 `DOCUMENTS-RESEARCH-V1`** | **`IN_PROGRESS` — WIP-kontrollpunkt, väravad rohelised** | `codex/documents-research-v1 @ db3589f5` (local; remote puudub), baas `180d668f`, worktree puhas; 2 commit'i (WIP `b94f9370` + E2 analüüs `db3589f5`) | dokumendiruum |
 | — | T10 `PUBLIC-V1` | `QUEUED` — T07 järel | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
@@ -126,7 +126,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 - Kaks teadlikku testiasendust, neist üks päris käitumismuutus (PIN-ita konto ei saa enam profiili muuta).
 - Väravad: **1582/1582 testi**, lint 0 viga (baasjoonega identne), i18n OK, **98-migratsiooni täisahel OK**, build OK, **sünteetiline runtime 26/26 PASS** isoleeritud DB-l.
 - `NOT_PROVEN`: brauseri-QA (T27), päris e-kirjad.
-- Teadmiseks: T24 peab hiljem rebase'ima — tema migratsioon `20260718090000` on nendest hilisem, aga haru on vanemal baasil.
+- ~~Teadmiseks: T24 peab hiljem rebase'ima~~ — **TEHTUD 18.07:** T24 on rebase'itud `104d69d8` peale ja migratsioon ümber nimetatud `20260718090000` → `20260719140000_field_v1_mobile_shell` (vana nimi oleks sorteerunud juba rakendatud `payments_v1`/`mentoring_v1` ette).
 
 ### Lahtised omaniku otsused
 
@@ -136,7 +136,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 
 **T09 lõpetatud (18.07):** push + merge + **deploy TEHTUD** kasutaja loal → `main @ 7b49e9f7` LIVE serveris. **T07 `DOCUMENTS-RESEARCH-V1` — WIP-kontrollpunkt 18.07** (`codex/documents-research-v1 @ db3589f5`, local; baas `180d668f` = T09 sees; worktree `SotsiaalAI-documents-research-v1` puhas; alusdependents T28/T17/T16 juba main'is; **2 commit'i**: WIP `b94f9370` + E2 analüüs `db3589f5`). **TEHTUD** (väravad rohelised: **täissviit 1632/1632** + lint + i18n + 100-migr ahel + build + diff-check): E1 owner-404 (12 rada, foreign-id == missing-id, T28 cross-tenant piir puutumata), E2 püsiv mustand (`persistArtifactDraft`, `AgentArtifact.idempotencyKey` + `SavedAnalysis` mudel), **E2 salvestatav analüüsiobjekt** (`lib/documents/savedAnalysis.js` + `/api/documents/analyses` CRUD, owner-404, püsiv disclaimer "AI selgitus, mitte ametlik otsus", allika-omandikontroll, 6 uut testi), E4 uuring elab üle nav (stop vs detach), E5 meeting-summary snapshot fail-closed kustutus. **NOT_DONE:** E2 Journey "Lisa dokument analüüsiks" side (sõltub E3 analüüsiraja URL-ist) + chat "Salvesta analüüs" nupp, **E3 ühtne /documents tööruum + provenance/privaatsus-riba (suurim tükk, puutumata)**, E5 T04-sündmused (tihe registry/projector-integratsioon), E4 ulatuse/geo-UI. **NOT_PROVEN:** autenditud brauser + päris-RAG/worker runtime. Ei main'is/serveris; push'imata. T10 `PUBLIC-V1` = lõputeema (omaniku otsus 18.07), EI järgmine.
 
-**Backup'id:** `backup/main-pre-t02t16-merge-2026-07-18` (uus), `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
+**Backup'id:** `backup/field-v1-pre-rebase-2026-07-18` (uus, = T24 WIP `cb99b092` enne rebase'i), `backup/main-pre-t02t16-merge-2026-07-18`, `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
 
 ## Varasem taust (ajalooline, ei uuendata)
 
@@ -190,9 +190,19 @@ T28 `RAG-V1` on `CODE_READY`, mitte aktiivne jätkuülesanne.
 - P8.6 päris kümne allika proovipakk on `NOT_DONE — OWNER_DECISION`; päris korje/ingest ja timeri aktiveerimine pole tehtud. Täissviit ja sõltumatu audit kuuluvad T27-sse.
 - T06 jääb külmutatuks `f17a3c36`; selle runtime-/migratsioonitõend tehakse T27-s, mitte eraldi auditiülesandena.
 
-T24 `FIELD-V1` on aktiivne, kuid pausil Fable'i worktree's testide alguses. Skeemi-, teenuse-, API-, retention-, service worker'i ja UI töö on pooleli; väravaid EI ole jooksutatud.
+**T24 `FIELD-V1` — UUENDATUD 18.07: see lõik on aegunud, kehtib seisutabeli T24 rida.** (Ajalooline algseis oli: pausil testide alguses, väravaid pole jooksutatud, WIP `cb99b092`.)
 
-**18.07 kontrollpunkt:** senine ainult-kettal töö on nüüd commit'itud harusse `codex/field-v1 @ cb99b092` (worktree `C:\Users\rauds\Desktop\SotsiaalAI-field-v1`, tööpuu puhas, remote-haru puudub). See on kaotusriski maandav WIP-kontrollpunkt, MITTE valmis etapp — lõpparuannet, väravaid ega vastuvõttu ei ole. Uus konto ei dubleeri seda tööd; algne aken jätkab samast worktree'st.
+**T24 lõpetatud 18.07 → `CODE_READY`** (`codex/field-v1 @ e11d0ee4`, worktree `C:\Users\rauds\Desktop\SotsiaalAI-field-v1` puhas, **remote puudub — push'imata**, baas `104d69d8` = main'i tipp; backup `backup/field-v1-pre-rebase-2026-07-18 @ cb99b092`). Tooteomanik andis selgesõnalise **jadatöö-erandi** T24 pargist tagasitoomiseks; **T07 haru ei puudutatud.**
+
+- **Rebase:** 95 commit'i vahet, 10 konflikti (kõik additiivsed liidud: mentorlus+välitöö kõrvuti). `workspaceContinuity` prioriteedid ühendatud nii, et mõlema poole suhteline järjekord säilib (`field_visit` tippu, `mentoring` olemasolevate järele). Tõlkefailid liidetud programmaatiliselt (3-way JSON, 0 päris konflikti) ja sisestatud kirurgiliselt → **+218 rida puhast lisandust, 0 ümbervormindust**.
+- **WIP-i leitud vead (parandatud):** (1) `lib/field/service.js` sisaldas hash-eraldajana **literaalset NUL-baiti** → git luges faili binaarseks (diffi polnud, rebase/merge oleks katkenud); asendatud `"\u0000"`-ga, käitumine bait-täpselt sama. (2) migratsiooni järjekord (vt ülal). (3) kasutamata import + `useMemo`-ta `|| []` hook-deps.
+- **Etapid:** E1–E9 olid WIP-is sisuliselt juba terviklikud (3 mudelit + `FIELD_PHOTO`, 6 API-rada omaniku-skoobitud 404-ga, SW-värav, UI, turvasignaal, retention-sweep, konto kustutus DB-kaskaadiga). **E10 oli 1/5 testifailist → nüüd 6 faili, 48 FIELD-testi.**
+- **LEID + PARANDUS (päris viga):** 42 `field.errors.*` võtit olid koodis, aga puudusid **kõigist kolmest** keelefailist — `i18n:check` ei näinud, sest see kontrollib ainult et/en/ru **pariteeti** ja kõik kolm olid ühtviisi puudu. Iga serveripoolne välitöö-viga oleks kasutajale renderdunud toore võtmena. Põhjus: UI-võtmed camelCase (`loadFailed`), server viskab snake_case (`load_failed`). Lisatud 42 × 3 keelt + `tests/i18n/fieldKeys.test.js` hoiab augu suletuna.
+- **Väravad (kõik rohelised):** **1691/1691 testi** (main 1642 + 49 uut), lint **0 viga** / 359 hoiatust (= main'i baasjoon; FIELD-i pinnad 0), `i18n:check` OK, `prisma validate` OK, **build** OK, **`db:migrate:check` 101-migratsiooni täisahel OK** (visatav localhost-proovibaas, eemaldatud).
+- **SW-leping tõendatud käitumuslikult:** `swContract.test.js` käivitab `public/sw.js` võltsitud worker-globaalis ja surub läbi päris fetch-sündmused; **mutatsioonikontroll tehtud** — värava eemaldamisel kukuvad mõlemad põhitesti.
+- **`NOT_PROVEN` (ausalt):** seadme-/brauserimaatriks (Android Chrome, iOS Safari 16.4+ PWA ja sakk, töölaud), päris kaamera/mikrofon/OCR runtime, Playwright sünteetiline offline↔online tervikvoog, päris-DB runtime väljaspool migratsiooniahelat. Need on lepingu käsitsi-QA osa ja kuuluvad T27 koondväravasse.
+- **Teadlik kõrvalekalle lepingust:** online-dikteerimine taaskasutab `/api/documents/[id]/transcribe` (salvestatud helimanus), mitte lepingus nimetatud `/api/stt` (live-vootee). Funktsionaalselt kaetud, kirjas siin, et see ei kaoks.
+- **EI main'is, EI serveris, EI push'itud** — ootab vastuvõttu.
 
 T23 `ESTA-MENTOR-V1` — **UUENDATUD 18.07: see lõik on aegunud, kehtib seisutabeli T23 rida.** Teema on terviklikult teostatud, rebase'itud `main`-i tipule (`e18acc3f`) ja **liidetud `main`-i** (`main @ 13d59449`, haru `codex/esta-mentor-v1 @ 8af9bcb5`, local=remote); ei ole serveris (push=deploy). (Ajalooline algseis oli: 18.07 WIP-kontrollpunkt `adc44f69`, väravaid pole jooksutatud, remote puudub.)
 
@@ -202,7 +212,7 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 
 | Järjek. | Teema | Leping | Avab |
 |---|---|---|---|
-| — | T24 `FIELD-V1` | `cb99b092` (WIP) | **PARGITUD** — EI aktiivne (jadatöö: 1 korraga) |
+| ✓ | T24 `FIELD-V1` — **CODE_READY 18.07** | `e11d0ee4`, baas `104d69d8` | omaniku selgesõnaline jadatöö-erand (T07 jäi puutumata) |
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
 | ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
 | ▶ | **T07 `DOCUMENTS-RESEARCH-V1` — TÖÖSSE 18.07 (aktiivne)** | `t07-documents-research-v1-ulesanne.md` | dokumendiruum; `codex/documents-research-v1`, baas `180d668f` |
