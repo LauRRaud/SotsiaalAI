@@ -6,6 +6,7 @@ import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { runNotificationDelivery } from "@/lib/notificationDelivery";
 import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
+import { projectDomainEvents } from "@/lib/events/projector";
 import { safeError } from "@/lib/privacy/safeError";
 
 const NO_STORE = { "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0" };
@@ -35,9 +36,14 @@ export async function POST(request) {
       eligible: 0, claimed: 0, sent: 0, retried: 0, failed: 0,
       skippedPreference: 0, skippedRecipient: 0, ambiguous: 0
     };
+    const projected = {
+      considered: 0, created: 0, existing: 0, failed: 0, zeroRecipients: 0
+    };
     let reconcileCursor = null;
+    let projectorCursor = null;
     let deliveryCursor = null;
     let reconcilePages = 0;
+    let projectorPages = 0;
     let deliveryPages = 0;
     for (; reconcilePages < 100; reconcilePages += 1) {
       const reconcilePage = await reconcileNotificationEvents({ dryRun, batchSize, cursor: reconcileCursor });
@@ -45,19 +51,32 @@ export async function POST(request) {
       reconcileCursor = reconcilePage.nextCursor || null;
       if (!reconcileCursor) break;
     }
+    for (; projectorPages < 100; projectorPages += 1) {
+      const projectorPage = await projectDomainEvents({ dryRun, batchSize, cursor: projectorCursor });
+      for (const key of Object.keys(projected)) projected[key] += Number(projectorPage[key] || 0);
+      projectorCursor = projectorPage.nextCursor || null;
+      if (!projectorCursor) break;
+    }
     for (; deliveryPages < 100; deliveryPages += 1) {
       const deliveryPage = await runNotificationDelivery({ dryRun, batchSize, cursor: deliveryCursor });
       for (const key of Object.keys(delivery)) delivery[key] += Number(deliveryPage[key] || 0);
       deliveryCursor = deliveryPage.nextCursor || null;
       if (!deliveryCursor) break;
     }
+    const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
+    projected.truncated = Boolean(projectorCursor);
+    if (truncated) console.error("[jobs/notifications] processing truncated", {
+      reconcile: Boolean(reconcileCursor), projector: Boolean(projectorCursor), delivery: Boolean(deliveryCursor)
+    });
     return json({
       ok: true,
       dryRun,
       reconcilePages: Math.min(reconcilePages + 1, 100),
+      projectorPages: Math.min(projectorPages + 1, 100),
       deliveryPages: Math.min(deliveryPages + 1, 100),
-      truncated: Boolean(reconcileCursor || deliveryCursor),
+      truncated,
       reconciled,
+      projected,
       delivery
     });
   } catch (error) {

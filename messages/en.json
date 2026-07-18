@@ -3083,6 +3083,10 @@
     "events": {
       "pre_inquiry_arrived": "A pre-inquiry has arrived for you",
       "pre_inquiry_status_changed": "The status of your pre-inquiry changed",
+      "pre_inquiry_opened": "Your pre-inquiry was opened",
+      "pre_inquiry_replied": "Your pre-inquiry received a response",
+      "pre_inquiry_archived": "Your pre-inquiry was archived",
+      "pre_inquiry_recalled": "A pre-inquiry was recalled",
       "room_invite": "You received a room invitation",
       "room_activity": "There is new activity in your room",
       "help_match_created": "A match was found for your help listing",
@@ -3091,6 +3095,17 @@
       "practice_review_assigned": "A practice review was assigned to you",
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation"
+    },
+    "center": {
+      "title": "Notifications",
+      "limit": "Latest 7",
+      "loading": "Loading notifications…",
+      "error": "Notifications could not be loaded.",
+      "empty": "There are no new notifications.",
+      "unread": "Unread notifications",
+      "dismiss": "Dismiss notification",
+      "retry": "Try again",
+      "target_gone": "This action is no longer available. Your workbench has been refreshed."
     },
     "email_preference": "Also send optional work-queue notifications by email",
     "email_preference_hint": "Emails never include inquiry, room, or draft content.",
@@ -3101,6 +3116,21 @@
   "workspace_continuity": {
     "title": "Continue here",
     "limit": "Up to 7 next steps",
+    "focus_hint": "One next step at a time",
+    "primary_eyebrow": "Most important now",
+    "continue_action": "Continue",
+    "waiting_title": "Waiting for my action",
+    "waiting_count": "Number of pending actions",
+    "retry": "Try again",
+    "empty_hint": "Everything is up to date for now.",
+    "my_sharings": "My sharings",
+    "my_sharings_hint": "View active shares and their validity",
+    "notification_settings": "Notification settings",
+    "preference_error": "The setting could not be saved.",
+    "all_tools": "All tools",
+    "role_changed": "The workbench role view changed. Data is being refreshed.",
+    "target_gone": "This action is no longer available. Your workbench has been refreshed.",
+    "target_check_failed": "Access to this action could not be checked. Try again.",
     "loading": "Collecting your unfinished work…",
     "error": "Your unfinished work is not available right now.",
     "empty": "You have no unfinished activities right now.",
@@ -3369,6 +3399,14 @@
       "back": "Back",
       "yes": "Yes",
       "no": "No"
+    },
+    "notifications": {
+      "title": "Notification delivery failures",
+      "description": "UNKNOWN and FAILED records without recipient or private content.",
+      "empty": "No delivery operations need attention.",
+      "requeue": "Retry",
+      "load_failed": "Notification delivery status could not be loaded.",
+      "requeue_failed": "The notification could not be requeued."
     },
     "pages": {
       "analytics": {

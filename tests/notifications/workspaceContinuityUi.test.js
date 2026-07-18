@@ -9,9 +9,14 @@ test("continuity UI has a capped route-safe contract, CAS preference guard, and 
     readFile(new URL("../../app/styles/workspace.css", import.meta.url), "utf8")
   ]);
   assert.match(panel, /items: Array\.isArray\(payload\.items\) \? payload\.items\.slice\(0, 7\)/u);
-  assert.match(panel, /if \(!normalized\.startsWith\("\/"\)\) return/u);
+  assert.match(panel, /if \(!normalized\.startsWith\("\/"\) \|\| !item\?\.id \|\| !item\?\.kind\) return/u);
+  assert.match(panel, /setContinuity\(\{ status: "loading", items: \[\], badges: \{\}, role: nextRole \}\)/u);
+  assert.match(panel, /workspace-tools-drawer/u);
   assert.match(panel, /preferenceRequestRef[\s\S]+requestId !== preferenceRequestRef\.current/u);
   assert.match(component, /aria-labelledby="workspace-continuity-title"/u);
+  assert.match(component, /workspace-continuity-primary/u);
+  assert.match(component, /workspace-continuity-waiting/u);
+  assert.match(component, /workspace_continuity\.my_sharings/u);
   assert.match(component, /type="checkbox"/u);
   assert.match(css, /\.workspace-dashboard-card \[data-badge-type="number"\][\s\S]+min-width/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]+workspace-continuity/u);
@@ -28,7 +33,9 @@ test("ET/EN/RU contain every new notification and continuity key", async () => {
   ];
   for (const catalog of catalogs) {
     for (const key of keys) assert.equal(typeof catalog.notifications.events[key], "string");
-    assert.equal(typeof catalog.workspace_continuity.title, "string");
+    for (const key of ["title", "focus_hint", "continue_action", "waiting_title", "my_sharings", "target_gone"]) {
+      assert.equal(typeof catalog.workspace_continuity[key], "string");
+    }
     assert.equal(typeof catalog.notifications.email_preference, "string");
   }
 });

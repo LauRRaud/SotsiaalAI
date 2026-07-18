@@ -15,6 +15,7 @@ import { createWorkspaceDashboardRows, WORKSPACE_ROUTE_PREFETCH_PATHS } from "@/
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton";
 import WorkspaceFeaturePage from "@/components/workspace/WorkspaceFeaturePage";
 import WorkspaceContinuity from "@/components/workspace/WorkspaceContinuity";
+import NotificationCenter from "@/components/workspace/NotificationCenter";
 
 const EMBEDDED_WORKSPACE_FEATURES = Object.freeze({
   "/documents": "documents",
@@ -76,6 +77,7 @@ const DASHBOARD_VIEW_ROLES = Object.freeze([
   "SOCIAL_WORKER",
   "SERVICE_PROVIDER"
 ]);
+const WORKBENCH_V1_ENABLED = process.env.NEXT_PUBLIC_WORKBENCH_V1_ENABLED === "1";
 
 function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
@@ -208,6 +210,8 @@ export default function WorkspacePanel({
     badges: {}
   });
   const [notificationPreference, setNotificationPreference] = useState(null);
+  const [workbenchRefreshKey, setWorkbenchRefreshKey] = useState(0);
+  const [workbenchAnnouncement, setWorkbenchAnnouncement] = useState("");
   const syncEmbeddedFeatureFromUrl = useCallback(() => {
     if (typeof window === "undefined") return;
     try {
@@ -361,6 +365,10 @@ export default function WorkspacePanel({
     setDashboardRole(defaultDashboardRole);
   }, [defaultDashboardRole]);
 
+  const reloadWorkbench = useCallback(() => {
+    setWorkbenchRefreshKey((value) => value + 1);
+  }, []);
+
   useEffect(() => {
     if (!visible || activeEmbeddedFeature) return undefined;
     const controller = new AbortController();
@@ -393,7 +401,7 @@ export default function WorkspacePanel({
         setContinuity({ status: "error", items: [], badges: {} });
       });
     return () => controller.abort();
-  }, [activeEmbeddedFeature, visible]);
+  }, [activeEmbeddedFeature, visible, workbenchRefreshKey]);
 
   const updateEmailPreference = useCallback(async (emailEnabled) => {
     if (!notificationPreference || notificationPreference.status === "saving") return;
@@ -428,8 +436,13 @@ export default function WorkspacePanel({
   }, [locale, router, visible]);
 
   const handleDashboardRoleChanged = useCallback((user = {}) => {
-    setDashboardRole(normalizeDashboardRole(user?.effectiveRole || user?.adminViewRole));
-  }, []);
+    const nextRole = normalizeDashboardRole(user?.effectiveRole || user?.adminViewRole);
+    setDashboardRole(nextRole);
+    setContinuity({ status: "loading", items: [], badges: {}, role: nextRole });
+    setNotificationPreference(null);
+    setWorkbenchAnnouncement(text(t, "workspace_continuity.role_changed", "Töölaua rollivaade muutus. Andmeid värskendatakse."));
+    reloadWorkbench();
+  }, [reloadWorkbench, t]);
 
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
@@ -463,11 +476,33 @@ export default function WorkspacePanel({
     openInvite,
     dashboardBadges: resolvedDashboardBadges
   }), [activeRole, hasPaidAccess, navigateTo, openHelpPanel, openInvite, resolvedDashboardBadges, t]);
-  const openContinuityItem = useCallback((href) => {
+  const openNotificationItem = useCallback((href) => {
     const normalized = String(href || "").trim();
     if (!normalized.startsWith("/")) return;
     router.push(localizePath(normalized, locale));
   }, [locale, router]);
+  const openContinuityItem = useCallback(async (item) => {
+    const normalized = String(item?.href || "").trim();
+    if (!normalized.startsWith("/") || !item?.id || !item?.kind) return;
+    try {
+      const response = await fetch("/api/workspace/continuity", {
+        cache: "no-store",
+        headers: { Accept: "application/json" }
+      });
+      const payload = await response.json().catch(() => ({}));
+      const current = response.ok && payload?.ok === true && Array.isArray(payload.items)
+        ? payload.items.find((candidate) => candidate.id === item.id && candidate.kind === item.kind && candidate.href === normalized)
+        : null;
+      if (!current) {
+        setWorkbenchAnnouncement(text(t, "workspace_continuity.target_gone", "See tegevus ei ole enam saadaval. Töölaud on värskendatud."));
+        reloadWorkbench();
+        return;
+      }
+      router.push(localizePath(normalized, locale));
+    } catch {
+      setWorkbenchAnnouncement(text(t, "workspace_continuity.target_check_failed", "Tegevuse ligipääsu ei saanud kontrollida. Proovi uuesti."));
+    }
+  }, [locale, reloadWorkbench, router, t]);
   const activeEmbeddedMeta = useMemo(() => {
     if (!activeEmbeddedFeature) return null;
     const meta = EMBEDDED_WORKSPACE_HEADER_META[activeEmbeddedFeature] || null;
@@ -627,10 +662,50 @@ export default function WorkspacePanel({
         status={continuity.status}
         items={continuity.items}
         onOpen={openContinuityItem}
+        onRetry={reloadWorkbench}
+        onOpenSharings={() => navigateTo("/minu-jagamised")}
         preference={notificationPreference}
         onPreferenceChange={updateEmailPreference}
+        featureEnabled={WORKBENCH_V1_ENABLED}
       />
 
+      <p className="sr-only" aria-live="polite" aria-atomic="true">{workbenchAnnouncement}</p>
+
+      <NotificationCenter
+        t={t}
+        locale={locale}
+        onOpen={openNotificationItem}
+        onStale={reloadWorkbench}
+        refreshKey={`${dashboardRole}:${workbenchRefreshKey}`}
+      />
+
+      {WORKBENCH_V1_ENABLED ? (
+        <details className="workspace-tools-drawer">
+          <summary>{text(t, "workspace_continuity.all_tools", "Kõik töövahendid")}</summary>
+          <div className="workspace-tools-grid">
+            {cardRows.map((row, index) => (
+              <div key={`row-${index + 1}`}>
+                {row.map(card => (
+                  <button
+                    key={card.key}
+                    type="button"
+                    className="workspace-dashboard-card"
+                    data-workspace-card-key={card.key}
+                    onClick={card.disabled ? undefined : handleCardDirectClick}
+                    onPointerUp={card.disabled ? undefined : handleCardDirectPointerUp}
+                    disabled={card.disabled}
+                    aria-label={formatDashboardCardAriaLabel(card)}
+                    aria-disabled={card.disabled ? "true" : "false"}
+                  >
+                    <span><span>{card.title}</span></span>
+                    {card.badge ? <span data-badge-type={card.badge.type} aria-hidden="true"><span>{card.badge.value}</span>{card.badge.tooltip ? <span>{card.badge.tooltip}</span> : null}</span> : null}
+                  </button>
+                ))}
+              </div>
+            ))}
+          </div>
+        </details>
+      ) : (
       <div>
         {cardRows.map((row, index) => (
           <div key={`row-${index + 1}`}>
@@ -660,6 +735,7 @@ export default function WorkspacePanel({
           </div>
         ))}
       </div>
+      )}
         </>
       )}
       </section>

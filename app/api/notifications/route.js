@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { authConfig } from "@/auth";
 import {
   listNotificationEvents,
+  dismissNotification,
   markNotificationRead,
   markNotificationSourceRead,
   notificationBadges
@@ -33,8 +34,10 @@ export async function GET(request) {
     String(url.searchParams.get("unread") || "").toLowerCase()
   );
   const limit = Math.max(1, Math.min(Number(url.searchParams.get("limit")) || 30, 100));
+  const dismissedValue = String(url.searchParams.get("dismissed") || "exclude").toLowerCase();
+  const dismissed = ["include", "only"].includes(dismissedValue) ? dismissedValue : "exclude";
   try {
-    const events = await listNotificationEvents(auth.userId, { limit, unreadOnly });
+    const events = await listNotificationEvents(auth.userId, { limit, unreadOnly, dismissed });
     return json({ ok: true, events, badges: notificationBadges(events) });
   } catch (error) {
     console.error("[notifications] list failed", safeError(error));
@@ -47,9 +50,17 @@ export async function PATCH(request) {
   if (!auth.ok) return json({ ok: false, message: "api.common.unauthorized" }, 401);
   const body = await request.json().catch(() => ({}));
   try {
-    const result = body?.eventId
-      ? await markNotificationRead(auth.userId, body.eventId)
-      : await markNotificationSourceRead(auth.userId, {
+    const operation = String(body?.operation || (body?.eventId ? "read" : "source_read")).trim();
+    if (!["dismiss", "read", "source_read"].includes(operation)) {
+      const error = new Error("api.notifications.operation_invalid");
+      error.status = 400;
+      throw error;
+    }
+    const result = operation === "dismiss"
+      ? await dismissNotification(auth.userId, body.eventId)
+      : operation === "read"
+        ? await markNotificationRead(auth.userId, body.eventId)
+        : await markNotificationSourceRead(auth.userId, {
           sourceType: body?.sourceType,
           sourceId: body?.sourceId
         });

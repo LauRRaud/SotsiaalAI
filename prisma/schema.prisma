@@ -741,6 +741,7 @@ model User {
   sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
   sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
   notificationEvents           NotificationEvent[]
+  domainEventsActed            DomainEvent[]              @relation("DomainEventActor")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1928,14 +1929,52 @@ model NotificationEvent {
   emailedAt          DateTime?
   emailLastErrorCode String?
   emailMessageId     String?
+  eventId            String?
+  dismissedAt        DateTime?
+  workspaceKind      String?
+  workspaceId        String?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, readAt, createdAt, id])
+  @@index([userId, dismissedAt, readAt, createdAt])
   @@index([emailStatus, emailNextAttemptAt, id])
   @@index([userId, sourceType, sourceId, readAt])
+  @@index([eventId])
+}
+
+model DomainEvent {
+  id               String    @id @default(cuid())
+  type             String
+  version          Int       @default(1)
+  occurredAt       DateTime
+  actorKind        String
+  actorUserId      String?
+  sourceFeature    String
+  sourceType       String
+  sourceId         String
+  workspaceKind    String?
+  workspaceId      String?
+  audienceRule     String
+  audienceHint     Json?
+  visibilityClass  String    @default("personal")
+  actionKind       String
+  actionTarget     String
+  idempotencyKey   String    @unique
+  retentionClass   String    @default("standard90")
+  meta             Json?
+  projectedAt      DateTime?
+  createdAt        DateTime  @default(now())
+
+  actor User? @relation("DomainEventActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([projectedAt, id])
+  @@index([workspaceKind, workspaceId, occurredAt])
+  @@index([sourceType, sourceId, occurredAt])
+  @@index([retentionClass, occurredAt])
+  @@index([actorUserId, occurredAt])
 }
 
 // Teemaseeme remains an owner-private preparation object. WAITING freezes the
