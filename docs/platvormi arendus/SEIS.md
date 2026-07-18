@@ -108,7 +108,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T09 | PAYMENTS-V1 | **LIVE** | `7b49e9f7`; recurring teadlikult väljas; töölise-timerid inaktiivsed |
 | T10 | PUBLIC-V1 | **OOTEL** | 18.07 õhtu ümberprioriseerimine: release-raja algus, käivitub kui omanik tahab turule (EI ole enam T07 järel) |
 | T11 | SERVICE-MEDIATION-V1 | **LIVE** | |
-| T12 | ROOMS-CALLS-V1 | **JÄRGMINE — LEPING VALMIS** | otsustering tehtud 18.07 (6 otsust), leping `t12-rooms-calls-v1-ulesanne.md` (E1–E7) koostatud; valmis väljastamiseks — vt „T12 otsustering 18.07" |
+| T12 | ROOMS-CALLS-V1 | **LEPING VALMIS (ootel)** | otsustering + leping `t12-rooms-calls-v1-ulesanne.md` valmis 18.07; omanik lükkas T22 ette — T12 ootab järge |
 | T13 | COVISION-V2 | **ANALÜÜS** | V1 LIVE ja runtime-tõendatud; V2 ruumiline lõppmudel alustamata |
 | T14 | WELLBEING-V2 | **ANALÜÜS** | E0 kriitiline parandus LIVE; E1–E6 tegemata |
 | T15 | A11Y/RV | osaliselt LIVE | a11y-i18n P0 LIVE; RV-P1+ ja tõlkestrateegia tegemata |
@@ -118,7 +118,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T19 | SPATIAL-WORKSPACE-V1 | **OOTEL** | DEFERRED omaniku otsusega; prototüüp main'is viitena; ükski teema ei oota |
 | T20 | COLLAB-V1 | **—** | O-CO otsused lahtised |
 | T21 | CASEWORK-V1 | **ANALÜÜS** | CASEWORK-A0 valmis |
-| T22 | SUPERVISION-V1 | **ANALÜÜS** | tootemudel + V0 tööplaan valmis |
+| T22 | SUPERVISION-V1 | **JÄRGMINE — LEPING VALMIS** | omaniku valik 18.07: esimene suur teema; P0 skeem JUBA main'is + prod'is; leping `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10) valmis; V0 ei vaja otsusteringi (12 otsust lukus) — vt „T22 eeltöö 18.07" |
 | T23 | ESTA-MENTOR-V1 | **LIVE** | oli juba `104d69d8`-ga serveris (avastatud 18.07 õhtul) |
 | T24 | FIELD-V1 | **LIVE** | õhtu-deploy 18.07 (`ae59516f`) |
 | T25 | ORG-V1 | **ANALÜÜS** | ootab release candidate'i |
@@ -148,9 +148,10 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 
 **B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
 1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).** Ükski kooditeema pole enam aktiivne → T12 võib alata.
-2. **T12 ROOMS-CALLS-V1** — **JÄRGMINE täisteema; EELTÖÖ VALMIS.** Otsustering tehtud 18.07 (6 otsust, vt „T12 otsustering 18.07"), leping `t12-rooms-calls-v1-ulesanne.md` koostatud (E1–E7). **Valmis väljastamiseks** — järgmine samm = teostaja käivitamine (Sol/Fable High) uue worktree'ga `main`-i praeguselt tipult.
-3. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
-4. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule"** — EI ole enam automaatselt T07 järel.
+2. **T22 SUPERVISION-V1** — **JÄRGMINE täisteema (omaniku valik 18.07); EELTÖÖ VALMIS.** P0 skeem juba main'is+prod'is; leping `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10) koostatud; V0 decision-complete (12 otsust lukus, otsusteringi EI vaja). **Valmis väljastamiseks** — järgmine samm = teostaja käivitamine (Sol/Fable High) uue worktree'ga `main`-i praeguselt tipult.
+3. **T12 ROOMS-CALLS-V1** — leping valmis, ootab T22 järge (omanik lükkas T22 ette).
+4. **Edasi omaniku valik** suurte funktsioonide seast (T14 Tööheaolu ja T21 Casework voolavad puhtalt; T13 Kovisioon V2 võib T19 tagasi lauale tuua).
+5. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule".**
 
 **C. VAHEPALAD teemade vahele (väikesed, otsustevabad, sobivad ka ootepäevadele):**
 - lint-debt jätk: `WorkspaceFeaturePage.jsx` 27 hardcoded-stringi + ülejäänud (50 → 0 hoiatust);
@@ -258,6 +259,16 @@ Auditi (`fable-5-ruumid-liitumine-ja-konevoog.md`, 20 ptk) pingerea ja registri 
 
 **Etapid E1–E7** (auditi parandusjärjekord 20.5 = selgroog): E1 elutsükli ristkoristus, E2 race-migratsioon (osalised unikaalindeksid), E3 vealeping+väravaring, E4 kutse+kustutuspoliitika+omanikuvahetus, E5 salvestuse kestev nõusolek, E6 failipool+egress+retention, E7 kokkuvõtte privaatkoopia+T04-sündmused. **Kergemad vaikevalikud lepingus** (omanik võib üle vaadata): billing-kadumise aus kuva (15 K2), moderatsioon = olemasolev filter (3 K6b), SSE ei kanna kõneseisu (4 K7). Soovitatud teostaja: **Sol/Fable High** (salvestus+egress+olekumasin = kõrge privaatsus-/turvaraskus).
 
+### T22 eeltöö 18.07 (SUPERVISION-V1 — leping valmis, otsusteringi EI vajanud)
+
+Omanik valis T22 esimeseks suureks teemaks (funktsioonid enne release'i, võimsad tööriistad praegu). **Leping `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10) koostatud.** Erinevalt T12-st ei vajanud T22 otsusteringi — SUP-V0 tööplaan (`fable-5-supervisiooni-tootemudel-ja-ruumiline-teekond.md` Q2) on **decision-complete**: 12 tooteotsust lukus, 18-testi plaan, purge-tehing, UI-vaated, Tööheaolu-piir kõik spetsifitseeritud.
+
+**Kaks kontrollitud fakti (parandavad aegunud register-väiteid):**
+- **SUP-P0 skeem on JUBA main'is ja prod'is.** `2fc826c4` „supervision V0 schema foundation" on main'i eellane; migratsioon `20260716090000_supervision_v0` on prod-DB-s rakendatud (kontrollitud). 13 mudelit + 11 enumit paigas. Register „SUP-P0 lokaalne, remote puudub / CODE_READY_PARTIAL" oli AEGUNUD (18.07 integratsioon tõi main'i + deploy prod'i). Leping algab P1-st.
+- **Registri „3 lahtist otsust" on rollout-väravad, mitte koodiväravad.** Grandi tõendusstandard (enne *päris* granti), retention-tähtaeg (lukustatud otsus #12: V0 EI ehita scheduler'it, `retentionStatus=AWAITING_POLICY`) ja piloodi ulatus (enne rollout'i) kuuluvad kõik T27/rollout'i, mitte V0 koodi. Seega V0 väljastatav ilma täiendava otsuseta.
+
+**Etapid E1–E7 = paketid SUP-P1…P10** (JADATÖÖ: üks haru, mitte 11 mikroharu; paketid = sisemised etapid): E1 grant+admin-API, E2 protsessi tuum (protsess+kontrakt+kutse+nõusolek, vaatajapõhised serializer'id), E3 eeskamber+teadlik jagamine, E4 kohtumised+kokkuvõtted, E5 atomaarne sulgemine+purge (kõrgeim risk), E6 U1/U2+Tööheaolu üleandmine, E7 eeskambri UI (10 vaadet). SUP-P11 = T27. Soovitatud teostaja: **Sol/Fable High** (privaatsusinvariandid + atomaarne purge + RAG-keeld).
+
 ### Väikesed sulgemised 18.07 (kolm nimekirjarida maha)
 
 | Rida | Tulemus |
@@ -355,7 +366,8 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 | ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
 | ✓ | **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` LIVE) | `t09-payments-v1-ulesanne.md` | baas `538ec4bb`; P1a/T02 ei cherry-pick'itud |
 | ✓ | **T07 `DOCUMENTS-RESEARCH-V1` — `CLOSED_SCOPED` 18.07** | `t07-documents-research-v1-ulesanne.md` | tuum+DoD LIVE; 3 naaberpinna-jääki edasi lükatud; avab T12 |
-| ▶ | **T12 `ROOMS-CALLS-V1` — JÄRGMINE, leping VALMIS** | `t12-rooms-calls-v1-ulesanne.md` (E1–E7, 6 otsust lukus) | ruumid/kõned/salvestus; valmis väljastamiseks |
+| ▶ | **T22 `SUPERVISION-V1` — JÄRGMINE, leping VALMIS** | `t22-supervision-v1-ulesanne.md` (E1–E7 = P1–P10; P0 juba main'is+prod'is) | supervisioon; valmis väljastamiseks, otsusteringi ei vajanud |
+| — | T12 `ROOMS-CALLS-V1` — leping valmis, ootel | `t12-rooms-calls-v1-ulesanne.md` (E1–E7, 6 otsust lukus) | ruumid/kõned/salvestus; ootab T22 järge |
 | — | T10 `PUBLIC-V1` — release-ootel | `t10-public-v1-ulesanne.md` | avalikud pinnad (ei enam automaatselt järgmine) |
 
 **T09 `PAYMENTS-V1` — DEPLOYED 18.07** (`main @ 7b49e9f7` = server LIVE; `origin/main` on hiljem liikunud → `104d69d8`, mis sisaldab `7b49e9f7`; haru `origin/codex/payments-v1` push'itud; worktree `SotsiaalAI-payments-v1` puhas). Baas = `538ec4bb` (leping ütles `fe4eb4fa`/`cdbd9139` — JADATÖÖ reegel: praegune tipp). P1a `0aca8c4b` ja T02 olid juba main'is → cherry-pick'i EI tehtud. E1–E6 kõik teostatud (lukustatud O-M1…O-M6/O-J1…O-J4, testilepingud 1–9, DoD); väravad rohelised + päris-DB throwaway runtime 33/33; deploy: 1 additiivne migratsioon rakendatud, smoke roheline, DB-backup + rollback `538ec4bb`. `NOT_PROVEN`: brauseri-QA, päris Maksekeskus/callback/webhook/e-kiri, juristi/PCI (O-J1). T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
