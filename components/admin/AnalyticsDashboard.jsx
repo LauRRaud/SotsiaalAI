@@ -11,6 +11,10 @@ import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 
+// Kasutajate tabeli lehekülje suurus = serveri MAX_LIMIT. Kui kokku on rohkem
+// ridu, näitab UI ausalt "kuvatud X / N" ja pakub lehekülgede navigatsiooni.
+const USERS_PAGE_SIZE = 500;
+
 // Dekoratiivsed className-konstandid on strip'itud (Fable 5 annab kujunduse hiljem).
 // Nimed on säilinud, et kõik JSX-viited resolvuksid; väärtused on tühjad.
 const pageClassName = "";
@@ -537,6 +541,7 @@ export default function AnalyticsDashboard() {
   const [isCrisisFilter, setIsCrisisFilter] = useState("all");
   const [usersQueryDraft, setUsersQueryDraft] = useState("");
   const [usersQuery, setUsersQuery] = useState("");
+  const [usersOffset, setUsersOffset] = useState(0);
   const [pageError, setPageError] = useState("");
   const [usersNotice, setUsersNotice] = useState(null);
   const [logsNotice, setLogsNotice] = useState(null);
@@ -935,7 +940,8 @@ export default function AnalyticsDashboard() {
     setLoadingUsers(true);
     try {
       const params = new URLSearchParams();
-      params.set("limit", "200");
+      params.set("limit", String(USERS_PAGE_SIZE));
+      params.set("offset", String(usersOffset));
       params.set("days", "30");
       params.set("locale", locale || "en");
       if (usersQuery) params.set("q", usersQuery);
@@ -951,7 +957,7 @@ export default function AnalyticsDashboard() {
     } finally {
       setLoadingUsers(false);
     }
-  }, [locale, requestJson, t, usersQuery]);
+  }, [locale, requestJson, t, usersQuery, usersOffset]);
 
   const loadAiCosts = useCallback(async () => {
     setLoadingAiCosts(true);
@@ -997,6 +1003,12 @@ export default function AnalyticsDashboard() {
 
   const visibleUserRows = useMemo(() => usersAnalytics?.items || [], [usersAnalytics]);
   const visibleUserIds = useMemo(() => visibleUserRows.map(row => row.userId), [visibleUserRows]);
+  const usersTotalCount = usersAnalytics?.totalUsers || 0;
+  const usersReturnedCount = visibleUserRows.length;
+  const usersTruncated = Boolean(usersAnalytics?.truncated);
+  const usersHasMore = Boolean(usersAnalytics?.hasMore);
+  const usersRangeFrom = usersReturnedCount === 0 ? 0 : usersOffset + 1;
+  const usersRangeTo = usersOffset + usersReturnedCount;
   const visibleUserIdSet = useMemo(() => new Set(visibleUserIds), [visibleUserIds]);
   const selectedVisibleCount = useMemo(
     () => selectedUserIds.filter(id => visibleUserIdSet.has(id)).length,
@@ -1646,14 +1658,24 @@ export default function AnalyticsDashboard() {
   const handleUsersSearch = useCallback(
     event => {
       event.preventDefault();
+      setUsersOffset(0);
       setUsersQuery(usersQueryDraft.trim());
     },
     [usersQueryDraft]
   );
 
   const handleUsersSearchClear = useCallback(() => {
+    setUsersOffset(0);
     setUsersQueryDraft("");
     setUsersQuery("");
+  }, []);
+
+  const handleUsersPrevPage = useCallback(() => {
+    setUsersOffset(prev => Math.max(0, prev - USERS_PAGE_SIZE));
+  }, []);
+
+  const handleUsersNextPage = useCallback(() => {
+    setUsersOffset(prev => prev + USERS_PAGE_SIZE);
   }, []);
 
   const handlePreviewSelectedUsersDeletion = useCallback(async () => {
@@ -3257,6 +3279,52 @@ export default function AnalyticsDashboard() {
               value={loadingUsers ? t("admin.common.loading", "Loading...") : formatCount(usersAnalytics?.totals?.nearLimitUsersCount || 0, localeTag)}
             />
           </div>
+
+          <div className={usersSelectBarClassName}>
+            <div className={cellSubClassName} aria-live="polite">
+              {loadingUsers
+                ? t("admin.common.loading", "Loading...")
+                : t(
+                    "admin.analytics.users.pagination.showing",
+                    {
+                      from: formatCount(usersRangeFrom, localeTag),
+                      to: formatCount(usersRangeTo, localeTag),
+                      total: formatCount(usersTotalCount, localeTag)
+                    },
+                    "Showing {from}-{to} of {total}"
+                  )}
+            </div>
+            <div className={usersSelectActionsClassName}>
+              <Button
+                size="sm"
+                variant="primary"
+                className={actionButtonClassName}
+                type="button"
+                onClick={handleUsersPrevPage}
+                disabled={loadingUsers || usersOffset === 0}
+              >
+                {t("admin.analytics.users.pagination.prev", "Previous")}
+              </Button>
+              <Button
+                size="sm"
+                variant="primary"
+                className={actionButtonClassName}
+                type="button"
+                onClick={handleUsersNextPage}
+                disabled={loadingUsers || !usersHasMore}
+              >
+                {t("admin.analytics.users.pagination.next", "Next")}
+              </Button>
+            </div>
+          </div>
+          {usersTruncated ? (
+            <div className={alertWarnClassName} role="status">
+              {t(
+                "admin.analytics.users.pagination.truncated_note",
+                "Not all matching users fit on one page. Use the page controls, or narrow the search, to review everyone."
+              )}
+            </div>
+          ) : null}
 
           <form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
             <input

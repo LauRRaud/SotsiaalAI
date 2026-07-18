@@ -152,6 +152,13 @@ export async function GET(req) {
       })
     ]);
 
+    // Honest pagination signal: the page is capped at `limit`, so the admin must
+    // be able to tell whether more matching rows exist beyond what is returned.
+    const returnedCount = users.length;
+    const hasMore = offset + returnedCount < totalUsers;
+    const truncated = returnedCount < totalUsers;
+    const pageInfo = { limit, offset, returnedCount, hasMore, truncated };
+
     if (!users.length) {
       return json({
         ok: true,
@@ -164,6 +171,7 @@ export async function GET(req) {
           degradationReason: "chatlog_metrics_without_retention_contract"
         }),
         totalUsers,
+        ...pageInfo,
         items: [],
         totals: {
           estimatedCostEur: 0,
@@ -530,6 +538,7 @@ export async function GET(req) {
         degradationReason: "chatlog_metrics_without_retention_contract"
       }),
       totalUsers,
+      ...pageInfo,
       items,
       totals: {
         estimatedCostEur: round2(totalEstimatedCost),

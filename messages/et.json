@@ -4489,6 +4489,12 @@
           "budget_capacity": "Kogueelarve maht",
           "near_limits": "Piiri lähedal"
         },
+        "pagination": {
+          "showing": "Kuvatud {from}-{to} / {total}",
+          "truncated_note": "Kõik sobivad kasutajad ei mahu ühele lehele. Kõigi ülevaatamiseks kasuta lehekülgede nuppe või kitsenda otsingut.",
+          "prev": "Eelmine",
+          "next": "Järgmine"
+        },
         "active": "Aktiivne",
         "inactive": "Mitteaktiivne",
         "usage": {
