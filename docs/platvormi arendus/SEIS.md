@@ -2,7 +2,7 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. T23 mentorlus valmis + pushitud)
+Viimati uuendatud: 2026-07-18 (**DEPLOY TEHTUD:** local `main` `adc83829` → server LIVE; 6 migratsiooni rakendatud, smoke roheline, DB-backup võetud. **T03 disainiotsus LAHENDATUD:** ühtne mikker võidab, spatial-entry hüljatud. **T09 PAYMENTS-V1 VÄLJASTATUD** — aktiivne kooditeema, baas `cdbd9139`. T23 mentorlus valmis + pushitud)
 
 > **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
 >
@@ -113,7 +113,7 @@ Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontr
 | T23 `ESTA-MENTOR-V1` | **`CODE_READY` — pushitud, väravad rohelised** | `codex/esta-mentor-v1 @ 32b9800d` (local=remote), baas T05 `33f7fb82` | üks commit; 1582/1582 testi (24 uut) + build + i18n + lint + 98-migr ahel + **päris-DB sünteetiline runtime PASS** (mentor+mentee+admin täisteekond, IDOR/purge/continuity/U12/handoff); `NOT_PROVEN`: brauseri-QA, seadme-a11y. Ei ole `main`-is ega serveris |
 | T03 `CHAT-VOICE-V1` | **`DECISION_MADE` 18.07 — ühtne mikker võidab** | `codex/chat-voice-v1 @ 7bdd1288` | omanik otsustas: sisenemine = alati-nähtav tekstiväli + VALIKULINE mikker (main). Spatial-entry hüljatud. T03 rebase peab main'i komposeri säilitama; skoop = ainult E1–E5 (kriis/Stop/hääl), MITTE sisenemis-UX |
 | T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
-| T09 `PAYMENTS-V1` | `QUEUED` — T02+T16 nüüd main'is + deployed | leping `t09-payments-v1-ulesanne.md` | järgmine kooditeema (alusta `main`-i praegusest tipust) |
+| T09 `PAYMENTS-V1` | **`VÄLJASTATUD` 18.07 (AKTIIVNE kooditeema)** | leping `t09-payments-v1-ulesanne.md` | **baas = main-tipp `cdbd9139`** (leping ütleb `fe4eb4fa` = aegunud); **ÄRA cherry-pick'i P1a `0aca8c4b`/T02 — juba main'is**; haru `codex/payments-v1`, worktree `SotsiaalAI-payments-v1` |
 | T25, T26 | `ANALYSIS_READY` | — | ootavad T27 release candidate'i |
 | T27 `OPS-FINAL-A0` | ei käivitata | — | release candidate'i lõppvärav |
 
@@ -202,12 +202,13 @@ Kolm teemat väljastati 18.07 paralleelselt (T10, T07, T02+T16). Jadatöö reegl
 
 | Järjek. | Teema | Leping | Avab |
 |---|---|---|---|
-| 1 | T24 `FIELD-V1` (juba käigus) | algne FIELD-V1 leping | — |
-| 2 | **T02+T16 LEPITUS** | `t02-t16-account-export-lepitus-ulesanne.md` | T09 `PAYMENTS-V1` |
-| 3 | T10 `PUBLIC-V1` | `t10-public-v1-ulesanne.md` | avalikud pinnad |
-| 4 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+| — | T24 `FIELD-V1` | `cb99b092` (WIP) | **PARGITUD** — EI aktiivne (jadatöö: 1 korraga) |
+| ✓ | T02+T16 LEPITUS | — | **DEPLOYED 18.07** → avas T09 |
+| 1 | **T09 `PAYMENTS-V1` — VÄLJASTATUD 18.07 (AKTIIVNE)** | `t09-payments-v1-ulesanne.md` | baas `cdbd9139`; ära cherry-pick'i P1a/T02 |
+| 2 | T10 `PUBLIC-V1` | `t10-public-v1-ulesanne.md` | avalikud pinnad |
+| 3 | T07 `DOCUMENTS-RESEARCH-V1` | `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
 
-T09 `PAYMENTS-V1` on blokeeritud kuni T02 account-lepitus on tehtud (järjekord 2). T03 `chat-voice-v1` lepitus vajab enne tooteomaniku disainiotsust (main'i mic-nupp vs T03 spatial-entry); lepingut ei vormistata enne seda otsust.
+**T09 `PAYMENTS-V1` — VÄLJASTATUD 18.07** (T02+T16 deployed → blokeer kadus). **Baas = main-tipp `cdbd9139`** (leping ütleb `fe4eb4fa` — AEGUNUD). **KRIITILINE: ära cherry-pick'i MAKSED-P1a `0aca8c4b` ega T02 — mõlemad on JUBA main'is** (lepingu read 5/28/35–37 aegunud); branch'i värskest main-tipust, kõik on juba olemas. Haru `codex/payments-v1`, worktree `SotsiaalAI-payments-v1`; muu leping (E1–E6, lukustatud O-M/O-J valikud, testilepingud, DoD) kehtib. T03 `chat-voice-v1` disainiotsus on TEHTUD (ühtne mikker) — vt seisutabel.
 
 Kui mõni neist teemadest jõuab alustada ajal, mil `main` on vahepeal liikunud, kehtib jadatöö reegel: baas = `main`-i praegune tipp, mitte lepingus kirjas olev SHA.
 
