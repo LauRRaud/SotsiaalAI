@@ -85,7 +85,9 @@ export async function POST(req) {
     );
   }
 
-  if (!verifyMaksekeskusMac(parsed.jsonText, parsed.mac, getMaksekeskusSecretKey())) {
+  // Fail-closed (L-02): tühja saladusega ei verifitseeri.
+  const signatureSecret = String(getMaksekeskusSecretKey() || "").trim();
+  if (!signatureSecret || !verifyMaksekeskusMac(parsed.jsonText, parsed.mac, signatureSecret)) {
     return NextResponse.redirect(
       buildTarget(
         req,

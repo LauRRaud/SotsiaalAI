@@ -17,6 +17,7 @@ import {
   makeProviderPaymentId
 } from "@/lib/payments/maksekeskus";
 import { getInviteSponsoredPaymentKind } from "@/lib/payments/recurring";
+import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
 import {
   formatEuroAmount,
@@ -602,7 +603,7 @@ export async function POST(request) {
             oneMonthOnly: true,
             locale,
             checkoutConsent: true,
-            checkout: checkout.raw || null
+            checkout: projectProviderPaymentRaw(checkout.raw)
           }
         }
       });

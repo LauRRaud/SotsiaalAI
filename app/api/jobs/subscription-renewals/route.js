@@ -14,6 +14,8 @@ import {
 import { prisma } from "@/lib/prisma";
 import { createMaksekeskusRecurringCharge } from "@/lib/payments/maksekeskus";
 import { logPaymentEvent } from "@/lib/payments/observability";
+import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
+import { readBillingMethodRecurringToken } from "@/lib/payments/tokenCrypto";
 import {
   buildRecurringPaymentReference,
   computeNextRetryAt,
@@ -109,6 +111,8 @@ export async function POST(request) {
           id: true,
           status: true,
           providerToken: true,
+          providerTokenCipher: true,
+          providerTokenKeyId: true,
           label: true
         }
       },
@@ -144,6 +148,22 @@ export async function POST(request) {
       continue;
     }
 
+    // E3 fail-closed: dekrüpti recurring token enne charge'i. Puuduva/vale
+    // krüptovõtme korral ei laadi kaarti ega märgi maksehäireks — see on
+    // konfiguratsiooniviga, mitte kliendi makse ebaõnnestumine.
+    let recurringToken;
+    try {
+      recurringToken = readBillingMethodRecurringToken(subscription.billingMethod).token;
+    } catch (tokenError) {
+      logPaymentEvent("subscription_renewal_token_unavailable", {
+        subscriptionId: subscription.id,
+        billingMethodId: subscription.billingMethodId,
+        code: tokenError?.code || "PAYMENT_TOKEN_UNAVAILABLE"
+      });
+      results.push({ subscriptionId: subscription.id, action: "token_unavailable" });
+      continue;
+    }
+
     let paymentRecord = null;
 
     try {
@@ -175,7 +195,7 @@ export async function POST(request) {
         providerPaymentId,
         amount,
         currency,
-        recurringToken: subscription.billingMethod?.providerToken,
+        recurringToken,
         customerEmail: subscription.user?.email || "",
         locale: normalizeLocale(process.env.PAYMENT_OWNER_EMAIL_LOCALE),
         webhookUrl: String(process.env.MAKSEKESKUS_WEBHOOK_URL || "").trim(),
@@ -195,7 +215,7 @@ export async function POST(request) {
             flow: "subscription_renewal_job",
             subscriptionId: subscription.id,
             billingMode: BillingMode.RECURRING,
-            charge: charge.raw || null
+            charge: projectProviderPaymentRaw(charge.raw)
           }
         }
       });

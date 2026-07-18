@@ -2500,9 +2500,16 @@
       "summary": "Your subscription is active. Monthly pricing depends on the plan: 19.99 EUR/month for a service provider, 14.99 EUR/month for a social work professional, and 7.99 EUR/month for a person seeking help.",
       "summary_priced": "Your subscription is active. Plan: {role}. Fee: {amount} per month.",
       "cancel_note": "You can cancel your subscription at any time on the profile page.",
+      "cancel_at_period_end_note": "Your subscription is canceled. Access remains until {date}, and no further charges will be made.",
       "sponsored_note": "Your access is currently sponsored and is valid until {date}. After that, you need to activate your own subscription to continue using the platform.",
       "sponsored_ending_soon": "Your sponsored access ends in {days} days, on {date}. Activate your own subscription to continue using the platform.",
       "sponsored_expired": "Your sponsored month has ended. Activate your own subscription to continue."
+    },
+    "past_due": {
+      "title": "Your last monthly payment failed.",
+      "retrying": "We will retry the payment automatically. Next attempt: {date}. You do not need to do anything right now.",
+      "ended": "The monthly payment did not succeed and the subscription is paused. Activate the subscription again to restore access.",
+      "support": "If something looks wrong, email us at info@sotsiaal.ai."
     },
     "button": {
       "open_profile": "Open profile",
@@ -2750,6 +2757,11 @@
         "subject": "Sponsored invite: {roomTitle}",
         "text": "Hello!\n\n{inviterName} invited you to the room \"{roomTitle}\" and paid for one month of access.\nSelected role: {roleLabel}\n\nThe invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.\n\nJoin: {joinLink}\n\nAfter the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.\n\nIf you did not expect this email, you can ignore it.",
         "html": "<p>Hello!</p><p>{inviterName} invited you to the room <strong>{roomTitle}</strong> and paid for one month of access.</p><p><strong>Selected role:</strong> {roleLabel}</p><p>The invitation gives access only to this room, not to the inviter's other rooms, private conversations, documents or Journey.</p><p><a href=\"{joinLink}\">Join the room</a></p><p>After the first month ends, you need to activate your own subscription from the Subscription page to continue using the platform.</p><p>If you did not expect this email, you can ignore it.</p>"
+      },
+      "sponsored_revoked": {
+        "subject": "Sponsored access to \"{roomTitle}\" has ended",
+        "text": "Hello!\n\nYour sponsored access to \"{roomTitle}\" has ended because the payment was refunded. If you would like to continue, you can activate your own subscription.\n\nFor questions, email {supportEmail}.",
+        "html": "<p>Hello!</p><p>Your sponsored access to <strong>{roomTitle}</strong> has ended because the payment was refunded. If you would like to continue, you can activate your own subscription.</p><p>For questions, email <a href=\"mailto:{supportEmail}\">{supportEmail}</a>.</p>"
       },
       "resend": {
         "subject": "Invitation reminder: {roomTitle}",

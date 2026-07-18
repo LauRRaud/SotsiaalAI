@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { getMailer, resolveBaseUrl } from "@/lib/mailer";
+import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -87,40 +87,9 @@ function randomToken() {
   };
 }
 
-function buildJoinLink(token) {
-  const base = resolveBaseUrl() || "http://localhost:3000";
-  return `${base.replace(/\/+$/, "")}/join?token=${encodeURIComponent(token)}`;
-}
-
 async function resolveInviteId(paramsLike) {
   const params = paramsLike instanceof Promise ? await paramsLike : paramsLike;
   return String(params?.id || "").trim();
-}
-
-async function sendInviteEmail({ to, token, roomTitle, inviterName, locale }) {
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  if (!from) {
-    throw new Error("api.invites.email_from_missing");
-  }
-
-  const joinLink = buildJoinLink(token);
-  const mailer = getMailer("invite-resend");
-
-  await mailer.sendMail({
-    to,
-    from,
-    subject: serverT(locale, "email.invite.resend.subject", { roomTitle }),
-    text: serverT(locale, "email.invite.resend.text", {
-      inviterName,
-      roomTitle,
-      joinLink
-    }),
-    html: serverT(locale, "email.invite.resend.html", {
-      inviterName,
-      roomTitle,
-      joinLink
-    })
-  });
 }
 
 export async function POST(request, { params }) {
@@ -195,19 +164,27 @@ export async function POST(request, { params }) {
     }
 
     const { raw, hash } = randomToken();
-    await sendInviteEmail({
-      to: invite.inviteeEmail,
-      token: raw,
-      roomTitle: invite.room?.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
-      inviterName: auth.email || "SotsiaalAI",
-      locale
-    });
-
+    // L-08: salvesta uus tokenHash ENNE outbox'i. Nii ei jää adressaadile
+    // kehtetut linki, kui e-kirja saatmine hiljem ebaõnnestub; outbox worker
+    // saadab kirja (kordus ei korda makset ega õiguse andmist).
     await prisma.invite.update({
       where: { id },
       data: {
         tokenHash: hash,
         status: "SENT"
+      }
+    });
+
+    await enqueuePaymentEmail(prisma, {
+      dedupeKey: `invite_resend:${id}:${hash.slice(0, 24)}`,
+      template: "invite_resend",
+      toEmail: invite.inviteeEmail,
+      locale,
+      inviteId: id,
+      payload: {
+        joinToken: raw,
+        roomTitle: invite.room?.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
+        inviterName: auth.email || "SotsiaalAI"
       }
     });
 

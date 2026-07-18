@@ -22,6 +22,7 @@ import {
 import { fetchRagServiceDocumentsForFreshness } from "@/lib/rag/ragServiceFreshnessFallback";
 import { summarizeRagTraceSourceQuality } from "@/lib/rag/sourceQualityMetrics";
 import { getServiceAvailabilityState } from "@/lib/serviceAvailability";
+import { countPlanRoleAnomalies } from "@/lib/subscriptionView";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -541,10 +542,12 @@ export async function GET(req) {
         where: {
           event: "subscription_webhook_processed",
           createdAt: { gte: since },
-          data: {
-            path: ["resultStatus"],
-            equals: "PAID"
-          }
+          // L-13: loe ainult päris töödeldud PAID (updated=true), mitte
+          // idempotentne kordus — muidu paid-konversioon ületaks reaalsust.
+          AND: [
+            { data: { path: ["resultStatus"], equals: "PAID" } },
+            { data: { path: ["updated"], equals: true } }
+          ]
         }
       }),
       prisma.chatLog.count({
@@ -914,6 +917,19 @@ export async function GET(req) {
     const ragSourceQuality = summarizeRagTraceSourceQuality(ragTraceLogs);
     const sourcePackageSummary = await getSourcePackageSnapshotSummary();
 
+    // E2: stuck INITIATED loendur (ainult-vaade). Reconciliation-worker töötleb
+    // neid; admin ei saa neid nupust "PAID"-iks teha.
+    const stuckInitiatedMinutes = Math.max(
+      5,
+      Number(process.env.PAYMENT_RECONCILE_STUCK_MINUTES || 30)
+    );
+    const stuckInitiatedCutoff = new Date(now.getTime() - stuckInitiatedMinutes * 60 * 1000);
+    const stuckInitiatedCount = await prisma.payment.count({
+      where: { status: "INITIATED", createdAt: { lt: stuckInitiatedCutoff } }
+    });
+    // E1: mittesiduv plaani-rolli anomaalia agregaat (ei avalda ühegi kasutaja infot).
+    const planRoleAnomalies = await countPlanRoleAnomalies(prisma, { now });
+
     const paymentPipeline30d = buildPaymentPipelineFromCounts({
       initStarted: paymentEventInitStartedCount,
       checkoutCreated: paymentEventCheckoutCreatedCount,
@@ -1036,7 +1052,12 @@ export async function GET(req) {
         paidAmount30d: paidAmount30d?._sum?.amount ?? "0",
         recentPayments,
         paymentPipeline30d,
-        paymentAlerts30d
+        paymentAlerts30d,
+        stuckInitiated: {
+          count: stuckInitiatedCount,
+          olderThanMinutes: stuckInitiatedMinutes
+        },
+        planRoleAnomalies
       },
       help: {
         openRequests: helpRequestsOpen,

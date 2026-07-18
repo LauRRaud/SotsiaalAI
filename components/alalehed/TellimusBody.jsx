@@ -103,10 +103,18 @@ export default function TellimusBody() {
   const sponsoredEndsSoon = Boolean(subscriptionMeta?.isSponsored && subscriptionMeta?.sponsorEndsSoon);
   const sponsoredExpired = Boolean(subscriptionMeta?.isSponsored && subscriptionMeta?.sponsorExpired);
   const sponsorDaysLeft = Number(subscriptionMeta?.daysLeft || 0);
+  const localeDateFormat = locale === "ru" ? "ru-RU" : locale === "en" ? "en-GB" : "et-EE";
   const sponsorValidUntil = subscriptionMeta?.validUntil
-    ? new Date(subscriptionMeta.validUntil).toLocaleDateString(locale === "ru" ? "ru-RU" : locale === "en" ? "en-GB" : "et-EE")
+    ? new Date(subscriptionMeta.validUntil).toLocaleDateString(localeDateFormat)
     : "";
-  const hasStatusNotice = Boolean(sponsoredExpired || info || visibleError);
+  const validUntilDate = sponsorValidUntil;
+  const nextRetryDate = subscriptionMeta?.nextRetryAt
+    ? new Date(subscriptionMeta.nextRetryAt).toLocaleDateString(localeDateFormat)
+    : "";
+  const isPastDue = Boolean(subscriptionMeta?.isPastDue);
+  const willRetry = Boolean(subscriptionMeta?.willRetry);
+  const cancelAtPeriodEnd = Boolean(subscriptionMeta?.cancelAtPeriodEnd);
+  const hasStatusNotice = Boolean(sponsoredExpired || isPastDue || info || visibleError);
   const checkoutAgreementReplacements = {
     terms: {
       open: `<a href="${localizePath("/kasutustingimused", locale)}">`,
@@ -388,7 +396,11 @@ export default function TellimusBody() {
                         ? t("subscription.active.sponsored_note", {
                             date: sponsorValidUntil
                           })
-                        : t("subscription.active.cancel_note")}
+                        : cancelAtPeriodEnd
+                          ? t("subscription.active.cancel_at_period_end_note", {
+                              date: validUntilDate
+                            })
+                          : t("subscription.active.cancel_note")}
                   </p>
                 </div>
                 <div>
@@ -407,6 +419,19 @@ export default function TellimusBody() {
                     </p>
                     {hasStatusNotice ? (
                       <div>
+                        {isPastDue ? (
+                          <div role="status" aria-live="polite">
+                            <p>{t("subscription.past_due.title")}</p>
+                            <p>
+                              {willRetry
+                                ? t("subscription.past_due.retrying", {
+                                    date: nextRetryDate
+                                  })
+                                : t("subscription.past_due.ended")}
+                            </p>
+                            <p>{t("subscription.past_due.support")}</p>
+                          </div>
+                        ) : null}
                         {sponsoredExpired ? <p aria-live="polite">
                             {t("subscription.active.sponsored_expired")}
                           </p> : null}

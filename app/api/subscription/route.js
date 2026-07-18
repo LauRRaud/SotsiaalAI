@@ -11,6 +11,8 @@ import {
   normalizeSubscriptionRole,
   resolveRoleBoundSubscriptionPlan
 } from "@/lib/subscriptionPlans";
+import { serializeSubscription } from "@/lib/subscriptionView";
+import { logPaymentAudit } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
 
 const ACTIVE_STATUS = SubscriptionStatus.ACTIVE;
@@ -90,40 +92,7 @@ async function requireUser(request) {
 }
 
 function shape(subscription) {
-  if (!subscription) return null;
-
-  const now = Date.now();
-  const hasNoExpiry = subscription.validUntil == null;
-  const validUntilTs = subscription.validUntil
-    ? new Date(subscription.validUntil).getTime()
-    : null;
-  const daysLeft =
-    validUntilTs && validUntilTs > now
-      ? Math.ceil((validUntilTs - now) / (1000 * 60 * 60 * 24))
-      : 0;
-  const isActive =
-    subscription.status === ACTIVE_STATUS &&
-    (hasNoExpiry || daysLeft > 0);
-  const billingSource = String(subscription.billingSource || "SELF").toUpperCase();
-  const isSponsored = billingSource === "SPONSORED_BY_HOST";
-  const sponsorEndsSoon = Boolean(isSponsored && isActive && daysLeft > 0 && daysLeft <= 7);
-  const sponsorExpired = Boolean(isSponsored && !isActive);
-
-  return {
-    id: subscription.id,
-    status: subscription.status,
-    plan: subscription.plan,
-    billingSource,
-    validUntil: subscription.validUntil,
-    nextBilling: subscription.nextBilling,
-    canceledAt: subscription.canceledAt,
-    updatedAt: subscription.updatedAt,
-    isActive,
-    daysLeft,
-    isSponsored,
-    sponsorEndsSoon,
-    sponsorExpired
-  };
+  return serializeSubscription(subscription);
 }
 
 export async function GET(request) {
@@ -242,14 +211,32 @@ export async function DELETE(request) {
 
   try {
     const now = new Date();
-    await prisma.subscription.updateMany({
+    // O-M4: kasutaja tühistus = cancelAtPeriodEnd. Makstud ligipääs kestab
+    // validUntil-ini, uusi uuendusmakseid ei alustata (nextBilling nulli).
+    // Ainult omamaksega (SELF) ACTIVE tellimus; sponsoreeritut kasutaja ei tühista.
+    const periodEnd = await prisma.subscription.updateMany({
       where: {
         userId: session.userId,
-        status: ACTIVE_STATUS
+        status: ACTIVE_STATUS,
+        billingSource: "SELF"
+      },
+      data: {
+        cancelAtPeriodEnd: true,
+        nextBilling: null
+      }
+    });
+    // PAST_DUE (ligipääs juba lõppenud): tühistus peatab retry'd kohe.
+    const pastDueCanceled = await prisma.subscription.updateMany({
+      where: {
+        userId: session.userId,
+        status: SubscriptionStatus.PAST_DUE,
+        billingSource: "SELF"
       },
       data: {
         status: CANCELED_STATUS,
-        canceledAt: now
+        canceledAt: now,
+        cancelAtPeriodEnd: true,
+        nextBilling: null
       }
     });
 
@@ -257,6 +244,15 @@ export async function DELETE(request) {
       where: { userId: session.userId },
       orderBy: [{ updatedAt: "desc" }]
     });
+
+    if (subscription && (periodEnd.count > 0 || pastDueCanceled.count > 0)) {
+      logPaymentAudit({
+        action: "subscription_cancel_requested",
+        result: pastDueCanceled.count > 0 ? "canceled" : "cancel_at_period_end",
+        subscriptionId: subscription.id,
+        userId: session.userId
+      });
+    }
 
     return ok({
       subscription: shape(subscription)

@@ -11,8 +11,7 @@ import {
   PaymentStatus,
   SubscriptionStatus
 } from "@/generated/prisma/client";
-import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { getMailer, resolveBaseUrl } from "@/lib/mailer";
+import { normalizeServerLocale } from "@/lib/i18n/serverMessages";
 import { prisma } from "@/lib/prisma";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
@@ -23,16 +22,14 @@ import {
   parseMaksekeskusFormMessage,
   verifyMaksekeskusMac,
 } from "@/lib/payments/maksekeskus";
-import {
-  buildBillingMethodLabel,
-  extractProviderCustomerId,
-  extractRecurringMandateId,
-  extractRecurringToken,
-  extractRecurringTokenValidUntil,
-} from "@/lib/payments/recurring";
-import { logPaymentEvent } from "@/lib/payments/observability";
+import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
+import { logPaymentAudit, logPaymentEvent } from "@/lib/payments/observability";
+import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
 import { safeError } from "@/lib/privacy/safeError";
-import { getPlanDefinitionId } from "@/lib/subscriptionPlans";
+import {
+  activateSubscriptionFromPayment,
+  upsertRecurringBillingMethod
+} from "@/lib/payments/subscriptionActivation";
 
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
@@ -50,32 +47,12 @@ const OWNER_NOTIFICATION_EMAIL = String(process.env.PAYMENT_OWNER_EMAIL || "info
   .trim()
   .toLowerCase();
 const OWNER_NOTIFICATION_LOCALE = normalizeServerLocale(process.env.PAYMENT_OWNER_EMAIL_LOCALE) || "en";
-const ownerMailer = getMailer("payment-owner-webhook");
-const customerMailer = getMailer("payment-customer-webhook");
-const inviteMailer = getMailer("invite");
-
-function roleLabelForNotification(locale, role) {
-  const normalized = String(role || "").toUpperCase();
-  if (normalized === "SERVICE_PROVIDER" || normalized === "SERVICE_PROVIDER_MONTHLY") {
-    return serverT(locale, "role.provider");
-  }
-  if (normalized === "SOCIAL_WORKER" || normalized === "SOCIAL_WORKER_MONTHLY") {
-    return serverT(locale, "role.worker");
-  }
-  return serverT(locale, "role.client");
-}
 
 function json(payload, status = 200) {
   return NextResponse.json(payload, {
     status,
     headers: NO_STORE_HEADERS
   });
-}
-
-function addMonths(baseDate, months) {
-  const date = new Date(baseDate);
-  date.setMonth(date.getMonth() + months);
-  return date;
 }
 
 function parsePaidAt(payload) {
@@ -123,369 +100,19 @@ function actionForStatus(status) {
   return "none";
 }
 
-function asIso(value) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return date.toISOString();
-}
-
-function buildJoinLink(token) {
-  const base = resolveBaseUrl() || "http://localhost:3000";
-  return `${base.replace(/\/+$/, "")}/join?token=${encodeURIComponent(token)}`;
-}
-
-async function sendInvitePaymentEmail({
-  to,
-  token,
-  roomTitle,
-  inviterName,
-  locale,
-  targetRole
-}) {
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  if (!from) return;
-
-  const joinLink = buildJoinLink(token);
-  const roleLabel = roleLabelForNotification(locale, targetRole);
-
-  await inviteMailer.sendMail({
-    to,
-    from,
-    subject: serverT(locale, "email.invite.sponsored.subject", { roomTitle }),
-    text: serverT(locale, "email.invite.sponsored.text", {
-      inviterName,
-      roomTitle,
-      joinLink,
-      roleLabel
-    }),
-    html: serverT(locale, "email.invite.sponsored.html", {
-      inviterName,
-      roomTitle,
-      joinLink,
-      roleLabel
-    })
-  });
-}
-
 function canSendOwnerNotification(result) {
   return Boolean(result?.updated) && Boolean(result?.paymentId) && Boolean(result?.status);
-}
-
-async function sendOwnerPaymentWebhookNotification({ providerPaymentId, status, paymentId, subscriptionAction }) {
-  const to = OWNER_NOTIFICATION_EMAIL;
-  const from = String(process.env.EMAIL_FROM || process.env.SMTP_FROM || "").trim();
-  if (!to || !to.includes("@")) {
-    logPaymentEvent("subscription_webhook_owner_email_skipped", {
-      paymentId,
-      providerPaymentId,
-      status,
-      reason: "recipient_missing"
-    });
-    return;
-  }
-  if (!from) {
-    logPaymentEvent("subscription_webhook_owner_email_skipped", {
-      paymentId,
-      providerPaymentId,
-      status,
-      reason: "email_from_missing"
-    });
-    return;
-  }
-
-  const payment = await prisma.payment.findUnique({
-    where: { id: paymentId },
-    select: {
-      id: true,
-      amount: true,
-      currency: true,
-      status: true,
-      createdAt: true,
-      paidAt: true,
-      user: {
-        select: {
-          id: true,
-          email: true
-        }
-      },
-      subscription: {
-        select: {
-          id: true,
-          plan: true,
-          status: true,
-          validUntil: true,
-          canceledAt: true
-        }
-      }
-    }
-  });
-
-  const adminUrl = `${(resolveBaseUrl() || "").replace(/\/+$/, "")}/admin/analytics`;
-  const values = {
-    status: String(status || payment?.status || ""),
-    providerPaymentId: String(providerPaymentId || ""),
-    paymentId: String(payment?.id || paymentId || ""),
-    userEmail: String(payment?.user?.email || ""),
-    userId: String(payment?.user?.id || ""),
-    amount: String(payment?.amount ?? ""),
-    currency: String(payment?.currency || ""),
-    paidAt: asIso(payment?.paidAt),
-    createdAt: asIso(payment?.createdAt),
-    subscriptionId: String(payment?.subscription?.id || ""),
-    subscriptionPlan: String(payment?.subscription?.plan || ""),
-    subscriptionStatus: String(payment?.subscription?.status || ""),
-    subscriptionValidUntil: asIso(payment?.subscription?.validUntil),
-    subscriptionCanceledAt: asIso(payment?.subscription?.canceledAt),
-    subscriptionAction: String(subscriptionAction || "none"),
-    eventTime: new Date().toISOString(),
-    adminUrl
-  };
-
-  await ownerMailer.sendMail({
-    to,
-    from,
-    subject: serverT(OWNER_NOTIFICATION_LOCALE, "email.payment.owner_webhook.subject", values),
-    text: serverT(OWNER_NOTIFICATION_LOCALE, "email.payment.owner_webhook.text", values),
-    html: serverT(OWNER_NOTIFICATION_LOCALE, "email.payment.owner_webhook.html", values)
-  });
-
-  logPaymentEvent("subscription_webhook_owner_email_sent", {
-    paymentId: values.paymentId,
-    providerPaymentId: values.providerPaymentId,
-    status: values.status,
-    subscriptionAction: values.subscriptionAction,
-    to
-  });
-}
-
-async function sendCustomerPaymentConfirmationEmail({ paymentId, providerPaymentId, locale }) {
-  const from = String(process.env.EMAIL_FROM || process.env.SMTP_FROM || "").trim();
-  if (!from) {
-    logPaymentEvent("subscription_webhook_customer_email_skipped", {
-      paymentId,
-      providerPaymentId,
-      reason: "email_from_missing"
-    });
-    return;
-  }
-
-  const payment = await prisma.payment.findUnique({
-    where: { id: paymentId },
-    select: {
-      id: true,
-      amount: true,
-      currency: true,
-      status: true,
-      paidAt: true,
-      user: {
-        select: {
-          email: true
-        }
-      },
-      subscription: {
-        select: {
-          id: true,
-          plan: true,
-          status: true,
-          validUntil: true,
-          canceledAt: true
-        }
-      },
-      invite: {
-        select: {
-          id: true,
-          sponsoredRole: true,
-          inviteeEmail: true,
-          room: {
-            select: {
-              title: true
-            }
-          }
-        }
-      }
-    }
-  });
-
-  const to = String(payment?.user?.email || "").trim().toLowerCase();
-  if (!to || !to.includes("@")) {
-    logPaymentEvent("subscription_webhook_customer_email_skipped", {
-      paymentId,
-      providerPaymentId,
-      reason: "recipient_missing"
-    });
-    return;
-  }
-
-  const baseUrl = (resolveBaseUrl() || "http://localhost:3000").replace(/\/+$/, "");
-  const profileUrl = `${baseUrl}/profiil`;
-  const sharedValues = {
-    amount: String(payment?.amount ?? ""),
-    currency: String(payment?.currency || ""),
-    paidAt: asIso(payment?.paidAt),
-    profileUrl,
-    supportEmail: "info@sotsiaal.ai"
-  };
-  const hasInvite = Boolean(payment?.invite);
-  const roleLabel = roleLabelForNotification(
-    locale,
-    payment?.invite?.sponsoredRole || payment?.raw?.planRole || payment?.subscription?.plan
-  );
-  const subscriptionValues = {
-    ...sharedValues,
-    subscriptionPlan: roleLabel,
-    subscriptionValidUntil: asIso(payment?.subscription?.validUntil)
-  };
-  const sponsoredValues = {
-    ...sharedValues,
-    roomTitle: String(payment?.invite?.room?.title || ""),
-    roleLabel,
-    inviteeEmail: String(payment?.invite?.inviteeEmail || "")
-  };
-
-  const keyRoot = hasInvite
-    ? "email.payment.customer_confirmation.sponsored"
-    : "email.payment.customer_confirmation.subscription";
-
-  await customerMailer.sendMail({
-    to,
-    from,
-    subject: serverT(locale, `${keyRoot}.subject`, hasInvite ? sponsoredValues : subscriptionValues),
-    text: serverT(locale, `${keyRoot}.text`, hasInvite ? sponsoredValues : subscriptionValues),
-    html: serverT(locale, `${keyRoot}.html`, hasInvite ? sponsoredValues : subscriptionValues)
-  });
-
-  logPaymentEvent("subscription_webhook_customer_email_sent", {
-    paymentId,
-    providerPaymentId,
-    to,
-    hasInvite
-  });
-}
-
-async function activateSubscriptionFromPayment(tx, payment) {
-  const existing = await tx.subscription.findUnique({
-    where: { id: payment.subscriptionId },
-    select: {
-      id: true,
-      validUntil: true,
-      billingMode: true,
-      billingInterval: true,
-      billingMethodId: true,
-      plan: true,
-      planDefinitionId: true,
-      user: {
-        select: { role: true }
-      }
-    }
-  });
-  if (!existing) return null;
-
-  const now = new Date();
-  const anchor =
-    existing.validUntil && new Date(existing.validUntil).getTime() > now.getTime() ? new Date(existing.validUntil) : now;
-  const validUntil = addMonths(anchor, 1);
-  const planDefinitionId = existing.planDefinitionId || getPlanDefinitionId(existing.plan, existing.user.role);
-
-  return tx.subscription.update({
-    where: { id: existing.id },
-    data: {
-      status: SubscriptionStatus.ACTIVE,
-      planDefinitionId,
-      validUntil,
-      nextBilling: existing.billingMode === BillingMode.RECURRING ? validUntil : null,
-      lastBilledAt: paidAtOrNow(payment.paidAt),
-      pastDueSince: null,
-      billingRetryCount: 0,
-      canceledAt: null
-    },
-    select: {
-      id: true,
-      status: true,
-      validUntil: true,
-      nextBilling: true
-    }
-  });
-}
-
-function paidAtOrNow(value) {
-  const parsed = value ? new Date(value) : null;
-  if (parsed && !Number.isNaN(parsed.getTime())) return parsed;
-  return new Date();
 }
 
 function asPlainObject(value) {
   return value && typeof value === "object" && !Array.isArray(value) ? value : {};
 }
 
-async function upsertRecurringBillingMethod(tx, payment, payload, paidAt) {
-  if (!payment?.subscriptionId) return null;
-  const recurringToken = extractRecurringToken(payload);
-  if (!recurringToken) return null;
-  const expiresAtRaw = extractRecurringTokenValidUntil(payload);
-  const expiresAt = expiresAtRaw ? new Date(expiresAtRaw) : null;
-
-  const existingSubscription = await tx.subscription.findUnique({
-    where: { id: payment.subscriptionId },
-    select: {
-      id: true,
-      userId: true,
-      billingMethodId: true
-    }
-  });
-  if (!existingSubscription) return null;
-
-  const providerMandateId = extractRecurringMandateId(payload) || null;
-  const providerCustomerId = extractProviderCustomerId(payload) || null;
-  const label = buildBillingMethodLabel(payload) || null;
-  const billingMethod =
-    (existingSubscription.billingMethodId
-      ? await tx.billingMethod.findUnique({
-          where: { id: existingSubscription.billingMethodId },
-          select: { id: true }
-        })
-      : null) ||
-    (providerMandateId
-      ? await tx.billingMethod.findFirst({
-          where: {
-            userId: existingSubscription.userId,
-            provider: PaymentProvider.MAKSEKESKUS,
-            providerMandateId
-          },
-          select: { id: true }
-        })
-      : null);
-
-  const data = {
-    status: BillingMethodStatus.ACTIVE,
-    provider: PaymentProvider.MAKSEKESKUS,
-    providerToken: recurringToken,
-    providerMandateId,
-    providerCustomerId,
-    label,
-    expiresAt: expiresAt && !Number.isNaN(expiresAt.getTime()) ? expiresAt : null,
-    activatedAt: paidAt,
-    lastUsedAt: paidAt,
-    revokedAt: null
-  };
-
-  if (billingMethod?.id) {
-    return tx.billingMethod.update({
-      where: { id: billingMethod.id },
-      data
-    });
-  }
-
-  return tx.billingMethod.create({
-    data: {
-      userId: existingSubscription.userId,
-      ...data
-    }
-  });
-}
-
 async function cancelSubscriptionFromPayment(tx, payment) {
   if (!payment?.subscriptionId) return null;
+  const now = new Date();
+  // O-M4: tagasimakse/turva-rada on KOHENE revoke — ligipääs lõpeb kohe
+  // (validUntil=now), uut uuendust ei alustata, cancelAtPeriodEnd nullitakse.
   await tx.subscription.updateMany({
     where: {
       id: payment.subscriptionId,
@@ -493,9 +120,23 @@ async function cancelSubscriptionFromPayment(tx, payment) {
     },
     data: {
       status: SubscriptionStatus.CANCELED,
-      canceledAt: new Date()
+      canceledAt: now,
+      validUntil: now,
+      nextBilling: null,
+      cancelAtPeriodEnd: false
     }
   });
+  // Revoke ka maksevahend, et tulevasi kordusmakseid ei toimuks.
+  const cancelSub = await tx.subscription.findUnique({
+    where: { id: payment.subscriptionId },
+    select: { billingMethodId: true }
+  });
+  if (cancelSub?.billingMethodId) {
+    await tx.billingMethod.updateMany({
+      where: { id: cancelSub.billingMethodId, status: { not: BillingMethodStatus.REVOKED } },
+      data: { status: BillingMethodStatus.REVOKED, revokedAt: now }
+    });
+  }
   return tx.subscription.findUnique({
     where: {
       id: payment.subscriptionId
@@ -654,6 +295,15 @@ export async function POST(request) {
 
   try {
     const result = await prisma.$transaction(async (tx) => {
+      // L-03: lukusta makseea rida enne lugemist. Ilma selleta võivad kaks
+      // samaaegset eri-staatusega webhook'i (nt PAID + CANCELED) mõlemad lugeda
+      // INITIATED ja jätta vastuolulise õiguse; FOR UPDATE serialiseerib need.
+      await tx.$queryRaw`
+        SELECT 1 FROM "Payment"
+        WHERE "providerPaymentId" = ${providerPaymentId}
+        FOR UPDATE
+      `;
+
       const payment = await tx.payment.findUnique({
         where: {
           provider_providerPaymentId: {
@@ -688,11 +338,10 @@ export async function POST(request) {
         await tx.payment.update({
           where: { id: payment.id },
           data: {
-            raw: {
-              ...asPlainObject(payment.raw),
-              source: "maksekeskus_webhook",
+            raw: buildPaymentRawRecord(
+              { ...asPlainObject(payment.raw), source: "maksekeskus_webhook" },
               payload
-            }
+            )
           }
         });
         return {
@@ -721,12 +370,10 @@ export async function POST(request) {
           ...(paidAt ? { paidAt } : {}),
           ...(nextStatus === PaymentStatus.FAILED || nextStatus === PaymentStatus.CANCELED ? { failedAt: new Date() } : {}),
           ...(nextStatus === PaymentStatus.REFUNDED ? { refundedAt: new Date() } : {}),
-          raw: {
-            ...asPlainObject(payment.raw),
-            source: "maksekeskus_webhook",
-            payload,
-            subscriptionAction
-          }
+          raw: buildPaymentRawRecord(
+            { ...asPlainObject(payment.raw), source: "maksekeskus_webhook", subscriptionAction },
+            payload
+          )
         },
         select: {
           id: true,
@@ -741,60 +388,149 @@ export async function POST(request) {
 
       let subscription = null;
       let inviteEmail = null;
+      let clawbackNotify = null;
       let billingMethod = null;
 
       if (updatedPayment.inviteId) {
         if (nextStatus === PaymentStatus.PAID) {
-          const token = crypto.randomBytes(48).toString("base64url");
-          const tokenHash = crypto
-            .createHash("sha256")
-            .update(token)
-            .digest("base64");
-          const invite = await tx.invite.update({
+          // O-M6/L-07: hilise PAID korral ei ärka terminaalne kutse. Ainult
+          // PENDING_PAYMENT läheb SENT-iks; REVOKED/EXPIRED/ACCEPTED jäävad terminaliks.
+          const currentInvite = await tx.invite.findUnique({
             where: { id: updatedPayment.inviteId },
-            data: {
-              status: "SENT",
-              sponsoredPaidAt: paidAt || new Date(),
-              tokenHash
-            },
-            select: {
-              id: true,
-              sponsoredRole: true,
-              inviteeEmail: true,
-              room: {
-                select: {
-                  title: true
-                }
+            select: { status: true }
+          });
+          if (currentInvite?.status !== "PENDING_PAYMENT") {
+            logPaymentAudit({
+              action: "sponsored_invite_paid_terminal_ignored",
+              result: String(currentInvite?.status || "unknown").toLowerCase(),
+              paymentId: updatedPayment.id,
+              inviteId: updatedPayment.inviteId
+            });
+          } else {
+            const token = crypto.randomBytes(48).toString("base64url");
+            const tokenHash = crypto
+              .createHash("sha256")
+              .update(token)
+              .digest("base64");
+            const invite = await tx.invite.update({
+              where: { id: updatedPayment.inviteId },
+              data: {
+                status: "SENT",
+                sponsoredPaidAt: paidAt || new Date(),
+                tokenHash
               },
-              inviter: {
-                select: {
-                  email: true
+              select: {
+                id: true,
+                sponsoredRole: true,
+                inviteeEmail: true,
+                room: {
+                  select: {
+                    title: true
+                  }
+                },
+                inviter: {
+                  select: {
+                    email: true
+                  }
                 }
               }
+            });
+
+            inviteEmail = {
+              to: invite.inviteeEmail,
+              token,
+              roomTitle: invite.room?.title || "Room",
+              inviterName: invite.inviter?.email || "SotsiaalAI",
+              locale:
+                normalizeServerLocale(payment?.raw?.locale) ||
+                normalizeServerLocale(payment?.raw?.lang) ||
+                "en",
+              targetRole: invite.sponsoredRole || "CLIENT"
+            };
+            logPaymentAudit({
+              action: "sponsored_invite_activated",
+              result: "sent",
+              paymentId: updatedPayment.id,
+              inviteId: invite.id
+            });
+          }
+        } else if (nextStatus === PaymentStatus.REFUNDED) {
+          // L-12/O-M3: tagasimakse pärast accept'i → revoke kutse + juba antud
+          // sponsoreeritud tellimus + ruumiliikmesus ÜHES lukustatud tehingus.
+          // Idempotentne: updateMany tingimused väldivad topeltkustutust/-grant'i.
+          const invite = await tx.invite.findUnique({
+            where: { id: updatedPayment.inviteId },
+            select: {
+              id: true,
+              roomId: true,
+              acceptedByUserId: true,
+              inviteeEmail: true,
+              room: { select: { title: true } }
             }
           });
-
-          inviteEmail = {
-            to: invite.inviteeEmail,
-            token,
-            roomTitle: invite.room?.title || "Room",
-            inviterName: invite.inviter?.email || "SotsiaalAI",
-            locale:
-              normalizeServerLocale(payment?.raw?.locale) ||
-              normalizeServerLocale(payment?.raw?.lang) ||
-              "en",
-            targetRole: invite.sponsoredRole || "CLIENT"
-          };
+          await tx.invite.updateMany({
+            where: { id: updatedPayment.inviteId, status: { not: "REVOKED" } },
+            data: { status: "REVOKED" }
+          });
+          if (invite) {
+            const clawedSub = await tx.subscription.updateMany({
+              where: {
+                inviteId: invite.id,
+                billingSource: "SPONSORED_BY_HOST",
+                status: "ACTIVE"
+              },
+              data: {
+                status: SubscriptionStatus.CANCELED,
+                canceledAt: new Date(),
+                validUntil: new Date(),
+                nextBilling: null
+              }
+            });
+            let clawedMember = { count: 0 };
+            if (invite.acceptedByUserId) {
+              clawedMember = await tx.roomMember.updateMany({
+                where: {
+                  roomId: invite.roomId,
+                  userId: invite.acceptedByUserId,
+                  billingSource: "SPONSORED_BY_HOST",
+                  leftAt: null
+                },
+                data: { leftAt: new Date() }
+              });
+            }
+            // E5: teavita adressaati outbox'i kaudu, kui õigus päriselt tühistati.
+            if ((clawedSub.count > 0 || clawedMember.count > 0) && invite.inviteeEmail) {
+              clawbackNotify = {
+                to: invite.inviteeEmail,
+                inviteId: invite.id,
+                roomTitle: invite.room?.title || "Room",
+                locale: paymentLocale
+              };
+            }
+            logPaymentAudit({
+              action: "sponsored_invite_refund_clawback",
+              result: `sub:${clawedSub.count},member:${clawedMember.count}`,
+              paymentId: updatedPayment.id,
+              inviteId: invite.id,
+              roomId: invite.roomId
+            });
+          }
         } else if (
           nextStatus === PaymentStatus.CANCELED ||
-          nextStatus === PaymentStatus.FAILED ||
-          nextStatus === PaymentStatus.REFUNDED
+          nextStatus === PaymentStatus.FAILED
         ) {
-          await tx.invite.update({
-            where: { id: updatedPayment.inviteId },
-            data: {
-              status: "REVOKED"
-            }
+          await tx.invite.updateMany({
+            where: {
+              id: updatedPayment.inviteId,
+              status: { in: ["PENDING_PAYMENT", "SENT"] }
+            },
+            data: { status: "REVOKED" }
+          });
+          logPaymentAudit({
+            action: "sponsored_invite_payment_failed",
+            result: String(nextStatus).toLowerCase(),
+            paymentId: updatedPayment.id,
+            inviteId: updatedPayment.inviteId
           });
         }
       } else if (nextStatus === PaymentStatus.PAID) {
@@ -828,8 +564,20 @@ export async function POST(request) {
         }
 
         subscription = await activateSubscriptionFromPayment(tx, updatedPayment);
+        logPaymentAudit({
+          action: "subscription_activate",
+          result: "active",
+          paymentId: updatedPayment.id,
+          subscriptionId: updatedPayment.subscriptionId
+        });
       } else if (subscriptionAction === "cancel") {
         subscription = await cancelSubscriptionFromPayment(tx, updatedPayment);
+        logPaymentAudit({
+          action: nextStatus === PaymentStatus.REFUNDED ? "subscription_refund_cancel" : "subscription_cancel",
+          result: "canceled",
+          paymentId: updatedPayment.id,
+          subscriptionId: updatedPayment.subscriptionId
+        });
       } else if (
         payment.kind === PaymentKind.SUBSCRIPTION_RENEWAL &&
         (nextStatus === PaymentStatus.FAILED || nextStatus === PaymentStatus.CANCELED) &&
@@ -851,6 +599,12 @@ export async function POST(request) {
             nextBilling: true
           }
         });
+        logPaymentAudit({
+          action: "subscription_past_due",
+          result: "past_due",
+          paymentId: updatedPayment.id,
+          subscriptionId: payment.subscriptionId
+        });
       }
 
       return {
@@ -861,6 +615,7 @@ export async function POST(request) {
         billingMethodId: billingMethod?.id || payment.billingMethodId || null,
         subscriptionAction,
         inviteEmail,
+        clawbackNotify,
         paymentLocale
       };
     });
@@ -886,14 +641,26 @@ export async function POST(request) {
       ignored: Boolean(result?.ignored)
     });
 
+    // T09 E6/L-06: kõik makse-/kutse e-kirjad lähevad idempotentse outbox'i
+    // kaudu (mitte inline SMTP). Outbox worker saadab; kordus ei korda makset
+    // ega õiguse andmist. dedupeKey väldib duplikaate webhook-korduse korral.
     if (result?.inviteEmail?.to && result?.status === PaymentStatus.PAID) {
       try {
-        await sendInvitePaymentEmail({
-          ...result.inviteEmail,
-          locale: result.inviteEmail.locale
+        await enqueuePaymentEmail(prisma, {
+          dedupeKey: `invite:${result.paymentId}`,
+          template: "invite_sponsored",
+          toEmail: result.inviteEmail.to,
+          locale: result.inviteEmail.locale,
+          paymentId: result.paymentId,
+          payload: {
+            joinToken: result.inviteEmail.token,
+            roomTitle: result.inviteEmail.roomTitle,
+            inviterName: result.inviteEmail.inviterName,
+            targetRole: result.inviteEmail.targetRole
+          }
         });
       } catch (inviteError) {
-        logPaymentEvent("subscription_webhook_invite_email_failed", {
+        logPaymentEvent("subscription_webhook_invite_email_enqueue_failed", {
           paymentId: result?.paymentId || "",
           providerPaymentId,
           error: inviteError
@@ -903,13 +670,23 @@ export async function POST(request) {
 
     if (result?.updated && result?.status === PaymentStatus.PAID && result?.paymentId) {
       try {
-        await sendCustomerPaymentConfirmationEmail({
-          paymentId: result.paymentId,
-          providerPaymentId,
-          locale: result.paymentLocale || "en"
+        const payer = await prisma.payment.findUnique({
+          where: { id: result.paymentId },
+          select: { user: { select: { email: true } } }
         });
+        const to = String(payer?.user?.email || "").trim().toLowerCase();
+        if (to && to.includes("@")) {
+          await enqueuePaymentEmail(prisma, {
+            dedupeKey: `customer:${result.paymentId}`,
+            template: "customer_confirmation",
+            toEmail: to,
+            locale: result.paymentLocale || "en",
+            paymentId: result.paymentId,
+            payload: { paymentId: result.paymentId }
+          });
+        }
       } catch (customerEmailError) {
-        logPaymentEvent("subscription_webhook_customer_email_failed", {
+        logPaymentEvent("subscription_webhook_customer_email_enqueue_failed", {
           paymentId: result?.paymentId || "",
           providerPaymentId,
           error: customerEmailError
@@ -919,18 +696,46 @@ export async function POST(request) {
 
     if (canSendOwnerNotification(result)) {
       try {
-        await sendOwnerPaymentWebhookNotification({
-          providerPaymentId,
-          status: result?.status,
-          paymentId: result?.paymentId,
-          subscriptionAction: result?.subscriptionAction
+        await enqueuePaymentEmail(prisma, {
+          dedupeKey: `owner:${result.paymentId}:${result.status}`,
+          template: "owner_webhook",
+          toEmail: OWNER_NOTIFICATION_EMAIL,
+          locale: OWNER_NOTIFICATION_LOCALE,
+          paymentId: result.paymentId,
+          payload: {
+            paymentId: result.paymentId,
+            status: result.status,
+            providerPaymentId,
+            subscriptionAction: result.subscriptionAction || "none"
+          }
         });
       } catch (notifyError) {
-        logPaymentEvent("subscription_webhook_owner_email_failed", {
+        logPaymentEvent("subscription_webhook_owner_email_enqueue_failed", {
           paymentId: result?.paymentId || "",
           providerPaymentId,
           status: result?.status || "",
           error: notifyError
+        });
+      }
+    }
+
+    // E5: tagasimakse-clawback → teavita adressaati outbox'i kaudu.
+    if (result?.clawbackNotify?.to) {
+      try {
+        await enqueuePaymentEmail(prisma, {
+          dedupeKey: `sponsored_revoked:${result.paymentId}`,
+          template: "sponsored_revoked",
+          toEmail: result.clawbackNotify.to,
+          locale: result.clawbackNotify.locale || "en",
+          paymentId: result.paymentId,
+          inviteId: result.clawbackNotify.inviteId || null,
+          payload: { roomTitle: result.clawbackNotify.roomTitle }
+        });
+      } catch (clawbackError) {
+        logPaymentEvent("subscription_webhook_clawback_email_enqueue_failed", {
+          paymentId: result?.paymentId || "",
+          providerPaymentId,
+          error: clawbackError
         });
       }
     }

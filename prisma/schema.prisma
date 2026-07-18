@@ -850,6 +850,7 @@ model Subscription {
   lastBilledAt      DateTime?
   pastDueSince      DateTime?
   billingRetryCount Int                @default(0)
+  cancelAtPeriodEnd Boolean            @default(false)
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
   canceledAt        DateTime?
@@ -1065,6 +1066,8 @@ model BillingMethod {
   status             BillingMethodStatus @default(PENDING)
   providerCustomerId String?
   providerToken      String?
+  providerTokenCipher String?
+  providerTokenKeyId String?
   providerMandateId  String?
   label              String?
   expiresAt          DateTime?
@@ -1083,6 +1086,35 @@ model BillingMethod {
   @@index([provider])
   @@index([providerCustomerId])
   @@index([providerMandateId])
+}
+
+// Idempotentne makse-/kutse e-kirjade väljundkast (T09 PAYMENTS-V1). Tellimuse
+// tõde elab Subscription/Payment kirjetes; see tabel on ainult teavituse
+// kohaletoimetamine. Worker on repo-hallatav mitteaktiveeritud üksus: retry +
+// backoff + terminalne olek. Payload hoiab ainult renderdamiseks vajaliku
+// minimaalse info (mitte provideri toorandmeid, kaardiinfot ega tellimuse-tõde).
+model PaymentEmailOutbox {
+  id            String    @id @default(cuid())
+  dedupeKey     String    @unique
+  template      String
+  toEmail       String
+  locale        String    @default("en")
+  payload       Json?
+  paymentId     String?
+  inviteId      String?
+  status        String    @default("PENDING")
+  attempts      Int       @default(0)
+  nextAttemptAt DateTime?
+  claimedAt     DateTime?
+  lastErrorCode String?
+  sentAt        DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([status, nextAttemptAt, id])
+  @@index([paymentId])
+  @@index([inviteId])
+  @@index([createdAt])
 }
 
 model RagDocument {

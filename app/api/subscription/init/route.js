@@ -13,6 +13,7 @@ import {
 } from "@/lib/payments/maksekeskus";
 import { getInitialSubscriptionPaymentKind, isRecurringBillingEnabled } from "@/lib/payments/recurring";
 import { logPaymentEvent } from "@/lib/payments/observability";
+import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { safeError } from "@/lib/privacy/safeError";
 import {
   getRoleMonthlyAmount,
@@ -319,7 +320,7 @@ export async function POST(request) {
           checkoutConsent: true,
           checkoutMode: "iframe_recurring",
           transactionId: checkout.transactionId || null,
-          checkout: checkout.raw || null
+          checkout: projectProviderPaymentRaw(checkout.raw)
         }
       }
     });

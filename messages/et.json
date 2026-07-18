@@ -2500,9 +2500,16 @@
       "summary": "Sinu tellimus on aktiivne. Kuutasu sõltub paketist: teenuseosutajale 19,99 € / kuu, spetsialistile 14,99 € / kuu, pöördujale 7,99 € / kuu.",
       "summary_priced": "Sinu tellimus on aktiivne. Pakett: {role}. Kuutasu: {amount} kuus.",
       "cancel_note": "Tellimuse saad igal ajal tühistada oma profiililehelt.",
+      "cancel_at_period_end_note": "Tellimus on tühistatud. Ligipääs kehtib kuni {date}, uut kuumakset ei võeta.",
       "sponsored_note": "Sinu ligipääs on praegu sponsoreeritud ja kehtib kuni {date}. Pärast seda pead kasutamise jätkamiseks aktiveerima oma tellimuse.",
       "sponsored_ending_soon": "Sinu sponsoreeritud ligipääs lõpeb {days} päeva pärast, kuupäeval {date}. Kasutamise jätkamiseks aktiveeri oma tellimus.",
       "sponsored_expired": "Sinu sponsoreeritud kuu on lõppenud. Jätkamiseks aktiveeri oma tellimus."
+    },
+    "past_due": {
+      "title": "Viimane kuumakse ebaõnnestus.",
+      "retrying": "Proovime makset automaatselt uuesti. Järgmine katse: {date}. Praegu ei pea sa midagi tegema.",
+      "ended": "Kuumakse ei õnnestunud ja tellimus on peatatud. Ligipääsu taastamiseks aktiveeri tellimus uuesti.",
+      "support": "Kui midagi tundub valesti, kirjuta meile aadressil info@sotsiaal.ai."
     },
     "button": {
       "open_profile": "Ava profiil",
@@ -2750,6 +2757,11 @@
         "subject": "Sponsoreeritud kutse: {roomTitle}",
         "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu tellimuse.\nValitud roll: {roleLabel}\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
         "html": "<p>Tere!</p><p>{inviterName} kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu tellimuse.</p><p><strong>Valitud roll:</strong> {roleLabel}</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Pärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.</p><p>Kui sa ei oodanud seda kirja, võid selle eirata.</p>"
+      },
+      "sponsored_revoked": {
+        "subject": "Sponsoreeritud ligipääs ruumis \"{roomTitle}\" on lõppenud",
+        "text": "Tere!\n\nSponsoreeritud ligipääs ruumile \"{roomTitle}\" on lõppenud, kuna makse tagastati. Kui soovid jätkata, saad aktiveerida oma tellimuse.\n\nKüsimuste korral kirjuta {supportEmail}.",
+        "html": "<p>Tere!</p><p>Sponsoreeritud ligipääs ruumile <strong>{roomTitle}</strong> on lõppenud, kuna makse tagastati. Kui soovid jätkata, saad aktiveerida oma tellimuse.</p><p>Küsimuste korral kirjuta <a href=\"mailto:{supportEmail}\">{supportEmail}</a>.</p>"
       },
       "resend": {
         "subject": "Kutse meeldetuletus: {roomTitle}",

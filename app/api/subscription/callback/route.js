@@ -21,6 +21,8 @@ import {
   extractRecurringTokenValidUntil,
 } from "@/lib/payments/recurring";
 import { logPaymentEvent } from "@/lib/payments/observability";
+import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
+import { encryptRecurringToken } from "@/lib/payments/tokenCrypto";
 
 function mapCallbackState(rawStatus) {
   const status = String(rawStatus || "")
@@ -67,7 +69,23 @@ async function persistRecurringToken(payload) {
     return {
       updated: false,
       providerPaymentId,
-      tokenId,
+    };
+  }
+
+  // E3/O-J1 fail-closed: krüpti recurring token serveri võtmega; ilma võtmeta
+  // mandaati EI salvestata (webhook on nagunii autoriteetne aktiveerija).
+  let encrypted;
+  try {
+    encrypted = encryptRecurringToken(tokenId);
+  } catch (error) {
+    logPaymentEvent("subscription_callback_token_encryption_unavailable", {
+      providerPaymentId,
+      code: error?.code || "PAYMENT_TOKEN_KEY_UNAVAILABLE",
+    });
+    return {
+      updated: false,
+      providerPaymentId,
+      reason: "encryption_unavailable",
     };
   }
 
@@ -91,32 +109,26 @@ async function persistRecurringToken(payload) {
     return {
       updated: false,
       providerPaymentId,
-      tokenId,
     };
   }
 
   const now = new Date();
   const billingMethod = await prisma.$transaction(async (tx) => {
-    const existing =
-      (payment.billingMethodId
-        ? await tx.billingMethod.findUnique({
-            where: { id: payment.billingMethodId },
-            select: { id: true },
-          })
-        : null) ||
-      (await tx.billingMethod.findFirst({
-        where: {
-          userId: payment.userId,
-          provider: PaymentProvider.MAKSEKESKUS,
-          providerToken: tokenId,
-        },
-        select: { id: true },
-      }));
+    // Krüptitud tokenit ei saa plaintekstina otsida; toetu makse
+    // billingMethodId-le, muidu loo uus mandaat.
+    const existing = payment.billingMethodId
+      ? await tx.billingMethod.findUnique({
+          where: { id: payment.billingMethodId },
+          select: { id: true },
+        })
+      : null;
 
     const data = {
       status: BillingMethodStatus.ACTIVE,
       provider: PaymentProvider.MAKSEKESKUS,
-      providerToken: tokenId,
+      providerToken: null,
+      providerTokenCipher: encrypted.cipher,
+      providerTokenKeyId: encrypted.keyId,
       expiresAt: tokenValidUntil,
       activatedAt: now,
       lastUsedAt: now,
@@ -141,10 +153,7 @@ async function persistRecurringToken(payload) {
       where: { id: payment.id },
       data: {
         billingMethodId: method.id,
-        raw: {
-          ...asPlainObject(payment.raw),
-          tokenReturn: payload,
-        },
+        raw: buildPaymentRawRecord(asPlainObject(payment.raw), payload),
       },
     });
 
@@ -163,7 +172,6 @@ async function persistRecurringToken(payload) {
   return {
     updated: true,
     providerPaymentId,
-    tokenId,
     billingMethodId: billingMethod.id,
   };
 }
@@ -222,6 +230,17 @@ export async function POST(req) {
       reason: "missing_json",
     });
     return NextResponse.redirect(buildRedirectTarget(req, pickLocale(url, req), "failed"), {
+      status: 302,
+    });
+  }
+
+  // Fail-closed (L-02): ilma seadistatud saladuseta ei verifitseeri ega
+  // salvesta tokenit — tühi saladus ei tohi vaikimisi läbida.
+  if (!String(signatureSecret || "").trim()) {
+    logPaymentEvent("subscription_callback_signature_unconfigured", {
+      messageType: payload?.message_type || "",
+    });
+    return NextResponse.redirect(buildRedirectTarget(req, pickLocale(url, req, payload), "failed"), {
       status: 302,
     });
   }

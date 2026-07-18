@@ -82,10 +82,13 @@ test("registration assigns the public free plan explicitly", () => {
 });
 
 test("every subscription activation path writes planDefinitionId", () => {
+  // T09 refactor: the webhook activation path moved into the shared module
+  // lib/payments/subscriptionActivation.js (used by webhook + reconcile). The
+  // guarantee is unchanged; the location moved.
   const files = [
     "app/api/subscription/route.js",
     "app/api/subscription/init/route.js",
-    "app/api/subscription/webhook/route.js",
+    "lib/payments/subscriptionActivation.js",
     "app/api/invites/[id]/accept/route.js"
   ];
 
@@ -93,6 +96,17 @@ test("every subscription activation path writes planDefinitionId", () => {
     const source = fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
     assert.match(source, /planDefinitionId/, `${relativePath} must write a normalized plan id`);
   }
+
+  // The webhook must still drive activation through the shared module.
+  const webhookSource = fs.readFileSync(
+    path.join(repoRoot, "app/api/subscription/webhook/route.js"),
+    "utf8"
+  );
+  assert.match(
+    webhookSource,
+    /activateSubscriptionFromPayment/,
+    "webhook must delegate activation to the shared module"
+  );
 });
 
 test("subscription POST routes reject invalid requests and persist the role-bound pair", () => {

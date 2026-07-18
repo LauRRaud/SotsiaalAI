@@ -10,8 +10,11 @@ function resolveExistingFile(basePath) {
     `${basePath}.js`,
     `${basePath}.jsx`,
     `${basePath}.mjs`,
+    `${basePath}.ts`,
+    `${basePath}.tsx`,
     path.join(basePath, "index.js"),
-    path.join(basePath, "index.mjs")
+    path.join(basePath, "index.mjs"),
+    path.join(basePath, "index.ts")
   ];
   return candidates.find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile()) || "";
 }
