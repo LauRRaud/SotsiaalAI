@@ -4,5 +4,9 @@
 # code + config in LF
 *.{js,jsx,ts,tsx,mjs,cjs,json,css,scss,md,html,yml,yaml} text eol=lf
 
+# Deterministic RAG-QM expected-output fixtures
+tests/fixtures/expected/*.json text eol=lf
+tests/fixtures/expected/*.md text eol=lf
+
 # Windows scripts
 *.{ps1,bat,cmd} text eol=crlf

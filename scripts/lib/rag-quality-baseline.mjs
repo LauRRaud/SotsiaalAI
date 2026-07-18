@@ -61,8 +61,20 @@ const SAFE_TOKEN_RE = /^[A-Za-z0-9_.:-]{1,80}$/;
 const EMAIL_RE = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
 const ELEVEN_DIGIT_RE = /(?<!\d)\d{11}(?!\d)/;
 const AGENT_ID_RE = /agent::/i;
-const FORBIDDEN_REPORT_KEY_RE = /^(?:user_?id|conversation_?id|conv_?id|message_?id|author_?id|email|name|source_?ids?|retrieved_source_ids|selected_context_source_ids|displayed_source_ids)$/i;
-const FORBIDDEN_TEXT_KEY_RE = /^(?:query|question|answer|content|text|message|note|planner_reason|topics)$/i;
+const FORBIDDEN_DIRECT_KEYS = new Set([
+  "identifier",
+  "email",
+  "name",
+  "query",
+  "question",
+  "answer",
+  "content",
+  "text",
+  "message",
+  "note",
+  "planner_reason",
+  "topics"
+]);
 
 const TRACE_DATA_KEYS = new Set([
   "retrieved_count",
@@ -104,6 +116,24 @@ function fail(code, message, exitCode = 3) {
 
 function isPlainObject(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function normalizeDefensiveKey(key) {
+  return String(key)
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .replace(/[-\s]+/g, "_")
+    .replace(/_+/g, "_")
+    .toLowerCase();
+}
+
+function isForbiddenKey(key) {
+  const normalized = normalizeDefensiveKey(key);
+  return FORBIDDEN_DIRECT_KEYS.has(normalized) ||
+    /^(?:query|question|answer|content|text|message)_(?:text|body|value)$/.test(normalized) ||
+    /^(?:planner_reason|topics)$/.test(normalized) ||
+    /(?:^|_)(?:user|conversation|conv|message|author)_ids?$/.test(normalized) ||
+    /(?:^|_)identifier(?:s)?$/.test(normalized) ||
+    /(?:^|_)source_ids?$/.test(normalized);
 }
 
 function assertExactKeys(value, allowed, code) {
@@ -176,7 +206,7 @@ function scanInputForSensitiveValues(value, keyPath = []) {
   }
   if (isPlainObject(value)) {
     for (const [key, entry] of Object.entries(value)) {
-      if (FORBIDDEN_REPORT_KEY_RE.test(key) || FORBIDDEN_TEXT_KEY_RE.test(key) || /source_ids?/i.test(key)) {
+      if (isForbiddenKey(key)) {
         fail("fixture_forbidden_field", "Sanitized fixture contains a forbidden field");
       }
       scanInputForSensitiveValues(entry, [...keyPath, key]);
@@ -632,6 +662,12 @@ function assertMeasurementShape(measurement) {
   if (measurement.status !== "reported" && measurement.count !== null) fail("report_schema", "Suppressed count must be null");
 }
 
+function assertGroupShape(group, message = "Report distribution group is invalid") {
+  assertReportObjectKeys(group, new Set(["value", "measurement"]), message);
+  assertMetricToken(group.value, "Report distribution value is invalid");
+  assertMeasurementShape(group.measurement);
+}
+
 function assertReportObjectKeys(value, keys, message) {
   if (!isPlainObject(value)) fail("report_schema", message);
   if (Object.keys(value).sort().join(",") !== [...keys].sort().join(",")) fail("report_schema", message);
@@ -709,9 +745,7 @@ export function validateReportShape(report) {
     assertMetricToken(item.dimension, "Report dimension token is invalid");
     if (!Array.isArray(item.groups)) fail("report_schema", "Report distribution groups are invalid");
     for (const group of item.groups) {
-      assertReportObjectKeys(group, new Set(["value", "measurement"]), "Report distribution group is invalid");
-      assertMetricToken(group.value, "Report distribution value is invalid");
-      assertMeasurementShape(group.measurement);
+      assertGroupShape(group);
     }
   }
   assertReportObjectKeys(
@@ -726,6 +760,9 @@ export function validateReportShape(report) {
     report.classification.allowed_reference_count !== 72 ||
     (report.classification.bucket_distribution !== null && !Array.isArray(report.classification.bucket_distribution))
   ) fail("report_schema", "Report classification metadata is invalid");
+  for (const group of report.classification.bucket_distribution || []) {
+    assertGroupShape(group, "Report classification bucket distribution is invalid");
+  }
   if (!Array.isArray(report.coverage_gaps)) fail("report_schema", "Report coverage gaps are invalid");
   for (const gap of report.coverage_gaps) {
     assertReportObjectKeys(gap, new Set(["metric", "status"]), "Report coverage gap is invalid");
@@ -739,40 +776,46 @@ export function validateReportShape(report) {
   return true;
 }
 
-function isLongStringAllowed(keyPath, value) {
+function isValidatedIntegrityHashPath(keyPath, validatedReport) {
+  return validatedReport === true && keyPath.length === 2 && keyPath[0] === "integrity" && keyPath[1] === "data_sha256";
+}
+
+function isLongStringAllowed(keyPath, value, validatedReport) {
   const key = keyPath.at(-1) || "";
-  if (key === "privacy_notice" || key === "data_sha256") return true;
+  if (key === "privacy_notice" || isValidatedIntegrityHashPath(keyPath, validatedReport)) return true;
   if (keyPath.includes("used_fields")) return true;
   if (new Set(["metric", "dimension", "value"]).has(key)) return SAFE_TOKEN_RE.test(value);
   return false;
 }
 
-function scanReportValue(value, keyPath = []) {
+function scanReportValue(value, keyPath = [], { validatedReport = false } = {}) {
   if (Array.isArray(value)) {
-    value.forEach((item, index) => scanReportValue(item, [...keyPath, String(index)]));
+    value.forEach((item, index) => scanReportValue(item, [...keyPath, String(index)], { validatedReport }));
     return;
   }
   if (isPlainObject(value)) {
     for (const [key, entry] of Object.entries(value)) {
-      if (FORBIDDEN_REPORT_KEY_RE.test(key) || FORBIDDEN_TEXT_KEY_RE.test(key) || /source_ids?/i.test(key)) {
+      if (isForbiddenKey(key)) {
         fail("privacy_forbidden_key", "Report privacy validation failed");
       }
-      scanReportValue(entry, [...keyPath, key]);
+      scanReportValue(entry, [...keyPath, key], { validatedReport });
     }
     return;
   }
   if (typeof value !== "string") return;
   if (EMAIL_RE.test(value)) fail("privacy_email_value", "Report privacy validation failed");
-  if (ELEVEN_DIGIT_RE.test(value)) fail("privacy_personal_code_value", "Report privacy validation failed");
+  if (!isValidatedIntegrityHashPath(keyPath, validatedReport) && ELEVEN_DIGIT_RE.test(value)) {
+    fail("privacy_personal_code_value", "Report privacy validation failed");
+  }
   if (AGENT_ID_RE.test(value)) fail("privacy_agent_id_value", "Report privacy validation failed");
-  if (value.length > 30 && !isLongStringAllowed(keyPath, value)) {
+  if (value.length > 30 && !isLongStringAllowed(keyPath, value, validatedReport)) {
     fail("privacy_long_text_value", "Report privacy validation failed");
   }
 }
 
 export function validateReportOutput(report) {
   validateReportShape(report);
-  scanReportValue(report);
+  scanReportValue(report, [], { validatedReport: true });
   return true;
 }
 
@@ -909,7 +952,8 @@ export function renderReportMarkdown(report) {
     ""
   ];
   const markdown = lines.join("\n");
-  if (EMAIL_RE.test(markdown) || ELEVEN_DIGIT_RE.test(markdown) || AGENT_ID_RE.test(markdown)) {
+  const markdownWithoutValidatedHash = markdown.replaceAll(report.integrity.data_sha256, "");
+  if (EMAIL_RE.test(markdownWithoutValidatedHash) || ELEVEN_DIGIT_RE.test(markdownWithoutValidatedHash) || AGENT_ID_RE.test(markdownWithoutValidatedHash)) {
     fail("privacy_rendered_output", "Rendered report privacy validation failed");
   }
   return markdown;
@@ -941,32 +985,48 @@ export async function writeReportPairAtomic(outputDir, report, { fsImpl = fs } =
   const markdownContents = renderReportMarkdown(report);
   const day = report.generated_at.slice(0, 10);
   const baseName = `rag-quality-baseline-${day}`;
-  const jsonPath = path.join(outputDir, `${baseName}.json`);
-  const markdownPath = path.join(outputDir, `${baseName}.md`);
+  const reportDir = path.join(outputDir, baseName);
+  const jsonFile = `${baseName}.json`;
+  const markdownFile = `${baseName}.md`;
+  const jsonPath = path.join(reportDir, jsonFile);
+  const markdownPath = path.join(reportDir, markdownFile);
+  const legacyJsonPath = path.join(outputDir, jsonFile);
+  const legacyMarkdownPath = path.join(outputDir, markdownFile);
   const nonce = crypto.randomUUID();
-  const jsonTemp = path.join(outputDir, `.${baseName}.${nonce}.json.tmp`);
-  const markdownTemp = path.join(outputDir, `.${baseName}.${nonce}.md.tmp`);
-  let jsonPublished = false;
-  let markdownPublished = false;
+  const tempDir = path.join(outputDir, `.${baseName}.${nonce}.tmp`);
+  const jsonTemp = path.join(tempDir, jsonFile);
+  const markdownTemp = path.join(tempDir, markdownFile);
+  let tempCreated = false;
   try {
     await fsImpl.mkdir(outputDir, { recursive: true });
-    if (await pathExists(jsonPath, fsImpl) || await pathExists(markdownPath, fsImpl)) {
+    if (
+      await pathExists(reportDir, fsImpl) ||
+      await pathExists(legacyJsonPath, fsImpl) ||
+      await pathExists(legacyMarkdownPath, fsImpl)
+    ) {
       fail("output_exists", "Refusing to replace an existing baseline report", 5);
     }
+    await fsImpl.mkdir(tempDir, { mode: 0o700 });
+    tempCreated = true;
     await writeSyncedTemp(jsonTemp, jsonContents, fsImpl);
     await writeSyncedTemp(markdownTemp, markdownContents, fsImpl);
-    await fsImpl.rename(jsonTemp, jsonPath);
-    jsonPublished = true;
-    await fsImpl.rename(markdownTemp, markdownPath);
-    markdownPublished = true;
-    return { jsonPath, markdownPath, jsonFile: path.basename(jsonPath), markdownFile: path.basename(markdownPath) };
+    await fsImpl.rename(tempDir, reportDir);
+    tempCreated = false;
+    return {
+      reportDir,
+      jsonPath,
+      markdownPath,
+      jsonFile: path.join(baseName, jsonFile),
+      markdownFile: path.join(baseName, markdownFile)
+    };
   } catch (error) {
-    await Promise.allSettled([
-      fsImpl.rm(jsonTemp, { force: true }),
-      fsImpl.rm(markdownTemp, { force: true }),
-      ...(jsonPublished ? [fsImpl.rm(jsonPath, { force: true })] : []),
-      ...(markdownPublished ? [fsImpl.rm(markdownPath, { force: true })] : [])
-    ]);
+    if (tempCreated) {
+      try {
+        await fsImpl.rm(tempDir, { recursive: true, force: true });
+      } catch {
+        fail("output_cleanup_failed", "Temporary report cleanup failed", 5);
+      }
+    }
     if (error instanceof BaselineError) throw error;
     fail("output_write_failed", "Atomic report write failed", 5);
   }

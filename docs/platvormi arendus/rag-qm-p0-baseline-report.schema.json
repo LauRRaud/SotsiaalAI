@@ -133,7 +133,14 @@
         "status": { "enum": ["reported", "suppressed", "unavailable"] },
         "count": { "type": ["integer", "null"], "minimum": 20 },
         "minimum_group_size": { "const": 20 }
-      }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "status": { "const": "reported" } } },
+          "then": { "properties": { "count": { "type": "integer", "minimum": 20 } } },
+          "else": { "properties": { "count": { "const": null } } }
+        }
+      ]
     },
     "countMetric": {
       "type": "object",

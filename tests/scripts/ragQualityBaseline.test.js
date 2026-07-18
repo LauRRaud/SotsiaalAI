@@ -30,6 +30,7 @@ const INTERVAL = {
   to: new Date("2026-07-03T00:00:00.000Z")
 };
 const GENERATED_AT = new Date("2026-07-15T12:00:00.000Z");
+const REPORT_BASE_NAME = "rag-quality-baseline-2026-07-15";
 
 async function fixturePayload() {
   return JSON.parse(await fs.readFile(FIXTURE_PATH, "utf8"));
@@ -59,6 +60,27 @@ function numericMetric(report, name) {
 
 async function temporaryDirectory(prefix = "rag-qm-p0-") {
   return fs.mkdtemp(path.join(os.tmpdir(), prefix));
+}
+
+function rehashReport(report) {
+  const changed = structuredClone(report);
+  const { integrity: _integrity, ...core } = changed;
+  changed.integrity = { data_sha256: crypto.createHash("sha256").update(JSON.stringify(core)).digest("hex") };
+  return changed;
+}
+
+function normalizeLineEndings(value) {
+  return value.replace(/\r\n?/g, "\n");
+}
+
+async function assertNoPublishedReport(outputDir) {
+  for (const candidate of [
+    path.join(outputDir, REPORT_BASE_NAME),
+    path.join(outputDir, `${REPORT_BASE_NAME}.json`),
+    path.join(outputDir, `${REPORT_BASE_NAME}.md`)
+  ]) {
+    await assert.rejects(fs.access(candidate), error => error?.code === "ENOENT");
+  }
 }
 
 function runCli(args, env = {}) {
@@ -205,6 +227,64 @@ test("privacy validator rejects identifier keys and source-ID lists", () => {
   }
 });
 
+test("privacy defense normalizes camelCase, snake_case and kebab-case keys", () => {
+  for (const key of [
+    "identifier",
+    "userIdentifier",
+    "user_identifier",
+    "user-identifier",
+    "queryText",
+    "query_text",
+    "query-text",
+    "plannerReason",
+    "planner_reason",
+    "planner-reason",
+    "retrievedSourceIds",
+    "retrieved_source_ids",
+    "retrieved-source-ids"
+  ]) {
+    assert.throws(
+      () => validatePrivacySafeOutputValue({ [key]: "blocked" }),
+      error => error?.code === "privacy_forbidden_key"
+    );
+  }
+});
+
+test("classification bucket distribution recursively matches the published group schema", async () => {
+  const schema = JSON.parse(await fs.readFile(SCHEMA_PATH, "utf8"));
+  assert.equal(schema.$defs.group.additionalProperties, false);
+  assert.deepEqual(schema.$defs.group.required, ["value", "measurement"]);
+  assert.equal(schema.$defs.group.properties.measurement.$ref, "#/$defs/measurement");
+  assert.equal(schema.$defs.measurement.additionalProperties, false);
+  assert.deepEqual(schema.$defs.measurement.required, ["status", "count", "minimum_group_size"]);
+
+  const report = await fixtureReport();
+  report.classification.bucket_distribution = [{
+    value: "synthetic_bucket",
+    measurement: { status: "reported", count: 20, minimum_group_size: 20 }
+  }];
+  const valid = rehashReport(report);
+  assert.equal(validateReportOutput(valid), true);
+
+  for (const key of ["identifier", "queryText", "plannerReason", "retrievedSourceIds"]) {
+    const injected = structuredClone(valid);
+    injected.classification.bucket_distribution[0][key] = "blocked";
+    assert.throws(() => validateReportOutput(injected), error => error?.code === "report_schema");
+  }
+
+  const unknownMeasurement = structuredClone(valid);
+  unknownMeasurement.classification.bucket_distribution[0].measurement.details = { count: 20 };
+  assert.throws(() => validateReportOutput(unknownMeasurement), error => error?.code === "report_schema");
+
+  const malformedMeasurement = structuredClone(valid);
+  malformedMeasurement.classification.bucket_distribution[0].measurement = {
+    status: "suppressed",
+    count: 19,
+    minimum_group_size: 20
+  };
+  assert.throws(() => validateReportOutput(malformedMeasurement), error => error?.code === "report_schema");
+});
+
 test("privacy failure happens before output directory or partial reports are created", async () => {
   const outputDir = path.join(await temporaryDirectory(), "not-created");
   await assert.rejects(
@@ -214,17 +294,17 @@ test("privacy failure happens before output directory or partial reports are cre
   await assert.rejects(fs.access(outputDir), error => error?.code === "ENOENT");
 });
 
-test("atomic pair writer rolls back the first report if the second rename fails", async () => {
+test("atomic pair writer publishes no report when the second temporary file write fails", async () => {
   const outputDir = await temporaryDirectory();
   const report = await fixtureReport();
-  let renameCalls = 0;
+  let openCalls = 0;
   const failingFs = new Proxy(fs, {
     get(target, property) {
-      if (property === "rename") {
+      if (property === "open") {
         return async (...args) => {
-          renameCalls += 1;
-          if (renameCalls === 2) throw new Error("synthetic rename failure");
-          return target.rename(...args);
+          openCalls += 1;
+          if (openCalls === 2) throw new Error("synthetic second write failure");
+          return target.open(...args);
         };
       }
       return target[property];
@@ -234,13 +314,73 @@ test("atomic pair writer rolls back the first report if the second rename fails"
     writeReportPairAtomic(outputDir, report, { fsImpl: failingFs }),
     error => error?.code === "output_write_failed"
   );
+  await assertNoPublishedReport(outputDir);
   assert.deepEqual(await fs.readdir(outputDir), []);
+});
+
+test("atomic pair writer publishes no report when the final directory rename fails", async () => {
+  const outputDir = await temporaryDirectory();
+  const report = await fixtureReport();
+  const failingFs = new Proxy(fs, {
+    get(target, property) {
+      if (property === "rename") return async () => { throw new Error("synthetic directory rename failure"); };
+      return target[property];
+    }
+  });
+  await assert.rejects(
+    writeReportPairAtomic(outputDir, report, { fsImpl: failingFs }),
+    error => error?.code === "output_write_failed"
+  );
+  await assertNoPublishedReport(outputDir);
+  assert.deepEqual(await fs.readdir(outputDir), []);
+});
+
+test("atomic pair writer surfaces temporary-directory cleanup failures", async () => {
+  const outputDir = await temporaryDirectory();
+  const report = await fixtureReport();
+  const failingFs = new Proxy(fs, {
+    get(target, property) {
+      if (property === "rename") return async () => { throw new Error("synthetic directory rename failure"); };
+      if (property === "rm") return async () => { throw new Error("synthetic cleanup failure"); };
+      return target[property];
+    }
+  });
+  await assert.rejects(
+    writeReportPairAtomic(outputDir, report, { fsImpl: failingFs }),
+    error => error?.code === "output_cleanup_failed" && error?.exitCode === 5
+  );
+  await assertNoPublishedReport(outputDir);
+  const residue = await fs.readdir(outputDir);
+  assert.equal(residue.length, 1);
+  assert.match(residue[0], /^\.rag-quality-baseline-2026-07-15\..+\.tmp$/);
+  await fs.rm(outputDir, { recursive: true, force: true });
+});
+
+test("atomic pair writer refuses to overwrite an existing final report", async () => {
+  const outputDir = await temporaryDirectory();
+  const report = await fixtureReport();
+  const reportDir = path.join(outputDir, REPORT_BASE_NAME);
+  const jsonPath = path.join(reportDir, `${REPORT_BASE_NAME}.json`);
+  const markdownPath = path.join(reportDir, `${REPORT_BASE_NAME}.md`);
+  await fs.mkdir(reportDir);
+  await fs.writeFile(jsonPath, "existing-json", "utf8");
+  await fs.writeFile(markdownPath, "existing-markdown", "utf8");
+  await assert.rejects(
+    writeReportPairAtomic(outputDir, report),
+    error => error?.code === "output_exists" && error?.exitCode === 5
+  );
+  assert.equal(await fs.readFile(jsonPath, "utf8"), "existing-json");
+  assert.equal(await fs.readFile(markdownPath, "utf8"), "existing-markdown");
+  assert.deepEqual(await fs.readdir(outputDir), [REPORT_BASE_NAME]);
 });
 
 test("JSON and Markdown contain the same validated report object", async () => {
   const outputDir = await temporaryDirectory();
   const report = await fixtureReport();
   const outputs = await writeReportPairAtomic(outputDir, report);
+  assert.equal(outputs.reportDir, path.join(outputDir, REPORT_BASE_NAME));
+  assert.deepEqual(await fs.readdir(outputDir), [REPORT_BASE_NAME]);
+  assert.deepEqual((await fs.readdir(outputs.reportDir)).sort(), [`${REPORT_BASE_NAME}.json`, `${REPORT_BASE_NAME}.md`]);
   const json = JSON.parse(await fs.readFile(outputs.jsonPath, "utf8"));
   const markdown = await fs.readFile(outputs.markdownPath, "utf8");
   const embedded = markdown.match(/```json\n([\s\S]+?)\n```/);
@@ -253,8 +393,20 @@ test("committed expected reports are deterministic fixture output", async () => 
   const report = await fixtureReport();
   const expectedJson = await fs.readFile(path.resolve("tests/fixtures/expected/rag-quality-baseline-2026-07-15.json"), "utf8");
   const expectedMarkdown = await fs.readFile(path.resolve("tests/fixtures/expected/rag-quality-baseline-2026-07-15.md"), "utf8");
-  assert.equal(expectedJson, `${JSON.stringify(report, null, 2)}\n`);
-  assert.equal(expectedMarkdown, renderReportMarkdown(report));
+  const generatedJson = `${JSON.stringify(report, null, 2)}\n`;
+  const generatedMarkdown = renderReportMarkdown(report);
+  assert.equal(normalizeLineEndings(expectedJson), generatedJson);
+  assert.equal(normalizeLineEndings(expectedMarkdown), generatedMarkdown);
+  assert.equal(normalizeLineEndings(generatedJson.replace(/\n/g, "\r\n")), generatedJson);
+  assert.equal(normalizeLineEndings(generatedMarkdown.replace(/\n/g, "\r\n")), generatedMarkdown);
+  assert.equal(generatedJson.includes("\r"), false);
+  assert.equal(generatedMarkdown.includes("\r"), false);
+});
+
+test("expected RAG-QM fixtures have an explicit repository-level LF contract", async () => {
+  const attributes = await fs.readFile(path.resolve(".gitattributes"), "utf8");
+  assert.match(attributes, /^tests\/fixtures\/expected\/\*\.json text eol=lf$/m);
+  assert.match(attributes, /^tests\/fixtures\/expected\/\*\.md text eol=lf$/m);
 });
 
 test("fixture is explicitly synthetic and contains no real-person or production-text fields", async () => {
@@ -290,6 +442,24 @@ test("required privacy sentence is exact in reports and workbook", async () => {
   const workbook = JSON.parse(await fs.readFile(WORKBOOK_PATH, "utf8"));
   assert.equal(report.privacy_notice, PRIVACY_NOTICE);
   assert.equal(workbook.privacy_notice, PRIVACY_NOTICE);
+});
+
+test("a valid matching integrity hash may contain an 11-digit sequence", async () => {
+  const telemetry = validateFixturePayload(await fixturePayload(), INTERVAL);
+  const report = buildBaselineReport({
+    ...telemetry,
+    interval: INTERVAL,
+    generatedAt: new Date("2026-07-15T12:00:00.001Z"),
+    sourceKind: "sanitized_fixture"
+  });
+  assert.equal(report.integrity.data_sha256, "4c1793b1df91073793933e7ed6ac201276562564fe5621faa5c59bf8f0ba9fc9");
+  assert.match(report.integrity.data_sha256, /(?<!\d)\d{11}(?!\d)/);
+  assert.equal(validateReportOutput(report), true);
+  assert.match(renderReportMarkdown(report), new RegExp(report.integrity.data_sha256));
+  assert.throws(
+    () => validatePrivacySafeOutputValue({ integrity: { data_sha256: report.integrity.data_sha256 } }),
+    error => error?.code === "privacy_personal_code_value"
+  );
 });
 
 test("missing measurements remain unavailable or null and are never invented as zero", () => {
