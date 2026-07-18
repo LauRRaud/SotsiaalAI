@@ -109,7 +109,7 @@ Olekusõnastik: **LIVE** = serveris toodangus · **MAIN** = kohalikus `main`-is,
 | T10 | PUBLIC-V1 | **OOTEL** | 18.07 õhtu ümberprioriseerimine: release-raja algus, käivitub kui omanik tahab turule (EI ole enam T07 järel) |
 | T11 | SERVICE-MEDIATION-V1 | **LIVE** | |
 | T12 | ROOMS-CALLS-V1 | **LEPING VALMIS (ootel)** | otsustering + leping `t12-rooms-calls-v1-ulesanne.md` valmis 18.07; omanik lükkas T22 ette — T12 ootab järge |
-| T13 | COVISION-V2 | **ANALÜÜS** | V1 LIVE ja runtime-tõendatud; V2 ruumiline lõppmudel alustamata |
+| T13 | COVISION-V2 | **LEPING VALMIS (prototüüp-esimene)** | V1 backend LIVE+tõendatud; leping `t13-covision-v2-ulesanne.md` = Faas A prototüüp (kohustuslik värav) → Faas B tootmine; **avab varem DEFERRED teema**; R13-D8 (kaks lehte) otsustab prototüüp; EI taaskäivita T19 |
 | T14 | WELLBEING-V2 | **LEPING VALMIS (tuum)** | E0 LIVE + K1-P0 main'is (mõlemad eeldused täidetud); leping `t14-wellbeing-v2-ulesanne.md` = otsustevaba tuum P0+P1 (kirjete lugemisrada + adapter); rütmikiht P2–P5 vajab TO-1/TO-2 |
 | T15 | A11Y/RV | osaliselt LIVE | a11y-i18n P0 LIVE; RV-P1+ ja tõlkestrateegia tegemata |
 | T16 | EXPORT-V1 | **LIVE** | lepituse kaudu |
@@ -269,10 +269,11 @@ Omaniku soovil valmistatud ette rida lepinguid, et suurte teemade järjekord ole
 | **T12** ROOMS-CALLS | `t12-rooms-calls-v1-ulesanne.md` | E1–E7, salvestus SEES | audit valmis ✓ | — (6 otsust tehtud) |
 | **T14** WELLBEING-V2 | `t14-wellbeing-v2-ulesanne.md` | E1–E2 = tuum P0+P1 | E0 LIVE ✓ + K1-P0 main'is ✓ | rütmiviil (P2–P5) vajab TO-1/TO-2 |
 | **T21** CASEWORK | `t21-casework-v1-ulesanne.md` | E1–E2 = tuum P0+P1 | K1-P0 main'is ✓ | võrgustikuvaated (P4/P5) vajavad O-CW-7 õigusanalüüsi |
+| **T13** COVISION-V2 | `t13-covision-v2-ulesanne.md` | **Faas A prototüüp → Faas B tootmine** | V1 backend LIVE ✓ | prototüüp-esimene (omaniku lukustatud reegel); R13-D8 otsustab prototüüp; avab DEFERRED teema |
 
 Kontrollitud aegunud väited, mis said parandatud: T22 „SUP-P0 remote puudub" (on main'is+prod'is), T14 „E0 [BRANCH]" (E0 on main'is `fe8c7df2`), T21 „K1-P0 [BRANCH]" (K1-P0 `ef5973c9` on main'is). **T21 kriitiline:** P0 peab `FIELD_PROVENANCE` (praegu `lib/field/constants.js`-s) tõstma jagatud `lib/workspaces/provenance.js`-i ja suunama FIELD-i sinna — MITTE teist sõnastikku looma.
 
-Väljastusjärjekord (omaniku prioriteet: suured funktsioonid enne release'i): **T22 → siis omaniku valik {T12, T14, T21}**. T14/T21 tuumad on väiksemad (P0+P1); nende rütmi-/võrgustikuviilud avanevad hilisemate otsuste järel.
+Väljastusjärjekord (omaniku prioriteet: suured funktsioonid enne release'i): **T22 → siis omaniku valik {T12, T14, T21, T13}**. T14/T21 tuumad on väiksemad (P0+P1); nende rütmi-/võrgustikuviilud avanevad hilisemate otsuste järel. **T13 on prototüüp-esimene** — Faas A (prototüüp) ei ole tootmiskood; see avab varem DEFERRED teema ja Faas B ootab prototüübi vastuvõttu.
 
 ### T22 eeltöö 18.07 (SUPERVISION-V1 — leping valmis, otsusteringi EI vajanud)
 
