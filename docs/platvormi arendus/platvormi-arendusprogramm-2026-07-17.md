@@ -1,6 +1,10 @@
 # SotsiaalAI platvormi arendusprogramm
 
-STATUS: ACTIVE CANONICAL DEVELOPMENT PROGRAM
+STATUS: ACTIVE REFERENCE — PROGRAM PLAN (mitte elav olek)
+
+> **Elav seis on [`SEIS.md`](./SEIS.md)-s, mitte siin.** See fail kirjeldab programmi *plaani, faase ja töörežiimi*. Siinsed teemaolekud on hetktõmmised ja võivad vananeda — vastuolu korral kehtib SEIS.md.
+>
+> Teema valmimisel **ära uuenda seda faili** — uuenda SEIS.md.
 
 Viimati kontrollitud: 2026-07-17  
 Programmi omanik: SotsiaalAI arenduse koordinaator  
@@ -684,7 +688,7 @@ Iga valminud töö järel uuendatakse vähemalt:
 - kanoonilise tahvli vastavat rida;
 - haru/commit ja testide seis;
 - audit/main/server veerge;
-- teisele AI-kontole antava `koordinaatori-avariihandoff.md` praegust jätkamispunkti;
+- teisele AI-kontole antava `SEIS.md` praegust jätkamispunkti;
 - „Täpsed järgmised tegevused” järjekorda;
 - muudatuslogi.
 

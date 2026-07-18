@@ -1,27 +1,51 @@
-# SotsiaalAI koordinaatori avariihandoff teisele AI-kontole
+# SEIS — SotsiaalAI arenduse elav seisufail
 
-STATUS: ACTIVE TRANSFER TASK
+STATUS: SINGLE SOURCE OF TRUTH
 
-Viimati uuendatud: 2026-07-18 (integratsiooni järel; koordineerib kasutaja ise)
+Viimati uuendatud: 2026-07-18 (T02+T16 lepitus valmis)
+
+> **See fail on AINUS koht, kus elab „kus me oleme".** Kõik muud dokumendid on viitematerjal: lepingud ütlevad *mida teha*, masterregister *mida teema tähendab*, analüüsidokid *mida leiti*. Ükski neist ei kanna elavat olekut — kui leiad neist staatuseväite, mis on selle failiga vastuolus, kehtib SEIS.md ja vana väide tuleb parandada.
+>
+> **Miks nii:** 18.07 oli elav staatus laiali 20+ failis (ainuüksi T24 seis kümnes kohas). Iga koopia vananes eraldi — T19 „pooleli" väidet tuli parandada viies failis ja üks leping viitas kustutatud worktree'dele. Üks fail vananeb ühes kohas ja parandub ühe muudatusega.
+
+## Kasutajale: mida uude aknasse kleepida
+
+Jätkamiseks üks rida:
+
+> Loe `docs/platvormi arendus/SEIS.md` ja jätka sealt.
+
+Uue teema väljastamiseks kaks rida: see + lepingufaili nimi (nt `t10-public-v1-ulesanne.md`).
 
 ## Ülesanne
 
-Sina oled SotsiaalAI ajutine arenduskoordinaator. Jätka olemasoleva kanoonilise seisu alusel. Ära alusta arendusprogrammi, analüüse ega auditeid nullist.
+Sina oled SotsiaalAI arenduskoordinaator. Jätka olemasoleva seisu alusel. Ära alusta arendusprogrammi, analüüse ega auditeid nullist.
 
-Töökaust:
+Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`
 
-`C:\Users\rauds\Desktop\SotsiaalAI`
+Kui sul puudub ligipääs kohalikule töökaustale, palu kasutajal lisada vähemalt käesolev fail ja viimane lõpparuanne. Ilma repo ligipääsuta ei tohi Git-, worktree-, remote- ega failiseisu kinnitatuks lugeda.
 
-Kui sul puudub ligipääs sellele kohalikule töökaustale, palu kasutajal lisada vähemalt käesolev fail, kaks allpool nimetatud kanoonilist dokumenti ning viimane saabunud lõpparuanne. Ilma repo ligipääsuta ei tohi Git-, worktree-, remote- ega failiseisu kinnitatuks lugeda.
+## LÕPETAMISE KONTROLLNIMEKIRI (iga ülesande lõpus)
 
-## Loe kõigepealt täielikult
+Kui teema saab valmis, katkeb või jääb pooleli, uuenda **AINULT seda faili** ja **ainult neid kolme asja**:
 
-1. `docs/platvormi arendus/koordinaatori-handoff-2026-07-16.md`
-2. `docs/platvormi arendus/platvormi-arendusprogramm-2026-07-17.md`
-3. `docs/platvormi arendus/arendusteemade-masterregister.md`
-4. `docs/platvormi arendus/arendusplaan-omanikuvaade.md`
+1. **Teema rida seisutabelis** → uus olek, haru + lõppcommit SHA, kasutatud baas-SHA, väravate tulemus, mis jäi `NOT_PROVEN`.
+2. **Järjekord** → mis teema avanes, mis on järgmine.
+3. **Vananenud väide** → kui töö käigus selgus, et mõni siinne lause on vale, paranda see kohe siin.
 
-Kanoonilise handoff'i alguses on peatükk „Järgmise akna käivitusseis — 2026-07-17”. Lähtu esmalt sellest. Käesolev fail on ülekandeülesanne; vastuolu korral on värskem kontrollitud Git-seis ja kanooniline handoff ülimuslikud.
+Reeglid:
+- **Kirjuta siia ka POOLELIOLEK.** „Lõpparuanne alles tuleb" ei ole põhjus jätta seis kirjutamata — 18.07 seisis T24 ja T23 töö päevi ainult kettal just sellepärast.
+- **Ära uuenda masterregistrit, programmi ega analüüsidokke** teema oleku pärast. Need on viitematerjal. Erand: kui teema *definitsioon* või *piir* päriselt muutus, siis masterregister — aga mitte olek.
+- **Ära loo uut konkureerivat seisufaili** ega „handoff-<kuupäev>" faili.
+
+## Viitematerjal (ei kanna elavat olekut)
+
+| Fail | Mille jaoks |
+|---|---|
+| `arendusteemade-masterregister.md` | teemade definitsioonid, piirid, vastutuskaart |
+| `platvormi-arendusprogramm-2026-07-17.md` | programmi plaan ja faasid |
+| `arendusplaan-omanikuvaade.md` | omaniku vaade eesmärkidele |
+| `tXX-…-ulesanne.md` | teemalepingud — ei muutu pärast väljastamist |
+| `koordinaatori-handoff-2026-07-16.md` | **AJALOOLINE**, ei uuendata |
 
 ## Kriitilised tööreeglid
 
@@ -61,9 +85,52 @@ Kontrolli odavalt ja read-only viisil muutlikud Git-faktid:
 
 Ära jooksuta selle kontrolli käigus teste, build'i ega runtime'i.
 
-Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontrollitud fakti ja uuenda pärast vastuvõttu kõik kanoonilised dokumendid.
+Kui kontrollitud Git-fakt erineb käesoleva faili hetkeülevaatest, kasuta kontrollitud fakti ja paranda see fail.
 
-## Praegune jätkamispunkt
+## SEISUTABEL — 2026-07-18
+
+`main @ fc398505` + T19-dokid; **server `origin/main` on ~66 commit'i TAGA ja puutumata** kuni eraldi deploy-otsuseni.
+
+### Töö järjekord (jadatöö)
+
+| # | Teema | Olek | Haru / SHA | Avab |
+|---|---|---|---|---|
+| 1 | T24 `FIELD-V1` | `IN_PROGRESS` — pausil, WIP-kontrollpunkt | `codex/field-v1 @ cb99b092` | — |
+| 2 | T02+T16 `LEPITUS` | **`CODE_READY` — väravad rohelised, ootab vastuvõttu + push-luba** | `codex/t02-t16-remerge @ a6f683a6`, baas `main @ 89edb9c3` | **T09** |
+| 3 | T10 `PUBLIC-V1` | `QUEUED` | leping `t10-public-v1-ulesanne.md` | avalikud pinnad |
+| 4 | T07 `DOCUMENTS-RESEARCH-V1` | `QUEUED` | leping `t07-documents-research-v1-ulesanne.md` | dokumendiruum |
+
+### Pooleli, ei ole järjekorras
+
+| Teema | Olek | Haru / SHA | Märkus |
+|---|---|---|---|
+| T23 `ESTA-MENTOR-V1` | `IN_PROGRESS_LOCAL` | `codex/esta-mentor-v1 @ adc44f69` | WIP-kontrollpunkt, väravaid pole jooksutatud; remote puudub |
+| T03 `CHAT-VOICE-V1` | `BLOCKED_DECISION` | `codex/chat-voice-v1 @ 7bdd1288` | vajab tooteomaniku otsust: main'i mic-nupp vs T03 spatial-entry. Lepingut ei vormistata enne otsust |
+| T19 `SPATIAL-WORKSPACE-V1` | `DEFERRED — OWNER_DECISION` | prototüüp main'is `faeaf04c` | kogu suund praegu ebaoluline; **ükski teema ei oota T19 järele** |
+| T09 `PAYMENTS-V1` | `BLOCKED` | leping `t09-payments-v1-ulesanne.md` | avaneb, kui T02+T16 on main'is |
+| T25, T26 | `ANALYSIS_READY` | — | ootavad T27 release candidate'i |
+| T27 `OPS-FINAL-A0` | ei käivitata | — | release candidate'i lõppvärav |
+
+### Viimati valminud: T02+T16 LEPITUS (18.07)
+
+- Baas `main @ 89edb9c3`, lõppcommit `a6f683a6`, **remote'i EI push'itud** (ootab kasutaja luba).
+- T16 oli T02 otsa laotud → üks merge tõi mõlemad.
+- 29 konfliktiplokki 6 failis: schema/retention/notifications additiivsed; accountLifecycle + route.js + testid tervikuna T02 poolelt.
+- **Verify-then-swap võitis ja sulges ka turvaaugu:** main'i PROF-P1 jättis PIN-ita kasutajal reauth'i üldse vahele, T02 tagastab `409 PIN_SETUP_REQUIRED`.
+- Kaks teadlikku testiasendust, neist üks päris käitumismuutus (PIN-ita konto ei saa enam profiili muuta).
+- Väravad: **1582/1582 testi**, lint 0 viga (baasjoonega identne), i18n OK, **98-migratsiooni täisahel OK**, build OK, **sünteetiline runtime 26/26 PASS** isoleeritud DB-l.
+- `NOT_PROVEN`: brauseri-QA (T27), päris e-kirjad.
+- Teadmiseks: T24 peab hiljem rebase'ima — tema migratsioon `20260718090000` on nendest hilisem, aga haru on vanemal baasil.
+
+### Lahtised omaniku otsused
+
+1. **Deploy** — server 66 taga; enne vajab `.env` `MAKSEKESKUS_PUBLIC_KEY` lahendust (võti lisada VÕI recurring keelata), muidu maksed-p1a check-env kukutab deploy-kontrolli.
+2. **T02+T16 push** origin'isse + merge main'i → avab T09.
+3. **T03 disainiotsus** — mic vs spatial-entry.
+
+**Backup'id:** `backup/main-pre-sync-2026-07-18`, `backup/main-pre-integration-2026-07-18`, `integration/2026-07-18`.
+
+## Varasem taust (ajalooline, ei uuendata)
 
 ### 18.07 integratsioon (ülimuslik allolevate "ei ole main'is" märgete suhtes)
 

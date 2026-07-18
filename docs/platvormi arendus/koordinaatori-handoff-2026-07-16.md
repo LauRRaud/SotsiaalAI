@@ -1,6 +1,10 @@
-# SotsiaalAI arenduskoordinaatori kanooniline handoff
+# SotsiaalAI arenduskoordinaatori handoff (ARHIIV)
 
-STATUS: ACTIVE CANONICAL BOARD
+STATUS: HISTORICAL — SUPERSEDED BY `SEIS.md` (2026-07-18)
+
+> **AJALOOLINE DOKUMENT. Ei uuendata.** Alates 18.07.2026 on ainus elav seisufail [`SEIS.md`](./SEIS.md). Kui mõni siinne staatuseväide on SEIS.md-ga vastuolus, **kehtib SEIS.md** — siinseid ridu ei paranda, vaid loeb ajaloona.
+>
+> Siin sees on endiselt väärtuslikku konteksti (otsuste põhjendused, varasemad kontrollid, mudelivalik). Seda võib lugeda taustaks, aga mitte kunagi „kus me praegu oleme" allikana.
 
 Kuupäev: 2026-07-17
 Viimane kontroll: 2026-07-17 — aktiivne repo, nimetatud remote-harud ja muutlikud Git-faktid kontrollitud. Fable'i tulevikuanalüüsid kuni JOURNEY-D0-ni on lõpetatud; T25/T26 on `ANALYSIS_READY`, T23 ja T24 on teostuses pooleli. `ADMIN-V1-CORE`, T04, T05, T06 ja T28 on `CODE_READY`; T06 runtime/migratsiooni DB-seis jääb T27-sse. T28 `RAG-V1` on `codex/rag-v1 @ 8c3e5f77`, baas T06 `f17a3c36`, local=remote, tööpuu puhas; P8.6 päris proovipakk jääb omaniku otsuseks. Paketipõhiseid kordusteste ega Wave A koondauditit praegu ei käivitata.
@@ -9,7 +13,7 @@ See fail on aktiivsete tööpakettide kanooniline koordinaatorilaud. Git ja rake
 
 Teemataseme arenduste kanooniline register on `docs/platvormi arendus/arendusteemade-masterregister.md`. Auditite `P0.x`/`P1.x` read on selle registri teemade sisemised kontrollpunktid, mitte vaikimisi uued Sol/Terra ülesanded.
 
-Teisele AI-kontole või Claude'i rakendusse üleandmiseks kasutatakse faili `docs/platvormi arendus/koordinaatori-avariihandoff.md`. Seda uuendatakse pärast iga vastu võetud lõpparuannet koos käesoleva handoff'i ja arendusprogrammiga.
+Teisele AI-kontole üleandmiseks kasutatakse faili [`SEIS.md`](./SEIS.md) — **ainult seda**. Varasem juhis „uuendatakse koos käesoleva handoff'i ja arendusprogrammiga" on 18.07 tühistatud: mitu paralleelset staatusekoopiat oli just see, mis vananes.
 
 ## Järgmise akna käivitusseis — 2026-07-17
 

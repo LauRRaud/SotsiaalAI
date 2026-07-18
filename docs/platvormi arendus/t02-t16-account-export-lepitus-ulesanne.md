@@ -71,3 +71,15 @@ Kui leiad koha, kus PROF-P1 ja T02 leping on päriselt vastuolus (mitte lihtsalt
 Esita: worktree, haru, kasutatud `main`-baasi SHA, lõppcommit/remote SHA; konfliktifailide kaupa lahenduse kirjeldus (kummalt poolelt, miks); migratsioonide lõplikud nimed; kõigi väravate tulemused; runtime-ringi tulemus või `NOT_RUN`; PROF-P1 kaitsete säilimise tõendus (viide testidele); avastatud päris-vastuolud otsustuspunktidena; kinnitus, et algsed harud, `main`, server, merge ja deploy on puutumata.
 
 Pärast lõpparuannet kontrollib koordinaator ainult Git-faktid ja lepitusotsuste loogika; teste/buildi ei korrata. Vastuvõtu järel liidetakse haru main'i eraldi koordinaatoritoiminguna ja T09 muutub väljastatavaks.
+
+## Lõpetamisel: uuenda AINULT `SEIS.md`
+
+Kui töö on valmis, katkeb või jääb pooleli, uuenda [`SEIS.md`](./SEIS.md) — **ja mitte ühtki teist registrit**:
+
+1. **Seisutabeli rida** → uus olek, haru + lõppcommit SHA, kasutatud baas-SHA, väravate tulemus, mis jäi `NOT_PROVEN`.
+2. **Järjekord** → mis avanes, mis on järgmine.
+3. **Vananenud väide** → kui selgus, et mõni SEIS.md lause on vale, paranda kohe seal.
+
+Masterregistrit, arendusprogrammi ega omanikuvaadet **ei uuendata teema oleku pärast** — need on viitematerjal. **Kirjuta SEIS.md-sse ka pooleliolek**: „lõpparuanne alles tuleb" ei ole põhjus jätta seis kirjutamata.
+
+> **Tehtud 18.07** — see leping on täidetud, seis on SEIS.md-s. Ootab vastuvõttu, push-luba ja merge'i.

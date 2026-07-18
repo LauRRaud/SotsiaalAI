@@ -1,6 +1,9 @@
 # SotsiaalAI arendusplaan — omanikuvaade
 
-STATUS: ACTIVE OWNER ROADMAP  
+STATUS: ACTIVE REFERENCE — OWNER ROADMAP (mitte elav olek)
+
+> **Elav seis on [`SEIS.md`](./SEIS.md)-s.** Siin on omaniku vaade eesmärkidele ja kasutajatulemusele. Teemaolekud on hetktõmmised — vastuolu korral kehtib SEIS.md, ja teema valmimisel uuendatakse SEIS.md, mitte seda faili.
+
 Kuupäev: 2026-07-17  
 Omanik: tooteomanik + arenduskoordinaator
 

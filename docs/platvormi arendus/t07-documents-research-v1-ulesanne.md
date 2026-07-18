@@ -113,3 +113,13 @@ Valmis on siis, kui E1–E5 on samas harus, privaatse dokumendi cross-tenant pii
 Esita worktree, haru, kasutatud `main`-baasi SHA, lõppcommit/remote SHA, migratsioonid, E1–E5 kokkuvõte, testid/lint/i18n/Prisma/diff-check/build, sünteetiline runtime/cleanup või `NOT_RUN`/`NOT_PROVEN`, välja jäetud ops- ja failielutsükli osad ning kinnitus, et tootmisandmeid, merge'i ega deploy'd ei puudutatud.
 
 Pärast lõpparuannet teeb Fable fokuseeritud lepingu kontrolli: cross-tenant RAG-piir, owner-404, DRAFT/analüüsi püsivus, soft-nav/Stop ning snapshot-kustutus. Ta ei korda täissviiti, buildi ega tervikauditit.
+
+## Lõpetamisel: uuenda AINULT `SEIS.md`
+
+Kui töö on valmis, katkeb või jääb pooleli, uuenda [`SEIS.md`](./SEIS.md) — **ja mitte ühtki teist registrit**:
+
+1. **Seisutabeli rida** → uus olek, haru + lõppcommit SHA, kasutatud baas-SHA, väravate tulemus, mis jäi `NOT_PROVEN`.
+2. **Järjekord** → mis avanes, mis on järgmine.
+3. **Vananenud väide** → kui selgus, et mõni SEIS.md lause on vale, paranda kohe seal.
+
+Masterregistrit, arendusprogrammi ega omanikuvaadet **ei uuendata teema oleku pärast** — need on viitematerjal. **Kirjuta SEIS.md-sse ka pooleliolek**: „lõpparuanne alles tuleb" ei ole põhjus jätta seis kirjutamata.

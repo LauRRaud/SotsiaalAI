@@ -151,3 +151,13 @@ Kasuta ainult lokaalset sünteetilist keskkonda. Kontrolli kolm rolliteekonda, s
 Esita worktree, haru, täpne baas-SHA (peab olema `0ea13453…` või uuem kohalik `main`) ning lõppcommit/remote SHA; migratsiooni nimi või kinnitus, et seda ei tehtud; E1–E6 kasutajateekonna kokkuvõte; testide/lindi/i18n/Prisma/diff-check/buildi tulemused; runtime ja cleanup või `NOT_RUN`/`NOT_PROVEN`; juristi lõppkinnituse piir; ning kinnitus, et põhitööpuud, `main`-i, serverit, merge'i ega deploy'd ei muudetud.
 
 Koordinaator kontrollib pärast aruannet ainult haru, parent'i, commit'i ja remote SHA-d. Ta ei korda automaatselt sinu teste, buildi ega runtime'i.
+
+## Lõpetamisel: uuenda AINULT `SEIS.md`
+
+Kui töö on valmis, katkeb või jääb pooleli, uuenda [`SEIS.md`](./SEIS.md) — **ja mitte ühtki teist registrit**:
+
+1. **Seisutabeli rida** → uus olek, haru + lõppcommit SHA, kasutatud baas-SHA, väravate tulemus, mis jäi `NOT_PROVEN`.
+2. **Järjekord** → mis avanes, mis on järgmine.
+3. **Vananenud väide** → kui selgus, et mõni SEIS.md lause on vale, paranda kohe seal.
+
+Masterregistrit, arendusprogrammi ega omanikuvaadet **ei uuendata teema oleku pärast** — need on viitematerjal. **Kirjuta SEIS.md-sse ka pooleliolek**: „lõpparuanne alles tuleb" ei ole põhjus jätta seis kirjutamata.

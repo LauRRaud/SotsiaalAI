@@ -1,6 +1,10 @@
 # SotsiaalAI arendusteemade masterregister
 
-STATUS: ACTIVE CANONICAL THEME REGISTER
+STATUS: ACTIVE REFERENCE — THEME DEFINITIONS (mitte elav olek)
+
+> **Elav seis on [`SEIS.md`](./SEIS.md)-s, mitte siin.** See register määrab, *mida teema tähendab*: ulatuse, piirid, vastutuskaardi, sõltuvused. Siinsed `Olek:` read on **hetktõmmised** ja võivad vananeda — vastuolu korral kehtib SEIS.md.
+>
+> Teema oleku muutumisel **ära uuenda seda faili** — uuenda SEIS.md. Siia tehakse muudatus ainult siis, kui teema *definitsioon või piir* päriselt muutus.
 
 Kuupäev: 2026-07-17  
 Omanik: tooteomanik + arenduskoordinaator  
