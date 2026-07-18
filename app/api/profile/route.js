@@ -1,6 +1,5 @@
 export const runtime = "nodejs";
 
-import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
@@ -23,7 +22,6 @@ const NO_STORE_HEADERS = {
   Pragma: "no-cache",
   Expires: "0"
 };
-const EMAIL_VERIFY_IDENTIFIER_PREFIX = "email-verify:";
 
 function json(payload, status = 200) {
   return NextResponse.json(payload, {
@@ -78,68 +76,6 @@ async function requireUser() {
   }
 }
 
-function buildVerifyUrl(email, token, locale) {
-  const baseUrl = resolveBaseUrl();
-  if (!baseUrl) {
-    throw new Error("api.auth.verify.base_url_missing");
-  }
-
-  const params = new URLSearchParams({ email, token });
-  if (locale) params.set("locale", locale);
-
-  return `${baseUrl.replace(/\/$/, "")}/api/verify-email?${params.toString()}`;
-}
-
-function buildEmailVerifyIdentifier(email) {
-  return `${EMAIL_VERIFY_IDENTIFIER_PREFIX}${String(email || "").trim().toLowerCase()}`;
-}
-
-async function sendVerificationEmail(email, locale) {
-  const token = crypto.randomBytes(32).toString("hex");
-  const hours = Number(process.env.EMAIL_VERIFY_HOURS || 24);
-  const expires = new Date(Date.now() + hours * 60 * 60 * 1000);
-  const identifier = buildEmailVerifyIdentifier(email);
-
-  await prisma.verificationToken.create({
-    data: {
-      identifier,
-      token,
-      expires
-    }
-  });
-
-  const verifyUrl = buildVerifyUrl(email, token, locale);
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  if (!from) {
-    throw new Error("api.auth.verify.email_from_missing");
-  }
-
-  const mailer = getMailer("email-verify");
-  await mailer.sendMail({
-    to: email,
-    from,
-    subject: serverT(locale, "email.auth.verify.subject"),
-    text: serverT(locale, "email.auth.verify.text", { verifyUrl }),
-    html: serverT(locale, "email.auth.verify.html", { verifyUrl })
-  });
-
-  await prisma.verificationToken.deleteMany({
-    where: {
-      identifier,
-      NOT: { token }
-    }
-  });
-
-  try {
-    await prisma.user.update({
-      where: { email },
-      data: { emailVerificationSentAt: new Date() }
-    });
-  } catch {
-    // do not fail profile update if metadata update fails
-  }
-}
-
 async function sendAccountDeletedEmail(email, locale) {
   const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
   if (!from) {
@@ -153,6 +89,55 @@ async function sendAccountDeletedEmail(email, locale) {
     subject: serverT(locale, "email.auth.account_deleted.subject"),
     text: serverT(locale, "email.auth.account_deleted.text"),
     html: serverT(locale, "email.auth.account_deleted.html")
+  });
+}
+
+function buildEmailChangeConfirmUrl(token, locale) {
+  const baseUrl = resolveBaseUrl();
+  if (!baseUrl) {
+    throw new Error("api.auth.verify.base_url_missing");
+  }
+
+  const params = new URLSearchParams({ token });
+  if (locale) params.set("locale", locale);
+
+  return `${baseUrl.replace(/\/$/, "")}/api/profile/email-change/confirm?${params.toString()}`;
+}
+
+// Verify-then-swap (E2): the confirmation link goes ONLY to the new address.
+async function sendEmailChangeConfirmLink(newEmail, token, locale) {
+  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
+  if (!from) {
+    throw new Error("api.auth.verify.email_from_missing");
+  }
+
+  const confirmUrl = buildEmailChangeConfirmUrl(token, locale);
+  const mailer = getMailer("email-change-confirm");
+  await mailer.sendMail({
+    to: newEmail,
+    from,
+    subject: serverT(locale, "email.account.email_change_confirm.subject"),
+    text: serverT(locale, "email.account.email_change_confirm.text", { confirmUrl }),
+    html: serverT(locale, "email.account.email_change_confirm.html", { confirmUrl })
+  });
+}
+
+// Security notice on PIN change (E3): sent to the account's current address; it
+// carries no PIN, token or other secret.
+async function sendPinChangedNotice(email, locale) {
+  if (!email) return;
+  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
+  if (!from) {
+    throw new Error("api.auth.verify.email_from_missing");
+  }
+
+  const mailer = getMailer("pin-changed");
+  await mailer.sendMail({
+    to: email,
+    from,
+    subject: serverT(locale, "email.account.pin_changed.subject"),
+    text: serverT(locale, "email.account.pin_changed.text"),
+    html: serverT(locale, "email.account.pin_changed.html")
   });
 }
 
@@ -206,6 +191,15 @@ export async function GET(request) {
     const currentDeviceToken = request.cookies.get(DEVICE_COOKIE_NAME)?.value;
     const currentDeviceHash = currentDeviceToken ? hashOpaqueToken(currentDeviceToken) : null;
 
+    const pending = await prisma.pendingEmailChange.findUnique({
+      where: { userId: ctx.userId },
+      select: { newEmail: true, expiresAt: true }
+    });
+    const activePending =
+      pending && pending.expiresAt > new Date()
+        ? { email: pending.newEmail, expiresAt: pending.expiresAt.toISOString() }
+        : null;
+
     return json({
       ok: true,
       user: {
@@ -218,6 +212,7 @@ export async function GET(request) {
         hasPassword: !!user.passwordHash,
         activeSessionLimit: getActiveSessionMaxForUser(user),
         trustedDeviceLimit: getTrustedDeviceMaxForUser(user),
+        pendingEmailChange: activePending,
         trustedDevices: user.trustedDevices.map((device) => ({
           id: device.id,
           name: device.name,
@@ -260,11 +255,20 @@ export async function PUT(request) {
       nextEmail,
       nextPassword,
       currentPassword,
-      onEmailChanged: async (email) => {
+      onEmailChangeRequested: async ({ newEmail, token }) => {
+        // Send failure must not leave a half state: the pending change is already
+        // recorded, so we log and let the UI offer a resend rather than fail hard.
         try {
-          await sendVerificationEmail(email, requestLocale);
+          await sendEmailChangeConfirmLink(newEmail, token, requestLocale);
         } catch (sendError) {
-          console.error("profile verification email send failed", safeError(sendError));
+          console.error("profile email-change confirm send failed", safeError(sendError));
+        }
+      },
+      onPinChanged: async ({ email }) => {
+        try {
+          await sendPinChangedNotice(email, requestLocale);
+        } catch (sendError) {
+          console.error("profile pin-changed email send failed", safeError(sendError));
         }
       }
     });
@@ -281,7 +285,9 @@ export async function PUT(request) {
     return json({
       ok: true,
       user: result.user,
-      requiresReauth: result.requiresReauth
+      requiresReauth: result.requiresReauth,
+      emailChangeRequested: Boolean(result.emailChangeRequested),
+      pendingEmail: result.pendingEmail || null
     });
   } catch (error) {
     if (error?.code === "P2002") {
@@ -332,11 +338,12 @@ export async function DELETE(request) {
 
     const { deletion } = result;
 
+    // The 202 "pending" state must not disclose the deletion job id (it would
+    // reach the DOM/URL/log). The client only needs pending vs done.
     return json({
       ok: true,
       deleted: deletion.ok,
-      pending: deletion.pending === true,
-      deletionJobId: deletion.deletionJobId || null
+      pending: deletion.pending === true
     }, deletion.pending ? 202 : 200);
   } catch (error) {
     if (error?.code === "P2025") {

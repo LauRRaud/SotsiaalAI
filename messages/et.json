@@ -225,7 +225,37 @@
     "login_to_view": "Profiili vaatamiseks logi sisse.",
     "login": "Logi sisse",
     "manage_subscription": "Halda tellimust",
+    "delete_pending_title": "Konto kustutamine on pooleli",
+    "delete_pending_body": "Sinu ligipääs on suletud ja konto kustutatakse. Osa andmete lõplik koristus on veel järjekorras.",
+    "delete_done_title": "Konto on kustutatud",
+    "delete_done_body": "Sinu konto ja sellega seotud andmed on kustutatud.",
+    "delete_continue": "Jätka",
+    "admin_preview_banner": "Vaatad praegu {role} vaates. Sinu tegelik roll on administraator ja õigused ei muutu.",
     "my_sharings": "Minu jagamised",
+    "data_export": {
+      "title": "Minu andmekoopia",
+      "description": "See on sinu tervikandmete ZIP-koopia, mitte üksiku faili või vestluse allalaadimine.",
+      "included": "Koopias on profiil ja nõustumised, sinu vestlused, Teekonnad, dokumendid ja artefaktid, Tööheaolu kirjed ning sinu saadetud eelpöördumised.",
+      "excluded": "Koopiast jäävad välja teiste inimeste ruumisõnumid ja andmed, adressaadi märkmed, auditilogid, teavituste ajalugu, salvestised ja admini koondid.",
+      "request": "Taotle andmekoopia",
+      "requesting": "Taotlen…",
+      "pin_hint": "Turvalisuse huvides sisesta taotluse kinnitamiseks praegune PIN.",
+      "status": "Olek: {status}",
+      "queued": "Koopia on järjekorras.",
+      "running": "Koopiat koostatakse.",
+      "ready": "Koopia on valmis ja saadaval kuni {date}.",
+      "failed": "Koopia koostamine ebaõnnestus. Andmeid ei ole kustutatud.",
+      "cancelled": "Koopia taotlus on tühistatud. Andmeid ei ole kustutatud.",
+      "expired": "Koopia aegus ning ZIP eemaldati.",
+      "download": "Laadi andmekoopia alla",
+      "cancel": "Tühista taotlus",
+      "load_failed": "Andmekoopia olekut ei saanud laadida.",
+      "request_failed": "Andmekoopia taotlemine ebaõnnestus.",
+      "cancel_failed": "Taotlust ei saanud tühistada.",
+      "delete_choice": "Enne konto lõplikku kustutamist: kas soovid andmekoopiat? Koopia ootamine ei hoia sinu ligipääsu avatuna.",
+      "delete_copy": "Koosta koopia enne kustutamist",
+      "delete_without_copy": "Jätka ilma koopiata"
+    },
     "usage": {
       "title": "Minu kasutus",
       "loading": "Laen kasutusandmeid…",
@@ -237,6 +267,8 @@
       "per_month": "{price} / kuu",
       "next_billing": "Järgmine arveldus: {date}",
       "access_until": "Ligipääs kehtib kuni {date}",
+      "expired": "Tellimus on aegunud.",
+      "expired_on": "Tellimus aegus {date}.",
       "used_of": "{used} / {limit}",
       "resets": "Uueneb {date}",
       "free_description": "Tasuta paketis saad kasutada põhilisi abisoove ja teenusekaarti. AI-tööriistade kasutus avaneb tasulise paketiga.",
@@ -305,7 +337,24 @@
       "error_pin_required": "Palun sisesta PIN-kood.",
       "error_pin_length": "PIN peab olema 4–8 numbrit.",
       "error_failed": "E-posti uuendamine ebaõnnestus.",
-      "error_email_in_use": "See e-posti aadress on juba kasutusel."
+      "error_email_in_use": "See e-posti aadress on juba kasutusel.",
+      "pending_title": "Ootab kinnitust",
+      "pending_body": "Saatsime kinnituslingi aadressile {email}. Ava link uues postkastis, et muudatus jõustuks.",
+      "pending_hint": "Kuni kinnitad, jääb sisselogimine sinu praegusele e-postile.",
+      "resend": "Saada uuesti",
+      "resending": "Saadan…",
+      "resent": "Saatsime kinnituslingi uuesti.",
+      "cancel": "Katkesta muudatus",
+      "cancelling": "Katkestan…",
+      "cancelled": "E-posti muudatus katkestatud.",
+      "no_pending": "Poolelolevat e-posti muudatust ei ole.",
+      "confirm_page": {
+        "success_title": "E-post on muudetud",
+        "success_body": "Sinu uus e-posti aadress on kinnitatud ja kehtib nüüd sisselogimisel. Turvalisuse huvides on vanad seansid lõpetatud.",
+        "error_title": "Link ei kehti",
+        "error_body": "See kinnituslink on kehtetu, aegunud või juba kasutatud. Alusta e-posti muutmist uuesti oma profiililt.",
+        "continue": "Jätka"
+      }
     },
     "current_pin_label": "Praegune PIN",
     "new_pin_label": "Uus PIN",
@@ -318,7 +367,8 @@
       "pin_mismatch": "PIN-id ei kattu.",
       "no_changes": "Midagi pole uuendada.",
       "current_pin_invalid": "Praegune PIN on vale.",
-      "user_not_found": "Kasutajat ei leitud."
+      "user_not_found": "Kasutajat ei leitud.",
+      "pin_setup_required": "Enne e-posti muutmist või konto kustutamist loo palun PIN oma praeguse e-posti taastamise kaudu."
     },
     "theme_mode": {
       "light": "Hele",
@@ -2636,6 +2686,23 @@
     }
   },
   "email": {
+    "account": {
+      "email_change_confirm": {
+        "subject": "Kinnita oma uus e-posti aadress",
+        "text": "Tere!\n\nSaime taotluse muuta sinu SotsiaalAI konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:\n{confirmUrl}\n\nKui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.",
+        "html": "<p>Tere!</p><p>Saime taotluse muuta sinu SotsiaalAI konto e-posti aadressi. Kinnita uus aadress alloleva lingi kaudu:</p><p><a href=\"{confirmUrl}\">{confirmUrl}</a></p><p>Kui sina seda ei algatanud, võid selle kirja eirata — kontot ei muudeta enne kinnitamist.</p>"
+      },
+      "pin_changed": {
+        "subject": "SotsiaalAI PIN-kood on muudetud",
+        "text": "Tere!\n\nSinu SotsiaalAI konto PIN-kood on äsja muudetud.\n\nKui sina seda ei teinud, kirjuta kohe aadressile info@sotsiaal.ai ja taasta oma PIN.",
+        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto PIN-kood on äsja muudetud.</p><p>Kui sina seda ei teinud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a> ja taasta oma PIN.</p>"
+      },
+      "email_changed_notice": {
+        "subject": "SotsiaalAI konto e-post on muudetud",
+        "text": "Tere!\n\nSinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.\n\nKui sina seda ei algatanud, kirjuta kohe aadressile info@sotsiaal.ai.",
+        "html": "<p>Tere!</p><p>Sinu SotsiaalAI konto e-posti aadress on muudetud. See teavitus saadeti sinu senisele aadressile.</p><p>Kui sina seda ei algatanud, kirjuta kohe aadressile <a href=\"mailto:info@sotsiaal.ai\">info@sotsiaal.ai</a>.</p>"
+      }
+    },
     "auth": {
       "reset": {
         "subject": "SotsiaalAI PIN-i taastamine",
@@ -3118,6 +3185,7 @@
       "practice_review_assigned": "Sulle määrati praktika ülevaatus",
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
       "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist"
+      ,"data_export_ready": "Sinu andmekoopia on valmis"
     },
     "center": {
       "title": "Teavitused",
@@ -3179,6 +3247,9 @@
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
       "usage_load_failed": "Kasutusandmeid ei saanud laadida."
+    },
+    "exports": {
+      "pdf_content_not_supported": "PDF ei toeta selle sisu märke. Kasuta Wordi/DOCX-i."
     },
     "notifications": {
       "load_failed": "Teavitusi ei saanud laadida.",

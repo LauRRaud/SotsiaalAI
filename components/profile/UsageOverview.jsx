@@ -121,6 +121,8 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
         }).format(price)
       });
   const billingDate = snapshot.subscription?.nextBilling || snapshot.subscription?.validUntil;
+  const subscriptionExpired = Boolean(snapshot.subscription?.expired);
+  const expiredAt = snapshot.subscription?.expiredAt;
 
   return (
     <section className="usage-overview" aria-labelledby="usage-overview-title">
@@ -132,7 +134,13 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
         <strong>{priceText}</strong>
       </div>
 
-      {billingDate ? (
+      {subscriptionExpired ? (
+        <p className="usage-overview__billing usage-overview__billing--expired" role="status">
+          {expiredAt
+            ? t("profile.usage.expired_on", { date: formatDate(expiredAt, locale) })
+            : t("profile.usage.expired")}
+        </p>
+      ) : billingDate ? (
         <p className="usage-overview__billing">
           {snapshot.subscription?.nextBilling
             ? t("profile.usage.next_billing", { date: formatDate(billingDate, locale) })
@@ -181,7 +189,9 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
       {plan.key !== "admin_internal" ? (
         <div className="usage-overview__action">
           <Button type="button" onClick={onManageSubscription}>
-            {price === 0 ? t("profile.usage.compare_plans") : t("profile.manage_subscription")}
+            {price === 0 && !subscriptionExpired
+              ? t("profile.usage.compare_plans")
+              : t("profile.manage_subscription")}
           </Button>
         </div>
       ) : null}
