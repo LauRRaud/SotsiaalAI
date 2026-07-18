@@ -4653,7 +4653,32 @@
       "status_covision_conflict": "The draft changed in the meantime. Refresh the confirmed version and try again.",
       "status_covision_identifiers": "The text may contain direct identifiers. Remove or generalize them and confirm the text again.",
       "status_covision_error": "Creating the Covision case failed. The draft stayed private.",
-      "status_error": "Saving or confirming the draft failed."
+      "status_error": "Saving or confirming the draft failed.",
+      "identifier_hints_label": "Places to review",
+      "identifier_types": {
+        "personal_code": "Possible personal identification code",
+        "email": "Email address",
+        "phone": "Possible phone number",
+        "exact_date": "Very specific date",
+        "address": "Possible exact address",
+        "name": "Possible name",
+        "small_place": "Small settlement or narrow area",
+        "institution": "Specific school, workplace or institution",
+        "rare_detail": "Possibly recognizable rare detail",
+        "other": "Possible direct identifier"
+      },
+      "identifier_suggestions": {
+        "personal_code": "Remove the personal identification code completely.",
+        "email": "Replace the email address with a role or contact channel.",
+        "phone": "Remove the phone number or keep only a description of the contact channel.",
+        "exact_date": "Use a period instead, such as a month, a year or the order of events.",
+        "address": "Generalize the address to a region or service type.",
+        "name": "Replace the name with a role, such as client, parent or caregiver.",
+        "small_place": "Use a wider region if a small settlement could identify the person.",
+        "institution": "Generalize the institution to a role, such as school, employer or service provider.",
+        "rare_detail": "Consider whether the rare detail is necessary, or describe it more generally.",
+        "other": "Consider whether the detail is necessary, or generalize it."
+      }
     },
     "errors": {
       "output_draft_conflict": "The draft changed in the meantime or has already been moved to Covision.",

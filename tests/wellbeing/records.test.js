@@ -35,6 +35,7 @@ test("createQuickCheckRecordForUser stores a private standardized wellbeing reco
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "rec_1", ...args.data };
@@ -42,7 +43,7 @@ test("createQuickCheckRecordForUser stores a private standardized wellbeing reco
     }
   };
 
-  const record = await createQuickCheckRecordForUser("user_1", {
+  const { record, deduplicated } = await createQuickCheckRecordForUser("user_1", {
     period: "2026-W22",
     roleGroup: "SOCIAL_WORKER",
     visibility: "organization",
@@ -56,6 +57,7 @@ test("createQuickCheckRecordForUser stores a private standardized wellbeing reco
   assert.equal(calls[0].data.aggregationEligible, true);
   assert.equal(calls[0].data.computedSignal.signalLevel, "red");
   assert.deepEqual(calls[0].data.standardizedFields, quickCheckFields);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "rec_1");
 });
 
@@ -107,6 +109,7 @@ test("createRecoveryRecordForUser stores a private recovery workflow record", as
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "recovery_1", ...args.data };
@@ -114,7 +117,7 @@ test("createRecoveryRecordForUser stores a private recovery workflow record", as
     }
   };
 
-  const record = await createRecoveryRecordForUser("user_1", {
+  const { record, deduplicated } = await createRecoveryRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -137,6 +140,7 @@ test("createRecoveryRecordForUser stores a private recovery workflow record", as
   assert.equal(calls[0].data.scoringVersion, "recovery-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "recovery_1");
 });
 
@@ -144,6 +148,7 @@ test("createWorkBoundariesRecordForUser stores a private boundary agreement reco
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "boundaries_1", ...args.data };
@@ -151,7 +156,7 @@ test("createWorkBoundariesRecordForUser stores a private boundary agreement reco
     }
   };
 
-  const record = await createWorkBoundariesRecordForUser("user_1", {
+  const { record, deduplicated } = await createWorkBoundariesRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -175,6 +180,7 @@ test("createWorkBoundariesRecordForUser stores a private boundary agreement reco
   assert.equal(calls[0].data.workflowType, "work-boundaries");
   assert.equal(calls[0].data.scoringVersion, "work-boundaries-v1");
   assert.equal(calls[0].data.visibility, "private");
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "boundaries_1");
 });
 
@@ -182,6 +188,7 @@ test("createHardCaseRecordForUser stores a private hard case aftercare record", 
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "hard_case_1", ...args.data };
@@ -189,7 +196,7 @@ test("createHardCaseRecordForUser stores a private hard case aftercare record", 
     }
   };
 
-  const record = await createHardCaseRecordForUser("user_1", {
+  const { record, deduplicated } = await createHardCaseRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -215,6 +222,7 @@ test("createHardCaseRecordForUser stores a private hard case aftercare record", 
   assert.equal(calls[0].data.scoringVersion, "hard-case-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "hard_case_1");
 });
 
@@ -222,6 +230,7 @@ test("createWorkplaceViolenceRecordForUser stores a private workplace violence s
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "violence_1", ...args.data };
@@ -229,7 +238,7 @@ test("createWorkplaceViolenceRecordForUser stores a private workplace violence s
     }
   };
 
-  const record = await createWorkplaceViolenceRecordForUser("user_1", {
+  const { record, deduplicated } = await createWorkplaceViolenceRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -253,6 +262,7 @@ test("createWorkplaceViolenceRecordForUser stores a private workplace violence s
   assert.equal(calls[0].data.scoringVersion, "workplace-violence-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "violence_1");
 });
 
@@ -260,6 +270,7 @@ test("createInterruptionsRecordForUser stores a private interruptions workflow r
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "interruptions_1", ...args.data };
@@ -267,7 +278,7 @@ test("createInterruptionsRecordForUser stores a private interruptions workflow r
     }
   };
 
-  const record = await createInterruptionsRecordForUser("user_1", {
+  const { record, deduplicated } = await createInterruptionsRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -291,6 +302,7 @@ test("createInterruptionsRecordForUser stores a private interruptions workflow r
   assert.equal(calls[0].data.scoringVersion, "interruptions-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "interruptions_1");
 });
 
@@ -298,6 +310,7 @@ test("createWorkProcessesRecordForUser stores a private work processes workflow 
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "work_processes_1", ...args.data };
@@ -305,7 +318,7 @@ test("createWorkProcessesRecordForUser stores a private work processes workflow 
     }
   };
 
-  const record = await createWorkProcessesRecordForUser("user_1", {
+  const { record, deduplicated } = await createWorkProcessesRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -329,6 +342,7 @@ test("createWorkProcessesRecordForUser stores a private work processes workflow 
   assert.equal(calls[0].data.scoringVersion, "work-processes-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "work_processes_1");
 });
 
@@ -336,6 +350,7 @@ test("createRoleBoundariesRecordForUser stores a private role boundaries workflo
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "role_boundaries_1", ...args.data };
@@ -343,7 +358,7 @@ test("createRoleBoundariesRecordForUser stores a private role boundaries workflo
     }
   };
 
-  const record = await createRoleBoundariesRecordForUser("user_1", {
+  const { record, deduplicated } = await createRoleBoundariesRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -367,6 +382,7 @@ test("createRoleBoundariesRecordForUser stores a private role boundaries workflo
   assert.equal(calls[0].data.scoringVersion, "role-boundaries-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "role_boundaries_1");
 });
 
@@ -374,6 +390,7 @@ test("createStarterSupportRecordForUser stores a private starter support workflo
   const calls = [];
   const prisma = {
     wellbeingRecord: {
+      findFirst: async () => null,
       create: async (args) => {
         calls.push(args);
         return { id: "starter_support_1", ...args.data };
@@ -381,7 +398,7 @@ test("createStarterSupportRecordForUser stores a private starter support workflo
     }
   };
 
-  const record = await createStarterSupportRecordForUser("user_1", {
+  const { record, deduplicated } = await createStarterSupportRecordForUser("user_1", {
     period: "current",
     roleGroup: "SOCIAL_WORKER",
     standardizedFields: {
@@ -405,5 +422,124 @@ test("createStarterSupportRecordForUser stores a private starter support workflo
   assert.equal(calls[0].data.scoringVersion, "starter-support-v1");
   assert.equal(calls[0].data.visibility, "private");
   assert.equal(calls[0].data.aggregationEligible, true);
+  assert.equal(deduplicated, false);
   assert.equal(record.id, "starter_support_1");
+});
+
+/* ---- E0.3: salvestuse idempotentsus (dedupe-aken + advisory-lock) ---- */
+
+function createDedupeStore() {
+  const store = [];
+  const recordApi = {
+    findFirst: async (args) => {
+      const gte = args?.where?.createdAt?.gte ?? new Date(0);
+      return store
+        .filter((row) => row.ownerUserId === args?.where?.ownerUserId
+          && row.workflowType === args?.where?.workflowType
+          && row.createdAt >= gte)
+        .sort((a, b) => b.createdAt - a.createdAt)[0] || null;
+    },
+    create: async (args) => {
+      const row = { id: `rec_${store.length + 1}`, createdAt: new Date(), ...args.data };
+      store.push(row);
+      return row;
+    }
+  };
+  return { store, recordApi };
+}
+
+test("saving the same quick check twice in a row returns the first record (double click)", async () => {
+  const { store, recordApi } = createDedupeStore();
+  const prisma = { wellbeingRecord: recordApi };
+  const payload = { period: "current", roleGroup: "SOCIAL_WORKER", standardizedFields: quickCheckFields };
+
+  const first = await createQuickCheckRecordForUser("user_1", payload, { prisma });
+  const second = await createQuickCheckRecordForUser("user_1", payload, { prisma });
+
+  assert.equal(first.deduplicated, false);
+  assert.equal(second.deduplicated, true);
+  assert.equal(second.record.id, first.record.id);
+  assert.equal(store.length, 1);
+});
+
+test("parallel identical saves are serialized by the advisory lock and create one record", async () => {
+  const { store, recordApi } = createDedupeStore();
+  let locked = false;
+  const waiters = [];
+  const tx = {
+    wellbeingRecord: recordApi,
+    $executeRaw: async () => undefined
+  };
+  const prisma = {
+    wellbeingRecord: recordApi,
+    $transaction: async (fn) => {
+      while (locked) await new Promise((resolve) => waiters.push(resolve));
+      locked = true;
+      try {
+        return await fn(tx);
+      } finally {
+        locked = false;
+        const next = waiters.shift();
+        if (next) next();
+      }
+    }
+  };
+  const payload = { period: "current", roleGroup: "SOCIAL_WORKER", standardizedFields: quickCheckFields };
+
+  const [a, b] = await Promise.all([
+    createQuickCheckRecordForUser("user_1", payload, { prisma }),
+    createQuickCheckRecordForUser("user_1", payload, { prisma })
+  ]);
+
+  assert.equal(store.length, 1);
+  assert.equal(a.record.id, b.record.id);
+  assert.equal([a.deduplicated, b.deduplicated].filter(Boolean).length, 1);
+});
+
+test("the dedupe window never returns another user's record", async () => {
+  const { store, recordApi } = createDedupeStore();
+  const prisma = { wellbeingRecord: recordApi };
+  const payload = { period: "current", roleGroup: "SOCIAL_WORKER", standardizedFields: quickCheckFields };
+
+  const first = await createQuickCheckRecordForUser("user_1", payload, { prisma });
+  const second = await createQuickCheckRecordForUser("user_2", payload, { prisma });
+
+  assert.equal(second.deduplicated, false);
+  assert.notEqual(second.record.id, first.record.id);
+  assert.equal(second.record.ownerUserId, "user_2");
+  assert.equal(store.length, 2);
+});
+
+test("a changed answer within the window creates a new record", async () => {
+  const { store, recordApi } = createDedupeStore();
+  const prisma = { wellbeingRecord: recordApi };
+
+  const first = await createQuickCheckRecordForUser("user_1", {
+    period: "current",
+    roleGroup: "SOCIAL_WORKER",
+    standardizedFields: quickCheckFields
+  }, { prisma });
+  const second = await createQuickCheckRecordForUser("user_1", {
+    period: "current",
+    roleGroup: "SOCIAL_WORKER",
+    standardizedFields: { ...quickCheckFields, workloadLevel: "moderate" }
+  }, { prisma });
+
+  assert.equal(second.deduplicated, false);
+  assert.notEqual(second.record.id, first.record.id);
+  assert.equal(store.length, 2);
+});
+
+test("an identical save after the dedupe window creates a new record", async () => {
+  const { store, recordApi } = createDedupeStore();
+  const prisma = { wellbeingRecord: recordApi };
+  const payload = { period: "current", roleGroup: "SOCIAL_WORKER", standardizedFields: quickCheckFields };
+
+  const first = await createQuickCheckRecordForUser("user_1", payload, { prisma });
+  store[0].createdAt = new Date(Date.now() - 31_000);
+  const second = await createQuickCheckRecordForUser("user_1", payload, { prisma });
+
+  assert.equal(second.deduplicated, false);
+  assert.notEqual(second.record.id, first.record.id);
+  assert.equal(store.length, 2);
 });
