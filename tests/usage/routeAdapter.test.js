@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   buildUsageIdempotencyKey,
   commitUsageForRequest,
+  getUsageReservationExpiresAt,
   releaseUsageForRequest,
   reserveUsageForRequest,
   usageErrorDescriptor
@@ -56,6 +57,31 @@ test("route adapter reserves, commits and releases through one service contract"
   assert.equal(calls[0][1].idempotencyKey, "documents.generate:retry_2");
   assert.equal(calls[1][1].actualAmount, 1n);
   assert.equal(calls[2][1].reason, "provider_error");
+  assert.ok(calls[0][1].expiresAt instanceof Date);
+});
+
+test("route adapter assigns a finite scope-based reservation expiry", () => {
+  const now = new Date("2026-07-17T12:00:00.000Z");
+  assert.equal(
+    getUsageReservationExpiresAt("chat.reply", now).toISOString(),
+    "2026-07-17T12:15:00.000Z"
+  );
+  assert.equal(
+    getUsageReservationExpiresAt("unknown.scope", now).toISOString(),
+    "2026-07-17T12:15:00.000Z"
+  );
+  assert.equal(
+    getUsageReservationExpiresAt("documents.generate", now).toISOString(),
+    "2026-07-18T12:00:00.000Z"
+  );
+  assert.equal(
+    getUsageReservationExpiresAt("chat.document_generate", now).toISOString(),
+    "2026-07-18T12:00:00.000Z"
+  );
+  assert.equal(
+    getUsageReservationExpiresAt("research.run", now).toISOString(),
+    "2026-07-18T12:00:00.000Z"
+  );
 });
 
 test("limit errors serialize BigInt counters into a structured 429 descriptor", () => {

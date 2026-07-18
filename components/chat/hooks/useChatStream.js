@@ -35,6 +35,35 @@ function getResearchProgressText(tr, stage) {
   return tr("chat.deep_research.running");
 }
 
+const RESEARCH_POLL_TIMEOUT_MS = readPositiveNumber(
+  process.env.NEXT_PUBLIC_RESEARCH_ACTIVE_JOB_STALE_MS,
+  15 * 60 * 1000
+);
+
+function readPositiveNumber(value, fallback) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 0) return fallback;
+  return numeric;
+}
+
+export function scheduleResearchPersistencePollTimeout(onTimeout, {
+  timeoutMs = RESEARCH_POLL_TIMEOUT_MS,
+  setTimeoutImpl = setTimeout,
+  clearTimeoutImpl = clearTimeout
+} = {}) {
+  let active = true;
+  const timer = setTimeoutImpl(() => {
+    if (!active) return;
+    active = false;
+    onTimeout?.();
+  }, timeoutMs);
+  return () => {
+    if (!active) return;
+    active = false;
+    clearTimeoutImpl(timer);
+  };
+}
+
 function normalizeAttachments(payload) {
   if (!Array.isArray(payload)) return [];
   return payload
@@ -279,12 +308,20 @@ export function useChatStream(config) {
       let persistencePollTimer = null;
       let persistencePollBusy = false;
       let researchStartedAtMs = 0;
+      let clearResearchPollTimeout = null;
+      let researchTimeoutError = null;
 
       const clearPersistencePoll = () => {
         if (persistencePollTimer && typeof window !== "undefined") {
           window.clearInterval(persistencePollTimer);
         }
         persistencePollTimer = null;
+      };
+
+      const clearResearchTimers = () => {
+        clearPersistencePoll();
+        clearResearchPollTimeout?.();
+        clearResearchPollTimeout = null;
       };
 
       const applyPersistedResult = persisted => {
@@ -302,7 +339,7 @@ export function useChatStream(config) {
           workflow: persisted.workflow || normalizeWorkflow(msg?.workflow),
           isStreaming: false
         }));
-        clearPersistencePoll();
+        clearResearchTimers();
         try {
           controller.abort();
         } catch {}
@@ -396,6 +433,22 @@ export function useChatStream(config) {
             persistencePollTimer = window.setInterval(() => {
               void pollPersistedResult();
             }, 2500);
+            clearResearchPollTimeout = scheduleResearchPersistencePollTimeout(() => {
+              if (completedFromPersistence) return;
+              researchTimeoutError = createLocalizedError("research.error.interrupted");
+              clearPersistencePoll();
+              if (streamingMessageId != null) {
+                cfg.mutateMessage?.(streamingMessageId, msg => ({
+                  ...msg,
+                  text: tr("research.error.interrupted"),
+                  sources: [],
+                  isStreaming: false
+                }));
+              }
+              try {
+                controller.abort();
+              } catch {}
+            });
           }
 
           const streamResponse = await fetch(`/api/research/jobs/${encodeURIComponent(jobId)}/stream`, {
@@ -473,7 +526,7 @@ export function useChatStream(config) {
               break;
             }
           }
-          clearPersistencePoll();
+          clearResearchTimers();
 
           if (!finalText) {
             const persisted = await readPersistedConversationResult({
@@ -511,18 +564,19 @@ export function useChatStream(config) {
           }
           throw createLocalizedError("chat.deep_research.error_generic");
         } catch (err) {
-          clearPersistencePoll();
+          clearResearchTimers();
           if (err?.name === "AbortError" && completedFromPersistence && finalText) {
             cfg.onDeepResearchComplete?.();
             cfg.requestConversationsRefresh?.();
             return true;
           }
-          const errorKey =
+          const errorKey = researchTimeoutError?.chatKey || (
             err?.name === "AbortError"
               ? "chat.deep_research.cancelled"
               : err?.chatKey === "research.error.cancelled"
                 ? "chat.deep_research.cancelled"
-                : err?.chatKey || "chat.deep_research.error_generic";
+                : err?.chatKey || "chat.deep_research.error_generic"
+          );
           const errorText = tr(errorKey, err?.chatValues);
 
           if (streamingMessageId != null) {
@@ -541,7 +595,7 @@ export function useChatStream(config) {
           }
           return false;
         } finally {
-          clearPersistencePoll();
+          clearResearchTimers();
           abortRef.current = null;
           researchJobIdRef.current = null;
           researchStreamingMessageIdRef.current = null;

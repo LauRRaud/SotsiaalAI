@@ -235,6 +235,11 @@ function main() {
     }
   }
 
+  const researchJobMode = String(env.RESEARCH_JOB_MODE || env.RESEARCH_RUNNER_MODE || "inline").trim().toLowerCase();
+  if (researchJobMode === "worker") {
+    warnings.push("Research worker mode requires sotsiaalai-research-worker.service to exist and be active in production");
+  }
+
   if (isNonEmpty(env.BACKUP_RETENTION_DAYS)) {
     warnings.push("BACKUP_RETENTION_DAYS is documentation/ops policy only; the app does not enforce backup deletion");
   }

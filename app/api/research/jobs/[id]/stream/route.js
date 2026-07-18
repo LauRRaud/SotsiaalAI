@@ -12,6 +12,35 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const fetchCache = "force-no-store";
 
+const RESEARCH_POLL_TIMEOUT_MS = readPositiveNumber(
+  process.env.RESEARCH_ACTIVE_JOB_STALE_MS,
+  15 * 60 * 1000
+);
+
+function readPositiveNumber(value, fallback) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 0) return fallback;
+  return numeric;
+}
+
+export function scheduleResearchPollTimeout(onTimeout, {
+  timeoutMs = RESEARCH_POLL_TIMEOUT_MS,
+  setTimeoutImpl = setTimeout,
+  clearTimeoutImpl = clearTimeout
+} = {}) {
+  let active = true;
+  const timer = setTimeoutImpl(() => {
+    if (!active) return;
+    active = false;
+    onTimeout?.();
+  }, timeoutMs);
+  return () => {
+    if (!active) return;
+    active = false;
+    clearTimeoutImpl(timer);
+  };
+}
+
 const NO_STORE_HEADERS = {
   "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
   Pragma: "no-cache",
@@ -79,6 +108,7 @@ export async function GET(req, { params }) {
   let closed = false;
   let heartbeat = null;
   let dbPoll = null;
+  let clearPollTimeout = null;
   let missingSnapshotCount = 0;
 
   const stream = new ReadableStream({
@@ -95,6 +125,8 @@ export async function GET(req, { params }) {
             clearInterval(dbPoll);
             dbPoll = null;
           }
+          clearPollTimeout?.();
+          clearPollTimeout = null;
           unsub?.();
         } catch {}
         try {
@@ -137,6 +169,16 @@ export async function GET(req, { params }) {
         return false;
       };
 
+      try {
+        req.signal?.addEventListener(
+          "abort",
+          () => {
+            closeStream();
+          },
+          { once: true }
+        );
+      } catch {}
+
       if (!job) {
         if (emitSnapshot(jobSnapshot)) return;
         emit({ type: "status", status: jobSnapshot.status || "queued" });
@@ -170,6 +212,11 @@ export async function GET(req, { params }) {
               emit({ type: "done" });
             });
         }, 2500);
+        clearPollTimeout = scheduleResearchPollTimeout(() => {
+          emit({ type: "error", message: "research.error.interrupted" });
+          emit({ type: "status", status: "error" });
+          emit({ type: "done" });
+        });
         return;
       }
 
@@ -183,16 +230,6 @@ export async function GET(req, { params }) {
         }
       }, 15_000);
 
-      try {
-        req.signal?.addEventListener(
-          "abort",
-          () => {
-            closeStream();
-          },
-          { once: true }
-        );
-      } catch {}
-
       if (job.status === "done" || job.status === "error" || job.status === "cancelled") {
         emit({ type: "done" });
       }
@@ -201,6 +238,8 @@ export async function GET(req, { params }) {
       try {
         if (heartbeat) clearInterval(heartbeat);
         if (dbPoll) clearInterval(dbPoll);
+        clearPollTimeout?.();
+        clearPollTimeout = null;
         unsub?.();
       } catch {}
     },
