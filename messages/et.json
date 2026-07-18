@@ -5743,6 +5743,88 @@
     "theme_dark": "Öö"
   },
   "topic_seeds": {
+    "brand": {
+      "name": "Teemaseemned",
+      "sub": "Juhtumi märkamisest kovisioonini"
+    },
+    "nav": {
+      "aria": "Kovisiooni funktsioonid",
+      "covision_room": "Kovisiooni ruum",
+      "exit": "← Välju",
+      "exit_title": "Tagasi ruumi",
+      "back_to_list": "Tagasi Teemaseemnete lehele",
+      "back_to_list_arrow": "← Tagasi Teemaseemnete lehele"
+    },
+    "card": {
+      "why_now": "Miks praegu",
+      "support": "Soovin",
+      "importance": "Olulisus",
+      "importance_unset": "Valimata"
+    },
+    "spatial": {
+      "move_hint": "Haara kaardi ülanurgast liigutamiseks või paremast alanurgast suuruse muutmiseks. Nooleklahvid muudavad täpselt, Shift + nool suurema sammu.",
+      "resize_hint": "Paremas alanurgas olevat pidet tirides muudad kaardi laiust ja kõrgust.",
+      "reset_layout": "Taasta paigutus"
+    },
+    "gate": {
+      "aria": "Sobivuse ja turvalisuse kontroll",
+      "question": "Kas olukorras võib olla vahetu oht või kohese sekkumise vajadus?",
+      "answer_no": "Ei",
+      "answer_maybe": "Võimalik, vajab kontrollimist",
+      "answer_yes": "Jah",
+      "answer_unknown": "Ei ole teada",
+      "change": "Muuda",
+      "change_answer": "Muuda vastust",
+      "chip_label": "Sobivuskontroll:",
+      "chip_no_risk": "vahetut ohtu ei ole",
+      "chip_unknown": "oht ei ole teada — uuenda, kui olukord täpsustub",
+      "chip_assessed": "risk on hinnatud, refleksioon võib jätkuda",
+      "warn_title": "Kovisioon ega Teemaseeme ei asenda kiireloomulist sekkumist.",
+      "warn_sub": "Kinnita, kas vajalikud vahetud toimingud on tehtud.",
+      "action_started": "Vajalik sekkumine on käivitatud",
+      "cannot_wait": "Juhtum ei saa oodata",
+      "risk_assessed": "Risk on hinnatud ning professionaalne refleksioon võib jätkuda",
+      "stop_aria": "Kiireloomulisuse piir",
+      "stop_title": "Tegele kõigepealt kohese sekkumisega.",
+      "stop_sub": "See juhtum ei saa oodata — kovisioon ei ole kiireloomulise sekkumise töövorm. Teemaseemne saad luua hiljem, kui vahetu tegevus on käivitatud."
+    },
+    "create": {
+      "intro": "Loo lühike ja üldistatud kirjeldus teemast — privaatne täiendamine on hiljem valikuline.",
+      "steps_aria": "Teemaseemne loomise sammud",
+      "step_locked": "Avaneb pärast kiire seemne loomist",
+      "answer_gate_first": "Vasta kõigepealt sobivuse ja turvalisuse kontrollile.",
+      "continue_prep_toggle": "Pärast loomist jätkan privaatse ettevalmistusega",
+      "fill_before": "Enne loomist täida:"
+    },
+    "form": {
+      "title_label": "1. Pealkiri",
+      "title_hint": "Üldistatud, ilma nime või muu tuvastava detailita.",
+      "title_placeholder": "Lühike ja üldistatud pealkiri teemast",
+      "context_label": "2. Juhtumi kontekst",
+      "context_hint": "Millises professionaalses olukorras see teema asub?",
+      "kind_label": "3. Juhtumi liik",
+      "kind_hint": "Millise töölaadiga on tegemist?",
+      "why_label": "4. Miks see on praegu oluline?",
+      "why_hint": "Üks kuni kolm üldistatud lauset.",
+      "why_placeholder": "Kirjuta 1–3 lauset…",
+      "support_label": "5. Millist tuge soovid kovisioonigrupilt?",
+      "support_hint": "Vali üks või mitu.",
+      "importance_label": "6. Kui oluline see teema sulle praegu on?",
+      "importance_hint": "1 — mitte oluline · 10 — väga oluline. Praegu:"
+    },
+    "private": {
+      "title": "Valikuline privaatne ettevalmistus",
+      "sub": "Võid hiljem lisada ainult vajaliku. Jääb ainult sulle, kuni ise otsustad teisiti."
+    },
+    "prep": {
+      "title": "Privaatne professionaalne ettevalmistus",
+      "intro": "Kiire seeme on loodud ja nähtav ainult sulle. Ettevalmistuse moodulid (eluvaldkonnad, vaated, võrgustik, senine töö, fookus) on järgmises ehitusjärgus — praegu saad seemne jagada kovisioonijärjekorda Teemaseemnete lehelt.",
+      "waiting_notice": "Seeme ootab sind Teemaseemnete lehel filtri „Minu seemned” all."
+    },
+    "help": {
+      "title": "Mis on Teemaseeme?",
+      "body": "Teemaseeme on privaatne professionaalne tööseeme: märkad teema, lood lühikese üldistatud kaardi ja soovi korral valmistad juhtumit privaatselt ette. Kovisiooni liigub ainult sinu teadlikult jagatud üldistus — mitte detailne juhtumilugu."
+    },
     "list_intro": "Professionaalsed tööseemned: märka teema, valmista privaatselt ette ja kinnita üldistatud kaart kovisioonijärjekorda. Seeme jääb ainult sulle, kuni Kovisiooni grupinähtavus on ehitatud.",
     "notices": {
       "draft_saved": "Mustand salvestatud. See on nähtav ainult sulle.",
@@ -5751,6 +5833,11 @@
       "queued": "Üldistus on kinnitatud ja külmutatud. Praegu pole see veel teistele nähtav — grupinähtavus tekib hilisemas Kovisiooni sidumises."
     },
     "ui": {
+      "boundary": "Teemaseemne kaardistus aitab professionaalset olukorda mõtestada. See ei asenda seadusest tulenevat hindamist, ametlikku juhtumiplaani ega riskihindamist.",
+      "close": "Sulge",
+      "continue_prep": "Jätka ettevalmistust",
+      "help": "Abi",
+      "panel_aria": "Teemaseemnete ülevaade ja tööriistad",
       "loading": "Laadin sinu teemaseemneid…",
       "untitled": "(Pealkirjata mustand)",
       "missing_value": "—",
@@ -5788,6 +5875,7 @@
       "keep_private": "Jäta praegu ainult endale"
     },
     "preview": {
+      "not_shared": "Pole veel jagatud",
       "title": "Külmutatava kaardi eelvaade",
       "sub": "Seemnekaart sellisena, nagu see kovisioonijärjekorda külmutatakse."
     },

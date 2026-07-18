@@ -5743,6 +5743,88 @@
     "theme_dark": "Night"
   },
   "topic_seeds": {
+    "brand": {
+      "name": "Topic seeds",
+      "sub": "From noticing a case to co-vision"
+    },
+    "nav": {
+      "aria": "Co-vision features",
+      "covision_room": "Co-vision room",
+      "exit": "← Exit",
+      "exit_title": "Back to the room",
+      "back_to_list": "Back to the topic seeds page",
+      "back_to_list_arrow": "← Back to the topic seeds page"
+    },
+    "card": {
+      "why_now": "Why now",
+      "support": "I would like",
+      "importance": "Importance",
+      "importance_unset": "Not selected"
+    },
+    "spatial": {
+      "move_hint": "Grab the top corner of a card to move it, or the bottom right corner to resize it. Arrow keys adjust precisely, Shift + arrow takes a larger step.",
+      "resize_hint": "Drag the handle in the bottom right corner to change the card's width and height.",
+      "reset_layout": "Reset layout"
+    },
+    "gate": {
+      "aria": "Suitability and safety check",
+      "question": "Could there be immediate danger or a need for immediate intervention?",
+      "answer_no": "No",
+      "answer_maybe": "Possibly, needs checking",
+      "answer_yes": "Yes",
+      "answer_unknown": "Not known",
+      "change": "Change",
+      "change_answer": "Change the answer",
+      "chip_label": "Suitability check:",
+      "chip_no_risk": "there is no immediate danger",
+      "chip_unknown": "danger is not known — update when the situation becomes clearer",
+      "chip_assessed": "risk has been assessed, reflection can continue",
+      "warn_title": "Neither co-vision nor a topic seed replaces urgent intervention.",
+      "warn_sub": "Confirm whether the necessary immediate actions have been taken.",
+      "action_started": "The necessary intervention has been started",
+      "cannot_wait": "The case cannot wait",
+      "risk_assessed": "The risk has been assessed and professional reflection can continue",
+      "stop_aria": "Urgency boundary",
+      "stop_title": "Deal with the immediate intervention first.",
+      "stop_sub": "This case cannot wait — co-vision is not a form of work for urgent intervention. You can create the topic seed later, once immediate action has been started."
+    },
+    "create": {
+      "intro": "Create a short, generalised description of the topic — private elaboration is optional later.",
+      "steps_aria": "Steps for creating a topic seed",
+      "step_locked": "Opens after the quick seed is created",
+      "answer_gate_first": "Answer the suitability and safety check first.",
+      "continue_prep_toggle": "After creating, I will continue with private preparation",
+      "fill_before": "Fill in before creating:"
+    },
+    "form": {
+      "title_label": "1. Title",
+      "title_hint": "Generalised, without a name or other identifying detail.",
+      "title_placeholder": "A short, generalised title for the topic",
+      "context_label": "2. Case context",
+      "context_hint": "In what professional situation does this topic sit?",
+      "kind_label": "3. Case type",
+      "kind_hint": "What kind of work is involved?",
+      "why_label": "4. Why is this important right now?",
+      "why_hint": "One to three generalised sentences.",
+      "why_placeholder": "Write 1–3 sentences…",
+      "support_label": "5. What support would you like from the co-vision group?",
+      "support_hint": "Choose one or more.",
+      "importance_label": "6. How important is this topic to you right now?",
+      "importance_hint": "1 — not important · 10 — very important. Currently:"
+    },
+    "private": {
+      "title": "Optional private preparation",
+      "sub": "You can add only what is needed later. It stays with you alone until you decide otherwise."
+    },
+    "prep": {
+      "title": "Private professional preparation",
+      "intro": "The quick seed has been created and is visible only to you. The preparation modules (life domains, perspectives, network, work so far, focus) are in the next build stage — for now you can share the seed to the co-vision queue from the topic seeds page.",
+      "waiting_notice": "The seed is waiting for you on the topic seeds page under the „My seeds” filter."
+    },
+    "help": {
+      "title": "What is a topic seed?",
+      "body": "A topic seed is a private professional work seed: you notice a topic, create a short generalised card and, if you wish, prepare the case privately. Only the generalisation you deliberately share moves on to co-vision — not the detailed case story."
+    },
     "list_intro": "Professional work seeds: notice a theme, prepare it privately, and confirm a generalized card for the covision queue. The seed stays private to you until covision group visibility is built.",
     "notices": {
       "draft_saved": "Draft saved. It is visible only to you.",
@@ -5751,6 +5833,11 @@
       "queued": "The generalization is confirmed and frozen. It is not yet visible to others — group visibility will come in a later covision linking."
     },
     "ui": {
+      "boundary": "Mapping a topic seed helps make sense of a professional situation. It does not replace a statutory assessment, an official case plan or a risk assessment.",
+      "close": "Close",
+      "continue_prep": "Continue preparation",
+      "help": "Help",
+      "panel_aria": "Topic seeds overview and tools",
       "loading": "Loading your topic seeds…",
       "untitled": "(Untitled draft)",
       "missing_value": "—",
@@ -5788,6 +5875,7 @@
       "keep_private": "Keep it to myself for now"
     },
     "preview": {
+      "not_shared": "Not shared yet",
       "title": "Preview of the card to be frozen",
       "sub": "The seed card exactly as it will be frozen into the covision queue."
     },

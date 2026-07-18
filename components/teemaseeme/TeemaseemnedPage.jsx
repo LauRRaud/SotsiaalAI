@@ -771,20 +771,27 @@ export default function TeemaseemnedPage({ owner = null }) {
   const topBar = (
     <header className="ts-top">
       <div className="ts-brand">
-        <button type="button" className="ts-exit" title="Tagasi ruumi" onClick={() => window.history.back()}>
-          ← Välju
+        <button
+          type="button"
+          className="ts-exit"
+          title={readText(t, "topic_seeds.nav.exit_title", "Tagasi ruumi")}
+          onClick={() => window.history.back()}
+        >
+          {readText(t, "topic_seeds.nav.exit", "← Välju")}
         </button>
         <div>
-          <p className="ts-brand-name">Teemaseemned</p>
-          <p className="ts-brand-sub">Juhtumi märkamisest kovisioonini</p>
+          <p className="ts-brand-name">{readText(t, "topic_seeds.brand.name", "Teemaseemned")}</p>
+          <p className="ts-brand-sub">
+            {readText(t, "topic_seeds.brand.sub", "Juhtumi märkamisest kovisioonini")}
+          </p>
         </div>
       </div>
-      <nav className="ts-nav" aria-label="Kovisiooni funktsioonid">
+      <nav className="ts-nav" aria-label={readText(t, "topic_seeds.nav.aria", "Kovisiooni funktsioonid")}>
         <Link className="ts-nav-link" href="/kovisioon">
-          Kovisiooni ruum
+          {readText(t, "topic_seeds.nav.covision_room", "Kovisiooni ruum")}
         </Link>
         <span className="ts-nav-link" aria-current="page" data-active="1">
-          Teemaseemned
+          {readText(t, "topic_seeds.brand.name", "Teemaseemned")}
         </span>
         <Link className="ts-nav-link" href="/parimad-praktikad">
           {readText(t, "room.kovision_practices_card", "Parimad praktikad")}
@@ -792,7 +799,7 @@ export default function TeemaseemnedPage({ owner = null }) {
       </nav>
       <div className="ts-tools">
         <button type="button" data-variant aria-expanded={helpOpen} onClick={() => setHelpOpen(true)}>
-          Abi
+          {readText(t, "topic_seeds.ui.help", "Abi")}
         </button>
         {ownerName ? (
           <div className="ts-user">
@@ -807,8 +814,11 @@ export default function TeemaseemnedPage({ owner = null }) {
   /* §3 piiriselgitus — nähtav loomisvaates ja abikihis */
   const boundaryNote = (
     <p className="ts-boundary">
-      Teemaseemne kaardistus aitab professionaalset olukorda mõtestada. See ei asenda seadusest tulenevat
-      hindamist, ametlikku juhtumiplaani ega riskihindamist.
+      {readText(
+        t,
+        "topic_seeds.ui.boundary",
+        "Teemaseemne kaardistus aitab professionaalset olukorda mõtestada. See ei asenda seadusest tulenevat hindamist, ametlikku juhtumiplaani ega riskihindamist."
+      )}
     </p>
   );
 
@@ -882,16 +892,20 @@ export default function TeemaseemnedPage({ owner = null }) {
         </p>
         <dl className="ts-card-rows">
           <div>
-            <dt>Miks praegu</dt>
+            <dt>{readText(t, "topic_seeds.card.why_now", "Miks praegu")}</dt>
             <dd>{seed.whyNow}</dd>
           </div>
           <div>
-            <dt>Soovin</dt>
+            <dt>{readText(t, "topic_seeds.card.support", "Soovin")}</dt>
             <dd>{seed.support.join(" · ")}</dd>
           </div>
           <div>
-            <dt>Olulisus</dt>
-            <dd>{seed.importance == null ? "Valimata" : `${seed.importance}/10`}</dd>
+            <dt>{readText(t, "topic_seeds.card.importance", "Olulisus")}</dt>
+            <dd>
+              {seed.importance == null
+                ? readText(t, "topic_seeds.card.importance_unset", "Valimata")
+                : `${seed.importance}/10`}
+            </dd>
           </div>
         </dl>
         <footer className="ts-card-foot">
@@ -925,7 +939,7 @@ export default function TeemaseemnedPage({ owner = null }) {
                   {readText(t, "topic_seeds.ui.edit_quick", "Ava või muuda kiiret seemet")}
                 </button>
                 <button type="button" data-variant onClick={() => setView("prep")}>
-                  Jätka ettevalmistust
+                  {readText(t, "topic_seeds.ui.continue_prep", "Jätka ettevalmistust")}
                 </button>
                 {!seed.isComplete ? (
                   <p id={`ts-incomplete-${seed.id}`} className="ts-reason">
@@ -972,10 +986,13 @@ export default function TeemaseemnedPage({ owner = null }) {
   const listView = (
     <section ref={spatialBoundsRef} className="ts-shell ts-spatial-canvas" aria-label="Teemaseemnete leht">
       {topBar}
-      <section className="ts-context-panel" aria-label="Teemaseemnete ülevaade ja tööriistad">
+      <section
+        className="ts-context-panel"
+        aria-label={readText(t, "topic_seeds.ui.panel_aria", "Teemaseemnete ülevaade ja tööriistad")}
+      >
         <div className="ts-list-head">
           <div>
-            <h1 className="ts-h1">Teemaseemned</h1>
+            <h1 className="ts-h1">{readText(t, "topic_seeds.brand.name", "Teemaseemned")}</h1>
             <p className="ts-intro">
               {readText(
                 t,
@@ -1027,15 +1044,22 @@ export default function TeemaseemnedPage({ owner = null }) {
 
         <div className="ts-spatial-tools">
           <p id="ts-move-instructions" className="ts-spatial-hint">
-            Haara kaardi ülanurgast liigutamiseks või paremast alanurgast suuruse muutmiseks. Nooleklahvid
-            muudavad täpselt, Shift + nool suurema sammu.
+            {readText(
+              t,
+              "topic_seeds.spatial.move_hint",
+              "Haara kaardi ülanurgast liigutamiseks või paremast alanurgast suuruse muutmiseks. Nooleklahvid muudavad täpselt, Shift + nool suurema sammu."
+            )}
           </p>
           <span id="ts-resize-instructions" className="ts-sr-status">
-            Paremas alanurgas olevat pidet tirides muudad kaardi laiust ja kõrgust.
+            {readText(
+              t,
+              "topic_seeds.spatial.resize_hint",
+              "Paremas alanurgas olevat pidet tirides muudad kaardi laiust ja kõrgust."
+            )}
           </span>
           {hasAdjustedCards ? (
             <button type="button" className="ts-layout-reset" onClick={resetCardLayout}>
-              Taasta paigutus
+              {readText(t, "topic_seeds.spatial.reset_layout", "Taasta paigutus")}
             </button>
           ) : null}
           <span className="ts-sr-status" role="status" aria-live="polite">
@@ -1070,12 +1094,20 @@ export default function TeemaseemnedPage({ owner = null }) {
     gateResolved && !gateBlocked ? (
       <div className="ts-gate-chip">
         <span>
-          Sobivuskontroll:{" "}
+          {readText(t, "topic_seeds.gate.chip_label", "Sobivuskontroll:")}{" "}
           {gate === "ei"
-            ? "vahetut ohtu ei ole"
+            ? readText(t, "topic_seeds.gate.chip_no_risk", "vahetut ohtu ei ole")
             : gate === "teadmata"
-              ? "oht ei ole teada — uuenda, kui olukord täpsustub"
-              : "risk on hinnatud, refleksioon võib jätkuda"}
+              ? readText(
+                  t,
+                  "topic_seeds.gate.chip_unknown",
+                  "oht ei ole teada — uuenda, kui olukord täpsustub"
+                )
+              : readText(
+                  t,
+                  "topic_seeds.gate.chip_assessed",
+                  "risk on hinnatud, refleksioon võib jätkuda"
+                )}
         </span>
         <button
           type="button"
@@ -1085,16 +1117,25 @@ export default function TeemaseemnedPage({ owner = null }) {
             setGateResolved(false);
           }}
         >
-          Muuda
+          {readText(t, "topic_seeds.gate.change", "Muuda")}
         </button>
       </div>
     ) : null;
 
   const gateBlock = !gateResolved ? (
-    <section className="ts-gate" aria-label="Sobivuse ja turvalisuse kontroll">
+    <section
+      className="ts-gate"
+      aria-label={readText(t, "topic_seeds.gate.aria", "Sobivuse ja turvalisuse kontroll")}
+    >
       {gate !== "jah" && gate !== "voimalik" ? (
         <>
-          <h2 className="ts-gate-q">Kas olukorras võib olla vahetu oht või kohese sekkumise vajadus?</h2>
+          <h2 className="ts-gate-q">
+            {readText(
+              t,
+              "topic_seeds.gate.question",
+              "Kas olukorras võib olla vahetu oht või kohese sekkumise vajadus?"
+            )}
+          </h2>
           <div className="ts-gate-opts">
             <button
               type="button"
@@ -1104,13 +1145,13 @@ export default function TeemaseemnedPage({ owner = null }) {
                 setGateResolved(true);
               }}
             >
-              Ei
+              {readText(t, "topic_seeds.gate.answer_no", "Ei")}
             </button>
             <button type="button" data-variant onClick={() => setGate("voimalik")}>
-              Võimalik, vajab kontrollimist
+              {readText(t, "topic_seeds.gate.answer_maybe", "Võimalik, vajab kontrollimist")}
             </button>
             <button type="button" data-variant onClick={() => setGate("jah")}>
-              Jah
+              {readText(t, "topic_seeds.gate.answer_yes", "Jah")}
             </button>
             <button
               type="button"
@@ -1120,14 +1161,26 @@ export default function TeemaseemnedPage({ owner = null }) {
                 setGateResolved(true);
               }}
             >
-              Ei ole teada
+              {readText(t, "topic_seeds.gate.answer_unknown", "Ei ole teada")}
             </button>
           </div>
         </>
       ) : (
         <div className="ts-gate-warn">
-          <h2 className="ts-gate-q">Kovisioon ega Teemaseeme ei asenda kiireloomulist sekkumist.</h2>
-          <p className="ts-gate-sub">Kinnita, kas vajalikud vahetud toimingud on tehtud.</p>
+          <h2 className="ts-gate-q">
+            {readText(
+              t,
+              "topic_seeds.gate.warn_title",
+              "Kovisioon ega Teemaseeme ei asenda kiireloomulist sekkumist."
+            )}
+          </h2>
+          <p className="ts-gate-sub">
+            {readText(
+              t,
+              "topic_seeds.gate.warn_sub",
+              "Kinnita, kas vajalikud vahetud toimingud on tehtud."
+            )}
+          </p>
           <div className="ts-gate-opts">
             <button
               type="button"
@@ -1137,7 +1190,7 @@ export default function TeemaseemnedPage({ owner = null }) {
                 setGateResolved(true);
               }}
             >
-              Vajalik sekkumine on käivitatud
+              {readText(t, "topic_seeds.gate.action_started", "Vajalik sekkumine on käivitatud")}
             </button>
             <button
               type="button"
@@ -1147,7 +1200,7 @@ export default function TeemaseemnedPage({ owner = null }) {
                 setGateResolved(true);
               }}
             >
-              Juhtum ei saa oodata
+              {readText(t, "topic_seeds.gate.cannot_wait", "Juhtum ei saa oodata")}
             </button>
             <button
               type="button"
@@ -1157,7 +1210,11 @@ export default function TeemaseemnedPage({ owner = null }) {
                 setGateResolved(true);
               }}
             >
-              Risk on hinnatud ning professionaalne refleksioon võib jätkuda
+              {readText(
+                t,
+                "topic_seeds.gate.risk_assessed",
+                "Risk on hinnatud ning professionaalne refleksioon võib jätkuda"
+              )}
             </button>
             <button type="button" data-variant disabled={saving} onClick={saveDraft}>
               {readText(t, "topic_seeds.ui.save_and_exit", "Salvestan mustandi ja väljun")}
@@ -1167,11 +1224,19 @@ export default function TeemaseemnedPage({ owner = null }) {
       )}
     </section>
   ) : gateBlocked ? (
-    <section className="ts-gate ts-gate-stop" aria-label="Kiireloomulisuse piir">
-      <h2 className="ts-gate-q">Tegele kõigepealt kohese sekkumisega.</h2>
+    <section
+      className="ts-gate ts-gate-stop"
+      aria-label={readText(t, "topic_seeds.gate.stop_aria", "Kiireloomulisuse piir")}
+    >
+      <h2 className="ts-gate-q">
+        {readText(t, "topic_seeds.gate.stop_title", "Tegele kõigepealt kohese sekkumisega.")}
+      </h2>
       <p className="ts-gate-sub">
-        See juhtum ei saa oodata — kovisioon ei ole kiireloomulise sekkumise töövorm. Teemaseemne saad luua
-        hiljem, kui vahetu tegevus on käivitatud.
+        {readText(
+          t,
+          "topic_seeds.gate.stop_sub",
+          "See juhtum ei saa oodata — kovisioon ei ole kiireloomulise sekkumise töövorm. Teemaseemne saad luua hiljem, kui vahetu tegevus on käivitatud."
+        )}
       </p>
       <div className="ts-gate-opts">
         <button
@@ -1182,10 +1247,10 @@ export default function TeemaseemnedPage({ owner = null }) {
             setGateResolved(false);
           }}
         >
-          Muuda vastust
+          {readText(t, "topic_seeds.gate.change_answer", "Muuda vastust")}
         </button>
         <button type="button" data-variant onClick={() => setView("list")}>
-          Tagasi Teemaseemnete lehele
+          {readText(t, "topic_seeds.nav.back_to_list", "Tagasi Teemaseemnete lehele")}
         </button>
       </div>
     </section>
@@ -1193,11 +1258,14 @@ export default function TeemaseemnedPage({ owner = null }) {
 
   const previewColumn = (
     <aside className="ts-side">
-      <section className="ts-preview" aria-label="Külmutatava kaardi eelvaade">
+      <section
+        className="ts-preview"
+        aria-label={readText(t, "topic_seeds.preview.title", "Külmutatava kaardi eelvaade")}
+      >
         <header className="ts-side-head">
           <h2 className="ts-side-title">{readText(t, "topic_seeds.preview.title", "Külmutatava kaardi eelvaade")}</h2>
           <span className="ts-status" data-status="mustand">
-            Pole veel jagatud
+            {readText(t, "topic_seeds.preview.not_shared", "Pole veel jagatud")}
           </span>
         </header>
         <p className="ts-side-sub">
@@ -1221,18 +1289,25 @@ export default function TeemaseemnedPage({ owner = null }) {
         )}
       </section>
 
-      <section className="ts-private" aria-label="Valikuline privaatne ettevalmistus">
+      <section
+        className="ts-private"
+        aria-label={readText(t, "topic_seeds.private.title", "Valikuline privaatne ettevalmistus")}
+      >
         <header className="ts-side-head">
           <h2 className="ts-side-title">
             <svg className="ts-lock" viewBox="0 0 16 16" aria-hidden="true">
               <rect x="3" y="7" width="10" height="7" rx="1.6" fill="none" stroke="currentColor" strokeWidth="1.3" />
               <path d="M5.4 7V5.2a2.6 2.6 0 0 1 5.2 0V7" fill="none" stroke="currentColor" strokeWidth="1.3" />
             </svg>
-            Valikuline privaatne ettevalmistus
+            {readText(t, "topic_seeds.private.title", "Valikuline privaatne ettevalmistus")}
           </h2>
         </header>
         <p className="ts-side-sub">
-          Võid hiljem lisada ainult vajaliku. Jääb ainult sulle, kuni ise otsustad teisiti.
+          {readText(
+            t,
+            "topic_seeds.private.sub",
+            "Võid hiljem lisada ainult vajaliku. Jääb ainult sulle, kuni ise otsustad teisiti."
+          )}
         </p>
         <ul className="ts-private-list">
           {PRIVATE_MODULES.map((m) => (
@@ -1258,7 +1333,7 @@ export default function TeemaseemnedPage({ owner = null }) {
       <div className="ts-create-head">
         <div className="ts-create-intro">
           <button type="button" className="ts-back" onClick={() => setView("list")}>
-            ← Tagasi Teemaseemnete lehele
+            {readText(t, "topic_seeds.nav.back_to_list_arrow", "← Tagasi Teemaseemnete lehele")}
           </button>
           <h1 className="ts-h1">
             {readText(
@@ -1268,17 +1343,25 @@ export default function TeemaseemnedPage({ owner = null }) {
             )}
           </h1>
           <p className="ts-intro">
-            Loo lühike ja üldistatud kirjeldus teemast — privaatne täiendamine on hiljem valikuline.
+            {readText(
+              t,
+              "topic_seeds.create.intro",
+              "Loo lühike ja üldistatud kirjeldus teemast — privaatne täiendamine on hiljem valikuline."
+            )}
           </p>
         </div>
-        <ol className="ts-rail" aria-label="Teemaseemne loomise sammud">
+        <ol className="ts-rail" aria-label={readText(t, "topic_seeds.create.steps_aria", "Teemaseemne loomise sammud")}>
           {CREATE_STEPS.map((s, i) => (
             <li
               key={s}
               className="ts-step"
               data-state={i === 0 ? "active" : "todo"}
               aria-current={i === 0 ? "step" : undefined}
-              title={i > 0 ? "Avaneb pärast kiire seemne loomist" : undefined}
+              title={
+                i > 0
+                  ? readText(t, "topic_seeds.create.step_locked", "Avaneb pärast kiire seemne loomist")
+                  : undefined
+              }
             >
               <span className="ts-step-dot">{i + 1}</span>
               <span className="ts-step-label">{s}</span>
@@ -1286,7 +1369,7 @@ export default function TeemaseemnedPage({ owner = null }) {
           ))}
         </ol>
         <button type="button" data-variant aria-expanded={helpOpen} onClick={() => setHelpOpen(true)}>
-          Abi
+          {readText(t, "topic_seeds.ui.help", "Abi")}
         </button>
       </div>
 
@@ -1315,31 +1398,53 @@ export default function TeemaseemnedPage({ owner = null }) {
         >
           <fieldset className="ts-fieldset" disabled={!gateResolved || gateBlocked}>
             {!gateResolved ? (
-              <p className="ts-fieldset-note">Vasta kõigepealt sobivuse ja turvalisuse kontrollile.</p>
+              <p className="ts-fieldset-note">
+                {readText(
+                  t,
+                  "topic_seeds.create.answer_gate_first",
+                  "Vasta kõigepealt sobivuse ja turvalisuse kontrollile."
+                )}
+              </p>
             ) : null}
 
             <div className="ts-field">
               <label className="ts-label" htmlFor="ts-title">
-                1. Pealkiri
+                {readText(t, "topic_seeds.form.title_label", "1. Pealkiri")}
               </label>
-              <p className="ts-hint">Üldistatud, ilma nime või muu tuvastava detailita.</p>
+              <p className="ts-hint">
+                {readText(
+                  t,
+                  "topic_seeds.form.title_hint",
+                  "Üldistatud, ilma nime või muu tuvastava detailita."
+                )}
+              </p>
               <input
                 id="ts-title"
                 className="ts-input"
                 type="text"
                 maxLength={80}
                 value={title}
-                placeholder="Lühike ja üldistatud pealkiri teemast"
+                placeholder={readText(
+                  t,
+                  "topic_seeds.form.title_placeholder",
+                  "Lühike ja üldistatud pealkiri teemast"
+                )}
                 onChange={(e) => setTitle(e.target.value)}
               />
-              <span className="ts-count">{title.length} / 80</span>
+              <span className="ts-count">{`${title.length} / 80`}</span>
             </div>
 
             <div className="ts-field">
               <span className="ts-label" id="ts-ctx-label">
-                2. Juhtumi kontekst
+                {readText(t, "topic_seeds.form.context_label", "2. Juhtumi kontekst")}
               </span>
-              <p className="ts-hint">Millises professionaalses olukorras see teema asub?</p>
+              <p className="ts-hint">
+                {readText(
+                  t,
+                  "topic_seeds.form.context_hint",
+                  "Millises professionaalses olukorras see teema asub?"
+                )}
+              </p>
               <div className="ts-choice-grid" role="group" aria-labelledby="ts-ctx-label">
                 {CONTEXTS.map((c) => (
                   <button
@@ -1358,9 +1463,11 @@ export default function TeemaseemnedPage({ owner = null }) {
 
             <div className="ts-field">
               <span className="ts-label" id="ts-kind-label">
-                3. Juhtumi liik
+                {readText(t, "topic_seeds.form.kind_label", "3. Juhtumi liik")}
               </span>
-              <p className="ts-hint">Millise töölaadiga on tegemist?</p>
+              <p className="ts-hint">
+                {readText(t, "topic_seeds.form.kind_hint", "Millise töölaadiga on tegemist?")}
+              </p>
               <div className="ts-choice-grid" role="group" aria-labelledby="ts-kind-label">
                 {KINDS.map((k) => (
                   <button
@@ -1378,26 +1485,30 @@ export default function TeemaseemnedPage({ owner = null }) {
 
             <div className="ts-field">
               <label className="ts-label" htmlFor="ts-why">
-                4. Miks see on praegu oluline?
+                {readText(t, "topic_seeds.form.why_label", "4. Miks see on praegu oluline?")}
               </label>
-              <p className="ts-hint">Üks kuni kolm üldistatud lauset.</p>
+              <p className="ts-hint">
+                {readText(t, "topic_seeds.form.why_hint", "Üks kuni kolm üldistatud lauset.")}
+              </p>
               <textarea
                 id="ts-why"
                 className="ts-input ts-textarea"
                 maxLength={300}
                 rows={2}
                 value={whyNow}
-                placeholder="Kirjuta 1–3 lauset…"
+                placeholder={readText(t, "topic_seeds.form.why_placeholder", "Kirjuta 1–3 lauset…")}
                 onChange={(e) => setWhyNow(e.target.value)}
               />
-              <span className="ts-count">{whyNow.length} / 300</span>
+              <span className="ts-count">{`${whyNow.length} / 300`}</span>
             </div>
 
             <div className="ts-field">
               <span className="ts-label" id="ts-sup-label">
-                5. Millist tuge soovid kovisioonigrupilt?
+                {readText(t, "topic_seeds.form.support_label", "5. Millist tuge soovid kovisioonigrupilt?")}
               </span>
-              <p className="ts-hint">Vali üks või mitu.</p>
+              <p className="ts-hint">
+                {readText(t, "topic_seeds.form.support_hint", "Vali üks või mitu.")}
+              </p>
               <div className="ts-chips" role="group" aria-labelledby="ts-sup-label">
                 {SUPPORT_OPTIONS.map((s) => (
                   <button
@@ -1417,11 +1528,19 @@ export default function TeemaseemnedPage({ owner = null }) {
 
             <div className="ts-field">
               <span className="ts-label" id="ts-imp-label">
-                6. Kui oluline see teema sulle praegu on?
+                {readText(t, "topic_seeds.form.importance_label", "6. Kui oluline see teema sulle praegu on?")}
               </span>
               <p className="ts-hint">
-                1 — mitte oluline · 10 — väga oluline. Praegu:{" "}
-                <strong>{importance == null ? "Valimata" : `${importance}/10`}</strong>
+                {readText(
+                  t,
+                  "topic_seeds.form.importance_hint",
+                  "1 — mitte oluline · 10 — väga oluline. Praegu:"
+                )}{" "}
+                <strong>
+                  {importance == null
+                    ? readText(t, "topic_seeds.card.importance_unset", "Valimata")
+                    : `${importance}/10`}
+                </strong>
               </p>
               <div className="ts-scale" role="group" aria-labelledby="ts-imp-label">
                 {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
@@ -1447,7 +1566,13 @@ export default function TeemaseemnedPage({ owner = null }) {
                 disabled={!gateResolved || gateBlocked}
                 onChange={(e) => setContinuePrep(e.target.checked)}
               />
-              <span>Pärast loomist jätkan privaatse ettevalmistusega</span>
+              <span>
+                {readText(
+                  t,
+                  "topic_seeds.create.continue_prep_toggle",
+                  "Pärast loomist jätkan privaatse ettevalmistusega"
+                )}
+              </span>
             </label>
             <div className="ts-actions-btns">
               <button
@@ -1471,7 +1596,10 @@ export default function TeemaseemnedPage({ owner = null }) {
               </button>
             </div>
             {gateResolved && !gateBlocked && missing.length ? (
-              <p className="ts-reason">Enne loomist täida: {missing.join(", ")}.</p>
+              <p className="ts-reason">
+                {readText(t, "topic_seeds.create.fill_before", "Enne loomist täida:")}{" "}
+                {`${missing.join(", ")}.`}
+              </p>
             ) : null}
           </div>
         </form>
@@ -1484,15 +1612,20 @@ export default function TeemaseemnedPage({ owner = null }) {
   /* ---------- Vaade: privaatne ettevalmistus (järgmine ehitusjärk) ---------- */
 
   const prepView = (
-    <section className="ts-shell ts-create" aria-label="Privaatne professionaalne ettevalmistus">
+    <section
+      className="ts-shell ts-create"
+      aria-label={readText(t, "topic_seeds.prep.title", "Privaatne professionaalne ettevalmistus")}
+    >
       <div className="ts-create-head">
         <div className="ts-create-intro">
           <button type="button" className="ts-back" onClick={() => setView("list")}>
-            ← Tagasi Teemaseemnete lehele
+            {readText(t, "topic_seeds.nav.back_to_list_arrow", "← Tagasi Teemaseemnete lehele")}
           </button>
-          <h1 className="ts-h1">Privaatne professionaalne ettevalmistus</h1>
+          <h1 className="ts-h1">
+            {readText(t, "topic_seeds.prep.title", "Privaatne professionaalne ettevalmistus")}
+          </h1>
         </div>
-        <ol className="ts-rail" aria-label="Teemaseemne loomise sammud">
+        <ol className="ts-rail" aria-label={readText(t, "topic_seeds.create.steps_aria", "Teemaseemne loomise sammud")}>
           {CREATE_STEPS.map((s, i) => (
             <li key={s} className="ts-step" data-state={i === 0 ? "done" : i === 1 ? "active" : "todo"}>
               <span className="ts-step-dot">{i + 1}</span>
@@ -1502,9 +1635,11 @@ export default function TeemaseemnedPage({ owner = null }) {
         </ol>
       </div>
       <p className="ts-intro">
-        Kiire seeme on loodud ja nähtav ainult sulle. Ettevalmistuse moodulid (eluvaldkonnad, vaated,
-        võrgustik, senine töö, fookus) on järgmises ehitusjärgus — praegu saad seemne jagada
-        kovisioonijärjekorda Teemaseemnete lehelt.
+        {readText(
+          t,
+          "topic_seeds.prep.intro",
+          "Kiire seeme on loodud ja nähtav ainult sulle. Ettevalmistuse moodulid (eluvaldkonnad, vaated, võrgustik, senine töö, fookus) on järgmises ehitusjärgus — praegu saad seemne jagada kovisioonijärjekorda Teemaseemnete lehelt."
+        )}
       </p>
       <ul className="ts-private-list ts-prep-list">
         {PRIVATE_MODULES.map((m) => (
@@ -1517,12 +1652,18 @@ export default function TeemaseemnedPage({ owner = null }) {
           data-variant="primary"
           className="ts-acc"
           onClick={() => {
-            setNotice("Seeme ootab sind Teemaseemnete lehel filtri „Minu seemned” all.");
+            setNotice(
+              readText(
+                t,
+                "topic_seeds.prep.waiting_notice",
+                "Seeme ootab sind Teemaseemnete lehel filtri „Minu seemned” all."
+              )
+            );
             setView("list");
             setFilter("minu");
           }}
         >
-          Tagasi Teemaseemnete lehele
+          {readText(t, "topic_seeds.nav.back_to_list", "Tagasi Teemaseemnete lehele")}
         </button>
       </div>
       {boundaryNote}
@@ -1532,18 +1673,27 @@ export default function TeemaseemnedPage({ owner = null }) {
   /* ---------- Kihid ---------- */
 
   const helpLayer = helpOpen ? (
-    <div className="ts-layer" role="dialog" aria-modal="true" aria-label="Abi">
+    <div
+      className="ts-layer"
+      role="dialog"
+      aria-modal="true"
+      aria-label={readText(t, "topic_seeds.ui.help", "Abi")}
+    >
       <div className="ts-layer-card">
         <header className="ts-layer-head">
-          <h2 className="ts-side-title">Mis on Teemaseeme?</h2>
+          <h2 className="ts-side-title">
+            {readText(t, "topic_seeds.help.title", "Mis on Teemaseeme?")}
+          </h2>
           <button type="button" data-variant onClick={() => setHelpOpen(false)}>
-            Sulge
+            {readText(t, "topic_seeds.ui.close", "Sulge")}
           </button>
         </header>
         <p className="ts-side-sub">
-          Teemaseeme on privaatne professionaalne tööseeme: märkad teema, lood lühikese üldistatud kaardi
-          ja soovi korral valmistad juhtumit privaatselt ette. Kovisiooni liigub ainult sinu teadlikult
-          jagatud üldistus — mitte detailne juhtumilugu.
+          {readText(
+            t,
+            "topic_seeds.help.body",
+            "Teemaseeme on privaatne professionaalne tööseeme: märkad teema, lood lühikese üldistatud kaardi ja soovi korral valmistad juhtumit privaatselt ette. Kovisiooni liigub ainult sinu teadlikult jagatud üldistus — mitte detailne juhtumilugu."
+          )}
         </p>
         {boundaryNote}
       </div>
@@ -1561,7 +1711,7 @@ export default function TeemaseemnedPage({ owner = null }) {
         <header className="ts-layer-head">
           <h2 className="ts-side-title">{readText(t, "topic_seeds.detail.title", "Kinnitatud seemnekaart")}</h2>
           <button type="button" data-variant onClick={() => setDetailSeed(null)}>
-            Sulge
+            {readText(t, "topic_seeds.ui.close", "Sulge")}
           </button>
         </header>
         <p className="ts-side-sub">
@@ -1592,7 +1742,7 @@ export default function TeemaseemnedPage({ owner = null }) {
               setConflictScope(null);
             }}
           >
-            Sulge
+            {readText(t, "topic_seeds.ui.close", "Sulge")}
           </button>
         </header>
         <p className="ts-side-sub">
