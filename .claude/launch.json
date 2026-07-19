@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev:3001"],
       "port": 3001
+    },
+    {
+      "name": "next-dev-public-v1",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-public-v1", "dev"],
+      "port": 3000
     }
   ]
 }
