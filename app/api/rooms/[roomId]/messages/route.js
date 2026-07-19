@@ -8,6 +8,8 @@ import { hasRoomBillingAccess } from "@/lib/rooms/access";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
 import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
 import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
+import { applySummaryApprovalPolicy, listRoomSummaryApprovalState } from "@/lib/rooms/summaryApproval";
+import { logDocumentsAudit } from "@/lib/documents/audit";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
 
@@ -21,6 +23,9 @@ const RATE_LIMIT_POST = Number(process.env.ROOM_MESSAGES_POST_RATE_LIMIT_MAX || 
 // E3 (audit 18 K2): kasutaja-tipitud sõnumi pikkuspiir, et vabatekst ei maanduks
 // piiramatult DB-sse. Jagatud summeeringu (FINAL artefakt) sisu jääb piirist välja.
 const MAX_MESSAGE_LENGTH = Number(process.env.ROOM_MESSAGE_MAX_LENGTH || 4000);
+// T20 P1: ka jagatud FINAL-kokkuvõte vajab lage — varem oli piiramatu. ~32k on
+// aus ülempiir (mitu A4), mis ei blokeeri päris kokkuvõtteid.
+const MAX_SHARED_SUMMARY_LENGTH = Number(process.env.ROOM_SHARED_SUMMARY_MAX_LENGTH || 32_000);
 
 function json(data, status = 200) {
   return NextResponse.json(data, {
@@ -264,12 +269,24 @@ export async function GET(req, { params }) {
   const authorIds = Array.from(new Set(page.map(m => m.authorId).filter(Boolean)));
   const displayNameMap = await getMemberDisplayNames(roomId, authorIds);
 
+  /* T20 P2: aktiivsete kinnitusringide seis sama päringu küljes — klient ei
+     tee eraldi ringi-päringut. Üksikvastused on nähtavad ainult jagajale. */
+  let summaryApprovals = [];
+  try {
+    summaryApprovals = await listRoomSummaryApprovalState({
+      roomId,
+      viewerId: auth.userId,
+      viewerRole: auth.userRole
+    });
+  } catch {}
+
   return json({
     ok: true,
     roomTitle: room.title || "",
     roomRole: String(access.member?.role || auth.userRole || "").trim().toUpperCase(),
     isHelpMatchRoom: Boolean(room.helpMatch?.id),
     roomOrigin: serializeRoomOrigin(room),
+    summaryApprovals,
     messages: page.map(m => ({
       id: m.id,
       content: m.content,
@@ -323,7 +340,15 @@ export async function POST(req, { params }) {
       sharedSummary = await resolveShareableMeetingSummary(auth.userId, artifactId, {
         role: auth.userRole
       });
-      rawContent = sharedSummary.content;
+      // T20 P1: ka jagatud kokkuvõttel on lagi — varem läks piiramatult DB-sse.
+      if (sharedSummary.content.length > MAX_SHARED_SUMMARY_LENGTH) {
+        return errorJson("api.rooms.summary_too_long", 413);
+      }
+      // T20 P1: artefakti tiitel sõnumi päisesse — ruumis peab olema näha,
+      // MIS dokumenti jagati, mitte ainult selle sisu.
+      rawContent = sharedSummary.title
+        ? `${sharedSummary.title}\n\n${sharedSummary.content}`
+        : sharedSummary.content;
     } catch (shareError) {
       return errorJson(shareError?.message || "api.rooms.summary_share_failed", Number(shareError?.status) || 500);
     }
@@ -383,11 +408,36 @@ export async function POST(req, { params }) {
        osaleja sellest privaatse koopia. Sisu salvestatakse snapshot'ina —
        artefakti hilisem muutmine ei kirjuta ümber seda, mida ruumis nähti. */
     if (sharedSummary) {
+      /* T20 P2: sisu-muutuse tuvastus vajab jagamise-EELSET snapshot'i —
+         vana kinnitus ei tohi jääda uue teksti külge. */
+      let priorShare = null;
+      try {
+        priorShare = await prisma.roomSharedSummary.findFirst({
+          where: { roomId, artifactId: sharedSummary.id },
+          select: { content: true }
+        });
+      } catch {}
       await recordSharedRoomSummary({
         roomId,
         summary: sharedSummary,
         messageId: msg.id,
         sharedByUserId: auth.userId
+      });
+      /* T20 P2 (O-CO-2 = a): jagaja võib küsida osalejatelt kinnitusringi.
+         Ei viska — jagamine ise on juba õnnestunud. */
+      await applySummaryApprovalPolicy({
+        roomId,
+        artifactId: sharedSummary.id,
+        prior: priorShare,
+        requestApproval: payload?.requestSummaryApproval === true
+      });
+      /* T20 P1: jagamine saab artefakti auditijälje (RUUM-A0 8 K2 auk).
+         logDocumentsAudit ei viska kunagi. */
+      await logDocumentsAudit("artifact.shared", {
+        userId: auth.userId,
+        artifactId: sharedSummary.id,
+        roomId,
+        messageId: msg.id
       });
     }
 

@@ -20,6 +20,8 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
   const [selectedRoomId, setSelectedRoomId] = useState("");
   const [loadingRooms, setLoadingRooms] = useState(true);
   const [sharing, setSharing] = useState(false);
+  /* T20 P2 (O-CO-2 = a): kinnitusring on valikuline — jagaja otsustab siin. */
+  const [requestApproval, setRequestApproval] = useState(false);
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const userRole = String(session?.user?.role || "").trim().toUpperCase();
@@ -68,7 +70,9 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
           summaryArtifactId: artifactId,
           // FINAL approval plus this explicit share action confirms that the
           // approved summary text may be posted to the selected private room.
-          privacyDecision: { action: "send_original" }
+          privacyDecision: { action: "send_original" },
+          // T20 P2: valikuline kinnitusring professionaalidelt (O-CO-2 = a).
+          requestSummaryApproval: requestApproval
         })
       });
       const data = await res.json().catch(() => ({}));
@@ -81,7 +85,7 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
     } finally {
       setSharing(false);
     }
-  }, [artifactId, selectedRoomId, sharing, t]);
+  }, [artifactId, requestApproval, selectedRoomId, sharing, t]);
 
   if (!canShare) return null;
 
@@ -105,6 +109,14 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
                 </option>
               ))}
             </select>
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={requestApproval}
+              onChange={(event) => setRequestApproval(event.target.checked)}
+            />
+            <span>{t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}</span>
           </label>
           <Button
             type="button"

@@ -41,7 +41,8 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
     roomTitle: "",
     roomRole: "",
     isHelpMatchRoom: initialIsHelpMatchRoom,
-    roomOrigin: null
+    roomOrigin: null,
+    summaryApprovals: []
   });
   const [useSse, setUseSse] = useState(false);
   const cursorRef = useRef(null);
@@ -91,7 +92,9 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
       roomTitle: String(data.roomTitle || ""),
       roomRole: String(data.roomRole || "").trim().toUpperCase(),
       isHelpMatchRoom: data.isHelpMatchRoom === true,
-      roomOrigin: data.roomOrigin && typeof data.roomOrigin === "object" ? data.roomOrigin : null
+      roomOrigin: data.roomOrigin && typeof data.roomOrigin === "object" ? data.roomOrigin : null,
+      /* T20 P2: aktiivsete kinnitusringide seis tuleb sama päringuga. */
+      summaryApprovals: Array.isArray(data.summaryApprovals) ? data.summaryApprovals : []
     });
     const items = Array.isArray(data.messages) ? data.messages.slice().reverse() : [];
     if (reset) {
@@ -162,7 +165,8 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
         roomTitle: "",
         roomRole: "",
         isHelpMatchRoom: false,
-        roomOrigin: null
+        roomOrigin: null,
+        summaryApprovals: []
       });
       return;
     }
@@ -171,7 +175,8 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
       roomTitle: "",
       roomRole: "",
       isHelpMatchRoom: initialIsHelpMatchRoom,
-      roomOrigin: null
+      roomOrigin: null,
+      summaryApprovals: []
     });
     setMessages([]);
     setBlocked(false);
@@ -196,6 +201,7 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
     ? roomMeta.isHelpMatchRoom
     : initialIsHelpMatchRoom;
   const roomOrigin = metaMatchesRoom ? roomMeta.roomOrigin : null;
+  const summaryApprovals = metaMatchesRoom ? roomMeta.summaryApprovals : [];
   return {
     messages,
     blocked,
@@ -204,6 +210,7 @@ export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
     roomRole,
     isHelpMatchRoom,
     roomOrigin,
+    summaryApprovals,
     reload: () => load(true),
     setMessages,
     useSse

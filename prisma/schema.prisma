@@ -638,6 +638,15 @@ enum DocumentAuditAction {
   ARTIFACT_APPROVE
   ARTIFACT_DOWNLOAD
   ARTIFACT_DELETE
+  // T20 COLLAB-P1: U10 jagamine ruumi saab auditijälje (RUUM-A0 8 K2 auk).
+  ARTIFACT_SHARE
+}
+
+// T20 COLLAB-P2 — kokkuvõtte kinnitusringi vastus. Eriarvamus SÄILIB
+// (analüüs ptk 3.1 klass 9: "kes nõustus; eriarvamus säilib").
+enum RoomSummaryApprovalStatus {
+  APPROVED
+  CORRECTION
 }
 
 /**
@@ -700,6 +709,7 @@ model User {
   roomMessages            RoomMessage[]            @relation("RoomMessageAuthor")
   roomSharedSummaries     RoomSharedSummary[]      @relation("RoomSharedSummarySharedBy")
   roomSummaryCopies       RoomSummaryCopy[]
+  roomSummaryApprovals    RoomSummaryApproval[]
   callSessionsStarted     CallSession[]            @relation("CallSessionStartedBy")
   callParticipants        CallParticipant[]
   callSpeakRequests       CallSpeakRequest[]
@@ -3228,13 +3238,39 @@ model RoomSharedSummary {
   sharedAt       DateTime @default(now())
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+  // T20 COLLAB-P2 (O-CO-2 = a): kinnitusring on VALIKULINE — jagaja otsustab.
+  // Null = ringi ei küsitud; ajatempel = ring on avatud alates sellest hetkest.
+  approvalRequestedAt DateTime?
 
-  room     Room              @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  sharedBy User              @relation("RoomSharedSummarySharedBy", fields: [sharedByUserId], references: [id], onDelete: Cascade)
+  room     Room                  @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sharedBy User                  @relation("RoomSharedSummarySharedBy", fields: [sharedByUserId], references: [id], onDelete: Cascade)
   copies   RoomSummaryCopy[]
+  approvals RoomSummaryApproval[]
 
   @@unique([roomId, artifactId])
   @@index([roomId, sharedAt])
+}
+
+// T20 COLLAB-P2 — kinnitusringi vastus: osaleja "kinnitan" või "mul on
+// parandus" jagatud FINAL-kokkuvõtte kohta. Kuju-doonor on
+// SupervisionSummaryApproval; erinevused on teadlikud: status (eriarvamus
+// säilib, mitte ainult kinnitus) ja note (paranduse sisu autorile).
+// O-CO-5 = c: klient on adressaat, MITTE ringi osaleja — jõustatakse API-s
+// (professionaalirollid), mitte skeemis, sest ruumiroll ei kanna kontorolli.
+model RoomSummaryApproval {
+  id                  String                    @id @default(cuid())
+  roomSharedSummaryId String
+  userId              String
+  status              RoomSummaryApprovalStatus
+  note                String?                   @db.Text
+  createdAt           DateTime                  @default(now())
+  updatedAt           DateTime                  @updatedAt
+
+  sharedSummary RoomSharedSummary @relation(fields: [roomSharedSummaryId], references: [id], onDelete: Cascade)
+  user          User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomSharedSummaryId, userId])
+  @@index([userId, createdAt])
 }
 
 // Kes millise kokkuvõtte privaatkoopia sai. Unikaalindeks teeb üleandmise

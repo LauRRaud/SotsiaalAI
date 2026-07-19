@@ -16,7 +16,9 @@ export function useChatRoomMode({
     roomTitle,
     roomRole,
     isHelpMatchRoom,
-    roomOrigin
+    roomOrigin,
+    summaryApprovals: roomSummaryApprovals,
+    reload: reloadRoomMessages
   } = useRoomMessages(roomId || "", 3000, {
     initialIsHelpMatchRoom
   });
@@ -89,6 +91,8 @@ export function useChatRoomMode({
     roomRole,
     isHelpMatchRoom,
     roomOrigin,
+    roomSummaryApprovals,
+    reloadRoomMessages,
     sendToAssistant,
     setSendToAssistant,
     getVisibleMessages,
