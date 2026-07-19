@@ -36,10 +36,22 @@ test("chat Word export is a DOCX ZIP and preserves Estonian and Cyrillic text", 
   assert.match(documentXml.toString("utf8"), /Šokis žest: Привет/);
 });
 
-test("PDF export fails closed for text the current generator cannot represent", () => {
+test("PDF export renders full Estonian via WinAnsi and still fails closed for Cyrillic", () => {
   assert.equal(isPdfTextSupported("Latin basic text 123"), true);
-  assert.equal(isPdfTextSupported("Šokis"), false);
+  // Full Estonian is now representable: õäöü (were wrong-glyph) AND š ž (were 409).
+  assert.equal(isPdfTextSupported("Šokis žest põõsas üü"), true);
+  // No WinAnsi glyphs for these -> still fail closed.
   assert.equal(isPdfTextSupported("Привет"), false);
-  assert.match(createPdfBufferFromText("Latin basic text 123").subarray(0, 8).toString("ascii"), /^%PDF-1\.4/);
+  assert.equal(isPdfTextSupported("日本語"), false);
+
+  const pdf = createPdfBufferFromText("šžõäöü");
+  const latin1 = pdf.toString("latin1");
+  assert.match(latin1.slice(0, 8), /^%PDF-1\.4/);
+  // The font must declare WinAnsiEncoding, else the viewer draws StandardEncoding glyphs.
+  assert.ok(latin1.includes("/Encoding /WinAnsiEncoding"), "font declares WinAnsiEncoding");
+  // Estonian letters encode to their cp1252 bytes (š=9A ž=9E õ=F5 ä=E4 ö=F6 ü=FC),
+  // not latin1 low-byte truncations (which would turn š into 'a').
+  assert.ok(latin1.includes("\x9A\x9E\xF5\xE4\xF6\xFC"), "cp1252 byte sequence present");
+
   assert.throws(() => createPdfBufferFromText("Привет"), { code: "PDF_UNSUPPORTED_TEXT" });
 });
