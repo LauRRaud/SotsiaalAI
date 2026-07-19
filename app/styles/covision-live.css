@@ -10,13 +10,18 @@
   --cvl-private: rgba(174, 193, 196, 0.11);
   position: relative;
   isolation: isolate;
+  /* R5.0 lõuendireegel: kest EI keri. Sessioon peab mahtuma ekraanile 1920×1080
+     JA 1536×864 juures — kerimine on ainus asi, mis lõhub „ruumis olemise"
+     tunde ja peidab värava/komposeri. Varem oli siin overflow-y:auto, mis
+     tegi kestast kerimiskasti (R1-P0 / KOV-R R5.0 rikkumine).
+     Kolonn-flex: ülemised ribad võtavad oma kõrguse, töölaud saab ülejäänu. */
+  display: flex;
+  flex-direction: column;
   height: 100%;
   min-height: 0;
   max-height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
-  scrollbar-gutter: stable;
   border: 1px solid var(--cvl-line);
   border-radius: clamp(1.1rem, 2vw, 2rem);
   color: var(--text-warm, #f4f1ec);
@@ -370,14 +375,37 @@
   display: grid;
   grid-template-columns: minmax(13rem, 0.78fr) minmax(28rem, 2.35fr) minmax(16rem, 0.92fr);
   gap: clamp(0.75rem, 1.4vw, 1.15rem);
-  align-items: start;
+  /* R5.0: töölaud võtab kestast ülejäänud kõrguse ja jagab selle kolme tsooni
+     vahel. `align-items: start` oleks lasknud veergudel sisu järgi kasvada ja
+     kesta kerima lükata; `stretch` + min-height:0 hoiab need lõuendi sees. */
+  flex: 1 1 auto;
+  min-height: 0;
+  /* Kaks rida: kolm tsooni võtavad ülejäänud kõrguse, komposer/etapipaneel
+     istub täislaiuses laua serval. Varem voolasid need kaudsesse teise ritta
+     kitsasse esimesse veergu — ja kesta kerimiseta oleks see lõikunud.
+     R11 kriteerium 12 nõuab, et komposer oleks ALATI nähtav. */
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: stretch;
+  overflow: hidden;
   padding: clamp(0.8rem, 1.5vw, 1.35rem);
+}
+
+.cvl-workbench > .cvl-composer,
+.cvl-workbench > .cvl-stage-seven,
+.cvl-workbench > .cvl-stage-eight {
+  grid-column: 1 / -1;
 }
 
 .cvl-left-panel,
 .cvl-right-panel {
   display: grid;
   gap: 0.85rem;
+  /* Ainus lubatud kerimine on tsooni SEES, mitte kestas (R5.0). */
+  min-height: 0;
+  align-content: start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .cvl-side-section,
@@ -584,6 +612,12 @@
 
 .cvl-work-field {
   min-width: 0;
+  /* R5.0: pealkiri ja sissejuhatus võtavad oma kõrguse, lõuend saab ülejäänu.
+     Nii jäävad värav ja komposer alati nähtavaks ilma kerimiseta. */
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
 }
 
 .cvl-work-heading {
@@ -611,7 +645,11 @@
 
 .cvl-canvas {
   position: relative;
-  min-height: clamp(29rem, 57vh, 43rem);
+  /* R5.0: lõuend täidab keskveerus ülejäänud kõrguse. Varasem
+     min-height: clamp(29rem, 57vh, 43rem) oli teine pool lõuendireegli
+     rikkumisest — väiksemal ekraanil (1536×864) surus see töölaua kestast
+     välja ja sundis kerima. */
+  min-height: 0;
   margin-top: 0.65rem;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.11);
@@ -687,6 +725,11 @@
   z-index: 2;
   top: 50%;
   left: 50%;
+  /* R5.0: kui kaardi sisu on pikk, keritakse KAARDI sees — lõuend ise ei kasva
+     ega lõika sisu ära (lõuendil on overflow:hidden). */
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   width: min(27rem, 62%);
   transform: translate(-50%, -50%);
 }
