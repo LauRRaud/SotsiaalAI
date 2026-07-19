@@ -9,6 +9,7 @@ import { TERMS_VERSION } from "@/lib/legalDocuments";
 import { getFooterNote } from "@/lib/footerNote";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { focusPolicyScrollArea, handlePolicyScrollKeyDown } from "@/components/alalehed/policyScrollKeyboard";
+import { ReadingToc, useHashNavigation } from "@/components/alalehed/readingLayer";
 
 const emailReplacement = {
   aEmail: {
@@ -17,6 +18,7 @@ const emailReplacement = {
   }
 };
 export default function KasutustingimusedBody() {
+  const activeSectionId = useHashNavigation();
   const router = useRouter();
   const {
     t,
@@ -142,7 +144,15 @@ export default function KasutustingimusedBody() {
             <p className="legal-version-note">
               {t("legal.version_note", { version: TERMS_VERSION })}
             </p>
-            {sections.map(section => <div key={section.heading}>
+            <ReadingToc
+              title={t("legal.toc_title")}
+              items={sections.map((section, idx) => ({
+                id: `s${idx + 1}`,
+                label: section.heading
+              }))}
+              activeId={activeSectionId}
+            />
+            {sections.map((section, sectionIdx) => <div key={section.heading} id={`s${sectionIdx + 1}`} className="reading-section">
                 <h2>{section.heading}</h2>
                 <div>
                   {section.content.map((item, idx) => item.type === "list" ? <RichText key={`${section.heading}-list-${idx}`} as="ul" value={item.value} /> : <RichText key={`${section.heading}-p-${idx}`} as="div" value={item.value} replacements={item.replacements || {}} />)}
