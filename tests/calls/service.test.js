@@ -601,3 +601,108 @@ test("T12 E2: a racing recording request that hits the unique index returns the 
   const openRows = prisma.callRecordingRequest.rows.filter(row => ["REQUESTED", "READY_TO_RECORD", "ACTIVE"].includes(row.status));
   assert.equal(openRows.length, 1, "no duplicate open request survives the race");
 });
+
+function activeRecordingService(prisma, { egressStops, finalize = false } = {}) {
+  return createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_active_1" }),
+      stopRecording: async payload => {
+        if (egressStops) egressStops.push(payload);
+        return { ok: true };
+      }
+    },
+    recordingStorage: {
+      ensureReady: async () => {},
+      ...(finalize
+        ? {
+            finalizeRecordingFile: async ({ fileName }) => ({
+              storagePath: `uploads/${fileName}`,
+              mimeType: "audio/ogg",
+              fileSizeBytes: 2048,
+              durationSeconds: 30,
+              checksum: "sha256-e5"
+            })
+          }
+        : {})
+    }
+  });
+}
+
+test("T12 E5: a positive consent decision during an ACTIVE recording does not demote it (audit 5 K1 d)", async () => {
+  const prisma = createPrisma();
+  const service = activeRecordingService(prisma);
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "CONSENTED" });
+  const started = await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  assert.equal(started.status, "ACTIVE");
+
+  // Re-affirming consent while ACTIVE must NOT flip the request back to READY_TO_RECORD.
+  const afterReconsent = await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "CONSENTED" });
+
+  assert.equal(afterReconsent.status, "ACTIVE", "positive consent keeps the recording ACTIVE");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
+});
+
+test("T12 E5: withdrawing consent during an ACTIVE recording stops egress and discards the artifact (audit 5 K1 c)", async () => {
+  const prisma = createPrisma();
+  const egressStops = [];
+  const service = activeRecordingService(prisma, { egressStops });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "CONSENTED" });
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  const afterWithdraw = await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "WITHDRAWN" });
+
+  assert.equal(afterWithdraw.status, "STOPPED", "withdraw during ACTIVE stops the request");
+  assert.equal(egressStops.length, 1, "egress was stopped exactly once");
+  assert.equal(egressStops[0].egressId, "egress_active_1");
+  assert.equal(prisma.callRecordingFile.rows[0].status, "DELETED", "the mixed artifact is discarded, not made available");
+  assert.equal(prisma.userDocument.rows.length, 0, "no recording document is created on discard");
+  assert.equal(prisma.dataAuditLog.rows.some(row => row.action === "CALL_RECORDING_DISCARDED"), true);
+});
+
+test("T12 E5: a late joiner during an ACTIVE recording halts it before they are recorded (audit 4 K1)", async () => {
+  const prisma = createPrisma();
+  const egressStops = [];
+  const service = activeRecordingService(prisma, { egressStops, finalize: true });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "CONSENTED" });
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
+
+  // A third participant joins mid-recording without having consented.
+  await service.joinCall({ callSessionId: call.id, userId: "user_3" });
+
+  assert.equal(egressStops.length, 1, "the late join halted egress");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "COMPLETED", "the fully-consented portion is finalized, not left running");
+  assert.equal(prisma.callRecordingFile.rows[0].status, "AVAILABLE");
+});
+
+test("T12 E5: cancelling cannot silently stop an ACTIVE recording and orphan egress (audit 5 K1 a)", async () => {
+  const prisma = createPrisma();
+  const egressStops = [];
+  const service = activeRecordingService(prisma, { egressStops });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  // Cancel targets only pre-ACTIVE requests; an ACTIVE one must be stopped (egress + finalize), not cancelled.
+  await assert.rejects(
+    () => service.cancelRecordingRequest({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_request_not_found/
+  );
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE", "the ACTIVE recording is untouched by cancel");
+  assert.equal(egressStops.length, 0, "cancel did not touch egress");
+});
