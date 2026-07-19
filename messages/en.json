@@ -594,7 +594,54 @@
   "workspace": {
     "kind": {
       "mentoring_process": "Mentoring relationship",
-      "wellbeing_space": "My wellbeing space"
+      "wellbeing_space": "My wellbeing space",
+      "pre_inquiry": "Pre-inquiry"
+    }
+  },
+  "casework": {
+    "preparation": {
+      "title": "Meeting preparation",
+      "intro": "This view gathers the pre-information for preparing a meeting or the next contact. Everything here is a working draft — not an official record.",
+      "sources_title": "What you are preparing from",
+      "drafts_title": "Preparation drafts",
+      "drafts_hint": "You can build a preparatory draft from these. A draft stays in your work view and is not an official record.",
+      "legend_title": "Origin markers",
+      "sources": {
+        "situation": "Situation described by the person",
+        "assessment": "Pre-assessment answers",
+        "draft": "AI-drafted inquiry"
+      }
+    },
+    "next_action": {
+      "contact": "Next contact"
+    },
+    "provenance": {
+      "KLIENDI_OELDUD": "Client stated",
+      "KLIENDI_KINNITATUD": "Client confirmed",
+      "DOKUMENDIST": "From a document",
+      "TEISE_SPETSIALISTI_INFO": "Another specialist's information",
+      "TOOTAJA_TAHELEPANEK": "Worker observation",
+      "TOOTAJA_TOLGENDUS": "Worker interpretation",
+      "AI_MUSTAND": "AI draft",
+      "AMETLIKULT_KONTROLLITUD": "Officially verified"
+    },
+    "carrier_class": {
+      "1": "Working draft",
+      "2": "Confirmed summary",
+      "3": "Official record"
+    },
+    "artifact_type": {
+      "MEETING_SUMMARY": "Meeting summary",
+      "TRANSCRIPT_SUMMARY": "Transcript summary",
+      "CASE_SUMMARY": "Case summary",
+      "PRE_ASSESSMENT_SUMMARY": "Pre-assessment summary",
+      "STAR_HELPER": "STAR helper",
+      "CASE_BRIEF": "Case brief",
+      "REPORT_DRAFT": "Report draft",
+      "ACTION_PLAN": "Action plan",
+      "CHECKLIST": "Checklist",
+      "LETTER_DRAFT": "Letter draft",
+      "OTHER": "Other"
     }
   },
   "common": {
