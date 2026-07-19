@@ -90,6 +90,7 @@ export default defineConfig([
       "components/alalehed/ChatBody.jsx",
       "components/HomeSections/HomeAboutSection.jsx",
       "components/alalehed/chat/ChatAnalysisPanel.jsx",
+      "components/brand/LogoExportStage.jsx",
       "tests/**/*",
       "**/*.test.*",
     ],

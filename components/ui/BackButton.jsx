@@ -7,7 +7,7 @@ const BackButton = forwardRef(function BackButton({
   ariaLabel,
   className,
   iconClassName: iconClassNameProp,
-  holdPressedVisualDisabled = false,
+  holdPressedVisualDisabled: _holdPressedVisualDisabled,
   onPointerDown,
   onKeyDown,
   ...props

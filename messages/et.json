@@ -1554,7 +1554,8 @@
         "review_concerns": "Mured ja täpsustamist vajavad küsimused",
         "review_strengths": "Toimivad vastused ja tugevused",
         "review_unanswered": "Vastamata põhiküsimused",
-        "review_directions": "Võimalikud teenuse- või kontaktisuunad"
+        "review_directions": "Võimalikud teenuse- või kontaktisuunad",
+        "intro": "Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida."
       },
       "routing": {
         "confidence": "Kontaktisoovituse kindlus"
@@ -1580,7 +1581,13 @@
         "mark_ready": "Märgi vastuvõetuks",
         "archive": "Arhiveeri",
         "show_more_contacts": "Vaata rohkem kontakte",
-        "show_less_contacts": "Näita vähem"
+        "show_less_contacts": "Näita vähem",
+        "choose_recipient": "Vali adressaat",
+        "choose_contact": "Vali see kontakt",
+        "view_service_map": "Vaata teenusekaardil",
+        "view_profile": "Vaata profiili",
+        "edit": "Muuda",
+        "copy_short": "Kopeeri"
       },
       "receiver_workspace": "Eelpöördumiste vastuvõtt",
       "recipients_lead": "Kontaktid ilmuvad, kui olukord, piirkond ja pöördumise suund on piisavalt selged.",
@@ -1615,6 +1622,32 @@
         "workflow_save_failed": "Vastuvõtja tööplaani ei saanud salvestada.",
         "preferences_load_failed": "Vastuvõtu seadeid ei saanud laadida.",
         "preferences_save_failed": "Vastuvõtu seadeid ei saanud salvestada."
+      },
+      "start": {
+        "title": "Koosta eelpöördumine",
+        "lead": "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.",
+        "journey_locked": "Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest."
+      },
+      "overview": {
+        "title": "Eelinfo ülevaade",
+        "lead": "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.",
+        "empty": "Eelinfo täitub töövoo käigus.",
+        "missing_hint": "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama."
+      },
+      "journey_share": {
+        "lead": "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.",
+        "empty": "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist."
+      },
+      "recipients_hint": "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.",
+      "preview": {
+        "no_auto_send": "Midagi ei saadeta automaatselt.",
+        "check_note": "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.",
+        "recipient_prefix": "Adressaat",
+        "delivery_prefix": "Saatmise viis",
+        "delivery_platform": "platvormisisene eelpöördumine",
+        "delivery_email": "e-kirja tekst",
+        "delivery_manual": "salvestamine, kopeerimine või allalaadimine",
+        "referral_hint": "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole."
       }
     },
     "service_map": {

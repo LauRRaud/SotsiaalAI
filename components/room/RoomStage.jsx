@@ -1186,6 +1186,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           {introSai ? (
             <div className="room-intro-sai" aria-hidden="true">
               <div className="room-intro-sai-mono">
+                {/* eslint-disable-next-line @next/next/no-img-element -- staatiline SVG SMIL-animatsiooniga; next/image ei lisa midagi */}
                 <img
                   key="intro-sai"
                   src="/logo/sotsiaalai-v-metalbase.svg"
@@ -1223,6 +1224,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
              rectangle while the stylesheet and WebGL texture are loading. */
           style={veilLogoReady ? undefined : { opacity: 0 }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element -- SVG sõnamärk ref/complete-loogikaga; next/image lõhuks laadimisvärava */}
           <img
             ref={image => {
               // Cached SVG can already be complete before React receives onLoad.

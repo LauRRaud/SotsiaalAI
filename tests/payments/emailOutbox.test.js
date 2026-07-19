@@ -5,7 +5,7 @@ import { enqueuePaymentEmail, runPaymentEmailDelivery } from "../../lib/payments
 
 const NOW = new Date("2026-07-19T12:00:00.000Z");
 
-function matchRow(row, where, now) {
+function matchRow(row, where, _now) {
   if (where.id && row.id !== where.id) return false;
   if (where.status?.in && !where.status.in.includes(row.status)) return false;
   if (where.status && typeof where.status === "string" && row.status !== where.status) return false;

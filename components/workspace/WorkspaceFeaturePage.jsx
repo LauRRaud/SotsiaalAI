@@ -1951,10 +1951,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         <section>
           <div>
             <h1>
-              Koosta eelpöördumine
+              {readText(t, "workspace_feature_pages.pre_inquiries.start.title", "Koosta eelpöördumine")}
             </h1>
             <p>
-              Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.
+              {readText(t, "workspace_feature_pages.pre_inquiries.start.lead", "Eelpöördumine aitab olukorra arusaadavalt kirja panna ja valida, kelle poole pöörduda. See ei ole ametlik hindamine ega teenuse määramise otsus.")}
             </p>
           </div>
           <div>
@@ -1972,7 +1972,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   <span>{option.description}</span>
                   {disabled ? (
                     <span>
-                      Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest.
+                      {readText(t, "workspace_feature_pages.pre_inquiries.start.journey_locked", "Teekonnast jätkamiseks ava eelpöördumine konkreetse Teekonna vaatest.")}
                     </span>
                   ) : null}
                 </button>
@@ -2218,9 +2218,9 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       <div>
         <aside>
           <div>
-            <h2>Eelinfo ülevaade</h2>
+            <h2>{readText(t, "workspace_feature_pages.pre_inquiries.overview.title", "Eelinfo ülevaade")}</h2>
             <p>
-              Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.
+              {readText(t, "workspace_feature_pages.pre_inquiries.overview.lead", "Siin näed infot, mida kasutatakse pöördumise koostamiseks. Enne saatmist saad kõike muuta.")}
             </p>
           </div>
           {preInquiryOverviewRows.length ? (
@@ -2234,13 +2234,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             </dl>
           ) : (
             <p>
-              Eelinfo täitub töövoo käigus.
+              {readText(t, "workspace_feature_pages.pre_inquiries.overview.empty", "Eelinfo täitub töövoo käigus.")}
             </p>
           )}
           {preInquiryMissingInfo.length ? (
             <div>
               <p>
-                Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama.
+                {readText(t, "workspace_feature_pages.pre_inquiries.overview.missing_hint", "Need andmed võivad aidata sobivamat kontakti leida, kuid sa ei pea kõike lisama.")}
               </p>
               <ul>
                 {preInquiryMissingInfo.slice(0, 6).map((item) => <li key={item}>{item}</li>)}
@@ -2285,12 +2285,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       {activeWorkflowStep === "journey" ? (
         <SectionCard flat={embedded} title="Vali, mida soovid eelpöördumises kasutada">
           <p className={bodyTextClassName}>
-            Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.
+            {readText(t, "workspace_feature_pages.pre_inquiries.journey_share.lead", "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.")}
           </p>
           {activeDraftJourneySharedInfo ? (
             <JourneySharedInfoBlock info={activeDraftJourneySharedInfo} t={t} audience={activeDraftJourneySharedInfoAudience} serviceLabel={selectedRecipient?.title || ""} />
           ) : (
-            <p className={bodyTextClassName}>Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.</p>
+            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}</p>
           )}
           <div>
             {[
@@ -2314,10 +2314,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           </div>
           <div>
             <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("recipient")}>
-              Vali adressaat
+              {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
             </Button>
             <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("collect")}>
-              Täpsusta eelinfot
+              {readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}
             </Button>
           </div>
         </SectionCard>
@@ -2327,7 +2327,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       <>
       <SectionCard flat={embedded} title="Aitan sul pöördumise ette valmistada">
         <p className={bodyTextClassName}>
-          Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida.
+          {readText(t, "workspace_feature_pages.pre_inquiries.assessment.intro", "Tere. Kirjelda lühidalt, mis olukord on. Sa ei pea kõike õigesti sõnastama. Küsin vajadusel ainult neid täpsustusi, mis aitavad pöördumise selgemaks teha ja sobiva kontakti leida.")}
         </p>
         <p className={bodyTextClassName}>
           {readText(t, "workspace_feature_pages.pre_inquiries.assessment.note", "Eelkaardistus ei ole ametlik abivajaduse hindamine ega teenuse määramise otsus. See aitab olukorda läbi mõelda ja pöördumist ette valmistada.")}
@@ -2530,10 +2530,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
 
       <div>
         <Button type="button" size="sm" variant="primary" onClick={() => setActiveWorkflowStep("review")}>
-          Vaata eelinfo üle
+          {readText(t, "workspace_feature_pages.pre_inquiries.sections.assessment_review", "Vaata eelinfo üle")}
         </Button>
         <Button type="button" size="sm" onClick={() => setActiveWorkflowStep("recipient")}>
-          Vali adressaat
+          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_recipient", "Vali adressaat")}
         </Button>
       </div>
       </>
@@ -2554,7 +2554,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         open
         style={{ display: activeWorkflowStep === "collect" && (!plainLanguage || plainCollectView === "assistant") ? undefined : "none" }}
       >
-        <summary>Täpsusta eelinfot</summary>
+        <summary>{readText(t, "workspace_feature_pages.pre_inquiries.sections.assistant", "Täpsusta eelinfot")}</summary>
       <SectionCard flat={embedded} title="Aita pöördumist selgemaks teha">
         <div>
           <div>
@@ -2749,21 +2749,21 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 ))}
                 <span>
                   <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
-                    Vali see kontakt
+                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
                   </Button>
                   <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
-                    Vaata teenusekaardil
+                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
                   </Button>
                   {entry.providerProfileId ? (
                     <Button as="a" href={localizePath(`/teenuseprofiil?profileId=${encodeURIComponent(entry.providerProfileId)}`, locale)} size="sm" variant="linkBrand">
-                      Vaata profiili
+                      {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_profile", "Vaata profiili")}
                     </Button>
                   ) : null}
                 </span>
               </article>
             );
           }) : (
-            <p className={bodyTextClassName}>Kontaktide soovitamiseks lisa v?hemalt piirkond v?i KOV ning l?hike olukorra kirjeldus.</p>
+            <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.recipients_hint", "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.")}</p>
           )}
           {recommendedRecipients.length > 3 ? (
             <Button type="button" size="sm" onClick={() => setShowMoreContacts((value) => !value)}>
@@ -2818,17 +2818,17 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           </div>
         ) : null}
         <div>
-          <p>Midagi ei saadeta automaatselt.</p>
+          <p>{readText(t, "workspace_feature_pages.pre_inquiries.preview.no_auto_send", "Midagi ei saadeta automaatselt.")}</p>
           <p>
-            Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.
+            {readText(t, "workspace_feature_pages.pre_inquiries.preview.check_note", "Enne kinnitamist kontrolli adressaati, saatmise viisi, pöördumise teksti ja eelinfot. Platvormisisene pöördumine jõuab vastuvõtja Pöördumiste vaatesse; e-kirja tekst avaneb sinu e-posti rakenduses ülevaatamiseks.")}
           </p>
           {selectedRecipient ? (
             <p>
-              Adressaat: {selectedRecipient.title}. Saatmise viis: {selectedRecipientSupportsPlatform ? "platvormisisene eelpöördumine" : selectedRecipientSupportsEmail ? "e-kirja tekst" : "salvestamine, kopeerimine või allalaadimine"}.
+              {readText(t, "workspace_feature_pages.pre_inquiries.preview.recipient_prefix", "Adressaat")}: {selectedRecipient.title}. {readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_prefix", "Saatmise viis")}: {selectedRecipientSupportsPlatform ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_platform", "platvormisisene eelpöördumine") : selectedRecipientSupportsEmail ? readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_email", "e-kirja tekst") : readText(t, "workspace_feature_pages.pre_inquiries.preview.delivery_manual", "salvestamine, kopeerimine või allalaadimine")}.
             </p>
           ) : null}
           {selectedRecipientReferralNotice ? (
-            <p>{selectedRecipientReferralNotice} Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.</p>
+            <p>{selectedRecipientReferralNotice} {readText(t, "workspace_feature_pages.pre_inquiries.preview.referral_hint", "Sa saad teenuseosutajalt küsida lisainfot või pöörduda KOV-i poole.")}</p>
           ) : null}
           {selectedRecipientAvailabilityNotices.map(({ service, presentation }) => (
             <p key={`${service.id || service.name}-preview-availability`} role="status">
@@ -2920,13 +2920,13 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   {readText(t, "workspace_feature_pages.pre_inquiries.actions.open", "Ava")}
                 </Button>
                 <Button type="button" size="sm" variant="primary" onClick={() => handleOpenInquiry(inquiry)}>
-                  Muuda
+                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.edit", "Muuda")}
                 </Button>
                 <Button type="button" size="sm" variant="primary" onClick={() => navigator?.clipboard?.writeText(inquiry.userEditedDraft || inquiry.generatedDraft || inquiry.situation || "")}>
-                  Kopeeri
+                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.copy_short", "Kopeeri")}
                 </Button>
                 <Button type="button" size="sm" variant="primary" onClick={() => handleDownloadSavedInquiry(inquiry)}>
-                  Laadi alla
+                  {readText(t, "workspace_feature_pages.pre_inquiries.actions.download", "Laadi alla")}
                 </Button>
                 <Button
                   type="button"

@@ -56,7 +56,7 @@ function resolveRecordingPurposeLabel(t, recording) {
 export default function RoomCallBar({
   roomId,
   userId,
-  isLightTheme = false,
+  isLightTheme: _isLightTheme,
   t,
   basePath = "",
   contextType = "ROOM",
