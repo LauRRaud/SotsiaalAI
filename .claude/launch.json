@@ -18,6 +18,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-public-v1", "dev"],
       "port": 3000
+    },
+    {
+      "name": "next-dev-covision-v2",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:3001"],
+      "port": 3001
     }
   ]
 }
