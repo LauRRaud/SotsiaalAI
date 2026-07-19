@@ -3959,6 +3959,11 @@
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
       "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist",
       "field_checkin_due": "Välitöö kontrollaken läheneb — kinnita lahkumine või pikenda tähtaega.",
+      "supervision_invite": "Sind kutsuti supervisiooniprotsessi",
+      "supervision_contract_pending": "Supervisiooni kontraktil on uus versioon — kinnita see",
+      "supervision_meeting_upcoming": "Supervisioonikohtumine läheneb",
+      "supervision_summary_pending": "Supervisiooni kokkuvõte ootab sinu kinnitust",
+      "supervision_closed": "Supervisiooniprotsess suleti",
       "data_export_ready": "Sinu andmekoopia on valmis",
       "mentoring_request_created": "Sulle saabus mentorlustaotlus",
       "mentoring_request_accepted": "Sinu mentorlustaotlus võeti vastu",
@@ -6329,5 +6334,25 @@
     "results": "Otsingutulemused",
     "kinds": { "conversation": "Vestlus", "journey": "Teekond", "document": "Dokument" },
     "status": { "active": "Aktiivne", "pinned": "Kinnitatud", "draft": "Mustand", "archived": "Arhiveeritud", "material": "Materjal", "template": "Mall", "call_audio_recording": "Kõnesalvestis", "call_transcript": "Kõne üleskirjutus", "audio_transcript": "Heli üleskirjutus", "transcript_summary": "Üleskirjutuse kokkuvõte", "uploaded_audio_source": "Üleslaaditud helifail", "other": "Muu" }
+  },
+  "supervision": {
+    "errors": {
+      "request_failed": "Supervisiooni päring ebaõnnestus.",
+      "load_failed": "Supervisiooni andmete laadimine ebaõnnestus.",
+      "save_failed": "Supervisiooni salvestamine ebaõnnestus.",
+      "conflict": "Supervisiooni toiming sattus vastuollu. Laadi uuesti ja proovi uuesti.",
+      "stale_version": "Keegi muutis seda vahepeal. Laadi uuesti ja proovi uuesti.",
+      "already_closed": "Protsess on juba suletud.",
+      "pending_summaries": "Enne sulgemist kinnita või tühista kõik ootel kokkuvõtted.",
+      "rule_violation": "Seda toimingut ei saa selles olekus teha.",
+      "role_forbidden": "Supervisioon on mõeldud sotsiaaltöötajatele ja teenuseosutajatele.",
+      "role_not_allowed": "Seda kasutajat ei saa siia rolli lisada.",
+      "grant_required": "Supervisiooni protsessi loomiseks on vaja kehtivat superviisori õigust.",
+      "grant_exists": "Sellel kasutajal on juba kehtiv superviisori õigus.",
+      "contract_not_accepted": "Enne jätkamist kinnita kehtiv kontraktiversioon.",
+      "handoff_conflict": "See mustand on juba üle antud.",
+      "handoff_fingerprint": "Mustandit muudeti vahepeal. Vaata üle ja proovi uuesti.",
+      "audit_free_text": "Sisemine viga auditikirje koostamisel."
+    }
   }
 }

@@ -3959,6 +3959,11 @@
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation",
       "field_checkin_due": "The field-work check-in window is approaching — confirm departure or extend the deadline.",
+      "supervision_invite": "You were invited to a supervision process",
+      "supervision_contract_pending": "The supervision contract has a new version — confirm it",
+      "supervision_meeting_upcoming": "A supervision meeting is approaching",
+      "supervision_summary_pending": "A supervision summary awaits your approval",
+      "supervision_closed": "A supervision process was closed",
       "data_export_ready": "Your data copy is ready",
       "mentoring_request_created": "You received a mentoring request",
       "mentoring_request_accepted": "Your mentoring request was accepted",
@@ -6246,5 +6251,25 @@
     "results": "Search results",
     "kinds": { "conversation": "Conversation", "journey": "Journey", "document": "Document" },
     "status": { "active": "Active", "pinned": "Pinned", "draft": "Draft", "archived": "Archived", "material": "Material", "template": "Template", "call_audio_recording": "Call recording", "call_transcript": "Call transcript", "audio_transcript": "Audio transcript", "transcript_summary": "Transcript summary", "uploaded_audio_source": "Uploaded audio", "other": "Other" }
+  },
+  "supervision": {
+    "errors": {
+      "request_failed": "The supervision request failed.",
+      "load_failed": "Loading supervision data failed.",
+      "save_failed": "Saving supervision data failed.",
+      "conflict": "The supervision action conflicted. Reload and try again.",
+      "stale_version": "Someone changed this in the meantime. Reload and try again.",
+      "already_closed": "The process is already closed.",
+      "pending_summaries": "Approve or discard all pending summaries before closing.",
+      "rule_violation": "This action is not allowed in the current state.",
+      "role_forbidden": "Supervision is for social workers and service providers.",
+      "role_not_allowed": "This user cannot be added in that role.",
+      "grant_required": "Creating a supervision process requires a valid supervisor grant.",
+      "grant_exists": "This user already has a valid supervisor grant.",
+      "contract_not_accepted": "Confirm the current contract version before continuing.",
+      "handoff_conflict": "This draft has already been handed off.",
+      "handoff_fingerprint": "The draft changed in the meantime. Review and try again.",
+      "audit_free_text": "Internal error while recording the audit event."
+    }
   }
 }
