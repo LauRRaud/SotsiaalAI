@@ -162,7 +162,7 @@ test("FieldVisit adapter is owner-scoped, private, descriptor-only and read-only
 });
 
 test("Wellbeing space adapter is owner-scoped, private, contentless and descriptor-only", async () => {
-  const calls = { record: [], draft: [] };
+  const calls = { record: [], draft: [], checkpoint: [] };
   const db = {
     wellbeingRecord: {
       async findFirst(query) {
@@ -170,6 +170,10 @@ test("Wellbeing space adapter is owner-scoped, private, contentless and descript
         // Fake honours `select`: only the requested column is returned, so if
         // the adapter ever asked for signal/answer columns they would surface.
         return { createdAt: "2026-07-15T09:00:00.000Z" };
+      },
+      async findMany(query) {
+        calls.checkpoint.push(query);
+        return [];
       }
     },
     wellbeingOutputDraft: {
@@ -202,6 +206,10 @@ test("Wellbeing space adapter is owner-scoped, private, contentless and descript
   assert.deepEqual(calls.record[0].select, { createdAt: true });
   assert.deepEqual(calls.draft[0].where, { userId: OWNER });
   assert.deepEqual(calls.draft[0].select, { updatedAt: true });
+  // The checkpoint probe is owner-scoped and selects only the date + the JSON
+  // it needs to tell answered from open — never the signal/answer columns.
+  assert.deepEqual(calls.checkpoint[0].where, { ownerUserId: OWNER, checkpointDueOn: { not: null } });
+  assert.deepEqual(calls.checkpoint[0].select, { checkpointDueOn: true, checkpoint: true });
   const queryText = JSON.stringify(calls);
   for (const forbidden of [
     "standardizedFields", "computedSignal", "loadFactors", "resourceFactors",
@@ -215,7 +223,7 @@ test("Wellbeing space adapter is owner-scoped, private, contentless and descript
 
 test("Wellbeing space adapter returns an empty list for outsiders and empty rooms", async () => {
   const emptyRoomDb = {
-    wellbeingRecord: { async findFirst() { return null; } },
+    wellbeingRecord: { async findFirst() { return null; }, async findMany() { return []; } },
     wellbeingOutputDraft: { async findFirst() { return null; } }
   };
   // A user with no records and no drafts yields no descriptor (canonical
@@ -224,11 +232,63 @@ test("Wellbeing space adapter returns an empty list for outsiders and empty room
   // Missing user id never touches the database.
   let touched = false;
   const guardDb = {
-    wellbeingRecord: { async findFirst() { touched = true; return null; } },
+    wellbeingRecord: { async findFirst() { touched = true; return null; }, async findMany() { touched = true; return []; } },
     wellbeingOutputDraft: { async findFirst() { touched = true; return null; } }
   };
   assert.deepEqual(await listWellbeingSpaceWorkspaces("", { db: guardDb }), []);
   assert.equal(touched, false);
+});
+
+test("Wellbeing space nextAction carries an open checkpoint's date only — no content, answered ones excluded", async () => {
+  // Candidates ordered by dueOn asc (as the adapter queries). The earliest is
+  // already answered (follow-up recorded) so it is NOT the next action; the
+  // next unanswered one is what surfaces.
+  const db = {
+    wellbeingRecord: {
+      async findFirst() { return { createdAt: "2026-07-15T09:00:00.000Z" }; },
+      async findMany() {
+        return [
+          {
+            checkpointDueOn: "2026-07-20T00:00:00.000Z",
+            checkpoint: { nextStep: "Räägin juhiga", setAt: "2026-07-15T09:00:00.000Z", followUp: { state: "kept", notedAt: "2026-07-21T09:00:00.000Z" } }
+          },
+          {
+            checkpointDueOn: "2026-07-25T00:00:00.000Z",
+            checkpoint: { nextStep: "Vaatan koormuse üle", setAt: "2026-07-16T09:00:00.000Z", followUp: null }
+          }
+        ];
+      }
+    },
+    wellbeingOutputDraft: { async findFirst() { return null; } }
+  };
+
+  const [descriptor] = await listWellbeingSpaceWorkspaces(OWNER, { db });
+  assertDescriptorContract(descriptor);
+  assert.deepEqual(descriptor.nextAction, {
+    labelKey: "wellbeing.space.checkpoint",
+    dueOn: "2026-07-25",
+    assigneeId: OWNER
+  });
+  // The plan text must never reach the descriptor (W-INV-7).
+  const serialized = JSON.stringify(descriptor);
+  assert.equal(serialized.includes("Vaatan koormuse üle"), false);
+  assert.equal(serialized.includes("Räägin juhiga"), false);
+
+  // All checkpoints answered → no next action.
+  const answeredDb = {
+    wellbeingRecord: {
+      async findFirst() { return { createdAt: "2026-07-15T09:00:00.000Z" }; },
+      async findMany() {
+        return [{
+          checkpointDueOn: "2026-07-20T00:00:00.000Z",
+          checkpoint: { nextStep: "x", setAt: "2026-07-15T09:00:00.000Z", followUp: { state: "unclear", notedAt: "2026-07-21T09:00:00.000Z" } }
+        }];
+      }
+    },
+    wellbeingOutputDraft: { async findFirst() { return null; } }
+  };
+  const [answered] = await listWellbeingSpaceWorkspaces(OWNER, { db: answeredDb });
+  assert.equal(answered.nextAction, null);
 });
 
 test("descriptor validation rejects unknown kinds and invalid or extra fields fail closed", () => {
