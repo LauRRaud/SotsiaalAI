@@ -6,7 +6,8 @@ import { publishRoomEvent } from "@/lib/roomStream";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { hasRoomBillingAccess } from "@/lib/rooms/access";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
-import { resolveConfirmedMeetingSummaryContent } from "@/lib/rooms/meetingSummaryShare";
+import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
+import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
 
@@ -315,12 +316,14 @@ export async function POST(req, { params }) {
   // U10: sharing a confirmed meeting summary posts the specialist-owned FINAL
   // MEETING_SUMMARY artifact's content into the room; otherwise a plain message.
   let rawContent;
+  let sharedSummary = null;
   const artifactId = String(payload?.summaryArtifactId || "").trim();
   if (artifactId) {
     try {
-      rawContent = await resolveConfirmedMeetingSummaryContent(auth.userId, artifactId, {
+      sharedSummary = await resolveShareableMeetingSummary(auth.userId, artifactId, {
         role: auth.userRole
       });
+      rawContent = sharedSummary.content;
     } catch (shareError) {
       return errorJson(shareError?.message || "api.rooms.summary_share_failed", Number(shareError?.status) || 500);
     }
@@ -375,6 +378,18 @@ export async function POST(req, { params }) {
         displayName: true
       }
     });
+
+    /* T12 E7: jagatud kokkuvõte seotakse ruumiga, et ruumi lõppedes saaks iga
+       osaleja sellest privaatse koopia. Sisu salvestatakse snapshot'ina —
+       artefakti hilisem muutmine ei kirjuta ümber seda, mida ruumis nähti. */
+    if (sharedSummary) {
+      await recordSharedRoomSummary({
+        roomId,
+        summary: sharedSummary,
+        messageId: msg.id,
+        sharedByUserId: auth.userId
+      });
+    }
 
     const responsePayload = {
       ok: true,

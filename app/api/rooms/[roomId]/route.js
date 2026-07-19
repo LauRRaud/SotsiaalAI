@@ -4,6 +4,7 @@ import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { createRoomCallService } from "@/lib/calls/roomRoutes";
 import { ROOM_ORIGIN_TYPES } from "@/lib/rooms/origin";
+import { copyRoomSummariesToParticipants } from "@/lib/rooms/summaryHandover";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -92,6 +93,16 @@ export async function DELETE(_req, { params }) {
       return errorJson("api.rooms.delete_failed", 500);
     }
 
+    /* E7 osa 1: kokkuvõtte privaatkoopiad tehakse ENNE hävitamist (copy-first,
+       sama muster mis T16 kustutusvoos). Kui üleandmine ebaõnnestub, EI kustuta
+       — vaikselt kaotatud kokkuvõte oleks halvem kui aus 500 + kordus. */
+    try {
+      await copyRoomSummariesToParticipants({ roomId });
+    } catch (summaryErr) {
+      console.error("[room delete] summary handover failed", summaryErr);
+      return errorJson("api.rooms.delete_failed", 500);
+    }
+
     // E1: auditijälg ENNE hävitamist (audit 16 K4).
     const [memberCount, messageCount] = await Promise.all([
       prisma.roomMember.count({ where: { roomId } }),
@@ -158,6 +169,15 @@ export async function PATCH(req, { params }) {
       await createRoomCallService().endActiveRoomCall({ roomId, actorUserId: auth.userId });
     } catch (callErr) {
       console.error("[room archive] active call cleanup failed", callErr);
+      return errorJson("api.rooms.archive_failed", 500);
+    }
+
+    /* E7 osa 1: ka arhiveerimine on ruumi lõpp — kokkuvõte antakse üle enne
+       arhiivi märkimist. Idempotentne, seega hilisem kustutus ei korda koopiat. */
+    try {
+      await copyRoomSummariesToParticipants({ roomId });
+    } catch (summaryErr) {
+      console.error("[room archive] summary handover failed", summaryErr);
       return errorJson("api.rooms.archive_failed", 500);
     }
 
