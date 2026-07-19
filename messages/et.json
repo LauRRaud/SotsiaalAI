@@ -626,8 +626,114 @@
   "workspace": {
     "kind": {
       "mentoring_process": "Mentorlussuhe",
+      "practice_reflection": "Minu meetodipeegel",
       "wellbeing_space": "Minu tööheaolu ruum",
       "pre_inquiry": "Eelpöördumine"
+    }
+  },
+  "reflection": {
+    "meta": {
+      "title": "Meetodipeegel",
+      "description": "Sinu professionaalse refleksiooni kirjed — nähtavad ainult sulle."
+    },
+    "title": "Meetodipeegel",
+    "lead": "Refleksioonikirje aitab läbi mõelda, mida sa valisid, mida märkasid ja mida sellest järeldad. Kirje on ainult sinu oma: seda ei näe ükski teine kasutaja ega administraator.",
+    "privacy": {
+      "only_you": "Ainult sina näed"
+    },
+    "common": {
+      "loading": "Laen…",
+      "retry": "Proovi uuesti",
+      "login_required": "Palun logi sisse."
+    },
+    "list": {
+      "new": "Uus refleksioon",
+      "empty": "Sul ei ole veel ühtegi refleksioonikirjet.",
+      "open": "Ava",
+      "delete": "Kustuta",
+      "untitled": "Refleksioonikirje"
+    },
+    "form": {
+      "save": "Salvesta",
+      "saving": "Salvestan…",
+      "saved": "Salvestatud.",
+      "deleted": "Kirje kustutatud.",
+      "back": "Tagasi loendisse",
+      "not_set": "— vali —",
+      "source_label": "Seotud tegevus:",
+      "source_deleted": "(allikas on kustutatud — kirje jääb alles)"
+    },
+    "group": {
+      "choice": "Valik",
+      "choice_hint": "Neli tasandit eraldi: lähenemisviis, meetod, konkreetne tegevus ja sinu tugimeetod — ning miks sa nii valisid. Meetod on vabatekst; kinnitatud kataloogi veel ei ole.",
+      "observation": "Vaatlus",
+      "observation_hint": "Mida klient ütles ja mida sina märkasid. Päritolumärgis on välja küljes: kliendi öeldu ja sinu tähelepanek ei segune.",
+      "interpretation": "Tõlgendus",
+      "interpretation_hint": "Sinu tõlgendus on tähelepanekust eraldi väli. Mis töötas, mis mitte — ilma skoorita.",
+      "conclusion": "Järeldus",
+      "conclusion_hint": "Järgmine samm ja vahehindamise aus tulem. Ükski valik ei ole vale vastus."
+    },
+    "field": {
+      "approach": "Lähenemisviis",
+      "method": "Meetod",
+      "action": "Töövõte / tegevus",
+      "supportTechnique": "Sinu tugimeetod",
+      "choiceReason": "Valiku põhjus",
+      "clientGoal": "Kliendi eesmärk",
+      "clientReaction": "Kliendi vaade / reaktsioon",
+      "workerObservation": "Sinu tähelepanek",
+      "interpretation": "Sinu tõlgendus",
+      "whatWorked": "Mis töötas",
+      "whatDidNot": "Mis ei töötanud",
+      "nextStep": "Järgmine samm",
+      "supportNeed": "Vajadus toe järele",
+      "supportNeed_hint": "See on suund, mitte automaatne edastus — teise moodulisse ei looda ühtegi kirjet.",
+      "interimOutcome": "Vahehindamise tulem",
+      "interimOutcome_hint": "Aus olek, mitte skoor."
+    },
+    "source_kind": {
+      "ARTIFACT": "Artefakt",
+      "MEETING": "Kohtumine",
+      "PRE_INQUIRY": "Eelpöördumine",
+      "CALL": "Kõne"
+    },
+    "support_need": {
+      "NONE": "Ei vaja praegu",
+      "COVISION": "Kovisioon",
+      "SUPERVISION": "Supervisioon",
+      "ETHICS": "Eetiline arutelu"
+    },
+    "interim_outcome": {
+      "CONTINUE": "Jätkata samamoodi",
+      "CONTINUE_ADAPTED": "Jätkata kohandatult",
+      "NEEDS_TIME": "Vajab aega",
+      "NOT_ASSESSABLE": "Ei ole veel hinnatav",
+      "CLIENT_DECLINED": "Klient ei soovi",
+      "EXTERNAL_OBSTACLE": "Väline takistus",
+      "TRY_DIFFERENT": "Proovin teist lähenemist",
+      "TAKE_TO_COVISION": "Viin kovisiooni",
+      "TAKE_TO_SUPERVISION": "Viin supervisiooni",
+      "TAKE_TO_ETHICS": "Viin eetilisse arutellu"
+    },
+    "errors": {
+      "unauthorized": "Palun logi sisse.",
+      "forbidden": "See tööriist on spetsialisti rollile.",
+      "record_missing": "Kirjet ei leitud.",
+      "invalid_payload": "Vigane päring.",
+      "invalid_field": "Vigane väli.",
+      "field_too_long": "Tekst on liiga pikk.",
+      "invalid_support_need": "Vigane toevajaduse valik.",
+      "invalid_interim_outcome": "Vigane vahehindamise valik.",
+      "invalid_source_kind": "Vigane allikaviite liik.",
+      "invalid_source_id": "Vigane allikaviide.",
+      "source_ref_immutable": "Seotud tegevust ei saa hiljem muuta.",
+      "empty_update": "Muudatusi ei olnud.",
+      "list_failed": "Kirjete laadimine ebaõnnestus.",
+      "load_failed": "Laadimine ebaõnnestus.",
+      "create_failed": "Salvestamine ebaõnnestus.",
+      "update_failed": "Salvestamine ebaõnnestus.",
+      "delete_failed": "Kustutamine ebaõnnestus.",
+      "save_failed": "Salvestamine ebaõnnestus."
     }
   },
   "casework": {
@@ -637,6 +743,8 @@
       "sources_title": "Mille põhjal valmistud",
       "drafts_title": "Ettevalmistuse mustandid",
       "drafts_hint": "Neist saad koostada ettevalmistava mustandi. Mustand jääb sinu töövaatesse ega ole ametlik kandja.",
+      "reflection_hint": "Pärast kohtumist saad siit avada oma refleksiooni — see jääb ainult sulle.",
+      "reflection_open": "Ava refleksioon",
       "legend_title": "Päritolumärgised",
       "sources": {
         "situation": "Pöörduja kirjeldatud olukord",

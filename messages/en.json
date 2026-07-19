@@ -626,8 +626,114 @@
   "workspace": {
     "kind": {
       "mentoring_process": "Mentoring relationship",
+      "practice_reflection": "My method mirror",
       "wellbeing_space": "My wellbeing space",
       "pre_inquiry": "Pre-inquiry"
+    }
+  },
+  "reflection": {
+    "meta": {
+      "title": "Method Mirror",
+      "description": "Your professional reflection entries — visible only to you."
+    },
+    "title": "Method Mirror",
+    "lead": "A reflection entry helps you think through what you chose, what you noticed and what you conclude. The entry is yours alone: no other user or administrator can see it.",
+    "privacy": {
+      "only_you": "Only you can see this"
+    },
+    "common": {
+      "loading": "Loading…",
+      "retry": "Try again",
+      "login_required": "Please sign in."
+    },
+    "list": {
+      "new": "New reflection",
+      "empty": "You have no reflection entries yet.",
+      "open": "Open",
+      "delete": "Delete",
+      "untitled": "Reflection entry"
+    },
+    "form": {
+      "save": "Save",
+      "saving": "Saving…",
+      "saved": "Saved.",
+      "deleted": "Entry deleted.",
+      "back": "Back to list",
+      "not_set": "— choose —",
+      "source_label": "Linked activity:",
+      "source_deleted": "(the source has been deleted — the entry remains)"
+    },
+    "group": {
+      "choice": "Choice",
+      "choice_hint": "Four levels kept apart: approach, method, concrete action and your support technique — plus why you chose this. Method is free text; there is no confirmed catalogue yet.",
+      "observation": "Observation",
+      "observation_hint": "What the client said and what you noticed. The origin marker is attached to the field: the client's words and your observation do not mix.",
+      "interpretation": "Interpretation",
+      "interpretation_hint": "Your interpretation is a separate field from the observation. What worked, what did not — without a score.",
+      "conclusion": "Conclusion",
+      "conclusion_hint": "The next step and an honest interim outcome. No option is a wrong answer."
+    },
+    "field": {
+      "approach": "Approach",
+      "method": "Method",
+      "action": "Technique / action",
+      "supportTechnique": "Your support technique",
+      "choiceReason": "Reason for the choice",
+      "clientGoal": "Client's goal",
+      "clientReaction": "Client's view / reaction",
+      "workerObservation": "Your observation",
+      "interpretation": "Your interpretation",
+      "whatWorked": "What worked",
+      "whatDidNot": "What did not work",
+      "nextStep": "Next step",
+      "supportNeed": "Need for support",
+      "supportNeed_hint": "This is a direction, not an automatic hand-off — no entry is created in another module.",
+      "interimOutcome": "Interim outcome",
+      "interimOutcome_hint": "An honest state, not a score."
+    },
+    "source_kind": {
+      "ARTIFACT": "Artifact",
+      "MEETING": "Meeting",
+      "PRE_INQUIRY": "Pre-inquiry",
+      "CALL": "Call"
+    },
+    "support_need": {
+      "NONE": "Not needed right now",
+      "COVISION": "Co-vision",
+      "SUPERVISION": "Supervision",
+      "ETHICS": "Ethics discussion"
+    },
+    "interim_outcome": {
+      "CONTINUE": "Continue as is",
+      "CONTINUE_ADAPTED": "Continue with adjustments",
+      "NEEDS_TIME": "Needs time",
+      "NOT_ASSESSABLE": "Not assessable yet",
+      "CLIENT_DECLINED": "Client does not wish to",
+      "EXTERNAL_OBSTACLE": "External obstacle",
+      "TRY_DIFFERENT": "Trying a different approach",
+      "TAKE_TO_COVISION": "Taking it to co-vision",
+      "TAKE_TO_SUPERVISION": "Taking it to supervision",
+      "TAKE_TO_ETHICS": "Taking it to an ethics discussion"
+    },
+    "errors": {
+      "unauthorized": "Please sign in.",
+      "forbidden": "This tool is for the specialist role.",
+      "record_missing": "Entry not found.",
+      "invalid_payload": "Invalid request.",
+      "invalid_field": "Invalid field.",
+      "field_too_long": "The text is too long.",
+      "invalid_support_need": "Invalid support-need choice.",
+      "invalid_interim_outcome": "Invalid interim-outcome choice.",
+      "invalid_source_kind": "Invalid source reference kind.",
+      "invalid_source_id": "Invalid source reference.",
+      "source_ref_immutable": "The linked activity cannot be changed later.",
+      "empty_update": "There were no changes.",
+      "list_failed": "Loading the entries failed.",
+      "load_failed": "Loading failed.",
+      "create_failed": "Saving failed.",
+      "update_failed": "Saving failed.",
+      "delete_failed": "Deleting failed.",
+      "save_failed": "Saving failed."
     }
   },
   "casework": {
@@ -637,6 +743,8 @@
       "sources_title": "What you are preparing from",
       "drafts_title": "Preparation drafts",
       "drafts_hint": "You can build a preparatory draft from these. A draft stays in your work view and is not an official record.",
+      "reflection_hint": "After the meeting you can open your reflection here — it stays yours alone.",
+      "reflection_open": "Open reflection",
       "legend_title": "Origin markers",
       "sources": {
         "situation": "Situation described by the person",
