@@ -4117,7 +4117,12 @@
       "messages_failed": "Sõnumite laadimine ebaõnnestus.",
       "members_failed": "Liikmete laadimine ebaõnnestus.",
       "delete_stream_room_forbidden": "Voopõhist ruumi ei saa kustutada — ühine ajalugu jääb alles. Saad selle arhiveerida või sealt lahkuda.",
-      "archive_failed": "Ruumi arhiveerimine ebaõnnestus."
+      "archive_failed": "Ruumi arhiveerimine ebaõnnestus.",
+      "transfer_target_required": "Vali kehtiv liige, kellele ruum üle anda.",
+      "transfer_target_not_member": "Valitud kasutaja ei ole selle ruumi liige.",
+      "transfer_conflict": "Omanik muutus vahepeal. Proovi uuesti.",
+      "transfer_failed": "Omanikuvahetus ebaõnnestus.",
+      "archived_readonly": "Ruum on arhiveeritud ja kirjutuskaitstud."
     },
     "stt": {
       "not_configured": "Kõnest tekstiks teenus ei ole seadistatud.",

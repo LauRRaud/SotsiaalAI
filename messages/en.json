@@ -4117,7 +4117,12 @@
       "messages_failed": "Failed to load messages.",
       "members_failed": "Failed to load members.",
       "delete_stream_room_forbidden": "A stream-based room cannot be deleted — the shared history stays. You can archive it or leave instead.",
-      "archive_failed": "Failed to archive the room."
+      "archive_failed": "Failed to archive the room.",
+      "transfer_target_required": "Choose a valid member to transfer the room to.",
+      "transfer_target_not_member": "The chosen user is not a member of this room.",
+      "transfer_conflict": "Ownership changed in the meantime. Please try again.",
+      "transfer_failed": "Failed to transfer ownership.",
+      "archived_readonly": "The room is archived and read-only."
     },
     "stt": {
       "not_configured": "Speech-to-text service is not configured.",
