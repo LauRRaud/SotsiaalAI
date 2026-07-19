@@ -706,3 +706,63 @@ test("T12 E5: cancelling cannot silently stop an ACTIVE recording and orphan egr
   assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE", "the ACTIVE recording is untouched by cancel");
   assert.equal(egressStops.length, 0, "cancel did not touch egress");
 });
+
+function completedRecordingService(prisma, { deleted } = {}) {
+  return createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_active_1" }),
+      stopRecording: async () => ({ ok: true })
+    },
+    recordingStorage: {
+      ensureReady: async () => {},
+      finalizeRecordingFile: async ({ fileName }) => ({
+        storagePath: `uploads/${fileName}`,
+        mimeType: "audio/ogg",
+        fileSizeBytes: 1024,
+        durationSeconds: 12,
+        checksum: "sha256-e6"
+      }),
+      deleteStoredArtifact: async ({ storagePath }) => {
+        if (deleted) deleted.push(storagePath);
+      }
+    }
+  });
+}
+
+async function completeARecording(service, prisma) {
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  await service.stopRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  return { call, request };
+}
+
+test("T12 E6: the recording owner can manually delete a completed recording (audit 12 K1)", async () => {
+  const prisma = createPrisma();
+  const deleted = [];
+  const service = completedRecordingService(prisma, { deleted });
+  const { call, request } = await completeARecording(service, prisma);
+  assert.equal(prisma.callRecordingFile.rows[0].status, "AVAILABLE");
+
+  await service.deleteRecordingFile({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: false });
+
+  assert.equal(prisma.callRecordingFile.rows[0].status, "DELETED");
+  assert.equal(deleted.length, 1, "physical artifact is deleted");
+  assert.equal(prisma.userDocument.rows.length, 0, "recording document is removed");
+  assert.equal(prisma.dataAuditLog.rows.some(row => row.action === "CALL_RECORDING_DELETED"), true);
+});
+
+test("T12 E6: a non-owner non-moderator cannot delete a recording", async () => {
+  const prisma = createPrisma();
+  const service = completedRecordingService(prisma, {});
+  const { call, request } = await completeARecording(service, prisma);
+
+  await assert.rejects(
+    () => service.deleteRecordingFile({ callSessionId: call.id, recordingRequestId: request.id, userId: "intruder", canModerate: false }),
+    /call\.recording_forbidden/
+  );
+  assert.equal(prisma.callRecordingFile.rows[0].status, "AVAILABLE", "a forbidden delete leaves the recording intact");
+});
