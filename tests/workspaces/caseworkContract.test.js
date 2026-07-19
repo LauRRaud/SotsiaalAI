@@ -119,23 +119,26 @@ test("carrier class and STAR2 transfer dictionaries validate and fail closed on 
 // Registry — two new kinds reserved, supported list unchanged.
 // ---------------------------------------------------------------------------
 
-test("registry reserves case_work and practice_reflection without changing the supported list", () => {
+/* T21 P3: practice_reflection muutus SUPPORTED-iks (adapter olemas). case_work
+   jääb RESERVED kuni P2 STAR2-ülekanne selle avab. */
+test("registry keeps case_work reserved; practice_reflection is supported since P3", () => {
   assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].status, WorkspaceKindStatus.RESERVED);
-  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].status, WorkspaceKindStatus.RESERVED);
+  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].status, WorkspaceKindStatus.SUPPORTED);
   assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].adapter, null);
-  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].adapter, null);
+  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].adapter, "practiceReflection");
   assert.ok(RESERVED_WORKSPACE_KINDS.includes("case_work"));
-  assert.ok(RESERVED_WORKSPACE_KINDS.includes("practice_reflection"));
+  assert.ok(SUPPORTED_WORKSPACE_KINDS.includes("practice_reflection"));
   assert.equal(SUPPORTED_WORKSPACE_KINDS.includes("case_work"), false);
-  assert.equal(SUPPORTED_WORKSPACE_KINDS.includes("practice_reflection"), false);
-  // Supported list is exactly the pre-existing six adapters.
+  assert.equal(RESERVED_WORKSPACE_KINDS.includes("practice_reflection"), false);
+  // Supported list is exactly the six pre-existing adapters + practice_reflection.
   assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
     "room",
     "covision_case",
     "journey",
     "wellbeing_space",
     "mentoring_process",
-    "field_visit"
+    "field_visit",
+    "practice_reflection"
   ]);
 });
 

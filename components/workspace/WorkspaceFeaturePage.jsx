@@ -688,7 +688,7 @@ function JourneySharedInfoBlock({ info, t, audience = "client", serviceLabel = "
  * (CASEWORK-P0), and lists the artifact drafts the receiver can prepare (all
  * carrier class 1 — working drafts, never an official record).
  */
-function CaseworkPreparationPanel({ t, inquiry, embedded = false }) {
+function CaseworkPreparationPanel({ t, inquiry, locale = "et", embedded = false }) {
   if (!inquiry) return null;
 
   const sources = [
@@ -755,6 +755,23 @@ function CaseworkPreparationPanel({ t, inquiry, embedded = false }) {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Meetodipeegli sisenemispunkt (T21 P3, doc ptk 3.1): refleksioon avaneb
+          TEGEVUSE juurest, mitte eraldi navigatsioonisihtkohana. Side salvestub
+          kirje loomisel ja kirje on alati ainult töötaja enda oma. */}
+      <div className="casework-preparation-reflection">
+        <p className={bodyTextClassName}>
+          {readText(t, "casework.preparation.reflection_hint", "Pärast kohtumist saad siit avada oma refleksiooni — see jääb ainult sulle.")}
+        </p>
+        <Button
+          as="a"
+          href={localizePath(`/refleksioon?sourceKind=PRE_INQUIRY&sourceId=${encodeURIComponent(inquiry.id)}`, locale)}
+          size="sm"
+          variant="linkBrand"
+        >
+          {readText(t, "casework.preparation.reflection_open", "Ava refleksioon")}
+        </Button>
       </div>
 
       <details className="casework-provenance-legend">
@@ -2070,7 +2087,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         </SectionCard>
 
         {activeReceivedInquiry ? (
-          <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} embedded={embedded} />
+          <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} locale={locale} embedded={embedded} />
         ) : null}
 
         {activeReceivedInquiry ? (

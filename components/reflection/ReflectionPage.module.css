@@ -1,0 +1,173 @@
+/*
+ * Meetodipeegel V1 (T21 P3). Sama klaasi-grammatika mis supervisiooni vaadetel:
+ * üks kest, kaardiloend, vorm. EI uut lõuendimootorit, EI Flight/3D.
+ * Hinnanguvaba pind: siin EI OLE skoori-, võrdlus- ega edetabeli-elemente —
+ * see on kujundusreegel, mitte juhus (doc ptk 3.4/3.6).
+ */
+
+.page {
+  min-height: 100lvh;
+  padding: clamp(4.5rem, 9vh, 7rem) clamp(1rem, 4vw, 3rem) 4rem;
+  color: var(--text-warm);
+  font-family: var(--font-ui);
+}
+
+.shell {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--glass-border-soft);
+  border-radius: var(--panel-radius);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-inner-light), var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+.lead {
+  max-width: 47rem;
+  margin: 0.7rem auto 1.5rem;
+  color: var(--text-soft);
+  text-align: center;
+  line-height: 1.65;
+}
+
+.loading,
+.empty,
+.loadError {
+  margin: 1.5rem 0;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: calc(var(--panel-radius) * 0.6);
+  background: var(--glass-bg-soft, rgba(255, 255, 255, 0.04));
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.cardMeta {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+/* Privaatsusmärgis: PÜSIELEMENT, mitte tooltip — sama reegel mis
+   supervisioonis (Q2.6). Kirje on alati ainult omaniku oma. */
+.privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.15rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(244, 198, 144, 0.16);
+  border: 1px solid rgba(244, 198, 144, 0.55);
+  color: var(--text-warm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Päritolumärgis välja küljes: strukturaalne, mitte valitav. */
+.provenance {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+}
+
+.sourceRef {
+  margin: 0.4rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.sourceDeleted {
+  color: var(--danger-text, #f2b8b5);
+}
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 42rem;
+  margin-top: 1rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.92rem;
+}
+
+.form textarea,
+.form select,
+.form input {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-warm);
+  font: inherit;
+  line-height: 1.55;
+}
+
+.form textarea {
+  min-height: 5.5rem;
+  resize: vertical;
+}
+
+.fieldHint {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.groupHeading {
+  margin: 1.1rem 0 0;
+  font-size: 1.05rem;
+}
+
+.groupHint {
+  margin: 0.15rem 0 0.4rem;
+  color: var(--text-soft);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.statusRow {
+  min-height: 1.4rem;
+  margin: 0.6rem 0 0;
+  color: var(--text-warm);
+}
+
+.errorText {
+  color: var(--danger-text, #f2b8b5);
+}

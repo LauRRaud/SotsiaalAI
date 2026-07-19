@@ -716,6 +716,7 @@ model User {
   receivedPreInquiries    PreInquiry[]             @relation("PreInquiryRecipientOwner")
   journeys                Journey[]
   wellbeingRecords        WellbeingRecord[]
+  practiceReflections     PracticeReflection[]
   wellbeingOutputDrafts   WellbeingOutputDraft[]
   wellbeingPilotViewers   WellbeingPilotViewer[]
   covisionCasesOwned      CovisionCase[]           @relation("CovisionCaseOwner")
@@ -1366,6 +1367,53 @@ model WellbeingRecord {
   @@index([workflowType, createdAt])
   @@index([aggregationEligible, workflowType, createdAt])
   @@index([checkpointDueOn])
+}
+
+/* T21 P3 Meetodipeegel V1 (O-CW-3, analüüsidoc ptk 3).
+   PRIVATE on INVARIANT, mitte veerg: mudelil ei ole visibility-/jagamisvälju,
+   sest jagatav ei ole kunagi kirje ise, vaid ainult deidentifitseeritud +
+   kasutaja kinnitatud TULETIS (ptk 3.5) — tuletise rada on eraldi töö.
+   Päritolumärgistus on välja-tasemel strukturaalne: clientGoal/clientReaction
+   kannavad KLIENDI_OELDUD, workerObservation TOOTAJA_TAHELEPANEK ja
+   interpretation TOOTAJA_TOLGENDUS semantikat (tähelepanek ≠ tõlgendus = ERI
+   veerud, ideed 8.3) — markerit ei saa väljalt lahutada.
+   sourceKind/sourceId on VIIDE ILMA FK-ta: allika kustumisel kirje JÄÄB
+   (ptk 3.3 „Seos"); olemasolu lahendatakse lugemisel omanik-skoobis.
+   Meetod on vabatekst + valikuline kataloogiviide KUNI O-CW-5 kinnitab
+   kataloogi. AI-hüpoteesi veergu EI OLE: V1-s ei ole AI-rada (meetodi-
+   soovitused BLOKEERITUD kuni O-CW-5, ptk 3.4) ja veerg tuleb koos rajaga. */
+model PracticeReflection {
+  id             String  @id @default(cuid())
+  ownerUserId    String
+  schemaVersion  String  @default("1.0")
+  sourceKind     String?
+  sourceId       String?
+  // Valik — nelja tasandi mudel (ptk 3.2) + valiku põhjus
+  approach       String?
+  method         String?
+  action         String?
+  supportTechnique String?
+  choiceReason   String?
+  methodCatalogRef String?
+  // Vaatlus — päritolu on välja semantikas (vt mudelikommentaar)
+  clientGoal     String?
+  clientReaction String?
+  workerObservation String?
+  // Tõlgendus — eraldi väljad, ei liitu vaatlusega
+  interpretation String?
+  whatWorked     String?
+  whatDidNot     String?
+  // Järeldus
+  nextStep       String?
+  supportNeed    String?
+  interimOutcome String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  @@index([ownerUserId, createdAt])
+  @@index([ownerUserId, sourceKind, sourceId])
 }
 
 model WellbeingOutputDraft {
