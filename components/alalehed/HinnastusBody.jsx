@@ -71,6 +71,34 @@ const featureRows = [
     key: "kovisioon",
     values: ["dash", "dash", "included", "included"]
   },
+  /* Uute tööriistade read (T10): väärtused vastavad koodiväravatele —
+     tööheaolu+Meetodipeegel = canUseWellbeingRole (ainult SOCIAL_WORKER);
+     supervisioon/mentorlus/välitöö = SW+SP rolliloendid; isiklik otsing =
+     requireUser (kõik sisselogitud, ka tasuta pakett). */
+  {
+    key: "supervision",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "mentoring",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "field_work",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "wellbeing",
+    values: ["dash", "dash", "included", "dash"]
+  },
+  {
+    key: "reflection",
+    values: ["dash", "dash", "included", "dash"]
+  },
+  {
+    key: "personal_search",
+    values: ["included", "included", "included", "included"]
+  },
   {
     key: "materials_adding",
     values: ["dash", "dash", "included", "included"]
