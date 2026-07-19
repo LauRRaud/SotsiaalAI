@@ -57,3 +57,12 @@ CREATE UNIQUE INDEX "CallParticipant_one_active_per_user_idx"
 CREATE UNIQUE INDEX "CallRecordingRequest_one_open_per_call_idx"
   ON "public"."CallRecordingRequest"("callSessionId")
   WHERE "status" IN ('REQUESTED', 'READY_TO_RECORD', 'ACTIVE');
+
+-- --------------------------------------------------------------------------
+-- E4 voo-ruumi kustutuskaitse: soft-arhiiv. Voo-põhist ruumi (HELP_MATCH,
+-- PRE_INQUIRY, SERVICE_PROVIDER_INQUIRY) ei tohi omanik ühepoolselt kustutada
+-- (audit 16 K2) — pakutakse „arhiveeri", mis säilitab ühise ajaloo. Additiivne,
+-- NULL = aktiivne ruum (senine käitumine muutumatu).
+-- --------------------------------------------------------------------------
+ALTER TABLE "public"."Room" ADD COLUMN "archivedAt" TIMESTAMP(3);
+CREATE INDEX "Room_archivedAt_idx" ON "public"."Room"("archivedAt");

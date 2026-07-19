@@ -4115,7 +4115,9 @@
       "delete_message_failed": "Failed to delete message.",
       "message_too_long": "Message is too long.",
       "messages_failed": "Failed to load messages.",
-      "members_failed": "Failed to load members."
+      "members_failed": "Failed to load members.",
+      "delete_stream_room_forbidden": "A stream-based room cannot be deleted — the shared history stays. You can archive it or leave instead.",
+      "archive_failed": "Failed to archive the room."
     },
     "stt": {
       "not_configured": "Speech-to-text service is not configured.",
