@@ -13,6 +13,8 @@ import {
 } from "@/lib/frameworkAcceptances";
 import { createFrameworkAcceptanceDocument } from "@/lib/frameworkAcceptances/server";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
+import { buildRegistrationAcceptanceRows } from "@/lib/legalDocuments";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
@@ -48,9 +50,6 @@ const REGISTER_RATE_LIMIT_PER_IP = Number(process.env.REGISTER_RATE_LIMIT_PER_IP
 const REGISTER_RATE_LIMIT_PER_EMAIL = Number(
   process.env.REGISTER_RATE_LIMIT_PER_EMAIL || 4
 );
-/* Teadlik launch-lukk: vana deploy-keskkonna REGISTRATION_OPEN=true ei
-   tohi platvormi enne avalikku avamist kogemata registreerimiseks avada. */
-const REGISTRATION_OPEN = false;
 const EMAIL_VERIFY_IDENTIFIER_PREFIX = "email-verify:";
 
 function json(payload = {}, status = 200) {
@@ -158,12 +157,20 @@ async function sendVerificationEmail(email, verifyUrl, locale) {
   });
 }
 
-export async function POST(request) {
+/* Teine argument on Next'i kutses route-kontekst ({params}); testid süstivad
+   sama koha kaudu fake-db ja avatud/suletud seisu (repo muster: süstitud
+   fake-prisma, mitte elav DB). Tootmises jäävad mõlemad vaikeväärtustele. */
+export async function POST(request, testOverrides = {}) {
+  const db = testOverrides?.db || prisma;
+  const registrationOpen =
+    typeof testOverrides?.registrationOpen === "boolean"
+      ? testOverrides.registrationOpen
+      : REGISTRATION_OPEN;
   const body = await request.json().catch(() => ({}));
   const locale = localeFromRequest(request, body?.locale);
 
   try {
-    if (!REGISTRATION_OPEN) {
+    if (!registrationOpen) {
       return errorJson("api.auth.register.closed", 403, locale, {
         code: "REGISTER_DISABLED"
       });
@@ -173,6 +180,8 @@ export async function POST(request) {
     const pin = normalizePin(body?.pin ?? body?.password);
     const role = normalizeRole(body?.role);
     const workerUse = String(body?.workerUse || "").trim().toUpperCase();
+    const termsPrivacyAck = body?.termsPrivacyAck === true || body?.agree === true;
+    const guideAck = body?.guideAck === true;
     const frameworkAck = body?.frameworkAck === true;
     const frameworkVersion =
       String(body?.frameworkVersion || "").trim() || WORKER_FRAMEWORK_VERSION;
@@ -220,6 +229,14 @@ export async function POST(request) {
       });
     }
 
+    /* T10 E4: terms+privacy nõustumine on serveripoolne nõue, mitte ainult
+       kliendi checkbox — puuduv nõustumine ei loo kontot ega tõendikirjet. */
+    if (!termsPrivacyAck) {
+      return errorJson("auth.register.error.agree_required", 400, locale, {
+        code: "AGREEMENT_REQUIRED"
+      });
+    }
+
     if (requiresFramework && !frameworkAck) {
       return errorJson("auth.register.error.framework_ack_required", 400, locale, {
         code: "FRAMEWORK_ACK_REQUIRED"
@@ -231,7 +248,7 @@ export async function POST(request) {
     let frameworkAcceptance = null;
 
     try {
-      await prisma.$transaction(async (tx) => {
+      await db.$transaction(async (tx) => {
         createdUser = await tx.user.create({
           data: {
             email,
@@ -244,6 +261,19 @@ export async function POST(request) {
               }
             }
           }
+        });
+
+        /* Üldnõustumiste tõendikirjed (terms/privacy/juhend) samas
+           transaktsioonis kasutajaga — vt lib/legalDocuments.js. */
+        await tx.frameworkAcceptance.createMany({
+          data: buildRegistrationAcceptanceRows({
+            userId: createdUser.id,
+            role,
+            locale,
+            ipAddress: ip || null,
+            userAgent,
+            guideAck
+          })
         });
 
         if (requiresFramework) {
@@ -292,7 +322,7 @@ export async function POST(request) {
       const expires = new Date(Date.now() + hours * 60 * 60 * 1000);
       const identifier = buildEmailVerifyIdentifier(email);
 
-      await prisma.verificationToken.create({
+      await db.verificationToken.create({
         data: {
           identifier,
           token,
@@ -306,13 +336,13 @@ export async function POST(request) {
       } else {
         try {
           await sendVerificationEmail(email, verifyUrl, locale);
-          await prisma.verificationToken.deleteMany({
+          await db.verificationToken.deleteMany({
             where: {
               identifier,
               NOT: { token }
             }
           });
-          await prisma.user.update({
+          await db.user.update({
             where: { email },
             data: { emailVerificationSentAt: new Date() }
           });

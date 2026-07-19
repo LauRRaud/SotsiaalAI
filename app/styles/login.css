@@ -334,6 +334,21 @@
   color: var(--text-dim);
   text-shadow: none;
 }
+/* Suletud registreerimise mitteinteraktiivne seis + nähtav selgitus (T10 E3) */
+.login-register-row .login-register-link[role="note"] {
+  cursor: default;
+  color: var(--text-dim);
+  opacity: 0.76;
+  text-shadow: none;
+}
+.login-register-closed-note {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--text-dim);
+}
 
 /* Abipopover (?) — TUME ja loetav klahvistiku peal (tellija 07.07:
    klaas-gradient jättis klahvid teksti alt paistma); link selge

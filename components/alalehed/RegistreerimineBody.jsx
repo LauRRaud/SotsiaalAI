@@ -30,11 +30,12 @@ import {
 } from "@/lib/frameworkAcceptances";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 
-/* Avalik registreerimine jääb kuni ametliku avamiseni kooditasandil
-   suletuks. Admin saab lehe paigutust serveripoolse rollikontrolli järel
-   vaadata, kuid vormi esitada ei saa. */
-const isRegistrationOpen = false;
+/* Avatus tuleb ühest serveri tõeallikast (lib/publicRegistration.js) —
+   klient ei ole autoriteet. Admin saab lehe paigutust serveripoolse
+   rollikontrolli järel vaadata, kuid vormi esitada ei saa. */
+const isRegistrationOpen = REGISTRATION_OPEN;
 const REGISTER_DRAFT_STORAGE_KEY = "sotsiaalai_register_draft";
 const initialForm = {
   email: "",
@@ -469,6 +470,8 @@ export default function RegistreerimineBody({}) {
           pin,
           role: form.role,
           workerUse: form.workerUse,
+          termsPrivacyAck: form.agree === true,
+          guideAck: form.guideAck === true,
           frameworkAck: form.frameworkAck,
           frameworkVersion: WORKER_FRAMEWORK_VERSION,
           frameworkReviewOpenedAt: frameworkReviewOpenedAt || null,
