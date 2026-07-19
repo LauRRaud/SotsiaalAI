@@ -111,6 +111,9 @@ const ChatMessageItem = memo(function ChatMessageItem({
   messageSources = [],
   onShowSources,
   isStreaming = false,
+  completionStatus = null,
+  onRetry,
+  retryPending = false,
   entranceIndex = 0
 }) {
   const isAssistant = role === "ai";
@@ -237,6 +240,33 @@ const ChatMessageItem = memo(function ChatMessageItem({
   const sourcesTitle = tr("chat.sources.dialog_label") || sourcesLabel;
   const actionsLabel = locale === "en" ? "Message actions" : locale === "ru" ? "Действия с сообщением" : "Sõnumi tegevused";
   const hasMessageSources = Array.isArray(messageSources) && messageSources.length > 0;
+  const normalizedCompletionStatus = String(completionStatus || "").toUpperCase();
+  const canRetry = isAssistant
+    && typeof onRetry === "function"
+    && (normalizedCompletionStatus === "ERROR" || normalizedCompletionStatus === "ABORTED");
+  const retryLabel = tr("chat.error.retry") || (locale === "en" ? "Try again" : locale === "ru" ? "Повторить" : "Proovi uuesti");
+  const interruptedNotice = !String(text || "").trim()
+    ? normalizedCompletionStatus === "ABORTED"
+      ? (tr("chat.error.interrupted") || (locale === "en" ? "The response was interrupted." : locale === "ru" ? "Ответ был прерван." : "Vastus katkes."))
+      : normalizedCompletionStatus === "ERROR"
+        ? (tr("chat.error.generic") || (locale === "en" ? "Something went wrong." : locale === "ru" ? "Что-то пошло не так." : "Midagi läks valesti."))
+        : ""
+    : "";
+  const retryButton = canRetry ? (
+    <button
+      type="button"
+      aria-label={retryLabel}
+      title={retryLabel}
+      onClick={() => onRetry?.(messageId)}
+      disabled={retryPending}
+      data-chat-retry="true"
+    >
+      <svg aria-hidden="true" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+        <path d="M3 3v5h5" />
+      </svg>
+    </button>
+  ) : null;
   const handleCopy = async () => {
     const value = String(text || "").trim();
     if (!value || typeof navigator === "undefined") return;
@@ -335,8 +365,19 @@ const ChatMessageItem = memo(function ChatMessageItem({
           ))}
         </div>
       ) : null}
+      {interruptedNotice ? (
+        <p role="status" data-completion-status={normalizedCompletionStatus.toLowerCase()}>
+          {interruptedNotice}
+        </p>
+      ) : null}
+      {canRetry && !String(text || "").trim() ? (
+        <div aria-label={actionsLabel}>
+          {retryButton}
+        </div>
+      ) : null}
       {isAssistant && String(text || "").trim() ? (
         <div aria-label={actionsLabel}>
+          {retryButton}
           <button
             type="button"
             aria-label={listenLabel}

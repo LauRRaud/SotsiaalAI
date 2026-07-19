@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { bootstrapChatRequest } from "@/lib/chat/requestBootstrap";
+import { bootstrapChatRequest, MAX_USER_MESSAGE_CHARS } from "@/lib/chat/requestBootstrap";
 import { CHAT_NO_STORE_HEADERS } from "@/lib/chat/routeServerUtils";
 import { prisma } from "@/lib/prisma";
 import {
@@ -48,7 +48,6 @@ const CHAT_DOC_CONTEXT_WORKER_CHARS = readChatRateLimit(process.env.CHAT_DOC_CON
 const CHAT_DOC_CONTEXT_WORKER_COMBINED_CHARS = readChatRateLimit(process.env.CHAT_DOC_CONTEXT_WORKER_COMBINED_CHARS, 1600, 300);
 const CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS = readChatRateLimit(process.env.CHAT_DOC_CONTEXT_CLIENT_MAX_CHUNKS, 4, 1);
 const CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS = readChatRateLimit(process.env.CHAT_DOC_CONTEXT_WORKER_MAX_CHUNKS, 6, 1);
-const MAX_USER_MESSAGE_CHARS = 1500;
 
 function usageErrorResponse(error, scope) {
   const descriptor = usageErrorDescriptor(error, scope);
@@ -367,8 +366,12 @@ export async function POST(req, deps = {}) {
     reasoning: mainOrchestrationPlan.reasoning,
     capability: mainOrchestrationPlan.capability
   });
+  const retryOf = typeof payload?.retryOf === "string" && payload.retryOf.trim()
+    ? payload.retryOf.trim().slice(0, 64)
+    : null;
   const mainMetadataExtra = {
     ...buildChatOrchestrationMetadata(mainOrchestrationPlan),
+    ...(retryOf ? { retryOf } : {}),
     ...(retrievalMeta?.ragRiskPolicy
       ? {
           rag_risk_policy: retrievalMeta.ragRiskPolicy,

@@ -196,6 +196,39 @@ export function resolveCrisisStateAfterEvent(currentIsCrisis, {
   return !!currentIsCrisis;
 }
 
+// Aus Retry (T03 E2): Retry on nähtav vaid ERROR/ABORTED pöördel ning kordab sama viimast
+// kasutajasõnumit ühe uue teadliku pöördena. Tagastab korratava kasutajateksti ja seose
+// (retryOf) ebaõnnestunud pöördega. Kui viimane pööre on veel pooleli (viimane sõnum on
+// kasutajalt) või edukalt lõpetatud, pole midagi korrata.
+export function resolveRetryTarget(messages) {
+  if (!Array.isArray(messages) || !messages.length) return { canRetry: false };
+  let aiIndex = -1;
+  for (let i = messages.length - 1; i >= 0; i -= 1) {
+    const role = String(messages[i]?.role || "").toLowerCase();
+    if (role === "ai" || role === "assistant") {
+      aiIndex = i;
+      break;
+    }
+    if (role === "user") return { canRetry: false };
+  }
+  if (aiIndex === -1) return { canRetry: false };
+  const ai = messages[aiIndex];
+  const status = String(ai?.completionStatus || "").toUpperCase();
+  if (status !== "ERROR" && status !== "ABORTED") return { canRetry: false };
+  for (let i = aiIndex - 1; i >= 0; i -= 1) {
+    if (String(messages[i]?.role || "").toLowerCase() === "user") {
+      const userText = String(messages[i]?.text || "").trim();
+      if (!userText) return { canRetry: false };
+      return {
+        canRetry: true,
+        userText,
+        retryOf: ai?.id ?? ai?.messageId ?? null
+      };
+    }
+  }
+  return { canRetry: false };
+}
+
 export function useChatStream(config) {
   const cfgRef = useRef(config);
 
@@ -703,6 +736,7 @@ export function useChatStream(config) {
               : undefined,
             roomId: cfg.isRoomMode ? cfg.roomId : undefined,
             privacyDecision: options?.privacyDecision,
+            retryOf: options?.retryOf || undefined,
             ...(cfg.ephemeralChunks?.length
               ? {
                   ephemeralChunks: cfg.ephemeralChunks,
@@ -817,7 +851,8 @@ export function useChatStream(config) {
             attachments,
             cards,
             workflow,
-            isStreaming: false
+            isStreaming: false,
+            completionStatus: "COMPLETED"
           }));
 
           dispatchHelpListingsRefresh(workflow);
@@ -919,7 +954,8 @@ export function useChatStream(config) {
           attachments,
           cards,
           workflow: workflow || normalizeWorkflow(msg?.workflow),
-          isStreaming: false
+          isStreaming: false,
+          completionStatus: "COMPLETED"
         }));
 
         dispatchHelpListingsRefresh(workflow);
@@ -937,13 +973,15 @@ export function useChatStream(config) {
               text: msg.text
                 ? `${msg.text}\n\n${tr("chat.error.interrupted_suffix")}`
                 : tr("chat.error.interrupted"),
-              isStreaming: false
+              isStreaming: false,
+              completionStatus: "ABORTED"
             }));
             streamingMessageId = null;
           } else {
             cfg.appendMessage?.({
               role: "ai",
               text: tr("chat.error.interrupted"),
+              completionStatus: "ABORTED",
               ...(cfg.isRoomMode ? { roomScoped: true } : {})
             });
           }
@@ -972,13 +1010,15 @@ export function useChatStream(config) {
               text: errWithPrefix,
               sources: [],
               cards: [],
-              isStreaming: false
+              isStreaming: false,
+              completionStatus: "ERROR"
             }));
             streamingMessageId = null;
           } else {
             cfg.appendMessage?.({
               role: "ai",
               text: errWithPrefix,
+              completionStatus: "ERROR",
               ...(cfg.isRoomMode ? { roomScoped: true } : {})
             });
           }
@@ -997,10 +1037,23 @@ export function useChatStream(config) {
     return true;
   }, []);
 
+  // Aus Retry: kordab sama viimast kasutajasõnumit ühe uue teadliku pöördena.
+  // isGeneratingRef vald väldib topeltpööret (topeltklikk, hiline SSE, võrguvea retry).
+  const retryLast = useCallback((messages) => {
+    if (isGeneratingRef.current) return false;
+    const target = resolveRetryTarget(messages);
+    if (!target.canRetry) return false;
+    return sendMessage(target.userText, {
+      retryOf: target.retryOf,
+      isRetry: true
+    });
+  }, [sendMessage]);
+
   return {
     isGenerating,
     sendMessage,
     stop,
+    retryLast,
     detach
   };
 }
