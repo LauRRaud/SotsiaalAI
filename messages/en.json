@@ -1554,7 +1554,8 @@
         "review_concerns": "Concerns and questions needing clarification",
         "review_strengths": "Working responses and strengths",
         "review_unanswered": "Unanswered core questions",
-        "review_directions": "Possible service or contact directions"
+        "review_directions": "Possible service or contact directions",
+        "intro": "Hello. Briefly describe the situation. You do not have to phrase everything perfectly. If needed, I will only ask for clarifications that help make the inquiry clearer and find a suitable contact."
       },
       "routing": {
         "confidence": "Contact recommendation confidence"
@@ -1580,7 +1581,13 @@
         "mark_ready": "Mark as accepted",
         "archive": "Archive",
         "show_more_contacts": "Show more contacts",
-        "show_less_contacts": "Show less"
+        "show_less_contacts": "Show less",
+        "choose_recipient": "Choose recipient",
+        "choose_contact": "Choose this contact",
+        "view_service_map": "View on service map",
+        "view_profile": "View profile",
+        "edit": "Edit",
+        "copy_short": "Copy"
       },
       "receiver_workspace": "Pre-inquiry receiving",
       "recipients_lead": "Contacts appear once the situation, area, and inquiry direction are clear enough.",
@@ -1615,6 +1622,32 @@
         "workflow_save_failed": "Receiver workflow could not be saved.",
         "preferences_load_failed": "Receiving settings could not be loaded.",
         "preferences_save_failed": "Receiving settings could not be saved."
+      },
+      "start": {
+        "title": "Create a pre-inquiry",
+        "lead": "A pre-inquiry helps you describe the situation clearly and choose who to contact. It is not an official assessment or a service decision.",
+        "journey_locked": "To continue from a Journey, open the pre-inquiry from that Journey's view."
+      },
+      "overview": {
+        "title": "Pre-info overview",
+        "lead": "Here you can see the information used to prepare the inquiry. You can change everything before sending.",
+        "empty": "Pre-info fills in as the workflow progresses.",
+        "missing_hint": "These details can help find a more suitable contact, but you do not have to add everything."
+      },
+      "journey_share": {
+        "lead": "Journey information is private. Select only the parts you want to use when preparing this pre-inquiry.",
+        "empty": "No Journey summary has come along yet. Open the pre-inquiry from a specific Journey's view or continue with a new pre-inquiry."
+      },
+      "recipients_hint": "To get contact suggestions, add at least a region or municipality and a short description of the situation.",
+      "preview": {
+        "no_auto_send": "Nothing is sent automatically.",
+        "check_note": "Before confirming, check the recipient, the delivery method, the inquiry text and the pre-info. An in-platform inquiry reaches the recipient's Inquiries view; the email text opens in your email app for review.",
+        "recipient_prefix": "Recipient",
+        "delivery_prefix": "Delivery method",
+        "delivery_platform": "in-platform pre-inquiry",
+        "delivery_email": "email text",
+        "delivery_manual": "saving, copying or downloading",
+        "referral_hint": "You can ask the service provider for more information or contact the municipality."
       }
     },
     "service_map": {

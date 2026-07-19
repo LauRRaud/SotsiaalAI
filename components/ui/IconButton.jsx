@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 const IconButton = forwardRef(function IconButton({
-  variant = "close",
+  variant: _variant,
   className,
   label = "Close",
   type = "button",

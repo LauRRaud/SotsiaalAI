@@ -103,7 +103,7 @@ const ChatMessageItem = memo(function ChatMessageItem({
   isRoomMode: _isRoomMode,
   t,
   locale = "et",
-  isLightTheme = false,
+  isLightTheme: _isLightTheme,
   voiceEnabled = true,
   canSpeak = false,
   isSpeaking = false,

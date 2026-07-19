@@ -118,7 +118,7 @@ function getTopNavButtonTargetKey(target) {
 export default function ChatMobileTopNav({
   t,
   locale,
-  isLightTheme,
+  isLightTheme: _isLightTheme,
   embedded = false,
   handleBackHome,
   mobileRailInteractionLocked,
@@ -151,7 +151,7 @@ export default function ChatMobileTopNav({
 
   const [focusedIndex, setFocusedIndex] = useState(getItemIndex(DEFAULT_FOCUSED_KEY));
   const [dragOffsetPx, setDragOffsetPx] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+  const [, setIsDragging] = useState(false);
   const [isAndroidPlatform, setIsAndroidPlatform] = useState(false);
   const [rootRemPx, setRootRemPx] = useState(16);
   const [viewportWidthPx, setViewportWidthPx] = useState(0);
