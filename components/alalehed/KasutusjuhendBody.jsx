@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
@@ -15,7 +15,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { focusPolicyScrollArea, handlePolicyScrollKeyDown } from "@/components/alalehed/policyScrollKeyboard";
 import { ReadingToc, useHashNavigation } from "@/components/alalehed/readingLayer";
 
-const SECTION_KEYS = ["accessibility", "home", "register", "signin", "chat", "documents", "agent_mode", "wellbeing", "profile", "about", "before_use", "privacy_safety", "quickstart"];
+const SECTION_KEYS = ["accessibility", "home", "register", "signin", "chat", "documents", "search", "agent_mode", "wellbeing", "pro_tools", "profile", "about", "before_use", "privacy_safety", "quickstart"];
 export default function KasutusjuhendBody() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -74,6 +74,14 @@ export default function KasutusjuhendBody() {
     [locale, searchQuery]
   );
   const isFiltering = searchQuery.trim().length > 0;
+
+  /* Sisukorra klõps aktiivse otsingufiltri ajal: sihtpeatükk võib olla
+     DOM-ist väljas ja brauseri ankruhüpe kukub vaikselt. Klõps tühjendab
+     filtri (onNavigate) ja SEE efekt kerib pärast taasrenderdust kohale. */
+  useEffect(() => {
+    if (isFiltering || !activeSectionId) return;
+    document.getElementById(activeSectionId)?.scrollIntoView({ block: "start" });
+  }, [isFiltering, activeSectionId]);
   const hideGuideBackButton = isModalOpen;
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
@@ -130,6 +138,7 @@ export default function KasutusjuhendBody() {
                 label: title
               }))}
               activeId={activeSectionId}
+              onNavigate={() => setSearchQuery("")}
             />
             <div>
               {visibleSections.length === 0 ? (

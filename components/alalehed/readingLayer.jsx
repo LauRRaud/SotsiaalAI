@@ -28,7 +28,7 @@ export function useHashNavigation() {
   return activeId;
 }
 
-export function ReadingToc({ title, items, activeId }) {
+export function ReadingToc({ title, items, activeId, onNavigate }) {
   if (!items?.length) return null;
   return (
     <nav className="reading-toc" aria-label={title}>
@@ -39,6 +39,7 @@ export function ReadingToc({ title, items, activeId }) {
             <a
               href={`#${id}`}
               aria-current={activeId === id ? "location" : undefined}
+              onClick={onNavigate}
             >
               {label}
             </a>
