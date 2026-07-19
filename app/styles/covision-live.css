@@ -380,20 +380,30 @@
      kesta kerima lükata; `stretch` + min-height:0 hoiab need lõuendi sees. */
   flex: 1 1 auto;
   min-height: 0;
-  /* Kaks rida: kolm tsooni võtavad ülejäänud kõrguse, komposer/etapipaneel
-     istub täislaiuses laua serval. Varem voolasid need kaudsesse teise ritta
-     kitsasse esimesse veergu — ja kesta kerimiseta oleks see lõikunud.
-     R11 kriteerium 12 nõuab, et komposer oleks ALATI nähtav. */
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr);
   align-items: stretch;
   overflow: hidden;
   padding: clamp(0.8rem, 1.5vw, 1.35rem);
 }
 
-.cvl-workbench > .cvl-composer,
-.cvl-workbench > .cvl-stage-seven,
-.cvl-workbench > .cvl-stage-eight {
-  grid-column: 1 / -1;
+/* R5.0 (mõõdetud 1920×1080): etapiriba on kesta kolonn-flexis kokkusurutav ja
+   kahanes 75 → 35 px, mis lõikas stepperi pooleks. Riba kannab „mis etapp käib"
+   infot (R11 kriteerium 1) — see ei tohi kahaneda. */
+.cvl-stage-rail {
+  flex: 0 0 auto;
+}
+
+/* R5.0 (mõõdetud): alumine tööpind (komposer + etapipaneelid) võttis 527 px ja
+   surus lõuendi 199 px-ni. Lõuend on sessiooni peapind — alumine riba tohib
+   võtta kuni 42% ja kerib SEES, kui sisu on pikem. Nii jäävad nii lõuend kui
+   komposer nähtavaks (R11 kriteerium 12). */
+.cvl-lower-workspace {
+  flex: 0 1 auto;
+  min-height: 0;
+  max-height: 42%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
 }
 
 .cvl-left-panel,
@@ -974,6 +984,15 @@
   display: grid;
   gap: 1rem;
   padding: 0 clamp(0.8rem, 1.5vw, 1.35rem) clamp(0.8rem, 1.5vw, 1.35rem);
+}
+
+/* R11 kriteerium 12: komposer peab olema ALATI nähtav. Kuna alumine tööpind
+   kerib sees, kleebitakse komposer selle põhja — muidu jääb ta etapipaneelide
+   taha kerimisalasse (mõõdetud: composerInViewport=false). */
+.cvl-lower-workspace > .cvl-composer {
+  position: sticky;
+  bottom: 0;
+  z-index: 3;
 }
 
 .cvl-composer {
