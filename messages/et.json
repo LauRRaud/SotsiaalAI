@@ -4037,7 +4037,11 @@
     "service_availability": "Kinnita teenuse kättesaadavus",
     "pre_inquiry_draft": "Jätka eelpöördumise mustandit",
     "wellbeing_draft": "Jätka Tööheaolu mustandit",
-    "journey": "Jätka oma Teekonda"
+    "journey": "Jätka oma Teekonda",
+    "supervision_invite": "Vasta supervisiooni kutsele",
+    "supervision_contract_pending": "Kinnita supervisiooni kontrakt",
+    "supervision_summary_pending": "Kinnita supervisiooni kokkuvõte",
+    "supervision_prep_waiting": "Valmistu supervisioonikohtumiseks"
   },
   "api": {
     "common": {

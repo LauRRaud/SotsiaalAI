@@ -4037,7 +4037,11 @@
     "service_availability": "Подтвердите доступность услуги",
     "pre_inquiry_draft": "Продолжите черновик предобращения",
     "wellbeing_draft": "Продолжите черновик благополучия",
-    "journey": "Продолжите свой Путь"
+    "journey": "Продолжите свой Путь",
+    "supervision_invite": "Ответьте на приглашение в супервизию",
+    "supervision_contract_pending": "Подтвердите договор супервизии",
+    "supervision_summary_pending": "Подтвердите итог супервизии",
+    "supervision_prep_waiting": "Подготовьтесь к встрече супервизии"
   },
   "api": {
     "common": {

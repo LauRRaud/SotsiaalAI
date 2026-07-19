@@ -4037,7 +4037,11 @@
     "service_availability": "Confirm service availability",
     "pre_inquiry_draft": "Continue a pre-inquiry draft",
     "wellbeing_draft": "Continue a wellbeing draft",
-    "journey": "Continue your Journey"
+    "journey": "Continue your Journey",
+    "supervision_invite": "Respond to a supervision invite",
+    "supervision_contract_pending": "Confirm the supervision contract",
+    "supervision_summary_pending": "Confirm the supervision summary",
+    "supervision_prep_waiting": "Prepare for the supervision meeting"
   },
   "api": {
     "common": {
