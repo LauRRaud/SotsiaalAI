@@ -13,7 +13,8 @@ import {
   WORKER_FRAMEWORK_REGISTER_CONTEXT_STORAGE_KEY,
   WORKER_FRAMEWORK_REVIEW_STORAGE_KEY,
   WORKER_FRAMEWORK_SIGNED_HREF,
-  WORKER_FRAMEWORK_SIGNED_DOWNLOAD_STORAGE_KEY
+  WORKER_FRAMEWORK_SIGNED_DOWNLOAD_STORAGE_KEY,
+  WORKER_FRAMEWORK_VERSION
 } from "@/lib/frameworkAcceptances";
 import { localizePath } from "@/lib/localizePath";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
@@ -432,6 +433,9 @@ export default function TooalaseRaamistikuBody({ frameworkDocument }) {
         >
           {frameworkTitle}
         </SubpageHeader>
+        <p className="legal-version-note">
+          {t("legal.version_note", { version: WORKER_FRAMEWORK_VERSION })}
+        </p>
 
         <div>
           <section aria-labelledby="framework-intro-title">

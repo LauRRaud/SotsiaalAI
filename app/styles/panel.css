@@ -785,3 +785,11 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
 }
 
 }
+
+/* Õigusdokumendi versioonirida päise all (T10 E4) */
+.legal-version-note {
+  margin: 0.2rem 0 1.1rem;
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}

@@ -5,6 +5,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import RichText from "@/components/i18n/RichText";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
+import { PRIVACY_VERSION } from "@/lib/legalDocuments";
 import { getFooterNote } from "@/lib/footerNote";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { focusPolicyScrollArea, handlePolicyScrollKeyDown } from "@/components/alalehed/policyScrollKeyboard";
@@ -126,6 +127,9 @@ export default function PrivaatsusBody() {
             >
               {t("privacy.title")}
             </SubpageHeader>
+            <p className="legal-version-note">
+              {t("legal.version_note", { version: PRIVACY_VERSION })}
+            </p>
             {sections.map(section => <div key={section.heading}>
                 <h2>{section.heading}</h2>
                 <div>
