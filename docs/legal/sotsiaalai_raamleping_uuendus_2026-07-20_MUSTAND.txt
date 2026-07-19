@@ -1,9 +1,12 @@
 SOTSIAALAI RAAMLEPINGU UUENDATUD TEKST — MUSTAND, versioon 2026-07-20
 (aluseks 2026-07-06 versioon; koostatud tellija korraldusel, vajab tellija kinnitust ja uut digiallkirja)
 
-MUUDATUSED võrreldes 2026-07-06 versiooniga (2 kohta):
+MUUDATUSED võrreldes 2026-07-06 versiooniga (5 kohta):
 1. Lisa 1 "Töötlemise ese" — lisatud lause professionaalsete töövahendite kohta.
 2. Lisa 2 punkt 2 "Lubatud tööülesanded" — lisatud 5 uut näidet (kovisioon, supervisioon/mentorlus, välitöö, refleksioon/tööheaolu, süvauuring).
+3. Sissejuhatus — lisatud lause professionaalse koostöö ja arengu töövahendite kohta.
+4. Punkt 4.2 — lisatud 2 lubatud kasutusviisi (koostöö ruumides + nõusolekupõhised helikõned; professionaalsed töövahendid).
+5. Lisa 5 säilitustabel — lisatud 3 rida (professionaalse sisu säilitus; välitöö visiidid 90 päeva; andmekoopia failide aegumine) — vastavad koodis jooksvatele reeglitele.
 Kõik muu on muutmata. Pärast kinnitamist: uuenda DOCX-id (ET/EN/RU), ekstraktid ja HTML-id, tõsta WORKER_FRAMEWORK_VERSION = 2026-07-20 (lib/frameworkAcceptances.js) ja allkirjasta uus .asice.
 
 ========================================================================
@@ -14,7 +17,7 @@ Kasutajale ja organisatsioonile lühidalt
 
 SotsiaalAI platvormi tavapäraseks kasutamiseks ei ole eraldi raamlepingut vaja. Käesolev raamleping on mõeldud olukorraks, kus organisatsioon või kohalik omavalitsus soovib lubada SotsiaalAI kasutamist tööülesannetes, mille käigus võib esineda isikuandmete töötlemist.
 
-SotsiaalAI on tehisintellektil põhinev töövahend, mis aitab infot leida ja korrastada, dokumente ja töömustandeid koostada, materjale analüüsida ning tööülesandeid ette valmistada. SotsiaalAI ei tee otsuseid inimese eest ega asenda spetsialisti, ametniku, töötaja või organisatsiooni hinnangut.
+SotsiaalAI on tehisintellektil põhinev töövahend, mis aitab infot leida ja korrastada, dokumente ja töömustandeid koostada, materjale analüüsida ning tööülesandeid ette valmistada. Platvorm sisaldab ka professionaalse koostöö ja arengu töövahendeid, näiteks vestlusruume, kovisiooni, supervisiooni, mentorlust, välitööd, refleksioone ja tööheaolu vaateid. SotsiaalAI ei tee otsuseid inimese eest ega asenda spetsialisti, ametniku, töötaja või organisatsiooni hinnangut.
 
 Tööalasel kasutamisel lähtutakse järgmistest põhimõtetest:
 
@@ -87,6 +90,10 @@ dokumentide või muu töömaterjali analüüsimiseks;
 tööks vajalike failide hoidmiseks ja kasutamiseks;
 
 praktiliste järgmiste sammude ettevalmistamiseks;
+
+professionaalseks koostööks vestlusruumides, sealhulgas osapoolte nõusolekul peetavateks helikõnedeks;
+
+kovisiooni, supervisiooni, mentorluse, välitöö, refleksioonide ja tööheaolu vaadete kasutamiseks;
 
 muude organisatsiooni lubatud töövoogude toetamiseks.
 
@@ -517,6 +524,18 @@ Vaikimisi kuni 90 päeva, kui turvaintsident, veaotsing või õigusnõue ei eeld
 Makseteenuse toorvastused
 
 Vaikimisi kuni 90 päeva.
+
+Professionaalsete töövahendite sisu (kovisioon, supervisioon, mentorlus, refleksioonid, tööheaolu kirjed, teekond)
+
+Säilitatakse teenuse kasutamise ajal või kuni kasutaja selle kustutab; konto kustutamisel kustutatakse koos kontoga.
+
+Välitöö visiitide andmed
+
+Vaikimisi kuni 90 päeva.
+
+Kasutaja tellitud andmekoopia (ekspordi) failid
+
+Tähtajalised; kustutatakse pärast aegumist automaatselt.
 
 Makse- ja arveldusandmed
 
