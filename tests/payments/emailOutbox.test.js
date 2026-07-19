@@ -113,7 +113,8 @@ test("worker sends a sponsored invite email containing the join link", async () 
     template: "invite_sponsored",
     toEmail: "invitee@x.ee",
     locale: "en",
-    payload: { joinToken: "JOINTOKEN123", roomTitle: "Room A", inviterName: "Host", targetRole: "CLIENT" }
+    payload: { joinToken: "JOINTOKEN123", roomTitle: "Room A", inviterName: "Host", targetRole: "CLIENT" },
+    now: NOW
   });
   const mailer = stubMailer();
   process.env.EMAIL_FROM = process.env.EMAIL_FROM || "noreply@sotsiaal.ai";
@@ -131,7 +132,8 @@ test("worker retries with backoff when the mailer fails, then stops sending", as
     template: "invite_sponsored",
     toEmail: "invitee@x.ee",
     locale: "en",
-    payload: { joinToken: "T", roomTitle: "R", inviterName: "H", targetRole: "CLIENT" }
+    payload: { joinToken: "T", roomTitle: "R", inviterName: "H", targetRole: "CLIENT" },
+    now: NOW
   });
   process.env.EMAIL_FROM = process.env.EMAIL_FROM || "noreply@sotsiaal.ai";
   const result = await runPaymentEmailDelivery({ db, now: NOW, mailer: stubMailer({ fail: true }), baseUrl: "https://app.test" });
