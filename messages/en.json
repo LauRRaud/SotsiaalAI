@@ -3984,6 +3984,8 @@
       "pre_inquiry_recalled": "A pre-inquiry was recalled",
       "room_invite": "You received a room invitation",
       "room_activity": "There is new activity in your room",
+      "call_started": "A call started in your room",
+      "call_recording_ready": "The call recording is available",
       "help_match_created": "A match was found for your help listing",
       "help_match_consent_request": "A help-contact request is waiting for your consent",
       "next_contact_due": "The next contact is due",

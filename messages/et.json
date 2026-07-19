@@ -3984,6 +3984,8 @@
       "pre_inquiry_recalled": "Eelpöördumine kutsuti tagasi",
       "room_invite": "Sulle saadeti ruumikutse",
       "room_activity": "Sinu ruumis on uut tegevust",
+      "call_started": "Sinu ruumis algas kõne",
+      "call_recording_ready": "Kõne salvestis on saadaval",
       "help_match_created": "Sinu abikuulutusele tekkis sobitus",
       "help_match_consent_request": "Sinu nõusolekut ootab abikontakti päring",
       "next_contact_due": "Järgmise kontakti aeg on kätte jõudnud",

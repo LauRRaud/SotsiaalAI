@@ -11,6 +11,7 @@ import {
   requireRoomCallAccess,
   statusForCallError
 } from "@/lib/calls/roomRoutes";
+import { notifyCallRecordingAvailable } from "@/lib/calls/notifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,7 +28,7 @@ export async function POST(_req, { params }) {
 
   try {
     const service = createRoomCallService();
-    await service.stopRecording({
+    const stopped = await service.stopRecording({
       callSessionId,
       recordingRequestId,
       userId: access.userId,
@@ -35,6 +36,16 @@ export async function POST(_req, { params }) {
     });
     const call = await loadCallForResponse(callSessionId);
     await emitCallEvent(roomId, call);
+    /* T12 E7: salvestis muutub kättesaadavaks alles COMPLETED-olekus (E5 c
+       katkestusrajal jääb taotlus STOPPED ja fail DELETED — siis ei teavitata
+       kedagi). Saajate ring = sama nõusolekuvärav mis E6 ligipääsul. */
+    if (stopped?.status === "COMPLETED") {
+      await notifyCallRecordingAvailable({
+        roomId,
+        callSessionId,
+        recordingRequestId
+      });
+    }
     return callJson({ ok: true, call });
   } catch (error) {
     const mapped = statusForCallError(error);
