@@ -1053,7 +1053,7 @@ export function useChatStream(config) {
     isGenerating,
     sendMessage,
     stop,
-    detach,
-    retryLast
+    retryLast,
+    detach
   };
 }

@@ -205,7 +205,6 @@ async function drainSseBody(res) {
   const reader = res.body.getReader();
   // Guard against a hung stream in case of a regression.
   const deadline = Date.now() + 5000;
-  // eslint-disable-next-line no-constant-condition
   while (true) {
     if (Date.now() > deadline) throw new Error("SSE stream did not close after abort");
     const { done } = await reader.read();
