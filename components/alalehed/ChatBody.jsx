@@ -26,6 +26,7 @@ import { useChatProfileRoll } from "./chat/hooks/useChatProfileRoll";
 import { useChatRoomMode, useSyncRoomAssistantMessages } from "./chat/hooks/useChatRoomMode";
 import ChatBodyView from "./chat/ChatBodyView";
 import RoomCallBar from "@/components/rooms/RoomCallBar";
+import RoomSummaryApprovalCard from "@/components/rooms/RoomSummaryApprovalCard";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState";
@@ -450,6 +451,8 @@ export default function ChatBody({
     roomRole,
     isHelpMatchRoom,
     roomOrigin,
+    roomSummaryApprovals,
+    reloadRoomMessages,
     sendToAssistant,
     setSendToAssistant,
     getVisibleMessages,
@@ -2706,6 +2709,14 @@ export default function ChatBody({
           userId={sessionUserId}
           isLightTheme={isLightTheme}
           t={t}
+        />
+      ) : null}
+      roomSummaryApprovalNode={isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? (
+        <RoomSummaryApprovalCard
+          roomId={effectiveRoomId}
+          summaryApprovals={roomSummaryApprovals}
+          t={t}
+          onResponded={reloadRoomMessages}
         />
       ) : null}
       activeModeLabel={activeModeLabel}

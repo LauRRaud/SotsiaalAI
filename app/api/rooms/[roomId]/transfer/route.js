@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { notifyRoomOwnershipTransferred } from "@/lib/rooms/lifecycleNotifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -107,6 +108,14 @@ export async function POST(req, { params }) {
         }
       });
     }
+
+    /* T20 P3 (O-CO-3 b): üleminek on osalejatele nähtav — uus omanik ja liikmed
+       saavad teate. Ei viska kunagi; vahetus ise on juba tehtud. */
+    await notifyRoomOwnershipTransferred({
+      roomId,
+      previousOwnerId: auth.userId,
+      newOwnerId: targetUserId
+    });
 
     return json({ ok: true, ownerId: targetUserId });
   } catch (err) {

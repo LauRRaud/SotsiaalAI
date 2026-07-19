@@ -1058,11 +1058,39 @@
       "resets": "Обновится {date}",
       "free_description": "Бесплатный пакет включает основные запросы о помощи и карту услуг. Инструменты ИИ доступны в платном пакете.",
       "compare_plans": "Сравнить пакеты",
-      "plans": { "free": "Бесплатный", "client_monthly": "Для обращающихся", "social_worker_monthly": "Для специалистов", "service_provider_monthly": "Для поставщиков услуг", "admin_internal": "Администратор" },
-      "metrics": { "CHAT_ASSISTANT_REPLY": "Ответы ассистента", "DOCUMENT_GENERATE": "Создание документов", "DOCUMENT_REFINE": "Улучшение документов", "FILE_ANALYZE": "Анализ файлов", "DEEP_RESEARCH_RUN": "Глубокие исследования", "RAG_SEARCH": "Поиск по базе знаний", "STT_SECONDS": "Расшифровка аудио", "TTS_CHARS": "Озвучивание текста", "STORAGE_BYTES": "Хранилище файлов" },
-      "periods": { "DAILY": "Дневной лимит", "WEEKLY": "Недельный лимит", "MONTHLY": "Месячный лимит", "LIFETIME": "Объём хранилища" },
-      "states": { "notice": "Использовано не менее 70% объёма на этот период.", "warning": "Использовано не менее 90% объёма на этот период.", "blocked": "Объём на этот период исчерпан. Использование возобновится в указанное время." },
-      "units": { "minutes": "{count} мин", "characters": "{count} символов" }
+      "plans": {
+        "free": "Бесплатный",
+        "client_monthly": "Для обращающихся",
+        "social_worker_monthly": "Для специалистов",
+        "service_provider_monthly": "Для поставщиков услуг",
+        "admin_internal": "Администратор"
+      },
+      "metrics": {
+        "CHAT_ASSISTANT_REPLY": "Ответы ассистента",
+        "DOCUMENT_GENERATE": "Создание документов",
+        "DOCUMENT_REFINE": "Улучшение документов",
+        "FILE_ANALYZE": "Анализ файлов",
+        "DEEP_RESEARCH_RUN": "Глубокие исследования",
+        "RAG_SEARCH": "Поиск по базе знаний",
+        "STT_SECONDS": "Расшифровка аудио",
+        "TTS_CHARS": "Озвучивание текста",
+        "STORAGE_BYTES": "Хранилище файлов"
+      },
+      "periods": {
+        "DAILY": "Дневной лимит",
+        "WEEKLY": "Недельный лимит",
+        "MONTHLY": "Месячный лимит",
+        "LIFETIME": "Объём хранилища"
+      },
+      "states": {
+        "notice": "Использовано не менее 70% объёма на этот период.",
+        "warning": "Использовано не менее 90% объёма на этот период.",
+        "blocked": "Объём на этот период исчерпан. Использование возобновится в указанное время."
+      },
+      "units": {
+        "minutes": "{count} мин",
+        "characters": "{count} символов"
+      }
     },
     "email": "Эл. почта",
     "saving": "Сохраняю…",
@@ -2614,7 +2642,8 @@
       "sharing": "Отправка…",
       "success": "Сводка отправлена в комнату.",
       "error": "Не удалось поделиться сводкой.",
-      "no_rooms": "У вас пока нет комнат."
+      "no_rooms": "У вас пока нет комнат.",
+      "request_approval": "Запросить подтверждение участников"
     },
     "filters": {
       "all": "Все"
@@ -3519,6 +3548,20 @@
       "journey": "Комната связана с рабочим процессом Teekond, но приватный Teekond автоматически не передается.",
       "unknown": "У комнаты не указано происхождение.",
       "privacyNote": "Участники комнаты видят только информацию, опубликованную в этой комнате, и подтвержденную пользователем предварительную информацию. Приватный Teekond и беседа с ассистентом автоматически не передаются."
+    },
+    "summary_approval": {
+      "section": "Круг подтверждения итога",
+      "title": "Круг подтверждения итога",
+      "counts": "Подтвердили {approved}/{eligible}, поправок {correction}",
+      "my_response": "Ваш ответ",
+      "status_approved": "Подтверждено",
+      "status_correction": "Поправка отправлена",
+      "approve": "Подтверждаю",
+      "correction": "У меня есть поправка",
+      "note_label": "Содержание поправки",
+      "note_placeholder": "Опишите, что нужно исправить",
+      "send_correction": "Отправить поправку",
+      "failed": "Не удалось отправить ответ"
     }
   },
   "invite": {
@@ -3726,7 +3769,10 @@
       }
     },
     "live": {
-      "exit": { "label": "Выйти", "aria": "Выйти из интервизии" },
+      "exit": {
+        "label": "Выйти",
+        "aria": "Выйти из интервизии"
+      },
       "ui": {
         "sigil": "И",
         "private_professional_workspace": "Закрытое профессиональное пространство",
@@ -3923,37 +3969,321 @@
         "support_picture_ready": "Моя картина поддержки достаточна для выбора"
       },
       "stages": {
-        "1": { "short": "Начало", "title": "Присутствие и договорённости", "eyebrow": "Безопасное общее начало", "lead": "Перед содержательной работой мы подтверждаем роли, конфиденциальность и границы случая.", "hero": "Автор случая подтверждает точность и достаточную анонимность общей картины.", "gate": "Открыть историю случая" },
-        "2": { "short": "История", "title": "Создание картины случая", "eyebrow": "История автора и общая картина группы", "lead": "Мы собираем факты, точки зрения и профессиональные противоречия на отдельных карточках.", "hero": "Один активный якорь удерживает центр истории. Дополнительные карточки уточняют, а не конкурируют.", "gate": "Перейти к исследующим вопросам" },
-        "3": { "short": "Исследование", "title": "Исследующие вопросы", "eyebrow": "Сначала вопрос, потом толкование", "lead": "Мы готовим вопросы лично и делимся ими по одному, чтобы расширить картину случая.", "hero": "Одновременно в центре находится только один вопрос. Ответ может изменить общую картину.", "gate": "Перейти к кругу рефлексии" },
-        "4": { "short": "Рефлексия", "title": "Круг рефлексии", "eyebrow": "Режим слушания", "lead": "Участники делятся наблюдениями и возможными смыслами; автору случая пока не нужно принимать решение.", "hero": "Рефлексия — это осторожная точка зрения, а не диагноз или решение.", "gate": "Перейти к созданию возможностей" },
-        "5": { "short": "Возможности", "title": "Создание возможностей", "eyebrow": "Множество перед выбором", "lead": "Мы создаём варианты в разных направлениях без голосования, рейтинга и немедленной оценки осуществимости.", "hero": "Одна возможность находится в центре; остальные видимо ожидают своей очереди.", "gate": "Перейти к ресурсам" },
-        "6": { "short": "Ресурсы", "title": "Ресурсы и условия", "eyebrow": "Что действительно поддержит направление?", "lead": "Мы связываем возможности с ресурсами, поддерживающими условиями, ограничениями и критическими предпосылками.", "hero": "Картина ресурсов не оценивает человека. Она показывает сферу влияния, поддержку и то, что требует согласования.", "gate": "Перейти к выбору автора" },
-        "7": { "short": "Выбор", "title": "Направление и первый шаг", "eyebrow": "Личное пространство решения автора", "lead": "Автор случая формулирует выбранное направление, первый шаг в своей сфере влияния и честную последующую проверку.", "hero": "Группа не голосует. Автор решает и делится только подтверждённым резюме.", "gate": "Подтвердить результат работы над случаем" },
-        "8": { "short": "Завершение", "title": "Обучение и передача", "eyebrow": "Фиксация результата сессии", "lead": "Мы подтверждаем пакет автора, последующую проверку, обучение группы и решения о хранении.", "hero": "Итоговый обзор готовит неизменяемый результат. Ведущий закрывает случай только через итоговый переход.", "gate": "Закрыть случай" }
+        "1": {
+          "short": "Начало",
+          "title": "Присутствие и договорённости",
+          "eyebrow": "Безопасное общее начало",
+          "lead": "Перед содержательной работой мы подтверждаем роли, конфиденциальность и границы случая.",
+          "hero": "Автор случая подтверждает точность и достаточную анонимность общей картины.",
+          "gate": "Открыть историю случая"
+        },
+        "2": {
+          "short": "История",
+          "title": "Создание картины случая",
+          "eyebrow": "История автора и общая картина группы",
+          "lead": "Мы собираем факты, точки зрения и профессиональные противоречия на отдельных карточках.",
+          "hero": "Один активный якорь удерживает центр истории. Дополнительные карточки уточняют, а не конкурируют.",
+          "gate": "Перейти к исследующим вопросам"
+        },
+        "3": {
+          "short": "Исследование",
+          "title": "Исследующие вопросы",
+          "eyebrow": "Сначала вопрос, потом толкование",
+          "lead": "Мы готовим вопросы лично и делимся ими по одному, чтобы расширить картину случая.",
+          "hero": "Одновременно в центре находится только один вопрос. Ответ может изменить общую картину.",
+          "gate": "Перейти к кругу рефлексии"
+        },
+        "4": {
+          "short": "Рефлексия",
+          "title": "Круг рефлексии",
+          "eyebrow": "Режим слушания",
+          "lead": "Участники делятся наблюдениями и возможными смыслами; автору случая пока не нужно принимать решение.",
+          "hero": "Рефлексия — это осторожная точка зрения, а не диагноз или решение.",
+          "gate": "Перейти к созданию возможностей"
+        },
+        "5": {
+          "short": "Возможности",
+          "title": "Создание возможностей",
+          "eyebrow": "Множество перед выбором",
+          "lead": "Мы создаём варианты в разных направлениях без голосования, рейтинга и немедленной оценки осуществимости.",
+          "hero": "Одна возможность находится в центре; остальные видимо ожидают своей очереди.",
+          "gate": "Перейти к ресурсам"
+        },
+        "6": {
+          "short": "Ресурсы",
+          "title": "Ресурсы и условия",
+          "eyebrow": "Что действительно поддержит направление?",
+          "lead": "Мы связываем возможности с ресурсами, поддерживающими условиями, ограничениями и критическими предпосылками.",
+          "hero": "Картина ресурсов не оценивает человека. Она показывает сферу влияния, поддержку и то, что требует согласования.",
+          "gate": "Перейти к выбору автора"
+        },
+        "7": {
+          "short": "Выбор",
+          "title": "Направление и первый шаг",
+          "eyebrow": "Личное пространство решения автора",
+          "lead": "Автор случая формулирует выбранное направление, первый шаг в своей сфере влияния и честную последующую проверку.",
+          "hero": "Группа не голосует. Автор решает и делится только подтверждённым резюме.",
+          "gate": "Подтвердить результат работы над случаем"
+        },
+        "8": {
+          "short": "Завершение",
+          "title": "Обучение и передача",
+          "eyebrow": "Фиксация результата сессии",
+          "lead": "Мы подтверждаем пакет автора, последующую проверку, обучение группы и решения о хранении.",
+          "hero": "Итоговый обзор готовит неизменяемый результат. Ведущий закрывает случай только через итоговый переход.",
+          "gate": "Закрыть случай"
+        }
       },
       "roles": {
-        "OWNER": "автор случая", "case_owner": "автор случая", "CO_MODERATOR": "ведущий сессии", "session_leader": "ведущий сессии", "meeting_leader": "ведущий встречи", "meeting_starter": "инициатор встречи", "SUMMARY_REVIEWER": "хранитель резюме", "summary_keeper": "хранитель резюме", "PARTICIPANT": "участник", "participant": "участник", "OBSERVER": "наблюдатель", "observer": "наблюдатель"
+        "OWNER": "автор случая",
+        "case_owner": "автор случая",
+        "CO_MODERATOR": "ведущий сессии",
+        "session_leader": "ведущий сессии",
+        "meeting_leader": "ведущий встречи",
+        "meeting_starter": "инициатор встречи",
+        "SUMMARY_REVIEWER": "хранитель резюме",
+        "summary_keeper": "хранитель резюме",
+        "PARTICIPANT": "участник",
+        "participant": "участник",
+        "OBSERVER": "наблюдатель",
+        "observer": "наблюдатель"
       },
       "kinds": {
-        "participant_state": "Готовность участника", "agreement": "Соглашение", "session_setting": "Настройка сессии", "case_anchor": "Якорь случая", "case_core": "Суть случая", "party_or_role": "Сторона или роль", "event_or_timepoint": "Событие или момент времени", "known_information": "Известная информация", "person_perspective": "Точка зрения человека", "worker_observation": "Наблюдение специалиста", "worker_interpretation": "Толкование специалиста", "prior_action": "Предыдущее действие", "described_outcome": "Описанный результат", "support_or_condition": "Поддержка или условие", "barrier_or_limit": "Препятствие или ограничение", "desired_change": "Желаемое изменение", "professional_tension": "Профессиональное противоречие", "method": "Метод", "free_card": "Свободная карточка", "research_site": "Область исследования", "question": "Исследующий вопрос", "clarification": "Уточнение", "open_question": "Открытый вопрос", "source": "Источник", "reflection": "Рефлексия", "observation": "Наблюдение", "reaction": "Реакция", "possible_interpretation": "Возможное толкование", "possible_need_or_value": "Возможная потребность или ценность", "possible_pattern": "Возможная закономерность", "alternative_perspective": "Альтернативная точка зрения", "parked_possibility": "Отложенная возможность", "possibility": "Возможность", "main_possibility": "Основная возможность", "backup_possibility": "Запасная возможность", "possibility_cluster": "Группа возможностей", "feasibility_note": "Заметка об осуществимости", "resource": "Ресурс", "supporting_condition": "Поддерживающее условие", "required_condition": "Необходимое условие", "barrier": "Препятствие", "critical_prerequisite": "Критическая предпосылка", "resource_reflection": "Ресурсное отражение", "resource_bundle": "Набор ресурсов", "selected_direction": "Выбранное направление", "key_insight": "Ключевое понимание", "next_step": "Первый шаг", "support_request": "Запрос поддержки", "progress_marker": "Признак прогресса", "fallback_or_stop_condition": "Условие запасного пути или остановки", "follow_up": "Последующая проверка", "owner_package": "Пакет автора", "learning_note": "Заметка об обучении", "process_reflection": "Рефлексия процесса", "group_generalization": "Обобщение группы", "topic_seed_follow_up": "Тема для продолжения", "retention_decision": "Решение о хранении", "practice_candidate_decision": "Решение о кандидате в практики"
+        "participant_state": "Готовность участника",
+        "agreement": "Соглашение",
+        "session_setting": "Настройка сессии",
+        "case_anchor": "Якорь случая",
+        "case_core": "Суть случая",
+        "party_or_role": "Сторона или роль",
+        "event_or_timepoint": "Событие или момент времени",
+        "known_information": "Известная информация",
+        "person_perspective": "Точка зрения человека",
+        "worker_observation": "Наблюдение специалиста",
+        "worker_interpretation": "Толкование специалиста",
+        "prior_action": "Предыдущее действие",
+        "described_outcome": "Описанный результат",
+        "support_or_condition": "Поддержка или условие",
+        "barrier_or_limit": "Препятствие или ограничение",
+        "desired_change": "Желаемое изменение",
+        "professional_tension": "Профессиональное противоречие",
+        "method": "Метод",
+        "free_card": "Свободная карточка",
+        "research_site": "Область исследования",
+        "question": "Исследующий вопрос",
+        "clarification": "Уточнение",
+        "open_question": "Открытый вопрос",
+        "source": "Источник",
+        "reflection": "Рефлексия",
+        "observation": "Наблюдение",
+        "reaction": "Реакция",
+        "possible_interpretation": "Возможное толкование",
+        "possible_need_or_value": "Возможная потребность или ценность",
+        "possible_pattern": "Возможная закономерность",
+        "alternative_perspective": "Альтернативная точка зрения",
+        "parked_possibility": "Отложенная возможность",
+        "possibility": "Возможность",
+        "main_possibility": "Основная возможность",
+        "backup_possibility": "Запасная возможность",
+        "possibility_cluster": "Группа возможностей",
+        "feasibility_note": "Заметка об осуществимости",
+        "resource": "Ресурс",
+        "supporting_condition": "Поддерживающее условие",
+        "required_condition": "Необходимое условие",
+        "barrier": "Препятствие",
+        "critical_prerequisite": "Критическая предпосылка",
+        "resource_reflection": "Ресурсное отражение",
+        "resource_bundle": "Набор ресурсов",
+        "selected_direction": "Выбранное направление",
+        "key_insight": "Ключевое понимание",
+        "next_step": "Первый шаг",
+        "support_request": "Запрос поддержки",
+        "progress_marker": "Признак прогресса",
+        "fallback_or_stop_condition": "Условие запасного пути или остановки",
+        "follow_up": "Последующая проверка",
+        "owner_package": "Пакет автора",
+        "learning_note": "Заметка об обучении",
+        "process_reflection": "Рефлексия процесса",
+        "group_generalization": "Обобщение группы",
+        "topic_seed_follow_up": "Тема для продолжения",
+        "retention_decision": "Решение о хранении",
+        "practice_candidate_decision": "Решение о кандидате в практики"
       },
       "statuses": {
-        "draft": "черновик", "private_draft": "личный черновик", "shared_draft": "общий черновик", "ready": "готово", "queued": "в очереди", "active": "активно", "shared": "опубликовано", "completed": "завершено", "answered": "отвечено", "open": "открыто", "owner_confirmed": "подтверждено автором", "needs_review": "нужна проверка", "needs_rephrase": "нужно переформулировать", "resolved": "решено", "not_applicable": "не применимо", "parked": "отложено", "closed": "закрыто", "withdrawn": "отозвано", "removed": "удалено"
+        "draft": "черновик",
+        "private_draft": "личный черновик",
+        "shared_draft": "общий черновик",
+        "ready": "готово",
+        "queued": "в очереди",
+        "active": "активно",
+        "shared": "опубликовано",
+        "completed": "завершено",
+        "answered": "отвечено",
+        "open": "открыто",
+        "owner_confirmed": "подтверждено автором",
+        "needs_review": "нужна проверка",
+        "needs_rephrase": "нужно переформулировать",
+        "resolved": "решено",
+        "not_applicable": "не применимо",
+        "parked": "отложено",
+        "closed": "закрыто",
+        "withdrawn": "отозвано",
+        "removed": "удалено"
       },
       "phases": {
-        "waiting_room": "зал ожидания", "meeting_started": "встреча начата", "confirmations_pending": "ожидание подтверждений", "ready_to_open_case": "готово к открытию случая", "transition_to_stage_2": "переход к этапу 2", "ready_to_share_story": "готово к рассказу", "story_sharing": "рассказ истории", "story_paused": "пауза рассказа", "story_complete": "рассказ завершён", "picture_review": "обзор общей картины", "focus_formulation": "формулирование фокуса", "ready_to_explore": "готово к исследованию", "transition_to_stage_3": "переход к этапу 3", "exploration_plan": "план исследования", "silent_preparation": "тихая подготовка", "question_queue": "очередь вопросов", "active_question": "активный вопрос", "canvas_clarification": "уточнение полотна", "coverage_review": "обзор охвата", "focus_confirmation": "подтверждение фокуса", "ready_to_continue": "готово к продолжению", "ready_to_deepen": "готово к углублению", "role_change": "смена роли", "silent_reflection": "тихая рефлексия", "reflection_queue": "очередь рефлексий", "active_reflection": "активная рефлексия", "reflection_placement": "размещение рефлексии", "perspective_linking": "связывание точек зрения", "owner_resonance": "осмысление автора", "owner_review": "обзор автора", "ready_for_possibilities": "готово к возможностям", "creation_open": "создание открыто", "silent_ideation": "тихое создание идей", "possibility_queue": "очередь возможностей", "active_possibility": "активная возможность", "thanks_and_placement": "благодарность и размещение", "possibility_field": "поле возможностей", "second_creative_round": "второй творческий круг", "ready_for_resources": "готово к ресурсам", "scope_selection": "выбор охвата", "silent_resource_scan": "тихий поиск ресурсов", "resource_queue": "очередь ресурсов", "active_resource": "активный ресурс", "factual_clarification": "фактическое уточнение", "barriers_and_unknowns": "препятствия и неизвестное", "impact_review": "обзор влияния", "resource_mirror": "ресурсное отражение", "owner_support_picture_review": "обзор картины поддержки автором", "ready_for_selection": "готово к выбору", "private_selection": "личный выбор", "resonance_sorting": "сортировка отклика", "direction_drafting": "черновик направления", "key_insight": "ключевое понимание", "next_step_drafting": "черновик первого шага", "support_timeframe_progress": "поддержка, срок и прогресс", "follow_up_draft": "черновик последующей проверки", "quality_responsibility_review": "обзор качества и ответственности", "owner_confirmation": "подтверждение автора", "public_summary": "общее резюме", "support_consent": "согласие на поддержку", "case_work_completed": "работа над случаем завершена", "ready_to_summarize": "готово к подведению итогов", "owner_package_review": "обзор пакета автора", "follow_up_generalization_confirmation": "подтверждение последующей проверки и обобщения", "silent_learning_reflection": "тихая учебная рефлексия", "learning_queue": "очередь обучения", "active_learning_share": "активный обмен обучением", "process_reflection": "рефлексия процесса", "group_generalization": "обобщение группы", "retention_choice": "выбор хранения", "practice_candidate_decision": "решение о кандидате в практики", "final_review": "итоговый обзор", "case_closed": "случай закрыт", "meeting_closed": "встреча закрыта", "next_case": "следующий случай", "paused": "на паузе", "blocked": "заблокировано", "stage_incomplete": "этап не завершён", "complete": "результат сессии подтверждён"
+        "waiting_room": "зал ожидания",
+        "meeting_started": "встреча начата",
+        "confirmations_pending": "ожидание подтверждений",
+        "ready_to_open_case": "готово к открытию случая",
+        "transition_to_stage_2": "переход к этапу 2",
+        "ready_to_share_story": "готово к рассказу",
+        "story_sharing": "рассказ истории",
+        "story_paused": "пауза рассказа",
+        "story_complete": "рассказ завершён",
+        "picture_review": "обзор общей картины",
+        "focus_formulation": "формулирование фокуса",
+        "ready_to_explore": "готово к исследованию",
+        "transition_to_stage_3": "переход к этапу 3",
+        "exploration_plan": "план исследования",
+        "silent_preparation": "тихая подготовка",
+        "question_queue": "очередь вопросов",
+        "active_question": "активный вопрос",
+        "canvas_clarification": "уточнение полотна",
+        "coverage_review": "обзор охвата",
+        "focus_confirmation": "подтверждение фокуса",
+        "ready_to_continue": "готово к продолжению",
+        "ready_to_deepen": "готово к углублению",
+        "role_change": "смена роли",
+        "silent_reflection": "тихая рефлексия",
+        "reflection_queue": "очередь рефлексий",
+        "active_reflection": "активная рефлексия",
+        "reflection_placement": "размещение рефлексии",
+        "perspective_linking": "связывание точек зрения",
+        "owner_resonance": "осмысление автора",
+        "owner_review": "обзор автора",
+        "ready_for_possibilities": "готово к возможностям",
+        "creation_open": "создание открыто",
+        "silent_ideation": "тихое создание идей",
+        "possibility_queue": "очередь возможностей",
+        "active_possibility": "активная возможность",
+        "thanks_and_placement": "благодарность и размещение",
+        "possibility_field": "поле возможностей",
+        "second_creative_round": "второй творческий круг",
+        "ready_for_resources": "готово к ресурсам",
+        "scope_selection": "выбор охвата",
+        "silent_resource_scan": "тихий поиск ресурсов",
+        "resource_queue": "очередь ресурсов",
+        "active_resource": "активный ресурс",
+        "factual_clarification": "фактическое уточнение",
+        "barriers_and_unknowns": "препятствия и неизвестное",
+        "impact_review": "обзор влияния",
+        "resource_mirror": "ресурсное отражение",
+        "owner_support_picture_review": "обзор картины поддержки автором",
+        "ready_for_selection": "готово к выбору",
+        "private_selection": "личный выбор",
+        "resonance_sorting": "сортировка отклика",
+        "direction_drafting": "черновик направления",
+        "key_insight": "ключевое понимание",
+        "next_step_drafting": "черновик первого шага",
+        "support_timeframe_progress": "поддержка, срок и прогресс",
+        "follow_up_draft": "черновик последующей проверки",
+        "quality_responsibility_review": "обзор качества и ответственности",
+        "owner_confirmation": "подтверждение автора",
+        "public_summary": "общее резюме",
+        "support_consent": "согласие на поддержку",
+        "case_work_completed": "работа над случаем завершена",
+        "ready_to_summarize": "готово к подведению итогов",
+        "owner_package_review": "обзор пакета автора",
+        "follow_up_generalization_confirmation": "подтверждение последующей проверки и обобщения",
+        "silent_learning_reflection": "тихая учебная рефлексия",
+        "learning_queue": "очередь обучения",
+        "active_learning_share": "активный обмен обучением",
+        "process_reflection": "рефлексия процесса",
+        "group_generalization": "обобщение группы",
+        "retention_choice": "выбор хранения",
+        "practice_candidate_decision": "решение о кандидате в практики",
+        "final_review": "итоговый обзор",
+        "case_closed": "случай закрыт",
+        "meeting_closed": "встреча закрыта",
+        "next_case": "следующий случай",
+        "paused": "на паузе",
+        "blocked": "заблокировано",
+        "stage_incomplete": "этап не завершён",
+        "complete": "результат сессии подтверждён"
       },
       "missing": {
-        "participants_required": "Необходимо подтвердить хотя бы одного участника.", "participant_roles_unconfirmed": "Не все роли подтверждены.", "participant_agreements_unconfirmed": "Не все соглашения подтверждены.", "participants_not_ready": "Не все участники готовы.", "observer_consent_missing": "Нет согласия наблюдателя.", "case_unconfirmed": "Автор случая не подтвердил его границы.", "settings_unconfirmed": "Настройки сессии не подтверждены.", "shared_anchor_required": "Нет общего якоря случая.", "owner_picture_unconfirmed": "Нет подтверждения картины автором.", "owner_focus_unconfirmed": "Нет подтверждения фокуса автором.", "privacy_review_required": "Проверка конфиденциальности не подтверждена.", "shared_question_required": "Нужно опубликовать хотя бы один исследующий вопрос.", "owner_enough_unconfirmed": "Автор не подтвердил достаточность исследования.", "shared_reflection_required": "Нужно опубликовать хотя бы одну рефлексию.", "owner_not_ready": "Автор ещё не готов.", "shared_possibility_required": "Нужно опубликовать хотя бы одну возможность.", "active_object_present": "Сначала завершите или отложите активную карточку.", "owner_resonance_not_ready": "Время автора на осмысление не завершено.", "shared_resource_or_condition_required": "Нет ресурса или поддерживающего условия.", "impact_review_required": "Обзор влияния не подтверждён.", "critical_prerequisite_unresolved": "Критическая предпосылка не решена.", "selected_direction_required": "Не выбрано направление.", "next_step_required": "Нет первого шага.", "next_step_outside_owner_influence": "Первый шаг должен находиться в сфере влияния автора.", "timeframe_required": "Не указан срок.", "progress_marker_required": "Нет признака прогресса.", "follow_up_required": "Нет последующей проверки.", "owner_confirmation_required": "Нет итогового подтверждения автора.", "package_confirmation_required": "Пакет автора не подтверждён.", "owner_package_metadata_required": "Подтверждённый пакет автора не опубликован.", "follow_up_confirmation_required": "Последующая проверка не подтверждена.", "generalization_decision_required": "Нет решения об обобщении.", "completed_generalization_metadata_required": "Готовое обобщение нужно опубликовать.", "learning_completion_or_skip_required": "Нет решения по кругу обучения.", "retention_decision_required": "Нет решения о хранении.", "practice_decision_required": "Нет решения о лучшей практике.", "practice_candidate_metadata_required": "Нет данных кандидата в практики.", "owner_final_confirmation_required": "Нет итогового подтверждения автора.", "blocking_safety_or_privacy_issue": "Не устранено препятствие безопасности или конфиденциальности.", "stage_evidence_unavailable": "Сейчас невозможно проверить подтверждения этапа."
+        "participants_required": "Необходимо подтвердить хотя бы одного участника.",
+        "participant_roles_unconfirmed": "Не все роли подтверждены.",
+        "participant_agreements_unconfirmed": "Не все соглашения подтверждены.",
+        "participants_not_ready": "Не все участники готовы.",
+        "observer_consent_missing": "Нет согласия наблюдателя.",
+        "case_unconfirmed": "Автор случая не подтвердил его границы.",
+        "settings_unconfirmed": "Настройки сессии не подтверждены.",
+        "shared_anchor_required": "Нет общего якоря случая.",
+        "owner_picture_unconfirmed": "Нет подтверждения картины автором.",
+        "owner_focus_unconfirmed": "Нет подтверждения фокуса автором.",
+        "privacy_review_required": "Проверка конфиденциальности не подтверждена.",
+        "shared_question_required": "Нужно опубликовать хотя бы один исследующий вопрос.",
+        "owner_enough_unconfirmed": "Автор не подтвердил достаточность исследования.",
+        "shared_reflection_required": "Нужно опубликовать хотя бы одну рефлексию.",
+        "owner_not_ready": "Автор ещё не готов.",
+        "shared_possibility_required": "Нужно опубликовать хотя бы одну возможность.",
+        "active_object_present": "Сначала завершите или отложите активную карточку.",
+        "owner_resonance_not_ready": "Время автора на осмысление не завершено.",
+        "shared_resource_or_condition_required": "Нет ресурса или поддерживающего условия.",
+        "impact_review_required": "Обзор влияния не подтверждён.",
+        "critical_prerequisite_unresolved": "Критическая предпосылка не решена.",
+        "selected_direction_required": "Не выбрано направление.",
+        "next_step_required": "Нет первого шага.",
+        "next_step_outside_owner_influence": "Первый шаг должен находиться в сфере влияния автора.",
+        "timeframe_required": "Не указан срок.",
+        "progress_marker_required": "Нет признака прогресса.",
+        "follow_up_required": "Нет последующей проверки.",
+        "owner_confirmation_required": "Нет итогового подтверждения автора.",
+        "package_confirmation_required": "Пакет автора не подтверждён.",
+        "owner_package_metadata_required": "Подтверждённый пакет автора не опубликован.",
+        "follow_up_confirmation_required": "Последующая проверка не подтверждена.",
+        "generalization_decision_required": "Нет решения об обобщении.",
+        "completed_generalization_metadata_required": "Готовое обобщение нужно опубликовать.",
+        "learning_completion_or_skip_required": "Нет решения по кругу обучения.",
+        "retention_decision_required": "Нет решения о хранении.",
+        "practice_decision_required": "Нет решения о лучшей практике.",
+        "practice_candidate_metadata_required": "Нет данных кандидата в практики.",
+        "owner_final_confirmation_required": "Нет итогового подтверждения автора.",
+        "blocking_safety_or_privacy_issue": "Не устранено препятствие безопасности или конфиденциальности.",
+        "stage_evidence_unavailable": "Сейчас невозможно проверить подтверждения этапа."
       },
-      "follow_up_responsible": { "owner": "автор случая", "meeting_leader": "ведущий встречи", "session_leader": "ведущий сессии", "designated_professional": "назначенный специалист", "group": "группа" },
-      "follow_up_channels": { "platform": "платформа", "meeting": "встреча", "phone": "телефон", "email": "электронная почта", "other_agreed_channel": "другой согласованный канал" },
+      "follow_up_responsible": {
+        "owner": "автор случая",
+        "meeting_leader": "ведущий встречи",
+        "session_leader": "ведущий сессии",
+        "designated_professional": "назначенный специалист",
+        "group": "группа"
+      },
+      "follow_up_channels": {
+        "platform": "платформа",
+        "meeting": "встреча",
+        "phone": "телефон",
+        "email": "электронная почта",
+        "other_agreed_channel": "другой согласованный канал"
+      },
       "decisions": {
-        "generalization": { "completed": "обобщение готово и опубликовано", "skipped_unsafe": "пропущено из соображений безопасности", "not_retained": "не хранить обобщение" },
-        "learning": { "completed": "завершено", "skipped": "осознанно пропущено" },
-        "retention": { "retain": "сохранить согласованный результат", "do_not_retain": "не сохранять" },
-        "practice": { "create_draft": "создать черновик кандидата", "skip": "не создавать" }
+        "generalization": {
+          "completed": "обобщение готово и опубликовано",
+          "skipped_unsafe": "пропущено из соображений безопасности",
+          "not_retained": "не хранить обобщение"
+        },
+        "learning": {
+          "completed": "завершено",
+          "skipped": "осознанно пропущено"
+        },
+        "retention": {
+          "retain": "сохранить согласованный результат",
+          "do_not_retain": "не сохранять"
+        },
+        "practice": {
+          "create_draft": "создать черновик кандидата",
+          "skip": "не создавать"
+        }
       }
     },
     "session": {
@@ -4128,7 +4458,10 @@
       "mentoring_profile_approved": "Ваш профиль ментора одобрен в каталог",
       "mentoring_profile_rejected": "Ваш профиль ментора отклонён",
       "mentoring_profile_revoked": "Ваш профиль ментора закрыт",
-      "mentoring_share_recalled": "Менти отозвал(а) переданную подготовку"
+      "mentoring_share_recalled": "Менти отозвал(а) переданную подготовку",
+      "room_summary_approval_requested": "Итог встречи ожидает вашего подтверждения",
+      "room_summary_approval_response": "Участник ответил в круге подтверждения итога",
+      "room_ownership_transferred": "Владелец комнаты изменился"
     },
     "center": {
       "title": "Уведомления",
@@ -4266,7 +4599,12 @@
       "transfer_target_not_member": "Выбранный пользователь не является участником этой комнаты.",
       "transfer_conflict": "Владелец изменился. Попробуйте ещё раз.",
       "transfer_failed": "Не удалось передать право владения.",
-      "archived_readonly": "Комната архивирована и доступна только для чтения."
+      "archived_readonly": "Комната архивирована и доступна только для чтения.",
+      "summary_too_long": "Публикуемый итог слишком длинный.",
+      "summary_ring_not_open": "Для этого итога не открыт круг подтверждения.",
+      "summary_response_invalid": "Ответ должен быть подтверждением или поправкой.",
+      "summary_response_failed": "Не удалось сохранить ответ.",
+      "summary_share_withdrawn": "Публикация была отозвана."
     },
     "stt": {
       "not_configured": "Сервис распознавания речи не настроен.",
@@ -4579,7 +4917,12 @@
       "attempts": "Попыток: {count}",
       "retry_job": "Повторить",
       "no_deletion_jobs": "Нет задач удаления с выбранным статусом.",
-      "job_status": { "pending": "Ожидает", "failed": "Ошибка", "done": "Готово", "skipped": "Пропущено" },
+      "job_status": {
+        "pending": "Ожидает",
+        "failed": "Ошибка",
+        "done": "Готово",
+        "skipped": "Пропущено"
+      },
       "errors": {
         "plans_load": "Не удалось загрузить пакеты.",
         "plan_save": "Не удалось сохранить версию пакета.",
@@ -5241,11 +5584,30 @@
       "error": "Сейчас не удалось открыть объяснение."
     },
     "title": "Путь",
-    "autosave": { "restored": "Мы восстановили незавершённую работу этой сессии.", "discard_confirm": "Прекратить заполнение и удалить черновик этой сессии?" },
-    "quick_help": { "label": "Срочная помощь", "emergency": "112", "child": "116 111", "victim": "116 006" },
-    "steps": { "label": "Шаги пути", "describe": "Опишите", "review": "Проверьте" },
-    "risk_card": { "title": "Если помощь нужна сейчас", "body": "Эти наблюдения видны только вам и никогда не передаются адресату обращения." },
-    "delete": { "title": "Удалить путь навсегда?", "body": "Приватное содержимое пути будет удалено. Связанные предварительные обращения останутся, но связь с этим путём будет разорвана. Рекомендуем сначала экспортировать данные.", "confirm": "Да, удалить навсегда" },
+    "autosave": {
+      "restored": "Мы восстановили незавершённую работу этой сессии.",
+      "discard_confirm": "Прекратить заполнение и удалить черновик этой сессии?"
+    },
+    "quick_help": {
+      "label": "Срочная помощь",
+      "emergency": "112",
+      "child": "116 111",
+      "victim": "116 006"
+    },
+    "steps": {
+      "label": "Шаги пути",
+      "describe": "Опишите",
+      "review": "Проверьте"
+    },
+    "risk_card": {
+      "title": "Если помощь нужна сейчас",
+      "body": "Эти наблюдения видны только вам и никогда не передаются адресату обращения."
+    },
+    "delete": {
+      "title": "Удалить путь навсегда?",
+      "body": "Приватное содержимое пути будет удалено. Связанные предварительные обращения останутся, но связь с этим путём будет разорвана. Рекомендуем сначала экспортировать данные.",
+      "confirm": "Да, удалить навсегда"
+    },
     "chatTool": {
       "label": "Путь"
     },
@@ -6252,8 +6614,15 @@
     "loading": "Открываем завершённые случаи…",
     "empty": "В этом представлении пока нет завершённых ковизий.",
     "results": "Показано",
-    "metrics": { "title": "Обзор случаев" },
-    "filters": { "title": "Фильтры статуса", "all": "Все", "attention": "Требует внимания", "practice": "С кандидатом в практики" },
+    "metrics": {
+      "title": "Обзор случаев"
+    },
+    "filters": {
+      "title": "Фильтры статуса",
+      "all": "Все",
+      "attention": "Требует внимания",
+      "practice": "С кандидатом в практики"
+    },
     "status": {
       "follow_up_pending": "На последующей оценке",
       "decision_pending": "Оценка проведена · ожидается решение о продолжении",
@@ -6267,7 +6636,12 @@
       "today": "Последующая оценка сегодня",
       "empty": "Сейчас нет срочных последующих оценок или решений о продолжении."
     },
-    "scope": { "title": "Мои представления", "mine": "Мои случаи", "group": "Случаи моей группы", "visible": "Все доступные" },
+    "scope": {
+      "title": "Мои представления",
+      "mine": "Мои случаи",
+      "group": "Случаи моей группы",
+      "visible": "Все доступные"
+    },
     "sort": {
       "title": "Сортировка",
       "attention": "Сначала требующие внимания",
@@ -6276,7 +6650,11 @@
       "oldest": "Старая ковизия",
       "title_alpha": "Название"
     },
-    "view": { "title": "Вид", "cards": "Карточки", "list": "Список" },
+    "view": {
+      "title": "Вид",
+      "cards": "Карточки",
+      "list": "Список"
+    },
     "profile": {
       "you": "Вы",
       "social_worker": "Специалист социальной работы",
@@ -6329,13 +6707,25 @@
       "none": "Кандидат не создан.",
       "private_note": "Приватный черновик ожидает отдельной деидентификации и проверки."
     },
-    "calendar": { "title": "Календарь последующих оценок", "empty": "Даты последующих оценок ещё не назначены." },
-    "quick": { "title": "Быстрые ссылки", "seeds": "Перейти к тематическим семенам", "practices": "Перейти в библиотеку практик" },
+    "calendar": {
+      "title": "Календарь последующих оценок",
+      "empty": "Даты последующих оценок ещё не назначены."
+    },
+    "quick": {
+      "title": "Быстрые ссылки",
+      "seeds": "Перейти к тематическим семенам",
+      "practices": "Перейти в библиотеку практик"
+    },
     "detail": {
       "read_only": "Закрытая ковизия · подтверждённый снимок",
       "navigation": "Разделы завершённого случая",
       "loading": "Открываем подтверждённое резюме…",
-      "tabs": { "summary": "Резюме", "follow_up": "Последующая оценка", "links": "Связи", "data": "Данные и хранение" }
+      "tabs": {
+        "summary": "Резюме",
+        "follow_up": "Последующая оценка",
+        "links": "Связи",
+        "data": "Данные и хранение"
+      }
     },
     "follow_up": {
       "unscheduled": "Время уточняется",
@@ -6416,13 +6806,22 @@
       "shared_at": "Передано {date}",
       "open_relation": "Открыть пространство отношений"
     },
-    "meta": { "title": "Мои предоставления доступа", "description": "Смотрите, кто видит предоставленную вами информацию, и управляйте предобращениями, комнатами и приглашениями." },
+    "meta": {
+      "title": "Мои предоставления доступа",
+      "description": "Смотрите, кто видит предоставленную вами информацию, и управляйте предобращениями, комнатами и приглашениями."
+    },
     "title": "Мои предоставления доступа",
     "lead": "Здесь видно, с кем и когда вы поделились информацией и чем ещё можете управлять.",
     "back": "Назад в профиль",
     "loading": "Загружаем предоставления доступа…",
     "empty_all": "Сейчас нет активных или прежних предоставлений доступа для отображения.",
-    "sections": { "pre_inquiries": "Отправленные предобращения", "rooms": "Активные комнаты", "invites": "Активные приглашения", "help": "Опубликованные просьбы и предложения помощи", "frameworks": "Мои подтверждения" },
+    "sections": {
+      "pre_inquiries": "Отправленные предобращения",
+      "rooms": "Активные комнаты",
+      "invites": "Активные приглашения",
+      "help": "Опубликованные просьбы и предложения помощи",
+      "frameworks": "Мои подтверждения"
+    },
     "section_help": {
       "pre_inquiries": "Отзыв удаляет неоткрытое предобращение внутри платформы из активного списка получателя. Аудиторский след сохраняется.",
       "rooms": "Общее содержимое комнаты видно её активным участникам.",
@@ -6430,43 +6829,310 @@
       "help": "Эти объявления общедоступны до закрытия или истечения срока.",
       "frameworks": "Информационный обзор подтверждённых вами рамок."
     },
-    "empty": { "pre_inquiries": "Нет отправленных предобращений.", "rooms": "Нет активных участий в комнатах.", "invites": "Нет активных отправленных приглашений.", "help": "Нет опубликованных просьб или предложений помощи.", "frameworks": "Нет подтверждений рамок." },
-    "ownership": {
-      "visibility": "Кто видит", "origin": "Источник", "validity": "Срок действия",
-      "shared_with": "Предоставлено: {name}", "external_email": "Отправлено на внешний адрес: {name}", "room_members": "Предоставлено активным участникам комнаты", "invite_recipient": "Приглашение отправлено: {name}", "public_map": "Опубликовано на карте помощи", "private_record": "Личное подтверждение в вашей учётной записи",
-      "you_sent": "Вы отправили", "you_joined": "Вы присоединились", "you_invited": "Вы пригласили", "you_published": "Вы опубликовали", "you_confirmed": "Вы подтвердили",
-      "until_recall": "Можно отозвать до открытия получателем", "opened": "Открыто {date}; история сохраняется", "recalled": "Отозвано {date}", "superseded": "Исправление отправлено; старая версия сохраняется", "external_final": "Внешнее письмо нельзя отозвать с платформы", "active": "Активно до выхода или завершения комнаты", "owner": "Вы владелец комнаты; для выхода нужно передать владение", "expires": "Истекает {date}", "no_expiry": "Срок не указан", "accepted": "Подтверждено {date}"
+    "empty": {
+      "pre_inquiries": "Нет отправленных предобращений.",
+      "rooms": "Нет активных участий в комнатах.",
+      "invites": "Нет активных отправленных приглашений.",
+      "help": "Нет опубликованных просьб или предложений помощи.",
+      "frameworks": "Нет подтверждений рамок."
     },
-    "labels": { "recipient": "Получатель", "sent": "Отправлено", "opened": "Открыто", "joined": "Присоединились", "expires": "Истекает", "version": "Версия {version}", "request": "Просьба о помощи", "offer": "Предложение помощи", "room_owner": "Владелец комнаты", "room_member": "Участник комнаты", "unknown_recipient": "Получатель не указан", "unknown_time": "Время неизвестно" },
-    "status": { "sent": "Отправлено", "ready": "Принято", "archived": "Архивировано", "recalled": "Отозвано", "superseded": "Исправлено", "pending_payment": "Ожидает оплаты", "open": "Опубликовано", "matched": "Найдено совпадение" },
-    "actions": { "recall": "Отозвать", "correct": "Отправить исправление", "send_correction": "Отправить исправленную версию", "cancel": "Отмена", "revoke_invite": "Отозвать приглашение", "leave_room": "Выйти из комнаты", "retry": "Повторить", "use_redacted": "Использовать скрытую версию", "send_original": "Отправить исходный текст" },
-    "confirm": { "recall": "Отозвать неоткрытое предобращение? Оно исчезнет из активного списка получателя, но аудиторский след сохранится.", "revoke": "Отозвать приглашение? Ссылка перестанет работать.", "leave": "Выйти из комнаты? Новое содержимое комнаты больше не будет вам видно." },
-    "notice": { "memory": "Отзыв не удаляет информацию, которую получатель мог уже увидеть или запомнить.", "correction": "Исправление отправляется новой версией. Предыдущая открытая версия остаётся в истории.", "recalled": "Предобращение отозвано.", "corrected": "Исправленная версия отправлена.", "invite_revoked": "Приглашение отозвано.", "room_left": "Вы вышли из комнаты." },
-    "correction": { "title": "Исправленная версия", "topic": "Тема", "situation": "Исправленное описание ситуации", "text": "Исправленный текст предобращения", "privacy_title": "Проверьте предоставляемую информацию", "privacy_body": "Текст может содержать персональные данные. Измените его, используйте скрытую версию или осознанно подтвердите отправку исходного текста." },
-    "errors": { "load_failed": "Не удалось загрузить предоставления доступа.", "action_failed": "Не удалось выполнить действие. Повторите попытку.", "refresh_failed": "Действие выполнено, но обновлённый обзор не удалось загрузить. Попробуйте перезагрузить страницу." }
+    "ownership": {
+      "visibility": "Кто видит",
+      "origin": "Источник",
+      "validity": "Срок действия",
+      "shared_with": "Предоставлено: {name}",
+      "external_email": "Отправлено на внешний адрес: {name}",
+      "room_members": "Предоставлено активным участникам комнаты",
+      "invite_recipient": "Приглашение отправлено: {name}",
+      "public_map": "Опубликовано на карте помощи",
+      "private_record": "Личное подтверждение в вашей учётной записи",
+      "you_sent": "Вы отправили",
+      "you_joined": "Вы присоединились",
+      "you_invited": "Вы пригласили",
+      "you_published": "Вы опубликовали",
+      "you_confirmed": "Вы подтвердили",
+      "until_recall": "Можно отозвать до открытия получателем",
+      "opened": "Открыто {date}; история сохраняется",
+      "recalled": "Отозвано {date}",
+      "superseded": "Исправление отправлено; старая версия сохраняется",
+      "external_final": "Внешнее письмо нельзя отозвать с платформы",
+      "active": "Активно до выхода или завершения комнаты",
+      "owner": "Вы владелец комнаты; для выхода нужно передать владение",
+      "expires": "Истекает {date}",
+      "no_expiry": "Срок не указан",
+      "accepted": "Подтверждено {date}"
+    },
+    "labels": {
+      "recipient": "Получатель",
+      "sent": "Отправлено",
+      "opened": "Открыто",
+      "joined": "Присоединились",
+      "expires": "Истекает",
+      "version": "Версия {version}",
+      "request": "Просьба о помощи",
+      "offer": "Предложение помощи",
+      "room_owner": "Владелец комнаты",
+      "room_member": "Участник комнаты",
+      "unknown_recipient": "Получатель не указан",
+      "unknown_time": "Время неизвестно"
+    },
+    "status": {
+      "sent": "Отправлено",
+      "ready": "Принято",
+      "archived": "Архивировано",
+      "recalled": "Отозвано",
+      "superseded": "Исправлено",
+      "pending_payment": "Ожидает оплаты",
+      "open": "Опубликовано",
+      "matched": "Найдено совпадение"
+    },
+    "actions": {
+      "recall": "Отозвать",
+      "correct": "Отправить исправление",
+      "send_correction": "Отправить исправленную версию",
+      "cancel": "Отмена",
+      "revoke_invite": "Отозвать приглашение",
+      "leave_room": "Выйти из комнаты",
+      "retry": "Повторить",
+      "use_redacted": "Использовать скрытую версию",
+      "send_original": "Отправить исходный текст"
+    },
+    "confirm": {
+      "recall": "Отозвать неоткрытое предобращение? Оно исчезнет из активного списка получателя, но аудиторский след сохранится.",
+      "revoke": "Отозвать приглашение? Ссылка перестанет работать.",
+      "leave": "Выйти из комнаты? Новое содержимое комнаты больше не будет вам видно."
+    },
+    "notice": {
+      "memory": "Отзыв не удаляет информацию, которую получатель мог уже увидеть или запомнить.",
+      "correction": "Исправление отправляется новой версией. Предыдущая открытая версия остаётся в истории.",
+      "recalled": "Предобращение отозвано.",
+      "corrected": "Исправленная версия отправлена.",
+      "invite_revoked": "Приглашение отозвано.",
+      "room_left": "Вы вышли из комнаты."
+    },
+    "correction": {
+      "title": "Исправленная версия",
+      "topic": "Тема",
+      "situation": "Исправленное описание ситуации",
+      "text": "Исправленный текст предобращения",
+      "privacy_title": "Проверьте предоставляемую информацию",
+      "privacy_body": "Текст может содержать персональные данные. Измените его, используйте скрытую версию или осознанно подтвердите отправку исходного текста."
+    },
+    "errors": {
+      "load_failed": "Не удалось загрузить предоставления доступа.",
+      "action_failed": "Не удалось выполнить действие. Повторите попытку.",
+      "refresh_failed": "Действие выполнено, но обновлённый обзор не удалось загрузить. Попробуйте перезагрузить страницу."
+    }
   },
   "effective_practices": {
-    "brand": "КОВИЗИЯ", "navigation": "Основные страницы ковизии", "kicker": "Библиотека профессиональных знаний", "title": "Лучшие практики", "lead": "Библиотека содержит профессиональные подходы разной зрелости и уровня проверки. Для каждой практики показаны контекст, условия и ограничения.", "privacy": "Конфиденциальность и защита данных", "search": "Поиск по практике, теме, целевой группе или фокусу…", "search_label": "Поиск в библиотеке практик", "loading": "Открываем библиотеку…", "detail_loading": "Открываем практику…",
-    "quality": { "title": "Обеспечение качества", "text": "Каждая опубликованная практика проходит предварительную проверку. Уровень профессионального рецензирования остаётся видимым." },
-    "help": { "title": "Помощь", "text": "Практика не является универсальным решением. Перед применением проверьте контекст, условия, ограничения и версию." },
-    "tabs": { "title": "Представления библиотеки", "library": "Библиотека практик", "candidates": "Мои работы", "review": "Рецензирование" },
-    "profile": { "you": "Вы", "social_worker": "Специалист социальной работы", "service_provider": "Поставщик услуг", "admin": "Администратор платформы", "professional": "Специалист" },
-    "capability": { "title": "Подтверждённые полномочия", "reviewer": "Отраслевой рецензент", "ethics": "Эксперт по этике и конфиденциальности", "editor": "Методический редактор", "approver": "Итоговый утверждающий", "professional": "Профессиональный рецензент", "all_scopes": "все области" },
-    "status": { "draft": "Приватный черновик", "waiting": "Ожидает назначения рецензента", "submitted": "Отправлено на проверку", "in_review": "На рецензировании", "needs_changes": "Нужны изменения", "ready": "Готово к утверждению", "published": "Утверждённая практика", "re_review": "На повторной проверке", "archived": "В архиве", "candidate": "Кандидат на основе опыта", "expert_reviewed": "Проверено экспертами", "accepted": "Проверено и принято", "rejected": "Отклонено" },
-    "risk": { "low": "Низкий риск", "high": "Повышенный риск" },
+    "brand": "КОВИЗИЯ",
+    "navigation": "Основные страницы ковизии",
+    "kicker": "Библиотека профессиональных знаний",
+    "title": "Лучшие практики",
+    "lead": "Библиотека содержит профессиональные подходы разной зрелости и уровня проверки. Для каждой практики показаны контекст, условия и ограничения.",
+    "privacy": "Конфиденциальность и защита данных",
+    "search": "Поиск по практике, теме, целевой группе или фокусу…",
+    "search_label": "Поиск в библиотеке практик",
+    "loading": "Открываем библиотеку…",
+    "detail_loading": "Открываем практику…",
+    "quality": {
+      "title": "Обеспечение качества",
+      "text": "Каждая опубликованная практика проходит предварительную проверку. Уровень профессионального рецензирования остаётся видимым."
+    },
+    "help": {
+      "title": "Помощь",
+      "text": "Практика не является универсальным решением. Перед применением проверьте контекст, условия, ограничения и версию."
+    },
+    "tabs": {
+      "title": "Представления библиотеки",
+      "library": "Библиотека практик",
+      "candidates": "Мои работы",
+      "review": "Рецензирование"
+    },
+    "profile": {
+      "you": "Вы",
+      "social_worker": "Специалист социальной работы",
+      "service_provider": "Поставщик услуг",
+      "admin": "Администратор платформы",
+      "professional": "Специалист"
+    },
+    "capability": {
+      "title": "Подтверждённые полномочия",
+      "reviewer": "Отраслевой рецензент",
+      "ethics": "Эксперт по этике и конфиденциальности",
+      "editor": "Методический редактор",
+      "approver": "Итоговый утверждающий",
+      "professional": "Профессиональный рецензент",
+      "all_scopes": "все области"
+    },
+    "status": {
+      "draft": "Приватный черновик",
+      "waiting": "Ожидает назначения рецензента",
+      "submitted": "Отправлено на проверку",
+      "in_review": "На рецензировании",
+      "needs_changes": "Нужны изменения",
+      "ready": "Готово к утверждению",
+      "published": "Утверждённая практика",
+      "re_review": "На повторной проверке",
+      "archived": "В архиве",
+      "candidate": "Кандидат на основе опыта",
+      "expert_reviewed": "Проверено экспертами",
+      "accepted": "Проверено и принято",
+      "rejected": "Отклонено"
+    },
+    "risk": {
+      "low": "Низкий риск",
+      "high": "Повышенный риск"
+    },
     "version_history": "История опубликованных версий",
-    "filters": { "maturity": "Уровень зрелости", "all_levels": "Все уровни" },
-    "sort": { "title": "Сортировка", "updated": "Недавно обновлённые", "reviewed": "Недавно проверенные", "applications": "Больше всего применений", "alpha": "По алфавиту", "review_due": "Нужна повторная проверка" },
-    "labels": { "professional_method": "Профессиональный подход", "suitable": "Подходит, когда", "limitation": "Важное ограничение", "conditions": "Условия", "steps": "Шаги применения", "applications": "Опыт применения: {count}", "followups": "Последующие проверки: {count}", "version": "Версия", "updated": "Последнее обновление", "reviewed": "Профессионально проверено", "next_review": "Следующая проверка", "review_overdue": "Срок следующей профессиональной проверки истёк.", "risk": "Уровень риска", "identifiers": "Идентифицируемость", "confirmed": "Проверка автора подтверждена", "unconfirmed": "Не проверено", "modified": "Последнее изменение", "review_task": "Задача рецензирования", "review_workspace": "Рабочее место рецензента", "summary_missing": "Краткое описание нужно дополнить.", "review_basis": "Основание профессиональной проверки" },
-    "actions": { "open": "Открыть практику", "open_draft": "Открыть черновик", "review": "Открыть для проверки", "create": "Создать кандидата", "edit": "Дополнить", "save_private": "Сохранить приватный черновик", "submit_review": "Отправить на проверку", "save_review": "Сохранить рецензию", "publish": "Утвердить и опубликовать версию", "submit_application": "Отправить опыт применения на проверку", "archive": "Архивировать", "archive_confirm": "Архивировать этого кандидата практики?", "re_review": "Начать новую проверку", "re_review_confirm": "Удалить эту версию из базы знаний и начать новую проверку?" },
-    "fields": { "title": "Название", "summary": "Краткое описание", "type": "Тип практики", "risk": "Уровень риска", "context": "Подходящий контекст", "conditions": "Необходимые условия", "steps": "Шаги применения", "limitations": "Важное ограничение или риск", "targets": "Целевые группы", "environments": "Среды применения", "topics": "Темы и ключевые слова", "background": "Обобщённый фон", "challenge": "Основная профессиональная задача", "what_helped": "Что помогло", "network_role": "Роль сети или услуги", "outcome": "Обобщённый результат", "learning": "Основание обучения и доказательности", "sources": "Источники и профессиональная основа" },
-    "editor": { "private": "Приватный кандидат", "create": "Создать кандидата", "edit": "Дополнить кандидата", "one_per_line": "Одна запись в строке", "identifiers_confirm": "После последних изменений подтверждаю, что кандидат не содержит сведений, идентифицирующих клиента, ребёнка, семью или конкретный случай." },
-    "candidate": { "next": "Следующий шаг кандидата", "from_closure": "Черновик создан из утверждённого обобщения завершённого случая. История случая не копировалась.", "from_experience": "Черновик основан на вашем обобщённом профессиональном опыте.", "my_candidates": "Мои кандидаты практик" },
-    "review": { "title": "Профессиональная проверка", "role": "Роль рецензента", "decision": "Решение", "approve": "Передать на следующий этап", "changes": "Нужны изменения", "decline": "Не подходит для публикации", "conflict": "Конфликт интересов", "conflict_status": "Проверка конфликта интересов", "choose_conflict": "Выберите результат проверки", "no_conflict": "Конфликта интересов нет", "manageable_conflict": "Связь есть, но ею можно управлять", "declined_conflict": "Отказываюсь из-за конфликта", "author_feedback": "Обратная связь, видимая автору", "private_notes": "Приватные заметки рабочего процесса", "candidates": "Кандидаты практик", "applications": "Опыт применения" },
-    "publish": { "title": "Итоговое утверждение", "note": "Публикация фиксирует отдельную версию. Синхронизация с базой знаний начинается только после успешной публикации и отражается отдельно." },
-    "application": { "title": "Добавить структурированный опыт применения", "note": "Это не оценка и не комментарий. Опишите контекст, адаптации, ограничения и последующую проверку.", "context": "Контекст применения", "target": "Целевая группа", "adaptations": "Что было адаптировано", "worked": "Что сработало", "not_worked": "Что не сработало", "limitation": "Выявленное ограничение или риск", "follow_up": "Дата последующей проверки", "needs_review": "Опыт выявил новый риск или необходимость пересмотра практики.", "review_task": "Проверка опыта применения", "review_note": "Обратная связь автору", "accept": "Принять как документированный опыт", "reject": "Не подходит для публикации", "my_applications": "Мой опыт применения", "my_experience": "Мой опыт применения", "reviewer_feedback": "Отзыв рецензента", "resubmit": "Повторно отправить дополненный опыт" },
-    "empty": { "candidates_title": "У вас пока нет кандидатов", "review_title": "У вас нет назначенных проверок", "library_title": "Библиотека практик формируется", "library_text": "Здесь появляются только зафиксированные и утверждённые версии.", "personal_text": "Новые рабочие объекты появляются после осознанного создания или назначения." },
-    "errors": { "request_failed": "Действие с библиотекой не выполнено.", "load_failed": "Не удалось загрузить библиотеку.", "detail_failed": "Не удалось открыть практику.", "save_failed": "Не удалось сохранить черновик.", "action_failed": "Не удалось сохранить действие.", "application_failed": "Не удалось сохранить опыт применения.", "conflict": "Практика была изменена. Обновите страницу и повторите.", "incomplete": "Обязательные поля или проверка конфиденциальности не завершены.", "capability_required": "Для этого действия нет действующего подтверждённого полномочия.", "self_review": "Нельзя профессионально утверждать собственную работу.", "conflict_of_interest": "Необходимо отказаться от работы из-за конфликта интересов.", "review_chain": "Требуемая цепочка профессиональных проверок не завершена.", "rag_sync_failed": "Не удалось синхронизировать опубликованную версию с базой знаний." }
+    "filters": {
+      "maturity": "Уровень зрелости",
+      "all_levels": "Все уровни"
+    },
+    "sort": {
+      "title": "Сортировка",
+      "updated": "Недавно обновлённые",
+      "reviewed": "Недавно проверенные",
+      "applications": "Больше всего применений",
+      "alpha": "По алфавиту",
+      "review_due": "Нужна повторная проверка"
+    },
+    "labels": {
+      "professional_method": "Профессиональный подход",
+      "suitable": "Подходит, когда",
+      "limitation": "Важное ограничение",
+      "conditions": "Условия",
+      "steps": "Шаги применения",
+      "applications": "Опыт применения: {count}",
+      "followups": "Последующие проверки: {count}",
+      "version": "Версия",
+      "updated": "Последнее обновление",
+      "reviewed": "Профессионально проверено",
+      "next_review": "Следующая проверка",
+      "review_overdue": "Срок следующей профессиональной проверки истёк.",
+      "risk": "Уровень риска",
+      "identifiers": "Идентифицируемость",
+      "confirmed": "Проверка автора подтверждена",
+      "unconfirmed": "Не проверено",
+      "modified": "Последнее изменение",
+      "review_task": "Задача рецензирования",
+      "review_workspace": "Рабочее место рецензента",
+      "summary_missing": "Краткое описание нужно дополнить.",
+      "review_basis": "Основание профессиональной проверки"
+    },
+    "actions": {
+      "open": "Открыть практику",
+      "open_draft": "Открыть черновик",
+      "review": "Открыть для проверки",
+      "create": "Создать кандидата",
+      "edit": "Дополнить",
+      "save_private": "Сохранить приватный черновик",
+      "submit_review": "Отправить на проверку",
+      "save_review": "Сохранить рецензию",
+      "publish": "Утвердить и опубликовать версию",
+      "submit_application": "Отправить опыт применения на проверку",
+      "archive": "Архивировать",
+      "archive_confirm": "Архивировать этого кандидата практики?",
+      "re_review": "Начать новую проверку",
+      "re_review_confirm": "Удалить эту версию из базы знаний и начать новую проверку?"
+    },
+    "fields": {
+      "title": "Название",
+      "summary": "Краткое описание",
+      "type": "Тип практики",
+      "risk": "Уровень риска",
+      "context": "Подходящий контекст",
+      "conditions": "Необходимые условия",
+      "steps": "Шаги применения",
+      "limitations": "Важное ограничение или риск",
+      "targets": "Целевые группы",
+      "environments": "Среды применения",
+      "topics": "Темы и ключевые слова",
+      "background": "Обобщённый фон",
+      "challenge": "Основная профессиональная задача",
+      "what_helped": "Что помогло",
+      "network_role": "Роль сети или услуги",
+      "outcome": "Обобщённый результат",
+      "learning": "Основание обучения и доказательности",
+      "sources": "Источники и профессиональная основа"
+    },
+    "editor": {
+      "private": "Приватный кандидат",
+      "create": "Создать кандидата",
+      "edit": "Дополнить кандидата",
+      "one_per_line": "Одна запись в строке",
+      "identifiers_confirm": "После последних изменений подтверждаю, что кандидат не содержит сведений, идентифицирующих клиента, ребёнка, семью или конкретный случай."
+    },
+    "candidate": {
+      "next": "Следующий шаг кандидата",
+      "from_closure": "Черновик создан из утверждённого обобщения завершённого случая. История случая не копировалась.",
+      "from_experience": "Черновик основан на вашем обобщённом профессиональном опыте.",
+      "my_candidates": "Мои кандидаты практик"
+    },
+    "review": {
+      "title": "Профессиональная проверка",
+      "role": "Роль рецензента",
+      "decision": "Решение",
+      "approve": "Передать на следующий этап",
+      "changes": "Нужны изменения",
+      "decline": "Не подходит для публикации",
+      "conflict": "Конфликт интересов",
+      "conflict_status": "Проверка конфликта интересов",
+      "choose_conflict": "Выберите результат проверки",
+      "no_conflict": "Конфликта интересов нет",
+      "manageable_conflict": "Связь есть, но ею можно управлять",
+      "declined_conflict": "Отказываюсь из-за конфликта",
+      "author_feedback": "Обратная связь, видимая автору",
+      "private_notes": "Приватные заметки рабочего процесса",
+      "candidates": "Кандидаты практик",
+      "applications": "Опыт применения"
+    },
+    "publish": {
+      "title": "Итоговое утверждение",
+      "note": "Публикация фиксирует отдельную версию. Синхронизация с базой знаний начинается только после успешной публикации и отражается отдельно."
+    },
+    "application": {
+      "title": "Добавить структурированный опыт применения",
+      "note": "Это не оценка и не комментарий. Опишите контекст, адаптации, ограничения и последующую проверку.",
+      "context": "Контекст применения",
+      "target": "Целевая группа",
+      "adaptations": "Что было адаптировано",
+      "worked": "Что сработало",
+      "not_worked": "Что не сработало",
+      "limitation": "Выявленное ограничение или риск",
+      "follow_up": "Дата последующей проверки",
+      "needs_review": "Опыт выявил новый риск или необходимость пересмотра практики.",
+      "review_task": "Проверка опыта применения",
+      "review_note": "Обратная связь автору",
+      "accept": "Принять как документированный опыт",
+      "reject": "Не подходит для публикации",
+      "my_applications": "Мой опыт применения",
+      "my_experience": "Мой опыт применения",
+      "reviewer_feedback": "Отзыв рецензента",
+      "resubmit": "Повторно отправить дополненный опыт"
+    },
+    "empty": {
+      "candidates_title": "У вас пока нет кандидатов",
+      "review_title": "У вас нет назначенных проверок",
+      "library_title": "Библиотека практик формируется",
+      "library_text": "Здесь появляются только зафиксированные и утверждённые версии.",
+      "personal_text": "Новые рабочие объекты появляются после осознанного создания или назначения."
+    },
+    "errors": {
+      "request_failed": "Действие с библиотекой не выполнено.",
+      "load_failed": "Не удалось загрузить библиотеку.",
+      "detail_failed": "Не удалось открыть практику.",
+      "save_failed": "Не удалось сохранить черновик.",
+      "action_failed": "Не удалось сохранить действие.",
+      "application_failed": "Не удалось сохранить опыт применения.",
+      "conflict": "Практика была изменена. Обновите страницу и повторите.",
+      "incomplete": "Обязательные поля или проверка конфиденциальности не завершены.",
+      "capability_required": "Для этого действия нет действующего подтверждённого полномочия.",
+      "self_review": "Нельзя профессионально утверждать собственную работу.",
+      "conflict_of_interest": "Необходимо отказаться от работы из-за конфликта интересов.",
+      "review_chain": "Требуемая цепочка профессиональных проверок не завершена.",
+      "rag_sync_failed": "Не удалось синхронизировать опубликованную версию с базой знаний."
+    }
   },
   "personal_search": {
     "title": "Мой поиск",
@@ -6479,8 +7145,25 @@
     "error": "Сейчас поиск недоступен. Попробуйте ещё раз.",
     "retry": "Попробовать снова",
     "results": "Результаты поиска",
-    "kinds": { "conversation": "Беседа", "journey": "Путь", "document": "Документ" },
-    "status": { "active": "Активный", "pinned": "Закреплён", "draft": "Черновик", "archived": "В архиве", "material": "Материал", "template": "Шаблон", "call_audio_recording": "Запись звонка", "call_transcript": "Расшифровка звонка", "audio_transcript": "Расшифровка аудио", "transcript_summary": "Сводка расшифровки", "uploaded_audio_source": "Загруженное аудио", "other": "Другое" }
+    "kinds": {
+      "conversation": "Беседа",
+      "journey": "Путь",
+      "document": "Документ"
+    },
+    "status": {
+      "active": "Активный",
+      "pinned": "Закреплён",
+      "draft": "Черновик",
+      "archived": "В архиве",
+      "material": "Материал",
+      "template": "Шаблон",
+      "call_audio_recording": "Запись звонка",
+      "call_transcript": "Расшифровка звонка",
+      "audio_transcript": "Расшифровка аудио",
+      "transcript_summary": "Сводка расшифровки",
+      "uploaded_audio_source": "Загруженное аудио",
+      "other": "Другое"
+    }
   },
   "supervision": {
     "errors": {
@@ -6534,8 +7217,15 @@
       "KUT": "Приглашён",
       "LAHK": "Вышел"
     },
-    "status": { "DRAFT": "Черновик", "ACTIVE": "Активный", "CLOSED": "Закрыт" },
-    "type": { "INDIVIDUAL": "Индивидуальная", "GROUP": "Групповая" },
+    "status": {
+      "DRAFT": "Черновик",
+      "ACTIVE": "Активный",
+      "CLOSED": "Закрыт"
+    },
+    "type": {
+      "INDIVIDUAL": "Индивидуальная",
+      "GROUP": "Групповая"
+    },
     "home": {
       "title": "Моя супервизия",
       "subtitle": "Процессы, где вы супервизор или участник.",

@@ -57,6 +57,7 @@ export default function ChatBodyView({
   roomBlocked,
   roomAuthRequired,
   roomCallNode,
+  roomSummaryApprovalNode,
   chatWindowRef,
   isStreamingAny,
   hiddenCount,
@@ -176,6 +177,10 @@ export default function ChatBodyView({
               {showChatInterface ? <ChatTopNotices t={t} isRoomMode={isRoomMode} roomTitle={roomTitle} roomOrigin={roomOrigin} hideRoomTitle={hideRoomTitle} isCrisis={isCrisis} crisisText={crisisText} errorBanner={errorBanner} roomBlocked={roomBlocked} roomAuthRequired={roomAuthRequired} /> : null}
 
               {showChatInterface ? roomCallNode : null}
+
+              {/* T20 P2: kokkuvõtte kinnitusring — nähtav ainult siis, kui
+                  ruumis on aktiivne ring (node ise tagastab muidu null). */}
+              {showChatInterface ? roomSummaryApprovalNode : null}
 
               {showChatInterface ? <ConversationView t={t} chatWindowRef={chatWindowRef} isStreamingAny={isStreamingAny} hiddenCount={hiddenCount} pageSize={pageSize} onRevealOlder={onRevealOlder} canHideOlder={canHideOlder} onHideOlder={onHideOlder} onJumpToBottom={onJumpToBottom} messageItems={messageItems} onWindowDoubleClick={onWindowDoubleClick} focusActive={focusActive} isMobile={isMobile} isLightTheme={isLightTheme} hasConversationSources={hasConversationSources} conversationSourcesCount={conversationSources.length} toggleSourcesPanel={toggleSourcesPanel} showSourcesPanel={showSourcesPanel} sourcesPulse={sourcesPulse} sourcesButtonRef={sourcesButtonRef} /> : null}
 
