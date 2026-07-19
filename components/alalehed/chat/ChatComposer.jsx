@@ -4,6 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { createPortal } from "react-dom";
 import Button from "@/components/ui/Button";
 import ChatAiForwardToggle from "./view/ChatAiForwardToggle";
+import { MAX_USER_MESSAGE_CHARS, MESSAGE_COUNTER_VISIBLE_FROM } from "@/lib/chat/messageLimits";
 
 function resolvePrivacyWorkflow({ activeModeKey, isRoomMode }) {
   if (isRoomMode) return "room_private";
@@ -469,6 +470,11 @@ export default function ChatComposer({
     };
   }, [inputRef, onDraftStateChange]);
   const hasInput = Boolean(draft.trim());
+  // T03 E3: nähtav tähemärgiloendur ilmub piirile lähenedes; üle piiri → over-limit olek.
+  const draftLength = draft.length;
+  const showCharCounter = draftLength >= MESSAGE_COUNTER_VISIBLE_FROM;
+  const overCharLimit = draftLength > MAX_USER_MESSAGE_CHARS;
+  const charCounterText = `${draftLength}/${MAX_USER_MESSAGE_CHARS}`;
   const closeToolsMenu = useCallback(() => {
     setToolsOpen(false);
   }, []);
@@ -537,6 +543,8 @@ export default function ChatComposer({
     const originalDraft = options.textOverride != null ? String(options.textOverride) : draft;
     const trimmed = originalDraft.trim();
     if (!trimmed) return false;
+    // T03 E3: nähtav piir — üle selle ei saada (server jõustaks 413); loendur selgitab miks.
+    if (trimmed.length > MAX_USER_MESSAGE_CHARS) return false;
     if (isGenerating) return false;
     submitInFlightRef.current = true;
     try {
@@ -788,6 +796,12 @@ export default function ChatComposer({
         <div ref={inputBarRef} onMouseDown={handleInputBarMouseDown}>
           {inputBarChildren}
         </div>
+        {showCharCounter ? (
+          <div className="conv-char-counter" role="status" aria-live="polite" data-over-limit={overCharLimit ? "true" : undefined}>
+            <span aria-hidden="true">{charCounterText}</span>
+            <span className="sr-only">{charCounterText}</span>
+          </div>
+        ) : null}
         <ChatAiForwardToggle t={t} focusActive={focusActive} isRoomMode={isRoomMode} allowAssistantForward={assistantForwardEnabled} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} />
       </div>
       {showModeLabelRow ? <div>
