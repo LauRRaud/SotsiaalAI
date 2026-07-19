@@ -85,6 +85,8 @@ export async function GET(_req, { params }) {
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status);
 
+  // E3 (audit 17 K1): püünis hoiab {ok, messageKey} lepingu ka DB-tõrkel 500-l.
+  try {
   const membership = await prisma.roomMember.findFirst({
         where: {
           roomId,
@@ -164,4 +166,8 @@ export async function GET(_req, { params }) {
       isCurrentUser: m.userId === auth.userId
     }))
   });
+  } catch (err) {
+    console.error("[room members GET] failed", err);
+    return errorJson("api.rooms.members_failed", 500);
+  }
 }

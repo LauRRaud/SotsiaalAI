@@ -4055,7 +4055,8 @@
       "rate_limited": "Too many requests. Please try again later.",
       "subscription_required": "An active subscription is required.",
       "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
-      "usage_load_failed": "Usage data could not be loaded."
+      "usage_load_failed": "Usage data could not be loaded.",
+      "server_error": "Server error. Please try again later."
     },
     "exports": {
       "pdf_content_not_supported": "PDF does not support the characters in this content. Use Word/DOCX instead."
@@ -4111,7 +4112,10 @@
       "read_update_failed": "Failed to update read state.",
       "leave_failed": "Failed to leave room.",
       "delete_failed": "Failed to delete room.",
-      "delete_message_failed": "Failed to delete message."
+      "delete_message_failed": "Failed to delete message.",
+      "message_too_long": "Message is too long.",
+      "messages_failed": "Failed to load messages.",
+      "members_failed": "Failed to load members."
     },
     "stt": {
       "not_configured": "Speech-to-text service is not configured.",

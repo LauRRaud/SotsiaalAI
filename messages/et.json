@@ -4055,7 +4055,8 @@
       "rate_limited": "Liiga palju paringuid. Proovi hiljem uuesti.",
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
-      "usage_load_failed": "Kasutusandmeid ei saanud laadida."
+      "usage_load_failed": "Kasutusandmeid ei saanud laadida.",
+      "server_error": "Serveri viga. Proovi hiljem uuesti."
     },
     "exports": {
       "pdf_content_not_supported": "PDF ei toeta selle sisu märke. Kasuta Wordi/DOCX-i."
@@ -4111,7 +4112,10 @@
       "read_update_failed": "Lugemisoleku uuendamine ebaonnestus.",
       "leave_failed": "Ruumist lahkumine ebaonnestus.",
       "delete_failed": "Ruumi kustutamine ebaonnestus.",
-      "delete_message_failed": "Sonumi kustutamine ebaonnestus."
+      "delete_message_failed": "Sonumi kustutamine ebaonnestus.",
+      "message_too_long": "Sõnum on liiga pikk.",
+      "messages_failed": "Sõnumite laadimine ebaõnnestus.",
+      "members_failed": "Liikmete laadimine ebaõnnestus."
     },
     "stt": {
       "not_configured": "Kõnest tekstiks teenus ei ole seadistatud.",
