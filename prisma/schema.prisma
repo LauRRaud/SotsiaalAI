@@ -1337,10 +1337,20 @@ model WellbeingRecord {
   recommendedActions  Json
   visibility          String   @default("private")
   aggregationEligible Boolean  @default(true)
+  supersedesRecordId  String?  @unique
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
   owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
+
+  /* TO-1 „paranda uue kirjena" (WB-V2-P2): parandus on UUS kirje, mis viitab
+     parandatavale. `@unique` teeb sellest 1:1 sideme — sama kirjet ei saa kaks
+     korda parandada, sest siis jääks koondisse kaks „kehtivat" versiooni ja
+     mustri-statistika topeltloendaks. Ahel A ← B ← C on lubatud.
+     `SetNull`: parandatava päris kustutamisel (§19.8) jääb parandus alles ja
+     loetavaks, viide lihtsalt tühjeneb. */
+  supersedes   WellbeingRecord? @relation("WellbeingRecordSupersede", fields: [supersedesRecordId], references: [id], onDelete: SetNull)
+  supersededBy WellbeingRecord? @relation("WellbeingRecordSupersede")
 
   @@index([ownerUserId, workflowType, createdAt])
   @@index([workflowType, createdAt])
