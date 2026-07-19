@@ -146,12 +146,13 @@ Viis astet; igaüks avaneb eelmisest. Otsused (A) ei ole kooditöö ja võivad l
 2. ~~**O2 — deploy-aken**~~ — **OTSUSTATUD JA TEOSTATUD 18.07 õhtul:** server = `ae59516f`, 2 migratsiooni, smoke 8/8, backup + rollback `104d69d8` (vt seisutabel).
 3. ~~**O3 — T03 saatus**~~ — **OTSUSTATUD 18.07 õhtul: TEADLIK PARKIMINE.** Omanik: sisenemisvalikut (hääl-vs-tekst) ei kasutata (oli juba 18.07 hommikul hüljatud); voice-vestlus ise = „kunagi tuleb arendada", MITTE praegu. Haru `codex/chat-voice-v1 @ 7bdd1288` jääb arhiiviks/retseptiks; rebase'i EI tule. **NB mitte-häälne sisu nopitakse tulevikus välja väikese paketina värske main'i peal:** E1 kriis EN/RU fail-closed + E2 aus Stop (=PERF L2 kulukaitse) + E3 kvoodivärava sulgemine — need EI ole hääle-spetsiifilised.
 
-**B. KOODIJÄRJEKORD (jadatöö, üks korraga; omaniku ümberprioriseerimine 18.07 — funktsioonid enne release'i, sest arendustööriistad on praegu võimsad):**
-1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).** Ükski kooditeema pole enam aktiivne → T12 võib alata.
-2. ~~T22~~ — **LIVE 19.07.** E1–E7 tervikuna; push + merge + deploy tehtud omaniku loal, server `17b5d7cc`, smoke 13/13. Vt „T22 teostus 19.07".
-3. **T12 ROOMS-CALLS-V1** — **JÄRGMINE kooditeema** (leping valmis `t12-rooms-calls-v1-ulesanne.md`, 6 otsust lukus); T22 kood ei blokeeri enam.
-4. **T14 WELLBEING-V2 ja T21 CASEWORK-V1** — **lepingud VALMIS (otsustevabad tuumad)**, ootel; `t14-…` = kirjete lugemisrada+adapter (P0+P1), `t21-…` = provenance-konsolideerimine+adapterid+ettevalmistuspaneel (P0+P1). Mõlema hilisemad viilud vajavad otsuseid (T14: TO-1/TO-2 rütmiks; T21: O-CW-2/3/4/10 + O-CW-7 õigusanalüüs võrgustikuvaadetele). T13 Kovisioon V2 võib T19 tagasi lauale tuua.
-5. **T10 PUBLIC-V1 + release-rada (D) nihkub plokki „siis, kui omanik tahab turule".**
+**B. KOODIJÄRJEKORD (jadatöö, üks korraga; värskendatud 19.07 õhtul — server nüüd `8fed8ad9`):**
+1. ~~T07~~ — **SULETUD 18.07 (`CLOSED_SCOPED`).**
+2. ~~T22 SUPERVISION-V1~~ — **LIVE 19.07** (E1–E7 tervikuna; server oli `17b5d7cc`, smoke 13/13). Vt „T22 teostus 19.07".
+3. ~~T21 CASEWORK-V1 tuum~~ — **LIVE 19.07** (P0+P1; server `ac0b7d3f`). Alles: **P2/P3** (otsustatud 19.07 — teostamata) ja **P4/P5** (O-CW-7 jurist). Vt „T21 teostus 19.07".
+4. ~~T14 WELLBEING-V2 tuum + WB-V2-P2 kontrollpunkt~~ — **LIVE 19.07** (E1+E2 tuum + P2 kontrollpunkt/parandus/U1; server `8fed8ad9`). Alles: **P3–P5** (P3: O-WB-1/O-WB-5/O-WB-2a; P4: TO-8; P5: TO-3/4/5/7/9). Vt „T14 teine viil 19.07".
+5. **T12 ROOMS-CALLS-V1** — **JÄRGMINE kooditeema** (leping valmis `t12-rooms-calls-v1-ulesanne.md`, 6 otsust lukus); miski ei blokeeri enam.
+6. **T13 COVISION-V2** (prototüüp-esimene) järgnevaks; **T10 PUBLIC-V1 + release-rada (D)** nihkub plokki „siis, kui omanik tahab turule".
 
 **C. VAHEPALAD teemade vahele (väikesed, otsustevabad, sobivad ka ootepäevadele):**
 - lint-debt jätk: `WorkspaceFeaturePage.jsx` 27 hardcoded-stringi + ülejäänud (50 → 0 hoiatust);
@@ -273,6 +274,10 @@ Omanik käis läbi SEIS-i „blokeerivate otsuste" nimekirja. **Kaheksa otsust l
 | PERF L4 kvoodireaper | **Kuivkäik kõigepealt** | Serveris `USAGE_REAPER_JOB_KEY` + `USAGE_REAPER_ENABLED=1`, seejärel käsitsi `dryRun=1` päring → `wouldReap` arv. Kontrollitud koodist: marsruut nõuab NII võtit KUI lippu, lipp üksi ei käivita midagi (timer paigaldamata), `dryRun` vabastab null rida. Timeri otsus langeb päris arvu peale. |
 | RAG master-source-check timer | **Sisse** | Unit + `/etc/sotsiaalai/rag-master-source-check.env` + enable. Timer teeb ainult piiratud, SSRF-kaitstud avalike URL-ide kontrolli ja uuendab kandidaadijärjekorda — EI publitseeri, EI approve'i, EI kutsu ingest-otspunkti. |
 | RAG P8.6 proovipakk | **Ootab RAG-QM-P0 baasjoont** | Ilma mõõdetud lähtejooneta ei saa hiljem öelda, kas päris allikad parandasid või halvendasid vastuseid. Baasjoon on vahepalade nimekirjas (C). |
+
+**19.07 õhtu — ops-lülitite teostus:**
+- **Reaper kuivkäik TEHTUD** (read-only DB-loend serveris, `getExpiredReservationWhere`, MITTE env-muutus/restart): **`wouldReap=0`, `TOTAL_RESERVED=0`** — hetkel pole ühtki aegunud ega üldse RESERVED-rida (kooskõlas „koormust veel pole"). Timeri paigaldus ootab päris arvu; praegu poleks tal midagi vabastada.
+- **RAG master-source-check timer: install-handoff VALMIS, EI PAIGALDATUD.** Uue systemd-uniti + turvaseadete (`ProtectSystem=strict`, `NoNewPrivileges`) paigaldus on operaatori samm — nii ütleb ka repo README (`ops/systemd/README-rag-master-source-check.md`: „operator must explicitly install"). Unit vajab teeadaptust (`/opt/sotsiaalai` → `/home/ubuntu/apps/sotsiaalai`). Eeldused serveris kontrollitud (read-only): andmekaust `Andmebaasi/Admebaasi-materjali-lisa/` + `master_sources_final.json` olemas, `npm` `/usr/bin/npm`, `frontend.env`-is RAG_SERVICE_API_KEY/RAG_INTERNAL_HOST/RAG_API_BASE. Turnkey install-käsud antud omanikule 19.07.
 
 **Mitte-otsused — read, mis nimekirjast maha ei lähe, aga ei ole omaniku klikk:**
 1. **O-CW-7** — genogrammi/ökokaardi kolmandate isikute õiguslik alus = **jurist-analüüs** (GDPR art 14 teavitamiskohustus mittekasutajale, laste andmed, kliendi-oma kaardi isikliku kasutuse erand). Blokeerib T21 **P4/P5 TERVIKUNA**. Ei otsustata vaikimisi tehniliselt.
