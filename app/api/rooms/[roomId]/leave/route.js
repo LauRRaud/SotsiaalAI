@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { createRoomCallService } from "@/lib/calls/roomRoutes";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -71,6 +72,11 @@ export async function POST(_req, { params }) {
     if (membership.role === "OWNER") {
       return errorJson("api.rooms.owner_cannot_leave", 409);
     }
+
+    // E1: vabasta liige ruumi aktiivsest kõnest ENNE liikmesuse lõpetamist
+    // (osalus + sõnavõtusoov + vastamata consent-rida). Tõrge → 500 + retry,
+    // et fantoom-osalejat ei jää (audit 16 K3, 4 K2).
+    await createRoomCallService().releaseRoomMemberFromCalls({ roomId, userId: auth.userId });
 
     await prisma.roomMember.update({
       where: {

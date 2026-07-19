@@ -517,3 +517,87 @@ test("failed Egress stop marks recording and file failed", async () => {
   assert.equal(prisma.callRecordingRequest.rows[0].status, "FAILED");
   assert.equal(prisma.callRecordingFile.rows[0].status, "FAILED");
 });
+
+// --- T12 ROOMS-CALLS-V1 ---
+
+test("T12 E1: ending an active room call clears active participants and marks it ended (audit 16 K1)", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "user_1" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+
+  const ended = await service.endActiveRoomCall({ roomId: "room_1", actorUserId: "user_1" });
+
+  assert.equal(ended.status, "ENDED");
+  assert.equal(prisma.callSession.rows[0].status, "ENDED");
+  const active = prisma.callParticipant.rows.filter(row => row.leftAt == null);
+  assert.equal(active.length, 0, "no active participants remain after room-call end");
+});
+
+test("T12 E1: endActiveRoomCall is a no-op when the room has no active call", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const result = await service.endActiveRoomCall({ roomId: "room_without_call", actorUserId: "user_1" });
+  assert.equal(result, null);
+});
+
+test("T12 E1: releasing a room member from calls clears their participation and auto-ends when last (audit 16 K3)", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  await service.startRoomCall({ roomId: "room_1", userId: "user_1" });
+
+  await service.releaseRoomMemberFromCalls({ roomId: "room_1", userId: "user_1" });
+
+  const participant = prisma.callParticipant.rows.find(row => row.userId === "user_1");
+  assert.ok(participant.leftAt, "leaving member's participation is marked left");
+  assert.equal(prisma.callSession.rows[0].status, "ENDED", "last participant leaving auto-ends the call");
+});
+
+test("T12 E1: leaving a call drops the leaver's unanswered consent so the request unlocks (audit 4 K2)", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  // Host consents; user_2 has not answered → request stays locked at REQUESTED.
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "REQUESTED");
+
+  // user_2 leaves before answering → their pending consent row must not lock it forever.
+  await service.leaveCall({ callSessionId: call.id, userId: "user_2" });
+
+  const leftoverConsent = prisma.callRecordingConsent.rows.find(row => row.userId === "user_2");
+  assert.equal(leftoverConsent, undefined, "leaver's unanswered consent row is removed");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "READY_TO_RECORD", "request unlocks over the remaining consenters");
+});
+
+test("T12 E2: a second recording request while one is open returns the same request without duplicating", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const first = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  const second = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  assert.equal(second.id, first.id);
+  assert.equal(prisma.callRecordingRequest.rows.length, 1);
+});
+
+test("T12 E2: a racing recording request that hits the unique index returns the winner, not a 500", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const realCreate = prisma.callRecordingRequest.create.bind(prisma.callRecordingRequest);
+  // Simulate the TOCTOU window: pre-check sees no open request, then a concurrent
+  // winner inserts one and our create hits the partial-unique index (P2002).
+  prisma.callRecordingRequest.create = async ({ data }) => {
+    await realCreate({ data: { ...data, id: "raced_open_request" } });
+    const error = new Error("Unique constraint failed on the fields: (`callSessionId`)");
+    error.code = "P2002";
+    throw error;
+  };
+
+  const result = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+
+  assert.equal(result.id, "raced_open_request", "returns the concurrent winner instead of throwing");
+  const openRows = prisma.callRecordingRequest.rows.filter(row => ["REQUESTED", "READY_TO_RECORD", "ACTIVE"].includes(row.status));
+  assert.equal(openRows.length, 1, "no duplicate open request survives the race");
+});

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { createRoomCallService } from "@/lib/calls/roomRoutes";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -68,6 +69,40 @@ export async function DELETE(_req, { params }) {
 
     if (room.ownerId !== auth.userId) {
       return errorJson("api.common.forbidden", 403);
+    }
+
+    // E1: lõpeta enne kustutust kõik aktiivsed kõned (koristab osalejad,
+    // sõnavõtusoovid, salvestuse/egress). CallSession.roomId on SetNull — ilma
+    // selleta jääks käiv kõne igaveseks ACTIVE-ks ja egress orvuks (audit 16 K1).
+    // Kui koristus ebaõnnestub, EI kustuta (aus 500 + retry), et mitte orvustada.
+    try {
+      const callService = createRoomCallService();
+      await callService.endActiveRoomCall({ roomId, actorUserId: auth.userId });
+    } catch (callErr) {
+      console.error("[room delete] active call cleanup failed", callErr);
+      return errorJson("api.rooms.delete_failed", 500);
+    }
+
+    // E1: auditijälg ENNE hävitamist (audit 16 K4).
+    const [memberCount, messageCount] = await Promise.all([
+      prisma.roomMember.count({ where: { roomId } }),
+      prisma.roomMessage.count({ where: { roomId } })
+    ]);
+    if (prisma.dataAuditLog?.create) {
+      await prisma.dataAuditLog.create({
+        data: {
+          actorUserId: auth.userId,
+          action: "ROOM_DELETED",
+          resourceType: "Room",
+          resourceId: roomId,
+          meta: {
+            title: room.title || null,
+            originType: room.originType || null,
+            memberCount,
+            messageCount
+          }
+        }
+      });
     }
 
     await prisma.room.delete({
