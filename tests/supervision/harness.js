@@ -8,9 +8,24 @@
  */
 
 let idCounter = 0;
+// Monotoonne kell: iga create/update saab rangelt kasvava ajatempli, et
+// updatedAt/createdAt järjekord oleks testides deterministlik (päris @updatedAt
+// peegel). Algab fikseeritud hetkest, et jooksud oleks korratavad.
+let clockMs = Date.parse("2026-07-01T00:00:00.000Z");
+function tick() {
+  clockMs += 1;
+  return new Date(clockMs);
+}
 export function resetIds() {
   idCounter = 0;
+  clockMs = Date.parse("2026-07-01T00:00:00.000Z");
 }
+
+// Tabelid, mille mudelil on @updatedAt (peab create'il ja update'il uuenema).
+const HAS_UPDATED_AT = new Set([
+  "supervisorGrant", "supervisionProcess", "supervisionParticipation", "supervisionPrivateItem",
+  "supervisionSharedTopic", "supervisionMeeting", "supervisionSummary", "wellbeingOutputDraft"
+]);
 function nextId(prefix) {
   idCounter += 1;
   // No underscore: notification source/target ids must match SAFE_ID
@@ -290,6 +305,9 @@ export function createSupervisionDb() {
             row[k] = v.increment;
           }
         }
+        // @default(now)/@updatedAt peegel: sea ajatemplid, kui teenus neid ei andnud.
+        if (table !== "user" && row.createdAt === undefined) row.createdAt = tick();
+        if (HAS_UPDATED_AT.has(table) && row.updatedAt === undefined) row.updatedAt = tick();
         checkUnique(table, row);
         store[table].push(row);
         return { ...row };
@@ -305,6 +323,8 @@ export function createSupervisionDb() {
         applyDataUpdate(candidate, data);
         checkUnique(table, candidate, row.id);
         applyDataUpdate(row, data);
+        // @updatedAt peegel: iga update tõstab updatedAt-i, kui seda ei antud käsitsi.
+        if (HAS_UPDATED_AT.has(table) && data.updatedAt === undefined) row.updatedAt = tick();
         return { ...row };
       },
       async updateMany({ where, data }) {
