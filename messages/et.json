@@ -838,6 +838,10 @@
       "title": "Kasutusjuhend | SotsiaalAI",
       "description": "Leia juhised SotsiaalAI kasutamiseks."
     },
+    "framework": {
+      "title": "Tööalase kasutuse raamistik | SotsiaalAI",
+      "description": "SotsiaalAI tööalase kasutuse ja isikuandmete töötlemise raamleping: loe täisteksti, laadi alla DOCX ja allkirjastatud DigiDoc ning salvesta kinnitus."
+    },
     "author": {
       "title": "Autorilt | SotsiaalAI",
       "description": "Loe SotsiaalAI autori selgitusi ja mõtteid."
@@ -6364,11 +6368,11 @@
     "title": "Võimalused",
     "intro": "Siin on ülevaade sellest, mida SotsiaalAI võimaldab. Iga osa juures ütleme, mida ta teeb ja kuidas sa teda kasutada saad.",
     "s1_title": "Vestlusaken",
-    "s1_body": "Keskne koht on vestlusaken. Kirjelda olukorda oma sõnadega, küsi teenuste, toetuste, õiguste või tööpraktika kohta ja täpsusta võimalikke lahendusi. Tehisintellekt toob välja võimalused, selgitab seoseid ning valmistab ette tekste ja järgmisi samme. Iga vastuse juures näed allikaid, millele see toetub. Kui kirjutamine ei sobi, saad olukorda kirjeldada ka häälega, ja vestlusest saad alustada töövooge: abisoovi, abipakkumist, süvauuringut või dokumendi analüüsi.",
+    "s1_body": "Keskne koht on vestlusaken. Kirjelda olukorda oma sõnadega, küsi teenuste, toetuste, õiguste või tööpraktika kohta ja täpsusta võimalikke lahendusi. Tehisintellekt toob välja võimalused, selgitab seoseid ning valmistab ette tekste ja järgmisi samme. Iga vastuse juures näed allikaid, millele see toetub, ja vastuse saad vajadusel lasta esitada lihtsamas keeles. Kui kirjutamine ei sobi, saad olukorda kirjeldada ka häälega, ja vestlusest saad alustada töövooge: abisoovi, abipakkumist, süvauuringut või dokumendi analüüsi.",
     "s2_title": "SotsiaalAI teadmusbaas",
     "s2_body": "SotsiaalAI vastused ei tule suvalistest allikatest — need toetuvad platvormi enda teadmusbaasile, kuhu on koondatud sotsiaalvaldkonna õigusaktid, juhendid, metoodikad, kohalike omavalitsuste info ja vormid. Teadmusbaasi hoitakse ajakohasena ja allikate kehtivust kontrollitakse, et vastused põhineksid õigel infol. Iga vastuse juures näed, millisele allikale see toetub. Teadmusbaas kasvab koos valdkonnaga — ka spetsialistide esitatud materjalid jõuavad sinna pärast ülevaatust.",
     "s3_title": "Teekond",
-    "s3_body": "Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad, ning midagi ei liigu edasi ilma sinu kinnituseta.",
+    "s3_body": "Sinu sammud püsivad Teekonnal koos: kokkuvõte senisest, seotud teemad, puuduolev info ja järgmised sammud. Teekond on privaatne. Sina otsustad, kas ja kellega seda jagad; jagamine käib sinu kinnitusega ning ülevaate oma jagamistest ja tagasivõtmise leiad vaatest Minu jagamised.",
     "s4_title": "Sinu kontroll ja turvalisus",
     "s4_body": "Enne kui sõnum teele läheb, märkab privaatsuse eelkiht üleliigseid isikuandmeid ja pakub võimalust need eemaldada. Jagamine käib alati sinu kinnitusega. Kui kirjeldatud olukord on kiireloomuline, kuvame kohe õiged kontaktid — 112, Lasteabi ja Ohvriabi.",
     "s5_title": "Töölaud",
@@ -6390,7 +6394,17 @@
     "s13_title": "Materjalid",
     "s13_body": "Spetsialist saab esitada juhendeid, metoodikaid ja praktilisi materjale SotsiaalAI teadmusbaasi täiendamiseks. Materjal jõuab andmebaasi pärast ülevaatust. Nii kasvab keskkond koos valdkonna praktikaga.",
     "s14_title": "Teenusekaart ja teenuseprofiil",
-    "s14_body": "Teenusekaart koondab sotsiaalvaldkonna pöördumiskohad ja kontaktid kaardivaatesse: kohalike omavalitsuste sotsiaalhoolekande kontaktid ja teenuseosutajad, aga ka avaldatud abisoovid ja abipakkumised. Nii on ametlik ja kogukondlik tugi ühel kaardil. Teenuseosutaja haldab teenuseprofiili, et olla teenustega kaardil leitav."
+    "s14_body": "Teenusekaart koondab sotsiaalvaldkonna pöördumiskohad ja kontaktid kaardivaatesse: kohalike omavalitsuste sotsiaalhoolekande kontaktid ja teenuseosutajad, aga ka avaldatud abisoovid ja abipakkumised. Nii on ametlik ja kogukondlik tugi ühel kaardil. Teenuseosutaja haldab teenuseprofiili, et olla teenustega kaardil leitav.",
+    "s15_title": "Supervisioon",
+    "s15_body": "Spetsialisti professionaalseks toeks on supervisioon: protsess toimub supervisoriga kokku lepitud paketi alusel ning kohtumised, kokkulepped ja väljundid püsivad platvormil ühes kohas. Väljundid jäävad sulle alles ka pärast protsessi lõppu.",
+    "s16_title": "Mentorlus",
+    "s16_body": "Alustava spetsialisti toeks on mentorlus: mentorlussuhte kokkulepped ja kohtumised püsivad mentori ja mentee ühises vaates koos.",
+    "s17_title": "Välitöö",
+    "s17_body": "Välitöö vaade on tehtud liikvel kasutamiseks: visiidi ettevalmistus, märkmed ja kokkuvõte püsivad koos ka siis, kui töö toimub kontorist väljas.",
+    "s18_title": "Isiklik otsing",
+    "s18_body": "Sisselogituna saad otsida oma sisust — vestlustest, dokumentidest ja muust enda loodust — ühest kohast. Otsing näitab ainult sinu enda materjale, mitte kunagi teiste omi.",
+    "s19_title": "Meetodipeegel",
+    "s19_body": "Meetodipeegel on spetsialisti privaatne refleksioonivahend: pärast juhtumit saad lühidalt kirja panna, mis töötas ja mida järgmisel korral teisiti teha. Kirjed on nähtavad ainult sulle."
   },
   "meist": {
     "title": "Meist",

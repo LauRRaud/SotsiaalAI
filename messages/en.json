@@ -838,6 +838,10 @@
       "title": "User guide | SotsiaalAI",
       "description": "Find guidance for using SotsiaalAI."
     },
+    "framework": {
+      "title": "Professional-use framework | SotsiaalAI",
+      "description": "SotsiaalAI professional-use and data-processing framework agreement: read the full text, download the DOCX and signed DigiDoc, and save your confirmation."
+    },
     "author": {
       "title": "From the author | SotsiaalAI",
       "description": "Read explanations and thoughts from the author of SotsiaalAI."
@@ -6364,11 +6368,11 @@
     "title": "Features",
     "intro": "Here is an overview of what SotsiaalAI makes possible. For each part we say what it does and how you can use it.",
     "s1_title": "Chat window",
-    "s1_body": "The chat window is the central place. Describe a situation in your own words, ask about services, benefits, rights or professional practice, and refine possible solutions. The AI surfaces options, explains connections and prepares texts and next steps. With every answer you see the sources it rests on. If writing does not suit you, you can also describe the situation by voice, and from the chat you can start workflows: a help request, a help offer, deep research or document analysis.",
+    "s1_body": "The chat window is the central place. Describe a situation in your own words, ask about services, benefits, rights or professional practice, and refine possible solutions. The AI surfaces options, explains connections and prepares texts and next steps. With every answer you see the sources it rests on, and if needed you can have the answer presented in plainer language. If writing does not suit you, you can also describe the situation by voice, and from the chat you can start workflows: a help request, a help offer, deep research or document analysis.",
     "s2_title": "The SotsiaalAI knowledge base",
     "s2_body": "SotsiaalAI's answers do not come from random sources — they rest on the platform's own knowledge base, which gathers the social field's legislation, guidance, methodologies, local government information and forms. The knowledge base is kept up to date and the validity of sources is checked so that answers rest on correct information. With every answer you see which source it rests on. The knowledge base grows with the field — materials submitted by specialists also reach it after review.",
     "s3_title": "Journey",
-    "s3_body": "Your steps stay together on the Journey: a summary of what has happened, related topics, missing information and next steps. The Journey is private. You decide whether and with whom to share it, and nothing moves forward without your confirmation.",
+    "s3_body": "Your steps stay together on the Journey: a summary of what has happened, related topics, missing information and next steps. The Journey is private. You decide whether and with whom to share it; sharing happens with your confirmation, and you can review and revoke your shares in the My shares view.",
     "s4_title": "Your control and safety",
     "s4_body": "Before a message is sent, the privacy pre-layer notices unnecessary personal data and offers to remove it. Sharing always happens with your confirmation. If the situation described is urgent, we show the right contacts right away — 112, Lasteabi and Ohvriabi.",
     "s5_title": "Workspace",
@@ -6390,7 +6394,17 @@
     "s13_title": "Materials",
     "s13_body": "A specialist can submit guidance, methodologies and practical materials to enrich the SotsiaalAI knowledge base. Material reaches the database after review. This way the environment grows together with the field's practice.",
     "s14_title": "Service Map and service profile",
-    "s14_body": "The Service Map gathers the social field's points of contact into a map view: local government social welfare contacts and service providers, as well as published help requests and help offers. Official and community support live on one map. A service provider manages their service profile to be findable on the map with their services."
+    "s14_body": "The Service Map gathers the social field's points of contact into a map view: local government social welfare contacts and service providers, as well as published help requests and help offers. Official and community support live on one map. A service provider manages their service profile to be findable on the map with their services.",
+    "s15_title": "Supervision",
+    "s15_body": "Professional supervision supports the specialist: the process runs under a package agreed with the supervisor, and meetings, agreements, and outputs stay together on the platform. The outputs remain yours after the process ends.",
+    "s16_title": "Mentoring",
+    "s16_body": "Mentoring supports specialists who are starting out: the agreements and meetings of the mentoring relationship stay together in the mentor's and mentee's shared view.",
+    "s17_title": "Field work",
+    "s17_body": "The field work view is built for use on the move: visit preparation, notes, and the summary stay together even when the work happens outside the office.",
+    "s18_title": "Personal search",
+    "s18_body": "When signed in, you can search your own content — conversations, documents, and other things you have created — from one place. The search shows only your own materials, never anyone else's.",
+    "s19_title": "Method mirror",
+    "s19_body": "The method mirror is the specialist's private reflection tool: after a case, you can briefly note what worked and what to do differently next time. Entries are visible only to you."
   },
   "meist": {
     "title": "About us",

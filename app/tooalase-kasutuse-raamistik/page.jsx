@@ -4,7 +4,6 @@ import { loadFrameworkDocument } from "@/lib/frameworkDocument";
 import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n";
 import { buildLocalizedMetadata } from "@/lib/metadata";
 
-const DEFAULT_DESCRIPTION = "SotsiaalAI professional-use and data-processing framework for review and download.";
 
 function getEmptyFrameworkDocument(messages) {
   return {
@@ -18,12 +17,13 @@ export async function generateMetadata() {
   const cookieStore = await cookies();
   const locale = getLocaleFromCookies(cookieStore);
   const messages = getMessagesSync(locale);
+  const meta = messages?.meta?.framework || {};
 
   return buildLocalizedMetadata({
     locale,
     pathname: "/tooalase-kasutuse-raamistik",
-    title: messages?.auth?.register?.worker_framework_title || "",
-    description: DEFAULT_DESCRIPTION
+    title: meta.title || messages?.auth?.register?.worker_framework_title || "",
+    description: meta.description || ""
   });
 }
 
