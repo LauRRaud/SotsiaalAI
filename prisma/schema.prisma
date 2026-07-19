@@ -1338,6 +1338,14 @@ model WellbeingRecord {
   visibility          String   @default("private")
   aggregationEligible Boolean  @default(true)
   supersedesRecordId  String?  @unique
+  /* WB-V2-P2 kontrollpunkt. TEADLIKULT eraldi väljadel, mitte
+     `standardizedFields`-i sees: „kas pidas?" on hilisem muudatus ja kui ta
+     elaks vastuste sees, muutuks vastuste plokp pärast salvestamist. Vastused
+     jäävad puutumatuks (TO-1 piir), plaan ja järelmärge elavad kõrval.
+     `checkpointDueOn` on skalaar ja indekseeritud, sest U1 taimer peab leidma
+     saabunud kontrollpunktid ilma JSON-skaneeringuta. */
+  checkpointDueOn     DateTime?
+  checkpoint          Json?
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
 
@@ -1355,6 +1363,7 @@ model WellbeingRecord {
   @@index([ownerUserId, workflowType, createdAt])
   @@index([workflowType, createdAt])
   @@index([aggregationEligible, workflowType, createdAt])
+  @@index([checkpointDueOn])
 }
 
 model WellbeingOutputDraft {
