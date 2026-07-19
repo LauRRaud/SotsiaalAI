@@ -24,6 +24,13 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:3001"],
       "port": 3001
+    },
+    {
+      "name": "next-dev-covision-v2-auto",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:auto"],
+      "port": 3002,
+      "autoPort": true
     }
   ]
 }
