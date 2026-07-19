@@ -88,7 +88,9 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "meeting",
     "network_case",
     "field_visit",
-    "org_space"
+    "org_space",
+    "case_work",
+    "practice_reflection"
   ]);
   assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
     "room",
@@ -104,7 +106,9 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "topic_seed",
     "meeting",
     "network_case",
-    "org_space"
+    "org_space",
+    "case_work",
+    "practice_reflection"
   ]);
   assert.equal(WORKSPACE_KIND_REGISTRY.room.status, WorkspaceKindStatus.SUPPORTED);
   assert.equal(WORKSPACE_KIND_REGISTRY.meeting.status, WorkspaceKindStatus.RESERVED);

@@ -21,6 +21,12 @@ import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
 import {
+  CARRIER_CLASS,
+  carrierClassLabelKey,
+  PROVENANCES,
+  provenanceLabelKey
+} from "@/lib/workspaces/provenance";
+import {
   PRE_INQUIRY_ASSESSMENT_PATHS,
   PRE_INQUIRY_CONSENT_OPTIONS,
   PRE_INQUIRY_DOMAIN_DEFINITIONS,
@@ -671,6 +677,97 @@ function JourneySharedInfoBlock({ info, t, audience = "client", serviceLabel = "
         </div>
       ) : null}
     </div>
+  );
+}
+
+/**
+ * CASEWORK-P1 meeting-preparation framing for a received pre-inquiry. Read-only
+ * and content-light: it reframes the receiver desk as "meeting preparation"
+ * (strict draft/preparation register — never "menetlus"/official submission),
+ * tags each source piece with its origin from the shared provenance dictionary
+ * (CASEWORK-P0), and lists the artifact drafts the receiver can prepare (all
+ * carrier class 1 — working drafts, never an official record).
+ */
+function CaseworkPreparationPanel({ t, inquiry, embedded = false }) {
+  if (!inquiry) return null;
+
+  const sources = [
+    {
+      id: "situation",
+      show: Boolean(inquiry.situation),
+      provenance: "KLIENDI_OELDUD",
+      labelKey: "casework.preparation.sources.situation",
+      fallback: "Pöörduja kirjeldatud olukord"
+    },
+    {
+      id: "assessment",
+      show: Boolean(inquiry.assessmentState),
+      provenance: "KLIENDI_KINNITATUD",
+      labelKey: "casework.preparation.sources.assessment",
+      fallback: "Eelkaardistuse vastused"
+    },
+    {
+      id: "draft",
+      show: Boolean(inquiry.userEditedDraft || inquiry.generatedDraft),
+      provenance: "AI_MUSTAND",
+      labelKey: "casework.preparation.sources.draft",
+      fallback: "AI koostatud pöördumise mustand"
+    }
+  ].filter((source) => source.show);
+
+  const artifactDrafts = ["CASE_BRIEF", "PRE_ASSESSMENT_SUMMARY", "CHECKLIST"];
+  const draftClassLabel = readText(t, carrierClassLabelKey(CARRIER_CLASS.WORK_DRAFT), "Töömustand");
+
+  return (
+    <SectionCard flat={embedded} title={readText(t, "casework.preparation.title", "Kohtumise ettevalmistus")}>
+      <p className={bodyTextClassName}>
+        {readText(t, "casework.preparation.intro", "See vaade koondab eelinfo kohtumise või järgmise kontakti ettevalmistuseks. Kõik siin on töömustand — mitte ametlik menetlusdokument.")}
+      </p>
+
+      {sources.length ? (
+        <div className="casework-preparation-sources">
+          <h3>{readText(t, "casework.preparation.sources_title", "Mille põhjal valmistud")}</h3>
+          <ul>
+            {sources.map((source) => (
+              <li key={source.id}>
+                <span>{readText(t, source.labelKey, source.fallback)}</span>
+                <span className="casework-provenance-chip" data-provenance={source.provenance}>
+                  {readText(t, provenanceLabelKey(source.provenance), source.provenance)}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      <div className="casework-preparation-drafts">
+        <h3>{readText(t, "casework.preparation.drafts_title", "Ettevalmistuse mustandid")}</h3>
+        <p className={bodyTextClassName}>
+          {readText(t, "casework.preparation.drafts_hint", "Neist saad koostada ettevalmistava mustandi. Mustand jääb sinu töövaatesse ega ole ametlik kandja.")}
+        </p>
+        <ul>
+          {artifactDrafts.map((type) => (
+            <li key={type}>
+              <span>{readText(t, `casework.artifact_type.${type}`, type)}</span>
+              <span className="casework-carrier-chip" data-carrier-class={CARRIER_CLASS.WORK_DRAFT}>
+                {draftClassLabel}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <details className="casework-provenance-legend">
+        <summary>{readText(t, "casework.preparation.legend_title", "Päritolumärgised")}</summary>
+        <ul>
+          {PROVENANCES.map((value) => (
+            <li key={value} data-provenance={value}>
+              {readText(t, provenanceLabelKey(value), value)}
+            </li>
+          ))}
+        </ul>
+      </details>
+    </SectionCard>
   );
 }
 
@@ -1971,6 +2068,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             )}
           </div>
         </SectionCard>
+
+        {activeReceivedInquiry ? (
+          <CaseworkPreparationPanel t={t} inquiry={activeReceivedInquiry} embedded={embedded} />
+        ) : null}
 
         {activeReceivedInquiry ? (
           <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.selected_received", "Valitud eelpöördumine")}>

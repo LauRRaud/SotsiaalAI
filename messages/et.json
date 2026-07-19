@@ -594,7 +594,54 @@
   "workspace": {
     "kind": {
       "mentoring_process": "Mentorlussuhe",
-      "wellbeing_space": "Minu tööheaolu ruum"
+      "wellbeing_space": "Minu tööheaolu ruum",
+      "pre_inquiry": "Eelpöördumine"
+    }
+  },
+  "casework": {
+    "preparation": {
+      "title": "Kohtumise ettevalmistus",
+      "intro": "See vaade koondab eelinfo kohtumise või järgmise kontakti ettevalmistuseks. Kõik siin on töömustand — mitte ametlik menetlusdokument.",
+      "sources_title": "Mille põhjal valmistud",
+      "drafts_title": "Ettevalmistuse mustandid",
+      "drafts_hint": "Neist saad koostada ettevalmistava mustandi. Mustand jääb sinu töövaatesse ega ole ametlik kandja.",
+      "legend_title": "Päritolumärgised",
+      "sources": {
+        "situation": "Pöörduja kirjeldatud olukord",
+        "assessment": "Eelkaardistuse vastused",
+        "draft": "AI koostatud pöördumise mustand"
+      }
+    },
+    "next_action": {
+      "contact": "Järgmine kontakt"
+    },
+    "provenance": {
+      "KLIENDI_OELDUD": "Kliendi öeldu",
+      "KLIENDI_KINNITATUD": "Kliendi kinnitatud",
+      "DOKUMENDIST": "Dokumendist",
+      "TEISE_SPETSIALISTI_INFO": "Teise spetsialisti info",
+      "TOOTAJA_TAHELEPANEK": "Töötaja tähelepanek",
+      "TOOTAJA_TOLGENDUS": "Töötaja tõlgendus",
+      "AI_MUSTAND": "AI mustand",
+      "AMETLIKULT_KONTROLLITUD": "Ametlikult kontrollitud"
+    },
+    "carrier_class": {
+      "1": "Töömustand",
+      "2": "Kinnitatud kokkuvõte",
+      "3": "Ametlik kandja"
+    },
+    "artifact_type": {
+      "MEETING_SUMMARY": "Kohtumise kokkuvõte",
+      "TRANSCRIPT_SUMMARY": "Salvestise kokkuvõte",
+      "CASE_SUMMARY": "Juhtumi kokkuvõte",
+      "PRE_ASSESSMENT_SUMMARY": "Eelhindamise kokkuvõte",
+      "STAR_HELPER": "STAR-abiline",
+      "CASE_BRIEF": "Juhtumi ülevaade",
+      "REPORT_DRAFT": "Raporti mustand",
+      "ACTION_PLAN": "Tegevuskava",
+      "CHECKLIST": "Kontrollnimekiri",
+      "LETTER_DRAFT": "Kirja mustand",
+      "OTHER": "Muu"
     }
   },
   "common": {
