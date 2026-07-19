@@ -15,7 +15,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { focusPolicyScrollArea, handlePolicyScrollKeyDown } from "@/components/alalehed/policyScrollKeyboard";
 import { ReadingToc, useHashNavigation } from "@/components/alalehed/readingLayer";
 
-const SECTION_KEYS = ["accessibility", "home", "register", "signin", "chat", "documents", "search", "agent_mode", "wellbeing", "pro_tools", "profile", "about", "before_use", "privacy_safety", "quickstart"];
+const SECTION_KEYS = ["accessibility", "home", "register", "signin", "chat", "rooms", "journey", "documents", "search", "agent_mode", "wellbeing", "pro_tools", "profile", "about", "before_use", "privacy_safety", "quickstart"];
 export default function KasutusjuhendBody() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
