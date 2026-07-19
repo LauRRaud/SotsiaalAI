@@ -214,8 +214,7 @@
 
 .cvl-session-identity small,
 .cvl-time-pair small,
-.cvl-gate small,
-.cvl-stage-step small {
+.cvl-gate small {
   color: var(--text-dim, rgba(244, 241, 236, 0.55));
   font-size: 0.67rem;
   letter-spacing: 0.08em;
@@ -299,120 +298,240 @@
   text-align: center;
 }
 
-.cvl-stage-rail {
-  display: grid;
-  grid-template-columns: repeat(8, minmax(5.3rem, 1fr));
-  gap: 0;
-  margin: 0;
-  padding: 0.72rem clamp(0.8rem, 1.8vw, 1.4rem);
-  overflow-x: auto;
-  border-bottom: 1px solid var(--cvl-line);
-  list-style: none;
-  scrollbar-width: thin;
-}
+/* ============================================================
+   Lennukest (cvf-): omaniku mudel 20.07 — üks etapp korraga lahti,
+   etapi OSAD on jaamad sügavuses (useStationFlight, sama mootor mis
+   /registreerimine) ja etapid 1–8 elavad alumises kiirmenüü-dokis
+   (.gc-shortcut-* DNA). Kerimist EI kaaperdata: kaamera siht = jaama
+   indeks; kerida tohib ainult jaama SISU oma konteineris (turvaklapp).
+   Vana kolme-veeru töölaud (.cvl-workbench) ja lehesisene etapiriba
+   (.cvl-stage-rail) on asendatud — ekraani ületäituvus kaob, sest
+   korraga on laval üks osa, mitte kõigi osade summa.
+   ============================================================ */
 
-.cvl-stage-step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.75rem 1fr;
-  gap: 0.48rem;
+/* --- Jaamanav: etapi osade chip'id + nooled ------------------- */
+.cvf-station-nav {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.45rem;
   align-items: center;
+  justify-content: center;
+  padding: 0.5rem clamp(0.8rem, 1.5vw, 1.2rem);
+  border-bottom: 1px solid var(--cvl-line);
+  background: rgba(10, 8, 7, 0.45);
+}
+
+.cvf-station-chips {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  justify-content: center;
   min-width: 0;
-  padding: 0.32rem 0.5rem;
-  color: var(--text-dim, rgba(244, 241, 236, 0.55));
 }
 
-.cvl-stage-step:not(:last-child)::after {
-  position: absolute;
-  top: 50%;
-  right: -0.15rem;
-  width: 0.3rem;
-  height: 1px;
-  content: "";
-  background: var(--cvl-line);
-}
-
-.cvl-stage-number {
-  display: grid;
-  width: 1.75rem;
-  aspect-ratio: 1;
-  place-items: center;
+.cvf-station-chip {
+  padding: 0.42rem 0.95rem;
   border: 1px solid var(--cvl-line);
-  border-radius: 50%;
-  font-size: 0.72rem;
-}
-
-.cvl-stage-step > span:last-child {
-  display: grid;
-  min-width: 0;
-}
-
-.cvl-stage-step strong {
-  margin: 0;
-  overflow: hidden;
-  color: inherit;
-  font-size: 0.76rem;
-  text-overflow: ellipsis;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-soft, rgba(244, 241, 236, 0.76));
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
   white-space: nowrap;
 }
 
-.cvl-stage-step.is-complete {
-  color: var(--text-soft, rgba(244, 241, 236, 0.76));
-}
-
-.cvl-stage-step.is-active {
-  color: var(--text-warm, #f4f1ec);
-}
-
-.cvl-stage-step.is-active .cvl-stage-number {
+.cvf-station-chip.is-active {
   border-color: rgba(225, 162, 95, 0.78);
-  color: #2b1b10;
-  background: var(--cvl-amber);
-  box-shadow: 0 0 1.4rem rgba(225, 162, 95, 0.28);
+  background: var(--cvl-amber-soft);
+  color: var(--text-warm, #f4f1ec);
+  box-shadow: 0 0 1.2rem rgba(225, 162, 95, 0.18);
 }
 
-.cvl-workbench {
+.cvf-station-arrow {
   display: grid;
-  grid-template-columns: minmax(13rem, 0.78fr) minmax(28rem, 2.35fr) minmax(16rem, 0.92fr);
-  gap: clamp(0.75rem, 1.4vw, 1.15rem);
-  /* R5.0: töölaud võtab kestast ülejäänud kõrguse ja jagab selle kolme tsooni
-     vahel. `align-items: start` oleks lasknud veergudel sisu järgi kasvada ja
-     kesta kerima lükata; `stretch` + min-height:0 hoiab need lõuendi sees. */
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid var(--cvl-line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-soft, rgba(244, 241, 236, 0.76));
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.cvf-station-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* --- Lennulava + dolly + plaanid (flight-effect.md §3) -------- */
+/* Perspektiiv plaanide OTSESEL vanemal; kaamera --cam muutujana igal
+   kaadril; pesastatud preserve-3d ahelat EI ehitata (iOS lamendab). */
+.cvf-stage-view {
+  position: relative;
   flex: 1 1 auto;
   min-height: 0;
-  grid-template-rows: minmax(0, 1fr);
-  align-items: stretch;
   overflow: hidden;
-  padding: clamp(0.8rem, 1.5vw, 1.35rem);
+  touch-action: manipulation;
 }
 
-/* R5.0 (mõõdetud 1920×1080): etapiriba on kesta kolonn-flexis kokkusurutav ja
-   kahanes 75 → 35 px, mis lõikas stepperi pooleks. Riba kannab „mis etapp käib"
-   infot (R11 kriteerium 1) — see ei tohi kahaneda. */
-.cvl-stage-rail {
-  flex: 0 0 auto;
+.cvf-dolly {
+  --cam: 0px;
+  position: absolute;
+  inset: 0;
+  perspective: 1100px;
+  perspective-origin: 50% 46%;
 }
 
-/* R5.0 (mõõdetud): alumine tööpind (komposer + etapipaneelid) võttis 527 px ja
-   surus lõuendi 199 px-ni. Lõuend on sessiooni peapind — alumine riba tohib
-   võtta kuni 42% ja kerib SEES, kui sisu on pikem. Nii jäävad nii lõuend kui
-   komposer nähtavaks (R11 kriteerium 12). */
-.cvl-lower-workspace {
-  flex: 0 1 auto;
+.cvf-plane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  width: min(94%, 46rem);
+  height: calc(100% - 1.6rem);
+  visibility: hidden; /* JS/flat-reeglid lülitavad sisse */
+}
+
+/* Jaama laius tegevuse järgi: laud on lai lõuend, kirjutamispind
+   mahutab kahe veeru vormid, ring/kompass on lugemislaiuses. */
+.cvf-plane[data-station="laud"] {
+  width: min(96%, 74rem);
+}
+
+.cvf-plane[data-station="kirjuta"] {
+  width: min(96%, 72rem);
+}
+
+/* Kirjutamisjaamas seisavad omaniku kontrollpunkt ja komposer KÕRVUTI
+   (laial ekraanil) — virnas ületasid nad jaama kõrguse ja komposeri
+   alaosa vajus värava taha (mõõdetud 1920×1080: composerVisible=false).
+   Etappide 7–8 suured paneelid võtavad täisrea. */
+@media (min-width: 1181px) {
+  .cvf-plane[data-station="kirjuta"] .cvf-plane-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+
+  .cvf-plane[data-station="kirjuta"] .cvl-stage-seven,
+  .cvf-plane[data-station="kirjuta"] .cvl-stage-eight {
+    grid-column: 1 / -1;
+  }
+}
+
+.cvf-stage-view[data-mode="3d"] .cvf-plane {
+  transform: translate(-50%, -50%) translateZ(calc(var(--z) + var(--cam, 0px)));
+  opacity: var(--o, 0);
+  will-change: transform, opacity;
+}
+
+/* Flat-fallback (reduced-motion või lame 3D): sama jaamamudel,
+   ainult ristsulandus — ikka üks osa korraga. */
+.cvf-stage-view[data-mode="flat"] .cvf-plane {
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition:
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
+}
+
+.cvf-stage-view[data-mode="flat"] .cvf-plane[data-active="1"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+/* Jaama sisu: ainus lubatud kerimine on SIIN, jaama sees (R5.0
+   turvaklapp — struktuur ei keri kunagi, sisu võib). */
+.cvf-plane-inner {
+  flex: 1 1 auto;
   min-height: 0;
-  max-height: 42%;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  padding: 0.25rem;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
 }
 
-.cvl-left-panel,
-.cvl-right-panel {
+/* Laud on lõuend, mitte loend: täidab jaama kõrguse, ei keri —
+   kaardisisu kerib kaardi sees (.cvl-hero-slot senine reegel). */
+.cvf-plane[data-station="laud"] .cvf-plane-inner {
+  grid-template-rows: minmax(0, 1fr);
+  align-content: stretch;
+  overflow: hidden;
+}
+
+.cvf-plane[data-station="laud"] .cvl-work-field {
+  height: 100%;
+}
+
+/* Lennureegel (vestluse ruumikeele leping): liikuval plaanil EI ole
+   backdrop-filterit — plaan transformitakse igal kaadril ja blur-kiht
+   võbeleks. Klaasilook säilib gradientide/äärise kaudu. */
+.cvf-plane .cvl-side-section,
+.cvf-plane .cvl-guidance,
+.cvf-plane .cvl-stage-controls,
+.cvf-plane .cvl-composer,
+.cvf-plane .cvl-stage-seven,
+.cvf-plane .cvl-stage-eight,
+.cvf-plane .cvl-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* --- Etapidokk: 1–8 alumises kiirmenüü paneelis ---------------- */
+/* Välimus tuleb carousel.css .gc-shortcut-* klassidest (sama riba mis
+   avalehe kaardimenüüs ja registreerimise dokis); siin ainult asukoht
+   kesta allservas + etapiolekute nüansid. Staatiline kiht → gc
+   backdrop-blur on lubatud (ei transformi). */
+.cvf-stage-dock {
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0.55rem auto calc(env(safe-area-inset-bottom, 0px) + 0.7rem);
+  max-width: calc(100% - 1.6rem);
+  position: relative;
+  z-index: 6;
+}
+
+.cvf-dock-num {
   display: grid;
-  gap: 0.85rem;
-  /* Ainus lubatud kerimine on tsooni SEES, mitte kestas (R5.0). */
+  place-items: center;
+  width: 1.4rem;
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cvf-stage-dock .gc-shortcut[data-state="done"] {
+  color: rgba(246, 238, 230, 0.78);
+}
+
+.cvf-stage-dock .gc-shortcut[data-state="active"] .cvf-dock-num {
+  border-color: rgba(225, 162, 95, 0.85);
+  color: #2b1b10;
+  background: var(--cvl-amber);
+  box-shadow: 0 0 1.2rem rgba(225, 162, 95, 0.3);
+}
+
+/* Tulevane etapp on lukus koos põhjusega (tooltip); dokk EI ole
+   väravast möödapääs. */
+.cvf-stage-dock .gc-shortcut:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* Sissekutse-vaate kest (InvitationAcceptance) kasutab endiselt
+   alumist tööpinda lihtsa konteinerina. */
+.cvl-lower-workspace {
+  flex: 0 1 auto;
   min-height: 0;
-  align-content: start;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -1064,15 +1183,17 @@
 }
 
 .cvl-gate {
-  position: sticky;
+  position: relative;
   z-index: 5;
-  bottom: 0;
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   gap: 0.8rem;
   align-items: center;
-  min-height: 5.2rem;
-  padding: 0.8rem clamp(1rem, 2.2vw, 1.7rem);
+  /* Lennukestas on värav õhuke püsiriba lava ja etapidoki vahel —
+     alati nähtav (R11 krit 12), aga ei võta lavalt kõrgust ära. */
+  min-height: 3.4rem;
+  padding: 0.45rem clamp(1rem, 2.2vw, 1.7rem);
   border-top: 1px solid var(--cvl-line);
   background: rgba(12, 10, 9, 0.88);
   box-shadow: 0 -1.2rem 3rem rgba(5, 3, 2, 0.24);
@@ -1131,15 +1252,6 @@
     grid-row: 2;
     justify-content: flex-start;
   }
-
-  .cvl-workbench {
-    grid-template-columns: minmax(12rem, 0.78fr) minmax(25rem, 2fr);
-  }
-
-  .cvl-right-panel {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 820px) {
@@ -1167,23 +1279,26 @@
     order: -1;
   }
 
-  .cvl-workbench {
-    grid-template-columns: 1fr;
+  /* Mobiilil kerib laud jaama sees (turvaklapp) — lõuend hoiab
+     kaartide jaoks kindlat kõrgust. */
+  .cvf-plane {
+    height: calc(100% - 1rem);
   }
 
-  .cvl-left-panel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .cvf-plane[data-station="laud"] .cvf-plane-inner {
+    grid-template-rows: none;
+    align-content: start;
+    overflow-y: auto;
   }
 
-  .cvl-work-field {
-    grid-row: 1;
+  .cvf-plane[data-station="laud"] .cvl-work-field {
+    height: auto;
   }
 
   .cvl-canvas {
     min-height: 36rem;
   }
 
-  .cvl-right-panel,
   .cvl-structured-grid,
   .cvl-stage-eight form {
     grid-template-columns: 1fr;
@@ -1212,11 +1327,6 @@
     min-width: 0;
     flex: 1;
     text-align: left;
-  }
-
-  .cvl-left-panel,
-  .cvl-right-panel {
-    grid-template-columns: 1fr;
   }
 
   .cvl-work-heading {

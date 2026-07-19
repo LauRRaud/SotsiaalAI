@@ -3585,6 +3585,21 @@
     },
     "live": {
       "exit": { "label": "Выйти", "aria": "Выйти из интервизии" },
+      "stations": {
+        "laud": "Общий стол",
+        "ring": "Круг",
+        "kirjuta": "Моё рабочее поле",
+        "kompass": "Компас",
+        "nav_aria": "Части этапа",
+        "back": "Предыдущая часть",
+        "next": "Следующая часть",
+        "announce": "Часть {current}/{total}: {label}",
+        "dock_aria": "Этапы",
+        "dock_step": "Этап {number}: {label} — {state}",
+        "dock_locked": "Откроется через врата",
+        "dock_done": "Пройден — след в Компасе",
+        "dock_active": "Текущий этап"
+      },
       "ui": {
         "sigil": "И",
         "private_professional_workspace": "Закрытое профессиональное пространство",

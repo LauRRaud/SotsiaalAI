@@ -3593,6 +3593,21 @@
     },
     "live": {
       "exit": { "label": "Välju", "aria": "Välju Kovisioonist" },
+      "stations": {
+        "laud": "Ühine laud",
+        "ring": "Ring",
+        "kirjuta": "Minu tööpind",
+        "kompass": "Kompass",
+        "nav_aria": "Etapi osad",
+        "back": "Eelmine osa",
+        "next": "Järgmine osa",
+        "announce": "Osa {current}/{total}: {label}",
+        "dock_aria": "Etapid",
+        "dock_step": "Etapp {number}: {label} — {state}",
+        "dock_locked": "Avaneb värava kaudu",
+        "dock_done": "Läbitud — jälg Kompassis",
+        "dock_active": "Praegune etapp"
+      },
       "ui": {
         "sigil": "K",
         "private_professional_workspace": "Kinnine professionaalne tööruum",

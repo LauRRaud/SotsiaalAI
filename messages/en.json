@@ -3593,6 +3593,21 @@
     },
     "live": {
       "exit": { "label": "Exit", "aria": "Exit covision" },
+      "stations": {
+        "laud": "Shared table",
+        "ring": "Circle",
+        "kirjuta": "My workspace",
+        "kompass": "Compass",
+        "nav_aria": "Parts of this stage",
+        "back": "Previous part",
+        "next": "Next part",
+        "announce": "Part {current}/{total}: {label}",
+        "dock_aria": "Stages",
+        "dock_step": "Stage {number}: {label} — {state}",
+        "dock_locked": "Opens through the gate",
+        "dock_done": "Completed — trace in Compass",
+        "dock_active": "Current stage"
+      },
       "ui": {
         "sigil": "C",
         "private_professional_workspace": "Private professional workspace",

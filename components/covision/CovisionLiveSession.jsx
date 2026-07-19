@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import useStationFlight from "@/components/register/useStationFlight";
 import {
   COVISION_STAGE_COMPLETION_PHASES,
   COVISION_STAGE_PROGRESS_PHASES,
@@ -403,28 +404,90 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
   );
 }
 
-function StageRail({ stage, snapshots, completed, copy }) {
+/* Jaamanav — etapi OSADE (jaamade) vahetus. Vaatamine on vaba: chip viib
+   jaama igal hetkel; töö järjekorda hoiavad serveriväravad, mitte nav. */
+function StationNav({ stations, activeIndex, flyTo, copy }) {
+  return (
+    <nav className="cvf-station-nav" aria-label={copyValue(copy, "stations.nav_aria")}>
+      <button
+        type="button"
+        className="cvf-station-arrow"
+        disabled={activeIndex <= 0}
+        onClick={() => flyTo(activeIndex - 1)}
+        aria-label={copyValue(copy, "stations.back")}
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+      <div className="cvf-station-chips">
+        {stations.map((def, index) => (
+          <button
+            key={def.key}
+            type="button"
+            className={`cvf-station-chip ${index === activeIndex ? "is-active" : ""}`}
+            aria-current={index === activeIndex ? "true" : undefined}
+            onClick={() => flyTo(index)}
+          >
+            {copyValue(copy, `stations.${def.key}`)}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="cvf-station-arrow"
+        disabled={activeIndex >= stations.length - 1}
+        onClick={() => flyTo(activeIndex + 1)}
+        aria-label={copyValue(copy, "stations.next")}
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    </nav>
+  );
+}
+
+/* Etapidokk — etapid 1–8 alumises kiirmenüü paneelis (sama .gc-shortcut-*
+   DNA mis avalehe kaardimenüüs ja registreerimise dokis). Dokk on
+   asukohanäit + vaatamise nav, MITTE väravast möödapääs: tulevane etapp
+   on lukus koos põhjusega, läbitud etapi klõps viib Kompassi jälje juurde. */
+function StageDock({ stage, snapshots, completed, copy, onSelect }) {
   const completedStages = new Set(snapshots.map((item) => Number(item?.stage)));
   return (
-    <ol className="cvl-stage-rail" aria-label={copyValue(copy, "ui.stages_aria")}>
-      {STAGE_NUMBERS.map((value) => {
-        const meta = copy?.stages?.[value] || {};
-        const state = completed || completedStages.has(value) || value < stage
-          ? "complete"
-          : value === stage
-            ? "active"
-            : "upcoming";
-        return (
-          <li key={value} className={`cvl-stage-step is-${state}`} aria-current={!completed && value === stage ? "step" : undefined}>
-            <span className="cvl-stage-number" aria-hidden="true">{completed || completedStages.has(value) || value < stage ? "✓" : value}</span>
-            <span>
-              <small>{formatCopy(copyValue(copy, "ui.stage_number"), { number: value })}</small>
-              <strong>{meta.short}</strong>
-            </span>
-          </li>
-        );
-      })}
-    </ol>
+    <nav className="cvf-stage-dock gc-shortcut-menu" aria-label={copyValue(copy, "stations.dock_aria")}>
+      <div className="gc-shortcut-track">
+        {STAGE_NUMBERS.map((value) => {
+          const meta = copy?.stages?.[value] || {};
+          const done = completed || completedStages.has(value) || value < stage;
+          const state = done ? "done" : value === stage ? "active" : "future";
+          const stateHint = state === "future"
+            ? copyValue(copy, "stations.dock_locked")
+            : state === "done"
+              ? copyValue(copy, "stations.dock_done")
+              : copyValue(copy, "stations.dock_active");
+          return (
+            <button
+              key={value}
+              type="button"
+              className="gc-shortcut"
+              data-on={state === "active" ? "1" : "0"}
+              data-state={state}
+              disabled={state === "future"}
+              aria-current={!completed && value === stage ? "step" : undefined}
+              aria-label={formatCopy(copyValue(copy, "stations.dock_step"), {
+                number: value,
+                label: meta.short || "",
+                state: stateHint
+              })}
+              onClick={() => onSelect(state)}
+            >
+              <span className="gc-shortcut-icon" aria-hidden="true">
+                <span className="cvf-dock-num">{done ? "✓" : value}</span>
+              </span>
+              <span className="gc-shortcut-text" aria-hidden="true">{meta.short}</span>
+              <span className="gc-shortcut-tooltip" aria-hidden="true">{stateHint}</span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
 
@@ -1329,6 +1392,41 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
     privateStates
   }), [items, model.participants, model.session, privateStates, stage]);
 
+  /* Jaamad = etapi osad (omaniku mudel 20.07): üks jaam = üks tegevus.
+     „Kirjuta" puudub etapil 1 (avaring kinnitab, ei kirjuta) ja suletud
+     sessioonis; etappidel 7–8 on ta olemas ka mittekirjutajale (seal elab
+     ausa ootamise teade — kus tegevus parasjagu toimub). */
+  const stations = useMemo(() => {
+    const defs = [{ key: "laud" }, { key: "ring" }];
+    if (!completed && stage !== 1 && (canWrite || stage >= 7)) defs.push({ key: "kirjuta" });
+    defs.push({ key: "kompass" });
+    return defs;
+  }, [canWrite, completed, stage]);
+  const {
+    dollyRef,
+    planeProps,
+    activeIndex,
+    mode: flightMode,
+    flyTo
+  } = useStationFlight({ count: stations.length });
+  const mountedStageRef = useRef(stage);
+
+  /* Etapivahetus = suur samm: lend algab uue etapi laualt (drift-saabumine).
+     Mount'il ei lennata — kaamera on juba jaamas 0. */
+  useEffect(() => {
+    if (mountedStageRef.current === stage) return;
+    mountedStageRef.current = stage;
+    flyTo(0, { drift: true });
+  }, [stage, flyTo]);
+
+  /* Jaamaloend võib kahaneda (nt sulgemine peidab Kirjuta) — ära jää
+     olematusse jaama. */
+  useEffect(() => {
+    if (activeIndex > stations.length - 1) flyTo(stations.length - 1, { instant: true });
+  }, [activeIndex, stations.length, flyTo]);
+
+  const activeStationKey = stations[Math.min(activeIndex, stations.length - 1)]?.key || "laud";
+
   const myParticipant = model.participants.find((item) => (
     item?.id === model.me?.participantId || (model.me?.userId && item?.userId === model.me.userId)
   ));
@@ -1402,120 +1500,149 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
       ) : null}
       {paused ? <div className="cvl-pause-banner" role="status">{copyValue(copy, "support.paused_notice")}</div> : null}
 
-      <StageRail stage={stage} snapshots={model.snapshots} completed={completed} copy={copy} />
+      <StationNav stations={stations} activeIndex={activeIndex} flyTo={flyTo} copy={copy} />
+      <p className="cvl-sr-only" aria-live="polite">
+        {formatCopy(copyValue(copy, "stations.announce"), {
+          current: Math.min(activeIndex, stations.length - 1) + 1,
+          total: stations.length,
+          label: copyValue(copy, `stations.${activeStationKey}`)
+        })}
+      </p>
 
-      <div className="cvl-workbench">
-        <aside className="cvl-left-panel">
-          <ParticipantList
-            participants={model.participants}
-            me={model.me}
-            stage={stage}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-          {items.length ? (
-            <section className="cvl-side-section cvl-queue" aria-labelledby="cvl-queue-title">
-              <header className="cvl-section-heading">
-                <div><p>{copyValue(copy, "ui.shared_queue")}</p><h2 id="cvl-queue-title">{copyValue(copy, "ui.card_field")}</h2></div>
-                <span>{items.length}</span>
-              </header>
-              <ol>
-                {items.slice(-8).map((item) => (
-                  <li key={item.id}>
-                    <span>{kindLabel(item.kind, copy)}</span>
-                    <small>{statusLabel(lower(item.status, "shared_draft"), copy)}</small>
-                  </li>
-                ))}
-              </ol>
+      {/* Lennulava: etapi osad on jaamad sügavuses, kaamera lendab osade
+          vahel (useStationFlight). Kerimist EI kaaperdata — kerib ainult
+          jaama SISU oma konteineris (turvaklapp). */}
+      <section className="cvf-stage-view" data-mode={flightMode}>
+        <div className="cvf-dolly" ref={dollyRef}>
+          {stations.map((def, index) => (
+            <section
+              key={def.key}
+              {...planeProps(index)}
+              className="cvf-plane"
+              data-station={def.key}
+              aria-label={copyValue(copy, `stations.${def.key}`)}
+            >
+              <div className="cvf-plane-inner">
+                {def.key === "laud" ? (
+                  <WorkField
+                    items={items}
+                    stage={stage}
+                    canManage={canManage}
+                    busy={busy}
+                    dispatchAction={dispatchAction}
+                    copy={copy}
+                  />
+                ) : null}
+                {def.key === "ring" ? (
+                  <>
+                    <ParticipantList
+                      participants={model.participants}
+                      me={model.me}
+                      stage={stage}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                    {items.length ? (
+                      <section className="cvl-side-section cvl-queue" aria-labelledby="cvl-queue-title">
+                        <header className="cvl-section-heading">
+                          <div><p>{copyValue(copy, "ui.shared_queue")}</p><h2 id="cvl-queue-title">{copyValue(copy, "ui.card_field")}</h2></div>
+                          <span>{items.length}</span>
+                        </header>
+                        <ol>
+                          {items.slice(-8).map((item) => (
+                            <li key={item.id}>
+                              <span>{kindLabel(item.kind, copy)}</span>
+                              <small>{statusLabel(lower(item.status, "shared_draft"), copy)}</small>
+                            </li>
+                          ))}
+                        </ol>
+                      </section>
+                    ) : null}
+                    {stage === 1 ? (
+                      <StageOneControls
+                        session={model.session}
+                        covisionCase={model.covisionCase}
+                        isOwner={isOwner}
+                        canLead={canLead}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                  </>
+                ) : null}
+                {def.key === "kirjuta" ? (
+                  <>
+                    <OwnerCheckpoint
+                      stage={stage}
+                      privateStates={privateStates}
+                      isOwner={isOwner}
+                      role={role}
+                      participants={model.participants}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                    {stage === 7 ? (
+                      <StageSevenOwnerPanel
+                        privateStates={privateStates}
+                        isOwner={isOwner}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                    {stage === 8 && !completed ? (
+                      <StageEightPanel
+                        privateStates={privateStates}
+                        isOwner={isOwner}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                    {!completed ? (
+                      <Composer
+                        stage={stage}
+                        canWrite={canWrite}
+                        isOwner={isOwner}
+                        paused={paused}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                        prefillText={caseAnchorPrefill}
+                      />
+                    ) : null}
+                  </>
+                ) : null}
+                {def.key === "kompass" ? (
+                  <>
+                    <GuidancePanel stage={stage} role={role} privateStates={privateStates} copy={copy} />
+                    <ContinuityPanel
+                      stage={stage}
+                      items={model.items}
+                      snapshots={model.snapshots}
+                      completed={completed}
+                      copy={copy}
+                    />
+                    <PhaseControl
+                      stage={stage}
+                      phase={phase}
+                      started={Boolean(model.session?.startedAt)}
+                      canLead={canLead}
+                      paused={paused}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                  </>
+                ) : null}
+              </div>
             </section>
-          ) : null}
-        </aside>
-
-        <WorkField
-          items={items}
-          stage={stage}
-          canManage={canManage}
-          busy={busy}
-          dispatchAction={dispatchAction}
-          copy={copy}
-        />
-
-        <aside className="cvl-right-panel">
-          <GuidancePanel stage={stage} role={role} privateStates={privateStates} copy={copy} />
-          <ContinuityPanel
-            stage={stage}
-            items={model.items}
-            snapshots={model.snapshots}
-            completed={completed}
-            copy={copy}
-          />
-          <PhaseControl
-            stage={stage}
-            phase={phase}
-            started={Boolean(model.session?.startedAt)}
-            canLead={canLead}
-            paused={paused}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-          {stage === 1 ? (
-            <StageOneControls
-              session={model.session}
-              covisionCase={model.covisionCase}
-              isOwner={isOwner}
-              canLead={canLead}
-              busy={busy}
-              dispatchAction={dispatchAction}
-              copy={copy}
-            />
-          ) : null}
-          <OwnerCheckpoint
-            stage={stage}
-            privateStates={privateStates}
-            isOwner={isOwner}
-            role={role}
-            participants={model.participants}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        </aside>
-      </div>
-
-      <div className="cvl-lower-workspace">
-        {stage === 7 ? (
-          <StageSevenOwnerPanel
-            privateStates={privateStates}
-            isOwner={isOwner}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        ) : null}
-        {stage === 8 && !completed ? (
-          <StageEightPanel
-            privateStates={privateStates}
-            isOwner={isOwner}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        ) : null}
-        {!completed ? (
-          <Composer
-            stage={stage}
-            canWrite={canWrite}
-            isOwner={isOwner}
-            paused={paused}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-            prefillText={caseAnchorPrefill}
-          />
-        ) : null}
-      </div>
+          ))}
+        </div>
+      </section>
 
       <GateBar
         stage={stage}
@@ -1530,6 +1657,13 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
         dispatchAction={dispatchAction}
         completed={completed}
         copy={copy}
+      />
+      <StageDock
+        stage={stage}
+        snapshots={model.snapshots}
+        completed={completed}
+        copy={copy}
+        onSelect={(state) => flyTo(state === "done" ? stations.length - 1 : 0)}
       />
     </main>
   );
