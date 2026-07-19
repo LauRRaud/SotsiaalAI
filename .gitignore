@@ -27,6 +27,8 @@ KOV/key.json/
 *.log
 logs/
 /Andmebaasi/Admebaasi-materjali-lisa/master_sources.state.json
+/Andmebaasi/Admebaasi-materjali-lisa/master_sources.korje.json
+/Andmebaasi/Admebaasi-materjali-lisa/master_sources.runtime.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
