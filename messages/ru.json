@@ -5484,8 +5484,12 @@
       "corrected_badge": "Исправлено",
       "open_correction": "Открыть исправление",
       "supersedes_note": "Эта запись исправляет более раннюю.",
+      "open_original": "Открыть исправленную запись",
       "recommendation_done": "Сделано",
       "recommendation_undo": "Снять отметку"
+    },
+    "space": {
+      "checkpoint": "Контрольная точка"
     },
     "my_records": {
       "title": "Мои записи",

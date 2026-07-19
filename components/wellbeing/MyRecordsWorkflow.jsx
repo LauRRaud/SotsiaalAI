@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
+import { CHECKPOINT_FOLLOW_UP_STATES, describeWellbeingCheckpoint } from "@/lib/wellbeing/checkpointState";
 
 /* Töövoo-tüüpide sildivõtmed. Kuvasõna tuleb i18n-st (t), fallback on ET.
    Sisu (tegurid, signaalid) läbib olemasoleva `wellbeingLabel`-i (ET-only
@@ -95,7 +96,10 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
   useEffect(() => {
     let alive = true;
     async function load() {
-      setStatus("loading");
+      // Taustavärskendus (reloadToken) ei tohi listi kokku kukutada: „Laadin…"
+      // ainult esmalaadimisel, muidu jääb olemasolev list nähtavaks ja avatud
+      // detail ei sulgu badge'i värskenduse ajaks.
+      setStatus((current) => (current === "ready" ? current : "loading"));
       try {
         const params = new URLSearchParams();
         if (workflowFilter !== "all") params.set("workflowType", workflowFilter);
@@ -164,7 +168,7 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
     return () => {
       alive = false;
     };
-  }, [selectedId]);
+  }, [selectedId, reloadToken]);
 
   useEffect(() => {
     if (records.length === 0) return;
@@ -300,6 +304,13 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
                   <span>{workflowLabel(record.workflowType)}</span>
                   <span>{formatDate(record.createdAt)}</span>
                   <span>{signalLabel(record?.computedSignal?.signalLevel)}</span>
+                  {/* Badge = „siin ootab sinu vastus" (E2, ilma U1-ta). Sama
+                      otsustaja mis U1 taimer: describeWellbeingCheckpoint. */}
+                  {describeWellbeingCheckpoint(record).needsFollowUp ? (
+                    <span className="wellbeing-checkpoint-badge">
+                      {t("wellbeing.checkpoint.badge", "Kontrollpunkt ootab vastust")}
+                    </span>
+                  ) : null}
                 </button>
                 {selectedId === record.id ? (
                   <RecordDetail
@@ -308,6 +319,8 @@ export default function MyRecordsWorkflow({ onNavigate, locale = "et" }) {
                     deleteStatus={deleteStatus}
                     onDelete={() => deleteRecord(record.id)}
                     onClose={() => setSelectedId(null)}
+                    onChanged={() => setReloadToken((token) => token + 1)}
+                    onOpenRecord={(id) => setSelectedId(id)}
                     workflowLabel={workflowLabel}
                     signalLabel={signalLabel}
                     formatDate={formatDate}
@@ -341,26 +354,119 @@ function factorList(values) {
 }
 
 function RecordDetail({
-  detail, detailStatus, deleteStatus, onDelete, onClose,
+  detail, detailStatus, deleteStatus, onDelete, onClose, onChanged, onOpenRecord,
   workflowLabel, signalLabel, formatDate, onNavigate, t
 }) {
+  const record = detail?.record || null;
+  const [checkpointStep, setCheckpointStep] = useState("");
+  const [checkpointDue, setCheckpointDue] = useState("");
+  const [cpStatus, setCpStatus] = useState("idle");
+  const [followStatus, setFollowStatus] = useState("idle");
+  const [recStatus, setRecStatus] = useState("idle");
+
+  /* Kõik kontrollpunkti-mutatsioonid järgivad sama rada: POST/PUT/DELETE,
+     olekulipp, ja õnnestumisel `onChanged` (vanem värskendab detaili + listi
+     badge'i). Vastuseid ei muudeta kunagi — need marsruudid puudutavad ainult
+     kontrollpunkti/soovituse välju. */
+  async function runAction(setStatus, request) {
+    setStatus("saving");
+    try {
+      const response = await request();
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) {
+        throw new Error(payload?.message || "wellbeing.errors.records_failed");
+      }
+      setStatus("idle");
+      onChanged?.();
+      return true;
+    } catch {
+      setStatus("error");
+      return false;
+    }
+  }
+
+  async function saveCheckpoint(event) {
+    event.preventDefault();
+    if (cpStatus === "saving" || !record) return;
+    const ok = await runAction(setCpStatus, () =>
+      fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/checkpoint`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ nextStep: checkpointStep, dueOn: checkpointDue })
+      }));
+    if (ok) {
+      setCheckpointStep("");
+      setCheckpointDue("");
+    }
+  }
+
+  async function clearCheckpoint() {
+    if (cpStatus === "saving" || !record) return;
+    await runAction(setCpStatus, () =>
+      fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/checkpoint`, {
+        method: "DELETE",
+        headers: { Accept: "application/json" }
+      }));
+  }
+
+  async function submitFollowUp(state) {
+    if (followStatus === "saving" || !record) return;
+    await runAction(setFollowStatus, () =>
+      fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/checkpoint/follow-up`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ state })
+      }));
+  }
+
+  async function toggleRecommendation(workflowType, done) {
+    if (recStatus === "saving" || !record) return;
+    await runAction(setRecStatus, () =>
+      fetch(`/api/wellbeing/records/${encodeURIComponent(record.id)}/recommendation`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ workflowType, done })
+      }));
+  }
+
   if (detailStatus === "loading") {
     return <p role="status">{t("wellbeing.my_records.loading", "Laadin…")}</p>;
   }
-  if (detailStatus === "error" || !detail?.record) {
+  if (detailStatus === "error" || !record) {
     return <p role="status">{t("wellbeing.my_records.detail_failed", "Kirje avamine ebaõnnestus.")}</p>;
   }
 
-  const record = detail.record;
   const relatedDrafts = Array.isArray(detail.drafts) ? detail.drafts : [];
   const handoffDrafts = relatedDrafts.filter((draft) => draft.covisionCaseId || draft.handedOffAt);
   const loadFactors = factorList(record.loadFactors);
   const resourceFactors = factorList(record.resourceFactors);
   const riskMarkers = factorList(record.riskMarkers);
   const recommendedActions = Array.isArray(record.recommendedActions) ? record.recommendedActions : [];
+  const checkpointState = describeWellbeingCheckpoint(record);
 
   return (
     <div aria-label={t("wellbeing.my_records.detail_heading", "Kirje detail")}>
+      {/* TO-1 ahela kuva mõlemas suunas: parandatud kirje viitab parandusele,
+          parandus viitab tagasi originaalile. Kumbki link avab teise kirje. */}
+      {record.supersededBy ? (
+        <p role="status">
+          <strong>{t("wellbeing.correction.corrected_badge", "Parandatud")}</strong>
+          {" · "}
+          <button type="button" onClick={() => onOpenRecord?.(record.supersededBy.id)}>
+            {t("wellbeing.correction.open_correction", "Ava parandus")}
+          </button>
+        </p>
+      ) : null}
+      {record.supersedesRecordId ? (
+        <p>
+          {t("wellbeing.correction.supersedes_note", "See kirje parandab varasemat kirjet.")}
+          {" · "}
+          <button type="button" onClick={() => onOpenRecord?.(record.supersedesRecordId)}>
+            {t("wellbeing.correction.open_original", "Ava parandatud kirje")}
+          </button>
+        </p>
+      ) : null}
+
       <dl>
         <div>
           <dt>{t("wellbeing.my_records.created_at", "Loodud")}</dt>
@@ -400,12 +506,99 @@ function RecordDetail({
               <li key={action.workflowType || action.label}>
                 {action.label || workflowLabel(action.workflowType)}
                 {action.reason ? <small> — {action.reason}</small> : null}
+                {action.workflowType ? (
+                  <Button
+                    type="button"
+                    size="sm"
+                    aria-pressed={Boolean(action.doneAt)}
+                    disabled={recStatus === "saving"}
+                    onClick={() => toggleRecommendation(action.workflowType, !action.doneAt)}
+                  >
+                    {action.doneAt
+                      ? t("wellbeing.correction.recommendation_undo", "Võta märge tagasi")
+                      : t("wellbeing.correction.recommendation_done", "Tehtud")}
+                  </Button>
+                ) : null}
               </li>
             ))}
           </ul>
         ) : (
           <p>{t("wellbeing.my_records.no_recommended", "Eraldi soovitusi ei tekkinud.")}</p>
         )}
+      </div>
+
+      {/* E2 kontrollpunkt: „järgmine samm + kontrollkuupäev", „kas pidas?" ja
+          eemaldus. Elab eraldi väljadel (checkpoint/checkpointDueOn), MITTE
+          vastuste sees — vastuste plokk jääb pärast salvestamist muutumatuks
+          (TO-1 piir). */}
+      <div aria-label={t("wellbeing.checkpoint.title", "Järgmine samm ja kontrollkuupäev")}>
+        <h4>{t("wellbeing.checkpoint.title", "Järgmine samm ja kontrollkuupäev")}</h4>
+        <p>{t("wellbeing.checkpoint.description", "Pane kirja, mida kavatsed teha, ja millal tahad seda üle vaadata. See jääb ainult sinule.")}</p>
+
+        {record.checkpoint ? (
+          <div>
+            <p>{t("wellbeing.checkpoint.planned", "Kokkulepe: {step}", { step: record.checkpoint.nextStep })}</p>
+            <p>{t("wellbeing.checkpoint.due_on", "Kontrollkuupäev {date}", { date: formatDate(record.checkpointDueOn) })}</p>
+            {checkpointState.needsFollowUp ? (
+              <div role="group" aria-label={t("wellbeing.checkpoint.ask", "Kas said selle sammu tehtud?")}>
+                <p>{t("wellbeing.checkpoint.ask", "Kas said selle sammu tehtud?")}</p>
+                {CHECKPOINT_FOLLOW_UP_STATES.map((state) => (
+                  <Button
+                    key={state}
+                    type="button"
+                    size="sm"
+                    disabled={followStatus === "saving"}
+                    onClick={() => submitFollowUp(state)}
+                  >
+                    {t(`wellbeing.checkpoint.follow_up.${state}`, state)}
+                  </Button>
+                ))}
+              </div>
+            ) : checkpointState.followUpState ? (
+              <p role="status">
+                {t(`wellbeing.checkpoint.follow_up.${checkpointState.followUpState}`, checkpointState.followUpState)}
+                {record.checkpoint.followUp?.notedAt
+                  ? ` · ${t("wellbeing.checkpoint.answered", "Vastatud {date}", { date: formatDate(record.checkpoint.followUp.notedAt) })}`
+                  : ""}
+              </p>
+            ) : null}
+            <Button type="button" size="sm" onClick={clearCheckpoint} disabled={cpStatus === "saving"}>
+              {t("wellbeing.checkpoint.clear", "Eemalda kontrollpunkt")}
+            </Button>
+          </div>
+        ) : (
+          <p>{t("wellbeing.checkpoint.none", "Kontrollpunkti ei ole seatud.")}</p>
+        )}
+
+        <form onSubmit={saveCheckpoint}>
+          <label>
+            <span>{t("wellbeing.checkpoint.next_step_label", "Järgmine samm")}</span>
+            <input
+              type="text"
+              value={checkpointStep}
+              maxLength={500}
+              onChange={(event) => setCheckpointStep(event.target.value)}
+            />
+          </label>
+          <label>
+            <span>{t("wellbeing.checkpoint.due_label", "Kontrollkuupäev")}</span>
+            <input
+              type="date"
+              value={checkpointDue}
+              onChange={(event) => setCheckpointDue(event.target.value)}
+            />
+          </label>
+          <Button
+            type="submit"
+            size="sm"
+            disabled={cpStatus === "saving" || !checkpointStep.trim() || !checkpointDue}
+          >
+            {t("wellbeing.checkpoint.save", "Salvesta kontrollpunkt")}
+          </Button>
+          {cpStatus === "error" ? (
+            <p role="status">{t("wellbeing.errors.checkpoint_failed", "Kontrollpunkti salvestamine ebaõnnestus.")}</p>
+          ) : null}
+        </form>
       </div>
 
       <div>

@@ -5484,8 +5484,12 @@
       "corrected_badge": "Corrected",
       "open_correction": "Open the correction",
       "supersedes_note": "This record corrects an earlier one.",
+      "open_original": "Open the corrected record",
       "recommendation_done": "Done",
       "recommendation_undo": "Undo the mark"
+    },
+    "space": {
+      "checkpoint": "Checkpoint"
     },
     "my_records": {
       "title": "My records",

@@ -5484,8 +5484,12 @@
       "corrected_badge": "Parandatud",
       "open_correction": "Ava parandus",
       "supersedes_note": "See kirje parandab varasemat kirjet.",
+      "open_original": "Ava parandatud kirje",
       "recommendation_done": "Tehtud",
       "recommendation_undo": "Võta märge tagasi"
+    },
+    "space": {
+      "checkpoint": "Kontrollpunkt"
     },
     "my_records": {
       "title": "Minu kirjed",

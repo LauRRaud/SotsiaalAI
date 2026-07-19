@@ -1,6 +1,6 @@
 import { markWellbeingRecommendationForUser } from "@/lib/wellbeing/checkpoint";
 import { safeError } from "@/lib/privacy/safeError";
-import { requireWellbeingApiUser, wellbeingJson } from "../../../../_shared";
+import { requireWellbeingApiUser, wellbeingJson } from "../../../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
