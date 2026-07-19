@@ -1530,3 +1530,20 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   color: inherit;
   font: inherit;
 }
+
+/* T03 E3: komposeri tähemärgiloendur. Ilmub piirile lähenedes (JS-värav),
+   üle piiri saab hoiatusvärvi. Retsepti-harus CSS puudus — loendur renderdus
+   stiilimata; see plokk on ainus lisandus retsepti peale. */
+.conv-char-counter {
+  align-self: flex-end;
+  margin: 0.15rem 0.4rem 0 0;
+  color: var(--text-soft, rgba(255, 255, 255, 0.6));
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.conv-char-counter[data-over-limit="true"] {
+  color: var(--danger-text, #f2b8b5);
+  font-weight: 600;
+}
