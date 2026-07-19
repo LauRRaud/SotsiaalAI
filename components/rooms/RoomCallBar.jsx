@@ -26,16 +26,31 @@ function pluralSpeak(t, count) {
   return text(t, "calls.speak.many", `${count} soovivad sõna`, { count });
 }
 
-function recordingStatusText(recording) {
+// E5b (5 K4): salvestuse staatusesildid võti+keel taha — varem kõvakodeeritud ET,
+// nüüd renderdatakse i18n-võtmest (fallback jääb ET-ks turvavõrguks).
+function recordingStatusText(t, recording) {
   if (!recording) return "";
-  if (recording.status === "DECLINED") return "Salvestamist ei alustatud";
-  if (recording.status === "READY_TO_RECORD") return "Salvestus on valmis käivitamiseks";
-  if (recording.status === "ACTIVE") return "Salvestamine käib";
-  if (recording.status === "COMPLETED") return "Salvestamine lõpetati";
-  if (recording.status === "FAILED") return "Salvestus ebaõnnestus";
-  if (recording.status === "REQUESTED") return `Ootame nõusolekuid: ${recording.consentedCount || 0}/${recording.requiredCount || 0}`;
-  if (recording.status === "STOPPED") return "Salvestamise taotlus tühistati";
+  if (recording.status === "DECLINED") return text(t, "calls.recording_status_declined", "Salvestamist ei alustatud");
+  if (recording.status === "READY_TO_RECORD") return text(t, "calls.recording_status_ready", "Salvestus on valmis käivitamiseks");
+  if (recording.status === "ACTIVE") return text(t, "calls.recording_status_active", "Salvestamine käib");
+  if (recording.status === "COMPLETED") return text(t, "calls.recording_status_completed", "Salvestamine lõpetati");
+  if (recording.status === "FAILED") return text(t, "calls.recording_status_failed", "Salvestus ebaõnnestus");
+  if (recording.status === "REQUESTED") {
+    const consented = recording.consentedCount || 0;
+    const required = recording.requiredCount || 0;
+    return text(t, "calls.recording_status_requested", `Ootame nõusolekuid: ${consented}/${required}`, { consented, required });
+  }
+  if (recording.status === "STOPPED") return text(t, "calls.recording_status_stopped", "Salvestamise taotlus tühistati");
   return "";
+}
+
+// E5b (4 K5): salvestuse eesmärgi silt võti+keel taha. Standardeesmärgid tulevad
+// i18n-võtmest; OTHER vabatekst jääb kasutaja sisestatud kujul (ei tõlgita).
+function resolveRecordingPurposeLabel(t, recording) {
+  if (!recording) return "";
+  const purpose = String(recording.purpose || "GENERAL_SUMMARY").trim();
+  if (purpose === "OTHER" && recording.purposeText) return recording.purposeText;
+  return text(t, `calls.recording_purpose_${purpose.toLowerCase()}`, recording.purposeLabel || "");
 }
 
 export default function RoomCallBar({
@@ -85,7 +100,8 @@ export default function RoomCallBar({
   const requesterName = recording?.requesterName || text(t, "calls.recording_requester_fallback", "Kõne osaleja");
   const myRecordingConsent = recording?.myConsent || (recording?.consents || []).find(consent => consent.userId === userId) || null;
   const showConsentDialog = joined && recording?.status === "REQUESTED" && myRecordingConsent?.status === "REQUESTED";
-  const recordingStatus = recordingStatusText(recording);
+  const recordingStatus = recordingStatusText(t, recording);
+  const recordingPurposeShown = resolveRecordingPurposeLabel(t, recording);
   const speakCount = speakRequests.length;
   const isMock = config.provider === "mock";
 
@@ -187,7 +203,7 @@ export default function RoomCallBar({
       {recordingControlsEnabled && showConsentDialog ? (
         <div>
           <p>{text(t, "calls.recording_consent_intro", `${requesterName} soovib selle helikõne salvestada.`, { requesterName })}</p>
-          <p>{text(t, "calls.recording_consent_purpose", `Salvestust kasutatakse ainult märgitud eesmärgil: ${recording.purposeLabel}.`, { recordingPurpose: recording.purposeLabel })}</p>
+          <p>{text(t, "calls.recording_consent_purpose", `Salvestust kasutatakse ainult märgitud eesmärgil: ${recordingPurposeShown}.`, { recordingPurpose: recordingPurposeShown })}</p>
           <p>
             {text(t, "calls.recording_consent_body", "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestus tehakse kättesaadavaks ainult õigustatud kasutajatele SotsiaalAI dokumentide vaates. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.")}
           </p>
@@ -262,7 +278,7 @@ export default function RoomCallBar({
             {recording ? (
               <div>
                 <span>{recordingStatus || recording.status}</span>
-                <span>{text(t, "calls.recording_purpose", "Eesmärk")}: {recording.purposeLabel}</span>
+                <span>{text(t, "calls.recording_purpose", "Eesmärk")}: {recordingPurposeShown}</span>
                 {recording.consents?.length ? (
                   <div>
                     {recording.consents.map(consent => (
@@ -286,6 +302,16 @@ export default function RoomCallBar({
                   <button type="button" disabled={busy} onClick={() => stopRecording(recording.id)}>
                     {text(t, "calls.recording_stop", "Lõpeta salvestamine")}
                   </button>
+                ) : null}
+                {/* E5b (5 K1 c): iga nõustunud osaleja saab ACTIVE ajal nõusoleku
+                    tagasi võtta — server peatab egress'i ja kustutab seni salvestatu. */}
+                {myRecordingConsent?.status === "CONSENTED" && recording.status === "ACTIVE" ? (
+                  <div>
+                    <button type="button" disabled={busy} onClick={() => respondRecordingConsent(recording.id, "WITHDRAWN")}>
+                      {text(t, "calls.recording_withdraw", "Võta nõusolek tagasi")}
+                    </button>
+                    <span>{text(t, "calls.recording_withdraw_hint", "Salvestus peatub ja seni salvestatu kustutatakse.")}</span>
+                  </div>
                 ) : null}
               </div>
             ) : canModerate ? (

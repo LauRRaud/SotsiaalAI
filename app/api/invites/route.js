@@ -334,7 +334,10 @@ export async function GET(request) {
     const roomCheck = await requireRoomRole({
       userId: auth.userId,
       roomId,
-      allowedRoles: ["OWNER", "MODERATOR"],
+      // E4 (audit kutseõigus): AINULT ruumi omanik kutsub. MODERATOR/MEMBER
+      // saab 403 — sponsoreeritud kasutus käib sponsori Subscription'i kaudu
+      // (audit 20.4: liikmesuse sponsor-väljad on informatiivsed, mitte õigusi andvad).
+      allowedRoles: ["OWNER"],
       locale
     });
 
@@ -457,7 +460,10 @@ export async function POST(request) {
       roomId: roomId || undefined,
       roomTitle,
       ownerDisplayName: hostDisplayName,
-      allowedRoles: ["OWNER", "MODERATOR"],
+      // E4 (audit kutseõigus): AINULT ruumi omanik kutsub. MODERATOR/MEMBER
+      // saab 403 — sponsoreeritud kasutus käib sponsori Subscription'i kaudu
+      // (audit 20.4: liikmesuse sponsor-väljad on informatiivsed, mitte õigusi andvad).
+      allowedRoles: ["OWNER"],
       locale
     });
 

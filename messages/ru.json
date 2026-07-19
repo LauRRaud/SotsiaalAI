@@ -1,4 +1,36 @@
 {
+  "calls": {
+    "recording_consent_intro": "{requesterName} хочет записать этот аудиозвонок.",
+    "recording_consent_purpose": "Запись будет использована только для указанной цели: {recordingPurpose}.",
+    "recording_consent_body": "Запись может содержать персональные или конфиденциальные данные. Она доступна только авторизованным пользователям в разделе документов SotsiaalAI. Запись не расшифровывается и не используется для автоматического составления резюме; эти действия запускаются отдельно пользователем.",
+    "recording_consent_question": "Согласны ли вы на запись этого звонка?",
+    "recording_consent_yes": "Согласен на запись",
+    "recording_consent_no": "Не согласен",
+    "recording_withdraw": "Отозвать согласие",
+    "recording_withdraw_hint": "Запись остановится, а записанное до сих пор будет удалено.",
+    "recording_notice": "Звонок по умолчанию не записывается. Запись требует согласия всех необходимых сторон.",
+    "recording_purpose": "Цель",
+    "recording_purpose_text": "Уточнение цели",
+    "request_recording_consent": "Запросить согласие на запись",
+    "recording_start": "Начать запись",
+    "recording_stop": "Остановить запись",
+    "recording_cancel": "Отменить запрос на запись",
+    "recording_requester_fallback": "Участник звонка",
+    "recording_status_declined": "Запись не была начата",
+    "recording_status_ready": "Запись готова к началу",
+    "recording_status_active": "Идёт запись",
+    "recording_status_completed": "Запись завершена",
+    "recording_status_failed": "Запись не удалась",
+    "recording_status_requested": "Ожидание согласия: {consented}/{required}",
+    "recording_status_stopped": "Запрос на запись отменён",
+    "recording_purpose_general_summary": "составление резюме",
+    "recording_purpose_case_summary": "черновик резюме по случаю",
+    "recording_purpose_pre_assessment_summary": "резюме предварительного обращения",
+    "recording_purpose_star_helper": "вспомогательный материал для ввода STAR",
+    "recording_purpose_mentoring_summary": "резюме встречи по наставничеству",
+    "recording_purpose_covision_summary": "резюме ковизии",
+    "recording_purpose_other": "другая цель"
+  },
   "field": {
     "meta": {
       "title": "Выездная работа",
@@ -3952,6 +3984,8 @@
       "pre_inquiry_recalled": "Предобращение было отозвано",
       "room_invite": "Вы получили приглашение в комнату",
       "room_activity": "В вашей комнате есть новые действия",
+      "call_started": "В вашей комнате начался звонок",
+      "call_recording_ready": "Запись звонка доступна",
       "help_match_created": "Для вашего объявления о помощи найдено совпадение",
       "help_match_consent_request": "Запрос на контакт по помощи ожидает вашего согласия",
       "next_contact_due": "Наступил срок следующего контакта",
@@ -4055,7 +4089,8 @@
       "rate_limited": "Слишком много запросов. Повторите позже.",
       "subscription_required": "Требуется активная подписка.",
       "monthly_budget_exceeded": "Достигнут месячный бюджет использования. Продолжите в следующем месяце или обновите тариф.",
-      "usage_load_failed": "Не удалось загрузить данные об использовании."
+      "usage_load_failed": "Не удалось загрузить данные об использовании.",
+      "server_error": "Ошибка сервера. Попробуйте позже."
     },
     "exports": {
       "pdf_content_not_supported": "PDF не поддерживает символы в этом содержимом. Используйте Word/DOCX."
@@ -4111,7 +4146,17 @@
       "read_update_failed": "Не удалось обновить статус прочтения.",
       "leave_failed": "Не удалось выйти из комнаты.",
       "delete_failed": "Не удалось удалить комнату.",
-      "delete_message_failed": "Не удалось удалить сообщение."
+      "delete_message_failed": "Не удалось удалить сообщение.",
+      "message_too_long": "Сообщение слишком длинное.",
+      "messages_failed": "Не удалось загрузить сообщения.",
+      "members_failed": "Не удалось загрузить участников.",
+      "delete_stream_room_forbidden": "Комнату на основе потока нельзя удалить — общая история сохраняется. Вы можете архивировать её или выйти.",
+      "archive_failed": "Не удалось архивировать комнату.",
+      "transfer_target_required": "Выберите действительного участника для передачи комнаты.",
+      "transfer_target_not_member": "Выбранный пользователь не является участником этой комнаты.",
+      "transfer_conflict": "Владелец изменился. Попробуйте ещё раз.",
+      "transfer_failed": "Не удалось передать право владения.",
+      "archived_readonly": "Комната архивирована и доступна только для чтения."
     },
     "stt": {
       "not_configured": "Сервис распознавания речи не настроен.",

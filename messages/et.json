@@ -1,4 +1,36 @@
 {
+  "calls": {
+    "recording_consent_intro": "{requesterName} soovib selle helikõne salvestada.",
+    "recording_consent_purpose": "Salvestust kasutatakse ainult märgitud eesmärgil: {recordingPurpose}.",
+    "recording_consent_body": "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestus tehakse kättesaadavaks ainult õigustatud kasutajatele SotsiaalAI dokumentide vaates. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.",
+    "recording_consent_question": "Kas nõustud selle kõne salvestamisega?",
+    "recording_consent_yes": "Nõustun salvestamisega",
+    "recording_consent_no": "Ei nõustu",
+    "recording_withdraw": "Võta nõusolek tagasi",
+    "recording_withdraw_hint": "Salvestus peatub ja seni salvestatu kustutatakse.",
+    "recording_notice": "Kõne ei salvestu vaikimisi. Salvestamine vajab kõigi nõutud osapoolte nõusolekut.",
+    "recording_purpose": "Eesmärk",
+    "recording_purpose_text": "Eesmärgi täpsustus",
+    "request_recording_consent": "Taotle salvestamise nõusolekut",
+    "recording_start": "Alusta salvestamist",
+    "recording_stop": "Lõpeta salvestamine",
+    "recording_cancel": "Tühista salvestamise taotlus",
+    "recording_requester_fallback": "Kõne osaleja",
+    "recording_status_declined": "Salvestamist ei alustatud",
+    "recording_status_ready": "Salvestus on valmis käivitamiseks",
+    "recording_status_active": "Salvestamine käib",
+    "recording_status_completed": "Salvestamine lõpetati",
+    "recording_status_failed": "Salvestus ebaõnnestus",
+    "recording_status_requested": "Ootame nõusolekuid: {consented}/{required}",
+    "recording_status_stopped": "Salvestamise taotlus tühistati",
+    "recording_purpose_general_summary": "kokkuvõtte koostamine",
+    "recording_purpose_case_summary": "juhtumikokkuvõtte mustand",
+    "recording_purpose_pre_assessment_summary": "eelpöördumise kokkuvõte",
+    "recording_purpose_star_helper": "STAR-i sisestamise abimaterjal",
+    "recording_purpose_mentoring_summary": "mentorluskohtumise kokkuvõte",
+    "recording_purpose_covision_summary": "kovisiooni kokkuvõte",
+    "recording_purpose_other": "muu eesmärk"
+  },
   "field": {
     "meta": {
       "title": "Välitöö",
@@ -3952,6 +3984,8 @@
       "pre_inquiry_recalled": "Eelpöördumine kutsuti tagasi",
       "room_invite": "Sulle saadeti ruumikutse",
       "room_activity": "Sinu ruumis on uut tegevust",
+      "call_started": "Sinu ruumis algas kõne",
+      "call_recording_ready": "Kõne salvestis on saadaval",
       "help_match_created": "Sinu abikuulutusele tekkis sobitus",
       "help_match_consent_request": "Sinu nõusolekut ootab abikontakti päring",
       "next_contact_due": "Järgmise kontakti aeg on kätte jõudnud",
@@ -4055,7 +4089,8 @@
       "rate_limited": "Liiga palju paringuid. Proovi hiljem uuesti.",
       "subscription_required": "Vajalik on aktiivne tellimus.",
       "monthly_budget_exceeded": "Kuu kasutuseelarve on täis. Jätka järgmisel kuul või uuenda paketti.",
-      "usage_load_failed": "Kasutusandmeid ei saanud laadida."
+      "usage_load_failed": "Kasutusandmeid ei saanud laadida.",
+      "server_error": "Serveri viga. Proovi hiljem uuesti."
     },
     "exports": {
       "pdf_content_not_supported": "PDF ei toeta selle sisu märke. Kasuta Wordi/DOCX-i."
@@ -4111,7 +4146,17 @@
       "read_update_failed": "Lugemisoleku uuendamine ebaonnestus.",
       "leave_failed": "Ruumist lahkumine ebaonnestus.",
       "delete_failed": "Ruumi kustutamine ebaonnestus.",
-      "delete_message_failed": "Sonumi kustutamine ebaonnestus."
+      "delete_message_failed": "Sonumi kustutamine ebaonnestus.",
+      "message_too_long": "Sõnum on liiga pikk.",
+      "messages_failed": "Sõnumite laadimine ebaõnnestus.",
+      "members_failed": "Liikmete laadimine ebaõnnestus.",
+      "delete_stream_room_forbidden": "Voopõhist ruumi ei saa kustutada — ühine ajalugu jääb alles. Saad selle arhiveerida või sealt lahkuda.",
+      "archive_failed": "Ruumi arhiveerimine ebaõnnestus.",
+      "transfer_target_required": "Vali kehtiv liige, kellele ruum üle anda.",
+      "transfer_target_not_member": "Valitud kasutaja ei ole selle ruumi liige.",
+      "transfer_conflict": "Omanik muutus vahepeal. Proovi uuesti.",
+      "transfer_failed": "Omanikuvahetus ebaõnnestus.",
+      "archived_readonly": "Ruum on arhiveeritud ja kirjutuskaitstud."
     },
     "stt": {
       "not_configured": "Kõnest tekstiks teenus ei ole seadistatud.",

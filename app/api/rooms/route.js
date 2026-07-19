@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { hasRoomBillingAccess } from "@/lib/rooms/access";
-import { serializeRoomOrigin } from "@/lib/rooms/origin";
+import { ROOM_ORIGIN_TYPES, serializeRoomOrigin } from "@/lib/rooms/origin";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -94,6 +94,8 @@ export async function GET() {
             room: {
               select: {
                 id: true,
+                ownerId: true,
+                archivedAt: true,
                 title: true,
                 description: true,
                 originType: true,
@@ -174,6 +176,13 @@ export async function GET() {
         ]);
 
         const last = m.room.messages?.[0];
+        // E4 (audit 16 K5): server-tõde. UI usaldab AINULT neid lippe, mitte
+        // kliendipoolset rolli-oletust. Õigus = ruumi omanik (ownerId), mitte
+        // rolli-loend; voo-ruumi (mitte MANUAL_INVITE) saab arhiveerida, mitte
+        // kustutada (16 K2); arhiveeritud ruumis pole muteerivaid tegevusi.
+        const isOwner = m.room.ownerId === auth.userId;
+        const isManualInvite = String(m.room.originType || "") === ROOM_ORIGIN_TYPES.MANUAL_INVITE;
+        const isArchived = Boolean(m.room.archivedAt);
         return {
           id: m.roomId,
           title: m.room.title || null,
@@ -182,6 +191,11 @@ export async function GET() {
           isHelpMatchRoom: Boolean(m.room.helpMatch?.id),
           origin: serializeRoomOrigin(m.room),
           memberCount,
+          archivedAt: m.room.archivedAt || null,
+          canDelete: isOwner && isManualInvite && !isArchived,
+          canArchive: isOwner && !isManualInvite && !isArchived,
+          canInvite: isOwner && !isArchived,
+          canTransfer: isOwner && !isArchived,
           lastMessage: last
             ? {
                 id: last.id,

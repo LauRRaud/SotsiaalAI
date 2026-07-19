@@ -8,6 +8,7 @@ import {
   requireRoomCallAccess,
   statusForCallError
 } from "@/lib/calls/roomRoutes";
+import { notifyRoomCallStarted } from "@/lib/calls/notifications";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,6 +24,15 @@ export async function POST(_req, { params }) {
     const call = await service.startRoomCall({ roomId, userId: access.userId });
     const payload = await loadCallForResponse(call.id);
     await emitCallEvent(roomId, payload);
+    /* T12 E7: käimasolev kõne on eemal olijale nähtamatu — reaalajakiht jõuab
+       ainult avatud ruumini. `startRoomCall` on idempotentne (tagastab juba
+       ACTIVE kõne), seega kordus-POST toetub dedupe'ile: sama kõne kohta
+       tekib igale liikmele täpselt üks teavitus. */
+    await notifyRoomCallStarted({
+      roomId,
+      callSessionId: call.id,
+      actorUserId: access.userId
+    });
     return callJson({ ok: true, call: payload });
   } catch (error) {
     const mapped = statusForCallError(error);

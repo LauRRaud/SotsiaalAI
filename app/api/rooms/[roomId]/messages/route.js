@@ -4,10 +4,10 @@ import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { publishRoomEvent } from "@/lib/roomStream";
 import { consumeRateLimit } from "@/lib/rate-limit";
-import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { hasRoomBillingAccess } from "@/lib/rooms/access";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
-import { resolveConfirmedMeetingSummaryContent } from "@/lib/rooms/meetingSummaryShare";
+import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
+import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
 import { safeError } from "@/lib/privacy/safeError";
 import { evaluateTextPrivacy, privacyConfirmationResponsePayload } from "@/lib/privacy/privacyGuard";
 
@@ -18,6 +18,9 @@ export const revalidate = 0;
 const PAGE_SIZE = 50;
 const RATE_LIMIT_WINDOW_MS = Number(process.env.ROOM_MESSAGES_POST_RATE_LIMIT_WINDOW_MS || 60_000);
 const RATE_LIMIT_POST = Number(process.env.ROOM_MESSAGES_POST_RATE_LIMIT_MAX || 20);
+// E3 (audit 18 K2): kasutaja-tipitud sõnumi pikkuspiir, et vabatekst ei maanduks
+// piiramatult DB-sse. Jagatud summeeringu (FINAL artefakt) sisu jääb piirist välja.
+const MAX_MESSAGE_LENGTH = Number(process.env.ROOM_MESSAGE_MAX_LENGTH || 4000);
 
 function json(data, status = 200) {
   return NextResponse.json(data, {
@@ -184,6 +187,9 @@ export async function GET(req, { params }) {
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status);
 
+  // E3 (audit 18 K1): püünis hoiab {ok, messageKey} lepingu ka DB-tõrkel 500-l,
+  // muidu tagastaks Next.js geneerilise HTML-500 ja klient ei oska seda lugeda.
+  try {
   const access = await ensureAccess(auth.userId, roomId, auth.userRole);
   if (!access.ok) return errorJson(access.message, access.status || 403);
   const room = await prisma.room.findUnique({
@@ -278,6 +284,10 @@ export async function GET(req, { params }) {
     })),
     nextCursor
   });
+  } catch (err) {
+    console.error("[room messages GET] failed", safeError(err));
+    return errorJson("api.rooms.messages_failed", 500);
+  }
 }
 
 export async function POST(req, { params }) {
@@ -289,6 +299,14 @@ export async function POST(req, { params }) {
   const access = await ensureAccess(auth.userId, roomId, auth.userRole);
   if (!access.ok) return errorJson(access.message, access.status || 403);
 
+  // E3 (audit 18 K3/K4): väravab ENNE kallist tööd (JSON-parse, privaatsuskontroll,
+  // summeeringu-lookup). Võti = autenditud userId + roomId; võltsitavat IP-d EI
+  // kasutata, et ratast ei saaks IP-rotatsiooniga mööda hiilida.
+  const limiter = consumeRateLimit(`roommsg:${roomId}:${auth.userId}`, RATE_LIMIT_POST, RATE_LIMIT_WINDOW_MS);
+  if (!limiter.allowed) {
+    return json({ ok: false, messageKey: "api.common.rate_limited", message: "api.common.rate_limited" }, 429);
+  }
+
   let payload;
   try {
     payload = await req.json();
@@ -298,17 +316,20 @@ export async function POST(req, { params }) {
   // U10: sharing a confirmed meeting summary posts the specialist-owned FINAL
   // MEETING_SUMMARY artifact's content into the room; otherwise a plain message.
   let rawContent;
+  let sharedSummary = null;
   const artifactId = String(payload?.summaryArtifactId || "").trim();
   if (artifactId) {
     try {
-      rawContent = await resolveConfirmedMeetingSummaryContent(auth.userId, artifactId, {
+      sharedSummary = await resolveShareableMeetingSummary(auth.userId, artifactId, {
         role: auth.userRole
       });
+      rawContent = sharedSummary.content;
     } catch (shareError) {
       return errorJson(shareError?.message || "api.rooms.summary_share_failed", Number(shareError?.status) || 500);
     }
   } else {
     rawContent = String(payload?.content || "").trim();
+    if (rawContent.length > MAX_MESSAGE_LENGTH) return errorJson("api.rooms.message_too_long", 413);
   }
   const privacy = evaluateTextPrivacy(rawContent, {
     workflow: "room_private",
@@ -319,19 +340,6 @@ export async function POST(req, { params }) {
   }
   const content = String(privacy.processedText || rawContent).trim();
   if (!content) return errorJson("api.rooms.message_required", 400);
-
-  const ip = getRequestIpFromRequest(req);
-  const limiter = consumeRateLimit(`roommsg:${roomId}:${auth.userId}:${ip}`, RATE_LIMIT_POST, RATE_LIMIT_WINDOW_MS);
-  if (!limiter.allowed) {
-    return json(
-      {
-        ok: false,
-        messageKey: "api.common.rate_limited",
-        message: "api.common.rate_limited"
-      },
-      429
-    );
-  }
 
   try {
     const msg = await prisma.roomMessage.create({
@@ -370,6 +378,18 @@ export async function POST(req, { params }) {
         displayName: true
       }
     });
+
+    /* T12 E7: jagatud kokkuvõte seotakse ruumiga, et ruumi lõppedes saaks iga
+       osaleja sellest privaatse koopia. Sisu salvestatakse snapshot'ina —
+       artefakti hilisem muutmine ei kirjuta ümber seda, mida ruumis nähti. */
+    if (sharedSummary) {
+      await recordSharedRoomSummary({
+        roomId,
+        summary: sharedSummary,
+        messageId: msg.id,
+        sharedByUserId: auth.userId
+      });
+    }
 
     const responsePayload = {
       ok: true,

@@ -10,19 +10,25 @@ export async function GET(_req, { params }) {
   const access = await requireRoomCallAccess(roomId);
   if (!access.ok) return callError(access.message, access.status);
 
-  const service = createRoomCallService();
-  const call = await service.getRoomCall({ roomId });
-  const config = getCallRuntimeConfig();
-  return callJson({
-    ok: true,
-    call,
-    config: {
-      provider: config.providerKey,
-      providerAvailable: config.callServiceConfigured,
-      maxParticipants: config.maxParticipants,
-      recordingEnabled: config.recordingEnabled,
-      liveKitEgressEnabled: config.liveKitEgressEnabled
-    },
-    canModerate: access.canModerate
-  });
+  // E3 (audit 3 K1): püünis hoiab {ok, messageKey} lepingu ka DB-/teenusetõrkel.
+  try {
+    const service = createRoomCallService();
+    const call = await service.getRoomCall({ roomId });
+    const config = getCallRuntimeConfig();
+    return callJson({
+      ok: true,
+      call,
+      config: {
+        provider: config.providerKey,
+        providerAvailable: config.callServiceConfigured,
+        maxParticipants: config.maxParticipants,
+        recordingEnabled: config.recordingEnabled,
+        liveKitEgressEnabled: config.liveKitEgressEnabled
+      },
+      canModerate: access.canModerate
+    });
+  } catch (err) {
+    console.error("[room calls GET] failed", err);
+    return callError("api.common.server_error", 500);
+  }
 }

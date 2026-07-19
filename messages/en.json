@@ -1,4 +1,36 @@
 {
+  "calls": {
+    "recording_consent_intro": "{requesterName} would like to record this audio call.",
+    "recording_consent_purpose": "The recording will be used only for the stated purpose: {recordingPurpose}.",
+    "recording_consent_body": "The recording may contain personal or sensitive information. It is made available only to authorised users in the SotsiaalAI documents view. The recording is not transcribed or used to generate a summary automatically; those actions are triggered separately by a user.",
+    "recording_consent_question": "Do you agree to this call being recorded?",
+    "recording_consent_yes": "I agree to recording",
+    "recording_consent_no": "I do not agree",
+    "recording_withdraw": "Withdraw consent",
+    "recording_withdraw_hint": "Recording stops and what has been recorded so far is deleted.",
+    "recording_notice": "The call is not recorded by default. Recording requires the consent of all required parties.",
+    "recording_purpose": "Purpose",
+    "recording_purpose_text": "Purpose details",
+    "request_recording_consent": "Request recording consent",
+    "recording_start": "Start recording",
+    "recording_stop": "Stop recording",
+    "recording_cancel": "Cancel recording request",
+    "recording_requester_fallback": "Call participant",
+    "recording_status_declined": "Recording was not started",
+    "recording_status_ready": "Recording is ready to start",
+    "recording_status_active": "Recording in progress",
+    "recording_status_completed": "Recording finished",
+    "recording_status_failed": "Recording failed",
+    "recording_status_requested": "Awaiting consent: {consented}/{required}",
+    "recording_status_stopped": "Recording request was cancelled",
+    "recording_purpose_general_summary": "preparing a summary",
+    "recording_purpose_case_summary": "case summary draft",
+    "recording_purpose_pre_assessment_summary": "pre-inquiry summary",
+    "recording_purpose_star_helper": "STAR entry helper material",
+    "recording_purpose_mentoring_summary": "mentoring meeting summary",
+    "recording_purpose_covision_summary": "co-vision summary",
+    "recording_purpose_other": "other purpose"
+  },
   "field": {
     "meta": {
       "title": "Field work",
@@ -3952,6 +3984,8 @@
       "pre_inquiry_recalled": "A pre-inquiry was recalled",
       "room_invite": "You received a room invitation",
       "room_activity": "There is new activity in your room",
+      "call_started": "A call started in your room",
+      "call_recording_ready": "The call recording is available",
       "help_match_created": "A match was found for your help listing",
       "help_match_consent_request": "A help-contact request is waiting for your consent",
       "next_contact_due": "The next contact is due",
@@ -4055,7 +4089,8 @@
       "rate_limited": "Too many requests. Please try again later.",
       "subscription_required": "An active subscription is required.",
       "monthly_budget_exceeded": "Monthly usage budget is reached. Please continue next month or upgrade your plan.",
-      "usage_load_failed": "Usage data could not be loaded."
+      "usage_load_failed": "Usage data could not be loaded.",
+      "server_error": "Server error. Please try again later."
     },
     "exports": {
       "pdf_content_not_supported": "PDF does not support the characters in this content. Use Word/DOCX instead."
@@ -4111,7 +4146,17 @@
       "read_update_failed": "Failed to update read state.",
       "leave_failed": "Failed to leave room.",
       "delete_failed": "Failed to delete room.",
-      "delete_message_failed": "Failed to delete message."
+      "delete_message_failed": "Failed to delete message.",
+      "message_too_long": "Message is too long.",
+      "messages_failed": "Failed to load messages.",
+      "members_failed": "Failed to load members.",
+      "delete_stream_room_forbidden": "A stream-based room cannot be deleted — the shared history stays. You can archive it or leave instead.",
+      "archive_failed": "Failed to archive the room.",
+      "transfer_target_required": "Choose a valid member to transfer the room to.",
+      "transfer_target_not_member": "The chosen user is not a member of this room.",
+      "transfer_conflict": "Ownership changed in the meantime. Please try again.",
+      "transfer_failed": "Failed to transfer ownership.",
+      "archived_readonly": "The room is archived and read-only."
     },
     "stt": {
       "not_configured": "Speech-to-text service is not configured.",
