@@ -2044,6 +2044,8 @@
       "with_detail": "Viga: {message}",
       "invalid_json": "Vigane JSON-päring.",
       "message_required": "Sõnum on kohustuslik.",
+      "message_too_long": "Sõnum on liiga pikk. Palun lühenda seda kuni 4000 tähemärgini.",
+      "retry": "Proovi uuesti",
       "invalid_conv_id": "Vestluse ID on vigane.",
       "openai_request_failed": "OpenAI päring ebaõnnestus."
     },

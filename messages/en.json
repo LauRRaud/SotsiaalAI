@@ -2044,6 +2044,8 @@
       "with_detail": "Error: {message}",
       "invalid_json": "Invalid JSON body.",
       "message_required": "Message is required.",
+      "message_too_long": "Your message is too long. Please shorten it to 4000 characters.",
+      "retry": "Try again",
       "invalid_conv_id": "Conversation id is invalid.",
       "openai_request_failed": "OpenAI request failed."
     },

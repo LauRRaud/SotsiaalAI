@@ -8,12 +8,14 @@ const [
   { resolveRunStatus, normalizeCompletionStatus },
   { persistDone },
   { handleMainChatResponse },
-  { langStrings }
+  { langStrings },
+  { resolveRetryTarget }
 ] = await Promise.all([
   import("../../lib/chat/turnStatus.js"),
   import("../../lib/chat/persistence.js"),
   import("../../lib/chat/mainResponseHandler.js"),
-  import("../../lib/chat/promptBuilder.js")
+  import("../../lib/chat/promptBuilder.js"),
+  import("../../components/chat/hooks/useChatStream.js")
 ]);
 
 function fakePrismaCapturing(capture) {
@@ -160,6 +162,41 @@ test("a COMPLETED empty turn still creates no message (VEST-P0 behavior preserve
 
   assert.equal(capture.createCalls || 0, 0);
   assert.equal(result.assistantMessageId, null);
+});
+
+// --- Contract 3: Retry is deliberate, reuses the same last user message, one new turn ---
+
+test("resolveRetryTarget offers retry only for a failed latest assistant turn", () => {
+  const errored = [
+    { role: "user", text: "Selgita SHS §5", id: 1 },
+    { role: "ai", text: "Viga: teenus pole saadaval", id: 2, completionStatus: "ERROR" }
+  ];
+  const target = resolveRetryTarget(errored);
+  assert.equal(target.canRetry, true);
+  assert.equal(target.userText, "Selgita SHS §5"); // same user message, not retyped
+  assert.equal(target.retryOf, 2);
+
+  const aborted = [
+    { role: "user", text: "Pikk küsimus", id: 3 },
+    { role: "ai", text: "Osaline vastus", id: 4, completionStatus: "ABORTED" }
+  ];
+  assert.equal(resolveRetryTarget(aborted).canRetry, true);
+});
+
+test("resolveRetryTarget does not offer retry on completed or in-flight turns", () => {
+  assert.equal(resolveRetryTarget([
+    { role: "user", text: "x", id: 1 },
+    { role: "ai", text: "Täisvastus", id: 2, completionStatus: "COMPLETED" }
+  ]).canRetry, false);
+
+  // Latest turn is the user message → the turn is still in flight, nothing to retry yet.
+  assert.equal(resolveRetryTarget([
+    { role: "ai", text: "Eelmine", id: 1, completionStatus: "ERROR" },
+    { role: "user", text: "Uus küsimus", id: 2 }
+  ]).canRetry, false);
+
+  assert.equal(resolveRetryTarget([]).canRetry, false);
+  assert.equal(resolveRetryTarget(null).canRetry, false);
 });
 
 // --- Contract 2: server Stop aborts the provider, releases usage, never persists the full reply ---
