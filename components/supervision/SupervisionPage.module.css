@@ -1,0 +1,398 @@
+/*
+ * Supervisiooni V0 vaated (Q2.6). Ruumigrammatika kantakse PAIGUTUSE ja
+ * MÄRGISTUSEGA — eeskamber on hämaram paneel, lävi (jagamine) on eraldi
+ * kaheastmeline ekraan, kapp on lugemisvaade. EI uut lõuendimootorit,
+ * EI Flight/3D (SUP-P10 invariant).
+ */
+
+.page {
+  min-height: 100lvh;
+  padding: clamp(4.5rem, 9vh, 7rem) clamp(1rem, 4vw, 3rem) 4rem;
+  color: var(--text-warm);
+  font-family: var(--font-ui);
+}
+
+.shell {
+  width: min(72rem, 100%);
+  margin: 0 auto;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid var(--glass-border-soft);
+  border-radius: var(--panel-radius);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-inner-light), var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+
+.lead {
+  max-width: 47rem;
+  margin: 0.7rem auto 1.5rem;
+  color: var(--text-soft);
+  text-align: center;
+  line-height: 1.65;
+}
+
+.liveRegion {
+  min-height: 1.5rem;
+  margin: 0 auto 0.5rem;
+  color: var(--text-warm);
+  text-align: center;
+  outline: none;
+}
+
+.loading,
+.empty,
+.loadError {
+  margin: 1.5rem 0;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+.section {
+  margin-top: 2.2rem;
+}
+
+.sectionHeading h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.sectionHeading p {
+  margin: 0 0 1rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+/* === Loend (vaade 1) === */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: calc(var(--panel-radius) * 0.6);
+  background: var(--glass-bg-soft, rgba(255, 255, 255, 0.04));
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+}
+
+.cardMeta {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.12rem 0.55rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 999px;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.backRow {
+  margin-bottom: 1rem;
+}
+
+/* === Privaatsusmärgis: PÜSIELEMENT, mitte tooltip (Q2.6 ühisreegel) === */
+
+.privacy {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.15rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.privacyPrivate {
+  background: rgba(244, 198, 144, 0.16);
+  border: 1px solid rgba(244, 198, 144, 0.55);
+  color: var(--text-warm);
+}
+
+.privacyShared {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--glass-border-soft);
+  color: var(--text-soft);
+}
+
+.privacyPersistent {
+  background: rgba(160, 210, 190, 0.14);
+  border: 1px solid rgba(160, 210, 190, 0.45);
+  color: var(--text-warm);
+}
+
+/* === Sakid (?ala= ankrud) === */
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1.2rem 0 0.4rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--glass-border-soft);
+}
+
+.tab {
+  padding: 0.35rem 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--text-warm);
+}
+
+.tabActive {
+  border-color: var(--glass-border-soft);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-warm);
+  font-weight: 600;
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--focus-ring, rgba(244, 198, 144, 0.75));
+  outline-offset: 2px;
+}
+
+/* === Eeskamber: HÄMARAM paneel (ruumigrammatika, Q2.6) === */
+
+.eeskamber {
+  padding: 1.1rem 1.2rem;
+  border: 1px dashed rgba(244, 198, 144, 0.55);
+  border-radius: calc(var(--panel-radius) * 0.6);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.itemList {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.item {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.itemBody {
+  margin: 0;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* === Vormid === */
+
+.form {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 42rem;
+  margin-top: 1rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.92rem;
+}
+
+.form textarea,
+.form select {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: 0.55rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-warm);
+  font: inherit;
+  line-height: 1.55;
+}
+
+.form textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.fieldHint {
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.fieldError {
+  color: var(--danger-text, #f2b8b5);
+  font-size: 0.82rem;
+}
+
+/* === Lävi: jagamise manifest (vaade 5) === */
+
+.manifest {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: calc(var(--panel-radius) * 0.6);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.manifestRow {
+  display: grid;
+  grid-template-columns: minmax(6rem, 10rem) 1fr;
+  gap: 0.6rem;
+  align-items: start;
+}
+
+.manifestKey {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.manifestValue {
+  margin: 0;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+/* === Sulgemine: Kustub / Jääb (vaade 9) === */
+
+.keepPurgeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 0.8rem 0 1rem;
+}
+
+.purgeCol,
+.keepCol {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: calc(var(--panel-radius) * 0.6);
+}
+
+.purgeCol {
+  border-color: rgba(242, 184, 181, 0.45);
+  background: rgba(242, 184, 181, 0.06);
+}
+
+.keepCol {
+  border-color: rgba(160, 210, 190, 0.45);
+  background: rgba(160, 210, 190, 0.06);
+}
+
+.colHeading {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.colList {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.dangerZone {
+  margin-top: 2rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--glass-border-soft);
+}
+
+.closedBanner {
+  margin: 1rem 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--glass-border-soft);
+  border-radius: calc(var(--panel-radius) * 0.6);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.statusLine {
+  color: var(--text-soft);
+  font-size: 0.85rem;
+}
+
+.conflict {
+  margin: 0.6rem 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(242, 184, 181, 0.5);
+  border-radius: 0.55rem;
+  background: rgba(242, 184, 181, 0.08);
+  color: var(--text-warm);
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: clamp(3.5rem, 8vh, 5rem) 0.8rem 3rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .manifestRow {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page *,
+  .page *::before,
+  .page *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

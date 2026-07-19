@@ -3959,6 +3959,11 @@
       "practice_review_overdue": "A practice review is overdue",
       "service_availability_stale": "Service availability needs confirmation",
       "field_checkin_due": "The field-work check-in window is approaching — confirm departure or extend the deadline.",
+      "supervision_invite": "You were invited to a supervision process",
+      "supervision_contract_pending": "The supervision contract has a new version — confirm it",
+      "supervision_meeting_upcoming": "A supervision meeting is approaching",
+      "supervision_summary_pending": "A supervision summary awaits your approval",
+      "supervision_closed": "A supervision process was closed",
       "data_export_ready": "Your data copy is ready",
       "mentoring_request_created": "You received a mentoring request",
       "mentoring_request_accepted": "Your mentoring request was accepted",
@@ -4032,7 +4037,11 @@
     "service_availability": "Confirm service availability",
     "pre_inquiry_draft": "Continue a pre-inquiry draft",
     "wellbeing_draft": "Continue a wellbeing draft",
-    "journey": "Continue your Journey"
+    "journey": "Continue your Journey",
+    "supervision_invite": "Respond to a supervision invite",
+    "supervision_contract_pending": "Confirm the supervision contract",
+    "supervision_summary_pending": "Confirm the supervision summary",
+    "supervision_prep_waiting": "Prepare for the supervision meeting"
   },
   "api": {
     "common": {
@@ -6246,5 +6255,197 @@
     "results": "Search results",
     "kinds": { "conversation": "Conversation", "journey": "Journey", "document": "Document" },
     "status": { "active": "Active", "pinned": "Pinned", "draft": "Draft", "archived": "Archived", "material": "Material", "template": "Template", "call_audio_recording": "Call recording", "call_transcript": "Call transcript", "audio_transcript": "Audio transcript", "transcript_summary": "Transcript summary", "uploaded_audio_source": "Uploaded audio", "other": "Other" }
+  },
+  "supervision": {
+    "errors": {
+      "request_failed": "The supervision request failed.",
+      "load_failed": "Loading supervision data failed.",
+      "save_failed": "Saving supervision data failed.",
+      "conflict": "The supervision action conflicted. Reload and try again.",
+      "stale_version": "Someone changed this in the meantime. Reload and try again.",
+      "already_closed": "The process is already closed.",
+      "pending_summaries": "Approve or discard all pending summaries before closing.",
+      "rule_violation": "This action is not allowed in the current state.",
+      "role_forbidden": "Supervision is for social workers and service providers.",
+      "role_not_allowed": "This user cannot be added in that role.",
+      "grant_required": "Creating a supervision process requires a valid supervisor grant.",
+      "grant_exists": "This user already has a valid supervisor grant.",
+      "contract_not_accepted": "Confirm the current contract version before continuing.",
+      "handoff_conflict": "This draft has already been handed off.",
+      "handoff_fingerprint": "The draft changed in the meantime. Review and try again.",
+      "audit_free_text": "Internal error while recording the audit event.",
+      "handoff_not_ready": "This draft is not ready to hand off yet.",
+      "handoff_failed": "The hand-off failed."
+    },
+    "meta": {
+      "title": "Supervision",
+      "description": "A privacy-respecting supervision process memory."
+    },
+    "common": {
+      "loading": "Loading…",
+      "retry": "Try again",
+      "back": "Back",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving…",
+      "edit": "Edit",
+      "confirm": "Confirm",
+      "loginRequired": "Please sign in.",
+      "notFound": "Not found or you don't have access.",
+      "conflictReload": "Someone changed this in the meantime. Reloading."
+    },
+    "privacy": {
+      "onlyYou": "Only you can see this",
+      "seenBySupervisor": "Seen by: supervisor",
+      "seenByProcess": "Seen by: supervisor + {count} participants",
+      "persistent": "Persistent — kept even after closing",
+      "invitedHint": "You are not a member yet — you only see the contract"
+    },
+    "roles": {
+      "SV": "Supervisor",
+      "OS": "Participant",
+      "OS_STALE": "Participant (confirmation pending)",
+      "KUT": "Invited",
+      "LAHK": "Left"
+    },
+    "status": { "DRAFT": "Draft", "ACTIVE": "Active", "CLOSED": "Closed" },
+    "type": { "INDIVIDUAL": "Individual", "GROUP": "Group" },
+    "home": {
+      "title": "My supervision",
+      "subtitle": "Processes where you are a supervisor or participant.",
+      "newProcess": "New process",
+      "open": "Open",
+      "emptyTitle": "No processes yet",
+      "emptyBody": "With a supervisor grant you can create a new process. Otherwise processes you are invited to will appear here.",
+      "roleLabel": "Your role"
+    },
+    "create": {
+      "title": "New supervision process",
+      "draftHint": "Draft — only you can see it until you invite participants.",
+      "typeLabel": "Type",
+      "titleLabel": "Title",
+      "titlePlaceholder": "e.g. Spring group",
+      "goalLabel": "Goal (optional)",
+      "meetingsLabel": "Planned number of meetings",
+      "submit": "Create process",
+      "grantRequired": "Creating a process requires a supervisor grant. Contact an administrator."
+    },
+    "nav": {
+      "contract": "Contract",
+      "eeskamber": "Antechamber",
+      "meetings": "Meetings",
+      "summaries": "Summaries",
+      "kapp": "Cabinet"
+    },
+    "contract": {
+      "title": "Contract and invitations",
+      "activeVersion": "Active version",
+      "noActive": "No active contract version yet.",
+      "versionN": "Version {n}",
+      "newVersion": "New contract version",
+      "bodyLabel": "Contract text",
+      "createVersion": "Save version",
+      "activate": "Activate version",
+      "participants": "Participants",
+      "inviteLabel": "Invite a participant",
+      "invite": "Send invite",
+      "withdraw": "Withdraw invite",
+      "acceptContract": "I confirm the new contract version",
+      "invitePlaceholder": "user ID",
+      "pendingContract": "A new contract version is awaiting your confirmation."
+    },
+    "invited": {
+      "title": "Supervision invitation",
+      "readContract": "Read the contract before confirming.",
+      "accept": "I confirm the contract and join",
+      "decline": "Decline",
+      "declined": "You have declined the invitation."
+    },
+    "eeskamber": {
+      "title": "Private antechamber",
+      "hint": "Prepare topics and notes here. Only you can see them until you deliberately share them.",
+      "new": "New draft",
+      "kindLabel": "Type",
+      "kind_PREP_TOPIC": "Topic preparation",
+      "kind_PRIVATE_NOTE": "Private note",
+      "kind_CLOSING_REFLECTION": "Closing reflection",
+      "titleLabel": "Title (optional)",
+      "bodyLabel": "Content",
+      "delete": "Delete",
+      "share": "Share deliberately",
+      "empty": "The antechamber is empty. Create your first draft.",
+      "shared": "Shared",
+      "deleteConfirm": "Delete this private item?"
+    },
+    "share": {
+      "title": "Sharing preview",
+      "intro": "Review EXACTLY what is shared and with whom. Sharing is deliberate and can be withdrawn.",
+      "audienceLabel": "Audience",
+      "audience_SUPERVISOR_ONLY": "Supervisor only",
+      "audience_PROCESS": "All participants",
+      "willSee": "After sharing, these will see it",
+      "confirm": "Share deliberately",
+      "back": "Back to antechamber",
+      "notReady": "You don't have a valid contract confirmation to share."
+    },
+    "meetings": {
+      "title": "Meetings",
+      "plan": "Plan a meeting",
+      "plannedAt": "Time",
+      "markHeld": "Mark as held",
+      "held": "Held",
+      "planned": "Planned",
+      "cancelled": "Cancelled",
+      "note": "Working note",
+      "meetingN": "Meeting {n}",
+      "empty": "No meetings planned yet.",
+      "heldConfirm": "Mark the meeting as held? This cannot be undone."
+    },
+    "summaries": {
+      "title": "Summaries",
+      "newFinal": "New final summary",
+      "bodyLabel": "Summary text",
+      "submit": "Send for approval",
+      "approve": "I approve",
+      "waitingApprovals": "Awaiting {done}/{total} approvals",
+      "empty": "No summaries yet.",
+      "draftOnlyYou": "Only you can see this (supervisor)",
+      "final": "Final summary",
+      "meeting": "Meeting summary"
+    },
+    "kapp": {
+      "title": "Cabinet of confirmed outputs",
+      "intro": "Confirmed summaries and the active contract. These are kept even after closing.",
+      "empty": "No confirmed outputs yet."
+    },
+    "close": {
+      "title": "Closing the process",
+      "intro": "Closing deletes the shared raw content. Confirmed outputs, facts and your private antechamber remain.",
+      "willDelete": "Deleted",
+      "willKeep": "Kept",
+      "sharedTopics": "Shared topics",
+      "draftSummaries": "Summary drafts",
+      "meetingNotes": "Meeting working notes",
+      "approvedSummaries": "Confirmed summaries",
+      "meetingFacts": "Meeting facts",
+      "privateItems": "Your private antechamber",
+      "generalizedTitleLabel": "Generalized title (replaces the current one)",
+      "confirm": "Close the process permanently",
+      "pendingBlock": "Confirm or discard pending summaries before closing.",
+      "onlySupervisor": "Only the supervisor can close the process."
+    },
+    "closed": {
+      "banner": "The process is closed; raw content has been deleted.",
+      "purged": "Deleted: {topics} topics, {drafts} drafts, {notes} notes.",
+      "openPack": "Open my pack"
+    },
+    "outcome": {
+      "title": "My personal pack",
+      "intro": "This is your personal copy of the confirmed outputs. It belongs only to you.",
+      "contract": "Confirmed contract",
+      "summaries": "Confirmed summaries",
+      "empty": "You don't have any personal packs yet.",
+      "list": "My packs"
+    }
   }
 }

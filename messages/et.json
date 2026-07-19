@@ -3959,6 +3959,11 @@
       "practice_review_overdue": "Praktika ülevaatuse tähtaeg on möödunud",
       "service_availability_stale": "Teenuse kättesaadavus vajab kinnitamist",
       "field_checkin_due": "Välitöö kontrollaken läheneb — kinnita lahkumine või pikenda tähtaega.",
+      "supervision_invite": "Sind kutsuti supervisiooniprotsessi",
+      "supervision_contract_pending": "Supervisiooni kontraktil on uus versioon — kinnita see",
+      "supervision_meeting_upcoming": "Supervisioonikohtumine läheneb",
+      "supervision_summary_pending": "Supervisiooni kokkuvõte ootab sinu kinnitust",
+      "supervision_closed": "Supervisiooniprotsess suleti",
       "data_export_ready": "Sinu andmekoopia on valmis",
       "mentoring_request_created": "Sulle saabus mentorlustaotlus",
       "mentoring_request_accepted": "Sinu mentorlustaotlus võeti vastu",
@@ -4032,7 +4037,11 @@
     "service_availability": "Kinnita teenuse kättesaadavus",
     "pre_inquiry_draft": "Jätka eelpöördumise mustandit",
     "wellbeing_draft": "Jätka Tööheaolu mustandit",
-    "journey": "Jätka oma Teekonda"
+    "journey": "Jätka oma Teekonda",
+    "supervision_invite": "Vasta supervisiooni kutsele",
+    "supervision_contract_pending": "Kinnita supervisiooni kontrakt",
+    "supervision_summary_pending": "Kinnita supervisiooni kokkuvõte",
+    "supervision_prep_waiting": "Valmistu supervisioonikohtumiseks"
   },
   "api": {
     "common": {
@@ -6329,5 +6338,197 @@
     "results": "Otsingutulemused",
     "kinds": { "conversation": "Vestlus", "journey": "Teekond", "document": "Dokument" },
     "status": { "active": "Aktiivne", "pinned": "Kinnitatud", "draft": "Mustand", "archived": "Arhiveeritud", "material": "Materjal", "template": "Mall", "call_audio_recording": "Kõnesalvestis", "call_transcript": "Kõne üleskirjutus", "audio_transcript": "Heli üleskirjutus", "transcript_summary": "Üleskirjutuse kokkuvõte", "uploaded_audio_source": "Üleslaaditud helifail", "other": "Muu" }
+  },
+  "supervision": {
+    "errors": {
+      "request_failed": "Supervisiooni päring ebaõnnestus.",
+      "load_failed": "Supervisiooni andmete laadimine ebaõnnestus.",
+      "save_failed": "Supervisiooni salvestamine ebaõnnestus.",
+      "conflict": "Supervisiooni toiming sattus vastuollu. Laadi uuesti ja proovi uuesti.",
+      "stale_version": "Keegi muutis seda vahepeal. Laadi uuesti ja proovi uuesti.",
+      "already_closed": "Protsess on juba suletud.",
+      "pending_summaries": "Enne sulgemist kinnita või tühista kõik ootel kokkuvõtted.",
+      "rule_violation": "Seda toimingut ei saa selles olekus teha.",
+      "role_forbidden": "Supervisioon on mõeldud sotsiaaltöötajatele ja teenuseosutajatele.",
+      "role_not_allowed": "Seda kasutajat ei saa siia rolli lisada.",
+      "grant_required": "Supervisiooni protsessi loomiseks on vaja kehtivat superviisori õigust.",
+      "grant_exists": "Sellel kasutajal on juba kehtiv superviisori õigus.",
+      "contract_not_accepted": "Enne jätkamist kinnita kehtiv kontraktiversioon.",
+      "handoff_conflict": "See mustand on juba üle antud.",
+      "handoff_fingerprint": "Mustandit muudeti vahepeal. Vaata üle ja proovi uuesti.",
+      "audit_free_text": "Sisemine viga auditikirje koostamisel.",
+      "handoff_not_ready": "See mustand ei ole veel üleandmiseks valmis.",
+      "handoff_failed": "Üleandmine ebaõnnestus."
+    },
+    "meta": {
+      "title": "Supervisioon",
+      "description": "Privaatsust austav supervisiooni protsessimälu."
+    },
+    "common": {
+      "loading": "Laen…",
+      "retry": "Proovi uuesti",
+      "back": "Tagasi",
+      "cancel": "Loobu",
+      "save": "Salvesta",
+      "saving": "Salvestan…",
+      "edit": "Muuda",
+      "confirm": "Kinnita",
+      "loginRequired": "Palun logi sisse.",
+      "notFound": "Ei leitud või sul pole ligipääsu.",
+      "conflictReload": "Keegi muutis seda vahepeal. Laen uuesti."
+    },
+    "privacy": {
+      "onlyYou": "Ainult sina näed",
+      "seenBySupervisor": "Näeb: superviisor",
+      "seenByProcess": "Näevad: superviisor + {count} osalejat",
+      "persistent": "Püsiv — jääb alles ka pärast sulgemist",
+      "invitedHint": "Sa ei ole veel liige — näed ainult kontrakti"
+    },
+    "roles": {
+      "SV": "Superviisor",
+      "OS": "Osaleja",
+      "OS_STALE": "Osaleja (kinnitus ootel)",
+      "KUT": "Kutsutud",
+      "LAHK": "Lahkunud"
+    },
+    "status": { "DRAFT": "Mustand", "ACTIVE": "Aktiivne", "CLOSED": "Suletud" },
+    "type": { "INDIVIDUAL": "Individuaalne", "GROUP": "Grupp" },
+    "home": {
+      "title": "Minu supervisioon",
+      "subtitle": "Protsessid, kus oled superviisor või osaleja.",
+      "newProcess": "Uus protsess",
+      "open": "Ava",
+      "emptyTitle": "Ühtegi protsessi veel pole",
+      "emptyBody": "Superviisori õigusega saad luua uue protsessi. Muidu ilmuvad siia protsessid, kuhu sind kutsutakse.",
+      "roleLabel": "Sinu roll"
+    },
+    "create": {
+      "title": "Uus supervisiooni protsess",
+      "draftHint": "Mustand — näed ainult sina, kuni kutsud osalejaid.",
+      "typeLabel": "Tüüp",
+      "titleLabel": "Pealkiri",
+      "titlePlaceholder": "nt Kevadgrupp",
+      "goalLabel": "Eesmärk (valikuline)",
+      "meetingsLabel": "Kavandatud kohtumiste arv",
+      "submit": "Loo protsess",
+      "grantRequired": "Protsessi loomiseks on vaja superviisori õigust. Pöördu administraatori poole."
+    },
+    "nav": {
+      "contract": "Kontrakt",
+      "eeskamber": "Eeskamber",
+      "meetings": "Kohtumised",
+      "summaries": "Kokkuvõtted",
+      "kapp": "Kapp"
+    },
+    "contract": {
+      "title": "Kontrakt ja kutsed",
+      "activeVersion": "Aktiivne versioon",
+      "noActive": "Aktiivset kontraktiversiooni veel pole.",
+      "versionN": "Versioon {n}",
+      "newVersion": "Uus kontraktiversioon",
+      "bodyLabel": "Kontrakti tekst",
+      "createVersion": "Salvesta versioon",
+      "activate": "Aktiveeri versioon",
+      "participants": "Osalejad",
+      "inviteLabel": "Kutsu osaleja",
+      "invite": "Saada kutse",
+      "withdraw": "Võta kutse tagasi",
+      "acceptContract": "Kinnitan uue kontraktiversiooni",
+      "invitePlaceholder": "kasutaja ID",
+      "pendingContract": "Uus kontraktiversioon ootab sinu kinnitust."
+    },
+    "invited": {
+      "title": "Kutse supervisiooni",
+      "readContract": "Loe kontrakti enne kinnitamist.",
+      "accept": "Kinnitan kontrakti ja liitun",
+      "decline": "Keeldun",
+      "declined": "Oled kutsest keeldunud."
+    },
+    "eeskamber": {
+      "title": "Privaatne eeskamber",
+      "hint": "Siin valmistad ette teemasid ja märkmeid. Ainult sina näed neid, kuni need teadlikult jagad.",
+      "new": "Uus mustand",
+      "kindLabel": "Tüüp",
+      "kind_PREP_TOPIC": "Teema ettevalmistus",
+      "kind_PRIVATE_NOTE": "Privaatne märge",
+      "kind_CLOSING_REFLECTION": "Lõpurefleksioon",
+      "titleLabel": "Pealkiri (valikuline)",
+      "bodyLabel": "Sisu",
+      "delete": "Kustuta",
+      "share": "Jaga teadlikult",
+      "empty": "Eeskamber on tühi. Loo esimene mustand.",
+      "shared": "Jagatud",
+      "deleteConfirm": "Kas kustutada see privaatne kirje?"
+    },
+    "share": {
+      "title": "Jagamise eelvaade",
+      "intro": "Vaata TÄPSELT üle, mis läheb ja kellele. Jagamine on teadlik ja seda saab tagasi võtta.",
+      "audienceLabel": "Kellele",
+      "audience_SUPERVISOR_ONLY": "Ainult superviisorile",
+      "audience_PROCESS": "Kõigile osalejatele",
+      "willSee": "Pärast jagamist näevad",
+      "confirm": "Jagan teadlikult",
+      "back": "Tagasi eeskambrisse",
+      "notReady": "Sul pole kehtivat kontraktikinnitust, et jagada."
+    },
+    "meetings": {
+      "title": "Kohtumised",
+      "plan": "Plaani kohtumine",
+      "plannedAt": "Aeg",
+      "markHeld": "Märgi toimunuks",
+      "held": "Toimunud",
+      "planned": "Planeeritud",
+      "cancelled": "Tühistatud",
+      "note": "Töömärge",
+      "meetingN": "Kohtumine {n}",
+      "empty": "Ühtegi kohtumist pole veel plaanitud.",
+      "heldConfirm": "Kas märkida kohtumine toimunuks? Seda ei saa tagasi võtta."
+    },
+    "summaries": {
+      "title": "Kokkuvõtted",
+      "newFinal": "Uus lõpukokkuvõte",
+      "bodyLabel": "Kokkuvõtte tekst",
+      "submit": "Saada kinnitamisele",
+      "approve": "Kinnitan",
+      "waitingApprovals": "Ootab {done}/{total} kinnitust",
+      "empty": "Kokkuvõtteid pole veel.",
+      "draftOnlyYou": "Näed ainult sina (superviisor)",
+      "final": "Lõpukokkuvõte",
+      "meeting": "Kohtumise kokkuvõte"
+    },
+    "kapp": {
+      "title": "Kinnitatud väljundite kapp",
+      "intro": "Kinnitatud kokkuvõtted ja kehtiv kontrakt. Need jäävad alles ka pärast sulgemist.",
+      "empty": "Kinnitatud väljundeid pole veel."
+    },
+    "close": {
+      "title": "Protsessi sulgemine",
+      "intro": "Sulgemisel kustub jagatud toorsisu. Alles jäävad kinnitatud väljundid, faktid ja sinu privaatne eeskamber.",
+      "willDelete": "Kustub",
+      "willKeep": "Jääb",
+      "sharedTopics": "Jagatud teemad",
+      "draftSummaries": "Kokkuvõtete mustandid",
+      "meetingNotes": "Kohtumiste töömärkmed",
+      "approvedSummaries": "Kinnitatud kokkuvõtted",
+      "meetingFacts": "Kohtumiste faktid",
+      "privateItems": "Sinu privaatne eeskamber",
+      "generalizedTitleLabel": "Üldistatud pealkiri (asendab praeguse)",
+      "confirm": "Sulgen protsessi lõplikult",
+      "pendingBlock": "Enne sulgemist kinnita või tühista ootel kokkuvõtted.",
+      "onlySupervisor": "Ainult superviisor saab protsessi sulgeda."
+    },
+    "closed": {
+      "banner": "Protsess on suletud; toorsisu on kustutatud.",
+      "purged": "Kustutati: {topics} teemat, {drafts} mustandit, {notes} märget.",
+      "openPack": "Ava minu pakk"
+    },
+    "outcome": {
+      "title": "Minu isiklik pakk",
+      "intro": "See on sinu isiklik koopia kinnitatud väljunditest. See kuulub ainult sulle.",
+      "contract": "Kinnitatud kontrakt",
+      "summaries": "Kinnitatud kokkuvõtted",
+      "empty": "Sul pole veel ühtki isiklikku pakki.",
+      "list": "Minu paketid"
+    }
   }
 }
