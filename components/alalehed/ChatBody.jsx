@@ -27,6 +27,7 @@ import { useChatRoomMode, useSyncRoomAssistantMessages } from "./chat/hooks/useC
 import ChatBodyView from "./chat/ChatBodyView";
 import RoomCallBar from "@/components/rooms/RoomCallBar";
 import RoomSummaryApprovalCard from "@/components/rooms/RoomSummaryApprovalCard";
+import { useRoomCall } from "@/components/rooms/useRoomCall";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState";
@@ -468,6 +469,14 @@ export default function ChatBody({
   });
   const allowAssistantForward = !isHelpMatchRoom;
   const hideComposerTools = isHelpMatchRoom;
+  // 14 K1: kõne on kestev seansiolek ja elab siin, mitte vestlusnäo sees —
+  // töölaua/profiili avamine unmount'ib RoomCallBar'i esitluse, aga hook
+  // (LiveKit-ühendus, 5 s poll) jääb elama. Ligipääsu kadu (blocked/auth)
+  // annab hookile tühja roomId → fail-closed reset + server-leave.
+  const roomCallSession = useRoomCall(
+    isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? effectiveRoomId : "",
+    sessionUserId
+  );
   useIsomorphicLayoutEffect(() => {
     if (typeof window === "undefined") return;
     let shouldRestore = false;
@@ -2709,6 +2718,7 @@ export default function ChatBody({
           userId={sessionUserId}
           isLightTheme={isLightTheme}
           t={t}
+          session={roomCallSession}
         />
       ) : null}
       roomSummaryApprovalNode={isRoomMode && sessionUserId && !roomBlocked && !roomAuthRequired ? (

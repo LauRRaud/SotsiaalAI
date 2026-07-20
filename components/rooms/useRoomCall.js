@@ -81,23 +81,63 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     }
   }, [basePath, cleanupLiveKit, roomId]);
 
+  // 14 K1: teardown (ruumivahetus, unmount, ligipääsu kadu) peab serverile
+  // leave'i saatma, muidu jääb fantoom-osaleja ja viimase lahkuja auto-lõpp
+  // ei käivitu. Fire-and-forget: vastus ei huvita, kirje serveris küll.
+  const sendLeaveSignal = useCallback((targetRoomId, callSessionId) => {
+    if (!targetRoomId || !callSessionId) return;
+    const url = callPath(targetRoomId, "/leave", basePath);
+    const body = JSON.stringify({ callSessionId });
+    try {
+      if (typeof navigator !== "undefined" && typeof navigator.sendBeacon === "function") {
+        if (navigator.sendBeacon(url, new Blob([body], { type: "application/json" }))) return;
+      }
+    } catch {}
+    try {
+      void fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body,
+        keepalive: true
+      }).catch(() => {});
+    } catch {}
+  }, [basePath]);
+
   useEffect(() => {
     setCall(null);
     setJoined(false);
     setMicMuted(false);
     joinedCallIdRef.current = "";
     void cleanupLiveKit();
-    if (!roomId) return;
+    if (!roomId) return undefined;
     void load();
     const timer = setInterval(() => {
       void load();
     }, 5000);
-    return () => clearInterval(timer);
-  }, [cleanupLiveKit, load, roomId]);
+    return () => {
+      clearInterval(timer);
+      const callSessionId = joinedCallIdRef.current;
+      joinedCallIdRef.current = "";
+      if (callSessionId) sendLeaveSignal(roomId, callSessionId);
+    };
+  }, [cleanupLiveKit, load, roomId, sendLeaveSignal]);
 
   useEffect(() => () => {
     void cleanupLiveKit();
   }, [cleanupLiveKit]);
+
+  // Tab'i sulgemine ja kõva navigatsioon ei jooksuta React-cleanup'e —
+  // sendBeacon on seal ainus usaldusväärne kanal. Ref'i ei nullita: pagehide
+  // võib olla bfcache'i minek; naasel sünkroonib 5 s poll ausa seisu.
+  useEffect(() => {
+    if (typeof window === "undefined" || !roomId) return undefined;
+    const handlePageHide = () => {
+      const callSessionId = joinedCallIdRef.current;
+      if (callSessionId) sendLeaveSignal(roomId, callSessionId);
+    };
+    window.addEventListener("pagehide", handlePageHide);
+    return () => window.removeEventListener("pagehide", handlePageHide);
+  }, [roomId, sendLeaveSignal]);
 
   const postAction = useCallback(async (suffix, body = {}) => {
     const payload = await fetch(callPath(roomId, suffix, basePath), {
