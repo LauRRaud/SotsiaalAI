@@ -26,6 +26,12 @@
       "port": 3001
     },
     {
+      "name": "next-dev-rooms-e1",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-rooms-calls-e1", "dev:3001"],
+      "port": 3001
+    },
+    {
       "name": "next-dev-covision-v2-auto",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:auto"],
