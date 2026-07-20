@@ -4,8 +4,6 @@ import { useState } from "react";
 
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 
-import { useRoomCall } from "@/components/rooms/useRoomCall";
-
 const RECORDING_PURPOSE_OPTIONS = [
   ["GENERAL_SUMMARY", "kokkuvõtte koostamine"],
   ["CASE_SUMMARY", "juhtumikokkuvõtte mustand"],
@@ -53,12 +51,15 @@ function resolveRecordingPurposeLabel(t, recording) {
   return text(t, `calls.recording_purpose_${purpose.toLowerCase()}`, recording.purposeLabel || "");
 }
 
+// 14 K1: riba on puhas esitlus — useRoomCall'i omanik on leht (ChatBody), kes
+// annab hoogi tagastuse `session` propina. Nii ei katkesta näovahetus (töölaud/
+// profiil), mis selle komponendi unmount'ib, LiveKit-ühendust ega polli.
 export default function RoomCallBar({
   roomId,
   userId,
   isLightTheme: _isLightTheme,
   t,
-  basePath = "",
+  session,
   contextType = "ROOM",
   allowRecordingControls = true,
   recordingAllowed = true
@@ -66,6 +67,9 @@ export default function RoomCallBar({
   const [expanded, setExpanded] = useState(false);
   const [recordingPurpose, setRecordingPurpose] = useState("GENERAL_SUMMARY");
   const [recordingPurposeText, setRecordingPurposeText] = useState("");
+
+  if (!roomId || !session) return null;
+
   const {
     call,
     config,
@@ -88,9 +92,7 @@ export default function RoomCallBar({
     cancelRecordingRequest,
     startRecording,
     stopRecording
-  } = useRoomCall(roomId, userId, { basePath });
-
-  if (!roomId) return null;
+  } = session;
 
   const unavailable = config.provider === "livekit" && config.providerAvailable === false;
   const participants = call?.participants || [];
