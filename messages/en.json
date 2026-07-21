@@ -850,6 +850,10 @@
       "title": "Rooms | SotsiaalAI",
       "description": "View your SotsiaalAI rooms and shared conversations."
     },
+    "workspace": {
+      "title": "Workspace | SotsiaalAI",
+      "description": "Open the tools for your role: service map, inquiries, documents and support forms."
+    },
     "reset": {
       "title": "Reset PIN | SotsiaalAI",
       "description": "Reset the PIN for your SotsiaalAI account."

@@ -850,6 +850,10 @@
       "title": "Ruumid | SotsiaalAI",
       "description": "Vaata oma SotsiaalAI ruume ja ühiseid vestlusi."
     },
+    "workspace": {
+      "title": "Töölaud | SotsiaalAI",
+      "description": "Ava oma rolli tööriistad: teenusekaart, pöördumised, dokumendid ja tugivormid."
+    },
     "reset": {
       "title": "Taasta PIN-kood | SotsiaalAI",
       "description": "Taasta oma SotsiaalAI konto PIN-kood."

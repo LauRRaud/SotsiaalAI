@@ -175,15 +175,56 @@
 }
 
 /* ---------- Töölaua KERITAV ruudustik (rollipõhine, 8–15 kaarti) ----------
-   Rollivaade toob eri arvu kaarte (klient 8, spetsialist kuni 15). Ruudustik
-   ei piira end enam 10 kaardiga ega pöörle: kaardid tulevad absoluutsest
-   3D-paigutusest tavavoolu (CSS grid), 5 veergu, ja konteiner kerib püsti,
-   kui read ei mahu. Muutujad + sildi/ikooni suurused pärivad data-visible="10"
+   Rollivaade toob eri arvu kaarte (klient 8, spetsialist kuni 15). Kaardid
+   tulevad absoluutsest 3D-paigutusest tavavoolu (CSS grid) ja ruudustik kerib
+   KÜLGEDELE. Vaateaken on LUKUS 5 veeru peale: korraga on näha 10 kaarti
+   (5 × 2 — sama pilt mis kümne kaardi töölaual), ka laial ekraanil, kuhu
+   mahuks seitse veergu. Ülejäänud kaardid ootavad kõrval ja küljenooled
+   kerivad LEHE kaupa nagu tavakarussellis (omanik 21.07: "vasakul ja paremal
+   peaks olema nooleke nagu tava kerimise lehel ja korraga peaks olema kuvatud
+   vähem kaarte"). Kerimisriba EI OLE (majareegel: kerimisribad on kõikjal
+   peidetud). Muutujad + sildi/ikooni suurused pärivad data-visible="10"
    reeglitest; siin muutub AINULT paigutus + kerimine. */
+/* Muutujad elavad .gc peal, sest neid vajavad NII nimekiri kui nooled
+   (nooled on nimekirja õed, mitte lapsed — pärimine käib ühisest vanemast). */
+.gc[data-grid-scroll="1"] {
+  --gc-grid-cols: 5;
+  /* Servavöönd: kerimisel sisenev/lahkuv kaart HAJUB siin pimedusse, mitte
+     ei lõppe noaga (omanik 21.07: "mulle ei meeldi lõigatud ääred kerimisel,
+     ... nagu kaoks äärmised ära kuhugi"). Puhkeseisus jäävad kõik viis veergu
+     vööndist SEESpoole, nii et miski ei ole asjatult tuhm. */
+  --gc-grid-pad-x: clamp(2rem, 4.5vw, 4.5rem);
+}
 .gc[data-grid-scroll="1"] .gc-list {
   height: auto;
   max-height: 100%;
-  width: 100%;
+  /* Viie veeru laiune aken + kaks servavööndit, keskel. Nooled elavad
+     vööndist väljaspool (vt .gc[data-grid-scroll="1"] .gc-arrow--*). */
+  width: min(
+    100%,
+    calc(
+      var(--gc-grid-cols) * var(--gc-w) +
+      (var(--gc-grid-cols) - 1) * var(--gc-grid-gap-x) +
+      2 * var(--gc-grid-pad-x)
+    )
+  );
+  margin-inline: auto;
+  /* Sama pehme kadumine mis ruumi vinjetil: alfa null täpselt konteineri
+     serval, seega nähtavat lõikejoont EI TEKI üheski kerimisfaasis. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gc-grid-pad-x),
+    #000 calc(100% - var(--gc-grid-pad-x)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--gc-grid-pad-x),
+    #000 calc(100% - var(--gc-grid-pad-x)),
+    transparent 100%
+  );
   overflow-x: auto;
   overflow-y: hidden;
   perspective: none;
@@ -197,18 +238,16 @@
   gap: var(--gc-grid-gap-y) var(--gc-grid-gap-x);
   justify-content: safe center;
   align-content: center;
-  padding: clamp(0.5rem, 2vh, 1.5rem) clamp(3.5rem, 6vw, 6rem);
+  padding: clamp(0.5rem, 2vh, 1.5rem) var(--gc-grid-pad-x);
   touch-action: pan-x;
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--room-text) 28%, transparent) transparent;
+  /* Leheküljesamm maandub alati veeru servale, ka svaibiga. */
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gc-grid-pad-x);
+  scrollbar-width: none;
   overscroll-behavior-x: contain;
 }
 .gc[data-grid-scroll="1"] .gc-list::-webkit-scrollbar {
-  height: 8px;
-}
-.gc[data-grid-scroll="1"] .gc-list::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--room-text) 24%, transparent);
-  border-radius: 999px;
+  display: none;
 }
 .gc[data-grid-scroll="1"] .gc-item {
   position: relative;
@@ -218,17 +257,32 @@
   transform: none;
   transition: opacity 260ms var(--ease-soft);
   will-change: auto;
+  scroll-snap-align: start;
 }
 .gc[data-grid-scroll="1"] .gc-item[data-hidden="1"] {
   opacity: 1;
   pointer-events: auto;
 }
-
-/* Töölaud/tööheaolu: desktopil pole küljenooli ega juhuslikku pööramist. */
-@media (min-width: 769px) {
-  .gc[data-desktop-arrows="0"] .gc-arrow {
-    display: none;
-  }
+/* Nool seisab servavööndist VÄLJASPOOL, et ta ei kataks hajuvat kaarti.
+   (Baas .gc[data-visible="10"] reegel arvestab ainult viie veeruga.) */
+.gc[data-grid-scroll="1"] .gc-arrow--left {
+  right: calc(
+    50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) +
+    var(--gc-grid-pad-x) + 0.4rem
+  );
+}
+.gc[data-grid-scroll="1"] .gc-arrow--right {
+  left: calc(
+    50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) +
+    var(--gc-grid-pad-x) + 0.4rem
+  );
+}
+/* Nool kaob, kui sinnapoole enam kerida pole (ruudustik ei ole ringjas —
+   viimasest lehest edasi ei tule esimene). Kõrgem spetsiifilisus võidab
+   .room[data-power="on"][data-cards-ready="1"] .gc-arrow nähtavusreegli. */
+.room .gc[data-grid-scroll="1"] .gc-arrow[disabled] {
+  --gc-nav-opacity: 0;
+  --gc-nav-pointer: none;
 }
 
 /* ---------- Käivituse faas 1: klaasid ilmuvad omal kohal, tühjadena,

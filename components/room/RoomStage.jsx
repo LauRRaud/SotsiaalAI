@@ -27,6 +27,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import { localizePath } from "@/lib/localizePath";
+import { rememberRoomHubPath } from "@/lib/roomHubReturn";
 import IconButton from "@/components/glass/IconButton";
 import {
   GuideBookIcon,
@@ -161,7 +162,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const cardPageKey = CARD_PAGE_KEYS[normalized] || null;
   /* pin/epost elavad profiilikarusselli kontekstis; ruumid töökomplektis */
   const isProfileCardPage = cardPageKey === "pin" || cardPageKey === "epost";
-  const isCarouselRoute = isHome || isProfileHub || !!cardPageKey;
+  /* Töölaud koos alamkomplektidega on PÄRIS marsruut (omanik 21.07), mitte
+     olekulüliti: URL muutub, järjehoidja/F5/tagasi-nupp töötavad. Ruum elab
+     root-layoutis, seega marsruudivahetus EI remonteeri lava → ekraan ei vilgu,
+     vahetub ainult karusselli kaardikomplekt.
+     Alamkomplektid elavad töölaua ALL (/toolaud/tooheaolu), sest /tooheaolu ja
+     /kovisioon on juba päris lehed — kaardimenüü ja tööruum ei mahu ühe URL-i
+     alla (omanik 21.07: "tööheaolu lehel ei ole ka /tööheaolu näha"). */
+  const isWellbeingRoute = normalized === "/toolaud/tooheaolu";
+  const isKovisionRoute = normalized === "/toolaud/kovisioon";
+  const isWorkspaceRoute = normalized === "/toolaud" || isWellbeingRoute || isKovisionRoute;
+  const isCarouselRoute = isHome || isProfileHub || isWorkspaceRoute || !!cardPageKey;
   const isAuthed = status === "authenticated" && !!session;
   /* Saabumisloor on seansipõhine, mitte sisselogimispõhine: ka pikalt
      sisselogitud inimene näeb seda uues seansis ühe korra, kuid mitte iga
@@ -183,9 +194,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      värskenda seda hooki). */
   const { effectiveRole, refresh: refreshEffectiveRole } = useEffectiveRole();
 
-  /* --- režiim --- */
+  /* --- režiim ---
+     Algseis peab kokku langema režiimi-efekti tulemusega, muidu maalib
+     esimene kaader karusselli-marsruudil (nt /toolaud järjehoidjast või
+     F5-ga) korraks PANEELI — ruum häguneb ja teravneb kohe tagasi, mis
+     ongi see vilkumine, mida omanik ei taha (21.07). Sama arvutus mõlemal
+     pool → ka SSR ja hüdreerimine langevad kokku. */
   const [mode, setMode] = useState(() =>
-    isHome ? (shouldResumeHome ? "room" : "walk") : "panel"
+    isHome ? (shouldResumeHome ? "room" : "walk") : isCarouselRoute ? "room" : "panel"
   );
   const [veil, setVeil] = useState(() =>
     isHome && !shouldResumeHome ? "shown" : "gone"
@@ -205,12 +221,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [infoHub, setInfoHub] = useState(false);
   /* Töölaud ja Tööheaolu = kaardikomplektid SAMAS karussellis (tellija
      10.07: "kaartide keritav rivi, mitte üks paneel väikeste nuppudega") —
-     sama muster mis Haldus. Tööheaolu avaneb Töölaua seest. */
-  const [workspaceHub, setWorkspaceHub] = useState(false);
-  const [wellbeingHub, setWellbeingHub] = useState(false);
-  /* Kovisiooni alamkomplekt (tellija 10.07): "Kovisioon" kaart avab
-     kolm valikut — Kovisiooni ruum, Teemaseemned, Parimad praktikad. */
-  const [kovisionHub, setKovisionHub] = useState(false);
+     sama muster mis Haldus. Tööheaolu ja Kovisioon avanevad Töölaua seest
+     (viimane annab kolm valikut: Kovisiooni ruum, Teemaseemned, Parimad
+     praktikad).
+     21.07: nende kolme OLEK on kustutatud — ainus tõeallikas on marsruut
+     (isWorkspaceRoute / isWellbeingRoute / isKovisionRoute). Kaks tõeallikat
+     (olek + pathname) oleksid omavahel võidelnud: tagasi-nupp muudaks URL-i,
+     aga olek jätaks kaardid ette. */
   /* Taustaheli juhtnupud "ukse peal" ehk KÕNNIS (tellija 06.07 öö):
      vaigista/taasta + järgmine lugu. Viimane valitud lugu jääb meelde,
      et vaigistus→taastus ei viskaks alati Meloodia I peale. */
@@ -738,6 +755,26 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     setTopbarOpen(false);
   }, [pathname]);
 
+  /* /toolaud on sisselogitu pind: väljalogitult (või pärast "Välja")
+     naaseb ruum avalehele, kus avalik komplekt pakub "Logi sisse".
+     replace, mitte push — väljalogitud töölaud ei jää ajalukku. */
+  useEffect(() => {
+    if (!isWorkspaceRoute || status !== "unauthenticated") return;
+    router.replace(localizePath("/", locale));
+  }, [isWorkspaceRoute, status, router, locale]);
+
+  /* Jäta viimane karusselli-HUBI marsruut meelde: PanelFrame'i sulgemisrist
+     naaseb sinna, kust paneel avati (töölaualt avatud leht → töölauale,
+     mitte avalehele). Kaardi-lehti (/ruum, /uuenda-pin) ei salvestata —
+     vt lib/roomHubReturn.js. */
+  useEffect(() => {
+    if (isHome) rememberRoomHubPath("/");
+    else if (isWellbeingRoute) rememberRoomHubPath("/toolaud/tooheaolu");
+    else if (isKovisionRoute) rememberRoomHubPath("/toolaud/kovisioon");
+    else if (isWorkspaceRoute) rememberRoomHubPath("/toolaud");
+    else if (isProfileHub) rememberRoomHubPath("/profiil");
+  }, [isHome, isWorkspaceRoute, isWellbeingRoute, isKovisionRoute, isProfileHub]);
+
   /* ---------- login-modali kest ---------- */
   useEffect(() => {
     const root = document.documentElement;
@@ -785,7 +822,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const workItems = useMemo(() => {
     const items = [
       { key: "ruumid", label: t("nav.rooms"), href: "/ruum", icon: <RoomsCardIcon /> },
-      { key: "toolaud", label: t("nav.workspace"), action: "toolaud", icon: <WorkspaceCardIcon /> },
+      { key: "toolaud", label: t("nav.workspace"), href: "/toolaud", icon: <WorkspaceCardIcon /> },
       { key: "vestlus", label: t("nav.chat"), href: "/vestlus", icon: <ChatCardIcon /> },
       { key: "profiil", label: t("nav.profile"), href: "/profiil", icon: <ProfileCardIcon /> },
     ];
@@ -819,8 +856,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "supervisioon", roles: SPECIALIST, label: t("supervision.meta.title", "Supervisioon"), href: "/supervisioon", icon: <SupervisionIcon /> },
       { key: "mentorlus", roles: SPECIALIST, label: t("chat.workspace.cards.mentoring.title", "Mentorlus"), href: "/mentorlus", icon: <MentorIcon /> },
       { key: "valitoo", roles: SPECIALIST, label: t("field.meta.title", "Välitöö"), href: "/valitoo", icon: <FieldIcon /> },
-      { key: "kovisioon", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.kovision.title", "Kovisioon"), action: "kovisioon", icon: <KovisionIcon /> },
-      { key: "tooheaolu", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), action: "tooheaolu", icon: <WellbeingIcon /> },
+      { key: "kovisioon", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.kovision.title", "Kovisioon"), href: "/toolaud/kovisioon", icon: <KovisionIcon /> },
+      { key: "tooheaolu", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), href: "/toolaud/tooheaolu", icon: <WellbeingIcon /> },
       { key: "refleksioon", roles: ["SOCIAL_WORKER"], label: t("reflection.meta.title", "Meetodipeegel"), href: "/refleksioon", icon: <ReflectionIcon /> },
     ];
     const cards = all.filter((card) => card.roles.includes(role));
@@ -890,11 +927,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   );
 
   const isProfileContext = isProfileHub || isProfileCardPage;
-  const isAdminHub = adminHub && isAdmin && !isProfileContext;
+  /* Haldus jääb olekuks (avalehe alamkomplekt) — marsruut võidab oleku, et
+     /toolaud näitaks alati töölauda, ka siis kui haldus jäi lahti. */
+  const isAdminHub = adminHub && isAdmin && !isProfileContext && !isWorkspaceRoute;
   const isInfoHub = infoHub && isProfileHub;
-  const isWorkspaceHub = workspaceHub && isAuthed && !isProfileContext && !isAdminHub;
-  const isWellbeingHub = wellbeingHub && isWorkspaceHub;
-  const isKovisionHub = kovisionHub && isWorkspaceHub && !isWellbeingHub;
+  const isWorkspaceHub = isWorkspaceRoute && isAuthed;
+  const isWellbeingHub = isWellbeingRoute && isWorkspaceHub;
+  const isKovisionHub = isKovisionRoute && isWorkspaceHub;
   const carouselSet = isProfileContext
     ? isInfoHub
       ? "info"
@@ -980,9 +1019,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         pendingStandbyRef.current = true;
         setAdminHub(false);
         setInfoHub(false);
-        setWorkspaceHub(false);
-        setWellbeingHub(false);
-        setKovisionHub(false);
         clearCompletedArrival();
         signOut({ redirect: false }).catch(() => {});
         router.push(localizePath("/", locale));
@@ -992,9 +1028,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         // "Tagasi" profiililt = peavaliku kaardid (seade jääb sisse)
         setAdminHub(false);
         setInfoHub(false);
-        setWorkspaceHub(false);
-        setWellbeingHub(false);
-        setKovisionHub(false);
         router.push(localizePath("/", locale));
         return;
       }
@@ -1006,30 +1039,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         setAdminHub(false);
         return;
       }
-      if (item.action === "toolaud") {
-        setWorkspaceHub(true);
-        return;
-      }
+      /* Töölaud ja selle alamkomplektid on marsruudid → "Tagasi" on
+         navigatsioon, mitte oleku nullimine (omanik 21.07). */
       if (item.action === "toolaud-tagasi") {
-        setWellbeingHub(false);
-        setKovisionHub(false);
-        setWorkspaceHub(false);
+        router.push(localizePath("/", locale));
         return;
       }
-      if (item.action === "tooheaolu") {
-        setWellbeingHub(true);
-        return;
-      }
-      if (item.action === "tooheaolu-tagasi") {
-        setWellbeingHub(false);
-        return;
-      }
-      if (item.action === "kovisioon") {
-        setKovisionHub(true);
-        return;
-      }
-      if (item.action === "kovisioon-tagasi") {
-        setKovisionHub(false);
+      if (item.action === "tooheaolu-tagasi" || item.action === "kovisioon-tagasi") {
+        router.push(localizePath("/toolaud", locale));
         return;
       }
       if (item.action === "teave") {
@@ -1200,9 +1217,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
               onSelect={handleSelect}
               onRoleChanged={refreshEffectiveRole}
               t={t}
-              /* Töölaud ja tööheaolu: rollipõhine keritav ruudustik. */
+              /* Töölaud ja tööheaolu: rollipõhine keritav ruudustik.
+                 Küljenooled jäävad alles ja kerivad lehe kaupa (omanik 21.07). */
               grid={carouselSet === "workspace" || carouselSet === "wellbeing"}
-              desktopArrows={carouselSet !== "workspace" && carouselSet !== "wellbeing"}
             />
           </div>
 

@@ -33,7 +33,6 @@ export default function GlassCarousel({
   forceInitial = false,
   visible = 3,
   grid = false,
-  desktopArrows = true,
 }) {
   const n = items.length;
 
@@ -185,37 +184,114 @@ export default function GlassCarousel({
     [n]
   );
 
+  /* ---------- Keritav ruudustik: LEHE kaupa, nagu tavakarussellis ----------
+     Vaateaken on viie veeru laiune (carousel.css), nii et üks samm = üks
+     täis leht (5 × 2 = 10 kaarti). Ruudustik EI ole ringjas: viimasest
+     lehest edasi ei tule esimene, vaid nool kaob (omanik 21.07). */
+  const gridPage = useCallback((dir) => {
+    const list = listRef.current;
+    if (!list) return;
+    const cs = window.getComputedStyle(list);
+    const gap = parseFloat(cs.columnGap) || 0;
+    const padX = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+    const col = list.querySelector(".gc-item")?.getBoundingClientRect().width || 0;
+    const stride = col + gap;
+    if (stride <= 0) return;
+    /* +2px talumine: clientWidth ümardatakse täisarvuks (1081 vs tegelik
+       1081,44), mille peale floor annaks viie veeru asemel neli ja leht
+       hüppaks poolikult. */
+    const perPage = Math.max(1, Math.floor((list.clientWidth - padX + gap + 2) / stride));
+    const reduced =
+      document.documentElement.getAttribute("data-reduce-motion") === "1";
+    list.scrollBy({
+      left: dir * perPage * stride,
+      behavior: reduced ? "auto" : "smooth",
+    });
+  }, []);
+
+  /* Noolte nähtavus: kumbki pool ainult siis, kui sinnapoole on veel kerida. */
+  const [gridEdges, setGridEdges] = useState({ prev: false, next: false });
+  const readGridEdges = useCallback(() => {
+    const list = listRef.current;
+    const next = (() => {
+      if (!isGrid || !list) return { prev: false, next: false };
+      const max = list.scrollWidth - list.clientWidth;
+      return { prev: list.scrollLeft > 2, next: list.scrollLeft < max - 2 };
+    })();
+    setGridEdges((cur) =>
+      cur.prev === next.prev && cur.next === next.next ? cur : next
+    );
+  }, [isGrid]);
+
+  useEffect(() => {
+    readGridEdges();
+    const list = listRef.current;
+    if (!isGrid || !list) return undefined;
+    const onScroll = () => readGridEdges();
+    list.addEventListener("scroll", onScroll, { passive: true });
+    /* Kaardiarv muutub rollivahetusega ja laius akna suurusega — mõlemad
+       muudavad seda, kas kerida on veel kuhugi. */
+    const ro =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver(() => readGridEdges())
+        : null;
+    ro?.observe(list);
+    return () => {
+      list.removeEventListener("scroll", onScroll);
+      ro?.disconnect();
+    };
+  }, [isGrid, readGridEdges, items]);
+
+  /* Küljenool: ruudustikus leht edasi/tagasi, karussellis üks kaart. */
+  const navigate = useCallback(
+    (dir) => {
+      if (!isGrid) {
+        step(dir);
+        return;
+      }
+      if (stepAllowed()) gridPage(dir);
+    },
+    [isGrid, gridPage, step]
+  );
+
   /* Klaviatuur karussellil */
   const onKeyDown = useCallback(
     (e) => {
-      if (e.key === "ArrowLeft") {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        const dir = e.key === "ArrowLeft" ? -1 : 1;
         e.preventDefault();
-        step(-1, { focus: true });
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        step(1, { focus: true });
-      } else if (e.key === "Home") {
-        e.preventDefault();
-        if (stepAllowed()) {
-          setActive(0);
+        if (isGrid) {
+          if (stepAllowed()) gridPage(dir);
+        } else {
+          step(dir, { focus: true });
         }
-      } else if (e.key === "End") {
+      } else if (e.key === "Home" || e.key === "End") {
         e.preventDefault();
-        if (stepAllowed()) {
-          setActive(n - 1);
+        if (isGrid) {
+          /* Ruudustik ei pöörle: Home/End viivad rea algusesse ja lõppu. */
+          listRef.current?.scrollTo({
+            left: e.key === "Home" ? 0 : listRef.current.scrollWidth,
+            behavior: "smooth",
+          });
+        } else if (stepAllowed()) {
+          setActive(e.key === "Home" ? 0 : n - 1);
         }
       }
     },
-    [step, n]
+    [step, n, isGrid, gridPage]
   );
 
   /* Lohistamine ja svaip. NB: pointer capture võetakse ALLES siis,
      kui lohistus päriselt algab — varajane capture suunaks pointerup'i
      UL-ile ja kaartide click-sündmus ei jõuaks kunagi kohale. */
+  /* Ruudustik kerib natiivselt (overflow + snap) — seal EI tohi lohistus
+     pointerit haarata ega karusselli pöörata (omanik 21.07: kerimisloogika
+     oli vale). Puutežest jääb brauseri enda hooleks. */
   const onPointerDown = useCallback((e) => {
+    if (isGrid) return;
     if (e.button != null && e.button !== 0) return;
     drag.current = { on: true, x0: e.clientX, dx: 0, moved: false, pid: e.pointerId };
-  }, []);
+  }, [isGrid]);
   const onPointerMove = useCallback((e) => {
     const d = drag.current;
     if (!d.on) return;
@@ -306,11 +382,10 @@ export default function GlassCarousel({
       if (tag === "input" || tag === "textarea" || tag === "select" || t?.isContentEditable) {
         return;
       }
-      /* Keritav ruudustik: nooled kerivad KÜLGEDELE, ei pöörle. */
-      const gridList = gridCanScrollX();
-      if (gridList) {
+      /* Keritav ruudustik: nooled kerivad LEHE kaupa, ei pöörle. */
+      if (gridCanScrollX()) {
         e.preventDefault();
-        gridList.scrollBy({ left: (e.key === "ArrowLeft" ? -1 : 1) * (gridList.clientWidth * 0.6), behavior: "smooth" });
+        if (stepAllowed()) gridPage(e.key === "ArrowLeft" ? -1 : 1);
         return;
       }
       if (!carouselInteractive()) return;
@@ -319,14 +394,14 @@ export default function GlassCarousel({
     };
     const onWheel = (e) => {
       if (e.defaultPrevented) return;
-      /* Keritav ruudustik: püstine hiireratas kerib KÜLGEDELE (töölaud on
-         horisontaalne riiul). Puuteplaadi horisontaal (deltaX) samuti. */
-      const gridList = gridCanScrollX();
-      if (gridList) {
+      /* Keritav ruudustik: püstine hiireratas viib LEHE edasi (töölaud on
+         horisontaalne riiul). Puuteplaadi horisontaal (deltaX) samuti.
+         Sammulukk hoiab tempo — muidu vuhiseks üks kerimisžest mitu lehte. */
+      if (gridCanScrollX()) {
         const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        if (Math.abs(d) < 2) return;
-        gridList.scrollLeft += d;
+        if (Math.abs(d) < 12) return;
         e.preventDefault();
+        if (stepAllowed()) gridPage(d > 0 ? 1 : -1);
         return;
       }
       if (!carouselInteractive()) return;
@@ -341,7 +416,7 @@ export default function GlassCarousel({
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("wheel", onWheel);
     };
-  }, [carouselInteractive, step, isGrid]);
+  }, [carouselInteractive, step, isGrid, gridPage]);
 
   const handleActivate = useCallback(
     (e, item, i) => {
@@ -396,14 +471,14 @@ export default function GlassCarousel({
       className="gc"
       data-visible={shown}
       data-grid-scroll={isGrid ? "1" : "0"}
-      data-desktop-arrows={desktopArrows ? "1" : "0"}
       aria-label={t("room.menu_label")}
       id="room-menu"
     >
       <IconButton
         layoutClassName="gc-arrow gc-arrow--left"
         aria-label={t("room.prev_panel")}
-        onClick={() => step(-1)}
+        disabled={isGrid && !gridEdges.prev}
+        onClick={() => navigate(-1)}
       >
         <ChevronIcon direction="left" strokeWidth={1.05} />
       </IconButton>
@@ -473,7 +548,8 @@ export default function GlassCarousel({
       <IconButton
         layoutClassName="gc-arrow gc-arrow--right"
         aria-label={t("room.next_panel")}
-        onClick={() => step(1)}
+        disabled={isGrid && !gridEdges.next}
+        onClick={() => navigate(1)}
       >
         <ChevronIcon direction="right" strokeWidth={1.05} />
       </IconButton>

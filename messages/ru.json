@@ -850,6 +850,10 @@
       "title": "Комнаты | SotsiaalAI",
       "description": "Просматривайте комнаты и общие диалоги SotsiaalAI."
     },
+    "workspace": {
+      "title": "Рабочий стол | SotsiaalAI",
+      "description": "Откройте инструменты своей роли: карту услуг, обращения, документы и формы поддержки."
+    },
     "reset": {
       "title": "Восстановление PIN-кода | SotsiaalAI",
       "description": "Восстановите PIN-код учётной записи SotsiaalAI."

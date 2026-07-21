@@ -14,6 +14,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { localizePath } from "@/lib/localizePath";
+import { readRoomHubPath } from "@/lib/roomHubReturn";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
@@ -83,6 +84,10 @@ export default function PanelFrame({ children }) {
      sektsiooni valides (?sektsioon=konto). */
   const isProfileHub =
     normalized === "/profiil" && !String(searchParams?.get("sektsioon") || "").trim();
+  /* Töölaud koos alamkomplektidega (/toolaud/tooheaolu, /toolaud/kovisioon)
+     on karussell (RoomStage), mitte paneel — lehed ise on ainult marsruudi-
+     markerid sr-only sisuga (omanik 21.07, vt app/toolaud/page.jsx). */
+  const isWorkspaceHub = normalized === "/toolaud" || normalized.startsWith("/toolaud/");
   const isAdmin = normalized.startsWith("/admin");
   const isConversation = normalized.startsWith("/vestlus");
   const isChat = isConversation || normalized.startsWith("/teekond");
@@ -140,12 +145,13 @@ export default function PanelFrame({ children }) {
       router.push(localizePath("/vestlus?workspace=1", locale));
       return;
     }
-    // muu (sh Ruumid) peavalikusse
-    router.push(localizePath("/", locale));
+    // muu (sh Ruumid) tagasi sellesse karusselli-hubi, kust leht avati:
+    // töölaualt avatud leht → /toolaud, mujalt → avaleht.
+    router.push(localizePath(readRoomHubPath("/"), locale));
   }, [router, locale, isProfileCardPage, isProfileSectionPage, normalized]);
 
   useEffect(() => {
-    if (isHome || isProfileHub) return undefined;
+    if (isHome || isProfileHub || isWorkspaceHub) return undefined;
     const onKey = (e) => {
       if (e.key !== "Escape" || e.defaultPrevented) return;
       if (document.body.classList.contains("modal-open")) return;
@@ -158,7 +164,7 @@ export default function PanelFrame({ children }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isHome, isProfileHub, closePanel]);
+  }, [isHome, isProfileHub, isWorkspaceHub, closePanel]);
 
   /* Kerimiskoha säilitamine paneeli kohta (naasmisel sama koht). */
   useEffect(() => {
@@ -187,7 +193,9 @@ export default function PanelFrame({ children }) {
     };
   }, [isHome, normalized]);
 
-  if (isHome || isLogoExport) return children;
+  /* Töölaud: sr-only marker jääb DOM-i (ekraanilugeja, robotid), paneelikesta
+     EI teki — nähtav navigatsioon on RoomStage'i töölaua-karussell. */
+  if (isHome || isLogoExport || isWorkspaceHub) return children;
   if (isProfileHub) {
     // Sisu jääb monteerituks (seis säilib), aga on peidus ja inertne —
     // nähtav navigatsioon on RoomStage'i profiili-karussell.
