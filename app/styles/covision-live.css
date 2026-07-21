@@ -197,6 +197,9 @@
 }
 
 .cvl-topbar {
+  /* Kerivas flex-veerus (mobiil) EI tohi kokku suruda — muidu sisu voolab
+     jaamanavi peale (mõõdetud overlap). */
+  flex: 0 0 auto;
   display: grid;
   grid-template-columns: minmax(15rem, 1fr) auto minmax(15rem, 1fr);
   gap: 1rem;
@@ -300,6 +303,7 @@
 
 .cvl-support-banner,
 .cvl-pause-banner {
+  flex: 0 0 auto;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -1354,11 +1358,21 @@
 }
 
 @media (max-width: 820px) {
+  /* Mobiil: lõuendireegel ei kehti (leping „v.a mobiil") — kest kerib
+     SEES, nii et lennulava saab kaartidele täiskõrguse ega suru neid
+     värava/doki peale (mõõdetud viga: lava 93 px, kaart top 696 =
+     värava all). Ülemised ribad ja gate/dokk voolavad, lava on pikk. */
   .cvl-shell {
     height: 100%;
     min-height: 0;
+    overflow-y: auto;
     border-inline: 0;
     border-radius: 0;
+  }
+
+  .cvf-stage-view {
+    flex: 0 0 auto;
+    min-height: 62vh;
   }
 
   .cvl-topbar {
