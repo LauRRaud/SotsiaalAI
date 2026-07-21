@@ -78,18 +78,10 @@ div[role="presentation"][aria-hidden="true"] {
   border: 0;
 }
 
-/* Keritav sisu: algab ülevalt, ühtlane polster, scrollbar peidus */
-[role="dialog"][aria-labelledby="a11y-title"] > div[tabindex="0"] {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 1.2rem 1rem 1.2rem;
-  scrollbar-width: none;
-}
-[role="dialog"][aria-labelledby="a11y-title"] > div[tabindex="0"]::-webkit-scrollbar {
-  display: none;
-}
+/* NB (21.07): keritavat sisukonteinerit (`> div[tabindex="0"]`) EI OLE
+   enam — sektsioonid on jaamad ja lennugeomeetria elab a11y-flight.css-is
+   (.a11f-*). Siia jäävad kaardi kest + valikukaartide materjal, mida lend
+   taaskasutab muutmata kujul. */
 
 .csp-step {
   margin: 0 0 1.1rem;

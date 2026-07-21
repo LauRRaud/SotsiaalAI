@@ -134,7 +134,9 @@ export default function RegistreerimineBody({}) {
     return list;
   }, [isRoleLocked, isProfessionalUser, showSuccessState]);
 
+  /* parallax: hiir nihutab kadumispunkti (omanik 21.07) */
   const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
+    parallax: true,
     count: stations.length,
     initialIndex: 0,
   });

@@ -64,7 +64,14 @@
   position: absolute;
   inset: 0;
   perspective: 1100px;
-  perspective-origin: 50% 46%;
+  /* Hiireparallaks (omanik 21.07): kadumispunkt järgib osutit, mistõttu
+     sügavamad jaamad liiguvad rohkem kui lähedal olev. --par-* kirjutab
+     useStationFlight kaadrisilmuses; ilma parallaksita jääb 50%/46%. */
+  perspective-origin: calc(50% + var(--par-x, 0px)) calc(46% + var(--par-y, 0px));
+  /* Ainult kadumispunktist ei piisa: kaamera tasapinnal seisev AKTIIVNE
+     jaam jääks liikumatuks. Terve stseen nihkub õrnalt vastassuunas, nii
+     et ka esiplaan hingab — sügavusvahe säilib. */
+  translate: calc(var(--par-x, 0px) * -0.3) calc(var(--par-y, 0px) * -0.3);
 }
 .rgf-plane {
   position: absolute;

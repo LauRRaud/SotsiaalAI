@@ -1,0 +1,188 @@
+@layer components {
+/* ============================================================
+   Keel ja ligipääsetavus = JAAMALEND (omanik 21.07: „pidi olema
+   sektsioonide kaupa ja läbi lennatav, nagu registreeru leht").
+   Iga eelistuste sektsioon on jaam sügavuses; kaamera lendab nende
+   vahel — kerimist EI OLE. Mootor: components/register/useStationFlight.js
+   (sama mis /registreerimine ja Kovisioon).
+
+   Tööjaotus: kaardi kest, valikukaartide materjal ja .csp-step
+   sisutüpograafia jäävad a11y-modal.css-i; SIIN on ainult lennu-
+   geomeetria (lava, dolly, plaanid) + dokk. Laaditakse a11y-modal.css
+   JÄREL, et kesta kõrgusreegel saaks üle kirjutatud.
+   Haagid: .a11f-*.
+   ============================================================ */
+
+/* Kest = KOGU EKRAAN (omanik 21.07: „mulle ei meeldi, et sa panid selle
+   kaardi sisse ... meeldiks kui terve ekraan oleks kasutatav"). Kaardi
+   geomeetria, klaaspind ja ääris a11y-modal.css-ist tühistatakse: lend
+   vajab ruumi, mitte raami. */
+[role="dialog"][aria-labelledby="a11y-title"] {
+  inset: 0;
+  left: 0;
+  top: 0;
+  translate: none;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* Loor: lennu ajal EI OLE tausta (omanik 21.07: „tausta ei oleks sel
+   hetkel kui seal lendan (hetkel on seal taustaks keritavad kaardid)").
+   Peaaegu läbipaistmatu ruumipimedus — mitte kerge hämardus. */
+/* Sama atribuudipaar mis a11y-modal.css baasreeglil + klass, muidu
+   kaotaks see spetsiifilisuses ega kataks kaardirida. */
+div[role="presentation"][aria-hidden="true"].a11f-veil {
+  background: rgba(9, 6, 5, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+/* Ja kaardirivi ise läheb magama — loori taga vilkuv liikumine tõmbaks
+   pilku ka siis, kui teda vaevu näha on. (Sihtmärk elab room.css-is;
+   reegel elab siin, sest ta kuulub lennu juurde. Atribuudid korratakse
+   room.css `[data-power][data-cards-ready]` reeglist, et pointer-events
+   päriselt maha läheks — ilma !important'ita.) */
+.room[data-a11y-open="1"] .room-carousel-wrap,
+.room[data-power="on"][data-cards-ready="1"][data-a11y-open="1"] .room-carousel-wrap {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --- Lava -------------------------------------------------- */
+.a11f-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  /* Svaip = jaamavahetus; pan'itavat sisu pole. */
+  touch-action: manipulation;
+}
+
+/* --- Dolly + plaanid (flight-effect.md §3) ------------------ */
+/* Perspektiiv plaanide OTSESEL vanemal; kaamera --cam muutujana.
+   Alumine inset jätab doki jaoks ruumi (inset arvestab polsterkasti,
+   seega padding siin ei aitaks). */
+.a11f-dolly {
+  --cam: 0px;
+  position: absolute;
+  inset: 0 0 4.6rem;
+  perspective: 1100px;
+  /* Hiireparallaks: kadumispunkt järgib osutit (--par-* tuleb mootori
+     kaadrisilmusest); ilma parallaksita jääb keskele. */
+  perspective-origin: calc(50% + var(--par-x, 0px)) calc(48% + var(--par-y, 0px));
+  /* Ainult kadumispunktist ei piisa: kaamera tasapinnal seisev AKTIIVNE
+     jaam jääks liikumatuks. Terve stseen nihkub õrnalt vastassuunas, nii
+     et ka esiplaan hingab — sügavusvahe säilib. */
+  translate: calc(var(--par-x, 0px) * -0.3) calc(var(--par-y, 0px) * -0.3);
+}
+.a11f-plane {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(92vw, 25.5rem);
+  visibility: hidden; /* JS/flat-reeglid lülitavad sisse */
+}
+.a11f-stage[data-mode="3d"] .a11f-plane {
+  transform: translate(-50%, -50%) translateZ(calc(var(--z) + var(--cam, 0px)));
+  opacity: var(--o, 0);
+  will-change: transform, opacity;
+}
+/* Flat-fallback (reduced-motion või lame 3D): sama jaamamudel,
+   ainult ristsulandus — ikka üks sektsioon korraga. */
+.a11f-stage[data-mode="flat"] .a11f-plane {
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition:
+    opacity 260ms var(--ease-soft),
+    visibility 0s linear 260ms;
+}
+.a11f-stage[data-mode="flat"] .a11f-plane[data-active="1"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 260ms var(--ease-soft);
+}
+
+/* Lennureegel (ruumikeele leping): blur-kihti EI transformita.
+   Valikukaardid saavad a11y-modal.css-ist backdrop-filter'i, aga
+   plaanid liiguvad igal kaadril → siin võtame selle maha. Prefiks on
+   sama mis materjalireeglil + .a11f-plane, seega spetsiifilisus võidab. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .a11f-plane .csp-step label[data-control-type],
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog"][aria-labelledby="a11y-title"] .a11f-plane .csp-step button[data-variant="primary"] {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+/* --- Jaama sisu --------------------------------------------- */
+/* Plaanis on korraga ÜKS sektsioon — virnastamise vahe kaob ära. */
+.a11f-plane .csp-step {
+  margin: 0;
+}
+/* Sektsiooni nimi on nüüd jaama pealkiri, mitte nimekirja vahepealkiri:
+   veidi suurem ja hingavam, kuid sama caps-keel mis varem. */
+.a11f-plane .csp-step legend {
+  padding-bottom: 0.95em;
+  font-size: 1.02rem;
+}
+/* Kui mõni jaam siiski üle ääre kasvab (väga suur kiri), kerib jaam ise;
+   lennu-žest annab sellisel juhul sisemisele kerimisele eesõiguse. */
+.a11f-plane .csp-step > div {
+  max-height: calc(100lvh - 14rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.a11f-plane .csp-step > div::-webkit-scrollbar {
+  display: none;
+}
+
+/* Viimane jaam: teekonna lõpus on tegu, mitte valik. */
+.a11f-save {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+}
+.a11f-save-title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  color: var(--room-text);
+}
+
+/* --- Dokk: ruumi kaardimenüü DNA ---------------------------- */
+/* Välimus tuleb TERVENISTI carousel.css .gc-shortcut-* klassidest;
+   siin ainult positsioon kaardi allservas. Staatiline kiht → doki
+   backdrop-blur on lubatud (dokk ei transformi). */
+.a11f-dock {
+  position: absolute;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(0.9rem, 2.6lvh, 1.8rem));
+  transform: translateX(-50%);
+  z-index: 4200;
+  max-width: calc(100vw - 2rem);
+}
+/* Erinevalt registrist ei ole ükski jaam lukus — eelistused on
+   iseseisvad valikud, seega läbimata jaam ei tohi näida keelatuna. */
+.a11f-dock .gc-shortcut[data-state="open"] {
+  color: rgba(246, 238, 230, 0.62);
+}
+
+@media (max-width: 720px) {
+  .a11f-dolly {
+    perspective: 950px; /* lainurksem sügavus väikesel ekraanil */
+  }
+  .a11f-plane {
+    width: min(92vw, 23rem);
+  }
+  .a11f-dock {
+    max-width: calc(100vw - 1.6rem);
+  }
+}
+
+}

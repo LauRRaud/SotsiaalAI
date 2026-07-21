@@ -36,6 +36,11 @@ const FADE_OUT_LEN = 380;
 const VISIBLE_MIN = -1420;
 const VISIBLE_MAX = 680;
 const LERP = 0.11;
+/* Parallaks: kui palju kadumispunkt kõige servani viidud hiirega nihkub
+   ja kui pehmelt ta järele tuleb. Väike amplituud on tahtlik — see on
+   ruumivihje, mitte kiik. */
+const PARALLAX_RANGE = 34;
+const PARALLAX_LERP = 0.07;
 /* Sisse-triiv: mount'il alustab kaamera sihist veidi tagapool, et leht
    avaneks õrna edasiliikumisega (mitte staatilise kaadrina). */
 const ARRIVAL_DRIFT = 120;
@@ -62,7 +67,7 @@ function perspectiveWorks(dolly) {
   return w < 80;
 }
 
-export default function useStationFlight({ count, initialIndex = 0 }) {
+export default function useStationFlight({ count, initialIndex = 0, parallax = false }) {
   const dollyRef = useRef(null);
   const planesRef = useRef(new Map());
   const camRef = useRef(Math.max(0, initialIndex * STATION_DEPTH - ARRIVAL_DRIFT));
@@ -70,6 +75,13 @@ export default function useStationFlight({ count, initialIndex = 0 }) {
   const frameRef = useRef(0);
   const runningRef = useRef(false);
   const modeRef = useRef("3d");
+  /* Parallaks (omanik 21.07: „liigutan hiirt, siis elemendid ekraani keskel
+     liiguvad"): hiir nihutab kadumispunkti, mistõttu sügavamal seisvad
+     jaamad liiguvad rohkem kui lähedal olev — päris ruumitunne, mitte
+     ühtlane libisemine. Väärtused elavad kaadrisilmuses koos kaameraga,
+     et rAF ärkaks ja magaks ühe reegli järgi. */
+  const parRef = useRef({ x: 0, y: 0 });
+  const parTargetRef = useRef({ x: 0, y: 0 });
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [mode, setMode] = useState("3d");
 
@@ -84,6 +96,21 @@ export default function useStationFlight({ count, initialIndex = 0 }) {
     if (Math.abs(target - cam) < 0.2) cam = target;
     camRef.current = cam;
     dolly.style.setProperty("--cam", cam.toFixed(2) + "px");
+
+    /* Parallaks pehmendatakse sama lerp'iga — hiire hüpe ei nõksata lava. */
+    let parSettled = true;
+    if (parallax) {
+      const cur = parRef.current;
+      const aim = parTargetRef.current;
+      for (const axis of ["x", "y"]) {
+        let v = cur[axis] + (aim[axis] - cur[axis]) * PARALLAX_LERP;
+        if (Math.abs(aim[axis] - v) < 0.02) v = aim[axis];
+        else parSettled = false;
+        cur[axis] = v;
+      }
+      dolly.style.setProperty("--par-x", (cur.x * PARALLAX_RANGE).toFixed(2) + "px");
+      dolly.style.setProperty("--par-y", (cur.y * PARALLAX_RANGE).toFixed(2) + "px");
+    }
 
     for (const entry of planesRef.current.values()) {
       const rel = entry.z + cam;
@@ -105,12 +132,12 @@ export default function useStationFlight({ count, initialIndex = 0 }) {
       }
     }
 
-    if (cam === target) {
+    if (cam === target && parSettled) {
       runningRef.current = false;
       return;
     }
     frameRef.current = requestAnimationFrame(tick);
-  }, []);
+  }, [parallax]);
 
   const wake = useCallback(() => {
     if (runningRef.current || modeRef.current !== "3d") return;
@@ -175,6 +202,37 @@ export default function useStationFlight({ count, initialIndex = 0 }) {
   useEffect(() => {
     wake();
   }, [count, wake]);
+
+  /* Hiireparallaks: kadumispunkt järgib osutit. AINULT 3D-režiimis —
+     flat on liikumist vähendava kasutaja rada ja peab jääma paigal.
+     Puutega seadmel pointermove'i sisuliselt ei tule; pointerleave viib
+     lava rahulikult keskele tagasi. */
+  useEffect(() => {
+    if (!parallax || mode !== "3d" || typeof window === "undefined") return undefined;
+    const aim = (x, y) => {
+      const w = window.innerWidth || 1;
+      const h = window.innerHeight || 1;
+      parTargetRef.current = {
+        x: Math.max(-1, Math.min(1, (x - w / 2) / (w / 2))),
+        y: Math.max(-1, Math.min(1, (y - h / 2) / (h / 2))),
+      };
+      wake();
+    };
+    const onMove = (e) => {
+      if (e.pointerType === "touch") return;
+      aim(e.clientX, e.clientY);
+    };
+    const onLeave = () => {
+      parTargetRef.current = { x: 0, y: 0 };
+      wake();
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerleave", onLeave);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerleave", onLeave);
+    };
+  }, [parallax, mode, wake]);
 
   const registerPlane = useCallback((index, el) => {
     const planes = planesRef.current;
