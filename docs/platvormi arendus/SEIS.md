@@ -54,6 +54,7 @@ Reeglid:
 
 ## Kriitilised tööreeglid
 
+- **⚠ ÜLIMUSLIK REEGEL (omanik 21.07): EI TEE ENAM ERALDI HARUSID EGA WORKTREE-KAUSTU — kogu töö OTSE `main`-is** (main-kaustas `C:\Users\rauds\Desktop\SotsiaalAI`). Põhjus: eraldi harud/worktree'd hajutavad töö ja on hiljem RASKE kokku panna — 21.07 kulus terve sessioon **77 codex-haru + 13 worktree-kausta** konsolideerimisele, ja osa valminud tööst (T10 avalik sisu: juhend/tingimused/privaatsus/võimalused) oli **kuudeks main'ist väljas** `codex/public-v1`-l → omanik ei näinud oma tööd toodangus. Commit'i otse main'i; kirjuta pooleliolek KOHE siia. **See TÜHISTAB allpool oleva „JADATÖÖ" haru-/worktree-mustri** (lühiajalised harud, eraldi worktree-kaustad). Kehtima jäävad ainult: üks teema korraga · väravad enne · **merge/deploy AINULT omaniku selgel loal**. Vt [[git-remote-topology]]. (GitHubis on ainult `sotsiaalai-uus`=origin; vana `sotsiaalai`=`prod` remote on surnud — ära kasuta.)
 - **UUENDATUD 18.07:** kohalik põhitööpuu on PUHAS ja kohalik `main` on uus kanooniline baas (26 haru konsolideeritud, värav roheline: 1551 testi + i18n + 96-migratsiooni ahel + lint + build). **DEPLOY TEHTUD 18.07:** `origin/main` ja server on nüüd `adc83829` (= kohalik `main`); rollback-SHA `fe4eb4fa`.
 - Uued teemaharud luuakse kohalikust `main`-ist (mitte `origin/main`-ist); põhitööpuud ennast kasutatakse ainult read-only baasina.
 - Uus kooditöö tehakse ainult eraldi värskes worktree's ja ülesandes nimetatud baascommit'i pealt.
