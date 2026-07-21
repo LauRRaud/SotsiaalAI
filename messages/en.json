@@ -3615,7 +3615,8 @@
         "dock_step": "Stage {number}: {label} — {state}",
         "dock_locked": "Opens through the gate",
         "dock_done": "Completed — trace in Compass",
-        "dock_active": "Current stage"
+        "dock_active": "Current stage",
+        "scroll_hint": "scroll on ↓"
       },
       "ui": {
         "sigil": "C",

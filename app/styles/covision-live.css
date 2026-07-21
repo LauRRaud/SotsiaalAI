@@ -406,7 +406,36 @@
   flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
-  touch-action: manipulation;
+  /* Keris/svaip lava kohal juhib lendu (JS onWheel/onTouch) — pan-y
+     lubab vertikaalse svaibi jõuda meie käsitlejani, mitte brauseri
+     kerimisse. */
+  touch-action: pan-y;
+}
+
+/* Scroll-vihje: väike õrn märguanne, et lava kohal kerides liigub
+   järgmisele tööpinnale (kaob viimasel jaamal). */
+.cvf-scroll-hint {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  color: var(--text-dim, rgba(244, 241, 236, 0.55));
+  background: rgba(10, 8, 7, 0.35);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+  animation: cvf-hint-bob 2.4s var(--ease-soft) infinite;
+}
+
+@keyframes cvf-hint-bob {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 0.85; }
 }
 
 .cvf-dolly {
@@ -1358,21 +1387,15 @@
 }
 
 @media (max-width: 820px) {
-  /* Mobiil: lõuendireegel ei kehti (leping „v.a mobiil") — kest kerib
-     SEES, nii et lennulava saab kaartidele täiskõrguse ega suru neid
-     värava/doki peale (mõõdetud viga: lava 93 px, kaart top 696 =
-     värava all). Ülemised ribad ja gate/dokk voolavad, lava on pikk. */
+  /* Mobiil: kest EI keri — lennumudel kehtib ka siin (svaip = järgmine
+     tööpind), nii et topbar+nav+lava+värav+dokk mahuvad ekraanile ja
+     gate/dokk jäävad ALATI nähtavaks. Lava täidab jääkkõrguse, üks
+     tööpind korraga; pikk sisu kerib tööpinna SEES. */
   .cvl-shell {
     height: 100%;
     min-height: 0;
-    overflow-y: auto;
     border-inline: 0;
     border-radius: 0;
-  }
-
-  .cvf-stage-view {
-    flex: 0 0 auto;
-    min-height: 62vh;
   }
 
   .cvl-topbar {
@@ -1392,24 +1415,44 @@
     order: -1;
   }
 
-  /* Mobiilil kerib laud jaama sees (turvaklapp) — lõuend hoiab
-     kaartide jaoks kindlat kõrgust. */
   .cvf-plane {
     height: calc(100% - 1rem);
   }
 
+  /* Mobiilil pole lohistus mugav — laud muutub keritavaks kaardiloendiks
+     (svaip lava tühjal alal lendab järgmisele tööpinnale, kaartide kohal
+     kerib loendit). Pide peidetud (pointer-afford = desktop). */
   .cvf-plane[data-station="laud"] .cvf-plane-inner {
     grid-template-rows: none;
     align-content: start;
-    overflow-y: auto;
+    overflow: hidden;
   }
 
   .cvf-plane[data-station="laud"] .cvl-work-field {
-    height: auto;
+    height: 100%;
+  }
+
+  .cvl-card-field {
+    position: static;
+    inset: auto;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .cvl-card {
+    width: 100%;
+    transform: none;
+  }
+
+  .cvl-drag-handle {
+    display: none;
   }
 
   .cvl-canvas {
-    min-height: 36rem;
+    min-height: 0;
   }
 
   .cvl-structured-grid,

@@ -1616,6 +1616,83 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
 
   const activeStationKey = stations[Math.min(activeIndex, stations.length - 1)]?.key || "laud";
 
+  /* SCROLL JUHIB LENDU (omanik 21.07: „flight peab olema kasutusel — erinevaid
+     tööpindu ühes ekraaniaknas lihtsalt scrollides"). Keris/svaip = üks tööpind
+     edasi/tagasi (diskreetne jaama-target, MITTE scrollY-kaardistus — säilitab
+     flight-effekti robustse mudeli). Kui žesti all on veel keritavat sisu
+     (pikk kaart/vorm), keritakse KÕIGEPEALT seda ja lennatakse alles piiril —
+     nii mahub ühte etappi rohkem tööpindu, kui ekraanile korraga mahuks. */
+  const stageViewRef = useRef(null);
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+  const stationCountRef = useRef(stations.length);
+  stationCountRef.current = stations.length;
+
+  useEffect(() => {
+    const el = stageViewRef.current;
+    if (!el) return undefined;
+    const cooldown = { until: 0 };
+
+    const innerCanScroll = (target, delta) => {
+      let node = target;
+      while (node && node !== el) {
+        if (node.nodeType === 1) {
+          const oy = getComputedStyle(node).overflowY;
+          if ((oy === "auto" || oy === "scroll") && node.scrollHeight > node.clientHeight + 1) {
+            const atTop = node.scrollTop <= 0;
+            const atBottom = node.scrollTop + node.clientHeight >= node.scrollHeight - 1;
+            if (delta < 0 && !atTop) return true;
+            if (delta > 0 && !atBottom) return true;
+          }
+        }
+        node = node.parentElement;
+      }
+      return false;
+    };
+
+    const fly = (dir, stamp) => {
+      if (stamp < cooldown.until) return;
+      const next = activeIndexRef.current + dir;
+      if (next < 0 || next > stationCountRef.current - 1) return;
+      flyTo(next);
+      cooldown.until = stamp + 560;
+    };
+
+    const onWheel = (event) => {
+      if (Math.abs(event.deltaY) < 4) return;
+      if (innerCanScroll(event.target, event.deltaY)) return;
+      event.preventDefault();
+      fly(event.deltaY > 0 ? 1 : -1, event.timeStamp);
+    };
+
+    let startY = 0;
+    let startX = 0;
+    let startTarget = null;
+    const onTouchStart = (event) => {
+      startY = event.touches[0].clientY;
+      startX = event.touches[0].clientX;
+      startTarget = event.target;
+    };
+    const onTouchEnd = (event) => {
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+      const dy = startY - touch.clientY;
+      const dx = startX - touch.clientX;
+      if (Math.abs(dy) < 56 || Math.abs(dx) > Math.abs(dy)) return;
+      if (innerCanScroll(startTarget, dy)) return;
+      fly(dy > 0 ? 1 : -1, event.timeStamp);
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [flyTo]);
+
   const myParticipant = model.participants.find((item) => (
     item?.id === model.me?.participantId || (model.me?.userId && item?.userId === model.me.userId)
   ));
@@ -1699,9 +1776,14 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
       </p>
 
       {/* Lennulava: etapi osad on jaamad sügavuses, kaamera lendab osade
-          vahel (useStationFlight). Kerimist EI kaaperdata — kerib ainult
-          jaama SISU oma konteineris (turvaklapp). */}
-      <section className="cvf-stage-view" data-mode={flightMode}>
+          vahel (useStationFlight). Keris/svaip lava kohal = lend järgmisele
+          tööpinnale; sisu kerib enne, kui seda on. */}
+      <section className="cvf-stage-view" data-mode={flightMode} ref={stageViewRef}>
+        {activeIndex < stations.length - 1 ? (
+          <span className="cvf-scroll-hint" aria-hidden="true">
+            {copyValue(copy, "stations.scroll_hint")}
+          </span>
+        ) : null}
         <div className="cvf-dolly" ref={dollyRef}>
           {stations.map((def, index) => (
             <section

@@ -3607,7 +3607,8 @@
         "dock_step": "Этап {number}: {label} — {state}",
         "dock_locked": "Откроется через врата",
         "dock_done": "Пройден — след в Компасе",
-        "dock_active": "Текущий этап"
+        "dock_active": "Текущий этап",
+        "scroll_hint": "листайте дальше ↓"
       },
       "ui": {
         "sigil": "И",

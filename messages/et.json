@@ -3615,7 +3615,8 @@
         "dock_step": "Etapp {number}: {label} — {state}",
         "dock_locked": "Avaneb värava kaudu",
         "dock_done": "Läbitud — jälg Kompassis",
-        "dock_active": "Praegune etapp"
+        "dock_active": "Praegune etapp",
+        "scroll_hint": "keri edasi ↓"
       },
       "ui": {
         "sigil": "K",
