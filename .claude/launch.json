@@ -14,29 +14,23 @@
       "port": 3001
     },
     {
+      "name": "next-dev-auto",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:auto"],
+      "port": 3000,
+      "autoPort": true
+    },
+    {
       "name": "next-dev-public-v1",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-public-v1", "dev"],
       "port": 3000
     },
     {
-      "name": "next-dev-covision-v2",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:3001"],
-      "port": 3001
-    },
-    {
       "name": "next-dev-rooms-e1",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-rooms-calls-e1", "dev:3001"],
       "port": 3001
-    },
-    {
-      "name": "next-dev-covision-v2-auto",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-covision-v2", "dev:auto"],
-      "port": 3002,
-      "autoPort": true
     }
   ]
 }

@@ -3810,9 +3810,31 @@
       }
     },
     "live": {
-      "exit": {
-        "label": "Exit",
-        "aria": "Exit covision"
+      "exit": { "label": "Exit", "aria": "Exit covision" },
+      "spatial": {
+        "move_hint": "Drag a card by its handle or move it with the arrow keys; Home returns it to its place.",
+        "drag_handle": "Move card „{title}”",
+        "moving": "Moving card „{title}”.",
+        "moved": "Card „{title}” placed.",
+        "reset_one": "Card „{title}” returned to its original place.",
+        "reset_layout": "Reset layout",
+        "reset_notice": "Card layout reset."
+      },
+      "stations": {
+        "laud": "Shared table",
+        "ring": "Circle",
+        "kirjuta": "My workspace",
+        "kompass": "Compass",
+        "nav_aria": "Parts of this stage",
+        "back": "Previous part",
+        "next": "Next part",
+        "announce": "Part {current}/{total}: {label}",
+        "dock_aria": "Stages",
+        "dock_step": "Stage {number}: {label} — {state}",
+        "dock_locked": "Opens through the gate",
+        "dock_done": "Completed — trace in Compass",
+        "dock_active": "Current stage",
+        "scroll_hint": "scroll on ↓"
       },
       "ui": {
         "sigil": "C",

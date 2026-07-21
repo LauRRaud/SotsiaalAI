@@ -793,6 +793,9 @@ export default function TeemaseemnedPage({ owner = null }) {
         <span className="ts-nav-link" aria-current="page" data-active="1">
           {readText(t, "topic_seeds.brand.name", "Teemaseemned")}
         </span>
+        <Link className="ts-nav-link" href="/lopetatud-juhtumid">
+          {readText(t, "covision.workspace.nav.completed", "Lõpetatud juhtumid")}
+        </Link>
         <Link className="ts-nav-link" href="/parimad-praktikad">
           {readText(t, "room.kovision_practices_card", "Parimad praktikad")}
         </Link>

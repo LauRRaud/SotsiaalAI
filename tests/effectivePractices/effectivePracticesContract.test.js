@@ -156,15 +156,15 @@ test("effective-practice UI has a dedicated responsive and reduced-motion visual
   ]);
   assert.match(globals, /effective-practices\.css/);
   assert.match(css, /\.epp-shell/);
-  assert.match(css, /@media \(max-width: 620px\)/);
   assert.match(css, /prefers-reduced-motion: reduce/);
   assert.match(css, /:focus-visible/);
-  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.epp-shell \{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)[^}]*grid-template-rows:\s*auto minmax\(0, 1fr\)/);
-  assert.match(css, /\.epp-sidebar \{[^}]*grid-row:\s*1/);
-  assert.match(css, /\.epp-main \{\s*grid-row:\s*2/);
-  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.epp-sidebar \{[^}]*max-width:\s*100vw[^}]*overflow:\s*hidden/);
-  assert.match(css, /\.epp-sidebar nav\s*\{[\s\S]*max-width:\s*100%[\s\S]*display:\s*flex[\s\S]*overflow-x:\s*auto[\s\S]*scroll-snap-type:\s*x proximity/);
-  assert.match(css, /\.epp-sidebar nav a\s*\{[\s\S]*flex:\s*0 0 auto[\s\S]*white-space:\s*nowrap[\s\S]*scroll-snap-align:\s*start/);
+  // Kanooniline keel (sama grammatika mis teemaseemnetel): külgriba ja oma
+  // viewport-kest on kadunud, ülariba-nav murdub kitsal ekraanil täisreale
+  // ja mitmeveerulised võrgud lähevad üheveeruliseks.
+  assert.doesNotMatch(css, /\.epp-sidebar|100dvh/);
+  assert.match(css, /\.epp-shell \{[^}]*min-height:\s*100%/);
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*grid-template-columns:\s*1fr/);
+  assert.match(css, /@media \(max-width: 900px\)[\s\S]*\.epp-nav \{[^}]*flex-basis:\s*100%/);
 });
 
 test("all three locales contain the same effective-practices message tree", async () => {

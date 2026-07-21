@@ -51,6 +51,10 @@ test("wide workspaces and the single Kovisioon exit have explicit panel contract
   assert.equal((frame.match(/className="panel-exit"/g) || []).length, 1);
   assert.doesNotMatch(live, /panel-exit|covision\.live\.exit/);
   assert.match(panelCss, /button\.panel-exit\s*\{[\s\S]*position:\s*absolute[\s\S]*right:[\s\S]*width:\s*auto/);
-  assert.match(completedCss, /height:\s*100dvh[\s\S]*safe-area-inset-bottom/);
-  assert.match(practicesCss, /height:\s*100dvh[\s\S]*safe-area-inset-bottom/);
+  // Kanooniline keel: leht elab PanelFrame'i klaasaknas — oma viewport-kesta
+  // (100dvh / safe-area) EI ole, kest venib paneeli sees min-height: 100%.
+  assert.match(completedCss, /\.ccp-shell \{[^}]*min-height:\s*100%/);
+  assert.match(practicesCss, /\.epp-shell \{[^}]*min-height:\s*100%/);
+  assert.doesNotMatch(completedCss, /100dvh/);
+  assert.doesNotMatch(practicesCss, /100dvh/);
 });

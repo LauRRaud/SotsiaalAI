@@ -1,10 +1,19 @@
+/* ============================================================
+   Kovisiooni tööruum (.cvw) — juhtumi/seemne valik enne sessiooni.
+   KANOONILINE KEEL (sama mis teemaseeme.css): oma taustakasti EI OLE
+   (ruum paistab canvas-paneeli tagant), pinnad = --glass-cell-*,
+   tekst = --text-* token'id, üks neutraalne soe aktsent (--cvwa).
+   Nuppude PIND tuleb glass.css-ist (data-variant); siin ainult paigutus.
+   ============================================================ */
+
 .cvw,
 .cvw-session-wrap {
   min-height: 100%;
-  color: var(--text-main);
+  color: var(--text-warm);
 }
 
 .cvw {
+  --cvwa: 235, 226, 216;
   display: grid;
   height: 100%;
   min-height: 0;
@@ -14,9 +23,6 @@
   scrollbar-gutter: stable;
   gap: clamp(1rem, 2vw, 1.6rem);
   padding: clamp(1rem, 2.2vw, 2rem);
-  background:
-    radial-gradient(circle at 72% 18%, rgba(242, 170, 52, 0.09), transparent 28%),
-    radial-gradient(circle at 18% 72%, rgba(75, 126, 115, 0.1), transparent 34%);
 }
 
 .cvw-header {
@@ -27,8 +33,7 @@
   padding: clamp(1.1rem, 2vw, 1.75rem);
   border: 1px solid var(--glass-cell-border);
   border-radius: 1.4rem;
-  background: linear-gradient(145deg, rgba(10, 13, 14, 0.9), rgba(26, 27, 24, 0.72));
-  box-shadow: var(--shadow-soft);
+  background: var(--glass-cell-bg);
 }
 
 .cvw-header h1,
@@ -47,14 +52,14 @@
 .cvw-header p {
   max-width: 62ch;
   margin: 0.45rem 0 0;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 .cvw-kicker,
 .cvw-panel-kicker,
 .cvw-case-state,
 .cvw-seed-label {
-  color: var(--accent, #e8a43e) !important;
+  color: var(--text-dim);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -70,18 +75,25 @@
 
 .cvw-nav a {
   padding: 0.65rem 0.85rem;
-  border: 1px solid var(--glass-cell-border);
+  border: 1px solid transparent;
   border-radius: 999px;
   color: var(--text-dim);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.025);
+  transition:
+    color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    background-color var(--dur-fast) var(--ease-soft);
 }
 
-.cvw-nav a:hover,
+.cvw-nav a:hover {
+  color: var(--text-soft);
+  border-color: var(--glass-cell-border);
+}
+
 .cvw-nav a[aria-current="page"] {
-  border-color: rgba(232, 164, 62, 0.55);
-  color: var(--text-main);
-  background: rgba(232, 164, 62, 0.1);
+  color: var(--text-warm);
+  border-color: rgba(var(--cvwa), 0.3);
+  background: rgba(34, 30, 27, 0.54);
 }
 
 .cvw-grid {
@@ -97,8 +109,7 @@
 .cvw-session-nav {
   border: 1px solid var(--glass-cell-border);
   border-radius: 1.25rem;
-  background: rgba(13, 16, 16, 0.78);
-  backdrop-filter: blur(20px);
+  background: var(--glass-cell-bg);
 }
 
 .cvw-panel {
@@ -122,10 +133,10 @@
   width: 2.4rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(232, 164, 62, 0.42);
+  border: 1px solid rgba(var(--cvwa), 0.42);
   border-radius: 50%;
-  color: #f0bd6e;
-  background: rgba(232, 164, 62, 0.08);
+  color: var(--text-warm);
+  background: rgba(var(--cvwa), 0.08);
   font-variant-numeric: tabular-nums;
 }
 
@@ -144,9 +155,9 @@
   gap: 1rem;
   align-items: center;
   padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--glass-cell-border);
   border-radius: 1rem;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.035), rgba(232, 164, 62, 0.025));
+  background: var(--glass-cell-bg);
 }
 
 .cvw-case-symbol {
@@ -154,10 +165,10 @@
   width: 3rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(232, 164, 62, 0.42);
+  border: 1px solid rgba(var(--cvwa), 0.42);
   border-radius: 0.9rem 1.4rem 1rem 1.5rem;
-  color: #f1bb67;
-  background: rgba(232, 164, 62, 0.08);
+  color: var(--text-warm);
+  background: rgba(var(--cvwa), 0.08);
   font-size: 1.15rem;
   font-weight: 700;
 }
@@ -165,7 +176,7 @@
 .cvw-case-main > p:not(.cvw-case-state),
 .cvw-seed-card > p:not(.cvw-seed-label) {
   margin: 0.4rem 0 0;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 .cvw-case-main dl {
@@ -182,19 +193,19 @@
 }
 
 .cvw-case-main dt {
-  color: var(--text-faint);
+  color: var(--text-dim);
 }
 
 .cvw-case-main dd {
   margin: 0;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 .cvw-seed-card {
   padding: 1rem;
-  border: 1px solid rgba(232, 164, 62, 0.24);
+  border: 1px solid rgba(var(--cvwa), 0.24);
   border-radius: 1rem;
-  background: rgba(232, 164, 62, 0.035);
+  background: var(--glass-cell-bg);
 }
 
 .cvw-seed-card button {
@@ -206,13 +217,15 @@
 .cvw-state,
 .cvw-error {
   padding: 1.25rem;
-  color: var(--text-dim);
+  color: var(--text-soft);
 }
 
 .cvw-empty a {
   display: inline-flex;
   margin-top: 0.75rem;
-  color: #efb75f;
+  color: var(--text-warm);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .cvw-privacy-note {
@@ -221,8 +234,8 @@
   gap: 0.65rem;
   margin-top: 1rem;
   padding: 0.85rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-faint);
+  border-top: 1px solid var(--glass-cell-border);
+  color: var(--text-dim);
   font-size: 0.8rem;
 }
 
@@ -250,12 +263,12 @@
 }
 
 .cvw-notice {
-  color: #91c77c;
+  color: var(--status-success);
   font-size: 0.82rem;
 }
 
 .cvw-error {
-  color: #f3a28e;
+  color: var(--status-error);
 }
 
 @media (max-width: 980px) {

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import useStationFlight from "@/components/register/useStationFlight";
 import {
   COVISION_STAGE_COMPLETION_PHASES,
   COVISION_STAGE_PROGRESS_PHASES,
@@ -403,28 +404,90 @@ function InvitationAcceptance({ participant, me, busy, dispatchAction, copy }) {
   );
 }
 
-function StageRail({ stage, snapshots, completed, copy }) {
+/* Jaamanav — etapi OSADE (jaamade) vahetus. Vaatamine on vaba: chip viib
+   jaama igal hetkel; töö järjekorda hoiavad serveriväravad, mitte nav. */
+function StationNav({ stations, activeIndex, flyTo, copy }) {
+  return (
+    <nav className="cvf-station-nav" aria-label={copyValue(copy, "stations.nav_aria")}>
+      <button
+        type="button"
+        className="cvf-station-arrow"
+        disabled={activeIndex <= 0}
+        onClick={() => flyTo(activeIndex - 1)}
+        aria-label={copyValue(copy, "stations.back")}
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+      <div className="cvf-station-chips">
+        {stations.map((def, index) => (
+          <button
+            key={def.key}
+            type="button"
+            className={`cvf-station-chip ${index === activeIndex ? "is-active" : ""}`}
+            aria-current={index === activeIndex ? "true" : undefined}
+            onClick={() => flyTo(index)}
+          >
+            {copyValue(copy, `stations.${def.key}`)}
+          </button>
+        ))}
+      </div>
+      <button
+        type="button"
+        className="cvf-station-arrow"
+        disabled={activeIndex >= stations.length - 1}
+        onClick={() => flyTo(activeIndex + 1)}
+        aria-label={copyValue(copy, "stations.next")}
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    </nav>
+  );
+}
+
+/* Etapidokk — etapid 1–8 alumises kiirmenüü paneelis (sama .gc-shortcut-*
+   DNA mis avalehe kaardimenüüs ja registreerimise dokis). Dokk on
+   asukohanäit + vaatamise nav, MITTE väravast möödapääs: tulevane etapp
+   on lukus koos põhjusega, läbitud etapi klõps viib Kompassi jälje juurde. */
+function StageDock({ stage, snapshots, completed, copy, onSelect }) {
   const completedStages = new Set(snapshots.map((item) => Number(item?.stage)));
   return (
-    <ol className="cvl-stage-rail" aria-label={copyValue(copy, "ui.stages_aria")}>
-      {STAGE_NUMBERS.map((value) => {
-        const meta = copy?.stages?.[value] || {};
-        const state = completed || completedStages.has(value) || value < stage
-          ? "complete"
-          : value === stage
-            ? "active"
-            : "upcoming";
-        return (
-          <li key={value} className={`cvl-stage-step is-${state}`} aria-current={!completed && value === stage ? "step" : undefined}>
-            <span className="cvl-stage-number" aria-hidden="true">{completed || completedStages.has(value) || value < stage ? "✓" : value}</span>
-            <span>
-              <small>{formatCopy(copyValue(copy, "ui.stage_number"), { number: value })}</small>
-              <strong>{meta.short}</strong>
-            </span>
-          </li>
-        );
-      })}
-    </ol>
+    <nav className="cvf-stage-dock gc-shortcut-menu" aria-label={copyValue(copy, "stations.dock_aria")}>
+      <div className="gc-shortcut-track">
+        {STAGE_NUMBERS.map((value) => {
+          const meta = copy?.stages?.[value] || {};
+          const done = completed || completedStages.has(value) || value < stage;
+          const state = done ? "done" : value === stage ? "active" : "future";
+          const stateHint = state === "future"
+            ? copyValue(copy, "stations.dock_locked")
+            : state === "done"
+              ? copyValue(copy, "stations.dock_done")
+              : copyValue(copy, "stations.dock_active");
+          return (
+            <button
+              key={value}
+              type="button"
+              className="gc-shortcut"
+              data-on={state === "active" ? "1" : "0"}
+              data-state={state}
+              disabled={state === "future"}
+              aria-current={!completed && value === stage ? "step" : undefined}
+              aria-label={formatCopy(copyValue(copy, "stations.dock_step"), {
+                number: value,
+                label: meta.short || "",
+                state: stateHint
+              })}
+              onClick={() => onSelect(state)}
+            >
+              <span className="gc-shortcut-icon" aria-hidden="true">
+                <span className="cvf-dock-num">{done ? "✓" : value}</span>
+              </span>
+              <span className="gc-shortcut-text" aria-hidden="true">{meta.short}</span>
+              <span className="gc-shortcut-tooltip" aria-hidden="true">{stateHint}</span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
 
@@ -497,13 +560,68 @@ function ParticipantList({ participants, me, stage, busy, dispatchAction, copy }
   );
 }
 
-function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy }) {
+const CARD_NUDGE = 14;
+const CARD_NUDGE_LARGE = 48;
+
+function GripIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 18 24" focusable="false">
+      <circle cx="6" cy="6" r="1.6" />
+      <circle cx="12" cy="6" r="1.6" />
+      <circle cx="6" cy="12" r="1.6" />
+      <circle cx="12" cy="12" r="1.6" />
+      <circle cx="6" cy="18" r="1.6" />
+      <circle cx="12" cy="18" r="1.6" />
+    </svg>
+  );
+}
+
+function ItemCard({
+  item,
+  hero = false,
+  canManage,
+  busy,
+  dispatchAction,
+  copy,
+  movable = false,
+  offset = { x: 0, y: 0 },
+  isFront = false,
+  isMoving = false,
+  registerRef,
+  dragHandlers,
+  onNudge
+}) {
   const status = lower(item?.status, "shared_draft");
   const text = firstText(contentOf(item), copy);
   const closed = ["closed", "parked", "withdrawn", "completed"].includes(status);
+  const positioned = offset.x !== 0 || offset.y !== 0;
   return (
-    <article className={`cvl-card ${hero ? "cvl-hero" : ""} is-${status}`}>
+    <article
+      ref={movable && registerRef ? (el) => registerRef(item?.id, el) : undefined}
+      className={`cvl-card ${hero ? "cvl-hero" : ""} is-${status}`}
+      data-front={movable && isFront ? "true" : undefined}
+      data-moving={movable && isMoving ? "true" : undefined}
+      data-positioned={movable && positioned ? "true" : undefined}
+      style={movable ? { "--cvl-drag-x": `${offset.x}px`, "--cvl-drag-y": `${offset.y}px` } : undefined}
+    >
       <header>
+        {movable ? (
+          <button
+            type="button"
+            className="cvl-drag-handle"
+            aria-label={formatCopy(copyValue(copy, "spatial.drag_handle"), { title: kindLabel(item?.kind, copy) })}
+            aria-describedby="cvl-move-instructions"
+            aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home"
+            title={copyValue(copy, "spatial.move_hint")}
+            onPointerDown={(event) => dragHandlers?.begin(event, item)}
+            onPointerMove={dragHandlers?.move}
+            onPointerUp={(event) => dragHandlers?.end(event)}
+            onPointerCancel={(event) => dragHandlers?.end(event, { cancelled: true })}
+            onKeyDown={(event) => onNudge?.(event, item)}
+          >
+            <GripIcon />
+          </button>
+        ) : null}
         <span className="cvl-kind">{kindLabel(item?.kind, copy)}</span>
         <span className="cvl-status">{statusLabel(status, copy)}</span>
       </header>
@@ -514,6 +632,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {status !== "active" && !closed ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "active" })}
             >
@@ -523,6 +642,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {status === "active" ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "shared" })}
             >
@@ -532,6 +652,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {!closed ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "parked" })}
             >
@@ -544,10 +665,138 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
   );
 }
 
+/* Laud = liigutatav ruum (omanik 20.07: „pane kastide asemele liigutatavad
+   kastid nagu teemaseemnetel"). Jagatud kaardid seisavad voolus ja iga kaart
+   kannab drag-nihet (--cvl-drag-x/y) pidemest lohistades või nooleklahvidega;
+   piirid arvutatakse canvas'ist (kest ei keri, R5.0). Muster = TeemaseemnedPage
+   pointer-drag, ilma suuruse muutmiseta. */
 function WorkField({ items, stage, canManage, busy, dispatchAction, copy }) {
   const active = items.find((item) => lower(item?.status) === "active") || items.at(-1) || null;
-  const supporting = items.filter((item) => item !== active);
   const meta = copy?.stages?.[stage] || {};
+  const [offsets, setOffsets] = useState({});
+  const [movingId, setMovingId] = useState(null);
+  const [frontId, setFrontId] = useState(null);
+  const [notice, setNotice] = useState("");
+  const boundsRef = useRef(null);
+  const cardRefs = useRef(new Map());
+  const dragRef = useRef(null);
+
+  const registerRef = useCallback((id, el) => {
+    if (!id) return;
+    if (el) cardRefs.current.set(id, el);
+    else cardRefs.current.delete(id);
+  }, []);
+
+  const getOffset = useCallback((id) => offsets[id] || { x: 0, y: 0 }, [offsets]);
+
+  const getBounds = useCallback((cardEl, currentOffset) => {
+    const boundsEl = boundsRef.current;
+    if (!boundsEl || !cardEl) return null;
+    const b = boundsEl.getBoundingClientRect();
+    const c = cardEl.getBoundingClientRect();
+    const baseLeft = c.left - currentOffset.x;
+    const baseTop = c.top - currentOffset.y;
+    const inset = 6;
+    return {
+      minX: b.left + inset - baseLeft,
+      maxX: b.right - inset - (baseLeft + c.width),
+      minY: b.top + inset - baseTop,
+      maxY: b.bottom - inset - (baseTop + c.height)
+    };
+  }, []);
+
+  const constrain = useCallback((o, bounds) => {
+    if (!bounds) return o;
+    return {
+      x: Math.round(Math.min(Math.max(o.x, bounds.minX), bounds.maxX)),
+      y: Math.round(Math.min(Math.max(o.y, bounds.minY), bounds.maxY))
+    };
+  }, []);
+
+  const applyLive = useCallback((el, o) => {
+    if (!el) return;
+    el.style.setProperty("--cvl-drag-x", `${o.x}px`);
+    el.style.setProperty("--cvl-drag-y", `${o.y}px`);
+  }, []);
+
+  const dragHandlers = useMemo(() => ({
+    begin(event, item) {
+      if (event.button !== 0 || !item?.id) return;
+      const cardEl = cardRefs.current.get(item.id);
+      if (!cardEl) return;
+      const initial = getOffset(item.id);
+      dragRef.current = {
+        item,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        initial,
+        latest: initial,
+        bounds: getBounds(cardEl, initial),
+        cardEl
+      };
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setFrontId(item.id);
+      setMovingId(item.id);
+      setNotice(formatCopy(copyValue(copy, "spatial.moving"), { title: kindLabel(item.kind, copy) }));
+    },
+    move(event) {
+      const d = dragRef.current;
+      if (!d || d.pointerId !== event.pointerId) return;
+      const next = constrain(
+        { x: d.initial.x + event.clientX - d.startX, y: d.initial.y + event.clientY - d.startY },
+        d.bounds
+      );
+      d.latest = next;
+      applyLive(d.cardEl, next);
+    },
+    end(event, { cancelled = false } = {}) {
+      const d = dragRef.current;
+      if (!d || d.pointerId !== event.pointerId) return;
+      const final = cancelled ? d.initial : d.latest;
+      applyLive(d.cardEl, final);
+      if (!cancelled) {
+        setOffsets((prev) => ({ ...prev, [d.item.id]: final }));
+        setNotice(formatCopy(copyValue(copy, "spatial.moved"), { title: kindLabel(d.item.kind, copy) }));
+      }
+      if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }
+      dragRef.current = null;
+      setMovingId(null);
+    }
+  }), [applyLive, constrain, copy, getBounds, getOffset]);
+
+  const onNudge = useCallback((event, item) => {
+    if (!item?.id) return;
+    if (event.key === "Home") {
+      event.preventDefault();
+      setFrontId(item.id);
+      setOffsets((prev) => ({ ...prev, [item.id]: { x: 0, y: 0 } }));
+      setNotice(formatCopy(copyValue(copy, "spatial.reset_one"), { title: kindLabel(item.kind, copy) }));
+      return;
+    }
+    const dir = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (!dir) return;
+    event.preventDefault();
+    setFrontId(item.id);
+    const current = getOffset(item.id);
+    const cardEl = cardRefs.current.get(item.id);
+    const step = event.shiftKey ? CARD_NUDGE_LARGE : CARD_NUDGE;
+    const next = constrain(
+      { x: current.x + dir[0] * step, y: current.y + dir[1] * step },
+      getBounds(cardEl, current)
+    );
+    setOffsets((prev) => ({ ...prev, [item.id]: next }));
+    setNotice(formatCopy(copyValue(copy, "spatial.moved"), { title: kindLabel(item.kind, copy) }));
+  }, [constrain, copy, getBounds, getOffset]);
+
+  const hasAdjusted = Object.values(offsets).some((o) => o.x !== 0 || o.y !== 0);
+  const resetLayout = useCallback(() => {
+    setOffsets({});
+    setNotice(copyValue(copy, "spatial.reset_notice"));
+  }, [copy]);
+
   return (
     <section className="cvl-work-field" aria-labelledby="cvl-work-title">
       <header className="cvl-work-heading">
@@ -558,42 +807,45 @@ function WorkField({ items, stage, canManage, busy, dispatchAction, copy }) {
         <span className="cvl-phase-chip">{formatCopy(copyValue(copy, "ui.shared_cards_count"), { count: items.length })}</span>
       </header>
       <p className="cvl-stage-lead">{meta.lead}</p>
-      <div className="cvl-canvas" data-stage={stage}>
-        <div className="cvl-orbit cvl-orbit-one" aria-hidden="true" />
-        <div className="cvl-orbit cvl-orbit-two" aria-hidden="true" />
-        {supporting.length ? (
-          <div className="cvl-supporting-cards" aria-label={copyValue(copy, "ui.supporting_cards_aria")}>
-            {supporting.slice(-5).map((item) => (
+      <p id="cvl-move-instructions" className="cvl-sr-only">{copyValue(copy, "spatial.move_hint")}</p>
+      <div className="cvl-canvas" data-stage={stage} ref={boundsRef}>
+        {items.length ? (
+          <div className="cvl-card-field" aria-label={copyValue(copy, "ui.supporting_cards_aria")}>
+            {items.map((item) => (
               <ItemCard
                 key={item.id}
                 item={item}
+                hero={item === active}
                 canManage={canManage}
                 busy={busy}
                 dispatchAction={dispatchAction}
                 copy={copy}
+                movable
+                offset={getOffset(item.id)}
+                isFront={frontId === item.id}
+                isMoving={movingId === item.id}
+                registerRef={registerRef}
+                dragHandlers={dragHandlers}
+                onNudge={onNudge}
               />
             ))}
           </div>
-        ) : null}
-        <div className="cvl-hero-slot">
-          {active ? (
-            <ItemCard
-              item={active}
-              hero
-              canManage={canManage}
-              busy={busy}
-              dispatchAction={dispatchAction}
-              copy={copy}
-            />
-          ) : (
+        ) : (
+          <div className="cvl-hero-slot">
             <article className="cvl-card cvl-hero cvl-empty-hero">
               <span className="cvl-kind">{copyValue(copy, "ui.stage_focus")}</span>
               <p>{meta.hero}</p>
               <small>{copyValue(copy, "ui.first_shared_card_hint")}</small>
             </article>
-          )}
-        </div>
+          </div>
+        )}
+        {hasAdjusted ? (
+          <button type="button" data-variant className="cvl-layout-reset" onClick={resetLayout}>
+            {copyValue(copy, "spatial.reset_layout")}
+          </button>
+        ) : null}
       </div>
+      <span className="cvl-sr-only" role="status" aria-live="polite">{notice}</span>
     </section>
   );
 }
@@ -1329,6 +1581,118 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
     privateStates
   }), [items, model.participants, model.session, privateStates, stage]);
 
+  /* Jaamad = etapi osad (omaniku mudel 20.07): üks jaam = üks tegevus.
+     „Kirjuta" puudub etapil 1 (avaring kinnitab, ei kirjuta) ja suletud
+     sessioonis; etappidel 7–8 on ta olemas ka mittekirjutajale (seal elab
+     ausa ootamise teade — kus tegevus parasjagu toimub). */
+  const stations = useMemo(() => {
+    const defs = [{ key: "laud" }, { key: "ring" }];
+    if (!completed && stage !== 1 && (canWrite || stage >= 7)) defs.push({ key: "kirjuta" });
+    defs.push({ key: "kompass" });
+    return defs;
+  }, [canWrite, completed, stage]);
+  const {
+    dollyRef,
+    planeProps,
+    activeIndex,
+    mode: flightMode,
+    flyTo
+  } = useStationFlight({ count: stations.length });
+  const mountedStageRef = useRef(stage);
+
+  /* Etapivahetus = suur samm: lend algab uue etapi laualt (drift-saabumine).
+     Mount'il ei lennata — kaamera on juba jaamas 0. */
+  useEffect(() => {
+    if (mountedStageRef.current === stage) return;
+    mountedStageRef.current = stage;
+    flyTo(0, { drift: true });
+  }, [stage, flyTo]);
+
+  /* Jaamaloend võib kahaneda (nt sulgemine peidab Kirjuta) — ära jää
+     olematusse jaama. */
+  useEffect(() => {
+    if (activeIndex > stations.length - 1) flyTo(stations.length - 1, { instant: true });
+  }, [activeIndex, stations.length, flyTo]);
+
+  const activeStationKey = stations[Math.min(activeIndex, stations.length - 1)]?.key || "laud";
+
+  /* SCROLL JUHIB LENDU (omanik 21.07: „flight peab olema kasutusel — erinevaid
+     tööpindu ühes ekraaniaknas lihtsalt scrollides"). Keris/svaip = üks tööpind
+     edasi/tagasi (diskreetne jaama-target, MITTE scrollY-kaardistus — säilitab
+     flight-effekti robustse mudeli). Kui žesti all on veel keritavat sisu
+     (pikk kaart/vorm), keritakse KÕIGEPEALT seda ja lennatakse alles piiril —
+     nii mahub ühte etappi rohkem tööpindu, kui ekraanile korraga mahuks. */
+  const stageViewRef = useRef(null);
+  const activeIndexRef = useRef(activeIndex);
+  activeIndexRef.current = activeIndex;
+  const stationCountRef = useRef(stations.length);
+  stationCountRef.current = stations.length;
+
+  useEffect(() => {
+    const el = stageViewRef.current;
+    if (!el) return undefined;
+    const cooldown = { until: 0 };
+
+    const innerCanScroll = (target, delta) => {
+      let node = target;
+      while (node && node !== el) {
+        if (node.nodeType === 1) {
+          const oy = getComputedStyle(node).overflowY;
+          if ((oy === "auto" || oy === "scroll") && node.scrollHeight > node.clientHeight + 1) {
+            const atTop = node.scrollTop <= 0;
+            const atBottom = node.scrollTop + node.clientHeight >= node.scrollHeight - 1;
+            if (delta < 0 && !atTop) return true;
+            if (delta > 0 && !atBottom) return true;
+          }
+        }
+        node = node.parentElement;
+      }
+      return false;
+    };
+
+    const fly = (dir, stamp) => {
+      if (stamp < cooldown.until) return;
+      const next = activeIndexRef.current + dir;
+      if (next < 0 || next > stationCountRef.current - 1) return;
+      flyTo(next);
+      cooldown.until = stamp + 560;
+    };
+
+    const onWheel = (event) => {
+      if (Math.abs(event.deltaY) < 4) return;
+      if (innerCanScroll(event.target, event.deltaY)) return;
+      event.preventDefault();
+      fly(event.deltaY > 0 ? 1 : -1, event.timeStamp);
+    };
+
+    let startY = 0;
+    let startX = 0;
+    let startTarget = null;
+    const onTouchStart = (event) => {
+      startY = event.touches[0].clientY;
+      startX = event.touches[0].clientX;
+      startTarget = event.target;
+    };
+    const onTouchEnd = (event) => {
+      const touch = event.changedTouches[0];
+      if (!touch) return;
+      const dy = startY - touch.clientY;
+      const dx = startX - touch.clientX;
+      if (Math.abs(dy) < 56 || Math.abs(dx) > Math.abs(dy)) return;
+      if (innerCanScroll(startTarget, dy)) return;
+      fly(dy > 0 ? 1 : -1, event.timeStamp);
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [flyTo]);
+
   const myParticipant = model.participants.find((item) => (
     item?.id === model.me?.participantId || (model.me?.userId && item?.userId === model.me.userId)
   ));
@@ -1402,120 +1766,154 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
       ) : null}
       {paused ? <div className="cvl-pause-banner" role="status">{copyValue(copy, "support.paused_notice")}</div> : null}
 
-      <StageRail stage={stage} snapshots={model.snapshots} completed={completed} copy={copy} />
+      <StationNav stations={stations} activeIndex={activeIndex} flyTo={flyTo} copy={copy} />
+      <p className="cvl-sr-only" aria-live="polite">
+        {formatCopy(copyValue(copy, "stations.announce"), {
+          current: Math.min(activeIndex, stations.length - 1) + 1,
+          total: stations.length,
+          label: copyValue(copy, `stations.${activeStationKey}`)
+        })}
+      </p>
 
-      <div className="cvl-workbench">
-        <aside className="cvl-left-panel">
-          <ParticipantList
-            participants={model.participants}
-            me={model.me}
-            stage={stage}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-          {items.length ? (
-            <section className="cvl-side-section cvl-queue" aria-labelledby="cvl-queue-title">
-              <header className="cvl-section-heading">
-                <div><p>{copyValue(copy, "ui.shared_queue")}</p><h2 id="cvl-queue-title">{copyValue(copy, "ui.card_field")}</h2></div>
-                <span>{items.length}</span>
-              </header>
-              <ol>
-                {items.slice(-8).map((item) => (
-                  <li key={item.id}>
-                    <span>{kindLabel(item.kind, copy)}</span>
-                    <small>{statusLabel(lower(item.status, "shared_draft"), copy)}</small>
-                  </li>
-                ))}
-              </ol>
+      {/* Lennulava: etapi osad on jaamad sügavuses, kaamera lendab osade
+          vahel (useStationFlight). Keris/svaip lava kohal = lend järgmisele
+          tööpinnale; sisu kerib enne, kui seda on. */}
+      <section className="cvf-stage-view" data-mode={flightMode} ref={stageViewRef}>
+        {activeIndex < stations.length - 1 ? (
+          <span className="cvf-scroll-hint" aria-hidden="true">
+            {copyValue(copy, "stations.scroll_hint")}
+          </span>
+        ) : null}
+        <div className="cvf-dolly" ref={dollyRef}>
+          {stations.map((def, index) => (
+            <section
+              key={def.key}
+              {...planeProps(index)}
+              className="cvf-plane"
+              data-station={def.key}
+              aria-label={copyValue(copy, `stations.${def.key}`)}
+            >
+              <div className="cvf-plane-inner">
+                {def.key === "laud" ? (
+                  <WorkField
+                    items={items}
+                    stage={stage}
+                    canManage={canManage}
+                    busy={busy}
+                    dispatchAction={dispatchAction}
+                    copy={copy}
+                  />
+                ) : null}
+                {def.key === "ring" ? (
+                  <>
+                    <ParticipantList
+                      participants={model.participants}
+                      me={model.me}
+                      stage={stage}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                    {items.length ? (
+                      <section className="cvl-side-section cvl-queue" aria-labelledby="cvl-queue-title">
+                        <header className="cvl-section-heading">
+                          <div><p>{copyValue(copy, "ui.shared_queue")}</p><h2 id="cvl-queue-title">{copyValue(copy, "ui.card_field")}</h2></div>
+                          <span>{items.length}</span>
+                        </header>
+                        <ol>
+                          {items.slice(-8).map((item) => (
+                            <li key={item.id}>
+                              <span>{kindLabel(item.kind, copy)}</span>
+                              <small>{statusLabel(lower(item.status, "shared_draft"), copy)}</small>
+                            </li>
+                          ))}
+                        </ol>
+                      </section>
+                    ) : null}
+                    {stage === 1 ? (
+                      <StageOneControls
+                        session={model.session}
+                        covisionCase={model.covisionCase}
+                        isOwner={isOwner}
+                        canLead={canLead}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                  </>
+                ) : null}
+                {def.key === "kirjuta" ? (
+                  <>
+                    <OwnerCheckpoint
+                      stage={stage}
+                      privateStates={privateStates}
+                      isOwner={isOwner}
+                      role={role}
+                      participants={model.participants}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                    {stage === 7 ? (
+                      <StageSevenOwnerPanel
+                        privateStates={privateStates}
+                        isOwner={isOwner}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                    {stage === 8 && !completed ? (
+                      <StageEightPanel
+                        privateStates={privateStates}
+                        isOwner={isOwner}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                      />
+                    ) : null}
+                    {!completed ? (
+                      <Composer
+                        stage={stage}
+                        canWrite={canWrite}
+                        isOwner={isOwner}
+                        paused={paused}
+                        busy={busy}
+                        dispatchAction={dispatchAction}
+                        copy={copy}
+                        prefillText={caseAnchorPrefill}
+                      />
+                    ) : null}
+                  </>
+                ) : null}
+                {def.key === "kompass" ? (
+                  <>
+                    <GuidancePanel stage={stage} role={role} privateStates={privateStates} copy={copy} />
+                    <ContinuityPanel
+                      stage={stage}
+                      items={model.items}
+                      snapshots={model.snapshots}
+                      completed={completed}
+                      copy={copy}
+                    />
+                    <PhaseControl
+                      stage={stage}
+                      phase={phase}
+                      started={Boolean(model.session?.startedAt)}
+                      canLead={canLead}
+                      paused={paused}
+                      busy={busy}
+                      dispatchAction={dispatchAction}
+                      copy={copy}
+                    />
+                  </>
+                ) : null}
+              </div>
             </section>
-          ) : null}
-        </aside>
-
-        <WorkField
-          items={items}
-          stage={stage}
-          canManage={canManage}
-          busy={busy}
-          dispatchAction={dispatchAction}
-          copy={copy}
-        />
-
-        <aside className="cvl-right-panel">
-          <GuidancePanel stage={stage} role={role} privateStates={privateStates} copy={copy} />
-          <ContinuityPanel
-            stage={stage}
-            items={model.items}
-            snapshots={model.snapshots}
-            completed={completed}
-            copy={copy}
-          />
-          <PhaseControl
-            stage={stage}
-            phase={phase}
-            started={Boolean(model.session?.startedAt)}
-            canLead={canLead}
-            paused={paused}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-          {stage === 1 ? (
-            <StageOneControls
-              session={model.session}
-              covisionCase={model.covisionCase}
-              isOwner={isOwner}
-              canLead={canLead}
-              busy={busy}
-              dispatchAction={dispatchAction}
-              copy={copy}
-            />
-          ) : null}
-          <OwnerCheckpoint
-            stage={stage}
-            privateStates={privateStates}
-            isOwner={isOwner}
-            role={role}
-            participants={model.participants}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        </aside>
-      </div>
-
-      <div className="cvl-lower-workspace">
-        {stage === 7 ? (
-          <StageSevenOwnerPanel
-            privateStates={privateStates}
-            isOwner={isOwner}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        ) : null}
-        {stage === 8 && !completed ? (
-          <StageEightPanel
-            privateStates={privateStates}
-            isOwner={isOwner}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-          />
-        ) : null}
-        {!completed ? (
-          <Composer
-            stage={stage}
-            canWrite={canWrite}
-            isOwner={isOwner}
-            paused={paused}
-            busy={busy}
-            dispatchAction={dispatchAction}
-            copy={copy}
-            prefillText={caseAnchorPrefill}
-          />
-        ) : null}
-      </div>
+          ))}
+        </div>
+      </section>
 
       <GateBar
         stage={stage}
@@ -1530,6 +1928,13 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
         dispatchAction={dispatchAction}
         completed={completed}
         copy={copy}
+      />
+      <StageDock
+        stage={stage}
+        snapshots={model.snapshots}
+        completed={completed}
+        copy={copy}
+        onSelect={(state) => flyTo(state === "done" ? stations.length - 1 : 0)}
       />
     </main>
   );

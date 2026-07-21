@@ -164,6 +164,7 @@ function CaseCard({ item, locale, t, onOpen, listMode }) {
         ) : null}
         <button
           type="button"
+          data-variant="primary"
           onClick={(event) => onOpen(item.id, { trigger: event.currentTarget })}
         >
           {primary}
@@ -218,7 +219,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
       >
         <header className="ccp-detail-head">
           <div><small>{m(t, "completed_cases.detail.read_only", "Suletud Kovisioon · kinnitatud hetktõmmis")}</small><h2 id="ccp-detail-title">{item.generalizedTitle}</h2></div>
-          <button type="button" autoFocus onClick={onClose} aria-label={m(t, "common.close", "Sulge")}>×</button>
+          <button type="button" data-variant className="ccp-close" autoFocus onClick={onClose} aria-label={m(t, "common.close", "Sulge")}>×</button>
         </header>
         <nav className="ccp-detail-tabs" aria-label={m(t, "completed_cases.detail.navigation", "Lõpetatud juhtumi osad")}>
           {[
@@ -227,7 +228,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
             ...(isOwner ? [["links", "completed_cases.detail.tabs.links", "Seosed"]] : []),
             ["data", "completed_cases.detail.tabs.data", "Andmed ja säilitamine"]
           ].map(([value, key, fallback]) => (
-            <button key={value} type="button" aria-current={mode === value ? "page" : undefined} onClick={() => setMode(value)}>{m(t, key, fallback)}</button>
+            <button key={value} type="button" data-variant aria-current={mode === value ? "page" : undefined} onClick={() => setMode(value)}>{m(t, key, fallback)}</button>
           ))}
         </nav>
         {error ? <p className="ccp-inline-error" role="alert">{error}</p> : null}
@@ -274,7 +275,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                     <label>{m(t, "completed_cases.follow_up.what_done", "Mida tegelikult tehti")}<textarea required rows={3} value={followUp.whatWasDone} onChange={(event) => setFollowUp((current) => ({ ...current, whatWasDone: event.target.value }))} /></label>
                     <label>{m(t, "completed_cases.follow_up.what_changed", "Mis muutus või ei muutunud")}<textarea rows={3} value={followUp.whatChanged} onChange={(event) => setFollowUp((current) => ({ ...current, whatChanged: event.target.value }))} /></label>
                     <label>{m(t, "completed_cases.follow_up.learning", "Mida sellest õppisin")}<textarea required rows={3} value={followUp.learning} onChange={(event) => setFollowUp((current) => ({ ...current, learning: event.target.value }))} /></label>
-                    <button type="submit" disabled={busy}>{m(t, "completed_cases.actions.confirm_follow_up", "Kinnita järelvaade")}</button>
+                    <button type="submit" data-variant="primary" disabled={busy}>{m(t, "completed_cases.actions.confirm_follow_up", "Kinnita järelvaade")}</button>
                   </form>
                   <form onSubmit={reschedule}>
                     <h3>{m(t, "completed_cases.follow_up.reschedule", "Määra uus aeg")}</h3>
@@ -287,7 +288,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                 <section className="ccp-decision">
                   <h3>{m(t, "completed_cases.decision.title", "Jätkuotsus")}</h3>
                   <p>{m(t, "completed_cases.decision.lead", "Järelvaade on tehtud. Vali professionaalne järgmine olek — see ei hinda juhtumi edukust.")}</p>
-                  <button type="button" disabled={busy} onClick={() => decide("practice_candidate")}>{m(t, "completed_cases.actions.create_practice", "Loo privaatne praktikakandidaat")}</button>
+                  <button type="button" data-variant disabled={busy} onClick={() => decide("practice_candidate")}>{m(t, "completed_cases.actions.create_practice", "Loo privaatne praktikakandidaat")}</button>
                   <form onSubmit={(event) => { event.preventDefault(); decide("continue", { newQuestion }); }}>
                     <label>{m(t, "completed_cases.decision.new_question", "Uus üldistatud küsimus")}<textarea required rows={2} value={newQuestion} onChange={(event) => setNewQuestion(event.target.value)} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.create_continuation", "Loo seotud Teemaseeme")}</button>
@@ -299,7 +300,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                   <form onSubmit={(event) => { event.preventDefault(); decide("close", { reason: closeReason }); }}>
                     <label>{m(t, "completed_cases.decision.close_reason", "Sulgemise professionaalne põhjendus")}<textarea required rows={3} value={closeReason} onChange={(event) => setCloseReason(event.target.value)} /></label>
                     <label className="ccp-confirm-check"><input type="checkbox" required checked={closeConfirmed} onChange={(event) => setCloseConfirmed(event.target.checked)} />{m(t, "completed_cases.decision.close_confirm", "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus.")}</label>
-                    <button type="submit" disabled={busy || !closeConfirmed || !closeReason.trim()}>{m(t, "completed_cases.actions.close_topic", "Sulge teema")}</button>
+                    <button type="submit" data-variant="primary" disabled={busy || !closeConfirmed || !closeReason.trim()}>{m(t, "completed_cases.actions.close_topic", "Sulge teema")}</button>
                   </form>
                 </section>
               ) : null}
@@ -349,10 +350,10 @@ function DetailLoadingDialog({ error, t, onClose, onRetry }) {
         aria-labelledby="ccp-detail-loading-title"
         aria-busy={!error}
       >
-        <button type="button" autoFocus onClick={onClose} aria-label={m(t, "common.close", "Sulge")}>×</button>
+        <button type="button" data-variant className="ccp-close" autoFocus onClick={onClose} aria-label={m(t, "common.close", "Sulge")}>×</button>
         <div>
           <p id="ccp-detail-loading-title" role={error ? "alert" : undefined}>{error || title}</p>
-          {error ? <button type="button" onClick={onRetry}>{m(t, "common.retry", "Proovi uuesti")}</button> : null}
+          {error ? <button type="button" data-variant onClick={onRetry}>{m(t, "common.retry", "Proovi uuesti")}</button> : null}
         </div>
       </section>
     </div>
@@ -533,32 +534,45 @@ export default function CompletedCasesPage({ owner = {} }) {
 
   return (
     <main className="ccp-shell" aria-labelledby="ccp-title">
-      <aside className="ccp-sidebar">
-        <Link className="ccp-brand" href="/kovisioon"><span aria-hidden="true">◌</span><strong>{m(t, "completed_cases.brand", "KOVISIOON")}</strong></Link>
-        <nav aria-label={m(t, "completed_cases.navigation", "Kovisiooni põhilehed")}>
-          <Link href="/kovisioon"><span aria-hidden="true">＋</span>{m(t, "covision.workspace.nav.new", "Uus Kovisioon")}</Link>
-          <Link href="/teemaseemned"><span aria-hidden="true">◇</span>{m(t, "covision.workspace.nav.seeds", "Teemaseemned")}</Link>
-          <Link className="is-active" aria-current="page" href="/lopetatud-juhtumid"><span aria-hidden="true">□</span>{m(t, "covision.workspace.nav.completed", "Lõpetatud juhtumid")}</Link>
-          <Link href="/parimad-praktikad"><span aria-hidden="true">◎</span>{m(t, "covision.workspace.nav.practices", "Parimad praktikad")}</Link>
-        </nav>
-        <div className="ccp-scope" aria-label={m(t, "completed_cases.scope.title", "Minu vaated")}>
-          <small>{m(t, "completed_cases.scope.title", "Minu vaated")}</small>
-          {[
-            ["mine", "completed_cases.scope.mine", "Minu juhtumid"],
-            ["group", "completed_cases.scope.group", "Minu grupi juhtumid"],
-            ["visible", "completed_cases.scope.visible", "Kõik nähtavad"]
-          ].map(([value, key, fallback]) => <button key={value} type="button" aria-pressed={scope === value} onClick={() => setScope(value)}>{m(t, key, fallback)}</button>)}
+      <header className="ccp-top">
+        <div className="ccp-brand">
+          <button
+            type="button"
+            className="ccp-exit"
+            title={m(t, "topic_seeds.nav.exit_title", "Tagasi ruumi")}
+            onClick={() => window.history.back()}
+          >
+            {m(t, "topic_seeds.nav.exit", "← Välju")}
+          </button>
+          <p className="ccp-brand-name">{m(t, "completed_cases.title", "Lõpetatud juhtumid")}</p>
         </div>
-        <Link className="ccp-privacy" href="/privaatsustingimused"><span aria-hidden="true">⌁</span>{m(t, "completed_cases.privacy", "Privaatsus ja andmekaitse")}</Link>
-      </aside>
+        <nav className="ccp-nav" aria-label={m(t, "completed_cases.navigation", "Kovisiooni põhilehed")}>
+          <Link className="ccp-nav-link" href="/kovisioon">{m(t, "topic_seeds.nav.covision_room", "Kovisiooni ruum")}</Link>
+          <Link className="ccp-nav-link" href="/teemaseemned">{m(t, "covision.workspace.nav.seeds", "Teemaseemned")}</Link>
+          <span className="ccp-nav-link" aria-current="page" data-active="1">{m(t, "covision.workspace.nav.completed", "Lõpetatud juhtumid")}</span>
+          <Link className="ccp-nav-link" href="/parimad-praktikad">{m(t, "covision.workspace.nav.practices", "Parimad praktikad")}</Link>
+        </nav>
+        <div className="ccp-tools">
+          <button type="button" data-variant aria-expanded={helpOpen} aria-controls="ccp-help-panel" onClick={() => setHelpOpen((current) => !current)}>
+            {m(t, "completed_cases.help.title", "Abi")}
+          </button>
+          <div className="ccp-user">
+            <span className="ccp-user-name">{owner.name || m(t, "completed_cases.profile.you", "Sina")}</span>
+            <span className="ccp-user-title">{roleLabel(owner.role, t)}</span>
+          </div>
+        </div>
+      </header>
 
       <div className="ccp-main">
         <header className="ccp-header">
           <div><h1 id="ccp-title">{m(t, "completed_cases.title", "Lõpetatud juhtumid")}</h1><p>{m(t, "completed_cases.lead", "Siin on Kovisioonid, mille aktiivne töö on lõpetatud. Järgmine samm või järelvaade võib veel olla pooleli.")}</p></div>
-          <div className="ccp-profile-actions">
-            <button type="button" aria-label={m(t, "completed_cases.help.title", "Abi")} aria-expanded={helpOpen} aria-controls="ccp-help-panel" onClick={() => setHelpOpen((current) => !current)}>?</button>
-            <div><strong>{owner.name || m(t, "completed_cases.profile.you", "Sina")}</strong><small>{roleLabel(owner.role, t)}</small></div>
-            <span className="ccp-avatar" aria-hidden="true">{String(owner.name || "S").slice(0, 1).toUpperCase()}</span>
+          <div className="ccp-scope" role="group" aria-label={m(t, "completed_cases.scope.title", "Minu vaated")}>
+            <small>{m(t, "completed_cases.scope.title", "Minu vaated")}</small>
+            {[
+              ["mine", "completed_cases.scope.mine", "Minu juhtumid"],
+              ["group", "completed_cases.scope.group", "Minu grupi juhtumid"],
+              ["visible", "completed_cases.scope.visible", "Kõik nähtavad"]
+            ].map(([value, key, fallback]) => <button key={value} type="button" data-variant aria-pressed={scope === value} onClick={() => setScope(value)}>{m(t, key, fallback)}</button>)}
           </div>
         </header>
 
@@ -583,13 +597,13 @@ export default function CompletedCasesPage({ owner = {} }) {
                 <option value="oldest">{m(t, "completed_cases.sort.oldest", "Vanim Kovisioon")}</option>
                 <option value="title">{m(t, "completed_cases.sort.title_alpha", "Pealkiri")}</option>
               </select>
-              <div className="ccp-view-switch" aria-label={m(t, "completed_cases.view.title", "Vaade")}><button type="button" aria-pressed={view === "cards"} onClick={() => setView("cards")}>▦ {m(t, "completed_cases.view.cards", "Kaardivaade")}</button><button type="button" aria-pressed={view === "list"} onClick={() => setView("list")}>☷ {m(t, "completed_cases.view.list", "Nimekirjavaade")}</button></div>
+              <div className="ccp-view-switch" aria-label={m(t, "completed_cases.view.title", "Vaade")}><button type="button" data-variant aria-pressed={view === "cards"} onClick={() => setView("cards")}>▦ {m(t, "completed_cases.view.cards", "Kaardivaade")}</button><button type="button" data-variant aria-pressed={view === "list"} onClick={() => setView("list")}>☷ {m(t, "completed_cases.view.list", "Nimekirjavaade")}</button></div>
             </div>
             <div className="ccp-filters" aria-label={m(t, "completed_cases.filters.title", "Olekufiltrid")}>
-              {FILTERS.map(([value, key]) => <button key={value} type="button" aria-pressed={filter === value} onClick={() => setFilter(value)}>{m(t, key, FALLBACK_FILTERS[value])}</button>)}
+              {FILTERS.map(([value, key]) => <button key={value} type="button" data-variant aria-pressed={filter === value} onClick={() => setFilter(value)}>{m(t, key, FALLBACK_FILTERS[value])}</button>)}
             </div>
             <p className="ccp-result-count">{m(t, "completed_cases.results", "Kuvatakse")} {visibleCases.length} / {cases.length}</p>
-            {error ? <section className="ccp-state is-error" role="alert"><p>{error}</p><button type="button" onClick={() => loadCases()}>{m(t, "common.retry", "Proovi uuesti")}</button></section> : null}
+            {error ? <section className="ccp-state is-error" role="alert"><p>{error}</p><button type="button" data-variant onClick={() => loadCases()}>{m(t, "common.retry", "Proovi uuesti")}</button></section> : null}
             {loading ? <section className="ccp-state" aria-busy="true"><p>{m(t, "completed_cases.loading", "Lõpetatud juhtumid avanevad…")}</p></section> : null}
             {!loading && !error && !visibleCases.length ? <section className="ccp-state"><p>{m(t, "completed_cases.empty", "Selles vaates pole veel lõpetatud Kovisioone.")}</p><Link href="/kovisioon">{m(t, "completed_cases.actions.open_covision", "Ava Kovisioon")}</Link></section> : null}
             {!loading && visibleCases.length ? <div className={`ccp-case-list is-${view}`}>{visibleCases.map((item) => <CaseCard key={item.id} item={item} locale={locale} t={t} listMode={view === "list"} onOpen={openDetail} />)}</div> : null}
@@ -599,6 +613,7 @@ export default function CompletedCasesPage({ owner = {} }) {
             <section className="ccp-attention-panel"><header><h2>{m(t, "completed_cases.attention.title", "Vajab tähelepanu")}</h2><span>{attentionCases.length}</span></header>{attentionCases.length ? <ul>{attentionCases.map((item) => <li key={item.id}><button type="button" onClick={(event) => openDetail(item.id, { trigger: event.currentTarget })}><span aria-hidden="true">△</span><div><strong>{item.generalizedTitle}</strong><small>{statusMeta(item, t).label}</small></div></button></li>)}</ul> : <p>{m(t, "completed_cases.attention.empty", "Praegu pole kiiret järelvaadet ega jätkuotsust.")}</p>}</section>
             <section className="ccp-calendar"><header><h2>{m(t, "completed_cases.calendar.title", "Järelvaadete kalender")}</h2><span aria-hidden="true">◷</span></header><ol>{followUpDates.map((item) => <li key={item.id}><time dateTime={item.followUp?.scheduledFor || undefined}>{item.followUp?.scheduleLabel}</time><button type="button" onClick={(event) => openDetail(item.id, { trigger: event.currentTarget })}>{item.generalizedTitle}</button></li>)}</ol>{!followUpDates.length ? <p>{m(t, "completed_cases.calendar.empty", "Järelvaadete kuupäevi pole veel määratud.")}</p> : null}</section>
             <section className="ccp-quick"><h2>{m(t, "completed_cases.quick.title", "Kiirlingid")}</h2><Link href="/kovisioon">＋ {m(t, "covision.workspace.nav.new", "Uus Kovisioon")}</Link><Link href="/teemaseemned">◇ {m(t, "completed_cases.quick.seeds", "Mine Teemaseemnetesse")}</Link><Link href="/parimad-praktikad">◎ {m(t, "completed_cases.quick.practices", "Mine praktikakogusse")}</Link></section>
+            <Link className="ccp-privacy" href="/privaatsustingimused"><span aria-hidden="true">⌁</span>{m(t, "completed_cases.privacy", "Privaatsus ja andmekaitse")}</Link>
           </aside>
         </div>
       </div>

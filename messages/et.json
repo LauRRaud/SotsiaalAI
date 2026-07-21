@@ -3810,9 +3810,31 @@
       }
     },
     "live": {
-      "exit": {
-        "label": "Välju",
-        "aria": "Välju Kovisioonist"
+      "exit": { "label": "Välju", "aria": "Välju Kovisioonist" },
+      "spatial": {
+        "move_hint": "Lohista kaarti pidemest või liiguta nooleklahvidega; Home taastab kaardi koha.",
+        "drag_handle": "Liiguta kaarti „{title}”",
+        "moving": "Liigutan kaarti „{title}”.",
+        "moved": "Kaart „{title}” paigutatud.",
+        "reset_one": "Kaart „{title}” on tagasi algses kohas.",
+        "reset_layout": "Taasta paigutus",
+        "reset_notice": "Kaartide paigutus taastatud."
+      },
+      "stations": {
+        "laud": "Ühine laud",
+        "ring": "Ring",
+        "kirjuta": "Minu tööpind",
+        "kompass": "Kompass",
+        "nav_aria": "Etapi osad",
+        "back": "Eelmine osa",
+        "next": "Järgmine osa",
+        "announce": "Osa {current}/{total}: {label}",
+        "dock_aria": "Etapid",
+        "dock_step": "Etapp {number}: {label} — {state}",
+        "dock_locked": "Avaneb värava kaudu",
+        "dock_done": "Läbitud — jälg Kompassis",
+        "dock_active": "Praegune etapp",
+        "scroll_hint": "keri edasi ↓"
       },
       "ui": {
         "sigil": "K",
