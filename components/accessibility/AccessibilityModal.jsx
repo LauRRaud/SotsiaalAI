@@ -34,7 +34,6 @@ const STATIONS = [
   { key: "text_scale", legend: "accessibility.text_scale" },
   { key: "theme", legend: "accessibility.theme" },
   { key: "screen_profile", legend: "accessibility.screen_profile" },
-  { key: "plain_language", legend: "accessibility.plain_language.title" },
   { key: "motion", legend: "accessibility.motion" },
   { key: "ambient", legend: "accessibility.ambient" },
   { key: "save", legend: "profile.preferences.title" },
@@ -74,7 +73,6 @@ export default function AccessibilityModal({
   const [uiScale, setUiScale] = useState(initialUiScale);
   const [uiProfile, setUiProfile] = useState(initialUiProfile);
   const [contrast, setContrast] = useState(initialContrast);
-  const [plainLanguage, setPlainLanguage] = useState(prefs.plainLanguage === true);
   const [reduceMotion, setReduceMotion] = useState(!!prefs.reduceMotion);
   /* Taustaheli (tellija 06.07 öö): rakendub KOHE, elab localStorage's,
      mitte a11y-prefsides — sõltumatu salvestusnupust */
@@ -115,7 +113,6 @@ export default function AccessibilityModal({
     setUiScale(current => current ?? initialUiScale);
     setUiProfile(current => current ?? initialUiProfile);
     setContrast(current => current ?? initialContrast);
-    setPlainLanguage(prefs.plainLanguage === true);
     setReduceMotion(!!prefs.reduceMotion);
     setReduceTransparency(!!prefs.reduceTransparency);
     setTheme(current => current ?? initialTheme);
@@ -285,7 +282,6 @@ export default function AccessibilityModal({
       uiScale: uiScale || prefs.uiScale || "md",
       uiProfile: uiProfile || prefs.uiProfile || normalizeUiProfile(prefs.uiScale),
       contrast: contrast || prefs.contrast || "normal",
-      plainLanguage,
       reduceMotion,
       reduceTransparency,
       theme: theme || prefs.theme || "mid"
@@ -317,12 +313,11 @@ export default function AccessibilityModal({
       uiScale: uiScale || prefs.uiScale || "md",
       uiProfile: uiProfile || prefs.uiProfile || normalizeUiProfile(prefs.uiScale),
       contrast: contrast || prefs.contrast || "normal",
-      plainLanguage,
       reduceMotion,
       reduceTransparency,
       theme: theme || prefs.theme || "mid"
     });
-  }, [contrast, onPreview, plainLanguage, prefs.contrast, prefs.theme, prefs.uiProfile, prefs.uiScale, reduceMotion, reduceTransparency, theme, uiProfile, uiScale]);
+  }, [contrast, onPreview, prefs.contrast, prefs.theme, prefs.uiProfile, prefs.uiScale, reduceMotion, reduceTransparency, theme, uiProfile, uiScale]);
   useEffect(() => () => {
     onPreviewEnd?.();
   }, [onPreviewEnd]);
@@ -440,23 +435,6 @@ export default function AccessibilityModal({
                   <span>{t(`accessibility.options.screen_profile.${value}`)}</span>
                 </OptionCard>
               ))}
-            </div>
-          </fieldset>
-        );
-      case "plain_language":
-        return (
-          <fieldset className="csp-step">
-            <legend>{t("accessibility.plain_language.title")}</legend>
-            <div>
-              <OptionCard
-                data-autofocus=""
-                type="checkbox"
-                checked={plainLanguage}
-                onChange={event => setPlainLanguage(event.target.checked)}
-              >
-                <span>{t("accessibility.plain_language.option")}</span>
-                <small>{t("accessibility.plain_language.description")}</small>
-              </OptionCard>
             </div>
           </fieldset>
         );

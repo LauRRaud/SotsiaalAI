@@ -2009,7 +2009,6 @@ export default function ChatBody({
     historyPayload,
     userRole,
     locale,
-    plainLanguage: prefs?.plainLanguage === true,
     activeWorkflow,
     helpWorkflowState: effectiveHelpWorkflowState,
     getLatestHelpWorkflowState: getEffectiveLatestHelpWorkflowState,

@@ -1249,11 +1249,6 @@
     "motion": "Motion and performance",
     "theme": "Theme",
     "ambient": "Background sound",
-    "plain_language": {
-      "title": "Plain language",
-      "option": "Use plain language mode",
-      "description": "The assistant uses shorter sentences and clearer steps. Sources, deadlines, conditions, and important warnings remain unchanged."
-    },
     "options": {
       "language": {
         "et": "Estonian",
@@ -1484,14 +1479,6 @@
       "journey_prefill": {
         "loaded": "A pre-inquiry draft was prepared from the journey. Review and edit it before sending.",
         "load_failed": "The pre-inquiry draft could not be loaded from the journey."
-      },
-      "plain_language": {
-        "status": "Plain language mode is on",
-        "title": "Choose one task at a time",
-        "description": "Your answers stay saved. You can move between the basic information and the assistant at any time.",
-        "switch_label": "Pre-inquiry details view",
-        "form_view": "Fill in basic information",
-        "assistant_view": "Ask the assistant"
       },
       "sections": {
         "input": "Inquiry input",
@@ -3272,14 +3259,13 @@
         "kovisioon": "Co-vision and practice examples",
         "supervision": "Supervision",
         "mentoring": "Mentoring",
-        "wellbeing": "Well-being at work",
+        "wellbeing": "Work wellbeing",
         "reflection": "Method mirror (reflections)",
         "field_work": "Field work",
         "personal_search": "Personal search",
         "materials_adding": "Adding materials",
         "service_card_listing": "Service provider card profile",
-        "service_profile": "Service profile and management",
-        "wellbeing": "Work wellbeing"
+        "service_profile": "Service profile and management"
       },
       "values": {
         "included": "Included",
@@ -3416,7 +3402,7 @@
       "sections_v2": {
         "accessibility": {
           "title": "1. Language and accessibility",
-          "body": "<p>On your first visit the <a href=\"#\" data-a11y-open=\"1\">Language and accessibility</a> window opens automatically. You can reopen the same view later on the <a href=\"/profiil\">Profile</a> page.</p><ul><li><strong>Language.</strong> Choose Estonian, Russian, or English.</li><li><strong>Screen profile.</strong> Choose \"Mobile / laptop screen\", \"Apple laptop\", or \"External monitor / PC\" so the display fits your device better.</li><li><strong>Text size.</strong> Adjust the text size to what feels most comfortable.</li><li><strong>Plain language.</strong> Plain language mode tells the assistant to use shorter sentences and clearer steps. Sources, deadlines, conditions, and important warnings remain unchanged.</li><li><strong>Contrast.</strong> Choose <strong>Normal</strong> or <strong>High contrast</strong>. High contrast increases the separation between text and background.</li><li><strong>Motion and performance.</strong> This section now has two separate options: <strong>\"Reduce animations\"</strong> and <strong>\"Reduce transparency\"</strong>.</li><li><strong>Performance on older devices.</strong> Reducing transparency and animations can improve performance on older devices.</li><li><strong>Theme.</strong> Currently a single color theme (Dusk) is published; light and dark modes will be added later.</li><li><strong>Save and reset.</strong> Changes apply immediately, but you can change preferences on the Profile page and save them again when needed.</li></ul>"
+          "body": "<p>On your first visit the <a href=\"#\" data-a11y-open=\"1\">Language and accessibility</a> window opens automatically. You can reopen the same view later on the <a href=\"/profiil\">Profile</a> page.</p><ul><li><strong>Language.</strong> Choose Estonian, Russian, or English.</li><li><strong>Screen profile.</strong> Choose \"Mobile / laptop screen\", \"Apple laptop\", or \"External monitor / PC\" so the display fits your device better.</li><li><strong>Text size.</strong> Adjust the text size to what feels most comfortable.</li><li><strong>Contrast.</strong> Choose <strong>Normal</strong> or <strong>High contrast</strong>. High contrast increases the separation between text and background.</li><li><strong>Motion and performance.</strong> This section now has two separate options: <strong>\"Reduce animations\"</strong> and <strong>\"Reduce transparency\"</strong>.</li><li><strong>Performance on older devices.</strong> Reducing transparency and animations can improve performance on older devices.</li><li><strong>Theme.</strong> Currently a single color theme (Dusk) is published; light and dark modes will be added later.</li><li><strong>Save and reset.</strong> Changes apply immediately, but you can change preferences on the Profile page and save them again when needed.</li></ul>"
         },
         "home": {
           "title": "2. Home page",
@@ -3848,7 +3834,10 @@
       }
     },
     "live": {
-      "exit": { "label": "Exit", "aria": "Exit covision" },
+      "exit": {
+        "label": "Exit",
+        "aria": "Exit covision"
+      },
       "spatial": {
         "move_hint": "Drag a card by its handle or move it with the arrow keys; Home returns it to its place.",
         "drag_handle": "Move card „{title}”",
@@ -5668,14 +5657,6 @@
     }
   },
   "journey": {
-    "plain_language": {
-      "open": "Explain simply",
-      "title": "Plain-language reading aid",
-      "preview": "Source: this Journey's summary. The original text stays unchanged and visible.",
-      "version": "Version: {date}",
-      "confirm": "I agree — open the reading aid",
-      "error": "The explanation could not be opened right now."
-    },
     "title": "Journey",
     "autosave": {
       "restored": "We restored unfinished work from this session.",

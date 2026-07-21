@@ -13,7 +13,6 @@ const DEFAULT_PREFS = {
   uiScale: "md",
   uiProfile: "sm",
   contrast: "normal",
-  plainLanguage: false,
   reduceMotion: false,
   reduceTransparency: false,
   theme: "mid"
@@ -141,7 +140,6 @@ function readPrefsFromCookie() {
     const uiScale = normalizeUIScale(obj?.uiScale ?? obj?.textScale);
     const uiProfile = normalizeUIProfile(obj?.uiProfile ?? obj?.screenProfile ?? obj?.uiScale ?? obj?.textScale);
     const contrast = obj?.contrast || DEFAULT_PREFS.contrast;
-    const plainLanguage = obj?.plainLanguage === true;
     const reduceMotion = !!obj?.reduceMotion;
     const reduceTransparency = obj?.reduceTransparency == null ? reduceMotion : !!obj?.reduceTransparency;
     let theme = normalizeTheme(obj?.theme);
@@ -150,7 +148,6 @@ function readPrefsFromCookie() {
       uiScale,
       uiProfile,
       contrast,
-      plainLanguage,
       reduceMotion,
       reduceTransparency,
       theme
@@ -212,7 +209,6 @@ function readInitialPrefsFromDom() {
     uiScale: normalizeUIScale(storedUIScale ?? html.getAttribute("data-text-scale")),
     uiProfile: normalizeUIProfile(storedUIProfile ?? html.getAttribute("data-ui-profile") ?? html.getAttribute("data-ui-scale")),
     contrast,
-    plainLanguage: html.getAttribute("data-plain-language") === "1",
     reduceMotion: domReduceMotion,
     reduceTransparency: reduceTransparencyAttr == null ? domReduceMotion : reduceTransparencyAttr === "1",
     theme
@@ -238,7 +234,6 @@ function applyPrefsToDom(prefs) {
   html.setAttribute("data-text-scale", uiScale);
   html.setAttribute("data-ui-scale-auto", "0");
   html.setAttribute("data-contrast", nextContrast);
-  html.setAttribute("data-plain-language", prefs.plainLanguage === true ? "1" : "0");
   html.setAttribute("data-reduce-motion", prefs.reduceMotion ? "1" : "0");
   html.setAttribute("data-reduce-transparency", prefs.reduceTransparency ? "1" : "0");
   html.style.setProperty("--ui-scale", String(resolveUIScaleValue(uiScale, uiProfile)));
@@ -276,7 +271,6 @@ function buildInitialPrefs(initialPrefs) {
       uiScale: normalizeUIScale(initialPrefs.uiScale ?? domPrefs?.uiScale),
       uiProfile: normalizeUIProfile(initialPrefs.uiProfile ?? domPrefs?.uiProfile ?? initialPrefs.uiScale ?? domPrefs?.uiScale),
       contrast,
-      plainLanguage: (initialPrefs.plainLanguage ?? domPrefs?.plainLanguage) === true,
       reduceMotion: !!(initialPrefs.reduceMotion ?? domPrefs?.reduceMotion),
       reduceTransparency: !!(initialPrefs.reduceTransparency ?? domPrefs?.reduceTransparency ?? initialPrefs.reduceMotion ?? domPrefs?.reduceMotion),
       theme: contrast === "hc" ? "dark" : theme
@@ -287,8 +281,7 @@ function buildInitialPrefs(initialPrefs) {
         ...DEFAULT_PREFS,
         ...domPrefs,
         uiScale: normalizeUIScale(domPrefs.uiScale),
-        uiProfile: normalizeUIProfile(domPrefs.uiProfile ?? domPrefs.uiScale),
-        plainLanguage: domPrefs.plainLanguage === true
+        uiProfile: normalizeUIProfile(domPrefs.uiProfile ?? domPrefs.uiScale)
       }
     : {
         ...DEFAULT_PREFS
@@ -428,7 +421,6 @@ function AccessibilityProvider({
     } : domPrefs;
     initial.uiScale = normalizeUIScale(cookiePrefs?.uiScale ?? domPrefs.uiScale);
     initial.uiProfile = normalizeUIProfile(cookiePrefs?.uiProfile ?? domPrefs.uiProfile ?? initial.uiScale);
-    initial.plainLanguage = (cookiePrefs?.plainLanguage ?? domPrefs.plainLanguage) === true;
     if (initial.contrast === "hc") initial.theme = "dark";
     setPrefsState(initial);
     safeApplyPrefsToDom(initial, "init");
@@ -538,7 +530,6 @@ function AccessibilityProvider({
     };
     merged.uiScale = normalizeUIScale(merged.uiScale);
     merged.uiProfile = normalizeUIProfile(merged.uiProfile ?? merged.uiScale);
-    merged.plainLanguage = merged.plainLanguage === true;
     merged.theme = normalizeTheme(merged.theme);
     if (merged.contrast === "hc") {
       merged.theme = "dark";
@@ -578,7 +569,6 @@ function AccessibilityProvider({
     };
     preview.uiScale = normalizeUIScale(preview.uiScale);
     preview.uiProfile = normalizeUIProfile(preview.uiProfile ?? preview.uiScale);
-    preview.plainLanguage = preview.plainLanguage === true;
     preview.theme = normalizeTheme(preview.theme);
     if (preview.contrast === "hc") {
       preview.theme = "dark";
