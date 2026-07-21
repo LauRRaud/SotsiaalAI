@@ -66,9 +66,16 @@ import {
   KovisionRoomIcon,
   TopicSeedIcon,
   BestPracticeIcon,
+  SearchIcon,
+  SupervisionIcon,
+  MentorIcon,
+  FieldIcon,
+  ReflectionIcon,
+  ServiceProfileIcon,
 } from "@/components/brand/icons/CardIcons";
 import { wellbeingTools } from "@/lib/wellbeingTools";
 import GlassCarousel from "@/components/room/GlassCarousel";
+import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
@@ -169,6 +176,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     const perms = Array.isArray(u?.permissions) ? u.permissions : [];
     return Boolean(u?.isAdmin || u?.is_admin || role === "admin" || perms.includes("admin"));
   }, [session]);
+  /* Töölaua kaardikomplekt sõltub vaate-rollist: tavakasutaja näeb oma
+     rolli kaarte, admin saab S/P/T-lülitiga vaadet vahetada (effectiveRole).
+     refreshEffectiveRole juhtmestatakse doki lülitile, et vahetus muudaks
+     kaarte KOHE (RoomStage on klientkomponent, router.refresh üksi ei
+     värskenda seda hooki). */
+  const { effectiveRole, refresh: refreshEffectiveRole } = useEffectiveRole();
 
   /* --- režiim --- */
   const [mode, setMode] = useState(() =>
@@ -782,25 +795,38 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     return items;
   }, [t, isAdmin]);
 
-  /* Töölaua komplekt — samad sihtkohad mis töölaua paneelil; paneeli-
-     sisesed tööriistad avanevad süvalingiga (/vestlus?workspace=<võti>). */
-  const workspaceItems = useMemo(
-    () => [
-      { key: "teekond", label: t("chat.workspace.cards.journey.title", "Teekond"), href: "/vestlus?workspace=journey", icon: <JourneyPathIcon /> },
-      { key: "teenusekaart", label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
-      { key: "abisoovid", label: t("chat.workspace.cards.help_requests.title", "Abisoovid"), href: "/vestlus?workspace=help_requests", icon: <HelpRequestIcon /> },
-      { key: "abipakkumised", label: t("chat.workspace.cards.help_offers.title", "Abipakkumised"), href: "/vestlus?workspace=help_offers", icon: <HelpOfferIcon /> },
-      { key: "dokumendid", label: t("chat.workspace.cards.documents.title", "Dokumendid"), href: "/vestlus?workspace=documents", icon: <DocumentsIcon /> },
-      { key: "koosta", label: t("chat.workspace.cards.document_drafting.title", "Koosta dokument"), href: "/vestlus?workspace=document_drafting", icon: <ComposeDocIcon /> },
-      { key: "poordumised", label: t("chat.workspace.cards.pre_inquiries.title_staff", "Pöördumised"), href: "/vestlus?workspace=pre_inquiries", icon: <InquiryIcon /> },
-      { key: "lisa", label: t("chat.workspace.cards.add_person.title", "Kutsu osaleja"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
-      { key: "kovisioon", label: t("chat.workspace.cards.kovision.title", "Kovisioon"), action: "kovisioon", icon: <KovisionIcon /> },
-      { key: "tooheaolu", label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), action: "tooheaolu", icon: <WellbeingIcon /> },
-      { key: "materjalid", label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },
-      { key: "tagasi", label: t("room.back_card"), action: "toolaud-tagasi", icon: <BackArrowIcon /> },
-    ],
-    [t]
-  );
+  /* Töölaua komplekt — rollipõhine (vt HinnastusBody rolliväravad +
+     workspaceDashboardCards ajalugu). Tavakasutaja näeb oma rolli kaarte;
+     admin vahetab vaadet doki S/P/T-lülitiga (effectiveRole). Süvalingid
+     avavad tööriista vestluspinnal (/vestlus?workspace=<võti>). */
+  const workspaceItems = useMemo(() => {
+    const role = String(effectiveRole || "CLIENT").toUpperCase();
+    const isClient = role === "CLIENT";
+    const ALL = "CLIENT SOCIAL_WORKER SERVICE_PROVIDER".split(" ");
+    const SPECIALIST = ["SOCIAL_WORKER", "SERVICE_PROVIDER"];
+    const all = [
+      { key: "teekond", roles: ["CLIENT"], label: t("chat.workspace.cards.journey.title", "Teekond"), href: "/vestlus?workspace=journey", icon: <JourneyPathIcon /> },
+      { key: "teenusekaart", roles: ALL, label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
+      { key: "otsi", roles: ALL, label: t("personal_search.title", "Minu otsing"), href: "/otsi", icon: <SearchIcon /> },
+      { key: "abisoovid", roles: ALL, label: t("chat.workspace.cards.help_requests.title", "Abisoovid"), href: "/vestlus?workspace=help_requests", icon: <HelpRequestIcon /> },
+      { key: "abipakkumised", roles: ALL, label: t("chat.workspace.cards.help_offers.title", "Abipakkumised"), href: "/vestlus?workspace=help_offers", icon: <HelpOfferIcon /> },
+      { key: "poordumised", roles: ALL, label: isClient ? t("chat.workspace.cards.pre_inquiries.title_client", "Eelpöördumine") : t("chat.workspace.cards.pre_inquiries.title_staff", "Pöördumised"), href: "/vestlus?workspace=pre_inquiries", icon: <InquiryIcon /> },
+      { key: "koosta", roles: ALL, label: t("chat.workspace.cards.document_drafting.title", "Koosta dokument"), href: "/vestlus?workspace=document_drafting", icon: <ComposeDocIcon /> },
+      { key: "lisa", roles: ALL, label: t("chat.workspace.cards.add_person.title", "Kutsu osaleja"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
+      { key: "dokumendid", roles: SPECIALIST, label: t("chat.workspace.cards.documents.title", "Dokumendid"), href: "/vestlus?workspace=documents", icon: <DocumentsIcon /> },
+      { key: "materjalid", roles: SPECIALIST, label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },
+      { key: "teenuseprofiil", roles: ["SERVICE_PROVIDER"], label: t("chat.workspace.cards.service_profile.title", "Teenuseprofiil"), href: "/teenuseprofiil", icon: <ServiceProfileIcon /> },
+      { key: "supervisioon", roles: SPECIALIST, label: t("supervision.meta.title", "Supervisioon"), href: "/supervisioon", icon: <SupervisionIcon /> },
+      { key: "mentorlus", roles: SPECIALIST, label: t("chat.workspace.cards.mentoring.title", "Mentorlus"), href: "/mentorlus", icon: <MentorIcon /> },
+      { key: "valitoo", roles: SPECIALIST, label: t("field.meta.title", "Välitöö"), href: "/valitoo", icon: <FieldIcon /> },
+      { key: "kovisioon", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.kovision.title", "Kovisioon"), action: "kovisioon", icon: <KovisionIcon /> },
+      { key: "tooheaolu", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), action: "tooheaolu", icon: <WellbeingIcon /> },
+      { key: "refleksioon", roles: ["SOCIAL_WORKER"], label: t("reflection.meta.title", "Meetodipeegel"), href: "/refleksioon", icon: <ReflectionIcon /> },
+    ];
+    const cards = all.filter((card) => card.roles.includes(role));
+    cards.push({ key: "tagasi", label: t("room.back_card"), action: "toolaud-tagasi", icon: <BackArrowIcon /> });
+    return cards;
+  }, [t, effectiveRole]);
 
   /* Tööheaolu komplekt — tööriistad otse marsruutidele */
   const wellbeingItems = useMemo(
@@ -1172,9 +1198,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                 !!cardPageKey || carouselSet === "workspace" || carouselSet === "wellbeing"
               }
               onSelect={handleSelect}
+              onRoleChanged={refreshEffectiveRole}
               t={t}
-              /* Töölaud ja tööheaolu: laial ekraanil stabiilne 5 × 2. */
-              visible={carouselSet === "workspace" || carouselSet === "wellbeing" ? 10 : 3}
+              /* Töölaud ja tööheaolu: rollipõhine keritav ruudustik. */
+              grid={carouselSet === "workspace" || carouselSet === "wellbeing"}
               desktopArrows={carouselSet !== "workspace" && carouselSet !== "wellbeing"}
             />
           </div>

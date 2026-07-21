@@ -27,33 +27,32 @@ export default function GlassCarousel({
   backItem = null,
   initialKey,
   onSelect,
+  onRoleChanged = null,
   t,
   setKey = null,
   forceInitial = false,
   visible = 3,
+  grid = false,
   desktopArrows = true,
 }) {
   const n = items.length;
 
-  /* Suurte komplektide laiad paigutused: 5-kaardiline karussell või
-     töölaua 5 × 2 ruudustik. Kitsas aknas kukuvad mõlemad tagasi kolme
-     kaardiga karusselliks. SSR alustab 3-ga (deterministlik), laius
-     mõõdetakse pärast hüdreerimist. */
+  /* Laiad paigutused: 5-kaardiline karussell või töölaua keritav ruudustik
+     (grid). Kitsas aknas kukub mõlemad tagasi kolme kaardiga karusselliks.
+     SSR alustab 3-ga (deterministlik), laius mõõdetakse pärast hüdreerimist.
+     Grid EI sõltu enam kaardiarvust (n) — rollipõhises töölaual on kaarte
+     8–15 ja ruudustik kerib, kui rida ei mahu. */
   const [wideEnough, setWideEnough] = useState(false);
   useEffect(() => {
-    if ((visible !== 5 && visible !== 10) || typeof window === "undefined") return undefined;
+    if ((!grid && visible !== 5) || typeof window === "undefined") return undefined;
     const mq = window.matchMedia("(min-width: 1200px)");
     const update = () => setWideEnough(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
-  }, [visible]);
-  const shown = visible === 10 && wideEnough && n >= 10
-    ? 10
-    : visible === 5 && wideEnough && n >= 5
-      ? 5
-      : 3;
-  const isGrid = shown === 10;
+  }, [grid, visible]);
+  const isGrid = grid && wideEnough;
+  const shown = isGrid ? 10 : visible === 5 && wideEnough && n >= 5 ? 5 : 3;
   const posLimit = shown === 5 ? 2.4 : 1.4;
   const hideBeyond = shown === 5 ? 2 : 1;
 
@@ -295,6 +294,10 @@ export default function GlassCarousel({
   }, [isGrid]);
 
   useEffect(() => {
+    const gridCanScrollX = () => {
+      const list = listRef.current;
+      return isGrid && list && list.scrollWidth > list.clientWidth + 2 ? list : null;
+    };
     const onKey = (e) => {
       if (e.defaultPrevented) return;
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
@@ -303,12 +306,29 @@ export default function GlassCarousel({
       if (tag === "input" || tag === "textarea" || tag === "select" || t?.isContentEditable) {
         return;
       }
+      /* Keritav ruudustik: nooled kerivad KÜLGEDELE, ei pöörle. */
+      const gridList = gridCanScrollX();
+      if (gridList) {
+        e.preventDefault();
+        gridList.scrollBy({ left: (e.key === "ArrowLeft" ? -1 : 1) * (gridList.clientWidth * 0.6), behavior: "smooth" });
+        return;
+      }
       if (!carouselInteractive()) return;
       e.preventDefault();
       step(e.key === "ArrowLeft" ? -1 : 1);
     };
     const onWheel = (e) => {
       if (e.defaultPrevented) return;
+      /* Keritav ruudustik: püstine hiireratas kerib KÜLGEDELE (töölaud on
+         horisontaalne riiul). Puuteplaadi horisontaal (deltaX) samuti. */
+      const gridList = gridCanScrollX();
+      if (gridList) {
+        const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (Math.abs(d) < 2) return;
+        gridList.scrollLeft += d;
+        e.preventDefault();
+        return;
+      }
       if (!carouselInteractive()) return;
       const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (Math.abs(d) < 12) return;
@@ -321,7 +341,7 @@ export default function GlassCarousel({
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("wheel", onWheel);
     };
-  }, [carouselInteractive, step]);
+  }, [carouselInteractive, step, isGrid]);
 
   const handleActivate = useCallback(
     (e, item, i) => {
@@ -375,6 +395,7 @@ export default function GlassCarousel({
     <nav
       className="gc"
       data-visible={shown}
+      data-grid-scroll={isGrid ? "1" : "0"}
       data-desktop-arrows={desktopArrows ? "1" : "0"}
       aria-label={t("room.menu_label")}
       id="room-menu"
@@ -400,7 +421,10 @@ export default function GlassCarousel({
           const pos = layout.pos[i] ?? wrapPos(i, active, n);
           const abs = Math.abs(pos);
           const gridIndex = (i - active + n) % n;
-          const isGridVisible = isGrid && gridIndex < 10;
+          /* Keritav ruudustik: kõik kaardid nähtavad ja voolus (CSS grid +
+             overflow), mitte 10-kaardi aken. Peitmine käib ainult ringjas
+             karusselli-režiimis. */
+          const isGridVisible = isGrid;
           const isCenter = isGrid ? gridIndex === 0 : pos === 0;
           const isWarp = layout.warp[i] === true;
           /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
@@ -501,7 +525,7 @@ export default function GlassCarousel({
               })}
             </div>
           </div>
-          <RoleViewSwitcher placement="cards" />
+          <RoleViewSwitcher placement="cards" onRoleChanged={onRoleChanged} />
         </div>
       ) : null}
       <p className="sr-only" aria-live="polite">

@@ -368,3 +368,57 @@ export const BestPracticeIcon = (props) => (
     <path {...P} d="m9 11.6 2.1 2.1 4-4.2" />
   </Svg>
 );
+
+/* Isiklik otsing — luup */
+export const SearchIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="10.5" cy="10.5" r="5.6" />
+    <path {...P} d="m14.7 14.7 5 5" />
+  </Svg>
+);
+
+/* Supervisioon — järelevalve/peegeldus: silm (ülevaade) */
+export const SupervisionIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M3.4 12s3.5-5.2 8.6-5.2S20.6 12 20.6 12 17.1 17.2 12 17.2 3.4 12 3.4 12Z" />
+    <circle {...P} cx="12" cy="12" r="2.3" />
+  </Svg>
+);
+
+/* Mentorlus — mentor + mentee (suurem ja väiksem kuju) */
+export const MentorIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="8.6" cy="9" r="2.6" />
+    <circle {...P} cx="16.4" cy="10.4" r="2" />
+    <path {...P} d="M4.6 19.2c.5-2.9 2-4.4 4-4.4 1.3 0 2.4.7 3.1 1.9" />
+    <path {...P} d="M13.7 19.2c.3-2 1.4-3.1 2.7-3.1 1.5 0 2.7 1.5 3 3.9" />
+  </Svg>
+);
+
+/* Välitöö — kodukülastus (maja avatud uksega) */
+export const FieldIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4 11.4 12 4.6l8 6.8" />
+    <path {...P} d="M5.8 10v9.4h12.4V10" />
+    <path {...P} d="M10.2 19.4v-4.9h3.6v4.9" />
+  </Svg>
+);
+
+/* Refleksioon (Meetodipeegel) — käepeegel */
+export const ReflectionIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="12" cy="9.4" r="5.5" />
+    <path {...P} d="M12 14.9v4.7" />
+    <path {...P} d="M9.4 8.1a3.7 3.7 0 0 1 2.6-1.6" />
+  </Svg>
+);
+
+/* Teenuseprofiil — teenuseosutaja kaart (ID-kaart) */
+export const ServiceProfileIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="4" y="5.2" width="16" height="13.6" rx="2" />
+    <circle {...P} cx="9.4" cy="10.6" r="2.1" />
+    <path {...P} d="M6.4 16.4c.4-1.7 1.6-2.6 3-2.6s2.6.9 3 2.6" />
+    <path {...P} d="M14.6 9.6h3.2M14.6 12.4h3.2M14.6 15.2h2.2" />
+  </Svg>
+);
