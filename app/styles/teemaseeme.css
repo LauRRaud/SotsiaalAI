@@ -518,7 +518,7 @@ a.ts-nav-link:hover {
 }
 .ts-status[data-status="valitud"] {
   border-color: rgba(var(--tsa), 0.55);
-  color: rgba(255, 224, 178, 0.95);
+  color: rgba(235, 226, 216, 0.95);
 }
 .ts-status[data-status="mustand"] {
   border-style: dashed;
@@ -705,7 +705,7 @@ a.ts-nav-link:hover {
   gap: 0.45rem;
 }
 .ts-gate-stop {
-  border-color: rgba(255, 190, 150, 0.5);
+  border-color: rgba(235, 226, 216, 0.5);
 }
 .ts-gate-chip {
   display: flex;

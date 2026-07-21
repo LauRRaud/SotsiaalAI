@@ -1,12 +1,13 @@
 /* Kovisiooni elusessioon — üks ruum, üks aktiivne objekt, ausad väravad. */
 
 .cvl-shell {
-  --cvl-amber: #e1a25f;
-  --cvl-amber-soft: rgba(225, 162, 95, 0.16);
+  /* Kanoniseerimine (omanik 20.07): kest EI maali oma tausta ega raami — ruumi
+     taust paistab läbi, sisu elab neutraalses klaasis (nagu Teemaseemned). Vana
+     pruun gradient + skaneerimisjooned + amber-ring + oma nupusüsteem olid
+     paralleelne kujundussüsteem ja läksid maha. Nupud tulevad glass.css
+     kanoonist (button[data-variant]). */
   --cvl-line: rgba(255, 255, 255, 0.14);
   --cvl-line-bright: rgba(255, 255, 255, 0.28);
-  --cvl-surface: rgba(24, 21, 19, 0.72);
-  --cvl-surface-strong: rgba(17, 15, 14, 0.9);
   --cvl-private: rgba(174, 193, 196, 0.11);
   position: relative;
   isolation: isolate;
@@ -22,40 +23,7 @@
   max-height: 100%;
   overflow: hidden;
   overscroll-behavior: contain;
-  border: 1px solid var(--cvl-line);
-  border-radius: clamp(1.1rem, 2vw, 2rem);
   color: var(--text-warm, #f4f1ec);
-  background:
-    radial-gradient(circle at 72% 18%, rgba(236, 167, 96, 0.18), transparent 24rem),
-    radial-gradient(circle at 10% 55%, rgba(115, 77, 54, 0.2), transparent 30rem),
-    linear-gradient(128deg, rgba(10, 7, 5, 0.98), rgba(25, 17, 12, 0.96) 42%, rgba(15, 12, 10, 0.98));
-  box-shadow: 0 38px 90px rgba(6, 3, 2, 0.6);
-}
-
-.cvl-shell::before,
-.cvl-shell::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-}
-
-.cvl-shell::before {
-  inset: 0;
-  opacity: 0.68;
-  background:
-    linear-gradient(90deg, transparent 0 7%, rgba(255, 255, 255, 0.025) 7% 7.1%, transparent 7.1% 93%, rgba(255, 255, 255, 0.025) 93% 93.1%, transparent 93.1%),
-    repeating-linear-gradient(90deg, transparent 0 13rem, rgba(255, 255, 255, 0.018) 13rem 13.06rem);
-}
-
-.cvl-shell::after {
-  width: min(46rem, 65vw);
-  height: min(46rem, 65vw);
-  right: -16rem;
-  bottom: -25rem;
-  border: 1px solid rgba(233, 194, 150, 0.13);
-  border-radius: 50%;
-  box-shadow: 0 0 8rem rgba(220, 139, 70, 0.08), inset 0 0 7rem rgba(220, 139, 70, 0.05);
 }
 
 .cvl-shell *,
@@ -71,22 +39,82 @@
   font: inherit;
 }
 
-.cvl-shell button {
+/* Nupu-baas = rakenduseülene liquid-klaas (peegeldab glass.css
+   `button[data-variant]` materjali: backdrop-blur + specular-helk + soe
+   serv), et kovisiooni nupud oleksid SAMA klaasnupud mis mujal platvormil
+   (omanik 20.07). Erikujulised nupud (segment-lüliti, lipud, dokk,
+   lohistuspide) kirjutavad selle üle allpool. */
+:where(.cvl-shell) button {
+  position: relative;
   min-height: 2.5rem;
-  padding: 0.58rem 0.82rem;
-  border: 1px solid var(--cvl-line);
+  padding: 0.58rem 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
-  color: inherit;
-  background: rgba(255, 255, 255, 0.055);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.06);
+  color: var(--text-warm, #f4f1ec);
+  background-color: rgba(255, 255, 255, 0.03);
+  background-image:
+    var(--specular-layer),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.05) 36%,
+      rgba(255, 255, 255, 0.02) 62%,
+      rgba(255, 255, 255, 0.1) 100%
+    );
+  -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.28),
+    inset 0 0 16px rgba(255, 255, 255, 0.05),
+    0 6px 20px rgba(0, 0, 0, 0.26);
   cursor: pointer;
-  transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+  transition:
+    background-color 180ms var(--ease-soft),
+    border-color 180ms var(--ease-soft),
+    box-shadow 180ms var(--ease-soft),
+    color 180ms var(--ease-soft);
 }
 
-.cvl-shell button:hover:not(:disabled) {
-  border-color: var(--cvl-line-bright);
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-1px);
+:where(.cvl-shell) button:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.11);
+  border-color: rgba(255, 255, 255, 0.36);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.08),
+    0 8px 26px rgba(0, 0, 0, 0.3);
+}
+
+:where(.cvl-shell) button:active:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.14);
+  scale: 0.975;
+}
+
+/* Primary-CTA = sama klaas, soe šampanja-serv + õrn sisemine kuma
+   (peegeldab glass.css primary'd; tellija 07.07: MITTE valge plaat). */
+.cvl-shell .cvl-primary {
+  background-color: rgba(255, 255, 255, 0.08);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 250, 244, 0.22) 0%,
+    rgba(255, 255, 255, 0.06) 42%,
+    rgba(255, 255, 255, 0.03) 66%,
+    rgba(255, 244, 232, 0.14) 100%
+  );
+  border-color: rgba(255, 242, 226, 0.38);
+  font-weight: 560;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.34),
+    inset 0 0 22px rgba(255, 233, 209, 0.07),
+    0 6px 22px rgba(0, 0, 0, 0.3);
+}
+
+.cvl-shell .cvl-primary:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 242, 226, 0.55);
+  box-shadow:
+    inset 0 1px 1.5px rgba(255, 255, 255, 0.46),
+    inset 0 0 26px rgba(255, 233, 209, 0.13),
+    0 8px 28px rgba(0, 0, 0, 0.34);
 }
 
 .cvl-shell button:focus-visible,
@@ -152,9 +180,9 @@
 }
 
 .cvl-primary {
-  border-color: rgba(255, 242, 223, 0.55) !important;
+  border-color: rgba(235, 226, 216, 0.55) !important;
   color: var(--text-ink, #241d17) !important;
-  background: linear-gradient(145deg, #f5eee4, #d8c6b2) !important;
+  background: linear-gradient(145deg, #f5eee4, #ebe2d8) !important;
   box-shadow: 0 8px 28px rgba(8, 4, 2, 0.28), inset 0 1px rgba(255, 255, 255, 0.75) !important;
   font-weight: 740;
 }
@@ -200,9 +228,9 @@
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 50%;
-  color: #342518;
-  background: linear-gradient(145deg, #ead5bc, #ad815e);
-  box-shadow: 0 0 2rem rgba(225, 162, 95, 0.18);
+  color: #1a1815;
+  background: linear-gradient(145deg, #ebe2d8, #ebe2d8);
+  box-shadow: 0 0 2rem rgba(235, 226, 216, 0.18);
   font-weight: 800;
 }
 
@@ -278,7 +306,7 @@
   justify-content: space-between;
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--cvl-line);
-  background: rgba(225, 162, 95, 0.09);
+  background: rgba(235, 226, 216, 0.09);
 }
 
 .cvl-support-banner div {
@@ -341,10 +369,10 @@
 }
 
 .cvf-station-chip.is-active {
-  border-color: rgba(225, 162, 95, 0.78);
-  background: var(--cvl-amber-soft);
+  border-color: rgba(235, 226, 216, 0.78);
+  background: rgba(235, 226, 216, 0.1);
   color: var(--text-warm, #f4f1ec);
-  box-shadow: 0 0 1.2rem rgba(225, 162, 95, 0.18);
+  box-shadow: 0 0 1.2rem rgba(235, 226, 216, 0.18);
 }
 
 .cvf-station-arrow {
@@ -514,10 +542,10 @@
 }
 
 .cvf-stage-dock .gc-shortcut[data-state="active"] .cvf-dock-num {
-  border-color: rgba(225, 162, 95, 0.85);
-  color: #2b1b10;
-  background: var(--cvl-amber);
-  box-shadow: 0 0 1.2rem rgba(225, 162, 95, 0.3);
+  border-color: rgba(235, 226, 216, 0.85);
+  color: #1a1815;
+  background: rgba(235, 226, 216, 0.85);
+  box-shadow: 0 0 1.2rem rgba(235, 226, 216, 0.3);
 }
 
 /* Tulevane etapp on lukus koos põhjusega (tooltip); dokk EI ole
@@ -784,7 +812,7 @@
   border: 1px solid rgba(255, 255, 255, 0.11);
   border-radius: clamp(1.2rem, 2vw, 1.8rem);
   background:
-    radial-gradient(ellipse at 50% 45%, rgba(225, 162, 95, 0.1), transparent 31%),
+    radial-gradient(ellipse at 50% 45%, rgba(235, 226, 216, 0.1), transparent 31%),
     linear-gradient(155deg, rgba(255, 255, 255, 0.035), rgba(9, 7, 6, 0.35));
   box-shadow: inset 0 1px rgba(255, 255, 255, 0.07), inset 0 -4rem 8rem rgba(6, 3, 2, 0.22);
 }
@@ -795,7 +823,7 @@
   height: 22%;
   content: "";
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(225, 162, 95, 0.11), transparent 67%);
+  background: radial-gradient(ellipse, rgba(235, 226, 216, 0.11), transparent 67%);
   filter: blur(15px);
   transform: perspective(20rem) rotateX(65deg);
 }
@@ -821,41 +849,104 @@
   transform: translate(-50%, -50%) rotate(11deg);
 }
 
-.cvl-supporting-cards {
+/* Card-field: jagatud kaardid voolus (flex-wrap), iga kaart kannab
+   drag-nihet --cvl-drag-x/y (pidemest lohistades või nooleklahvidega).
+   Konteiner täidab canvas'i; kerimist EI ole (R5.0) — kaardid liiguvad
+   piiratult canvas'i sees, üleulatuvad klipitakse (overflow:hidden). */
+.cvl-card-field {
   position: absolute;
-  inset: 1.2rem;
+  inset: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0.9rem;
 }
 
+/* Kaart = kanooniline klaasmaterjal (sama mis Teemaseemnete kaartidel). */
 .cvl-card {
-  border: 1px solid rgba(255, 255, 255, 0.17);
-  border-radius: 1rem;
-  color: var(--text-warm, #f4f1ec);
-  background:
-    linear-gradient(155deg, rgba(59, 53, 48, 0.52), rgba(20, 18, 16, 0.75));
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 18px 45px rgba(4, 2, 1, 0.28);
+  position: relative;
+  z-index: 1;
+  width: min(20rem, 100%);
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: clamp(18px, 1.5vw, 24px);
+  color: var(--room-text, #f4f1ec);
+  background: linear-gradient(
+    165deg,
+    rgba(44, 39, 34, 0.4) 0%,
+    rgba(32, 28, 25, 0.46) 55%,
+    rgba(24, 21, 19, 0.52) 100%
+  );
+  box-shadow: var(--card-glass-shadow);
   backdrop-filter: blur(22px) saturate(108%);
+  transform: translate3d(var(--cvl-drag-x, 0px), var(--cvl-drag-y, 0px), 0);
+  transition:
+    transform 180ms var(--ease-soft),
+    box-shadow 180ms var(--ease-soft);
 }
 
-.cvl-supporting-cards .cvl-card {
+.cvl-card[data-front="true"] {
+  z-index: 6;
+}
+
+.cvl-card[data-moving="true"] {
+  transition: box-shadow 180ms var(--ease-soft);
+}
+
+/* Lohistuspide — subtiilne pide (EI täisklaas nagu tegevusnupud). */
+.cvl-drag-handle {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  min-height: 0;
+  margin-right: auto;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.7rem;
+  color: var(--text-dim, rgba(244, 241, 236, 0.55));
+  background: transparent;
+  background-image: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+  cursor: grab;
+  touch-action: none;
+}
+
+.cvl-drag-handle:hover:not(:disabled) {
+  border-color: var(--cvl-line);
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--text-warm, #f4f1ec);
+  box-shadow: none;
+}
+
+.cvl-drag-handle:active {
+  cursor: grabbing;
+}
+
+.cvl-drag-handle svg {
+  width: 0.85rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.cvl-layout-reset {
   position: absolute;
-  width: clamp(9rem, 25%, 13.5rem);
-  padding: 0.72rem;
-  opacity: 0.74;
+  z-index: 7;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  min-height: 0;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.68rem;
 }
 
-.cvl-supporting-cards .cvl-card:nth-child(1) { top: 5%; left: 1%; transform: rotate(-2deg); }
-.cvl-supporting-cards .cvl-card:nth-child(2) { top: 7%; right: 1%; transform: rotate(2.5deg); }
-.cvl-supporting-cards .cvl-card:nth-child(3) { bottom: 7%; left: 3%; transform: rotate(1.5deg); }
-.cvl-supporting-cards .cvl-card:nth-child(4) { right: 4%; bottom: 6%; transform: rotate(-2deg); }
-.cvl-supporting-cards .cvl-card:nth-child(5) { top: 45%; right: 0; transform: rotate(3deg); }
-
+/* Tühja lava seis (ei ühtegi jagatud kaarti) — tsentreeritud vihjekaart. */
 .cvl-hero-slot {
   position: absolute;
   z-index: 2;
   top: 50%;
   left: 50%;
-  /* R5.0: kui kaardi sisu on pikk, keritakse KAARDI sees — lõuend ise ei kasva
-     ega lõika sisu ära (lõuendil on overflow:hidden). */
   max-height: calc(100% - 2rem);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -863,19 +954,22 @@
   transform: translate(-50%, -50%);
 }
 
+/* Fookuskaart (aktiivne) = sama klaas, soojem hele serv rõhuks. */
 .cvl-hero {
-  position: relative;
-  min-height: 15rem;
-  padding: clamp(1.15rem, 2vw, 1.65rem);
-  border-color: rgba(225, 162, 95, 0.68);
-  background:
-    radial-gradient(circle at 88% 8%, rgba(225, 162, 95, 0.18), transparent 42%),
-    linear-gradient(150deg, rgba(62, 52, 44, 0.82), rgba(22, 18, 15, 0.93));
+  width: min(26rem, 100%);
+  min-height: 11rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+  background: linear-gradient(
+    165deg,
+    rgba(50, 45, 39, 0.55) 0%,
+    rgba(34, 30, 26, 0.6) 55%,
+    rgba(24, 21, 19, 0.66) 100%
+  );
   box-shadow:
-    0 0 0 1px rgba(225, 162, 95, 0.08),
-    0 0 3.5rem rgba(225, 162, 95, 0.17),
-    0 26px 65px rgba(4, 2, 1, 0.45),
-    inset 0 1px rgba(255, 255, 255, 0.15);
+    0 0 0 1px rgba(255, 242, 226, 0.28),
+    0 0 3rem rgba(255, 246, 236, 0.09),
+    0 22px 55px rgba(4, 2, 1, 0.42),
+    inset 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .cvl-card > header {
@@ -886,7 +980,7 @@
 }
 
 .cvl-kind {
-  color: var(--cvl-amber);
+  color: rgba(235, 226, 216, 0.85);
   font-size: 0.66rem;
   font-weight: 790;
   letter-spacing: 0.09em;
@@ -899,19 +993,20 @@
 }
 
 .cvl-hero > p {
-  margin: clamp(1.25rem, 3vw, 2.15rem) 0 1.2rem;
-  font-size: clamp(1.08rem, 2vw, 1.46rem);
+  margin: clamp(0.85rem, 2vw, 1.35rem) 0 1.1rem;
+  font-size: clamp(1.02rem, 1.7vw, 1.32rem);
   line-height: 1.45;
   text-wrap: balance;
 }
 
-.cvl-supporting-cards .cvl-card > p {
+/* Tavakaardi tekst (mitte-fookus) — lühem, kärbitud neljale reale. */
+.cvl-card:not(.cvl-hero) > p {
   display: -webkit-box;
   margin: 0.55rem 0;
   overflow: hidden;
   color: var(--text-soft, rgba(244, 241, 236, 0.76));
-  font-size: 0.72rem;
-  line-height: 1.38;
+  font-size: 0.74rem;
+  line-height: 1.4;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
@@ -987,7 +1082,7 @@
   z-index: 1;
   width: 0.72rem;
   aspect-ratio: 1;
-  border: 1px solid var(--cvl-amber);
+  border: 1px solid rgba(235, 226, 216, 0.85);
   transform: rotate(45deg);
 }
 
@@ -1075,9 +1170,9 @@
 
 .cvl-private {
   border-style: dashed;
-  border-color: rgba(190, 211, 214, 0.33);
+  border-color: rgba(235, 226, 216, 0.33);
   background:
-    radial-gradient(circle at 92% 8%, rgba(190, 211, 214, 0.08), transparent 42%),
+    radial-gradient(circle at 92% 8%, rgba(235, 226, 216, 0.08), transparent 42%),
     linear-gradient(150deg, rgba(42, 48, 47, 0.48), rgba(17, 20, 20, 0.78));
 }
 
@@ -1086,7 +1181,7 @@
   width: 2rem;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px solid rgba(190, 211, 214, 0.32);
+  border: 1px solid rgba(235, 226, 216, 0.32);
   border-radius: 50%;
   color: rgba(218, 231, 232, 0.8);
   font-size: 1rem;
@@ -1133,6 +1228,10 @@
   min-height: 2rem;
   border-color: transparent;
   background: transparent;
+  background-image: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
   font-size: 0.72rem;
 }
 
@@ -1201,7 +1300,7 @@
 }
 
 .cvl-gate.is-open {
-  border-top-color: rgba(225, 162, 95, 0.45);
+  border-top-color: rgba(235, 226, 216, 0.45);
   background: linear-gradient(90deg, rgba(32, 23, 17, 0.94), rgba(12, 10, 9, 0.9));
 }
 
@@ -1216,10 +1315,10 @@
 }
 
 .cvl-gate.is-open .cvl-gate-mark {
-  border-color: rgba(225, 162, 95, 0.8);
-  color: #2b1b10;
-  background: var(--cvl-amber);
-  box-shadow: 0 0 1.7rem rgba(225, 162, 95, 0.25);
+  border-color: rgba(235, 226, 216, 0.8);
+  color: #1a1815;
+  background: rgba(235, 226, 216, 0.85);
+  box-shadow: 0 0 1.7rem rgba(235, 226, 216, 0.25);
 }
 
 .cvl-gate-copy {
@@ -1341,12 +1440,13 @@
     min-height: 32rem;
   }
 
-  .cvl-supporting-cards .cvl-card {
-    width: 8.2rem;
+  .cvl-card-field {
+    inset: 0.8rem;
+    gap: 0.6rem;
   }
 
-  .cvl-supporting-cards .cvl-card:nth-child(n + 4) {
-    display: none;
+  .cvl-card {
+    width: 100%;
   }
 
   .cvl-hero-slot {

@@ -26,9 +26,12 @@ test("page reads real list/detail APIs and wires every lifecycle write", () => {
 });
 
 test("main page has platform navigation and deliberately lacks active-session chrome", () => {
-  for (const href of ["/kovisioon", "/teemaseemned", "/lopetatud-juhtumid", "/parimad-praktikad"]) {
+  // Kanooniline nav (sama grammatika mis teemaseemnetel): teised pere-lehed
+  // on lingid, aktiivne leht ise on span[aria-current="page"].
+  for (const href of ["/kovisioon", "/teemaseemned", "/parimad-praktikad"]) {
     assert.match(page, new RegExp(`href="${href}"`));
   }
+  assert.match(page, /<span className="ccp-nav-link" aria-current="page"/);
   assert.doesNotMatch(page, /StageRail|meetingElapsed|Vajan tuge|Sessiooni juht/);
   assert.match(page, /completed_cases\.help\.title/);
   assert.match(page, /roleLabel\(owner\.role, t\)/);
@@ -74,7 +77,8 @@ test("loading and error detail states remain keyboard-contained dialogs", () => 
   assert.match(page, /autoFocus onClick=\{onClose\} aria-label=/);
   assert.match(page, /onClick=\{onRetry\}/);
   assert.match(page, /useModalFocusTrap\(dialogRef\)/);
-  assert.match(page, /completed_cases\.help\.title[\s\S]*aria-expanded=\{helpOpen\}/);
+  assert.match(page, /aria-expanded=\{helpOpen\} aria-controls="ccp-help-panel"/);
+  assert.match(page, /completed_cases\.help\.title/);
 });
 
 test("owner-only practice link and help disclosure have explicit UI contracts", () => {

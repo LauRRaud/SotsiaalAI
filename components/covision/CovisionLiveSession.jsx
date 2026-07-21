@@ -560,13 +560,68 @@ function ParticipantList({ participants, me, stage, busy, dispatchAction, copy }
   );
 }
 
-function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy }) {
+const CARD_NUDGE = 14;
+const CARD_NUDGE_LARGE = 48;
+
+function GripIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 18 24" focusable="false">
+      <circle cx="6" cy="6" r="1.6" />
+      <circle cx="12" cy="6" r="1.6" />
+      <circle cx="6" cy="12" r="1.6" />
+      <circle cx="12" cy="12" r="1.6" />
+      <circle cx="6" cy="18" r="1.6" />
+      <circle cx="12" cy="18" r="1.6" />
+    </svg>
+  );
+}
+
+function ItemCard({
+  item,
+  hero = false,
+  canManage,
+  busy,
+  dispatchAction,
+  copy,
+  movable = false,
+  offset = { x: 0, y: 0 },
+  isFront = false,
+  isMoving = false,
+  registerRef,
+  dragHandlers,
+  onNudge
+}) {
   const status = lower(item?.status, "shared_draft");
   const text = firstText(contentOf(item), copy);
   const closed = ["closed", "parked", "withdrawn", "completed"].includes(status);
+  const positioned = offset.x !== 0 || offset.y !== 0;
   return (
-    <article className={`cvl-card ${hero ? "cvl-hero" : ""} is-${status}`}>
+    <article
+      ref={movable && registerRef ? (el) => registerRef(item?.id, el) : undefined}
+      className={`cvl-card ${hero ? "cvl-hero" : ""} is-${status}`}
+      data-front={movable && isFront ? "true" : undefined}
+      data-moving={movable && isMoving ? "true" : undefined}
+      data-positioned={movable && positioned ? "true" : undefined}
+      style={movable ? { "--cvl-drag-x": `${offset.x}px`, "--cvl-drag-y": `${offset.y}px` } : undefined}
+    >
       <header>
+        {movable ? (
+          <button
+            type="button"
+            className="cvl-drag-handle"
+            aria-label={formatCopy(copyValue(copy, "spatial.drag_handle"), { title: kindLabel(item?.kind, copy) })}
+            aria-describedby="cvl-move-instructions"
+            aria-keyshortcuts="ArrowUp ArrowDown ArrowLeft ArrowRight Home"
+            title={copyValue(copy, "spatial.move_hint")}
+            onPointerDown={(event) => dragHandlers?.begin(event, item)}
+            onPointerMove={dragHandlers?.move}
+            onPointerUp={(event) => dragHandlers?.end(event)}
+            onPointerCancel={(event) => dragHandlers?.end(event, { cancelled: true })}
+            onKeyDown={(event) => onNudge?.(event, item)}
+          >
+            <GripIcon />
+          </button>
+        ) : null}
         <span className="cvl-kind">{kindLabel(item?.kind, copy)}</span>
         <span className="cvl-status">{statusLabel(status, copy)}</span>
       </header>
@@ -577,6 +632,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {status !== "active" && !closed ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "active" })}
             >
@@ -586,6 +642,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {status === "active" ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "shared" })}
             >
@@ -595,6 +652,7 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
           {!closed ? (
             <button
               type="button"
+              data-variant
               disabled={busy}
               onClick={() => dispatchAction(ACTIONS.updateWorkItem, { id: item.id, status: "parked" })}
             >
@@ -607,10 +665,138 @@ function ItemCard({ item, hero = false, canManage, busy, dispatchAction, copy })
   );
 }
 
+/* Laud = liigutatav ruum (omanik 20.07: „pane kastide asemele liigutatavad
+   kastid nagu teemaseemnetel"). Jagatud kaardid seisavad voolus ja iga kaart
+   kannab drag-nihet (--cvl-drag-x/y) pidemest lohistades või nooleklahvidega;
+   piirid arvutatakse canvas'ist (kest ei keri, R5.0). Muster = TeemaseemnedPage
+   pointer-drag, ilma suuruse muutmiseta. */
 function WorkField({ items, stage, canManage, busy, dispatchAction, copy }) {
   const active = items.find((item) => lower(item?.status) === "active") || items.at(-1) || null;
-  const supporting = items.filter((item) => item !== active);
   const meta = copy?.stages?.[stage] || {};
+  const [offsets, setOffsets] = useState({});
+  const [movingId, setMovingId] = useState(null);
+  const [frontId, setFrontId] = useState(null);
+  const [notice, setNotice] = useState("");
+  const boundsRef = useRef(null);
+  const cardRefs = useRef(new Map());
+  const dragRef = useRef(null);
+
+  const registerRef = useCallback((id, el) => {
+    if (!id) return;
+    if (el) cardRefs.current.set(id, el);
+    else cardRefs.current.delete(id);
+  }, []);
+
+  const getOffset = useCallback((id) => offsets[id] || { x: 0, y: 0 }, [offsets]);
+
+  const getBounds = useCallback((cardEl, currentOffset) => {
+    const boundsEl = boundsRef.current;
+    if (!boundsEl || !cardEl) return null;
+    const b = boundsEl.getBoundingClientRect();
+    const c = cardEl.getBoundingClientRect();
+    const baseLeft = c.left - currentOffset.x;
+    const baseTop = c.top - currentOffset.y;
+    const inset = 6;
+    return {
+      minX: b.left + inset - baseLeft,
+      maxX: b.right - inset - (baseLeft + c.width),
+      minY: b.top + inset - baseTop,
+      maxY: b.bottom - inset - (baseTop + c.height)
+    };
+  }, []);
+
+  const constrain = useCallback((o, bounds) => {
+    if (!bounds) return o;
+    return {
+      x: Math.round(Math.min(Math.max(o.x, bounds.minX), bounds.maxX)),
+      y: Math.round(Math.min(Math.max(o.y, bounds.minY), bounds.maxY))
+    };
+  }, []);
+
+  const applyLive = useCallback((el, o) => {
+    if (!el) return;
+    el.style.setProperty("--cvl-drag-x", `${o.x}px`);
+    el.style.setProperty("--cvl-drag-y", `${o.y}px`);
+  }, []);
+
+  const dragHandlers = useMemo(() => ({
+    begin(event, item) {
+      if (event.button !== 0 || !item?.id) return;
+      const cardEl = cardRefs.current.get(item.id);
+      if (!cardEl) return;
+      const initial = getOffset(item.id);
+      dragRef.current = {
+        item,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        initial,
+        latest: initial,
+        bounds: getBounds(cardEl, initial),
+        cardEl
+      };
+      event.currentTarget.setPointerCapture(event.pointerId);
+      setFrontId(item.id);
+      setMovingId(item.id);
+      setNotice(formatCopy(copyValue(copy, "spatial.moving"), { title: kindLabel(item.kind, copy) }));
+    },
+    move(event) {
+      const d = dragRef.current;
+      if (!d || d.pointerId !== event.pointerId) return;
+      const next = constrain(
+        { x: d.initial.x + event.clientX - d.startX, y: d.initial.y + event.clientY - d.startY },
+        d.bounds
+      );
+      d.latest = next;
+      applyLive(d.cardEl, next);
+    },
+    end(event, { cancelled = false } = {}) {
+      const d = dragRef.current;
+      if (!d || d.pointerId !== event.pointerId) return;
+      const final = cancelled ? d.initial : d.latest;
+      applyLive(d.cardEl, final);
+      if (!cancelled) {
+        setOffsets((prev) => ({ ...prev, [d.item.id]: final }));
+        setNotice(formatCopy(copyValue(copy, "spatial.moved"), { title: kindLabel(d.item.kind, copy) }));
+      }
+      if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      }
+      dragRef.current = null;
+      setMovingId(null);
+    }
+  }), [applyLive, constrain, copy, getBounds, getOffset]);
+
+  const onNudge = useCallback((event, item) => {
+    if (!item?.id) return;
+    if (event.key === "Home") {
+      event.preventDefault();
+      setFrontId(item.id);
+      setOffsets((prev) => ({ ...prev, [item.id]: { x: 0, y: 0 } }));
+      setNotice(formatCopy(copyValue(copy, "spatial.reset_one"), { title: kindLabel(item.kind, copy) }));
+      return;
+    }
+    const dir = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[event.key];
+    if (!dir) return;
+    event.preventDefault();
+    setFrontId(item.id);
+    const current = getOffset(item.id);
+    const cardEl = cardRefs.current.get(item.id);
+    const step = event.shiftKey ? CARD_NUDGE_LARGE : CARD_NUDGE;
+    const next = constrain(
+      { x: current.x + dir[0] * step, y: current.y + dir[1] * step },
+      getBounds(cardEl, current)
+    );
+    setOffsets((prev) => ({ ...prev, [item.id]: next }));
+    setNotice(formatCopy(copyValue(copy, "spatial.moved"), { title: kindLabel(item.kind, copy) }));
+  }, [constrain, copy, getBounds, getOffset]);
+
+  const hasAdjusted = Object.values(offsets).some((o) => o.x !== 0 || o.y !== 0);
+  const resetLayout = useCallback(() => {
+    setOffsets({});
+    setNotice(copyValue(copy, "spatial.reset_notice"));
+  }, [copy]);
+
   return (
     <section className="cvl-work-field" aria-labelledby="cvl-work-title">
       <header className="cvl-work-heading">
@@ -621,42 +807,45 @@ function WorkField({ items, stage, canManage, busy, dispatchAction, copy }) {
         <span className="cvl-phase-chip">{formatCopy(copyValue(copy, "ui.shared_cards_count"), { count: items.length })}</span>
       </header>
       <p className="cvl-stage-lead">{meta.lead}</p>
-      <div className="cvl-canvas" data-stage={stage}>
-        <div className="cvl-orbit cvl-orbit-one" aria-hidden="true" />
-        <div className="cvl-orbit cvl-orbit-two" aria-hidden="true" />
-        {supporting.length ? (
-          <div className="cvl-supporting-cards" aria-label={copyValue(copy, "ui.supporting_cards_aria")}>
-            {supporting.slice(-5).map((item) => (
+      <p id="cvl-move-instructions" className="cvl-sr-only">{copyValue(copy, "spatial.move_hint")}</p>
+      <div className="cvl-canvas" data-stage={stage} ref={boundsRef}>
+        {items.length ? (
+          <div className="cvl-card-field" aria-label={copyValue(copy, "ui.supporting_cards_aria")}>
+            {items.map((item) => (
               <ItemCard
                 key={item.id}
                 item={item}
+                hero={item === active}
                 canManage={canManage}
                 busy={busy}
                 dispatchAction={dispatchAction}
                 copy={copy}
+                movable
+                offset={getOffset(item.id)}
+                isFront={frontId === item.id}
+                isMoving={movingId === item.id}
+                registerRef={registerRef}
+                dragHandlers={dragHandlers}
+                onNudge={onNudge}
               />
             ))}
           </div>
-        ) : null}
-        <div className="cvl-hero-slot">
-          {active ? (
-            <ItemCard
-              item={active}
-              hero
-              canManage={canManage}
-              busy={busy}
-              dispatchAction={dispatchAction}
-              copy={copy}
-            />
-          ) : (
+        ) : (
+          <div className="cvl-hero-slot">
             <article className="cvl-card cvl-hero cvl-empty-hero">
               <span className="cvl-kind">{copyValue(copy, "ui.stage_focus")}</span>
               <p>{meta.hero}</p>
               <small>{copyValue(copy, "ui.first_shared_card_hint")}</small>
             </article>
-          )}
-        </div>
+          </div>
+        )}
+        {hasAdjusted ? (
+          <button type="button" data-variant className="cvl-layout-reset" onClick={resetLayout}>
+            {copyValue(copy, "spatial.reset_layout")}
+          </button>
+        ) : null}
       </div>
+      <span className="cvl-sr-only" role="status" aria-live="polite">{notice}</span>
     </section>
   );
 }

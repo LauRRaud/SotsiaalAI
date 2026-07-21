@@ -3593,6 +3593,15 @@
     },
     "live": {
       "exit": { "label": "Välju", "aria": "Välju Kovisioonist" },
+      "spatial": {
+        "move_hint": "Lohista kaarti pidemest või liiguta nooleklahvidega; Home taastab kaardi koha.",
+        "drag_handle": "Liiguta kaarti „{title}”",
+        "moving": "Liigutan kaarti „{title}”.",
+        "moved": "Kaart „{title}” paigutatud.",
+        "reset_one": "Kaart „{title}” on tagasi algses kohas.",
+        "reset_layout": "Taasta paigutus",
+        "reset_notice": "Kaartide paigutus taastatud."
+      },
       "stations": {
         "laud": "Ühine laud",
         "ring": "Ring",

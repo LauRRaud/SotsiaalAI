@@ -3593,6 +3593,15 @@
     },
     "live": {
       "exit": { "label": "Exit", "aria": "Exit covision" },
+      "spatial": {
+        "move_hint": "Drag a card by its handle or move it with the arrow keys; Home returns it to its place.",
+        "drag_handle": "Move card „{title}”",
+        "moving": "Moving card „{title}”.",
+        "moved": "Card „{title}” placed.",
+        "reset_one": "Card „{title}” returned to its original place.",
+        "reset_layout": "Reset layout",
+        "reset_notice": "Card layout reset."
+      },
       "stations": {
         "laud": "Shared table",
         "ring": "Circle",
