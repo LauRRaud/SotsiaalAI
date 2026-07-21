@@ -7,7 +7,10 @@ import AppLink from "@/components/ui/Link";
 import Button from "@/components/ui/Button";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
+
+const REGISTER_CLOSED_NOTE_ID = "hinnastus-register-closed-note";
 
 const planKeys = ["free", "client", "worker", "provider"];
 
@@ -67,6 +70,34 @@ const featureRows = [
   {
     key: "kovisioon",
     values: ["dash", "dash", "included", "included"]
+  },
+  /* Uute tööriistade read (T10): väärtused vastavad koodiväravatele —
+     tööheaolu+Meetodipeegel = canUseWellbeingRole (ainult SOCIAL_WORKER);
+     supervisioon/mentorlus/välitöö = SW+SP rolliloendid; isiklik otsing =
+     requireUser (kõik sisselogitud, ka tasuta pakett). */
+  {
+    key: "supervision",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "mentoring",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "field_work",
+    values: ["dash", "dash", "included", "included"]
+  },
+  {
+    key: "wellbeing",
+    values: ["dash", "dash", "included", "dash"]
+  },
+  {
+    key: "reflection",
+    values: ["dash", "dash", "included", "dash"]
+  },
+  {
+    key: "personal_search",
+    values: ["included", "included", "included", "included"]
   },
   {
     key: "materials_adding",
@@ -170,6 +201,14 @@ export default function HinnastusBody() {
             </AppLink>
           </p>
 
+          {!REGISTRATION_OPEN ? (
+            /* T10 E3: suletud CTA selgitus on nähtav tekst, mitte ainult
+               tooltip — sama sõnum, mida server ja registreerimisleht näitavad. */
+            <p id={REGISTER_CLOSED_NOTE_ID} role="note">
+              {t("auth.register.closed_notice")}
+            </p>
+          ) : null}
+
           <div>
             <table aria-labelledby="hinnastus-title">
               <colgroup>
@@ -208,12 +247,27 @@ export default function HinnastusBody() {
                   {actions.map((action) => (
                     <td key={action.key}>
                       {action.type === "button" ? (
+                        /* aria-disabled (mitte disabled) hoiab nupu klaviatuuriga
+                           fookustatava; selgitus on nähtav noodis, millele
+                           aria-describedby viitab. */
                         <Button
                           type="button"
                           variant="primary"
                           size="sm"
-                          disabled
-                          title={t("auth.register.closed_notice")}
+                          aria-disabled={!REGISTRATION_OPEN}
+                          aria-describedby={
+                            !REGISTRATION_OPEN ? REGISTER_CLOSED_NOTE_ID : undefined
+                          }
+                          onClick={(event) => {
+                            if (!REGISTRATION_OPEN) {
+                              event.preventDefault();
+                              return;
+                            }
+                            pushWithTransition(
+                              router,
+                              localizePath("/registreerimine", locale)
+                            );
+                          }}
                         >
                           {t(`about.pricing.actions.${action.key}`)}
                         </Button>

@@ -24,6 +24,18 @@ export async function generateMetadata() {
  * kerimisruum saabumiskõnnile ning staatiline sisu ekraanilugejale,
  * otsimootorile ja liikumise vähendajale.
  */
+/* T10 E6: avalik Organization JSON-LD — ainult avalikud, staatilised andmed
+   (samad, mis avalehe kontaktimodaalis). Ei sisalda env-väärtusi. */
+const ORGANIZATION_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "SotsiaalAI",
+  legalName: "SotsiaalAI OÜ",
+  url: "https://sotsiaal.ai",
+  logo: "https://sotsiaal.ai/og/sotsiaalai-share.png",
+  email: "info@sotsiaal.ai"
+};
+
 export default async function HomeRoot() {
   const cookieStore = await cookies();
   const locale = getLocaleFromCookies(cookieStore);
@@ -40,6 +52,10 @@ export default async function HomeRoot() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSONLD) }}
+      />
       <div className="room-static-copy">
         <h1>{room.loading_line || "SotsiaalAI"}</h1>
         {walkCopy.map((keys) => (

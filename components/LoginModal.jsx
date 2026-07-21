@@ -8,6 +8,7 @@ import { signIn, useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import Input from "@/components/ui/Input";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
@@ -1348,14 +1349,23 @@ export default function LoginModal({
 
         {!isOtpStep ? (
           <div className="login-register-row">
-            <span
-              className="login-register-link"
-              role="link"
-              aria-disabled="true"
-              title={t("auth.register.closed_notice")}
-            >
-              {t("auth.login.register_link_closed")}
-            </span>
+            {REGISTRATION_OPEN ? (
+              <a
+                className="login-register-link"
+                href={localizePath("/registreerimine", locale)}
+              >
+                {t("auth.login.register_link")}
+              </a>
+            ) : (
+              /* T10 E3: suletud seis samast tõeallikast mis server; selgitus
+                 on nähtav tekst, mitte ainult title-tooltip. */
+              <span className="login-register-link" role="note">
+                {t("auth.login.register_link_closed")}
+                <span className="login-register-closed-note">
+                  {t("auth.register.closed_notice")}
+                </span>
+              </span>
+            )}
           </div>
         ) : null}
 

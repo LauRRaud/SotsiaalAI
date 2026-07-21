@@ -785,3 +785,67 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
 }
 
 }
+
+/* Õigusdokumendi versioonirida päise all (T10 E4) */
+.legal-version-note {
+  margin: 0.2rem 0 1.1rem;
+  font-size: 0.86rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+/* Lugemiskiht: sisukord, lokaalne otsing ja peatükiankrud (T10 E5) */
+.reading-toc {
+  margin: 0 0 1.4rem;
+}
+.reading-toc-title {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+}
+.reading-toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.95rem;
+}
+.reading-toc-list a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+.reading-toc-list a:hover,
+.reading-toc-list a:focus-visible {
+  color: var(--text-warm);
+  text-decoration: underline;
+}
+.reading-toc-list a[aria-current="location"] {
+  color: var(--text-warm);
+  text-decoration: underline;
+}
+.reading-section {
+  scroll-margin-top: 5.5rem;
+}
+.reading-search {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin: 0 0 1.1rem;
+  max-width: 26rem;
+}
+.reading-search input {
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border-soft, rgba(255, 255, 255, 0.18));
+  background: rgba(0, 0, 0, 0.18);
+  color: inherit;
+}
+.reading-search-status {
+  margin: 0;
+  min-height: 1.2em;
+  font-size: 0.86rem;
+  color: var(--text-dim);
+}
+.reading-search-empty {
+  color: var(--text-dim);
+}
