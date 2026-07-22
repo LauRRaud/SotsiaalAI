@@ -33,8 +33,21 @@ function pickLocale(url, req, payload = null) {
   return fromHeader || "en";
 }
 
+// Proxy taga on req.url origin localhost:3000 — brauserisuunamised peavad
+// minema avaliku origini pihta (x-forwarded-host/host).
+function resolvePublicOrigin(requestUrl, headers) {
+  const fallback = new URL(requestUrl).origin;
+  const forwardedHost = String(headers?.get?.("x-forwarded-host") || "").trim();
+  const directHost = String(headers?.get?.("host") || "").trim();
+  const forwardedProto = String(headers?.get?.("x-forwarded-proto") || "").trim();
+  const resolvedHost = forwardedHost || directHost;
+  if (!resolvedHost) return fallback;
+  const protocol = forwardedProto || (fallback.startsWith("https://") ? "https" : "http");
+  return `${protocol}://${resolvedHost}`;
+}
+
 function buildTarget(req, locale, paymentState, roomId = "", inviteId = "", ref = "") {
-  const target = new URL(localizePath("/vestlus", locale), req.url);
+  const target = new URL(localizePath("/vestlus", locale), resolvePublicOrigin(req.url, req.headers));
   target.searchParams.set("invitePayment", paymentState);
   if (roomId) target.searchParams.set("roomId", roomId);
   if (inviteId) target.searchParams.set("inviteId", inviteId);

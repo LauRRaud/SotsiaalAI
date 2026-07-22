@@ -127,7 +127,7 @@ function renderVerifyPage({
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${safeTitle}</title>
     <style>
-      :root { color-scheme: dark light; }
+      :root { color-scheme: dark; }
       body {
         margin: 0;
         min-height: 100vh;
@@ -136,20 +136,20 @@ function renderVerifyPage({
         padding: 24px;
         font-family: "Segoe UI", Arial, sans-serif;
         background:
-          radial-gradient(circle at 18% 14%, rgba(197,113,113,0.12), transparent 22%),
-          radial-gradient(circle at 82% 84%, rgba(122,58,56,0.08), transparent 26%),
-          linear-gradient(180deg, #c6aea6 0%, #b99f98 100%);
-        color: #3f2f2b;
+          radial-gradient(circle at 18% 14%, rgba(197,113,113,0.10), transparent 26%),
+          radial-gradient(circle at 82% 84%, rgba(122,58,56,0.14), transparent 32%),
+          linear-gradient(180deg, #16100e 0%, #251a16 100%);
+        color: #e9ded8;
       }
       .card {
         width: min(100%, 31rem);
         border-radius: 2rem;
         padding: clamp(2rem, 4vw, 2.4rem);
-        background: linear-gradient(180deg, rgba(255,255,255,0.52) 0%, rgba(247,240,237,0.64) 100%);
-        border: 1px solid rgba(255,255,255,0.34);
+        background: linear-gradient(180deg, rgba(44,32,28,0.66) 0%, rgba(30,21,19,0.78) 100%);
+        border: 1px solid rgba(255,255,255,0.14);
         box-shadow:
-          0 1.4rem 3.6rem rgba(70,44,39,0.18),
-          inset 0 1px 0 rgba(255,255,255,0.52);
+          0 1.4rem 3.6rem rgba(0,0,0,0.5),
+          inset 0 1px 0 rgba(255,255,255,0.10);
         backdrop-filter: blur(20px) saturate(118%);
         -webkit-backdrop-filter: blur(20px) saturate(118%);
       }
@@ -168,8 +168,8 @@ function renderVerifyPage({
         line-height: 1.08;
         text-align: center;
         letter-spacing: 0.02em;
-        color: #7a3a38;
-        text-shadow: 0 0.18rem 0.44rem rgba(255,255,255,0.16);
+        color: #f0e4de;
+        text-shadow: 0 0.18rem 0.44rem rgba(0,0,0,0.35);
         font-family: Arial, sans-serif;
         font-weight: 400;
       }
@@ -178,7 +178,7 @@ function renderVerifyPage({
         max-width: 24rem;
         font-size: 1.04rem;
         line-height: 1.56;
-        color: ${isError ? "#8f3030" : "#4f3d39"};
+        color: ${isError ? "#e8a3a3" : "#cdbdb5"};
         text-align: center;
       }
       .actions {
@@ -194,21 +194,21 @@ function renderVerifyPage({
         min-width: 11.75rem;
         padding: 0 1.7rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.46);
+        border: 1px solid rgba(255, 255, 255, ${isError ? "0.22" : "0.30"});
         text-decoration: none;
         background: ${
           isError
-            ? "linear-gradient(180deg, rgba(234,192,192,0.96) 0%, rgba(223,171,171,0.96) 100%)"
-            : "radial-gradient(130% 130% at 18% 14%, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(245,236,232,0.92) 100%)"
+            ? "linear-gradient(180deg, rgba(122,50,48,0.55) 0%, rgba(84,32,30,0.60) 100%)"
+            : "radial-gradient(130% 130% at 18% 14%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%)"
         };
-        color: ${isError ? "#7a2323" : "#7a3a38"};
+        color: ${isError ? "#f0c9c9" : "#f2e9e4"};
         font-size: 1.14rem;
         font-weight: 500;
         line-height: 1.1;
         letter-spacing: 0.02em;
         box-shadow:
-          0 0.6rem 1.4rem rgba(92,63,59,0.14),
-          inset 0 1px 0 rgba(255,255,255,0.72);
+          0 0.6rem 1.4rem rgba(0,0,0,0.35),
+          inset 0 1px 0 rgba(255,255,255,0.22);
         transition: box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
         backdrop-filter: blur(12px) saturate(118%);
         -webkit-backdrop-filter: blur(12px) saturate(118%);
@@ -216,10 +216,10 @@ function renderVerifyPage({
       .button:hover,
       .button:focus-visible {
         box-shadow:
-          0 0.75rem 1.7rem rgba(92,63,59,0.18),
-          inset 0 1px 0 rgba(255,255,255,0.78);
+          0 0.75rem 1.7rem rgba(0,0,0,0.45),
+          inset 0 1px 0 rgba(255,255,255,0.30);
         outline: none;
-        filter: brightness(1.02);
+        filter: brightness(1.12);
       }
       .button:active {
         transform: translateY(1px);
@@ -310,14 +310,13 @@ function resolvePublicOrigin(requestUrl, headers) {
   return `${protocol}://${resolvedHost}`;
 }
 
-function buildChatUrl({ requestUrl, locale, headers }) {
+function buildHomeUrl({ requestUrl, locale, headers }) {
   const redirectBase = resolvePublicOrigin(requestUrl, headers);
-  return new URL(localizePath("/vestlus", locale), redirectBase);
+  return new URL(localizePath("/", locale), redirectBase);
 }
 
 function buildPostVerifyUrl({ requestUrl, locale, headers }) {
-  const url = buildChatUrl({ requestUrl, locale, headers });
-  url.searchParams.set("login", "1");
+  const url = buildHomeUrl({ requestUrl, locale, headers });
   url.searchParams.set("reason", "email-verified");
   return url;
 }
@@ -408,15 +407,15 @@ async function confirmVerification({ email, token }) {
       where: { id: user.id },
       data: { emailVerified: new Date() }
     });
+    // NB: deleteMany filter ei tunne identifier_token liitselektorit
+    // (see on findUnique/delete where-sisend) — kasuta tavalisi väljafiltreid.
     await tx.verificationToken.deleteMany({
       where: {
         OR: [
           { identifier: prefixedIdentifier },
           {
-            identifier_token: {
-              identifier: verificationToken.identifier,
-              token: verificationToken.token
-            }
+            identifier: verificationToken.identifier,
+            token: verificationToken.token
           }
         ]
       }
@@ -461,7 +460,7 @@ export async function GET(request) {
           title: copy.title,
           body: serverT(locale, "api.auth.verify.invalid_link", undefined, copy.intro),
           actionLabel: copy.continueLabel,
-          actionUrl: buildChatUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
+          actionUrl: buildHomeUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
           isError: true
         });
       }
@@ -492,7 +491,7 @@ export async function GET(request) {
         title: copy.title,
         body: serverT(locale, result.messageKey, undefined, copy.intro),
         actionLabel: copy.continueLabel,
-        actionUrl: buildChatUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
+        actionUrl: buildHomeUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
         isError: true
       });
     }
@@ -510,7 +509,7 @@ export async function GET(request) {
         copy.successBody
       ),
       actionLabel: copy.continueLabel,
-      actionUrl: buildChatUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
+      actionUrl: buildHomeUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
       isError: true
     });
   }
