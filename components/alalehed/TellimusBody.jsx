@@ -81,6 +81,9 @@ export default function TellimusBody() {
   const [loginOpen, setLoginOpen] = useState(false);
   const [checkoutAgreed, setCheckoutAgreed] = useState(false);
   const [closing, setClosing] = useState(false);
+  const [cancelConfirm, setCancelConfirm] = useState(false);
+  const [cancelBusy, setCancelBusy] = useState(false);
+  const [cancelError, setCancelError] = useState("");
   const {
     t,
     locale
@@ -108,6 +111,9 @@ export default function TellimusBody() {
     ? new Date(subscriptionMeta.validUntil).toLocaleDateString(localeDateFormat)
     : "";
   const validUntilDate = sponsorValidUntil;
+  const nextBillingDate = subscriptionMeta?.nextBilling
+    ? new Date(subscriptionMeta.nextBilling).toLocaleDateString(localeDateFormat)
+    : sponsorValidUntil;
   const nextRetryDate = subscriptionMeta?.nextRetryAt
     ? new Date(subscriptionMeta.nextRetryAt).toLocaleDateString(localeDateFormat)
     : "";
@@ -315,6 +321,33 @@ export default function TellimusBody() {
       setProcessing(false);
     }
   }
+  async function handleCancelSubscription() {
+    try {
+      setCancelBusy(true);
+      setCancelError("");
+      const res = await fetch("/api/subscription", {
+        method: "DELETE"
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setCancelError(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "api.subscription.cancel_failed"
+        }));
+        return;
+      }
+      if (payload?.subscription) {
+        setSubscriptionMeta(payload.subscription);
+      }
+      setCancelConfirm(false);
+    } catch (err) {
+      console.error("subscription cancel", err);
+      setCancelError(t("profile.server_unreachable"));
+    } finally {
+      setCancelBusy(false);
+    }
+  }
   if (loading) {
     return <section lang={locale}>
         <div>
@@ -386,7 +419,7 @@ export default function TellimusBody() {
                   <p>
                     {subscriptionActiveSummary}
                   </p>
-                  <p>
+                  <p aria-live="polite">
                     {sponsoredEndsSoon
                       ? t("subscription.active.sponsored_ending_soon", {
                           days: sponsorDaysLeft,
@@ -400,14 +433,51 @@ export default function TellimusBody() {
                           ? t("subscription.active.cancel_at_period_end_note", {
                               date: validUntilDate
                             })
-                          : t("subscription.active.cancel_note")}
+                          : t("subscription.active.recurring_note", {
+                              date: nextBillingDate
+                            })}
                   </p>
                 </div>
                 <div>
                   <Button type="button" variant="primary" aria-describedby="cancel-note" onClick={() => pushWithTransition(router, returnToProfile ? profileReturnPath : localizePath("/profiil", locale))}>
                     {t("subscription.button.open_profile")}
                   </Button>
+                  {!subscriptionMeta?.isSponsored && !cancelAtPeriodEnd && !cancelConfirm ? (
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      disabled={cancelBusy}
+                      onClick={() => {
+                        setCancelError("");
+                        setCancelConfirm(true);
+                      }}
+                    >
+                      {t("subscription.button.cancel")}
+                    </Button>
+                  ) : null}
                 </div>
+                {cancelConfirm && !cancelAtPeriodEnd ? (
+                  <div>
+                    <p>
+                      {t("subscription.cancel.confirm_text", {
+                        date: validUntilDate
+                      })}
+                    </p>
+                    <div>
+                      <Button type="button" variant="danger" disabled={cancelBusy} aria-busy={cancelBusy} onClick={handleCancelSubscription}>
+                        {cancelBusy ? t("subscription.button.processing_cancel") : t("subscription.button.cancel_confirm")}
+                      </Button>
+                      <Button type="button" variant="secondary" disabled={cancelBusy} onClick={() => setCancelConfirm(false)}>
+                        {t("subscription.button.cancel_keep")}
+                      </Button>
+                    </div>
+                  </div>
+                ) : null}
+                {cancelError ? (
+                  <p role="alert" aria-live="assertive">
+                    {cancelError}
+                  </p>
+                ) : null}
               </div>
             </> : <>
               <div id="checkout-consent">

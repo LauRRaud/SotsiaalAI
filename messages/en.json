@@ -3488,7 +3488,7 @@
     "active": {
       "summary": "Your subscription is active. Monthly pricing depends on the plan: 19.99 EUR/month for a service provider, 14.99 EUR/month for a social work professional, and 7.99 EUR/month for a person seeking help.",
       "summary_priced": "Your subscription is active. Plan: {role}. Fee: {amount} per month.",
-      "cancel_note": "You can cancel your subscription at any time on the profile page.",
+      "recurring_note": "This is a recurring subscription: it renews automatically and the next monthly payment is taken on {date}. You can cancel it right here.",
       "cancel_at_period_end_note": "Your subscription is canceled. Access remains until {date}, and no further charges will be made.",
       "sponsored_note": "Your access is currently sponsored and is valid until {date}. After that, you need to activate your own subscription to continue using the platform.",
       "sponsored_ending_soon": "Your sponsored access ends in {days} days, on {date}. Activate your own subscription to continue using the platform.",
@@ -3503,10 +3503,17 @@
     "button": {
       "open_profile": "Open profile",
       "activate": "Pay and activate subscription",
-      "processing": "Redirecting to payment..."
+      "processing": "Redirecting to payment...",
+      "cancel": "Cancel subscription",
+      "cancel_confirm": "Yes, cancel subscription",
+      "cancel_keep": "Keep subscription",
+      "processing_cancel": "Cancelling…"
     },
-    "info": "Active use of SotsiaalAI's knowledge base, assistants, and workflows requires a role-based monthly subscription; the free plan lets you get started, and the help request and help offer flows are free. The fee depends on the plan. The subscription renews automatically and you can cancel it at any time from your profile.",
-    "info_priced": "To use SotsiaalAI you need a monthly subscription. For the \"{role}\" role, the fee is {amount} per month. The subscription renews automatically and you can cancel it at any time from your profile.",
+    "cancel": {
+      "confirm_text": "Are you sure? Your access stays active until {date} and no further monthly payment is taken. Cancelling cannot be undone before the period ends."
+    },
+    "info": "Active use of SotsiaalAI's knowledge base, assistants, and workflows requires a role-based monthly subscription; the free plan lets you get started, and the help request and help offer flows are free. The fee depends on the plan. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
+    "info_priced": "To use SotsiaalAI you need a monthly subscription. For the \"{role}\" role, the fee is {amount} per month. The subscription renews automatically and you can cancel it at any time right here on the subscription page.",
     "sponsored_info": "If your access comes through a sponsored invite, it lasts one month. After that, activate your own subscription to continue.",
     "checkout": {
       "title": "Before payment",

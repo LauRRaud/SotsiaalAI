@@ -13,6 +13,7 @@ T09 shipped two repo-managed, non-activated workers as gated HTTP endpoints:
 |---|---|---|
 | Email outbox | `POST /api/jobs/payment-emails` | Delivers queued payment/invite/clawback emails (idempotent claim, retry/backoff, terminal state, lease recovery). A retry only re-sends an email — never re-runs a payment or grant. |
 | Reconciliation | `POST /api/jobs/subscription-reconcile` | Resolves stuck `INITIATED` payments. Only expired INITIATED rows; **never marks a payment PAID without a verified provider result**; admin can never hand-set PAID. |
+| Renewals | `POST /api/jobs/subscription-renewals` | Charges due RECURRING+ACTIVE subscriptions (`nextBilling <= now`) via the stored, encrypted card mandate. Missing token key fail-closes per subscription (`token_unavailable`, no charge). Failed charges follow the retry schedule and eventually cancel. |
 
 The endpoints do nothing on their own — something must call them on a schedule.
 Until then the outbox never delivers and stuck payments never reconcile. These units
@@ -35,7 +36,13 @@ SUBSCRIPTION_RECONCILE_JOB_KEY=<random-long-secret>
 # Only query the real provider with explicit operator consent:
 # SUBSCRIPTION_RECONCILE_QUERY_PROVIDER=1   # off => report-only, never activates
 
-# Optional, shared by both shims (defaults to the local frontend):
+# Renewals (no separate *_ENABLED flag: gated by the job key + recurring flag)
+SUBSCRIPTION_RECURRING_ENABLED=1
+SUBSCRIPTION_RENEWAL_JOB_KEY=<random-long-secret>
+# PAYMENT_TOKEN_ENC_KEY must be set or every charge skips as token_unavailable.
+# SUBSCRIPTION_RENEWAL_DRY_RUN=1   # report due subscriptions, charge nothing
+
+# Optional, shared by all shims (defaults to the local frontend):
 # PAYMENT_JOB_BASE_URL=http://localhost:3000
 ```
 
@@ -55,7 +62,7 @@ Safety notes:
 
 ```bash
 cd /home/ubuntu/apps/sotsiaalai
-for u in sotsiaalai-payment-emails sotsiaalai-subscription-reconcile; do
+for u in sotsiaalai-payment-emails sotsiaalai-subscription-reconcile sotsiaalai-subscription-renewals; do
   sudo cp ops/systemd/$u.service /etc/systemd/system/$u.service
   sudo cp ops/systemd/$u.timer   /etc/systemd/system/$u.timer
 done
@@ -63,6 +70,7 @@ sudo systemctl daemon-reload
 # Enable only after the flags/keys above are set:
 sudo systemctl enable --now sotsiaalai-payment-emails.timer
 sudo systemctl enable --now sotsiaalai-subscription-reconcile.timer
+sudo systemctl enable --now sotsiaalai-subscription-renewals.timer
 systemctl list-timers 'sotsiaalai-*' --no-pager
 ```
 
@@ -86,6 +94,7 @@ curl -s -X POST -H "x-payment-email-key: $PAYMENT_EMAIL_JOB_KEY" \
 |---|---|---|
 | payment-emails | every 3 min (`*:0/3`) | confirmations / sponsor invites / clawback notices should be timely |
 | subscription-reconcile | every 15 min (`*:0/15`) | stuck payments are not time-critical |
+| subscription-renewals | hourly | due-date based (`nextBilling`), retries are day-granular |
 
 `scripts/deploy-server.mjs` does not restart these (they are timer-driven oneshots, not
 long-running services), so no deploy change is needed once installed.

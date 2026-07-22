@@ -3488,7 +3488,7 @@
     "active": {
       "summary": "Sinu tellimus on aktiivne. Kuutasu sõltub paketist: teenuseosutajale 19,99 € / kuu, spetsialistile 14,99 € / kuu, pöördujale 7,99 € / kuu.",
       "summary_priced": "Sinu tellimus on aktiivne. Pakett: {role}. Kuutasu: {amount} kuus.",
-      "cancel_note": "Tellimuse saad igal ajal tühistada oma profiililehelt.",
+      "recurring_note": "See on püsimaksega tellimus: pikeneb automaatselt, järgmine kuumakse võetakse {date}. Lõpetada saad selle siitsamalt.",
       "cancel_at_period_end_note": "Tellimus on tühistatud. Ligipääs kehtib kuni {date}, uut kuumakset ei võeta.",
       "sponsored_note": "Sinu ligipääs on praegu sponsoreeritud ja kehtib kuni {date}. Pärast seda pead kasutamise jätkamiseks aktiveerima oma tellimuse.",
       "sponsored_ending_soon": "Sinu sponsoreeritud ligipääs lõpeb {days} päeva pärast, kuupäeval {date}. Kasutamise jätkamiseks aktiveeri oma tellimus.",
@@ -3503,10 +3503,17 @@
     "button": {
       "open_profile": "Ava profiil",
       "activate": "Aktiveeri tellimus",
-      "processing": "Suunan maksele…"
+      "processing": "Suunan maksele…",
+      "cancel": "Lõpeta tellimus",
+      "cancel_confirm": "Jah, lõpeta tellimus",
+      "cancel_keep": "Jätka tellimusega",
+      "processing_cancel": "Lõpetan…"
     },
-    "info": "SotsiaalAI teadmusbaasi, assistentide ja töövoogude aktiivne kasutus vajab igakuist rollipõhist tellimust; tasuta paketiga saab alustada ning abisoovi ja -pakkumise vood on tasuta. Kuutasu sõltub paketist. Tellimus pikeneb automaatselt ja seda saad igal ajal profiililehel tühistada.",
-    "info_priced": "SotsiaalAI kasutamiseks on vajalik igakuine tellimus. Rolli \"{role}\" kuutasu on {amount}. Tellimus pikeneb automaatselt ja seda saad igal ajal profiililehel tühistada.",
+    "cancel": {
+      "confirm_text": "Kas oled kindel? Ligipääs jääb kehtima kuni {date} ja uut kuumakset ei võeta. Lõpetamist ei saa enne perioodi lõppu tagasi võtta."
+    },
+    "info": "SotsiaalAI teadmusbaasi, assistentide ja töövoogude aktiivne kasutus vajab igakuist rollipõhist tellimust; tasuta paketiga saab alustada ning abisoovi ja -pakkumise vood on tasuta. Kuutasu sõltub paketist. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
+    "info_priced": "SotsiaalAI kasutamiseks on vajalik igakuine tellimus. Rolli \"{role}\" kuutasu on {amount}. Tellimus pikeneb automaatselt ja seda saad igal ajal siitsamalt tellimuse lehelt lõpetada.",
     "sponsored_info": "Kui sinu ligipääs tuleb sponsoreeritud kutse kaudu, kehtib see ühe kuu. Pärast seda aktiveeri oma tellimus.",
     "checkout": {
       "title": "Enne maksmist",

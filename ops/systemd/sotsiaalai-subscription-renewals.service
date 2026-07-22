@@ -1,0 +1,19 @@
+[Unit]
+Description=SotsiaalAI subscription renewals (recurring monthly charges, T09)
+Wants=network-online.target
+After=network-online.target sotsiaalai-frontend.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+ExecStart=/usr/bin/node scripts/subscription-renewals.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+
+# Off unless SUBSCRIPTION_RECURRING_ENABLED=1 AND SUBSCRIPTION_RENEWAL_JOB_KEY is set.
+# The route only charges due RECURRING+ACTIVE subscriptions with an ACTIVE billing
+# method; a missing/wrong PAYMENT_TOKEN_ENC_KEY fail-closes per subscription
+# (token_unavailable, no charge, no client-facing failure). Writes nothing to disk.

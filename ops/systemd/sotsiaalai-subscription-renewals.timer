@@ -1,0 +1,13 @@
+[Unit]
+Description=Schedule SotsiaalAI subscription renewals
+
+[Timer]
+# Renewals are due-date based (nextBilling <= now) and retries are day-granular;
+# an hourly sweep keeps charges timely without hammering the provider.
+OnCalendar=hourly
+RandomizedDelaySec=5m
+Persistent=true
+Unit=sotsiaalai-subscription-renewals.service
+
+[Install]
+WantedBy=timers.target
