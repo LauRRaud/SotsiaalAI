@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 
 function isLocalHostname(hostname = "") {
   const h = String(hostname).toLowerCase();
@@ -33,7 +34,8 @@ export async function proxy(req) {
     pathname
   } = req.nextUrl;
 
-  if (pathname === "/registreerimine") {
+  // Suletud seisus on /registreerimine ainult admin-eelvaade; avatuna avalik.
+  if (pathname === "/registreerimine" && !REGISTRATION_OPEN) {
     const token = await getToken({
       req,
       secret: process.env.NEXTAUTH_SECRET

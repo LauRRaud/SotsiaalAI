@@ -8,6 +8,7 @@ import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n";
 import { isAdmin } from "@/lib/authz";
 import { localizePath } from "@/lib/localizePath";
 import { buildLocalizedMetadata } from "@/lib/metadata";
+import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -36,8 +37,11 @@ export async function generateMetadata() {
 export default async function Page() {
   const cookieStore = await cookies();
   const locale = getLocaleFromCookies(cookieStore);
-  const session = await getServerSession(authConfig);
-  if (!isAdmin(session?.user)) redirect(localizePath("/", locale));
+  // Suletud seisus on leht ainult admin-eelvaade; avatuna avalik.
+  if (!REGISTRATION_OPEN) {
+    const session = await getServerSession(authConfig);
+    if (!isAdmin(session?.user)) redirect(localizePath("/", locale));
+  }
 
   return <Suspense fallback={null}>
       <RegistreeriminePageClient />
