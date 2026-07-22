@@ -3729,7 +3729,7 @@
       "login_link": {
         "subject": "SotsiaalAI sisselogimise kinnitamine",
         "text": "Tere!\n\nSisselogimise kinnitamiseks ava see link:\n{confirmUrl}\n\nKinnituslink kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
-        "html": "<p>Tere!</p><p>Sisselogimise kinnitamiseks ava see link:</p><p><a href=\"{confirmUrl}\">Kinnita sisenemine</a></p><p>Kinnituslink kehtib {minutes} minutit.</p><p>Kui sa ei proovinud sisse logida, eira seda kirja.</p>"
+        "html": "<div style=\"font-family:Arial,sans-serif;color:#2b201c;line-height:1.6\"><p>Tere!</p><p>Sisselogimise kinnitamiseks vajuta nuppu:</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background:#2b201c;color:#f7efe9;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan sisenemise</a></p><p>Nupp kehtib {minutes} minutit. Pärast kinnitamist jätkub sisselogimine automaatselt aknas, kus seda alustasid.</p><p style=\"color:#8a7a72;font-size:13px\">Kui sa ei proovinud sisse logida, eira seda kirja.</p></div>"
       },
       "login_otp": {
         "subject": "SotsiaalAI sisselogimise kinnituskood",
@@ -3749,7 +3749,7 @@
       "verify": {
         "subject": "Kinnita oma e-posti aadress",
         "text": "Tere!\n\nPalun kinnita oma e-posti aadress alloleva lingi kaudu:\n{verifyUrl}\n\nKui sa ei loonud kontot, siis voi selle kirja eirata.",
-        "html": "<p>Tere!</p><p>Palun kinnita oma e-posti aadress alloleva lingi kaudu:</p><p><a href=\"{verifyUrl}\">{verifyUrl}</a></p><p>Kui sa ei loonud kontot, siis voi selle kirja eirata.</p>"
+        "html": "<div style=\"font-family:Arial,sans-serif;color:#2b201c;line-height:1.6\"><p>Tere!</p><p>Konto aktiveerimiseks kinnita oma e-posti aadress:</p><p style=\"margin:24px 0\"><a href=\"{verifyUrl}\" style=\"display:inline-block;background:#2b201c;color:#f7efe9;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan e-posti aadressi</a></p><p style=\"color:#8a7a72;font-size:13px\">Kui sa ei loonud kontot, võid selle kirja eirata.</p></div>"
       },
       "account_deleted": {
         "subject": "SotsiaalAI konto on kustutatud",
