@@ -37,8 +37,8 @@
     radial-gradient(
       120% 90% at 50% 42%,
       transparent 52%,
-      rgba(10, 5, 3, 0.34) 82%,
-      rgba(10, 5, 3, 0.62) 100%
+      rgba(3, 3, 4, 0.34) 82%,
+      rgba(3, 3, 4, 0.62) 100%
     );
 }
 
@@ -88,7 +88,7 @@ html[data-reduce-motion="1"] .room-stage {
   gap: clamp(2.8rem, 6.6vh, 4.9rem);
   overflow: hidden;
   isolation: isolate;
-  background: #090705;
+  background: #070707;
   opacity: 1;
   transition: opacity 900ms var(--ease-soft);
 }
@@ -214,9 +214,9 @@ html[data-reduce-motion="1"]
   font-weight: 320;
   line-height: 1.4;
   letter-spacing: 0.075em;
-  color: rgba(246, 229, 205, 0.88);
+  color: rgba(231, 231, 231, 0.88);
   text-align: center;
-  text-shadow: 0 0 2rem rgba(236, 206, 158, 0.16);
+  text-shadow: 0 0 2rem rgba(209, 209, 209, 0.16);
   /* Canvas kirjutab lause osakestega. Peida DOM-i mõõdutext juba
      esimesel serverikaadril, et enne hüdratsiooni ei sähvataks ekraanil
      tavaline pealkiri. Ligipääsetavates staatilistes režiimides toome
@@ -247,7 +247,7 @@ html[data-reduce-motion="1"]
   letter-spacing: 0.32em;
   text-indent: 0.32em;
   text-transform: uppercase;
-  color: rgba(255, 246, 226, 0.92);
+  color: rgba(246, 246, 246, 0.92);
   text-shadow: none;
   opacity: 0;
   translate: 0 0;
@@ -285,10 +285,10 @@ html[data-reduce-motion="1"]
   background: transparent;
   border-color: transparent;
   box-shadow: none;
-  color: #f5ead7;
+  color: #ebebeb;
   letter-spacing: 0.32em;
   text-indent: 0.32em;
-  text-shadow: 0 0 0.62rem rgba(218, 171, 94, 0.1);
+  text-shadow: 0 0 0.62rem rgba(176, 176, 176, 0.1);
 }
 .glass-btn.room-veil-enter:active {
   /* Üldine klaasnupu pressed-olek kahandab nuppu scale: .975 ja jätab
@@ -430,8 +430,8 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.85rem);
   color: var(--room-text);
   text-shadow:
-    0 1px 2px rgba(10, 6, 3, 0.85),
-    0 2px 18px rgba(10, 6, 3, 0.6);
+    0 1px 2px rgba(7, 7, 7, 0.85),
+    0 2px 18px rgba(7, 7, 7, 0.6);
 }
 /* Toitelüliti: värvitu kontuur, ILMA kumata (tellija) */
 .room-power {
@@ -501,10 +501,10 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   text-align: center;
   color: var(--room-text);
   padding: 0.9em 1.25em 0.96em;
-  border: 1px solid rgba(255, 244, 224, 0.15);
+  border: 1px solid rgba(245, 245, 245, 0.15);
   border-radius: 16px;
   background:
-    linear-gradient(135deg, rgba(26, 23, 20, 0.66), rgba(20, 18, 16, 0.48));
+    linear-gradient(135deg, rgba(24, 24, 24, 0.66), rgba(18, 18, 18, 0.48));
   -webkit-backdrop-filter: blur(18px) saturate(1.12);
   backdrop-filter: blur(18px) saturate(1.12);
   text-shadow:
@@ -512,7 +512,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
     0 2px 14px rgba(0, 0, 0, 0.36);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
-    0 14px 44px rgba(8, 5, 3, 0.28);
+    0 14px 44px rgba(6, 6, 6, 0.28);
   will-change: transform, opacity, filter;
 }
 .room-text--center {
@@ -749,7 +749,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   height: 2.1rem;
   color: var(--room-text-soft);
   opacity: 0.7;
-  filter: drop-shadow(0 1px 3px rgba(8, 4, 2, 0.5));
+  filter: drop-shadow(0 1px 3px rgba(5, 5, 5, 0.5));
   transition: opacity var(--dur-med) var(--ease-soft);
 }
 .room-topbar:hover .room-quickbar-arrow svg,

@@ -83,7 +83,7 @@ html.liquid-cursor-on * {
   transform: scale(1.02);
   filter:
     drop-shadow(0 1.25px 1.5px rgba(0, 0, 0, 0.34))
-    drop-shadow(0 0 1.2px rgba(255, 226, 178, 0.34));
+    drop-shadow(0 0 1.2px rgba(229, 229, 229, 0.34));
 }
 
 .liquid-cursor-svg .lc-glow {
@@ -94,12 +94,12 @@ html.liquid-cursor-on * {
 }
 
 .liquid-cursor.is-active .lc-glow {
-  fill: #efd3a7;
+  fill: #d6d6d6;
   opacity: 0.34;
 }
 
 .liquid-cursor.is-active .lc-rim {
-  stroke: #ffedd2;
+  stroke: #efefef;
   stroke-opacity: 0.72;
 }
 
@@ -108,17 +108,17 @@ html.liquid-cursor-on * {
 html.veil-cursor-gold .liquid-cursor-svg {
   filter:
     drop-shadow(0 1.5px 1.5px rgba(0, 0, 0, 0.38))
-    drop-shadow(0 0 2px rgba(246, 238, 223, 0.56))
-    drop-shadow(0 0 5px rgba(196, 174, 143, 0.14));
+    drop-shadow(0 0 2px rgba(239, 239, 239, 0.56))
+    drop-shadow(0 0 5px rgba(177, 177, 177, 0.14));
 }
 
 html.veil-cursor-gold .liquid-cursor-svg .lc-glow {
-  fill: #e8e1d5;
+  fill: #e2e2e2;
   opacity: 0.48;
 }
 
 html.veil-cursor-gold .liquid-cursor-svg .lc-rim {
-  stroke: #f5eee4;
+  stroke: #efefef;
   stroke-opacity: 0.82;
 }
 
@@ -177,20 +177,20 @@ html.veil-cursor-pending:not(.veil-cursor-gold)
   .liquid-cursor-svg {
   filter:
     drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.34))
-    drop-shadow(0 0 2.5px rgba(255, 253, 248, 0.24));
+    drop-shadow(0 0 2.5px rgba(253, 253, 253, 0.24));
 }
 
 html.veil-cursor-pending:not(.veil-cursor-gold)
   .liquid-cursor.is-active
   .lc-glow {
-  fill: #fff4e2;
+  fill: #f5f5f5;
   opacity: 0.72;
 }
 
 html.veil-cursor-pending:not(.veil-cursor-gold)
   .liquid-cursor.is-active
   .lc-rim {
-  stroke: #fff8ee;
+  stroke: #f9f9f9;
   stroke-opacity: 0.66;
 }
 
@@ -202,7 +202,7 @@ html.veil-cursor-pending:not(.veil-cursor-gold)
 
 ::selection {
   background: rgba(255, 255, 255, 0.24);
-  color: #fff6ea;
+  color: #f7f7f7;
 }
 
 /* ---------- Kerimisribad: PEIDETUD kõikjal (tellija otsus).

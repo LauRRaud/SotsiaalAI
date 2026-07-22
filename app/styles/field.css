@@ -6,7 +6,7 @@
   max-width: 34rem;
   margin: 0 auto;
   padding: 0.75rem 1rem 6rem;
-  color: var(--text-primary, #f5ede4);
+  color: var(--text-primary, #eeeeee);
 }
 
 .fld-title {
@@ -41,12 +41,12 @@
 }
 
 .fld-warn {
-  color: #ffce8a;
+  color: #d5d5d5;
   margin: 0.5rem 0;
 }
 
 .fld-error {
-  border: 1px solid rgba(255, 120, 90, 0.55);
+  border: 1px solid rgba(157, 157, 157, 0.55);
   border-radius: 0.75rem;
   padding: 0.75rem;
   margin: 0.75rem 0;
@@ -70,11 +70,11 @@
 }
 
 .fld-connection--online {
-  background: rgba(64, 128, 84, 0.35);
+  background: rgba(104, 104, 104, 0.35);
 }
 
 .fld-connection--offline {
-  background: rgba(168, 92, 44, 0.5);
+  background: rgba(109, 109, 109, 0.5);
   font-weight: 600;
 }
 
@@ -188,8 +188,8 @@
 }
 
 .fld-phase--active {
-  background: rgba(232, 185, 138, 0.25);
-  border-color: rgba(232, 185, 138, 0.7);
+  background: rgba(194, 194, 194, 0.25);
+  border-color: rgba(194, 194, 194, 0.7);
   font-weight: 600;
 }
 
@@ -204,7 +204,7 @@
 
 .fld-item[data-state="FAILED"],
 .fld-item[data-state="CONFLICT"] {
-  border-color: rgba(255, 140, 100, 0.65);
+  border-color: rgba(170, 170, 170, 0.65);
 }
 
 .fld-item__body {
@@ -232,7 +232,7 @@
 
 .fld-item__error {
   font-size: 0.85rem;
-  color: #ffb59a;
+  color: #c8c8c8;
 }
 
 .fld-item__actions {

@@ -20,6 +20,18 @@
   padding: clamp(0.2rem, 0.5vw, 0.4rem) clamp(1rem, 2.6vw, 2.2rem)
     clamp(0.3rem, 0.8vw, 0.6rem);
 }
+/* Embedded featuurid (kutse, dokumendid, kovisioon jne) elavad paneeli SEES ja
+   võivad olla aknast kõrgemad — nt kutse sponsor-paneel laiendatuna (nõusoleku-
+   linnuke + "Kinnita ja maksa" nupp jäid aknast alla, kättesaamatuks). Paneel
+   ise ON kerimiskonteiner: WorkspacePanel'i wheel-capture haakib siia
+   (panel.scrollTop). Ilma overflow'ta polnud paneel keritav — scrollTop oli
+   no-op — ning capture-handler preventDefault'is ka esivanema loomuliku
+   kerimise ära, nii et sisu jäi lõplikult kinni. Ainult embedded-olekus, et
+   juur-töölaua ruudustik jääks puutumata. */
+.workspace-dashboard-panel[data-embedded-active="true"] {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
 /* Admini S/P/T vaatevalik lehtedel — ⓘ-nupust vahetult VASAKUL samal real.
    Komponent portaalib end .panel-i otseseks lapseks, seega absoluutne ankur
    on täpselt sama mis ⓘ ja × nuppudel ning lehe sisu kerimine seda ei liiguta. */
@@ -219,7 +231,7 @@
   left: 12%;
   right: 12%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 248, 238, 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.28), transparent);
   pointer-events: none;
 }
 /* Skaneeriv läige hover'il — sama keel mis RAG moodulkaartidel (tellija
@@ -232,7 +244,7 @@
   background: linear-gradient(
     115deg,
     transparent 34%,
-    rgba(255, 248, 238, 0.12) 50%,
+    rgba(249, 249, 249, 0.12) 50%,
     transparent 66%
   );
   translate: -120% 0;
@@ -253,7 +265,7 @@
    liiguvad") — tagasiside tuleb ainult heledusest/servast, MITTE translate'ist. */
 .workspace-dashboard-card:hover {
   background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 248, 238, 0.4);
+  border-color: rgba(249, 249, 249, 0.4);
   box-shadow: 0 0 22px rgba(255, 246, 232, 0.09);
 }
 .workspace-dashboard-card:active {
@@ -276,7 +288,7 @@
   height: 0.55rem;
   border-radius: 999px;
   background: var(--text-warm);
-  box-shadow: 0 0 8px rgba(255, 244, 228, 0.45);
+  box-shadow: 0 0 8px rgba(245, 245, 245, 0.45);
   opacity: 0.9;
 }
 
@@ -288,7 +300,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--surface-deep, #19130e);
+  color: var(--surface-deep, #141414);
   font-size: 0.72rem;
   font-weight: 760;
   line-height: 1;
@@ -298,11 +310,11 @@
   width: min(100%, 45rem);
   margin: 0 auto clamp(0.9rem, 2vh, 1.25rem);
   padding: clamp(1rem, 2.5vw, 1.5rem);
-  border: 1px solid color-mix(in srgb, var(--accent-warm, #ba8068) 44%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-warm, #8f8f8f) 44%, transparent);
   border-radius: 1rem;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent-warm, #ba8068) 13%, transparent), transparent 52%),
-    color-mix(in srgb, var(--surface-elevated, #28211c) 91%, transparent);
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-warm, #8f8f8f) 13%, transparent), transparent 52%),
+    color-mix(in srgb, var(--surface-elevated, #232323) 91%, transparent);
   box-shadow: 0 1rem 2.6rem rgba(0, 0, 0, 0.18);
 }
 
@@ -310,7 +322,7 @@
   width: min(100%, 45rem);
   margin: 0 auto clamp(0.9rem, 2vh, 1.25rem);
   padding: 0.8rem 0 0;
-  border-top: 1px solid color-mix(in srgb, var(--accent-warm, #ba8068) 42%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--accent-warm, #8f8f8f) 42%, transparent);
 }
 
 .workspace-continuity-primary {
@@ -320,7 +332,7 @@
   gap: 0.3rem 1rem;
   padding: clamp(0.9rem, 2vw, 1.2rem);
   border-radius: 0.8rem;
-  background: color-mix(in srgb, var(--surface-deep, #19130e) 62%, transparent);
+  background: color-mix(in srgb, var(--surface-deep, #141414) 62%, transparent);
 }
 
 .workspace-continuity-primary > p,
@@ -331,7 +343,7 @@
 }
 
 .workspace-continuity-primary > p {
-  color: var(--accent-warm, #ba8068);
+  color: var(--accent-warm, #8f8f8f);
   font-size: 0.7rem;
   font-weight: 750;
   letter-spacing: 0.08em;
@@ -361,10 +373,10 @@
   align-items: center;
   gap: 0.7rem;
   padding: 0.75rem 1rem;
-  border: 1px solid color-mix(in srgb, var(--accent-warm, #ba8068) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-warm, #8f8f8f) 70%, transparent);
   border-radius: 999px;
-  color: var(--surface-deep, #19130e);
-  background: var(--accent-warm, #ba8068);
+  color: var(--surface-deep, #141414);
+  background: var(--accent-warm, #8f8f8f);
   font-weight: 760;
   cursor: pointer;
 }
@@ -404,8 +416,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  color: var(--surface-deep, #19130e);
-  background: color-mix(in srgb, var(--accent-warm, #ba8068) 82%, white 18%);
+  color: var(--surface-deep, #141414);
+  background: color-mix(in srgb, var(--accent-warm, #8f8f8f) 82%, white 18%);
   font-size: 0.72rem;
 }
 
@@ -578,8 +590,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  color: var(--surface-deep, #19130e);
-  background: var(--accent-warm, #ba8068);
+  color: var(--surface-deep, #141414);
+  background: var(--accent-warm, #8f8f8f);
   font-size: 0.7rem;
   font-weight: 760;
 }
@@ -598,13 +610,13 @@
   grid-template-columns: minmax(0, 1fr) auto;
   border: 1px solid color-mix(in srgb, var(--text-warm) 16%, transparent);
   border-radius: 0.65rem;
-  background: color-mix(in srgb, var(--surface-elevated, #28211c) 84%, transparent);
+  background: color-mix(in srgb, var(--surface-elevated, #232323) 84%, transparent);
   overflow: hidden;
 }
 
 .notification-center li[data-unread="true"] {
-  border-color: color-mix(in srgb, var(--accent-warm, #ba8068) 58%, transparent);
-  background: linear-gradient(100deg, color-mix(in srgb, var(--accent-warm, #ba8068) 12%, transparent), transparent 55%);
+  border-color: color-mix(in srgb, var(--accent-warm, #8f8f8f) 58%, transparent);
+  background: linear-gradient(100deg, color-mix(in srgb, var(--accent-warm, #8f8f8f) 12%, transparent), transparent 55%);
 }
 
 .notification-center button {
@@ -640,8 +652,8 @@
 }
 
 [data-unread="true"] .notification-center-dot {
-  background: var(--accent-warm, #ba8068);
-  box-shadow: 0 0 0.65rem color-mix(in srgb, var(--accent-warm, #ba8068) 70%, transparent);
+  background: var(--accent-warm, #8f8f8f);
+  box-shadow: 0 0 0.65rem color-mix(in srgb, var(--accent-warm, #8f8f8f) 70%, transparent);
 }
 
 .notification-center-dismiss {
@@ -727,7 +739,7 @@
   color: var(--text-warm);
   background:
     linear-gradient(100deg, color-mix(in srgb, var(--text-warm) 8%, transparent), transparent 45%),
-    color-mix(in srgb, var(--surface-elevated, #28211c) 86%, transparent);
+    color-mix(in srgb, var(--surface-elevated, #232323) 86%, transparent);
   text-align: left;
   cursor: pointer;
   box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.12);
@@ -803,7 +815,7 @@
   inline-size: 1.05rem;
   block-size: 1.05rem;
   margin-block-start: 0.15rem;
-  accent-color: var(--accent-warm, #ba8068);
+  accent-color: var(--accent-warm, #8f8f8f);
 }
 
 .workspace-continuity-preference span,
@@ -834,7 +846,7 @@
    ("alumine ära kaduma", loetavus; tellija 07.07). Scope :has() → puudutab
    AINULT info-teadet, mitte teisi modaale (login jm). */
 .glass-modal-layer:has(.dashboard-info-shell) {
-  background: rgba(8, 6, 4, 0.5);
+  background: rgba(6, 6, 6, 0.5);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -853,7 +865,7 @@
   overflow: hidden;
   /* LOETAV: peaaegu läbipaistmatu tume klaas, et tekst ei seguneks tagumiste
      kaartidega (tellija 07.07: "ei suuda lugeda"). Klaasi-serv/läige jäävad. */
-  background: linear-gradient(165deg, rgba(34, 31, 28, 0.88), rgba(22, 20, 18, 0.92));
+  background: linear-gradient(165deg, rgba(32, 32, 32, 0.88), rgba(20, 20, 20, 0.92));
   animation: a11y-card-in 420ms var(--ease-soft) backwards;
 }
 .dashboard-info-top {
@@ -952,7 +964,7 @@
   border-radius: 1.2rem;
   background:
     linear-gradient(105deg, rgba(255, 255, 255, 0.07), transparent 48%),
-    rgba(20, 16, 13, 0.76);
+    rgba(17, 17, 17, 0.76);
   box-shadow:
     0 0.8rem 2rem rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -1080,7 +1092,7 @@
   width: 100%;
   height: 100% !important;
   min-height: 18rem;
-  background: #16110d;
+  background: #121212;
 }
 /* Hämariku toon OSM-plaatidele. NB: Leafleti kihiväline CSS ütleb
    .leaflet-tile{filter:inherit} — seepärast toonime KONTEINERIT,
@@ -1098,7 +1110,7 @@
   gap: 0.55rem;
   padding: 0.45rem 0.75rem;
   border-radius: 12px;
-  background: rgba(20, 16, 13, 0.82);
+  background: rgba(17, 17, 17, 0.82);
   border: 1px solid var(--glass-border-soft);
   font-size: var(--fs-micro);
   color: var(--text-soft);
@@ -1125,7 +1137,7 @@
 .service-map-leaflet__marker {
   --service-map-marker-fill: #475569;
   --service-map-marker-ring: rgba(30, 41, 59, 0.9);
-  --service-map-marker-hole-bg: rgba(255, 250, 244, 0.78);
+  --service-map-marker-hole-bg: rgba(251, 251, 251, 0.78);
   --service-map-marker-hole-diameter: 28.4px;
   --service-map-marker-label-padding: 3px;
   --service-map-marker-label-max-size: calc(
@@ -1239,12 +1251,12 @@
   display: grid;
   place-items: center;
   color: var(--text-soft);
-  background: rgba(16, 12, 10, 0.6);
+  background: rgba(13, 13, 13, 0.6);
   z-index: 510;
 }
 /* Popupid klaasikeeles */
 .service-map-canvas .leaflet-popup-content-wrapper {
-  background: rgba(24, 20, 17, 0.96);
+  background: rgba(21, 21, 21, 0.96);
   color: var(--text-warm);
   border-radius: 14px;
   border: 1px solid var(--glass-border-soft);
@@ -1257,7 +1269,7 @@
   scrollbar-gutter: stable;
 }
 .service-map-canvas .leaflet-popup-tip {
-  background: rgba(24, 20, 17, 0.96);
+  background: rgba(21, 21, 21, 0.96);
 }
 .service-map-popup {
   font-size: var(--fs-small);
@@ -1290,7 +1302,7 @@
   border: 1px solid color-mix(in srgb, #9aa6a0 55%, transparent);
   border-radius: 0.8rem;
   background: color-mix(in srgb, #fff 88%, #dfe8e2);
-  color: #2b2925;
+  color: #292929;
 }
 
 .service-map-popup__availability p,
@@ -1325,14 +1337,14 @@
 
 .service-map-popup__availability > p,
 .service-profile-availability > p {
-  color: #2b2925;
+  color: #292929;
 }
 
 .panel .service-profile-availability > button[data-variant] {
-  border-color: rgba(43, 41, 37, 0.32);
+  border-color: rgba(41, 41, 41, 0.32);
   background: rgba(255, 255, 255, 0.92);
-  color: #2b2925;
-  box-shadow: 0 0.3rem 0.8rem rgba(43, 41, 37, 0.12);
+  color: #292929;
+  box-shadow: 0 0.3rem 0.8rem rgba(41, 41, 41, 0.12);
 }
 
 .pre-inquiry-recipient-card {
@@ -1342,7 +1354,7 @@
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
-  background: rgba(18, 15, 13, 0.58);
+  background: rgba(16, 16, 16, 0.58);
 }
 
 .pre-inquiry-recipient-card > span {
@@ -1621,8 +1633,8 @@
   border-radius: 18px;
   border: 1px solid var(--glass-cell-border);
   background:
-    radial-gradient(1px 1px at 24px 24px, rgba(255, 253, 248, 0.14) 1px, transparent 1px),
-    linear-gradient(165deg, rgba(22, 18, 15, 0.5), rgba(14, 11, 9, 0.62));
+    radial-gradient(1px 1px at 24px 24px, rgba(253, 253, 253, 0.14) 1px, transparent 1px),
+    linear-gradient(165deg, rgba(19, 19, 19, 0.5), rgba(12, 12, 12, 0.62));
   background-size: 48px 48px, 100% 100%;
   overflow: hidden;
 }
@@ -1644,16 +1656,16 @@
   width: 22.5rem;
   max-width: 80vw;
   border-radius: 16px;
-  background: linear-gradient(165deg, rgba(44, 39, 34, 0.72), rgba(26, 22, 19, 0.82));
+  background: linear-gradient(165deg, rgba(40, 40, 40, 0.72), rgba(23, 23, 23, 0.82));
   border: 1px solid var(--glass-cell-border);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 10px 26px rgba(6, 4, 3, 0.42);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 10px 26px rgba(4, 4, 4, 0.42);
   transition: opacity 260ms var(--ease-soft), box-shadow 260ms var(--ease-soft);
 }
 .covision-card[data-dim="1"] {
   opacity: 0.38;
 }
 .covision-card[data-active-drag="1"] {
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 18px 42px rgba(6, 4, 3, 0.6);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 18px 42px rgba(4, 4, 4, 0.6);
   z-index: 30;
 }
 .covision-card-head {
@@ -1702,7 +1714,7 @@
   padding: 0.75rem 0.9rem;
   border: 1px solid var(--glass-cell-border);
   border-radius: 14px;
-  background: rgba(33, 29, 25, 0.72);
+  background: rgba(30, 30, 30, 0.72);
   color: var(--text-warm);
 }
 .service-map-match-panel h2 {

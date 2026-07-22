@@ -9,49 +9,49 @@
   --ui-scale: 1;
 
   /* ---- Stseeni palett (kaadritest 1–7) ---- */
-  --dusk-void: #0f0805; /* ukse pimedus, laadimisekraan */
-  --dusk-floor: #140b07; /* stseeni baas, html taust */
-  --dusk-shadow: #1e110a; /* sügav pruun vari */
-  --dusk-wood: #4a2e1c; /* puitpaneel */
-  --dusk-wood-lit: #7a4d2c; /* valgustatud puit */
-  --dusk-amber: #c97f4a; /* seinapesu kuma */
-  --dusk-sunset: #e8a86a; /* loojang akna taga */
-  --dusk-glow: #f4c690; /* heledaim kuma */
-  --dusk-cream: #e9d7bf; /* tugitooli samet */
+  --dusk-void: #0a0a0a; /* ukse pimedus, laadimisekraan */
+  --dusk-floor: #070707; /* stseeni baas, html taust — neutraalne tume (endine soe pruun #0d0d0d võeti maha, omanik 22.07: „jõhker pruun filter") */
+  --dusk-shadow: #141414; /* sügav pruun vari */
+  --dusk-wood: #343434; /* puitpaneel */
+  --dusk-wood-lit: #575757; /* valgustatud puit */
+  --dusk-amber: #8f8f8f; /* seinapesu kuma */
+  --dusk-sunset: #b4b4b4; /* loojang akna taga */
+  --dusk-glow: #cecece; /* heledaim kuma */
+  --dusk-cream: #dadada; /* tugitooli samet */
 
   /* ---- Tekst: tavaline kiri, ilma toonita (tellija otsus) ---- */
-  --text-warm: #f4f1ec; /* põhitekst */
-  --text-soft: rgba(244, 241, 236, 0.76); /* teisene tekst */
-  --text-dim: rgba(244, 241, 236, 0.55); /* summutatud / vihjed */
-  --text-ink: #241d17; /* tekst heledal pinnal (primary-nupp) */
-  --text-ink-soft: #4d4238;
+  --text-warm: #f1f1f1; /* põhitekst */
+  --text-soft: rgba(241, 241, 241, 0.76); /* teisene tekst */
+  --text-dim: rgba(241, 241, 241, 0.55); /* summutatud / vihjed */
+  --text-ink: #1e1e1e; /* tekst heledal pinnal (primary-nupp) */
+  --text-ink-soft: #444444;
 
   /* ---- Klaas: NEUTRAALNE läbipaistvus, ilma toonita.
      Soojus tuleb ruumist klaasi tagant, mitte klaasi värvist. ---- */
   --glass-bg: linear-gradient(
     165deg,
-    rgba(40, 37, 33, 0.44) 0%,
-    rgba(24, 22, 20, 0.56) 55%,
-    rgba(15, 14, 12, 0.64) 100%
+    rgba(37, 37, 37, 0.44) 0%,
+    rgba(22, 22, 22, 0.56) 55%,
+    rgba(14, 14, 14, 0.64) 100%
   );
   --glass-bg-strong: linear-gradient(
     165deg,
-    rgba(34, 31, 28, 0.8) 0%,
-    rgba(20, 18, 16, 0.88) 100%
+    rgba(32, 32, 32, 0.8) 0%,
+    rgba(18, 18, 18, 0.88) 100%
   );
   --glass-blur: 26px;
   --glass-saturate: 112%;
   --glass-border: rgba(255, 255, 255, 0.26);
   --glass-border-soft: rgba(255, 255, 255, 0.13);
-  --glass-rim: rgba(255, 248, 238, 0.9); /* helendav serv (pilt 8) */
+  --glass-rim: rgba(249, 249, 249, 0.9); /* helendav serv (pilt 8) */
   --glass-rim-glow:
-    0 0 0.5px rgba(255, 248, 238, 0.9),
-    0 0 22px rgba(255, 240, 222, 0.2),
-    0 0 60px rgba(255, 234, 210, 0.1);
+    0 0 0.5px rgba(249, 249, 249, 0.9),
+    0 0 22px rgba(242, 242, 242, 0.2),
+    0 0 60px rgba(238, 238, 238, 0.1);
   --glass-inner-light: inset 0 1px 0 rgba(255, 255, 255, 0.16);
   --glass-shadow:
-    0 24px 70px rgba(8, 4, 2, 0.55),
-    0 6px 22px rgba(8, 4, 2, 0.35);
+    0 24px 70px rgba(5, 5, 5, 0.55),
+    0 6px 22px rgba(5, 5, 5, 0.35);
   --glass-highlight: rgba(255, 255, 255, 0.07);
 
   /* ---- Kaardi-klaas: ÜKS ilme, mida jagavad karusselli kaart (.gc-card)
@@ -62,16 +62,16 @@
      äär, ja matt toon. ---- */
   --card-glass-bg: linear-gradient(
     165deg,
-    rgba(44, 39, 34, 0.46) 0%,
-    rgba(32, 28, 25, 0.52) 55%,
-    rgba(24, 21, 19, 0.58) 100%
+    rgba(40, 40, 40, 0.46) 0%,
+    rgba(29, 29, 29, 0.52) 55%,
+    rgba(22, 22, 22, 0.58) 100%
   );
   /* Kaardid jäävad matid ja selge servaga; väline kuma/vari puudub. */
   --card-glass-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.09);
   --card-glass-sheen: radial-gradient(
     120% 90% at 12% 0%,
-    rgba(255, 250, 242, 0.1),
-    rgba(255, 250, 242, 0.03) 34%,
+    rgba(251, 251, 251, 0.1),
+    rgba(251, 251, 251, 0.03) 34%,
     transparent 56%
   );
   --card-glass-rim: linear-gradient(
@@ -108,8 +108,8 @@
   --dur-drift: 1600ms;
 
   /* ---- Fookus (neutraalne hele ring tumedal) ---- */
-  --focus-ring: 0 0 0 2px rgba(15, 13, 11, 0.9), 0 0 0 4.5px rgba(246, 241, 233, 0.95);
-  --focus-ring-light: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 0 0 4.5px #55483c;
+  --focus-ring: 0 0 0 2px rgba(13, 13, 13, 0.9), 0 0 0 4.5px rgba(242, 242, 242, 0.95);
+  --focus-ring-light: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 0 0 4.5px #4b4b4b;
 
   /* ---- Kihid ---- */
   --z-room: 0;
@@ -155,7 +155,7 @@
   --btn-bg-active: rgba(255, 255, 255, 0.19);
   --btn-text: var(--text-warm);
   --btn-border: 1px solid rgba(255, 255, 255, 0.24);
-  --btn-primary-bg: linear-gradient(165deg, #f4efe7, #ddd5c9);
+  --btn-primary-bg: linear-gradient(165deg, #f0f0f0, #d6d6d6);
   --btn-primary-text: var(--text-ink);
   /* Liquid glass INPUT (etalon: Plaan/"input näide.png", tellija
      07.07): HELE klaas-pill — valge 10% täide, taustablur, sisemine
@@ -181,23 +181,23 @@
     inset 0 -1px 1px rgba(255, 255, 255, 0.05);
   --input-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   /* Fookuse õrn kuma (mahe, nagu nupu hover-rim — mitte kõva ere joon) */
-  --input-focus-glow: 0 0 0 3px rgba(255, 250, 244, 0.09);
+  --input-focus-glow: 0 0 0 3px rgba(251, 251, 251, 0.09);
 
   /* ---- Admin (funktsionaalne, soe-neutraalne) ---- */
-  --admin-surface: #201310;
-  --admin-surface-2: #2a1a13;
-  --admin-surface-3: #34211768;
-  --admin-border: rgba(244, 198, 144, 0.18);
-  --admin-border-strong: rgba(244, 198, 144, 0.34);
+  --admin-surface: #171717;
+  --admin-surface-2: #1e1e1e;
+  --admin-surface-3: #26262668;
+  --admin-border: rgba(206, 206, 206, 0.18);
+  --admin-border-strong: rgba(206, 206, 206, 0.34);
   --admin-text: var(--text-warm);
   --admin-muted: var(--text-dim);
   --admin-accent: var(--dusk-sunset);
-  --admin-accent-soft: rgba(232, 168, 106, 0.16);
+  --admin-accent-soft: rgba(180, 180, 180, 0.16);
   --admin-accent-cool: var(--dusk-amber);
   --admin-danger: #e08a6a;
   --admin-success: #b8c290;
-  --admin-shadow: 0 18px 44px rgba(8, 4, 2, 0.5);
-  --admin-shadow-soft: 0 8px 22px rgba(8, 4, 2, 0.35);
+  --admin-shadow: 0 18px 44px rgba(5, 5, 5, 0.5);
+  --admin-shadow-soft: 0 8px 22px rgba(5, 5, 5, 0.35);
 
   /* ---- Olekud ---- */
   --status-error: #eb9a76;
@@ -233,7 +233,7 @@
   --specular-layer: radial-gradient(
     circle var(--spec-size) at var(--spec-x) var(--spec-y),
     rgba(255, 249, 240, calc(var(--spec-peak) * var(--spec))),
-    rgba(255, 249, 240, 0) 68%
+    rgba(250, 250, 250, 0) 68%
   );
 }
 
@@ -259,7 +259,7 @@ html.theme-light {
 
 /* ---- Öö (dark) — :not(hc), et kõrgkontrast jääks puutumata ---- */
 html.theme-dark:not([data-contrast="hc"]) {
-  --dusk-floor: #0a0604;
+  --dusk-floor: #070607; /* neutraalne tume (endine #070707 soe pruun eemaldatud, omanik 22.07) */
 }
 
 /* ============================================================
@@ -297,12 +297,12 @@ html[data-contrast="hc"] {
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */
 html[data-reduce-transparency="1"] {
   --glass-blur: 0px;
-  --glass-bg: linear-gradient(165deg, rgba(32, 30, 27, 0.97), rgba(19, 17, 15, 0.99));
-  --glass-bg-strong: linear-gradient(165deg, rgba(28, 26, 23, 0.99), rgba(16, 14, 13, 1));
+  --glass-bg: linear-gradient(165deg, rgba(30, 30, 30, 0.97), rgba(17, 17, 17, 0.99));
+  --glass-bg-strong: linear-gradient(165deg, rgba(26, 26, 26, 0.99), rgba(14, 14, 14, 1));
   --input-blur: 0px;
-  --input-bg: rgba(38, 35, 31, 0.94);
-  --input-bg-hover: rgba(42, 39, 34, 0.96);
-  --input-bg-focus: rgba(46, 42, 37, 0.97);
+  --input-bg: rgba(35, 35, 35, 0.94);
+  --input-bg-hover: rgba(39, 39, 39, 0.96);
+  --input-bg-focus: rgba(43, 43, 43, 0.97);
   --input-highlight: none;
   --spec-peak: 0; /* läbipaistmatu pind → specular-helk välja */
 }

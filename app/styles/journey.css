@@ -29,7 +29,7 @@
     min-width: 0;
     border: 1px solid color-mix(in srgb, var(--glass-border, #fff) 55%, transparent);
     border-radius: 1.25rem;
-    background: color-mix(in srgb, var(--glass-bg, #20140f) 86%, transparent);
+    background: color-mix(in srgb, var(--glass-bg, #171717) 86%, transparent);
     box-shadow: 0 1.1rem 3rem rgb(0 0 0 / 18%);
     padding: clamp(1rem, 2.5vw, 1.75rem);
     backdrop-filter: blur(18px);
@@ -78,10 +78,10 @@
     margin-bottom: 1rem;
     padding: .75rem 1rem;
     border-radius: 1rem;
-    background: color-mix(in srgb, #351b12 90%, transparent);
+    background: color-mix(in srgb, #222222 90%, transparent);
   }
 
-  .journey-risk-card { border-inline-start: .3rem solid #ffb15c; }
+  .journey-risk-card { border-inline-start: .3rem solid #bfbfbf; }
 
   @media (max-width: 40rem) {
     .journey-page { padding: .75rem; }

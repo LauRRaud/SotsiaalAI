@@ -382,7 +382,7 @@ html[data-reduce-motion="1"] .gc-item {
   text-align: center;
   text-wrap: balance;
   padding: 0 1.1em 0 calc(1.1em + var(--track-caps));
-  text-shadow: 0 1px 14px rgba(10, 5, 3, 0.55);
+  text-shadow: 0 1px 14px rgba(6, 6, 6, 0.55);
 }
 .gc-item[data-center="0"] .gc-label {
   color: var(--room-text-soft);
@@ -431,7 +431,7 @@ html[data-reduce-motion="1"] .gc-card-badge {
   text-transform: uppercase;
   text-align: center;
   color: var(--room-text-soft);
-  border: 1px solid var(--card-glass-rim-soft, rgba(255, 244, 228, 0.22));
+  border: 1px solid var(--card-glass-rim-soft, rgba(245, 245, 245, 0.22));
   border-radius: 999px;
   padding: 0.18em 0.72em;
 }
@@ -559,8 +559,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   align-items: center;
   padding: 0.35rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(54, 39, 31, 0.5), rgba(24, 17, 14, 0.38));
-  box-shadow: 0 9px 28px rgba(8, 4, 2, 0.2), inset 0 1px rgba(255, 245, 235, 0.08);
+  background: linear-gradient(135deg, rgba(43, 43, 43, 0.5), rgba(19, 19, 19, 0.38));
+  box-shadow: 0 9px 28px rgba(5, 5, 5, 0.2), inset 0 1px rgba(247, 247, 247, 0.08);
   backdrop-filter: blur(15px) saturate(0.86);
   -webkit-backdrop-filter: blur(15px) saturate(0.86);
 }
@@ -602,7 +602,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   border-radius: 999px;
   appearance: none;
   background: transparent;
-  color: rgba(246, 238, 230, 0.58);
+  color: rgba(239, 239, 239, 0.58);
   cursor: pointer;
   transition:
     color 220ms var(--ease-soft),
@@ -613,7 +613,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 .gc-shortcut:hover,
 .gc-shortcut:focus-visible {
   color: var(--room-text);
-  background: rgba(255, 246, 236, 0.09);
+  background: rgba(248, 248, 248, 0.09);
   transform: translateY(-1px);
   outline: none;
 }
@@ -622,8 +622,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 }
 .gc-shortcut[data-on="1"] {
   color: var(--room-text);
-  background: rgba(255, 246, 236, 0.115);
-  box-shadow: inset 0 0 0 1px rgba(255, 247, 238, 0.1);
+  background: rgba(248, 248, 248, 0.115);
+  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.1);
 }
 .gc-shortcut-icon {
   display: grid;
@@ -671,11 +671,11 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   width: max-content;
   max-width: 13rem;
   padding: 0.38rem 0.58rem;
-  border: 1px solid rgba(255, 245, 235, 0.1);
+  border: 1px solid rgba(247, 247, 247, 0.1);
   border-radius: 0.5rem;
-  background: rgba(22, 15, 12, 0.82);
+  background: rgba(17, 17, 17, 0.82);
   color: var(--room-text);
-  box-shadow: 0 8px 22px rgba(8, 4, 2, 0.28);
+  box-shadow: 0 8px 22px rgba(5, 5, 5, 0.28);
   font-family: var(--font-ui);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
@@ -693,13 +693,13 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   opacity: 1;
 }
 .gc-shortcut--back {
-  color: rgba(246, 238, 230, 0.78);
+  color: rgba(239, 239, 239, 0.78);
 }
 .gc-shortcut-divider {
   width: 1px;
   height: 1.2rem;
   flex: 0 0 auto;
-  background: rgba(255, 245, 235, 0.13);
+  background: rgba(247, 247, 247, 0.13);
 }
 html[data-reduce-motion="1"] .gc-shortcut,
 html[data-reduce-motion="1"] .gc-shortcut-text,
@@ -848,7 +848,7 @@ html[data-contrast="hc"] .gc-dot[data-on="1"] {
 }
 html[data-contrast="hc"] :is(.gc-shortcut-menu, .admin-role-view-cycle.admin-role-view-cycle--cards) {
   border: 1px solid #ffffff;
-  background: #15100d;
+  background: #111111;
   backdrop-filter: none;
 }
 html[data-contrast="hc"] .gc-shortcut {

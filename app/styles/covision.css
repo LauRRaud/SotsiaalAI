@@ -76,8 +76,8 @@
 /* Tagasihoidlik soe aktsent AINULT aktiivsel etapil (spec §4) */
 .cvs-rail-step[data-state="active"] .cvs-rail-dot {
   color: var(--text-warm);
-  border-color: rgba(235, 226, 216, 0.55);
-  box-shadow: 0 0 14px rgba(235, 226, 216, 0.14);
+  border-color: rgba(228, 228, 228, 0.55);
+  box-shadow: 0 0 14px rgba(228, 228, 228, 0.14);
 }
 .cvs-rail-step[data-state="active"] .cvs-rail-label {
   color: var(--text-soft);
@@ -113,7 +113,7 @@
 }
 /* Aeg üle: vaikne märguanne, mitte alarm (taimer on toetav) */
 .cvs-timer[data-over="1"] .cvs-timer-time {
-  color: rgba(235, 226, 216, 0.95);
+  color: rgba(228, 228, 228, 0.95);
 }
 .cvs-pause-btn {
   padding: 0.55em 1.1em;
@@ -210,7 +210,7 @@
   color: var(--text-dim);
 }
 .cvs-person-role[data-lead="1"] {
-  color: rgba(235, 226, 216, 0.8);
+  color: rgba(228, 228, 228, 0.8);
 }
 
 /* Kokkulepped */
@@ -256,14 +256,14 @@
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: var(--card-glass-bg);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 14px 34px rgba(6, 4, 3, 0.4);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.07), 0 14px 34px rgba(4, 4, 4, 0.4);
 }
 .cvs-hero-kicker {
   margin: 0 0 0.3em;
   font-size: var(--fs-micro);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 .cvs-hero-title {
   margin: 0 0 0.9em;
@@ -300,7 +300,7 @@
   width: 100%;
   padding: 0.6em 1.1em;
   border-radius: 14px;
-  border: 1px solid rgba(235, 226, 216, 0.28);
+  border: 1px solid rgba(228, 228, 228, 0.28);
   background: var(--glass-cell-bg);
   font-size: var(--fs-small);
   color: var(--text-warm);
@@ -312,7 +312,7 @@
   font-size: var(--fs-micro);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: rgba(235, 226, 216, 0.7);
+  color: rgba(228, 228, 228, 0.7);
 }
 
 /* ---------- Värava selgitus (keelatud primaarnupu põhjus) ---------- */
@@ -376,7 +376,7 @@
   font-size: var(--fs-micro);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 .cvs-focus-sub {
   text-transform: none;
@@ -416,7 +416,7 @@
 }
 /* Kinnitatud (avalik) märksõna: vaikselt soojem serv */
 .cvs-chip[data-public="1"] {
-  border-color: rgba(235, 226, 216, 0.35);
+  border-color: rgba(228, 228, 228, 0.35);
   color: var(--text-warm);
 }
 .cvs-chip-x {
@@ -475,10 +475,10 @@
 }
 /* Kvaliteedivihje toon: hoiatus soe, kinnitus vaikne */
 .cvs-focus-hint[data-tone="warn"] {
-  color: rgba(235, 226, 216, 0.9);
+  color: rgba(228, 228, 228, 0.9);
 }
 .cvs-focus-hint[data-tone="ok"] {
-  color: rgba(235, 226, 216, 0.65);
+  color: rgba(228, 228, 228, 0.65);
 }
 
 .cvs-coverage {
@@ -494,7 +494,7 @@
   background: rgba(255, 255, 255, 0.18);
 }
 .cvs-coverage-dot[data-on="1"] {
-  background: rgba(235, 226, 216, 0.75);
+  background: rgba(228, 228, 228, 0.75);
 }
 .cvs-coverage-text {
   margin-left: 0.35rem;
@@ -531,8 +531,8 @@
   color: var(--text-warm);
 }
 .cvs-compass-q[aria-pressed="true"] {
-  color: rgba(235, 226, 216, 0.9);
-  background: rgba(235, 226, 216, 0.06);
+  color: rgba(228, 228, 228, 0.9);
+  background: rgba(228, 228, 228, 0.06);
 }
 .cvs-compass-lock {
   margin-top: 0.5rem;
@@ -593,10 +593,10 @@
 }
 /* Sinu kaart valmis: vaikne soe serv annab märku */
 .cvs-qcard[data-state="ready"] {
-  border-color: rgba(235, 226, 216, 0.4);
+  border-color: rgba(228, 228, 228, 0.4);
 }
 .cvs-qcard[data-state="ready"] .cvs-qcard-q {
-  color: rgba(235, 226, 216, 0.85);
+  color: rgba(228, 228, 228, 0.85);
   font-style: normal;
 }
 .cvs-qcard[data-state="open"] .cvs-qcard-q {
@@ -633,7 +633,7 @@
   color: inherit;
 }
 .cvs-qsteps li[data-on="1"] {
-  color: rgba(235, 226, 216, 0.9);
+  color: rgba(228, 228, 228, 0.9);
 }
 .cvs-cell-text--quiet {
   margin-top: 0.7rem;
@@ -696,7 +696,7 @@
   justify-content: center;
   gap: 0.4rem;
   border-radius: 20px;
-  background: rgba(14, 11, 9, 0.66);
+  background: rgba(12, 12, 12, 0.66);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -867,22 +867,22 @@
   color: var(--text-warm);
 }
 .cv1-chip[data-over="1"] .cv1-chip-value {
-  color: rgba(235, 226, 216, 0.95);
+  color: rgba(228, 228, 228, 0.95);
 }
 
 /* Üks neutraalne nupukeel: sama soe klaas kõikidel tegevustel. */
 .cv1 .cv1-acc {
   border-color: rgba(var(--cv1a), 0.3);
-  background: rgba(34, 30, 27, 0.58);
+  background: rgba(31, 31, 31, 0.58);
   color: var(--room-text);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 .cv1 .cv1-acc:hover:not(:disabled) {
   border-color: rgba(var(--cv1a), 0.5);
-  background: rgba(44, 39, 34, 0.7);
+  background: rgba(40, 40, 40, 0.7);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.11),
-    0 10px 28px rgba(8, 4, 2, 0.3);
+    0 10px 28px rgba(5, 5, 5, 0.3);
 }
 
 /* ---------- Põhiala: kolm sügavuskihti ---------- */
@@ -952,7 +952,7 @@
   white-space: nowrap;
 }
 .cv1-panel-meta[data-done="1"] {
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 .cv1-panel-btn {
   margin-top: 0.7rem;
@@ -1042,14 +1042,14 @@
   color: var(--text-dim);
 }
 .cv1-person-state[data-done="1"] {
-  color: rgba(235, 226, 216, 0.7);
+  color: rgba(228, 228, 228, 0.7);
 }
 /* Rollirotatsiooni soovitus (§7.4) — vaikne vihje, mitte hoiatus;
    nähtav ainult kuni rollid on kinnitatud */
 .cv1-rotation {
   margin: 0.55rem 0 0;
   padding: 0.4em 0.8em;
-  border-left: 2px solid rgba(235, 226, 216, 0.35);
+  border-left: 2px solid rgba(228, 228, 228, 0.35);
   font-size: var(--fs-micro);
   line-height: 1.4;
   color: var(--text-dim);
@@ -1169,8 +1169,8 @@
   color: var(--text-dim);
 }
 .cv1-case-state[data-done="1"] {
-  border-color: rgba(235, 226, 216, 0.25);
-  color: rgba(235, 226, 216, 0.8);
+  border-color: rgba(228, 228, 228, 0.25);
+  color: rgba(228, 228, 228, 0.8);
 }
 
 /* Kokkulepped + seaded */
@@ -1287,7 +1287,7 @@
   text-align: right;
 }
 .cv1-gate-hint[data-ok="1"] {
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 
 /* ---------- Demo-vaatevahetaja ---------- */
@@ -1302,7 +1302,7 @@
   padding: 0.4rem 0.6rem;
   border-radius: 999px;
   border: 1px solid var(--glass-cell-border);
-  background: rgba(10, 7, 5, 0.72);
+  background: rgba(8, 8, 8, 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -1325,7 +1325,7 @@
   display: grid;
   place-items: center;
   padding: 1.2rem;
-  background: rgba(8, 6, 4, 0.55);
+  background: rgba(6, 6, 6, 0.55);
   backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
 }
@@ -1336,7 +1336,7 @@
   padding: 1.1rem 1.3rem 1.2rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  background: linear-gradient(165deg, rgba(44, 39, 34, 0.92), rgba(26, 22, 19, 0.94));
+  background: linear-gradient(165deg, rgba(40, 40, 40, 0.92), rgba(23, 23, 23, 0.94));
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 .cv1-layer-list {
@@ -1377,7 +1377,7 @@
   color: var(--text-dim);
 }
 .cv1-people-state li[data-done="1"] {
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 .cv1-support-list {
   margin: 0.8rem 0 0;
@@ -1499,8 +1499,8 @@ button.cv2-anchor:hover {
   border-color: rgba(255, 255, 255, 0.3);
 }
 .cv2-anchor[data-investigate="1"] {
-  border-color: rgba(235, 226, 216, 0.45);
-  background: rgba(235, 226, 216, 0.05);
+  border-color: rgba(228, 228, 228, 0.45);
+  background: rgba(228, 228, 228, 0.05);
 }
 .cv2-anchor-type {
   font-size: var(--fs-micro);
@@ -1509,7 +1509,7 @@ button.cv2-anchor:hover {
   color: var(--text-dim);
 }
 .cv2-anchor[data-investigate="1"] .cv2-anchor-type {
-  color: rgba(235, 226, 216, 0.9);
+  color: rgba(228, 228, 228, 0.9);
 }
 .cv2-anchor-text {
   font-size: var(--fs-small);
@@ -1561,7 +1561,7 @@ button.cv2-anchor:hover {
 }
 .cv2-links li[data-sure="0"] {
   border-style: dashed;
-  border-color: rgba(235, 226, 216, 0.4);
+  border-color: rgba(228, 228, 228, 0.4);
 }
 
 /* Tööfookus — tuuma all, tegutseja nähtav */
@@ -1592,7 +1592,7 @@ button.cv2-anchor:hover {
 }
 .cv2-focus-state {
   font-size: var(--fs-micro);
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 .cv2-focus[data-state="temp"] .cv2-focus-state {
   color: var(--text-dim);
@@ -1645,7 +1645,7 @@ button.cv2-anchor:hover {
   white-space: nowrap;
 }
 .cv2-duties li[data-done="1"] span:last-child {
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 
 /* Õhuke värav: vihje vasakul, nupp paremal */
@@ -1704,7 +1704,7 @@ button.cv2-anchor:hover {
   background: rgba(var(--cv1a), 0.06);
 }
 .cv3-site[data-state="done"] {
-  border-color: rgba(235, 226, 216, 0.25);
+  border-color: rgba(228, 228, 228, 0.25);
 }
 .cv3-site-label {
   font-size: var(--fs-small);
@@ -1718,7 +1718,7 @@ button.cv2-anchor:hover {
   color: rgba(var(--cv1a), 0.9);
 }
 .cv3-site[data-state="done"] .cv3-site-state {
-  color: rgba(235, 226, 216, 0.7);
+  color: rgba(228, 228, 228, 0.7);
 }
 
 /* Faasi hero: kergem klaas kui cv1/cv2, aktiivne küsimus esiplaanil */
@@ -1764,7 +1764,7 @@ button.cv2-anchor:hover {
   color: var(--text-dim);
 }
 .cv3-astate[data-state="answered"] {
-  color: rgba(235, 226, 216, 0.75);
+  color: rgba(228, 228, 228, 0.75);
 }
 
 /* Uurimisplaani loend */
@@ -1840,7 +1840,7 @@ button.cv2-anchor:hover {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  border-color: rgba(235, 226, 216, 0.4);
+  border-color: rgba(228, 228, 228, 0.4);
   box-shadow: 0 14px 34px rgba(4, 3, 2, 0.45);
 }
 

@@ -85,8 +85,8 @@
   width: fit-content;
   padding: 0.15rem 0.62rem;
   border-radius: 999px;
-  background: rgba(244, 198, 144, 0.16);
-  border: 1px solid rgba(244, 198, 144, 0.55);
+  background: rgba(206, 206, 206, 0.16);
+  border: 1px solid rgba(206, 206, 206, 0.55);
   color: var(--text-warm);
   font-size: 0.78rem;
   font-weight: 600;

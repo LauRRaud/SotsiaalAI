@@ -35,16 +35,16 @@
 /* Üks nupukeel: sama neutraalne soe klaas kõikidel tegevustel. */
 .ts-page .ts-acc {
   border-color: rgba(var(--tsa), 0.3);
-  background: rgba(34, 30, 27, 0.58);
+  background: rgba(31, 31, 31, 0.58);
   color: var(--room-text);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
 }
 .ts-page .ts-acc:hover:not(:disabled) {
   border-color: rgba(var(--tsa), 0.5);
-  background: rgba(44, 39, 34, 0.7);
+  background: rgba(40, 40, 40, 0.7);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.11),
-    0 10px 28px rgba(8, 4, 2, 0.3);
+    0 10px 28px rgba(5, 5, 5, 0.3);
 }
 
 /* ---------- Ülariba: bränd + funktsioonide nav + abi/profiil ----------
@@ -108,7 +108,7 @@ a.ts-nav-link:hover {
 .ts-nav-link[data-active="1"] {
   color: var(--text-warm);
   border-color: rgba(var(--tsa), 0.3);
-  background: rgba(34, 30, 27, 0.54);
+  background: rgba(31, 31, 31, 0.54);
 }
 .ts-nav-link[data-disabled="1"] {
   opacity: 0.55;
@@ -191,15 +191,15 @@ a.ts-nav-link:hover {
   line-height: 1.12;
   color: var(--text-warm);
   text-wrap: balance;
-  text-shadow: 0 1px 16px rgba(8, 4, 2, 0.72);
+  text-shadow: 0 1px 16px rgba(5, 5, 5, 0.72);
 }
 .ts-intro {
   margin: 0;
   max-width: 72ch;
   font-size: clamp(0.96rem, 0.9rem + 0.12vw, 1.05rem);
   line-height: 1.52;
-  color: rgba(255, 248, 239, 0.86);
-  text-shadow: 0 1px 13px rgba(8, 4, 2, 0.68);
+  color: rgba(249, 249, 249, 0.86);
+  text-shadow: 0 1px 13px rgba(5, 5, 5, 0.68);
 }
 .ts-notice {
   flex: 0 0 auto;
@@ -207,7 +207,7 @@ a.ts-nav-link:hover {
   padding: 0.5em 0.9em;
   border-radius: 12px;
   border: 1px solid rgba(var(--tsa), 0.22);
-  background: rgba(34, 30, 27, 0.48);
+  background: rgba(31, 31, 31, 0.48);
   font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
   color: var(--text-soft);
 }
@@ -224,8 +224,8 @@ a.ts-nav-link:hover {
   padding: 0.4em 0.9em;
   border-radius: 999px;
   border: 1px solid var(--glass-cell-border);
-  background: rgba(34, 30, 27, 0.46);
-  color: rgba(255, 248, 239, 0.8);
+  background: rgba(31, 31, 31, 0.46);
+  color: rgba(249, 249, 249, 0.8);
   font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
   cursor: pointer;
   transition: border-color var(--dur-fast) var(--ease-soft);
@@ -236,11 +236,11 @@ a.ts-nav-link:hover {
 .ts-filter[aria-pressed="true"] {
   color: var(--text-warm);
   border-color: rgba(var(--tsa), 0.38);
-  background: rgba(54, 48, 42, 0.68);
+  background: rgba(49, 49, 49, 0.68);
 }
 .ts-filter-count {
   font-size: 0.84em;
-  color: rgba(255, 248, 239, 0.62);
+  color: rgba(249, 249, 249, 0.62);
 }
 .ts-spatial-tools {
   display: flex;
@@ -254,14 +254,14 @@ a.ts-nav-link:hover {
   margin: 0;
   font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
   line-height: 1.45;
-  color: rgba(255, 248, 239, 0.72);
+  color: rgba(249, 249, 249, 0.72);
 }
 .ts-layout-reset {
   flex: 0 0 auto;
   padding: 0.38em 0.85em;
   border-radius: 999px;
   border: 1px solid rgba(var(--tsa), 0.28);
-  background: rgba(34, 30, 27, 0.52);
+  background: rgba(31, 31, 31, 0.52);
   color: var(--text-soft);
   font-size: clamp(0.84rem, 0.8rem + 0.08vw, 0.9rem);
   cursor: pointer;
@@ -272,7 +272,7 @@ a.ts-nav-link:hover {
 .ts-layout-reset:hover,
 .ts-layout-reset:focus-visible {
   border-color: rgba(var(--tsa), 0.48);
-  background: rgba(54, 48, 42, 0.68);
+  background: rgba(49, 49, 49, 0.68);
 }
 .ts-sr-status {
   position: absolute;
@@ -323,9 +323,9 @@ a.ts-nav-link:hover {
   border-radius: clamp(20px, 1.8vw, 26px);
   background: linear-gradient(
     165deg,
-    rgba(44, 39, 34, 0.4) 0%,
-    rgba(32, 28, 25, 0.46) 55%,
-    rgba(24, 21, 19, 0.52) 100%
+    rgba(40, 40, 40, 0.4) 0%,
+    rgba(29, 29, 29, 0.46) 55%,
+    rgba(22, 22, 22, 0.52) 100%
   );
   box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
@@ -367,28 +367,28 @@ a.ts-nav-link:hover {
   z-index: 20;
   background: linear-gradient(
     165deg,
-    rgba(44, 39, 34, 0.58) 0%,
-    rgba(32, 28, 25, 0.64) 55%,
-    rgba(24, 21, 19, 0.7) 100%
+    rgba(40, 40, 40, 0.58) 0%,
+    rgba(29, 29, 29, 0.64) 55%,
+    rgba(22, 22, 22, 0.7) 100%
   );
   box-shadow:
     inset 0 1px 1.5px rgba(255, 255, 255, 0.11),
-    0 28px 76px rgba(8, 4, 2, 0.66),
-    0 7px 24px rgba(8, 4, 2, 0.46);
+    0 28px 76px rgba(5, 5, 5, 0.66),
+    0 7px 24px rgba(5, 5, 5, 0.46);
 }
 .ts-card[data-front="true"] {
   z-index: 60;
   background: linear-gradient(
     165deg,
-    rgba(48, 42, 36, 0.86) 0%,
-    rgba(34, 29, 25, 0.9) 55%,
-    rgba(24, 21, 19, 0.93) 100%
+    rgba(43, 43, 43, 0.86) 0%,
+    rgba(30, 30, 30, 0.9) 55%,
+    rgba(22, 22, 22, 0.93) 100%
   );
   backdrop-filter: blur(8px) saturate(0.86);
   -webkit-backdrop-filter: blur(8px) saturate(0.86);
   box-shadow:
     inset 0 1px 1.5px rgba(255, 255, 255, 0.14),
-    0 32px 90px rgba(8, 4, 2, 0.72),
+    0 32px 90px rgba(5, 5, 5, 0.72),
     0 0 34px rgba(var(--tsa), 0.14);
 }
 .ts-card[data-moving="true"],
@@ -397,15 +397,15 @@ a.ts-nav-link:hover {
   z-index: 100;
   background: linear-gradient(
     165deg,
-    rgba(52, 46, 40, 0.9) 0%,
-    rgba(38, 33, 28, 0.94) 55%,
-    rgba(26, 22, 19, 0.96) 100%
+    rgba(47, 47, 47, 0.9) 0%,
+    rgba(34, 34, 34, 0.94) 55%,
+    rgba(23, 23, 23, 0.96) 100%
   );
   backdrop-filter: blur(10px) saturate(0.82);
   -webkit-backdrop-filter: blur(10px) saturate(0.82);
   box-shadow:
     inset 0 1px 1.5px rgba(255, 255, 255, 0.15),
-    0 38px 100px rgba(8, 4, 2, 0.78),
+    0 38px 100px rgba(5, 5, 5, 0.78),
     0 0 38px rgba(var(--tsa), 0.2);
   transition: none;
   will-change: transform;
@@ -452,13 +452,13 @@ a.ts-nav-link:hover {
 .ts-drag-handle:focus-visible {
   color: var(--text-warm);
   border-color: rgba(var(--tsa), 0.34);
-  background: rgba(54, 48, 42, 0.58);
+  background: rgba(49, 49, 49, 0.58);
 }
 .ts-drag-handle:active,
 .ts-card[data-moving="true"] .ts-drag-handle {
   color: var(--room-text);
   cursor: grabbing;
-  background: rgba(64, 57, 50, 0.68);
+  background: rgba(58, 58, 58, 0.68);
 }
 .ts-resize-handle {
   position: absolute;
@@ -472,8 +472,8 @@ a.ts-nav-link:hover {
   padding: 0;
   border: 1px solid transparent;
   border-radius: 50%;
-  background: rgba(34, 30, 27, 0.42);
-  color: rgba(255, 248, 239, 0.62);
+  background: rgba(31, 31, 31, 0.42);
+  color: rgba(249, 249, 249, 0.62);
   cursor: nwse-resize;
   touch-action: none;
   user-select: none;
@@ -496,7 +496,7 @@ a.ts-nav-link:hover {
 .ts-card[data-resizing="true"] .ts-resize-handle {
   color: var(--room-text);
   border-color: rgba(var(--tsa), 0.36);
-  background: rgba(64, 57, 50, 0.68);
+  background: rgba(58, 58, 58, 0.68);
 }
 .ts-card-title {
   margin: 0;
@@ -505,7 +505,7 @@ a.ts-nav-link:hover {
   line-height: 1.28;
   color: var(--room-text);
   text-wrap: balance;
-  text-shadow: 0 1px 15px rgba(8, 4, 2, 0.72);
+  text-shadow: 0 1px 15px rgba(5, 5, 5, 0.72);
 }
 .ts-status {
   flex: 0 0 auto;
@@ -518,7 +518,7 @@ a.ts-nav-link:hover {
 }
 .ts-status[data-status="valitud"] {
   border-color: rgba(var(--tsa), 0.55);
-  color: rgba(235, 226, 216, 0.95);
+  color: rgba(228, 228, 228, 0.95);
 }
 .ts-status[data-status="mustand"] {
   border-style: dashed;
@@ -531,8 +531,8 @@ a.ts-nav-link:hover {
   margin: 0;
   font-size: clamp(0.92rem, 0.86rem + 0.12vw, 1rem);
   line-height: 1.48;
-  color: rgba(245, 235, 224, 0.76);
-  text-shadow: 0 1px 12px rgba(8, 4, 2, 0.68);
+  color: rgba(237, 237, 237, 0.76);
+  text-shadow: 0 1px 12px rgba(5, 5, 5, 0.68);
 }
 .ts-card-rows {
   display: flex;
@@ -548,15 +548,15 @@ a.ts-nav-link:hover {
 .ts-card-rows dt {
   font-size: clamp(0.88rem, 0.83rem + 0.1vw, 0.95rem);
   font-weight: 560;
-  color: rgba(245, 235, 224, 0.7);
+  color: rgba(237, 237, 237, 0.7);
 }
 .ts-card-rows dd {
   margin: 0;
   font-size: clamp(0.96rem, 0.9rem + 0.12vw, 1.04rem);
   font-weight: 470;
   line-height: 1.46;
-  color: rgba(255, 248, 239, 0.92);
-  text-shadow: 0 1px 12px rgba(8, 4, 2, 0.72);
+  color: rgba(249, 249, 249, 0.92);
+  text-shadow: 0 1px 12px rgba(5, 5, 5, 0.72);
   /* Kompaktne kaart: pikk tekst ei venita lõuendit */
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -579,7 +579,7 @@ a.ts-nav-link:hover {
 }
 .ts-card-wait {
   font-size: clamp(0.86rem, 0.82rem + 0.08vw, 0.92rem);
-  color: rgba(245, 235, 224, 0.68);
+  color: rgba(237, 237, 237, 0.68);
 }
 .ts-card-actions {
   display: flex;
@@ -705,7 +705,7 @@ a.ts-nav-link:hover {
   gap: 0.45rem;
 }
 .ts-gate-stop {
-  border-color: rgba(235, 226, 216, 0.5);
+  border-color: rgba(228, 228, 228, 0.5);
 }
 .ts-gate-chip {
   display: flex;
@@ -1020,7 +1020,7 @@ a.ts-nav-link:hover {
   display: grid;
   place-items: center;
   padding: 1.2rem;
-  background: rgba(10, 7, 5, 0.62);
+  background: rgba(8, 8, 8, 0.62);
   backdrop-filter: blur(6px);
 }
 .ts-layer-card {
@@ -1033,7 +1033,7 @@ a.ts-nav-link:hover {
   padding: 1.2rem 1.3rem;
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(26, 18, 12, 0.92);
+  background: rgba(20, 20, 20, 0.92);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
 }
 .ts-layer-head {

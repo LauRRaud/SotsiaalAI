@@ -136,8 +136,8 @@
 }
 
 .privacyPrivate {
-  background: rgba(244, 198, 144, 0.16);
-  border: 1px solid rgba(244, 198, 144, 0.55);
+  background: rgba(206, 206, 206, 0.16);
+  border: 1px solid rgba(206, 206, 206, 0.55);
   color: var(--text-warm);
 }
 
@@ -148,8 +148,8 @@
 }
 
 .privacyPersistent {
-  background: rgba(160, 210, 190, 0.14);
-  border: 1px solid rgba(160, 210, 190, 0.45);
+  background: rgba(193, 193, 193, 0.14);
+  border: 1px solid rgba(193, 193, 193, 0.45);
   color: var(--text-warm);
 }
 
@@ -187,7 +187,7 @@
 }
 
 .tab:focus-visible {
-  outline: 2px solid var(--focus-ring, rgba(244, 198, 144, 0.75));
+  outline: 2px solid var(--focus-ring, rgba(206, 206, 206, 0.75));
   outline-offset: 2px;
 }
 
@@ -195,7 +195,7 @@
 
 .eeskamber {
   padding: 1.1rem 1.2rem;
-  border: 1px dashed rgba(244, 198, 144, 0.55);
+  border: 1px dashed rgba(206, 206, 206, 0.55);
   border-radius: calc(var(--panel-radius) * 0.6);
   background: rgba(0, 0, 0, 0.18);
 }
@@ -320,8 +320,8 @@
 }
 
 .keepCol {
-  border-color: rgba(160, 210, 190, 0.45);
-  background: rgba(160, 210, 190, 0.06);
+  border-color: rgba(193, 193, 193, 0.45);
+  background: rgba(193, 193, 193, 0.06);
 }
 
 .colHeading {

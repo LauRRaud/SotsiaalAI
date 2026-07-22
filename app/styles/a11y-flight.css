@@ -38,7 +38,7 @@
 /* Sama atribuudipaar mis a11y-modal.css baasreeglil + klass, muidu
    kaotaks see spetsiifilisuses ega kataks kaardirida. */
 div[role="presentation"][aria-hidden="true"].a11f-veil {
-  background: rgba(9, 6, 5, 0.95);
+  background: rgba(7, 7, 7, 0.95);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -170,7 +170,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
 /* Erinevalt registrist ei ole ükski jaam lukus — eelistused on
    iseseisvad valikud, seega läbimata jaam ei tohi näida keelatuna. */
 .a11f-dock .gc-shortcut[data-state="open"] {
-  color: rgba(246, 238, 230, 0.62);
+  color: rgba(239, 239, 239, 0.62);
 }
 
 @media (max-width: 720px) {

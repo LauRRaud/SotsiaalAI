@@ -55,7 +55,7 @@
   left: 0.35rem;
   width: 1px;
   content: "";
-  background: linear-gradient(transparent, rgba(244, 198, 144, 0.42) 8%, rgba(244, 198, 144, 0.18) 92%, transparent);
+  background: linear-gradient(transparent, rgba(206, 206, 206, 0.42) 8%, rgba(206, 206, 206, 0.18) 92%, transparent);
 }
 
 .section {
@@ -69,11 +69,11 @@
   left: 0;
   width: 0.75rem;
   height: 0.75rem;
-  border: 1px solid rgba(244, 198, 144, 0.72);
+  border: 1px solid rgba(206, 206, 206, 0.72);
   border-radius: 50%;
   content: "";
   background: var(--dusk-shadow);
-  box-shadow: 0 0 1rem rgba(232, 168, 106, 0.24);
+  box-shadow: 0 0 1rem rgba(180, 180, 180, 0.24);
 }
 
 .sectionHeading {
@@ -130,7 +130,7 @@
   overflow: hidden;
   border: 1px solid var(--glass-cell-border);
   border-radius: 1rem;
-  background: rgba(8, 5, 3, 0.22);
+  background: rgba(6, 6, 6, 0.22);
 }
 
 .ownershipCell { min-width: 0; padding: 0.85rem 1rem; }
@@ -160,9 +160,9 @@
   display: grid;
   gap: 0.65rem;
   padding: 1rem;
-  border: 1px solid rgba(244, 198, 144, 0.36);
+  border: 1px solid rgba(206, 206, 206, 0.36);
   border-radius: 1rem;
-  background: rgba(201, 127, 74, 0.1);
+  background: rgba(143, 143, 143, 0.1);
 }
 .privacyPrompt p { margin: 0; color: var(--text-soft); line-height: 1.5; }
 
@@ -173,7 +173,7 @@
   display: grid;
   place-items: center;
   padding: 1rem;
-  background: rgba(5, 3, 2, 0.68);
+  background: rgba(3, 3, 3, 0.68);
   backdrop-filter: blur(0.8rem);
 }
 
@@ -198,10 +198,10 @@
 
 .modalContent .modalError {
   padding: 0.8rem 0.95rem;
-  border: 1px solid rgba(244, 198, 144, 0.42);
+  border: 1px solid rgba(206, 206, 206, 0.42);
   border-radius: 0.85rem;
   color: var(--text-warm);
-  background: rgba(201, 92, 74, 0.16);
+  background: rgba(123, 123, 123, 0.16);
 }
 
 .modalActions {

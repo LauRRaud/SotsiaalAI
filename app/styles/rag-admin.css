@@ -22,7 +22,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   content: "";
   position: absolute;
   inset: -1.2rem;
-  background-image: radial-gradient(rgba(255, 248, 238, 0.05) 1px, transparent 1.4px);
+  background-image: radial-gradient(rgba(249, 249, 249, 0.05) 1px, transparent 1.4px);
   background-size: 26px 26px;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
@@ -79,12 +79,12 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   height: 0.45em;
   border-radius: 50%;
   background: var(--dusk-sunset);
-  box-shadow: 0 0 10px rgba(232, 168, 106, 0.8);
+  box-shadow: 0 0 10px rgba(180, 180, 180, 0.8);
   animation: ra-pulse 2.6s var(--ease-soft) infinite;
 }
 @keyframes ra-pulse {
-  0%, 100% { opacity: 0.55; box-shadow: 0 0 4px rgba(232, 168, 106, 0.4); }
-  50% { opacity: 1; box-shadow: 0 0 14px rgba(232, 168, 106, 0.9); }
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 4px rgba(180, 180, 180, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 14px rgba(180, 180, 180, 0.9); }
 }
 @media (prefers-reduced-motion: reduce) {
   .ra-head-kicker::before {
@@ -158,7 +158,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   inset: 0.45rem auto 0.45rem 0;
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(180deg, transparent, rgba(244, 241, 236, 0.55), transparent);
+  background: linear-gradient(180deg, transparent, rgba(241, 241, 241, 0.55), transparent);
 }
 .ra-stat[data-tone="ok"]::before,
 .ra-stat[data-tone="success"]::before {
@@ -202,7 +202,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, rgba(244, 241, 236, 0.4), rgba(244, 241, 236, 0.75));
+  background: linear-gradient(90deg, rgba(241, 241, 241, 0.4), rgba(241, 241, 241, 0.75));
   box-shadow: 0 0 8px rgba(255, 246, 232, 0.35);
   transition: width var(--dur-slow) var(--ease-drift);
 }
@@ -212,8 +212,8 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   box-shadow: 0 0 8px rgba(197, 207, 155, 0.45);
 }
 .ra-stat[data-tone="warn"] .ra-stat-bar-fill {
-  background: linear-gradient(90deg, rgba(232, 168, 106, 0.5), var(--dusk-sunset));
-  box-shadow: 0 0 8px rgba(232, 168, 106, 0.45);
+  background: linear-gradient(90deg, rgba(180, 180, 180, 0.5), var(--dusk-sunset));
+  box-shadow: 0 0 8px rgba(180, 180, 180, 0.45);
 }
 .ra-stat[data-tone="err"] .ra-stat-bar-fill,
 .ra-stat[data-tone="danger"] .ra-stat-bar-fill {
@@ -258,7 +258,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   left: 8%;
   right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 248, 238, 0.28), transparent);
+  background: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.28), transparent);
   pointer-events: none;
 }
 .ra-card-head {
@@ -286,7 +286,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   height: 0.42em;
   border-radius: 50%;
   background: var(--dusk-sunset);
-  box-shadow: 0 0 10px rgba(232, 168, 106, 0.75);
+  box-shadow: 0 0 10px rgba(180, 180, 180, 0.75);
 }
 .ra-card-sub {
   margin: 0;
@@ -366,7 +366,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   width: 0.42em;
   height: 0.42em;
   border-radius: 50%;
-  background: rgba(244, 241, 236, 0.55);
+  background: rgba(241, 241, 241, 0.55);
 }
 .ra-chip[data-tone="ok"] {
   border-color: rgba(197, 207, 155, 0.4);
@@ -377,12 +377,12 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   box-shadow: 0 0 8px rgba(197, 207, 155, 0.7);
 }
 .ra-chip[data-tone="warn"] {
-  border-color: rgba(232, 168, 106, 0.42);
+  border-color: rgba(180, 180, 180, 0.42);
   color: var(--dusk-glow);
 }
 .ra-chip[data-tone="warn"]::before {
   background: var(--dusk-sunset);
-  box-shadow: 0 0 8px rgba(232, 168, 106, 0.7);
+  box-shadow: 0 0 8px rgba(180, 180, 180, 0.7);
 }
 .ra-chip[data-tone="err"] {
   border-color: rgba(235, 154, 118, 0.45);
@@ -396,7 +396,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
   color: var(--text-dim);
 }
 .ra-chip[data-tone="dim"]::before {
-  background: rgba(244, 241, 236, 0.3);
+  background: rgba(241, 241, 241, 0.3);
   box-shadow: none;
 }
 .ra-chiprow {
@@ -418,7 +418,7 @@ button.ra-chip:hover {
 }
 button.ra-chip[data-checked="true"],
 button.ra-chip[aria-pressed="true"] {
-  background: rgba(255, 250, 240, 0.16);
+  background: rgba(250, 250, 250, 0.16);
   border-color: var(--glass-rim);
   color: var(--text-warm);
 }
@@ -428,7 +428,7 @@ button.ra-chip[aria-pressed="true"] {
   overflow: auto;
   border-radius: 14px;
   border: 1px solid var(--glass-cell-border);
-  background: rgba(10, 8, 6, 0.22);
+  background: rgba(8, 8, 8, 0.22);
   max-width: 100%;
 }
 .ra-table {
@@ -448,8 +448,8 @@ button.ra-chip[aria-pressed="true"] {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-dim);
-  background: rgba(26, 21, 17, 0.92);
-  border-bottom: 1px solid rgba(255, 248, 238, 0.2);
+  background: rgba(22, 22, 22, 0.92);
+  border-bottom: 1px solid rgba(249, 249, 249, 0.2);
   white-space: nowrap;
 }
 .ra-table td {
@@ -466,7 +466,7 @@ button.ra-chip[aria-pressed="true"] {
   cursor: var(--cursor-pointer);
 }
 .ra-table tbody tr[data-selected="true"] {
-  background: rgba(255, 250, 240, 0.09);
+  background: rgba(250, 250, 250, 0.09);
   box-shadow: inset 2px 0 0 var(--glass-rim);
 }
 .ra-table tbody tr:last-child td {
@@ -629,7 +629,7 @@ button.ra-chip[aria-pressed="true"] {
 }
 .ra-row[aria-pressed="true"] {
   border-color: var(--glass-rim);
-  background: rgba(255, 250, 240, 0.1);
+  background: rgba(250, 250, 250, 0.1);
   box-shadow: 0 0 16px rgba(255, 246, 232, 0.08);
 }
 .ra-row-body {
@@ -703,7 +703,7 @@ button.ra-row {
 }
 .ra-module:hover {
   background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 248, 238, 0.4);
+  border-color: rgba(249, 249, 249, 0.4);
   box-shadow: 0 0 22px rgba(255, 246, 232, 0.09);
   translate: 0 -2px;
 }
@@ -718,7 +718,7 @@ button.ra-row {
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 12px;
-  background: rgba(255, 250, 240, 0.07);
+  background: rgba(250, 250, 250, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.16);
   color: var(--dusk-glow);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.14);
@@ -731,17 +731,17 @@ button.ra-row {
   height: 1.25rem;
 }
 .ra-module:hover .ra-module-icon {
-  border-color: rgba(255, 242, 226, 0.42);
+  border-color: rgba(244, 244, 244, 0.42);
   box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    0 0 16px rgba(232, 168, 106, 0.28);
+    0 0 16px rgba(180, 180, 180, 0.28);
 }
 /* Kerge "skaneeriv" läige üle kaardi hover'il */
 .ra-module::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 248, 238, 0.09) 48%, transparent 62%);
+  background: linear-gradient(115deg, transparent 30%, rgba(249, 249, 249, 0.09) 48%, transparent 62%);
   translate: -110% 0;
   pointer-events: none;
 }
@@ -775,8 +775,8 @@ button.ra-row {
   border-radius: 12px;
   font-size: var(--fs-small);
   color: var(--text-soft);
-  background: rgba(232, 168, 106, 0.07);
-  border: 1px solid rgba(232, 168, 106, 0.24);
+  background: rgba(180, 180, 180, 0.07);
+  border: 1px solid rgba(180, 180, 180, 0.24);
 }
 .ra-note strong {
   color: var(--dusk-glow);
@@ -844,7 +844,7 @@ button.ra-row {
   margin: 0;
   padding: 0.9rem 1rem;
   border-radius: 12px;
-  background: rgba(8, 5, 3, 0.5);
+  background: rgba(6, 6, 6, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 0.78rem;
   line-height: 1.55;
@@ -866,8 +866,8 @@ button.ra-row {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .ra-filerow[data-focused="true"] {
-  border-color: rgba(232, 168, 106, 0.5);
-  box-shadow: 0 0 14px rgba(232, 168, 106, 0.12);
+  border-color: rgba(180, 180, 180, 0.5);
+  box-shadow: 0 0 14px rgba(180, 180, 180, 0.12);
 }
 .ra-filerow-info {
   display: grid;
@@ -898,7 +898,7 @@ button.ra-row {
   position: fixed;
   inset: 0;
   z-index: 54;
-  background: rgba(10, 6, 4, 0.45);
+  background: rgba(7, 7, 7, 0.45);
   animation: ra-fade var(--dur-fast) var(--ease-soft) backwards;
 }
 .ra-drawer {
@@ -912,7 +912,7 @@ button.ra-row {
   border-left: 1px solid var(--glass-border);
   box-shadow:
     inset 1px 0 0 rgba(255, 255, 255, 0.08),
-    -30px 0 80px rgba(8, 4, 2, 0.5);
+    -30px 0 80px rgba(5, 5, 5, 0.5);
   animation: ra-drawer-in var(--dur-med) var(--ease-soft) backwards;
 }
 @keyframes ra-drawer-in {
@@ -1019,7 +1019,7 @@ body.ra-drawer-open .panel-close {
 }
 .ra-map-tile[data-active="true"] {
   border-color: var(--glass-rim);
-  background: rgba(255, 250, 240, 0.1);
+  background: rgba(250, 250, 250, 0.1);
   box-shadow: 0 0 18px rgba(255, 246, 232, 0.12);
 }
 /* Tähelepanu vajav maakond: soe helendav nurgatäpp */
@@ -1032,7 +1032,7 @@ body.ra-drawer-open .panel-close {
   height: 0.42rem;
   border-radius: 50%;
   background: var(--dusk-sunset);
-  box-shadow: 0 0 9px rgba(232, 168, 106, 0.85);
+  box-shadow: 0 0 9px rgba(180, 180, 180, 0.85);
 }
 .ra-map-name {
   font-size: var(--fs-micro);

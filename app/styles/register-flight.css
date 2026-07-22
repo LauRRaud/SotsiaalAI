@@ -127,7 +127,7 @@ html:not([data-contrast="hc"]) .rgf-plane :is(button[data-variant], a[data-varia
   font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.7rem);
   letter-spacing: 0.015em;
   color: var(--text-warm);
-  text-shadow: 0 0 26px rgba(255, 240, 220, 0.14); /* soe holo-kuma */
+  text-shadow: 0 0 26px rgba(242, 242, 242, 0.14); /* soe holo-kuma */
 }
 .rgf-controls {
   display: grid;
@@ -235,7 +235,7 @@ html:not([data-contrast="hc"]) .rgf-plane :is(button[data-variant], a[data-varia
 /* Läbitud jaam = sama helendus mis tagasi-noolel; tulevane jaam
    tuhmub ega reageeri (värav avaneb ainult rada läbides). */
 .rgf-dock .gc-shortcut[data-state="done"] {
-  color: rgba(246, 238, 230, 0.78);
+  color: rgba(239, 239, 239, 0.78);
 }
 .rgf-dock .gc-shortcut:disabled {
   opacity: 0.45;
