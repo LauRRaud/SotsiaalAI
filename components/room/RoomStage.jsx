@@ -1320,7 +1320,18 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           ) : null}
         </div>
         <p id="room-veil-message" className="room-veil-line">
-          {t("room.loading_line")}
+          {/* Iga sõna oma span'is: töölaual voolavad inline ühte ritta,
+              mobiilis muutuvad plokk-ridadeks (keskmine nihkes) ja
+              VeilArt-sampler joonistab osakesed sõnakastide järgi. */}
+          {t("room.loading_line")
+            .split(/\s+/)
+            .filter(Boolean)
+            .flatMap((word, index) => [
+              index > 0 ? " " : null,
+              <span key={`${index}-${word}`} className="room-veil-word">
+                {word}
+              </span>,
+            ])}
         </p>
         <GlassButton
           layoutClassName="room-veil-enter"

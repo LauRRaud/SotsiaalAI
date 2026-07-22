@@ -338,18 +338,26 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   .room-veil-logo {
     top: auto;
     bottom: max(-0.1rem, env(safe-area-inset-bottom, 0px) - 0.1rem);
-    width: clamp(16rem, 72vw, 23rem);
+    width: clamp(18rem, 88vw, 26rem);
   }
   .room-veil-line {
-    top: 30%;
+    top: 25%;
     min-width: min(25rem, calc(100vw - 2rem));
     min-height: 3rem;
-    font-size: clamp(1.38rem, 6.2vw, 2rem);
+    /* Mobiilis jaguneb lause kolmeks suureks keskjoondatud sõna-reaks;
+       sampler järgib sõnakaste (vt VeilArt.buildTextTargets). 14vw laega,
+       et pikim rida „selgusest.“ mahuks kitsalegi ekraanile. */
+    font-size: clamp(2.2rem, 14vw, 3.3rem);
+    line-height: 1.2;
     letter-spacing: 0.055em;
+    white-space: nowrap;
+  }
+  .room-veil-word {
+    display: block;
   }
   .glass-btn.room-veil-enter {
     top: 56%;
-    font-size: clamp(1rem, 4.5vw, 1.28rem);
+    font-size: clamp(1.35rem, 7.2vw, 1.9rem);
     letter-spacing: 0.26em;
     text-indent: 0.26em;
   }

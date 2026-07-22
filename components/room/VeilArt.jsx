@@ -196,7 +196,24 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       sampleCtx.textAlign = "center";
       sampleCtx.textBaseline = "middle";
       sampleCtx.fillStyle = "#fff";
-      sampleCtx.fillText(text, sample.width / 2, sample.height / 2);
+      /* Mobiilis jaguneb lause sõna-plokkideks (keskmine nihkes). Iga
+         sõna joonistatakse tema enda DOM-kasti keskele; ühel real annavad
+         sõnakastid sama tulemuse kui terve rea keskele joonistamine. */
+      const words = Array.from(line.querySelectorAll(".room-veil-word"));
+      if (words.length) {
+        words.forEach((word) => {
+          const wordText = (word.textContent || "").trim();
+          if (!wordText) return;
+          const wordRect = localRect(word);
+          sampleCtx.fillText(
+            wordText,
+            wordRect.left - rect.left + padding + wordRect.width / 2,
+            wordRect.top - rect.top + padding + wordRect.height / 2,
+          );
+        });
+      } else {
+        sampleCtx.fillText(text, sample.width / 2, sample.height / 2);
+      }
 
       const pixels = sampleCtx.getImageData(0, 0, sample.width, sample.height).data;
       let step = 2;
@@ -485,7 +502,18 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
 
       width = nextWidth;
       height = nextHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+      /* Telefonil (dpr 3) muutis kunagine 1.25-lagi osakesed häguseks
+         puruks ja lause oli loetamatu. Lagi tuleb pindalaeelarvest:
+         3,24M sisepikslit = endine 1080p×1.25 maht, seega väike ekraan
+         saab terava dpr 2, suur monitor jääb endise kulu juurde. */
+      dpr = Math.max(
+        1,
+        Math.min(
+          window.devicePixelRatio || 1,
+          2,
+          Math.sqrt(3240000 / (width * height)),
+        ),
+      );
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       canvas.style.width = `${width}px`;
