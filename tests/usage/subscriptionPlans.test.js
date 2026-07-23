@@ -85,11 +85,16 @@ test("every subscription activation path writes planDefinitionId", () => {
   // T09 refactor: the webhook activation path moved into the shared module
   // lib/payments/subscriptionActivation.js (used by webhook + reconcile). The
   // guarantee is unchanged; the location moved.
+  //
+  // Invite refactor: the invite-acceptance activation moved into the shared
+  // module lib/invites/acceptInviteCore.js (used by BOTH the token path
+  // app/api/invites/[id]/accept/route.js AND the pending-invite path
+  // app/api/invites/pending/route.js). Same guarantee, single location.
   const files = [
     "app/api/subscription/route.js",
     "app/api/subscription/init/route.js",
     "lib/payments/subscriptionActivation.js",
-    "app/api/invites/[id]/accept/route.js"
+    "lib/invites/acceptInviteCore.js"
   ];
 
   for (const relativePath of files) {

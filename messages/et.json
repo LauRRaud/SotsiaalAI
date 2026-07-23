@@ -3567,6 +3567,7 @@
     "missing_title": "Kutse link puudub",
     "missing_description": "Palun ava kutselink oma e-postist.",
     "heading": "Liitu vestlusega",
+    "heading_room": "Liitu ruumiga {room}",
     "lead": "Kinnitame kutse ja lisame sind ruumi.",
     "signin_prompt": "Logi sisse või loo konto, et liituda.",
     "signin": "Logi sisse",
@@ -3575,8 +3576,16 @@
     "joining": "Liidan...",
     "success": "Liitumine õnnestus",
     "error": "Liitumine ebaõnnestus",
+    "invite_not_pending": "See kutse pole enam kehtiv või ei kuulu sellele kontole.",
     "name_label": "Sinu nimi vestluses",
     "name_required": "Palun sisesta oma nimi."
+  },
+  "pendingInvite": {
+    "title": "Sul on ootel kutse",
+    "body": "Sind on kutsutud ruumi „{room}“. Liitu ja aktiveeri tellimus.",
+    "body_no_room": "Sind on kutsutud ruumi. Liitu ja aktiveeri tellimus.",
+    "join": "Liitu",
+    "dismiss": "Peida"
   },
   "rooms": {
     "aria": "Ruumid",
@@ -4809,6 +4818,7 @@
       "invite_email_mismatch": "See kutse on teisele e-posti aadressile.",
       "invite_payment_pending": "Selle kutse makse on veel pooleli. Ava kutse uuesti pärast makse kinnitamist.",
       "invite_role_mismatch": "See kutse on loodud teise kasutajarolli jaoks. Kasuta sobiva rolliga kontot.",
+      "email_unverified": "Kinnita esmalt oma e-posti aadress.",
       "only_pending_resend": "Uuesti saab saata ainult ootel kutseid.",
       "subscription_required": "Sellesse ruumi liitumiseks on vaja tellimust.",
       "accept_failed": "Kutse vastuvõtmine ebaõnnestus.",

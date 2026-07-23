@@ -3567,6 +3567,7 @@
     "missing_title": "Invitation link missing",
     "missing_description": "Please open the invite link from your email.",
     "heading": "Join the conversation",
+    "heading_room": "Join {room}",
     "lead": "We'll confirm the invite and add you to the room.",
     "signin_prompt": "Sign in or create an account to join.",
     "signin": "Sign in",
@@ -3575,8 +3576,16 @@
     "joining": "Joining...",
     "success": "Joined successfully",
     "error": "Joining failed",
+    "invite_not_pending": "This invitation is no longer valid or does not belong to this account.",
     "name_label": "Your name in the chat",
     "name_required": "Please enter your name."
+  },
+  "pendingInvite": {
+    "title": "You have a pending invitation",
+    "body": "You've been invited to “{room}”. Join and activate your subscription.",
+    "body_no_room": "You've been invited to a room. Join and activate your subscription.",
+    "join": "Join",
+    "dismiss": "Hide"
   },
   "rooms": {
     "aria": "Rooms",
@@ -4809,6 +4818,7 @@
       "invite_email_mismatch": "This invite is for a different email address.",
       "invite_payment_pending": "Payment for this invite is still pending. Open the invite again after the payment is confirmed.",
       "invite_role_mismatch": "This invite was created for a different user role. Use an account with the matching role.",
+      "email_unverified": "Please confirm your email address first.",
       "only_pending_resend": "Only pending invites can be resent.",
       "subscription_required": "Subscription is required to join this room.",
       "accept_failed": "Failed to accept invite.",

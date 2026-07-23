@@ -22,12 +22,56 @@ export default function JoinPage() {
   const [busy, setBusy] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
   const [displayName, setDisplayName] = useState("");
+  const [roomTitle, setRoomTitle] = useState("");
+  const [inviteResolved, setInviteResolved] = useState(false);
   const token = searchParams.get("token");
+  const inviteId = searchParams.get("invite");
+  // Kaks rada: meililingi RAW token VÕI sisseloginud kasutaja ootel-kutse id.
+  const hasInvite = Boolean(token || inviteId);
 
   useEffect(() => {
     setStatusMsg("");
     setError("");
-  }, [token]);
+  }, [token, inviteId]);
+
+  // Id-põhine rada: sisseloginud kasutaja kutse laetakse ootel-nimekirjast,
+  // et näidata ruumi nime ja väravada, et kutse tõesti kuulub kasutajale.
+  useEffect(() => {
+    if (!inviteId || token) {
+      setInviteResolved(true);
+      return;
+    }
+    if (status !== "authenticated") {
+      setInviteResolved(false);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/invites/pending", {
+          headers: { Accept: "application/json" }
+        });
+        const data = await res.json().catch(() => ({}));
+        if (cancelled) return;
+        const match = Array.isArray(data?.invites)
+          ? data.invites.find((entry) => entry?.id === inviteId)
+          : null;
+        if (match) {
+          setRoomTitle(match.roomTitle || "");
+          setError("");
+        } else {
+          setError(t("join.invite_not_pending"));
+        }
+      } catch {
+        if (!cancelled) setError(t("join.error"));
+      } finally {
+        if (!cancelled) setInviteResolved(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [inviteId, token, status, t]);
 
   const joinErrorText = t("join.error");
 
@@ -41,16 +85,17 @@ export default function JoinPage() {
     setError("");
     setStatusMsg("");
     try {
-      const res = await fetch(`/api/invites/${encodeURIComponent(token)}/accept`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          display_name: trimmedName,
-          locale
-        })
-      });
+      const res = token
+        ? await fetch(`/api/invites/${encodeURIComponent(token)}/accept`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ display_name: trimmedName, locale })
+          })
+        : await fetch("/api/invites/pending", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id: inviteId, display_name: trimmedName, locale })
+          });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data?.ok === false) {
         const msg = resolveApiMessage({
@@ -82,14 +127,18 @@ export default function JoinPage() {
     accept();
   };
 
+  const heading = roomTitle
+    ? t("join.heading_room", { room: roomTitle })
+    : t("join.heading");
+
   return (
     <section lang={locale}>
       <div>
         <h1>
-          {token ? t("join.heading") : t("join.missing_title")}
+          {hasInvite ? heading : t("join.missing_title")}
         </h1>
         <div>
-          {!token ? (
+          {!hasInvite ? (
             <p>
               {t("join.missing_description")}
             </p>
@@ -121,10 +170,10 @@ export default function JoinPage() {
                     id="join-display-name"
                     value={displayName}
                     onChange={e => setDisplayName(e.target.value)}
-                    disabled={busy}
+                    disabled={busy || !inviteResolved}
                   />
                   <div>
-                    <Button type="submit" disabled={busy}>
+                    <Button type="submit" disabled={busy || !inviteResolved}>
                       {busy ? t("join.joining") : t("join.join_button")}
                     </Button>
                   </div>
