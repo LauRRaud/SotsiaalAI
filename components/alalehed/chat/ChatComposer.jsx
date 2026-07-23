@@ -696,17 +696,23 @@ export default function ChatComposer({
     : undefined;
   const inputRowStyle = inputRowMobileStyle || undefined;
   const toolsMenuPanel = toolsOpen && toolsMenuPosition && typeof document !== "undefined"
-    ? createPortal(<div ref={toolsMenuRef} role="menu" aria-label={t("chat.tools.menu_aria")} style={{
+    ? createPortal(<div ref={toolsMenuRef} className="conv-tools-menu" role="menu" aria-label={t("chat.tools.menu_aria")} style={{
       position: "fixed",
       left: `${toolsMenuPosition.left}px`,
       bottom: `${toolsMenuPosition.bottom}px`
     }}>
-          <button type="button" role="menuitem" onClick={handleHelpRequestModeSelect}>
-            <span>{helpRequestModeLabel}</span>
-          </button>
-          <button type="button" role="menuitem" onClick={handleHelpOfferModeSelect}>
-            <span>{helpOfferModeLabel}</span>
-          </button>
+          {/* Abisoov/Abipakkumine = abisoovi/-pakkumise LOOMISE režiimid —
+              ei kuulu ruumivestlusse (omanik 23.07). Ainult tavavestluses. */}
+          {!isRoomMode ? (
+            <>
+              <button type="button" role="menuitem" onClick={handleHelpRequestModeSelect}>
+                <span>{helpRequestModeLabel}</span>
+              </button>
+              <button type="button" role="menuitem" onClick={handleHelpOfferModeSelect}>
+                <span>{helpOfferModeLabel}</span>
+              </button>
+            </>
+          ) : null}
           {!isRoomMode ? <button type="button" role="menuitem" onClick={handleDeepResearchModeSelect}>
               <span aria-hidden="true">
                 <DeepResearchIcon stroke="currentColor" />
