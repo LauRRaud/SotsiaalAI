@@ -676,7 +676,9 @@ button[aria-controls="chat-window-scroll"] {
      see teebki kerimisest ja sisenemisest RUUMI, mitte tasapinna. */
   perspective: 78rem;
   perspective-origin: 50% 38%;
-  gap: clamp(1.15rem, 2.6lvh, 1.8rem);
+  /* Suurem vahe mullide vahel — hover'il tekib mulli alla kellaaeg + kuula +
+     kopeeri rida, mis kitsa vahega kattis järgmise mulli (omanik 23.07). */
+  gap: clamp(1.9rem, 3.6lvh, 2.7rem);
   /* Minimaalne polster; ALA-hääbumine EEMALDATUD (tellija 12.07: "all ei
      muutunud, saaks veel alla kerida") — sõnum püsib teravana komposerini.
      Ülal jätame vaid õrna 0.3rem pehmenduse. */
