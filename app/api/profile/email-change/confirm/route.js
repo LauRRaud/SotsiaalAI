@@ -63,29 +63,29 @@ function renderPage({ locale, title, body, actionLabel, actionUrl, isError = fal
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${safeTitle}</title>
     <style>
-      :root { color-scheme: dark light; }
+      :root { color-scheme: dark; }
       body {
         margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px;
         font-family: "Segoe UI", Arial, sans-serif;
-        background: linear-gradient(180deg, #c6aea6 0%, #b99f98 100%); color: #3f2f2b;
+        background: linear-gradient(180deg, #0d0d0d 0%, #161616 100%); color: #e4e4e4;
       }
       .card {
         width: min(100%, 31rem); border-radius: 2rem; padding: clamp(2rem, 4vw, 2.4rem);
-        background: linear-gradient(180deg, rgba(255,255,255,0.52) 0%, rgba(247,240,237,0.64) 100%);
-        border: 1px solid rgba(255,255,255,0.34);
-        box-shadow: 0 1.4rem 3.6rem rgba(70,44,39,0.18), inset 0 1px 0 rgba(255,255,255,0.52);
+        background: linear-gradient(180deg, rgba(34,34,34,0.66) 0%, rgba(23,23,23,0.78) 100%);
+        border: 1px solid rgba(255,255,255,0.14);
+        box-shadow: 0 1.4rem 3.6rem rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.10);
         backdrop-filter: blur(20px) saturate(118%); -webkit-backdrop-filter: blur(20px) saturate(118%);
       }
       .stack { display: grid; justify-items: center; gap: 1.1rem; }
-      h1 { margin: 0; font-size: clamp(2rem, 3vw, 2.3rem); line-height: 1.08; text-align: center; color: #7a3a38; font-weight: 400; }
-      p { margin: 0; max-width: 24rem; font-size: 1.04rem; line-height: 1.56; color: ${isError ? "#8f3030" : "#4f3d39"}; text-align: center; }
+      h1 { margin: 0; font-size: clamp(2rem, 3vw, 2.3rem); line-height: 1.08; text-align: center; color: #e6e6e6; font-weight: 400; }
+      p { margin: 0; max-width: 24rem; font-size: 1.04rem; line-height: 1.56; color: ${isError ? "#e8a3a3" : "#c4c4c4"}; text-align: center; }
       .actions { display: flex; justify-content: center; padding-top: 0.5rem; }
       .button {
         display: inline-flex; align-items: center; justify-content: center; min-height: 3.4rem; min-width: 11rem;
-        padding: 0 1.7rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.46); text-decoration: none;
-        background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(245,236,232,0.92) 100%);
-        color: #7a3a38; font-size: 1.12rem; font-weight: 500; letter-spacing: 0.02em;
-        box-shadow: 0 0.6rem 1.4rem rgba(92,63,59,0.14), inset 0 1px 0 rgba(255,255,255,0.72);
+        padding: 0 1.7rem; border-radius: 999px; border: 1px solid rgba(255,255,255,0.30); text-decoration: none;
+        background: radial-gradient(130% 130% at 18% 14%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%);
+        color: #ececec; font-size: 1.12rem; font-weight: 500; letter-spacing: 0.02em;
+        box-shadow: 0 0.6rem 1.4rem rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.22);
       }
       .button:hover, .button:focus-visible { outline: none; filter: brightness(1.02); }
     </style>

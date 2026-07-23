@@ -136,16 +136,16 @@ function renderVerifyPage({
         padding: 24px;
         font-family: "Segoe UI", Arial, sans-serif;
         background:
-          radial-gradient(circle at 18% 14%, rgba(197,113,113,0.10), transparent 26%),
-          radial-gradient(circle at 82% 84%, rgba(122,58,56,0.14), transparent 32%),
-          linear-gradient(180deg, #16100e 0%, #251a16 100%);
-        color: #e9ded8;
+          radial-gradient(circle at 18% 14%, rgba(255,255,255,0.05), transparent 26%),
+          radial-gradient(circle at 82% 84%, rgba(255,255,255,0.03), transparent 32%),
+          linear-gradient(180deg, #0d0d0d 0%, #161616 100%);
+        color: #e4e4e4;
       }
       .card {
         width: min(100%, 31rem);
         border-radius: 2rem;
         padding: clamp(2rem, 4vw, 2.4rem);
-        background: linear-gradient(180deg, rgba(44,32,28,0.66) 0%, rgba(30,21,19,0.78) 100%);
+        background: linear-gradient(180deg, rgba(34,34,34,0.66) 0%, rgba(23,23,23,0.78) 100%);
         border: 1px solid rgba(255,255,255,0.14);
         box-shadow:
           0 1.4rem 3.6rem rgba(0,0,0,0.5),
@@ -168,7 +168,7 @@ function renderVerifyPage({
         line-height: 1.08;
         text-align: center;
         letter-spacing: 0.02em;
-        color: #f0e4de;
+        color: #e6e6e6;
         text-shadow: 0 0.18rem 0.44rem rgba(0,0,0,0.35);
         font-family: Arial, sans-serif;
         font-weight: 400;
@@ -178,7 +178,7 @@ function renderVerifyPage({
         max-width: 24rem;
         font-size: 1.04rem;
         line-height: 1.56;
-        color: ${isError ? "#e8a3a3" : "#cdbdb5"};
+        color: ${isError ? "#e8a3a3" : "#c4c4c4"};
         text-align: center;
       }
       .actions {
@@ -201,7 +201,7 @@ function renderVerifyPage({
             ? "linear-gradient(180deg, rgba(122,50,48,0.55) 0%, rgba(84,32,30,0.60) 100%)"
             : "radial-gradient(130% 130% at 18% 14%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 58%), linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%)"
         };
-        color: ${isError ? "#f0c9c9" : "#f2e9e4"};
+        color: ${isError ? "#f0c9c9" : "#ececec"};
         font-size: 1.14rem;
         font-weight: 500;
         line-height: 1.1;
