@@ -11,6 +11,7 @@ import LoginModal from "@/components/LoginModal";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import styles from "./join.module.css";
 
 export default function JoinPage() {
   const searchParams = useSearchParams();
@@ -135,68 +136,64 @@ export default function JoinPage() {
     : t("join.heading");
 
   return (
-    <section lang={locale}>
-      <div>
-        <h1>
-          {hasInvite ? heading : t("join.missing_title")}
-        </h1>
-        <div>
-          {!hasInvite ? (
-            <p>
-              {t("join.missing_description")}
-            </p>
-          ) : (
-            <>
-              <p>
-                {t("join.lead")}
+    <section lang={locale} className={styles.wrap}>
+      <h1 className={styles.heading}>
+        {hasInvite ? heading : t("join.missing_title")}
+      </h1>
+      {!hasInvite ? (
+        <p className={styles.lead}>
+          {t("join.missing_description")}
+        </p>
+      ) : (
+        <>
+          <p className={styles.lead}>
+            {t("join.lead")}
+          </p>
+          {status !== "authenticated" ? (
+            <div className={styles.signinBlock}>
+              <p className={styles.lead}>
+                {t("join.signin_prompt")}
               </p>
-              {status !== "authenticated" ? (
-                <div>
-                  <p>
-                    {t("join.signin_prompt")}
-                  </p>
-                  <Button type="button" onClick={() => setLoginOpen(true)}>
-                    {t("join.signin")}
-                  </Button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit}>
-                  <p>
-                    {t("join.logged_in_as", {
-                      email: session?.user?.email || session?.user?.id
-                    })}
-                  </p>
-                  <label htmlFor="join-display-name">
-                    {t("join.name_label")}
-                  </label>
-                  <Input
-                    id="join-display-name"
-                    value={displayName}
-                    onChange={e => setDisplayName(e.target.value)}
-                    disabled={busy || !inviteResolved}
-                  />
-                  <div>
-                    <Button type="submit" disabled={busy || !inviteResolved}>
-                      {busy ? t("join.joining") : t("join.join_button")}
-                    </Button>
-                  </div>
-                </form>
-              )}
-              {statusMsg ? (
-                <p role="status">
-                  {statusMsg}
-                </p>
-              ) : null}
-              {error ? (
-                <p role="alert">
-                  {error}
-                </p>
-              ) : null}
-            </>
+              <Button type="button" onClick={() => setLoginOpen(true)}>
+                {t("join.signin")}
+              </Button>
+            </div>
+          ) : (
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <p className={styles.loggedIn}>
+                {t("join.logged_in_as", {
+                  email: session?.user?.email || session?.user?.id
+                })}
+              </p>
+              <label className={styles.label} htmlFor="join-display-name">
+                {t("join.name_label")}
+              </label>
+              <Input
+                id="join-display-name"
+                value={displayName}
+                onChange={e => setDisplayName(e.target.value)}
+                disabled={busy || !inviteResolved}
+              />
+              <div className={styles.actions}>
+                <Button type="submit" disabled={busy || !inviteResolved}>
+                  {busy ? t("join.joining") : t("join.join_button")}
+                </Button>
+              </div>
+            </form>
           )}
-        </div>
-        <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} suppressRedirect />
-      </div>
+          {statusMsg ? (
+            <p className={styles.status} role="status">
+              {statusMsg}
+            </p>
+          ) : null}
+          {error ? (
+            <p className={styles.error} role="alert">
+              {error}
+            </p>
+          ) : null}
+        </>
+      )}
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} suppressRedirect />
     </section>
   );
 }
