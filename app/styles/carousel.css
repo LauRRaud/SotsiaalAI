@@ -436,6 +436,26 @@ html[data-reduce-motion="1"] .gc-card-badge {
   padding: 0.18em 0.72em;
 }
 
+/* "notice" toon — ootel-kutse märge peab olema ESILE TULEV (omanik 23.07:
+   subtiilne oli märkamatu). Täidetud hele pill + tume tekst = kõrge
+   kontrast MUSTVALGES (mitte värvi), peen kuma tõmbab pilku. */
+.gc-card-badge[data-tone="notice"] {
+  font-size: clamp(0.66rem, 0.56rem + 0.34vw, 0.82rem);
+  font-weight: 600;
+  color: #0d0d0d;
+  background: #f4f4f4;
+  border-color: transparent;
+  padding: 0.26em 0.95em;
+  box-shadow:
+    0 0 0.55rem rgba(255, 255, 255, 0.3),
+    0 0.15rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: none;
+}
+
 .gc-card:focus-visible {
   box-shadow:
     var(--glass-rim-glow),

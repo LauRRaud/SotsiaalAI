@@ -870,8 +870,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         label: t("nav.rooms"),
         href: "/ruum",
         icon: <RoomsCardIcon />,
-        // Ootel-kutse märge RUUMID kaardil (omanik 23.07).
-        badge: hasPendingInvite ? t("pendingInvite.badge") : null
+        // Ootel-kutse märge RUUMID kaardil (omanik 23.07). "notice" toon =
+        // esiletulev täidetud badge (omanik: subtiilne oli märkamatu).
+        badge: hasPendingInvite ? t("pendingInvite.badge") : null,
+        badgeTone: hasPendingInvite ? "notice" : null
       },
       { key: "toolaud", label: t("nav.workspace"), href: "/toolaud", icon: <WorkspaceCardIcon /> },
       { key: "vestlus", label: t("nav.chat"), href: "/vestlus", icon: <ChatCardIcon /> },

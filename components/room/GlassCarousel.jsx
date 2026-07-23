@@ -533,6 +533,7 @@ export default function GlassCarousel({
                 icon={item.icon || null}
                 longLabel={item.label.length > 13}
                 badge={item.badge || null}
+                badgeTone={item.badgeTone || null}
                 tabIndex={isGridVisible || isCenter ? 0 : -1}
                 aria-current={!isGrid && isCenter ? "true" : undefined}
                 {...(item.comingSoon
