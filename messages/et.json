@@ -3662,6 +3662,10 @@
     "sponsored": {
       "confirm_and_pay": "Alusta makset",
       "payment_success": "Makse õnnestus. Kutse saadetakse välja pärast makse kinnitust.",
+      "payment_pending": "Makse laekus — kutse on saadetud aadressile {email}. Kutsutu saab nüüd liituda.",
+      "payment_pending_no_email": "Makse laekus — kutse on saadetud. Kutsutu saab nüüd liituda.",
+      "payment_status_title": "Sponsorkutse makse",
+      "payment_back_to_chat": "Tagasi vestlusesse",
       "payment_canceled": "Makse katkestati. Kutset ei saadetud välja.",
       "payment_failed": "Makse ebaõnnestus. Proovi uuesti.",
       "checkout": {

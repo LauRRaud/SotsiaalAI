@@ -65,6 +65,9 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   const [invites, setInvites] = useState([]);
   const [loadingList, setLoadingList] = useState(false);
   const [sponsoredCheckoutAgreed, setSponsoredCheckoutAgreed] = useState(false);
+  // Makse-tagasituleku olek (invitePayment URL-parameeter). Kui seatud, näitab
+  // modal PUHAST staatuskaarti (mitte kutse-loomise vormi) — vt handleClose.
+  const [paymentReturn, setPaymentReturn] = useState(null);
   const formatSentenceCase = (text) => {
     const raw = typeof text === "string" ? text.trim() : "";
     if (!raw) return text;
@@ -140,20 +143,20 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       .trim()
       .toLowerCase();
     if (!invitePayment) return;
+    // Brauseri-GET tuleb tagasi peaaegu alati "pending" olekus (kinnitus
+    // laekub asünkroonselt webhookiga) — see EI ole viga, kutse on juba
+    // saadetud. Tundmatu väärtus taandub samuti pendingiks.
+    const state = ["success", "pending", "canceled", "failed"].includes(invitePayment)
+      ? invitePayment
+      : "pending";
     setOpen(true);
     setOpenSource("");
     setRoomId(params.get("roomId") || null);
-    if (invitePayment === "success") {
-      setMessage(t("invite.sponsored.payment_success"));
-      setError("");
-    } else if (invitePayment === "canceled") {
-      setError(t("invite.sponsored.payment_canceled"));
-      setMessage("");
-    } else if (invitePayment === "failed") {
-      setError(t("invite.sponsored.payment_failed"));
-      setMessage("");
-    }
-  }, [embedded, t]);
+    setPaymentReturn({
+      state,
+      inviteId: String(params.get("inviteId") || "").trim(),
+    });
+  }, [embedded]);
   useEffect(() => {
     if (open && !roomId) {
       setRoomTitle("");
@@ -195,6 +198,23 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       } catch {}
     }
   }, [embedded, isWorkspaceReturn, onBack]);
+  // "Tagasi vestlusesse": sulge staatuskaart ja koristada URL-ist makse-
+  // parameetrid (muidu reload avaks kaardi uuesti). roomId JÄÄB alles, et
+  // vestlus püsiks sponsoreeritud ruumis.
+  const dismissPaymentReturn = useCallback(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("invitePayment");
+        url.searchParams.delete("inviteId");
+        url.searchParams.delete("ref");
+        window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+      } catch {}
+    }
+    setPaymentReturn(null);
+    setOpen(false);
+    setOpenSource("");
+  }, []);
   const loadInvites = useCallback(async () => {
     if (!roomId) {
       setInvites([]);
@@ -399,6 +419,51 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
     return inv.status;
   }
   if (!open) return null;
+  // Makse-tagasitulek: PUHAS staatuskaart (mitte kutse-loomise vorm), et
+  // vältida "vorm üle vestluse" segadust. Katab kõik 4 makse-olekut; e-post
+  // ilmub, kui kutse on ruumi kutse-loendist juba laetud (loadInvites).
+  if (!embedded && paymentReturn) {
+    const positive =
+      paymentReturn.state === "success" || paymentReturn.state === "pending";
+    const paymentInviteEmail = paymentReturn.inviteId
+      ? invites.find((inv) => String(inv.id) === paymentReturn.inviteId)?.inviteeEmail || ""
+      : "";
+    let statusMessage;
+    if (paymentReturn.state === "pending") {
+      statusMessage = paymentInviteEmail
+        ? t("invite.sponsored.payment_pending", { email: paymentInviteEmail })
+        : t("invite.sponsored.payment_pending_no_email");
+    } else if (paymentReturn.state === "success") {
+      statusMessage = t("invite.sponsored.payment_success");
+    } else if (paymentReturn.state === "canceled") {
+      statusMessage = t("invite.sponsored.payment_canceled");
+    } else {
+      statusMessage = t("invite.sponsored.payment_failed");
+    }
+    const statusTitle = t("invite.sponsored.payment_status_title");
+    return (
+      <Modal
+        open={open}
+        onClose={dismissPaymentReturn}
+        aria-label={statusTitle}
+        className="invite-modal-overlay"
+        contentClassName="invite-modal-card invite-payment-status"
+      >
+        <div className="invite-payment-status-body" data-state={paymentReturn.state}>
+          <h2 className="invite-payment-status-title">{statusTitle}</h2>
+          <p
+            role={positive ? "status" : "alert"}
+            className={`invite-payment-status-msg${positive ? "" : " invite-payment-status-msg--error"}`}
+          >
+            {statusMessage}
+          </p>
+          <Button type="button" variant="primary" onClick={dismissPaymentReturn}>
+            {t("invite.sponsored.payment_back_to_chat")}
+          </Button>
+        </div>
+      </Modal>
+    );
+  }
   const content = (
     <div className="invite-participant-workbench">
       {!hideHeader ? (
@@ -704,6 +769,8 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       open={open}
       onClose={handleClose}
       aria-label={inviteHeaderTitle}
+      className="invite-modal-overlay"
+      contentClassName="invite-modal-card"
     >
       {content.props.children}
     </Modal>
