@@ -2402,7 +2402,10 @@
     },
     "ai_toggle": {
       "label": "Saada assistendile",
-      "note": "Vaikimisi on see inimeste jutt ja assistent ei näe sõnumit."
+      "note": "Vaikimisi on see inimeste jutt ja assistent ei näe sõnumit.",
+      "aria": "Saatmise siht",
+      "room": "Ruumile",
+      "room_plus_assistant": "Ruumile + assistent"
     },
     "page_label": "Vestluse sisu",
     "room": {

@@ -174,7 +174,6 @@ export default function ChatComposer({
   activeModeLabel = "",
   roomModeLabel = "",
   activeModeKey = "",
-  focusActive = false,
   allowAssistantForward = true,
   isHelpMatchRoom = false,
   sendToAssistant = false,
@@ -802,7 +801,7 @@ export default function ChatComposer({
             <span className="sr-only">{charCounterText}</span>
           </div>
         ) : null}
-        <ChatAiForwardToggle t={t} focusActive={focusActive} isRoomMode={isRoomMode} allowAssistantForward={assistantForwardEnabled} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} />
+        <ChatAiForwardToggle t={t} isRoomMode={isRoomMode} allowAssistantForward={assistantForwardEnabled} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} />
       </div>
       {showModeLabelRow ? <div>
           <div>

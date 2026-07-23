@@ -1085,8 +1085,9 @@ button[aria-controls="chat-window-scroll"] {
 .panel-scrim[data-conversation="1"] form:has(#chat-input) {
   width: min(37rem, calc(100% - clamp(1rem, 3vw, 2rem)));
   margin-inline: auto;
-  /* Väiksem ülapolster → komposer madalam, sõnum ei jää kinni (tellija 12.07) */
-  padding: clamp(0.25rem, 0.8lvh, 0.5rem) 0 0.15rem;
+  /* Ülapolster väike; ALApolster tõstetud (omanik 23.07: "paneeliplokk peaks
+     üleval pool olema") → komposeriplokk ei liibu enam paneeli põranda vastu. */
+  padding: clamp(0.25rem, 0.8lvh, 0.5rem) 0 clamp(0.6rem, 1.7lvh, 1.05rem);
   animation: conv-composer-rise 760ms var(--ease-drift) 320ms backwards;
 }
 @keyframes conv-composer-rise {
@@ -1546,4 +1547,55 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 .conv-char-counter[data-over-limit="true"] {
   color: var(--danger-text, #f2b8b5);
   font-weight: 600;
+}
+
+/* Saatmise siht — PÜSIV segment-lüliti (Ruumile / Ruumile + assistent).
+   Omanik 23.07 (A): asendab fookusel ilmuva stiilimata märkeruudu. Püsiv →
+   sisend ei tõuse enam fookusel; mustvalge klaas-pill, aktiivne segment
+   heledaks täidetud (sama kõrge kontrast mis mujal). */
+.conv-send-target {
+  align-self: center;
+  display: inline-flex;
+  gap: 0.15rem;
+  margin: 0.55rem auto 0.05rem;
+  padding: 0.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border-soft, rgba(255, 255, 255, 0.14));
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px) saturate(112%);
+  -webkit-backdrop-filter: blur(10px) saturate(112%);
+}
+.conv-send-target-seg {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-soft, rgba(255, 255, 255, 0.62));
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 0.34em 0.98em;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 160ms ease, background 160ms ease;
+}
+.conv-send-target-seg:hover {
+  color: var(--text-warm, #e6e6e6);
+}
+.conv-send-target-seg[data-active="true"] {
+  color: #0d0d0d;
+  background: #f2f2f2;
+  font-weight: 600;
+}
+.conv-send-target-seg:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring, 0 0 0 2px rgba(255, 255, 255, 0.72));
+}
+html[data-reduce-transparency="1"] .conv-send-target,
+html[data-contrast="hc"] .conv-send-target {
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
