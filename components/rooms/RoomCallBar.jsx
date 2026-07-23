@@ -108,13 +108,13 @@ export default function RoomCallBar({
   const isMock = config.provider === "mock";
 
   return (
-    <section aria-label="Helikõne">
-      <div>
-        <div>
-          <div>
+    <section className="room-call-bar" aria-label={text(t, "calls.title", "Helikõne")}>
+      <div className="room-call-head">
+        <div className="room-call-meta">
+          <div className="room-call-title">
           {call ? text(t, "calls.active", "Helikõne aktiivne") : text(t, "calls.title", "Helikõne")}
           </div>
-          <div>
+          <div className="room-call-status">
             {unavailable
               ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.")
               : call
@@ -147,7 +147,7 @@ export default function RoomCallBar({
         )}
 
         {call ? (
-          <button type="button" onClick={() => setExpanded(value => !value)} aria-expanded={expanded}>
+          <button type="button" className="room-call-expand" onClick={() => setExpanded(value => !value)} aria-expanded={expanded}>
             <ChevronIcon direction={expanded ? "up" : "down"} width={12} height={7} />
             <span className="sr-only">{text(t, "calls.open_details", "Ava helikõne detailid")}</span>
           </button>
@@ -222,7 +222,7 @@ export default function RoomCallBar({
       ) : null}
 
       {expanded && call ? (
-        <div>
+        <div className="room-call-details">
           <div>
             <div>{text(t, "calls.participants", "Osalejad")}</div>
             <div>
