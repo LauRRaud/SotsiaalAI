@@ -110,6 +110,20 @@ function isTruthyFlag(value) {
   return normalized === "1" || normalized === "true" || normalized === "yes" || normalized === "on";
 }
 
+// Proxy taga on request.url origin localhost:3000. Env-URL puudumisel peab
+// fallback lähtuma avalikust originist (x-forwarded-host/host), mitte
+// request.url-ist, muidu satub maksja pärast makset localhostile.
+function resolvePublicOrigin(requestUrl, headers) {
+  const fallback = new URL(requestUrl).origin;
+  const forwardedHost = String(headers?.get?.("x-forwarded-host") || "").trim();
+  const directHost = String(headers?.get?.("host") || "").trim();
+  const forwardedProto = String(headers?.get?.("x-forwarded-proto") || "").trim();
+  const resolvedHost = forwardedHost || directHost;
+  if (!resolvedHost) return fallback;
+  const protocol = forwardedProto || (fallback.startsWith("https://") ? "https" : "http");
+  return `${protocol}://${resolvedHost}`;
+}
+
 function resolveUrl(request, envValue, fallbackPath) {
   const direct = String(envValue || "").trim();
   if (direct) {
@@ -119,7 +133,8 @@ function resolveUrl(request, envValue, fallbackPath) {
   }
 
   try {
-    return new URL(fallbackPath, request.url).toString();
+    const base = resolvePublicOrigin(request.url, request.headers);
+    return new URL(fallbackPath, base).toString();
   } catch {
     return "";
   }
