@@ -66,6 +66,11 @@ VERIFY_PAGE_COPY.ru = {
   continueLabel: "Продолжить"
 };
 
+// Auto-kinnituse tekst (leht kinnitab kohe ise; nupp on JS-ita varuks).
+VERIFY_PAGE_COPY.et.autoConfirming = "Kinnitame su e-posti aadressi…";
+VERIFY_PAGE_COPY.en.autoConfirming = "Confirming your email address…";
+VERIFY_PAGE_COPY.ru.autoConfirming = "Подтверждаем ваш адрес электронной почты…";
+
 function json(payload = {}, status = 200) {
   return NextResponse.json(
     {
@@ -111,13 +116,32 @@ function renderVerifyPage({
   body,
   actionLabel,
   actionUrl,
-  isError = false
+  isError = false,
+  postForm = null
 }) {
   const safeTitle = escapeHtml(title);
   const safeBody = escapeHtml(body);
   const safeActionLabel = escapeHtml(actionLabel);
   const safeActionUrl = escapeHtml(actionUrl);
   const hasBody = Boolean(safeBody);
+
+  // postForm: POST-vorm + auto-submit skript (real brauser POST-ib kohe ise →
+  // kasutaja ei pea "Kinnitan" nupule vajutama). Bot/skanner ei käivita JS-i
+  // ega POST-i → ei kinnita kogemata; JS-ita kasutajale jääb nähtav nupp.
+  const actionMarkup = postForm
+    ? `<form id="verify-confirm-form" method="POST" action="${escapeHtml(
+        postForm.action
+      )}">${Object.entries(postForm.fields)
+        .map(
+          ([key, value]) =>
+            `<input type="hidden" name="${escapeHtml(key)}" value="${escapeHtml(
+              String(value)
+            )}" />`
+        )
+        .join(
+          ""
+        )}<button class="button" type="submit">${safeActionLabel}</button></form><script>try{document.getElementById("verify-confirm-form").submit();}catch(e){}</script>`
+    : `<a class="button" href="${safeActionUrl}">${safeActionLabel}</a>`;
 
   return new NextResponse(
     `<!doctype html>
@@ -232,7 +256,7 @@ function renderVerifyPage({
         <h1>${safeTitle}</h1>
         ${hasBody ? `<p>${safeBody}</p>` : ""}
         <div class="actions">
-          <a class="button" href="${safeActionUrl}">${safeActionLabel}</a>
+          ${actionMarkup}
         </div>
       </div>
     </main>
@@ -284,19 +308,6 @@ function buildVerifyUrl(email, token, locale) {
   if (locale) params.set("locale", locale);
 
   return `${baseUrl.replace(/\/$/, "")}/api/verify-email?${params.toString()}`;
-}
-
-function buildVerifyConfirmUrl({ requestUrl, email, token, locale }) {
-  const confirmUrl = new URL(requestUrl);
-  confirmUrl.searchParams.set("email", email);
-  confirmUrl.searchParams.set("token", token);
-  confirmUrl.searchParams.set("confirm", "1");
-  if (locale) {
-    confirmUrl.searchParams.set("locale", locale);
-  } else {
-    confirmUrl.searchParams.delete("locale");
-  }
-  return `${confirmUrl.pathname}${confirmUrl.search}`;
 }
 
 function resolvePublicOrigin(requestUrl, headers) {
@@ -470,17 +481,25 @@ export async function GET(request) {
         return NextResponse.redirect(buildPostVerifyUrl({ requestUrl: request.url, locale, headers: request.headers }));
       }
 
+      // Auto-kinnitus: leht POST-ib kohe ise (JS) → e-post kinnitatakse ilma
+      // et kasutaja peaks eraldi "Kinnitan" nupule vajutama. See oli 23.07
+      // päris-testi UX-lõks (kasutaja klõpsas meililingi, aga jättis 2. sammu
+      // tegemata). Vana GET-põhine confirm=1 rada jääb tagavaraks alles.
       return renderVerifyPage({
         locale,
         title: copy.title,
-        body: copy.intro,
+        body: copy.autoConfirming,
         actionLabel: copy.confirm,
-        actionUrl: buildVerifyConfirmUrl({
-          requestUrl: request.url,
-          email,
-          token,
-          locale
-        })
+        actionUrl: "",
+        postForm: {
+          action: new URL(request.url).pathname,
+          fields: {
+            email,
+            token,
+            locale: locale || "",
+            intent: "confirm"
+          }
+        }
       });
     }
 
@@ -516,8 +535,60 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const body = await request.json().catch(() => ({}));
+  // Auto-kinnituse vorm saadab form-data; resend-API (LoginModal/registreerimine)
+  // saadab JSON-i. Loeme kehatüübi järgi.
+  const contentType = String(request.headers.get("content-type") || "");
+  let body = {};
+  if (
+    contentType.includes("application/x-www-form-urlencoded") ||
+    contentType.includes("multipart/form-data")
+  ) {
+    try {
+      const form = await request.formData();
+      body = Object.fromEntries(form.entries());
+    } catch {
+      body = {};
+    }
+  } else {
+    body = await request.json().catch(() => ({}));
+  }
   const locale = localeFromRequest(request, body?.locale);
+
+  // Auto-kinnituse rada: verify-lehe vorm (JS auto-submit VÕI käsitsi nupp).
+  // Eristub resend-POST-ist intent-välja järgi → kinnita e-post ja suuna
+  // koju (Post/Redirect/Get 303).
+  if (body?.intent === "confirm") {
+    const copy = getVerifyCopy(locale);
+    try {
+      const email = normalizeEmail(body?.email);
+      const token = String(body?.token || "").trim();
+      const result = await confirmVerification({ email, token });
+      if (!result.ok) {
+        return renderVerifyPage({
+          locale,
+          title: copy.title,
+          body: serverT(locale, result.messageKey, undefined, copy.intro),
+          actionLabel: copy.continueLabel,
+          actionUrl: buildHomeUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
+          isError: true
+        });
+      }
+      return NextResponse.redirect(
+        buildPostVerifyUrl({ requestUrl: request.url, locale, headers: request.headers }),
+        303
+      );
+    } catch (error) {
+      console.error("verify-email POST confirm error", safeError(error));
+      return renderVerifyPage({
+        locale,
+        title: copy.title,
+        body: serverT(locale, "api.auth.verify.confirm_failed", undefined, copy.successBody),
+        actionLabel: copy.continueLabel,
+        actionUrl: buildHomeUrl({ requestUrl: request.url, locale, headers: request.headers }).toString(),
+        isError: true
+      });
+    }
+  }
 
   try {
     const email = normalizeEmail(body?.email);
