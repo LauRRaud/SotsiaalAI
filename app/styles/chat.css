@@ -1595,3 +1595,34 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring, 0 0 0 2px rgba(255, 255, 255, 0.72));
 }
+
+/* Ruumi nimi = ÜLEVAL tsentreeritud päis (omanik 23.07: nimi kuulub lehe
+   ülaossa, mitte composeri alla). Külgpolster hoiab pealkirja eemal ekraani-
+   nurga nuppudest (vasakul ≡ vestlusetahvel, paremal ×) — ei kattu enam. */
+.chat-room-header {
+  flex: none;
+  order: -1;
+  margin: 0 auto;
+  padding: clamp(0.55rem, 1.5lvh, 1.05rem) 3.75rem 0.35rem;
+  max-width: 100%;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 0.9rem + 0.55vw, 1.22rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-warm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.chat-room-origin {
+  flex: none;
+  order: -1;
+  max-width: min(42rem, 92%);
+  margin: 0 auto 0.4rem;
+  padding: 0 1rem;
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}

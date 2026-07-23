@@ -33,7 +33,6 @@ import { buildRoomChatPath } from "@/lib/roomPath";
 import { isActiveDocumentWorkflowState } from "@/lib/chat/documentWorkflowState";
 import { getHelpListingsReturnTarget } from "@/lib/chat/helpListingsReturnTarget";
 import { createHelpWorkflowDraftState, isActiveHelpWorkflowState } from "@/lib/help/workflowState";
-import { getCompactRoomTitle } from "./chat/view/ChatNotices";
 import {
   resolveMobileChatKeyboardOffset,
   resolveMobileChatKeyboardVisibilityOffset
@@ -2305,10 +2304,10 @@ export default function ChatBody({
   const composerPlaceholderText = t("chat.input.placeholder");
   const composerForcePlaceholderVisible = false;
   const roomModeLabel = useMemo(() => {
-    if (!isRoomMode) return "";
-    const compactRoomTitle = getCompactRoomTitle(roomTitle);
-    if (compactRoomTitle) return compactRoomTitle;
-    if (!isHelpMatchRoom) return "";
+    // Ruumi NIMI kuvatakse nüüd ÜLEVAL (ChatTopNotices), MITTE composeri all
+    // (omanik 23.07). Composeri silt jääb ainult help-match režiimi-
+    // indikaatoriks (Abisoov/Abipakkumine), kus ruumil pole eraldi nime.
+    if (!isRoomMode || !isHelpMatchRoom) return "";
     if (roomRole === "OWNER") {
       const value = t("chat.tools.help_request_mode");
       return value && value !== "chat.tools.help_request_mode"
@@ -2322,7 +2321,7 @@ export default function ChatBody({
         : "Abipakkumine";
     }
     return "";
-  }, [isHelpMatchRoom, isRoomMode, roomRole, roomTitle, t]);
+  }, [isHelpMatchRoom, isRoomMode, roomRole, t]);
   const hideRoomTitle = Boolean(roomModeLabel);
   const documentFlowActive = useMemo(() => {
     for (let i = visibleMessages.length - 1; i >= 0; i -= 1) {

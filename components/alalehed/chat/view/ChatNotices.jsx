@@ -47,16 +47,18 @@ export function ChatTopNotices({
   errorBanner
 }) {
   const displayRoomTitle = getCompactRoomTitle(roomTitle);
+  // Origin: AINULT privaatsustundlikel ruumidel (nende privaatsusmärge on
+  // õiguslikult oluline). MANUAL_INVITE jt "loodi X kaudu" informatiivne tekst
+  // eemaldatud — omanik EI taha seda ruumi kohal (23.07).
+  const showOriginPrivacy = shouldShowRoomOriginPrivacy(roomOrigin);
 
   return <>
-    {isRoomMode && !hideRoomTitle && displayRoomTitle ? <div>
+    {isRoomMode && !hideRoomTitle && displayRoomTitle ? <div className="chat-room-header">
       {displayRoomTitle}
     </div> : null}
-    {isRoomMode && roomOrigin ? <div>
+    {isRoomMode && roomOrigin && showOriginPrivacy ? <div className="chat-room-origin">
       <span>{roomOriginText(t, roomOrigin)}</span>
-      {shouldShowRoomOriginPrivacy(roomOrigin) ? (
-        <span> {readText(t, "rooms.origin.privacyNote", "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt.")}</span>
-      ) : null}
+      <span> {readText(t, "rooms.origin.privacyNote", "Ruumi liikmed näevad ainult ruumis jagatud infot ja kasutaja kinnitatud eelinfot. Privaatset Teekonda ega assistendivestlust ei jagata automaatselt.")}</span>
     </div> : null}
     {isCrisis ? <div role="alert">
       {crisisText}
