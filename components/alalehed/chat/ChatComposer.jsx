@@ -177,7 +177,8 @@ export default function ChatComposer({
   isHelpMatchRoom = false,
   sendToAssistant = false,
   setSendToAssistant,
-  aiNote = ""
+  aiNote = "",
+  callControlsNode = null
 }) {
   const [draft, setDraft] = useState("");
   const [composerExpanded, setComposerExpanded] = useState(false);
@@ -766,6 +767,8 @@ export default function ChatComposer({
       }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
       </div>
       <div>
+        {/* Helikõne kontrollid — kompaktne ikoon-grupp mikri juures (omanik 23.07). */}
+        {callControlsNode}
         {isRoomMode && assistantForwardEnabled ? (
           <>
             {/* Saatmise siht — üksik nupp mikri VASAKUL (omanik 23.07, valik B).
