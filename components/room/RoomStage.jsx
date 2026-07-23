@@ -228,7 +228,8 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     return () => {
       cancelled = true;
     };
-  }, [isAuthed]);
+    // pathname deps: värskenda navigeerimisel (nt pärast liitumist kaob teade).
+  }, [isAuthed, pathname]);
   const hasPendingInvite = Boolean(pendingInvite) || pendingNeedsVerify;
   /* Töölaua kaardikomplekt sõltub vaate-rollist: tavakasutaja näeb oma
      rolli kaarte, admin saab S/P/T-lülitiga vaadet vahetada (effectiveRole).
@@ -1138,8 +1139,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       >
       {/* Ootel-kutse teade — kuulub hub'i (omanik 23.07): ilmub kui kaardid
           on valmis (power on + cardsReady), MITTE eellaadimisstseeni ajal,
-          ja z-index (85) on laadimisloori (80) kohal. */}
-      {isAuthed && hasPendingInvite && !isLoginOpen && power === "on" && cardsReady ? (
+          ja z-index (85) on laadimisloori (80) kohal. AINULT hub-karussellil
+          (isCarouselRoute + mitte kaardileht) — nii ei kata see /join ega
+          muude lehtede sisu (omanik 23.07). */}
+      {isAuthed && hasPendingInvite && !isLoginOpen && power === "on" && cardsReady && isCarouselRoute && !cardPageKey ? (
         <PendingInviteBanner
           invite={pendingInvite}
           needsVerify={pendingNeedsVerify}
