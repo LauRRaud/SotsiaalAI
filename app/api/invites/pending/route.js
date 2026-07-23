@@ -139,10 +139,19 @@ export async function GET(request) {
     return errorJson("api.common.unauthorized", 401, locale);
   }
 
-  // Kinnitamata e-post: ei paljasta kutseid, aga anna ausalt teada seis
-  // (klient võib kuvada "kinnita enne e-post"). Mitte viga — tühi nimekiri.
+  // Kinnitamata e-post: EI paljasta kutse detaile (ruumi nime), aga anna
+  // ausalt teada, KAS ootel kutse on olemas — nii saab bänner kuvada
+  // "kinnita esmalt e-post, siis saad liituda" (mitte vaikida). Ainult
+  // boolean, mitte sisu → info-leke minimaalne (näeb ainult see, kes selle
+  // täpse e-postiga registreerus, ja liituda saab ikka alles pärast kinnitust).
   if (reason === "email_unverified") {
-    return json({ ok: true, emailVerified: false, invites: [] });
+    let hasPending = false;
+    try {
+      hasPending = (await findPendingInvitesForEmail(auth.email)).length > 0;
+    } catch {
+      // vaikne — bänner on abistav lisa
+    }
+    return json({ ok: true, emailVerified: false, hasPending, invites: [] });
   }
 
   try {

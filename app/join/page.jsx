@@ -59,6 +59,9 @@ export default function JoinPage() {
         if (match) {
           setRoomTitle(match.roomTitle || "");
           setError("");
+        } else if (data?.emailVerified === false && data?.hasPending) {
+          // Kinnitamata e-post: kutse on olemas, aga liitumiseks vaja kinnitust.
+          setError(t("join.verify_email_first"));
         } else {
           setError(t("join.invite_not_pending"));
         }

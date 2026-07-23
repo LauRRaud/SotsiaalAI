@@ -43,6 +43,14 @@
   color: var(--text-soft);
 }
 
+.hint {
+  margin: 0.7rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+  opacity: 0.85;
+}
+
 .action {
   display: inline-flex;
   align-items: center;
@@ -54,10 +62,19 @@
   border: 1px solid var(--glass-border-soft);
   background: var(--glass-bg-soft);
   color: var(--text-warm);
+  font-family: inherit;
   font-size: 1rem;
   font-weight: 500;
   text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   transition: filter 160ms ease, box-shadow 160ms ease;
+}
+
+.action:disabled {
+  opacity: 0.6;
+  cursor: default;
 }
 
 .action:hover,

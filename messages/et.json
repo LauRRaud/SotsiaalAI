@@ -3585,7 +3585,12 @@
     "body": "Sind on kutsutud ruumi „{room}“. Liitu ja aktiveeri tellimus.",
     "body_no_room": "Sind on kutsutud ruumi. Liitu ja aktiveeri tellimus.",
     "join": "Liitu",
-    "dismiss": "Peida"
+    "dismiss": "Peida",
+    "verify_body": "Liitumiseks kinnita esmalt oma e-posti aadress.",
+    "verify_action": "Saada kinnituskiri uuesti",
+    "verify_sending": "Saadan...",
+    "verify_sent": "Kinnituskiri saadetud aadressile {email}. Ava see (vaata ka rämpsposti kausta) ja kinnita — siis saad liituda.",
+    "verify_spam_hint": "Kiri võib sattuda rämpsposti."
   },
   "rooms": {
     "aria": "Ruumid",
