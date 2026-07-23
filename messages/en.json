@@ -2403,9 +2403,9 @@
     "ai_toggle": {
       "label": "Send to assistant",
       "note": "By default, this is human-only and the assistant does not see the message.",
-      "aria": "Send target",
-      "room": "To the room",
-      "room_plus_assistant": "Room + assistant"
+      "button_aria": "Include the assistant",
+      "on": "Assistant included",
+      "off": "Include the assistant"
     },
     "page_label": "Chat content",
     "room": {

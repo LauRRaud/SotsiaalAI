@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Button from "@/components/ui/Button";
-import ChatAiForwardToggle from "./view/ChatAiForwardToggle";
 import { MAX_USER_MESSAGE_CHARS, MESSAGE_COUNTER_VISIBLE_FROM } from "@/lib/chat/messageLimits";
 
 function resolvePrivacyWorkflow({ activeModeKey, isRoomMode }) {
@@ -761,6 +760,26 @@ export default function ChatComposer({
       }} onBlur={onBlurInput} disabled={isGenerating || isRoomMode && (roomBlocked || roomAuthRequired)} rows={1} />
       </div>
       <div>
+        {isRoomMode && assistantForwardEnabled ? (
+          <>
+            {/* Saatmise siht — üksik nupp mikri VASAKUL (omanik 23.07, valik B).
+                Aktiivne = assistent kaasatud (heledaks täidetud). EI lisa rida →
+                sisend ei tõuse fookusel. Ruumis läheb sõnum ALATI ruumi;
+                nupp lisab AI vastuse peale (routing muutmata). */}
+            <button
+              type="button"
+              className="conv-ai-target"
+              aria-label={t("chat.ai_toggle.button_aria")}
+              title={sendToAssistant ? t("chat.ai_toggle.on") : t("chat.ai_toggle.off")}
+              aria-pressed={sendToAssistant ? "true" : "false"}
+              aria-describedby="chat-ai-hint"
+              data-active={sendToAssistant ? "true" : undefined}
+              onMouseDown={preserveDesktopInputFocusOnMouseDown}
+              onClick={() => setSendToAssistant(!sendToAssistant)}
+            />
+            <span id="chat-ai-hint" className="sr-only">{aiNote}</span>
+          </>
+        ) : null}
         {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : t("chat.mic.start")} title={recording ? t("chat.mic.stop") : t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={!voiceEnabled || isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
         {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
@@ -801,7 +820,6 @@ export default function ChatComposer({
             <span className="sr-only">{charCounterText}</span>
           </div>
         ) : null}
-        <ChatAiForwardToggle t={t} isRoomMode={isRoomMode} allowAssistantForward={assistantForwardEnabled} sendToAssistant={sendToAssistant} setSendToAssistant={setSendToAssistant} aiNote={aiNote} />
       </div>
       {showModeLabelRow ? <div>
           <div>
