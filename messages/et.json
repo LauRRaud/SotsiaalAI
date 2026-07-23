@@ -3729,7 +3729,7 @@
       "login_link": {
         "subject": "SotsiaalAI sisselogimise kinnitamine",
         "text": "Tere!\n\nSisselogimise kinnitamiseks ava see link:\n{confirmUrl}\n\nKinnituslink kehtib {minutes} minutit.\n\nKui sa ei proovinud sisse logida, eira seda kirja.",
-        "html": "<div style=\"font-family:Arial,sans-serif;color:#2b201c;line-height:1.6\"><p>Tere!</p><p>Sisselogimise kinnitamiseks vajuta nuppu:</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background:#2b201c;color:#f7efe9;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan sisenemise</a></p><p>Nupp kehtib {minutes} minutit. Pärast kinnitamist jätkub sisselogimine automaatselt aknas, kus seda alustasid.</p><p style=\"color:#8a7a72;font-size:13px\">Kui sa ei proovinud sisse logida, eira seda kirja.</p></div>"
+        "html": "<div style=\"font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6\"><p>Tere!</p><p>Sisselogimise kinnitamiseks vajuta nuppu:</p><p style=\"margin:24px 0\"><a href=\"{confirmUrl}\" style=\"display:inline-block;background:#1a1a1a;color:#f2f2f2;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan sisenemise</a></p><p>Nupp kehtib {minutes} minutit. Pärast kinnitamist jätkub sisselogimine automaatselt aknas, kus seda alustasid.</p><p style=\"color:#888888;font-size:13px\">Kui sa ei proovinud sisse logida, eira seda kirja.</p></div>"
       },
       "login_otp": {
         "subject": "SotsiaalAI sisselogimise kinnituskood",
@@ -3749,7 +3749,7 @@
       "verify": {
         "subject": "Kinnita oma e-posti aadress",
         "text": "Tere!\n\nPalun kinnita oma e-posti aadress alloleva lingi kaudu:\n{verifyUrl}\n\nKui sa ei loonud kontot, siis voi selle kirja eirata.",
-        "html": "<div style=\"font-family:Arial,sans-serif;color:#2b201c;line-height:1.6\"><p>Tere!</p><p>Konto aktiveerimiseks kinnita oma e-posti aadress:</p><p style=\"margin:24px 0\"><a href=\"{verifyUrl}\" style=\"display:inline-block;background:#2b201c;color:#f7efe9;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan e-posti aadressi</a></p><p style=\"color:#8a7a72;font-size:13px\">Kui sa ei loonud kontot, võid selle kirja eirata.</p></div>"
+        "html": "<div style=\"font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6\"><p>Tere!</p><p>Konto aktiveerimiseks kinnita oma e-posti aadress:</p><p style=\"margin:24px 0\"><a href=\"{verifyUrl}\" style=\"display:inline-block;background:#1a1a1a;color:#f2f2f2;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Kinnitan e-posti aadressi</a></p><p style=\"color:#888888;font-size:13px\">Kui sa ei loonud kontot, võid selle kirja eirata.</p></div>"
       },
       "account_deleted": {
         "subject": "SotsiaalAI konto on kustutatud",
@@ -3765,8 +3765,8 @@
       },
       "sponsored": {
         "subject": "Sponsoreeritud kutse: {roomTitle}",
-        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu tellimuse.\nValitud roll: {roleLabel}\n\nKutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
-        "html": "<p>Tere!</p><p>{inviterName} kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu tellimuse.</p><p><strong>Valitud roll:</strong> {roleLabel}</p><p>Kutse annab ligipääsu ainult sellele ruumile, mitte kutsuja teistele ruumidele, eravestlustele, dokumentidele ega Teekonnale.</p><p><a href=\"{joinLink}\">Liitu ruumiga</a></p><p>Pärast ühe kuu lõppu pead kasutamise jätkamiseks tellimuse ise aktiveerima lehel Tellimus.</p><p>Kui sa ei oodanud seda kirja, võid selle eirata.</p>"
+        "text": "Tere!\n\n{inviterName} kutsus sind ruumi \"{roomTitle}\" ja tasus sinu eest ühe kuu SotsiaalAI kasutuse.\n\nSinu roll: {roleLabel}\n\nÜhe kuu jooksul saad kasutada kogu SotsiaalAI-d oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum \"{roomTitle}\"; kõik muu, mida platvormil teed, jääb sinu privaatseks.\n\nLiitu: {joinLink}\n\nPärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.\n\nKui sa ei oodanud seda kirja, võid selle eirata.",
+        "html": "<div style=\"font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6\"><p>Tere!</p><p><strong>{inviterName}</strong> kutsus sind ruumi <strong>{roomTitle}</strong> ja tasus sinu eest ühe kuu SotsiaalAI kasutuse.</p><p><strong>Sinu roll:</strong> {roleLabel}</p><p>Ühe kuu jooksul saad kasutada kogu SotsiaalAI-d oma rollis — vestlused assistendiga, teadmusbaas ja töövood. Jagatud on ainult ruum <strong>{roomTitle}</strong>; kõik muu, mida platvormil teed, jääb sinu privaatseks.</p><p style=\"margin:24px 0\"><a href=\"{joinLink}\" style=\"display:inline-block;background:#1a1a1a;color:#f2f2f2;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Liitu ruumiga</a></p><p>Pärast ühe kuu lõppu saad kasutamise jätkamiseks tellimuse ise aktiveerida lehel Tellimus.</p><p style=\"color:#888888;font-size:13px\">Kui sa ei oodanud seda kirja, võid selle eirata.</p></div>"
       },
       "sponsored_revoked": {
         "subject": "Sponsoreeritud ligipääs ruumis \"{roomTitle}\" on lõppenud",
@@ -3784,6 +3784,18 @@
         "subject": "[SotsiaalAI] Makse veebikonks: {status} ({providerPaymentId})",
         "text": "Makse veebikonks töödeldi.\n\nOlek: {status}\nMakseteenuse makse ID: {providerPaymentId}\nMakse ID: {paymentId}\nSumma: {amount} {currency}\nTasutud: {paidAt}\nLoodud: {createdAt}\nKasutaja e-post: {userEmail}\nKasutaja ID: {userId}\nTellimuse ID: {subscriptionId}\nTellimuspakett: {subscriptionPlan}\nTellimuse olek: {subscriptionStatus}\nTellimus kehtib kuni: {subscriptionValidUntil}\nTellimus tühistati: {subscriptionCanceledAt}\nTellimuse tegevus: {subscriptionAction}\nSündmuse aeg: {eventTime}\n\nAdministraatori analüütika: {adminUrl}",
         "html": "<p>Makse veebikonks töödeldi.</p><ul><li><strong>Olek:</strong> {status}</li><li><strong>Makseteenuse makse ID:</strong> {providerPaymentId}</li><li><strong>Makse ID:</strong> {paymentId}</li><li><strong>Summa:</strong> {amount} {currency}</li><li><strong>Tasutud:</strong> {paidAt}</li><li><strong>Loodud:</strong> {createdAt}</li><li><strong>Kasutaja e-post:</strong> {userEmail}</li><li><strong>Kasutaja ID:</strong> {userId}</li><li><strong>Tellimuse ID:</strong> {subscriptionId}</li><li><strong>Tellimuspakett:</strong> {subscriptionPlan}</li><li><strong>Tellimuse olek:</strong> {subscriptionStatus}</li><li><strong>Tellimus kehtib kuni:</strong> {subscriptionValidUntil}</li><li><strong>Tellimus tühistati:</strong> {subscriptionCanceledAt}</li><li><strong>Tellimuse tegevus:</strong> {subscriptionAction}</li><li><strong>Sündmuse aeg:</strong> {eventTime}</li></ul><p><a href=\"{adminUrl}\">Ava administraatori analüütika</a></p>"
+      },
+      "customer_confirmation": {
+        "subscription": {
+          "subject": "Makse õnnestus — SotsiaalAI tellimus on aktiivne",
+          "text": "Tere!\n\nTäname! Sinu makse õnnestus ja tellimus on aktiivne.\n\nMakstud: {amount} {currency}\nKuupäev: {paidAt}\nPakett: {subscriptionPlan}\nKehtib kuni: {subscriptionValidUntil}\n\nTellimus pikeneb automaatselt. Saad seda hallata või lõpetada oma profiililt.\n\nKüsimuste korral kirjuta: {supportEmail}",
+          "html": "<div style=\"font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6\"><p>Tere!</p><p>Täname! Sinu makse õnnestus ja tellimus on aktiivne.</p><p><strong>Makstud:</strong> {amount} {currency}<br><strong>Kuupäev:</strong> {paidAt}<br><strong>Pakett:</strong> {subscriptionPlan}<br><strong>Kehtib kuni:</strong> {subscriptionValidUntil}</p><p>Tellimus pikeneb automaatselt. Saad seda hallata või lõpetada oma profiililt.</p><p style=\"margin:24px 0\"><a href=\"{profileUrl}\" style=\"display:inline-block;background:#1a1a1a;color:#f2f2f2;text-decoration:none;padding:14px 34px;border-radius:999px;font-size:16px;letter-spacing:.02em\">Halda tellimust</a></p><p style=\"color:#888888;font-size:13px\">Küsimuste korral kirjuta {supportEmail}.</p></div>"
+        },
+        "sponsored": {
+          "subject": "Makse õnnestus — sponsoreeritud kutse saadetud",
+          "text": "Tere!\n\nTäname! Sinu makse õnnestus ja kutse on saadetud.\n\nMakstud: {amount} {currency}\nKuupäev: {paidAt}\nKutsutu: {inviteeEmail}\nRuum: {roomTitle}\nRoll: {roleLabel}\n\nKutsutu saab liitumislingi e-postiga. Tema ligipääs kehtib ühe kuu alates liitumisest.\n\nKüsimuste korral kirjuta: {supportEmail}",
+          "html": "<div style=\"font-family:Arial,sans-serif;color:#1a1a1a;line-height:1.6\"><p>Tere!</p><p>Täname! Sinu makse õnnestus ja kutse on saadetud.</p><p><strong>Makstud:</strong> {amount} {currency}<br><strong>Kuupäev:</strong> {paidAt}<br><strong>Kutsutu:</strong> {inviteeEmail}<br><strong>Ruum:</strong> {roomTitle}<br><strong>Roll:</strong> {roleLabel}</p><p>Kutsutu saab liitumislingi e-postiga. Tema ligipääs kehtib ühe kuu alates liitumisest.</p><p style=\"color:#888888;font-size:13px\">Küsimuste korral kirjuta {supportEmail}.</p></div>"
+        }
       }
     }
   },
