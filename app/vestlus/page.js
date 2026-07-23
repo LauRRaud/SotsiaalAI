@@ -6,7 +6,6 @@ import { buildLocalizedMetadata } from "@/lib/metadata";
 import ChatBody from "@/components/alalehed/ChatBody";
 import ConversationDrawer from "@/components/alalehed/ConversationDrawer";
 import ChatSidebar from "@/components/ChatSidebar";
-import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import { redirect } from "next/navigation";
 import { localizePath } from "@/lib/localizePath";
 export async function generateMetadata() {
@@ -43,7 +42,6 @@ export default async function Page({ searchParams }) {
       <ConversationDrawer>
         <ChatSidebar />
       </ConversationDrawer>
-      <PendingInviteBanner />
       <ChatBody
         roomId={roomId}
         requestLoginOnOpen={loginRequested || emailVerifiedEntry}

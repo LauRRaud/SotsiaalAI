@@ -1,68 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import AppLink from "@/components/ui/Link";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./PendingInviteBanner.module.css";
 
 /*
-  Ootel-kutse bänner. Püüab kinni Juhtum B: kasutaja registreerus/logis
-  sisse otse (mitte kutselingilt) ja maandub vestluses ilma tellimuseta,
-  taipamata, et tal on ootel sponsoreeritud kutse.
+  Ootel-kutse teade platvormi hub'is (RoomStage kaardikarussell). PROP-põhine:
+  RoomStage pärib ootel-kutse seisu üks kord ja annab siia (sama andmet
+  kasutab ka RUUMID-kaardi badge). Elab hub-vaates, EI eellaadimisstseeni
+  küljes — naastes on alati näha (omanik 23.07).
 
-  KAKS olekut (23.07 leid päris-testist — test3 logis sisse KINNITAMATA
-  e-postiga → bänner vaikis, sest ootel-rada nõuab kinnitatud e-posti):
-    1. Kinnitatud e-post + ootel kutse → "Liitu" (/join?invite=<id>).
-    2. Kinnitamata e-post + ootel kutse → "Kinnita esmalt e-post" +
-       "Saada kinnituskiri uuesti" (link-liitumine töötab ka kinnitamata,
-       aga id-rada nõuab omanditõendit = kinnitust, sest annab ligipääsu
-       privaatsele ruumile).
+  KAKS olekut:
+    1. invite (kinnitatud e-post + ootel kutse) → "Liitu" (/join?invite=<id>).
+    2. needsVerify (kinnitamata e-post + ootel kutse) → "Kinnita esmalt e-post"
+       + "Saada kinnituskiri uuesti".
 */
-export default function PendingInviteBanner() {
-  const { status, data: session } = useSession();
+export default function PendingInviteBanner({
+  invite = null,
+  needsVerify = false,
+  sessionEmail = ""
+}) {
   const { t, locale } = useI18n();
-  const [invite, setInvite] = useState(null);
-  const [needsVerify, setNeedsVerify] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   const [resendState, setResendState] = useState("idle"); // idle | sending | sent
 
-  useEffect(() => {
-    if (status !== "authenticated") return;
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch("/api/invites/pending", {
-          headers: { Accept: "application/json" }
-        });
-        if (!res.ok) return;
-        const data = await res.json().catch(() => ({}));
-        if (cancelled) return;
-        const first = Array.isArray(data?.invites) ? data.invites[0] : null;
-        if (first) {
-          setInvite(first);
-        } else if (data?.emailVerified === false && data?.hasPending) {
-          setNeedsVerify(true);
-        }
-      } catch {
-        // vaikne — bänner on abistav lisa, mitte kriitiline rada
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, [status]);
-
   async function resendVerification() {
-    const email = session?.user?.email;
-    if (!email || resendState === "sending") return;
+    if (!sessionEmail || resendState === "sending") return;
     setResendState("sending");
     try {
       await fetch("/api/verify-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, locale })
+        body: JSON.stringify({ email: sessionEmail, locale })
       });
     } catch {
       // POST /api/verify-email vastab alati üldiselt; vaikne
@@ -94,9 +65,7 @@ export default function PendingInviteBanner() {
           <p className={styles.title}>{t("pendingInvite.title")}</p>
           {resendState === "sent" ? (
             <p className={styles.body}>
-              {t("pendingInvite.verify_sent", {
-                email: session?.user?.email || ""
-              })}
+              {t("pendingInvite.verify_sent", { email: sessionEmail || "" })}
             </p>
           ) : (
             <>

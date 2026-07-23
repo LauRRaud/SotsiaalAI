@@ -77,6 +77,7 @@ import {
 import { wellbeingTools } from "@/lib/wellbeingTools";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
+import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
 import RoomQuickbar from "@/components/room/RoomQuickbar";
 import VeilArt, { VEIL_EFFECTS } from "@/components/room/VeilArt";
 import GlassButton from "@/components/glass/GlassButton";
@@ -187,6 +188,48 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     const perms = Array.isArray(u?.permissions) ? u.permissions : [];
     return Boolean(u?.isAdmin || u?.is_admin || role === "admin" || perms.includes("admin"));
   }, [session]);
+
+  /* Ootel sponsorkutse — hub-teade + RUUMID-kaardi badge (omanik 23.07:
+     teade kuulub platvormi hub'i, MITTE eellaadimisstseeni külge; RUUMID
+     kaardil peab olema märge lisaks). Pärime üks kord; sama seis toidab nii
+     PendingInviteBanner'i kui badge'i. */
+  const [pendingInvite, setPendingInvite] = useState(null);
+  const [pendingNeedsVerify, setPendingNeedsVerify] = useState(false);
+  useEffect(() => {
+    if (!isAuthed) {
+      setPendingInvite(null);
+      setPendingNeedsVerify(false);
+      return undefined;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/invites/pending", {
+          headers: { Accept: "application/json" }
+        });
+        if (!res.ok) return;
+        const data = await res.json().catch(() => ({}));
+        if (cancelled) return;
+        const first = Array.isArray(data?.invites) ? data.invites[0] : null;
+        if (first) {
+          setPendingInvite(first);
+          setPendingNeedsVerify(false);
+        } else if (data?.emailVerified === false && data?.hasPending) {
+          setPendingInvite(null);
+          setPendingNeedsVerify(true);
+        } else {
+          setPendingInvite(null);
+          setPendingNeedsVerify(false);
+        }
+      } catch {
+        // vaikne — teade on abistav lisa
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthed]);
+  const hasPendingInvite = Boolean(pendingInvite) || pendingNeedsVerify;
   /* Töölaua kaardikomplekt sõltub vaate-rollist: tavakasutaja näeb oma
      rolli kaarte, admin saab S/P/T-lülitiga vaadet vahetada (effectiveRole).
      refreshEffectiveRole juhtmestatakse doki lülitile, et vahetus muudaks
@@ -821,7 +864,14 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   );
   const workItems = useMemo(() => {
     const items = [
-      { key: "ruumid", label: t("nav.rooms"), href: "/ruum", icon: <RoomsCardIcon /> },
+      {
+        key: "ruumid",
+        label: t("nav.rooms"),
+        href: "/ruum",
+        icon: <RoomsCardIcon />,
+        // Ootel-kutse märge RUUMID kaardil (omanik 23.07).
+        badge: hasPendingInvite ? t("pendingInvite.badge") : null
+      },
       { key: "toolaud", label: t("nav.workspace"), href: "/toolaud", icon: <WorkspaceCardIcon /> },
       { key: "vestlus", label: t("nav.chat"), href: "/vestlus", icon: <ChatCardIcon /> },
       { key: "profiil", label: t("nav.profile"), href: "/profiil", icon: <ProfileCardIcon /> },
@@ -830,7 +880,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       items.push({ key: "haldus", label: t("room.admin_card"), action: "haldus", icon: <AdminSlidersIcon /> });
     }
     return items;
-  }, [t, isAdmin]);
+  }, [t, isAdmin, hasPendingInvite]);
 
   /* Töölaua komplekt — rollipõhine (vt HinnastusBody rolliväravad +
      workspaceDashboardCards ajalugu). Tavakasutaja näeb oma rolli kaarte;
@@ -1086,6 +1136,16 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         data-card-page={cardPageKey ? "1" : "0"}
         data-cards-ready={cardsReady ? "1" : "0"}
       >
+      {/* Ootel-kutse teade — kuulub hub'i (omanik 23.07): ilmub kui kaardid
+          on valmis (power on + cardsReady), MITTE eellaadimisstseeni ajal,
+          ja z-index (85) on laadimisloori (80) kohal. */}
+      {isAuthed && hasPendingInvite && !isLoginOpen && power === "on" && cardsReady ? (
+        <PendingInviteBanner
+          invite={pendingInvite}
+          needsVerify={pendingNeedsVerify}
+          sessionEmail={session?.user?.email || ""}
+        />
+      ) : null}
       {/* Lavastus: rahulik tume taust ilma tähistaevata */}
       <div className="room-stage" ref={stageRef} aria-hidden="true">
         <div className="room-vignette" />

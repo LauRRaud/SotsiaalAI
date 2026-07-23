@@ -9,7 +9,10 @@
   top: clamp(4.25rem, 8vh, 6rem);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 60;
+  /* Ruumi laadimisloor on z=80 ja sisenemisel katab ekraani — bänner (varem
+     z=60) jäi selle taha, nii et kutsutu läks meili tagasi enne kui bänner
+     nähtavale tuli. z=85 tõstab bänneri loori kohale → ilmub KOHE. */
+  z-index: 85;
   width: min(30rem, calc(100vw - 2rem));
   pointer-events: none;
 }

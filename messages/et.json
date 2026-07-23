@@ -3586,6 +3586,7 @@
     "body_no_room": "Sind on kutsutud ruumi. Liitu ja aktiveeri tellimus.",
     "join": "Liitu",
     "dismiss": "Peida",
+    "badge": "Kutse",
     "verify_body": "Liitumiseks kinnita esmalt oma e-posti aadress.",
     "verify_action": "Saada kinnituskiri uuesti",
     "verify_sending": "Saadan...",

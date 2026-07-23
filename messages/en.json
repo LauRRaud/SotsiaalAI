@@ -3586,6 +3586,7 @@
     "body_no_room": "You've been invited to a room. Join and activate your subscription.",
     "join": "Join",
     "dismiss": "Hide",
+    "badge": "Invite",
     "verify_body": "To join, please confirm your email address first.",
     "verify_action": "Resend confirmation email",
     "verify_sending": "Sending...",
