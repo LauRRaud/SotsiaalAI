@@ -23,13 +23,29 @@
   padding: clamp(1rem, 3vw, 1.35rem) clamp(1.15rem, 3vw, 1.5rem);
   border: 1px solid var(--glass-border-soft);
   border-radius: var(--panel-radius);
-  background: var(--glass-bg-strong);
+  /* Poolläbipaistev taust (mitte --glass-bg-strong, mis on ~0.99 alpha =
+     läbipaistmatu ja peidab blur'i) — nii tuleb frosted-glass blur nähtavale
+     (omanik 23.07). Sama grammatika mis a11y-modal klaaskaart. */
+  background: linear-gradient(
+    165deg,
+    rgba(34, 34, 34, 0.55) 0%,
+    rgba(20, 20, 20, 0.62) 100%
+  );
   box-shadow: var(--glass-inner-light), var(--glass-shadow);
   backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
   color: var(--text-warm);
   font-family: var(--font-ui);
   text-align: center;
+}
+
+/* Läbipaistvuse vähendus / kõrge kontrast: läbipaistmatu + blur maha
+   (loetavus enne esteetikat). */
+:global(html[data-reduce-transparency="1"]) .card,
+:global(html[data-contrast="hc"]) .card {
+  background: linear-gradient(165deg, rgba(20, 20, 20, 0.98), rgba(12, 12, 12, 1));
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .title {
