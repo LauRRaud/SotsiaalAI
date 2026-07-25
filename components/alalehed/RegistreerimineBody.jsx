@@ -19,7 +19,8 @@ import OptionCard from "@/components/ui/OptionCard";
 import RichText from "@/components/i18n/RichText";
 import Button from "@/components/ui/Button";
 import { localizePath } from "@/lib/localizePath";
-import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+/* Sama nool mis ruumi ja ligipääsetavuse dokis — Tagasi on üks žest. */
+import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import useStationFlight from "@/components/register/useStationFlight";
 import {
   WORKER_FRAMEWORK_REGISTER_ACK_STORAGE_KEY,
@@ -618,7 +619,9 @@ export default function RegistreerimineBody({}) {
   useEffect(() => {
     if (prevIndexRef.current === activeIndex) return;
     prevIndexRef.current = activeIndex;
-    const delay = mode === "3d" ? 420 : 80;
+    /* Rahulik lennutempo (useStationFlight lend ~0,76 s) → fookus tuleb
+       kohale veidi hiljem, et ta ei hüppaks veel lendavale jaamale. */
+    const delay = mode === "3d" ? 520 : 80;
     const timer = window.setTimeout(() => {
       const host = stageRef.current?.querySelector(
         '.rgf-plane[data-active="1"] [data-autofocus]',
@@ -661,7 +664,7 @@ export default function RegistreerimineBody({}) {
     let acc = 0;
     let lockUntil = 0;
     const step = (dir) => {
-      lockUntil = performance.now() + 560;
+      lockUntil = performance.now() + 640;
       acc = 0;
       wheelNavRef.current(dir);
     };
@@ -1057,7 +1060,7 @@ export default function RegistreerimineBody({}) {
             aria-label={t("buttons.back")}
           >
             <span className="gc-shortcut-icon" aria-hidden="true">
-              <ChevronIcon direction="left" />
+              <BackArrowIcon />
             </span>
             <span className="gc-shortcut-tooltip" aria-hidden="true">
               {t("buttons.back")}

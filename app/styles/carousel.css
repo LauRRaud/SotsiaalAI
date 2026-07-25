@@ -123,166 +123,418 @@
   left: calc(50% + var(--gc-w) * 2.42 + 0.4rem);
 }
 
-/* ---------- Töölaua ja tööheaolu kaherealine vaade (5 + 5) ----------
-   Kümme suuremat kaarti moodustavad päris töölaua. Desktopil grid ei pöörle;
-   võimalik lisavalik avaneb alumisest otseteeribast. Kitsamal ekraanil
-   rakendub endiselt tavaline 3-kaardiline karussell. */
-.gc[data-visible="10"] {
-  --gc-w: clamp(10rem, min(12.5vw, 24lvh), 13rem);
-  --gc-grid-gap-x: clamp(0.65rem, 0.9vw, 1.1rem);
-  --gc-grid-gap-y: clamp(0.7rem, 1.4lvh, 1rem);
-}
-.gc[data-visible="10"] .gc-item {
-  left: 50%;
-  top: 46%;
-  transform: translate(-50%, -50%)
-    translate3d(
-      calc((var(--grid-col) - 2) * (var(--gc-w) + var(--gc-grid-gap-x)) + var(--drag)),
-      calc((var(--grid-row) - 0.5) * (var(--gc-w) * 1.3889 + var(--gc-grid-gap-y))),
-      0
-    );
-  transition: transform 480ms var(--ease-soft), opacity 260ms var(--ease-soft);
-}
-.gc[data-visible="10"] .gc-item[data-hidden="1"] {
-  opacity: 0;
-  pointer-events: none;
-  transition: none;
-}
-.gc[data-visible="10"] .gc-icon,
-.gc[data-visible="10"] .gc-label,
-.gc[data-visible="10"] .gc-item[data-center="0"] .gc-icon,
-.gc[data-visible="10"] .gc-item[data-center="0"] .gc-label {
-  color: var(--room-text);
-}
-.gc[data-visible="10"] .gc-icon svg {
-  width: clamp(3.2rem, 3.8vw, 4.1rem);
-  height: clamp(3.2rem, 3.8vw, 4.1rem);
-}
-.gc[data-visible="10"] .gc-label {
-  font-size: clamp(0.78rem, 0.67rem + 0.32vw, 1rem);
-  letter-spacing: 0.1em;
-  padding: 0 0.65em 0 calc(0.65em + 0.1em);
-}
-.gc[data-visible="10"] .gc-label[data-long="1"] {
-  font-size: clamp(0.72rem, 0.62rem + 0.26vw, 0.9rem);
-  letter-spacing: 0.075em;
-}
-.gc[data-visible="10"] .gc-arrow--left {
-  right: calc(50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) + 0.8rem);
-}
-.gc[data-visible="10"] .gc-arrow--right {
-  left: calc(50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) + 0.8rem);
-}
+/* ============================================================
+   SÜGAVUSLAUD (töölaud + tööheaolu) — .gc[data-desk="1"]
+   ------------------------------------------------------------
+   Varem oli siin 5×2 keritav riiul: 8–15 kaarti lehitseti külgedele ja
+   servad hajutati mask-image'iga. Omanik 25.07: "ma ei ole kindel, kuidas
+   on näidatud töölaud ja isegi selle fade efekt servades on kole" +
+   "tahangi, et see platvorm oleks kui virtuaalreaalsuse keskkond".
 
-/* ---------- Töölaua KERITAV ruudustik (rollipõhine, 8–15 kaarti) ----------
-   Rollivaade toob eri arvu kaarte (klient 8, spetsialist kuni 15). Kaardid
-   tulevad absoluutsest 3D-paigutusest tavavoolu (CSS grid) ja ruudustik kerib
-   KÜLGEDELE. Vaateaken on LUKUS 5 veeru peale: korraga on näha 10 kaarti
-   (5 × 2 — sama pilt mis kümne kaardi töölaual), ka laial ekraanil, kuhu
-   mahuks seitse veergu. Ülejäänud kaardid ootavad kõrval ja küljenooled
-   kerivad LEHE kaupa nagu tavakarussellis (omanik 21.07: "vasakul ja paremal
-   peaks olema nooleke nagu tava kerimise lehel ja korraga peaks olema kuvatud
-   vähem kaarte"). Kerimisriba EI OLE (majareegel: kerimisribad on kõikjal
-   peidetud). Muutujad + sildi/ikooni suurused pärivad data-visible="10"
-   reeglitest; siin muutub AINULT paigutus + kerimine. */
-/* Muutujad elavad .gc peal, sest neid vajavad NII nimekiri kui nooled
-   (nooled on nimekirja õed, mitte lapsed — pärimine käib ühisest vanemast). */
-.gc[data-grid-scroll="1"] {
-  --gc-grid-cols: 5;
-  /* Servavöönd: kerimisel sisenev/lahkuv kaart HAJUB siin pimedusse, mitte
-     ei lõppe noaga (omanik 21.07: "mulle ei meeldi lõigatud ääred kerimisel,
-     ... nagu kaoks äärmised ära kuhugi"). Puhkeseisus jäävad kõik viis veergu
-     vööndist SEESpoole, nii et miski ei ole asjatult tuhm. */
-  --gc-grid-pad-x: clamp(2rem, 4.5vw, 4.5rem);
-}
-.gc[data-grid-scroll="1"] .gc-list {
-  height: auto;
-  max-height: 100%;
-  /* Viie veeru laiune aken + kaks servavööndit, keskel. Nooled elavad
-     vööndist väljaspool (vt .gc[data-grid-scroll="1"] .gc-arrow--*). */
-  width: min(
-    100%,
+   Kaks asja olid katki ja mõlemad tulid samast juurest — töölaud oli
+   AINUS ekraan, kus ruum lakkas olemast ruum (perspective: none):
+     1) kolmandik tööriistadest elas alati kolmandal lehel, ilma vihjeta,
+        et neid on olemas;
+     2) mask hajutas kaardid RISTKÜLIKU serval, mitte kauguse tõttu —
+        puhkeseisus tuhmusid äärmised veerud ilma põhjuseta ja kerimise
+        keskel oli kaart pool-hajunud, pool-terav.
+
+   Nüüd on laud pind, mis ruumis TAANDUB. Astmed (tsoonid) seisavad üksteise
+   taga ühise kaovpunktiga; lähim aste on ALL, doki juures — nii nagu laud,
+   mille taga sa istud. Kaugem aste on väiksem ja looritatud sellepärast, et
+   ta ON kaugemal. Ükski kaart ei ole lõigatud ja ükski ei ole peidus.
+   ============================================================ */
+.gc[data-desk="1"] {
+  /* Kaart on siin PLAAT lauapinnal, mitte portreepaneel karussellis:
+     lai ja madalam. Nii mahub sama kõrgusega ekraanile kolm astet ja
+     kaart ise saab olla oluliselt suurem (omanik 25.07: "minu jaoks on
+     veidi liiga vähe näha ka kaarte"). */
+  /* Kaardi laius on KOLME piiri väikseim, mitte vaba vw-arv:
+       19rem     — plaat ei kasva lõputult suurel ekraanil;
+       14.5vw    — kõrguse pool (kolm astet peavad ekraanile mahtuma);
+       jäägiarv  — mis reale päriselt järele jääb, kui mõlemalt poolt on
+                   maha arvatud külgvaru ja nimeveerg.
+     Kolmas piir on siin sellepärast, et rida seisab nüüd ekraani
+     püstisel keskjoonel (vt .gc-tier::after). Ilma selleta oleks valik
+     ainult halbade vahel: kas rida on nimeveeru võrra viltu või jookseb
+     nimi ekraanilt välja (omanik 25.07: "kui joondada kaardid ära, siis
+     tekstid vasakul ekraanist väljas"). Jäägiarv teeb valiku olematuks —
+     rida on keskel JA nimi on ekraanil, igal laiusel. */
+  --desk-cols: 5; /* suurima astme kaartide arv; GlassCarousel kirjutab üle */
+  --desk-track: calc(100vw - 2 * var(--desk-pad-x) - 2 * var(--desk-gutter));
+  --gc-w: min(
+    19rem,
+    14.5vw,
     calc(
-      var(--gc-grid-cols) * var(--gc-w) +
-      (var(--gc-grid-cols) - 1) * var(--gc-grid-gap-x) +
-      2 * var(--gc-grid-pad-x)
+      (var(--desk-track) - (var(--desk-cols) - 1) * var(--desk-gap-x)) /
+        var(--desk-cols)
     )
   );
-  margin-inline: auto;
-  /* Sama pehme kadumine mis ruumi vinjetil: alfa null täpselt konteineri
-     serval, seega nähtavat lõikejoont EI TEKI üheski kerimisfaasis. */
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gc-grid-pad-x),
-    #000 calc(100% - var(--gc-grid-pad-x)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0,
-    #000 var(--gc-grid-pad-x),
-    #000 calc(100% - var(--gc-grid-pad-x)),
-    transparent 100%
-  );
-  overflow-x: auto;
-  overflow-y: hidden;
-  perspective: none;
-  display: grid;
-  /* Kaks rida, kaardid voolavad VEERGUDESSE ja ruudustik kerib KÜLGEDELE
-     (horisontaalne), mitte üles-alla. safe center hoiab vähese kaardiarvu
-     tsentris, aga ei kärbi esimest veergu, kui read ei mahu. */
-  grid-template-rows: repeat(2, min-content);
-  grid-auto-flow: column;
-  grid-auto-columns: var(--gc-w);
-  gap: var(--gc-grid-gap-y) var(--gc-grid-gap-x);
-  justify-content: safe center;
-  align-content: center;
-  padding: clamp(0.5rem, 2vh, 1.5rem) var(--gc-grid-pad-x);
-  touch-action: pan-x;
-  /* Leheküljesamm maandub alati veeru servale, ka svaibiga. */
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gc-grid-pad-x);
-  scrollbar-width: none;
-  overscroll-behavior-x: contain;
+  /* Lamedam plaat kui karussellikaart (seal 0.72 = portree). Laius ja
+     kõrgus võistlevad omavahel: püstine kaart sunnib kolme astet kokku,
+     lame plaat lubab kaardi LAIEMAKS ilma, et astmed kattuma hakkaks —
+     ja jätab ülemisele reale ruumi ka siis, kui ta fookuses kasvab. */
+  --desk-card-ratio: 1.62; /* laius : kõrgus */
+  --desk-gap-x: clamp(0.75rem, 1.15vw, 1.4rem);
+  /* Püstine vahe peab ületama kalde tekitatud levi: rotateX toob astme
+     ALASERVA ettepoole (projitseerub madalamale) ja viib ülaserva taha.
+     Liiga väike vahe → astmed kattuvad, mida nad tegid. */
+  /* Mõõdetud, mitte pakutud: kalde ja vahe suhe on häälestatud nii, et
+     astmete PROJITSEERITUD kastid ei puutuks (1900×860 juures 22 px ja
+     44 px vaba). Kalle laiendab astme piirdekasti rohkem kui ta ise
+     kõrge on — 5deg juures jäi tagumiste astmete vahele 7 px ja nad
+     lugesid kattuvatena. */
+  --desk-gap-y: clamp(0.6rem, 2vh, 1.5rem);
+  /* ASTMELINE lisavahe. Perspektiiv surub kaugemad read kaovpunkti poole
+     kokku, seega ühtlane vahe EI anna ühtlast pilti: ülemine vahe jääb
+     alumisest kitsamaks ja kaob esimesena, kui aste fookuses kasvab.
+     Iga aste saab --d korda selle sammu lisaks — vahed loevad ühtlasena
+     ja fookus mahub igas reas ära. */
+  --desk-gap-step: clamp(0.45rem, 0.75vw, 1.1rem);
+  /* Perspektiivi SÜGAVUS, mitte ainult kaugus: 1500px surus tagumised
+     astmed kokku — kitsaks ja üksteise sisse. Lamedam kooniline vaade
+     hoiab kaugemad read loetavas mõõdus; sügavuse kannab siin suuresti
+     kaugusudu (--gc-haze), mitte ainult kahanemine. */
+  /* Perspektiiv ja astmevahe hoitakse ÜHIKUTETA numbritena, sest fookuse
+     skaala peab neid omavahel jagama (calc ei jaga pikkust pikkusega). */
+  --desk-perspective-num: 2400;
+  --desk-tier-z-num: 90;
+  --desk-perspective: calc(var(--desk-perspective-num) * 1px);
+  /* PUHKESEIS on peaaegu tasapinnaline: kõik 15 kaarti ühesuurused ja
+     ühtviisi loetavad. Sügavus on siin ainult vihje (~93% taper), mis
+     hoiab laua pinnana, mitte menüüna tapeedi peal — aga ei maksa selle
+     eest loetavusega, nagu 240px maksis.
+     SÜGAVUS TULEB FOOKUSEST: valitud aste astub päriselt ette ja on
+     teistest SUUREM (omanik 25.07). Tahad täiesti lameda puhkeseisu →
+     pane see 0px; tahad tugevat sügavust ka puhkeseisus → 200px+.
+     See üks number juhib kogu laua iseloomu. */
+  --desk-tier-z: calc(var(--desk-tier-z-num) * 1px); /* kaugus astme kohta */
+  --desk-focus-growth: 1.09; /* kui palju fookuses rida ESIREAST suurem on */
+  --desk-tilt: 3deg;
+  /* Nimeveerg on KITSAS, sest nimi seisab püsti (vt .gc-tier-name).
+     Lamav nimi nõudis ~9vw veergu ja seesama veerg oligi see, mis laua
+     viltu ajas: rida sai keskele ainult kaartide arvelt. Püsti keeratud
+     silt mahub kolme sentimeetrisse ja rea mõlemal pool on nüüd sama
+     kitsas veerg — kaardid ei kaota mõõdust midagi. */
+  --desk-gutter: clamp(1.75rem, 2.6vw, 3.1rem); /* astme nime veerg */
+  /* Dokk ja ülariba elavad laua peal — laud jätab neile ruumi, muidu
+     jookseks lähim aste doki alla. Külgvaru hoiab astme nime ekraanil
+     ka parallaksi äärmises asendis. */
+  /* Varud kolme naabri jaoks — ja need peavad pidama ka siis, kui aste
+     on FOOKUSES. Fookus kasvatab astet ~11% ümber ekraani keskpunkti,
+     seega iga serv liigub väljapoole võrdeliselt oma kaugusega keskmest.
+     Kõige kaugemal keskmest on astme NIMI (vasakul) ja ülemine rida —
+     täpselt need kaks jooksidki välja (omanik 25.07).
+     Ülal: suletud ülariba lõpeb 29 px peal, avatud kiirnuppude paneel
+     ~64 px peal — varu arvestab avatud olekuga.
+     Küljed: nimi peab ka 11% kasvades ekraanile jääma. */
+  /* Varude EBAVÕRDSUS on siin tahtlik ja arvutatud: laua plokk
+     tsentreeritakse polsterkasti, aga sihiks on see, et KESKMINE RIDA
+     satuks ekraani püstisele keskjoonele (omanik 25.07). Kasutatav aken
+     ei ole ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —,
+     seega peavad ka varud olema ebavõrdsed. Mõõdetud: keskmine rida on
+     ekraani keskmest 2 px kaugusel, dokini jääb 53 px, üles 120 px. */
+  /* Laud istub ekraanil KÕRGEMAL kui geomeetriline kese (omanik 25.07:
+     "töölaua kaardid võiks üleval pool olla"). Alumine varu on ülemisest
+     kolm korda suurem — nii jääb lähima astme ja doki vahele õhku ning
+     pilk maandub kaartidele, mitte tühjale ülaservale. Ülemine varu peab
+     ikka mahutama avatud ülariba (~64 px). */
+  --desk-pad-top: clamp(2rem, 8vh, 6rem);
+  --desk-pad-bottom: clamp(7rem, 24vh, 15rem);
+  /* Külgvaru kannab FOOKUSE kasvu: valitud aste kasvab ~9% oma keskme
+     ümber, seega iga serv liigub väljapoole võrdeliselt kaugusega
+     keskmest. Kõige kaugemal on nimeveerg (~46vw) → tema nihe on ~4vw ja
+     varu peab seda ületama, muidu silt astub fookuses ekraanilt maha.
+     Kaartidele see midagi ei maksa: laiuse piiraja on kõrgus (14,5vw),
+     mitte jääk. */
+  --desk-pad-x: clamp(1.25rem, 4.2vw, 5rem);
 }
-.gc[data-grid-scroll="1"] .gc-list::-webkit-scrollbar {
-  display: none;
+
+.gc-desk {
+  /* Laud KATAB lava (.gc on .room-carousel-wrap sees, mõlemad inset: 0).
+     See ei ole kosmeetika: perspective-origin'i protsendid mõõdetakse
+     ELEMENDI enda kastist, seega sisumõõdus kastil maanduks kaovpunkt
+     laua keskele, mitte sinna, kus ta ruumipildil on. Täisekraanikastiga
+     tähendab 46% päriselt ekraani 46% — sama koht, kus ruumipildil. */
+  position: absolute;
+  inset: 0;
+  display: flex;
+  /* column-reverse: aste 0 (lähim) maandub ALLA. */
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: var(--desk-gap-y);
+  /* Sisemine varu doki, ülariba ja KÜLGEDE jaoks. Külgvaru ei ole
+     kosmeetika: astme nimi istub oma veeru vasakus servas, ja kui aste
+     ulatub ekraani servani, seisab nimi täpselt piksel 0 peal ning
+     parallaks lükkab ta ekraanilt välja.
+     NB: perspective-origin'i protsendid mõõdetakse ÄÄRISKASTIST, mis on
+     endiselt terve ekraan — padding ei nihuta seega kaovpunkti. */
+  padding: var(--desk-pad-top) var(--desk-pad-x) var(--desk-pad-bottom);
+  /* ÜKS kaovpunkt kogu lauale — ja seesama, mis ruumipildil (tokens.css
+     --room-vp-*). Kui astmetel oleks igaühel oma perspektiiv (perspective()
+     transformi sees), ei loeks nad ühe pinnana. */
+  perspective: var(--desk-perspective);
+  perspective-origin: var(--room-vp-x) var(--room-vp-y);
+  transform-style: preserve-3d;
+  /* Laud ise EI püüa klõpse. .gc-desk on täisekraani kastiga preserve-3d
+     vanem, ja Z-teljel TAHA lükatud astmed jäävad tema enda tasapinna
+     taha — tabamustestil võidab siis vanem ja tagumiste ridade kaardid
+     ei saa klõpsu üldse kätte (omanik 25.07: "kui kaartide peale vajutan,
+     siis ei juhtu midagi"). Esirida töötas, sest tema z = 0 ehk lauaga
+     tasa. Sündmused elavad ridades, mitte laual. */
+  pointer-events: none;
+  /* Parallaks. .room-stage nihkub kursoriga −9/−7 px (RoomStage tick);
+     laud nihkub veidi ROHKEM, sest ta on lähemal. Pead liigutades liigub
+     lähedane ese vaateväljas rohkem kui kauge — just see erinevus ütleb
+     silmale, et laud ja ruum EI OLE sama pind. Enne seisis laud paigal ja
+     liikus ainult ruum, mis on tagurpidi.
+     Nihe on TAHTLIKULT väike (oli −20/−13, omanik 25.07: "veidi
+     nõrgemaks, et tekst välja ekraanilt ei läheks"): kohalolu tuleb
+     sellest, et kaks kihti liiguvad ERI kiirusel, mitte sellest, kui
+     kaugele nad liiguvad. --room-tilt-* on vaikimisi 0 (tokens.css),
+     seega puutel ja reduce-motion'is ei nihku miski. */
+  translate: calc(var(--room-tilt-x) * -9px) calc(var(--room-tilt-y) * -6px);
 }
-.gc[data-grid-scroll="1"] .gc-item {
+
+.gc-tier {
+  --d: 0;
+  --gc-haze: 0;
+  position: relative;
+  width: min(100%, 120rem);
+  margin-block-end: calc(var(--d) * var(--desk-gap-step));
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--desk-tilt))
+    translate3d(0, 0, calc(var(--d) * -1 * var(--desk-tier-z)));
+  /* Fookus kasvatab astet SELLE ENDA keskme ümber (eraldi scale-omadus),
+     mitte translateZ-ga. Z-tõuge lükkab astme kaovpunktist EEMALE, ja
+     kuna kaovpunkt on keskmise rea kõrgusel, liigub keskmine rida vaevu,
+     üla- ja alarida aga palju — read paiskusid eri kaugusele ja vahed
+     läksid ebaühtlaseks (omanik 25.07). Tasapinnaline kasv nihutab iga
+     serva sama palju, ükskõik millist rida sa valid. */
+  scale: var(--desk-scale, 1);
+  transition:
+    transform 640ms var(--ease-soft),
+    scale 640ms var(--ease-soft);
+}
+/* NB: astmele EI TOHI panna filter'it (blur/brightness). Filter lamestab
+   preserve-3d ruumi ja kaardi tõus (translateZ hoveril) kaotaks sügavuse.
+   Kaugus antakse looriga kaardi sees (.gc-haze), mitte filtriga. */
+/* Puhkeseisus on udu vaevumärgatav — kõik read on loetavad. Udu on siin
+   sügavuse VIHJE, mitte tuhmistaja (omanik 25.07: "tekst liiga kaugel"). */
+.gc-tier[data-d="1"] {
+  --gc-haze: 0.07;
+}
+.gc-tier[data-d="2"] {
+  --gc-haze: 0.14;
+}
+.gc-tier[data-d="3"] {
+  --gc-haze: 0.2;
+}
+/* Esiletõst toimub OMAL KOHAL: aste astub päriselt ette ja on teistest
+   SUUREM, teised taanduvad. Kohta ei vahetata (vt GlassCarousel: flex
+   `order` on hetkeline reflow, mitte üleminek → jõnks).
+   Tõus on suur (+220 vs −110), sest just SEE on nüüd laua sügavus:
+   puhkeseis on peaaegu tasapinnaline, kogu ruumilisus elab fookuses. */
+/* Fookuses jõuab IGA rida sama absoluutmõõtu, ükskõik kui kaugel ta
+   puhkeseisus on. Ühtlane 9% kasv seda ei anna: perspektiiv jätab
+   tagumise rea niigi väiksemaks, nii et 9% temast on vähem kui 9%
+   esireast ja alumine rida paistis fookuses alati suurim (omanik 25.07).
+   Kompensatsioon = rea enda puhkeseisu kahanemine tagasi võidetud:
+   skaala × (1 + d·z/perspektiiv) taastab esirea mõõdu. */
+.gc-tier[data-focus="1"] {
+  --desk-scale: calc(
+    var(--desk-focus-growth) *
+    (1 + var(--d) * var(--desk-tier-z-num) / var(--desk-perspective-num))
+  );
+  --gc-haze: 0;
+}
+/* Ülejäänud astmed EI liigu — nad ainult tuhmuvad. Katsetasin ka nende
+   tahapoole lükkamist: see nägi kenam välja, aga sõi keskmise astme
+   fookuses ülemise vahe nulli. Liigub üks asi korraga, ja see üks on
+   see, mille sa valisid. */
+.gc-tier[data-dimmed="1"] {
+  --gc-haze: 0.22;
+}
+
+/* Hover = fookus ilma klikita. Seda EI tehta siin CSS-i :has'iga, vaid
+   sama olekuraja kaudu mis klikk (GlassCarousel hoverZone): dokk peab
+   näitama, MILLINE rida on käe all (omanik 25.07), ja seda ei saa CSS
+   naaberpuust välja lugeda. Üks allikas → aste ja doki silt ei saa
+   põhimõtteliselt eri asja näidata. */
+
+/* Astme nimi elab LAUAL oma rea kõrval ja taandub koos temaga — ta ei
+   ole kroom ekraani peal, vaid silt ruumis.
+   Nimi on PÄRIS flex-element rea ees, mitte absoluutne silt astme
+   välisservas. Serva külge kinnitatuna jäi ta ekraani äärde ja lühema
+   rea puhul (klient 4 kaarti, teenuseosutaja 3) haigutas tema ja
+   kaartide vahel tühi maa (omanik 25.07). Nüüd liigub nimi reaga kaasa:
+   rida ja tema nimi on üks rühm, mis tsentreeritakse koos. */
+/* Ainult PEALKIRI, ilma allmärkuseta (omanik 25.07). Vihjerida seletas
+   asja, mida rida ise juba näitab — viis kaarti ütlevad tsooni sisu
+   paremini kui kolmesõnaline selgitus. Nimi sai selle arvelt mahtu. */
+.gc-tier-name {
+  flex: 0 0 var(--desk-gutter);
+  width: var(--desk-gutter);
+  /* PÜSTI, alt üles — nagu silt astme küljel, mitte pealkiri rea ees.
+     Lamades nõudis nimi ~9vw laiust veergu ja just see veerg lükkas
+     terve rea keskjoonelt paremale; keskele joondades oleks nimi ise
+     ekraanilt välja jooksnud (omanik 25.07). Püsti keeratuna maksab ta
+     laiust kolm sentimeetrit ja tema pikkus mõõdetakse KAARDI KÕRGUSES,
+     mida on ohtralt — nii mahub ka "Finding help" ja "Поиск помощи".
+     vertical-rl voolab ülalt alla; rotate 180° keerab lugemissuuna alt
+     üles, nagu raamatuseljal. rotate on eraldi omadus, seega ta ei
+     riiva astme enda transform'i (3D-virn jääb terveks). */
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  /* Silt ei murdu kunagi kahte veergu — kahe veeru laiune nimi lõhuks
+     nii peegli sümmeetria kui rea keskjoone. */
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-weight: 560;
+  /* Väiksem kui lamades: püstine silt loeb ääremärkusena ja tema pikkus
+     võistleb kaardi kõrgusega, mitte laiusega. */
+  font-size: clamp(0.82rem, 0.62rem + 0.42vw, 1.06rem);
+  /* Hõredam tähevahe on siltide keel — püstises sildis eriti, seal ta
+     annab tähtedele õhku ilma veergu laiendamata. */
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
+  /* Astme nimi ütleb, MIS see rida on — see on orientiir, mitte allmärkus.
+     Oli --room-text-dim (alfa .55) ja luges hallina (omanik 25.07). */
+  color: var(--room-text-soft);
+  text-shadow: 0 1px 12px rgba(6, 5, 4, 0.8);
+  pointer-events: none;
+  transition: color 400ms var(--ease-soft);
+}
+/* Pikk nimi (üle 9 tähe) kirjas väiksemalt ja tihedamalt — püstine silt
+   võistleb kaardi KÕRGUSEGA, ja 1200 px ekraanil on kaart 113 px kõrge,
+   "Поиск помощи" aga täies kirjas 146 px. */
+.gc-tier-name[data-long="1"] {
+  font-size: clamp(0.72rem, 0.55rem + 0.34vw, 0.9rem);
+  letter-spacing: 0.1em;
+}
+
+.gc-tier[data-focus="1"] .gc-tier-name {
+  color: var(--room-text);
+}
+
+/* PEEGEL. Rida on flex-rühma keskel ainult siis, kui tal on mõlemal pool
+   võrdne veerg — muidu tsentreeritakse [nimi + rida] koos ja rida seisab
+   poole nimeveeru võrra paremal, ehk kogu laud on viltu. Tühi peegel
+   paremal maksab kaartides null (nimeveerg on nüüd 2,6vw) ja teeb rea
+   keskjoone ekraani keskjooneks. */
+.gc-tier::after {
+  content: "";
+  flex: 0 0 var(--desk-gutter);
+  width: var(--desk-gutter);
+  pointer-events: none;
+}
+
+.gc-tier-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* pointer-events päritakse (.gc-desk on none) — kaardirida lülitab
+     tabatavuse tagasi sisse. Astme nimi jääb teadlikult läbiklõpsatavaks. */
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--desk-gap-x);
+  transform-style: preserve-3d;
+}
+
+/* Kaardid tulevad absoluutsest karussellipaigutusest tavavoolu. */
+.gc[data-desk="1"] .gc-item {
   position: relative;
   left: auto;
   top: auto;
+  /* EI kahane: kaardi mõõdu otsustab --gc-w valem (mis arvestab juba
+     nimeveeru ja peegliga), mitte flexi jäägijagamine. Kahanev kaart
+     tähendaks, et pikim aste on teistest kitsam ja veerud ei loe enam
+     veergudena. */
+  flex: 0 0 auto;
   width: var(--gc-w);
+  aspect-ratio: var(--desk-card-ratio);
   transform: none;
-  transition: opacity 260ms var(--ease-soft);
+  transition: none;
   will-change: auto;
-  scroll-snap-align: start;
-}
-.gc[data-grid-scroll="1"] .gc-item[data-hidden="1"] {
   opacity: 1;
-  pointer-events: auto;
 }
-/* Nool seisab servavööndist VÄLJASPOOL, et ta ei kataks hajuvat kaarti.
-   (Baas .gc[data-visible="10"] reegel arvestab ainult viie veeruga.) */
-.gc[data-grid-scroll="1"] .gc-arrow--left {
-  right: calc(
-    50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) +
-    var(--gc-grid-pad-x) + 0.4rem
-  );
+/* Laual ei ole "külgkaarti": iga kaart on täies toonis. Kauguse annab
+   loor, mitte tuhmim tekst. */
+.gc[data-desk="1"] .gc-icon,
+.gc[data-desk="1"] .gc-label {
+  color: var(--room-text);
 }
-.gc[data-grid-scroll="1"] .gc-arrow--right {
-  left: calc(
-    50% + (var(--gc-w) * 2.5) + (var(--gc-grid-gap-x) * 2) +
-    var(--gc-grid-pad-x) + 0.4rem
-  );
+.gc[data-desk="1"] .gc-card {
+  gap: clamp(0.5rem, 1.1vh, 0.95rem);
 }
-/* Nool kaob, kui sinnapoole enam kerida pole (ruudustik ei ole ringjas —
-   viimasest lehest edasi ei tule esimene). Kõrgem spetsiifilisus võidab
-   .room[data-power="on"][data-cards-ready="1"] .gc-arrow nähtavusreegli. */
-.room .gc[data-grid-scroll="1"] .gc-arrow[disabled] {
-  --gc-nav-opacity: 0;
-  --gc-nav-pointer: none;
+.gc[data-desk="1"] .gc-icon svg {
+  width: clamp(2.6rem, 3.5vw, 4.2rem);
+  height: clamp(2.6rem, 3.5vw, 4.2rem);
+}
+/* Silt on kaardi PÕHISISU, mitte allkiri: 288 px laiusel plaadil oli
+   14,7 px tekst kadunud (omanik 25.07). Tähevahe kahaneb suuruse
+   kasvades, muidu venib pikk nimi plaadilt välja. */
+.gc[data-desk="1"] .gc-label {
+  font-size: clamp(0.85rem, 0.62rem + 0.55vw, 1.24rem);
+  letter-spacing: 0.09em;
+  padding: 0 0.6em 0 calc(0.6em + 0.09em);
+}
+.gc[data-desk="1"] .gc-label[data-long="1"] {
+  font-size: clamp(0.76rem, 0.56rem + 0.46vw, 1.06rem);
+  letter-spacing: 0.06em;
+}
+/* Hõljuv ese varjab valgust: kaart tõuseb sõrme all päriselt ettepoole.
+   KÕIK, mis hoveril muutub, peab olema siin loetletud — muidu osa muutub
+   sujuvalt (tõus, vari) ja osa hetkega (sildi toon), ja liigutus loeb
+   nõksuna, mitte lähenemisena (omanik 25.07: "tee sujuv hover"). */
+.gc[data-desk="1"] .gc-card {
+  transition:
+    transform 380ms var(--ease-soft),
+    box-shadow 380ms var(--ease-soft);
+}
+.gc[data-desk="1"] .gc-icon,
+.gc[data-desk="1"] .gc-label {
+  transition: color 380ms var(--ease-soft);
+}
+/* Udu hajub kaardi alt kiiremini kui terve rea oma (640 ms): rida on
+   maastik, üksik kaart on käeliigutus. */
+.gc[data-desk="1"] .gc-card:hover .gc-haze,
+.gc[data-desk="1"] .gc-card:focus-visible .gc-haze {
+  transition: background 380ms var(--ease-soft);
+}
+/* Kaart sõrme all EI OLE lihtsalt lähemal — ta on ka VALITUD, ja seda
+   peab nägema ilma kaardi mõõtu muutmata (omanik 25.07). Vastus tuleb
+   ruumi enda keelest: serv läheb valguse kätte (sama jahe-vasak /
+   soe-parem joon, ainult tugevam) ja kaardi alla tekib vari, sest ta
+   seisab pinnast eespool. Silt ja ikoon lähevad täistooni. */
+.gc[data-desk="1"] .gc-card:hover,
+.gc[data-desk="1"] .gc-card:focus-visible {
+  transform: translateZ(46px);
+  box-shadow:
+    var(--card-glass-shadow),
+    inset 0 0 0 1px rgba(var(--light-warm), 0.42),
+    0 20px 46px rgba(3, 3, 3, 0.5);
+}
+.gc[data-desk="1"] .gc-card:hover .gc-icon,
+.gc[data-desk="1"] .gc-card:hover .gc-label,
+.gc[data-desk="1"] .gc-card:focus-visible .gc-icon,
+.gc[data-desk="1"] .gc-card:focus-visible .gc-label {
+  color: var(--text-warm, #fff);
+}
+/* Kaugusudu ei tohi valitud kaardi ees seista: kui ta on käe all, siis
+   ta on lähedal, ükskõik mitmendal astmel ta seisab. */
+.gc[data-desk="1"] .gc-card:hover .gc-haze,
+.gc[data-desk="1"] .gc-card:focus-visible .gc-haze {
+  background: transparent;
 }
 
 /* ---------- Käivituse faas 1: klaasid ilmuvad omal kohal, tühjadena,
@@ -349,6 +601,19 @@ html[data-reduce-motion="1"] .gc-item {
   mask-composite: exclude;
   pointer-events: none;
   transition: opacity var(--dur-med) var(--ease-soft);
+}
+
+/* Kaugusudu — ruumi enda õhk kaardi ja silma vahel. See ASENDAB varasema
+   mask-image'i: kaugem kaart ei ole lõigatud ega kunstlikult tuhm, ta on
+   lihtsalt kaugemal, ja loor katab ka ikooni ning sildi (kaugusest ei
+   tuhmu ainult taust). Karussellis on --gc-haze 0 → kiht on olematu. */
+.gc-haze {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: rgba(26, 20, 16, var(--gc-haze, 0));
+  transition: background 640ms var(--ease-soft);
 }
 
 /* ---------- Ikoon + nimi (käivituse faas 2: sisu joonistub järele) ---------- */
@@ -524,7 +789,9 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
   opacity: 1;
   color: var(--room-text);
 }
-.room[data-power="on"][data-cards-ready="1"] .gc-shortcuts {
+/* Muutuja elab .gc peal, MITTE .gc-shortcuts peal: rolli-lüliti on nüüd
+   doki õde (nurgas), mitte tema laps, ja peab sama väravat kuulama. */
+.room[data-power="on"][data-cards-ready="1"] .gc {
   --gc-shortcuts-opacity: 1;
   --gc-shortcuts-pointer: auto;
   --gc-shortcuts-offset: 0;
@@ -584,24 +851,117 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   backdrop-filter: blur(15px) saturate(0.86);
   -webkit-backdrop-filter: blur(15px) saturate(0.86);
 }
+/* Dokk ei jaga laiust enam rolli-lülitiga (see kolis nurka), seega ei ole
+   siin ka 10.5rem reservi. */
 .gc-shortcut-menu {
   gap: 0.35rem;
   min-width: 0;
-  max-width: min(48rem, calc(100vw - 10.5rem));
+  max-width: min(56rem, calc(100vw - 2rem));
 }
+
+/* ---------- Rollilüliti: ADMINI tööriist, ekraani nurgas ----------
+   Enne elas ta doki sees, samas flex-reas otseteeribaga. Kuna riba
+   nuppudel on flex: 0 0 auto ja ribal endal ei olnud desktopil overflow'd,
+   valgusid 15 kaardi puhul viimased ikoonid oma pillist VÄLJA ja jooksid
+   lülitile alla (omanik 25.07). Nüüd on ta dokist täiesti lahti: ei
+   dikteeri doki mõõtu ega saa sellega põhimõtteliselt kokku joosta.
+   Vaikne, kuni teda vaja läheb — tavakasutaja ei näe teda üldse. */
 .admin-role-view-cycle.admin-role-view-cycle--cards {
-  position: static;
-  flex: 0 0 auto;
-  inset: auto;
-  z-index: auto;
+  position: absolute;
+  right: max(1.2vw, 0.9rem);
+  bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
+  left: auto;
+  top: auto;
+  z-index: 70;
+  padding: 0.22rem;
+  opacity: calc(var(--gc-shortcuts-opacity, 0) * 0.42);
+  pointer-events: var(--gc-shortcuts-pointer, none);
+  transition: opacity 260ms var(--ease-soft);
+}
+.admin-role-view-cycle.admin-role-view-cycle--cards:hover,
+.admin-role-view-cycle.admin-role-view-cycle--cards:focus-within {
+  opacity: var(--gc-shortcuts-opacity, 0);
 }
 .admin-role-view-cycle--cards .workspace-role-switch {
-  gap: 0.2rem;
+  gap: 0.12rem;
 }
 .admin-role-view-cycle--cards .workspace-role-switch button {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 1.85rem;
+  height: 1.85rem;
 }
+
+/* ---------- Sügavuslaua dokk: tsooninimed ----------
+   Laual on kõik kaardid nagunii korraga väljas, seega 15-ikoonilist
+   otseteed ei ole vaja. Tsoone on 2–3 ja nad on nimega — see riba ei saa
+   põhimõtteliselt üle ääre joosta, ükskõik mitu kaarti rollil on. */
+.gc-zone-track {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  min-width: 0;
+}
+/* Doki tekst on nüüd päris silt, mitte pisikiri: tsooninimi on ainus
+   asi, mis ütleb, kus fookus on, ja 10,9 px ei lugenud (omanik 25.07). */
+.gc-zone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  height: 2.6rem;
+  padding: 0 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  appearance: none;
+  background: transparent;
+  color: rgba(239, 239, 239, 0.66);
+  font-family: var(--font-ui);
+  font-size: clamp(0.8rem, 0.7rem + 0.22vw, 0.95rem);
+  font-weight: 520;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 220ms var(--ease-soft),
+    background-color 220ms var(--ease-soft),
+    box-shadow 220ms var(--ease-soft);
+}
+.gc-zone:hover,
+.gc-zone:focus-visible {
+  color: var(--room-text);
+  background: rgba(248, 248, 248, 0.09);
+  outline: none;
+}
+.gc-zone:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.gc-zone[data-on="1"] {
+  color: var(--room-text);
+  background: rgba(248, 248, 248, 0.13);
+  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.11);
+}
+/* Laual on dokk suurema tekstiga, seega ka nupud sammu võrra suuremad —
+   muidu istub väike ring suurema kirja kõrval viltu. Mõõt käib ÜHE
+   muutuja kaudu, et Tagasi jääks igal pool täpselt ruuduks. */
+.gc[data-desk="1"] {
+  --gc-shortcut-size: 2.6rem;
+}
+.gc[data-desk="1"] .gc-shortcut-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Otseteeriba (kolme kaardi karussell): overflow on nüüd ka desktopil,
+   nii et nupud ei saa enam kunagi oma pillist välja valguda. */
+/* NB: siin EI TOHI olla overflow'd. Vihje elab nupu KOHAL
+   (bottom: calc(100% + …)), ja kui üks telg saab `auto`, muutub teine
+   spetsi järgi samuti `auto`-ks — riba hakkab lõikama ülespoole ja vihjed
+   kaovad täiesti (omanik 25.07: "kiirmenüül ma ei näe hover tekste").
+   Lisasin overflow'i kunagi selleks, et 15 ikooni ei valguks oma pillist
+   välja; see põhjus on kadunud: laual on nüüd tsooninimed (.gc-zone-track),
+   rolli-lüliti kolis nurka ja karussellikomplektides on ikoone kuni 10.
+   Kitsal ekraanil on kerimine endiselt olemas — vt mobiiliplokk, kus
+   vihjed on nagunii peidetud ja lõikamine ei maksa midagi. */
 .gc-shortcut-track {
   display: flex;
   align-items: center;
@@ -615,8 +975,8 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   justify-content: center;
   gap: 0;
   flex: 0 0 auto;
-  min-width: 2.25rem;
-  height: 2.25rem;
+  min-width: var(--gc-shortcut-size, 2.25rem);
+  height: var(--gc-shortcut-size, 2.25rem);
   padding: 0 0.62rem;
   border: 0;
   border-radius: 999px;
@@ -624,21 +984,44 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   background: transparent;
   color: rgba(239, 239, 239, 0.58);
   cursor: pointer;
+  /* EI transform'i: dokk on paigalseisev pind, mitte vedruv riba. Nupud
+     tõusid varem hoveril 1 px — kursoriga üle riba libistades nõksatas
+     terve menüü (omanik 25.07). Vastus hoverile on valgus (värv ja
+     taust), mitte liikumine. */
   transition:
     color 220ms var(--ease-soft),
     background-color 220ms var(--ease-soft),
     box-shadow 220ms var(--ease-soft),
-    transform 220ms var(--ease-soft);
+    /* Polsterdus tuleb sisse koos nimega (jaamadokid, kus tekst on alles)
+       — sama kestus mis tekstil, muidu nõksatab pill enne, kui sisu jõuab
+       järele. Ruumi dokis on nupp alati sama lai, seega siin ei liigu
+       midagi. */
+    padding 300ms var(--ease-soft);
+}
+/* Tabamusala on nupust suurem kui nupp ise. Dokk istub ekraani allservas
+   ja nupu ring on 36–42 px: serva pihta minek tähendas, et klikk kukkus
+   nuppude VAHELE ja "ei juhtunud midagi". Laiendus on püsti suurem kui
+   külgedele, sest külgedel on naaber (0,2 rem vahe), all ja üleval mitte. */
+.gc-shortcut::before {
+  content: "";
+  position: absolute;
+  inset: -0.32rem -0.08rem;
+  border-radius: inherit;
 }
 .gc-shortcut:hover,
 .gc-shortcut:focus-visible {
   color: var(--room-text);
   background: rgba(248, 248, 248, 0.09);
-  transform: translateY(-1px);
   outline: none;
 }
 .gc-shortcut:focus-visible {
   box-shadow: var(--focus-ring);
+}
+/* Külgpolsterdus on TEKSTI jaoks, ja teksti näitab ainult aktiivne nupp.
+   Puhkeolekus on nupp paljas ikoon — siis on ta ruut (ring), nagu Tagasi.
+   Nii on kogu dokk ühte tõugu kujundeid, mitte ovaalid ühe ringi kõrval. */
+.gc-shortcut:not([data-on="1"]) {
+  padding: 0;
 }
 .gc-shortcut[data-on="1"] {
   color: var(--room-text);
@@ -690,29 +1073,63 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   translate: -50% 0.25rem;
   width: max-content;
   max-width: 13rem;
-  padding: 0.38rem 0.58rem;
-  border: 1px solid rgba(247, 247, 247, 0.1);
-  border-radius: 0.5rem;
-  background: rgba(17, 17, 17, 0.82);
+  /* TÄPSELT sama klaas ja kuju mis dokil endal — sama gradient, sama
+     vari, sama ümarus (999px pill, mitte pehme ristkülik). Vihje on doki
+     jätk, mitte teine materjal tema kohal (omanik 25.07: "hover kast
+     võiks kuju ja tonaalus olla nagu kiirmenüül ise"). Väärtused on
+     .gc-shortcut-menu omad; ainult polsterdus on tekstile kohane. */
+  padding: 0.5rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(43, 43, 43, 0.5), rgba(19, 19, 19, 0.38));
+  backdrop-filter: blur(15px) saturate(0.86);
+  -webkit-backdrop-filter: blur(15px) saturate(0.86);
   color: var(--room-text);
-  box-shadow: 0 8px 22px rgba(5, 5, 5, 0.28);
+  box-shadow: 0 9px 28px rgba(5, 5, 5, 0.2), inset 0 1px rgba(247, 247, 247, 0.08);
   font-family: var(--font-ui);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  font-weight: 520;
+  letter-spacing: 0.1em;
   text-align: center;
   text-transform: uppercase;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 180ms var(--ease-soft), translate 180ms var(--ease-soft);
+  transition:
+    opacity 200ms var(--ease-soft),
+    translate 240ms var(--ease-soft);
 }
-.gc-shortcut:not([data-on="1"]):hover .gc-shortcut-tooltip,
-.gc-shortcut:not([data-on="1"]):focus-visible .gc-shortcut-tooltip,
-.gc-shortcut--back:hover .gc-shortcut-tooltip,
-.gc-shortcut--back:focus-visible .gc-shortcut-tooltip {
+/* Nimi ilmub NÜÜD KA aktiivsel nupul: varem ütles selle pill nupu sees,
+   aga pill on läinud (ta nihutas kerides tervet dokki). Ilma selleta
+   oleks aktiivne otsetee ainus, mille nime kuskilt ei saa.
+   Väike viide hoiab riba rahulikuna: dokist lihtsalt üle libistades ei
+   välgu sildid järjest, aga sihilikul peatumisel tuleb nimi kohe. */
+.gc-shortcut:hover .gc-shortcut-tooltip,
+.gc-shortcut:focus-visible .gc-shortcut-tooltip {
   translate: -50% 0;
   opacity: 1;
+  transition-delay: 90ms;
 }
+/* Jaamadokkides (a11f-/rgf-) näitab aktiivne nupp nime pillis — seal
+   oleks tooltip sama sõna teist korda. */
+.a11f-dock .gc-shortcut[data-on="1"]:hover .gc-shortcut-tooltip,
+.a11f-dock .gc-shortcut[data-on="1"]:focus-visible .gc-shortcut-tooltip,
+.rgf-dock .gc-shortcut[data-on="1"]:hover .gc-shortcut-tooltip,
+.rgf-dock .gc-shortcut[data-on="1"]:focus-visible .gc-shortcut-tooltip {
+  opacity: 0;
+}
+/* TAGASI on kõikjal üks ja seesama žest — üks samm sinna, kust tulid —,
+   seega peab tal olema kõikjal üks ja seesama kuju: RING, mitte pill.
+   Kolmes kohas oli ta kolme mõõtu (laual 42×42 ring, karussellis ja
+   ligipääsetavuse dokis 41×36 ovaal), sest baasnupp kannab teksti jaoks
+   külgpolsterdust — ainus nupp dokis, millel teksti ei ole, sai selle
+   niisama kaasa (omanik 25.07: "tagasi nupu kuju on teistel lehtedel
+   vale, liiga ovaalne"). Reegel kehtib ka .a11f-dock'i sees, sest see
+   dokk laenab sama .gc-shortcut DNA-d. */
 .gc-shortcut--back {
+  width: var(--gc-shortcut-size, 2.25rem);
+  min-width: var(--gc-shortcut-size, 2.25rem);
+  height: var(--gc-shortcut-size, 2.25rem);
+  padding: 0;
   color: rgba(239, 239, 239, 0.78);
 }
 .gc-shortcut-divider {
@@ -769,19 +1186,10 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
   .admin-role-view-cycle.admin-role-view-cycle--cards {
     padding: 0.3rem;
   }
-  .gc-shortcut-menu {
-    max-width: calc(100vw - 8.6rem);
-  }
-  .admin-role-view-cycle--cards .workspace-role-switch button {
-    width: 2.05rem;
-    height: 2.15rem;
-  }
-  .gc-shortcut-track {
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .gc-shortcut-track::-webkit-scrollbar {
-    display: none;
+  /* Rolli-lüliti seisab mobiilil doki KOHAL, mitte tema kõrval — kitsal
+     ekraanil ei jagu alumises reas kahele asjale ruumi. */
+  .admin-role-view-cycle.admin-role-view-cycle--cards {
+    bottom: max(13%, env(safe-area-inset-bottom, 0px) + 10.5%);
   }
   .gc-shortcut {
     min-width: 2.15rem;
@@ -790,6 +1198,15 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
   }
   .gc-shortcut-text,
   .gc-shortcut-tooltip {
+    display: none;
+  }
+  /* Kerimine elab AINULT siin, kus vihjeid ei ole — nii ei saa lõikamine
+     neid ära süüa (vt .gc-shortcut-track baasreegel). */
+  .gc-shortcut-track {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gc-shortcut-track::-webkit-scrollbar {
     display: none;
   }
 }
@@ -817,9 +1234,12 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
    Nii ei teki "topeltklaasi" (login klaasil paistis terav taust läbi),
    ilma küljekaarte muutmata. Pargitud kaardid jäävad vaikimisi peidus
    (.gc-item[data-hidden="1"]{opacity:0}). */
+/* Rolli-lüliti kolis doki seest nurka, seega tuleb ta nüüd nendes
+   loendites eraldi nimetada — varem taandus ta koos doki vanemaga. */
 .room[data-info-open="1"] .gc-arrow,
 .room[data-info-open="1"] .gc-dots,
-.room[data-info-open="1"] .gc-shortcuts {
+.room[data-info-open="1"] .gc-shortcuts,
+.room[data-info-open="1"] .admin-role-view-cycle--cards {
   opacity: 0;
 }
 .room[data-info-open="1"] .room-carousel-wrap {
@@ -829,18 +1249,22 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 .room[data-login-open="1"] .gc-arrow,
 .room[data-login-open="1"] .gc-dots,
 .room[data-login-open="1"] .gc-shortcuts,
+.room[data-login-open="1"] .admin-role-view-cycle--cards,
 .room[data-card-page="1"] .room-carousel-wrap,
 .room[data-card-page="1"] .gc-arrow,
 .room[data-card-page="1"] .gc-dots,
-.room[data-card-page="1"] .gc-shortcuts {
+.room[data-card-page="1"] .gc-shortcuts,
+.room[data-card-page="1"] .admin-role-view-cycle--cards {
   pointer-events: none !important;
 }
 .room[data-login-open="1"] .gc-arrow,
 .room[data-login-open="1"] .gc-dots,
 .room[data-login-open="1"] .gc-shortcuts,
+.room[data-login-open="1"] .admin-role-view-cycle--cards,
 .room[data-card-page="1"] .gc-arrow,
 .room[data-card-page="1"] .gc-dots,
-.room[data-card-page="1"] .gc-shortcuts {
+.room[data-card-page="1"] .gc-shortcuts,
+.room[data-card-page="1"] .admin-role-view-cycle--cards {
   opacity: 0;
 }
 

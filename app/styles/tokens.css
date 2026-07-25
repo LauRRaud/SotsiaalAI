@@ -26,6 +26,24 @@
   --text-ink: #1e1e1e; /* tekst heledal pinnal (primary-nupp) */
   --text-ink-soft: #444444;
 
+  /* ---- Ruumi KAKS valgusallikat ----
+     Ruumis (public/room) on järveaken VASAKUL — jahe, sinakas hämarik —
+     ja lamp + LED-riba PAREMAL — soe, merevaigune. Iga klaaspind
+     platvormil kuulab neid kahte, sest just see seob eseme ruumiga:
+     ühtlaselt valge serv sobib ükskõik millisesse ruumi ja seetõttu
+     mitte ühessegi. Muudad ruumipilti → muudad ainult neid kahte rida.
+     RGB-kolmikuna, et alfa saaks igas kohas eri olla. ---- */
+  --light-cool: 158, 186, 219; /* aknavalgus, vasakult */
+  --light-warm: 233, 172, 112; /* lamp ja LED-riba, paremalt */
+
+  /* Ruumipildi KAOVPUNKT ekraanil. Iga ruumis seisev pind (praegu
+     sügavuslaud, .gc-desk) võtab perspektiivi siit, et kõik taanduks
+     ÜHE punkti poole — muidu on igal asjal oma perspektiiv ja pilt loeb
+     kleebisena, mitte ruumina. Vahetad taustapildi → häälestad need kaks
+     numbrit selle pildi järgi, ja kogu ruumiline liides tuleb kaasa. */
+  --room-vp-x: 50%;
+  --room-vp-y: 46%;
+
   /* ---- Klaas: NEUTRAALNE läbipaistvus, ilma toonita.
      Soojus tuleb ruumist klaasi tagant, mitte klaasi värvist. ---- */
   --glass-bg: linear-gradient(
@@ -68,18 +86,21 @@
   );
   /* Kaardid jäävad matid ja selge servaga; väline kuma/vari puudub. */
   --card-glass-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.09);
+  /* Läige AKNA poolses ülanurgas — seega jahe, mitte valge. */
   --card-glass-sheen: radial-gradient(
-    120% 90% at 12% 0%,
-    rgba(251, 251, 251, 0.1),
-    rgba(251, 251, 251, 0.03) 34%,
-    transparent 56%
+    120% 90% at 10% 0%,
+    rgba(var(--light-cool), 0.13),
+    rgba(var(--light-cool), 0.04) 34%,
+    transparent 58%
   );
+  /* Serv loeb ruumi valgust: vasak serv jahe (aken), parem soe (lamp).
+     Nurk 100deg ≈ vasakult paremale, kerge kalle ülalt. */
   --card-glass-rim: linear-gradient(
-    165deg,
-    rgba(255, 255, 255, 0.42) 0%,
-    rgba(255, 255, 255, 0.12) 32%,
-    rgba(255, 255, 255, 0.05) 58%,
-    rgba(255, 255, 255, 0.22) 100%
+    100deg,
+    rgba(var(--light-cool), 0.46) 0%,
+    rgba(255, 255, 255, 0.11) 36%,
+    rgba(255, 255, 255, 0.06) 62%,
+    rgba(var(--light-warm), 0.42) 100%
   );
 
   /* Klaasi sisepinnad (read, kaardid klaasi peal) — neutraalne alfa */
@@ -100,6 +121,11 @@
   --fs-micro: 0.78rem;
 
   /* ---- Liikumine (aeglane ja pehme) ---- */
+  /* Kursorikalle (−1…1), mille RoomStage tick() reaalajas juurele kirjutab.
+     Vaikeväärtus 0 kehtib puuteseadmel, reduce-motion'is ja enne esimest
+     liigutust — nii on calc() alati defineeritud. */
+  --room-tilt-x: 0;
+  --room-tilt-y: 0;
   --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-drift: cubic-bezier(0.33, 0, 0.15, 1);
   --dur-fast: 240ms;

@@ -53,6 +53,21 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
   pointer-events: none;
 }
 
+/* --- Jaama vihje: „valmima ei pea" ------------------------- */
+/* Modaal ei ole järjestikune vorm — jaamad on iseseisvad valikud (vt
+   AccessibilityModal jsx). Rida seisab VALIKUTE ALL jaama sees (omanik
+   25.07), seega lendab jaamaga kaasa ja käib selle valiku kohta, mida
+   kasutaja parajasti vaatab. */
+.a11f-plane .a11f-optional-hint {
+  margin: 0.9rem 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--room-text-dim);
+  opacity: 0.72;
+}
+
 /* --- Lava -------------------------------------------------- */
 .a11f-stage {
   position: relative;
@@ -80,11 +95,17 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
      et ka esiplaan hingab — sügavusvahe säilib. */
   translate: calc(var(--par-x, 0px) * -0.3) calc(var(--par-y, 0px) * -0.3);
 }
+/* Laius: registri 25,5rem oli siin ülelai (täislaiuses ribad tegid
+   ekraanist nimekirja), 17rem omakorda liiga kitsas — pikimad sildid
+   („Mobiil / sülearvuti ekraan", „Vähenda animatsioone") murdusid kahele
+   reale (omanik 25.07: „nupud ikkagi laiemaks, kole on nii"). 20rem =
+   mõõdetud pikim silt 224px + polster ja märkeruut ühel real, ilma et
+   jaam ekraani täis võtaks. */
 .a11f-plane {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(92vw, 25.5rem);
+  width: min(88vw, 20rem);
   visibility: hidden; /* JS/flat-reeglid lülitavad sisse */
 }
 .a11f-stage[data-mode="3d"] .a11f-plane {
@@ -119,8 +140,18 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
 
 /* --- Jaama sisu --------------------------------------------- */
 /* Plaanis on korraga ÜKS sektsioon — virnastamise vahe kaob ära. */
+/* Ühtlane nupulaius (omanik 25.07): a11y-modal.css `.csp-step:last-child`
+   teeb fieldset'ist keskjoondatud grid'i, mis kahandas valikurea OMA
+   teksti laiuseks — „Eesti keel" jäi 95px, „Mobiil / sülearvuti ekraan"
+   ~280px ja laius hüppas jaamade vahel (liikumise-jaam oli erand, sest
+   vihjerida võttis :last-child'i ära). Lennul on iga jaam sama pind:
+   valikud venivad jaama laiuseks ja rivi püsib paigal. */
 .a11f-plane .csp-step {
   margin: 0;
+  justify-items: stretch;
+}
+.a11f-plane .csp-step > div {
+  width: 100%;
 }
 /* Sektsiooni nimi on nüüd jaama pealkiri, mitte nimekirja vahepealkiri:
    veidi suurem ja hingavam, kuid sama caps-keel mis varem. */
@@ -140,8 +171,9 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
   display: none;
 }
 
-/* Viimane jaam: teekonna lõpus on tegu, mitte valik. */
-.a11f-save {
+/* Viimane jaam: teekonna lõpus on tegu, mitte valik — Salvesta jääb
+   sisu-laiuseks ja keskele (valikuridade venitusreegel teda ei puuduta). */
+.a11f-plane .csp-step.a11f-save {
   display: grid;
   justify-items: center;
   gap: 1.1rem;
@@ -178,7 +210,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
     perspective: 950px; /* lainurksem sügavus väikesel ekraanil */
   }
   .a11f-plane {
-    width: min(92vw, 23rem);
+    width: min(88vw, 18.5rem);
   }
   .a11f-dock {
     max-width: calc(100vw - 1.6rem);

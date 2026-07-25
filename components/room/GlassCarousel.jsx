@@ -8,6 +8,11 @@
  * ekraani ulatuses, kui kaardid on avatud), servanupud, lohistus,
  * svaip. Klikk/Enter avab keskmise; klikk külgmisel pöörab keskele.
  * Üks 3D-tasand: perspective vanemal, kaardid otse selle all (iOS).
+ *
+ * SÜGAVUSLAUD (zones): töölaud ja tööheaolu EI ole karussell ega
+ * lehitsetav riiul, vaid ruumis taanduv pind. Kaardid seisavad astmetel
+ * (tsoonidel), lähim aste all, kaugem taga — kõik korraga nähtavad.
+ * Vt WORKSPACE_ZONES (RoomStage) ja .gc-desk (carousel.css).
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -15,6 +20,11 @@ import IconButton from "@/components/glass/IconButton";
 import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
+
+/* Kui kaua peab kursor real seisma, enne kui hõljumine loeb valikuna.
+   Piisavalt lühike, et tahtlik osutamine tunduks kohene; piisavalt pikk,
+   et dokist üle teiste ridade möödumine ei jätaks jälge. */
+const HOVER_DWELL_MS = 180;
 
 const wrapPos = (i, active, n) => {
   let pos = (((i - active) % n) + n) % n;
@@ -32,28 +42,117 @@ export default function GlassCarousel({
   setKey = null,
   forceInitial = false,
   visible = 3,
-  grid = false,
+  zones = null,
 }) {
   const n = items.length;
 
-  /* Laiad paigutused: 5-kaardiline karussell või töölaua keritav ruudustik
-     (grid). Kitsas aknas kukub mõlemad tagasi kolme kaardiga karusselliks.
-     SSR alustab 3-ga (deterministlik), laius mõõdetakse pärast hüdreerimist.
-     Grid EI sõltu enam kaardiarvust (n) — rollipõhises töölaual on kaarte
-     8–15 ja ruudustik kerib, kui rida ei mahu. */
+  /* Laiad paigutused: 5-kaardiline karussell või sügavuslaud (zones).
+     Kitsas aknas kukub mõlemad tagasi kolme kaardiga karusselliks.
+     SSR alustab 3-ga (deterministlik), laius mõõdetakse pärast
+     hüdreerimist. */
+  const hasZones = Array.isArray(zones) && zones.length > 0;
   const [wideEnough, setWideEnough] = useState(false);
   useEffect(() => {
-    if ((!grid && visible !== 5) || typeof window === "undefined") return undefined;
+    if ((!hasZones && visible !== 5) || typeof window === "undefined") return undefined;
     const mq = window.matchMedia("(min-width: 1200px)");
     const update = () => setWideEnough(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
-  }, [grid, visible]);
-  const isGrid = grid && wideEnough;
-  const shown = isGrid ? 10 : visible === 5 && wideEnough && n >= 5 ? 5 : 3;
+  }, [hasZones, visible]);
+  const isDesk = hasZones && wideEnough;
+  const shown = isDesk ? "desk" : visible === 5 && wideEnough && n >= 5 ? 5 : 3;
   const posLimit = shown === 5 ? 2.4 : 1.4;
   const hideBeyond = shown === 5 ? 2 : 1;
+
+  /* ---------- Sügavuslaua astmed ----------
+     Tsooni järjekord tuleb kutsujalt (lähim eespool); kaardi järjekord
+     astme sees tuleb items-loendi järjekorrast. Tundmatu tsooniga kaart
+     ei kao ära, vaid maandub viimasele astmele — laud ei tohi kaarti
+     alla neelata ka siis, kui andmed on poolikud. */
+  const zoneGroups = useMemo(() => {
+    if (!hasZones) return [];
+    const groups = zones.map((id) => ({ id, items: [] }));
+    const byId = new Map(groups.map((g) => [g.id, g]));
+    items.forEach((item) => {
+      (byId.get(item.zone) || groups[groups.length - 1]).items.push(item);
+    });
+    return groups.filter((g) => g.items.length > 0);
+  }, [hasZones, zones, items]);
+
+  /* Laua laiuse otsustab PIKIM aste: kaardid on kõigil astmetel ühes
+     mõõdus, seega peab kaardilaiuse valem (carousel.css --gc-w) teadma,
+     mitu kaarti kõige täiemasse ritta mahutada tuleb. Ilma selleta oleks
+     see arv CSS-i sisse kirjutatud oletus, mis roll-lülituse (klient 4,
+     spetsialist 5) järel vaikselt valeks läheb. */
+  const deskCols = useMemo(
+    () => zoneGroups.reduce((max, g) => Math.max(max, g.items.length), 1),
+    [zoneGroups]
+  );
+
+  /* Esiletõstetud tsoon. Aste tõuseb OMAL KOHAL sinu poole ja udu langeb
+     temalt ära; teised astmed taanduvad sammu võrra. Astmed EI VAHETA
+     kohta — varem tõmbasin valitud tsooni ritta esimeseks (flex order),
+     aga `order` on hetkeline ümberpaigutus, mitte üleminek: element
+     hüppas kohe uude ritta ja alles siis libises transform järele. Just
+     see jõnksatus tegi vahetuse arusaamatuks (omanik 25.07). Nüüd
+     muutuvad ainult transform ja udu — mõlemad animeeruvad sujuvalt. */
+  const [focusZone, setFocusZone] = useState(null);
+  /* Hiir astme kohal tõstab selle esile täpselt nagu doki nupp — käega
+     juhitud fookus, mis ei nõua klikki (omanik 25.07). Klikitud fookus
+     jääb alla: kui hiir lahkub, naaseb laud sinna, mille sa VALISID.
+     Hover ja klikk elavad eri muutujates, aga suubuvad ühte
+     `activeZone`-i, sest laud ja dokk peavad näitama sama rida. */
+  const [hoverZone, setHoverZone] = useState(null);
+  /* KLIKK VÕIDAB HÕLJUMISE. Kui rida on dokist valitud, ei tohi teekond
+     sinna teda ümber lükata: dokist ülemise reani liikudes läheb kursor
+     paratamatult vahepealsetest ridadest läbi ja need haarasid fookuse
+     ükshaaval endale (omanik 25.07, kaks korda). Ooteaeg üksi seda ei
+     lahendanud — sihilik hiireliigutus viibib real kauem kui iga lävi,
+     mida saaks veel kohesena tunda. Seega: valitud rida jääb valituks,
+     kuni sa valid teise või vajutad sama silti uuesti. Hõljumine juhib
+     lauda ainult siis, kui midagi ei ole valitud. */
+  const activeZone = focusZone || hoverZone;
+  useEffect(() => {
+    setFocusZone(null);
+    setHoverZone(null);
+  }, [setKey]);
+  /* Hõljumine loeb alles PEATUMISE järel, mitte läbiminekul. Dokist oma
+     valitud rea juurde liikudes läheb kursor paratamatult teistest
+     ridadest läbi, ja hetkeline pointerenter tegi igast läbiminekust
+     valiku: read süttisid teel ükshaaval (omanik 25.07: "kiirmenüüst kui
+     valin töölaua osa välja, siis sinna minnes ei tohiks teised
+     aktiveeruda"). Lühike ooteaeg eristab transiidi kavatsusest —
+     lahkumine tühistab ootel valiku, seega läbisõit ei jäta jälge. */
+  const hoverTimer = useRef(null);
+  const cancelHoverTimer = useCallback(() => {
+    if (hoverTimer.current) {
+      clearTimeout(hoverTimer.current);
+      hoverTimer.current = null;
+    }
+  }, []);
+  useEffect(() => cancelHoverTimer, [cancelHoverTimer]);
+  /* Puude ei hõlju: seal oleks "hover" tegelikult vajutus ja aste jääks
+     kinni sinna, kust sõrm üle libises. */
+  const onZoneEnter = useCallback(
+    (id, e) => {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+      cancelHoverTimer();
+      hoverTimer.current = setTimeout(() => {
+        hoverTimer.current = null;
+        setHoverZone(id);
+      }, HOVER_DWELL_MS);
+    },
+    [cancelHoverTimer]
+  );
+  const onZoneLeave = useCallback(
+    (id, e) => {
+      if (e.pointerType && e.pointerType !== "mouse") return;
+      cancelHoverTimer();
+      setHoverZone((cur) => (cur === id ? null : cur));
+    },
+    [cancelHoverTimer]
+  );
 
   /* Viimase keskkaardi mälu komplekti kohta (sessionStorage), et elaks
      üle karusselli remountide (key={carouselSet}) ja route-vahetuste. */
@@ -102,11 +201,7 @@ export default function GlassCarousel({
      lahkuv külgkaart taandub oma poolele (nt −1 → −2), mitte üle esiplaani
      vastasserva (+2). Ringi-õmblus (pos hüppab üle poole ringi) tehakse
      HETKEGA, ilma transform-üleminekuta (data-warp), sel hetkel kui kaart
-     on nagunii peidus/hajumas — nii ei teki nähtavat ülelendu. Väiksemaid
-     komplekte (nt haldus, n=4) parandab; suuremad ei muutu (seal oli õmblus
-     juba nähtamatus tsoonis). */
-  /* posRef hoiab kaartide praeguseid pidevaid positsioone (arvutus elab
-     efekti kehas — puhas seisu-updater, StrictMode-kindel). */
+     on nagunii peidus/hajumas — nii ei teki nähtavat ülelendu. */
   const posRef = useRef(null);
   if (posRef.current === null) {
     posRef.current = items.map((_, i) => wrapPos(i, active, n));
@@ -147,6 +242,7 @@ export default function GlassCarousel({
     setLayout({ pos, warp });
   }, [active, n, items]);
 
+  const navRef = useRef(null);
   const listRef = useRef(null);
   const drag = useRef({ on: false, x0: 0, dx: 0, moved: false, pid: null });
   const itemRefs = useRef([]);
@@ -163,12 +259,6 @@ export default function GlassCarousel({
     return true;
   };
 
-  /* Tellija otsus (07.07, täpsustus): iga komplekt AVANEB VIIMASELT
-     keskkaardilt — asukoht jäetakse meelde (storageId, üleval), et
-     komplektivahetus (work↔admin↔profile) ja tagasitulek ei viskaks
-     vaikekaardile. Kaardilehel (forceInitial) tsentreeritakse siiski
-     avatud kaart. Kerimine komplekti sees töötab React-seisu kaudu. */
-
   const step = useCallback(
     (delta, { focus = false } = {}) => {
       if (!stepAllowed()) return;
@@ -184,114 +274,38 @@ export default function GlassCarousel({
     [n]
   );
 
-  /* ---------- Keritav ruudustik: LEHE kaupa, nagu tavakarussellis ----------
-     Vaateaken on viie veeru laiune (carousel.css), nii et üks samm = üks
-     täis leht (5 × 2 = 10 kaarti). Ruudustik EI ole ringjas: viimasest
-     lehest edasi ei tule esimene, vaid nool kaob (omanik 21.07). */
-  const gridPage = useCallback((dir) => {
-    const list = listRef.current;
-    if (!list) return;
-    const cs = window.getComputedStyle(list);
-    const gap = parseFloat(cs.columnGap) || 0;
-    const padX = (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
-    const col = list.querySelector(".gc-item")?.getBoundingClientRect().width || 0;
-    const stride = col + gap;
-    if (stride <= 0) return;
-    /* +2px talumine: clientWidth ümardatakse täisarvuks (1081 vs tegelik
-       1081,44), mille peale floor annaks viie veeru asemel neli ja leht
-       hüppaks poolikult. */
-    const perPage = Math.max(1, Math.floor((list.clientWidth - padX + gap + 2) / stride));
-    const reduced =
-      document.documentElement.getAttribute("data-reduce-motion") === "1";
-    list.scrollBy({
-      left: dir * perPage * stride,
-      behavior: reduced ? "auto" : "smooth",
-    });
-  }, []);
-
-  /* Noolte nähtavus: kumbki pool ainult siis, kui sinnapoole on veel kerida. */
-  const [gridEdges, setGridEdges] = useState({ prev: false, next: false });
-  const readGridEdges = useCallback(() => {
-    const list = listRef.current;
-    const next = (() => {
-      if (!isGrid || !list) return { prev: false, next: false };
-      const max = list.scrollWidth - list.clientWidth;
-      return { prev: list.scrollLeft > 2, next: list.scrollLeft < max - 2 };
-    })();
-    setGridEdges((cur) =>
-      cur.prev === next.prev && cur.next === next.next ? cur : next
-    );
-  }, [isGrid]);
-
-  useEffect(() => {
-    readGridEdges();
-    const list = listRef.current;
-    if (!isGrid || !list) return undefined;
-    const onScroll = () => readGridEdges();
-    list.addEventListener("scroll", onScroll, { passive: true });
-    /* Kaardiarv muutub rollivahetusega ja laius akna suurusega — mõlemad
-       muudavad seda, kas kerida on veel kuhugi. */
-    const ro =
-      typeof ResizeObserver !== "undefined"
-        ? new ResizeObserver(() => readGridEdges())
-        : null;
-    ro?.observe(list);
-    return () => {
-      list.removeEventListener("scroll", onScroll);
-      ro?.disconnect();
-    };
-  }, [isGrid, readGridEdges, items]);
-
-  /* Küljenool: ruudustikus leht edasi/tagasi, karussellis üks kaart. */
-  const navigate = useCallback(
-    (dir) => {
-      if (!isGrid) {
-        step(dir);
-        return;
-      }
-      if (stepAllowed()) gridPage(dir);
-    },
-    [isGrid, gridPage, step]
-  );
+  /* Küljenool: ainult karussellis. Laual ei ole kuhugi kerida — kõik
+     kaardid on korraga väljas, seega nooli seal ei ole. */
+  const navigate = useCallback((dir) => step(dir), [step]);
 
   /* Klaviatuur karussellil */
   const onKeyDown = useCallback(
     (e) => {
+      if (isDesk) return;
       if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         const dir = e.key === "ArrowLeft" ? -1 : 1;
         e.preventDefault();
-        if (isGrid) {
-          if (stepAllowed()) gridPage(dir);
-        } else {
-          step(dir, { focus: true });
-        }
+        step(dir, { focus: true });
       } else if (e.key === "Home" || e.key === "End") {
         e.preventDefault();
-        if (isGrid) {
-          /* Ruudustik ei pöörle: Home/End viivad rea algusesse ja lõppu. */
-          listRef.current?.scrollTo({
-            left: e.key === "Home" ? 0 : listRef.current.scrollWidth,
-            behavior: "smooth",
-          });
-        } else if (stepAllowed()) {
-          setActive(e.key === "Home" ? 0 : n - 1);
-        }
+        if (stepAllowed()) setActive(e.key === "Home" ? 0 : n - 1);
       }
     },
-    [step, n, isGrid, gridPage]
+    [isDesk, step, n]
   );
 
   /* Lohistamine ja svaip. NB: pointer capture võetakse ALLES siis,
      kui lohistus päriselt algab — varajane capture suunaks pointerup'i
-     UL-ile ja kaartide click-sündmus ei jõuaks kunagi kohale. */
-  /* Ruudustik kerib natiivselt (overflow + snap) — seal EI tohi lohistus
-     pointerit haarata ega karusselli pöörata (omanik 21.07: kerimisloogika
-     oli vale). Puutežest jääb brauseri enda hooleks. */
-  const onPointerDown = useCallback((e) => {
-    if (isGrid) return;
-    if (e.button != null && e.button !== 0) return;
-    drag.current = { on: true, x0: e.clientX, dx: 0, moved: false, pid: e.pointerId };
-  }, [isGrid]);
+     UL-ile ja kaartide click-sündmus ei jõuaks kunagi kohale.
+     Laual lohistust ei ole: seal ei pöörle miski. */
+  const onPointerDown = useCallback(
+    (e) => {
+      if (isDesk) return;
+      if (e.button != null && e.button !== 0) return;
+      drag.current = { on: true, x0: e.clientX, dx: 0, moved: false, pid: e.pointerId };
+    },
+    [isDesk]
+  );
   const onPointerMove = useCallback((e) => {
     const d = drag.current;
     if (!d.on) return;
@@ -336,24 +350,21 @@ export default function GlassCarousel({
      ja hiirerullik ilma karusselli fookuseta — terve ekraani ulatuses.
      Aktiivne alles siis, kui käivitus on kaardid avanud (wrap pole inert)
      ja ükski modal/kaardi-leht ei kata; sammu lukk hoiab tempo. */
-  const carouselInteractive = useCallback(() => {
-    /* 5 × 2 desktop on töölaud, mitte pöörlev karussell. Kõik nähtav
-       püsib paigal ja ülejäänud valikuni viib alumine otseteeriba. */
-    if (isGrid) return false;
-    const list = listRef.current;
-    if (!list) return false;
-    const wrap = list.closest(".room-carousel-wrap");
+  /* Ühised väravad: kas ruum on üldse selles seisus, kus rullik ja nooled
+     tohivad midagi liigutada. Kehtib NII karussellile (pöörab kaarti) kui
+     lauale (vahetab rea fookust). */
+  const roomInteractive = useCallback(() => {
+    const root = navRef.current;
+    if (!root) return false;
+    const wrap = root.closest(".room-carousel-wrap");
     if (!wrap || wrap.inert) return false;
-    const room = list.closest(".room");
+    const room = root.closest(".room");
     if (!room) return false;
     if (room.dataset.loginOpen === "1" || room.dataset.cardPage === "1") return false;
     // Ükski lahtiolev modal (ligipääsetavus, kontakt/paigalda) ei tohi
     // lasta rullikul/nooltel tagust karusselli pöörata (tellija 07.07).
     if (room.dataset.a11yOpen === "1" || room.dataset.infoOpen === "1") return false;
     if (document.documentElement.getAttribute("data-room-mode") === "panel") return false;
-    // Ülariba (kiirnuppude paneel) lahti/hoveril/fookuses → rullik ja nooled
-    // ei tohi tagust karusselli pöörata (tellija 07.07: "kaardid hakkasid
-    // liikuma"). :hover/:focus-within töötavad matches()-is.
     /* Juhtpaneel elab ruumi ja main-kihi vahel eraldi kihis, et see oleks
        kasutatav ka töövaadetes. Seetõttu otsime seda dokumendist, mitte
        enam ainult .room elemendi seest. */
@@ -367,47 +378,61 @@ export default function GlassCarousel({
       return false;
     }
     return true;
-  }, [isGrid]);
+  }, []);
+
+  /* Laual liigutab rullik rea FOOKUST, mitte kaarte: kaardid on nagunii
+     kõik väljas, seega ainus asi, mida kerida saab, on tähelepanu.
+     Suund on ekraaniga kooskõlas — rullik üles läheb ülemise rea poole.
+     Ring on kinnine, nii et pikk kerimine ei jää seina taha kinni. */
+  const stepZone = useCallback(
+    (dir) => {
+      const ids = zoneGroups.map((g) => g.id);
+      if (!ids.length) return;
+      setFocusZone((cur) => {
+        const at = cur ? ids.indexOf(cur) : -1;
+        /* Fookuseta haarab esimene kerimine selle serva, kust žest tuleb:
+           üles kerides alumise rea, alla kerides ülemise. */
+        if (at < 0) return dir > 0 ? ids[0] : ids[ids.length - 1];
+        /* Read on füüsiline virn, mitte ringkäik: ülemiselt realt edasi
+           kerides ei hüppa fookus alla tagasi, vaid jääb paigale. */
+        const next = Math.min(ids.length - 1, Math.max(0, at + dir));
+        return ids[next];
+      });
+    },
+    [zoneGroups]
+  );
 
   useEffect(() => {
-    const gridCanScrollX = () => {
-      const list = listRef.current;
-      return isGrid && list && list.scrollWidth > list.clientWidth + 2 ? list : null;
-    };
     const onKey = (e) => {
       if (e.defaultPrevented) return;
-      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       const t = e.target;
       const tag = (t?.tagName || "").toLowerCase();
       if (tag === "input" || tag === "textarea" || tag === "select" || t?.isContentEditable) {
         return;
       }
-      /* Keritav ruudustik: nooled kerivad LEHE kaupa, ei pöörle. */
-      if (gridCanScrollX()) {
+      if (isDesk) {
+        if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+        if (!roomInteractive()) return;
         e.preventDefault();
-        if (stepAllowed()) gridPage(e.key === "ArrowLeft" ? -1 : 1);
+        if (stepAllowed()) stepZone(e.key === "ArrowUp" ? 1 : -1);
         return;
       }
-      if (!carouselInteractive()) return;
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      if (!roomInteractive()) return;
       e.preventDefault();
       step(e.key === "ArrowLeft" ? -1 : 1);
     };
     const onWheel = (e) => {
       if (e.defaultPrevented) return;
-      /* Keritav ruudustik: püstine hiireratas viib LEHE edasi (töölaud on
-         horisontaalne riiul). Puuteplaadi horisontaal (deltaX) samuti.
-         Sammulukk hoiab tempo — muidu vuhiseks üks kerimisžest mitu lehte. */
-      if (gridCanScrollX()) {
-        const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        if (Math.abs(d) < 12) return;
-        e.preventDefault();
-        if (stepAllowed()) gridPage(d > 0 ? 1 : -1);
-        return;
-      }
-      if (!carouselInteractive()) return;
+      if (!roomInteractive()) return;
       const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (Math.abs(d) < 12) return;
       e.preventDefault();
+      if (isDesk) {
+        /* Sammulukk hoiab tempo: üks žest = üks rida, mitte vuhin läbi. */
+        if (stepAllowed()) stepZone(d > 0 ? -1 : 1);
+        return;
+      }
       step(d > 0 ? 1 : -1);
     };
     window.addEventListener("keydown", onKey);
@@ -416,7 +441,7 @@ export default function GlassCarousel({
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("wheel", onWheel);
     };
-  }, [carouselInteractive, step, isGrid, gridPage]);
+  }, [isDesk, roomInteractive, step, stepZone]);
 
   const handleActivate = useCallback(
     (e, item, i) => {
@@ -424,7 +449,7 @@ export default function GlassCarousel({
         e.preventDefault();
         return;
       }
-      if (isGrid) {
+      if (isDesk) {
         e.preventDefault();
         onSelect?.(item);
         return;
@@ -441,12 +466,17 @@ export default function GlassCarousel({
       e.preventDefault();
       onSelect?.(item);
     },
-    [isGrid, n, onSelect]
+    [isDesk, n, onSelect]
   );
 
   /* Kolme kaardi vaates on alumine riba päris otsetee, mitte pelgalt
      asukohatäpp: valik avaneb kohe. Tagasi elab eraldi püsiva nupuna, et
-     alamkomplektis ei peaks selle leidmiseks karusselli läbi kerima. */
+     alamkomplektis ei peaks selle leidmiseks karusselli läbi kerima.
+     LAUAL seda riba EI OLE: kui kõik kaardid on nagunii korraga väljas,
+     ei ole 15-ikoonilist otseteed vaja — ja just see riba jooksis oma
+     pillist välja ning rolli-lüliti alla (omanik 25.07). Selle asemel
+     seisavad dokis tsooninimed, mida on alati 2–3 ja mis ei saa
+     põhimõtteliselt üle ääre joosta. */
   const shortcutEntries = useMemo(
     () => items.map((item, index) => ({ item, index })),
     [items]
@@ -458,7 +488,7 @@ export default function GlassCarousel({
     [onSelect]
   );
 
-  const showDots = n > 1;
+  const showDock = n > 1;
   const posLabel = useMemo(() => {
     const template = t("room.position");
     return template
@@ -466,96 +496,169 @@ export default function GlassCarousel({
       .replace("{total}", String(n));
   }, [t, active, n]);
 
+  const zoneLabel = useCallback(
+    (id, field) => t(`room.zones.${id}.${field}`, ""),
+    [t]
+  );
+
   return (
     <nav
       className="gc"
+      ref={navRef}
       data-visible={shown}
-      data-grid-scroll={isGrid ? "1" : "0"}
+      data-desk={isDesk ? "1" : "0"}
+      /* --desk-cols peab elama SAMAL elemendil, kus --gc-w arvutatakse
+         (.gc[data-desk="1"]): custom property asendatakse juba selle
+         elemendi arvutatud väärtuses, seega lapsel antud arv jõuaks
+         valemisse liiga hilja. */
+      style={isDesk ? { "--desk-cols": deskCols } : undefined}
       aria-label={t("room.menu_label")}
       id="room-menu"
     >
-      <IconButton
-        layoutClassName="gc-arrow gc-arrow--left"
-        aria-label={t("room.prev_panel")}
-        disabled={isGrid && !gridEdges.prev}
-        onClick={() => navigate(-1)}
-      >
-        <ChevronIcon direction="left" strokeWidth={1.05} />
-      </IconButton>
+      {!isDesk ? (
+        <IconButton
+          layoutClassName="gc-arrow gc-arrow--left"
+          aria-label={t("room.prev_panel")}
+          onClick={() => navigate(-1)}
+        >
+          <ChevronIcon direction="left" strokeWidth={1.05} />
+        </IconButton>
+      ) : null}
 
-      <ul
-        className="gc-list"
-        ref={listRef}
-        onKeyDown={onKeyDown}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-      >
-        {items.map((item, i) => {
-          const pos = layout.pos[i] ?? wrapPos(i, active, n);
-          const abs = Math.abs(pos);
-          const gridIndex = (i - active + n) % n;
-          /* Keritav ruudustik: kõik kaardid nähtavad ja voolus (CSS grid +
-             overflow), mitte 10-kaardi aken. Peitmine käib ainult ringjas
-             karusselli-režiimis. */
-          const isGridVisible = isGrid;
-          const isCenter = isGrid ? gridIndex === 0 : pos === 0;
-          const isWarp = layout.warp[i] === true;
-          /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
-             mitte oma kaugel ringipositsioonil — sisenev kaart libiseb
-             servast ühe sammu ega lenda üle rea; lahkuv libiseb serva
-             taha ja hajub (tellija 06.07: "keritav, mitte lennuk"). */
-          const posVis = Math.max(-posLimit, Math.min(posLimit, pos));
-          const absVis = Math.min(abs, posLimit);
-          return (
-            <li
-              key={item.key}
-              className="gc-item"
-              style={{
-                "--pos": posVis,
-                "--abs": absVis,
-                "--grid-col": gridIndex % 5,
-                "--grid-row": Math.floor(gridIndex / 5),
-                "--grid-index": gridIndex,
-                zIndex: isGrid ? 40 : 40 - abs * 10,
-              }}
-              data-center={isCenter ? "1" : "0"}
-              data-hidden={isGrid ? (isGridVisible ? "0" : "1") : abs > hideBeyond ? "1" : "0"}
-              data-warp={isWarp ? "1" : "0"}
-            >
-              <GlassCard
-                ref={(el) => {
-                  itemRefs.current[i] = el;
+      {isDesk ? (
+        /* ---------- Sügavuslaud ----------
+           Astmed pöördjärjestuses (column-reverse): lähim aste ALL, doki
+           juures, kaugem taga ülal — nii nagu laud, mille taga sa istud. */
+        <div className="gc-desk">
+          {zoneGroups.map((group, d) => {
+            return (
+              <div
+                key={group.id}
+                className="gc-tier"
+                data-zone={group.id}
+                data-d={d}
+                data-focus={activeZone === group.id ? "1" : "0"}
+                data-dimmed={activeZone && activeZone !== group.id ? "1" : "0"}
+                /* --abs toidab käivituse astakut (gc-ignite): esiaste
+                   süttib esimesena, tagumine viimasena. */
+                style={{ "--d": d, "--abs": d }}
+              >
+                {/* Püstise sildi pikkust mõõdetakse rea KÕRGUSES, seega
+                    pikk nimi ("Поиск помощи", "Finding help") ulatub 1200 px
+                    ekraanil kaardist kõrgemaks ja tikub naaberastme vahesse.
+                    Sama vastus mis kaardisildil: pikk nimi saab väiksema
+                    kirja, mitte kärbet. */}
+                <span
+                  className="gc-tier-name"
+                  data-long={(zoneLabel(group.id, "name") || "").length > 9 ? "1" : "0"}
+                  aria-hidden="true"
+                >
+                  {zoneLabel(group.id, "name")}
+                </span>
+                <ul
+                  className="gc-tier-list"
+                  aria-label={zoneLabel(group.id, "name") || undefined}
+                  onPointerEnter={(e) => onZoneEnter(group.id, e)}
+                  onPointerLeave={(e) => onZoneLeave(group.id, e)}
+                >
+                  {group.items.map((item) => (
+                    <li key={item.key} className="gc-item" data-hidden="0">
+                      <GlassCard
+                        href={item.href}
+                        label={item.label}
+                        icon={item.icon || null}
+                        longLabel={item.label.length > 13}
+                        badge={item.badge || null}
+                        badgeTone={item.badgeTone || null}
+                        tabIndex={0}
+                        {...(item.comingSoon
+                          ? {
+                              "data-coming-soon": "1",
+                              "aria-disabled": "true",
+                              title: item.comingSoonHint || undefined,
+                            }
+                          : {})}
+                        onClick={(e) => handleActivate(e, item, 0)}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <ul
+          className="gc-list"
+          ref={listRef}
+          onKeyDown={onKeyDown}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+        >
+          {items.map((item, i) => {
+            const pos = layout.pos[i] ?? wrapPos(i, active, n);
+            const abs = Math.abs(pos);
+            const isCenter = pos === 0;
+            const isWarp = layout.warp[i] === true;
+            /* Peidus kaardid PARGIVAD kohe serva taga (±posLimit sammu),
+               mitte oma kaugel ringipositsioonil — sisenev kaart libiseb
+               servast ühe sammu ega lenda üle rea; lahkuv libiseb serva
+               taha ja hajub (tellija 06.07: "keritav, mitte lennuk"). */
+            const posVis = Math.max(-posLimit, Math.min(posLimit, pos));
+            const absVis = Math.min(abs, posLimit);
+            return (
+              <li
+                key={item.key}
+                className="gc-item"
+                style={{
+                  "--pos": posVis,
+                  "--abs": absVis,
+                  zIndex: 40 - abs * 10,
                 }}
-                href={item.href}
-                label={item.label}
-                icon={item.icon || null}
-                longLabel={item.label.length > 13}
-                badge={item.badge || null}
-                badgeTone={item.badgeTone || null}
-                tabIndex={isGridVisible || isCenter ? 0 : -1}
-                aria-current={!isGrid && isCenter ? "true" : undefined}
-                {...(item.comingSoon
-                  ? { "data-coming-soon": "1", "aria-disabled": "true", title: item.comingSoonHint || undefined }
-                  : {})}
-                onClick={(e) => handleActivate(e, item, i)}
-              />
-            </li>
-          );
-        })}
-      </ul>
+                data-center={isCenter ? "1" : "0"}
+                data-hidden={abs > hideBeyond ? "1" : "0"}
+                data-warp={isWarp ? "1" : "0"}
+              >
+                <GlassCard
+                  ref={(el) => {
+                    itemRefs.current[i] = el;
+                  }}
+                  href={item.href}
+                  label={item.label}
+                  icon={item.icon || null}
+                  longLabel={item.label.length > 13}
+                  badge={item.badge || null}
+                  badgeTone={item.badgeTone || null}
+                  tabIndex={isCenter ? 0 : -1}
+                  aria-current={isCenter ? "true" : undefined}
+                  {...(item.comingSoon
+                    ? {
+                        "data-coming-soon": "1",
+                        "aria-disabled": "true",
+                        title: item.comingSoonHint || undefined,
+                      }
+                    : {})}
+                  onClick={(e) => handleActivate(e, item, i)}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
-      <IconButton
-        layoutClassName="gc-arrow gc-arrow--right"
-        aria-label={t("room.next_panel")}
-        disabled={isGrid && !gridEdges.next}
-        onClick={() => navigate(1)}
-      >
-        <ChevronIcon direction="right" strokeWidth={1.05} />
-      </IconButton>
+      {!isDesk ? (
+        <IconButton
+          layoutClassName="gc-arrow gc-arrow--right"
+          aria-label={t("room.next_panel")}
+          onClick={() => navigate(1)}
+        >
+          <ChevronIcon direction="right" strokeWidth={1.05} />
+        </IconButton>
+      ) : null}
 
-      {showDots ? (
+      {showDock ? (
         <div className="gc-shortcuts">
           <div className="gc-shortcut-menu" role="group" aria-label={t("room.menu_label")}>
             {backItem ? (
@@ -575,39 +678,79 @@ export default function GlassCarousel({
               </button>
             ) : null}
             {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
-            <div className="gc-shortcut-track">
-              {shortcutEntries.map(({ item, index }) => {
-                const isActive = index === active;
-                return (
-                  <button
-                    key={item.key}
-                    type="button"
-                    className="gc-shortcut"
-                    data-on={isActive ? "1" : "0"}
-                    aria-label={item.label}
-                    aria-current={isActive ? "true" : undefined}
-                    onClick={() => handleShortcut(item)}
-                  >
-                    <span className="gc-shortcut-icon" aria-hidden="true">
-                      {item.icon || <span className="gc-shortcut-mark" />}
-                    </span>
-                    <span className="gc-shortcut-text" aria-hidden="true">
-                      {item.label}
-                    </span>
-                    <span className="gc-shortcut-tooltip" aria-hidden="true">
-                      {item.label}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            {isDesk ? (
+              <div className="gc-zone-track">
+                {zoneGroups.map((group) => {
+                  /* data-on järgib sedasama activeZone'i mis laud: kui hiir
+                     on rea kohal, süttib ka doki silt (omanik 25.07: "kui
+                     ma hoveriga muudan ridu, siis all kiirmenüü ka näitab
+                     seda"). aria-pressed jääb KLIKI külge — hõljumine ei
+                     ole vajutus ja ekraanilugejale ei tohi seda nii öelda. */
+                  const on = activeZone === group.id;
+                  const pressed = focusZone === group.id;
+                  return (
+                    <button
+                      key={group.id}
+                      type="button"
+                      className="gc-zone"
+                      data-on={on ? "1" : "0"}
+                      aria-pressed={pressed}
+                      onClick={() => setFocusZone(pressed ? null : group.id)}
+                    >
+                      {zoneLabel(group.id, "name")}
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="gc-shortcut-track">
+                {shortcutEntries.map(({ item, index }) => {
+                  const isActive = index === active;
+                  return (
+                    <button
+                      key={item.key}
+                      type="button"
+                      className="gc-shortcut"
+                      data-on={isActive ? "1" : "0"}
+                      aria-label={item.label}
+                      aria-current={isActive ? "true" : undefined}
+                      onClick={() => handleShortcut(item)}
+                    >
+                      <span className="gc-shortcut-icon" aria-hidden="true">
+                        {item.icon || <span className="gc-shortcut-mark" />}
+                      </span>
+                      {/* Aktiivse otsetee nime siin EI OLE. Ta kasvas nupu
+                          sisse ja muutis doki laiust, ja kuna dokk on
+                          tsentreeritud, nihkus IGA kerimisega terve riba
+                          (mõõdetud: 231 → 217 px, riba 8 px küljele;
+                          omanik 25.07: "imelikult sisu hüppab"). Nimi elab
+                          nagunii keskmisel KAARDIL suurelt, dokk on
+                          asukohaviide. Hõljudes ütleb tooltip sedasama.
+                          Jaamadokkides (a11f-/rgf-) tekst jääb: seal on
+                          nupud ühesugused täpid ja nimi on ainus orientiir. */}
+                      <span className="gc-shortcut-tooltip" aria-hidden="true">
+                        {item.label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
-          <RoleViewSwitcher placement="cards" onRoleChanged={onRoleChanged} />
         </div>
       ) : null}
-      <p className="sr-only" aria-live="polite">
-        {items[active]?.label} — {posLabel}
-      </p>
+
+      {/* Rollilüliti on ADMINI tööriist ja elab dokist LAHUS, ekraani
+          nurgas (omanik 25.07: "tavakasutaja vaade on kõige tähtsam,
+          rolli vahetus võib kuskil nurgas ka olla"). Doki sees dikteeris
+          ta doki laiust ja jäi otseteeriba alla. */}
+      <RoleViewSwitcher placement="cards" onRoleChanged={onRoleChanged} />
+
+      {!isDesk ? (
+        <p className="sr-only" aria-live="polite">
+          {items[active]?.label} — {posLabel}
+        </p>
+      ) : null}
     </nav>
   );
 }

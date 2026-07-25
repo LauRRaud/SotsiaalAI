@@ -179,13 +179,18 @@ export const ChatCardIcon = (props) => (
   </Svg>
 );
 
-/* Ruumid — kaks inimest (tellija etalon; kuju ChatIcons.jsx RoomsIcon-ist) */
+/* Ruumid — kaks inimest (tellija etalon; kuju ChatIcons.jsx RoomsIcon-ist).
+   Optiline normeerimine: toorkuju diagonaal on 28,8 ühikut, komplekti
+   mediaan 21,1 — ilma kahandamata loeb ta naabritest 1,36× suuremana.
+   Sama kuju kannab ka MentorIcon, seega mõõt tuleb ühest kohast. */
 export const RoomsCardIcon = (props) => (
   <Svg {...props}>
-    <path {...P} d="M6.41 13.79h5.4c2.1 0 3.7 1 4.3 2.6.5 1.3.4 2.5.2 3.4-.5 2-2.9 2.6-7.2 2.6s-6.7-.6-7.2-2.6c-.2-.9-.3-2.1.2-3.4.6-1.6 2.2-2.6 4.3-2.6Z" />
-    <circle {...P} cx="9.11" cy="5.79" r="4" />
-    <path {...P} d="M21.86 18.88V17c0-1.71-1.53-3.21-3.72-3.64" />
-    <path {...P} d="M15.4 2.76c1.91.02 3.44 1.64 3.41 3.62s-1.59 3.56-3.5 3.53" />
+    <g transform="translate(12 12) scale(0.733) translate(-11.8 -12.09)">
+      <path {...P} d="M6.41 13.79h5.4c2.1 0 3.7 1 4.3 2.6.5 1.3.4 2.5.2 3.4-.5 2-2.9 2.6-7.2 2.6s-6.7-.6-7.2-2.6c-.2-.9-.3-2.1.2-3.4.6-1.6 2.2-2.6 4.3-2.6Z" />
+      <circle {...P} cx="9.11" cy="5.79" r="4" />
+      <path {...P} d="M21.86 18.88V17c0-1.71-1.53-3.21-3.72-3.64" />
+      <path {...P} d="M15.4 2.76c1.91.02 3.44 1.64 3.41 3.62s-1.59 3.56-3.5 3.53" />
+    </g>
   </Svg>
 );
 
@@ -289,12 +294,22 @@ export const InquiryIcon = (props) => (
   </Svg>
 );
 
-/* Kutsu osaleja — inimene + pluss */
+/* Kutsu osaleja — terviklik inimene (suletud kere) + pluss ülal paremal.
+   Kuju on ChatIcons.jsx AddPersonIcon'ist, mis oli varem kutsemodaali
+   ikoon ja jäi kasutusest välja (omanik 25.07: "mul kunagi oli teine
+   ikoon sellele... inimene oli kujutatud alt kinnisena"). Varasem
+   siinne glüüf oli lahtise kaarega poolik kuju ja pluss all paremal. */
 export const InvitePersonIcon = (props) => (
+  /* Optiline normeerimine: toorkuju diagonaal on 27,1 ühikut, komplekti
+     mediaan 21,1 — nii nagu on, loeks ta naabritest 1,28× suuremana.
+     Transform tsentreerib kuju (kese 13,47 / 13,30) ja kahandab sihile. */
   <Svg {...props}>
-    <circle {...P} cx="10" cy="8" r="3.1" />
-    <path {...P} d="M4.6 19.4c.55-3 2.8-4.6 5.4-4.6 1.4 0 2.7.45 3.7 1.3" />
-    <path {...P} d="M17.6 13.6v5.2M15 16.2h5.2" />
+    <g transform="translate(12 12) scale(0.778) translate(-13.47 -13.3)">
+      <path {...P} d="M9.3 15H14.7C16.8 15 18.4 16 19 17.6C19.5 18.9 19.4 20.1 19.2 21C18.7 23 16.3 23.6 12 23.6C7.7 23.6 5.3 23 4.8 21C4.6 20.1 4.5 18.9 5 17.6C5.6 16 7.2 15 9.3 15Z" />
+      <circle {...P} cx="12" cy="7" r="4" />
+      <path {...P} d="M20.2 8.7V12.9" />
+      <path {...P} d="M18.1 10.8H22.3" />
+    </g>
   </Svg>
 );
 
@@ -385,15 +400,11 @@ export const SupervisionIcon = (props) => (
   </Svg>
 );
 
-/* Mentorlus — mentor + mentee (suurem ja väiksem kuju) */
-export const MentorIcon = (props) => (
-  <Svg {...props}>
-    <circle {...P} cx="8.6" cy="9" r="2.6" />
-    <circle {...P} cx="16.4" cy="10.4" r="2" />
-    <path {...P} d="M4.6 19.2c.5-2.9 2-4.4 4-4.4 1.3 0 2.4.7 3.1 1.9" />
-    <path {...P} d="M13.7 19.2c.3-2 1.4-3.1 2.7-3.1 1.5 0 2.7 1.5 3 3.9" />
-  </Svg>
-);
+/* Mentorlus — sama kaks inimest mis Ruumidel (omanik 25.07). Mentorlus
+   ON kahekesi olemine, seega kannab ta sama kuju; komplektid ei kattu,
+   sest Ruumid elab peamenüüs ja Mentorlus töölaual. Kuju tuleb ühest
+   kohast (RoomsCardIcon) — mitte koopiana, et nad ei saaks lahkneda. */
+export const MentorIcon = (props) => <RoomsCardIcon {...props} />;
 
 /* Välitöö — kodukülastus (maja avatud uksega) */
 export const FieldIcon = (props) => (
@@ -420,5 +431,115 @@ export const ServiceProfileIcon = (props) => (
     <circle {...P} cx="9.4" cy="10.6" r="2.1" />
     <path {...P} d="M6.4 16.4c.4-1.7 1.6-2.6 3-2.6s2.6.9 3 2.6" />
     <path {...P} d="M14.6 9.6h3.2M14.6 12.4h3.2M14.6 15.2h2.2" />
+  </Svg>
+);
+
+/* ---------- Tööheaolu tööriistad (lib/wellbeingTools.js, 11 tk) ----------
+   WellbeingIcon (süda pulsijoonega) jääb tööheaolu KOGU teema märgiks
+   (töölaua kaart, teavitused). Alltoodud glüüfid on tööriistade omad:
+   varem kandsid kõik üksteist sama südant, mistõttu tööheaolu laud oli
+   rida eristamatuid kaarte ja selle otseteeriba rida ühesuguseid täppe. */
+
+/* Minu kirjed — kell tagasikeerava noolega (varasem kirje) */
+export const WellbeingRecordsIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4.6 12a7.4 7.4 0 1 0 2.3-5.4" />
+    <path {...P} d="M4.4 4.4v3.9h3.9" />
+    <path {...P} d="M12 8.3V12l2.6 1.6" />
+  </Svg>
+);
+
+/* Kiirkontroll — lühike nimekiri linnukesega */
+export const WellbeingCheckIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M8.6 4.9h6.8a1.7 1.7 0 0 1 1.7 1.7v11.8a1.7 1.7 0 0 1-1.7 1.7H8.6a1.7 1.7 0 0 1-1.7-1.7V6.6a1.7 1.7 0 0 1 1.7-1.7Z" />
+    <path {...P} d="M10 4.9V4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v.9" />
+    <path {...P} d="m9.9 13 1.6 1.6 3.1-3.4" />
+  </Svg>
+);
+
+/* Ülevaade — trendijoon telgedel (nädala ja kuu muster) */
+export const WellbeingOverviewIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4.2 19.4h15.6" />
+    <path {...P} d="M4.2 19.4V5" />
+    <path {...P} d="m6.6 15.4 3.5-4.1 2.9 2.3 5.3-6" />
+    <path {...P} d="M15.4 7.6h3v3" />
+  </Svg>
+);
+
+/* Raske juhtum — kõnemull hüüumärgiga (koormav vestlus) */
+export const WellbeingHardCaseIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4.4 6.3a1.9 1.9 0 0 1 1.9-1.9h11.4a1.9 1.9 0 0 1 1.9 1.9v7.2a1.9 1.9 0 0 1-1.9 1.9H9.5l-4 3.6.3-3.6H6.3a1.9 1.9 0 0 1-1.9-1.9V6.3Z" />
+    <path {...P} d="M12 7.6v3.1" />
+    <path {...P} d="M12 12.85v.05" />
+  </Svg>
+);
+
+/* Töövägivald — stoppmärk hüüumärgiga (oht, peatu) */
+export const WellbeingViolenceIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M8.7 3.6h6.6l4.1 4.1v6.6l-4.1 4.1H8.7l-4.1-4.1V7.7l4.1-4.1Z" />
+    <path {...P} d="M12 7.9v3.6" />
+    <path {...P} d="M12 14.15v.05" />
+  </Svg>
+);
+
+/* Taastumine — päike tõusmas horisondi kohale (jõuvarude taastumine) */
+export const WellbeingRecoveryIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M3.6 18.2h16.8" />
+    <path {...P} d="M6.9 18.2a5.1 5.1 0 0 1 10.2 0" />
+    <path {...P} d="M12 4.2v2.3M5.7 7l1.6 1.6M18.3 7l-1.6 1.6" />
+  </Svg>
+);
+
+/* Tööpiirid — kalender kellaga (tööaeg ja kättesaadavus) */
+export const WellbeingBoundariesIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4.5 7.4a1.8 1.8 0 0 1 1.8-1.8h11.4a1.8 1.8 0 0 1 1.8 1.8v10.3a1.8 1.8 0 0 1-1.8 1.8H6.3a1.8 1.8 0 0 1-1.8-1.8V7.4Z" />
+    <path {...P} d="M8.3 3.6v3.6M15.7 3.6v3.6M4.5 10.4h15" />
+    <path {...P} d="M12 12.9v2.4l1.7 1" />
+  </Svg>
+);
+
+/* Katkestused — vaigistatud kell (töörahu katkeb) */
+export const WellbeingInterruptionsIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M17.6 15.4V10a5.6 5.6 0 0 0-4.2-5.4" />
+    <path {...P} d="M6.4 10.6V10a5.6 5.6 0 0 1 3-5" />
+    <path {...P} d="M5.2 15.4h13.6" />
+    <path {...P} d="M10.4 18.4a1.9 1.9 0 0 0 3.2 0" />
+    <path {...P} d="m4.2 4.2 15.6 15.6" />
+  </Svg>
+);
+
+/* Tööprotsessid — kaks sammu ühte koondumas (mis võtab aja ära) */
+export const WellbeingProcessIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="3.6" y="4.2" width="5.4" height="4.4" rx="1.2" />
+    <rect {...P} x="15" y="4.2" width="5.4" height="4.4" rx="1.2" />
+    <rect {...P} x="9.3" y="15.4" width="5.4" height="4.4" rx="1.2" />
+    <path {...P} d="M6.3 8.6v3.1h11.4V8.6" />
+    <path {...P} d="M12 11.7v3.7" />
+  </Svg>
+);
+
+/* Rollipiirid — märk linnukesega (selge roll ja vastutus) */
+export const WellbeingRoleIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 3.6 9.9 5.9l-3.1.2-.2 3.1L4.3 11.3l1.5 2.7-.7 3 3 .7 1.9 2.4 2.8-1.3 2.8 1.3 1.9-2.4 3-.7-.7-3 1.5-2.7-2.3-2.1-.2-3.1-3.1-.2L12 3.6Z" />
+    <path {...P} d="m9.9 11.9 1.6 1.6 3.1-3.3" />
+  </Svg>
+);
+
+/* Alustaja tugi — avatud raamat linnukesega (esimesed 100 päeva) */
+export const WellbeingStarterIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M12 6.9C10.7 5.7 8.9 5.1 6.7 5.1c-.9 0-1.7.1-2.5.3v11.9c.8-.2 1.6-.3 2.5-.3 2.2 0 4 .6 5.3 1.8" />
+    <path {...P} d="M12 6.9c1.3-1.2 3.1-1.8 5.3-1.8.9 0 1.7.1 2.5.3v7.5" />
+    <path {...P} d="M12 6.9v11.9" />
+    <path {...P} d="m15.4 18.1 1.6 1.6 3.1-3.4" />
   </Svg>
 );

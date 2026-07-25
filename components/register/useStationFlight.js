@@ -28,17 +28,62 @@ export const STATION_DEPTH = 1400;
 /* Ümbriku aknad kaameraühikutes (vt flight-effect.md §6 häälestustabel).
    Paigalseisus on järgmine jaam (rel = -STATION_DEPTH) TÄIESTI peidus —
    poolläbipaistvast klaasist ei tohi taga elemente paista (tellija
-   16.07); ta ilmub alles lennu ajal lähenedes. */
-const FADE_IN_START = -1350;
-const FADE_IN_LEN = 600;
-const FADE_OUT_START = 260;
-const FADE_OUT_LEN = 380;
+   16.07); ta ilmub alles lennu ajal lähenedes.
+
+   Lahkumisaken. Kaks vastandlikku kaebust on sama akna kaks otsa:
+   „liiga kähku kõik suureneb minust läbi" (25.07) tuli LAIAST aknast —
+   lahkuv jaam elas kuni 2,35× suuruseni, sest rel > 0 juures paisutab
+   skaala P/(P−rel) teda kiiresti. Aken tõmmati 180 peale ja siis tuli
+   „koledalt kaovad nupud ära kerides" (25.07) — 180 ühikut läbitakse
+   lennu ALGUSES, kus kaamera on kõige kiirem, ehk ~4 kaadriga: jaam ei
+   sulandunud, vaid plõksas ära.
+   Lahendus on kahes osas: aken 320-ni tagasi (lahkuv jaam kaob ammu enne
+   1,5× suurust) JA kaamera ajastus ease-in-out'iks (allpool), mis teeb
+   lennu alguse aeglaseks — just seal, kus ristsulandus toimub. Koos
+   kestab üleminek ~0,25 s ~0,07 s asemel.
+   Saabuva jaama aken on TÄPSELT komplementaarne (nihe = STATION_DEPTH),
+   seega o_lahkuv(rel) + o_saabuv(rel − 1400) = 1 igal hetkel — üleminek
+   ei tumene ega heleda kummaski suunas. FADE_IN_START = −1360 jätab
+   paigalseisvale järgmisele jaamale (rel = −1400) 40 ühikut varu, et ta
+   oleks TÄIESTI peidus. */
+const FADE_OUT_START = 40;
+const FADE_OUT_LEN = 320;
+const FADE_IN_START = FADE_OUT_START - STATION_DEPTH;
+const FADE_IN_LEN = FADE_OUT_LEN;
 const VISIBLE_MIN = -1420;
-const VISIBLE_MAX = 680;
-const LERP = 0.11;
+const VISIBLE_MAX = FADE_OUT_START + FADE_OUT_LEN + 40;
+/* Kaamera ajastus (omanik 25.07: „lendamise efekt … ei ole sujuv" ja
+   „koledalt kaovad nupud ära kerides").
+   Ajalugu: kaadripõhine lerp (kiirus suurim ESIMESEL kaadril → nõks) →
+   kriitiliselt sumbunud vedru (start pehme, aga tipp-kiirus juba 0,12 s
+   juures: 60% teekonnast oli 0,25 s-ga läbi ja ristsulandus jäi mitme
+   kaadri sisse).
+   Nüüd: AJAPÕHINE tween ease-in-out kuupfunktsiooniga. Kiiruse tipp on
+   teekonna KESKEL, algus ja lõpp on aeglased — algus on täpselt see koht,
+   kus lahkuv jaam kaob ja uus tuleb. Positsioon tuleb kellast, mitte
+   kaadrisammust → kaadrisagedus (60/120Hz) ei mõjuta kiirust. */
+const FLIGHT_BASE_MS = 520;
+const FLIGHT_PER_UNIT_MS = 0.17;
+const FLIGHT_MIN_MS = 560;
+const FLIGHT_MAX_MS = 1500;
+/* Katkestus keset lendu (dokiklõps, kiire keris): uus tween algab käimas-
+   olevast kiirusest (ease-out, mille algkiirus = 3·teekond/kestus), nii et
+   suunamuutus ei tee kiirusauku. */
+const RESUME_MIN_MS = 380;
+const MOVING_VEL = 60;
+/* Kaadrid pärast pausi (tab taustal, GC-pikk kaader) ei tohi kiiruse-
+   hinnangut lõhkuda — dt on lakke pandud ~33 ms peale. */
+const MAX_DT = 1 / 30;
+
+const easeInOutCubic = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+const clampRange = (v, lo, hi) => (v < lo ? lo : v > hi ? hi : v);
 /* Parallaks: kui palju kadumispunkt kõige servani viidud hiirega nihkub
    ja kui pehmelt ta järele tuleb. Väike amplituud on tahtlik — see on
-   ruumivihje, mitte kiik. */
+   ruumivihje, mitte kiik. PARALLAX_RANGE on VAIKE-amplituud (täisleht,
+   nt /registreerimine); jaamalennu tarbija võib selle üle kirjutada
+   `parallaxRange`-iga (väiksem pind = rahulikum nihe). */
 const PARALLAX_RANGE = 34;
 const PARALLAX_LERP = 0.07;
 /* Sisse-triiv: mount'il alustab kaamera sihist veidi tagapool, et leht
@@ -67,10 +112,19 @@ function perspectiveWorks(dolly) {
   return w < 80;
 }
 
-export default function useStationFlight({ count, initialIndex = 0, parallax = false }) {
+export default function useStationFlight({
+  count,
+  initialIndex = 0,
+  parallax = false,
+  parallaxRange = PARALLAX_RANGE,
+}) {
   const dollyRef = useRef(null);
   const planesRef = useRef(new Map());
   const camRef = useRef(Math.max(0, initialIndex * STATION_DEPTH - ARRIVAL_DRIFT));
+  const velRef = useRef(0);
+  const lastTsRef = useRef(0);
+  /* Käimasolev lend: { from, to, start, dur, ease } või null (paigal). */
+  const tweenRef = useRef(null);
   const targetRef = useRef(initialIndex * STATION_DEPTH);
   const frameRef = useRef(0);
   const runningRef = useRef(false);
@@ -85,31 +139,55 @@ export default function useStationFlight({ count, initialIndex = 0, parallax = f
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [mode, setMode] = useState("3d");
 
-  const tick = useCallback(() => {
+  const tick = useCallback((ts) => {
     const dolly = dollyRef.current;
     if (!dolly || modeRef.current !== "3d") {
       runningRef.current = false;
       return;
     }
-    const target = targetRef.current;
-    let cam = camRef.current + (target - camRef.current) * LERP;
-    if (Math.abs(target - cam) < 0.2) cam = target;
+    /* Ajasamm sekundites — vajalik AINULT kiiruse hindamiseks (katkestus)
+       ja parallaksi järelejõudmiseks. Kaamera positsioon tuleb kellast. */
+    const now = typeof ts === "number" ? ts : performance.now();
+    const dt = lastTsRef.current
+      ? Math.min((now - lastTsRef.current) / 1000, MAX_DT)
+      : 1 / 60;
+    lastTsRef.current = now;
+
+    const tween = tweenRef.current;
+    let cam = camRef.current;
+    let camSettled = true;
+    if (tween) {
+      const p = clamp01((now - tween.start) / tween.dur);
+      cam = tween.from + (tween.to - tween.from) * tween.ease(p);
+      if (p >= 1) {
+        cam = tween.to;
+        tweenRef.current = null;
+      } else {
+        camSettled = false;
+      }
+    }
+    /* Kiirus mõõdetakse tegelikust liikumisest — nii saab katkestav lend
+       sellega otse haakuda, olenemata sellest, millise easing'uga käidi. */
+    velRef.current = dt > 0 ? (cam - camRef.current) / dt : 0;
+    if (camSettled) velRef.current = 0;
     camRef.current = cam;
     dolly.style.setProperty("--cam", cam.toFixed(2) + "px");
 
-    /* Parallaks pehmendatakse sama lerp'iga — hiire hüpe ei nõksata lava. */
+    /* Parallaks järgneb eksponentsiaalselt, kuid samuti AJA järgi — muidu
+       liigub 120Hz ekraanil kaks korda kiiremini kui 60Hz-l. */
     let parSettled = true;
     if (parallax) {
       const cur = parRef.current;
       const aim = parTargetRef.current;
+      const follow = 1 - Math.pow(1 - PARALLAX_LERP, dt * 60);
       for (const axis of ["x", "y"]) {
-        let v = cur[axis] + (aim[axis] - cur[axis]) * PARALLAX_LERP;
+        let v = cur[axis] + (aim[axis] - cur[axis]) * follow;
         if (Math.abs(aim[axis] - v) < 0.02) v = aim[axis];
         else parSettled = false;
         cur[axis] = v;
       }
-      dolly.style.setProperty("--par-x", (cur.x * PARALLAX_RANGE).toFixed(2) + "px");
-      dolly.style.setProperty("--par-y", (cur.y * PARALLAX_RANGE).toFixed(2) + "px");
+      dolly.style.setProperty("--par-x", (cur.x * parallaxRange).toFixed(2) + "px");
+      dolly.style.setProperty("--par-y", (cur.y * parallaxRange).toFixed(2) + "px");
     }
 
     for (const entry of planesRef.current.values()) {
@@ -132,32 +210,83 @@ export default function useStationFlight({ count, initialIndex = 0, parallax = f
       }
     }
 
-    if (cam === target && parSettled) {
+    if (camSettled && parSettled) {
       runningRef.current = false;
+      lastTsRef.current = 0;
       return;
     }
     frameRef.current = requestAnimationFrame(tick);
-  }, [parallax]);
+  }, [parallax, parallaxRange]);
 
   const wake = useCallback(() => {
     if (runningRef.current || modeRef.current !== "3d") return;
     runningRef.current = true;
+    lastTsRef.current = 0;
     frameRef.current = requestAnimationFrame(tick);
   }, [tick]);
+
+  /* Uue lennu algatus. Paigalseisust = ease-in-out (pehme start, pehme
+     maandumine). Keset lendu = ease-out, mille kestus valitakse nii, et
+     tema ALGKIIRUS (3·teekond/kestus) võrduks praeguse kiirusega — nii ei
+     teki suunamuutusel kiirusauku ega nõksu. */
+  const startFlight = useCallback((to) => {
+    const from = camRef.current;
+    const dist = Math.abs(to - from);
+    if (dist < 0.5) {
+      tweenRef.current = null;
+      return;
+    }
+    const vel = Math.abs(velRef.current);
+    const moving = tweenRef.current !== null && vel > MOVING_VEL;
+    const normalDur = clampRange(
+      FLIGHT_BASE_MS + dist * FLIGHT_PER_UNIT_MS,
+      FLIGHT_MIN_MS,
+      FLIGHT_MAX_MS,
+    );
+    /* Kiiruse järgi arvutatud kestus võib aeglase katkestuse korral venida
+       absurdselt pikaks (lennu lõpus on kiirus väike) — lagi hoiab lennu
+       tempos, põrand ei lase tal nõksuks kokku tõmbuda. */
+    const dur = moving
+      ? clampRange(
+          ((3 * dist) / vel) * 1000,
+          RESUME_MIN_MS,
+          Math.min(FLIGHT_MAX_MS, normalDur * 1.5),
+        )
+      : normalDur;
+    tweenRef.current = {
+      from,
+      to,
+      start: performance.now(),
+      dur,
+      ease: moving ? easeOutCubic : easeInOutCubic,
+    };
+  }, []);
 
   const flyTo = useCallback(
     (index, { instant = false, drift = false } = {}) => {
       const next = Math.max(0, index);
       targetRef.current = next * STATION_DEPTH;
-      if (instant) camRef.current = targetRef.current;
-      /* drift: hüppa sihi lähedale ja lase viimane ARRIVAL_DRIFT
-         õrnalt kohale triivida (nt detourist naasmine) — kogu lendu
-         uuesti ei mängita. */
-      if (drift) camRef.current = Math.max(0, targetRef.current - ARRIVAL_DRIFT);
+      /* Hüppel (instant/drift) EI kanta kiirust edasi — uus lend algaks
+         muidu teleportatsiooni järel vana hooga. */
+      if (instant) {
+        camRef.current = targetRef.current;
+        velRef.current = 0;
+        tweenRef.current = null;
+      } else {
+        /* drift: hüppa sihi lähedale ja lase viimane ARRIVAL_DRIFT
+           õrnalt kohale triivida (nt detourist naasmine) — kogu lendu
+           uuesti ei mängita. */
+        if (drift) {
+          camRef.current = Math.max(0, targetRef.current - ARRIVAL_DRIFT);
+          velRef.current = 0;
+          tweenRef.current = null;
+        }
+        startFlight(targetRef.current);
+      }
       setActiveIndex(next);
       wake();
     },
-    [wake],
+    [startFlight, wake],
   );
 
   /* Režiimivalik üks kord mount'il: reduced-motion või lame 3D → flat.
@@ -172,6 +301,9 @@ export default function useStationFlight({ count, initialIndex = 0, parallax = f
     setMode(nextMode);
     if (nextMode === "3d") {
       dollyRef.current?.style.setProperty("--cam", camRef.current.toFixed(2) + "px");
+      /* Sisse-triiv (camRef algab ARRIVAL_DRIFT võrra tagapool) vajab nüüd
+         oma lendu — ilma selleta jääks kaamera igaveseks sihist maha. */
+      startFlight(targetRef.current);
       wake();
     }
     return () => {

@@ -29,6 +29,11 @@ const GlassCard = forwardRef(function GlassCard(
           {badge}
         </span>
       ) : null}
+      {/* Kaugusudu: ruumi enda õhk kaardi ja silma vahel. Tugevuse annab
+          sügavuslaua aste (--gc-haze, carousel.css); karussellis on see 0
+          ja kiht jääb nähtamatuks. Loori peab katma ka ikooni ja sildi —
+          kaugusest ei tuhmu ainult taust —, seepärast on ta viimane. */}
+      <span className="gc-haze" aria-hidden="true" />
     </Tag>
   );
 });

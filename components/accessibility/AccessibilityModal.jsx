@@ -22,7 +22,11 @@ import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
 import OptionCard from "@/components/ui/OptionCard";
-import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+/* Tagasi kannab SAMA noolt mis ruumi dokk (BackArrowIcon, 24-ruudustik).
+   ChevronIcon on karusselli servanool: tema ruudustik on 4,8 × 8,6 ja
+   joon 1,45 selle sees — samas ringis loeb see hoopis jämedama ja
+   kõrgema nooleks (omanik 25.07: "nool on vale keele omas"). */
+import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import useStationFlight from "@/components/register/useStationFlight";
 import { getAmbientMode, setAmbientMode } from "@/components/room/AmbientAudio";
 
@@ -97,6 +101,10 @@ export default function AccessibilityModal({
   const { dollyRef, planeProps, activeIndex, mode, flyTo } = useStationFlight({
     count: STATIONS.length,
     parallax: true,
+    /* Modaal on väiksem, ekraanikeskne pind kui /registreerimine — täis
+       34px-nihe (ja ka pool sellest) mõjus siin liiga tugevana (omanik
+       24.07). Vaid veerand algsest: napp ruumivihje, lava jääb paigale. */
+    parallaxRange: 8,
   });
   const activeIndexRef = useRef(activeIndex);
   activeIndexRef.current = activeIndex;
@@ -197,7 +205,9 @@ export default function AccessibilityModal({
   useEffect(() => {
     if (prevIndexRef.current === activeIndex) return;
     prevIndexRef.current = activeIndex;
-    const delay = mode === "3d" ? 420 : 80;
+    /* Rahulik lennutempo (useStationFlight lend ~0,76 s) → fookus tuleb
+       kohale veidi hiljem, et ta ei hüppaks veel lendavale jaamale. */
+    const delay = mode === "3d" ? 520 : 80;
     const timer = window.setTimeout(() => {
       const host = stageRef.current?.querySelector(
         '.a11f-plane[data-active="1"] [data-autofocus]'
@@ -237,7 +247,10 @@ export default function AccessibilityModal({
       const next = activeIndexRef.current + dir;
       if (next < 0 || next > STATIONS.length - 1) return;
       flyTo(next);
-      cooldown.until = stamp + 560;
+      /* Ooteaeg ≥ lennu kestus (~760 ms): järgmine kerimisnõks ei katkestaks
+         pooleliolevat lendu — just katkestatud lend nägi kerides välja nii,
+         et nupud „kaovad koledalt ära" (omanik 25.07). */
+      cooldown.until = stamp + 800;
     };
 
     const onWheel = (event) => {
@@ -335,6 +348,15 @@ export default function AccessibilityModal({
       }
     } catch {}
   }, [setMessages]);
+
+  /* Väljapääs (omanik 25.07: „tagasi nupp ei tööta kui ma avan selle juba
+     hiljem — peab minema lõpuni ja salvestama"). Loor on täisekraanilise
+     dialoogi ALL (a11y-modal.css z-index), seega tema klõps ei jõua kohale
+     ja Escape jäi ainsaks väljapääsuks. Esimesel jaamal ei ole kuhu tagasi
+     lennata → seal saab tagasi-noolest sulgemisnupp. Esmakülastusel (kus
+     eelistused alles valitakse) jääb ta endiselt lukku: seal ON teekond. */
+  const backIsExit = activeIndex === 0 && !requireInitialSelection;
+  const backLabel = backIsExit ? t("buttons.close") : t("buttons.back");
 
   const stationLabel = (station) => t(station.legend);
   const positionLine = t("room.position")
@@ -504,7 +526,9 @@ export default function AccessibilityModal({
 
   return <>
       {/* Loor katab lennu ajal terve ekraani — kaardirivi ei tohi taga
-          paista (omanik 21.07). Klõps loorile sulgeb, nagu varemgi. */}
+          paista (omanik 21.07). NB: dialoog ise on täisekraanil ja loorist
+          KÕRGEMAL (a11y-modal.css z-index), seega see onClick praktikas ei
+          käivitu — nähtavad väljapääsud on doki tagasi/sulge-nupp ja Esc. */}
       <div className="a11f-veil" onClick={onClose} role="presentation" aria-hidden="true" />
 
       <div ref={boxRef} role="dialog" aria-modal="true" aria-labelledby="a11y-title" onClick={stopInside} tabIndex={-1}>
@@ -532,6 +556,15 @@ export default function AccessibilityModal({
                 aria-label={stationLabel(station)}
               >
                 {renderStation(station)}
+                {/* Iseseisvad valikud, mitte järjestikune vorm (omanik 24.07:
+                    „teade, et valmima ei pea"). Vihje elab VALIKUTE ALL, mitte
+                    ekraani ülaservas, ja AINULT liikumise-jaamas — omanik 25.07:
+                    „see väike tekst ei ole igal pool, ainult selle valiku all".
+                    Igal jaamal korrates muutub ta müraks; ühes kohas loeb ta
+                    kogu modaali kohta. */}
+                {station.key === "motion" && (
+                  <p className="a11f-optional-hint">{t("accessibility.optional_hint")}</p>
+                )}
               </section>
             ))}
           </div>
@@ -545,15 +578,15 @@ export default function AccessibilityModal({
             type="button"
             className="gc-shortcut gc-shortcut--back"
             data-on="0"
-            disabled={activeIndex === 0}
-            onClick={() => goTo(activeIndex - 1)}
-            aria-label={t("buttons.back")}
+            disabled={activeIndex === 0 && !backIsExit}
+            onClick={() => (backIsExit ? onClose?.() : goTo(activeIndex - 1))}
+            aria-label={backLabel}
           >
             <span className="gc-shortcut-icon" aria-hidden="true">
-              <ChevronIcon direction="left" />
+              <BackArrowIcon />
             </span>
             <span className="gc-shortcut-tooltip" aria-hidden="true">
-              {t("buttons.back")}
+              {backLabel}
             </span>
           </button>
           <span className="gc-shortcut-divider" aria-hidden="true" />

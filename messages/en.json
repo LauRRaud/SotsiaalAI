@@ -1289,7 +1289,8 @@
       }
     },
     "save": "Save",
-    "screen_profile": "Screen profile"
+    "screen_profile": "Screen profile",
+    "optional_hint": "Tick only if you need it."
   },
   "privacy_guard": {
     "title": "This text contains personal data",
@@ -3221,7 +3222,7 @@
     },
     "pricing": {
       "title": "Pricing",
-      "intro": "Choose a package based on how extensively you want to use SotsiaalAI. The free package is suitable for getting started; paid packages provide higher usage volume and more tools for everyday use.",
+      "intro": "Choose a package based on how extensively you want to use SotsiaalAI.",
       "columns": {
         "feature": "Feature",
         "free": "Free",
@@ -3282,7 +3283,41 @@
         "by_agreement": "By agreement",
         "not_included": "Not included"
       },
-      "note": "\"Limited\" means a smaller and \"Extended\" a larger usage volume; no AI allowance is unlimited. SotsiaalAI is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices."
+      "note": "\"Limited\" means a smaller and \"Extended\" a larger usage volume; no AI allowance is unlimited. SotsiaalAI is continuously evolving, and we add new features gradually. Prices depend on the number of users and the cost of the service. Whenever possible, we lower prices.",
+      "taglines": {
+        "free": "To get started and explore",
+        "client": "For everyday help and communication",
+        "worker": "Tools for the social work specialist",
+        "provider": "Service provider visibility and intake"
+      },
+      "highlights": {
+        "free": [
+          "Help requests and offers",
+          "Service card and contacts",
+          "Personal search"
+        ],
+        "client": [
+          "Knowledge base and assistants",
+          "Pre-inquiry and chat rooms",
+          "Document drafting and analysis"
+        ],
+        "worker": [
+          "Covision and practice examples",
+          "Supervision and mentoring",
+          "Work wellbeing and Method Mirror"
+        ],
+        "provider": [
+          "Inquiry intake",
+          "Service provider card profile",
+          "Service profile and management"
+        ]
+      },
+      "card": {
+        "show_all": "See all features",
+        "hide_all": "Hide features",
+        "all_title": "All features in this plan",
+        "position": "Plan {current} / {total}"
+      }
     },
     "features_page": {
       "title": "SotsiaalAI features",
@@ -6555,6 +6590,16 @@
     "power_on": "Power on",
     "exit_card": "Exit",
     "back_card": "Back",
+    "zones": {
+      "juhtum": { "name": "Casework" },
+      "teadmine": { "name": "Knowledge" },
+      "mina": { "name": "Self" },
+      "minu_tee": { "name": "My path" },
+      "leian_abi": { "name": "Finding help" },
+      "vaade": { "name": "View" },
+      "olukord": { "name": "Situation" },
+      "korraldus": { "name": "Arrangement" }
+    },
     "kovision_room_card": "Co-vision room",
     "kovision_seeds_card": "Topic seeds",
     "kovision_completed_card": "Completed cases",

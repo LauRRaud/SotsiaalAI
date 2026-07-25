@@ -1,0 +1,388 @@
+@layer components {
+/* ============================================================
+   Hinnastus = KLAASKAARTIDE KARUSSELL (omanik 24.07). Neli paketti,
+   kaardid seisavad reas, aktiivne keskel; kõrvalkaardid pööratud ja
+   tuhmimad. Kest = ruumimenüü DNA (täisekraan, nooled servades, alumine
+   otsetee-dokk carousel.css .gc-shortcut-* klassidest). Kaart näitab
+   ainult olulist; „Vaata kõiki võimalusi" avab täisvõrdluse kohapeal.
+   Komponent: components/alalehed/HinnastusBody.jsx (.pc-*).
+   ============================================================ */
+
+/* PanelFrame renderdab /hinnastus canvas-lehena (isCanvas): paneel on
+   läbipaistev täisekraan, .panel-body flex-veerg ja .pc selle ainus laps
+   (flex:1). Seega EI position:fixed — .pc täidab canvas-keha ja ruum
+   kumab taga läbi (menüü-stiil). Sulge-X hõljub PanelFrame'i nurgas. */
+.pc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  /* Kerge sügavusvinjett — lava tunneb ruumi, taust jääb läbipaistvaks. */
+  background: radial-gradient(120% 90% at 50% 30%, rgba(38, 38, 44, 0.3), transparent 70%);
+  color: var(--room-text);
+  overflow: hidden;
+}
+
+/* ---------- Päis ---------- */
+/* Tihe päis on TEADLIK (omanik 24.07: „vii pealkiri ja selle all tekst
+   üles poole, tee kaardid kõrgemaks"): iga siit võidetud piksel läheb
+   lavale, et „Vali …" nupp ja „Vaata kõiki võimalusi" jääksid kaardil
+   nähtavale ilma kerimata. */
+.pc-head {
+  position: relative;
+  flex: 0 0 auto;
+  padding: clamp(0.5rem, 1.5vh, 1rem) 1.5rem 0.25rem;
+  text-align: center;
+}
+.pc-head h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 430;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.1rem);
+  letter-spacing: 0.01em;
+}
+.pc-intro {
+  margin: 0.3rem auto 0;
+  max-width: 40rem;
+  font-size: clamp(0.86rem, 0.82rem + 0.2vw, 0.98rem);
+  line-height: 1.5;
+  color: var(--room-text-dim);
+}
+.pc-closed {
+  margin: 0.6rem auto 0;
+  max-width: 34rem;
+  font-size: 0.82rem;
+  color: var(--room-text-dim);
+}
+
+/* ---------- Lava: üks 3D-tasand (perspective siin, kaardid otse all) ---------- */
+.pc-stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  perspective: 1600px;
+  perspective-origin: 50% 46%;
+  touch-action: pan-y;
+  /* Kaardi mõõdud elavad LAVAL (mitte .pc-list'is), sest neid vajavad ka
+     nooled — need seisavad külgkaardi kõrval, mitte ekraani servas. */
+  --pc-w: clamp(17rem, 34vw, 22rem);
+  --pc-spacing: calc(var(--pc-w) * 1.12);
+}
+.pc-list {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.pc-item {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pc-w);
+  /* Kaart ei tohi kasvada LAVAST välja: laiendatuna roniks ta muidu
+     päise alla ja poolläbipaistvast klaasist kumaks pealkirja tekst
+     läbi (omanik 24.07). Lava kõrgus on siin määratud (.pc-list on
+     inset:0), seega protsent laheneb ja flex kahandab kaardi mahtu. */
+  /* Kõigil pakettidel ÜKS kõrgus (mitte sisu järgi): võrdluses mõjuvad
+     eri kõrgused rebenenult ja lühem pakett näiks vähem väärt. Kaart
+     võtab lava kõrguse, sisu seisab keskel. */
+  height: calc(100% - 0.5rem);
+  display: flex;
+  transform: translate(-50%, -50%)
+    translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
+    rotateY(calc(var(--pos) * 15deg))
+    scale(calc(1 - min(var(--abs), 2) * 0.12));
+  transition: transform 460ms var(--ease-soft), opacity 300ms var(--ease-soft);
+  will-change: transform;
+}
+/* Kõrvalkaardid taanduvad (tuhmimad + fookuseta); rea peidus kaardid
+   pargivad serva taga nähtamatuna. */
+.pc-item[data-center="0"] {
+  opacity: 0.46;
+}
+.pc-item[data-hidden="1"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Kaart: liquid glass (tokens.css --card-glass-*) ---------- */
+.pc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  border-radius: clamp(20px, 2.4vw, 30px);
+  background: var(--card-glass-bg);
+  box-shadow: var(--card-glass-shadow);
+  text-align: center;
+  overflow: hidden;
+}
+/* Terve kaardi sisu ühes keritavas alas — raam (::before/::after) jääb
+   .pc-card'ile paigale, sisu (nimi kuni kõik võimalused) kerib siin.
+   Kerimisriba peidus; lennužesti ja sisemise kerimise koostöö elab
+   HinnastusBody innerCanScroll'is (.pc-scroll). */
+.pc-scroll {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* `safe` = kui sisu on kastist pikem (laiendatud pakett), langeb
+     joondus algusesse ega lõika ülaserva ära — tsentreeritud flexi
+     klassikaline kerimislõks. */
+  justify-content: safe center;
+  gap: 0.55rem;
+  min-height: 0;
+  padding: clamp(1.05rem, 2.2vh, 1.5rem) clamp(1.3rem, 2.4vw, 1.8rem) clamp(1rem, 2vh, 1.35rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+.pc-scroll::-webkit-scrollbar {
+  display: none;
+}
+.pc-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--card-glass-sheen);
+  pointer-events: none;
+}
+.pc-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.3px;
+  background: var(--card-glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.pc-name {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  font-weight: 560;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--room-text-soft);
+}
+.pc-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 460;
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2rem);
+  color: var(--room-text);
+}
+.pc-tagline {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  /* Kaardi sisu loeb, seega teisene toon (0.76), mitte vihje-toon (0.55). */
+  color: var(--room-text-soft);
+}
+/* NB: kaks klassi on VAJALIKUD — panel.css laaditakse globals.css-is
+   pricing.css JÄREL ja selle üldine loendireegel lisaks muidu ~18px
+   alumise veerise (nupp vajus allapoole; omanik 24.07 „nupp üles poole"). */
+.pc-scroll .pc-highlights {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+  text-align: left;
+}
+.pc-scroll .pc-highlights li {
+  margin: 0;
+}
+.pc-highlights li {
+  display: grid;
+  grid-template-columns: 1.1rem 1fr;
+  gap: 0.5rem;
+  align-items: start;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--room-text);
+}
+.pc-hi-mark {
+  color: var(--room-text-soft);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.pc-cta.pc-cta {
+  /* Nupp kuulub eeliste juurde, mitte eraldi plokki, aga vajab veidi
+     hingamisruumi (omanik 24.07: vahe vähemaks → „nupp alla poole veidi"). */
+  margin-top: 0.55rem;
+  width: 100%;
+}
+
+/* ---------- Laienduse lüliti + täisvõrdlus ---------- */
+.pc-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+  padding: 0.36rem 0.5rem;
+  border: 0;
+  background: transparent;
+  /* Kaardi TEINE päris tegevus, mitte joonealune märkus (omanik 24.07:
+     suuremalt + „liiga hall tekst on ka"): täisheledus nagu põhitekstil,
+     summutatud --room-text-dim (0.55 alfa) luges liiga kahvatuna. */
+  color: var(--room-text);
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.12rem);
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: color 200ms var(--ease-soft);
+}
+/* Alusheledus on juba täis, seega hoveri märguanne on joon, mitte toon. */
+.pc-toggle:hover,
+.pc-toggle:focus-visible {
+  color: var(--room-text);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  outline: none;
+}
+.pc-toggle:focus-visible {
+  box-shadow: var(--focus-ring);
+  border-radius: 0.4rem;
+}
+.pc-toggle svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.pc-all {
+  width: 100%;
+  margin-top: 0.4rem;
+  border-top: 1px solid rgba(247, 247, 247, 0.09);
+  text-align: left;
+}
+.pc-all-title {
+  margin: 0.7rem 0 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 540;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--room-text-soft);
+}
+.pc-all dl {
+  margin: 0;
+}
+.pc-all-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+  padding: 0.42rem 0;
+  border-bottom: 1px solid rgba(247, 247, 247, 0.055);
+  font-size: 0.84rem;
+}
+.pc-all-row:last-child {
+  border-bottom: 0;
+}
+.pc-all-row dt {
+  color: var(--room-text);
+}
+.pc-all-row dd {
+  margin: 0;
+  color: var(--room-text-dim);
+  white-space: nowrap;
+}
+.pc-val--yes {
+  color: var(--room-text);
+}
+.pc-val--no {
+  color: var(--room-text-soft);
+  opacity: 0.7;
+}
+
+/* ---------- Servanooled: sama klaasnupp mis mujal (glass-iconbtn
+   IconButtonist annab ringi + hoveri). Siin ainult asukoht servas ja
+   mõõt, nagu carousel.css .gc-arrow. ---------- */
+.pc-arrow {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 60;
+  width: 3.4rem;
+  height: 3.4rem;
+  --icon-size: 1.5rem;
+  color: var(--room-text-soft);
+  transition: opacity 220ms var(--ease-soft), transform 220ms var(--ease-soft);
+}
+/* Nool seisab OTSE külgkaardi kõrval (omanik 24.07: „nooled lähemale
+   kaartidele"), mitte ekraani servas. Arvutus kaardi välisservast, sama
+   loogika mis carousel.css .gc-arrow'l: keskjoon + 1.12 (samm) + 0.44
+   (poolik, 0.88-skaalaga külgkaart) = 1.56 × kaardi laius. */
+.pc-arrow--left {
+  left: auto;
+  right: calc(50% + var(--pc-w) * 1.56 + 0.6rem);
+}
+.pc-arrow--right {
+  right: auto;
+  left: calc(50% + var(--pc-w) * 1.56 + 0.6rem);
+}
+.pc-arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+.pc-arrow svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+/* ---------- Otsetee-dokk (carousel.css .gc-shortcut-* annab välimuse) ---------- */
+.pc-dock {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: center;
+  margin: 0 auto;
+  margin-bottom: max(env(safe-area-inset-bottom, 0px) + 0.55rem, clamp(0.6rem, 1.7vh, 1.1rem));
+  max-width: calc(100vw - 1.6rem);
+}
+
+/* ---------- Liikumise vähendamine ---------- */
+html[data-reduce-motion="1"] .pc-item {
+  transition: opacity 200ms linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-item {
+    transition: opacity 200ms linear;
+  }
+}
+
+/* ---------- Mobiil ---------- */
+@media (max-width: 768px) {
+  .pc-list {
+    --pc-w: min(80vw, 20rem);
+    --pc-spacing: calc(var(--pc-w) * 1.14);
+  }
+  .pc-item {
+    transform: translate(-50%, -50%)
+      translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
+      rotateY(calc(var(--pos) * 12deg))
+      scale(calc(1 - min(var(--abs), 2) * 0.14));
+  }
+  /* Väiksel ekraanil viib paketist paketti svaip ja dokk. */
+  .pc-arrow {
+    display: none;
+  }
+  /* Kõrguse lae annab .pc-item (lava kõrgus) — eraldi mobiili-lage ei
+     ole, muidu kirjutaks see max-height: 100% üle ja kaart kasvaks
+     päise alla. */
+}
+
+}

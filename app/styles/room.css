@@ -341,7 +341,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
     width: clamp(18rem, 88vw, 26rem);
   }
   .room-veil-line {
-    top: 25%;
+    top: 19%;
     min-width: min(25rem, calc(100vw - 2rem));
     min-height: 3rem;
     /* Mobiilis jaguneb lause kolmeks suureks keskjoondatud sõna-reaks;
@@ -356,7 +356,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
     display: block;
   }
   .glass-btn.room-veil-enter {
-    top: 56%;
+    top: 62%;
     font-size: clamp(1.35rem, 7.2vw, 1.9rem);
     letter-spacing: 0.26em;
     text-indent: 0.26em;

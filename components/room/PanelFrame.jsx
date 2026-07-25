@@ -102,7 +102,8 @@ export default function PanelFrame({ children }) {
   const isCanvas =
     normalized === "/kovisioon" ||
     normalized === "/teemaseemned" ||
-    normalized === "/registreerimine";
+    normalized === "/registreerimine" ||
+    normalized === "/hinnastus";
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();

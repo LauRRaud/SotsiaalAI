@@ -1289,7 +1289,8 @@
       }
     },
     "save": "Salvesta",
-    "screen_profile": "Ekraani profiil"
+    "screen_profile": "Ekraani profiil",
+    "optional_hint": "Märgi ainult siis, kui vajad."
   },
   "privacy_guard": {
     "title": "Tekst sisaldab isikuandmeid",
@@ -3221,7 +3222,7 @@
     },
     "pricing": {
       "title": "Hinnastus",
-      "intro": "Vali pakett selle järgi, kui põhjalikult soovid SotsiaalAI-d kasutada. Tasuta pakett sobib alustamiseks; tasulised paketid annavad suurema kasutusmahu ja rohkem töövahendeid igapäevaseks kasutamiseks.",
+      "intro": "Vali pakett selle järgi, kui põhjalikult soovid SotsiaalAI-d kasutada.",
       "columns": {
         "feature": "Võimalus",
         "free": "Tasuta",
@@ -3282,7 +3283,41 @@
         "by_agreement": "Kokkuleppel",
         "not_included": "Ei sisaldu"
       },
-      "note": "„Piiratud” tähendab väiksemat ja „Laiendatud” suuremat kasutusmahtu; ükski AI-maht ei ole piiramatu. SotsiaalAI areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu."
+      "note": "„Piiratud” tähendab väiksemat ja „Laiendatud” suuremat kasutusmahtu; ükski AI-maht ei ole piiramatu. SotsiaalAI areneb pidevalt ning lisame uusi võimalusi järk-järgult. Hinnad sõltuvad kasutajate arvust ja teenuse kuludest. Võimaluse korral langetame hindu.",
+      "taglines": {
+        "free": "Alustamiseks ja tutvumiseks",
+        "client": "Igapäevaseks abiks ja suhtluseks",
+        "worker": "Sotsiaaltöö spetsialisti töövahendid",
+        "provider": "Teenuseosutaja nähtavus ja vastuvõtt"
+      },
+      "highlights": {
+        "free": [
+          "Abisoovid ja abipakkumised",
+          "Teenusekaart ja kontaktid",
+          "Isiklik otsing"
+        ],
+        "client": [
+          "Teadmusbaas ja assistendid",
+          "Eelpöördumine ja vestlusruumid",
+          "Dokumentide koostamine ja analüüs"
+        ],
+        "worker": [
+          "Kovisioon ja praktikanäited",
+          "Supervisioon ja mentorlus",
+          "Tööheaolu ja Meetodipeegel"
+        ],
+        "provider": [
+          "Pöördumiste vastuvõtt",
+          "Teenuseosutaja kaardiprofiil",
+          "Teenuseprofiil ja haldus"
+        ]
+      },
+      "card": {
+        "show_all": "Vaata kõiki võimalusi",
+        "hide_all": "Peida võimalused",
+        "all_title": "Kõik selle paketi võimalused",
+        "position": "Pakett {current} / {total}"
+      }
     },
     "features_page": {
       "title": "SotsiaalAI võimalused",
@@ -6555,6 +6590,16 @@
     "power_on": "Käivita",
     "exit_card": "Välja",
     "back_card": "Tagasi",
+    "zones": {
+      "juhtum": { "name": "Juhtum" },
+      "teadmine": { "name": "Teadmine" },
+      "mina": { "name": "Mina" },
+      "minu_tee": { "name": "Minu tee" },
+      "leian_abi": { "name": "Leian abi" },
+      "vaade": { "name": "Vaade" },
+      "olukord": { "name": "Olukord" },
+      "korraldus": { "name": "Korraldus" }
+    },
     "kovision_room_card": "Kovisiooni ruum",
     "kovision_seeds_card": "Teemaseemned",
     "kovision_completed_card": "Lõpetatud juhtumid",
