@@ -25,9 +25,35 @@
    kasutust: akna ülempiir ja scrimi alumine polster — muidu läheks aken
    ja dokk lühikesel ekraanil vaikselt üksteise peale. */
 .panel-scrim[data-dock="1"] {
-  --room-dock-reserve: clamp(5.4rem, 5.2lvh + 3.3rem, 7.6rem);
+  /* Reserv oli dokile liiga helde ja lugemisleht jäi temast kaugele
+     hõljuma (omanik 26.07: „tekstilehed veidi lähemale alumisele
+     dokile"). Kitsam reserv = aken venib allapoole; dokk ise ei liigu,
+     tema kõrguse otsustab --dock-bottom (tokens.css). */
+  --room-dock-reserve: clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem);
   --panel-max-h: calc(100lvh - var(--room-dock-reserve) - clamp(2.5rem, 5lvh, 4rem));
   padding-bottom: var(--room-dock-reserve);
+  /* Ülapolstrit siin EI suurendata. Proovisin (26.07) ja see lükkas terve
+     akna allapoole kiirmenüü peale — omanik: „enne oli okei kõrgus".
+     Ülaserva kaitseb hoopis see, et aken ei kasva enam ÜLES: kasvab
+     ainult alumine reserv, ülaserv seisab paigal (mõõdetud: 0 px liikumist
+     terve ülemineku vältel). */
+  /* Animeerub AINULT reserv, mitte padding ja max-height eraldi. See ei
+     ole stiiliküsimus: nad on kaks eri omadust kahel eri elemendil, ja
+     kui nad omavahel maha jäävad, on aken hetkeks oma kastist kõrgem —
+     grid surub ta siis vastu ÜLASERVA ja ta hüppab ülariba alla (mõõdetud
+     26.07: ülaserv 32 → 23 px). Registreeritud muutuja interpoleerub ise,
+     nii et polster ja laemõõt liiguvad ühe ja sama arvu järgi, kaader
+     kaadri haaval — võidujooksu ei saa põhimõtteliselt tekkida. */
+  transition: --room-dock-reserve 700ms var(--ease-soft);
+}
+/* Kui dokk taandub ruumi (vt room.css), vabaneb tema reserv ja TAHVEL
+   KASVAB sinna — ALLA, mitte üles: ülapolster on püsiv, muutub ainult
+   alumine. Lugeja saab teksti juurde, mitte tühja auku. */
+html[data-dock-recessed="1"] .panel-scrim[data-dock="1"] {
+  --room-dock-reserve: clamp(1.4rem, 2lvh + 0.6rem, 2.4rem);
+}
+html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
+  transition: none;
 }
 
 @keyframes panel-enter {
@@ -244,13 +270,18 @@
 .panel-scrim[data-compact="1"] .panel-body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* Pealkiri kaardi ÜLESERVA, sisu voolab tema alt (omanik 26.07).
+     Keskjoondus pani pealkirja sisu pikkuse järgi eri kõrgusele: PIN-
+     kaardil 165 px, kontaktikaardil 130 px ülaservast — kaardilt kaardile
+     liikudes nihkus. Tühimik jääb nüüd ALLA, mitte üles ja alla. */
+  justify-content: flex-start;
   padding: clamp(1.1rem, 2.6lvh, 1.6rem) clamp(1rem, 2.4vw, 1.5rem);
   padding-top: clamp(2.4rem, 5lvh, 2.8rem);
 }
 .panel-scrim[data-compact="1"] .panel-body form {
   display: grid;
-  gap: 0.7rem;
+  /* Õhem rütm mõjus kaardil kokkusurutuna, kui pealkiri kasvas. */
+  gap: 1.05rem;
   /* Sisu keskele nagu registreerimisel (tellija 07.07): väljad täislaiad,
      nupp keskel — vasakule triivinud paigutus oli "puudu keskjoondus". */
   justify-items: center;
@@ -263,11 +294,25 @@
 .panel-scrim[data-compact="1"] .panel-body form > div:last-child {
   display: grid;
   justify-items: center;
-  padding-top: 0.3rem;
+  /* Nupp ei ole „veel üks väli" — ta seisab väljadest selgelt eemal. */
+  padding-top: 0.7rem;
+}
+/* Kaardi pealkiri kandis 1.25rem (20 px), samal ajal kui platvormi
+   --fs-title on 32 px — kaardil mõjus ta sildina, mitte pealkirjana
+   (omanik 26.07: „pealkirjad on liiga väiksed"). Oma clamp, mitte
+   --fs-title: kaart on 320 px lai ja 32 px murraks pikema nime kahele
+   reale. Muutuja on jagatud klaasmodaaliga (glass.css), et kaardi
+   pealkiri oleks mõlemal pinnal sama. */
+:root {
+  --card-title-size: clamp(1.45rem, 1.2rem + 0.7vw, 1.75rem);
 }
 .panel-scrim[data-compact="1"] .panel-body h1 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5em;
+  font-size: var(--card-title-size);
+  /* Pealkiri vajab enda alla hingamisruumi, muidu istub esimene väli tal
+     kaelas (omanik 26.07: „pane pealkirjade alla rohkem ruumi"). Kaardi
+     kõrgus on fikseeritud, seega see ruum tuleb alumisest tühimikust —
+     kaart täitub ühtlasemalt, mõõt ei muutu. */
+  margin-bottom: 1.2em;
   text-align: center;
 }
 

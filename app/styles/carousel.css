@@ -833,11 +833,14 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 .gc-shortcuts {
   position: absolute;
   left: 50%;
-  bottom: max(5.2%, env(safe-area-inset-bottom, 0px) + 3.2%);
+  /* Kõrgus tuleb jagatud tokenist (--dock-bottom), et dokk seisaks igal
+     lehel täpselt ühel kõrgusel — vt tokens.css. Protsent siin oli üks
+     kolmest eri arvust, mis lehed lahku ajas. */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
   z-index: 70;
   display: flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.7rem;
   max-width: calc(100vw - 2rem);
 }
 .gc-shortcut-menu,
@@ -853,10 +856,33 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 }
 /* Dokk ei jaga laiust enam rolli-lülitiga (see kolis nurka), seega ei ole
    siin ka 10.5rem reservi. */
+/* Mõõt elab PILLI enda peal, sest dokk on kõikjal sama asi (omanik 26.07:
+   „dokk peaks suurem olema, nagu teistel lehtedel"): ruumi kiirmenüü ja
+   jaamadokid (.a11f-/.rgf-/.cvf-/.pc-dock) kannavad kõik sama
+   .gc-shortcut DNA-d ja peavad ka ühte mõõtu olema. Kasv käib ÜHE
+   muutuja kaudu ja ikoon tuletatakse sellest, et proportsioon püsiks ka
+   siis, kui mõõtu järgmine kord liigutatakse. Rolli-lüliti
+   (.admin-role-view-cycle--cards) jagab ülalolevat välimusreeglit, aga
+   MITTE seda mõõtu — tal on omad nupud ja oma polsterdus. */
 .gc-shortcut-menu {
-  gap: 0.35rem;
+  --gc-shortcut-size: 2.75rem;
+  gap: 0.4rem;
+  padding: 0.42rem;
   min-width: 0;
   max-width: min(56rem, calc(100vw - 2rem));
+}
+.gc-shortcut-menu .gc-shortcut {
+  padding: 0 0.78rem;
+}
+.gc-shortcut-menu .gc-shortcut-icon svg {
+  width: calc(var(--gc-shortcut-size) * 0.58);
+  height: calc(var(--gc-shortcut-size) * 0.58);
+}
+.gc-shortcut-menu .gc-shortcut-text {
+  font-size: 0.78rem;
+}
+.gc-shortcut-menu .gc-shortcut-divider {
+  height: 1.45rem;
 }
 
 /* ---------- Rollilüliti: ADMINI tööriist, ekraani nurgas ----------
@@ -942,13 +968,13 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 }
 /* Laual on dokk suurema tekstiga, seega ka nupud sammu võrra suuremad —
    muidu istub väike ring suurema kirja kõrval viltu. Mõõt käib ÜHE
-   muutuja kaudu, et Tagasi jääks igal pool täpselt ruuduks. */
-.gc[data-desk="1"] {
-  --gc-shortcut-size: 2.6rem;
-}
-.gc[data-desk="1"] .gc-shortcut-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
+   muutuja kaudu, et Tagasi jääks igal pool täpselt ruuduks.
+   Muutuja peab istuma PILLI peal, mitte .gc peal: .gc-shortcut-menu
+   avaldab oma mõõdu ise, ja element ise võidab alati päritud väärtuse —
+   .gc peal seisev deklaratsioon ei jõuaks dokini. Ikooni eraldi reeglit
+   siin enam ei ole: ta tuletatakse mõõdust (.gc-shortcut-menu plokk). */
+.gc[data-desk="1"] .gc-shortcut-menu {
+  --gc-shortcut-size: 3.15rem;
 }
 
 /* Otseteeriba (kolme kaardi karussell): overflow on nüüd ka desktopil,
@@ -1150,6 +1176,15 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   padding: 0;
   color: rgba(239, 239, 239, 0.78);
 }
+/* Tagasi-noolel EI OLE teksti — ei silti ega hover-vihjet (omanik 26.07:
+   „tagasi nupult üldse tekstid ära"). Nool on ainus ikoon dokis, mille
+   tähendus on niigi selge, ja „SULGE JA NAASE RUUMI" hüppas kerides
+   kaartide ette. Ligipääsetav nimi jääb aria-label'ile — see on
+   ekraanilugejale, mitte silmale. */
+.gc-shortcut--back .gc-shortcut-tooltip,
+.gc-shortcut--back .gc-shortcut-text {
+  display: none;
+}
 .gc-shortcut-divider {
   width: 1px;
   height: 1.2rem;
@@ -1196,7 +1231,8 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     bottom: max(11%, env(safe-area-inset-bottom, 0px) + 8%);
   }
   .gc-shortcuts {
-    bottom: max(7%, env(safe-area-inset-bottom, 0px) + 4.5%);
+    /* bottom tuleb baasreeglist (--dock-bottom) — mobiilil ei tohi dokk
+       teisele kõrgusele hüpata. */
     max-width: calc(100vw - 1rem);
     gap: 0.35rem;
   }
@@ -1213,6 +1249,20 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     min-width: 2.15rem;
     height: 2.15rem;
     padding: 0 0.53rem;
+  }
+  /* Dokk kasvab ka mobiilil (omanik 26.07). Ülalolev .gc-shortcut reegel
+     on ühine ja võidaks spetsiifikaga baasi mõõtumuutuja ära, seega tuleb
+     doki mõõt siin muutujast uuesti avaldada. */
+  .gc-shortcut-menu {
+    --gc-shortcut-size: 2.5rem;
+  }
+  .gc-shortcut-menu .gc-shortcut {
+    min-width: var(--gc-shortcut-size);
+    height: var(--gc-shortcut-size);
+    padding: 0 0.66rem;
+  }
+  .gc-shortcuts {
+    gap: 0.45rem;
   }
   .gc-shortcut-text,
   .gc-shortcut-tooltip {

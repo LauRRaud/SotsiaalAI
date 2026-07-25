@@ -553,7 +553,8 @@
 .cvf-stage-dock {
   flex: 0 0 auto;
   align-self: center;
-  margin: 0.55rem auto calc(env(safe-area-inset-bottom, 0px) + 0.7rem);
+  /* Kõrgus jagatud tokenist — sama mis ruumi dokil (tokens.css). */
+  margin: 0.55rem auto calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
   max-width: calc(100% - 1.6rem);
   position: relative;
   z-index: 6;

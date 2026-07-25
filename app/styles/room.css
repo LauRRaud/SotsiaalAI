@@ -738,6 +738,25 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .room-topbar[data-open="1"] .room-quickbar {
   transform: translate(-50%, 0.3rem);
   pointer-events: auto;
+  /* Blur AINULT väljas olles. Riba libiseb transform'iga sisse-välja ja
+     backdrop-filter koos liikuva transform'iga tähendab, et brauser
+     loeb tausta iga kaadri uuesti — servad määrivad ja liigutus tõmbleb
+     (sama õppetund mis mujal platvormil: hägukihte ei animeerita).
+     Nii et: liikumise ajal on riba lihtsalt klaasitooniga taust, ja kui
+     ta on kohal, tuleb hägu peale. Üleminek on 220 ms hilinemisega ehk
+     alles siis, kui liigutus (var(--dur-med)) on läbi.
+     backdrop-filter kannab transform'iga elemendil ka oma virnastus- ja
+     lõikekonteksti — sellepärast on ta siin, avatud olekus, mitte
+     baasreeglis. */
+  -webkit-backdrop-filter: blur(15px) saturate(0.86);
+  backdrop-filter: blur(15px) saturate(0.86);
+  transition:
+    transform var(--dur-med) var(--ease-soft),
+    backdrop-filter 260ms var(--ease-soft) 220ms,
+    -webkit-backdrop-filter 260ms var(--ease-soft) 220ms;
+}
+html[data-reduce-motion="1"] .room-topbar .room-quickbar {
+  transition: none;
 }
 
 /* Püüdeala — katab kogu .room-topbari (päris <button>, läbipaistev). Püüab
@@ -891,6 +910,50 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   /* Akna KOHAL (--z-panel 30), aga modaalide all (--z-modal 60). */
   z-index: calc(var(--z-panel) + 5);
   pointer-events: none;
+}
+/* Kontakti/Paigalda dokk seisab modaalist KÕRGEMAL. GlassModal'i kiht on
+   `inset: 0` klikipüüdja (väljaklikk sulgeb) — selle alla jäädes oleks
+   dokk nähtav, aga surnud: iga klõps kukuks kihi peale. */
+.room-dock-wrap[data-over-modal="1"] {
+  z-index: calc(var(--z-modal) + 1);
+}
+
+/* ---------- Taanduv dokk: lugeja süveneb, ruum jääb taha ----------
+   Kui tekstitahvlis keritakse ALLA, ei kustu dokk lihtsalt ära — ta
+   VAJUB RUUMI TAGASI: läheb kaugemale (Z), kahaneb perspektiivis,
+   hämardub ja läheb fookusest välja, nagu ese, millelt pilk on ära
+   pööratud. Tagasi tuleb pilgu tõusuga (kerid üles) või lugemise lõpus
+   (jõuad põhja) — vt PanelFrame, kust `data-dock-recessed` tuleb.
+   Miks transform+blur, mitte pelk opacity: platvorm on ruum, mitte
+   leht. Ekraanikleeps kaob, ese taandub — ja taandumine annab lugejale
+   ka suunataju (dokk on ikka seal, lihtsalt kaugemal). */
+html[data-dock-recessed="1"] .room-dock-wrap {
+  opacity: 0;
+  transform: perspective(900px) translate3d(0, 1.15rem, -5.5rem);
+  filter: blur(3px);
+  pointer-events: none;
+}
+.room-dock-wrap {
+  transform: perspective(900px) translate3d(0, 0, 0);
+  transform-origin: 50% 100%;
+  filter: blur(0);
+  /* Sujuvam kui esimene katse (omanik 26.07: „pane see sujuvamaks"):
+     pikem kaar ja üks ühine kestus akna kasvuga (700 ms), et dokk ja
+     tahvel liiguksid ühe liigutusena, mitte kahe eri sündmusena.
+     Läbipaistvus jõuab veidi ette, muidu paistab hägune ese hetkeks
+     paigal seisvat. */
+  transition:
+    opacity 560ms var(--ease-soft),
+    transform 700ms var(--ease-soft),
+    filter 620ms var(--ease-soft);
+}
+/* Vähendatud liikumine: ese kaob ja tuleb, aga ei sõida ega hägustu. */
+html[data-reduce-motion="1"] .room-dock-wrap {
+  transition: opacity 200ms linear;
+}
+html[data-reduce-motion="1"][data-dock-recessed="1"] .room-dock-wrap {
+  transform: none;
+  filter: none;
 }
 .room-dock-wrap .gc {
   --gc-shortcuts-opacity: 1;

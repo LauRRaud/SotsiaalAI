@@ -15,7 +15,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { localizePath } from "@/lib/localizePath";
 import { readRoomHubPath } from "@/lib/roomHubReturn";
-import { isCanvasRoute, isWideRoute, panelHasRoomDock } from "@/lib/roomDock";
+import { isCanvasRoute, isWideRoute, panelHasOwnExit, panelHasRoomDock } from "@/lib/roomDock";
+import { PanelExitProvider } from "@/components/room/PanelExit";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
@@ -210,6 +211,10 @@ export default function PanelFrame({ children }) {
   /* Dokiga aknal EI OLE nurga-risti: väljapääs on ruumi dokis, ühes ja
      samas kohas (omanik 26.07). Esc jääb tööle igal juhul. */
   const hasRoomDock = panelHasRoomDock(normalized);
+  /* Lõuend, mille oma dokk kannab tagasi-noolt (Hinnastus): rist kaob
+     sealtki, aga sulgemisloogika jääb SIIA — leht kutsub teda
+     PanelExitProvider'i kaudu. */
+  const hasOwnExit = panelHasOwnExit(normalized);
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
@@ -300,6 +305,57 @@ export default function PanelFrame({ children }) {
     };
   }, [isHome, normalized]);
 
+  /* Dokk taandub, kui lugeja süveneb (omanik 26.07). VR-loogika: dokk on
+     RUUMI ese, mitte ekraanikleeps — kui pilk läheb tekstitahvlile, jääb
+     ta taha, hämardub ja läheb fookusest välja; tahvel ise kasvab vabaks
+     jäänud ruumi. Tagasi tuleb ta kohe, kui pilk tõuseb (kerid üles) või
+     kui lugemine on läbi (jõuad põhja) — väljapääsu ei tohi otsida.
+
+     Olek elab <html> data-atribuudil, mitte Reacti olekus: teda vajavad
+     KAKS eri puud (dokk elab RoomStage'is, aken siin) ja üleminek on
+     puhas CSS. Reacti kaudu tähendaks see konteksti läbi terve puu ja
+     iga kerimiskaadri renderdust. */
+  useEffect(() => {
+    if (isHome || !hasRoomDock) return undefined;
+    const el = bodyRef.current;
+    const root = document.documentElement;
+    if (!el || !root) return undefined;
+
+    /* Lävi on müravaigisti: puuteplaadi hoog annab ±1 px kaadreid, mis
+       ilma selleta paneksid doki edasi-tagasi võbelema. */
+    const NOISE = 6;
+    const TOP_ZONE = 48;
+    const END_ZONE = 24;
+    let last = el.scrollTop;
+    let raf = 0;
+
+    const apply = () => {
+      raf = 0;
+      const top = el.scrollTop;
+      const delta = top - last;
+      if (Math.abs(delta) < NOISE) return;
+      last = top;
+      const max = el.scrollHeight - el.clientHeight;
+      const atEnd = max - top <= END_ZONE;
+      const nearTop = top <= TOP_ZONE;
+      const hide = delta > 0 && !atEnd && !nearTop;
+      root.dataset.dockRecessed = hide ? "1" : "0";
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(apply);
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      /* Lehelt lahkudes EI tohi dokk taandunuks jääda — järgmine aken
+         avaneks ilma väljapääsuta. */
+      delete root.dataset.dockRecessed;
+    };
+  }, [isHome, hasRoomDock, normalized]);
+
   /* Töölaud: sr-only marker jääb DOM-i (ekraanilugeja, robotid), paneelikesta
      EI teki — nähtav navigatsioon on RoomStage'i töölaua-karussell. */
   if (isHome || isLogoExport || isWorkspaceHub) return children;
@@ -353,7 +409,7 @@ export default function PanelFrame({ children }) {
           <span aria-hidden="true">←</span>
           {t("covision.live.exit.label")}
         </button>
-      ) : hasRoomDock ? null : (
+      ) : hasRoomDock || hasOwnExit ? null : (
         <IconButton
           layoutClassName="panel-close"
           aria-label={t("room.close_panel")}
@@ -382,7 +438,7 @@ export default function PanelFrame({ children }) {
         controls={panelControls}
         bodyRef={bodyRef}
       >
-        {children}
+        <PanelExitProvider close={closePanel}>{children}</PanelExitProvider>
       </PanelSurface>
     </div>
   );

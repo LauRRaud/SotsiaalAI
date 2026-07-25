@@ -19,10 +19,13 @@ import {
 import { localizePath } from "@/lib/localizePath";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 
-// Funktsionaalne kerimis-konteiner: panelRef + handleShellWheel loevad scrollHeight/scrollTop.
-// direct-scroll-surface = CSS/testi-viidatud kerimispinna marker; overflow/max-height = kerimis-käitumine.
-const panelClassName =
-  "direct-scroll-surface relative max-h-[calc(100dvh-2rem)] overflow-y-auto";
+// direct-scroll-surface = kerimispinna marker. Kerib PANEEL ise (.panel-body),
+// mitte siinne mähis: oma `max-h-[calc(100dvh-2rem)] overflow-y-auto` mõõtis end
+// AKNA, mitte paneeli järgi → mähis jäi paneeli sisepinnast kõrgemaks, .panel-body
+// sai omakorda kerida ja tõmbas lugemispinna paneeli ülaservast välja (tekst lõikus
+// otse klaasi serva vastu, ilma servavaheta — omanik 26.07). Nüüd üks kerija nagu
+// /meist lehel, kus servavahe tuleb .panel-body padding-top'ist.
+const panelClassName = "direct-scroll-surface relative";
 
 function getUpdatedFrameworkIntroCopy(locale) {
   const introCopy = {
@@ -324,9 +327,13 @@ export default function TooalaseRaamistikuBody({ frameworkDocument }) {
   };
 
   const handleShellWheel = useCallback((event) => {
-    const panel = panelRef.current;
+    const shell = panelRef.current;
     const target = event.target;
-    if (!panel || panel.contains(target)) return;
+    if (!shell || shell.contains(target)) return;
+
+    // Kerimispind on paneel ise; mähis ainult märgib, kus sisu asub.
+    const panel = shell.closest(".panel-body") || shell;
+    if (!panel) return;
 
     const maxScrollTop = panel.scrollHeight - panel.clientHeight;
     if (maxScrollTop <= 0) return;

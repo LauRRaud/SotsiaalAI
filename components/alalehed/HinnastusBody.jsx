@@ -20,9 +20,11 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import IconButton from "@/components/glass/IconButton";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
+import { usePanelExit } from "@/components/room/PanelExit";
 import { localizePath } from "@/lib/localizePath";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
-import { pushWithTransition } from "@/lib/routeTransition";
+import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 
 const REGISTER_CLOSED_NOTE_ID = "hinnastus-register-closed-note";
 
@@ -79,6 +81,10 @@ function PlanValue({ value, t }) {
 export default function HinnastusBody() {
   const router = useRouter();
   const { t, locale } = useI18n();
+  /* Väljapääsu OMANIK on PanelFrame — tema teab, kas leht avati töölaualt,
+     profiilist või ruumist. Väljaspool paneeli (manustatud kasutus) seda
+     konteksti ei ole, siis on tagasi lihtsalt ajalugu. */
+  const closePanel = usePanelExit();
   const stageRef = useRef(null);
   const cardRefs = useRef([]);
 
@@ -101,8 +107,16 @@ export default function HinnastusBody() {
     };
   }, []);
 
-  /* Sulgemine = PanelFrame'i nurga-X (isCanvas: „Sulge ja naase ruumi") +
-     Esc — eraldi tagasinuppu kaardil ega dokis ei ole (omanik 24.07). */
+  /* Väljapääs = doki tagasi-nool + Esc. Nurga-risti siin EI OLE (omanik
+     26.07: „tagasi peab saama kiirmenüüst") — kaks väljapääsu ühel lehel
+     on halvem kui üks, ja kiirmenüü on igal pinnal samas kohas. */
+  const handleBack = useCallback(() => {
+    if (closePanel) {
+      closePanel();
+      return;
+    }
+    backWithTransition(router);
+  }, [closePanel, router]);
 
   /* Samm-lukk: üks kaart korraga, animatsioon lõpetatakse enne järgmist
      (transition 460 ms, pricing.css). */
@@ -209,9 +223,13 @@ export default function HinnastusBody() {
 
   return (
     <section className="pc" lang={locale} aria-labelledby="hinnastus-title">
+      {/* Ainult pealkiri. Sissejuhatav rida läks ära (omanik 26.07):
+          kaardid ütlevad sama asja ise ja iga siit võidetud piksel läheb
+          lavale. Võti about.pricing.intro jääb tõlkefailidesse kasutuseta
+          — teda kannab ainult see koht, aga ühest keelest kustutamine
+          lõhuks keelte pariteedi (i18n:check) ja tekst võib veel naasta. */}
       <header className="pc-head">
         <h1 id="hinnastus-title">{t("about.pricing.title")}</h1>
-        <p className="pc-intro">{t("about.pricing.intro")}</p>
         {!REGISTRATION_OPEN ? (
           <p id={REGISTER_CLOSED_NOTE_ID} className="pc-closed" role="note">
             {t("auth.register.closed_notice")}
@@ -341,6 +359,21 @@ export default function HinnastusBody() {
 
       {/* Otsetee-dokk = ruumi kaardimenüü DNA (carousel.css .gc-shortcut-*). */}
       <nav className="pc-dock gc-shortcut-menu" aria-label={t("about.pricing.title")}>
+        <button
+          type="button"
+          className="gc-shortcut gc-shortcut--back"
+          data-on="0"
+          onClick={handleBack}
+          aria-label={t("buttons.back")}
+        >
+          <span className="gc-shortcut-icon" aria-hidden="true">
+            <BackArrowIcon />
+          </span>
+          <span className="gc-shortcut-tooltip" aria-hidden="true">
+            {t("buttons.back")}
+          </span>
+        </button>
+        <span className="gc-shortcut-divider" aria-hidden="true" />
         <div className="gc-shortcut-track">
           {planKeys.map((key, index) => {
             const isActive = index === active;

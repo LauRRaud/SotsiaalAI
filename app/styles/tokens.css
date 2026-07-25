@@ -3,6 +3,20 @@
    Ruum: puitpaneelid, loojang, mattklaas. Luksus on vaikne.
    ============================================================ */
 
+/* Doki reserv on REGISTREERITUD muutuja, sest teda ANIMEERITAKSE (dokk
+   taandub kerides, aken kasvab tema asemele — vt panel.css + room.css).
+   Registreerimata muutuja hüppaks ühe kaadriga uuele väärtusele ja iga
+   temast tuletatud omadus (polster, laemõõt) peaks siis ise eraldi
+   animeeruma — kaks üleminekut kahel elemendil, mis jäävad üksteisest
+   maha. `syntax: "<length>"` teeb muutujast interpoleeritava arvu: kõik
+   tuletatud omadused liiguvad ühes taktis. Peab olema @layer'ist VÄLJAS
+   ja :root'ist enne. */
+@property --room-dock-reserve {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
 :root {
   color-scheme: dark;
   --base-rem: 16px;
@@ -152,6 +166,17 @@
      mitte px-lakke kinni jääma. Skaleeringul 1 on väärtused
      identsed vanade px-idega (240/348px). */
   --gc-w: clamp(15rem, 25vw, 21.75rem);
+
+  /* ---- Doki kõrgus põrandast (jagatud KÕIGI dokkide vahel) ---- */
+  /* Omanik 26.07: „igal pool mujal peab sama kõrge olema, ka hindade
+     lehel, kasutusjuhendi lehel ja teistel alalehtedel". Enne oli igal
+     dokil oma arv (ruumil protsent, jaamadel clamp, hinnastusel margin)
+     ja nad maandusid 23–30 px vahemikku — piisavalt lähedale, et keegi
+     ei parandanud, ja piisavalt kaugele, et lehte vahetades silma jäi.
+     Nüüd loeb kõrguse sama koht. Turvaala liidetakse igas kasutuskohas
+     eraldi (env), sest sisemine ja fikseeritud dokk mõõdavad eri
+     põrandast. */
+  --dock-bottom: clamp(1.1rem, 3.6vh, 2.1rem);
 
   /* ---- Paneeli mõõdud ---- */
   --panel-max-w: min(73.75rem, calc(100vw - clamp(1.25rem, 4vw, 4rem)));

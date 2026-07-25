@@ -1214,6 +1214,29 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       },
     };
   }, [panelDockItems, allCardsByHref, searchParams, normalized, t, dockHub]);
+  /* Kontakt ja Paigalda on modaalid, mitte omaette lehed, aga väljapääs
+     peab olema seal, kus ta on kogu platvormil — dokis (omanik 26.07:
+     „kontakti kaart tundub ikka teine kui peaks olema"). Nurga-rist
+     kadus GlassModal'ilt; siin saab dokk tagasi-noole, mis sulgeb akna.
+     Kaartide rida dokis EI ole: nagu avatud lehel, seisab siin ainult
+     see, mis lahti on. */
+  const infoDock = useMemo(() => {
+    if (!openInfoModal) return null;
+    const current =
+      openInfoModal === "kontakt"
+        ? { key: "kontakt", label: t("about.contact.title"), icon: <ContactMailIcon /> }
+        : { key: "paigalda", label: t("room.install_card"), icon: <InstallIcon /> };
+    return {
+      current,
+      back: {
+        key: "info-close",
+        label: t("room.close_panel"),
+        action: "info-close",
+        icon: <BackArrowIcon />,
+      },
+    };
+  }, [openInfoModal, t]);
+
   const initialKey =
     cardPageKey ||
     (isProfileHub
@@ -1274,6 +1297,12 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
          avatud aknas tähendab tagasi "pane aken kinni". */
       if (item.action === "panel-close") {
         router.push(localizePath(item.href || "/", locale));
+        return;
+      }
+      /* Kontakt/Paigalda EI ole lehed, seega siin ei navigeerita — dokk
+         paneb lihtsalt modaali kinni ja ruum jääb sinna, kus ta oli. */
+      if (item.action === "info-close") {
+        setOpenInfoModal(null);
         return;
       }
       if (item.action === "haldus") {
@@ -1616,7 +1645,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         open={openInfoModal === "kontakt"}
         onClose={() => setOpenInfoModal(null)}
         title={t("about.contact.title")}
-        closeLabel={t("room.close_panel")}
       >
         <p>{t("about.contact.company")}</p>
         <p>{t("about.contact.registry_value")}</p>
@@ -1633,7 +1661,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         open={openInfoModal === "paigalda"}
         onClose={() => setOpenInfoModal(null)}
         title={t("room.install_card")}
-        closeLabel={t("room.close_panel")}
       >
         <InstallAppLink />
       </GlassModal>
@@ -1652,6 +1679,23 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             items={panelDock.cards}
             backItem={panelDock.back}
             currentItem={panelDock.current}
+            forceInitial
+            onSelect={handleSelect}
+            t={t}
+          />
+        </div>
+      ) : null}
+      {/* Kontakti/Paigalda dokk. Eraldi mähisemärgis, sest see dokk peab
+          seisma MODAALIST KÕRGEMAL: GlassModal'i kiht on `inset: 0`
+          klikipüüdja, mille alla jäädes ei jõuaks nooleni ükski klõps. */}
+      {infoDock && !isLoginOpen && !a11y?.isModalOpen ? (
+        <div className="room-dock-wrap" data-room-ui data-over-modal="1">
+          <GlassCarousel
+            key={`dock:info:${openInfoModal}`}
+            dockOnly
+            items={[infoDock.current]}
+            backItem={infoDock.back}
+            currentItem={infoDock.current}
             forceInitial
             onSelect={handleSelect}
             t={t}

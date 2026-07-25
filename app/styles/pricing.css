@@ -30,10 +30,18 @@
    üles poole, tee kaardid kõrgemaks"): iga siit võidetud piksel läheb
    lavale, et „Vali …" nupp ja „Vaata kõiki võimalusi" jääksid kaardil
    nähtavale ilma kerimata. */
+/* Pealkiri JULGELT üleval (omanik 26.07). Kaks polstrit hoidsid teda all:
+   lõuendi ühine ülariba-reserv (.panel-body, panel.css) ja päise enda oma.
+   Reserv on olemas kovisiooni etapiraja ja teemaseemnete navi pärast —
+   hinnastusel on üks tekstirida, mis mahub ülariba pilli alla palju
+   kõrgemale, seega saab ta siin kitsam olla. */
+.panel-scrim[data-canvas="1"] .panel-body:has(> .pc) {
+  padding-top: clamp(2.5rem, 4lvh, 3rem);
+}
 .pc-head {
   position: relative;
   flex: 0 0 auto;
-  padding: clamp(0.5rem, 1.5vh, 1rem) 1.5rem 0.25rem;
+  padding: 0 1.5rem 0.25rem;
   text-align: center;
 }
 .pc-head h1 {
@@ -66,8 +74,12 @@
   perspective-origin: 50% 46%;
   touch-action: pan-y;
   /* Kaardi mõõdud elavad LAVAL (mitte .pc-list'is), sest neid vajavad ka
-     nooled — need seisavad külgkaardi kõrval, mitte ekraani servas. */
-  --pc-w: clamp(17rem, 34vw, 22rem);
+     nooled — need seisavad külgkaardi kõrval, mitte ekraani servas.
+     Laius tuleb RUUMI kaarditokenist, mitte omast valemist (omanik 26.07:
+     „liiga suur erinevus lehtedel, muuda hinnastust ühtlasemaks"). Oma
+     clamp(17rem, 34vw, 22rem) tegi kaardi ruumi omast laiemaks ja nihutas
+     ühtlasi nooled teise kohta; nüüd on mõlemal lehel sama arv. */
+  --pc-w: var(--gc-w);
   --pc-spacing: calc(var(--pc-w) * 1.12);
 }
 .pc-list {
@@ -80,16 +92,23 @@
 .pc-item {
   position: absolute;
   left: 50%;
-  top: 50%;
+  /* Sama murd mis ruumi karussellil (.gc-item top: 46%) — kaart istub
+     lava keskmest pisut ülalpool, nii et alla jääb dokile õhku. */
+  top: 46%;
   width: var(--pc-w);
   /* Kaart ei tohi kasvada LAVAST välja: laiendatuna roniks ta muidu
      päise alla ja poolläbipaistvast klaasist kumaks pealkirja tekst
      läbi (omanik 24.07). Lava kõrgus on siin määratud (.pc-list on
      inset:0), seega protsent laheneb ja flex kahandab kaardi mahtu. */
   /* Kõigil pakettidel ÜKS kõrgus (mitte sisu järgi): võrdluses mõjuvad
-     eri kõrgused rebenenult ja lühem pakett näiks vähem väärt. Kaart
-     võtab lava kõrguse, sisu seisab keskel. */
-  height: calc(100% - 0.5rem);
+     eri kõrgused rebenenult ja lühem pakett näiks vähem väärt.
+     Kuju on sama portree mis ruumi kaardil (.gc-item aspect-ratio: 0.72),
+     et kaks lehte ei näeks eri mänguna välja. Lava kõrgus jääb LAEKS —
+     madalal aknal kahaneb kaart, aga ei roni kunagi päise alla, kus
+     poolläbipaistvast klaasist kumaks pealkiri läbi. */
+  aspect-ratio: 0.72;
+  height: auto;
+  max-height: calc(100% - 0.5rem);
   display: flex;
   transform: translate(-50%, -50%)
     translate3d(calc(var(--pos) * var(--pc-spacing)), 0, 0)
@@ -314,26 +333,30 @@
    mõõt, nagu carousel.css .gc-arrow. ---------- */
 .pc-arrow {
   position: absolute;
-  top: 50%;
+  /* Sama kõrgus ja mõõt mis ruumi nooltel (.gc-arrow: top 46%, 3.6rem) —
+     omanik 26.07 tahtis lehed ühtlasemaks. */
+  top: 46%;
   translate: 0 -50%;
   z-index: 60;
-  width: 3.4rem;
-  height: 3.4rem;
-  --icon-size: 1.5rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  --icon-size: 1.6rem;
   color: var(--room-text-soft);
   transition: opacity 220ms var(--ease-soft), transform 220ms var(--ease-soft);
 }
-/* Nool seisab OTSE külgkaardi kõrval (omanik 24.07: „nooled lähemale
-   kaartidele"), mitte ekraani servas. Arvutus kaardi välisservast, sama
-   loogika mis carousel.css .gc-arrow'l: keskjoon + 1.12 (samm) + 0.44
-   (poolik, 0.88-skaalaga külgkaart) = 1.56 × kaardi laius. */
+/* Nool seisab külgkaardi kõrval, mitte ekraani servas. Arvutus kaardi
+   välisservast: keskjoon + 1.12 (samm) + 0.44 (poolik, 0.88-skaalaga
+   külgkaart) = 1.56 × kaardi laius. Konstandid on TÄPSELT samad mis
+   carousel.css .gc-arrow'l (1.56 + 0.9rem) — koos ühise --pc-w/--gc-w
+   laiusega maandub nool mõlemal lehel samasse kohta. Oma arv siin oli
+   see, mis lehed lahku ajas (omanik 26.07). */
 .pc-arrow--left {
   left: auto;
-  right: calc(50% + var(--pc-w) * 1.56 + 0.6rem);
+  right: calc(50% + var(--pc-w) * 1.56 + 0.9rem);
 }
 .pc-arrow--right {
   right: auto;
-  left: calc(50% + var(--pc-w) * 1.56 + 0.6rem);
+  left: calc(50% + var(--pc-w) * 1.56 + 0.9rem);
 }
 .pc-arrow:disabled {
   opacity: 0;
@@ -350,8 +373,19 @@
   flex: 0 0 auto;
   align-self: center;
   margin: 0 auto;
-  margin-bottom: max(env(safe-area-inset-bottom, 0px) + 0.55rem, clamp(0.6rem, 1.7vh, 1.1rem));
+  /* Kõrgus jagatud tokenist — sama mis ruumi dokil (tokens.css). Dokk on
+     siin voo sees (margin), mitte fikseeritud, aga lõuendipaneel ulatub
+     ekraani põhjani, seega maandub ta samale kõrgusele. */
+  margin-bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
   max-width: calc(100vw - 1.6rem);
+}
+/* Paketi nimi dokis on PEIDUS — täpselt samal põhjusel, mille pärast ta on
+   peidus ka ruumi karussellis: laienev caps-pill muudab iga kerimisega doki
+   laiust ja terve riba nihkub kaasa (omanik 26.07: „ei meeldi, kuidas
+   kiirmenüü tõmbleb, kui ma kerin kaarte"). Nimi ei kao kuhugi — ta seisab
+   suurelt kaardil eneses, doki kohal. Vihje (hover/fookus) jääb alles. */
+.pc-dock .gc-shortcut-text {
+  display: none;
 }
 
 /* ---------- Liikumise vähendamine ---------- */

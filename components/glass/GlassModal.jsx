@@ -9,10 +9,8 @@
 
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import IconButton from "@/components/glass/IconButton";
-import CloseIcon from "@/components/brand/icons/CloseIcon";
 
-export default function GlassModal({ open, onClose, title, closeLabel = "Sulge", children }) {
+export default function GlassModal({ open, onClose, title, children }) {
   const shellRef = useRef(null);
 
   useEffect(() => {
@@ -41,9 +39,9 @@ export default function GlassModal({ open, onClose, title, closeLabel = "Sulge",
         ref={shellRef}
         onClick={(e) => e.stopPropagation()}
       >
-        <IconButton layoutClassName="glass-modal-close" aria-label={closeLabel} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
+        {/* Nurga-risti EI OLE (omanik 26.07): väljapääs on doki tagasi-
+            noolel, ühes ja samas kohas nagu kõikjal mujal platvormil.
+            Esc ja väljaklikk jäävad tööle. */}
         {title ? <h2 className="glass-modal-title">{title}</h2> : null}
         <div className="glass-modal-body">{children}</div>
       </section>

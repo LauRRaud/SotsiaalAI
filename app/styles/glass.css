@@ -353,8 +353,11 @@
     z-index: var(--z-modal);
     background: transparent;
   }
-  /* Tellija 06.07 öö: modal = KESKMINE KAART ise (sama geomeetria),
-     sisu vahetub kohapeal — ei lenda, ei kasva, oma blurita. */
+  /* Modal = KAART, terve geomeetriaga: sama laius, külgsuhe, materjal,
+     serv ja raadius mis karussellil. Kõrgus EI muutu sisu järgi (omanik
+     26.07: „kaardi suurust muuta ei tohi") — kaart on ruumis püsiv ese,
+     mitte sisu järgi venniv kast, ja avanedes ei tohi ta kuju muutuda.
+     Lühikese sisu puhul jääb alla õhku; see on kaardi vorm, mitte viga. */
   .glass-modal-shell {
     position: absolute;
     left: 50%;
@@ -362,12 +365,19 @@
     transform: translate(-50%, -50%);
     width: min(var(--gc-w), calc(100vw - 1.5rem));
     aspect-ratio: 0.72;
-    max-height: min(86lvh, 700px);
+    max-height: min(86lvh, 43.75rem);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* Pealkiri kaardi ÜLESERVA, sisu voolab tema alt (omanik 26.07:
+       „kaartidel tuleb pealkirjad ja sisu õigesti panna"). Keskjoondatud
+       plokk pani pealkirja hõljuma sisu pikkuse järgi eri kõrgusele —
+       kaardilt kaardile liikudes ta nihkus. Ülapolster = sama arv mis
+       kompaktsel paneelikaardil, et pealkiri algaks mõlemal ühelt
+       kõrguselt. */
+    justify-content: flex-start;
     overflow-y: auto;
-    padding: clamp(1.2rem, 3lvh, 1.8rem) clamp(1rem, 2.4vw, 1.4rem);
+    padding: clamp(1.3rem, 3lvh, 1.9rem) clamp(1.35rem, 3vw, 1.75rem);
+    padding-top: clamp(2.4rem, 5lvh, 2.8rem);
     border-radius: clamp(20px, 2.4vw, 30px);
     /* Kontakt/Paigalda AVANEB keskmises kaardis, seega on ta kaart —
        kaardi materjal tokenist, mitte üld-klaas (--room-glass-bg).
@@ -379,6 +389,20 @@
     box-shadow: var(--card-glass-shadow);
     color: var(--room-text);
     animation: none;
+  }
+  /* Läige — KOLMAS kiht, mis kaardil on ja siin puudus (omanik 26.07:
+     „kontakti kaart tundub ikka teine kui peaks olema"). Materjal ja serv
+     olid juba tokenist, aga ülaserva läiketa nägi kaart matim välja kui
+     tema naabrid karussellis. Sama allikas mis .gc-card ja kompaktsel
+     paneelikaardil: --card-glass-sheen. */
+  .glass-modal-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--card-glass-sheen);
+    pointer-events: none;
+    z-index: 0;
   }
   .glass-modal-shell::after {
     content: "";
@@ -395,27 +419,35 @@
     mask-composite: exclude;
     pointer-events: none;
   }
-  .glass-modal-close {
-    position: absolute;
-    top: 0.9rem;
-    right: 0.9rem;
-  }
+  /* .glass-modal-close kadus koos nurga-ristiga (omanik 26.07) —
+     väljapääs on doki tagasi-noolel. */
+  /* Pealkiri = SAMA kiri mis kompaktse kaardi h1-l (panel.css
+     [data-compact] .panel-body h1), mitte oma suurtähe-variant. Caps +
+     5 px tähevahe oli teine asi, mis seda kaarti naabritest eristas
+     (omanik 26.07). Sisu on kaardil, mitte kaardi peal olevas aknas. */
   .glass-modal-title {
     font-family: var(--font-ui);
-    font-weight: 460;
-    font-size: clamp(1.1rem, 4vw, 1.35rem);
-    letter-spacing: var(--track-caps);
-    text-transform: uppercase;
+    font-size: var(--card-title-size);
+    letter-spacing: 0.02em;
     text-align: center;
-    padding-left: var(--track-caps);
-    margin: 0.1em 0 0.9em;
+    /* Sama hingamisruum pealkirja all mis kompaktsel kaardil. */
+    margin: 0 0 1.2em;
   }
+  /* Sisu oli --fs-small (14 px) ehk platvormi kõige väiksem aste — kaardil
+     mõjus ta allmärkusena, kuigi see ONGI kaardi sisu. Kaart on ainus asi
+     ekraanil, kui ta lahti on; siin ei ole põhjust leivatekstist väiksem
+     olla, pigem vastupidi (omanik 26.07, kaks korda: „tekst on liiga
+     väike"). Sama aste mis lugemislehtede proosal. */
   .glass-modal-body {
-    font-size: var(--fs-small);
+    font-size: clamp(1.06rem, 1rem + 0.25vw, 1.18rem);
+    line-height: 1.62;
     color: var(--text-soft);
   }
   .glass-modal-body p {
-    margin: 0 0 0.6em;
+    margin: 0 0 1.15em;
+  }
+  .glass-modal-body p:last-child {
+    margin-bottom: 0;
   }
 
   /* ---------- Loendirida (Töölaud; pilt 10) ---------- */

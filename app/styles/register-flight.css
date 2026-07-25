@@ -227,7 +227,8 @@ html:not([data-contrast="hc"]) .rgf-plane :is(button[data-variant], a[data-varia
 .rgf-dock {
   position: absolute;
   left: 50%;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + clamp(0.9rem, 2.6lvh, 1.8rem));
+  /* Kõrgus jagatud tokenist — sama mis ruumi dokil (tokens.css). */
+  bottom: calc(env(safe-area-inset-bottom, 0px) + var(--dock-bottom));
   transform: translateX(-50%);
   z-index: 4200;
   max-width: calc(100vw - 2rem);
