@@ -740,7 +740,12 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   /* Nool istub klaasi alaserval, tõmmatud KÕRGEMALE glaasi peale (tellija
      07.07: "noolt üles poole") */
   transform: translate(-50%, -88%);
-  z-index: 2;
+  /* Nool on klaasi PEAL, aga nuppude ALL. Ta on tõmmatud paneeli
+     alaserva peale, seega avatuna kattub ta ikoonireaga — z-index 2
+     joonistas ta nuppude kohale ja ta jäi kadudes nende peale hõljuma
+     (omanik 25.07). 0 hoiab ta klaasi kohal, kuid nuppude taga
+     (.room-quick-btn on z-index 1). */
+  z-index: 0;
   display: flex;
   pointer-events: none;
 }
@@ -752,10 +757,16 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   filter: drop-shadow(0 1px 3px rgba(5, 5, 5, 0.5));
   transition: opacity var(--dur-med) var(--ease-soft);
 }
+/* ÄRA läheb kiiresti, TAGASI tuleb rahulikult. Nool on kutse ("siin on
+   midagi"); kui kutse on vastu võetud, ei ole tal enam midagi öelda ja
+   560 ms hõljumist ikoonide kohal luges viivitusena, mitte pehmusena
+   (omanik 25.07: "nooleke kaob liiga aeglaselt ära"). Naasmine tohib
+   olla aeglane — seal ta ei sega midagi. */
 .room-topbar:hover .room-quickbar-arrow svg,
 .room-topbar:focus-within .room-quickbar-arrow svg,
 .room-topbar[data-open="1"] .room-quickbar-arrow svg {
   opacity: 0;
+  transition-duration: 120ms;
 }
 /* Avatuna ei püüa püüdeala klikke — sulgemine käib väljast-klõpsust/Esc,
    nii ei toggle'da paneeli nuppude vahelt kogemata kinni. */
