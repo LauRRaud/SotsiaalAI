@@ -40,14 +40,23 @@ test("effective-practice URLs represent exactly one list, detail or editor view"
 });
 
 test("wide workspaces and the single Kovisioon exit have explicit panel contracts", async () => {
-  const [frame, panelCss, live, completedCss, practicesCss] = await Promise.all([
+  const [frame, roomDock, panelCss, live, completedCss, practicesCss] = await Promise.all([
     read("components/room/PanelFrame.jsx"),
+    read("lib/roomDock.js"),
     read("app/styles/panel.css"),
     read("components/covision/CovisionLiveSession.jsx"),
     read("app/styles/completed-cases.css"),
     read("app/styles/effective-practices.css")
   ]);
-  assert.match(frame, /\["\/teenusekaart", "\/lopetatud-juhtumid", "\/parimad-praktikad"\]\.includes\(normalized\)/);
+  /* Laiade tööpindade loend kolis PanelFrame'ist lib/roomDock.js-i (omanik
+     26.07): RoomStage peab SAMAST allikast teadma, millised aknad ruumi
+     dokki ei kanna, ja kaks koopiat oleks kaks tõde. Leping on muutumatu —
+     täpselt need kolm marsruuti, selgesõnaliselt — ainult ühes kohas. */
+  assert.match(
+    roomDock,
+    /WIDE_ROUTES = \[\s*"\/teenusekaart",\s*"\/lopetatud-juhtumid",\s*"\/parimad-praktikad",?\s*\]/
+  );
+  assert.match(frame, /const isWide = isWideRoute\(normalized\)/);
   assert.equal((frame.match(/className="panel-exit"/g) || []).length, 1);
   assert.doesNotMatch(live, /panel-exit|covision\.live\.exit/);
   assert.match(panelCss, /button\.panel-exit\s*\{[\s\S]*position:\s*absolute[\s\S]*right:[\s\S]*width:\s*auto/);

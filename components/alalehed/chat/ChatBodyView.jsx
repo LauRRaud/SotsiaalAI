@@ -7,26 +7,28 @@ import ChatSourcesPanel from "./ChatSourcesPanel";
 import WorkspacePanel from "@/components/chat/WorkspacePanel";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 import { ChatRecordingNotice, ChatTopNotices } from "./view/ChatNotices";
-import ChatMobileTopNav from "./view/ChatMobileTopNav";
 
 export default function ChatBodyView({
-  embedded,
+  embedded: _embedded,
   t,
   locale,
   profileOpen,
   closeProfile,
   workspaceOpen,
   workspaceSurfaceReady,
-  onWorkspaceToggle,
+  /* Alljärgnevad `_`-propid teenindasid mobiilset ülariba, mida enam ei
+     renderdata (vt kommentaari chat-container'i sees). ChatBody annab neid
+     edasi, seega leping jääb kirja, aga see vaade ei tarbi neid. */
+  onWorkspaceToggle: _onWorkspaceToggle,
   onWorkspaceClose,
   isEntering: _isEntering,
   focusActive,
   chatContainerRef,
   chatContainerClassName,
   chatRingStyle,
-  handleBackHome,
+  handleBackHome: _handleBackHome,
   mobileRailVisible: _mobileRailVisible,
-  mobileRailInteractionLocked,
+  mobileRailInteractionLocked: _mobileRailInteractionLocked,
   isLightTheme,
   roomId,
   inputFocused,
@@ -41,9 +43,9 @@ export default function ChatBodyView({
   scopedSources,
   hasConversationSources,
   hasAllConversationSources: _hasAllConversationSources,
-  rightRailActiveKey,
-  toggleProfile,
-  openProfileDirect,
+  rightRailActiveKey: _rightRailActiveKey,
+  toggleProfile: _toggleProfile,
+  openProfileDirect: _openProfileDirect,
   analysis,
   isRoomMode,
   roomTitle,
@@ -129,25 +131,17 @@ export default function ChatBodyView({
         {showChatFace ? <div aria-hidden={profileOpen ? "true" : "false"}>
           <div>
             <div className={chatContainerClassName} style={chatRingStyle} role="region" aria-label={t("chat.page_label")} ref={chatContainerRef} data-chat-container="true">
-              {showChatInterface && !profileOpen && isMobile ? (
-                <ChatMobileTopNav
-                  t={t}
-                  locale={locale}
-                  isLightTheme={isLightTheme}
-                  embedded={embedded}
-                  handleBackHome={handleBackHome}
-                  mobileRailInteractionLocked={
-                    (showVisibleAnalysisPanel &&
-                      analysis.analysisPanelMode === "overlay") ||
-                    mobileRailInteractionLocked
-                  }
-                  rightRailActiveKey={workspaceOpen ? "workspace" : rightRailActiveKey}
-                  toggleProfile={toggleProfile}
-                  openProfileDirect={openProfileDirect}
-                  workspaceOpen={workspaceOpen}
-                  onWorkspaceToggle={onWorkspaceToggle}
-                />
-              ) : null}
+              {/* MOBIILI ÜLARIBA EI RENDERDATA. Ruumi-paneeli redisain võttis
+                  ChatMobileTopNav'ilt aluse ära: karusselli mähis jäi
+                  `position: static`-uks (inline left/top/right on inertsed) ja
+                  0-kõrguseks, `overflow: hidden` lõikas kõik 5 nuppu ära —
+                  mõõdetud 25.07 mobiilivaates: nupud 0×0. Nähtavale jäid AINULT
+                  kaks artefakti, mõlemad karussellist välja pääsenud absoluutsed
+                  lapsed: hõljuv silt „Profiil" sõnumite peal (omanik 25.07:
+                  „mingi profiil sõna on seal, võta ära") ja lõigatud noole-ikoon
+                  ülaservas. Navigatsiooni EI kao: paneel annab ise ☰ (vestlused)
+                  ja × (sulge). Komponendifail jääb esialgu alles (svaibi-loogika
+                  on selle sees), aga on nüüd viiteta — vt SEIS.md. */}
 
               {showWorkspaceFace ? (
                 <WorkspacePanel

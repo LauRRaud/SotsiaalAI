@@ -65,6 +65,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     if (!canvas || !ctx || !veil) return undefined;
 
     const still = shouldBeStill();
+    /* Puuteseadmel ei ole hõljumist ega kursorinoolt: lause imendub alles
+       SISENEN-i vajutusel ja sihiks on nupu enda tekst. */
+    const coarsePointer =
+      window.matchMedia?.("(pointer: coarse)")?.matches === true;
     canvas.dataset.mode = still ? "still" : "live";
     if (!still) veil.dataset.artText = "1";
     document.documentElement.classList.add("veil-cursor-pending");
@@ -82,6 +86,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     let gateDuration = 1;
     let gateInteractive = false;
     let gateNeedsReentry = false;
+    let gateLatched = false;
     let flowPhase = "phrase";
     let nextTextGlowAt = 5.05;
 
@@ -93,7 +98,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       seen: false,
     };
     const gate = { x: 0, y: 0, width: 0, height: 0, ready: false };
-    const gateSink = { x: 0, y: 0, ready: false };
+    const gateSink = { x: 0, y: 0, ready: false, shape: "cursor" };
     const textTargets = [];
     const textParticles = [];
     const motes = [];
@@ -147,7 +152,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
         gateNeedsReentry =
           pointer.seen && pointIsOverGate(pointer.targetX, pointer.targetY);
       }
-      if (!nextInteractive) {
+      if (!nextInteractive && !gateLatched) {
         gateTarget = 0;
         gateNeedsReentry = false;
         delete veil.dataset.invite;
@@ -159,12 +164,30 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       if (!gateInteractive || gateNeedsReentry) return;
       gateSink.x = x;
       gateSink.y = y;
+      gateSink.shape = "cursor";
       gateSink.ready = true;
       gateTarget = 1;
       veil.dataset.invite = "1";
     }
 
+    /* Puutevajutus lukustab neeldumise: sõrm tõuseb kohe ekraanilt ja
+       järgnev pointerleave ei tohi lauset tagasi laiali saata. Sihiks on
+       kogu SISENEN-i kast, sest kursorinoolt puuteseadmel ei ole. */
+    function latchGate() {
+      syncGateInteractivity();
+      if (!gateInteractive || gateLatched) return;
+      gateNeedsReentry = false;
+      gateSink.x = gate.x;
+      gateSink.y = gate.y;
+      gateSink.shape = "gate";
+      gateSink.ready = true;
+      gateLatched = true;
+      gateTarget = 1;
+      veil.dataset.invite = "1";
+    }
+
     function deactivateGate() {
+      if (gateLatched) return;
       gateTarget = 0;
       document.documentElement.classList.remove("veil-cursor-gold");
       delete veil.dataset.invite;
@@ -279,6 +302,10 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
           streamEndY: (Math.random() - 0.5) * 3,
           directEndX,
           directEndY,
+          /* Puutevajutuse siht: normeeritud koht SISENEN-i kastis
+             (−0.5…0.5), millest saab neeldumispunkt sõna enda sees. */
+          gateEndX: Math.random() - 0.5,
+          gateEndY: (Math.random() - 0.5) * 0.78,
           directDriftX: (Math.random() - 0.5) * 18,
           directApproachX: (Math.random() - 0.5) * 46,
           directApproachLift: 54 + Math.random() * 38,
@@ -727,14 +754,19 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
              SISENEN-alal. Klaviatuurifookuse või puuduva kursori korral
              jääb turvaliseks sihiks läve keskpunkt. Ringivariant säilitab
              oma varasema keskmesse voolamise. */
+          const intoGate = gateSink.shape === "gate";
           const directSinkX = gateSink.ready ? gateSink.x : gate.x;
           const directSinkY = gateSink.ready ? gateSink.y : gate.y;
           const endX = ringEffect
             ? gate.x + particle.streamEndX
-            : directSinkX + particle.directEndX;
+            : intoGate
+              ? directSinkX + particle.gateEndX * gate.width * 0.84
+              : directSinkX + particle.directEndX;
           const endY = ringEffect
             ? gate.y + particle.streamEndY
-            : directSinkY + particle.directEndY;
+            : intoGate
+              ? directSinkY + particle.gateEndY * gate.height * 0.7
+              : directSinkY + particle.directEndY;
           sinkX = endX;
           sinkY = endY;
           const pathX = endX - startTargetX;
@@ -1059,6 +1091,9 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       pointer.seen = true;
       pointer.targetX = nextX;
       pointer.targetY = nextY;
+      /* Lukustatud neeldumise ajal ei tohi sõrme libisemine lauset enam
+         laiali lükata ega läve tühistada. */
+      if (gateLatched) return;
       sweepTextWithPointer(nextX, nextY, deltaX, deltaY);
       syncGateInteractivity();
       const overGate = pointIsOverGate(pointer.targetX, pointer.targetY);
@@ -1099,6 +1134,9 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
     }
 
     const inviteOn = (event) => {
+      /* Puude tekitab samuti pointerenter'i, kuid seal ei ole hõljumist —
+         seal ootame vajutust (latchGate). */
+      if (event?.pointerType === "touch" || coarsePointer) return;
       syncGateInteractivity();
       if (!gateInteractive || gateNeedsReentry) return;
       const rect = veil.getBoundingClientRect();
@@ -1120,9 +1158,21 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       gateNeedsReentry = false;
       activateGate(gate.x, gate.y);
     };
+    /* Lukustus käib KLÕPSUST, mitte pointerdown'ist: alla vajutatud ja
+       kõrvale libistatud sõrm jätaks muidu lause nupu sisse ilma et
+       sisenemine käivituks. Klaviatuuri-Enter töölaual jääb varasemale
+       fookuse-rajale (kursorikujuline neeldumine), et lend ei hüppaks. */
+    const gatePress = (event) => {
+      const touchLike =
+        event?.pointerType === "touch" ||
+        (coarsePointer && event?.pointerType !== "mouse");
+      if (!touchLike) return;
+      latchGate();
+    };
 
     button?.addEventListener("pointerenter", inviteOn);
     button?.addEventListener("pointerleave", inviteOff);
+    button?.addEventListener("click", gatePress);
     button?.addEventListener("focus", focusOn);
     button?.addEventListener("blur", inviteOff);
 
@@ -1158,6 +1208,7 @@ export default function VeilArt({ effect = VEIL_EFFECTS.DIRECT, textLimit = TEXT
       document.removeEventListener("visibilitychange", onVisibilityChange);
       button?.removeEventListener("pointerenter", inviteOn);
       button?.removeEventListener("pointerleave", inviteOff);
+      button?.removeEventListener("click", gatePress);
       button?.removeEventListener("focus", focusOn);
       button?.removeEventListener("blur", inviteOff);
       delete veil.dataset.artText;

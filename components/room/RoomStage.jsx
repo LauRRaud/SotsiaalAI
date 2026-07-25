@@ -27,7 +27,8 @@ import { useSession, signOut } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import { localizePath } from "@/lib/localizePath";
-import { rememberRoomHubPath } from "@/lib/roomHubReturn";
+import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
+import { panelHasRoomDock } from "@/lib/roomDock";
 import IconButton from "@/components/glass/IconButton";
 import {
   GuideBookIcon,
@@ -296,6 +297,11 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const [adminHub, setAdminHub] = useState(false);
   /* Avalikud infokaardid elavad sisselogitule profiili "Teave" kaardi all */
   const [infoHub, setInfoHub] = useState(false);
+  /* Avatud akna all püsiva doki komplekt tuleb sellest hub'ist, kust leht
+     avati. Väärtus loetakse sessionStorage'ist ja seega ALLES pärast
+     hüdreerimist — null tähendab "dokki ei ole" ja on ühtemoodi tõsi nii
+     serveris kui esimeses kliendirenderis (ei mingit lahknevust). */
+  const [dockHub, setDockHub] = useState(null);
   /* Töölaud ja Tööheaolu = kaardikomplektid SAMAS karussellis (tellija
      10.07: "kaartide keritav rivi, mitte üks paneel väikeste nuppudega") —
      sama muster mis Haldus. Tööheaolu ja Kovisioon avanevad Töölaua seest
@@ -391,6 +397,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   modeRef.current = mode;
   const reducedRef = useRef(false);
   const walkDoneRef = useRef(false);
+  const enteringRef = useRef(false);
 
   const readReduced = useCallback(() => {
     if (typeof window === "undefined") return false;
@@ -731,16 +738,26 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   }, [isHome, veil, veilReady, readReduced]);
 
   const enterRoom = useCallback(() => {
+    if (enteringRef.current) return;
+    enteringRef.current = true;
     // Saabumine algab ALATI pimedusest — ka siis, kui brauser jõudis
     // vahepeal vana kerimiskoha taastada.
     window.scrollTo(0, 0);
     target.current = 0;
     displayed.current = 0;
     applyScene(0);
-    setVeil("fading");
-    // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
-    window.setTimeout(() => setVeil("gone"), 1320);
-  }, [applyScene]);
+    /* Töölaual on lause juba hõljumise ajal kursorisse voolanud, seega
+       vajutus võib kohe loori hajutada. Puuteseadmel algab neeldumine
+       alles vajutusest (VeilArt latchGate) — anname sellele oma hetke,
+       enne kui loor kaob, muidu jääks žest nägemata. */
+    const coarse = window.matchMedia?.("(pointer: coarse)")?.matches === true;
+    const lead = coarse && !readReduced() ? 1250 : 0;
+    window.setTimeout(() => {
+      setVeil("fading");
+      // Esmalt hajub jaluse logo (420 ms), seejärel loor ise (900 ms).
+      window.setTimeout(() => setVeil("gone"), 1320);
+    }, lead);
+  }, [applyScene, readReduced]);
 
   /* Loori all ei saa kerida (kõnd algab alles sisenemisel) */
   useEffect(() => {
@@ -863,6 +880,19 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     else if (isWorkspaceRoute) rememberRoomHubPath("/toolaud");
     else if (isProfileHub) rememberRoomHubPath("/profiil");
   }, [isHome, isWorkspaceRoute, isWellbeingRoute, isKovisionRoute, isProfileHub]);
+
+  /* Hub'is dokki ei "mäletata" — seal on päris karussell oma dokiga.
+     Avatud aknas loeme mälust, kust tuldi. Sõltub pathname'ist, et akna
+     vahetus (nt Uuenda PIN → Minu kasutus) hoiaks doki sama komplekti peal.
+     NB: kaardi-lehed (pin/e-post/ruum) EI ole siin hub'id, kuigi nad on
+     isCarouselRoute — karussell jääb neil taustale konteksti, aga tema
+     dokk on välja lülitatud (carousel.css [data-card-page]). Ilma selle
+     vaheteta jääks kaardileht pärast nurga-risti eemaldamist täiesti
+     väljapääsuta (ainult Esc). */
+  const isHubRoute = isHome || isProfileHub || isWorkspaceRoute;
+  useEffect(() => {
+    setDockHub(isHubRoute ? null : readRoomHubPath("/"));
+  }, [isHubRoute, pathname]);
 
   /* ---------- login-modali kest ---------- */
   useEffect(() => {
@@ -1092,6 +1122,98 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     });
     return { carouselCards: cards, carouselBackItem: backItem };
   }, [carouselItems]);
+
+  /* ---------- Püsiv dokk avatud akna all (omanik 26.07) ----------
+     Kaardid kaovad akna avanedes, aga NAVIGATSIOON ei tohi kaduda: dokk
+     jääb ekraanile, näitab seda komplekti, kust leht avati, ja lubab
+     kaardilt kaardile hüpata ilma karusselli tagasi ronimata. */
+  const panelDockItems = useMemo(() => {
+    if (isHubRoute || !dockHub) return null;
+    if (!panelHasRoomDock(normalized)) return null;
+    if (dockHub === "/profiil") return infoHub ? teaveItems : profileItems;
+    if (dockHub === "/toolaud/tooheaolu") return wellbeingItems;
+    if (dockHub === "/toolaud/kovisioon") return kovisionItems;
+    if (dockHub === "/toolaud") return workspaceItems;
+    if (adminHub && isAdmin) return adminItems;
+    return isAuthed ? workItems : publicItems;
+  }, [
+    isHubRoute,
+    dockHub,
+    normalized,
+    infoHub,
+    teaveItems,
+    profileItems,
+    wellbeingItems,
+    kovisionItems,
+    workspaceItems,
+    adminHub,
+    isAdmin,
+    adminItems,
+    isAuthed,
+    workItems,
+    publicItems,
+  ]);
+
+  /* Kõik kaardid href'i järgi — doki sildi varuotsing (vt allpool). */
+  const allCardsByHref = useMemo(() => {
+    const map = new Map();
+    [
+      publicItems,
+      teaveItems,
+      workItems,
+      workspaceItems,
+      wellbeingItems,
+      kovisionItems,
+      adminItems,
+      profileItems,
+    ].forEach((set) => {
+      set.forEach((item) => {
+        if (item.href && !map.has(item.href)) map.set(item.href, item);
+      });
+    });
+    return map;
+  }, [
+    publicItems,
+    teaveItems,
+    workItems,
+    workspaceItems,
+    wellbeingItems,
+    kovisionItems,
+    adminItems,
+    profileItems,
+  ]);
+
+  const panelDock = useMemo(() => {
+    if (!panelDockItems) return null;
+    /* Komplekti oma "Tagasi" jääb välja — dokis on tema asemel sulgemine. */
+    const cards = panelDockItems.filter((item) => item.key !== "tagasi");
+    if (!cards.length) return null;
+    const search = searchParams?.toString() || "";
+    const here = search ? `${normalized}?${search}` : normalized;
+    /* Dokis seisab see kaart, mille leht praegu lahti on. Võrdlus käib
+       terve href'i vastu (koos päringuga), sest profiili sektsioonid
+       elavad SAMAL teel ja eristuvad ainult ?sektsioon väärtuse poolest. */
+    /* Kui doki oma komplektis vastet ei ole, otsime KÕIGIST komplektidest.
+       Ilma selleta jääks nimeta iga leht, mille kaart elab mujal kui
+       mäletatud hub'is — nt Teave-alamkomplekti lehed pärast värskendust,
+       sest infoHub on React-olek ega ela laadimist üle. Nimetu dokk oleks
+       siin halvem kui vale komplekt: leht ise pealkirja ei kanna. */
+    const current =
+      cards.find((item) => item.href === here) ||
+      allCardsByHref.get(here) ||
+      null;
+    return {
+      cards,
+      current,
+      back: {
+        key: "dock-close",
+        label: t("room.close_panel"),
+        action: "panel-close",
+        href: dockHub,
+        icon: <BackArrowIcon />,
+      },
+    };
+  }, [panelDockItems, allCardsByHref, searchParams, normalized, t, dockHub]);
   const initialKey =
     cardPageKey ||
     (isProfileHub
@@ -1145,6 +1267,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         setAdminHub(false);
         setInfoHub(false);
         router.push(localizePath("/", locale));
+        return;
+      }
+      /* Doki tagasi-nool SULGEB akna sinna, kust see avati. See EI ole
+         sama mis kaardikomplekti "Tagasi" (mis viib hierarhias sammu üles):
+         avatud aknas tähendab tagasi "pane aken kinni". */
+      if (item.action === "panel-close") {
+        router.push(localizePath(item.href || "/", locale));
         return;
       }
       if (item.action === "haldus") {
@@ -1509,6 +1638,26 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         <InstallAppLink />
       </GlassModal>
       </div>
+      {/* Avatud akna dokk — sama komponent, ainult kiirmenüü osa.
+          Elab .room'ist VÄLJASPOOL, ja see ei ole paigutuse maitseasi:
+          .room on `position: fixed; z-index: 0` ehk oma virnastuskontekst,
+          seega KÕIK tema sees jääb paneeli (--z-panel 30) alla, ükskõik
+          mis z-index lapsele anda. Doki koht on ülalpool akent, aga
+          allpool modaale — täpselt nagu ülariba (RoomQuickbar) kõrval. */}
+      {panelDock && !isLoginOpen && !openInfoModal && !a11y?.isModalOpen ? (
+        <div className="room-dock-wrap" data-room-ui>
+          <GlassCarousel
+            key={`dock:${dockHub}`}
+            dockOnly
+            items={panelDock.cards}
+            backItem={panelDock.back}
+            currentItem={panelDock.current}
+            forceInitial
+            onSelect={handleSelect}
+            t={t}
+          />
+        </div>
+      ) : null}
       <RoomQuickbar
         ambientOn={ambientOn}
         containerRef={topbarRef}

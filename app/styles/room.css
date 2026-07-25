@@ -570,6 +570,25 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
     opacity: 0;
   }
 }
+/* Puuteseadmel keritakse sõrmega ÜLESPOOLE (leht liigub edasi), seega
+   allapoole libisev täpp luges žesti vastupidiseks (tellija 25.07).
+   Hiirerattal jääb kanooniline allasuund alles. */
+@keyframes hint-slide-up {
+  0% {
+    transform: translateY(320%);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+}
 .room-hint-dot {
   position: absolute;
   left: 0;
@@ -579,6 +598,13 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.5);
   animation: hint-slide 3.1s var(--ease-drift) infinite;
+}
+@media (pointer: coarse) {
+  /* Terve shorthand, mitte pelk animation-name — Blink pärib lühema
+     override'i korral ülejäänud animatsiooniomadused valesti. */
+  .room-hint-dot {
+    animation: hint-slide-up 3.1s var(--ease-drift) infinite;
+  }
 }
 /* Tellija 06.07 öö: KERI selgelt suurem ja loetavam */
 .room-hint-label {
@@ -850,6 +876,40 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   display: none;
 }
 
+/* ---------- Avatud akna dokk (omanik 26.07) ----------
+   Karussellimähis on paneelirežiimis peidus (kaardid ei tohi akna taga
+   vilkuda), aga KIIRMENÜÜ jääb: väljapääs ja õdede otseteed on kogu
+   platvormil ühes ja samas kohas. Eraldi mähis just seepärast — ta ei
+   tohi pärida karussellimähise nähtavusväravaid ega blurri, ja ta elab
+   .room'ist väljaspool (vt RoomStage: .room on oma virnastuskontekst).
+   Nähtavuse annab kolm muutujat, mille dokk carousel.css-ist loeb; siin
+   avaldame need otse, sest paneelirežiimis ei pruugi [data-cards-ready]
+   kehtida (otselink avatud aknale ei läbi käivitusrituaali). */
+.room-dock-wrap {
+  position: fixed;
+  inset: 0;
+  /* Akna KOHAL (--z-panel 30), aga modaalide all (--z-modal 60). */
+  z-index: calc(var(--z-panel) + 5);
+  pointer-events: none;
+}
+.room-dock-wrap .gc {
+  --gc-shortcuts-opacity: 1;
+  --gc-shortcuts-pointer: auto;
+  --gc-shortcuts-offset: 0;
+}
+/* Pikk komplekt (töölaual 15+ kaarti) ei tohi dokist välja valguda —
+   sama viga, mis ajas rolli-lüliti omal ajal riba alt välja. Riba keritav,
+   kerimisriba peidus (dokk on pill, mitte aken). */
+.room-dock-wrap .gc-shortcut-track {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.room-dock-wrap .gc-shortcut-track::-webkit-scrollbar {
+  display: none;
+}
+/* Modaali ajaks dokki ei renderdata üldse (RoomStage) — dokk elab
+   .room'ist väljas, seega [data-login-open] jt lipud siia ei ulatu. */
+
 /* ---------- Käivituse SAI-vahepala ----------
    Pärast klaaside teket sähvatab keskele animeeritud SAI-monogramm
    (~2 s), enne kui kaartidele sisu laeb. Istub kaartidest kõrgemal,
@@ -1034,8 +1094,28 @@ html[data-reduce-motion="1"] .room-walk-audio {
     padding: 0.55em 1.1em;
     font-size: 0.72rem;
   }
-  .room-skip {
+  /* "Jäta vahele" kattis kitsal ekraanil bottom-center kerimisvihje
+     (tellija 25.07). Nupp läheb kompaktsemaks ja madalamale, vihje tõuseb
+     tema kohale. NB: .glass-btn.room-skip (0-2-0) — pelk .room-skip kaotas
+     baasreegli `right: clamp(...)` vastu ega nihkunudki. */
+  .glass-btn.room-skip {
     right: 1rem;
+    bottom: max(1.1rem, env(safe-area-inset-bottom, 0px) + 0.7rem);
+    min-height: 2.6rem;
+    padding: 0 1.2em;
+  }
+  .room-hint {
+    bottom: max(4.5rem, env(safe-area-inset-bottom, 0px) + 4.1rem);
+    gap: 0.5rem;
+  }
+  .room-hint-track {
+    height: 34px;
+  }
+  .room-hint-dot {
+    height: 15px;
+  }
+  .room-hint-label {
+    font-size: 1rem;
   }
 }
 

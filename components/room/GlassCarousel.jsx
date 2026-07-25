@@ -43,6 +43,14 @@ export default function GlassCarousel({
   forceInitial = false,
   visible = 3,
   zones = null,
+  /* Ainult dokk, ilma kaartideta: avatud akna all püsiv kiirmenüü
+     (omanik 26.07). Sama komponent, sest dokk EI TOHI olla teine
+     komponent oma koopiaga — otseteede, tagasi-noole ja tooltip'ide
+     loogika on üks ja seesama. */
+  dockOnly = false,
+  /* Dokirežiimis: parajasti avatud leht (silt + ikoon). null = ei tuvastatud,
+     siis jääb dokki ainult tagasi-nool. */
+  currentItem = null,
 }) {
   const n = items.length;
 
@@ -488,7 +496,9 @@ export default function GlassCarousel({
     [onSelect]
   );
 
-  const showDock = n > 1;
+  /* Dokk on karussellis mõttekas alles mitme kaardi puhul; dokirežiimis
+     on ta kogu navigatsioon (sh sulgemine) ja peab alati olemas olema. */
+  const showDock = dockOnly || n > 1;
   const posLabel = useMemo(() => {
     const template = t("room.position");
     return template
@@ -507,6 +517,7 @@ export default function GlassCarousel({
       ref={navRef}
       data-visible={shown}
       data-desk={isDesk ? "1" : "0"}
+      data-dock-only={dockOnly ? "1" : "0"}
       /* --desk-cols peab elama SAMAL elemendil, kus --gc-w arvutatakse
          (.gc[data-desk="1"]): custom property asendatakse juba selle
          elemendi arvutatud väärtuses, seega lapsel antud arv jõuaks
@@ -515,7 +526,7 @@ export default function GlassCarousel({
       aria-label={t("room.menu_label")}
       id="room-menu"
     >
-      {!isDesk ? (
+      {!isDesk && !dockOnly ? (
         <IconButton
           layoutClassName="gc-arrow gc-arrow--left"
           aria-label={t("room.prev_panel")}
@@ -525,7 +536,7 @@ export default function GlassCarousel({
         </IconButton>
       ) : null}
 
-      {isDesk ? (
+      {dockOnly ? null : isDesk ? (
         /* ---------- Sügavuslaud ----------
            Astmed pöördjärjestuses (column-reverse): lähim aste ALL, doki
            juures, kaugem taga ülal — nii nagu laud, mille taga sa istud. */
@@ -648,7 +659,7 @@ export default function GlassCarousel({
         </ul>
       )}
 
-      {!isDesk ? (
+      {!isDesk && !dockOnly ? (
         <IconButton
           layoutClassName="gc-arrow gc-arrow--right"
           aria-label={t("room.next_panel")}
@@ -678,7 +689,23 @@ export default function GlassCarousel({
               </button>
             ) : null}
             {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
-            {isDesk ? (
+            {dockOnly ? (
+              /* Avatud lehel EI ole dokis õdede rida, vaid AINULT see, mis
+                 lahti on: tagasi-nool + lehe nimi (omanik 26.07). Nimi
+                 dokis tähendab, et lehel endal ei pea pealkirja olema.
+                 Karussellis on nimi teadlikult peidus — seal muudaks ta
+                 iga kerimisega doki laiust ja terve riba nihkuks. Siin
+                 seda ohtu ei ole: avatud lehel on dokis üks kirje ja tema
+                 laius ei muutu enne, kui leht ise vahetub. */
+              currentItem ? (
+                <span className="gc-shortcut gc-shortcut--current" data-on="1" aria-current="page">
+                  <span className="gc-shortcut-icon" aria-hidden="true">
+                    {currentItem.icon || <span className="gc-shortcut-mark" />}
+                  </span>
+                  <span className="gc-shortcut-text">{currentItem.label}</span>
+                </span>
+              ) : null
+            ) : isDesk ? (
               <div className="gc-zone-track">
                 {zoneGroups.map((group) => {
                   /* data-on järgib sedasama activeZone'i mis laud: kui hiir
@@ -744,9 +771,11 @@ export default function GlassCarousel({
           nurgas (omanik 25.07: "tavakasutaja vaade on kõige tähtsam,
           rolli vahetus võib kuskil nurgas ka olla"). Doki sees dikteeris
           ta doki laiust ja jäi otseteeriba alla. */}
-      <RoleViewSwitcher placement="cards" onRoleChanged={onRoleChanged} />
+      {/* Rollilüliti kuulub kaardivaate juurde: avatud akna all ei ole
+          mõtet vaadet vahetada, sest kaarte ei ole näha. */}
+      {!dockOnly ? <RoleViewSwitcher placement="cards" onRoleChanged={onRoleChanged} /> : null}
 
-      {!isDesk ? (
+      {!isDesk && !dockOnly ? (
         <p className="sr-only" aria-live="polite">
           {items[active]?.label} — {posLabel}
         </p>

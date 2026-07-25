@@ -53,18 +53,13 @@
   padding: clamp(0.9rem, 2vh, 1.25rem) clamp(1.3rem, 4.5vw, 1.7rem);
   border-radius: clamp(20px, 2.4vw, 30px);
   /* TAVALINE kaart (tellija 06.07 öö: "imelik kuma" maha) — täpselt
-     sama matt klaas mis karussellikaardil (.gc-card), ilma halo/triibuta */
-  background: linear-gradient(
-    165deg,
-    rgba(40, 40, 40, 0.52) 0%,
-    rgba(29, 29, 29, 0.58) 55%,
-    rgba(22, 22, 22, 0.64) 100%
-  );
+     sama matt klaas mis karussellikaardil (.gc-card). See oli tokenile
+     kõige lähemal jäänud koopia (0.52/0.58/0.64 vs 0.46/0.52/0.58) ja
+     seetõttu ainus, mis omaniku silmis "õige" tundus — nüüd on ta päris
+     token, mitte lähedane koopia. */
+  background: var(--card-glass-bg);
   border: none;
-  /* ÜKS pehme vari (tellija 07.07: "topelt vari ei meeldi") */
-  box-shadow:
-    inset 0 1px 1.5px rgba(255, 255, 255, 0.09),
-    0 24px 60px rgba(5, 5, 5, 0.5);
+  box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
   animation: none;
 }
@@ -75,7 +70,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1.3px;
-  background: linear-gradient(165deg, rgba(255,255,255,0.42), rgba(255,255,255,0.12) 32%, rgba(255,255,255,0.05) 58%, rgba(255,255,255,0.22));
+  background: var(--card-glass-rim);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);

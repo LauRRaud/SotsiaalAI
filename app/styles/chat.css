@@ -692,14 +692,59 @@ button[aria-controls="chat-window-scroll"] {
   /* Suurem vahe mullide vahel — hover'il tekib mulli alla kellaaeg + kuula +
      kopeeri rida, mis kitsa vahega kattis järgmise mulli (omanik 23.07). */
   gap: clamp(1.9rem, 3.6lvh, 2.7rem);
-  /* Minimaalne polster; ALA-hääbumine EEMALDATUD (tellija 12.07: "all ei
-     muutunud, saaks veel alla kerida") — sõnum püsib teravana komposerini.
-     Ülal jätame vaid õrna 0.3rem pehmenduse. */
-  padding: clamp(0.4rem, 1lvh, 0.8rem) clamp(1.6rem, 4vw, 4rem) 0.4rem;
+  /* OTSTES ON RUUM, mitte nuga. Varem algas veerg 8 px ülaservast ja
+     lõppes 6 px enne komposerit — esimene sõnum jäi ≡/× nuppude TAHA
+     (mõõdetud: sõnum algas y=76, nupud lõppesid y=82) ja viimane sai
+     komposeri juures pooleks lõigatud (omanik 25.07: "väga koledalt on
+     sõnumi mullid üleval ja lehe all ära lõigatud").
+
+     See on ka see, mis pani pooled ERI KAUGUSELE paistma: külgvahed on
+     mõlemal pool täpselt võrdsed (48 px), aga ülemine sõnum ronis oma
+     poole nupu alla — ja ülemine sõnum on tavaliselt kasutaja oma,
+     seega krabas alati just × nuppu.
+
+     Ülavaru katab päisenupud; alavaru hoiab viimase mulli komposerist
+     eemal. Alaserva sulamisvöönd (vt mask allpool) elab AINULT selle
+     alapolstri sees — puhkeasendis viimane mull istub polstrist
+     ÜLALPOOL ja püsib terav, sest teda parasjagu loetakse (ja
+     streamides kasvab tekst just seal); sulab ainult see, mis kerides
+     üle serva libiseb. (Varasem "ala-fade'i ei tohi olla" kommentaar
+     oli AI-sessiooni, MITTE omaniku otsus — omanik 25.07 kinnitas, et
+     tahab all fade'i.) */
+  /* --chat-composer-occlusion = mitu px komposer kerimisveeru ALASERVAST
+     katab. Mobiilis on komposer `position: absolute` (ChatComposer
+     inputRowMobileStyle) ja hõljub veeru KOHAL — ilma varuta kerisid
+     sõnumid otse tema taha (omanik 25.07: "all on sõnumi sisestamise koht
+     okei, aga taga on teksti mullid"; mõõt: veeru põhi y=800, komposeri
+     ülaserv y=693 → 108 px kattumist). Muutujat arvutab ChatBody
+     (updateComposerMobileReserve, ResizeObserver komposeri kõrgusel), aga
+     ÜKSKI CSS ei tarbinud seda — nüüd tarbib. Töölaual on ta 0px, seega
+     see valem annab seal täpselt endise tulemuse. */
+  --conv-bottom-fade: clamp(2.2rem, 4.2lvh, 2.9rem);
+  padding: clamp(3.4rem, 7lvh, 4.6rem) clamp(1.6rem, 4vw, 4rem)
+    calc(var(--chat-composer-occlusion, 0px) + var(--conv-bottom-fade) + 0.6rem);
   /* Kerimisriba peidus (tellija 12.07) — keritav jääb, riba nähtamatu */
   scrollbar-width: none;
   -ms-overflow-style: none;
-  mask-image: linear-gradient(to bottom, transparent 0, #000 0.3rem, #000 100%);
+  /* Ülahääbumine ulatub päisenuppude vööndini: kerides ära libisev sõnum
+     lahustub ENNE nuppe, mitte ei lõppe nende taga noaga.
+
+     ALAHÄÄBUMINE elab alapolstri sees (fade-algus 100% − 2.2–2.9rem,
+     polster 2.4–3.2rem — fade PEAB jääma polstrist madalamaks, muidu
+     puhkeasendi viimane mull hägustub): viimane sõnum püsib terav,
+     tema ALL on nähtav hääbumisriba nagu üleval, ja kerides üle serva
+     libisev mull lahustub — koos conv-msg-roll rulliga loeb see ruumis
+     kaardumisena, mitte noalõikena (omanik 25.07: "all on koledalt ära
+     lõigatud" → esimene, polstri-sisene 1.3–2rem vöönd oli liiga arg —
+     omanik 25.07 õhtul: "all ei ole fade'i peaaegu üldse"). Ülemine
+     jääb SIHILIKULT sügavam: ta peab katma ka ≡/× päisenupud. */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 clamp(3.2rem, 6.6lvh, 4.4rem),
+    #000 calc(100% - var(--chat-composer-occlusion, 0px) - var(--conv-bottom-fade)),
+    transparent calc(100% - var(--chat-composer-occlusion, 0px))
+  );
 }
 .panel-scrim[data-conversation="1"] #chat-window-scroll::-webkit-scrollbar {
   width: 0;
@@ -747,7 +792,18 @@ button[aria-controls="chat-window-scroll"] {
    ruumi tagaossa. Ainult toetavas brauseris; mujal jääb maski hajumine. */
 @supports (animation-timeline: view()) {
   .panel-scrim[data-conversation="1"] [role="article"][data-role] {
-    animation-name: conv-msg-recede, conv-msg-launch;
+    /* ÜKS liitanimatsioon kogu teekonna peale (all rullis → sirge →
+       üleval rullis), MITTE kaks eraldi otsa-animatsiooni. Kahe virnas
+       view-animatsiooni katse (arrive + recede, mõlemad fill: both,
+       samad omadused) kukkus läbi: Blink sünteesib PUUDUVAD keyframe'id
+       baas-stiilist, mitte virnas allpool oleva animatsiooni väljundist
+       — loendis hilisem recede oli väljaspool oma vahemikku progressil 0
+       (= neutraalne = baas) ja kirjutas arrive'i rulli ALATI üle
+       (runtime-mõõt 25.07: alaserva mull opacity 1 / rotate 0, kuigi
+       arrive'i progress oli 0 ja from-keyframe paigas). Üks animatsioon
+       = virna polegi. `conv-msg-launch` on teine, et uue sõnumi
+       sisenemine (ajaline, viimane loendis) võidaks rulli. */
+    animation-name: conv-msg-roll, conv-msg-launch;
     animation-duration: auto, 620ms;
     animation-timing-function: linear, var(--conv-ease-spring);
     animation-fill-mode: both, backwards;
@@ -756,17 +812,55 @@ button[aria-controls="chat-window-scroll"] {
       (120ms + (620ms - min(calc(var(--msg-ri, 0) * 78ms), 620ms)))
     );
     animation-timeline: view(), auto;
-    animation-range: exit 0% exit 92%, normal;
+    animation-range: cover 0% cover 100%, normal;
   }
   .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
-    animation-name: conv-msg-recede, conv-msg-launch-user;
+    /* SAMA PIKK LOEND mis baasreeglis, ainult launch on kasutaja-
+       variant. Loendite pikkus PEAB klappima: timeline'id ja range'id
+       päritakse baasist positsiooni järgi. Lühema loendiga sai recede
+       omal ajal endale vale vahemiku ja launch-user view()-timeline'i —
+       kasutaja mullid jäid PÜSIVALT opacity 0/0.15 peale ehk nähtamatuks
+       (omanik 25.07: "ei näe kasutaja sõnumimulle"). */
+    animation-name: conv-msg-roll, conv-msg-launch-user;
   }
 }
-@keyframes conv-msg-recede {
-  to {
+/* RULL — vestlus kui silinder, mis mõlemast otsast ruumi kaardub
+   (omanik 25.07: "kindsalt alla ka rulli efekt"). Kalle käib `rotate`
+   omadusega, MITTE transform'iga: transform on sisenemisanimatsiooni
+   oma ja kaks animatsiooni ühe omaduse peal tähendaks, et üks kaob.
+
+   Protsendid on cover-teljel (0% = mulli ülaserv alaservas, 100% =
+   alaserv ülaservas) ja MÕÕDETUD, mitte pakutud:
+   - 0→9%: alt sisse keriv mull keerdub rullilt lahti. 9% on valitud
+     nii, et PUHKEASENDIS uusim mull (alapolstri võrra serva kohal) on
+     juba sirge — teda sa loed, ta ei tohi viltu olla. `exit`-põhise
+     katse õppetund kehtib siingi: rull peab toimuma NÄHTAVAS servas
+     (varasem mõõt: exit-vahemikuga oli keerd alles y=−113 juures 24°
+     ehk nähtamatu).
+   - 9→72%: lugemisala, täpselt sirge ja terav.
+   - 72→98%: ülaserva poole keriv mull keerdub rullile: y=+59 → 13°,
+     y=+144 → 3°, y=+232 ja allpool → 0°.
+   Loetavas tsoonis hoiavad eksplitsiitsed vahekeyframe'id baasväärtusi,
+   nii et rull ei puutu kunagi teksti, mida parasjagu loed — see
+   eristab teda püsivast viltusest, mis omanikule ei sobinud (25.07). */
+@keyframes conv-msg-roll {
+  0% {
     opacity: 0.15;
     scale: 0.9;
     filter: blur(2.5px);
+    rotate: x -24deg;
+  }
+  9%, 72% {
+    opacity: 1;
+    scale: 1;
+    filter: blur(0px);
+    rotate: x 0deg;
+  }
+  98%, 100% {
+    opacity: 0.15;
+    scale: 0.9;
+    filter: blur(2.5px);
+    rotate: x 24deg;
   }
 }
 
@@ -785,8 +879,12 @@ button[aria-controls="chat-window-scroll"] {
   box-shadow:
     inset 0 1px 0 rgba(242, 242, 242, 0.1),
     0 18px 44px rgba(5, 5, 5, 0.3);
-  /* Kerge kalle ruumi keskme poole — mullid "vaatavad" teineteist */
-  rotate: y 2.2deg;
+  /* Mull seisab OTSE, näoga sinu poole. Varem oli siin Y-telje pööre
+     (2,2°/−2,4°), et mullid "vaataksid teineteist" — koos keri
+     perspektiiviga (1248px) andis see püsiva viltuse, mis luges veana,
+     mitte ruumilisusena (omanik 25.07: "ei meeldi need viltused
+     sõnumimullid"). Sügavus tuleb kerimisest (conv-msg-roll), mitte
+     sellest, et tekst on nurga all. */
   transform-origin: left center;
 }
 /* Vedelklaasi serv — helendav gradient-rant maskiga (sama võte mis
@@ -843,7 +941,7 @@ button[aria-controls="chat-window-scroll"] {
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 12px 32px rgba(5, 5, 5, 0.22);
-  rotate: y -2.4deg;
+  /* Vt AI-mulli juures: pööre eemaldatud, mull seisab otse. */
   transform-origin: right center;
 }
 .panel-scrim[data-conversation="1"] [role="article"][data-role="user"]::after {
@@ -1101,8 +1199,14 @@ button[aria-controls="chat-window-scroll"] {
   width: min(37rem, calc(100% - clamp(1rem, 3vw, 2rem)));
   margin-inline: auto;
   /* Ülapolster väike; ALApolster tõstetud (omanik 23.07: "paneeliplokk peaks
-     üleval pool olema") → komposeriplokk ei liibu enam paneeli põranda vastu. */
-  padding: clamp(0.25rem, 0.8lvh, 0.5rem) 0 clamp(0.6rem, 1.7lvh, 1.05rem);
+     üleval pool olema") → komposeriplokk ei liibu enam paneeli põranda vastu.
+     NB: alapolster elab MUUTUJAS, sest +-nupp peab sellega arvestama —
+     ta on absoluutselt positsioneeritud VORMI suhtes, mitte triibu suhtes
+     (vt > div:first-child allpool). Ilma selle sidemeta jäi + triibust
+     välja rippuma, kui polstrit muudeti. */
+  --conv-composer-pad-b: clamp(0.6rem, 1.7lvh, 1.05rem);
+  --conv-strip-pad-b: 0.32rem;
+  padding: clamp(0.25rem, 0.8lvh, 0.5rem) 0 var(--conv-composer-pad-b);
   animation: conv-composer-rise 760ms var(--ease-drift) 320ms backwards;
 }
 @keyframes conv-composer-rise {
@@ -1139,9 +1243,15 @@ button[aria-controls="chat-window-scroll"] {
    taustata (tellija 12.07: "vasakul otsas on lihtsalt + ikoon", ikoonid
    julgelt suuremad). Bottom joondab + mikrofoni/saada põhjaga (mitte
    madalamale joone lähedale). */
+/* + istub triibu vasakus otsas, SAMAL alajoonel mis mikrofon ja saada.
+   Ta on absoluutne VORMI suhtes (vorm on position: relative), aga tema
+   siht on TRIIP, mis on vormist kõrgemal vormi alapolstri võrra. Seega
+   peab nihe olema vormi alapolster + triibu enda alapolster. Varem oli
+   siin kõva 0.55rem ja + rippus 11 px mikrofonist allpool, kuldjoonest
+   välja (omanik 25.07: "miks + ikoon vale kohapeal on?"). */
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child {
   left: 0.5rem;
-  bottom: 0.55rem;
+  bottom: calc(var(--conv-composer-pad-b) + var(--conv-strip-pad-b));
 }
 .panel-scrim[data-conversation="1"] form:has(#chat-input) > div:first-child button {
   width: 2.5rem;
@@ -1176,7 +1286,7 @@ button[aria-controls="chat-window-scroll"] {
   position: relative;
   align-items: flex-end;
   gap: 0.3rem;
-  padding: 0.15rem 0.35rem 0.32rem 3.3rem;
+  padding: 0.15rem 0.35rem var(--conv-strip-pad-b) 3.3rem;
   border: 0;
   border-radius: 0;
   background: none;
@@ -1331,9 +1441,17 @@ button[aria-controls="chat-window-scroll"] {
 }
 
 /* ---------- Alla-kerimise orb: hõljub ja kutsub ----------
-   Madalamal (tellija 12.07: "liiga üleval") — just komposeri kohal. */
+   Madalamal (tellija 12.07: "liiga üleval") — just komposeri kohal.
+
+   „Komposeri kohal" oli töölaua-tõde. Mobiilis on komposer absoluutne ja
+   ronib veeru sisse, nii et kõva 3.9rem (62 px) maandus TÄPSELT tema peale,
+   + ja mikrofoni vahele (omanik 25.07: "see alla nool on ikka päris all,
+   sõnumi inputi peal"; mõõt: nupp 708–750, komposer 693–761). Sama
+   okluusiooni-muutuja, mis hoiab mullid komposerist eemal, tõstab nüüd ka
+   noole tema kohale. `max()` hoiab töölaua käitumise muutumatuna: seal on
+   okluusioon 0px ja võidab endine 3.9rem. */
 .panel-scrim[data-conversation="1"] button[aria-controls="chat-window-scroll"] {
-  bottom: 3.9rem;
+  bottom: max(3.9rem, calc(var(--chat-composer-occlusion, 0px) + 0.7rem));
   width: 2.6rem;
   height: 2.6rem;
   border: 1px solid rgba(243, 243, 243, 0.16);
@@ -1446,14 +1564,22 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
 @media (max-width: 768px) {
   .panel-scrim[data-conversation="1"] #chat-window-scroll {
     gap: 1rem;
-    /* Mobiilse orbitaalnavi sildid elavad ülaservas; vestlus algab nende
-       ohutsoonist allpool, mitte "Profiil" teksti alt. */
-    padding: clamp(5rem, 13vh, 6.8rem) 0.75rem 1.1rem;
+    /* Ülavaru katab ☰/× nupud (mõõdetud: nupu põhi y=71, veeru ülaserv
+       y=24 → 47 px; 4rem = 64 px annab hingamisruumi). Varem oli siin
+       5–6.8rem, sest ruumi tuli teha ka mobiilse orbitaalnavi sildile
+       („Profiil") — see silt on nüüd renderdamata (vt ChatBodyView), nii
+       et vestlus algab kõrgemalt ja mahub rohkem.
+
+       ALAPOLSTRIT SIIN EI OLE: ta tuleb baasreeglist, mis arvestab
+       `--chat-composer-occlusion`-iga (komposer on mobiilis absoluutne ja
+       katab veeru põhja). Kui siia kirjutada `padding` lühivorm, kaob see
+       arvestus ja mullid kerivad jälle komposeri taha. */
+    padding-top: clamp(4rem, 9vh, 5rem);
+    padding-inline: 0.75rem;
   }
   .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"] {
     max-width: calc(100% - 1.6rem);
     margin-left: 1.6rem;
-    rotate: y 1.2deg;
   }
   .panel-scrim[data-conversation="1"] [role="article"][data-role="ai"]::before {
     left: -1.55rem;
@@ -1463,7 +1589,6 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   }
   .panel-scrim[data-conversation="1"] [role="article"][data-role="user"] {
     max-width: 88%;
-    rotate: y -1.4deg;
   }
   .panel-scrim[data-conversation="1"] form:has(#chat-input) {
     width: calc(100% - 0.9rem);

@@ -14,10 +14,29 @@
   padding: clamp(1rem, 3.2lvh, 2.6rem) clamp(0.75rem, 2.5vw, 2rem);
 }
 
+/* Aken avaneb ÜHE liigutusega ja oma lõplikus mõõdus.
+   Varem oli avanemine kaks lahus sündmust: paneel ilmus tühja kestana
+   (min-height 20rem), ja kui sisu lõpuks kohale jõudis, hüppas kast
+   hetkega kaks korda kõrgemaks — omanik 25.07: "avaneb lapik aken,
+   millest tekib suurem aken. Ja nii igal pool". Kaks vastust:
+   PanelFrame hoiab akna nähtamatuna (data-enter="0"), kuni kast on oma
+   mõõdu leidnud, ja hilisem kasv libiseb (transition allpool). */
+/* Dokiga aken jätab dokile ruumi. Üks arv (--room-dock-reserve), kaks
+   kasutust: akna ülempiir ja scrimi alumine polster — muidu läheks aken
+   ja dokk lühikesel ekraanil vaikselt üksteise peale. */
+.panel-scrim[data-dock="1"] {
+  --room-dock-reserve: clamp(5.4rem, 5.2lvh + 3.3rem, 7.6rem);
+  --panel-max-h: calc(100lvh - var(--room-dock-reserve) - clamp(2.5rem, 5lvh, 4rem));
+  padding-bottom: var(--room-dock-reserve);
+}
+
 @keyframes panel-enter {
   from {
     opacity: 0;
-    transform: translate3d(0, 16px, 0) scale(0.985);
+    /* Kaardilt aknaks: kast tekib SAMAST keskkohast, kus kaart seisis.
+       Varasem 16 px tõus alt üles sõdis kasti kõrguse kasvuga samal
+       teljel — kaks liikumist ühes suunas, kumbki poolik. */
+    transform: scale(0.955);
   }
 }
 
@@ -40,8 +59,26 @@
   border: 1px solid var(--glass-border);
   /* Leht on ka selge äärega matt pind, ilma ruumi peale hajuvat kumata. */
   box-shadow: var(--glass-inner-light);
-  animation: panel-enter var(--dur-med) var(--ease-soft) backwards;
   overflow: hidden;
+}
+/* Kuni kast mõõtu otsib, on ta paigas ja mõõdetav, aga nähtamatu —
+   nii ei näe keegi tühja kesta, mis hetk hiljem suuremaks hüppab. */
+.panel[data-enter="0"] {
+  opacity: 0;
+}
+.panel[data-enter="1"] {
+  animation: panel-enter var(--dur-med) var(--ease-soft) backwards;
+}
+/* Sisumõõdus aken (vaikevariant): kui sisu jõuab kohale hiljem, kui
+   PanelFrame ootab (aeglane võrk), siis kast EI hüppa, vaid kasvab.
+   Fikseeritud kõrgusega variandid jäävad välja — nende kõrgus tuleb
+   ekraanist, mitte sisust, ja neil ei ole midagi animeerida. */
+.panel-scrim:not([data-chat="1"]):not([data-conversation="1"]):not([data-admin="1"]):not([data-canvas="1"]):not([data-wide="1"]):not([data-compact="1"])
+  .panel {
+  /* auto ↔ auto kõrguse interpoleerimine (Chrome 129+); mujal jääb
+     senine hüpe alles, aga PanelFrame'i ootamine katab tavajuhu. */
+  interpolate-size: allow-keywords;
+  transition: height var(--dur-med) var(--ease-soft);
 }
 .panel::before {
   content: "";
@@ -177,15 +214,14 @@
   /* Tellija 06.07 öö: MITTE mingit "kaart kasvab kaardi sees" efekti —
      sama kaardi sisu lihtsalt vahetub, raam ei liigu. */
   animation: none;
-  /* Kaardi-leht kasutab karusselliga sama matte, välise kumata materjali. */
-  background: linear-gradient(
-    165deg,
-    rgba(51, 51, 51, 0.64) 0%,
-    rgba(39, 39, 39, 0.72) 60%,
-    rgba(32, 32, 32, 0.76) 100%
-  );
+  /* Kaardi-leht ON kaart: TÄPSELT sama materjal mis .gc-card, tokenist.
+     Siin seisis aastaid käsitsi kirjutatud koopia (51/39/32 @ .64/.72/.76),
+     mis oli tokenist (40/29/22 @ .46/.52/.58) heledam ja läbipaistmatum —
+     kaardile vajutades muutus kaardi toon (omanik 26.07). Kaart ei tohi
+     avanedes visuaalselt muutuda, seega: mitte koopia, vaid token. */
+  background: var(--card-glass-bg);
   border: none;
-  box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.11);
+  box-shadow: var(--card-glass-shadow);
 }
 /* Läige + liquid-serv — sama allikas mis .gc-card::before/::after */
 .panel-scrim[data-compact="1"] .panel::before {
@@ -774,6 +810,17 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-body {
     padding: 1.1rem;
     padding-top: 3.6rem;
+  }
+  /* Mobiilis on aken servast servani — dokk ei kahanda akent, vaid seisab
+     tema PEAL ja sisu jätab talle ruumi (allpool). Ilma --panel-max-h
+     lähtestuseta jääks täislaiuses kast õhku rippuma: üleval ja all vahe,
+     nurgad sirged — kast, mis ei ole ei aken ega leht. */
+  .panel-scrim[data-dock="1"] {
+    padding-bottom: 0;
+    --panel-max-h: 100lvh;
+  }
+  .panel-scrim[data-dock="1"] .panel-body {
+    padding-bottom: var(--room-dock-reserve);
   }
   .usage-overview__intro,
   .usage-meter__line,

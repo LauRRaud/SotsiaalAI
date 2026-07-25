@@ -1066,6 +1066,24 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   margin-left: 0.48rem;
   opacity: 1;
 }
+/* Avatud lehe nimi dokis (omanik 26.07: "veelgi parem pin koodi tekst,
+   siis ei pea me kaartidel ja lehtedel pealkirju kasutama"). See EI ole
+   nupp, vaid silt: ta ütleb, mis aken lahti on. Klikitav ta ei ole —
+   iseendale viiv nupp on pettus. Laiem lubatud tekst kui karussellis,
+   sest siin on dokis üks kirje ja ta ei võistle ruumi pärast; pikk nimi
+   ("Keel ja ligipääsetavus") saab kolme punkti, mitte murtud rea. */
+.gc-shortcut--current {
+  cursor: default;
+  pointer-events: none;
+}
+/* Kaks klassi, et võita ülalolev `.gc-shortcut[data-on="1"] .gc-shortcut-text`
+   (0,3,0) — sildil on rohkem lubatud laiust kui karusselli otseteel. */
+.gc-shortcut.gc-shortcut--current .gc-shortcut-text {
+  max-width: min(22rem, calc(100vw - 9rem));
+  margin-left: 0.48rem;
+  opacity: 1;
+  text-overflow: ellipsis;
+}
 .gc-shortcut-tooltip {
   position: absolute;
   left: 50%;
@@ -1200,6 +1218,14 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
   .gc-shortcut-tooltip {
     display: none;
   }
+  /* ERAND: avatud lehe nimi. Mobiilil on dokk ainus koht, kus lehe nimi
+     seisab (kaardil/lehel pealkirja ei ole — omanik 26.07), seega teda
+     peita ei tohi. Tooltip'id jäävad endiselt peitu: see on silt, mitte
+     vihje, ja puutel ei ole hoverit. */
+  .gc-shortcut.gc-shortcut--current .gc-shortcut-text {
+    display: block;
+    max-width: calc(100vw - 9.5rem);
+  }
   /* Kerimine elab AINULT siin, kus vihjeid ei ole — nii ei saa lõikamine
      neid ära süüa (vt .gc-shortcut-track baasreegel). */
   .gc-shortcut-track {
@@ -1266,6 +1292,14 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
 .room[data-card-page="1"] .gc-shortcuts,
 .room[data-card-page="1"] .admin-role-view-cycle--cards {
   opacity: 0;
+}
+/* Kaardilehel kannab navigatsiooni AVATUD AKNA dokk (.room-dock-wrap,
+   omanik 26.07). Karusselli enda dokk on siin juba nähtamatu ja klikita,
+   aga opacity+pointer-events jätavad ta fookuseringi ja ekraanilugejasse
+   alles — siis oleks kaardil kaks ühesugust otsetee-riba, üks neist
+   nähtamatu. visibility võtab ta päriselt välja. */
+.room[data-card-page="1"] :is(.gc-arrow, .gc-dots, .gc-shortcuts) {
+  visibility: hidden;
 }
 
 /* Tellija: fookus-modal (login/info/kaardi-leht) avanedes lähevad

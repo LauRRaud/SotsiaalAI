@@ -10,11 +10,12 @@
  * Sisu kerib paneeli SEES vertikaalselt (telgede reegel, brief §3).
  */
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { localizePath } from "@/lib/localizePath";
 import { readRoomHubPath } from "@/lib/roomHubReturn";
+import { isCanvasRoute, isWideRoute, panelHasRoomDock } from "@/lib/roomDock";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
@@ -56,6 +57,105 @@ function normalizePathname(pathname) {
 const WORKSPACE_SUBPAGE_ENTRY_STORAGE_KEY = "__SOTSIAALAI_WORKSPACE_SUBPAGE_ENTRY__";
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
 
+/* Kui kaua tohib aken sisu oodata, enne kui ta ennast igal juhul näitab.
+   Pikem ootamine teeks aeglase võrgu puhul tühja ekraani; lühem laseks
+   tavapärase päringu (~100–300 ms) tagasi kahe liigutuse peale. Üle selle
+   piiri jõudnud sisu ei hüppa, vaid kasvab (panel.css height-transition). */
+const PANEL_SETTLE_MAX_MS = 450;
+
+/* Ootamine käib AINULT kaardilt avamise (kliendipoolse navigatsiooni) kohta.
+   Esimesel laadimisel on serveri joonistatud aken juba ekraanil — selle
+   peitmine tähendaks, et F5 või otselink näitaks tühja ruumi, kuni JS
+   kohale jõuab. Väravat "laetakse" alles siis, kui PanelFrame on korra
+   monteeritud ehk hüdreerimine läbi. Serveris jääb ta alati laadimata
+   (moodulimuutuja elab Node'is üle päringute — vt window-kontroll). */
+let panelGateArmed = false;
+
+/* Aken avaneb alles siis, kui tema kast on oma päris mõõdus.
+   Märk, et mõõt on veel tulemas, on üksainus ja usaldusväärne: laadiv
+   leht renderdab tühja kesta, mis jääb TÄPSELT min-height'i peale. Kui
+   kast on sellest juba kõrgem, on sisu kohal ja oodata pole midagi —
+   nii ei maksa serverirenderdatud lehed (Meist, tingimused, juhend)
+   selle ootamise eest sentigi. */
+function usePanelSettled(panelRef) {
+  const [settled, setSettled] = useState(() =>
+    typeof window === "undefined" ? true : !panelGateArmed
+  );
+  useEffect(() => {
+    if (settled) return undefined;
+    const el = panelRef.current;
+    if (!el) {
+      setSettled(true);
+      return undefined;
+    }
+    let reduced = false;
+    try {
+      reduced =
+        document.documentElement.dataset.reduceMotion === "1" ||
+        window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches === true;
+    } catch {}
+    if (reduced || typeof ResizeObserver === "undefined") {
+      setSettled(true);
+      return undefined;
+    }
+    const floor = Number.parseFloat(window.getComputedStyle(el).minHeight);
+    if (!Number.isFinite(floor) || el.getBoundingClientRect().height > floor + 1) {
+      setSettled(true);
+      return undefined;
+    }
+    let cap = 0;
+    let ro = null;
+    /* Esimene ResizeObserver-teade on alati praegune mõõt (see on
+       vaatlemise osa, mitte muutus) — sealt saame lähtepunkti. Sama
+       kastiga mõõtmine (contentRect mõlemal pool) hoiab ääre ja polstri
+       arvestusest väljas. */
+    let base = null;
+    const done = () => {
+      window.clearTimeout(cap);
+      ro?.disconnect();
+      setSettled(true);
+    };
+    ro = new ResizeObserver((entries) => {
+      const h = entries[entries.length - 1]?.contentRect?.height;
+      if (!Number.isFinite(h)) return;
+      if (base === null) {
+        base = h;
+        return;
+      }
+      if (Math.abs(h - base) > 1) done();
+    });
+    ro.observe(el);
+    cap = window.setTimeout(done, PANEL_SETTLE_MAX_MS);
+    return () => {
+      window.clearTimeout(cap);
+      ro.disconnect();
+    };
+  }, [panelRef, settled]);
+  return settled;
+}
+
+/* Klaasraam ise. Eraldi komponent EI ole kosmeetika: ta monteeritakse
+   siis, kui aken avaneb, ja lahti siis, kui minnakse karusselli-hubi.
+   Nii lähtestub ootamise seis iseenesest — PanelFrame elab layoutis ja
+   tema oma seis ei kaoks kunagi. */
+function PanelSurface({ label, controls, bodyRef, children }) {
+  const panelRef = useRef(null);
+  const settled = usePanelSettled(panelRef);
+  return (
+    <section
+      className="panel"
+      aria-label={label}
+      ref={panelRef}
+      data-enter={settled ? "1" : "0"}
+    >
+      {controls}
+      <div className="panel-body" ref={bodyRef}>
+        {children}
+      </div>
+    </section>
+  );
+}
+
 function cameFromWorkspace(normalizedPath) {
   if (typeof window === "undefined") return false;
   try {
@@ -77,6 +177,12 @@ export default function PanelFrame({ children }) {
   const { t, locale } = useI18n();
   const bodyRef = useRef(null);
 
+  /* Hüdreerimine läbi → edaspidised akna-avamised on kaardilt tulek ja
+     tohivad sisu ära oodata (vt panelGateArmed). */
+  useEffect(() => {
+    panelGateArmed = true;
+  }, []);
+
   const normalized = normalizePathname(pathname);
   const isHome = normalized === "/";
   const isLogoExport = normalized === "/logo-eksport";
@@ -93,17 +199,17 @@ export default function PanelFrame({ children }) {
   const isChat = isConversation || normalized.startsWith("/teekond");
   const isCovision = normalized === "/kovisioon";
   /* Suured tööpinnad vajavad laia ja kõrget akent (tellija 06.07 öö):
-     teenusekaart = suur kaart */
-  const isWide = ["/teenusekaart", "/lopetatud-juhtumid", "/parimad-praktikad"].includes(normalized);
-  /* Kovisioon + Teemaseemned + Registreerimine = TÄISEKRAANI LÕUEND
-     (tellija 11.07; registreerimine 16.07 jaamalennuna): paneel täpselt
-     ekraani suurune, paddinguta ja läbipaistev — sisu saab kogu ruumi
-     ega keri; nurga-nupud hõljuvad sisu kohal */
-  const isCanvas =
-    normalized === "/kovisioon" ||
-    normalized === "/teemaseemned" ||
-    normalized === "/registreerimine" ||
-    normalized === "/hinnastus";
+     teenusekaart = suur kaart.
+     Kovisioon + Teemaseemned + Registreerimine + Hinnastus = TÄISEKRAANI
+     LÕUEND (tellija 11.07; registreerimine 16.07 jaamalennuna): paneel
+     täpselt ekraani suurune, paddinguta ja läbipaistev.
+     Mõlemad loendid elavad lib/roomDock.js-is, sest RoomStage peab samast
+     allikast teadma, millised aknad dokki EI kanna. */
+  const isWide = isWideRoute(normalized);
+  const isCanvas = isCanvasRoute(normalized);
+  /* Dokiga aknal EI OLE nurga-risti: väljapääs on ruumi dokis, ühes ja
+     samas kohas (omanik 26.07). Esc jääb tööle igal juhul. */
+  const hasRoomDock = panelHasRoomDock(normalized);
   /* ☰ (vestluste sahtel) AINULT vestlusevaates; töölaual ja mujal ⓘ
      (tellija 06.07 öö) */
   const workspaceParam = String(searchParams?.get("workspace") || "").trim();
@@ -207,6 +313,58 @@ export default function PanelFrame({ children }) {
     );
   }
 
+  const panelControls = (
+    <>
+      {showConversationsMenu ? (
+        /* Vestluste menüü (ajalugu, uus vestlus) — vasakul üleval,
+           AINULT vestlusevaates (pilt 9) */
+        <IconButton
+          layoutClassName="panel-menu"
+          aria-label={t("nav.chats")}
+          onClick={() =>
+            window.dispatchEvent(
+              new CustomEvent("sotsiaalai:toggle-conversations", { detail: { open: true } })
+            )
+          }
+        >
+          <MenuIcon />
+        </IconButton>
+      ) : panelInfoId ? (
+        /* Platvormi AINUS lehe-ⓘ: paremas ülanurgas, sulgemisristist
+           vahetult vasakul, ristiga sama mõõtu. Leht ei renderda oma
+           ikooni — ta annab sisu usePanelInfoSlot'i kaudu. */
+        <DashboardInfoTrigger
+          key={panelInfoId}
+          infoId={panelInfoId}
+          title={infoSlot?.title}
+          label={infoSlot?.label || t("room.panel_info_label")}
+          detailExtras={infoSlot?.detailExtras}
+          className="panel-menu panel-menu--info"
+        />
+      ) : null}
+      {isCovision ? (
+        <button
+          type="button"
+          data-variant
+          className="panel-exit"
+          aria-label={t("covision.live.exit.aria")}
+          onClick={closePanel}
+        >
+          <span aria-hidden="true">←</span>
+          {t("covision.live.exit.label")}
+        </button>
+      ) : hasRoomDock ? null : (
+        <IconButton
+          layoutClassName="panel-close"
+          aria-label={t("room.close_panel")}
+          onClick={closePanel}
+        >
+          <CloseIcon />
+        </IconButton>
+      )}
+    </>
+  );
+
   return (
     <div
       className="panel-scrim"
@@ -217,59 +375,15 @@ export default function PanelFrame({ children }) {
       data-conversation={isConversation ? "1" : "0"}
       data-compact={isCompact ? "1" : "0"}
       data-wide={isWide ? "1" : "0"}
+      data-dock={hasRoomDock ? "1" : "0"}
     >
-      <section className="panel" aria-label={t("room.panel_region")}>
-        {showConversationsMenu ? (
-          /* Vestluste menüü (ajalugu, uus vestlus) — vasakul üleval,
-             AINULT vestlusevaates (pilt 9) */
-          <IconButton
-            layoutClassName="panel-menu"
-            aria-label={t("nav.chats")}
-            onClick={() =>
-              window.dispatchEvent(
-                new CustomEvent("sotsiaalai:toggle-conversations", { detail: { open: true } })
-              )
-            }
-          >
-            <MenuIcon />
-          </IconButton>
-        ) : panelInfoId ? (
-          /* Platvormi AINUS lehe-ⓘ: paremas ülanurgas, sulgemisristist
-             vahetult vasakul, ristiga sama mõõtu. Leht ei renderda oma
-             ikooni — ta annab sisu usePanelInfoSlot'i kaudu. */
-          <DashboardInfoTrigger
-            key={panelInfoId}
-            infoId={panelInfoId}
-            title={infoSlot?.title}
-            label={infoSlot?.label || t("room.panel_info_label")}
-            detailExtras={infoSlot?.detailExtras}
-            className="panel-menu panel-menu--info"
-          />
-        ) : null}
-        {isCovision ? (
-          <button
-            type="button"
-            data-variant
-            className="panel-exit"
-            aria-label={t("covision.live.exit.aria")}
-            onClick={closePanel}
-          >
-            <span aria-hidden="true">←</span>
-            {t("covision.live.exit.label")}
-          </button>
-        ) : (
-          <IconButton
-            layoutClassName="panel-close"
-            aria-label={t("room.close_panel")}
-            onClick={closePanel}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
-        <div className="panel-body" ref={bodyRef}>
-          {children}
-        </div>
-      </section>
+      <PanelSurface
+        label={t("room.panel_region")}
+        controls={panelControls}
+        bodyRef={bodyRef}
+      >
+        {children}
+      </PanelSurface>
     </div>
   );
 }
