@@ -136,9 +136,21 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
    tohi avada kolme eri mõõtu akent. Kõrgus jääb kõigil kolmel sisu
    otsustada (`height: auto`, lagi --panel-max-h) — nii ongi Tellimuse
    kõrgus see, mis ta on, ja teised ei veni temast kaugemale kui sisu
-   nõuab. Ülejäänud tavalised lehed (47,5rem) jäävad puutumata. */
+   nõuab. Ülejäänud tavalised lehed (47,5rem) jäävad puutumata.
+
+   26.07 õhtu PARANDUS: „kõrgus jääb sisu otsustada" ei pidanud vastu.
+   Sisu järgi kasvades jäid Konto seaded (732 px) ja Minu kasutus (732 px,
+   sisu 1137 px) mõlemad TÄPSELT akna lae peale kinni, samal ajal kui sama
+   akna info-leht oli 527 px — omanik: „konto seaded aken peaks olema sama
+   suur aken kui selle info aken… pidid just väiksemaks muutma, mitte
+   suuremaks. info leht oli juba õige". Seega on konto-pere akna kõrgus
+   nüüd LUKUS info-lehe mõõtu (33rem ≈ 528 px, lagi jääb piiriks madalal
+   ekraanil): üks ja seesama kast Konto seadetel, Minu kasutusel,
+   Tellimusel ja ⓘ-lehel, olenemata sellest, kui pikk sisu on. Pikem sisu
+   kerib kasti sees (`.panel-body`), kast ei liigu. */
 .panel-scrim[data-narrow="1"] .panel {
   width: min(40rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
+  height: min(33rem, var(--panel-max-h));
 }
 /* Vestlus ei ole enam klaaspaneel, vaid ruumis hõljuv tööväli. Teekonna
    leht kasutab endiselt data-chat raami; uus raamita keel rakendub ainult
@@ -727,43 +739,137 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
    (733 px) — aken jäi lae peale kinni ja viimane nupp lõikus (omanik
    26.07: „konto seaded ja minu kasutus leht vale suurusega"). Tihendatud
    sisu mahub akna sisse ja aken kahaneb SISU järgi, nagu Tellimusel. */
-.konto-title {
+/* `.panel-body` prefiks ei ole kosmeetika: paljas `.konto-title` (0,1,0)
+   jäi lugemislehe `.panel-body h1` (0,1,1) alla ja tihendamine EI
+   rakendunud — pealkirja all seisis endiselt 0,9em (28,8 px). */
+/* PEALKIRJADE REEGEL (omanik 26.07: „osadel lehtedel ja kaartidel on
+   pealkiri keskel, osadel on vasakul. Mis loogika on"): KAART keskele,
+   AKEN vasakule. Kaardi-mõõtu aknad (Uuenda PIN, Uuenda e-post, Ruum —
+   `[data-compact]`) on sümmeetrilised ühe toimingu kaardid ja jäävad
+   keskele; päris aken kannab lehte, seega tema pealkiri algab sisuga
+   ühelt joonelt. Konto seaded ja Minu kasutus olid ainsad aknad, mis
+   sellest välja jäid — ja isegi oma komplekti sees ebajärjekindlalt,
+   sest Tellimus oli juba vasakul. */
+.panel-body .konto-title {
   margin-bottom: 0.45em;
-  text-align: center;
 }
 .konto-identity {
   margin-top: -0.4em;
   font-size: var(--fs-small);
   letter-spacing: 0.04em;
-  text-align: center;
   color: var(--text-dim);
 }
-/* Sektsiooni oma pealkiri EI vaja lugemislehe 1,9em ülaõhku — sektsioonil
-   endal on juba `margin-top`, kaks korda õhku on siin see, mis akna lae
-   alt välja ajas. */
-.konto-actions h2 {
-  margin-top: 0;
-}
-.konto-actions {
+/* KAKS KAARTI, MITTE NUPUVIRN (omanik 26.07: „konto seaded aken ja seal
+   sees elementide paigutus ja tekstid on reaalselt kõige koledam
+   kujundus"). Vana paigutus laotas kõik ühte keskjoondatud posti: nupp,
+   selle all keskele murtud seletuslause, nupp, lause… Kaks viga korraga —
+   (1) keskjoondatud LAUSE on loetamatu (iga rida algab uuest kohast) ja
+   (2) miski ei sidunud nuppu tema seletusega peale kauguse.
+   Uus keel on platvormi oma: klaaskaart (`.glass-listrow` materjal) ja
+   selle sees read, kus seletus seisab VASAKUL ja toiming PAREMAL. Nii on
+   iga rida üks mõte, tekst algab ühelt joonelt ja kaart ise ütleb, mis
+   kokku käib. */
+.konto-card {
   display: grid;
-  gap: 1.1rem;
-  margin-top: 1.1rem;
-  margin-inline: auto;
-  max-width: 24rem;
+  gap: 0.85rem;
+  /* Täislaius, MITTE keskele kitsendatud veerg: pealkiri on nüüd vasakul
+     (vt pealkirjade reegel allpool) ja 30rem-i keskele tõmmatud kaart
+     jättis tema alla 38 px astme. Aken ise on juba kitsas (40rem) — teist
+     kitsendust ta ei vaja. */
   width: 100%;
-  justify-items: center;
+  margin-top: 1.15rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 16px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  text-align: left;
 }
-.konto-actions > div {
-  display: grid;
-  justify-items: center;
-  gap: 0.45rem;
-  width: 100%;
-}
-.konto-actions p {
+/* Sektsiooni oma pealkiri EI vaja lugemislehe 1,9em ülaõhku — kaardil
+   endal on juba polster ja `margin-top`. */
+.konto-card h2 {
   margin: 0;
+  font-size: calc(var(--fs-body) * 1.05);
+  letter-spacing: 0.02em;
+}
+.konto-card p {
+  margin: 0;
+}
+/* Vormiväli: silt, väli ja abilause ÜHEL vasakul joonel. */
+.konto-field {
+  display: grid;
+  gap: 0.4rem;
+}
+.konto-field label {
   font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+/* Väli on nii lai kui tema sisu, mitte nii lai kui kaart: PIN on kuni
+   kaheksa numbrit ja üle poole kaardi laiune pill nägi välja nagu vale
+   välja (omanik 26.07: „pin lahter on liiga lai"). Numbrid seisavad
+   hõredalt keskel — nii loeb sisestaja neid ükshaaval. */
+.konto-field input {
+  width: min(16rem, 100%);
   text-align: center;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+}
+.konto-hint {
+  font-size: var(--fs-small);
+  line-height: 1.45;
   color: var(--text-dim);
+}
+/* Kaardi oma toiming (nt „Taotle andmekoopia"): rida kaardi lõpus,
+   nupp paremas servas — sama joon, kuhu ridade nupudki jäävad. */
+.konto-card__action {
+  display: flex;
+  justify-content: flex-end;
+}
+@media (max-width: 560px) {
+  .konto-card__action [data-variant] {
+    width: 100%;
+  }
+}
+/* Rida: seletus vasakul, toiming paremal. Nupp ei venita rida — tema
+   laius tuleb sildist, ja seletus võtab ülejäänu. */
+.konto-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.konto-row + .konto-row {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--glass-cell-border);
+}
+.konto-row__text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.konto-row [data-variant] {
+  flex: none;
+  padding: 0.5em 1.1em;
+  font-size: var(--fs-small);
+}
+/* Konto kustutamine on pöördumatu — ta ei tohi seista teiste toimingutega
+   ühes hingetõmbes. Eraldi vahe + tugevam joon, VÄRVI appi võtmata
+   (kanoonilise nupu ilme on lukus, vt canonical-button-look). */
+.konto-row--danger {
+  margin-top: 0.3rem;
+  padding-top: 1.05rem;
+  border-top: 1px solid var(--glass-border);
+}
+/* Kitsal ekraanil ei ole kõrvuti enam ruumi: seletus üles, toiming alla
+   ja üle terve laiuse — nii jääb puutesihtmärk suureks. */
+@media (max-width: 560px) {
+  .konto-row {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .konto-row [data-variant] {
+    width: 100%;
+  }
 }
 
 /* Profiili kasutusülevaade: sama paneeli klaas, mitte eraldi kujundussüsteem. */
@@ -782,8 +888,9 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
 .usage-overview {
   display: grid;
   gap: 1rem;
-  width: min(34rem, 100%);
-  margin-inline: auto;
+  /* Sama põhjus mis `.konto-card`-il: pealkiri on vasakul, seega ka
+     mõõdikud algavad tema joonelt. 34rem keskveerg jättis 7 px astme. */
+  width: 100%;
 }
 .usage-overview__intro {
   display: flex;
@@ -890,9 +997,17 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   .panel-scrim {
     padding: 0;
   }
+  /* `[data-narrow]` on siin nimeliselt kirjas, sest tema desktopi-reegel
+     (0,2,0 — lukus 33rem kõrgus) võidaks paljast `.panel`-it (0,1,0) ka
+     siin sees: meediapäring ei anna spetsiifilisust. Ilma temata jäi
+     konto-pere aken mobiilil 528 px kastiks 844 px ekraani KESKELE, üleval
+     ja all 170 px tühja — omanik 26.07: „mobiilis on need aknad väga
+     koledad". Mobiilil ei ole „sama suur aken" küsimustki: kõik aknad on
+     servast servani, seega on nad niikuinii ühte mõõtu. */
   .panel,
   .panel-scrim[data-admin="1"] .panel,
-  .panel-scrim[data-chat="1"] .panel {
+  .panel-scrim[data-chat="1"] .panel,
+  .panel-scrim[data-narrow="1"] .panel {
     width: 100%;
     height: 100lvh;
     border-radius: 0;

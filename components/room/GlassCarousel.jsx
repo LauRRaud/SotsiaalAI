@@ -257,6 +257,67 @@ export default function GlassCarousel({
   const listRef = useRef(null);
   const drag = useRef({ on: false, x0: 0, dx: 0, moved: false, pid: null });
   const itemRefs = useRef([]);
+  const shortcutTrackRef = useRef(null);
+
+  /* Kiirmenüü riba, mis ei mahu ära, PEAB seda ise ütlema. Mobiilil (390 px)
+     mõõdab kaheksa otseteed 410 px, riba nähtav osa on 295 px — ülejäänu oli
+     lihtsalt ÄRA LÕIGATUD, ilma ühegi märgita, et seal veel midagi on
+     (omanik 26.07: „alumine kiirmenüü on ära lõigatud ja kõik ikoonid ei
+     mahugi peale"). Kaks vastust, mõlemad vajalikud:
+     1) `data-overflow="1"` lülitab sisse servahäive (carousel.css) — riba
+        lõpp hajub, mis ütleb „siit läheb edasi", mitte „siin on katki";
+     2) aktiivne otsetee keritakse vaatesse, et avatud leht ei oleks kunagi
+        peidus servataga.
+     Nuppude kahandamine EI ole lahendus: kaheksa 44 px puutesihtmärki + tagasi-
+     nool ei mahu 390 px ekraanile ühelegi reale (373 px ainuüksi ikoonid). */
+  useEffect(() => {
+    const track = shortcutTrackRef.current;
+    if (!track) return undefined;
+
+    /* Häive tuleb AINULT sinna poolele, kus päriselt on midagi peidus, ja
+       alles siis, kui peidus on vähemalt pool ikooni. Esimene versioon
+       hajutas mõlemat serva niipea, kui riba üldse üle ääre ulatus —
+       laual tähendas see 14 px ülejääki, mille pärast tuhmus 22 px
+       MÕLEMAL pool ehk päris ikoonid, kusjuures vasakul ei olnud peidus
+       mitte midagi (omanik 26.07: „desktopis on imelik fade kiirmenüül,
+       vasakul ja paremal pool, katab ikoone"). Alla selle läve on riba
+       sisuliselt terve ja häive oleks lihtsalt müra. */
+    const HIDDEN_MIN = 24;
+    const syncFade = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (max <= 2) {
+        track.dataset.overflow = "0";
+        track.dataset.fade = "none";
+        return false;
+      }
+      track.dataset.overflow = "1";
+      const start = track.scrollLeft > HIDDEN_MIN;
+      const end = max - track.scrollLeft > HIDDEN_MIN;
+      track.dataset.fade = start && end ? "both" : start ? "start" : end ? "end" : "none";
+      return true;
+    };
+    const sync = () => {
+      if (!syncFade()) return;
+      const on = track.querySelector('.gc-shortcut[data-on="1"]');
+      if (!on) return;
+      const mid = on.offsetLeft + on.offsetWidth / 2 - track.clientWidth / 2;
+      /* Vähendatud liikumise all EI libiseta — seal on hüpe ainus aus
+         vastus (sama reegel mis dokil endal, room.css). */
+      const reduced = document.documentElement.dataset.reduceMotion === "1";
+      track.scrollTo({ left: Math.max(0, mid), behavior: reduced ? "auto" : "smooth" });
+    };
+    sync();
+    track.addEventListener("scroll", syncFade, { passive: true });
+    let ro = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(sync);
+      ro.observe(track);
+    }
+    return () => {
+      track.removeEventListener("scroll", syncFade);
+      ro?.disconnect();
+    };
+  }, [active, items]);
 
   /* Sammu lukk: iga pööre on ÜKS kaart ja animatsioon lõpetatakse
      enne järgmist sammu — kaarte ei saa läbi vuhistada. Kestus on
@@ -270,12 +331,20 @@ export default function GlassCarousel({
     return true;
   };
 
+  /* `count` > 1 tuleb AINULT näpu alt (vt endDrag): rullik ja nooled
+     annavad ikka ühe kaardi korraga. `force` jätab sammuluku vahele —
+     lukk on rulliku hoo taltsutaja, aga näpuvedu on juba iseenesest üks
+     lõpetatud žest, ja tema kinnihoidmine oli see, mis tegi kiired
+     järjestikused svaibid mõjutuks (omanik 26.07: „menüü scroll on kuidagi
+     raske, kui ma tahan näpuga vasakule või paremale kerida"). */
   const step = useCallback(
-    (delta, { focus = false } = {}) => {
-      if (!stepAllowed()) return;
-      const dir = delta < 0 ? -1 : 1; // alati üks kaart korraga
+    (delta, { focus = false, count = 1, force = false } = {}) => {
+      if (!force && !stepAllowed()) return;
+      if (force) stepLockUntil.current = performance.now() + 120;
+      const dir = delta < 0 ? -1 : 1;
+      const hops = Math.max(1, Math.min(count, n));
       setActive((cur) => {
-        const next = (((cur + dir) % n) + n) % n;
+        const next = (((cur + dir * hops) % n) + n) % n;
         if (focus) {
           requestAnimationFrame(() => itemRefs.current[next]?.focus?.());
         }
@@ -321,13 +390,20 @@ export default function GlassCarousel({
     const d = drag.current;
     if (!d.on) return;
     d.dx = e.clientX - d.x0;
+    /* 8 px jääb 8-ks: see lävi otsustab ka selle, kas vajutus loeb
+       KLIKIKS (vt handleActivate). Madalam lävi teeks väriseva näpuga
+       tehtud koputusest lohistuse ja kaart ei avaneks. */
     if (!d.moved && Math.abs(d.dx) > 8) {
       d.moved = true;
       listRef.current?.setPointerCapture?.(d.pid);
     }
     if (d.moved && listRef.current) {
       listRef.current.dataset.dragging = "1";
-      listRef.current.style.setProperty("--drag", `${d.dx * 0.55}px`);
+      /* Kaart käib näpuga peaaegu kaasa (0,92). Vana 0,55 tähendas, et
+         48 px veo peale liikus pilt 26 px — sõrm läks, klaas jäi, ja
+         see ongi see „raske" tunne. Päris 1,0 jätaks servakaardi näpust
+         ette; 0,92 hoiab veo ja pöörde ühes tempos. */
+      listRef.current.style.setProperty("--drag", `${d.dx * 0.92}px`);
     }
   }, []);
   const endDrag = useCallback(
@@ -346,8 +422,16 @@ export default function GlassCarousel({
         }
       }
       if (d.moved) {
-        // Üks kaart lohistuse kohta — pööre jõuab alati rahulikult lõpuni.
-        if (Math.abs(d.dx) > 48) step(d.dx < 0 ? 1 : -1);
+        /* Kui klaas käib näpuga kaasa, PEAB ta ka sinna jääma, kuhu näpp
+           ta viis: kahe kaardi jagu vedu ja siis ühe kaardi võrra tagasi
+           kargamine näeks katki. Seepärast on samme nii mitu, kui mitu
+           kaardikohta sõrm läbis (lagi 3 — rohkem ei ole enam kerimine,
+           vaid ülelend). Lävi 48 -> 26 px: 48 px oli poole ekraani jagu
+           liigutust, mille peale ei juhtunud MIDAGI. */
+        const cardW = list?.querySelector(".gc-item")?.offsetWidth || 0;
+        const pitch = cardW > 0 ? cardW * 1.06 : 140;
+        const hops = Math.max(1, Math.min(3, Math.round(Math.abs(d.dx) / pitch)));
+        if (Math.abs(d.dx) > 26) step(d.dx < 0 ? 1 : -1, { count: hops, force: true });
         // Klikk pärast lohistust ei tohi avada
         window.setTimeout(() => {
           drag.current.moved = false;
@@ -762,7 +846,7 @@ export default function GlassCarousel({
                 })}
               </div>
             ) : (
-              <div className="gc-shortcut-track">
+              <div className="gc-shortcut-track" ref={shortcutTrackRef}>
                 {shortcutEntries.map(({ item, index }) => {
                   const isActive = index === active;
                   return (

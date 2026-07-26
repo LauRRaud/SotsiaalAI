@@ -491,8 +491,16 @@ export default function ProfiilBody({
             {profileUser?.email ? ` · ${profileUser.email}` : ""}
           </p>
           <DataExportPanel active={isActive} />
-          <section className="konto-actions" aria-label={t("profile.account_settings")}>
-            <div>
+          {/* Iga toiming on ÜKS rida: mida ta teeb (vasakul, ühelt joonelt
+              loetav lause) ja nupp (paremal). Vana virn pani nupu ja tema
+              seletuse teineteise alla keskele — omanik 26.07. */}
+          <section className="konto-card" aria-label={t("profile.account_settings")}>
+            <div className="konto-row">
+              <p className="konto-hint konto-row__text">
+                {currentDeviceName
+                  ? t("profile.logout_hint_device", { device: currentDeviceName })
+                  : t("profile.logout_hint")}
+              </p>
               <Button
                 type="button"
                 onClick={handleLogout}
@@ -500,13 +508,13 @@ export default function ProfiilBody({
               >
                 {t("profile.logout")}
               </Button>
-              <p>
-                {currentDeviceName
-                  ? t("profile.logout_hint_device", { device: currentDeviceName })
-                  : t("profile.logout_hint")}
-              </p>
             </div>
-            <div>
+            <div className="konto-row">
+              <p className="konto-hint konto-row__text">
+                {trustedDeviceNames
+                  ? t("profile.logout_all_hint_devices", { devices: trustedDeviceNames })
+                  : t("profile.logout_all_hint")}
+              </p>
               <Button
                 type="button"
                 onClick={() => {
@@ -517,13 +525,9 @@ export default function ProfiilBody({
               >
                 {t("profile.logout_all_devices")}
               </Button>
-              <p>
-                {trustedDeviceNames
-                  ? t("profile.logout_all_hint_devices", { devices: trustedDeviceNames })
-                  : t("profile.logout_all_hint")}
-              </p>
             </div>
-            <div>
+            <div className="konto-row konto-row--danger">
+              <p className="konto-hint konto-row__text">{t("profile.delete_account_hint")}</p>
               <Button
                 type="button"
                 onClick={() => {
@@ -536,7 +540,6 @@ export default function ProfiilBody({
               >
                 <span>{t("profile.delete_account")}</span>
               </Button>
-              <p>{t("profile.delete_account_hint")}</p>
             </div>
           </section>
         </>

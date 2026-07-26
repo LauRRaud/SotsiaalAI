@@ -15,7 +15,13 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { localizePath } from "@/lib/localizePath";
 import { readRoomHubPath } from "@/lib/roomHubReturn";
-import { isCanvasRoute, isWideRoute, panelHasOwnExit, panelHasRoomDock } from "@/lib/roomDock";
+import {
+  isCanvasRoute,
+  isWideRoute,
+  panelDockRecedesAnywhere,
+  panelHasOwnExit,
+  panelHasRoomDock
+} from "@/lib/roomDock";
 import { PanelExitProvider } from "@/components/room/PanelExit";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
@@ -180,7 +186,17 @@ export default function PanelFrame({ children }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { t, locale } = useI18n();
-  const bodyRef = useRef(null);
+  /* Tagasikutse-viide, MITTE useRef: akna keha tekib ja kaob ilma et
+     `normalized` muutuks. /profiil on hub (paneelikest puudub üldse) ja
+     /profiil?sektsioon=kasutus on aken — mõlema normaliseeritud tee on
+     „/profiil". Kerimiskuulajad sõltusid `normalized`-ist, seega hubist
+     sektsiooni minnes EI käivitunud nad uuesti ja `bodyRef.current` oli
+     nende jaoks igavesti null: dokk ei taandunud ega kerimiskoht ei
+     taastunud (omanik 26.07: „menüü katab teksti, alla kerides peaks see
+     ära kaduma"). Sõlmest endast sõltuvus paneb nad tööle alati, kui keha
+     päriselt olemas on. */
+  const [bodyEl, setBodyEl] = useState(null);
+  const bodyRef = useCallback((node) => setBodyEl(node), []);
 
   /* Hüdreerimine läbi → edaspidised akna-avamised on kaardilt tulek ja
      tohivad sisu ära oodata (vt panelGateArmed). */
@@ -311,7 +327,7 @@ export default function PanelFrame({ children }) {
   /* Kerimiskoha säilitamine paneeli kohta (naasmisel sama koht). */
   useEffect(() => {
     if (isHome) return undefined;
-    const el = bodyRef.current;
+    const el = bodyEl;
     if (!el) return undefined;
     const key = `sotsiaalai:panel-scroll:${normalized}`;
     try {
@@ -333,7 +349,7 @@ export default function PanelFrame({ children }) {
       el.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [isHome, normalized]);
+  }, [isHome, normalized, bodyEl]);
 
   /* Dokk taandub, kui lugeja süveneb (omanik 26.07). VR-loogika: dokk on
      RUUMI ese, mitte ekraanikleeps — kui pilk läheb tekstitahvlile, jääb
@@ -347,7 +363,7 @@ export default function PanelFrame({ children }) {
      iga kerimiskaadri renderdust. */
   useEffect(() => {
     if (isHome || !hasRoomDock) return undefined;
-    const el = bodyRef.current;
+    const el = bodyEl;
     const root = document.documentElement;
     if (!el || !root) return undefined;
 
@@ -358,6 +374,7 @@ export default function PanelFrame({ children }) {
     const END_ZONE = 24;
     let last = el.scrollTop;
     let raf = 0;
+    let bound = false;
 
     const apply = () => {
       raf = 0;
@@ -376,15 +393,43 @@ export default function PanelFrame({ children }) {
       raf = requestAnimationFrame(apply);
     };
 
-    el.addEventListener("scroll", onScroll, { passive: true });
+    /* KAKS reeglit, mitte üks (omanik 26.07):
+       — LUGEMISLEHED (Teave-alamkomplekt, lib/roomDock READING_ROUTES):
+         dokk taandub igal ekraanil. Seal on pikk proosa, lugeja süveneb
+         ja tahvel kasvab doki asemele — see ongi selle lehetüübi keel.
+       — KÕIK MUU: ainult mobiilil („see peaks olema ainult mobiilis nii,
+         sest katab seal aknas teksti"). Laual on aken dokist kitsam ja
+         tema kohal, seega dokk ei kata midagi ja tema kadumine oleks
+         lihtsalt väljapääsu peitmine.
+       Piir 768px = sama, mis paneeli enda mobiilireeglitel (panel.css). */
+    const alwaysRecedes = panelDockRecedesAnywhere(normalized);
+    const mq = window.matchMedia("(max-width: 768px)");
+    const sync = () => {
+      const want = alwaysRecedes || mq.matches;
+      if (want === bound) return;
+      bound = want;
+      if (want) {
+        last = el.scrollTop;
+        el.addEventListener("scroll", onScroll, { passive: true });
+        return;
+      }
+      el.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0;
+      delete root.dataset.dockRecessed;
+    };
+    sync();
+    mq.addEventListener?.("change", sync);
+
     return () => {
+      mq.removeEventListener?.("change", sync);
       el.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
       /* Lehelt lahkudes EI tohi dokk taandunuks jääda — järgmine aken
          avaneks ilma väljapääsuta. */
       delete root.dataset.dockRecessed;
     };
-  }, [isHome, hasRoomDock, normalized]);
+  }, [isHome, hasRoomDock, normalized, bodyEl]);
 
   /* Töölaud: sr-only marker jääb DOM-i (ekraanilugeja, robotid), paneelikesta
      EI teki — nähtav navigatsioon on RoomStage'i töölaua-karussell. */
@@ -472,7 +517,13 @@ export default function PanelFrame({ children }) {
       >
         {/* Info-lehe ajaks jääb leht MONTEERITUKS, ainult peidetuks: pooleli
             täidetud väli, laetud loend ja kerimiskoht peavad tagasi tulles
-            alles olema. Modaali siin ei ole — info ON leht. */}
+            alles olema. Modaali siin ei ole — info ON leht.
+
+            Peitmine käib `hidden`-iga ehk leht kaob MÕÕDUST — konto-pere
+            aknad ei tohi sellest kõikuma hakata, aga nad ei kõigugi:
+            nende kõrgus on lukus (panel.css `[data-narrow]`, omanik 26.07:
+            „info leht oli juba õige", konto seaded peab tema mõõtu
+            kahanema). Teistel dokiga akendel jääb kõrgus sisu järgi. */}
         {showInfoView ? (
           <section className="panel-info-view" aria-label={t("room.panel_info_label")}>
             <DashboardInfoBody

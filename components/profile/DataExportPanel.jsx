@@ -58,28 +58,37 @@ export default function DataExportPanel({ active = true }) {
   };
 
   return (
-    <section className="konto-actions" aria-labelledby={titleId}>
-      <div>
-        <h2 id={titleId}>{t("profile.data_export.title")}</h2>
-        {/* Mida koopia sisaldab ja mida mitte — kolm GDPR-lõiku — elab
-            nüüd lehe ⓘ-s (dokk → Info, lib/dashboardInfoContent
-            `account_settings`). Siia jääb ainult toiming, muidu on aken
-            kaks korda pikem kui ekraan (omanik 26.07). */}
+    /* Kaart, mitte keskele laotud virn: silt-väli-abilause seisavad ühel
+       vasakul joonel ja toiming on rea paremas otsas (vt panel.css
+       .konto-card / .konto-row, omanik 26.07). */
+    <section className="konto-card" aria-labelledby={titleId}>
+      <h2 id={titleId}>{t("profile.data_export.title")}</h2>
+      {/* Mida koopia sisaldab ja mida mitte — kolm GDPR-lõiku — elab
+          nüüd lehe ⓘ-s (dokk → Info, lib/dashboardInfoContent
+          `account_settings`). Siia jääb ainult toiming, muidu on aken
+          kaks korda pikem kui ekraan (omanik 26.07). */}
+      <div className="konto-field">
         <label htmlFor={pinId}>{t("profile.current_pin_label")}</label>
         <input id={pinId} type="password" inputMode="numeric" autoComplete="current-password" value={pin} onChange={event => setPin(event.target.value.replace(/\D/g, "").slice(0, 8))} />
-        <p>{t("profile.data_export.pin_hint")}</p>
-        <Button type="button" onClick={request} disabled={busy}>{busy ? t("profile.data_export.requesting") : t("profile.data_export.request")}</Button>
-        {error ? <p role="alert">{error}</p> : null}
-        {loading ? <p role="status">{t("profile.loading")}</p> : null}
-        {jobs.map(job => (
-          <article key={job.id} aria-live="polite">
-            <p>{t(`profile.data_export.${job.status}`)}</p>
-            {job.status === "ready" && job.expiresAt ? <p>{t("profile.data_export.ready", { date: formatDate(job.expiresAt, locale) })}</p> : null}
-            {job.canDownload ? <Button type="button" onClick={() => { window.location.assign(`/api/data-export/${encodeURIComponent(job.id)}/download`); }}>{t("profile.data_export.download")}</Button> : null}
-            {job.canCancel ? <Button type="button" onClick={() => cancel(job.id)} disabled={busy}>{t("profile.data_export.cancel")}</Button> : null}
-          </article>
-        ))}
+        <p className="konto-hint">{t("profile.data_export.pin_hint")}</p>
       </div>
+      {/* Abilause on juba välja all — nupp ei korda teda, vaid seisab
+          kaardi lõpus omaette reana. */}
+      <div className="konto-card__action">
+        <Button type="button" onClick={request} disabled={busy}>{busy ? t("profile.data_export.requesting") : t("profile.data_export.request")}</Button>
+      </div>
+      {error ? <p className="konto-hint" role="alert">{error}</p> : null}
+      {loading ? <p className="konto-hint" role="status">{t("profile.loading")}</p> : null}
+      {jobs.map(job => (
+        <article className="konto-row" key={job.id} aria-live="polite">
+          <div className="konto-row__text">
+            <p>{t(`profile.data_export.${job.status}`)}</p>
+            {job.status === "ready" && job.expiresAt ? <p className="konto-hint">{t("profile.data_export.ready", { date: formatDate(job.expiresAt, locale) })}</p> : null}
+          </div>
+          {job.canDownload ? <Button type="button" onClick={() => { window.location.assign(`/api/data-export/${encodeURIComponent(job.id)}/download`); }}>{t("profile.data_export.download")}</Button> : null}
+          {job.canCancel ? <Button type="button" onClick={() => cancel(job.id)} disabled={busy}>{t("profile.data_export.cancel")}</Button> : null}
+        </article>
+      ))}
     </section>
   );
 }

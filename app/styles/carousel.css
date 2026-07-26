@@ -1033,6 +1033,50 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   gap: 0.2rem;
   min-width: 0;
 }
+/* Riba, mis ei mahu ära, ütleb seda ise (lipu paneb GlassCarousel).
+   Ilma selleta lõppes kaheksast otseteest kuues täpselt pilli serva peal —
+   ülejäänud kaks olid ekraanist väljas ja mitte miski ei vihjanud, et nad
+   olemas on. Serva hajumine muudab „katki" -> „läheb edasi"; snap hoiab
+   nupud pärast kerimist ridamisi, mitte poolikult serva peal. Häive on
+   AINULT ülevoolaval ribal: mahtuva riba servanupud ei tohi asjata
+   tuhmuda. Prefiks ENNE standardit (Lightning CSS jätab duplikaadist
+   viimase). */
+.gc-shortcut-track[data-overflow="1"] {
+  --gc-track-fade: 1.4rem;
+  /* Kumbki serv eraldi: häive on AINULT sellel poolel, kus midagi on
+     peidus (lipu paneb GlassCarousel). Nulliga jääb serv terav ja ükski
+     päris ikoon ei tuhmu. */
+  --gc-fade-s: 0px;
+  --gc-fade-e: 0px;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 var(--gc-fade-s),
+    #000 calc(100% - var(--gc-fade-e)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 var(--gc-fade-s),
+    #000 calc(100% - var(--gc-fade-e)),
+    transparent 100%
+  );
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--gc-track-fade);
+  overscroll-behavior-x: contain;
+}
+.gc-shortcut-track[data-fade="start"],
+.gc-shortcut-track[data-fade="both"] {
+  --gc-fade-s: var(--gc-track-fade);
+}
+.gc-shortcut-track[data-fade="end"],
+.gc-shortcut-track[data-fade="both"] {
+  --gc-fade-e: var(--gc-track-fade);
+}
+.gc-shortcut-track[data-overflow="1"] > .gc-shortcut {
+  scroll-snap-align: center;
+}
 .gc-shortcut {
   position: relative;
   display: flex;

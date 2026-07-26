@@ -293,12 +293,17 @@ select {
   border: 0 !important;
 }
 
-/* Skip-link: "Liigu sisu juurde" (brief ptk 7) */
+/* Skip-link: "Liigu sisu juurde" (brief ptk 7)
+   Keskelt VASAKUSSE SERVA (omanik 26.07: „ei peaks kattuma paneeliga
+   üleval, eriti kui see on selline, mis välja tuleb"). Ülaserva keskkoht
+   ei ole vaba pind — seal seisab ruumi ülemine juhtnupp ja avatud akna
+   ülemine kaar; sisse libisev link maandus täpselt nende peale. Vasak
+   ülanurk on igal pinnal tühi ja on ühtlasi hüppelinkide tavakoht. */
 .skip-link {
   position: fixed;
-  top: 0.9rem;
-  left: 50%;
-  translate: -50% -260%;
+  top: 2.6rem;
+  left: clamp(0.75rem, 3vw, 1.5rem);
+  translate: 0 -400%;
   z-index: var(--z-skip);
   padding: 0.7em 1.5em;
   border-radius: 99px;
@@ -313,7 +318,7 @@ select {
   transition: translate var(--dur-fast) var(--ease-soft);
 }
 .skip-link:focus-visible {
-  translate: -50% 0;
+  translate: 0 0;
 }
 
 /* main on ruumi kohal asuv kiht. Kodurežiimides (kõnd/lõppseis) on

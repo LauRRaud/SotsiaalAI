@@ -88,7 +88,9 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
 .a11f-scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: 5.3rem;
+  /* Nõks kõrgemale (omanik 26.07: „desktopis ka nõksa"): vihje seisis
+     doki kohal nii madalal, et silt ja pill lugesid ühe klombina. */
+  bottom: 5.9rem;
   translate: -50% 0;
   z-index: 10;
   pointer-events: none;
@@ -137,8 +139,13 @@ html[data-reduce-motion="1"] .a11f-scroll-hint-dot {
   }
 }
 @media (max-width: 720px) {
+  /* Mobiilil oli vihje hoopis MADALAMAL kui laual (4,7 vs 5,3rem), kuigi
+     dokk on seal sama kõrge — silt „KERI" jäi pilli külge kinni. Nüüd
+     seisab ta laua omast selgelt kõrgemal, aga jääb ikka doki lähedale:
+     ta on kerimisvihje, mitte omaette pealkiri (omanik 26.07: „mobiilis
+     see keri üleval pool veidi… aga mitte palju"). */
   .a11f-scroll-hint {
-    bottom: 4.7rem;
+    bottom: 6.4rem;
   }
 }
 
