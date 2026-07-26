@@ -653,7 +653,12 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
    hoveril tekib ikooni ümber väike ümar nupp. */
 .room-topbar {
   position: fixed;
-  top: 0;
+  /* Safe-area, MITTE 0. Riba peidab end ekraani ülaserva taha ja jätab
+     nähtavale ainult ~25 px klaasiserva — telefonis kattis selle serva
+     olekuriba/notch (iPhone'il 47–59 px) ja ribast ei jäänud midagi näha
+     (omanik 26.07: „mobiilis on ülariba katki, ma ei näegi seda").
+     Desktopil on inset 0, seega seal ei muutu miski. */
+  top: env(safe-area-inset-top, 0px);
   left: 50%;
   transform: translateX(-50%);
   /* RoomStage ise on taustakihis. Juhtpaneel on selle kõrval ning peab
@@ -681,6 +686,22 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   height: 6rem;
 }
 
+/* PUUTESEADE: riba avaneb ainult klõpsuga (hover'it ei ole), seega peab
+   püüdeala ja nähtav serv olema päris sõrmesiht, mitte hiirevihje.
+   Enne: nähtav serv 1.55rem (~25 px), püüdeala 1.8rem (~29 px) — mõlemad
+   alla 44 px soovitusliku miinimumi, ja kuna riba istus veel notch'i all
+   (vt safe-area ülal), ei olnud sinna praktikas võimalik pihtagi saada.
+   Desktopil jääb kõik endiseks: seal avab riba hover ja peenem serv on
+   taotluslikult diskreetne. */
+@media (pointer: coarse) {
+  .room-topbar-arrow {
+    height: 2.75rem;
+  }
+  .room-quickbar {
+    transform: translate(-50%, calc(-100% + 2.4rem));
+  }
+}
+
 /* ÜKS klaaspaneel — ikoonide alus. Materjal = SAMA mis karusselli
    klaaskaardil (.gc-card): soe matt tume gradient (--card-glass-*),
    ILMA backdrop-filtrita — nii ei lähe külmaks/piimjaks ega glitchi
@@ -700,7 +721,18 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
      kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
   padding: 0.45rem 0.95rem;
   border-radius: 1.5rem;
-  background: var(--card-glass-bg);
+  /* LÄBIPAISTMATU pind, mitte klaas — sama otsus mis kiirmenüül (omanik
+     26.07: „ei peakski kasutama kiirmenüüdel ja nt ka peidetud paneelil
+     blur efekti, vaid vähem ressurssi võtab kui element on nö täisvärviga,
+     aga reguleeritud fade efektiga tekkima ja kaduma"). Siin oli
+     `--card-glass-bg` (rgba .46/.52/.58) + avatud olekus blur. Toon allpool
+     on selle sama gradiendi läbipaistmatu vaste musta ruumi peal
+     (40·.46+7·.54 ≈ #161616 jne) + väike lisa selle valguse eest, mille
+     backdrop varem ruumist sisse tõi — riba peaks nägema välja nagu enne,
+     lihtsalt ilma tausta lugemata. Kaardi-token jääb KAARTIDELE; ülariba
+     ei ole kaart, vaid juhtpind. Läige (::before) ja serv (::after)
+     jäävad — kuju tuleb neist, mitte blurist. */
+  background: linear-gradient(165deg, #1c1c1c 0%, #171717 55%, #141414 100%);
   box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
   /* Peidus: näha ~1.55rem klaasi alaserv (paneel veidi allpool), ikoonid
@@ -738,22 +770,14 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .room-topbar[data-open="1"] .room-quickbar {
   transform: translate(-50%, 0.3rem);
   pointer-events: auto;
-  /* Blur AINULT väljas olles. Riba libiseb transform'iga sisse-välja ja
-     backdrop-filter koos liikuva transform'iga tähendab, et brauser
-     loeb tausta iga kaadri uuesti — servad määrivad ja liigutus tõmbleb
-     (sama õppetund mis mujal platvormil: hägukihte ei animeerita).
-     Nii et: liikumise ajal on riba lihtsalt klaasitooniga taust, ja kui
-     ta on kohal, tuleb hägu peale. Üleminek on 220 ms hilinemisega ehk
-     alles siis, kui liigutus (var(--dur-med)) on läbi.
-     backdrop-filter kannab transform'iga elemendil ka oma virnastus- ja
-     lõikekonteksti — sellepärast on ta siin, avatud olekus, mitte
-     baasreeglis. */
-  -webkit-backdrop-filter: blur(15px) saturate(0.86);
-  backdrop-filter: blur(15px) saturate(0.86);
-  transition:
-    transform var(--dur-med) var(--ease-soft),
-    backdrop-filter 260ms var(--ease-soft) 220ms,
-    -webkit-backdrop-filter 260ms var(--ease-soft) 220ms;
+  /* Siin seisis „blur AINULT väljas olles" — kogu see konstruktsioon
+     (hägu alles pärast liigutust, 220 ms hilinemisega, et liikuv
+     transform ei sunniks brauserit tausta iga kaadri uuesti lugema) oli
+     möönduste jada ühe kalli efekti ümber. Efekt ise on nüüd maas
+     (vt baasreegli selgitust) ja koos temaga kadus ka põhjus tema
+     ümber ehitada: riba on lihtsalt läbipaistmatu pind, mis libiseb
+     sisse ja välja. Alles jääb üksainus üleminek. */
+  transition: transform var(--dur-med) var(--ease-soft);
 }
 html[data-reduce-motion="1"] .room-topbar .room-quickbar {
   transition: none;
@@ -936,16 +960,39 @@ html[data-dock-recessed="1"] .room-dock-wrap {
 .room-dock-wrap {
   transform: perspective(900px) translate3d(0, 0, 0);
   transform-origin: 50% 100%;
-  filter: blur(0);
+  /* PUHKEOLEKUS EI TOHI SIIN OLLA `filter`. Siin seisis `filter: blur(0)`
+     (transitioni lähtepunktina) ja see tegi doki klaasi olematuks: element,
+     millel on `filter`, on spetsi järgi BACKDROP ROOT, ja tema laste
+     `backdrop-filter` saab siis hägustada ainult selle juure SISU — mis on
+     tühi, sest mähise sees on ainult dokk ise. Tulemus: tekstitahvli peal
+     seisis dokk hägustamata gradiendina ja tekst luges läbi (omanik 26.07:
+     „on see teksti ees nii, et sulandub sisse ja ma ei näe seda").
+     Lähtepunkti ei ole vaja kirjutada: `filter` vaikeväärtus ON `none` ja
+     `none → blur(3px)` interpoleerub (none = tühi filtriloend, mis
+     ühildatakse identiteediga). Taandumise ajal kaob klaas hetkeks, aga
+     dokk on siis nagunii hääbumas. Transform tohib jääda — transform loob
+     virnastuskonteksti, MITTE backdrop root'i. */
   /* Sujuvam kui esimene katse (omanik 26.07: „pane see sujuvamaks"):
      pikem kaar ja üks ühine kestus akna kasvuga (700 ms), et dokk ja
      tahvel liiguksid ühe liigutusena, mitte kahe eri sündmusena.
      Läbipaistvus jõuab veidi ette, muidu paistab hägune ese hetkeks
      paigal seisvat. */
+  /* Läbipaistvus (ja hägu) on nüüd MÄRKSA lühem kui `transform` (26.07:
+     „just mobiilis" ei peitunud kiirmenüü lühikestel lehtedel — Konto
+     seaded/Minu kasutus kerivad ~200 px, mille üks hoogne sõrmeliigutus
+     läbib kiiremini kui vana 560 ms hämardumine jõudis kohalegi; enne kui
+     opacity 0-ni jõudis, oli scrollTop juba põhjas ja dokk taandus tagasi
+     nähtavaks — mõõdetud: opacity käis 1 → 0,52 → 0,08 → tagasi 1, ilma
+     kunagi tegelikult "peidus" lugemata. Pika lehe (nt Kasutusjuhend)
+     kerimine läbib sama vahemiku palju aeglasemalt, seega LÜHEM aeg ei
+     riku seal midagi — peitumine on lihtsalt kiirem, mitte vähem sujuv.
+     `transform` jääb 700 ms peale, sest ta on sünkroonis paneeli enda
+     kasvuga (--room-dock-reserve, panel.css) — see sünk EI tohi katkeda;
+     kui dokk on juba läbipaistmatu 0, ei loe tema jätkuv Z-libisemine. */
   transition:
-    opacity 560ms var(--ease-soft),
+    opacity 200ms var(--ease-soft),
     transform 700ms var(--ease-soft),
-    filter 620ms var(--ease-soft);
+    filter 220ms var(--ease-soft);
 }
 /* Vähendatud liikumine: ese kaob ja tuleb, aga ei sõida ega hägustu. */
 html[data-reduce-motion="1"] .room-dock-wrap {

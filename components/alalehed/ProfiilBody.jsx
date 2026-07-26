@@ -19,6 +19,7 @@ import Button from "@/components/ui/Button";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import UsageOverview from "@/components/profile/UsageOverview";
 import DataExportPanel from "@/components/profile/DataExportPanel";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 const CHAT_SKIP_ENTRY_SETTLE_KEY = "sotsiaalai:chat:skip-entry-settle";
 const CHAT_BACK_HOVER_ARM_KEY = "sotsiaalai:chat:back-hover-arm-on-move";
@@ -149,6 +150,10 @@ export default function ProfiilBody({
     String(searchParams?.get("sektsioon") || "").trim() === "konto";
   const usageSection =
     String(searchParams?.get("sektsioon") || "").trim() === "kasutus";
+  /* Konto seadete ⓘ: andmekoopia selgitused elavad info-lehel, mitte
+     vormis. Marsruudikaart PanelFrame'is seda ei kata — /profiil eristub
+     ainult ?sektsioon väärtuse poolest. */
+  usePanelInfoSlot({ infoId: "account_settings", active: kontoSection });
   const isAuthed = status === "authenticated" || !!session?.user;
   const currentTheme = prefs?.theme === "light" ? "light" : "dark";
   const isHighContrast = prefs?.contrast === "hc";
@@ -158,10 +163,6 @@ export default function ProfiilBody({
     session?.user?.isAdmin ? "ADMIN" : "CLIENT"
   );
   const roleLabel = t(ROLE_SHORT_KEYS[actualRole] || "profile.role_short.unknown");
-  const adminPreviewActive = Boolean(profileUser?.isRoleViewActive && profileUser?.isAdmin);
-  const adminPreviewRoleLabel = adminPreviewActive
-    ? t(ROLE_SHORT_KEYS[normalizeProfileRole(profileUser?.adminViewRole, actualRole)] || "profile.role_short.unknown")
-    : "";
   const trustedDevices = Array.isArray(profileUser?.trustedDevices)
     ? profileUser.trustedDevices
     : [];
@@ -444,7 +445,16 @@ export default function ProfiilBody({
       </ProfileShell>;
   }
   if (isAuthed && (status === "loading" && !initialProfile || loading)) {
-    return <ProfileShell locale={locale} embedded={embedded} ariaLabel={t("profile.title")} footerNote={footerNote} />;
+    /* Laadimisel EI tohi kest tühi olla. PanelFrame'i ootamisvärav laseb
+       akna lahti hiljemalt 450 ms pärast, profiilipäring kestab kauem —
+       sisuta kest tähendas, et ekraanile jäi seletamatu tühi kastike
+       (omanik 26.07: „kui lehte laeb, siis on need lehed väga imelikud ja
+       väikesed"). Nüüd ütleb aken ausalt, et ta laeb. */
+    return (
+      <ProfileShell locale={locale} embedded={embedded} ariaLabel={t("profile.title")} footerNote={footerNote}>
+        <p className="konto-identity" role="status">{t("profile.loading")}</p>
+      </ProfileShell>
+    );
   }
   if (!isAuthed) {
     const reason = registrationReason || "not-logged-in";
@@ -473,11 +483,6 @@ export default function ProfiilBody({
       </ProfileShell>;
   }
   return <ProfileShell locale={locale} ariaLabel={t("profile.title")} innerRef={profileContainerRef} embedded={embedded} footerNote={footerNote}>
-      {adminPreviewActive ? (
-        <p className="konto-admin-preview" role="status">
-          {t("profile.admin_preview_banner", { role: adminPreviewRoleLabel })}
-        </p>
-      ) : null}
       {kontoSection ? (
         <>
           <h1 className="konto-title">{t("profile.account_settings")}</h1>
@@ -485,10 +490,8 @@ export default function ProfiilBody({
             {roleLabel}
             {profileUser?.email ? ` · ${profileUser.email}` : ""}
           </p>
+          <DataExportPanel active={isActive} />
           <section className="konto-actions" aria-label={t("profile.account_settings")}>
-            <div>
-              <DataExportPanel active={isActive} />
-            </div>
             <div>
               <Button
                 type="button"

@@ -29,6 +29,7 @@ import { useAccessibility } from "@/components/accessibility/AccessibilityProvid
 import { localizePath } from "@/lib/localizePath";
 import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
 import { panelHasRoomDock } from "@/lib/roomDock";
+import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
 import IconButton from "@/components/glass/IconButton";
 import {
   GuideBookIcon,
@@ -1220,6 +1221,24 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      kadus GlassModal'ilt; siin saab dokk tagasi-noole, mis sulgeb akna.
      Kaartide rida dokis EI ole: nagu avatud lehel, seisab siin ainult
      see, mis lahti on. */
+  /* Lahti oleva lehe ⓘ dokis (omanik 26.07): PanelFrame ütleb, kas sellel
+     lehel infot on, dokk näitab teda lehe nime kõrval ja vajutus vahetab
+     akna sisu. Vt components/ui/PanelInfoSlot. */
+  const panelInfoView = usePanelInfoView();
+  const dockInfoItem = useMemo(() => {
+    if (!panelInfoView.info) return null;
+    return {
+      key: "panel-info",
+      action: "panel-info",
+      label: t("room.panel_info_dock"),
+      /* Brändikomplekti info-rõngas, mitte modaali oma ⓘ: doki ikoonid
+         on ühest komplektist ja ühes mõõdus (omanik 26.07 — modaali
+         väiksem ring paistis dokis silmnähtavalt teisest tõust). */
+      icon: <AboutInfoIcon />,
+      active: panelInfoView.open
+    };
+  }, [panelInfoView.info, panelInfoView.open, t]);
+
   const infoDock = useMemo(() => {
     if (!openInfoModal) return null;
     const current =
@@ -1266,6 +1285,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       }
       if (item.action === "a11y") {
         a11y?.openModal?.();
+        return;
+      }
+      /* Lehe info: aken jääb samaks, sisu vahetub info vastu ja tagasi.
+         Navigatsiooni siin EI ole — leht ei tohi vahepeal maha laaditud
+         saada (pooleli täidetud väli peab tagasi tulles alles olema). */
+      if (item.action === "panel-info") {
+        panelInfoView.toggle();
         return;
       }
       if (item.action === "kontakt" || item.action === "paigalda") {
@@ -1335,7 +1361,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
         router.push(localizePath(item.href, locale));
       }
     },
-    [router, locale, a11y, clearCompletedArrival]
+    [router, locale, a11y, clearCompletedArrival, panelInfoView]
   );
 
   const showCarouselUi = isCarouselRoute;
@@ -1679,6 +1705,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
             items={panelDock.cards}
             backItem={panelDock.back}
             currentItem={panelDock.current}
+            infoItem={dockInfoItem}
             forceInitial
             onSelect={handleSelect}
             t={t}

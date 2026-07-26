@@ -314,14 +314,14 @@ form:has(#chat-input) button[type="submit"][data-loader-active="true"]::before {
    on ~läbipaistmatu; poolläbipaistev bg + backdrop-blur toob klaasi nähtavale. */
 .conv-tools-menu[role="menu"] {
   background: linear-gradient(165deg, rgba(30, 30, 30, 0.72) 0%, rgba(18, 18, 18, 0.78) 100%);
-  backdrop-filter: blur(16px) saturate(115%);
   -webkit-backdrop-filter: blur(16px) saturate(115%);
+  backdrop-filter: blur(16px) saturate(115%);
 }
 html[data-reduce-transparency="1"] .conv-tools-menu[role="menu"],
 html[data-contrast="hc"] .conv-tools-menu[role="menu"] {
   background: var(--glass-bg-strong);
-  backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 [role="menu"] [role="menuitem"] {
   display: flex;
@@ -1371,6 +1371,13 @@ button[aria-controls="chat-window-scroll"] {
   width: 2rem;
   height: 2rem;
 }
+/* NB: kõnenuppude ja sädelusnupu SAMA kasv EI SAA siin olla. See fail on
+   kaheks jaotatud: kuni `@layer components` sulgumiseni (~rida 1627) on
+   reeglid KIHIS, pärast seda kihita. .room-call-controls ja
+   .conv-ai-target elavad kihita osas, ja kihita reegel võidab iga kihis
+   oleva reegli SPETSIIFIKAST SÕLTUMATA. Siia kirjutatud 2.5rem kaotaks
+   vaikselt kihita `.room-call-controls > button { width: 2.35rem }`-ile.
+   Nende kasv on seepärast oma plokkides allpool. */
 /* Mikrofon: lihtne ikoon; salvestus = korall + laienevad helilained */
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording] {
   color: rgba(233, 233, 233, 0.64);
@@ -1713,8 +1720,10 @@ form:has(#chat-input) button.conv-ai-target {
 }
 form:has(#chat-input) button.conv-ai-target::before {
   content: "";
-  width: 1.4rem;
-  height: 1.4rem;
+  /* 1.5rem = täpselt mikri ja saada-noole glüüf (vt ülal ~rida 274/286) —
+     naabrid ühes reas peavad ühte kaalu olema (omanik 26.07). */
+  width: 1.5rem;
+  height: 1.5rem;
   background: currentColor;
   -webkit-mask: var(--glyph) center / contain no-repeat;
   mask: var(--glyph) center / contain no-repeat;
@@ -1726,10 +1735,30 @@ form:has(#chat-input) button.conv-ai-target:hover {
 form:has(#chat-input) button.conv-ai-target:active {
   scale: 0.96;
 }
+/* Assistent kaasatud = sama vaikne klaas mis aktiivsel kõnenupul, MITTE
+   valge plaat (omanik 26.07). Vt põhjendust .room-call-icon juures: valge
+   täidis + tume glüüf on siin surnud vorm ja jäi hover'i alla nähtamatuks.
+   :hover on eespool (0,2,2) ja see reegel on samaväärne — allpool seismine
+   üksi otsustaks, seega on siia lisatud :not(:hover)-vaba selge jaotus:
+   aktiivne olek annab TAUSTA, hover annab VÄRVI, ja nad ei võistle. */
 form:has(#chat-input) button.conv-ai-target[data-active="true"] {
-  color: #0d0d0d;
-  background: #f2f2f2;
-  border-color: rgba(255, 255, 255, 0.32);
+  color: var(--text-warm);
+  background: rgba(248, 248, 248, 0.12);
+  border-color: rgba(248, 248, 248, 0.2);
+}
+form:has(#chat-input) button.conv-ai-target[data-active="true"]:hover {
+  background: rgba(248, 248, 248, 0.19);
+  border-color: rgba(248, 248, 248, 0.3);
+}
+/* Ruumikest: kasvab koos mikri ja saada-noolega (sama põhjus + sama
+   kihipiiri lõks mis .room-call-controls juures allpool). */
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-ai-target {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button.conv-ai-target::before {
+  width: 2rem;
+  height: 2rem;
 }
 form:has(#chat-input) button.conv-ai-target:focus-visible {
   outline: none;
@@ -1794,6 +1823,18 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
     border-color 160ms ease,
     scale 120ms ease;
 }
+/* Glüüf = SAMA mõõt mis composeri mikker ja saada-nool (1.5rem), sest nad
+   seisavad kõrvuti ühes reas. SVG-de enda width/height on siin tahtlikult
+   üle kirjutatud: mõõt peab elama ÜHES kohas koos naabritega, muidu jääb
+   ruumikesta kasv (1.5 → 2rem, allpool) nendest ikoonidest mööda ja telefon
+   näeb mikri kõrval kääbusena välja (omanik 26.07). */
+.room-call-controls > button > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.room-call-controls > button > svg * {
+  stroke-width: 1.6;
+}
 .room-call-controls > button:hover:not(:disabled) {
   color: var(--text-warm);
 }
@@ -1808,20 +1849,69 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring, 0 0 0 2px rgba(255, 255, 255, 0.72));
 }
-/* Aktiivne kõne = telefon heledaks täidetud */
-.room-call-controls .room-call-icon[data-active="true"] {
-  color: #0d0d0d;
-  background: #f2f2f2;
-  border-color: rgba(255, 255, 255, 0.32);
+/* Aktiivne kõne = VAIKNE klaas ikooni all, mitte valge plaat ikooni PEAL.
+   Varem oli siin täidis #f2f2f2 + tume glüüf, ja see kukkus kaks korda
+   läbi (omanik 26.07: "valge nupp tekib ikoonile ja hoveriga valge, nii et
+   ikooni ennast enam ei näe"):
+     1) valge plaat on selle platvormi kujunduses surnud vorm — "sees"
+        öeldakse kõikjal mujal (dokk .gc-shortcut[data-on="1"]) hõreda
+        klaasi ja HELEDA ikooniga, mitte pöördvärviga;
+     2) tume glüüf elas ainult seni, kuni hiir puutumata jäi — hover-reegel
+        `.room-call-controls > button:hover` on (0,3,1) ja võitis vana
+        (0,3,0) olekureegli, seega hiire all värviti glüüf uuesti heledaks
+        ja kadus valgele plaadile ära.
+   Uus olek on heledusega, mitte pöördega, seega hover ei saa teda enam
+   põhimõtteliselt ära süüa. Spetsiifika on siiski tõstetud (> button
+   lisatud = 0,4,1 > 0,3,1), et järjekord ei sõltuks reeglite reastusest. */
+.room-call-controls > button.room-call-icon[data-active="true"] {
+  color: var(--text-warm);
+  background: rgba(248, 248, 248, 0.12);
+  border-color: rgba(248, 248, 248, 0.2);
 }
-/* Vaigistatud = punakas (funktsioonivärv, staatus) */
-.room-call-controls .room-call-mute[data-muted="true"] {
+.room-call-controls > button.room-call-icon[data-active="true"]:hover:not(:disabled) {
+  background: rgba(248, 248, 248, 0.19);
+  border-color: rgba(248, 248, 248, 0.3);
+}
+/* Vaigistatud = punakas (funktsioonivärv, staatus). Sama spetsiifikatõste
+   samal põhjusel: hover ei tohi staatusvärvi maha pesta. */
+.room-call-controls > button.room-call-mute[data-muted="true"] {
   color: #ff9d8a;
   border-color: rgba(255, 157, 138, 0.45);
 }
 .room-call-controls .room-call-details-btn {
   width: 1.85rem;
   height: 1.85rem;
+}
+.room-call-controls > button.room-call-details-btn > svg {
+  width: 0.9rem;
+  height: 0.55rem;
+}
+/* Ruumikest: mikker ja saada-nool kasvavad seal 2.35 → 2.5rem ja glüüf
+   1.5 → 2rem (vt .panel-scrim[data-conversation="1"] plokk ~rida 1364).
+   Kõnenupud seisavad NENDEGA SAMAS reas ja peavad koos kasvama, muidu
+   jäävad telefon ja mikker naabritest silmnähtavalt väiksemaks (omanik
+   26.07: "kuidagi väikesed ikoonid").
+   See reegel peab olema SIIN, mitte seal: chat.css on kihipiiriga kaheks
+   jaotatud ja .room-call-controls elab kihita osas — kihis olev 2.5rem
+   kaotaks kihita 2.35rem-ile ka siis, kui ta on kümme korda
+   spetsiifilisem. */
+.panel-scrim[data-conversation="1"] .room-call-controls > button {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.panel-scrim[data-conversation="1"] .room-call-controls > button > svg {
+  width: 2rem;
+  height: 2rem;
+}
+/* Detailinool jääb TAHTLIKULT väiksemaks: ta on kõne kõrvalvõti ("ava
+   detailid"), mitte kolmas võrdne ikoon reas. */
+.panel-scrim[data-conversation="1"] .room-call-controls > button.room-call-details-btn {
+  width: 2rem;
+  height: 2rem;
+}
+.panel-scrim[data-conversation="1"] .room-call-controls > button.room-call-details-btn > svg {
+  width: 1rem;
+  height: 0.62rem;
 }
 .room-call-controls .room-call-details-btn[data-badge="true"]::after {
   content: "";
@@ -1846,8 +1936,8 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
   border-radius: 1.1rem;
   border: 1px solid var(--glass-border-soft, rgba(255, 255, 255, 0.14));
   background: linear-gradient(165deg, rgba(30, 30, 30, 0.78), rgba(18, 18, 18, 0.82));
-  backdrop-filter: blur(18px) saturate(115%);
   -webkit-backdrop-filter: blur(18px) saturate(115%);
+  backdrop-filter: blur(18px) saturate(115%);
   box-shadow: var(--glass-shadow);
   color: var(--text-warm);
   font-family: var(--font-ui);
@@ -1932,6 +2022,6 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
 html[data-reduce-transparency="1"] .room-call-details,
 html[data-contrast="hc"] .room-call-details {
   background: rgba(16, 16, 16, 0.96);
-  backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }

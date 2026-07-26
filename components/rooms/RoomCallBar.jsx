@@ -47,9 +47,16 @@ function resolveRecordingPurposeLabel(t, recording) {
   return text(t, `calls.recording_purpose_${purpose.toLowerCase()}`, recording.purposeLabel || "");
 }
 
+/* Glüüfide MÕÕT elab CSS-is (.room-call-controls, chat.css), mitte siin:
+   need ikoonid seisavad composeri mikri ja saada-noole kõrval samas reas ja
+   peavad nendega ühte kaalu olema — ruumikestas kasvavad naabrid 1.5rem →
+   2rem ja need pidid kasvama koos (omanik 26.07: "kuidagi väikesed
+   ikoonid"). Atribuut on ainult mõistlik varuväärtus, kui CSS-i pole.
+   Joone paksus tuleb samuti CSS-ist, et suuremas mõõdus ei muutuks glüüf
+   tikuks — composeri mask-glüüfid teevad sedasama. */
 function PhoneGlyph() {
   return (
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
       <path d="M6.4 3.5h2.9l1.3 3.25-1.65 1.25a11 11 0 0 0 5 5l1.25-1.65 3.25 1.3v2.9a1.55 1.55 0 0 1-1.7 1.55A15.2 15.2 0 0 1 4.95 5.2 1.55 1.55 0 0 1 6.4 3.5z" />
     </svg>
   );
@@ -57,7 +64,7 @@ function PhoneGlyph() {
 
 function MicGlyph({ muted }) {
   return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
       <rect x="9" y="3.5" width="6" height="11" rx="3" />
       <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6" />
       {muted ? <path d="M4 4l16 16" /> : null}
@@ -179,7 +186,7 @@ export default function RoomCallBar({
             title={text(t, "calls.open_details", "Ava helikõne detailid")}
             aria-label={text(t, "calls.open_details", "Ava helikõne detailid")}
           >
-            <ChevronIcon direction={showDetails ? "down" : "up"} width={12} height={7} />
+            <ChevronIcon direction={showDetails ? "down" : "up"} width={14} height={8} strokeWidth={1.35} />
           </button>
         </>
       ) : null}

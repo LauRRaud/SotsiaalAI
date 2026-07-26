@@ -775,7 +775,9 @@ html[data-contrast="hc"] .gc-card-badge[data-tone="notice"] {
 .gc-shortcuts {
   opacity: var(--gc-shortcuts-opacity, 0);
   pointer-events: var(--gc-shortcuts-pointer, none);
-  translate: -50% var(--gc-shortcuts-offset, 1rem);
+  /* X-telge siin EI ole: tsentreerimine käib margin-inline'iga (vt allpool).
+     Jäänud on ainult sisenemise Y-nihe. */
+  translate: 0 var(--gc-shortcuts-offset, 1rem);
   transition:
     opacity 520ms var(--ease-soft) 80ms,
     translate 620ms var(--ease-soft) 80ms;
@@ -832,7 +834,22 @@ html[data-reduce-motion="1"] .gc-shortcuts {
    klõps avab sihtkoha kohe. Alamkomplekti Tagasi on alati eraldi vasakul. */
 .gc-shortcuts {
   position: absolute;
-  left: 50%;
+  /* Tsentreerimine käib KAHE nulliga + margin-inline: auto, MITTE
+     `left: 50%` + `translate: -50%`. Vahe ei ole stiililine, vaid
+     matemaatiline: absoluutse elemendi laius on shrink-to-fit, ja
+     `left: 50%` jätab talle saadaolevaks laiuseks ainult selle, mis
+     jääb vasakust servast paremale — POOL ekraani. Dokk sai mobiilil
+     195 px asemel, mida ta vajas, ja kuna tema nupud on `flex: 0 0 auto`
+     (ei kahane), jooksid nad klaaspillist paremalt VÄLJA: pill lõppes
+     322 px juures, lehenimi jätkus 341-ni (mõõdetud 390 px ekraanil,
+     omanik 26.07: „parem ots on kuidagi katki või ära lõigatud").
+     `left: 0; right: 0` annab saadaolevaks laiuseks terve ekraani ja
+     `margin-inline: auto` tsentreerib ta selle sees — pill kasvab nüüd
+     oma sisuni ja jääb ikka keskele. */
+  left: 0;
+  right: 0;
+  width: max-content;
+  margin-inline: auto;
   /* Kõrgus tuleb jagatud tokenist (--dock-bottom), et dokk seisaks igal
      lehel täpselt ühel kõrgusel — vt tokens.css. Protsent siin oli üks
      kolmest eri arvust, mis lehed lahku ajas. */
@@ -843,16 +860,30 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   gap: 0.7rem;
   max-width: calc(100vw - 2rem);
 }
+/* Dokk on LÄBIPAISTMATU pind, mitte klaas (omanik 26.07: „ei peakski
+   kasutama kiirmenüüdel blur efekti, vaid vähem ressurssi võtab kui element
+   on nö täisvärviga, aga reguleeritud fade efektiga tekkima ja kaduma").
+   Kaks põhjust, mõlemad kaaluvad klaasist üle:
+   1) LOETAVUS. Läbipaistev pill võttis oma tooni sellelt, mille peal ta
+      parajasti seisis. Tekstitahvli kohal luges tekst temast läbi ja dokk
+      kadus ära. Läbipaistmatu pind näeb igal lehel ühesugune välja.
+   2) HIND. `backdrop-filter` sunnib brauserit iga kaadri jaoks tausta uuesti
+      sämplima ja hägustama — ruumis tähendab see animeeritud WebGL-tähevälja
+      ülelugemist 60 korda sekundis, terve doki pindala ulatuses. Mobiilil on
+      see kõige kallim üksik asi kogu püsivas UI-s. Ilmumine/kadumine käib
+      opacity-fade'iga (--gc-shortcuts-opacity), mis on GPU-le peaaegu tasuta.
+   Toon on valitud nii, et pill näeks MUSTA ruumi peal välja täpselt nagu
+   varem (rgba .5/.38 musta peal ≈ #151515/#070707) + väike lisa selle valguse
+   eest, mille backdrop varem ruumist sisse tõi. Läige ja vari jäävad — nemad
+   annavad serva, mitte blur. */
 .gc-shortcut-menu,
 .admin-role-view-cycle.admin-role-view-cycle--cards {
   display: flex;
   align-items: center;
   padding: 0.35rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(43, 43, 43, 0.5), rgba(19, 19, 19, 0.38));
+  background: linear-gradient(135deg, #1f1f1f, #0e0e0e);
   box-shadow: 0 9px 28px rgba(5, 5, 5, 0.2), inset 0 1px rgba(247, 247, 247, 0.08);
-  backdrop-filter: blur(15px) saturate(0.86);
-  -webkit-backdrop-filter: blur(15px) saturate(0.86);
 }
 /* Dokk ei jaga laiust enam rolli-lülitiga (see kolis nurka), seega ei ole
    siin ka 10.5rem reservi. */
@@ -874,12 +905,20 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 .gc-shortcut-menu .gc-shortcut {
   padding: 0 0.78rem;
 }
+/* Ikoon on suurem osa nupust kui varem (0,58 → 0,68; omanik 26.07: "muuda
+   teised ikoonid ka suuremaks, paneeli enda suurust pole vaja muuta").
+   Kasvab AINULT joonis — nupp ise jääb --gc-shortcut-size peale, seega
+   doki kõrgus, laius ja tabamusala ei liigu. Mõõdetud põhjus, miks üks
+   ikoon teistest suurem paistis, ei ole CSS vaid glüüf ise: kõigil on
+   sama 26 px kast, aga hammasratas täidab sellest 21,3/24 ja info-ring
+   15,2/24. Sellepärast kannab dokk brändikomplekti ikoone (üks joonistus-
+   mõõt), mitte modaalide omi. */
 .gc-shortcut-menu .gc-shortcut-icon svg {
-  width: calc(var(--gc-shortcut-size) * 0.58);
-  height: calc(var(--gc-shortcut-size) * 0.58);
+  width: calc(var(--gc-shortcut-size) * 0.68);
+  height: calc(var(--gc-shortcut-size) * 0.68);
 }
 .gc-shortcut-menu .gc-shortcut-text {
-  font-size: 0.78rem;
+  font-size: 0.86rem;
 }
 .gc-shortcut-menu .gc-shortcut-divider {
   height: 1.45rem;
@@ -1078,7 +1117,7 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   opacity: 0;
   white-space: nowrap;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 520;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1110,6 +1149,16 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   opacity: 1;
   text-overflow: ellipsis;
 }
+/* Lehe info-lüliti lehe nime kõrval (omanik 26.07). Nimeta ring, täpselt
+   nagu tagasi-nool: dokis on tekstiga ainult lahti oleva lehe silt.
+   Aktiivsena (info-leht lahti) süttib ta `data-on="1"` pealt nagu iga
+   teine kirje — nii on näha, et vajutus on lüliti, mitte ühesuunaline uks. */
+.gc-shortcut--info {
+  width: var(--gc-shortcut-size, 2.25rem);
+  min-width: var(--gc-shortcut-size, 2.25rem);
+  height: var(--gc-shortcut-size, 2.25rem);
+  padding: 0;
+}
 .gc-shortcut-tooltip {
   position: absolute;
   left: 50%;
@@ -1117,21 +1166,20 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   translate: -50% 0.25rem;
   width: max-content;
   max-width: 13rem;
-  /* TÄPSELT sama klaas ja kuju mis dokil endal — sama gradient, sama
+  /* TÄPSELT sama pind ja kuju mis dokil endal — sama gradient, sama
      vari, sama ümarus (999px pill, mitte pehme ristkülik). Vihje on doki
      jätk, mitte teine materjal tema kohal (omanik 25.07: "hover kast
      võiks kuju ja tonaalus olla nagu kiirmenüül ise"). Väärtused on
-     .gc-shortcut-menu omad; ainult polsterdus on tekstile kohane. */
+     .gc-shortcut-menu omad; ainult polsterdus on tekstile kohane —
+     sealhulgas läbipaistmatus ja blur'i puudumine (vt sealset selgitust). */
   padding: 0.5rem 0.95rem;
   border: 0;
   border-radius: 999px;
-  background: linear-gradient(135deg, rgba(43, 43, 43, 0.5), rgba(19, 19, 19, 0.38));
-  backdrop-filter: blur(15px) saturate(0.86);
-  -webkit-backdrop-filter: blur(15px) saturate(0.86);
+  background: linear-gradient(135deg, #1f1f1f, #0e0e0e);
   color: var(--room-text);
   box-shadow: 0 9px 28px rgba(5, 5, 5, 0.2), inset 0 1px rgba(247, 247, 247, 0.08);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
+  font-size: 0.8rem;
   font-weight: 520;
   letter-spacing: 0.1em;
   text-align: center;
@@ -1277,12 +1325,19 @@ html[data-reduce-motion="1"] .gc-shortcut-tooltip {
     max-width: calc(100vw - 9.5rem);
   }
   /* Kerimine elab AINULT siin, kus vihjeid ei ole — nii ei saa lõikamine
-     neid ära süüa (vt .gc-shortcut-track baasreegel). */
-  .gc-shortcut-track {
+     neid ära süüa (vt .gc-shortcut-track baasreegel).
+     Tsooniriba käib SAMA reegli alla. Tema baaskommentaar ütleb, et ta ei
+     saa põhimõtteliselt üle ääre joosta (tsoone on 2–3 ja nad on lühikesed)
+     — see kehtib DESKTOPIL. Mobiilil ei kehti: neli nimega tsooninuppu
+     mõõtsid 358 px, pill mahutas 295, ja kuna .gc-zone on `flex: 0 0 auto`,
+     ulatus viimane nupp 433 px peale ehk 390 px ekraanist VÄLJA. */
+  .gc-shortcut-track,
+  .gc-zone-track {
     overflow-x: auto;
     scrollbar-width: none;
   }
-  .gc-shortcut-track::-webkit-scrollbar {
+  .gc-shortcut-track::-webkit-scrollbar,
+  .gc-zone-track::-webkit-scrollbar {
     display: none;
   }
 }

@@ -7,7 +7,7 @@ import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import { getDashboardInfoContent } from "@/lib/dashboardInfoContent";
 
-function InfoIcon({ className }) {
+export function InfoIcon({ className }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -59,6 +59,23 @@ function renderDetail(section, extra) {
       ) : null}
       {extra ? <div>{extra}</div> : null}
     </section>
+  );
+}
+
+/**
+ * Sama sisu ILMA modaalita: info-leht, mis avaneb akna sees lehe asemel
+ * (dokk → Info, omanik 26.07). Modaal jääb alles neile pindadele, kus
+ * dokki ei ole (vestlus, lõuendid, admin).
+ */
+export function DashboardInfoBody({ infoId, detailExtras, className }) {
+  const { t } = useI18n();
+  const content = useMemo(() => getDashboardInfoContent(t, infoId), [infoId, t]);
+  if (!content) return null;
+  return (
+    <div className={["dashboard-info-body", className].filter(Boolean).join(" ")}>
+      {content.intro ? <p className="dashboard-info-intro">{content.intro}</p> : null}
+      {content.details.map((section, index) => renderDetail(section, detailExtras?.[index]))}
+    </div>
   );
 }
 

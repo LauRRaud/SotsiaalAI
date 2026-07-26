@@ -78,6 +78,70 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
   touch-action: manipulation;
 }
 
+/* --- Keri-vihje: sama sõnatu nooleke mis avalehel ------------
+   Taaskasutab room.css `hint-slide`/`hint-slide-up` keyframe'e —
+   sõrmega keritakse ÜLESPOOLE, hiirerattaga allapoole (kanooniline
+   suund), sama vastandus mis avalehel juba paigas (omanik 26.07:
+   "mul juba see õigesti seadistatud mobiilile ja desktopile
+   avalehel"). Nähtav ainult enne esimest lendu — vt AccessibilityModal
+   scrollHintDismissed. */
+.a11f-scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 5.3rem;
+  translate: -50% 0;
+  z-index: 10;
+  pointer-events: none;
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+}
+.a11f-scroll-hint-track {
+  position: relative;
+  display: block;
+  width: 3px;
+  height: 34px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+.a11f-scroll-hint-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: 15px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  animation: hint-slide 3.1s var(--ease-drift) infinite;
+}
+@media (pointer: coarse) {
+  .a11f-scroll-hint-dot {
+    animation: hint-slide-up 3.1s var(--ease-drift) infinite;
+  }
+}
+.a11f-scroll-hint-label {
+  font-size: 0.86rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--room-text-dim);
+  opacity: 0.75;
+}
+html[data-reduce-motion="1"] .a11f-scroll-hint,
+html[data-reduce-motion="1"] .a11f-scroll-hint-dot {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .a11f-scroll-hint {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .a11f-scroll-hint {
+    bottom: 4.7rem;
+  }
+}
+
 /* --- Dolly + plaanid (flight-effect.md §3) ------------------ */
 /* Perspektiiv plaanide OTSESEL vanemal; kaamera --cam muutujana.
    Alumine inset jätab doki jaoks ruumi (inset arvestab polsterkasti,

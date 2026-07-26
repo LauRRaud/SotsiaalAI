@@ -357,14 +357,17 @@ export default async function RootLayout({
           <SpecularHighlight />
           <SkipLink />
           <AmbientAudio />
-          <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
-          <main id="main" role="main" tabIndex={-1}>
-            {/* Provider mähib PanelFrame'i JA lapsi: leht registreerib ⓘ sisu,
-                PanelFrame'i ainus nurga-ⓘ loeb selle (components/ui/PanelInfoSlot). */}
-            <PanelInfoSlotProvider>
+          {/* Provider mähib RoomStage'i, PanelFrame'i JA lapsi: leht registreerib
+              ⓘ sisu, PanelFrame ütleb, milline info on lahti oleval lehel, ja
+              RoomStage'i DOKK renderdab selle kirje lehe nime kõrvale
+              (components/ui/PanelInfoSlot). Ruum on siin sees just seetõttu —
+              dokk on temas ja peab sama olekut nägema. */}
+          <PanelInfoSlotProvider>
+            <RoomStage initiallyCompletedArrival={initiallyCompletedRoomArrival} />
+            <main id="main" role="main" tabIndex={-1}>
               <PanelFrame>{children}</PanelFrame>
-            </PanelInfoSlotProvider>
-          </main>
+            </main>
+          </PanelInfoSlotProvider>
         </Providers>
       </body>
     </html>;

@@ -697,8 +697,8 @@
   gap: 0.4rem;
   border-radius: 20px;
   background: rgba(12, 12, 12, 0.66);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
 .cvs-pause-title {
   margin: 0;
@@ -1303,8 +1303,8 @@
   border-radius: 999px;
   border: 1px solid var(--glass-cell-border);
   background: rgba(8, 8, 8, 0.72);
-  backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 .cv1-view-label {
   font-size: var(--fs-micro);
@@ -1326,8 +1326,8 @@
   place-items: center;
   padding: 1.2rem;
   background: rgba(6, 6, 6, 0.55);
-  backdrop-filter: blur(7px);
   -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
 }
 .cv1-layer-card {
   width: min(34rem, 100%);

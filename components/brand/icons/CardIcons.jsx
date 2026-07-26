@@ -128,13 +128,23 @@ export const LanguageAccessIcon = (props) => (
 );
 
 /* Konto seaded — hammasratas (hammastega ring, mitte kiirtega "päike") */
+/* Hammasratas on joonisena kogu 24-kastu laiune (hambad ulatuvad servani),
+   kuna ta on selle komplekti ainus glüüf ilma "õhuta" ümber. Kõrvuti
+   õdedega — silm, ümbrik, tabalukk, €, ⓘ — paistis ta seetõttu igal pool
+   suurem, kuigi kast on kõigil sama (mõõdetud: 21,3/24 vs ~15–18/24;
+   omanik 26.07: "konto seaded ikoon on liiga suur igal pool"). Skaala
+   toob joonise õdede mõõtu; joone jämedus kompenseeritakse
+   non-scaling-stroke'iga, muidu jääks ta ainsana peenikeseks. */
 export const AccountGearIcon = (props) => (
   <Svg {...props}>
-    <circle {...P} cx="12" cy="12" r="2.9" />
+    <g transform="translate(12 12) scale(0.84) translate(-12 -12)" vectorEffect="non-scaling-stroke">
+    <circle {...P} vectorEffect="non-scaling-stroke" cx="12" cy="12" r="2.9" />
     <path
       {...P}
+      vectorEffect="non-scaling-stroke"
       d="M18.8 14.7a1.6 1.6 0 0 0 .32 1.77l.05.05a1.94 1.94 0 1 1-2.74 2.74l-.05-.05a1.6 1.6 0 0 0-1.77-.32 1.6 1.6 0 0 0-.97 1.47v.14a1.94 1.94 0 1 1-3.88 0v-.08a1.6 1.6 0 0 0-1.05-1.47 1.6 1.6 0 0 0-1.77.32l-.05.05a1.94 1.94 0 1 1-2.74-2.74l.05-.05a1.6 1.6 0 0 0 .32-1.77 1.6 1.6 0 0 0-1.47-.97h-.14a1.94 1.94 0 1 1 0-3.88h.08A1.6 1.6 0 0 0 4.46 8.8a1.6 1.6 0 0 0-.32-1.77l-.05-.05a1.94 1.94 0 1 1 2.74-2.74l.05.05a1.6 1.6 0 0 0 1.77.32h.07a1.6 1.6 0 0 0 .97-1.47v-.14a1.94 1.94 0 1 1 3.88 0v.08a1.6 1.6 0 0 0 .97 1.46c.6.26 1.28.13 1.77-.31l.05-.05a1.94 1.94 0 1 1 2.74 2.74l-.05.05a1.6 1.6 0 0 0-.32 1.77v.07a1.6 1.6 0 0 0 1.47.97h.14a1.94 1.94 0 1 1 0 3.88h-.08a1.6 1.6 0 0 0-1.46.97Z"
     />
+    </g>
   </Svg>
 );
 

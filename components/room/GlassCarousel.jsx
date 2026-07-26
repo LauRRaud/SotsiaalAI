@@ -51,6 +51,9 @@ export default function GlassCarousel({
   /* Dokirežiimis: parajasti avatud leht (silt + ikoon). null = ei tuvastatud,
      siis jääb dokki ainult tagasi-nool. */
   currentItem = null,
+  /* Dokirežiimis: lehe info-lüliti lehe nime kõrval ({label, icon, active}).
+     null = sellel lehel infot ei ole. */
+  infoItem = null,
 }) {
   const n = items.length;
 
@@ -697,13 +700,42 @@ export default function GlassCarousel({
                  iga kerimisega doki laiust ja terve riba nihkuks. Siin
                  seda ohtu ei ole: avatud lehel on dokis üks kirje ja tema
                  laius ei muutu enne, kui leht ise vahetub. */
-              currentItem ? (
-                <span className="gc-shortcut gc-shortcut--current" data-on="1" aria-current="page">
-                  <span className="gc-shortcut-icon" aria-hidden="true">
-                    {currentItem.icon || <span className="gc-shortcut-mark" />}
-                  </span>
-                  <span className="gc-shortcut-text">{currentItem.label}</span>
-                </span>
+              currentItem || infoItem ? (
+                <>
+                  {currentItem ? (
+                    <span className="gc-shortcut gc-shortcut--current" data-on="1" aria-current="page">
+                      <span className="gc-shortcut-icon" aria-hidden="true">
+                        {currentItem.icon || <span className="gc-shortcut-mark" />}
+                      </span>
+                      <span className="gc-shortcut-text">{currentItem.label}</span>
+                    </span>
+                  ) : null}
+                  {/* Lehe ⓘ seisab lehe nime KÕRVAL, mitte akna nurgas
+                      (omanik 26.07). Vajutus vahetab akna sisu info vastu;
+                      teine vajutus toob lehe tagasi — sellepärast on ta
+                      lüliti (aria-pressed), mitte link. */}
+                  {infoItem ? (
+                    <button
+                      type="button"
+                      className="gc-shortcut gc-shortcut--info"
+                      data-on={infoItem.active ? "1" : "0"}
+                      aria-pressed={infoItem.active ? "true" : "false"}
+                      aria-label={infoItem.label}
+                      onClick={() => handleShortcut(infoItem)}
+                    >
+                      <span className="gc-shortcut-icon" aria-hidden="true">
+                        {infoItem.icon}
+                      </span>
+                      {/* Nimi elab vihjes, mitte nupu sees (omanik 26.07:
+                          "sõna info võta ära"). Dokk on ikoonide riba —
+                          ainus tekst temas on selle lehe nimi, mis lahti
+                          on. Ekraanilugeja saab sama nime aria-label'ist. */}
+                      <span className="gc-shortcut-tooltip" aria-hidden="true">
+                        {infoItem.label}
+                      </span>
+                    </button>
+                  ) : null}
+                </>
               ) : null
             ) : isDesk ? (
               <div className="gc-zone-track">

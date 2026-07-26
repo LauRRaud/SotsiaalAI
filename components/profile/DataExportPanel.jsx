@@ -61,9 +61,10 @@ export default function DataExportPanel({ active = true }) {
     <section className="konto-actions" aria-labelledby={titleId}>
       <div>
         <h2 id={titleId}>{t("profile.data_export.title")}</h2>
-        <p>{t("profile.data_export.description")}</p>
-        <p>{t("profile.data_export.included")}</p>
-        <p>{t("profile.data_export.excluded")}</p>
+        {/* Mida koopia sisaldab ja mida mitte — kolm GDPR-lõiku — elab
+            nüüd lehe ⓘ-s (dokk → Info, lib/dashboardInfoContent
+            `account_settings`). Siia jääb ainult toiming, muidu on aken
+            kaks korda pikem kui ekraan (omanik 26.07). */}
         <label htmlFor={pinId}>{t("profile.current_pin_label")}</label>
         <input id={pinId} type="password" inputMode="numeric" autoComplete="current-password" value={pin} onChange={event => setPin(event.target.value.replace(/\D/g, "").slice(0, 8))} />
         <p>{t("profile.data_export.pin_hint")}</p>

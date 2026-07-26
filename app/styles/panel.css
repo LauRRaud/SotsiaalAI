@@ -122,6 +122,24 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   height: calc(100lvh - clamp(9rem, 22lvh, 14rem));
   max-height: 47.5rem;
 }
+
+/* Konto-pere (Konto seaded, Minu kasutus, Tellimus): sisu on TEADLIKULT
+   kitsas keskjoondatud veerg (.konto-actions 24rem, .usage-overview
+   34rem — vt allpool), mitte lehe-laiune tekst. Vaikimisi 47,5rem aken
+   jättis seetõttu ~180px tühja serva mõlemal küljel — omanik 26.07:
+   "liiga suured aknad, sisu halvasti kujundatud aknas". Aken kitseneb
+   siin sisu järgi (laiem kolmest sisust, 34rem, + polster mõlemal
+   küljel), mitte vastupidi.
+
+   Ka Tellimus on siin (omanik 26.07: "tellimuse lehe laius jällegi
+   selliseks nagu on minu kasutus lehel"): kolm ÜHE komplekti kaarti ei
+   tohi avada kolme eri mõõtu akent. Kõrgus jääb kõigil kolmel sisu
+   otsustada (`height: auto`, lagi --panel-max-h) — nii ongi Tellimuse
+   kõrgus see, mis ta on, ja teised ei veni temast kaugemale kui sisu
+   nõuab. Ülejäänud tavalised lehed (47,5rem) jäävad puutumata. */
+.panel-scrim[data-narrow="1"] .panel {
+  width: min(40rem, calc(100vw - clamp(2rem, 6vw, 5rem)));
+}
 /* Vestlus ei ole enam klaaspaneel, vaid ruumis hõljuv tööväli. Teekonna
    leht kasutab endiselt data-chat raami; uus raamita keel rakendub ainult
    päris /vestlus pinnale data-conversation kaudu. */
@@ -479,6 +497,21 @@ button.panel-exit:hover > span {
   scrollbar-gutter: stable;
 }
 
+/* ---------- Lehe info-leht akna sees (omanik 26.07) ----------
+   ⓘ ei ava enam modaali: dokis "Info" vahetab akna sisu selgituste vastu
+   ja tagasi. Sisu on sama, mis modaalil oli (.dashboard-info-*), aga
+   kerimise omanik on siin `.panel-body` — modaali oma kerimiskast ja
+   polsterdus tuleb maha võtta, muidu tekiks kaks kerimisriba sisestikku. */
+.panel-info-view .dashboard-info-body {
+  overflow: visible;
+  max-height: none;
+  padding: 0;
+}
+/* Esimene lõik ei tohi pealkirja kohalt alustada teisiti kui leht ise. */
+.panel-info-view .dashboard-info-detail:first-child {
+  margin-top: 0;
+}
+
 /* ---------- Sisu tüpograafia paneelis ---------- */
 .panel-body h1 {
   font-size: var(--fs-title);
@@ -687,7 +720,15 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
 /* Konto seaded (profiili sektsioon): kolm toimingut, õhk vahel.
    Tellija 07.07: keskjoondatud kaart nagu ülejäänud redisain — pealkiri,
    identiteet ja toimingud keskel; nupud liquid-glass primary (glass.css). */
+/* Vertikaalrütm on siin TIHEDAM kui lugemislehel ja see on mõõdetud, mitte
+   maitse: leht on nelja toimingu loend, mitte proosa, ja lugemislehe õhuga
+   (h1 mb 0.9em + h2 mt 1.9em + kaks 1,6rem sektsioonivahet + 1,6rem
+   vahesid) kasvas sisu 1536 × 864 juures 801 px-ni ehk üle akna lae
+   (733 px) — aken jäi lae peale kinni ja viimane nupp lõikus (omanik
+   26.07: „konto seaded ja minu kasutus leht vale suurusega"). Tihendatud
+   sisu mahub akna sisse ja aken kahaneb SISU järgi, nagu Tellimusel. */
 .konto-title {
+  margin-bottom: 0.45em;
   text-align: center;
 }
 .konto-identity {
@@ -697,10 +738,16 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   text-align: center;
   color: var(--text-dim);
 }
+/* Sektsiooni oma pealkiri EI vaja lugemislehe 1,9em ülaõhku — sektsioonil
+   endal on juba `margin-top`, kaks korda õhku on siin see, mis akna lae
+   alt välja ajas. */
+.konto-actions h2 {
+  margin-top: 0;
+}
 .konto-actions {
   display: grid;
-  gap: 1.6rem;
-  margin-top: 1.6rem;
+  gap: 1.1rem;
+  margin-top: 1.1rem;
   margin-inline: auto;
   max-width: 24rem;
   width: 100%;
@@ -866,6 +913,28 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
   }
   .panel-scrim[data-dock="1"] .panel-body {
     padding-bottom: var(--room-dock-reserve);
+  }
+  /* Kaardi-mõõtu aken (Ruumid, PIN, e-post) EI tohi mobiilil ülalolevat
+     täisekraani-reeglit pärida. Ta pärandas sealt height: 100lvh, mis
+     tühistas tema oma aspect-ratio — kaart venis 240×698 torniks (omanik
+     26.07: „imelikult piklikud"). Kaks parandust ühes:
+     1) height: auto → kõrguse otsustab jälle proportsioon, mitte ekraan;
+     2) laius ei tule enam karusselli kaardilt (--gc-w on mobiilil 15rem =
+        240 px, kuigi ekraanil on 352 px vaba) — avatud kaart võtab ekraani
+        laiuse peaaegu servani, nagu omanik palus. Servani ta EI lähe:
+        ümarad nurgad ja mõlemapoolne ääris hoiavad ta kaardiks, mitte
+        leheks — sama keel mis desktopil. */
+  .panel-scrim[data-compact="1"] .panel {
+    width: min(94vw, 24rem);
+    height: auto;
+    /* Kaardist veidi laiem kui desktopil (0.72): kitsal ekraanil oleks
+       0.72 andnud 489 px kõrge kasti, mis oleks doki peaaegu kinni katnud.
+       Proportsioon EI ole vaba valik — ta on ühtlasi kaardi kõrgus, sest
+       aspect-ratio võidab siin sisu (kast on overflow: hidden, sisu kerib
+       tema sees). 0.78 on kõige täidetuma kaardi (Uuenda PIN, 437 px sisu)
+       mõõt + hingamisruum; kitsam suhe pani PIN-kaardi 7 px pärast kerima. */
+    aspect-ratio: 0.78;
+    max-height: min(78lvh, 34rem);
   }
   .usage-overview__intro,
   .usage-meter__line,

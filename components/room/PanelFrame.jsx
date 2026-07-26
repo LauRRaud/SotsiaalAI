@@ -20,8 +20,12 @@ import { PanelExitProvider } from "@/components/room/PanelExit";
 import IconButton from "@/components/glass/IconButton";
 import CloseIcon from "@/components/brand/icons/CloseIcon";
 import MenuIcon from "@/components/brand/icons/MenuIcon";
-import { DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
-import { usePanelInfoSlotValue } from "@/components/ui/PanelInfoSlot";
+import { DashboardInfoBody, DashboardInfoTrigger } from "@/components/ui/DashboardInfoOverlay";
+import {
+  usePanelInfoSlotValue,
+  usePanelInfoView,
+  usePublishPanelInfo
+} from "@/components/ui/PanelInfoSlot";
 
 /* ⓘ akna vasakus ülanurgas (tellija 06.07 öö: peaaegu igal lehel);
    sisu on olemas ainult neil id-del (lib/dashboardInfoContent). */
@@ -227,6 +231,19 @@ export default function PanelFrame({ children }) {
   const infoSlot = usePanelInfoSlotValue();
   const fallbackInfoId = isWorkspaceView ? "workspace" : PANEL_INFO_IDS[normalized] || null;
   const panelInfoId = infoSlot?.infoId || fallbackInfoId;
+  /* Dokiga aknal kannab ⓘ-d KIIRMENÜÜ (lehe nime kõrval), mitte akna nurk
+     — nagu väljapääsgi (omanik 26.07). Vajutus ei ava modaali, vaid
+     vahetab akna sisu info vastu. Dokita pinnad (vestlus, lõuendid,
+     admin) hoiavad senise nurga-ⓘ modaali. */
+  const infoInDock = hasRoomDock && Boolean(panelInfoId);
+  usePublishPanelInfo({
+    infoId: infoInDock ? panelInfoId : null,
+    title: infoSlot?.title,
+    label: infoSlot?.label,
+    detailExtras: infoSlot?.detailExtras
+  });
+  const { open: infoViewOpen, close: closeInfoView } = usePanelInfoView();
+  const showInfoView = infoInDock && infoViewOpen;
   /* Väikese sisuga lehed avanevad kaardi-mõõtu aknas, mitte üle
      ekraani (tellija otsus; 06.07 öö: ka Ruumid keskmises kaardis). */
   const isCompact =
@@ -236,8 +253,15 @@ export default function PanelFrame({ children }) {
     normalized.startsWith("/taasta-parool");
 
   const isProfileCardPage = normalized === "/uuenda-pin" || normalized === "/uuenda-epost";
+  /* Konto-pere aknad (Konto seaded, Minu kasutus, Tellimus) on ÜKS ja
+     seesama kast (omanik 26.07: "konto seaded ja minu kasutus peab olema
+     sama suur kui tellimuse lehel; tellimuse laius selliseks nagu on
+     minu kasutus lehel"). Kolm kõrvutiseisvat kaarti samas komplektis ei
+     tohi kolme eri mõõtu akent avada — laius tuleb kitsaimalt (40rem,
+     sisu on kõigil kolmel kitsas keskveerg), kõrguse otsustab sisu. */
   const isProfileSectionPage =
-    normalized === "/profiil" && Boolean(String(searchParams?.get("sektsioon") || "").trim());
+    (normalized === "/profiil" && Boolean(String(searchParams?.get("sektsioon") || "").trim())) ||
+    normalized === "/tellimus";
 
   const closePanel = useCallback(() => {
     // pin/e-post sulgub profiili-karusselli
@@ -272,11 +296,17 @@ export default function PanelFrame({ children }) {
       const tag = (el?.tagName || "").toLowerCase();
       if (tag === "input" || tag === "textarea" || tag === "select" || el?.isContentEditable) return;
       if (el?.closest?.("[role='dialog'],[data-esc-scope]")) return;
+      /* Info-leht on akna sees, mitte akna asemel: Esc viib esimesena
+         lehe juurde tagasi ja alles teine kord ruumi. */
+      if (showInfoView) {
+        closeInfoView();
+        return;
+      }
       closePanel();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [isHome, isProfileHub, isWorkspaceHub, closePanel]);
+  }, [isHome, isProfileHub, isWorkspaceHub, closePanel, showInfoView, closeInfoView]);
 
   /* Kerimiskoha säilitamine paneeli kohta (naasmisel sama koht). */
   useEffect(() => {
@@ -385,7 +415,7 @@ export default function PanelFrame({ children }) {
         >
           <MenuIcon />
         </IconButton>
-      ) : panelInfoId ? (
+      ) : panelInfoId && !infoInDock ? (
         /* Platvormi AINUS lehe-ⓘ: paremas ülanurgas, sulgemisristist
            vahetult vasakul, ristiga sama mõõtu. Leht ei renderda oma
            ikooni — ta annab sisu usePanelInfoSlot'i kaudu. */
@@ -432,13 +462,35 @@ export default function PanelFrame({ children }) {
       data-compact={isCompact ? "1" : "0"}
       data-wide={isWide ? "1" : "0"}
       data-dock={hasRoomDock ? "1" : "0"}
+      data-narrow={isProfileSectionPage ? "1" : "0"}
+      data-info={showInfoView ? "1" : "0"}
     >
       <PanelSurface
         label={t("room.panel_region")}
         controls={panelControls}
         bodyRef={bodyRef}
       >
-        <PanelExitProvider close={closePanel}>{children}</PanelExitProvider>
+        {/* Info-lehe ajaks jääb leht MONTEERITUKS, ainult peidetuks: pooleli
+            täidetud väli, laetud loend ja kerimiskoht peavad tagasi tulles
+            alles olema. Modaali siin ei ole — info ON leht. */}
+        {showInfoView ? (
+          <section className="panel-info-view" aria-label={t("room.panel_info_label")}>
+            <DashboardInfoBody
+              infoId={panelInfoId}
+              detailExtras={infoSlot?.detailExtras}
+            />
+          </section>
+        ) : null}
+        {/* Mähis tuleb AINULT siis, kui sellel aknal on info-leht. Laiad
+            ja lõuend-pinnad stiilivad `.panel-body > *` otse — nendel
+            dokki ei ole, aga tingimusteta mähis lõhuks nad ära. */}
+        {infoInDock ? (
+          <div className="panel-info-page" hidden={showInfoView} inert={showInfoView || undefined}>
+            <PanelExitProvider close={closePanel}>{children}</PanelExitProvider>
+          </div>
+        ) : (
+          <PanelExitProvider close={closePanel}>{children}</PanelExitProvider>
+        )}
       </PanelSurface>
     </div>
   );

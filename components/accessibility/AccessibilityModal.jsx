@@ -202,9 +202,16 @@ export default function AccessibilityModal({
      OptionCardi puhul label → sisemine input). Ainult jaamavahetusel,
      mitte mount'il — seal teeb selle juba firstFocusRef. */
   const prevIndexRef = useRef(activeIndex);
+  /* Keri-vihje (sama sõnatu nooleke mis avalehel, room.css .room-hint):
+     nähtav ainult ENNE esimest lendu ja kaob JÄÄDAVALT, niipea kui
+     kasutaja on korra edasi liikunud (omanik 26.07: „kaob ära pärast
+     esmast kerimist, kui on jõutud järgmise seadeni") — ei tule tagasi,
+     kui kasutaja hiljem esimesele jaamale naaseb. */
+  const [scrollHintDismissed, setScrollHintDismissed] = useState(false);
   useEffect(() => {
     if (prevIndexRef.current === activeIndex) return;
     prevIndexRef.current = activeIndex;
+    setScrollHintDismissed(true);
     /* Rahulik lennutempo (useStationFlight lend ~0,76 s) → fookus tuleb
        kohale veidi hiljem, et ta ei hüppaks veel lendavale jaamale. */
     const delay = mode === "3d" ? 520 : 80;
@@ -546,6 +553,16 @@ export default function AccessibilityModal({
         {/* Lennulava: jaamad seisavad sügavuses, kaamera lendab nende vahel.
             Plaanid peavad olema dolly OTSESED lapsed (perspective, §3). */}
         <div className="a11f-stage" data-mode={mode} ref={stageRef}>
+          {/* Keri-vihje: sama peen joon + libisev täpp + mikrosilt mis
+              avalehel (room.css .room-hint), ainult enne esimest lendu. */}
+          {!scrollHintDismissed ? (
+            <div className="a11f-scroll-hint" aria-hidden="true">
+              <span className="a11f-scroll-hint-track">
+                <span className="a11f-scroll-hint-dot" />
+              </span>
+              <span className="a11f-scroll-hint-label">{t("room.scroll_label")}</span>
+            </div>
+          ) : null}
           <div className="a11f-dolly" ref={dollyRef}>
             {STATIONS.map((station, index) => (
               <section
