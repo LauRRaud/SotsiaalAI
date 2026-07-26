@@ -14,6 +14,12 @@ const baseConfig = {
 
   compiler: { styledComponents: true },
 
+  /* Turbopacki dev-failivahemälu (.next/dev/cache/turbopack/*.sst) on Next 16-s
+     vaikimisi peal ega paista evictionit tegevat: 26.07 kasvas .next 45 GB-ni,
+     mis viis dev-kliendi lehe-taaslaadimise silmusesse ja masina kokkujooksmiseni.
+     Väljas = aeglasem külmkäivitus, aga piiratud ketta- ja mälukasutus. */
+  experimental: { turbopackFileSystemCacheForDev: false },
+
   images: {
     formats: ["image/avif", "image/webp"],
     domains: [],
