@@ -104,7 +104,7 @@ const VALID_BODY = {
 };
 
 test("launch-lukk: suletud registreerimine tagastab ka käsitsi POST-ile 403 ega kirjuta midagi", async () => {
-  assert.equal(REGISTRATION_OPEN, true, "avalik seis on AVATUD alates 22.07.2026 (omaniku otsus); sulgemisel uuenda ka seda ootust");
+  assert.equal(REGISTRATION_OPEN, false, "avalik seis on SULETUD alates 27.07.2026 (omaniku otsus, maksetest tehtud); avamisel uuenda ka seda ootust");
   const { db, calls } = makeDb();
   const res = await POST(makeRequest(VALID_BODY), { db, registrationOpen: false });
   assert.equal(res.status, 403);

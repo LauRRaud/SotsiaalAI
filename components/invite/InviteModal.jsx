@@ -17,6 +17,7 @@ import {
   inviteRelationshipTypesForInviter,
   sponsoredRolesForInviteRelationship,
 } from "@/lib/invites/participantTypes";
+import { getPublicSponsoredInviteAmount } from "@/lib/subscriptionPlans";
 import { localizePath } from "@/lib/localizePath";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -79,11 +80,6 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
   const sponsoredSelected = paymentMode === "SPONSORED_BY_HOST";
   const isWorkspaceReturn = embedded || openSource === "workspace";
   const inviteHeaderTitle = t("invite.eyebrow");
-  const sponsoredAmount = Number(process.env.NEXT_PUBLIC_INVITE_SPONSORED_AMOUNT || 4);
-  const sponsoredAmountLabel = formatEuroAmount(
-    Number.isFinite(sponsoredAmount) && sponsoredAmount > 0 ? sponsoredAmount : 4,
-    locale,
-  );
   const allowedRelationshipTypes = useMemo(
     () => inviteRelationshipTypesForInviter(session?.user?.role),
     [session?.user?.role],
@@ -99,11 +95,16 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
       SOCIAL_WORKER: "worker",
       SERVICE_PROVIDER: "provider",
     };
+    // Hind sõltub sellest, keda kutsud: sponsorkutse = üks kuu KUTSUTU rolli
+    // ligipääsu, seega kannab iga valik oma rolli kuutellimuse summat.
     return sponsoredRolesForInviteRelationship(effectiveRelationshipType).map((value) => ({
       value,
-      label: `${t(`invite.sponsored.role.${roleKey[value]}`)} - ${sponsoredAmountLabel}`,
+      label: `${t(`invite.sponsored.role.${roleKey[value]}`)} - ${formatEuroAmount(
+        getPublicSponsoredInviteAmount(value),
+        locale,
+      )}`,
     }));
-  }, [effectiveRelationshipType, sponsoredAmountLabel, t]);
+  }, [effectiveRelationshipType, locale, t]);
   const allowedSponsoredRoles = sponsoredRoleOptions.map((option) => option.value);
   const effectiveTargetRole = allowedSponsoredRoles.includes(targetRole)
     ? targetRole
