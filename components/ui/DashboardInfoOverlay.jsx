@@ -73,6 +73,13 @@ export function DashboardInfoBody({ infoId, detailExtras, className }) {
   if (!content) return null;
   return (
     <div className={["dashboard-info-body", className].filter(Boolean).join(" ")}>
+      {/* Info-lehel on OMA pealkiri (omanik 28.07). Dokk näitab endiselt
+          LEHE nime, seega „Info" ei korda seda, vaid ütleb, kummas vaates
+          sa oled. Joondus tuleb `.panel-body h1`-lt ise: kaardil keskel,
+          suuremal paneelil vasakul — sama reegel mis lehtedel. Nurga-
+          modaalil (dokita pinnad) pealkirja EI ole ja see jääb nii: seal
+          on ta juba `sr-only` h2-na olemas ja teine tiitel oleks kordus. */}
+      <h1 className="dashboard-info-title">{t("room.panel_info_dock", "Info")}</h1>
       {content.intro ? <p className="dashboard-info-intro">{content.intro}</p> : null}
       {content.details.map((section, index) => renderDetail(section, detailExtras?.[index]))}
     </div>

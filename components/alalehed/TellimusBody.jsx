@@ -9,6 +9,7 @@ import LoginModal from "@/components/LoginModal";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { localizePath } from "@/lib/localizePath";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
@@ -117,6 +118,10 @@ export default function TellimusBody() {
   const nextRetryDate = subscriptionMeta?.nextRetryAt
     ? new Date(subscriptionMeta.nextRetryAt).toLocaleDateString(localeDateFormat)
     : "";
+  /* Tellimuse ⓘ: leht kannab ainult toimingut (olek, nupp, nõusolek) —
+     mida kuutasu, pikenemine, tühistamine ja sponsorlus tähendavad, loeb
+     see, kes dokis ⓘ vajutab. Marsruudikaart /tellimus-t ei kata. */
+  usePanelInfoSlot({ infoId: "subscription" });
   const isPastDue = Boolean(subscriptionMeta?.isPastDue);
   const willRetry = Boolean(subscriptionMeta?.willRetry);
   const cancelAtPeriodEnd = Boolean(subscriptionMeta?.cancelAtPeriodEnd);

@@ -1051,6 +1051,19 @@
     },
     "usage": {
       "title": "Minu kasutus",
+      "info": {
+        "plan_title": "Mida aktiivne pakett tähendab",
+        "plan_role": "Tellimus on rollipõhine — kuutasu sõltub sellest, kas oled pöörduja, spetsialist või teenuseosutaja. Sinu praegune pakett ja summa seisavad selle vaate ülaosas.",
+        "plan_sponsored": "Sponsoreeritud ligipääs tuleb sind kutsunud inimeselt ja kehtib ühe kuu; pärast seda tuleb jätkamiseks oma tellimus aktiveerida.",
+        "plan_free": "Tasuta paketis saab kasutada abisoove ja teenusekaarti; AI-tööriistad avanevad tasulise paketiga.",
+        "counters_title": "Mida numbrid näitavad",
+        "counters_what": "Iga rida on üks tööriist: assistendi vastused, dokumentide koostamine ja täiustamine, failide analüüs, süvauuringud, teadmusbaasi otsingud, heli transkribeerimine, teksti ettelugemine ja failide salvestusruum.",
+        "counters_period": "Limiit on päevane, nädalane või kuine ja „Uueneb“ ütleb, millal loendur nulli läheb. Salvestusmaht ajaga ei uuene — see vabaneb failide kustutamisel.",
+        "counters_content": "See vaade näitab ainult koguseid, mitte sisu: siit ei ole näha, mida sa kirjutasid, küsisid või salvestasid.",
+        "manage_title": "Kuidas paketti muuta",
+        "manage_where": "Vaate lõpus olev nupp viib tellimuse lehele, kus saab paketi aktiveerida või tühistada.",
+        "manage_free": "Tasuta paketis pakub nupp pakettide võrdlust, tasulises tellimuse haldust."
+      },
       "loading": "Laen kasutusandmeid…",
       "load_failed": "Kasutusandmete laadimine ebaõnnestus.",
       "active_plan": "Aktiivne pakett",
@@ -3511,6 +3524,16 @@
   },
   "subscription": {
     "title": "Tellimus",
+    "about": {
+      "what_title": "Mis tellimus on",
+      "what_role": "Tellimus on igakuine ja rollipõhine — kuutasu sõltub sellest, kas oled pöörduja, spetsialist või teenuseosutaja. Sinu summa seisab siinsamas lehel.",
+      "what_recurring": "Tellimus pikeneb iga kuu automaatselt kuni selle tühistad; järgmise kuumakse kuupäev on lehel näha.",
+      "what_payment": "Makseviisi valid Maksekeskuse makselehel ja ligipääs aktiveerub kohe pärast kinnitust.",
+      "end_title": "Tühistamine, sponsorlus ja ebaõnnestunud makse",
+      "end_cancel": "Tühistada saab siitsamalt: ligipääs kehtib perioodi lõpuni ja uut kuumakset ei võeta.",
+      "end_sponsored": "Sponsoreeritud kuu lõppedes tuleb kasutamise jätkamiseks aktiveerida oma tellimus.",
+      "end_failed": "Kui kuumakse ebaõnnestub, proovitakse seda automaatselt uuesti ja sina ei pea midagi tegema; peatatud tellimuse saab uuesti aktiveerida."
+    },
     "loading": "Laen tellimuse infot…",
     "error": {
       "load_failed": "Tellimuse oleku laadimine ebaõnnestus.",

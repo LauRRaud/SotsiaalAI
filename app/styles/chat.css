@@ -40,6 +40,44 @@
   flex-direction: column;
 }
 
+/* ---------- iOS: brauseri tööriistariba kate ----------
+   Mobiilipaneel on 100lvh ehk SUUR vaateava (panel.css; nii ei hüppa
+   paigutus, kui riba peitub). iOS-i Safaris tähendab see, et paneeli alumine
+   ~86 px on riba TAGA. Komposer istub seal (ChatComposer annab talle
+   mobiilis absoluutse alaserva) — ikoonid paistsid, aga kuldjoon ja teksti
+   alumine serv jäid katte sisse (omanik 28.07: „ei ole all näha kriipsu,
+   kuhu ma kirjutan").
+   `100lvh - 100dvh` ON see kate, mõõdetuna brauseri enda ühikutega: dvh
+   jälgib riba elusalt, lvh seisab paigal. Riba peidus → vahe 0 → komposer
+   täpselt seal, kus ta enne oli; riba nähtaval → komposer tõuseb täpselt
+   riba jagu. Tarbija on ChatComposer'i inline-stiil, kus ta läheb
+   `max()`-i kodunupu-alaga (mitte summasse — vt sealset kommentaari).
+   @supports on värav: dvh-ta brauseris jääks calc kehtetuks ja viiks
+   terve `bottom`-i kaasa; ilma muutujata langeb inline-stiil oma 0px
+   varule ehk endisele käitumisele. */
+@media (max-width: 768px) {
+  @supports (height: 100dvh) {
+    [data-chat-container] {
+      --chat-browser-chrome: max(0px, 100lvh - 100dvh);
+    }
+  }
+}
+/* Komposeri alaserv ÜHES kohas. Puhkeasend = suurem kahest kattest
+   (kodunupp VÕI brauseri tööriistariba — riba kate sisaldab kodunupu ala,
+   seega `max`, mitte summa) + tavaline vahe. Klaviatuuri ajal kirjutab
+   ChatBody siia peale väikese vahe (--chat-composer-inset inline'ina), sest
+   siis mõõdab komposeri koha `--chat-vk-offset` ja puhkeasendi varud
+   tähendaksid ainult seda, et sisend hüppab klaviatuurist liiga kõrgele
+   (omanik 28.07: „input hüppas üles poole, kõrgemale kui peaks").
+   Tarbija = ChatComposer'i mobiili inline-stiil. */
+[data-chat-container] {
+  --chat-composer-rest-inset: calc(
+    max(env(safe-area-inset-bottom, 0px), var(--chat-browser-chrome, 0px)) +
+      var(--chat-composer-mobile-bottom-base, 2.5rem)
+  );
+  --chat-composer-inset: var(--chat-composer-rest-inset);
+}
+
 #chat-window {
   flex: 1;
   min-height: 0;
@@ -721,8 +759,17 @@ button[aria-controls="chat-window-scroll"] {
      ÜKSKI CSS ei tarbinud seda — nüüd tarbib. Töölaual on ta 0px, seega
      see valem annab seal täpselt endise tulemuse. */
   --conv-bottom-fade: clamp(2.2rem, 4.2lvh, 2.9rem);
+  /* RESERV = kui palju komposer veeru alaservast sööb. Töölaual 0 (komposer
+     on voos, veeru all). Mobiilis annab mobiiliplokk siia CSS-põhise
+     PÕRANDA: mõõdetud 28.07, et JS-i arvutatud `--chat-composer-occlusion`
+     ei jõua kohale ÜHESKI kahest chat-konteinerist (muutuja jäi
+     defineerimata → langes 0px varule), seega veerg reserveeris 45 px, kuigi
+     komposer sööb ~108 px, ja viimased mullid kerisid tema TAHA. JS-i mõõt
+     jääb alles ja võidab `max()`-is siis, kui ta töötab ja on suurem (nt
+     mitmerealine sisend). */
+  --chat-composer-reserve: var(--chat-composer-occlusion, 0px);
   padding: clamp(3.4rem, 7lvh, 4.6rem) clamp(1.6rem, 4vw, 4rem)
-    calc(var(--chat-composer-occlusion, 0px) + var(--conv-bottom-fade) + 0.6rem);
+    calc(var(--chat-composer-reserve) + var(--conv-bottom-fade) + 0.6rem);
   /* Kerimisriba peidus (tellija 12.07) — keritav jääb, riba nähtamatu */
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -742,8 +789,8 @@ button[aria-controls="chat-window-scroll"] {
     to bottom,
     transparent 0,
     #000 clamp(3.2rem, 6.6lvh, 4.4rem),
-    #000 calc(100% - var(--chat-composer-occlusion, 0px) - var(--conv-bottom-fade)),
-    transparent calc(100% - var(--chat-composer-occlusion, 0px))
+    #000 calc(100% - var(--chat-composer-reserve) - var(--conv-bottom-fade)),
+    transparent calc(100% - var(--chat-composer-reserve))
   );
 }
 .panel-scrim[data-conversation="1"] #chat-window-scroll::-webkit-scrollbar {
@@ -1567,6 +1614,24 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   }
 }
 
+/* Komposeri reservi CSS-PÕRAND. Tingimus peegeldab `detectMobileViewport`-i
+   (chatLayoutVars.js) — TEMA otsustab, kas komposer saab absoluutse
+   mobiiliasendi, ja varu peab kehtima täpselt seal, kus see asend kehtib.
+   Teine haru = püstine puuteseade kuni 1024 px (nt iPad), kus laius üksi
+   768 piiri alla ei mahu. Reserv = komposeri alaserv (--chat-composer-inset,
+   sama muutuja, millega ta ise positsioneeritakse) + rea kõrgus +
+   hingamisruum, ja ta liigub koos komposeriga (iOS-i tööriistariba,
+   klaviatuur). JS-i mõõt jääb `max()`-i teiseks pooleks. */
+@media (max-width: 768px),
+  (max-width: 1024px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  .panel-scrim[data-conversation="1"] #chat-window-scroll {
+    --chat-composer-reserve: max(
+      var(--chat-composer-occlusion, 0px),
+      calc(var(--chat-composer-inset, 2.5rem) + var(--inputbar-h, 3.08rem) + 0.9rem)
+    );
+  }
+}
+
 /* ---------- Mobiil ---------- */
 @media (max-width: 768px) {
   .panel-scrim[data-conversation="1"] #chat-window-scroll {
@@ -1578,9 +1643,9 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
        et vestlus algab kõrgemalt ja mahub rohkem.
 
        ALAPOLSTRIT SIIN EI OLE: ta tuleb baasreeglist, mis arvestab
-       `--chat-composer-occlusion`-iga (komposer on mobiilis absoluutne ja
-       katab veeru põhja). Kui siia kirjutada `padding` lühivorm, kaob see
-       arvestus ja mullid kerivad jälle komposeri taha. */
+       reserviga (komposer on mobiilis absoluutne ja katab veeru põhja).
+       Kui siia kirjutada `padding` lühivorm, kaob see arvestus ja mullid
+       kerivad jälle komposeri taha. */
     padding-top: clamp(4rem, 9vh, 5rem);
     padding-inline: 0.75rem;
   }

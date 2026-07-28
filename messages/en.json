@@ -1051,6 +1051,19 @@
     },
     "usage": {
       "title": "My usage",
+      "info": {
+        "plan_title": "What the active plan means",
+        "plan_role": "The subscription is role-based — the monthly fee depends on whether you are a client, a specialist or a service provider. Your current plan and amount are shown at the top of this view.",
+        "plan_sponsored": "Sponsored access comes from the person who invited you and lasts one month; after that you need to activate your own subscription to continue.",
+        "plan_free": "The free plan covers help requests and the service map; AI tools open up with a paid plan.",
+        "counters_title": "What the numbers show",
+        "counters_what": "Each row is one tool: assistant replies, document drafting and refining, file analysis, deep research, knowledge base searches, audio transcription, text-to-speech and file storage.",
+        "counters_period": "A limit is daily, weekly or monthly, and “Resets” tells you when the counter returns to zero. Storage does not reset over time — it frees up when you delete files.",
+        "counters_content": "This view shows quantities only, never content: it does not reveal what you wrote, asked or saved.",
+        "manage_title": "How to change your plan",
+        "manage_where": "The button at the end of the view opens the subscription page, where you can activate or cancel a plan.",
+        "manage_free": "On the free plan the button offers a plan comparison; on a paid plan it opens subscription management."
+      },
       "loading": "Loading usage…",
       "load_failed": "Usage data could not be loaded.",
       "active_plan": "Active plan",
@@ -3511,6 +3524,16 @@
   },
   "subscription": {
     "title": "Subscription",
+    "about": {
+      "what_title": "What the subscription is",
+      "what_role": "The subscription is monthly and role-based — the fee depends on whether you are a client, a specialist or a service provider. Your amount is shown on this page.",
+      "what_recurring": "The subscription renews automatically every month until you cancel it; the date of the next monthly payment is shown on this page.",
+      "what_payment": "You choose the payment method on the Maksekeskus payment page, and access is activated right after confirmation.",
+      "end_title": "Cancelling, sponsorship and failed payments",
+      "end_cancel": "You can cancel right here: access stays valid until the end of the period and no new monthly payment is taken.",
+      "end_sponsored": "When a sponsored month ends, activate your own subscription to keep using the platform.",
+      "end_failed": "If a monthly payment fails, it is retried automatically and you do not need to do anything; a suspended subscription can be activated again."
+    },
     "loading": "Loading subscription details...",
     "error": {
       "load_failed": "Failed to load subscription status.",

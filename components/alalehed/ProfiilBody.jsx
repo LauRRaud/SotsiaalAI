@@ -150,10 +150,15 @@ export default function ProfiilBody({
     String(searchParams?.get("sektsioon") || "").trim() === "konto";
   const usageSection =
     String(searchParams?.get("sektsioon") || "").trim() === "kasutus";
-  /* Konto seadete ⓘ: andmekoopia selgitused elavad info-lehel, mitte
-     vormis. Marsruudikaart PanelFrame'is seda ei kata — /profiil eristub
-     ainult ?sektsioon väärtuse poolest. */
-  usePanelInfoSlot({ infoId: "account_settings", active: kontoSection });
+  /* Konto-pere ⓘ: selgitused elavad info-lehel, mitte vormis. Marsruudi-
+     kaart PanelFrame'is seda ei kata — /profiil eristub ainult ?sektsioon
+     väärtuse poolest. ÜKS kutse kahe asemel: kaks `usePanelInfoSlot`-i
+     kirjutaksid sama slot'i ja järjekord otsustaks võitja — siin otsustab
+     sektsioon, mis on niikuinii üksteist välistav. */
+  usePanelInfoSlot({
+    infoId: kontoSection ? "account_settings" : usageSection ? "usage" : null,
+    active: kontoSection || usageSection
+  });
   const isAuthed = status === "authenticated" || !!session?.user;
   const currentTheme = prefs?.theme === "light" ? "light" : "dark";
   const isHighContrast = prefs?.contrast === "hc";

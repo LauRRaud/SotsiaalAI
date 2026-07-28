@@ -1032,6 +1032,20 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   align-items: center;
   gap: 0.2rem;
   min-width: 0;
+  /* PÜSTINE TRIIV VÄLJA. Seal, kus riba kerib (mobiiliplokk allpool ja
+     room.css .room-dock-wrap), teeb `overflow-x: auto` spetsi järgi ka
+     teise telje `auto`-ks. Nupu tabamusala (.gc-shortcut::before, inset
+     -0,32rem) ulatub ribakastist 5 px allapoole, seega sai riba 5 px
+     püstist kerimisruumi ja ikoonid ujusid mobiilis sõrme all üles-alla
+     (omanik 28.07; mõõdetud 390x844: scrollHeight 45, clientHeight 40).
+     Polsterdus võtab tabamusala kasti SISSE ja negatiivne veeris annab
+     doki kõrguse täpselt tagasi — riba mõõt ega ikoonide asukoht ei
+     muutu. `overflow-y: hidden` oleks ta ära lõiganud ehk tapnud selle
+     laiendatud tabamusala, mis on doki jaoks (ekraani allservas, 40 px
+     ring) meelega olemas. Kehtib ka seal, kus kerimist ei ole: siis on
+     see puhas nulltehe. */
+  padding-block: 0.32rem;
+  margin-block: -0.32rem;
 }
 /* Riba, mis ei mahu ära, ütleb seda ise (lipu paneb GlassCarousel).
    Ilma selleta lõppes kaheksast otseteest kuues täpselt pilli serva peal —
@@ -1040,42 +1054,54 @@ html[data-reduce-motion="1"] .gc-shortcuts {
    nupud pärast kerimist ridamisi, mitte poolikult serva peal. Häive on
    AINULT ülevoolaval ribal: mahtuva riba servanupud ei tohi asjata
    tuhmuda. Prefiks ENNE standardit (Lightning CSS jätab duplikaadist
-   viimase). */
-.gc-shortcut-track[data-overflow="1"] {
-  --gc-track-fade: 1.4rem;
-  /* Kumbki serv eraldi: häive on AINULT sellel poolel, kus midagi on
-     peidus (lipu paneb GlassCarousel). Nulliga jääb serv terav ja ükski
-     päris ikoon ei tuhmu. */
-  --gc-fade-s: 0px;
-  --gc-fade-e: 0px;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 var(--gc-fade-s),
-    #000 calc(100% - var(--gc-fade-e)),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 var(--gc-fade-s),
-    #000 calc(100% - var(--gc-fade-e)),
-    transparent 100%
-  );
-  scroll-snap-type: x proximity;
-  scroll-padding-inline: var(--gc-track-fade);
-  overscroll-behavior-x: contain;
-}
-.gc-shortcut-track[data-fade="start"],
-.gc-shortcut-track[data-fade="both"] {
-  --gc-fade-s: var(--gc-track-fade);
-}
-.gc-shortcut-track[data-fade="end"],
-.gc-shortcut-track[data-fade="both"] {
-  --gc-fade-e: var(--gc-track-fade);
-}
-.gc-shortcut-track[data-overflow="1"] > .gc-shortcut {
-  scroll-snap-align: center;
+   viimase).
+
+   MASK ELAB AINULT SEAL, KUS RIBA PÄRISELT KERIB (mobiiliplokk). `mask-clip`
+   on `border-box` ehk kõik ribakastist VÄLJAS jääb maskimata ehk läbipaistev
+   — ja vihje elab just seal, nupu KOHAL (`bottom: calc(100% + …)`, mõõdetud
+   sotsiaal.ai: vihje 618,8–654,6, riba 659,4–703,4). Laual tähendas mask
+   seega sedasama, mille eest ülalolev kommentaar `overflow`-i puhul hoiatab:
+   `:hover` seadis `opacity: 1`, aga piksleid ei joonistatud kunagi (omanik
+   27.07: „kiirmenüü ei näita hover tekste"; sama sümptom, teine mehhanism).
+   Mobiilil on vihjed nagunii `display: none` ja lõikamine ei maksa midagi —
+   seal on kerimine ka ainus koht, kus häivet üldse vaja on. */
+@media (max-width: 768px) {
+  .gc-shortcut-track[data-overflow="1"] {
+    --gc-track-fade: 1.4rem;
+    /* Kumbki serv eraldi: häive on AINULT sellel poolel, kus midagi on
+       peidus (lipu paneb GlassCarousel). Nulliga jääb serv terav ja ükski
+       päris ikoon ei tuhmu. */
+    --gc-fade-s: 0px;
+    --gc-fade-e: 0px;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--gc-fade-s),
+      #000 calc(100% - var(--gc-fade-e)),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 var(--gc-fade-s),
+      #000 calc(100% - var(--gc-fade-e)),
+      transparent 100%
+    );
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--gc-track-fade);
+    overscroll-behavior-x: contain;
+  }
+  .gc-shortcut-track[data-fade="start"],
+  .gc-shortcut-track[data-fade="both"] {
+    --gc-fade-s: var(--gc-track-fade);
+  }
+  .gc-shortcut-track[data-fade="end"],
+  .gc-shortcut-track[data-fade="both"] {
+    --gc-fade-e: var(--gc-track-fade);
+  }
+  .gc-shortcut-track[data-overflow="1"] > .gc-shortcut {
+    scroll-snap-align: center;
+  }
 }
 .gc-shortcut {
   position: relative;

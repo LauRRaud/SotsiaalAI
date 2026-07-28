@@ -49,7 +49,27 @@ const MOBILE_KEYBOARD_BLUR_SETTLE_MS = 220;
 const MOBILE_KEYBOARD_BASELINE_CAPTURE_MS = 320;
 const MOBILE_KEYBOARD_OPEN_STABLE_MS = 96;
 const MOBILE_KEYBOARD_OFFSET_JITTER_PX = 10;
+/* Klaviatuur lahti → komposeri koha mõõdab `--chat-vk-offset` ja alles jääb
+   kitsas vahe klaviatuuri servast. Puhkeasendi varud (kodunupu ala VÕI
+   brauseri tööriistariba + 2.5rem, vt chat.css `--chat-composer-rest-inset`)
+   LIITUSID varem selle nihkega ja sisend hüppas klaviatuurist ~70 px kõrgele
+   (omanik 28.07: „hüppas üles poole, kõrgemale kui peaks"). */
+const MOBILE_COMPOSER_KEYBOARD_GAP = "0.55rem";
+/* iOS ei kerita LEHTE, vaid nihutab visuaalset vaateava (`vv.offsetTop`),
+   kui fookus läheb klaviatuuri alla jäävale väljale. Meie tõstame komposeri
+   ise, seega nihe on üleliigne — ja tema tõttu lähevad paneeli ülanupud (☰,
+   ×) ekraanist välja (omanik 28.07). `scrollTo(0,0)` võtab nihke maha; katse
+   on loendatud, et mitte jääda Safariga võitlema, kui ta nihkest ei loobu. */
+const MOBILE_VIEWPORT_UNPAN_ATTEMPTS = 4;
 const WORKSPACE_SURFACE_SETTLE_MS = 680;
+function setComposerKeyboardInset(node, keyboardOpen) {
+  if (!node) return;
+  if (keyboardOpen) {
+    node.style.setProperty("--chat-composer-inset", MOBILE_COMPOSER_KEYBOARD_GAP);
+    return;
+  }
+  node.style.removeProperty("--chat-composer-inset");
+}
 const CHAT_HELP_PANEL_STORAGE_KEY = "__SOTSIAALAI_CHAT_HELP_PANEL__";
 const CHAT_HELP_PANEL_SOURCE_STORAGE_KEY = "__SOTSIAALAI_CHAT_HELP_PANEL_SOURCE__";
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
@@ -640,11 +660,13 @@ export default function ChatBody({
     if (!node || typeof window === "undefined") return;
     if (!isMobile || !inputFocused) {
       node.style.setProperty("--chat-vk-offset", "0px");
+      setComposerKeyboardInset(node, false);
       mobileKeyboardWasOpenRef.current = false;
       return;
     }
     const vv = window.visualViewport;
     let rafId = 0;
+    let unpanAttempts = 0;
     let lastAppliedOffset = Number.NaN;
     let lastResolvedOffset = 0;
     let pendingOpenSince = 0;
@@ -765,12 +787,23 @@ export default function ChatBody({
       }
       lastAppliedOffset = offset;
       node.style.setProperty("--chat-vk-offset", `${offset}px`);
+      setComposerKeyboardInset(node, offset > 0);
+    };
+    // Kui komposer on juba ise klaviatuuri kohale tõstetud, ei ole iOS-i
+    // vaateava-nihet enam vaja — tema tõttu kaovad ülanupud ekraanilt.
+    const unpanViewport = () => {
+      if (!vv || unpanAttempts >= MOBILE_VIEWPORT_UNPAN_ATTEMPTS) return;
+      if (Math.round(vv.offsetTop || 0) <= MOBILE_KEYBOARD_OFFSET_JITTER_PX) return;
+      unpanAttempts += 1;
+      window.scrollTo(0, 0);
     };
     const updateKeyboardOffset = () => {
       if (rafId) return;
       rafId = window.requestAnimationFrame(() => {
         rafId = 0;
-        applyKeyboardOffset(resolveKeyboardOffset());
+        const offset = resolveKeyboardOffset();
+        applyKeyboardOffset(offset);
+        if (offset > 0) unpanViewport();
       });
     };
     updateKeyboardOffset();
@@ -789,6 +822,7 @@ export default function ChatBody({
       window.removeEventListener("focusin", updateKeyboardOffset);
       window.removeEventListener("focusout", updateKeyboardOffset);
       node.style.setProperty("--chat-vk-offset", "0px");
+      setComposerKeyboardInset(node, false);
       mobileKeyboardWasOpenRef.current = false;
     };
   }, [inputFocused, isMobile]);
@@ -805,6 +839,7 @@ export default function ChatBody({
       if (active && node.contains(active) && isEditableElement(active)) return;
       mobileKeyboardWasOpenRef.current = false;
       node.style.setProperty("--chat-vk-offset", "0px");
+      setComposerKeyboardInset(node, false);
       setInputFocused(false);
     };
     const scheduleCheck = () => {
@@ -861,6 +896,7 @@ export default function ChatBody({
         if (readKeyboardOffset() > MOBILE_KEYBOARD_CLOSE_THRESHOLD) return;
         mobileKeyboardWasOpenRef.current = false;
         node.style.setProperty("--chat-vk-offset", "0px");
+        setComposerKeyboardInset(node, false);
         if (inputFocused) setInputFocused(false);
       });
     };

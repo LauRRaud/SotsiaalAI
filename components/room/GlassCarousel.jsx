@@ -283,8 +283,25 @@ export default function GlassCarousel({
        vasakul ja paremal pool, katab ikoone"). Alla selle läve on riba
        sisuliselt terve ja häive oleks lihtsalt müra. */
     const HIDDEN_MIN = 24;
+    /* Ülejääki mõõdetakse NUPPUDE, mitte `scrollWidth`-i järgi. Vihje on
+       nupu sees `position: absolute` ja ulatub temast laiemale — abs-lapsed
+       kasvatavad kerimisala, seega luges `scrollWidth` riba ülevoolavaks
+       just nende võrra, mida ta ise peidab (mõõdetud sotsiaal.ai 1280 px:
+       vihjetega 496, ilma 486, nähtav 485 — ehk 10 px tuli vihjetest ja
+       1 px ümardusest). Riba lülitas seepeale sisse häive, mille mask
+       omakorda lõikas vihjed ära. Viimase nupu parem serv annab ainsana
+       selle, mis päriselt peidus on. */
+    const hiddenWidth = () => {
+      const last = track.lastElementChild;
+      if (!last) return 0;
+      const end =
+        last.getBoundingClientRect().right -
+        track.getBoundingClientRect().left +
+        track.scrollLeft;
+      return Math.max(0, Math.round(end - track.clientWidth));
+    };
     const syncFade = () => {
-      const max = track.scrollWidth - track.clientWidth;
+      const max = hiddenWidth();
       if (max <= 2) {
         track.dataset.overflow = "0";
         track.dataset.fade = "none";

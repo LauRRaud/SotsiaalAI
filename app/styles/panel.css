@@ -5,6 +5,15 @@
    (brief §7/§10). Primitiivid stiilitakse data-atribuutide järgi.
    ============================================================ */
 
+/* Olekuriba/notchi kõrgus ÜHE nimega. `env()` annab PWA-s (standalone,
+   `viewport-fit: cover`) iPhone'il 47–59 px ja brauseris 0 — seega on iga
+   siinne kasutus töölaual ja Safaris nulltehe. Muutuja, mitte paljas
+   `env()`: nii saab teda arendades käsitsi peale kirjutada (`--safe-top:
+   59px`) ja PWA olukorda ilma telefonita mõõta. */
+:root {
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
 .panel-scrim {
   position: relative;
   z-index: var(--z-panel);
@@ -193,7 +202,10 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
    sulge/info olid liiga tumedad, ei läinud kokku). Väärtused peegeldavad
    glass.css .glass-iconbtn baasi: valge läbipaistev + ülaserva läige. */
 .panel-scrim[data-conversation="1"] :is(.panel-menu, .panel-close) {
-  top: clamp(1.1rem, 2.8lvh, 1.8rem);
+  /* Vestlusel on nuppudel oma, suurem ülaserv — seega ka safe-area tuleb
+     SIIA juurde lisada, muidu võidab see rida alumise `--panel-edge-top`
+     reegli ja PWA-s jäävad ☰/× jälle olekuriba alla. */
+  top: calc(clamp(1.1rem, 2.8lvh, 1.8rem) + var(--safe-top, 0px));
   width: 3rem;
   height: 3rem;
   color: rgba(240, 240, 240, 0.92);
@@ -440,11 +452,20 @@ body:has(.panel-scrim[data-canvas="1"]) {
   min-height: 0;
 }
 
+/* Nurganuppude ülaserv ÜHE arvuna. Absoluutse elemendi kast on `.panel`-i
+   padding box, mis polsterdusest EI liigu — seega ei piisa siin sellest, et
+   paneel ise sai `padding-top: var(--safe-top)`: nupp vajab sama inseti
+   eraldi, muidu jääb ta PWA-s olekuriba alla poolikuks (omanik 28.07). */
+.panel-scrim {
+  --panel-edge: clamp(0.8rem, 1.6vw, 1.3rem);
+  --panel-edge-top: calc(var(--panel-edge) + var(--safe-top, 0px));
+}
+
 /* Üldine sulgemisrist; Kovisioon kasutab selle asemel tekstiga Välju-nuppu. */
 .panel-close {
   position: absolute;
-  top: clamp(0.8rem, 1.6vw, 1.3rem);
-  right: clamp(0.8rem, 1.6vw, 1.3rem);
+  top: var(--panel-edge-top);
+  right: var(--panel-edge);
   z-index: 30;
 }
 .panel-close:hover {
@@ -452,8 +473,8 @@ body:has(.panel-scrim[data-canvas="1"]) {
 }
 button.panel-exit {
   position: absolute;
-  top: clamp(0.8rem, 1.6vw, 1.3rem);
-  right: clamp(0.8rem, 1.6vw, 1.3rem);
+  top: var(--panel-edge-top);
+  right: var(--panel-edge);
   width: auto;
   align-self: auto;
   z-index: 30;
@@ -473,8 +494,8 @@ button.panel-exit:hover > span {
 /* Vestluste menüü (☰) — vasakul üleval (pilt 9) */
 .panel-menu {
   position: absolute;
-  top: clamp(0.8rem, 1.6vw, 1.3rem);
-  left: clamp(0.8rem, 1.6vw, 1.3rem);
+  top: var(--panel-edge-top);
+  left: var(--panel-edge);
   z-index: 30;
   --icon-size: 1rem;
 }
@@ -484,10 +505,10 @@ button.panel-exit:hover > span {
    + risti laius (2.6rem) + vahe. */
 .panel-menu--info {
   left: auto;
-  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 3.1rem);
+  right: calc(var(--panel-edge) + 3.1rem);
 }
 .panel-scrim[data-covision="1"] .panel-menu--info {
-  right: calc(clamp(0.8rem, 1.6vw, 1.3rem) + 6.15rem);
+  right: calc(var(--panel-edge) + 6.15rem);
 }
 
 /* Tagasi-noolt paneelis EI kuvata — sulgemisrist täidab rolli
@@ -1013,6 +1034,17 @@ label[data-control-type][data-checked="true"] > span[aria-hidden="true"] svg {
     border-radius: 0;
     border-left: none;
     border-right: none;
+    /* PWA (standalone): brauseri riba ei ole ja `viewport-fit: cover`
+       (app/layout.js) laseb lehel olekuriba ALLA ulatuda — sisu algas
+       ekraani ülaservast ja ülemised elemendid olid poolikud (omanik 28.07,
+       kuvatõmmis kodukuvalt: „pwa reziimis on sisu liiga üleval, elemendid
+       on ära lõigatud"). Safarist seda ei näinud: seal lükkab brauseri enda
+       riba sisu nagunii olekuriba alt välja ja inset on 0.
+       Polsterdus liigutab AINULT voo-sisu; nurganupud on absoluutsed ja
+       nende kast (padding box) polsterdusest ei liigu — nemad saavad sama
+       inseti eraldi (`.panel-menu` / `.panel-close` / `.panel-exit`).
+       Muutuja kaudu, et teda saaks arendades käsitsi katsetada. */
+    padding-top: var(--safe-top, 0px);
   }
   .panel-body {
     padding: 1.1rem;

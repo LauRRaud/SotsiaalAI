@@ -658,7 +658,7 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
      olekuriba/notch (iPhone'il 47–59 px) ja ribast ei jäänud midagi näha
      (omanik 26.07: „mobiilis on ülariba katki, ma ei näegi seda").
      Desktopil on inset 0, seega seal ei muutu miski. */
-  top: env(safe-area-inset-top, 0px);
+  top: var(--safe-top, 0px);
   left: 50%;
   transform: translateX(-50%);
   /* RoomStage ise on taustakihis. Juhtpaneel on selle kõrval ning peab

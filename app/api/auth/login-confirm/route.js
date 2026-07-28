@@ -15,6 +15,7 @@ const COPY = {
   et: {
     okTitle: "Sisenemine kinnitatud",
     okBody: "Sisselogimine jätkus automaatselt aknas, kus sisestasid PIN-koodi. Võid selle akna sulgeda.",
+    waitBody: "Avan SotsiaalAI …",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
     openLabel: "Ava SotsiaalAI"
@@ -22,6 +23,7 @@ const COPY = {
   en: {
     okTitle: "Sign-in confirmed",
     okBody: "Sign-in continued automatically in the window where you entered your PIN. You can close this window.",
+    waitBody: "Opening SotsiaalAI …",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
     openLabel: "Open SotsiaalAI"
@@ -29,11 +31,60 @@ const COPY = {
   ru: {
     okTitle: "Вход подтвержден",
     okBody: "Вход продолжился автоматически в окне, где вы ввели PIN-код. Это окно можно закрыть.",
+    waitBody: "Открываю SotsiaalAI …",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
     openLabel: "Открыть SotsiaalAI"
   }
 };
+
+/* Isesuunamine: see leht oli tupik. Mobiilil avab e-kirja link uue saki
+   (Gmail annab lingi Safarile ehk SAMASSE brauserisse), kasutaja luges
+   teate ära ja pidi käsitsi veel „Ava SotsiaalAI" vajutama (omanik 28.07).
+   Sessiooni ei tee see leht ise — küpsise paneb ESIMENE aken, kus PIN
+   sisestati: seal käib `/api/auth/login-status` poll iga 2 s ja lõpetab
+   sisselogimise ~2–4 s jooksul pärast lingi avamist. Seega ei tohi kohe
+   `/` peale hüpata (satuks välja logitud avalehele) — leht ootab, kuni
+   küpsis on päriselt olemas (`/api/auth/session` annab `user`), ja alles
+   siis suunab. Nupp jääb alles kahe päris juhtumi jaoks: (1) JS väljas —
+   ta on HTML-is nähtav ja skript peidab ta alles siis, kui ise tööle
+   hakkab; (2) link avati TEISES brauseris või seadmes (PIN sülearvutis,
+   kiri telefonis) — seal seda küpsist kunagi ei tule, seega pärast
+   ooteakent tuleb tagasi vana teade koos nupuga.
+   `location.replace`, mitte `href`: kinnituslink on ühekordne ja ei tohi
+   tagasi-nupuga uuesti käiku minna. */
+const REDIRECT_SCRIPT = `(function () {
+  var msg = document.getElementById("lc-msg");
+  var btn = document.getElementById("lc-open");
+  if (!msg || !btn) return;
+  var home = btn.getAttribute("href");
+  var settled = msg.textContent;
+  var deadline = Date.now() + 15000;
+  var timer = null;
+  msg.textContent = msg.getAttribute("data-waiting") || settled;
+  btn.hidden = true;
+  function giveUp() {
+    if (timer) clearTimeout(timer);
+    msg.textContent = settled;
+    btn.hidden = false;
+    document.body.removeAttribute("data-waiting");
+  }
+  function again() {
+    if (Date.now() >= deadline) { giveUp(); return; }
+    timer = setTimeout(poll, 700);
+  }
+  function poll() {
+    fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store" })
+      .then(function (res) { return res.ok ? res.json() : null; })
+      .then(function (data) {
+        if (data && data.user) { window.location.replace(home); return; }
+        again();
+      })
+      .catch(again);
+  }
+  document.body.setAttribute("data-waiting", "1");
+  poll();
+})();`;
 
 function escapeHtml(value) {
   return String(value || "")
@@ -144,14 +195,45 @@ function htmlResponse(locale, ok, homeUrl) {
         filter: brightness(1.12);
       }
       .button:active { transform: translateY(1px); }
+      /* NB: see plokk elab JS-i malli-stringis — siia EI TOHI kirjutada
+         tagurpidi ülakoma ega dollar-loogsulgu, muidu lõpeb string keset
+         CSS-i. [hidden] üksi ei võida inline-flex'i: ilma selle reeglita
+         jääks nupp ooteajaks nähtavale. */
+      .button[hidden] { display: none; }
+      /* Ootel olek vajab liikumist, muidu loeb „Avan …" kinnijooksmisena.
+         Kolm punkti, mitte spinner: sama vaikne keel mis dokil. */
+      .dots {
+        display: none;
+        gap: 0.42rem;
+        margin-top: 0.5rem;
+      }
+      body[data-waiting] .dots { display: inline-flex; }
+      .dots i {
+        width: 0.42rem;
+        height: 0.42rem;
+        border-radius: 50%;
+        background: rgba(236, 236, 236, 0.75);
+        animation: lc-pulse 1.15s ease-in-out infinite;
+      }
+      .dots i:nth-child(2) { animation-delay: 0.18s; }
+      .dots i:nth-child(3) { animation-delay: 0.36s; }
+      @keyframes lc-pulse {
+        0%, 100% { opacity: 0.28; transform: scale(0.86); }
+        50% { opacity: 1; transform: scale(1); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .dots i { animation: none; opacity: 0.7; }
+      }
     </style>
   </head>
   <body>
     <main>
       <h1>${escapeHtml(title)}</h1>
-      <p>${escapeHtml(body)}</p>
-      <a class="button" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>
+      <p id="lc-msg" aria-live="polite"${ok ? ` data-waiting="${escapeHtml(copy.waitBody)}"` : ""}>${escapeHtml(body)}</p>
+      <a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>
+      ${ok ? '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>' : ""}
     </main>
+    ${ok ? `<script>${REDIRECT_SCRIPT}</script>` : ""}
   </body>
 </html>`, {
     status: ok ? 200 : 400,

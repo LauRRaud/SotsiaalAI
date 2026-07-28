@@ -685,13 +685,20 @@ export default function ChatComposer({
     e.preventDefault();
     focusComposerField();
   }, [focusComposerField]);
+  // Alaserv tuleb ÜHEST muutujast (`--chat-composer-inset`, chat.css):
+  // puhkeasendis = suurem kahest kattest (kodunupu ala VÕI iOS-i
+  // tööriistariba) + tavaline vahe; klaviatuuri ajal kirjutab ChatBody
+  // sinna väikese vahe, sest siis mõõdab koha `--chat-vk-offset`. Varem
+  // olid kõik liidetavad siin real koos ja nad LIITUSID — komposer hüppas
+  // klaviatuurist liiga kõrgele (omanik 28.07). Varu 2.5rem hoiab vana
+  // käitumise seal, kus neid muutujaid ei defineerita (nt agendivaade).
   const inputRowMobileStyle = !embedded && isMobile
     ? {
         position: "absolute",
         left: 0,
         right: 0,
         top: "auto",
-        bottom: "calc(env(safe-area-inset-bottom,0px) + var(--chat-composer-mobile-bottom-base,2.5rem) + var(--chat-vk-offset,0px))",
+        bottom: "calc(var(--chat-composer-inset, 2.5rem) + var(--chat-vk-offset,0px))",
         marginTop: 0
       }
     : undefined;
