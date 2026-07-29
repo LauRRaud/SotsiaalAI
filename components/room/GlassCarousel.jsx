@@ -792,7 +792,14 @@ export default function GlassCarousel({
                 </span>
               </button>
             ) : null}
-            {backItem ? <span className="gc-shortcut-divider" aria-hidden="true" /> : null}
+            {/* Eraldaja eraldab tagasi-noole SELLEST, mis tema järel tuleb.
+                Kui järel ei tule midagi (kaardita leht, mille nime dokk ei
+                tea), jäi ta üksinda rippuma — kriips ilma teise pooleta
+                (omanik 29.07). Karussellis ja laual on rada alati olemas,
+                dokis ainult siis, kui lehel on nimi või ⓘ. */}
+            {backItem && (dockOnly ? Boolean(currentItem || infoItem) : true) ? (
+              <span className="gc-shortcut-divider" aria-hidden="true" />
+            ) : null}
             {dockOnly ? (
               /* Avatud lehel EI ole dokis õdede rida, vaid AINULT see, mis
                  lahti on: tagasi-nool + lehe nimi (omanik 26.07). Nimi
