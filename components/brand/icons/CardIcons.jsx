@@ -249,6 +249,24 @@ export const AboutInfoIcon = (props) => (
   </Svg>
 );
 
+/* Meist — brändi „S" (tellija 29.07). Ainus TÄIDETUD glüüf selles failis:
+   logo on kirjamärk, mitte kontuurjoonis, ja tema oma joonepaksus ongi bränd.
+   Rada tuleb muutmata kujul failist public/logo/sai-s-valge.svg (koordinaadid
+   ümardatud 2 kohani) — kui logo muutub, tuleb see rada uuesti sealt võtta.
+   Originaalkast on 24,19 × 39,77; transform mahutab ta 24-ruudu keskele
+   kõrgusega 18, st kitsas kirjamärk tohib naabrite ringist pisut üle ulatuda,
+   et jääda optiliselt sama suureks. */
+const S_MARK =
+  "M12.34 8.86Q14.99 8.92 17.71 9.1Q20.42 9.28 23.04 9.65L22.83 11.35Q20.34 11.2 17.69 11.08Q15.04 10.95 12.4 10.95Q9.88 10.95 8.07 11.11Q6.26 11.27 5.08 11.99Q3.9 12.7 3.36 14.32Q2.82 15.93 2.82 18.84Q2.82 22.81 4.15 24.56Q5.48 26.31 8.58 26.8L16.94 28.18Q21.24 28.82 22.97 31.18Q24.69 33.55 24.69 38.47Q24.69 41.86 23.92 43.9Q23.15 45.95 21.65 46.95Q20.14 47.96 17.9 48.29Q15.65 48.63 12.67 48.63Q10.48 48.63 7.65 48.5Q4.81 48.38 1.14 47.9L1.35 46.18Q3.78 46.33 5.6 46.41Q7.42 46.5 9.1 46.52Q10.78 46.54 12.76 46.54Q16.29 46.5 18.39 45.95Q20.49 45.4 21.43 43.66Q22.38 41.93 22.38 38.44Q22.38 35.58 21.79 33.94Q21.21 32.3 19.89 31.45Q18.57 30.6 16.4 30.29L8.01 28.91Q3.9 28.3 2.2 25.86Q0.5 23.43 0.5 18.81Q0.5 15.38 1.23 13.36Q1.97 11.35 3.42 10.36Q4.87 9.36 7.11 9.09Q9.35 8.82 12.34 8.86Z";
+
+export const BrandSIcon = (props) => (
+  <Svg {...props}>
+    <g transform="translate(6.3 -1.01) scale(0.4526)">
+      <path d={S_MARK} fill="currentColor" stroke="none" />
+    </g>
+  </Svg>
+);
+
 /* Haldus — näidik (gauge): kaar + osuti + telg */
 export const AdminSlidersIcon = (props) => (
   <Svg {...props}>

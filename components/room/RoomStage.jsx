@@ -55,6 +55,7 @@ import {
   BackArrowIcon,
   AdminSlidersIcon,
   AboutInfoIcon,
+  BrandSIcon,
   HelpRequestIcon,
   HelpOfferIcon,
   DocumentsIcon,
@@ -142,6 +143,13 @@ const WELLBEING_TOOL_ICONS = Object.freeze({
 const LERP = 0.11;
 const LERP_SKIP = 0.17;
 const ROOM_ARRIVAL_COMPLETE_COOKIE = "sotsiaalai_room_arrival_complete";
+
+/* Lehed, millel karussellis kaarti EI OLE, aga mis siiski dokiga avanevad.
+   Dokk kannab avatud akna nime — kui nime pole, jääb kasutaja tagasi-noole
+   ja tühja riba peale. Tee → i18n-võti (vt panelDock allpool). */
+const CARDLESS_DOCK_LABELS = {
+  "/autorilt": "about.links.author",
+};
 
 /* Tellija otsus: saabumiskõnd toimub IGAL platvormi laadimisel —
  * mitte mingit "olen näinud" salvestust. Ainult sama laadimise sees
@@ -915,7 +923,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "voimalused", label: t("about.links.features"), href: "/voimalused", icon: <SparkleIcon /> },
       { key: "juhend", label: t("about.guide.jump_link"), href: "/kasutusjuhend", icon: <GuideBookIcon /> },
       { key: "login", label: t("nav.login"), action: "login", icon: <LoginKeyIcon /> },
-      { key: "meist", label: t("meist.title"), href: "/meist", icon: <AboutInfoIcon /> },
+      { key: "meist", label: t("meist.title"), href: "/meist", icon: <BrandSIcon /> },
       { key: "tingimused", label: t("about.links.terms"), href: "/kasutustingimused", icon: <TermsDocIcon /> },
       { key: "privaatsus", label: t("about.links.privacy"), href: "/privaatsustingimused", icon: <PrivacyShieldIcon /> },
       { key: "hinnastus", label: t("about.links.pricing"), href: "/hinnastus", icon: <PricingTagIcon /> },
@@ -929,7 +937,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
      sisselogitule ühe kaardi all (tellija 06.07 öö) */
   const teaveItems = useMemo(
     () => [
-      { key: "meist", label: t("meist.title"), href: "/meist", icon: <AboutInfoIcon /> },
+      { key: "meist", label: t("meist.title"), href: "/meist", icon: <BrandSIcon /> },
       { key: "juhend", label: t("about.guide.jump_link"), href: "/kasutusjuhend", icon: <GuideBookIcon /> },
       { key: "voimalused", label: t("about.links.features"), href: "/voimalused", icon: <SparkleIcon /> },
       { key: "tingimused", label: t("about.links.terms"), href: "/kasutustingimused", icon: <TermsDocIcon /> },
@@ -1202,10 +1210,16 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
        mäletatud hub'is — nt Teave-alamkomplekti lehed pärast värskendust,
        sest infoHub on React-olek ega ela laadimist üle. Nimetu dokk oleks
        siin halvem kui vale komplekt: leht ise pealkirja ei kanna. */
+    /* Viimane aste: lehed, millel EI OLE üldse kaarti (nt /autorilt, kuhu
+       viib ainult link Meist-teksti seest). Ilma selleta seisis dokis
+       tagasi-nool üksinda ja lugeja ei näinud kusagilt, mis aken lahti on
+       (omanik 29.07). Nime allikas on i18n, mitte tee — dokk räägib lugeja
+       keeles. Ikooni siin ei ole: dokk joonistab siis oma märgi. */
+    const cardless = CARDLESS_DOCK_LABELS[normalized];
     const current =
       cards.find((item) => item.href === here) ||
       allCardsByHref.get(here) ||
-      null;
+      (cardless ? { key: normalized, label: t(cardless), href: normalized } : null);
     return {
       cards,
       current,
