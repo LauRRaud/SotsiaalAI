@@ -906,18 +906,21 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     };
   }, [isLoginOpen]);
 
-  /* ---------- karusselli komplektid ---------- */
+  /* ---------- karusselli komplektid ----------
+     Järjekord 29.07 (tellija: „meist tekst peaks olema nähtavam"): Meist seisab
+     login'i kõrval, et esmakülastaja näeks teda kerimata; tingimused/privaatsus
+     on juriidilised lingid ja elavad sammu kaugemal. */
   const publicItems = useMemo(
     () => [
       { key: "voimalused", label: t("about.links.features"), href: "/voimalused", icon: <SparkleIcon /> },
       { key: "juhend", label: t("about.guide.jump_link"), href: "/kasutusjuhend", icon: <GuideBookIcon /> },
       { key: "login", label: t("nav.login"), action: "login", icon: <LoginKeyIcon /> },
+      { key: "meist", label: t("meist.title"), href: "/meist", icon: <AboutInfoIcon /> },
       { key: "tingimused", label: t("about.links.terms"), href: "/kasutustingimused", icon: <TermsDocIcon /> },
       { key: "privaatsus", label: t("about.links.privacy"), href: "/privaatsustingimused", icon: <PrivacyShieldIcon /> },
       { key: "hinnastus", label: t("about.links.pricing"), href: "/hinnastus", icon: <PricingTagIcon /> },
       { key: "paigalda", label: t("room.install_card"), action: "paigalda", icon: <InstallIcon /> },
       { key: "kontakt", label: t("about.contact.title"), action: "kontakt", icon: <ContactMailIcon /> },
-      { key: "meist", label: t("meist.title"), href: "/meist", icon: <AboutInfoIcon /> },
     ],
     [t]
   );
