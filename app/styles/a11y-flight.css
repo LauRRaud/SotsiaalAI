@@ -78,13 +78,12 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
   touch-action: manipulation;
 }
 
-/* --- Keri-vihje: sama sõnatu nooleke mis avalehel ------------
-   Taaskasutab room.css `hint-slide`/`hint-slide-up` keyframe'e —
-   sõrmega keritakse ÜLESPOOLE, hiirerattaga allapoole (kanooniline
-   suund), sama vastandus mis avalehel juba paigas (omanik 26.07:
-   "mul juba see õigesti seadistatud mobiilile ja desktopile
-   avalehel"). Nähtav ainult enne esimest lendu — vt AccessibilityModal
-   scrollHintDismissed. */
+/* --- Keri-vihje: sama sõnatu joon mis avalehel ---------------
+   Taaskasutab room.css `hint-breathe` keyframe'i — joon ei libise
+   kuhugi, vaid hingab keskelt välja (omanik 29.07, variant 3:
+   ratast ja puutetahvlit ei saa enne esimest kerimist eristada,
+   seega suunda ei väida me üldse). Nähtav ainult enne esimest
+   lendu — vt AccessibilityModal scrollHintDismissed. */
 .a11f-scroll-hint {
   position: absolute;
   left: 50%;
@@ -112,15 +111,11 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
   left: 0;
   top: 0;
   width: 3px;
-  height: 15px;
+  height: 100%;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.5);
-  animation: hint-slide 3.1s var(--ease-drift) infinite;
-}
-@media (pointer: coarse) {
-  .a11f-scroll-hint-dot {
-    animation: hint-slide-up 3.1s var(--ease-drift) infinite;
-  }
+  transform-origin: 50% 50%;
+  animation: hint-breathe 3.1s var(--ease-drift) infinite;
 }
 .a11f-scroll-hint-label {
   font-size: 0.86rem;

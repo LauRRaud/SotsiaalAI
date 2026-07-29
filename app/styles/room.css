@@ -554,39 +554,21 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   background: rgba(255, 255, 255, 0.2);
   overflow: hidden;
 }
-@keyframes hint-slide {
-  0% {
-    transform: translateY(-120%);
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
+/* SUUNATU vihje (tellija 29.07, variant 3): joon ei libise enam üles ega
+   alla, vaid kasvab keskelt välja ja tõmbub tagasi. Põhjus: brauser ei
+   erista enne esimest kerimist hiireratast ja puutetahvlit (mõlemad
+   `pointer: fine`, mõlemad `wheel`), ja sama masina küljes on tihti
+   mõlemad — iga suunaline variant on seega pooltel juhtudel vastupidine.
+   Suuna kannab sõna KERI, joon ütleb ainult „siin on kerimisrada". */
+@keyframes hint-breathe {
+  0%,
   100% {
-    transform: translateY(320%);
-    opacity: 0;
+    transform: scaleY(0.22);
+    opacity: 0.35;
   }
-}
-/* Puuteseadmel keritakse sõrmega ÜLESPOOLE (leht liigub edasi), seega
-   allapoole libisev täpp luges žesti vastupidiseks (tellija 25.07).
-   Hiirerattal jääb kanooniline allasuund alles. */
-@keyframes hint-slide-up {
-  0% {
-    transform: translateY(320%);
-    opacity: 0;
-  }
-  25% {
+  50% {
+    transform: scaleY(1);
     opacity: 1;
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-120%);
-    opacity: 0;
   }
 }
 .room-hint-dot {
@@ -594,17 +576,11 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
   left: 0;
   top: 0;
   width: 3px;
-  height: 20px;
+  height: 100%;
   border-radius: 3px;
   background: rgba(255, 255, 255, 0.5);
-  animation: hint-slide 3.1s var(--ease-drift) infinite;
-}
-@media (pointer: coarse) {
-  /* Terve shorthand, mitte pelk animation-name — Blink pärib lühema
-     override'i korral ülejäänud animatsiooniomadused valesti. */
-  .room-hint-dot {
-    animation: hint-slide-up 3.1s var(--ease-drift) infinite;
-  }
+  transform-origin: 50% 50%;
+  animation: hint-breathe 3.1s var(--ease-drift) infinite;
 }
 /* Tellija 06.07 öö: KERI selgelt suurem ja loetavam */
 .room-hint-label {
@@ -1221,9 +1197,8 @@ html[data-reduce-motion="1"] .room-walk-audio {
   .room-hint-track {
     height: 34px;
   }
-  .room-hint-dot {
-    height: 15px;
-  }
+  /* Joon täidab raja (`height: 100%`), seega mobiili eraldi kõrgust
+     enam pole — lühem rada kahandab teda ise. */
   .room-hint-label {
     font-size: 1rem;
   }
