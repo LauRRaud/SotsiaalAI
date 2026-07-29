@@ -52,8 +52,20 @@ info kordagi omaniku käest lahkuks.
 
 - Privaatsuspiirid on **serveris jõustatud** — IDOR-testidega tõendatud; ka admin ei pääse
   võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
-- Koondid on **k≥5 anonüümsuslävega**; individuaalset juhivaadet ei eksisteeri
-  arhitektuuriliselt.
+- Koondid on anonüümsuslävega, **aga lävi ei ole ühtne (kontrollitud koodist 29.07.2026)**:
+  admini analüütika **k≥5** (`lib/admin/analyticsMetrics.js:2`
+  `CRISIS_SUPPRESSION_THRESHOLD = 5`), tööheaolu koondid ja piloodiskoobid aga **k≥3**
+  (`lib/wellbeing/aggregate.js:3` ja `lib/wellbeing/pilotScopes.js:3`
+  `DEFAULT_MINIMUM_GROUP_SIZE = 3`; skoopi ei saa seada alla 3, aga 3 on lubatud).
+  Env `WELLBEING_MIN_GROUP_SIZE` **ei ole toodangus seatud** (kontrollitud serverist
+  29.07) → kehtib 3. Individuaalset juhivaadet ei eksisteeri arhitektuuriliselt.
+  **Varasem üldistus „koondid on k≥5" oli seega osaliselt vale** ja seda ei tohi enne
+  otsust kasutada lubaduste lehel, AI-määruse vastavusdokumendis ega essees.
+  **LAHTINE OTSUS O-WB-K:** kas tõsta tööheaolu lävi 5-le (ühtne avalik lubadus) või
+  jätta 3 ja kirjeldada lävesid eraldi. Hind tõstmisel: alla 5-liikmelise meeskonna
+  koond kaob täielikult — väikeses KOV-is on see enamik meeskondi, ja tõenäoliselt just
+  see ongi põhjus, miks lävi on 3. Tõstmine on ohutu suund (rangem), aga see on
+  tootevalik, mitte veaparandus.
 - Kriisirada on **fail-closed** kolmes keeles.
 - Andmed asuvad Eestis; platvorm töötab kolmes keeles (et/en/ru); ekspordiõigus (GDPR
   andmekoopia) on sisse ehitatud.
