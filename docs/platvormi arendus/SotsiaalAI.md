@@ -52,20 +52,35 @@ info kordagi omaniku käest lahkuks.
 
 - Privaatsuspiirid on **serveris jõustatud** — IDOR-testidega tõendatud; ka admin ei pääse
   võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
-- Koondid on anonüümsuslävega, **aga lävi ei ole ühtne (kontrollitud koodist 29.07.2026)**:
-  admini analüütika **k≥5** (`lib/admin/analyticsMetrics.js:2`
-  `CRISIS_SUPPRESSION_THRESHOLD = 5`), tööheaolu koondid ja piloodiskoobid aga **k≥3**
-  (`lib/wellbeing/aggregate.js:3` ja `lib/wellbeing/pilotScopes.js:3`
-  `DEFAULT_MINIMUM_GROUP_SIZE = 3`; skoopi ei saa seada alla 3, aga 3 on lubatud).
-  Env `WELLBEING_MIN_GROUP_SIZE` **ei ole toodangus seatud** (kontrollitud serverist
-  29.07) → kehtib 3. Individuaalset juhivaadet ei eksisteeri arhitektuuriliselt.
-  **Varasem üldistus „koondid on k≥5" oli seega osaliselt vale** ja seda ei tohi enne
-  otsust kasutada lubaduste lehel, AI-määruse vastavusdokumendis ega essees.
-  **LAHTINE OTSUS O-WB-K:** kas tõsta tööheaolu lävi 5-le (ühtne avalik lubadus) või
-  jätta 3 ja kirjeldada lävesid eraldi. Hind tõstmisel: alla 5-liikmelise meeskonna
-  koond kaob täielikult — väikeses KOV-is on see enamik meeskondi, ja tõenäoliselt just
-  see ongi põhjus, miks lävi on 3. Tõstmine on ohutu suund (rangem), aga see on
-  tootevalik, mitte veaparandus.
+- Koondid on kaitstud, **aga kaks kaitset on ERI LIIKI ja neid ei tohi ühe numbri alla
+  kokku valetada (kontrollitud koodist + serverist 29.07.2026; täpsustus samal õhtul —
+  varasem sõnastus siin failis nimetas admini „5" ekslikult k-anonüümsuseks):**
+  - **Tööheaolu koondid ja piloodiskoobid = päris inimesepõhine k-anonüümsus, lävi 3:**
+    `lib/wellbeing/aggregate.js` arvutab valimi ERISTUVATEST inimestest
+    (`ownerUserId`) ja summutab alla läve; `pilotScopes.js` põrandastab iga skoobi
+    väärtuse 3 peale ja päringuga läve langetada EI SAA (kontrollitud sihilikult).
+    Env `WELLBEING_MIN_GROUP_SIZE` ei ole toodangus seatud → kehtib 3.
+    Individuaalset juhivaadet ei eksisteeri arhitektuuriliselt.
+  - **Admini kriisiloendur = SÜNDMUSEPÕHINE väikese arvu summutus ühel mõõdikul,
+    MITTE k-anonüümsus:** `lib/admin/analyticsMetrics.js`
+    (`CRISIS_SUPPRESSION_THRESHOLD = 5`) summutab, kui sündmuste ARV on 1–4 — aga ühe
+    inimese viis kriisivestlust kuvatakse „5"-na, st isikutasandi kaitset see number ei
+    anna. Odav karastus on olemas, kui numbrit kunagi avalikult öelda tahetakse:
+    `ChatLog`-il on `userId`, loenduri vahetus eristuvate kasutajate peale (~3 kohta)
+    teeks „5"-st päris k≥5.
+  - **Järeldus, mis on vastuintuitiivne ja väärib meeldejätmist: 3 on siin TUGEVAM
+    konstruktsioon kui 5** — väiksem number, aga mõõdab õiget asja (inimesi, mitte
+    sündmusi). Avalikes tekstides (lubaduste leht, AI-määruse vastavusdokument, essee)
+    räägi seni MEHHANISMIST („koond avaneb alles siis, kui inimesi on piisavalt, et
+    kedagi ei saaks üksikuna ära tunda"), mitte numbrist. Ühtki „k≥5" avalikku lubadust
+    ei ole antud (kontrollitud messages/*.json + kood 29.07) — aken on lahti.
+  **LAHTINE OTSUS O-WB-K:** kas tõsta tööheaolu lävi 5-le (ühtne avalik number) või
+  jätta 3 ja kirjeldada kaitset mehhanismina. Hind tõstmisel: alla 5-liikmelise
+  meeskonna koond kaob täielikult — väikeses KOV-is on see enamik meeskondi, ja
+  tõenäoliselt just see ongi põhjus, miks lävi on 3. NB enne mistahes ühtset avalikku
+  numbrit vajab ka admini „5" pool ülal kirjeldatud karastust — muidu oleks lubadus
+  peenelt vale ka pärast tööheaolu tõstmist. Env-i praegu ei muudeta (soovitus 29.07:
+  dokument joondati koodiga, mitte kood dokumendiga).
 - Kriisirada on **fail-closed** kolmes keeles.
 - Andmed asuvad Eestis; platvorm töötab kolmes keeles (et/en/ru); ekspordiõigus (GDPR
   andmekoopia) on sisse ehitatud.
@@ -312,7 +327,7 @@ andmetega tohib pime funktsioon elada täisvormis.
 |---|---|---|
 | Heaoluplaani peegel | TERVIK § 134–135: inimene on plaanis objekt | disainileping pärast eelnõu lõppversiooni |
 | Tervise teejuhi tööruum | TERVIKud 1.07.2027, teejuht tööriistata | kuluaarivestlused sügiskoolis; spetsialisti-kesta kohandus |
-| Omastehooldaja ruum | arengukava: hooldajate teadlikkus = kitsaskoht | vajaduskaardistus (Koppel/EPIK sisend) |
+| Omastehooldaja ruum | arengukava: hooldajate teadlikkus = kitsaskoht; **EPIK 30.07: 160 000–180 000 omastehooldajat, pooled abistavad hügieenitoimingutes; ükski register neid ei näe** | vajaduskaardistus (Koppel/EPIK sisend). **DISAINIREEGEL (omaniku küsimus 30.07 „mida saab profiilis märkida?"): hooldaja märgib OMA olukorra, mitte teise inimese diagnoosi** — koormus (kas ööpäevaringne, kas saab tööl käia, kas keegi asendab), mitte hooldatava andmed; hooldatava kohta käiv info elab ainult eelpöördumises, kus nõusoleku küsimus on juba olemas (`PRE_INQUIRY_CONSENT_OPTIONS`). Profiil täna kannab AINULT nime ja telefoni (`Profile`-mudel) — olukorra-märkeid ei ole üldse, seega see on uus väli, mitte olemasoleva laiendus. Kolm eri jagamissihti, kolm eri sisu: KOV-ile hooldaja ENDA vajadus (asendushooldus, tugi — täna on eelpöördumine hooldatava-keskne); tööandjale paindlikkuse-alus (EL töö- ja eraelu direktiiv; omastehooldus.eu 2026 fookus ONGI paindlikkus); valdkonnale ANONÜÜMNE koondpilt sama k-lävega mis tööheaolul — see oleks esimene omastehooldajate andmestik, mis ei ole küsitlus |
 | Kriisirežiim | hoolekandeprogrammi toimepidevus; offline-kest olemas | kontseptsioonileht; võimalik eraldi rahastusuks |
 | Juhendite värskuskanal | riigi juhendid muutuvad teavituseta | esimene sisend = ajakirja Sotsiaaltöö uudiskiri (vt allpool) |
 | Lubaduste audit | /voimalused = 19 avalikku lubadust | iga lause → tõend/parandus; T10 release-raja osa |
@@ -936,6 +951,31 @@ andmebaas näitas 2022 III kv ~187 SE-d (30,4 M€, ~3800 töötajat) ja 2023 II
 (34,5 M€, ~4200) — kiire kasv VÕI loendusmetoodika muutus; enne tsiteerimist võta
 värske number sev.ee andmebaasist.
 
+**11b. ESTA tugiprogramm = meie tööheaolu-kihi riiklik paralleel + kolm ust
+(docs/ESTA kaust, 12 dokumenti, loetud 30.07.2026).** ESTA ehitab Šveitsi-Eesti
+kvalifikatsioonikomponendi (SoM, 6,45 M€, 2024–2028) partnerina „töökohapõhist
+tugisüsteemi": koolitused ~200 spets/a (SH „Tehisintellekti nutikas kasutamine
+sotsiaalhoolekandes" — Airi Mitendorf, kohad täituvad kiiresti → AI-koolituse NÕUDLUS
+on tõestatud, meie pakkumine = süvendus+eristus, mitte „tühiku täitmine"),
+eetikakompass (ETAG TA-rahastus — ESTA arendab ise digitaalset tööriista!),
+kompetentsiraamistik → 9 ameti kompetentsiprofiilid (sh TERVISETEEJUHT; digitaalsed
+kaasamisvoorud sept 2026 / jaan 2027 / apr 2027 = formaalne kanal AI-pädevuse
+ettepanekuks), **sügisel 2026 tööheaolu häkaton → tugisüsteemi KOV-piloteerimine
+2027** (omaniku Heaolutalgud on selle rütmiga tõenäoliselt seotud — talgu väljund
+võib viia KOV-pilootideni, kuhu platvorm istub). KOLM UST: (1) **mentorluse digikodu** —
+strateegiapäev 23.04 pani ESTA omatulu-kavva mentorlusteenuse MÜÜGI (18 koolitatud
+mentorit); teenuse müük vajab keskkonda (kohtumised, kokkuvõtted, arveldus) ja meie
+mentorluse-kiht on ehitatud → E-ploki pakkumine „teie teenuse infrastruktuur, teie
+kaubamärk"; (2) **koolitus revenue-share'ina** — ESTA tahab ise koolitusturule
+(omatulu-kava esikoht), seega meie AI-koolitus = NENDE korraldatud tasuline koolitus
+meie sisuga; (3) **KOV-kandidaadid tunnustuselt**: Viljandi vald (aasta asutus 2025;
+juba katsetab heaolutehnoloogiaid — piloodi TIPPKANDIDAAT) ja Saue vald (Piiritalo
+digilahendus töö koordineerimiseks + teenuste logistik — Teenuspäeviku turu-uuringu
+kontakt). Taustanumber tööheaolu-kihile: **92,6% KOV sotsiaal-/lastekaitsetöötajatest
+on kogenud kliendist lähtuvat vägivalda** (Toros jt 2024, TLÜ CIRIC) — töövägivalla
+töövoog ja välitöö turvasignaal EI OLE nišifunktsioonid, vaid valdkonna
+põhiprobleemi tootetasand.
+
 **12. Autori lugu kui strateegiline vara (sotsiaal.ai/autorilt; loetud 29.07.2026).**
 Avalik elulugu (2017 sotsiaalinfo.ee idee → 2020 AI-mõte ENNE ChatGPT-d → 2022 selge
 visioon → 2025 mai ehituse algus → 2026 aprill toimiv platvorm) teeb kolm strateegilist
@@ -1005,6 +1045,10 @@ vestlus/kanalikaart (5.7) oskama vaimse tervise mure puhul juhatada ka sinna —
 kanal" on meie lubadus, mitte konkurentsitõrje. Ja vastupidi: astmelise abi teekonnal
 sotsiaalmurega inimene vajab sotsiaalpoole ust — see ristsuunamine on koostöövestluse
 teema SoM-iga (kontakt lehel olemas), MITTE enne piloodi käivitumist.
+
+---
+
+## 6. Riskid — aus pilk
 
 | Risk | Tõenäosus | Vastus |
 |---|---|---|

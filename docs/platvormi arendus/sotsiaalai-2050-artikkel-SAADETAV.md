@@ -199,12 +199,14 @@ palju sama infot sisestati kaks korda; ja kas töötaja taastumisrütm püsis. �
 viiest ei parane sellest, et inimene meie juures kauem viibib — ja ükski tööriistamüüja
 selliseid mõõdikuid tavaliselt ei vali, sest nad vähendavad sõltuvust tema enda tootest.
 
-Meil oli seda lihtsam valida ühel konkreetsel põhjusel: meie arvet ei maksnud kunagi see
-inimene, kes parasjagu hädas oli. Maksid omavalitsused, asutused ja avalik raha — sama
-loogika, mille järgi lasteabitelefonile helistaja ei maksa kõne eest. See otsus tehti
-varakult ja ta oli kogu ülejäänud nimekirja eeldus: kui su tulu tuleb hetkest, mil
-inimesel on kõige raskem, ei saa sa endale ühtegi neist keeldumistest lubada. Meie
-ärimudel ei olnud vooruse tagajärg, vaid tema eeldus.
+Meil oli seda lihtsam valida ühel konkreetsel põhjusel: abi ei jäänud kunagi selle taha,
+kas inimesel oli parasjagu, millega maksta. Kes jaksas, tasus ise — kuutasu, ja paljudele
+oli oluline just see, et nad olid ise maksjad. Kelle jaoks see hetkel üle jõu käis, selle
+eest tasus keegi teine: omavalitsus, asutus või toetaja, kasvõi üks kuu korraga, kuni
+inimene sai ise järje peale. Põhimõte oli sama, mis lasteabitelefonil: kõne ei jää kunagi
+maksmise taha. See valik tehti varakult ja ta oli kogu ülejäänud nimekirja eeldus:
+ärimudel, mis elatub inimese kõige raskemast hetkest, ei saa endale ühtegi neist
+keeldumistest lubada. Meie ärimudel ei olnud vooruse tagajärg, vaid tema eeldus.
 
 **Me ei lasknud masinal otsustada.** Mitte ükski toetus, teenus ega hinnang ei sündinud
 masinas. Platvorm selgitas, struktureeris, tõlkis bürokraatia inimkeelde ja inimese loo

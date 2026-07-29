@@ -42,9 +42,10 @@ Kolme „ei" loend vastab ette kolmele tüüpkahtlusele: varjuregister, AI otsus
 >    sotsiaaltöötaja hakkab töötama kahes süsteemis sama inimese jaoks? Ja kas inimene ise näeb
 >    oma heaoluplaani — eelnõu § 135 loetleb juurdepääsu tugimeeskonnale, inimest ennast seal
 >    ei ole?
-> 7. Häirekeskus kulutab sotsiaalse abivajadusega kõnedele ~35 tundi PÄEVAS (Sotsiaaltöö
->    2/2025 analüüs) — tervisemurede jaoks on 1220, sotsiaalmurede jaoks pole midagi. Kas
->    sotsiaalvaldkond vajab oma nõuandekanalit, ja kes peaks seda vedama?
+> 7. Häirekeskuse ühe ööpäeva analüüsis puudutas ligi veerand kõnedest sotsiaalset
+>    abivajadust ja 189 inimesele öeldi, et riik neid aidata ei saa (Sotsiaaltöö 2/2025) —
+>    tervisemurede jaoks on 1220, sotsiaalmurede jaoks pole midagi. Kas sotsiaalvaldkond
+>    vajab oma nõuandekanalit, ja kes peaks seda vedama?
 
 ---
 
@@ -61,16 +62,7 @@ nõrkusena, et kriitilised liidestused on puudu või poolikud, ja seab eesmärgi
 teenuseosutajate ja teiste registritega. Ma olen selle diagnoosiga praktikas nõus: täna on ainus
 viis välisest töövahendist registrisse infot saada käsitsi ümbertrükkimine. See tekitab topelttööd
 ja kiusatuse hoida andmeid väljaspool registrit. Küsin, millal ja mis kujul strateegia lubadus
-teoks saab."
-
-**Kui küsitakse vastu:** „Kas te tahate STAR-ile ligipääsu?" → *„Ei. Me ei taha registrist midagi
-lugeda ega sinna automaatselt kirjutada. Tahame ühesuunalist ust: töötaja enda kirjutatud ja
-kinnitatud materjal liigub tema enda käega registrisse, ilma ümbertrükkimiseta. Ametlik akt toimub
-registris, töötaja autentimisega."*
-
-**NB sõnastustäpsus:** strateegias tähendab „paralleelsus" STAR1 ja STAR2 samaaegset kasutust —
-MITTE väliseid süsteeme. Ära ütle „strateegia nimetab riskina paralleelseid väliseid süsteeme";
-ütle „strateegia nimetab nõrkusena puuduvaid liidestusi". See on täpne ja tsiteeritav.
+teoks saab. Ligipääsu registrile ma ei palu — meie ei taha sealt midagi lugeda ega sinna automaatselt kirjutada. Kirjeldan ühte konkreetset olukorda: sotsiaaltöötaja on kohtumise ära pidanud ja kokkuvõtte meie keskkonnas valmis kirjutanud, oma sõnadega ja üle vaadatuna, ning peab selle nüüd STAR-i käsitsi ümber trükkima. Küsin, kas ta saaks selle ühe vajutusega üle kanda — oma STAR-i sisselogimisega, oma nime all, nii et ametlik kanne sünnib ikka registris ja tema kinnitusega. See on liides, mis ei anna platvormile ühtegi õigust: õigused on töötajal, kes sisse logib, ja meie oleme selles ahelas ainult koht, kus tekst valmis kirjutatakse."
 
 ### A2. Eelkaardistus ja seitse eluvaldkonda
 
@@ -82,17 +74,16 @@ tühjalt lehelt?
 **Selgitus:** „SKA „Täisealise abi- ja toetusvajaduse hindamise juhend" käsitleb abivajadust
 seitsme eluvaldkonna kaupa: suhtlemine, vaimne tervis, füüsiline tervis, elukeskkond, hõivatus,
 vaba aeg ja igapäevaelu toimingud. Meie eelkaardistus kasutab sedasama raamistikku lihtsas
-keeles — inimene käib valdkonnad läbi kodus, oma tempos, ja jagab tulemust ise. See EI ole
-ametlik hindamine: SHS § 15 järgi hindab abivajadust KOV ja nii peabki jääma. Aga kui inimese
-eeltöö on juba hindamisloogikaga samas keeles, on kummaline, kui kohtumine algab ikkagi tühjalt
-lehelt."
-
-**Kui küsitakse vastu:** „Kas inimene ise hindabki ennast?" → *„Ei — inimene kirjeldab,
-spetsialist hindab. Sama vahe mis arsti juures: vaevused võid enne kirja panna, diagnoosi paneb
-arst. Meie kokkuvõte ütleb sõnaselgelt, et see on eelinfo, mitte hindamine."*
-
-**NB sõnastustäpsus:** ütle „sama seitsme eluvaldkonna raamistik", MITTE „samad küsimused" —
-meie küsimustik on detailsuses juhendist erinev (mõnes valdkonnas põhjalikum).
+keeles, ja inimene valib ise, kui põhjalikult ta seda teeb. Lühem variant käib eluvaldkonnad
+läbi kiire sõelaga ja süveneb ainult seal, kus mure ilmneb; põhjalikum on mõeldud rahulikuks
+koduseks läbimõtlemiseks enne ühenduse võtmist. Kellele kumbki ei sobi, kirjeldab oma olukorda
+lihtsalt vabas vormis ja täpsustavad küsimused tulevad ainult vajadusel. Igal juhul käib
+inimene selle läbi kodus, oma tempos, ja jagab tulemust ise. See EI ole ametlik hindamine:
+SHS § 15 järgi hindab abivajadust KOV ja nii peabki jääma. Inimene kirjeldab, spetsialist
+hindab — sama vahe mis arsti juures, kus vaevused võid enne ise kirja panna, aga diagnoosi
+paneb arst; meie kokkuvõte ütleb sõnaselgelt, et tegu on eelinfoga, mitte hindamisega. Aga kui
+inimese eeltöö on juba hindamisloogikaga samas keeles, on kummaline, kui kohtumine algab
+ikkagi tühjalt lehelt."
 
 ### A3. Menetluse-eelse materjali õiguslik staatus
 
@@ -104,11 +95,7 @@ kolmandat? Kas riik kavatseb selle määratleda?
 muus keskkonnas" ja jõuda ühe ukse printsiibil STAR-i. See tähendab, et menetluse-eelne
 digitaalne ettevalmistus on riigi enda tulevikupildis olemas. Aga selle staatus on määratlemata:
 kas see on pöördumine, mis käivitab tähtajad? Praegu tõlgendab iga omavalitsus ise, ja sama
-inimese sama samm võib eri linnades tähendada eri asja."
-
-**Kui küsitakse vastu:** „Miks see oluline on?" → *„Sest ebaselgus karistab mõlemat poolt:
-töötaja ei tea, kas ta tohib eelinfot vastu võtta ilma menetluskohustuseta, ja inimene ei tea,
-kas tema ettevalmistus loeb."*
+inimese sama samm võib eri linnades tähendada eri asja. Konkreetselt: meie platvormil kirjutab inimene oma olukorra oma sõnadega valmis ja saadab selle ise omavalitsusele. Töötaja saab selle kätte — aga täna ei oska keegi öelda, mis dokument see on: kas pöördumine, mis käivitab tähtajad, või lihtsalt kiri. Ebaselgus karistab seejuures mõlemat poolt: töötaja ei tea, kas ta tohib eelinfot vastu võtta ilma menetluskohustuseta, ja inimene ei tea, kas tema ettevalmistus üldse loeb."
 
 ### A4. Kaks vastutavat töötlejat
 
@@ -135,11 +122,7 @@ tingimustel riik seda usaldaks?
 **Selgitus:** „Riigi statistika näitab menetlusi, mis algasid. Aga vajadus, millele teenust ei
 ole, ei jõua ühtegi registrisse — menetlust ei teki. Meil on tehniliselt võimalik näidata
 anonüümselt, mis teemadel abi otsitakse seal, kus teenuskaart on tühi; avaldades ainult koonde,
-kus rühmas on vähemalt viis inimest. Küsin: kas riik tahaks seda andmekihti?"
-
-**Kui küsitakse vastu:** „Kas see pole andmete müümine?" → *„Üksikjuhtumeid ei näe sellest kihist
-mitte keegi, ka meie ise mitte. Sama loogika mis rahvaloendusel: muster on avalik väärtus,
-inimene on kaitstud."*
+kus rühmas on vähemalt viis inimest. Küsin: kas riik tahaks seda andmekihti? Andmete müümisega sel kihil pistmist ei ole: üksikjuhtumeid ei näe sellest mitte keegi, ka meie ise mitte. Sama loogika mis rahvaloendusel — muster on avalik väärtus, inimene on kaitstud."
 
 ### B2. Kestlikkuse baromeeter
 
@@ -151,28 +134,7 @@ töökoormusest, taastumisest ja toe kättesaadavusest?
 rangelt privaatsed, koond tekib ainult piisava valimi korral, juht ei näe kunagi üksikisikut —
 aga valdkond ja ministeerium näeksid esimest korda mustrit: koormus, taastumine, kovisiooni ja
 supervisiooni kättesaadavus, katkestused, dubleeriv dokumenteerimine. Ilma sellise pildita on iga
-„ressursse on vähe" ja iga „peate ise muutuma" lihtsalt arvamus."
-
-**Kui küsitakse vastu:** „Kas see pole töötajate jälgimine?" → *„See on disainitud täpselt
-vastupidiseks: individuaalset vaadet ei eksisteeri arhitektuuriliselt — seda ei saa „välja
-lülitada", sest seda pole olemas. Juht ei näe isegi seda, kes üldse vastas. Jälgimiskeeld on
-ehitatud andmemudelisse, mitte lubadusse."*
-
-**Kvantifitseeritud laskemoon (lisatud 29.07):** ajakirja Sotsiaaltöö 2/2025
-esseekonkursi võidutöö (Virro & Leesment, TLÜ — „Sotsiaaltöö aastal 2050. Unistus
-sotsiaalkiirabist") viitab häirekeskuse ühe päeva analüüsile: **sotsiaalse abivajadusega
-kõnedele kulus ~35 tundi PÄEVAS** ja „abita jäänud inimeste kõnedest oli üllatavalt suur
-osa sellised, mille taga oli eluline mure". Mõõdetud tõestus, et nähtamatu vajadus
-maandub kõige kallimasse kanalisse — täpselt B1/B2 auk. Rist-viide laval: nende unistus
-on akuutne kanal 2050-ks; selguse-kanal ENNE kriisi on ehitatav täna ja vähendaks
-sedasama koormust. (Autorid = 2 TLÜ doktoranti — kuluaari-kontaktid; avaldatud ajakirjas
-Sotsiaaltöö.)
-
-**Normatiivne selgroog:** Heaolu arengukava 2023–2030 kitsaskohtade loend ütleb ise:
-*„Praegune sotsiaalteenuste andmestike digiteerituse tase ja andmekvaliteet ei ole riigi ja
-kohalike omavalitsuste sotsiaalvaldkonna juhtimiseks, poliitikakujundamiseks ning teadus- ja
-arendustööks piisav."* — Sa ei väida, et andmepilt puudub; **riik ise väidab seda oma
-arengukavas.** Sinu küsimus on ainult: mis on vahepeal muutunud?
+„ressursse on vähe" ja iga „peate ise muutuma" lihtsalt arvamus. Meie oleme selle mudeli ehitanud ja töötaja pool on juba olemas: kirjed on tema omad, juht ei näe kunagi üksikut inimest. Puudu on ainult see, et keegi valdkonnas ütleks, et sellist pilti on vaja — üksiku platvormi andmed ei ole valdkonna pilt. Jälgimisega on see vastupidine: individuaalset vaadet ei eksisteeri arhitektuuriliselt, seda ei saa isegi välja lülitada, sest seda ei ole olemas, ja juht ei näe isegi seda, kes üldse vastas. Jälgimiskeeld on ehitatud andmemudelisse, mitte lubadusse. Ja ma ei väida ise, et andmepilt puudub — seda väidab riik: heaolu arengukava kitsaskohtade loend ütleb sõna-sõnalt, et sotsiaalteenuste andmestike digiteerituse tase ja andmekvaliteet ei ole riigi ja omavalitsuste juhtimiseks ega poliitikakujundamiseks piisav. Minu küsimus on ainult see, mis on vahepeal muutunud."
 
 ### B3. Dokumenteerimiskoormus
 
@@ -184,14 +146,7 @@ mille pealt me teame, et see õnnestus?
 käsitööd". See on õige eesmärk — aga kas meil on baasjoon? Kui me ei mõõda dokumenteerimisele
 kuluvat aega täna, ei saa me 2030. aastal öelda, kas lubadus täitus. Meie töökoormuse ülevaate
 mudelis on dubleeriv dokumenteerimine eraldi näitaja, sest just selle osa peaks tehnoloogia
-esimesena ära võtma."
-
-**Tõestus paneelist (ära tsiteeri nimeliselt ilma loata, aga tea):** TLÜ 2050-paneelis
-kirjeldas ESTA juhatuse liige Meeli Tuubel, et on teenuseosutajatasandil tagasi ja teeb
-„täpselt neid samu andmeid ja aruandeid, mida ma tegin kümme aastat tagasi, samamoodi
-paberi peal" — arvutab kliente paberi nurga peal ja vabandas saali ees, et vandus
-aruandluskeskkondi sisestuskuul. Dokumenteerimiskoormus ei ole marginaalne mure, kui ta
-on ESTA juhatuse tasandil isiklik valu.
+esimesena ära võtma. See ei ole ka marginaalne mure: ühel valdkonna konverentsil kirjeldas erialaliidu juhatuse liige avalikult, et teeb teenuseosutajana praegu täpselt samu aruandeid, mida tegi kümme aastat tagasi, samamoodi paberil, ja arvutab kliente paberi nurga peal."
 
 ---
 
@@ -210,11 +165,9 @@ jõustusid 2. augustil 2026. STAR-i strateegia ütleb ise väga täpselt: tehisi
 loov võimalus, „kuid ainult selgelt piiratud, kontrollitava ja õiguslikult reguleeritud
 vahendina". Ma olen selle lausega täielikult nõus — meie platvormil on AI alati mustand, otsuse
 teeb inimene. Küsimus on: kas see piir on ka KOV-idele juhisena kirjas, enne kui esimene halb
-näide juhtub?"
-
-**Kui küsitakse vastu:** „Kas AI võib eksida?" → *„Võib, ja sellepärast peab AI eksimus olema
-alati inimese poolt püütav — mustand, mida keegi ei kinnitanud, ei lähe kuhugi. Ohtlik ei ole
-eksiv AI, vaid eksiv AI, mille väljund läheb otse otsuseks."*
+näide juhtub? Meil on ta koodis — ükski toetus ega hinnang ei sünni masinas. Aga see on
+minu enda tõmmatud piir, ja seni kuni ta on ainult minu oma, sõltub ta iga tarkvarategija
+headest kavatsustest. Eksida võib tehisintellekt muidugi ka meie juures — sellepärast peabki iga eksimus olema inimese poolt püütav: mustand, mida keegi ei kinnitanud, ei lähe kuhugi. Ohtlik ei ole eksiv tehisintellekt, vaid eksiv tehisintellekt, mille väljund läheb otse otsuseks."
 
 ### C2. Juhendite masinloetavus
 
@@ -225,7 +178,7 @@ teavitusega?
 **Selgitus:** „See pole ainult tehnoloogiaprobleem — ka töötaja ise ei saa teada, et juhend,
 mille järgi ta eile töötas, täna muutus. Igaüks, kes tahab töötajaid infoga toetada — koolitaja,
 tööriist, osakonna siseveeb — vajab sama asja: ametlikud juhendid ühes kohas, muudatuste
-kanaliga."
+kanaliga. Meil on see mure käegakatsutav: meie vestlus toetub Eesti allikatele ja iga vastuse juures on viide algallikale. Kui juhend muutub ette teatamata, on meie viide vaikselt vale — ja täpselt sama juhtub iga koolitaja slaidiga ja iga osakonna siseveebiga."
 
 ### C3. Meetodite teadmusbaas
 
@@ -235,7 +188,7 @@ ESTA, SKA või mitte keegi?
 
 **Selgitus:** „Kui töötaja tahab täna järele vaadata, kuidas mõni meetod õigesti käib — kust ta
 vaatab, ja kes vastutab, et see allikas on ajakohane? Kui vastus on „mitte keegi", täidab
-tühimiku juhuslik allikas."
+tühimiku juhuslik allikas. Meie teadmusbaasis on ajakirja Sotsiaaltöö artiklid ja avalikud juhendid, aga meetodite kirjeldused on laiali ja osa neist aastaid vanad. Ma ei taha ise otsustada, milline kirjeldus on õige — see peaks tulema valdkonnalt."
 
 ---
 
@@ -248,7 +201,7 @@ selguse *enne* esimest ametlikku vormi — oma sõnadega, oma keeles, oma tempos
 
 **Selgitus:** „Inimene, kellel on kriis, ei mõtle teenuste kataloogis — ta mõtleb oma elus. Täna
 nõuab süsteem, et ta tõlgiks oma mure ametlikku keelde enne, kui keegi teda kuulab. See pole
-tehnoloogiaküsimus; tehnoloogia lihtsalt teeb esimese sammu odavaks."
+tehnoloogiaküsimus; tehnoloogia lihtsalt teeb esimese sammu odavaks. Meie platvorm algab vestlusest, mitte vormist: inimene kirjeldab oma olukorda oma sõnadega ja alles pärast seda tuleb jutuks, mis teenust või toetust see tähendada võiks. Küsin, kas ka riigi poolel võiks järjekord olla selline."
 
 ### D2. Selge keel ja vene keel
 
@@ -256,12 +209,7 @@ tehnoloogiaküsimus; tehnoloogia lihtsalt teeb esimese sammu odavaks."
 vene keeles? Kas riik käsitleb selget keelt ligipääsetavusnõudena või viisakusena?
 
 **Selgitus:** „Meie kogemus kolmekeelse keskkonna ehitamisel näitab: see on täiesti tehtav, aga
-ainult siis, kui see on reegel, mitte järelmõte."
-
-**Kui küsitakse vastu:** „AI ju süvendab digilõhet?" → *„Süvendaks, kui digitaalne rada oleks
-ainus või eelistatud. Meie mudelis on ta valikuline lisarada — kiri, kõne ja kohtumine jäävad.
-Digilõhe päris risk on mujal: kui riigi enda teenused muutuvad digitaalseks ilma selge keeleta,
-jääb inimene üksi ka paberil."*
+ainult siis, kui see on reegel, mitte järelmõte. Digilõhet süvendaks digitaalne rada siis, kui ta oleks ainus või eelistatud. Meie mudelis on ta valikuline lisarada — kiri, kõne ja kohtumine jäävad alles. Digilõhe päris risk on mujal: kui riigi enda teenused muutuvad digitaalseks ilma selge keeleta, jääb inimene üksi ka paberil."
 
 ### D3. Otsuste selgitamine
 
@@ -270,7 +218,7 @@ riik näeb rolli tööriistadel, mis *selgitavad* ametlikke kirju, ilma et nad m
 
 **Selgitus:** „Selgitamine ei ole vaidlustamine — vaidlustamine on ja jääb ametlikuks
 menetluseks, sinna me ei lähe. Aga „tõlgi see kiri inimkeelde ja ütle, mis on mu järgmised
-sammud" on vajadus, mis täna rahuldatakse juhuslikult või üldse mitte."
+sammud" on vajadus, mis täna rahuldatakse juhuslikult või üldse mitte. Meil on see funktsioon olemas: inimene saab ametliku kirja üles laadida ja küsida, mida see tähendab ning mis on tema järgmised sammud. Piiri hoiame rangelt — selgitame, aga ei esinda ega vaidlusta."
 
 ---
 
@@ -285,7 +233,7 @@ Ja kas inimene näeb tulevikus ka seda, *kes* tema andmeid vaatas?
 **Selgitus:** „Strateegia eesmärk 2 on sõnastatud inimese vaatest — see on suur ja õige lubadus.
 Küsin ajakava, aga ka järgmist sammu: läbipaistvus ei ole ainult „näen oma andmeid", vaid ka
 „näen, kes neid vaatas". Terviseandmete juures on logivaade juba normaalsus — kas sotsiaalandmed
-jõuavad samale tasemele?"
+jõuavad samale tasemele? Meie poolel on see juba nii: inimene näeb oma jagamiste loendis, mida ta on jaganud, kellele ja millal, ning saab jagamise tagasi võtta. Küsin, kas riigi poolel on sama suund."
 
 ### F2. „Ühe ukse" printsiip ja teised keskkonnad (SKA + SoM)
 
@@ -296,7 +244,7 @@ iseteenindusi — või ka kodanikuühiskonna ja erasektori keskkondi? Mis on lii
 **Selgitus:** „See üks lause strateegias on minu jaoks kõige olulisem: riik tunnistab, et
 inimese teekond ei alga alati riigi ukselt. Aga siis on aus küsida, kes tohivad olla see „muu
 keskkond" ja mis tingimustel. Kui vastus on „ainult riigi omad", jääb inimese tegelik teekond —
-mis sageli algab otsingust, kogukonnast või nõustajast — ukse taha."
+mis sageli algab otsingust, kogukonnast või nõustajast — ukse taha. Ütlen ausalt välja: meie olemegi üks selline muu keskkond. Just sellepärast ma tingimuste kohta küsingi — ma ei taha erandit, ma tahan teada reeglit, mis kehtiks kõigile ühtemoodi."
 
 ### F3. Väikesed teenuseosutajad ja liidesed (SKA)
 
@@ -306,7 +254,7 @@ ainult suurtele, või tuleb ka kergem rada?
 
 **Selgitus:** „Liidestus eeldab, et teisel pool on süsteem. Kui väike teenuseosutaja peab
 liidese jaoks kõigepealt IT-süsteemi ostma, siis liides süvendab lõhet suurte ja väikeste vahel.
-Kergem rada — kasvõi standardvorming või jagatud keskkond — hoiaks väikesed osutajad pildil."
+Kergem rada — kasvõi standardvorming või jagatud keskkond — hoiaks väikesed osutajad pildil. Meie teenusekaardil on väikesed osutajad juba täna, sest mujal neil nähtavust ei ole. Kui liides eeldab infosüsteemi olemasolu, jäävad nad ka sellest välja."
 
 ### F4. Tööjõud 2036 (SoM)
 
@@ -317,7 +265,7 @@ Mis on riigi eesmärk: vähem töötajaid või rohkem inimkontakti?
 **Selgitus:** „See on ausalt poliitiline küsimus ja ma esitan ta sellisena. Tehnoloogia võib
 dokumenteerimiselt aega vabastada — aga see, kuhu vabanenud aeg läheb, on juhtimisotsus. Kui
 eesmärki ei sõnastata, otsustab eelarve vaikimisi. Minu soov on kuulda, et eesmärk on rohkem
-aega inimesele, ja et seda hakatakse mõõtma."
+aega inimesele, ja et seda hakatakse mõõtma. Minu enda tööriist teeb esimest — vabastab aega ettevalmistuselt ja dokumenteerimiselt. Aga see, kuhu vabanenud tund läheb, ei ole minu otsustada, ja seepärast küsingi seda siin."
 
 ### F5. Proaktiivsed teenused ja märkamise piir (SoM)
 
@@ -327,7 +275,7 @@ küsib? Ja kes selle piiri otsustab?
 
 **Selgitus:** „Proaktiivsus on sotsiaalvaldkonnas kahe teraga: lapse sünni puhul on automaatne
 toetus võit, aga „meie andmete järgi võib teil olla probleem" on juba midagi muud. See piir
-väärib avalikku arutelu enne, kui andmevõimekus ta vaikselt ära otsustab."
+väärib avalikku arutelu enne, kui andmevõimekus ta vaikselt ära otsustab. Meie tõmbasime selle piiri enda jaoks nii, et proaktiivset märkamist me ei ehita — inimene algatab alati ise. See tähendab, et osa inimesi, kes ise ei tule, jääb meist mööda; ma tean seda hinda ja maksan selle teadlikult. Küsin, kus riik oma piiri tõmbab."
 
 ### F6. Tervise ja sotsiaali ühine vaade (SKA + SoM + Koppel)
 
@@ -338,7 +286,7 @@ aastaks tekib inimese nõusolekul põhinev ühine pilt — ja kui ei, siis mis t
 **Selgitus:** „Kõige raskemad juhtumid elavad täpselt tervise ja sotsiaali piiril: eakas, kelle
 tervisemure on ühtlasi hooldusmure; laps, kelle koolimure on peremure. Iga osapool näeb oma
 lõiku. Inimese nõusolekul põhinev ühine vaade on tehniliselt võimalik — küsimus on, kumb jõuab
-enne: lahendus või järjekordne reform."
+enne: lahendus või järjekordne reform. Meie näeme seda igapäevaselt: sama inimese mure jaguneb meie keskkonnas eri rollide vahel ja kokku paneb selle täna ainult inimene ise, oma nõusolekuga. See töötab, aga ainult meie enda seinte sees — riigi süsteemidesse see ühendus ei ulatu."
 
 ### F7. Inimene oma andmete omanikuna (SoM + SKA)
 
@@ -348,17 +296,30 @@ näidata?
 
 **Selgitus:** „Andmete ülekantavus on GDPR-is põhimõttena olemas, aga sotsiaalvaldkonnas
 praktikas puudub. Kui inimene kolib teise omavalitsusse või tahab oma lugu jagada näiteks
-patsiendiorganisatsiooniga, alustab ta nullist. „Minu andmed, minu lugu" peaks kehtima ka siin."
+patsiendiorganisatsiooniga, alustab ta nullist. „Minu andmed, minu lugu" peaks kehtima ka siin. Meil saab inimene oma andmetest koopia kaasa võtta ka siis, kui ta meie juurest lahkub. Küsin, kas riigi poolel on sama suund — muidu on inimese lugu ülekantav ainult sealt, kus teda kõige vähem on."
 
 ### F8. Mitteformaalne abi ja omastehooldajad (Koppel + SoM)
 
-**Küsimus:** Omastehooldajad ja kogukond kannavad suure osa hoolduskoormusest, aga ei paista
-üheski registris. Kas riik näeb neid 10 aasta pärast süsteemi osana — oma toe, tööriistade ja
-nähtavusega — või jäävad nad statistika pimealasse?
+**Küsimus:** Omastehooldajaid on Eestis hinnanguliselt 160 000–180 000 ja ligi pooled neist
+abistavad lähedast ka hügieeni- ja enesehooldustoimingutes. Formaalselt määratud hooldajad
+on registris olemas — SHS § 144 kohustab KOV-i kandma STAR-i hoolduse seadmise, hooldaja
+määramise ja hooldajatoetuse andmed —, aga see kanne sünnib hooldatava menetluses:
+registrisse jõuab hooldaja nimi, mitte tema koormus, tervis ega võimalus tööl käia.
+Ülejäänud kümned tuhanded ei jõua sinnagi ja isegi see koguarv on hinnang, mitte loendus.
+Kas riik näeb neid kümne aasta pärast süsteemi
+osana — oma toe, tööriistade ja nähtavusega — või jäävad nad statistika pimealasse? Ja kui
+neid tahetakse nähtavaks teha, siis mille alusel: kas hooldaja peaks end kuskil registreerima,
+või tekib pilt sellest, mida ta niikuinii küsib?
 
 **Selgitus:** „Kui me räägime tööjõu nappusest, siis suurim „tööjõud" sotsiaalvaldkonnas on juba
-täna mitteformaalne: pereliikmed, naabrid, vabatahtlikud. Nad ei vaja registrit — nad vajavad
-tuge, infot ja seda, et süsteem nende panust näeks ja arvestaks."
+täna mitteformaalne: pereliikmed, naabrid, vabatahtlikud. Nad ei vaja registrisse kandmist —
+nad vajavad tuge, infot ja seda, et süsteem nende panust näeks ja arvestaks. Meie juures tuleb
+see kõige tavalisemal kujul kohale nii, et inimene küsib nõu mitte enda, vaid oma lähedase
+kohta — ja siis selgub, et tema enda olukorra jaoks ei ole kuskil kohta: tema koormus, tema
+tervis, tema võimalus tööl käia ei mahu ühessegi vormi, sest kõik vormid on hooldatava kohta.
+Ma ei taha ehitada hooldajate registrit, sest see tähendaks andmeid inimeste kohta, kes ise
+midagi ei taotlenud. Aga vahe hooldaja enda vajaduse ja hooldatava teenusevajaduse vahel peaks
+kuskil olemas olema — ja praegu ei ole ta kuskil."
 
 ### F9. Tegevused või tulemused (SoM)
 
@@ -371,7 +332,7 @@ Kui andmepõhine juhtimine tähendab ainult menetlusstatistikat, siis me optimee
 mitte mõju — ja 10 aasta pärast oleme kiiremad, aga mitte paremad. Muide, riigi enda
 kvaliteedijuhis juba nõuab tulemustele orienteeritust: „hinnatakse regulaarselt teenuse
 osutamise vahetuid tulemusi ja mõju" ja „hindamistulemusi analüüsitakse koos inimesega" —
-küsimus on, kas meie andmesüsteemid võimaldavad seda nõuet üldse täita."
+küsimus on, kas meie andmesüsteemid võimaldavad seda nõuet üldse täita. Meie mõõdame enda edu tahtlikult tagurpidi: kui kiiresti inimene selguse saab ja kui palju väheneb dokumenteerimisele kuluv aeg — mitte seda, kui kaua ta meie juures viibib."
 
 ### F10. Heaolutehnoloogiate raha ja päris kasutuselevõtt (SoM)
 
@@ -386,7 +347,7 @@ inimesed kauem kodus, lähedaste hoolduskoormus väiksemaks, leevendus spetsiali
 puudusele, teenuste integreeritus, töötajate rahulolu. Küsin praktiku vaatest: kus see uks on?
 Innovatsiooniprogrammid kipuvad disainilt eelistama suuri konsortsiume, ja pilootide
 lõppedes lahendused kaovad. Kas programmi mõõdik on rahastatud projektide arv või päriselt
-kasutusse jäänud lahenduste arv?"
+kasutusse jäänud lahenduste arv? Küsin ka päris isekalt: meie olemegi see väike Eesti arendaja, kellest programmi tekst räägib. Tahaksin teada, kas uks on päriselt olemas või ainult dokumendis."
 
 ---
 
@@ -417,16 +378,7 @@ puudu — § 135 loetleb juurdepääsu tugimeeskonnale ja kaasatutele, inimest e
 See on reformi kõige tähtsam disainiotsus ja seda saab teha ainult üks kord: kas heaoluplaan
 sünnib inimesega koos ja jääb tema omaks, või sünnib inimese kohta ja elab ametkondlikus
 süsteemis. Kogu meie kogemus ütleb, et inimesed on valmis oma olukorda ise kirjeldama — kui
-neil on kontroll selle üle, kes näeb."
-
-**Normatiivne selgroog (riigi enda dokument):** Eesti sotsiaalteenuste kvaliteedijuhis (SKA,
-SHS § 3 lg 2 alusel, kehtiv alates 2018) ütleb sõna-sõnalt: *„Inimest koheldakse võrdväärse
-partnerina"*, *„Inimesele tagatakse juurdepääs teenuse osutamisega seotud teda puudutavale
-infole"*, *„Inimene osaleb oma isiklike eesmärkide ja vajaduste määratlemisel"* ja *„Teenuse
-planeerimisel sõnastatakse koos inimesega teenuse eesmärk"*. Lavaküsimus muutub seega
-vastavusküsimuseks: **„Riigi enda kvaliteedijuhis nõuab, et inimene on võrdväärne partner ja
-tal on juurdepääs teda puudutavale infole. Eelnõu § 135 juurdepääsuloendis inimest ennast ei
-ole. Kumb kehtib?"** — sellele ei saa vastata „hea mõte, kaalume".
+neil on kontroll selle üle, kes näeb. Meie juures on inimese teekond tema enda oma: ta näeb kõike, mis seal kirjas on, ja otsustab ise, kellele mida näidata. Küsin, kas riigi heaoluplaan saab sama põhimõtte — sest muidu tekib inimese kohta kaks lugu, millest ühte ta ise ei näe. Riigi enda kvaliteedijuhis ütleb seejuures sõna-sõnalt, et inimest koheldakse võrdväärse partnerina ja et talle tagatakse juurdepääs teenuse osutamisega seotud teda puudutavale infole. Eelnõu § 135 juurdepääsuloendis inimest ennast ei ole. Küsin, kumb neist kehtib."
 
 ### T2. Heaoluplaan elab tervise infosüsteemis — sotsiaalvaldkonna pool on pildilt väljas (SKA + SoM)
 
@@ -442,7 +394,7 @@ eelnõu inimese tervikpildi tervise infosüsteemi — ja sotsiaalvaldkonna regis
 tekstist täielikult välja. Sotsiaaltöötajale tähendab see kahte süsteemi sama inimese jaoks.
 See ei ole enam hüpoteetiline „kolmas süsteem" — see on eelnõus kirjas olev töökorraldus, ja
 küsimus on, kas STAR-i ja tervise infosüsteemi liidestus jõuab valmis enne 2027. aasta juulit
-või pärast esimesi õppetunde."
+või pärast esimesi õppetunde. See on ka minu enda mure väga praktilisel kujul: meie ehitame inimese poolele tuge, mis eeldab, et kuskil on üks koht, kus tema lugu koos on. Kui riigil tekib kaks eraldi kohta, siis inimene ei kaota mitte ainult ülevaadet, vaid ka võimaluse ise otsustada, kus tema lugu elab."
 
 ### T3. Tervise teejuht ja sotsiaaltöötaja — rollipiir ja tööjõud (SoM + SKA)
 
@@ -471,7 +423,7 @@ Aga praegune järjekord on: andmed liiguvad, siis küsitakse. Ja säilitustähta
 märkimisväärsed: heaoluplaan 30 aastat, märkamisleht 3 aastat. Inimesele, kes teenusest
 keeldus, jääb märkamisleht ikkagi kolmeks aastaks tervise infosüsteemi. Küsin: kas kaaluti
 mudelit, kus inimest teavitatakse märkamislehest selle loomisel — mitte alles siis, kui teejuht
-helistab?"
+helistab? Meie oleme sama koha enda jaoks lahendanud teistpidi: meie keskkonnas ei liigu inimese kohta kuhugi mitte midagi enne, kui ta ise vajutab. See teeb meid aeglasemaks kui märkamisleht — ja just seepärast tahan aru saada, kuidas riik seda kiirust õigustab."
 
 ### T5. Riskirühmitamine: Tervisekassa andmete pealt, teejuhi algatusel (SoM + SKA)
 
@@ -488,15 +440,7 @@ küsimust, mis vajavad avalikku vastust enne 2027. aastat: kes valideerib rühmi
 kas inimene näeb oma riskitunnust ja saab selle vaidlustada, ning kuidas suhestub see
 AI-määruse kõrge riski nõuetega, kui rühmitamine muutub algoritmiliseks. Tehniline märkus:
 täpselt sama küsimuse esitaksin ka iseendale, kui meie platvorm midagi sellist teeks — meie
-vastus oli, et proaktiivset märkamist ilma inimese enda algatuseta me ei ehita."
-
-**Lisakonks (TLÜ 2050-paneeli transkriptist, Lauri Leppik):** SoM ise tellis ~2021–22
-analüüsi „ennusta kõigi registriandmete pealt, kes hakkab 75-aastaselt abi vajama" — TLÜ
-pidas ülesannet lahendamatuks ega pakkunud; võitnud TÜ RAKE järeldas lõpuks sama:
-ülesannet EI SAA lahendada. Lavaversioon: „Riigi enda tellitud analüüs jõudis järeldusele,
-et registriandmete pealt ei saa abivajadust usaldusväärselt ennustada — mis on TERVIK-i
-riskihalduses metoodiliselt teisiti?" (Enne kasutamist otsi RAKE raport üles ja kontrolli
-aastaarv + täpne sõnastus — paneeli suuline meenutus ei ole tsiteerimiskõlblik allikas.)
+vastus oli, et proaktiivset märkamist ilma inimese enda algatuseta me ei ehita. Lisaks on riik ühe korra juba proovinud registriandmete pealt abivajadust ette ennustada: tellitud analüüs jõudis järelduseni, et seda ülesannet ei saa lahendada. Tahaksin teada, mis on riskihalduse metoodikas nüüd teisiti."
 
 ---
 
@@ -509,30 +453,18 @@ see on paneeli jaoks kõige jõulisem uus küsimus.
 
 ### U1. Sotsiaalvaldkonna „1220" — mitte-hädaabi nõuandekanal (SoM + SKA)
 
-**Küsimus:** Häirekeskuse enda analüüsi järgi kulub 112-l sotsiaalse abivajadusega kõnedele
-~35 tundi PÄEVAS — kõned, mis ei ole hädaabi, aga kuhu mujale helistada pole. Tervisemurede
-jaoks on 1220 ja perearsti nõuandeliin; sotsiaalmurede jaoks on ainult 112 või KOV kontor
-tööajal. Kas riik näeb vajadust mitte-hädaabi sotsiaalnõuande kanali järele — ja kes peaks
-seda vedama: Häirekeskus, SKA, KOV-id ühiselt? Kas see võiks olla hübriid, kus digikanal
-võtab korduvad info-küsimused ja inimene keerulised?
+**Küsimus:** Kui Häirekeskus kord ühe ööpäeva kõned kõrva järgi läbi kuulas, puudutas ligi
+veerand neist sotsiaalset abivajadust ja 189 inimesele öeldi, et riik neid aidata ei saa —
+kõned, mis ei ole hädaabi, aga kuhu mujale helistada pole. Tervisemurede jaoks on 1220 ja
+perearsti nõuandeliin; sotsiaalmurede jaoks on ainult 112 või KOV kontor tööajal. Kas riik
+näeb vajadust mitte-hädaabi sotsiaalnõuande kanali järele — ja kes peaks seda vedama:
+Häirekeskus, SKA, KOV-id ühiselt? Kas see võiks olla hübriid, kus digikanal võtab korduvad
+info-küsimused ja inimene keerulised?
 
-**Selgitus:** „See number on Häirekeskuse enda analüüsist, mitte minu oma — ja Sotsiaaltöö
+**Selgitus:** „Need arvud on Häirekeskuse enda analüüsist, mitte minu omad — ja Sotsiaaltöö
 ajakirja 2050-esseedes pakuti sama augu peale lausa eraldi teenust, sotsiaalkiirabit. Minu
 küsimus on süsteemi, mitte platvormi kohta: praegu maksab selle augu kinni kõige kallim
-kanal, mis meil olemas on — hädaabinumber."
-
-**Kui küsitakse vastu („kas te pakute ennast selleks kanaliks?"):** „Ei. Digikiht suudab
-võtta korduvad info-küsimused — seda ma oskan ehitada ja olen ehitanud. Aga inimkanal,
-mis vastab õhtul kell üksteist üksildase eaka kõnele, vajab riigi selgroogu ja rahastust.
-Minu väide on ainult: need kaks kihti tuleks disainida koos, mitte eraldi."
-
-**Lisaargument (29.07, SoM-i enda leht):** riik JUBA ehitab tervise poolel täpselt seda —
-vaimse tervise astmelise abi pilot (SoM + Tervisekassa + TEHIK, 1,9 mln € avaliku sektori
-innovatsioonifondist, 40 kuud) loob 24/7 veebipõhise enesehindamise ja automaatse
-teenusele suunamise ENNE spetsialisti; terviseministri sõnastus lehel: „abi peab jõudma
-inimeseni enne, kui mure süveneb". Lavaversioon: „Vaimse tervise murele ehitab riik juba
-digitaalset esmakanalit — 1,9 miljoni euroga. Sotsiaalmure jaoks pole endiselt midagi.
-Mis teeb sotsiaalmure vähem kiireloomuliseks?"
+kanal, mis meil olemas on — hädaabinumber. Ma ei paku ennast selleks kanaliks. Digikiht suudab võtta korduvad info-küsimused — seda ma oskan ehitada ja olen ehitanud —, aga inimkanal, mis vastab õhtul kell üksteist üksildase eaka kõnele, vajab riigi selgroogu ja rahastust. Minu väide on ainult see, et need kaks kihti tuleks disainida koos, mitte eraldi. Tervise poolel ehitab riik praegu täpselt sellist kanalit: vaimse tervise astmelise abi pilot loob ligi kahe miljoni euroga 24/7 veebipõhise enesehindamise ja teenusele suunamise juba enne spetsialisti juurde jõudmist, ja terviseministri sõnastuses peab abi jõudma inimeseni enne, kui mure süveneb. Sotsiaalmure jaoks ei ole endiselt midagi — tahaksin aru saada, mis teeb selle vähem kiireloomuliseks."
 
 ### U2. Kvaliteedinõuete kontrollitavus (SKA — järelevalve vaates)
 
@@ -546,7 +478,7 @@ jälge töö käigus, mitte järjekordset eraldi aruannet?
 leid. Minu huvi on üks disainiprintsiip: kui nõue muutub kontrollitavaks, siis tõend peaks
 tekkima töö kõrvalsaadusena — kohtumise kokkuvõte, mille klient kinnitab, ONGI tagasiside
 jälg. Kui kontrollitavus tähendab uut vormi, oleme dokumenteerimiskoormuse ainult ümber
-tõstnud."
+tõstnud. See põhimõte on meie disainis sees: kohtumise kokkuvõte, mille klient üle loeb ja kinnitab, ONGI dokumenteeritud tagasiside — sama toiming, mitte lisatoiming. Küsin, kas järelevalve saaks sellist tõendit üldse vastu võtta."
 
 ### U3. Toimetulekutoetuse eelselgus (SoM)
 
@@ -561,7 +493,7 @@ avalik seadus, mitte saladus. Praegu saab inimene esimese aimduse oma õigusest 
 kontoris või keeldumisotsusest. Eelselgus vähendaks mõlema poole koormust: vähem
 lootusetuid taotlusi, vähem vaidlustatud üllatusi. Kui riik ise ei tee, siis kas erasektori
 tehtud kalkulaator — seadusevalemi peal, selge „see ei ole otsus" märkega — oleks
-tervitatav või häiriv?"
+tervitatav või häiriv? Meie ei ole sellist kalkulaatorit ehitanud, sest ma ei taha teha midagi, mis näeb inimese jaoks välja nagu otsus. Aritmeetika koos selgitusega on midagi muud kui otsus — aga see vahe peab olema nähtav ka sellele, kes seda kasutab, mitte ainult juristile."
 
 ### U4. Erihoolekande dokumentatsiooni digivoog (SKA — otse tema majast)
 
@@ -578,7 +510,7 @@ on päris. Sama põhimõte mis STAR-i liideste puhul: andmed sünnivad osutaja t
 neid struktuurselt — kahekordne sisestus on süsteemiviga, mitte paratamatus. Ja täpselt sama
 küsimus kehtib s-veebi statistika-aruandluse kohta: KOV ja osutaja trükivad sinna kord aastas
 ümber arvud, mis nende töösüsteemides juba olemas on — kas s-veeb võiks kunagi võtta esituse
-vastu masinloetavalt?"
+vastu masinloetavalt? Olen sellise teenuseosutaja töökihi läbi disaininud — kirje tekib töö käigus ja aruanne kukub sellest välja kõrvalsaadusena — ja erihoolekande seaduses kirjas olev rütm on seal esimene päris kasutuslugu. Ehitamine on veel ees, ja just seepärast on vastus mulle praktiliselt oluline."
 
 ### U5. Digitaalse tõendamise ja töötaja jälgimise piir (SoM + Maire Koppel)
 
@@ -591,14 +523,10 @@ sõnastada, enne kui iga KOV ja iga tarkvarahankija selle ise erinevalt otsustab
 jälgimise vahel — sama küsimus kehtib TÖÖTAJA kohta. Kui kirje tekib klahvivajutusega
 kohapeal, on see tõendus ja säästab aega. Kui tööandja näeb töötaja asukohta reaalajas terve
 päeva, on see midagi muud. Mõlemad on täna Eestis olemas ja mõlemat nimetatakse
-digitaliseerimiseks. Minu enda disainivalik oli: ajatempel ja kinnitus jah, pidev asukohajada
-ei — aga see on minu valik, mitte norm. Sotsiaaltöötajate nappuse juures on see ka
-värbamisküsimus: kes tahab tööle, kus sind GPS-iga jälgitakse?"
-
-**Kui küsitakse vastu („kas te olete jälgimise vastu?"):** „Ei — tõendamise poolt. Küsimus
-on proportsioonis: kas tõendamiseks piisab hetkest või on vaja jada. Seaduses on see piir
-täna sõnastamata ja töökaitse pool — töötaja teadlikkus, nõusolek, andmete säilitus — on
-iga tööandja enda otsustada."
+digitaliseerimiseks. Minu enda disainivalik oli neli puudutust visiidi kohta — läksin teele,
+jõudsin kohale, lahkusin, jõudsin tagasi — ja mitte mingit pidevat asukohajälge. Aga see
+on minu valik, mitte norm. Sotsiaaltöötajate nappuse juures on see ka
+värbamisküsimus: kes tahab tööle, kus sind GPS-iga jälgitakse? Jälgimise vastu ma ei ole — olen tõendamise poolt, ja küsimus on proportsioonis: kas tõendamiseks piisab hetkest või on vaja jada. Seaduses on see piir täna sõnastamata ja töökaitse pool — töötaja teadlikkus, nõusolek, andmete säilitus — on iga tööandja enda otsustada."
 
 ### U6. Kaks märkamiskanalit — § 13 ja TERVIK ei tea teineteisest (SoM + SKA)
 
@@ -613,7 +541,122 @@ teaks nad, kuhu helistada ja mis nende teatest edasi saab. See on sama vaheruumi
 mis mujal: kohustus on seaduses, aga teekond on kirjeldamata. Ja nüüd tekib TERVIK-iga
 paralleelne kanal, millel on vorm, adressaat ja infosüsteem — samal ajal kui kodaniku
 kanalil pole ühtegi neist. Kui märkamine on reformi keskne sõna, siis kodaniku märkamine
-väärib sama palju disaini kui arsti oma."
+väärib sama palju disaini kui arsti oma. Meie poolel tuleb see mure kohale kõige tavalisemal kujul: inimene küsib, kuidas naabri pärast muret tunda, ja meil ei ole talle midagi paremat öelda kui soovitus vallamajja helistada. Igaühe kohustus on seaduses, aga teekonda ei ole."
+
+---
+
+## 6d. V-plokk: platvormist tõukuvad küsimused (30.07)
+
+Senised plokid on sündinud riigi dokumentidest: mida seadus ütleb, mida eelnõu lubab, mida
+audit leidis. Need kaheksa tõukuvad vastupidisest suunast — **asjadest, mis on platvormil
+juba ehitatud või kohe ehitamisel, ja mille jaoks on riigi vastust päriselt vaja**. Iga
+küsimuse juures on eraldi rida „**Meile:**" — see EI ole lavatekst, vaid märge, mida vastus
+meie enda otsustes muudab. Sellepärast on need küsimused ka kõige valusamad ära jätta: iga
+vastuseta jäänud küsimus tähendab, et ehitame edasi oletuse peal.
+
+### V1. Kas AI-pädevus jõuab kompetentsiprofiilidesse? (SoM + ESTA)
+
+**Küsimus:** Praegu koostatakse üheksa sotsiaalvaldkonna ameti kompetentsiprofiile —
+sotsiaaltöötajast tegevusjuhendaja, terviseteejuhi ja kogemusnõustajani. Kas nendesse
+profiilidesse kirjutatakse sisse ka tehisintellekti kasutamise pädevus: mida tohib
+AI-le anda, mida mitte, kuidas väljundit kontrollida ja kuidas kliendile selgitada, et
+osa tööst tehti masina abiga? Ja kui jah, siis kes selle sõnastuse kirjutab?
+
+**Selgitus:** „Küsin sellepärast, et aken on lahti korra. Kui profiil kirjutatakse ilma
+selle reata valmis, siis järgmine võimalus on kuskil aastate pärast — ja vahepeal
+kasutavad inimesed tehisintellekti niikuinii, lihtsalt ilma ühegi kokkulepitud
+pädevuseta. Ma ei arva, et profiili peaks kirjutama ükski tööriistatootja, ka mitte
+mina. Aga ma arvan, et keegi peab selle rea kirjutama, ja praegu ei ole näha, kelle
+ülesanne see on. Ma küsin ka sellepärast, et meie kasutajad küsivad minult juba täna, kas tehisintellekti tohib nende töös kasutada — ja ma ei saa neile öelda muud kui oma enda reegleid. Ütlen kaks asja ette. Esiteks: pädevus, mida ma silmas pean, ei ole ühegi konkreetse tarkvara oskus, vaid otsustusoskus — mida tohib masinale anda, kuidas väljundit kontrollida ja kuidas kliendile öelda, et osa tööst tehti masina abiga. Need kolm ei vanane koos tarkvaraga. Teiseks: ma ei kirjuta seda rida ise ega taha kirjutada, see peab tulema valdkonnalt — ja kui nõue profiilis on, saab seda õpetada kes tahes, mina olen siis üks pakkuja teiste seas."
+
+### V2. Kes omab aruandlusvormingut? (SKA + SoM)
+
+**Küsimus:** Teenuseosutaja koostab täna samadest andmetest kolm-neli erinevat aruannet:
+tundide väljavõte arve juurde, sisuline aruanne omavalitsusele, riigi statistika s-veebi
+ja vajadusel andmed STAR-i. Kas riigil on plaanis kokku leppida vorming, mille järgi
+osutaja oma töösüsteemist need esitada saaks — või jääb iga KOV ja iga register oma vormi
+juurde? Kes sellise standardi omanik üldse oleks?
+
+**Selgitus:** „See ei ole tarkvaraküsimus, vaid koormusküsimus. Andmed on osutajal
+niikuinii olemas — kordades läheb aeg ümbertõstmise peale. Ja kui standardit ei ole, siis
+tekib ta nagunii, lihtsalt juhuslikult: selle järgi, mis vorm on esimesel suurel
+tarkvaral. Mina eelistaksin, et selle kirjutab riik või valdkond, mitte turg. Olen selle kihi disaininud nii, et üks kirje töö käigus toidaks mitut väljundit — aga ehitamata ta veel on, ja vastus otsustab, mille peale ma selle ehitan. Kui riigi vorming tuleb, ehitan enda oma sellele peale; kui ei tule, jääb iga osutaja ise kombineerima. Ma ei paku, et vormi tehtaks kohustuslikuks — omavalitsuse otsustusõigust see ei puuduta. Piisaks soovituslikust vormingust, mille võib kasutusele võtta või mitte; vahe on selles, kas osutaja saab ühe korra teha ja mitmele saata või peab iga tellija jaoks käsitsi ümber tõstma. Ja ma ei paku standardiks ka enda vormingut: kui standard tuleb, peab ta olema neutraalne ja avalikult dokumenteeritud, ka siis, kui see tähendab, et meie ehitame oma poole ümber."
+
+### V3. Kas teenuseosutajate ja KOV-kontaktide andmed on masinloetavalt olemas? (SKA)
+
+**Küsimus:** Inimesele „kuhu pöörduda" vastamiseks on vaja kahte asja: kohaliku
+omavalitsuse sotsiaalhoolekande kontaktid ja tegevusloaga teenuseosutajate nimekiri koos
+sellega, mida nad päriselt osutavad. Kas need andmed on kuskil masinloetavalt ja
+ajakohasena kättesaadavad — ja kes vastutab selle eest, et need õiged oleksid?
+
+**Selgitus:** „Majandustegevuse register on avalik ja sealt saab tegevusloa fakti kätte.
+Aga tegevusluba ei ütle, kas teenusekoht on täna vaba, kellele see sobib ja kes seal
+vastab. Praegu koguvad seda infot kõik eraldi — iga portaal, iga KOV, iga
+juhtumikorraldaja oma peas. See on täpselt see töö, mida tasuks teha üks kord. Meie hoiame praegu neid andmeid käsitsi ja tean, et osa neist on juba täna vananenud. Ma ei taha olla see, kes riigi kontaktide õigsuse eest vastutab — tahaksin neid lihtsalt õigest kohast võtta. Inimeste andmetest ma seejuures ei räägi, vaid asutuste omadest: kes on tegevusloaga teenuseosutaja, mida ta osutab, kes on omavalitsuses sotsiaalvaldkonna kontakt. See on avalik teave ja küsimus on ainult, kas ta on masinloetav ja ajakohane või laiali kolmesajal veebilehel. Kes seda ülal peaks, on osa samast küsimusest — praegu peavad seda ülal kõik eraldi ja seetõttu on ta kõigil natuke vale."
+
+### V4. Kuidas saab erasektori lahendus riigiga koos katsetada? (SoM)
+
+**Küsimus:** Kui mõni omavalitsus tahab uut digilahendust päris inimestega proovida, siis
+mis on selleks õige tee — hange, koostöölepe, katseprojekt, midagi Accelerate Estonia
+laadset? Kes ütleb ette, kuidas andmekaitse ja vastutus katsetamise ajal jagunevad, nii et
+KOV-i juristil oleks millegi peale toetuda?
+
+**Selgitus:** „Küsin praktilise mure pärast. Innovatsioonihankeid tehti mõni aasta tagasi
+kõigist riigihangetest paar kümnendikku protsenti — see tähendab, et enamik omavalitsusi
+ei ole seda teed kunagi käinud ja keegi ei taha olla esimene, kes eksib. Kui katsetamiseks
+oleks olemas ette kirjeldatud rada, oleks julgeid rohkem — ja mitte ainult minusuguste
+lahenduste jaoks. Meil on piloodi sisu valmis ja partner tõenäoliselt leitav — lahtine on ainult see, mis vormis üldse tohib katsetada. Ja ma kahtlustan, et see on lahtine mitte ainult meie jaoks. Rada ei pea olema universaalne: piisaks ühest läbi mõeldud näitest ja näidislepingust, mida saab kohandada. Praegu alustab iga omavalitsus tühjalt lehelt ja seetõttu enamik ei alusta üldse. Ja ma ei palu erikohtlemist, vaid vastupidi — reeglit, mis kehtib kõigile ühtemoodi. Erikohtlemine on täpselt see, mis juhtub siis, kui reeglit ei ole: läbi saab see, kellel on õigel hetkel õige tuttav."
+
+### V5. Kas keegi peab arvet töötaja turvaintsidentide üle? (SoM + ESTA)
+
+**Küsimus:** Uuring näitas, et valdav enamik kohaliku omavalitsuse sotsiaal- ja
+lastekaitsetöötajaid on kokku puutunud kliendist lähtuva vägivallaga. Uuring on
+ühekordne pilt. Kas kuskil kogutakse neid juhtumeid jooksvalt — nii et oleks näha, kas
+olukord läheb paremaks või halvemaks? Ja kui ei koguta, siis mille põhjal me viie aasta
+pärast ütleme, kas midagi muutus?
+
+**Selgitus:** „Ma ei paku, et iga intsident peaks kuskile registrisse minema — see oleks
+töötaja jaoks järjekordne vorm ja võib-olla ka põhjus vaikida. Aga praegu on meil üks
+number ühest aastast ja kõik ülejäänu on kolleegide jutt. Kui valdkond tahab turvalisust
+päriselt parandada, on vaja teada, mida me parandame. Tööriista ma selleks ei paku. Meil on välitöö turvaosa ja töövägivalla mõtestamise vorm olemas, aga see on töötaja enda oma ja jääb tema omaks; kui sellest peaks kunagi sündima valdkonna koondpilt, siis ainult nii, et üksikut inimest sealt ära ei tunne, ja ainult siis, kui töötaja ise nii otsustab."
+
+### V6. Kes tohib maksta inimese digitoe eest? (SoM + SKA, pigem järelkiri)
+
+**Küsimus:** Kui omavalitsus näeb, et inimesel oleks abi digitaalsest tugivahendist —
+olgu see teenuste selgitaja, eelkaardistus või dokumendiabi —, kas KOV saab selle
+kasutusõiguse osta inimesele (nagu teenuse), või ainult iseendale asutusena? Kas
+sotsiaalhoolekande seadus lubab digitaalset tuge käsitleda teenuse osana?
+
+**Selgitus:** „Küsin, sest muidu maksab abivahendi eest alati see, kellel on kõige vähem.
+Riigikontroll on ise märkinud, et omavalitsuste sotsiaalvaldkonna tarkvarakulud on
+mõnesaja euro suurusjärgus kuus — ehk raha ei ole siin see suur takistus. Takistus on
+see, et ei ole selge, kas ta tohib. Meie juures on täna kaks rada: inimene maksab ise, või keegi teine tasub tema eest kutse kaudu. Kolmas rada — omavalitsus ostab selle inimesele nagu teenuse — on tehniliselt valmis, aga ma ei tea, kas see on õiguslikult lubatud. See on ka minu enda ärihuvi ja seepärast küsingi seda avalikult, mitte kabinetis — vastus kehtib iga digitaalse tugivahendi kohta, ka nende kohta, mida mina ei tee. Raha see küsimus ei ole: Riigikontroll märkis auditis, et omavalitsuste sotsiaalvaldkonna tarkvarakulud on mõnesaja euro suurusjärgus kuus. Takistus on see, et ei ole selge, kas tohib." 
+
+### V7. Kas kutse eneseanalüüsi saaks koguda töö käigus? (ESTA — E-plokk)
+
+**Küsimus:** Kutse taotlemise juurde käib kirjalik eneseanalüüs ja te korraldate selleks
+eraldi kirjutuslaagreid, sest inimesed ei jõua seda töö kõrvalt kirjutada. Kas oleks
+mõtet, kui refleksioon koguneks jooksvalt — paar lauset pärast keerulist juhtumit, oma
+sõnadega, ainult inimese enda jaoks — ja kutset taotledes oleks tal aasta jagu materjali
+juba olemas?
+
+**Selgitus:** „Meil on see kiht olemas: töötaja saab juhtumi järel oma tööd mõtestada ja
+kirjed jäävad ainult talle. Praegu on selle mõte tööheaolu ja professionaalne areng. Aga
+kui vaadata teie kirjutuslaagreid, siis probleem ei ole ju kirjutamisoskuses — probleem
+on, et kogemus on mälust juba kadunud, kui kirjutamise aeg käes on. Ma ei palu, et ESTA mõnda tööriista soovitaks. Küsin kõigepealt, kas vajadus on päris — kas eneseanalüüs jääb kirjutamata sellepärast, et kogemus on selleks ajaks mälust kadunud. Kui on, saab selle lahendada mitmel viisil ja mina olen üks võimalus; kui ei ole, siis ma seda ei ehita. Kirjed ise on inimese omad ja jäävad tema omaks, ka tööandja neid ei näe: kutsetaotluse jaoks tekiks koond ainult tema enda vajutusega ja tema valitud kirjetest, ning ESTA ei näeks selles ahelas midagi peale valmis eneseanalüüsi, mille inimene ise esitab."
+
+### V8. Kus on piir vabatahtliku abi ja teenuse vahel? (SoM + Maire Koppel)
+
+**Küsimus:** Kui inimene saab abipalve avalikult välja öelda ja keegi kogukonnast vastab —
+naaber viib arsti juurde, tuttav aitab paberitega —, siis kus jookseb piir, mille taga
+see ei tohi enam asendada ametlikku teenust? Kas riik näeb kogukondlikul abivahendusel
+rolli, või on see ala, kuhu poliitika teadlikult ei astu?
+
+**Selgitus:** „Küsin, sest see on kerge koht, kus eksida kahes suunas korraga. Ühelt poolt
+on vabatahtlik abi tõeline ressurss ja inimesed teevad seda niikuinii, lihtsalt
+nähtamatult. Teiselt poolt on oht, et kui abipalvetele hakkab vastama kogukond, siis
+mõni omavalitsus leiab, et teenust polegi vaja. Mina tahaksin ehitada esimest ilma teist
+tekitamata — ja selleks oleks hea teada, kas keegi on selle piiri kuskil sõnastanud. Meie platvormil saab abipalve ja abipakkumise kokku viia — ja just sellepärast, et see funktsioon on olemas, tahan piiri teada enne, kui keegi selle valesti kasutab. Tean, et see küsimus võib kõlada ohtlikuna — justkui annaks kogukondliku abi nähtavaks tegemine omavalitsusele põhjuse teenuseid kärpida. Täpselt seda ma kardangi ja seepärast küsingi: sõnastatud piiri saab kaitsta, sõnastamata oma mitte, ja kärpimine juhtub siis niikuinii, lihtsalt vaikselt. Kogukondlik abi on ju juba olemas — aga nähtamatut abi ei saa keegi teenuse asemel arvesse võtta, nähtavat saab."
 
 ---
 
@@ -862,9 +905,13 @@ osa, siis peaks nende koht olema töökorralduses ja eelarves, mitte töötaja i
    sügiskooli värskenda täpsed arvud raportist.
 7. **TAI ajakirja Sotsiaaltöö 2050-esseed (2026)** — U1 ja E-ploki tugi:
    - [„Sotsiaalkiirabi" essee](https://www.tai.ee/et/sotsiaaltoo) — pakub mitte-hädaabi
-     sotsiaalse kiirreageerimise teenust; toetub Häirekeskuse analüüsile: sotsiaalse
-     abivajadusega kõned ~35 h PÄEVAS (algallikas: Sotsiaaltöö 2/2025 Häirekeskuse
-     analüüs — viita alati algallikale, mitte esseele).
+     sotsiaalse kiirreageerimise teenust; toetub Häirekeskuse **ühe ööpäeva** analüüsile
+     (5. juuni, tehtud 2021. a suvel): ~3096 kõnest ~700 puudutas sotsiaalset abivajadust,
+     189 inimesele öeldi, et riik ei saa aidata, dispetšeriaega kulus 35 h, politsei sõitis
+     välja 444 korda, päeva hinnanguline kulu ~55 000 €. Viita alati algallikale, mitte
+     esseele. **VARASEM SÕNASTUS „35 h PÄEVAS" OLI VIGA** (ühe päeva valim esitatud
+     püsimäärana) — parandatud kõigis kolmes kohas 30.07; sama parandus on tehtud ka
+     2050-essees.
    - [Rosenthal: „…rohkem nähtav ja toetab ühiskonna sidusust"](https://www.tai.ee/et/sotsiaaltoo/sotsiaaltoo-aastal-2050-rohkem-nahtav-ja-toetab-uhiskonna-sidusust) —
      autor on **ESTA juhatuse liige** (kuluaariplaan 2a); teemad: virtuaalnõustamine,
      digipädevus, riskide varane märkamine, töötajate psühholoogiline tugi.
@@ -973,6 +1020,60 @@ osa, siis peaks nende koht olema töökorralduses ja eelarves, mitte töötaja i
    tühikut organisatsiooniülesena: meie AI-koolituse pakkumine ei konkureeri ESTA laual
    mitte millegagi. (Juhatuse valimisi uudis ei maini — Rosenthali/Tuubeli
    juhatuse-staatust kontrolli eswa.ee juhatuse-lehelt enne kirju.)
+   **[PARANDUS 30.07, vt viide 16-c: „tühiku" väide vajab täpsustust — ESTA
+   PROJEKTIPOOLEL AI-koolitus juba käib.]**
+16. **ESTA-kausta koond (12 dokumenti, docs/ESTA/, loetud 30.07.2026)** — kuus leidu:
+   **(a) Šveitsi-Eesti KVALIFIKATSIOONIKOMPONENT täpselt kaardistatud** (19.05
+   avaüritus): „Tasemeõppe ja kvalifikatsiooni kaasajastamine ning koolitus- ja
+   tugisüsteemi arendamine", elluviija SoM, **6,45 M€**, 06.2024–05.2028, ESTA partner;
+   kompetentsiraamistik VALMIS 23.01.2026 (ESTA + Kutsekoda); nüüd
+   **kompetentsiprofiilid 9 ametile** — sotsiaaltöötaja, hooldustöötaja,
+   lastekaitsetöötaja, tegevusjuhendaja, **TERVISETEEJUHT** (= meie teejuhi-tööruumi
+   idee saab ametliku sisendikanali!), ohvriabitöötaja, kogemusnõustaja, KLAT-töötaja,
+   riiklik perelepitaja; töörühmad aug 2026–juuni 2027 (reg oli 9.06 — möödas), aga
+   **DIGITAALSED KAASAMISVOORUD sept 2026 + jaan 2027 + apr 2027 on kõigile lahti**
+   (infopesa: lingi.ee/sotskval2026) → F4/C3 küsimustel on nüüd formaalne JÄTKUKANAL:
+   „kas AI-pädevus jõuab kompetentsiprofiilidesse?" saab esitada septembri
+   kaasamisvoorus, mitte ainult kuluaaris.
+   **(b) ESTA TÖÖKOHAPÕHINE TUGIPROGRAMM** (SKA artikkel, projektijuht Sirli Soosaar):
+   „töökohapõhise tugisüsteemi loomine ja testimine" — koolitused ~200 spets/a,
+   meistri-õpitoad, kutsesüsteem (e-kutsetestid), eetikakompass (ETAG TA-rahastus!),
+   Soome õppereis, taskuhäälingud/nipinurk; **SÜGISEL 2026 TÖÖHEAOLU HÄKATON, mis
+   valmistab ette tugisüsteemi piloteerimist OMAVALITSUSTES 2027** — omaniku
+   Heaolutalgud (30.09) on sellega tõenäoliselt seotud/sama; talgu väljund võib viia
+   KOV-pilootideni, kuhu platvorm istub.
+   **(c) OLULINE POSITSIOONIPARANDUS: AI-koolitus ESTA projektipoolel JUBA KÄIB** —
+   „Tehisintellekti nutikas kasutamine sotsiaalhoolekandes" (Airi Mitendorf; koos
+   kultuuritundliku suhtlemisega 71 osalejat, kohad täitusid kiiresti) + digipädevuse
+   koolitused sotsiaaltöötajatele. Liisi-kirja argument EI TOHI olla „teil pole AI-d" —
+   õige positsioon: NÕUDLUS ON TÕESTATUD (kohad täituvad), meie pakkumine on SÜVENDUS
+   ja eristus (sotsiaaltöö-sisu + piirid + andmekaitse + ehitaja vaatenurk + AI-määrus);
+   Mitendorf = uus nimi kaardil (võimalik liitlane, mitte ainult konkurent).
+   **(d) 92,6% LASKEMOON** (SKA turvalisuse-artikkel, Aljona Kõpp Kohtla-Järve +
+   eetikanõukoja Katrin Tsuiman + SoM-i kommentaar, mille AUTORITE SEAS ON GERDA
+   KIIPLI-HIIR — meie paneeli SoM-esindaja!): **92,6% KOV sotsiaal- ja
+   lastekaitsetöötajatest on kogenud kliendist lähtuvat vägivalda** (Toros jt 2024,
+   TLÜ CIRIC tööheaolu-uuring) — B-ploki ja U5 tugevaim number; politsei/prokuratuur
+   sageli ei kaitse (menetlused lõpetatakse), sotsiaalmeedia-laim; arutelus turvanupud
+   ja kehakaamerad → U5 proportsionaalsuse raam läheb AINULT olulisemaks; Kiipli-Hiir
+   on turvalisuse-teema kaasautor = B-ploki turvalisuse nurk kõnetab teda ISIKLIKULT.
+   **(e) STRATEEGIAPÄEV 23.04: ESTA otsib OMATULU** — kavas ESIKOHAL oma tasuline
+   täiendkoolitus (turule sisenemise katse!), mentorlusteenuse MÜÜK (18 koolitatud
+   mentorit), liikmemaksu diferentseerimine, kutse andmine 6 alal → koolituspakkumine
+   peab olema REVENUE-SHARE partnerlus ESTA tulumudelis, mitte kõrvalpakkumine; JA UUS
+   IDEE: ESTA mentorlusteenuse müük vajab digikodu (kohtumised, kokkuvõtted, arveldus) —
+   meie mentorluse-kiht on ehitatud, E-ploki pakkumisse.
+   **(f) TUNNUSTUSNIMED KAARDILE** (17.03 Jõhvi; Regina Lindi artikkel): ESTA esimees =
+   **Eike Käsi**; **Maire Koppel sai ESTA eripreemia** — profiil selgem: MTÜ Iseseisev
+   Elu asutaja-juht, EHAL-i kauaaegne juht, **Toompea erihoolekande-miitingu
+   peakorraldaja sügisel 2025** = alarahastuse häälekas eestkõneleja (paneelil kõnetab
+   teda ressursi- ja erihoolekande-teema, U4 istub tema maailma!); **Viljandi
+   vallavalitsus = aasta asutus** (heaolutehnoloogiad, „Turvalisuse märgid", nutikas
+   ravimikarp, kogukonnapsühholoog) → KOV-piloodi TIPPKANDIDAAT (oli juba talgute
+   piloot-KOV-ide loendis); **Saue vald / Raivo Piiritalo** (teenusmajad + DIGILAHENDUS
+   töö koordineerimiseks + teenuste logistiku ametikoht) → Teenuspäeviku turu-uuringu
+   kontakt (mis lahendust nad kasutavad?); Jüri Kõre (elutöö; Põlva sots.os. juhataja —
+   TERVIK-piloodi vald!); Getter Nurk (Kesk-piirkond, „Töö, mida ei nähta" panelist).
 14. **SoM: „Vaimse tervise astmelise abi piloteerimine"** (leht uuendatud 24.07.2026;
    PDF + infograafik `docs/vaimne tervis/`) — U1 lisaargumendi ja T2 kolmanda näite
    allikas. Faktid: astmed = hindamine → digitaalne eneseabi → VIPS → esmatasand →

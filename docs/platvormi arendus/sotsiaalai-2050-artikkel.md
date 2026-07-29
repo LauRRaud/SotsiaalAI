@@ -205,12 +205,15 @@ palju sama infot sisestati kaks korda; ja kas töötaja taastumisrütm püsis. �
 viiest ei parane sellest, et inimene meie juures kauem viibib — ja ükski tööriistamüüja
 selliseid mõõdikuid tavaliselt ei vali, sest nad vähendavad sõltuvust tema enda tootest.
 
-Meil oli seda lihtsam valida ühel konkreetsel põhjusel: meie arvet ei maksnud kunagi see
-inimene, kes parasjagu hädas oli. Maksid omavalitsused, asutused ja avalik raha — sama
-loogika, mille järgi lasteabitelefonile helistaja ei maksa kõne eest. See otsus tehti
-varakult ja ta oli kogu ülejäänud nimekirja eeldus: kui su tulu tuleb hetkest, mil
-inimesel on kõige raskem, ei saa sa endale ühtegi neist keeldumistest lubada. Meie
-ärimudel ei olnud vooruse tagajärg, vaid tema eeldus.
+Meil oli seda lihtsam valida ühel konkreetsel põhjusel: abi ei jäänud kunagi selle taha,
+kas inimesel oli parasjagu, millega maksta. Kes jaksas, tasus ise — kuutasu, ja
+paljudele oli oluline just see, et nad olid ise maksjad. Kelle jaoks see hetkel üle jõu
+käis, selle eest tasus keegi teine: omavalitsus, asutus või toetaja, kasvõi üks kuu
+korraga, kuni inimene sai ise järje peale. Põhimõte oli sama, mis lasteabitelefonil:
+kõne ei jää kunagi maksmise taha. See valik tehti varakult ja ta oli kogu ülejäänud
+nimekirja eeldus: ärimudel, mis elatub inimese kõige raskemast hetkest, ei saa endale
+ühtegi neist keeldumistest lubada. Meie ärimudel ei olnud vooruse tagajärg, vaid tema
+eeldus.
 
 **Me ei lasknud masinal otsustada.** Mitte ükski toetus, teenus ega hinnang ei sündinud
 masinas. Platvorm selgitas, struktureeris, tõlkis bürokraatia inimkeelde ja inimese loo
@@ -380,11 +383,16 @@ avalõigus]*
    - „juhataja ei näe üksiku töötaja tempot" → k≥5 anonüümsuslävi +
      „individuaalset juhivaadet ei eksisteeri arhitektuuriliselt".
    - viis edu mõõdikut → 5.9 anti-engagement (sama viis, esseekeeles).
-   - maksja-lõik („meie arvet ei maksnud see, kes hädas oli") → 5.3 maksja-strateegia
-     sihtpilt + Lasteabi-loogika. **NB:** see on 2050. aasta vaade; täna maksab
-     pöörduja veel ise (7,99). Essee ei valeta minevikuvormis, aga kui keegi kuluaaris
-     küsib „kas teil on juba nii?", on aus vastus „see on sihtpilt, üleminek on
-     astmeline".
+   - maksja-lõik, **omaniku parandus III ringis:** esimene sõnastus („arvet ei maksnud
+     kunagi hädas inimene") oli liiga ühekülgne — päris mudel on KAHERAJALINE: inimene
+     saab ise tasuda (väärikus; 7,99 rada on täna LIVE) JA tema eest saab tasuda
+     (sponsorkutse ~1 kuu on täna LIVE; KOV/asutuse rajad = 5.3 sihtpilt). Essee ütleb
+     nüüd mõlemat ja Lasteabi-paralleel kandub põhimõttele „kõne ei jää maksmise taha",
+     MITTE väitele „keegi ei maksa". Ankurlause sõnastati ümber nii, et ta jääb tõeseks
+     ka ise-maksmise rajaga: keeldumisi ei kanna mitte „keegi ei maksa", vaid „ärimudel
+     ei elatu inimese kõige raskemast hetkest". See parandus lahendas ühtlasi varasema
+     pinge (essee 2050-vaade vs tänane 7,99) — nüüd kirjeldab lõik sedasama mudelit,
+     mis on juba osaliselt toodangus.
    - stseeni 3 vaidluste-lõik ja „me ei ennustanud" hinnalõik on esseekirjaniku
      lisandused (mitte dokumendist) — nad ei luba midagi, vaid tunnistavad kulu.
    - **tööheaolu lõik, parandatud 29.07 omaniku märkuse peale.** Vana sõnastus
