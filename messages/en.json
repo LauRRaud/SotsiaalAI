@@ -6569,6 +6569,11 @@
     "s19_title": "Method mirror",
     "s19_body": "The method mirror is the specialist's private reflection tool: after a case, you can briefly note what worked and what to do differently next time. Entries are visible only to you."
   },
+  "subscriptionGate": {
+    "readonly_title": "Your subscription is not active.",
+    "readonly_body": "You can view and delete your own records; to create something new, activate a subscription.",
+    "readonly_cta": "Open subscription"
+  },
   "meist": {
     "title": "About us",
     "meta_description": "SotsiaalAI is a digital environment for the social field: clarity by asking, AI support and practical tools — decisions always stay with people.",

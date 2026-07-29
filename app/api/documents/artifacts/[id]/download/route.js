@@ -54,7 +54,7 @@ const artifactInclude = {
 
 export async function GET(request, { params }) {
   const locale = localeFromRequest(request)
-  const auth = await requireDocumentUser()
+  const auth = await requireDocumentUser({ allowWithoutSubscription: true })
   if (!auth?.ok) {
     return errorJson(auth?.message || "api.common.unauthorized", auth?.status || 401, locale, {
       redirect: auth?.redirect,

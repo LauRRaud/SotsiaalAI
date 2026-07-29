@@ -6569,6 +6569,11 @@
     "s19_title": "Meetodipeegel",
     "s19_body": "Meetodipeegel on spetsialisti privaatne refleksioonivahend: pärast juhtumit saad lühidalt kirja panna, mis töötas ja mida järgmisel korral teisiti teha. Kirjed on nähtavad ainult sulle."
   },
+  "subscriptionGate": {
+    "readonly_title": "Tellimus ei ole aktiivne.",
+    "readonly_body": "Oma kirjeid saad vaadata ja kustutada; uue loomiseks aktiveeri tellimus.",
+    "readonly_cta": "Ava tellimus"
+  },
   "meist": {
     "title": "Meist",
     "meta_description": "SotsiaalAI on sotsiaalvaldkonna digikeskkond: selgus küsides, tehisintellekti tugi ja praktilised töövahendid — otsused jäävad alati inimesele.",

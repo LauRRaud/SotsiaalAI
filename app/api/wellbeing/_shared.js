@@ -36,7 +36,14 @@ export async function requireWellbeingApiUser(request) {
     };
   }
 
-  const gate = await requireSubscription(session, roleState.effectiveRole);
+  /* KÕVA REEGEL (SotsiaalAI.md, omanik 28.07): ligipääs OMA andmetele ei aegu
+     tellimusega — lugemine (GET) ja kustutamine (DELETE) on tellimuseväravata.
+     Kirje sees juba salvestatud AI-soovitus on makstud ja valminud tulemus, mitte
+     uus AI-kulu. Loomine/muutmine ja kõik uut AI-kulu tekitav jääb värava taha. */
+  const method = String(request?.method || "").toUpperCase();
+  const gate = await requireSubscription(session, roleState.effectiveRole, {
+    allowWithoutSubscription: method === "GET" || method === "DELETE"
+  });
   if (!gate.ok) {
     return {
       ok: false,

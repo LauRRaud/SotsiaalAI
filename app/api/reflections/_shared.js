@@ -43,7 +43,12 @@ export async function requireReflectionApiUser(request) {
     };
   }
 
-  const gate = await requireSubscription(session, roleState.effectiveRole);
+  /* KÕVA REEGEL (SotsiaalAI.md, omanik 28.07): oma kirjete lugemine (GET) ja
+     kustutamine (DELETE) ei sõltu tellimusest; loomine jääb värava taha. */
+  const method = String(request?.method || "").toUpperCase();
+  const gate = await requireSubscription(session, roleState.effectiveRole, {
+    allowWithoutSubscription: method === "GET" || method === "DELETE"
+  });
   if (!gate.ok) {
     return {
       ok: false,

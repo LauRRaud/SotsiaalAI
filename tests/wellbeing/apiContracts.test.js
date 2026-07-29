@@ -12,7 +12,10 @@ test("quick-check API saves standardized wellbeing records through the service l
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createQuickCheckRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -45,7 +48,9 @@ test("wellbeing records API lists, reads and deletes only the current user's pri
   assert.match(list, /export async function GET\(request\)/);
   assert.match(list, /listWellbeingRecordsForUser\(auth\.userId/);
   assert.match(list, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(list, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: loend on loetav ka aegunud tellimusega (GET-erand väravas).
+  assert.match(list, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(list, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(list, /"Cache-Control":\s*"no-store/);
 
   const detail = `${read("app/api/wellbeing/records/[id]/route.js")}\n${read("app/api/wellbeing/_shared.js")}`;
@@ -77,7 +82,10 @@ test("recovery API saves the current user's private 72h recovery plan", () => {
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createRecoveryRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -87,7 +95,10 @@ test("work boundaries API saves the current user's private boundary agreement dr
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createWorkBoundariesRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -97,7 +108,10 @@ test("hard case API saves the current user's private 24h aftercare plan", () => 
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createHardCaseRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -107,7 +121,10 @@ test("workplace violence API saves the current user's private safety follow-up r
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createWorkplaceViolenceRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -117,7 +134,10 @@ test("interruptions API saves the current user's private fragmentation diagnosti
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createInterruptionsRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -127,7 +147,10 @@ test("work processes API saves the current user's private workflow audit", () =>
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createWorkProcessesRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -137,7 +160,10 @@ test("role boundaries API saves the current user's private role clarification", 
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createRoleBoundariesRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
@@ -147,7 +173,10 @@ test("starter support API saves the current user's private 100 day support plan"
   assert.match(source, /export async function POST\(request\)/);
   assert.match(source, /createStarterSupportRecordForUser\(auth\.userId,\s*body/);
   assert.match(source, /canUseWellbeingRole\(roleState\.effectiveRole,\s*Boolean\(roleState\.isAdmin\)\)/);
-  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole\)/);
+  // KÕVA REEGEL: värav on olemas, aga verbipõhise erandiga — oma andmete
+  // lugemine (GET) ja kustutamine (DELETE) ei sõltu tellimusest.
+  assert.match(source, /requireSubscription\(session,\s*roleState\.effectiveRole,\s*\{/);
+  assert.match(source, /allowWithoutSubscription:\s*method === "GET" \|\| method === "DELETE"/);
   assert.match(source, /"Cache-Control":\s*"no-store/);
 });
 
