@@ -1298,7 +1298,9 @@
         "off": "Silence",
         "a": "Melody I — Dusk",
         "b": "Melody II — Softness",
-        "c": "Melody III — Delicate"
+        "c": "Melody III — Delicate",
+        "d": "Melody IV — Satie, Gymnopédie No. 1",
+        "e": "Melody V — Bach, Prelude in C major"
       }
     },
     "save": "Save",

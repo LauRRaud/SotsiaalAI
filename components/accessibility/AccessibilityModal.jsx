@@ -28,7 +28,11 @@ import OptionCard from "@/components/ui/OptionCard";
    kõrgema nooleks (omanik 25.07: "nool on vale keele omas"). */
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
 import useStationFlight from "@/components/register/useStationFlight";
-import { getAmbientMode, setAmbientMode } from "@/components/room/AmbientAudio";
+import {
+  AMBIENT_MODES,
+  getAmbientMode,
+  setAmbientMode,
+} from "@/components/room/AmbientAudio";
 
 /* Jaamad samas järjekorras nagu varem sektsioonid. Viimane on Salvesta —
    sama muster mis registri väraval (teekonna lõpus on tegu, mitte valik). */
@@ -495,7 +499,7 @@ export default function AccessibilityModal({
           <fieldset className="csp-step">
             <legend>{t("accessibility.ambient")}</legend>
             <div>
-              {["off", "a", "b", "c"].map((value, i) => (
+              {["off", ...AMBIENT_MODES].map((value, i) => (
                 <OptionCard
                   key={value}
                   {...(i === 0 ? { "data-autofocus": "" } : {})}

@@ -1,9 +1,10 @@
 "use client";
 
 /**
- * AmbientAudio — taustamuusika mängija. Kolm rahulikku instrumentaal-lugu
- * (public/audio/, päris MP3-failid, tellija valis 06.07 Pixabaylt) + vaikus.
- * Valik püsib localStorage's ("sotsiaalai:ambient" = "off" | "a" | "b" | "c",
+ * AmbientAudio — taustamuusika mängija. Viis rahulikku instrumentaal-lugu
+ * (public/audio/, päris MP3-failid) + vaikus: a–c ambient (tellija valis
+ * 06.07 Pixabaylt), d–e klassika (30.07, avaliku omandi / CC0 salvestised).
+ * Valik püsib localStorage's ("sotsiaalai:ambient" = "off" | "a".."e",
  * vaikimisi "a") ja rakendub kohe sündmusega "sotsiaalai:ambient-change".
  *
  * Fail mängib PUHTALT (ilma madalpääsfiltri ja kajata, ~FILE_LEVELS tasemel).
@@ -17,7 +18,7 @@
  * RoomStage vabastab hoiu ja saadab "sotsiaalai:ambient-start" alles
  * uksekaadris. Loorita lehtedel algab endiselt esimesest žestist
  * (autoplay-poliitika vajab žesti). Lülitid: kõnd (sisse/välja) ja Keel ja
- * ligipääsetavus modal (Vaikus / Meloodia I–III).
+ * ligipääsetavus modal (Vaikus / Meloodia I–V).
  */
 
 import { useEffect } from "react";
@@ -26,15 +27,19 @@ export const AMBIENT_STORAGE_KEY = "sotsiaalai:ambient";
 export const AMBIENT_EVENT = "sotsiaalai:ambient-change";
 export const AMBIENT_START_EVENT = "sotsiaalai:ambient-start";
 
-export const AMBIENT_MODES = ["a", "b", "c"];
+export const AMBIENT_MODES = ["a", "b", "c", "d", "e"];
 
 /* Mode → päris helifaili baasnimi (public/audio/<base>.mp3). Järjekord =
-   menüü Meloodia I–IV. Failinimed on Pixabay originaalid (litsentsi/allika
-   jälgitavus säilib); public/audio/LOE-MIND.md hoiab kaardistust. */
+   menüü Meloodia I–V. a–c on Pixabay originaalnimed, d–e kannavad nimes
+   esitajat ja litsentsi (klassika puhul on teos avalik omand, aga SALVESTIS
+   on eraldi õigus — jälgitavus peab failinimest välja lugema);
+   public/audio/LOE-MIND.md hoiab täiskaardistust. */
 const FILE_SRC = {
   a: "atlasaudio-ambient-cinematic-510518",
   b: "atlasaudio-cinematic-softness-511863",
   c: "the_mountain-delicate-cinematic-512628",
+  d: "satie-gymnopedie-1-alciatore-pd",
+  e: "bach-wtc1-prelude-bwv846-ishizaka-cc0",
 };
 
 export function getAmbientMode() {
@@ -98,6 +103,35 @@ const MELODIES = {
     filterHz: 700,
     level: 0.05,
   },
+  /* d/e katavad klassikalised lood. Süntees EI jäljenda Satiet ega Bachi —
+     ta hoiab ainult lubadust, et faili puudumisel ei jää platvorm tummaks,
+     ja püsib loo helistikus (d = G-duur, e = C-duur). */
+  d: {
+    type: "pads",
+    chords: [
+      [196.0, 246.94, 293.66, 369.99], // G△7
+      [146.83, 185.0, 220.0, 277.18], // D△7
+      [164.81, 196.0, 246.94, 293.66], // Em7
+      [220.0, 293.66, 329.63, 440.0], // Asus4
+    ],
+    wave: "sine",
+    stepMs: 12000,
+    filterHz: 720,
+    level: 0.05,
+  },
+  e: {
+    type: "pads",
+    chords: [
+      [130.81, 164.81, 196.0, 261.63], // C
+      [220.0, 261.63, 329.63, 392.0], // Am7
+      [174.61, 220.0, 261.63, 329.63], // F△7
+      [196.0, 246.94, 293.66, 392.0], // G
+    ],
+    wave: "sine",
+    stepMs: 12000,
+    filterHz: 700,
+    level: 0.05,
+  },
 };
 
 export default function AmbientAudio() {
@@ -127,7 +161,10 @@ export default function AmbientAudio() {
     let xfadeTimer = 0; // seire-intervall
     let xfadeActive = false; // crossfade käib parajasti
     let playGen = 0; // laadimise põlvkond (võidujooksude vastu)
-    const FILE_LEVELS = { a: 0.32, b: 0.3, c: 0.3 };
+    /* d/e on klaverisalvestised, mitte toodetud ambient — keskmine valjus on
+       märgatavalt madalam kui a–c-l, seepärast kõrgem võimendus. Täpne
+       väärtus vajab kõrvaga ülekuulamist (ffmpeg/LUFS-mõõtu siin ei ole). */
+    const FILE_LEVELS = { a: 0.32, b: 0.3, c: 0.3, d: 0.4, e: 0.4 };
     const XFADE = 4; // crossfade'i pikkus sekundites
     /* Võrdvõimsuse (equal-power) kõverad — hoiavad summaarse valjuse
        ristihäälduse ajal ühtlasena (lineaarne teeks keskele mõõna). */
