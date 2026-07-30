@@ -252,7 +252,11 @@ s-veebi väljad kontrollida ehituse ajal; mall = sama aatomi neljas väljund.
 teenusetüübi lipuga — koduteenuse eripära). Rütmidesse (E4) lisanduvad kvaliteedijuhise
 AASTASED kohustused, mille täitmata jätmise Riigikontroll tuvastas: tagasisideküsitluse
 meeldetuletus (audit: 6/10 KOV-i kogub suuliselt ja dokumenteerimata) + kliendi
-vahehindamise meeldetuletus (kord aastas, seadusest).
+vahehindamise meeldetuletus (kord aastas — **kvaliteedijuhisest, MITTE seadusest**;
+parandatud 30.07.2026). Seadusest tuleneb kohustus märgata abivajaduse muutumist ja
+sellele reageerida, mitte kalendripõhine aastane vahehindamine. **Mõju tootele: seda
+meeldetuletust EI TOHI kuvada kui seadusest tulenevat nõuet** — vale vastavusväide
+töövahendis on tõsisem viga kui puuduv meeldetuletus.
 
 ### 6b. Konkurentsianalüüs: Fleet Complete (loetud 29.07, ajakirja Sotsiaaltöö artikkel TAI lehel)
 

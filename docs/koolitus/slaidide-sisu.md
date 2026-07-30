@@ -1,203 +1,449 @@
-# Slaidide sisu — jutupunktid moodulite kaupa
+# Slaidide sisu ja koolitaja jutupunktid
 
-MUSTAND 28.07.2026. Iga rida = üks slaid; taandega punktid = mida ÖELDA (mitte mida
-slaidile kirjutada — slaidile läheb neist kõige lühem versioon). Kokku ~48 slaidi.
+Versioon 0.3 · 30.07.2026
 
-## Avamine (3 slaidi)
+Sihtrühm: koolitaja ja slaidipaki kujundaja. See fail ei ole veel kujundatud slaidipakk.
 
-**S1. Pealkiri: AI sotsiaaltöös — võimalused, piirid ja turvaline kasutamine**
-- Tere tulemast; päeva lubadus: õhtuks tead, mida AI-ga teha tohib, mida mitte kunagi,
-  ja kuidas teha nii, et võidab nii sinu tööpäev kui sinu klient.
+Põhimõte: slaidile läheb üks lühike sõnum, näide või küsimus. Allolevad taandega punktid
+on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 
-**S2. Kes ma olen — ja aus deklaratsioon**
-- Taust: ajakiri Sotsiaaltöö toimetus; täna ehitan ise sotsiaalvaldkonna AI-platvormi.
-- SEEPÄRAST tean, kus AI eksib — ma parandan neid vigu iga päev.
-- Aus piir: tänane koolitus on tööriista-agnostiline; oma toodet ma ei demo ega müü.
-  Põhimõtted, mida õpid, kehtivad iga tööriista kohta, ka nende, mida veel olemas pole.
+## Avamine
 
-**S3. Kiirküsitlus saalis**
-- Käsi püsti: kes on kasutanud ChatGPT-d või sarnast tööasjades? Kes on sisestanud sinna
-  midagi kliendi kohta? (Ei pea tunnistama — vaata ringi, sa pole üksi.)
-- Järeldus: AI on juba majas. Küsimus pole „kas", vaid „kuidas turvaliselt".
+### S1. AI sotsiaaltöös: võimalused, piirid ja turvaline kasutamine
 
-## Moodul 1: Mis AI on ja mis ta EI ole (10 slaidi)
+- Koolituse lõpuks ei pea osaleja teadma kõiki tööriistu. Ta peab oskama teha turvalise
+  otsuse: kas, milleks, milliste andmetega ja millises tööriistas AI-d kasutada.
 
-**S4. Keelemudel ühe lausega**
-- See on masin, mis ennustab järgmist sõna. Ta on lugenud tohutult tekste ja oskab
-  seepärast VÄGA veenvalt kirjutada. Ta ei „tea" fakte nii, nagu register teab.
+### S2. Kes ma olen ja miks ütlen seda kohe
 
-**S5. Miks ta eksib enesekindlalt**
-- Hallutsinatsioon ei ole rike — see on sama mehhanism, mis teeb ta heaks kirjutajaks.
-- Ta ei ütle „ma ei tea", kui just ei küsi; ta pakub kõige tõenäolisema VÄLJANÄGEMISEGA
-  vastuse.
+- Koolitaja taust sotsiaalvaldkonnas ning SotsiaalAI arendamisel.
+- Seotus on praktilise kogemuse allikas, kuid loob ka võimaliku huvide konflikti.
+- Koolitus on tööriista-agnostiline. SotsiaalAI-d ei demota ega pakuta varjatult.
 
-**S6. DEMO: sama küsimus, kolm vastust**
-- (Elav demo või ekraanivideo.) Küsi kolm korda sama asja — saad kolm eri rõhuasetust.
-- Õppetund: AI vastus ei ole „tõde", see on mustand.
+### S3. Turvaline õpperuum
 
-**S7. DEMO: väljamõeldud viide**
-- Palu viidata seadusele → kontrolli Riigi Teatajast → paragrahvi pole olemas / ütleb muud.
-- Refleks, mille täna kaasa saad: iga viide, mida sa ise ei kontrollinud, ei ole viide.
+- Me ei sisesta ega jutusta päris kliendijuhtumeid viisil, mille järgi inimene oleks
+  äratuntav.
+- Küsimust võib esitada üldistatult või anonüümselt.
+- Koolitaja ei palu kellelgi avalikult tunnistada võimalikku varasemat rikkumist.
 
-**S8. Reegel nr 1 (jääb seinale terveks päevaks)**
-- **AI valmistab ette. Inimene otsustab.**
-- Kõik tänane mahub selle ühe lause sisse.
+### S4. Anonüümne avaküsitlus
 
-**S9. Õigusraam 1: AI-määrus inimkeeles**
-- EL-i AI-määrus jagab kasutused riski järgi. Kõrge risk = süsteemid, millega avalik
-  sektor HINDAB inimeste õigust toetustele ja teenustele — st OTSUSTAMINE.
-- Kõrge riski kohustused jõustusid 2. augustil 2026 — see pole tulevik, see on kehtiv.
-- Sinu igapäevane ETTEVALMISTUS (mustandid, selgitused, kokkuvõtted) EI ole kõrge risk.
+- Olen AI-vestlusrobotit proovinud.
+- Olen seda tööülesandes kasutanud.
+- Tean, milline AI-tööriist on minu asutuses heaks kiidetud.
+- Tean, kuhu AI-ga seotud vea korral teatada.
+- Tulemused annavad koolitajale lähtejoone, mitte hinnangu osalejatele.
 
-**S10. Õigusraam 2: GDPR meeldetuletus**
-- Kolm sõna, mis katavad 90%: minimeerimine (ära anna rohkem kui vaja), eesmärk (ainult
-  selleks, milleks kogutud), eriliigilised andmed (tervis jm — eriti kaitstud).
-- Uus nurk: AI-tööriist on ANDMESAAJA. Kui sa ei annaks seda infot võõrale inimesele,
-  ära anna ka tööriistale, mida sa ei tunne.
+### S5. Neli küsimust enne esimest sisestust
 
-**S11. Riigi suund (tsitaat)**
-- STAR-i strateegia 2026–2030: tehisintellekt on „väärtust loov võimalus, kuid ainult
-  selgelt piiratud, kontrollitava ja õiguslikult reguleeritud vahendina."
-- Tõlge: riik EI keela AI-d — riik ootab piiridega kasutust. Täna õpime need piirid.
+- Kas AI-d on selle ülesande jaoks vaja?
+- Millised andmed mul on?
+- Millist tööriista ma kasutan?
+- Kes kontrollib väljundit ja vastutab järgmise sammu eest?
 
-**S12. Kaart: kus sinu töö asub**
-- (Joonis: roheline ala = ettevalmistus; punane kitsas ala = otsustamine inimese üle.)
-- Valdav osa sinu võimalikust AI-kasutusest on rohelises. Punane on kitsas, aga absoluutne.
+## Moodul 1. AI toimimine ja õiguslik kaart
 
-**S13. Moodul 1 kokkuvõte**
-- AI = veenev ennustaja, mitte teadja. Kontrolli viiteid. Ettevalmistus jah, otsustamine ei.
+### S6. Keelemudel ühe lausega
 
-## Moodul 2: Andmekaitse (8 slaidi)
+- Keelemudel ennustab konteksti põhjal sobivat järgmist tekstiosa.
+- Ta võib olla ühendatud otsingu, registri või muu tööriistaga, kuid seda ei tohi eeldada.
 
-**S14. Põhikujund**
-- Üldine AI-tööriist = **võõras inimene, kes ei unusta kunagi** ja kellel on suurepärane
-  mälu ja tundmatud sõbrad.
-- Kõik, mida sisestad, lahkub sinu kontrolli alt. Kustutusnupp ei ole garantii.
+### S7. Ladus ei tähenda tõene
 
-**S15. Mida EI sisestata KUNAGI (checklist A eelvaade)**
-- Nimi + lugu koos. Isikukood. Aadress. Terviseinfo. Lapse andmed. Foto dokumendist.
-- Ja: äratuntavad detailid — väikeses kohas piisab ametist + vanusest + külast.
+- Keeleline veenvus ja faktiline õigsus on kaks eri omadust.
+- AI võib anda õige vastuse valel põhjusel või vale vastuse suure enesekindlusega.
 
-**S16. Äratuntavus on salakaval**
-- „57-aastane meesõpetaja X vallas, kes kaotas mullu abikaasa" — nime pole, inimene on
-  tuvastatav. Anonüümsus ei ole nime kustutamine, vaid loo muutmine mitte-äratuntavaks.
+### S8. Viga ei ole ainult väljamõeldud fakt
 
-**S17. Anonüümistamise tehnika (enne harjutust)**
-- Asenda: nimed → roll (klient, poeg); kohad → üldistus (väikevald); täpsed arvud →
-  vahemik (60ndates); haruldased detailid → tavalisem samaväärne.
-- Kontrollküsimus: kas kolleeg naabervallast tunneks inimese ära? Kui jah — üldista veel.
+- Väljamõeldud viide.
+- Olulise asja väljajätmine.
+- Ebakindla väite muutmine kindlaks.
+- Kliendi ja töötaja öeldu kokkusulatamine.
+- Ühe tõlgenduse esitamine ainsa võimalusena.
 
-**S18. HARJUTUS H2: tee juhtum AI-kõlblikuks** (praktikum, 15 min)
+### S9. Demo: sama ülesanne, erinev väljund
 
-**S19. Tasuta tööriista päris hind**
-- Kui toode on tasuta, oled sina tooraine: sisendeid võidakse kasutada treenimiseks.
-- Erinevus: tarbijaversioon vs asutuse leping (andmete asukoht, treenimiskeeld, logid).
-- Küsimus IT-le/juhile: MEIL on milline versioon? Kui keegi ei tea — eelda tarbijaversiooni.
+- Kasuta sünteetilist või avalikku sisendit.
+- Näita kahte vastust samale ülesandele.
+- Küsimus saalile: kumb on parem ja mille põhjal seda otsustate?
 
-**S20. Kes vastutab, kui läks valesti?**
-- Asutus (vastutav töötleja) vastutab ka töötaja tööriistavaliku eest.
-- Aga „mina ei teadnud" ei kaitse ka töötajat. Tänane koolitus ONGI see teadmine.
-- Hea uudis: reeglid on lihtsad, kui nad on olemas — moodul 5 annab malli.
+### S10. Demo: seaduseviide
 
-## Moodul 3: Praktikum (9 slaidi — enamik ajast on harjutustes)
+- Palu mudelil nimetada õiguslik alus.
+- Ava viide Riigi Teatajas või näita ette valmistatud ekraanivideot.
+- Õppetund: mudeli viide on kontrollitav väide, mitte allikas.
 
-**S21. Kolm tööd, mida AI teeb hästi JA ohutult**
-- 1) mustandid, 2) ametliku teksti selgitamine, 3) kokkuvõtted.
-- Ühine muster: sisend on anonüümne, väljund on MUSTAND, sina kontrollid ja otsustad.
+### S11. Koolituse põhireegel
 
-**S22. Töö 1: dokumendimustand — kuidas küsida**
-- Halb: „kirjuta teatis". Hea: roll + eesmärk + faktid (anonüümitud) + vorm + pikkus.
-- Näidisprompt ekraanil (jääb järelmaterjali).
+- **AI võib ette valmistada. Inimene peab mõistma, kontrollima ja vastutama.**
+- Täpsustus: ka ettevalmistus ei ole automaatselt lubatud. Kõigepealt hinnatakse
+  ülesannet, andmeid ja tööriista.
 
-**S23. HARJUTUS H3: mustand ja parandus** (20 min)
+### S12. Neli eri reeglit
 
-**S24. Mida H3-st õppisime (arutelu kokkuvõte)**
-- AI keel on siledam kui elu: kontrolli FAKTE, mitte ainult komasid.
-- „Ilus, aga vale" on ohtlikum kui „kole, aga õige".
+- Keelatud AI-praktika.
+- Kõrge riskiga AI-süsteem.
+- Muu reguleeritud kasutus, näiteks isikuandmete töötlemine.
+- Asutuse või ameti enda rangem reegel.
+- Neid ei tohi üheks „tohib/ei tohi” loendiks kokku suruda.
 
-**S25. Töö 2: ametlik tekst selgeks keeleks**
-- See on ka kvaliteedinõue: Eesti sotsiaalteenuste kvaliteedijuhis nõuab ARUSAADAVAT infot
-  ja abi valikute tegemisel — selge keel ei ole viisakus, vaid kohustus.
-- AI on siin erakordselt hea abiline — JA kontrollida tuleb topelt (kas lihtsustus jäi
-  ÕIGEKS?).
+### S13. Kõrge risk ei tähenda keelatud
 
-**S26. HARJUTUS H4: selgita otsus kliendile** (20 min)
+- Kõrge riskiga süsteem võib olla lubatud, kui nõuded on täidetud.
+- Keelatud praktikad on AI-määruses eraldi kategooria.
+- Koolituse varasem sõnastus „kõrge risk = keelatud otsustamine” oleks vale.
 
-**S27. Töö 3: kokkuvõte + allikakontroll**
-- Pikk uuring → 5 punkti. Ja siis: iga punkti juurde LEHEKÜLG, kust ta pärit on.
-- Kui AI ei suuda kohta näidata, ära kasuta punkti.
+### S14. Miks sotsiaalvaldkond on AI-määruses nimetatud
 
-**S28. HARJUTUS H5: kokkuvõte ja kontroll** (15 min)
+- III lisa punkt 5(a): avaliku võimu süsteemid, millega hinnatakse inimese õigust
+  olulistele avalikele toetustele või teenustele või neid määratakse, vähendatakse,
+  lõpetatakse või nõutakse tagasi.
+- Keskne on süsteemi ettenähtud kasutus ja mõju otsusele, mitte toote turundusnimi.
 
-**S29. Praktikumi kuldreegel**
-- Sinu allkiri, sinu vastutus. AI ei lähe sinuga koos vaibale.
+### S15. Ettevalmistav ülesanne võib olla erand, aga mitte automaatselt
 
-## Moodul 4: Piirid ja eetika (7 slaidi)
+- Artikli 6 lõige 3: kitsas menetlusülesanne, varasema inimtöö parandamine või
+  ettevalmistav ülesanne võib teatud tingimustel jääda kõrge riski klassist välja.
+- Küsimus: kas väljund mõjutab otsuse tulemust sisuliselt?
+- Inimeste profileerimisel see erand ei kehti.
 
-**S30. Mida AI ei otsusta KUNAGI (checklist C)**
-- Abivajaduse hindamine. Toetuse määramine/vähendamine. Lapse heaolu hinnang.
-  Riskihinnang inimese kohta. Teenuse lõpetamine. Prioriteedijärjekord inimeste vahel.
-- Need ei ole „veel mitte" — need on „mitte kunagi selle ameti aususe piires".
+### S16. Inimene ahelas või kummitempel?
 
-**S31. JUHTUMIARUTELU J2: AI soovitab keeldumist** (rühmades, 10 min)
+- Kas töötajal on pädevus ja algandmed väljundi kontrollimiseks?
+- Kas tal on aega kontrollida?
+- Kas ta saab AI soovituse tagasi lükata ilma negatiivse tagajärjeta?
+- Kas ta suudab otsustada ka ilma süsteemita?
+- Pelk „kinnita” nupp ei taga sisulist inimkontrolli.
 
-**S32. JUHTUMIARUTELU J5: juht tahab AI-ga töötajaid analüüsida** (10 min)
+### S17. GDPR ei kadunud AI-määruse taha
 
-**S33. Läbipaistvus kliendi ees**
-- Aus vaikimisi: „AI aitas mul sõnastada; läbi lugesin ja otsustasin mina."
-- Klienti EI pea iga õigekirjaparanduse pärast teavitama; teavita, kui AI roll oli
-  sisuline (nt selgituse koostas AI sinu kontrolli all).
+- Eesmärk, õiguslik alus, minimaalsus, läbipaistvus, õigsus, säilitamine ja turvalisus.
+- Eriliigilistele andmetele kehtivad täiendavad tingimused.
+- AI kasutamine ei muuda nõusolekut automaatselt vajalikuks ega sobivaks.
 
-**S34. Kui klient tuleb ise AI-vastusega (J7)**
-- „ChatGPT ütles, et mul on õigus X-ile." — Ära naeruväärista; kontrolli koos.
-- See on tegelikult VÕIMALUS: inimene on oma asja uurinud. AI vastus on tema jaoks
-  sama, mis tuttava jutt — võta tõsiselt, kontrolli allikast.
+### S18. Rakendusajoon seisuga 30.07.2026
 
-**S35. JUHTUMIARUTELU J8: lastekaitse erijuhtum** (10 min)
+- 1.08.2024: AI-määrus jõustus.
+- 2.02.2025: muu hulgas AI-kirjaoskuse kohustus hakkas kohalduma.
+- 2.08.2026: teatud läbipaistvusreeglid hakkavad kohalduma.
+- 2.12.2027: III lisa kõrge riskiga süsteemide põhikohustuste uus kuupäev.
+- Füüsilistesse toodetesse integreeritud kõrge riskiga süsteemidel on eraldi ajajoon.
+- Ajajoon kontrollitakse enne iga koolitust uuesti.
 
-**S36. Eetika üks lause**
-- Tehnoloogia tohib kergendada SINU tööd ainult nii, et see ei kergenda su hoolt inimese
-  eest.
+### S19. Miks see koolitus on ikkagi „praegu”
 
-## Moodul 5: Asutuse vaade (5 slaidi)
+- AI kasutamine töös on juba alanud.
+- Asutus peab looma rollile ja riskile vastava AI-kirjaoskuse.
+- AKI rõhutab, et töötaja peab lähtuma tööandja juhistest ning avalikku tehisarusse ei
+  sisestata kliendiandmeid ega konfidentsiaalset tööinfot.
+- Tähtaeg ei ole ainus põhjus; tegelik kasutus on.
 
-**S37. Kontrollküsimused igale AI-tööriistale (checklist B)**
-- Kus andmed asuvad (EL?)? Kas sisendeid treenitakse? Kas on asutuse leping ja
-  andmetöötlusleping? Kas on logi? Kas saab töötajate kaupa piirata? Mis juhtub
-  lepingu lõppedes?
-- Kui müüja ei vasta selgelt — see ONGI vastus.
+### S20. STAR-i strateegia suund
 
-**S38. Ohumärgid**
-- „Asendab hindamise" / „automaatne otsus" / „100% täpne" / „ei vaja ülevaatust" —
-  iga selline lubadus on kas vale või ebaseaduslik (või mõlemat).
+- STAR-i strateegia 2026–2030 näeb AI-d väärtust loova võimalusena, kuid ainult
+  „selgelt piiratud, kontrollitava ja õiguslikult reguleeritud vahendina”.
+- Koolituse küsimus: milline piir on töötaja jaoks päriselt kasutatav?
 
-**S39. Miinimumreeglid meeskonnale (mall ekraanil)**
-- Üks A4: lubatud kasutused (3), keelatud sisendid (5), kohustuslik inimülevaatus,
-  kelle käest küsida. Mall jääb järelmaterjali — kohanda oma asutusele.
+## Moodul 2. Andmed, tööriist ja intsident
 
-**S40. Kust juhis puudu on**
-- Üleriigilist töötaja-taseme juhist praegu ei ole; kuni see tekib, on asutuse oma reegel
-  ainus kaitse. (Ja see A4 on parem kui enamikul asutustel täna olemas.)
+### S21. Ülesanne – andmed – tööriist
 
-**S41. Moodul 5 kokkuvõte**
-- Tark asutus ei keela AI-d ega luba kõike — ta ütleb, KUS on piir. Nüüd oskad selle
-  piiri ise kirja panna.
+- Sobiv ülesanne vales tööriistas võib olla ohtlik.
+- Hea tööriist ei tee ebavajalikku andmetöötlust vajalikuks.
+- Anonüümne sisend ei muuda otsustamist automaatselt sobivaks.
 
-## Lõpetamine (4 slaidi)
+### S22. Avalik, sünteetiline, anonüümne, pseudonüümne, isikustatud
 
-**S42. JUHTUMIPANGA vabad küsimused** (varu: J6 hallutsineeritud viide, J9 tasuta vs
-asutuse tööriist, J10 võrgustikukohtumise kokkuvõte)
+- Avalik: avaldamine ei tähenda, et kõiki kasutusviise võib piiranguta teha.
+- Sünteetiline: väljamõeldud, kuid realistlik õppematerjal.
+- Anonüümne: inimest ei saa mõistlikult kasutatavate vahenditega tuvastada.
+- Pseudonüümne: nimi on asendatud, kuid seos inimesega on taastatav.
+- Isikustatud: otseselt või kaudselt tuvastatava inimese andmed.
+- Lisaks isikuandmetele kontrolli konfidentsiaalsust, lepingut ja õigust dokumendi sisu
+  välisele teenusele edastada.
 
-**S43. Järelmaterjalid**
-- 4 checklist'i + meeskonnareeglite mall — e-postiga homme; kasuta, jaga, kohanda.
+### S23. Nime kustutamine ei pruugi aidata
 
-**S44. Üks lause koju**
-- **AI võtab sinult ära tippimise, mitte otsustamise — ja kui keegi lubab vastupidist,
-  hoia rahakotist kinni.**
+- Näide: vanus + amet + väike küla + haruldane peresündmus.
+- Küsimus pole ainult selles, kas AI-teenuse pakkuja teab nime. Küsimus on, kas inimene
+  on andmetest tuvastatav.
 
-**S45. Tagasiside + aitäh**
-- 5 minutit kohapeal, paberil või telefonis. Mis jäi puudu — kirjuta, sellest sünnib
-  järgmine koolitus.
+### S24. Minimeerimine enne anonüümimist
 
-*(Slaidid S46–S48 varus: AI-määruse ajajoon; „kuhu maailm liigub" — 2 min visioon;
-kontaktslaid.)*
+- Kõigepealt küsi: kas seda detaili on ülesande jaoks üldse vaja?
+- Alles seejärel üldista või eemalda vajalikku konteksti kahjustamata.
+- Mõnikord on õige otsus kogu juhtum AI-st välja jätta.
+
+### S25. Harjutus H2: kas sellest saab turvalise sisendi?
+
+- Leia äratuntavad detailid.
+- Erista oluline taust dekoratiivsest taustast.
+- Otsusta, kas tulemus on anonüümne, pseudonüümne või endiselt äratuntav.
+- Viimane küsimus ei ole „kas nüüd võib?”, vaid „kas asutuse reegel ja tööriist lubavad?”.
+
+### S26. Tasuta või tasuline ei otsusta sobivust
+
+- Tarbijaversiooni ja organisatsiooniversiooni tingimused võivad erineda.
+- Kontrolli konkreetset kontot, versiooni, lepingut ja seadistust.
+- Küsi: kas sisendeid kasutatakse mudeli arendamiseks, kui kaua neid hoitakse, kuhu need
+  liiguvad ja kes ligi pääseb?
+
+### S27. EL-is majutatud ei tähenda automaatselt lubatud
+
+- Asukoht ja andmeedastus on üks osa.
+- Lisaks on vaja eesmärki, õiguslikku alust, minimaalsust, ligipääsukontrolli,
+  säilitamisreeglit, turvameetmeid ja intsidentide plaani.
+
+### S28. Kui sisestasid midagi valesse kohta
+
+- Peata.
+- Ära lisa uusi andmeid ega jaga kuvatõmmist laiali.
+- Teata kokkulepitud kanalisse.
+- Pane kirja minimaalne vajalik: milline süsteem, millal, millist liiki andmed ja milline
+  tegevus.
+- Asutus, mitte üksik töötaja, hindab rikkumist ja teavitamiskohustust.
+
+### S29. Intsident ei ole häbiharjutus
+
+- Varjamine suurendab kahju ja vähendab reageerimisaega.
+- Hea süsteem teeb teatamise lihtsaks ega karista ausat varajast teadet.
+- Juhi küsimus ei ole ainult „kes eksis?”, vaid „miks sai see töövoog üldse võimalikuks?”.
+
+## Moodul 3. Praktilised töövõtted
+
+### S30. Kolm töövõtet, mida harjutame
+
+- Dokumendimustand.
+- Ametliku teksti selgitus.
+- Avaliku allika kokkuvõte.
+- Kõigi kolme puhul on sisend lubatud, väljund kontrollitav ja vastutaja inimene.
+
+### S31. Hea tööülesande kuus osa
+
+- Eesmärk.
+- Adressaat.
+- Lubatud lähtefaktid.
+- Piirid: mida ei tohi lisada või oletada.
+- Soovitud vorm ja pikkus.
+- Kontrollinõue: märgi ebakindlus ja ära lisa uusi fakte.
+
+### S32. Harjutus H3: dokumendimustand
+
+- Kasuta ainult sünteetilist faktilehte.
+- Koosta kaks versiooni: ametlik ja lihtsas keeles.
+- Leia väljundist vähemalt üks parandatav faktirisk, toonirisk või põhjendamatu lubadus.
+
+### S33. Ilus, aga vale
+
+- Keeleline sujuvus võib vähendada töötaja valvsust.
+- Loe väljundit nagu kolleegi mustandit, mitte nagu tarkvara tulemust.
+- Kontrolli eriti numbreid, tähtaegu, põhjuseid ja tegevuslubadusi.
+
+### S34. Selge keel ei ole sisu vähendamine
+
+- Inimene peab mõistma, mis otsustati, miks, mida ta saab edasi teha ja millal.
+- AI võib aidata lauseid ümber teha, kuid õigusliku sisu muutumine on viga.
+- Sotsiaalteenuste kvaliteedijuhis seob teenuse kvaliteedi ajakohase ja arusaadava infoga.
+
+### S35. Harjutus H4: õppeotsus ja faktileht
+
+- Esmalt märgi algtekstis muutumatud faktid.
+- Lase koostada selgitus.
+- Tõenda iga väide algteksti või faktilehe abil.
+- Tähista, mida selgitus jättis välja.
+
+### S36. Kokkuvõte ei vabasta allika lugemisest
+
+- Kokkuvõte aitab orienteeruda, mitte asendab allikat.
+- Väite juures peab olema lehekülg või lõik.
+- Kui asukohta ei leia, on väide kontrollimata.
+
+### S37. Harjutus H5: viis punkti, viis allikajälge
+
+- Alus: Sotsiaalkindlustusameti avaliku kvaliteedijuhise valitud väljavõte.
+- Väljund: viis punkti koos lehekülje või lõiguga.
+- Paariline kontrollib ainult allika põhjal.
+
+### S38. Päritolu peab jääma nähtavaks
+
+- Kliendi öeldu.
+- Töötaja tähelepanek.
+- Töötaja tõlgendus.
+- Dokumendi väide.
+- AI loodud mustand.
+- AI kipub need üheks ladusaks looks siluma; spetsialist peab piirid taastama.
+
+### S39. Kvaliteedikontroll: seitse küsimust
+
+- Faktid.
+- Allikad ja viited.
+- Puuduv kontekst.
+- Oletused.
+- Toon ja arusaadavus.
+- Mõju inimese õigustele või valikutele.
+- Kas ma suudan teksti enda sõnadega põhjendada?
+
+## Moodul 4. Otsustuspiir ja eetika
+
+### S40. Mõju loeb rohkem kui funktsiooni nimi
+
+- Kas süsteem valib inimese kohta arvesse minevad asjaolud?
+- Kas ta ennustab riski või sobivust?
+- Kas ta soovitab tulemust või seab järjekorra?
+- Kas töötaja näeb AI hinnangut enne enda hinnangu tegemist?
+
+### S41. Meie praktiline punane joon
+
+- Üldine generatiivne AI ei soovita konkreetse inimese toetuse, teenuse, riski,
+  abivajaduse ega prioriteedi otsust.
+- See on teadlik turvareegel. Ära esita seda väitena, et iga kõrge riskiga süsteem on
+  seadusega keelatud.
+
+### S42. Juhtum J2: AI soovitab keeldumist
+
+- Mis hetkel hakkas AI otsust mõjutama?
+- Kas anonüümimine lahendas põhiprobleemi?
+- Milline üldine küsimus oleks konkreetse soovituse asemel sobivam?
+
+### S43. Juhtum J5: töötajate läbipõlemisrisk
+
+- Eesmärk võib olla hea, kuid andmed ja tagajärg töötaja jaoks võivad olla suure mõjuga.
+- Erista vabatahtlik individuaalne enesepeegeldus, anonüümne koond ja juhtkonna
+  individuaalne riskiprofiil.
+
+### S44. Juhtum J8: lapse vestluse märkmed
+
+- Kõrge tundlikkus ei tähenda automaatselt, et ükski tehnoloogia pole võimalik.
+- See tähendab, et üldine tarbijatööriist ja improviseeritud õiguslik alus ei ole
+  vastuvõetavad.
+- EL-i majutus üksi ei lahenda eesmärki, ligipääsu, säilitamist ega mõju.
+
+### S45. Juhtum J9: avaliku huvi tekst
+
+- Kas AI roll oli standardne toimetamine või sisuline genereerimine?
+- Kas inimene tegi sisulise ülevaatuse ja võttis toimetusvastutuse?
+- Kas artikli 50 märgistamisreegel kohaldub?
+- Vajaduse korral kontrolli Komisjoni juhist, mitte ära otsusta märksõna „AI” põhjal.
+
+### S46. Kui klient tuleb AI-vastusega
+
+- Ära naeruväärista.
+- Küsi, millisest allikast väide pärineb.
+- Kontrollige koos ametlikust allikast.
+- Selgita, milline asutus ja milline menetlus teeb päris otsuse.
+
+### S47. Läbipaistvus ei ole üks universaalne lause
+
+- Õiguslik teavitamiskohustus sõltub kasutusest.
+- Ametialane ausus eeldab, et spetsialist suudab AI rolli selgitada.
+- Sobiv näide: „Kasutasin teksti sõnastamiseks abivahendit, kontrollisin faktid ja
+  otsuse tegin mina.”
+- Seda lauset ei kasutata automaatse vabandusena, kui AI tegelikult kujundas otsuse.
+
+### S48. Eetika kontrollküsimus
+
+- Kas töövõte annab spetsialistile rohkem aega inimese jaoks või eemaldab inimese
+  otsusest?
+- Kas inimene saab aru, vaidlustada ja parandada?
+- Kes kannab vea tagajärje?
+
+## Moodul 5. Asutuse kasutusreegel
+
+### S49. Keeld üksi ei loo kontrolli
+
+- Kui vajadus jääb, kuid lubatud rada puudub, läheb kasutus varju.
+- Samas ei ole „kõik kasutavad” põhjendus.
+- Asutus peab nimetama lubatud ülesanded, tööriistad, andmed, kontrolli ja kontaktid.
+
+### S50. Enne toodet sõnasta eesmärk
+
+- Millist tööprobleemi lahendame?
+- Kellele tekib kasu ja kellele risk?
+- Kas sama tulemuse saab väiksema andmetöötlusega?
+- Millise mõõdiku järgi otsustame, kas kasutus töötab?
+
+### S51. Tööriista kontrollkaart
+
+- Leping ja osapoolte rollid.
+- Andmete asukoht, edastused, treenimine ja säilitamine.
+- Ligipääsud, logid, kustutamine ja eksport.
+- Kvaliteet, kallutatus, turvalisus ja ligipääsetavus.
+- Mõjuhinnangud, inimjärelevalve ja intsidentide protsess.
+- Teenusest väljumise plaan.
+
+### S52. Meeskonnareegli miinimum
+
+- Lubatud ülesanded ja andmeliigid.
+- Keelatud või kooskõlastatavad kasutused.
+- Heakskiidetud tööriist ja konto.
+- Kohustuslik kontroll.
+- Intsidendi kontakt.
+- Reegli järgmine ülevaatuskuupäev.
+
+### S53. Rühmatöö: üks reegel ja üks lahendamata küsimus
+
+- Koostage üks reegel, mida töötaja saab homme järgida.
+- Sõnastage üks küsimus, mida töötaja ise lahendada ei saa.
+- Eesmärk on näidata, et AI-kirjaoskus ei nihuta asutuse vastutust üksiktöötajale.
+
+## Lõpetamine
+
+### S54. Viis järelmaterjali
+
+- Sisendi eelkontroll.
+- Tööriista kasutuselevõtu kontroll.
+- Otsustuspiiri kontroll.
+- Väljundi kvaliteedikontroll.
+- Intsidendi kiirkaart.
+- Lisaks meeskonnareeglite mall ja ametlike allikate loend.
+
+### S55. Minu homne samm
+
+- Üks kasutus, millest loobun või mille peatan.
+- Üks sünteetilise või avaliku sisuga töövõte, mida proovin.
+- Üks küsimus, mille viin juhile või andmekaitsespetsialistile.
+
+### S56. Lõppkontroll
+
+- Samad lühistsenaariumid nagu avaküsitluses.
+- Osaleja valib: sobiv; sobiv ainult tingimustel; peata ja küsi; ära kasuta.
+- Koolitaja võrdleb rühma alg- ja lõppvastuseid.
+
+### S57. Üks lause koju
+
+- **AI võib kiirendada sõnastamist, kuid ei vabasta sind vajadusest mõista, kontrollida
+  ja vastutada.**
+
+### S58. Allikad ja kontakt
+
+- AI-määrus ja Komisjoni rakendusjuhised.
+- Andmekaitse Inspektsiooni tehisaru juhised.
+- STAR-i strateegia 2026–2030.
+- Eesti sotsiaalteenuste üldine kvaliteedijuhis.
+- Koolitaja kontakt.
+
+## Varuslaidid
+
+### V1. AI-määruse riskikategooriate näited
+
+Kasutada ainult küsimuse korral. Ära kuluta põhikavas aega kogu määruse õpetamisele.
+
+### V2. Artikkel 6 lõige 3: ettevalmistava ülesande erand
+
+Kuvada ametliku teksti lühikokkuvõte ja link, mitte anda üksikjuhtumile klassifikatsiooni.
+
+### V3. GDPR artikkel 22 ja sisuline inimsekkumine
+
+Rõhutada üksnes automatiseeritud otsust, olulist mõju ning inimsekkumise tegelikku sisu.
+
+### V4. Anonüümne või pseudonüümne?
+
+Kolm lisastsenaariumi saaliga lahendamiseks.
+
+### V5. Mida teha, kui asutuse reeglit ei ole
+
+- Ära kasuta kliendi- ega konfidentsiaalseid andmeid avalikus tööriistas.
+- Küsi kirjalik juhis.
+- Paku juhile ühe lehe reegli mustandit.
+- Ära võta üksiktöötajana enda peale asutuse õiguslikku riskihinnangut.

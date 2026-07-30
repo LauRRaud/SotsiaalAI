@@ -468,9 +468,10 @@ kanal, mis meil olemas on — hädaabinumber. Ma ei paku ennast selleks kanaliks
 
 ### U2. Kvaliteedinõuete kontrollitavus (SKA — järelevalve vaates)
 
-**Küsimus:** Riigikontrolli koduteenuste audit leidis, et suurel osal auditeeritud KOV-idest
-oli klienditagasiside dokumenteerimata ja seadusest tulenevad vahehindamised tegemata või
-ebakorrapärased — samal ajal kui kvaliteedijuhis neid nõuab. Kas riik kavatseb muuta
+**Küsimus:** Riigikontrolli koduteenuste audit leidis, et omavalitsustes puudusid sageli
+selged eesmärgid ja tulemusnäitajad, kvaliteedikontroll oli lünklik ning teabehaldus
+valdavalt paberikeskne; klienditagasisidet kogus suur osa auditeeritud KOV-idest suuliselt
+ja dokumenteerimata. Kas riik kavatseb muuta
 kvaliteedijuhise nõuded kontrollitavaks — ja kas kontrollitavus võiks tähendada digitaalset
 jälge töö käigus, mitte järjekordset eraldi aruannet?
 
@@ -897,12 +898,19 @@ osa, siis peaks nende koht olema töökorralduses ja eelarves, mitte töötaja i
      ise teejuhi poole pöörduda ja sõnastada tema roll heaoluplaanis aktiivsena — kas need
      ettepanekud said arvestatud?"
 6. **Riigikontrolli audit „Koduteenuse ja väljaspool kodu osutatava üldhooldusteenuse
-   korraldus" (2025)** — U2 selgroog (PDF loetud 28.07.2026, pdf-parse). Leiud, mida laval
-   kasutada: klienditagasiside suurel osal auditeeritud KOV-idest dokumenteerimata;
-   vahehindamised tegemata või ebakorrapärased; teenuse osutamise tõendatus kohati puudulik
-   („paberivaba praktika"); KOV-ide IT-lahenduste kulu suurusjärk „mõnisada eurot kuus" —
-   hinnaankur, mille riik ise avaldas. NB: numbrid tsiteeri auditist, mitte peast — enne
-   sügiskooli värskenda täpsed arvud raportist.
+   korraldus" (2025)** — U2 selgroog (PDF loetud 28.07.2026, pdf-parse; **leiud üle
+   kontrollitud 30.07.2026, vt allpool parandust**). Leiud, mida laval kasutada — KÕIGE
+   KINDLAMAD kõigepealt: omavalitsustes puudusid sageli selged eesmärgid ja
+   tulemusnäitajad; kvaliteedikontroll oli lünklik; teabehaldus valdavalt paberikeskne;
+   klienditagasisidet kogus suur osa auditeeritud KOV-idest suuliselt ja dokumenteerimata
+   (6/10); KOV-ide IT-lahenduste kulu suurusjärk „mõnisada eurot kuus" — hinnaankur, mille
+   riik ise avaldas. **PARANDUS 30.07: ÄRA ütle „seadusest tulenevad vahehindamised olid
+   tegemata".** Iga-aastase tagasiside ja üle-/vahehindamise nõue tuleb **koduteenuse
+   kvaliteedijuhisest**, mitte seadusest; seadusest tuleneb kohustus märgata abivajaduse
+   muutumist ja sellele reageerida. Vale omistamine on laval kerge maha võtta ja auditi
+   autor (riigikontrolör Janar Holm) on ise sügiskoolis paneelis 12.
+   Allikas: https://www.riigikontroll.ee/auditiaruanded/koduteenuste-korraldus
+   NB: numbrid tsiteeri auditist, mitte peast.
 7. **TAI ajakirja Sotsiaaltöö 2050-esseed (2026)** — U1 ja E-ploki tugi:
    - [„Sotsiaalkiirabi" essee](https://www.tai.ee/et/sotsiaaltoo) — pakub mitte-hädaabi
      sotsiaalse kiirreageerimise teenust; toetub Häirekeskuse **ühe ööpäeva** analüüsile

@@ -343,6 +343,83 @@ andmetega tohib pime funktsioon elada täisvormis.
 | **VIPS-spetsialistide tööruum** | **UUS (ajend: astmelise abi pilot, vt 5.12):** riigi loodav uus töötajasrühm (väljaõppega, EI OLE tervishoiutöötajad, KOHUSTUSLIK regulaarne supervisioon) — sama muster mis tervise teejuhi tööruumil: kohtumiste kokkuvõtted, supervisioonirütm, kovisioon, tööheaolu, teadmuskiht; kliinilist dokumentatsiooni EI (see jääb nende süsteemi/TIS-i, meie ei ole meditsiiniseade) | sahtel; kell = piloodi käivitumine/laienemine (40-kuuline projekt käib); jälgi VIPS-arendamise taotlusvoore |
 | **SOTSIAALVALVE (KOV valvelaud)** | **UUS (omanik 29.07: „saaks platvormil ära teha või edasi arendada?" — sotsiaalkiirabi KIHT 2, mida essee ise ei näinud):** KOV-idel on valved juba OLEMAS (lastekaitse valvetelefonid, valvegraafikud), puudu on TÖÖRIIST — valvelaud: öised signaalid („teata abivajajast" + kiireloomulised eelpöördumised) triaažitud järjekorda valvetöötajale; valvekirjed Teenuspäeviku mustris; ÜLEANDMINE hommikusele vahetusele; valvegraafik = E10 mootor. Piirid kivisse: EI ole hädaabinumber, EI luba reageerimisaega, AI ei tee triaažiotsust (inimene valib kiireloomulisuse, elurisk = alati 112); valvepersonal = KOV-i oma, meie anname laua | vajab 1–2 valve-KOV-i pilooti; kihiline positsioneering: SotsiaalAI = sotsiaalkiirabi EELKIHT (24/7 selgus, olemas) + TÖÖRIISTAKAST (valvelaud, välitöö kest, kriisirežiim) + TÕENDUSBAAS (öiste mustrite k≥5 koond — essee 35h oli ühe päeva käsianalüüs, meie annaksime pideva mõõtmise); pehme käik = ühisartikkel essee autoritega ajakirjas Sotsiaaltöö („Unistusest prototüübini"). **KOLMEKIHILINE VALVE (omanik 29.07: „personal võiks olla SotsiaalAI assistent või abi otsene platvormil"):** kiht 1 = **AI öine esmatugi** (OLEMAS: kuulab/selgitab/kriisimuster→kontaktid; avalik nimi MITTE „personal" — sõna loob sekkumisootuse, mida AI kanda ei saa); kiht 2 = **„öö kuulab, hommik tegutseb"** (EHITATAV: öövestlus vormistub inimese NÕUSOLEKUL kokkuvõtteks → hommikune valvejärjekord alustab sisust — AI on valve öösekretär, mitte personal; olemasolev eelpöördumise/U10 muster); kiht 3 = **inimvalve platvormi KAUDU** (valvetöötaja vastab ruumis/kõnes sealsamas, kus inimene on — ruumide infra olemas; vastutuse kandja ALATI inimene; elurisk = alati 112; AI ei triaaži otsustavalt = AI-määruse kaitsekraav). KULUARGUMENT: AI-esmakiht → iga KOV ei vaja oma öövalvet, piisab PIIRKONDLIKUST ühisvalvest (heaolupiirkonnad 2027 = valmis struktuur) — „vähem valvetunde, parem vastus" |
 
+**SOTSIAALVALVE võrdlusallikas — Soome sotsiaal- ja kriisiabi (loetud 30.07.2026).**
+[Merike Mikk, „Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus",
+Sotsiaaltöö 2/2026](https://www.sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus)
+kinnitab piirkondliku ühisvalve loogikat, kuid lisab viis nõuet, mida Eesti prototüübis
+ei tohi vahele jätta:
+
+1. **Kaks sissepääsu:** avalik kanal inimesele ning eraldi ametnikukanal Häirekeskusele,
+   politseile, kiirabile ja teistele partneritele.
+2. **Isikuline vastutusjälg:** funktsionaalse laua taga peab iga vaatamine, toiming ja
+   edasisuunamine jääma konkreetse töötaja ning kellaajaga logisse.
+3. **Vahetuse ja üksuse üleandmine:** öine juhtum peab jõudma hommikul õige piirkondliku
+   üksuseni koos tegevuslooga; üleandmine vajab vastuvõtukinnitust.
+4. **Väljasõidu ohutus:** väljasõit on inimese juhitud eraldi teenus, mitte platvormi
+   automaatne jätk. Soome mudelis minnakse kodukülastusele kahekesi ning rollid politsei,
+   pääste, kiirabi ja sotsiaaltöö vahel on ette kokku lepitud ja läbi harjutatud.
+5. **Töötaja järelhoid:** rühmasupervisioon, kiire tugi raskete juhtumite järel ja
+   ühised kriisiõppused on teenuse osa, mitte vabatahtlik lisand.
+
+Nimetust **„Sotsiaalkiirabi" SotsiaalAI üldise avaliku raja nimena ei kasutata.**
+SK-V1 võib jääda sisemiseks funktsiooninimeks, kuid avalikus vaates on vaikimisi
+**„Kiireloomuline abipalve"**. Partneri konkreetse teenuse nime võib näidata ainult siis,
+kui pöördumine läheb päriselt selle teenuse mehitatud vastuvõttu.
+
+**Eesti rakendustõend — Estkeeri piloot ja Sotsiaalministeeriumi kukkumisjuhtumite
+analüüs (loetud 30.07.2026).** Eesti ei alusta nullist. RTK
+[13.05.2025 rahastusotsuse](https://adr-docs.karlerss.com/vGptejVOOMwg2gZbWz5xcAjLvs9p9faH/Taotluse%20rahuldamise%20kohta.pdf)
+järgi kestab Estkeer OÜ projekt 01.06.2025–31.05.2027, selle abikõlblik maksumus on
+625 000 eurot, toetus kuni 500 000 eurot ja väljundsiht 340 teenusesaajat. Esimesel
+kolmel teenusekuul ei tulnud kolmest vallast ühtegi väljakutset. See ei tõenda vajaduse
+puudumist. [Jaanuari 2026 sõltumatu kajastus](https://peegel.ut.ee/node/1158) ning
+[teenuseosutaja tausta avav lugu](https://tervisetasku.ee/artiklid/uudislood/abi-on-olemas-kuid-sotsiaalkiirabi-ei-joua-abivajajateni-miks-kodused-kriisid-jaavad-varju)
+toovad välja neli käivitustakistust:
+
+1. **Öisel teenusel oli päevane värav.** Piloodi algses mudelis määras teenusele KOV-i
+   sotsiaaltöötaja; see piiras otsest ligipääsu ja nähtavust ajal, mil töötaja ise valves
+   ei olnud.
+2. **Juhtumid olid teises torus.** Kiirabi ja 112 nägid sotsiaalse sisuga olukordi, kuid
+   info ei jõudnud süsteemselt KOV-i ega teenuseosutajani.
+3. **Puudus ametkondlik suunamisleping.** Häirekeskusel ei olnud ühtset õiguslikku alust,
+   ohuhinnangut, kontakti ega tööprotsessi juhtumi sotsiaalvaldkonna reageerijale
+   andmiseks.
+4. **Valmisolek ei loonud iseenesest usaldust ega kasutusharjumust.** Inimesed ja
+   töötajad olid harjunud ise hakkama saama ning uus teenus polnud veel tuttav.
+5. **Ligipääsureegel ja hind ei olnud piirkonniti ühetaolised.** Teenuseosutaja leht
+   ütleb, et teenusele määrab KOV-i sotsiaaltöötaja;
+   [Tartu valla lehel](https://tartuvald.ee/pere-sotsiaal-ja-tervishoid/eakad-ja-erivajadusega-inimesed/sotsiaalkiirabi)
+   on väljakutse ja toimingud tasulised, kuid
+   [Kambja 19.02.2026 uuendatud juhis](https://www.kambja.ee/sotsiaalkiirabi) lubab
+   inimesel ise helistada ja ütleb, et teenus on tasuta. See võib peegeldada piloodi
+   parandamist, kuid sama nimi ei anna inimesele veel üheselt teada, kas tal on õigus
+   pöörduda, kelle loal ja mis hinnaga.
+
+TerviseTasku väljaanne märgib ise, et seda toetab Estkeer OÜ; seetõttu on see kasulik
+teenuseosutaja vaate, mitte sõltumatu mõjuhinnanguna. Tugevam süsteemitõend on
+Sotsiaalministeeriumi [2026. aasta kukkumisjuhtumite analüüs](https://sm.ee/sites/default/files/documents/2026-06/Koduses%20keskkonnas%20toimunud%20kukkumisjuhtumid.pdf):
+41% küsitlusele vastanud KOV-idest ei saanud kodustest kukkumisjuhtumitest infot;
+takistustena nimetati sobimatud infosüsteemid ja kokkuleppe puudumine. Analüüs eristab
+Estkeeri ööpäevaringset hooldusabi, Valga tööajavälist sotsiaalset tuge, Punase Risti
+esmaabi ja Tallinna eelnevalt hinnatud inimestele mõeldud sotsiaalvalvet ning hoiatab,
+et ühise mudelita tähendab „sotsiaalne kiirabi" eri kohtades eri asja. Juhtumite väike
+ja ebaühtlane piirkondlik maht ei toeta eraldi 24/7 üksuse loomist igasse KOV-i.
+
+**Järeldus SotsiaalAI jaoks:** digitaalne esiuks võib lahendada leitavuse, inimese enda
+pöördumise, vastutusjälje ja üleandmise, kuid ei loo ise reageerijat. Aktivatsiooniks on
+vaja otsest mehitatud saajat koos lugemisajaga, mitte suunamist päevase sotsiaaltöötaja
+kaudu; eraldi tuleb kokku leppida ametnikukanal ja Häirekeskuse suunamisõigus. Eelistus
+on üks piirkondlik või riiklikult ühetaoline suunamismudel, mitte neljanda reageerija
+lisamine eri kontaktiga igasse KOV-i. Piloodi mõõdik ei ole nupu olemasolu, vaid kogu
+ahela läbimine: saadetud → loetud → vastu võetud või põhjendatult tagasi lükatud →
+vajadusel päevasele üksusele üle antud.
+
+Teenusekaardi kiireloomulise abi kirje vajab seetõttu tavakirjest rangemat
+valmiduslepingut: piirkond, avalik nimi, tööaeg, kes tohib pöörduda, kas eelhindamist on
+vaja, inimese kulu, otsene kontakt või vastuvõtulaud, lubatud lugemis- või
+reageerimisaeg, 112 piir ning `lastVerifiedAt`. Automatiseeritud korje võib muutusi
+märgata, kuid kiireloomulise raja avab ainult partneri kinnitatud aktiivne kirje.
+
 **Teadmusbaasi uudiskirjakorje (omanik 28.07).** Ajakirja Sotsiaaltöö uudiskiri (11×/a) on
 tasuta KUREERITUD värskusvoog uutest artiklitest, juhenditest ja uuringutest — toimetus teeb
 valiku meie eest. Väljaandja alates 2026: SKA + SoM (kolis TAI alt ära). **Õigused: omanik
@@ -751,6 +828,13 @@ tähelepanu pärast, vaid vabastab aega kuulamiseks. See tähendab, et valdkonna
 AI-skeptilisusega ei pea vaidlema — saame sellega ühineda ja näidata, et ehitame just seda
 erandit, mida kriitika ise nõuab. Kasutuskohad: ESTA/akadeemilised vestlused, positsioonileht,
 AI-koolituse eetikamoodul.
+
+Soome sotsiaal- ja kriisiabi praktikakirjeldus annab sellele empiirilise kontrolli:
+inimesed helistavad valvesotsiaaltöötajale muu hulgas seetõttu, et automaatvastajate ja
+chat-vestluste kõrval tuntakse, et keegi ei kuula. Tootereegel: AI vastab infoküsimusele,
+aitab mure sõnastada ja vähendab kordamist, kuid inimese soov päris töötajaga ühendust
+saada ei ole tõrge ega „madal engagement". Edu mõõdik on sel juhul aus ja võimalikult
+lühike üleandmine inimesele koos lubatud lugemisajaga.
 
 ### 5.10. Kaks paneeliankrut (TLÜ „Sotsiaaltöö 2050" paneel, transkript loetud 29.07.2026)
 

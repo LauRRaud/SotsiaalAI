@@ -1,86 +1,187 @@
-# Järelmaterjalid — 4 checklist'i + meeskonnareeglite mall
+# Järelmaterjalid — viis kontrollnimekirja ja meeskonnareeglite mall
 
-MUSTAND 28.07.2026. Need lehed jäävad osalejatele (PDF). Iga checklist mahub ühele A4-le.
-Litsents (ettepanek): vabalt jagatav viitega koolitusele — levik on siin eesmärk.
+Versioon 0.3 · 30.07.2026
 
----
+Sihtrühm: osaleja ja asutuse meeskond. Materjalid annavad otsustusabi, mitte õigusliku
+loa konkreetse tööriista või andmestiku kasutamiseks.
 
-## A. Enne kui sisestad midagi AI-tööriista
+## A. Enne AI-tööriista kasutamist: ülesanne – andmed – tööriist
 
-1. **Kas siin on nimi + lugu koos?** → eemalda või asenda rolliga (klient, poeg, naaber).
-2. **Kas siin on isikukood, aadress, kontakt, sünnikuupäev?** → välja, alati.
-3. **Kas siin on terviseinfo või lapse andmed?** → üldisesse tööriista EI lähe üldse.
-4. **Kas inimene oleks äratuntav ka nimeta?** (amet + vanus + koht väikeses kogukonnas)
-   → üldista, kuni kolleeg naabervallast enam ära ei tunneks.
-5. **Kas see info on ülesande jaoks üldse vajalik?** → kui ei, jäta välja (minimeerimine).
-6. **Kas kasutan asutuse heakskiidetud tööriista või tarbijaversiooni?** → kui ei tea,
-   eelda tarbijaversiooni ja käitu vastavalt (= ainult anonüümne sisu).
-7. Kahtluse korral: **ära sisesta. Küsi juhilt/andmekaitsespetsialistilt.**
+### Ülesanne
 
-## B. Kontrollküsimused AI-tööriistale enne kasutuselevõttu (asutusele)
+- [ ] Kas AI lisab siin päriselt väärtust?
+- [ ] Kas sama tulemuse saab ilma isikuandmeteta või üldse ilma AI-ta?
+- [ ] Kas palun sõnastamist/kokkuvõtet või hinnangut konkreetse inimese kohta?
+- [ ] Kas AI väljund võib mõjutada inimese õigust, teenust, toetust, riski või
+      prioriteeti? Kui jah, peata ja küsi enne asutuse vastutavalt inimeselt.
 
-1. Kus andmeid füüsiliselt töödeldakse ja hoitakse? (EL/EMP?)
-2. Kas meie sisestusi kasutatakse mudeli treenimiseks? Kas selle saab keelata?
-3. Kas on olemas asutuse leping ja andmetöötlusleping (mitte ainult „kasutajatingimused")?
-4. Kas kasutust logitakse ja kas logi on MEILE kättesaadav?
-5. Kas ligipääsu saab hallata (töötajate kaupa, rollide kaupa, sulgeda lahkumisel)?
-6. Mis juhtub andmetega lepingu lõppedes? (kustutamine, eksport)
-7. Kas tööriist teeb või soovitab OTSUSEID inimeste kohta? (kui jah → kõrge riski nõuded
-   või ära võta üldse)
-8. Kas müüja vastab neile küsimustele selgelt? **Kui ei vasta — see ongi vastus.**
-9. Kes asutuses vastutab selle tööriista eest? (nimi, mitte osakond)
-10. Kas meil on kirjas, MILLEKS me seda kasutame? (eesmärk enne tööriista)
+### Andmed
 
-## C. Mida AI ei otsusta kunagi
+- [ ] Kas sisu on avalik, sünteetiline, anonüümne, pseudonüümne või isikustatud?
+- [ ] Kas inimese saab tuvastada ka nimeta: vanus + amet + koht + haruldane sündmus?
+- [ ] Kas sisend sisaldab tervise-, lapse-, puude-, vägivalla- või muud eriti tundlikku
+      teavet?
+- [ ] Kas iga detail on selle ülesande jaoks vajalik?
+- [ ] Kas mul on õigus seda infot sellel eesmärgil töödelda?
+- [ ] Kas mul on õigus dokumenti või selle sisu välisele teenusele edastada
+      (konfidentsiaalsus, leping, autoriõigus)?
 
-AI **ei hinda, ei määra, ei vähenda, ei lõpeta, ei järjesta**:
+### Tööriist
 
-- abivajadust ega hooldusvajadust;
-- õigust toetusele või teenusele;
-- lapse heaolu ega ohutaset;
-- riskihinnangut inimese kohta (sh töötaja kohta!);
-- teenuse lõpetamist või mahu vähendamist;
-- inimeste järjekorda („kes enne", „kes rohkem vajab").
+- [ ] Kas asutus on heaks kiitnud just selle tööriista, konto ja kasutusviisi?
+- [ ] Kas tean, kas sisendit säilitatakse, edastatakse või kasutatakse mudeli
+      arendamiseks?
+- [ ] Kas kasutan tööalast kontot, mitte isiklikku tarbijakontot?
+- [ ] Kas tean, kuhu probleemi korral teatada?
 
-Need on inimese otsused seaduse, ameti aususe ja EL-i AI-määruse järgi (kõrge riski
-kohustused kehtivad alates 2.8.2026). AI võib nende otsuste JAOKS ette valmistada
-materjali (faktide korrastus, kontrollnimekirjad, mustandid) — otsus ja vastutus on
-inimesel. **Kui tööriist lubab neid otsuseid „automaatselt", on lubadus kas vale või
-ebaseaduslik.**
+**Kui mõni vastus on ebaselge, ära sisesta kliendi- ega konfidentsiaalset tööinfot.
+Küsi enne.**
 
-## D. AI väljundi kvaliteedikontroll (enne kui paned oma nime alla)
+## B. AI-tööriista kasutuselevõtu kontroll asutusele
 
-1. **Faktid:** kas iga faktiline väide vastab sinu teadmisele juhtumist? (AI „täidab
-   auke" — otsi väljamõeldud detaile.)
-2. **Viited:** iga õigusviide avatud ja üle kontrollitud Riigi Teatajast. Ilma erandita.
-3. **Lubadused:** kas tekst lubab midagi, mida sina/asutus ei luba? (tähtajad, teenused)
-4. **Toon:** kas see on SINU ja su ameti hääl? (AI kipub olema kas liiga sile või
-   liiga ametlik)
-5. **Terviklikkus:** mis on PUUDU? (AI ei tea, mida ta ei tea — sina tead)
-6. **Selgus:** kas adressaat saab aru? (vajadusel: lase teha lihtsam versioon — ja
-   kontrolli, et lihtsustus jäi õigeks)
-7. Lõpuks: **sinu allkiri = sinu vastutus.** Kui mõni punkt jäi tegemata, pole tekst valmis.
+### Eesmärk ja klassifikatsioon
 
----
+- [ ] Millist konkreetset tööprobleemi lahendame?
+- [ ] Mis on lubatud ja välistatud kasutusjuhud?
+- [ ] Kas süsteem profileerib, hindab, ennustab, järjestab või soovitab otsuseid inimeste
+      kohta?
+- [ ] Kas kasutus võib kuuluda AI-määruse keelatud või kõrge riskiga alasse?
+- [ ] Kas vajame andmekaitsealast või põhiõiguste mõjuhinnangut?
 
-## Meeskonnareeglite mall (üks A4, kohanda oma asutusele)
+### Andmed ja rollid
 
-> **[Asutuse] AI kasutamise reeglid — versioon 1, [kuupäev]**
+- [ ] Milliseid andmeliike sisestatakse ja miks need on vajalikud?
+- [ ] Mis on töötlemise õiguslik alus?
+- [ ] Kes on vastutav töötleja, volitatud töötleja ja võimalikud alltöötlejad?
+- [ ] Kas leping ning andmetöötlusleping katavad tegeliku kasutusviisi?
+- [ ] Kus andmeid töödeldakse ja millised rahvusvahelised edastused toimuvad?
+
+### Teenuse tingimused
+
+- [ ] Kas meie sisendeid või väljundeid kasutatakse mudeli treenimiseks või
+      täiustamiseks? Kas selle saab lepinguliselt välistada?
+- [ ] Kui kaua säilivad sisend, väljund, logid ja varukoopiad?
+- [ ] Kuidas toimub kustutamine, eksport ja lepingu lõpetamine?
+- [ ] Kuidas hallatakse kasutajaid, rolle, lahkuvaid töötajaid ja teenusekontosid?
+- [ ] Millised logid on asutusele kättesaadavad ning kuidas kaitstakse logide sisu?
+
+### Kvaliteet ja turvalisus
+
+- [ ] Milliste andmete ja kasutajagruppide peal on toimivust hinnatud?
+- [ ] Millised vead, kallutatused ja piirangud on teada?
+- [ ] Kuidas saab töötaja väljundi tagasi lükata ja süsteemi kasutamise peatada?
+- [ ] Kas lahendus on ligipääsetav ja kasutatav ka abitehnoloogiatega?
+- [ ] Milline on intsidentide teavitamise, lahendamise ja vastutuse kord?
+- [ ] Kes vaatab kasutuse regulaarselt üle ja millise mõõdiku järgi?
+
+**Tasuline, tuntud või EL-is majutatud toode võib ikkagi olla vale valik.**
+
+## C. Otsustuspiiri kontroll
+
+Koolituse praktiline turvareegel: üldine generatiivne AI ei soovita konkreetse inimese
+abivajaduse, toetuse, teenuse, lapse heaolu, riski, teenuse lõpetamise ega
+prioriteedijärjekorra otsust.
+
+Enne otsusega seotud AI kasutust küsi:
+
+- [ ] Kas AI valib, millised asjaolud otsustamisel arvesse lähevad?
+- [ ] Kas AI ennustab inimese riski, sobivust, usaldusväärsust või tulemust?
+- [ ] Kas AI soovitab otsuse tulemust või järjestab inimesi?
+- [ ] Kas AI koostab põhjenduse enne, kui spetsialist on enda hinnangu teinud?
+- [ ] Kas töötaja näeb AI tulemust nii vara, et see võib tema enda hinnangut ankurdada?
+- [ ] Kas töötajal on algandmed, pädevus, aeg ja õigus AI tulemus tagasi lükata?
+- [ ] Kas inimene saab otsust mõista, vaidlustada ja parandada?
+
+Kui vastus viitab sisulisele mõjule, ei piisa lausest „lõpliku otsuse teeb inimene”.
+Kasutus vajab eraldi õiguslikku, eetilist ja organisatsioonilist hinnangut.
+
+**Kõrge risk ei tähenda automaatselt keelatud.** See kontrollnimekiri kirjeldab
+koolituse ettevaatlikku ametialast piiri, mitte kogu AI-määruse ammendavat liigitust.
+
+## D. AI väljundi kvaliteedikontroll
+
+- [ ] **Faktid:** milline väide tuli sisendist ja millise lisas AI?
+- [ ] **Allikad:** kas olen iga viite avanud ametlikus algallikas?
+- [ ] **Kehtivus:** kas õigusakt või juhend on õiges, kehtivas versioonis?
+- [ ] **Puuduv info:** mida AI ei saanud teada ja mida ta võis oletada?
+- [ ] **Päritolu:** kas kliendi öeldu, töötaja tähelepanek, tõlgendus ja AI mustand on
+      eristatavad?
+- [ ] **Numbrid ja tähtajad:** kas need on allikast sõna-sõnalt kontrollitud?
+- [ ] **Õigused ja lubadused:** kas tekst lubab teenust, tähtaega või tulemust, mida
+      asutus pole lubanud?
+- [ ] **Kallutatus:** kas tekst teeb inimese kohta põhjendamatu üldistuse või kasutab
+      diagnoosi/tõlgendust faktina?
+- [ ] **Selgus:** kas adressaat saab aru otsusest, põhjusest ja järgmisest sammust?
+- [ ] **Põhjendatavus:** kas suudan iga lauset oma sõnadega selgitada?
+
+Kui kontrollimiseks puudub aeg või pädevus, ei ole väljund kasutusvalmis.
+
+## E. Kui midagi läks valesti
+
+1. **Peata tegevus.** Ära sisesta uusi andmeid ega saada väljundit edasi.
+2. **Ära varja ega levita.** Ära saada tundlikku kuvatõmmist suurele meililistile.
+3. **Teata viivitamata** asutuse kokkulepitud kanalisse:
+   - juht: ______
+   - andmekaitsespetsialist: ______
+   - infoturve/kasutajatugi: ______
+4. Pane kirja minimaalne vajalik:
+   - tööriist ja konto;
+   - kuupäev/kellaaeg;
+   - andmete liik ja ligikaudne maht;
+   - mida tegid pärast avastamist.
+5. **Ära otsusta ise**, kas juhtum on „piisavalt väike”, kas andmed on kindlasti
+   kustunud või kas AKI-d/inimest tuleb teavitada.
+6. Järgi asutuse juhiseid teenusepakkujaga suhtlemiseks, kustutamiseks ja tõendite
+   säilitamiseks.
+7. Pärast juhtumit paranda töövoogu: ligipääs, juhis, koolitus või tehniline piirang.
+
+Varajane aus teade aitab kahju piirata.
+
+## Meeskonnareeglite mall
+
+> # [Asutuse] AI kasutamise reegel
 >
-> **Lubatud (anonüümitud sisendiga):** dokumentide mustandid; ametlike tekstide
-> selgitamine lihtsas keeles; avalike juhendite/uuringute kokkuvõtted; oma töö
-> planeerimine ja kontrollnimekirjad.
+> Versioon: [number]
+> Kehtib alates: [kuupäev]
+> Järgmine ülevaatus: [kuupäev]
+> Vastutaja: [nimi/roll]
 >
-> **Keelatud sisendid:** nimi + lugu koos; isikukood/aadress/kontaktid; terviseinfo;
-> laste andmed; dokumendifotod; kõik, millest inimene oleks äratuntav.
+> ## Eesmärk
 >
-> **Keelatud kasutused:** otsused ja hinnangud inimeste kohta (vt checklist C);
-> töötajate võrdlemine või profileerimine.
+> Kasutame AI-d järgmiste tööprobleemide lahendamiseks: [loend].
 >
-> **Alati:** AI väljund on mustand — inimene kontrollib (checklist D) ja vastutab.
-> Õigusviited kontrollitakse Riigi Teatajast.
+> ## Heakskiidetud tööriistad ja kontod
 >
-> **Tööriistad:** kasutame [heakskiidetud tööriist(ad)]. Muu tööriista soovi korral
-> pöördu [nimi] poole (checklist B alusel).
+> [tööriist, versioon/konto, lubatud kasutajad]
 >
-> **Küsimused ja kahtlused:** [nimi, kontakt]. Kahtluse korral ära sisesta — küsi enne.
+> ## Lubatud kasutused ja andmed
+>
+> - [kasutus] — [lubatud andmeliik] — [kohustuslik kontroll]
+> - [kasutus] — [lubatud andmeliik] — [kohustuslik kontroll]
+>
+> ## Keelatud või eraldi kooskõlastatavad kasutused
+>
+> - konkreetse inimese õiguse, teenuse, toetuse, riski või prioriteedi soovitamine;
+> - [asutuse otsus];
+> - [asutuse otsus].
+>
+> ## Inimkontroll ja dokumenteerimine
+>
+> AI väljundit käsitletakse mustandina. Enne kasutamist kontrollib [roll] faktid,
+> allikad, tähtajad, päritolu ja inimese õigusi mõjutavad väited. AI kasutus
+> dokumenteeritakse juhtudel [loend].
+>
+> ## Intsident
+>
+> Peata tegevus ja teata: [kanal/kontakt]. Ära levita tundlikku sisu tõendina.
+>
+> ## Küsimused ja erandid
+>
+> Erandi otsustab [roll], vajaduse korral koos andmekaitsespetsialisti, infoturbe või
+> juristiga. Üksiktöötaja ei anna endale ise erandit.
+
+## Kasutusmärkus
+
+Materjale võib ESTA koolituse raames jagada ja kohandada, kui alles jäävad versiooni
+kuupäev, allikaviide ja hoiatus, et kontrollnimekiri ei asenda asutuse õiguslikku
+hinnangut.

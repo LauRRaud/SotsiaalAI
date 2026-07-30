@@ -1,7 +1,8 @@
 # `SOTSIAALKIIRABI-V1` (SK-V1) — arendusleping
 
-STATUS: `READY_FOR_BUILD_AFTER_O-SK-3` — disain on omanikuga läbi vaieldud ja kinnitatud
-29.07.2026; kood kirjutamata; üks otsus blokeerib sissevõtu-UI (ptk 7).
+STATUS: `READY_FOR_BUILD` — disain on omanikuga läbi vaieldud ja kinnitatud 29.–30.07.2026;
+kood kirjutamata; ühendamata KOV-i rada on omaniku otsusel peidetud ja serveris
+fail-closed (ptk 3.6 ja 7).
 
 - **Ülesanne:** pöörduja-poolne kiireloomulise sotsiaalabi kanal — inimene ütleb ise, et
   olukord ei kannata hommikuni, ja tema enda sõnadega kirjeldus liigub tema valitud KOV-i
@@ -11,6 +12,18 @@ STATUS: `READY_FOR_BUILD_AFTER_O-SK-3` — disain on omanikuga läbi vaieldud ja
 - **Ajend:** Virro & Leesment, „Sotsiaaltöö aastal 2050. Unistus sotsiaalkiirabist",
   ajakiri Sotsiaaltöö 2/2025. Nende ettepanek on **füüsiline** väljasõiduüksus. SK-V1 ei
   ole see. SK-V1 on **eelkiht ja väljakutsepind** — vt ptk 2.
+- **Võrdlusallikas (lisatud 30.07.2026):** Merike Mikk,
+  [„Sotsiaalkiirabi või pigem sotsiaal- ja kriisiabi? Soome kogemus"](https://www.sotsiaalkindlustusamet.ee/sotsiaaltoo-artiklid/sotsiaalkiirabi-voi-pigem-sotsiaal-ja-kriisiabi-soome-kogemus),
+  Sotsiaaltöö 2/2026. Artikkel kirjeldab täismahus ööpäevaringset inimteenust; SK-V1
+  võtab sealt vastuvõtu, vastutusjälje ja üleandmise nõuded, mitte väljasõiduteenuse
+  skoopi.
+- **Eesti rakendustõend (lisatud 30.07.2026):** Estkeer OÜ piloodi
+  [rahastusotsus](https://adr-docs.karlerss.com/vGptejVOOMwg2gZbWz5xcAjLvs9p9faH/Taotluse%20rahuldamise%20kohta.pdf),
+  [jaanuari 2026 käivituskogemus](https://peegel.ut.ee/node/1158) ja
+  Sotsiaalministeeriumi [2026. aasta kukkumisjuhtumite analüüs](https://sm.ee/sites/default/files/documents/2026-06/Koduses%20keskkonnas%20toimunud%20kukkumisjuhtumid.pdf).
+  Teenuse valmisolek ei tekita juhtumeid, kui öisel vajadusel on päevane KOV-i värav,
+  Häirekeskusel puudub suunamisalus ja info ei jõua operatiivteenistustelt sotsiaalpoolele.
+  SK-V1 peab tõendama tervet vastuvõtuahelat, mitte üksnes vormi töötamist.
 - **Seotud:** `SotsiaalAI.md` ptk 4 C-tabel (SOTSIAALVALVE, Häirekeskuse järelsuunamise
   sild), 5.4 (AI-määruse positsioon), 5.9 (anti-engagement), T26 partnerpiloot.
 
@@ -21,8 +34,6 @@ STATUS: `READY_FOR_BUILD_AFTER_O-SK-3` — disain on omanikuga läbi vaieldud ja
 | Fakt | Koht | Tähendus SK-V1-le |
 |---|---|---|
 | Saajatüübid `KOV_CONTACT` / `SERVICE_PROVIDER` | `prisma/schema.prisma:319`, `lib/preInquiryRouting.js:21` | mõlemad pooled on juba modelleeritud; SK saab oma enum'i sama kujuga |
-| Kanalid `INTERNAL` / `EXTERNAL_EMAIL` | `prisma/schema.prisma:324` | kolme haru mudel (ptk 5) on olemasoleva mustri kordus |
-| **`externalSendConfirmedAt`** | `prisma/schema.prisma` (`model PreInquiry`) | **„inimene saatis ise, platvorm salvestas tema kinnituse" on juba väljakujunenud muster** — SK ei leiuta seda |
 | Tagasivõtt | `lib/preInquiries.js:724` (`recallPreInquiry`), tingimused `:741–751` | INTERNAL + SENT + `openedAt` null; SK-le sama loogika, aga oma objektil |
 | Päritolumärgistus | artefaktide kiht (vt `SotsiaalAI.md` ptk 1) | „kliendi öeldud" vs „AI mustand" — SK-s **kohustuslik** |
 | Vastuvõtu töövoog | `lib/preInquiryReceiverWorkflow.js` | koondvaate (E4) teine allikas |
@@ -51,6 +62,10 @@ otsuseta.
 5. **Ei ole register.** Pärast üleandmist on ametlik kandja KOV-i oma; platvormile jääb
    inimese enda koopia.
 6. **Ei ole eelpöördumine.** Eraldi objekt, eraldi elutsükkel (ptk 3.1).
+7. **Ei ole täismahus sotsiaal- ja kriisiabiteenus.** SK-V1 ei paku inimvalvet,
+   ametnikukanalit, registripäringuid, väljasõitu ega kriisitöö toiminguid. Need eeldavad
+   avaliku teenuse korraldajat, õiguslikku alust, personali ja ametkondade kokkulepitud
+   rolle.
 
 ---
 
@@ -135,7 +150,6 @@ ole PreInquiry omad.
 
 ```prisma
 enum UrgentRequestRecipientType { KOV_CONTACT  SERVICE_PROVIDER }
-enum UrgentRequestChannel       { INTERNAL  PERSON_SENT_EMAIL }
 enum UrgentRequestStatus        { SENT  READ  TAKEN  DECLINED  RESOLVED  EXPIRED  RECALLED }
 
 model UrgentRequest {
@@ -145,7 +159,6 @@ model UrgentRequest {
   recipientDeskId     String?                        // vt E2
   recipientEntryId    String?                        // ServiceMapEntry
   recipientType       UrgentRequestRecipientType
-  channel             UrgentRequestChannel @default(INTERNAL)
   situationVerbatim   String   @db.Text              // inimese enda sõnad, MUUTMATA
   assistantStructured String?  @db.Text              // AI mustand, alati eraldi
   regionCode          String                          // „kus"
@@ -162,7 +175,6 @@ model UrgentRequest {
   resolvedAt          DateTime?
   expiresAt           DateTime                        // vt E5
   recalledAt          DateTime?
-  personSendConfirmedAt DateTime?                     // PERSON_SENT_EMAIL haru
   convertedPreInquiryId String? @unique               // esiuks → tuba
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
@@ -179,20 +191,18 @@ Kaks nõuet, mis ei ole ilukirjandus:
 
 ---
 
-## 5. Kolm haru KOV-i seisu järgi
+## 5. Kaks kasutajale nähtavat haru ja puuduva saaja lukk
 
 | Haru | Tingimus | Mis juhtub | Mida inimene näeb |
 |---|---|---|---|
 | **A — ühendatud** | saaja seadistatud + lugemisaeg olemas | `INTERNAL`, laud, teavitus | „läheb X lauale, loetakse …" |
-| **B — ühendamata** | saajat pole | platvorm **koostab kirja**, inimene saadab **oma postikliendist** (`mailto:`), kinnitus → `personSendConfirmedAt` | „see kiri läheb sinu nimel aadressile Y; nad loevad tööpäeviti alates 8-st" |
+| **B — ühendamata** | saajat või lugemisaega pole | rada on peidetud; otse-URL ja API on fail-closed | Sotsiaalkiirabi rada ei kuvata; tavaline teenuseotsing, AI nõuanne ja eelpöördumine jäävad kasutatavaks |
 | **C — eluoht** | `safetyAnswer = true` VÕI `detectCrisis()` | vorm **ei liigu edasi**; 112 + 116 111 + 116 006 | kriisiekraan |
 
-Haru B täpsustus: platvorm **ei saada inimese aadressilt** (SPF/DKIM) ega oma domeenilt
-(siis oleks saatja tema). Kiri lahkub inimese enda kliendist; platvorm salvestab tema
-kinnituse. Muster on koodis olemas (`externalSendConfirmedAt`).
-
-Haru B on ajutine ja kaob iga uue partneriga — ja ta surub haru A poole: iga KOV, kes
-hakkab neid kirju saama, tahab lõpuks lauda.
+Haru B ei ole eraldi saatmisviis. See on ohutuslukk: kiireloomulise abi nupp ei tohi
+tekitada muljet öisest vastuvõtust, kui tegelikku mehitatud saajat ja lubatud lugemisaega
+ei ole. Liidestus võib olla tervikuna valmis ja sünteetiliste andmetega testitud, kuid
+piirkond avaneb inimesele alles saaja seadistamisega.
 
 ---
 
@@ -205,31 +215,44 @@ koodist — mitte kopeerituna. Sünteetilised andmed, testid.
 *DoD:* API keeldub ilma saajata; recall'i tingimused testitud; `db:migrate:check` puhas.
 
 **E2 — saaja seadistus = lüliti.**
-Laudade register: piirkond → laud → **lugemisaeg** + omanik + kontakt. Admin-vaade.
-Ilma kirjeta ei ole funktsiooni.
-*DoD:* laua lisamine lülitab funktsiooni selle piirkonna jaoks sisse ja ei tee midagi muud.
+Laudade register: piirkond → laud → avalik nimi + tööaeg + kes tohib pöörduda +
+eelhindamise tingimus + inimese kulu + **lugemisaeg** + omanik + kontakt + 112 piir +
+`lastVerifiedAt`. Admin-vaade. Automatiseeritud korje võib anda muutuse hoiatuse, kuid
+kiireloomulise raja tingimused kinnitab partner.
+*DoD:* piirkond lülitub inimesele sisse ainult siis, kui mehitatud laud on aktiivne,
+otse pöördumine on lubatud, lugemisaeg ja 112 piir on määratud ning tingimused pole
+aegunud. Saaja lisamine ei muuda teiste piirkondade seisu.
 
 **E3 — sissevõtt.**
-Neli välja, hääl valikuline, kriisilukk esimese sammuna, kolm haru, saatmise kinnitus,
-kirje „Minu jagamistesse". ET/EN/RU.
-*DoD:* `i18n:check` OK; kriisilukk fail-closed kõigis kolmes keeles; haru B `mailto` töötab
-ilma platvormi-saatmiseta.
+Neli välja, hääl valikuline, kriisilukk esimese sammuna, saaja-põhine nähtavus, saatmise
+kinnitus, kirje „Minu jagamistesse". ET/EN/RU.
+*DoD:* `i18n:check` OK; kriisilukk fail-closed kõigis kolmes keeles; saajata piirkonnas
+rada ei kuvata ning otse-URL-i ega API-ga ei saa kirjet luua.
 
 **E4 — vastuvõtu laud + KOONDVAADE + üleandmine.**
 Järjekord aja järgi; SK ja eelpöördumine **ühes vaates** (see on eraldi objekti hind);
-vahetuse üleandmine; „võtan" / „ei jõua" tegevused.
-*DoD:* koondvaade näitab mõlemat allikat; üleandmine säilitab, kes mida nägi.
+vahetuse üleandmine; „võtan" / „ei jõua" tegevused; isikuline sündmusjada vastuvõtust,
+vaatamistest, toimingutest ja edasisuunamisest.
+*DoD:* koondvaade näitab mõlemat allikat; iga vaatamine ja toiming on seotud töötaja ning
+kellaajaga; üleandmine säilitab, kes mida nägi, tegi ja kellele edasi andis.
 
 **E5 — elutsükkel ja eitav vastus.**
 `EXPIRED` automaatika; `DECLINED` **kohustuslik rada** — kui KOV ei jõua, saab inimene
 teada (vaikus on halvim tulemus); säilitus + üleandmine; konversioon eelpöördumiseks
-(esiuks → tuba), ilma et midagi uuesti trükitaks.
-*DoD:* ükski SK-kirje ei saa jääda vastuseta lõpmatuseks; konversioon ei kaota verbatim-teksti.
+(esiuks → tuba), ilma et midagi uuesti trükitaks; öise juhtumi üleandmine õigele
+päevasele üksusele koos vastuvõtukinnitusega.
+*DoD:* ükski SK-kirje ei saa jääda vastuseta lõpmatuseks; konversioon ei kaota
+verbatim-teksti; üle antud juhtumil on nimetatud vastuvõttev üksus ja kinnitatud
+vastuvõtmise aeg.
 
 **E6 — mõõdik + koondkontroll.**
 k≥5 koond: mitu ise-deklareeritud kiireloomulist pöördumist, mis kellaajal, mis
 piirkonnas — **ilma sisuta**. Sünteetiline runtime-sond, lõpparuanne.
-*DoD:* koond ei väljasta ühtegi rühma alla 5; sond läbib kõik kolm haru.
+*DoD:* koond ei väljasta ühtegi rühma alla 5; sond tõendab ühendatud saaja voo,
+saajata piirkonna serverikeelu ja eluohtliku olukorra kriisiluku. Partneri aktiveerimise
+eel läbib sünteetiline proov kogu ahela: avalik saatmine → mehitatud laua vastuvõtt →
+lugemisaja täitmine → vastuvõtmine või põhjendatud keeldumine → vajadusel päevase üksuse
+vastuvõtukinnitus.
 
 ---
 
@@ -237,16 +260,17 @@ piirkonnas — **ilma sisuta**. Sünteetiline runtime-sond, lõpparuanne.
 
 | Kood | Küsimus | Seis |
 |---|---|---|
-| **O-SK-3** | **Ühendamata KOV: kas nupp on üldse nähtav (haru B), või peidetud kuni saajani?** | **BLOKEERIB E3.** See määrab, kas nupp on lubadus või pettumus. Soovitus: haru B nähtav, sest ta surub haru A poole ja on ausam kui nupu puudumine — aga sõnastus peab olema karm („keegi ei tule täna öösel"). |
-| O-SK-1 | Kas platvorm tohib KOV-lepingu olemasolul saata oma domeenilt? | Ootab SoM/SKA selgitustaotlust (`SotsiaalAI.md` H-A õigusselgus). Kuni vastuseta: haru B ainult inimese kliendist. |
+| **O-SK-3** | **Ühendamata KOV: kas nupp on nähtav või peidetud kuni saajani?** | **OTSUSTATUD 30.07:** peidetud. Server keeldub kirjet loomast, kui saajat koos lugemisajaga ei ole. Liidestus ehitatakse valmis ja seda testitakse sünteetiliselt. |
+| O-SK-1 | Kas platvorm tohib KOV-lepingu olemasolul saata oma domeenilt? | **SK-V1 skoobist väljas:** V1 kasutab seadistatud sisemist vastuvõtulauda. Küsimus jääb asjakohaseks tavalise välise eelpöördumise jaoks (`SotsiaalAI.md` H-A õigusselgus). |
 | O-SK-2 | Kaks vastutavat töötlejat või vastutav + volitatud? | Sama selgitustaotlus. Ei blokeeri E1–E2. |
 | O-SK-4 | Säilitusaeg platvormil pärast üleandmist | Omaniku otsus enne E5. |
 | O-SK-5 | Teenuseosutaja kiirreageerimise võimekus — kes lülitab, mis tõendi alusel? | Soovitus: värav = MTR/tegevusloa kontroll avalikust registrist (C-tabel A4). Keegi ei kuuluta end ise kiirreageerijaks. |
 | O-SK-6 | `detectUrgencyLevel` märksõnatagavara PreInquiry's (`lib/preInquiries.js:330`) | SK-d ei blokeeri. Aga otsustada: kas jääb (dokumenteeritult „soovitus vastuvõtjale, mitte järjestus") või kaob. |
+| O-SK-7 | Avalik nimi: „Sotsiaalkiirabi", „kiire sotsiaalabi" või muu? | **OTSUSTATUD 30.07:** SotsiaalAI üldine avalik nimi on **„Kiireloomuline abipalve"**. `SOTSIAALKIIRABI-V1` jääb sisemiseks teemakoodiks. Partneri teenusenime kuvatakse ainult siis, kui rada viib päriselt selle teenuse mehitatud vastuvõttu. Põhjus: Eestis tähendab „sotsiaalkiirabi" juba mitut erinevat väljasõidu- ja tugimudelit ning SoM 2026 analüüs ei pea nimetust enne ühist kokkulepet põhjendatuks. |
 
 ---
 
-## 8. KOV-lepingu lisa (7 punkti)
+## 8. KOV-lepingu lisa (10 punkti)
 
 Need ei sisaldu tavalises asutuselitsentsis ja peavad olema kirjas enne haru A
 aktiveerimist:
@@ -259,6 +283,14 @@ aktiveerimist:
 6. **KOV ei tohi saabuvatest teadetest koostada riskinimekirja.** Ilma selleta sureb
    „kedagi ei kanta riskirühma" partnerluse sees.
 7. **k≥5 lugemisõigus** — platvorm tohib loendada, mitte lugeda sisu.
+8. **Isikuline vastutusjälg.** Funktsionaalse laua taga seotakse iga vaatamine, toiming
+   ja edasisuunamine konkreetse töötaja ning kellaajaga.
+9. **Vahetuse ja üksuse üleandmine.** Leping määrab, kuhu liigub lahendamata öine juhtum
+   päeval ning milline kinnitus tõendab, et järgmine üksus võttis selle vastu.
+10. **Sisenemis- ja suunamisahel.** Avalik otsepöördumine ei sõltu päevase sotsiaaltöötaja
+   eelhinnangust. Leping nimetab eraldi, kes võib ametnikukanalist juhtumi suunata,
+   millisel õiguslikul alusel, millise ohuhinnangu järgi ja millal liigub inimene 112
+   rajale. Enne avamist tehakse kogu ahelaga tööajaväline proov.
 
 ---
 
@@ -275,10 +307,15 @@ failidel, `npm run db:migrate:check` (E1 on ainus migratsioon).
 | Inimene jääb vastuseta | E5 `DECLINED` kohustuslik rada |
 | Funktsioon muutub 112 asenduseks | 2.1 + haru C + `detectCrisis()` esimese lukuna |
 | Skoop libiseb valvegraafiku ja dispetši poole | SK-V1 lõpeb laual. Graafik, vahetused ja väljasõit on SOTSIAALVALVE, eraldi teema |
+| Avalik nimi lubab rohkem kui funktsioon teeb | O-SK-7: UI ütleb „Kiireloomuline abipalve", mitte „Sotsiaalkiirabi" ega „abi on teel"; partneri nimi ainult päris ühenduse korral |
+| Teenus on tehniliselt valmis, kuid ühtegi juhtumit ei jõua kohale | KOV-lepingu p 10 + E6: otsene sissepääs, suunamisõigus, avalik teavitus ja tööajaväline läbiv proov; valmisolekut ei loeta kasutuselevõtuks |
 
 ---
 
 ## 10. Seis
 
-`READY_FOR_BUILD_AFTER_O-SK-3`. E1 ja E2 on otsustevabad ja võib alustada kohe —
-nad ei sisalda päris isikuandmeid ega ühtegi nähtavat pinda.
+`READY_FOR_BUILD`. O-SK-3 on otsustatud: ühendamata piirkonnas rada ei kuvata ja server
+ei võta kirjet vastu. Funktsioon ehitatakse tervikuna liidestusvalmis, kuid seda saab
+enne partneri saaja seadistamist katsetada ainult sünteetiliste andmetega. O-SK-2,
+O-SK-4 ja O-SK-5 tuleb lahendada enne neid puudutava päris partneri või avaliku kasutuse
+aktiveerimist, mitte enne peidetud terviku ehitamist. O-SK-7 on lahendatud.

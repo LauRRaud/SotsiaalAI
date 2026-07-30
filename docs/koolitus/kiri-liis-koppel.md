@@ -1,82 +1,106 @@
-# Kiri Liis Koppelile + A4 pakkumisleht
+# Kiri Liis Koppelile ja koolituse lühitutvustus
 
-MUSTAND 28.07.2026. Saada PÄRAST küsitlusele vastamist. Toon: kolleegilt kolleegile,
-mitte müügikiri. Laur kohandab oma häälde.
+Versioon 0.3 · 30.07.2026
 
----
+Sihtrühm: ESTA/korraldaja. Enne saatmist lisada kontakt, kinnitada maht ja
+otsustada, kas pakkuda kaaskoolitajat või sõltumatut õiguslikku ülevaatust.
 
-## Kiri (e-post)
+## Kirja mustand
 
-**Teema:** Koolitusvajaduse küsitlus — pakkusin teema ja pakun ka õla alla
+**Teema:** Koolitusettepanek: AI sotsiaaltöös
 
 Tere, Liis
 
-Vastasin täna ESTA koolitusvajaduse küsitlusele — hea, et te seda kaardistust teete.
+Vastasin ESTA koolitusvajaduse küsitlusele ja pakkusin ühe teemana välja koolituse
+„AI sotsiaaltöös — võimalused, piirid ja turvaline kasutamine”.
 
-Pakkusin seal välja teema, mida tahan eraldi põhjendada: **„AI sotsiaaltöös — võimalused,
-piirid ja turvaline kasutamine."** Kaks põhjust, miks see minu hinnangul on praegu valdkonna
-kõige kiireloomulisem koolitusauk:
+Pean seda vajalikuks, sest AI-vahendid on juba jõudnud spetsialistide tööellu, kuid
+asutuse juhised ja praktiline väljaõpe ei ole alati samas tempos järele tulnud.
+Sotsiaaltöös ei piisa üldisest promptimise koolitusest: töötaja peab oskama hinnata
+ülesannet, andmeid ja tööriista, kontrollida väljundit ning tunda ära koht, kus AI võib
+hakata inimese kohta tehtavat otsust sisuliselt mõjutama.
 
-1. EL-i AI-määruse kõrge riski nõuded jõustusid 2. augustil 2026 ja sotsiaalvaldkond on
-   määruses otseselt nimetatud — aga töötaja-taseme praktilist juhist Eestis ei ole.
-2. Spetsialistid kasutavad üldisi AI-vahendeid (ChatGPT jt) klienditöös juba täna, ilma
-   juhisteta — see on andmekaitse vaatest päris risk, mida saab koolitusega maandada.
+AI-määruse AI-kirjaoskuse kohustus kehtib juba alates 2025. aastast. Teatud
+läbipaistvusreeglid rakenduvad 2. augustil 2026 ning AI-määruse III lisas nimetatud
+kõrge riskiga süsteemide põhikohustuste uus rakenduskuupäev on AI Omnibusi järel
+2. detsember 2027.
+Seega ei ehitaks ma koolitust ühe tähtaja ümber, vaid selle ümber, mida töötajal ja
+asutusel on vaja osata juba praegu.
 
-Ja nüüd aus pakkumine: **kui see teema peaks valituks osutuma, olen valmis sisu vedama.**
-Minu taust on teile osalt tuttav — töötasin ajakirja Sotsiaaltöö toimetuses, olen ESTA
-liige, ja viimased aastad olen ise ehitanud sotsiaalvaldkonna AI-platvormi (SotsiaalAI),
-mis tähendab, et tunnen nii valdkonna sisu kui AI piire praktikas, mitte teooriast.
+Kui teema osutub vajalikuks, olen valmis koolituse sisu vedama. Minu taust on
+sotsiaalvaldkonnas ning arendan SotsiaalAI platvormi, mistõttu tunnen generatiivse AI
+võimalusi ja piire praktilisest arendustööst.
 
-Kolm asja ütlen ise ette, et need ei jääks õhku:
+Ütlen selle seotuse ka koolitusel kohe välja. Koolitus oleks tööriista-agnostiline,
+SotsiaalAI-d ei demonstreeritaks ega müüdaks. Enne esimest tasulist läbiviimist soovin
+õigusmoodulile ka sõltumatut andmekaitsealast ülevaatust või sobiva kaaskoolitaja
+sisendit.
 
-- **Huvide konflikt:** kuna arendan valdkonna AI-toodet, oleks koolitus rangelt
-  tööriista-agnostiline (põhimõtted, mis kehtivad iga tööriista kohta) ja oma toodet ma
-  ei demoks — deklareeriksin seotuse avalikult esimesel slaidil.
-- **Formaat:** näen hea meelega kaaskoolitajat (nt andmekaitse poolele) — see annab
-  osalejatele kaks vaadet ja ESTA-le kindluse.
-- **Proov enne otsust:** kui tahate teemat ja mind enne testida, teen ESTA liikmetele
-  tasuta 90-minutilise veebinari — see näitab nii huvi suurust kui minu sobivust, ilma
-  et ESTA midagi riskiks.
+Olen kokku pannud 8 akadeemilise tunni ehk 360 kontaktminuti pikkuse kava koos
+harjutuste, sünteetiliste juhtumite, viie kontrollnimekirja ja meeskonnareeglite
+malliga. Soovituslik põhivorm on kolm 120-minutilist kohtumist, mille vahele jääb aega
+õpitut oma töökeskkonnas märgata ja proovida. Korraldusliku vajaduse korral saab kava
+tihendada kaheks 180-minutiliseks osaks. Soovi korral saab enne põhikoolitust teha ka
+90-minutilise sissejuhatava veebinari, mis on iseseisvalt kasutatav.
 
-Panin ühele lehele kokku ka esialgse 8-tunnise kava (manuses/all). Kui teema küsitluses
-toetust ei leia — pole probleemi, kaardistus ongi selleks. Aga tahtsin, et valik oleks
-laual koos teostajaga, mitte ainult ideena.
+Kui see suund tundub ESTA-le sobiv, vaatan hea meelega koos üle sihtrühma, õpiväljundid
+ja selle, kas sobib soovituslik kolmeosaline vorm või on vaja kokkusurutud kaheosalist
+varianti.
 
 Heade soovidega
+
 Laur Raudsoo
 [kontakt]
 
----
+## Koolituse lühitutvustus
 
-## A4 pakkumisleht (manus või kirja lõpp)
+### AI sotsiaaltöös — võimalused, piirid ja turvaline kasutamine
 
-# AI sotsiaaltöös: võimalused, piirid ja turvaline kasutamine
+**Maht:** 8 akadeemilist tundi ehk 360 minutit kontaktõpet
 
-**8-tunnine praktiline koolitus ESTA korraldusel — esialgne kava**
+**Põhivorm:** 3 × 120 kontaktminutit; iga kohtumise juures 10-minutiline paus
 
-**Miks nüüd:** AI-määruse kõrge riski nõuded jõustusid 2.8.2026; spetsialistid kasutavad
-AI-d juba täna, juhisteta. Riigi suund on olemas (STAR-i strateegia: AI „ainult selgelt
-piiratud, kontrollitava ja õiguslikult reguleeritud vahendina") — puudu on töötaja-taseme
-praktiline kiht. See koolitus ONGI see kiht.
+**Rühm:** 12–24 osalejat
 
-**Mida osaleja saab:**
-- selge piir: mida AI-ga tohib (ettevalmistus) ja mida mitte kunagi (otsused inimeste üle);
-- oskus kaitsta kliendi andmeid (mida ei sisestata; kuidas anonüümida);
-- kolm kohe rakendatavat töövõtet: dokumendimustand, ametliku teksti selgitamine lihtsas
-  keeles, kokkuvõte allikakontrolliga;
-- 4 checklist'i + meeskonnareeglite mall, mida saab oma asutuses homme kasutada.
+**Vorm:** lühiloeng, demo, individuaalsed harjutused, paaristöö ja juhtumiarutelud
 
-**Kava (6 moodulit):** 1) Mis AI on ja mis ta EI ole (sh õigusraam inimkeeles) · 2) Andme-
-kaitse: mida AI-le anda tohib + anonüümistamise praktikum · 3) Praktikum: kolm ohutut
-kasutust · 4) Piirid ja eetika (juhtumiarutelud) · 5) Asutuse vaade: kuidas AI targalt
-majja tuua · 6) Juhtumid saalist + järelmaterjalid
+### Miks see koolitus
 
-**Vorming:** 8 ak/h kontaktõpet (või 2×4h), rühm 12–24, vaheldumisi lühiloeng/harjutus/
-juhtumiarutelu. Tööriista-agnostiline — ei õpeta ega reklaami ühtegi konkreetset toodet.
+Sotsiaaltöö sisaldab tundlikke andmeid ning inimese õigusi ja heaolu mõjutavaid
+otsuseid. Seetõttu peab AI-koolitus andma rohkem kui tööriistade loendi või
+promptimisvõtted. Osaleja vajab praktilist otsustusraami, millega hinnata ülesannet,
+andmeid, tööriista, inimkontrolli ja võimalikku mõju.
 
-**Koolitaja:** Laur Raudsoo — ajakirja Sotsiaaltöö endine toimetaja, ESTA liige,
-sotsiaalvaldkonna AI-platvormi SotsiaalAI looja. Seotus deklareeritakse avalikult;
-kaaskoolitaja (andmekaitse) on tervitatud.
+### Mida osaleja õpib
 
-**Proovipakkumine:** tasuta 90-min veebinar ESTA liikmetele — testib huvi ja sobivust
-enne, kui ESTA midagi otsustab.
+- kuidas generatiivne AI teksti loob ja miks veenev vastus võib olla vale;
+- kuidas eristada anonüümset, pseudonüümset ja isikustatud teavet;
+- kuidas kasutada kontrolli „ülesanne – andmed – tööriist”;
+- kuidas koostada ning kontrollida dokumendimustandit, selgitust ja allikapõhist
+  kokkuvõtet;
+- kuidas eristada keelatud, kõrge riskiga ja asutuse enda piiratud kasutust;
+- kuidas märgata näilist inimkontrolli, kus töötaja muutub AI soovituse kinnitajaks;
+- mida teha võimaliku AI-ga seotud andmekaitse- või turvaintsidendi korral.
+
+### Materjalid
+
+Osalejale jäävad viis kontrollnimekirja:
+
+1. sisendi eelkontroll;
+2. tööriista kasutuselevõtu kontroll;
+3. otsustuspiiri kontroll;
+4. väljundi kvaliteedikontroll;
+5. intsidendi kiirkaart.
+
+Lisaks saab osaleja meeskonnareeglite malli ja ametlike allikate loendi.
+
+### Koolituse piirid
+
+- Päris kliendiandmetega ei harjutata.
+- Koolitus ei anna luba kasutada ühtegi konkreetset toodet.
+- Kõrge riskiga AI-d ei nimetata automaatselt keelatuks.
+- SotsiaalAI-d ei demonstreerita ega turustata.
+- Koolitus ei asenda asutuse enda õiguslikku ja infoturbe hinnangut.
+
+**Koolitaja:** Laur Raudsoo — sotsiaalvaldkonna kogemusega SotsiaalAI looja. Seotus
+deklareeritakse avalikult; õigusmoodulile kavandatakse sõltumatu ülevaatus.

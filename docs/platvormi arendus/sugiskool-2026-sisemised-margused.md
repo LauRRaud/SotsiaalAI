@@ -64,6 +64,24 @@ Tema enda olukorra jaoks ei ole ühtegi välja — ka seal, kus register teda n�
 teda hooldatava tunnusena." Parandatud nii F8 tekstis kui saadetavas failis.
 
 
+## U2
+
+**Faktiparandus (30.07, omanik luges auditi lehe üle) — ÄRA ütle „seadusest tulenevad
+vahehindamised olid tegemata".** Iga-aastase tagasiside ja üle-/vahehindamise nõue tuleb
+**koduteenuse kvaliteedijuhisest**, mitte seadusest; seadusest tuleneb kohustus märgata
+abivajaduse muutumist ja sellele reageerida. Auditi **kindlamad** leiud, mille peal seista:
+puudusid selged eesmärgid ja tulemusnäitajad, kvaliteedikontroll oli lünklik, teabehaldus
+valdavalt paberikeskne, klienditagasisidet koguti suuliselt ja dokumenteerimata (6/10).
+Allikas: https://www.riigikontroll.ee/auditiaruanded/koduteenuste-korraldus
+**Miks see on eriti oluline: auditi autor riigikontrolör Janar Holm on ise sügiskoolis
+paneelis 12** — vale omistamine parandataks avalikult ja küsimuse jõud pöörduks vastu.
+Sama vale väide oli levinud kolme faili: U2 küsimus, allikaloendi punkt 6 ja
+`aruandlus-teenuskirje-disain.md` E4-rütmid (seal oli see juba tootenõudeks kirjutatud —
+„vahehindamise meeldetuletus (kord aastas, seadusest)"). Kõik kolm parandatud 30.07.
+**Õppetund: vale õiguslik omistamine paljuneb dokumentide vahel kiiremini kui vale number,
+sest ta kõlab autoriteetsemalt ja keegi ei kontrolli seda üle.**
+
+
 ## T1
 
 **Normatiivne selgroog (riigi enda dokument):** Eesti sotsiaalteenuste kvaliteedijuhis (SKA,
