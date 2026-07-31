@@ -446,6 +446,13 @@ rag-service'i `rag.search.stage` etapilogisse; native- ja graph-channeli otsingu
 `observabilityStage` järgi eristatavad. Etapilogisse ei kirjutata päringut, embeddingut,
 allika identifikaatoreid, pealkirju ega sisu.
 
+**Operatiivne deploy-märkus.** RAG-service'i etapilogid kasutavad Uvicorni
+`logging`-puud (`uvicorn.error.rag_stage`), et jõuda INFO-tasemel stderrisse ja
+systemd journald'i ilma rakenduse globaallogimist muutmata. `sotsiaalai-rag.service`
+restart käivitab systemd `Requires=` sõltuvuse tõttu automaatselt uuesti ka frontendi.
+B0b RAG deploy-smoke vajab seetõttu kehtivat NextAuth küpsist ning vana frontendi
+nonstream- ja stream-päringu kontrolli.
+
 **Praegu mõõtmata piirang.** Sünkroonne `/search` endpoint ei mõõda kliendi katkestust.
 `client_disconnected=true` ei logita ega tuletata timeout'ist; endpointi ei muudeta selle
 mõõdiku pärast asünkroonseks.
