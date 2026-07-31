@@ -56,7 +56,7 @@ function baseBootstrapData(overrides = {}) {
   };
 }
 
-function noContextRouteDeps(bootstrapData) {
+function noContextRouteDeps(bootstrapData, retrievalMetaExtra = {}) {
   return {
     bootstrapChatRequest: async () => ({ data: bootstrapData }),
     reserveUsageForRequest: async ({ metric }) => ({ metric }),
@@ -74,7 +74,10 @@ function noContextRouteDeps(bootstrapData) {
         sourceCount: 0,
         rawMatchesCount: 0,
         hadDocContext: false,
-        ragSearchFailed: true
+        // Vaikimisi modelleerime ausat "otsing jooksis, tulemusi ei olnud"
+        // olukorda. B0 rada (otsing kukkus) katab eraldi test allpool.
+        ragSearchFailed: false,
+        ...retrievalMetaExtra
       }
     })
   };
@@ -277,6 +280,19 @@ test("route preserves the existing noContext response for non-crisis empty conte
   assert.equal(response.status, 200);
   assert.equal(payload.isCrisis, false);
   assert.equal(payload.reply, data.L.noContext);
+});
+
+test("B0: kukkunud otsing annab retrievalFailed vastuse, mitte noContext", async () => {
+  const data = baseBootstrapData();
+  const response = await POST(new Request("http://localhost/api/chat", {
+    method: "POST"
+  }), noContextRouteDeps(data, { ragSearchFailed: true }));
+  const payload = await response.json();
+
+  assert.equal(response.status, 200);
+  assert.equal(payload.isCrisis, false);
+  assert.equal(payload.reply, data.L.retrievalFailed);
+  assert.notEqual(payload.reply, data.L.noContext);
 });
 
 test("hydration preserves a local crisis until the server has replied to the latest local turn", () => {

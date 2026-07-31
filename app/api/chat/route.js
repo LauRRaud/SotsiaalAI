@@ -400,9 +400,17 @@ export async function POST(req, deps = {}) {
     wantsDocumentDownload,
     roomId,
     saveRoomMessage: saveAssistantRoomMessage,
-    noContextReply: isCrisis ? L.crisisNoCtx : L.noContext,
+    // B0: kui otsing ise kukkus, ei tohi kasutajale öelda "ma ei leidnud
+    // materjalidest vastust" — see palub tal küsimust täpsustada, mis siin ei
+    // aita. Kriisisõnum jääb alati ülimuslikuks.
+    noContextReply: isCrisis
+      ? L.crisisNoCtx
+      : retrievalMeta?.ragSearchFailed === true
+        ? L.retrievalFailed
+        : L.noContext,
     noContextMeta: {
       ragReturned: retrievalMeta.rawMatchesCount > 0,
+      ragSearchFailed: retrievalMeta?.ragSearchFailed === true,
       hadDocContext: retrievalMeta.hadDocContext,
       sourceLookupRequest,
       previousSourceUseRequest,
