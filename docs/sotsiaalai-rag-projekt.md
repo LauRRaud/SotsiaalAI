@@ -130,8 +130,8 @@ Kontrollitud 31.07.2026 õhtul.
 
 | Väli | Väärtus |
 |---|---|
-| Server-commit | `f274190e` |
-| GitHub `origin/main` | `f274190e` |
+| Server-commit | `fc46d17f` (B0a) |
+| GitHub `origin/main` | `be284cf9` (docs) |
 | Teenus | `sotsiaalai-frontend.service` — active |
 | Töökataloog | `/home/ubuntu/apps/sotsiaalai` |
 | Env-fail | `/etc/sotsiaalai/frontend.env` |
@@ -142,7 +142,7 @@ Kontrollitud 31.07.2026 õhtul.
 | `OPENAI_MAX_OUTPUT_TOKENS` | `1100` |
 | `_CLIENT` / `_WORKER` | `1100` / `1100` |
 
-**Rollback-sihtmärk:**  (B0a-eelne; varasem baas )`41c69a41`  
+**Rollback-sihtmärk:** `f274190e` (B0a-eelne seis; varasem baas `41c69a41`)  
 **Env-varukoopia:** `/etc/sotsiaalai/frontend.env.bak-blokkA-2026-07-31`
 
 Env-hash muutus ainult rea `CHAT_PROMPT_TOKEN_AUDIT=0` lisamise tõttu. Deploy ise env-i ei muutnud.
