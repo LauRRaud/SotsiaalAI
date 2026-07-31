@@ -142,7 +142,7 @@ Kontrollitud 31.07.2026 õhtul.
 | `OPENAI_MAX_OUTPUT_TOKENS` | `1100` |
 | `_CLIENT` / `_WORKER` | `1100` / `1100` |
 
-**Rollback-sihtmärk:** `41c69a41`  
+**Rollback-sihtmärk:**  (B0a-eelne; varasem baas )`41c69a41`  
 **Env-varukoopia:** `/etc/sotsiaalai/frontend.env.bak-blokkA-2026-07-31`
 
 Env-hash muutus ainult rea `CHAT_PROMPT_TOKEN_AUDIT=0` lisamise tõttu. Deploy ise env-i ei muutnud.
@@ -187,7 +187,8 @@ idle-timeout'i otsa.
 
 ```text
 A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
-  → B0 idle RAG timeout ja aus veakäsitlus  [BLOKEERIV]
+  → B0a aus veakäsitlus  [LÕPETATUD]
+  → B0 jääk: timeout + soojashoidmine  [BLOKEERIV]
     → B allikatoru instrumentatsioon
     → Golden-37 baasjoon enne käitumismuudatusi
       → C planneri rolliparandus
@@ -200,7 +201,8 @@ A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
 | Tööpakett | Sisu | Seis |
 |---|---|---|
 | **A** | API completion/usage, prompt-komponentide tokenid ja kalibreerimine | **lõpetatud 31.07** (vt 7.3.1) |
-| **B0** | idle RAG timeout ja aus veakäsitlus | **alustamata, blokeerib B** |
+| **B0a** | aus veakäsitlus (rag_error != no_context) | **LÕPETATUD 31.07, tootmises** (fc46d17f) |
+| **B0 jääk** | timeout ülevaatus + soojashoidmine + regressioonitest | **avatud, blokeerib B** |
 | **B** | allikatoru kihiline logi ja streami lõpetamisloogika | alustamata |
 | **Golden-37 baas** | praeguse käitumise baasjoon A+B logimisega | alustamata |
 | **C** | planneri rolliviga T3 | alustamata |
@@ -384,7 +386,57 @@ Komponent jääb alles tulevase ühilduvuse jaoks.
 
 ## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus (BLOKEERIV, enne B-d)
 
-**Seis:** alustamata. **Blokeerib:** tööpakett B.
+**Seis:** **B0a lõpetatud ja tootmises** (osa 1, aus veakäsitlus). **B0 tervikuna avatud** —
+osad 2 ja 3 tegemata. **Blokeerib:** tööpakett B.
+
+### 7b.0 B0a — aus veakäsitlus: LÕPETATUD 31.07.2026
+
+**Commit'id:** `5464c8f8` (tuum) + `fc46d17f` (omaniku sõnastus).
+**Serveris:** `fc46d17f`. **Rollback-sihtmärk:** `f274190e`.
+
+**Juurpõhjus.** Signaal `ragSearchFailed` seatakse
+[`retrievalContextAssembler.js:1571`](../../lib/chat/retrievalContextAssembler.js#L1571) ja
+tagastatakse `retrievalMeta`-s real 2041, kuid **ükski tarbija ei lugenud seda**. Seetõttu läks
+retrieval-timeout'i järel kasutajale sõnum `no_context_worker` („Palun täpsusta teemat…"), mis
+on eksitav kahes mõttes: otsing ei jõudnudki lõpule ja täpsustamine ei aita.
+
+**Muudatus.** Uued i18n-võtmed `chat.fallback.retrieval_failed_{client,worker}` kolmes keeles;
+`langStrings` tagastab `retrievalFailed`; route valib selle, kui `retrievalMeta.ragSearchFailed`
+on `true`; `no_context` sündmus kannab välja `ragSearchFailed`. Kriisisõnum jääb ülimuslikuks.
+
+**Mõõdetud tõendus muudatuse vajalikkusest.** Kogu ChatLog-i ajaloos on **3 `no_context`
+sündmust** (06-12 18:56, 07-31 15:06, 07-31 17:11) ja kõik kolm langevad kokku kolme teadaoleva
+retrieval-tõrkega; kõigil `hadRagResults: false`. Puhas „otsing jooksis, tulemusi ei olnud" haru
+ei ole kordagi käivitunud. **Vana sõnum oli vale 100% kordadest, mil seda kuvati.**
+
+**Deploy-järgne kontroll:**
+
+| Kontroll | Tulemus |
+|---|---|
+| Teenus active, server `fc46d17f` | ✅ |
+| Tootmisseaded muutmata (`gpt-5.4-mini`/`low`/`medium`/1100, audit 0) | ✅ |
+| Tavaline edukas RAG-päring mõlemal rajal | ✅ nonstream 896 märki / 2 allikat, stream 16 deltat / 2 allikat |
+| `noContext` sõnum jäi endiseks | ✅ kontrollitud serveris `langStrings`-ist |
+| `retrievalFailed` laadib kõigis 3 keeles × 2 rollis | ✅ 0 probleemi |
+| Sõnum tuleb `messages/et.json`-ist, mitte koodi fallback'ist | ✅ |
+| Kriisisõnum eristub ja sisaldab 112 | ✅ kõigis keeltes |
+| Uusi hoiatusi/erandeid journalis | ✅ ei ole |
+
+**Kontrollimata jäi teadlikult:** elavat `ragSearchFailed=true` rada tootmises ei kutsutud esile,
+sest turvalist testimehhanismi timeout'i esilekutsumiseks ei ole (omaniku tingimus). Rada on
+kaetud ühiktestiga (`crisisFailsafe.test.js`, „B0: kukkunud otsing annab retrievalFailed
+vastuse") ja sõnumipoolelt serveri-kontrolliga. Väli `ragSearchFailed` ilmub `no_context`
+sündmusesse järgmisel päris tõrkel.
+
+**Väravad:** `npm test` 2001/2001, `i18n:check` ET/EN/RU OK, lint puhas.
+
+### 7b.0.1 B0 jääk (avatud)
+
+- **osa 2:** timeout'i ülevaatus — eraldi, pikem lagi embedding-kutsele. Praegust 12 s
+  üldist timeout'i **ei muudetud** ja ei muudeta enne mõju mõõtmist;
+- **osa 3:** soojashoidmine või readiness-kontroll;
+- **regressioonitest**, mis idle-first-request juhtumit deterministlikult reprodutseerib —
+  vajab turvalist mehhanismi retrieval-tõrke simuleerimiseks.
 
 ### 7b.1 Probleem
 
@@ -962,7 +1014,8 @@ Alustada tööpaketti B, kuid mitte muuta veel planneri ega retrieval'i käitumi
 ## 21. Projekti lõpetamise kontrollnimekiri
 
 - [x] A kalibreerimine lõpetatud ja auditilipp tagasi väljas
-- [ ] B0 idle RAG timeout ja aus veakäsitlus
+- [x] B0a aus veakäsitlus (rag_error != no_context)
+- [ ] B0 jääk: timeout ülevaatus, soojashoidmine, regressioonitest
 - [ ] `rag_trace` skeem ei kärbu
 - [ ] B kaheksa allikakihti logitud
 - [ ] incomplete streami lõpetamissignaal parandatud
