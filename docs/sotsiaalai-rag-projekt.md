@@ -438,6 +438,18 @@ sündmusesse järgmisel päris tõrkel.
 - **regressioonitest**, mis idle-first-request juhtumit deterministlikult reprodutseerib —
   vajab turvalist mehhanismi retrieval-tõrke simuleerimiseks.
 
+### 7b.0.2 B0b — RAG-otsingu korrelatsioon ja etapikestused
+
+`/search` tagastab tagasiühilduvalt `request_id` ning `timings`-objekti (`embedding_ms`,
+`retrieval_ms`, `total_ms`, `outcome`). Sama ID liigub frontend'i timing-logisse ja
+rag-service'i `rag.search.stage` etapilogisse; native- ja graph-channeli otsingud on
+`observabilityStage` järgi eristatavad. Etapilogisse ei kirjutata päringut, embeddingut,
+allika identifikaatoreid, pealkirju ega sisu.
+
+**Praegu mõõtmata piirang.** Sünkroonne `/search` endpoint ei mõõda kliendi katkestust.
+`client_disconnected=true` ei logita ega tuletata timeout'ist; endpointi ei muudeta selle
+mõõdiku pärast asünkroonseks.
+
 ### 7b.1 Probleem
 
 Vt §13.4. Retrieval'i 12-sekundiline kõva timeout katkestab esimese päringu pärast jõudeolekut
