@@ -83,6 +83,36 @@ test("edukas tulemusega otsing ei muutu ja ragSearchFailed jääb false", async 
   assert.ok(result.retrievalMeta.rawMatchesCount >= 1);
 });
 
+test("rag_search logi kannab ainult korrelatsiooni- ja kestusvälju", async () => {
+  const { events } = await runAssembler({
+    searchImpl: async ({ onTiming }) => {
+      onTiming({
+        request_id: "rag-test-correlation",
+        observabilityStage: "rag_search_graph_channel",
+        embedding_duration_ms: 7,
+        retriever_duration_ms: 11,
+        retrieval_total_ms: 21,
+        outcome: "ok",
+        query: "must not be logged"
+      });
+      return [];
+    }
+  });
+
+  const ragSearch = events.find(entry => entry.event === "rag_search");
+  const expectedTiming = {
+    request_id: "rag-test-correlation",
+    observabilityStage: "rag_search_graph_channel",
+    embedding_duration_ms: 7,
+    retriever_duration_ms: 11,
+    retrieval_total_ms: 21,
+    outcome: "ok"
+  };
+  assert.ok(ragSearch?.payload?.retrievalTimings?.length >= 1);
+  assert.ok(ragSearch.payload.retrievalTimings.every(item => assert.deepEqual(item, expectedTiming) === undefined));
+  assert.doesNotMatch(JSON.stringify(ragSearch?.payload), /must not be logged/);
+});
+
 test("rag_error koorem ei sisalda paringu ega allika sisu", async () => {
   const { events } = await runAssembler({
     searchImpl: async () => {

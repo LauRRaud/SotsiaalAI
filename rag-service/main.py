@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import base64
+import time
 import uuid
 import json
 import os
@@ -143,6 +144,9 @@ logger = logging.getLogger("rag-service")
 REGISTRY_LOCK = Lock()
 OBSERVABILITY_ROUTE_HEADER = "X-Observability-Route"
 OBSERVABILITY_STAGE_HEADER = "X-Observability-Stage"
+# B0b: kliendipoolne korrelatsiooni-ID. Valikuline ja tagasiühilduv — kui
+# klient seda ei saada, genereerime oma, et serverilogi oleks alati seotav.
+REQUEST_ID_HEADER = "X-Request-Id"
 OBSERVABILITY_USER_ID_HEADER = "X-Observability-User-Id"
 OBSERVABILITY_ROLE_HEADER = "X-Observability-Role"
 OBSERVABILITY_CONVERSATION_ID_HEADER = "X-Observability-Conversation-Id"
@@ -648,6 +652,21 @@ def _clean_observability_value(value: Optional[str], max_len: int = 200) -> Opti
     if not cleaned:
         return None
     return cleaned[:max_len]
+
+def _safe_search_observability_stage(value: Optional[str]) -> str:
+    """Allow only known non-content search stage labels into stage logs."""
+    cleaned = _clean_observability_value(value, max_len=100)
+    if not cleaned:
+        return "unknown"
+    if cleaned == "rag_search":
+        return cleaned
+    if re.fullmatch(
+        r"rag_search_(?:graph_channel|national_fallback|background_scope|"
+        r"kov_regulation_package_candidates|q\d+|temporal_fill_\d{4})(?:_q\d+)?",
+        cleaned,
+    ):
+        return cleaned
+    return "unknown"
 
 def _request_content_length(request: Optional[Request]) -> Optional[int]:
     if request is None:
@@ -1703,6 +1722,9 @@ class SearchIn(BaseModel):
     where: Optional[dict] = None
     include: Optional[List[str]] = None
     retrievers: Optional[List[str]] = None
+    # B0b: valikuline korrelatsiooni-ID. Vanad kliendid ei saada seda ja
+    # käitumine jääb muutumatuks.
+    request_id: Optional[str] = None
 
     @field_validator("include")
     @classmethod
@@ -1725,6 +1747,7 @@ class AgentDocumentSearchIn(BaseModel):
     top_k: int = 5
     include: Optional[List[str]] = None
     retrievers: Optional[List[str]] = None
+    request_id: Optional[str] = None
 
     @field_validator("doc_ids")
     @classmethod
@@ -4571,11 +4594,78 @@ def _execute_search(
         elif isinstance(jurisdiction, str):
             md_where["jurisdiction_level"] = normalize_jurisdiction(jurisdiction)
 
-    embed_result = _embed_batch_with_usage([payload.query])
+    # B0b: etapipõhine ajamõõtmine. Sisu ei logita — ainult kestused, outcome
+    # ja korrelatsiooni-ID. `upstream_stage` eristab natiivotsingu
+    # graph-channeli päringutest (klient saadab X-Observability-Stage).
+    stage_request_id = (
+        _clean_observability_value(payload.request_id)
+        or _clean_observability_value(
+            request.headers.get(REQUEST_ID_HEADER) if request is not None else None
+        )
+        or f"rag-{uuid.uuid4().hex[:16]}"
+    )
+    stage_upstream = _safe_search_observability_stage(
+        request.headers.get(OBSERVABILITY_STAGE_HEADER) if request is not None else None
+    )
+    stage_t0 = time.perf_counter()
+
+    def _ms_since(start: float) -> int:
+        return int((time.perf_counter() - start) * 1000)
+
+    def _log_stage(name: str, started_at: float, outcome: str, **extra) -> None:
+        # Logitakse ka siis, kui klient on juba timeout'i tõttu lahkunud.
+        try:
+            logger.info(
+                "rag.search.stage %s",
+                json.dumps(
+                    {
+                        "request_id": stage_request_id,
+                        "upstream_stage": stage_upstream,
+                        "stage": name,
+                        "duration_ms": _ms_since(started_at),
+                        "elapsed_ms": _ms_since(stage_t0),
+                        "outcome": outcome,
+                        "top_k": int(payload.top_k or 0),
+                        **extra,
+                    },
+                    ensure_ascii=False,
+                ),
+            )
+        except Exception:
+            pass
+
+    embed_t0 = time.perf_counter()
+    try:
+        embed_result = _embed_batch_with_usage([payload.query])
+    except Exception as e:
+        _log_stage("embedding", embed_t0, "error", error_class=e.__class__.__name__)
+        _log_stage("search_total", stage_t0, "error")
+        raise
+    embedding_ms = _ms_since(embed_t0)
     q_embeds = list(embed_result.get("embeddings") or [])
+    _log_stage(
+        "embedding",
+        embed_t0,
+        "ok" if q_embeds else "empty",
+        provider_latency_ms=_to_int(embed_result.get("latency_ms")),
+    )
     if not q_embeds:
-        return {"results": [], "groups": [], "retrievers_used": ["dense"], "search_strategy": "dense"}
+        _log_stage("search_total", stage_t0, "no_embedding")
+        return {
+            "results": [],
+            "groups": [],
+            "retrievers_used": ["dense"],
+            "search_strategy": "dense",
+            "request_id": stage_request_id,
+            "timings": {
+                "embedding_ms": embedding_ms,
+                "retrieval_ms": None,
+                "total_ms": _ms_since(stage_t0),
+                "outcome": "no_embedding",
+            },
+        }
     q_emb = q_embeds[0]
+    retrieval_t0 = time.perf_counter()
     observability = _build_observability_context(
         request,
         "rag_search",
@@ -4614,12 +4704,21 @@ def _execute_search(
             cost_read_directly=bool(embed_result.get("cost_read_directly")),
             **observability,
         )
+        _log_stage("retrieval", retrieval_t0, "query_failed", error_class=e.__class__.__name__)
+        _log_stage("search_total", stage_t0, "query_failed")
         return {
             "results": [],
             "groups": [],
             "retrievers_used": ["dense"],
             "search_strategy": "dense",
             "error": f"query_failed: {e.__class__.__name__}: {e}",
+            "request_id": stage_request_id,
+            "timings": {
+                "embedding_ms": embedding_ms,
+                "retrieval_ms": _ms_since(retrieval_t0),
+                "total_ms": _ms_since(stage_t0),
+                "outcome": "query_failed",
+            },
         }
 
     ids = (res.get("ids") or [[]])[0] if res.get("ids") else []
@@ -4948,6 +5047,10 @@ def _execute_search(
         })
 
     groups.sort(key=lambda x: (-x["count"], x["title"] or ""))
+    retrieval_ms = _ms_since(retrieval_t0)
+    total_ms = _ms_since(stage_t0)
+    _log_stage("retrieval", retrieval_t0, "ok")
+    _log_stage("search_total", stage_t0, "ok")
     return {
         "results": flat,
         "groups": groups,
@@ -4955,6 +5058,13 @@ def _execute_search(
         "search_strategy": "hybrid" if any(channel != "dense" for channel in retrievers_used) else "dense",
         "merge_strategy": _build_hybrid_merge_strategy(requested_retrievers),
         "channel_stats": _build_channel_stats(flat),
+        "request_id": stage_request_id,
+        "timings": {
+            "embedding_ms": embedding_ms,
+            "retrieval_ms": retrieval_ms,
+            "total_ms": total_ms,
+            "outcome": "ok",
+        },
     }
 
 
@@ -4970,5 +5080,6 @@ def search_agent_documents(payload: AgentDocumentSearchIn, request: Request):
         top_k=payload.top_k,
         include=payload.include,
         retrievers=payload.retrievers,
+        request_id=payload.request_id,
     )
     return _execute_search(exact_payload, request, agent_document_ids=payload.doc_ids)

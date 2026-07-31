@@ -158,3 +158,46 @@ test("tootmise vaikeväärtus jääb 12000 ms, kui timeoutMs ei ole antud", asyn
   });
   assert.equal(timings[0].retrieval_timeout_ms, 12000);
 });
+
+test("rag-service timings teisenduvad frontend-lepingusse ja stage jääb eristatavaks", async () => {
+  __resetRagRequestClockForTests();
+  const timings = [];
+  let requestBody = null;
+  let requestHeaders = null;
+  const matches = await searchRagQueries({
+    queries: ["graph query"],
+    observabilityStage: "rag_search_graph_channel",
+    fetchImpl: async (_url, options = {}) => {
+      requestBody = JSON.parse(String(options.body || "{}"));
+      requestHeaders = options.headers;
+      return {
+        ok: true,
+        status: 200,
+        text: async () => JSON.stringify({
+          request_id: requestBody.request_id,
+          timings: {
+            embedding_ms: 7,
+            retrieval_ms: 11,
+            total_ms: 21,
+            outcome: "ok"
+          },
+          retrievers_used: ["dense"],
+          results: [{ id: "graph-1", title: "Graph result" }]
+        })
+      };
+    },
+    timeoutMs: 3000,
+    onTiming: value => timings.push(value)
+  });
+
+  assert.equal(matches[0].id, "graph-1");
+  assert.match(requestBody.request_id, /^rag-/);
+  assert.equal(requestHeaders["X-Request-Id"], requestBody.request_id);
+  assert.equal(requestHeaders["X-Observability-Stage"], "rag_search_graph_channel");
+  assert.equal(timings[0].request_id, requestBody.request_id);
+  assert.equal(timings[0].observabilityStage, "rag_search_graph_channel");
+  assert.equal(timings[0].embedding_duration_ms, 7);
+  assert.equal(timings[0].retriever_duration_ms, 11);
+  assert.equal(timings[0].retrieval_total_ms, 21);
+  assert.equal(timings[0].outcome, "ok");
+});
