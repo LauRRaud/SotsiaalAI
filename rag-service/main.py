@@ -141,6 +141,10 @@ collection = client.get_or_create_collection(name=COLLECTION_NAME)
 # OpenAI client
 oa = OpenAI(api_key=OPENAI_API_KEY)
 logger = logging.getLogger("rag-service")
+# B0b: stage events use Uvicorn's existing error logger tree so its handler
+# and INFO level carry the records to stderr/journald without touching root
+# logging or the application logger used by warnings and errors.
+stage_logger = logging.getLogger("uvicorn.error.rag_stage")
 REGISTRY_LOCK = Lock()
 OBSERVABILITY_ROUTE_HEADER = "X-Observability-Route"
 OBSERVABILITY_STAGE_HEADER = "X-Observability-Stage"
@@ -4615,7 +4619,7 @@ def _execute_search(
     def _log_stage(name: str, started_at: float, outcome: str, **extra) -> None:
         # Logitakse ka siis, kui klient on juba timeout'i tõttu lahkunud.
         try:
-            logger.info(
+            stage_logger.info(
                 "rag.search.stage %s",
                 json.dumps(
                     {
