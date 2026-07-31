@@ -295,6 +295,22 @@ test("B0: kukkunud otsing annab retrievalFailed vastuse, mitte noContext", async
   assert.notEqual(payload.reply, data.L.noContext);
 });
 
+test("B0b: no_context sündmus kannab ragSearchFailed lippu mõlemas suunas", async () => {
+  for (const failed of [true, false]) {
+    const data = baseBootstrapData();
+    const events = [];
+    const deps = noContextRouteDeps(data, { ragSearchFailed: failed });
+    deps.logEvent = async (event, payload) => {
+      events.push({ event, payload });
+    };
+    await POST(new Request("http://localhost/api/chat", { method: "POST" }), deps);
+
+    const noContextEvent = events.find(e => e.event === "no_context");
+    assert.ok(noContextEvent, `no_context sündmust ei tekkinud (failed=${failed})`);
+    assert.equal(noContextEvent.payload.ragSearchFailed, failed);
+  }
+});
+
 test("hydration preserves a local crisis until the server has replied to the latest local turn", () => {
   const localMessages = [
     { role: "user", text: "Mind ähvardab vägivald", createdAt: 10_000 },
