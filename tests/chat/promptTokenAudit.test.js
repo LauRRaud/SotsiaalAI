@@ -26,13 +26,24 @@ test("mõõdab iga komponendi märgid, hinnangulised tokenid ja hashi", async ()
 
   assert.equal(m.tokenizer_ok, true);
   for (const name of ["system_prompt", "user_input", "conversation_history", "source_package", "other_dynamic"]) {
-    assert.ok(m[`${name}_chars`] > 0, `${name}_chars`);
-    assert.ok(m[`${name}_tokens_estimated`] > 0, `${name}_tokens_estimated`);
-    assert.match(m[`${name}_sha256_12`], /^[0-9a-f]{12}$/);
+    assert.ok(m.components[name].chars > 0, `${name}.chars`);
+    assert.ok(m.components[name].tokens_estimated > 0, `${name}.tokens_estimated`);
+    assert.match(m.components[name].sha256_12, /^[0-9a-f]{12}$/);
   }
   // Tööriistu ei saadeta mudelile — komponent on olemas, aga tühi.
-  assert.equal(m.tool_definitions_chars, 0);
-  assert.equal(m.tool_definitions_sha256_12, null);
+  assert.equal(m.components.tool_definitions.chars, 0);
+  assert.equal(m.components.tool_definitions.sha256_12, null);
+});
+
+test("komponendid on pesastatud, et redactObject 30-võtme lagi neid ei kärbiks", async () => {
+  resetPromptTokenAuditEncoderForTests();
+  const m = await measurePromptComponents({ components: COMPONENTS, model: "gpt-5.6-luna" });
+  const withGap = withInputTokenGap(m, 2000);
+  // Sündmuse ülemine tase peab jääma tublisti alla 30 võtme (logEvent lisab veel
+  // model/route/stage/max_output_tokens/reasoning_effort/text_verbosity/userId/role).
+  assert.ok(Object.keys(withGap).length <= 16, `ülemisi võtmeid: ${Object.keys(withGap).length}`);
+  assert.equal(typeof withGap.components, "object");
+  assert.equal(Object.keys(withGap.components).length, 6);
 });
 
 test("tundmatu mudel langeb tagasi o200k_base peale", async () => {
@@ -46,14 +57,7 @@ test("tundmatu mudel langeb tagasi o200k_base peale", async () => {
 test("estimated_component_sum on komponentide summa", async () => {
   resetPromptTokenAuditEncoderForTests();
   const m = await measurePromptComponents({ components: COMPONENTS, model: "gpt-5.6-luna" });
-  const parts = [
-    "system_prompt",
-    "user_input",
-    "conversation_history",
-    "source_package",
-    "tool_definitions",
-    "other_dynamic"
-  ].reduce((sum, name) => sum + (m[`${name}_tokens_estimated`] || 0), 0);
+  const parts = Object.values(m.components).reduce((sum, c) => sum + (c.tokens_estimated || 0), 0);
   assert.equal(m.estimated_component_sum, parts);
 });
 
@@ -79,7 +83,7 @@ test("tühjad komponendid ei kukuta mõõtmist", async () => {
   resetPromptTokenAuditEncoderForTests();
   const m = await measurePromptComponents({ components: {}, model: "gpt-5.6-luna" });
   assert.equal(m.tokenizer_ok, true);
-  assert.equal(m.system_prompt_chars, 0);
+  assert.equal(m.components.system_prompt.chars, 0);
   assert.equal(m.estimated_component_sum, 0);
 });
 
