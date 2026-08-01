@@ -15,93 +15,108 @@ import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 // ridu, näitab UI ausalt "kuvatud X / N" ja pakub lehekülgede navigatsiooni.
 const USERS_PAGE_SIZE = 500;
 
-// Dekoratiivsed className-konstandid on strip'itud (Fable 5 annab kujunduse hiljem).
-// Nimed on säilinud, et kõik JSX-viited resolvuksid; väärtused on tühjad.
-const pageClassName = "";
-const pageHeaderClassName = "";
-const pageHeaderSurfaceClassName = "";
-const pageTitleClassName = "";
-const pageHeaderSubtitleClassName = "";
-const pageHeaderMetaRowClassName = "";
-const pageHeaderMetaClassName = "";
-const pageHeaderToolbarClassName = "";
-const pageHeaderDividerClassName = "";
-const sectionNavClassName = "";
+// Kujundus elab app/styles/admin-analytics.css failis (aa-* süsteem, sama
+// keel mis RAG admini ra-*). Konstandid on siin, et JSX jääks loetavaks ja
+// üks nimi tähendaks kogu lehel ühte ja sama pinda.
+const pageClassName = "aa-page";
+const pageHeaderClassName = "aa-head";
+const pageHeaderSurfaceClassName = "aa-head-surface";
+const pageTitleClassName = "aa-title";
+const pageHeaderSubtitleClassName = "aa-subtitle";
+const pageHeaderMetaRowClassName = "aa-head-metarow";
+const pageHeaderMetaClassName = "aa-head-meta";
+const pageHeaderToolbarClassName = "aa-head-tools";
+const pageHeaderDividerClassName = "aa-head-divider";
+const sectionNavClassName = "aa-nav";
 const sectionNavLinkClassName = "";
-const headerPillClassName = "";
-const headerPillLabelClassName = "";
-const headerPillValueClassName = "";
-const cardClassName = "";
-const cardBodyClassName = "";
-const kpiGridClassName = "";
-const topKpiGridClassName = "";
-const platformGridClassName = "";
-const docsGridClassName = "";
-const billingSummaryGridClassName = "";
-const billingPipelineGridClassName = "";
-const usersSummaryGridClassName = "";
-const sectionHeadClassName = "";
-const sectionSubClassName = "";
-const kpiValueClassName = "";
-const kpiMetaClassName = "";
-const statRowClassName = "";
-const statRowMainClassName = "";
-const statRowValueWrapClassName = "";
-const metricGroupClassName = "";
-const barClassName = "";
-const tableHeaderClassName = "";
-const tableScrollHintClassName = "";
-const tableDesktopWrapClassName = "";
-const tableWrapClassName = "";
-const tableClassName = "";
+const headerPillClassName = "aa-pill";
+const headerPillLabelClassName = "aa-pill-label";
+const headerPillValueClassName = "aa-pill-value";
+const cardClassName = "aa-card";
+const cardBodyClassName = "aa-card-body";
+const kpiGridClassName = "aa-kpis aa-kpis--quad";
+const topKpiGridClassName = "aa-kpis aa-kpis--top";
+const platformGridClassName = "aa-metricgrid";
+const docsGridClassName = "aa-kpis aa-kpis--wide";
+const billingSummaryGridClassName = "aa-kpis";
+const billingPipelineGridClassName = "aa-kpis aa-kpis--quad";
+const usersSummaryGridClassName = "aa-kpis";
+const sectionHeadClassName = "aa-section-head";
+const sectionSubClassName = "aa-section-sub";
+const kpiValueClassName = "aa-kpi-value";
+const kpiMetaClassName = "aa-kpi-meta";
+const statRowClassName = "aa-kpi";
+const statRowMainClassName = "aa-kpi-main";
+const statRowValueWrapClassName = "aa-kpi-valuewrap";
+const metricGroupClassName = "aa-metricgroup";
+const barClassName = "aa-bar";
+const barFillClassName = "aa-bar-fill";
+const tableHeaderClassName = "aa-tablehead";
+const tableScrollHintClassName = "aa-scrollhint";
+const tableDesktopWrapClassName = "aa-only-wide";
+const tableWrapClassName = "aa-tablewrap";
+const tableClassName = "aa-table";
 const tableHeadCellClassName = "";
 const tableCellClassName = "";
-const cellSubClassName = "";
-const toolbarPrimaryClassName = "";
-const logsToolbarClassName = "";
-const usersSelectBarClassName = "";
-const usersSelectActionsClassName = "";
-const usersSelectCountClassName = "";
-const emailSendBarClassName = "";
-const emailSendHeadClassName = "";
-const emailSendHintClassName = "";
+const cellSubClassName = "aa-cellsub";
+const toolbarPrimaryClassName = "aa-toolbar";
+const logsToolbarClassName = "aa-toolbar";
+const usersSelectBarClassName = "aa-actionbar";
+const usersSelectActionsClassName = "aa-actions";
+const usersSelectCountClassName = "aa-count";
+const emailSendBarClassName = "aa-danger";
+const emailSendHeadClassName = "aa-danger-head";
+const emailSendHintClassName = "aa-hint";
 const dropdownClassName = "";
-const compactDropdownClassName = "";
-const inputClassName = "";
-const textAreaClassName = "";
-const alertErrorClassName = "";
-const alertInfoClassName = "";
-const alertWarnClassName = "";
-const alertCriticalClassName = "";
-const alertSuccessClassName = "";
+const compactDropdownClassName = "aa-select--compact";
+const inputClassName = "aa-input";
+const textAreaClassName = "aa-textarea";
+const alertErrorClassName = "aa-alert aa-alert--error";
+const alertInfoClassName = "aa-alert aa-alert--info";
+const alertWarnClassName = "aa-alert aa-alert--warn";
+const alertCriticalClassName = "aa-alert aa-alert--critical";
+const alertSuccessClassName = "aa-alert aa-alert--success";
+const alertStackClassName = "aa-alertstack";
 const refreshButtonClassName = "";
 const actionButtonClassName = "";
-const resetActionGridClassName = "";
+const resetActionGridClassName = "aa-resetgrid";
 const resetActionButtonClassName = "";
-const backButtonClassName = "";
-const metricListClassName = "";
-const metricRowClassName = "";
-const metricRowStackedClassName = "";
-const metricValueClassName = "";
-const metricValueStackedClassName = "";
-const summaryDeckClassName = "";
-const summaryPanelClassName = "";
-const summaryPanelBodyClassName = "";
-const mobileListClassName = "";
-const mobileRowCardClassName = "";
-const mobileRowHeadClassName = "";
-const mobileRowTitleClassName = "";
-const mobileRowSubClassName = "";
-const mobileFieldGridClassName = "";
-const mobileFieldClassName = "";
-const mobileFieldLabelClassName = "";
-const mobileFieldValueClassName = "";
-const compactMetricGridClassName = "";
-const compactMetricRowClassName = "";
-const compactMetricLabelClassName = "";
-const compactMetricValueClassName = "";
-const compactMetricLeadValueClassName = "";
-const checkboxClassName = "";
+const backButtonClassName = "aa-back";
+const confirmBoxClassName = "aa-confirm";
+const fieldClassName = "aa-field";
+const fieldWideClassName = "aa-field aa-field--wide";
+const labelClassName = "aa-label";
+const actionGroupClassName = "aa-actionbar-group";
+const actionMetaClassName = "aa-actionbar-meta";
+const actionsClassName = "aa-actions";
+const dangerColClassName = "aa-danger-col";
+const textAreaTallClassName = "aa-textarea aa-textarea--tall";
+const metricListClassName = "aa-metriclist";
+const metricRowClassName = "aa-metricrow";
+const metricRowStackedClassName = "aa-metricrow aa-metricrow--stacked";
+const metricValueClassName = "aa-metricvalue";
+const metricValueStackedClassName = "aa-metricvalue aa-metricvalue--stacked";
+const summaryDeckClassName = "aa-deck";
+const summaryPanelClassName = "aa-card aa-card--hero";
+const summaryPanelBodyClassName = "aa-card-body";
+const mobileListClassName = "aa-mobilelist aa-only-narrow";
+const mobileRowCardClassName = "aa-mrow";
+const mobileRowHeadClassName = "aa-mrow-head";
+const mobileRowTitleClassName = "aa-mrow-title";
+const mobileRowSubClassName = "aa-mrow-sub";
+const mobileFieldGridClassName = "aa-mfields";
+const mobileFieldClassName = "aa-mfield";
+const mobileFieldLabelClassName = "aa-mfield-label";
+const mobileFieldValueClassName = "aa-mfield-value";
+const compactMetricGridClassName = "aa-compactgrid";
+const compactMetricRowClassName = "aa-compactrow";
+const compactMetricLabelClassName = "aa-compactlabel";
+const compactMetricValueClassName = "aa-compactvalue";
+const compactMetricLeadValueClassName = "aa-compactvalue aa-compactvalue--lead";
+const checkboxClassName = "aa-check";
+const kpiTitleClassName = "aa-kpi-title";
+const infoButtonClassName = "aa-info";
+const infoPanelClassName = "aa-infopanel";
 
 const EVENT_OPTIONS = [
   { value: "chat_request", labelKey: "admin.analytics.events.chat_request" },
@@ -276,9 +291,12 @@ function joinCounts(map = {}, labels = {}, localeTag = "en-US", order = []) {
   return parts.join(" | ");
 }
 
-function progressToneClassName() {
-  // Dekoratiivne gradient-toon strip'itud.
-  return "";
+// Kasutusriba toon: alla 75% neutraalne, 75-90% hoiatus, üle 90% viga.
+function progressTone(value) {
+  const pct = toNumber(value);
+  if (pct >= 90) return "err";
+  if (pct >= 75) return "warn";
+  return "neutral";
 }
 
 function SectionAlert({ tone = "info", message }) {
@@ -305,20 +323,50 @@ function HeaderPill({ label, value }) {
   );
 }
 
+// Lugemisjärjekord on ülevalt alla: MIDA (silt) → KUI PALJU (number) →
+// MIS ALUSEL (seletus). Seletus oli varem numbri KOHAL ja lükkas numbri
+// kaardi keskele, kus ta enam ei lugenud ülevaates midagi.
 function KpiCard({ title, value, meta, children }) {
   return (
     <div className={statRowClassName}>
       <div className={statRowMainClassName}>
-        <CardTitle>
+        <CardTitle className={kpiTitleClassName}>
           {title}
         </CardTitle>
-        {meta ? <div className={kpiMetaClassName}>{meta}</div> : null}
       </div>
       <div className={statRowValueWrapClassName}>
         {value != null ? <div className={kpiValueClassName}>{value}</div> : null}
         {children}
       </div>
+      {meta ? <div className={kpiMetaClassName}>{meta}</div> : null}
     </div>
+  );
+}
+
+// Analüütika on tihe leht: iga tabel ütleb ise, mida ta näitab, kuidas
+// teda lugeda ja mida leiu korral teha (omanik 01.08). Abitekst on vaikimisi
+// kinni, et see tihedust ei sööks — ⓘ avab ta tabeli kohale.
+function TableInfo({ label, text }) {
+  const [open, setOpen] = useState(false);
+  if (!text) return null;
+  return (
+    <>
+      <button
+        type="button"
+        className={infoButtonClassName}
+        aria-expanded={open ? "true" : "false"}
+        aria-label={label}
+        title={label}
+        onClick={() => setOpen(value => !value)}
+      >
+        <span aria-hidden="true">i</span>
+      </button>
+      {open ? (
+        <div className={infoPanelClassName} role="note">
+          {text}
+        </div>
+      ) : null}
+    </>
   );
 }
 
@@ -345,8 +393,13 @@ function CompactMetricGrid({ items }) {
 }
 
 function MetricListCard({ title, items, stacked = false }) {
+  // Pikk loend võtab kaks võrgusammu ja jaguneb enda sees kaheks veeruks.
+  // Ilma selleta määras üks 14-realine plokk ("Dokumendid ja agent") kogu
+  // sektsiooni kõrguse ja kolme naabergrupi alla jäi kaks kolmandikku
+  // tühja pinda (omanik 01.08).
+  const dense = items.length > 8;
   return (
-    <div className={metricGroupClassName}>
+    <div className={metricGroupClassName} data-dense={dense ? "true" : undefined}>
       <CardTitle>
         {title}
       </CardTitle>
@@ -364,11 +417,15 @@ function MetricListCard({ title, items, stacked = false }) {
   );
 }
 
-function UsageBar({ value }) {
-  // Dekoratiivne edenemisriba: struktuur säilib, kujundus strip'itud.
+// tone: vaikimisi loetakse riba KASUTUSMÄÄRAKS (palju = halb). Kus suur
+// number on hea (nt tugev põhistatus), anna tone="neutral" käsitsi.
+function UsageBar({ value, tone }) {
+  // Täide sai varem laiuse mitte kusagilt — riba näitas iga kasutusmäära
+  // korral sama tühja soont. Laius tuleb nüüd väärtusest, toon lävenditest.
+  const pct = Math.max(0, Math.min(100, toNumber(value)));
   return (
-    <div className={barClassName}>
-      <span className={progressToneClassName(value)} />
+    <div className={barClassName} data-tone={tone || progressTone(pct)} aria-hidden="true">
+      <span className={barFillClassName} style={{ width: `${pct}%` }} />
     </div>
   );
 }
@@ -2086,6 +2143,17 @@ export default function AnalyticsDashboard() {
 
   return (
     <div className={pageClassName}>
+      {/* Sektsiooninav on lehe ESIMENE rida ja jääb kerides nähtavale.
+          Päisekaardi sees oli ta kleepumiseks liiga madalal ja hõljus
+          kerides kaartide peal (omanik 01.08). */}
+      <div className={sectionNavClassName}>
+        {sectionLinks.map(item => (
+          <a key={item.href} href={item.href} className={sectionNavLinkClassName}>
+            {item.label}
+          </a>
+        ))}
+      </div>
+
       <div className={pageHeaderClassName} id="analytics-overview">
         <BackButton
           onClick={() => router.push(localizePath("/", locale))}
@@ -2118,41 +2186,38 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
           <div className={pageHeaderDividerClassName} />
-          <div className={sectionNavClassName}>
-            {sectionLinks.map(item => (
-              <a key={item.href} href={item.href} className={sectionNavLinkClassName}>
-                {item.label}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
 
-      <SectionAlert tone="error" message={pageError} />
-      <SectionAlert
-        tone="warn"
-        message={summary?.basis?.degraded
-          ? `${t("admin.analytics.basis.degraded", "Some summary metrics are degraded")}: ${summary.basis.degradationReason || "source unavailable"}. ${summary.basis.computedAt || ""}`
-          : ""}
-      />
-      <SectionAlert
-        tone="info"
-        message={summary?.sampledBasis?.sampleLimit
-          ? `${t("admin.analytics.basis.sampled", "RAG derived metrics use a bounded sample")}: ${metricBasisStatus({ basis: summary.sampledBasis })}.`
-          : ""}
-      />
-      <SectionAlert
-        tone="warn"
-        message={usersAnalytics?.basis?.degraded
-          ? `${t("admin.analytics.basis.degraded", "Some user metrics are degraded")}: ${usersAnalytics.basis.degradationReason || "source unavailable"}. ${usersAnalytics.basis.computedAt || ""}`
-          : ""}
-      />
-      <SectionAlert
-        tone="warn"
-        message={aiCosts?.basis?.degraded
-          ? `${t("admin.analytics.basis.degraded", "Some AI-cost metrics are degraded")}: ${aiCosts.basis.degradationReason || "source unavailable"}. ${aiCosts.basis.computedAt || ""}`
-          : ""}
-      />
+      {/* Aluse-teated kõrvuti, mitte neli täislaiust riba üksteise all —
+          muidu lükkavad nad esimese päris numbri ekraanilt välja. */}
+      <div className={alertStackClassName}>
+        <SectionAlert tone="error" message={pageError} />
+        <SectionAlert
+          tone="warn"
+          message={summary?.basis?.degraded
+            ? `${t("admin.analytics.basis.degraded", "Some summary metrics are degraded")}: ${summary.basis.degradationReason || "source unavailable"}. ${summary.basis.computedAt || ""}`
+            : ""}
+        />
+        <SectionAlert
+          tone="info"
+          message={summary?.sampledBasis?.sampleLimit
+            ? `${t("admin.analytics.basis.sampled", "RAG derived metrics use a bounded sample")}: ${metricBasisStatus({ basis: summary.sampledBasis })}.`
+            : ""}
+        />
+        <SectionAlert
+          tone="warn"
+          message={usersAnalytics?.basis?.degraded
+            ? `${t("admin.analytics.basis.degraded", "Some user metrics are degraded")}: ${usersAnalytics.basis.degradationReason || "source unavailable"}. ${usersAnalytics.basis.computedAt || ""}`
+            : ""}
+        />
+        <SectionAlert
+          tone="warn"
+          message={aiCosts?.basis?.degraded
+            ? `${t("admin.analytics.basis.degraded", "Some AI-cost metrics are degraded")}: ${aiCosts.basis.degradationReason || "source unavailable"}. ${aiCosts.basis.computedAt || ""}`
+            : ""}
+        />
+      </div>
 
       <div className={summaryPanelClassName}>
         <div className={summaryPanelBodyClassName}>
@@ -2241,7 +2306,9 @@ export default function AnalyticsDashboard() {
             <KpiCard title={t("admin.analytics.kpis.grounding.title", "Grounding")}>
               {groundingSummary ? (
                 <>
-                  <UsageBar value={100} />
+                  {/* Riba näitab TUGEVA põhistatuse osakaalu (varem oli see
+                      alati 100% — dekoratsioon, mis ei öelnud midagi). */}
+                  <UsageBar value={groundingSummary.strong} tone="neutral" />
                   <div className={kpiMetaClassName}>
                     {t(
                       "admin.analytics.kpis.grounding.meta",
@@ -2384,6 +2451,10 @@ export default function AnalyticsDashboard() {
             />
           </div>
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.framework_acceptances", "Recent work-framework acceptances captured at registration. Check that new sign-ups appear here; a missing framework download means the user has not taken the signed agreement.")}
+            />
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -2740,6 +2811,10 @@ export default function AnalyticsDashboard() {
             />
           ) : null}
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.high_risk_sources", "Sources that reached a high-risk answer or the displayed-source panel while their freshness is stale, missing or unknown. Work top-down: every row here is a source a user may already have seen.")}
+            />
             <div>
               <CardTitle>
                 {t("admin.analytics.rag_docs.high_risk_source_queue", "High-risk source risk")}
@@ -2838,6 +2913,10 @@ export default function AnalyticsDashboard() {
             )}
           </div>
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.quality_queue", "Source metadata, freshness, URL, form and contact gaps from the latest audited RAG documents, most severe first. The Fix column names the exact action and target.")}
+            />
             <div>
               <CardTitle>
                 {t("admin.analytics.rag_docs.quality_queue", "RAG quality queue")}
@@ -2970,6 +3049,10 @@ export default function AnalyticsDashboard() {
             )}
           </div>
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.rag_recent", "The most recently indexed RAG documents. Use it to confirm that an ingest actually landed and finished; FAILED rows need re-ingestion.")}
+            />
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -3162,6 +3245,10 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.payments", "The latest 20 payment attempts across all time. Repeated FAILED rows from one provider point at a payment integration problem, not at the user.")}
+            />
             <div className={sectionSubClassName}>
               {t("admin.analytics.billing.recent_payments_window", "Latest 20 payments (all time)")}
             </div>
@@ -3294,7 +3381,31 @@ export default function AnalyticsDashboard() {
                     "Showing {from}-{to} of {total}"
                   )}
             </div>
-            <div className={usersSelectActionsClassName}>
+            {/* Otsing elab SAMAL real lehekülgede loenduri ja nooltega:
+                eraldi real täitis ta 42% laiusest ja ülejäänu oli tühjus. */}
+            <form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
+              <input
+                className={inputClassName}
+                value={usersQueryDraft}
+                onChange={event => setUsersQueryDraft(event.target.value)}
+                placeholder={t("admin.analytics.users.table.user", "User")}
+                aria-label={t("admin.analytics.users.table.user", "User")}
+              />
+              <Button size="sm" variant="primary" className={actionButtonClassName} type="submit" disabled={loadingUsers}>
+                {t("admin.common.refresh", "Search")}
+              </Button>
+              <Button
+                size="sm"
+                variant="primary"
+                className={actionButtonClassName}
+                type="button"
+                onClick={handleUsersSearchClear}
+                disabled={loadingUsers}
+              >
+                {t("buttons.cancel", "Clear")}
+              </Button>
+            </form>
+            <div className={actionMetaClassName}>
               <Button
                 size="sm"
                 variant="primary"
@@ -3326,32 +3437,10 @@ export default function AnalyticsDashboard() {
             </div>
           ) : null}
 
-          <form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
-            <input
-              className={inputClassName}
-              value={usersQueryDraft}
-              onChange={event => setUsersQueryDraft(event.target.value)}
-              placeholder={t("admin.analytics.users.table.user", "User")}
-              aria-label={t("admin.analytics.users.table.user", "User")}
-            />
-            <Button variant="primary" className={actionButtonClassName} type="submit" disabled={loadingUsers}>
-              {t("admin.common.refresh", "Search")}
-            </Button>
-            <Button
-              variant="primary"
-              className={actionButtonClassName}
-              type="button"
-              onClick={handleUsersSearchClear}
-              disabled={loadingUsers}
-            >
-              {t("buttons.cancel", "Clear")}
-            </Button>
-          </form>
-
           <div className={usersSelectBarClassName}>
-            <div>
-              <div>
-                <label className={cellSubClassName} htmlFor="analytics-bulk-email-target">
+            <div className={actionGroupClassName}>
+              <div className={fieldClassName}>
+                <label className={labelClassName} htmlFor="analytics-bulk-email-target">
                   {t("admin.analytics.users.actions.email_target", "Email target")}
                 </label>
                 <DocumentsDropdown
@@ -3392,7 +3481,7 @@ export default function AnalyticsDashboard() {
                 </Button>
               </div>
             </div>
-            <div className={usersSelectActionsClassName}>
+            <div className={actionMetaClassName}>
               <span className={usersSelectCountClassName}>
                 {t("admin.analytics.users.actions.selected_count", { count: selectedUserIds.length }, "Selected: {count}")}
               </span>
@@ -3404,8 +3493,8 @@ export default function AnalyticsDashboard() {
                 )}
               </span>
             </div>
-            <div>
-              <label className={cellSubClassName} htmlFor="analytics-users-delete-reason">
+            <div className={fieldWideClassName}>
+              <label className={labelClassName} htmlFor="analytics-users-delete-reason">
                 {t("admin.analytics.dangerous.reason", "Reason")}
               </label>
               <textarea
@@ -3422,7 +3511,7 @@ export default function AnalyticsDashboard() {
               />
             </div>
             {bulkDeletePreview ? (
-              <div>
+              <div className={confirmBoxClassName}>
                 <p>
                   {t(
                     "admin.analytics.users.actions.delete_preview_counts",
@@ -3480,67 +3569,77 @@ export default function AnalyticsDashboard() {
                 )}
               </div>
             </div>
-            <div>
-              <label className={cellSubClassName} htmlFor="analytics-email-subject">
-                {t("admin.analytics.users.actions.email_subject", "Email subject")}
-              </label>
-              <input
-                id="analytics-email-subject"
-                className={inputClassName}
-                value={bulkEmailSubject}
-                onChange={event => {
-                  invalidateBulkEmailPreview();
-                  setBulkEmailSubject(event.target.value);
-                }}
-                placeholder={t("admin.analytics.users.actions.email_subject_ph", "Enter subject")}
-                maxLength={180}
-              />
+            {/* Kaks veergu: vasakul kiri ise (pealkiri + tekst), paremal
+                haldusrada (põhjendus + eelvaade). Ühe veeruna venisid
+                väljad üle terve 1700 px laiuse ekraani ja plokk luges
+                lehel võõrkehana (omanik 01.08). */}
+            <div className={dangerColClassName}>
+              <div className={fieldClassName}>
+                <label className={labelClassName} htmlFor="analytics-email-subject">
+                  {t("admin.analytics.users.actions.email_subject", "Email subject")}
+                </label>
+                <input
+                  id="analytics-email-subject"
+                  className={inputClassName}
+                  value={bulkEmailSubject}
+                  onChange={event => {
+                    invalidateBulkEmailPreview();
+                    setBulkEmailSubject(event.target.value);
+                  }}
+                  placeholder={t("admin.analytics.users.actions.email_subject_ph", "Enter subject")}
+                  maxLength={180}
+                />
+              </div>
+              <div className={fieldClassName}>
+                <label className={labelClassName} htmlFor="analytics-email-text">
+                  {t("admin.analytics.users.actions.email_text", "Email text")}
+                </label>
+                <textarea
+                  id="analytics-email-text"
+                  className={textAreaTallClassName}
+                  value={bulkEmailText}
+                  onChange={event => {
+                    invalidateBulkEmailPreview();
+                    setBulkEmailText(event.target.value);
+                  }}
+                  placeholder={t("admin.analytics.users.actions.email_text_ph", "Write a message...")}
+                  maxLength={8000}
+                />
+              </div>
             </div>
-            <div>
-              <label className={cellSubClassName} htmlFor="analytics-email-text">
-                {t("admin.analytics.users.actions.email_text", "Email text")}
-              </label>
-              <textarea
-                id="analytics-email-text"
-                className={textAreaClassName}
-                value={bulkEmailText}
-                onChange={event => {
-                  invalidateBulkEmailPreview();
-                  setBulkEmailText(event.target.value);
-                }}
-                placeholder={t("admin.analytics.users.actions.email_text_ph", "Write a message...")}
-                maxLength={8000}
-              />
+            <div className={dangerColClassName}>
+              <div className={fieldClassName}>
+                <label className={labelClassName} htmlFor="analytics-email-reason">
+                  {t("admin.analytics.dangerous.reason", "Reason")}
+                </label>
+                <textarea
+                  id="analytics-email-reason"
+                  className={textAreaClassName}
+                  value={bulkEmailReason}
+                  onChange={event => {
+                    invalidateBulkEmailPreview();
+                    setBulkEmailReason(event.target.value);
+                  }}
+                  placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
+                  maxLength={500}
+                  required
+                />
+              </div>
+              <div className={actionsClassName}>
+                <Button
+                  variant="primary"
+                  className={actionButtonClassName}
+                  onClick={handlePreviewBulkEmail}
+                  disabled={sendingUsersEmail || deletingUsers || bulkEmailReason.trim().length < 3}
+                >
+                  {sendingUsersEmail
+                    ? t("admin.analytics.dangerous.previewing", "Previewing...")
+                    : t("admin.analytics.dangerous.preview", "Preview impact")}
+                </Button>
+              </div>
             </div>
-            <div>
-              <label className={cellSubClassName} htmlFor="analytics-email-reason">
-                {t("admin.analytics.dangerous.reason", "Reason")}
-              </label>
-              <textarea
-                id="analytics-email-reason"
-                className={textAreaClassName}
-                value={bulkEmailReason}
-                onChange={event => {
-                  invalidateBulkEmailPreview();
-                  setBulkEmailReason(event.target.value);
-                }}
-                placeholder={t("admin.analytics.dangerous.reason_placeholder", "Explain why this action is needed")}
-                maxLength={500}
-                required
-              />
-            </div>
-            <Button
-              variant="primary"
-              className={actionButtonClassName}
-              onClick={handlePreviewBulkEmail}
-              disabled={sendingUsersEmail || deletingUsers || bulkEmailReason.trim().length < 3}
-            >
-              {sendingUsersEmail
-                ? t("admin.analytics.dangerous.previewing", "Previewing...")
-                : t("admin.analytics.dangerous.preview", "Preview impact")}
-            </Button>
             {bulkEmailPreview ? (
-              <div>
+              <div className={confirmBoxClassName}>
                 <p>
                   {t(
                     "admin.analytics.users.actions.email_preview_counts",
@@ -3591,6 +3690,10 @@ export default function AnalyticsDashboard() {
             ) : null}
           </div>
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.users", "Per-user 30 day usage, budget-model cost estimate and active limits. The bars show how much of the limit is used: amber from 75%, red from 90%.")}
+            />
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -3991,6 +4094,10 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.ai_features", "AI usage units by route and stage. Direct means measured usage, estimated means derived from the unit model; low coverage means the numbers understate real use.")}
+            />
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -4080,6 +4187,10 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.ai_users", "Users who have reached at least 85% of their monthly budget. These are the accounts to review before the limit stops them mid-work.")}
+            />
             <div className={sectionSubClassName}>
               {t("admin.analytics.ai_costs.users_title", "Users at or above the 85% budget threshold")}
             </div>
@@ -4199,6 +4310,10 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.ai_packages", "Budget tracking per package: how much of the package budget the active subscriptions have consumed.")}
+            />
             <div className={sectionSubClassName}>
               {t("admin.analytics.ai_costs.packages_title", "Pakettide eelarvejälgimine")}
             </div>
@@ -4362,8 +4477,8 @@ export default function AnalyticsDashboard() {
             </Button>
           </div>
 
-          <div>
-            <label className={cellSubClassName} htmlFor="analytics-logs-reason">
+          <div className={fieldClassName}>
+            <label className={labelClassName} htmlFor="analytics-logs-reason">
               {t("admin.analytics.dangerous.reason", "Reason")}
             </label>
             <textarea
@@ -4381,7 +4496,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           {logsPreview ? (
-            <div>
+            <div className={confirmBoxClassName}>
               <p>
                 {t(
                   "admin.analytics.dangerous.type_confirmation",
@@ -4419,6 +4534,10 @@ export default function AnalyticsDashboard() {
           />
 
           <div className={tableHeaderClassName}>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.logs", "The latest events with filters. Meta holds the machine-readable detail of the event; use the filters to isolate one event type or crisis flags.")}
+            />
             <div className={tableScrollHintClassName}>
               {t("admin.common.table_scroll_hint", "Scroll sideways on smaller screens to see all columns.")}
             </div>
@@ -4505,8 +4624,8 @@ export default function AnalyticsDashboard() {
             </div>
           </div>
 
-          <div>
-            <label className={cellSubClassName} htmlFor="analytics-reset-reason">
+          <div className={fieldClassName}>
+            <label className={labelClassName} htmlFor="analytics-reset-reason">
               {t("admin.analytics.dangerous.reason", "Reason")}
             </label>
             <textarea
@@ -4544,7 +4663,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           {resetPreview ? (
-            <div>
+            <div className={confirmBoxClassName}>
               <p>
                 {t(
                   "admin.analytics.dangerous.impact",

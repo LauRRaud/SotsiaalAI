@@ -43,25 +43,32 @@ export default function NotificationOperationsPanel() {
   }, []);
 
   return (
-    <section className="mt-8 rounded-xl border border-white/15 bg-black/10 p-5" aria-labelledby="notification-ops-title">
-      <h2 id="notification-ops-title" className="m-0 text-xl font-semibold">
-        {t("admin.notifications.title")}
-      </h2>
-      <p className="mt-2 opacity-70">{t("admin.notifications.description")}</p>
-      {state.status === "loading" ? <p role="status">{t("admin.common.loading_data")}</p>
-        : state.status === "error" ? <p role="alert">{t("admin.notifications.load_failed")}</p>
-          : state.rows.length ? (
-            <ul className="mt-4 grid list-none gap-2 p-0">
-              {state.rows.map((row) => (
-                <li key={row.id} className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 p-3">
-                  <span><strong>{row.emailStatus}</strong> · {row.type} · {row.emailLastErrorCode || "—"}</span>
-                  <button type="button" disabled={state.status === "saving"} onClick={() => requeue(row.id)}>
-                    {t("admin.notifications.requeue")}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : <p>{t("admin.notifications.empty")}</p>}
+    // Kujundus tuleb admin-analytics.css aa-* süsteemist, mitte Tailwindi
+    // utiliitidest: utilities-kiht võidab components-kihi, nii et kohalikud
+    // mt-8/rounded-xl/bg-black/10 lõid lehe rütmi ja pinna ainsana katki.
+    <section className="aa-card aa-notifops" aria-labelledby="notification-ops-title">
+      <div className="aa-card-body">
+        <div className="aa-section-head">
+          <div>
+            <h2 id="notification-ops-title">{t("admin.notifications.title")}</h2>
+            <p className="aa-section-sub">{t("admin.notifications.description")}</p>
+          </div>
+        </div>
+        {state.status === "loading" ? <p className="aa-alert aa-alert--info" role="status">{t("admin.common.loading_data")}</p>
+          : state.status === "error" ? <p className="aa-alert aa-alert--error" role="alert">{t("admin.notifications.load_failed")}</p>
+            : state.rows.length ? (
+              <ul className="aa-notifops-list">
+                {state.rows.map((row) => (
+                  <li key={row.id} className="aa-notifops-row">
+                    <span><strong>{row.emailStatus}</strong> · {row.type} · {row.emailLastErrorCode || "—"}</span>
+                    <button type="button" data-variant="default" data-size="sm" disabled={state.status === "saving"} onClick={() => requeue(row.id)}>
+                      {t("admin.notifications.requeue")}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : <p className="aa-section-sub">{t("admin.notifications.empty")}</p>}
+      </div>
     </section>
   );
 }

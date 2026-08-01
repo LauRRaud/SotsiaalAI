@@ -7,6 +7,8 @@
 // panel.css-i pill-sisendi stiili (select[data-variant]).
 
 export default function DocumentsDropdown({
+  id,
+  className,
   value,
   onChange,
   options,
@@ -16,6 +18,8 @@ export default function DocumentsDropdown({
 }) {
   return (
     <select
+      id={id}
+      className={className}
       data-variant="default"
       value={value ?? ""}
       onChange={(event) => onChange(event.target.value)}

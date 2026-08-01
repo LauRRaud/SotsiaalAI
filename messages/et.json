@@ -4975,6 +4975,7 @@
   },
   "admin": {
     "common": {
+      "table_scroll_hint": "Kitsamal ekraanil keri kõrvale, et näha kõiki veerge.",
       "loading": "Laen...",
       "loading_data": "Laen andmeid...",
       "saving": "Salvestan...",
@@ -5122,6 +5123,33 @@
       }
     },
     "analytics": {
+      "help": {
+        "aria": "Kuidas seda tabelit lugeda",
+        "framework_acceptances": "Viimased registreerimisel antud tööalase raamistiku kinnitused. Kontrolli, et uued liitujad siia jõuavad. Kui allkirjastatud raamlepingu allalaadimist ei ole märgitud, siis kasutaja ei ole lepingut endale võtnud — võta ühendust.",
+        "high_risk_sources": "Allikad, mis jõudsid kõrge riskiga vastusesse või kuvatud allikate paneelile, kuigi nende värskus on aegunud, puudu või teadmata. Töötle ülevalt alla: iga rida siin on allikas, mida kasutaja võib juba näinud olla.",
+        "quality_queue": "Viimati auditeeritud RAG-dokumentide metaandmete, värskuse, URL-i, vormi ja kontakti puudujäägid, raskemad eespool. Veerg „Parandus\" ütleb täpse toimingu ja sihtkoha — „Ava sihtkoht\" viib otse õigesse admini vaatesse.",
+        "rag_recent": "Viimati indekseeritud RAG-dokumendid. Kasuta seda, et veenduda, kas sisestus päriselt kohale jõudis ja lõpuni käis. FAILED-read tuleb uuesti sisestada.",
+        "payments": "Kahekümne viimase maksekatse ajalugu. Korduvad FAILED-read ühelt teenusepakkujalt viitavad makseliidese tõrkele, mitte kasutaja veale — kontrolli sel juhul makseseadistust, mitte kontosid.",
+        "users": "Kasutaja 30 päeva kasutus, eelarvemudeli kulu­hinnang ja kehtivad limiidid. Ribad näitavad limiidi täituvust: kollane alates 75%-st, punane alates 90%-st. Limiiti saab muuta allpool paneelis „Paketid, limiidid ja erandid\".",
+        "ai_features": "Kasutusühikud marsruudi ja etapi kaupa. „Otsene\" tähendab mõõdetud kasutust, „hinnanguline\" ühikumudelist tuletatut. Madal kaetus tähendab, et päris kasutus on suurem kui number näitab — siis paranda esmalt logimine, mitte eelarve.",
+        "ai_users": "Kasutajad, kes on jõudnud vähemalt 85%-ni oma kuueelarvest. Need on kontod, mis vajavad üle vaatamist ENNE, kui limiit nad töö keskel seisma paneb.",
+        "ai_packages": "Eelarve jälgimine paketi kaupa: kui suure osa paketi eelarvest on selle aktiivsed tellimused ära kasutanud.",
+        "logs": "Viimased sündmused koos filtritega. Veerg „Meta\" hoiab sündmuse masinloetavat sisu. Filtritega saad eraldada ühe sündmusetüübi või ainult kriisimärkega read; kustutamine allpool puudutab TÄPSELT neid ridu, mis filter parasjagu näitab."
+      },
+      "basis": {
+        "degraded": "Osa mõõdikuid on puudulikud",
+        "sampled": "RAG-i tuletatud mõõdikud kasutavad piiratud valimit"
+      },
+      "operations": {
+        "materials_pending": "Materjale ülevaatuse ootel",
+        "source_feedback_open": "OPEN allikatagasiside",
+        "deletion_backlog": "Kustutamise järjekord",
+        "service_confirmations": "Teenuse kinnitused",
+        "sent_unopened": "SENT, avamata üle 7 päeva"
+      },
+      "snapshot": {
+        "title": "Hetkeseis"
+      },
       "title": "Analüütika",
       "dangerous": {
         "reason": "Põhjus",
@@ -5144,6 +5172,7 @@
         "users_email_invalid_payload": "E-kirja pealkiri ja sisu on kohustuslikud."
       },
       "events": {
+        "rag_trace": "RAG-i jälg",
         "chat_request": "Vestluspäring",
         "rag_search": "RAG-otsing",
         "no_context": "Kontekst puudub",
@@ -5182,6 +5211,19 @@
         "both": "Mõlemad"
       },
       "meta": {
+        "retrieved": "leitud",
+        "selected_context": "valitud kontekst",
+        "displayed_sources": "kuvatud",
+        "filtered_sources": "filtreeritud",
+        "retrievers": "otsijad",
+        "attribution": "omistamine",
+        "trace_level": "jälg",
+        "rag_risk": "risk",
+        "required_evidence": "tõendus",
+        "query_plan_mode": "planeerija",
+        "query_plan_order": "päringute järjekord",
+        "query_plan_queries": "päringud",
+        "query_plan_strategy": "valik",
         "hits": "tabamused",
         "groups": "grupid",
         "grounding": "põhistatus",
@@ -5194,6 +5236,16 @@
         "alert_code": "hoiatuse kood"
       },
       "kpis": {
+        "rag_traces": {
+          "title": "RAG-i jäljed",
+          "meta": "Omistamise jäljesündmused"
+        },
+        "retrievers": {
+          "title": "Otsijad"
+        },
+        "query_planner": {
+          "title": "Päringuplaneerija"
+        },
         "requests_30d": {
           "title": "Päringud (30p)",
           "meta": "Vestluspäringuid kokku"
@@ -5231,6 +5283,7 @@
         "title": "Platvormi ülevaade",
         "subtitle": "Vestluse, abi, koostöö ja dokumentide töövoogude koondvaade.",
         "chat": {
+          "rag_optional_errors_30d": "RAG-i valikulised vead (30p)",
           "title": "Vestlus ja hääl",
           "conversations_total": "Vestlusi kokku",
           "active_conversations_30d": "Aktiivsed vestlused (30p)",
@@ -5269,6 +5322,99 @@
         }
       },
       "rag_docs": {
+        "age": "Vanus",
+        "last_checked": "Viimati kontrollitud",
+        "fix_target": "Parandamise sihtkoht",
+        "open_fix_target": "Ava sihtkoht",
+        "freshness_audited": "Värskust auditeeritud",
+        "freshness_audited_meta": "Viimased RAG-dokumendid, mille allikametaandmete värskust kontrolliti.",
+        "freshness_errors": "Värskuse vead",
+        "freshness_errors_meta": "Aegunud {stale} | puuduv last_checked {missing} | kehtivus läbi {expired}",
+        "freshness_warnings": "Värskuse hoiatused",
+        "freshness_warnings_meta": "Aegumas {dueSoon} | tundmatu tüüp {unknown} | vigane URL {invalidUrl} | puuduv vorm {missingForm} | puuduv kontakt {missingContact}",
+        "freshness_queue_alert": "Kvaliteedijärjekorras on {count} RAG-allikat, mis vajavad metaandmete või värskuse ülevaatust.",
+        "quality_queue": "RAG-i kvaliteedijärjekord",
+        "quality_queue_subtitle": "Viimati auditeeritud RAG-dokumentide allikametaandmete, värskuse, URL-i, vormi ja kontakti probleemid tähtsuse järjekorras.",
+        "quality_queue_empty": "Auditeeritud hulgas RAG-allikate värskuse probleeme ei leitud.",
+        "high_risk_source_queue": "Kõrge riskiga allikarisk",
+        "high_risk_source_queue_subtitle": "Allikad, mis esinesid kõrge riskiga vastustes või kuvatud allikate paneelil ja mille värskus on aegunud, puudu või teadmata.",
+        "high_risk_source_queue_empty": "Kõrge riskiga allikate värskuse probleeme ei leitud.",
+        "high_risk_queue_alert": "Kõrge riski järjekorras on {count} vastuse- või kuvaallika probleemi.",
+        "high_risk_answer_source_risk": "Kõrge riskiga vastuse allikarisk",
+        "high_risk_answer_source_risk_meta": "Allikaga vastuseid {responses} | aegunud {stale} | teadmata {unknownRate}",
+        "high_risk_displayed_source_risk": "Kõrge riskiga kuvatud allika risk",
+        "high_risk_displayed_source_risk_meta": "Kuvatud allikaga vastuseid {responses} | aegunud {stale} | teadmata {unknownRate}",
+        "metadata_contract": "Metaandmete leping",
+        "metadata_contract_meta": "Puudulikke {incomplete} | puuduvaid kohustuslikke välju {required} | enim: {topMissing}",
+        "metadata_by_collection": "Metaandmed kogumite kaupa",
+        "metadata_by_collection_empty": "Kogumite tasemel metaandmete puudujääke ei leitud.",
+        "metadata_by_file_type": "Metaandmed failitüübi kaupa",
+        "metadata_by_file_type_empty": "Failitüübi tasemel metaandmete puudujääke ei leitud.",
+        "displayed_source_precision": "Kuvatud allikate täpsus",
+        "displayed_source_precision_meta": "Kuvatuid kontrollitud {basis} | rikkumisi {violations} | mõjutatud jälgi {traces}",
+        "retrieved_noise_filtered": "Filtreeritud müra",
+        "retrieved_noise_filtered_meta": "Leitud, kuid kuvamata {filtered}/{retrieved} | mõjutatud jälgi {traces}",
+        "wrong_municipality_rate": "Vale KOV-i määr",
+        "wrong_municipality_rate_meta": "Vale KOV-i allikaid {wrong}/{scoped} | mõjutatud jälgi {traces}",
+        "collection": {
+          "kov_web": "KOV-i veeb",
+          "kov_rt": "KOV-i RT",
+          "national_rt": "Riigi RT",
+          "organizations": "Organisatsioonid",
+          "ajakiri_sotsiaaltoo": "Ajakiri Sotsiaaltöö",
+          "unknown": "Teadmata"
+        },
+        "file_type": {
+          "rag_md": "RAG markdown",
+          "meta_json": "meta.json",
+          "data_json": "data.json",
+          "sources_json": "sources.json",
+          "rt_json": "RT JSON",
+          "rt_md": "RT markdown",
+          "rt_xml": "RT XML",
+          "xml": "XML",
+          "kov_data_item": "KOV-i andmekirje",
+          "article_ingest": "Artikli sisestus",
+          "unknown": "Teadmata"
+        },
+        "freshness": {
+          "ok": "Korras",
+          "info": "Info",
+          "warning": "Hoiatus",
+          "error": "Viga",
+          "stale": "Aegunud info",
+          "due_soon": "Aegumas",
+          "expired": "Kehtivus läbi",
+          "not_yet_valid": "Veel ei kehti",
+          "archived": "Arhiveeritud",
+          "historical": "Ajalooline",
+          "inactive": "Mitteaktiivne",
+          "missing_url": "Puudub URL",
+          "invalid_url": "Vigane URL",
+          "missing_last_checked": "Puudub last_checked",
+          "invalid_last_checked": "Vigane last_checked",
+          "unknown_type": "Tundmatu tüüp",
+          "contact_not_official_source": "Kontakt pole ametlikust allikast",
+          "canonical_item_municipality_conflict": "Kanoonilise kirje KOV-i konflikt",
+          "kov_service_missing_form_source": "Teenusel puudub vormi allikas",
+          "kov_service_missing_official_contact_source": "Teenusel puudub ametlik kontaktiallikas"
+        },
+        "high_risk_layer": {
+          "answer": "Vastuse allikas",
+          "claim": "Väite allikas",
+          "displayed": "Kuvatud allikas"
+        },
+        "remediation": {
+          "fill_required_metadata_fields": "Täida kohustuslikud metaandmed",
+          "fill_recommended_metadata_fields": "Täida soovituslikud metaandmed",
+          "refresh_last_checked": "Värskenda last_checked",
+          "fix_source_url": "Paranda allika URL",
+          "map_source_type": "Seosta allika tüüp",
+          "review_validity_window": "Vaata kehtivusajad üle",
+          "review_source_metadata": "Vaata allika metaandmed üle",
+          "add_or_link_form_source": "Lisa või seo vormi allikas",
+          "add_or_link_official_contact_source": "Lisa või seo ametlik kontakt"
+        },
         "title": "RAG dokumendibaas",
         "subtitle": "Ülevaade indekseerimisest ja viimastest lisandustest.",
         "total": "Dokumente kokku",
@@ -5279,6 +5425,9 @@
         "type": "Tüüp"
       },
       "table": {
+        "fix": "Parandus",
+        "layer": "Kiht",
+        "reason": "Põhjus",
         "time": "Aeg",
         "title": "Pealkiri",
         "status": "Olek",
@@ -5337,6 +5486,7 @@
         "title": "Kasutajad, kulud ja limiidid",
         "subtitle": "Kasutajapõhine 30 päeva kasutus, hinnanguline kulu ja kehtivad limiidid.",
         "summary": {
+          "roles": "Rollid",
           "users": "Kasutajaid tabelis",
           "estimated_cost": "Hinnanguline kulu (30p)",
           "paid_amount": "Laekunud summa (30p)",
@@ -5381,6 +5531,9 @@
         },
         "note": "Hinnangumudel (EUR): vestlus/päring {chat}, rag/otsing {rag}, dikteerimine/minut {stt}, kõne/minut {tts}, baaskuueelarve {budget}, pöörduja kuueelarve {budgetClient}, spetsialisti kuueelarve {budgetWorker}. Päevane analüüsilimiit ja kuueelarve skaleeruvad rolli ning kuutasu järgi. STT/TTS ajalooline kulu kuvatakse alates event-logimise kasutuselevõtust.",
         "actions": {
+          "preview_delete": "Vaata valitute kustutamise mõju",
+          "delete_preview_counts": "Taotletud: {requested}. Kustutatavaid: {deletable}.",
+          "delete_preview_done": "Kustutamise mõju eelvaade on valmis.",
           "selected_count": "Valitud: {count}",
           "selected_visible": "Nähtavatest valitud: {count}",
           "select_visible": "Vali nähtavad",
@@ -5407,6 +5560,7 @@
         }
       },
       "logs": {
+        "crisis_aggregate": "Kriiside koondarv",
         "title": "Logid",
         "subtitle": "Viimased 100 sündmust filtritega.",
         "actions": {

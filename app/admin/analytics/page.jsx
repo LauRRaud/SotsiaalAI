@@ -36,8 +36,11 @@ export default async function AdminAnalyticsPage() {
   const isAdmin = !!session?.user?.isAdmin || String(session?.user?.role || "").toUpperCase() === "ADMIN";
   if (!isAdmin) redirect(localizePath("/", locale));
   return (
+    // Admini paneel on täisekraan (panel.css [data-admin="1"]). Varasem
+    // max-w-72rem tegi sellest kitsa vertikaalse torni, kus 8-veerulised
+    // tabelid ei mahtunud ära — laius tuleb nüüd paneelist.
     <section className={ragAdminPageShellClassName}>
-      <div className={`${ragAdminShellInnerClassName} max-w-[72rem] text-[color:var(--documents-page-text)]`}>
+      <div className={ragAdminShellInnerClassName}>
         <AdminAnalyticsClient />
       </div>
     </section>

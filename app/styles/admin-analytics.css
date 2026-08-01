@@ -1,0 +1,1144 @@
+@layer components {
+/* ============================================================
+   ANALÜÜTIKA — täisekraani juhtimiskeskus (aa-*).
+   Sama hämariku klaas ja sama võrgustiku-loogika mis RAG adminil
+   (rag-admin.css .ra-*), aga oma eesliide, sest analüütika elab
+   teises komponendipuus (components/admin/AnalyticsDashboard.jsx
+   + usage/notification paneelid).
+
+   Kolm reeglit, mis hoiavad lehe loetavana:
+   1) Kolm hierarhiataset ja mitte rohkem — LEHT (päis) > SEKTSIOON
+      (kaart) > MÕÕDIK (KPI/rida). Kaarti kaardi sees ei ole.
+   2) Number on suur ja tabular, silt on väike ja VERSAALIDES, seletus
+      on hall ja NUMBRI ALL (mitte vahel) — silm loeb ülevalt alla:
+      mida → kui palju → mis alusel.
+   3) Tabel ja mobiilikaardid on ALTERNATIIVID, mitte kaks koopiat:
+      .aa-only-wide / .aa-only-narrow lülitavad ühe välja. Ilma selleta
+      renderdub iga tabel lehel kaks korda.
+
+   Nuppude/inputide MATERJAL tuleb glass.css-ist — siin ainult paigutus
+   ja admini pinnad.
+   ============================================================ */
+
+/* ---------- Kest ---------- */
+/* TIHEDUS on siin tahtlik valik (omanik 01.08: "kindlasti ma ei taha
+   tühjust ja pigem eelistan kompaktsust"). Kogu lehe rütm tuleb kolmest
+   muutujast — kes tahab lehte hõredamaks, muudab neid, mitte 40 reeglit. */
+.aa-shell {
+  --aa-gap: clamp(0.55rem, 1lvh, 0.8rem);      /* sektsioonide vahe */
+  --aa-pad: clamp(0.75rem, 0.95vw, 1.05rem);   /* kaardi sisepolster */
+  --aa-inner: clamp(0.5rem, 0.7vw, 0.7rem);    /* plokkide vahe kaardis */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--aa-gap);
+  min-height: 100%;
+  color: var(--admin-text);
+  font-size: var(--fs-body);
+}
+/* AnalyticsDashboardi juurdiv on ainult mähis: tema sektsioonid peavad
+   voolama SAMAS reas kõrvalpaneelidega (kasutus, kustutustööd, teavitused),
+   muidu saab leht kaks eri rütmi — üks kesta sees, teine tema all. */
+.aa-page {
+  display: contents;
+}
+
+/* Õrn tehniline punktivõrk sisu taga — sama tekstuur mis RAG adminil,
+   et kaks juhtimiskeskust ei mõjuks eri toodetena. */
+html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::before {
+  content: "";
+  position: absolute;
+  inset: -1.2rem;
+  background-image: radial-gradient(rgba(249, 249, 249, 0.05) 1px, transparent 1.4px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 6%, #000 94%, transparent);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ühtlane juhtelementide mõõt admini vormides (sama leping mis .ra-shell).
+   Globaalne primitiiv on :where() (0-spetsiifilisus), nii et see klassiga
+   reegel võidab; materjal jääb glass.css-ist. */
+.aa-shell :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not(.sr-only), select) {
+  font-size: 0.98rem;
+  line-height: 1.4;
+  padding: 0.5em 1.15em;
+  min-height: 2.7em;
+}
+/* Number ei tohi oma välja sees ellipsiks lõiguda ("40000" → "4…").
+   Pill-polster (1.15em mõlemal serval) sõi kolmeveerulises limiidivõrgus
+   kogu sisemuse ära — kitsad arvuväljad saavad kitsama polstri. */
+.aa-shell :where(input[type="number"]),
+.aa-shell .usage-admin__entitlement :where(input) {
+  padding-inline: 0.7em;
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Analüütikal on kleepuv nav lehe esimene rida ja ta hoiab ise sulgemisristi
+   jaoks ruumi (padding-right). Seega ei ole siin vaja admini vaikimisi
+   nurganuppude riba täies kõrguses — nav tõuseb ~20 px kõrgemale ja seisab
+   kerides ekraani ülaservas (omanik 01.08: "võiks üleval pool veel olla").
+   :has() piirab reegli AINULT selle lehega; RAG admin jääb puutumata. */
+.panel-scrim[data-admin="1"] .panel-body:has(.aa-shell) {
+  padding-top: clamp(2rem, 3.6lvh, 2.4rem);
+}
+
+/* ---------- Lehe päis ---------- */
+.aa-head {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  scroll-margin-top: 4.5rem;
+}
+.aa-back {
+  justify-self: start;
+}
+.aa-head-surface {
+  display: grid;
+  gap: 0.5rem;
+  padding: var(--aa-pad) clamp(0.9rem, 1.2vw, 1.2rem);
+  padding-right: clamp(3.4rem, 6vw, 4.2rem); /* sulgemisristi ala */
+  border-radius: 20px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+}
+.aa-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.2rem);
+  font-weight: 480;
+  letter-spacing: 0.06em;
+  line-height: 1.05;
+  color: var(--text-warm);
+  background: linear-gradient(120deg, var(--text-warm) 55%, var(--dusk-glow) 82%, var(--text-warm));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+/* "Süsteem elab" — sama pulseeriv indikaator mis RAG admini kickeril */
+.aa-title::before {
+  content: "";
+  display: inline-block;
+  width: 0.32em;
+  height: 0.32em;
+  margin-right: 0.5em;
+  vertical-align: 0.22em;
+  border-radius: 50%;
+  background: var(--dusk-sunset);
+  -webkit-text-fill-color: var(--dusk-sunset);
+  box-shadow: 0 0 10px rgba(180, 180, 180, 0.8);
+  animation: aa-pulse 2.6s var(--ease-soft) infinite;
+}
+@keyframes aa-pulse {
+  0%, 100% { opacity: 0.55; box-shadow: 0 0 4px rgba(180, 180, 180, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 14px rgba(180, 180, 180, 0.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aa-title::before { animation: none; }
+}
+.aa-subtitle {
+  max-width: 76ch;
+  font-size: var(--fs-small);
+  color: var(--text-dim);
+}
+.aa-head-metarow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.2rem;
+  flex-wrap: wrap;
+}
+.aa-head-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-width: 0;
+}
+.aa-head-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
+}
+.aa-head-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.22), transparent);
+}
+
+/* Päise mõõdikupill: silt üleval mikro-versaalides, väärtus all */
+.aa-pill {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--glass-cell-border);
+  min-width: 0;
+}
+.aa-pill-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.aa-pill-value {
+  font-size: 0.98rem;
+  font-weight: 550;
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: break-word;
+}
+
+/* ---------- Sektsiooninav (lehe esimene rida, kleepub kerimisel) ----------
+   Varem: poolläbipaistva gradiendiga pillirida KESKEL lehte, päisekaardi
+   sees. Kerides jäi ta kaartide peale hõljuma ja sisu paistis alt läbi —
+   "veidi imelik kujundus" (omanik 01.08). Nüüd on ta lehe ESIMENE element
+   ja päris riba: läbipaistmatu pind, oma serv ja vari. */
+.aa-nav {
+  position: sticky;
+  top: 0;
+  z-index: 12;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.3rem;
+  align-items: center;
+  padding: 0.4rem 0.5rem;
+  padding-right: clamp(3rem, 5.5vw, 3.8rem); /* sulgemisrist jääb vabaks */
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  background: rgba(18, 18, 18, 0.94);
+  /* Prefiks ENNE standardit — Lightning CSS jätab duplikaadist viimase. */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 26px rgba(5, 5, 5, 0.38);
+}
+.aa-nav::-webkit-scrollbar {
+  display: none;
+}
+.aa-nav a {
+  flex: none;
+  padding: 0.45em 0.95em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-cell-border);
+  color: var(--text-dim);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft);
+}
+.aa-nav a:hover {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.34);
+  color: var(--text-warm);
+}
+
+/* ---------- Sektsioonikaart ---------- */
+.aa-card {
+  position: relative;
+  scroll-margin-top: 4.5rem; /* ankurlink ei jää kleepuva navi alla */
+  border-radius: 18px;
+  background: var(--glass-cell-bg);
+  border: 1px solid var(--glass-cell-border);
+  min-width: 0;
+}
+/* Peen valgusjoon kaardi ülaservas */
+.aa-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(249, 249, 249, 0.28), transparent);
+  pointer-events: none;
+}
+.aa-card-body {
+  display: grid;
+  gap: var(--aa-inner);
+  padding: var(--aa-pad);
+  min-width: 0;
+}
+/* Ülevaatedekk (esimesed kaks plokki) on veidi tugevam pind — nad on
+   lehe kokkuvõte, mitte üks sektsioon paljudest. */
+.aa-card--hero {
+  background: var(--glass-bg);
+  border-color: var(--glass-border-soft);
+}
+
+.aa-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.aa-section-head > div {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+/* CardTitle renderdab paljaid div-e — sektsiooni pealkirja ilme tuleb siit */
+.aa-section-head > div > :first-child {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-size: var(--fs-small);
+  font-weight: 540;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-warm);
+}
+.aa-section-head > div > :first-child::before {
+  content: "";
+  flex: none;
+  width: 0.42em;
+  height: 0.42em;
+  border-radius: 50%;
+  background: var(--dusk-sunset);
+  box-shadow: 0 0 10px rgba(180, 180, 180, 0.75);
+}
+.aa-section-sub {
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-dim);
+  max-width: 84ch;
+}
+
+/* ---------- Mõõdikuvõrgud ---------- */
+.aa-kpis {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+  align-items: stretch;
+}
+/* Ülevaate seitse põhinumbrit — tihedam ja suurem */
+.aa-kpis--top {
+  grid-template-columns: repeat(auto-fit, minmax(min(9.5rem, 100%), 1fr));
+}
+/* Pikkade seletustega kaardid (RAG-i kvaliteet, salvestus) vajavad rohkem
+   rida-laiust, muidu muutub meta viie sõna kaupa murtud tulbaks. */
+.aa-kpis--wide {
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+}
+.aa-kpis--quad {
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+}
+
+/* Üks mõõdik: silt → number → seletus */
+.aa-kpi {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.6rem 0.75rem 0.65rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-cell-border);
+  overflow: hidden;
+  min-width: 0;
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft);
+}
+.aa-kpi:hover {
+  background: var(--glass-cell-bg-hover);
+}
+/* Helendav külgserv — annab kaardile suuna ja seob RAG admini keelega */
+.aa-kpi::before {
+  content: "";
+  position: absolute;
+  inset: 0.35rem auto 0.35rem 0;
+  width: 2px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, transparent, rgba(241, 241, 241, 0.5), transparent);
+}
+.aa-kpi-main {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.aa-kpi-title {
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  overflow-wrap: break-word;
+}
+.aa-kpi-valuewrap {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.aa-kpi-value {
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.65rem);
+  font-weight: 550;
+  line-height: 1.05;
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: break-word;
+}
+.aa-kpi-meta {
+  font-size: var(--fs-micro);
+  line-height: 1.5;
+  color: var(--text-dim);
+  overflow-wrap: break-word;
+}
+/* Ainult seletusega kaart (nt "Staatused", "Sihtrühm"): meta on siin
+   SISU, mitte allmärkus — tõstame ta loetavale mõõdule. */
+.aa-kpi:not(:has(.aa-kpi-value)) .aa-kpi-meta {
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+
+/* ---------- Kokkuvõttedekk: põhinumbrid, all hetkeseis ----------
+   Kõrvuti-paigutus (KPI-võrk | hetkeseis) tekitas laial ekraanil pika
+   tühja tulba: KPI-d mahtusid ühte 131 px ritta, hetkeseisu loend oli
+   395 px kõrge. Mõlemad täislaiuses ja hetkeseis mitmes veerus — sama
+   info, ligi poole vähem kõrgust ja mitte ühtki tühja tulpa. */
+.aa-deck {
+  display: grid;
+  gap: var(--aa-inner);
+  grid-template-columns: minmax(0, 1fr);
+}
+.aa-deck .aa-metriclist {
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  column-gap: 1.4rem;
+}
+
+/* ---------- Mõõdikuloendid (platvorm, AI-kulud) ---------- */
+.aa-metricgrid {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  /* TEADLIKULT stretch (mitte start): lühem plokk venib rea kõrgusele ja
+     ridade vahele ei jää auke. Auk kahe kasti vahel loeb veana, ühtlane
+     kastirida loeb paigutusena. */
+}
+.aa-metricgroup {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--glass-cell-border);
+  min-width: 0;
+}
+/* Pikk loend (data-dense) võtab kaks võrgusammu ja jaguneb kaheks
+   veeruks — muidu venitab üks 14-realine plokk terve sektsiooni enda
+   kõrgusele ja naabrite alla jääb tühjus. */
+.aa-metricgroup[data-dense="true"] {
+  grid-column: span 2;
+}
+.aa-metricgroup[data-dense="true"] .aa-metriclist {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 1.4rem;
+}
+.aa-metricgroup > :first-child {
+  font-size: var(--fs-micro);
+  font-weight: 540;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.aa-metriclist {
+  display: grid;
+  gap: 0.05rem;
+  min-width: 0;
+}
+.aa-metricrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 0.9rem;
+  padding: 0.26rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  min-width: 0;
+}
+.aa-metricrow:last-child {
+  border-bottom: none;
+}
+/* Silt ja väärtus jagavad rea NII, et kumbki ei suruta püstiseks
+   tähetorniks: silt saab paindliku põhilaiuse, pikk väärtus murdub
+   omaette reale (flex-wrap), mitte ei pigista silti 1 tähe laiuseks. */
+.aa-metricrow {
+  flex-wrap: wrap;
+}
+.aa-metricrow > :first-child {
+  flex: 1 1 7rem;
+  min-width: 0;
+}
+.aa-metricrow--stacked {
+  display: grid;
+  gap: 0.16rem;
+  justify-items: start;
+}
+.aa-metricvalue {
+  flex: none;
+  font-size: var(--fs-small);
+  font-weight: 540;
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+.aa-metricvalue--stacked {
+  text-align: left;
+  font-weight: 500;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* Kompaktne silt/väärtus võrk mobiilikaartide sees */
+.aa-compactgrid {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.aa-compactrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.aa-compactlabel {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+.aa-compactvalue {
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.aa-compactvalue--lead {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+  font-weight: 540;
+}
+
+/* ---------- Kasutusriba ---------- */
+.aa-bar {
+  display: block;
+  height: 4px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+  margin: 0.2rem 0;
+}
+.aa-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(241, 241, 241, 0.4), rgba(241, 241, 241, 0.75));
+  box-shadow: 0 0 8px rgba(255, 246, 232, 0.3);
+  transition: width var(--dur-slow) var(--ease-drift);
+}
+.aa-bar[data-tone="warn"] .aa-bar-fill {
+  background: linear-gradient(90deg, rgba(180, 180, 180, 0.5), var(--dusk-sunset));
+  box-shadow: 0 0 8px rgba(180, 180, 180, 0.45);
+}
+.aa-bar[data-tone="err"] .aa-bar-fill {
+  background: linear-gradient(90deg, rgba(235, 154, 118, 0.5), var(--status-error));
+  box-shadow: 0 0 8px rgba(235, 154, 118, 0.45);
+}
+@media (prefers-reduced-motion: reduce) {
+  .aa-bar-fill { transition: none; }
+}
+
+/* ---------- Teated ---------- */
+/* Lehe päised teated seisid varem ÜKSTEISE ALL nelja täislaiuse ribana ja
+   lükkasid esimese päris numbri ekraanilt välja. Laial ekraanil mahub neid
+   kõrvuti kaks-kolm; ridu jääb üks, mitte neli. */
+.aa-alertstack {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(26rem, 100%), 1fr));
+}
+.aa-alertstack:empty {
+  display: none;
+}
+.aa-alert {
+  padding: 0.5rem 0.8rem;
+  border-radius: 10px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--glass-cell-border);
+  border-left-width: 3px;
+  overflow-wrap: break-word;
+}
+.aa-alert--info {
+  border-left-color: rgba(241, 241, 241, 0.45);
+}
+.aa-alert--success {
+  border-color: rgba(197, 207, 155, 0.34);
+  border-left-color: var(--status-success);
+  color: var(--status-success);
+}
+.aa-alert--warn {
+  border-color: rgba(180, 180, 180, 0.34);
+  border-left-color: var(--dusk-sunset);
+  color: var(--dusk-glow);
+}
+.aa-alert--error,
+.aa-alert--critical {
+  border-color: rgba(235, 154, 118, 0.38);
+  border-left-color: var(--status-error);
+  color: var(--status-error);
+}
+.aa-alert--critical {
+  background: rgba(235, 154, 118, 0.08);
+}
+
+/* ---------- Tabelid ---------- */
+.aa-tablehead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.aa-tablehead > div {
+  display: grid;
+  gap: 0.25rem;
+  min-width: 0;
+}
+.aa-tablehead > div > :first-child:not(.aa-scrollhint) {
+  font-size: var(--fs-micro);
+  font-weight: 540;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.aa-scrollhint {
+  margin-left: auto;
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+/* ⓘ — "kuidas seda tabelit lugeda". Alati rea PAREMAS servas (order),
+   abitekst alati omaette real tabeli kohal (order + täisrida). */
+.aa-info {
+  order: 9;
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  margin-left: 0.35rem;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--glass-cell-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1;
+  cursor: var(--cursor-pointer);
+  transition:
+    background-color var(--dur-fast) var(--ease-soft),
+    border-color var(--dur-fast) var(--ease-soft),
+    color var(--dur-fast) var(--ease-soft);
+}
+.aa-info:hover,
+.aa-info[aria-expanded="true"] {
+  background: var(--glass-cell-bg-hover);
+  border-color: rgba(255, 255, 255, 0.36);
+  color: var(--text-warm);
+}
+.aa-infopanel {
+  order: 10;
+  flex: 1 1 100%;
+  display: block;
+  padding: 0.55rem 0.8rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-cell-border);
+  border-left: 3px solid var(--dusk-sunset);
+  font-size: var(--fs-small);
+  line-height: 1.55;
+  color: var(--text-soft);
+  max-width: 96ch;
+}
+/* KERIMISLÕKS (omanik 01.08: "siia jään kerimisega kinni"): tabelil oli
+   `max-height: 34rem` + `overscroll-behavior: contain`. Nii sai igast
+   pikemast tabelist oma kerimisaken, mis neelas hiireratta ega andnud
+   kerimist lehele edasi — kursor tabeli kohal = leht seisab. Nüüd on
+   tabel täies pikkuses ja kerib AINULT külgsuunas: `overflow-x` hoiab
+   laiad veerud korras, kõrgus tuleb sisust ja ratas läheb alati lehele. */
+.aa-tablewrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--glass-cell-border);
+  background: rgba(8, 8, 8, 0.24);
+  max-width: 100%;
+}
+.aa-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--fs-small);
+}
+.aa-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  text-align: left;
+  padding: 0.5em 0.7em;
+  font-size: var(--fs-micro);
+  font-weight: 540;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: rgba(22, 22, 22, 0.94);
+  border-bottom: 1px solid rgba(249, 249, 249, 0.2);
+  white-space: nowrap;
+}
+.aa-table td {
+  padding: 0.48em 0.7em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  vertical-align: top;
+  color: var(--text-warm);
+  font-variant-numeric: tabular-nums;
+}
+.aa-table tbody tr {
+  transition: background-color var(--dur-fast) var(--ease-soft);
+}
+.aa-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+.aa-table tbody tr:last-child td {
+  border-bottom: none;
+}
+/* Lahtri teine rida (ID, alaseletus) */
+.aa-cellsub {
+  font-size: var(--fs-micro);
+  line-height: 1.45;
+  color: var(--text-dim);
+  overflow-wrap: break-word;
+}
+.aa-table .aa-cellsub {
+  margin-top: 0.1rem;
+}
+
+/* ---------- Mobiilikaardid (kitsas vaade) ---------- */
+.aa-mobilelist {
+  gap: 0.5rem;
+}
+.aa-mrow {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-cell-border);
+  min-width: 0;
+}
+.aa-mrow-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+  min-width: 0;
+}
+.aa-mrow-head > div {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.aa-mrow-title {
+  font-size: var(--fs-small);
+  font-weight: 540;
+  color: var(--text-warm);
+  overflow-wrap: break-word;
+}
+.aa-mrow-sub {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+  overflow-wrap: break-word;
+}
+.aa-mfields {
+  display: grid;
+  gap: 0.5rem 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
+}
+.aa-mfield {
+  display: grid;
+  gap: 0.14rem;
+  min-width: 0;
+}
+.aa-mfield-label {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.aa-mfield-value {
+  font-size: var(--fs-small);
+  color: var(--text-warm);
+  overflow-wrap: break-word;
+}
+
+/* Tabel ↔ mobiilikaardid: TÄPSELT üks neist on korraga nähtav.
+   Reeglid on TEADLIKULT kõigist sisuklassidest (.aa-mobilelist jt) ALLPOOL —
+   sama spetsiifilisuse korral võidab hilisem, ja just see lüliti peab
+   võitma. Vastasel juhul renderdub iga tabel lehel kaks korda: kord
+   tabelina, kord kaardiloendina. */
+.aa-only-wide { display: block; min-width: 0; }
+.aa-only-narrow { display: none; }
+
+/* ---------- Tööriistaribad ja vormid ---------- */
+.aa-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+/* Toiminguribal olev otsing võtab ainult oma sisu jagu ruumi — riba
+   jaotab kolm rühma (olek | otsing | leheküljed) ise laiali. */
+.aa-actionbar > .aa-toolbar {
+  flex: 0 1 auto;
+}
+/* Otsinguväli ei venita end üle terve laia ekraani — 32rem on
+   e-posti aadressi jaoks külluslik ja ülejäänud rida jääb nuppudele. */
+.aa-toolbar > input {
+  flex: 2 1 16rem;
+  min-width: min(12rem, 100%);
+  max-width: 32rem;
+}
+.aa-toolbar select {
+  flex: 1 1 12rem;
+  width: auto;
+  min-width: 0;
+  max-width: 22rem;
+}
+.aa-select--compact {
+  max-width: 14rem;
+}
+.aa-input {
+  width: 100%;
+}
+.aa-textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  font-size: var(--fs-small);
+  line-height: 1.5;
+  text-align: left;
+  resize: vertical;
+}
+/* Kirja tekst on pikk sisu — talle päris kirjutuspind, mitte kaherealine
+   pilu. Reegel PEAB jääma .aa-textarea järele (sama spetsiifilisus). */
+.aa-textarea--tall {
+  min-height: 9rem;
+}
+.aa-label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.aa-field {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+}
+.aa-check {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--dusk-glow);
+  cursor: var(--cursor-pointer);
+}
+
+/* Toiminguriba: OLEK vasakul, NUPUD paremal, pikad väljad omaette real.
+   Varem oli see grid, mille kõik lapsed kuhjusid vasakusse serva ja
+   parem pool jäi tühjaks (omanik 01.08: "nupud ja lahtrid kokku surutud
+   ühte kohta"). */
+.aa-actionbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.5rem 0.9rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  min-width: 0;
+}
+.aa-actionbar > * {
+  min-width: 0;
+}
+/* Väli ja kinnitussamm võtavad terve rea — neid ei suruta nuppude kõrvale */
+.aa-actionbar > .aa-field--wide,
+.aa-actionbar > .aa-confirm {
+  flex: 1 1 100%;
+}
+.aa-actionbar-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem 0.7rem;
+  flex: 1 1 auto;
+}
+.aa-actionbar-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin-left: auto;
+}
+.aa-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+.aa-count {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+  font-size: var(--fs-micro);
+  color: var(--text-soft);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  white-space: nowrap;
+}
+
+/* Ohtlike toimingute plokk (kirja saatmine, kustutamine, reset).
+   Kaks veergu: vasakul koostamine, paremal põhjendus + toiming. Ühe
+   veeruna venis vorm üle terve laia ekraani ja mõjus võõrkehana. */
+.aa-danger {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 0.5rem 0.9rem;
+  align-items: start;
+  padding: 0.7rem 0.85rem;
+  border-radius: 14px;
+  background: rgba(235, 154, 118, 0.05);
+  border: 1px solid rgba(235, 154, 118, 0.24);
+  min-width: 0;
+}
+.aa-danger-col {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  min-width: 0;
+}
+/* Vormi jalus: toiming paremas servas, nagu vormil kombeks */
+.aa-danger-col .aa-actions {
+  justify-content: flex-end;
+}
+.aa-danger-head,
+.aa-danger > .aa-confirm {
+  grid-column: 1 / -1;
+}
+.aa-danger-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .aa-danger {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.aa-danger-head > :first-child {
+  font-size: var(--fs-micro);
+  font-weight: 540;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--status-error);
+}
+.aa-hint {
+  font-size: var(--fs-micro);
+  color: var(--text-dim);
+}
+/* Kinnitussamm: eraldi kast, et "kirjuta täpselt X" ei uppuks vormi sisse */
+.aa-confirm {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(8, 8, 8, 0.35);
+  border: 1px solid rgba(235, 154, 118, 0.3);
+}
+.aa-confirm p {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.aa-confirm [role="alert"] {
+  color: var(--status-error);
+}
+.aa-resetgrid {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+}
+.aa-resetgrid > * {
+  width: 100%;
+}
+
+/* ---------- Kaasatud paneelid (kasutus, kustutustööd, teavitused) ----------
+   Need komponendid elavad väljaspool AnalyticsDashboardi, aga renderduvad
+   SAMAL lehel — ilma selle ühtlustuseta algab lehe keskel teine kujundus. */
+.aa-shell .usage-admin {
+  margin-top: 0;
+  gap: var(--aa-inner);
+  padding: var(--aa-pad);
+  border-radius: 18px;
+  background: var(--glass-cell-bg);
+  border-color: var(--glass-cell-border);
+  scroll-margin-top: 4.5rem;
+}
+.aa-shell .usage-admin__header h2,
+.aa-shell .usage-admin__section-head h3 {
+  font-size: var(--fs-small);
+  font-weight: 540;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-warm);
+}
+/* Kasutuse juhtkiht oli kaheveeruline (paketid | erandid) ja parem veerg
+   sai sisu 130 px jagu, kasti 1500 px jagu — pool ekraani tühja pinda
+   (omanik 01.08). Mõlemad plokid täislaiuses üksteise all: limiidivõrk
+   saab neli veergu (8 mõõdikut kahes reas endise nelja asemel) ja ükski
+   juhtelement ei jää enam ellipsi taha. */
+.aa-shell .usage-admin__layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+.aa-shell .usage-admin__entitlements {
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+}
+.aa-shell .usage-admin__entitlement {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem 0.7rem;
+  padding: 0.6rem 0.7rem 0.7rem;
+}
+.aa-shell .usage-admin__entitlement :where(select) {
+  padding-inline: 0.7em;
+  min-width: 0;
+}
+/* Otsinguväli ei pea täislaiuses plokis 1700 px lai olema. */
+.aa-shell .usage-admin__search,
+.aa-shell .usage-admin__plan-meta {
+  max-width: 42rem;
+}
+.aa-shell .usage-admin__surface {
+  padding: var(--aa-pad);
+  gap: var(--aa-inner);
+}
+.aa-shell .usage-admin__entitlement legend {
+  font-size: var(--fs-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+.aa-shell .usage-admin__jobs article {
+  background: rgba(255, 255, 255, 0.04);
+}
+/* Teavituste töövoog: pealkiri läheb sama sektsiooniraami alla mis mujal
+   (.aa-section-head hoolitseb versaalide ja täpi eest), read on ühe rea
+   kaupa loetavad kirjed, mitte loendipunktid. */
+.aa-notifops h2,
+.aa-shell .usage-admin h2,
+.aa-shell .usage-admin h3 {
+  margin: 0;
+}
+.aa-notifops-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.aa-notifops-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-cell-border);
+  font-size: var(--fs-small);
+  color: var(--text-soft);
+}
+.aa-notifops-row strong {
+  color: var(--text-warm);
+}
+
+/* ID-d ja URL-id on murdmatud sõnad: NEIL on `anywhere` (muidu ulatuvad
+   kaardist välja). Mujal on `break-word`, sest `anywhere` mõjutab ka
+   min-content laiust ja surub kitsad veerud püstiseks tähetorniks. */
+.aa-mrow-title,
+.aa-mrow-sub,
+.aa-mfield-value,
+.aa-cellsub,
+.aa-kpi-value {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Kohandused kitsamale ekraanile ---------- */
+@media (max-width: 1024px) {
+  /* Alla selle ei mahu ükski 6–8-veeruline tabel loetavalt: kaardid. */
+  .aa-only-wide { display: none; }
+  .aa-only-narrow { display: grid; }
+  .aa-scrollhint { display: none; }
+}
+@media (max-width: 900px) {
+  .aa-metricgroup[data-dense="true"] {
+    grid-column: auto;
+  }
+  .aa-metricgroup[data-dense="true"] .aa-metriclist {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .aa-head-surface {
+    padding-right: clamp(1rem, 4vw, 1.5rem);
+  }
+  .aa-head-tools {
+    margin-left: 0;
+    width: 100%;
+  }
+  .aa-head-tools > * {
+    flex: 1;
+  }
+  .aa-kpis,
+  .aa-kpis--top,
+  .aa-kpis--wide,
+  .aa-kpis--quad {
+    grid-template-columns: repeat(auto-fit, minmax(min(10rem, 100%), 1fr));
+  }
+  .aa-metricgrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+}
