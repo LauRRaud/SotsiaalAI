@@ -14,7 +14,10 @@ function args(argv) {
 }
 
 function quote(text) {
-  return String(text || "").split(/\r?\n/u).map(line => `> ${line}`).join("\n");
+  return String(text || "").split(/\r?\n/u)
+    .map(line => line.replace(/[ \t]+$/u, ""))
+    .map(line => line ? `> ${line}` : ">")
+    .join("\n");
 }
 
 async function main() {
