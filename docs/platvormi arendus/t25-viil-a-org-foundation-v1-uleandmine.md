@@ -148,22 +148,64 @@ Tõendatud päris andmebaasi vastu — see, mida `npm test` fake-Prismaga ei saa
 
 ---
 
+## 6a. Brauseri-QA (autenditud, dev-server pordil 3001)
+
+Käivitatud `.claude/launch.json` konfiga `next-dev-org-a` (sama muster, mis olemasolevatel
+`next-dev-public-v1` ja `next-dev-rooms-e1` kirjetel), lipud sees worktree oma `.env`-is.
+
+**Läbitud tervikrada päris HTTP ja päris sessiooniga:** `/org` → organisatsiooni loomine (`POST /api/org`)
+→ `PENDING_VERIFICATION` → `ACTIVE` (admin) → üksuse loomine → `/org/[id]`, `/struktuur`, `/liikmed`,
+`/kutsed`, `/audit`, `/seaded`, `/org/liitu` — kõik 200, konsool puhas, serveri logis 0 viga.
+
+**Negatiivsed rajad HTTP kihis:** olematu `orgId` → `GET /api/org/[id]` **404** `org.errors.organization_not_found`,
+`/members` **404** sama võti, `/api/org/join?token=bogus` **404** `org.errors.invite_invalid`.
+
+**Mobiil 390×844** (mitte preset `mobile` = 375×812): `documentElement.scrollWidth == innerWidth` → 0 horisontaalset
+ülevoolu; `thead` `position: absolute` (visuaalselt peidus); `td` → `display: grid` ja `::before` kannab veerunime
+→ tabel muutub kaartideks.
+
+### Kolm viga, mille brauser leidis ja mis on parandatud
+
+1. **Mustand-organisatsioon kuvas „Organisatsioon on peatatud".** `writable` on `false` nii `DRAFT` kui
+   `SUSPENDED` korral, aga UI näitas mõlemale peatamise teksti. Uuele organisatsioonile ütles see, et temaga on
+   midagi valesti. Lisatud `org.overview.pendingNotice` ja teade hargneb seisu järgi.
+2. **Nimeta liikme e-post kuvati kaks korda** (nimeväljal varuvariandina ja all real) — ekraanilugejas luges see
+   nagu kaks eri välja. Nüüd kuvatakse alarida ainult siis, kui päris nimi on olemas.
+3. **Põhiüksuse valiku silt oli laenatud** struktuurivaatest („Kuulub üksusesse"). Lisatud
+   `org.members.setPrimaryUnit`.
+
+### Kaks leidu, mis EI OLE viilu A vead
+
+- **Olematu organisatsiooni LEHT vastab 200-ga**, mitte 404-ga. Sisu on korrektne not-found-leht: **`ow-shell`
+  puudub ja ühtegi org-välja ei lekita** (kontrollitud vastuse kehast). Põhjus on Next-i voogedastus
+  `dynamic = "force-dynamic"` all — päis läheb teele enne, kui `notFound()` jõuab mõjuda. API-kiht annab korrektse
+  404. Turvaomadus kehtib; parandus kuuluks Next-i seadistuse tasemele.
+- **Täislaadimisel renderdub lehe sisu DOM-i kaks korda** (2× `h1`, alles jääv `div#S:0`). See EI ole viilu A
+  oma: sama kordub olemasoleval `/refleksioon` lehel, aga mitte `/tellimus`-el (lõuend-marsruut, teine
+  `PanelFrame` haru). SSR-i HTML on korrektne — täpselt üks `ow-shell`, üks `h1`, üks `<form>`; dubleerimine
+  tekib kliendipoolel. Mõõdetud AINULT dev-režiimis; toodangubuildis kontrollimata.
+  **Soovitus: eraldi vaatlus, mitte viilu A parandus** — `PanelFrame` on jagatud paigutus ja tema muutmise
+  mõjuala on kogu rakendus.
+
+---
+
 ## 7. NOT_DONE / NOT_PROVEN / OUT_OF_SCOPE
+
+### Brauseri-QA — TEHTUD (vt ptk 6a)
 
 ### NOT_PROVEN
 
-1. **Brauseri-QA on tegemata.** `/org` lehtede päris renderdus, navigatsioon, mobiil (390×844), klaviatuur,
-   ekraanilugeja ja 200% tekst on **kontrollimata**. Põhjus on protseduuriline, mitte tehniline: projekti reegel
-   nõuab dev-serveri käivitamist `preview_start`-i `next-dev` konfiga, mis osutab PÕHItööpuule — seal seda koodi ei
-   ole, ja põhitööpuu muutmine oli keelatud. Verifitseerimiseks:
-   ```bash
-   cd C:/Users/rauds/Desktop/SotsiaalAI-org-foundation-v1 && ORG_WORKSPACE_ENABLED=1 ORG_CREATION_ENABLED=1 npm run dev
-   ```
-2. **A11y-audit** (fookusjärjekord, kontrast, dialoogiprimitiiv) — kood järgib nõudeid (`aria-current`, `caption`,
-   `scope`, värv ei ole ainus seisukandja, mobiilis tabel → kaardid), aga mõõdetud ei ole.
+1. **Klaviatuurirada ja ekraanilugeja** — fookusjärjekord, `Tab`-rada läbi tabelite ja 200% tekst on
+   **mõõtmata**. Struktuursed eeldused on paigas ja kontrollitud (`aria-current="page"`, `caption`,
+   6× `th[scope=col]`, `aria-label` tühistusnupul, mobiilis tabel → kaardid), aga päris abivahendiga läbi
+   käidud ei ole.
+2. **Värvikontrast** — `ow-*` kasutab `color-mix(in srgb, currentColor …)`, seega kontrast sõltub pärinevast
+   teemast. Mõõtmata kõigis teemades (hele/tume/HC/mono).
 3. **Tootmis-DB seis** — kõik mõõtmised tehti kohalikus dev-baasis.
 4. **Samaaegsuse võistluskatsed** (kaks paralleelset kutse-vastuvõttu, kaks üksuse liigutamist) — invariandid on
    tehingus ja osalises unikaalindeksis, aga päris võistlust ei simuleeritud.
+5. **Gate väljas brauseris** — tõendatud ühiktestis ja resolveris (0 päringut), aga dev-server jooksis lipud
+   sees, seega väljas-seisu ei laaditud brauseris.
 
 ### NOT_DONE (teadlikult, viilu A ulatuses)
 
@@ -220,7 +262,9 @@ Viilude B ja C lipud lisab see viil, mis nad kasutusele võtab.
 | Olemasolevad tellimused, hinnad ja isiklikud tööruumid ei regressi | DONE — 2106/2106, migratsioon aditiivne |
 | Migratsioonid ja rollback kontrollitud | DONE — täisahel nullist OK |
 | ET/EN/RU, lint, build, sihitud testid rohelised | DONE |
-| A11y ja mobiil | **NOT_PROVEN** |
+| Mobiil 390×844 | DONE — 0 ülevoolu, tabel → kaardid |
+| A11y struktuur (`aria-current`, `caption`, `scope`, `aria-label`) | DONE |
+| A11y klaviatuur / ekraanilugeja / kontrast | **NOT_PROVEN** |
 | Kahe org-i negatiivne runtime tõendab serveripoolset lahusust | DONE |
 | Feature-gate väljas = pärisandmete kõrvalmõju null | DONE |
 | Commit/push omaniku ulatuses | **commit'imata — ootab luba** |

@@ -7796,7 +7796,8 @@
       "activeModules": "Active modules",
       "noModules": "No module has been activated.",
       "privacyNotice": "The organisation cannot see your conversations, private Wellbeing, reflection, mentoring or supervision. Neither can the organisation owner.",
-      "readOnlyNotice": "The organisation is suspended. Changes cannot be made."
+      "readOnlyNotice": "The organisation is suspended. Changes cannot be made.",
+      "pendingNotice": "The organisation is awaiting its identity check. Structure, members and modules can be managed once it is verified."
     },
     "structure": {
       "heading": "Units and teams",
@@ -7829,7 +7830,8 @@
       "privacyNotice": "This view shows membership and rights. It does not and will not contain usage statistics, activity times or any private record.",
       "grantCapability": "Grant right",
       "revokeCapability": "Revoke right",
-      "applyTemplate": "Apply role template"
+      "applyTemplate": "Apply role template",
+      "setPrimaryUnit": "Set primary unit"
     },
     "invites": {
       "heading": "Invitations",

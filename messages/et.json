@@ -7796,7 +7796,8 @@
       "activeModules": "Aktiivsed moodulid",
       "noModules": "Ühtegi moodulit ei ole aktiveeritud.",
       "privacyNotice": "Organisatsioon ei näe sinu vestlusi, privaatset Tööheaolu, refleksiooni, mentorlust ega supervisiooni. Ka organisatsiooni omanik ei näe neid.",
-      "readOnlyNotice": "Organisatsioon on peatatud. Muudatusi teha ei saa."
+      "readOnlyNotice": "Organisatsioon on peatatud. Muudatusi teha ei saa.",
+      "pendingNotice": "Organisatsioon ootab identiteedikontrolli. Struktuuri, liikmeid ja mooduleid saab hallata pärast kinnitamist."
     },
     "structure": {
       "heading": "Üksused ja tiimid",
@@ -7829,7 +7830,8 @@
       "privacyNotice": "See vaade näitab liikmesust ja õigusi. Siin ei ole ega tule kasutusstatistikat, aktiivsusaega ega ühtegi privaatset kirjet.",
       "grantCapability": "Anna õigus",
       "revokeCapability": "Võta õigus ära",
-      "applyTemplate": "Rakenda rollimall"
+      "applyTemplate": "Rakenda rollimall",
+      "setPrimaryUnit": "Määra põhiüksus"
     },
     "invites": {
       "heading": "Kutsed",

@@ -106,10 +106,23 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
               {members.map((member) => (
                 <tr key={member.membershipId}>
                   <td data-label={t("org.members.person")}>
-                    {[member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                      member.person.email}
-                    <br />
-                    <span className="ow-meta__term">{member.person.email}</span>
+                    {(() => {
+                      const name = [member.person.firstName, member.person.lastName]
+                        .filter(Boolean)
+                        .join(" ");
+                      /* Nimeta liikme puhul ON e-post nimi — siis ei korrata teda
+                         all teist korda. Kaks identset rida lugesid ekraanilugejas
+                         nagu kaks eri välja. */
+                      return name ? (
+                        <>
+                          {name}
+                          <br />
+                          <span className="ow-meta__term">{member.person.email}</span>
+                        </>
+                      ) : (
+                        member.person.email
+                      );
+                    })()}
                   </td>
                   <td data-label={t("org.members.seatRole")}>{t(`org.seatRole.${member.seatRole}`)}</td>
                   <td data-label={t("org.members.units")}>
@@ -123,7 +136,7 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
                     </ul>
                     {writable && units.length ? (
                       <label>
-                        <span className="ow-meta__term">{t("org.structure.parent")}</span>
+                        <span className="ow-meta__term">{t("org.members.setPrimaryUnit")}</span>
                         <select
                           defaultValue=""
                           onChange={(event) => setUnit(member.membershipId, event.target.value)}

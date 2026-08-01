@@ -21,9 +21,15 @@ export default function OrgOverviewClient({ context }) {
     <section className="ow-shell">
       <OrgHeader context={context} />
 
+      {/* Kirjutuskaitse tuleb KAHEST erinevast põhjusest ja neid ei tohi ühte
+          teatesse valada: mustand ootab identiteedikontrolli (normaalne samm),
+          peatamine on platvormi sekkumine (erakorraline). Sama tekst mõlemale
+          ütleks uuele organisatsioonile, et temaga on midagi valesti. */}
       {context?.writable === false ? (
         <p className="ow-notice ow-notice--warning" role="status">
-          {t("org.overview.readOnlyNotice")}
+          {context.organization.status === "SUSPENDED"
+            ? t("org.overview.readOnlyNotice")
+            : t("org.overview.pendingNotice")}
         </p>
       ) : null}
 
