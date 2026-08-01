@@ -72,6 +72,66 @@ test("answer_must_include_any passes when one alternative matches", () => {
   assert.equal(result.ok, true);
 });
 
+test("displayed_must_include_any requires one service-aligned title", () => {
+  const testCase = {
+    id: "harku",
+    expect: { displayed_must_include_any: ["sotsiaaltransporditeenus", "sotsiaaltransport"] }
+  };
+  assert.equal(evaluateGoldenCase(testCase, {
+    sources: [{ title: "Sotsiaaltransporditeenus" }]
+  }).ok, true);
+  assert.equal(evaluateGoldenCase(testCase, {
+    sources: [{ title: "Üldhooldusteenus väljaspool kodu" }]
+  }).ok, false);
+});
+
+test("claim_display_support rejects precise details backed only by another service", () => {
+  const testCase = {
+    id: "harku-claim-support",
+    expect: {
+      claim_display_support: [{
+        answer_includes_any: ["euro", "/km", "tööpäev", "telefon"],
+        displayed_must_include_any: ["sotsiaaltransporditeenus", "sotsiaaltransport"]
+      }]
+    }
+  };
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Tasu on 0,50 eurot kilomeetri kohta.",
+    sources: [{ title: "Asendushooldusteenus" }]
+  }).ok, false);
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Tasu on 0,50 eurot kilomeetri kohta.",
+    sources: [{ title: "Sotsiaaltransporditeenus" }]
+  }).ok, true);
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Kasutatud allikad ei kinnita tasu piisavalt.",
+    sources: []
+  }).ok, true);
+});
+
+test("no-corpus expectations reject displayed sources and unsupported long answers", () => {
+  const testCase = {
+    id: "no-corpus",
+    expect: {
+      displayed_max: 0,
+      answer_max_words: 8,
+      answer_must_not_include: ["investeerimiskulud"]
+    }
+  };
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Korpus ei kinnita seda vastust.",
+    sources: []
+  }).ok, true);
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Korpus ei kinnita vastust, kuid üldiselt lisanduvad hooldusele investeerimiskulud.",
+    sources: []
+  }).ok, false);
+  assert.equal(evaluateGoldenCase(testCase, {
+    reply: "Korpus ei kinnita seda vastust.",
+    sources: [{ title: "Teemaväline allikas" }]
+  }).ok, false);
+});
+
 test("displayed_url_required fails without urls", () => {
   const testCase = { id: "org", family: "organization", expect: { displayed_url_required: true } };
   const failing = evaluateGoldenCase(testCase, { sources: [{ title: "Astangu" }] });

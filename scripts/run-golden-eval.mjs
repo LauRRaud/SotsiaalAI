@@ -111,10 +111,20 @@ export function evaluateGoldenCase(testCase = {}, body = {}) {
     add("displayed_min", facts.displayed.length >= expect.displayed_min,
       `expected >= ${expect.displayed_min}, got ${facts.displayed.length}`);
   }
+  if (expect.displayed_max !== undefined) {
+    add("displayed_max", facts.displayed.length <= expect.displayed_max,
+      `expected <= ${expect.displayed_max}, got ${facts.displayed.length}`);
+  }
   for (const needle of asArray(expect.displayed_must_include)) {
     const normalized = normalizeText(needle);
     add(`displayed_includes:${needle}`,
       displayedTitles.some(title => title.includes(normalized)),
+      `titles: ${displayedTitles.join(" | ") || "(none)"}`);
+  }
+  if (asArray(expect.displayed_must_include_any).length > 0) {
+    const alternatives = asArray(expect.displayed_must_include_any);
+    add(`displayed_includes_any:${alternatives.join("|")}`,
+      alternatives.some(needle => displayedTitles.some(title => title.includes(normalizeText(needle)))),
       `titles: ${displayedTitles.join(" | ") || "(none)"}`);
   }
   for (const needle of asArray(expect.displayed_must_not_include)) {
@@ -137,6 +147,22 @@ export function evaluateGoldenCase(testCase = {}, body = {}) {
   }
   for (const needle of asArray(expect.answer_must_not_include)) {
     add(`answer_excludes:${needle}`, !reply.includes(normalizeText(needle)), "reply checked");
+  }
+  if (expect.answer_max_words !== undefined) {
+    const wordCount = facts.reply.trim() ? facts.reply.trim().split(/\s+/u).length : 0;
+    add("answer_max_words", wordCount <= Number(expect.answer_max_words),
+      `expected <= ${expect.answer_max_words}, got ${wordCount}`);
+  }
+  for (const [index, rule] of asArray(expect.claim_display_support).entries()) {
+    const triggers = asArray(rule?.answer_includes_any);
+    const sourceAlternatives = asArray(rule?.displayed_must_include_any);
+    const claimPresent = triggers.some(needle => reply.includes(normalizeText(needle)));
+    const sourcePresent = sourceAlternatives.some(needle =>
+      displayedTitles.some(title => title.includes(normalizeText(needle))));
+    add(`claim_display_support:${index + 1}`, !claimPresent || sourcePresent,
+      claimPresent
+        ? `claim present; titles: ${displayedTitles.join(" | ") || "(none)"}`
+        : "claim absent; check not applicable");
   }
 
   return {
