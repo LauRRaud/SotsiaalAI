@@ -1,0 +1,7 @@
+[Unit]
+Description=Stop SotsiaalAI B0 idle-RAG measurement after a safety failure
+
+[Service]
+Type=oneshot
+ExecStart=/bin/systemctl disable --now sotsiaalai-b0-idle-rag-measure.timer
+NoNewPrivileges=true
