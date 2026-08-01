@@ -2,7 +2,9 @@
 
 Kuupäev: **01.08.2026**
 Alusleping: `docs/platvormi arendus/t25-org-workspace-v1-arenduskava-opusele.md`
-Staatus: **E0 + viil A + viil B tehtud ja commit'itud. Push'imata, merge'imata, deploy'mata.**
+Staatus: **E0 + viil A tehtud. Viil B on funktsionaalselt valmis, kuid E7 on `PARTIAL` — vt ptk 2.
+Push'imata, main'i merge'imata, deploy'mata. Integratsioon `origin/main`-iga on eraldi worktree's
+läbi proovitud (ptk 6a).**
 
 See dokument on kirjutatud KONTROLLIMISEKS. Iga väide on siin kas Git-fakt, käivitatav
 käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud otse.
@@ -17,9 +19,31 @@ käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud 
 | Viil A haru | `codex/org-foundation-v1` |
 | Viil A tipp | `40dc95b1` (2 commit'i: `074030fc`, `40dc95b1`) |
 | Viil B haru | `codex/org-funding-inbox-v1`, parent `40dc95b1` |
-| Viil B tipp | `7c8639a88c0954431a25972dd51dfe2104ab9e53` (3 commit'i) |
-| `main` | `f43dc89e`, **6 commit'i ees `origin/main`-ist**, push'imata |
-| Merge / deploy | **ei tehtud** |
+| **Viil B RAKENDUSTIPP** | **`b508fc647ccf3cad3892a5b3412b221ab5a4f5d4`** — viimane commit, mis muudab rakenduskoodi |
+| **Viil B haru HEAD** | rakendustipp + käesolev dokument (dokumendi-commit ei muuda rakenduskoodi) |
+| `origin/main` praegu | `cf7b0f1840ef09602619758e62252e30410de158` — **14 commit'i baasist edasi liikunud** |
+| Lokaalne `main` | `c08d18fd`, 7 commit'i ees `origin/main`-ist, push'imata |
+| Integratsiooniproov | `4bb509942a7f7eb6d50a48cacd4cb0549dd0b34b` (detached, `origin/main` + viil B) |
+| Merge main'i / deploy | **ei tehtud** |
+
+**Viilu B commit'id:**
+
+| SHA | Liik |
+|---|---|
+| `c81feed0` | rakendus — serverikiht |
+| `7cfc1b10` | rakendus — eelpöördumise liitekoht |
+| `7c8639a8` | rakendus — UI |
+| `9f8daaef` | **ainult dokumentatsioon** |
+| `b508fc64` | rakendus — atomaarsus ja tehingu omandus |
+
+**Diffid eraldi** (`git diff --shortstat 40dc95b1 HEAD -- . ':(exclude)docs'`):
+
+| Ulatus | Failid | Read |
+|---|---|---|
+| Viil B **rakendus** (docs väljas) | 41 | +5289 / −37 |
+| Viil B **dokumentatsioon** | 1 | +262 |
+| Viil B **kogu haru** | 42 | +5551 / −37 |
+| Viil A (`952a76e3..40dc95b1`) | 65 | +8899 / −3 |
 
 **Kontrollkäsud:**
 
@@ -31,16 +55,9 @@ git -C C:/Users/rauds/Desktop/SotsiaalAI-org-foundation-v1 log --oneline 952a76e
 git -C C:/Users/rauds/Desktop/SotsiaalAI-org-funding-inbox-v1 log --oneline 40dc95b1..HEAD
 ```
 
-**Maht:**
-
-| Viil | Failid | Read |
-|---|---:|---|
-| A (`952a76e3..40dc95b1`) | 65 | +8899 / −3 |
-| B (`40dc95b1..7c8639a8`) | 41 | +5094 / −36 |
-
-`main`-i 6 commit'i on E0 aruanne, parandatud arenduskava, SEIS, analüütikatöö,
-koolitusmaterjalid, RAG-hindamise dokumendid ja `.gitignore` korrastus. **Viilu A ja B kood
-ei ole main'is.**
+Lokaalse `main`-i 7 commit'i on E0 aruanne, parandatud arenduskava, SEIS, analüütikatöö,
+koolitusmaterjalid, RAG-hindamise dokumendid, `.gitignore` korrastus ja `launch.json` kirjed.
+**Viilu A ja B kood ei ole main'is.**
 
 ---
 
@@ -55,12 +72,27 @@ ei ole main'is.**
 | E4 kutsed, liikmed, õigused | A | DONE (reporting-line jäi viilu C) |
 | E5 rollipõhised kohad ja hinnastus | B | DONE |
 | E6 tööruumivahetaja ja UI | A + B | DONE |
-| E7 vastuvõtt, määramine, üleandmine | B | DONE |
+| E7 vastuvõtt, määramine, üleandmine | B | **PARTIAL** — vt allpool |
 | E8 teenuseosutaja org-profiil | C | **TEGEMATA** |
 | E9 tööheaolu toe tarne | C | **TEGEMATA** |
 | E10 offboarding, eksport, audit | osaliselt A + B | offboarding DONE, **eksport tegemata** |
 | E11 teavitused ja observability | osaliselt | audit DONE, **teavitused ja e-kirjad tegemata** |
 | E12 QA | A + B | DONE oma viilude ulatuses |
+
+### Miks E7 on `PARTIAL`
+
+Vastuvõtt, määramine, vastuvõtmine, tagasilükkamine ja üleandmine on tehtud ja tõendatud.
+**Kaks arenduskava §5.7 nõuet on tegemata:**
+
+1. **Saatjale nähtav täpne adressaat.** §5.7 nõuab, et pöörduja näeks enne saatmist adressaati
+   kujul „organisatsiooni vastuvõtutiim". Server salvestab `recipientOrganizationId`, aga
+   `serializePreInquiry` ei projitseeri seda ja saatja UI ei kuva midagi — org-adressaadiga
+   pöördumisel on `selectedRecipientName` null.
+2. **Neutraalsed teavitused.** §5.7 nõuab, et autor saaks töö üleandmisel neutraalse teate uue
+   vastutaja kohta, ja et e-kiri sisaldaks ainult fakti ja turvalist linki. **Ühtegi teavitust
+   ei saadeta** — ei kutsel, ei sponsorlusel, ei määramisel, ei üleandmisel.
+
+Kuni need on tegemata, ei tohi E7 lugeda `DONE`-iks.
 
 ---
 
@@ -151,7 +183,9 @@ migratsioonifailis hoiatusena kirjas.
 | `npm run i18n:check` | OK (et/en/ru) |
 | `npm run build` | OK |
 | `npm run db:migrate:check` | täisahel nullist OK |
-| `node --import ./scripts/register-node-test-loader.mjs scripts/org-funding-runtime-check.mjs` | **43/43**, 0 jääki |
+| `node --import ./scripts/register-node-test-loader.mjs scripts/org-funding-runtime-check.mjs` | **50/50**, 0 jääki |
+
+Samad käsud jooksevad ka integreeritud puus `origin/main`-i vastu — vt ptk 6a.
 
 > **NB `npm run lint` juurkataloogis annab exit 1** — 705 „viga" tulevad
 > `.claude/worktrees/**/.next/**` buildiartefaktidest, mida eslint skaneerib.
@@ -160,9 +194,86 @@ migratsioonifailis hoiatusena kirjas.
 
 ---
 
+## 6a. Integratsiooniproov praeguse `origin/main`-i vastu
+
+`origin/main` on liikunud auditeeritud baasist **14 commit'i edasi** (analüütika UI, Luna RAG
+kõvendus, admini dokk). Proov tehti eraldi PUHTAS worktree's, lokaalset `main`-i puutumata:
+
+```bash
+git worktree add --detach C:/Users/rauds/Desktop/SotsiaalAI-integration-probe origin/main
+cd C:/Users/rauds/Desktop/SotsiaalAI-integration-probe && git merge codex/org-funding-inbox-v1
+```
+
+Tulemus: **merge läks konfliktideta** (ainus kattuv fail oli `messages/*.json`, kus minu `org`
+plokk on faili lõpus ja nende muudatused mujal). Merge-commit `4bb50994`.
+
+| Kontroll integreeritud puus | Tulemus |
+|---|---|
+| `npx prisma validate` | OK |
+| `npm run db:migrate:check` | **täisahel nullist OK** |
+| `npm test` | **2151/2151** (origin/main tõi 13 testi juurde) |
+| `npx eslint lib app components tests scripts` | 0 viga |
+| `npm run i18n:check` | OK (et/en/ru) |
+| `npm run build` | OK |
+| viilu A runtime | 35/35, 0 jääki |
+| viilu B runtime | **50/50**, 0 jääki |
+
+Proovi-worktree on kustutatav:
+`git worktree remove C:/Users/rauds/Desktop/SotsiaalAI-integration-probe --force`.
+Merge-commit `4bb50994` ei ole ühelgi harul ja kaob GC-ga; proov on ülal oleva kahe käsuga
+korratav.
+
+---
+
 ## 7. Mida runtime tõendas, mida ühiktestid ei suutnud
 
-Kaks viga leiti AINULT runtime'ist ja need on parandatud:
+### Kohaletoimetamise rikkestsenaarium (kontrolli punkt 4)
+
+**Enne parandust:** `PreInquiry` salvestati ja alles pärast commit'i loodi
+`OrganizationInboxItem`. Postkastikirje tõrge oleks jätnud `SENT` pöördumise, mida
+organisatsioon **ei näe**, samal ajal kui saatja usub, et see on kohale toimetatud. Vaikne
+kadu, mida kumbki pool ei märka.
+
+**Pärast parandust:** salvestus ja kohaletoimetamine on samas tehingus
+(`lib/preInquiries.js`, `createPreInquiry` ja `updatePreInquiry`). Tehing avatakse **ainult**
+org-adressaadi korral; isikliku vastuvõtja rada on baithaaval muutmata.
+
+**Tõend on veasüst, mitte väide.** `scripts/org-funding-runtime-check.mjs` süstib tõrke
+`OrganizationInboxItem.create`-sse ja saadab uue pöördumise:
+
+| Kontroll | Tulemus |
+|---|---|
+| tõrge jõuab kutsujani, mitte ei kao vaikselt | PASS |
+| tõrke järel EI JÄÄ ripakil `SENT` pöördumist (loend muutumatu) | PASS |
+| lepitusvaade on tühi — ükski `SENT` org-pöördumine ei ole ilma postkastikirjeta | PASS |
+| lepitusel ei ole midagi parandada | PASS |
+
+> **Metoodiline hoiatus, mis ise oleks peaaegu vale rohelise andnud.** Esimene veasüst
+> asendas `prisma.organizationInboxItem.create` — ja EI JÕUDNUD KOHALE, sest tehingu sees
+> kasutatakse `tx`-i, mis on eri objekt. Test „möödus" ilma midagi kontrollimata. Süst tuleb
+> teha tehingukliendi tasemel (`dbWithFailingInboxCreate` proksib `$transaction`-i).
+> Kes seda kontrollib, peaks veenduma, et süst päriselt viskab — mitte et test on roheline.
+
+**Lepitus on lisaks olemas ka funktsioonina:** `findUndeliveredOrganizationInquiries` ja
+`reconcileOrganizationDeliveries` (`lib/org/inbox.js`). Need EI OLE outbox — outbox eeldab, et
+kadu on lubatud ja hiljem järele jõutakse. Siin kadu ei ole lubatud; need on tõend ja võrk
+enne atomaarsust loodud ridade jaoks.
+
+### Samaaegse kohaletoimetamise idempotentsus (kontrolli punkt 5)
+
+`findFirst → create` on võistlusaken: kaks samaaegset kohaletoimetamist näeksid mõlemad
+tühjust. Unikaalindeks päästaks andmed, aga kasutaja saaks `P2002` → 500. Nüüd loetakse
+kokkupõrge õnnestumiseks ja tagastatakse võitja rida.
+
+| Kontroll | Tulemus |
+|---|---|
+| kolm samaaegset kohaletoimetamist õnnestuvad kõik | PASS |
+| kõik kolm annavad SAMA postkastikirje | PASS |
+| dubleeritud rida ei teki (`count = 1`) | PASS |
+
+### Kolm viga, mille leidis runtime, mitte ühiktestid
+
+Kaks esimest leiti enne kontrolli, kolmas kontrolli punkti 4 lahendamisel:
 
 1. **Seisumasinas puudus `RECEIVED → ASSIGNED`** — kirje jäi määramise järel `RECEIVED`-i ja
    vastuvõtmine ei jõudnud kunagi `ACCEPTED`-isse. Ühiktest kontrollis siirdetabelit, mitte
@@ -170,6 +281,14 @@ Kaks viga leiti AINULT runtime'ist ja need on parandatud:
 2. **Pesastatud tehing** — `recallInboxItemForSource` kutsuti eelpöördumise oma tehingu seest,
    aga avas ise uue; Prisma tehingukliendil ei ole `$transaction`-it. Oleks visanud iga
    org-adressaadiga tagasivõtmise peal. Lahendus: `runInTransaction` (`lib/org/inbox.js`).
+
+3. **Pesastatud tehing tuvastamise heuristikas.** Punkti 2 lahendus oli `runInTransaction`,
+   mis nuuskis `typeof db.$transaction === "function"`, et otsustada, kas avada tehing.
+   **Mõõtsin: Prisma interaktiivsel tehingukliendil ON `$transaction` olemas** — seega
+   heuristika avas pesastatud tehingu just seal, kus ta pidi jooksma kutsuja tehingus. Viga
+   oli vaikne: rida tekkis, aga mitte kutsuja tehingus, ja rollback ei oleks teda tagasi
+   keeranud. Asendatud selgesõnalise paariga — `…Within(tx, …)` ei ava kunagi tehingut,
+   avalik `…(input, { db })` avab. Kutsuja ütleb, süsteem ei arva.
 
 Lisaks tõendas runtime B **seat-limiidi võistluse**: kaks samaaegset nõuet viimasele vabale
 kohale → täpselt üks koht. Kaitse on kahekordne — `SELECT … FOR UPDATE` plaanireal ja osaline
@@ -202,7 +321,12 @@ mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
 3. **Gate väljas brauseris** — tõendatud ühiktestis ja resolveris (0 päringut), aga dev-server
    jooksis lipud sees.
 4. **Kutse ja sponsorluse e-kiri** — neid ei saadeta üldse (vt ptk 10).
-5. **Viilu A ja B koos** — kahte haru ei ole kokku pandud ega üheskoos testitud.
+5. **Integratsioon lokaalse `main`-iga** — lokaalne `main` (`c08d18fd`) on 7 commit'i ees
+   `origin/main`-ist ja tema tööpuu on määrdunud (võõrast pooleliolevat CSS-tööd). Viile ei ole
+   selle vastu proovitud ja EI TOHI enne, kui see töö on lõpetatud.
+   **Viil A ja B ON koos testitud** — viil B hargneb viilu A tipust `40dc95b1`, seega kõik
+   viilu B väravad jooksevad mõlema koodi peal korraga. Integratsioon PRAEGUSE `origin/main`-iga
+   on eraldi läbi proovitud, vt ptk 6a.
 
 ---
 
@@ -250,7 +374,13 @@ nimes sõna `sünteetiline`.
 
 ## 13. Mida kontrollijal tasub esimesena vaadata
 
-1. **Kas migratsioonid on päriselt aditiivsed** — `tests/org/contracts.test.js` ja
+1. **Kohaletoimetamise rikkestsenaarium.** `lib/preInquiries.js` — kas salvestus ja
+   `deliverPreInquiryToOrganizationWithin` on päriselt SAMAS tehingus, ja kas tehing avatakse
+   ainult org-adressaadi korral. Käivita veasüst
+   (`scripts/org-funding-runtime-check.mjs`, ptk „3a") ja **veendu, et süst päriselt viskab** —
+   naiivne `prisma`-tasemel süst ei jõua tehingusse ja annaks vale rohelise. Kontrolli ka, et
+   `findUndeliveredOrganizationInquiries()` tagastab tühja loendi.
+2. **Kas migratsioonid on päriselt aditiivsed** — `tests/org/contracts.test.js` ja
    `tests/org/funding.test.js` väidavad seda; loe migratsioonifailid üle.
 2. **Kas `projectSourcePackage` on päriselt valge nimekiri** — `lib/org/inbox.js`. See on
    ainus koht, kust pöörduja sisu organisatsioonini jõuab.
