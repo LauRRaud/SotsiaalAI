@@ -6,15 +6,22 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const pythonExecutable =
+  process.env.PYTHON ||
+  (process.platform === "win32" ? "python" : "python3");
 
 test("RAG general-search isolation helper rejects private and legacy agent-document metadata", () => {
   const result = spawnSync(
-    process.env.PYTHON || "python",
+    pythonExecutable,
     [path.join(ROOT, "rag-service", "test_search_security.py")],
     { cwd: ROOT, encoding: "utf8" }
   );
 
-  assert.equal(result.status, 0, result.stderr || result.stdout);
+  assert.equal(
+    result.status,
+    0,
+    result.error?.message || result.stderr || result.stdout
+  );
   assert.match(`${result.stdout}\n${result.stderr}`, /OK/);
 });
 
