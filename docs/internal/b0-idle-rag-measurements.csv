@@ -1,0 +1,1 @@
+timestamp_eest,measurement_group,request_order,request_id,observability_stage,time_since_previous_rag_request_ms,embedding_duration_ms,retriever_duration_ms,retrieval_total_ms,retrieval_timeout_ms,aborted_stage,http_status,outcome,source_count,notes

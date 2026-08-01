@@ -187,7 +187,8 @@ idle-timeout'i otsa.
 
 ```text
 A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
-  → B0 idle RAG timeout ja aus veakäsitlus  [BLOKEERIV]
+  → B0a + B0b tootmise diagnostika  [LÕPETATUD 01.08.2026]
+  → B0 jääk: idle-mõõtmisvalim → timeout'i/soojashoidmise otsus  [AVATUD]
     → B allikatoru instrumentatsioon
     → Golden-37 baasjoon enne käitumismuudatusi
       → C planneri rolliparandus
@@ -200,7 +201,9 @@ A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
 | Tööpakett | Sisu | Seis |
 |---|---|---|
 | **A** | API completion/usage, prompt-komponentide tokenid ja kalibreerimine | **lõpetatud 31.07** (vt 7.3.1) |
-| **B0** | idle RAG timeout ja aus veakäsitlus | **alustamata, blokeerib B** |
+| **B0a** | aus retrieval-failure käsitlus | **tootmises 01.08.2026** |
+| **B0b** | request-ID ja etapimõõtmine | **tootmises 01.08.2026** |
+| **B0 jääk** | idle-mõõtmisvalim ja timeout'i/soojashoidmise otsus | **tegemata, blokeerib B** |
 | **B** | allikatoru kihiline logi ja streami lõpetamisloogika | alustamata |
 | **Golden-37 baas** | praeguse käitumise baasjoon A+B logimisega | alustamata |
 | **C** | planneri rolliviga T3 | alustamata |
@@ -382,9 +385,58 @@ Komponent jääb alles tulevase ühilduvuse jaoks.
 
 ---
 
-## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus (BLOKEERIV, enne B-d)
+## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus
 
-**Seis:** alustamata. **Blokeerib:** tööpakett B.
+**Seis:** B0a ja B0b on tootmises lõpetatud 01.08.2026. Idle-mõõtmisvalim ning
+timeout'i/soojashoidmise otsus on tegemata ja B jääb nende järelmeetmeteni blokeerituks.
+
+### 7b.0 B0a — aus retrieval-failure käsitlus: TOOTMISES
+
+B0a eristab RAG-i retrieval-tõrke puhtast nulltulemusest. Tõrke korral on
+ragSearchFailed tõene ning kasutajale kuvatakse retrieval_failed sõnum, mitte eksitav
+no_context-sõnum. Kriisisõnum jääb kõrgema prioriteediga. B0a on tootmises.
+
+### 7b.0.1 B0b — request-ID ja otsinguetappide mõõtmine: TOOTMISES
+
+Sama request-ID liigub frontendist RAG-service'ini. Frontend salvestab rag_search
+AuditEventi retrievalTimings massiivi. Iga timing-objekt sisaldab täpselt kümmet välja:
+
+1. request_id
+2. observabilityStage
+3. embedding_duration_ms
+4. retriever_duration_ms
+5. retrieval_total_ms
+6. retrieval_timeout_ms
+7. aborted_stage
+8. time_since_previous_rag_request_ms
+9. http_status
+10. outcome
+
+RAG-service logib systemd journald'i järgmised etapid:
+
+- embedding
+- retrieval
+- search_total
+
+Iga eduka request-ID kohta peab olema täpselt kolm etapirida. Päringu teksti, allikate,
+dokumentide ega embeddingu sisu ei logita. Native- ja graph-channel on observabilityStage
+kaudu eristatavad. client_disconnected ei ole selles etapis mõõdetud.
+
+Timeout jäi 12000 ms peale. Retry'd, warm-up'i ega readiness-loogikat ei lisatud.
+
+### 7b.0.2 B0 tootmise commit-ahel
+
+Serveri git-logi järgi:
+
+```text
+d4189dc9c3c452c3a7c4ca72760a3c6065504935  feat(rag-service): add B0b search stage observability
+023669f18274be1a0dd9f3a80f60c8b353428003  fix(rag-service): emit B0b stage logs through uvicorn
+574e4a35f8fdf84022ec36fd95aa043f135c36b8  test(rag): use platform Python fallback for isolation checks
+b700747d134c71dec012fb200ae1b0687f6e71b9  feat(chat): deploy B0b retrieval timings on production base
+13cfe8605e5ce705b8b4c973a39c389b09e5ac58  fix(chat): preserve complete B0b retrieval timings
+```
+
+Lõplik tootmise HEAD on `13cfe8605e5ce705b8b4c973a39c389b09e5ac58`.
 
 ### 7b.1 Probleem
 
@@ -407,7 +459,7 @@ ei ole.
 - `rag_error` järel ei kuvata kasutajale „allikaid ei leitud" tüüpi sõnumit;
 - `rag_trace` või vastuse metaandmed kannavad üheselt eristust „otsing ebaõnnestus" vs „tulemusi ei olnud";
 - idle-first-request juhtum on reprodutseeritav regressioonitestis;
-- deploy-smoke sisaldab teadlikku warm-up'i enne mõõtmisi;
+- idle-mõõtmisakna esimese päringu ees ei tehta warm-up'i;
 - timeout'i muutmine, kui seda tehakse, on eraldi mõõdetud ja Golden-37 vastu kontrollitud.
 
 ---
@@ -695,6 +747,30 @@ katsel (19,5 s ja 18,8 s koguaega, kuid retrieval mahtus 12 s sisse).
 
 Vt tööpakett **B0**.
 
+### 13.4.1 B0 tootmise valideerimine — 01.08.2026
+
+Need kolm olid edukad deploy-smoke päringud, mitte piisav idle-first-request valim.
+Nende põhjal ei otsustata veel timeout'i tõsta ega warm-up'i lisada.
+
+| Jooks | Embedding | Retrieval | Total | Timeout | Tulemus |
+|---|---:|---:|---:|---:|---|
+| 1 | 1862 ms | 4191 ms | 6054 ms | 12000 ms | ok |
+| 2 | 265 ms | 4188 ms | 4454 ms | 12000 ms | ok |
+| 3 | 598 ms | 4253 ms | 4851 ms | 12000 ms | ok |
+
+Kõigil request-ID-del oli journald'is täpselt kolm etapirida ja null duplikaati.
+upstream_stage oli rag_search ning sisuleket ei tuvastatud.
+
+Valideerimine: B0b/retrieval 97/97, muudetud failide testid 17/17,
+agent-document isolation 4/4 ilma PYTHON-keskkonnamuutujata ja täissviit 2018/2018.
+Lint, syntax-check ja git diff --check läbisid; frontendi build õnnestus.
+
+Frontend restartis, RAG-service ei restartinud ning mõlemad teenused jäid active.
+RAG health läbis ja stream jõudis done-sündmuseni. Tootmise mudeliseaded jäid
+gpt-5.4-mini / low / medium / 1100 ning CHAT_PROMPT_TOKEN_AUDIT=0. Env-hashid jäid
+muutmata: rag.env `38d41cfb9f93f3daa974bbe59aa61ef4aef5b89e126b8e2e7fc8a6a5d39caaa1`;
+frontend.env `6acbe78110810886fee83343b1a410e487d09502974752879432592e93d98d60`.
+
 ---
 
 ## 14. Luna ülemineku senine indikatiivne tõendus
@@ -789,7 +865,7 @@ Lõppotsus peab valima ühe Luna põhirežiimi. Teise verbosity-seadistuse võib
 | planner ajab professionaali kliendiga segi | kõrge | keskmine | C regressioonitestid |
 | `query_anchor_mismatch` eemaldab õige allika | kõrge | keskmine | B diagnostika ja sihitud parandus |
 | incomplete stream ei anna kliendile lõpetamissignaali | kõrge | keskmine | B stream-protokolli parandus |
-| esimese RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | **kõrge** (3/3 vaadeldud juhtumit) | tööpakett B0: aus veakäsitlus, timeout'i ülevaatus, soojashoidmine |
+| esimese RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | ajalooliselt vaadeldud, kuid varasem valim oli väike ega tõesta üldist esinemissagedust | B0a/B0b diagnostika on tootmises; uus mõõtmisaken selgitab tegeliku esinemissageduse ja timeout'i muutmise vajaduse |
 | tokeniaudit lekib sisu | kõrge | madal | hash/maht ainult + sisulekke test |
 | ~~kohalik tokenihinnang on ebatäpne~~ | ~~keskmine~~ | **maandatud** | kalibreeritud 31.07: gap mediaan 0,76%, max 1,17%, 0 negatiivset |
 | Golden-37 muutub enne baasjoont | kõrge | madal | freeze ja commit/hash fikseerimine |
@@ -941,28 +1017,28 @@ Failid:
 
 ### Esimene ülesanne
 
-Lõpetada tööpaketi A kalibreerimine.
-
-1. hankida sisselogitud brauserist sessiooniküpsis;
-2. teha autenditud smoke commit'il `f274190e`;
-3. lülitada `CHAT_PROMPT_TOKEN_AUDIT=1`;
-4. korrata kalibreerimine mõlemal rajal;
-5. kinnitada lazy-load, väljade täidetus ja sisulekke puudumine;
-6. koostada gap-statistika raja ja päringutüübi kaupa;
-7. panna lipp tagasi `0` ja teha lõppkontroll;
-8. kinnitada A lõpetatuks;
-9. enne B koodi otsustada `rag_trace` 30-võtme probleemi skeemilahendus.
-
-### A lõpetamise järel
-
-Alustada tööpaketti B, kuid mitte muuta veel planneri ega retrieval'i käitumist.
+1. koguda jõudeolekujärgne RAG-mõõtmisvalim;
+2. võrrelda esimest päringut kohe järgneva päringuga;
+3. eristada embeddingu ja retrieval'i kestus;
+4. registreerida timeout, abort, HTTP outcome ja vaikuse pikkus;
+5. teha tõendatud otsus:
+   - timeout jääb 12000 ms;
+   - üldine timeout tõstetakse;
+   - embeddingule antakse eraldi eelarve;
+   - lisatakse soojashoidmine/readiness;
+6. alles siis alustada tööpaketti B.
 
 ---
 
 ## 21. Projekti lõpetamise kontrollnimekiri
 
 - [x] A kalibreerimine lõpetatud ja auditilipp tagasi väljas
-- [ ] B0 idle RAG timeout ja aus veakäsitlus
+- [x] B0a aus retrieval-failure käsitlus tootmises
+- [x] B0b request-ID ja etapimõõtmine tootmises
+- [x] B0b nonstream/stream ning journald'i korrelatsioon valideeritud
+- [ ] jõudeolekujärgne mõõtmisvalim kogutud
+- [ ] timeout'i, embeddingu eelarve või soojashoidmise otsus tehtud
+- [ ] B0 lõplikult suletud
 - [ ] `rag_trace` skeem ei kärbu
 - [ ] B kaheksa allikakihti logitud
 - [ ] incomplete streami lõpetamissignaal parandatud
