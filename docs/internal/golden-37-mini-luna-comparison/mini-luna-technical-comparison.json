@@ -1,0 +1,270 @@
+{
+  "schema": "golden-37-mini-luna-technical-comparison-v1",
+  "generated_at": "2026-08-01T11:29:57.902Z",
+  "question_set_hash": "3a47407ce93fbf9fc7cdb33f9f2e3bcc05b0ad0bef788e184e03580b4df50089",
+  "rubric_hash": "414b9102b12171b8f41f9c23c0305224bac95c53a5887caf9170b7b3eefb1f4d",
+  "mini": {
+    "run_count": 37,
+    "technical_retry_count": 0,
+    "status_counts": {
+      "completed": 37
+    },
+    "provider_status_counts": {
+      "completed": 37
+    },
+    "response_present_false_count": 0,
+    "incomplete_count": 0,
+    "technical_failure_count": 0,
+    "retrieval_failure_count": 0,
+    "stream_failure_count": 0,
+    "output_cap_reached_count": 0,
+    "observed_models": [],
+    "observed_max_output_tokens": [],
+    "latency_ms": {
+      "p50": 7756,
+      "max": 37960,
+      "total": 478419
+    },
+    "tokens": {
+      "input_total": 159476,
+      "cached_total": 13312,
+      "output_total": 14440,
+      "reasoning_total": 1993,
+      "non_reasoning_output_total": 12447,
+      "total": 173916,
+      "output_p50": 391,
+      "output_max": 709
+    },
+    "cost_usd": {
+      "total": 0.1756014,
+      "average": 0.00474598
+    },
+    "sources": {
+      "raw_total": 91,
+      "displayed_total": 91,
+      "displayed_unique_total": 87,
+      "zero_raw_count": 3,
+      "zero_displayed_count": 3,
+      "displayed_duplicate_entry_count": 4,
+      "zero_source_question_ids": [
+        "edge_inflected_tugiisikuteenusel",
+        "edge_crisis",
+        "edge_no_corpus_answer_v2"
+      ],
+      "duplicate_display_question_ids": [
+        "kov_kuusalu_koduteenus",
+        "kov_kuusalu_vormid",
+        "kov_leakage_guard_narva",
+        "graph_kov_vormid_kontaktid"
+      ]
+    },
+    "automatic": {
+      "total": 37,
+      "pass": 37,
+      "fail": 0,
+      "by_family": {
+        "kov": {
+          "pass": 4,
+          "fail": 0
+        },
+        "legal": {
+          "pass": 3,
+          "fail": 0
+        },
+        "ajakiri": {
+          "pass": 6,
+          "fail": 0
+        },
+        "ingested_pdf": {
+          "pass": 13,
+          "fail": 0
+        },
+        "organization": {
+          "pass": 2,
+          "fail": 0
+        },
+        "life_situation": {
+          "pass": 2,
+          "fail": 0
+        },
+        "comparison": {
+          "pass": 2,
+          "fail": 0
+        },
+        "edge": {
+          "pass": 4,
+          "fail": 0
+        },
+        "graph": {
+          "pass": 1,
+          "fail": 0
+        }
+      },
+      "failed_case_ids": []
+    },
+    "retrieval": {
+      "attempted_run_count": 37,
+      "failed_run_count": 0,
+      "call_count": 103,
+      "timeout_budget_counts": {
+        "12000": 25,
+        "18000": 78
+      },
+      "aborted_count": 0,
+      "non_ok_count": 0,
+      "over_10000_count": 51,
+      "at_or_over_budget_count": 0,
+      "exact_three_stage_count": 103,
+      "journal_duplicate_count": 0,
+      "component_match_count": 103,
+      "strict_match_count": 80,
+      "embedding_share_pct": 2.6,
+      "retrieval_share_pct": 97.4
+    }
+  },
+  "luna": {
+    "run_count": 37,
+    "technical_retry_count": 0,
+    "status_counts": {
+      "completed": 37
+    },
+    "provider_status_counts": {
+      "completed": 37
+    },
+    "response_present_false_count": 0,
+    "incomplete_count": 0,
+    "technical_failure_count": 0,
+    "retrieval_failure_count": 0,
+    "stream_failure_count": 0,
+    "output_cap_reached_count": 0,
+    "observed_models": [
+      "gpt-5.6-luna"
+    ],
+    "observed_max_output_tokens": [
+      3000
+    ],
+    "latency_ms": {
+      "p50": 9057,
+      "max": 42169,
+      "total": 526756
+    },
+    "tokens": {
+      "input_total": 159402,
+      "cached_total": 6846,
+      "output_total": 22331,
+      "reasoning_total": 3653,
+      "non_reasoning_output_total": 18678,
+      "total": 181733,
+      "output_p50": 577,
+      "output_max": 1766
+    },
+    "cost_usd": {
+      "total": 0.05744532,
+      "average": 0.00155258
+    },
+    "sources": {
+      "raw_total": 91,
+      "displayed_total": 91,
+      "displayed_unique_total": 87,
+      "zero_raw_count": 3,
+      "zero_displayed_count": 3,
+      "displayed_duplicate_entry_count": 4,
+      "zero_source_question_ids": [
+        "edge_inflected_tugiisikuteenusel",
+        "edge_crisis",
+        "edge_no_corpus_answer_v2"
+      ],
+      "duplicate_display_question_ids": [
+        "kov_kuusalu_koduteenus",
+        "kov_kuusalu_vormid",
+        "kov_leakage_guard_narva",
+        "graph_kov_vormid_kontaktid"
+      ]
+    },
+    "automatic": {
+      "total": 37,
+      "pass": 37,
+      "fail": 0,
+      "by_family": {
+        "kov": {
+          "pass": 4,
+          "fail": 0
+        },
+        "legal": {
+          "pass": 3,
+          "fail": 0
+        },
+        "ajakiri": {
+          "pass": 6,
+          "fail": 0
+        },
+        "ingested_pdf": {
+          "pass": 13,
+          "fail": 0
+        },
+        "organization": {
+          "pass": 2,
+          "fail": 0
+        },
+        "life_situation": {
+          "pass": 2,
+          "fail": 0
+        },
+        "comparison": {
+          "pass": 2,
+          "fail": 0
+        },
+        "edge": {
+          "pass": 4,
+          "fail": 0
+        },
+        "graph": {
+          "pass": 1,
+          "fail": 0
+        }
+      },
+      "failed_case_ids": []
+    },
+    "retrieval": {
+      "attempted_run_count": 37,
+      "failed_run_count": 0,
+      "call_count": 103,
+      "timeout_budget_counts": {
+        "12000": 25,
+        "18000": 78
+      },
+      "aborted_count": 0,
+      "non_ok_count": 0,
+      "over_10000_count": 50,
+      "at_or_over_budget_count": 0,
+      "exact_three_stage_count": 103,
+      "journal_duplicate_count": 0,
+      "component_match_count": 103,
+      "strict_match_count": 80,
+      "embedding_share_pct": 2.56,
+      "retrieval_share_pct": 97.44
+    }
+  },
+  "delta_luna_minus_mini": {
+    "latency_p50_ms": 1301,
+    "latency_max_ms": 4209,
+    "output_tokens_total": 7891,
+    "reasoning_tokens_total": 1660,
+    "estimated_cost_usd": -0.11815608,
+    "displayed_unique_sources_total": 0,
+    "output_cap_reached_count": 0,
+    "automatic_fail_count": 0
+  },
+  "human_evaluation_status": "locked_independent_model_judge_not_human",
+  "locked_scores_sha256": "5a4411960524ab027c8f87e2b2f98260ca9c553de208d6117e850fbb9c085a58",
+  "blind_score_summary": {
+    "mini_points": 573,
+    "luna_points": 628,
+    "maximum_points_per_model": 666,
+    "mini_pair_wins": 2,
+    "luna_pair_wins": 30,
+    "ties": 5,
+    "mini_critical_errors": 1,
+    "luna_critical_errors": 1
+  }
+}
