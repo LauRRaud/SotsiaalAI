@@ -11,7 +11,22 @@ import {
 } from "../../lib/org/flags.js";
 
 test("every gate is off when the environment says nothing", () => {
-  assert.deepEqual(readOrgFlags({}), { workspaceEnabled: false, creationEnabled: false });
+  assert.deepEqual(readOrgFlags({}), {
+    workspaceEnabled: false,
+    creationEnabled: false,
+    seatsEnabled: false,
+    inboxEnabled: false
+  });
+});
+
+test("viil B gates depend on the workspace gate but are independent of each other", () => {
+  const seatsOnly = readOrgFlags({ ORG_WORKSPACE_ENABLED: "1", ORG_SEATS_ENABLED: "1" });
+  assert.equal(seatsOnly.seatsEnabled, true);
+  assert.equal(seatsOnly.inboxEnabled, false, "funding must not drag the inbox open");
+
+  const orphan = readOrgFlags({ ORG_SEATS_ENABLED: "1", ORG_INBOX_ENABLED: "1" });
+  assert.equal(orphan.seatsEnabled, false, "no sub-gate opens without the workspace gate");
+  assert.equal(orphan.inboxEnabled, false);
 });
 
 test("only an explicit affirmative opens a gate — junk is off, not on", () => {

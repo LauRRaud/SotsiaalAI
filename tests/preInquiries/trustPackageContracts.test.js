@@ -16,7 +16,13 @@ test("schema and migration preserve history without adding a status enum value",
   assert.match(schema, /recalledAt\s+DateTime\?/);
   assert.match(schema, /supersededById\s+String\?\s+@unique/);
   assert.match(schema, /@relation\("PreInquirySupersession"/);
-  assert.doesNotMatch(schema, /enum PreInquiryStatus[\s\S]*RECALLED/);
+  /* Invariant: tagasivõtmine on AJATEMPEL (`recalledAt`), mitte staatus —
+     `PreInquiryStatus` ei tohi kanda `RECALLED` väärtust.
+     Regex on T25 viilus B kitsendatud enumi KEHALE (`\{[^}]*\}`): varasem
+     `[\s\S]*` luges üle terve faili ja kukkus kohe, kui mõni HILISEM enum
+     sisaldas sõna RECALLED (`OrganizationInboxStatus`). Kontrollitav
+     invariant on sama, valepositiivi enam ei ole. */
+  assert.doesNotMatch(schema, /enum PreInquiryStatus \{[^}]*RECALLED/);
   assert.match(migration, /WHERE "status" = 'SENT'::"PreInquiryStatus"[\s\S]*AND "sentAt" IS NULL/);
   assert.doesNotMatch(migration, /WHERE "status" (?:<>|!=) 'SENT'/);
   assert.match(migration, /ON DELETE SET NULL/);

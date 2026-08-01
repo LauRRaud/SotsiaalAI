@@ -26,10 +26,15 @@ const UNITS = [
  * eriti `organizationMembership.findFirst` filtrit, sest just seal otsustatakse,
  * kas võõra organisatsiooni rida üldse mällu jõuab.
  */
-function makeDb({ memberships = [], modules = [], units = UNITS, subscription = null } = {}) {
+function makeDb({ memberships = [], modules = [], units = UNITS, subscription = null, seat = null } = {}) {
   return {
     subscription: {
       findFirst: async () => subscription
+    },
+    // T25 viil B: koht on `payerSource` allikas, mitte õiguse allikas.
+    organizationSeatAssignment: {
+      findFirst: async ({ where }) =>
+        seat && seat.membershipId === where.membershipId && where.status === "ACTIVE" ? seat : null
     },
     organizationMembership: {
       findFirst: async ({ where }) => {
@@ -126,13 +131,61 @@ test("payer source is server truth: a sponsored subscription is never reported a
   assert.equal(self.payerSource, PayerSource.SELF);
 });
 
-test("viil A never claims ORGANIZATION as payer — that arrives with real seats in viil B", async () => {
+test("being in an organisation context does not by itself make the organisation the payer", async () => {
   const context = await resolve(
     { userId: "user_a", requestedOrganizationId: "org_1" },
     { memberships: [membership()] }
   );
-  assert.notEqual(context.payerSource, PayerSource.ORGANIZATION);
   assert.equal(context.payerSource, PayerSource.SELF);
+  assert.equal(context.seat, null);
+});
+
+test("an active seat makes the organisation the payer", async () => {
+  const context = await resolve(
+    { userId: "user_a", requestedOrganizationId: "org_1" },
+    {
+      memberships: [membership()],
+      seat: {
+        id: "seat_1",
+        membershipId: "mem_1",
+        seatPlanId: "plan_1",
+        seatPlan: { seatRole: "SOCIAL_WORKER", organizationId: "org_1" }
+      }
+    }
+  );
+  assert.equal(context.payerSource, PayerSource.ORGANIZATION);
+  assert.equal(context.seat.seatRole, "SOCIAL_WORKER");
+});
+
+/* Kaitse selle vastu, et TEISE organisatsiooni makstud ligipääs paistaks
+   SELLES kontekstis org-rahastusena. */
+test("a subscription paid by another organisation does not read as this one's funding", async () => {
+  const context = await resolve(
+    { userId: "user_a", requestedOrganizationId: "org_1" },
+    {
+      memberships: [membership()],
+      subscription: { billingSource: "SPONSORED_BY_ORGANIZATION", sponsorOrganizationId: "org_999" }
+    }
+  );
+  assert.equal(context.payerSource, PayerSource.SELF);
+});
+
+test("a seat grants no capability — funding and rights stay separate axes", async () => {
+  const context = await resolve(
+    { userId: "user_a", requestedOrganizationId: "org_1" },
+    {
+      memberships: [membership()],
+      seat: {
+        id: "seat_1",
+        membershipId: "mem_1",
+        seatPlanId: "plan_1",
+        seatPlan: { seatRole: "SOCIAL_WORKER", organizationId: "org_1" }
+      }
+    }
+  );
+  assert.deepEqual(context.capabilities, []);
+  assert.equal(hasCapability(context, "MEMBER_ADMIN"), false);
+  assert.equal(hasCapability(context, "ORG_OWNER"), false);
 });
 
 /* -------------------------------------------------------------------------
