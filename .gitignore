@@ -115,3 +115,6 @@ reports/service-map-geocoding-review-2026-05-20.json
 
 # Demo-videod ei kuulu tarnesse (puhas GitHub-tarne, 07.07.2026)
 public/*.mp4
+
+# Wordi lukufailid (~$dokument.docx) — tekivad avatud dokumendi kõrvale
+~$*
