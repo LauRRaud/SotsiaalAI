@@ -70,7 +70,8 @@ const config = {
   sessionCookie: process.env.TEST_SESSION_COOKIE || "",
   prismaClientPath: process.env.B0_PRISMA_CLIENT_PATH
     || path.join(process.cwd(), "generated/prisma/client.ts"),
-  requestTimeoutMs: Math.max(30_000, Number(process.env.B0_HTTP_TIMEOUT_MS) || 60_000)
+  requestTimeoutMs: Math.max(30_000, Number(process.env.B0_HTTP_TIMEOUT_MS) || 60_000),
+  pairDelayMs: Math.min(60_000, Math.max(10_000, Number(process.env.B0_PAIR_DELAY_MS) || 10_000))
 };
 
 function fail(code) {
@@ -253,9 +254,34 @@ function collectQueryVariants(existingRows) {
     : [["B", config.queryB], ["A", config.queryA]];
 }
 
+function acceptedDistributionComplete(existingRows) {
+  const acceptedGroups = new Map();
+  for (const row of existingRows) {
+    if (
+      !row.measurement_group?.startsWith("idle-")
+      || row.accepted_for_target_bucket !== "true"
+    ) continue;
+    if (!acceptedGroups.has(row.measurement_group)) {
+      acceptedGroups.set(row.measurement_group, row.target_idle_bucket);
+    }
+  }
+  const buckets = { "15-30m": 0, "60-120m": 0, ">=6h": 0 };
+  for (const bucket of acceptedGroups.values()) {
+    if (Object.prototype.hasOwnProperty.call(buckets, bucket)) buckets[bucket] += 1;
+  }
+  return acceptedGroups.size >= 8
+    && acceptedGroups.size <= 12
+    && buckets["15-30m"] >= 2
+    && buckets["60-120m"] >= 3
+    && buckets[">=6h"] >= 2;
+}
+
 function extractCookieHeader() {
   if (!config.sessionCookie) throw fail("SESSION_COOKIE_MISSING");
-  return "__Secure-next-auth.session-token=" + config.sessionCookie;
+  const value = String(config.sessionCookie).trim();
+  return value.startsWith("__Secure-next-auth.session-token=")
+    ? value
+    : "__Secure-next-auth.session-token=" + value;
 }
 
 async function requestJson(url, options = {}) {
@@ -461,15 +487,31 @@ function journalSummary(journal, timing) {
   const embeddingTiming = finiteNumber(timing?.embedding_duration_ms);
   const retrievalTiming = finiteNumber(timing?.retriever_duration_ms);
   const totalTiming = finiteNumber(timing?.retrieval_total_ms);
+  const embeddingDuration = finiteNumber(embedding?.duration_ms);
+  const retrievalDuration = finiteNumber(retrieval?.duration_ms);
+  const totalDuration = finiteNumber(total?.duration_ms);
+  const elapsedValues = journal.rows.map(row => finiteNumber(row.elapsed_ms));
+  const durationsValid = [embeddingDuration, retrievalDuration, totalDuration]
+    .every(value => value !== null && value >= 0);
+  const elapsedValid = elapsedValues.length === 3
+    && elapsedValues.every(value => value !== null && value >= 0);
+  const stagesExact = byStage.size === 3
+    && ["embedding", "retrieval", "search_total"].every(stage => byStage.has(stage));
+  const outcomesValid = timing?.outcome !== "ok"
+    || journal.rows.every(row => row.outcome === "ok");
   const matches = timing && stageCount === 3 && duplicateCount === 0
+    && stagesExact
     && upstreamStages.size === 1
     && upstreamStages.has(stringValue(timing.observabilityStage, 100))
     && embeddingTiming !== null
     && retrievalTiming !== null
     && totalTiming !== null
-    && Math.abs(embeddingTiming - finiteNumber(embedding?.duration_ms)) <= 2
-    && Math.abs(retrievalTiming - finiteNumber(retrieval?.duration_ms)) <= 2
-    && Math.abs(totalTiming - finiteNumber(total?.duration_ms)) <= 2;
+    && durationsValid
+    && elapsedValid
+    && outcomesValid
+    && Math.abs(embeddingTiming - embeddingDuration) <= 2
+    && Math.abs(retrievalTiming - retrievalDuration) <= 2
+    && Math.abs(totalTiming - totalDuration) <= 2;
   return {
     embeddingMs: finiteNumber(embedding?.duration_ms),
     retrievalMs: finiteNumber(retrieval?.duration_ms),
@@ -574,11 +616,44 @@ async function dryRun() {
   if (CSV_HEADERS.length !== 28 || !CSV_HEADERS.includes("request_id")) {
     throw fail("CSV_SCHEMA_INVALID");
   }
+  const mockTiming = {
+    request_id: "mock-request",
+    observabilityStage: "rag_search",
+    embedding_duration_ms: 125,
+    retriever_duration_ms: 25,
+    retrieval_total_ms: 150,
+    outcome: "ok"
+  };
+  const mockJournal = {
+    unavailable: false,
+    rows: [
+      { request_id: "mock-request", upstream_stage: "rag_search", stage: "embedding", duration_ms: 125, elapsed_ms: 125, outcome: "ok" },
+      { request_id: "mock-request", upstream_stage: "rag_search", stage: "retrieval", duration_ms: 25, elapsed_ms: 150, outcome: "ok" },
+      { request_id: "mock-request", upstream_stage: "rag_search", stage: "search_total", duration_ms: 150, elapsed_ms: 150, outcome: "ok" }
+    ]
+  };
+  if (journalSummary(mockJournal, mockTiming).timingsMatch !== true) {
+    throw fail("MOCK_JOURNAL_MATCH_FAILED");
+  }
+  if (journalSummary({ ...mockJournal, rows: [...mockJournal.rows, mockJournal.rows[0]] }, mockTiming).timingsMatch !== false) {
+    throw fail("MOCK_JOURNAL_DUPLICATE_GATE_FAILED");
+  }
+  const completeRows = [
+    ...Array.from({ length: 2 }, (_, index) => ({ measurement_group: `idle-a-${index}`, accepted_for_target_bucket: "true", target_idle_bucket: "15-30m" })),
+    ...Array.from({ length: 3 }, (_, index) => ({ measurement_group: `idle-b-${index}`, accepted_for_target_bucket: "true", target_idle_bucket: "60-120m" })),
+    ...Array.from({ length: 3 }, (_, index) => ({ measurement_group: `idle-c-${index}`, accepted_for_target_bucket: "true", target_idle_bucket: ">=6h" }))
+  ];
+  if (!acceptedDistributionComplete(completeRows)) {
+    throw fail("MOCK_DISTRIBUTION_GATE_FAILED");
+  }
   console.log(JSON.stringify({
     event: "b0_idle_measurement_dry_run",
     mock_fetch_status: mockResponse.status,
     csv_columns: CSV_HEADERS.length,
     query_variants: "A/B",
+    pair_delay_ms: config.pairDelayMs,
+    journal_gate: true,
+    distribution_gate: true,
     runtime_calls: false
   }));
 }
@@ -586,6 +661,13 @@ async function dryRun() {
 async function runMeasurement() {
   validateConfiguration();
   const existingRows = await ensureCsv();
+  if (!isSetupSmoke && acceptedDistributionComplete(existingRows)) {
+    console.log(JSON.stringify({
+      event: "b0_idle_measurement_window_complete",
+      runtime_calls: false
+    }));
+    return;
+  }
   const state = await readState();
   const snapshotBefore = serviceSnapshot();
   if (!snapshotBefore.frontend.active || !snapshotBefore.rag.active) {
@@ -612,6 +694,7 @@ async function runMeasurement() {
       db,
       userId
     });
+    await new Promise(resolve => setTimeout(resolve, config.pairDelayMs));
     const secondCall = await runChatRequest({
       query: variants[1][1],
       queryVariant: variants[1][0],
@@ -633,7 +716,8 @@ async function runMeasurement() {
       && !restartIssue
       && snapshotAfter.frontend.active
       && snapshotAfter.rag.active;
-    const journalGate = [firstNative, secondNative].every(row =>
+    const allPreviewRows = [...firstRowsPreview, ...secondRowsPreview];
+    const journalGate = allPreviewRows.every(row =>
       row?.outcome !== "ok" || row.timings_match_journal === true
     );
     const acceptedForJournal = accepted && journalGate;
@@ -671,6 +755,8 @@ async function runMeasurement() {
       rag_active: snapshotAfter.rag.active,
       session_ok: true
     }));
+    if (!firstNative || !secondNative) throw fail("MISSING_AUDIT_EVENT");
+    if (!journalGate) throw fail("JOURNAL_MISMATCH");
     if (restartIssue) throw fail(restartIssue.toUpperCase());
     if (!snapshotAfter.frontend.active || !snapshotAfter.rag.active) throw fail("SERVICE_INACTIVE");
   } finally {

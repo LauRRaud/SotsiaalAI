@@ -132,59 +132,63 @@ function values(groups, order, field) {
     .filter(value => value !== null);
 }
 
+function orderReport(bucketGroups, order) {
+  const runs = bucketGroups
+    .map(group => order === "first" ? group.first : group.second)
+    .filter(Boolean);
+  const totals = runs.map(row => finiteNumber(row.retrieval_total_ms)).filter(value => value !== null);
+  const successful = runs.filter(row => row.outcome === "ok" && row.http_status === "200").length;
+  const aborts = runs.filter(row => row.aborted_stage).length;
+  const httpErrors = runs.filter(row => {
+    const status = finiteNumber(row.http_status);
+    return status !== null && status !== 200;
+  }).length;
+  const sourceCountZero = runs.filter(row => finiteNumber(row.source_count) === 0).length;
+  const over10s = runs.filter(row => (finiteNumber(row.retrieval_total_ms) || 0) > 10_000).length;
+  const atOrOver12s = runs.filter(row => (finiteNumber(row.retrieval_total_ms) || 0) >= 12_000).length;
+  const embeddingShare = runs.map(row => {
+    const embedding = finiteNumber(row.embedding_duration_ms);
+    const total = finiteNumber(row.retrieval_total_ms);
+    return embedding !== null && total > 0 ? embedding / total : null;
+  }).filter(value => value !== null);
+  const retrievalShare = runs.map(row => {
+    const retrieval = finiteNumber(row.retriever_duration_ms);
+    const total = finiteNumber(row.retrieval_total_ms);
+    return retrieval !== null && total > 0 ? retrieval / total : null;
+  }).filter(value => value !== null);
+  const correlationErrors = runs.filter(row => row.timings_match_journal !== "true").length;
+  return {
+    runs: runs.length,
+    successful,
+    aborts,
+    httpErrors,
+    sourceCountZero,
+    embeddingP50: median(runs.map(row => finiteNumber(row.embedding_duration_ms)).filter(value => value !== null)),
+    embeddingMax: maxValue(runs.map(row => finiteNumber(row.embedding_duration_ms)).filter(value => value !== null)),
+    retrievalP50: median(runs.map(row => finiteNumber(row.retriever_duration_ms)).filter(value => value !== null)),
+    retrievalMax: maxValue(runs.map(row => finiteNumber(row.retriever_duration_ms)).filter(value => value !== null)),
+    totalP50: median(totals),
+    totalMax: maxValue(totals),
+    over10s,
+    atOrOver12s,
+    embeddingShareP50: median(embeddingShare),
+    retrievalShareP50: median(retrievalShare),
+    correlationErrors
+  };
+}
+
 function bucketReport(groups, bucket) {
   const bucketGroups = groups.filter(group => group.bucket === bucket && group.accepted);
-  const first = bucketGroups.filter(group => group.first);
-  const firstTotals = values(bucketGroups, "first", "retrieval_total_ms");
-  const secondTotals = values(bucketGroups, "second", "retrieval_total_ms");
   const totalDiffs = bucketGroups
     .filter(group => finiteNumber(group.first?.retrieval_total_ms) !== null
       && finiteNumber(group.second?.retrieval_total_ms) !== null)
     .map(group => finiteNumber(group.second.retrieval_total_ms) - finiteNumber(group.first.retrieval_total_ms));
-  const firstSuccessful = first.filter(row => row.first.outcome === "ok" && row.first.http_status === "200").length;
-  const firstAborts = first.filter(row => row.first.aborted_stage).length;
-  const firstHttpErrors = first.filter(row => {
-    const status = finiteNumber(row.first.http_status);
-    return status !== null && status !== 200;
-  }).length;
-  const firstEmpty = first.filter(row => finiteNumber(row.first.source_count) === 0).length;
-  const firstOver10s = first.filter(row => (finiteNumber(row.first.retrieval_total_ms) || 0) > 10_000).length;
-  const firstAtOrOver12s = first.filter(row => (finiteNumber(row.first.retrieval_total_ms) || 0) >= 12_000).length;
-  const embeddingShare = first.map(row => {
-    const embedding = finiteNumber(row.first.embedding_duration_ms);
-    const total = finiteNumber(row.first.retrieval_total_ms);
-    return embedding !== null && total > 0 ? embedding / total : null;
-  }).filter(value => value !== null);
-  const retrievalShare = first.map(row => {
-    const retrieval = finiteNumber(row.first.retriever_duration_ms);
-    const total = finiteNumber(row.first.retrieval_total_ms);
-    return retrieval !== null && total > 0 ? retrieval / total : null;
-  }).filter(value => value !== null);
-  const correlationErrors = bucketGroups.reduce(
-    (count, group) => count + group.rows.filter(row => row.timings_match_journal !== "true").length,
-    0
-  );
   return {
     bucket,
     groups: bucketGroups.length,
-    successful: firstSuccessful,
-    aborts: firstAborts,
-    httpErrors: firstHttpErrors,
-    sourceCountZero: firstEmpty,
-    embeddingP50: median(values(bucketGroups, "first", "embedding_duration_ms")),
-    embeddingMax: maxValue(values(bucketGroups, "first", "embedding_duration_ms")),
-    retrievalP50: median(values(bucketGroups, "first", "retriever_duration_ms")),
-    retrievalMax: maxValue(values(bucketGroups, "first", "retriever_duration_ms")),
-    totalP50: median(firstTotals),
-    totalMax: maxValue(firstTotals),
-    nextTotalP50: median(secondTotals),
-    nextTotalMax: maxValue(secondTotals),
-    firstVsSecondMedianMs: median(totalDiffs),
-    over10s: firstOver10s,
-    atOrOver12s: firstAtOrOver12s,
-    embeddingShareP50: median(embeddingShare),
-    retrievalShareP50: median(retrievalShare),
-    correlationErrors
+    first: orderReport(bucketGroups, "first"),
+    second: orderReport(bucketGroups, "second"),
+    firstVsSecondMedianMs: median(totalDiffs)
   };
 }
 
@@ -198,9 +202,9 @@ function markdownTable(rows, headers) {
 }
 
 function renderAnalysis(rows, inputPath) {
-  const groups = groupRows(rows)
-    .map(groupSummary)
-    .filter(group => !group.id.startsWith("setup-smoke-"));
+  const allGroups = groupRows(rows).map(groupSummary);
+  const setupGroups = allGroups.filter(group => group.id.startsWith("setup-smoke-"));
+  const groups = allGroups.filter(group => !group.id.startsWith("setup-smoke-"));
   const accepted = groups.filter(group => group.accepted);
   const rejected = groups.filter(group => !group.accepted);
   const buckets = ["15-30m", "60-120m", ">=6h"];
@@ -211,44 +215,50 @@ function renderAnalysis(rows, inputPath) {
   ]));
   const enough =
     accepted.length >= 8
+    && accepted.length <= 12
     && bucketCounts["15-30m"] >= 2
     && bucketCounts["60-120m"] >= 3
-    && bucketCounts[">=6h"] >= 2
-    && accepted.length >= (
-      bucketCounts["15-30m"] + bucketCounts["60-120m"] + bucketCounts[">=6h"] + 1
-    );
+    && bucketCounts[">=6h"] >= 2;
   const status = enough ? "sufficient_evidence" : "insufficient_evidence";
-  const individualRows = groups.map(group => [
+  const individualRows = allGroups.flatMap(group => group.rows.map(row => [
     group.id,
-    group.bucket,
-    String(group.accepted),
-    group.first?.request_id || "—",
-    group.first?.outcome || "—",
-    group.first?.retrieval_total_ms || "—",
-    group.second?.retrieval_total_ms || "—",
-    group.first?.aborted_stage || "—",
-    group.notes.join("|") || "—"
+    group.id.startsWith("setup-smoke-") ? "setup_smoke" : (group.accepted ? "accepted" : "rejected"),
+    row.target_idle_bucket || "unknown",
+    row.request_order || "—",
+    row.query_variant || "—",
+    row.rag_call_index || "0",
+    row.observability_stage || "—",
+    row.request_id || "—",
+    row.outcome || "—",
+    row.retrieval_total_ms || "—",
+    row.aborted_stage || "—",
+    row.notes || "—"
+  ]));
+  const summaryRows = reports.flatMap(report => [
+    [report.bucket, "esimene", report.groups, report.first],
+    [report.bucket, "järgmine", report.groups, report.second]
+  ]).map(([bucket, order, groupCount, result]) => [
+    bucket,
+    order,
+    groupCount,
+    result.runs,
+    result.successful,
+    result.aborts,
+    result.httpErrors,
+    result.sourceCountZero,
+    formatNumber(result.embeddingP50),
+    formatNumber(result.embeddingMax),
+    formatNumber(result.retrievalP50),
+    formatNumber(result.retrievalMax),
+    formatNumber(result.totalP50),
+    formatNumber(result.totalMax),
+    result.over10s,
+    result.atOrOver12s,
+    formatNumber(result.embeddingShareP50),
+    formatNumber(result.retrievalShareP50),
+    result.correlationErrors
   ]);
-  const summaryRows = reports.map(report => [
-    report.bucket,
-    report.groups,
-    report.successful,
-    report.aborts,
-    report.httpErrors,
-    report.sourceCountZero,
-    formatNumber(report.embeddingP50),
-    formatNumber(report.embeddingMax),
-    formatNumber(report.retrievalP50),
-    formatNumber(report.retrievalMax),
-    formatNumber(report.totalP50),
-    formatNumber(report.totalMax),
-    formatNumber(report.firstVsSecondMedianMs),
-    report.over10s,
-    report.atOrOver12s,
-    formatNumber(report.embeddingShareP50),
-    formatNumber(report.retrievalShareP50),
-    report.correlationErrors
-  ]);
+  const dateValues = allGroups.flatMap(group => group.rows.map(row => row.timestamp_eest).filter(Boolean)).sort();
   const lines = [
     "# B0 idle-RAG mõõtmisakna analüüs",
     "",
@@ -259,6 +269,8 @@ function renderAnalysis(rows, inputPath) {
     "",
     "## Valim",
     "",
+    "- Mõõtmisperiood: " + (dateValues[0] || "—") + " kuni " + (dateValues.at(-1) || "—") + ".",
+    "- Setup-smoke mõõtegrupid: " + setupGroups.length,
     "- Kõik mõõtegrupid: " + groups.length,
     "- Aktsepteeritud mõõtegrupid: " + accepted.length,
     "- Tagasilükatud mõõtegrupid: " + rejected.length,
@@ -271,18 +283,20 @@ function renderAnalysis(rows, inputPath) {
     "## Bucketite kokkuvõte",
     "",
     markdownTable(summaryRows, [
-      "Bucket", "Grupid", "Edukad", "Abordid", "HTTP errorid", "Allikaid 0",
+      "Bucket", "Jooks", "Grupid", "Jookse", "Edukad", "Abordid", "HTTP errorid", "Allikaid 0",
       "Emb p50", "Emb max", "Ret p50", "Ret max", "Total p50", "Total max",
-      "2.-1. total mediaan", ">10 s", ">=12 s", "Emb/total p50", "Ret/total p50", "Korrelatsioonivead"
+      ">10 s", ">=12 s", "Emb/total p50", "Ret/total p50", "Korrelatsioonivead"
     ]),
     "",
     "Kestused on millisekundites; osakaalud on suhtarvud.",
+    "Esimese ja järgmise native päringu total-aja mediaanne erinevus (järgmine miinus esimene): "
+      + reports.map(report => report.bucket + " " + formatNumber(report.firstVsSecondMedianMs) + " ms").join(", ") + ".",
     "",
     "## Individuaalsed tehnilised jooksud",
     "",
     markdownTable(individualRows, [
-      "Grupp", "Bucket", "Accepted", "Esimene request-ID", "Esimene outcome",
-      "Esimene total", "Järgmine total", "Esimene abort", "Märkmed"
+      "Grupp", "Liik", "Bucket", "Järjekord", "Variant", "RAG indeks",
+      "Stage", "Request-ID", "Outcome", "Total", "Abort", "Märkmed"
     ]),
     "",
     "## Tõlgenduse piirid",
