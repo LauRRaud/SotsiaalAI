@@ -5124,6 +5124,9 @@
     },
     "analytics": {
       "help": {
+        "section_usage_controls": "Package limits and per-user exceptions. Saving does not edit the current package: it creates a new version and moves active subscriptions onto it. Soft limit warns, hard limit stops. An override is one user's temporary exception, not a package change.",
+        "section_deletion_jobs": "Background deletion and cleanup jobs. Active shows queued and running ones; a FAILED row stays here with its error code until someone re-runs it. A long-standing queue means deletion requests are not completing.",
+        "section_notifications": "Notifications whose email delivery failed. Each row shows status, type and the last error code. Requeue puts the message back in the send queue. A repeating error code across rows points at the mail service, not at one message.",
         "section_platform": "The platform's four workflows at a glance: chat and voice, help flow, rooms and invites, documents and agent. Figures cover 30 days unless stated otherwise.",
         "section_storage": "Server-side file usage across the paths the app tracks. Free disk space is the whole volume, not an app quota; when it nears zero, file uploads stop first.",
         "section_framework_acceptances": "Work-framework acceptances: who confirmed the framework at registration and who also took the signed agreement. Accepted but not downloaded means the user does not have the document.",

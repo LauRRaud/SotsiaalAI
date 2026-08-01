@@ -636,39 +636,31 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   font-size: var(--fs-micro);
   color: var(--text-dim);
 }
-/* ⓘ — "mida see näitab ja mida sellega teha". Esimene versioon oli hall
-   1,55rem ring rea kaugeimas paremas servas ja omanik ei leidnud teda
-   üldse üles (01.08). Nüüd: suurem, soe helendav serv ja PEALKIRJA
-   KÕRVAL (margin-right: auto tõmbab ta tiitliploki juurde) — see on
-   koht, kuhu silm sektsiooni avades niikuinii langeb. */
+/* ⓘ — "mida see näitab ja mida sellega teha".
+   Kaks omaniku parandust 01.08: [1] glüüf on nüüd platvormi OMA
+   `AboutInfoIcon` (CardIcons.jsx — ring + kriips + punkt, sama mis dokis),
+   mitte kaldkirjas "i", mille ma ise välja mõtlesin; [2] nupu koht on
+   KASTI PAREM ÜLANURK, mitte pealkirja kõrval. Sektsioonipäis on kaardi
+   esimene rida, seega `order` + `margin-left: auto` panevad ta täpselt
+   sinna ilma absoluutse positsioneerimiseta. */
+/* Mõõt ja glüüfi suurus on SAMAD, mis platvormi ⓘ-l mujal
+   (.dashboard-info-trigger, workspace.css): 2.6rem nupp, 1.5rem ring.
+   Materjali annab .glass-iconbtn — siin ei tohi oma svg-mõõtu kirjutada,
+   sest glass.css seab ikooni `--icon-size` järgi ja oma reegel jätaks
+   ikooni nupu sisse liiga väikseks (omanik 01.08). */
 .aa-info {
   flex: none;
-  display: grid;
-  place-items: center;
-  width: 1.9rem;
-  height: 1.9rem;
-  padding: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(180, 180, 180, 0.55);
-  background: rgba(180, 180, 180, 0.14);
-  color: var(--dusk-glow);
-  font-family: var(--font-ui);
-  font-size: 0.95rem;
-  font-style: italic;
-  font-weight: 650;
-  line-height: 1;
-  cursor: var(--cursor-pointer);
-  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.08);
-  transition:
-    background-color var(--dur-fast) var(--ease-soft),
-    border-color var(--dur-fast) var(--ease-soft),
-    box-shadow var(--dur-fast) var(--ease-soft),
-    color var(--dur-fast) var(--ease-soft);
+  width: 2.6rem;
+  height: 2.6rem;
+  --icon-size: 1.5rem;
+  color: var(--text-soft);
+  opacity: 0.85;
 }
-/* Sektsiooni päises: kohe pealkirja järel, mitte rea teises otsas. */
-.aa-section-head > .aa-info {
-  margin-right: auto;
-  align-self: center;
+.aa-section-head > .aa-info,
+.aa-tablehead > .aa-info {
+  order: 9;
+  margin-left: 0.5rem;
+  align-self: flex-start;
 }
 /* `.aa-section-head > div` (0,1,1) annaks abipaneelile grid-paigutuse —
    siin on vaja SAMA spetsiifilisusega vasturegel, muidu võidab tema. */
@@ -676,17 +668,10 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   display: block;
   gap: 0;
 }
-/* Tabeli päises: rea paremas servas (seal on pealkiri sageli olemata). */
-.aa-tablehead > .aa-info {
-  order: 9;
-  margin-left: 0.35rem;
-}
 .aa-info:hover,
 .aa-info[aria-expanded="true"] {
-  background: rgba(180, 180, 180, 0.28);
-  border-color: var(--dusk-glow);
+  opacity: 1;
   color: var(--text-warm);
-  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.18);
 }
 .aa-infopanel {
   order: 10;
@@ -1044,6 +1029,24 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   border-color: var(--glass-cell-border);
   scroll-margin-top: 4.5rem;
 }
+/* Kaasatud paneelide päis on `space-between` KAHE lapsega. ⓘ tegi neid
+   kolm ja kolmas laps maandus keskele — omanik 01.08: "imelikus kohas".
+   Pealkiri lükkab kõik ülejäänu paremasse serva, ⓘ on alati viimane ja
+   abitekst võtab terve rea (muidu surub ta pealkirja tähetorniks). */
+.aa-shell :is(.usage-admin__header, .usage-admin__section-head) {
+  flex-wrap: wrap;
+}
+.aa-shell :is(.usage-admin__header, .usage-admin__section-head) > div:first-child {
+  margin-right: auto;
+}
+.aa-shell :is(.usage-admin__header, .usage-admin__section-head) > .aa-info {
+  order: 9;
+}
+.aa-shell :is(.usage-admin__header, .usage-admin__section-head) > .aa-infopanel {
+  order: 10;
+  flex: 1 1 100%;
+  width: 100%;
+}
 .aa-shell .usage-admin__header h2,
 .aa-shell .usage-admin__section-head h3 {
   font-size: var(--fs-small);
@@ -1068,9 +1071,10 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   gap: 0.45rem 0.7rem;
   padding: 0.6rem 0.7rem 0.7rem;
 }
-.aa-shell .usage-admin__entitlement :where(select) {
-  padding-inline: 0.7em;
-  min-width: 0;
+/* Limiidivõrgu veerg on kitsas — valikmenüü saab siin kogu laiuse ja
+   veel kitsama polstri, et "Kuine limiit" mahuks tervelt ära. */
+.aa-shell .usage-admin__entitlement .dd-trigger {
+  padding-inline: 0.75em 0.55em;
 }
 /* Otsinguväli ei pea täislaiuses plokis 1700 px lai olema. */
 .aa-shell .usage-admin__search,

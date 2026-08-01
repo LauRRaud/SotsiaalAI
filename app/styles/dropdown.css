@@ -1,0 +1,162 @@
+@layer components {
+/* ============================================================
+   DROPDOWN (dd-*) — platvormi valikmenüü, components/ui/Dropdown.jsx.
+
+   Natiivne <select> laseb kujundada ainult kokkupandud nupu; avatud
+   loendi joonistab operatsioonisüsteem ja hämariku keskele avanes valge
+   Windowsi kast sinise ribaga (omanik 01.08). Siin on mõlemad pooled
+   meie omad.
+
+   Kokkupandud nupp KANNAB SAMA MATERJALI mis input/select mujal
+   (glass.css `input`, `select` primitiivid) — see fail annab ainult
+   paigutuse, noole ja avatud loendi. Nii ei teki vormis kahte eri
+   sisendi-ilmet.
+   ============================================================ */
+
+/* Nupu ja loendi ÜHINE kuju — üks arv, kaks kasutust. */
+:root {
+  --dd-radius: 14px;
+}
+
+/* ---------- Kokkupandud nupp ---------- */
+.dd-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6em;
+  width: 100%;
+  min-width: 0;
+  text-align: left;
+  cursor: var(--cursor-pointer);
+  /* POOLKANDILINE, mitte pill (omanik 01.08). Ühereksed inputid on
+     platvormil pillid (--input-radius: 999px), aga valikmenüü on nupu ja
+     paneeli PAAR: kokkupandud osa peab olema sama kujuga mis alla avanev
+     loend, muidu loevad nad kaheks eri asjaks. Üks arv mõlemale. */
+  border-radius: var(--dd-radius);
+  /* MÕÕDUD ei tule tekstivälja omadest. Pill-input on ehitatud KESK-
+     joondatud sisestusteksti peale: suur kiri (kuni 1,24rem) ja 1,2em
+     polster mõlemas servas. Valikmenüü sisu on SILT, mitte sisestus, ja
+     paremas servas seisab veel nool — kitsas veerus jäi seetõttu sildile
+     ~60 px ja "Kuine limiit" kärbiti "Kuine ..."-ks (omanik 01.08).
+     Ühtlane kirjamõõt + kitsam parem polster annab sildile ruumi. */
+  padding: 0.52em 0.7em 0.52em 1em;
+  font-size: var(--fs-body);
+  line-height: 1.35;
+}
+.dd-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.dd-trigger[data-placeholder="true"] .dd-value {
+  color: var(--input-placeholder);
+}
+.dd-caret {
+  flex: none;
+  width: 0.62em;
+  height: auto;
+  opacity: 0.6;
+  transition: rotate var(--dur-fast) var(--ease-soft), opacity var(--dur-fast) var(--ease-soft);
+}
+.dd-trigger[aria-expanded="true"] .dd-caret {
+  rotate: 180deg;
+  opacity: 1;
+}
+.dd-trigger:disabled,
+.dd-trigger[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.55;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dd-caret {
+    transition: none;
+  }
+}
+
+/* ---------- Avatud loend ---------- */
+/* Loend elab portaalis body all (vt komponendi kommentaari), seega tal ei
+   ole ühtki vanemat, kellelt pinda pärida — kogu materjal on siin. */
+.dd-panel {
+  z-index: var(--z-modal);
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--dd-radius);
+  border: 1px solid var(--glass-border);
+  background: var(--glass-bg-strong);
+  /* Prefiks ENNE standardit — Lightning CSS jätab duplikaadist viimase. */
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow: var(--glass-shadow);
+  color: var(--text-soft);
+  font-family: var(--font-ui);
+  font-size: var(--fs-small);
+  animation: dd-in var(--dur-fast) var(--ease-soft) backwards;
+}
+@keyframes dd-in {
+  from {
+    opacity: 0;
+    translate: 0 -4px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dd-panel {
+    animation: none;
+  }
+}
+/* Läbipaistmatu variant seal, kus klaas on välja lülitatud */
+html[data-reduce-transparency="1"] .dd-panel,
+html[data-contrast="hc"] .dd-panel {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: var(--admin-surface, #171717);
+}
+
+.dd-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.5em 0.75em;
+  border-radius: 9px;
+  cursor: var(--cursor-pointer);
+  /* Pikk silt murdub, mitte ei lõigata ellipsiks — valikus peab olema
+     näha, MIDA valid. */
+  overflow-wrap: break-word;
+}
+/* Aktiivne = klaviatuuri/hiire all olev rida. Tahtlikult sama märgistus
+   mõlemal, muidu tekib kaks eri "praegust" rida. */
+.dd-option[data-active="true"] {
+  background: var(--glass-cell-bg-hover);
+  color: var(--text-warm);
+}
+/* Valitud = praegune väärtus. Märk on täpp, mitte taust — nii on korraga
+   näha ka see, kus klaviatuur seisab. */
+.dd-option[aria-selected="true"] {
+  color: var(--text-warm);
+}
+.dd-option[aria-selected="true"]::before {
+  content: "";
+  flex: none;
+  width: 0.42em;
+  height: 0.42em;
+  border-radius: 50%;
+  background: var(--dusk-sunset);
+  box-shadow: 0 0 8px rgba(180, 180, 180, 0.75);
+}
+.dd-option[aria-selected="false"]::before {
+  content: "";
+  flex: none;
+  width: 0.42em;
+  height: 0.42em;
+}
+.dd-option[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: default;
+}
+.dd-panel:focus-visible {
+  outline: none;
+}
+}

@@ -33,7 +33,7 @@
      spetsiifilisuse nullis, nii et iga hilisem reegel võidab).
      Checkbox/radio/range/file/color ja sr-only/peidetud väljad
      jäävad välja. */
-  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select) {
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger) {
     /* background-color + eraldi background-image (specular-helk), et
        hover/focus (mis muudavad ainult värvi) ei pühiks helki maha. */
     background-color: var(--input-bg);
@@ -57,7 +57,7 @@
      font. Textarea ja #chat-input (mitmerealine kompositsioon) jäävad
      välja — need pole pillid ega keskjoondu. Kuna :where() = 0
      spetsiifilisus, kirjutab iga hilisem paigutusreegel selle üle. */
-  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only):not(#chat-input), select) {
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only):not(#chat-input), select, .dd-trigger) {
     text-align: center;
     text-overflow: ellipsis;
     font-size: clamp(1.05rem, 1rem + 0.45vw, 1.24rem);
@@ -69,13 +69,13 @@
   /* Hover: õrn tooni-tõus (fookuse ja baasi VAHEL) — sama sujuv üleminek
      mis nuppudel (tellija 2026-07-06: "nagu login-keypad"). Transition on
      juba baasreeglil; :not(:focus) hoiab fookuse tugevama seisu peal. */
-  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):hover:not(:focus) {
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):hover:not(:focus) {
     border: var(--input-border-hover);
     background-color: var(--input-bg-hover);
   }
   /* Fookus MAHE (tellija 07.07): pehme ääris + õrn kuma (nagu nupu
      rim), MITTE kõva ere joon mis servad pikslises tegi */
-  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):focus {
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):focus {
     border: var(--input-border-focus);
     background-color: var(--input-bg-focus);
     box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
@@ -84,7 +84,7 @@
     color: var(--input-placeholder);
     opacity: 1;
   }
-  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select):disabled {
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):disabled {
     opacity: 0.55;
   }
 
@@ -95,7 +95,7 @@
      Chromium: Safari/Firefox loevad url() backdrop-filteris vigaseks
      ja KASKAAD jätab kehtima ülalpool antud tavalise bluri.
      hc ja reduce-transparency: efekt väljas (gate html:not(...)). */
-  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select) {
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger) {
     -webkit-backdrop-filter: url(#lg-bend);
     backdrop-filter: url(#lg-bend);
   }
@@ -120,7 +120,7 @@
      Sama html:not(...) värav + kõrgem spetsiifilisus (.panel esivanem) kui
      bend-reeglil → tühistab nii tavalise bluri kui #lg-bend'i. ÜKS koht, mitte
      override iga elemendi peal. */
-  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .workspace-dashboard-card) {
+  html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .panel :where(.glass-btn, .glass-iconbtn, button[data-variant], a[data-variant], .login-keypad-btn, label[data-control-type], [role="radio"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger, .workspace-dashboard-card) {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }

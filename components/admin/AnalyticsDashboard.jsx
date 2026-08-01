@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import BackButton from "@/components/ui/BackButton";
+import AdminHelpButton from "@/components/admin/AdminHelpButton";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
@@ -115,8 +116,6 @@ const compactMetricValueClassName = "aa-compactvalue";
 const compactMetricLeadValueClassName = "aa-compactvalue aa-compactvalue--lead";
 const checkboxClassName = "aa-check";
 const kpiTitleClassName = "aa-kpi-title";
-const infoButtonClassName = "aa-info";
-const infoPanelClassName = "aa-infopanel";
 
 const EVENT_OPTIONS = [
   { value: "chat_request", labelKey: "admin.analytics.events.chat_request" },
@@ -340,33 +339,6 @@ function KpiCard({ title, value, meta, children }) {
       </div>
       {meta ? <div className={kpiMetaClassName}>{meta}</div> : null}
     </div>
-  );
-}
-
-// Analüütika on tihe leht: iga tabel ütleb ise, mida ta näitab, kuidas
-// teda lugeda ja mida leiu korral teha (omanik 01.08). Abitekst on vaikimisi
-// kinni, et see tihedust ei sööks — ⓘ avab ta tabeli kohale.
-function TableInfo({ label, text }) {
-  const [open, setOpen] = useState(false);
-  if (!text) return null;
-  return (
-    <>
-      <button
-        type="button"
-        className={infoButtonClassName}
-        aria-expanded={open ? "true" : "false"}
-        aria-label={label}
-        title={label}
-        onClick={() => setOpen(value => !value)}
-      >
-        <span aria-hidden="true">i</span>
-      </button>
-      {open ? (
-        <div className={infoPanelClassName} role="note">
-          {text}
-        </div>
-      ) : null}
-    </>
   );
 }
 
@@ -2349,7 +2321,7 @@ export default function AnalyticsDashboard() {
             <div>
               <CardTitle>{t("admin.analytics.platform.title", "Platform overview")}</CardTitle>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_platform", "")}
             />
@@ -2374,7 +2346,7 @@ export default function AnalyticsDashboard() {
                 )}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_storage", "")}
             />
@@ -2443,7 +2415,7 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.framework_acceptances.subtitle", "Viimased registreerimisel salvestatud tööalase kasutuse kinnitused.")}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_framework_acceptances", "")}
             />
@@ -2463,7 +2435,7 @@ export default function AnalyticsDashboard() {
             />
           </div>
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.framework_acceptances", "Recent work-framework acceptances captured at registration. Check that new sign-ups appear here; a missing framework download means the user has not taken the signed agreement.")}
             />
@@ -2549,7 +2521,7 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.rag_docs.subtitle", "Overview of indexing and recent additions.")}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_rag_docs", "")}
             />
@@ -2827,7 +2799,7 @@ export default function AnalyticsDashboard() {
             />
           ) : null}
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.high_risk_sources", "Sources that reached a high-risk answer or the displayed-source panel while their freshness is stale, missing or unknown. Work top-down: every row here is a source a user may already have seen.")}
             />
@@ -2929,7 +2901,7 @@ export default function AnalyticsDashboard() {
             )}
           </div>
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.quality_queue", "Source metadata, freshness, URL, form and contact gaps from the latest audited RAG documents, most severe first. The Fix column names the exact action and target.")}
             />
@@ -3065,7 +3037,7 @@ export default function AnalyticsDashboard() {
             )}
           </div>
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.rag_recent", "The most recently indexed RAG documents. Use it to confirm that an ingest actually landed and finished; FAILED rows need re-ingestion.")}
             />
@@ -3159,7 +3131,7 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.billing.subtitle", "Payment flows and subscription activity over the last 30 days.")}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_billing", "")}
             />
@@ -3265,7 +3237,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.payments", "The latest 20 payment attempts across all time. Repeated FAILED rows from one provider point at a payment integration problem, not at the user.")}
             />
@@ -3362,7 +3334,7 @@ export default function AnalyticsDashboard() {
             <div className={cellSubClassName}>
               {t("admin.analytics.users.actions.selected_count", { count: selectedUserIds.length }, "Selected: {count}")}
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_users", "")}
             />
@@ -3714,7 +3686,7 @@ export default function AnalyticsDashboard() {
             ) : null}
           </div>
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.users", "Per-user 30 day usage, budget-model cost estimate and active limits. The bars show how much of the limit is used: amber from 75%, red from 90%.")}
             />
@@ -4062,7 +4034,7 @@ export default function AnalyticsDashboard() {
                 )}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_ai_costs", "")}
             />
@@ -4122,7 +4094,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.ai_features", "AI usage units by route and stage. Direct means measured usage, estimated means derived from the unit model; low coverage means the numbers understate real use.")}
             />
@@ -4215,7 +4187,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.ai_users", "Users who have reached at least 85% of their monthly budget. These are the accounts to review before the limit stops them mid-work.")}
             />
@@ -4338,7 +4310,7 @@ export default function AnalyticsDashboard() {
           </div>
 
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.ai_packages", "Budget tracking per package: how much of the package budget the active subscriptions have consumed.")}
             />
@@ -4458,7 +4430,7 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.logs.subtitle", "Latest events with filters.")}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_logs", "")}
             />
@@ -4566,7 +4538,7 @@ export default function AnalyticsDashboard() {
           />
 
           <div className={tableHeaderClassName}>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.logs", "The latest events with filters. Meta holds the machine-readable detail of the event; use the filters to isolate one event type or crisis flags.")}
             />
@@ -4654,7 +4626,7 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.reset.subtitle", "Run targeted cleanup actions before launch.")}
               </div>
             </div>
-            <TableInfo
+            <AdminHelpButton
               label={t("admin.analytics.help.aria", "How to read this table")}
               text={t("admin.analytics.help.section_reset", "")}
             />

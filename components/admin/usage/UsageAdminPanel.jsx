@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import AdminHelpButton from "@/components/admin/AdminHelpButton";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -222,6 +224,10 @@ export default function UsageAdminPanel() {
           <h2 id="admin-usage-title">{t("admin.usage.title")}</h2>
         </div>
         <Button type="button" onClick={loadPlans} disabled={loadingPlans}>{t("admin.common.refresh")}</Button>
+        <AdminHelpButton
+          label={t("admin.analytics.help.aria")}
+          text={t("admin.analytics.help.section_usage_controls")}
+        />
       </header>
 
       {notice ? <div className="usage-admin__notice" data-tone={notice.tone} role="status">{notice.text}</div> : null}
@@ -230,9 +236,12 @@ export default function UsageAdminPanel() {
         <section className="usage-admin__surface" aria-labelledby="usage-plans-title">
           <div className="usage-admin__section-head">
             <div><h3 id="usage-plans-title">{t("admin.usage.plans_title")}</h3><p>{t("admin.usage.plans_help")}</p></div>
-            <select data-variant value={selectedPlanId} onChange={event => setSelectedPlanId(event.target.value)}>
-              {plans.map(plan => <option key={plan.id} value={plan.id}>{plan.name} · v{plan.version}</option>)}
-            </select>
+            <Dropdown
+              ariaLabel={t("admin.usage.plans_title")}
+              value={selectedPlanId}
+              onChange={setSelectedPlanId}
+              options={plans.map(plan => ({ value: plan.id, label: `${plan.name} · v${plan.version}` }))}
+            />
           </div>
           {draft ? (
             <form onSubmit={savePlan} className="usage-admin__form">
@@ -247,7 +256,7 @@ export default function UsageAdminPanel() {
                     <fieldset key={metric} className="usage-admin__entitlement">
                       <legend>{t(`profile.usage.metrics.${metric}`)}</legend>
                       <label className="usage-admin__toggle"><input type="checkbox" checked={item.enabled} onChange={event => updateEntitlement(metric, { enabled: event.target.checked })} />{t("admin.usage.enabled")}</label>
-                      <label>{t("admin.usage.period")}<select data-variant value={item.period} onChange={event => updateEntitlement(metric, { period: event.target.value })}>{PERIODS.map(period => <option key={period} value={period}>{t(`profile.usage.periods.${period}`)}</option>)}</select></label>
+                      <label>{t("admin.usage.period")}<Dropdown ariaLabel={t("admin.usage.period")} value={item.period} onChange={period => updateEntitlement(metric, { period })} options={PERIODS.map(period => ({ value: period, label: t(`profile.usage.periods.${period}`) }))} /></label>
                       <label>{t("admin.usage.soft_limit")}<input data-variant inputMode="numeric" value={item.softLimit} onChange={event => updateEntitlement(metric, { softLimit: event.target.value })} /></label>
                       <label>{t("admin.usage.hard_limit")}<input data-variant inputMode="numeric" value={item.hardLimit} onChange={event => updateEntitlement(metric, { hardLimit: event.target.value })} /></label>
                     </fieldset>
@@ -294,8 +303,8 @@ export default function UsageAdminPanel() {
                 {(userResult.snapshot?.metrics || []).filter(item => item.metric !== "RAG_SEARCH").map(item => <span key={item.metric} data-state={item.state}>{t(`profile.usage.metrics.${item.metric}`)} {item.consumed}/{item.hardLimit}</span>)}
               </div>
               <form className="usage-admin__override-form" onSubmit={saveOverride}>
-                <label>{t("admin.usage.metric")}<select data-variant value={overrideDraft.metric} onChange={event => setOverrideDraft({ ...overrideDraft, metric: event.target.value })}>{METRICS.map(metric => <option key={metric} value={metric}>{t(`profile.usage.metrics.${metric}`)}</option>)}</select></label>
-                <label>{t("admin.usage.period")}<select data-variant value={overrideDraft.period} onChange={event => setOverrideDraft({ ...overrideDraft, period: event.target.value })}>{PERIODS.map(period => <option key={period} value={period}>{t(`profile.usage.periods.${period}`)}</option>)}</select></label>
+                <label>{t("admin.usage.metric")}<Dropdown ariaLabel={t("admin.usage.metric")} value={overrideDraft.metric} onChange={metric => setOverrideDraft({ ...overrideDraft, metric })} options={METRICS.map(metric => ({ value: metric, label: t(`profile.usage.metrics.${metric}`) }))} /></label>
+                <label>{t("admin.usage.period")}<Dropdown ariaLabel={t("admin.usage.period")} value={overrideDraft.period} onChange={period => setOverrideDraft({ ...overrideDraft, period })} options={PERIODS.map(period => ({ value: period, label: t(`profile.usage.periods.${period}`) }))} /></label>
                 <label>{t("admin.usage.soft_limit")}<input data-variant inputMode="numeric" value={overrideDraft.softLimit} onChange={event => setOverrideDraft({ ...overrideDraft, softLimit: event.target.value })} /></label>
                 <label>{t("admin.usage.hard_limit")}<input data-variant inputMode="numeric" value={overrideDraft.hardLimit} onChange={event => setOverrideDraft({ ...overrideDraft, hardLimit: event.target.value })} required /></label>
                 <label>{t("admin.usage.valid_until")}<input data-variant type="datetime-local" value={overrideDraft.validUntil} onChange={event => setOverrideDraft({ ...overrideDraft, validUntil: event.target.value })} /></label>

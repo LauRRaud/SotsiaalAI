@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import AdminHelpButton from "@/components/admin/AdminHelpButton";
 
 export default function NotificationOperationsPanel() {
   const { t } = useI18n();
@@ -53,6 +54,10 @@ export default function NotificationOperationsPanel() {
             <h2 id="notification-ops-title">{t("admin.notifications.title")}</h2>
             <p className="aa-section-sub">{t("admin.notifications.description")}</p>
           </div>
+          <AdminHelpButton
+            label={t("admin.analytics.help.aria")}
+            text={t("admin.analytics.help.section_notifications")}
+          />
         </div>
         {state.status === "loading" ? <p className="aa-alert aa-alert--info" role="status">{t("admin.common.loading_data")}</p>
           : state.status === "error" ? <p className="aa-alert aa-alert--error" role="alert">{t("admin.notifications.load_failed")}</p>

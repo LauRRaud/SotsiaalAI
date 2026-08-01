@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Dropdown from "@/components/ui/Dropdown";
+import AdminHelpButton from "@/components/admin/AdminHelpButton";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
 export default function DeletionJobsPanel() {
@@ -58,12 +60,13 @@ export default function DeletionJobsPanel() {
       <header className="usage-admin__header">
         <div><p>{t("admin.usage.background_eyebrow")}</p><h2 id="admin-deletion-jobs-title">{t("admin.usage.deletion_jobs_title")}</h2></div>
         <div className="usage-admin__job-toolbar">
-          <select data-variant value={filter} onChange={event => setFilter(event.target.value)} aria-label={t("admin.usage.job_filter")}>
-            <option value="active">{t("admin.usage.jobs_active")}</option>
-            <option value="all">{t("admin.usage.jobs_all")}</option>
-          </select>
+          <Dropdown ariaLabel={t("admin.usage.job_filter")} value={filter} onChange={setFilter} options={[{ value: "active", label: t("admin.usage.jobs_active") }, { value: "all", label: t("admin.usage.jobs_all") }]} />
           <Button type="button" onClick={load} disabled={loading}>{t("admin.common.refresh")}</Button>
         </div>
+        <AdminHelpButton
+          label={t("admin.analytics.help.aria")}
+          text={t("admin.analytics.help.section_deletion_jobs")}
+        />
       </header>
       <div className="usage-admin__job-counts">
         {Object.entries(payload.counts || {}).map(([status, count]) => <span key={status} data-status={status}>{t(`admin.usage.job_status.${status}`, status)}: {count}</span>)}

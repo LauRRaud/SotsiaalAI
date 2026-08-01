@@ -5124,6 +5124,9 @@
     },
     "analytics": {
       "help": {
+        "section_usage_controls": "Pakettide limiidid ja kasutajapõhised erandid. Salvestamine EI muuda olemasolevat paketti, vaid loob uue versiooni ja viib aktiivsed tellimused sellele üle — vana versioon jääb ajalukku alles. „Soft limit\" hoiatab, „hard limit\" peatab. Erand on ühe kasutaja ajutine kõrvalekalle, mitte paketi muudatus.",
+        "section_deletion_jobs": "Taustal käivad kustutus- ja puhastustööd. „Aktiivsed\" näitab ootel ja töös olevaid; FAILED-rida jääb siia seisma koos veakoodiga, kuni keegi ta uuesti käivitab. Pikalt seisev järjekord tähendab, et kustutamisnõuded ei jõua täitmiseni — see on andmekaitse tähtaja küsimus, mitte kosmeetika.",
+        "section_notifications": "Teavitused, mille e-kirja saatmine ebaõnnestus. Iga rida näitab seisu, tüüpi ja viimast veakoodi. „Proovi uuesti\" paneb kirja saatmisjärjekorda tagasi. Kui sama veakood kordub üle mitme rea, on viga saatmisteenuses, mitte üksikus kirjas.",
         "section_platform": "Platvormi neli töövoogu ühe pilguga: vestlus ja hääl, abi töövoog, ruumid ja kutsed, dokumendid ja agent. Numbrid on 30 päeva kohta, kui pole teisiti märgitud. Kasuta seda selleks, et näha, milline töövoog päriselt elab ja milline seisab.",
         "section_storage": "Serveripoolne failimaht rakenduse jälgitavates kaustades. „Vaba kettaruum\" on kogu ketta oma, mitte rakenduse kvoot — kui see läheneb nullile, seisab kõigepealt failide üleslaadimine. Kui mõnda teed ei saanud mõõta, ütleb seda eraldi hoiatus.",
         "section_framework_acceptances": "Tööalase kasutuse raamistiku kinnitused: kes on registreerimisel raamistiku kinnitanud ja kes on allkirjastatud raamlepingu ka endale võtnud. Kinnitatud, aga alla laadimata leping tähendab, et kasutajal ei ole dokumenti käes.",
