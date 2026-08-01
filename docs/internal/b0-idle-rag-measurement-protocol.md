@@ -1,5 +1,10 @@
 # B0 idle-RAG mõõtmisprotokoll
 
+**Aknaseis 01.08.2026:** `measurement_window_cancelled_by_owner_priority`.
+Setup-smoke säilitati, kuid planeeritud idle-valimit ei kogutud. B0 timeout'i
+esinemissageduse otsus on ebapiisava valimi tõttu edasi lükatud; 12 000 ms
+native retrieval-timeout ja runtime jäid muutmata. Vt `b0-decision.md`.
+
 See protokoll kirjeldab ainult mõõtmis- ja analüüsikihti. Frontendi,
 RAG-service'i ega nende konfiguratsiooni mõõtmisakna jooksul ei muudeta.
 
@@ -83,6 +88,8 @@ Pärast piisava valimi või viiepäevase akna lõppu timer disable/stop-itakse,
 loodud unitid eemaldatakse, tehakse daemon-reload ning kontrollitakse, et
 app-teenused on endiselt active ja nende PID-id ei muutunud. Säilitatakse ainult
 sanitiseeritud CSV ja analüüs; ajutine päringu-env ning mõõtebundle eemaldatakse.
-Ülesandepõhine sessioonifail, sünteetilise konto ChatLog-read ja konto ise
-eemaldatakse pärast andmete turvalist kopeerimist; teiste kasutajate andmeid ei
-puudutata.
+01.08.2026 omaniku prioriteedimuudatus säilitab ülesandepõhise sünteetilise
+konto ja 600-loaga sessioonifaili Golden-37 mini/Luna võrdluse jaoks. Idle-
+mõõtmise systemd-unitid eemaldatakse, kuid kontot, setup-smoke'i ChatLog-ridu,
+mõõtebundle'it ega sanitiseeritud CSV-d ei kustutata. Teiste kasutajate andmeid
+ei puudutata.

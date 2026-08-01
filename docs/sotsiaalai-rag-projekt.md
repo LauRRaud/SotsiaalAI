@@ -187,26 +187,25 @@ idle-timeout'i otsa.
 
 ```text
 A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
-  → B0 idle RAG timeout ja aus veakäsitlus  [BLOKEERIV]
-    → B allikatoru instrumentatsioon
-    → Golden-37 baasjoon enne käitumismuudatusi
-      → C planneri rolliparandus
-      → D kontaktimüra parandus
-        → Golden-37 järelmõõtmine + T1/T3 regressioonid
-          → E 3000-tokeni smoke + 32 jooksu Luna korduskatse
-            → Luna tootmiskonfiguratsiooni otsus ja kontrollitud üleminek
+  → B0a/B0b aus veakäsitlus ja observability  [TOOTMISES]
+  → B0 idle sagedusotsus  [EDASI LÜKATUD, EI BLOKEERI MUDELIVÕRDLUST]
+  → Golden-37 gpt-5.4-mini baasjoon  [TEHTUD]
+    → eraldatud gpt-5.6-luna 3000-tokeni smoke
+      → Golden-37 Luna pimevõrdlus
+        → Luna tootmiskonfiguratsiooni otsus ja kontrollitud üleminek
+          → B/C/D käitumismuudatused ja järelmõõtmine
 ```
 
 | Tööpakett | Sisu | Seis |
 |---|---|---|
 | **A** | API completion/usage, prompt-komponentide tokenid ja kalibreerimine | **lõpetatud 31.07** (vt 7.3.1) |
-| **B0** | idle RAG timeout ja aus veakäsitlus | **alustamata, blokeerib B** |
+| **B0** | aus veakäsitlus/observability + idle timeout'i sagedusotsus | **B0a/B0b tootmises; sagedusotsus edasi lükatud** |
 | **B** | allikatoru kihiline logi ja streami lõpetamisloogika | alustamata |
-| **Golden-37 baas** | praeguse käitumise baasjoon A+B logimisega | alustamata |
+| **Golden-37 baas** | praeguse `gpt-5.4-mini` tootmiskäitumise baasjoon | **tehtud 01.08; 37/37 completed** |
 | **C** | planneri rolliviga T3 | alustamata |
 | **D** | kontaktimüra sihitud piiramine | blokeeritud kuni baasjooneni |
 | **Golden-37 järel** | võrdlus pärast C/D parandusi | alustamata |
-| **E** | 3000-tokeni smoke ja Luna 32 jooksu kordus | viimasena |
+| **E** | eraldatud 3000-tokeni smoke ja Luna Golden-37 pimevõrdlus | **järgmine** |
 
 ---
 
@@ -382,15 +381,20 @@ Komponent jääb alles tulevase ühilduvuse jaoks.
 
 ---
 
-## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus (BLOKEERIV, enne B-d)
+## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus
 
-**Seis:** alustamata. **Blokeerib:** tööpakett B.
+**Seis 01.08.2026:** B0a aus veakäsitlus ja B0b request-ID/timing/journald
+instrumentatsioon on tootmises. Mitmepäevane idle-sagedusmõõtmine katkestati
+omaniku prioriteedimuudatusega pärast edukat setup-smoke'i, kuid enne esimest
+idle-valimi katset. Timeout'i lõppotsus on `insufficient_evidence` tõttu edasi
+lükatud. B0 jääb avatuks, kuid ei blokeeri mini baasjoont ega Luna hindamist.
 
 ### 7b.1 Probleem
 
-Vt §13.4. Retrieval'i 12-sekundiline kõva timeout katkestab esimese päringu pärast jõudeolekut
-ning kasutajale kuvatakse allikateta vastus, mis on eristamatu olukorrast, kus allikaid päriselt
-ei ole.
+Vt §13.4. Varasemad vaatlused näitasid 12-sekundilise native retrieval-timeout'i
+riski pärast jõudeolekut. B0a eristab nüüd retrieval failure'i ausalt päris
+nulltulemusest ning B0b teeb etapid korreleeritavaks. Uus mõõteaken ei kogunud
+piisavat idle-valimit timeout'i esinemissageduse otsustamiseks.
 
 ### 7b.2 Nõutud lahendus kolmes osas
 
@@ -399,15 +403,16 @@ ei ole.
    See on B0 tuum ja ainus osa, mis on kasutajale nähtav.
 2. **Timeout'i ülevaatus.** Kaaluda esimese päringu või embedding-kutse eraldi, pikemat lage.
    Praegust üldist timeout'i **ei muudeta** enne, kui mõju on mõõdetud.
-3. **Soojashoidmine.** Perioodiline kerge päring rag-service'i vastu või readiness-kontroll,
-   et jõudeoleku esimene kasutaja ei satuks lae otsa.
+3. **Võimalik soojashoidmine/readiness.** Seda kaalutakse ainult uue piisava
+   idle-valimi järel; praegu warm-up'i, readiness't ega retry'd ei lisata.
 
 ### 7b.3 Vastuvõtukriteeriumid
 
-- `rag_error` järel ei kuvata kasutajale „allikaid ei leitud" tüüpi sõnumit;
-- `rag_trace` või vastuse metaandmed kannavad üheselt eristust „otsing ebaõnnestus" vs „tulemusi ei olnud";
+- [x] `rag_error` järel ei kuvata kasutajale „allikaid ei leitud" tüüpi sõnumit;
+- [x] vastuse metaandmed eristavad „otsing ebaõnnestus" ja „tulemusi ei olnud";
+- [x] request-ID, kümne väljaga `retrievalTimings` ja RAG-etapilogid on tootmises;
 - idle-first-request juhtum on reprodutseeritav regressioonitestis;
-- deploy-smoke sisaldab teadlikku warm-up'i enne mõõtmisi;
+- piisav kontrollitud idle-valim on kogutud;
 - timeout'i muutmine, kui seda tehakse, on eraldi mõõdetud ja Golden-37 vastu kontrollitud.
 
 ---
@@ -465,7 +470,11 @@ Eelistus on pesastamine koos sündmuseskeemi testiga, mis kontrollib kõigi nõu
 
 ## 9. Golden-37 baasjoon
 
-Golden-37 tuleb käivitada pärast A ja B instrumentatsiooni, kuid enne C ja D käitumismuudatusi.
+Golden-37 mini baas käivitati 01.08.2026 pärast A ning B0a/B0b
+instrumentatsiooni ja enne C/D käitumismuudatusi. Tööpaketi B täielikku
+allikatoru skeemi ei oodatud omaniku kiirendatud tööjärjekorra tõttu ära;
+olemasolevad response-, usage-, retrievalTiming- ja journald-väljad fikseeriti
+tehnilises baasartefaktis.
 
 ### 9.1 Eesmärk
 
@@ -478,10 +487,26 @@ Golden-37 tuleb käivitada pärast A ja B instrumentatsiooni, kuid enne C ja D k
 
 - tootmismudel ja vaikeseaded jäävad muutmata;
 - retrieval'i üldparameetrid jäävad muutmata;
-- A ja B logimine on aktiivne;
+- A ja B0b logimine on aktiivne;
 - iga jooksu completion-status on salvestatud;
 - tehniliselt vigased jooksud märgitakse eraldi;
 - raport sisaldab nii vastuse kvaliteeti kui ka toru diagnostikat.
+
+### 9.3 Tulemus 01.08.2026
+
+- küsimustik: 37 kaasust, SHA-256 `3a47407ce93fbf9fc7cdb33f9f2e3bcc05b0ad0bef788e184e03580b4df50089`;
+- konfiguratsioon: `gpt-5.4-mini / low / medium / 1100`;
+- 37/37 algset jooksu `completed`, technical retry 0;
+- olemasoleva Golden-runner'i automaatkontroll 37/37 PASS;
+- incomplete, technical failure, retrieval failure ja stream failure: kõik 0;
+- kolm edukat vastust olid nullallikaga; kriisi- ja tahtliku korpusevälise
+  kaasuse puhul on see ootuspärane ning ühtegi neist ei maskeeritud veaks;
+- neljal küsimusel oli `displayed_sources` kirjete arv ühe võrra suurem kui
+  kontrollitud unikaalsete allikate arv; see jääb tööpaketi B avatud leiuks;
+- inimlik pimehindamine on veel tegemata; automaat-PASS ei ole lõplik sisukvaliteedi otsus.
+
+Vt `docs/internal/golden-37-mini-baseline-analysis.md` ja
+`docs/internal/golden-37-mini-baseline/` artefakte.
 
 ---
 
@@ -686,14 +711,22 @@ Muster:
 | Valitud allikaid | 0 | 3 |
 | Vastus | 151 märki, allikateta | ~1000 märki, 2 allikaga |
 
-**Kasutajamõju.** Katkestuse järel läheb päring `no_context` rajale ja kasutaja saab vastuse,
-mille tähendus on „ma ei leidnud allikaid", kuigi tegelik olukord oli „otsing aegus". Need kaks
-on kasutaja jaoks täiesti erineva tähendusega ja süsteem ei erista neid.
+**Ajalooline kasutajamõju enne B0a parandust.** Katkestuse järel läks päring
+`no_context` rajale ja kasutaja sai vastuse, mille tähendus oli „ma ei leidnud
+allikaid", kuigi tegelik olukord oli „otsing aegus". B0a eristab need olukorrad
+nüüd ausalt; B0b säilitab tehnilise põhjuse timingutes ja etapilogides.
 
-Tõrge on **vahelduv, mitte determinstlik**: kalibreerimisakna kaks warm-up'i õnnestusid esimesel
+Tõrge on **vahelduv, mitte deterministlik**: kalibreerimisakna kaks warm-up'i õnnestusid esimesel
 katsel (19,5 s ja 18,8 s koguaega, kuid retrieval mahtus 12 s sisse).
 
 Vt tööpakett **B0**.
+
+01.08.2026 setup-smoke andis kaks edukat native `rag_search` rida (HTTP 200,
+timeout 12 000 ms, source_count 4, kolm journald-etappi, duplikaate 0 ja timingud
+klappisid), kuid neid ei loetud idle-valimisse. Omanik katkestas akna enne
+esimest planeeritud idle-katset. Seetõttu on tulemus
+`measurement_window_cancelled_by_owner_priority` ja timeout'i sagedusotsus
+`insufficient_evidence`; varasemat riski ei kinnitata ega lükata ümber.
 
 ---
 
@@ -789,7 +822,7 @@ Lõppotsus peab valima ühe Luna põhirežiimi. Teise verbosity-seadistuse võib
 | planner ajab professionaali kliendiga segi | kõrge | keskmine | C regressioonitestid |
 | `query_anchor_mismatch` eemaldab õige allika | kõrge | keskmine | B diagnostika ja sihitud parandus |
 | incomplete stream ei anna kliendile lõpetamissignaali | kõrge | keskmine | B stream-protokolli parandus |
-| esimese RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | **kõrge** (3/3 vaadeldud juhtumit) | tööpakett B0: aus veakäsitlus, timeout'i ülevaatus, soojashoidmine |
+| esimese native RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | **lahtine; uus valim ebapiisav** | B0a/B0b tootmises; idle-sagedusotsus pärast Luna prioriteeti uues aknas |
 | tokeniaudit lekib sisu | kõrge | madal | hash/maht ainult + sisulekke test |
 | ~~kohalik tokenihinnang on ebatäpne~~ | ~~keskmine~~ | **maandatud** | kalibreeritud 31.07: gap mediaan 0,76%, max 1,17%, 0 negatiivset |
 | Golden-37 muutub enne baasjoont | kõrge | madal | freeze ja commit/hash fikseerimine |
@@ -934,6 +967,8 @@ Failid:
 | 31.07.2026 | T3 algversioon jääb alles | tootmisviga peab jääma regressioonitestiks |
 | 31.07.2026 | E kasutab 3000 või kõrgemat lage | reasoning ja nähtav väljund jagavad output-eelarvet |
 | 31.07.2026 | pimehindamine ainult completed-jooksudel | kärbitud vastus ei mõõda mudeli lõppkvaliteeti |
+| 01.08.2026 | idle-mõõteaken katkestatakse omaniku prioriteediga | ebapiisav valim ei tohi blokeerida mini/Luna võrdlust; B0 jääb avatuks |
+| 01.08.2026 | Golden-37 mini baas fikseeritakse kohe | 37/37 completed ja automaat-PASS; inimlik pimehindamine eraldi |
 
 ---
 
@@ -941,40 +976,35 @@ Failid:
 
 ### Esimene ülesanne
 
-Lõpetada tööpaketi A kalibreerimine.
-
-1. hankida sisselogitud brauserist sessiooniküpsis;
-2. teha autenditud smoke commit'il `f274190e`;
-3. lülitada `CHAT_PROMPT_TOKEN_AUDIT=1`;
-4. korrata kalibreerimine mõlemal rajal;
-5. kinnitada lazy-load, väljade täidetus ja sisulekke puudumine;
-6. koostada gap-statistika raja ja päringutüübi kaupa;
-7. panna lipp tagasi `0` ja teha lõppkontroll;
-8. kinnitada A lõpetatuks;
-9. enne B koodi otsustada `rag_trace` 30-võtme probleemi skeemilahendus.
-
-### A lõpetamise järel
-
-Alustada tööpaketti B, kuid mitte muuta veel planneri ega retrieval'i käitumist.
+Käivita eraldatud loopback-only hindamisprotsessis `gpt-5.6-luna / medium /
+medium / 3000` smoke samade kaasustega `legal_shs_17` ja
+`ajakiri_overview_lastekaitse`. Positiivse smoke'i järel tee sama fikseeritud
+Golden-37 komplekti üks järjestikune Luna jooks ning koosta mini/Luna
+randomiseeritud pimepakett. Tootmise env'i, mudelit ega app-teenuseid ei muudeta
+ilma omaniku eraldi loata. Täpne ülesanne:
+`docs/internal/gpt-5.6-luna-next-evaluation-task.md`.
 
 ---
 
 ## 21. Projekti lõpetamise kontrollnimekiri
 
 - [x] A kalibreerimine lõpetatud ja auditilipp tagasi väljas
-- [ ] B0 idle RAG timeout ja aus veakäsitlus
+- [x] B0a aus retrieval-failure käsitlus tootmises
+- [x] B0b request-ID, retrievalTimings ja journald korrelatsioon tootmises
+- [ ] B0 idle timeout'i sagedusotsus (edasi lükatud, ebapiisav valim)
 - [ ] `rag_trace` skeem ei kärbu
 - [ ] B kaheksa allikakihti logitud
 - [ ] incomplete streami lõpetamissignaal parandatud
-- [ ] Golden-37 baasjoon salvestatud
+- [x] Golden-37 mini tehniline baasjoon salvestatud
+- [ ] Golden-37 mini vastused inimlikult pimehinnatud
 - [ ] C planneri parandus ja regressioonitestid tehtud
 - [ ] D kontaktimüra parandus tehtud
 - [ ] Golden-37 järelmõõtmine tehtud
 - [ ] T1 ja T3 regressioonid läbitud
 - [ ] 3000-tokeni smoke läbitud
-- [ ] Luna 32 jooksu kordus lõpetatud
+- [ ] Luna Golden-37 kordus lõpetatud
 - [ ] ainult completed-jooksud hinnatud
-- [ ] artefaktid uuendatud
+- [x] mini baasjoone tehnilised ja pimehindamise artefaktid uuendatud
 - [ ] Luna põhirežiim (`medium + medium` või `medium + low`) kinnitatud
 - [ ] tegelik Luna ja mini päringukulu arvutatud päris tokenijaotuse põhjal
 - [ ] etapiviisiline Luna ülemineku-, rollback- ja seireplaan kinnitatud
