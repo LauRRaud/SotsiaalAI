@@ -1,0 +1,718 @@
+{
+  "schema": "golden-37-blind-evaluation-packet-v1",
+  "generated_at": "2026-08-01T10:15:24.584Z",
+  "evaluator_instructions": "Hinda kaasasoleva fikseeritud vormi järgi. Mudelit ja seadistust selles failis ei avaldata.",
+  "responses": [
+    {
+      "run_id": "G2cf7d96a10a44807",
+      "question_id": "kov_kuusalu_koduteenus",
+      "response_text": "Kuusalu valla koduteenus on mõeldud inimesele, kes vajab abi kodus igapäevaeluga toimetulekuks. Teenuse eesmärk on toetada inimese kodust toimetulekut, kui tervislik seisund, vanus või muu abivajadus teeb koduste toimingutega hakkama saamise raskeks.\n\nTingimused on allikate põhjal kirjeldatud üldiselt, mitte väga detailselt. Kinnitatud alus annab mõista, et teenus on abivajaduspõhine ja selle vajadust hinnatakse enne teenuse määramist.\n\nOluline õiguslik alus:\n- Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas, § 6 „Koduteenus“\n\nTaotlemine:\n- avaldus esitatakse Kuusalu valla kodulehe kaudu või paberavaldusena\n- teenuse vajadusest saab ka teatada telefoni teel\n\nKui soovid, võin samast allikast kohe välja tuua ka, kuidas koduteenust taotletakse ja kelle poole Kuusalu vallas pöörduda.",
+      "displayed_sources": [
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 Koduteenus",
+          "url": "https://www.riigiteataja.ee/akt/406062023041?leiaKehtiv",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G181625c539b097f6",
+      "question_id": "kov_harku_sotsiaaltransport",
+      "response_text": "Harku vallas taotletakse sotsiaaltransporditeenust nii, et esitad põhjendatud taotluse Harku Vallavalitsusele kas digiallkirjastatult e-postiga või paberkandjal kohapeal. Teenuse saamiseks hinnatakse abivajadus ja otsus tehakse 10 tööpäeva jooksul. Regulaartranspordi taotlus on soovitatav esitada 30 päeva enne teenuse algust ning tellimussõidust tuleb teada anda vähemalt 3 tööpäeva ette.\n\nTeenuse sisu järgi on see mõeldud liikumisraskustega või puudega Harku valla elanikele, kellel on vaja transporti tööle, kooli, arsti juurde või avalike teenuste kasutamiseks. Regulaarne sõit on tasuta; nõudepõhise sõidu puhul on tasu 0,30 eurot kilomeetri kohta ja 4 eurot tunnis.\n\nTaotlemiseks:\n- esita põhjendatud taotlus\n- digiallkirjastatult e-postiga või paberkandjal Harku Vallavalitsuses\n- vajadusel pöördu Harku valla sotsiaal- ja tervishoiuosakonna poole\n\nSobiv kontakt teenuse asjus on Meeli Vaarpuu, sotsiaalhoolekandespetsialist, tel 5552 0232, e-post meeli.vaarpuu@harku.ee. Aadress on Teenuste 2, Tabasalu. Teenuse ametlik leht on https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele\n\nKui soovid, võin järgmise sammuna kirjutada sulle valmis taotluse mustandi.",
+      "displayed_sources": [
+        {
+          "title": "Asendushooldusteenus",
+          "url": "https://harku.ee/pere-sotsiaal-ja-tervishoid/pere-ja-lapsed/vanemlus-ja-paarisuhe",
+          "page_range": null
+        },
+        {
+          "title": "Täisealise isiku hooldus",
+          "url": "https://harku.ee/pere-sotsiaal-ja-tervishoid/erivajadus-ja-igapaevaelu/teenused-erivajadusega-inimesele",
+          "page_range": null
+        },
+        {
+          "title": "Üldhooldusteenus väljaspool kodu",
+          "url": "https://harku.ee/pere-sotsiaal-ja-tervishoid/toimetulek/eakate-toimetulek",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G0acdff7acfcbf92d",
+      "question_id": "kov_kuusalu_vormid",
+      "response_text": "Kuusalu valla koduteenusega ei ole kinnitatud ühtegi eraldi vormi.\n\nTeenuse taotlemine käib Kuusalu valla koduteenuse lehe kaudu, kuid vormi linki allikad ei kinnita. Õiguslik alus on Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 „Koduteenus“.\n\nKui sul on vaja teenuse kohta edasi pöörduda, on sobiv kontakt Kuusalu valla sotsiaalteenistuses näiteks:\n- Aigi Reinomägi, hoolekandespetsialist, 606 6381 / 5191 4206, aigi.reinomagi@kuusalu.ee\n- Alvi Karp, juhtiv hoolekandespetsialist, 606 6382 / 5196 8482, alvi.karp@kuusalu.ee\n\nKui soovid, saan järgmise sammuna kokku võtta ka koduteenuse sisu ja taotlemise korra.",
+      "displayed_sources": [
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 Koduteenus",
+          "url": "https://www.riigiteataja.ee/akt/406062023041?leiaKehtiv",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Ga3a63e974dc4abf9",
+      "question_id": "kov_leakage_guard_narva",
+      "response_text": "Narva linna koduteenus on mõeldud inimesele, kes vajab kodus igapäevaeluga toimetulekuks abi. Teenuse eesmärk on toetada inimese hakkamasaamist oma elukohas.\n\nKasutatud allikate põhjal on teenuse tingimused kirjeldatud üldiselt, kuid eraldi abikõlblikkuse kriteeriume seal täpselt lahti ei kirjutata. Taotlemine käib kirjaliku avaldusega.\n\nKontakt, kuhu pöörduda:\nNarva linna Sotsiaalabiamet\ntel 356 9600\ne-post sotsiaalabiamet@narva.ee\naadress Malmi tänav 5a, Narva\nveeb https://www.narva.ee/narva-linna-sotsiaalabiamet\n\nKui soovid, võin järgmise sammuna anda ka koduteenuse taotlemise praktilise käigu või aidata koostada lühikese avalduse mustandi.",
+      "displayed_sources": [
+        {
+          "title": "Koduteenus",
+          "url": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Koduteenus",
+          "url": "https://www.narva.ee/sotsiaalteenused/-/asset_publisher/J8TOJukj0wfP/content/koduteenus",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G911cb7c5dcbebad6",
+      "question_id": "legal_shs_42",
+      "response_text": "Sotsiaalhoolekande seaduse § 42 pealkiri on „Puudega isikule eluruumi tagamine“.\n\nSee säte ütleb sisuliselt, et kohaliku omavalitsuse üksus abistab inimest, kellel on puudest tingituna raskusi eluruumis liikumise, endaga toimetuleku või suhtlemisega, eluruumi kohandamisel või sobivama eluruumi saamisel.\n\nSamuti on seal põhimõte, et eluruumi kasutamise võimaluse kindlustamisel tuleb lähtuda eesmärgist, et puudega inimene saaks võimalikult kaua elada koduses keskkonnas.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 42 Puudega isikule eluruumi tagamine",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G14cae24b07d4370c",
+      "question_id": "legal_shs_17",
+      "response_text": "Sotsiaalhoolekande seaduse § 17 pealkiri on „Koduteenuse eesmärk ja sisu“.\n\nSelle sätte järgi on koduteenus kohaliku omavalitsuse üksuse korraldatav sotsiaalteenus, mille eesmärk on täisealise isiku iseseisva ja turvalise toimetuleku tagamine kodustes tingimustes ning tema elukvaliteedi säilitamine ja parandamine.\n\nTeenuse osutamisel abistatakse inimest toimingutes, mida ta terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel ei suuda ilma kõrvalabita teha, kuid mis on vajalikud kodus elamiseks. Näidetena on nimetatud kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool eluruumi toiduainete ja majapidamistarvete ostmine ning muu asjaajamine.\n\nKui soovid, võin sama paragrahvi ka lihtsas keeles lahti seletada või aidata eristada koduteenust ja teisi KOV teenuseid.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 17 Koduteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Ge8023f321b236a43",
+      "question_id": "legal_inflected_paragraph",
+      "response_text": "Sotsiaalhoolekande seaduse § 23 „Tugiisikuteenuse eesmärk ja sisu“ ütleb, et tugiisikuteenus on kohaliku omavalitsuse korraldatav sotsiaalteenus, mille eesmärk on toetada inimese iseseisvat toimetulekut siis, kui ta vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi.\n\nParagrahv täpsustab ka, et kõrvalabi tähendab juhendamist, motiveerimist ning inimese suurema iseseisvuse ja vastutuse võime arendamist.\n\nLisaks sätestab § 23:\n- last kasvatavale isikule on teenuse eesmärk toetada lapse hooldamist ning turvalise ja toetava kasvukeskkonna tagamist;\n- lapsele teenuse osutamisel on eesmärk lapse arengu toetamine koostöös last kasvatava isikuga, vajadusel ka puudega lapse hooldustoimingutes abistamine;\n- tugiisik aitab last arendavates tegevustes, juhendab ja motiveerib igapäevaelus toime tulema ning toetab suhtlemisel perekonnaga või väljaspool kodu.\n\nKui soovid, saan selle sama paragrahvi ka lihtsas keeles lahti seletada.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 23 Tugiisikuteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G8a729a096bab2f57",
+      "question_id": "ajakiri_overview_lastekaitse",
+      "response_text": "Lastekaitse murekohad on selles valdkonnas eelkõige seotud sellega, et abivajavat last tuleb märgata, hinnata ja aidata kiiresti, aga töökorraldus ja ressursid ei toeta seda alati piisavalt.\n\nPeamised murekohad, mida valitud allikad esile toovad, on need:\n\n1. Töökorralduse ebaühtlus KOV-ides  \nErinevates kohalikes omavalitsustes on lastekaitsetöö korraldus ja kvaliteet ebaühtlane. See tähendab, et lapse abivajaduse hindamine, juhtumite käsitlemine ja teenuste pakkumine võivad piirkonniti väga erineda.\n\n2. Liiga suur koormus ja keerukamad juhtumid  \nSpetsialistid puutuvad järjest sagedamini kokku keeruliste, mitme probleemiga juhtumitega. See teeb töö ajamahukaks ja nõuab rohkem pädevusi kui tavapärane juhtumitöö.\n\n3. Võrgustikutöö sõltuvus teiste asutuste vastustest  \nLastekaitse otsused vajavad sageli infot koolilt, perearstilt, psühhiaatrilt või teistelt võrgustikuliikmetelt. Kui vastused venivad, pidurdab see juhtumi dokumenteerimist ja otsustamist.\n\n4. Ajakriitiline dokumenteerimine  \nLastekaitseseaduse järgi tuleb juhtumimenetluse algatamise või mittealgatamise otsus teha 10 päeva jooksul. Praktikas teeb see tähtaja pingeliseks, eriti kui samal ajal tuleb koguda palju infot ja suhelda võrgustikuga.\n\n5. Spetsialistide võimestamise vajadus  \nÜks valitud allikas rõhutab, et praegune korraldus ei anna piisavalt lahendusi lastekaitsetöötajate võimestamiseks ega kvaliteedi ühtlustamiseks.\n\n6. Teenuste arendamise keerukus  \nMurekohtadena nimetatakse nii ennetavate kui sihitatud teenuste arendamist ja osutamist. Ehk probleem ei ole ainult juhtumi lahendamises, vaid ka selles, kas perel ja lapsel on üldse sobivad tugiteenused olemas.\n\nÜldisemalt: lastekaitse suurim pingekoht on tasakaal märkamise, hindamise, dokumenteerimise, võrgustikutöö ja tegeliku abistamise vahel. Kui töökoormus, koostöö ja kohaliku tasandi korraldus ei püsi samas tempos, kannatab nii menetluse kiirus kui ka abi sisuline kvaliteet.\n\nKui soovid, võin järgmises vastuses panna need murekohad ka kaheks plokiks: “süsteemsed probleemid” ja “igapäevatöö probleemid”.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalministeerium otsib koos partneritega võimalusi laste heaolu suurendamiseks",
+          "url": null,
+          "page_range": "10-14"
+        },
+        {
+          "title": "Hea töö ei sünni Excelis – lastekaitsetöötajad ootavad järelevalvelt selgust ja tuge",
+          "url": null,
+          "page_range": "4-5, 7-8"
+        },
+        {
+          "title": "Distantsõppe korraldus HEV-õpilastele Keila Koolis",
+          "url": null,
+          "page_range": "49-53"
+        },
+        {
+          "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+          "page_range": "7"
+        }
+      ]
+    },
+    {
+      "run_id": "G11729a4d9b50012a",
+      "question_id": "ajakiri_overview_omastehooldus",
+      "response_text": "Omastehooldajate peamised raskused on seotud nii igapäevase hoolduskoormuse kui ka oma elu korraldamisega.\n\nOlulisemad mured, mida allikad esile toovad:\n- füüsiliselt rasked tegevused, näiteks inimese tõstmine, pesemine, treppidel liikumine ja transport;\n- kodune keskkond, kus hooldatava vajadusi on raske turvaliselt ja mugavalt toetada, eriti kui eluruum on väike või kohandusi teha ei saa;\n- hooldustehnika ja olme korraldamine, sealhulgas kütmine, ruumide kohandamine ja ratastooliga inimese igapäevane toimetamine;\n- ajakasutus ja elukorralduse muutumine, mis võib viia töölt eemaldumiseni või töötamise vähenemiseni;\n- sellest tulenevad majanduslikud probleemid ja raskused hiljem tööturule naasmisel;\n- hoolduse lõppemisega seotud keeruline olukord, eriti kui hooldatav sureb.\n\nLisaks näitavad allikad, et hooldusvajaduse tase ei ole alati üheselt hinnatav: hooldajad ja hooldatavad kirjeldavad sageli olukorda erinevalt. Näiteks mõnes igapäevatoimingus hindavad hooldajad hooldatava iseseisvust suuremaks kui hooldatavad ise, mis teeb abivajaduse täpse tajumise ja toetuse kavandamise keerulisemaks.\n\nKui soovid, saan järgmise sammuna koondada need raskused ka rühmadena: füüsilised, vaimsed, majanduslikud ja teenuste korraldusega seotud.",
+      "displayed_sources": [
+        {
+          "title": "Omastehooldus. Perekonna ja ühiskonna liit?",
+          "url": null,
+          "page_range": "58-67"
+        },
+        {
+          "title": "Koduteenuste korraldus",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19294_RKTR_6564_2-1.4_2312_002-2.pdf",
+          "page_range": "14, 42"
+        },
+        {
+          "title": "Lapsendamise ja hooldusperre paigutamise järgne hindamine / lõpparuanne",
+          "url": "https://www.praxis.ee/uploads/2020/12/Lo%CC%83pparuanne_20.11.20.pdf",
+          "page_range": "67"
+        },
+        {
+          "title": "SKA ja KOVid – lõppraport",
+          "url": "https://centar.ee/pdf/ee/2023_SKA%20ja%20KOVid_Loppraport_avaldamiseks.pdf",
+          "page_range": "10"
+        }
+      ]
+    },
+    {
+      "run_id": "Gb20d1e71070c875c",
+      "question_id": "ajakiri_ai_eetika",
+      "response_text": "Jah, tehisintellektiga seotud eetilised küsimused on sotsiaalvaldkonnas oluline teema.\n\nSee puudutab eelkõige seda, kuidas tehnoloogia toetab või mõjutab inimese autonoomiat, privaatsust, väärikust ja osalust otsustes. Sotsiaalvaldkonnas ei ole küsimus ainult selles, kas tööriist töötab, vaid ka selles, kelle jaoks see töötab ja milliste väärtuste järgi see tegutseb.\n\nOluliseks on peetud ka seda, et:\n- tehnoloogia oleks inimkeskne ja kontekstitundlik;\n- kasutaja iseseisvust toetataks, mitte ei asendataks;\n- sotsiaalset isolatsiooni ei suurendataks, vaid pigem vähendataks;\n- lahendused oleksid läbipaistvad ja õiglaselt kasutatavad.\n\nKui soovid, võin tuua ka konkreetseid näiteid, millistes sotsiaalvaldkonna tööolukordades need eetilised küsimused kõige rohkem esile tulevad.",
+      "displayed_sources": [
+        {
+          "title": "Tehisintellekt sotsiaaltöös: praktika, kaalutlused ja väärtuspõhised piirid",
+          "url": "https://www.tai.ee/et/sotsiaaltoo/tehisintellekt-sotsiaaltoos-praktika-kaalutlused-ja-vaartuspohised-piirid",
+          "page_range": "1-13"
+        }
+      ]
+    },
+    {
+      "run_id": "Gbb2b36873062cac9",
+      "question_id": "ajakiri_sloveenia_hooldus",
+      "response_text": "Ajakirja Sotsiaaltöö 2021. aasta artiklis käsitletakse Sloveenia pikaajalise hoolduse korraldust ja selle kitsaskohti ning vaadatakse tulevikusuundadele. Fookuses on see, kuidas toetada inimest nii, et ta saaks võimalikult kaua koduses keskkonnas elada.\n\nPeamised punktid, millele selles artiklis rõhutatakse:\n- koduhooldus ja muud kodus elamist toetavad teenused on väga olulised;\n- hooldekodu ei ole alati kohe kättesaadav ja sageli nähakse seda kogukonnas ainuvõimaliku hooldusvormina;\n- hooldus peaks olema paremini lõimitud sotsiaal- ja tervishoiu vahel;\n- oluline on arendada kogukonnapõhiseid teenuseid, et toetada nii hooldusvajadusega inimest kui ka hoolduskoormusega lähedasi;\n- rõhutatakse ka kohalike omavalitsuste rolli teenuste arendamisel ja pakkumisel.\n\nKui soovid, saan selle sama artikli põhjal teha ka lühikese 3–5 lauselise kokkuvõtte või tuua välja ainult koduhoolduse ja hooldekodu osa.",
+      "displayed_sources": [
+        {
+          "title": "Pikaajaline hooldus Sloveenias: probleemid ja tulevikusuunad",
+          "url": "https://www.tai.ee/et/valjaanded/ajakiri-sotsiaaltoo/sotsiaaltoeoe-2021-1/pikaajaline-hooldus-sloveenias-probleemid-ja-tulevikusuunad",
+          "page_range": "70-77"
+        },
+        {
+          "title": "Tegevustest pikaajalise hoolduse vallas",
+          "url": null,
+          "page_range": "13-15"
+        },
+        {
+          "title": "Pikaajalise hoolduse praegused probleemid ja võimalikud lahendused",
+          "url": null,
+          "page_range": "12-14"
+        },
+        {
+          "title": "Kuidas algas ajakirja Sotsiaaltöö teekond?",
+          "url": null,
+          "page_range": "10-12"
+        },
+        {
+          "title": "Pikaajaline hooldus seisab muutuste lävel",
+          "url": null,
+          "page_range": "16-20"
+        }
+      ]
+    },
+    {
+      "run_id": "G9ed79ff47747d28b",
+      "question_id": "pdf_hea_tava_terviseprobleemiga_laps",
+      "response_text": "Terviseprobleemiga lapse peret toetatakse kõige paremini nii, et abi ei keskendu ainult lapse diagnoosile, vaid kogu pere igapäevasele toimetulekule. Uuem juhendmaterjal rõhutab eriti, et lapsevanem on sageli lapse peamine hooldaja ja tugi ning tema vaimne ja füüsiline heaolu mõjutab otseselt ka lapse kodus elamise võimalust, turvalisust ja heaolu. Vanem võib olla pikalt väga haavatavas olukorras, sest hooldus, öised ärkamised, bürokraatia ja pidev ärevus kurnavad tugevalt.\n\nPraktiliselt tähendab see tavaliselt nelja asja.\n\n1. Toeta vanemat kui peamist hooldajat\nKuula hinnanguid andmata, tunnusta koormust ja aita vanemal sõnastada, mis on kõige raskem: hooldus, uni, töö, transport, õed-vennad, rahaline surve või suhtlus ametiasutustega. Väga oluline on mitte vähendada muret ega eeldada, et vanem “saab ise hakkama”.\n\n2. Märka pere tervikvajadust, mitte ainult lapse sümptomit\nKui lapse tervisemure on püsiv või keeruline, mõjutab see sageli kogu pere toimimist: töö- ja hoolduskoormust, vaimset tervist, suhteid ja igapäevast logistikat. Hea tava järgi tuleb tähele panna ka seda, kas kodune olukord on turvaline, millist lisaabi pere vajab ja kas abi puudumine võib viia kriisini.\n\n3. Aita luua ühendus sobivate teenustega\nTerviseprobleemiga laste perede puhul on sageli vaja siduda kokku tervishoid, sotsiaalhoolekanne ja haridus/hoolekanne. Praktikas tähendab see pere suunamist või kaasamist vajadusel näiteks:\n- sotsiaaltöötaja või lastekaitsetöötaja juurde\n- rehabilitatsiooni ja toetavate teenuste juurde\n- vaimse tervise toe juurde vanemale või lapsele\n- kohaliku omavalitsuse teenuste juurde, kui vaja on kodust abi, transporti, hoolekande tuge või hoolduskoormuse leevendamist\n\n4. Toeta vanema taastumist ja hingamisruumi\nJuhendmaterjal rõhutab, et vanema hea tervis on lapse heaolu seisukohalt ülioluline. Seetõttu on oluline vaadata, kas perel on võimalus puhata, saada asendustuge, kasutada kogukonna abi või leida praktilisi lahendusi, mis vähendavad pidevat koormust. Mõnikord on kõige tõhusam abi väga konkreetne: aitamine suhtluses ametitega, info koondamine ühte kohta või perele sobiva kontaktisiku leidmine.\n\nKui tahad, saan selle sama teema lahti kirjutada ka sotsiaaltöötaja töövõtete kaupa: mida öelda esimesel kohtumisel, mida hinnata ja millal pere edasi suunata.",
+      "displayed_sources": [
+        {
+          "title": "Terviseprobleemiga laste ja nende perede toetamise hea tava",
+          "url": null,
+          "page_range": "3, 11, 16-17, 34-37, 43, 48, 52, 56, 58-59, 61"
+        },
+        {
+          "title": "Riiklik perelepitusteenus",
+          "url": null,
+          "page_range": "16-22"
+        },
+        {
+          "title": "Sotsiaalministeerium otsib koos partneritega võimalusi laste heaolu suurendamiseks",
+          "url": null,
+          "page_range": "10-14"
+        },
+        {
+          "title": "Pandeemia mõju laste vaimsele tervisele ja kuidas neid toetada. 1. osa",
+          "url": null,
+          "page_range": "70-76"
+        }
+      ]
+    },
+    {
+      "run_id": "G71eaa37019362ebc",
+      "question_id": "pdf_eestkoste_uuring",
+      "response_text": "Psüühikahäirega inimeste eestkoste peamised kitsaskohad on eelkõige seotud sellega, et süsteem ei toeta piisavalt inimese iseseisvat otsustusõigust ega anna alati vajaduspõhist abi.\n\nPeamised probleemid on järgmised:\n\n- Teenused on killustunud. Abi korraldamine langeb sageli inimese enda või tema lähedaste õlule ning juhtumikorraldus ei ole järjepidev.\n- Koostöö eri osapoolte vahel on ebapiisav. Teenuseosutajate, ametkondade ja lähedaste vahel ei liigu info sujuvalt.\n- Süsteemis on raske orienteeruda. Inimestel ja lähedastel on keeruline mõista, millist abi ja kust saab.\n- Õiguste ja abivõimaluste teadlikkus on ebaühtlane. See teeb keerulisemaks nii abi küsimise kui ka oma õiguste kaitsmise.\n- Teenused ei ole piisavalt inimese vajadustest lähtuvad. Süsteem on pigem üles ehitatud teenuste kaupa, mitte inimese tegeliku olukorra järgi.\n- Abi on sageli liiga reaktsiooniline. Uuringud rõhutavad, et tugi tuleb sageli alles tagajärgedega tegelemisena, mitte varase märkamisena.\n- Bürokratia on keeruline. Vajadus on lihtsama asjaajamise, arusaadava suhtluse ja dubleerivate hindamiste vähendamise järele.\n- Puudub piisav järjepidev statistika eestkoste kohta. Üks rõhutatud kitsaskoht on see, et eestkoste seadmise, ulatuse, tähtaja ja eestkostjate kohta ei koguta ega avaldata piisavalt järjepidevalt andmeid, mistõttu on keeruline olukorda hinnata ja arendusi planeerida.\n\nOluline üldine suund, mida uurimused rõhutavad, on see, et eestkoste ja tugisüsteem peaks paremini toetama inimese iseseisvat otsustusõigust ning olema varasem, paindlikum ja arusaadavam.\n\nKui soovid, saan järgmise sammuna koondada need kitsaskohad ka üheks lühikeseks punktloendiks, mida saab kasutada näiteks ettekandes või analüüsis.",
+      "displayed_sources": [
+        {
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu kokkuvõte",
+          "url": null,
+          "page_range": "3, 7, 10, 16, 18-19, 32-33, 35, 38-39, 41, 44-45, 48-49, 51, 63, 65, 69-72"
+        },
+        {
+          "title": "Täisealiste psüühikahäirega inimeste, sh eestkostetavate uuringu lühikokkuvõte",
+          "url": null,
+          "page_range": "2-3"
+        },
+        {
+          "title": "Kuidas MTÜ Ambla Kihelkonna Tugiteenused oma kliente toetab",
+          "url": null,
+          "page_range": "37-39"
+        },
+        {
+          "title": "Inimeste teadlikkus vaimse tervise säilitamisest ja psüühikahäiretest",
+          "url": null,
+          "page_range": "50-52"
+        }
+      ]
+    },
+    {
+      "run_id": "Ga58468811c597e2e",
+      "question_id": "pdf_vaimne_tervis_koolis",
+      "response_text": "Koolis laste vaimse tervise kohta on valikus eelkõige need materjalid:\n\n1. Peaasi.ee hariduse suund\nSee on riikliku tasandi vaimse tervise ja heaolu materjal haridusasutustele. Fookus on alates 2022. aastast haridusasutustel, et toetada laste ja noorte õpikeskkonda ning õpetajate ja teiste koolis töötavate inimeste töökeskkonda vaimset tervist toetavaks. Materjalid ja tööriistad on mõeldud igapäevaseks kasutamiseks haridusasutuses.\n\n2. “Koolilaste ja noorte vaimne tervis”\nSee on koondmaterjal noorte vaimse tervise portaali Peaasi.ee alajaotusest NIPID. Materjal käsitleb muu hulgas:\n- mida märgata lapse või noore vaimse tervise puhul,\n- mida teha, kui õpilase käitumine muutub,\n- kuidas rääkida lapsega, kolleegiga ja lapsevanemaga,\n- kuidas toetada ärevuse, pinge, keskendumis- ja suhtlemisraskustega õpilast,\n- kuidas toime tulla agressiivse käitumisega.\n\nMaterjal on koostatud MTÜ Peaasjad ja Eesti Õpetajate Liidu koostöös.\n\n3. “Vaimse tervise hoidmine (4.–7. klass)”\nSee on tunnimaterjal, mis sobib vaimse tervise teema käsitlemiseks põhikooli keskmises kooliastmes. Seal on tunnikava, arutelu- ja grupitöö ülesanded ning rõhk on sellele, et õpilased õpiksid tundma hea suhtlemise tavasid, tunnete ja mõtete jagamist ning seda, kuidas vaimset heaolu märgata ja hoida.\n\nKui soovid, saan need materjalid ka eraldi jagada vanuse järgi:\n- 1.–3. klass\n- 4.–7. klass\n- põhikool / gümnaasium\n- õpetajale või kooli tugimeeskonnale sobivad materjalid.",
+      "displayed_sources": [
+        {
+          "title": "Koolilaste ja noorte vaimne tervis",
+          "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+          "page_range": "1, 10, 12-14"
+        },
+        {
+          "title": "Vaimse tervise hoidmine (4.–7. klass)",
+          "url": "https://peaasi.ee/wp-content/uploads/2018/11/Tunnikava-4-7kl-vaimne-tervis.pdf",
+          "page_range": "2-4"
+        },
+        {
+          "title": "Peaasi.ee Haridus",
+          "url": "https://peaasi.ee/wp-content/uploads/2023/10/Peaasi.ee-Haridus.pdf",
+          "page_range": "1"
+        },
+        {
+          "title": "Pagulaste vaimne tervis vajab rohkem tähelepanu",
+          "url": null,
+          "page_range": "86-91"
+        },
+        {
+          "title": "Vaimse tervise probleemiga inimeste elu pärast elukohavahetust",
+          "url": null,
+          "page_range": "58-65"
+        }
+      ]
+    },
+    {
+      "run_id": "G324006b80555d769",
+      "question_id": "pdf_tarkvanem_tooleht",
+      "response_text": "Jah, on küll. Algkoolilapsega vestluseks on olemas abiküsimuste tööleht, mis on mõeldud eelkõige lapsega kontakti loomiseks ja vestluse avamiseks.\n\nSelle mõte on kasutada avatud küsimusi, sest need aitavad lapsel end vabamalt väljendada. Näiteks sobivad sellised küsimused nagu:\n- Mis sulle nalja teeb?\n- Mis on sinu lemmiktegevus?\n- Mis sulle ema ja isa juures kõige rohkem meeldib?\n- Kes on su parim sõber?\n- Kelleks sa tahad saada, kui suureks saad?\n\nJuhise järgi on oluline pärast küsimuse esitamist lihtsalt kuulata, olla kohal ja hoiduda hinnangutest.\n\nKui soovid, võin need abiküsimused ka sinu jaoks lihtsalt loetavaks vestlusleheks kokku panna.",
+      "displayed_sources": [
+        {
+          "title": "TÖÖLEHT: Abiküsimused vestluseks algkoolilapsega",
+          "url": "https://tarkvanem.ee/wp-content/uploads/2018/05/Tark_Vanem_tooleht_abikysimused_vestluseks_algkoolilapsega.pdf",
+          "page_range": "1"
+        },
+        {
+          "title": "Kuressaare Hoolekanne ja selle uuendusmeelne meeskond",
+          "url": null,
+          "page_range": "87-90"
+        },
+        {
+          "title": "Räägime Lastest praktikutele: 12–18-aastaste lastega perede nõustamiseks",
+          "url": "https://peaasi.ee/wp-content/uploads/2024/08/10.-Logiraamat-praktikutele-vanus-12-18.docx.pdf",
+          "page_range": "13, 15"
+        },
+        {
+          "title": "Räägime Lastest logiraamat tööks peredega: 5–12-aastane laps",
+          "url": "https://peaasi.ee/wp-content/uploads/2026/02/9.-Logiraamat-spetsialistile_5%E2%80%9312-aastane-laps-TAIDETAV.pdf",
+          "page_range": "9, 17"
+        },
+        {
+          "title": "Koolilaste ja noorte vaimne tervis",
+          "url": "https://peaasi.ee/wp-content/uploads/2014/11/Laste-vaimne-tervis-koolis.pdf",
+          "page_range": "4"
+        }
+      ]
+    },
+    {
+      "run_id": "G80a3fbe177fcc8bd",
+      "question_id": "org_astangu",
+      "response_text": "Astangu Kutserehabilitatsiooni Keskus pakub eelkõige kutserehabilitatsiooni ehk teenuseid ja tegevusi, mis aitavad erivajadusega inimesel jõuda sobiva õppimise, töö ja võimalikult iseseisva igapäevaeluni.\n\nSelle põhjal, mis on selle asutuse kohta teada, pakutakse seal muu hulgas:\n- kutserehabilitatsiooni ja selle raames nõustamist\n- tööalase rehabilitatsiooni teenuseid\n- töötamise toetamise teenust\n- tugiteenuseid ja tugispetsialistide panust\n- praktilisi töötoasid ja tegevusi, sh tööharjutuse laadseid tegevusi\n- infot ja abi sobiva teenuse leidmisel\n\nLisaks on neil avalikustatud ka tööalase rehabilitatsiooni hinnakiri ning erinevate tugispetsialistide rollide kirjeldusi.\n\nKui vajad, saan järgmise sammuna öelda ka:\n- kellele Astangu teenused sobivad\n- kuidas nendega ühendust võtta\n- mis vahe on kutserehabilitatsioonil ja tööalusel rehabilitatsioonil",
+      "displayed_sources": [
+        {
+          "title": "Astangu Kutserehabilitatsiooni Keskus",
+          "url": "https://www.astangu.ee/et",
+          "page_range": null
+        },
+        {
+          "title": "Haridusliku erivajadusega noorte kutseõpingute ja tööturule jõudmise toetamine",
+          "url": "https://www.riigikontroll.ee/sites/default/files/documents/2025-11/19750_RKTR_6598_2-1.4_2344_003-2.pdf",
+          "page_range": "19"
+        }
+      ]
+    },
+    {
+      "run_id": "G73479c47305f50a3",
+      "question_id": "org_puudega_inimese_abi",
+      "response_text": "Puudega inimest aitavad eelkõige need organisatsioonid ja materjalid:\n\nSotsiaalkindlustusamet\n- Maksab puudega inimese sotsiaaltoetusi.\n- Abistab puudega inimese kaardi väljastamisel.\n- Suunab ka eriteenuste juurde, näiteks juhtkoer, kaugtõlge ja kirjutustõlge, erihoolekandeteenused ning sotsiaalse rehabilitatsiooni teenus.\n\nKohalik omavalitsus\n- Võib pakkuda lisateenuseid lisaks riiklikele teenustele.\n- Allikad toovad välja näiteks tugiisikuteenuse, invatranspordi ja töökoha kohandamisega seotud toe.\n- Mitmes paigas on abiks ka päevakeskused, mis toetavad igapäevaeluga toimetulekut ja aitavad vältida sotsiaalset isolatsiooni.\n\nVabaühendused ja tugiorganisatsioonid\n- Puudega inimeste kojad, liidud ja muud mittetulundusühingud aitavad konkreetse puude spetsiifikaga seotud probleemide lahendamisel ning sotsiaalsel kaasamisel.\n- Allikates on eraldi mainitud näiteks Eesti Kurtide Liit, Eesti Pimedate Liit ja Eesti Vaegkuuljate Liit.\n- Mõned MTÜ-d osutavad sotsiaalteenuseid projektipõhiselt KOV-idega sõlmitud lepingute alusel.\n\nPraktilised materjalid ja tugivahendid\n- Info puude raskusastmega inimesele sobivate teenuste kohta: sotsiaaltoetused, puude isiku kaart, juhtkoer, kaugtõlge, kirjutustõlge, erihoolekanne ja rehabilitatsioon.\n- Abivahendite kohta on oluline vaadata, kes neid hüvitab: meditsiiniseadmeid hüvitab Tervisekassa, abivahendeid Sotsiaalkindlustusamet.\n- Töötamist toetavate meetmete hulgas on välja toodud ka koolitused, tekstilugemistarkvara, heliraamatud ja töökoha kohandamise vajadus.\n\nKui soovid, saan järgmises vastuses panna need ka lühikesse praktilisse nimekirja: “kelle poole pöörduda esimesena”, “mida kust küsida” ja “millise teenuse jaoks”.",
+      "displayed_sources": [
+        {
+          "title": "Puudega inimeste sotsiaalne lõimumine",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Puudega_inimeste_sotsiaalne_loimumine.pdf",
+          "page_range": "88, 92"
+        },
+        {
+          "title": "Kes aitab ja kuhu pöörduda, kui sul on tuvastatud puude raskusaste?",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-02/puudega-tooealisele.pdf",
+          "page_range": "1-2"
+        },
+        {
+          "title": "Puuetega inimeste töötamist toetavad meetmed",
+          "url": "https://www.sm.ee/sites/default/files/content-editors/Ministeerium_kontaktid/Uuringu_ja_analuusid/Sotsiaalvaldkond/pittm_1ja2etapp_kokku_2_.pdf",
+          "page_range": "5, 32, 37-38"
+        },
+        {
+          "title": "Uuring täisealiste puudega inimeste puude tuvastamise, abivajaduse hindamise ja toetamise süsteemist",
+          "url": "https://www.sm.ee/sites/default/files/documents/2026-03/Puuetega%20inimeste%20uuringu%20l%C3%B5ppraport.pdf",
+          "page_range": "6, 20, 191"
+        }
+      ]
+    },
+    {
+      "run_id": "G6fd26a876e546e60",
+      "question_id": "life_raha_uur_toit",
+      "response_text": "Kui sul ei ole raha toidu ja üüri jaoks, siis esimene samm on pöörduda oma kohaliku omavalitsuse sotsiaaltöö poole ja küsida vältimatut sotsiaalabi.\n\nSelle õiguse järgi osutatakse inimesele, kes on sattunud elatusvahendite kaotuse või puudumise tõttu sotsiaalselt abitusse olukorda, vähemalt toidu, riietuse ja ajutise majutuse abi. Abi antakse seni, kuni sa ei ole enam selle puuduse tõttu abitus olukorras.\n\nPraktiliselt tee kohe nii:\n1. Võta täna ühendust oma valla või linna sotsiaalosakonnaga.\n2. Ütle otse, et sul ei ole raha toidu ega eluasemekulude jaoks ja vajad vältimatut sotsiaalabi.\n3. Kui sul on täna kriitiline olukord, küsi ka ajutise majutuse ja toiduabi kohta.\n4. Kui sa ei tea, kuhu pöörduda, ütle mulle oma omavalitsus või linn ja ma aitan sul täpselt välja kirjutada, kelle poole minna.\n\nKui tahad, võin kohe koostada sulle lühikese sõnumi või telefonijutu, millega sotsiaaltöötajale ühendust võtta.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 8 Vältimatu sotsiaalabi",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekande seadus § 135 Riigieelarvest makstav täiendav sotsiaaltoetus",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Gcdd405d03884052a",
+      "question_id": "life_eakas_kodus",
+      "response_text": "Pöörduge esmalt ema elukohajärgsesse kohaliku omavalitsuse sotsiaalosakonda või valla/linnavalitsuse sotsiaaltöötaja poole. Kohalik omavalitsus hindab abivajaduse ja korraldab vajadusel sobiva abi.\n\nKui inimene ei saa enam kodus üksi hakkama, võivad esimesed lahendused olla näiteks koduteenus, tugiisik, isiklik abistaja või vajadusel väljaspool kodu osutatav üldhooldusteenus. Täisealise isiku hooldust saab seada siis, kui inimene vajab vaimse või kehalise puude tõttu abi oma õiguste teostamiseks ja kohustuste täitmiseks; hooldus seatakse inimese taotluse ja nõusoleku alusel.\n\nKui ütlete, millises omavalitsuses ema elab, saan täpsustada, kuhu täpselt pöörduda.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 26 Täisealise isiku hoolduse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G1b588d7260d8afae",
+      "question_id": "comparison_kodu_tugiisik",
+      "response_text": "Koduteenus ja tugiisikuteenus on mõlemad kohaliku omavalitsuse korraldatavad sotsiaalteenused, kuid nende eesmärk ja abi sisu on erinevad.\n\nKoduteenus on mõeldud täisealise inimese iseseisva ja turvalise toimetuleku tagamiseks kodustes tingimustes. Selle käigus abistatakse inimest toimingutes, mida ta oma terviseseisundi, tegevusvõime või elukeskkonna tõttu ei suuda ise teha, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool kodu toiduainete ja majapidamistarvete ostmine ning muu asjaajamine.\n\nTugiisikuteenus on laiemalt iseseisva toimetuleku toetamine olukorras, kus inimene vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Abi sisu on eelkõige juhendamine, motiveerimine ning iseseisvuse ja omavastutuse võime arendamine, mitte igapäevaste koduste toimingute ise ära tegemine.\n\nLühidalt:\n- koduteenus = praktiline abi kodus ja igapäevastes majapidamistoimingutes;\n- tugiisikuteenus = nõustav, juhendav ja motiveeriv tugi iseseisvuse tugevdamiseks.\n\nOluline erinevus on ka sihtrühmas:\n- koduteenus on seaduse järgi täisealisele isikule;\n- tugiisikuteenust saab osutada nii täiskasvanule kui ka lapse kasvatamise ja lapse arengu toetamise eesmärgil lapsele või last kasvatavale isikule.\n\nKui soovid, saan sellest teha ka väga lühikese võrdlustabeli või aidata hinnata, kumma teenuse jaoks inimene võiks pigem sobida.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 23 Tugiisikuteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekande seadus § 17 Koduteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G41022066e5090752",
+      "question_id": "comparison_kodu_isiklik_abistaja",
+      "response_text": "Koduteenus ja isikliku abistaja teenus on mõlemad kohaliku omavalitsuse korraldatavad sotsiaalteenused, kuid nende eesmärk ja sihtrühm on erinevad.\n\nKoduteenus on mõeldud täisealisele inimesele, kelle iseseisev ja turvaline toimetulek kodustes tingimustes vajab tuge terviseseisundist, tegevusvõimest või elukeskkonnast tulenevatel põhjustel. Selle sisuks on abi igapäevastes kodustes toimingutes, mida inimene ise kõrvalabita teha ei suuda, näiteks kütmine, toiduvalmistamine, eluruumi ja riiete korrastamine ning väljaspool kodu toiduainete ja majapidamistarvete ostmine ning muu asjaajamine.\n\nIsikliku abistaja teenus on mõeldud täisealisele puude tõttu füüsilist kõrvalabi vajavale inimesele. Selle eesmärk on suurendada inimese iseseisvat toimetulekut ja osalemist kõigis eluvaldkondades ning vähendada seadusjärgsete hooldajate hoolduskoormust. Abistamine keskendub tegevustele, kus inimene vajab puude tõttu füüsilist kõrvalabi, näiteks liikumisel, söömisel, toidu valmistamisel, riietumisel, hügieenitoimingutes ja muudes sarnastes tegevustes.\n\nLihtsalt eristades:\n- koduteenus = abi kodu- ja majapidamistoimingutes, et inimene saaks kodus turvaliselt toime tulla;\n- isikliku abistaja teenus = vahetu füüsiline abi inimese igapäevategevustes, kui takistus tuleneb puudest.\n\nPraktiline vahe on ka see, et isikliku abistaja teenus on seaduse järgi suunatud just puude tõttu füüsilist kõrvalabi vajavale täisealisele inimesele, samas kui koduteenuse alus on laiemalt inimese toimetulekuprobleem kodustes tingimustes.\n\nKui soovid, võin teha ka lühikese võrdlustabeli või aidata hinnata, kumb teenus sobiks konkreetse olukorra puhul.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 27 Isikliku abistaja teenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekande seadus § 17 Koduteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekande seadus § 29 Nõuded teenust vahetult osutavale isikule",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Gd0a002d470718af5",
+      "question_id": "edge_inflected_tugiisikuteenusel",
+      "response_text": "Ma ei leidnud praeguse otsinguga sellele piisavalt täpset õiguslikku allikakinnitust. Praegu kinnitavad allikad tugiisikuteenuse puhul eelkõige seda, et kõrvalabi vajadus hinnatakse iga inimese puhul eraldi ning KOV korraldab teenuse osutamise ja teenuseosutaja valiku (§ 24 „Kohaliku omavalitsuse üksuse kohustused“), kuid omaosaluse küsimust need detailid ei kinnita.\n\nKui soovid, saan edasi vaadata konkreetse omavalitsuse järgi, sest omaosaluse kord sõltub sageli KOV-i teenusekorraldusest.",
+      "displayed_sources": []
+    },
+    {
+      "run_id": "G11836073f370e816",
+      "question_id": "edge_crisis",
+      "response_text": "Helista kohe 112.\n\nKui saad, mine kohe inimese juurde, kes saab sinuga olla, ja pane enda lähedalt ära kõik, millega võiksid endale haiget teha. Kui oled üksi, ava uks või mine lähimasse turvalisse kohta.",
+      "displayed_sources": []
+    },
+    {
+      "run_id": "G6bbd4f08bf48a36e",
+      "question_id": "pdf_abivajav_laps_andmekaitse",
+      "response_text": "Ei, abivajavast lapsest teatamine ei ole iseenesest andmekaitsenõuete rikkumine.\n\nSelle info põhjal on teataja isikuandmete ja teatamise fakti avalikustamine üldreeglina keelatud, välja arvatud süüteomenetluses. Teataja võib enda või perekonna kaitseks jätta ka oma andmed avaldamata. Seega on süsteem mõeldud just selleks, et lapsest saaks ohutult teada anda ilma teatajat põhjendamatult paljastamata.\n\nOluline täpsustus: täielikku anonüümsust ei saa alati garanteerida, sest iga teabenõuet hinnatakse juhtumipõhiselt ja teataja teadmisvajadust tuleb põhjendada. Kui aga tegu on ametisiku poolt asutuse esindajana tehtud ametliku teatamisega, siis asutuse esindaja andmetele üldjuhul piirangut seada ei saa.\n\nKui soovid, saan selgitada ka, kuidas see praktikas lastekaitsele teatamisel või teabenõuetele vastamisel toimib.",
+      "displayed_sources": [
+        {
+          "title": "Juhend: abivajavast lapsest teatamine ja andmekaitse",
+          "url": "https://www.oiguskantsler.ee/sites/default/files/JUHEND%20-%20abivajavast%20lapsest%20teatamine%20ja%20andmekaitse%20%28jaanuar%202021%29.pdf",
+          "page_range": "1-4, 6-13"
+        },
+        {
+          "title": "Isikuandmed sotsiaalhoolekande- ja tervishoiusektoris",
+          "url": "https://www.aki.ee/sites/default/files/dokumendid/isikuandmed_sotsiaalhoolekande-_ja_tervishoiusektoris.pdf",
+          "page_range": "13"
+        }
+      ]
+    },
+    {
+      "run_id": "G1ce0c6aac30a3ae2",
+      "question_id": "pdf_opilase_toetamine_koolis",
+      "response_text": "Õpilase toetamiseks koolis on kasutusel mitu juhend- ja abimaterjali, mis keskenduvad nii õpilase toe vajaduse väljaselgitamisele kui ka koostööle koolis.\n\nPraktilised juhendmaterjalid:\n- „Koolitöötajad jms toetav süsteemne lähenemine“ – see annab etapilise ülevaate, kuidas õpilase toe vajadust välja selgitada ja kuidas teda toetada. Materjal rõhutab, et abi ei ole ette antud ühe kindla mudelina, vaid see tuleb kujundada kooli olukorra ja koostöö järgi. Seal on ka töölehti ja suunavaid küsimusi, mis aitavad tugimeeskonnal oma tööd analüüsida ning koostööd korraldada nii koolisiseselt kui ka väljaspool kooli. Samuti on seal kirjeldatud Rajaleidja rolli koostööpartnerina.\n\n- „Õpilase toetamine koolis“ – see materjal selgitab üldist, tõhustatud ja erituge ning tutvustab koolis kasutatavaid meetmeid ja tugitegevusi. See sobib hästi siis, kui on vaja üle vaadata, millised võimalused on õpilase toetamiseks koolikorralduse tasandil.\n\n- „Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös“ – see toetab õpetaja ja tugispetsialisti ühist tööd ning aitab mõista, kuidas erinevate õppijate vajadusi arvestada igapäevases õppetöös ja toe korraldamisel.\n\nTaustaks oli leitud ka kogemuslugu distantsõppe korraldusest HEV-õpilastele Keila Koolis, mis annab praktilise näite, kuidas koolis tuge korraldada eri olukordades. See ei ole üldine juhend, aga võib aidata näha, kuidas tugisüsteem reaalses koolielus toimib.\n\nKui soovid, võin neist teha ka lühikese võrdluse: mis sobib kooli tugimeeskonnale, mis õpetajale ja mis klassijuhatajale.",
+      "displayed_sources": [
+        {
+          "title": "Distantsõppe korraldus HEV-õpilastele Keila Koolis",
+          "url": null,
+          "page_range": "49-53"
+        },
+        {
+          "title": "Õpilase toetamine koolis (varasem versioon)",
+          "url": "https://harno.ee/sites/default/files/documents/2022-02/Juhendmaterjal_6pilase_toetamiseks_22.pdf",
+          "page_range": "1-3, 6, 17, 27"
+        },
+        {
+          "title": "Koolitöötajad jms toetav süsteemne lähenemine",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/Koolitootajad%20jms%20toetav%20s%C3%BCsteemne%20lahenemine_abimaterjal_kujundatud.pdf",
+          "page_range": "4-5"
+        },
+        {
+          "title": "Erinevate õppijate toetamine õpetaja ja tugispetsialisti koostöös",
+          "url": "https://harno.ee/sites/default/files/documents/2022-01/ErinevateOppijateToetamine_2021.pdf",
+          "page_range": "1, 45-46"
+        }
+      ]
+    },
+    {
+      "run_id": "Gfc8292fefe545e86",
+      "question_id": "pdf_marac_mudel",
+      "response_text": "MARAC on võrgustikupõhine juhtumikorralduse mudel, mida kasutatakse suure lähisuhtevägivalla riskiga täiskasvanud ohvrite abistamiseks. Selle eesmärk on tuvastada kõrge riskiga juhtumid, kindlustada ohvri kaitse mitme asutuse koostöös ning vähendada vägivalla kordumist ja raskeid tagajärgi.\n\nKuidas seda kasutatakse:\n1. Riski tuvastamine ja hindamine  \n   Lähisuhtevägivallaga tegelev spetsialist hindab juhtumi riski ohvriga vesteldes ja riskitegureid kaardistades. Kõrge risk tähendab, et ohvri elu või tervis võib olla ohus; see võib hõlmata ka tapmis- või suitsiidiohtu.\n\n2. Juhtumi suunamine MARACi  \n   Kui risk on kõrge, suunatakse juhtum MARACi. Eestis kasutatakse seda mudelit täiskasvanud perevägivalla ohvrite puhul.\n\n3. Mitme asutuse koostöö  \n   MARACi ümber koondub võrgustik, kuhu kuuluvad tavapäraselt ohvriabi, politsei, prokuratuur, KOV ja naiste tugikeskused. Lastega seotud juhtumites on oluline ka lastekaitse kaasamine.\n\n4. Individuaalne turvalisuse plaan  \n   Koosolekul luuakse ohvrile konkreetne turvalisuse plaan, mille täitmisel on igal osaleval asutusel oma roll ja vastutus.\n\n5. Järeltegevus ja mõju hindamine  \n   Võrgustik jälgib, kas kokkulepitud tegevused on tehtud ja kas need vähendavad riski.\n\nPraktiliselt tähendab see, et MARAC ei ole üks teenus, vaid koostöömudel, mis ühendab eri asutused üheks kiireks ja konfidentsiaalseks juhtumikorralduseks. See on mõeldud just siis, kui tavaline abi ei pruugi olla piisav ja oht on väga suur.\n\nKui soovid, võin selgitada ka, kuidas MARAC erineb tavapärasest juhtumikorraldusest või milline on KOV-i lastekaitse roll MARACis.",
+      "displayed_sources": [
+        {
+          "title": "Elude päästmine võrgustikutöös MARACi abil",
+          "url": null,
+          "page_range": "40-46"
+        },
+        {
+          "title": "MARAC-i juhendmaterjal",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2023-02/MARAC-i%20juhendmaterjal.pdf",
+          "page_range": "4-8"
+        }
+      ]
+    },
+    {
+      "run_id": "G68f304ba43b18132",
+      "question_id": "pdf_vaesus_statistika",
+      "response_text": "Andmed näitavad, et vaesus Eestis ei ole ühesugune nähtus, vaid jaguneb eri sügavusega kihtideks.\n\nÜldiselt eristatakse:\n- otsest vaesust, kus sissetulek on kuni 80% vaesuspiirist ja see seab ohtu esmavajaduste, eriti toidu ja eluaseme katmise;\n- toimetulekut ohustavat vaesust, kus sissetulek on 81–100% vaesuspiirist ning miinimumvajadused võivad olla küll kaetud, kuid tavapärane majanduslik toimetulek ja osalemine ühiskonnas on tugevalt pärsitud;\n- vaesuse riskipiirkonda, kus sissetulek on 101–125% vaesuspiirist ja inimene ei ole veel vaene, kuid on juba kõrges vaesumisriskis.\n\nSee tähendab, et vaesus ei ole ainult küsimus “kas inimene on vaene või mitte”, vaid ka sellest, kui lähedal ta on vaesuspiirile ja kui haavatav ta on ootamatute elusündmuste suhtes.\n\nEestis on oluline ka see, et vaesus ja sellega seotud toimetulekuraskused mõjutavad otseselt sotsiaalset ja majanduslikku osalemist. Eriti haavatavad on inimesed, kelle sissetulek jääb vaesuspiiri lähedale, sest väikegi muutus sissetulekus või kuludes võib nad kiiresti keerulisemasse olukorda viia.\n\nKui soovid, saan sellest teha ka lühikese ülevaate sellest, kuidas vaesust Eestis tavaliselt mõõdetakse ja mida need näitajad praktikas tähendavad.",
+      "displayed_sources": [
+        {
+          "title": "Vaesus Eestis",
+          "url": "https://www.stat.ee/sites/default/files/2020-07/Vaesus_Eestis_sisu.pdf",
+          "page_range": "6-7, 9-10, 14-18, 31, 47, 51, 53, 57, 65, 77-78, 81-82, 96, 130, 151, 156, 195"
+        },
+        {
+          "title": "Pikaajalise hoolduse olukord Eestis ja riigi väljakutsed omastehooldajate koormuse vähendamisel",
+          "url": null,
+          "page_range": "8-11"
+        },
+        {
+          "title": "Puuetega inimeste sotsiaalse rehabilitatsiooni vajaduse eelhindamine ja rehabilitatsiooniteenuste sisu kujundamine Eestis",
+          "url": null,
+          "page_range": "43-51"
+        },
+        {
+          "title": "Sotsiaalhoolekande seadus § 142 Sotsiaalteenuste ja -toetuste andmeregistri andmed",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Geaf6918f2f6a338a",
+      "question_id": "pdf_lapse_heaolu_hindamine",
+      "response_text": "Lapse heaolu ja abivajadust hinnatakse terviklikult, vaadates nii riske, vajadusi kui ka seda, kui sobivad on planeeritavad meetmed lapsele ja perele.\n\nPraktiliselt tähendab see kolme sammu:\n\n1. Kogutakse teave\nVaadatakse lapse olukorda eri eluvaldkondades: füüsiline tervis, vaimne tervis, emotsionaalne ja sotsiaalne toimetulek, areng, õppimine, pereolud, majanduslik olukord ja turvalisus. Abivajadus võib avalduda näiteks puudest, õpiraskustest, käitumis- või sõltuvusprobleemidest, väärkohtlemise või hooletusse jätmise kahtlusest või sellest, et vanemad ei suuda tagada vajalikku hooldust ja arengut toetavat keskkonda.\n\n2. Hinnatakse riski ja kaitsetegureid\nRiski hindamisel vaadatakse, kui palju on eri valdkondades riskitegureid ja kui vähe on kaitsetegureid. Mida rohkem riske ja vähem kaitsetegureid, seda kõrgem on tervikrisk ning seda intensiivsemaid ja ulatuslikumaid meetmeid võib vaja minna.\n\n3. Selgitatakse vajadused ja meetmete sobivus\nVajaduste hindamisel valitakse välja need riskitegurid, mida on kõige olulisem esmajärjekorras muuta ja mille mõjutamisel oleks lapse heaolule kõige suurem kasu. Seejärel hinnatakse, millised abinõud on lapsele ja perele kõige sobivamad, arvestades nende soove, võimalusi ja motivatsiooni.\n\nLastekaitsetöös tähendab see ka seda, et hinnang ei põhine ainult ühel juhtumil või ühel vestlusel, vaid kogutud teavet tuleb analüüsida koos lapse olukorra eri külgi mõjutavate teguritega. Oluline on vaadata ka, kuidas ühe valdkonna probleemid mõjutavad teisi valdkondi, näiteks kuidas perepinged mõjutavad lapse emotsionaalset heaolu või koolis hakkamasaamist.\n\nKui soovid, saan selle sama teema kohta anda ka praktilise hindamisküsimuste loetelu lastekaitsetööks.",
+      "displayed_sources": [
+        {
+          "title": "Lapse heaolu hindamise käsiraamat",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2025-11/k%C3%A4siraamat.pdf",
+          "page_range": "2-3, 8, 12-13, 16, 19, 23-27, 32, 64-65, 67-68"
+        },
+        {
+          "title": "Lapse heaolu hindamise käsiraamatust",
+          "url": null,
+          "page_range": "71-76"
+        }
+      ]
+    },
+    {
+      "run_id": "G617ccc4d5b75b5cb",
+      "question_id": "edge_followup_paragraph",
+      "response_text": "SHS § 23 räägib tugiisikuteenuse eesmärgist ja sisust.\n\nSee on kohaliku omavalitsuse korraldatav sotsiaalteenus, mille eesmärk on toetada inimese iseseisvat toimetulekut olukorras, kus ta vajab sotsiaalsete, majanduslike, psühholoogiliste või tervislike probleemide tõttu oma kohustuste täitmisel ja õiguste teostamisel olulisel määral kõrvalabi. Kõrvalabi tähendab siin eelkõige juhendamist, motiveerimist ning inimese suurema iseseisvuse ja omavastutuse arendamist.\n\nKui teenust osutatakse last kasvatavale isikule, on lisaks eesmärk tagada lapse hooldamine ning turvaline ja toetav kasvukeskkond. Lapse puhul on tugiisikuteenuse eesmärk koostöös last kasvatava isikuga lapse arengu toetamine. Vajaduse korral võib see hõlmata ka puudega lapse hooldustoimingute tegemist. Tugiisik aitab last arendavates tegevustes, juhendab ja motiveerib igapäevaelus toime tulema ning abistab suhtlemisel perekonnaliikmetega või väljaspool kodu.\n\nOluline eristus on see, et tugiisikuteenuse põhirõhk ei ole lihtsalt praktilisel abistamisel, vaid inimese toimetulekuvõime kasvatamisel. Ehk teenus on mõeldud pigem arendava ja juhendava toena kui täieliku asendamisena.\n\nKui soovid, võin järgmise sammuna selgitada ka, kuidas tugiisikuteenus erineb täisealise isiku hooldusest või asendushooldusest.",
+      "displayed_sources": [
+        {
+          "title": "Sotsiaalhoolekande seadus § 23 Tugiisikuteenuse eesmärk ja sisu",
+          "url": "https://www.riigiteataja.ee/akt/130122025029",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "Gace8564797085424",
+      "question_id": "edge_no_corpus_answer_v2",
+      "response_text": "Ma ei leidnud praeguse otsinguga sellele piisavalt täpset vastust Saksamaa hooldekodu koha maksumuse kohta.\n\nKui soovid, saan aidata Sul koostada täpse päringu või võrrelda Saksamaa hooldekodu kulusid hooldusvajaduse, liidumaa või teenusetüübi järgi.",
+      "displayed_sources": []
+    },
+    {
+      "run_id": "G079dc2879126c0d8",
+      "question_id": "pdf_inimkaubandus_ennetus",
+      "response_text": "Noortega töötamisel aitab inimkaubandust ennetada eelkõige see, kui noortele antakse selge ja praktiline teadmine riskidest ning nende enda õigustest.\n\nOlulised ennetusvõtted on:\n- selgitada, kuidas inimkaubandus võib varjatud kujul välja näha, mitte ainult kui „äärmuslik” kuritegu\n- rääkida turvalistest viisidest välismaale tööle või õppima minemiseks\n- õpetada, et töö- ja elutingimused, leping ja kokkulepped peavad olema arusaadavad ning kontrollitavad\n- tutvustada noortele Eesti tööturu regulatsioone ja seda, kuidas oma õiguste eest seista\n- arutada läbi riskisituatsioone, näiteks kahtlased tööpakkumised, väga head lubadused, surve kiiresti otsustada või dokumentide ära andmine\n- anda noortele oskus märgata ohumärke ja teada, kuidas abi otsida, kui endal või kaaslasel tekib probleem\n- rääkida ka sellest, kuidas hättasattunud kaaslast toetada ja kelle poole pöörduda\n\nKoolitusmaterjalide põhjal on eriti oluline, et noored ei näeks ohtu ainult „teiste probleemina”, vaid oskaksid seostada seda ka enda võimalike õppimise, tööle mineku või ajutise välismaal viibimise plaanidega.\n\nKui soovid, võin selle põhjal teha ka lühikese noortele mõeldud ennetussõnumi või töötoa kava.",
+      "displayed_sources": [
+        {
+          "title": "Inimkaubanduse ennetamine: metodoloogia tööks noortega",
+          "url": "https://sm.ee/sites/default/files/content-editors/eesmargid_ja_tegevused/Sooline_vordoiguslikkus/Inimkaubandus_ja_prostitusioon/inimkaubanduse_ennetamine_metodoloogia_tooks_noortega.pdf",
+          "page_range": "4, 6, 11, 28, 36, 55-56, 59, 62-65, 67-68, 75-76, 81-84, 89, 102-103"
+        }
+      ]
+    },
+    {
+      "run_id": "Ga506042f78bde981",
+      "question_id": "pdf_kubervagivald_ohver",
+      "response_text": "Kübervägivalla ohvri aitamisel on oluline tegutseda kiiresti, rahulikult ja ohvri kontrolli säilitamist toetavalt.\n\n1. Hinda vahetut ohtu\nKui on oht elule või tervisele, helista kohe 112.\n\n2. Kuula ja usu\nAnna inimesele selge sõnum, et juhtunu on tõsine ja tema ei ole süüdi. Ära suru peale otsuseid ega küsi süüdistavalt.\n\n3. Aita turvalisust suurendada\nSoovita lõpetada otsene kontakt vägivallatsejaga, muuta vajadusel paroolid, vaadata üle sotsiaalmeedia privaatsusseaded ja säilitada tõendid, näiteks ekraanipildid, sõnumid ja kuupäevad.\n\n4. Suuna sobiva abini\nAbi ja nõu saab:\n- 116 006 – Sotsiaalkindlustusameti ohvriabi kriisitelefon, kriisinõustamine ööpäevaringselt\n- 116 111 – lasteabitelefon\n- 660 6077 – vägivallast loobumise tugiliin tööpäeviti kell 10.00–16.00\n- palunabi.ee – saab nõu ka tekstivestluses\n- lasteabi.ee – saab nõu ka tekstivestluses\n- vaimse tervise veebinõustamine – tasuta teenus, millele saab registreeruda iseteenindusest\n- naiste tugikeskused – kui tegemist on naistevastase vägivallaga, sh kübervägivald\n\n5. Kui on laps või noor, kaasake lasteabi\nLapse puhul on oluline kiiresti kasutada lasteabi telefoni või veebinõustamist.\n\n6. Vajadusel paku järgnevat tuge\nAita ohvril jõuda ohvriabitöötaja, kriisinõustamise või muu spetsialisti juurde ning jälgi, et ta ei jääks juhtunuga üksi.\n\nKui soovid, võin sellest teha ka lühikese tegutsemisplaani spetsialistile või kliendiga kasutamiseks.",
+      "displayed_sources": [
+        {
+          "title": "Juhendmaterjal kübervägivallast ohvritega töötavatele spetsialistidele",
+          "url": "https://sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-10/Juhendmaterjal%20k%C3%BCberv%C3%A4givallast%20ohvritega%20t%C3%B6%C3%B6tavatele%20spetsialistidele.pdf",
+          "page_range": "1-5, 7-10, 14-19, 21-22, 24-25"
+        }
+      ]
+    },
+    {
+      "run_id": "G2a3e2f8ede1c67d0",
+      "question_id": "pdf_hoolekande_kvaliteet",
+      "response_text": "Hoolekandeteenuste kvaliteedi põhimõtted on üldjoontes need, mille järgi teenus peab olema inimesekeskne ja toimima nii, et see päriselt toetab abivajaja toimetulekut.\n\nAllikate põhjal on kinnitust saanud järgmised põhimõtted:\n- isikukesksus\n- võimestav lähenemine\n- tulemustele orienteeritus\n- vajaduspõhine lähenemine\n- terviklik lähenemine\n- isiku õiguste kaitse\n- kaasamine\n- töötaja pädevus ja eetika\n- organisatsiooni hea töökorraldus ja kvaliteetne juhtimine\n\nOluline mõte on ka see, et kvaliteet ei ole kunagi „valmis“ – teenuse kvaliteedi tagamine tähendab pidevat arendamist ja muutmist vastavalt inimeste vajadustele.\n\nKui soovid, võin need põhimõtted lahti selgitada ka ühe kaupa praktiliste näidetega sotsiaalteenuse kontekstis.",
+      "displayed_sources": [
+        {
+          "title": "Hoolekandeteenuste kvaliteedi juhendmaterjal",
+          "url": "https://www.sotsiaalkindlustusamet.ee/sites/default/files/documents/2024-02/hoolekandeteenuste_kvaliteedi_juhendmaterjal.pdf",
+          "page_range": "4-9, 32, 35, 38"
+        }
+      ]
+    },
+    {
+      "run_id": "G591d017281aae069",
+      "question_id": "pdf_toovoime_reform",
+      "response_text": "Uuringud näitavad peamiselt seda, et töövõimereformiga kaasnes vähenenud töövõimega inimeste tööturul osalemise kasv ja töötamise suhtes pigem positiivsem hoiak.\n\nPeamised punktid, millele praegused allikad kinnitust annavad:\n- vähenenud töövõimega inimeste tööhõive kasvas reformi järel;\n- reformi sihtrühmas ja ka tööandjate seas paranes hinnang reformi tulemuslikkusele;\n- mittetöötavate vähenenud töövõimega inimeste ja töövõimetuspensionäride seas oli huvi tasustatud töö vastu üsna suur, umbes pooltel;\n- töö leidmise võimalused paranesid, kuigi tööotsing võis võtta nende seas keskmiselt rohkem aega kui täieliku töövõimega inimestel;\n- reformi mõju ei olnud ühesugune kõigis rühmades, vaid sõltus ka inimeste olukorrast ja tööjõunõudlusest;\n- reformi ajal mõjutas tööturukäitumist lisaks poliitikareeglite muutusele ka soodne majanduslik olukord ja tööjõunõudluse kasv.\n\nÜks oluline sisuline järeldus on ka see, et reformi üks keskseid mõjusid oli töötamise võimaldamine ka osalise või puuduva töövõimega inimestele. See tuli uuringutes välja kui suur pluss, sest varem oli töö ja toetuse kombinatsioon piiratum.\n\nKui soovid, saan selle lahti võtta veel ka nii, et eristan:\n- mõju tööhõivele,\n- mõju hoiakutele,\n- mõju tööandjatele,\n- ja mida uuringud ütlevad reformi piiride kohta.",
+      "displayed_sources": [
+        {
+          "title": "Teadlikkus ja hoiakud vähenenud töövõimega inimeste ning töövõimereformi teemal",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/2017_tvr_koondraport.pdf",
+          "page_range": "16, 29, 109-111, 114-115, 118-120, 122, 126"
+        },
+        {
+          "title": "Töövõime toetamise süsteemi loomise ja juurutamise makromajandusliku mõju hindamine",
+          "url": "https://www.mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20s%C3%BCsteemi%20loomise%20ja%20juurutamise%20makromajandusliku%20m%C3%B5ju%20hindamine%20l%C3%B5pparuanne%20%282%29.pdf",
+          "page_range": "6-7, 9, 22-23, 131, 177, 197, 214-215, 229, 249-251, 255, 257"
+        },
+        {
+          "title": "Töövõime toetamise skeemi loomise ja juurutamise vahehindamise lõpparuanne",
+          "url": "https://mkm.ee/sites/default/files/documents/2023-07/T%C3%B6%C3%B6v%C3%B5ime%20toetamise%20skeemi%20loomise%20ja%20juurutamise%20vahehindamise%20l%C3%B5pparuanne.pdf",
+          "page_range": "70"
+        },
+        {
+          "title": "Pandeemia mõju laste vaimsele tervisele ja kuidas neid toetada. 1. osa",
+          "url": null,
+          "page_range": "70-76"
+        }
+      ]
+    },
+    {
+      "run_id": "G3615634ebdfffe24",
+      "question_id": "graph_kov_vormid_kontaktid",
+      "response_text": "Kuusalu vallas on koduteenuse jaoks taotlemise info olemas, kuid eraldi taotlusvormi linki või vorminime kasutatud allikad ei kinnita. Seega saab öelda vaid nii palju, et taotlemine käib valla koduteenuse lehe kaudu ning õiguslik alus on Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas, § 6 „Koduteenus“.\n\nPöörduda tasub Kuusalu valla sotsiaalteenistuse poole. Sobivad kontaktid on näiteks:\n\n- Aigi Reinomägi, hoolekandespetsialist  \n  tel 606 6381, 5191 4206  \n  aigi.reinomagi@kuusalu.ee\n\n- Kristiina-Raivi Vilepaju, hoolekandespetsialist  \n  tel 615 0504, 5305 2804  \n  kristiina-raivi.vilepaju@kuusalu.ee\n\n- Alvi Karp, juhtiv hoolekandespetsialist  \n  tel 606 6382, 5196 8482  \n  alvi.karp@kuusalu.ee\n\n- Ene Rebane, sotsiaaltoetuste spetsialist  \n  tel 606 6378, 5349 9503  \n  ene.rebane@kuusalu.ee\n\nKõigi kontaktide ühine aadress on Mõisa tee 17, Kiiu alevik, 74604 Kuusalu vald.  \n\nKui soovid, võin järgmise sammuna sõnastada sulle ka lühikese taotluse teksti või aidata koostada pöördumise sotsiaalteenistusele.",
+      "displayed_sources": [
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Koduteenus",
+          "url": "https://www.kuusalu.ee/koduteenus",
+          "page_range": null
+        },
+        {
+          "title": "Sotsiaalhoolekandelise abi andmise kord Kuusalu vallas § 6 Koduteenus",
+          "url": "https://www.riigiteataja.ee/akt/406062023041?leiaKehtiv",
+          "page_range": null
+        }
+      ]
+    },
+    {
+      "run_id": "G849de6a024613cf0",
+      "question_id": "ajakiri_integreeritud_teenused",
+      "response_text": "Ajakiri Sotsiaaltöö kirjutab integreeritud teenustest eeskätt laste ja perede toetamise vaates. Põhiidee on, et abi peaks jõudma lapseni võimalikult vara ja koostöös eri valdkondade vahel, mitte olema killustunud.\n\nNendes artiklites rõhutatakse eriti:\n- lapse abivajaduse varajast märkamist\n- pere, õpetajate, perearstide ja teiste spetsialistide rolli\n- sotsiaal-, haridus- ja tervishoiuvaldkonna koostööd\n- seda, et kohalikele omavalitsustele on toeks piirkondlikud Rajaleidja keskused\n- asjaolu, et teenused on sageli keerukad ja eri süsteemides jagunenud, mis teeb abi saamise peredele raskeks\n\nÜhes artiklis käsitletakse ka pilootprojekti tagasisidet ning seda, kuidas ametkondade koostöö ja üksteise valdkonna eripärade tundmine aitab paremini abi korraldada.\n\nKui soovid, võin sama teema kohta teha ka lühikese kokkuvõtte eraldi artiklite kaupa.",
+      "displayed_sources": [
+        {
+          "title": "Integreeritud teenused – kellele ja milleks?",
+          "url": null,
+          "page_range": "81-84"
+        },
+        {
+          "title": "Ajakiri Sotsiaaltöö – Laur Raudsoo vaade ajakirja arengule",
+          "url": null,
+          "page_range": "3-5"
+        },
+        {
+          "title": "Kuidas algas ajakirja Sotsiaaltöö teekond?",
+          "url": null,
+          "page_range": "10-12"
+        },
+        {
+          "title": "Integreeritud tugiteenused lastele – esimene tagasiside pilootprojektile",
+          "url": null,
+          "page_range": "53-56"
+        }
+      ]
+    },
+    {
+      "run_id": "G869a388df6af7b10",
+      "question_id": "ajakiri_kinnise_lasteasutuse_alternatiiv",
+      "response_text": "Ajakiri Sotsiaaltöö ei kirjelda nende allikate põhjal kinnise lasteasutuse teenusele selgeid konkreetseid alternatiive, vaid rõhutab pigem, et teenus on viimane abinõu lapsele, kelle käitumine ohustab tõsiselt tema enda või teiste elu, tervist või arengut.\n\nKüll aga on seal kaks olulist suunda, mis sisuliselt puudutavad alternatiive:\n1. Sotsiaalkindlustusamet töötas välja ühtse suunamisjuhise, et teenusele jõudmine oleks selgem ja kiirem.\n2. Ameti töögrupp pidi analüüsima teenuse puudujääke, sh seda, millised sihtgrupid on veel katmata, ning otsustama, milline sekkumine oleks tänapäevaste teadmiste alusel mõjusaim.\n\nTeisisõnu: Sotsiaaltöö artiklite põhjal räägitakse pigem vajadusest leida teenusele paremini sobivaid ja mõjusamaid sekkumisi kui nimetatakse valmis alternatiivteenuseid. Ma ei leidnud nende allikate põhjal piisavalt täpset loetelu konkreetsetest alternatiividest.",
+      "displayed_sources": [
+        {
+          "title": "Kinnise lasteasutuse teenus",
+          "url": null,
+          "page_range": "41-43"
+        },
+        {
+          "title": "Kinnise lasteasutuse teenusele suunatud noorte toetamine mitteformaalse õppega",
+          "url": null,
+          "page_range": "65-72"
+        }
+      ]
+    }
+  ]
+}
