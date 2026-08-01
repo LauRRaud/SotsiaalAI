@@ -69,6 +69,14 @@
 .gc-item[data-warp="1"] {
   transition: opacity 400ms var(--ease-soft);
 }
+/* Komplekti mälust taastamine pole karusselli pööramine. Uus komplekt
+   hajub gc-ignite'iga oma lõppasendisse, kuid initialKey → salvestatud
+   keskkaart rakendub hetkega. Nii ei jutusta hierarhias tagasi/edasi
+   liikumine ekslikult vasak-parem ruumilugu ning kaardi fikseeritud sheen
+   ei näi koos terve kaardireaga üle ekraani sõitvat. */
+.gc[data-restoring="1"] .gc-item {
+  transition: none;
+}
 .gc-list[data-dragging="1"] .gc-item {
   transition: none;
 }
@@ -544,10 +552,24 @@
     opacity: 0;
   }
 }
+@keyframes gc-set-enter {
+  from {
+    opacity: 0;
+  }
+}
 .room[data-power="igniting"] .gc-item:not([data-hidden="1"]),
 .room[data-power="on"] .gc-item:not([data-hidden="1"]) {
   animation: gc-ignite 1100ms var(--ease-soft) backwards;
   animation-delay: calc(var(--abs) * 240ms);
+}
+/* Peamenüü ↔ profiil (ja teised kaardikomplekti vahetused) ei ole ruumi
+   uus käivitus. Uus komplekt on kohe õiges asendis ning hajub ühe kihina
+   ilma külgsõidu, astaku või 1100 ms järelhelgita. Ühtlane 400 ms fade
+   algab kohe, kuid ei hüppa ease-soft'i järsu alguse tõttu hetkega peaaegu
+   täisheledusele — nii jääb vahetus rahulik, ilma hilise sheen'ita. */
+.room[data-power="on"] .gc[data-set-entry="1"] .gc-item:not([data-hidden="1"]) {
+  animation: gc-set-enter 400ms linear backwards;
+  animation-delay: 0ms;
 }
 html[data-reduce-motion="1"] .gc-item {
   animation: none !important;

@@ -26,6 +26,14 @@ import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
    et dokist üle teiste ridade möödumine ei jätaks jälge. */
 const HOVER_DWELL_MS = 180;
 
+/* Sama brauserivaate eluea jooksul hoitav kiire mälu. sessionStorage on
+   endiselt püsiv varuvariant (F5 ja route-remount), kuid seda saab lugeda
+   alles pärast esimest renderit. See kaart võimaldab tavalisel
+   peamenüü ↔ profiil navigeerimisel õige keskkaardi valida juba komponendi
+   ESIMESEL renderil — ekraanile ei teki hetkeks kahte eri valguskeset. */
+const carouselPositionMemory = new Map();
+let hasMountedRoomCarousel = false;
+
 const wrapPos = (i, active, n) => {
   let pos = (((i - active) % n) + n) % n;
   if (pos > n / 2) pos -= n;
@@ -56,6 +64,16 @@ export default function GlassCarousel({
   infoItem = null,
 }) {
   const n = items.length;
+
+  /* Esimene karussell kuulub ruumi käivituslavastusse. Kõik järgmised
+     mount'id samas brauserivaates on menüütaseme vahetused, mitte uus
+     käivitus — neile annab CSS lühikese viiteta hajumise. */
+  const [isSetEntry] = useState(
+    () => !dockOnly && typeof window !== "undefined" && hasMountedRoomCarousel
+  );
+  useEffect(() => {
+    if (!dockOnly) hasMountedRoomCarousel = true;
+  }, [dockOnly]);
 
   /* Laiad paigutused: 5-kaardiline karussell või sügavuslaud (zones).
      Kitsas aknas kukub mõlemad tagasi kolme kaardiga karusselliks.
@@ -179,9 +197,27 @@ export default function GlassCarousel({
      kaardi ja tekiks HYDRATION-MISMATCH: React regenereerib karusselli puu,
      kaardid virnaks hetkeks üksteise peale + topeltvarjud (tellija 07.07).
      Salvestatud koht taastatakse allpool ALLES pärast hüdreerimist. */
-  const [active, setActive] = useState(() => Math.max(0, indexOfKey(initialKey)));
+  const memoryActive =
+    !forceInitial && storageId && typeof window !== "undefined"
+      ? indexOfKey(carouselPositionMemory.get(storageId))
+      : -1;
+  const [active, setActive] = useState(() =>
+    memoryActive >= 0 ? memoryActive : Math.max(0, indexOfKey(initialKey))
+  );
   const activeRef = useRef(active);
   activeRef.current = active;
+
+  /* Komplekti vahetusel (nt peamenüü → profiil → peamenüü) sünnib
+     karussell uuesti. Server ja esimene kliendirender alustavad teadlikult
+     `initialKey`-st, kuid sessionStorage võib kohe pärast hüdreerimist
+     taastada mõne teise keskkaardi. See taastamine EI OLE kasutaja tehtud
+     karussellisamm: kui ta saaks 480 ms transformi, näiks terve uus menüü
+     vasakult/paremalt sisse sõitvat ja kaardi küljes olev läige voolaks
+     koos temaga üle ekraani. Esimese kahe kaadri jooksul keelame ainult
+     asukohatransitsiooni; gc-ignite'i opacity-sisenemine jääb alles. */
+  const [restoringPosition, setRestoringPosition] = useState(
+    () => Boolean(storageId && !forceInitial && memoryActive < 0)
+  );
 
   /* Taasta viimane keskkaart (sessionStorage) — AINULT kliendis, pärast
      esimest renderit, nii et hüdreerimine kattub serveriga. */
@@ -197,11 +233,24 @@ export default function GlassCarousel({
     } catch {}
   }, [forceInitial, storageId, indexOfKey]);
 
+  useEffect(() => {
+    if (!restoringPosition || typeof window === "undefined") return undefined;
+    let settleFrame = 0;
+    const paintFrame = window.requestAnimationFrame(() => {
+      settleFrame = window.requestAnimationFrame(() => setRestoringPosition(false));
+    });
+    return () => {
+      window.cancelAnimationFrame(paintFrame);
+      if (settleFrame) window.cancelAnimationFrame(settleFrame);
+    };
+  }, [restoringPosition]);
+
   /* Jäta iga vahetus meelde — tagasitulek samasse komplekti taastab koha. */
   useEffect(() => {
     if (!storageId || typeof window === "undefined") return;
     const key = items[active]?.key;
     if (!key) return;
+    carouselPositionMemory.set(storageId, key);
     try {
       window.sessionStorage.setItem(storageId, key);
     } catch {}
@@ -622,6 +671,8 @@ export default function GlassCarousel({
       data-visible={shown}
       data-desk={isDesk ? "1" : "0"}
       data-dock-only={dockOnly ? "1" : "0"}
+      data-restoring={restoringPosition ? "1" : "0"}
+      data-set-entry={isSetEntry ? "1" : "0"}
       /* --desk-cols peab elama SAMAL elemendil, kus --gc-w arvutatakse
          (.gc[data-desk="1"]): custom property asendatakse juba selle
          elemendi arvutatud väärtuses, seega lapsel antud arv jõuaks
