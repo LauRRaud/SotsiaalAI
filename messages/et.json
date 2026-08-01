@@ -5124,6 +5124,15 @@
     },
     "analytics": {
       "help": {
+        "section_platform": "Platvormi neli töövoogu ühe pilguga: vestlus ja hääl, abi töövoog, ruumid ja kutsed, dokumendid ja agent. Numbrid on 30 päeva kohta, kui pole teisiti märgitud. Kasuta seda selleks, et näha, milline töövoog päriselt elab ja milline seisab.",
+        "section_storage": "Serveripoolne failimaht rakenduse jälgitavates kaustades. „Vaba kettaruum\" on kogu ketta oma, mitte rakenduse kvoot — kui see läheneb nullile, seisab kõigepealt failide üleslaadimine. Kui mõnda teed ei saanud mõõta, ütleb seda eraldi hoiatus.",
+        "section_framework_acceptances": "Tööalase kasutuse raamistiku kinnitused: kes on registreerimisel raamistiku kinnitanud ja kes on allkirjastatud raamlepingu ka endale võtnud. Kinnitatud, aga alla laadimata leping tähendab, et kasutajal ei ole dokumenti käes.",
+        "section_rag_docs": "RAG teadmusbaasi seis ja kvaliteet. Ülemine osa on ülevaade (maht, staatused, metaandmete täielikkus, allikate täpsus), all kaks tööjärjekorda: kõrge riskiga allikad ja üldine kvaliteedijärjekord. Mõlemal järjekorral on oma ⓘ. Alusta kõrge riski järjekorrast — need allikad on kasutajani juba jõudnud.",
+        "section_billing": "Tellimused ja maksed 30 päeva jooksul. Ülemine rida on seis (aktiivsed, uued, lõpetatud), teine rida makseahel: algatatud → checkout → webhook. Kui checkout'ist makseni jõuab järsult vähem, on katkestus makseliideses, mitte nõudluses.",
+        "section_users": "Kasutajate kasutus, kulu ja limiidid. Siin on ka ohtlikud hulgitoimingud (kirja saatmine, kontode kustutamine) — mõlemad nõuavad põhjendust ja eraldi kinnitust ning näitavad enne täitmist mõju eelvaate. Kustutamine ei ole tagasivõetav.",
+        "section_ai_costs": "AI kulu jälgitavus ChatLogi põhjal: kasutusühikud, ligikaudne eurokulu, omistamise täielikkus ja eelarve lävendid. Ühik on sisemine normaliseeritud arvestus, MITTE teenusepakkuja arve. Kui kaetus on madal, on päris kasutus suurem kui siin näidatud number.",
+        "section_logs": "Sündmuste logi filtritega ja logide kustutamine. Kustutamine puudutab TÄPSELT neid ridu, mida filter parasjagu näitab — kontrolli filtrit enne, kui vajutad. Nõuab põhjendust ja kirjalikku kinnitust; kustutatut ei saa tagasi.",
+        "section_reset": "Käivituseelne puhastus: sihitud kustutustoimingud enne avalikku käivitamist. Iga toiming näitab kõigepealt mõju eelvaate ja nõuab kirjalikku kinnitust. Tootmises on täitmine eraldi keelatud — seal näed ainult eelvaadet.",
         "aria": "Kuidas seda tabelit lugeda",
         "framework_acceptances": "Viimased registreerimisel antud tööalase raamistiku kinnitused. Kontrolli, et uued liitujad siia jõuavad. Kui allkirjastatud raamlepingu allalaadimist ei ole märgitud, siis kasutaja ei ole lepingut endale võtnud — võta ühendust.",
         "high_risk_sources": "Allikad, mis jõudsid kõrge riskiga vastusesse või kuvatud allikate paneelile, kuigi nende värskus on aegunud, puudu või teadmata. Töötle ülevalt alla: iga rida siin on allikas, mida kasutaja võib juba näinud olla.",

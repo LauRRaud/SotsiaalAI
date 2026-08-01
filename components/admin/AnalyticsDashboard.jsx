@@ -2349,6 +2349,10 @@ export default function AnalyticsDashboard() {
             <div>
               <CardTitle>{t("admin.analytics.platform.title", "Platform overview")}</CardTitle>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_platform", "")}
+            />
           </div>
           <div className={platformGridClassName}>
             {platformCards.map(card => (
@@ -2370,6 +2374,10 @@ export default function AnalyticsDashboard() {
                 )}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_storage", "")}
+            />
           </div>
           <div className={docsGridClassName}>
             <KpiCard
@@ -2435,6 +2443,10 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.framework_acceptances.subtitle", "Viimased registreerimisel salvestatud tööalase kasutuse kinnitused.")}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_framework_acceptances", "")}
+            />
           </div>
           <div className={docsGridClassName}>
             <KpiCard
@@ -2537,6 +2549,10 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.rag_docs.subtitle", "Overview of indexing and recent additions.")}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_rag_docs", "")}
+            />
           </div>
           <div className={docsGridClassName}>
             <KpiCard
@@ -3143,6 +3159,10 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.billing.subtitle", "Payment flows and subscription activity over the last 30 days.")}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_billing", "")}
+            />
           </div>
 
           {loadingSummary ? (
@@ -3342,6 +3362,10 @@ export default function AnalyticsDashboard() {
             <div className={cellSubClassName}>
               {t("admin.analytics.users.actions.selected_count", { count: selectedUserIds.length }, "Selected: {count}")}
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_users", "")}
+            />
           </div>
 
           <div className={usersSummaryGridClassName}>
@@ -4038,6 +4062,10 @@ export default function AnalyticsDashboard() {
                 )}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_ai_costs", "")}
+            />
           </div>
 
           <SectionAlert
@@ -4430,6 +4458,10 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.logs.subtitle", "Latest events with filters.")}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_logs", "")}
+            />
           </div>
 
           <div className={logsToolbarClassName}>
@@ -4622,6 +4654,10 @@ export default function AnalyticsDashboard() {
                 {t("admin.analytics.reset.subtitle", "Run targeted cleanup actions before launch.")}
               </div>
             </div>
+            <TableInfo
+              label={t("admin.analytics.help.aria", "How to read this table")}
+              text={t("admin.analytics.help.section_reset", "")}
+            />
           </div>
 
           <div className={fieldClassName}>

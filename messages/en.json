@@ -5124,6 +5124,15 @@
     },
     "analytics": {
       "help": {
+        "section_platform": "The platform's four workflows at a glance: chat and voice, help flow, rooms and invites, documents and agent. Figures cover 30 days unless stated otherwise.",
+        "section_storage": "Server-side file usage across the paths the app tracks. Free disk space is the whole volume, not an app quota; when it nears zero, file uploads stop first.",
+        "section_framework_acceptances": "Work-framework acceptances: who confirmed the framework at registration and who also took the signed agreement. Accepted but not downloaded means the user does not have the document.",
+        "section_rag_docs": "State and quality of the RAG knowledge base. The top part is the overview; below are two work queues, each with its own info button. Start with the high-risk queue: those sources already reached users.",
+        "section_billing": "Subscriptions and payments over 30 days. The second row is the payment chain: initiated to checkout to webhook. A sharp drop between checkout and paid points at the payment integration.",
+        "section_users": "User usage, cost and limits. This section also holds the bulk actions (send email, delete accounts); both require a reason, a written confirmation and show an impact preview first. Deletion cannot be undone.",
+        "section_ai_costs": "AI cost observability from ChatLog: usage units, approximate euro cost, attribution completeness and budget thresholds. The unit is an internal normalised measure, not a provider invoice.",
+        "section_logs": "The event log with filters, plus log deletion. Deletion affects exactly the rows the filter currently shows: check the filter before you press. It needs a reason and a written confirmation, and cannot be undone.",
+        "section_reset": "Prelaunch reset: targeted cleanup actions before going live. Every action shows an impact preview first and needs a written confirmation. Execution is disabled in production; there you only get the preview.",
         "aria": "How to read this table",
         "framework_acceptances": "Recent work-framework acceptances captured at registration. Check that new sign-ups appear here; a missing framework download means the user has not taken the signed agreement.",
         "high_risk_sources": "Sources that reached a high-risk answer or the displayed-source panel while their freshness is stale, missing or unknown. Work top-down: every row here is a source a user may already have seen.",

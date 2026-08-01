@@ -82,7 +82,11 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
    kerides ekraani ülaservas (omanik 01.08: "võiks üleval pool veel olla").
    :has() piirab reegli AINULT selle lehega; RAG admin jääb puutumata. */
 .panel-scrim[data-admin="1"] .panel-body:has(.aa-shell) {
-  padding-top: clamp(2rem, 3.6lvh, 2.4rem);
+  /* Nurga-nuppude riba ei ole enam vaja: leht sai doki ja nurga-rist
+     kadus. Ülapolster on 0, et nav istuks päris akna ülaservas — omanik
+     01.08: "pane see menüü paneel täitsa lehe üles, näen, et seal on
+     tühi riba kasti servas". */
+  padding-top: 0;
 }
 
 /* ---------- Lehe päis ---------- */
@@ -201,24 +205,27 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   top: 0;
   z-index: 12;
   display: flex;
-  flex-wrap: nowrap;
+  /* MURRAB, mitte ei keri (omanik 01.08: "üleval menüüpaneelil ei mahu
+     kõik sisse"). Külgkerimisega riba peidab viimased sektsioonid ära ja
+     ei anna sellest märku — kaks rida on aus. Ruumi tuli juurde ka
+     sellest, et nurga-rist kadus (leht sai doki), nii et paremat reservi
+     enam ei ole. */
+  flex-wrap: wrap;
   gap: 0.3rem;
   align-items: center;
-  padding: 0.4rem 0.5rem;
-  padding-right: clamp(3rem, 5.5vw, 3.8rem); /* sulgemisrist jääb vabaks */
-  border-radius: 14px;
+  /* Täislaiuses ülariba: negatiivne külgmarginaal sööb panel-body
+     külgpolstri ära, nii et riba ulatub akna servast servani ja
+     ümardub akna enda ülanurkadega kokku. */
+  margin-inline: calc(-1 * clamp(1rem, 1.8vw, 1.9rem));
+  padding: 0.45rem clamp(1rem, 1.8vw, 1.9rem);
+  border-radius: 0 0 16px 16px;
   border: 1px solid var(--glass-cell-border);
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
+  border-top: none;
   background: rgba(18, 18, 18, 0.94);
   /* Prefiks ENNE standardit — Lightning CSS jätab duplikaadist viimase. */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 26px rgba(5, 5, 5, 0.38);
-}
-.aa-nav::-webkit-scrollbar {
-  display: none;
 }
 .aa-nav a {
   flex: none;
@@ -629,41 +636,62 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .aa-shell::be
   font-size: var(--fs-micro);
   color: var(--text-dim);
 }
-/* ⓘ — "kuidas seda tabelit lugeda". Alati rea PAREMAS servas (order),
-   abitekst alati omaette real tabeli kohal (order + täisrida). */
+/* ⓘ — "mida see näitab ja mida sellega teha". Esimene versioon oli hall
+   1,55rem ring rea kaugeimas paremas servas ja omanik ei leidnud teda
+   üldse üles (01.08). Nüüd: suurem, soe helendav serv ja PEALKIRJA
+   KÕRVAL (margin-right: auto tõmbab ta tiitliploki juurde) — see on
+   koht, kuhu silm sektsiooni avades niikuinii langeb. */
 .aa-info {
-  order: 9;
   flex: none;
   display: grid;
   place-items: center;
-  width: 1.55rem;
-  height: 1.55rem;
-  margin-left: 0.35rem;
+  width: 1.9rem;
+  height: 1.9rem;
   padding: 0;
   border-radius: 50%;
-  border: 1px solid var(--glass-cell-border);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--text-dim);
+  border: 1px solid rgba(180, 180, 180, 0.55);
+  background: rgba(180, 180, 180, 0.14);
+  color: var(--dusk-glow);
   font-family: var(--font-ui);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 650;
   line-height: 1;
   cursor: var(--cursor-pointer);
+  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.08);
   transition:
     background-color var(--dur-fast) var(--ease-soft),
     border-color var(--dur-fast) var(--ease-soft),
+    box-shadow var(--dur-fast) var(--ease-soft),
     color var(--dur-fast) var(--ease-soft);
+}
+/* Sektsiooni päises: kohe pealkirja järel, mitte rea teises otsas. */
+.aa-section-head > .aa-info {
+  margin-right: auto;
+  align-self: center;
+}
+/* `.aa-section-head > div` (0,1,1) annaks abipaneelile grid-paigutuse —
+   siin on vaja SAMA spetsiifilisusega vasturegel, muidu võidab tema. */
+.aa-section-head > .aa-infopanel {
+  display: block;
+  gap: 0;
+}
+/* Tabeli päises: rea paremas servas (seal on pealkiri sageli olemata). */
+.aa-tablehead > .aa-info {
+  order: 9;
+  margin-left: 0.35rem;
 }
 .aa-info:hover,
 .aa-info[aria-expanded="true"] {
-  background: var(--glass-cell-bg-hover);
-  border-color: rgba(255, 255, 255, 0.36);
+  background: rgba(180, 180, 180, 0.28);
+  border-color: var(--dusk-glow);
   color: var(--text-warm);
+  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.18);
 }
 .aa-infopanel {
   order: 10;
   flex: 1 1 100%;
+  width: 100%;
   display: block;
   padding: 0.55rem 0.8rem;
   border-radius: 10px;

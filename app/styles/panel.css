@@ -370,6 +370,18 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   width: 100%;
   height: calc(100lvh - clamp(1.5rem, 4lvh, 2.8rem));
 }
+/* Admin sai doki (lib/roomDock.js, omanik 01.08) → aken peab talle ruumi
+   jätma. Kaks parandust ühes: [1] ülalolev `padding` LÜHIVORM kustutas
+   `[data-dock="1"]` reegli padding-bottom'i (lühivorm lähtestab kõik neli
+   serva ja seisab failis hiljem), [2] admini fikseeritud `height` ei
+   allunud doki `--panel-max-h` reservile, nii et dokk oleks jäänud akna
+   PEALE seisma. */
+.panel-scrim[data-admin="1"][data-dock="1"] {
+  padding-bottom: var(--room-dock-reserve);
+}
+.panel-scrim[data-admin="1"][data-dock="1"] .panel {
+  height: calc(100lvh - var(--room-dock-reserve) - clamp(1.5rem, 4lvh, 2.8rem));
+}
 .panel-scrim[data-admin="1"] .panel-body {
   padding: clamp(1rem, 1.8vw, 1.9rem);
   padding-top: clamp(2.8rem, 5.5lvh, 3.4rem); /* nurga-nuppude riba */
