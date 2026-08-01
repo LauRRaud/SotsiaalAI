@@ -23,11 +23,16 @@ const AnalyticsDashboard = dynamic(() => import("@/components/admin/AnalyticsDas
   ssr: false,
   loading: () => <LoadingFallback />
 });
+/* Kõik neli plokki on ÜHE lehe sektsioonid, mitte neli iseseisvat vidinat:
+   ühine .aa-shell annab neile sama rütmi, sama pinna ja sama juhtelementide
+   mõõdu (app/styles/admin-analytics.css). */
 export default function AdminAnalyticsClient() {
-  return <>
+  return (
+    <div className="aa-shell">
       <AnalyticsDashboard />
       <UsageAdminPanel />
       <DeletionJobsPanel />
       <NotificationOperationsPanel />
-    </>;
+    </div>
+  );
 }

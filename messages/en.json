@@ -4975,6 +4975,7 @@
   },
   "admin": {
     "common": {
+      "table_scroll_hint": "Scroll sideways on smaller screens to see all columns.",
       "loading": "Loading...",
       "loading_data": "Loading data...",
       "saving": "Saving...",
@@ -5122,6 +5123,33 @@
       }
     },
     "analytics": {
+      "help": {
+        "aria": "How to read this table",
+        "framework_acceptances": "Recent work-framework acceptances captured at registration. Check that new sign-ups appear here; a missing framework download means the user has not taken the signed agreement.",
+        "high_risk_sources": "Sources that reached a high-risk answer or the displayed-source panel while their freshness is stale, missing or unknown. Work top-down: every row here is a source a user may already have seen.",
+        "quality_queue": "Source metadata, freshness, URL, form and contact gaps from the latest audited RAG documents, most severe first. The Fix column names the exact action and target.",
+        "rag_recent": "The most recently indexed RAG documents. Use it to confirm that an ingest actually landed and finished; FAILED rows need re-ingestion.",
+        "payments": "The latest 20 payment attempts across all time. Repeated FAILED rows from one provider point at a payment integration problem, not at the user.",
+        "users": "Per-user 30 day usage, budget-model cost estimate and active limits. The bars show how much of the limit is used: amber from 75%, red from 90%.",
+        "ai_features": "AI usage units by route and stage. Direct means measured usage, estimated means derived from the unit model; low coverage means the numbers understate real use.",
+        "ai_users": "Users who have reached at least 85% of their monthly budget. These are the accounts to review before the limit stops them mid-work.",
+        "ai_packages": "Budget tracking per package: how much of the package budget the active subscriptions have consumed.",
+        "logs": "The latest events with filters. Meta holds the machine-readable detail of the event; use the filters to isolate one event type or crisis flags."
+      },
+      "basis": {
+        "degraded": "Some metrics are degraded",
+        "sampled": "RAG derived metrics use a bounded sample"
+      },
+      "operations": {
+        "materials_pending": "Materials awaiting review",
+        "source_feedback_open": "OPEN source feedback",
+        "deletion_backlog": "Deletion backlog",
+        "service_confirmations": "Service confirmations",
+        "sent_unopened": "SENT, unopened over 7d"
+      },
+      "snapshot": {
+        "title": "Live snapshot"
+      },
       "title": "Analytics",
       "dangerous": {
         "reason": "Reason",
@@ -5144,6 +5172,7 @@
         "users_email_invalid_payload": "Email subject and message are required."
       },
       "events": {
+        "rag_trace": "RAG trace",
         "chat_request": "Chat request",
         "rag_search": "RAG search",
         "no_context": "No context",
@@ -5182,6 +5211,19 @@
         "both": "Both"
       },
       "meta": {
+        "retrieved": "retrieved",
+        "selected_context": "selected",
+        "displayed_sources": "displayed",
+        "filtered_sources": "filtered",
+        "retrievers": "retrievers",
+        "attribution": "attribution",
+        "trace_level": "trace",
+        "rag_risk": "risk",
+        "required_evidence": "evidence",
+        "query_plan_mode": "planner",
+        "query_plan_order": "query order",
+        "query_plan_queries": "queries",
+        "query_plan_strategy": "selection",
         "hits": "hits",
         "groups": "groups",
         "grounding": "grounding",
@@ -5194,6 +5236,16 @@
         "alert_code": "alert code"
       },
       "kpis": {
+        "rag_traces": {
+          "title": "RAG traces",
+          "meta": "Attribution trace events"
+        },
+        "retrievers": {
+          "title": "Retrievers"
+        },
+        "query_planner": {
+          "title": "Query planner"
+        },
         "requests_30d": {
           "title": "Requests (30d)",
           "meta": "Total chat requests"
@@ -5231,6 +5283,7 @@
         "title": "Platform overview",
         "subtitle": "Combined view of chat, help, collaboration and document workflows.",
         "chat": {
+          "rag_optional_errors_30d": "RAG optional errors (30d)",
           "title": "Chat and voice",
           "conversations_total": "Conversations total",
           "active_conversations_30d": "Active conversations (30d)",
@@ -5269,6 +5322,99 @@
         }
       },
       "rag_docs": {
+        "age": "Age",
+        "last_checked": "Last checked",
+        "fix_target": "Fix target",
+        "open_fix_target": "Open target",
+        "freshness_audited": "Freshness audited",
+        "freshness_audited_meta": "Latest RAG documents checked for source metadata freshness.",
+        "freshness_errors": "Freshness errors",
+        "freshness_errors_meta": "Stale {stale} | missing last_checked {missing} | expired {expired}",
+        "freshness_warnings": "Freshness warnings",
+        "freshness_warnings_meta": "Due soon {dueSoon} | unknown type {unknown} | invalid URL {invalidUrl} | missing form {missingForm} | missing contact {missingContact}",
+        "freshness_queue_alert": "Quality queue contains {count} RAG sources that need metadata or freshness review.",
+        "quality_queue": "RAG quality queue",
+        "quality_queue_subtitle": "Prioritized source metadata, freshness, URL, form and contact issues from the latest audited RAG documents.",
+        "quality_queue_empty": "No RAG source freshness issues found in the audited set.",
+        "high_risk_source_queue": "High-risk source risk",
+        "high_risk_source_queue_subtitle": "Sources that appeared in high-risk answers or displayed source panels and have stale, missing or unknown freshness status.",
+        "high_risk_source_queue_empty": "No high-risk source freshness issues found.",
+        "high_risk_queue_alert": "High-risk source risk queue contains {count} answer/display source issues.",
+        "high_risk_answer_source_risk": "High-risk answer source risk",
+        "high_risk_answer_source_risk_meta": "Answer-source responses {responses} | stale {stale} | unknown {unknownRate}",
+        "high_risk_displayed_source_risk": "High-risk displayed source risk",
+        "high_risk_displayed_source_risk_meta": "Displayed-source responses {responses} | stale {stale} | unknown {unknownRate}",
+        "metadata_contract": "Metadata contract",
+        "metadata_contract_meta": "Incomplete {incomplete} | missing required fields {required} | top: {topMissing}",
+        "metadata_by_collection": "Metadata by collection",
+        "metadata_by_collection_empty": "No collection-level metadata gaps found.",
+        "metadata_by_file_type": "Metadata by file type",
+        "metadata_by_file_type_empty": "No file-type metadata gaps found.",
+        "displayed_source_precision": "Displayed source precision",
+        "displayed_source_precision_meta": "Displayed checked {basis} | violations {violations} | affected traces {traces}",
+        "retrieved_noise_filtered": "Retrieved noise filtered",
+        "retrieved_noise_filtered_meta": "Retrieved not displayed {filtered}/{retrieved} | affected traces {traces}",
+        "wrong_municipality_rate": "Wrong KOV rate",
+        "wrong_municipality_rate_meta": "Wrong KOV sources {wrong}/{scoped} | affected traces {traces}",
+        "collection": {
+          "kov_web": "KOV web",
+          "kov_rt": "KOV RT",
+          "national_rt": "National RT",
+          "organizations": "Organizations",
+          "ajakiri_sotsiaaltoo": "Ajakiri Sotsiaaltöö",
+          "unknown": "Unknown"
+        },
+        "file_type": {
+          "rag_md": "RAG markdown",
+          "meta_json": "meta.json",
+          "data_json": "data.json",
+          "sources_json": "sources.json",
+          "rt_json": "RT JSON",
+          "rt_md": "RT markdown",
+          "rt_xml": "RT XML",
+          "xml": "XML",
+          "kov_data_item": "KOV data item",
+          "article_ingest": "Article ingest",
+          "unknown": "Unknown"
+        },
+        "freshness": {
+          "ok": "OK",
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error",
+          "stale": "Stale",
+          "due_soon": "Due soon",
+          "expired": "Expired",
+          "not_yet_valid": "Not yet valid",
+          "archived": "Archived",
+          "historical": "Historical",
+          "inactive": "Inactive",
+          "missing_url": "Missing URL",
+          "invalid_url": "Invalid URL",
+          "missing_last_checked": "Missing last_checked",
+          "invalid_last_checked": "Invalid last_checked",
+          "unknown_type": "Unknown type",
+          "contact_not_official_source": "Contact not official",
+          "canonical_item_municipality_conflict": "Canonical item KOV conflict",
+          "kov_service_missing_form_source": "Service missing form source",
+          "kov_service_missing_official_contact_source": "Service missing official contact source"
+        },
+        "high_risk_layer": {
+          "answer": "Answer source",
+          "claim": "Claim source",
+          "displayed": "Displayed source"
+        },
+        "remediation": {
+          "fill_required_metadata_fields": "Fill required metadata",
+          "fill_recommended_metadata_fields": "Fill recommended metadata",
+          "refresh_last_checked": "Refresh last_checked",
+          "fix_source_url": "Fix source URL",
+          "map_source_type": "Map source type",
+          "review_validity_window": "Review validity dates",
+          "review_source_metadata": "Review source metadata",
+          "add_or_link_form_source": "Add or link form source",
+          "add_or_link_official_contact_source": "Add or link official contact"
+        },
         "title": "RAG document base",
         "subtitle": "Overview of indexing and recent additions.",
         "total": "Total documents",
@@ -5279,6 +5425,9 @@
         "type": "Type"
       },
       "table": {
+        "fix": "Fix",
+        "layer": "Layer",
+        "reason": "Reason",
         "time": "Time",
         "title": "Title",
         "status": "Status",
@@ -5337,6 +5486,7 @@
         "title": "Users, costs and limits",
         "subtitle": "Per-user 30 day usage, estimated cost and current limits.",
         "summary": {
+          "roles": "Roles",
           "users": "Users in table",
           "estimated_cost": "Estimated cost (30d)",
           "paid_amount": "Paid amount (30d)",
@@ -5381,6 +5531,9 @@
         },
         "note": "Estimate model (EUR): chat/request {chat}, rag/search {rag}, stt/minute {stt}, tts/minute {tts}, base monthly budget {budget}, client monthly budget {budgetClient}, social work professional monthly budget {budgetWorker}. Daily analyze limits and monthly budget scale by role and current monthly fee. STT/TTS historical cost appears from event logging onwards.",
         "actions": {
+          "preview_delete": "Preview selected deletion",
+          "delete_preview_counts": "Requested: {requested}. Deletable: {deletable}.",
+          "delete_preview_done": "Deletion impact preview is ready.",
           "selected_count": "Selected: {count}",
           "selected_visible": "Selected from visible: {count}",
           "select_visible": "Select visible",
@@ -5407,6 +5560,7 @@
         }
       },
       "logs": {
+        "crisis_aggregate": "Crisis aggregate",
         "title": "Logs",
         "subtitle": "Latest 100 events with filters.",
         "actions": {
