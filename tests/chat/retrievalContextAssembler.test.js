@@ -136,6 +136,10 @@ test("municipality chat context can use service map KOV contacts", () => {
   assert.match(source, /KOV_GENERAL_CONTACT/);
   assert.match(source, /contextParts\.push\(serviceMapKovContactContext\)/);
   assert.match(source, /serviceMapKovContactCount/);
+  assert.match(source, /sobiv spetsialist soltub teemast/);
+  assert.match(source, /Ara esita meelevaldselt ainult uht-kaht inimest vaikimisi kontaktidena/);
+  assert.match(source, /preciseServiceContactUnsupported/);
+  assert.match(source, /CONTACT_EVIDENCE_STATUS: insufficient_service_match/);
 });
 
 test("buildLegalExactSelection keeps only requested legal paragraph groups", () => {
