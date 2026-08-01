@@ -137,7 +137,8 @@ test("municipality chat context can use service map KOV contacts", () => {
   assert.match(source, /contextParts\.push\(serviceMapKovContactContext\)/);
   assert.match(source, /serviceMapKovContactCount/);
   assert.match(source, /sobiv spetsialist soltub teemast/);
-  assert.match(source, /Ara esita meelevaldselt ainult uht-kaht inimest vaikimisi kontaktidena/);
+  assert.match(source, /Ara nimeta uht-kaht inimest, telefoninumbrit ega e-posti vaikimisi kontaktina/);
+  assert.match(source, /loetle koik olemasolevad kontaktid rollide kaupa/);
   assert.match(source, /preciseServiceContactUnsupported/);
   assert.match(source, /CONTACT_EVIDENCE_STATUS: insufficient_service_match/);
 });
