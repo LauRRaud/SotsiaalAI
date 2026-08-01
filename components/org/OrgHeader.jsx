@@ -27,10 +27,17 @@ export default function OrgHeader({ context }) {
           {" · "}
           {t(`org.legalKind.${organization.legalKind}`)}
           {seatRole ? ` · ${t(`org.seatRole.${seatRole}`)}` : ""}
+          {/* Maksja on neutraalne fakt, mitte staatus. Kui organisatsioon
+              maksab, ütleme seda otse — inimene peab teadma, kelle arvel ta
+              töötab (arenduskava §5.6). */}
           {payer ? ` · ${t("org.payer.label")}: ${t(`org.payer.${payer}`)}` : ""}
         </p>
       </div>
-      <OrgNav organizationId={organization.id} capabilities={context.capabilities || []} />
+      <OrgNav
+        organizationId={organization.id}
+        capabilities={context.capabilities || []}
+        activeModules={context.activeModules || []}
+      />
     </header>
   );
 }

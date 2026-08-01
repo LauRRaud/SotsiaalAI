@@ -15,14 +15,31 @@ import { useI18n } from "@/components/i18n/I18nProvider";
  * See on MUGAVUS, mitte turvapiir: iga link viib route'i peale, mis kontrollib
  * õigust ise uuesti. Navigatsiooni peitmine üksi ei kaitse midagi.
  */
-export default function OrgNav({ organizationId, capabilities = [] }) {
+export default function OrgNav({ organizationId, capabilities = [], activeModules = [] }) {
   const { t } = useI18n();
   const pathname = usePathname();
   const granted = new Set(capabilities.map((grant) => grant.capability));
+  const modules = new Set(activeModules);
 
   const items = [
     { key: "overview", href: `/org/${organizationId}`, label: t("org.nav.overview") },
     { key: "structure", href: `/org/${organizationId}/struktuur`, label: t("org.nav.structure") },
+    /* Vastuvõtt sõltub MOODULIST, mitte capability'st. Teadlik erand
+       capability-põhisest peitmisest: määratud töötajal EI OLE
+       `INBOX_COORDINATOR`-it, aga ta peab oma tööd nägema. Loend on serveris
+       skoobitud — õiguseta liige näeb tühja lauda, mitte võõrast tööd. */
+    {
+      key: "inbox",
+      href: `/org/${organizationId}/vastuvott`,
+      label: t("org.nav.inbox"),
+      requiresModule: "KOV_INTAKE"
+    },
+    {
+      key: "funding",
+      href: `/org/${organizationId}/arveldus`,
+      label: t("org.nav.funding"),
+      requires: "BILLING_MANAGER"
+    },
     {
       key: "members",
       href: `/org/${organizationId}/liikmed`,
@@ -47,7 +64,11 @@ export default function OrgNav({ organizationId, capabilities = [] }) {
       label: t("org.nav.settings"),
       requires: "ORG_OWNER"
     }
-  ].filter((item) => !item.requires || granted.has(item.requires));
+  ].filter(
+    (item) =>
+      (!item.requires || granted.has(item.requires)) &&
+      (!item.requiresModule || modules.has(item.requiresModule))
+  );
 
   return (
     <nav className="ow-nav" aria-label={t("org.title")}>
