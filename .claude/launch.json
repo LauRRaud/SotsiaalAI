@@ -31,6 +31,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-rooms-calls-e1", "dev:3001"],
       "port": 3001
+    },
+    {
+      "name": "next-dev-org-a",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-org-foundation-v1", "dev:3001"],
+      "port": 3001
     }
   ]
 }
