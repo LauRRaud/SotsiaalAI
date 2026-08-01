@@ -273,3 +273,109 @@ test("buildPackageAwareContext exposes confirmed form URLs for answer text", () 
   assert.equal(result.contextText.includes("Teenuse olemasolu küsimuses anna kohe tervikvastus"), true);
   assert.equal(result.contextText.includes("Ära lõpeta vastust lubadusega"), true);
 });
+
+function harkuServicePackages() {
+  return [
+    {
+      package_id: "harku_vald_service_sotsiaaltransporditeenus_package",
+      canonical_item_id: "harku_vald_service_sotsiaaltransporditeenus",
+      package_type: "kov_service",
+      title: "Sotsiaaltransporditeenus",
+      municipality_id: "harku_vald",
+      sections: {
+        description: [{ source_id: "harku-sotsiaaltransport", title: "Sotsiaaltransporditeenus" }],
+        application: [{ source_id: "harku-sotsiaaltransport", title: "Sotsiaaltransporditeenus" }],
+        contacts: [{ source_id: "harku-contact", title: "Sotsiaal- ja tervishoiuosakonna kontaktid" }],
+        fees: [{ source_id: "harku-sotsiaaltransport", title: "Sotsiaaltransporditeenus" }],
+        deadlines: [{ source_id: "harku-sotsiaaltransport", title: "Sotsiaaltransporditeenus" }]
+      },
+      source_ids: ["harku-sotsiaaltransport", "harku-contact"],
+      missing_sections: ["forms"]
+    },
+    {
+      package_id: "harku_vald_service_uldhooldusteenus_package",
+      canonical_item_id: "harku_vald_service_uldhooldusteenus",
+      package_type: "kov_service",
+      title: "Üldhooldusteenus väljaspool kodu",
+      municipality_id: "harku_vald",
+      sections: {
+        description: [{ source_id: "harku-uldhooldus", title: "Üldhooldusteenus väljaspool kodu" }],
+        application: [{ source_id: "harku-uldhooldus", title: "Üldhooldusteenus väljaspool kodu" }],
+        forms: [{ source_id: "harku-uldhooldus-form", title: "Üldhooldusteenuse taotlus" }],
+        contacts: [{ source_id: "harku-contact", title: "Sotsiaal- ja tervishoiuosakonna kontaktid" }],
+        legal_basis: [{ source_id: "harku-uldhooldus-law", title: "Üldhooldusteenuse kord" }]
+      },
+      source_ids: ["harku-uldhooldus", "harku-uldhooldus-form", "harku-contact", "harku-uldhooldus-law"],
+      missing_sections: []
+    }
+  ];
+}
+
+for (const query of [
+  "sotsiaaltransporditeenus",
+  "sotsiaaltransporditeenust",
+  "sotsiaaltransporditeenuse taotlemine",
+  "kas sotsiaaltransporditeenusel on tasu",
+  "kelle poole sotsiaaltransporditeenuse asjus pöörduda"
+]) {
+  test(`buildPackageAwareContext normalizes inflected service anchor: ${query}`, () => {
+    const result = buildPackageAwareContext(harkuServicePackages(), { query });
+
+    assert.equal(result.used, true);
+    assert.equal(result.packageSelectionStatus, "exact_service_match");
+    assert.deepEqual(result.usedPackageIds, ["harku_vald_service_sotsiaaltransporditeenus_package"]);
+    assert.deepEqual(result.packageDisplayedSourceIds, ["harku-contact", "harku-sotsiaaltransport"]);
+    assert.equal(result.contextText.includes("Üldhooldusteenus väljaspool kodu"), false);
+  });
+}
+
+test("buildPackageAwareContext fails closed instead of selecting the richest unrelated KOV package", () => {
+  const result = buildPackageAwareContext(harkuServicePackages().slice(1), {
+    query: "Kuidas taotleda Harku vallas sotsiaaltransporditeenust?"
+  });
+
+  assert.equal(result.used, false);
+  assert.equal(result.packageSelectionStatus, "insufficient_service_match");
+  assert.equal(result.insufficientPreciseSupport, true);
+  assert.deepEqual(result.packageAnswerFlags, ["insufficient_service_match"]);
+  assert.deepEqual(result.usedPackageIds, []);
+  assert.deepEqual(result.packageDisplayedSourceIds, []);
+});
+
+test("buildPackageAwareContext accepts a strong multiword service-name match", () => {
+  const result = buildPackageAwareContext([
+    {
+      package_id: "johvi_service_isikliku_abistaja_teenus_package",
+      canonical_item_id: "johvi_service_isikliku_abistaja_teenus",
+      package_type: "kov_service",
+      title: "Isikliku abistaja teenus",
+      municipality_id: "johvi_vald",
+      sections: {
+        description: [{ source_id: "johvi-isiklik-abistaja", title: "Isikliku abistaja teenus" }]
+      },
+      source_ids: ["johvi-isiklik-abistaja"],
+      missing_sections: []
+    }
+  ], {
+    query: "Kas Jõhvi vallas saab isikliku abistaja teenust?"
+  });
+
+  assert.equal(result.used, true);
+  assert.equal(result.packageSelectionStatus, "strong_lexical_match");
+  assert.deepEqual(result.usedPackageIds, ["johvi_service_isikliku_abistaja_teenus_package"]);
+});
+
+test("buildPackageAwareContext makes relevant missing precise evidence enforceable", () => {
+  const packages = harkuServicePackages();
+  packages[0].sections.fees = [];
+  packages[0].missing_sections = ["fees"];
+  const result = buildPackageAwareContext(packages, {
+    query: "Kas sotsiaaltransporditeenusel on tasu?"
+  });
+
+  assert.equal(result.used, true);
+  assert.equal(result.insufficientPreciseSupport, true);
+  assert.deepEqual(result.requiredEvidenceSections, ["fees"]);
+  assert.equal(result.packageAnswerFlags.includes("missing_fees"), true);
+  assert.equal(result.contextText.includes("ära kasuta selle detaili täitmiseks teise teenuse package'it ega üldteadmisi"), true);
+});

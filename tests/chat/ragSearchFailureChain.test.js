@@ -64,6 +64,10 @@ test("edukas nulltulemusega otsing jätab ragSearchFailed=false ega logi rag_err
   assert.equal(result.retrievalMeta.ragSearchFailed, false);
   assert.equal(result.retrievalMeta.rawMatchesCount, 0);
   assert.equal(events.find(e => e.event === "rag_error"), undefined);
+  assert.equal(
+    result.extraSystemInstructions.some(instruction => instruction.includes("STRICT_CORPUS_BOUNDARY")),
+    true
+  );
 });
 
 test("edukas tulemusega otsing ei muutu ja ragSearchFailed jääb false", async () => {
