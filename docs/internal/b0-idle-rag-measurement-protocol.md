@@ -12,7 +12,12 @@ readiness-lahendust.
 
 ## Päringud ja konto
 
-Kasutatakse ainult olemasolevat sünteetilist NextAuth testisessiooni.
+Kasutatakse ainult sünteetilist NextAuth testisessiooni. 01.08.2026 tootmise
+eelkontrollis ei leidunud ühtegi `@sotsiaalai.test` kontot ning olemasolev
+`~/.luna-test.env` sessioon ei läbinud sünteetilise konto väravat. Mõõtmisakna
+jaoks luuakse seetõttu omaniku loal üks minimaalne ülesandepõhine
+`SOCIAL_WORKER` testidentiteet; selle sessioon on eraldi 600-loaga failis
+`~/.b0-idle-rag-test-session.env`. Olemasolevat sessioonifaili ei muudeta.
 Päringuvariandid on mittetundlikud, sisuliselt võrreldavad ja salvestatakse
 mõõteartefaktis ainult tähistega A/B. Päringutekstid hoitakse serveris 600-
 loaga ajutises env-failis; CSV-sse, journald'i ja analüüsifailidesse neid ei
@@ -78,3 +83,6 @@ Pärast piisava valimi või viiepäevase akna lõppu timer disable/stop-itakse,
 loodud unitid eemaldatakse, tehakse daemon-reload ning kontrollitakse, et
 app-teenused on endiselt active ja nende PID-id ei muutunud. Säilitatakse ainult
 sanitiseeritud CSV ja analüüs; ajutine päringu-env ning mõõtebundle eemaldatakse.
+Ülesandepõhine sessioonifail, sünteetilise konto ChatLog-read ja konto ise
+eemaldatakse pärast andmete turvalist kopeerimist; teiste kasutajate andmeid ei
+puudutata.

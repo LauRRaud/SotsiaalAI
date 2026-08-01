@@ -10,7 +10,7 @@ User=ubuntu
 Group=ubuntu
 WorkingDirectory=/home/ubuntu/apps/sotsiaalai
 EnvironmentFile=/etc/sotsiaalai/frontend.env
-EnvironmentFile=/home/ubuntu/.luna-test.env
+EnvironmentFile=/home/ubuntu/.b0-idle-rag-test-session.env
 EnvironmentFile=/etc/sotsiaalai/b0-idle-rag-measurement.env
 Environment=B0_MEASUREMENT_CSV=/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/b0-idle-rag-measurements.csv
 Environment=B0_MEASUREMENT_STATE=/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/state.json
