@@ -92,6 +92,9 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "case_work",
     "practice_reflection"
   ]);
+  /* T25 ORG-FOUNDATION-V1 (viil A, otsus O-E0-2): `org_space` liikus RESERVED →
+     SUPPORTED. See on TEADLIK lepingumuudatus, mitte testi lõdvendus —
+     organisatsioonikontekst vajab üht kanoonilist ajajoone- ja auditivõtit. */
   assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
     "room",
     "covision_case",
@@ -99,6 +102,7 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "wellbeing_space",
     "mentoring_process",
     "field_visit",
+    "org_space",
     "practice_reflection"
   ]);
   assert.deepEqual(RESERVED_WORKSPACE_KINDS, [
@@ -107,7 +111,6 @@ test("K1 registry contains every approved kind and separates supported adapters 
     "topic_seed",
     "meeting",
     "network_case",
-    "org_space",
     "case_work"
   ]);
   assert.equal(WORKSPACE_KIND_REGISTRY.room.status, WorkspaceKindStatus.SUPPORTED);

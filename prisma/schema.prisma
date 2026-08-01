@@ -786,6 +786,18 @@ model User {
   mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
   mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
   fieldVisits                  FieldVisit[]               @relation("FieldVisitOwner")
+  // T25 ORG-FOUNDATION-V1: liikmesus on eraldi objekt, MITTE kasutaja väli.
+  // `User.role` jääb hinnastatavaks tootepersonaks; organisatsioonisisene
+  // õigus elab `OrganizationCapabilityGrant`-is (arenduskava §D3).
+  organizationMemberships          OrganizationMembership[]      @relation("OrganizationMembershipUser")
+  organizationMembershipsInvited   OrganizationMembership[]      @relation("OrganizationMembershipInvitedBy")
+  organizationsCreated             Organization[]                @relation("OrganizationCreatedBy")
+  organizationsVerified            Organization[]                @relation("OrganizationVerifiedBy")
+  organizationModulesActivated     OrganizationModule[]          @relation("OrganizationModuleActivatedBy")
+  organizationCapabilitiesGranted  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityGrantedBy")
+  organizationCapabilitiesRevoked  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityRevokedBy")
+  organizationInvitesSent          OrganizationInvite[]          @relation("OrganizationInviteInvitedBy")
+  organizationInvitesAccepted      OrganizationInvite[]          @relation("OrganizationInviteAcceptedBy")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -1714,6 +1726,7 @@ model Municipality {
   helpOffers        HelpOffer[]
   kovAdmin          MunicipalityKovAdmin?
   serviceMapEntries ServiceMapEntry[]
+  organizations     Organization[]
 
   @@index([baseName])
   @@index([type])
@@ -4287,4 +4300,305 @@ model MentoringAuditEvent {
   @@index([profileId, createdAt])
   @@index([relationId, createdAt])
   @@index([action, createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// T25 ORG-FOUNDATION-V1 (viil A) — KOV-i ja teenuseosutaja organisatsioonikiht.
+//
+// PIIR, mida ei tohi hägustada: need mudelid EI OLE seotud `OrganizationAdmin`
+// ega `MunicipalityKovAdmin` mudelitega. Need kaks on RAG-allikate
+// haldusregistrid; `OrganizationAdminFile.organizationId` viitab
+// `OrganizationAdmin`-ile, MITTE siinsele `Organization`-ile. Iga uus
+// `organizationId` selles plokis tähendab ainult `Organization.id`.
+//
+// Organisatsiooniõigus EI asenda ühegi olemasoleva objekti owner-/participant-
+// kontrolli. Siin ei ole ühtegi viidet `WellbeingRecord`-ile, `Conversation`-ile,
+// `Journey`-le, `UserDocument`-ile, supervisioonile ega mentorlusele — see on
+// invariant, mitte tegemata töö (arenduskava §4, §D8).
+//
+// Enumitesse on teadlikult lisatud AINULT CORE-V1 viilu A väärtused. Postgres
+// ei võimalda enum-väärtust hiljem lihtsalt eemaldada, seega „reserveeritud"
+// capability'd (AGGREGATE_VIEWER, REPORT_APPROVER, SCHEDULER,
+// ON_CALL_COORDINATOR) ja moodulid (WELLBEING_AGGREGATE, ON_CALL) lisab see
+// viil, mis nad päriselt kasutusele võtab (`ALTER TYPE ... ADD VALUE`).
+// ---------------------------------------------------------------------------
+
+enum OrganizationLegalKind {
+  MUNICIPALITY
+  PUBLIC_AGENCY
+  COMPANY
+  NGO
+  FOUNDATION
+  SOLE_PROPRIETOR
+  OTHER
+}
+
+enum OrganizationStatus {
+  DRAFT
+  PENDING_VERIFICATION
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum OrganizationModuleKey {
+  KOV_INTAKE
+  SERVICE_DELIVERY
+  PROFESSIONAL_SUPPORT
+  ORG_KNOWLEDGE
+}
+
+enum OrganizationModuleStatus {
+  DRAFT
+  ACTIVE
+  SUSPENDED
+}
+
+enum OrganizationUnitType {
+  DEPARTMENT
+  TEAM
+  SERVICE_LOCATION
+  OTHER
+}
+
+enum OrganizationUnitStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum OrganizationMembershipStatus {
+  ACTIVE
+  SUSPENDED
+  ENDED
+}
+
+// TEADLIKULT ilma `CLIENT`-ita (arenduskava §D6, otsus O-E0-1): pöörduja
+// sponsoreeritud ligipääs ei ole töötajakoht ega organisatsiooniliikmesus.
+enum OrganizationSeatRole {
+  SOCIAL_WORKER
+  SERVICE_PROVIDER
+}
+
+enum OrganizationCapability {
+  ORG_OWNER
+  MEMBER_ADMIN
+  UNIT_LEAD
+  INBOX_COORDINATOR
+  WORK_ASSIGNER
+  SERVICE_PROFILE_EDITOR
+  SUPPORT_CONTACT_ADMIN
+  BILLING_MANAGER
+  AUDIT_VIEWER
+}
+
+enum OrganizationCapabilityScopeType {
+  ORGANIZATION
+  UNIT
+}
+
+enum OrganizationInviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REVOKED
+  EXPIRED
+}
+
+model Organization {
+  id               String                @id @default(cuid())
+  displayName      String
+  legalName        String?
+  registryCode     String?
+  legalKind        OrganizationLegalKind
+  municipalityId   String?
+  status           OrganizationStatus    @default(DRAFT)
+  defaultLocale    String                @default("et")
+  timezone         String                @default("Europe/Tallinn")
+  createdByUserId  String?
+  verifiedAt       DateTime?
+  verifiedByUserId String?
+  verificationNote String?
+  activatedAt      DateTime?
+  suspendedAt      DateTime?
+  suspendedReason  String?
+  archivedAt       DateTime?
+  archivedReason   String?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  // SetNull kõikjal: konto kustutamine ei tohi organisatsiooni kaotada ega
+  // blokeeruda (arenduskava §E10 „konto jääb alles", GDPR-kustutusrada).
+  municipality Municipality? @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  createdBy    User?         @relation("OrganizationCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  verifiedBy   User?         @relation("OrganizationVerifiedBy", fields: [verifiedByUserId], references: [id], onDelete: SetNull)
+
+  modules     OrganizationModule[]
+  units       OrganizationUnit[]
+  memberships OrganizationMembership[]
+  invites     OrganizationInvite[]
+
+  @@index([status])
+  @@index([legalKind])
+  @@index([municipalityId])
+  @@index([createdByUserId])
+  @@index([registryCode])
+}
+
+model OrganizationModule {
+  id                String                   @id @default(cuid())
+  organizationId    String
+  moduleKey         OrganizationModuleKey
+  status            OrganizationModuleStatus @default(DRAFT)
+  validFrom         DateTime                 @default(now())
+  validUntil        DateTime?
+  activatedByUserId String?
+  reason            String?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  activatedBy  User?        @relation("OrganizationModuleActivatedBy", fields: [activatedByUserId], references: [id], onDelete: SetNull)
+
+  // Üks AKTIIVNE moodul organisatsiooni + moodulivõtme kohta on osaline
+  // unikaalsus → raw-SQL indeks migratsioonis, mitte @@unique siin.
+  @@index([organizationId, status])
+  @@index([moduleKey, status])
+}
+
+model OrganizationUnit {
+  id             String                 @id @default(cuid())
+  organizationId String
+  parentUnitId   String?
+  type           OrganizationUnitType   @default(TEAM)
+  name           String
+  status         OrganizationUnitStatus @default(ACTIVE)
+  sortOrder      Int                    @default(0)
+  // Juuretasand = 1, maksimaalne toetatud sügavus V1-s = 3 (arenduskava §5.2).
+  // Salvestatud, et sügavuskontroll ei nõuaks rekursiivset päringut igal kirjutusel.
+  depth          Int                    @default(1)
+  archivedAt     DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  // Restrict: alamüksusega üksust ei saa vaikselt ära kustutada.
+  parentUnit   OrganizationUnit? @relation("OrganizationUnitTree", fields: [parentUnitId], references: [id], onDelete: Restrict)
+
+  childUnits       OrganizationUnit[]            @relation("OrganizationUnitTree")
+  membershipUnits  OrganizationMembershipUnit[]
+  capabilityGrants OrganizationCapabilityGrant[]
+  invites          OrganizationInvite[]
+
+  @@index([organizationId, status, sortOrder])
+  @@index([organizationId, parentUnitId])
+  @@index([parentUnitId])
+}
+
+model OrganizationMembership {
+  id              String                       @id @default(cuid())
+  organizationId  String
+  userId          String
+  status          OrganizationMembershipStatus @default(ACTIVE)
+  seatRole        OrganizationSeatRole
+  jobTitle        String?
+  startedAt       DateTime                     @default(now())
+  endedAt         DateTime?
+  endedReason     String?
+  invitedByUserId String?
+  createdAt       DateTime                     @default(now())
+  updatedAt       DateTime                     @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation("OrganizationMembershipUser", fields: [userId], references: [id], onDelete: Cascade)
+  invitedBy    User?        @relation("OrganizationMembershipInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+
+  units            OrganizationMembershipUnit[]
+  capabilityGrants OrganizationCapabilityGrant[]
+
+  // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
+  @@index([organizationId, status])
+  @@index([userId, status])
+  @@index([organizationId, seatRole, status])
+}
+
+model OrganizationMembershipUnit {
+  id           String    @id @default(cuid())
+  membershipId String
+  unitId       String
+  isPrimary    Boolean   @default(false)
+  startedAt    DateTime  @default(now())
+  endedAt      DateTime?
+  createdAt    DateTime  @default(now())
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  unit       OrganizationUnit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  // Üks aktiivne põhiüksus liikmesuse kohta ja üks aktiivne rida
+  // (membership, unit) kohta → osalised unikaalindeksid migratsioonis.
+  // Üksuse vahetus lõpetab vana rea (`endedAt`), ei kustuta ajalugu.
+  @@index([membershipId, endedAt])
+  @@index([unitId, endedAt])
+}
+
+model OrganizationCapabilityGrant {
+  id              String                          @id @default(cuid())
+  membershipId    String
+  capability      OrganizationCapability
+  scopeType       OrganizationCapabilityScopeType @default(ORGANIZATION)
+  scopeUnitId     String?
+  validFrom       DateTime                        @default(now())
+  validUntil      DateTime?
+  revokedAt       DateTime?
+  revokedByUserId String?
+  grantedByUserId String?
+  reason          String?
+  createdAt       DateTime                        @default(now())
+  updatedAt       DateTime                        @updatedAt
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  /* Cascade, MITTE Restrict: tavakäigus üksust ei kustutata (ta arhiveeritakse
+     ja arhiveerimine on `archiveUnit` väravate taga). Restrict blokeeriks aga
+     organisatsiooni PÄRIS kustutamise — org → üksus kaskaad jääks grandi taha
+     kinni ja ükski andmekustutuse rada ei töötaks. Üksuseta üksuse-skoop on
+     niikuinii mõttetu. */
+  scopeUnit  OrganizationUnit?      @relation(fields: [scopeUnitId], references: [id], onDelete: Cascade)
+  grantedBy  User?                  @relation("OrganizationCapabilityGrantedBy", fields: [grantedByUserId], references: [id], onDelete: SetNull)
+  revokedBy  User?                  @relation("OrganizationCapabilityRevokedBy", fields: [revokedByUserId], references: [id], onDelete: SetNull)
+
+  // XOR scopeType/scopeUnitId on DB CHECK migratsioonis: UNIT nõuab üksust,
+  // ORGANIZATION keelab selle. Prisma skeemikeel seda ei väljenda.
+  @@index([membershipId, revokedAt])
+  @@index([capability, revokedAt])
+  @@index([scopeUnitId, revokedAt])
+}
+
+model OrganizationInvite {
+  id                 String                   @id @default(cuid())
+  organizationId     String
+  email              String
+  tokenHash          String                   @unique
+  status             OrganizationInviteStatus @default(PENDING)
+  seatRole           OrganizationSeatRole
+  primaryUnitId      String?
+  capabilityTemplate String?
+  jobTitle           String?
+  invitedByUserId    String?
+  expiresAt          DateTime
+  acceptedAt         DateTime?
+  acceptedByUserId   String?
+  declinedAt         DateTime?
+  revokedAt          DateTime?
+  revokedByUserId    String?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  primaryUnit  OrganizationUnit? @relation(fields: [primaryUnitId], references: [id], onDelete: SetNull)
+  invitedBy    User?             @relation("OrganizationInviteInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  acceptedBy   User?             @relation("OrganizationInviteAcceptedBy", fields: [acceptedByUserId], references: [id], onDelete: SetNull)
+
+  // Üks PENDING kutse org + e-posti (lower) kohta → osaline unikaalindeks migratsioonis.
+  @@index([organizationId, status])
+  @@index([email, status])
+  @@index([expiresAt])
 }
