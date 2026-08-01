@@ -525,7 +525,11 @@ test("RAG trace exposes sanitized runtime source packages", () => {
       usedPackageIds: ["jogeva_vald_service_koduteenus_package"],
       missingSectionsUsed: ["contacts", "legal_basis"],
       packageDisplayedSourceIds: ["service-info", "service-form"],
-      packageAnswerFlags: ["missing_contacts", "missing_legal_basis"]
+      packageAnswerFlags: ["missing_contacts", "missing_legal_basis"],
+      packageSelectionStatus: "exact_service_match",
+      serviceAnchors: ["koduteenus"],
+      insufficientPreciseSupport: true,
+      requiredEvidenceSections: ["contacts", "legal_basis"]
     },
     sectionAttribution: {
       package_attribution_checked: true,
@@ -558,6 +562,10 @@ test("RAG trace exposes sanitized runtime source packages", () => {
   assert.deepEqual(trace.missing_sections_used, ["contacts", "legal_basis"]);
   assert.deepEqual(trace.package_displayed_source_ids, ["service-info", "service-form"]);
   assert.deepEqual(trace.package_answer_flags, ["missing_contacts", "missing_legal_basis"]);
+  assert.equal(trace.package_selection_status, "exact_service_match");
+  assert.deepEqual(trace.service_anchors, ["koduteenus"]);
+  assert.equal(trace.insufficient_precise_support, true);
+  assert.deepEqual(trace.required_evidence_sections, ["contacts", "legal_basis"]);
   assert.equal(trace.source_packages[0].package_type, "kov_service");
   assert.equal(trace.source_packages[0].municipality_id, "jogeva_vald");
   assert.deepEqual(trace.source_packages[0].source_ids, ["service-info", "service-form"]);

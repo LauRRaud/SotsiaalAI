@@ -24,13 +24,53 @@
       "question": "Kuidas taotleda Harku vallas sotsiaaltransporditeenust?",
       "expect": {
         "displayed_min": 1,
+        "displayed_must_include_any": [
+          "sotsiaaltransporditeenus",
+          "sotsiaaltransport"
+        ],
         "displayed_must_not_include": [
-          "kuusalu"
+          "kuusalu",
+          "asendushooldusteenus",
+          "üldhooldusteenus väljaspool kodu"
         ],
         "answer_must_include_any": [
           "sotsiaaltransport",
           "transporditeenus",
           "transpordi"
+        ],
+        "claim_display_support": [
+          {
+            "answer_includes_any": [
+              "euro",
+              "€",
+              "/km"
+            ],
+            "displayed_must_include_any": [
+              "sotsiaaltransporditeenus",
+              "sotsiaaltransport"
+            ]
+          },
+          {
+            "answer_includes_any": [
+              "tööpäev",
+              "etteteatam"
+            ],
+            "displayed_must_include_any": [
+              "sotsiaaltransporditeenus",
+              "sotsiaaltransport"
+            ]
+          },
+          {
+            "answer_includes_any": [
+              "telefon",
+              "e-post",
+              "@harku.ee"
+            ],
+            "displayed_must_include_any": [
+              "sotsiaaltransporditeenus",
+              "sotsiaaltransport"
+            ]
+          }
         ]
       }
     },
@@ -420,6 +460,8 @@
       "family": "edge",
       "question": "Kui suur on hooldekodu koha maksumus Saksamaal?",
       "expect": {
+        "displayed_max": 0,
+        "answer_max_words": 60,
         "answer_must_include_any": [
           "ei leia",
           "ei leidnud",
@@ -427,11 +469,17 @@
           "pole",
           "ei sisalda",
           "ei saa",
+          "ei käsitle",
+          "ei kinnita",
           "puudub",
           "Eesti"
         ],
         "answer_must_not_include": [
-          "maksab täpselt"
+          "maksab täpselt",
+          "hoolduskindlustuse panust",
+          "investeerimiskulud",
+          "majutus ja toitlustus",
+          "omaosalus pärast"
         ]
       }
     },

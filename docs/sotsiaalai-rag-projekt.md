@@ -1,11 +1,13 @@
 # SotsiaalAI RAG-i kvaliteedi- ja Luna ülemineku projekt
 
 **Dokumendi liik:** põhiprojektifail  
-**Versioon:** 1.1  
-**Kuupäev:** 31.07.2026  
+**Versioon:** 1.2
+**Kuupäev:** 01.08.2026
 **Omanik:** SotsiaalAI  
 **Staatus:** käimas  
-**Tootmise vaikeseadistus:** muutmata kuni projekti lõppsoovituse kinnitamiseni
+**Tootmise vaikeseadistus:** tootmiseelne `gpt-5.6-luna` canary (`medium`, `medium`, 3000); Mini on rollback
+
+**01.08.2026 seis.** Omaniku prioriteedimuudatuse järgi ei blokeeri pooleli jäetud mitmepäevane B0 idle-mõõtmisaken enam Mini baasjoont ega Luna hindamist. Lukustatud pimevõrdluses sai Mini 573/666 ja Luna 628/666. Pärast teenuseankru, atributsiooni, no-corpus ja kontaktipoliitika release-hardening'ut läbisid mõlemad mudelid tugevdatud Golden-37 automaatvärava 37/37. Luna tootmiseelne canary on aktiivne; B0 timeout'i sageduse lõppotsus on endiselt edasi lükatud ja retrieval timeout 12000 ms.
 
 ---
 
@@ -124,55 +126,52 @@ Kõik 638 ajakirja PDF-i on indekseeritud. Ligikaudu 34 kohalikku repo-materjali
 
 ---
 
-## 4. Tootmise kontrollitud puhkeasend
+## 4. Tootmise kontrollitud canary-asend
 
-Kontrollitud 31.07.2026 õhtul.
+Kontrollitud 01.08.2026 pärast Mini järeljooksu ja Luna taastamist.
 
 | Väli | Väärtus |
 |---|---|
-| Server-commit | `fc46d17f` (B0a) |
-| GitHub `origin/main` | `be284cf9` (docs) |
+| Integratsiooni-eelne server HEAD | `bd801d13` |
+| Integratsiooni-eelne GitHub `main` | `952a76e3` |
+| Luna release-haru | `origin/fix/rag-release-hardening` |
 | Teenus | `sotsiaalai-frontend.service` — active |
 | Töökataloog | `/home/ubuntu/apps/sotsiaalai` |
 | Env-fail | `/etc/sotsiaalai/frontend.env` |
 | `CHAT_PROMPT_TOKEN_AUDIT` | `0` |
-| `OPENAI_MODEL` | `gpt-5.4-mini` |
-| `OPENAI_REASONING_EFFORT` | `low` |
+| `OPENAI_MODEL` | `gpt-5.6-luna` |
+| `OPENAI_REASONING_EFFORT` | `medium` |
 | `OPENAI_TEXT_VERBOSITY` | `medium` |
-| `OPENAI_MAX_OUTPUT_TOKENS` | `1100` |
-| `_CLIENT` / `_WORKER` | `1100` / `1100` |
+| `OPENAI_MAX_OUTPUT_TOKENS` | `3000` |
+| `_CLIENT` / `_WORKER` | `3000` / `3000` |
 
-**Rollback-sihtmärk:** `f274190e` (B0a-eelne seis; varasem baas `41c69a41`)  
-**Env-varukoopia:** `/etc/sotsiaalai/frontend.env.bak-blokkA-2026-07-31`
+**Rollback-profiil:** `gpt-5.4-mini / low / medium / 1100`
+**Luna-eelne env-varukoopia:** `/etc/sotsiaalai/frontend.env.pre-luna-20260801T155351+0300`
 
-Env-hash muutus ainult rea `CHAT_PROMPT_TOKEN_AUDIT=0` lisamise tõttu. Deploy ise env-i ei muutnud.
+Frontend env SHA-256 on `7e786328f70c379c50d868c7e82d9499bec4d7cfd44029cb2997103ae54b726c`; RAG env SHA-256 jäi muutumatuks `38d41cfb9f93f3daa974bbe59aa61ef4aef5b89e126b8e2e7fc8a6a5d39caaa1`.
 
 ### 4.1 Kontrollitud
 
 - teenus on active;
 - avaleht vastab HTTP 200;
 - autentimata `/api/chat` vastab HTTP 401, mitte 500;
-- journalis ei ole uusi hoiatusi ega erandeid;
-- commit `f831257a` oli mõlemal chat-rajal täielikult smoke'itud;
-- OpenAI payload jäi muutmata.
+- pärast parandatud käivitust ei ole journalis uusi hoiatusi ega erandeid;
+- Luna tegelik mudel ja 3000-tokenine lagi on `openai_usage` sündmusega kinnitatud;
+- RAG teenus jäi deploy ja mudelivõrdluse ajal samale PID-ile 90400.
 
 ### 4.2 Autenditud smoke — TEHTUD 31.07.2026
 
-Autenditud läbiv chat-smoke commit'il `f274190e` on tehtud mõlemal rajal (nonstream ja stream).
-Sessiooniküpsis on serveris failis `~/.luna-test.env` (õigused 600, muutuja `TEST_SESSION_COOKIE`),
-kehtib **30.08.2026**-ni, effektiivne roll `/api/chat`-is on `SOCIAL_WORKER`. Brauserist uut
-küpsist enne selle aegumist vaja ei ole.
+Golden-37 ja release-smoke kasutasid serveris olemasolevat õigustega 600 sünteetilise hindamiskonto sessioonifaili. Sessiooni HTTP oli 200, domeen sünteetiline ja efektiivne roll `SOCIAL_WORKER`. Küpsise väärtust ei väljastatud ega salvestatud artefaktidesse või journald'i. `~/.luna-test.env` ei kasutatud hindamiseks, sest selle roll oli `ADMIN`.
 
-Pärast lõplikku restarti on tehtud teadlik warm-up, nii et esimene päriskasutaja ei satu §13.4
-idle-timeout'i otsa.
+Warm-up'i, readiness't ega automaatset retry'd ei lisatud.
 
 ---
 
 ## 5. Projekti juhtpõhimõtted
 
-1. Tootmise vaikeseadistust ei muudeta enne tulemuste ja soovituse esitamist.
-2. Luna 32 jooksu kordust ei käivitata enne blokke A–D ja Golden-37 baasjoont.
-3. Retrieval'i üldisi parameetreid ei muudeta enne baasjoone säilitamist.
+1. Tootmiseelne Luna canary kasutab ainult pimehindamises ja regressioonis kontrollitud seadistust.
+2. Avalik avamine tehakse alles canary mõõdikute ülevaatuse järel.
+3. Retrieval'i üldisi parameetreid, 12000 ms timeout'i, korpust ega RAG teenust canary mudelivahetusega ei muudeta.
 4. Algset T3 ülesannet ei eemaldata; see jääb regressioonitestiks.
 5. Logidesse ei kirjutata süsteemiprompti, `SourcePackage`'i ega kasutaja tundlikku sisu.
 6. Kohalik tokeniarv on hinnanguline; API `usage.input_tokens` on autoriteetne.
@@ -186,29 +185,26 @@ idle-timeout'i otsa.
 ## 6. Projekti tööjärjekord
 
 ```text
-A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
-  → B0a aus veakäsitlus  [LÕPETATUD]
-  → B0 jääk: timeout + soojashoidmine  [BLOKEERIV]
-    → B allikatoru instrumentatsioon
-    → Golden-37 baasjoon enne käitumismuudatusi
-      → C planneri rolliparandus
-      → D kontaktimüra parandus
-        → Golden-37 järelmõõtmine + T1/T3 regressioonid
-          → E 3000-tokeni smoke + 32 jooksu Luna korduskatse
-            → Luna tootmiskonfiguratsiooni otsus ja kontrollitud üleminek
+A + B0a/B0b instrumentatsioon                    [LÕPETATUD]
+  → Mini Golden-37 baas + Luna Golden-37 pimevõrdlus [LÕPETATUD]
+    → teenuseankru, atributsiooni ja no-corpus hardening [LÕPETATUD]
+      → Mini ja Luna Golden-37 järelvärav          [37/37 + 37/37]
+        → Luna tootmiseelne canary                 [AKTIIVNE]
+          → canary seire ja avaliku avamise otsus
+
+B0 idle-timeout'i sageduse mõõtmine jätkub eraldi ega blokeeri canary't.
 ```
 
 | Tööpakett | Sisu | Seis |
 |---|---|---|
 | **A** | API completion/usage, prompt-komponentide tokenid ja kalibreerimine | **lõpetatud 31.07** (vt 7.3.1) |
-| **B0a** | aus veakäsitlus (rag_error != no_context) | **LÕPETATUD 31.07, tootmises** (fc46d17f) |
-| **B0 jääk** | timeout ülevaatus + soojashoidmine + regressioonitest | **avatud, blokeerib B** |
-| **B** | allikatoru kihiline logi ja streami lõpetamisloogika | alustamata |
-| **Golden-37 baas** | praeguse käitumise baasjoon A+B logimisega | alustamata |
+| **B0** | idle RAG timeout ja aus veakäsitlus | B0a/B0b tootmises; sageduse lõppotsus edasi lükatud |
+| **B** | allikatoru kihiline logi ja streami lõpetamisloogika | plaan valmis; ei blokeeri Luna canary't |
+| **Golden-37 baas** | Mini tootmisbaas ja Luna pimevõrdlus | lõpetatud ja lukustatud |
 | **C** | planneri rolliviga T3 | alustamata |
-| **D** | kontaktimüra sihitud piiramine | blokeeritud kuni baasjooneni |
-| **Golden-37 järel** | võrdlus pärast C/D parandusi | alustamata |
-| **E** | 3000-tokeni smoke ja Luna 32 jooksu kordus | viimasena |
+| **D** | kontaktimüra ja teenusepõhine atributsioon | release-hardening tehtud; canary seire jätkub |
+| **Golden-37 järel** | tugevdatud regressioon pärast hardening'ut | Mini 37/37; Luna 37/37 |
+| **E** | Luna hindamine ja tootmiseelne canary | pimehindamine lõpetatud; canary aktiivne |
 
 ---
 
@@ -384,10 +380,9 @@ Komponent jääb alles tulevase ühilduvuse jaoks.
 
 ---
 
-## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus (BLOKEERIV, enne B-d)
+## 7b. Tööpakett B0 — idle RAG timeout ja aus veakäsitlus
 
-**Seis:** **B0a lõpetatud ja tootmises** (osa 1, aus veakäsitlus). **B0 tervikuna avatud** —
-osad 2 ja 3 tegemata. **Blokeerib:** tööpakett B.
+**Seis 01.08.2026:** B0a/B0b on tootmises; idle-timeout'i esinemissageduse lõppotsus on omaniku prioriteedimuudatuse tõttu edasi lükatud. B0 ei blokeeri Mini baasjoont, Luna hindamist ega tootmiseelset canary't, kuid jääb riskiregistris avatuks.
 
 ### 7b.0 B0a — aus veakäsitlus: LÕPETATUD 31.07.2026
 
@@ -430,7 +425,7 @@ sündmusesse järgmisel päris tõrkel.
 
 **Väravad:** `npm test` 2001/2001, `i18n:check` ET/EN/RU OK, lint puhas.
 
-### 7b.0.1 B0 jääk (avatud)
+### 7b.0.1 B0 jääk (avatud, ei blokeeri canary't)
 
 - **osa 2:** timeout'i ülevaatus — eraldi, pikem lagi embedding-kutsele. Praegust 12 s
   üldist timeout'i **ei muudetud** ja ei muudeta enne mõju mõõtmist;
@@ -465,21 +460,22 @@ ei ole.
 
 ### 7b.2 Nõutud lahendus kolmes osas
 
-1. **Aus veakäsitlus (kohustuslik).** `rag_error`-järgne vastus peab olema kasutajale eristatav
+1. **Aus veakäsitlus (tehtud).** `rag_error`-järgne vastus peab olema kasutajale eristatav
    `no_context`-ist. Kasutajale tuleb öelda, et otsing ei õnnestunud, mitte et allikaid ei ole.
    See on B0 tuum ja ainus osa, mis on kasutajale nähtav.
-2. **Timeout'i ülevaatus.** Kaaluda esimese päringu või embedding-kutse eraldi, pikemat lage.
+2. **Timeout'i ülevaatus (edasi lükatud).** Kaaluda esimese päringu või embedding-kutse eraldi, pikemat lage.
    Praegust üldist timeout'i **ei muudeta** enne, kui mõju on mõõdetud.
-3. **Soojashoidmine.** Perioodiline kerge päring rag-service'i vastu või readiness-kontroll,
-   et jõudeoleku esimene kasutaja ei satuks lae otsa.
+3. **Soojashoidmine (ei rakendata tõendita).** Warm-up'i, readiness't ega retry'd ei lisatud.
 
 ### 7b.3 Vastuvõtukriteeriumid
 
 - `rag_error` järel ei kuvata kasutajale „allikaid ei leitud" tüüpi sõnumit;
 - `rag_trace` või vastuse metaandmed kannavad üheselt eristust „otsing ebaõnnestus" vs „tulemusi ei olnud";
 - idle-first-request juhtum on reprodutseeritav regressioonitestis;
-- deploy-smoke sisaldab teadlikku warm-up'i enne mõõtmisi;
+- mõõtmine ei tee automaatset warm-up'i ega retry'd;
 - timeout'i muutmine, kui seda tehakse, on eraldi mõõdetud ja Golden-37 vastu kontrollitud.
+
+Katkestatud mõõtmisaken märgitakse `measurement_window_cancelled_by_owner_priority`. Juba kogutud ohutud andmed säilitatakse, kuid ebapiisava valimi põhjal ei tehta timeout'i poolt ega vastu lõppjäreldust.
 
 ---
 
@@ -764,6 +760,8 @@ on kasutaja jaoks täiesti erineva tähendusega ja süsteem ei erista neid.
 Tõrge on **vahelduv, mitte determinstlik**: kalibreerimisakna kaks warm-up'i õnnestusid esimesel
 katsel (19,5 s ja 18,8 s koguaega, kuid retrieval mahtus 12 s sisse).
 
+**01.08.2026 otsus:** mitmepäevane idle-aken peatati omaniku uue prioriteedi tõttu. Valim ei ole piisav esinemissageduse ega timeout'i muutmise lõppotsuseks. Timeout jääb 12000 ms peale; warm-up'i, readiness't ja retry'd ei lisata. B0a aus veakäsitlus ning B0b request-ID/timingute korrelatsioon jäävad tootmisse. Risk püsib avatuna, kuid ei blokeeri tootmiseelset Luna canary't.
+
 Vt tööpakett **B0**.
 
 ---
@@ -856,11 +854,12 @@ Lõppotsus peab valima ühe Luna põhirežiimi. Teise verbosity-seadistuse võib
 |---|---|---:|---|
 | 1100-tokeni lagi kärbib vastuseid | kõrge | kõrge | tööpaketi E eel 3000+ smoke |
 | `rag_trace` 30-võtme kärbe | kõrge | kõrge | pesastatud skeem + DB skeemitest |
-| kontaktandmed tõrjuvad sisuallikad | kõrge | kõrge | sihitud intent-filter ja õigusallika reservatsioon |
+| kontaktandmed tõrjuvad sisuallikad või kaks inimest esitatakse vaikimisi kontaktidena | kõrge | keskmine | teenusepõhine paketivärav; üldvastuses rollide mitmekesisus; kõik kontaktid ainult rollide kaupa |
 | planner ajab professionaali kliendiga segi | kõrge | keskmine | C regressioonitestid |
-| `query_anchor_mismatch` eemaldab õige allika | kõrge | keskmine | B diagnostika ja sihitud parandus |
+| `query_anchor_mismatch` eemaldab õige teenuseallika | kõrge | madal pärast hardening'ut | käändevormide normaliseerimine, fail-closed pakett, Harku regressioon |
 | incomplete stream ei anna kliendile lõpetamissignaali | kõrge | keskmine | B stream-protokolli parandus |
-| esimese RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | **kõrge** (3/3 vaadeldud juhtumit) | tööpakett B0: aus veakäsitlus, timeout'i ülevaatus, soojashoidmine |
+| esimese RAG-päringu katkestamine pärast jõudeolekut 12 s timeout'i tõttu | **kõrge** | teadmata; uus valim ebapiisav | B0a/B0b tootmises; eraldi idle-aken hiljem; timeout 12000 ms |
+| no-corpus Luna lisab üldteadmisi | kõrge | madal pärast hardening'ut | range korpusepiir + nullallika Golden-regressioon |
 | tokeniaudit lekib sisu | kõrge | madal | hash/maht ainult + sisulekke test |
 | ~~kohalik tokenihinnang on ebatäpne~~ | ~~keskmine~~ | **maandatud** | kalibreeritud 31.07: gap mediaan 0,76%, max 1,17%, 0 negatiivset |
 | Golden-37 muutub enne baasjoont | kõrge | madal | freeze ja commit/hash fikseerimine |
@@ -923,19 +922,18 @@ Seejärel uus restart ja lazy-load'i kontroll.
 
 ### 17.6 Rollback
 
-Kood:
+Mudeliprofiil:
 
 ```text
-41c69a41
+OPENAI_MODEL=gpt-5.4-mini
+OPENAI_REASONING_EFFORT=low
+OPENAI_TEXT_VERBOSITY=medium
+OPENAI_MAX_OUTPUT_TOKENS=1100
+OPENAI_MAX_OUTPUT_TOKENS_CLIENT=1100
+OPENAI_MAX_OUTPUT_TOKENS_WORKER=1100
 ```
 
-Env:
-
-```text
-/etc/sotsiaalai/frontend.env.bak-blokkA-2026-07-31
-```
-
-Rollback'i järel kontrollida teenust, avalehte, autentimisvalvet, chat-smoke'i ja journalit.
+Luna-eelne env-varukoopia on `/etc/sotsiaalai/frontend.env.pre-luna-20260801T155351+0300`. Mudeli rollback nõuab ainult frontend-teenuse restarti; RAG teenust, koodi, korpust ja retrieval'it ei muudeta. Rollback'i järel kontrollida teenust, avalehte, autentimisvalvet, sünteetilist chat-smoke'i, tegelikku `openai_usage.model` väärtust ja journalit.
 
 ---
 
@@ -945,6 +943,8 @@ Rollback'i järel kontrollida teenust, avalehte, autentimisvalvet, chat-smoke'i 
 
 Kõik asuvad `docs/internal/`:
 
+- `gpt56-luna-comparison/` harul `ops/gpt56-luna-golden-comparison` — lukustatud Mini–Luna pimehindamine, tehniline võrdlus ja otsus;
+- `gpt56-luna-release-validation/` — 8 küsimuse release-värav, mõlema mudeli Golden-37 järeljooks ja canary raport;
 - `luna-rag-run-results.csv`;
 - `luna-rag-comparison.md`;
 - `luna-rag-raw-answers.md`;
@@ -1005,51 +1005,51 @@ Failid:
 | 31.07.2026 | T3 algversioon jääb alles | tootmisviga peab jääma regressioonitestiks |
 | 31.07.2026 | E kasutab 3000 või kõrgemat lage | reasoning ja nähtav väljund jagavad output-eelarvet |
 | 31.07.2026 | pimehindamine ainult completed-jooksudel | kärbitud vastus ei mõõda mudeli lõppkvaliteeti |
+| 01.08.2026 | B0 idle-aken peatatakse ja otsus lükatakse edasi | omaniku prioriteet on kontrollitud Luna võrdlus ja kasutuselevõtt; valim jäi ebapiisavaks |
+| 01.08.2026 | Luna on Mini ees tootmiskandidaat | lukustatud pimehindamine: 628/666 vs 573/666; Luna paarivõidud 30 vs 2 |
+| 01.08.2026 | Harku allikalahknevus parandatakse enne canary't | teenuseankur ja kuvatud tõend peavad vastama samale KOV-ile ja teenusele |
+| 01.08.2026 | „iga sotsiaaltöötaja loeb” on kontaktipoliitika | üldvastus näitab rollide mitmekesisust ega eelista meelevaldselt üht-kaht inimest |
+| 01.08.2026 | Luna tootmiseelne canary aktiveeritakse | Luna ja Mini tugevdatud Golden-37 37/37; sihitud Luna värav 8/8 |
 
 ---
 
 ## 20. Vahetu järgmine tegevus
 
-### Esimene ülesanne
+### Esimene ülesanne — canary seire ja avaliku avamise värav
 
-Lõpetada tööpaketi A kalibreerimine.
+1. hoida tootmiseelne konfiguratsioon `gpt-5.6-luna / medium / medium / 3000`;
+2. jälgida completed/incomplete olekut, latentsust, tegelikku päringukulu ja vastuste pikkust;
+3. auditeerida nullallikaga mitte-kriisipäringuid ning täpseid tasu-, tähtaja-, vormi- ja kontaktiväiteid;
+4. kinnitada, et kuvatud allikas vastab samale KOV-ile ja samale teenusele;
+5. kontrollida üldiste KOV-küsimuste rollipõhist kontaktide mitmekesisust;
+6. kui canary värav ebaõnnestub, taastada Mini `low / medium / 1100` ja restartida ainult frontend;
+7. avaliku avamise otsus teha pärast canary mõõdikute ülevaatust.
 
-1. hankida sisselogitud brauserist sessiooniküpsis;
-2. teha autenditud smoke commit'il `f274190e`;
-3. lülitada `CHAT_PROMPT_TOKEN_AUDIT=1`;
-4. korrata kalibreerimine mõlemal rajal;
-5. kinnitada lazy-load, väljade täidetus ja sisulekke puudumine;
-6. koostada gap-statistika raja ja päringutüübi kaupa;
-7. panna lipp tagasi `0` ja teha lõppkontroll;
-8. kinnitada A lõpetatuks;
-9. enne B koodi otsustada `rag_trace` 30-võtme probleemi skeemilahendus.
-
-### A lõpetamise järel
-
-Alustada tööpaketti B, kuid mitte muuta veel planneri ega retrieval'i käitumist.
+B0 idle-timeout'i täiendav mõõtmisaken on eraldi järgnev operatiivülesanne ega tohi canary seiret varjata. Tööpaketi B ülejäänud `rag_trace` ja incomplete-streami tööd jäävad avatuks; neid ei rakendata selle release-hardening'u osana.
 
 ---
 
 ## 21. Projekti lõpetamise kontrollnimekiri
 
 - [x] A kalibreerimine lõpetatud ja auditilipp tagasi väljas
-- [x] B0a aus veakäsitlus (rag_error != no_context)
-- [ ] B0 jääk: timeout ülevaatus, soojashoidmine, regressioonitest
+- [x] B0a/B0b aus veakäsitlus, request-ID ja timingud tootmises
+- [ ] B0 idle-timeout'i esinemissageduse lõppotsus (edasi lükatud)
 - [ ] `rag_trace` skeem ei kärbu
 - [ ] B kaheksa allikakihti logitud
 - [ ] incomplete streami lõpetamissignaal parandatud
-- [ ] Golden-37 baasjoon salvestatud
+- [x] Golden-37 Mini baasjoon ja Luna pimevõrdlus salvestatud ning lukustatud
 - [ ] C planneri parandus ja regressioonitestid tehtud
-- [ ] D kontaktimüra parandus tehtud
-- [ ] Golden-37 järelmõõtmine tehtud
-- [ ] T1 ja T3 regressioonid läbitud
-- [ ] 3000-tokeni smoke läbitud
-- [ ] Luna 32 jooksu kordus lõpetatud
-- [ ] ainult completed-jooksud hinnatud
-- [ ] artefaktid uuendatud
-- [ ] Luna põhirežiim (`medium + medium` või `medium + low`) kinnitatud
-- [ ] tegelik Luna ja mini päringukulu arvutatud päris tokenijaotuse põhjal
-- [ ] etapiviisiline Luna ülemineku-, rollback- ja seireplaan kinnitatud
+- [x] D teenuseankru, atributsiooni ja kontaktipoliitika release-hardening tehtud
+- [x] Golden-37 järelmõõtmine tehtud: Mini 37/37 ja Luna 37/37
+- [x] sihitud Harku/no-corpus/kriisi/KOV regressioonid läbitud 8/8
+- [x] 3000-tokeni Luna smoke läbitud ja tegelik mudel usage-event'iga kinnitatud
+- [x] Luna 37 küsimuse võrdlus lõpetatud
+- [x] ainult completed-jooksud pimehinnatud
+- [x] hindamis- ja release-artefaktid uuendatud
+- [x] Luna põhirežiim `medium + medium + 3000` kinnitatud tootmiseelseks canary'ks
+- [x] tegelik Luna ja Mini päringukulu arvutatud päris tokenijaotuse põhjal
+- [x] etapiviisiline Luna canary-, rollback- ja seireplaan kinnitatud
+- [ ] canary mõõdikute ülevaatus ja avaliku avamise otsus
 
 ---
 
