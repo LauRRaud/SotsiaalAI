@@ -21,9 +21,12 @@ import { assignSeat, createSeatPlan, listSeatPlans, releaseSeat } from "../lib/o
 import { acceptClientSponsorship, createClientSponsorship } from "../lib/org/sponsorship.js";
 import {
   assignWork,
+  deliverPreInquiryToOrganization,
+  findUndeliveredOrganizationInquiries,
   getInboxItem,
   handOverWork,
   listInboxItems,
+  reconcileOrganizationDeliveries,
   respondToAssignment
 } from "../lib/org/inbox.js";
 import { createPreInquiry, recallPreInquiry } from "../lib/preInquiries.js";
@@ -62,6 +65,47 @@ async function makeUser(local, role) {
   });
   created.userIds.push(user.id);
   return user;
+}
+
+/**
+ * VEASÜST õigel kihil.
+ *
+ * Naiivne `prisma.organizationInboxItem.create = ...` EI TÖÖTA: tehingu sees
+ * kasutatakse `tx`-i, mis on eri objekt, ja süst ei jõuaks kohale — test
+ * „möödus" ilma midagi kontrollimata. Seepärast asendame `$transaction`-i ja
+ * anname tagasikutsele proksitud `tx`-i, mille postkastikirje loomine viskab.
+ */
+function dbWithFailingInboxCreate(base) {
+  const bind = (target, prop) => {
+    const value = target[prop];
+    return typeof value === "function" ? value.bind(target) : value;
+  };
+
+  return new Proxy(base, {
+    get(target, prop) {
+      if (prop !== "$transaction") return bind(target, prop);
+      return (work, options) =>
+        target.$transaction(
+          (tx) =>
+            work(
+              new Proxy(tx, {
+                get(txTarget, txProp) {
+                  if (txProp !== "organizationInboxItem") return bind(txTarget, txProp);
+                  return new Proxy(txTarget.organizationInboxItem, {
+                    get(model, method) {
+                      if (method !== "create") return bind(model, method);
+                      return async () => {
+                        throw new Error("INJECTED_DELIVERY_FAILURE");
+                      };
+                    }
+                  });
+                }
+              })
+            ),
+          options
+        );
+    }
+  });
 }
 
 async function ctx(userId, organizationId) {
@@ -263,6 +307,63 @@ async function main() {
     where: { organizationId: org.id, sourceId: inquiry.id }
   });
   expect("an inbox item was delivered", Boolean(item));
+
+  // --- 3a. VEASÜST: kohaletoimetamise tõrge ei tohi jätta ripakil SENT-i ---
+  /* Süstime tõrke `OrganizationInboxItem.create`-sse ja saadame uue
+     pöördumise. Kui salvestus ja kohaletoimetamine on samas tehingus, peab
+     KOGU toiming tagasi keerduma: ei tohi tekkida `SENT` pöördumist, mida
+     organisatsioon ei näe. */
+  const beforeInjection = await prisma.preInquiry.count({ where: { authorId: citizen.id } });
+  let injectedThrew = false;
+  try {
+    await createPreInquiry(
+      citizen.id,
+      {
+        recipientOrganizationId: org.id,
+        topic: "Veasüst",
+        situation: "Kohaletoimetamise tõrke stsenaarium.",
+        status: "SENT"
+      },
+      { db: dbWithFailingInboxCreate(prisma) }
+    );
+  } catch {
+    injectedThrew = true;
+  }
+  expect("a delivery failure surfaces to the caller instead of failing silently", injectedThrew);
+
+  const afterInjection = await prisma.preInquiry.count({ where: { authorId: citizen.id } });
+  expect(
+    "a delivery failure leaves NO orphaned pre-inquiry behind",
+    afterInjection === beforeInjection,
+    `${beforeInjection} -> ${afterInjection}`
+  );
+  expect(
+    "the reconciliation view is empty — no SENT organisation inquiry lacks an inbox item",
+    (await findUndeliveredOrganizationInquiries()).length === 0
+  );
+  expect("reconciliation has nothing to repair", (await reconcileOrganizationDeliveries()).length === 0);
+
+  // --- 3b. Samaaegne kohaletoimetamine peab olema idempotentne -----------
+  /* `findFirst -> create` on võistlusaken. Kasutaja ei tohi saada P2002/500:
+     kaotaja peab lugema võitja rea ja tagastama SAMA kirje. */
+  const concurrent = await Promise.allSettled([
+    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id }),
+    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id }),
+    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id })
+  ]);
+  expect(
+    "three concurrent deliveries all succeed — none returns a unique-constraint error",
+    concurrent.every((result) => result.status === "fulfilled"),
+    concurrent.map((r) => r.reason?.code || r.status).join(",")
+  );
+  expect(
+    "they all resolve to the SAME inbox item",
+    new Set(concurrent.map((result) => result.value?.id)).size === 1
+  );
+  expect(
+    "no duplicate inbox row was created",
+    (await prisma.organizationInboxItem.count({ where: { sourceId: inquiry.id } })) === 1
+  );
 
   // --- 4. Postkasti skoop ----------------------------------------------
   const plainCtx = await ctx(other.id, org.id);
