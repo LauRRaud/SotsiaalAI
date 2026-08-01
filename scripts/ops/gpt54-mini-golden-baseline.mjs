@@ -9,18 +9,27 @@ import { pathToFileURL } from "node:url";
 import { evaluateGoldenCase, summarizeResults } from "../run-golden-eval.mjs";
 
 const EXPECTED = Object.freeze({
-  model: "gpt-5.4-mini",
-  reasoning_effort: "low",
-  verbosity: "medium",
-  max_output_tokens: 1100,
-  prompt_token_audit: "0",
-  retrieval_timeout_ms: 12000
+  model: process.env.GOLDEN_EXPECTED_MODEL || "gpt-5.4-mini",
+  reasoning_effort: process.env.GOLDEN_EXPECTED_REASONING || "low",
+  verbosity: process.env.GOLDEN_EXPECTED_VERBOSITY || "medium",
+  max_output_tokens: Number(process.env.GOLDEN_EXPECTED_MAX_OUTPUT_TOKENS || 1100),
+  prompt_token_audit: process.env.GOLDEN_EXPECTED_PROMPT_TOKEN_AUDIT || "0",
+  retrieval_timeout_ms: Number(process.env.GOLDEN_EXPECTED_RETRIEVAL_TIMEOUT_MS || 12000)
+});
+const IS_MINI_BASELINE = EXPECTED.model === "gpt-5.4-mini"
+  && EXPECTED.reasoning_effort === "low"
+  && EXPECTED.verbosity === "medium"
+  && EXPECTED.max_output_tokens === 1100;
+const EVENT_SCOPE = IS_MINI_BASELINE ? "mini" : "model";
+
+const PRICE_SNAPSHOTS = Object.freeze({
+  "gpt-5.4-mini": Object.freeze({ input: 0.75, cached_input: 0.075, output: 4.5 }),
+  "gpt-5.6-luna": Object.freeze({ input: 0.2, cached_input: 0.02, output: 1.2 })
 });
 
 const PRICE_SNAPSHOT_USD_PER_MILLION = Object.freeze({
-  input: 0.75,
-  cached_input: 0.075,
-  output: 4.5,
+  ...(PRICE_SNAPSHOTS[EXPECTED.model] || PRICE_SNAPSHOTS["gpt-5.4-mini"]),
+  model: EXPECTED.model,
   source: "docs/sotsiaalai-rag-projekt.md"
 });
 
@@ -377,6 +386,12 @@ function classify({ httpStatus, body, usage, retrievalTimings, parseError }) {
     return { status: "retrieval_failure", technical_error_category: "retrieval_timing_failure" };
   }
   if (!usage) return { status: "technical_failure", technical_error_category: "missing_openai_usage" };
+  if (usage.model !== EXPECTED.model) {
+    return { status: "technical_failure", technical_error_category: "observed_model_mismatch" };
+  }
+  if (finite(usage.max_output_tokens) !== EXPECTED.max_output_tokens) {
+    return { status: "technical_failure", technical_error_category: "observed_output_cap_mismatch" };
+  }
   if (usage.response_present === false) {
     return { status: "technical_failure", technical_error_category: "response_present_false" };
   }
@@ -442,9 +457,11 @@ async function runOne({ args, testCase, runType, questionSetHash, cookie, db, us
     conversation_mode: (testCase.history || []).length ? "fixed_multiturn_history" : "new_independent_conversation",
     role: testCase.role || "SOCIAL_WORKER",
     model: EXPECTED.model,
+    observed_model: nullableString(usage?.model),
     reasoning_effort: EXPECTED.reasoning_effort,
     verbosity: EXPECTED.verbosity,
     max_output_tokens: EXPECTED.max_output_tokens,
+    observed_max_output_tokens: finite(usage?.max_output_tokens),
     started_at: new Date(startedAt).toISOString(),
     completed_at: new Date(completedAt).toISOString(),
     latency_ms: completedAt - startedAt,
@@ -585,7 +602,7 @@ async function preflight(args, evalSet, hashes, sessionResult) {
     });
   }
   const output = {
-    schema: "golden-37-mini-preflight-v1",
+    schema: IS_MINI_BASELINE ? "golden-37-mini-preflight-v1" : "golden-37-model-preflight-v1",
     generated_at: new Date().toISOString(),
     question_set: {
       path: args.evalPath,
@@ -596,7 +613,7 @@ async function preflight(args, evalSet, hashes, sessionResult) {
     },
     rubric: { path: args.rubricPath, sha256: hashes.rubric },
     runner: { path: args.runnerPath, sha256: hashes.runner },
-    production_configuration: expectedConfiguration(),
+    [IS_MINI_BASELINE ? "production_configuration" : "evaluated_configuration"]: expectedConfiguration(),
     synthetic_session: sessionResult,
     corpus_inventory: {
       document_count: titles.length,
@@ -616,7 +633,7 @@ async function preflight(args, evalSet, hashes, sessionResult) {
 async function writeRunArtifacts(args, mode, questionSetHash, records) {
   await mkdir(args.outputDir, { recursive: true });
   const technical = {
-    schema: "golden-37-mini-technical-runs-v1",
+    schema: IS_MINI_BASELINE ? "golden-37-mini-technical-runs-v1" : "golden-37-model-technical-runs-v1",
     mode,
     generated_at: new Date().toISOString(),
     question_set_hash: questionSetHash,
@@ -696,7 +713,7 @@ async function main() {
   if (new Set(evalSet.cases.map(testCase => testCase.id)).size !== 37) throw new Error("QUESTION_IDS_NOT_UNIQUE");
   if (args.mode === "dry-run") {
     console.log(JSON.stringify({
-      event: "golden_37_mini_dry_run",
+      event: `golden_37_${EVENT_SCOPE}_dry_run`,
       question_count: evalSet.cases.length,
       question_set_sha256: questionSetHash,
       rubric_sha256: rubricHash,
@@ -709,7 +726,7 @@ async function main() {
   if (args.mode === "reconcile-smoke") {
     const artifact = await reconcileSmokeArtifact(args);
     console.log(JSON.stringify({
-      event: "golden_37_mini_smoke_reconciled",
+      event: `golden_37_${EVENT_SCOPE}_smoke_reconciled`,
       run_count: artifact.runs?.length || 0,
       mismatches: (artifact.runs || []).flatMap(run => run.retrieval_timings || [])
         .filter(timing => timing.timings_match_journal !== true).length,
@@ -727,7 +744,7 @@ async function main() {
     const preflightOutput = await preflight(args, evalSet, hashes, { ...session.result, ...identity });
     if (args.mode === "preflight") {
       console.log(JSON.stringify({
-        event: "golden_37_mini_preflight",
+        event: `golden_37_${EVENT_SCOPE}_preflight`,
         question_count: evalSet.cases.length,
         question_set_sha256: questionSetHash,
         missing_explicit_anchor_case_ids: preflightOutput.corpus_inventory.missing_explicit_anchor_case_ids,
@@ -739,7 +756,7 @@ async function main() {
     }
     const output = await runSelected(args, evalSet, questionSetHash, cookie, db, session.userId);
     console.log(JSON.stringify({
-      event: `golden_37_mini_${args.mode}`,
+      event: `golden_37_${EVENT_SCOPE}_${args.mode}`,
       run_count: output.technical.runs.length,
       statuses: Object.fromEntries([...new Set(output.technical.runs.map(run => run.status))]
         .map(status => [status, output.technical.runs.filter(run => run.status === status).length])),
@@ -754,7 +771,7 @@ async function main() {
 
 main().catch(error => {
   console.error(JSON.stringify({
-    event: "golden_37_mini_failed",
+    event: `golden_37_${EVENT_SCOPE}_failed`,
     error_code: String(error?.message || error).slice(0, 200)
   }));
   process.exitCode = 1;
