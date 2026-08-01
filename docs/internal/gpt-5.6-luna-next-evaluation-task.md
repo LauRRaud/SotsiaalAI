@@ -1,5 +1,12 @@
 # Järgmine ülesanne: gpt-5.6-luna Golden-37 smoke ja võrdlus
 
+Staatus 01.08.2026: hindamine lõpetatud. Smoke 2/2 ja Golden-37 täisjooks
+37/37 `completed`; automaatkontroll 37/37 PASS. 74 pimehinnet lukustati enne
+mudelivõtmega seostamist. Sõltumatu mudel-hindaja tulemus oli mini 573/666 ja
+Luna 628/666; Luna võitis 30 paari 37-st. See ei olnud päris inimese hinnang.
+Järgmine etapp on Harku allikavastavuse ja no-corpus release-hardening,
+regressioonid ning kontrollitud Luna canary.
+
 ## Eesmärk
 
 Käivita kontrollitud `gpt-5.6-luna` kandidaat samal fikseeritud Golden-37 küsimustikul ning koosta mini ja Luna pimevõrdlus. Ära muuda ega restardi tootmise frontend- või RAG-teenust enne omaniku eraldi deploy-luba.

@@ -190,9 +190,11 @@ A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
   → B0a/B0b aus veakäsitlus ja observability  [TOOTMISES]
   → B0 idle sagedusotsus  [EDASI LÜKATUD, EI BLOKEERI MUDELIVÕRDLUST]
   → Golden-37 gpt-5.4-mini baasjoon  [TEHTUD]
-    → eraldatud gpt-5.6-luna 3000-tokeni smoke
-      → Golden-37 Luna pimevõrdlus
-        → Luna tootmiskonfiguratsiooni otsus ja kontrollitud üleminek
+    → eraldatud gpt-5.6-luna 3000-tokeni smoke  [TEHTUD]
+      → Golden-37 Luna tehniline võrdlus ja pimepakett  [TEHTUD]
+        → sõltumatu pime mudel-hindamine  [TEHTUD]
+          → allikavastavuse/no-corpus hardening  [JÄRGMINE]
+            → Luna kontrollitud canary ja rollback-valmidus
           → B/C/D käitumismuudatused ja järelmõõtmine
 ```
 
@@ -205,7 +207,7 @@ A instrumentatsioon ja kalibreerimine  [LÕPETATUD]
 | **C** | planneri rolliviga T3 | alustamata |
 | **D** | kontaktimüra sihitud piiramine | blokeeritud kuni baasjooneni |
 | **Golden-37 järel** | võrdlus pärast C/D parandusi | alustamata |
-| **E** | eraldatud 3000-tokeni smoke ja Luna Golden-37 pimevõrdlus | **järgmine** |
+| **E** | eraldatud 3000-tokeni smoke ja Luna Golden-37 pimevõrdlus | **tehtud; Luna 628/666 vs mini 573/666** |
 
 ---
 
@@ -507,6 +509,32 @@ tehnilises baasartefaktis.
 
 Vt `docs/internal/golden-37-mini-baseline-analysis.md` ja
 `docs/internal/golden-37-mini-baseline/` artefakte.
+
+### 9.4 Luna kandidaatkomplekti tehniline tulemus 01.08.2026
+
+- konfiguratsioon: `gpt-5.6-luna / medium / medium / 3000`, tegelik mudel ja
+  output-lagi kinnitati iga täisjooksu OpenAI usage'ist;
+- smoke 2/2 ning täisjooks 37/37 `completed`; technical retry, incomplete,
+  technical failure, retrieval failure, stream failure ja output-cap: kõik 0;
+- Golden-runner'i automaatkontroll 37/37 PASS;
+- latentsus p50 9057 ms ja max 42169 ms (mini 7756 / 37960 ms);
+- hinnanguline päringukulu tegeliku tokenijaotuse ja fikseeritud
+  hinnasnapshoti järgi $0.057445 (mini $0.175601);
+- nullallikaga kolm ja kuvatavate allikate duplikaadiga neli kaasust olid
+  samad mis mini baasjoonel;
+- kõik 103 RAG timingut korreleerusid journald'i kolme etapiga, duplikaate,
+  aborte ega non-ok tulemusi ei olnud;
+- randomiseeritud 74 anonüümse vastusega pimepakett sisaldab nüüd küsimuste
+  täisteksti, mitmevoorulist ajalugu ja kõiki fikseeritud Golden-ootusi.
+
+Tehniline värav on läbitud. 74 pimehinnet lukustati enne mudelivõtmega
+seostamist. Sõltumatu mudel-hindaja andis mini tulemuseks 573/666 ja Luna
+tulemuseks 628/666; Luna võitis 30 paari, mini 2 ja 5 jäi viiki. See ei olnud
+päris inimese hinnang. Mõlemal mudelil oli üks kriitiline Harku
+allikavastavuse viga, mis tuleb koos no-corpus piiriga enne canary't parandada.
+Vt
+`docs/internal/golden-37-mini-luna-comparison/mini-luna-technical-comparison.md`
+ning `docs/internal/golden-37-mini-luna-comparison/mini-luna-release-decision.md`.
 
 ---
 
@@ -969,6 +997,8 @@ Failid:
 | 31.07.2026 | pimehindamine ainult completed-jooksudel | kärbitud vastus ei mõõda mudeli lõppkvaliteeti |
 | 01.08.2026 | idle-mõõteaken katkestatakse omaniku prioriteediga | ebapiisav valim ei tohi blokeerida mini/Luna võrdlust; B0 jääb avatuks |
 | 01.08.2026 | Golden-37 mini baas fikseeritakse kohe | 37/37 completed ja automaat-PASS; inimlik pimehindamine eraldi |
+| 01.08.2026 | Luna kandidaatkomplekti tehniline Golden-37 värav läbitud | smoke 2/2 ja täisjooks 37/37 completed; sisuline otsus tehti hiljem lukustatud pimehinnetega |
+| 01.08.2026 | Luna valitakse release-hardening kandidaadiks | pime mudel-hindamine 628/666 vs 573/666; enne canary't parandatakse ühine Harku allikavastavuse viga ja range no-corpus piir |
 
 ---
 
@@ -976,13 +1006,12 @@ Failid:
 
 ### Esimene ülesanne
 
-Käivita eraldatud loopback-only hindamisprotsessis `gpt-5.6-luna / medium /
-medium / 3000` smoke samade kaasustega `legal_shs_17` ja
-`ajakiri_overview_lastekaitse`. Positiivse smoke'i järel tee sama fikseeritud
-Golden-37 komplekti üks järjestikune Luna jooks ning koosta mini/Luna
-randomiseeritud pimepakett. Tootmise env'i, mudelit ega app-teenuseid ei muudeta
-ilma omaniku eraldi loata. Täpne ülesanne:
-`docs/internal/gpt-5.6-luna-next-evaluation-task.md`.
+Paranda morfoloogiline teenuseankur ja muuda sama KOV-i „rikkaima paketi”
+fallback fail-closed käitumiseks. Seo tasu, tähtaja, vormi ja kontakti täpsed
+väited sama teenuse kuvatava tõendiga ning hoia nullallikaga mittekriisipäring
+rangelt korpusepiiris. Läbi Harku, Kuusalu, Narva, no-corpus, kriisi ja
+õigusvastuse sihitud regressioonid, seejärel korda Golden-37 mini ja Luna
+konfiguratsiooniga ning tee kontrollitud Luna canary rollback-valmidusega.
 
 ---
 
@@ -1001,13 +1030,13 @@ ilma omaniku eraldi loata. Täpne ülesanne:
 - [ ] D kontaktimüra parandus tehtud
 - [ ] Golden-37 järelmõõtmine tehtud
 - [ ] T1 ja T3 regressioonid läbitud
-- [ ] 3000-tokeni smoke läbitud
-- [ ] Luna Golden-37 kordus lõpetatud
-- [ ] ainult completed-jooksud hinnatud
+- [x] 3000-tokeni smoke läbitud
+- [x] Luna Golden-37 kordus lõpetatud
+- [x] ainult completed-jooksud hinnatud
 - [x] mini baasjoone tehnilised ja pimehindamise artefaktid uuendatud
-- [ ] Luna põhirežiim (`medium + medium` või `medium + low`) kinnitatud
-- [ ] tegelik Luna ja mini päringukulu arvutatud päris tokenijaotuse põhjal
-- [ ] etapiviisiline Luna ülemineku-, rollback- ja seireplaan kinnitatud
+- [x] Luna põhirežiim (`medium + medium`) kinnitatud
+- [x] Luna ja mini päringukulu hinnang arvutatud tegeliku tokenijaotuse põhjal
+- [x] etapiviisiline Luna ülemineku-, rollback- ja seireplaan koostatud
 
 ---
 
