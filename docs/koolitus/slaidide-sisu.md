@@ -30,10 +30,11 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 ### S4. Anonüümne avaküsitlus
 
 - Olen AI-vestlusrobotit proovinud.
-- Olen seda tööülesandes kasutanud.
 - Tean, milline AI-tööriist on minu asutuses heaks kiidetud.
+- Oskan eristada anonüümset ja pseudonüümset juhtumikirjeldust.
 - Tean, kuhu AI-ga seotud vea korral teatada.
-- Tulemused annavad koolitajale lähtejoone, mitte hinnangu osalejatele.
+- Lisaks lahendab rühm neli lühistsenaariumi, mida korratakse koolituse lõpus.
+- Tulemusi võrreldakse ainult rühma tasandil; need ei ole hinnang üksikule osalejale.
 
 ### S5. Neli küsimust enne esimest sisestust
 
@@ -122,11 +123,11 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 - Eriliigilistele andmetele kehtivad täiendavad tingimused.
 - AI kasutamine ei muuda nõusolekut automaatselt vajalikuks ega sobivaks.
 
-### S18. Rakendusajoon seisuga 30.07.2026
+### S18. AI-määruse rakendusajoon
 
 - 1.08.2024: AI-määrus jõustus.
 - 2.02.2025: muu hulgas AI-kirjaoskuse kohustus hakkas kohalduma.
-- 2.08.2026: teatud läbipaistvusreeglid hakkavad kohalduma.
+- 2.08.2026: teatud läbipaistvusreeglite kohaldumise algus.
 - 2.12.2027: III lisa kõrge riskiga süsteemide põhikohustuste uus kuupäev.
 - Füüsilistesse toodetesse integreeritud kõrge riskiga süsteemidel on eraldi ajajoon.
 - Ajajoon kontrollitakse enne iga koolitust uuesti.
@@ -138,12 +139,6 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 - AKI rõhutab, et töötaja peab lähtuma tööandja juhistest ning avalikku tehisarusse ei
   sisestata kliendiandmeid ega konfidentsiaalset tööinfot.
 - Tähtaeg ei ole ainus põhjus; tegelik kasutus on.
-
-### S20. STAR-i strateegia suund
-
-- STAR-i strateegia 2026–2030 näeb AI-d väärtust loova võimalusena, kuid ainult
-  „selgelt piiratud, kontrollitava ja õiguslikult reguleeritud vahendina”.
-- Koolituse küsimus: milline piir on töötaja jaoks päriselt kasutatav?
 
 ## Moodul 2. Andmed, tööriist ja intsident
 
@@ -209,8 +204,17 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 - Varjamine suurendab kahju ja vähendab reageerimisaega.
 - Hea süsteem teeb teatamise lihtsaks ega karista ausat varajast teadet.
 - Juhi küsimus ei ole ainult „kes eksis?”, vaid „miks sai see töövoog üldse võimalikuks?”.
+- Koolitaja jagab kohtumise lõpus sisendi eelkontrolli ja intsidendi kiirkaardi, et need
+  oleksid osalejal kasutada juba enne järgmist kohtumist.
 
 ## Moodul 3. Praktilised töövõtted
+
+### K2. Kohtumise 2 avaslaid — praktilised töövõtted
+
+- Mida leidsid oma asutuse AI-juhise, lubatud tööriista ja intsidendikanali kohta?
+- Kui vastust ei leidnud, milline otsus või kontakt on puudu?
+- Tänane tulemus: kolm töövõtet, mille väljundit saab allika ja lähtefaktide vastu
+  kontrollida.
 
 ### S30. Kolm töövõtet, mida harjutame
 
@@ -274,7 +278,7 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 - AI loodud mustand.
 - AI kipub need üheks ladusaks looks siluma; spetsialist peab piirid taastama.
 
-### S39. Kvaliteedikontroll: seitse küsimust
+### S39. Jaotusmaterjal D: väljundi kvaliteedikontroll
 
 - Faktid.
 - Allikad ja viited.
@@ -283,8 +287,16 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 - Toon ja arusaadavus.
 - Mõju inimese õigustele või valikutele.
 - Kas ma suudan teksti enda sõnadega põhjendada?
+- Seda lehte ei õpetata eraldi slaidina. Koolitaja jagab kontrollnimekirja D
+  minikokkuvõtte ajal ja tõstab esile ühe või kaks küsimust.
 
 ## Moodul 4. Otsustuspiir ja eetika
+
+### K3. Kohtumise 3 avaslaid — otsustuspiir ja asutuse reegel
+
+- Millist kontrollivõtet proovisid?
+- Millise vea, lisanduse või ebatäpsuse see kinni püüdis?
+- Tänane tulemus: osaleja eristab enda töövõtet otsusest, mille peab tegema asutus.
 
 ### S40. Mõju loeb rohkem kui funktsiooni nimi
 
@@ -389,13 +401,12 @@ on koolitaja jutupunktid, mitte slaidile kopeeritav tekst.
 
 ## Lõpetamine
 
-### S54. Viis järelmaterjali
+### S54. Järelmaterjalide tervik
 
-- Sisendi eelkontroll.
+- Sisendi eelkontroll ja intsidendi kiirkaart anti kätte kohtumisel 1.
 - Tööriista kasutuselevõtu kontroll.
 - Otsustuspiiri kontroll.
 - Väljundi kvaliteedikontroll.
-- Intsidendi kiirkaart.
 - Lisaks meeskonnareeglite mall ja ametlike allikate loend.
 
 ### S55. Minu homne samm
@@ -447,3 +458,11 @@ Kolm lisastsenaariumi saaliga lahendamiseks.
 - Küsi kirjalik juhis.
 - Paku juhile ühe lehe reegli mustandit.
 - Ära võta üksiktöötajana enda peale asutuse õiguslikku riskihinnangut.
+
+### V6. STAR-i strateegia suund
+
+- STAR-i strateegia 2026–2030 näeb AI-d väärtust loova võimalusena, kuid ainult
+  „selgelt piiratud, kontrollitava ja õiguslikult reguleeritud vahendina”.
+- Koolituse küsimus: milline piir on töötaja jaoks päriselt kasutatav?
+- Kasuta seda slaidi ainult siis, kui tellija soovib STAR-i strateegia seost eraldi
+  käsitleda. Ära kärbi selle jaoks H2, intsidendiosa ega vaheülesannete tagasivaadet.

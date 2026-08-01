@@ -25,7 +25,9 @@ Kui failid lähevad vastuollu, on ajakava ja õpiväljundite alus `koolituskava-
 ### 14 päeva enne
 
 - kinnita sihtrühm, osalejate arv, ruum või veebikeskkond ning ligipääsetavuse vajadused;
-- otsusta, kas kasutatakse koolitaja treeningkontot, ühist demo või ainult paberivarianti;
+- kinnita, et põhivormis kasutatakse koolitaja juhitud ChatGPT demo eraldi
+  treeningkontol; kui korraldaja soovib asutuse enda heakskiidetud tööriista, lepi see
+  eraldi kokku;
 - saada korraldajale andmekaitseteade: osalejad ei võta kaasa päris kliendijuhtumeid;
 - kinnita, kas koolitus või chat salvestatakse ja millisel eesmärgil;
 - saada õigusmoodul sõltumatule ülevaatajale, kui see pole selle versiooni puhul tehtud.
@@ -49,29 +51,39 @@ Kui failid lähevad vastuollu, on ajakava ja õpiväljundite alus `koolituskava-
 
 ## 3. Kolme kohtumise läbiviimise kaart
 
-Põhivorm on kolm 120-minutilist kontaktkohtumist. Iga kohtumise keskele lisatakse
-10-minutiline paus, mida kontaktõppe hulka ei arvestata. Kohtumiste soovituslik vahe on
-1–2 nädalat.
+Põhivorm on kolm 120-minutilist kontaktkohtumist. Iga kohtumise juurde lisatakse
+10-minutiline paus, mida kontaktõppe hulka ei arvestata. Paus tehakse allolevas kaardis
+märgitud loomulikus üleminekukohas. Kohtumiste soovituslik vahe on 1–2 nädalat.
+
+8 akadeemilise tunni läbimise märge eeldab põhivormis osalemist kõigil kolmel
+kohtumisel ja kokkusurutud vormis mõlemal kohtumisel. Puudutud osa saab läbida teise
+rühmaga või eraldi kontaktkohtumisena. Kui seda ei asendata, märgitakse tegelikult
+läbitud kontaktõppe maht.
 
 ### Kohtumine 1 — AI mõistmine ja turvaline sisend
 
 | Kontaktminutid | Slaidid ja tegevus | Materjal | Tulemus |
 |---|---|---|---|
-| 0–15 | S1–S5, kokkulepped, H1 algküsitlus | osaleja tööleht p 1 | turvaline lähtepunkt |
-| 15–70 | S6–S20, kaks juhitud demot | allikate fail | AI piirid ja õiguskaardi neli kihti |
-| 70–120 | S21–S26, H2 algus | tööleht H2 | ülesande, andmete ja tööriista eristamine |
+| 0–20 | S1–S5, kokkulepped, H1 algküsitlus | osaleja tööleht p 1 | turvaline lähtepunkt |
+| 20–70 | S6–S19, kaks juhitud demot | allikate fail | AI piirid ja õiguskaardi neli kihti |
+| paus | 10 minutit, pärast 70 kontaktminutit |  |  |
+| 70–120 | S21–S29 ja H2 tervikuna | tööleht H2, kontrollnimekirjad A ja E | ülesande, andmete ja tööriista eristamine ning intsidendikäik |
 
 Kohtumiste vaheülesanne: leia oma asutuse AI kasutamise juhis, heakskiidetud tööriist ja
 intsidendi kontakt. Kui neid ei ole, sõnasta kolm küsimust, millele töötaja vajab
 vastust. Osaleja ei too järgmisele kohtumisele päris kliendiandmeid ega asutusesisest
-dokumenti.
+dokumenti. Enne lahkumist jaga igale osalejale sisendi eelkontroll ja intsidendi
+kiirkaart, et need oleksid vahepealsel ajal kasutatavad.
 
 ### Kohtumine 2 — praktilised töövõtted
 
 | Kontaktminutid | Slaidid ja tegevus | Materjal | Tulemus |
 |---|---|---|---|
-| 0–20 | tagasivaade, S27–S29 ja H2 lõpetamine | tööleht H2 | turvalise kasutuse ning intsidendikäigu kinnistamine |
-| 20–120 | S30–S39, H3–H5 | töölehed H3–H5 | kolm kontrollitavat töövõtet |
+| 0–10 | K2 avaslaid ja esimese vaheülesande mustrid | osalejate märkmed | asutuste tegelike reeglite ja lünkade nähtavaks tegemine |
+| 10–50 | S30–S33 ja H3 | tööleht H3 | kontrollitav dokumendimustand |
+| paus | 10 minutit, pärast 50 kontaktminutit |  |  |
+| 50–115 | S34–S38, H4–H5 ja minikokkuvõte; S39 jaotusmaterjalina | töölehed H4–H5 ja kontrollnimekiri D | allikatruu selgitus ja kokkuvõte |
+| 115–120 | teise vaheülesande kokkulepe | osaleja enda märge | üks proovimiseks valitud kontrollivõte |
 
 Kohtumiste vaheülesanne: proovi üht koolitusel õpitud kontrollivõtet avaliku,
 sünteetilise või asutuses lubatud materjaliga. Pane kirja, mis võttis aega ja milline
@@ -81,9 +93,11 @@ kontroll tabas vea või ebatäpsuse.
 
 | Kontaktminutid | Slaidid ja tegevus | Materjal | Tulemus |
 |---|---|---|---|
-| 0–55 | S40–S48, J2/J5/J8/J9 | juhtumikaardid | sisulise mõju ja inimkontrolli eristus |
-| 55–100 | S49–S53, H6 | tööleht H6 | üks meeskonnareegel ja üks asutuse otsus |
-| 100–120 | S54–S58, tegevusplaan, H1 lõpp, tagasiside | järelmaterjalid | isiklik järgmine samm ja õpitulemuse kontroll |
+| 0–5 | K3 avaslaid ja teise vaheülesande üks õppetund | osalejate märkmed | kontrollivõtte tegeliku kasu nähtavaks tegemine |
+| 5–55 | S40–S48, J2/J5/J8/J9 | juhtumikaardid | sisulise mõju ja inimkontrolli eristus |
+| paus | 10 minutit, pärast 55 kontaktminutit |  |  |
+| 55–95 | S49–S53, H6 | tööleht H6 | üks meeskonnareegel ja üks asutuse otsus |
+| 95–120 | S54–S58, tegevusplaan, H1 lõpp, tagasiside | ülejäänud järelmaterjalid | isiklik järgmine samm ja õpitulemuse kontroll |
 
 Kontaktõpe on kokku 360 minutit ehk 8 akadeemilist tundi. Koos pausidega kestab iga
 kohtumine 2 tundi ja 10 minutit.
@@ -91,12 +105,15 @@ kohtumine 2 tundi ja 10 minutit.
 ## 4. Ajajuhtimine
 
 - Ära vähenda harjutuste aega selleks, et kõik jutupunktid ära rääkida.
-- Kui moodul 1 venib, jäta STAR-i strateegia slaid osalejale lugemiseks; ära kärbi
-  anonüümimise praktikat.
+- STAR-i strateegia slaid V6 on varuslaid. Ära tõsta seda põhikavasse H2,
+  intsidendiosa või vaheülesande arutelu arvelt.
+- Kohtumise 2 blokis 50–115 on S34, S36 ja S38 kuni kaheminutilised sillad harjutuste
+  sees. S35 ja S37 juhatavad harjutused sisse. S39 ei ole eraldi õpetatav slaid:
+  kontrollnimekiri D jagatakse minikokkuvõtte ajal.
 - Moodulis 4 võib iga rühm saada ühe eri juhtumi ja anda 90-sekundilise kokkuvõtte. Nii
   ei pea kogu saal nelja juhtumit järjest arutama.
 - Küsimus, mis vajab üksikjuhtumi õigusanalüüsi, läheb „järelkontrolli” nimekirja.
-- Lõpetamise 20 minutit ei kasutata varasema loengu järeleaitamiseks.
+- Lõpetamise 25 minutit ei kasutata varasema loengu järeleaitamiseks.
 
 ## 5. Kokkusurutud variant 2 × 4 akadeemilist tundi
 
@@ -118,7 +135,8 @@ sobib 1–3 nädalat, et osaleja jõuaks märgata oma asutuse tegelikke reegleid
 
 Vaheülesanne: leia oma asutuse AI kasutamise juhis, heakskiidetud tööriist ja intsidendi
 kontakt. Kui neid ei ole, sõnasta kolm küsimust, millele töötaja vajab vastust. Osaleja
-ei too teisele kohtumisele päris kliendiandmeid ega asutusesisest dokumenti.
+ei too teisele kohtumisele päris kliendiandmeid ega asutusesisest dokumenti. Jaga ka
+kokkusurutud vormis esimese kohtumise lõpus kontrollnimekirjad A ja E.
 
 ### Teine kohtumine — kontroll, otsustuspiir ja asutuse reegel
 
@@ -186,6 +204,10 @@ viivitamata asutuse kanalisse teatada. Ära hakka saalis rikkumise raskust mää
 - kirjuta versioonilogisse kolm otsust: mis jäi, mis muutub, milline väide vajab
   allikakontrolli;
 - saada 4–6 nädala järelküsimus ainult eraldi nõusoleku andnud osalejatele.
+
+Esimene läbiviimine tehakse teadliku piloodina väiksema rühmaga. Koolitaja märgib iga
+bloki tegeliku algus- ja lõpuaja, kuid ei seo ajamärkmeid ühegi osaleja vastuse või
+isikuandmetega. Piloodi järel korrigeeritakse ajakava tegeliku kulu põhjal.
 
 ## 10. Koolituse katkestamise kriteeriumid
 

@@ -73,7 +73,8 @@ faile. Nii ei hakka slaid, tööleht ja koolitaja vastus eri asja õpetama.
 
 - [x] 8 akadeemilise tunni kava: 3 × 120 kontaktminutit, iga kohtumise juures
   10-minutiline paus
-- [x] 58 slaidi jutupunktid ja viis varuslaidi
+- [x] 56 õpetatavat sisuslaidi, kaks kohtumiste avaslaidi, üks jaotusmaterjali leht ja
+  kuus varuslaidi
 - [x] kuus harjutust koos koolitaja juhistega
 - [x] kümme sünteetilist juhtumit
 - [x] osaleja töölehed ilma koolitaja vastusteta
@@ -93,3 +94,4 @@ faile. Nii ei hakka slaid, tööleht ja koolitaja vastus eri asja õpetama.
 - [ ] tagasisidevorm ja QR-kood
 - [ ] demode varuvideod
 - [ ] allikate kuupäevakontroll
+- [ ] esimene läbiviimine väiksema rühma piloodina ja blokkide tegeliku ajakulu mõõtmine

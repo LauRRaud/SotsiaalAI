@@ -21,9 +21,9 @@ Sotsiaaltöös ei piisa üldisest promptimise koolitusest: töötaja peab oskama
 hakata inimese kohta tehtavat otsust sisuliselt mõjutama.
 
 AI-määruse AI-kirjaoskuse kohustus kehtib juba alates 2025. aastast. Teatud
-läbipaistvusreeglid rakenduvad 2. augustil 2026 ning AI-määruse III lisas nimetatud
-kõrge riskiga süsteemide põhikohustuste uus rakenduskuupäev on AI Omnibusi järel
-2. detsember 2027.
+läbipaistvusreeglite kohaldumise algus on 2. augustil 2026 ning AI-määruse III lisas
+nimetatud kõrge riskiga süsteemide põhikohustuste uus rakenduskuupäev on AI Omnibusi
+järel 2. detsember 2027.
 Seega ei ehitaks ma koolitust ühe tähtaja ümber, vaid selle ümber, mida töötajal ja
 asutusel on vaja osata juba praegu.
 
@@ -42,6 +42,14 @@ malliga. Soovituslik põhivorm on kolm 120-minutilist kohtumist, mille vahele j�
 õpitut oma töökeskkonnas märgata ja proovida. Korraldusliku vajaduse korral saab kava
 tihendada kaheks 180-minutiliseks osaks. Soovi korral saab enne põhikoolitust teha ka
 90-minutilise sissejuhatava veebinari, mis on iseseisvalt kasutatav.
+
+Demod teen koolitaja juhitud ChatGPT treeningkontol ning osalejad ei pea endale kontot
+looma. Kõigil harjutustel on ka paberivariant. Korraldaja soovil saab kasutada asutuse
+enda heakskiidetud tööriista, kui see on enne koolitust läbi proovitud.
+
+8 akadeemilise tunni läbimise märge eeldab osalemist kõigil põhivormi kolmel või
+kokkusurutud vormi mõlemal kohtumisel. Puudutud osa saab läbida teise rühmaga või
+eraldi kontaktkohtumisena; muul juhul märgitakse tegelikult läbitud maht.
 
 Kui see suund tundub ESTA-le sobiv, vaatan hea meelega koos üle sihtrühma, õpiväljundid
 ja selle, kas sobib soovituslik kolmeosaline vorm või on vaja kokkusurutud kaheosalist

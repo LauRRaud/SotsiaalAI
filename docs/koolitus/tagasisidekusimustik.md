@@ -20,14 +20,17 @@ Skaala 1–5: 1 = üldse mitte, 5 = väga.
 7. Koolitaja eristas arusaadavalt õigusnõude, asutuse reegli ja hea ametialase praktika.
    (1–5)
 8. Koolituse tempo võimaldas kaasa mõelda ja harjutada. (1–5)
+9. Kohtumiste vahed aitasid õpitut oma töökeskkonnaga seostada. (1–5)
+10. Vaheülesanded aitasid järgmiseks kohtumiseks valmistuda. (1–5)
 
 Avatud küsimused:
 
-9. Milline töövõte või eristus oli sulle kõige kasulikum?
-10. Milline väide või piir jäi veel ebaselgeks?
-11. Mis on üks asi, mida kavatsed oma töös või meeskonnas muuta?
-12. Millise küsimuse peab sinu asutuses lahendama juht, andmekaitsespetsialist või jurist?
-13. Mis tuleks järgmises versioonis ära jätta, lühendada või juurde lisada?
+11. Milline töövõte või eristus oli sulle kõige kasulikum?
+12. Milline väide või piir jäi veel ebaselgeks?
+13. Mis on üks asi, mida kavatsed oma töös või meeskonnas muuta?
+14. Millise küsimuse peab sinu asutuses lahendama juht, andmekaitsespetsialist või jurist?
+15. Kas kohtumiste vahe oli sobiv? Mida muudaksid?
+16. Mis tuleks järgmises versioonis ära jätta, lühendada või juurde lisada?
 
 ## B. Lühike teadmiste kontroll
 
@@ -41,7 +44,7 @@ Kasuta nelja stsenaariumi failist `harjutused.md` H1. Vastusevariandid:
 Küsimuste eesmärk on hinnata õpetatud otsustusraami, mitte jätta muljet juristi eksamist.
 Tulemust analüüsitakse rühma tasandil.
 
-## C. Järelküsimus 4–6 nädala pärast
+## C. Järelküsimus 4–6 nädalat pärast viimast kohtumist
 
 1. Kas kasutasid mõnda koolitusel õpitud töövõtet? jah / ei
 2. Kui jah, siis millist ja mis muutus?
@@ -56,6 +59,10 @@ andnud.
 
 - Raportis näidatakse vastuste arvu ja jaotust, mitte ainult keskmist.
 - Teadmiste kontrollis vaadatakse, millised olukorrad tekitasid kõige rohkem ebaselgust.
+- Alg- ja lõppkontrolli vastajate arv näidatakse eraldi; anonüümsetest vastustest ei
+  tehta paarisvõrdlust ega üksikisiku arengu järeldust.
+- Raportis näidatakse, kui paljud alustasid, osalesid kõigil kavandatud kohtumistel ja
+  lõpetasid, ning kuidas hinnati kohtumiste vahesid ja vaheülesandeid.
 - Väikese rühma avatud vastuseid ei tsiteerita viisil, mille järgi vastaja oleks
   äratuntav.
 - Turundustsitaadi kasutamiseks küsitakse eraldi luba; anonüümne tagasiside ei ole

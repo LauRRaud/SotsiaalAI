@@ -11,8 +11,9 @@ Sihtrühm: koolitaja. Osalejale jagatav puhas versioon on `osaleja-toolehed.md`.
   konfidentsiaalset teavet.
 - Koolitaja ei eelda, et osalejal on isiklik konto avalikus AI-teenuses. Igal harjutusel
   on paberivariant või koolitaja juhitud ühisdemo.
-- Kui kasutatakse AI-tööriista, ütleb koolitaja enne harjutust selgelt, milline
-  treeningkeskkond ja konto on lubatud.
+- Vaikimisi kasutab koolitaja eraldi treeningkontol ChatGPT-d. Kui korraldaja asendab
+  selle asutuse heakskiidetud tööriistaga, ütleb koolitaja enne harjutust selgelt,
+  milline keskkond, konto ja kasutusviis on lubatud.
 - Harjutuse eesmärk ei ole saada „parim AI-vastus”, vaid märgata, millist inimkontrolli
   ülesanne vajab.
 
@@ -28,11 +29,11 @@ Sihtrühm: koolitaja. Osalejale jagatav puhas versioon on `osaleja-toolehed.md`.
 
 ## H1. Anonüümne lähte- ja lõppküsitlus
 
-**Aeg:** avamisel 5 minutit, lõpetamisel 5 minutit
+**Aeg:** avamisel 7 minutit, lõpetamisel 5 minutit
 **Vorm:** anonüümne telefoniküsitlus või värvilised vastuskaardid
 **Eesmärk:** saada lähtejoon kedagi võimaliku varasema vea pärast esile tõstmata.
 
-### Avaküsimused
+### Avaküsimused: taust
 
 1. Olen AI-vestlusrobotit vähemalt korra kasutanud.
 2. Tean, milline AI-tööriist ja konto on minu töökohas heaks kiidetud.
@@ -41,9 +42,9 @@ Sihtrühm: koolitaja. Osalejale jagatav puhas versioon on `osaleja-toolehed.md`.
 
 Vastused: jah / ei / ei ole kindel / ei kohaldu.
 
-### Lõpuküsimused
+### Alg- ja lõppkontroll
 
-Kasuta nelja lühistsenaariumi:
+Kasuta samu nelja lühistsenaariumi nii avamisel kui ka lõpetamisel:
 
 - avaliku juhendi kokkuvõte kinnitatud tööriistas;
 - nimeta, kuid väikeses kohas äratuntav kliendilugu avalikus tööriistas;
@@ -54,8 +55,11 @@ Vastused: sobiv / sobiv ainult lisatingimustel / peata ja küsi / ära kasuta.
 
 ### Koolitaja märkus
 
-Ära väida, et koolitus „tõestas pädevuse”. Võrdle alg- ja lõppvastuseid ning nimeta,
-milline piir muutus rühmale selgemaks ja milline vajab järeltegevust.
+Taustaküsimusi ei esitata lõpus uuesti ega kasutata teadmiste muutuse tõendina. Ära
+väida, et koolitus „tõestas pädevuse”. Stsenaariumide alg- ja lõppvastuseid võrreldakse
+ainult rühma tasandil ning mõlema mõõtmise vastajate arv tuuakse eraldi välja.
+Anonüümne mõõtmine ei võimalda väita, et sama inimese vastus muutus. Nimeta, milline
+piir muutus rühmale selgemaks ja milline vajab järeltegevust.
 
 ## H2. Ülesanne – andmed – tööriist
 
@@ -105,7 +109,7 @@ milline piir muutus rühmale selgemaks ja milline vajab järeltegevust.
 
 ## H3. Dokumendimustand ja kontroll
 
-**Aeg:** 30 minutit
+**Aeg:** 40 minutit
 **Vorm:** individuaalne töö, seejärel paariskontroll
 **Eesmärk:** koostada kontrollitav tööülesanne ning märgata väljundi lisandusi.
 

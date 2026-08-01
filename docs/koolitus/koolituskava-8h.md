@@ -15,10 +15,19 @@ Korraldusliku vajaduse korral võib kava tihendada kaheks 180-minutiliseks
 kontaktkohtumiseks, mille juurde lisandub paus. See on kokkusurutud variant, mitte
 soovituslik põhivorm. Ühe pika koolituspäevana seda kava vaikimisi ei pakuta.
 
+8 akadeemilise tunni läbimise märge eeldab põhivormis osalemist kõigil kolmel
+kontaktkohtumisel ja kokkusurutud vormis mõlemal kohtumisel. Puudutud kohtumine
+läbitakse teise rühmaga või eraldi kontaktkohtumisena; ainult materjalide iseseisev
+lugemine ei asenda kontaktõpet. Kui puudutud osa ei asendata, märgitakse osalejale
+tegelikult läbitud maht.
+
 Õppevormid: lühiloeng, juhitud demo, individuaalne ülesanne, paaristöö, rühmaarutelu ja
 isiklik rakendusplaan. Rühma soovituslik suurus on 12–24 inimest.
 
-Osaleja võib kasutada koolitaja valitud treeningkeskkonda või teha ülesanded paberil.
+Vaikimisi kasutatakse koolitaja juhitud ChatGPT demo eraldi treeningkontol. Osaleja ei
+pea looma isiklikku kontot ning võib teha kõik ülesanded paberil. Korraldaja soovil võib
+ChatGPT asendada asutuse heakskiidetud tööriistaga, kui sama konto ja töövood on enne
+koolitust läbi proovitud.
 **Päris kliendiandmeid koolitusel ei kasutata ega paluta osalejal ühtegi tööriista
 sisestada.**
 
@@ -29,9 +38,9 @@ sisestada.**
   milliseid andmeid võib töödelda ega kelle poole kahtluse korral pöörduda.
 - AI-määruse AI-kirjaoskuse kohustus kehtib pakkujatele ja kasutuselevõtjatele alates
   2.02.2025. Sobiv koolitus sõltub inimese rollist, kasutatavast süsteemist ja riskidest.
-- 2.08.2026 rakenduvad AI-määruse teatud läbipaistvuskohustused. III lisas nimetatud
-  kõrge riskiga AI-süsteemide põhikohustuste uus rakenduskuupäev on AI Omnibusi järel
-  2.12.2027.
+- 2.08.2026 on AI-määruse teatud läbipaistvuskohustuste kohaldumise algus. III lisas
+  nimetatud kõrge riskiga AI-süsteemide põhikohustuste uus rakenduskuupäev on AI
+  Omnibusi järel 2.12.2027.
 - STAR-i strateegia 2026–2030 näeb AI-d väärtust loova võimalusena ainult selgelt
   piiratud, kontrollitava ja õiguslikult reguleeritud vahendina.
 - Sotsiaaltöö sisaldab tundlikku teavet ja suure mõjuga otsuseid. Seetõttu ei piisa
@@ -78,32 +87,38 @@ automaatselt lubatud või iga otsust toetav süsteem automaatselt keelatud. Sobi
 
 | Osa | Aeg | Põhiküsimus |
 |---|---:|---|
-| Avamine | 15 min | Mida pead koolituse lõpuks oskama otsustada? |
-| Moodul 1. AI toimimine ja õiguslik kaart | 55 min | Miks AI võib eksida ja millised reeglikihid teda ümbritsevad? |
-| Mooduli 2 esimene osa. Ülesanne, andmed ja tööriist | 50 min | Mida on ülesande jaoks tegelikult vaja ning milline teave võib inimese äratuntavaks muuta? |
+| Avamine | 20 min | Mida pead koolituse lõpuks oskama otsustada? |
+| Moodul 1. AI toimimine ja õiguslik kaart | 50 min | Miks AI võib eksida ja millised reeglikihid teda ümbritsevad? |
+| Paus | 10 min | Pärast 70 kontaktminutit, moodulite vahel |
+| Moodul 2. Andmed, tööriist ja intsident | 50 min | Mida võib kuhu sisestada ning mida teha vea korral? |
 | **Kontaktõpe kokku** | **120 min** |  |
 
 ### Kohtumine 2. Praktilised töövõtted
 
 | Osa | Aeg | Põhiküsimus |
 |---|---:|---|
-| Tagasivaade, mooduli 2 lõpetamine ja H2 | 20 min | Mida võib kuhu sisestada ning mida teha vea korral? |
-| Moodul 3. Praktilised töövõtted | 100 min | Kuidas saada kasulik mustand ilma vastutust ära andmata? |
+| Esimese vaheülesande tagasivaade | 10 min | Milline reegel, tööriist ja intsidendikanal on osaleja asutuses päriselt olemas? |
+| Mooduli 3 esimene töövõte: H3 | 40 min | Kuidas koostada kontrollitav dokumendimustand? |
+| Paus | 10 min | Pärast 50 kontaktminutit, töövõtete vahel |
+| Mooduli 3 ülejäänud töövõtted: H4–H5 ja minikokkuvõte | 65 min | Kuidas säilitada ametliku teksti sisu ja allikajälg? |
+| Teise vaheülesande kokkulepe | 5 min | Millist kontrollivõtet proovin enne järgmist kohtumist? |
 | **Kontaktõpe kokku** | **120 min** |  |
 
 ### Kohtumine 3. Otsustuspiir ja asutuse reegel
 
 | Osa | Aeg | Põhiküsimus |
 |---|---:|---|
-| Moodul 4. Otsustuspiir ja eetika | 55 min | Millal hakkab AI inimese üle tehtavat otsust sisuliselt mõjutama? |
-| Moodul 5. Asutuse kasutusreegel | 45 min | Kuidas muuta juhuslik kasutus juhitud kasutuseks? |
-| Lõpetamine | 20 min | Mida teen järgmisena teisiti ja mida peab otsustama asutus? |
+| Teise vaheülesande tagasivaade | 5 min | Millise vea või ebatäpsuse kontroll kinni püüdis? |
+| Moodul 4. Otsustuspiir ja eetika | 50 min | Millal hakkab AI inimese üle tehtavat otsust sisuliselt mõjutama? |
+| Paus | 10 min | Pärast 55 kontaktminutit, moodulite vahel |
+| Moodul 5. Asutuse kasutusreegel | 40 min | Kuidas muuta juhuslik kasutus juhitud kasutuseks? |
+| Lõpetamine | 25 min | Mida teen järgmisena teisiti ja mida peab otsustama asutus? |
 | **Kontaktõpe kokku** | **120 min** |  |
 
-Iga kohtumise keskele kavandatakse lisaks 10-minutiline paus. Kolme kohtumise
-kontaktõpe on kokku 360 minutit ehk 8 akadeemilist tundi.
+Pausid ei kuulu kontaktõppe mahu sisse. Kolme kohtumise kontaktõpe on kokku 360 minutit
+ehk 8 akadeemilist tundi.
 
-## Avamine — 15 min
+## Avamine — 20 min
 
 - Koolitaja taust ja huvide konflikti deklaratsioon: koolitaja arendab SotsiaalAI
   platvormi; see annab praktilise kogemuse, kuid koolitus ei ole tootedemo.
@@ -113,7 +128,7 @@ kontaktõpe on kokku 360 minutit ehk 8 akadeemilist tundi.
 - Koolituse otsustuskaart: **Kas seda ülesannet on vaja teha AI-ga? Milliste andmetega?
   Millises tööriistas? Kes kontrollib ja vastutab?**
 
-## Moodul 1. AI toimimine ja õiguslik kaart — 55 min
+## Moodul 1. AI toimimine ja õiguslik kaart — 50 min
 
 ### 1.1. Keelemudel praktilises keeles
 
@@ -155,7 +170,7 @@ kontaktõpe on kokku 360 minutit ehk 8 akadeemilist tundi.
 - III lisa kõrge riskiga süsteemide põhikohustused kohalduvad alates 2.12.2027;
   füüsilistesse toodetesse integreeritud kõrge riskiga süsteemidel on eraldi ajajoon.
 
-## Moodul 2. Andmed, tööriist ja intsident — 70 min
+## Moodul 2. Andmed, tööriist ja intsident — 50 min
 
 ### 2.1. Ülesanne – andmed – tööriist
 
@@ -189,12 +204,14 @@ ja intsidentide käsitlus.
   infoturbevastutaja või kasutajatugi.
 - Asutus otsustab, kas tegemist oli isikuandmetega seotud rikkumisega, kas teenusepakkujalt
   saab andmed kustutada ja kas inimesi või järelevalveasutust tuleb teavitada.
+- Kohtumise 1 lõpus saab osaleja sisendi eelkontrolli ning intsidendi kiirkaardi. Need
+  peavad olema tal kasutada juba esimese kohtumistevahelise perioodi ajal.
 
-## Moodul 3. Praktilised töövõtted — 100 min
+## Moodul 3. Praktilised töövõtted — 105 min
 
 Kõik harjutused kasutavad sünteetilist või avalikku materjali.
 
-### 3.1. Dokumendimustand — 30 min
+### 3.1. Dokumendimustand — 40 min
 
 - Prompt ei ole võlusõnade loend, vaid tööülesande kirjeldus: eesmärk, adressaat,
   lähtefaktid, piirid, soovitud vorm ja kontrollitavad nõuded.
@@ -218,12 +235,13 @@ Kõik harjutused kasutavad sünteetilist või avalikku materjali.
 - Kui väite asukohta ei leia, märgitakse see kontrollimata väiteks ja jäetakse
   töödokumendist välja.
 
-### 3.4. Minikokkuvõte — 15 min
+### 3.4. Minikokkuvõte — 10 min
 
 - Mis vahe on keelelisel parandusel, sisulisel ümberkirjutamisel ja otsuse mõjutamisel?
 - Milline kontroll jäi osalejal kõige kergemini tegemata?
+- Koolitaja jagab kontrollnimekirja D; S39 sisu ei esitata eraldi õpetatava slaidina.
 
-## Moodul 4. Otsustuspiir ja eetika — 55 min
+## Moodul 4. Otsustuspiir ja eetika — 50 min
 
 ### 4.1. Sisuline mõju, mitte nupu nimi
 
@@ -250,7 +268,7 @@ Kõik harjutused kasutavad sünteetilist või avalikku materjali.
 - Kui inimene toob ise AI vastuse, käsitletakse seda lugupidavalt, kuid kontrollitakse
   ametlikust allikast.
 
-## Moodul 5. Asutuse kasutusreegel — 45 min
+## Moodul 5. Asutuse kasutusreegel — 40 min
 
 ### 5.1. Enne tööriista kasutuselevõttu
 
@@ -275,7 +293,7 @@ Kõik harjutused kasutavad sünteetilist või avalikku materjali.
 Rühmatöö: iga laud koostab ühe realistliku meeskonnareegli ning ühe küsimuse, millele
 ainult juht või andmekaitsespetsialist saab vastata.
 
-## Lõpetamine — 20 min
+## Lõpetamine — 25 min
 
 - Individuaalne „homne samm”: üks kasutus, millest loobun; üks ohutu töövõte, mida proovin;
   üks küsimus, mille viin oma asutusse.
