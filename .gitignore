@@ -118,3 +118,13 @@ public/*.mp4
 
 # Wordi lukufailid (~$dokument.docx) — tekivad avatud dokumendi kõrvale
 ~$*
+
+# RAG-i lähtekorpused — EI KUULU rakenduse repos (01.08.2026).
+# Need on sisselugemise SISEND, mitte rakenduse kood: PDF-id, .akt XML-id ja
+# nende metaandmed elavad RagDocument.storagePath all. Gitti pannes kasvaks
+# ajalugu ~233 MB võrra ja seda ei saa hiljem ilma ajaloo ümberkirjutamiseta
+# tagasi võtta (.git oli sel hetkel juba 1,37 GB).
+# Kui mõni neist on vaja jagada, käib see storage'i või git-lfs-i kaudu.
+docs/ajakiri_sotsiaaltoo/
+docs/KOV/
+docs/Seadused_rt/
