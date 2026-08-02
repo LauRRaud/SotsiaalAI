@@ -12,6 +12,7 @@ import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { createEntry, getEntryDefaults, listEntries } from "@/lib/serviceLog/entries";
+import { getEntryDraftFromVisit } from "@/lib/serviceLog/fieldBridge";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
@@ -51,6 +52,14 @@ export async function GET(req) {
     /* `?defaults=1` tagastab TULETAMISOTSUSE, mitte kirjed: UI küsib enne vormi
        näitamist, mida üldse küsida. Reeglid on serveri tõde, mitte kliendi
        oletus — muidu tekiks kaks eri „mida küsida" loogikat. */
+    /* VÄLITÖÖ SILD (leping 8.4). Eeltäide tuleb serverist, sest tuletamisreeglid
+       on serveri tõde — kaks eri „mida külastusest üle kanda" loogikat
+       lahkneksid vaikselt, nagu tuletamisreeglitega juba korra juhtus. */
+    const fromVisit = url.searchParams.get("fromVisit");
+    if (fromVisit) {
+      return json({ draft: await getEntryDraftFromVisit(userId, fromVisit) });
+    }
+
     if (url.searchParams.get("defaults") === "1") {
       const defaults = await getEntryDefaults(userId, {
         clientUserId: url.searchParams.get("clientUserId"),

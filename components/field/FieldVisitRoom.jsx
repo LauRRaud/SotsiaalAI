@@ -21,6 +21,7 @@ import {
   FIELD_VISIT_STATUS
 } from "@/lib/field/constants";
 import { useFieldSync } from "./useFieldSync";
+import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 
 const PHASES = ["prep", "on_site", "follow_up"];
 
@@ -894,6 +895,25 @@ export default function FieldVisitRoom({ visitId }) {
                 </div>
               ) : null}
               {sync.pendingCount > 0 ? <p className="fld-hint">{t("field.visit.closeBlocked")}</p> : null}
+
+              {/* SILD TEENUSPÄEVIKUSSE (leping 8.4). Ilmub alles SULETUD
+                  külastuse juures: enne seda ei ole kestus lõplik ja eeltäide
+                  annaks vale koguse.
+
+                  LINK, MITTE AUTOMAATNE LOOMINE. Külastus ei ole alati
+                  arveldatav teenus ja arve alusdokument ei tohi tekkida ilma
+                  inimese kinnituseta — vorm täitub, inimene kinnitab. */}
+              {isServiceLogUiEnabled() && visit?.closedAt ? (
+                <div className="fld-actions">
+                  <Button
+                    as="a"
+                    variant="secondary"
+                    href={`/teenuspaevik?visit=${encodeURIComponent(visit.id)}`}
+                  >
+                    {t("field.visit.createServiceEntry")}
+                  </Button>
+                </div>
+              ) : null}
 
               <div className="fld-purge">
                 <h2 className="fld-h2">{t("field.purge.title")}</h2>

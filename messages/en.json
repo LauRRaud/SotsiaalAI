@@ -124,7 +124,8 @@
       "untitled": "Untitled visit",
       "close": "Close visit",
       "cancel": "Visit did not happen",
-      "closeBlocked": "Closing becomes available once every item is sent or removed."
+      "closeBlocked": "Closing becomes available once every item is sent or removed.",
+      "createServiceEntry": "Create a service entry"
     },
     "status": {
       "DRAFT": "In preparation",
@@ -8490,7 +8491,8 @@
       "provenance_invalid": "The note provenance is not a known value.",
       "stamp_order": "The timestamps are out of order.",
       "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it.",
-      "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost."
+      "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost.",
+      "visit_not_found": "Visit not found."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
@@ -8511,6 +8513,12 @@
       "claim_not_met": "A typical entry does not yet fit within {target} seconds.",
       "claim_not_enough": "The sample is still small — a reliable claim needs at least {needed} entries.",
       "explainer": "This measures the time spent MAKING THE ENTRY, not the service itself. The number is yours and nobody else sees it."
+    },
+    "from_visit": {
+      "title": "Prefilled from a field visit",
+      "no_duration": "The visit had no confirmed arrival and departure — enter the quantity manually.",
+      "location": "Visit location: {place}",
+      "load_error": "The visit data could not be loaded. Enter the entry manually."
     }
   }
 }

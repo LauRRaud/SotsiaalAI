@@ -137,6 +137,9 @@ export default function ServiceLogDay() {
   const [stamps, setStamps] = useState({});
   const [withTravel, setWithTravel] = useState(false);
   const [pending, setPending] = useState(0);
+  /* Välitöö sild: `null` = eeltäidet ei ole; objekt = kirje sünnib külastusest. */
+  const [fromVisit, setFromVisit] = useState(null);
+  const [fromVisitError, setFromVisitError] = useState(false);
   /**
    * E8 MOOTMINE (DoD 1). Kell hakkab kaeima ESIMESEST PUUTEST, mitte lehe
    * avanemisest: leht voib olla taustavahekaardis lahti tunde ja see ei ole
@@ -144,6 +147,9 @@ export default function ServiceLogDay() {
    * uehtegi uembervormistust.
    */
   const inputStartedRef = useRef(0);
+  /* Viide funktsioonile, sest eeltäite-effect jookseb ENNE `markInputStart`-i
+     definitsiooni ja otsene kutse oleks siin TDZ-viga. */
+  const markInputStartRef = useRef(null);
 
   /* Viide, mitte soltuvus: nii jaeaevad `stampNow` ja `undoLastStamp` stabiilseks
      ega sunni iga soiduaja luelitust kogu vormi uembervormistama. */
@@ -240,9 +246,59 @@ export default function ServiceLogDay() {
   const lastStamp = [...flow].reverse().find((key) => stamps[key]) || null;
   const started = Boolean(lastStamp);
 
+  /**
+   * VÄLITÖÖ SILD (leping 8.4). Marsruut `/teenuspaevik?visit=<id>` tähendab
+   * „see kirje sünnib sellest külastusest". Eeltäide tuleb SERVERIST, mitte
+   * URL-ist: tuletamisreeglid on serveri tõde ja URL-i võib kirjutada igaüks.
+   *
+   * KIRJET EI LOODA AUTOMAATSELT. Külastus ei ole alati arveldatav teenus ja
+   * arve alusdokument ei tohi tekkida ilma inimese kinnituseta — vorm täitub,
+   * inimene vajutab „Salvesta".
+   */
+  useEffect(() => {
+    if (!allowed || typeof window === "undefined") return;
+    const visitId = new URLSearchParams(window.location.search).get("visit");
+    if (!visitId) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await fetch(`/api/service-entries?fromVisit=${encodeURIComponent(visitId)}`, {
+          headers: { "x-ui-locale": locale || "et" }
+        });
+        if (!response.ok) {
+          if (!cancelled) setFromVisitError(true);
+          return;
+        }
+        const body = await response.json();
+        const draft = body?.draft;
+        if (cancelled || !draft) return;
+        setFromVisit(draft);
+        if (draft.date) setDate(String(draft.date).slice(0, 10));
+        if (draft.arrivedAt || draft.leftAt) {
+          setStamps({
+            ...(draft.arrivedAt ? { [VISIT_STAMP.ARRIVED]: draft.arrivedAt } : {}),
+            ...(draft.leftAt ? { [VISIT_STAMP.LEFT]: draft.leftAt } : {})
+          });
+        }
+        if (draft.quantity !== null && draft.quantity !== undefined) {
+          setQuantity(String(draft.quantity));
+        }
+        if (draft.unit) setUnit(draft.unit);
+        /* Kell käib juba: eeltäidetud vorm on sisestuse algus, mitte lõpp. */
+        markInputStartRef.current?.();
+      } catch {
+        if (!cancelled) setFromVisitError(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [allowed, locale]);
+
   const markInputStart = useCallback(() => {
     if (!inputStartedRef.current) inputStartedRef.current = Date.now();
   }, []);
+  markInputStartRef.current = markInputStart;
 
   /**
    * SAADAB JA UNUSTAB. Moodik on korvalsaadus: kui proov ei jou kohale (levi
@@ -469,6 +525,27 @@ export default function ServiceLogDay() {
   return (
     <div className="sl-day">
       <form className="sl-form" onSubmit={submit} onInput={markInputStart}>
+        {/* PÄRITOLU ON NÄHTAV. Ilma selleta ei saa kasutaja aru, miks väljad on
+            juba täidetud — ja täidetud väli, mille päritolu ei tea, on halvem
+            kui tühi väli. */}
+        {fromVisit ? (
+          <div className="sl-from-visit" role="status">
+            <p className="sl-label">{t("service_log.from_visit.title", "")}</p>
+            {fromVisit.locationText ? (
+              <p className="sl-source">
+                {t("service_log.from_visit.location", "", { place: fromVisit.locationText })}
+              </p>
+            ) : null}
+            {!fromVisit.hasDuration ? (
+              <p className="sl-source">{t("service_log.from_visit.no_duration", "")}</p>
+            ) : null}
+          </div>
+        ) : null}
+        {fromVisitError ? (
+          <p className="sl-error" role="alert">
+            {t("service_log.from_visit.load_error", "")}
+          </p>
+        ) : null}
         {/* KLIENT ENNE — see väli on esimene ja fookuses. */}
         <label className="sl-field">
           <span className="sl-label">{t("service_log.form.client", "")}</span>
