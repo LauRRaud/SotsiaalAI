@@ -6812,14 +6812,30 @@
     "exit_card": "Välja",
     "back_card": "Tagasi",
     "zones": {
-      "juhtum": { "name": "Juhtum" },
-      "teadmine": { "name": "Teadmine" },
-      "mina": { "name": "Mina" },
-      "minu_tee": { "name": "Minu tee" },
-      "leian_abi": { "name": "Leian abi" },
-      "vaade": { "name": "Vaade" },
-      "olukord": { "name": "Olukord" },
-      "korraldus": { "name": "Korraldus" }
+      "juhtum": {
+        "name": "Juhtum"
+      },
+      "teadmine": {
+        "name": "Teadmine"
+      },
+      "mina": {
+        "name": "Mina"
+      },
+      "minu_tee": {
+        "name": "Minu tee"
+      },
+      "leian_abi": {
+        "name": "Leian abi"
+      },
+      "vaade": {
+        "name": "Vaade"
+      },
+      "olukord": {
+        "name": "Olukord"
+      },
+      "korraldus": {
+        "name": "Korraldus"
+      }
     },
     "kovision_room_card": "Kovisiooni ruum",
     "kovision_seeds_card": "Teemaseemned",
@@ -8265,6 +8281,7 @@
       "title": "Teenuspäevik",
       "description": "Märgi teenus ära seal, kus töö lõpeb. Kuu lõpus sünnib samadest kirjetest aruanne."
     },
+    "card_meta": "Kirjed ja aruanded",
     "not_allowed": "See pind on teenuseosutaja vaates.",
     "info": {
       "title": "Teenuspäevik",

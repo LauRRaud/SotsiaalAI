@@ -6812,14 +6812,30 @@
     "exit_card": "Exit",
     "back_card": "Back",
     "zones": {
-      "juhtum": { "name": "Casework" },
-      "teadmine": { "name": "Knowledge" },
-      "mina": { "name": "Self" },
-      "minu_tee": { "name": "My path" },
-      "leian_abi": { "name": "Finding help" },
-      "vaade": { "name": "View" },
-      "olukord": { "name": "Situation" },
-      "korraldus": { "name": "Arrangement" }
+      "juhtum": {
+        "name": "Casework"
+      },
+      "teadmine": {
+        "name": "Knowledge"
+      },
+      "mina": {
+        "name": "Self"
+      },
+      "minu_tee": {
+        "name": "My path"
+      },
+      "leian_abi": {
+        "name": "Finding help"
+      },
+      "vaade": {
+        "name": "View"
+      },
+      "olukord": {
+        "name": "Situation"
+      },
+      "korraldus": {
+        "name": "Arrangement"
+      }
     },
     "kovision_room_card": "Co-vision room",
     "kovision_seeds_card": "Topic seeds",
@@ -8265,6 +8281,7 @@
       "title": "Service log",
       "description": "Record the service where the work ends. At month end the same entries become the report."
     },
+    "card_meta": "Entries and reports",
     "not_allowed": "This surface is for the service provider view.",
     "info": {
       "title": "Service log",
