@@ -797,6 +797,7 @@ model User {
   // spetsialist, klient on teenuse saaja — sama inimene EI ole kunagi mõlemad
   // ühel kirjel, aga skeem ei tohi neid ühte lahtrisse suruda.
   serviceEntriesEntered        ServiceEntry[]             @relation("ServiceEntryOwner")
+  serviceLogTimeSamples        ServiceLogTimeSample[]     @relation("ServiceLogTimeSampleOwner")
   serviceEntriesAsClient       ServiceEntry[]             @relation("ServiceEntryClient")
   serviceReferralsAsClient     ServiceReferral[]          @relation("ServiceReferralClient")
   serviceNarrativesAsClient    ServiceMonthlyNarrative[]  @relation("ServiceNarrativeClient")
@@ -1972,6 +1973,7 @@ model ServiceProviderProfile {
   // juures olevat säilituse-selgitust.
   serviceReferrals  ServiceReferral[]
   serviceEntries    ServiceEntry[]
+  serviceLogTimeSamples ServiceLogTimeSample[]
   serviceNarratives ServiceMonthlyNarrative[]
 
   // `@@unique([ownerId])` on ASENDATUD osaliste unikaalindeksitega migratsioonis.
@@ -5160,6 +5162,39 @@ model ServiceReferral {
   @@index([providerProfileId, periodStart])
   @@index([clientUserId])
   @@index([serviceId])
+}
+
+/// TEENUSPÄEVIK E8 — aruandlusaja proov (DoD 1 ja 5).
+///
+/// MIDA SEE MOODAB: kui kaua kulub DOKUMENTEERIMISELE, mitte kui kaua kulub
+/// teenusele. „Kirje sisestus alla 30 sekundi" on lubadus, mis peab olema
+/// mõõdetud, mitte arvatud — ja ilma baasjooneta ei saa öelda, kas platvorm
+/// midagi muutis.
+///
+/// PROOVIS EI OLE KLIENTI. Ei `clientUserId`-d, ei nime, ei kirje viidet:
+/// mõõdetav sündmus on dokumenteerimise akt, mitte inimene, keda teenindati.
+/// Sama minimeerimisloogika, mis asukohatemplitel — kogu ainult see, mille
+/// otstarve on selge.
+///
+/// TÖÖTAJA ENDA VAADE. `ownerUserId` on olemas, sest töötaja peab nägema OMA
+/// baasjoont; see EI OLE juhi stopper. Ülemuse vaade on org-kihi (E10) küsimus
+/// ja nõuab oma otsust — mõõdik ei tohi seda vaikselt ette ära otsustada.
+model ServiceLogTimeSample {
+  id                String   @id @default(cuid())
+  providerProfileId String
+  /// Nullable: konto võib kaduda, baasjoon jääb (proov on isikustamata).
+  ownerUserId       String?
+  /// ENTRY_INPUT | MONTH_REVIEW | EXPORT (rakendustaseme sõnastik, K1 reegel).
+  kind              String
+  /// Sekundid. `Int`, sest millisekundi täpsus oleks siin võlts täpsus.
+  seconds           Int
+  recordedAt        DateTime @default(now())
+
+  providerProfile ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  owner           User?                  @relation("ServiceLogTimeSampleOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+
+  @@index([providerProfileId, kind, recordedAt])
+  @@index([ownerUserId, recordedAt])
 }
 
 /// Teenuskirje — aatom, millest kasvavad kõik neli malli. Sünnib seal, kus töö

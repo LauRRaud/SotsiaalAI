@@ -33,6 +33,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
+import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
 
 /**
  * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
@@ -136,6 +137,14 @@ export default function ServiceLogDay() {
   const [stamps, setStamps] = useState({});
   const [withTravel, setWithTravel] = useState(false);
   const [pending, setPending] = useState(0);
+  /**
+   * E8 MOOTMINE (DoD 1). Kell hakkab kaeima ESIMESEST PUUTEST, mitte lehe
+   * avanemisest: leht voib olla taustavahekaardis lahti tunde ja see ei ole
+   * sisestusele kulunud aeg. Viide, mitte olek — moodik ei tohi pohjustada
+   * uehtegi uembervormistust.
+   */
+  const inputStartedRef = useRef(0);
+
   /* Viide, mitte soltuvus: nii jaeaevad `stampNow` ja `undoLastStamp` stabiilseks
      ega sunni iga soiduaja luelitust kogu vormi uembervormistama. */
   const withTravelRef = useRef(false);
@@ -231,13 +240,42 @@ export default function ServiceLogDay() {
   const lastStamp = [...flow].reverse().find((key) => stamps[key]) || null;
   const started = Boolean(lastStamp);
 
+  const markInputStart = useCallback(() => {
+    if (!inputStartedRef.current) inputStartedRef.current = Date.now();
+  }, []);
+
+  /**
+   * SAADAB JA UNUSTAB. Moodik on korvalsaadus: kui proov ei jou kohale (levi
+   * kadus), on kaotus ueks number statistikas, mitte kirje. Seepaerast ei ole
+   * siin `await`-i kutsuja rajal ega uehtegi veateadet.
+   */
+  const sendSample = useCallback(
+    (kind, seconds) => {
+      if (!Number.isFinite(seconds) || seconds <= 0) return;
+      fetch("/api/service-log/measure", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        body: JSON.stringify({ kind, seconds })
+      }).catch(() => {});
+    },
+    [locale]
+  );
+
+  const finishInputTimer = useCallback(() => {
+    const started = inputStartedRef.current;
+    inputStartedRef.current = 0;
+    if (!started) return;
+    sendSample(SAMPLE_KIND.ENTRY_INPUT, Math.round((Date.now() - started) / 1000));
+  }, [sendSample]);
+
   const stampNow = useCallback((key) => {
+    markInputStart();
     setStamps((current) => {
       const next = { ...current, [key]: new Date().toISOString() };
       writeDraft(next, withTravelRef.current);
       return next;
     });
-  }, []);
+  }, [markInputStart]);
 
   /* „Vajutasin valesti" on paratamatu, kui nuppu on ainult üks: eksliku
      vajutuse hind on siin suurem kui nelja nupu paneelis, kus vale tempel jäi
@@ -394,6 +432,9 @@ export default function ServiceLogDay() {
              vorm tühjendatakse, sest töötaja jaoks on see külastus tehtud. */
           enqueue(storage, payload);
           setPending(outboxCount(storage));
+          /* Ka jaerjekorda laeinud kirje sisestamisele kulus paeris aeg — vork
+             ei ole osa sellest, mida me moodame. */
+          finishInputTimer();
           setFormError("");
           setOverrunNotice(null);
           resetForm();
@@ -413,20 +454,21 @@ export default function ServiceLogDay() {
         } else {
           setOverrunNotice(null);
         }
+        finishInputTimer();
         resetForm();
         await loadEntries();
       } finally {
         setSaving(false);
       }
     },
-    [clientName, date, loadEntries, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, finishInputTimer, loadEntries, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;
 
   return (
     <div className="sl-day">
-      <form className="sl-form" onSubmit={submit}>
+      <form className="sl-form" onSubmit={submit} onInput={markInputStart}>
         {/* KLIENT ENNE — see väli on esimene ja fookuses. */}
         <label className="sl-field">
           <span className="sl-label">{t("service_log.form.client", "")}</span>

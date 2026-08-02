@@ -34,6 +34,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import ServiceLogNarrative from "./ServiceLogNarrative";
 import ServiceLogExport from "./ServiceLogExport";
+import ServiceLogBaseline from "./ServiceLogBaseline";
 
 function unitLabel(t, unit) {
   return t(`service_log.units.${String(unit || "").toLowerCase()}`, unit || "");
@@ -168,6 +169,10 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
       {/* Eksport (E6) on kuuvaate lõpus: fail sünnib sellest, mida kasutaja
           just üle vaatas. */}
       <ServiceLogExport month={report.month} referrals={report.referrals || []} />
+
+      {/* Baasjoon (E8) on koige all: ta ei ole toeoeriist, vaid peegel selle
+          kohta, kui kalliks toeoeriist ise laeheb. */}
+      <ServiceLogBaseline />
     </div>
   );
 }

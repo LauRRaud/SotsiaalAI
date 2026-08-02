@@ -8487,6 +8487,22 @@
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
       "rejected": "One waiting entry could not be saved. Please enter it again."
+    },
+    "baseline": {
+      "title": "How long documenting takes",
+      "empty": "Not measured yet. The baseline builds up as you make entries.",
+      "load_error": "The baseline could not be loaded.",
+      "median": "Typical entry",
+      "p90": "Slower end (p90)",
+      "under_target": "Under {target} seconds",
+      "share": "{share}%",
+      "samples": "Sample",
+      "count": "{count} entries over the last {days} days",
+      "seconds": "{seconds} s",
+      "claim_met": "A typical entry fits within the promised {target} seconds.",
+      "claim_not_met": "A typical entry does not yet fit within {target} seconds.",
+      "claim_not_enough": "The sample is still small — a reliable claim needs at least {needed} entries.",
+      "explainer": "This measures the time spent MAKING THE ENTRY, not the service itself. The number is yours and nobody else sees it."
     }
   }
 }

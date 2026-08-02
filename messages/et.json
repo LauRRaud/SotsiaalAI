@@ -8487,6 +8487,22 @@
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
       "rejected": "Üht ootel kirjet ei õnnestunud salvestada. Sisesta see uuesti."
+    },
+    "baseline": {
+      "title": "Kui kaua kulub dokumenteerimisele",
+      "empty": "Veel ei ole mõõdetud. Baasjoon tekib sisestuste käigus ise.",
+      "load_error": "Baasjoont ei õnnestunud laadida.",
+      "median": "Tüüpiline sisestus",
+      "p90": "Aeglasem ots (p90)",
+      "under_target": "Alla {target} sekundi",
+      "share": "{share}%",
+      "samples": "Valim",
+      "count": "{count} sisestust viimase {days} päeva jooksul",
+      "seconds": "{seconds} s",
+      "claim_met": "Tüüpiline sisestus mahub lubatud {target} sekundi sisse.",
+      "claim_not_met": "Tüüpiline sisestus ei mahu veel {target} sekundi sisse.",
+      "claim_not_enough": "Valim on veel väike — usaldusväärseks väiteks on vaja vähemalt {needed} sisestust.",
+      "explainer": "Mõõdetakse aega, mis kulub KIRJE TEGEMISELE, mitte teenusele. Number on sinu oma ja seda ei näe keegi teine."
     }
   }
 }
