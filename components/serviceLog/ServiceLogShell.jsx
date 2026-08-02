@@ -24,6 +24,7 @@ import ServiceLogReferrals from "./ServiceLogReferrals";
 import ServiceLogMonth from "./ServiceLogMonth";
 
 const TAB_PARAM = "vaade";
+const MONTH_PARAM = "kuu";
 
 const TABS = [
   { key: "day", labelKey: "service_log.tabs.day" },
@@ -44,23 +45,44 @@ export default function ServiceLogShell() {
   usePanelInfoSlot({ infoId: "service_log" });
 
   const [tab, setTabState] = useState("day");
-  const [month, setMonth] = useState(currentMonth);
+  const [month, setMonthState] = useState(currentMonth);
 
   /* SEIS ON URL-is. Ilma selleta ei saa osutaja aruannete vaadet järjehoidjasse
      panna ega kolleegile saata, ja brauseri tagasinupp viib lehelt hoopis ära.
      Kasutame `history.replaceState`-i, mitte marsruuti: vahelehe vahetus ei ole
      navigatsioon ja ei tohi tekitada iga puute kohta ajaloo kirjet. */
   useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get(TAB_PARAM);
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get(TAB_PARAM);
     if (requested && TABS.some((item) => item.key === requested)) setTabState(requested);
+    /* KUU KA URL-is. Ainult vahelehest ei piisa: järjehoidjaga avatud aruanne
+       näitaks JOOKSVAT kuud ja lugeja arvaks, et vaatab seda, mille ta salvestas. */
+    const requestedMonth = params.get(MONTH_PARAM);
+    if (/^\d{4}-\d{2}$/.test(requestedMonth || "")) setMonthState(requestedMonth);
   }, []);
 
-  const setTab = useCallback((next) => {
-    setTabState(next);
+  const writeUrl = useCallback((nextTab, nextMonth) => {
     const url = new URL(window.location.href);
-    url.searchParams.set(TAB_PARAM, next);
+    url.searchParams.set(TAB_PARAM, nextTab);
+    url.searchParams.set(MONTH_PARAM, nextMonth);
     window.history.replaceState(null, "", url);
   }, []);
+
+  const setTab = useCallback(
+    (next) => {
+      setTabState(next);
+      writeUrl(next, month);
+    },
+    [month, writeUrl]
+  );
+
+  const setMonth = useCallback(
+    (next) => {
+      setMonthState(next);
+      writeUrl(tab, next);
+    },
+    [tab, writeUrl]
+  );
 
   if (sessionStatus === "loading") return null;
 

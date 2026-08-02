@@ -60,6 +60,7 @@ export default function ServiceLogDay() {
   const [overrunNotice, setOverrunNotice] = useState(null);
   const [referralId, setReferralId] = useState("");
   const [finalizing, setFinalizing] = useState("");
+  const [finalizeError, setFinalizeError] = useState("");
 
   const [clientName, setClientName] = useState("");
   const [date, setDate] = useState(todayIso());
@@ -103,8 +104,12 @@ export default function ServiceLogDay() {
         const body = await response.json();
         if (cancelled) return;
         setDefaults(body.defaults || null);
-        if (body.defaults?.serviceId) setServiceId(body.defaults.serviceId);
-        if (body.defaults?.unit) setUnit(body.defaults.unit);
+        /* TULETAMISVASTUS ON TÕDE, ka siis kui ta on TÜHI. Varem jäid siia
+           eelmise kliendi väärtused alles: server ütles `askUnit`, aga vormis
+           seisis endiselt eelmise kliendi ühik ja kasutaja salvestas selle
+           märkamata. Tühi vastus peab välja puhastama, mitte vaikima. */
+        setServiceId(body.defaults?.serviceId || "");
+        setUnit(body.defaults?.unit || "");
         /* Ühese suunamise korral seome kirje ise; mitme korral jääb valik
            kasutajale ja vorm KÜSIB — varem läks siit `referralId: null` ja
            kirje jäi KOV-i ekspordist ning saldost välja. */
@@ -139,18 +144,29 @@ export default function ServiceLogDay() {
   const finalize = useCallback(
     async (entryId) => {
       setFinalizing(entryId);
+      setFinalizeError("");
       try {
         const response = await fetch(`/api/service-entries/${entryId}/lifecycle`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "finalize" })
         });
-        if (response.ok) await loadEntries();
+        if (response.ok) {
+          await loadEntries();
+          return;
+        }
+        /* TÕRGE EI TOHI OLLA VAIKNE. Varem neelati vastus alla: kasutaja
+           vajutas „Kinnita", mitte midagi ei juhtunud ja kirje jäi mustandiks —
+           ta saanuks sellest teada alles kuu lõpus tühjast ekspordist. */
+        const body = await response.json().catch(() => ({}));
+        setFinalizeError(t(body.error || "service_log.errors.invalid_input", ""));
+      } catch {
+        setFinalizeError(t("service_log.errors.invalid_input", ""));
       } finally {
         setFinalizing("");
       }
     },
-    [loadEntries]
+    [loadEntries, t]
   );
 
   const resetForm = useCallback(() => {
@@ -217,6 +233,7 @@ export default function ServiceLogDay() {
         <label className="sl-field">
           <span className="sl-label">{t("service_log.form.client", "")}</span>
           <input
+            name="clientDisplayName"
             className="sl-input"
             value={clientName}
             onChange={(event) => setClientName(event.target.value)}
@@ -291,6 +308,7 @@ export default function ServiceLogDay() {
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.date", "")}</span>
             <input
+              name="date"
               className="sl-input"
               type="date"
               value={date}
@@ -302,6 +320,7 @@ export default function ServiceLogDay() {
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.quantity", "")}</span>
             <input
+              name="quantity"
               className="sl-input"
               type="number"
               step="0.25"
@@ -335,6 +354,7 @@ export default function ServiceLogDay() {
         <label className="sl-field">
           <span className="sl-label">{t("service_log.form.note", "")}</span>
           <textarea
+            name="note"
             className="sl-input sl-textarea"
             rows={2}
             value={note}
@@ -363,6 +383,11 @@ export default function ServiceLogDay() {
 
       <div className="sl-list">
         <h2 className="sl-list-title">{t("service_log.list.title", "")}</h2>
+        {finalizeError ? (
+          <p className="sl-error" role="alert" aria-live="assertive">
+            {finalizeError}
+          </p>
+        ) : null}
         {loadError ? <p className="sl-error">{t("service_log.list.load_error", "")}</p> : null}
         {entries === null ? null : entries.length === 0 ? (
           <p className="sl-empty">{t("service_log.list.empty", "")}</p>

@@ -31,6 +31,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
+  const [loadedId, setLoadedId] = useState(null);
 
   const [year, monthNumber] = String(month || "").split("-");
 
@@ -50,6 +51,27 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
       if (!response.ok) return;
       const body = await response.json();
       setSeed(body.seed || null);
+
+      /* OLEMASOLEV TEKST TULEB TAGASI. Ilma selleta avanes vorm TÜHJANA ka
+         siis, kui narratiiv oli juba kirjutatud — ja järgmine salvestus
+         kirjutas selle vaikselt üle. Kirjutaja peab saama teksti juurde
+         PÄRISELT naasta, mitte alustada iga kord otsast. */
+      const existing = await fetch(
+        `/api/service-narratives?${new URLSearchParams({ periodYear: year, periodMonth: String(Number(monthNumber)) })}`
+      );
+      if (existing.ok) {
+        const list = await existing.json();
+        const match = (list.narratives || []).find((row) => row.referralId === referralId);
+        if (match) {
+          setBodyText(match.bodyText || "");
+          setProposal(match.proposal || "");
+          setLoadedId(match.id);
+        } else {
+          setBodyText("");
+          setProposal("");
+          setLoadedId(null);
+        }
+      }
     } catch {
       /* Koondi puudumine ei tohi kirjutamist blokeerida — tekst on inimese oma
          ja ta võib kirjutada ka ilma koondita. */
@@ -102,6 +124,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
       <label className="sl-field">
         <span className="sl-label">{t("service_log.narrative.referral", "")}</span>
         <select
+          name="referralId"
           className="sl-input"
           value={referralId}
           onChange={(event) => setReferralId(event.target.value)}
@@ -161,6 +184,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         <label className="sl-field">
           <span className="sl-label">{t("service_log.narrative.body", "")}</span>
           <textarea
+            name="bodyText"
             className="sl-input sl-textarea"
             rows={6}
             value={bodyText}
@@ -173,6 +197,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         <label className="sl-field">
           <span className="sl-label">{t("service_log.narrative.proposal", "")}</span>
           <select
+            name="proposal"
             className="sl-input"
             value={proposal}
             onChange={(event) => setProposal(event.target.value)}
@@ -193,9 +218,12 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           </p>
         ) : null}
         {saved ? (
-          <p className="sl-warn" role="status">
+          <p className="sl-warn" role="status" aria-live="polite">
             {t("service_log.narrative.saved", "")}
           </p>
+        ) : null}
+        {loadedId && !saved ? (
+          <p className="sl-hint">{t("service_log.narrative.loaded", "")}</p>
         ) : null}
 
         <Button type="submit" disabled={saving || !referralId || !bodyText.trim()}>

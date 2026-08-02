@@ -184,6 +184,7 @@
     },
     "photo": {
       "take": "Tee foto",
+      "loaded": "Laaditud olemasolev aruanne — muudatused kirjutavad selle üle.",
       "saved": "Foto on seadmes ja ootab sinu kontrolli.",
       "failed": "Foto salvestamine ebaõnnestus.",
       "policy": "Foto on dokumendi või keskkonna jaoks; inimesi vaikimisi ei pildistata."
@@ -8422,6 +8423,7 @@
       "kov_required": "Lisa rahastaja või KOV-i nimi.",
       "allocation_invalid": "Maht peab olema positiivne arv.",
       "period_invalid": "Perioodi lõpp ei saa olla enne algust.",
+      "period_excludes_entries": "Uus periood jätaks olemasolevad kirjed otsuse kehtivusalast välja. Laienda perioodi või lõpeta suunamine ja loo uus.",
       "referral_locked_by_entries": "Selle suunamise all on juba kirjeid — ühikut ja mahu liiki ei saa enam muuta. Lõpeta suunamine ja loo uus.",
       "referral_already_ended": "Suunamine on juba lõpetatud.",
       "month_invalid": "Kuu peab olema kujul AAAA-KK.",
