@@ -32,6 +32,7 @@ import {
   updateReferral
 } from "../lib/serviceLog/referrals.js";
 import { getMonthlyReport } from "../lib/serviceLog/monthReport.js";
+import { getNarrativeSeed, upsertNarrative } from "../lib/serviceLog/narratives.js";
 
 const ENV_ON = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_LOCATION_STAMP: "1" };
 const ENV_NO_LOCATION = { SERVICE_LOG_ENABLED: "1" };
@@ -62,6 +63,7 @@ const messageKeyIs = (key) => (error) => error?.messageKey === key;
 const statusIs = (status) => (error) => error?.status === status;
 
 async function purge() {
+  await prisma.serviceMonthlyNarrative.deleteMany({ where: { providerProfile: { organizationName: MARK } } });
   await prisma.serviceEntry.deleteMany({ where: { providerProfile: { organizationName: MARK } } });
   await prisma.serviceReferral.deleteMany({ where: { providerProfile: { organizationName: MARK } } });
   await prisma.serviceProviderService.deleteMany({ where: { providerProfile: { organizationName: MARK } } });
@@ -471,6 +473,73 @@ async function main() {
     "PERIOODIPÕHISE suunamise jääk arvestab ka eelmisi kuid",
     totalRow?.balance?.remaining === 1,
     JSON.stringify(totalRow?.balance)
+  );
+
+  // --- 11. E5: kuunarratiiv ---------------------------------------------
+  const seed = await getNarrativeSeed(
+    provider.id,
+    { referralId: refBalance.id, periodYear: 2026, periodMonth: 8 },
+    { env: ENV_ON }
+  );
+  expect("lähtekoond leiab perioodi kirjed", seed.entryCount >= 1, String(seed.entryCount));
+  expect(
+    "koond EI OLE AI väljund ja ei väida seda",
+    seed.generatedBy === "deterministic_summary" && !JSON.stringify(seed).includes("AI_MUSTAND")
+  );
+
+  const saved = await upsertNarrative(
+    provider.id,
+    {
+      referralId: refBalance.id,
+      periodYear: 2026,
+      periodMonth: 8,
+      bodyText: "Mari sai augustis iseseisvalt kaks asjaajamist korda.",
+      proposal: "CONTINUE"
+    },
+    { env: ENV_ON }
+  );
+  expect("narratiiv salvestub koos ettepanekuga", saved.proposal === "CONTINUE");
+  expect(
+    "klient tuleb SUUNAMISEST, mitte kutsuja sisendist",
+    saved.clientDisplayName === "Saldo-klient",
+    saved.clientDisplayName
+  );
+  expect("inimese kirjutatud tekst ei kanna draftSource'i", saved.draftSource === null);
+
+  const rewritten = await upsertNarrative(
+    provider.id,
+    {
+      referralId: refBalance.id,
+      periodYear: 2026,
+      periodMonth: 8,
+      bodyText: "Parandatud tekst.",
+      proposal: "CHANGE_VOLUME"
+    },
+    { env: ENV_ON }
+  );
+  expect("kordussalvestus UUENDAB, ei tekita teist lugu", rewritten.id === saved.id);
+  const narrativeCount = await prisma.serviceMonthlyNarrative.count({
+    where: { providerProfileId: profile.id, periodYear: 2026, periodMonth: 8 }
+  });
+  expect("kuu kohta on TÄPSELT ÜKS narratiiv", narrativeCount === 1, String(narrativeCount));
+
+  await expectReject(
+    "tundmatu ettepanek ei lähe läbi",
+    upsertNarrative(
+      provider.id,
+      { referralId: refBalance.id, periodYear: 2026, periodMonth: 8, bodyText: "x", proposal: "MAYBE" },
+      { env: ENV_ON }
+    ),
+    messageKeyIs("service_log.errors.proposal_invalid")
+  );
+  await expectReject(
+    "tühi narratiiv ei salvestu",
+    upsertNarrative(
+      provider.id,
+      { referralId: refBalance.id, periodYear: 2026, periodMonth: 8, bodyText: "   " },
+      { env: ENV_ON }
+    ),
+    messageKeyIs("service_log.errors.narrative_required")
   );
 
   // --- Koristus ----------------------------------------------------------

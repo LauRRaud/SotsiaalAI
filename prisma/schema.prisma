@@ -5303,6 +5303,13 @@ model ServiceMonthlyNarrative {
   /// `draftSource` ütleb ausalt, kas tekst sündis mustandist.
   bodyText          String    @db.Text
   draftSource       String?
+  /// ETTEPANEK: CONTINUE | CHANGE_VOLUME | END (mall C lõpp).
+  ///
+  /// Eraldi väli, mitte lõigu lõpulause: see on ainus koht narratiivis, mida
+  /// KOV loeb OTSUSENA — tema järgi sünnib järgmine suunamisotsus. Tekstis
+  /// peidetuna oleks ta masinale nähtamatu ja lugejale kergesti kadunud.
+  proposal          String?
+  proposalNote      String?   @db.Text
   retentionClass    String    @default("accounting7y")
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt

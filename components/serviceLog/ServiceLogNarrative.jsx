@@ -1,0 +1,207 @@
+"use client";
+
+/**
+ * TEENUSPÄEVIK-V1 E5 UI — kuunarratiiv.
+ *
+ * KOOND ON KIRJUTAJA EES, TEKST ON TEMA KIRJUTADA. Vasakul (mobiilis ülal) on
+ * perioodi faktid — kestused, tegevused ja märkmed KOOS PÄRITOLUGA. Neid ei
+ * kopeerita tekstivälja: masin ei kirjuta inimese eest lugu, mille põhjal KOV
+ * teenuse jätkamise otsustab.
+ *
+ * PÄRITOLU ON EKRAANIL. „Ta ütles, et ei saa hakkama" ja „mulle tundus, et ta
+ * ei saa hakkama" näevad koondis erinevad välja — see vahe ongi aruande
+ * väärtus ja ta kaoks, kui märkmed oleks lihtsalt loetelu.
+ *
+ * ETTEPANEK ON ERALDI VÄLI, mitte lõigu lõpulause: see on ainus koht, mida KOV
+ * loeb otsusena, ja tema järgi sünnib järgmine suunamisotsus.
+ */
+
+import { useCallback, useEffect, useState } from "react";
+import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
+
+const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
+
+export default function ServiceLogNarrative({ month, referrals = [] }) {
+  const { t } = useI18n();
+  const [referralId, setReferralId] = useState("");
+  const [seed, setSeed] = useState(null);
+  const [bodyText, setBodyText] = useState("");
+  const [proposal, setProposal] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState("");
+
+  const [year, monthNumber] = String(month || "").split("-");
+
+  const load = useCallback(async () => {
+    if (!referralId || !year || !monthNumber) {
+      setSeed(null);
+      return;
+    }
+    try {
+      const params = new URLSearchParams({
+        seed: "1",
+        referralId,
+        periodYear: year,
+        periodMonth: String(Number(monthNumber))
+      });
+      const response = await fetch(`/api/service-narratives?${params}`);
+      if (!response.ok) return;
+      const body = await response.json();
+      setSeed(body.seed || null);
+    } catch {
+      /* Koondi puudumine ei tohi kirjutamist blokeerida — tekst on inimese oma
+         ja ta võib kirjutada ka ilma koondita. */
+    }
+  }, [referralId, year, monthNumber]);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  const submit = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setError("");
+      setSaved(false);
+      setSaving(true);
+      try {
+        const response = await fetch("/api/service-narratives", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            referralId,
+            periodYear: Number(year),
+            periodMonth: Number(monthNumber),
+            bodyText,
+            proposal: proposal || null
+          })
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          setError(t(body.error || "service_log.errors.invalid_input", ""));
+          return;
+        }
+        setSaved(true);
+      } catch {
+        setError(t("service_log.errors.invalid_input", ""));
+      } finally {
+        setSaving(false);
+      }
+    },
+    [bodyText, monthNumber, proposal, referralId, t, year]
+  );
+
+  if (!referrals.length) return null;
+
+  return (
+    <section className="sl-narrative">
+      <h3 className="sl-list-title">{t("service_log.narrative.title", "")}</h3>
+
+      <label className="sl-field">
+        <span className="sl-label">{t("service_log.narrative.referral", "")}</span>
+        <select
+          className="sl-input"
+          value={referralId}
+          onChange={(event) => setReferralId(event.target.value)}
+        >
+          <option value="">{t("service_log.narrative.choose", "")}</option>
+          {referrals.map((referral) => (
+            <option key={referral.id} value={referral.id}>
+              {referral.clientDisplayName || referral.clientUserId || "—"} · {referral.kovName}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      {seed ? (
+        <div className="sl-seed">
+          <p className="sl-seed-line">
+            {t("service_log.narrative.period", "")}: {seed.periodFrom || "—"} … {seed.periodTo || "—"} ·{" "}
+            {seed.entryCount} {t("service_log.narrative.entries", "")}
+            {seed.hasUnconfirmed
+              ? ` · ${t("service_log.narrative.unconfirmed", "")}: ${seed.draftCount}`
+              : ""}
+          </p>
+
+          {seed.goalsText ? (
+            <p className="sl-seed-line">
+              <strong>{t("service_log.narrative.goals", "")}:</strong> {seed.goalsText}
+            </p>
+          ) : (
+            /* Ilma eesmärkideta muutub „edenemine" arvamuseks — ütleme seda välja. */
+            <p className="sl-seed-line sl-hint">{t("service_log.narrative.no_goals", "")}</p>
+          )}
+
+          {seed.activities.length ? (
+            <p className="sl-seed-line">
+              {seed.activities.map((activity) => `${activity.name} ×${activity.count}`).join(" · ")}
+            </p>
+          ) : null}
+
+          {seed.notes.length ? (
+            <ul className="sl-seed-notes">
+              {seed.notes.map((note, index) => (
+                <li key={`${note.date}-${index}`}>
+                  <span className="sl-seed-date">{note.date}</span>
+                  <span>{note.note}</span>
+                  {/* PÄRITOLU ON EKRAANIL, mitte ainult andmebaasis. */}
+                  <span className="sl-source">
+                    {t(`service_log.provenance.${note.provenance}`, note.provenance)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      ) : null}
+
+      <form className="sl-form" onSubmit={submit}>
+        <label className="sl-field">
+          <span className="sl-label">{t("service_log.narrative.body", "")}</span>
+          <textarea
+            className="sl-input sl-textarea"
+            rows={6}
+            value={bodyText}
+            onChange={(event) => setBodyText(event.target.value)}
+            required
+          />
+          <span className="sl-hint">{t("service_log.narrative.body_hint", "")}</span>
+        </label>
+
+        <label className="sl-field">
+          <span className="sl-label">{t("service_log.narrative.proposal", "")}</span>
+          <select
+            className="sl-input"
+            value={proposal}
+            onChange={(event) => setProposal(event.target.value)}
+          >
+            <option value="">{t("service_log.narrative.proposal_none", "")}</option>
+            {PROPOSALS.map((value) => (
+              <option key={value} value={value}>
+                {t(`service_log.proposals.${value}`, value)}
+              </option>
+            ))}
+          </select>
+          <span className="sl-hint">{t("service_log.narrative.proposal_hint", "")}</span>
+        </label>
+
+        {error ? (
+          <p className="sl-error" role="alert">
+            {error}
+          </p>
+        ) : null}
+        {saved ? (
+          <p className="sl-warn" role="status">
+            {t("service_log.narrative.saved", "")}
+          </p>
+        ) : null}
+
+        <Button type="submit" disabled={saving || !referralId || !bodyText.trim()}>
+          {saving ? t("service_log.form.saving", "") : t("service_log.narrative.save", "")}
+        </Button>
+      </form>
+    </section>
+  );
+}
