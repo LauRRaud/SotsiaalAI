@@ -31,6 +31,7 @@ import {
   listReferrals,
   updateReferral
 } from "../lib/serviceLog/referrals.js";
+import { getMonthlyReport } from "../lib/serviceLog/monthReport.js";
 
 const ENV_ON = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_LOCATION_STAMP: "1" };
 const ENV_NO_LOCATION = { SERVICE_LOG_ENABLED: "1" };
@@ -408,6 +409,68 @@ async function main() {
     "lõpetatud suunamise alla ei saa uut mahtu",
     createEntry(provider.id, { ...saldoBase, quantity: 1 }, { env: ENV_ON }),
     messageKeyIs("service_log.errors.referral_not_active")
+  );
+
+  // --- 10. E4: kuuvaade ja rütm -----------------------------------------
+  const report = await getMonthlyReport(provider.id, { month: "2026-08" }, { env: ENV_ON, now: new Date("2026-09-06T08:00:00Z") });
+  expect("kuuaruanne kannab koondit, suunamisi ja rütmi ÜHES vastuses",
+    Boolean(report.summary && report.referrals && report.rhythm));
+  expect(
+    "koond ei liida eri ühikuid kokku",
+    report.summary.totalsByUnit.every((row) => typeof row.unit === "string"),
+    JSON.stringify(report.summary.totalsByUnit)
+  );
+  expect(
+    "tühistatud kirje ei ole koondis, aga on loendatud",
+    report.summary.entryCounts.voided >= 1,
+    JSON.stringify(report.summary.entryCounts)
+  );
+  expect(
+    "kinnitamata kirjete arv on nähtav",
+    typeof report.summary.unconfirmed === "number" && report.summary.unconfirmed > 0,
+    String(report.summary.unconfirmed)
+  );
+  expect(
+    "tähtaeg on järgmise kuu 10.",
+    report.rhythm.dueAt.toISOString().slice(0, 10) === "2026-09-10",
+    report.rhythm.dueAt.toISOString()
+  );
+  expect("6. septembril on meeldetuletus käes", report.rhythm.shouldRemind === true);
+  expect(
+    "aastased rütmid kannavad allikat quality_guide, MITTE seadust",
+    report.annualRhythms.every((row) => row.source === "quality_guide"),
+    JSON.stringify(report.annualRhythms.map((row) => row.source))
+  );
+
+  /* PERIOODIPÕHISE suunamise jääk peab arvestama TERVET perioodi, mitte ainult
+     vaadatavat kuud. Kuu-filtriga kirjed annaksid liiga suure jäägi — see on
+     vaikne viga, mis paistaks välja alles siis, kui KOV maksmata jätab. */
+  const refTotal = await prisma.serviceReferral.create({
+    data: {
+      providerProfileId: profile.id,
+      serviceId: hourly.id,
+      kovName: "Z vald",
+      clientDisplayName: "Perioodi-klient",
+      unit: "HOUR",
+      status: "ACTIVE",
+      allocatedQuantity: 10,
+      allocationPeriod: "TOTAL"
+    }
+  });
+  const totalBase = {
+    clientDisplayName: "Perioodi-klient",
+    unit: "HOUR",
+    serviceId: hourly.id,
+    referralId: refTotal.id
+  };
+  await createEntry(provider.id, { ...totalBase, date: "2026-07-10", quantity: 6 }, { env: ENV_ON });
+  await createEntry(provider.id, { ...totalBase, date: "2026-08-10", quantity: 3 }, { env: ENV_ON });
+  const augustReport = await getMonthlyReport(provider.id, { month: "2026-08" }, { env: ENV_ON });
+  const totalRow = augustReport.referrals.find((row) => row.id === refTotal.id);
+  expect(
+    "PERIOODIPÕHISE suunamise jääk arvestab ka eelmisi kuid",
+    totalRow?.balance?.remaining === 1,
+    JSON.stringify(totalRow?.balance)
   );
 
   // --- Koristus ----------------------------------------------------------

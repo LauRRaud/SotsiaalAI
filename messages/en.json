@@ -8324,6 +8324,7 @@
       "period_invalid": "The period end cannot be before its start.",
       "referral_locked_by_entries": "This referral already has entries — the unit and allocation kind can no longer be changed. End the referral and create a new one.",
       "referral_already_ended": "The referral has already ended.",
+      "month_invalid": "The month must be in YYYY-MM format.",
       "service_not_found": "Service not found.",
       "invalid_input": "The input is not valid.",
       "conflict": "This action is not possible right now.",

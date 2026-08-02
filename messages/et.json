@@ -8324,6 +8324,7 @@
       "period_invalid": "Perioodi lõpp ei saa olla enne algust.",
       "referral_locked_by_entries": "Selle suunamise all on juba kirjeid — ühikut ja mahu liiki ei saa enam muuta. Lõpeta suunamine ja loo uus.",
       "referral_already_ended": "Suunamine on juba lõpetatud.",
+      "month_invalid": "Kuu peab olema kujul AAAA-KK.",
       "service_not_found": "Teenust ei leitud.",
       "invalid_input": "Sisend ei ole korrektne.",
       "conflict": "Toiming ei ole praegu võimalik.",
