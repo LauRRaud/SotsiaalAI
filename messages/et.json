@@ -8759,7 +8759,8 @@
       },
       "reason_prompt": "Miks? (jääb kirja)",
       "make_entry": "Tee teenuskirje",
-      "address": "Aadress"
+      "address": "Aadress",
+      "summary_one": "{visits} külastus · sõit {travel} min · teenus {service} min"
     }
   },
   "date_field": {

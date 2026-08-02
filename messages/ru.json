@@ -8759,7 +8759,8 @@
       },
       "reason_prompt": "Почему? (будет записано)",
       "make_entry": "Создать служебную запись",
-      "address": "Адрес"
+      "address": "Адрес",
+      "summary_one": "{visits} визит · в пути {travel} мин · услуга {service} мин"
     }
   },
   "date_field": {

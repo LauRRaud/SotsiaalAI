@@ -199,7 +199,10 @@ export default function ServiceLogRoute() {
       <h3 className="sl-group-title">{t("service_log.route.title", "")}</h3>
 
       <p className="sl-route-summary">
-        {t("service_log.route.summary", "", {
+        {/* ÜKS KÜLASTUS ON „1 külastus", mitte „1 külastust". Eesti keeles on
+            arvu järel osastav ainsus („3 külastust"), aga ÜKS on nimetavas —
+            brauserikontroll näitas ekraanil „1 külastust". */}
+        {t(summary.visits === 1 ? "service_log.route.summary_one" : "service_log.route.summary", "", {
           visits: String(summary.visits ?? 0),
           travel: String(summary.travelMinutes ?? 0),
           service: String(summary.serviceMinutes ?? 0)

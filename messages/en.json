@@ -8759,7 +8759,8 @@
       },
       "reason_prompt": "Why? (this is recorded)",
       "make_entry": "Create a service entry",
-      "address": "Address"
+      "address": "Address",
+      "summary_one": "{visits} visit · travel {travel} min · service {service} min"
     }
   },
   "date_field": {
