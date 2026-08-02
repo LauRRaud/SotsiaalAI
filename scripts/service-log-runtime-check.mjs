@@ -25,6 +25,12 @@ import {
   updateEntry,
   voidEntry
 } from "../lib/serviceLog/entries.js";
+import {
+  endReferral,
+  getReferralBalance,
+  listReferrals,
+  updateReferral
+} from "../lib/serviceLog/referrals.js";
 
 const ENV_ON = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_LOCATION_STAMP: "1" };
 const ENV_NO_LOCATION = { SERVICE_LOG_ENABLED: "1" };
@@ -326,6 +332,83 @@ async function main() {
   );
   const rivalEntries = await listEntries(rival.id, {}, { env: ENV_ON });
   expect("teine osutaja ei näe võõraid kirjeid", rivalEntries.length === 0);
+
+  // --- 9. E3: suunamise jääk ja ületamise hoiatus ------------------------
+  const refBalance = await prisma.serviceReferral.create({
+    data: {
+      providerProfileId: profile.id,
+      serviceId: hourly.id,
+      kovName: "Y vald",
+      clientDisplayName: "Saldo-klient",
+      unit: "HOUR",
+      status: "ACTIVE",
+      allocatedQuantity: 20,
+      allocationPeriod: "MONTH"
+    }
+  });
+  const saldoBase = {
+    clientDisplayName: "Saldo-klient",
+    date: "2026-08-05",
+    unit: "HOUR",
+    serviceId: hourly.id,
+    referralId: refBalance.id
+  };
+
+  const first = await createEntry(provider.id, { ...saldoBase, quantity: 8 }, { env: ENV_ON });
+  expect("mahu sees olev kirje ei tekita hoiatust", first.overrun === null);
+
+  const second = await createEntry(provider.id, { ...saldoBase, quantity: 15 }, { env: ENV_ON });
+  expect(
+    "ületav kirje HOIATAB, aga salvestub siiski",
+    Boolean(second.id) && second.overrun?.warn === true,
+    JSON.stringify(second.overrun)
+  );
+  expect("hoiatus ütleb, mitu ühikut üle läheb", second.overrun?.overBy === 3, String(second.overrun?.overBy));
+
+  const listed = await listReferrals(provider.id, { month: "2026-08" }, { env: ENV_ON });
+  const balanceRow = listed.find((row) => row.id === refBalance.id);
+  expect("suunamiste loend kannab jääki KAASA", balanceRow?.balance !== null && balanceRow?.balance !== undefined);
+  expect(
+    "jääk näitab ületust õige numbriga",
+    balanceRow?.balance?.remaining === -3 && balanceRow?.balance?.overrun === true,
+    JSON.stringify(balanceRow?.balance)
+  );
+  expect(
+    "mustandid on jäägis eraldi nähtavad",
+    balanceRow?.balance?.pending === 23 && balanceRow?.balance?.used === 0,
+    JSON.stringify(balanceRow?.balance)
+  );
+
+  await voidEntry(provider.id, second.id, { reason: "Topelt.", env: ENV_ON });
+  const afterVoid = await getReferralBalance(provider.id, refBalance.id, { month: "2026-08" }, { env: ENV_ON });
+  expect(
+    "tühistatud kirje vabastab kvoodi",
+    afterVoid.remaining === 12 && afterVoid.overrun === false,
+    JSON.stringify(afterVoid)
+  );
+
+  await expectReject(
+    "ühikut ei saa muuta, kui suunamise all on juba kirjeid",
+    updateReferral(provider.id, refBalance.id, { unit: "SESSION" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_locked_by_entries")
+  );
+  const enlarged = await updateReferral(
+    provider.id,
+    refBalance.id,
+    { allocatedQuantity: 40 },
+    { env: ENV_ON }
+  );
+  expect("mahu suurendamine on lubatud", Number(enlarged.allocatedQuantity) === 40);
+
+  const ended = await endReferral(provider.id, refBalance.id, { env: ENV_ON });
+  expect("lõpetamine viib suunamise ENDED-isse", ended.status === "ENDED");
+  const entriesAfterEnd = await prisma.serviceEntry.count({ where: { referralId: refBalance.id } });
+  expect("lõpetamine EI KUSTUTA olemasolevaid kirjeid", entriesAfterEnd === 2, String(entriesAfterEnd));
+  await expectReject(
+    "lõpetatud suunamise alla ei saa uut mahtu",
+    createEntry(provider.id, { ...saldoBase, quantity: 1 }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_not_active")
+  );
 
   // --- Koristus ----------------------------------------------------------
   console.log("\ncleanup");
