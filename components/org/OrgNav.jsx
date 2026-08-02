@@ -40,6 +40,16 @@ export default function OrgNav({ organizationId, capabilities = [], activeModule
       label: t("org.nav.funding"),
       requires: "BILLING_MANAGER"
     },
+    /* Tugi on IGA liikme oma — ei capability't ega moodulit. Toeavaldus on
+       töötaja õigus, mitte funktsioon, mida organisatsioon lubab. */
+    { key: "support", href: `/org/${organizationId}/tugi`, label: t("org.nav.support") },
+    {
+      key: "profile",
+      href: `/org/${organizationId}/teenusprofiil`,
+      label: t("org.nav.profile"),
+      requires: "SERVICE_PROFILE_EDITOR",
+      requiresModule: "SERVICE_DELIVERY"
+    },
     {
       key: "members",
       href: `/org/${organizationId}/liikmed`,

@@ -110,6 +110,18 @@ export default function OrgSettingsClient({ context, isPlatformAdmin }) {
         <p className="ow-empty">{t("org.settings.archiveHint")}</p>
       </section>
 
+      {/* Eksport ei ole navigatsioonis eraldi vahekaart — ta on omaniku
+          harv toiming ja kuulub seadete kõrvale, mitte igapäevasesse ritta. */}
+      <section className="ow-card" aria-labelledby="ow-export-link">
+        <h2 id="ow-export-link" className="ow-title" style={{ fontSize: "1.125rem" }}>
+          {t("org.exportView.heading")}
+        </h2>
+        <p className="ow-subtitle">{t("org.exportView.intro")}</p>
+        <a className="ow-nav__link" href={`/org/${organizationId}/eksport`}>
+          {t("org.exportView.download")}
+        </a>
+      </section>
+
       {error ? (
         <p className="ow-notice ow-notice--warning" role="alert">
           {error}
