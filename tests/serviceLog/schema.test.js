@@ -60,7 +60,13 @@ test("konto kustutamine kustutab INIMESE, mitte raamatupidamisdokumendi", () => 
   // Cascade'iks, kaob 7a kirje koos kontoga.
   for (const model of MODELS) {
     const block = modelBlock(model);
-    const userRelations = block.match(/@relation\("Service[^"]*"[^)]*\)/g) || [];
+    /* MUSTER KÜSIB `User`-i VÄLJA, mitte ainult seose nime.
+       Vana kuju `/@relation\("Service[^"]*"[^)]*\)/` püüdis kinni ka
+       TAGASISEOSED (`sourceVisit ServiceVisit? @relation("ServiceVisitEntry")`),
+       millel `onDelete` ei saagi olla — ta elab omaval poolel. Test kukkus siis
+       millegi peale, mida ta väita ei tahtnudki, ja päris regressiooni
+       (`SetNull` → `Cascade` mõnel User-seosel) oleks ta ikka püüdnud. */
+    const userRelations = block.match(/User\??\s+@relation\("Service[^"]*"[^)]*\)/g) || [];
     assert.ok(userRelations.length > 0, `${model}: User-seoseid ei leitud`);
     for (const relation of userRelations) {
       assert.match(

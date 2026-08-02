@@ -1990,6 +1990,8 @@ model ServiceProviderProfile {
   @@index([acceptsPlatformPreInquiries])
   @@index([acceptsEmailPreInquiries])
   @@index([publicSlug])
+  serviceWorkRoutes ServiceWorkRoute[]
+  serviceVisits     ServiceVisit[]
 }
 
 model ServiceProviderService {
@@ -5169,6 +5171,7 @@ model ServiceReferral {
   @@index([providerProfileId, periodStart])
   @@index([clientUserId])
   @@index([serviceId])
+  visits ServiceVisit[]
 }
 
 /// TEENUSPÄEVIK E8 — aruandlusaja proov (DoD 1 ja 5).
@@ -5329,6 +5332,7 @@ model ServiceEntry {
   @@index([ownerUserId, date])
   @@index([serviceId])
   @@index([providerProfileId, status, date])
+  sourceVisit ServiceVisit? @relation("ServiceVisitEntry")
 }
 
 /// PARANDUSJÄLG (RPS § 10).
@@ -5478,4 +5482,127 @@ enum ServiceReportShareStatus {
   /// Tagasi võetud. Rida JÄÄB ALLES: „ma ei saatnud seda kunagi" ja „ma võtsin
   /// selle tagasi" on kaks eri asja ja auditijälg peab neid eristama.
   RECALLED
+}
+
+/* ============================================================================
+   TEENUSPÄEVIK — E2c PÄEVATEEKOND.
+
+   MIS OLI KATKI. OSA I andis ühe külastuse neli fikseeritud märget
+   [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI]. Koduhooldaja, kes teeb kuus külastust
+   järjest, EI LÄHE kuhugi tagasi — ta läheb järgmise kliendi juurde. Tema
+   valik oli seni: jätta [TAGASI] vajutamata (siis kaob üks sõidulõik) või
+   märkida midagi, mida ei juhtunud.
+
+   Päevateekonnal ON JÄRGMISE TÖÖ `EN_ROUTE→ARRIVED` EELMISE LAHKUMISE
+   SÕIDULÕIK. Fiktiivset tagasitulekut ei ole vaja, sest ta ei ole enam ainus
+   viis sõiduaega kirja saada.
+
+   KAKS MUDELIT, KAKS ERI ELU:
+
+   `ServiceVisit` on TÖÖOBJEKT. Ta võib jääda ära (`CANCELLED`), mitte teoks
+   saada (`NOT_DONE`) või vajada parandust — need EI OLE arve alusdokumendid ja
+   nad ei tohi elada `ServiceEntry` tabelis. Leping: „töötaja kinnitatud
+   külastus muutub teenuskirjeks, mitte vastupidi."
+
+   `ServiceWorkRoute` on TÖÖPÄEV. Ilma temata ei ole „päeva algus/lõpp" ega
+   „paus" kellegi oma ja lahtiseks jäänud külastust ei saa turvasignaal sulgeda.
+
+   MIDA SIIN EI OLE: koordinaatide jada. Külastus kannab ÜHT punkti (saabumine),
+   täpselt nagu `ServiceEntry`. Tööteekond ei kanna ühtegi — päeva algus ja lõpp
+   on tihti kodu ja seda me ei kogu (leping E12).
+   ============================================================================ */
+
+model ServiceWorkRoute {
+  id                String                 @id @default(cuid())
+  providerProfileId String
+  /// Kelle tööpäev. Nullable samal põhjusel mis `ServiceEntry.ownerUserId`:
+  /// konto võib kustuda enne, kui päeva andmed vananevad.
+  workerUserId      String?
+  /// Kalendripäev (`@db.Date`), et päeva piir ei nihkuks ajavööndiga.
+  date              DateTime               @db.Date
+  status            ServiceWorkRouteStatus @default(OPEN)
+  startedAt         DateTime?
+  endedAt           DateTime?
+  /// Pausi algus. Pausi ajal ei teki sõidulõiku ega tööaega (leping E12:
+  /// „tööväline paus ei lähe arvestusse").
+  breakStartedAt    DateTime?
+  breakMinutes      Int                    @default(0)
+  createdAt         DateTime               @default(now())
+  updatedAt         DateTime               @updatedAt
+
+  profile ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  visits  ServiceVisit[]
+
+  /// ÜKS AVATUD TÖÖPÄEV KORRAGA sama töötaja kohta — osaline unikaalindeks
+  /// migratsioonis (`WHERE status = 'OPEN'`). Kaks paralleelset päeva
+  /// tähendaks, et „jooksev külastus" ei ole üheselt määratud.
+  @@index([providerProfileId, date])
+  @@index([workerUserId, status])
+}
+
+enum ServiceWorkRouteStatus {
+  OPEN
+  CLOSED
+}
+
+model ServiceVisit {
+  id                String             @id @default(cuid())
+  providerProfileId String
+  routeId           String?
+  ownerUserId       String?
+  referralId        String?
+  serviceId         String?
+  clientUserId      String?
+  clientDisplayName String?
+  clientExternalRef String?
+  /// Aadress on PLAANI oma, mitte mõõtmise oma: ta tuleb suunamisest või juhi
+  /// plaanist ja tema järgi saab töötaja navigeerida (E11). Asukohapunkt on
+  /// eraldi väli ja tema allikas on seade.
+  address           String?
+  status            ServiceVisitStatus @default(PLANNED)
+  /// Plaanitud algus. NULL = planeerimata töö, mille töötaja ise lisas —
+  /// päevateekond peab toimima ka ilma päevaplaanita (leping E2a).
+  plannedStartAt    DateTime?
+  sortOrder         Int                @default(0)
+  enRouteAt         DateTime?
+  arrivedAt         DateTime?
+  completedAt       DateTime?
+  cancelledAt       DateTime?
+  /// Miks ära jäi või tegemata jäi. Ilma põhjuseta `NOT_DONE` on number, mille
+  /// tähendust keegi hiljem ei tea.
+  outcomeReason     String?
+  note              String?
+  noteProvenance    String?
+  /// ÜKS punkt: saabumine. Sama kuju mis `ServiceEntry.locationStamps`.
+  locationStamps    Json?
+  /// Tekkinud teenuskirje. Viide ILMA võõrvõtita EI OLE siin õige — mõlemad on
+  /// osutaja enda objektid ja kirje kadumine peab külastuse küljest ka näha
+  /// olema.
+  serviceEntryId    String?            @unique
+  /// Idempotentsus: sama nupuvajutus võrgu taastumisel ei loo teist külastust.
+  clientRequestId   String?
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  profile  ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  route    ServiceWorkRoute?      @relation(fields: [routeId], references: [id], onDelete: SetNull)
+  entry    ServiceEntry?          @relation("ServiceVisitEntry", fields: [serviceEntryId], references: [id], onDelete: SetNull)
+  referral ServiceReferral?       @relation(fields: [referralId], references: [id], onDelete: SetNull)
+
+  @@unique([providerProfileId, clientRequestId])
+  @@index([providerProfileId, status])
+  @@index([routeId, sortOrder])
+  @@index([referralId])
+}
+
+/// Olekud lepingust (E2c). `NEEDS_CORRECTION` on turvasignaali ja juhi
+/// kontrolli oma: pooleli jäänud külastus ei kao, vaid jääb nähtavale.
+enum ServiceVisitStatus {
+  PLANNED
+  EN_ROUTE
+  ARRIVED
+  COMPLETED
+  CANCELLED
+  NOT_DONE
+  NEEDS_CORRECTION
 }

@@ -8615,7 +8615,13 @@
       "report_not_found": "The report was not found.",
       "share_recipient_not_allowed": "A report cannot be sent to this person.",
       "share_already_sent": "This report has already been sent to this person.",
-      "forbidden": "This action is not allowed."
+      "forbidden": "This action is not allowed.",
+      "date_invalid": "The date is invalid.",
+      "transition_not_allowed": "That step is not possible from the current state. Refresh and try again.",
+      "visit_already_active": "A visit is already in progress. Finish it before starting the next one.",
+      "visit_still_open": "The work day cannot be closed while a visit is still in progress.",
+      "visit_not_completed": "A service entry can only be made from a completed visit.",
+      "visit_already_billed": "A service entry has already been made from this visit."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
@@ -8719,6 +8725,40 @@
         "ios": "Open iPhone “Settings” → “Safari” → “Location” and choose “Ask” or “Allow”|Check “Settings” → “Privacy & Security” → “Location Services” is on|Return to Safari and reload the page",
         "desktop": "Click the icon next to the site name in the address bar|Choose “Site settings”|Set “Location” to “Allow”|Reload the page"
       }
+    },
+    "route": {
+      "title": "Work day",
+      "start": "Start the work day",
+      "end": "End the work day",
+      "break_start": "Break",
+      "break_end": "End break",
+      "on_break": "On break",
+      "add_visit": "Add a client",
+      "next_client": "Next client",
+      "summary": "{visits} visits · travel {travel} min · service {service} min",
+      "break_total": "break {minutes} min",
+      "needs_check": "This visit has been open a long time. Is everything all right?",
+      "empty": "No clients on today's route yet.",
+      "action": {
+        "depart": "On my way",
+        "arrive": "I have arrived",
+        "complete": "Service done",
+        "cancel": "Cancelled",
+        "not_done": "Could not be done",
+        "flag_correction": "Needs correction",
+        "resolve_correction": "Corrected"
+      },
+      "status": {
+        "planned": "planned",
+        "en_route": "on the way",
+        "arrived": "arrived",
+        "completed": "done",
+        "cancelled": "cancelled",
+        "not_done": "not done",
+        "needs_correction": "needs correction"
+      },
+      "reason_prompt": "Why? (this is recorded)",
+      "make_entry": "Create a service entry"
     }
   },
   "date_field": {

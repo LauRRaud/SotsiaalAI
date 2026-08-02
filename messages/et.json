@@ -8615,7 +8615,13 @@
       "report_not_found": "Aruannet ei leitud.",
       "share_recipient_not_allowed": "Sellele inimesele ei saa aruannet saata.",
       "share_already_sent": "See aruanne on sellele inimesele juba saadetud.",
-      "forbidden": "Toiming ei ole lubatud."
+      "forbidden": "Toiming ei ole lubatud.",
+      "date_invalid": "Kuupäev on vigane.",
+      "transition_not_allowed": "Seda sammu ei saa praegusest seisust teha. Värskenda vaade ja proovi uuesti.",
+      "visit_already_active": "Üks külastus on juba käigus. Lõpeta see enne järgmise alustamist.",
+      "visit_still_open": "Tööpäeva ei saa lõpetada, kui külastus on veel käigus.",
+      "visit_not_completed": "Teenuskirje saab teha ainult lõpetatud külastusest.",
+      "visit_already_billed": "Sellest külastusest on teenuskirje juba tehtud."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
@@ -8719,6 +8725,40 @@
         "ios": "Ava iPhone'i „Seaded” → „Safari” → „Asukoht” ja vali „Küsi” või „Luba”|Kontrolli: „Seaded” → „Privaatsus ja turvalisus” → „Asukohateenused” on sees|Tule Safarisse tagasi ja laadi leht uuesti",
         "desktop": "Vajuta aadressiribal lehe nime kõrval olevale ikoonile|Vali „Site settings” / „Saidi seaded”|Sea „Location” / „Asukoht” valikule „Allow” / „Luba”|Laadi leht uuesti"
       }
+    },
+    "route": {
+      "title": "Tööpäev",
+      "start": "Alusta tööpäeva",
+      "end": "Lõpeta tööpäev",
+      "break_start": "Paus",
+      "break_end": "Lõpeta paus",
+      "on_break": "Paus käib",
+      "add_visit": "Lisa klient",
+      "next_client": "Järgmine klient",
+      "summary": "{visits} külastust · sõit {travel} min · teenus {service} min",
+      "break_total": "paus {minutes} min",
+      "needs_check": "See külastus on kaua lahti olnud. Kas kõik on korras?",
+      "empty": "Tänasel teekonnal ei ole veel ühtegi klienti.",
+      "action": {
+        "depart": "Läksin teele",
+        "arrive": "Olen kohal",
+        "complete": "Teenus tehtud",
+        "cancel": "Jäi ära",
+        "not_done": "Ei saanud teha",
+        "flag_correction": "Vajab parandust",
+        "resolve_correction": "Parandatud"
+      },
+      "status": {
+        "planned": "plaanis",
+        "en_route": "teel",
+        "arrived": "kohal",
+        "completed": "tehtud",
+        "cancelled": "ära jäänud",
+        "not_done": "tegemata",
+        "needs_correction": "vajab parandust"
+      },
+      "reason_prompt": "Miks? (jääb kirja)",
+      "make_entry": "Tee teenuskirje"
     }
   },
   "date_field": {
