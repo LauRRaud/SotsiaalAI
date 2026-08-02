@@ -43,6 +43,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-org-funding-inbox-v1", "dev:3001"],
       "port": 3001
+    },
+    {
+      "name": "next-dev-org-c",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "--prefix", "C:/Users/rauds/Desktop/SotsiaalAI-org-profile-support-v1", "dev:3001"],
+      "port": 3001
     }
   ]
 }
