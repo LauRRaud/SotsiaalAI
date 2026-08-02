@@ -1044,7 +1044,6 @@
       "failed": "The copy could not be prepared. Your data has not been deleted.",
       "cancelled": "The copy request was cancelled. Your data has not been deleted.",
       "expired": "The copy expired and the ZIP was removed.",
-      "warn_all": "This file covers all recipients — choose a recipient before submitting it to a municipality.",
       "download": "Download data copy",
       "cancel": "Cancel request",
       "load_failed": "The data-copy status could not be loaded.",
@@ -7221,7 +7220,6 @@
       "description": "See who can view information you shared and manage pre-inquiries, rooms and invites."
     },
     "title": "My shares",
-    "lead": "See in one place who you shared information with, when it happened and what you can still control.",
     "back": "Back to profile",
     "loading": "Loading your shares…",
     "empty_all": "You have no current or previous shares to show here.",
@@ -7332,6 +7330,26 @@
       "load_failed": "Your shares could not be loaded.",
       "action_failed": "The action failed. Try again.",
       "refresh_failed": "The action succeeded, but the updated overview could not be loaded. Try reloading the view."
+    },
+    "info": {
+      "title": "My shares",
+      "what_title": "What this is for",
+      "what_overview": "See in one place who you shared information with, when it happened and what you can still control.",
+      "what_scope": "The list covers sharing done on the platform. What you have sent someone yourself by email or outside the platform is not here.",
+      "what_owner": "Each entry states who can see it, where it came from and how long it is valid.",
+      "kinds_title": "What is in here",
+      "kinds_inquiries": "Sent pre-inquiries — who you sent them to and whether the recipient has opened them.",
+      "kinds_rooms": "Active rooms and invites — in a room the shared content is visible to its active members, while an invite grants access only after it is accepted.",
+      "kinds_public": "Published help requests and offers — these are public until closed or expired.",
+      "kinds_records": "Preparations handed over to mentoring and the frameworks you have confirmed.",
+      "recall_title": "Recall",
+      "recall_window": "You can recall an unopened in-platform inquiry: it disappears from the recipient's active list. Once opened, the recall window closes.",
+      "recall_correction": "A correction is sent as a new version. The earlier opened version stays in the history — nothing is silently overwritten.",
+      "recall_room": "You can leave a room; if you are the room owner, ownership must first be handed over to someone else.",
+      "limits_title": "What recall does NOT do",
+      "limits_memory": "Recall cannot erase information the recipient may already have seen or remembered. It is a platform action, not a memory wipe.",
+      "limits_audit": "The audit trail remains. That way what happened can be evidenced later — in your favour too.",
+      "limits_external": "A message sent to an external email cannot be recalled from the platform. That is why external sending is marked separately."
     }
   },
   "effective_practices": {
@@ -8275,6 +8293,29 @@
       "excludes": "The export does NOT contain users' private objects or personal data copies: wellbeing message content, inquiry text, conversations, documents, reflection, mentoring or supervision.",
       "download": "Download export",
       "generated": "Generated"
+    },
+    "info": {
+      "title": "Organisations",
+      "what_title": "What this is for",
+      "what_personal": "You can work personally or in the context of one or more organisations. Your personal workspace always remains and an organisation cannot take it over.",
+      "what_space": "An organisation's workspace brings members, units, seats, inquiry intake and the service profile together in one place.",
+      "what_switch": "Switching workspace does not take you off the platform or change your role — only whose name you are currently working under changes.",
+      "privacy_title": "What the organisation does NOT see",
+      "privacy_personal": "Your own conversations, documents and Wellbeing stay yours. The organisation cannot see them even when it pays for your seat.",
+      "privacy_share": "You can send a Wellbeing summary to someone yourself. That is a COPY, not access: the recipient sees only what you sent, and no path leads from there to the rest of your records. You can withdraw the sharing.",
+      "privacy_leave": "Leaving an organisation does not affect your account or personal data.",
+      "join_title": "Joining and seats",
+      "join_invite": "You join an organisation by invitation. Invitations waiting for you are listed on this page.",
+      "join_seat": "A seat is either a specialist seat or a service provider seat. A client is not placed on an organisation seat — client access is a separate matter.",
+      "join_payer": "When an organisation gives you a seat, it pays for the subscription. Taking the seat back does not delete your account.",
+      "create_title": "Creating an organisation",
+      "create_who": "A specialist or a service provider can create one. The creator gets the first administrator seat.",
+      "create_draft": "The organisation is created as a draft. Real use is opened by the platform's identity check — before that you can set the workspace up, but not actually work in it.",
+      "create_legal": "The legal name and registry code identify the institution. The display name may be a shorter everyday name.",
+      "inbox_title": "Intake",
+      "inbox_shared": "An inquiry sent to an organisation arrives in a shared intake, not in one person's mailbox. That way it does not sit behind someone's holiday.",
+      "inbox_assign": "From the intake the inquiry is assigned onward to a specific person. Who opened it and who it was assigned to is recorded.",
+      "inbox_personal": "The organisation's intake does not interfere with your personal inquiry list — these are two separate paths."
     }
   },
   "service_log": {
@@ -8438,7 +8479,8 @@
         "star": "STAR / s-veeb (JSON)"
       },
       "pdf_limitation": "PDF does not support Cyrillic. If any client name is in Cyrillic, choose Word (.docx) — otherwise the download stops and says so.",
-      "star_note": "Envelope for national statistics. Field mapping against the state system is not done yet — the file states this itself (mappingStatus)."
+      "star_note": "Envelope for national statistics. Field mapping against the state system is not done yet — the file states this itself (mappingStatus).",
+      "warn_all": "This file covers all recipients — choose a recipient before submitting it to a municipality."
     },
     "status": {
       "draft": "draft",

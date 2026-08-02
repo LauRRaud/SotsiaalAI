@@ -1044,7 +1044,6 @@
       "failed": "Koopia koostamine ebaõnnestus. Andmeid ei ole kustutatud.",
       "cancelled": "Koopia taotlus on tühistatud. Andmeid ei ole kustutatud.",
       "expired": "Koopia aegus ning ZIP eemaldati.",
-      "warn_all": "See fail sisaldab kõiki saajaid — KOV-ile esitamiseks vali saaja.",
       "download": "Laadi andmekoopia alla",
       "cancel": "Tühista taotlus",
       "load_failed": "Andmekoopia olekut ei saanud laadida.",
@@ -7221,7 +7220,6 @@
       "description": "Vaata, kes sinu jagatud infot näeb, ning halda eelpöördumisi, ruume ja kutseid."
     },
     "title": "Minu jagamised",
-    "lead": "Siin näed ühes kohas, kellele oled infot jaganud, millal see juhtus ja mida saad veel kontrollida.",
     "back": "Tagasi profiili",
     "loading": "Laen sinu jagamisi…",
     "empty_all": "Sul ei ole praegu aktiivseid ega varasemaid jagamisi, mida siin näidata.",
@@ -7332,6 +7330,26 @@
       "load_failed": "Sinu jagamisi ei saanud laadida.",
       "action_failed": "Toiming ebaõnnestus. Proovi uuesti.",
       "refresh_failed": "Toiming õnnestus, kuid uuendatud ülevaadet ei saanud laadida. Proovi vaadet uuesti laadida."
+    },
+    "info": {
+      "title": "Minu jagamised",
+      "what_title": "Milleks see on",
+      "what_overview": "Siin näed ühes kohas, kellele oled infot jaganud, millal see juhtus ja mida saad veel kontrollida.",
+      "what_scope": "Loend katab platvormi enda jagamised. Seda, mille sa oled kellelegi ise e-kirjaga või väljaspool platvormi saatnud, siin ei ole.",
+      "what_owner": "Iga kirje juures seisab, kes seda näeb, kust ta tuli ja kui kaua ta kehtib.",
+      "kinds_title": "Mis siin sees on",
+      "kinds_inquiries": "Saadetud eelpöördumised — kellele saatsid ja kas adressaat on selle avanud.",
+      "kinds_rooms": "Aktiivsed ruumid ja kutsed — ruumis näevad jagatud sisu selle aktiivsed liikmed, kutse aga annab ligipääsu alles pärast vastuvõtmist.",
+      "kinds_public": "Avaldatud abisoovid ja -pakkumised — need on avalikud kuni sulgemise või aegumiseni.",
+      "kinds_records": "Mentorlusse üle antud ettevalmistused ja sinu kinnitatud raamistikud.",
+      "recall_title": "Tagasivõtt",
+      "recall_window": "Avamata platvormisisese pöördumise saad tagasi võtta: see kaob adressaadi aktiivsest loendist. Pärast avamist tagasivõtu aken sulgub.",
+      "recall_correction": "Parandus saadetakse uue versioonina. Varasem avatud versioon jääb ajalukku — vaikselt üle ei kirjutata.",
+      "recall_room": "Ruumist saad lahkuda; kui oled ruumi omanik, tuleb omand enne kellelegi üle anda.",
+      "limits_title": "Mida tagasivõtt EI tee",
+      "limits_memory": "Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada. See on platvormi toiming, mitte mälukustutus.",
+      "limits_audit": "Auditijälg jääb alles. Nii saab hiljem tõendada, mis toimus — ka sinu enda kasuks.",
+      "limits_external": "Välisele e-postile saadetud kirja ei saa platvormilt tagasi kutsuda. Seepärast on väline saatmine eraldi märgitud."
     }
   },
   "effective_practices": {
@@ -8275,6 +8293,29 @@
       "excludes": "Eksport EI SISALDA kasutajate privaatseid objekte ega isiklikke andmekoopiaid: tööheaolu avalduste sisu, pöördumiste teksti, vestlusi, dokumente, refleksiooni, mentorlust ega supervisiooni.",
       "download": "Laadi eksport alla",
       "generated": "Koostatud"
+    },
+    "info": {
+      "title": "Organisatsioonid",
+      "what_title": "Milleks see on",
+      "what_personal": "Sa võid töötada isiklikult või ühe või mitme organisatsiooni kontekstis. Isiklik tööruum jääb alati alles ja organisatsioon ei saa seda üle võtta.",
+      "what_space": "Organisatsiooni tööruum koondab ühte kohta liikmed, üksused, kohad, pöördumiste vastuvõtu ja teenuseprofiili.",
+      "what_switch": "Tööruumi vahetamine ei vii sind ära platvormilt ega muuda sinu rolli — vahetub ainult see, kelle nimel sa parajasti töötad.",
+      "privacy_title": "Mida organisatsioon EI näe",
+      "privacy_personal": "Sinu enda vestlused, dokumendid ja Tööheaolu jäävad sinule. Organisatsioon neid ei näe ka siis, kui ta maksab sinu koha eest.",
+      "privacy_share": "Tööheaolu kokkuvõtte saad ise kellelegi saata. See on KOOPIA, mitte ligipääs: saaja näeb ainult seda, mille sa saatsid, ja sealt ei vii ühtegi teed sinu ülejäänud kirjeteni. Saatmise saad tagasi võtta.",
+      "privacy_leave": "Organisatsioonist lahkumine ei puuduta sinu kontot ega isiklikke andmeid.",
+      "join_title": "Liitumine ja kohad",
+      "join_invite": "Organisatsiooniga liitutakse kutsega. Sulle saadetud ootel kutsed seisavad sellel lehel.",
+      "join_seat": "Koht on kas spetsialisti või teenuseosutaja oma. Klienti organisatsiooni kohale ei panda — kliendi ligipääs on eraldi asi.",
+      "join_payer": "Kui organisatsioon annab sulle koha, maksab tellimuse eest tema. Koha tagasivõtmine ei kustuta sinu kontot.",
+      "create_title": "Organisatsiooni loomine",
+      "create_who": "Luua saab spetsialist või teenuseosutaja. Looja saab esimese haldaja koha.",
+      "create_draft": "Organisatsioon sünnib mustandina. Päris kasutuse avab platvormi identiteedikontroll — enne seda saab tööruumi seadistada, aga mitte sellega päriselt tööd teha.",
+      "create_legal": "Juriidiline nimi ja registrikood on asutuse tuvastamiseks. Kuvatav nimi võib olla lühem tööpäevane nimi.",
+      "inbox_title": "Vastuvõtt",
+      "inbox_shared": "Organisatsioonile saadetud pöördumine jõuab ühisesse vastuvõttu, mitte ühe inimese postkasti. Nii ei jää see puhkuse taha seisma.",
+      "inbox_assign": "Vastuvõtust määratakse pöördumine edasi konkreetsele inimesele. Kes selle avas ja kellele määras, jääb kirja.",
+      "inbox_personal": "Sinu isiklikku pöördumiste loendisse organisatsiooni vastuvõtt ei sega — need on kaks eri rada."
     }
   },
   "service_log": {
@@ -8438,7 +8479,8 @@
         "star": "STAR / s-veeb (JSON)"
       },
       "pdf_limitation": "PDF ei toeta kirillitsat. Kui mõne kliendi nimi on kirillitsas, vali Word (.docx) — vastasel juhul allalaadimine peatub ja ütleb seda.",
-      "star_note": "Riigi statistika ümbrik. Väljakaardistus riigi süsteemiga on veel tegemata — fail ütleb seda ise (mappingStatus)."
+      "star_note": "Riigi statistika ümbrik. Väljakaardistus riigi süsteemiga on veel tegemata — fail ütleb seda ise (mappingStatus).",
+      "warn_all": "See fail sisaldab kõiki saajaid — KOV-ile esitamiseks vali saaja."
     },
     "status": {
       "draft": "mustand",
