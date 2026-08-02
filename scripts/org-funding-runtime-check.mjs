@@ -442,6 +442,53 @@ async function main() {
       JSON.stringify(Object.keys(opened.source).sort())
   );
 
+  // --- 6a. Teavituskiht (E7 + E11) --------------------------------------
+  const assigneeNotice = await prisma.notificationEvent.findFirst({
+    where: { type: "ORG_WORK_ASSIGNED", userId: other.id, sourceId: item.id }
+  });
+  expect("the new responsible person is notified", Boolean(assigneeNotice));
+  expect(
+    "the notification points at the org-neutral redirect, not at an org URL",
+    assigneeNotice && assigneeNotice.targetId === item.id
+  );
+  expect(
+    "the notification carries the org space as workspace, so the timeline can group it",
+    assigneeNotice?.workspaceKind === "org_space" && assigneeNotice?.workspaceId === org.id
+  );
+
+  /* Teavitus ei tohi kanda SISU. Kontrollime kogu rea serialiseeritult:
+     ei olukorra teksti, ei teemat, ei saatja aadressi. */
+  const noticeBlob = JSON.stringify(assigneeNotice || {});
+  expect(
+    "the assignee notification carries no content whatsoever",
+    !noticeBlob.includes("Sünteetiline") &&
+      !noticeBlob.includes("Eluase") &&
+      !noticeBlob.includes(citizen.email)
+  );
+
+  const authorNotice = await prisma.notificationEvent.findFirst({
+    where: { type: "PRE_INQUIRY_STATUS_CHANGED", userId: citizen.id, sourceId: inquiry.id }
+  });
+  expect("the author is notified that the responsible person changed", Boolean(authorNotice));
+  expect(
+    "the author notification names no successor — it is neutral",
+    authorNotice && !JSON.stringify(authorNotice).includes(other.id)
+  );
+
+  /* Adressaadi projektsioon saatjale (§5.7): „organisatsiooni vastuvõtutiim". */
+  const authorView = await prisma.preInquiry.findUnique({
+    where: { id: inquiry.id },
+    select: {
+      recipientType: true,
+      recipientOrganization: { select: { displayName: true, legalKind: true } }
+    }
+  });
+  expect(
+    "the sender sees the organisation as addressee, not an empty field",
+    authorView?.recipientType === "ORGANIZATION_INBOX" &&
+      authorView?.recipientOrganization?.displayName?.includes(MARK)
+  );
+
   // --- 7. Offboarding ---------------------------------------------------
   await expectReject(
     "live work blocks leaving — work is never silently reassigned",
@@ -483,7 +530,9 @@ async function cleanup() {
     await prisma.organizationWorkAssignment.deleteMany({
       where: { inboxItem: { organizationId } }
     });
+    await prisma.notificationEvent.deleteMany({ where: { workspaceId: organizationId } });
   }
+  await prisma.notificationEvent.deleteMany({ where: { userId: { in: created.userIds } } });
   const inquiries = await prisma.preInquiry.deleteMany({
     where: { authorId: { in: created.userIds } }
   });
