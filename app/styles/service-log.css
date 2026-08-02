@@ -735,3 +735,36 @@
   text-align: left;
   width: 100%;
 }
+
+/* TEEKOND KAARDIL. Kaart on ülevaade, mitte peamine tööpind — ta on madal ja
+ * ei võta telefonis tervet ekraani. */
+.sl-map-canvas {
+  height: 16rem;
+  border-radius: var(--radius-md, 0.5rem);
+  overflow: hidden;
+}
+
+/* Nummerdatud marker: number ütleb järjekorra, värv oleku. */
+.sl-map-pin > span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 2px solid var(--pin, #c9c9c9);
+  background: rgb(20 22 26 / 92%);
+  color: var(--pin, #c9c9c9);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.sl-suggest-order {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  background: var(--panel-row-bg, rgb(255 255 255 / 5%));
+}

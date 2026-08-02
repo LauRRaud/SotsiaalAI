@@ -29,6 +29,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
+import ServiceLogRouteMap from "./ServiceLogRouteMap";
 
 /** Toimingud, mille jaoks küsime enne põhjust (server nõuab seda niikuinii). */
 const REASON_ACTIONS = new Set(["cancel", "not_done", "flag_correction"]);
@@ -106,12 +107,12 @@ export default function ServiceLogRoute() {
   }, [load]);
 
   const routeAction = useCallback(
-    async (action) => {
+    async (action, extra = {}) => {
       setBusy(true);
       try {
         await call("/api/service-visits/route-day", {
           method: "POST",
-          body: JSON.stringify({ action })
+          body: JSON.stringify({ action, ...extra })
         });
         await load();
       } catch (actionError) {
@@ -300,6 +301,30 @@ export default function ServiceLogRoute() {
       </div>
 
       {route?.onBreak ? <p className="sl-warn" role="status">{t("service_log.route.on_break", "")}</p> : null}
+
+      {/* JÄRJESTUSE SOOVITUS. Ta on SOOVITUS: rakendub ainult vajutusega.
+          Automaatne ümberjärjestamine tähendaks, et töötaja avab hommikul
+          telefoni ja tema päev on öösel ümber tehtud. */}
+      {day.orderSuggestion ? (
+        <div className="sl-suggest-order">
+          <p className="sl-entry-meta">
+            {t("service_log.route.order_hint", "", {
+              current: String(day.orderSuggestion.currentKm ?? 0),
+              suggested: String(day.orderSuggestion.km ?? 0)
+            })}
+          </p>
+          <button
+            type="button"
+            className="sl-entry-btn is-primary"
+            disabled={busy}
+            onClick={() => routeAction("apply_order", { visitIds: day.orderSuggestion.order })}
+          >
+            {t("service_log.route.order_apply", "")}
+          </button>
+        </div>
+      ) : null}
+
+      <ServiceLogRouteMap visits={visits} />
 
       {visits.length === 0 ? (
         <p className="sl-empty">{t("service_log.route.empty", "")}</p>

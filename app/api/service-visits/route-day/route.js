@@ -9,7 +9,7 @@
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
-import { closeRoute, openRoute, setBreak } from "@/lib/serviceLog/dayRoute";
+import { applyOrder, closeRoute, openRoute, setBreak } from "@/lib/serviceLog/dayRoute";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogDayRouteEnabled } from "@/lib/serviceLog/flags";
 
@@ -17,7 +17,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const ACTIONS = new Set(["start", "break_start", "break_end", "end"]);
+const ACTIONS = new Set(["start", "break_start", "break_end", "end", "apply_order"]);
 
 export async function POST(req) {
   if (!isServiceLogDayRouteEnabled()) {
@@ -39,6 +39,9 @@ export async function POST(req) {
     if (action === "start") return json({ route: await openRoute(userId, {}) });
     if (action === "break_start") return json({ route: await setBreak(userId, { on: true }) });
     if (action === "break_end") return json({ route: await setBreak(userId, { on: false }) });
+    /* Järjestuse rakendamine on TEEKONNA toiming, mitte ühe külastuse oma:
+       ta puudutab korraga kõiki ja peab olema üks tehing. */
+    if (action === "apply_order") return json({ result: await applyOrder(userId, body?.visitIds) });
     return json({ route: await closeRoute(userId, {}) });
   } catch (error) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {

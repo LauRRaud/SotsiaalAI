@@ -8772,7 +8772,11 @@
       "mileage_total": "Total ≈ {km} km · {minutes} min",
       "km_missing": "{count} legs not measured",
       "km_address": "≈ {km} km (from the address)",
-      "location_mismatch": "The measured location is {km} km from the address — check that you are in the right place."
+      "location_mismatch": "The measured location is {km} km from the address — check that you are in the right place.",
+      "map": "Route on the map",
+      "map_note": "The map shows addresses and the visit order. Worker movement is not shown here.",
+      "order_hint": "Current order ≈ {current} km, suggested ≈ {suggested} km.",
+      "order_apply": "Reorder"
     }
   },
   "date_field": {

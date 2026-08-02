@@ -8772,7 +8772,11 @@
       "mileage_total": "Kokku ≈ {km} km · {minutes} min",
       "km_missing": "{count} lõiku mõõtmata",
       "km_address": "≈ {km} km (aadressi järgi)",
-      "location_mismatch": "Mõõdetud asukoht on aadressist {km} km kaugusel — kontrolli, kas oled õiges kohas."
+      "location_mismatch": "Mõõdetud asukoht on aadressist {km} km kaugusel — kontrolli, kas oled õiges kohas.",
+      "map": "Teekond kaardil",
+      "map_note": "Kaardil on aadressid ja külastuste järjekord. Töötaja liikumist siin ei näidata.",
+      "order_hint": "Praegune järjekord ≈ {current} km, soovitatud ≈ {suggested} km.",
+      "order_apply": "Järjesta ümber"
     }
   },
   "date_field": {
