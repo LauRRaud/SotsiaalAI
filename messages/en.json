@@ -8710,22 +8710,6 @@
         "org_owner": "organisation owner"
       }
     },
-    "permission": {
-      "allow": "Allow location",
-      "ok": "Location works.",
-      "ok_accuracy": "Location works, accuracy ±{meters} m.",
-      "ok_coarse": "Permission is granted, but accuracy is ±{meters} m — that does not prove presence. On a phone turn on GPS/location services; on a desktop the accuracy is usually poor anyway.",
-      "failed": "No location arrived. Check that the device location service is on and try again.",
-      "unsupported": "This browser provides no location. Visits can still be recorded — the times are saved.",
-      "denied_short": "Location will not be recorded - the browser blocks it for this page.",
-      "why_short": "The location stamp shows the visit happened on site.",
-      "how": "How do I switch the permission back on?",
-      "hint": {
-        "android": "In Chrome tap the lock icon in the address bar, choose “Permissions” → “Location” → “Allow”, then reload the page.",
-        "ios": "Settings → Safari → Location → “Ask” or “Allow”. Also check that Settings → Privacy → Location Services is on. Then reload the page.",
-        "desktop": "Click the icon next to the site name in the address bar, choose “Site settings” → “Location” → “Allow”, then reload the page."
-      }
-    },
     "route": {
       "title": "Work day",
       "start": "Start the work day",
@@ -8760,7 +8744,14 @@
       "reason_prompt": "Why? (this is recorded)",
       "make_entry": "Create a service entry",
       "address": "Address",
-      "summary_one": "{visits} visit · travel {travel} min · service {service} min"
+      "summary_one": "{visits} visit · travel {travel} min · service {service} min",
+      "navigate": "Navigate",
+      "mileage": "Mileage log",
+      "km_estimated": "≈ {km} km",
+      "km_confirmed": "{km} km",
+      "km_unknown": "distance not measured",
+      "mileage_total": "Total ≈ {km} km · {minutes} min",
+      "km_missing": "{count} legs not measured"
     }
   },
   "date_field": {

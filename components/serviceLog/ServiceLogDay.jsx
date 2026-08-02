@@ -43,7 +43,6 @@ import {
 } from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 import { clearVisitDraft, readVisitDraft, writeVisitDraft } from "@/lib/serviceLog/visitDraft";
-import LocationPermission from "./LocationPermission";
 import ServiceLogRoute from "./ServiceLogRoute";
 
 /**
@@ -789,10 +788,14 @@ export default function ServiceLogDay() {
           </div>
         ) : null}
 
-        {/* LUBA KÜSITAKSE ENNE, MITTE UKSE TAGA. Plokk kaob ise ära, kui luba
-            on olemas ja töötab. */}
-        {isServiceLogLocationStampUiEnabled() ? <LocationPermission /> : null}
+        {/* SEISVAT ASUKOHAPLOKKI SIIN EI OLE — omaniku otsus 03.08: „teade
+            tuleb siis kui inimene nuppu vajutab. mitte enne."
 
+            Vahepeal oli siin eelkontroll, mis palus luba juba lehe avamisel.
+            See oli vale koht kahel põhjusel: ta rääkis asjast, mida töötaja
+            sel hetkel ei tee, ja ta seisis ekraanil ka siis, kui vastust ei
+            olnud vaja. Loa dialoog tuleb nüüd täpselt seal, kus asukohta
+            päriselt vaja on — [Olen kohal] vajutuse peal. */}
         {/* KAKS VOOGU, ÜKS KORRAGA.
             Päevateekond ASENDAB nelja märke voo, mitte ei seisa tema kõrval:
             kaks konkureerivat „märgi külastus" mehhanismi ühel ekraanil

@@ -33,6 +33,10 @@ import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 /** Toimingud, mille jaoks küsime enne põhjust (server nõuab seda niikuinii). */
 const REASON_ACTIONS = new Set(["cancel", "not_done", "flag_correction"]);
 
+/** Lõppseisud: siin ei ole enam kuhugi navigeerida. */
+const TERMINAL = new Set(["COMPLETED", "CANCELLED", "NOT_DONE"]);
+const isTerminal = (status) => TERMINAL.has(status);
+
 /** Millist toimingut pakume SUURE nupuna. Ülejäänud jäävad kõrvalvalikuks. */
 const PRIMARY_ACTION = ["arrive", "complete", "depart", "resolve_correction"];
 
@@ -57,6 +61,8 @@ export default function ServiceLogRoute() {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [adding, setAdding] = useState(false);
+  /* Asukohateade käib ÜHE külastuse küljes ja tekib alles vajutuse peale. */
+  const [locationNote, setLocationNote] = useState(null);
   const [clientName, setClientName] = useState("");
   const [address, setAddress] = useState("");
 
@@ -119,6 +125,29 @@ export default function ServiceLogRoute() {
          võtab aega, on see hetk, mis päriselt juhtus. */
       const at = new Date().toISOString();
 
+      /**
+       * ASUKOHT KÜSITAKSE SAMAS SÜNDMUSES, MITTE PÄRAST FETCH'i.
+       *
+       * See oli päris viga: kutse elas `await fetch(...)` JÄREL ja seega
+       * väljaspool kasutaja vajutuse konteksti. Safari (ja iOS-i PWA) näitab
+       * asukohadialoogi AINULT kasutaja žesti sees — pärast await'i tehtud
+       * kutse ei too dialoogi üldse ette. Töötaja oleks vajutanud [Olen kohal]
+       * ega oleks kunagi näinud, et luba küsitakse.
+       *
+       * Nüüd algab päring KOHE ja tema vastust oodatakse alles siis, kui
+       * tempel on juba serveris. Ootamine ei blokeeri midagi.
+       */
+      let locationPromise = null;
+      if (action === "arrive") {
+        const token = ++visitTokenRef.current;
+        locationPromise = captureLocationPoint(undefined, {
+          onReason: (why) => {
+            if (visitTokenRef.current !== token) return;
+            setLocationNote({ visitId, key: `service_log.location.${why}` });
+          }
+        }).then((point) => (visitTokenRef.current === token ? point : null));
+      }
+
       let reason = null;
       if (REASON_ACTIONS.has(action)) {
         reason = window.prompt(t("service_log.route.reason_prompt", ""));
@@ -128,25 +157,25 @@ export default function ServiceLogRoute() {
 
       setBusy(true);
       setError("");
+      setLocationNote(null);
       try {
         await call(`/api/service-visits/${visitId}`, {
           method: "PATCH",
           body: JSON.stringify({ action, at, reason })
         });
 
-        /* ASUKOHT KÜSITAKSE PÄRAST seda, kui tempel on juba serveris. GPS võib
-           kesta 20 sekundit ja tema ootamine ei tohi külastuse märkimist edasi
-           lükata ega ära jätta. */
-        if (action === "arrive") {
-          const token = ++visitTokenRef.current;
-          captureLocationPoint().then((point) => {
-            if (!point || visitTokenRef.current !== token) return;
+        if (locationPromise) {
+          locationPromise.then((point) => {
+            if (!point) return;
+            setLocationNote({
+              visitId,
+              key: point.trusted ? "service_log.location.captured_accuracy" : "service_log.location.coarse",
+              meters: String(point.acc ?? "")
+            });
             call(`/api/service-visits/${visitId}`, {
               method: "PATCH",
-              /* OMA TOIMING, mitte teine `arrive`: külastus on juba `ARRIVED`
-                 ja `ARRIVED → ARRIVED` ei ole lubatud üleminek. Teise `arrive`
-                 kutsega oleks punkt alati 409-ga kukkunud ja asukohatempel
-                 poleks kunagi salvestunud. */
+              /* OMA TOIMING, mitte teine `arrive`: `ARRIVED → ARRIVED` ei ole
+                 lubatud üleminek ja punkt oleks alati 409-ga kukkunud. */
               body: JSON.stringify({ action: "attach_location", locationPoint: point })
             }).catch(() => {});
           });
@@ -265,10 +294,31 @@ export default function ServiceLogRoute() {
                 {visit.address ? <span className="sl-entry-meta">{visit.address}</span> : null}
                 {visit.outcomeReason ? <span className="sl-source">{visit.outcomeReason}</span> : null}
 
+                {/* Asukohateade ilmub SELLE külastuse alla ja alles pärast
+                    vajutust — enne seda ei ole tal midagi öelda. */}
+                {locationNote?.visitId === visit.id ? (
+                  <span className="sl-source">
+                    {t(locationNote.key, "", locationNote.meters ? { meters: locationNote.meters } : undefined)}
+                  </span>
+                ) : null}
+
                 {/* TURVASIGNAAL. Mitte jälgimine: me ei tea, kus inimene on —
                     ainult et üks nupp on kaua vajutamata. */}
                 {needsCheck?.includes(visit.id) ? (
                   <span className="sl-source sl-source-warn">{t("service_log.route.needs_check", "")}</span>
+                ) : null}
+
+                {/* E11 — üks puude ja navigatsioon avaneb selles rakenduses,
+                    mis kasutajal juba olemas on. Kaardimootorit me ei manusta. */}
+                {visit.navigationUrl && !isTerminal(visit.status) ? (
+                  <a
+                    className="sl-entry-btn"
+                    href={visit.navigationUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {t("service_log.route.navigate", "")}
+                  </a>
                 ) : null}
 
                 {primary ? (
@@ -293,6 +343,42 @@ export default function ServiceLogRoute() {
           })}
         </ul>
       )}
+
+      {/* E12 — SÕIDUPÄEVIK. Odomeetrit siin ei ole ja ei tule (omaniku otsus
+          03.08): kaugus tuleb saabumispunktide vahelt. Mõõtmata lõik ütleb
+          seda VÄLJA — väljamõeldud number oleks halvem kui puuduv, sest tema
+          järgi makstakse. */}
+      {day.legs?.length ? (
+        <section className="sl-legs">
+          <h4 className="sl-list-title">{t("service_log.route.mileage", "")}</h4>
+          <ul className="sl-entries">
+            {day.legs.map((leg) => (
+              <li key={`${leg.fromVisitId}-${leg.toVisitId}`} className="sl-entry">
+                <span className="sl-entry-meta">
+                  {leg.fromClient} → {leg.toClient}
+                </span>
+                <span className="sl-entry-meta">
+                  {leg.km === null
+                    ? t("service_log.route.km_unknown", "")
+                    : t(leg.estimated ? "service_log.route.km_estimated" : "service_log.route.km_confirmed", "", {
+                        km: String(leg.km)
+                      })}
+                  {leg.minutes !== null ? ` · ${leg.minutes} min` : ""}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="sl-source">
+            {t("service_log.route.mileage_total", "", {
+              km: String(day.mileage?.km ?? 0),
+              minutes: String(day.mileage?.minutes ?? 0)
+            })}
+            {day.mileage?.missing
+              ? ` · ${t("service_log.route.km_missing", "", { count: String(day.mileage.missing) })}`
+              : ""}
+          </p>
+        </section>
+      ) : null}
 
       {!dayClosed ? (
         adding ? (

@@ -8710,22 +8710,6 @@
         "org_owner": "organisatsiooni omanik"
       }
     },
-    "permission": {
-      "allow": "Luba asukoht",
-      "ok": "Asukoht töötab.",
-      "ok_accuracy": "Asukoht töötab, täpsus ±{meters} m.",
-      "ok_coarse": "Luba on olemas, aga täpsus on ±{meters} m — see ei tõenda kohalolekut. Telefonis lülita sisse GPS/asukohateenus; arvutis ongi täpsus tavaliselt kehv.",
-      "failed": "Asukohta ei tulnud. Kontrolli, et seadme asukohateenus on sees, ja proovi uuesti.",
-      "unsupported": "See brauser ei anna asukohta. Külastusi saab märkida ka ilma — kirja lähevad kellaajad.",
-      "denied_short": "Asukohta ei märgita — brauser ei anna sellele lehele luba.",
-      "why_short": "Asukohatempel tõendab, et külastus toimus kohapeal.",
-      "how": "Kuidas luba tagasi sisse lülitada?",
-      "hint": {
-        "android": "Chrome'is vajuta aadressiribal lukuikoonile, vali „Õigused” → „Asukoht” → „Luba” ja laadi leht uuesti.",
-        "ios": "Seaded → Safari → Asukoht → „Küsi” või „Luba”. Kontrolli ka, et Seaded → Privaatsus → Asukohateenused on sees. Siis laadi leht uuesti.",
-        "desktop": "Vajuta aadressiribal lehe nime kõrval ikoonile, vali „Saidi seaded” → „Asukoht” → „Luba” ja laadi leht uuesti."
-      }
-    },
     "route": {
       "title": "Tööpäev",
       "start": "Alusta tööpäeva",
@@ -8760,7 +8744,14 @@
       "reason_prompt": "Miks? (jääb kirja)",
       "make_entry": "Tee teenuskirje",
       "address": "Aadress",
-      "summary_one": "{visits} külastus · sõit {travel} min · teenus {service} min"
+      "summary_one": "{visits} külastus · sõit {travel} min · teenus {service} min",
+      "navigate": "Navigeeri",
+      "mileage": "Sõidupäevik",
+      "km_estimated": "≈ {km} km",
+      "km_confirmed": "{km} km",
+      "km_unknown": "kaugus mõõtmata",
+      "mileage_total": "Kokku ≈ {km} km · {minutes} min",
+      "km_missing": "{count} lõiku mõõtmata"
     }
   },
   "date_field": {
