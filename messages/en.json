@@ -8045,6 +8045,7 @@
       "sponsorship_revoke_failed": "Revoking the sponsorship failed.",
       "inbox_source_not_found": "Inquiry not found.",
       "inbox_source_mismatch": "The inquiry is not addressed to this organisation.",
+      "inbox_delivery_failed": "Delivering the inquiry failed. Please try again.",
       "inbox_item_not_found": "Item not found.",
       "inbox_recall_is_sender_right": "Recall is the sender's right.",
       "invalid_inbox_transition": "That status change is not allowed.",

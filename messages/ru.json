@@ -8045,6 +8045,7 @@
       "sponsorship_revoke_failed": "Не удалось отозвать спонсорство.",
       "inbox_source_not_found": "Обращение не найдено.",
       "inbox_source_mismatch": "Обращение адресовано не этой организации.",
+      "inbox_delivery_failed": "Не удалось доставить обращение. Попробуйте ещё раз.",
       "inbox_item_not_found": "Запись не найдена.",
       "inbox_recall_is_sender_right": "Отзыв — право отправителя.",
       "invalid_inbox_transition": "Такое изменение состояния не разрешено.",

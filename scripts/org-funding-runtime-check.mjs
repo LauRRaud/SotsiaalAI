@@ -22,6 +22,7 @@ import { acceptClientSponsorship, createClientSponsorship } from "../lib/org/spo
 import {
   assignWork,
   deliverPreInquiryToOrganization,
+  deliverPreInquiryToOrganizationWithin,
   findUndeliveredOrganizationInquiries,
   getInboxItem,
   handOverWork,
@@ -30,6 +31,7 @@ import {
   respondToAssignment
 } from "../lib/org/inbox.js";
 import { createPreInquiry, recallPreInquiry } from "../lib/preInquiries.js";
+import { OrgAuditAction } from "../lib/org/audit.js";
 
 const ENV = { ORG_WORKSPACE_ENABLED: "1", ORG_CREATION_ENABLED: "1", ORG_SEATS_ENABLED: "1", ORG_INBOX_ENABLED: "1" };
 
@@ -74,7 +76,15 @@ async function makeUser(local, role) {
  * kasutatakse `tx`-i, mis on eri objekt, ja süst ei jõuaks kohale — test
  * „möödus" ilma midagi kontrollimata. Seepärast asendame `$transaction`-i ja
  * anname tagasikutsele proksitud `tx`-i, mille postkastikirje loomine viskab.
+ *
+ * SÜST PEAB KATMA KÕIKI KIRJUTUSMEETODEID. Kohaletoimetamine kasutab nüüd
+ * `createMany`-t (`INSERT … ON CONFLICT DO NOTHING`), mitte `create`-i. Kui
+ * siin oleks endiselt ainult `create`, läheks süst MÖÖDA ja atomaarsuse test
+ * tõendaks tühjust — sama viga, mis siin juba kord parandati. Loetleme
+ * meetodid teadlikult, et uue kirjutusmeetodi lisamine paistaks siin välja.
  */
+const INJECTED_WRITE_METHODS = new Set(["create", "createMany", "upsert"]);
+
 function dbWithFailingInboxCreate(base) {
   const bind = (target, prop) => {
     const value = target[prop];
@@ -93,7 +103,7 @@ function dbWithFailingInboxCreate(base) {
                   if (txProp !== "organizationInboxItem") return bind(txTarget, txProp);
                   return new Proxy(txTarget.organizationInboxItem, {
                     get(model, method) {
-                      if (method !== "create") return bind(model, method);
+                      if (!INJECTED_WRITE_METHODS.has(method)) return bind(model, method);
                       return async () => {
                         throw new Error("INJECTED_DELIVERY_FAILURE");
                       };
@@ -344,26 +354,92 @@ async function main() {
   expect("reconciliation has nothing to repair", (await reconcileOrganizationDeliveries()).length === 0);
 
   // --- 3b. Samaaegne kohaletoimetamine peab olema idempotentne -----------
-  /* `findFirst -> create` on võistlusaken. Kasutaja ei tohi saada P2002/500:
-     kaotaja peab lugema võitja rea ja tagastama SAMA kirje. */
-  const concurrent = await Promise.allSettled([
-    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id }),
-    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id }),
-    deliverPreInquiryToOrganization({ preInquiryId: inquiry.id, organizationId: org.id })
-  ]);
+  /* VAREM OLI SEE TEST TÜHI: ta jooksutas kolm kohaletoimetamist SAMALE
+     pöördumisele, millel oli postkastikirje juba olemas (loodud punktis 3).
+     Kõik kolm tagastasid varajase `findFirst` tulemuse ega jõudnud INSERT-ini
+     kunagi — võistlust ei tekkinud ja P2002 rada jäi tõendamata.
+
+     Nüüd on kaks asja päris:
+       1. VÄRSKE pöördumine ILMA postkastikirjeta (loome rea otse, sest
+          `createPreInquiry` toimetab ise kohale ja sulgeks akna);
+       2. BARJÄÄR — kõik kolm tehingut avatakse, ootavad üksteist ja lasevad
+          INSERT-i lahti korraga. Ilma barjäärita serialiseerib Node nad
+          niikuinii ja esimene jõuab commit'ida enne, kui teine alustab. */
+  const raceInquiry = await prisma.preInquiry.create({
+    data: {
+      authorId: citizen.id,
+      recipientOrganizationId: org.id,
+      recipientType: "ORGANIZATION_INBOX",
+      status: "SENT",
+      topic: "Võistlusrada",
+      situation: "Sünteetiline pöördumine samaaegse kohaletoimetamise tõendamiseks.",
+      sentAt: new Date()
+    }
+  });
   expect(
-    "three concurrent deliveries all succeed — none returns a unique-constraint error",
-    concurrent.every((result) => result.status === "fulfilled"),
-    concurrent.map((r) => r.reason?.code || r.status).join(",")
+    "the race fixture starts with NO inbox item — otherwise there is no race",
+    (await prisma.organizationInboxItem.count({ where: { sourceId: raceInquiry.id } })) === 0
+  );
+
+  const RACERS = 3;
+  let arrived = 0;
+  let openGate;
+  const gate = new Promise((resolve) => {
+    openGate = resolve;
+  });
+  const barrier = async () => {
+    arrived += 1;
+    if (arrived >= RACERS) openGate();
+    await gate;
+  };
+
+  const raced = await Promise.allSettled(
+    Array.from({ length: RACERS }, () =>
+      prisma.$transaction(
+        async (tx) => {
+          await barrier();
+          return deliverPreInquiryToOrganizationWithin(tx, {
+            preInquiryId: raceInquiry.id,
+            organizationId: org.id
+          });
+        },
+        { timeout: 20000 }
+      )
+    )
+  );
+
+  expect(
+    "three SIMULTANEOUS deliveries all succeed — no P2002 and no aborted transaction (25P02)",
+    raced.every((result) => result.status === "fulfilled"),
+    raced.map((r) => r.reason?.code || r.reason?.message || r.status).join(" | ")
   );
   expect(
     "they all resolve to the SAME inbox item",
-    new Set(concurrent.map((result) => result.value?.id)).size === 1
+    new Set(raced.map((result) => result.value?.id)).size === 1,
+    raced.map((r) => r.value?.id).join(",")
   );
   expect(
     "no duplicate inbox row was created",
-    (await prisma.organizationInboxItem.count({ where: { sourceId: inquiry.id } })) === 1
+    (await prisma.organizationInboxItem.count({ where: { sourceId: raceInquiry.id } })) === 1
   );
+  /* Kaotaja tagastab võitja rea, aga EI TOHI kirjutada teist „vastu võetud"
+     auditisündmust — muidu näeks organisatsioon ühe pöördumise saabumist kolm
+     korda. */
+  const raceItemId = raced.find((r) => r.value?.id)?.value?.id;
+  expect(
+    "exactly ONE received-audit row exists — the losers wrote none",
+    (await prisma.dataAuditLog.count({
+      where: { resourceId: raceItemId, action: OrgAuditAction.INBOX_ITEM_RECEIVED }
+    })) === 1
+  );
+
+  // Endine kontroll jääb alles: KORDUSSAATMINE juba kohale toimetatud
+  // pöördumisele peab samuti tagastama sama kirje, mitte veaga kukkuma.
+  const repeat = await deliverPreInquiryToOrganization({
+    preInquiryId: inquiry.id,
+    organizationId: org.id
+  });
+  expect("re-delivering an already-delivered inquiry returns the same item", repeat?.id === item.id);
 
   // --- 4. Postkasti skoop ----------------------------------------------
   const plainCtx = await ctx(other.id, org.id);

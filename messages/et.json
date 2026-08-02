@@ -8045,6 +8045,7 @@
       "sponsorship_revoke_failed": "Sponsorluse tühistamine ebaõnnestus.",
       "inbox_source_not_found": "Pöördumist ei leitud.",
       "inbox_source_mismatch": "Pöördumine ei ole sellele organisatsioonile adresseeritud.",
+      "inbox_delivery_failed": "Pöördumise kohaletoimetamine ebaõnnestus. Proovi uuesti.",
       "inbox_item_not_found": "Kirjet ei leitud.",
       "inbox_recall_is_sender_right": "Tagasivõtmine on saatja õigus.",
       "invalid_inbox_transition": "Sellist olekumuutust ei ole lubatud teha.",
