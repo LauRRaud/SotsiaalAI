@@ -242,3 +242,24 @@ test("vaade ütleb ise, kui ridu on rohkem kui kuvatud", async () => {
   assert.equal(report.totalCount, 900);
   assert.equal(report.truncated, true, "vaade peab tunnistama, et ta ei näita kõike");
 });
+
+/* STSENAARIUMIKONTROLL leidis: server võttis vastu asukohapunkti märke kohta,
+   mida ei toimunudki. DoD 10 nõuab „üks punkt TEADLIKU SÜNDMUSE kohta" — punkt
+   ilma oma templita ei ole seotud ühegi sündmusega. Ükski varasem test seda ei
+   püüdnud, sest nad saatsid punkte ainult olemasolevate templitega. */
+test("asukohapunkt ilma oma templita ei salvestu", async () => {
+  const db = makeDb();
+  const entry = await createEntry(
+    "user-1",
+    entryInput({
+      arrivedAt: "2026-08-03T09:00:00.000Z",
+      locationStamps: {
+        arrivedAt: { lat: 58.38, lng: 26.72, acc: 11, at: "2026-08-03T09:00:05.000Z" },
+        leftAt: { lat: 1, lng: 1 },
+        returnedAt: { lat: 2, lng: 2 }
+      }
+    }),
+    { db, env: { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_LOCATION_STAMP: "1" } }
+  );
+  assert.deepEqual(entry.locationStampedAt, ["arrivedAt"], "ainult toimunud sündmus kannab punkti");
+});
