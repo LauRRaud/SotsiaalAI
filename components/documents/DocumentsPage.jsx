@@ -36,7 +36,10 @@ const FILTER_GROUPS = {
   FILES: new Set(["source", "transcript"]),
   ANALYSIS: new Set(["analysis"]),
   ARTIFACTS: new Set(["draft", "final"]),
-  RESEARCH: new Set(["research"])
+  RESEARCH: new Set(["research"]),
+  // TEENUSPÄEVIK: KOV-ile esitatud kuuaruanded. Oma filter seepärast, et neid
+  // otsitakse teisiti kui muid faile — mitte pealkirja, vaid perioodi järgi.
+  SERVICE_LOG: new Set(["service_log"])
 }
 
 function markChatWorkspaceRestore() {
@@ -463,7 +466,8 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     { key: "FILES", label: t("documents.workspace.filters.files") },
     { key: "ANALYSIS", label: t("documents.workspace.filters.analysis") },
     { key: "ARTIFACTS", label: t("documents.workspace.filters.artifacts") },
-    { key: "RESEARCH", label: t("documents.workspace.filters.research") }
+    { key: "RESEARCH", label: t("documents.workspace.filters.research") },
+    { key: "SERVICE_LOG", label: t("documents.workspace.filters.service_log") }
   ]
 
   function renderRowActions(item) {

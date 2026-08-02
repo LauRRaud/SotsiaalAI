@@ -1,0 +1,15 @@
+-- TEENUSPÄEVIK — kuuaruanne on DOKUMENT, mitte ainult allalaadimine.
+--
+-- Enne seda oli eksport üksnes vastuse keha: fail läks brauserisse ja platvorm
+-- ei teadnud hiljem, MIS täpselt KOV-ile esitati. Vaidluse korral („see maht ei
+-- ole see, mille meie saime") ei olnud millegi peale osutada.
+--
+-- Aruanne läheb olemasolevasse `UserDocument`-tabelisse, mitte uude tabelisse:
+-- /documents leht, säilitusarvestus, kustutamine ja audit on seal juba olemas
+-- ning teine paralleelne dokumendipere tähendaks, et pooled neist reeglitest
+-- kehtiksid ja pooled mitte.
+--
+-- `ALTER TYPE ... ADD VALUE` on ADDITIIVNE ja pöördumatu — enum-väärtust ei saa
+-- PostgreSQL-is lihtsalt eemaldada. Just seepärast on liik kitsas ja nimeline:
+-- „teenuspäeviku kuuaruanne", mitte üldine „aruanne".
+ALTER TYPE "DocumentKind" ADD VALUE IF NOT EXISTS 'SERVICE_LOG_REPORT';

@@ -24,7 +24,7 @@ const TEMPLATES = [
   { key: "D_STATISTICS", needsReferral: false }
 ];
 
-export default function ServiceLogExport({ month, referrals = [] }) {
+export default function ServiceLogExport({ month, referrals = [], onExported }) {
   const { t } = useI18n();
   const [template, setTemplate] = useState("A_TIMESHEET");
   /* CSV on vaikimisi: ta on ainus vorming, mis kannab iga märgi ilma
@@ -173,7 +173,22 @@ export default function ServiceLogExport({ month, referrals = [] }) {
         <p className="sl-source">{t("service_log.export.star_note", "")}</p>
       ) : null}
 
-      <Button as="a" href={ready ? href : undefined} download disabled={!ready}>
+      {/* ALLALAADIMINE JÄÄB PÄRIS LINGIKS. Fetch + blob laseks lugeda serveri
+          `X-Service-Report-Archived` päist, aga see rada on mobiilibrauserites
+          kõige haprem — ja allalaadimine ise on siin kriitiline tee, mitte
+          teadaanne. Selle asemel palume vanemal kuuvaade uuesti laadida:
+          arhiveeritud aruanne ilmub „Esitatud aruannete" loendisse ja SEE on
+          õige tõend, mitte päisest loetud number. */}
+      <Button
+        as="a"
+        href={ready ? href : undefined}
+        download
+        disabled={!ready}
+        onClick={() => {
+          if (!ready || typeof onExported !== "function") return;
+          window.setTimeout(onExported, 2000);
+        }}
+      >
         {t("service_log.export.download", "")}
       </Button>
     </section>

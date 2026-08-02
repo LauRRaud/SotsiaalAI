@@ -16,6 +16,7 @@ import { buildStarPayload, starPayloadToJson } from "@/lib/serviceLog/export/sta
 import { TEMPLATE } from "@/lib/serviceLog/export/templates";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { archiveMonthlyReport } from "@/lib/serviceLog/reportArchive";
 
 /* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
    `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
@@ -41,16 +42,17 @@ export async function GET(req) {
     const template = url.searchParams.get("template");
     const kovName = url.searchParams.get("kovName");
 
-    const { document, provider, period } = await buildServiceLogExport(userId, {
-      month,
-      template,
-      kovName,
-      referralId: url.searchParams.get("referralId"),
-      variant: url.searchParams.get("variant") || undefined,
-      includeDrafts: url.searchParams.get("includeDrafts") === "1",
-      includeClientConfirmation: url.searchParams.get("clientConfirmation") === "1",
-      includeTravelTime: url.searchParams.get("travelTime") === "1"
-    });
+    const { document, provider, period, month: resolvedMonth, template: resolvedTemplate } =
+      await buildServiceLogExport(userId, {
+        month,
+        template,
+        kovName,
+        referralId: url.searchParams.get("referralId"),
+        variant: url.searchParams.get("variant") || undefined,
+        includeDrafts: url.searchParams.get("includeDrafts") === "1",
+        includeClientConfirmation: url.searchParams.get("clientConfirmation") === "1",
+        includeTravelTime: url.searchParams.get("travelTime") === "1"
+      });
 
     /* Tundmatu vorming EI OLE viga, vaid vaikeväärtus: link, mille keegi on
        kuskile salvestanud, peab andma faili ka siis, kui parameeter on kadunud. */
@@ -85,11 +87,35 @@ export async function GET(req) {
 
     const fileName = exportFileName({ month, template, kovName, extension: format });
 
+    /* ESITATU JÄÄB ALLES. Kuni siiani läks fail brauserisse ja platvorm ei
+       teadnud hiljem, MIS täpselt KOV-ile esitati — kirjeid tohib RPS §10 korras
+       parandada, seega hilisem uus eksport ei tõenda seda, mis tookord teele
+       läks.
+
+       ARHIVEERIMINE EI TOHI ALLALAADIMIST KATKESTADA (vt reportArchive.js):
+       tulemus tuleb päisena kaasa, et kasutajaliides saaks NÄIDATA, kui koopiat
+       ei tekkinud. Vaikne puudumine oleks halvem kui puudumine ise. */
+    const archived = await archiveMonthlyReport({
+      userId,
+      month: resolvedMonth,
+      template: resolvedTemplate,
+      format,
+      kovName,
+      fileName,
+      mime: FORMAT_MIME[format],
+      body,
+      entryCount: Array.isArray(document.rows) ? document.rows.length : null,
+      generatedAt
+    });
+
     return new Response(body, {
       status: 200,
       headers: {
         "Content-Type": FORMAT_MIME[format],
         "Content-Disposition": `attachment; filename="${fileName}"`,
+        /* Kliendile loetav seis: „1" = koopia on /documents lehel olemas. */
+        "X-Service-Report-Archived": archived.ok ? "1" : "0",
+        ...(archived.ok ? { "X-Service-Report-Document": archived.documentId } : {}),
         /* Eksport on isikuandmetega fail — vahemällu teda ei panda. */
         "Cache-Control": "no-store, no-cache, must-revalidate",
         "X-Content-Type-Options": "nosniff"
