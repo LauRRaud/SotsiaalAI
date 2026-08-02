@@ -9,6 +9,9 @@ import { errorJson, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { buildServiceLogExport, exportFileName, exportToCsv } from "@/lib/serviceLog/exportService";
+import { EXPORT_FORMAT, FORMAT_MIME, isExportFormat } from "@/lib/serviceLog/export/render";
+import { exportToDocx } from "@/lib/serviceLog/export/docx";
+import { exportToPdf } from "@/lib/serviceLog/export/pdf";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
@@ -47,13 +50,32 @@ export async function GET(req) {
       includeTravelTime: url.searchParams.get("travelTime") === "1"
     });
 
-    const csv = exportToCsv(document);
-    const fileName = exportFileName({ month, template, kovName });
+    /* Tundmatu vorming EI OLE viga, vaid vaikeväärtus: link, mille keegi on
+       kuskile salvestanud, peab andma faili ka siis, kui parameeter on kadunud. */
+    const requested = String(url.searchParams.get("format") || "").toLowerCase();
+    const format = isExportFormat(requested) ? requested : EXPORT_FORMAT.CSV;
+    const generatedAt = new Date().toISOString();
 
-    return new Response(csv, {
+    let body;
+    if (format === EXPORT_FORMAT.DOCX) {
+      body = exportToDocx(document, { generatedAt });
+    } else if (format === EXPORT_FORMAT.PDF) {
+      const pdf = exportToPdf(document, { generatedAt });
+      /* PDF-kirjutaja on WinAnsi. Kirillitsa asendamine küsimärkidega oleks
+         vaikne andmekadu ARVE ALUSDOKUMENDIS — parem aus tõrge ja suunamine
+         DOCX-ile, mis sama sisu ilma kaota kannab. */
+      if (!pdf.ok) return errorJson("service_log.errors.pdf_unsupported_characters", 422, locale);
+      body = pdf.buffer;
+    } else {
+      body = exportToCsv(document);
+    }
+
+    const fileName = exportFileName({ month, template, kovName, extension: format });
+
+    return new Response(body, {
       status: 200,
       headers: {
-        "Content-Type": "text/csv; charset=utf-8",
+        "Content-Type": FORMAT_MIME[format],
         "Content-Disposition": `attachment; filename="${fileName}"`,
         /* Eksport on isikuandmetega fail — vahemällu teda ei panda. */
         "Cache-Control": "no-store, no-cache, must-revalidate",

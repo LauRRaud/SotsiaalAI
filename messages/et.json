@@ -8396,7 +8396,14 @@
         "B_CARE_DIARY": "B — hoolduspäevik",
         "C_NARRATIVE": "C — sisuline aruanne",
         "D_STATISTICS": "D — statistika (s-veeb)"
-      }
+      },
+      "format": "Vorming",
+      "formats": {
+        "csv": "CSV (tabelisse)",
+        "docx": "Word (.docx)",
+        "pdf": "PDF"
+      },
+      "pdf_limitation": "PDF ei toeta kirillitsat. Kui mõne kliendi nimi on kirillitsas, vali Word (.docx) — vastasel juhul allalaadimine peatub ja ütleb seda."
     },
     "status": {
       "draft": "mustand",
@@ -8482,7 +8489,8 @@
       "quantity_too_large": "Kogus on ebausutavalt suur — kontrolli üle.",
       "provenance_invalid": "Märkme päritolu ei ole tuntud väärtus.",
       "stamp_order": "Ajatemplid on vales järjekorras.",
-      "retention_locked": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Paranda kirjet, kustutada ei saa."
+      "retention_locked": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Paranda kirjet, kustutada ei saa.",
+      "pdf_unsupported_characters": "PDF ei toeta kirillitsat. Vali Word (.docx) — sama sisu ilma kaota."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",

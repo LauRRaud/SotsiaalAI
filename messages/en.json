@@ -8396,7 +8396,14 @@
         "B_CARE_DIARY": "B — care diary",
         "C_NARRATIVE": "C — narrative report",
         "D_STATISTICS": "D — statistics (s-veeb)"
-      }
+      },
+      "format": "Format",
+      "formats": {
+        "csv": "CSV (spreadsheet)",
+        "docx": "Word (.docx)",
+        "pdf": "PDF"
+      },
+      "pdf_limitation": "PDF does not support Cyrillic. If any client name is in Cyrillic, choose Word (.docx) — otherwise the download stops and says so."
     },
     "status": {
       "draft": "draft",
@@ -8482,7 +8489,8 @@
       "quantity_too_large": "The quantity is implausibly large — please check.",
       "provenance_invalid": "The note provenance is not a known value.",
       "stamp_order": "The timestamps are out of order.",
-      "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it."
+      "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it.",
+      "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",

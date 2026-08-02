@@ -26,6 +26,9 @@ const TEMPLATES = [
 export default function ServiceLogExport({ month, referrals = [] }) {
   const { t } = useI18n();
   const [template, setTemplate] = useState("A_TIMESHEET");
+  /* CSV on vaikimisi: ta on ainus vorming, mis kannab iga märgi ilma
+     kaota ja mille KOV saab otse tabelisse tõmmata. */
+  const [format, setFormat] = useState("csv");
   const [kovName, setKovName] = useState("");
   const [referralId, setReferralId] = useState("");
   const [variant, setVariant] = useState("DAILY");
@@ -42,13 +45,13 @@ export default function ServiceLogExport({ month, referrals = [] }) {
   const ready = selected?.needsReferral ? Boolean(referralId) : true;
 
   const href = useMemo(() => {
-    const params = new URLSearchParams({ month, template });
+    const params = new URLSearchParams({ month, template, format });
     if (kovName) params.set("kovName", kovName);
     if (referralId) params.set("referralId", referralId);
     if (template === "A_TIMESHEET") params.set("variant", variant);
     if (includeDrafts) params.set("includeDrafts", "1");
     return `/api/service-reports/export?${params}`;
-  }, [includeDrafts, kovName, month, referralId, template, variant]);
+  }, [format, includeDrafts, kovName, month, referralId, template, variant]);
 
   return (
     <section className="sl-export">
@@ -125,6 +128,27 @@ export default function ServiceLogExport({ month, referrals = [] }) {
         <p className="sl-warn" role="status">
           {t("service_log.export.warn_all", "")}
         </p>
+      ) : null}
+
+      <label className="sl-field">
+        <span className="sl-label">{t("service_log.export.format", "")}</span>
+        <select
+          name="format"
+          className="sl-input"
+          value={format}
+          onChange={(event) => setFormat(event.target.value)}
+        >
+          <option value="csv">{t("service_log.export.formats.csv", "")}</option>
+          <option value="docx">{t("service_log.export.formats.docx", "")}</option>
+          <option value="pdf">{t("service_log.export.formats.pdf", "")}</option>
+        </select>
+      </label>
+
+      {/* PIIRANG ÖELDAKSE ENNE, mitte pärast allalaadimist. PDF-kirjutaja on
+          WinAnsi ja kirillitsa nimi ei mahu sinna — kasutaja peab seda teadma
+          ENNE, kui ta faili KOV-ile saadab, mitte pärast. */}
+      {format === "pdf" ? (
+        <p className="sl-source">{t("service_log.export.pdf_limitation", "")}</p>
       ) : null}
 
       <Button as="a" href={ready ? href : undefined} download disabled={!ready}>
