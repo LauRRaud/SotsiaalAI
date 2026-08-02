@@ -1655,7 +1655,9 @@ export default function CovisionLiveSession({ snapshot, busy = false, onAction, 
       const next = activeIndexRef.current + dir;
       if (next < 0 || next > stationCountRef.current - 1) return;
       flyTo(next);
-      cooldown.until = stamp + 640;
+      /* Käib useStationFlight tempoga kaasa (lend ~0,51 s) — ooteaeg ja lend
+         peavad püsima ühes mõõdus, muidu tekib surnud aeg (omanik 02.08). */
+      cooldown.until = stamp + 440;
     };
 
     const onWheel = (event) => {
