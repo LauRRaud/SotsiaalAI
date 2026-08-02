@@ -2,6 +2,20 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
+**02.08 TEENUSPÄEVIK — LÄBIVAD STSENAARIUMID PRODUKTSIOONIS: 47/47 + ÜKS PÄRIS LEID.** Omanik: *tee stsenaariumid ja testi kogu funktsioon serveris*. Kirjutasin 11 stsenaariumi, mis käivad läbi kogu voo, ja jooksutasin nad **päris andmebaasi ja päris lippude vastu**. Kohalik roheline sviit ei tõenda serverit — see õppetund oli juba korra makstud (fake-prisma ei valideeri välju).
+
+**LEID, mille ainult stsenaarium püüdis:** server võttis vastu asukohapunkti märke kohta, mida EI TOIMUNUDKI — kirjel oleks olnud punkt „lahkumise juures“, kuigi lahkumist ei ole kunagi märgitud. DoD 10 ütleb „üks punkt TEADLIKU SÜNDMUSE kohta“; punkt ilma oma templita ei ole seotud ühegi sündmusega. **Ükski varasem test seda ei püüdnud, sest nad saatsid punkte AINULT olemasolevate templitega** — stsenaarium saatis nii, nagu paha klient saadaks. Parandatud (`dbd60df5`), regressioonitest lisatud.
+
+**Stsenaariumid (kõik produktsioonis):** S1 osutaja päev (kestuse tuletus 2,5 h, kinnitamine, teistkordne kinnitamine keeldub) · S2 võrguta kordussaatmine (sama võti → üks kirje, päris PostgreSQL-i unikaalindeks) · S3 Välitöö sild (eeltäide + **teine kirje samast külastusest → 409**, päris `P2002`) · S4 saldo (4 h eraldatud, 5,5 h tehtud → hoiatab, ei blokeeri) · S5 **mitme KOV-i eraldatus** (Tartu eksport ei sisaldanud Pärnu klienti; saajata fail kandis hoiatust) · S6 vormingud (DOCX kandis kirillitsat, PDF keeldus ausalt, STAR `unverified` ja isikuandmeteta) · S7 asukohatempel · S8 kliendi vaade ja pöördumatu kinnitus (märkus ei lekkinud, korduskinnitus 0) · S9 paberkinnitus lõplikul kirjel ilma põhjuseta, kogus nõuab endiselt põhjust · S10 mõõtmine + 180-päevane kustutus · S11 kuuvaade, koond päritoluga, narratiiv `draftSource`-iga.
+
+**HTTP-väravad anonüümselt:** `/teenuspaevik` 200, `/org` 200, kõik API-d 401 (`service-entries`, `measure`, `client`, `export`, `narratives/draft`), olematu marsruut 404.
+
+**KORISTUS TÕENDATUD SÕLTUMATULT:** teenuskirjeid 0, suunamisi 0, ajaproove 0, narratiive 0, QA-kasutajaid 0, QA-profiile 0, QA-külastusi 0; serveri tööpuu puhas. Produktsioonis ei olnud enne ega pärast ühtegi päris teenuskirjet.
+
+**Server = `dbd60df5`.** npm test 2403/2403, lint 0, i18n ×3 OK, build OK.
+
+**NOT_PROVEN:** E5 päris AI-genereerimine — stsenaarium ei kutsu mudelit (maksab kvoodist ja loob päris dokumendi); kõik rajad temani on tõendatud. Brauseri-QA produktsioonis on samuti tegemata: kontrollisin serverit teenuskihi ja HTTP tasemel, mitte klikkides.
+
 **02.08 TEENUSPÄEVIK — OMANIKU KONTROLL: NELI P1 JA KAKS P2 PARANDATUD; „OSA I TÄIS“ VÕETUD TAGASI.** Omaniku kontrolli järeldus: *põhifunktsioon töötab, kuid enne GPS-i ja kliendivaate avamist vajab neli olulist parandust*. Võtsin selle vastu — mu varasem „OSA I on täis“ oli liiga tugev väide.
 
 **P1-1 GPS-VÕISTLUS.** Asukohapäring käib taustal kuni 8 s. Kui töötaja jõuab selle ajaga kirje salvestada ja järgmise kliendi juurde asuda, jõudis hilinenud vastus JUBA UUE vormi peale — kirjele oleks läinud punkt kohast, kus seda teenust ei osutatud. Iga külastus saab nüüd põletusnumbri.
