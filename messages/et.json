@@ -8426,6 +8426,7 @@
       "referral_already_ended": "Suunamine on juba lõpetatud.",
       "month_invalid": "Kuu peab olema kujul AAAA-KK.",
       "narrative_required": "Kirjuta kuunarratiivi tekst.",
+      "narrative_conflict": "Narratiivi salvestamine ebaõnnestus. Proovi uuesti.",
       "proposal_invalid": "Ettepanek peab olema jätka, muuda mahtu või lõpeta.",
       "template_invalid": "Tundmatu aruandemall.",
       "referral_required_for_narrative": "Sisuline aruanne käib ühe suunamise kohta — vali suunamine.",

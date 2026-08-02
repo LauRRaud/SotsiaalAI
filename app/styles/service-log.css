@@ -362,3 +362,34 @@
   min-height: 2.75rem;
   font-size: 0.875rem;
 }
+
+/* FOOKUSE NÄHTAVUS kohandatud juhtelementidel.
+ *
+ * `.sl-tab` ja `.sl-stamp` on `<button>`-id oma taustaga — brauseri vaikimisi
+ * fookusrõngas kaob nende peal kergesti ära, sest ta joonistub tausta värvi
+ * sisse. Klaviatuuriga liikuja peab NÄGEMA, kus ta on; ilma selleta on kogu
+ * vahelehtede rida kasutamatu ilma hiireta.
+ *
+ * `:focus-visible`, mitte `:focus` — hiirekasutaja ei pea rõngast nägema.
+ */
+.sl-tab:focus-visible,
+.sl-stamp:focus-visible,
+.sl-input:focus-visible,
+.sl-check input:focus-visible {
+  outline: 2px solid var(--focus-ring, #8cc8ff);
+  outline-offset: 2px;
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+/* Kõrge kontrasti režiimis peab piir olema süsteemi värvi, mitte meie oma. */
+@media (forced-colors: active) {
+  .sl-tab:focus-visible,
+  .sl-stamp:focus-visible {
+    outline: 2px solid CanvasText;
+  }
+
+  .sl-tab.is-active,
+  .sl-stamp.is-done {
+    border: 2px solid CanvasText;
+  }
+}
