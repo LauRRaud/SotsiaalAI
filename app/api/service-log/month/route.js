@@ -5,12 +5,12 @@
  * tähendaks kolme kohta, kus vaade võib jääda poolikuks — ja kuu lõpp on
  * täpselt see hetk, mil poolik pilt maksab raha.
  */
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { getMonthlyReport } from "@/lib/serviceLog/monthReport";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
-import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
 /* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
    `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
@@ -22,8 +22,6 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export async function GET(req) {
-  // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
-  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
   const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_log_month",
     limit: 60

@@ -5,7 +5,7 @@
  * saldopäring tähendaks, et mõni vaade unustab ta küsida ja ületus jääb
  * märkamata just seal, kus ta maksab.
  */
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { createReferral, listReferrals } from "@/lib/serviceLog/referrals";
@@ -43,7 +43,7 @@ export async function GET(req) {
     });
     return json({ referrals });
   } catch (error) {
-    return respondToError(locale, error, "service-referrals GET", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals GET");
   }
 }
 
@@ -58,6 +58,6 @@ export async function POST(req) {
     }
     return json({ referral: await createReferral(userId, body) }, 201);
   } catch (error) {
-    return respondToError(locale, error, "service-referrals POST", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals POST");
   }
 }

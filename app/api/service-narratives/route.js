@@ -5,7 +5,7 @@
  * päritolumärgistatud märkmed, suunamise eesmärgid) — mitte teksti. Teksti
  * kirjutab inimene; koond on aus lähtepunkt, mis midagi juurde ei leiuta.
  */
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { getNarrativeSeed, listNarratives, upsertNarrative } from "@/lib/serviceLog/narratives";
@@ -52,7 +52,7 @@ export async function GET(req) {
     });
     return json({ narratives });
   } catch (error) {
-    return respondToError(locale, error, "service-narratives GET", localeFromRequest(req));
+    return respondToError(locale, error, "service-narratives GET");
   }
 }
 
@@ -69,6 +69,6 @@ export async function PUT(req) {
        andma sama tulemuse. Kirjutaja naaseb teksti juurde mitu korda. */
     return json({ narrative: await upsertNarrative(userId, body) });
   } catch (error) {
-    return respondToError(locale, error, "service-narratives PUT", localeFromRequest(req));
+    return respondToError(locale, error, "service-narratives PUT");
   }
 }

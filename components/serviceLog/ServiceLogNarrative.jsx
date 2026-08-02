@@ -109,7 +109,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         });
         const body = await response.json().catch(() => ({}));
         if (!response.ok) {
-          setError(t(body.error || "service_log.errors.invalid_input", ""));
+          setError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
         setSaved(true);

@@ -48,6 +48,15 @@ export default defineConfig([
       "unused-imports": unusedImports,
     },
     rules: {
+      /* Puuduv import on VAIKNE viga: kood tõlgib ja käivitub, aga plahvatab
+         alles siis, kui see haru päriselt läbitakse. Nii jõudis teenuspäeviku
+         marsruuti `localeFromRequest(req)` ilma impordita — kõik testid olid
+         rohelised, sest catch-haru ei jooksnud kunagi, ja viga tuli välja alles
+         brauseris esimese päris tõrke ajal. Sisselülitamine maksis kogu repos
+         2 viga, mõlemad surnud koodis (`lib/help/chatWorkflow.js` pargitud
+         browse/connect-käsitlejad) — see kood on nüüd kustutatud, repo on
+         puhas. */
+      "no-undef": "error",
       "unused-imports/no-unused-imports": "error",
       "unused-imports/no-unused-vars": [
         "warn",

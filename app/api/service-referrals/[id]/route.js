@@ -5,7 +5,7 @@
  * esitatud arve alus — lõpetamine (`PATCH { action: "end" }`) jätab kirjed
  * alles ja sulgeb ainult uue mahu kirjutamise.
  */
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { endReferral, getReferralBalance, updateReferral } from "@/lib/serviceLog/referrals";
@@ -41,7 +41,7 @@ export async function GET(req, context) {
     });
     return json({ balance });
   } catch (error) {
-    return respondToError(locale, error, "service-referrals balance", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals balance");
   }
 }
 
@@ -60,6 +60,6 @@ export async function PATCH(req, context) {
     }
     return json({ referral: await updateReferral(userId, String(id), body) });
   } catch (error) {
-    return respondToError(locale, error, "service-referrals PATCH", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals PATCH");
   }
 }

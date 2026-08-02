@@ -5,7 +5,7 @@
  * moodulis, kus vastus ei ole 404: kasutaja näeb kirjet ja tal on õigus teada,
  * miks ta seda kustutada ei saa (vt lib/serviceLog/errors.js).
  */
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { deleteEntry, updateEntry } from "@/lib/serviceLog/entries";
@@ -44,7 +44,7 @@ export async function PATCH(req, context) {
     const entry = await updateEntry(userId, String(id), body);
     return json({ entry });
   } catch (error) {
-    return respondToError(locale, error, "service-entries PATCH", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries PATCH");
   }
 }
 
@@ -57,6 +57,6 @@ export async function DELETE(req, context) {
     const result = await deleteEntry(userId, String(id));
     return json(result);
   } catch (error) {
-    return respondToError(locale, error, "service-entries DELETE", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries DELETE");
   }
 }

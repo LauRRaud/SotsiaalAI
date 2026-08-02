@@ -68,7 +68,7 @@ export async function GET(req) {
     });
     return json({ entries });
   } catch (error) {
-    return respondToError(locale, error, "service-entries GET", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries GET");
   }
 }
 
@@ -87,6 +87,6 @@ export async function POST(req) {
     const entry = await createEntry(userId, body);
     return json({ entry }, 201);
   } catch (error) {
-    return respondToError(locale, error, "service-entries POST", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries POST");
   }
 }

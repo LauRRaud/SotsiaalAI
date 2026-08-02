@@ -83,8 +83,15 @@ export default function ServiceLogDay() {
     try {
       setLoadError(false);
       const response = await fetch("/api/service-entries?take=50", { headers: { "x-ui-locale": locale || "et" } });
-      if (!response.ok) throw new Error("load_failed");
-      const body = await response.json();
+      const body = await response.json().catch(() => ({}));
+      /* PÕHJUS, MITTE ÜLDINE TÕRGE. „Kirjete laadimine ebaõnnestus" ei ütle
+         kasutajale midagi: kõige tavalisem juhtum on hoopis see, et tal ei ole
+         veel teenuseprofiili, ja seda oskab ta ise parandada. */
+      if (!response.ok) {
+        setLoadError(body?.message || true);
+        setEntries((current) => current || []);
+        return;
+      }
       setEntries(Array.isArray(body.entries) ? body.entries : []);
     } catch {
       setLoadError(true);
@@ -167,7 +174,7 @@ export default function ServiceLogDay() {
            vajutas „Kinnita", mitte midagi ei juhtunud ja kirje jäi mustandiks —
            ta saanuks sellest teada alles kuu lõpus tühjast ekspordist. */
         const body = await response.json().catch(() => ({}));
-        setFinalizeError(t(body.error || "service_log.errors.invalid_input", ""));
+        setFinalizeError(body?.message || t("service_log.errors.invalid_input", ""));
       } catch {
         setFinalizeError(t("service_log.errors.invalid_input", ""));
       } finally {
@@ -210,7 +217,7 @@ export default function ServiceLogDay() {
         });
         const body = await response.json().catch(() => ({}));
         if (!response.ok) {
-          setFormError(t(body.error || "service_log.errors.invalid_input", ""));
+          setFormError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
         /* ÜLETAMISE HOIATUS (DoD 4). Server tagastab ta kirjega KOOS ja ta ei
@@ -399,7 +406,11 @@ export default function ServiceLogDay() {
             {finalizeError}
           </p>
         ) : null}
-        {loadError ? <p className="sl-error">{t("service_log.list.load_error", "")}</p> : null}
+        {loadError ? (
+          <p className="sl-error" role="alert">
+            {typeof loadError === "string" ? loadError : t("service_log.list.load_error", "")}
+          </p>
+        ) : null}
         {entries === null ? null : entries.length === 0 ? (
           <p className="sl-empty">{t("service_log.list.empty", "")}</p>
         ) : (

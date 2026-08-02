@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
+import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
 function isLocalHostname(hostname = "") {
   const h = String(hostname).toLowerCase();
@@ -33,6 +34,25 @@ export async function proxy(req) {
   const {
     pathname
   } = req.nextUrl;
+
+  /* TEENUSPÄEVIK — väljas lipuga peab marsruut olema ERISTAMATU olematust
+     marsruudist (leping, DoD 7). Lehe enda `notFound()` sellest EI PIISA:
+     mõõdetud päris production-build'iga, `/teenuspaevik` andis staatuse 200 ja
+     olematu marsruut 404 — sisu oli küll 404-leht, aga staatus reetis, et pind
+     on olemas. Sama kehtib platvormi teiste `notFound()` lehtede kohta (nt
+     `/org/<tundmatu>/audit` → samuti 200), seega põhjus ei ole selles failis,
+     vaid selles, et juurpaigutus on juba voogedastatud enne kui `notFound()`
+     jõuab mõjuda. Siin, keskvaras, on staatus veel muudetav.
+
+     ÜMBERKIRJUTUS OLEMATULE TEELE, mitte `new NextResponse(null, {status:404})`:
+     tühi keha oleks omaette sõrmejälg. Nii tuleb TÄPSELT seesama 404-leht, mille
+     annab iga muu olematu marsruut. */
+  if (pathname === "/teenuspaevik" && !isServiceLogEnabled()) {
+    const gone = req.nextUrl.clone();
+    gone.pathname = "/_puudub";
+    gone.search = "";
+    return NextResponse.rewrite(gone);
+  }
 
   // Suletud seisus on /registreerimine ainult admin-eelvaade; avatuna avalik.
   if (pathname === "/registreerimine" && !REGISTRATION_OPEN) {
@@ -68,5 +88,5 @@ export async function proxy(req) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: ["/registreerimine", "/(et|ru|en)", "/(et|ru|en)/:path*"]
+  matcher: ["/registreerimine", "/teenuspaevik", "/(et|ru|en)", "/(et|ru|en)/:path*"]
 };

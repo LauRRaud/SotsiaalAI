@@ -76,6 +76,7 @@ import {
   FieldIcon,
   ReflectionIcon,
   ServiceProfileIcon,
+  ServiceLogIcon,
   WellbeingRecordsIcon,
   WellbeingCheckIcon,
   WellbeingOverviewIcon,
@@ -95,6 +96,7 @@ import {
   workspaceZonesForRole,
 } from "@/lib/deskZones";
 import { wellbeingTools } from "@/lib/wellbeingTools";
+import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
@@ -991,6 +993,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "abipakkumised", zone: "juhtum", roles: ALL, label: t("chat.workspace.cards.help_offers.title", "Abipakkumised"), href: "/vestlus?workspace=help_offers", icon: <HelpOfferIcon /> },
       { key: "lisa", zone: "juhtum", roles: ALL, label: t("chat.workspace.cards.add_person.title", "Kutsu osaleja"), href: "/vestlus?workspace=invite", icon: <InvitePersonIcon /> },
       { key: "valitoo", zone: "juhtum", roles: SPECIALIST, label: t("field.meta.title", "Välitöö"), href: "/valitoo", icon: <FieldIcon /> },
+      /* TEENUSPÄEVIK (leping 8.3) — lipu taga. Ilma selle kaardita oli pind
+         olemas, aga kättesaamatu: sinna sai ainult URL-i käsitsi kirjutades.
+         `zone: "juhtum"` sest kirje sünnib töö tegemise hetkel, Välitöö kõrval;
+         "mina" on kutseidentiteedi tsoon, mitte arvestuse oma. */
+      ...(isServiceLogUiEnabled()
+        ? [{ key: "teenuspaevik", zone: "juhtum", roles: ["SERVICE_PROVIDER"], label: t("service_log.meta.title", "Teenuspäevik"), href: "/teenuspaevik", icon: <ServiceLogIcon /> }]
+        : []),
       { key: "teenusekaart", zone: "teadmine", roles: ALL, label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
       { key: "otsi", zone: "teadmine", roles: ALL, label: t("personal_search.title", "Minu otsing"), href: "/otsi", icon: <SearchIcon /> },
       { key: "materjalid", zone: "teadmine", roles: SPECIALIST, label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },

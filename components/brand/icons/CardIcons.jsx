@@ -462,6 +462,18 @@ export const ServiceProfileIcon = (props) => (
   </Svg>
 );
 
+/* Teenuspäevik — päevikuleht kirjeridade ja kinnitusmärgiga. Tahtlikult
+   ERINEV TermsDocIcon-ist (dokument ridadega): teenuspäevik on kinnitatav
+   arvestus, mitte loetav dokument, ja märk on just see kinnitus. */
+export const ServiceLogIcon = (props) => (
+  <Svg {...props}>
+    <rect {...P} x="5.4" y="3.8" width="13.2" height="16.4" rx="2" />
+    <path {...P} d="M8.8 3.8v2.6M15.2 3.8v2.6" />
+    <path {...P} d="M8.6 10.4h6.8" />
+    <path {...P} d="M8.6 16.2 10.6 18.2l4.4-4.6" />
+  </Svg>
+);
+
 /* ---------- Tööheaolu tööriistad (lib/wellbeingTools.js, 11 tk) ----------
    WellbeingIcon (süda pulsijoonega) jääb tööheaolu KOGU teema märgiks
    (töölaua kaart, teavitused). Alltoodud glüüfid on tööriistade omad:

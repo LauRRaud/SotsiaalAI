@@ -22,6 +22,20 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata() {
   const locale = getLocaleFromCookies(await cookies());
   const messages = getMessagesSync(locale);
+  /* VÄRAV KA SIIN. `generateMetadata` jookseb lehe komponendist SÕLTUMATULT,
+     seega väljas väravaga andis leht küll 404-sisu, aga brauseri tiitliks jäi
+     „Teenuspäevik" — pinna nimi lekkis täpselt sellele, kelle eest ta peaks
+     olema nähtamatu. Mõõdetud brauseris: `document.title` väljas lipuga. */
+  if (!isServiceLogEnabled()) {
+    return buildLocalizedMetadata({
+      locale,
+      pathname: "/teenuspaevik",
+      /* Sama tiitel, mille annab Next-i enda 404 — mitte uus, teistsugune
+         string, mis oleks omaette sõrmejälg. */
+      title: "404",
+      description: ""
+    });
+  }
   return buildLocalizedMetadata({
     locale,
     pathname: "/teenuspaevik",
