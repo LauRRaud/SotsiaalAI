@@ -21,6 +21,13 @@
  *    selle VÄLJA: tagasisideküsitlus ja vahehindamine tulevad SKA
  *    kvaliteedijuhisest, MITTE seadusest. Vale vastavusväide töövahendis on
  *    tõsisem viga kui puuduv meeldetuletus, sest töövahendit usutakse.
+ *
+ * KEELEPÄIS ON KLIENDI KOHUSTUS. `localeFromRequest` loeb päringut ja päiseid,
+   AGA MITTE keeleküpsist — ilma `x-ui-locale`-ta tuleb serveri veateade
+   inglise keeles keset eestikeelset pinda. Brauserikontroll näitas seda
+   („The entry is already final."); `i18n:check` ei saa seda püüda, sest
+   võtmed on kõigis keeltes olemas — vale on KUTSE, mitte sõnastik.
+   Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -33,7 +40,7 @@ function unitLabel(t, unit) {
 }
 
 export default function ServiceLogMonth({ month, onMonthChange }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [report, setReport] = useState(null);
   const [loadError, setLoadError] = useState(false);
 
@@ -42,14 +49,14 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
       setLoadError(false);
       const params = new URLSearchParams();
       if (month) params.set("month", month);
-      const response = await fetch(`/api/service-log/month?${params}`);
+      const response = await fetch(`/api/service-log/month?${params}`, { headers: { "x-ui-locale": locale || "et" } });
       if (!response.ok) throw new Error("load_failed");
       const body = await response.json();
       setReport(body.report || null);
     } catch {
       setLoadError(true);
     }
-  }, [month]);
+  }, [locale, month]);
 
   useEffect(() => {
     load();
@@ -65,6 +72,7 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
       <label className="sl-field sl-month-picker">
         <span className="sl-label">{t("service_log.month.pick", "")}</span>
         <input
+          name="month"
           className="sl-input"
           type="month"
           value={report.month}

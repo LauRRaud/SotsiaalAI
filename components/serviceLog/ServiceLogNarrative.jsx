@@ -14,6 +14,13 @@
  *
  * ETTEPANEK ON ERALDI VÄLI, mitte lõigu lõpulause: see on ainus koht, mida KOV
  * loeb otsusena, ja tema järgi sünnib järgmine suunamisotsus.
+ *
+ * KEELEPÄIS ON KLIENDI KOHUSTUS. `localeFromRequest` loeb päringut ja päiseid,
+   AGA MITTE keeleküpsist — ilma `x-ui-locale`-ta tuleb serveri veateade
+   inglise keeles keset eestikeelset pinda. Brauserikontroll näitas seda
+   („The entry is already final."); `i18n:check` ei saa seda püüda, sest
+   võtmed on kõigis keeltes olemas — vale on KUTSE, mitte sõnastik.
+   Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -23,7 +30,7 @@ import Button from "@/components/ui/Button";
 const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
 
 export default function ServiceLogNarrative({ month, referrals = [] }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [referralId, setReferralId] = useState("");
   const [seed, setSeed] = useState(null);
   const [bodyText, setBodyText] = useState("");
@@ -47,7 +54,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         periodYear: year,
         periodMonth: String(Number(monthNumber))
       });
-      const response = await fetch(`/api/service-narratives?${params}`);
+      const response = await fetch(`/api/service-narratives?${params}`, { headers: { "x-ui-locale": locale || "et" } });
       if (!response.ok) return;
       const body = await response.json();
       setSeed(body.seed || null);
@@ -76,7 +83,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
       /* Koondi puudumine ei tohi kirjutamist blokeerida — tekst on inimese oma
          ja ta võib kirjutada ka ilma koondita. */
     }
-  }, [referralId, year, monthNumber]);
+  }, [locale, referralId, year, monthNumber]);
 
   useEffect(() => {
     load();
@@ -91,7 +98,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
       try {
         const response = await fetch("/api/service-narratives", {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
           body: JSON.stringify({
             referralId,
             periodYear: Number(year),
@@ -112,7 +119,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         setSaving(false);
       }
     },
-    [bodyText, monthNumber, proposal, referralId, t, year]
+    [bodyText, locale, monthNumber, proposal, referralId, t, year]
   );
 
   if (!referrals.length) return null;

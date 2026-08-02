@@ -57,7 +57,7 @@ export default function ServiceLogExport({ month, referrals = [] }) {
       {/* SAAJA ON ESIMENE VÄLI — vt komponendi päis. */}
       <label className="sl-field">
         <span className="sl-label">{t("service_log.export.recipient", "")}</span>
-        <select className="sl-input" value={kovName} onChange={(event) => setKovName(event.target.value)}>
+        <select name="kovName" className="sl-input" value={kovName} onChange={(event) => setKovName(event.target.value)}>
           <option value="">{t("service_log.export.recipient_all", "")}</option>
           {recipients.map((name) => (
             <option key={name} value={name}>
@@ -70,7 +70,7 @@ export default function ServiceLogExport({ month, referrals = [] }) {
 
       <label className="sl-field">
         <span className="sl-label">{t("service_log.export.template", "")}</span>
-        <select className="sl-input" value={template} onChange={(event) => setTemplate(event.target.value)}>
+        <select name="template" className="sl-input" value={template} onChange={(event) => setTemplate(event.target.value)}>
           {TEMPLATES.map((item) => (
             <option key={item.key} value={item.key}>
               {t(`service_log.export.templates.${item.key}`, item.key)}
@@ -82,7 +82,7 @@ export default function ServiceLogExport({ month, referrals = [] }) {
       {template === "A_TIMESHEET" ? (
         <label className="sl-field">
           <span className="sl-label">{t("service_log.export.variant", "")}</span>
-          <select className="sl-input" value={variant} onChange={(event) => setVariant(event.target.value)}>
+          <select name="variant" className="sl-input" value={variant} onChange={(event) => setVariant(event.target.value)}>
             <option value="DAILY">{t("service_log.export.variant_daily", "")}</option>
             <option value="MONTHLY">{t("service_log.export.variant_monthly", "")}</option>
           </select>
@@ -93,6 +93,7 @@ export default function ServiceLogExport({ month, referrals = [] }) {
         <label className="sl-field">
           <span className="sl-label">{t("service_log.export.referral", "")}</span>
           <select
+            name="referralId"
             className="sl-input"
             value={referralId}
             onChange={(event) => setReferralId(event.target.value)}
@@ -109,6 +110,7 @@ export default function ServiceLogExport({ month, referrals = [] }) {
 
       <label className="sl-check">
         <input
+          name="includeDrafts"
           type="checkbox"
           checked={includeDrafts}
           onChange={(event) => setIncludeDrafts(event.target.checked)}

@@ -15,6 +15,13 @@
  *
  * MÄÄRAMATA MAHT EI OLE NULL. Kui suunamisel mahtu ei ole, ütleme seda välja;
  * „0" tähendaks, et maht on otsas, ja see on vastupidine olukord.
+ *
+ * KEELEPÄIS ON KLIENDI KOHUSTUS. `localeFromRequest` loeb päringut ja päiseid,
+   AGA MITTE keeleküpsist — ilma `x-ui-locale`-ta tuleb serveri veateade
+   inglise keeles keset eestikeelset pinda. Brauserikontroll näitas seda
+   („The entry is already final."); `i18n:check` ei saa seda püüda, sest
+   võtmed on kõigis keeltes olemas — vale on KUTSE, mitte sõnastik.
+   Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
 import { useCallback, useEffect, useState } from "react";
@@ -27,7 +34,7 @@ function formatQuantity(value, unit, t) {
 }
 
 export default function ServiceLogReferrals({ month }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [referrals, setReferrals] = useState(null);
   const [loadError, setLoadError] = useState(false);
 
@@ -36,7 +43,7 @@ export default function ServiceLogReferrals({ month }) {
       setLoadError(false);
       const params = new URLSearchParams();
       if (month) params.set("month", month);
-      const response = await fetch(`/api/service-referrals?${params}`);
+      const response = await fetch(`/api/service-referrals?${params}`, { headers: { "x-ui-locale": locale || "et" } });
       if (!response.ok) throw new Error("load_failed");
       const body = await response.json();
       setReferrals(Array.isArray(body.referrals) ? body.referrals : []);
@@ -44,7 +51,7 @@ export default function ServiceLogReferrals({ month }) {
       setLoadError(true);
       setReferrals((current) => current || []);
     }
-  }, [month]);
+  }, [locale, month]);
 
   useEffect(() => {
     load();
