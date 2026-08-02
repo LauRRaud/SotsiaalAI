@@ -7845,7 +7845,8 @@
       "inbox": "Vastuvõtt",
       "support": "Tugi",
       "profile": "Teenuseprofiil",
-      "service_reports": "Aruanded"
+      "service_reports": "Aruanded",
+      "dispatch": "Graafik"
     },
     "overview": {
       "heading": "Ülevaade",
@@ -8334,6 +8335,24 @@
       "entries": "{count} kirjet",
       "open": "Ava aruanne",
       "audit_note": "Avamine jääb auditijälge ja saatja näeb, et sa aruande avasid."
+    },
+    "board": {
+      "title": "Graafik ja päevaseis",
+      "intro": "Sinu üksuse töötajate päev: kes on alustanud, mis on käigus, mis jäi ära. Asukohta ega märkuste sisu siin ei ole.",
+      "no_access": "Sul ei ole selle organisatsiooni graafiku vaatamise õigust.",
+      "date": "Kuupäev",
+      "empty": "Selle päeva kohta ei ole ühtegi töötajat.",
+      "totals": "{workers} töötajat · {open} päeva käimas",
+      "late_count": "{count} hilinemist",
+      "check_count": "{count} vajab kontrolli",
+      "not_started": "päeva ei ole alustatud",
+      "day_open": "päev algas {time}",
+      "day_closed": "päev lõppes {time}",
+      "on_break": "paus",
+      "day_summary": "{visits} külastust · sõit {travel} min",
+      "late": "{client} — plaanitud algus möödas {minutes} min",
+      "needs_check": "{client} — külastus on kaua lahti, kontrolli",
+      "privacy_note": "Tahvel näitab olekut ja hilinemist. Asukohaandmeid ega märkuste sisu siin ei kuvata."
     }
   },
   "service_log": {

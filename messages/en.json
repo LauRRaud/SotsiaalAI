@@ -7845,7 +7845,8 @@
       "inbox": "Intake",
       "support": "Support",
       "profile": "Service profile",
-      "service_reports": "Reports"
+      "service_reports": "Reports",
+      "dispatch": "Schedule"
     },
     "overview": {
       "heading": "Overview",
@@ -8334,6 +8335,24 @@
       "entries": "{count} entries",
       "open": "Open the report",
       "audit_note": "Opening is recorded in the audit trail and the sender sees that you opened it."
+    },
+    "board": {
+      "title": "Schedule and day status",
+      "intro": "Your unit's day: who has started, what is in progress, what fell through. No location data and no note content here.",
+      "no_access": "You do not have permission to view this organisation's schedule.",
+      "date": "Date",
+      "empty": "No staff for this day.",
+      "totals": "{workers} staff · {open} days in progress",
+      "late_count": "{count} late",
+      "check_count": "{count} need a check",
+      "not_started": "day not started",
+      "day_open": "day started {time}",
+      "day_closed": "day ended {time}",
+      "on_break": "on break",
+      "day_summary": "{visits} visits · travel {travel} min",
+      "late": "{client} — planned start passed {minutes} min ago",
+      "needs_check": "{client} — visit has been open a long time, check",
+      "privacy_note": "The board shows status and lateness. No location data and no note content is displayed."
     }
   },
   "service_log": {

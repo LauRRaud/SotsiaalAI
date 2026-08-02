@@ -47,6 +47,10 @@ export default function OrgNav({ organizationId, capabilities = [], activeModule
        õigus näha tuleb SAATMISEST, mitte rollist. Capability otsustab hoopis
        seda, kellele tohib saata. */
     { key: "service_reports", href: `/org/${organizationId}/aruanded`, label: t("org.nav.service_reports") },
+    /* Graafik on juhi vahend: capability otsustab SISU (tühi tahvel ilma
+       õiguseta), mitte lingi olemasolu — muidu peaks nav teadma sedasama
+       reeglistikku, mida teab juba `dispatchBoard.js`. */
+    { key: "dispatch", href: `/org/${organizationId}/graafik`, label: t("org.nav.dispatch") },
     {
       key: "profile",
       href: `/org/${organizationId}/teenusprofiil`,
