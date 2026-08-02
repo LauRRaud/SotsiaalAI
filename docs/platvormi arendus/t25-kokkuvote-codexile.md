@@ -3,8 +3,8 @@
 Kuupäev: **02.08.2026** (esimene versioon 01.08, viil C lisatud 02.08)
 Alusleping: `docs/platvormi arendus/t25-org-workspace-v1-arenduskava-opusele.md`
 Staatus: **CORE-V1 on koodis TERVIKUNA valmis — E0 + viil A + viil B + teavituskiht + viil C.
-Kõik E-etapid E0–E12 on DONE. Push'imata ja deploy'mata; integratsioon `origin/main`-iga on
-eraldi worktree's läbi proovitud (ptk 6a).**
+Kõik E-etapid E0–E12 on DONE. Kood on lokaalses `main`-is (merge `24836100`) ja kõik väravad
+jooksevad seal läbi (ptk 6c). Push'imata ja deploy'mata — see on omaniku otsus.**
 
 See dokument on kirjutatud KONTROLLIMISEKS. Iga väide on siin kas Git-fakt, käivitatav
 käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud otse.
@@ -30,7 +30,7 @@ käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud 
 | **Viil C tipp** | **`fcd65165`** (2 commit'i: `d2613735` serverikiht, `fcd65165` UI + eksport + tõlked) |
 | `origin/main` praegu | `cf7b0f1840ef09602619758e62252e30410de158` — **14 commit'i baasist edasi liikunud** |
 | Integratsiooniproov | `bbf2a644` (detached, `origin/main` + viil C = kogu CORE-V1) |
-| Merge lokaalsesse `main`-i | **tehtud** — vt ptk 1a |
+| **Merge lokaalsesse `main`-i** | **`24836100`** — vt ptk 1a ja 6c |
 | Push `origin`-isse / deploy | **ei tehtud** — omaniku otsus |
 
 **Viilu B commit'id:**
@@ -313,6 +313,40 @@ Tulemus: **merge läks konfliktideta** — 115 faili, +18601/−39. Ainus kattuv
 
 Proovi-worktree on kustutatav:
 `git worktree remove C:/Users/rauds/Desktop/SotsiaalAI-integration-probe --force`.
+
+---
+
+## 6c. Väravad lokaalses `main`-is pärast merge'i
+
+Merge tehti `git merge --no-ff codex/org-profile-support-v1` — **115 faili,
++18780/−39**, konfliktideta. Kattuvad failid olid `messages/*.json` ja
+`app/styles/globals.css`; mõlemad liitusid automaatselt, sest org-kiht lisab oma
+ploki lõppu ega puutu olemasolevat.
+
+Need arvud on tähtsamad kui harude omad: main'is on lisaks omaniku paralleelne
+UI-töö (`motion`, `CurvedInput`, `SpecularButton`, `TiltedCard`, karusselli CSS),
+mida üheski harus ei olnud.
+
+| Kontroll (`C:/Users/rauds/Desktop/SotsiaalAI`, `main`) | Tulemus |
+|---|---|
+| `npx prisma validate` | OK |
+| `npm test` | **2169/2169** |
+| `npx eslint lib app components tests scripts` | **0 viga** (2 hoiatust, mõlemad omaniku uutes komponentides) |
+| `npm run i18n:check` | OK (et/en/ru) |
+| `npm run build` | OK |
+| `npm run db:migrate:check` | **111 migratsiooni, täisahel nullist OK** |
+| runtime A | **35/35**, 0 jääki |
+| runtime B | **57/57**, 0 jääki |
+| runtime C | **42/42**, 0 jääki |
+
+Kokku **134 runtime-kontrolli** päris andmebaasi vastu, kõik merge'itud puus.
+
+> Kaks eslint-hoiatust on `components/CurvedInput/CurvedInput.jsx:240`
+> (`useLayoutEffect` ilma sõltuvusloendita) ja `components/TiltedCard/TiltedCard.jsx:89`
+> (kõvakodeeritud UI-tekst). **Need ei ole selle töö omad** — nad tulid omaniku
+> paralleelsest UI-tööst ja olid main'is enne merge'i. Ma ei parandanud neid, sest
+> see töö on pooleli ja mitte minu oma. Nad on siin kirjas selleks, et keegi ei
+> loeks neid org-kihi arvele.
 Merge-commit `4bb50994` ei ole ühelgi harul ja kaob GC-ga; proov on ülal oleva kahe käsuga
 korratav.
 
