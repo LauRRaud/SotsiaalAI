@@ -6,16 +6,27 @@
 Tööheaolu, Teenusekaart, Välitöö). Marsruut `/teenuspaevik`. Alaosad: **Päev** (neli
 märget + kiirsisestus) · **Graafik** (E10) · **Suunamised** (saldo) · **Aruanded**
 (mallid + kuunarratiiv). Teemakood: TEENUSPÄEVIK-V1 (OSA I = E1–E9; OSA II = E10–E12).
-Moodulikaart: 11 taaskasutatavat (kataloog, FieldVisit-muster, REPORT_DRAFT, U10,
-provenance, authz, PDF/CSV, i18n+ⓘ+dokk, töölauakaardid, notifications-timer,
-Teenusekaardi kaardipinu) + 7 uut (3 Prisma mudelit, lib/serviceLog, API-d,
-components/serviceLog, graafik [NB org-kihi sõltuvus], km-arvutus, häälmärge hiljem);
-väliseid teeke juurde null.
+OSA I moodulikaart: 11 taaskasutatavat (kataloog, FieldVisit-muster, REPORT_DRAFT,
+U10, provenance, authz, PDF/CSV, i18n+ⓘ+dokk, töölauakaardid,
+notifications-timer, Teenusekaardi kaardipinu) + 7 uut (3 Prisma mudelit,
+lib/serviceLog, API-d, components/serviceLog, aruandevoog, km-arvutus, häälmärge
+hiljem). OSA II lisab kolm additiivset töökorraldusobjekti ning eraldi töötaja
+mobiili- ja juhi töölauavaate. Organisatsiooni, üksuste, liikmesuste, teenuseprofiili
+ja õiguste alus tuleb valminud T25 `ORG-WORKSPACE-V1` kihist; Teenuspäevik ei ehita
+teist organisatsioonimudelit. Väliseid teeke juurde ei ole kavandatud.
 
-MUSTAND 28.07.2026 (Claude + Laur). Eesmärk: ehitatav leping teenuseosutaja aruandluse
-MVP-le. Domeeniloogika on kinnitatud õigusaktidega (Riigi Teataja KOV-korrad, vt allikad)
-ja platvormi koodi topeltkontrolliga (28.07: aruandlust ei ole; ServiceProviderService =
-kataloog; FieldVisit = kestuse-muster).
+MUSTAND 28.07.2026 (Claude + Laur), täpsustatud 02.08.2026 Fleet Complete'i artikli,
+ekraanivaate ja Teenuspäeviku päris teostuse põhjal. Eesmärk: ehitatav leping
+teenuseosutaja töökorralduse ja aruandluse tervikule. Domeeniloogika on kinnitatud
+õigusaktidega (Riigi Teataja KOV-korrad, vt allikad) ning platvormi koodi
+topeltkontrolliga. Algne ühe külastuse mudel ei kata mitme järjestikuse kliendiga
+tööpäeva; selle parandab OSA II päevateekonna ja organisatsioonivaate leping.
+
+**Staatusereegel:** see dokument kirjeldab sihtarhitektuuri ja teostuslepingut;
+tegelik valmidus ning lahtised tööd on kirjas failis `SEIS.md`. T25 organisatsioonikiht
+on valmis, kuid Teenuspäeviku ühendus selle kihiga, päevateekond, juhi Teenuspäeviku
+vaade ja GPS-i kasutajaliides ei ole valmis ainuüksi seetõttu, et nende aluskiht on
+olemas.
 
 ## 1. Domeeniloogika (kuidas päriselt käib)
 
@@ -38,20 +49,37 @@ KOV SUUNAMISOTSUS ──► KOLMEPOOLNE LEPING ──► OSUTAMINE ──► KUU
 - Mõni KOV nõuab **kliendi kinnitust** tundidele (allkiri tööajalehel) — digikinnitus on
   hilisem võimalus, mitte MVP.
 
+### Kaks korraldusmudelit ja kaks aruandlussuunda
+
+Teenuspäevik peab toetama kahte päriselulist mudelit, neid õigustes segamata:
+
+1. **KOV osutab teenust ise.** KOV-i hoolduskoordinaator või sotsiaalosakonna juht on
+   teenuseosutaja organisatsiooni sisemine juht: kavandab töötajate päevad, näeb oma
+   üksuse tööde olekuid ja mahtusid ning kinnitab aruande.
+2. **KOV ostab teenuse väliselt osutajalt.** Teenuseosutaja enda juht korraldab töötajate
+   igapäevatööd ja kinnitab aruande; KOV saab ainult lepingus kokku lepitud kinnitatud
+   mahu- ja sisuaruande, mitte vaikimisi osutaja töötajate reaalajavaadet, kõiki
+   päevikumärkmeid ega GPS-punkte.
+
+Seega on kaks eri andmevoogu: **töötaja → oma organisatsiooni juht** (töökorraldus,
+kontroll, kinnitusring) ja **teenuseosutaja → rahastaja/KOV** (kinnitatud välisesitis).
+Kui KOV osutab teenust ise, võivad need rollid olla samas organisatsioonis, kuid
+capability ja üksuse skoop jäävad ikkagi eraldi.
+
 ## 0. PÕHIPRINTSIIP: aruandlus on töö kõrvalsaadus, mitte eraldi töö (omanik 28.07)
 
 Väljakaebus („aruandlust tehakse rohkem kui päris tööd, õigemini selle arvelt") on kogu
 mooduli disainikriteerium. Kaks juurt, eri ravi: (1) TÖÖRIISTADE PUUDUS — dubleeriv
 sisestus, iga KOV eri kujul, kuulõpu „aruande-õhtu" = lahendame meie; (2) NÕUETE
-INFLATSIOON = poliitika, mida tööriist ei paranda — aga platvorm teeb koormuse
-NÄHTAVAKS: teenuskirje kõrvalsaadus on esimene päris number „aruandlusele kulub X h/kuus,
-sh Y dubleerimist" (= heaolutalgute idee 1.7 baasjoon + sügiskooli B3 andmestik; kaebus →
-mõõdetud argument ESTA/riigi lauale). **Neli kaitsereeglit:** (a) kirje sünnib seal, kus
+INFLATSIOON = poliitika, mida tööriist ei paranda. Teenuspäevik peab vähendama
+dubleerimist ega tohi ise muutuda uueks aruandekohustuseks. **Neli kaitsereeglit:**
+(a) kirje sünnib seal, kus
 töö lõpeb (visiidi lõpp = 10 sek; välitöö kest → „loo teenuskirje"), mitte õhtul mälu
 järgi; (b) MITTE ÜHTEGI välja, mida KOV ei nõua — miinimum on püha; (c) kui süsteem juba
 teab, ei küsita (teenus suunamisest, kestus kellaaegadest); (d) üks sisestus → kõik
 väljundid (KOV-aruanne + arve lisa + sisuaruande mustand + oma ülevaade). **EDU MÕÕDIK:
-aruandlusele kuluva aja LANGUS** — mõõdame pilootides enne/pärast; kui meie tööriistaga
+aruandlusele kuluva aja LANGUS** — seda kontrollitakse piloodis enne/pärast lühiajalise
+uuringu või vaatlusega, mitte Teenuspäeviku püsifunktsioonina. Kui meie tööriistaga
 kulub rohkem aega kui Exceliga, oleme läbi kukkunud ja ütleme selle ise välja. (Visiooni-
 dokumendi lause, mille see moodul lunastab: „sotsiaaltöötajad põlevad läbi süsteemis, mis
 dokumenteerib rohkem kui toetab.")
@@ -115,6 +143,17 @@ olla väikese osutaja 19,99 põhjendus.
   mitu aktiivset suunamist. Kui osutajal on kataloogis ÜKS teenus, ei küsita teenust
   kunagi. Printsiip: ära küsi seda, mida süsteem juba teab. Eilse/tänase kuupäeva
   kiirvalik. Välitöö kesta lõpetamine võib pakkuda „loo teenuskirje".
+- **Mitme külastuse päev (OSA II):** põhiobjekt on eraldi planeeritud või planeerimata
+  **külastus/töö**, mitte eeldus „kontor → klient → kontor". Töötajal on päeva jooksul
+  järjestatud tööd. Pärast kliendi juurest lahkumist valib ta „järgmine klient",
+  „paus/tööväline lõik" või „lõpetan tööteekonna". „Tagasi" ei tähenda kontorisse
+  jõudmist: päev võib alata kodust, jätkuda otse kliendilt kliendile ja lõppeda mujal.
+  Tööteekonna alguses ja lõpus salvestatakse vaikimisi ainult aeg, mitte GPS-punkt —
+  muidu võiks tööriist koguda töötaja koduasukohta.
+- **Kaks eri UI-d:** töötaja mobiilivaade näitab järgmist tööd, aadressi/navigatsiooni,
+  üht muutuvat tegevusnuppu, tegevuste kiirvalikut ja võrguühenduseta järjekorda;
+  hooldus-/osakonnajuhi töölaual on töötajate kaupa grupeeritud päevaplaan, planeerimata
+  tööd, staatused, asendused, kaart, mahuhoiatused ning aruannete kinnitusring.
 - **Aruande koostamine on TEISE järjekorraga:** periood (kuu) → saaja (KOV/suunaja) →
   eksport; teenus on GRUPEERING aruande sees, mitte sisend — aruanne katab saaja kõik
   kliendid ja teenused korraga.
@@ -182,26 +221,32 @@ kood); kliendi-nähtavus ehitatakse LÜLITINA valmis (otsus keerab lüliti). Tee
 - **E1 Andmemudel tervikuna:** ServiceEntry + Referral (KOHE, mitte hiljem) +
   kuunarratiivi objekt + 7a säilituse reeglid — üks migratsioon, terve mudel.
 - **E2 Sisestusvood:** kiirsisestus (klient-enne, tuletamisreeglid, <30 sek) + välitöö
-  kesta sild („lõpeta külastus" → „loo teenuskirje").
-  **E2b Nelja märke voog (omanik 29.07: „läksin, sain kohale, sain tagasi"):** suured
-  nupud mobiilis [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI]; iga puude = ajatempel + (lülitiga)
-  ÜHE hetke asukohatempel (töötajale nähtav). Annab: (a) KOHAL–LAHKUSIN = teenuse kestus
-  → kogus tuletatakse ise; (b) sõidulõigud = SÕIDUAEG kui tööaeg (mall A valikuline
-  veerg; KOV-iti hüvitatav) — **aeg JAH, kilomeetrid EI** (distantsi ei arvuta ka
-  templitest — sõidupäevik on sõidukidomeen, jäägu FC-le); (c) LÄKSIN ilma TAGASI-ta
-  tähtajaks = **turvasignaali käivitus** (FIELD-i kontrollakna taaskasutus — kaitse, mis
-  ei nõua lisaliigutust); (d) järjestikused kliendid: TAGASI pole vahel kohustuslik,
-  järgmine KOHAL lõpetab eelmise sõidulõigu. NB kolmik on FieldVisit-mudelis juba
-  pooleldi olemas (arrivedConfirmedAt/departedConfirmedAt/safety*) — üldistus, mitte uus
-  leiutis.
+  kesta sild („lõpeta külastus" → „loo teenuskirje"). Ühe külastuse ajatemplid jäävad
+  toimima ka ilma päevaplaanita.
+  **E2b Külastuse märkimine:** [KOHAL]→[LAHKUSIN] annab teenuse kestuse ja loob
+  teenuskirje aluse. Kui `SERVICE_LOG_LOCATION_STAMP` on sees, küsib [KOHAL] ainult
+  selle vajutuse hetkel ühe asukohapunkti; loa puudumine või GPS-i viga EI TOHI takistada
+  ajatemplit ega teenuse osutamist. Töötaja näeb, kas punkt salvestati. `watchPosition`-i,
+  taustajälgimist ega punktijada ei kasutata.
+  **E2c Päevateekond (parandus 02.08):** nelja fikseeritud märke
+  [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI] asemel juhib OSA II külastuste olekumasinat:
+  `PLANNED → EN_ROUTE → ARRIVED → COMPLETED → FINAL`, kõrvalharud `CANCELLED`,
+  `NOT_DONE`, `NEEDS_CORRECTION`. Töötaja võib pärast lahkumist minna järgmise kliendi
+  juurde, teha pausi või lõpetada tööteekonna. Järgmise töö `EN_ROUTE→ARRIVED` on uus
+  sõidulõik; eelmist külastust ei märgita fiktiivselt „tagasi". Tööteekond annab
+  turvasignaalile päris sulguri: pooleli `EN_ROUTE`/`ARRIVED` üle kokkulepitud kontrollaja
+  vajab kontrolli. Kõik nupuvajutused lähevad olemasolevasse offline-järjekorda
+  idempotentsusvõtmega, et ühenduse taastumine ei looks topeltkirjet ega topeltarvet.
 - **E3 Suunamiste haldus:** suunamise kirje (maht, periood, ühik, allocationPeriod) +
   jäägi saldo + ületamise hoiatus.
-- **E3b Kerge plaanimine (õpitud Fleet Complete'ilt, ILMA GPS-ita):** plaanitud visiidid
-  suunamise rütmist (nt E+K+R hommikuti) → päeva lõpus töötaja kinnitab ühe puutega
-  tehtuks → kinnitatud plaan MUUTUB kirjeks (eeltäidetud kuupäev/klient/teenus/kestus,
-  paranda kui erines). Suurel osutajal: hooldusjuht määrab plaanitud visiidid töötajatele
-  (kerge nädalavaade). MITTE: marsruudioptimeerimist, sõidukihaldust, reaalajas
-  GPS-jälgimist — see on logistika, mitte meie mäng.
+- **E3b Plaanimine ja jaotus (Fleet Complete'i õppetund):** suunamise rütmist tekivad
+  plaanitud külastused (nt E+K+R hommikuti); juht määrab need töötajale ja järjekorda,
+  korraldab asenduse ning lisab planeerimata töö. Töötaja kinnitatud külastus muutub
+  teenuskirjeks, mitte vastupidi. Juhi vaade grupeerib tööd töötaja ja päeva kaupa ning
+  näitab vähemalt klienti, teenust, aadressi/aega, staatust, kestust ja kinnituse seisu.
+  MITTE: pidevat GPS-jälgimist ega autopargi täishaldust. Päevaplaan ja punktidevaheline
+  töötaja kinnitatud km-hinnang kuuluvad OSA II-sse; sõidukite broneerimine/hooldus ning
+  elav liikumisrada ei kuulu SotsiaalAI sotsiaalteenuse töökihti.
 - **E4 Kuuvaade + rütm:** summad kliendi/teenuse kaupa; tähtajaloogika (järgmise kuu
   10.); ÜKS leebe meeldetuletus (5. kuupäeval).
 - **E5 Sisuaruanne:** kuunarratiiv kliendi kohta + REPORT_DRAFT mustand
@@ -213,8 +258,12 @@ kood); kliendi-nähtavus ehitatakse LÜLITINA valmis (otsus keerab lüliti). Tee
 - **E7 Kliendi kinnitus:** digikinnitus platvormi-kliendile (U10 muster) + käsitsi
   kinnituse märge välisele kliendile; „kas klient näeb oma kuuaruannet" = valmis ehitatud
   LÜLITI, mille omaniku otsus keerab (vaikimisi väljas).
-- **E8 Mõõtmine:** aruandlusajale kuluva aja küsimine pilootides (enne/pärast) +
-  koormuse baasjoone kõrvalsaadus (talgute idee 1.7; sügiskooli B3 andmestik).
+- **E8 Piloodi tehniline kontroll — mitte Teenuspäeviku funktsioon:** vajaduse korral
+  võetakse piiratud piloodis enne/pärast ajaproov, et kontrollida sisestusvoo kiirust.
+  See ei kuulu töötaja püsivasse töövoogu, juhi aruandlusse ega organisatsiooni
+  analüütikasse. Teostatud `ServiceLogTimeSample` ja `/api/service-log/measure` on
+  seetõttu ajutine valideerimisinstrument, mille edasine säilitamine või eemaldamine
+  otsustatakse pärast pilooti; sellest ei kujundata eraldi tootevõimekust.
 - **E9 STAR-valmidus:** ekspordi andmekuju, mis vastab STAR-i strateegia lubatud
   osutaja-liidestusele — „ekspordi" → „edasta" ootab ainult riigi ust, meie pool valmis.
 
@@ -258,74 +307,78 @@ sellele reageerida, mitte kalendripõhine aastane vahehindamine. **Mõju tootele
 meeldetuletust EI TOHI kuvada kui seadusest tulenevat nõuet** — vale vastavusväide
 töövahendis on tõsisem viga kui puuduv meeldetuletus.
 
-### 6b. Konkurentsianalüüs: Fleet Complete (loetud 29.07, ajakirja Sotsiaaltöö artikkel TAI lehel)
+### 6b. Konkurentsianalüüs: Fleet Complete (TAI artikkel ja ekraanivaade kontrollitud 02.08)
 
-**Nende profiil:** logistikatoode hoolekandesse tõlgituna — automaatne tööde jaotus,
-ajaarvestus, **reaalajas GPS-jälgimine**, marsruutide/sõidukite optimeerimine, digitaalne
-dokumenteerimine, kiirem aruandlus. Skaala 2023 lõpus: 18 KOV-i aktiivselt + 5 testis,
-**261 koduhooldustöötajat päevas**, 15 haiglat. Tõestatud number: töötaja klientide arv
-7,4 → 11; „hooldusjuht saab teha kahe inimese töö".
+**Nende profiil:** KOV-i koduteenuse töökorralduse ja logistika tervik — hoolduskoordinaator
+kavandab ning jaotab tööd; töötajal on nutiseadmes päevakava, kliendiandmed ja
+hooldusplaan; juhil on töötajate kaupa tööde loend, kaardivaade, staatused, ajakulu,
+kilomeetrid ja aruanded. Lisaks on reaalajas töötajate/sõidukite liikumine, elektrooniline
+sõidupäevik ja sõidukite broneerimine. 2023. aasta lõpu ettevõtte andmetel kasutas
+lahendust 18 KOV-i, viies oli test ning igapäevaseid koduhooldajast kasutajaid oli 261.
 
-**Kus nemad võidavad (austusega):** tööde jaotus/dispetšerlus, marsruudid, küpsus ja
-skaala, haiglasegment. **Mida neilt õppisime:** plaani-kinnita silmus → E3b. **Mida EI
-klooni:** marsruudioptimeerimine, sõidukihaldus, reaalajas GPS.
+**Mõjutõendid vajavad ausat keelt.** Viie omavalitsuse 2022. aasta uuringus kasvas
+keskmine klientide arv töötaja kohta 7,4-lt 11-ni, kuid korraga muutusid nii rakendus kui
+töökorraldus — see ei ole puhas põhjuslik tarkvarakatse. „Hooldusjuht saab teha kahe
+inimese töö" on tugev kasutuskogemuse väide, mitte garanteeritav ROI. Piloodis mõõdame
+enda lähtejoont: sisestusaeg, topeltsisestused, külastused töötaja kohta, juhi
+koordineerimisaeg ja katkestused.
 
-**Kus meie võidame struktuurselt:** (1) **proportsionaalne tõendus, mitte pidev jada**
-(TÄPSUSTATUD 29.07 omaniku õiglase torke peale — „eks see GPS on neil pigem teekond,
-mitte otsene jälgimine?"): FC GPS teenib eeskätt LOGISTIKAT (marsruudid, sõidupäevik,
-tööde jaotus, visiidi tõendus — viimane KAITSEB ka töötajat arvevaidluses) ja see on
-õigustatud otstarve; AGA arhitektuur kogub töötaja pidevat asukohajada („reaalajas
-jälgimine + ajalooliste andmete kontroll" on artikli enda sõnad) ja kasu-kulu käivad
-koos — pidev asukogumine on töötaja-usalduse hind ning tööõiguslikult tundlik
-(proportsionaalsus). MEIE positsioneering EI ole „nemad jälgivad" (õlgmees, ei müü 18
-KOV-i ees), vaid **„sama tõendusväärtus, proportsionaalsem mehhanism"**: visiidi tõendus
-= saabumis-/lahkumiskinnitus ühe puutega (punkt, mitte jada; `arrivedAt/leftAt` mudelis
-olemas) + **valikuline ÜHEKORDNE asukohatempel kinnituse hetkel** (lüliti
-`SERVICE_LOG_LOCATION_STAMP`, vaikimisi VÄLJAS, töötajale alati nähtav, mis salvestati) —
-kui KOV nõuab kohalolutõendit, sama tõend ilma tööpäeva-pikkuse jäljeta. Pidevat
-asukohajada EI koguta KUNAGI. **POSITSIONEERING MUUDETUD (omaniku suunaotsus 29.07:
-„minu rakendus ei ole täiendus konkurendile — ta peab olema ülim, võimalusel
-lisafunktsioonidega"):** me EI ole FC kõrvale, vaid ASEMELE — vt OSA II (E10–E12
-täisasendus). Varasem „sõidupäevikut ei ehita / km ei arvuta" piir on OSALISELT
-TÜHISTATUD: E12 toob kerge sõidupäeviku (odomeeter või templipõhine hinnang, TÖÖTAJA
-kinnitab — töötaja enda kasuks tuletatud km ei ole jälgimine); pideva jälje keeld JÄÄB;
-ainus teadlik välistus = sõidukipargi haldus (autode broneerimine/hooldus — see on
-autopargi-, mitte hoolekandetarkvara; piir, mis hoiab meid ERP-iks paisumast).
-Turvalisus = välitöö turvasignaal (töötaja algatatud); (2) **elutsükkel, mitte
-tabel** — nende väljund on tunnitabel, meie mall C lõpeb ETTEPANEKUGA + kvaliteedijuhise
-rütmid (Riigikontrolli märkuste vastavus); (3) **sisuaruanne + AI** — kirjutamisaja
-sääst, kus FC ei mängi (neil pole keelemudelit ega päritolumärgistust); (4) **tootlikkus
-+ KESTLIKKUS** — nende 7,4→11 ilma heaolukihita on läbipõlemise kiirendi; meil toidab
-sama kirje (AINULT töötaja enda vaates) tema koormuspilti + Taastumise voog; (5)
-**ökosüsteem** — klient on osaline (kinnitus/tagasiside/CLIENT_VIEW), töötajal
-teadmuskiht taskus, väikeste osutajate pikk saba (FC müüb enterprise'ile) + STAR/s-veebi
-valmidus. Positsioneering (uuendatud 29.07): **„Kõik, mida senine rakendus teeb — ilma
-pideva jälgimiseta — pluss kiht, mida logistikatoode ei ehita kunagi: AI, heaolu, klient
-ja kvaliteet."** Me ei jaga turgu; me asendame ja ületame.
+**Mida neilt üle võtame:** eraldi töö/külastus kui põhiobjekt; töötaja päevaplaan;
+planeeritud ja planeerimata tööd; töötajate kaupa grupeeritud juhi töölaud; selged
+staatused; asendused; klient/teenus/aadress/aeg ühel real; kaart; digipäevik ja
+aruandlus; töötaja koolitus ning väga lihtne mobiilivoog.
 
-### 6c. OSA II — TÄISASENDUS: E10–E12 (+ oma DoD-2, et miski ei jää „viiluks")
+**Mida parandame:** artikkel kirjeldab ühenduse katkemist, hangumist ja kadunud töid —
+meie iga nupuvajutus peab töötama offline-järjekorra ning idempotentsusvõtmega. Fleet
+Complete'i reaalajas GPS annab logistika, kilometraaži ja visiidi tõenduse, kuid kasutajad
+kirjeldasid ka pideva kontrolli hirmu. Meie piir on **punkt, mitte jada**: [KOHAL]
+salvestab lülitiga ühe nähtava punkti; ajatempleid ja tööolekuid saab juht näha ilma
+elava töötajakaardita; punktidevahelise km-hinnangu kinnitab töötaja. Üldvaates näeb juht
+„asukoht kinnitatud / salvestamata"; täpne punkt avaneb ainult konkreetse külastuse
+kontrollis, õigustatud capability'ga ja auditijäljega. Välisele KOV-ile GPS ei lähe
+vaikimisi üldse.
 
-- **E10 Graafik ja dispetšerlus:** hooldusjuhi nädalavaade; visiitide määramine
-  töötajatele; asenduste haldus (haigestumine → visiidid liiguvad); staatustahvel
-  („kus mu inimesed on?" = olekud läksin/kohal/lahkusin/tagasi + hilinemised, MITTE
-  elav punktikaart). **SÕLTUVUS: mitme töötajaga graafik EELDAB org-kihi
-  (SERVICE_PROVIDER_ORG, T25) aktiveerimist** — üksik-FIE-le pole vaja; see ongi
-  loomulik esimene org-klient.
-- **E11 Päevaplaan kaardil:** töötaja päeva visiidid järjekorras kaardivaates
-  (taaskasuta Teenusekaardi kaardipinu) + üks puude avab navigatsiooni (Google/Waze
-  URL). Optimeerimisalgoritmi EI ehita — „näen oma päeva ja saan sinna sõita" katab
-  90% vajadusest.
-- **E12 Kerge sõidupäevik:** km-arvestus hüvitiseks — odomeetri algus/lõpp VÕI
-  templipõhine punkt-punkt hinnang; töötaja kinnitab iga rea; väljund mall A
-  lisaveeruna ja eraldi km-väljavõttena. Teenib töötajat (hüvitis), mitte jälgimist.
-- **DoD-2:** suur osutaja saab FC-st loobuda ilma ühtegi hoolekande-töövoogu
-  kaotamata (graafik + märked + tõendus + sõiduaeg + km + aruanded ühes kohas);
-  staatustahvel vastab juhi „kus mu inimesed on" vajadusele ilma GPS-jäljeta;
-  org-kiht aktiveeritud vähemalt ühel päris osutajal.
-- Ajahinnang: E10 2–3 p (org-kihi aktiveerimine lisaks) · E11 1–1,5 p · E12 1 p →
-  OSA II ≈ 4,5–5,5 p pärast OSA I DoD-d.
+**Aus positsioneering:** SotsiaalAI saab asendada Fleet Complete'i **sotsiaalteenuse
+töövoos** (plaan, külastused, tõendus, sõiduaeg/km, teenuskirjed, aruanded) ja lisada AI,
+päritolumärgistuse, kliendi osaluse, tööheaolu, kvaliteedirütmid ning STAR/s-veebi
+valmiduse. Ta EI asenda autopargi funktsioone (sõidukite broneerimine/hooldus) ega paku
+pidevat reaalajas liikumiskaarti. Seetõttu ei kasutata enam absoluutset lubadust „kõik,
+mida Fleet Complete teeb"; õige lubadus on **„koduteenuse töökorraldus ja aruandlus ilma
+pideva töötajajälgimiseta, koos sotsiaaltöö sisukihiga"**.
 
-### 6d. Lisafunktsioonide kiht (mida FC ei ehita kunagi järele — „ülim" teine pool)
+### 6c. OSA II — ORGANISATSIOONI TÖÖKORRALDUS: E10–E12 (+ oma DoD-2)
+
+- **E10 Graafik, päevateekond ja dispetšerlus:** hooldusjuhi nädala-/päevavaade;
+  planeeritud ja planeerimata külastused; töötajale määramine ja järjestamine; asendused;
+  olekud `PLANNED/EN_ROUTE/ARRIVED/COMPLETED/CANCELLED/NOT_DONE/NEEDS_CORRECTION`;
+  töötaja päeva algus/lõpp, pausid ja kliendilt-kliendile sõidulõigud. Juhi staatustahvel
+  näitab olekut ja hilinemist, mitte elavat GPS-jada. **VALMIS ALUS:** T25 annab
+  organisatsioonikonteksti, üksuse skoobi, `SERVICE_DELIVERY` mooduli,
+  organisatsioonile kuuluva teenuseprofiili ning aktiivsed `WORK_ASSIGNER` ja
+  `UNIT_LEAD` capability'd. `WORK_ASSIGNER` planeerib ja määrab töid; eraldi
+  `SCHEDULER`-it ei lisata. `REPORT_APPROVER` on T25-s reserveeritud nimi, mis tuleb
+  Teenuspäeviku kinnitusringi avamisel aktiveerida ja mooduliga siduda. KOV-i oma
+  teenuse puhul on juht KOV-i üksuses; välise osutaja puhul osutaja üksuses.
+- **E11 Päevaplaan kaardil:** töötaja järjestatud külastused, järgmine töö, aadress ja
+  ühe puutega navigatsioon (Google/Waze URL); juhil list+kaart. Marsruudi
+  optimeerimisalgoritmi ei ehita esimeses versioonis. Kaart näitab teenuskohti ja
+  kinnitatud külastusolekuid, mitte töötaja pidevalt liikuvat punkti.
+- **E12 Kerge sõidupäevik:** sõidulõik tekib tööteekonna sündmuste vahel; tööväline paus
+  ei lähe arvestusse. Km saadakse odomeetri algus/lõpp VÕI saabumis-punktide vahelise
+  hinnanguna; töötaja kinnitab iga rea ja saab vea parandada põhjusega. Päeva alguse/lõpu
+  GPS-punkt on vaikimisi keelatud, et mitte koguda koduasukohta. Väljund mall A
+  lisaveeruna ja eraldi km-väljavõttena.
+- **DoD-2:** töötaja läbib vähemalt kolme järjestikuse kliendiga päeva ilma fiktiivse
+  „tagasi kontorisse" märketa; võrgu kadumine ei kaota sündmusi ega loo duplikaate;
+  osakonna-/hooldusjuht näeb ainult oma üksuse plaane, olekuid, mahtusid ja kontrollijälgi;
+  `REPORT_APPROVER` kontrollib/parandab/kinnitab KOV-ile mineva aruande; välisel KOV-il
+  puudub vaikimisi ligipääs töötaja jooksvale päevale ja GPS-ile; GPS-lipp sees kogub
+  maksimaalselt ühe punkti sündmuse kohta ning koodis puudub `watchPosition`.
+- **Mahu märkus:** varasem 4,5–5,5 päeva hinnang ei sisaldanud päevateekonna olekumasinat,
+  offline-sündmusi, org-capability'sid ega kinnitusringi ja ei ole enam usaldusväärne;
+  uus hinnang tehakse pärast E10 skeemi/API teostuskaarti.
+
+### 6d. Sotsiaaltöö sisukiht, mis eristab meid logistikakesksest lahendusest
 
 AI-sisuaruanne märkmetest · **häälmärge** (käed-vabad kirje — multimodaalse kihi
 esimene päris kasutuskoht osutajal!) · teadmus taskus (RAG visiidil) · tööheaolu
@@ -349,14 +402,26 @@ tagasiside- ja vahehindamise vaated vastavad otse Riigikontrolli märkustele.
 2. kuu lõpus sünnib TERVIKLIK esitis (tunnitabel + sisuaruanne) kahe klõpsuga;
 3. mitut KOV-i teenindav osutaja ekspordib igaühele tema kujul ÜHEST sisestusest;
 4. suunamise jääk alati nähtav, ületamine hoiatab;
-5. aruandlusaja mõõtmine sisse ehitatud ja baasjoon võetav;
+5. piloodis on eraldi valideeritud, et tavakirje saab sisestada alla 30 sekundi ja
+   tervikprotsess vähendab aruandlusele kuluvat aega; püsivat ajamõõtjat selleks ei nõuta;
 6. ptk 0 neli kaitsereeglit kehtivad igas vaates (kontrollitakse üle DoD-s);
 7. kõik lipu taga kuni omanik avab; 7a säilituse reeglid dokumenteeritud
-   andmekaitsetingimuste mustandina.
+   andmekaitsetingimuste mustandina;
+8. vähemalt kolme järjestikuse kliendiga tööpäev toimib ilma vahepealse „tagasi"
+   märketa, paus ja tööväline lõik ei lähe sõiduajaks;
+9. sama lahendus toetab KOV-i oma teenuseüksust ja välist osutajat: sisemine juht näeb
+   ainult oma üksust, välisele KOV-ile läheb ainult kinnitatud esitis;
+10. GPS-lipp sees tähendab maksimaalselt üht punkti teadliku sündmuse kohta;
+    `watchPosition`/taustajälg puudub ja GPS-i tõrge ei blokeeri ajatemplit;
+11. töötaja mobiilivoog töötab ühenduseta ning juhi aruandesse ei teki kordussaatmisel
+    topeltkülastust ega topeltmahtu.
 
-**Aus maht:** ~1,5–2 nädalat jadatööd (FIELD-V1 mõõtu), iga etapp jätab töötava
-tarkvara, teema suletakse DoD-ga — mitte ühtegi „ootab järgmist viilu" rida SEIS-i.
-EELDUS: puhas tööpuu (commit enne — migratsioon).
+**Mahu ausus:** OSA I algne hinnang oli ~1,5–2 nädalat jadatööd. OSA II ulatus on
+pärast mitme külastusega päevateekonna, T25-ga liidestamise, planeerimise ja aruande
+kinnitamise lisamist suurem. Uut koguhinnangut ei anta enne E10–E12 detailset
+teostuskaarti. Terviku DoD on täidetud alles siis, kui mõlema osa serveriloogika,
+kasutajavaated ja negatiivsed õigustestid on valmis. Migratsioonitööd tehakse
+isoleeritud ja kontrollitud tööpuus.
 
 ## 8. TEOSTUSKAART (kaardistatud 29.07 öösel — iseseisvalt teostatav ilma vestluse
 kontekstita; järgi projekti rituaale: jadatöö, väravad, SEIS.md uuendus lõpus)
@@ -391,13 +456,14 @@ model ServiceEntry {               // Teenuskirje (aatom)
   serviceId          String?  // → kataloog (tuletatav suunamisest)
   clientUserId/clientDisplayName/clientExternalRef  // sama muster mis suunamisel
   date               DateTime // teenuse kuupäev
-  departedForVisitAt DateTime? // LÄKSIN (sõidulõigu algus)
+  departedForVisitAt DateTime? // ühe külastuse lihtvoo sõidulõigu algus
   arrivedAt          DateTime? // KOHAL (teenuse algus)
   leftAt             DateTime? // LAHKUSIN (teenuse lõpp; kestus tuletatav)
-  returnedAt         DateTime? // TAGASI (sõidulõigu lõpp; turvasignaali sulgur)
+  returnedAt         DateTime? // ühe külastuse lihtvoo lõpp; EI tähenda alati kontorit
   locationStamps     Json?     // {departed:{lat,lng,acc,at},arrived:{...},left:{...},returned:{...}}
                                // AINULT kui SERVICE_LOG_LOCATION_STAMP lüliti sees;
-                               // punktid, mitte jada; distantsi EI arvutata
+                               // server lubab max ühe punkti sündmuse kohta, mitte jada;
+                               // OSA II km-hinnang kasutab ainult töötaja kinnitatud lõiku
   unit               String   @default("HOUR")
   quantity           Decimal  // 1.5
   activities         String[] @default([]) // teenusepõhisest tegevuskataloogist (mall B)
@@ -425,6 +491,34 @@ Tegevuskataloog: `ServiceProviderService` saab `activityCatalog String[]` (addit
 NB kirjete kustutamine: hard-delete BLOKEERITUD kui kirje < 7a (raamatupidamise seadus) —
 vt 8.9.
 
+**E10 skeemiparandus — ära suru mitme külastuse päeva `ServiceEntry.returnedAt` sisse.**
+Praegune `ServiceEntry` on ühe osutamissündmuse/arveaatom. Päevaplaan ja kliendilt
+kliendile liikumine vajavad additiivseid objekte (täpsed nimed kinnitatakse E10
+teostuskaardis):
+
+```text
+ServiceWorkday
+  providerProfileId · organizationId? · unitId? · workerUserId
+  assigneeMembershipId? · date · startedAt? · endedAt? · status
+
+ServiceVisitAssignment
+  workdayId? · referralId? · serviceId? · klient · assigneeMembershipId?/workerUserId
+  plannedStartAt? · plannedEndAt? · sequence · status
+  enRouteAt? · arrivedAt? · leftAt? · completedAt?
+  arrivalLocationStamp? · serviceEntryId? · cancellationReason?
+
+ServiceTravelSegment
+  workdayId · fromVisitId? · toVisitId? · startedAt · endedAt?
+  kind=WORK|PAUSE|PRIVATE · includeInWorkTime
+  distanceSource=ODOMETER|POINT_ESTIMATE|MANUAL · distanceKm? · confirmedAt?
+```
+
+Invariandid: üks lõpetatud külastus loob maksimaalselt ühe teenuskirje; üks sõidulõik
+kuulub täpselt ühe tööpäeva alla ja seda ei summeerita kahe teenuskirje juures; järgmise
+kliendi `ARRIVED` võib lõpetada eelmise tööalase sõidulõigu, kuid ei muuda eelmise
+kliendi kirjes ühtegi „tagasi" välja; paus/erasõit ei lähe tööaja ega km-hüvitise hulka;
+päeva algus/lõpp ei kogu vaikimisi asukohta.
+
 ### 8.2. Lib + API (uued failid, olemasolevate mustrite järgi)
 
 - `lib/serviceLog/constants.js` — ühikud, staatused, provenance-sõnastik (jaga olemasolevat
@@ -449,10 +543,19 @@ vt 8.9.
   kirjeid teha" on capability-küsimus ja poolik õigusmudel oleks halvem kui
   fail-closed. Owner-scoped 404 muster (foreign-id == missing-id), rate-limit nagu
   teistel POST-idel.
+- **E10 uued API-d:** tööpäevad, külastusülesanded, sõidulõigud, määramine/asendus,
+  olekumuutus ja aruande kinnitusring. Töötaja kirjutab ainult endale määratud või enda
+  algatatud planeerimata külastust; T25 `WORK_ASSIGNER` määrab töid, `UNIT_LEAD` näeb
+  oma üksuse operatiivkoondit ja aktiveeritav `REPORT_APPROVER` kinnitab välisesitise.
+  Üks capability ei anna automaatselt teisi. Võõras organisatsioon/üksus/külastus
+  annab 404.
+- **Aruande saaja ei saa org-ligipääsu:** välisele KOV-ile faili või tulevase liidese
+  kaudu aruande saatmine ei loo talle liikmesust ega õigust osutaja päevaplaanile,
+  töötajate märkmetele või asukohatemplitele.
 
 ### 8.3. UI pinnad
 
-- Uus paneelileht `/teenuskirjed` (komponendid `components/serviceLog/`): kiirsisestus
+- Paneelileht `/teenuspaevik` (komponendid `components/serviceLog/`): kiirsisestus
   (klient-enne! vt ptk „Vaated"), kuuvaade, suunamised, eksport. Tavaline paneel + dokk
   (EI ole canvas/wide — `panelHasRoomDock` annab doki vaikimisi).
 - Töölaua kaart osutaja-vaatesse (`lib/workspaceDashboardCards.js` provider-haru,
@@ -461,6 +564,13 @@ vt 8.9.
   `service_log` (tekstid tõlkevõtmetest!) + lehel `usePanelInfoSlot({infoId:"service_log"})`.
 - i18n: namespace `service_log.*` KOLMES keeles (`messages/{et,en,ru}.json`), `i18n:check`
   peab läbima; JSX-is mitte ühtegi kõvakodeeritud teksti (lint keelab).
+- **E10 töötaja mobiilivaade:** järgmine külastus + aadress/navigeerimine + üks muutuv
+  tegevusnupp; pärast lahkumist „järgmine klient / paus / lõpeta"; planeerimata töö
+  lisamine; offline-olek alati nähtav; GPS-loa/saamise seis kasutajale arusaadav.
+- **E10 juhi töölauavaade:** töötajate kaupa grupeeritud plaan ja planeerimata tööde
+  järjekord vasakul, teenuskohtade/olekute kaart paremal; filtrid päeva, üksuse, töötaja,
+  teenuse ja staatuse järgi; eraldi aruandlus- ja kinnitusring. Üldkaart ei näita
+  töötaja elavat asukohta ega toor-GPS-punkti.
 
 ### 8.4. Integratsioonid
 
@@ -481,6 +591,14 @@ narratiiviga, D koond); klient-enne tuletamisreeglid (üks teenus → ei küsita
 suunamist → küsitakse); lipp väljas → API-d 404/leht peidus. + `db:migrate:check`
 (migratsiooniahel), i18n pariteet, build.
 
+E10 lisatestid: kolm järjestikust klienti ilma `returnedAt`-ita; sõidulõik summeerub üks
+kord; paus/erasõit ei summeeru; planeerimata töö; asendus; katkine võrk ja kordussaatmine
+annavad ühe sündmuse/teenuskirje; GPS keelatud/timeout/ebatäpne ei blokeeri ajatemplit;
+server eemaldab tundmatud punktid ja jada; `watchPosition` puudub kliendikoodist;
+liige näeb enda, `UNIT_LEAD` ainult oma üksuse ja võõras org 404; `REPORT_APPROVER`
+saab kinnitada, kuid ei kirjuta töötaja algkirjet vaikselt üle; väline KOV-i saaja ei
+saa org-vaadet ega GPS-i.
+
 ### 8.6. Väravad ja rituaal (IGA etapi lõpus)
 
 `npm test` (täissviit, praegu 1973 — kasvab) → `npx eslint` muudetud failidel →
@@ -488,12 +606,16 @@ suunamist → küsitakse); lipp väljas → API-d 404/leht peidus. + `db:migrate
 mis järgmisena). Serverisse EI lähe enne omaniku sõna; lipud väljas. Ajutisi
 devlogin-marsruute EI jäeta commit'i (25.07 reegel).
 
-### 8.7. Järjekord ja ajahinnang (jadatöö, ~8–10 tööpäeva)
+### 8.7. Järjekord ja ajahinnang (OSA I algne hinnang; OSA II vajab uut kaarti)
 
 E1 skeem+migratsioon (0,5–1 p) → E2 sisestusvood (1,5–2 p) → E3 suunamised+saldo (1 p) →
 E4 kuuvaade+rütmid (1 p) → E5 narratiiv+mustand (1–1,5 p) → E6 mallimootor+4 malli (2 p)
-→ E7 kinnitused+lüliti (1 p) → E8 mõõtmine (0,5 p) → E9 s-veebi/STAR-kuju (0,5 p).
+→ E7 kinnitused+lüliti (1 p) → E8 ajutine piloodikontroll (0,5 p; ei ole
+tootefunktsioon) → E9 s-veebi/STAR-kuju (0,5 p).
 Iga etapp jätab töötava terviku; teema suletakse DoD vastu (ptk 6).
+E10–E12 ei kasuta varasemat 4,5–5,5 päeva hinnangut: enne ehitust kaardistatakse
+olekumasin, additiivne skeem, org-capability'd, offline-sündmused, GPS-i teavitustekst,
+juhi raportid ja kinnitusring üheks jadatööks.
 
 ### 8.8. Omaniku lülitid ja otsused (koondatud; ehitus EI oota)
 
@@ -504,8 +626,9 @@ Iga etapp jätab töötava terviku; teema suletakse DoD vastu (ptk 6).
 4. Hinnastus: kas teenuskirjed on 19,99 sees või asutuselitsentsi argument (soovitus:
    sees — see ONGI väärtus, mis hinda õigustab; anker: konkurendid „mõnisada €/kuus").
 5. `SERVICE_LOG_LOCATION_STAMP` — kas ühekordne asukohatempel kinnituse hetkel on
-   lubatud (vaikimisi VÄLJAS; sisse ainult kui KOV nõuab kohalolutõendit; töötajale
-   alati nähtav, mis salvestati; pidevat jada EI KUNAGI).
+   lubatud (vaikimisi VÄLJAS; sisse ainult dokumenteeritud eesmärgi, õigusliku aluse,
+   töötajate teavituse ja juurdepääsureegliga; töötajale alati nähtav, mis salvestati;
+   pidevat jada EI KUNAGI).
 
 ### 8.9. Õiguslik kontrollnimekiri (enne avamist, MITTE enne ehitust)
 
@@ -518,6 +641,16 @@ Iga etapp jätab töötava terviku; teema suletakse DoD vastu (ptk 6).
   kirje märkmesse (UI vihje + ⓘ tekst ütlevad seda).
 - Kliendi teavitamine: kolmepoolne leping = alus; kui CLIENT_VIEW avatakse, lisandub
   teavitus kliendile.
+- Töötaja asukohaandmed: eesmärk, kasutajad, täpsus, säilitus, vaidluse avamise kord ja
+  töötaja õigused dokumenteerida ENNE GPS-lipu avamist. Tööandja üldine soov „näha, kus
+  inimesed on" ei ole eraldi õiguslik alus. Üldvaates piisab olekust ja tõendi olemasolu
+  märgist; toorpunkt on üksikkülastuse piiratud kontrollandmestik, mitte juhtide kaart.
+- Kodust algav/lõppev päev: tööteekonna algus/lõpp ei kogu vaikimisi GPS-i; muidu võib
+  teenuseosutaja tahtmatult töödelda töötaja koduasukohta. Erand vajab eraldi eesmärki
+  ja lahendust, mitte sama üldlülitit.
+- Organisatsiooni sisemine juht vs väline KOV: sisemine ligipääs tuleb liikmesusest,
+  capability'st ja üksuse skoobist; lepingu/aruande saajaks olemine ei anna õigust
+  töötajate operatiivandmetele. Kõik aruande kinnitamised ja parandused on auditeeritud.
 
 ## 7. Septembri saak (toidab E6/E7 SISU, ei blokeeri ehitust)
 
@@ -526,6 +659,12 @@ Iga etapp jätab töötava terviku; teema suletakse DoD vastu (ptk 6).
 - kliendi allkirja/kinnituse nõue → E7 lüliti seadistus KOV-iti;
 - käibel olevad ühikud partneri teenustes → kataloogi seadistus;
 - maht kuupõhine vs perioodipõhine → Referral.allocationPeriod väärtus.
+- ühe päris hoolduskoordinaatori päevaplaan: mitu töötajat, vähemalt kolm järjestikust
+  klienti, planeerimata töö, tühistamine, asendus ja päev, mis ei alga/lõpe kontoris;
+- sisemise juhi minimaalne koond ja kinnitusring ning täpne piir, mida väline KOV
+  aruande saajana näeb;
+- kas kohalolutõendiks piisab „punkt olemas" märgist või millal vajab volitatud
+  kontrollija toorpunkti — GPS-i lipp ei avane enne seda kokkulepet.
 
 ## Allikad
 
@@ -544,3 +683,10 @@ Iga etapp jätab töötava terviku; teema suletakse DoD vastu (ptk 6).
 - Koduteenuse kvaliteedijuhis (SKA 2020) — aastane tagasisideküsitlus + vahehindamine.
 - SKA koduteenuse juhend KOV ametnikule (2024) — PDF-id SKA lehel botikaitse taga,
   vajadusel laadida brauseriga käsitsi.
+- TAI / ajakiri Sotsiaaltöö, „Fleet Complete rakendus aitab kokku hoida koduhooldaja
+  tööaega" (08.02.2024):
+  https://www.tai.ee/et/sotsiaaltoo/fleet-complete-rakendus-aitab-kokku-hoida-koduhooldaja-tooaega
+  — tööde kavandamine ja jaotus, töötaja+juhi vaated, reaalajas GPS, sõidupäevik,
+  sõidukite broneerimine, 5 KOV-i kasutajauuring, ühenduse/kadunud tööde probleemid,
+  töötajate jälgimishirm. Arvud 18 KOV-i / 261 päevakasutajat on ettevõtte andmed;
+  7,4→11 kaasnes rakenduse JA töökorralduse muutusega, mitte tõendatud üksikmõjuga.
