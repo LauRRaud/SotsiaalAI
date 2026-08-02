@@ -1079,27 +1079,36 @@ export default function ServiceLogDay() {
                       ole siin midagi, ka siis kui brauser punkti kätte sai. */}
                   {entry.locationStampedAt?.length ? ` · ${t("service_log.location.saved", "")}` : ""}
                 </span>
-                <button
-                  type="button"
-                  className={`sl-tab${entry.confirmedManually ? " is-active" : ""}`}
-                  disabled={finalizing === entry.id}
-                  aria-pressed={Boolean(entry.confirmedManually)}
-                  onClick={() => toggleManualConfirm(entry)}
-                >
-                  {t("service_log.list.manual_confirm", "")}
-                </button>
-                {entry.status === "DRAFT" ? (
+                {/* NUPUD PEAVAD NÄGEMA VÄLJA NAGU NUPUD.
+                    Siin oli `sl-tab` — vahekaardi stiil, mille ääris on
+                    LÄBIPAISTEV. Vahekaardiribal (flex-row) töötab see hästi,
+                    aga kirje on `flex-column`: nupp venis üle terve laiuse,
+                    kaotas piirjoone ja tema tekst maandus keskele. Ekraanil
+                    nägi „Kinnita" välja täpselt nagu silt, mitte nagu nupp —
+                    omanik ei saanud aru, et sinna saab vajutada. */}
+                <div className="sl-entry-actions">
                   <button
                     type="button"
-                    className="sl-tab"
+                    className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
                     disabled={finalizing === entry.id}
-                    onClick={() => finalize(entry.id)}
+                    aria-pressed={Boolean(entry.confirmedManually)}
+                    onClick={() => toggleManualConfirm(entry)}
                   >
-                    {finalizing === entry.id
-                      ? t("service_log.form.saving", "")
-                      : t("service_log.list.finalize", "")}
+                    {t("service_log.list.manual_confirm", "")}
                   </button>
-                ) : null}
+                  {entry.status === "DRAFT" ? (
+                    <button
+                      type="button"
+                      className="sl-entry-btn is-primary"
+                      disabled={finalizing === entry.id}
+                      onClick={() => finalize(entry.id)}
+                    >
+                      {finalizing === entry.id
+                        ? t("service_log.form.saving", "")
+                        : t("service_log.list.finalize", "")}
+                    </button>
+                  ) : null}
+                </div>
               </li>
             ))}
           </ul>

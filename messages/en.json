@@ -8448,7 +8448,8 @@
       "reports": "Reports issued",
       "report_meta": "{format} · {date}",
       "report_issued_times": "issued {count} times",
-      "report_stored": "a copy is kept in documents"
+      "report_stored": "a copy is kept in documents",
+      "report_open": "Open the report"
     },
     "rhythms": {
       "feedback_survey": "Feedback survey",
@@ -8710,20 +8711,19 @@
       }
     },
     "permission": {
-      "title": "Location permission",
-      "why": "The location stamp shows the visit happened on site. The browser asks for permission only when you request it — press the button and choose “Allow”.",
       "allow": "Allow location",
       "ok": "Location works.",
       "ok_accuracy": "Location works, accuracy ±{meters} m.",
       "ok_coarse": "Permission is granted, but accuracy is ±{meters} m — that does not prove presence. On a phone turn on GPS/location services; on a desktop the accuracy is usually poor anyway.",
       "failed": "No location arrived. Check that the device location service is on and try again.",
-      "denied": "Location permission is BLOCKED for this page. The page cannot switch it back on — only you can, in the browser settings.",
       "unsupported": "This browser provides no location. Visits can still be recorded — the times are saved.",
-      "not_ip": "The location comes from the device (GPS or Wi-Fi), not from the internet address. An IP-based location points at the operator's node and can be tens of kilometres off — we do not store a point like that.",
-      "steps": {
-        "android": "Open Chrome and tap the lock icon in the address bar|Choose “Permissions” or “Site settings”|Set “Location” to “Allow”|Come back and reload the page",
-        "ios": "Open iPhone “Settings” → “Safari” → “Location” and choose “Ask” or “Allow”|Check “Settings” → “Privacy & Security” → “Location Services” is on|Return to Safari and reload the page",
-        "desktop": "Click the icon next to the site name in the address bar|Choose “Site settings”|Set “Location” to “Allow”|Reload the page"
+      "denied_short": "Location will not be recorded - the browser blocks it for this page.",
+      "why_short": "The location stamp shows the visit happened on site.",
+      "how": "How do I switch the permission back on?",
+      "hint": {
+        "android": "In Chrome tap the lock icon in the address bar, choose “Permissions” → “Location” → “Allow”, then reload the page.",
+        "ios": "Settings → Safari → Location → “Ask” or “Allow”. Also check that Settings → Privacy → Location Services is on. Then reload the page.",
+        "desktop": "Click the icon next to the site name in the address bar, choose “Site settings” → “Location” → “Allow”, then reload the page."
       }
     },
     "route": {

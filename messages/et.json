@@ -8448,7 +8448,8 @@
       "reports": "Esitatud aruanded",
       "report_meta": "{format} · {date}",
       "report_issued_times": "väljastatud {count} korda",
-      "report_stored": "koopia on alles dokumentides"
+      "report_stored": "koopia on alles dokumentides",
+      "report_open": "Ava aruanne"
     },
     "rhythms": {
       "feedback_survey": "Tagasisideküsitlus",
@@ -8710,20 +8711,19 @@
       }
     },
     "permission": {
-      "title": "Asukohaluba",
-      "why": "Asukohatempel tõendab, et külastus toimus kohapeal. Brauser küsib luba ainult siis, kui sina seda palud — vajuta ja kinnita brauseri küsimusele „Luba”.",
       "allow": "Luba asukoht",
       "ok": "Asukoht töötab.",
       "ok_accuracy": "Asukoht töötab, täpsus ±{meters} m.",
       "ok_coarse": "Luba on olemas, aga täpsus on ±{meters} m — see ei tõenda kohalolekut. Telefonis lülita sisse GPS/asukohateenus; arvutis ongi täpsus tavaliselt kehv.",
       "failed": "Asukohta ei tulnud. Kontrolli, et seadme asukohateenus on sees, ja proovi uuesti.",
-      "denied": "Asukohaluba on selle lehe jaoks KEELATUD. Leht ei saa seda ise tagasi lülitada — selle saab teha ainult sina brauseri seadetes.",
       "unsupported": "See brauser ei anna asukohta. Külastusi saab märkida ka ilma — kirja lähevad kellaajad.",
-      "not_ip": "Asukoht tuleb seadmelt (GPS või WiFi), mitte interneti-aadressi järgi. IP-põhine asukoht näitab sideettevõtte sõlme ja võib eksida kümneid kilomeetreid — sellist punkti me ei salvesta.",
-      "steps": {
-        "android": "Ava Chrome ja vajuta aadressiribal lukuikoonile|Vali „Õigused” või „Site settings”|Sea „Asukoht” valikule „Luba”|Tule tagasi ja laadi leht uuesti",
-        "ios": "Ava iPhone'i „Seaded” → „Safari” → „Asukoht” ja vali „Küsi” või „Luba”|Kontrolli: „Seaded” → „Privaatsus ja turvalisus” → „Asukohateenused” on sees|Tule Safarisse tagasi ja laadi leht uuesti",
-        "desktop": "Vajuta aadressiribal lehe nime kõrval olevale ikoonile|Vali „Site settings” / „Saidi seaded”|Sea „Location” / „Asukoht” valikule „Allow” / „Luba”|Laadi leht uuesti"
+      "denied_short": "Asukohta ei märgita — brauser ei anna sellele lehele luba.",
+      "why_short": "Asukohatempel tõendab, et külastus toimus kohapeal.",
+      "how": "Kuidas luba tagasi sisse lülitada?",
+      "hint": {
+        "android": "Chrome'is vajuta aadressiribal lukuikoonile, vali „Õigused” → „Asukoht” → „Luba” ja laadi leht uuesti.",
+        "ios": "Seaded → Safari → Asukoht → „Küsi” või „Luba”. Kontrolli ka, et Seaded → Privaatsus → Asukohateenused on sees. Siis laadi leht uuesti.",
+        "desktop": "Vajuta aadressiribal lehe nime kõrval ikoonile, vali „Saidi seaded” → „Asukoht” → „Luba” ja laadi leht uuesti."
       }
     },
     "route": {

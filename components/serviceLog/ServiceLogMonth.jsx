@@ -206,6 +206,16 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
                   </span>
                 ) : null}
                 <span className="sl-source">{t("service_log.month.report_stored", "")}</span>
+                {/* SALVESTATUD ARUANNET PEAB SAAMA AVADA.
+                    Esimene versioon loetles aruanded, aga ei andnud ühtegi teed
+                    nendeni — omanik ütles otse: „ma ei saanud aruandeid avada".
+                    Loend, millest midagi ei avane, on halvem kui loendi
+                    puudumine: ta lubab midagi, mida ei ole. */}
+                <div className="sl-entry-actions">
+                  <a className="sl-entry-btn" href={`/api/documents/${item.id}/download`} download>
+                    {t("service_log.month.report_open", "")}
+                  </a>
+                </div>
               </li>
             ))}
           </ul>

@@ -28,7 +28,6 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import Button from "@/components/ui/Button";
 import {
   PERMISSION_STATE,
   captureLocationPoint,
@@ -79,53 +78,62 @@ export default function LocationPermission() {
   if (state === PERMISSION_STATE.GRANTED && !result) return null;
   if (state === null) return null;
 
-  const denied = state === PERMISSION_STATE.DENIED;
   const platform = guessPlatformHint();
 
-  return (
-    <section className={denied ? "sl-permission sl-permission-warn" : "sl-permission"}>
-      <h3 className="sl-list-title">{t("service_log.permission.title", "")}</h3>
+  /**
+   * ARVUTIS EI KÜSI ME MIDAGI.
+   *
+   * Omanik küsis otse: „me ei saa sellist teadet panna, on sellest reaalset
+   * kasu?" — ja arvuti kohta on aus vastus EI. Lauaarvutil ei ole GPS-i;
+   * brauser annab punkti WiFi-võrkude või IP järgi ja tema täpsus on sadu
+   * meetreid kuni kümneid kilomeetreid. Selline punkt EI TÕENDA kohalolekut
+   * niikuinii — loa palumine arvutis palub inimeselt õigust, mis talle midagi
+   * ei anna. Asukohatempel on VÄLITÖÖ vahend ja välitööd tehakse telefoniga.
+   *
+   * Mõõtmine ise jääb alles: kui punkt juhtub tulema ja on täpne, läheb ta
+   * kirja. Ära jääb ainult NÕUDMINE.
+   */
+  if (platform === "desktop" && state !== PERMISSION_STATE.GRANTED) return null;
 
+  const denied = state === PERMISSION_STATE.DENIED;
+
+  return (
+    <p className="sl-location-note">
       {state === PERMISSION_STATE.UNSUPPORTED ? (
-        <p className="sl-source">{t("service_log.permission.unsupported", "")}</p>
+        t("service_log.permission.unsupported", "")
       ) : denied ? (
         <>
-          {/* KEELDUMIST EI SAA LEHT TAGASI VÕTTA. Ainus aus vastus on täpne
-              tee seadetesse — seadme kaupa, sest nad on erinevad. */}
-          <p>{t("service_log.permission.denied", "")}</p>
-          <ol className="sl-permission-steps">
-            {(t(`service_log.permission.steps.${platform}`, "") || "")
-              .split("|")
-              .filter(Boolean)
-              .map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-          </ol>
+          {/* ÜKS LAUSE, MITTE SEIN.
+              Siin oli nelja sammuga juhend brauseri menüüdest, mis seisis
+              püsivalt vormi kohal. Ta oli korrektne ja kasutu: sotsiaaltöötaja
+              ei loe ekraanilt Chrome'i seadete teekonda, ja ainus asi, mida tal
+              päriselt teada on vaja, on see, ET asukohta ei märgita. Juhend
+              jääb alles, aga voldituna — kes tahab, avab. */}
+          {t("service_log.permission.denied_short", "")}{" "}
+          <details className="sl-location-help">
+            <summary>{t("service_log.permission.how", "")}</summary>
+            <span>{t(`service_log.permission.hint.${platform}`, "")}</span>
+          </details>
         </>
       ) : (
         <>
-          <p>{t("service_log.permission.why", "")}</p>
-          <Button type="button" onClick={ask} disabled={checking}>
+          {t("service_log.permission.why_short", "")}{" "}
+          <button type="button" className="sl-location-ask" onClick={ask} disabled={checking}>
             {t("service_log.permission.allow", "")}
-          </Button>
+          </button>
         </>
       )}
 
-      {result?.ok === false ? <p className="sl-source">{t("service_log.permission.failed", "")}</p> : null}
-      {result?.ok ? (
-        <p className={result.trusted ? "sl-source" : "sl-source sl-source-warn"}>
-          {result.acc === null
-            ? t("service_log.permission.ok", "")
-            : t(result.trusted ? "service_log.permission.ok_accuracy" : "service_log.permission.ok_coarse", "", {
-                meters: String(result.acc)
-              })}
-        </p>
-      ) : null}
-
-      {/* IP EI OLE ASUKOHT. Omanik mõõtis: avaliku IP järgi andis üks leht
-          täiesti vale koha ja ainus õige asi seal oli sideettevõtte nimi.
-          Seepärast on siin kirjas, MIS meie number tähendab. */}
-      <p className="sl-source">{t("service_log.permission.not_ip", "")}</p>
-    </section>
+      {result?.ok === false ? ` ${t("service_log.permission.failed", "")}` : ""}
+      {result?.ok
+        ? ` ${
+            result.acc === null
+              ? t("service_log.permission.ok", "")
+              : t(result.trusted ? "service_log.permission.ok_accuracy" : "service_log.permission.ok_coarse", "", {
+                  meters: String(result.acc)
+                })
+          }`
+        : ""}
+    </p>
   );
 }
