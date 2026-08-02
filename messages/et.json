@@ -8257,6 +8257,55 @@
     }
   },
   "service_log": {
+    "meta": {
+      "title": "Teenuspäevik",
+      "description": "Märgi teenus ära seal, kus töö lõpeb. Kuu lõpus sünnib samadest kirjetest aruanne."
+    },
+    "not_allowed": "See pind on teenuseosutaja vaates.",
+    "info": {
+      "title": "Teenuspäevik",
+      "what_title": "Milleks see on",
+      "what_entry": "Märgi teenus ära seal, kus töö lõpeb — mitte õhtul mälu järgi. Üks kirje on klient, teenus, kuupäev ja kogus.",
+      "what_output": "Kuu lõpus sünnib samadest kirjetest nii tööajaarvestus (arve alus) kui sisulise aruande mustand. Sisestad ühe korra, väljundeid on mitu.",
+      "what_units": "Kui märgid saabumise ja lahkumise kellaaja, arvutab süsteem kestuse ise.",
+      "privacy_title": "Mida siia EI kirjutata",
+      "privacy_note": "Märkus on lühike faktimärge aruande jaoks, mitte juhtumilugu. Tundlik sisu, diagnoosid ja kolmandate isikute andmed siia ei kuulu.",
+      "privacy_retention": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Ekslikku kirjet parandatakse, mitte ei kustutata.",
+      "privacy_location": "Asukohta ei salvestata. Kui omanik selle eraldi sisse lülitab, salvestatakse ainult üksik punkt kinnituse hetkel ja sulle näidatakse, mis salvestati — pidevat jälge ei koguta kunagi."
+    },
+    "form": {
+      "client": "Klient",
+      "service": "Teenus",
+      "service_choose": "Vali teenus",
+      "date": "Kuupäev",
+      "quantity": "Kogus",
+      "quantity_derived": "Tuletatud kellaaegadest — võid üle kirjutada.",
+      "unit": "Ühik",
+      "note": "Märkus",
+      "note_hint": "Lühike faktimärge aruande jaoks. Tundlikku sisu siia ei kirjutata.",
+      "save": "Salvesta kirje",
+      "saving": "Salvestan…"
+    },
+    "stamps": {
+      "group": "Külastuse märked",
+      "departed": "Läksin",
+      "arrived": "Kohal",
+      "left": "Lahkusin",
+      "returned": "Tagasi",
+      "optional": "valikuline"
+    },
+    "units": {
+      "hour": "tund",
+      "session": "kord",
+      "day": "ööpäev",
+      "month": "kuu"
+    },
+    "list": {
+      "title": "Viimased kirjed",
+      "empty": "Kirjeid veel ei ole.",
+      "load_error": "Kirjete laadimine ebaõnnestus.",
+      "travel": "sõiduaeg"
+    },
     "errors": {
       "not_found": "Teenuskirjet ei leitud.",
       "profile_not_found": "Teenuseprofiili ei leitud.",

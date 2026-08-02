@@ -8257,6 +8257,55 @@
     }
   },
   "service_log": {
+    "meta": {
+      "title": "Service log",
+      "description": "Record the service where the work ends. At month end the same entries become the report."
+    },
+    "not_allowed": "This surface is for the service provider view.",
+    "info": {
+      "title": "Service log",
+      "what_title": "What it is for",
+      "what_entry": "Record the service where the work ends — not in the evening from memory. One entry is client, service, date and quantity.",
+      "what_output": "At month end the same entries produce both the time sheet (invoice basis) and a draft of the narrative report. You enter once, the outputs are many.",
+      "what_units": "If you mark the arrival and departure times, the system works out the duration itself.",
+      "privacy_title": "What does NOT belong here",
+      "privacy_note": "The note is a short factual mark for the report, not a case story. Sensitive content, diagnoses and third-party data do not belong here.",
+      "privacy_retention": "A service entry is an invoice source document and is kept for 7 years. A mistaken entry is corrected, not deleted.",
+      "privacy_location": "Location is not stored. If the owner switches it on separately, only a single point at the moment of confirmation is stored and you are shown what was saved — a continuous trail is never collected."
+    },
+    "form": {
+      "client": "Client",
+      "service": "Service",
+      "service_choose": "Choose a service",
+      "date": "Date",
+      "quantity": "Quantity",
+      "quantity_derived": "Derived from the times — you can override it.",
+      "unit": "Unit",
+      "note": "Note",
+      "note_hint": "A short factual mark for the report. Do not write sensitive content here.",
+      "save": "Save entry",
+      "saving": "Saving…"
+    },
+    "stamps": {
+      "group": "Visit marks",
+      "departed": "Left for visit",
+      "arrived": "Arrived",
+      "left": "Departed",
+      "returned": "Back",
+      "optional": "optional"
+    },
+    "units": {
+      "hour": "hour",
+      "session": "session",
+      "day": "day",
+      "month": "month"
+    },
+    "list": {
+      "title": "Recent entries",
+      "empty": "No entries yet.",
+      "load_error": "Loading the entries failed.",
+      "travel": "travel time"
+    },
     "errors": {
       "not_found": "Service entry not found.",
       "profile_not_found": "Service provider profile not found.",
