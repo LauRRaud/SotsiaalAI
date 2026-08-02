@@ -1,0 +1,293 @@
+/* T25 ORG-FOUNDATION-V1 — organisatsiooni tööruumi kujundus (`ow-*`).
+ *
+ * Sama keel mis RAG admini `ra-*` ja analüütika `aa-*` süsteemidel: üks
+ * failiomanik, üks prefiks, ei ühtegi globaalset elemendiselektorit.
+ *
+ * KOGU RÜTM tuleb kolmest muutujast `.ow-shell`-il, et tihedust saaks muuta
+ * ühest kohast, mitte kolmekümnest.
+ *
+ * NB prefiksijärjekord: `-webkit-backdrop-filter` tuleb ENNE standardit,
+ * muidu jätab Lightning CSS duplikaadist viimase ja Chrome kaotab efekti.
+ */
+
+.ow-shell {
+  --ow-gap: 1rem;
+  --ow-pad: 1.25rem;
+  --ow-inner: 0.75rem;
+  --ow-radius: 14px;
+  --ow-border: color-mix(in srgb, currentColor 14%, transparent);
+  --ow-surface: color-mix(in srgb, currentColor 5%, transparent);
+  --ow-muted: color-mix(in srgb, currentColor 62%, transparent);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--ow-gap);
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: var(--ow-pad);
+  color: var(--documents-page-text, inherit);
+}
+
+.ow-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--ow-inner);
+}
+
+.ow-title {
+  margin: 0;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.ow-subtitle {
+  margin: 0;
+  color: var(--ow-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+.ow-card {
+  border: 1px solid var(--ow-border);
+  border-radius: var(--ow-radius);
+  background: var(--ow-surface);
+  padding: var(--ow-pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ow-inner);
+}
+
+.ow-grid {
+  display: grid;
+  gap: var(--ow-gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+}
+
+/* Privaatsusteade ei ole kaunistus: ta ütleb kasutajale, mida organisatsioon
+   EI näe. Seepärast on ta visuaalselt eristatud, mitte peenes kirjas allmärkus. */
+.ow-notice {
+  border: 1px solid var(--ow-border);
+  border-left-width: 3px;
+  border-radius: var(--ow-radius);
+  padding: var(--ow-inner) var(--ow-pad);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.ow-notice--privacy {
+  border-left-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+.ow-notice--warning {
+  border-left-color: #d97706;
+}
+
+.ow-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  border-bottom: 1px solid var(--ow-border);
+  padding-bottom: 0.5rem;
+}
+
+.ow-nav__link {
+  border-radius: 999px;
+  padding: 0.375rem 0.875rem;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+}
+
+.ow-nav__link:hover {
+  border-color: var(--ow-border);
+}
+
+/* Aktiivset lehte ei kanna ainult värv — `aria-current` on tõde ja rasvane
+   kiri + ääris on nähtav ka värvipimedale ja monokroomses teemas. */
+.ow-nav__link[aria-current="page"] {
+  border-color: var(--ow-border);
+  background: var(--ow-surface);
+  font-weight: 600;
+}
+
+.ow-nav__link:focus-visible,
+.ow-chip:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.ow-meta {
+  display: grid;
+  gap: var(--ow-inner);
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  margin: 0;
+}
+
+.ow-meta__term {
+  margin: 0;
+  color: var(--ow-muted);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ow-meta__value {
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  /* `anywhere` surub kitsad veerud ühe tähe laiuseks („püstine kiri") —
+     vaikimisi `break-word`, `anywhere` ainult ID-väljadel. */
+  overflow-wrap: break-word;
+}
+
+.ow-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ow-chip {
+  border: 1px solid var(--ow-border);
+  border-radius: 999px;
+  padding: 0.1875rem 0.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.ow-chip--scope {
+  border-style: dashed;
+}
+
+.ow-empty {
+  color: var(--ow-muted);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+/* Lai sisu keritakse OMA kastis — leht ise ei tohi kunagi horisontaalselt kerida. */
+.ow-tablewrap {
+  overflow-x: auto;
+  border: 1px solid var(--ow-border);
+  border-radius: var(--ow-radius);
+}
+
+.ow-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.ow-table caption {
+  text-align: left;
+  padding: var(--ow-inner) var(--ow-pad);
+  color: var(--ow-muted);
+  font-size: 0.875rem;
+}
+
+.ow-table th,
+.ow-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--ow-border);
+  vertical-align: top;
+}
+
+.ow-table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ow-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.ow-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ow-tree__item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  border-radius: 8px;
+}
+
+.ow-tree__item[data-depth="2"] { margin-inline-start: 1.25rem; }
+.ow-tree__item[data-depth="3"] { margin-inline-start: 2.5rem; }
+
+.ow-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ow-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125rem;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  padding: var(--ow-inner);
+  border: 1px dashed var(--ow-border);
+  border-radius: 8px;
+}
+
+/* Mobiilis muutub iga tabel kaartideks. Kontrollmõõt on 390×844. */
+@media (max-width: 40rem) {
+  .ow-shell {
+    --ow-pad: 0.875rem;
+    --ow-gap: 0.75rem;
+  }
+
+  .ow-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .ow-table tr {
+    display: block;
+    border-bottom: 1px solid var(--ow-border);
+    padding: var(--ow-inner) 0;
+  }
+
+  .ow-table td {
+    display: grid;
+    grid-template-columns: minmax(6rem, 40%) 1fr;
+    gap: 0.5rem;
+    border-bottom: 0;
+    padding: 0.1875rem 0.75rem;
+  }
+
+  .ow-table td::before {
+    content: attr(data-label);
+    color: var(--ow-muted);
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ow-nav__link,
+  .ow-chip {
+    transition: none;
+  }
+}

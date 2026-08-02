@@ -130,7 +130,7 @@ test("registry keeps case_work reserved; practice_reflection is supported since 
   assert.ok(SUPPORTED_WORKSPACE_KINDS.includes("practice_reflection"));
   assert.equal(SUPPORTED_WORKSPACE_KINDS.includes("case_work"), false);
   assert.equal(RESERVED_WORKSPACE_KINDS.includes("practice_reflection"), false);
-  // Supported list is exactly the six pre-existing adapters + practice_reflection.
+  // Kuus algset adapterit + practice_reflection (T21 P3) + org_space (T25 viil A).
   assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
     "room",
     "covision_case",
@@ -138,6 +138,7 @@ test("registry keeps case_work reserved; practice_reflection is supported since 
     "wellbeing_space",
     "mentoring_process",
     "field_visit",
+    "org_space",
     "practice_reflection"
   ]);
 });

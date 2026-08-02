@@ -319,6 +319,9 @@ enum ServiceMapGeocodingStatus {
 enum PreInquiryRecipientType {
   KOV_CONTACT
   SERVICE_PROVIDER
+  // T25 viil B: adressaat on organisatsiooni vastuvõtutiim, mitte konkreetne
+  // inimene. Pöörduja näeb enne saatmist just seda sõnastust (arenduskava §5.7).
+  ORGANIZATION_INBOX
 }
 
 enum PreInquiryDeliveryChannel {
@@ -577,6 +580,10 @@ enum InvitePaymentMode {
 enum BillingSource {
   SELF
   SPONSORED_BY_HOST
+  // T25 viil B: organisatsioon maksab pöörduja ligipääsu eest. TEADLIKULT
+  // eraldi väärtus `SPONSORED_BY_HOST`-ist — inimsponsor ja organisatsioon on
+  // eri maksjaklassid ja `payerSource` peab neid eristama (arenduskava §5.6).
+  SPONSORED_BY_ORGANIZATION
 }
 
 enum DocumentKind {
@@ -786,6 +793,28 @@ model User {
   mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
   mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
   fieldVisits                  FieldVisit[]               @relation("FieldVisitOwner")
+  // T25 ORG-FOUNDATION-V1: liikmesus on eraldi objekt, MITTE kasutaja väli.
+  // `User.role` jääb hinnastatavaks tootepersonaks; organisatsioonisisene
+  // õigus elab `OrganizationCapabilityGrant`-is (arenduskava §D3).
+  organizationMemberships          OrganizationMembership[]      @relation("OrganizationMembershipUser")
+  organizationMembershipsInvited   OrganizationMembership[]      @relation("OrganizationMembershipInvitedBy")
+  organizationsCreated             Organization[]                @relation("OrganizationCreatedBy")
+  organizationsVerified            Organization[]                @relation("OrganizationVerifiedBy")
+  organizationModulesActivated     OrganizationModule[]          @relation("OrganizationModuleActivatedBy")
+  organizationCapabilitiesGranted  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityGrantedBy")
+  organizationCapabilitiesRevoked  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityRevokedBy")
+  organizationInvitesSent          OrganizationInvite[]          @relation("OrganizationInviteInvitedBy")
+  organizationInvitesAccepted      OrganizationInvite[]          @relation("OrganizationInviteAcceptedBy")
+  // T25 viil B
+  organizationSeatPlansCreated     OrganizationSeatPlan[]        @relation("OrganizationSeatPlanCreatedBy")
+  organizationSeatsAssigned        OrganizationSeatAssignment[]  @relation("OrganizationSeatAssignedBy")
+  organizationWorkAssigned         OrganizationWorkAssignment[]  @relation("OrganizationWorkAssignedBy")
+  orgClientSponsorshipsSent        OrganizationClientSponsorship[] @relation("OrgClientSponsorshipInvitedBy")
+  orgClientSponsorshipsAccepted    OrganizationClientSponsorship[] @relation("OrgClientSponsorshipAcceptedBy")
+  // T25 viil C
+  organizationReportingLinesCreated OrganizationReportingLine[]     @relation("OrganizationReportingCreatedBy")
+  organizationSupportContactsCreated OrganizationSupportContact[]   @relation("OrganizationSupportContactCreatedBy")
+  wellbeingSupportShares           WellbeingSupportShare[]          @relation("WellbeingSupportShareOwner")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -874,6 +903,12 @@ model Subscription {
   billingSource     BillingSource      @default(SELF)
   sponsorUserId     String?
   inviteId          String?
+  /* T25 viil B: organisatsioon maksjana. TEADLIKULT eraldi väljad
+     `sponsorUserId`/`inviteId` kõrval — inimsponsor ja organisatsioon on eri
+     maksjad ning nende segamine teeks `payerSource` arvutuse mitmeseks.
+     Mõlemad on nullable ja vaikimisi NULL: olemasolevad tellimused ei muutu. */
+  sponsorOrganizationId    String?
+  orgClientSponsorshipId   String?
   validUntil        DateTime?
   nextBilling       DateTime?
   lastBilledAt      DateTime?
@@ -891,6 +926,11 @@ model Subscription {
   sponsorUser    User?           @relation("SubscriptionSponsorUser", fields: [sponsorUserId], references: [id], onDelete: SetNull)
   invite         Invite?         @relation("InviteGrantedSubscription", fields: [inviteId], references: [id], onDelete: SetNull)
   payments       Payment[]
+  /* SetNull mõlemal: organisatsiooni või sponsorluse kadumine EI tohi kustutada
+     inimese tellimust ega tema ligipääsu ajalugu (arenduskava §5.6 „ligipääsu
+     lõpp ei tohi sulgeda pöörduja oma andmete lugemist"). */
+  sponsorOrganization  Organization?                  @relation("SubscriptionSponsorOrganization", fields: [sponsorOrganizationId], references: [id], onDelete: SetNull)
+  orgClientSponsorship OrganizationClientSponsorship? @relation("SubscriptionOrgSponsorship", fields: [orgClientSponsorshipId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([status])
@@ -901,6 +941,8 @@ model Subscription {
   @@index([sponsorUserId])
   @@index([inviteId])
   @@index([planDefinitionId])
+  @@index([sponsorOrganizationId])
+  @@index([orgClientSponsorshipId])
 }
 
 model PlanDefinition {
@@ -1714,6 +1756,7 @@ model Municipality {
   helpOffers        HelpOffer[]
   kovAdmin          MunicipalityKovAdmin?
   serviceMapEntries ServiceMapEntry[]
+  organizations     Organization[]
 
   @@index([baseName])
   @@index([type])
@@ -1853,7 +1896,25 @@ model OrganizationAdminFile {
 
 model ServiceProviderProfile {
   id                          String                       @id @default(cuid())
-  ownerId                     String
+  /* T25 viil C (E8) — KAKS OMANDIREŽIIMI (arenduskava §5.9).
+     `ownerId` on nüüd NULLABLE: org-profiilil ei ole ühte inimomanikku ja
+     tema püsimine EI TOHI sõltuda ühe töötaja konto kustutamisest. Enne seda
+     viilu oli seos `onDelete: Cascade` — konto kustutus HÄVITAS profiili
+     (E0 leid L4). Nüüd `SetNull`.
+     Osalised unikaalindeksid migratsioonis: üks SOLO profiil `ownerId` kohta,
+     üks ORGANIZATION profiil `organizationId` kohta. Prisma `@@unique` seda ei
+     väljenda, sest ta ei tunne `WHERE`-i. */
+  ownerId                     String?
+  /* `@unique` on siin OHUTU ja sisuliselt õige: Postgresis EI OLE kaks NULL-i
+     võrdsed, seega piiramatu arv SOLO-profiile (organizationId = NULL) elab
+     kõrvuti, aga ühel organisatsioonil saab olla ainult üks põhiprofiil
+     (arenduskava §5.9).
+     `ownerId` jääb Prisma tasemel unikaalsuseta — tema piirang on OSALINE
+     (ainult SOLO-režiimis) ja elab migratsioonis. Nii saab solo-profiili
+     org-profiiliks teisendanud inimene hiljem endale uue solo-profiili teha,
+     ilma et vana omanikuviide teda blokiks. */
+  organizationId              String?                      @unique
+  ownershipMode               ServiceProviderOwnershipMode @default(SOLO)
   organizationName            String
   organizationType            String?
   registryCode                String?
@@ -1889,12 +1950,19 @@ model ServiceProviderProfile {
   createdAt                   DateTime                     @default(now())
   updatedAt                   DateTime                     @updatedAt
 
-  owner            User                      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  /* SetNull, MITTE Cascade: organisatsiooni profiil peab konto kustutamise üle
+     elama. Solo-profiili puhul jääb rida samuti alles — omanikuta solo-profiil
+     on nähtav ainult admin-rajal ja teda saab uuele omanikule määrata või
+     arhiveerida, mis on parem kui vaikne kadu. */
+  owner            User?                     @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  organization     Organization?             @relation(fields: [organizationId], references: [id], onDelete: SetNull)
   serviceMapEntry  ServiceMapEntry?
   serviceItems     ServiceProviderService[]
   serviceLocations ServiceProviderLocation[]
 
-  @@unique([ownerId])
+  // `@@unique([ownerId])` on ASENDATUD osaliste unikaalindeksitega migratsioonis.
+  @@index([ownershipMode, status])
+  @@index([organizationId])
   @@index([ownerId, updatedAt])
   @@index([status])
   @@index([mapVisible])
@@ -2058,6 +2126,11 @@ model PreInquiry {
   authorErasedAt          DateTime?
   recipientOwnerId        String?
   recipientEntryId        String?
+  /* T25 viil B: organisatsiooni vastuvõtulaud adressaadina. Nullable ja
+     vaikimisi NULL — olemasolevad eelpöördumised ei muutu. Adressaadiväljad
+     on TEADLIKULT eraldi, mitte üks polümorfne `recipientId`: iga adressaadi-
+     liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus. */
+  recipientOrganizationId String?
   sourceJourneyId         String?
   recipientType           PreInquiryRecipientType
   deliveryChannel         PreInquiryDeliveryChannel @default(INTERNAL)
@@ -2083,6 +2156,7 @@ model PreInquiry {
   author         User?            @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: SetNull)
   recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
   recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
+  recipientOrganization Organization? @relation("PreInquiryRecipientOrganization", fields: [recipientOrganizationId], references: [id], onDelete: SetNull)
   sourceJourney  Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)
   supersededBy   PreInquiry?      @relation("PreInquirySupersession", fields: [supersededById], references: [id], onDelete: SetNull)
   supersedes     PreInquiry?      @relation("PreInquirySupersession")
@@ -2095,6 +2169,10 @@ model PreInquiry {
   @@index([recipientOwnerId, recalledAt, updatedAt])
   @@index([recipientOwnerId, nextContactOn, status])
   @@index([recipientEntryId])
+  /* E0 leid L5: viiest olemasolevast adressaadiindeksist ei kata ükski
+     org-postkasti päringut. Need kaks on selle jaoks. */
+  @@index([recipientOrganizationId, status, updatedAt])
+  @@index([recipientOrganizationId, sentAt])
   @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
@@ -4287,4 +4365,683 @@ model MentoringAuditEvent {
   @@index([profileId, createdAt])
   @@index([relationId, createdAt])
   @@index([action, createdAt])
+}
+
+// ---------------------------------------------------------------------------
+// T25 ORG-FOUNDATION-V1 (viil A) — KOV-i ja teenuseosutaja organisatsioonikiht.
+//
+// PIIR, mida ei tohi hägustada: need mudelid EI OLE seotud `OrganizationAdmin`
+// ega `MunicipalityKovAdmin` mudelitega. Need kaks on RAG-allikate
+// haldusregistrid; `OrganizationAdminFile.organizationId` viitab
+// `OrganizationAdmin`-ile, MITTE siinsele `Organization`-ile. Iga uus
+// `organizationId` selles plokis tähendab ainult `Organization.id`.
+//
+// Organisatsiooniõigus EI asenda ühegi olemasoleva objekti owner-/participant-
+// kontrolli. Siin ei ole ühtegi viidet `WellbeingRecord`-ile, `Conversation`-ile,
+// `Journey`-le, `UserDocument`-ile, supervisioonile ega mentorlusele — see on
+// invariant, mitte tegemata töö (arenduskava §4, §D8).
+//
+// Enumitesse on teadlikult lisatud AINULT CORE-V1 viilu A väärtused. Postgres
+// ei võimalda enum-väärtust hiljem lihtsalt eemaldada, seega „reserveeritud"
+// capability'd (AGGREGATE_VIEWER, REPORT_APPROVER, SCHEDULER,
+// ON_CALL_COORDINATOR) ja moodulid (WELLBEING_AGGREGATE, ON_CALL) lisab see
+// viil, mis nad päriselt kasutusele võtab (`ALTER TYPE ... ADD VALUE`).
+// ---------------------------------------------------------------------------
+
+enum OrganizationLegalKind {
+  MUNICIPALITY
+  PUBLIC_AGENCY
+  COMPANY
+  NGO
+  FOUNDATION
+  SOLE_PROPRIETOR
+  OTHER
+}
+
+enum OrganizationStatus {
+  DRAFT
+  PENDING_VERIFICATION
+  ACTIVE
+  SUSPENDED
+  ARCHIVED
+}
+
+enum OrganizationModuleKey {
+  KOV_INTAKE
+  SERVICE_DELIVERY
+  PROFESSIONAL_SUPPORT
+  ORG_KNOWLEDGE
+}
+
+enum OrganizationModuleStatus {
+  DRAFT
+  ACTIVE
+  SUSPENDED
+}
+
+enum OrganizationUnitType {
+  DEPARTMENT
+  TEAM
+  SERVICE_LOCATION
+  OTHER
+}
+
+enum OrganizationUnitStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum OrganizationMembershipStatus {
+  ACTIVE
+  SUSPENDED
+  ENDED
+}
+
+// TEADLIKULT ilma `CLIENT`-ita (arenduskava §D6, otsus O-E0-1): pöörduja
+// sponsoreeritud ligipääs ei ole töötajakoht ega organisatsiooniliikmesus.
+enum OrganizationSeatRole {
+  SOCIAL_WORKER
+  SERVICE_PROVIDER
+}
+
+enum OrganizationCapability {
+  ORG_OWNER
+  MEMBER_ADMIN
+  UNIT_LEAD
+  INBOX_COORDINATOR
+  WORK_ASSIGNER
+  SERVICE_PROFILE_EDITOR
+  SUPPORT_CONTACT_ADMIN
+  BILLING_MANAGER
+  AUDIT_VIEWER
+}
+
+enum OrganizationCapabilityScopeType {
+  ORGANIZATION
+  UNIT
+}
+
+enum OrganizationInviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REVOKED
+  EXPIRED
+}
+
+model Organization {
+  id               String                @id @default(cuid())
+  displayName      String
+  legalName        String?
+  registryCode     String?
+  legalKind        OrganizationLegalKind
+  municipalityId   String?
+  status           OrganizationStatus    @default(DRAFT)
+  defaultLocale    String                @default("et")
+  timezone         String                @default("Europe/Tallinn")
+  createdByUserId  String?
+  verifiedAt       DateTime?
+  verifiedByUserId String?
+  verificationNote String?
+  activatedAt      DateTime?
+  suspendedAt      DateTime?
+  suspendedReason  String?
+  archivedAt       DateTime?
+  archivedReason   String?
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+
+  // SetNull kõikjal: konto kustutamine ei tohi organisatsiooni kaotada ega
+  // blokeeruda (arenduskava §E10 „konto jääb alles", GDPR-kustutusrada).
+  municipality Municipality? @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
+  createdBy    User?         @relation("OrganizationCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  verifiedBy   User?         @relation("OrganizationVerifiedBy", fields: [verifiedByUserId], references: [id], onDelete: SetNull)
+
+  modules     OrganizationModule[]
+  units       OrganizationUnit[]
+  memberships OrganizationMembership[]
+  invites     OrganizationInvite[]
+  // T25 viil B
+  seatPlans              OrganizationSeatPlan[]
+  inboxItems             OrganizationInboxItem[]
+  clientSponsorships     OrganizationClientSponsorship[]
+  // T25 viil C
+  supportContacts        OrganizationSupportContact[]
+  supportShares          WellbeingSupportShare[]
+  serviceProviderProfile ServiceProviderProfile?
+  preInquiries           PreInquiry[]                   @relation("PreInquiryRecipientOrganization")
+  sponsoredSubscriptions Subscription[]                 @relation("SubscriptionSponsorOrganization")
+
+  @@index([status])
+  @@index([legalKind])
+  @@index([municipalityId])
+  @@index([createdByUserId])
+  @@index([registryCode])
+}
+
+model OrganizationModule {
+  id                String                   @id @default(cuid())
+  organizationId    String
+  moduleKey         OrganizationModuleKey
+  status            OrganizationModuleStatus @default(DRAFT)
+  validFrom         DateTime                 @default(now())
+  validUntil        DateTime?
+  activatedByUserId String?
+  reason            String?
+  createdAt         DateTime                 @default(now())
+  updatedAt         DateTime                 @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  activatedBy  User?        @relation("OrganizationModuleActivatedBy", fields: [activatedByUserId], references: [id], onDelete: SetNull)
+
+  // Üks AKTIIVNE moodul organisatsiooni + moodulivõtme kohta on osaline
+  // unikaalsus → raw-SQL indeks migratsioonis, mitte @@unique siin.
+  @@index([organizationId, status])
+  @@index([moduleKey, status])
+}
+
+model OrganizationUnit {
+  id             String                 @id @default(cuid())
+  organizationId String
+  parentUnitId   String?
+  type           OrganizationUnitType   @default(TEAM)
+  name           String
+  status         OrganizationUnitStatus @default(ACTIVE)
+  sortOrder      Int                    @default(0)
+  // Juuretasand = 1, maksimaalne toetatud sügavus V1-s = 3 (arenduskava §5.2).
+  // Salvestatud, et sügavuskontroll ei nõuaks rekursiivset päringut igal kirjutusel.
+  depth          Int                    @default(1)
+  archivedAt     DateTime?
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  // Restrict: alamüksusega üksust ei saa vaikselt ära kustutada.
+  parentUnit   OrganizationUnit? @relation("OrganizationUnitTree", fields: [parentUnitId], references: [id], onDelete: Restrict)
+
+  childUnits       OrganizationUnit[]            @relation("OrganizationUnitTree")
+  membershipUnits  OrganizationMembershipUnit[]
+  capabilityGrants OrganizationCapabilityGrant[]
+  invites          OrganizationInvite[]
+  inboxItems       OrganizationInboxItem[]
+  supportContacts  OrganizationSupportContact[]
+
+  @@index([organizationId, status, sortOrder])
+  @@index([organizationId, parentUnitId])
+  @@index([parentUnitId])
+}
+
+model OrganizationMembership {
+  id              String                       @id @default(cuid())
+  organizationId  String
+  userId          String
+  status          OrganizationMembershipStatus @default(ACTIVE)
+  seatRole        OrganizationSeatRole
+  jobTitle        String?
+  startedAt       DateTime                     @default(now())
+  endedAt         DateTime?
+  endedReason     String?
+  invitedByUserId String?
+  createdAt       DateTime                     @default(now())
+  updatedAt       DateTime                     @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user         User         @relation("OrganizationMembershipUser", fields: [userId], references: [id], onDelete: Cascade)
+  invitedBy    User?        @relation("OrganizationMembershipInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+
+  units            OrganizationMembershipUnit[]
+  capabilityGrants OrganizationCapabilityGrant[]
+  // T25 viil B
+  seatAssignments  OrganizationSeatAssignment[]
+  workAssignments  OrganizationWorkAssignment[] @relation("OrganizationWorkAssignmentAssignee")
+  // T25 viil C
+  reportingAsMember   OrganizationReportingLine[]  @relation("OrganizationReportingMember")
+  reportingAsManager  OrganizationReportingLine[]  @relation("OrganizationReportingManager")
+  supportContacts     OrganizationSupportContact[]
+  receivedSupportShares WellbeingSupportShare[]    @relation("WellbeingSupportShareRecipient")
+
+  // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
+  @@index([organizationId, status])
+  @@index([userId, status])
+  @@index([organizationId, seatRole, status])
+}
+
+model OrganizationMembershipUnit {
+  id           String    @id @default(cuid())
+  membershipId String
+  unitId       String
+  isPrimary    Boolean   @default(false)
+  startedAt    DateTime  @default(now())
+  endedAt      DateTime?
+  createdAt    DateTime  @default(now())
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  unit       OrganizationUnit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  // Üks aktiivne põhiüksus liikmesuse kohta ja üks aktiivne rida
+  // (membership, unit) kohta → osalised unikaalindeksid migratsioonis.
+  // Üksuse vahetus lõpetab vana rea (`endedAt`), ei kustuta ajalugu.
+  @@index([membershipId, endedAt])
+  @@index([unitId, endedAt])
+}
+
+model OrganizationCapabilityGrant {
+  id              String                          @id @default(cuid())
+  membershipId    String
+  capability      OrganizationCapability
+  scopeType       OrganizationCapabilityScopeType @default(ORGANIZATION)
+  scopeUnitId     String?
+  validFrom       DateTime                        @default(now())
+  validUntil      DateTime?
+  revokedAt       DateTime?
+  revokedByUserId String?
+  grantedByUserId String?
+  reason          String?
+  createdAt       DateTime                        @default(now())
+  updatedAt       DateTime                        @updatedAt
+
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  /* Cascade, MITTE Restrict: tavakäigus üksust ei kustutata (ta arhiveeritakse
+     ja arhiveerimine on `archiveUnit` väravate taga). Restrict blokeeriks aga
+     organisatsiooni PÄRIS kustutamise — org → üksus kaskaad jääks grandi taha
+     kinni ja ükski andmekustutuse rada ei töötaks. Üksuseta üksuse-skoop on
+     niikuinii mõttetu. */
+  scopeUnit  OrganizationUnit?      @relation(fields: [scopeUnitId], references: [id], onDelete: Cascade)
+  grantedBy  User?                  @relation("OrganizationCapabilityGrantedBy", fields: [grantedByUserId], references: [id], onDelete: SetNull)
+  revokedBy  User?                  @relation("OrganizationCapabilityRevokedBy", fields: [revokedByUserId], references: [id], onDelete: SetNull)
+
+  // XOR scopeType/scopeUnitId on DB CHECK migratsioonis: UNIT nõuab üksust,
+  // ORGANIZATION keelab selle. Prisma skeemikeel seda ei väljenda.
+  @@index([membershipId, revokedAt])
+  @@index([capability, revokedAt])
+  @@index([scopeUnitId, revokedAt])
+}
+
+model OrganizationInvite {
+  id                 String                   @id @default(cuid())
+  organizationId     String
+  email              String
+  tokenHash          String                   @unique
+  status             OrganizationInviteStatus @default(PENDING)
+  seatRole           OrganizationSeatRole
+  primaryUnitId      String?
+  capabilityTemplate String?
+  jobTitle           String?
+  invitedByUserId    String?
+  expiresAt          DateTime
+  acceptedAt         DateTime?
+  acceptedByUserId   String?
+  declinedAt         DateTime?
+  revokedAt          DateTime?
+  revokedByUserId    String?
+  createdAt          DateTime                 @default(now())
+  updatedAt          DateTime                 @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  primaryUnit  OrganizationUnit? @relation(fields: [primaryUnitId], references: [id], onDelete: SetNull)
+  invitedBy    User?             @relation("OrganizationInviteInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  acceptedBy   User?             @relation("OrganizationInviteAcceptedBy", fields: [acceptedByUserId], references: [id], onDelete: SetNull)
+
+  // Üks PENDING kutse org + e-posti (lower) kohta → osaline unikaalindeks migratsioonis.
+  @@index([organizationId, status])
+  @@index([email, status])
+  @@index([expiresAt])
+}
+
+// ---------------------------------------------------------------------------
+// T25 ORG-FUNDING-INBOX-V1 (viil B) — rahastus ja vastuvõtulaud.
+//
+// KOLM PIIRI, mis tulevad otse omaniku otsusest O-E0-1 ja arenduskava §D6-st:
+//
+//   1. `OrganizationSeatPlan.seatRole` on `OrganizationSeatRole` ehk AINULT
+//      SOCIAL_WORKER | SERVICE_PROVIDER. Pöörduja koht siin PUUDUB ja ei tule.
+//   2. Pöörduja sponsorlus elab eraldi mudelis `OrganizationClientSponsorship`
+//      ja EI OLE ruumiga seotud. Olemasolev `Invite` (roomId NOT NULL) jääb
+//      puutumata — teda ei muudeta ebamääraseks üldkutseks.
+//   3. Sponsoreeritud pöörduja ei saa `OrganizationMembership`-i ega kohta.
+//      Ta saab tellimuse, mille maksja on organisatsioon.
+//
+// HIND on lepinguline SNAPSHOT (`unitPriceCents`), mitte viide jooksvale
+// hinnakirjale: hilisem avaliku hinna muutus EI tohi muuta juba sõlmitud
+// lepingut (arenduskava §D6, §5.6).
+// ---------------------------------------------------------------------------
+
+enum OrganizationSeatPlanSource {
+  PILOT
+  MANUAL_CONTRACT
+  INVOICE
+  FUTURE_CHECKOUT
+}
+
+enum OrganizationSeatPlanStatus {
+  DRAFT
+  ACTIVE
+  ENDED
+}
+
+enum OrganizationSeatAssignmentStatus {
+  ACTIVE
+  SUSPENDED
+  ENDED
+}
+
+// V1-s on ainus vastuvõtu allikas eelpöördumine. Enum, mitte vaba string:
+// uus allikaliik peab olema teadlik migratsioon, mitte kirjaviga.
+enum OrganizationInboxSourceType {
+  PRE_INQUIRY
+}
+
+enum OrganizationInboxStatus {
+  RECEIVED
+  REVIEWING
+  ASSIGNMENT_PENDING
+  ASSIGNED
+  ACCEPTED
+  CLOSED
+  REJECTED
+  RECALLED
+}
+
+enum OrganizationWorkAssignmentStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  HANDED_OVER
+  ENDED
+}
+
+enum OrganizationClientSponsorshipStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REVOKED
+  EXPIRED
+}
+
+model OrganizationSeatPlan {
+  id              String                     @id @default(cuid())
+  organizationId  String
+  seatRole        OrganizationSeatRole
+  seatLimit       Int
+  unitPriceCents  Int
+  currency        String                     @default("EUR")
+  billingInterval BillingInterval            @default(MONTHLY)
+  source          OrganizationSeatPlanSource @default(MANUAL_CONTRACT)
+  // Avalikust hinnast erinev ühikuhind NÕUAB põhjust. Kontroll on ka
+  // teenusekihis, aga siin on ta DB CHECK — soodustus ilma jäljeta on
+  // auditi auk, mitte mugavus.
+  priceReason     String?
+  validFrom       DateTime                   @default(now())
+  validUntil      DateTime?
+  status          OrganizationSeatPlanStatus @default(DRAFT)
+  createdByUserId String?
+  createdAt       DateTime                   @default(now())
+  updatedAt       DateTime                   @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  createdBy    User?        @relation("OrganizationSeatPlanCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  assignments OrganizationSeatAssignment[]
+
+  // Üks AKTIIVNE plaan org + koharolli kohta → osaline unikaalindeks migratsioonis.
+  @@index([organizationId, status])
+  @@index([seatRole, status])
+}
+
+model OrganizationSeatAssignment {
+  id               String                           @id @default(cuid())
+  seatPlanId       String
+  membershipId     String
+  status           OrganizationSeatAssignmentStatus @default(ACTIVE)
+  startedAt        DateTime                         @default(now())
+  endedAt          DateTime?
+  endedReason      String?
+  assignedByUserId String?
+  createdAt        DateTime                         @default(now())
+  updatedAt        DateTime                         @updatedAt
+
+  seatPlan   OrganizationSeatPlan   @relation(fields: [seatPlanId], references: [id], onDelete: Cascade)
+  membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  assignedBy User?                  @relation("OrganizationSeatAssignedBy", fields: [assignedByUserId], references: [id], onDelete: SetNull)
+
+  // Üks AKTIIVNE koht liikmesuse kohta → osaline unikaalindeks migratsioonis.
+  // Kohti EI "stack'ita" kvoodi korrutamiseks (arenduskava §5.6).
+  @@index([seatPlanId, status])
+  @@index([membershipId, status])
+}
+
+model OrganizationInboxItem {
+  id                      String                      @id @default(cuid())
+  organizationId          String
+  unitId                  String?
+  sourceType              OrganizationInboxSourceType
+  sourceId                String
+  status                  OrganizationInboxStatus     @default(RECEIVED)
+  receivedAt              DateTime                    @default(now())
+  lastTransitionAt        DateTime                    @default(now())
+  dueAt                   DateTime?
+  // Saatja OMA märge, MITTE AI triaaž (arenduskava §5.7; §13 jätab
+  // "AI automaatne triaaž, sobivus-, riski- või kvaliteediotsus" ulatusest välja).
+  urgencyDeclaredBySender String?
+  closedAt                DateTime?
+  closedReason            String?
+  createdAt               DateTime                    @default(now())
+  updatedAt               DateTime                    @updatedAt
+
+  organization Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  unit         OrganizationUnit? @relation(fields: [unitId], references: [id], onDelete: SetNull)
+
+  assignments OrganizationWorkAssignment[]
+
+  // Postkastikirje EI DUBLEERI lähteobjekti sisu — ta kannab ainult viidet ja
+  // seisu. Sisu loetakse alati lähteobjektist, saatja kinnitatud ulatuses.
+  @@unique([organizationId, sourceType, sourceId])
+  @@index([organizationId, status, receivedAt])
+  @@index([unitId, status])
+  @@index([sourceType, sourceId])
+}
+
+model OrganizationWorkAssignment {
+  id                     String                           @id @default(cuid())
+  inboxItemId            String
+  assigneeMembershipId   String
+  status                 OrganizationWorkAssignmentStatus @default(PENDING)
+  assignedByUserId       String?
+  assignedAt             DateTime                         @default(now())
+  acceptedAt             DateTime?
+  rejectedAt             DateTime?
+  rejectedReason         String?
+  endedAt                DateTime?
+  // Üleandmine on UUS määramine, mis viitab eelmisele — mitte vaikne
+  // ownerId ülekirjutus (arenduskava §5.7). Ajalugu säilib.
+  supersedesAssignmentId String?                          @unique
+  createdAt              DateTime                         @default(now())
+  updatedAt              DateTime                         @updatedAt
+
+  inboxItem  OrganizationInboxItem  @relation(fields: [inboxItemId], references: [id], onDelete: Cascade)
+  // Restrict: määratud töötaja liikmesust ei saa vaikselt ära kustutada nii,
+  // et töö jääks omanikuta. Offboarding peab töö enne üle andma.
+  assignee   OrganizationMembership @relation("OrganizationWorkAssignmentAssignee", fields: [assigneeMembershipId], references: [id], onDelete: Restrict)
+  assignedBy User?                  @relation("OrganizationWorkAssignedBy", fields: [assignedByUserId], references: [id], onDelete: SetNull)
+
+  supersedes   OrganizationWorkAssignment? @relation("OrganizationWorkAssignmentHandover", fields: [supersedesAssignmentId], references: [id], onDelete: SetNull)
+  supersededBy OrganizationWorkAssignment? @relation("OrganizationWorkAssignmentHandover")
+
+  // Üks ELAV määramine töö kohta → osaline unikaalindeks migratsioonis.
+  @@index([inboxItemId, status])
+  @@index([assigneeMembershipId, status])
+}
+
+/// Pöörduja organisatsioonipoolne sponsorlus — RUUMIST SÕLTUMATU (otsus O-E0-1).
+///
+/// MIKS EI SAA KASUTADA `Invite`-i: `Invite.roomId` on NOT NULL ja Cascade, mis
+/// tähendaks, et 200 elanikku sponsoreeriv KOV peaks looma 200 ruumi. Ja
+/// `Invite.sponsoredByOrgId` oli surnud veerg — `resolveSponsor()` tagastas alati
+/// `null` (E0 leiud L2/L3).
+///
+/// MIDA SEE EI TEE: ei loo `OrganizationMembership`-i, ei anna ühtegi
+/// organisatsioonivaate õigust, ei kasuta `OrganizationSeatPlan`-i. Pöörduja
+/// saab tellimuse, mille maksja on organisatsioon — ja mitte midagi muud.
+model OrganizationClientSponsorship {
+  id               String                              @id @default(cuid())
+  organizationId   String
+  email            String
+  tokenHash        String                              @unique
+  status           OrganizationClientSponsorshipStatus @default(PENDING)
+  // Hinnasnapshot: vaikimisi CLIENT 7,99 EUR, lepinguline hind eraldi põhjusega.
+  unitPriceCents   Int
+  currency         String                              @default("EUR")
+  priceReason      String?
+  invitedByUserId  String?
+  expiresAt        DateTime
+  acceptedAt       DateTime?
+  acceptedByUserId String?
+  declinedAt       DateTime?
+  revokedAt        DateTime?
+  revokedByUserId  String?
+  createdAt        DateTime                            @default(now())
+  updatedAt        DateTime                            @updatedAt
+
+  organization Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  invitedBy    User?        @relation("OrgClientSponsorshipInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  acceptedBy   User?        @relation("OrgClientSponsorshipAcceptedBy", fields: [acceptedByUserId], references: [id], onDelete: SetNull)
+
+  subscriptions Subscription[] @relation("SubscriptionOrgSponsorship")
+
+  // Üks PENDING sponsorlus org + e-posti (lower) kohta → osaline unikaalindeks.
+  @@index([organizationId, status])
+  @@index([email, status])
+  @@index([expiresAt])
+}
+
+// ---------------------------------------------------------------------------
+// T25 ORG-PROFILE-SUPPORT-V1 (viil C) — teenuseprofiil ja tööheaolu toe tarne.
+//
+// SELLE VIILU KANDEV PIIR (arenduskava §D8): tööheaolu LÄHTEKIRJE ei muutu
+// kunagi organisatsiooni varaks. `WellbeingRecord` ei saa siin ega kunagi
+// `organizationId` võtit ega juhi nähtavust — seda kontrollib test.
+//
+// Jagatav on AINULT kasutaja enda kinnitatud SNAPSHOT (`sharedSnapshotJson`),
+// mitte viide lähtekirjele. Saaja päring ei tohi kunagi jõuda `WellbeingRecord`
+// või `WellbeingOutputDraft` tabelini — seepärast ei ole `sourceDraftId` FK,
+// vaid VIIDE ILMA referentsiaalse seoseta (sama muster mis
+// `PracticeReflection.sourceKind/sourceId`).
+// ---------------------------------------------------------------------------
+
+enum OrganizationSupportContactType {
+  DIRECT_MANAGER
+  ALTERNATE_SUPPORT
+  SAFETY_CONTACT
+}
+
+enum WellbeingSupportShareStatus {
+  SENT
+  OPENED
+  RECALLED
+  CORRECTED
+  CLOSED
+}
+
+enum ServiceProviderOwnershipMode {
+  SOLO
+  ORGANIZATION
+}
+
+/// Otsese juhi seos. EI ANNA SISUÕIGUSI (arenduskava §5.4) — ta on ainult
+/// vaikeadressaat toeavalduse saatmisel ja töötaja võib valida ka alternatiivse
+/// tugikontakti. Seost ei tohi kasutada üheski capability-kontrollis.
+model OrganizationReportingLine {
+  id                  String    @id @default(cuid())
+  memberMembershipId  String
+  managerMembershipId String
+  validFrom           DateTime  @default(now())
+  validUntil          DateTime?
+  createdByUserId     String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  member    OrganizationMembership @relation("OrganizationReportingMember", fields: [memberMembershipId], references: [id], onDelete: Cascade)
+  manager   OrganizationMembership @relation("OrganizationReportingManager", fields: [managerMembershipId], references: [id], onDelete: Cascade)
+  createdBy User?                  @relation("OrganizationReportingCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  // Üks kehtiv juhiseos liikme kohta + „mõlemad sama organisatsiooni aktiivsed
+  // liikmesused" on osaline unikaalindeks ja teenusekihi invariant.
+  @@index([memberMembershipId, validUntil])
+  @@index([managerMembershipId, validUntil])
+}
+
+/// Organisatsiooni tugikontaktid. Arenduskava §5.8 nõuab, et professionaalse
+/// toe mooduli aktiveerimisel oleks VÄHEMALT ÜKS alternatiivne tugitee —
+/// töötaja ei tohi olla sunnitud pöörduma just oma otsese juhi poole.
+model OrganizationSupportContact {
+  id              String                          @id @default(cuid())
+  organizationId  String
+  unitId          String?
+  membershipId    String
+  contactType     OrganizationSupportContactType
+  validFrom       DateTime                        @default(now())
+  validUntil      DateTime?
+  createdByUserId String?
+  createdAt       DateTime                        @default(now())
+  updatedAt       DateTime                        @updatedAt
+
+  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  unit         OrganizationUnit?      @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  membership   OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  createdBy    User?                  @relation("OrganizationSupportContactCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+
+  supportShares WellbeingSupportShare[]
+
+  @@index([organizationId, contactType, validUntil])
+  @@index([unitId, validUntil])
+  @@index([membershipId, validUntil])
+}
+
+/// Tööheaolu toeavaldus — kasutaja ALGATATUD, kasutaja KINNITATUD, ühele
+/// valitud saajale.
+///
+/// MIDA SEE MUDEL EI TEE:
+///   - ei viita `WellbeingRecord`-ile ega `WellbeingOutputDraft`-ile FK-ga;
+///   - ei anna organisatsioonile vormi KASUTAMISE fakti (org näeb ainult talle
+///     saadetud avaldusi, mitte seda, et keegi vormi täitis);
+///   - ei tekita automaatset teavitust kriisisignaali korral (§D8).
+///
+/// `sharedSnapshotJson` on külmutatud koopia: hilisem lähtekirje muutmine või
+/// kustutamine EI muuda seda, mida saaja juba nägi.
+model WellbeingSupportShare {
+  id                     String                      @id @default(cuid())
+  ownerUserId            String
+  organizationId         String
+  recipientMembershipId  String
+  supportContactId       String?
+  /// VIIDE ILMA FK-ta ja TEADLIKULT: see on omaniku ja auditi sisekasutuseks.
+  /// Saaja päring ei tohi kunagi selle kaudu lähtekirjeni jõuda.
+  sourceDraftId          String?
+  sourceRecordId         String?
+  /// Kasutaja kinnitatud minimaalne jagatav koopia. Külmutatud.
+  sharedSnapshotJson     Json
+  snapshotSchemaVersion  String                      @default("1.0")
+  status                 WellbeingSupportShareStatus @default(SENT)
+  sentAt                 DateTime                    @default(now())
+  openedAt               DateTime?
+  recalledAt             DateTime?
+  correctedAt            DateTime?
+  closedAt               DateTime?
+  /// Parandus on UUS avaldus, mis viitab parandatavale — ajalugu ei kirjutata
+  /// vaikselt ümber (sama muster mis `WellbeingRecord.supersedesRecordId`).
+  supersedesShareId      String?                     @unique
+  createdAt              DateTime                    @default(now())
+  updatedAt              DateTime                    @updatedAt
+
+  owner          User                        @relation("WellbeingSupportShareOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  organization   Organization                @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  recipient      OrganizationMembership      @relation("WellbeingSupportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: Cascade)
+  supportContact OrganizationSupportContact? @relation(fields: [supportContactId], references: [id], onDelete: SetNull)
+
+  supersedes   WellbeingSupportShare? @relation("WellbeingSupportShareCorrection", fields: [supersedesShareId], references: [id], onDelete: SetNull)
+  supersededBy WellbeingSupportShare? @relation("WellbeingSupportShareCorrection")
+
+  @@index([ownerUserId, sentAt])
+  @@index([recipientMembershipId, status, sentAt])
+  @@index([organizationId, status])
 }
