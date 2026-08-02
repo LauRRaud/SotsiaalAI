@@ -1,0 +1,111 @@
+/**
+ * TEENUSPÄEVIK-V1 E2 — teenuskirjete API (loend + loomine).
+ *
+ * VÄRAV ON ESIMENE SAMM. `assertServiceLogEnabled` viskab 404, mitte 403:
+ * väljas väravaga ei tohi vastus paljastada, et selline pind olemas on.
+ *
+ * ROLLIPIIR ON KITSAS (leping 8.2): ainult `SERVICE_PROVIDER`. Platvormi
+ * admin EI kirjuta kellegi teise arve alusdokumente — tema rada on
+ * haldusvaadete lugemine, mitte sisestus.
+ */
+import { getServerSession } from "next-auth";
+import { authConfig } from "@/auth";
+import { roleFromSession } from "@/lib/authz";
+import { errorJson, json } from "@/lib/documents/server";
+import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
+import { safeError } from "@/lib/privacy/safeError";
+import { createEntry, getEntryDefaults, listEntries } from "@/lib/serviceLog/entries";
+import { ServiceLogError } from "@/lib/serviceLog/errors";
+import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const GET_LIMIT = 60;
+const POST_LIMIT = 60;
+
+async function requireProviderUser() {
+  const session = await getServerSession(authConfig).catch(() => null);
+  const userId = session?.user?.id ? String(session.user.id) : "";
+  if (!userId) return { ok: false, status: 401, message: "api.common.unauthorized" };
+  if (roleFromSession(session) !== "SERVICE_PROVIDER") {
+    return { ok: false, status: 403, message: "api.common.forbidden" };
+  }
+  return { ok: true, userId };
+}
+
+/**
+ * Väravaviga ja skoobiviga vastavad MÕLEMAD 404-ga, seega kutsuja ei saa
+ * eristada „funktsiooni ei ole" ja „see kirje ei ole sinu oma".
+ */
+function respondToError(error, route) {
+  if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
+    return errorJson(error.messageKey, error.status);
+  }
+  console.error(...safeError(`[${route}] unexpected`, error));
+  return errorJson("api.common.server_error", 500);
+}
+
+export async function GET(req) {
+  const auth = await requireProviderUser();
+  if (!auth.ok) return errorJson(auth.message, auth.status);
+
+  const limited = enforceChatRateLimit(req, {
+    scope: "service_entries_get",
+    userId: auth.userId,
+    limit: GET_LIMIT,
+    windowMs: RATE_LIMIT_WINDOW_MS
+  });
+  if (limited) return limited;
+
+  try {
+    const url = new URL(req.url);
+    /* `?defaults=1` tagastab TULETAMISOTSUSE, mitte kirjed: UI küsib enne vormi
+       näitamist, mida üldse küsida. Reeglid on serveri tõde, mitte kliendi
+       oletus — muidu tekiks kaks eri „mida küsida" loogikat. */
+    if (url.searchParams.get("defaults") === "1") {
+      const defaults = await getEntryDefaults(auth.userId, {
+        clientUserId: url.searchParams.get("clientUserId"),
+        clientDisplayName: url.searchParams.get("clientDisplayName")
+      });
+      return json({ defaults });
+    }
+
+    const entries = await listEntries(auth.userId, {
+      from: url.searchParams.get("from"),
+      to: url.searchParams.get("to"),
+      clientUserId: url.searchParams.get("clientUserId"),
+      clientDisplayName: url.searchParams.get("clientDisplayName"),
+      take: url.searchParams.get("take")
+    });
+    return json({ entries });
+  } catch (error) {
+    return respondToError(error, "service-entries GET");
+  }
+}
+
+export async function POST(req) {
+  const auth = await requireProviderUser();
+  if (!auth.ok) return errorJson(auth.message, auth.status);
+
+  const limited = enforceChatRateLimit(req, {
+    scope: "service_entries_post",
+    userId: auth.userId,
+    limit: POST_LIMIT,
+    windowMs: RATE_LIMIT_WINDOW_MS
+  });
+  if (limited) return limited;
+
+  try {
+    const body = await req.json().catch(() => null);
+    if (!body || typeof body !== "object") {
+      return errorJson("service_log.errors.invalid_input", 400);
+    }
+    const entry = await createEntry(auth.userId, body);
+    return json({ entry }, 201);
+  } catch (error) {
+    return respondToError(error, "service-entries POST");
+  }
+}

@@ -8255,5 +8255,23 @@
       "download": "Laadi eksport alla",
       "generated": "Koostatud"
     }
+  },
+  "service_log": {
+    "errors": {
+      "not_found": "Teenuskirjet ei leitud.",
+      "profile_not_found": "Teenuseprofiili ei leitud.",
+      "referral_not_found": "Suunamist ei leitud.",
+      "service_not_found": "Teenust ei leitud.",
+      "invalid_input": "Sisend ei ole korrektne.",
+      "conflict": "Toiming ei ole praegu võimalik.",
+      "client_required": "Lisa klient — kas platvormi kasutaja või nimi.",
+      "date_required": "Lisa teenuse kuupäev.",
+      "quantity_required": "Lisa kogus või kellaajad, millest kestus tuletada.",
+      "quantity_invalid": "Kogus peab olema positiivne arv.",
+      "quantity_too_large": "Kogus on ebausutavalt suur — kontrolli üle.",
+      "provenance_invalid": "Märkme päritolu ei ole tuntud väärtus.",
+      "stamp_order": "Ajatemplid on vales järjekorras.",
+      "retention_locked": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Paranda kirjet, kustutada ei saa."
+    }
   }
 }
