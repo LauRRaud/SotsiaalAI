@@ -8409,7 +8409,29 @@
       "arrived": "Arrived",
       "left": "Departed",
       "returned": "Back",
-      "optional": "optional"
+      "with_travel": "Include travel time",
+      "undo": "Correct the last mark",
+      "action": {
+        "departed": "Starting travel",
+        "arrived": "I have arrived",
+        "left": "I left",
+        "returned": "I am back"
+      },
+      "state": {
+        "idle": "The visit has not started yet.",
+        "departed": "Travelling since {time}.",
+        "arrived": "On site since {time}.",
+        "left": "You left at {time}.",
+        "returned": "Back at {time}.",
+        "done": "The visit is marked. Save the entry."
+      },
+      "next": "Next: {step}.",
+      "step": {
+        "departed": "mark the departure for the visit",
+        "arrived": "mark the arrival",
+        "left": "mark leaving",
+        "returned": "mark the return"
+      }
     },
     "units": {
       "hour": "hour",
@@ -8422,7 +8444,8 @@
       "empty": "No entries yet.",
       "load_error": "Loading the entries failed.",
       "finalize": "Confirm",
-      "travel": "travel time"
+      "travel": "travel time",
+      "retry": "Try again"
     },
     "errors": {
       "not_found": "Service entry not found.",

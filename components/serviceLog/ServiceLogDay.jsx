@@ -27,18 +27,74 @@
    Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 
-const STAMP_SEQUENCE = [
-  { key: VISIT_STAMP.DEPARTED, labelKey: "service_log.stamps.departed", optional: true },
-  { key: VISIT_STAMP.ARRIVED, labelKey: "service_log.stamps.arrived", optional: false },
-  { key: VISIT_STAMP.LEFT, labelKey: "service_log.stamps.left", optional: false },
-  { key: VISIT_STAMP.RETURNED, labelKey: "service_log.stamps.returned", optional: true }
+/**
+ * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
+ * seetoettu igauehe juurde kirjutama „valikuline" — sona, mis ei uetle
+ * kasutajale, MIDA teha, vaid ainult seda, et ta voib tegemata jaetta.
+ * Toeoevoos on igal hetkel tegelikult ainult UKS joergmine samm, seega on nuppe
+ * ueks ja tema funktsioon tuletatakse olemasolevatest templitest.
+ *
+ * KAKS JADA, mitte ueks valikuliste sammudega: soiduaeg kas arvestatakse voi ei.
+ * Nii kaob „valikuline" taeielikult — kumbki jada ei sisalda ueheski punktis
+ * sammu, mille voiks vahele jaetta.
+ */
+/* `VISIT_STAMP` vaeaertused on andmebaasi vaeljanimed (`departedForVisitAt`),
+   toelkevoetmed aga inimloetavad. `toLowerCase()` annaks „departedforvisitat" —
+   seega vahendaja, mitte automaatne teisendus. */
+const STAMP_KEY = Object.freeze({
+  [VISIT_STAMP.DEPARTED]: "departed",
+  [VISIT_STAMP.ARRIVED]: "arrived",
+  [VISIT_STAMP.LEFT]: "left",
+  [VISIT_STAMP.RETURNED]: "returned"
+});
+
+const FLOW_WITHOUT_TRAVEL = [VISIT_STAMP.ARRIVED, VISIT_STAMP.LEFT];
+const FLOW_WITH_TRAVEL = [
+  VISIT_STAMP.DEPARTED,
+  VISIT_STAMP.ARRIVED,
+  VISIT_STAMP.LEFT,
+  VISIT_STAMP.RETURNED
 ];
+
+/**
+ * Templid elasid ainult komponendi mälus: lehe värskendamine kustutas käigus
+ * oleva külastuse jäljetult. Just see on kõige tõenäolisem hetk, mil telefoni
+ * ekraan vahepeal lukku läheb.
+ *
+ * PÜSIB AINULT AEG, MITTE INIMENE. Kliendi nimi ja märkus jäävad teadlikult
+ * välja — need on isikuandmed ja `localStorage` ei ole koht, kus neid hoida.
+ */
+const DRAFT_KEY = "sotsiaalai.service_log.visit_draft";
+
+function readDraft() {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return null;
+    return {
+      stamps: parsed.stamps && typeof parsed.stamps === "object" ? parsed.stamps : {},
+      withTravel: Boolean(parsed.withTravel)
+    };
+  } catch {
+    return null;
+  }
+}
+
+function writeDraft(stamps, withTravel) {
+  if (typeof window === "undefined") return;
+  try {
+    if (!Object.keys(stamps || {}).length) window.localStorage.removeItem(DRAFT_KEY);
+    else window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ stamps, withTravel }));
+  } catch {}
+}
 
 function todayIso() {
   const now = new Date();
@@ -77,6 +133,13 @@ export default function ServiceLogDay() {
   const [serviceId, setServiceId] = useState("");
   const [note, setNote] = useState("");
   const [stamps, setStamps] = useState({});
+  const [withTravel, setWithTravel] = useState(false);
+  /* Viide, mitte soltuvus: nii jaeaevad `stampNow` ja `undoLastStamp` stabiilseks
+     ega sunni iga soiduaja luelitust kogu vormi uembervormistama. */
+  const withTravelRef = useRef(false);
+  useEffect(() => {
+    withTravelRef.current = withTravel;
+  }, [withTravel]);
   const [defaults, setDefaults] = useState(null);
 
   const loadEntries = useCallback(async () => {
@@ -149,8 +212,44 @@ export default function ServiceLogDay() {
     return Math.round((minutes / 60) * 100) / 100;
   }, [stamps, unit]);
 
+  /* Taastame poooleli kaeaesoleva kuelastuse alles pärast esimest renderdust:
+     `localStorage` ei ole serveris olemas ja `useState`-i algväärtusena tekitaks
+     see hüdratsiooni lahknevuse. */
+  useEffect(() => {
+    const draft = readDraft();
+    if (!draft || !Object.keys(draft.stamps).length) return;
+    setStamps(draft.stamps);
+    setWithTravel(draft.withTravel);
+  }, []);
+
+  const flow = withTravel ? FLOW_WITH_TRAVEL : FLOW_WITHOUT_TRAVEL;
+  /* Järgmine samm = esimene jada punkt, mida veel ei ole. `null` tähendab, et
+     külastus on läbi ja edasi minnakse salvestamisega. */
+  const nextStamp = flow.find((key) => !stamps[key]) || null;
+  const lastStamp = [...flow].reverse().find((key) => stamps[key]) || null;
+  const started = Boolean(lastStamp);
+
   const stampNow = useCallback((key) => {
-    setStamps((current) => ({ ...current, [key]: new Date().toISOString() }));
+    setStamps((current) => {
+      const next = { ...current, [key]: new Date().toISOString() };
+      writeDraft(next, withTravelRef.current);
+      return next;
+    });
+  }, []);
+
+  /* „Vajutasin valesti" on paratamatu, kui nuppu on ainult üks: eksliku
+     vajutuse hind on siin suurem kui nelja nupu paneelis, kus vale tempel jäi
+     lihtsalt teise lahtrisse. Võtab tagasi VIIMASE märke, mitte kõik. */
+  const undoLastStamp = useCallback(() => {
+    setStamps((current) => {
+      const order = withTravelRef.current ? FLOW_WITH_TRAVEL : FLOW_WITHOUT_TRAVEL;
+      const last = [...order].reverse().find((key) => current[key]);
+      if (!last) return current;
+      const next = { ...current };
+      delete next[last];
+      writeDraft(next, withTravelRef.current);
+      return next;
+    });
   }, []);
 
   /* KINNITAMINE PEAB OLEMA UI-s. Kirje sünnib mustandina ja eksport jätab
@@ -189,6 +288,8 @@ export default function ServiceLogDay() {
     setQuantity("");
     setNote("");
     setStamps({});
+    setWithTravel(false);
+    writeDraft({}, false);
     setDefaults(null);
     setServiceId("");
     setReferralId("");
@@ -301,24 +402,65 @@ export default function ServiceLogDay() {
           </label>
         ) : null}
 
-        <div className="sl-stamps" role="group" aria-label={t("service_log.stamps.group", "")}>
-          {STAMP_SEQUENCE.map((stamp) => (
-            <button
-              key={stamp.key}
-              type="button"
-              className={`sl-stamp${stamps[stamp.key] ? " is-done" : ""}`}
-              onClick={() => stampNow(stamp.key)}
-            >
-              <span className="sl-stamp-label">{t(stamp.labelKey, "")}</span>
-              <span className="sl-stamp-time">
-                {stamps[stamp.key]
-                  ? formatTime(stamps[stamp.key])
-                  : stamp.optional
-                    ? t("service_log.stamps.optional", "")
-                    : ""}
+        <div className="sl-flow" role="group" aria-label={t("service_log.stamps.group", "")}>
+          {/* Soiduaja valik on ENNE alustamist ja lukustub esimese maerke jaerel:
+              keskel uembervahetatuna tekiks jada, mille esimene samm on juba
+              moeoedas ja mille juurde ei saa enam tagasi. */}
+          <label className="sl-travel-toggle">
+            <input
+              type="checkbox"
+              name="withTravel"
+              checked={withTravel}
+              disabled={started}
+              onChange={(event) => {
+                setWithTravel(event.target.checked);
+                withTravelRef.current = event.target.checked;
+              }}
+            />
+            <span>{t("service_log.stamps.with_travel", "")}</span>
+          </label>
+
+          {/* Seis on nupu KOHAL, mitte nupu sees: kasutaja peab nagema, kus ta
+              jadas on, ka siis kui ta naeeb ekraani alles nuepu vajutamise
+              hetkel. `aria-live` teatab sammu ka ekraanilugejale. */}
+          {/* SEIS JA JAERGMINE SAMM ON KAKS ERI LAUSET. Kui „jaergmine" oli
+              seisutekstis sees, uetles ta soiduajata jadas „maergi
+              tagasijoudmine" — sammu, mida selles jadas ei olegi. Jaergmine
+              samm tuletatakse `nextStamp`-ist, seega ta EI SAA lahkneda
+              nupust, mis koervale ilmub. */}
+          <p className="sl-flow-status" aria-live="polite">
+            {lastStamp
+              ? t(`service_log.stamps.state.${STAMP_KEY[lastStamp]}`, "", {
+                  time: formatTime(stamps[lastStamp])
+                })
+              : t("service_log.stamps.state.idle", "")}
+            {nextStamp ? (
+              <span className="sl-flow-next">
+                {" "}
+                {t("service_log.stamps.next", "", {
+                  step: t(`service_log.stamps.step.${STAMP_KEY[nextStamp]}`, "")
+                })}
               </span>
+            ) : null}
+          </p>
+
+          {nextStamp ? (
+            <button
+              type="button"
+              className="sl-flow-button"
+              onClick={() => stampNow(nextStamp)}
+            >
+              {t(`service_log.stamps.action.${STAMP_KEY[nextStamp]}`, "")}
             </button>
-          ))}
+          ) : (
+            <p className="sl-flow-done">{t("service_log.stamps.state.done", "")}</p>
+          )}
+
+          {started ? (
+            <button type="button" className="sl-flow-undo" onClick={undoLastStamp}>
+              {t("service_log.stamps.undo", "")}
+            </button>
+          ) : null}
         </div>
 
         <div className="sl-row">
@@ -406,12 +548,19 @@ export default function ServiceLogDay() {
             {finalizeError}
           </p>
         ) : null}
+        {/* VEASEIS VAELISTAB TUEHJA SEISU. Varem kuvati korraga „laadimine
+            ebaoennestus" ja „kirjeid veel ei ole" — kasutaja ei saanud teada,
+            kumb on tosi, ja tal ei olnud uehtegi nuppu, millega uuesti proovida. */}
         {loadError ? (
-          <p className="sl-error" role="alert">
-            {typeof loadError === "string" ? loadError : t("service_log.list.load_error", "")}
-          </p>
-        ) : null}
-        {entries === null ? null : entries.length === 0 ? (
+          <div className="sl-load-error">
+            <p className="sl-error" role="alert">
+              {typeof loadError === "string" ? loadError : t("service_log.list.load_error", "")}
+            </p>
+            <button type="button" className="sl-tab" onClick={loadEntries}>
+              {t("service_log.list.retry", "")}
+            </button>
+          </div>
+        ) : entries === null ? null : entries.length === 0 ? (
           <p className="sl-empty">{t("service_log.list.empty", "")}</p>
         ) : (
           <ul className="sl-entries">

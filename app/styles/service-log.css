@@ -64,41 +64,91 @@
 
 /* Neli märget. Ruudustik, mis mahub mobiilis kahte veergu ja töölaual nelja —
  * nupp ei tohi kunagi olla väiksem kui 44 px puutesihtmärk. */
-.sl-stamps {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+/* JADANUPP. Ueks suur pind kogu laiuses, sest teda vajutatakse kaeigu pealt,
+   telefoniga, sageli uehe kaeega. Vana nelja nupu ruudustik on eemaldatud koos
+   „valikuline" sildiga — vt ServiceLogDay.jsx. */
+.sl-flow {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-2, 0.5rem);
 }
 
-.sl-stamp {
+.sl-travel-toggle {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.125rem;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.sl-travel-toggle input:disabled + span {
+  opacity: 0.55;
+}
+
+.sl-flow-status {
+  margin: 0;
+  font-size: 0.9375rem;
+  opacity: 0.85;
+  font-variant-numeric: tabular-nums;
+}
+
+/* UEMAR JA MITTE LEHELAIUNE. Kogu laiuses ristkuelik luges paneelina, mitte
+   nupuna — ta ei naeinud vaelja nagu miski, mida vajutatakse, vaid nagu riba.
+   Pill-kuju ja piiratud laius annavad talle nupu kuju; puutesihtmaerk jaeaeb
+   samaks, sest ta tuleb koergusest ja seespolsterdusest, mitte laiusest. */
+.sl-flow-button {
+  align-self: center;
+  width: auto;
+  min-width: min(16rem, 100%);
+  max-width: 100%;
+  /* 3.25rem = puutesihtmaerk ka kinnastega ja liikuvas soidukis. */
   min-height: 3.25rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-md, 0.5rem);
-  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
-  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: 1px solid var(--accent-border, rgb(140 200 255 / 55%));
+  background: var(--accent-soft-bg, rgb(140 200 255 / 12%));
   color: inherit;
   font: inherit;
-  text-align: left;
+  font-size: 1.0625rem;
+  font-weight: 600;
   cursor: pointer;
 }
 
-.sl-stamp.is-done {
-  border-color: var(--accent-border, rgb(140 200 255 / 55%));
-  background: var(--accent-soft-bg, rgb(140 200 255 / 12%));
-}
-
-.sl-stamp-label {
+.sl-flow-done {
+  margin: 0;
   font-weight: 600;
 }
 
-.sl-stamp-time {
-  font-size: 0.8125rem;
+/* Tagasivotmine on TEISEJAERGULINE: ta peab olema leitav, aga mitte
+   vookonkurent — muidu on ekraanil taas kaks vordset nuppu. */
+.sl-flow-undo {
+  align-self: flex-start;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.875rem;
   opacity: 0.75;
-  font-variant-numeric: tabular-nums;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Salvestusnupp jaergib sama reeglit mis jadanupp: ta on NUPP, mitte riba.
+   Vorm on `flex-column`, seega `align-items: stretch` venitas ta terve laiuse
+   peale (moodetud 355 px / 390 px vaateaknas) ja koergus jaei 38 px peale —
+   alla puutesihtmaergi. */
+.sl-form > button[type="submit"] {
+  align-self: center;
+  width: auto;
+  min-width: min(16rem, 100%);
+  min-height: 3rem;
+}
+
+.sl-load-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2, 0.5rem);
 }
 
 .sl-row {
@@ -141,10 +191,6 @@
 }
 
 @media (min-width: 40rem) {
-  .sl-stamps {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .sl-row {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
   }
@@ -152,7 +198,7 @@
 
 /* Liikumisvaesus: seisumuutus jääb, üleminek kaob. */
 @media (prefers-reduced-motion: reduce) {
-  .sl-stamp {
+  .sl-flow-button {
     transition: none;
   }
 }
@@ -369,7 +415,7 @@
  * VIGANE KAKS KORDA ja brauserikontroll näitas seda:
  *   1. platvormil on juba `:focus { outline: none }` +
  *      `:focus-visible { box-shadow: var(--focus-ring) }` — fookusrõngas on
- *      VARI, mitte outline, ja ta rakendub ka `.sl-tab`/`.sl-stamp` peal;
+ *      VARI, mitte outline, ja ta rakendub ka `.sl-tab`/`.sl-flow-button` peal;
  *   2. `--focus-ring` ON VARJU VÄÄRTUS (`0 0 0 2px …, 0 0 0 4.5px …`), mitte
  *      värv — tema kasutamine outline'i värvina tegi terve deklaratsiooni
  *      kehtetuks ja arvutatud `outline-style` jäi `none`-iks.
@@ -381,12 +427,13 @@
  * ja ainus töötav vahend ON outline süsteemi värviga. */
 @media (forced-colors: active) {
   .sl-tab:focus-visible,
-  .sl-stamp:focus-visible {
+  .sl-flow-button:focus-visible,
+  .sl-flow-undo:focus-visible {
     outline: 2px solid CanvasText;
   }
 
   .sl-tab.is-active,
-  .sl-stamp.is-done {
+  .sl-flow-button {
     border: 2px solid CanvasText;
   }
 }

@@ -8409,7 +8409,29 @@
       "arrived": "Kohal",
       "left": "Lahkusin",
       "returned": "Tagasi",
-      "optional": "valikuline"
+      "with_travel": "Arvesta sõiduaega",
+      "undo": "Paranda eelmist märget",
+      "action": {
+        "departed": "Alustan sõitu",
+        "arrived": "Olen kohal",
+        "left": "Lahkusin",
+        "returned": "Jõudsin tagasi"
+      },
+      "state": {
+        "idle": "Külastus ei ole veel alanud.",
+        "departed": "Sõidus alates {time}.",
+        "arrived": "Kohal alates {time}.",
+        "left": "Lahkusid kell {time}.",
+        "returned": "Tagasi kell {time}.",
+        "done": "Külastus on märgitud. Salvesta kirje."
+      },
+      "next": "Järgmine: {step}.",
+      "step": {
+        "departed": "märgi väljasõit",
+        "arrived": "märgi kohalejõudmine",
+        "left": "märgi lahkumine",
+        "returned": "märgi tagasijõudmine"
+      }
     },
     "units": {
       "hour": "tund",
@@ -8422,7 +8444,8 @@
       "empty": "Kirjeid veel ei ole.",
       "load_error": "Kirjete laadimine ebaõnnestus.",
       "finalize": "Kinnita",
-      "travel": "sõiduaeg"
+      "travel": "sõiduaeg",
+      "retry": "Proovi uuesti"
     },
     "errors": {
       "not_found": "Teenuskirjet ei leitud.",

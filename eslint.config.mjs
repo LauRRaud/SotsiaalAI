@@ -9,6 +9,13 @@ export default defineConfig([
   {
     ignores: [
       ".next/**",
+      /* PESASTATUD build-artefaktid. `.next/**` katab ainult juurkausta oma;
+         `.claude/worktrees/<nimi>/.next/**` jäi katmata ja `eslint .` luges
+         sisse tuhandeid minifitseeritud node_modules-tuekke. Kogu repo
+         lint-vaerav oli seetoettu 923 veaga punane, millest ueheski ei olnud
+         midagi kirjutatud. */
+      "**/.next/**",
+      ".claude/**",
       "node_modules/**",
       "out/**",
       "dist/**",
