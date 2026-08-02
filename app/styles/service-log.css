@@ -599,3 +599,41 @@
   font-size: 0.8125rem;
   line-height: 1.6;
 }
+
+/* PÄEVATEEKOND (E2c). Teekond on päeva raam, mitte üks kirje: ta saab oma
+ * piiri, et külastuste loend ei sulaks vormiga kokku. */
+.sl-route {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  margin: var(--space-3, 0.75rem) 0;
+  padding: 0.875rem;
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 16%));
+  border-radius: var(--radius-lg, 0.75rem);
+}
+
+.sl-route-summary {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.sl-route-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  align-items: center;
+}
+
+.sl-route-add {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+/* JOOKSEV KÜLASTUS on ainus, mille juures on otsus. Ta peab silma paistma ka
+ * siis, kui loend on pikk ja telefon on päikese käes. */
+.sl-entry-current {
+  border-left: 3px solid var(--accent-fg, #7fd1ff);
+  padding-left: 0.625rem;
+}

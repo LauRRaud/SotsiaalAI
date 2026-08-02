@@ -8758,7 +8758,8 @@
         "needs_correction": "vajab parandust"
       },
       "reason_prompt": "Miks? (jääb kirja)",
-      "make_entry": "Tee teenuskirje"
+      "make_entry": "Tee teenuskirje",
+      "address": "Aadress"
     }
   },
   "date_field": {

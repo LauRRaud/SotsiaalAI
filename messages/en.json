@@ -8758,7 +8758,8 @@
         "needs_correction": "needs correction"
       },
       "reason_prompt": "Why? (this is recorded)",
-      "make_entry": "Create a service entry"
+      "make_entry": "Create a service entry",
+      "address": "Address"
     }
   },
   "date_field": {

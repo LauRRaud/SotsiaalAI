@@ -37,12 +37,14 @@ import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constan
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
 import {
+  isServiceLogDayRouteUiEnabled,
   isServiceLogLocationStampUiEnabled,
   isServiceLogMeasurementUiEnabled
 } from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 import { clearVisitDraft, readVisitDraft, writeVisitDraft } from "@/lib/serviceLog/visitDraft";
 import LocationPermission from "./LocationPermission";
+import ServiceLogRoute from "./ServiceLogRoute";
 
 /**
  * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
@@ -791,6 +793,19 @@ export default function ServiceLogDay() {
             on olemas ja töötab. */}
         {isServiceLogLocationStampUiEnabled() ? <LocationPermission /> : null}
 
+        {/* KAKS VOOGU, ÜKS KORRAGA.
+            Päevateekond ASENDAB nelja märke voo, mitte ei seisa tema kõrval:
+            kaks konkureerivat „märgi külastus" mehhanismi ühel ekraanil
+            õpetaks kasutajale, et kumbki neist ei ole päris. Lipp otsustab,
+            kumb on nähtav — nii saab piloodi teha ühe meeskonnaga korraga ja
+            vana voog jääb puutumata. */}
+        {isServiceLogDayRouteUiEnabled() ? <ServiceLogRoute /> : null}
+
+        {/* NELJA MÄRKE VOOG (OSA I) — nähtav ainult siis, kui päevateekonda ei
+            ole. Vt kommentaari ülal: kaks voogu korraga oleks halvem kui
+            kumbki neist üksi. */}
+        {isServiceLogDayRouteUiEnabled() ? null : (
+          <>
         <h3 className="sl-group-title">{t("service_log.form.group_visit", "")}</h3>
         <div className="sl-flow" role="group" aria-label={t("service_log.stamps.group", "")}>
           {/* Soiduaja valik on ENNE alustamist ja lukustub esimese maerke jaerel:
@@ -863,6 +878,8 @@ export default function ServiceLogDay() {
             </button>
           ) : null}
         </div>
+          </>
+        )}
 
         {/* SUUNAMISE VALIK. Server ütleb `askReferral`, kui kliendil on mitu
             aktiivset suunamist — siis EI TOHI masin valida, sest vale
