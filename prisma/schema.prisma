@@ -5559,6 +5559,22 @@ model ServiceVisit {
   /// plaanist ja tema järgi saab töötaja navigeerida (E11). Asukohapunkt on
   /// eraldi väli ja tema allikas on seade.
   address           String?
+  /// AADRESSI KOORDINAAT MAA-AMETI REGISTRIST (in-ADS), mitte seadmest.
+  ///
+  /// Teenusekaart geokodeerib osutajate asukohti juba ammu
+  /// (`lib/serviceMap/geocoding.js`, serveris `GEOCODER_PROVIDER=maaruum`) ja
+  /// see kiht on siin lihtsalt kasutusele võetud. Ta annab kolm asja, mida
+  /// seadme GPS üksi ei anna:
+  ///   1. sõidulõigu kauguse ka siis, kui GPS-i luba puudub,
+  ///   2. RISTKONTROLLI mõõdetud punktile — kui seade ütleb Kopli ja aadress
+  ///      on Tabasalus, on üks neist vale ja seda saab NÄHA,
+  ///   3. navigatsiooni päris aadressile, mitte töötaja kirjaveale.
+  ///
+  /// EI ASENDA asukohatemplit: aadress ütleb, kuhu MINDI, tempel ütleb, kus
+  /// KEEGI OLI. Tõend on ainult teine.
+  addressLat        Float?
+  addressLng        Float?
+  addressAdsId      String?
   status            ServiceVisitStatus @default(PLANNED)
   /// Plaanitud algus. NULL = planeerimata töö, mille töötaja ise lisas —
   /// päevateekond peab toimima ka ilma päevaplaanita (leping E2a).

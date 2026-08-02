@@ -719,3 +719,19 @@
   font-size: 0.8125rem;
   cursor: pointer;
 }
+
+/* Aadressisoovitused Maa-ameti registrist. Loend on lühike ja klikitav —
+ * eesmärk on, et aadress tuleks registrist, mitte mälust. */
+.sl-suggest {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sl-suggest .sl-entry-btn {
+  text-align: left;
+  width: 100%;
+}

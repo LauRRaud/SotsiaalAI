@@ -8770,7 +8770,9 @@
       "km_confirmed": "{km} км",
       "km_unknown": "расстояние не измерено",
       "mileage_total": "Всего ≈ {km} км · {minutes} мин",
-      "km_missing": "отрезков без измерения: {count}"
+      "km_missing": "отрезков без измерения: {count}",
+      "km_address": "≈ {km} км (по адресу)",
+      "location_mismatch": "Измеренное местоположение в {km} км от адреса — проверьте, туда ли вы пришли."
     }
   },
   "date_field": {

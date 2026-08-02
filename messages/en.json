@@ -8770,7 +8770,9 @@
       "km_confirmed": "{km} km",
       "km_unknown": "distance not measured",
       "mileage_total": "Total ≈ {km} km · {minutes} min",
-      "km_missing": "{count} legs not measured"
+      "km_missing": "{count} legs not measured",
+      "km_address": "≈ {km} km (from the address)",
+      "location_mismatch": "The measured location is {km} km from the address — check that you are in the right place."
     }
   },
   "date_field": {

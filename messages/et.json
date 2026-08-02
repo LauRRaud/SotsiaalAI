@@ -8770,7 +8770,9 @@
       "km_confirmed": "{km} km",
       "km_unknown": "kaugus mõõtmata",
       "mileage_total": "Kokku ≈ {km} km · {minutes} min",
-      "km_missing": "{count} lõiku mõõtmata"
+      "km_missing": "{count} lõiku mõõtmata",
+      "km_address": "≈ {km} km (aadressi järgi)",
+      "location_mismatch": "Mõõdetud asukoht on aadressist {km} km kaugusel — kontrolli, kas oled õiges kohas."
     }
   },
   "date_field": {

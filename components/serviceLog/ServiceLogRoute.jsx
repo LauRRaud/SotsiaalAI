@@ -65,6 +65,10 @@ export default function ServiceLogRoute() {
   const [locationNote, setLocationNote] = useState(null);
   const [clientName, setClientName] = useState("");
   const [address, setAddress] = useState("");
+  /* AADRESSISOOVITUSED MAA-AMETI REGISTRIST. Vaba tekst tähendas kolme viga
+     korraga: navigatsioon valesse kohta, geokodeerimine ei leidnud midagi ja
+     sõidulõik jäi mõõtmata. */
+  const [suggestions, setSuggestions] = useState([]);
 
   /* Iga külastus saab oma põletusnumbri: hilinenud asukohavastus ei tohi
      jõuda JÄRGMISE kliendi kirje peale. Sama lõks mis OSA I-s. */
@@ -191,6 +195,31 @@ export default function ServiceLogRoute() {
     [call, load, t]
   );
 
+  /* Päring käib kirjutamise ajal, aga MITTE iga tähemärgi peale: väline
+     register ei ole meie oma ja teda ei koormata meie klaviatuuriga. */
+  useEffect(() => {
+    const query = address.trim();
+    if (query.length < 3) {
+      setSuggestions([]);
+      return undefined;
+    }
+    let cancelled = false;
+    const timer = window.setTimeout(async () => {
+      try {
+        const response = await fetch(`/api/service-visits/aadress?q=${encodeURIComponent(query)}`);
+        if (!response.ok) return;
+        const body = await response.json();
+        if (!cancelled) setSuggestions(Array.isArray(body.suggestions) ? body.suggestions : []);
+      } catch {
+        /* Soovituste puudumine tähendab „kirjuta ise", mitte tõrget. */
+      }
+    }, 350);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [address]);
+
   const addVisit = useCallback(async () => {
     if (!clientName.trim()) return;
     setBusy(true);
@@ -294,6 +323,18 @@ export default function ServiceLogRoute() {
                 {visit.address ? <span className="sl-entry-meta">{visit.address}</span> : null}
                 {visit.outcomeReason ? <span className="sl-source">{visit.outcomeReason}</span> : null}
 
+                {/* RISTKONTROLL. Ühe punkti puhul ei ole võimalik teada, kas ta
+                    on õige; kahe sõltumatu allika puhul on. Seade ütles Kopli,
+                    aadress on Tabasalus → töötaja NÄEB seda enne, kui kirje
+                    läheb arvele. */}
+                {visit.locationCheck?.mismatch ? (
+                  <span className="sl-source sl-source-warn">
+                    {t("service_log.route.location_mismatch", "", {
+                      km: String(visit.locationCheck.km)
+                    })}
+                  </span>
+                ) : null}
+
                 {/* Asukohateade ilmub SELLE külastuse alla ja alles pärast
                     vajutust — enne seda ei ole tal midagi öelda. */}
                 {locationNote?.visitId === visit.id ? (
@@ -360,9 +401,15 @@ export default function ServiceLogRoute() {
                 <span className="sl-entry-meta">
                   {leg.km === null
                     ? t("service_log.route.km_unknown", "")
-                    : t(leg.estimated ? "service_log.route.km_estimated" : "service_log.route.km_confirmed", "", {
-                        km: String(leg.km)
-                      })}
+                    : t(
+                        leg.source === "address"
+                          ? "service_log.route.km_address"
+                          : leg.estimated
+                            ? "service_log.route.km_estimated"
+                            : "service_log.route.km_confirmed",
+                        "",
+                        { km: String(leg.km) }
+                      )}
                   {leg.minutes !== null ? ` · ${leg.minutes} min` : ""}
                 </span>
               </li>
@@ -403,6 +450,25 @@ export default function ServiceLogRoute() {
                 maxLength={300}
               />
             </label>
+            {suggestions.length ? (
+              <ul className="sl-suggest">
+                {suggestions.map((item) => (
+                  <li key={`${item.label}-${item.adsId || ""}`}>
+                    <button
+                      type="button"
+                      className="sl-entry-btn"
+                      onClick={() => {
+                        setAddress(item.label);
+                        setSuggestions([]);
+                      }}
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
             <Button type="button" onClick={addVisit} disabled={busy || !clientName.trim()}>
               {t("service_log.route.add_visit", "")}
             </Button>
