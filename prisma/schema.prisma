@@ -793,6 +793,13 @@ model User {
   mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
   mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
   fieldVisits                  FieldVisit[]               @relation("FieldVisitOwner")
+  // TEENUSPÄEVIK-V1: kaks eri rolli, seega kaks eri seost. Sisestaja on
+  // spetsialist, klient on teenuse saaja — sama inimene EI ole kunagi mõlemad
+  // ühel kirjel, aga skeem ei tohi neid ühte lahtrisse suruda.
+  serviceEntriesEntered        ServiceEntry[]             @relation("ServiceEntryOwner")
+  serviceEntriesAsClient       ServiceEntry[]             @relation("ServiceEntryClient")
+  serviceReferralsAsClient     ServiceReferral[]          @relation("ServiceReferralClient")
+  serviceNarrativesAsClient    ServiceMonthlyNarrative[]  @relation("ServiceNarrativeClient")
   // T25 ORG-FOUNDATION-V1: liikmesus on eraldi objekt, MITTE kasutaja väli.
   // `User.role` jääb hinnastatavaks tootepersonaks; organisatsioonisisene
   // õigus elab `OrganizationCapabilityGrant`-is (arenduskava §D3).
@@ -1960,6 +1967,12 @@ model ServiceProviderProfile {
   serviceItems     ServiceProviderService[]
   serviceLocations ServiceProviderLocation[]
 
+  // TEENUSPÄEVIK-V1. NB seosed on `Restrict`, mitte `Cascade` — vt mudelite
+  // juures olevat säilituse-selgitust.
+  serviceReferrals  ServiceReferral[]
+  serviceEntries    ServiceEntry[]
+  serviceNarratives ServiceMonthlyNarrative[]
+
   // `@@unique([ownerId])` on ASENDATUD osaliste unikaalindeksitega migratsioonis.
   @@index([ownershipMode, status])
   @@index([organizationId])
@@ -2023,7 +2036,16 @@ model ServiceProviderService {
   createdAt                   DateTime                     @default(now())
   updatedAt                   DateTime                     @updatedAt
 
+  // TEENUSPÄEVIK-V1 mall B (hoolduspäevik) nõuab, et tegevused valitaks
+  // LOETELUST, mitte ei kirjutataks vabatekstina — see on Riigi Teataja
+  // koduteenuse kordade päris nõue. Kataloog elab teenuse küljes, sest
+  // „toimingud" on teenusepõhised: koduteenusel poeskäik, tugiisikul saatmine.
+  activityCatalog             String[]                     @default([])
+
   locationLinks ServiceProviderServiceLocation[]
+
+  serviceReferrals ServiceReferral[]
+  serviceEntries   ServiceEntry[]
 
   @@index([providerProfileId])
   @@index([status])
@@ -5044,4 +5066,198 @@ model WellbeingSupportShare {
   @@index([ownerUserId, sentAt])
   @@index([recipientMembershipId, status, sentAt])
   @@index([organizationId, status])
+}
+
+/* ============================================================================
+   TEENUSPÄEVIK-V1 — E1 andmemudel.
+   Leping: `docs/platvormi arendus/aruandlus-teenuskirje-disain.md` ptk 8.1.
+
+   ÜKS AATOM, NELI VÄLJUNDIT (leping ptk 1a). Aruandlus ei ole igale teenusele
+   eri funktsioon: muutumatu tuum on alati sama (klient + teenus + millal +
+   ühik×kogus + kelle poolt) ja varieeruvad ainult parameetrid. Seepärast on
+   siin kolm mudelit, mitte KOV-i või teenuse kaupa eraldi tabelid — mallid A–D
+   loevad kõik SAMA kirjet.
+
+   K1 REEGEL: elutsükkel, päritolu ja ühikud elavad rakenduskihis, MITTE
+   PostgreSQL-i enum'ina. Seepärast on `unit`, `status`, `allocationPeriod` ja
+   `noteProvenance` String. Päritoluväärtuste AINUS sõnastik on
+   `lib/workspaces/provenance.js` — siia teist koopiat ei teki.
+
+   SÄILITUS ON SIIN TEISTSUGUNE KUI MUJAL PLATVORMIL (leping ptk 5.1 ja 8.9).
+   Teenuskirje on arve alusdokument → raamatupidamise seaduse 7-aastane
+   säilitus. Kolm tagajärge, mis on skeemis nähtavad:
+
+   (a) `retentionClass` vaikeväärtus on "accounting7y", mitte platvormi tavaline
+       "standard90" (vrd `FieldVisit`). Hard-delete keeld <7a elab teenuskihis,
+       aga klass on kirje küljes juba sünnihetkest — nii ei sõltu säilitus
+       sellest, kas mõni hilisem koristaja mäletab erandit.
+
+   (b) INIMESE VIITED ON `SetNull` + `...ErasedAt`, MITTE `Cascade`. Konto
+       kustutamine kustutab inimese, mitte raamatupidamisdokumendi. Sama muster,
+       mis on juba toodangus `PreInquiry.authorErasedAt` juures
+       (`lib/privacy/effectivePracticeAccountCleanup.js:154`).
+
+   (c) OSUTAJA PROFIILI SEOS ON `Restrict`. Profiili kustutamine EI TOHI vaikselt
+       hävitada 7-aastase säilitusega kirjeid. Leping 8.9 jätab teadlikult
+       lahtiseks, kumb lahendus tuleb — anonüümitud säilitus või
+       eksport-ja-kustutus. Kuni see otsus on langetamata, ütleb andmebaas „ei"
+       valjult, selle asemel et andmed vaikselt kaotada. NB see on TEADLIK
+       valik, mitte T25 E0 leiu L-tüüpi õnnetus: seal oli `Restrict`
+       dokumenteerimata ja blokeeris ootamatult kaskaadi, siin on ta kirjas ja
+       tema avamine on omaniku otsus.
+
+   MINIMEERIMINE (leping ptk 5.3): vähetundlik maht (tunnid) ja tundlik sisu
+   (märkmed) on eri väljades, et eksport saaks valida, mis kaasa läheb.
+   ========================================================================== */
+
+/// Suunamine — KOV-i suunamisotsus, mis kannab MAHTU. Osutaja peab jälgima
+/// jääki, sest üle suunatud mahu ei maksta (leping ptk 1).
+model ServiceReferral {
+  id                String    @id @default(cuid())
+  providerProfileId String
+  serviceId         String?
+  /// Rahastaja/saaja nimi tekstina. Teadlikult normaliseerimata: rahastaja võib
+  /// olla KOV, SKA või Töötukassa — sama aatom, teine saaja (leping ptk 1a).
+  kovName           String
+  referralNumber    String?
+  /// Klient kahel rajal: platvormi kasutaja (avab hiljem E7 digikinnituse) VÕI
+  /// väline klient minimeeritud kujul. Väline rada EI dubleeri isikuandmeid
+  /// rohkem kui osutaja tänane Excel.
+  clientUserId      String?
+  clientErasedAt    DateTime?
+  clientDisplayName String?
+  clientExternalRef String?
+  periodStart       DateTime? @db.Date
+  periodEnd         DateTime? @db.Date
+  /// HOUR | SESSION | DAY | MONTH — ühik erineb teenuseti (leping ptk 1).
+  unit              String    @default("HOUR")
+  allocatedQuantity Decimal?  @db.Decimal(10, 2)
+  /// MONTH | TOTAL — kas maht on kuupõhine või kogu perioodi peale. Ilma selle
+  /// väljata ei saa saldot üldse õigesti arvutada (leping ptk 3).
+  allocationPeriod  String    @default("MONTH")
+  /// Suunamisotsuse eesmärgid. Mall C (sisuaruanne) mõõdab edenemist NENDE
+  /// vastu — ilma eesmärkideta ei ole narratiivil tuge.
+  goalsText         String?   @db.Text
+  status            String    @default("ACTIVE")
+  retentionClass    String    @default("accounting7y")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  providerProfile ServiceProviderProfile  @relation(fields: [providerProfileId], references: [id], onDelete: Restrict)
+  service         ServiceProviderService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  client          User?                   @relation("ServiceReferralClient", fields: [clientUserId], references: [id], onDelete: SetNull)
+
+  entries    ServiceEntry[]
+  narratives ServiceMonthlyNarrative[]
+
+  @@index([providerProfileId, status])
+  @@index([providerProfileId, periodStart])
+  @@index([clientUserId])
+  @@index([serviceId])
+}
+
+/// Teenuskirje — aatom, millest kasvavad kõik neli malli. Sünnib seal, kus töö
+/// lõpeb (leping ptk 0 kaitsereegel a), mitte õhtul mälu järgi.
+model ServiceEntry {
+  id                 String    @id @default(cuid())
+  providerProfileId  String
+  /// Sisestaja. Nullable, sest konto võib kustuda ENNE 7 aasta täitumist —
+  /// kirje jääb, inimene kaob (`ownerErasedAt`).
+  ownerUserId        String?
+  ownerErasedAt      DateTime?
+  referralId         String?
+  serviceId          String?
+  clientUserId       String?
+  clientErasedAt     DateTime?
+  clientDisplayName  String?
+  clientExternalRef  String?
+  /// Teenuse KALENDRIPÄEV, mitte ajahetk — seepärast `@db.Date`. Kuuaruande
+  /// piir on täpselt see koht, kus ajavööndiga DateTime hakkaks kirjeid vale
+  /// kuu alla nihutama.
+  date               DateTime  @db.Date
+  /// Nelja märke voog (leping E2b): LÄKSIN → KOHAL → LAHKUSIN → TAGASI.
+  /// KOHAL–LAHKUSIN annab teenuse kestuse (kogus tuletatakse ise), LÄKSIN–KOHAL
+  /// ja LAHKUSIN–TAGASI annavad sõiduaja. LÄKSIN ilma TAGASI-ta tähtajaks on
+  /// välitöö turvasignaali käivitus.
+  departedForVisitAt DateTime?
+  arrivedAt          DateTime?
+  leftAt             DateTime?
+  returnedAt         DateTime?
+  /// ÜHEKORDSED asukohatemplid kinnituse hetkel, mitte jada. Täidetakse AINULT
+  /// siis, kui `SERVICE_LOG_LOCATION_STAMP` on sees, ja töötajale on alati
+  /// nähtav, mis salvestati. Pidevat asukohajada EI koguta kunagi ja distantsi
+  /// nendest EI arvutata (leping ptk 6b — proportsionaalsuse piir).
+  locationStamps     Json?
+  unit               String    @default("HOUR")
+  quantity           Decimal   @db.Decimal(10, 2)
+  /// Tegevused teenuse `activityCatalog`-ist (mall B linnukesed).
+  activities         String[]  @default([])
+  /// Kliendi raha kasutamine (nt poeskäik) — Riigi Teataja koduteenuse kordade
+  /// päris nõue. Lülitatakse sisse teenusetüübi kaupa, mitte kõigil.
+  moneyAmount        Decimal?  @db.Decimal(10, 2)
+  moneyNote          String?
+  workerName         String?
+  /// LÜHIKE faktimärge = sisuaruande tooraine. Tundlik sisu EI kuulu siia
+  /// (leping 8.9 minimeerimine); UI ja ⓘ ütlevad seda kasutajale välja.
+  note               String?   @db.Text
+  /// Päritolu `lib/workspaces/provenance.js` sõnastikust. Fakti ja tõlgenduse
+  /// lahusus on see, mis teeb aruande paremaks kui Wordi-praktika.
+  noteProvenance     String?
+  /// Kliendi paberil-kinnituse märge (väline klient); E7 digikinnitus on eraldi.
+  confirmedManually  Boolean   @default(false)
+  confirmedByClientAt DateTime?
+  retentionClass     String    @default("accounting7y")
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  providerProfile ServiceProviderProfile  @relation(fields: [providerProfileId], references: [id], onDelete: Restrict)
+  owner           User?                   @relation("ServiceEntryOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  client          User?                   @relation("ServiceEntryClient", fields: [clientUserId], references: [id], onDelete: SetNull)
+  /// Suunamise kustutamine EI vii kirjet kaasa: maht võib ära kukkuda, tehtud
+  /// töö mitte.
+  referral        ServiceReferral?        @relation(fields: [referralId], references: [id], onDelete: SetNull)
+  service         ServiceProviderService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+
+  @@index([providerProfileId, date])
+  @@index([referralId])
+  @@index([providerProfileId, clientUserId, date])
+  @@index([ownerUserId, date])
+  @@index([serviceId])
+}
+
+/// Kuunarratiiv — kliendi LUGU, mille põhjal KOV otsustab teenuse jätkamise.
+/// Eraldi objekt, sest tundlikkus ja säilitus erinevad kirjemärkmetest
+/// (leping ptk 3 „Sisuline aruanne").
+model ServiceMonthlyNarrative {
+  id                String    @id @default(cuid())
+  providerProfileId String
+  referralId        String?
+  clientUserId      String?
+  clientErasedAt    DateTime?
+  clientDisplayName String?
+  periodYear        Int
+  periodMonth       Int
+  /// Inimese KINNITATUD lõpptekst. AI mustand ei jõua siia ilma kinnituseta —
+  /// `draftSource` ütleb ausalt, kas tekst sündis mustandist.
+  bodyText          String    @db.Text
+  draftSource       String?
+  retentionClass    String    @default("accounting7y")
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  providerProfile ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Restrict)
+  referral        ServiceReferral?       @relation(fields: [referralId], references: [id], onDelete: SetNull)
+  client          User?                  @relation("ServiceNarrativeClient", fields: [clientUserId], references: [id], onDelete: SetNull)
+
+  /// NB Postgresis ei ole kaks NULL-i võrdsed, seega SEE unikaalsus kehtib
+  /// AINULT suunamisega seotud narratiividel. Suunamiseta narratiivi ainusus
+  /// tuleb migratsiooni KAHEST osalisest indeksist
+  /// (`ServiceMonthlyNarrative_noreferral_clientuser_key` platvormi kliendile ja
+  /// `..._noreferral_clientname_key` välisele kliendile) — Prisma ei oska
+  /// `WHERE`-iga indeksit väljendada. Sama lahendus, mida T25 kasutab profiili
+  /// omandirežiimidel.
+  @@unique([providerProfileId, referralId, periodYear, periodMonth])
+  @@index([providerProfileId, periodYear, periodMonth])
+  @@index([referralId])
+  @@index([clientUserId])
 }
