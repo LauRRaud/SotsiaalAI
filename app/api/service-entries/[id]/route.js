@@ -8,13 +8,18 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { roleFromSession } from "@/lib/authz";
-import { errorJson, json } from "@/lib/documents/server";
+import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
 import { deleteEntry, updateEntry } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
+/* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
+   `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
+   Brauserikontroll näitas seda: kinnitamise tõrge kuvati kujul „The entry is
+   already final." keset eestikeelset pinda. `i18n:check` ei püüa seda kinni,
+   sest ta kontrollib võtmete PARITEETI, mitte kasutuskohta. */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -32,12 +37,12 @@ async function requireProviderUser() {
   return { ok: true, userId };
 }
 
-function respondToError(error, route) {
+function respondToError(error, route, locale) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-    return errorJson(error.messageKey, error.status);
+    return errorJson(error.messageKey, error.status, locale);
   }
   console.error(...safeError(`[${route}] unexpected`, error));
-  return errorJson("api.common.server_error", 500);
+  return errorJson("api.common.server_error", 500, locale);
 }
 
 async function guard(req, scope) {
@@ -46,11 +51,11 @@ async function guard(req, scope) {
      403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
      Suletud värav peab olema eristamatu olematust marsruudist. */
   if (!isServiceLogEnabled()) {
-    return { response: errorJson("service_log.errors.not_found", 404) };
+    return { response: errorJson("service_log.errors.not_found", 404, localeFromRequest(req)) };
   }
 
   const auth = await requireProviderUser();
-  if (!auth.ok) return { response: errorJson(auth.message, auth.status) };
+  if (!auth.ok) return { response: errorJson(auth.message, auth.status, localeFromRequest(req)) };
   const limited = enforceChatRateLimit(req, {
     scope,
     userId: auth.userId,
@@ -69,12 +74,12 @@ export async function PATCH(req, context) {
     const { id } = await context.params;
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
-      return errorJson("service_log.errors.invalid_input", 400);
+      return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
     }
     const entry = await updateEntry(auth.userId, String(id), body);
     return json({ entry });
   } catch (error) {
-    return respondToError(error, "service-entries PATCH");
+    return respondToError(error, "service-entries PATCH", localeFromRequest(req));
   }
 }
 
@@ -87,6 +92,6 @@ export async function DELETE(req, context) {
     const result = await deleteEntry(auth.userId, String(id));
     return json(result);
   } catch (error) {
-    return respondToError(error, "service-entries DELETE");
+    return respondToError(error, "service-entries DELETE", localeFromRequest(req));
   }
 }

@@ -18,6 +18,13 @@
  * 3. MÄRKUSE PIIRANG ON NÄHTAV. Väli ütleb otse, et siia ei kirjutata tundlikku
  *    sisu. ⓘ ütleb sedasama pikemalt. Ilma selleta muutub „lühike faktimärge"
  *    juhtumilooks ja säilitusaeg (7 aastat) hakkab kandma valet sisu.
+ *
+ * KEELEPÄIS ON KLIENDI KOHUSTUS. `localeFromRequest` loeb päringut ja päiseid,
+   AGA MITTE keeleküpsist — ilma `x-ui-locale`-ta tuleb serveri veateade
+   inglise keeles keset eestikeelset pinda. Brauserikontroll näitas seda
+   („The entry is already final."); `i18n:check` ei saa seda püüda, sest
+   võtmed on kõigis keeltes olemas — vale on KUTSE, mitte sõnastik.
+   Sama muster, mida kasutab admin-kiht (`x-ui-locale: locale`).
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -48,7 +55,7 @@ function formatTime(value) {
 }
 
 export default function ServiceLogDay() {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { data: session, status: sessionStatus } = useSession();
   const role = String(session?.user?.role || "").toUpperCase();
   const allowed = role === "SERVICE_PROVIDER";
@@ -74,7 +81,7 @@ export default function ServiceLogDay() {
   const loadEntries = useCallback(async () => {
     try {
       setLoadError(false);
-      const response = await fetch("/api/service-entries?take=50");
+      const response = await fetch("/api/service-entries?take=50", { headers: { "x-ui-locale": locale || "et" } });
       if (!response.ok) throw new Error("load_failed");
       const body = await response.json();
       setEntries(Array.isArray(body.entries) ? body.entries : []);
@@ -82,7 +89,7 @@ export default function ServiceLogDay() {
       setLoadError(true);
       setEntries((current) => current || []);
     }
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     if (allowed) loadEntries();
@@ -99,7 +106,7 @@ export default function ServiceLogDay() {
     const timer = setTimeout(async () => {
       try {
         const params = new URLSearchParams({ defaults: "1", clientDisplayName: clientName.trim() });
-        const response = await fetch(`/api/service-entries?${params}`);
+        const response = await fetch(`/api/service-entries?${params}`, { headers: { "x-ui-locale": locale || "et" } });
         if (!response.ok) return;
         const body = await response.json();
         if (cancelled) return;
@@ -123,7 +130,7 @@ export default function ServiceLogDay() {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [allowed, clientName]);
+  }, [allowed, clientName, locale]);
 
   const derivedQuantity = useMemo(() => {
     const arrived = stamps[VISIT_STAMP.ARRIVED];
@@ -148,7 +155,7 @@ export default function ServiceLogDay() {
       try {
         const response = await fetch(`/api/service-entries/${entryId}/lifecycle`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
           body: JSON.stringify({ action: "finalize" })
         });
         if (response.ok) {
@@ -166,7 +173,7 @@ export default function ServiceLogDay() {
         setFinalizing("");
       }
     },
-    [loadEntries, t]
+    [loadEntries, locale, t]
   );
 
   const resetForm = useCallback(() => {
@@ -188,7 +195,7 @@ export default function ServiceLogDay() {
       try {
         const response = await fetch("/api/service-entries", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
           body: JSON.stringify({
             clientDisplayName: clientName.trim(),
             date,
@@ -221,7 +228,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, loadEntries, note, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, loadEntries, locale, note, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (sessionStatus === "loading") return null;
@@ -249,6 +256,7 @@ export default function ServiceLogDay() {
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.referral", "")}</span>
             <select
+              name="referralId"
               className="sl-input"
               value={referralId}
               onChange={(event) => setReferralId(event.target.value)}
@@ -270,6 +278,7 @@ export default function ServiceLogDay() {
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.service", "")}</span>
             <select
+              name="serviceId"
               className="sl-input"
               value={serviceId}
               onChange={(event) => setServiceId(event.target.value)}
@@ -338,6 +347,7 @@ export default function ServiceLogDay() {
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.unit", "")}</span>
             <select
+              name="unit"
               className="sl-input"
               value={unit}
               onChange={(event) => setUnit(event.target.value)}

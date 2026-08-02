@@ -184,7 +184,6 @@
     },
     "photo": {
       "take": "Tee foto",
-      "loaded": "Laaditud olemasolev aruanne — muudatused kirjutavad selle üle.",
       "saved": "Foto on seadmes ja ootab sinu kontrolli.",
       "failed": "Foto salvestamine ebaõnnestus.",
       "policy": "Foto on dokumendi või keskkonna jaoks; inimesi vaikimisi ei pildistata."
@@ -8344,6 +8343,7 @@
       "proposal_none": "Ei esita ettepanekut",
       "proposal_hint": "See on ainus koht, mida KOV loeb otsusena — tema järgi sünnib järgmine suunamisotsus.",
       "save": "Salvesta aruanne",
+      "loaded": "Laaditud olemasolev aruanne — muudatused kirjutavad selle üle.",
       "saved": "Aruanne salvestatud."
     },
     "proposals": {

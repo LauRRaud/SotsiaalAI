@@ -184,7 +184,6 @@
     },
     "photo": {
       "take": "Take a photo",
-      "loaded": "Existing report loaded — saving overwrites it.",
       "saved": "The photo is on the device and awaits your review.",
       "failed": "Saving the photo failed.",
       "policy": "Photos are for documents or the environment; people are not photographed by default."
@@ -8344,6 +8343,7 @@
       "proposal_none": "No proposal",
       "proposal_hint": "This is the only part the municipality reads as a decision — the next referral decision follows from it.",
       "save": "Save report",
+      "loaded": "Existing report loaded — saving overwrites it.",
       "saved": "Report saved."
     },
     "proposals": {

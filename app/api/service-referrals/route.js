@@ -8,13 +8,18 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { roleFromSession } from "@/lib/authz";
-import { errorJson, json } from "@/lib/documents/server";
+import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
 import { createReferral, listReferrals } from "@/lib/serviceLog/referrals";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
+/* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
+   `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
+   Brauserikontroll näitas seda: kinnitamise tõrge kuvati kujul „The entry is
+   already final." keset eestikeelset pinda. `i18n:check` ei püüa seda kinni,
+   sest ta kontrollib võtmete PARITEETI, mitte kasutuskohta. */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -22,13 +27,13 @@ export const revalidate = 0;
 async function guard(req, scope) {
   // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
   if (!isServiceLogEnabled()) {
-    return { response: errorJson("service_log.errors.not_found", 404) };
+    return { response: errorJson("service_log.errors.not_found", 404, localeFromRequest(req)) };
   }
   const session = await getServerSession(authConfig).catch(() => null);
   const userId = session?.user?.id ? String(session.user.id) : "";
-  if (!userId) return { response: errorJson("api.common.unauthorized", 401) };
+  if (!userId) return { response: errorJson("api.common.unauthorized", 401, localeFromRequest(req)) };
   if (roleFromSession(session) !== "SERVICE_PROVIDER") {
-    return { response: errorJson("api.common.forbidden", 403) };
+    return { response: errorJson("api.common.forbidden", 403, localeFromRequest(req)) };
   }
   const limited = enforceChatRateLimit(req, {
     scope,
@@ -40,12 +45,12 @@ async function guard(req, scope) {
   return { userId };
 }
 
-function respondToError(error, route) {
+function respondToError(error, route, locale) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-    return errorJson(error.messageKey, error.status);
+    return errorJson(error.messageKey, error.status, locale);
   }
   console.error(...safeError(`[${route}] unexpected`, error));
-  return errorJson("api.common.server_error", 500);
+  return errorJson("api.common.server_error", 500, locale);
 }
 
 export async function GET(req) {
@@ -62,7 +67,7 @@ export async function GET(req) {
     });
     return json({ referrals });
   } catch (error) {
-    return respondToError(error, "service-referrals GET");
+    return respondToError(error, "service-referrals GET", localeFromRequest(req));
   }
 }
 
@@ -73,10 +78,10 @@ export async function POST(req) {
   try {
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
-      return errorJson("service_log.errors.invalid_input", 400);
+      return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
     }
     return json({ referral: await createReferral(userId, body) }, 201);
   } catch (error) {
-    return respondToError(error, "service-referrals POST");
+    return respondToError(error, "service-referrals POST", localeFromRequest(req));
   }
 }

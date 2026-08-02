@@ -11,13 +11,18 @@
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { roleFromSession } from "@/lib/authz";
-import { errorJson, json } from "@/lib/documents/server";
+import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
 import { createEntry, getEntryDefaults, listEntries } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
+/* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
+   `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
+   Brauserikontroll näitas seda: kinnitamise tõrge kuvati kujul „The entry is
+   already final." keset eestikeelset pinda. `i18n:check` ei püüa seda kinni,
+   sest ta kontrollib võtmete PARITEETI, mitte kasutuskohta. */
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -40,12 +45,12 @@ async function requireProviderUser() {
  * Väravaviga ja skoobiviga vastavad MÕLEMAD 404-ga, seega kutsuja ei saa
  * eristada „funktsiooni ei ole" ja „see kirje ei ole sinu oma".
  */
-function respondToError(error, route) {
+function respondToError(error, route, locale) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-    return errorJson(error.messageKey, error.status);
+    return errorJson(error.messageKey, error.status, locale);
   }
   console.error(...safeError(`[${route}] unexpected`, error));
-  return errorJson("api.common.server_error", 500);
+  return errorJson("api.common.server_error", 500, locale);
 }
 
 export async function GET(req) {
@@ -53,10 +58,10 @@ export async function GET(req) {
      Kui ta oleks pärast, annaks suletud pind anonüümsele 401 ja valele rollile
      403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
      Suletud värav peab olema eristamatu olematust marsruudist. */
-  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404);
+  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
 
   const auth = await requireProviderUser();
-  if (!auth.ok) return errorJson(auth.message, auth.status);
+  if (!auth.ok) return errorJson(auth.message, auth.status, localeFromRequest(req));
 
   const limited = enforceChatRateLimit(req, {
     scope: "service_entries_get",
@@ -88,7 +93,7 @@ export async function GET(req) {
     });
     return json({ entries });
   } catch (error) {
-    return respondToError(error, "service-entries GET");
+    return respondToError(error, "service-entries GET", localeFromRequest(req));
   }
 }
 
@@ -97,10 +102,10 @@ export async function POST(req) {
      Kui ta oleks pärast, annaks suletud pind anonüümsele 401 ja valele rollile
      403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
      Suletud värav peab olema eristamatu olematust marsruudist. */
-  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404);
+  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
 
   const auth = await requireProviderUser();
-  if (!auth.ok) return errorJson(auth.message, auth.status);
+  if (!auth.ok) return errorJson(auth.message, auth.status, localeFromRequest(req));
 
   const limited = enforceChatRateLimit(req, {
     scope: "service_entries_post",
@@ -113,11 +118,11 @@ export async function POST(req) {
   try {
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
-      return errorJson("service_log.errors.invalid_input", 400);
+      return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
     }
     const entry = await createEntry(auth.userId, body);
     return json({ entry }, 201);
   } catch (error) {
-    return respondToError(error, "service-entries POST");
+    return respondToError(error, "service-entries POST", localeFromRequest(req));
   }
 }
