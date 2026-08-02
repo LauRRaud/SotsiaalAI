@@ -145,17 +145,26 @@ const SpecularButton = forwardRef(function SpecularButton({
     fx.appendChild(gl.canvas);
 
     const sizeRef = { w: 1, h: 1 };
-    const resize = () => {
-      const rect = btn.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
+    /* Mõõt tuleb PAIGUTUSKASTIST, mitte getBoundingClientRect'ist.
+       Jaamalennu perspektiivis (`.a11f-plane`, `.rgf-plane`) tagastab rect
+       PROJEKTSIOONI: mount'il seisab viimane jaam ~9800 px kaamera taga ja
+       103 × 38 px nupp mõõdetakse 10 × 4 pikslina. Lõuend jäi seetõttu
+       tillukeseks ja — kuna ResizeObserver ei ärka transformi peale, vaid
+       ainult paigutuse peale — ta EI mõõtnud end enam kunagi üle: kohale
+       lennanud nupu servahelk oli vale suurusega kild tema vasakus ülanurgas
+       (omanik 02.08). offsetWidth/borderBoxSize ei tunne transformi. */
+    const resize = (entry) => {
+      const box = entry?.borderBoxSize?.[0];
+      const w = box ? box.inlineSize : btn.offsetWidth;
+      const h = box ? box.blockSize : btn.offsetHeight;
+      if (!w || !h) return;
       sizeRef.w = w;
       sizeRef.h = h;
       renderer.setSize(w + PAD * 2, h + PAD * 2);
       program.uniforms.uCenter.value = [(PAD + w / 2) * dpr, (PAD + h / 2) * dpr];
       program.uniforms.uHalfSize.value = [(w / 2) * dpr, (h / 2) * dpr];
     };
-    const ro = new ResizeObserver(resize);
+    const ro = new ResizeObserver(entries => resize(entries[0]));
     ro.observe(btn);
     resize();
 

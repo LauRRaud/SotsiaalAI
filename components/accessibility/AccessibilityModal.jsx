@@ -61,8 +61,9 @@ const AUTO_ADVANCE_STATIONS = new Set([
   "screen_profile",
 ]);
 /* Napp viide, et kasutaja jõuaks oma valikut süttimas näha, enne kui
-   kaamera liikuma hakkab (lend ise algab ease-in'iga aeglaselt). */
-const AUTO_ADVANCE_DELAY_MS = 380;
+   kaamera liikuma hakkab (lend ise algab ease-in'iga aeglaselt). Käib
+   lennutempoga kaasa — 02.08 tõmmatud 380 → 260 ms. */
+const AUTO_ADVANCE_DELAY_MS = 260;
 
 /* Auto-edasi AINULT osutiga tehtud valikul. Klaviatuuriga käiakse
    raadionuppude vahel nooltega ja OptionCard „valib" iga vahepeatuse
@@ -262,9 +263,9 @@ export default function AccessibilityModal({
     if (prevIndexRef.current === activeIndex) return;
     prevIndexRef.current = activeIndex;
     setScrollHintDismissed(true);
-    /* Rahulik lennutempo (useStationFlight lend ~0,76 s) → fookus tuleb
-       kohale veidi hiljem, et ta ei hüppaks veel lendavale jaamale. */
-    const delay = mode === "3d" ? 520 : 80;
+    /* Fookus tuleb kohale lennu lõpupoole (~2/3 kestusest), et ta ei hüppaks
+       veel lendavale jaamale. Käib lennutempoga kaasa: lend ~0,51 s. */
+    const delay = mode === "3d" ? 350 : 80;
     const timer = window.setTimeout(() => {
       const host = stageRef.current?.querySelector(
         '.a11f-plane[data-active="1"] [data-autofocus]'
@@ -304,10 +305,12 @@ export default function AccessibilityModal({
       const next = activeIndexRef.current + dir;
       if (next < 0 || next > STATIONS.length - 1) return;
       flyTo(next);
-      /* Ooteaeg ≥ lennu kestus (~760 ms): järgmine kerimisnõks ei katkestaks
+      /* Ooteaeg ≥ lennu kestus (~510 ms): järgmine kerimisnõks ei katkestaks
          pooleliolevat lendu — just katkestatud lend nägi kerides välja nii,
-         et nupud „kaovad koledalt ära" (omanik 25.07). */
-      cooldown.until = stamp + 800;
+         et nupud „kaovad koledalt ära" (omanik 25.07). See arv PEAB käima
+         lennutempoga kaasa: vahe ooteaja ja lennu vahel on surnud aeg, kus
+         keris ei tee midagi, ja just see luges „uimasena" (omanik 02.08). */
+      cooldown.until = stamp + 540;
     };
 
     const onWheel = (event) => {

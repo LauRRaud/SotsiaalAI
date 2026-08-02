@@ -62,14 +62,23 @@ const VISIBLE_MAX = FADE_OUT_START + FADE_OUT_LEN + 40;
    teekonna KESKEL, algus ja lõpp on aeglased — algus on täpselt see koht,
    kus lahkuv jaam kaob ja uus tuleb. Positsioon tuleb kellast, mitte
    kaadrisammust → kaadrisagedus (60/120Hz) ei mõjuta kiirust. */
-const FLIGHT_BASE_MS = 520;
-const FLIGHT_PER_UNIT_MS = 0.17;
-const FLIGHT_MIN_MS = 560;
-const FLIGHT_MAX_MS = 1500;
+/* TEMPO (omanik 02.08: „kerimine või siis menüüst läbi lendamine on liiga
+   uimane ja aeglane"). Naabrijaama lend 758 → 508 ms, doki pikk hüpe üle
+   seitsme jaama 1500 → 980 ms.
+   ALLPOOLE EI TOHI MINNA ILMA AKENT MUUTMATA, ja see on arvutatav, mitte
+   maitse: ristsulandus toimub esimese ~360 ühiku sees (FADE_OUT_START +
+   FADE_OUT_LEN) ehk 26% teekonnast, mille ease-in-out läbib 40% KESTUSEST.
+   508 ms → üleminek ~0,20 s. Just see arv on kord juba 0,07 s peale kukkunud
+   ja tulemus oli omaniku „koledalt kaovad nupud ära kerides" (25.07). Kui
+   tempot veel tõsta, tuleb FADE_OUT_LEN koos sellega kasvatada. */
+const FLIGHT_BASE_MS = 340;
+const FLIGHT_PER_UNIT_MS = 0.12;
+const FLIGHT_MIN_MS = 400;
+const FLIGHT_MAX_MS = 980;
 /* Katkestus keset lendu (dokiklõps, kiire keris): uus tween algab käimas-
    olevast kiirusest (ease-out, mille algkiirus = 3·teekond/kestus), nii et
    suunamuutus ei tee kiirusauku. */
-const RESUME_MIN_MS = 380;
+const RESUME_MIN_MS = 260;
 const MOVING_VEL = 60;
 /* Kaadrid pärast pausi (tab taustal, GC-pikk kaader) ei tohi kiiruse-
    hinnangut lõhkuda — dt on lakke pandud ~33 ms peale. */

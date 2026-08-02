@@ -185,8 +185,32 @@
   /* Lamedam plaat kui karussellikaart (seal 0.72 = portree). Laius ja
      kõrgus võistlevad omavahel: püstine kaart sunnib kolme astet kokku,
      lame plaat lubab kaardi LAIEMAKS ilma, et astmed kattuma hakkaks —
-     ja jätab ülemisele reale ruumi ka siis, kui ta fookuses kasvab. */
-  --desk-card-ratio: 1.62; /* laius : kõrgus */
+     ja jätab ülemisele reale ruumi ka siis, kui ta fookuses kasvab.
+
+     SUHE SÕLTUB VEERGUDE ARVUST, sest fikseeritud suhte juures oli KÕRGUS
+     ainult tagajärg, mitte sisend: kaardi laiuse otsustab `--gc-w` kolmas
+     piir (rada / --desk-cols), seega seitsmes kaart ÜHES astmes kahandas
+     kõiki kaarte MÕLEMAS mõõtmes ja lühendas tervet lauda. Mõõdetud
+     1919×872: 5 veergu = 281×172 ja sisu 64% aknakõrgusest, 7 veergu =
+     220×135 ja sisu 52% — pool akent seisis kasutamata, kaardid samal ajal
+     väikesed. Valem hoiab KÕRGUSE ~172 px juures (see on 5 veeru kõrgus ehk
+     kujunduse algne tihedus) ja laseb suhtel selle nimel liikuda:
+     5 → 1.62, 6 → 1.45, 7 → 1.28, 8 → 1.11.
+
+     `max()` põrand 1.08 hoiab kaardi LAMEDANA ka väga tihedas reas — püstine
+     kaart on karusselli keel, mitte laua oma.
+
+     Fookus on MÕÕDETUD, mitte oletatud (see oli varasema kommentaari kartus):
+     iga astme fookustatuna on vaikseim astmetevaheline vahe 1.62 juures
+     20 px ja 1.30 juures 18 px, dokini jääb vastavalt 163 ja 112 px —
+     kattumist ega doki alla jooksmist ei teki kummalgi. */
+  --desk-card-ratio: max(1.08, calc(1.62 - (var(--desk-cols) - 5) * 0.17)); /* laius : kõrgus */
+  /* Kaardi KÕRGUS nimega muutujana. Sama arv, mille `aspect-ratio` niikuinii
+     välja arvutab — aga nimetatuna saab kaardi SISU (ikoon) temast lähtuda.
+     Just see puudus: ikoon tuli `3.5vw`-st ja jäi 67 px peale ka siis, kui
+     kaart oli 171 px kõrge, ehk kaardi seest jäi 76 px kasutamata. Jagamine
+     `var()`-i abil on siin juba kasutusel muster (vt `--gc-w` kolmas piir). */
+  --desk-card-h: calc(var(--gc-w) / var(--desk-card-ratio));
   --desk-gap-x: clamp(0.75rem, 1.15vw, 1.4rem);
   /* Püstine vahe peab ületama kalde tekitatud levi: rotateX toob astme
      ALASERVA ettepoole (projitseerub madalamale) ja viib ülaserva taha.
@@ -488,20 +512,48 @@
 .gc[data-desk="1"] .gc-card {
   gap: clamp(0.5rem, 1.1vh, 0.95rem);
 }
+/* Ikoon mõõdetakse KAARDI KÕRGUSEST, mitte aknast. `3.5vw` ei teadnud
+   kaardist midagi: laual jäi ikoon 67 px peale ka 171 px kõrgusel kaardil ja
+   pool plaati seisis tühjana (omanik: „ikoonid suht väikesed, aga palju tühja
+   ruumi"). Kordaja 0,55 jätab sildile ja vahedele ruumi; `clamp` hoiab
+   väikese akna ja väga tiheda rea servajuhud. */
 .gc[data-desk="1"] .gc-icon svg {
-  width: clamp(2.6rem, 3.5vw, 4.2rem);
-  height: clamp(2.6rem, 3.5vw, 4.2rem);
+  width: clamp(2.4rem, calc(var(--desk-card-h) * 0.55), 6rem);
+  height: clamp(2.4rem, calc(var(--desk-card-h) * 0.55), 6rem);
 }
 /* Silt on kaardi PÕHISISU, mitte allkiri: 288 px laiusel plaadil oli
    14,7 px tekst kadunud (omanik 25.07). Tähevahe kahaneb suuruse
    kasvades, muidu venib pikk nimi plaadilt välja. */
+/* SILDI MÕÕT TULEB KAARDI LAIUSEST (`cqi`), mitte aknast. Erinevalt ikoonist
+   on sildi mure horisontaalne — pikk sõna peab ühte ritta mahtuma —, seega
+   tema mõõt tuleb laiusest, ikooni oma kõrgusest.
+
+   Juur: `--gc-w` kolmas piir on `(rada − vahed) / --desk-cols`, ehk kaart
+   KITSENEB, kui astmele kaarte lisandub, aga sildi vana `vw`-valem sellest ei
+   teadnud. MINA-aste 5 → 7 kaarti kahandas kaardi 278 → 203 px ja kiri jäi
+   samaks: MEETODIPEEGEL täitis 98% kaardi laiusest ehk seisis servas kinni.
+   Kasutaja ekraaniprofiil (juur-rem) nihutas piiri veel, seega ühel masinal
+   mahtus ja teisel murdus kahele reale.
+
+   `1cqi` = 1% konteineri (kaardi) laiusest → sild kahaneb ja kasvab TÄPSELT
+   koos kaardiga, mis tahes veergude arvu, rolli ja juurfondi juures.
+   Konteiner on `.gc-item`, sest just tema laius on selgesõnaline
+   (`width: var(--gc-w)`) ega sõltu sisust. Mõõdetud pärast: suurim täituvus
+   98% → 89%. Karussell (mitte-laud) jääb PUUTUMATA — seal ei sõltu kaardi
+   laius kaartide arvust ja see viga teda ei puuduta.
+
+   Tähevahe kahaneb suuruse kasvades, muidu venib pikk nimi plaadilt välja
+   (omanik 25.07: 288 px plaadil oli 14,7 px tekst kadunud). */
+.gc[data-desk="1"] .gc-item {
+  container-type: inline-size;
+}
 .gc[data-desk="1"] .gc-label {
-  font-size: clamp(0.85rem, 0.62rem + 0.55vw, 1.24rem);
+  font-size: clamp(0.8rem, 8.2cqi, 1.3rem);
   letter-spacing: 0.09em;
   padding: 0 0.6em 0 calc(0.6em + 0.09em);
 }
 .gc[data-desk="1"] .gc-label[data-long="1"] {
-  font-size: clamp(0.76rem, 0.56rem + 0.46vw, 1.06rem);
+  font-size: clamp(0.72rem, 7.4cqi, 1.08rem);
   letter-spacing: 0.06em;
 }
 /* Hõljuv ese varjab valgust: kaart tõuseb sõrme all päriselt ettepoole.
@@ -706,6 +758,7 @@ html[data-reduce-motion="1"] .gc-item {
   font-size: clamp(0.86rem, 0.74rem + 0.48vw, 1.08rem);
   padding: 0 1em 0 calc(1em + 0.13em);
 }
+
 /* Faas 2: sisu ilmub pärast klaasi. VÄRAV = cardsReady, MITTE power
    (tellija 06.07): cardsReady lülitub alles SAI-vahepala kadumise järel,
    seega ikoonid/sildid EI kattu enam vahepala-logoga. Kest (gc-item)

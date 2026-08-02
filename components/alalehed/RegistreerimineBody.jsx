@@ -619,9 +619,9 @@ export default function RegistreerimineBody({}) {
   useEffect(() => {
     if (prevIndexRef.current === activeIndex) return;
     prevIndexRef.current = activeIndex;
-    /* Rahulik lennutempo (useStationFlight lend ~0,76 s) → fookus tuleb
-       kohale veidi hiljem, et ta ei hüppaks veel lendavale jaamale. */
-    const delay = mode === "3d" ? 520 : 80;
+    /* Fookus tuleb kohale lennu lõpupoole (~2/3 kestusest), et ta ei hüppaks
+       veel lendavale jaamale. Käib lennutempoga kaasa: lend ~0,51 s. */
+    const delay = mode === "3d" ? 350 : 80;
     const timer = window.setTimeout(() => {
       const host = stageRef.current?.querySelector(
         '.rgf-plane[data-active="1"] [data-autofocus]',
@@ -664,7 +664,10 @@ export default function RegistreerimineBody({}) {
     let acc = 0;
     let lockUntil = 0;
     const step = (dir) => {
-      lockUntil = performance.now() + 640;
+      /* Lukk käib useStationFlight tempoga kaasa (lend ~0,51 s) — ooteaeg ja
+         lend peavad püsima ühes mõõdus, muidu jääb keris seisma ka siis, kui
+         lend on ammu maandunud (omanik 02.08). */
+      lockUntil = performance.now() + 440;
       acc = 0;
       wheelNavRef.current(dir);
     };
