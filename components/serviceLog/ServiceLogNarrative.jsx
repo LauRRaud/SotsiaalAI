@@ -39,8 +39,41 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [loadedId, setLoadedId] = useState(null);
+  const [drafting, setDrafting] = useState(false);
+  /* Kas praegune tekst tuli masinalt. Kaob niipea, kui inimene teksti
+     puudutab — siis on ta juba tema oma. */
+  const [isAiDraft, setIsAiDraft] = useState(false);
 
   const [year, monthNumber] = String(month || "").split("-");
+
+  /**
+   * MUSTAND EI SALVESTU ISE. Ta läheb samasse välja, mida inimene toimetab, ja
+   * alles tema „Salvesta" teeb temast narratiivi — aruanne, mille all on
+   * inimese nimi, ei tohi tekkida ilma, et ta oleks selle läbi lugenud.
+   */
+  const generateDraft = useCallback(async () => {
+    setDrafting(true);
+    setError("");
+    try {
+      const response = await fetch("/api/service-narratives/draft", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        body: JSON.stringify({ month, referralId: referralId || null })
+      });
+      const body = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setError(body?.message || t("service_log.errors.invalid_input", ""));
+        return;
+      }
+      setBodyText(body?.draft?.content || "");
+      setIsAiDraft(true);
+      setSaved(false);
+    } catch {
+      setError(t("service_log.errors.invalid_input", ""));
+    } finally {
+      setDrafting(false);
+    }
+  }, [locale, month, referralId, t]);
 
   const load = useCallback(async () => {
     if (!referralId || !year || !monthNumber) {
@@ -195,10 +228,38 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
             className="sl-input sl-textarea"
             rows={6}
             value={bodyText}
-            onChange={(event) => setBodyText(event.target.value)}
+            onChange={(event) => {
+              setBodyText(event.target.value);
+              setIsAiDraft(false);
+            }}
             required
           />
           <span className="sl-hint">{t("service_log.narrative.body_hint", "")}</span>
+
+          {/* AI-MUSTAND (E5). Nupp on VORMI SEES ja tekst läheb samasse välja,
+              mida inimene toimetab — mustand ei ole eraldi objekt, vaid
+              lähtepunkt. Salvestamine käib endiselt inimese nupu alt. */}
+          {seed?.entryCount ? (
+            <div className="sl-draft-actions">
+              <button
+                type="button"
+                className="sl-tab"
+                disabled={drafting}
+                onClick={generateDraft}
+              >
+                {drafting
+                  ? t("service_log.narrative.drafting", "")
+                  : t("service_log.narrative.draft_button", "")}
+              </button>
+              {/* MASINA TEKST ON MÄRGISTATUD kuni inimene teda puudutab. Ilma
+                  selleta oleks masina lõik aruandes eristamatu inimese omast. */}
+              {isAiDraft ? (
+                <p className="sl-source" role="status">
+                  {t("service_log.narrative.draft_marker", "")}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
         </label>
 
         <label className="sl-field">

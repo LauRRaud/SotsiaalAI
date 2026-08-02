@@ -8362,7 +8362,10 @@
       "proposal_hint": "See on ainus koht, mida KOV loeb otsusena — tema järgi sünnib järgmine suunamisotsus.",
       "save": "Salvesta aruanne",
       "loaded": "Laaditud olemasolev aruanne — muudatused kirjutavad selle üle.",
-      "saved": "Aruanne salvestatud."
+      "saved": "Aruanne salvestatud.",
+      "draft_button": "Koosta AI-mustand",
+      "drafting": "Koostan…",
+      "draft_marker": "See tekst on AI-mustand. Loe läbi ja paranda enne salvestamist — vastutus on sinu."
     },
     "proposals": {
       "CONTINUE": "Jätka samas mahus",
@@ -8496,7 +8499,8 @@
       "retention_locked": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Paranda kirjet, kustutada ei saa.",
       "pdf_unsupported_characters": "PDF ei toeta kirillitsat. Vali Word (.docx) — sama sisu ilma kaota.",
       "visit_not_found": "Külastust ei leitud.",
-      "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D."
+      "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D.",
+      "narrative_no_entries": "Selles kuus ei ole kirjeid, millest mustandit koostada."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",

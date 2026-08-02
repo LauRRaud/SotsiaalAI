@@ -8362,7 +8362,10 @@
       "proposal_hint": "This is the only part the municipality reads as a decision — the next referral decision follows from it.",
       "save": "Save report",
       "loaded": "Existing report loaded — saving overwrites it.",
-      "saved": "Report saved."
+      "saved": "Report saved.",
+      "draft_button": "Generate an AI draft",
+      "drafting": "Drafting…",
+      "draft_marker": "This text is an AI draft. Read it through and correct it before saving — the responsibility is yours."
     },
     "proposals": {
       "CONTINUE": "Continue at the same volume",
@@ -8496,7 +8499,8 @@
       "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it.",
       "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost.",
       "visit_not_found": "Visit not found.",
-      "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D."
+      "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D.",
+      "narrative_no_entries": "There are no entries this month to draft from."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
