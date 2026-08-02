@@ -12,7 +12,7 @@
  * veel kinnitanud.
  */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 
@@ -42,6 +42,12 @@ export default function ServiceLogExport({ month, referrals = [] }) {
   );
 
   const selected = TEMPLATES.find((item) => item.key === template);
+
+  /* STAR on saadaval AINULT mallil D. Ilma selleta jääks valik kinni pärast
+     malli vahetamist ja kasutaja saaks 400 põhjusel, mida ta ekraanilt ei näe. */
+  useEffect(() => {
+    if (format === "star" && template !== "D_STATISTICS") setFormat("csv");
+  }, [format, template]);
   const ready = selected?.needsReferral ? Boolean(referralId) : true;
 
   const href = useMemo(() => {
@@ -141,6 +147,11 @@ export default function ServiceLogExport({ month, referrals = [] }) {
           <option value="csv">{t("service_log.export.formats.csv", "")}</option>
           <option value="docx">{t("service_log.export.formats.docx", "")}</option>
           <option value="pdf">{t("service_log.export.formats.pdf", "")}</option>
+          {/* STAR ainult statistikamalli juures: teised mallid kannavad
+              isikuandmeid, mida riigi statistika ei vaja. */}
+          {template === "D_STATISTICS" ? (
+            <option value="star">{t("service_log.export.formats.star", "")}</option>
+          ) : null}
         </select>
       </label>
 
@@ -149,6 +160,10 @@ export default function ServiceLogExport({ month, referrals = [] }) {
           ENNE, kui ta faili KOV-ile saadab, mitte pärast. */}
       {format === "pdf" ? (
         <p className="sl-source">{t("service_log.export.pdf_limitation", "")}</p>
+      ) : null}
+
+      {format === "star" ? (
+        <p className="sl-source">{t("service_log.export.star_note", "")}</p>
       ) : null}
 
       <Button as="a" href={ready ? href : undefined} download disabled={!ready}>

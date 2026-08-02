@@ -12,6 +12,8 @@ import { buildServiceLogExport, exportFileName, exportToCsv } from "@/lib/servic
 import { EXPORT_FORMAT, FORMAT_MIME, isExportFormat } from "@/lib/serviceLog/export/render";
 import { exportToDocx } from "@/lib/serviceLog/export/docx";
 import { exportToPdf } from "@/lib/serviceLog/export/pdf";
+import { buildStarPayload, starPayloadToJson } from "@/lib/serviceLog/export/star";
+import { TEMPLATE } from "@/lib/serviceLog/export/templates";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
@@ -39,7 +41,7 @@ export async function GET(req) {
     const template = url.searchParams.get("template");
     const kovName = url.searchParams.get("kovName");
 
-    const { document } = await buildServiceLogExport(userId, {
+    const { document, provider, period } = await buildServiceLogExport(userId, {
       month,
       template,
       kovName,
@@ -57,7 +59,18 @@ export async function GET(req) {
     const generatedAt = new Date().toISOString();
 
     let body;
-    if (format === EXPORT_FORMAT.DOCX) {
+    if (format === EXPORT_FORMAT.STAR) {
+      /* STAR-kuju sünnib AINULT mallist D. Teised mallid kannavad isikuandmeid
+         (nimed, suunamisnumbrid) ja riigi statistika neid ei vaja — vale malli
+         lubamine tähendaks vaikset üleliigset edastust.
+
+         VASTUS ON 400, MITTE 500: see on kutsuja valik, mille ta saab ise
+         parandada, mitte serveri tõrge. */
+      if (document.template !== TEMPLATE.D_STATISTICS) {
+        return errorJson("service_log.errors.star_requires_statistics", 400, locale);
+      }
+      body = starPayloadToJson(buildStarPayload(document, { provider, period, generatedAt }));
+    } else if (format === EXPORT_FORMAT.DOCX) {
       body = exportToDocx(document, { generatedAt });
     } else if (format === EXPORT_FORMAT.PDF) {
       const pdf = exportToPdf(document, { generatedAt });

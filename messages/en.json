@@ -8402,9 +8402,11 @@
       "formats": {
         "csv": "CSV (spreadsheet)",
         "docx": "Word (.docx)",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "star": "STAR / s-veeb (JSON)"
       },
-      "pdf_limitation": "PDF does not support Cyrillic. If any client name is in Cyrillic, choose Word (.docx) — otherwise the download stops and says so."
+      "pdf_limitation": "PDF does not support Cyrillic. If any client name is in Cyrillic, choose Word (.docx) — otherwise the download stops and says so.",
+      "star_note": "Envelope for national statistics. Field mapping against the state system is not done yet — the file states this itself (mappingStatus)."
     },
     "status": {
       "draft": "draft",
@@ -8492,7 +8494,8 @@
       "stamp_order": "The timestamps are out of order.",
       "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it.",
       "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost.",
-      "visit_not_found": "Visit not found."
+      "visit_not_found": "Visit not found.",
+      "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",

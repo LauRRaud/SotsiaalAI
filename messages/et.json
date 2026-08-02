@@ -8402,9 +8402,11 @@
       "formats": {
         "csv": "CSV (tabelisse)",
         "docx": "Word (.docx)",
-        "pdf": "PDF"
+        "pdf": "PDF",
+        "star": "STAR / s-veeb (JSON)"
       },
-      "pdf_limitation": "PDF ei toeta kirillitsat. Kui mõne kliendi nimi on kirillitsas, vali Word (.docx) — vastasel juhul allalaadimine peatub ja ütleb seda."
+      "pdf_limitation": "PDF ei toeta kirillitsat. Kui mõne kliendi nimi on kirillitsas, vali Word (.docx) — vastasel juhul allalaadimine peatub ja ütleb seda.",
+      "star_note": "Riigi statistika ümbrik. Väljakaardistus riigi süsteemiga on veel tegemata — fail ütleb seda ise (mappingStatus)."
     },
     "status": {
       "draft": "mustand",
@@ -8492,7 +8494,8 @@
       "stamp_order": "Ajatemplid on vales järjekorras.",
       "retention_locked": "Teenuskirje on arve alusdokument ja seda hoitakse 7 aastat. Paranda kirjet, kustutada ei saa.",
       "pdf_unsupported_characters": "PDF ei toeta kirillitsat. Vali Word (.docx) — sama sisu ilma kaota.",
-      "visit_not_found": "Külastust ei leitud."
+      "visit_not_found": "Külastust ei leitud.",
+      "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
