@@ -11,11 +11,12 @@ import assert from "node:assert/strict";
 import {
   MAX_SEED_NOTES,
   NARRATIVE_DRAFT_PROVENANCE,
+  PROVENANCE_LABEL,
   buildNarrativeInstruction,
   buildNarrativeSourceText,
   wrapNarrativeDraft
 } from "../../lib/serviceLog/narrativeDraft.js";
-import { PROVENANCE } from "../../lib/serviceLog/constants.js";
+import { PROVENANCE, PROVENANCES } from "../../lib/serviceLog/constants.js";
 
 function seed(overrides = {}) {
   return {
@@ -30,7 +31,7 @@ function seed(overrides = {}) {
       {
         date: "2026-08-05",
         note: "Ütles, et ei saa trepist üles",
-        provenance: PROVENANCE.KLIENDI_UTLUS,
+        provenance: PROVENANCE.KLIENDI_OELDUD,
         isDraft: false
       },
       {
@@ -51,7 +52,7 @@ function seed(overrides = {}) {
    on kogu päritolumärgistus mõttetu töö. */
 test("iga märge läheb mudelile koos päritoluga", () => {
   const text = buildNarrativeSourceText(seed(), { month: "2026-08" });
-  assert.ok(text.includes("kliendi ütlus"), "kliendi ütlus peab olema märgitud");
+  assert.ok(text.includes("kliendi öeldud"), "kliendi öeldud peab olema märgitud");
   assert.ok(text.includes("töötaja tähelepanek"));
   assert.ok(text.includes("Ütles, et ei saa trepist üles"));
 });
@@ -111,4 +112,30 @@ test("mustand kannab AI_MUSTAND märgist ja jääb mustandiks", () => {
 
 test("tühi koond annab tühja sisendi, mitte poolikut teksti", () => {
   assert.equal(buildNarrativeSourceText(null), "");
+});
+
+/* KATE PEAB OLEMA TÄIELIK. Esimene versioon viitas olematule konstandile
+   (`KLIENDI_UTLUS`; õige on `KLIENDI_OELDUD`) — võti muutus vaikselt
+   `undefined`-iks ja mudelile läks sildi asemel toores väärtus
+   „kliendi_utlus". Produktsiooni-jooks näitas seda; ükski test ei vaadanud
+   mudelile minevat teksti.
+
+   KONTROLLIME KAARDI KATET, mitte teksti kuju: mõne päritolu silt ongi sama
+   sõna väiketähtedega („dokumendist") ja tekstipõhine kontroll annaks seal
+   vale alarmi. */
+test("igal platvormi päritolul on kaardis silt", () => {
+  for (const provenance of PROVENANCES) {
+    assert.ok(
+      typeof PROVENANCE_LABEL[provenance] === "string" && PROVENANCE_LABEL[provenance].length > 0,
+      `${provenance} puudub sildikaardis`
+    );
+  }
+});
+
+/* Ja vastupidi: kaardis ei tohi olla võtit, mida sõnastikus ei ole — just nii
+   tekkis `undefined`-võti, mis viga varjas. */
+test("sildikaardis ei ole tundmatuid võtmeid", () => {
+  for (const key of Object.keys(PROVENANCE_LABEL)) {
+    assert.ok(PROVENANCES.includes(key), `${key} ei ole platvormi päritolu`);
+  }
 });
