@@ -15,6 +15,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 const TEMPLATES = [
   { key: "A_TIMESHEET", needsReferral: false },
@@ -66,54 +67,59 @@ export default function ServiceLogExport({ month, referrals = [] }) {
       {/* SAAJA ON ESIMENE VÄLI — vt komponendi päis. */}
       <label className="sl-field">
         <span className="sl-label">{t("service_log.export.recipient", "")}</span>
-        <select name="kovName" className="sl-input" value={kovName} onChange={(event) => setKovName(event.target.value)}>
-          <option value="">{t("service_log.export.recipient_all", "")}</option>
-          {recipients.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+          name="kovName"
+          value={kovName}
+          onChange={setKovName}
+          placeholder={t("service_log.export.recipient_all", "")}
+          options={recipients.map((name) => ({ value: name, label: name }))}
+        />
         {!kovName ? <span className="sl-hint">{t("service_log.export.recipient_hint", "")}</span> : null}
       </label>
 
       <label className="sl-field">
         <span className="sl-label">{t("service_log.export.template", "")}</span>
-        <select name="template" className="sl-input" value={template} onChange={(event) => setTemplate(event.target.value)}>
-          {TEMPLATES.map((item) => (
-            <option key={item.key} value={item.key}>
-              {t(`service_log.export.templates.${item.key}`, item.key)}
-            </option>
-          ))}
-        </select>
+        <Dropdown
+          name="template"
+          value={template}
+          onChange={setTemplate}
+          ariaLabel={t("service_log.export.template", "")}
+          options={TEMPLATES.map((item) => ({
+            value: item.key,
+            label: t(`service_log.export.templates.${item.key}`, item.key)
+          }))}
+        />
       </label>
 
       {template === "A_TIMESHEET" ? (
         <label className="sl-field">
           <span className="sl-label">{t("service_log.export.variant", "")}</span>
-          <select name="variant" className="sl-input" value={variant} onChange={(event) => setVariant(event.target.value)}>
-            <option value="DAILY">{t("service_log.export.variant_daily", "")}</option>
-            <option value="MONTHLY">{t("service_log.export.variant_monthly", "")}</option>
-          </select>
+          <Dropdown
+            name="variant"
+            value={variant}
+            onChange={setVariant}
+            ariaLabel={t("service_log.export.variant", "")}
+            options={[
+              { value: "DAILY", label: t("service_log.export.variant_daily", "") },
+              { value: "MONTHLY", label: t("service_log.export.variant_monthly", "") }
+            ]}
+          />
         </label>
       ) : null}
 
       {selected?.needsReferral ? (
         <label className="sl-field">
           <span className="sl-label">{t("service_log.export.referral", "")}</span>
-          <select
+          <Dropdown
             name="referralId"
-            className="sl-input"
             value={referralId}
-            onChange={(event) => setReferralId(event.target.value)}
-          >
-            <option value="">{t("service_log.narrative.choose", "")}</option>
-            {referrals.map((referral) => (
-              <option key={referral.id} value={referral.id}>
-                {referral.clientDisplayName || referral.clientUserId || "—"} · {referral.kovName}
-              </option>
-            ))}
-          </select>
+            onChange={setReferralId}
+            placeholder={t("service_log.narrative.choose", "")}
+            options={referrals.map((referral) => ({
+              value: referral.id,
+              label: `${referral.clientDisplayName || referral.clientUserId || "—"} · ${referral.kovName}`
+            }))}
+          />
         </label>
       ) : null}
 
@@ -138,21 +144,22 @@ export default function ServiceLogExport({ month, referrals = [] }) {
 
       <label className="sl-field">
         <span className="sl-label">{t("service_log.export.format", "")}</span>
-        <select
+        <Dropdown
           name="format"
-          className="sl-input"
           value={format}
-          onChange={(event) => setFormat(event.target.value)}
-        >
-          <option value="csv">{t("service_log.export.formats.csv", "")}</option>
-          <option value="docx">{t("service_log.export.formats.docx", "")}</option>
-          <option value="pdf">{t("service_log.export.formats.pdf", "")}</option>
-          {/* STAR ainult statistikamalli juures: teised mallid kannavad
-              isikuandmeid, mida riigi statistika ei vaja. */}
-          {template === "D_STATISTICS" ? (
-            <option value="star">{t("service_log.export.formats.star", "")}</option>
-          ) : null}
-        </select>
+          onChange={setFormat}
+          ariaLabel={t("service_log.export.format", "")}
+          /* STAR ainult statistikamalli juures: teised mallid kannavad
+             isikuandmeid, mida riigi statistika ei vaja. */
+          options={[
+            { value: "csv", label: t("service_log.export.formats.csv", "") },
+            { value: "docx", label: t("service_log.export.formats.docx", "") },
+            { value: "pdf", label: t("service_log.export.formats.pdf", "") },
+            ...(template === "D_STATISTICS"
+              ? [{ value: "star", label: t("service_log.export.formats.star", "") }]
+              : [])
+          ]}
+        />
       </label>
 
       {/* PIIRANG ÖELDAKSE ENNE, mitte pärast allalaadimist. PDF-kirjutaja on

@@ -26,6 +26,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
 
@@ -163,19 +164,16 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
 
       <label className="sl-field">
         <span className="sl-label">{t("service_log.narrative.referral", "")}</span>
-        <select
+        <Dropdown
           name="referralId"
-          className="sl-input"
           value={referralId}
-          onChange={(event) => setReferralId(event.target.value)}
-        >
-          <option value="">{t("service_log.narrative.choose", "")}</option>
-          {referrals.map((referral) => (
-            <option key={referral.id} value={referral.id}>
-              {referral.clientDisplayName || referral.clientUserId || "—"} · {referral.kovName}
-            </option>
-          ))}
-        </select>
+          onChange={setReferralId}
+          placeholder={t("service_log.narrative.choose", "")}
+          options={referrals.map((referral) => ({
+            value: referral.id,
+            label: `${referral.clientDisplayName || referral.clientUserId || "—"} · ${referral.kovName}`
+          }))}
+        />
       </label>
 
       {seed ? (
@@ -220,7 +218,13 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         </div>
       ) : null}
 
-      <form className="sl-form" onSubmit={submit}>
+      {/* `noValidate`: brauseri oma valideerimismull („Please fill out this
+          field.") joonistab OPERATSIOONISÜSTEEM — teda ei saa kujundada ega
+          tõlkida ja eestikeelsel lehel ilmus ingliskeelne kollane mull klaasi
+          keskele. Sama põhjus, miks siin ei ole natiivset `select`-i ega
+          kuupäevavälja. Nõue ise jääb alles: väli kannab endiselt `required`-i
+          (ekraanilugeja jaoks) ja puuduva välja ütleb meie oma teade. */}
+      <form className="sl-form" noValidate onSubmit={submit}>
         <label className="sl-field">
           <span className="sl-label">{t("service_log.narrative.body", "")}</span>
           <textarea
@@ -264,19 +268,16 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
 
         <label className="sl-field">
           <span className="sl-label">{t("service_log.narrative.proposal", "")}</span>
-          <select
+          <Dropdown
             name="proposal"
-            className="sl-input"
             value={proposal}
-            onChange={(event) => setProposal(event.target.value)}
-          >
-            <option value="">{t("service_log.narrative.proposal_none", "")}</option>
-            {PROPOSALS.map((value) => (
-              <option key={value} value={value}>
-                {t(`service_log.proposals.${value}`, value)}
-              </option>
-            ))}
-          </select>
+            onChange={setProposal}
+            placeholder={t("service_log.narrative.proposal_none", "")}
+            options={PROPOSALS.map((value) => ({
+              value,
+              label: t(`service_log.proposals.${value}`, value)
+            }))}
+          />
           <span className="sl-hint">{t("service_log.narrative.proposal_hint", "")}</span>
         </label>
 

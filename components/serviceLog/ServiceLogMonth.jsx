@@ -32,6 +32,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import DateField from "@/components/ui/DateField";
 import ServiceLogNarrative from "./ServiceLogNarrative";
 import ServiceLogExport from "./ServiceLogExport";
 import ServiceLogBaseline from "./ServiceLogBaseline";
@@ -72,12 +73,11 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
     <div className="sl-month">
       <label className="sl-field sl-month-picker">
         <span className="sl-label">{t("service_log.month.pick", "")}</span>
-        <input
+        <DateField
           name="month"
-          className="sl-input"
-          type="month"
+          mode="month"
           value={report.month}
-          onChange={(event) => onMonthChange?.(event.target.value)}
+          onChange={(next) => onMonthChange?.(next)}
         />
       </label>
 

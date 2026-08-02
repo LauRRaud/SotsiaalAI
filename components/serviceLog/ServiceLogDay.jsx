@@ -31,6 +31,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import DateField from "@/components/ui/DateField";
+import Dropdown from "@/components/ui/Dropdown";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
@@ -506,6 +508,12 @@ export default function ServiceLogDay() {
     async (event) => {
       event.preventDefault();
       setFormError("");
+      if (!clientName.trim()) {
+        /* Ilma kliendita ei ole kirjel aruandes kohta — mall A grupeerib read
+           kliendi kaupa. Teade on meie oma, sest brauseri oma on inglise keeles. */
+        setFormError(t("service_log.errors.client_required", ""));
+        return;
+      }
       setSaving(true);
       const storage = typeof window === "undefined" ? null : window.localStorage;
       /* VÕTI SÜNNIB SIIN, mitte serveris — server ei saa teda ise välja mõelda,
@@ -573,7 +581,13 @@ export default function ServiceLogDay() {
 
   return (
     <div className="sl-day">
-      <form className="sl-form" onSubmit={submit} onInput={markInputStart}>
+      {/* `noValidate`: brauseri oma valideerimismull („Please fill out this
+          field.") joonistab OPERATSIOONISÜSTEEM — teda ei saa kujundada ega
+          tõlkida ja eestikeelsel lehel ilmus ingliskeelne kollane mull klaasi
+          keskele. Sama põhjus, miks siin ei ole natiivset `select`-i ega
+          kuupäevavälja. Nõue ise jääb alles: väli kannab endiselt `required`-i
+          (ekraanilugeja jaoks) ja puuduva välja ütleb meie oma teade. */}
+      <form className="sl-form" noValidate onSubmit={submit} onInput={markInputStart}>
         {/* PÄRITOLU ON NÄHTAV. Ilma selleta ei saa kasutaja aru, miks väljad on
             juba täidetud — ja täidetud väli, mille päritolu ei tea, on halvem
             kui tühi väli. */}
@@ -608,50 +622,7 @@ export default function ServiceLogDay() {
           />
         </label>
 
-        {/* SUUNAMISE VALIK. Server ütleb `askReferral`, kui kliendil on mitu
-            aktiivset suunamist — siis EI TOHI masin valida, sest vale
-            suunamine tähendab valele KOV-ile esitatud mahtu. */}
-        {defaults?.askReferral && Array.isArray(defaults.referrals) && defaults.referrals.length > 1 ? (
-          <label className="sl-field">
-            <span className="sl-label">{t("service_log.form.referral", "")}</span>
-            <select
-              name="referralId"
-              className="sl-input"
-              value={referralId}
-              onChange={(event) => setReferralId(event.target.value)}
-              required
-            >
-              <option value="">{t("service_log.form.referral_choose", "")}</option>
-              {defaults.referrals.map((referral) => (
-                <option key={referral.id} value={referral.id}>
-                  {referral.kovName}
-                  {referral.referralNumber ? ` · ${referral.referralNumber}` : ""}
-                </option>
-              ))}
-            </select>
-          </label>
-        ) : null}
-
-        {/* Teenuse valik ilmub AINULT siis, kui server ütleb, et küsida tuleb. */}
-        {defaults?.askService && Array.isArray(defaults.services) && defaults.services.length > 1 ? (
-          <label className="sl-field">
-            <span className="sl-label">{t("service_log.form.service", "")}</span>
-            <select
-              name="serviceId"
-              className="sl-input"
-              value={serviceId}
-              onChange={(event) => setServiceId(event.target.value)}
-            >
-              <option value="">{t("service_log.form.service_choose", "")}</option>
-              {defaults.services.map((service) => (
-                <option key={service.id} value={service.id}>
-                  {service.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        ) : null}
-
+        <h3 className="sl-group-title">{t("service_log.form.group_visit", "")}</h3>
         <div className="sl-flow" role="group" aria-label={t("service_log.stamps.group", "")}>
           {/* Soiduaja valik on ENNE alustamist ja lukustub esimese maerke jaerel:
               keskel uembervahetatuna tekiks jada, mille esimene samm on juba
@@ -721,15 +692,53 @@ export default function ServiceLogDay() {
           ) : null}
         </div>
 
+        {/* SUUNAMISE VALIK. Server ütleb `askReferral`, kui kliendil on mitu
+            aktiivset suunamist — siis EI TOHI masin valida, sest vale
+            suunamine tähendab valele KOV-ile esitatud mahtu. */}
+        {defaults?.askReferral && Array.isArray(defaults.referrals) && defaults.referrals.length > 1 ? (
+          <label className="sl-field">
+            <span className="sl-label">{t("service_log.form.referral", "")}</span>
+            <Dropdown
+              name="referralId"
+              value={referralId}
+              onChange={setReferralId}
+              placeholder={t("service_log.form.referral_choose", "")}
+              options={defaults.referrals.map((referral) => ({
+                value: referral.id,
+                label: `${referral.kovName}${referral.referralNumber ? ` · ${referral.referralNumber}` : ""}`
+              }))}
+            />
+          </label>
+        ) : null}
+
+        {/* Teenuse valik ilmub AINULT siis, kui server ütleb, et küsida tuleb. */}
+        {defaults?.askService && Array.isArray(defaults.services) && defaults.services.length > 1 ? (
+          <label className="sl-field">
+            <span className="sl-label">{t("service_log.form.service", "")}</span>
+            <Dropdown
+              name="serviceId"
+              value={serviceId}
+              onChange={setServiceId}
+              placeholder={t("service_log.form.service_choose", "")}
+              options={defaults.services.map((service) => ({
+                value: service.id,
+                label: service.name
+              }))}
+            />
+          </label>
+        ) : null}
+
+        <h3 className="sl-group-title">{t("service_log.form.group_entry", "")}</h3>
         <div className="sl-row">
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.date", "")}</span>
-            <input
+            <DateField
               name="date"
-              className="sl-input"
-              type="date"
               value={date}
-              onChange={(event) => setDate(event.target.value)}
+              onChange={(next) => {
+                markInputStart();
+                setDate(next);
+              }}
               required
             />
           </label>
@@ -754,18 +763,16 @@ export default function ServiceLogDay() {
 
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.unit", "")}</span>
-            <select
+            <Dropdown
               name="unit"
-              className="sl-input"
               value={unit}
-              onChange={(event) => setUnit(event.target.value)}
-            >
-              {SERVICE_UNITS.map((value) => (
-                <option key={value} value={value}>
-                  {t(`service_log.units.${value.toLowerCase()}`, value)}
-                </option>
-              ))}
-            </select>
+              onChange={setUnit}
+              ariaLabel={t("service_log.form.unit", "")}
+              options={SERVICE_UNITS.map((value) => ({
+                value,
+                label: t(`service_log.units.${value.toLowerCase()}`, value)
+              }))}
+            />
           </label>
         </div>
 

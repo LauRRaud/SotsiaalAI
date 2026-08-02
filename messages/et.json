@@ -8333,7 +8333,9 @@
       "note": "Märkus",
       "note_hint": "Lühike faktimärge aruande jaoks. Tundlikku sisu siia ei kirjutata.",
       "save": "Salvesta kirje",
-      "saving": "Salvestan…"
+      "saving": "Salvestan…",
+      "group_visit": "Külastus",
+      "group_entry": "Kirje"
     },
     "tabs": {
       "label": "Teenuspäeviku osad",
@@ -8570,5 +8572,12 @@
       "confirm": "Kinnitan, et see vastab toimunule",
       "confirm_explainer": "Kinnitus on lõplik ja seda ei saa hiljem tagasi võtta. Kui midagi ei vasta tõele, räägi enne osutajaga."
     }
+  },
+  "date_field": {
+    "empty": "Vali kuupäev",
+    "today": "Täna",
+    "previous": "Eelmine",
+    "next": "Järgmine",
+    "required": "Kuupäev on vajalik."
   }
 }

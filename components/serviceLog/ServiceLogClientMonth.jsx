@@ -14,6 +14,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import DateField from "@/components/ui/DateField";
 
 function currentMonth() {
   const now = new Date();
@@ -76,13 +77,7 @@ export default function ServiceLogClientMonth() {
 
       <label className="sl-field">
         <span className="sl-label">{t("service_log.month.pick", "")}</span>
-        <input
-          name="month"
-          className="sl-input"
-          type="month"
-          value={month}
-          onChange={(event) => setMonth(event.target.value)}
-        />
+        <DateField name="month" mode="month" value={month} onChange={setMonth} />
       </label>
 
       {state === "error" ? (

@@ -1,0 +1,169 @@
+/**
+ * OMA KUUPÄEVAVÄLI (components/ui/DateField.jsx).
+ *
+ * Natiivne `<input type="date">` ei allunud kahes asjas: kalendri KEEL tuleb
+ * brauseri liidesekeelest (mitte lehe `lang`-ist) ja tema PANEELI ei saa
+ * CSS-iga puutuda. Siin on mõlemad meie käes.
+ *
+ * Klaas, raadius ja värvid tulevad platvormi muutujatest — mitte omadest —,
+ * et väli näeks välja nagu iga teine väli, mitte nagu külalisviidik.
+ */
+
+.df {
+  position: relative;
+}
+
+.df-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+}
+
+.df-placeholder {
+  opacity: 0.6;
+}
+
+.df-caret {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translate(-0.1rem, -0.1rem);
+  opacity: 0.7;
+  flex: none;
+}
+
+.df-required {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  opacity: 0.75;
+}
+
+/* Paneel hõljub välja KOHAL, mitte lehe voos: ta ei tohi vormi laiali lükata
+   ega selle all olevat sisu paigast nihutada. */
+.df-pop {
+  position: absolute;
+  z-index: 40;
+  top: calc(100% + 0.375rem);
+  left: 0;
+  min-width: min(20rem, 92vw);
+  padding: 0.75rem;
+  border-radius: var(--radius-lg, 0.75rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-bg, rgb(20 20 24 / 96%));
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 48px rgb(0 0 0 / 45%);
+}
+
+.df-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.df-title {
+  font-weight: 600;
+  /* Kuu nimi tuleb `Intl`-ist ja algab väiketähega — lause algus ei ole see. */
+  text-transform: capitalize;
+}
+
+.df-nav {
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  color: inherit;
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.df-week,
+.df-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.125rem;
+}
+
+.df-weekday {
+  padding: 0.25rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.6;
+  text-transform: capitalize;
+}
+
+.df-months {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+}
+
+.df-cell {
+  /* 2.25rem = puutesihtmärk ka kitsal telefonil, kus seitse veergu peavad ära
+     mahtuma. */
+  min-height: 2.25rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid transparent;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  text-transform: capitalize;
+}
+
+.df-cell:hover {
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+}
+
+.df-cell.is-today {
+  border-color: var(--panel-border, rgb(255 255 255 / 28%));
+}
+
+.df-cell.is-selected {
+  border-color: var(--accent-border, rgb(140 200 255 / 55%));
+  background: var(--accent-soft-bg, rgb(140 200 255 / 12%));
+  font-weight: 600;
+}
+
+.df-blank {
+  min-height: 2.25rem;
+}
+
+.df-today {
+  width: 100%;
+  margin-top: 0.5rem;
+  min-height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Kõrge kontrasti režiimis kaob `box-shadow` ja koos temaga fookusrõngas —
+   seal on outline ainus töötav vahend. Sama muster mis teenuspäeviku CSS-is. */
+@media (forced-colors: active) {
+  .df-trigger:focus-visible,
+  .df-cell:focus-visible,
+  .df-nav:focus-visible,
+  .df-today:focus-visible {
+    outline: 2px solid CanvasText;
+  }
+
+  .df-cell.is-selected {
+    border: 2px solid CanvasText;
+  }
+}

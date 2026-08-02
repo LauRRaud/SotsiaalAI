@@ -8333,7 +8333,9 @@
       "note": "Note",
       "note_hint": "A short factual mark for the report. Do not write sensitive content here.",
       "save": "Save entry",
-      "saving": "Saving…"
+      "saving": "Saving…",
+      "group_visit": "Visit",
+      "group_entry": "Entry"
     },
     "tabs": {
       "label": "Service log sections",
@@ -8570,5 +8572,12 @@
       "confirm": "I confirm this matches what happened",
       "confirm_explainer": "The confirmation is final and cannot be withdrawn later. If something is not right, talk to the provider first."
     }
+  },
+  "date_field": {
+    "empty": "Pick a date",
+    "today": "Today",
+    "previous": "Previous",
+    "next": "Next",
+    "required": "A date is required."
   }
 }

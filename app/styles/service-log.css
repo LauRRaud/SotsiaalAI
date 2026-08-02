@@ -67,10 +67,30 @@
 /* JADANUPP. Ueks suur pind kogu laiuses, sest teda vajutatakse kaeigu pealt,
    telefoniga, sageli uehe kaeega. Vana nelja nupu ruudustik on eemaldatud koos
    „valikuline" sildiga — vt ServiceLogDay.jsx. */
+/* KUELASTUSE PLOKK ON KAART, mitte rida vormis. Enne oli ta vormi keskel
+   samade vaeljade seas ja luges nagu veel uks vaeli - aga see on AINUS asi,
+   mida kasutaja kliendi ukse taga teeb. Nueued on tal oma pind, oma piir ja
+   ta on kohe kliendi valja jaerel. */
 .sl-flow {
   display: flex;
   flex-direction: column;
   gap: var(--space-2, 0.5rem);
+  padding: var(--space-4, 1rem);
+  border-radius: var(--radius-lg, 0.75rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 14%));
+  background: rgb(255 255 255 / 3%);
+}
+
+/* Kaks osa, kaks pealkirja: "Kuelastus" (mida teed) ja "Kirje" (mida
+   dokumenteerid). Ilma nendeta oli vorm uks pikk uehtlane veerg, milles ei
+   olnud naeha, kus uks moete lopeb ja teine algab. */
+.sl-group-title {
+  margin: var(--space-2, 0.5rem) 0 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
 }
 
 .sl-travel-toggle {
