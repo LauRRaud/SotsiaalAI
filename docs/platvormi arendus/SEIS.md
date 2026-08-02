@@ -2,6 +2,22 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
+**02.08 GPS OLI SURNUD SÜNNIST SAATI — leidis KLIKKIMINE, mitte ükski test.** `next.config.mjs` saatis `Permissions-Policy: … geolocation=()`. Tühjad sulud tähendavad **„mitte keegi, ka mitte meie ise“** ja brauser keeldub ENNE, kui jõuab kasutaja käest luba küsida — teade oli sõna-sõnalt *Geolocation has been disabled in this document by permissions policy*.
+
+**Kogu E2b asukohatempel (DoD 10) oli seetõttu olematu:** lipp sees, serveri reeglid töötasid, kood kutsus `getCurrentPosition`-it — päis lõikas ta enne ära. **47 stsenaariumi produktsioonis ei saanud seda kunagi näha, sest päised puudutavad AINULT brauserit.** See on selle päeva tähtsaim õppetund: serveripoolne stsenaarium ja brauseri-QA ei asenda teineteist.
+
+`geolocation=(self)` on kitsaim, mis funktsiooni üldse võimaldab: ainult meie oma päritolu, mitte ükski manustatud kolmas osapool. Kasutaja luba jääb endiselt tema käest küsitavaks. **Live'is kontrollitud:** päis on nüüd `camera=(), microphone=(self), geolocation=(self)`.
+
+**Klikitest (localhost, kõik lipud sees):** `[Olen kohal]` → ajatempel kirja, asukohta ei tulnud (see brauser keelab ise), teade neutraalne *„Asukohta ei saadud — külastus on siiski märgitud“*, `[Lahkusin]` töötas, kirje salvestus, `locationStampedAt` tühi. **Loa keeldumine ei blokeerinud midagi** — nagu DoD 10 nõuab. Vea kuju muutus paranduse järel `disabled by permissions policy` → `User denied Geolocation`, mis tõendab, et päis ei ole enam takistus.
+
+**TEINE LEID (produktsiooni AI-jooks):** `narrativeDraft.js` viitas olematule päritolukonstandile `KLIENDI_UTLUS` (õige on `KLIENDI_OELDUD`) — võti muutus vaikselt `undefined`-iks ja **MUDELILE läks sildi asemel toores väärtus** „kliendi_utlus“. Test kontrollib nüüd sildikaardi katet MÕLEMAT PIDI (iga päritolu saab sildi; kaardis ei ole tundmatuid võtmeid).
+
+**E5 päris genereerimine JÄI TEGEMATA** ja põhjus on õige käitumine, mitte tõrge: värske QA-kasutaja ilma plaanita sai `USAGE_NOT_ENTITLED` ja mudelit ei kutsutudki — kvoodivärav töötas. Päris genereerimiseks on kaks teed, mõlemad puudutavad produktsiooni arveldusandmeid: omaniku enda konto (üks klõps UI-s) või QA-kasutajale tellimuse rida. **Omaniku otsus tegemata.**
+
+**Deploy-õppetund:** esimene katse PEATUS enne midagi muutmata, sest ma olin jätnud serverisse kaks jälgimata abifaili (`server-only-shim.mjs`, `server-only-resolver.mjs`, vaja `server-only` paketi ümbersuunamiseks AI-testis). Kaitse töötas täpselt nii, nagu peab. Failid kustutatud, tööpuu puhas.
+
+**Server = `e04c4c46`**, kolm teenust `active`, `/teenuspaevik` 200, API 401, `/org` 200. npm test 2405/2405, lint 0, build OK. **NB:** commit `e04c4c46` sisaldab ka kahte TEISE AKNA muudatust (`lib/deskZones.js` jagamised-tsoon, `lib/org/flags.js` `isOrgWorkspaceUiEnabled`), mille mu `git add lib` kaasa võttis. Ajalugu ei kirjutatud ümber, sest teine aken võib selle peale ehitada. Uus lipp `NEXT_PUBLIC_ORG_WORKSPACE_ENABLED` lisatud nii kohalikku kui serveri env-i.
+
 **02.08 TEENUSPÄEVIK — LÄBIVAD STSENAARIUMID PRODUKTSIOONIS: 47/47 + ÜKS PÄRIS LEID.** Omanik: *tee stsenaariumid ja testi kogu funktsioon serveris*. Kirjutasin 11 stsenaariumi, mis käivad läbi kogu voo, ja jooksutasin nad **päris andmebaasi ja päris lippude vastu**. Kohalik roheline sviit ei tõenda serverit — see õppetund oli juba korra makstud (fake-prisma ei valideeri välju).
 
 **LEID, mille ainult stsenaarium püüdis:** server võttis vastu asukohapunkti märke kohta, mida EI TOIMUNUDKI — kirjel oleks olnud punkt „lahkumise juures“, kuigi lahkumist ei ole kunagi märgitud. DoD 10 ütleb „üks punkt TEADLIKU SÜNDMUSE kohta“; punkt ilma oma templita ei ole seotud ühegi sündmusega. **Ükski varasem test seda ei püüdnud, sest nad saatsid punkte AINULT olemasolevate templitega** — stsenaarium saatis nii, nagu paha klient saadaks. Parandatud (`dbd60df5`), regressioonitest lisatud.
