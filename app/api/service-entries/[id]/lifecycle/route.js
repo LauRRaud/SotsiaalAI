@@ -48,7 +48,7 @@ export async function POST(req, context) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
       return errorJson(error.messageKey, error.status, locale);
     }
-    console.error(...safeError("[service-entries lifecycle] unexpected", error));
+    console.error("[service-entries lifecycle] unexpected", safeError(error));
     return errorJson("api.common.server_error", 500, locale);
   }
 }

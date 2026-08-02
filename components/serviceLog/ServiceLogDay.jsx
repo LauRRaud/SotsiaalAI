@@ -32,6 +32,7 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
+import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 
 /**
  * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
@@ -134,6 +135,7 @@ export default function ServiceLogDay() {
   const [note, setNote] = useState("");
   const [stamps, setStamps] = useState({});
   const [withTravel, setWithTravel] = useState(false);
+  const [pending, setPending] = useState(0);
   /* Viide, mitte soltuvus: nii jaeaevad `stampNow` ja `undoLastStamp` stabiilseks
      ega sunni iga soiduaja luelitust kogu vormi uembervormistama. */
   const withTravelRef = useRef(false);
@@ -296,31 +298,113 @@ export default function ServiceLogDay() {
     setDate(todayIso());
   }, []);
 
+  /**
+   * ÜKS SAATMISFUNKTSIOON NII UUELE KUI JÄRJEKORRAS OLEVALE KIRJELE.
+   *
+   * Kaks eri rada tähendaks kahte eri arusaama sellest, mis on „õnnestus" — ja
+   * järjekorra puhul on just see otsus kõige kallim: vale otsus jätab kirje
+   * igaveseks järjekorda või kustutab tehtud töö ära.
+   *
+   * @returns {"sent"|"retry"|"rejected"}
+   */
+  const postEntry = useCallback(
+    async (payload) => {
+      let response;
+      try {
+        response = await fetch("/api/service-entries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify(payload)
+        });
+      } catch {
+        /* `fetch` viskab AINULT võrguvea korral. Just see on „ei tea, kas
+           jõudis" — ja just siin päästab `clientRequestId` topeltkirjest. */
+        return { outcome: "retry" };
+      }
+      const body = await response.json().catch(() => ({}));
+      if (response.ok) return { outcome: "sent", body };
+      if (shouldRetry({ status: response.status })) return { outcome: "retry" };
+      return { outcome: "rejected", body };
+    },
+    [locale]
+  );
+
+  /* Tühjendab järjekorra ükshaaval ja PEATUB esimese võrguvea peal: kui võrku
+     ei ole, ei ole mõtet ülejäänuid läbi käia — ja järjekorra järjekord on
+     ühtlasi kirjete sünniaeg. */
+  const flushOutbox = useCallback(async () => {
+    const storage = typeof window === "undefined" ? null : window.localStorage;
+    const queued = readOutbox(storage);
+    if (!queued.length) return;
+    let sentAny = false;
+    for (const item of queued) {
+      const { outcome } = await postEntry(item);
+      if (outcome === "retry") break;
+      /* „rejected" kustutab samuti: server vaatas kirje üle ja ütles ei, seega
+         kordamine annaks igavesti sama vastuse ja järjekord ei tühjeneks enam.
+         Kadu on nähtav — pending-loendur langeb ja teade jääb ekraanile. */
+      dequeue(storage, item.clientRequestId);
+      if (outcome === "sent") sentAny = true;
+      else setFormError(t("service_log.outbox.rejected", ""));
+    }
+    setPending(outboxCount(storage));
+    if (sentAny) await loadEntries();
+  }, [loadEntries, postEntry, t]);
+
+  /* Kaks käivitajat: leht avaneb (seade võis vahepeal võrku saada) ja brauseri
+     `online`. Kolmandat ei ole — perioodiline pollimine kulutaks akut just
+     seal, kus töötaja on terve päeva väljas. */
+  useEffect(() => {
+    if (!allowed || typeof window === "undefined") return undefined;
+    setPending(outboxCount(window.localStorage));
+    flushOutbox();
+    const onOnline = () => flushOutbox();
+    window.addEventListener("online", onOnline);
+    return () => window.removeEventListener("online", onOnline);
+  }, [allowed, flushOutbox]);
+
   const submit = useCallback(
     async (event) => {
       event.preventDefault();
       setFormError("");
       setSaving(true);
+      const storage = typeof window === "undefined" ? null : window.localStorage;
+      /* VÕTI SÜNNIB SIIN, mitte serveris — server ei saa teda ise välja mõelda,
+         ja just tema teeb kordussaatmise ohutuks. */
+      const clientRequestId =
+        typeof crypto !== "undefined" && crypto.randomUUID
+          ? crypto.randomUUID()
+          : `req-${Date.now()}-${Math.round(Math.random() * 1e9)}`;
+      const payload = {
+        clientRequestId,
+        clientDisplayName: clientName.trim(),
+        date,
+        unit,
+        serviceId: serviceId || null,
+        referralId: referralId || null,
+        quantity: quantity === "" ? null : quantity,
+        note: note.trim() || null,
+        ...stamps
+      };
       try {
-        const response = await fetch("/api/service-entries", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
-          body: JSON.stringify({
-            clientDisplayName: clientName.trim(),
-            date,
-            unit,
-            serviceId: serviceId || null,
-            referralId: referralId || null,
-            quantity: quantity === "" ? null : quantity,
-            note: note.trim() || null,
-            ...stamps
-          })
-        });
-        const body = await response.json().catch(() => ({}));
-        if (!response.ok) {
+        const { outcome, body } = await postEntry(payload);
+
+        if (outcome === "retry") {
+          /* KIRJE EI KAO. Ta on seadmes ja läheb teele, kui võrk tuleb —
+             vorm tühjendatakse, sest töötaja jaoks on see külastus tehtud. */
+          enqueue(storage, payload);
+          setPending(outboxCount(storage));
+          setFormError("");
+          setOverrunNotice(null);
+          resetForm();
+          return;
+        }
+
+        if (outcome === "rejected") {
           setFormError(body?.message || t("service_log.errors.invalid_input", ""));
           return;
         }
+
         /* ÜLETAMISE HOIATUS (DoD 4). Server tagastab ta kirjega KOOS ja ta ei
            ole viga: kirje SALVESTUS. Osutaja näeb numbrit ja otsustab ise, kas
            ta räägib KOV-iga — dokumenteerimata töö oleks halvem. */
@@ -331,13 +415,11 @@ export default function ServiceLogDay() {
         }
         resetForm();
         await loadEntries();
-      } catch {
-        setFormError(t("service_log.errors.invalid_input", ""));
       } finally {
         setSaving(false);
       }
     },
-    [clientName, date, loadEntries, locale, note, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, loadEntries, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;
@@ -539,6 +621,21 @@ export default function ServiceLogDay() {
         <Button type="submit" disabled={saving || !clientName.trim()}>
           {saving ? t("service_log.form.saving", "") : t("service_log.form.save", "")}
         </Button>
+
+        {/* OOTEL OLEV TÖÖ PEAB OLEMA NÄHTAV. Vaikne järjekord tähendaks, et
+            töötaja arvab kirjet olevat serveris, aga ta on tema telefonis —
+            ja kui telefon kaob, kaob koos temaga tasustamata töö.
+
+            SÕNASTUS VÄLDIB MITMUST TEADLIKULT („Ootel: 3", mitte „3 kirjet").
+            Esimene katse ütles „Ootel 1 kirjet" — vale eesti keel, mille
+            brauserikontroll kohe välja tõi. Platvormi `t()` ei tunne
+            mitmusevorme ja vene keeles on neid kolm, seega ainus aus valik ilma
+            `Intl.PluralRules`-i sisse toomata on lause, mis mitmust ei nõua. */}
+        {pending > 0 ? (
+          <p className="sl-pending" role="status">
+            {t("service_log.outbox.pending", "", { count: pending })}
+          </p>
+        ) : null}
       </form>
 
       <div className="sl-list">

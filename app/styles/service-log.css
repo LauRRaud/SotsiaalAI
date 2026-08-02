@@ -437,3 +437,12 @@
     border: 2px solid CanvasText;
   }
 }
+
+/* Ootel olevad kirjed. Ei ole viga ega hoiatus — töö ON salvestatud, lihtsalt
+   veel mitte serveris. Toon on seetõttu neutraalne, mitte punane. */
+.sl-pending {
+  margin: 0;
+  align-self: center;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}

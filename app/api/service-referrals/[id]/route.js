@@ -25,7 +25,7 @@ function respondToError(locale, error, route) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
     return errorJson(error.messageKey, error.status, locale);
   }
-  console.error(...safeError(`[${route}] unexpected`, error));
+  console.error(`[${route}] unexpected`, safeError(error));
   return errorJson("api.common.server_error", 500, locale);
 }
 

@@ -36,7 +36,7 @@ export async function GET(req) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
       return errorJson(error.messageKey, error.status, locale);
     }
-    console.error(...safeError("[service-log month] unexpected", error));
+    console.error("[service-log month] unexpected", safeError(error));
     return errorJson("api.common.server_error", 500, locale);
   }
 }

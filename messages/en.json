@@ -8483,6 +8483,10 @@
       "provenance_invalid": "The note provenance is not a known value.",
       "stamp_order": "The timestamps are out of order.",
       "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it."
+    },
+    "outbox": {
+      "pending": "Waiting: {count}. They will be sent once the network is back.",
+      "rejected": "One waiting entry could not be saved. Please enter it again."
     }
   }
 }

@@ -64,7 +64,7 @@ export async function GET(req) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
       return errorJson(error.messageKey, error.status, locale);
     }
-    console.error(...safeError("[service-reports export] unexpected", error));
+    console.error("[service-reports export] unexpected", safeError(error));
     return errorJson("api.common.server_error", 500, locale);
   }
 }

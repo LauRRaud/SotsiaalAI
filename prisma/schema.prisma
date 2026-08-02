@@ -5191,8 +5191,16 @@ model ServiceEntry {
   returnedAt         DateTime?
   /// ÜHEKORDSED asukohatemplid kinnituse hetkel, mitte jada. Täidetakse AINULT
   /// siis, kui `SERVICE_LOG_LOCATION_STAMP` on sees, ja töötajale on alati
-  /// nähtav, mis salvestati. Pidevat asukohajada EI koguta kunagi ja distantsi
-  /// nendest EI arvutata (leping ptk 6b — proportsionaalsuse piir).
+  /// nähtav, mis salvestati.
+  ///
+  /// PIIR ON PUNKT vs JADA, MITTE „GPS jah/ei". Me KOGUME asukohaandmeid;
+  /// proportsionaalsus tuleb sellest, et iga punkt on seotud dokumenteeritud
+  /// teenusesündmusega, mitte ajaga. Pidevat asukohajada EI koguta kunagi.
+  ///
+  /// PARANDATUD: siin seisis varem „distantsi nendest EI arvutata (ptk 6b)".
+  /// Leping on selle piiri vahepeal OSALISELT TÜHISTANUD — E12 toob kerge
+  /// sõidupäeviku (odomeeter või templipõhine hinnang), mille TÖÖTAJA kinnitab;
+  /// töötaja enda kasuks tuletatud km ei ole jälgimine. Pideva jälje keeld JÄÄB.
   locationStamps     Json?
   unit               String    @default("HOUR")
   quantity           Decimal   @db.Decimal(10, 2)
@@ -5233,6 +5241,16 @@ model ServiceEntry {
   voidedAt           DateTime?
   voidReason         String?   @db.Text
   retentionClass     String    @default("accounting7y")
+  /// KLIENDIPOOLNE IDEMPOTENTSUSVÕTI võrguta sisestuse jaoks.
+  ///
+  /// Koduhooldaja töötab keldrites ja levita piirkondades — kirje sünnib
+  /// seadmes ja saadetakse hiljem. Kordussaatmine on siis NORMAALNE, mitte
+  /// erand: kui päring jõudis serverini, aga vastus kadus, proovib seade uuesti.
+  /// Ilma selle võtmeta tekiks KAKS arve alusdokumenti ühest tehtud tööst.
+  ///
+  /// Nullable, sest võrgus sisestus seda ei vaja; unikaalsus on profiili SEES,
+  /// et kahe osutaja seadmed ei saaks teineteise võtmeid blokeerida.
+  clientRequestId    String?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
@@ -5246,6 +5264,7 @@ model ServiceEntry {
 
   corrections ServiceEntryCorrection[]
 
+  @@unique([providerProfileId, clientRequestId])
   @@index([providerProfileId, date])
   @@index([referralId])
   @@index([providerProfileId, clientUserId, date])
