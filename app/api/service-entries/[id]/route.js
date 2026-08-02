@@ -13,7 +13,7 @@ import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
 import { deleteEntry, updateEntry } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
-import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
+import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,6 +41,14 @@ function respondToError(error, route) {
 }
 
 async function guard(req, scope) {
+  /* VÄRAV ON ESIMENE, ENNE AUTENTIMIST JA ROLLI.
+     Kui ta oleks pärast, annaks suletud pind anonüümsele 401 ja valele rollile
+     403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
+     Suletud värav peab olema eristamatu olematust marsruudist. */
+  if (!isServiceLogEnabled()) {
+    return { response: errorJson("service_log.errors.not_found", 404) };
+  }
+
   const auth = await requireProviderUser();
   if (!auth.ok) return { response: errorJson(auth.message, auth.status) };
   const limited = enforceChatRateLimit(req, {

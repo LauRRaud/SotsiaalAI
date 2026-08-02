@@ -800,6 +800,7 @@ model User {
   serviceEntriesAsClient       ServiceEntry[]             @relation("ServiceEntryClient")
   serviceReferralsAsClient     ServiceReferral[]          @relation("ServiceReferralClient")
   serviceNarrativesAsClient    ServiceMonthlyNarrative[]  @relation("ServiceNarrativeClient")
+  serviceEntryCorrections      ServiceEntryCorrection[]   @relation("ServiceEntryCorrectionActor")
   // T25 ORG-FOUNDATION-V1: liikmesus on eraldi objekt, MITTE kasutaja väli.
   // `User.role` jääb hinnastatavaks tootepersonaks; organisatsioonisisene
   // õigus elab `OrganizationCapabilityGrant`-is (arenduskava §D3).
@@ -2041,6 +2042,11 @@ model ServiceProviderService {
   // koduteenuse kordade päris nõue. Kataloog elab teenuse küljes, sest
   // „toimingud" on teenusepõhised: koduteenusel poeskäik, tugiisikul saatmine.
   activityCatalog             String[]                     @default([])
+  /// Teenuse ARVELDUSÜHIK (HOUR | SESSION | DAY | MONTH).
+  /// Ilma selleta pidi sisestus ühikut oletama ja oletus oli `HOUR` —
+  /// kord-põhine teenus muutus vaikselt tunnipõhiseks ning kogus arvutati
+  /// kestusest. Ühik on TEENUSE omadus, mitte kirje oma.
+  defaultUnit                 String?
 
   locationLinks ServiceProviderServiceLocation[]
 
@@ -5206,6 +5212,26 @@ model ServiceEntry {
   /// Kliendi paberil-kinnituse märge (väline klient); E7 digikinnitus on eraldi.
   confirmedManually  Boolean   @default(false)
   confirmedByClientAt DateTime?
+  /// DRAFT | FINAL | VOID (rakendustaseme sõnastik, K1 reegel).
+  ///
+  /// MUSTAND on veel dokument-eelne: teda tohib kustutada, sest ta ei ole
+  /// millegi alus. KINNITATUD kirjet ei kustutata ega kirjutata vaikselt üle —
+  /// teda parandatakse jälgitavalt (`ServiceEntryCorrection`) või tühistatakse.
+  /// See on RPS § 10 nõue: paranduse sisu, põhjus ja aeg peavad olema
+  /// jälgitavad.
+  status             String    @default("DRAFT")
+  finalizedAt        DateTime?
+  /// MAJANDUSAASTA, MILLE JOOKSUL KIRJE KIRJENDATI.
+  ///
+  /// RPS § 12 järgi algab säilitustähtaeg selle majandusaasta LÕPUST, mil
+  /// tehing kirjendati — MITTE teenuse osutamise kuupäevast. Vahe ei ole
+  /// teoreetiline: teenuse kuupäeva ankruga lubaks kustutamise kuni ligi aasta
+  /// liiga vara ja tagantjärele sisestamisel veelgi varem. Salvestame aasta
+  /// KIRJENDAMISE hetkel, et hilisem majandusaasta muutus ei liigutaks juba
+  /// tekkinud tähtaega.
+  recordedFiscalYear Int?
+  voidedAt           DateTime?
+  voidReason         String?   @db.Text
   retentionClass     String    @default("accounting7y")
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
@@ -5218,11 +5244,47 @@ model ServiceEntry {
   referral        ServiceReferral?        @relation(fields: [referralId], references: [id], onDelete: SetNull)
   service         ServiceProviderService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
 
+  corrections ServiceEntryCorrection[]
+
   @@index([providerProfileId, date])
   @@index([referralId])
   @@index([providerProfileId, clientUserId, date])
   @@index([ownerUserId, date])
   @@index([serviceId])
+  @@index([providerProfileId, status, date])
+}
+
+/// PARANDUSJÄLG (RPS § 10).
+///
+/// Kinnitatud teenuskirjet tohib parandada, aga parandus peab olema
+/// JÄLGITAV: mis muutus, mis oli enne, miks ja millal. Ilma selleta on „kirjet
+/// parandatakse, mitte ei kustutata" tühi lubadus — üle kirjutatud väärtus on
+/// sama kadunud kui kustutatud rida, ainult vaiksemalt.
+///
+/// Rida on KIRJUTUS-ÜHEKORDNE: teda ei uuendata ega kustutata eraldi. Ta elab
+/// koos oma kirjega ja kaob alles siis, kui kirje ise tohib säilitustähtaja
+/// möödudes kaduda.
+model ServiceEntryCorrection {
+  id             String    @id @default(cuid())
+  entryId        String
+  /// Parandaja. Nullable + `actorErasedAt`, sest konto võib kustuda enne
+  /// säilitustähtaja lõppu — jälg jääb, inimene kaob.
+  actorUserId    String?
+  actorErasedAt  DateTime?
+  /// Põhjus on KOHUSTUSLIK. Ilma põhjuseta parandus ei ole jälgitav parandus,
+  /// vaid lihtsalt teine väärtus.
+  reason         String    @db.Text
+  /// Muudetud väljade EELMISED väärtused. Ainult muutunud väljad — mitte terve
+  /// rea koopia, mis dubleeriks tundlikku sisu igal parandusel.
+  previousValues Json
+  changedFields  String[]  @default([])
+  createdAt      DateTime  @default(now())
+
+  entry ServiceEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+  actor User?        @relation("ServiceEntryCorrectionActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([entryId, createdAt])
+  @@index([actorUserId])
 }
 
 /// Kuunarratiiv — kliendi LUGU, mille põhjal KOV otsustab teenuse jätkamise.

@@ -79,16 +79,68 @@ test("suletud värav annab 404, mitte 403", () => {
   assert.doesNotThrow(() => assertServiceLogEnabled({ [SERVICE_LOG_FLAG_KEYS.ENABLED]: "1" }));
 });
 
-test("API-marsruudid kontrollivad väravat ja piiravad rolli", () => {
+test("suletud värav annab PÄRIS 404 — ka anonüümsele, ka valele rollile", async () => {
+  /* VAREM KONTROLLIS SEE TEST AINULT LÄHTEKOODI REGEXIGA ja jäi seetõttu
+     magama: marsruudid kontrollisid väravat PÄRAST autentimist, seega
+     anonüümne sai 401 ja vale roll 403 — mõlemad ütlevad „see asi on olemas,
+     ainult sina ei pääse ligi". Nüüd kutsume käsitlejaid päriselt.
+
+     Autentimist EI OLE VAJA mockida: kui värav töötab, ei jõua täitmine
+     `getServerSession`-ini kunagi. Kui keegi väravakontrolli tagasi allapoole
+     tõstab, kukub see test just seal. */
+  delete process.env.SERVICE_LOG_ENABLED;
+
+  const list = await import("../../app/api/service-entries/route.js");
+  const single = await import("../../app/api/service-entries/[id]/route.js");
+
+  const calls = [
+    ["GET", () => list.GET(new Request("http://localhost/api/service-entries"))],
+    [
+      "POST",
+      () =>
+        list.POST(
+          new Request("http://localhost/api/service-entries", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: "{}"
+          })
+        )
+    ],
+    [
+      "PATCH",
+      () =>
+        single.PATCH(
+          new Request("http://localhost/api/service-entries/x", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: "{}"
+          }),
+          { params: Promise.resolve({ id: "x" }) }
+        )
+    ],
+    [
+      "DELETE",
+      () =>
+        single.DELETE(new Request("http://localhost/api/service-entries/x", { method: "DELETE" }), {
+          params: Promise.resolve({ id: "x" })
+        })
+    ]
+  ];
+
+  for (const [name, call] of calls) {
+    const response = await call();
+    assert.equal(response.status, 404, `${name}: suletud värav peab andma 404`);
+  }
+});
+
+test("marsruutide rollipiir on kitsas ja rate-limit on olemas", () => {
+  // Struktuurne kaitse käitumistesti KÕRVAL, mitte selle asemel.
   const root = process.cwd();
   for (const file of [
     path.join(root, "app", "api", "service-entries", "route.js"),
     path.join(root, "app", "api", "service-entries", "[id]", "route.js")
   ]) {
     const source = readFileSync(file, "utf8");
-    // Väravaviga peab jõudma vastuseni, mitte jääma 500-ks.
-    assert.match(source, /ServiceLogDisabledError/u, `${file}: väravaviga käsitlemata`);
-    // Rollipiir on kitsas: ainult SERVICE_PROVIDER.
     assert.match(source, /roleFromSession\(session\) !== "SERVICE_PROVIDER"/u);
     // Admin EI tohi olla erand — ta ei kirjuta kellegi teise arve alusdokumente.
     assert.doesNotMatch(source, /isAdmin/u, `${file}: admin ei tohi olla sisestuse erand`);
