@@ -5,15 +5,12 @@
  * saldopäring tähendaks, et mõni vaade unustab ta küsida ja ületus jääb
  * märkamata just seal, kus ta maksab.
  */
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/auth";
-import { roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
+import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { createReferral, listReferrals } from "@/lib/serviceLog/referrals";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
-import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
 /* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
    `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
@@ -24,28 +21,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-async function guard(req, scope) {
-  // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
-  if (!isServiceLogEnabled()) {
-    return { response: errorJson("service_log.errors.not_found", 404, localeFromRequest(req)) };
-  }
-  const session = await getServerSession(authConfig).catch(() => null);
-  const userId = session?.user?.id ? String(session.user.id) : "";
-  if (!userId) return { response: errorJson("api.common.unauthorized", 401, localeFromRequest(req)) };
-  if (roleFromSession(session) !== "SERVICE_PROVIDER") {
-    return { response: errorJson("api.common.forbidden", 403, localeFromRequest(req)) };
-  }
-  const limited = enforceChatRateLimit(req, {
-    scope,
-    userId,
-    limit: 60,
-    windowMs: 60_000
-  });
-  if (limited) return { response: limited };
-  return { userId };
-}
-
-function respondToError(error, route, locale) {
+function respondToError(locale, error, route) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
     return errorJson(error.messageKey, error.status, locale);
   }
@@ -54,7 +30,7 @@ function respondToError(error, route, locale) {
 }
 
 export async function GET(req) {
-  const { response, userId } = await guard(req, "service_referrals_get");
+  const { response, userId, locale } = await guardServiceLogRequest(req, { scope: "service_referrals_get" });
   if (response) return response;
 
   try {
@@ -67,21 +43,21 @@ export async function GET(req) {
     });
     return json({ referrals });
   } catch (error) {
-    return respondToError(error, "service-referrals GET", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals GET", localeFromRequest(req));
   }
 }
 
 export async function POST(req) {
-  const { response, userId } = await guard(req, "service_referrals_post");
+  const { response, userId, locale } = await guardServiceLogRequest(req, { scope: "service_referrals_post" });
   if (response) return response;
 
   try {
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
-      return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
+      return errorJson("service_log.errors.invalid_input", 400, locale);
     }
     return json({ referral: await createReferral(userId, body) }, 201);
   } catch (error) {
-    return respondToError(error, "service-referrals POST", localeFromRequest(req));
+    return respondToError(locale, error, "service-referrals POST", localeFromRequest(req));
   }
 }

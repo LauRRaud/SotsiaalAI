@@ -16,7 +16,7 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import ServiceLogDay from "./ServiceLogDay";
@@ -39,8 +39,13 @@ function currentMonth() {
 
 export default function ServiceLogShell() {
   const { t } = useI18n();
-  const { data: session, status: sessionStatus } = useSession();
-  const allowed = String(session?.user?.role || "").toUpperCase() === "SERVICE_PROVIDER";
+  /* ROLL TULEB PLATVORMI ROLLIVAATEST, mitte toorest sessioonist.
+     Nii näeb omanik oma admin-kontolt teenuseosutaja pinda, kui ta S/P/T
+     lülitiga rolli vahetab — ja server ütleb sama (`lib/serviceLog/access.js`).
+     Skoop jääb ikka `ownerId`-põhiseks: rollivaates admin näeb AINULT oma
+     teenuseprofiili kirjeid, mitte kellegi teise omi. */
+  const { effectiveRole, isRoleResolved } = useEffectiveRole();
+  const allowed = effectiveRole === "SERVICE_PROVIDER";
 
   usePanelInfoSlot({ infoId: "service_log" });
 
@@ -84,7 +89,7 @@ export default function ServiceLogShell() {
     [tab, writeUrl]
   );
 
-  if (sessionStatus === "loading") return null;
+  if (!isRoleResolved) return null;
 
   if (!allowed) {
     return (

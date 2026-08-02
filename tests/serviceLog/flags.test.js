@@ -88,10 +88,16 @@ test("suletud värav annab PÄRIS 404 — ka anonüümsele, ka valele rollile", 
      Autentimist EI OLE VAJA mockida: kui värav töötab, ei jõua täitmine
      `getServerSession`-ini kunagi. Kui keegi väravakontrolli tagasi allapoole
      tõstab, kukub see test just seal. */
-  delete process.env.SERVICE_LOG_ENABLED;
-
   const list = await import("../../app/api/service-entries/route.js");
   const single = await import("../../app/api/service-entries/[id]/route.js");
+
+  /* LIPP PANNAKSE VÄLJA PÄRAST IMPORTI, mitte enne.
+     Marsruudi import tõmbab kaasa Prisma konfiguratsiooni, mis laeb `.env`
+     UUESTI — enne importi kustutatud muutuja tuli sealt tagasi ja test hakkas
+     sõltuma sellest, mis arendaja `.env`-is parajasti on. Nii kukkus ta kohe,
+     kui keegi lipu lokaalselt sisse lülitas: 401 vs 404. Lipp loetakse päringu
+     ajal, seega siin seadmine on ainus koht, mis on sõltumatu. */
+  process.env.SERVICE_LOG_ENABLED = "0";
 
   const calls = [
     ["GET", () => list.GET(new Request("http://localhost/api/service-entries"))],
@@ -133,17 +139,42 @@ test("suletud värav annab PÄRIS 404 — ka anonüümsele, ka valele rollile", 
   }
 });
 
-test("marsruutide rollipiir on kitsas ja rate-limit on olemas", () => {
-  // Struktuurne kaitse käitumistesti KÕRVAL, mitte selle asemel.
+test("kõik marsruudid käivad ÜHEST väravast läbi", () => {
+  /* Rollireegel oli varem kopeeritud kaheksasse marsruuti. Kaheksa koopiat
+     tähendab, et üks neist jääb muutmisel maha — ja just see üks on siis see,
+     mille kaudu keegi sisse saab. Test nõuab, et ükski marsruut ei ehitaks
+     oma väravat. */
   const root = process.cwd();
-  for (const file of [
-    path.join(root, "app", "api", "service-entries", "route.js"),
-    path.join(root, "app", "api", "service-entries", "[id]", "route.js")
-  ]) {
+  const routes = [
+    ["app", "api", "service-entries", "route.js"],
+    ["app", "api", "service-entries", "[id]", "route.js"],
+    ["app", "api", "service-entries", "[id]", "lifecycle", "route.js"],
+    ["app", "api", "service-referrals", "route.js"],
+    ["app", "api", "service-referrals", "[id]", "route.js"],
+    ["app", "api", "service-narratives", "route.js"],
+    ["app", "api", "service-log", "month", "route.js"],
+    ["app", "api", "service-reports", "export", "route.js"]
+  ];
+  for (const parts of routes) {
+    const file = path.join(root, ...parts);
     const source = readFileSync(file, "utf8");
-    assert.match(source, /roleFromSession\(session\) !== "SERVICE_PROVIDER"/u);
-    // Admin EI tohi olla erand — ta ei kirjuta kellegi teise arve alusdokumente.
-    assert.doesNotMatch(source, /isAdmin/u, `${file}: admin ei tohi olla sisestuse erand`);
-    assert.match(source, /enforceChatRateLimit/u, `${file}: rate-limit puudub`);
+    assert.match(source, /guardServiceLogRequest\(/u, `${file}: ei kasuta ühist väravat`);
+    assert.doesNotMatch(source, /getServerSession/u, `${file}: oma sessioonikontroll`);
+    assert.doesNotMatch(source, /roleFromSession/u, `${file}: oma rollikontroll`);
   }
+});
+
+test("värav loeb rolli PLATVORMI rollivaatest ja jätab skoobi omanikule", () => {
+  /* Omanik peab saama oma admin-kontolt S/P/T lülitiga teenuseosutaja pinda
+     proovida. See EI nõrgenda vana reeglit „admin ei kirjuta kellegi teise
+     arve alusdokumente": skoop ei tule rollist, vaid `requireWritableProfile`
+     seob kirjed `ownerId: userId`-ga. Rollivaates admin näeb AINULT oma
+     profiili kirjeid. */
+  const root = process.cwd();
+  const guard = readFileSync(path.join(root, "lib", "serviceLog", "access.js"), "utf8");
+  assert.match(guard, /resolveSessionRoleState/u);
+  assert.match(guard, /effectiveRole !== "SERVICE_PROVIDER"/u);
+
+  const entries = readFileSync(path.join(root, "lib", "serviceLog", "entries.js"), "utf8");
+  assert.match(entries, /ownerId: userId/u, "skoop peab jääma omanikupõhiseks");
 });

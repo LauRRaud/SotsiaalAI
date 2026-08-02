@@ -5,12 +5,9 @@
  * tähendaks kolme kohta, kus vaade võib jääda poolikuks — ja kuu lõpp on
  * täpselt see hetk, mil poolik pilt maksab raha.
  */
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/auth";
-import { roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
+import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { getMonthlyReport } from "@/lib/serviceLog/monthReport";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
@@ -27,21 +24,11 @@ export const revalidate = 0;
 export async function GET(req) {
   // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
   if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
-
-  const session = await getServerSession(authConfig).catch(() => null);
-  const userId = session?.user?.id ? String(session.user.id) : "";
-  if (!userId) return errorJson("api.common.unauthorized", 401, localeFromRequest(req));
-  if (roleFromSession(session) !== "SERVICE_PROVIDER") {
-    return errorJson("api.common.forbidden", 403, localeFromRequest(req));
-  }
-
-  const limited = enforceChatRateLimit(req, {
+  const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_log_month",
-    userId,
-    limit: 60,
-    windowMs: 60_000
+    limit: 60
   });
-  if (limited) return limited;
+  if (response) return response;
 
   try {
     const url = new URL(req.url);
@@ -49,9 +36,9 @@ export async function GET(req) {
     return json({ report });
   } catch (error) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-      return errorJson(error.messageKey, error.status, localeFromRequest(req));
+      return errorJson(error.messageKey, error.status, locale);
     }
     console.error(...safeError("[service-log month] unexpected", error));
-    return errorJson("api.common.server_error", 500, localeFromRequest(req));
+    return errorJson("api.common.server_error", 500, locale);
   }
 }

@@ -7,12 +7,9 @@
  * Eraldi uks teeb need toimingud logis, testis ja õiguste ülevaatuses
  * nähtavaks — PATCH-i sees kaoksid nad ülejäänud väljade sekka.
  */
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/auth";
-import { roleFromSession } from "@/lib/authz";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { safeError } from "@/lib/privacy/safeError";
+import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { finalizeEntry, voidEntry } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
@@ -29,21 +26,11 @@ export const revalidate = 0;
 export async function POST(req, context) {
   // Värav enne autentimist — suletud pind on eristamatu olematust marsruudist.
   if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
-
-  const session = await getServerSession(authConfig).catch(() => null);
-  const userId = session?.user?.id ? String(session.user.id) : "";
-  if (!userId) return errorJson("api.common.unauthorized", 401, localeFromRequest(req));
-  if (roleFromSession(session) !== "SERVICE_PROVIDER") {
-    return errorJson("api.common.forbidden", 403, localeFromRequest(req));
-  }
-
-  const limited = enforceChatRateLimit(req, {
+  const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_entries_lifecycle",
-    userId,
-    limit: 60,
-    windowMs: 60_000
+    limit: 60
   });
-  if (limited) return limited;
+  if (response) return response;
 
   try {
     const { id } = await context.params;
@@ -58,12 +45,12 @@ export async function POST(req, context) {
          siin ei dubleerita valideerimist, et kaks reeglit ei saaks lahkneda. */
       return json({ entry: await voidEntry(userId, String(id), { reason: body?.reason }) });
     }
-    return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
+    return errorJson("service_log.errors.invalid_input", 400, locale);
   } catch (error) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-      return errorJson(error.messageKey, error.status, localeFromRequest(req));
+      return errorJson(error.messageKey, error.status, locale);
     }
     console.error(...safeError("[service-entries lifecycle] unexpected", error));
-    return errorJson("api.common.server_error", 500, localeFromRequest(req));
+    return errorJson("api.common.server_error", 500, locale);
   }
 }
