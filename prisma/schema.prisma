@@ -595,6 +595,10 @@ enum DocumentKind {
   TRANSCRIPT_SUMMARY
   UPLOADED_AUDIO_SOURCE
   FIELD_PHOTO
+  // Teenuspäeviku kuuaruanne, mis KOV-ile esitati. Eraldi liik seepärast, et
+  // tema säilitus tuleb raamatupidamise seadusest (7 a), mitte dokumendiperest
+  // (90 p) — ja seda vahet peab masin nägema, mitte inimene meeles pidama.
+  SERVICE_LOG_REPORT
   OTHER
 }
 
@@ -830,6 +834,7 @@ model User {
 
   @@index([acceptsPreInquiries])
   @@index([accessSuspendedAt])
+  serviceReportShares  ServiceReportShare[]  @relation("ServiceReportShareOwner")
 }
 
 model Profile {
@@ -4547,6 +4552,7 @@ model Organization {
   @@index([municipalityId])
   @@index([createdByUserId])
   @@index([registryCode])
+  serviceReportShares ServiceReportShare[]
 }
 
 model OrganizationModule {
@@ -4624,6 +4630,7 @@ model OrganizationMembership {
   // T25 viil B
   seatAssignments  OrganizationSeatAssignment[]
   workAssignments  OrganizationWorkAssignment[] @relation("OrganizationWorkAssignmentAssignee")
+  serviceReportShares ServiceReportShare[]         @relation("ServiceReportShareRecipient")
   // T25 viil C
   reportingAsMember   OrganizationReportingLine[]  @relation("OrganizationReportingMember")
   reportingAsManager  OrganizationReportingLine[]  @relation("OrganizationReportingManager")
@@ -5399,4 +5406,76 @@ model ServiceMonthlyNarrative {
   @@index([providerProfileId, periodYear, periodMonth])
   @@index([referralId])
   @@index([clientUserId])
+}
+
+/// TEENUSPÄEVIK — kuuaruande jagamine osakonna juhatajale.
+///
+/// KOLM ERINEVUST tööheaolu jagamisest (`WellbeingSupportShare`), mis on
+/// TEADLIKUD, mitte lohakusest:
+///
+/// 1. SAAJA SAAB OMA KÜLMUTATUD KOOPIA, MITTE VIITE OMANIKU DOKUMENDILE.
+///    Esimene versioon oli võõrvõti `UserDocument`-ile ja see oli kahtpidi vale.
+///    Arhitektuurne pool: org-kiht EI TOHI omada võõrvõtit privaatobjekti
+///    (§D8, `tests/org/contracts.test.js`) — see on lai piir just selleks, et
+///    keegi ei peaks juhtumipõhiselt kaaluma, kas see konkreetne viide on
+///    ohutu. Praktiline pool: võõrvõti tähendas, et omaniku dokumendi
+///    kustutamine kustutaks vaikselt ka juhile saadetu.
+///
+///    Koopia EI OLE „teine tõde": bait'id on samad ja `sha256` tõendab seda.
+///    Erinev on ainult VALDUS. `documentId` jääb alles VIITENA ILMA FK-ta —
+///    omaniku enda loendi jaoks („millist aruannet ma jagasin").
+///
+/// 2. SISU EI OLE PRIVAATNE TÖÖTAJA KOHTA. Tööheaolu avaldus räägib inimesest
+///    endast ja tema nägemise õigus on erandlik. Kuuaruanne on TÖÖTULEMUS ja
+///    juhi õigus teda näha on tavaline — seepärast ei ole siin projektsiooni,
+///    mis sisu kärbiks.
+///
+/// 3. ALGATAJA ON IKKA TÖÖTAJA. Juht ei saa aruannet ise võtta. See on ainus
+///    reegel, mis tuleb tööheaolu rajalt muutmata üle: jagamine on saatmine,
+///    mitte ligipääs.
+model ServiceReportShare {
+  id                    String                   @id @default(cuid())
+  documentId            String
+  ownerUserId           String
+  organizationId        String
+  recipientMembershipId String
+  /// „AAAA-KK". Dubleerib dokumendi metaandmeid TEADLIKULT: juhi loend
+  /// järjestatakse perioodi järgi ja JSON-välja järgi sortimine oleks aeglane
+  /// ning indekseerimatu.
+  month                 String
+  /// KÜLMUTATUD KOOPIA. Oma fail, oma nimi, oma räsi — juhi eksemplar ei sõltu
+  /// sellest, mida omanik oma dokumendiga hiljem teeb.
+  storagePath           String
+  fileName              String
+  mime                  String
+  sizeBytes             Int
+  /// Sama sisu tõend: kui vaja näidata, et juht sai TÄPSELT selle faili, mis
+  /// KOV-ile läks, võrreldakse räsi, mitte mälestusi.
+  sha256                String
+  kovName               String?
+  entryCount            Int?
+  note                  String?
+  status                ServiceReportShareStatus @default(SENT)
+  sentAt                DateTime                 @default(now())
+  openedAt              DateTime?
+  recalledAt            DateTime?
+  createdAt             DateTime                 @default(now())
+  updatedAt             DateTime                 @updatedAt
+
+  owner        User                   @relation("ServiceReportShareOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  recipient    OrganizationMembership @relation("ServiceReportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: Cascade)
+
+  @@index([ownerUserId, sentAt])
+  @@index([recipientMembershipId, status, sentAt])
+  @@index([organizationId, month])
+  @@index([documentId])
+}
+
+enum ServiceReportShareStatus {
+  SENT
+  OPENED
+  /// Tagasi võetud. Rida JÄÄB ALLES: „ma ei saatnud seda kunagi" ja „ma võtsin
+  /// selle tagasi" on kaks eri asja ja auditijälg peab neid eristama.
+  RECALLED
 }

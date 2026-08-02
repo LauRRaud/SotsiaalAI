@@ -3109,7 +3109,8 @@
         "files": "Files",
         "analysis": "Analyses",
         "artifacts": "Drafted",
-        "research": "Research"
+        "research": "Research",
+        "service_log": "Service log"
       },
       "empty_all": "Nothing here yet. Start from an action above or add a file.",
       "empty_filtered": "No items in this view.",
@@ -3129,7 +3130,8 @@
         "analysis": "Analysis",
         "draft": "Draft",
         "final": "Approved",
-        "research": "Research"
+        "research": "Research",
+        "service_log": "Service log report"
       },
       "research_status": {
         "queued": "Queued",
@@ -3160,11 +3162,14 @@
         "analysis": "AI analysis",
         "ai_draft": "AI-drafted",
         "ai_final": "AI-drafted, you approved",
-        "research": "Deep research from the knowledge base"
+        "research": "Deep research from the knowledge base",
+        "service_log": "issued from the service log"
       },
       "retention": {
         "days": "{days} days",
-        "until_deleted": "Until you delete it"
+        "until_deleted": "Until you delete it",
+        "until": "until {date}",
+        "years": "{years} yr"
       },
       "rag": {
         "not_in_search": "Not in shared search",
@@ -7839,7 +7844,8 @@
       "funding": "Funding",
       "inbox": "Intake",
       "support": "Support",
-      "profile": "Service profile"
+      "profile": "Service profile",
+      "service_reports": "Reports"
     },
     "overview": {
       "heading": "Overview",
@@ -8111,7 +8117,7 @@
       "snapshot_empty": "The shared content is empty.",
       "share_requires_confirmation": "The support message needs your confirmation.",
       "share_to_self": "A support message cannot be sent to yourself.",
-      "share_recipient_not_allowed": "A support message cannot be sent to that person.",
+      "share_recipient_not_allowed": "A report cannot be sent to this person.",
       "support_share_not_found": "Support message not found.",
       "support_share_already_opened": "The message has already been opened — it cannot be recalled.",
       "support_share_recalled": "The message has been recalled.",
@@ -8316,6 +8322,18 @@
       "inbox_shared": "An inquiry sent to an organisation arrives in a shared intake, not in one person's mailbox. That way it does not sit behind someone's holiday.",
       "inbox_assign": "From the intake the inquiry is assigned onward to a specific person. Who opened it and who it was assigned to is recorded.",
       "inbox_personal": "The organisation's intake does not interfere with your personal inquiry list — these are two separate paths."
+    },
+    "reports": {
+      "title": "Service log reports",
+      "intro": "These are the monthly reports staff have sent you. A report appears here when the worker sends it — you do not see the service log itself.",
+      "empty": "No reports have been sent to you yet.",
+      "from": "from {name}",
+      "sent_at": "sent {date}",
+      "opened_at": "opened {date}",
+      "unopened": "not opened",
+      "entries": "{count} entries",
+      "open": "Open the report",
+      "audit_note": "Opening is recorded in the audit trail and the sender sees that you opened it."
     }
   },
   "service_log": {
@@ -8426,7 +8444,11 @@
       "never_done": "not done yet",
       "rhythm_due": "due",
       "rhythm_ok": "up to date",
-      "source_quality_guide": "Source: SKA quality guide (not a requirement arising from law)"
+      "source_quality_guide": "Source: SKA quality guide (not a requirement arising from law)",
+      "reports": "Reports issued",
+      "report_meta": "{format} · {date}",
+      "report_issued_times": "issued {count} times",
+      "report_stored": "a copy is kept in documents"
     },
     "rhythms": {
       "feedback_survey": "Feedback survey",
@@ -8589,7 +8611,11 @@
       "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D.",
       "narrative_no_entries": "There are no entries this month to draft from.",
       "visit_already_used": "A service entry has already been created from this visit.",
-      "client_month_too_large": "This month has more entries than the view can carry. Please contact the provider."
+      "client_month_too_large": "This month has more entries than the view can carry. Please contact the provider.",
+      "report_not_found": "The report was not found.",
+      "share_recipient_not_allowed": "A report cannot be sent to this person.",
+      "share_already_sent": "This report has already been sent to this person.",
+      "forbidden": "This action is not allowed."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
@@ -8622,7 +8648,15 @@
       "asking": "Requesting location…",
       "captured": "Location captured. The server decides whether it is stored.",
       "missing": "No location available — the visit is still marked.",
-      "saved": "location stored"
+      "saved": "location stored",
+      "captured_accuracy": "Location recorded, accuracy ±{meters} m. The server decides whether it is stored.",
+      "coarse": "The location is approximate (±{meters} m) — it does NOT prove presence. If you are indoors or location services are off, turn them on and mark arrival again.",
+      "denied_hint": "The browser gave no location. Check that this page has location permission and that the device location service is on.",
+      "unsupported": "This device provides no location. The visit is recorded regardless.",
+      "denied": "Location permission is blocked. Allow it in the browser settings (lock icon in the address bar → Location) and mark arrival again. The visit is already recorded.",
+      "unavailable": "The device found no location. Check that location services are on. The visit is recorded regardless.",
+      "timeout": "The location did not arrive in time. Indoors GPS takes longer — try again near a window. The visit is recorded regardless.",
+      "too_coarse": "The device offered a location accurate to several kilometres — we do not store a point that coarse. The visit is recorded regardless."
     },
     "client": {
       "title": "My services",
@@ -8642,6 +8676,49 @@
       "title": "Fill in your service profile first",
       "body": "The service log writes entries under your service profile — without one there is nowhere to put them. The profile does not become public: it stays “Unpublished” until you decide otherwise.",
       "action": "Open the service profile"
+    },
+    "draft": {
+      "restored": "A visit in progress was restored from this device.",
+      "restored_check": "Check that the client and the times are still correct.",
+      "discard": "Start a new visit"
+    },
+    "share": {
+      "title": "Share with your manager",
+      "intro": "The report goes to the chosen person as a file. They get no access to the service log.",
+      "report": "Report",
+      "report_choose": "Choose a report",
+      "recipient": "Recipient",
+      "recipient_choose": "Choose a recipient",
+      "note": "Note (optional)",
+      "send": "Send",
+      "sent": "The report has been sent.",
+      "failed": "Sending failed.",
+      "recall": "Recall",
+      "status_sent": "sent, not opened",
+      "status_opened": "manager opened it",
+      "status_recalled": "recalled",
+      "relation": {
+        "manager": "your manager",
+        "unit_lead": "unit lead",
+        "org_owner": "organisation owner"
+      }
+    },
+    "permission": {
+      "title": "Location permission",
+      "why": "The location stamp shows the visit happened on site. The browser asks for permission only when you request it — press the button and choose “Allow”.",
+      "allow": "Allow location",
+      "ok": "Location works.",
+      "ok_accuracy": "Location works, accuracy ±{meters} m.",
+      "ok_coarse": "Permission is granted, but accuracy is ±{meters} m — that does not prove presence. On a phone turn on GPS/location services; on a desktop the accuracy is usually poor anyway.",
+      "failed": "No location arrived. Check that the device location service is on and try again.",
+      "denied": "Location permission is BLOCKED for this page. The page cannot switch it back on — only you can, in the browser settings.",
+      "unsupported": "This browser provides no location. Visits can still be recorded — the times are saved.",
+      "not_ip": "The location comes from the device (GPS or Wi-Fi), not from the internet address. An IP-based location points at the operator's node and can be tens of kilometres off — we do not store a point like that.",
+      "steps": {
+        "android": "Open Chrome and tap the lock icon in the address bar|Choose “Permissions” or “Site settings”|Set “Location” to “Allow”|Come back and reload the page",
+        "ios": "Open iPhone “Settings” → “Safari” → “Location” and choose “Ask” or “Allow”|Check “Settings” → “Privacy & Security” → “Location Services” is on|Return to Safari and reload the page",
+        "desktop": "Click the icon next to the site name in the address bar|Choose “Site settings”|Set “Location” to “Allow”|Reload the page"
+      }
     }
   },
   "date_field": {

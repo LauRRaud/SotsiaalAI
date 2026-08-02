@@ -43,6 +43,10 @@ export default function OrgNav({ organizationId, capabilities = [], activeModule
     /* Tugi on IGA liikme oma — ei capability't ega moodulit. Toeavaldus on
        töötaja õigus, mitte funktsioon, mida organisatsioon lubab. */
     { key: "support", href: `/org/${organizationId}/tugi`, label: t("org.nav.support") },
+    /* Teenuspäeviku aruanded on samuti IGA liikme oma ja sama põhjusega:
+       õigus näha tuleb SAATMISEST, mitte rollist. Capability otsustab hoopis
+       seda, kellele tohib saata. */
+    { key: "service_reports", href: `/org/${organizationId}/aruanded`, label: t("org.nav.service_reports") },
     {
       key: "profile",
       href: `/org/${organizationId}/teenusprofiil`,

@@ -3109,7 +3109,8 @@
         "files": "Failid",
         "analysis": "Analüüsid",
         "artifacts": "Koostatud",
-        "research": "Uuringud"
+        "research": "Uuringud",
+        "service_log": "Teenuspäevik"
       },
       "empty_all": "Siin ei ole veel ühtegi objekti. Alusta tegevusest ülal või lisa fail.",
       "empty_filtered": "Selle vaate all ei ole ühtegi objekti.",
@@ -3129,7 +3130,8 @@
         "analysis": "Analüüs",
         "draft": "Mustand",
         "final": "Kinnitatud",
-        "research": "Uuring"
+        "research": "Uuring",
+        "service_log": "Teenuspäeviku aruanne"
       },
       "research_status": {
         "queued": "Ootel",
@@ -3160,11 +3162,14 @@
         "analysis": "AI analüüs",
         "ai_draft": "AI koostatud mustand",
         "ai_final": "AI koostatud, sinu kinnitatud",
-        "research": "Süvauuring teadmusbaasist"
+        "research": "Süvauuring teadmusbaasist",
+        "service_log": "teenuspäevikust esitatud"
       },
       "retention": {
         "days": "{days} päeva",
-        "until_deleted": "Kuni kustutad"
+        "until_deleted": "Kuni kustutad",
+        "until": "kuni {date}",
+        "years": "{years} a"
       },
       "rag": {
         "not_in_search": "Ei lähe jagatud otsingusse",
@@ -7839,7 +7844,8 @@
       "funding": "Rahastus",
       "inbox": "Vastuvõtt",
       "support": "Tugi",
-      "profile": "Teenuseprofiil"
+      "profile": "Teenuseprofiil",
+      "service_reports": "Aruanded"
     },
     "overview": {
       "heading": "Ülevaade",
@@ -8111,7 +8117,7 @@
       "snapshot_empty": "Jagatav sisu on tühi.",
       "share_requires_confirmation": "Toeavaldus vajab sinu kinnitust.",
       "share_to_self": "Toeavaldust ei saa saata iseendale.",
-      "share_recipient_not_allowed": "Sellele inimesele ei saa toeavaldust saata.",
+      "share_recipient_not_allowed": "Sellele inimesele ei saa aruannet saata.",
       "support_share_not_found": "Toeavaldust ei leitud.",
       "support_share_already_opened": "Avaldus on juba avatud — tagasi võtta ei saa.",
       "support_share_recalled": "Avaldus on tagasi võetud.",
@@ -8316,6 +8322,18 @@
       "inbox_shared": "Organisatsioonile saadetud pöördumine jõuab ühisesse vastuvõttu, mitte ühe inimese postkasti. Nii ei jää see puhkuse taha seisma.",
       "inbox_assign": "Vastuvõtust määratakse pöördumine edasi konkreetsele inimesele. Kes selle avas ja kellele määras, jääb kirja.",
       "inbox_personal": "Sinu isiklikku pöördumiste loendisse organisatsiooni vastuvõtt ei sega — need on kaks eri rada."
+    },
+    "reports": {
+      "title": "Teenuspäeviku aruanded",
+      "intro": "Siin on kuuaruanded, mille töötajad on sulle saatnud. Aruanne tuleb siia siis, kui töötaja ta saadab — sa ei näe teenuspäevikut ennast.",
+      "empty": "Sulle ei ole veel ühtegi aruannet saadetud.",
+      "from": "saatja {name}",
+      "sent_at": "saadetud {date}",
+      "opened_at": "avatud {date}",
+      "unopened": "avamata",
+      "entries": "{count} kirjet",
+      "open": "Ava aruanne",
+      "audit_note": "Avamine jääb auditijälge ja saatja näeb, et sa aruande avasid."
     }
   },
   "service_log": {
@@ -8426,7 +8444,11 @@
       "never_done": "veel tegemata",
       "rhythm_due": "tähtaeg käes",
       "rhythm_ok": "korras",
-      "source_quality_guide": "Allikas: SKA kvaliteedijuhis (mitte seadusest tulenev nõue)"
+      "source_quality_guide": "Allikas: SKA kvaliteedijuhis (mitte seadusest tulenev nõue)",
+      "reports": "Esitatud aruanded",
+      "report_meta": "{format} · {date}",
+      "report_issued_times": "väljastatud {count} korda",
+      "report_stored": "koopia on alles dokumentides"
     },
     "rhythms": {
       "feedback_survey": "Tagasisideküsitlus",
@@ -8589,7 +8611,11 @@
       "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D.",
       "narrative_no_entries": "Selles kuus ei ole kirjeid, millest mustandit koostada.",
       "visit_already_used": "Sellest külastusest on juba teenuskirje tehtud.",
-      "client_month_too_large": "Selles kuus on rohkem kirjeid, kui vaade kannab. Võta ühendust osutajaga."
+      "client_month_too_large": "Selles kuus on rohkem kirjeid, kui vaade kannab. Võta ühendust osutajaga.",
+      "report_not_found": "Aruannet ei leitud.",
+      "share_recipient_not_allowed": "Sellele inimesele ei saa aruannet saata.",
+      "share_already_sent": "See aruanne on sellele inimesele juba saadetud.",
+      "forbidden": "Toiming ei ole lubatud."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
@@ -8622,7 +8648,15 @@
       "asking": "Küsin asukohta…",
       "captured": "Asukoht märgitud. Salvestamise otsustab server.",
       "missing": "Asukohta ei saadud — külastus on siiski märgitud.",
-      "saved": "asukoht salvestatud"
+      "saved": "asukoht salvestatud",
+      "captured_accuracy": "Asukoht märgitud, täpsus ±{meters} m. Salvestamise otsustab server.",
+      "coarse": "Asukoht on ligikaudne (±{meters} m) — see EI tõenda kohalolekut. Kui oled siseruumis või GPS on välja lülitatud, lülita ta sisse ja märgi kohalolek uuesti.",
+      "denied_hint": "Brauser ei andnud asukohta. Kontrolli, et lehel on asukohaluba ja seadmel on asukohateenus sees.",
+      "unsupported": "See seade ei anna asukohta. Külastus on siiski märgitud.",
+      "denied": "Asukohaluba on keelatud. Luba ta brauseri seadetes (aadressiriba lukuikoon → Asukoht) ja märgi kohalolek uuesti. Külastus on juba märgitud.",
+      "unavailable": "Seade ei leidnud asukohta. Kontrolli, et asukohateenus on sees. Külastus on siiski märgitud.",
+      "timeout": "Asukoht ei jõudnud kohale. Siseruumis võtab GPS kauem — proovi akna juures uuesti. Külastus on siiski märgitud.",
+      "too_coarse": "Seade pakkus asukohta mitme kilomeetri täpsusega — nii jämedat punkti me ei salvesta. Külastus on siiski märgitud."
     },
     "client": {
       "title": "Minu teenused",
@@ -8642,6 +8676,49 @@
       "title": "Enne alustamist täida teenuseprofiil",
       "body": "Teenuspäevik kirjutab kirjed sinu teenuseprofiili alla — ilma selleta ei ole kohta, kuhu neid panna. Profiil ei lähe avalikuks: staatus jääb „Avaldamata“, kuni sa ise teisiti otsustad.",
       "action": "Ava teenuseprofiil"
+    },
+    "draft": {
+      "restored": "Pooleli olev külastus taastati sellest seadmest.",
+      "restored_check": "Kontrolli, et klient ja kellaajad on ikka õiged.",
+      "discard": "Alusta uut külastust"
+    },
+    "share": {
+      "title": "Jaga juhatajaga",
+      "intro": "Aruanne läheb valitud inimesele failina. Ligipääsu teenuspäevikusse ta ei saa.",
+      "report": "Aruanne",
+      "report_choose": "Vali aruanne",
+      "recipient": "Saaja",
+      "recipient_choose": "Vali saaja",
+      "note": "Märkus (valikuline)",
+      "send": "Saada",
+      "sent": "Aruanne on saadetud.",
+      "failed": "Saatmine ei õnnestunud.",
+      "recall": "Võta tagasi",
+      "status_sent": "saadetud, avamata",
+      "status_opened": "juht avas",
+      "status_recalled": "tagasi võetud",
+      "relation": {
+        "manager": "sinu juht",
+        "unit_lead": "üksuse juht",
+        "org_owner": "organisatsiooni omanik"
+      }
+    },
+    "permission": {
+      "title": "Asukohaluba",
+      "why": "Asukohatempel tõendab, et külastus toimus kohapeal. Brauser küsib luba ainult siis, kui sina seda palud — vajuta ja kinnita brauseri küsimusele „Luba”.",
+      "allow": "Luba asukoht",
+      "ok": "Asukoht töötab.",
+      "ok_accuracy": "Asukoht töötab, täpsus ±{meters} m.",
+      "ok_coarse": "Luba on olemas, aga täpsus on ±{meters} m — see ei tõenda kohalolekut. Telefonis lülita sisse GPS/asukohateenus; arvutis ongi täpsus tavaliselt kehv.",
+      "failed": "Asukohta ei tulnud. Kontrolli, et seadme asukohateenus on sees, ja proovi uuesti.",
+      "denied": "Asukohaluba on selle lehe jaoks KEELATUD. Leht ei saa seda ise tagasi lülitada — selle saab teha ainult sina brauseri seadetes.",
+      "unsupported": "See brauser ei anna asukohta. Külastusi saab märkida ka ilma — kirja lähevad kellaajad.",
+      "not_ip": "Asukoht tuleb seadmelt (GPS või WiFi), mitte interneti-aadressi järgi. IP-põhine asukoht näitab sideettevõtte sõlme ja võib eksida kümneid kilomeetreid — sellist punkti me ei salvesta.",
+      "steps": {
+        "android": "Ava Chrome ja vajuta aadressiribal lukuikoonile|Vali „Õigused” või „Site settings”|Sea „Asukoht” valikule „Luba”|Tule tagasi ja laadi leht uuesti",
+        "ios": "Ava iPhone'i „Seaded” → „Safari” → „Asukoht” ja vali „Küsi” või „Luba”|Kontrolli: „Seaded” → „Privaatsus ja turvalisus” → „Asukohateenused” on sees|Tule Safarisse tagasi ja laadi leht uuesti",
+        "desktop": "Vajuta aadressiribal lehe nime kõrval olevale ikoonile|Vali „Site settings” / „Saidi seaded”|Sea „Location” / „Asukoht” valikule „Allow” / „Luba”|Laadi leht uuesti"
+      }
     }
   },
   "date_field": {
