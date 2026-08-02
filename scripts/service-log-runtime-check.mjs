@@ -33,6 +33,7 @@ import {
 } from "../lib/serviceLog/referrals.js";
 import { getMonthlyReport } from "../lib/serviceLog/monthReport.js";
 import { getNarrativeSeed, upsertNarrative } from "../lib/serviceLog/narratives.js";
+import { buildServiceLogExport, exportToCsv } from "../lib/serviceLog/exportService.js";
 
 const ENV_ON = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_LOCATION_STAMP: "1" };
 const ENV_NO_LOCATION = { SERVICE_LOG_ENABLED: "1" };
@@ -540,6 +541,96 @@ async function main() {
       { env: ENV_ON }
     ),
     messageKeyIs("service_log.errors.narrative_required")
+  );
+
+  // --- 12. E6: eksport ja mitme KOV-i eraldatus -------------------------
+  /* DoD punkt 3: „mitut KOV-i teenindav osutaja ekspordib igaühele TEMA kujul
+     ÜHEST sisestusest." Kriitiline osa ei ole vorming, vaid ERALDATUS: ühe
+     KOV-i fail ei tohi sisaldada teise KOV-i ridu. */
+  const refOther = await prisma.serviceReferral.create({
+    data: {
+      providerProfileId: profile.id,
+      serviceId: hourly.id,
+      kovName: "Teine vald",
+      clientDisplayName: "Teise valla klient",
+      unit: "HOUR",
+      status: "ACTIVE",
+      allocatedQuantity: 50,
+      allocationPeriod: "MONTH"
+    }
+  });
+  const otherEntry = await createEntry(
+    provider.id,
+    {
+      clientDisplayName: "Teise valla klient",
+      date: "2026-08-12",
+      unit: "HOUR",
+      quantity: 4,
+      serviceId: hourly.id,
+      referralId: refOther.id
+    },
+    { env: ENV_ON }
+  );
+  await finalizeEntry(provider.id, otherEntry.id, { env: ENV_ON });
+
+  const kovExport = await buildServiceLogExport(
+    provider.id,
+    { month: "2026-08", template: "A_TIMESHEET", kovName: "Teine vald" },
+    { env: ENV_ON }
+  );
+  const kovBlob = JSON.stringify(kovExport.document);
+  expect(
+    "KOV-i eksport sisaldab TEMA kliendi ridu",
+    kovBlob.includes("Teise valla klient"),
+    kovBlob.slice(0, 200)
+  );
+  expect(
+    "KOV-i eksport EI SISALDA teise KOV-i kliente — see oleks andmeleke",
+    !kovBlob.includes("Saldo-klient") && !kovBlob.includes("Perioodi-klient"),
+    kovBlob.slice(0, 300)
+  );
+
+  await expectReject(
+    "tundmatu saaja ei anna vaikselt kogu kuud",
+    buildServiceLogExport(
+      provider.id,
+      { month: "2026-08", template: "A_TIMESHEET", kovName: "Olematu vald" },
+      { env: ENV_ON }
+    ),
+    statusIs(404)
+  );
+
+  expect(
+    "eksport EI SISALDA mustandeid vaikimisi",
+    kovExport.document.rows.every((row) => !row.status) &&
+      kovExport.document.rows.length === 1,
+    String(kovExport.document.rows.length)
+  );
+
+  const csv = exportToCsv(kovExport.document);
+  expect("CSV kannab BOM-i", csv.startsWith("﻿"));
+  expect("CSV kannab päist ja summat", csv.includes("Teine vald") && csv.includes("total:HOUR"));
+
+  const narrativeExport = await buildServiceLogExport(
+    provider.id,
+    { month: "2026-08", template: "C_NARRATIVE", referralId: refBalance.id },
+    { env: ENV_ON }
+  );
+  const proposalSection = narrativeExport.document.sections.find((s) => s.key === "proposal");
+  expect(
+    "mall C kannab salvestatud ettepanekut",
+    proposalSection?.value === "CHANGE_VOLUME",
+    JSON.stringify(proposalSection)
+  );
+  await expectReject(
+    "mall C ilma suunamiseta keeldub — ei ole teada, kelle loost jutt käib",
+    buildServiceLogExport(provider.id, { month: "2026-08", template: "C_NARRATIVE" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_required_for_narrative")
+  );
+  await expectReject(
+    "tundmatu mall ei lähe läbi",
+    buildServiceLogExport(provider.id, { month: "2026-08", template: "MALL_X" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.template_invalid")
   );
 
   // --- Koristus ----------------------------------------------------------

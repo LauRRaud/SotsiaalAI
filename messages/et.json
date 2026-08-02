@@ -8357,6 +8357,26 @@
       "AI_MUSTAND": "AI mustand",
       "AMETLIKULT_KONTROLLITUD": "ametlikult kontrollitud"
     },
+    "export": {
+      "title": "Eksport",
+      "recipient": "Saaja",
+      "recipient_all": "Kõik saajad (oma ülevaade)",
+      "recipient_hint": "KOV-ile esitatav fail peab olema ühe saaja kohta — vali saaja.",
+      "template": "Mall",
+      "variant": "Variant",
+      "variant_daily": "Päevade kaupa",
+      "variant_monthly": "Kuu kokkuvõte",
+      "referral": "Suunamine",
+      "include_drafts": "Võta kinnitamata kirjed kaasa",
+      "drafts_warning": "Kinnitamata kirjed lähevad faili märgituna. Arve alusdokumenti need tavaliselt ei kuulu.",
+      "download": "Laadi CSV alla",
+      "templates": {
+        "A_TIMESHEET": "A — tööajaarvestus (arve lisa)",
+        "B_CARE_DIARY": "B — hoolduspäevik",
+        "C_NARRATIVE": "C — sisuline aruanne",
+        "D_STATISTICS": "D — statistika (s-veeb)"
+      }
+    },
     "stamps": {
       "group": "Külastuse märked",
       "departed": "Läksin",
@@ -8398,6 +8418,8 @@
       "month_invalid": "Kuu peab olema kujul AAAA-KK.",
       "narrative_required": "Kirjuta kuunarratiivi tekst.",
       "proposal_invalid": "Ettepanek peab olema jätka, muuda mahtu või lõpeta.",
+      "template_invalid": "Tundmatu aruandemall.",
+      "referral_required_for_narrative": "Sisuline aruanne käib ühe suunamise kohta — vali suunamine.",
       "service_not_found": "Teenust ei leitud.",
       "invalid_input": "Sisend ei ole korrektne.",
       "conflict": "Toiming ei ole praegu võimalik.",

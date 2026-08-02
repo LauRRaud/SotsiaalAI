@@ -8357,6 +8357,26 @@
       "AI_MUSTAND": "AI draft",
       "AMETLIKULT_KONTROLLITUD": "officially verified"
     },
+    "export": {
+      "title": "Export",
+      "recipient": "Recipient",
+      "recipient_all": "All recipients (your own overview)",
+      "recipient_hint": "A file submitted to a municipality must cover one recipient — choose one.",
+      "template": "Template",
+      "variant": "Variant",
+      "variant_daily": "By day",
+      "variant_monthly": "Monthly summary",
+      "referral": "Referral",
+      "include_drafts": "Include unconfirmed entries",
+      "drafts_warning": "Unconfirmed entries go into the file marked as such. They usually do not belong in an invoice source document.",
+      "download": "Download CSV",
+      "templates": {
+        "A_TIMESHEET": "A — time sheet (invoice annex)",
+        "B_CARE_DIARY": "B — care diary",
+        "C_NARRATIVE": "C — narrative report",
+        "D_STATISTICS": "D — statistics (s-veeb)"
+      }
+    },
     "stamps": {
       "group": "Visit marks",
       "departed": "Left for visit",
@@ -8398,6 +8418,8 @@
       "month_invalid": "The month must be in YYYY-MM format.",
       "narrative_required": "Write the monthly narrative text.",
       "proposal_invalid": "The proposal must be continue, change volume or end.",
+      "template_invalid": "Unknown report template.",
+      "referral_required_for_narrative": "The narrative report is per referral — choose a referral.",
       "service_not_found": "Service not found.",
       "invalid_input": "The input is not valid.",
       "conflict": "This action is not possible right now.",
