@@ -213,19 +213,32 @@
      helk üleval + õrn peegeldus all, pehme vari; fookus = ere ääris.
      Materjal rakendub globaalselt glass.css :where()-primitiivist. */
   --input-bg: rgba(255, 255, 255, 0.1);
-  --input-bg-hover: rgba(255, 255, 255, 0.13);
+  --input-bg-hover: rgba(255, 255, 255, 0.07);
   --input-bg-focus: rgba(255, 255, 255, 0.15);
   --input-text: var(--text-warm);
   --input-placeholder: rgba(255, 255, 255, 0.65);
   --input-border: 1px solid rgba(255, 255, 255, 0.18);
-  --input-border-hover: 1px solid rgba(255, 255, 255, 0.3);
+  --input-border-hover: 1px solid rgba(255, 255, 255, 0.18);
   /* Fookus PEHME (tellija 07.07: 0.75 oli "liiga hele + pikslid" ääres,
      mitte mahe nagu nupud) — heleduse annab õrn kuma, mitte kõva joon */
   --input-border-focus: 1px solid rgba(255, 255, 255, 0.4);
-  /* ÜKS input-kuju kogu platvormil: pill (tellija 07.07: login-väli
-     etaloniks, kõik väljad sama kujundus). Textarea saab oma ümara
-     ristküliku glass.css-is. */
-  --input-radius: 999px;
+  /* ÜKS input-kuju kogu platvormil (tellija 07.07: login-väli etaloniks,
+     kõik väljad sama kujundus). Textarea saab oma ümara ristküliku
+     glass.css-is.
+
+     01.08: pill (999px) → POOLKANDILINE. Omanik: "proovime korra input
+     lahtrid ka sellised, kandilisemad" — sama kuju, mis uus valikmenüü
+     (--dd-radius). Kogu platvormi väljade kuju tuleb SELLEST ÜHEST
+     arvust, seega tagasipööre = üks rida. Pilli-etalon oli 07.07 otsus;
+     kui see uus ei istu, on vana väärtus 999px. */
+  --input-radius: 14px;
+  /* Üherealise välja kirjasuurus. 07.07 oli see "mugav suurem font"
+     (kuni 1,24rem) ja ta oli valitud LOGIN-välja järgi, kus väli on
+     kaardi peategelane. Konto-kaartidel loeb sama mõõt aga suurena:
+     kui nupp sai 01.08 väljaga sama kirja, muutus nupp korraga "kuidagi
+     suureks". Väli ja nupp tulevad nüüd ALLA teineteise juurde, mitte
+     nupp üles. Vana väärtus: clamp(1.05rem, 1rem + 0.45vw, 1.24rem). */
+  --input-font-size: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
   --input-blur: 32px;
   --input-highlight:
     inset 0 1px 1px rgba(255, 255, 255, 0.26),
@@ -269,23 +282,6 @@
   --room-cell-hover: var(--glass-cell-bg-hover);
   --room-cell-border: var(--glass-cell-border);
 
-  /* ---- Specular-helk: kursorit jälgiv läige nuppudel ja väljadel
-     (react-bits Specular Button adaptsioon — canvas asemel üks
-     taustakiht). Globaalne kursorijälgija (components/glass/
-     SpecularHighlight.jsx) tõstab --spec 0→1 ja seab --spec-x/-y
-     protsendina hõljutava elemendi kohal. Kiht ise on --specular-
-     layer, mida nupu/input-primitiiv taustakihina kasutab. Soe valge,
-     et haakuda klaasi rim-kumaga (--glass-rim). ---- */
-  --spec: 0;
-  --spec-x: 50%;
-  --spec-y: 50%;
-  --spec-peak: 0.5; /* tipuheledus; 0 lülitab efekti välja */
-  --spec-size: 120px;
-  --specular-layer: radial-gradient(
-    circle var(--spec-size) at var(--spec-x) var(--spec-y),
-    rgba(255, 249, 240, calc(var(--spec-peak) * var(--spec))),
-    rgba(250, 250, 250, 0) 68%
-  );
 }
 
 /* ============================================================
@@ -355,12 +351,4 @@ html[data-reduce-transparency="1"] {
   --input-bg-hover: rgba(39, 39, 39, 0.96);
   --input-bg-focus: rgba(43, 43, 43, 0.97);
   --input-highlight: none;
-  --spec-peak: 0; /* läbipaistmatu pind → specular-helk välja */
-}
-
-/* Kõrgkontrast ja liikumise vähendus lülitavad kursorihelgi välja
-   (react-bits Specular Button vajab liikumist + läbipaistvat pinda). */
-html[data-contrast="hc"],
-html[data-reduce-motion="1"] {
-  --spec-peak: 0;
 }

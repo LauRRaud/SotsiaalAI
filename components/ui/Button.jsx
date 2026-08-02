@@ -1,6 +1,7 @@
 "use client";
 
 import { forwardRef } from "react";
+import SpecularButton from "@/components/SpecularButton/SpecularButton";
 import { cn } from "@/components/ui/cn";
 
 const Button = forwardRef(function Button({
@@ -43,6 +44,20 @@ const Button = forwardRef(function Button({
     style,
     ...props
   };
+
+  if (Component === "button" && glow) {
+    return (
+      <SpecularButton
+        ref={ref}
+        size={null}
+        radius={999}
+        proximity={1}
+        {...sharedProps}
+      >
+        {children}
+      </SpecularButton>
+    );
+  }
 
   return (
     <Component ref={ref} {...sharedProps}>

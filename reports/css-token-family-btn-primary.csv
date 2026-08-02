@@ -1,0 +1,3 @@
+family,token,tier,file,line,value
+btn-primary,--btn-primary-bg,canonical-default,app/styles/tokens.css,209,"linear-gradient(165deg, #f0f0f0, #d6d6d6)"
+btn-primary,--btn-primary-text,canonical-default,app/styles/tokens.css,210,var(--text-ink)

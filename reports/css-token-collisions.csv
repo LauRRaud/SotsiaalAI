@@ -1,0 +1,53 @@
+token,layer,definitions,distinctValues,usages,files,values
+--icon-size,unknown,9,6,4,app/styles/admin-analytics.css | app/styles/carousel.css | app/styles/panel.css | app/styles/pricing.css | app/styles/room.css | app/styles/workspace.css,1.5rem | 1.6rem | 1rem | 2.4rem | 1.7rem | 0.95rem
+--service-map-marker-ring,feature-alias,6,6,2,app/styles/workspace.css,"rgba(30, 41, 59, 0.9) | rgba(22, 65, 104, 0.94) | rgba(10, 94, 77, 0.96) | rgba(146, 64, 14, 0.96) | rgba(111, 36, 78, 0.96) | rgba(30, 41, 59, 0.92)"
+--gc-haze,unknown,6,5,1,app/styles/carousel.css,0 | 0.07 | 0.14 | 0.2 | 0.22
+--service-map-marker-fill,feature-alias,6,5,1,app/styles/workspace.css,#475569 | #2f5f8f | #168a72 | #b45309 | #a23b72
+--glyph,unknown,5,5,6,app/styles/chat.css,"url(""data: image/svg+xml, %3Csvg xmlns='http: //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round'%3E%3Crect x='9' y='3.5' width='6' height='11' rx='3'/%3E%3Cpath d='M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6'/%3E%3C/svg%3E"") | url(""data: image/svg+xml, %3Csvg xmlns='http: //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 15l6-6 6 6'/%3E%3C/svg%3E"") | url(""data: image/svg+xml, %3Csvg xmlns='http: //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Crect x='6.5' y='6.5' width='11' height='11' rx='2.75'/%3E%3C/svg%3E"") | url(""data: image/svg+xml, %3Csvg xmlns='http: //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3.5 3.5 8 12 12.5 20.5 8Z'/%3E%3Cpath d='M3.5 12 12 16.5 20.5 12'/%3E%3Cpath d='M3.5 16 12 20.5 20.5 16'/%3E%3C/svg%3E"") | url(""data: image/svg+xml, %3Csvg xmlns='http: //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2.2l1.7 5.6 5.6 1.7-5.6 1.7L12 16.8l-1.7-5.6L4.7 9.5l5.6-1.7z'/%3E%3Cpath d='M18.6 14.4l.7 2.2 2.2.7-2.2.7-.7 2.2-.7-2.2-2.2-.7 2.2-.7z'/%3E%3C/svg%3E"")"
+--gc-w,unknown,4,4,13,app/styles/carousel.css | app/styles/tokens.css,"clamp(11.5rem, 16vw, 14.5rem) | min( 19rem, 14.5vw, calc( (var(--desk-track) - (var(--desk-cols) - 1) * var(--desk-gap-x)) / var(--desk-cols) ) ) | min(60vw, 16.5rem) | clamp(15rem, 25vw, 21.75rem)"
+--service-map-marker-label-size,feature-alias,4,4,1,app/styles/workspace.css,"min(20.2px, var(--service-map-marker-label-max-size)) | min(24.2px, var(--service-map-marker-label-max-size)) | 35px | min(13.8px, var(--service-map-marker-label-max-size))"
+--service-map-marker-label-padding,feature-alias,4,3,1,app/styles/workspace.css,3px | 0px | 7.2px
+--gc-shortcut-size,unknown,3,3,12,app/styles/carousel.css,2.75rem | 3.15rem | 2.5rem
+--gc-spacing,unknown,3,3,2,app/styles/carousel.css,calc(var(--gc-w) * 1.06) | calc(var(--gc-w) * 1.04) | calc(var(--gc-w) * 1.1)
+--glass-bg,component-or-semantic,3,3,8,app/styles/tokens.css,"linear-gradient( 165deg, rgba(37, 37, 37, 0.44) 0%, rgba(22, 22, 22, 0.56) 55%, rgba(14, 14, 14, 0.64) 100% ) | linear-gradient(165deg, rgba(14, 13, 12, 0.97), rgba(8, 7, 6, 0.99)) | linear-gradient(165deg, rgba(30, 30, 30, 0.97), rgba(17, 17, 17, 0.99))"
+--glass-bg-strong,component-or-semantic,3,3,18,app/styles/tokens.css,"linear-gradient( 165deg, rgba(32, 32, 32, 0.8) 0%, rgba(18, 18, 18, 0.88) 100% ) | linear-gradient(165deg, rgba(12, 11, 10, 0.99), rgba(6, 5, 4, 1)) | linear-gradient(165deg, rgba(26, 26, 26, 0.99), rgba(14, 14, 14, 1))"
+--glass-rim-glow,component-or-semantic,3,3,1,app/styles/glass.css | app/styles/tokens.css,"see 22 px + 60 px valge halo ongi see ""imelik kuma"", mis eristas seda akent ülejäänud kaartidest (omanik 26.07). Kaart ei helenda | 0 0 0.5px rgba(249, 249, 249, 0.9), 0 0 22px rgba(242, 242, 242, 0.2), 0 0 60px rgba(238, 238, 238, 0.1) | none"
+--input-bg,component-or-semantic,3,3,3,app/styles/tokens.css,"rgba(255, 255, 255, 0.1) | rgba(0, 0, 0, 0.92) | rgba(35, 35, 35, 0.94)"
+--input-bg-focus,component-or-semantic,3,3,1,app/styles/tokens.css,"rgba(255, 255, 255, 0.15) | #000000 | rgba(43, 43, 43, 0.97)"
+--input-bg-hover,component-or-semantic,3,3,2,app/styles/tokens.css,"rgba(255, 255, 255, 0.07) | rgba(0, 0, 0, 0.92) | rgba(39, 39, 39, 0.96)"
+--panel-max-h,component-or-semantic,3,3,2,app/styles/panel.css | app/styles/tokens.css,"calc(100lvh - var(--room-dock-reserve) - clamp(2.5rem, 5lvh, 4rem)) | 100lvh | calc(100lvh - clamp(4.5rem, 9lvh, 7rem))"
+--service-map-legend-marker-label-size,feature-alias,3,3,1,app/styles/workspace.css,"min(20.2px, var(--service-map-marker-label-max-size)) | min(22.8px, var(--service-map-marker-label-max-size)) | 32px"
+--glass-blur,component-or-semantic,3,2,16,app/styles/tokens.css,26px | 0px
+--input-blur,component-or-semantic,3,2,6,app/styles/tokens.css,32px | 0px
+--input-highlight,component-or-semantic,3,2,4,app/styles/tokens.css,"inset 0 1px 1px rgba(255, 255, 255, 0.26), inset 0 -1px 1px rgba(255, 255, 255, 0.05) | none"
+--ts-drag-scale,unknown,3,2,1,app/styles/teemaseeme.css,1 | 1.018
+--chat-composer-reserve,feature-alias,2,2,3,app/styles/chat.css,"var(--chat-composer-occlusion, 0px) | max( var(--chat-composer-occlusion, 0px), calc(var(--chat-composer-inset, 2.5rem) + var(--inputbar-h, 3.08rem) + 0.9rem) )"
+--conv-arrive,unknown,2,2,2,app/styles/chat.css,1 | 0
+--cvl-line,unknown,2,2,22,app/styles/covision-live.css,"rgba(255, 255, 255, 0.14) | rgba(255, 255, 255, 0.38)"
+--cvl-line-bright,unknown,2,2,3,app/styles/covision-live.css,"rgba(255, 255, 255, 0.28) | rgba(255, 255, 255, 0.62)"
+--dusk-floor,unknown,2,2,2,app/styles/tokens.css,#070707 | #070607
+--fs-body,unknown,2,2,18,app/styles/panel.css | app/styles/tokens.css,1.04rem | 1rem
+--fs-micro,unknown,2,2,184,app/styles/panel.css | app/styles/tokens.css,0.82rem | 0.78rem
+--fs-small,unknown,2,2,153,app/styles/panel.css | app/styles/tokens.css,0.925rem | 0.875rem
+--gc-arrow-start-x,unknown,2,2,2,app/styles/carousel.css,1.1rem | -1.1rem
+--gc-fade-e,unknown,2,2,2,app/styles/carousel.css,0px | var(--gc-track-fade)
+--gc-fade-s,unknown,2,2,2,app/styles/carousel.css,0px | var(--gc-track-fade)
+--glass-border,component-or-semantic,2,2,15,app/styles/tokens.css,"rgba(255, 255, 255, 0.26) | rgba(255, 255, 255, 0.8)"
+--glass-border-soft,component-or-semantic,2,2,35,app/styles/tokens.css,"rgba(255, 255, 255, 0.13) | rgba(255, 255, 255, 0.5)"
+--glass-cell-bg,component-or-semantic,2,2,85,app/styles/tokens.css,"rgba(255, 255, 255, 0.055) | rgba(255, 255, 255, 0.08)"
+--glass-cell-bg-hover,component-or-semantic,2,2,21,app/styles/tokens.css,"rgba(255, 255, 255, 0.11) | rgba(255, 255, 255, 0.18)"
+--glass-cell-border,component-or-semantic,2,2,140,app/styles/tokens.css,"rgba(255, 255, 255, 0.14) | rgba(255, 255, 255, 0.55)"
+--glass-highlight,component-or-semantic,2,2,2,app/styles/tokens.css,"rgba(255, 255, 255, 0.07) | transparent"
+--glass-rim,component-or-semantic,2,2,7,app/styles/tokens.css,"rgba(249, 249, 249, 0.9) | #ffffff"
+--input-border,component-or-semantic,2,2,3,app/styles/tokens.css,"1px solid rgba(255, 255, 255, 0.18) | 1px solid rgba(255, 255, 255, 0.8)"
+--input-border-focus,component-or-semantic,2,2,1,app/styles/tokens.css,"1px solid rgba(255, 255, 255, 0.4) | 1px solid #ffffff"
+--input-border-hover,component-or-semantic,2,2,2,app/styles/tokens.css,"1px solid rgba(255, 255, 255, 0.18) | 1px solid #ffffff"
+--input-placeholder,component-or-semantic,2,2,2,app/styles/tokens.css,"rgba(255, 255, 255, 0.65) | rgba(255, 255, 255, 0.75)"
+--input-shadow,component-or-semantic,2,2,4,app/styles/tokens.css,"0 8px 24px rgba(0, 0, 0, 0.08) | none"
+--pc-spacing,unknown,2,2,2,app/styles/pricing.css,calc(var(--pc-w) * 1.12) | calc(var(--pc-w) * 1.14)
+--pc-w,unknown,2,2,5,app/styles/pricing.css,"var(--gc-w) | min(80vw, 20rem)"
+--room-dock-reserve,unknown,2,2,5,app/styles/panel.css,"clamp(4.9rem, 5.2lvh + 2.7rem, 6.9rem) | clamp(1.4rem, 2lvh + 0.6rem, 2.4rem)"
+--service-map-marker-label-weight,feature-alias,2,2,1,app/styles/workspace.css,820 | 500
+--text-dim,semantic,2,2,212,app/styles/tokens.css,"rgba(241, 241, 241, 0.55) | rgba(255, 255, 255, 0.75)"
+--text-soft,semantic,2,2,228,app/styles/tokens.css,"rgba(241, 241, 241, 0.76) | rgba(255, 255, 255, 0.92)"
+--text-warm,semantic,2,2,261,app/styles/tokens.css,#f1f1f1 | #ffffff

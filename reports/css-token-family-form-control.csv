@@ -1,0 +1,30 @@
+family,token,tier,file,line,value
+form-control,--input-bg,canonical-default,app/styles/tokens.css,215,"rgba(255, 255, 255, 0.1)"
+form-control,--input-bg,canonical-default,app/styles/tokens.css,332,"rgba(0, 0, 0, 0.92)"
+form-control,--input-bg,canonical-default,app/styles/tokens.css,350,"rgba(35, 35, 35, 0.94)"
+form-control,--input-bg-focus,canonical-default,app/styles/tokens.css,217,"rgba(255, 255, 255, 0.15)"
+form-control,--input-bg-focus,canonical-default,app/styles/tokens.css,334,#000000
+form-control,--input-bg-focus,canonical-default,app/styles/tokens.css,352,"rgba(43, 43, 43, 0.97)"
+form-control,--input-bg-hover,canonical-default,app/styles/tokens.css,216,"rgba(255, 255, 255, 0.07)"
+form-control,--input-bg-hover,canonical-default,app/styles/tokens.css,333,"rgba(0, 0, 0, 0.92)"
+form-control,--input-bg-hover,canonical-default,app/styles/tokens.css,351,"rgba(39, 39, 39, 0.96)"
+form-control,--input-blur,canonical-default,app/styles/tokens.css,242,32px
+form-control,--input-blur,canonical-default,app/styles/tokens.css,339,0px
+form-control,--input-blur,canonical-default,app/styles/tokens.css,349,0px
+form-control,--input-border,canonical-default,app/styles/tokens.css,220,"1px solid rgba(255, 255, 255, 0.18)"
+form-control,--input-border,canonical-default,app/styles/tokens.css,336,"1px solid rgba(255, 255, 255, 0.8)"
+form-control,--input-border-focus,canonical-default,app/styles/tokens.css,224,"1px solid rgba(255, 255, 255, 0.4)"
+form-control,--input-border-focus,canonical-default,app/styles/tokens.css,338,1px solid #ffffff
+form-control,--input-border-hover,canonical-default,app/styles/tokens.css,221,"1px solid rgba(255, 255, 255, 0.18)"
+form-control,--input-border-hover,canonical-default,app/styles/tokens.css,337,1px solid #ffffff
+form-control,--input-focus-glow,canonical-default,app/styles/tokens.css,248,"0 0 0 3px rgba(251, 251, 251, 0.09)"
+form-control,--input-font-size,canonical-default,app/styles/tokens.css,241,"clamp(1rem, 0.97rem + 0.15vw, 1.08rem)"
+form-control,--input-highlight,canonical-default,app/styles/tokens.css,243,"inset 0 1px 1px rgba(255, 255, 255, 0.26), inset 0 -1px 1px rgba(255, 255, 255, 0.05)"
+form-control,--input-highlight,canonical-default,app/styles/tokens.css,340,none
+form-control,--input-highlight,canonical-default,app/styles/tokens.css,353,none
+form-control,--input-placeholder,canonical-default,app/styles/tokens.css,219,"rgba(255, 255, 255, 0.65)"
+form-control,--input-placeholder,canonical-default,app/styles/tokens.css,335,"rgba(255, 255, 255, 0.75)"
+form-control,--input-radius,canonical-default,app/styles/tokens.css,234,14px
+form-control,--input-shadow,canonical-default,app/styles/tokens.css,246,"0 8px 24px rgba(0, 0, 0, 0.08)"
+form-control,--input-shadow,canonical-default,app/styles/tokens.css,341,none
+form-control,--input-text,canonical-default,app/styles/tokens.css,218,var(--text-warm)

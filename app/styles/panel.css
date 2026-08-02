@@ -339,6 +339,18 @@ html[data-reduce-motion="1"] .panel-scrim[data-dock="1"] {
   /* Nupp ei ole „veel üks väli" — ta seisab väljadest selgelt eemal. */
   padding-top: 0.7rem;
 }
+/* 01.08: kaardilehel oli PÕHITEGEVUS lehe kõige väiksem element ja luges
+   seetõttu kõrvalisena. Lahendus EI OLE täislaius (omanik: „venitatud nupu
+   teema ei ole minu lemmik") — nupp jääb sisu mõõtu, aga saab väljadega
+   SAMA KIRJASUURUSE. Nii kasvab ta loomulikult ja loeb väljadega ühte
+   perre, ilma et teda üle kaardi laiuse veetaks. */
+.panel-scrim[data-compact="1"] .panel-body form > div:last-child > :is(button, a) {
+  font-size: var(--input-font-size);
+  /* Nupu polster on em-des ja kasvab kirjaga kaasa. Sama vertikaalne
+     rütm mis väljal (0.62em + 1.2) hoiab nad ühel joonel — mõlemad 44 px. */
+  padding-block: 0.62em;
+  line-height: 1.25;
+}
 /* Kaardi pealkiri kandis 1.25rem (20 px), samal ajal kui platvormi
    --fs-title on 32 px — kaardil mõjus ta sildina, mitte pealkirjana
    (omanik 26.07: „pealkirjad on liiga väiksed"). Oma clamp, mitte

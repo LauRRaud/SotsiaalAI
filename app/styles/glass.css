@@ -34,10 +34,11 @@
      Checkbox/radio/range/file/color ja sr-only/peidetud väljad
      jäävad välja. */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger) {
-    /* background-color + eraldi background-image (specular-helk), et
-       hover/focus (mis muudavad ainult värvi) ei pühiks helki maha. */
+    /* Vormiväljal EI OLE kursorit jälgivat helki. React Bits'i päris
+       specular jääb nuppude servale; välja sees muutus vana CSS-laik
+       suureks valgeks plekiks ja mattis tumeda klaasi. */
     background-color: var(--input-bg);
-    background-image: var(--specular-layer);
+    background-image: none;
     border: var(--input-border);
     border-radius: var(--input-radius);
     color: var(--input-text);
@@ -60,7 +61,14 @@
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only):not(#chat-input), select, .dd-trigger) {
     text-align: center;
     text-overflow: ellipsis;
-    font-size: clamp(1.05rem, 1rem + 0.45vw, 1.24rem);
+    font-size: var(--input-font-size);
+    /* Välja kõrguse PÄRIS tegija ei olnud polster, vaid päritud reavahe
+       1.55 (proosa oma): kiri × 1,55 tegi ühest reast 31 px ja väljast
+       51 px klotsi. Üherealisel väljal ei ole reavahet vaja.
+       Polster jääb baasi 0.62em peale — koos väiksema kirjaga
+       (--input-font-size) annab see 44 px, mis on täpselt puutesiht.
+       (Vahepeal proovitud 0.48em viis välja 39 px-le = ALLA puutesihi.) */
+    line-height: 1.25;
   }
   :where(textarea) {
     border-radius: 18px; /* mitmerealine pole pill */
@@ -205,28 +213,22 @@
     color: var(--text-warm);
     text-decoration: none;
     cursor: var(--cursor-pointer);
-    /* Läbipaistev + tausta hajutus ja murre */
-    background-color: rgba(255, 255, 255, 0.03);
-    /* Specular-helk on ÜLEMINE taustakiht (--spec=0 → nähtamatu);
-       hover/active muudavad ainult background-color'i, nii et see kiht
-       püsib läbi olekute. */
-    background-image:
-      var(--specular-layer),
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.15) 0%,
-        rgba(255, 255, 255, 0.05) 36%,
-        rgba(255, 255, 255, 0.02) 62%,
-        rgba(255, 255, 255, 0.1) 100%
-      );
-    -webkit-backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
-    backdrop-filter: blur(16px) saturate(140%) brightness(1.07);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Piirjoon ja läige: ülaserva valgus + õrn sisemine hajus kuma */
-    box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.28),
-      inset 0 0 16px rgba(255, 255, 255, 0.05),
-      0 6px 20px rgba(0, 0, 0, 0.26);
+    /* TÄPSELT VÄLJA MATERJAL (omanik 01.08: "pane nupule sama kujundus,
+       mis inputil. ilma hoverita. ja ümmargune"). Kõik neli pinnaomadust
+       tulevad --input-* tokenitest, mitte nupu enda arvudest — nupp ja
+       väli EI TOHI enam eraldi triivida. Eristab ainult KUJU: nupp on
+       ümmargune (999px), väli poolkandiline (--input-radius).
+       Varem oli siin oma retsept: 0.03 alfa, oma gradient, oma
+       brightness(1.07) ja oma varjukomplekt — nemad tegidki nupu
+       "imelikult heledamaks" ja mattisid specular-helgi. */
+    background-color: var(--input-bg);
+    /* Vana kursorialune CSS-laik on eemaldatud. Päris React Bits'i
+       SpecularButton joonistab servahelgi oma WebGL-canvasel. */
+    background-image: none;
+    -webkit-backdrop-filter: blur(var(--input-blur));
+    backdrop-filter: blur(var(--input-blur));
+    border: var(--input-border);
+    box-shadow: var(--input-highlight), var(--input-shadow);
     transition:
       background-color var(--dur-fast) var(--ease-soft),
       border-color var(--dur-fast) var(--ease-soft),
@@ -241,12 +243,10 @@
   a[data-variant]:hover,
   .glass-iconbtn:hover,
   .login-keypad-btn:hover {
-    background-color: rgba(255, 255, 255, 0.11);
-    border-color: rgba(255, 255, 255, 0.36);
-    box-shadow:
-      inset 0 1px 1.5px rgba(255, 255, 255, 0.4),
-      inset 0 0 20px rgba(255, 255, 255, 0.08),
-      0 8px 26px rgba(0, 0, 0, 0.3);
+    /* HOVERIT EI OLE (omanik 01.08: "ilma hoverita"). Iga varasem
+       katse — ühtlane heledus, sisemine kuma, serva-halo — luges kas
+       liiga tugevalt või mattis kursorihelgi. Tagasiside annab nüüd
+       AINULT specular-helk, mis liigub kursoriga. */
   }
   /* Pressed: surub sisse, heledus väheneb */
   .glass-btn:active,
@@ -278,31 +278,19 @@
   .glass-btn[data-variant="primary"],
   button[data-variant="primary"],
   a[data-variant="primary"] {
+    /* Primary EI ERINE enam pinnalt — sama väljamaterjal mis baasnupul.
+       Rõhk tuleb ainult tekstikaalust. (Vana hele plaat oli juba 07.07
+       maha võetud; nüüd kaob ka oma serv ja oma vari.) */
     color: var(--text-warm);
-    background-color: rgba(255, 255, 255, 0.08);
-    background-image: linear-gradient(
-      180deg,
-      rgba(251, 251, 251, 0.22) 0%,
-      rgba(255, 255, 255, 0.06) 42%,
-      rgba(255, 255, 255, 0.03) 66%,
-      rgba(246, 246, 246, 0.14) 100%
-    );
-    border: 1px solid rgba(244, 244, 244, 0.38);
     font-weight: 560;
-    box-shadow:
-      inset 0 1px 1px rgba(255, 255, 255, 0.34),
-      inset 0 0 22px rgba(237, 237, 237, 0.07),
-      0 6px 22px rgba(0, 0, 0, 0.3);
   }
   .glass-btn[data-variant="primary"]:hover,
   button[data-variant="primary"]:hover,
   a[data-variant="primary"]:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-color: rgba(244, 244, 244, 0.55);
-    box-shadow:
-      inset 0 1px 1.5px rgba(255, 255, 255, 0.46),
-      inset 0 0 26px rgba(237, 237, 237, 0.13),
-      0 8px 28px rgba(0, 0, 0, 0.34);
+    /* HOVERIT EI OLE (omanik 01.08: "ilma hoverita"). Iga varasem
+       katse — ühtlane heledus, sisemine kuma, serva-halo — luges kas
+       liiga tugevalt või mattis kursorihelgi. Tagasiside annab nüüd
+       AINULT specular-helk, mis liigub kursoriga. */
   }
   .glass-btn[data-variant="primary"]:active,
   button[data-variant="primary"]:active {

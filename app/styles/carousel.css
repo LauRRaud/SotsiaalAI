@@ -52,6 +52,10 @@
   transition: transform 480ms var(--ease-soft), opacity 220ms var(--ease-soft);
   opacity: 1;
   will-change: transform;
+  /* Oma perspektiiv sisemisele kaardile: raja `perspective: 1500px`
+     kehtib LASTELE (.gc-item), mitte lapselastele. Ilma selleta jääks
+     kursorikalle (.gc-card, CardTilt.jsx) lamedaks nihkeks. */
+  perspective: 900px;
 }
 /* Rea peidus olevad kaardid: nähtamatud ja parkides serva taga
    (--pos on JS-is klammerdatud ±1.4 peale) — liikumine võib olla
@@ -526,7 +530,11 @@
    seisab pinnast eespool. Silt ja ikoon lähevad täistooni. */
 .gc[data-desk="1"] .gc-card:hover,
 .gc[data-desk="1"] .gc-card:focus-visible {
-  transform: translateZ(46px);
+  /* translateZ ÜKSI kirjutas kursorikalde üle (see reegel on 0,2,1, kalde
+     oma 0,1,0) — ja just hover on hetk, mil kallet vaja on. Kaks liigutust
+     ühes transformis: kaart tuleb ette JA kaldub kursori järgi. */
+  transform: translateZ(46px) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg)) scale(var(--tilt-scale, 1));
   box-shadow:
     var(--card-glass-shadow),
     inset 0 0 0 1px rgba(var(--light-warm), 0.42),
@@ -599,6 +607,25 @@ html[data-reduce-motion="1"] .gc-item {
 
 /* Läige AINULT valguse-poolses ülanurgas (aknad üleval-vasakul),
    väike ja kiirelt hajuv — 3D-prillid ei peegelda suurt midagi */
+/* Kursorikalle (react-bits TiltedCard adaptsioon, components/glass/
+   CardTilt.jsx). Karussell pöörab `.gc-item`-i (asend real), kalle elab
+   SIIN — kaks transformi kahel elemendil liituvad. Vaikeväärtused 0/1
+   hoiavad kaardi paigal, kuni kursor ta üles leiab. */
+.gc-card {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
+    scale(var(--tilt-scale, 1));
+  transform-style: preserve-3d;
+  /* Sisse kiiresti (järgneb kursorile), välja pehmelt (vedru-tunne
+     ilma vedrumootorita — motion'i springi siia ei ole vaja). */
+  transition: transform 220ms var(--ease-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .gc-card {
+    transform: none;
+    transition: none;
+  }
+}
+
 .gc-card::before {
   content: "";
   position: absolute;
