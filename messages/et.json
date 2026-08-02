@@ -655,6 +655,7 @@
     },
     "form": {
       "save": "Salvesta",
+      "overrun_saved": "Kirje salvestati, aga läheb üle suunamise mahu:",
       "saving": "Salvestan…",
       "saved": "Salvestatud.",
       "deleted": "Kirje kustutatud.",
@@ -8285,6 +8286,44 @@
       "note_hint": "Lühike faktimärge aruande jaoks. Tundlikku sisu siia ei kirjutata.",
       "save": "Salvesta kirje",
       "saving": "Salvestan…"
+    },
+    "tabs": {
+      "label": "Teenuspäeviku osad",
+      "day": "Päev",
+      "referrals": "Suunamised",
+      "reports": "Aruanded"
+    },
+    "referrals": {
+      "empty": "Suunamisi ei ole veel lisatud.",
+      "load_error": "Suunamiste laadimine ebaõnnestus.",
+      "no_allocation": "Mahtu ei ole määratud — jääki ei arvutata.",
+      "allocated": "Maht",
+      "used": "Kinnitatud",
+      "pending": "Kinnitamata",
+      "remaining": "Jääk",
+      "overrun": "Üle mahu:",
+      "ended": "Suunamine on lõpetatud. Olemasolevad kirjed jäävad alles."
+    },
+    "month": {
+      "pick": "Kuu",
+      "load_error": "Kuuaruande laadimine ebaõnnestus.",
+      "unconfirmed": "Kinnitamata kirjeid",
+      "due": "Esitamise tähtaeg:",
+      "overdue": "tähtaeg möödas",
+      "totals": "Kuu kokku",
+      "by_client": "Kliendi kaupa",
+      "empty": "Selle kuu kohta kirjeid ei ole.",
+      "confirmed": "kinnitatud",
+      "draft": "mustand",
+      "annual": "Aastased rütmid",
+      "never_done": "veel tegemata",
+      "rhythm_due": "tähtaeg käes",
+      "rhythm_ok": "korras",
+      "source_quality_guide": "Allikas: SKA kvaliteedijuhis (mitte seadusest tulenev nõue)"
+    },
+    "rhythms": {
+      "feedback_survey": "Tagasisideküsitlus",
+      "interim_assessment": "Kliendi vahehindamine"
     },
     "stamps": {
       "group": "Külastuse märked",

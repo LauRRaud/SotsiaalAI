@@ -156,3 +156,144 @@
     transition: none;
   }
 }
+
+/* Alaosad: Päev · Suunamised · Aruanded. Vahelehed on nupud, mitte lingid —
+ * osa vahetus ei muuda marsruuti ega tekita ajaloo kirjet iga puute kohta. */
+.sl-tabs {
+  display: flex;
+  gap: var(--space-1, 0.25rem);
+  flex-wrap: wrap;
+}
+
+.sl-tab {
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.sl-tab.is-active {
+  border-color: var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  opacity: 1;
+  font-weight: 600;
+}
+
+.sl-day,
+.sl-month {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+}
+
+/* Jääk. Neli numbrit kõrvuti, mobiilis kaks rida — kokkusurutuna kaob just
+ * see, mille pärast osutaja vaatab. */
+.sl-referrals {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+}
+
+.sl-referral {
+  padding: 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-row-bg, rgb(255 255 255 / 4%));
+}
+
+.sl-referral.is-ended {
+  opacity: 0.7;
+}
+
+.sl-referral.is-overrun {
+  border-color: var(--danger-border, rgb(255 154 154 / 55%));
+}
+
+.sl-referral-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2, 0.5rem);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2, 0.5rem);
+}
+
+.sl-referral-client {
+  font-weight: 600;
+}
+
+.sl-referral-kov {
+  opacity: 0.75;
+  font-size: 0.875rem;
+}
+
+.sl-referral-note {
+  margin: var(--space-2, 0.5rem) 0 0;
+  font-size: 0.875rem;
+  opacity: 0.75;
+}
+
+.sl-balance {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2, 0.5rem);
+  margin: 0;
+}
+
+.sl-balance > div {
+  min-width: 0;
+}
+
+.sl-balance dt {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.sl-balance dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.sl-balance-bad dd {
+  color: var(--danger-fg, #ff9a9a);
+}
+
+.sl-warn {
+  margin: var(--space-2, 0.5rem) 0 0;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  background: var(--warn-soft-bg, rgb(255 205 120 / 12%));
+  font-size: 0.875rem;
+}
+
+.sl-deadline {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.sl-deadline.is-overdue {
+  color: var(--danger-fg, #ff9a9a);
+  opacity: 1;
+}
+
+/* Allikamärge. Väike, aga ALATI olemas: ilma selleta loeks kasutaja
+ * kvaliteedijuhise soovitust seadusest tuleneva nõudena. */
+.sl-source {
+  font-size: 0.75rem;
+  opacity: 0.65;
+}
+
+@media (min-width: 40rem) {
+  .sl-balance {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
