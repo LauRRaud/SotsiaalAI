@@ -633,6 +633,78 @@ async function main() {
     messageKeyIs("service_log.errors.template_invalid")
   );
 
+
+  // --- 13. Kontrolli leidude runtime-tõendid ----------------------------
+  /* P0: VAIKIMISI RADA. Varem tõendas runtime ainult MÄÄRATUD KOV-i filtrit —
+     just see vahe oli kontrolli peamine etteheide. */
+  const allRecipients = await buildServiceLogExport(
+    provider.id,
+    { month: "2026-08", template: "A_TIMESHEET" },
+    { env: ENV_ON }
+  );
+  const recipientHeader = allRecipients.document.header.find(([key]) => key === "recipient");
+  expect(
+    "saajata eksport EI LAENA esimese KOV-i nime",
+    recipientHeader[1] === "",
+    recipientHeader[1]
+  );
+  expect(
+    "saajata eksport hoiatab, et teda ei tohi KOV-ile esitada",
+    allRecipients.document.warnings.some((w) => w.code === "not_submittable_all_recipients")
+  );
+
+  // P1: PATCH peab kordama suunamise kontrolle.
+  const patchProbe = await createEntry(
+    provider.id,
+    { ...base, date: "2026-08-15", quantity: 1 },
+    { env: ENV_ON }
+  );
+  await expectReject(
+    "PATCH ei luba kirjet suunamise perioodist välja viia",
+    updateEntry(provider.id, patchProbe.id, { date: "2026-09-20" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_date_outside_period")
+  );
+  await expectReject(
+    "PATCH ei luba ühikut suunamisest lahku viia",
+    updateEntry(provider.id, patchProbe.id, { unit: "SESSION", quantity: 1 }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_unit_mismatch")
+  );
+
+  // P1: suunamise SAAJAT ei saa tagantjärele ümber nimetada.
+  await expectReject(
+    "kirjetega suunamise KOV-i ei saa muuta — ajaloolised read ei tohi teisele saajale liikuda",
+    updateReferral(provider.id, refA.id, { kovName: "Kolmas vald" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_locked_by_entries")
+  );
+  await expectReject(
+    "kirjetega suunamise otsuse numbrit ei saa muuta",
+    updateReferral(provider.id, refA.id, { referralNumber: "uus-number" }, { env: ENV_ON }),
+    messageKeyIs("service_log.errors.referral_locked_by_entries")
+  );
+
+  // P1: mitme suunamise korral tulevad VALIKUD kaasa, mitte ainult küsimus.
+  await prisma.serviceReferral.create({
+    data: {
+      providerProfileId: profile.id,
+      serviceId: hourly.id,
+      kovName: "Neljas vald",
+      clientUserId: clientA.id,
+      unit: "HOUR",
+      status: "ACTIVE"
+    }
+  });
+  const ambiguous = await getEntryDefaults(provider.id, { clientUserId: clientA.id }, { env: ENV_ON });
+  expect("mitme suunamise korral küsitakse", ambiguous.askReferral === true);
+  expect(
+    "ja valikud tulevad KAASA — küsimus ilma valikuteta on ummiktee",
+    Array.isArray(ambiguous.referrals) && ambiguous.referrals.length >= 2,
+    String(ambiguous.referrals?.length)
+  );
+  expect(
+    "valikud kannavad KOV-i nime, et kasutaja saaks eristada",
+    ambiguous.referrals.every((row) => typeof row.kovName === "string")
+  );
+
   // --- Koristus ----------------------------------------------------------
   console.log("\ncleanup");
   const beforeCorrections = await prisma.serviceEntryCorrection.count({

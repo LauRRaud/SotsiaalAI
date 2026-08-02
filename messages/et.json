@@ -164,6 +164,8 @@
       "title": "Kiire märge",
       "body": "Märkme tekst",
       "provenance": "Info päritolu",
+      "referral": "Suunamine",
+      "referral_choose": "Vali suunamine",
       "save": "Salvesta märge seadmesse"
     },
     "provenance": {
@@ -1041,6 +1043,7 @@
       "failed": "Koopia koostamine ebaõnnestus. Andmeid ei ole kustutatud.",
       "cancelled": "Koopia taotlus on tühistatud. Andmeid ei ole kustutatud.",
       "expired": "Koopia aegus ning ZIP eemaldati.",
+      "warn_all": "See fail sisaldab kõiki saajaid — KOV-ile esitamiseks vali saaja.",
       "download": "Laadi andmekoopia alla",
       "cancel": "Tühista taotlus",
       "load_failed": "Andmekoopia olekut ei saanud laadida.",
@@ -8377,6 +8380,11 @@
         "D_STATISTICS": "D — statistika (s-veeb)"
       }
     },
+    "status": {
+      "draft": "mustand",
+      "final": "kinnitatud",
+      "void": "tühistatud"
+    },
     "stamps": {
       "group": "Külastuse märked",
       "departed": "Läksin",
@@ -8395,6 +8403,7 @@
       "title": "Viimased kirjed",
       "empty": "Kirjeid veel ei ole.",
       "load_error": "Kirjete laadimine ebaõnnestus.",
+      "finalize": "Kinnita",
       "travel": "sõiduaeg"
     },
     "errors": {

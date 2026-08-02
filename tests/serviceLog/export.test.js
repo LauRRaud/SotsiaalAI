@@ -219,3 +219,99 @@ test("failinimi on ASCII ja lühike", () => {
   assert.ok(Buffer.byteLength(name, "utf8") < 100);
   assert.ok(name.includes("polva-vald"));
 });
+
+/* =========================================================================
+   KONTROLLI LEIDUDE REGRESSIOONITESTID (02.08). Iga test kukub vana koodi peal.
+   ========================================================================= */
+
+test("P0: saajata eksport EI LAENA esimese KOV-i nime ja hoiatab", () => {
+  /* Varem võttis päis `referrals[0].kovName` — fail nimega „Tallinna vald",
+     milles on ka Tartu kliendid. Väliselt korrektne esitis, sisuliselt leke. */
+  const doc = buildTimesheet({
+    recipient: { name: "", isSingleRecipient: false },
+    entries: [entry()]
+  });
+  const recipientRow = doc.header.find(([key]) => key === "recipient");
+  assert.equal(recipientRow[1], "");
+  assert.ok(doc.warnings.some((w) => w.code === "not_submittable_all_recipients"));
+});
+
+test("P0: määratud saajaga eksport ei kanna seda hoiatust", () => {
+  const doc = buildTimesheet({
+    recipient: { name: "Tartu vald", isSingleRecipient: true },
+    entries: [entry()]
+  });
+  assert.equal(doc.warnings.some((w) => w.code === "not_submittable_all_recipients"), false);
+});
+
+test("P1: KAKS ERI KLIENTI sama nimega ei liideta kokku", () => {
+  /* Kontrollproov andis kahe eri „Mari" peale totalClients = 1 ja ühe liidetud
+     rea — aruandes tähendab see, et üks inimene saab teise tunnid. */
+  const entries = [
+    entry({ clientUserId: "u1", clientDisplayName: "Mari" }),
+    entry({ clientUserId: "u2", clientDisplayName: "Mari" })
+  ];
+  assert.equal(buildStatistics({ entries }).footer.totalClients, 2);
+  const monthly = buildTimesheet({ entries, variant: TIMESHEET_VARIANT.MONTHLY });
+  assert.equal(monthly.rows.length, 2);
+});
+
+test("P1: mall A kuuvariant kannab suunamisotsuse numbrit", () => {
+  // Ilma temata ei saa KOV rida oma otsusega kokku viia.
+  const doc = buildTimesheet({
+    entries: [entry({ referralNumber: "2026-123" })],
+    variant: TIMESHEET_VARIANT.MONTHLY
+  });
+  assert.equal(doc.rows[0].referralNumber, "2026-123");
+});
+
+test("P1: mall B kestus kannab ÜHIKUT", () => {
+  // `duration: 1` on kahemõtteline: tund, kord või ööpäev?
+  const doc = buildCareDiary({ entries: [entry({ unit: SERVICE_UNIT.SESSION, quantity: 1 })] });
+  assert.ok(doc.columns.includes("unit"));
+  assert.equal(doc.rows[0].unit, SERVICE_UNIT.SESSION);
+});
+
+test("P1: mall C ettepaneku VÄÄRTUS ei kao märkuse taha", () => {
+  /* Varem võttis CSV `section.text || section.value` ja märkusega ettepanekul
+     kadus CONTINUE/CHANGE_VOLUME/END — just see, mida KOV otsusena loeb. */
+  const doc = buildNarrativeReport({
+    entries: [entry()],
+    referral: { goalsText: "x" },
+    narrative: { bodyText: "lugu", proposal: "END", proposalNote: "klient kolib ära" }
+  });
+  const csv = documentToCsv(doc);
+  assert.ok(csv.includes("proposal:value"), "ettepaneku väärtus puudub CSV-st");
+  assert.ok(csv.includes("END"));
+  assert.ok(csv.includes("klient kolib ära"));
+});
+
+test("P1: mall C tegevuste kokkuvõte sisaldab TEGEVUSI, mitte ainult mahte", () => {
+  const doc = buildNarrativeReport({
+    entries: [entry({ activities: ["saatmine"] }), entry({ activities: ["saatmine", "asjaajamine"] })],
+    narrative: { bodyText: "x" }
+  });
+  const summary = doc.sections.find((s) => s.key === "activitySummary");
+  assert.ok(summary.activities.some((row) => row.name === "saatmine" && row.count === 2));
+});
+
+test("P1: CSV-kaitse ei jäta juhtivate tühikute taha valemit", () => {
+  /* `"  =SUM(A1)"` jõudis varem Excelisse VALEMINA. Repos oli juba tugevam
+     variant (lib/wellbeing/aggregateExport.js) — kaks eri tugevusega kaitset
+     samas koodibaasis on halvim variant. */
+  assert.equal(escapeCsvValue("  =SUM(A1)"), "'  =SUM(A1)");
+  assert.equal(escapeCsvValue("\t=SUM(A1)"), "'\t=SUM(A1)");
+  assert.equal(escapeCsvValue(" +1"), "' +1");
+  assert.equal(escapeCsvValue(" tavaline tekst"), " tavaline tekst");
+});
+
+test("P1: CSV kannab jaluse välju, mis varem kadusid", () => {
+  const doc = buildTimesheet({
+    provider: { name: "OÜ Näide", preparedBy: "Mari" },
+    recipient: { name: "Tartu vald", isSingleRecipient: true },
+    entries: [entry({ referralNumber: "2026-1" })]
+  });
+  const csv = documentToCsv(doc);
+  assert.ok(csv.includes("entryCount"), "kirjete arv puudub");
+  assert.ok(csv.includes("2026-1"), "kliendi ja teenuse kaupa koond puudub");
+});

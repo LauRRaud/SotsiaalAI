@@ -58,6 +58,8 @@ export default function ServiceLogDay() {
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
   const [overrunNotice, setOverrunNotice] = useState(null);
+  const [referralId, setReferralId] = useState("");
+  const [finalizing, setFinalizing] = useState("");
 
   const [clientName, setClientName] = useState("");
   const [date, setDate] = useState(todayIso());
@@ -103,6 +105,10 @@ export default function ServiceLogDay() {
         setDefaults(body.defaults || null);
         if (body.defaults?.serviceId) setServiceId(body.defaults.serviceId);
         if (body.defaults?.unit) setUnit(body.defaults.unit);
+        /* Ühese suunamise korral seome kirje ise; mitme korral jääb valik
+           kasutajale ja vorm KÜSIB — varem läks siit `referralId: null` ja
+           kirje jäi KOV-i ekspordist ning saldost välja. */
+        setReferralId(body.defaults?.referralId || "");
       } catch {
         /* Tuletamise ebaõnnestumine ei tohi sisestust blokeerida: kasutaja
            täidab väljad käsitsi ja server valideerib niikuinii. */
@@ -127,6 +133,26 @@ export default function ServiceLogDay() {
     setStamps((current) => ({ ...current, [key]: new Date().toISOString() }));
   }, []);
 
+  /* KINNITAMINE PEAB OLEMA UI-s. Kirje sünnib mustandina ja eksport jätab
+     mustandid vaikimisi välja — ilma selle nuputa võis osutaja sisestada terve
+     kuu ja eksportida NULL rida, ilma et miski oleks katki paistnud. */
+  const finalize = useCallback(
+    async (entryId) => {
+      setFinalizing(entryId);
+      try {
+        const response = await fetch(`/api/service-entries/${entryId}/lifecycle`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "finalize" })
+        });
+        if (response.ok) await loadEntries();
+      } finally {
+        setFinalizing("");
+      }
+    },
+    [loadEntries]
+  );
+
   const resetForm = useCallback(() => {
     setClientName("");
     setQuantity("");
@@ -134,6 +160,7 @@ export default function ServiceLogDay() {
     setStamps({});
     setDefaults(null);
     setServiceId("");
+    setReferralId("");
     setDate(todayIso());
   }, []);
 
@@ -151,7 +178,7 @@ export default function ServiceLogDay() {
             date,
             unit,
             serviceId: serviceId || null,
-            referralId: defaults?.referralId || null,
+            referralId: referralId || null,
             quantity: quantity === "" ? null : quantity,
             note: note.trim() || null,
             ...stamps
@@ -178,7 +205,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, defaults, loadEntries, note, quantity, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, loadEntries, note, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (sessionStatus === "loading") return null;
@@ -197,6 +224,29 @@ export default function ServiceLogDay() {
             required
           />
         </label>
+
+        {/* SUUNAMISE VALIK. Server ütleb `askReferral`, kui kliendil on mitu
+            aktiivset suunamist — siis EI TOHI masin valida, sest vale
+            suunamine tähendab valele KOV-ile esitatud mahtu. */}
+        {defaults?.askReferral && Array.isArray(defaults.referrals) && defaults.referrals.length > 1 ? (
+          <label className="sl-field">
+            <span className="sl-label">{t("service_log.form.referral", "")}</span>
+            <select
+              className="sl-input"
+              value={referralId}
+              onChange={(event) => setReferralId(event.target.value)}
+              required
+            >
+              <option value="">{t("service_log.form.referral_choose", "")}</option>
+              {defaults.referrals.map((referral) => (
+                <option key={referral.id} value={referral.id}>
+                  {referral.kovName}
+                  {referral.referralNumber ? ` · ${referral.referralNumber}` : ""}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
 
         {/* Teenuse valik ilmub AINULT siis, kui server ütleb, et küsida tuleb. */}
         {defaults?.askService && Array.isArray(defaults.services) && defaults.services.length > 1 ? (
@@ -327,7 +377,21 @@ export default function ServiceLogDay() {
                   {entry.travelMinutes !== null
                     ? ` · ${t("service_log.list.travel", "")} ${entry.travelMinutes} min`
                     : ""}
+                  {" · "}
+                  {t(`service_log.status.${String(entry.status || "DRAFT").toLowerCase()}`, entry.status)}
                 </span>
+                {entry.status === "DRAFT" ? (
+                  <button
+                    type="button"
+                    className="sl-tab"
+                    disabled={finalizing === entry.id}
+                    onClick={() => finalize(entry.id)}
+                  >
+                    {finalizing === entry.id
+                      ? t("service_log.form.saving", "")
+                      : t("service_log.list.finalize", "")}
+                  </button>
+                ) : null}
               </li>
             ))}
           </ul>
