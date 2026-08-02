@@ -164,6 +164,8 @@
       "title": "Quick note",
       "body": "Note text",
       "provenance": "Origin of the information",
+      "referral": "Referral",
+      "referral_choose": "Choose a referral",
       "save": "Save the note to the device"
     },
     "provenance": {
@@ -1041,6 +1043,7 @@
       "failed": "The copy could not be prepared. Your data has not been deleted.",
       "cancelled": "The copy request was cancelled. Your data has not been deleted.",
       "expired": "The copy expired and the ZIP was removed.",
+      "warn_all": "This file covers all recipients — choose a recipient before submitting it to a municipality.",
       "download": "Download data copy",
       "cancel": "Cancel request",
       "load_failed": "The data-copy status could not be loaded.",
@@ -8377,6 +8380,11 @@
         "D_STATISTICS": "D — statistics (s-veeb)"
       }
     },
+    "status": {
+      "draft": "draft",
+      "final": "confirmed",
+      "void": "voided"
+    },
     "stamps": {
       "group": "Visit marks",
       "departed": "Left for visit",
@@ -8395,6 +8403,7 @@
       "title": "Recent entries",
       "empty": "No entries yet.",
       "load_error": "Loading the entries failed.",
+      "finalize": "Confirm",
       "travel": "travel time"
     },
     "errors": {

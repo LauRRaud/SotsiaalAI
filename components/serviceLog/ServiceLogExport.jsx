@@ -117,6 +117,14 @@ export default function ServiceLogExport({ month, referrals = [] }) {
       </label>
       {includeDrafts ? <p className="sl-warn">{t("service_log.export.drafts_warning", "")}</p> : null}
 
+      {/* P0: „kõik saajad" fail EI OLE KOV-ile esitatav. Hoiatus on nähtav
+          ENNE allalaadimist ja läheb ka faili sisse kaasa. */}
+      {!kovName ? (
+        <p className="sl-warn" role="status">
+          {t("service_log.export.warn_all", "")}
+        </p>
+      ) : null}
+
       <Button as="a" href={ready ? href : undefined} download disabled={!ready}>
         {t("service_log.export.download", "")}
       </Button>
