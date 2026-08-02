@@ -8529,7 +8529,9 @@
       "pdf_unsupported_characters": "PDF does not support Cyrillic. Choose Word (.docx) — same content, nothing lost.",
       "visit_not_found": "Visit not found.",
       "star_requires_statistics": "The STAR extract comes from the statistics template. Choose template D.",
-      "narrative_no_entries": "There are no entries this month to draft from."
+      "narrative_no_entries": "There are no entries this month to draft from.",
+      "visit_already_used": "A service entry has already been created from this visit.",
+      "client_month_too_large": "This month has more entries than the view can carry. Please contact the provider."
     },
     "outbox": {
       "pending": "Waiting: {count}. They will be sent once the network is back.",
@@ -8549,7 +8551,8 @@
       "claim_met": "A typical entry fits within the promised {target} seconds.",
       "claim_not_met": "A typical entry does not yet fit within {target} seconds.",
       "claim_not_enough": "The sample is still small — a reliable claim needs at least {needed} entries.",
-      "explainer": "This measures the time spent MAKING THE ENTRY, not the service itself. The number is yours and nobody else sees it."
+      "explainer": "This measures the time spent MAKING THE ENTRY, not the service itself. The number is yours and nobody else sees it.",
+      "pilot_note": "Measurement runs only during the pilot and the samples are deleted after 180 days. This is not a permanent gauge."
     },
     "from_visit": {
       "title": "Prefilled from a field visit",
@@ -8570,7 +8573,8 @@
       "confirmed": "confirmed",
       "all_confirmed": "You have confirmed this month.",
       "confirm": "I confirm this matches what happened",
-      "confirm_explainer": "The confirmation is final and cannot be withdrawn later. If something is not right, talk to the provider first."
+      "confirm_explainer": "The confirmation is final and cannot be withdrawn later. If something is not right, talk to the provider first.",
+      "too_many": "This month has {total} entries — more than the view shows at once. To confirm, please contact the provider."
     }
   },
   "date_field": {

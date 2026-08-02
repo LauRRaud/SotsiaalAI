@@ -36,7 +36,10 @@ import Dropdown from "@/components/ui/Dropdown";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
-import { isServiceLogLocationStampUiEnabled } from "@/lib/serviceLog/flags";
+import {
+  isServiceLogLocationStampUiEnabled,
+  isServiceLogMeasurementUiEnabled
+} from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 
 /**
@@ -109,11 +112,21 @@ function todayIso() {
     .slice(0, 10);
 }
 
-function formatTime(value) {
+/**
+ * `undefined` lokaadina tähendab BRAUSERI lokaati, mitte lehe oma — ja
+ * ingliskeelses Chrome'is tuli eestikeelsele lehele „02:04 PM". Kellaaeg on
+ * siin tõend (millal töötaja kohal oli), seega ta peab olema loetav lehe
+ * keeles ja ühemõtteline: 24 tundi, ilma AM/PM-ita.
+ */
+function formatTime(value, locale) {
   if (!value) return "";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+  return date.toLocaleTimeString(locale || "et", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
 }
 
 export default function ServiceLogDay() {
@@ -154,6 +167,9 @@ export default function ServiceLogDay() {
    * sisestusele kulunud aeg. Viide, mitte olek — moodik ei tohi pohjustada
    * uehtegi uembervormistust.
    */
+  /* Kaesoleva kuelastuse poletusnumber — vt asukohapaeringu selgitust
+     `stampNow`-is. Kasvab iga vormi tuehjenduse juures. */
+  const visitTokenRef = useRef(0);
   const inputStartedRef = useRef(0);
   /* Viide funktsioonile, sest eeltäite-effect jookseb ENNE `markInputStart`-i
      definitsiooni ja otsene kutse oleks siin TDZ-viga. */
@@ -303,7 +319,10 @@ export default function ServiceLogDay() {
     };
   }, [allowed, locale]);
 
+  /* Kell kaeib AINULT piloodi ajal. Vaeljas lipuga ei alusta me isegi
+     moootmist — mitte ei mooeda ja viska aera. */
   const markInputStart = useCallback(() => {
+    if (!isServiceLogMeasurementUiEnabled()) return;
     if (!inputStartedRef.current) inputStartedRef.current = Date.now();
   }, []);
   markInputStartRef.current = markInputStart;
@@ -352,8 +371,18 @@ export default function ServiceLogDay() {
       if (!isServiceLogLocationStampUiEnabled()) return;
       if (key !== VISIT_STAMP.ARRIVED) return;
 
+      /* VOISTLUSOLUKORD, mis oleks maksnud vale asukoha VALEL kirjel.
+         Asukohapaering kaib taustal ja voib kesta kuni 8 sekundit. Kui tootaja
+         jouab selle ajaga kirje salvestada ja jargmise kliendi juurde asuda,
+         joudis hilinenud vastus JUBA UUE vormi peale — ja kirjele oleks
+         laeinud punkt kohast, kus seda teenust ei osutatud.
+
+         Iga kuelastus saab oma poletusnumbri. Vastust votame vastu ainult
+         siis, kui number on ikka seesama; vormi tuehjendamine kasvatab teda. */
+      const visitToken = visitTokenRef.current;
       setLocationState("asking");
       captureLocationPoint().then((point) => {
+        if (visitTokenRef.current !== visitToken) return;
         if (!point) {
           /* „Ei saanud" EI OLE viga, mida kasutaja peaks parandama: ta on juba
              kohal ja tempel on kirjas. Seepärast on see teade neutraalne. */
@@ -425,10 +454,14 @@ export default function ServiceLogDay() {
   );
 
   const resetForm = useCallback(() => {
+    /* Uus kuelastus = uus number. Vana kuelastuse hilinenud asukohavastus ei
+       jou enam siia. */
+    visitTokenRef.current += 1;
     setClientName("");
     setQuantity("");
     setNote("");
     setStamps({});
+    setFromVisit(null);
     setLocationStamps({});
     setLocationState("");
     setWithTravel(false);
@@ -531,6 +564,11 @@ export default function ServiceLogDay() {
         referralId: referralId || null,
         quantity: quantity === "" ? null : quantity,
         note: note.trim() || null,
+        /* LAEHTEKUELASTUS. Ilma temata sai samast kuelastusest teha piiramatu
+           arvu kirjeid ja miski ei naeidanud, kust kirje tuli. */
+        ...(fromVisit?.sourceFieldVisitId
+          ? { sourceFieldVisitId: fromVisit.sourceFieldVisitId }
+          : {}),
         ...stamps,
         /* Server otsustab, kas punkt salvestub: lüliti on seal, mitte siin.
            Väljas lülitiga jõuab punkt serverini ja visatakse ära — UI ei tohi
@@ -574,7 +612,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, finishInputTimer, loadEntries, locationStamps, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, finishInputTimer, fromVisit, loadEntries, locationStamps, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;
@@ -652,7 +690,7 @@ export default function ServiceLogDay() {
           <p className="sl-flow-status" aria-live="polite">
             {lastStamp
               ? t(`service_log.stamps.state.${STAMP_KEY[lastStamp]}`, "", {
-                  time: formatTime(stamps[lastStamp])
+                  time: formatTime(stamps[lastStamp], locale)
                 })
               : t("service_log.stamps.state.idle", "")}
             {nextStamp ? (

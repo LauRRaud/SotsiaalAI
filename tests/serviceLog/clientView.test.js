@@ -28,6 +28,16 @@ function makeDb(rows = []) {
             row.date < where.date.lt
         );
       },
+      /* `count` on sama filtriga kui `findMany`, aga ilma kuvapiirita: just
+         nende kahe LAHKNEMINE oli leid, mille pärast see väli tekkis. */
+      count: async ({ where }) =>
+        rows.filter(
+          (row) =>
+            row.clientUserId === where.clientUserId &&
+            row.status === where.status &&
+            row.date >= where.date.gte &&
+            row.date < where.date.lt
+        ).length,
       updateMany: async ({ where, data }) => {
         calls.push({ kind: "updateMany", where, data });
         let count = 0;

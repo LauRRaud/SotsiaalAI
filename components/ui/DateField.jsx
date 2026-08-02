@@ -85,7 +85,13 @@ export default function DateField({
     monthIndex: parsed?.monthIndex ?? today.getMonth()
   }));
   const rootRef = useRef(null);
+  const popRef = useRef(null);
   const dialogId = useId();
+  /* Kumbale poole paneel avaneb. Alla on vaikimisi, aga vormi lopus ei ole all
+     ruumi ja kalender jaei ekraani serva taha — mootdetud: kuupaevavali on
+     vormi allosas ja paneel on ~340 px korge. Platvormi Dropdown poorab end
+     samamoodi, seega kaks juhtelementi kaituvad koervuti ueheselt. */
+  const [placement, setPlacement] = useState("bottom");
 
   /* Kursor järgib välist väärtust: kui vorm täidetakse eeltäitest (Välitöö
      sild), peab kalender avanema seal, kus kuupäev on — mitte tänases kuus. */
@@ -120,6 +126,20 @@ export default function DateField({
   }, [locale, mode, monthNames, parsed, t]);
 
   const close = useCallback(() => setOpen(false), []);
+
+  /* Suund otsustatakse AVAMISE hetkel paeris moodust, mitte oletusest: kui
+     alla ei mahu ja uelesse mahub rohkem, avaneb ta uelesse. */
+  useEffect(() => {
+    if (!open) return;
+    const trigger = rootRef.current?.querySelector(".df-trigger");
+    const pop = popRef.current;
+    if (!trigger || !pop) return;
+    const rect = trigger.getBoundingClientRect();
+    const height = pop.offsetHeight || 320;
+    const ruumiAll = window.innerHeight - rect.bottom;
+    const ruumiUeleval = rect.top;
+    setPlacement(ruumiAll < height + 12 && ruumiUeleval > ruumiAll ? "top" : "bottom");
+  }, [open]);
 
   /* Väljaspoole klõps ja Escape sulgevad. Ilma nendeta jääks paneel lahti ja
      kataks vormi, mida kasutaja järgmisena täita tahab. */
@@ -190,7 +210,12 @@ export default function DateField({
       {required && !parsed ? <span className="df-required">{t("date_field.required", "")}</span> : null}
 
       {open ? (
-        <div className="df-pop" id={dialogId} role="dialog" aria-modal="false" aria-label={label}>
+        <div
+          className="df-pop"
+          data-placement={placement}
+          ref={popRef}
+          id={dialogId}
+          role="dialog" aria-modal="false" aria-label={label}>
           <div className="df-head">
             <button
               type="button"

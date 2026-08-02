@@ -27,6 +27,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import { PROVENANCE } from "@/lib/serviceLog/constants";
 
 const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
 
@@ -106,6 +107,9 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         if (match) {
           setBodyText(match.bodyText || "");
           setProposal(match.proposal || "");
+          /* Salvestatud paeritolu tuleb tagasi: kord AI-ga alustatud aruanne
+             jaeaeb margistatuks ka jaergmisel avamisel. */
+          setIsAiDraft(match.draftSource === PROVENANCE.AI_MUSTAND);
           setLoadedId(match.id);
         } else {
           setBodyText("");
@@ -138,7 +142,13 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
             periodYear: Number(year),
             periodMonth: Number(monthNumber),
             bodyText,
-            proposal: proposal || null
+            proposal: proposal || null,
+            /* AI-PAERITOLU EI TOHI SALVESTAMISEL KAUDA. Ilma selleta naeb
+               AI abil alustatud aruanne hiljem valja taeiesti inimese
+               kirjutatuna — ja `draftSource` on olemas taepselt selleks, et
+               seda ei juhtuks. Marge saadetakse ainult siis, kui tekst PAERINEB
+               mustandist: inimene, kes kirjutas ise, ei kanna vott margist. */
+            draftSource: isAiDraft ? PROVENANCE.AI_MUSTAND : null
           })
         });
         const body = await response.json().catch(() => ({}));
@@ -153,7 +163,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         setSaving(false);
       }
     },
-    [bodyText, locale, monthNumber, proposal, referralId, t, year]
+    [bodyText, isAiDraft, locale, monthNumber, proposal, referralId, t, year]
   );
 
   if (!referrals.length) return null;

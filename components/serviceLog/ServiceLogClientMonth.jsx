@@ -110,7 +110,13 @@ export default function ServiceLogClientMonth() {
               </p>
             ))}
 
-            {report.confirmed ? (
+            {report.truncated ? (
+              /* Kinnitus on pöördumatu — kui kõiki ridu ei näidatud, ei tohi
+                 nuppu üldse olla. */
+              <p className="sl-warn" role="status">
+                {t("service_log.client.too_many", "", { total: report.totalCount })}
+              </p>
+            ) : report.confirmed ? (
               <p className="sl-source" role="status">
                 {t("service_log.client.all_confirmed", "")}
               </p>

@@ -5286,6 +5286,21 @@ model ServiceEntry {
   /// Nullable, sest võrgus sisestus seda ei vaja; unikaalsus on profiili SEES,
   /// et kahe osutaja seadmed ei saaks teineteise võtmeid blokeerida.
   clientRequestId    String?
+  /// LÄHTEKÜLASTUS Välitööst (leping 8.4).
+  ///
+  /// Eeltäide tekitas selle viite juba varem, aga teda ei saadetud ega
+  /// salvestatud — seega ühest külastusest sai teha piiramatu arvu
+  /// teenuskirjeid ja miski ei näidanud, kust kirje tuli. Arve alusdokumendi
+  /// juures on päritolu osa dokumendist endast.
+  ///
+  /// UNIKAALNE profiili SEES: sama külastus annab ühe kirje. Nullable, sest
+  /// enamik kirjeid ei sünni külastusest; PostgreSQL loeb NULL-e üksteisest
+  /// erinevaks, seega piiramatu arv „ilma külastuseta" kirjeid on lubatud.
+  ///
+  /// SEOST ENNAST (`@relation`) EI OLE: külastus on eri säilitusega ja tema
+  /// kustumine ei tohi teenuskirjet kaasa viia ega takistada. Viide on
+  /// päritolumärge, mitte võtmeseos.
+  sourceFieldVisitId String?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
@@ -5300,6 +5315,7 @@ model ServiceEntry {
   corrections ServiceEntryCorrection[]
 
   @@unique([providerProfileId, clientRequestId])
+  @@unique([providerProfileId, sourceFieldVisitId])
   @@index([providerProfileId, date])
   @@index([referralId])
   @@index([providerProfileId, clientUserId, date])

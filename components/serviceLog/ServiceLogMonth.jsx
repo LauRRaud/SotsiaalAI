@@ -36,6 +36,7 @@ import DateField from "@/components/ui/DateField";
 import ServiceLogNarrative from "./ServiceLogNarrative";
 import ServiceLogExport from "./ServiceLogExport";
 import ServiceLogBaseline from "./ServiceLogBaseline";
+import { isServiceLogMeasurementUiEnabled } from "@/lib/serviceLog/flags";
 
 function unitLabel(t, unit) {
   return t(`service_log.units.${String(unit || "").toLowerCase()}`, unit || "");
@@ -170,9 +171,9 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
           just üle vaatas. */}
       <ServiceLogExport month={report.month} referrals={report.referrals || []} />
 
-      {/* Baasjoon (E8) on koige all: ta ei ole toeoeriist, vaid peegel selle
-          kohta, kui kalliks toeoeriist ise laeheb. */}
-      <ServiceLogBaseline />
+      {/* Baasjoon (E8) on PILOODI vahend, mitte puesiv naeidik (omanik 02.08).
+          Vaeljas lipuga ei kuvata teda ega koguta proove — vaikimisi vaeljas. */}
+      {isServiceLogMeasurementUiEnabled() ? <ServiceLogBaseline /> : null}
     </div>
   );
 }

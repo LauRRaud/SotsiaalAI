@@ -52,6 +52,16 @@
   z-index: 40;
   top: calc(100% + 0.375rem);
   left: 0;
+}
+
+/* Vormi allosas ei ole all ruumi — siis avaneb paneel uelesse. Suuna otsustab
+   komponent paeris moodust, mitte oletusest. */
+.df-pop[data-placement="top"] {
+  top: auto;
+  bottom: calc(100% + 0.375rem);
+}
+
+.df-pop {
   min-width: min(20rem, 92vw);
   padding: 0.75rem;
   border-radius: var(--radius-lg, 0.75rem);

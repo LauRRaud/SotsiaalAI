@@ -8529,7 +8529,9 @@
       "pdf_unsupported_characters": "PDF ei toeta kirillitsat. Vali Word (.docx) — sama sisu ilma kaota.",
       "visit_not_found": "Külastust ei leitud.",
       "star_requires_statistics": "STAR-väljavõte tuleb statistikamallist. Vali mall D.",
-      "narrative_no_entries": "Selles kuus ei ole kirjeid, millest mustandit koostada."
+      "narrative_no_entries": "Selles kuus ei ole kirjeid, millest mustandit koostada.",
+      "visit_already_used": "Sellest külastusest on juba teenuskirje tehtud.",
+      "client_month_too_large": "Selles kuus on rohkem kirjeid, kui vaade kannab. Võta ühendust osutajaga."
     },
     "outbox": {
       "pending": "Ootel: {count}. Saadetakse ise, kui võrk tuleb tagasi.",
@@ -8549,7 +8551,8 @@
       "claim_met": "Tüüpiline sisestus mahub lubatud {target} sekundi sisse.",
       "claim_not_met": "Tüüpiline sisestus ei mahu veel {target} sekundi sisse.",
       "claim_not_enough": "Valim on veel väike — usaldusväärseks väiteks on vaja vähemalt {needed} sisestust.",
-      "explainer": "Mõõdetakse aega, mis kulub KIRJE TEGEMISELE, mitte teenusele. Number on sinu oma ja seda ei näe keegi teine."
+      "explainer": "Mõõdetakse aega, mis kulub KIRJE TEGEMISELE, mitte teenusele. Number on sinu oma ja seda ei näe keegi teine.",
+      "pilot_note": "Mõõtmine käib ainult piloodi ajal ja proovid kustutatakse 180 päeva pärast. See ei ole püsiv näidik."
     },
     "from_visit": {
       "title": "Eeltäidetud välitöö külastusest",
@@ -8570,7 +8573,8 @@
       "confirmed": "kinnitatud",
       "all_confirmed": "Oled selle kuu kinnitanud.",
       "confirm": "Kinnitan, et see vastab toimunule",
-      "confirm_explainer": "Kinnitus on lõplik ja seda ei saa hiljem tagasi võtta. Kui midagi ei vasta tõele, räägi enne osutajaga."
+      "confirm_explainer": "Kinnitus on lõplik ja seda ei saa hiljem tagasi võtta. Kui midagi ei vasta tõele, räägi enne osutajaga.",
+      "too_many": "Selles kuus on {total} kirjet — rohkem kui vaade korraga näitab. Kinnitamiseks võta ühendust osutajaga."
     }
   },
   "date_field": {

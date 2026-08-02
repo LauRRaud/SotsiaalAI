@@ -109,6 +109,9 @@ export default function ServiceLogBaseline() {
 
       {/* Mida mõõdetakse — ilma selleta loeks kasutaja seda teenuse kestusena. */}
       <p className="sl-source">{t("service_log.baseline.explainer", "")}</p>
+      {/* AJUTISUS ON OSA TEATEST. Mõõdik on piloodi vahend ja proovidel on oma
+          kustutamistähtaeg — kasutaja peab seda teadma ilma küsimata. */}
+      <p className="sl-source">{t("service_log.baseline.pilot_note", "")}</p>
     </section>
   );
 }
