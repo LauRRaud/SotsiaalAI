@@ -19,6 +19,19 @@ import { useOrgApi } from "./useOrgApi";
  * PRIVAATSUSTEADE ON SISU, mitte kaunistus: kasutaja peab nägema mustvalgel, et
  * organisatsioon ei tea, kas ta vormi täitis. Seda teadet ei tohi eemaldada.
  */
+
+/**
+ * Saaja silt EI TOHI KUNAGI olla ainult „—".
+ *
+ * Kui inimene ei saa aru, KELLELE ta oma tööheaolu kokkuvõtte saadab, ei ole
+ * tema nõusolek teadlik — ja §9 järgi on teadlikkus kogu selle voo eeldus.
+ * Server saadab `email`-i ainult siis, kui nimi puudub, seega see rida ei
+ * lekita kontaktandmeid nimega liikmete kohta.
+ */
+function recipientLabel(entry) {
+  const name = [entry.firstName, entry.lastName].filter(Boolean).join(" ");
+  return name || entry.jobTitle || entry.email || "—";
+}
 export default function OrgSupportClient({ context, recipients, received, sent }) {
   const { t } = useI18n();
   const { call, busy, error } = useOrgApi();
@@ -107,7 +120,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
                   <option value="">—</option>
                   {recipients.map((entry) => (
                     <option key={`${entry.membershipId}:${entry.contactType}`} value={entry.membershipId}>
-                      {[entry.firstName, entry.lastName].filter(Boolean).join(" ") || entry.jobTitle || "—"}
+                      {recipientLabel(entry)}
                       {" · "}
                       {t(
                         entry.contactType === "DIRECT_MANAGER"
@@ -171,10 +184,22 @@ export default function OrgSupportClient({ context, recipients, received, sent }
                 <p className="ow-meta__term">
                   {t(`org.supportShareStatus.${share.status}`)} ·{" "}
                   {new Date(share.sentAt).toISOString().slice(0, 10)}
+                  {share.snapshot?.periodLabel ? ` · ${share.snapshot.periodLabel}` : ""}
+                </p>
+                {/* Kellelt — ilma selleta ei saa saaja avaldusele vastata. */}
+                <p className="ow-meta__value">
+                  <span className="ow-meta__term">{t("org.support.sentBy")}</span>{" "}
+                  {recipientLabel(share.sender || {})}
                 </p>
                 <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
                   {share.snapshot?.summary || "—"}
                 </p>
+                {share.snapshot?.supportRequested ? (
+                  <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
+                    <span className="ow-meta__term">{t("org.support.needs")}</span>{" "}
+                    {share.snapshot.supportRequested}
+                  </p>
+                ) : null}
                 {Array.isArray(share.snapshot?.needs) && share.snapshot.needs.length ? (
                   <ul className="ow-chips">
                     {share.snapshot.needs.map((need) => (
@@ -211,6 +236,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
               <thead>
                 <tr>
                   <th scope="col">{t("org.support.sentAt")}</th>
+                  <th scope="col">{t("org.support.sentTo")}</th>
                   <th scope="col">{t("org.support.status")}</th>
                   <th scope="col">{t("org.members.actions")}</th>
                 </tr>
@@ -221,6 +247,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
                     <td data-label={t("org.support.sentAt")}>
                       {new Date(share.sentAt).toISOString().slice(0, 10)}
                     </td>
+                    <td data-label={t("org.support.sentTo")}>{recipientLabel(share.recipient || {})}</td>
                     <td data-label={t("org.support.status")}>
                       {t(`org.supportShareStatus.${share.status}`)}
                     </td>

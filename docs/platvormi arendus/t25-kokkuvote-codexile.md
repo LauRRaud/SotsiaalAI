@@ -4,7 +4,9 @@ Kuupäev: **02.08.2026** (esimene versioon 01.08, viil C lisatud 02.08)
 Alusleping: `docs/platvormi arendus/t25-org-workspace-v1-arenduskava-opusele.md`
 Staatus: **CORE-V1 on koodis TERVIKUNA valmis — E0 + viil A + viil B + teavituskiht + viil C.
 Kõik E-etapid E0–E12 on DONE. Kood on lokaalses `main`-is (merge `24836100`) ja kõik väravad
-jooksevad seal läbi (ptk 6c). Push'imata ja deploy'mata — see on omaniku otsus.**
+jooksevad seal läbi (ptk 6c). Kõigi kolme viilu brauseri-QA on tehtud päris sessiooniga
+(ptk 8); viilu C oma leidis ja parandas neli viga. Push'imata ja deploy'mata — see on
+omaniku otsus.**
 
 See dokument on kirjutatud KONTROLLIMISEKS. Iga väide on siin kas Git-fakt, käivitatav
 käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud otse.
@@ -330,7 +332,7 @@ mida üheski harus ei olnud.
 | Kontroll (`C:/Users/rauds/Desktop/SotsiaalAI`, `main`) | Tulemus |
 |---|---|
 | `npx prisma validate` | OK |
-| `npm test` | **2169/2169** |
+| `npm test` | **2171/2171** (2169 + 2 uut saatja-identiteedi testi) |
 | `npx eslint lib app components tests scripts` | **0 viga** (2 hoiatust, mõlemad omaniku uutes komponentides) |
 | `npm run i18n:check` | OK (et/en/ru) |
 | `npm run build` | OK |
@@ -470,17 +472,43 @@ lendas päises „Sina ise" → „Organisatsioon"; eelpöördumine `/api/pre-in
 `openedAt`; vastuses **ei ole** `sourceJourneyId`-d ja väljakomplekt on täpselt 12-võtmeline;
 mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
 
-**Viil C: autenditud brauseri-QA-d EI TEHTUD.** Ütlen selle otse, sest see on ainus
-koht, kus viil C jääb A-st ja B-st nõrgemaks. Lokaalne NextAuth-sessioon oli aegunud ja
-uut ma luua ei saa — mandaatide sisestamine ei ole minu teha. Asendustõend on
-**suletud-vaikimisi kontroll**, mitte väide: kõik seitse org-otspunkti (`/api/org`,
-`/tugi`, `/tugi/avaldused`, `/teenusprofiil`, `/eksport`, `/inbox`, `/seats`) vastavad
-ilma sessioonita **401**-ga, kõik identse 48-baidise kehaga, **ka olematu organisatsiooni
-ID puhul** — seega otspunkt ei lekita isegi seda, kas organisatsioon on olemas.
+**Viil C: TEHTUD, main'is, päris sessiooniga.** Sisselogimine käis platvormi ENDA
+`temp_login_token` rajaga (`LoginTempToken` + credentials-provider) — ma ei sisestanud
+mandaate ega lisanud ühtegi ajutist login-route'i. Andmed olid sünteetilised
+(`@t25-qa.invalid`, nimes `(qa-sünteetiline)`) ja on kustutatud.
 
-Mida see asendus EI kata: viilu C lehtede päris renderdust, vormide käitumist ja
-mobiilivaadet 390×844. **See on ainus lahtine QA-saba kogu CORE-V1-s** ja ta on
-kirjas ka ptk 9 all.
+**Neli viga leitud ja parandatud. Kolm neist on üks ja sama juur: tegu ilma objektita.**
+
+| # | Viga | Miks see loeb |
+|---|---|---|
+| 1 | Toeavalduse saaja valikus kuvati nimeta liikme kohal **„—"** | Inimene ei näinud, KELLELE ta oma tööheaolu kokkuvõtte saadab. §9 teadlik nõusolek ei ole võimalik, kui objekt on tundmatu |
+| 2 | Saatja loendis ei olnud veergu „Kellele" | Sama viga teises otsas: hiljem ei saanud saatja aru, mida ta tagasi võtab või parandab |
+| 3 | **Saaja ei näinud, KELLELT avaldus tuli** | Anonüümne toepalve ei ole tugi — juht ei saa sellele vastata. Ainus tõsine neist neljast |
+| 4 | Lühikirjelduse silt oli laenatud rahastusvaatest („Hinna põhjus"); telefon/e-post/veeb olid kõvakodeeritud | Vale silt + i18n-reegli rikkumine |
+
+Vea 3 parandus on see, mille juures kontrollijal tasub peatuda: **saatja NIMI tuleb
+kaasa, `ownerUserId` MITTE**. Identiteet on nimi, mitte võti — võti avaks tee kasutaja
+teiste objektideni. Piiri hoiavad nüüd kaks uut testi kummaltki poolt
+(`tests/org/profileSupport.test.js`), ja brauseris mõõdetuna EI OLE saaja lehe kogu
+RSC-vastuses (538 KB) saatja `userId`-d — seal on ainult organisatsiooni ID, vaataja enda
+sessiooni-ID, kaks liikmesuse-ID-d (valiku jaoks) ja avalduse ID.
+
+E-post tuleb mõlemas suunas kaasa **ainult siis, kui nimi puudub** — nimega liikme
+kontaktandmeid see vaade ei jaga.
+
+**Mis veel brauseris tõendati:**
+
+- toeavalduse saatmine vormist läbi: valik → kinnitus → salvestus → loend;
+- saaja näeb saatjat, perioodi, kokkuvõtet ja soovitud tuge; **avaldus on „Sulge" ootel**;
+- teenuseprofiili **üleandmine solo → organisatsioon** päris nupuvajutusega; pärast seda
+  on profiil organisatsiooni oma ja omanik on nimeline toimetaja;
+- eksport `/api/org/<id>/eksport`: 11,8 KB, manifest 13 kaasatud ja 11 välistatud klassiga;
+  **`supportShareSummary` on ainult loendur seisu kaupa** — ei sisu, ei saatjat; otsisin
+  ekspordist toeavalduse teksti sõna-sõnalt: **0 vastet**;
+- mobiil **390×844** kõigil kolmel lehel: horisontaalset ülevoolu ei ole, tabel muutub
+  kaartideks;
+- `SERVICE_PROFILE_EDITOR`-i **ilma** on `/teenusprofiil` 404 ja teda pole navigatsioonis —
+  õigus ja nähtavus liiguvad koos, mitte eraldi.
 
 ---
 
@@ -493,10 +521,11 @@ kirjas ka ptk 9 all.
 3. **Gate väljas brauseris** — tõendatud ühiktestis ja resolveris (0 päringut), aga dev-server
    jooksis lipud sees.
 4. **Kutse ja sponsorluse e-kiri** — neid ei saadeta üldse (vt ptk 10).
-5. **Viilu C lehtede autenditud brauseri-QA** — vt ptk 8. Väravad on suletud-vaikimisi
-   tõendatud, sisuvaated mitte. **Kõige olulisem lahtine asi selles dokumendis.**
-6. **Push `origin`-isse ja deploy** — kood on lokaalses `main`-is, aga seda ei ole
+5. **Push `origin`-isse ja deploy** — kood on lokaalses `main`-is, aga seda ei ole
    push'itud ega serverisse viidud. Serveri käitumise kohta ei ole ühtegi mõõtmist.
+6. **Viilu C brauseri-QA katab kolm lehte, mitte kõiki radu** — tõendatud on tugi,
+   teenuseprofiil ja eksport (ptk 8). Parandus- ja tagasivõtmisrada läbisin runtime'is,
+   mitte brauseris.
 
 **Mis EI OLE enam NOT_PROVEN:** viilude omavaheline koostöö. Iga viil hargneb eelmise
 tipust, seega viilu C väravad jooksevad kõigi kolme koodi peal korraga. Integratsioon
@@ -591,6 +620,8 @@ Alles jäänud worktree'd (kustutatavad, kui kontroll on tehtud):
    `lib/org/supportShare.js`. See on ainus koht, kust tööheaolu sisu inimesest välja jõuab.
    Vaata eraldi, et `ALLOWED_SNAPSHOT_FIELDS` ei sisalda ühtegi skoorimisvälja ja et
    saaja vaates ei ole teed lähtekirjeni tagasi.
+   **Vaata ka `sender`-välja** (lisatud brauseri-QA järel): saaja peab nägema saatja NIME,
+   aga mitte tema `ownerUserId`-d. Kui keegi lisab sinna ID, on piir läinud.
 5. **Kas `resolveOrgAccessContext` on ainus tee org-kontekstini** — `lib/org/accessContext.js`.
    Kui mõni route ehitab konteksti mööda seda, on värav katki.
 6. **Kas seat-limiidi lukk on päris** — `lib/org/seats.js` `assignSeat`, `SELECT … FOR UPDATE`.

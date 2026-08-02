@@ -89,6 +89,8 @@ test("the recipient view exposes no route back to the source record", () => {
     sharedSnapshotJson: { summary: "x" },
     snapshotSchemaVersion: "1.0",
     supersedesShareId: null,
+    // Saatja NIMI tohib läbi tulla — vt järgmine test.
+    owner: { email: "saatja@example.invalid", profile: { firstName: "Mari", lastName: "Maasikas" } },
     // Need EI TOHI läbi tulla:
     ownerUserId: "user_owner",
     sourceRecordId: "wb_1",
@@ -104,15 +106,45 @@ test("the recipient view exposes no route back to the source record", () => {
     "id",
     "isCorrection",
     "openedAt",
+    "sender",
     "sentAt",
     "snapshot",
     "snapshotSchemaVersion",
     "status"
   ]);
   const blob = JSON.stringify(view);
-  for (const leak of ["wb_1", "draft_1", "user_owner", "mem_1"]) {
+  for (const leak of ["wb_1", "draft_1", "user_owner", "mem_1", "c1", "org_1"]) {
     assert.equal(blob.includes(leak), false, `recipient view leaks ${leak}`);
   }
+});
+
+/*
+ * Saatja identiteet ja saatja VÕTI on eri asjad. Nime nägemine on saaja jaoks
+ * eeldus, et üldse vastata saaks; `ownerUserId` oleks aga võti kasutaja teiste
+ * objektideni. Need kaks testi hoiavad seda piiri kummaltki poolt.
+ */
+test("the recipient learns who sent it — by name, never by user id", () => {
+  const named = toRecipientView({
+    id: "s1",
+    sharedSnapshotJson: { summary: "x" },
+    ownerUserId: "user_owner",
+    owner: { email: "saatja@example.invalid", profile: { firstName: "Mari", lastName: "Maasikas" } }
+  });
+  assert.deepEqual(named.sender, { firstName: "Mari", lastName: "Maasikas", email: null });
+  assert.equal(JSON.stringify(named).includes("user_owner"), false);
+  // Nimega saatja e-posti me kaasa ei anna — tuvastamiseks piisab nimest.
+  assert.equal(named.sender.email, null);
+});
+
+test("a nameless sender is identified by email, so the request is never anonymous", () => {
+  const nameless = toRecipientView({
+    id: "s1",
+    sharedSnapshotJson: { summary: "x" },
+    ownerUserId: "user_owner",
+    owner: { email: "saatja@example.invalid", profile: null }
+  });
+  assert.equal(nameless.sender.email, "saatja@example.invalid");
+  assert.equal(JSON.stringify(nameless).includes("user_owner"), false);
 });
 
 /* -------------------------------------------------------------------------

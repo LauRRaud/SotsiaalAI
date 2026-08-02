@@ -73,9 +73,9 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
             <div className="ow-grid">
               {[
                 ["organizationName", t("org.create.displayName")],
-                ["phone", "Telefon"],
-                ["email", "E-post"],
-                ["website", "Veeb"]
+                ["phone", t("org.profile.phone")],
+                ["email", t("org.profile.email")],
+                ["website", t("org.profile.website")]
               ].map(([field, label]) => (
                 <label key={field}>
                   <span className="ow-meta__term">{label}</span>
@@ -88,7 +88,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
               ))}
             </div>
             <label>
-              <span className="ow-meta__term">{t("org.funding.priceReason")}</span>
+              <span className="ow-meta__term">{t("org.profile.shortDescription")}</span>
               <textarea
                 rows={3}
                 value={form.shortDescription}
@@ -127,6 +127,13 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
           <p className="ow-empty">{t("org.profile.noProfile")}</p>
           {convertibleProfile && writable ? (
             <>
+              {/* MIS profiili ma üle annan. Üleandmine on pöördumatu tegu ja
+                  ilma objekti nimeta on kinnitus pime — kasutaja võib arvata,
+                  et jutt on hoopis mõnest teisest profiilist. */}
+              <p className="ow-meta__value">
+                <span className="ow-meta__term">{t("org.profile.convertSubject")}</span>{" "}
+                {convertibleProfile.organizationName || convertibleProfile.id}
+              </p>
               <p className="ow-subtitle">{t("org.profile.convertHint")}</p>
               <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
                 <input
