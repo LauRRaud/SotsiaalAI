@@ -441,9 +441,14 @@ vt 8.9.
   (PATCH/DELETE), `app/api/service-referrals/...` (sama muster),
   `app/api/service-reports/export/route.js` (periood+saaja+mall → fail),
   `app/api/service-narratives/...` (upsert kuu kaupa).
-  KÕIK: sessioon + roll (SERVICE_PROVIDER või tema org; NB ka SOCIAL_WORKER võib olla
-  osutaja-rollis? EI — hoia rollipiir kitsas, ainult SERVICE_PROVIDER + ADMIN), owner-scoped
-  404 muster (foreign-id == missing-id), rate-limit nagu teistel POST-idel.
+  KÕIK: sessioon + roll — **ainult `SERVICE_PROVIDER`** (PARANDATUD 02.08 kontrolli
+  peale: varem ütles see rida „SERVICE_PROVIDER + ADMIN", aga platvormi admin EI
+  KIRJUTA kellegi teise arve alusdokumente; tema rada on haldusvaadete lugemine.
+  Teostus ja SEIS ütlevad sama, dokument oli ainus koht, mis lubas rohkem).
+  **Org-režiimi profiil vastab 404-ga** kuni E10-ni — „kes tohib org-profiili nimel
+  kirjeid teha" on capability-küsimus ja poolik õigusmudel oleks halvem kui
+  fail-closed. Owner-scoped 404 muster (foreign-id == missing-id), rate-limit nagu
+  teistel POST-idel.
 
 ### 8.3. UI pinnad
 
