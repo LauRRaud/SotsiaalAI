@@ -112,7 +112,13 @@ test("RAG metadata and text mark stale availability instead of presenting it as 
 });
 
 test("full profile saves cannot silently overwrite a concurrent freshness confirmation", () => {
-  assert.match(profileSource, /findUnique\(\{[\s\S]*where: \{ ownerId \}[\s\S]*include: serviceProviderProfileFullInclude/);
+  /* T25 viil C (E8): lugemine on `findFirst` + `ownershipMode: "SOLO"`, mitte
+     `findUnique({ where: { ownerId } })` — `ownerId` unikaalsus on nüüd OSALINE
+     (ainult SOLO-režiimis), sest organisatsiooni profiil võib `ownerId` päritoluna
+     alles hoida. Testi SISULINE nõue on muutumatu: olemasolev rida loetakse
+     täisinclude'iga SAMA Serializable-tehingu sees, seega samaaegne
+     värskuse-kinnitus ei kirjutata vaikselt üle. */
+  assert.match(profileSource, /findFirst\(\{[\s\S]*where: \{ ownerId, ownershipMode: "SOLO" \}[\s\S]*include: serviceProviderProfileFullInclude/);
   assert.match(profileSource, /\{ isolationLevel: "Serializable" \}/);
   assert.match(profileSource, /error\?\.code === "P2034"/);
   assert.match(profileSource, /MAX_PROFILE_SAVE_ATTEMPTS = 3/);

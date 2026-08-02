@@ -28,6 +28,24 @@ const MIGRATION = fs.readFileSync(
    D5/D6: hind, roll ja maksja on ERI TELJED.
    ------------------------------------------------------------------------- */
 
+
+/**
+ * Skeemi KOOD ilma kommentaarideta.
+ *
+ * MIKS: allolevad testid otsivad keelatud mudelinimesid. Ilma selleta kukuks
+ * test kommentaari peale, mis SELGITAB, et viidet ei ole („ei viita
+ * `WellbeingRecord`-ile") — ehk just seal, kus invariant on kõige selgemini
+ * kirja pandud. Kontrollida tuleb koodi, mitte proosat.
+ */
+function schemaCodeOnly(source) {
+  /* `[^\n]*`, MITTE `.*$`: fail on CRLF ja JS-regexis on `\r` REAVAHETUS —
+     `.` ei sobita teda ning `$` (ilma `m`-ita) nõuab stringi lõppu, seega
+     `//.*$` ei sobitunud ÜHTEGI rida ja kommentaarid jäid alles. */
+  return source.replace(/\/\*[\s\S]*?\*\//gu, " ").replace(/\/\/[^\n]*/gu, "");
+}
+
+const SCHEMA_CODE = schemaCodeOnly(SCHEMA);
+
 test("seat reference prices are exactly the platform's role prices — one pricing truth", () => {
   assert.equal(SEAT_ROLE_REFERENCE_PRICE_CENTS.SOCIAL_WORKER, Math.round(DEFAULT_SOCIAL_WORKER_AMOUNT * 100));
   assert.equal(
@@ -174,8 +192,9 @@ test("only PENDING and ACCEPTED count as live work", () => {
    ------------------------------------------------------------------------- */
 
 test("no viil B model references a private object", () => {
-  const start = SCHEMA.indexOf("model OrganizationSeatPlan {");
-  const block = SCHEMA.slice(start);
+  /* Nihe TULEB arvutada samast stringist, mida lõigatakse — kommentaaride
+     eemaldamine muudab pikkused ja segamini nihe lõikaks vale koha. */
+  const block = SCHEMA_CODE.slice(SCHEMA_CODE.indexOf("model OrganizationSeatPlan {"));
   for (const forbidden of [
     "WellbeingRecord",
     "WellbeingOutputDraft",

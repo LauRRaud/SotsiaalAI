@@ -27,6 +27,24 @@ const MIGRATION = fs.readFileSync(
    D3: organisatsioonisisene roll EI OLE globaalne kasutajaroll.
    ------------------------------------------------------------------------- */
 
+
+/**
+ * Skeemi KOOD ilma kommentaarideta.
+ *
+ * MIKS: allolevad testid otsivad keelatud mudelinimesid. Ilma selleta kukuks
+ * test kommentaari peale, mis SELGITAB, et viidet ei ole („ei viita
+ * `WellbeingRecord`-ile") — ehk just seal, kus invariant on kõige selgemini
+ * kirja pandud. Kontrollida tuleb koodi, mitte proosat.
+ */
+function schemaCodeOnly(source) {
+  /* `[^\n]*`, MITTE `.*$`: fail on CRLF ja JS-regexis on `\r` REAVAHETUS —
+     `.` ei sobita teda ning `$` (ilma `m`-ita) nõuab stringi lõppu, seega
+     `//.*$` ei sobitunud ÜHTEGI rida ja kommentaarid jäid alles. */
+  return source.replace(/\/\*[\s\S]*?\*\//gu, " ").replace(/\/\/[^\n]*/gu, "");
+}
+
+const SCHEMA_CODE = schemaCodeOnly(SCHEMA);
+
 test("global Role enum stays exactly the four priced product personas", () => {
   const match = SCHEMA.match(/enum Role \{([^}]*)\}/u);
   assert.ok(match, "Role enum must exist");
@@ -203,7 +221,7 @@ test("database CHECK constraints enforce scope XOR, depth limit and verified act
    ------------------------------------------------------------------------- */
 
 test("no organisation model carries a foreign key into any private object", () => {
-  const orgBlock = SCHEMA.slice(SCHEMA.indexOf("model Organization {"));
+  const orgBlock = SCHEMA_CODE.slice(SCHEMA_CODE.indexOf("model Organization {"));
   for (const forbidden of [
     "WellbeingRecord",
     "WellbeingOutputDraft",
