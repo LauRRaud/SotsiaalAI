@@ -164,6 +164,11 @@ export default function ServiceLogDay() {
 
   const [entries, setEntries] = useState(null);
   const [loadError, setLoadError] = useState(false);
+  /* PUUDUV TEENUSEPROFIIL EI OLE TAVALINE TÕRGE, vaid järgmine samm.
+     Ilma selleta nägi uus osutaja täisvormi, mis ei saanud midagi salvestada,
+     ja ainus vihje oli veateade kirjete loendi all. Omanik ise: „mulle oli ka
+     üllatus." */
+  const [needsProfile, setNeedsProfile] = useState(false);
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState("");
   const [overrunNotice, setOverrunNotice] = useState(null);
@@ -222,10 +227,12 @@ export default function ServiceLogDay() {
          kasutajale midagi: kõige tavalisem juhtum on hoopis see, et tal ei ole
          veel teenuseprofiili, ja seda oskab ta ise parandada. */
       if (!response.ok) {
+        setNeedsProfile(body?.messageKey === "service_log.errors.profile_not_found");
         setLoadError(body?.message || true);
         setEntries((current) => current || []);
         return;
       }
+      setNeedsProfile(false);
       setEntries(Array.isArray(body.entries) ? body.entries : []);
     } catch {
       setLoadError(true);
@@ -648,6 +655,22 @@ export default function ServiceLogDay() {
   );
 
   if (!isRoleResolved) return null;
+
+  /* Teade on VORMI EES, mitte loendi all: kasutaja peab teadma ENNE täitmist,
+     et salvestada ei õnnestu. */
+  if (needsProfile) {
+    return (
+      <div className="sl-day">
+        <div className="sl-needs-profile" role="status">
+          <h2 className="sl-list-title">{t("service_log.needs_profile.title", "")}</h2>
+          <p>{t("service_log.needs_profile.body", "")}</p>
+          <Button as="a" href="/teenuseprofiil">
+            {t("service_log.needs_profile.action", "")}
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="sl-day">

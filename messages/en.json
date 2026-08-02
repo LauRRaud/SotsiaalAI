@@ -8635,6 +8635,11 @@
     "allocation": {
       "month": "per month",
       "total": "for the whole period"
+    },
+    "needs_profile": {
+      "title": "Fill in your service profile first",
+      "body": "The service log writes entries under your service profile — without one there is nowhere to put them. The profile does not become public: it stays “Unpublished” until you decide otherwise.",
+      "action": "Open the service profile"
     }
   },
   "date_field": {

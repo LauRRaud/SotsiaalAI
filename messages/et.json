@@ -8635,6 +8635,11 @@
     "allocation": {
       "month": "kuus",
       "total": "kogu perioodi peale"
+    },
+    "needs_profile": {
+      "title": "Enne alustamist täida teenuseprofiil",
+      "body": "Teenuspäevik kirjutab kirjed sinu teenuseprofiili alla — ilma selleta ei ole kohta, kuhu neid panna. Profiil ei lähe avalikuks: staatus jääb „Avaldamata“, kuni sa ise teisiti otsustad.",
+      "action": "Ava teenuseprofiil"
     }
   },
   "date_field": {

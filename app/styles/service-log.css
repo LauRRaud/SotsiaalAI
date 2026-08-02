@@ -513,3 +513,21 @@
   gap: 0.25rem;
   margin-top: var(--space-2, 0.5rem);
 }
+
+/* Puuduv teenuseprofiil: järgmine samm, mitte tõrge. Seepärast on ta paneel,
+   mitte punane rida. */
+.sl-needs-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3, 0.75rem);
+  padding: var(--space-4, 1rem);
+  border-radius: var(--radius-lg, 0.75rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: rgb(255 255 255 / 3%);
+}
+
+.sl-needs-profile p {
+  margin: 0;
+  max-width: 42rem;
+}
