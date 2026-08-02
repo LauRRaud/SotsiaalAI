@@ -26,6 +26,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import ServiceLogNarrative from "./ServiceLogNarrative";
+import ServiceLogExport from "./ServiceLogExport";
 
 function unitLabel(t, unit) {
   return t(`service_log.units.${String(unit || "").toLowerCase()}`, unit || "");
@@ -155,6 +156,10 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
       {/* Sisuaruanne (E5) elab kuuvaate all: kirjutaja vajab samu numbreid,
           mille peale ta loo kirjutab. */}
       <ServiceLogNarrative month={report.month} referrals={report.referrals || []} />
+
+      {/* Eksport (E6) on kuuvaate lõpus: fail sünnib sellest, mida kasutaja
+          just üle vaatas. */}
+      <ServiceLogExport month={report.month} referrals={report.referrals || []} />
     </div>
   );
 }
