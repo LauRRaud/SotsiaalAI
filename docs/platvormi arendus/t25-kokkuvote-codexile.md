@@ -29,10 +29,13 @@ käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud 
 | Viil B haru | `codex/org-funding-inbox-v1`, parent `40dc95b1` |
 | **Viil B RAKENDUSTIPP** | **`b508fc647ccf3cad3892a5b3412b221ab5a4f5d4`** — viimane commit, mis muudab rakenduskoodi |
 | **Viil B haru HEAD** | rakendustipp + käesolev dokument (dokumendi-commit ei muuda rakenduskoodi) |
-| **Viil C tipp** | **`fcd65165`** (2 commit'i: `d2613735` serverikiht, `fcd65165` UI + eksport + tõlked) |
+| **Viil C RAKENDUSTIPP** | **`fcd65165`** — viimane commit, mis muudab rakenduskoodi (2 commit'i: `d2613735` serverikiht, `fcd65165` UI + eksport + tõlked) |
+| **Viil C haru HEAD** | **`027ae0e1`** — rakendustipp + käesolev dokument JA `scripts/org-profile-support-runtime-check.mjs`. NB see ei ole „ainult dokumentatsioon": runtime-check on käivitatav tõend, mitte tekst. |
 | `origin/main` praegu | `cf7b0f1840ef09602619758e62252e30410de158` — **14 commit'i baasist edasi liikunud** |
 | Integratsiooniproov | `bbf2a644` (detached, `origin/main` + viil C = kogu CORE-V1) |
 | **Merge lokaalsesse `main`-i** | **`24836100`** — vt ptk 1a ja 6c |
+| **Main pärast merge'i (02.08)** | `1bf22554` väravad + SEIS, `f3156c5c` viilu C brauseri-QA (4 viga). **`f3156c5c` on AINULT main'is** — kes loeb viilu C haru, see neid parandusi ei näe. |
+| **Kontrolli parandused (02.08)** | `9584ed15` adressaat + projektsioon + päris võistlus, `487f962c` rollback-preflight ja runbook — harus `codex/t25-parandused` |
 | Push `origin`-isse / deploy | **ei tehtud** — omaniku otsus |
 
 **Viilu B commit'id:**
@@ -120,7 +123,7 @@ tõenda main'i: main'is on koodi, mida harus ei olnud.
 |---|---|---|
 | **O-E0-1** pöördujast ei saa liiget; sponsorlus ei nõua ruumi | `OrganizationSeatRole` = 2 väärtust; eraldi mudel `OrganizationClientSponsorship` ilma `roomId`-ta | `tests/org/funding.test.js` — kolm testi kolmel tasandil |
 | **O-E0-2** `ORG_SPACE` aktiveeritud; resolver `resolveOrgAccessContext()` | `lib/workspaces/registry.js`, `lib/org/accessContext.js` | `tests/org/orgSpaceAdapter.test.js` |
-| **O-E0-3** eraldi worktree'd | kaks worktree'd, main'is koodi ei ole | `git worktree list` |
+| **O-E0-3** eraldi worktree'd | **EHITUSE ajal** kaks worktree'd, main puutumata. **AEGUNUD 02.08:** CORE-V1 on nüüd main'is (`24836100`), millele järgnes viilu C brauseri-QA parandus `f3156c5c` — **see parandus elab AINULT main'is, viilu C harus teda ei ole.** Otsus ise on täidetud (main'i ei kirjutatud ehituse ajal); rida kirjeldab lõppenud olekut. | `git log --oneline 24836100..main` |
 | **O-E0-4** leping parandatud | 4 kohta arenduskavas | `git -C SotsiaalAI show f43dc89e` |
 
 ---

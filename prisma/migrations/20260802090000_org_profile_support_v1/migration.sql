@@ -232,15 +232,33 @@ ALTER TABLE "WellbeingSupportShare"
 -- OSA 3 — ROLLBACK
 -- ===========================================================================
 --
--- VÄRAV ENNE ROLLBACK'I — kohustuslik:
+-- VÄRAV ENNE ROLLBACK'I — KÄIVITA SKRIPT, ära loe seda kommentaari:
+--
+--   node --import ./scripts/register-node-test-loader.mjs \
+--     scripts/org-profile-support-preflight.mjs
+--
+-- Väljundkood 0 = ohutu, 1 = EI OLE ohutu, 2 = kontroll ise kukkus.
+-- Runbook: ops/runbooks/org-profile-support-rollback.md
+--
+-- KOLM VÄRAVAT, kõik peavad olema 0:
 --
 --   SELECT count(*) FROM "ServiceProviderProfile" WHERE "ownershipMode" = 'ORGANIZATION';
+--   SELECT count(*) FROM "ServiceProviderProfile" WHERE "ownerId" IS NULL;
+--   SELECT count(*) FROM (SELECT "ownerId" FROM "ServiceProviderProfile"
+--     WHERE "ownerId" IS NOT NULL GROUP BY "ownerId" HAVING count(*) > 1) d;
 --
--- Kui tulemus EI OLE 0, siis rollback'i EI TOHI teha: `ownerId` tagasi
--- NOT NULL-iks muutmine kukuks nendel ridadel läbi ja Cascade taastamine
--- seoks org-profiili uuesti ühe inimese konto külge.
+-- Esimene: Cascade taastamine seoks org-profiili uuesti ühe inimese konto külge.
 --
--- Kui tulemus on 0:
+-- Teine (LISATUD 02.08 — SIIN OLI AUK): allolev `SET NOT NULL` kukub iga rea
+-- peal, mille `ownerId` on NULL. Selliseid ridu TEKIB tavakasutuses, sest see
+-- sama migratsioon tegi omanikuseose `SetNull`-iks (vt osa 2 kommentaari:
+-- „konto kustutamisel jääb `ownerId` NULL-iks"). Ainult esimest väravat
+-- vaadates näeks operaator nulli ja rollback kukuks keset skeemimuudatust.
+--
+-- Kolmas: allolev TÄIELIK unikaalindeks põrkaks ridadel, mida osaline indeks
+-- lubab (üks inimene = ühe org-profiili päritolu + oma uus solo-profiil).
+--
+-- Kui kõik kolm on 0:
 --
 --   DROP INDEX IF EXISTS "ServiceProviderProfile_solo_owner_uniq";
 --   ALTER TABLE "ServiceProviderProfile" DROP CONSTRAINT "ServiceProviderProfile_ownership_chk";
