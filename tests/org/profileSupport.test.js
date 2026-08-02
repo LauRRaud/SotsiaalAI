@@ -182,8 +182,32 @@ test("the migration destroys no data", () => {
   assert.match(MIGRATION, /"ownershipMode" "ServiceProviderOwnershipMode" NOT NULL DEFAULT 'SOLO'/u);
 });
 
-test("the rollback section states the mandatory gate", () => {
-  assert.match(MIGRATION, /ownershipMode" = 'ORGANIZATION'[\s\S]*?EI TOHI/u);
+test("the rollback section states ALL THREE mandatory gates, not just the org count", () => {
+  /* Varem kontrollis see test ainult ORGANIZATION-loendust — sama auk, mis oli
+     migratsioonis endas. `SET NOT NULL` kukub `ownerId IS NULL` ridade peal ja
+     täielik unikaalindeks põrkab topeltomanikel; mõlemad tekivad tavakasutuses. */
+  assert.match(MIGRATION, /ownershipMode" = 'ORGANIZATION'/u);
+  assert.match(MIGRATION, /"ownerId" IS NULL/u);
+  assert.match(MIGRATION, /HAVING count\(\*\) > 1/u);
+});
+
+test("the rollback gate is RUNNABLE, not just a comment", () => {
+  // Kommentaari ei jookse keegi. Migratsioon peab viitama skriptile ja skript
+  // peab olemas olema.
+  assert.match(MIGRATION, /org-profile-support-preflight\.mjs/u);
+  const preflight = fs.readFileSync(path.join(process.cwd(), "scripts", "org-profile-support-preflight.mjs"), "utf8");
+  // Kolm väravat ka skriptis, mitte ainult kommentaaris.
+  assert.match(preflight, /ownershipMode: "ORGANIZATION"/u);
+  assert.match(preflight, /ownerId: null/u);
+  assert.match(preflight, /_count: \{ gt: 1 \}/u);
+  // Ohtlik tulemus peab andma nullist erineva väljundkoodi.
+  assert.match(preflight, /process\.exit\(code\)/u);
+});
+
+test("the rollback runbook exists and names what rollback does NOT restore", () => {
+  const runbook = fs.readFileSync(path.join(process.cwd(), "ops", "runbooks", "org-profile-support-rollback.md"), "utf8");
+  assert.match(runbook, /WellbeingSupportShare/u);
+  assert.match(runbook, /varukoopia/iu);
 });
 
 test("the public profile projection hides ownership and organisation", () => {
