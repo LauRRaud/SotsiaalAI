@@ -21,7 +21,6 @@
 import prisma from "../lib/prisma.js";
 import { resolveOrgAccessContext } from "../lib/org/accessContext.js";
 import { activateModule, changeOrganizationStatus, createOrganization } from "../lib/org/organizations.js";
-import { grantCapability } from "../lib/org/members.js";
 import { acceptInvite, createInvite } from "../lib/org/inviteService.js";
 import {
   addSupportContact,

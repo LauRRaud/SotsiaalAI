@@ -1,10 +1,10 @@
 # T25 `ORG-WORKSPACE-V1` — kogu arenduse kokkuvõte kontrollimiseks
 
-Kuupäev: **01.08.2026**
+Kuupäev: **02.08.2026** (esimene versioon 01.08, viil C lisatud 02.08)
 Alusleping: `docs/platvormi arendus/t25-org-workspace-v1-arenduskava-opusele.md`
-Staatus: **E0 + viil A tehtud. Viil B on funktsionaalselt valmis, kuid E7 on `PARTIAL` — vt ptk 2.
-Push'imata, main'i merge'imata, deploy'mata. Integratsioon `origin/main`-iga on eraldi worktree's
-läbi proovitud (ptk 6a).**
+Staatus: **CORE-V1 on koodis TERVIKUNA valmis — E0 + viil A + viil B + teavituskiht + viil C.
+Kõik E-etapid E0–E12 on DONE. Push'imata ja deploy'mata; integratsioon `origin/main`-iga on
+eraldi worktree's läbi proovitud (ptk 6a).**
 
 See dokument on kirjutatud KONTROLLIMISEKS. Iga väide on siin kas Git-fakt, käivitatav
 käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud otse.
@@ -13,18 +13,25 @@ käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud 
 
 ## 1. Git-faktid
 
+> **Ahel:** `952a76e3` → viil A `40dc95b1` → viil B `b508fc64` → teavituskiht `b5729915`
+> → viil C `codex/org-profile-support-v1`. Iga viil hargneb eelmise tipust, seega iga järgmise
+> viilu väravad jooksevad KÕIGI eelmiste koodi peal korraga.
+
 | Ese | Väärtus |
 |---|---|
 | Lähtebaas (E0 auditeeritud) | `952a76e3aea0eb94a1cb622c78cc22fb1abf93fb` |
+| Teavituskihi haru | `codex/org-funding-inbox-v1` tipp `b5729915` |
+| Viil C haru | `codex/org-profile-support-v1`, parent `b5729915` |
 | Viil A haru | `codex/org-foundation-v1` |
 | Viil A tipp | `40dc95b1` (2 commit'i: `074030fc`, `40dc95b1`) |
 | Viil B haru | `codex/org-funding-inbox-v1`, parent `40dc95b1` |
 | **Viil B RAKENDUSTIPP** | **`b508fc647ccf3cad3892a5b3412b221ab5a4f5d4`** — viimane commit, mis muudab rakenduskoodi |
 | **Viil B haru HEAD** | rakendustipp + käesolev dokument (dokumendi-commit ei muuda rakenduskoodi) |
+| **Viil C tipp** | **`fcd65165`** (2 commit'i: `d2613735` serverikiht, `fcd65165` UI + eksport + tõlked) |
 | `origin/main` praegu | `cf7b0f1840ef09602619758e62252e30410de158` — **14 commit'i baasist edasi liikunud** |
-| Lokaalne `main` | `c08d18fd`, 7 commit'i ees `origin/main`-ist, push'imata |
-| Integratsiooniproov | `4bb509942a7f7eb6d50a48cacd4cb0549dd0b34b` (detached, `origin/main` + viil B) |
-| Merge main'i / deploy | **ei tehtud** |
+| Integratsiooniproov | `bbf2a644` (detached, `origin/main` + viil C = kogu CORE-V1) |
+| Merge lokaalsesse `main`-i | **tehtud** — vt ptk 1a |
+| Push `origin`-isse / deploy | **ei tehtud** — omaniku otsus |
 
 **Viilu B commit'id:**
 
@@ -44,6 +51,13 @@ käsk või viide failile ja reale. Kus midagi ei ole tõendatud, on see öeldud 
 | Viil B **dokumentatsioon** | 1 | +262 |
 | Viil B **kogu haru** | 42 | +5551 / −37 |
 | Viil A (`952a76e3..40dc95b1`) | 65 | +8899 / −3 |
+| Viil C (`b5729915..fcd65165`) | 29 | +3771 / −39 |
+| **Kogu CORE-V1** (`952a76e3..fcd65165`) | 135 | ≈ +18200 / −79 |
+
+> Viil C on ainus, kus miinuseid on rohkem kui paar rida: 39 kustutatud rida on
+> `lib/serviceProviderProfiles.js` kolm ümberkirjutatud päringut (`findUnique({ownerId})`
+> → `findFirst({ownerId, ownershipMode:"SOLO"})`) ja `upsert` → selgesõnaline
+> uuenda-või-loo. Need on E8 destruktiivse migratsiooni vältimatu tagajärg.
 
 **Kontrollkäsud:**
 
@@ -55,9 +69,26 @@ git -C C:/Users/rauds/Desktop/SotsiaalAI-org-foundation-v1 log --oneline 952a76e
 git -C C:/Users/rauds/Desktop/SotsiaalAI-org-funding-inbox-v1 log --oneline 40dc95b1..HEAD
 ```
 
-Lokaalse `main`-i 7 commit'i on E0 aruanne, parandatud arenduskava, SEIS, analüütikatöö,
-koolitusmaterjalid, RAG-hindamise dokumendid, `.gitignore` korrastus ja `launch.json` kirjed.
-**Viilu A ja B kood ei ole main'is.**
+```bash
+git -C C:/Users/rauds/Desktop/SotsiaalAI-org-profile-support-v1 log --oneline b5729915..HEAD
+```
+
+---
+
+## 1a. Merge lokaalsesse `main`-i
+
+Kogu CORE-V1 tuleb main'i **ühe merge'ina viilu C harust** — mitte kolme eraldi merge'ina.
+Põhjus on lihtne: viil B hargneb viilu A tipust ja viil C viilu B tipust, seega viilu C
+haru SISALDAB juba mõlemat eelmist. Kolm merge'i annaks sama puu, aga kolm korda rohkem
+kohti, kus midagi valesti läheb.
+
+Lokaalses `main`-is on paralleelselt omaniku enda UI-töö (`motion` sõltuvus,
+`CurvedInput` / `SpecularButton` / `TiltedCard`, karusselli ja klaasi CSS). Need
+puudutavad `app/styles/*`, `components/ui/Button.jsx` ja `package.json`-i —
+organisatsioonikiht neid faile ei muuda, seega ristumist ei olnud.
+
+**Merge'i järel jooksevad väravad main'is uuesti** (ptk 6c). Harude väravad ei
+tõenda main'i: main'is on koodi, mida harus ei olnud.
 
 ---
 
@@ -72,27 +103,12 @@ koolitusmaterjalid, RAG-hindamise dokumendid, `.gitignore` korrastus ja `launch.
 | E4 kutsed, liikmed, õigused | A | DONE (reporting-line jäi viilu C) |
 | E5 rollipõhised kohad ja hinnastus | B | DONE |
 | E6 tööruumivahetaja ja UI | A + B | DONE |
-| E7 vastuvõtt, määramine, üleandmine | B | **PARTIAL** — vt allpool |
-| E8 teenuseosutaja org-profiil | C | **TEGEMATA** |
-| E9 tööheaolu toe tarne | C | **TEGEMATA** |
-| E10 offboarding, eksport, audit | osaliselt A + B | offboarding DONE, **eksport tegemata** |
-| E11 teavitused ja observability | osaliselt | audit DONE, **teavitused ja e-kirjad tegemata** |
-| E12 QA | A + B | DONE oma viilude ulatuses |
-
-### Miks E7 on `PARTIAL`
-
-Vastuvõtt, määramine, vastuvõtmine, tagasilükkamine ja üleandmine on tehtud ja tõendatud.
-**Kaks arenduskava §5.7 nõuet on tegemata:**
-
-1. **Saatjale nähtav täpne adressaat.** §5.7 nõuab, et pöörduja näeks enne saatmist adressaati
-   kujul „organisatsiooni vastuvõtutiim". Server salvestab `recipientOrganizationId`, aga
-   `serializePreInquiry` ei projitseeri seda ja saatja UI ei kuva midagi — org-adressaadiga
-   pöördumisel on `selectedRecipientName` null.
-2. **Neutraalsed teavitused.** §5.7 nõuab, et autor saaks töö üleandmisel neutraalse teate uue
-   vastutaja kohta, ja et e-kiri sisaldaks ainult fakti ja turvalist linki. **Ühtegi teavitust
-   ei saadeta** — ei kutsel, ei sponsorlusel, ei määramisel, ei üleandmisel.
-
-Kuni need on tegemata, ei tohi E7 lugeda `DONE`-iks.
+| E7 vastuvõtt, määramine, üleandmine | B + teavituskiht | DONE |
+| E8 teenuseosutaja org-profiil | C | DONE |
+| E9 tööheaolu toe tarne | C | DONE |
+| E10 offboarding, eksport, audit | A + B + C | DONE |
+| E11 teavitused ja observability | teavituskiht + C | DONE |
+| E12 QA | kõik viilud | DONE |
 
 ---
 
@@ -116,16 +132,39 @@ Kuni need on tegemata, ei tohi E7 lugeda `DONE`-iks.
 **Viil B (5 mudelit):** `OrganizationSeatPlan`, `OrganizationSeatAssignment`,
 `OrganizationInboxItem`, `OrganizationWorkAssignment`, `OrganizationClientSponsorship`.
 
+**Viil C (3 mudelit):** `OrganizationReportingLine`, `OrganizationSupportContact`,
+`WellbeingSupportShare`.
+
+> `WellbeingSupportShare` on kogu töö kõige tundlikum tabel ja tema kuju on tahtlik:
+> `sourceRecordId` ja `sourceDraftId` on **stringid ilma `@relation`-ita**. Võõrvõti oleks
+> mugavam, aga ta ühendaks organisatsioonikihi tööheaolu kirjetega — ja §D8 keelab täpselt
+> selle. Jagatud tekst elab `sharedSnapshotJson`-is koopiana; lähtekirje muutumine EI muuda
+> juba saadetut, ja saaja ei jõua kunagi originaalini.
+
 **Migratsioonid:**
 
 | Fail | Iseloom |
 |---|---|
 | `20260801000000_org_foundation_v1` | **puhtalt aditiivne** — ei ALTER-da ühtegi olemasolevat tabelit |
 | `20260801120000_org_funding_inbox_v1` | aditiivne + **ainult nullable veerud** `Subscription`-ile ja `PreInquiry`-le, + 2 enum-väärtust |
+| `20260802090000_org_profile_support_v1` | **ainus destruktiivne** — `ServiceProviderProfile` omandirežiim (vt allpool) |
 
-Mõlemat kontrollib test, mitte lubadus:
+Kaht esimest kontrollib test, mitte lubadus:
 `tests/org/contracts.test.js` → „migration is purely additive";
 `tests/org/funding.test.js` → „only adds nullable columns", „no UPDATE or DELETE".
+Kolmandat kontrollib `tests/org/profileSupport.test.js` → „the migration destroys no data"
+(ridu ei kustutata, tabeleid ei kaotata, uus veerg tuleb `DEFAULT 'SOLO'`-ga).
+
+**Viilu C omandirežiimi muutus** — kolm sammu, mis peavad koos käima:
+
+1. `ownerId` muutub nullitavaks ja FK `Cascade` → **`SET NULL`**. Enne seda hävitas konto
+   kustutamine organisatsiooni teenuseprofiili. See oli E0 leid, mis jäi NOT_PROVEN-iks.
+2. Globaalne `ServiceProviderProfile_ownerId_key` asendub **osalise** indeksiga
+   `WHERE "ownershipMode" = 'SOLO' AND "ownerId" IS NOT NULL`. Nii saab endine omanik pärast
+   üleandmist teha uue solo-profiili, ilma et kaks solo-profiili ühele inimesele võimalikuks
+   muutuks. Prisma skeemikeeles seda väljendada ei saa — indeks on migratsioonis käsitsi.
+3. CHECK `ServiceProviderProfile_ownership_chk` teeb režiimi ja organisatsiooni sidumise
+   andmebaasi tasandil kohustuslikuks. Teenusekiht valvab sama asja; see on teine lukk.
 
 **DB-tasemel invariandid (10 osalist unikaalindeksit, 12 CHECK-i)** — nimekiri on
 migratsioonifailide osas 2. Olulisemad:
@@ -135,10 +174,16 @@ migratsioonifailide osas 2. Olulisemad:
 - üks aktiivne liikmesus / moodul / põhiüksus / koht / elav määramine;
 - üksuse sügavus 1…3.
 
-**Rollback:** mõlema migratsiooni osas 3. Viil A = `DROP` vastupidises järjekorras, mõju
+**Rollback:** iga migratsiooni osas 3. Viil A = `DROP` vastupidises järjekorras, mõju
 olemasolevatele andmetele null. Viil B = FK-d ja nullable veerud maha; **kaks enum-väärtust
 JÄÄVAD**, sest Postgres ei võimalda neid eemaldada ilma tüüpi ümber ehitamata — see on
 migratsioonifailis hoiatusena kirjas.
+
+**Viil C rollback on ainus, millel on VÄRAV.** Tagasi saab minna ainult siis, kui
+`SELECT count(*) FROM "ServiceProviderProfile" WHERE "ownershipMode" = 'ORGANIZATION'`
+annab **nulli**. Põhjus: globaalne unikaalindeks eeldab, et igal profiilil on omanik ja
+igal omanikul üks profiil. Organisatsiooniprofiilidel omanikku ei pruugi olla — nad ei
+mahu tagasi. Värav on migratsioonifailis kirjas suurtähtedega, mitte kommentaarina.
 
 ---
 
@@ -158,6 +203,13 @@ migratsioonifailis hoiatusena kirjas.
 | §D3 org-roll ei ole globaalne roll | `Role` enum = täpselt 4 väärtust |
 | §D5/§D6 hind, õigus ja maksja on eri teljed | runtime B: koht ei anna capability't; capability ei anna kohta |
 | §5.6 maksmine ei ole nägemisõigus | runtime B: sponsoreeritud pöörduja saab org-konteksti pärides 404 |
+| §D8 tööheaolu kirje ei muutu org-varaks | `tests/org/profileSupport.test.js` skeemitestid: `WellbeingSupportShare`-il **ei ole `@relation`-it** kirjete tabelitesse |
+| §9 jagatakse koopiat, mitte ligipääsu | `sanitizeSnapshot` valge nimekiri (5 välja) + **runtime C: saaja vaates ei ole `sourceRecordId`, `sourceDraftId` ega omanikku** |
+| §9 skoorimine ei ole jagatav | test loetleb `computedSignal`, `riskMarkers`, `loadFactors`, `standardizedFields`, `scoringVersion` — ükski ei tohi valges nimekirjas olla |
+| §9 jagamine on suunatud, mitte laiali | runtime C: suvalisele kolleegile saata ei saa — ainult juht või tugikontakt |
+| §9 avatud jagamist ei saa olematuks teha | runtime C: avamise järel tagasivõtmine keeldub; parandus on UUS avaldus, originaali tekst jääb |
+| §10 eksport ei kanna isiklikku sisu | `assertExportIsClean` **aktiivne kaitse** + `EXPORT_EXCLUSIONS` nimeline loend |
+| §8 avalik profiil ei lekita omandit | `toPublicProfileProjection`: `ownershipMode`, `organizationId`, `ownerId` ei tule läbi |
 
 ---
 
@@ -185,7 +237,7 @@ migratsioonifailis hoiatusena kirjas.
 | `npm run db:migrate:check` | täisahel nullist OK |
 | `node --import ./scripts/register-node-test-loader.mjs scripts/org-funding-runtime-check.mjs` | **50/50**, 0 jääki |
 
-Samad käsud jooksevad ka integreeritud puus `origin/main`-i vastu — vt ptk 6a.
+Samad käsud jooksevad ka integreeritud puus `origin/main`-i vastu — vt ptk 6b.
 
 > **NB `npm run lint` juurkataloogis annab exit 1** — 705 „viga" tulevad
 > `.claude/worktrees/**/.next/**` buildiartefaktidest, mida eslint skaneerib.
@@ -194,29 +246,70 @@ Samad käsud jooksevad ka integreeritud puus `origin/main`-i vastu — vt ptk 6a
 
 ---
 
-## 6a. Integratsiooniproov praeguse `origin/main`-i vastu
+## 6a. Viil C ja teavituskiht — kontrollid
+
+| Käsk (`SotsiaalAI-org-profile-support-v1`) | Tulemus |
+|---|---|
+| `npm test` | **2155/2155** |
+| `npx eslint lib app components tests scripts` | 0 viga |
+| `npm run i18n:check` | OK (et/en/ru) |
+| `npm run build` | OK |
+| `npm run db:migrate:check` | täisahel nullist OK |
+| `node --conditions=react-server … scripts/org-profile-support-runtime-check.mjs` | **42/42**, 0 jääki |
+
+> `--conditions=react-server` on selle skripti puhul KOHUSTUSLIK: ta impordib
+> `lib/serviceProviderProfiles.js`, mis toob kaasa `server-only` paketi. Ilma
+> konditsioonita see pakett VISKAB. Import on tahtlik — solo-rada tõendatakse
+> PÄRIS funktsiooniga, mitte koopiaga.
+
+**Viilu C runtime tõendab mh:**
+
+- toeavalduse saaja projektsioonis EI OLE `sourceRecordId`, `sourceDraftId` ega omanikku;
+- snapshot'i valge nimekiri viskab välja `computedSignal`, `riskMarkers`, `loadFactors`;
+- suvalisele kolleegile toeavaldust saata EI SAA — ainult juht või tugikontakt;
+- avamise järel tagasi võtta ei saa; parandus on UUS avaldus ja originaali tekst jääb puutumata;
+- tagasivõetud avaldus kaob saaja loendist ja teda ei saa avada;
+- professionaalse toe moodul NÕUAB alternatiivset tugiteed ja viimast ei saa eemaldada;
+- **organisatsiooni teenuseprofiil JÄÄB ALLES, kui looja konto kustutatakse** — see on E8
+  kandvaim tõend, sest enne seda viilu hävitas `Cascade` selle;
+- endine omanik saab pärast üleandmist teha uue solo-profiili (osaline unikaalindeks);
+- kaks SOLO-profiili ühele omanikule on võimatu (P2002);
+- SOLO-profiil ei saa kanda organisatsiooni (CHECK).
+
+**Väravate suletus brauseris (ilma sessioonita):** `/api/org`, `/tugi`, `/tugi/avaldused`,
+`/teenusprofiil`, `/eksport`, `/inbox`, `/seats` — kõik **401**, kõik identse 48-baidise
+vastusega, ka olematu organisatsiooni ID puhul. Ükski otspunkt ei erista olemasolevat
+organisatsiooni olematust.
+
+---
+
+## 6b. Integratsiooniproov praeguse `origin/main`-i vastu
 
 `origin/main` on liikunud auditeeritud baasist **14 commit'i edasi** (analüütika UI, Luna RAG
 kõvendus, admini dokk). Proov tehti eraldi PUHTAS worktree's, lokaalset `main`-i puutumata:
 
 ```bash
 git worktree add --detach C:/Users/rauds/Desktop/SotsiaalAI-integration-probe origin/main
-cd C:/Users/rauds/Desktop/SotsiaalAI-integration-probe && git merge codex/org-funding-inbox-v1
+cd C:/Users/rauds/Desktop/SotsiaalAI-integration-probe && git merge codex/org-profile-support-v1
 ```
 
-Tulemus: **merge läks konfliktideta** (ainus kattuv fail oli `messages/*.json`, kus minu `org`
-plokk on faili lõpus ja nende muudatused mujal). Merge-commit `4bb50994`.
+Tulemus: **merge läks konfliktideta** — 115 faili, +18601/−39. Ainus kattuv fail oli
+`messages/*.json`, kus `org` plokk on faili lõpus ja nende muudatused mujal.
 
 | Kontroll integreeritud puus | Tulemus |
 |---|---|
 | `npx prisma validate` | OK |
 | `npm run db:migrate:check` | **täisahel nullist OK** |
-| `npm test` | **2151/2151** (origin/main tõi 13 testi juurde) |
+| `npm test` | **2168/2168** |
 | `npx eslint lib app components tests scripts` | 0 viga |
 | `npm run i18n:check` | OK (et/en/ru) |
 | `npm run build` | OK |
-| viilu A runtime | 35/35, 0 jääki |
-| viilu B runtime | **50/50**, 0 jääki |
+
+> Proov leidis ÜHE vea, mis harudes ei paistnud: kasutamata import
+> `scripts/org-profile-support-runtime-check.mjs`-is. Viilu C oma lint-käivitus
+> kattis `lib app components`, aga mitte `scripts`-i. Parandatud allikas, mitte
+> proovis — ja see on põhjus, miks integratsiooniproov tehakse enne main'i, mitte
+> pärast.
 
 Proovi-worktree on kustutatav:
 `git worktree remove C:/Users/rauds/Desktop/SotsiaalAI-integration-probe --force`.
@@ -294,6 +387,39 @@ Lisaks tõendas runtime B **seat-limiidi võistluse**: kaks samaaegset nõuet vi
 kohale → täpselt üks koht. Kaitse on kahekordne — `SELECT … FOR UPDATE` plaanireal ja osaline
 unikaalindeks.
 
+### Viil C — mida runtime tõendas ja mida testid oleks lasknud mööda
+
+**Kandev tõend:** runtime loob organisatsiooniprofiili, **kustutab selle loonud kasutaja
+konto** ja kontrollib, et profiil on ikka alles. Enne viilu C hävitas `Cascade` selle
+vaikselt. Ühiktest ei saanud seda kunagi näidata — ta loeb migratsioonifaili teksti, mitte
+Postgresi käitumist konto kustutamisel.
+
+Teised runtime-ainsad tõendid:
+
+- endine omanik saab pärast üleandmist teha **uue** solo-profiili — see töötab ainult siis,
+  kui osaline indeks on päriselt osaline. Globaalse indeksiga oleks P2002.
+- kaks solo-profiili ühele omanikule annavad P2002 — indeks ei ole liiga lõtv.
+- SOLO-profiil organisatsiooniga → CHECK viskab. Teenusekiht valvab sama; siin mõõdeti,
+  et teine lukk päriselt olemas on.
+- professionaalse toe moodulit ei saa jätta ilma alternatiivse tugiteeta: viimase
+  `ALTERNATE_SUPPORT` kontakti eemaldamine keeldub, kui moodul on aktiivne. See on
+  inimlik invariant, mitte tehniline — kellelgi peab alati olema teine tee.
+
+**Kolm asja, mis viilu C tegemisel valesti läksid ja mida tasub kontrollida:**
+
+1. **Prisma nõudis `organizationId` peale `@unique`-i** (1:1 valideerimine). Postgresis
+   NULL-id ei põrku, seega organisatsioonita profiile võib olla palju — aga kontrolli üle,
+   et see on tõesti unikaalne indeks, mitte kogemata tekkinud 1:1 piirang seal, kus
+   1:N oli mõeldud.
+2. **Kaks skeemitesti otsisid keelatud mudelinimesid ka KOMMENTAARIDEST** ja andsid vale
+   punase. Lisasin `schemaCodeOnly()`. Esimene versioon ei töötanud, sest fail on CRLF ja
+   JS-i `.` ei kata `\r`-i — `//.*` jättis rea lõpu alles. Kasutusel on `/\/\/[^\n]*/gu`.
+   Kes seda loeb: see on väike asi, aga sama muster tapab iga regexi selles repos.
+3. **`tests/availabilityContract.test.js` väitis vana päringukuju.** Ma ei kustutanud
+   testi ega lõdvendanud teda — ta väidab nüüd
+   `findFirst({ ownerId, ownershipMode: "SOLO" })`. Testi PÄRIS mõte (saadavuse päring
+   käib omaniku, mitte profiili ID järgi) on alles.
+
 ---
 
 ## 8. Brauseri-QA (autenditud, päris sessioon)
@@ -310,6 +436,18 @@ lendas päises „Sina ise" → „Organisatsioon"; eelpöördumine `/api/pre-in
 `openedAt`; vastuses **ei ole** `sourceJourneyId`-d ja väljakomplekt on täpselt 12-võtmeline;
 mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
 
+**Viil C: autenditud brauseri-QA-d EI TEHTUD.** Ütlen selle otse, sest see on ainus
+koht, kus viil C jääb A-st ja B-st nõrgemaks. Lokaalne NextAuth-sessioon oli aegunud ja
+uut ma luua ei saa — mandaatide sisestamine ei ole minu teha. Asendustõend on
+**suletud-vaikimisi kontroll**, mitte väide: kõik seitse org-otspunkti (`/api/org`,
+`/tugi`, `/tugi/avaldused`, `/teenusprofiil`, `/eksport`, `/inbox`, `/seats`) vastavad
+ilma sessioonita **401**-ga, kõik identse 48-baidise kehaga, **ka olematu organisatsiooni
+ID puhul** — seega otspunkt ei lekita isegi seda, kas organisatsioon on olemas.
+
+Mida see asendus EI kata: viilu C lehtede päris renderdust, vormide käitumist ja
+mobiilivaadet 390×844. **See on ainus lahtine QA-saba kogu CORE-V1-s** ja ta on
+kirjas ka ptk 9 all.
+
 ---
 
 ## 9. NOT_PROVEN
@@ -321,12 +459,15 @@ mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
 3. **Gate väljas brauseris** — tõendatud ühiktestis ja resolveris (0 päringut), aga dev-server
    jooksis lipud sees.
 4. **Kutse ja sponsorluse e-kiri** — neid ei saadeta üldse (vt ptk 10).
-5. **Integratsioon lokaalse `main`-iga** — lokaalne `main` (`c08d18fd`) on 7 commit'i ees
-   `origin/main`-ist ja tema tööpuu on määrdunud (võõrast pooleliolevat CSS-tööd). Viile ei ole
-   selle vastu proovitud ja EI TOHI enne, kui see töö on lõpetatud.
-   **Viil A ja B ON koos testitud** — viil B hargneb viilu A tipust `40dc95b1`, seega kõik
-   viilu B väravad jooksevad mõlema koodi peal korraga. Integratsioon PRAEGUSE `origin/main`-iga
-   on eraldi läbi proovitud, vt ptk 6a.
+5. **Viilu C lehtede autenditud brauseri-QA** — vt ptk 8. Väravad on suletud-vaikimisi
+   tõendatud, sisuvaated mitte. **Kõige olulisem lahtine asi selles dokumendis.**
+6. **Push `origin`-isse ja deploy** — kood on lokaalses `main`-is, aga seda ei ole
+   push'itud ega serverisse viidud. Serveri käitumise kohta ei ole ühtegi mõõtmist.
+
+**Mis EI OLE enam NOT_PROVEN:** viilude omavaheline koostöö. Iga viil hargneb eelmise
+tipust, seega viilu C väravad jooksevad kõigi kolme koodi peal korraga. Integratsioon
+praeguse `origin/main`-iga on eraldi worktree's läbi proovitud (ptk 6b) ja lokaalses
+`main`-is merge'i järel uuesti (ptk 6c).
 
 ---
 
@@ -336,9 +477,20 @@ mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
 |---|---|
 | **Kutse ja sponsorluse e-kiri** | Link antakse kutsujale, kes edastab ise. Mis kirjas seisab, on eraldi otsus §4 „e-kirjadesse ei panda tundlikku sisu" all |
 | **`DomainEvent` org-sündmused** | U1 register on suletud, valideeritud ja oma gate'i taga. Sündmus tuleb koos päris SAAJAGA. Audit on `DataAuditLog`-is |
-| **Saatjale nähtav adressaat** | Arenduskava §5.7 nõuab, et pöörduja näeks adressaati kujul „organisatsiooni vastuvõtutiim". Server salvestab `recipientOrganizationId`, aga `serializePreInquiry` ei projitseeri seda ja saatja UI ei kuva. **See on lahtine saba viilus B** |
-| **Viil C tervikuna** | E8, E9, E10 eksport — teenuseprofiili omandirežiim, tööheaolu toe tarne, org-eksport |
 | **Org-checkout ja arve** | §D6 järgi tulevane hinnastusotsus, mitte CORE-V1 |
+| **Toeavalduse e-kiri saajale** | Teavitus on platvormisisene (`ORG_WORK_ASSIGNED` rada). Toeavalduse sisu ei tohi e-kirja minna; kiri kannaks kas tühja vihjet või tundlikku teksti — mõlemad halvad |
+
+**Mis oli varem selles tabelis ja on nüüd tehtud:**
+
+- **Saatjale nähtav adressaat** (§5.7). `serializePreInquiry` projitseerib nüüd
+  `recipientOrganization` — **täpselt kaks välja: `displayName` ja `legalKind`**
+  (`lib/preInquiries.js:594`). Mitte kogu organisatsiooniobjekt: saatja ei pea nägema
+  ei mooduleid, ei üksusi, ei staatust. Adressaadi nägemine on saatja õigus,
+  organisatsiooni siseehitus ei ole.
+- **Neutraalsed teavitused** — `ORG_WORK_ASSIGNED` (`lib/notifications.js`). Teavitus ei
+  kanna pöörduja sisu, ainult viite `/org/vastuvott/<id>`. Saaja-kontroll nõuab **elavat
+  määramist JA aktiivset liikmesust** — kui üks neist kaob, ei ole teavitus enam avatav.
+- **Viil C tervikuna** — E8, E9, E10.
 
 ---
 
@@ -358,17 +510,31 @@ mobiil 390×844 ilma horisontaalse ülevooluta; konsool ja serverilogi puhtad.
    lehel, aga mitte `/tellimus`-el. SSR-i HTML on korrektne. Mõõdetud ainult dev-režiimis.
 6. **`CLIENT` ei saa organisatsiooni luua** — tuleneb otse O-E0-1-st, aga leping ei sätesta
    seda otsesõnu. Kui pöörduja peab saama organisatsiooni luua, on see eraldi otsus.
+7. **Viil C sisaldab CORE-V1 ainsat destruktiivset migratsiooni.** `ServiceProviderProfile`
+   kaotab globaalse `ownerId` unikaalindeksi ja saab osalise
+   (`WHERE ownershipMode = 'SOLO' AND ownerId IS NOT NULL`). Tagasikeeramine on **väravaga**:
+   migratsioonifail nõuab, et `count(*) WHERE ownershipMode = 'ORGANIZATION'` oleks null.
+   Kui organisatsiooniprofiile on juba tekkinud, EI TOHI rollback'i teha — globaalne indeks ei
+   mahutaks neid tagasi. Serveris on see kord, kus migratsiooni tuleb vaadata enne, mitte pärast.
+8. **`ServiceProviderProfile.ownerId` on nüüd nullitav.** Iga kood, mis eeldas, et profiilil
+   on alati omanik, peab seda taluma. Ma parandasin kolm teadaolevat kohta
+   (`lib/serviceProviderProfiles.js`), aga see on mustri-, mitte punktirisk.
 
 ---
 
 ## 12. Cleanup
 
-Mõlema viilu runtime-skriptid koristavad enda järelt ja tõendavad seda: viil A `0 jääki`,
-viil B `0 organisatsiooni, 0 kasutajat`. Brauseri-QA andmed kustutatud käsitsi;
-kontrollitud: dev-baasis 0 organisatsiooni, 0 postkastikirjet, 0 kohaplaani.
+Kolme viilu runtime-skriptid koristavad enda järelt ja tõendavad seda: viil A `0 jääki`,
+viil B `0 organisatsiooni, 0 kasutajat`, viil C `0 jääki` (sh 0 teenuseprofiili,
+0 toeavaldust). Brauseri-QA andmed kustutatud käsitsi; kontrollitud: dev-baasis
+0 organisatsiooni, 0 postkastikirjet, 0 kohaplaani.
 
-Sünteetilised nimeruumid: `@t25-runtime.invalid`, `@t25-fund.invalid`, organisatsiooni
-nimes sõna `sünteetiline`.
+Sünteetilised nimeruumid: `@t25-runtime.invalid`, `@t25-fund.invalid`,
+`@t25-profile.invalid`, organisatsiooni nimes sõna `sünteetiline`.
+
+Alles jäänud worktree'd (kustutatavad, kui kontroll on tehtud):
+`SotsiaalAI-org-foundation-v1`, `SotsiaalAI-org-funding-inbox-v1`,
+`SotsiaalAI-org-profile-support-v1`, `SotsiaalAI-integration-probe`.
 
 ---
 
@@ -380,13 +546,27 @@ nimes sõna `sünteetiline`.
    (`scripts/org-funding-runtime-check.mjs`, ptk „3a") ja **veendu, et süst päriselt viskab** —
    naiivne `prisma`-tasemel süst ei jõua tehingusse ja annaks vale rohelise. Kontrolli ka, et
    `findUndeliveredOrganizationInquiries()` tagastab tühja loendi.
-2. **Kas migratsioonid on päriselt aditiivsed** — `tests/org/contracts.test.js` ja
-   `tests/org/funding.test.js` väidavad seda; loe migratsioonifailid üle.
-2. **Kas `projectSourcePackage` on päriselt valge nimekiri** — `lib/org/inbox.js`. See on
+2. **Viilu C destruktiivne migratsioon** — `prisma/migrations/20260802090000_org_profile_support_v1/`.
+   See on kogu CORE-V1 ainus migratsioon, mis midagi maha võtab. Kontrolli kolme asja:
+   osaline indeks katab solo-juhtumi, `ON DELETE SET NULL` on päriselt kohal (mitte `Cascade`),
+   ja rollback'i värav on kirjas. `tests/org/profileSupport.test.js` väidab kõike kolme —
+   loe migratsioonifail ise üle.
+3. **Kas `projectSourcePackage` on päriselt valge nimekiri** — `lib/org/inbox.js`. See on
    ainus koht, kust pöörduja sisu organisatsioonini jõuab.
-3. **Kas `resolveOrgAccessContext` on ainus tee org-kontekstini** — `lib/org/accessContext.js`.
+4. **Kas `sanitizeSnapshot` ja `toRecipientView` on päriselt valged nimekirjad** —
+   `lib/org/supportShare.js`. See on ainus koht, kust tööheaolu sisu inimesest välja jõuab.
+   Vaata eraldi, et `ALLOWED_SNAPSHOT_FIELDS` ei sisalda ühtegi skoorimisvälja ja et
+   saaja vaates ei ole teed lähtekirjeni tagasi.
+5. **Kas `resolveOrgAccessContext` on ainus tee org-kontekstini** — `lib/org/accessContext.js`.
    Kui mõni route ehitab konteksti mööda seda, on värav katki.
-4. **Kas seat-limiidi lukk on päris** — `lib/org/seats.js` `assignSeat`, `SELECT … FOR UPDATE`.
-5. **Kas eelpöördumise liitekoht muutis nähtavusreeglit** — `visiblePreInquiryWhere`
+6. **Kas seat-limiidi lukk on päris** — `lib/org/seats.js` `assignSeat`, `SELECT … FOR UPDATE`.
+7. **Kas eelpöördumise liitekoht muutis nähtavusreeglit** — `visiblePreInquiryWhere`
    `lib/preInquiries.js`-is peab olema **muutmata**. Kui ta on muutunud, on mõjuala teine kui
    siin lubatud.
+8. **Kas `lib/serviceProviderProfiles.js` kolm ümberkirjutatud päringut on õiged** — need on
+   ainsad kohad, kus viil C muutis OLEMASOLEVAT käitumist. Solo-profiili otsing peab nüüd
+   filtreerima `ownershipMode: "SOLO"`; kui filter kaob, hakkab teenuseosutaja nägema
+   organisatsiooni profiili enda omana.
+9. **Kas eksport lekib** — `lib/org/export.js`. `assertExportIsClean` on aktiivne kaitse, mitte
+   dokumentatsioon: proovi lisada väljundisse `sharedSnapshotJson` või `situation` ja vaata,
+   kas ta viskab.
