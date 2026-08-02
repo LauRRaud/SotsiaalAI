@@ -8,15 +8,12 @@
  * admin EI kirjuta kellegi teise arve alusdokumente — tema rada on
  * haldusvaadete lugemine, mitte sisestus.
  */
-import { getServerSession } from "next-auth";
-import { authConfig } from "@/auth";
-import { roleFromSession } from "@/lib/authz";
-import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
-import { enforceChatRateLimit } from "@/lib/chat-api-rate-limit";
+import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
+import { guardServiceLogRequest } from "@/lib/serviceLog/access";
 import { createEntry, getEntryDefaults, listEntries } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
-import { ServiceLogDisabledError, isServiceLogEnabled } from "@/lib/serviceLog/flags";
+import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
 /* VEATEATED KASUTAJA KEELES. `errorJson` lokaadi vaikeväärtus on "en" — ilma
    `localeFromRequest`-ita tuli eestikeelsele kasutajale ingliskeelne teade.
@@ -27,25 +24,14 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
 const GET_LIMIT = 60;
 const POST_LIMIT = 60;
-
-async function requireProviderUser() {
-  const session = await getServerSession(authConfig).catch(() => null);
-  const userId = session?.user?.id ? String(session.user.id) : "";
-  if (!userId) return { ok: false, status: 401, message: "api.common.unauthorized" };
-  if (roleFromSession(session) !== "SERVICE_PROVIDER") {
-    return { ok: false, status: 403, message: "api.common.forbidden" };
-  }
-  return { ok: true, userId };
-}
 
 /**
  * Väravaviga ja skoobiviga vastavad MÕLEMAD 404-ga, seega kutsuja ei saa
  * eristada „funktsiooni ei ole" ja „see kirje ei ole sinu oma".
  */
-function respondToError(error, route, locale) {
+function respondToError(locale, error, route) {
   if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
     return errorJson(error.messageKey, error.status, locale);
   }
@@ -54,22 +40,11 @@ function respondToError(error, route, locale) {
 }
 
 export async function GET(req) {
-  /* VÄRAV ON ESIMENE, ENNE AUTENTIMIST JA ROLLI.
-     Kui ta oleks pärast, annaks suletud pind anonüümsele 401 ja valele rollile
-     403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
-     Suletud värav peab olema eristamatu olematust marsruudist. */
-  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
-
-  const auth = await requireProviderUser();
-  if (!auth.ok) return errorJson(auth.message, auth.status, localeFromRequest(req));
-
-  const limited = enforceChatRateLimit(req, {
+  const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_entries_get",
-    userId: auth.userId,
-    limit: GET_LIMIT,
-    windowMs: RATE_LIMIT_WINDOW_MS
+    limit: GET_LIMIT
   });
-  if (limited) return limited;
+  if (response) return response;
 
   try {
     const url = new URL(req.url);
@@ -77,14 +52,14 @@ export async function GET(req) {
        näitamist, mida üldse küsida. Reeglid on serveri tõde, mitte kliendi
        oletus — muidu tekiks kaks eri „mida küsida" loogikat. */
     if (url.searchParams.get("defaults") === "1") {
-      const defaults = await getEntryDefaults(auth.userId, {
+      const defaults = await getEntryDefaults(userId, {
         clientUserId: url.searchParams.get("clientUserId"),
         clientDisplayName: url.searchParams.get("clientDisplayName")
       });
       return json({ defaults });
     }
 
-    const entries = await listEntries(auth.userId, {
+    const entries = await listEntries(userId, {
       from: url.searchParams.get("from"),
       to: url.searchParams.get("to"),
       clientUserId: url.searchParams.get("clientUserId"),
@@ -93,36 +68,25 @@ export async function GET(req) {
     });
     return json({ entries });
   } catch (error) {
-    return respondToError(error, "service-entries GET", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries GET", localeFromRequest(req));
   }
 }
 
 export async function POST(req) {
-  /* VÄRAV ON ESIMENE, ENNE AUTENTIMIST JA ROLLI.
-     Kui ta oleks pärast, annaks suletud pind anonüümsele 401 ja valele rollile
-     403 — mõlemad ütlevad „see asi on olemas, ainult sina ei pääse ligi".
-     Suletud värav peab olema eristamatu olematust marsruudist. */
-  if (!isServiceLogEnabled()) return errorJson("service_log.errors.not_found", 404, localeFromRequest(req));
-
-  const auth = await requireProviderUser();
-  if (!auth.ok) return errorJson(auth.message, auth.status, localeFromRequest(req));
-
-  const limited = enforceChatRateLimit(req, {
+  const { response, userId, locale } = await guardServiceLogRequest(req, {
     scope: "service_entries_post",
-    userId: auth.userId,
-    limit: POST_LIMIT,
-    windowMs: RATE_LIMIT_WINDOW_MS
+    limit: POST_LIMIT
   });
-  if (limited) return limited;
+  if (response) return response;
 
   try {
     const body = await req.json().catch(() => null);
     if (!body || typeof body !== "object") {
-      return errorJson("service_log.errors.invalid_input", 400, localeFromRequest(req));
+      return errorJson("service_log.errors.invalid_input", 400, locale);
     }
-    const entry = await createEntry(auth.userId, body);
+    const entry = await createEntry(userId, body);
     return json({ entry }, 201);
   } catch (error) {
-    return respondToError(error, "service-entries POST", localeFromRequest(req));
+    return respondToError(locale, error, "service-entries POST", localeFromRequest(req));
   }
 }

@@ -28,7 +28,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
@@ -56,9 +56,10 @@ function formatTime(value) {
 
 export default function ServiceLogDay() {
   const { t, locale } = useI18n();
-  const { data: session, status: sessionStatus } = useSession();
-  const role = String(session?.user?.role || "").toUpperCase();
-  const allowed = role === "SERVICE_PROVIDER";
+  /* Roll tuleb platvormi ROLLIVAATEST, mitte toorest sessioonist — vt
+     `ServiceLogShell` ja `lib/serviceLog/access.js`. */
+  const { effectiveRole, isRoleResolved } = useEffectiveRole();
+  const allowed = effectiveRole === "SERVICE_PROVIDER";
 
   const [entries, setEntries] = useState(null);
   const [loadError, setLoadError] = useState(false);
@@ -231,7 +232,7 @@ export default function ServiceLogDay() {
     [clientName, date, loadEntries, locale, note, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
-  if (sessionStatus === "loading") return null;
+  if (!isRoleResolved) return null;
 
   return (
     <div className="sl-day">
