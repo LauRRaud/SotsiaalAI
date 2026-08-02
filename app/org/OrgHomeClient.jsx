@@ -6,6 +6,8 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { ORGANIZATION_LEGAL_KINDS } from "@/lib/org/constants";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -15,6 +17,10 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
  */
 export default function OrgHomeClient({ organizations, pendingInvites, canCreate, canCreateRole }) {
   const { t } = useI18n();
+  /* ⓘ kiirmenüüsse (lib/dashboardInfoContent → `org`). Ilma selleta oli /org
+     ainus dokiga pind ilma infonuputa ja privaatsuse selgitus pidi elama lehe
+     pealkirja all — infot pealkirja alla ei panda. */
+  usePanelInfoSlot({ infoId: "org" });
   const router = useRouter();
   const [displayName, setDisplayName] = useState("");
   const [legalKind, setLegalKind] = useState("MUNICIPALITY");
@@ -57,8 +63,6 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
           <p className="ow-subtitle">{t("org.home.intro")}</p>
         </div>
       </header>
-
-      <p className="ow-notice ow-notice--privacy">{t("org.personalWorkspaceHint")}</p>
 
       <section className="ow-card" aria-labelledby="ow-orgs-heading">
         <h2 id="ow-orgs-heading" className="ow-title" style={{ fontSize: "1.125rem" }}>
@@ -121,20 +125,22 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
                 style={{ width: "100%", fontFamily: "inherit", fontSize: "1rem" }}
               />
             </label>
+            {/* Platvormi oma valikmenüü, MITTE natiivne <select>: avatud loendi
+                joonistab natiivsel operatsioonisüsteem ja hämariku klaasi keskele
+                avanes valge Windowsi loend (sama viga, mis teenuspäevikus 02.08
+                parandati). */}
             <label>
               <span className="ow-meta__term">{t("org.create.legalKindLabel")}</span>
-              <select
+              <Dropdown
+                name="legalKind"
                 value={legalKind}
-                onChange={(event) => setLegalKind(event.target.value)}
-                className="ow-code"
-                style={{ width: "100%", fontFamily: "inherit", fontSize: "1rem" }}
-              >
-                {ORGANIZATION_LEGAL_KINDS.map((kind) => (
-                  <option key={kind} value={kind}>
-                    {t(`org.legalKind.${kind}`)}
-                  </option>
-                ))}
-              </select>
+                onChange={setLegalKind}
+                ariaLabel={t("org.create.legalKindLabel")}
+                options={ORGANIZATION_LEGAL_KINDS.map((kind) => ({
+                  value: kind,
+                  label: t(`org.legalKind.${kind}`)
+                }))}
+              />
             </label>
             <label>
               <span className="ow-meta__term">{t("org.create.legalName")}</span>
