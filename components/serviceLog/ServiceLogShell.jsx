@@ -22,6 +22,8 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import ServiceLogDay from "./ServiceLogDay";
 import ServiceLogReferrals from "./ServiceLogReferrals";
 import ServiceLogMonth from "./ServiceLogMonth";
+import ServiceLogClientMonth from "./ServiceLogClientMonth";
+import { isServiceLogClientViewUiEnabled } from "@/lib/serviceLog/flags";
 
 const TAB_PARAM = "vaade";
 const MONTH_PARAM = "kuu";
@@ -91,7 +93,18 @@ export default function ServiceLogShell() {
 
   if (!isRoleResolved) return null;
 
+  /* KLIENDI VAADE (E7) on sama marsruudi teine nägu, mitte teine leht: „minu
+     teenused" ja „minu teenuspäevik" on kliendi jaoks sama asi ja kaks eri
+     URL-i tähendaks kahte kohta, kust otsida. Lüliti taga ja vaikimisi väljas
+     (omaniku otsus nr 2). */
   if (!allowed) {
+    if (effectiveRole === "CLIENT" && isServiceLogClientViewUiEnabled()) {
+      return (
+        <section className="sl-shell">
+          <ServiceLogClientMonth />
+        </section>
+      );
+    }
     return (
       <section className="sl-shell">
         <p className="sl-empty">{t("service_log.not_allowed", "")}</p>

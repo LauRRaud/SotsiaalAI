@@ -8455,7 +8455,8 @@
       "load_error": "Loading the entries failed.",
       "finalize": "Confirm",
       "travel": "travel time",
-      "retry": "Try again"
+      "retry": "Try again",
+      "manual_confirm": "Client's paper confirmation"
     },
     "errors": {
       "not_found": "Service entry not found.",
@@ -8528,6 +8529,15 @@
       "captured": "Location captured. The server decides whether it is stored.",
       "missing": "No location available — the visit is still marked.",
       "saved": "location stored"
+    },
+    "client": {
+      "title": "My services",
+      "empty": "No confirmed service entries this month.",
+      "load_error": "The monthly report could not be loaded.",
+      "confirmed": "confirmed",
+      "all_confirmed": "You have confirmed this month.",
+      "confirm": "I confirm this matches what happened",
+      "confirm_explainer": "The confirmation is final and cannot be withdrawn later. If something is not right, talk to the provider first."
     }
   }
 }

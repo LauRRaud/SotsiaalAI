@@ -383,15 +383,15 @@ export default function ServiceLogDay() {
   /* KINNITAMINE PEAB OLEMA UI-s. Kirje sünnib mustandina ja eksport jätab
      mustandid vaikimisi välja — ilma selle nuputa võis osutaja sisestada terve
      kuu ja eksportida NULL rida, ilma et miski oleks katki paistnud. */
-  const finalize = useCallback(
-    async (entryId) => {
+  const runLifecycle = useCallback(
+    async (entryId, action) => {
       setFinalizing(entryId);
       setFinalizeError("");
       try {
         const response = await fetch(`/api/service-entries/${entryId}/lifecycle`, {
           method: "POST",
           headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
-          body: JSON.stringify({ action: "finalize" })
+          body: JSON.stringify({ action })
         });
         if (response.ok) {
           await loadEntries();
@@ -409,6 +409,17 @@ export default function ServiceLogDay() {
       }
     },
     [loadEntries, locale, t]
+  );
+
+  const finalize = useCallback((entryId) => runLifecycle(entryId, "finalize"), [runLifecycle]);
+
+  /* KÄSITSI KINNITUS on VÄLISE kliendi paberallkirja MÄRGE, mitte kinnitus ise:
+     osutaja ei kinnita kliendi eest. Platvormi kliendi digikinnitus käib oma
+     teed (`/api/service-log/client`) ja seda siit teha ei saa. */
+  const toggleManualConfirm = useCallback(
+    (entry) =>
+      runLifecycle(entry.id, entry.confirmedManually ? "unconfirm_manual" : "confirm_manual"),
+    [runLifecycle]
   );
 
   const resetForm = useCallback(() => {
@@ -841,6 +852,15 @@ export default function ServiceLogDay() {
                       ole siin midagi, ka siis kui brauser punkti kätte sai. */}
                   {entry.locationStampedAt?.length ? ` · ${t("service_log.location.saved", "")}` : ""}
                 </span>
+                <button
+                  type="button"
+                  className={`sl-tab${entry.confirmedManually ? " is-active" : ""}`}
+                  disabled={finalizing === entry.id}
+                  aria-pressed={Boolean(entry.confirmedManually)}
+                  onClick={() => toggleManualConfirm(entry)}
+                >
+                  {t("service_log.list.manual_confirm", "")}
+                </button>
                 {entry.status === "DRAFT" ? (
                   <button
                     type="button"

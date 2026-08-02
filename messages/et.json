@@ -8455,7 +8455,8 @@
       "load_error": "Kirjete laadimine ebaõnnestus.",
       "finalize": "Kinnita",
       "travel": "sõiduaeg",
-      "retry": "Proovi uuesti"
+      "retry": "Proovi uuesti",
+      "manual_confirm": "Kliendi paberkinnitus"
     },
     "errors": {
       "not_found": "Teenuskirjet ei leitud.",
@@ -8528,6 +8529,15 @@
       "captured": "Asukoht märgitud. Salvestamise otsustab server.",
       "missing": "Asukohta ei saadud — külastus on siiski märgitud.",
       "saved": "asukoht salvestatud"
+    },
+    "client": {
+      "title": "Minu teenused",
+      "empty": "Selles kuus ei ole kinnitatud teenuskirjeid.",
+      "load_error": "Kuuaruannet ei õnnestunud laadida.",
+      "confirmed": "kinnitatud",
+      "all_confirmed": "Oled selle kuu kinnitanud.",
+      "confirm": "Kinnitan, et see vastab toimunule",
+      "confirm_explainer": "Kinnitus on lõplik ja seda ei saa hiljem tagasi võtta. Kui midagi ei vasta tõele, räägi enne osutajaga."
     }
   }
 }

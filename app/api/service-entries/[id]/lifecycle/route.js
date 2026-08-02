@@ -10,7 +10,7 @@
 import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
-import { finalizeEntry, voidEntry } from "@/lib/serviceLog/entries";
+import { finalizeEntry, updateEntry, voidEntry } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
@@ -38,6 +38,17 @@ export async function POST(req, context) {
     if (action === "finalize") {
       return json({ entry: await finalizeEntry(userId, String(id)) });
     }
+    /* KÄSITSI KINNITUS (E7) — VÄLINE klient, kes kirjutas paberile alla.
+       Platvormi kliendi digikinnitus käib oma teed (`/api/service-log/client`)
+       ja seda EI TOHI siit teha: osutaja ei tohi kliendi nimel kinnitada. */
+    if (action === "confirm_manual" || action === "unconfirm_manual") {
+      return json({
+        entry: await updateEntry(userId, String(id), {
+          confirmedManually: action === "confirm_manual"
+        })
+      });
+    }
+
     if (action === "void") {
       /* Tühistamise põhjus on kohustuslik ja seda kontrollib teenuskiht —
          siin ei dubleerita valideerimist, et kaks reeglit ei saaks lahkneda. */
