@@ -15,13 +15,15 @@
  * sinu oma" sünnib. Server ütleb sama niikuinii — UI ei ole värav, vaid viisakus.
  */
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import ServiceLogDay from "./ServiceLogDay";
 import ServiceLogReferrals from "./ServiceLogReferrals";
 import ServiceLogMonth from "./ServiceLogMonth";
+
+const TAB_PARAM = "vaade";
 
 const TABS = [
   { key: "day", labelKey: "service_log.tabs.day" },
@@ -41,8 +43,24 @@ export default function ServiceLogShell() {
 
   usePanelInfoSlot({ infoId: "service_log" });
 
-  const [tab, setTab] = useState("day");
+  const [tab, setTabState] = useState("day");
   const [month, setMonth] = useState(currentMonth);
+
+  /* SEIS ON URL-is. Ilma selleta ei saa osutaja aruannete vaadet järjehoidjasse
+     panna ega kolleegile saata, ja brauseri tagasinupp viib lehelt hoopis ära.
+     Kasutame `history.replaceState`-i, mitte marsruuti: vahelehe vahetus ei ole
+     navigatsioon ja ei tohi tekitada iga puute kohta ajaloo kirjet. */
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get(TAB_PARAM);
+    if (requested && TABS.some((item) => item.key === requested)) setTabState(requested);
+  }, []);
+
+  const setTab = useCallback((next) => {
+    setTabState(next);
+    const url = new URL(window.location.href);
+    url.searchParams.set(TAB_PARAM, next);
+    window.history.replaceState(null, "", url);
+  }, []);
 
   if (sessionStatus === "loading") return null;
 

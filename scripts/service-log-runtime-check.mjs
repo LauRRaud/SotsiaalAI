@@ -705,6 +705,54 @@ async function main() {
     ambiguous.referrals.every((row) => typeof row.kovName === "string")
   );
 
+
+  // --- 14. Järelkontrolli leiud -----------------------------------------
+  /* E5 võistlusaken: kaks samaaegset salvestust ei tohi anda P2002 -> 500. */
+  const narrativeRacers = 3;
+  let arrivedN = 0;
+  let openN;
+  const gateN = new Promise((resolve) => { openN = resolve; });
+  const barrierN = async () => {
+    arrivedN += 1;
+    if (arrivedN >= narrativeRacers) openN();
+    await gateN;
+  };
+  const racedNarratives = await Promise.allSettled(
+    Array.from({ length: narrativeRacers }, (_unused, index) =>
+      (async () => {
+        await barrierN();
+        return upsertNarrative(
+          provider.id,
+          {
+            referralId: refOther.id,
+            periodYear: 2026,
+            periodMonth: 8,
+            bodyText: `Samaaegne kirjutus ${index}.`
+          },
+          { env: ENV_ON }
+        );
+      })()
+    )
+  );
+  expect(
+    "kolm SAMAAEGSET narratiivi salvestust ei anna P2002 — võistlusaken suletud",
+    racedNarratives.every((r) => r.status === "fulfilled"),
+    racedNarratives.map((r) => r.reason?.code || r.reason?.messageKey || r.status).join(" | ")
+  );
+  const narrativeRows = await prisma.serviceMonthlyNarrative.count({
+    where: { providerProfileId: profile.id, referralId: refOther.id, periodYear: 2026, periodMonth: 8 }
+  });
+  expect("ja tekib TÄPSELT ÜKS rida", narrativeRows === 1, String(narrativeRows));
+
+  /* E4: lõpetatud suunamine, millel on selle kuu kirjeid, peab kuuvaates olema —
+     lõpparve tehakse just sellest kuust. */
+  const augustAfterEnd = await getMonthlyReport(provider.id, { month: "2026-08" }, { env: ENV_ON });
+  expect(
+    "LÕPETATUD suunamine ei kao kuuvaatest, kui tal on selle kuu kirjeid",
+    augustAfterEnd.referrals.some((row) => row.id === refBalance.id),
+    augustAfterEnd.referrals.map((row) => row.id).join(",")
+  );
+
   // --- Koristus ----------------------------------------------------------
   console.log("\ncleanup");
   const beforeCorrections = await prisma.serviceEntryCorrection.count({

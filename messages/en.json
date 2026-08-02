@@ -8426,6 +8426,7 @@
       "referral_already_ended": "The referral has already ended.",
       "month_invalid": "The month must be in YYYY-MM format.",
       "narrative_required": "Write the monthly narrative text.",
+      "narrative_conflict": "Saving the narrative failed. Please try again.",
       "proposal_invalid": "The proposal must be continue, change volume or end.",
       "template_invalid": "Unknown report template.",
       "referral_required_for_narrative": "The narrative report is per referral — choose a referral.",
