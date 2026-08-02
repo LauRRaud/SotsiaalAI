@@ -41,6 +41,8 @@ import {
   isServiceLogMeasurementUiEnabled
 } from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
+import { clearVisitDraft, readVisitDraft, writeVisitDraft } from "@/lib/serviceLog/visitDraft";
+import LocationPermission from "./LocationPermission";
 
 /**
  * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
@@ -72,14 +74,6 @@ const FLOW_WITH_TRAVEL = [
 ];
 
 /**
- * Templid elasid ainult komponendi mälus: lehe värskendamine kustutas käigus
- * oleva külastuse jäljetult. Just see on kõige tõenäolisem hetk, mil telefoni
- * ekraan vahepeal lukku läheb.
- *
- * PÜSIB AINULT AEG, MITTE INIMENE. Kliendi nimi ja märkus jäävad teadlikult
- * välja — need on isikuandmed ja `localStorage` ei ole koht, kus neid hoida.
- */
-/**
  * MÄRKUSE PÄRITOLU — valik, mitte vaikimisi oletus.
  *
  * Vormil EI OLNUD seda üldse: märkus salvestus ilma päritoluta ja koond
@@ -104,32 +98,6 @@ const NOTE_PROVENANCES = [
   PROVENANCE.TEISE_SPETSIALISTI_INFO,
   PROVENANCE.DOKUMENDIST
 ];
-
-const DRAFT_KEY = "sotsiaalai.service_log.visit_draft";
-
-function readDraft() {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = window.localStorage.getItem(DRAFT_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== "object") return null;
-    return {
-      stamps: parsed.stamps && typeof parsed.stamps === "object" ? parsed.stamps : {},
-      withTravel: Boolean(parsed.withTravel)
-    };
-  } catch {
-    return null;
-  }
-}
-
-function writeDraft(stamps, withTravel) {
-  if (typeof window === "undefined") return;
-  try {
-    if (!Object.keys(stamps || {}).length) window.localStorage.removeItem(DRAFT_KEY);
-    else window.localStorage.setItem(DRAFT_KEY, JSON.stringify({ stamps, withTravel }));
-  } catch {}
-}
 
 function todayIso() {
   const now = new Date();
@@ -194,6 +162,7 @@ export default function ServiceLogDay() {
   const [fromVisitError, setFromVisitError] = useState(false);
   /* Asukohapunktid ainult KÄESOLEVA külastuse kohta; nad lähevad kirjega
      kaasa ja kaovad vormi tühjendamisel. */
+  const [restoredDraft, setRestoredDraft] = useState(false);
   const [locationStamps, setLocationStamps] = useState({});
   const [locationState, setLocationState] = useState("");
   /**
@@ -304,12 +273,84 @@ export default function ServiceLogDay() {
   /* Taastame poooleli kaeaesoleva kuelastuse alles pärast esimest renderdust:
      `localStorage` ei ole serveris olemas ja `useState`-i algväärtusena tekitaks
      see hüdratsiooni lahknevuse. */
+  const draftReadyRef = useRef(false);
   useEffect(() => {
-    const draft = readDraft();
-    if (!draft || !Object.keys(draft.stamps).length) return;
+    const draft = readVisitDraft(typeof window === "undefined" ? null : window.localStorage);
+    /* Ka „mustandit ei olnud" lõpetab taastamise: muidu ei salvestuks enam
+       kunagi midagi. */
+    if (!draft) {
+      draftReadyRef.current = true;
+      return;
+    }
     setStamps(draft.stamps);
+    setLocationStamps(draft.locationStamps || {});
     setWithTravel(draft.withTravel);
+    /* Iga väli taastatakse ainult siis, kui mustandis midagi oli: tühi string
+       üle vaikeväärtuse (nt `unit = "HOUR"`) oleks samasugune vaikne kadu. */
+    if (draft.clientName) setClientName(draft.clientName);
+    if (draft.note) setNote(draft.note);
+    if (draft.noteProvenance) setNoteProvenance(draft.noteProvenance);
+    if (draft.quantity) setQuantity(draft.quantity);
+    if (draft.unit) setUnit(draft.unit);
+    if (draft.referralId) setReferralId(draft.referralId);
+    if (draft.date) setDate(draft.date);
+    if (Object.keys(draft.stamps || {}).length || draft.clientName) setRestoredDraft(true);
+    draftReadyRef.current = true;
   }, []);
+
+  /**
+   * SALVESTAMINE ON ÜKS EFEKT, MITTE KÜMME KUTSET.
+   *
+   * Varem kirjutati mustandit ainult kahes kohas — templi panekul ja tagasi
+   * võtmisel — ja iga uus väli oleks vajanud oma kutset, mille unustamine
+   * oleks andnud vaikse kao täpselt seal, kus mustandit üldse vaja on.
+   *
+   * Kutsed olid pealegi `setStamps`-i uuendaja SEES: React kutsub uuendajat
+   * StrictMode'is kaks korda ja kõrvalmõju uuendajas on iseenesest viga.
+   */
+  useEffect(() => {
+    if (!draftReadyRef.current) return;
+    writeVisitDraft(typeof window === "undefined" ? null : window.localStorage, {
+      stamps,
+      locationStamps,
+      withTravel,
+      clientName,
+      note,
+      noteProvenance,
+      quantity,
+      unit,
+      referralId,
+      date
+    });
+  }, [stamps, locationStamps, withTravel, clientName, note, noteProvenance, quantity, unit, referralId, date]);
+
+  /**
+   * TÄPSUS ON OSA TÕENDIST, MITTE TEHNILINE DETAIL.
+   *
+   * Omanik mõõtis päris seadmes: leht ütles Kopli, tegelik koht oli Tabasalu.
+   * Peapõhjus oli vahemälu (`LOCATION_MAX_AGE_MS`), aga teine pool probleemist
+   * on siin: „Asukoht märgitud" nägi mõlemal juhul välja ÜHTE MOODI. Punkt
+   * ±20 m ja punkt ±3 km andsid sama rahustava lause.
+   *
+   * Nüüd ütleb ekraan numbri välja. Kui täpsus ei kanna kohalolu tõendina välja,
+   * on lause hoiatav ja soovitab märkida uuesti — otsuse teeb inimene, kes
+   * teab, kas ta seisab ukse taga või sõidab bussis.
+   */
+  const arrivalPoint = locationStamps[VISIT_STAMP.ARRIVED] || null;
+  const locationMessage = (() => {
+    if (locationState !== "captured" || !arrivalPoint) {
+      return t(`service_log.location.${locationState}`, "");
+    }
+    const meters = Number.isFinite(Number(arrivalPoint.acc)) ? Math.round(Number(arrivalPoint.acc)) : null;
+    if (meters === null) return t("service_log.location.captured", "");
+    return t(
+      arrivalPoint.trusted === false
+        ? "service_log.location.coarse"
+        : "service_log.location.captured_accuracy",
+      "",
+      { meters: String(meters) }
+    );
+  })();
 
   const flow = withTravel ? FLOW_WITH_TRAVEL : FLOW_WITHOUT_TRAVEL;
   /* Järgmine samm = esimene jada punkt, mida veel ei ole. `null` tähendab, et
@@ -411,9 +452,7 @@ export default function ServiceLogDay() {
     (key) => {
       markInputStart();
       setStamps((current) => {
-        const next = { ...current, [key]: new Date().toISOString() };
-        writeDraft(next, withTravelRef.current);
-        return next;
+        return { ...current, [key]: new Date().toISOString() };
       });
 
       if (!isServiceLogLocationStampUiEnabled()) return;
@@ -429,14 +468,17 @@ export default function ServiceLogDay() {
          siis, kui number on ikka seesama; vormi tuehjendamine kasvatab teda. */
       const visitToken = visitTokenRef.current;
       setLocationState("asking");
-      captureLocationPoint().then((point) => {
-        if (visitTokenRef.current !== visitToken) return;
-        if (!point) {
-          /* „Ei saanud" EI OLE viga, mida kasutaja peaks parandama: ta on juba
-             kohal ja tempel on kirjas. Seepärast on see teade neutraalne. */
-          setLocationState("missing");
-          return;
+      /* PÕHJUS TULEB KAASA. Vana kood ütles iga tõrke peale ühte lauset ja
+         kasutaja ei saanud teada, kas ta peaks midagi ette võtma — keelatud
+         luba on parandatav ühe klikiga, aegumine mitte. */
+      captureLocationPoint(undefined, {
+        onReason: (reason) => {
+          if (visitTokenRef.current !== visitToken) return;
+          setLocationState(reason);
         }
+      }).then((point) => {
+        if (visitTokenRef.current !== visitToken) return;
+        if (!point) return;
         setLocationStamps((current) => ({ ...current, [key]: point }));
         setLocationState("captured");
       });
@@ -454,7 +496,6 @@ export default function ServiceLogDay() {
       if (!last) return current;
       const next = { ...current };
       delete next[last];
-      writeDraft(next, withTravelRef.current);
       return next;
     });
   }, []);
@@ -514,7 +555,10 @@ export default function ServiceLogDay() {
     setLocationStamps({});
     setLocationState("");
     setWithTravel(false);
-    writeDraft({}, false);
+    /* Salvestatud kirje ei ole enam pooleli töö: nimi ei tohi seadmesse jääda
+       hetkegi kauemaks, kui teda vaja oli. */
+    clearVisitDraft(typeof window === "undefined" ? null : window.localStorage);
+    setRestoredDraft(false);
     setDefaults(null);
     setServiceId("");
     setReferralId("");
@@ -726,6 +770,27 @@ export default function ServiceLogDay() {
           />
         </label>
 
+        {/* TAASTAMINE PEAB OLEMA NÄHTAV, MITTE VAIKNE.
+            Nimi, mis ilmub vormile iseenesest, on täpselt sama ohtlik nagu nimi,
+            mis kaob: töötaja võib kirjutada uue kliendi ajad EELMISE kliendi nime
+            alla, ilma et miski oleks katki paistnud. Seepärast tuleb taastatud
+            külastus koos küsimusega ja ühe vajutusega saab ta ära visata. */}
+        {restoredDraft ? (
+          <div className="sl-restored" role="status">
+            <p className="sl-restored-text">
+              <strong>{t("service_log.draft.restored", "")}</strong>{" "}
+              {t("service_log.draft.restored_check", "")}
+            </p>
+            <button type="button" className="sl-restored-discard" onClick={resetForm}>
+              {t("service_log.draft.discard", "")}
+            </button>
+          </div>
+        ) : null}
+
+        {/* LUBA KÜSITAKSE ENNE, MITTE UKSE TAGA. Plokk kaob ise ära, kui luba
+            on olemas ja töötab. */}
+        {isServiceLogLocationStampUiEnabled() ? <LocationPermission /> : null}
+
         <h3 className="sl-group-title">{t("service_log.form.group_visit", "")}</h3>
         <div className="sl-flow" role="group" aria-label={t("service_log.stamps.group", "")}>
           {/* Soiduaja valik on ENNE alustamist ja lukustub esimese maerke jaerel:
@@ -784,8 +849,11 @@ export default function ServiceLogDay() {
           {/* TÖÖTAJA NÄEB, MIS TEMA KOHTA SALVESTATI. Vaikne asukohakogumine oleks
               sama asi, mille eest me konkurenti kritiseerime. */}
           {locationState ? (
-            <p className="sl-source" aria-live="polite">
-              {t(`service_log.location.${locationState}`, "")}
+            <p
+              className={arrivalPoint && arrivalPoint.trusted === false ? "sl-source sl-source-warn" : "sl-source"}
+              aria-live="polite"
+            >
+              {locationMessage}
             </p>
           ) : null}
 

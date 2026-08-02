@@ -17,8 +17,12 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import {
   LOCATION_MAX_AGE_MS,
+  LOCATION_MAX_USEFUL_ACCURACY_M,
   LOCATION_TIMEOUT_MS,
-  captureLocationPoint
+  LOCATION_TRUSTED_ACCURACY_M,
+  LOCATION_REASON,
+  captureLocationPoint,
+  isTrustedAccuracy
 } from "../../lib/serviceLog/geolocation.js";
 
 function fakeNavigator(impl) {
@@ -73,9 +77,57 @@ test("topeltvastus annab ikka ühe tulemuse", async () => {
   assert.equal(point.lat, 58.38, "esimene vastus jääb kehtima");
 });
 
-test("ajapiirang on lühike ja vahemälu vana punkti ei kõlba", () => {
-  assert.ok(LOCATION_TIMEOUT_MS <= 10_000, "uksel seisev inimene ei oota kaua");
-  assert.ok(LOCATION_MAX_AGE_MS <= 60_000, "eilne punkt oleks vale tõend");
+/**
+ * SEE TEST ON ÜMBER PÖÖRATUD ja tema vana kuju oli VIGA.
+ *
+ * Varem nõudis ta „ajapiirang on lühike" (≤10 s) ja lubas vahemälu kuni minut.
+ * Mõlemad lähtusid kannatusest, mitte tõendist. Omanik mõõtis 02.08 päris
+ * seadmes: leht ütles Kopli, tegelik koht oli Tabasalu. Vastus tuli kohe —
+ * vahemälust — ja oli täiesti vale.
+ *
+ * Ootamist ei maksa karta, sest asukohta küsitakse ALLES PÄRAST ajatempli
+ * kirjapanekut: mitte keegi ei seisa ukse taga ja ei oota GPS-i. Vale punkt
+ * seevastu jõuab arve alusdokumendile.
+ */
+test("asukohta MÕÕDETAKSE, vahemälust vastust ei võeta", () => {
+  assert.equal(LOCATION_MAX_AGE_MS, 0, "vahemälu andis Tabasalu asemel Kopli");
+  assert.ok(LOCATION_TIMEOUT_MS >= 15_000, "külm GPS ei jõua 8 sekundiga täpse fixini");
+});
+
+test("täpsus otsustab, kas punkt tõendab kohalolekut", () => {
+  assert.equal(isTrustedAccuracy(12), true);
+  assert.equal(isTrustedAccuracy(LOCATION_TRUSTED_ACCURACY_M), true, "lävi ise on veel usaldatav");
+  assert.equal(isTrustedAccuracy(2500), false, "±2,5 km ütleb ainult „kuskil linnas”");
+  assert.equal(isTrustedAccuracy(undefined), false, "teadmata täpsus ei ole hea täpsus");
+  assert.equal(isTrustedAccuracy(-1), false);
+});
+
+test("mõõdetud punkt kannab täpsust ja otsust kaasas", async () => {
+  const point = await captureLocationPoint(
+    fakeNavigator((success) => success({ coords: { latitude: 59.43, longitude: 24.52, accuracy: 18.4 } }))
+  );
+  assert.equal(point.acc, 18, "täpsus ümardatakse meetriteks");
+  assert.equal(point.trusted, true);
+});
+
+test("jäme punkt tuleb kaasa, aga MÄRGISTATUNA", async () => {
+  const point = await captureLocationPoint(
+    fakeNavigator((success) => success({ coords: { latitude: 59.44, longitude: 24.75, accuracy: 3200 } }))
+  );
+  assert.ok(point, "±3,2 km ei ole vale mõõtmine — ta on jäme mõõtmine");
+  assert.equal(point.trusted, false, "ilma selleta näeks ta ekraanil välja nagu tõend");
+});
+
+/* IP-põhine määrang annab kümneid kilomeetreid. Rida, mis näeb välja nagu
+   asukoht, aga ei ütle midagi, on halvem kui puuduv rida: teda hakatakse
+   hiljem kaardil vaatama ja ta valetab vaikselt. */
+test("kasutu täpsusega punkt ei jõua kirjele üldse", async () => {
+  const point = await captureLocationPoint(
+    fakeNavigator((success) =>
+      success({ coords: { latitude: 59.1, longitude: 24.1, accuracy: LOCATION_MAX_USEFUL_ACCURACY_M + 1 } })
+    )
+  );
+  assert.equal(point, null);
 });
 
 /* DoD 10 KOODIKONTROLL. Käitumistest ei näe kunagi seda, mida koodis EI OLE —
@@ -106,4 +158,63 @@ test("kommentaari-eemaldaja ei söö päris koodi", () => {
   assert.ok(!stripComments("/* watchPosition */ const a = 1;").includes("watchPosition"));
   assert.ok(stripComments("navigator.geolocation.watchPosition(fn)").includes("watchPosition"));
   assert.ok(stripComments("const url = 'https://example.test';").includes("https://example.test"));
+});
+
+/**
+ * PÕHJUS ON OSA VASTUSEST. Üks ja sama lause iga tõrke peale jättis kasutaja
+ * teadmatusse, kas ta peaks midagi ette võtma: keelatud luba on parandatav ühe
+ * klikiga, aegumine tähendab „proovi akna juures", toetuseta seade mitte midagi.
+ */
+test("tõrke põhjus jõuab kutsujani, tempel jääb ikka kirja", async () => {
+  const seen = [];
+  const point = await captureLocationPoint(
+    fakeNavigator((success, error) => error({ code: 1 })),
+    { onReason: (reason) => seen.push(reason) }
+  );
+  assert.equal(point, null, "tõrge ei anna punkti");
+  assert.deepEqual(seen, [LOCATION_REASON.DENIED], "keelatud luba on parandatav — seda peab ütlema");
+});
+
+test("iga veakood saab oma põhjuse", async () => {
+  const collect = async (code) => {
+    let reason = null;
+    await captureLocationPoint(fakeNavigator((success, error) => error({ code })), {
+      onReason: (value) => {
+        reason = value;
+      }
+    });
+    return reason;
+  };
+  assert.equal(await collect(2), LOCATION_REASON.UNAVAILABLE);
+  assert.equal(await collect(3), LOCATION_REASON.TIMEOUT);
+  assert.equal(await collect(99), LOCATION_REASON.UNAVAILABLE, "tundmatu kood ei tohi vaikida");
+});
+
+test("liiga jäme punkt ütleb VÄLJA, miks teda ei salvestatud", async () => {
+  let reason = null;
+  await captureLocationPoint(
+    fakeNavigator((success) => success({ coords: { latitude: 59, longitude: 24, accuracy: 40_000 } })),
+    { onReason: (value) => (reason = value) }
+  );
+  assert.equal(reason, LOCATION_REASON.TOO_COARSE);
+});
+
+test("asukohata seade ütleb seda kohe, mitte ei vaiki", async () => {
+  let reason = null;
+  const point = await captureLocationPoint({}, { onReason: (value) => (reason = value) });
+  assert.equal(point, null);
+  assert.equal(reason, LOCATION_REASON.UNSUPPORTED);
+});
+
+/* Teavituse enda viga ei tohi punkti ega ajatemplit ära kaotada. */
+test("katkine teavituskutse ei lõhu asukohapäringut", async () => {
+  const point = await captureLocationPoint(
+    fakeNavigator((success) => success({ coords: { latitude: 59.4, longitude: 24.5, accuracy: 10 } })),
+    {
+      onReason: () => {
+        throw new Error("kutsuja viga");
+      }
+    }
+  );
+  assert.equal(point.lat, 59.4);
 });
