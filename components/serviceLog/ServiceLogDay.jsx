@@ -33,7 +33,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
-import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
+import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
 import {
@@ -79,6 +79,32 @@ const FLOW_WITH_TRAVEL = [
  * PÜSIB AINULT AEG, MITTE INIMENE. Kliendi nimi ja märkus jäävad teadlikult
  * välja — need on isikuandmed ja `localStorage` ei ole koht, kus neid hoida.
  */
+/**
+ * MÄRKUSE PÄRITOLU — valik, mitte vaikimisi oletus.
+ *
+ * Vormil EI OLNUD seda üldse: märkus salvestus ilma päritoluta ja koond
+ * nimetas ta vaikimisi „töötaja tähelepanekuks" — ka siis, kui see oli kliendi
+ * ütlus. Produktsiooni AI-mustand märkas vastuolu ise ja kirjutas aruandesse
+ * „Tegemist on kliendi ütlusega; kinnitatud töötaja tähelepanekut koondis ei
+ * ole". Ehk vaikne vaikeväärtus jõudis KOV-ile minevasse teksti.
+ *
+ * Fakti ja tõlgenduse lahusus on lepingu enda eristaja — ta ei tohi olla asi,
+ * mida vormist kätte ei saa.
+ *
+ * VIIS VALIKUT KAHEKSAST: `KLIENDI_KINNITATUD`, `AI_MUSTAND` ja
+ * `AMETLIKULT_KONTROLLITUD` ei kirjelda käsitsi kirjutatud välitöömärget.
+ * Sõnastik ise on platvormi oma (`lib/workspaces/provenance.js`) ja sildid
+ * tulevad juba olemasolevatest `casework.provenance.*` võtmetest — teine
+ * koopia vananeks eraldi.
+ */
+const NOTE_PROVENANCES = [
+  PROVENANCE.KLIENDI_OELDUD,
+  PROVENANCE.TOOTAJA_TAHELEPANEK,
+  PROVENANCE.TOOTAJA_TOLGENDUS,
+  PROVENANCE.TEISE_SPETSIALISTI_INFO,
+  PROVENANCE.DOKUMENDIST
+];
+
 const DRAFT_KEY = "sotsiaalai.service_log.visit_draft";
 
 function readDraft() {
@@ -151,6 +177,10 @@ export default function ServiceLogDay() {
   const [unit, setUnit] = useState("HOUR");
   const [serviceId, setServiceId] = useState("");
   const [note, setNote] = useState("");
+  /* NÄHTAV vaikeväärtus, mitte vaikne: kasutaja näeb kohe, mis kirja läheb,
+     ja muudab ühe puutega. Nii ei kannata „alla 30 sekundi" ja vale silt ei
+     jõua enam aruandesse märkamatult. */
+  const [noteProvenance, setNoteProvenance] = useState(PROVENANCE.TOOTAJA_TAHELEPANEK);
   const [stamps, setStamps] = useState({});
   const [withTravel, setWithTravel] = useState(false);
   const [pending, setPending] = useState(0);
@@ -460,6 +490,7 @@ export default function ServiceLogDay() {
     setClientName("");
     setQuantity("");
     setNote("");
+    setNoteProvenance(PROVENANCE.TOOTAJA_TAHELEPANEK);
     setStamps({});
     setFromVisit(null);
     setLocationStamps({});
@@ -564,6 +595,7 @@ export default function ServiceLogDay() {
         referralId: referralId || null,
         quantity: quantity === "" ? null : quantity,
         note: note.trim() || null,
+        noteProvenance: note.trim() ? noteProvenance : null,
         /* LAEHTEKUELASTUS. Ilma temata sai samast kuelastusest teha piiramatu
            arvu kirjeid ja miski ei naeidanud, kust kirje tuli. */
         ...(fromVisit?.sourceFieldVisitId
@@ -612,7 +644,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, finishInputTimer, fromVisit, loadEntries, locationStamps, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;
@@ -825,6 +857,24 @@ export default function ServiceLogDay() {
           />
           {/* Piirang on NÄHTAV, mitte ainult ⓘ-s peidus. */}
           <span className="sl-hint">{t("service_log.form.note_hint", "")}</span>
+
+          {/* Päritolu ilmub ALLES siis, kui märkus on kirjutatud: tühja märkuse
+              juures oleks ta müra, mis maksab sekundeid igal sisestusel. */}
+          {note.trim() ? (
+            <span className="sl-note-provenance">
+              <span className="sl-label">{t("service_log.form.note_provenance", "")}</span>
+              <Dropdown
+                name="noteProvenance"
+                value={noteProvenance}
+                onChange={setNoteProvenance}
+                ariaLabel={t("service_log.form.note_provenance", "")}
+                options={NOTE_PROVENANCES.map((value) => ({
+                  value,
+                  label: t(`casework.provenance.${value}`, value)
+                }))}
+              />
+            </span>
+          ) : null}
         </label>
 
         {overrunNotice ? (

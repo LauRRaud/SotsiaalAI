@@ -8376,7 +8376,8 @@
       "save": "Save entry",
       "saving": "Saving…",
       "group_visit": "Visit",
-      "group_entry": "Entry"
+      "group_entry": "Entry",
+      "note_provenance": "Where this knowledge comes from"
     },
     "tabs": {
       "label": "Service log sections",

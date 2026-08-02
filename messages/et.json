@@ -8376,7 +8376,8 @@
       "save": "Salvesta kirje",
       "saving": "Salvestan…",
       "group_visit": "Külastus",
-      "group_entry": "Kirje"
+      "group_entry": "Kirje",
+      "note_provenance": "Kust see teadmine tuleb"
     },
     "tabs": {
       "label": "Teenuspäeviku osad",
