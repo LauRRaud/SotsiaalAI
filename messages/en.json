@@ -8255,5 +8255,23 @@
       "download": "Download export",
       "generated": "Generated"
     }
+  },
+  "service_log": {
+    "errors": {
+      "not_found": "Service entry not found.",
+      "profile_not_found": "Service provider profile not found.",
+      "referral_not_found": "Referral not found.",
+      "service_not_found": "Service not found.",
+      "invalid_input": "The input is not valid.",
+      "conflict": "This action is not possible right now.",
+      "client_required": "Add a client — either a platform user or a name.",
+      "date_required": "Add the service date.",
+      "quantity_required": "Add a quantity, or the times the duration can be derived from.",
+      "quantity_invalid": "The quantity must be a positive number.",
+      "quantity_too_large": "The quantity is implausibly large — please check.",
+      "provenance_invalid": "The note provenance is not a known value.",
+      "stamp_order": "The timestamps are out of order.",
+      "retention_locked": "A service entry is an invoice source document and is kept for 7 years. Correct the entry instead of deleting it."
+    }
   }
 }
