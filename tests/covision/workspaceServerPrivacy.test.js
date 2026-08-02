@@ -101,9 +101,13 @@ test("a reused email never inherits a participant record already bound to anothe
 });
 
 test("workspace exposes only the create capability boolean", () => {
+  // Mõlemad spetsialistirollid tohivad juhtumi luua (omanik 02.08).
   assert.equal(canCreateCovision({ role: "SOCIAL_WORKER" }), true);
-  assert.equal(canCreateCovision({ role: "SERVICE_PROVIDER" }), false);
+  assert.equal(canCreateCovision({ role: "SERVICE_PROVIDER" }), true);
   assert.equal(canCreateCovision({ role: "SERVICE_PROVIDER", isAdmin: true }), true);
+  // Klient ei tohi — see piir on kovisiooni oma, mitte paketi oma.
+  assert.equal(canCreateCovision({ role: "CLIENT" }), false);
+  assert.equal(canCreateCovision({}), false);
 });
 
 test("legacy case lifecycle cannot mint closure states or rewrite a live session", () => {

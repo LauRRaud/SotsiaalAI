@@ -1017,9 +1017,9 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
          lasevad ta sisse ja hinnakiri lubab kovisiooni mõlemas spetsialisti-
          paketis. Ainus, mis puudus, oli kaart — ehk sama „pind olemas, aga
          kättesaamatu" muster mis Teenuspäevikul ja `/org`-il.
-         Osalemine ja OMANIKUKS saamine on eri asjad: `assertCovisionCreator`
-         (lib/covisionSession.js) hoiab juhtumi loomise sotsiaaltöötaja käes ja
-         teenuseosutaja liitub kutsutuna. See piir jääb puutumata. */
+         Omanik avas 02.08 ka juhtumi LOOMISE teenuseosutajale
+         (`canCreateCovision`), seega tema kovisioon on nüüd täismahus, mitte
+         ainult kutsutud osaleja oma. Klient jääb välja. */
       { key: "kovisioon", zone: "mina", roles: SPECIALIST, label: t("chat.workspace.cards.kovision.title", "Kovisioon"), href: "/toolaud/kovisioon", icon: <KovisionIcon /> },
       { key: "refleksioon", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("reflection.meta.title", "Meetodipeegel"), href: "/refleksioon", icon: <ReflectionIcon /> },
       { key: "tooheaolu", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), href: "/toolaud/tooheaolu", icon: <WellbeingIcon /> },

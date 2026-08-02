@@ -1239,11 +1239,17 @@ test("JSON parser rejects malformed JSON, null and arrays", async () => {
   }
 });
 
-test("only a social worker or admin can own a newly started Covision case", () => {
+test("both specialist roles can own a newly started Covision case, the client cannot", () => {
+  // Omaniku otsus 02.08: teenuseosutaja EI ole enam ainult kutsutud osaleja.
   assert.equal(assertCovisionCreator({ role: "SOCIAL_WORKER" }).role, "SOCIAL_WORKER");
+  assert.equal(assertCovisionCreator({ role: "SERVICE_PROVIDER" }).role, "SERVICE_PROVIDER");
   assert.equal(assertCovisionCreator({ role: "SERVICE_PROVIDER", isAdmin: true }).isAdmin, true);
-  assert.throws(
-    () => assertCovisionCreator({ role: "SERVICE_PROVIDER" }),
-    (error) => error.status === 403 && error.message === "covision.errors.role_forbidden"
-  );
+  // Piir, mis EI liikunud: klient ja tundmatu roll jäävad välja.
+  for (const role of ["CLIENT", "", "SOMETHING_ELSE"]) {
+    assert.throws(
+      () => assertCovisionCreator({ role }),
+      (error) => error.status === 403 && error.message === "covision.errors.role_forbidden",
+      `role ${role} must not be able to own a case`
+    );
+  }
 });
