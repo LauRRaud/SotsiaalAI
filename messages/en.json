@@ -655,6 +655,7 @@
     },
     "form": {
       "save": "Save",
+      "overrun_saved": "The entry was saved, but it exceeds the referral allocation by:",
       "saving": "Saving…",
       "saved": "Saved.",
       "deleted": "Entry deleted.",
@@ -8285,6 +8286,44 @@
       "note_hint": "A short factual mark for the report. Do not write sensitive content here.",
       "save": "Save entry",
       "saving": "Saving…"
+    },
+    "tabs": {
+      "label": "Service log sections",
+      "day": "Day",
+      "referrals": "Referrals",
+      "reports": "Reports"
+    },
+    "referrals": {
+      "empty": "No referrals added yet.",
+      "load_error": "Loading the referrals failed.",
+      "no_allocation": "No allocation set — the balance is not calculated.",
+      "allocated": "Allocated",
+      "used": "Confirmed",
+      "pending": "Unconfirmed",
+      "remaining": "Remaining",
+      "overrun": "Over the allocation:",
+      "ended": "The referral has ended. Existing entries remain."
+    },
+    "month": {
+      "pick": "Month",
+      "load_error": "Loading the monthly report failed.",
+      "unconfirmed": "Unconfirmed entries",
+      "due": "Submission deadline:",
+      "overdue": "past the deadline",
+      "totals": "Month total",
+      "by_client": "By client",
+      "empty": "No entries for this month.",
+      "confirmed": "confirmed",
+      "draft": "draft",
+      "annual": "Annual rhythms",
+      "never_done": "not done yet",
+      "rhythm_due": "due",
+      "rhythm_ok": "up to date",
+      "source_quality_guide": "Source: SKA quality guide (not a requirement arising from law)"
+    },
+    "rhythms": {
+      "feedback_survey": "Feedback survey",
+      "interim_assessment": "Client interim assessment"
     },
     "stamps": {
       "group": "Visit marks",
