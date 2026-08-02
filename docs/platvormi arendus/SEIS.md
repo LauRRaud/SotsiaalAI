@@ -2,6 +2,28 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
+**02.08 TEENUSPÄEVIK — OMANIKU KONTROLL: NELI P1 JA KAKS P2 PARANDATUD; „OSA I TÄIS“ VÕETUD TAGASI.** Omaniku kontrolli järeldus: *põhifunktsioon töötab, kuid enne GPS-i ja kliendivaate avamist vajab neli olulist parandust*. Võtsin selle vastu — mu varasem „OSA I on täis“ oli liiga tugev väide.
+
+**P1-1 GPS-VÕISTLUS.** Asukohapäring käib taustal kuni 8 s. Kui töötaja jõuab selle ajaga kirje salvestada ja järgmise kliendi juurde asuda, jõudis hilinenud vastus JUBA UUE vormi peale — kirjele oleks läinud punkt kohast, kus seda teenust ei osutatud. Iga külastus saab nüüd põletusnumbri.
+
+**P1-2 VÄLITÖÖ PÄRITOLU EI SALVESTUNUD.** `sourceFieldVisitId` tekkis eeltäites, aga ei jõudnud päringusse ega andmebaasi. **KAKS UNIKAALSUST, KAKS ERI TÄHENDUST** ja neid ei tohi segamini ajada: `clientRequestId` kordumine on KORDUSSAATMINE (vasta vana kirjega), `sourceFieldVisitId` kordumine on TEINE KIRJE SAMAST KÜLASTUSEST (409). Võõrvõtit ei ole tahtlikult — külastus on eri säilitusega.
+
+**P1-3 AI-PÄRITOLU KADUS.** `draftSource` oli mudelis olemas, aga UI ei saatnud teda: AI abil alustatud aruanne nägi hiljem välja täiesti inimese kirjutatuna.
+
+**P1-4 MÕÕTMINE OLI PÜSIV TOOTEFUNKTSIOON.** Omaniku täpsustus: ta on PILOODI vahend. Oma lipp `SERVICE_LOG_MEASUREMENT`, **kood on vaikimisi väljas**; väljas lipuga ei koguta proove üldse ja kell ei hakka isegi käima. Proovidel on OMA kustutamistähtaeg 180 päeva (`purgeExpiredSamples`) — proov ei ole raamatupidamise dokument ja 7 aasta säilitus tema peale ei kehti.
+
+**P2-1** Paberkinnitus lõplikul kirjel nõudis parandamise põhjust — kasutaja oleks pidanud ALLKIRJA MÄRKIMIST põhjendama. Nüüd tohib põhjuseta muutuda AINULT `confirmedManually`. **P2-2** Kliendivaade näitas 500 rida, aga kinnitus käis kõigi peale; kinnitus on pöördumatu, seega keeldub nüüd, kui kuu vaatesse ei mahu.
+
+**NATIIVSED JUHTELEMENDID VÄLJA (omaniku leid).** Platvormil OLI juba `components/ui/Dropdown.jsx` — tehtud täpselt selle probleemi pärast (01.08) — ja mina kasutasin natiivset `<select>`-i. Vahetatud kõik **10 kohta**. Kuupäevaväli oli platvormil päriselt puudu → uus `components/ui/DateField.jsx`: kuunimed `Intl`-ist, nädal algab esmaspäevast, väärtus jääb ISO-kujusse, suund otsustatakse päris mõõdust. `noValidate` brauseri ingliskeelse valideerimismulli vastu. Kellaaeg oli 12-tunni vormingus („02:04 PM“), sest `toLocaleTimeString` sai lokaadiks `undefined` = BRAUSERI lokaat.
+
+**INFOJUHIS 3 → 28 punkti, 7 osa.** Omanik nägi kohe ühe loogikavea: *„Nuppe ei ole neli, vaid üks“* on ARENDUSAJALUGU — nelja nuppu nägin mina, kasutaja ei näinud kunagi. Abitekst ei tohi rääkida sellest, mida toode ENNE oli.
+
+**KÕIK LIPUD SEES (omaniku otsus).** Serveri `/etc/sotsiaalai/frontend.env`-is on nüüd 13 lippu: teenuspäevik + asukohatempel + kliendivaade + mõõtmine + T25 org-kiht (workspace/creation/seats/inbox) + töölaud V1. Varukoopia `frontend.env.bak-20260802T150009Z`. Sama komplekt on kohalikus `.env`-is.
+
+**Väravad: npm test 2402/2402, lint 0, i18n ×3 OK, migratsiooniahel OK, build OK.** Uus additiivne migratsioon `20260802220000_service_entry_source_visit`.
+
+**NOT_PROVEN endiselt:** E5 päris AI-genereerimine (lokaalselt puudub `OPENAI_API_KEY`; serveris on olemas, seega live'is kontrollitav). **LAHTINE:** aadressiväli (kas läheb KOV-i eksporti); org-kiht E10–E12; ülejäänud neli natiivset kuupäevavälja platvormil (Välitöö, Tööheaolu, Kovisioon, tööruum) ootavad sama vahetust.
+
 **02.08 TEENUSPÄEVIK — OSA I TÄIS: E5, E6, E7, E8, E9, E2b ja Välitöö sild ühe jadatööna.** Omanik: *tee enne tegemata etapid ära*. Kõik kuus etappi + sild on nüüd koodis, igaühel oma commit, väravad ja brauserikontroll.
 
 **E8 mõõtmine** (`7d463911`) — DoD 1 ja 5. Mõõdame DOKUMENTEERIMISELE kuluvat aega, mitte teenusele. Kell hakkab käima esimesest puutest, mitte lehe avanemisest. **Proovis ei ole klienti** — ei ID-d, ei nime, ei kirje viidet. **Töötaja enda peegel, mitte juhi stopper**; ülemuse vaade on org-kihi (E10) küsimus ja mõõdik ei otsusta seda ette ära. Metoodika: mediaan ja p90 (mitte keskmine), ebausutav proov VISATAKSE ÄRA (mitte ei kärbita — kärpimine tooks mediaani hunniku täpselt-lävel proove), DoD 1 nõuab mediaani JA vähemalt 20 proovi. Brauseris: 21 proovi → mediaan 24 s, p90 45 s, 86% alla 30 s.
