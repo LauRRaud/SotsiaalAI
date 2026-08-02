@@ -1,0 +1,158 @@
+/* TEENUSPÄEVIK-V1 E2 — sisestuspind.
+ *
+ * MOBIIL ON ESIMENE, mitte kohandus. Kirje sünnib seal, kus töö lõpeb — ukse
+ * taga, autos, koridoris — seega neli märget on suured pöidlatsooni nupud ja
+ * vorm on üks veerg. Töölaual laieneb ta ridadeks, mitte vastupidi.
+ *
+ * Värvid ja raadiused tulevad tokenitest; siin ei ole ühtegi kõva värvi.
+ */
+
+.sl-shell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6, 1.5rem);
+  width: 100%;
+}
+
+.sl-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4, 1rem);
+}
+
+.sl-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+  min-width: 0;
+}
+
+.sl-label {
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+.sl-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  color: inherit;
+  font: inherit;
+}
+
+.sl-textarea {
+  min-height: 4rem;
+  resize: vertical;
+}
+
+.sl-hint {
+  font-size: 0.8125rem;
+  opacity: 0.7;
+}
+
+.sl-error {
+  color: var(--danger-fg, #ff9a9a);
+  font-size: 0.875rem;
+}
+
+.sl-empty {
+  opacity: 0.75;
+}
+
+/* Neli märget. Ruudustik, mis mahub mobiilis kahte veergu ja töölaual nelja —
+ * nupp ei tohi kunagi olla väiksem kui 44 px puutesihtmärk. */
+.sl-stamps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2, 0.5rem);
+}
+
+.sl-stamp {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.125rem;
+  min-height: 3.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+  background: var(--panel-input-bg, rgb(255 255 255 / 6%));
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sl-stamp.is-done {
+  border-color: var(--accent-border, rgb(140 200 255 / 55%));
+  background: var(--accent-soft-bg, rgb(140 200 255 / 12%));
+}
+
+.sl-stamp-label {
+  font-weight: 600;
+}
+
+.sl-stamp-time {
+  font-size: 0.8125rem;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.sl-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3, 0.75rem);
+}
+
+.sl-list-title {
+  font-size: 1rem;
+  margin: 0 0 var(--space-2, 0.5rem);
+}
+
+.sl-entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+.sl-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  background: var(--panel-row-bg, rgb(255 255 255 / 4%));
+}
+
+.sl-entry-client {
+  font-weight: 600;
+}
+
+.sl-entry-meta {
+  font-size: 0.8125rem;
+  opacity: 0.8;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 40rem) {
+  .sl-stamps {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sl-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* Liikumisvaesus: seisumuutus jääb, üleminek kaob. */
+@media (prefers-reduced-motion: reduce) {
+  .sl-stamp {
+    transition: none;
+  }
+}
