@@ -34,6 +34,8 @@ import Button from "@/components/ui/Button";
 import { SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
+import { isServiceLogLocationStampUiEnabled } from "@/lib/serviceLog/flags";
+import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 
 /**
  * JADA, MITTE PANEEL. Neli koervuti nuppu naeitasid nelja AJATEMPLIT ja pidid
@@ -140,6 +142,10 @@ export default function ServiceLogDay() {
   /* Välitöö sild: `null` = eeltäidet ei ole; objekt = kirje sünnib külastusest. */
   const [fromVisit, setFromVisit] = useState(null);
   const [fromVisitError, setFromVisitError] = useState(false);
+  /* Asukohapunktid ainult KÄESOLEVA külastuse kohta; nad lähevad kirjega
+     kaasa ja kaovad vormi tühjendamisel. */
+  const [locationStamps, setLocationStamps] = useState({});
+  const [locationState, setLocationState] = useState("");
   /**
    * E8 MOOTMINE (DoD 1). Kell hakkab kaeima ESIMESEST PUUTEST, mitte lehe
    * avanemisest: leht voib olla taustavahekaardis lahti tunde ja see ei ole
@@ -324,14 +330,40 @@ export default function ServiceLogDay() {
     sendSample(SAMPLE_KIND.ENTRY_INPUT, Math.round((Date.now() - started) / 1000));
   }, [sendSample]);
 
-  const stampNow = useCallback((key) => {
-    markInputStart();
-    setStamps((current) => {
-      const next = { ...current, [key]: new Date().toISOString() };
-      writeDraft(next, withTravelRef.current);
-      return next;
-    });
-  }, [markInputStart]);
+  /**
+   * ASUKOHAPUNKT (E2b, DoD 10). AJATEMPEL PANNAKSE KIRJA ESIMESENA ja punkti
+   * küsitakse alles pärast seda — nii ei saa GPS-i ootamine, loa küsimine ega
+   * tõrge külastuse märkimist edasi lükata ega ära jätta.
+   *
+   * KÜSITAKSE AINULT [KOHAL] VAJUTUSE HETKEL. Mitte igal märkel, mitte taustal,
+   * mitte kordagi ilma kasutaja vajutuseta.
+   */
+  const stampNow = useCallback(
+    (key) => {
+      markInputStart();
+      setStamps((current) => {
+        const next = { ...current, [key]: new Date().toISOString() };
+        writeDraft(next, withTravelRef.current);
+        return next;
+      });
+
+      if (!isServiceLogLocationStampUiEnabled()) return;
+      if (key !== VISIT_STAMP.ARRIVED) return;
+
+      setLocationState("asking");
+      captureLocationPoint().then((point) => {
+        if (!point) {
+          /* „Ei saanud" EI OLE viga, mida kasutaja peaks parandama: ta on juba
+             kohal ja tempel on kirjas. Seepärast on see teade neutraalne. */
+          setLocationState("missing");
+          return;
+        }
+        setLocationStamps((current) => ({ ...current, [key]: point }));
+        setLocationState("captured");
+      });
+    },
+    [markInputStart]
+  );
 
   /* „Vajutasin valesti" on paratamatu, kui nuppu on ainult üks: eksliku
      vajutuse hind on siin suurem kui nelja nupu paneelis, kus vale tempel jäi
@@ -384,6 +416,8 @@ export default function ServiceLogDay() {
     setQuantity("");
     setNote("");
     setStamps({});
+    setLocationStamps({});
+    setLocationState("");
     setWithTravel(false);
     writeDraft({}, false);
     setDefaults(null);
@@ -478,7 +512,11 @@ export default function ServiceLogDay() {
         referralId: referralId || null,
         quantity: quantity === "" ? null : quantity,
         note: note.trim() || null,
-        ...stamps
+        ...stamps,
+        /* Server otsustab, kas punkt salvestub: lüliti on seal, mitte siin.
+           Väljas lülitiga jõuab punkt serverini ja visatakse ära — UI ei tohi
+           seetõttu väita „salvestatud" enne serveri vastust. */
+        ...(Object.keys(locationStamps).length ? { locationStamps } : {})
       };
       try {
         const { outcome, body } = await postEntry(payload);
@@ -517,7 +555,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, finishInputTimer, loadEntries, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, finishInputTimer, loadEntries, locationStamps, note, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;
@@ -657,6 +695,14 @@ export default function ServiceLogDay() {
             <p className="sl-flow-done">{t("service_log.stamps.state.done", "")}</p>
           )}
 
+          {/* TÖÖTAJA NÄEB, MIS TEMA KOHTA SALVESTATI. Vaikne asukohakogumine oleks
+              sama asi, mille eest me konkurenti kritiseerime. */}
+          {locationState ? (
+            <p className="sl-source" aria-live="polite">
+              {t(`service_log.location.${locationState}`, "")}
+            </p>
+          ) : null}
+
           {started ? (
             <button type="button" className="sl-flow-undo" onClick={undoLastStamp}>
               {t("service_log.stamps.undo", "")}
@@ -791,6 +837,9 @@ export default function ServiceLogDay() {
                     : ""}
                   {" · "}
                   {t(`service_log.status.${String(entry.status || "DRAFT").toLowerCase()}`, entry.status)}
+                  {/* Serveri tõde, mitte brauseri oma: kui lüliti on väljas, ei
+                      ole siin midagi, ka siis kui brauser punkti kätte sai. */}
+                  {entry.locationStampedAt?.length ? ` · ${t("service_log.location.saved", "")}` : ""}
                 </span>
                 {entry.status === "DRAFT" ? (
                   <button

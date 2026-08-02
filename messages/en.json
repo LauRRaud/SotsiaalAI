@@ -8519,6 +8519,12 @@
       "no_duration": "The visit had no confirmed arrival and departure — enter the quantity manually.",
       "location": "Visit location: {place}",
       "load_error": "The visit data could not be loaded. Enter the entry manually."
+    },
+    "location": {
+      "asking": "Requesting location…",
+      "captured": "Location captured. The server decides whether it is stored.",
+      "missing": "No location available — the visit is still marked.",
+      "saved": "location stored"
     }
   }
 }

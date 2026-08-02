@@ -8519,6 +8519,12 @@
       "no_duration": "Külastusel ei olnud kinnitatud saabumist ja lahkumist — kogus tuleb sisestada käsitsi.",
       "location": "Külastuse koht: {place}",
       "load_error": "Külastuse andmeid ei õnnestunud laadida. Sisesta kirje käsitsi."
+    },
+    "location": {
+      "asking": "Küsin asukohta…",
+      "captured": "Asukoht märgitud. Salvestamise otsustab server.",
+      "missing": "Asukohta ei saadud — külastus on siiski märgitud.",
+      "saved": "asukoht salvestatud"
     }
   }
 }
