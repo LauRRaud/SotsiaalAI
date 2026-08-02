@@ -8388,12 +8388,25 @@
       "empty": "Suunamisi ei ole veel lisatud.",
       "load_error": "Suunamiste laadimine ebaõnnestus.",
       "no_allocation": "Mahtu ei ole määratud — jääki ei arvutata.",
-      "allocated": "Maht",
+      "allocated": "Eraldatud maht",
       "used": "Kinnitatud",
       "pending": "Kinnitamata",
       "remaining": "Jääk",
       "overrun": "Üle mahu:",
-      "ended": "Suunamine on lõpetatud. Olemasolevad kirjed jäävad alles."
+      "ended": "Suunamine on lõpetatud. Olemasolevad kirjed jäävad alles.",
+      "add": "Lisa suunamine",
+      "add_title": "Uus suunamine",
+      "save": "Salvesta suunamine",
+      "cancel": "Loobu",
+      "kov": "Saaja (KOV või asutus)",
+      "number": "Suunamisotsuse nr",
+      "client": "Klient",
+      "allocated_hint": "Jäta tühjaks, kui mahtu ei ole määratud.",
+      "period_kind": "Mahu periood",
+      "period_start": "Kehtib alates",
+      "period_end": "Kehtib kuni",
+      "goals": "Suunamise eesmärgid",
+      "goals_hint": "Sisuline aruanne mõõdab edenemist nende vastu."
     },
     "month": {
       "pick": "Kuu",
@@ -8617,6 +8630,10 @@
       "confirm": "Kinnitan, et see vastab toimunule",
       "confirm_explainer": "Kinnitus on lõplik ja seda ei saa hiljem tagasi võtta. Kui midagi ei vasta tõele, räägi enne osutajaga.",
       "too_many": "Selles kuus on {total} kirjet — rohkem kui vaade korraga näitab. Kinnitamiseks võta ühendust osutajaga."
+    },
+    "allocation": {
+      "month": "kuus",
+      "total": "kogu perioodi peale"
     }
   },
   "date_field": {

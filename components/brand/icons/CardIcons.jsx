@@ -474,6 +474,31 @@ export const ServiceLogIcon = (props) => (
   </Svg>
 );
 
+/* Organisatsioonid — maja astmelise katusega ja sissepääsuga. Tahtlikult
+   ERINEV RoomsCardIcon-ist (inimrühm) ja ServiceProfileIcon-ist (ID-kaart):
+   organisatsioon on ASUTUS, mille tööruumi sa sisened, mitte inimeste kogum
+   ega kellegi profiil. */
+export const OrgIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M4 20h16" />
+    <path {...P} d="M5.6 20V8.4l6.4-3.8 6.4 3.8V20" />
+    <path {...P} d="M9.4 20v-4.6a2.6 2.6 0 0 1 5.2 0V20" />
+    <path {...P} d="M8.8 10.8h1.6M13.6 10.8h1.6" />
+  </Svg>
+);
+
+/* Minu jagamised — üks sõlm, millest hargneb kaks joont teistele. Kaar
+   ümber ei ole kaunistus: kaart on jagamise ÜLEVAADE ja tagasivõtt, seega
+   glüüf peab näitama, et jagatu jääb minu ringi sisse. */
+export const SharingsIcon = (props) => (
+  <Svg {...props}>
+    <circle {...P} cx="6.6" cy="12" r="2.3" />
+    <circle {...P} cx="17" cy="6.6" r="2.3" />
+    <circle {...P} cx="17" cy="17.4" r="2.3" />
+    <path {...P} d="m8.7 10.9 6.2-3.2M8.7 13.1l6.2 3.2" />
+  </Svg>
+);
+
 /* ---------- Tööheaolu tööriistad (lib/wellbeingTools.js, 11 tk) ----------
    WellbeingIcon (süda pulsijoonega) jääb tööheaolu KOGU teema märgiks
    (töölaua kaart, teavitused). Alltoodud glüüfid on tööriistade omad:

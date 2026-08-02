@@ -26,6 +26,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import DateField from "@/components/ui/DateField";
+import { ALLOCATION_PERIODS, SERVICE_UNITS } from "@/lib/serviceLog/constants";
 
 function formatQuantity(value, unit, t) {
   if (value === null || value === undefined) return "—";
@@ -37,6 +41,27 @@ export default function ServiceLogReferrals({ month }) {
   const { t, locale } = useI18n();
   const [referrals, setReferrals] = useState(null);
   const [loadError, setLoadError] = useState(false);
+  /* LISAMISVORM. Ilma temata oli see vaade AINULT lugemiseks ja suunamist ei
+     saanud tootest üldse tekitada — API-l oli CRUD olemas, UI-l mitte. Ahel
+     jäi katki kohe alguses: ilma suunamiseta ei ole KOV-i mahtu, saldot,
+     sisulist aruannet ega saajapõhist eksporti. Leidis produktsioonis
+     klikkimine. */
+  const [avatud, setAvatud] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [formError, setFormError] = useState("");
+  const [vorm, setVorm] = useState({
+    kovName: "",
+    referralNumber: "",
+    clientDisplayName: "",
+    unit: "HOUR",
+    allocatedQuantity: "",
+    allocationPeriod: "MONTH",
+    periodStart: "",
+    periodEnd: "",
+    goalsText: ""
+  });
+
+  const muuda = (vali, vaartus) => setVorm((eelmine) => ({ ...eelmine, [vali]: vaartus }));
 
   const load = useCallback(async () => {
     try {
@@ -57,15 +82,221 @@ export default function ServiceLogReferrals({ month }) {
     load();
   }, [load]);
 
+  const salvesta = useCallback(
+    async (event) => {
+      event.preventDefault();
+      setFormError("");
+      if (!vorm.kovName.trim()) {
+        setFormError(t("service_log.errors.kov_required", ""));
+        return;
+      }
+      if (!vorm.clientDisplayName.trim()) {
+        setFormError(t("service_log.errors.client_required", ""));
+        return;
+      }
+      setSaving(true);
+      try {
+        const response = await fetch("/api/service-referrals", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify({
+            kovName: vorm.kovName.trim(),
+            referralNumber: vorm.referralNumber.trim() || null,
+            clientDisplayName: vorm.clientDisplayName.trim(),
+            unit: vorm.unit,
+            allocatedQuantity: vorm.allocatedQuantity === "" ? null : vorm.allocatedQuantity,
+            allocationPeriod: vorm.allocationPeriod,
+            periodStart: vorm.periodStart || null,
+            periodEnd: vorm.periodEnd || null,
+            goalsText: vorm.goalsText.trim() || null
+          })
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          /* Serveri teade on juba lokaliseeritud — oma üldist teadet siia ei
+             kirjutata, muidu kaob põhjus. */
+          setFormError(body?.message || t("service_log.errors.invalid_input", ""));
+          return;
+        }
+        setVorm({
+          kovName: "",
+          referralNumber: "",
+          clientDisplayName: "",
+          unit: "HOUR",
+          allocatedQuantity: "",
+          allocationPeriod: "MONTH",
+          periodStart: "",
+          periodEnd: "",
+          goalsText: ""
+        });
+        setAvatud(false);
+        await load();
+      } catch {
+        setFormError(t("service_log.errors.invalid_input", ""));
+      } finally {
+        setSaving(false);
+      }
+    },
+    [load, locale, t, vorm]
+  );
+
+  const lisamisplokk = (
+    <div className="sl-referral-add">
+      {avatud ? (
+        /* `noValidate`: brauseri oma valideerimismull on ingliskeelne ja teda ei
+           saa kujundada — vt ServiceLogDay. Puuduva välja ütleb meie teade. */
+        <form className="sl-form" noValidate onSubmit={salvesta}>
+          <h3 className="sl-group-title">{t("service_log.referrals.add_title", "")}</h3>
+
+          <label className="sl-field">
+            <span className="sl-label">{t("service_log.referrals.kov", "")}</span>
+            <input
+              name="kovName"
+              className="sl-input"
+              value={vorm.kovName}
+              onChange={(event) => muuda("kovName", event.target.value)}
+              autoComplete="off"
+              required
+            />
+          </label>
+
+          <div className="sl-row">
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.number", "")}</span>
+              <input
+                name="referralNumber"
+                className="sl-input"
+                value={vorm.referralNumber}
+                onChange={(event) => muuda("referralNumber", event.target.value)}
+                autoComplete="off"
+              />
+            </label>
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.client", "")}</span>
+              <input
+                name="clientDisplayName"
+                className="sl-input"
+                value={vorm.clientDisplayName}
+                onChange={(event) => muuda("clientDisplayName", event.target.value)}
+                autoComplete="off"
+                required
+              />
+            </label>
+          </div>
+
+          <div className="sl-row">
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.allocated", "")}</span>
+              <input
+                name="allocatedQuantity"
+                className="sl-input"
+                type="number"
+                step="0.01"
+                min="0"
+                value={vorm.allocatedQuantity}
+                onChange={(event) => muuda("allocatedQuantity", event.target.value)}
+              />
+              <span className="sl-hint">{t("service_log.referrals.allocated_hint", "")}</span>
+            </label>
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.form.unit", "")}</span>
+              <Dropdown
+                name="unit"
+                value={vorm.unit}
+                onChange={(next) => muuda("unit", next)}
+                ariaLabel={t("service_log.form.unit", "")}
+                options={SERVICE_UNITS.map((value) => ({
+                  value,
+                  label: t(`service_log.units.${value.toLowerCase()}`, value)
+                }))}
+              />
+            </label>
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.period_kind", "")}</span>
+              <Dropdown
+                name="allocationPeriod"
+                value={vorm.allocationPeriod}
+                onChange={(next) => muuda("allocationPeriod", next)}
+                ariaLabel={t("service_log.referrals.period_kind", "")}
+                options={ALLOCATION_PERIODS.map((value) => ({
+                  value,
+                  label: t(`service_log.allocation.${value.toLowerCase()}`, value)
+                }))}
+              />
+            </label>
+          </div>
+
+          <div className="sl-row">
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.period_start", "")}</span>
+              <DateField
+                name="periodStart"
+                value={vorm.periodStart}
+                onChange={(next) => muuda("periodStart", next)}
+              />
+            </label>
+            <label className="sl-field">
+              <span className="sl-label">{t("service_log.referrals.period_end", "")}</span>
+              <DateField
+                name="periodEnd"
+                value={vorm.periodEnd}
+                onChange={(next) => muuda("periodEnd", next)}
+              />
+            </label>
+          </div>
+
+          <label className="sl-field">
+            <span className="sl-label">{t("service_log.referrals.goals", "")}</span>
+            <textarea
+              name="goalsText"
+              className="sl-input sl-textarea"
+              rows={3}
+              value={vorm.goalsText}
+              onChange={(event) => muuda("goalsText", event.target.value)}
+            />
+            {/* Eesmärgid on sisulise aruande TUGI: mall C mõõdab edenemist
+                nende vastu. Ilma nendeta muutub „edenemine" arvamuseks. */}
+            <span className="sl-hint">{t("service_log.referrals.goals_hint", "")}</span>
+          </label>
+
+          {formError ? (
+            <p className="sl-error" role="alert">
+              {formError}
+            </p>
+          ) : null}
+
+          <Button type="submit" disabled={saving}>
+            {saving ? t("service_log.form.saving", "") : t("service_log.referrals.save", "")}
+          </Button>
+          <button type="button" className="sl-flow-undo" onClick={() => setAvatud(false)}>
+            {t("service_log.referrals.cancel", "")}
+          </button>
+        </form>
+      ) : (
+        <Button onClick={() => setAvatud(true)}>{t("service_log.referrals.add", "")}</Button>
+      )}
+    </div>
+  );
+
   if (loadError) {
     return <p className="sl-error">{t("service_log.referrals.load_error", "")}</p>;
   }
   if (referrals === null) return null;
+
+  /* Lisamisplokk on MÕLEMAS harus. Tühjas vaates on ta ainus tee edasi; täies
+     vaates peab uue suunamise saama lisada ilma kuskilt mujalt alustamata. */
   if (!referrals.length) {
-    return <p className="sl-empty">{t("service_log.referrals.empty", "")}</p>;
+    return (
+      <div className="sl-referrals-empty">
+        <p className="sl-empty">{t("service_log.referrals.empty", "")}</p>
+        {lisamisplokk}
+      </div>
+    );
   }
 
   return (
+    <>
+    {lisamisplokk}
     <ul className="sl-referrals">
       {referrals.map((referral) => {
         const balance = referral.balance || {};
@@ -122,5 +353,6 @@ export default function ServiceLogReferrals({ month }) {
         );
       })}
     </ul>
+    </>
   );
 }

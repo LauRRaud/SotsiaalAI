@@ -47,6 +47,30 @@ const STATIONS = [
   { key: "save", legend: "profile.preferences.title" },
 ];
 
+/* Valik = edasiliikumine (omanik 02.08: „kui teen valiku, siis võiks ise
+   järgmise valiku juurde minna"). Kehtib ühevalikuliste jaamade kohta, kus
+   üks klõps TEEB valiku valmis. Välja jäävad teadlikult kaks:
+   - „liikumine" = kaks sõltumatut linnukest, esimene klõps ei ole veel
+     lõplik valik → äralend katkestaks teise linnukese;
+   - „taustaheli" = kuulamisjaam, kus meloodiaid võrreldakse omavahel. */
+const AUTO_ADVANCE_STATIONS = new Set([
+  "language",
+  "contrast",
+  "text_scale",
+  "theme",
+  "screen_profile",
+]);
+/* Napp viide, et kasutaja jõuaks oma valikut süttimas näha, enne kui
+   kaamera liikuma hakkab (lend ise algab ease-in'iga aeglaselt). */
+const AUTO_ADVANCE_DELAY_MS = 380;
+
+/* Auto-edasi AINULT osutiga tehtud valikul. Klaviatuuriga käiakse
+   raadionuppude vahel nooltega ja OptionCard „valib" iga vahepeatuse
+   (kutsub .click()) — automaatne äralend teeks jaama läbivaatamise
+   võimatuks. Sünteetilisel klõpsul on detail === 0, päris hiire- ja
+   puuteklõpsul ≥ 1. */
+const isPointerChoice = (event) => (event?.nativeEvent?.detail ?? 0) > 0;
+
 export default function AccessibilityModal({
   onClose,
   prefs,
@@ -120,6 +144,28 @@ export default function AccessibilityModal({
     },
     [flyTo]
   );
+
+  /* Valiku järgne iselend (vt AUTO_ADVANCE_STATIONS). Uus valik samas
+     jaamas lükkab lendu edasi, mitte ei kuhja lende üksteise otsa. */
+  const advanceTimerRef = useRef(null);
+  const clearAdvanceTimer = useCallback(() => {
+    if (advanceTimerRef.current == null) return;
+    window.clearTimeout(advanceTimerRef.current);
+    advanceTimerRef.current = null;
+  }, []);
+  const advanceAfterChoice = useCallback(() => {
+    clearAdvanceTimer();
+    const from = activeIndexRef.current;
+    if (from >= STATIONS.length - 1) return;
+    advanceTimerRef.current = window.setTimeout(() => {
+      advanceTimerRef.current = null;
+      /* Kasutaja võis vahepeal ise doki või kerimisega mujale lennata —
+         siis ei tohi vana valik teda enam kaasa tõmmata. */
+      if (activeIndexRef.current !== from) return;
+      goTo(from + 1);
+    }, AUTO_ADVANCE_DELAY_MS);
+  }, [clearAdvanceTimer, goTo]);
+  useEffect(() => clearAdvanceTimer, [clearAdvanceTimer]);
 
   useEffect(() => {
     setUiScale(current => current ?? initialUiScale);
@@ -375,6 +421,14 @@ export default function AccessibilityModal({
     .replace("{total}", String(STATIONS.length));
 
   const renderStation = (station) => {
+    /* Iga valik käib siit läbi: setter jookseb alati, iselend ainult
+       ühevalikulistes jaamades ja ainult osutiga tehtud valikul. */
+    const onPick = (apply) => (event) => {
+      apply(event);
+      if (!AUTO_ADVANCE_STATIONS.has(station.key)) return;
+      if (!isPointerChoice(event)) return;
+      advanceAfterChoice();
+    };
     switch (station.key) {
       case "language":
         return (
@@ -388,14 +442,14 @@ export default function AccessibilityModal({
                 name="lg"
                 value="et"
                 checked={lang === "et"}
-                onChange={() => setLang("et")}
+                onChange={onPick(() => setLang("et"))}
               >
                 <span>{t("accessibility.options.language.et")}</span>
               </OptionCard>
-              <OptionCard type="radio" name="lg" value="ru" checked={lang === "ru"} onChange={() => setLang("ru")}>
+              <OptionCard type="radio" name="lg" value="ru" checked={lang === "ru"} onChange={onPick(() => setLang("ru"))}>
                 <span>{t("accessibility.options.language.ru")}</span>
               </OptionCard>
-              <OptionCard type="radio" name="lg" value="en" checked={lang === "en"} onChange={() => setLang("en")}>
+              <OptionCard type="radio" name="lg" value="en" checked={lang === "en"} onChange={onPick(() => setLang("en"))}>
                 <span>{t("accessibility.options.language.en")}</span>
               </OptionCard>
             </div>
@@ -406,10 +460,10 @@ export default function AccessibilityModal({
           <fieldset className="csp-step">
             <legend>{t("accessibility.contrast")}</legend>
             <div>
-              <OptionCard data-autofocus="" type="radio" name="ct" value="normal" checked={contrast === "normal"} onChange={() => setContrast("normal")}>
+              <OptionCard data-autofocus="" type="radio" name="ct" value="normal" checked={contrast === "normal"} onChange={onPick(() => setContrast("normal"))}>
                 <span>{t("accessibility.options.contrast.normal")}</span>
               </OptionCard>
-              <OptionCard type="radio" name="ct" value="hc" checked={contrast === "hc"} onChange={() => setContrast("hc")}>
+              <OptionCard type="radio" name="ct" value="hc" checked={contrast === "hc"} onChange={onPick(() => setContrast("hc"))}>
                 <span>{t("accessibility.options.contrast.hc")}</span>
               </OptionCard>
             </div>
@@ -428,7 +482,7 @@ export default function AccessibilityModal({
                   name="ts"
                   value={size}
                   checked={uiScale === size}
-                  onChange={() => setUiScale(size)}
+                  onChange={onPick(() => setUiScale(size))}
                 >
                   <span>{t(`accessibility.options.text_scale.${size}`)}</span>
                 </OptionCard>
@@ -444,7 +498,7 @@ export default function AccessibilityModal({
               {/* LUKUS (07.07): platvorm avaldab ainult "Hämar" (mid).
                   Hele/Öö on karkass (Fable 5 viimistleb) — kuni siis on
                   valik peidetud ja runtime sunnib alati mid'i. */}
-              <OptionCard data-autofocus="" type="radio" name="theme" value="mid" checked={theme === "mid"} onChange={() => setTheme("mid")}>
+              <OptionCard data-autofocus="" type="radio" name="theme" value="mid" checked={theme === "mid"} onChange={onPick(() => setTheme("mid"))}>
                 <span>{t("accessibility.options.theme.mid")}</span>
               </OptionCard>
             </div>
@@ -463,7 +517,7 @@ export default function AccessibilityModal({
                   name="sp"
                   value={value}
                   checked={uiProfile === value}
-                  onChange={() => setUiProfile(value)}
+                  onChange={onPick(() => setUiProfile(value))}
                 >
                   <span>{t(`accessibility.options.screen_profile.${value}`)}</span>
                 </OptionCard>
@@ -480,14 +534,14 @@ export default function AccessibilityModal({
                 data-autofocus=""
                 type="checkbox"
                 checked={reduceMotion}
-                onChange={e => setReduceMotion(e.target.checked)}
+                onChange={onPick(e => setReduceMotion(e.target.checked))}
               >
                 <span>{t("accessibility.options.motion.reduce")}</span>
               </OptionCard>
               <OptionCard
                 type="checkbox"
                 checked={reduceTransparency}
-                onChange={e => setReduceTransparency(e.target.checked)}
+                onChange={onPick(e => setReduceTransparency(e.target.checked))}
               >
                 <span>{t("accessibility.options.transparency.reduce")}</span>
               </OptionCard>
@@ -507,7 +561,7 @@ export default function AccessibilityModal({
                   name="amb"
                   value={value}
                   checked={ambient === value}
-                  onChange={() => chooseAmbient(value)}
+                  onChange={onPick(() => chooseAmbient(value))}
                 >
                   <span>{t(`accessibility.options.ambient.${value}`)}</span>
                 </OptionCard>

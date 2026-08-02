@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import ModalConfirm from "@/components/ui/ModalConfirm";
 import Panel from "@/components/ui/Panel";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
@@ -43,6 +44,10 @@ function Section({ title, help, empty, items, children }) {
 export default function MySharingsPage() {
   const router = useRouter();
   const { t, locale } = useI18n();
+  /* ⓘ kiirmenüüsse (lib/dashboardInfoContent → `my_sharings`). Selgitus, mis
+     seni seisis pealkirja all sissejuhatusena, elab nüüd seal: info ei ole
+     pealkirja alamärkus. */
+  usePanelInfoSlot({ infoId: "my_sharings" });
   const [sharings, setSharings] = useState(EMPTY_SHARINGS);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
@@ -238,8 +243,6 @@ export default function MySharingsPage() {
           onBack={() => pushWithTransition(router, localizePath("/profiil", locale))}
           backAriaLabel={t("my_sharings.back")}
         />
-        <p className={styles.lead}>{t("my_sharings.lead")}</p>
-
         <div
           ref={feedbackRef}
           className={styles.liveRegion}

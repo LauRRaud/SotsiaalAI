@@ -1,6 +1,12 @@
+/* KAST ON PANEEL, mitte leht. Varem kandis `.shell` oma ääre, raadiuse,
+   tausta, varju ja backdrop-filtri — need joonistasid teise klaaskasti
+   PanelFrame'i kasti SISSE (omanik: „kast kasti sees süsteem"). Sama lugu
+   `.page` `min-height: 100lvh` + 7rem ülapadinguga: paneeli sees ei ole see
+   lehekõrgus, vaid tühi riba pealkirja kohal. Võrdlus, mis on õige: teenus-
+   päeviku `.sl-shell` (app/styles/service-log.css) = puhas voog ilma kestata.
+   Siia jääb ainult see, mida paneel ise ei anna: lugemislaius ja rütm. */
 .page {
-  min-height: 100lvh;
-  padding: clamp(4.5rem, 9vh, 7rem) clamp(1rem, 4vw, 3rem) 4rem;
+  width: 100%;
   color: var(--text-warm);
   font-family: var(--font-ui);
 }
@@ -8,20 +14,6 @@
 .shell {
   width: min(72rem, 100%);
   margin: 0 auto;
-  padding: clamp(1.25rem, 3vw, 2.5rem);
-  border: 1px solid var(--glass-border-soft);
-  border-radius: var(--panel-radius);
-  background: var(--glass-bg-strong);
-  box-shadow: var(--glass-inner-light), var(--glass-shadow);
-  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
-}
-
-.lead {
-  max-width: 47rem;
-  margin: 0.7rem auto 1.5rem;
-  color: var(--text-soft);
-  text-align: center;
-  line-height: 1.65;
 }
 
 .liveRegion {

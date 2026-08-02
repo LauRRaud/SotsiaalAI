@@ -77,6 +77,8 @@ import {
   ReflectionIcon,
   ServiceProfileIcon,
   ServiceLogIcon,
+  OrgIcon,
+  SharingsIcon,
   WellbeingRecordsIcon,
   WellbeingCheckIcon,
   WellbeingOverviewIcon,
@@ -97,6 +99,7 @@ import {
 } from "@/lib/deskZones";
 import { wellbeingTools } from "@/lib/wellbeingTools";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
+import { isOrgWorkspaceUiEnabled } from "@/lib/org/flags";
 import GlassCarousel from "@/components/room/GlassCarousel";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import PendingInviteBanner from "@/components/invites/PendingInviteBanner";
@@ -1008,9 +1011,31 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "teenuseprofiil", zone: "mina", roles: ["SERVICE_PROVIDER"], label: t("chat.workspace.cards.service_profile.title", "Teenuseprofiil"), href: "/teenuseprofiil", icon: <ServiceProfileIcon /> },
       { key: "supervisioon", zone: "mina", roles: SPECIALIST, label: t("supervision.meta.title", "Supervisioon"), href: "/supervisioon", icon: <SupervisionIcon /> },
       { key: "mentorlus", zone: "mina", roles: SPECIALIST, label: t("chat.workspace.cards.mentoring.title", "Mentorlus"), href: "/mentorlus", icon: <MentorIcon /> },
-      { key: "kovisioon", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.kovision.title", "Kovisioon"), href: "/toolaud/kovisioon", icon: <KovisionIcon /> },
+      /* KOVISIOON ka teenuseosutajale (omanik 02.08). See EI ole uus õigus,
+         vaid puuduva ukse lisamine: `canUseCovisionRole` (lib/covision.js)
+         lubab SERVICE_PROVIDER-it juba praegu, kõik neli kovisiooni lehte
+         lasevad ta sisse ja hinnakiri lubab kovisiooni mõlemas spetsialisti-
+         paketis. Ainus, mis puudus, oli kaart — ehk sama „pind olemas, aga
+         kättesaamatu" muster mis Teenuspäevikul ja `/org`-il.
+         Osalemine ja OMANIKUKS saamine on eri asjad: `assertCovisionCreator`
+         (lib/covisionSession.js) hoiab juhtumi loomise sotsiaaltöötaja käes ja
+         teenuseosutaja liitub kutsutuna. See piir jääb puutumata. */
+      { key: "kovisioon", zone: "mina", roles: SPECIALIST, label: t("chat.workspace.cards.kovision.title", "Kovisioon"), href: "/toolaud/kovisioon", icon: <KovisionIcon /> },
       { key: "refleksioon", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("reflection.meta.title", "Meetodipeegel"), href: "/refleksioon", icon: <ReflectionIcon /> },
       { key: "tooheaolu", zone: "mina", roles: ["SOCIAL_WORKER"], label: t("chat.workspace.cards.wellbeing.title", "Tööheaolu"), href: "/toolaud/tooheaolu", icon: <WellbeingIcon /> },
+      /* ORGANISATSIOONID (T25) — lipu taga, täpselt nagu Teenuspäevik. Kogu
+         `/org` pind oli olemas ja lipud serveris sees, aga töölaualt puudus
+         kaart: sinna sai ainult URL-i käsitsi kirjutades. `zone: "mina"` sest
+         organisatsioon on minu tööalane kuuluvus, mitte juhtum ega teadmine.
+         Rollid = spetsialistid: `OrganizationSeatRole`-is EI OLE CLIENT-it
+         (O-E0-1) ja `app/org/page.jsx` annab loomisõiguse samale kahele. */
+      ...(isOrgWorkspaceUiEnabled()
+        ? [{ key: "org", zone: "mina", roles: SPECIALIST, label: t("org.title", "Organisatsioonid"), href: "/org", icon: <OrgIcon /> }]
+        : []),
+      /* MINU JAGAMISED — kõigile rollidele, ka kliendile: see on privaatsuse
+         juhtpult (kes minu jagatut näeb + tagasivõtt), mitte spetsialisti
+         tööriist. Seni elas ta AINULT profiilimenüüs ja tööpingi lingi taga. */
+      { key: "jagamised", zone: "mina", roles: ALL, label: t("my_sharings.title", "Minu jagamised"), href: "/minu-jagamised", icon: <SharingsIcon /> },
     ];
     const cards = all
       .filter((card) => card.roles.includes(role))

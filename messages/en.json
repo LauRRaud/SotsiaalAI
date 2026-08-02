@@ -8388,12 +8388,25 @@
       "empty": "No referrals added yet.",
       "load_error": "Loading the referrals failed.",
       "no_allocation": "No allocation set — the balance is not calculated.",
-      "allocated": "Allocated",
+      "allocated": "Allocated volume",
       "used": "Confirmed",
       "pending": "Unconfirmed",
       "remaining": "Remaining",
       "overrun": "Over the allocation:",
-      "ended": "The referral has ended. Existing entries remain."
+      "ended": "The referral has ended. Existing entries remain.",
+      "add": "Add a referral",
+      "add_title": "New referral",
+      "save": "Save referral",
+      "cancel": "Cancel",
+      "kov": "Recipient (municipality or agency)",
+      "number": "Referral decision no.",
+      "client": "Client",
+      "allocated_hint": "Leave empty if no volume is set.",
+      "period_kind": "Volume period",
+      "period_start": "Valid from",
+      "period_end": "Valid until",
+      "goals": "Referral goals",
+      "goals_hint": "The narrative report measures progress against these."
     },
     "month": {
       "pick": "Month",
@@ -8617,6 +8630,10 @@
       "confirm": "I confirm this matches what happened",
       "confirm_explainer": "The confirmation is final and cannot be withdrawn later. If something is not right, talk to the provider first.",
       "too_many": "This month has {total} entries — more than the view shows at once. To confirm, please contact the provider."
+    },
+    "allocation": {
+      "month": "per month",
+      "total": "for the whole period"
     }
   },
   "date_field": {

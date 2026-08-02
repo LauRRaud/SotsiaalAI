@@ -493,3 +493,15 @@
   gap: var(--space-2, 0.5rem);
   margin-top: var(--space-2, 0.5rem);
 }
+
+/* Suunamise lisamine. Vorm on loendi KOHAL, sest tühjas vaates on ta ainus
+   tee edasi ja täies vaates ei tohi ta loendi lõppu ära kaduda. */
+.sl-referral-add {
+  margin-bottom: var(--space-4, 1rem);
+}
+
+.sl-referrals-empty {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+}
