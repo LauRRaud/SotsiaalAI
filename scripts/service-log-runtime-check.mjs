@@ -753,6 +753,64 @@ async function main() {
     augustAfterEnd.referrals.map((row) => row.id).join(",")
   );
 
+
+  // --- 15. Teise kontrolliringi leiud -----------------------------------
+  /* Lõpetatud suunamise kirjet PEAB saama parandada: lõpparve parandus tehakse
+     peaaegu alati siis, kui suunamine on juba lõppenud. */
+  let endedEntry = await prisma.serviceEntry.findFirst({
+    where: { referralId: refBalance.id, status: "FINAL" },
+    select: { id: true }
+  });
+  if (!endedEntry) {
+    const created = await prisma.serviceEntry.create({
+      data: {
+        providerProfileId: profile.id,
+        ownerUserId: provider.id,
+        referralId: refBalance.id,
+        serviceId: hourly.id,
+        clientDisplayName: "Saldo-klient",
+        date: new Date("2026-08-05T00:00:00Z"),
+        unit: "HOUR",
+        quantity: 1,
+        status: "FINAL",
+        finalizedAt: new Date(),
+        recordedFiscalYear: 2026
+      }
+    });
+    endedEntry = created;
+  }
+  const correctedOnEnded = await updateEntry(
+    provider.id,
+    endedEntry.id,
+    { quantity: 2, reason: "Lõpparve parandus pärast suunamise lõppu." },
+    { env: ENV_ON }
+  );
+  expect(
+    "LÕPETATUD suunamise kirjet SAAB parandada — lõpparve rada on lahti",
+    Number(correctedOnEnded.quantity) === 2,
+    String(correctedOnEnded.quantity)
+  );
+
+  /* Perioodi kitsendamine EI TOHI olemasolevaid kirjeid otsuse kehtivusalast
+     välja jätta. */
+  await expectReject(
+    "perioodi kitsendamine, mis jätaks kirjed välja, keeldub",
+    updateReferral(
+      provider.id,
+      refA.id,
+      { periodStart: "2026-08-20", periodEnd: "2026-08-31" },
+      { env: ENV_ON }
+    ),
+    messageKeyIs("service_log.errors.period_excludes_entries")
+  );
+  const widened = await updateReferral(
+    provider.id,
+    refA.id,
+    { periodStart: "2026-07-01", periodEnd: "2026-09-30" },
+    { env: ENV_ON }
+  );
+  expect("perioodi LAIENDAMINE on lubatud", widened.periodStart === "2026-07-01");
+
   // --- Koristus ----------------------------------------------------------
   console.log("\ncleanup");
   const beforeCorrections = await prisma.serviceEntryCorrection.count({

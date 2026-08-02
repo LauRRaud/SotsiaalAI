@@ -315,3 +315,39 @@ test("P1: CSV kannab jaluse välju, mis varem kadusid", () => {
   assert.ok(csv.includes("entryCount"), "kirjete arv puudub");
   assert.ok(csv.includes("2026-1"), "kliendi ja teenuse kaupa koond puudub");
 });
+
+/* --- TEISE RINGI leiud --------------------------------------------------- */
+
+test("P1: KAKS ERI VÄLISKLIENTI sama nimega, eri viitega ei liitu", () => {
+  /* `clientExternalRef` on täpselt see väli, mis nad eristab — ilma temata sai
+     üks „Mari" teise tunnid. */
+  const entries = [
+    entry({ clientDisplayName: "Mari", clientExternalRef: "2026-1" }),
+    entry({ clientDisplayName: "Mari", clientExternalRef: "2026-2" })
+  ];
+  assert.equal(buildStatistics({ entries }).footer.totalClients, 2);
+  assert.equal(buildTimesheet({ entries, variant: TIMESHEET_VARIANT.MONTHLY }).rows.length, 2);
+});
+
+test("P1: ÜHE kliendi KAKS suunamisotsust ei liitu esimese otsuse alla", () => {
+  /* Sama klient võib saada sama teenust kahe eri otsuse alusel (maht muutus
+     keset kuud) — liitmine paneks arve alusdokumenti VALE otsuse numbri. */
+  const entries = [
+    entry({ referralId: "r1", referralNumber: "OTS-1" }),
+    entry({ referralId: "r2", referralNumber: "OTS-2" })
+  ];
+  const doc = buildTimesheet({ entries, variant: TIMESHEET_VARIANT.MONTHLY });
+  assert.equal(doc.rows.length, 2);
+  assert.deepEqual(doc.rows.map((row) => row.referralNumber).sort(), ["OTS-1", "OTS-2"]);
+});
+
+test("sama klient sama otsuse all liidetakse endiselt kokku", () => {
+  // Grupeerimine ei tohi muutuda mõttetuks: sama otsus = üks rida.
+  const entries = [
+    entry({ referralId: "r1", referralNumber: "OTS-1" }),
+    entry({ referralId: "r1", referralNumber: "OTS-1", quantity: 3 })
+  ];
+  const doc = buildTimesheet({ entries, variant: TIMESHEET_VARIANT.MONTHLY });
+  assert.equal(doc.rows.length, 1);
+  assert.equal(doc.rows[0].quantity, 5);
+});
