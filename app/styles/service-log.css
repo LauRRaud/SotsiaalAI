@@ -363,25 +363,22 @@
   font-size: 0.875rem;
 }
 
-/* FOOKUSE NÄHTAVUS kohandatud juhtelementidel.
+/* FOOKUSE NÄHTAVUS — PLATVORMI OMA SÜSTEEMIST, mitte siit.
  *
- * `.sl-tab` ja `.sl-stamp` on `<button>`-id oma taustaga — brauseri vaikimisi
- * fookusrõngas kaob nende peal kergesti ära, sest ta joonistub tausta värvi
- * sisse. Klaviatuuriga liikuja peab NÄGEMA, kus ta on; ilma selleta on kogu
- * vahelehtede rida kasutamatu ilma hiireta.
+ * Siin oli varem oma reegel `outline: 2px solid var(--focus-ring)`. Ta oli
+ * VIGANE KAKS KORDA ja brauserikontroll näitas seda:
+ *   1. platvormil on juba `:focus { outline: none }` +
+ *      `:focus-visible { box-shadow: var(--focus-ring) }` — fookusrõngas on
+ *      VARI, mitte outline, ja ta rakendub ka `.sl-tab`/`.sl-stamp` peal;
+ *   2. `--focus-ring` ON VARJU VÄÄRTUS (`0 0 0 2px …, 0 0 0 4.5px …`), mitte
+ *      värv — tema kasutamine outline'i värvina tegi terve deklaratsiooni
+ *      kehtetuks ja arvutatud `outline-style` jäi `none`-iks.
+ * Tulemus: reegel NÄGI VÄLJA nagu a11y-parandus ja ei teinud mitte midagi.
+ * Platvormi kahekihiline rõngas (tume + hele) on nähtav igal taustal ja
+ * brauseris mõõdetud töötavana.
  *
- * `:focus-visible`, mitte `:focus` — hiirekasutaja ei pea rõngast nägema.
- */
-.sl-tab:focus-visible,
-.sl-stamp:focus-visible,
-.sl-input:focus-visible,
-.sl-check input:focus-visible {
-  outline: 2px solid var(--focus-ring, #8cc8ff);
-  outline-offset: 2px;
-  border-radius: var(--radius-md, 0.5rem);
-}
-
-/* Kõrge kontrasti režiimis peab piir olema süsteemi värvi, mitte meie oma. */
+ * Alles jääb ainult `forced-colors` haru: seal ignoreeritakse `box-shadow`-d
+ * ja ainus töötav vahend ON outline süsteemi värviga. */
 @media (forced-colors: active) {
   .sl-tab:focus-visible,
   .sl-stamp:focus-visible {
