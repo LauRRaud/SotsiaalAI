@@ -297,3 +297,50 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* Sisuaruanne. Koond on kirjutaja ees, mitte tekstiväljas — masin ei kirjuta
+ * inimese eest lugu, mille põhjal KOV teenuse jätkamise otsustab. */
+.sl-narrative {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  padding-top: var(--space-4, 1rem);
+  border-top: 1px solid var(--panel-border, rgb(255 255 255 / 18%));
+}
+
+.sl-seed {
+  padding: 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  background: var(--panel-row-bg, rgb(255 255 255 / 4%));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+}
+
+.sl-seed-line {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.sl-seed-notes {
+  list-style: none;
+  margin: var(--space-2, 0.5rem) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 0.25rem);
+}
+
+.sl-seed-notes li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: baseline;
+  font-size: 0.875rem;
+}
+
+.sl-seed-date {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+  min-width: 5.5rem;
+}

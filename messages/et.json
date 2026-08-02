@@ -8325,6 +8325,38 @@
       "feedback_survey": "Tagasisideküsitlus",
       "interim_assessment": "Kliendi vahehindamine"
     },
+    "narrative": {
+      "title": "Sisuline aruanne",
+      "referral": "Suunamine",
+      "choose": "Vali suunamine",
+      "period": "Periood",
+      "entries": "kirjet",
+      "unconfirmed": "kinnitamata",
+      "goals": "Suunamise eesmärgid",
+      "no_goals": "Suunamisel ei ole eesmärke kirjas — edenemist on siis raske millegi vastu mõõta.",
+      "body": "Kliendi lugu",
+      "body_hint": "Perioodi tegevused, edenemine eesmärkide suhtes ja takistused. Koond ülal on tooraine, teksti kirjutad sina.",
+      "proposal": "Ettepanek KOV-ile",
+      "proposal_none": "Ei esita ettepanekut",
+      "proposal_hint": "See on ainus koht, mida KOV loeb otsusena — tema järgi sünnib järgmine suunamisotsus.",
+      "save": "Salvesta aruanne",
+      "saved": "Aruanne salvestatud."
+    },
+    "proposals": {
+      "CONTINUE": "Jätka samas mahus",
+      "CHANGE_VOLUME": "Muuda mahtu",
+      "END": "Lõpeta teenus"
+    },
+    "provenance": {
+      "KLIENDI_OELDUD": "kliendi öeldud",
+      "KLIENDI_KINNITATUD": "kliendi kinnitatud",
+      "DOKUMENDIST": "dokumendist",
+      "TEISE_SPETSIALISTI_INFO": "teise spetsialisti info",
+      "TOOTAJA_TAHELEPANEK": "töötaja tähelepanek",
+      "TOOTAJA_TOLGENDUS": "töötaja tõlgendus",
+      "AI_MUSTAND": "AI mustand",
+      "AMETLIKULT_KONTROLLITUD": "ametlikult kontrollitud"
+    },
     "stamps": {
       "group": "Külastuse märked",
       "departed": "Läksin",
@@ -8364,6 +8396,8 @@
       "referral_locked_by_entries": "Selle suunamise all on juba kirjeid — ühikut ja mahu liiki ei saa enam muuta. Lõpeta suunamine ja loo uus.",
       "referral_already_ended": "Suunamine on juba lõpetatud.",
       "month_invalid": "Kuu peab olema kujul AAAA-KK.",
+      "narrative_required": "Kirjuta kuunarratiivi tekst.",
+      "proposal_invalid": "Ettepanek peab olema jätka, muuda mahtu või lõpeta.",
       "service_not_found": "Teenust ei leitud.",
       "invalid_input": "Sisend ei ole korrektne.",
       "conflict": "Toiming ei ole praegu võimalik.",

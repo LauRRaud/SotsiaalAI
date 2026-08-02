@@ -8325,6 +8325,38 @@
       "feedback_survey": "Feedback survey",
       "interim_assessment": "Client interim assessment"
     },
+    "narrative": {
+      "title": "Narrative report",
+      "referral": "Referral",
+      "choose": "Choose a referral",
+      "period": "Period",
+      "entries": "entries",
+      "unconfirmed": "unconfirmed",
+      "goals": "Referral goals",
+      "no_goals": "The referral has no goals recorded — progress is then hard to measure against anything.",
+      "body": "The client's story",
+      "body_hint": "Activities in the period, progress against the goals and obstacles. The summary above is raw material; you write the text.",
+      "proposal": "Proposal to the municipality",
+      "proposal_none": "No proposal",
+      "proposal_hint": "This is the only part the municipality reads as a decision — the next referral decision follows from it.",
+      "save": "Save report",
+      "saved": "Report saved."
+    },
+    "proposals": {
+      "CONTINUE": "Continue at the same volume",
+      "CHANGE_VOLUME": "Change the volume",
+      "END": "End the service"
+    },
+    "provenance": {
+      "KLIENDI_OELDUD": "client said",
+      "KLIENDI_KINNITATUD": "client confirmed",
+      "DOKUMENDIST": "from a document",
+      "TEISE_SPETSIALISTI_INFO": "another specialist's information",
+      "TOOTAJA_TAHELEPANEK": "worker's observation",
+      "TOOTAJA_TOLGENDUS": "worker's interpretation",
+      "AI_MUSTAND": "AI draft",
+      "AMETLIKULT_KONTROLLITUD": "officially verified"
+    },
     "stamps": {
       "group": "Visit marks",
       "departed": "Left for visit",
@@ -8364,6 +8396,8 @@
       "referral_locked_by_entries": "This referral already has entries — the unit and allocation kind can no longer be changed. End the referral and create a new one.",
       "referral_already_ended": "The referral has already ended.",
       "month_invalid": "The month must be in YYYY-MM format.",
+      "narrative_required": "Write the monthly narrative text.",
+      "proposal_invalid": "The proposal must be continue, change volume or end.",
       "service_not_found": "Service not found.",
       "invalid_input": "The input is not valid.",
       "conflict": "This action is not possible right now.",
