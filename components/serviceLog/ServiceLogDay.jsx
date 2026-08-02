@@ -281,6 +281,17 @@ export default function ServiceLogDay() {
     };
   }, [allowed, clientName, locale]);
 
+  /* Kestus minutites — ühikust SÕLTUMATU. `derivedQuantity` annab koguse ainult
+     tundides; see siin vastab küsimusele „kui kaua ma kohal olin", mis kehtib
+     iga ühiku juures. */
+  const measuredMinutes = useMemo(() => {
+    const arrived = stamps[VISIT_STAMP.ARRIVED];
+    const left = stamps[VISIT_STAMP.LEFT];
+    if (!arrived || !left) return null;
+    const minutes = Math.round((new Date(left).getTime() - new Date(arrived).getTime()) / 60000);
+    return minutes > 0 ? minutes : null;
+  }, [stamps]);
+
   const derivedQuantity = useMemo(() => {
     const arrived = stamps[VISIT_STAMP.ARRIVED];
     const left = stamps[VISIT_STAMP.LEFT];
@@ -852,6 +863,14 @@ export default function ServiceLogDay() {
             {derivedQuantity !== null && quantity === "" ? (
               <span className="sl-hint">{t("service_log.form.quantity_derived", "")}</span>
             ) : null}
+            {/* MÕÕDETUD AEG EI TOHI ÄRA KAODA. Tuletatud KOGUS eeldab tundi,
+                aga KESTUS on olemas iga ühiku juures — ja just teda vaatab
+                inimene, kes kontrollib, kas märked said õigeks. */}
+            {measuredMinutes !== null ? (
+              <span className="sl-hint">
+                {t("service_log.form.measured_minutes", "", { minutes: measuredMinutes })}
+              </span>
+            ) : null}
           </label>
 
           <label className="sl-field">
@@ -861,6 +880,11 @@ export default function ServiceLogDay() {
               value={unit}
               onChange={setUnit}
               ariaLabel={t("service_log.form.unit", "")}
+              /* KUI SERVER ÜTLEB „küsi", peab valik seda ka ÜTLEMA. Päris
+                 juhtum näitas tühja rippmenüüd ilma ühegi vihjeta: kasutaja ei
+                 saanud aru, et temalt oodatakse valikut, ja kuna tuletatud
+                 kogus nõuab tundi, kadus koos sellega ka kestus ekraanilt. */
+              placeholder={t("service_log.form.unit_choose", "")}
               options={SERVICE_UNITS.map((value) => ({
                 value,
                 label: t(`service_log.units.${value.toLowerCase()}`, value)

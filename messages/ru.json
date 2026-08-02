@@ -8377,7 +8377,9 @@
       "saving": "Сохраняю…",
       "group_visit": "Визит",
       "group_entry": "Запись",
-      "note_provenance": "Откуда это сведение"
+      "note_provenance": "Откуда это сведение",
+      "unit_choose": "Выберите единицу",
+      "measured_minutes": "На месте {minutes} мин."
     },
     "tabs": {
       "label": "Разделы журнала услуг",

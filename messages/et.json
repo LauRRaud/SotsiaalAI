@@ -8377,7 +8377,9 @@
       "saving": "Salvestan…",
       "group_visit": "Külastus",
       "group_entry": "Kirje",
-      "note_provenance": "Kust see teadmine tuleb"
+      "note_provenance": "Kust see teadmine tuleb",
+      "unit_choose": "Vali ühik",
+      "measured_minutes": "Kohal oldud {minutes} min."
     },
     "tabs": {
       "label": "Teenuspäeviku osad",
