@@ -28,6 +28,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
 import ServiceLogRouteMap from "./ServiceLogRouteMap";
 
@@ -603,7 +604,7 @@ export default function ServiceLogRoute() {
           <div className="sl-route-add">
             <label className="sl-field">
               <span className="sl-label">{t("service_log.form.client", "")}</span>
-              <input
+              <Input
                 className="sl-input"
                 name="routeClientName"
                 value={clientName}
@@ -613,7 +614,7 @@ export default function ServiceLogRoute() {
             </label>
             <label className="sl-field">
               <span className="sl-label">{t("service_log.route.address", "")}</span>
-              <input
+              <Input
                 className="sl-input"
                 name="routeAddress"
                 value={address}

@@ -29,6 +29,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import DateField from "@/components/ui/DateField";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { ALLOCATION_PERIODS, SERVICE_UNITS } from "@/lib/serviceLog/constants";
 
 function formatQuantity(value, unit, t) {
@@ -145,12 +147,12 @@ export default function ServiceLogReferrals({ month }) {
       {avatud ? (
         /* `noValidate`: brauseri oma valideerimismull on ingliskeelne ja teda ei
            saa kujundada — vt ServiceLogDay. Puuduva välja ütleb meie teade. */
-        <form className="sl-form" noValidate onSubmit={salvesta}>
+        <Form className="sl-form" noValidate validate={false} onSubmit={salvesta}>
           <h3 className="sl-group-title">{t("service_log.referrals.add_title", "")}</h3>
 
           <label className="sl-field">
             <span className="sl-label">{t("service_log.referrals.kov", "")}</span>
-            <input
+            <Input
               name="kovName"
               className="sl-input"
               value={vorm.kovName}
@@ -163,7 +165,7 @@ export default function ServiceLogReferrals({ month }) {
           <div className="sl-row">
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.number", "")}</span>
-              <input
+              <Input
                 name="referralNumber"
                 className="sl-input"
                 value={vorm.referralNumber}
@@ -173,7 +175,7 @@ export default function ServiceLogReferrals({ month }) {
             </label>
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.client", "")}</span>
-              <input
+              <Input
                 name="clientDisplayName"
                 className="sl-input"
                 value={vorm.clientDisplayName}
@@ -187,7 +189,7 @@ export default function ServiceLogReferrals({ month }) {
           <div className="sl-row">
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.allocated", "")}</span>
-              <input
+              <Input
                 name="allocatedQuantity"
                 className="sl-input"
                 type="number"
@@ -271,7 +273,7 @@ export default function ServiceLogReferrals({ month }) {
           <button type="button" className="sl-flow-undo" onClick={() => setAvatud(false)}>
             {t("service_log.referrals.cancel", "")}
           </button>
-        </form>
+        </Form>
       ) : (
         <Button onClick={() => setAvatud(true)}>{t("service_log.referrals.add", "")}</Button>
       )}

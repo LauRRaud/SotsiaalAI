@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildRoleBoundariesRecord } from "@/lib/wellbeing/roleBoundaries";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -221,22 +222,16 @@ export default function RoleBoundariesWorkflow({ onNavigate }) {
             <SelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
           ))}
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.partnerExplanationNeed}
-                onChange={(event) => updateField("partnerExplanationNeed", event.target.checked)}
-              />
-              {t("wellbeing.role_boundaries.partner_explanation_need", "Vaja on partnerile rolliselgitust")}
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.managerDiscussionNeed}
-                onChange={(event) => updateField("managerDiscussionNeed", event.target.checked)}
-              />
-              {t("wellbeing.role_boundaries.manager_discussion_need", "Vaja on juhiga arutelu")}
-            </label>
+            <Checkbox
+              checked={fields.partnerExplanationNeed}
+              onChange={(checked) => updateField("partnerExplanationNeed", checked)}
+              label={t("wellbeing.role_boundaries.partner_explanation_need", "Vaja on partnerile rolliselgitust")}
+            />
+            <Checkbox
+              checked={fields.managerDiscussionNeed}
+              onChange={(checked) => updateField("managerDiscussionNeed", checked)}
+              label={t("wellbeing.role_boundaries.manager_discussion_need", "Vaja on juhiga arutelu")}
+            />
           </div>
         </fieldset>
       </div>

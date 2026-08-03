@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import { buildWellbeingShareableDraft } from "@/lib/wellbeing/supportDraftText";
@@ -314,24 +315,18 @@ export default function SupportRequestPanel({
             />
           </label>
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={userReviewed}
-                onChange={(event) => setUserReviewed(event.target.checked)}
-                disabled={isBusy}
-              />
-              {t("wellbeing.support.reviewed", "Olen teksti üle vaadanud ja liigsed detailid eemaldanud.")}
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={userConfirmed}
-                onChange={(event) => setUserConfirmed(event.target.checked)}
-                disabled={isBusy}
-              />
-              {t("wellbeing.support.confirmed", "Kinnitan, et see versioon sobib jagatavaks sisendiks.")}
-            </label>
+            <Checkbox
+              checked={userReviewed}
+              onChange={setUserReviewed}
+              disabled={isBusy}
+              label={t("wellbeing.support.reviewed", "Olen teksti üle vaadanud ja liigsed detailid eemaldanud.")}
+            />
+            <Checkbox
+              checked={userConfirmed}
+              onChange={setUserConfirmed}
+              disabled={isBusy}
+              label={t("wellbeing.support.confirmed", "Kinnitan, et see versioon sobib jagatavaks sisendiks.")}
+            />
           </div>
           <div>
             <Button
@@ -360,18 +355,15 @@ export default function SupportRequestPanel({
               && userConfirmed
               && !hasUnconfirmedEdits ? (
               <div>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={confirmedNoIdentifiers}
-                    onChange={(event) => setConfirmedNoIdentifiers(event.target.checked)}
-                    disabled={isBusy}
-                  />
-                  {t(
+                <Checkbox
+                  checked={confirmedNoIdentifiers}
+                  onChange={setConfirmedNoIdentifiers}
+                  disabled={isBusy}
+                  label={t(
                     "wellbeing.support.confirm_no_identifiers",
                     "Kinnitan, et Kovisiooni viidav tekst ei sisalda otseseid tuvastajaid."
                   )}
-                </label>
+                />
                 <p>
                   {t(
                     "wellbeing.support.covision_handoff_notice",

@@ -4,6 +4,9 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -69,7 +72,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
 
       {profile ? (
         <>
-          <form className="ow-card" onSubmit={save}>
+          <Form className="ow-card" onSubmit={save}>
             <div className="ow-grid">
               {[
                 ["organizationName", t("org.create.displayName")],
@@ -79,7 +82,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
               ].map(([field, label]) => (
                 <label key={field}>
                   <span className="ow-meta__term">{label}</span>
-                  <input
+                  <Input
                     value={form[field]}
                     onChange={(event) => setForm((old) => ({ ...old, [field]: event.target.value }))}
                     style={{ width: "100%" }}
@@ -103,7 +106,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
                 </Button>
               </div>
             ) : null}
-          </form>
+          </Form>
 
           <section className="ow-card" aria-labelledby="ow-editors">
             <h3 id="ow-editors" className="ow-title" style={{ fontSize: "1rem" }}>
@@ -136,10 +139,10 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
               </p>
               <p className="ow-subtitle">{t("org.profile.convertHint")}</p>
               <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  bare
                   checked={convertConfirmed}
-                  onChange={(event) => setConvertConfirmed(event.target.checked)}
+                  onChange={setConvertConfirmed}
                 />
                 <span>{t("org.profile.convertConfirm")}</span>
               </label>

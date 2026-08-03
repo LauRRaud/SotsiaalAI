@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
+import Form from "@/components/ui/Form";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 
 import RagAdminAlert from "./RagAdminAlert";
@@ -165,7 +166,7 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
 
       <div className="ra-grid">
         <div className="ra-col-6">
-          <form onSubmit={handleUrlSubmit} ref={urlFormRef} className="ra-card ra-form">
+          <Form onSubmit={handleUrlSubmit} ref={urlFormRef} className="ra-card ra-form">
             <label className="ra-card-title">{tr("admin.rag.ingest.url_section_title")}</label>
             <Input name="url" placeholder="https://" />
             <Input
@@ -195,11 +196,11 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
                 {urlBusy ? tr("admin.rag.ingest.sending") : tr("admin.rag.ingest.send_url")}
               </Button>
             </div>
-          </form>
+          </Form>
         </div>
 
         <div className="ra-col-6">
-          <form onSubmit={handlePdfMetaSubmit} ref={pdfFormRef} className="ra-card ra-form">
+          <Form onSubmit={handlePdfMetaSubmit} ref={pdfFormRef} className="ra-card ra-form">
             <label className="ra-card-title">{tr("admin.rag.ingest.pdf_section_title")}</label>
             <p className="ra-card-sub">{tr("admin.rag.ingest.pdf_section_note")}</p>
             <input
@@ -258,11 +259,11 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
                 {pdfMetaResult.shortRef || pdfMetaResult.docId || tr("admin.rag.common.saved")}
               </div>
             ) : null}
-          </form>
+          </Form>
         </div>
 
         <div className="ra-col-6">
-          <form onSubmit={handleRtXmlSubmit} ref={rtXmlFormRef} className="ra-card ra-form">
+          <Form onSubmit={handleRtXmlSubmit} ref={rtXmlFormRef} className="ra-card ra-form">
             <label className="ra-card-title">{tr("admin.rag.ingest.rt_xml_section_title")}</label>
             <p className="ra-card-sub">{tr("admin.rag.ingest.rt_xml_section_note")}</p>
             <input
@@ -294,7 +295,7 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
                 ].filter(Boolean).join(" | ")}
               </div>
             ) : null}
-          </form>
+          </Form>
         </div>
 
         <div className="ra-col-6">
@@ -314,7 +315,7 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
                 {tr("admin.rag.articles.open_template")}
               </Button>
             </div>
-            <form onSubmit={handleArticlesSubmit} ref={articlesFormRef} className="ra-form">
+            <Form onSubmit={handleArticlesSubmit} ref={articlesFormRef} className="ra-form">
               <Input
                 name="articlesDocId"
                 value={articlesDocId}
@@ -370,7 +371,7 @@ export default function RagAdminIngestView({ controller, showMessage = true }) {
                   ) : null}
                 </div>
               ) : null}
-            </form>
+            </Form>
           </div>
         </div>
       </div>

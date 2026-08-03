@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { PrivacyShieldIcon, TermsDocIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 
 const copy = {
   title: "KOV piloodi koondvaade",
@@ -196,38 +198,47 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
           {hasPilotScopes ? (
             <label>
               {copy.pilotScope}
-              <select value={pilotId} onChange={(event) => setPilotId(event.target.value)}>
-                {normalizedPilotScopes.map((scope) => <option key={scope.id} value={scope.id}>{scope.name}</option>)}
-              </select>
+              <Dropdown
+                value={pilotId}
+                onChange={setPilotId}
+                ariaLabel={copy.pilotScope}
+                options={normalizedPilotScopes.map((scope) => ({ value: scope.id, label: scope.name }))}
+              />
             </label>
           ) : null}
           <label>
             {copy.roleGroup}
             {hasFixedRoleGroups ? (
-              <select value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)}>
-                {scopedRoleGroups.map((group) => <option key={group} value={group}>{group}</option>)}
-              </select>
+              <Dropdown
+                value={roleGroup}
+                onChange={setRoleGroup}
+                ariaLabel={copy.roleGroup}
+                options={scopedRoleGroups.map((group) => ({ value: group, label: group }))}
+              />
             ) : (
-              <input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
+              <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
             )}
           </label>
           <label>
             {copy.workflowType}
-            <input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
+            <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
             {copy.periodStart}
-            <input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
+            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
           </label>
           <label>
             {copy.periodEnd}
-            <input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
           </label>
           <label>
             {copy.aggregationLevel}
-            <select value={aggregationLevel} onChange={(event) => setAggregationLevel(event.target.value)}>
-              {aggregationLevelOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
+            <Dropdown
+              value={aggregationLevel}
+              onChange={setAggregationLevel}
+              ariaLabel={copy.aggregationLevel}
+              options={aggregationLevelOptions.map((option) => ({ value: option, label: option }))}
+            />
           </label>
         </div>
         <div>

@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import Checkbox from "@/components/ui/Checkbox";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -1392,7 +1395,7 @@ export default function TeemaseemnedPage({ owner = null }) {
       ) : null}
 
       <div className="ts-create-main">
-        <form
+        <Form
           className="ts-form"
           onSubmit={(e) => {
             e.preventDefault();
@@ -1421,7 +1424,7 @@ export default function TeemaseemnedPage({ owner = null }) {
                   "Üldistatud, ilma nime või muu tuvastava detailita."
                 )}
               </p>
-              <input
+              <Input
                 id="ts-title"
                 className="ts-input"
                 type="text"
@@ -1563,11 +1566,11 @@ export default function TeemaseemnedPage({ owner = null }) {
 
           <div className="ts-actions">
             <label className="ts-toggle">
-              <input
-                type="checkbox"
+              <Checkbox
+                bare
                 checked={continuePrep}
                 disabled={!gateResolved || gateBlocked}
-                onChange={(e) => setContinuePrep(e.target.checked)}
+                onChange={setContinuePrep}
               />
               <span>
                 {readText(
@@ -1605,7 +1608,7 @@ export default function TeemaseemnedPage({ owner = null }) {
               </p>
             ) : null}
           </div>
-        </form>
+        </Form>
 
         {previewColumn}
       </div>
@@ -1767,10 +1770,10 @@ export default function TeemaseemnedPage({ owner = null }) {
           </div>
         ) : null}
         <label className="ts-toggle">
-          <input
-            type="checkbox"
+          <Checkbox
+            bare
             checked={shareConfirmed}
-            onChange={(e) => setShareConfirmed(e.target.checked)}
+            onChange={setShareConfirmed}
           />
           <span>
             {readText(t, "topic_seeds.share.confirm_no_identifiers", "Kinnitan, et see kaart ei sisalda nime, isikukoodi, täpset aadressi ega muud otsest tuvastajat.")}

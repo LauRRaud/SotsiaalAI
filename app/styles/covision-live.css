@@ -43,8 +43,14 @@
    `button[data-variant]` materjali: backdrop-blur + specular-helk + soe
    serv), et kovisiooni nupud oleksid SAMA klaasnupud mis mujal platvormil
    (omanik 20.07). Erikujulised nupud (segment-lüliti, lipud, dokk,
-   lohistuspide) kirjutavad selle üle allpool. */
-:where(.cvl-shell) button {
+   lohistuspide) kirjutavad selle üle allpool.
+
+   .dd-trigger JÄÄB VÄLJA. Platvormi valikmenüü (components/ui/Dropdown.jsx)
+   on element poolest <button>, aga rolli poolest VORMIVÄLI. See fail on
+   @layer-ita, seega võidab ta glass.css-i välja-primitiivi ükskõik millise
+   spetsiifilisuse juures — ilma selle erandita muutuks rippmenüü kovisiooni
+   lehel klaasnupuks ja seisaks kõrvalolevate väljadega eri ilmes. */
+:where(.cvl-shell) button:not(.dd-trigger) {
   position: relative;
   min-height: 2.5rem;
   padding: 0.58rem 1.1rem;
@@ -73,7 +79,7 @@
     color 180ms var(--ease-soft);
 }
 
-:where(.cvl-shell) button:hover:not(:disabled) {
+:where(.cvl-shell) button:not(.dd-trigger):hover:not(:disabled) {
   background-color: rgba(255, 255, 255, 0.11);
   border-color: rgba(255, 255, 255, 0.36);
   box-shadow:
@@ -82,7 +88,7 @@
     0 8px 26px rgba(0, 0, 0, 0.3);
 }
 
-:where(.cvl-shell) button:active:not(:disabled) {
+:where(.cvl-shell) button:not(.dd-trigger):active:not(:disabled) {
   background-color: rgba(0, 0, 0, 0.14);
   scale: 0.975;
 }
@@ -128,9 +134,13 @@
   opacity: 0.48;
 }
 
+/* .dd-trigger seisab siin `select`-i KÕRVAL, mitte tema asemel: valikmenüü
+   peab olema sama mõõtu ja sama pinnaga mis kõrvalolev tekstiväli. Ilma
+   selleta jääks ta reas madalamaks (oma polster on tihedam). */
 .cvl-shell input,
 .cvl-shell textarea,
-.cvl-shell select {
+.cvl-shell select,
+.cvl-shell .dd-trigger {
   width: 100%;
   border: 1px solid var(--cvl-line);
   border-radius: 0.8rem;
@@ -139,7 +149,8 @@
 }
 
 .cvl-shell input,
-.cvl-shell select {
+.cvl-shell select,
+.cvl-shell .dd-trigger {
   min-height: 2.6rem;
   padding: 0.58rem 0.75rem;
 }

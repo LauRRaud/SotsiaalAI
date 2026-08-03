@@ -243,7 +243,8 @@
 }
 
 .form textarea,
-.form select {
+.form select,
+.form :global(.dd-trigger) {
   padding: 0.55rem 0.7rem;
   border: 1px solid var(--glass-border-soft);
   border-radius: 0.55rem;

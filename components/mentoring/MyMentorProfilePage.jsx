@@ -6,6 +6,7 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import styles from "./MentoringPage.module.css";
 
@@ -172,7 +173,7 @@ export default function MyMentorProfilePage() {
             )}
             <p className={styles.statusLine}>{t("mentoring.my_profile.moderation_note")}</p>
 
-            <form className={styles.form} onSubmit={save}>
+            <Form className={styles.form} onSubmit={save}>
               <label>
                 <span>{t("mentoring.my_profile.display_name")}</span>
                 <Input
@@ -266,7 +267,7 @@ export default function MyMentorProfilePage() {
                   </Button>
                 ) : null}
               </div>
-            </form>
+            </Form>
 
             {status ? (
               <div className={styles.dangerZone}>

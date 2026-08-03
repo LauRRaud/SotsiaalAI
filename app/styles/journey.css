@@ -37,7 +37,8 @@
 
   .journey-content textarea,
   .journey-content input,
-  .journey-content select {
+  .journey-content select,
+  .journey-content .dd-trigger {
     width: 100%;
     min-width: 0;
     max-width: 100%;

@@ -6,6 +6,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import RichText from "@/components/i18n/RichText";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
@@ -72,11 +74,11 @@ export default function UnustasinParooliBody() {
           </h1>
         </div>
         <div>
-          {submitted ? <RichText as="div" value={t("auth.reset.success")} /> : <form onSubmit={handleSubmit} autoComplete="off" aria-busy={loading ? "true" : "false"}>
+          {submitted ? <RichText as="div" value={t("auth.reset.success")} /> : <Form onSubmit={handleSubmit} autoComplete="off" aria-busy={loading ? "true" : "false"}>
               <label htmlFor="email" className="sr-only">
                 {t("profile.email")}
               </label>
-              <input type="email" id="email" name="email" placeholder={t("auth.email_placeholder")} value={email} onChange={e => setEmail(e.target.value)} required autoComplete="username" disabled={loading} aria-invalid={error ? "true" : "false"} aria-describedby={errorId} />
+              <Input type="email" id="email" name="email" placeholder={t("auth.email_placeholder")} value={email} onChange={e => setEmail(e.target.value)} required autoComplete="username" disabled={loading} aria-invalid={error ? "true" : "false"} aria-describedby={errorId} />
               {error && <p id={errorId} role="alert">
                   {error}
                 </p>}
@@ -87,7 +89,7 @@ export default function UnustasinParooliBody() {
                   </span>
                 </Button>
               </div>
-            </form>}
+            </Form>}
         </div>
       </div>
     </section>;

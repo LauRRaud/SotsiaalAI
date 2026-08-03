@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -137,18 +138,17 @@ export default function OrgMembersClient({ context, initialMembers, units, canGr
                     {writable && units.length ? (
                       <label>
                         <span className="ow-meta__term">{t("org.members.setPrimaryUnit")}</span>
-                        <select
-                          defaultValue=""
-                          onChange={(event) => setUnit(member.membershipId, event.target.value)}
+                        {/* TOIMINGUMENÜÜ, mitte väli: valik paneb üksuse
+                            paika ja loend ülal uueneb. Menüü ise jääb tühja
+                            seisu (varem tegi sama `defaultValue=""`). */}
+                        <Dropdown
+                          value=""
+                          onChange={(unitId) => setUnit(member.membershipId, unitId)}
                           disabled={busy}
-                        >
-                          <option value="">—</option>
-                          {units.map((unit) => (
-                            <option key={unit.id} value={unit.id}>
-                              {unit.name}
-                            </option>
-                          ))}
-                        </select>
+                          ariaLabel={t("org.members.setPrimaryUnit")}
+                          placeholder="—"
+                          options={units.map((unit) => ({ value: unit.id, label: unit.name }))}
+                        />
                       </label>
                     ) : null}
                   </td>

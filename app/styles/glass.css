@@ -118,6 +118,32 @@
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):disabled {
     opacity: 0.55;
   }
+  /* Vigane väli — ÜKS koht kogu platvormil. Märgistaja on `aria-invalid`,
+     mitte klass: sama atribuut, mida loeb ekraanilugeja, joonistab ka
+     ääre, nii et nähtav ja kuuldav seis ei saa lahku minna. Natiivne
+     :invalid on TEADLIKULT kasutamata — ta värviks välja punaseks juba
+     enne, kui inimene on jõudnud midagi kirjutada. Sama :where()-loend
+     ja sama nulli-spetsiifilisus mis materjalil, et leht saaks üle
+     kirjutada. */
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger)[aria-invalid="true"] {
+    border: var(--input-border-invalid);
+    box-shadow: var(--input-highlight), var(--input-invalid-glow), var(--input-shadow);
+  }
+  /* Fookus vigase välja peal: ÄÄRIS jääb vea omaks, aga kuma on fookuse
+     oma. Muidu kaoks parandamise ajaks ära märk sellest, KUS klaviatuur
+     seisab — ja see on ainus märk, mida klaviatuuriga liikuja jälgib. */
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger)[aria-invalid="true"]:focus {
+    box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
+  }
+  /* Vormi enda veateade (components/ui/Form.jsx). Ta seisab vormi ESIMESE
+     lapsena, seega peab ta võrgus üle KOGU rea minema — muidu istuks ta
+     kahe veeru vormis ühte lahtrisse ja lükkaks väljad paigast. */
+  .form-error {
+    grid-column: 1 / -1;
+    margin: 0 0 0.6rem;
+    color: var(--status-error, #e08a6a);
+    font-size: var(--fs-small);
+  }
 
   /* ---------- LIQUID BEND — serva refraktsioon (tellija 07.07) ----
      Päris "klaas painutab tausta" efekt: feDisplacementMap layout'i

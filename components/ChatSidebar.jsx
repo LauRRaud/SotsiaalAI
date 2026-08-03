@@ -9,7 +9,9 @@ import { LIST_STATE, resolveListState, shouldSettleRequest } from "@/lib/chat/si
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import ModalConfirm from "@/components/ui/ModalConfirm";
+import Input from "@/components/ui/Input";
 function uuid() {
   const rnd = typeof window !== "undefined" && window.crypto?.randomUUID?.() || null;
   return rnd ? `conv-${rnd}` : `conv-${Date.now()}`;
@@ -691,7 +693,7 @@ export default function ChatSidebar() {
         <div>
           <div>
             {selectMode && !isRoom ? <label className="drawer-select-check">
-                <input type="checkbox" checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} aria-label={t("chat.sidebar.selection.select")} />
+                <Checkbox bare checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} aria-label={t("chat.sidebar.selection.select")} />
               </label> : null}
             <div onClick={() => selectMode ? null : onPick(item)} onKeyDown={event => {
             if (selectMode) return;
@@ -750,7 +752,7 @@ export default function ChatSidebar() {
       </div> : null}
       {isConversationView ? <div>
           <div>
-            <input id="chat-sidebar-search" name="chat-sidebar-search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder={t("chat.sidebar.search.placeholder", "Otsi vestlusi...")} aria-label={t("chat.sidebar.search.label", "Otsi vestlusi")} />
+            <Input id="chat-sidebar-search" name="chat-sidebar-search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder={t("chat.sidebar.search.placeholder", "Otsi vestlusi...")} aria-label={t("chat.sidebar.search.label", "Otsi vestlusi")} />
           </div>
         </div> : null}
       {selectMode && isConversationView ? <div className="drawer-actions">

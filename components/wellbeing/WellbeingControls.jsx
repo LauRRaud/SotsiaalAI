@@ -1,6 +1,7 @@
 "use client";
 
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
+import Checkbox from "@/components/ui/Checkbox";
 
 function toDropdownOptions(options = []) {
   return options.map((option) => {
@@ -46,14 +47,12 @@ export function WellbeingToggleGroup({ field, values, onToggle }) {
   return (
     <div aria-label={field.label}>
       {field.options.map(([value, label]) => (
-        <label key={value}>
-          <input
-            type="checkbox"
-            checked={values.includes(value)}
-            onChange={() => onToggle(field.key, value)}
-          />
-          {label}
-        </label>
+        <Checkbox
+          key={value}
+          checked={values.includes(value)}
+          onChange={() => onToggle(field.key, value)}
+          label={label}
+        />
       ))}
     </div>
   );

@@ -7,6 +7,7 @@ import { useAccessibility } from "@/components/accessibility/AccessibilityProvid
 import CloseButton from "@/components/ui/CloseButton";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Modal from "@/components/ui/Modal";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { localizeInternalHtmlLinks } from "@/lib/localizeHtmlLinks";
 import { filterGuideSections } from "@/lib/guideSearch";
@@ -118,7 +119,7 @@ export default function KasutusjuhendBody() {
               <label htmlFor="guide-search-input">
                 {t("about.guide.search_label")}
               </label>
-              <input
+              <Input
                 id="guide-search-input"
                 type="search"
                 value={searchQuery}

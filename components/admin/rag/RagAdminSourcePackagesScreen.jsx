@@ -4,6 +4,7 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 
 import { localizePath } from "@/lib/localizePath";
 
@@ -418,14 +419,16 @@ export default function RagAdminSourcePackagesScreen({ locale = "en" }) {
           </Button>
         </div>
         <div className="ra-toolbar">
-          <label className="ui-checkbox">
-            <input type="checkbox" checked={showInfoWarnings} onChange={event => setShowInfoWarnings(event.target.checked)} />
-            {copy.showInfoWarnings}
-          </label>
-          <label className="ui-checkbox">
-            <input type="checkbox" checked={showArchived} onChange={event => setShowArchived(event.target.checked)} />
-            {copy.showArchived}
-          </label>
+          <Checkbox
+            checked={showInfoWarnings}
+            onChange={setShowInfoWarnings}
+            label={copy.showInfoWarnings}
+          />
+          <Checkbox
+            checked={showArchived}
+            onChange={setShowArchived}
+            label={copy.showArchived}
+          />
           <div className="ra-toolbar-meta">
             <span>{copy.defaultQueue}</span>
           </div>

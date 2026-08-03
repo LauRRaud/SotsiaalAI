@@ -15,6 +15,8 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
@@ -2142,7 +2144,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             </Label>
             <Label>
               <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.next_contact_on", "Järgmise kontakti kuupäev")}</span>
-              <input
+              <Input
                 type="date"
                 value={nextContactOnDraft}
                 onChange={(event) => setNextContactOnDraft(event.target.value)}
@@ -3211,7 +3213,7 @@ function ServiceMapSurface({
           <div className="service-map-fields">
             <label>
               <span className="sr-only">{readText(t, "workspace_feature_pages.service_map.fields.keyword", "Keyword")}</span>
-              <input
+              <Input
                 value={keyword}
                 onChange={handleKeywordChange}
                 placeholder={keywordPlaceholder}
@@ -3219,7 +3221,7 @@ function ServiceMapSurface({
             </label>
             <label>
               <span className="sr-only">{readText(t, "workspace_feature_pages.service_map.fields.region", "Region")}</span>
-              <input
+              <Input
                 value={region}
                 onChange={handleRegionChange}
                 placeholder={regionPlaceholder}
@@ -3308,10 +3310,13 @@ function ServiceMapSurface({
           <p>{readText(t, "workspace_feature_pages.service_map.match.choose_note", "Vali, millise avatud kuulutusega soovid ühendust võtta.")}</p>
           <label className="service-map-match-choice">
             <span>{readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}</span>
-            <select value={counterpartSelection.selectedId} onChange={(event) => setCounterpartSelection((current) => current ? { ...current, selectedId: event.target.value } : current)}>
-              <option value="">{readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}</option>
-              {counterpartSelection.options.map((item) => <option key={item.id} value={item.id}>{item.title || item.categoryLabel || item.id}</option>)}
-            </select>
+            <DocumentsDropdown
+              value={counterpartSelection.selectedId}
+              onChange={(next) => setCounterpartSelection((current) => current ? { ...current, selectedId: next } : current)}
+              ariaLabel={readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}
+              placeholder={readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}
+              options={counterpartSelection.options.map((item) => ({ value: item.id, label: item.title || item.categoryLabel || item.id }))}
+            />
           </label>
           <div className="service-map-match-actions">
             <Button type="button" size="sm" disabled={!counterpartSelection.selectedId} onClick={async () => {
@@ -3778,7 +3783,7 @@ function ServiceProfileChipField({
 function ServiceProfileInput({ className, ...props }) {
   return (
     <ServiceProfileGlowField>
-      <input
+      <Input
         className={className}
         {...props}
       />
@@ -4257,7 +4262,7 @@ function ServiceProfileSurface({ t }) {
   ];
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       {loading ? (
         <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.service_profile.loading", "Teenuseprofiili laadimine...")}</p>
       ) : null}
@@ -4926,7 +4931,7 @@ function ServiceProfileSurface({ t }) {
           </div>
         </div>
       </ServiceProfileSection>
-    </form>
+    </Form>
   );
 }
 

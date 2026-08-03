@@ -19,6 +19,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Panel from "@/components/ui/Panel";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 
 function formatTime(value, locale) {
   if (!value) return "";
@@ -153,7 +155,7 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
 
       <label className="org-field">
         <span>{t("org.board.date")}</span>
-        <input type="date" value={date} onChange={(event) => setDate(event.target.value)} />
+        <Input type="date" value={date} onChange={(event) => setDate(event.target.value)} />
       </label>
 
       <p className="org-hint">
@@ -176,29 +178,30 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
           <div className="org-assign-row">
             <label className="org-field">
               <span>{t("org.board.assign_worker")}</span>
-              <select value={assignTo} onChange={(event) => setAssignTo(event.target.value)}>
-                <option value="">—</option>
-                {workers.map((worker) => (
-                  <option key={worker.userId} value={worker.userId}>
-                    {worker.name}
-                    {worker.jobTitle ? ` · ${worker.jobTitle}` : ""}
-                  </option>
-                ))}
-              </select>
+              <Dropdown
+                value={assignTo}
+                onChange={setAssignTo}
+                ariaLabel={t("org.board.assign_worker")}
+                placeholder="—"
+                options={workers.map((worker) => ({
+                  value: worker.userId,
+                  label: `${worker.name}${worker.jobTitle ? ` · ${worker.jobTitle}` : ""}`
+                }))}
+              />
             </label>
             <label className="org-field">
               <span>{t("org.board.assign_time")}</span>
-              <input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
+              <Input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
             </label>
           </div>
           <div className="org-assign-row">
             <label className="org-field">
               <span>{t("org.board.assign_client")}</span>
-              <input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
+              <Input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
             </label>
             <label className="org-field">
               <span>{t("org.board.assign_address")}</span>
-              <input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
+              <Input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
             </label>
           </div>
           {/* PLATVORMI NUPUPRIMITIIV, mitte minu oma klass. `sl-entry-btn

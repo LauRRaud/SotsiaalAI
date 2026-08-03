@@ -5,8 +5,12 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
@@ -531,21 +535,20 @@ function PreInquirySharePanel({ journey, href, t }) {
       </div>
       <div>
         {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
-          <label key={key}>
-            <input
-              type="checkbox"
-              checked={selectedShareKeys.includes(key)}
-              onChange={() => toggleShareKey(key)}
-            />
-            <span>{label}</span>
-          </label>
+          <Checkbox
+            key={key}
+            checked={selectedShareKeys.includes(key)}
+            onChange={() => toggleShareKey(key)}
+            label={label}
+          />
         ))}
       </div>
       {selectedPersonContext ? (
-        <label>
-          <input type="checkbox" checked={thirdPartyAcknowledged} onChange={(event) => setThirdPartyAcknowledged(event.target.checked)} />
-          <span>{t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}</span>
-        </label>
+        <Checkbox
+          checked={thirdPartyAcknowledged}
+          onChange={setThirdPartyAcknowledged}
+          label={t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}
+        />
       ) : null}
       <section aria-live="polite">
         <h4>{t("journey.share.recipient_preview", "Adressaat näeb")}</h4>
@@ -600,14 +603,12 @@ function HelpRequestSharePanel({ journey, href, t }) {
       </div>
       <div>
         {shareOptions.map(([key, label]) => (
-          <label key={key}>
-            <input
-              type="checkbox"
-              checked={selectedShareKeys.includes(key)}
-              onChange={() => toggleShareKey(key)}
-            />
-            <span>{label}</span>
-          </label>
+          <Checkbox
+            key={key}
+            checked={selectedShareKeys.includes(key)}
+            onChange={() => toggleShareKey(key)}
+            label={label}
+          />
         ))}
       </div>
       <div>
@@ -641,7 +642,7 @@ function ContinuityTextField({ id, label, value, onChange, placeholder = "", typ
       <label htmlFor={id}>
         {label}
       </label>
-      <input
+      <Input
         id={id}
         type={type}
         value={value}
@@ -658,15 +659,17 @@ function ContinuityChoiceField({ id, label, value, onChange, t }) {
       <label htmlFor={id}>
         {label}
       </label>
-      <select
+      <Dropdown
         id={id}
         value={value}
-        onChange={(event) => onChange(event.target.value)}
-      >
-        <option value="">{t("journey.serviceContinuity.unknown", "Ei tea veel")}</option>
-        <option value="YES">{t("journey.serviceContinuity.yes", "Jah")}</option>
-        <option value="NO">{t("journey.serviceContinuity.no", "Ei")}</option>
-      </select>
+        onChange={onChange}
+        ariaLabel={label}
+        options={[
+          { value: "", label: t("journey.serviceContinuity.unknown", "Ei tea veel") },
+          { value: "YES", label: t("journey.serviceContinuity.yes", "Jah") },
+          { value: "NO", label: t("journey.serviceContinuity.no", "Ei") }
+        ]}
+      />
     </div>
   );
 }
@@ -1425,7 +1428,7 @@ export default function JourneyDetail({ journeyId }) {
                 ) : null}
 
                 {continuityOpen ? (
-                  <form onSubmit={handleSaveContinuity}>
+                  <Form onSubmit={handleSaveContinuity}>
                     <div>
                       <ContinuityTextField
                         id="journey-continuity-service-name"
@@ -1535,7 +1538,7 @@ export default function JourneyDetail({ journeyId }) {
                         {t("journey.serviceContinuity.close", "Sulge kontroll")}
                       </Button>
                     </div>
-                  </form>
+                  </Form>
                 ) : null}
               </section>
 
@@ -1593,12 +1596,12 @@ export default function JourneyDetail({ journeyId }) {
               ) : null}
 
               {editing ? (
-                <form onSubmit={handleSave}>
+                <Form onSubmit={handleSave}>
                   <div>
                     <label htmlFor="journey-detail-title">
                       {t("journey.labels.title", "Title")}
                     </label>
-                    <input
+                    <Input
                       id="journey-detail-title"
                       value={form.title}
                       onChange={(event) => updateForm("title", event.target.value)}
@@ -1623,15 +1626,16 @@ export default function JourneyDetail({ journeyId }) {
                     <label htmlFor="journey-detail-primary-path">
                       {t("journey.labels.primary_path", "Primary direction")}
                     </label>
-                    <select
+                    <Dropdown
                       id="journey-detail-primary-path"
                       value={form.primaryPath || "UNKNOWN"}
-                      onChange={(event) => updateForm("primaryPath", event.target.value)}
-                    >
-                      {PRIMARY_PATH_VALUES.map((value) => (
-                        <option key={value} value={value}>{primaryPathLabel(t, value)}</option>
-                      ))}
-                    </select>
+                      onChange={(next) => updateForm("primaryPath", next)}
+                      ariaLabel={t("journey.labels.primary_path", "Primary direction")}
+                      options={PRIMARY_PATH_VALUES.map((value) => ({
+                        value,
+                        label: primaryPathLabel(t, value)
+                      }))}
+                    />
                   </div>
 
                   <div>
@@ -1666,7 +1670,7 @@ export default function JourneyDetail({ journeyId }) {
                       {t("journey.actions.cancel", "Cancel")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               ) : (
                 <>
                   <section>

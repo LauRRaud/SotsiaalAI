@@ -9,6 +9,8 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import LoginModal from "@/components/LoginModal";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
 export default function UuendaPinBody() {
@@ -136,11 +138,11 @@ export default function UuendaPinBody() {
               <Button type="button" variant="primary" onClick={() => setLoginOpen(true)}>
                 <span>{t("auth.login.title")}</span>
               </Button>
-            </div> : <form onSubmit={handleSubmit} autoComplete="on" noValidate aria-busy={loading ? "true" : "false"}>
+            </div> : <Form onSubmit={handleSubmit} autoComplete="on" noValidate validate={false} aria-busy={loading ? "true" : "false"}>
               <label htmlFor="pin-username" className="sr-only">
                 {usernameLabel}
               </label>
-              <input id="pin-username" name="username" type="text" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
+              <Input id="pin-username" name="username" type="text" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-pin" className="sr-only">
                 {currentPinLabel}
               </label>
@@ -150,15 +152,15 @@ export default function UuendaPinBody() {
                   Nüüd tuleb ta vaikimisi igale väljale (tokens.css
                   --input-spec + SpecularHighlight app/layout.js's), seega
                   siit see mähis kaob ja koos temaga kolm igavest rAF-tsüklit. */}
-              <input type="password" id="current-pin" name="current-pin" placeholder={currentPinLabel} value={currentPin} onChange={e => setCurrentPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
+              <Input type="password" id="current-pin" name="current-pin" placeholder={currentPinLabel} value={currentPin} onChange={e => setCurrentPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
               <label htmlFor="next-pin" className="sr-only">
                 {pinLabel}
               </label>
-              <input type="password" id="next-pin" name="next-pin" placeholder={pinLabel} value={nextPin} onChange={e => setNextPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
+              <Input type="password" id="next-pin" name="next-pin" placeholder={pinLabel} value={nextPin} onChange={e => setNextPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
               <label htmlFor="confirm-pin" className="sr-only">
                 {confirmPinLabel}
               </label>
-              <input type="password" id="confirm-pin" name="confirm-pin" placeholder={confirmPinLabel} value={confirmPin} onChange={e => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
+              <Input type="password" id="confirm-pin" name="confirm-pin" placeholder={confirmPinLabel} value={confirmPin} onChange={e => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
               {error ? <p role="alert">
                   {error}
                 </p> : null}
@@ -170,7 +172,7 @@ export default function UuendaPinBody() {
                   <span>{loading ? t("profile.saving") : t("buttons.save")}</span>
                 </Button>
               </div>
-            </form>}
+            </Form>}
         </div>
       </div>
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} suppressRedirect onAuthSuccess={() => {

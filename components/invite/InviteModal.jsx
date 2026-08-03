@@ -12,6 +12,8 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Modal from "@/components/ui/Modal";
 import OptionCard from "@/components/ui/OptionCard";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import {
   INVITE_RELATIONSHIP_CLIENT,
   inviteRelationshipTypesForInviter,
@@ -499,11 +501,11 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
             <p>{t("invite.login_required")}</p>
           </div>
         ) : (
-          <form className="invite-participant-form" onSubmit={submit}>
+          <Form className="invite-participant-form" onSubmit={submit}>
             {!roomId ? (
               <>
                 <div>
-                  <input
+                  <Input
                     id="invite-room-title"
                     className="invite-field-input"
                     value={roomTitle}
@@ -514,7 +516,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
                   />
                 </div>
                 <div>
-                  <input
+                  <Input
                     id="invite-host-name"
                     className="invite-field-input"
                     value={hostDisplayName}
@@ -568,7 +570,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
               ) : null}
             </fieldset>
             <div>
-              <input
+              <Input
                 id="invite-emails"
                 className="invite-field-input"
                 value={emails}
@@ -687,7 +689,7 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
                 ) : null}
               </div>
             ) : null}
-          </form>
+          </Form>
         )}
 
         <div>

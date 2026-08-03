@@ -4,9 +4,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./MentoringPage.module.css";
@@ -219,7 +221,7 @@ export default function MentoringRelationPage({ relationId }) {
 
             {!closed ? (
               <Section help={t("mentoring.relation.goal_help")} title={t("mentoring.relation.goal_title")}>
-                <form
+                <Form
                   className={styles.form}
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -246,7 +248,7 @@ export default function MentoringRelationPage({ relationId }) {
                       {t("mentoring.relation.goal_save")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               </Section>
             ) : null}
 
@@ -287,7 +289,7 @@ export default function MentoringRelationPage({ relationId }) {
                 !closed ? <p className={styles.empty}>{t("mentoring.relation.agreement_empty")}</p> : null
               )}
               {relation.can.proposeAgreement ? (
-                <form
+                <Form
                   className={styles.form}
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -315,7 +317,7 @@ export default function MentoringRelationPage({ relationId }) {
                       {t("mentoring.relation.agreement_propose")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               ) : null}
             </Section>
 
@@ -379,7 +381,7 @@ export default function MentoringRelationPage({ relationId }) {
                 <p className={styles.empty}>{t("mentoring.relation.meetings_empty")}</p>
               )}
               {relation.can.createMeeting ? (
-                <form
+                <Form
                   className={styles.form}
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -403,13 +405,15 @@ export default function MentoringRelationPage({ relationId }) {
                   </label>
                   <label>
                     <span>{t("mentoring.relation.meeting_mode")}</span>
-                    <select
-                      onChange={(event) => setMeetingForm((prev) => ({ ...prev, mode: event.target.value }))}
+                    <Dropdown
+                      onChange={(next) => setMeetingForm((prev) => ({ ...prev, mode: next }))}
                       value={meetingForm.mode}
-                    >
-                      <option value="EXTERNAL">{t("mentoring.meeting_mode.external")}</option>
-                      <option value="PLATFORM_ROOM">{t("mentoring.meeting_mode.platform_room")}</option>
-                    </select>
+                      ariaLabel={t("mentoring.relation.meeting_mode")}
+                      options={[
+                        { value: "EXTERNAL", label: t("mentoring.meeting_mode.external") },
+                        { value: "PLATFORM_ROOM", label: t("mentoring.meeting_mode.platform_room") }
+                      ]}
+                    />
                     <span className={styles.fieldHint}>{t("mentoring.relation.meeting_mode_hint")}</span>
                   </label>
                   <label>
@@ -425,7 +429,7 @@ export default function MentoringRelationPage({ relationId }) {
                       {t("mentoring.relation.meeting_create")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               ) : null}
             </Section>
 
@@ -493,7 +497,7 @@ export default function MentoringRelationPage({ relationId }) {
                 <p className={styles.empty}>{t("mentoring.relation.summaries_empty")}</p>
               )}
               {relation.can.createSummary ? (
-                <form
+                <Form
                   className={styles.form}
                   onSubmit={(event) => {
                     event.preventDefault();
@@ -515,7 +519,7 @@ export default function MentoringRelationPage({ relationId }) {
                       {t("mentoring.relation.summary_create")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               ) : null}
             </Section>
 
@@ -543,8 +547,9 @@ export default function MentoringRelationPage({ relationId }) {
                             <>
                               <label className={styles.inlineForm}>
                                 <Checkbox
+                                  bare
                                   checked={shareConfirmed}
-                                  onChange={(event) => setShareConfirmed(event.target.checked)}
+                                  onChange={setShareConfirmed}
                                 />
                                 <span className={styles.fieldHint}>{t("mentoring.relation.preparation_confirm_no_clients")}</span>
                               </label>
@@ -651,7 +656,7 @@ export default function MentoringRelationPage({ relationId }) {
                   <p className={styles.empty}>{t("mentoring.relation.notes_empty")}</p>
                 )}
                 {relation.can.addNote ? (
-                  <form
+                  <Form
                     className={styles.form}
                     onSubmit={(event) => {
                       event.preventDefault();
@@ -673,7 +678,7 @@ export default function MentoringRelationPage({ relationId }) {
                         {t("mentoring.relation.note_add")}
                       </Button>
                     </div>
-                  </form>
+                  </Form>
                 ) : null}
               </div>
             </Section>
@@ -740,16 +745,21 @@ export default function MentoringRelationPage({ relationId }) {
                     </div>
                     <label>
                       <span>{t("mentoring.relation.close_reason")}</span>
-                      <select onChange={(event) => setCloseReason(event.target.value)} value={closeReason}>
-                        {CLOSE_REASONS.map((reason) => (
-                          <option key={reason} value={reason}>{t(`mentoring.close_reason.${reason}`)}</option>
-                        ))}
-                      </select>
+                      <Dropdown
+                        onChange={setCloseReason}
+                        value={closeReason}
+                        ariaLabel={t("mentoring.relation.close_reason")}
+                        options={CLOSE_REASONS.map((reason) => ({
+                          value: reason,
+                          label: t(`mentoring.close_reason.${reason}`)
+                        }))}
+                      />
                     </label>
                     <label className={styles.inlineForm}>
                       <Checkbox
+                        bare
                         checked={closeConfirmed}
-                        onChange={(event) => setCloseConfirmed(event.target.checked)}
+                        onChange={setCloseConfirmed}
                       />
                       <span>{t("mentoring.relation.close_confirm_label")}</span>
                     </label>

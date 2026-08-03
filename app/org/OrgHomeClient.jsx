@@ -8,6 +8,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { ORGANIZATION_LEGAL_KINDS } from "@/lib/org/constants";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -114,10 +116,10 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
             {t("org.home.createHeading")}
           </h2>
           <p className="ow-subtitle">{t("org.create.hint")}</p>
-          <form onSubmit={submit} className="ow-grid">
+          <Form onSubmit={submit} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.create.displayName")}</span>
-              <input
+              <Input
                 required
                 value={displayName}
                 onChange={(event) => setDisplayName(event.target.value)}
@@ -144,7 +146,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
             </label>
             <label>
               <span className="ow-meta__term">{t("org.create.legalName")}</span>
-              <input
+              <Input
                 value={legalName}
                 onChange={(event) => setLegalName(event.target.value)}
                 className="ow-code"
@@ -153,7 +155,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
             </label>
             <label>
               <span className="ow-meta__term">{t("org.create.registryCode")}</span>
-              <input
+              <Input
                 value={registryCode}
                 onChange={(event) => setRegistryCode(event.target.value)}
                 className="ow-code"
@@ -165,7 +167,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
                 {t("org.create.submit")}
               </Button>
             </div>
-          </form>
+          </Form>
           {error ? (
             <p className="ow-notice ow-notice--warning" role="alert">
               {error}

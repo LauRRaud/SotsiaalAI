@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useState } from "react";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -69,7 +70,7 @@ export default function DataExportPanel({ active = true }) {
           kaks korda pikem kui ekraan (omanik 26.07). */}
       <div className="konto-field">
         <label htmlFor={pinId}>{t("profile.current_pin_label")}</label>
-        <input id={pinId} type="password" inputMode="numeric" autoComplete="current-password" value={pin} onChange={event => setPin(event.target.value.replace(/\D/g, "").slice(0, 8))} />
+        <Input id={pinId} type="password" inputMode="numeric" autoComplete="current-password" value={pin} onChange={event => setPin(event.target.value.replace(/\D/g, "").slice(0, 8))} />
         <p className="konto-hint">{t("profile.data_export.pin_hint")}</p>
       </div>
       {/* Abilause on juba välja all — nupp ei korda teda, vaid seisab

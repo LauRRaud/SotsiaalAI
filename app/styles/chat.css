@@ -1733,7 +1733,11 @@ html[data-reduce-motion="1"] .panel-scrim[data-conversation="1"] [role="article"
   gap: 0.35rem;
 }
 
+/* .dd-trigger seisab `select`-i kõrval: platvormi valikmenüü on element
+   poolest <button>, seega ei taba teda ükski `select`-reegel. Ilma selleta
+   kaoks siit lehelt tema mõõt ja pind. */
 .chat-source-feedback select,
+.chat-source-feedback .dd-trigger,
 .chat-source-feedback textarea {
   width: 100%;
   padding: 0.65rem 0.75rem;
@@ -2074,7 +2078,11 @@ form:has(#chat-input) button.conv-ai-target:focus-visible {
   opacity: 0.45;
   cursor: default;
 }
+/* .dd-trigger seisab `select`-i kõrval: platvormi valikmenüü on element
+   poolest <button>, seega ei taba teda ükski `select`-reegel. Ilma selleta
+   kaoks siit lehelt tema mõõt ja pind. */
 .room-call-details select,
+.room-call-details .dd-trigger,
 .room-call-details input {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--glass-border-soft, rgba(255, 255, 255, 0.18));

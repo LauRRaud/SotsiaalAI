@@ -17,7 +17,12 @@ test("continuity UI has a capped route-safe contract, CAS preference guard, and 
   assert.match(component, /workspace-continuity-primary/u);
   assert.match(component, /workspace-continuity-waiting/u);
   assert.match(component, /workspace_continuity\.my_sharings/u);
-  assert.match(component, /type="checkbox"/u);
+  /* E-posti eelistus on märkeruut. Varem otsis see rida paljast
+     `type="checkbox"`-i; nüüd tuleb kast ühest komponendist ja lehe oma
+     `<label class="workspace-continuity-preference">` jääb ümber (`bare`),
+     sest just tema kannab paigutuse CSS-i. */
+  assert.match(component, /import Checkbox from "@\/components\/ui\/Checkbox"/u);
+  assert.match(component, /<Checkbox[^>]*\bbare\b/u);
   assert.match(css, /\.workspace-dashboard-card \[data-badge-type="number"\][\s\S]+min-width/u);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)[\s\S]+workspace-continuity/u);
 });

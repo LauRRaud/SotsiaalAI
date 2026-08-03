@@ -4,8 +4,10 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./SupervisionPage.module.css";
 import { supervisionMessage, supervisionRequest } from "./supervisionClient";
@@ -84,13 +86,18 @@ export default function SupervisionCreatePage() {
           {formError}
         </p>
 
-        <form className={styles.form} onSubmit={submit}>
+        <Form className={styles.form} onSubmit={submit}>
           <label>
             {t("supervision.create.typeLabel")}
-            <select value={form.type} onChange={(event) => update("type", event.target.value)}>
-              <option value="INDIVIDUAL">{t("supervision.type.INDIVIDUAL")}</option>
-              <option value="GROUP">{t("supervision.type.GROUP")}</option>
-            </select>
+            <Dropdown
+              value={form.type}
+              onChange={(next) => update("type", next)}
+              ariaLabel={t("supervision.create.typeLabel")}
+              options={[
+                { value: "INDIVIDUAL", label: t("supervision.type.INDIVIDUAL") },
+                { value: "GROUP", label: t("supervision.type.GROUP") }
+              ]}
+            />
           </label>
 
           <label>
@@ -133,7 +140,7 @@ export default function SupervisionCreatePage() {
               {t("supervision.common.cancel")}
             </Button>
           </div>
-        </form>
+        </Form>
       </div>
     </main>
   );

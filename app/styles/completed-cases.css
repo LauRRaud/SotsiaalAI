@@ -230,7 +230,11 @@ a.ccp-nav-link:hover {
   min-width: 0;
 }
 /* Sortimisvalik vajab mõlema pika sildi jagu laiust (kontrakt) */
-.ccp-toolbar select {
+/* .dd-trigger seisab `select`-i kõrval: platvormi valikmenüü on element
+   poolest <button>, seega ei taba teda ükski `select`-reegel. Ilma selleta
+   kaoks siit lehelt tema mõõt ja pind. */
+.ccp-toolbar select,
+.ccp-toolbar .dd-trigger {
   width: 13rem;
   max-width: 100%;
 }

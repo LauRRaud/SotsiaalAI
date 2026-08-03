@@ -6,6 +6,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -139,15 +140,18 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
               <>
                 <label>
                   <span className="ow-meta__term">{t("org.inbox.assign")}</span>
-                  <select value={assigneeId} onChange={(event) => setAssigneeId(event.target.value)}>
-                    <option value="">—</option>
-                    {members.map((member) => (
-                      <option key={member.membershipId} value={member.membershipId}>
-                        {[member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                          member.person.email}
-                      </option>
-                    ))}
-                  </select>
+                  <Dropdown
+                    value={assigneeId}
+                    onChange={setAssigneeId}
+                    ariaLabel={t("org.inbox.assign")}
+                    placeholder="—"
+                    options={members.map((member) => ({
+                      value: member.membershipId,
+                      label:
+                        [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
+                        member.person.email
+                    }))}
+                  />
                 </label>
                 <Button type="button" onClick={assign} disabled={busy || !assigneeId}>
                   {t("org.inbox.assign")}
@@ -172,17 +176,20 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
               <>
                 <label>
                   <span className="ow-meta__term">{t("org.inbox.handOver")}</span>
-                  <select value={handoverId} onChange={(event) => setHandoverId(event.target.value)}>
-                    <option value="">—</option>
-                    {members
+                  <Dropdown
+                    value={handoverId}
+                    onChange={setHandoverId}
+                    ariaLabel={t("org.inbox.handOver")}
+                    placeholder="—"
+                    options={members
                       .filter((member) => member.membershipId !== assignment.membershipId)
-                      .map((member) => (
-                        <option key={member.membershipId} value={member.membershipId}>
-                          {[member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
-                            member.person.email}
-                        </option>
-                      ))}
-                  </select>
+                      .map((member) => ({
+                        value: member.membershipId,
+                        label:
+                          [member.person.firstName, member.person.lastName].filter(Boolean).join(" ") ||
+                          member.person.email
+                      }))}
+                  />
                 </label>
                 <Button type="button" onClick={handOver} disabled={busy || !handoverId}>
                   {t("org.inbox.handOver")}

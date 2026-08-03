@@ -3,6 +3,8 @@
 import { useRef } from "react";
 
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { ORGANIZATION_CORE_FILE_KEYS, ORGANIZATION_FILE_ROLE_META } from "@/lib/admin/rag/organizations/shared";
 
@@ -131,18 +133,25 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
               size="sm"
             />
           </div>
-          <select value={type} onChange={event => setType(event.target.value)}>
-            {typeOptions.map(option => (
-              <option key={option.value} value={option.value}>
-                {TYPE_LABELS[option.value] || option.label}
-              </option>
-            ))}
-          </select>
-          <select value={activity} onChange={event => setActivity(event.target.value)}>
-            <option value="ACTIVE">{et ? "Ainult aktiivsed" : "Active only"}</option>
-            <option value="INACTIVE">{et ? "Ainult mitteaktiivsed" : "Inactive only"}</option>
-            <option value="ALL">{et ? "Koik" : "All"}</option>
-          </select>
+          <Dropdown
+            value={type}
+            onChange={setType}
+            ariaLabel={et ? "Organisatsiooni tuup" : "Organization type"}
+            options={typeOptions.map(option => ({
+              value: option.value,
+              label: TYPE_LABELS[option.value] || option.label
+            }))}
+          />
+          <Dropdown
+            value={activity}
+            onChange={setActivity}
+            ariaLabel={et ? "Aktiivsus" : "Activity"}
+            options={[
+              { value: "ACTIVE", label: et ? "Ainult aktiivsed" : "Active only" },
+              { value: "INACTIVE", label: et ? "Ainult mitteaktiivsed" : "Inactive only" },
+              { value: "ALL", label: et ? "Koik" : "All" }
+            ]}
+          />
         </div>
 
         <div className="ra-toolbar">
@@ -198,8 +207,8 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                 <thead>
                   <tr>
                     <th>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         checked={Boolean(filteredItems.length && filteredItems.every(item => selectedSlugs.has(item.slug)))}
                         onChange={toggleSelectAllFiltered}
                         aria-label={et ? "Vali koik" : "Select all"}
@@ -221,8 +230,8 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                         onClick={() => setSelectedSlug(item.slug)}
                       >
                         <td onClick={event => event.stopPropagation()}>
-                          <input
-                            type="checkbox"
+                          <Checkbox
+                            bare
                             checked={selectedSlugs.has(item.slug)}
                             disabled={!canSelect}
                             onChange={() => toggleSelected(item.slug)}
@@ -342,13 +351,12 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                       placeholder={et ? "Organisatsiooni nimi" : "Organization name"}
                       size="sm"
                     />
-                    <select value={detailDraft.type} onChange={event => updateDraft("type", event.target.value)}>
-                      {Object.entries(TYPE_LABELS).map(([value, label]) => (
-                        <option key={value} value={value}>
-                          {label}
-                        </option>
-                      ))}
-                    </select>
+                    <Dropdown
+                      value={detailDraft.type}
+                      onChange={next => updateDraft("type", next)}
+                      ariaLabel={et ? "Organisatsiooni tuup" : "Organization type"}
+                      options={Object.entries(TYPE_LABELS).map(([value, label]) => ({ value, label }))}
+                    />
                     <Input
                       value={detailDraft.focus}
                       onChange={event => updateDraft("focus", event.target.value)}
@@ -379,21 +387,25 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                       placeholder={et ? "Kontakt telefon" : "Contact phone"}
                       size="sm"
                     />
-                    <select
+                    <Dropdown
                       value={detailDraft.crawlReadiness}
-                      onChange={event => updateDraft("crawlReadiness", event.target.value)}
-                    >
-                      <option value="PLANNED">{et ? "Planeeritud" : "Planned"}</option>
-                      <option value="REVIEW">{et ? "Vajab ulevaatust" : "Needs review"}</option>
-                      <option value="READY">{et ? "Valmis jargmiseks sammuks" : "Ready for next step"}</option>
-                    </select>
-                    <select
+                      onChange={next => updateDraft("crawlReadiness", next)}
+                      ariaLabel={et ? "Korjevalmidus" : "Crawl readiness"}
+                      options={[
+                        { value: "PLANNED", label: et ? "Planeeritud" : "Planned" },
+                        { value: "REVIEW", label: et ? "Vajab ulevaatust" : "Needs review" },
+                        { value: "READY", label: et ? "Valmis jargmiseks sammuks" : "Ready for next step" }
+                      ]}
+                    />
+                    <Dropdown
                       value={detailDraft.isActive ? "ACTIVE" : "INACTIVE"}
-                      onChange={event => updateDraft("isActive", event.target.value === "ACTIVE")}
-                    >
-                      <option value="ACTIVE">{et ? "Aktiivne" : "Active"}</option>
-                      <option value="INACTIVE">{et ? "Mitteaktiivne" : "Inactive"}</option>
-                    </select>
+                      onChange={next => updateDraft("isActive", next === "ACTIVE")}
+                      ariaLabel={et ? "Aktiivsus" : "Activity"}
+                      options={[
+                        { value: "ACTIVE", label: et ? "Aktiivne" : "Active" },
+                        { value: "INACTIVE", label: et ? "Mitteaktiivne" : "Inactive" }
+                      ]}
+                    />
                   </div>
 
                   <textarea

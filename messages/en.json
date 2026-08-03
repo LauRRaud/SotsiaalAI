@@ -8820,5 +8820,26 @@
     "previous": "Previous",
     "next": "Next",
     "required": "A date is required."
+  },
+  "dropdown": {
+    "empty": "No options available.",
+    "required": "Please make a selection."
+  },
+  "forms": {
+    "error": {
+      "field": "{label}: {message}",
+      "required": "This field is required.",
+      "email": "Enter an email address in the form name@example.com.",
+      "url": "Enter a web address starting with https:// or http://.",
+      "tel": "Enter a phone number.",
+      "pattern": "The value is not in the right format.",
+      "tooShort": "Too short — at least {min} characters.",
+      "tooLong": "Too long — up to {max} characters.",
+      "rangeUnderflow": "The value must be at least {min}.",
+      "rangeOverflow": "The value can be at most {max}.",
+      "step": "Choose an allowed step.",
+      "badInput": "The input cannot be read.",
+      "invalid": "The value is not valid."
+    }
   }
 }

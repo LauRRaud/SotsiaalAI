@@ -31,8 +31,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
@@ -736,7 +739,7 @@ export default function ServiceLogDay() {
           keskele. Sama põhjus, miks siin ei ole natiivset `select`-i ega
           kuupäevavälja. Nõue ise jääb alles: väli kannab endiselt `required`-i
           (ekraanilugeja jaoks) ja puuduva välja ütleb meie oma teade. */}
-      <form className="sl-form" noValidate onSubmit={submit} onInput={markInputStart}>
+      <Form className="sl-form" noValidate validate={false} onSubmit={submit} onInput={markInputStart}>
         {/* PÄRITOLU ON NÄHTAV. Ilma selleta ei saa kasutaja aru, miks väljad on
             juba täidetud — ja täidetud väli, mille päritolu ei tea, on halvem
             kui tühi väli. */}
@@ -779,7 +782,7 @@ export default function ServiceLogDay() {
         {/* KLIENT ENNE — see väli on esimene ja fookuses. */}
         <label className={isServiceLogDayRouteUiEnabled() ? "sl-field sl-manual-field" : "sl-field"}>
           <span className="sl-label">{t("service_log.form.client", "")}</span>
-          <input
+          <Input
             name="clientDisplayName"
             className="sl-input"
             value={clientName}
@@ -825,14 +828,14 @@ export default function ServiceLogDay() {
               keskel uembervahetatuna tekiks jada, mille esimene samm on juba
               moeoedas ja mille juurde ei saa enam tagasi. */}
           <label className="sl-travel-toggle">
-            <input
-              type="checkbox"
+            <Checkbox
+              bare
               name="withTravel"
               checked={withTravel}
               disabled={started}
-              onChange={(event) => {
-                setWithTravel(event.target.checked);
-                withTravelRef.current = event.target.checked;
+              onChange={(checked) => {
+                setWithTravel(checked);
+                withTravelRef.current = checked;
               }}
             />
             <span>{t("service_log.stamps.with_travel", "")}</span>
@@ -947,7 +950,7 @@ export default function ServiceLogDay() {
 
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.quantity", "")}</span>
-            <input
+            <Input
               name="quantity"
               className="sl-input"
               type="number"
@@ -1052,7 +1055,7 @@ export default function ServiceLogDay() {
             {t("service_log.outbox.pending", "", { count: pending })}
           </p>
         ) : null}
-      </form>
+      </Form>
 
       <div className="sl-list">
         <h2 className="sl-list-title">{t("service_log.list.title", "")}</h2>

@@ -1871,7 +1871,8 @@
 }
 .service-map-match-panel li > div { display: flex; gap: 0.4rem; flex-wrap: wrap; }
 .service-map-match-choice { display: grid; gap: 0.3rem; margin-top: 0.7rem; font-size: var(--fs-small); }
-.service-map-match-choice select { max-width: 32rem; }
+.service-map-match-choice select,
+.service-map-match-choice .dd-trigger { max-width: 32rem; }
 .service-map-match-actions { display: flex; gap: 0.45rem; flex-wrap: wrap; margin-top: 0.7rem; }
 @media (max-width: 520px) { .service-map-match-panel li { align-items: flex-start; flex-direction: column; } }
 

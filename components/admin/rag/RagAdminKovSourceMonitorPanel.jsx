@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 
 function formatValue(value) {
   if (value === null || value === undefined || value === "") return "-";
@@ -130,7 +131,7 @@ export default function RagAdminKovSourceMonitorPanel() {
       </div>
 
       <div className="ra-form-row">
-        <input
+        <Input
           value={slug}
           onChange={(event) => setSlug(event.target.value)}
           placeholder="slug, nt viimsi-vald"

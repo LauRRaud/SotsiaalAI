@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Form from "@/components/ui/Form";
 import LoginModal from "@/components/LoginModal";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -159,7 +160,7 @@ export default function JoinPage() {
               </Button>
             </div>
           ) : (
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <Form className={styles.form} onSubmit={handleSubmit}>
               <p className={styles.loggedIn}>
                 {t("join.logged_in_as", {
                   email: session?.user?.email || session?.user?.id
@@ -179,7 +180,7 @@ export default function JoinPage() {
                   {busy ? t("join.joining") : t("join.join_button")}
                 </Button>
               </div>
-            </form>
+            </Form>
           )}
           {statusMsg ? (
             <p className={styles.status} role="status">

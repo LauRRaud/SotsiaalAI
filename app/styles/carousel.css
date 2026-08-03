@@ -227,26 +227,34 @@
      Iga aste saab --d korda selle sammu lisaks — vahed loevad ühtlasena
      ja fookus mahub igas reas ära. */
   --desk-gap-step: clamp(0.45rem, 0.75vw, 1.1rem);
-  /* Perspektiivi SÜGAVUS, mitte ainult kaugus: 1500px surus tagumised
-     astmed kokku — kitsaks ja üksteise sisse. Lamedam kooniline vaade
-     hoiab kaugemad read loetavas mõõdus; sügavuse kannab siin suuresti
-     kaugusudu (--gc-haze), mitte ainult kahanemine. */
-  /* Perspektiiv ja astmevahe hoitakse ÜHIKUTETA numbritena, sest fookuse
-     skaala peab neid omavahel jagama (calc ei jaga pikkust pikkusega). */
+  /* Perspektiiv jääb, sest teda vajab veel KAARDI tõus hoveril
+     (translateZ 46px) — see on nüüd laua ainus 3D-liigutus. Väärtus on
+     ajalooline: 1500px surus astmed kokku, 2400px hoidis nad loetavas
+     mõõdus. Astmeid enam ei ole, aga arv otsustab, kui palju hoveri-tõus
+     kaardi mõõdust võidab, seega ta ei ole suvaline. */
   --desk-perspective-num: 2400;
-  --desk-tier-z-num: 90;
   --desk-perspective: calc(var(--desk-perspective-num) * 1px);
-  /* PUHKESEIS on peaaegu tasapinnaline: kõik 15 kaarti ühesuurused ja
-     ühtviisi loetavad. Sügavus on siin ainult vihje (~93% taper), mis
-     hoiab laua pinnana, mitte menüüna tapeedi peal — aga ei maksa selle
-     eest loetavusega, nagu 240px maksis.
-     SÜGAVUS TULEB FOOKUSEST: valitud aste astub päriselt ette ja on
-     teistest SUUREM (omanik 25.07). Tahad täiesti lameda puhkeseisu →
-     pane see 0px; tahad tugevat sügavust ka puhkeseisus → 200px+.
-     See üks number juhib kogu laua iseloomu. */
-  --desk-tier-z: calc(var(--desk-tier-z-num) * 1px); /* kaugus astme kohta */
-  --desk-focus-growth: 1.09; /* kui palju fookuses rida ESIREAST suurem on */
-  --desk-tilt: 3deg;
+  /* ASTMEVAHE JA KALLE ON 0 — LAUD ON TASAPIND (omanik 03.08: "lisaks on
+     read eri suurused. kui sul on tasapinnaline, siis read sama suureks
+     tee").
+
+     Miks read enne eri suurused olid: astmevahe 90px lükkas iga järgmise
+     rea 90px kaugemale ja perspektiiv (2400px) kahandas ta 2400/2490 =
+     ~96% peale. MÕÕDETUD 1920×1000, 7 veergu: 220 / 212 / 205 px ehk
+     ülemine rida 7% väiksem. Kalle 3° lisas veel 1,6px kõrgusevahet.
+     Mõlemad nulli → MÕÕDETUD 218,3 / 218,3 / 218,3 px ja 170,6 kõik kolm,
+     ehk read on TÄPSELT ühesuurused.
+
+     Sügavus oli seni tähenduse kandja (lähim aste = vahetuim suhe), aga
+     ta jäi 03.08 ilma oma paarilisest: fookuse kadumisega ei olnud tal
+     enam midagi vastandada ja alles jäi ainult see, et ülemine rida on
+     väiksem. Tähenduse kannab nüüd JÄRJEKORD (lähim aste all) ja astme
+     nimi tema kõrval.
+
+     Tagasitee on kaks numbrit: 90 + 3deg = endine laud. */
+  --desk-tier-z-num: 0;
+  --desk-tier-z: calc(var(--desk-tier-z-num) * 1px);
+  --desk-tilt: 0deg;
   /* Nimeveerg on KITSAS, sest nimi seisab püsti (vt .gc-tier-name).
      Lamav nimi nõudis ~9vw veergu ja seesama veerg oligi see, mis laua
      viltu ajas: rida sai keskele ainult kaartide arvelt. Püsti keeratud
@@ -264,19 +272,37 @@
      Ülal: suletud ülariba lõpeb 29 px peal, avatud kiirnuppude paneel
      ~64 px peal — varu arvestab avatud olekuga.
      Küljed: nimi peab ka 11% kasvades ekraanile jääma. */
-  /* Varude EBAVÕRDSUS on siin tahtlik ja arvutatud: laua plokk
-     tsentreeritakse polsterkasti, aga sihiks on see, et KESKMINE RIDA
-     satuks ekraani püstisele keskjoonele (omanik 25.07). Kasutatav aken
-     ei ole ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —,
-     seega peavad ka varud olema ebavõrdsed. Mõõdetud: keskmine rida on
-     ekraani keskmest 2 px kaugusel, dokini jääb 53 px, üles 120 px. */
-  /* Laud istub ekraanil KÕRGEMAL kui geomeetriline kese (omanik 25.07:
-     "töölaua kaardid võiks üleval pool olla"). Alumine varu on ülemisest
-     kolm korda suurem — nii jääb lähima astme ja doki vahele õhku ning
-     pilk maandub kaartidele, mitte tühjale ülaservale. Ülemine varu peab
-     ikka mahutama avatud ülariba (~64 px). */
-  --desk-pad-top: clamp(2rem, 8vh, 6rem);
-  --desk-pad-bottom: clamp(7rem, 24vh, 15rem);
+  /* LAUD ISTUB ALLPOOL (omanik 03.08: "kaardid peaks all pool olema
+     töölaual ja tööheaolus"). See PÖÖRAB ÜMBER 25.07 otsuse ("töölaua
+     kaardid võiks üleval pool olla"), mille järgi alumine varu oli
+     ülemisest kolm korda suurem — kirjutan selle siia välja, et keegi ei
+     "parandaks" seda vana kommentaari järgi tagasi.
+
+     Varude EBAVÕRDSUS ise jääb ja on endiselt arvutatud, ainult suund on
+     vastupidine: nüüd on ÜLEMINE varu suurem. Kasutatav aken ei ole
+     ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —, seega
+     ei anna võrdsed varud võrdset tulemust.
+
+     KOHT ON MÕÕDETUD, mitte pakutud, ja ta leiti kahe otsa vahelt kolme
+     sammuga: 17vh/10vh oli „liiga all", 11vh/16vh „veidi veel üles".
+     Praegune seis maandub kohta, mis ei ole suvaline vahepunkt — ÜLEMINE
+     JA ALUMINE ÕHK ON PRAKTILISELT VÕRDSED (1920×1000: 158 vs 157 px).
+     Ehk laud seisab keskel selles ruumis, mis tal PÄRISELT on: ülariba ja
+     doki vahel, mitte ekraani geomeetrilise keskme järgi.
+
+     MÕÕDETUD (7 veergu; ülalt px / lähima rea ja doki vahe px):
+                       25.07 (kõrge)   liiga all      NÜÜD
+       1920×1000       122 / 193       235 /  79      158 / 157
+       1440×800        111 / 155       203 /  63      140 / 126
+       1280×640         70 /  94       128 /  37       94 /  71
+
+     Alumise varu MIINIMUM (6rem) on lühikese akna päästik: protsent üksi
+     kukub 640 px kõrgusel liiga väikeseks ja lähim rida jääks doki peale.
+     Ülemine varu peab ikka mahutama avatud ülariba (~64 px).
+     Kummalegi poole liikumiseks: kaks protsenti allpool käivad KOOS —
+     nende VAHE otsustab koha, summa otsustab õhu hulga. */
+  --desk-pad-top: clamp(2rem, 9vh, 7rem);
+  --desk-pad-bottom: clamp(6rem, 18vh, 12rem);
   /* Külgvaru kannab FOOKUSE kasvu: valitud aste kasvab ~9% oma keskme
      ümber, seega iga serv liigub väljapoole võrdeliselt kaugusega
      keskmest. Kõige kaugemal on nimeveerg (~46vw) → tema nihe on ~4vw ja
@@ -346,62 +372,35 @@
   transform-style: preserve-3d;
   transform: rotateX(var(--desk-tilt))
     translate3d(0, 0, calc(var(--d) * -1 * var(--desk-tier-z)));
-  /* Fookus kasvatab astet SELLE ENDA keskme ümber (eraldi scale-omadus),
-     mitte translateZ-ga. Z-tõuge lükkab astme kaovpunktist EEMALE, ja
-     kuna kaovpunkt on keskmise rea kõrgusel, liigub keskmine rida vaevu,
-     üla- ja alarida aga palju — read paiskusid eri kaugusele ja vahed
-     läksid ebaühtlaseks (omanik 25.07). Tasapinnaline kasv nihutab iga
-     serva sama palju, ükskõik millist rida sa valid. */
-  scale: var(--desk-scale, 1);
-  transition:
-    transform 640ms var(--ease-soft),
-    scale 640ms var(--ease-soft);
+  /* 03.08: aste ei kasva enam. Varem oli siin `scale: var(--desk-scale)`
+     + 640 ms üleminek, mis kandis rea esiletõstet; kui esiletõst kadus, ei
+     jäänud tal midagi animeerida. `transform` üleminek jääb, sest teda
+     kasutab veel laua käivitus ja kaldenurga muutus. */
+  transition: transform 640ms var(--ease-soft);
 }
 /* NB: astmele EI TOHI panna filter'it (blur/brightness). Filter lamestab
    preserve-3d ruumi ja kaardi tõus (translateZ hoveril) kaotaks sügavuse.
    Kaugus antakse looriga kaardi sees (.gc-haze), mitte filtriga. */
-/* Puhkeseisus on udu vaevumärgatav — kõik read on loetavad. Udu on siin
-   sügavuse VIHJE, mitte tuhmistaja (omanik 25.07: "tekst liiga kaugel"). */
-.gc-tier[data-d="1"] {
-  --gc-haze: 0.07;
-}
-.gc-tier[data-d="2"] {
-  --gc-haze: 0.14;
-}
-.gc-tier[data-d="3"] {
-  --gc-haze: 0.2;
-}
-/* Esiletõst toimub OMAL KOHAL: aste astub päriselt ette ja on teistest
-   SUUREM, teised taanduvad. Kohta ei vahetata (vt GlassCarousel: flex
-   `order` on hetkeline reflow, mitte üleminek → jõnks).
-   Tõus on suur (+220 vs −110), sest just SEE on nüüd laua sügavus:
-   puhkeseis on peaaegu tasapinnaline, kogu ruumilisus elab fookuses. */
-/* Fookuses jõuab IGA rida sama absoluutmõõtu, ükskõik kui kaugel ta
-   puhkeseisus on. Ühtlane 9% kasv seda ei anna: perspektiiv jätab
-   tagumise rea niigi väiksemaks, nii et 9% temast on vähem kui 9%
-   esireast ja alumine rida paistis fookuses alati suurim (omanik 25.07).
-   Kompensatsioon = rea enda puhkeseisu kahanemine tagasi võidetud:
-   skaala × (1 + d·z/perspektiiv) taastab esirea mõõdu. */
-.gc-tier[data-focus="1"] {
-  --desk-scale: calc(
-    var(--desk-focus-growth) *
-    (1 + var(--d) * var(--desk-tier-z-num) / var(--desk-perspective-num))
-  );
-  --gc-haze: 0;
-}
-/* Ülejäänud astmed EI liigu — nad ainult tuhmuvad. Katsetasin ka nende
-   tahapoole lükkamist: see nägi kenam välja, aga sõi keskmise astme
-   fookuses ülemise vahe nulli. Liigub üks asi korraga, ja see üks on
-   see, mille sa valisid. */
-.gc-tier[data-dimmed="1"] {
-  --gc-haze: 0.22;
-}
+/* KAUGUSUDU ON KA 0 (omanik 03.08). Siin seisis `data-d` järgi kasvav loor
+   (0,07 / 0,14 / 0,2) ja ta oli SAMA signaal mis mõõt: "see rida on
+   kaugemal". Kui read said ühesuuruseks, jäi udust järele ainult see, et
+   ülemised read on tuhmimad ilma põhjuseta — kaks eri juttu ühe laua peal.
+   Loorikiht `.gc-haze` ise jääb alles, sest kaardi hover kustutab teda
+   (`background: transparent`) ja karussellis on ta niikuinii 0. */
+/* SIIN OLI ASTME ESILETÕST (25.07–03.08) ja siia teda tagasi ei tule.
+   `.gc-tier[data-focus="1"]` kasvatas valitud rea suuremaks ja
+   `.gc-tier[data-dimmed="1"]` tuhmistas ülejäänud; mõlemat juhtis
+   GlassCarouseli `activeZone` (hiir rea kohal VÕI doki silt).
 
-/* Hover = fookus ilma klikita. Seda EI tehta siin CSS-i :has'iga, vaid
-   sama olekuraja kaudu mis klikk (GlassCarousel hoverZone): dokk peab
-   näitama, MILLINE rida on käe all (omanik 25.07), ja seda ei saa CSS
-   naaberpuust välja lugeda. Üks allikas → aste ja doki silt ei saa
-   põhimõtteliselt eri asja näidata. */
+   Omanik 03.08: "terve rida tuleb suureks ja fookusesse, tahan seda, et
+   ainult see kaart tuleb, millel on hiire hover." Ühe kaardi otsimine
+   liigutas tervet maastikku ja silm pidi iga hiireliigutuse järel uuesti
+   kohanema.
+
+   Nüüd liigub ainult see, mille peal käsi on — kaart ise
+   (`.gc[data-desk="1"] .gc-card:hover`, allpool). Astmete PUHKESÜGAVUS
+   (`data-d` → udu + Z-nihe) jääb: ta kannab tähendust (lähim aste =
+   vahetuim suhe), mitte tähelepanu. */
 
 /* Astme nimi elab LAUAL oma rea kõrval ja taandub koos temaga — ta ei
    ole kroom ekraani peal, vaid silt ruumis.
@@ -456,9 +455,6 @@
   letter-spacing: 0.1em;
 }
 
-.gc-tier[data-focus="1"] .gc-tier-name {
-  color: var(--room-text);
-}
 
 /* PEEGEL. Rida on flex-rühma keskel ainult siis, kui tal on mõlemal pool
    võrdne veerg — muidu tsentreeritakse [nimi + rida] koos ja rida seisab
@@ -667,9 +663,17 @@ html[data-reduce-motion="1"] .gc-item {
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
     scale(var(--tilt-scale, 1));
   transform-style: preserve-3d;
-  /* Sisse kiiresti (järgneb kursorile), välja pehmelt (vedru-tunne
-     ilma vedrumootorita — motion'i springi siia ei ole vaja). */
-  transition: transform 220ms var(--ease-soft);
+  /* KALDE TEMPO (omanik 03.08: "karussellis tahan, et kaardid reageeriks
+     hiirele aeglasemalt"). 220 → 420 ms.
+
+     See number ei ole tavaline üleminek, vaid MAHAJÄÄMUS: CardTilt kirjutab
+     `--tilt-*` iga hiirekaadri peale, seega kaart jõuab kursorile järele
+     alles selle aja pärast ja annab käele aeglaselt järele, mitte ei nõksa
+     temaga kaasa. Ülemine piir on olemas — kui kaart jääb kursorist nii
+     kaugele maha, et ta enam ei paista sama liigutuse osana, loeb ta
+     viivitusena, mitte raskusena. 420 ms istub sügavuslaua oma 380 ms
+     kõrval, nii et kaks pinda ei reageeri erineva iseloomuga. */
+  transition: transform 420ms var(--ease-soft);
 }
 @media (prefers-reduced-motion: reduce) {
   .gc-card {

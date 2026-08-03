@@ -4,6 +4,9 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { ORGANIZATION_UNIT_TYPES } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -86,14 +89,14 @@ export default function OrgStructureClient({ context, initialUnits }) {
       </div>
 
       {canEdit ? (
-        <form className="ow-card" onSubmit={addUnit}>
+        <Form className="ow-card" onSubmit={addUnit}>
           <h2 className="ow-title" style={{ fontSize: "1rem" }}>
             {t("org.structure.add")}
           </h2>
           <div className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.structure.name")}</span>
-              <input
+              <Input
                 required
                 value={name}
                 onChange={(event) => setName(event.target.value)}
@@ -102,30 +105,29 @@ export default function OrgStructureClient({ context, initialUnits }) {
             </label>
             <label>
               <span className="ow-meta__term">{t("org.structure.type")}</span>
-              <select value={type} onChange={(event) => setType(event.target.value)} style={{ width: "100%" }}>
-                {ORGANIZATION_UNIT_TYPES.map((unitType) => (
-                  <option key={unitType} value={unitType}>
-                    {t(`org.unitType.${unitType}`)}
-                  </option>
-                ))}
-              </select>
+              <Dropdown
+                value={type}
+                onChange={setType}
+                ariaLabel={t("org.structure.type")}
+                options={ORGANIZATION_UNIT_TYPES.map((unitType) => ({
+                  value: unitType,
+                  label: t(`org.unitType.${unitType}`)
+                }))}
+              />
             </label>
             <label>
               <span className="ow-meta__term">{t("org.structure.parent")}</span>
-              <select
+              <Dropdown
                 value={parentUnitId}
-                onChange={(event) => setParentUnitId(event.target.value)}
-                style={{ width: "100%" }}
-              >
-                <option value="">{t("org.structure.noParent")}</option>
-                {units
-                  .filter((unit) => unit.depth < 3)
-                  .map((unit) => (
-                    <option key={unit.id} value={unit.id}>
-                      {unit.name}
-                    </option>
-                  ))}
-              </select>
+                onChange={setParentUnitId}
+                ariaLabel={t("org.structure.parent")}
+                options={[
+                  { value: "", label: t("org.structure.noParent") },
+                  ...units
+                    .filter((unit) => unit.depth < 3)
+                    .map((unit) => ({ value: unit.id, label: unit.name }))
+                ]}
+              />
             </label>
           </div>
           <div className="ow-actions">
@@ -133,7 +135,7 @@ export default function OrgStructureClient({ context, initialUnits }) {
               {t("org.structure.add")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
 
       {error ? (

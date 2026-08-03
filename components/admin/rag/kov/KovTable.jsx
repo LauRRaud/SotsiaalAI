@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import RagRowMenu from "../RagRowMenu";
 import { formatDateTime } from "../ragAdminShared";
 
@@ -157,8 +158,8 @@ export default function KovTable({
         <thead>
           <tr>
             <th>
-              <input
-                type="checkbox"
+              <Checkbox
+                bare
                 checked={allVisibleSelected}
                 onChange={() => (allVisibleSelected ? onClearSelected() : onSelectAllVisible())}
                 aria-label={et ? "Vali kõik nähtavad" : "Select all visible"}
@@ -198,10 +199,10 @@ export default function KovTable({
                 onClick={() => onSelect(row.slug)}
               >
                 <td>
-                  <input
-                    type="checkbox"
+                  <Checkbox
+                    bare
                     checked={isSelected}
-                    onChange={event => stopEvent(event, () => onToggleSelected(row.slug))}
+                    onChange={(_checked, event) => stopEvent(event, () => onToggleSelected(row.slug))}
                     aria-label={`${et ? "Vali" : "Select"} ${row.displayName}`}
                   />
                 </td>

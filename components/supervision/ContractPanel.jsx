@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Form from "@/components/ui/Form";
 import styles from "./SupervisionPage.module.css";
 import { isConflict, supervisionMessage, supervisionRequest } from "./supervisionClient";
 
@@ -148,7 +149,7 @@ export default function ContractPanel({ process, onReload, onConflict }) {
       ) : null}
 
       {canManage ? (
-        <form className={styles.form} onSubmit={createVersion}>
+        <Form className={styles.form} onSubmit={createVersion}>
           <label>
             {t("supervision.contract.bodyLabel")}
             <textarea
@@ -163,7 +164,7 @@ export default function ContractPanel({ process, onReload, onConflict }) {
               {t("supervision.contract.createVersion")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
 
       <div className={styles.sectionHeading}>
@@ -195,7 +196,7 @@ export default function ContractPanel({ process, onReload, onConflict }) {
       ) : null}
 
       {canInvite ? (
-        <form className={styles.form} onSubmit={invite}>
+        <Form className={styles.form} onSubmit={invite}>
           <label>
             {t("supervision.contract.inviteLabel")}
             <Input
@@ -209,7 +210,7 @@ export default function ContractPanel({ process, onReload, onConflict }) {
               {t("supervision.contract.invite")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
     </section>
   );

@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
 const MEETING_SUMMARY_SHARE_ROLES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
@@ -99,25 +101,19 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
         <div>
           <label>
             <span>{t("documents.meeting_summary_share.room_label", "Ruum")}</span>
-            <select value={selectedRoomId} onChange={(event) => setSelectedRoomId(event.target.value)}>
-              <option value="" disabled>
-                {t("documents.meeting_summary_share.select_room", "Vali ühine ruum")}
-              </option>
-              {rooms.map((room) => (
-                <option key={room.id} value={room.id}>
-                  {room.title || room.id}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={requestApproval}
-              onChange={(event) => setRequestApproval(event.target.checked)}
+            <Dropdown
+              value={selectedRoomId}
+              onChange={setSelectedRoomId}
+              ariaLabel={t("documents.meeting_summary_share.room_label", "Ruum")}
+              placeholder={t("documents.meeting_summary_share.select_room", "Vali ühine ruum")}
+              options={rooms.map((room) => ({ value: room.id, label: room.title || room.id }))}
             />
-            <span>{t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}</span>
           </label>
+          <Checkbox
+            checked={requestApproval}
+            onChange={setRequestApproval}
+            label={t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}
+          />
           <Button
             type="button"
             size="sm"

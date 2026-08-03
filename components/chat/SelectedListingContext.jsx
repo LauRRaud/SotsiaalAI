@@ -7,6 +7,7 @@ import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Modal from "@/components/ui/Modal";
 import Panel from "@/components/ui/Panel";
+import Input from "@/components/ui/Input";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { getHelpUiText } from "./helpUiText";
 
@@ -125,7 +126,7 @@ function TextField({ label, value, onChange, placeholder = "" }) {
   return (
     <label>
       <FieldLabel>{label}</FieldLabel>
-      <input
+      <Input
         value={value}
         onChange={(event) => onChange?.(event.target.value)}
         placeholder={placeholder}

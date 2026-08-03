@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 
@@ -270,18 +274,18 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
               ))}
               {canWorkFollowUp ? (
                 <div className="ccp-followup-actions">
-                  <form onSubmit={submitFollowUp}>
+                  <Form onSubmit={submitFollowUp}>
                     <h3>{m(t, "completed_cases.follow_up.do_now", "Tee järelvaade")}</h3>
                     <label>{m(t, "completed_cases.follow_up.what_done", "Mida tegelikult tehti")}<textarea required rows={3} value={followUp.whatWasDone} onChange={(event) => setFollowUp((current) => ({ ...current, whatWasDone: event.target.value }))} /></label>
                     <label>{m(t, "completed_cases.follow_up.what_changed", "Mis muutus või ei muutunud")}<textarea rows={3} value={followUp.whatChanged} onChange={(event) => setFollowUp((current) => ({ ...current, whatChanged: event.target.value }))} /></label>
                     <label>{m(t, "completed_cases.follow_up.learning", "Mida sellest õppisin")}<textarea required rows={3} value={followUp.learning} onChange={(event) => setFollowUp((current) => ({ ...current, learning: event.target.value }))} /></label>
                     <button type="submit" data-variant="primary" disabled={busy}>{m(t, "completed_cases.actions.confirm_follow_up", "Kinnita järelvaade")}</button>
-                  </form>
-                  <form onSubmit={reschedule}>
+                  </Form>
+                  <Form onSubmit={reschedule}>
                     <h3>{m(t, "completed_cases.follow_up.reschedule", "Määra uus aeg")}</h3>
-                    <label>{m(t, "completed_cases.labels.time", "Kuupäev või sündmus")}<input required value={scheduleLabel} onChange={(event) => setScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
+                    <label>{m(t, "completed_cases.labels.time", "Kuupäev või sündmus")}<Input required value={scheduleLabel} onChange={(event) => setScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.reschedule", "Määra uus aeg")}</button>
-                  </form>
+                  </Form>
                 </div>
               ) : null}
               {isOwner && item.lifecycleStatus === "DECISION_PENDING" ? (
@@ -289,19 +293,19 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                   <h3>{m(t, "completed_cases.decision.title", "Jätkuotsus")}</h3>
                   <p>{m(t, "completed_cases.decision.lead", "Järelvaade on tehtud. Vali professionaalne järgmine olek — see ei hinda juhtumi edukust.")}</p>
                   <button type="button" data-variant disabled={busy} onClick={() => decide("practice_candidate")}>{m(t, "completed_cases.actions.create_practice", "Loo privaatne praktikakandidaat")}</button>
-                  <form onSubmit={(event) => { event.preventDefault(); decide("continue", { newQuestion }); }}>
+                  <Form onSubmit={(event) => { event.preventDefault(); decide("continue", { newQuestion }); }}>
                     <label>{m(t, "completed_cases.decision.new_question", "Uus üldistatud küsimus")}<textarea required rows={2} value={newQuestion} onChange={(event) => setNewQuestion(event.target.value)} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.create_continuation", "Loo seotud Teemaseeme")}</button>
-                  </form>
-                  <form onSubmit={(event) => { event.preventDefault(); decide("new_follow_up", { scheduleLabel: decisionScheduleLabel }); }}>
-                    <label>{m(t, "completed_cases.decision.new_follow_up_time", "Uue järelvaate kuupäev või sündmus")}<input required value={decisionScheduleLabel} onChange={(event) => setDecisionScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
+                  </Form>
+                  <Form onSubmit={(event) => { event.preventDefault(); decide("new_follow_up", { scheduleLabel: decisionScheduleLabel }); }}>
+                    <label>{m(t, "completed_cases.decision.new_follow_up_time", "Uue järelvaate kuupäev või sündmus")}<Input required value={decisionScheduleLabel} onChange={(event) => setDecisionScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.new_follow_up", "Määra uus järelvaade")}</button>
-                  </form>
-                  <form onSubmit={(event) => { event.preventDefault(); decide("close", { reason: closeReason }); }}>
+                  </Form>
+                  <Form onSubmit={(event) => { event.preventDefault(); decide("close", { reason: closeReason }); }}>
                     <label>{m(t, "completed_cases.decision.close_reason", "Sulgemise professionaalne põhjendus")}<textarea required rows={3} value={closeReason} onChange={(event) => setCloseReason(event.target.value)} /></label>
-                    <label className="ccp-confirm-check"><input type="checkbox" required checked={closeConfirmed} onChange={(event) => setCloseConfirmed(event.target.checked)} />{m(t, "completed_cases.decision.close_confirm", "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus.")}</label>
+                    <label className="ccp-confirm-check"><Checkbox bare required checked={closeConfirmed} onChange={setCloseConfirmed} />{m(t, "completed_cases.decision.close_confirm", "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus.")}</label>
                     <button type="submit" data-variant="primary" disabled={busy || !closeConfirmed || !closeReason.trim()}>{m(t, "completed_cases.actions.close_topic", "Sulge teema")}</button>
-                  </form>
+                  </Form>
                 </section>
               ) : null}
             </div>
@@ -321,7 +325,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
               <section><h3>{m(t, "completed_cases.data.package", "Kovisioonipakk")}</h3><p>{item.package?.contentVisible ? m(t, "completed_cases.package.visible_owner", "Selle paki sisu on nähtav ainult sulle.") : m(t, "completed_cases.package.hidden_other", "Näed paki tehnilist olekut, mitte selle sisu.")}</p>{item.package?.content ? <dl>{Object.entries(item.package.content).filter(([, value]) => typeof value === "string").map(([key, value]) => <div key={key}><dt>{key.replaceAll("_", " ")}</dt><dd>{value}</dd></div>)}</dl> : null}</section>
               {isOwner && ["CLOSED", "CONTINUATION_PENDING"].includes(item.lifecycleStatus) ? (
                 <section className="ccp-archive-confirm">
-                  <label className="ccp-confirm-check"><input type="checkbox" checked={archiveConfirmed} onChange={(event) => setArchiveConfirmed(event.target.checked)} />{m(t, "completed_cases.data.archive_confirm", "Kinnitan, et soovin selle lõpetatud juhtumi aktiivvaatest arhiveerida.")}</label>
+                  <label className="ccp-confirm-check"><Checkbox bare checked={archiveConfirmed} onChange={setArchiveConfirmed} />{m(t, "completed_cases.data.archive_confirm", "Kinnitan, et soovin selle lõpetatud juhtumi aktiivvaatest arhiveerida.")}</label>
                   <button type="button" data-variant="quiet" disabled={busy || !archiveConfirmed} onClick={() => onMutate("archive", "POST", {})}>{m(t, "completed_cases.actions.archive", "Arhiveeri")}</button>
                 </section>
               ) : null}
@@ -589,14 +593,19 @@ export default function CompletedCasesPage({ owner = {} }) {
         <div className="ccp-layout">
           <section className="ccp-content">
             <div className="ccp-toolbar">
-              <label className="ccp-search"><span aria-hidden="true">⌕</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} aria-label={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} placeholder={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} /></label>
-              <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label={m(t, "completed_cases.sort.title", "Sortimine")}>
-                <option value="attention">{m(t, "completed_cases.sort.attention", "Tähelepanu vajavad ees")}</option>
-                <option value="follow_up">{m(t, "completed_cases.sort.follow_up", "Lähim järelvaade")}</option>
-                <option value="newest">{m(t, "completed_cases.sort.newest", "Uusim Kovisioon")}</option>
-                <option value="oldest">{m(t, "completed_cases.sort.oldest", "Vanim Kovisioon")}</option>
-                <option value="title">{m(t, "completed_cases.sort.title_alpha", "Pealkiri")}</option>
-              </select>
+              <label className="ccp-search"><span aria-hidden="true">⌕</span><Input type="search" value={query} onChange={(event) => setQuery(event.target.value)} aria-label={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} placeholder={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} /></label>
+              <Dropdown
+                value={sort}
+                onChange={setSort}
+                ariaLabel={m(t, "completed_cases.sort.title", "Sortimine")}
+                options={[
+                  { value: "attention", label: m(t, "completed_cases.sort.attention", "Tähelepanu vajavad ees") },
+                  { value: "follow_up", label: m(t, "completed_cases.sort.follow_up", "Lähim järelvaade") },
+                  { value: "newest", label: m(t, "completed_cases.sort.newest", "Uusim Kovisioon") },
+                  { value: "oldest", label: m(t, "completed_cases.sort.oldest", "Vanim Kovisioon") },
+                  { value: "title", label: m(t, "completed_cases.sort.title_alpha", "Pealkiri") }
+                ]}
+              />
               <div className="ccp-view-switch" aria-label={m(t, "completed_cases.view.title", "Vaade")}><button type="button" data-variant aria-pressed={view === "cards"} onClick={() => setView("cards")}>▦ {m(t, "completed_cases.view.cards", "Kaardivaade")}</button><button type="button" data-variant aria-pressed={view === "list"} onClick={() => setView("list")}>☷ {m(t, "completed_cases.view.list", "Nimekirjavaade")}</button></div>
             </div>
             <div className="ccp-filters" aria-label={m(t, "completed_cases.filters.title", "Olekufiltrid")}>

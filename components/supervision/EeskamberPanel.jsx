@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import PrivacyBadge from "./PrivacyBadge";
 import styles from "./SupervisionPage.module.css";
@@ -252,20 +254,21 @@ export default function EeskamberPanel({ process }) {
         ) : null}
 
         {canWrite ? (
-          <form className={styles.form} onSubmit={create}>
+          <Form className={styles.form} onSubmit={create}>
             <div className={styles.sectionHeading}>
               <h3>{t("supervision.eeskamber.new")}</h3>
             </div>
             <label>
               {t("supervision.eeskamber.kindLabel")}
-              <select
-                onChange={(event) => setDraft((prev) => ({ ...prev, kind: event.target.value }))}
+              <Dropdown
+                onChange={(next) => setDraft((prev) => ({ ...prev, kind: next }))}
                 value={draft.kind}
-              >
-                {KINDS.map((kind) => (
-                  <option key={kind} value={kind}>{t(`supervision.eeskamber.kind_${kind}`)}</option>
-                ))}
-              </select>
+                ariaLabel={t("supervision.eeskamber.kindLabel")}
+                options={KINDS.map((kind) => ({
+                  value: kind,
+                  label: t(`supervision.eeskamber.kind_${kind}`)
+                }))}
+              />
             </label>
             <label>
               {t("supervision.eeskamber.titleLabel")}
@@ -288,7 +291,7 @@ export default function EeskamberPanel({ process }) {
                 {busy === "create" ? t("supervision.common.saving") : t("supervision.common.save")}
               </Button>
             </div>
-          </form>
+          </Form>
         ) : null}
       </div>
     </section>

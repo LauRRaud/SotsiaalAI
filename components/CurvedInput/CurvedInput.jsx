@@ -1,5 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import './CurvedInput.css';
+import Form from "@/components/ui/Form";
 
 const DEG = 180 / Math.PI;
 
@@ -477,12 +478,13 @@ const CurvedInput = ({
   }
 
   return (
-    <form
+    <Form
       ref={rootRef}
       className={`curved-input ${focused ? 'curved-input--focused' : ''} ${className}`.trim()}
       style={{ width: typeof width === 'number' ? `${width}px` : width, ...style }}
       onSubmit={handleSubmit}
       noValidate
+      validate={false}
     >
       {content}
       <input
@@ -503,7 +505,7 @@ const CurvedInput = ({
         autoCorrect="off"
         spellCheck={false}
       />
-    </form>
+    </Form>
   );
 };
 

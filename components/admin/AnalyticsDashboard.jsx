@@ -10,6 +10,9 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
+import Checkbox from "@/components/ui/Checkbox";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 
 // Kasutajate tabeli lehekülje suurus = serveri MAX_LIMIT. Kui kokku on rohkem
@@ -3379,8 +3382,8 @@ export default function AnalyticsDashboard() {
             </div>
             {/* Otsing elab SAMAL real lehekülgede loenduri ja nooltega:
                 eraldi real täitis ta 42% laiusest ja ülejäänu oli tühjus. */}
-            <form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
-              <input
+            <Form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
+              <Input
                 className={inputClassName}
                 value={usersQueryDraft}
                 onChange={event => setUsersQueryDraft(event.target.value)}
@@ -3400,7 +3403,7 @@ export default function AnalyticsDashboard() {
               >
                 {t("buttons.cancel", "Clear")}
               </Button>
-            </form>
+            </Form>
             <div className={actionMetaClassName}>
               <Button
                 size="sm"
@@ -3525,7 +3528,7 @@ export default function AnalyticsDashboard() {
                     "Type exactly: {confirmation}"
                   )}
                 </p>
-                <input
+                <Input
                   className={inputClassName}
                   value={bulkDeleteConfirmation}
                   onChange={event => setBulkDeleteConfirmation(event.target.value)}
@@ -3574,7 +3577,7 @@ export default function AnalyticsDashboard() {
                 <label className={labelClassName} htmlFor="analytics-email-subject">
                   {t("admin.analytics.users.actions.email_subject", "Email subject")}
                 </label>
-                <input
+                <Input
                   id="analytics-email-subject"
                   className={inputClassName}
                   value={bulkEmailSubject}
@@ -3665,7 +3668,7 @@ export default function AnalyticsDashboard() {
                     "Type exactly: {confirmation}"
                   )}
                 </p>
-                <input
+                <Input
                   className={inputClassName}
                   value={bulkEmailConfirmation}
                   onChange={event => setBulkEmailConfirmation(event.target.value)}
@@ -3700,8 +3703,8 @@ export default function AnalyticsDashboard() {
                 <thead>
                   <tr>
                     <th className={tableHeadCellClassName}>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         className={checkboxClassName}
                         checked={allVisibleSelected}
                         onChange={toggleAllVisibleUsers}
@@ -3728,8 +3731,8 @@ export default function AnalyticsDashboard() {
                     visibleUserRows.map(row => (
                       <tr key={row.userId}>
                         <td className={tableCellClassName}>
-                          <input
-                            type="checkbox"
+                          <Checkbox
+                            bare
                             className={checkboxClassName}
                             checked={selectedUserIds.includes(row.userId)}
                             onChange={() => toggleUserSelection(row.userId)}
@@ -3853,8 +3856,8 @@ export default function AnalyticsDashboard() {
                 <div key={row.userId} className={mobileRowCardClassName}>
                   <div className={mobileRowHeadClassName}>
                     <div>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         className={checkboxClassName}
                         checked={selectedUserIds.includes(row.userId)}
                         onChange={() => toggleUserSelection(row.userId)}
@@ -4508,7 +4511,7 @@ export default function AnalyticsDashboard() {
                   "Type exactly: {confirmation}"
                 )}
               </p>
-              <input
+              <Input
                 className={inputClassName}
                 value={logsConfirmation}
                 onChange={event => setLogsConfirmation(event.target.value)}
@@ -4686,7 +4689,7 @@ export default function AnalyticsDashboard() {
                   "Type exactly: {confirmation}"
                 )}
               </p>
-              <input
+              <Input
                 className={inputClassName}
                 value={resetConfirmation}
                 onChange={event => setResetConfirmation(event.target.value)}

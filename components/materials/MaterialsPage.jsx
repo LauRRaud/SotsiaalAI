@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Textarea from "@/components/ui/Textarea"
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
 
@@ -113,7 +114,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
           ) : null}
 
           <section>
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <input
                 ref={fileInputRef}
                 type="file"
@@ -169,7 +170,7 @@ export default function MaterialsPage({ locale = "et", embedded = false, onBack 
                   {submitting ? t("materials_page.submitting") : t("materials_page.submit")}
                 </Button>
               </div>
-            </form>
+            </Form>
           </section>
     </div>
   )

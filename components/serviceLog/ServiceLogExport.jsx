@@ -15,6 +15,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 
 const TEMPLATES = [
@@ -124,11 +125,11 @@ export default function ServiceLogExport({ month, referrals = [], onExported }) 
       ) : null}
 
       <label className="sl-check">
-        <input
+        <Checkbox
+          bare
           name="includeDrafts"
-          type="checkbox"
           checked={includeDrafts}
-          onChange={(event) => setIncludeDrafts(event.target.checked)}
+          onChange={setIncludeDrafts}
         />
         <span>{t("service_log.export.include_drafts", "")}</span>
       </label>

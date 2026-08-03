@@ -7,12 +7,14 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole"
 import { useI18n } from "@/components/i18n/I18nProvider"
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import Button from "@/components/ui/Button"
+import Checkbox from "@/components/ui/Checkbox"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
 import OptionCard from "@/components/ui/OptionCard"
+import Form from "@/components/ui/Form";
 import { ARTIFACT_LIST_LIMIT_ALL, TEMPLATE_FOR_VALUES } from "@/lib/documents/constants"
 import {
   describeProvenance,
@@ -585,10 +587,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
 
         {(item.type === "source" || item.type === "transcript") && !item.readOnly ? (
           <label className="documents-item__ragtoggle">
-            <input
-              type="checkbox"
+            <Checkbox
+              bare
               checked={Boolean(raw.agentAllowed)}
-              onChange={(event) => void patchDocument(item.id, { agentAllowed: event.target.checked })}
+              onChange={(checked) => void patchDocument(item.id, { agentAllowed: checked })}
             />
             <span>{t("documents.workspace.rag_toggle")}</span>
           </label>
@@ -655,7 +657,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
           </div>
 
           {uploadOpen ? (
-            <form onSubmit={submitUpload} className="documents-upload">
+            <Form onSubmit={submitUpload} className="documents-upload">
               <div className="documents-upload__row">
                 <label>
                   <span>{t("documents.form.title_label", "Pealkiri")}</span>
@@ -718,7 +720,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
                 </Button>
                 <Button type="button" size="sm" variant="linkBrand" onClick={() => setUploadOpen(false)}>{t("common.close")}</Button>
               </div>
-            </form>
+            </Form>
           ) : null}
         </Panel>
 

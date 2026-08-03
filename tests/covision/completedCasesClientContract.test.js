@@ -48,7 +48,10 @@ test("owner-package content is conditional and all important states have text la
 
 test("desktop toolbar reserves enough width for both complete view labels", () => {
   assert.match(css, /\.ccp-toolbar\s*\{[\s\S]*flex-wrap:\s*wrap/);
-  assert.match(css, /\.ccp-toolbar select\s*\{[\s\S]*width:\s*13rem[\s\S]*max-width:\s*100%/);
+  /* Sortimisvalik on 03.08 alates platvormi Dropdown (.dd-trigger), mitte
+     natiivne <select>. Laiuse kontrakt kehtib EDASI ja peab katma MÕLEMAT
+     — vana selektor jäi lehele alles, uus lisandus tema kõrvale. */
+  assert.match(css, /\.ccp-toolbar select,\s*\.ccp-toolbar \.dd-trigger\s*\{[\s\S]*width:\s*13rem[\s\S]*max-width:\s*100%/);
   assert.match(css, /\.ccp-view-switch\s*\{[^}]*flex:\s*0 0 auto/);
   assert.match(css, /\.ccp-view-switch button\s*\{[^}]*white-space:\s*nowrap/);
 });

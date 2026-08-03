@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildHardCaseRecord } from "@/lib/wellbeing/hardCase";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -242,22 +243,18 @@ export default function HardCaseWorkflow({ onNavigate }) {
           {selectFields.slice(5).map((field) => (
             <SelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
           ))}
-          <label>
-            <span>{t("wellbeing.hard_case.do_not_carry_alone", "Juhtumit ei peaks üksi kandma")}</span>
-            <input
-              type="checkbox"
-              checked={fields.shouldNotCarryAlone}
-              onChange={(event) => updateField("shouldNotCarryAlone", event.target.checked)}
-            />
-          </label>
-          <label>
-            <span>{t("wellbeing.hard_case.covision_need", "Vajan kovisiooni sisendit")}</span>
-            <input
-              type="checkbox"
-              checked={fields.covisionNeed}
-              onChange={(event) => updateField("covisionNeed", event.target.checked)}
-            />
-          </label>
+          <Checkbox
+            labelPosition="before"
+            label={t("wellbeing.hard_case.do_not_carry_alone", "Juhtumit ei peaks üksi kandma")}
+            checked={fields.shouldNotCarryAlone}
+            onChange={(checked) => updateField("shouldNotCarryAlone", checked)}
+          />
+          <Checkbox
+            labelPosition="before"
+            label={t("wellbeing.hard_case.covision_need", "Vajan kovisiooni sisendit")}
+            checked={fields.covisionNeed}
+            onChange={(checked) => updateField("covisionNeed", checked)}
+          />
         </fieldset>
       </div>
 
@@ -276,14 +273,12 @@ export default function HardCaseWorkflow({ onNavigate }) {
         <fieldset>
           <legend>{t("wellbeing.hard_case.next_24h_needs", "Järgmise 24h vajadused")}</legend>
           {next24hOptions.map(([value, label]) => (
-            <label key={value}>
-              <input
-                type="checkbox"
-                checked={fields.next24hNeeds.includes(value)}
-                onChange={() => toggleNeed(value)}
-              />
-              {label}
-            </label>
+            <Checkbox
+              key={value}
+              checked={fields.next24hNeeds.includes(value)}
+              onChange={() => toggleNeed(value)}
+              label={label}
+            />
           ))}
         </fieldset>
       </section>

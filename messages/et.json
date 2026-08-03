@@ -8820,5 +8820,26 @@
     "previous": "Eelmine",
     "next": "Järgmine",
     "required": "Kuupäev on vajalik."
+  },
+  "dropdown": {
+    "empty": "Valikuid ei ole.",
+    "required": "Tee valik."
+  },
+  "forms": {
+    "error": {
+      "field": "{label}: {message}",
+      "required": "See väli on kohustuslik.",
+      "email": "Sisesta e-posti aadress kujul nimi@näide.ee.",
+      "url": "Sisesta veebiaadress, mis algab https:// või http://.",
+      "tel": "Sisesta telefoninumber.",
+      "pattern": "Väärtus ei ole õiges vormingus.",
+      "tooShort": "Liiga lühike — vähemalt {min} märki.",
+      "tooLong": "Liiga pikk — kuni {max} märki.",
+      "rangeUnderflow": "Väärtus peab olema vähemalt {min}.",
+      "rangeOverflow": "Väärtus võib olla kuni {max}.",
+      "step": "Vali lubatud samm.",
+      "badInput": "Sisestust ei saa lugeda.",
+      "invalid": "Väärtus ei sobi."
+    }
   }
 }

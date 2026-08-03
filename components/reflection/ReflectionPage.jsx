@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import {
@@ -336,33 +337,29 @@ export default function ReflectionPage() {
 
             <label>
               <span>{t("reflection.field.supportNeed")}</span>
-              <select
-                onChange={(event) => updateField("supportNeed", event.target.value)}
+              <Dropdown
+                onChange={(next) => updateField("supportNeed", next)}
                 value={form.supportNeed}
-              >
-                <option value="">{t("reflection.form.not_set")}</option>
-                {SUPPORT_NEEDS.map((value) => (
-                  <option key={value} value={value}>
-                    {t(supportNeedLabelKey(value))}
-                  </option>
-                ))}
-              </select>
+                ariaLabel={t("reflection.field.supportNeed")}
+                options={[
+                  { value: "", label: t("reflection.form.not_set") },
+                  ...SUPPORT_NEEDS.map((value) => ({ value, label: t(supportNeedLabelKey(value)) }))
+                ]}
+              />
               <span className={styles.fieldHint}>{t("reflection.field.supportNeed_hint")}</span>
             </label>
 
             <label>
               <span>{t("reflection.field.interimOutcome")}</span>
-              <select
-                onChange={(event) => updateField("interimOutcome", event.target.value)}
+              <Dropdown
+                onChange={(next) => updateField("interimOutcome", next)}
                 value={form.interimOutcome}
-              >
-                <option value="">{t("reflection.form.not_set")}</option>
-                {INTERIM_OUTCOMES.map((value) => (
-                  <option key={value} value={value}>
-                    {t(interimOutcomeLabelKey(value))}
-                  </option>
-                ))}
-              </select>
+                ariaLabel={t("reflection.field.interimOutcome")}
+                options={[
+                  { value: "", label: t("reflection.form.not_set") },
+                  ...INTERIM_OUTCOMES.map((value) => ({ value, label: t(interimOutcomeLabelKey(value)) }))
+                ]}
+              />
               <span className={styles.fieldHint}>{t("reflection.field.interimOutcome_hint")}</span>
             </label>
 

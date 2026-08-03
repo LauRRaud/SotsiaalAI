@@ -12,6 +12,7 @@ import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import Input from "@/components/ui/Input";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
+import Form from "@/components/ui/Form";
 const MODAL_FOCUSABLE_SELECTOR = [
   "a[href]",
   "button:not([disabled])",
@@ -1050,14 +1051,14 @@ export default function LoginModal({
             </div>
           </div>
 
-        {!isOtpStep && <form onSubmit={e => {
+        {!isOtpStep && <Form onSubmit={e => {
         e.preventDefault();
         submitPinStep();
       }} autoComplete="off">
             <div id={emailHintIdRef.current} className="sr-only">
               {t("auth.email_icon_hint")}
             </div>
-            <input aria-label={t("profile.email")} name="username" type="email" autoComplete="username" value={currentEmailValue} readOnly tabIndex={-1} className="sr-only" />
+            <Input aria-label={t("profile.email")} name="username" type="email" autoComplete="username" value={currentEmailValue} readOnly tabIndex={-1} className="sr-only" />
 
             <div>
               {<label className="login-email-label">
@@ -1086,10 +1087,10 @@ export default function LoginModal({
             </div>
 
             {}
-            {!isMobile && <input aria-label={t("auth.pin_placeholder")} ref={hiddenInputRef} value={pinValue} inputMode="numeric" pattern={`\\d{${PIN_MIN},${PIN_MAX}}`} maxLength={PIN_MAX} style={{ position: "fixed", left: "-10000px", top: 0, height: 1, width: 1, opacity: 0, caretColor: "transparent" }} tabIndex={-1} type="password" autoComplete="current-password" onKeyDown={onHiddenKeyDown} onInput={handlePinInputChange} onChange={handlePinInputChange} aria-describedby={pinHintIdRef.current} aria-hidden="true" />}
+            {!isMobile && <Input aria-label={t("auth.pin_placeholder")} ref={hiddenInputRef} value={pinValue} inputMode="numeric" pattern={`\\d{${PIN_MIN},${PIN_MAX}}`} maxLength={PIN_MAX} style={{ position: "fixed", left: "-10000px", top: 0, height: 1, width: 1, opacity: 0, caretColor: "transparent" }} tabIndex={-1} type="password" autoComplete="current-password" onKeyDown={onHiddenKeyDown} onInput={handlePinInputChange} onChange={handlePinInputChange} aria-describedby={pinHintIdRef.current} aria-hidden="true" />}
 
             {}
-            {isMobile && <input ref={mobilePinInputRef} aria-label={t("auth.pin_placeholder")} value={pinValue} inputMode="numeric" pattern={`\\d{${PIN_MIN},${PIN_MAX}}`} maxLength={PIN_MAX} type="tel" autoComplete="off" enterKeyHint="go" tabIndex={-1} aria-hidden="true" onChange={handlePinInputChange} onInput={handlePinInputChange} onKeyDown={e => {
+            {isMobile && <Input ref={mobilePinInputRef} aria-label={t("auth.pin_placeholder")} value={pinValue} inputMode="numeric" pattern={`\\d{${PIN_MIN},${PIN_MAX}}`} maxLength={PIN_MAX} type="tel" autoComplete="off" enterKeyHint="go" tabIndex={-1} aria-hidden="true" onChange={handlePinInputChange} onInput={handlePinInputChange} onKeyDown={e => {
           if (e.key === "Enter") {
             e.preventDefault();
             suppressNativeBlurSubmitRef.current = true;
@@ -1265,9 +1266,9 @@ export default function LoginModal({
                 {t("auth.login.toggle_keypad")}
               </button>
             </div>
-          </form>}
+          </Form>}
 
-        {isOtpStep && <form className="login-otp-content" onSubmit={e => {
+        {isOtpStep && <Form className="login-otp-content" onSubmit={e => {
         e.preventDefault();
       }}>
             <div className="login-otp-copy">
@@ -1350,7 +1351,7 @@ export default function LoginModal({
                 </button>
               </div>
             </div>
-          </form>}
+          </Form>}
 
         {!isOtpStep ? (
           <div className="login-register-row">

@@ -18,6 +18,8 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import OptionCard from "@/components/ui/OptionCard";
 import RichText from "@/components/i18n/RichText";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 /* Sama nool mis ruumi ja ligipääsetavuse dokis — Tagasi on üks žest. */
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
@@ -796,7 +798,7 @@ export default function RegistreerimineBody({}) {
             {t("auth.register.email_question")}
           </label>
           <div className="rgf-controls">
-            <input
+            <Input
               type="email"
               id="email"
               name="email"
@@ -829,7 +831,7 @@ export default function RegistreerimineBody({}) {
             {t("auth.register.pin_question")}
           </label>
           <div className="rgf-controls">
-            <input
+            <Input
               type="text"
               id="pin"
               name="pin"
@@ -1036,16 +1038,23 @@ export default function RegistreerimineBody({}) {
       </p>
       {/* Vorm ON dolly: perspective nõuab, et plaanid oleksid tema
           OTSESED lapsed (vahekiht lamendaks 3D — flight-effect §3). */}
-      <form
+      <Form
         ref={dollyRef}
         className="rgf-dolly"
         onSubmit={handleFormSubmit}
         autoComplete="on"
         noValidate
+        /* validate={false} ON SIIN KOHUSTUSLIK, mitte maitse asi. Lennujaamad
+           elavad KÕIK korraga DOM-is (.rgf-plane on absoluutne, mitte
+           tingimuslik) — seega näeks Formi üldkontroll juba esimesel jaamal
+           kolmanda jaama tühja kohustuslikku välja, blokeeriks edasiliikumise
+           ja saadaks fookuse väljale, mida ekraanil ei ole. Lehe oma kontroll
+           teab, milline jaam parasjagu käes on. */
+        validate={false}
         aria-label={t("auth.register.title")}
       >
         {stations.map((key, i) => renderStation(key, i))}
-      </form>
+      </Form>
       {/* Dokk = ruumi kaardimenüü DNA (carousel.css .gc-shortcut-*):
           sama riba, täpid ja laienev caps-pill nagu avalehe menüüs.
           .rgf-dock annab ainult positsiooni ja oleku-nüansid. */}

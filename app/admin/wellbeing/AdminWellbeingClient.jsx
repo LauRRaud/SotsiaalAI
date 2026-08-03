@@ -4,6 +4,16 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
+
+/* Skoobi tasemed on serveri enda võtmed (`role_group` jne) ja neid näidatakse
+   admini vaates TEADLIKULT toorel kujul — see on tehniline vaade, kus silt
+   peab kattuma sellega, mida API tagastab. */
+const SCOPE_LEVELS = Object.freeze(["role_group", "organization", "municipality"]);
+const PILOT_SCOPE_TYPES = Object.freeze(["municipality", "organization", "role_group"]);
 
 function metricLabel(metricKey) {
   return String(metricKey || "")
@@ -201,27 +211,28 @@ export default function AdminWellbeingClient() {
         <div>
           <label>
             Rolligrupp
-            <input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder="nt child_protection" />
+            <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder="nt child_protection" />
           </label>
           <label>
             Töövoog
-            <input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
+            <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
             Algus
-            <input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
+            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
           </label>
           <label>
             Lõpp
-            <input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
           </label>
           <label>
             Tase
-            <select value={aggregationLevel} onChange={(event) => setAggregationLevel(event.target.value)}>
-              <option value="role_group">role_group</option>
-              <option value="organization">organization</option>
-              <option value="municipality">municipality</option>
-            </select>
+            <Dropdown
+              value={aggregationLevel}
+              onChange={setAggregationLevel}
+              ariaLabel="Tase"
+              options={SCOPE_LEVELS.map((value) => ({ value, label: value }))}
+            />
           </label>
         </div>
         <div>
@@ -245,56 +256,58 @@ export default function AdminWellbeingClient() {
           </Button>
         </div>
 
-        <form onSubmit={createPilotScope}>
+        <Form onSubmit={createPilotScope}>
           <div>
             <label>
               Nimi
-              <input value={pilotForm.name} onChange={(event) => updatePilotForm("name", event.target.value)} placeholder="nt Tartu KOV piloot" required />
+              <Input value={pilotForm.name} onChange={(event) => updatePilotForm("name", event.target.value)} placeholder="nt Tartu KOV piloot" required />
             </label>
             <label>
               Skoobi tüüp
-              <select value={pilotForm.scopeType} onChange={(event) => updatePilotForm("scopeType", event.target.value)}>
-                <option value="municipality">municipality</option>
-                <option value="organization">organization</option>
-                <option value="role_group">role_group</option>
-              </select>
+              <Dropdown
+                value={pilotForm.scopeType}
+                onChange={(next) => updatePilotForm("scopeType", next)}
+                ariaLabel="Skoobi tüüp"
+                options={PILOT_SCOPE_TYPES.map((value) => ({ value, label: value }))}
+              />
             </label>
             <label>
               KOV tunnus
-              <input value={pilotForm.municipalityId} onChange={(event) => updatePilotForm("municipalityId", event.target.value)} placeholder="nt tartu_linn" />
+              <Input value={pilotForm.municipalityId} onChange={(event) => updatePilotForm("municipalityId", event.target.value)} placeholder="nt tartu_linn" />
             </label>
             <label>
               Organisatsioon
-              <input value={pilotForm.organizationId} onChange={(event) => updatePilotForm("organizationId", event.target.value)} placeholder="organisatsiooni tunnus" />
+              <Input value={pilotForm.organizationId} onChange={(event) => updatePilotForm("organizationId", event.target.value)} placeholder="organisatsiooni tunnus" />
             </label>
           </div>
           <div>
             <label>
               Rolligrupid
-              <input value={pilotForm.roleGroups} onChange={(event) => updatePilotForm("roleGroups", event.target.value)} placeholder="child_protection, family_support" required />
+              <Input value={pilotForm.roleGroups} onChange={(event) => updatePilotForm("roleGroups", event.target.value)} placeholder="child_protection, family_support" required />
             </label>
             <label>
               Vaatajate e-postid
-              <input value={pilotForm.viewerEmails} onChange={(event) => updatePilotForm("viewerEmails", event.target.value)} placeholder="kov@example.test" />
+              <Input value={pilotForm.viewerEmails} onChange={(event) => updatePilotForm("viewerEmails", event.target.value)} placeholder="kov@example.test" />
             </label>
             <label>
               Miinimum
-              <input type="number" min="3" value={pilotForm.minimumGroupSize} onChange={(event) => updatePilotForm("minimumGroupSize", event.target.value)} />
+              <Input type="number" min="3" value={pilotForm.minimumGroupSize} onChange={(event) => updatePilotForm("minimumGroupSize", event.target.value)} />
             </label>
           </div>
           <div>
             <label>
               Algus
-              <input type="date" value={pilotForm.startsAt} onChange={(event) => updatePilotForm("startsAt", event.target.value)} />
+              <Input type="date" value={pilotForm.startsAt} onChange={(event) => updatePilotForm("startsAt", event.target.value)} />
             </label>
             <label>
               Lõpp
-              <input type="date" value={pilotForm.endsAt} onChange={(event) => updatePilotForm("endsAt", event.target.value)} />
+              <Input type="date" value={pilotForm.endsAt} onChange={(event) => updatePilotForm("endsAt", event.target.value)} />
             </label>
-            <label>
-              <input type="checkbox" checked={pilotForm.active} onChange={(event) => updatePilotForm("active", event.target.checked)} />
-              Aktiivne piloot
-            </label>
+            <Checkbox
+              checked={pilotForm.active}
+              onChange={(checked) => updatePilotForm("active", checked)}
+              label="Aktiivne piloot"
+            />
           </div>
           <div>
             <Button type="submit" variant="primary" disabled={pilotStatus === "saving"}>
@@ -302,24 +315,28 @@ export default function AdminWellbeingClient() {
             </Button>
             {pilotError ? <span>{pilotError}</span> : null}
           </div>
-        </form>
+        </Form>
 
-        <form onSubmit={addPilotViewer}>
+        <Form onSubmit={addPilotViewer}>
           <label>
             Piloot
-            <select value={selectedPilotScopeId} onChange={(event) => setSelectedPilotScopeId(event.target.value)}>
-              <option value="">Vali piloot</option>
-              {pilotScopes.map((scope) => <option key={scope.id} value={scope.id}>{scope.name}</option>)}
-            </select>
+            <Dropdown
+              value={selectedPilotScopeId}
+              onChange={setSelectedPilotScopeId}
+              ariaLabel="Piloot"
+              placeholder="Vali piloot"
+              emptyLabel="Pilootskoope ei ole"
+              options={pilotScopes.map((scope) => ({ value: scope.id, label: scope.name }))}
+            />
           </label>
           <label>
             Vaataja e-post
-            <input type="email" value={viewerEmail} onChange={(event) => setViewerEmail(event.target.value)} placeholder="kov@example.test" />
+            <Input type="email" value={viewerEmail} onChange={(event) => setViewerEmail(event.target.value)} placeholder="kov@example.test" />
           </label>
           <Button type="submit" variant="primary" disabled={!selectedPilotScopeId || !viewerEmail.trim() || pilotStatus === "saving"}>
             Lisa vaataja
           </Button>
-        </form>
+        </Form>
 
         <div>
           {pilotScopes.length > 0 ? pilotScopes.map((scope) => (

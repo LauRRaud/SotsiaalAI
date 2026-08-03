@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import Form from "@/components/ui/Form";
 import styles from "./SupervisionPage.module.css";
 import { isConflict, supervisionMessage, supervisionRequest } from "./supervisionClient";
 
@@ -173,7 +174,7 @@ export default function MeetingsPanel({ process, onReload, onConflict }) {
       ) : null}
 
       {canPlan ? (
-        <form className={styles.form} onSubmit={plan}>
+        <Form className={styles.form} onSubmit={plan}>
           <label>
             {t("supervision.meetings.plannedAt")}
             <Input
@@ -187,7 +188,7 @@ export default function MeetingsPanel({ process, onReload, onConflict }) {
               {t("supervision.meetings.plan")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
     </section>
   );

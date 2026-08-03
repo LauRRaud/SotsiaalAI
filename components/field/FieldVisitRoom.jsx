@@ -13,6 +13,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 import {
   FIELD_ITEM_STATE,
   FIELD_NOTE_KIND,
@@ -565,7 +568,7 @@ export default function FieldVisitRoom({ visitId }) {
                       <p className="fld-hint">{t("field.safety.explain")}</p>
                       <p className="fld-hint fld-hint--strong">{t("field.safety.notEmergency")}</p>
                       <label className="fld-label" htmlFor="fld-safety-deadline">{t("field.safety.deadline")}</label>
-                      <input
+                      <Input
                         id="fld-safety-deadline"
                         type="datetime-local"
                         className="fld-input"
@@ -573,7 +576,7 @@ export default function FieldVisitRoom({ visitId }) {
                         onChange={(event) => setSafetyDeadline(event.target.value)}
                       />
                       <label className="fld-label" htmlFor="fld-safety-email">{t("field.safety.contactEmail")}</label>
-                      <input
+                      <Input
                         id="fld-safety-email"
                         type="email"
                         className="fld-input"
@@ -582,7 +585,7 @@ export default function FieldVisitRoom({ visitId }) {
                         autoComplete="off"
                       />
                       <label className="fld-label" htmlFor="fld-safety-name">{t("field.safety.contactName")}</label>
-                      <input
+                      <Input
                         id="fld-safety-name"
                         className="fld-input"
                         value={safetyName}
@@ -644,16 +647,17 @@ export default function FieldVisitRoom({ visitId }) {
                   disabled={readOnly}
                 />
                 <label className="fld-label" htmlFor="fld-provenance">{t("field.note.provenance")}</label>
-                <select
+                <Dropdown
                   id="fld-provenance"
                   className="fld-input"
                   value={provenance}
-                  onChange={(event) => setProvenance(event.target.value)}
-                >
-                  {FIELD_PROVENANCES.filter((value) => value !== FIELD_PROVENANCE.AI_MUSTAND).map((value) => (
-                    <option key={value} value={value}>{t(`field.provenance.${value}`)}</option>
-                  ))}
-                </select>
+                  onChange={setProvenance}
+                  ariaLabel={t("field.note.provenance")}
+                  options={FIELD_PROVENANCES.filter((value) => value !== FIELD_PROVENANCE.AI_MUSTAND).map((value) => ({
+                    value,
+                    label: t(`field.provenance.${value}`)
+                  }))}
+                />
                 <Button fullWidth onClick={saveNote} disabled={readOnly || !noteBody.trim()}>
                   {t("field.note.save")}
                 </Button>
@@ -690,17 +694,19 @@ export default function FieldVisitRoom({ visitId }) {
               <div className="fld-consent">
                 <h2 className="fld-h2">{t("field.consent.title")}</h2>
                 <label className="fld-label" htmlFor="fld-consent-kind">{t("field.consent.kindLabel")}</label>
-                <select
+                <Dropdown
                   id="fld-consent-kind"
                   className="fld-input"
                   value={consentKind}
-                  onChange={(event) => setConsentKind(event.target.value)}
-                >
-                  <option value="audio">{t("field.consent.kind.audio")}</option>
-                  <option value="photo">{t("field.consent.kind.photo")}</option>
-                </select>
+                  onChange={setConsentKind}
+                  ariaLabel={t("field.consent.kindLabel")}
+                  options={[
+                    { value: "audio", label: t("field.consent.kind.audio") },
+                    { value: "photo", label: t("field.consent.kind.photo") }
+                  ]}
+                />
                 <label className="fld-label" htmlFor="fld-consent-subject">{t("field.consent.subject")}</label>
-                <input
+                <Input
                   id="fld-consent-subject"
                   className="fld-input"
                   value={consentSubject}
@@ -843,10 +849,10 @@ export default function FieldVisitRoom({ visitId }) {
                 <div className="fld-handover">
                   <h2 className="fld-h2">{t("field.handover.title")}</h2>
                   <label className="fld-check">
-                    <input
-                      type="checkbox"
+                    <Checkbox
+                      bare
                       checked={handoverArtifact}
-                      onChange={(event) => setHandoverArtifact(event.target.checked)}
+                      onChange={setHandoverArtifact}
                     />
                     <span>{t("field.handover.toArtifact")}</span>
                   </label>
@@ -862,7 +868,7 @@ export default function FieldVisitRoom({ visitId }) {
                         placeholder={t("field.handover.notePlaceholder")}
                       />
                       <label className="fld-label" htmlFor="fld-next-contact">{t("field.handover.nextContact")}</label>
-                      <input
+                      <Input
                         id="fld-next-contact"
                         type="date"
                         className="fld-input"
