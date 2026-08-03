@@ -1,0 +1,24 @@
+{
+  "schema": "golden-37-blind-key-v1",
+  "generated_at": "2026-08-01T11:11:53.284Z",
+  "entries": [
+    {
+      "run_id": "G397b2804aefca1a4",
+      "question_id": "legal_shs_17",
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "verbosity": "medium",
+      "max_output_tokens": 3000,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G377770a288301b22",
+      "question_id": "ajakiri_overview_lastekaitse",
+      "model": "gpt-5.6-luna",
+      "reasoning_effort": "medium",
+      "verbosity": "medium",
+      "max_output_tokens": 3000,
+      "run_type": "original"
+    }
+  ]
+}

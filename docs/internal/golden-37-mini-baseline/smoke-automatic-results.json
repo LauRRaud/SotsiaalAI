@@ -1,0 +1,84 @@
+{
+  "schema": "golden-37-automatic-results-v1",
+  "generated_at": "2026-08-01T10:01:23.587Z",
+  "summary": {
+    "total": 2,
+    "pass": 2,
+    "fail": 0,
+    "by_family": {
+      "legal": {
+        "pass": 1,
+        "fail": 0
+      },
+      "ajakiri": {
+        "pass": 1,
+        "fail": 0
+      }
+    },
+    "failed_case_ids": []
+  },
+  "results": [
+    {
+      "id": "legal_shs_17",
+      "family": "legal",
+      "ok": true,
+      "mode": "explicit_paragraph",
+      "displayed_count": 1,
+      "displayed_titles": [
+        "Sotsiaalhoolekande seadus § 17 Koduteenuse eesmärk ja sisu"
+      ],
+      "checks": [
+        {
+          "name": "mode",
+          "ok": true,
+          "detail": "expected explicit_paragraph, got explicit_paragraph"
+        },
+        {
+          "name": "displayed_min",
+          "ok": true,
+          "detail": "expected >= 1, got 1"
+        },
+        {
+          "name": "displayed_includes:§ 17",
+          "ok": true,
+          "detail": "titles: sotsiaalhoolekande seadus § 17 koduteenuse eesmark ja sisu"
+        }
+      ]
+    },
+    {
+      "id": "ajakiri_overview_lastekaitse",
+      "family": "ajakiri",
+      "ok": true,
+      "mode": "overview_synthesis",
+      "displayed_count": 4,
+      "displayed_titles": [
+        "Sotsiaalministeerium otsib koos partneritega võimalusi laste heaolu suurendamiseks",
+        "Hea töö ei sünni Excelis – lastekaitsetöötajad ootavad järelevalvelt selgust ja tuge",
+        "Distantsõppe korraldus HEV-õpilastele Keila Koolis",
+        "Juhend: abivajavast lapsest teatamine ja andmekaitse"
+      ],
+      "checks": [
+        {
+          "name": "mode",
+          "ok": true,
+          "detail": "expected overview_synthesis, got overview_synthesis"
+        },
+        {
+          "name": "evidence_package",
+          "ok": true,
+          "detail": "expected true, got true"
+        },
+        {
+          "name": "displayed_min",
+          "ok": true,
+          "detail": "expected >= 3, got 4"
+        },
+        {
+          "name": "answer_includes:lastekaitse",
+          "ok": true,
+          "detail": "reply checked"
+        }
+      ]
+    }
+  ]
+}

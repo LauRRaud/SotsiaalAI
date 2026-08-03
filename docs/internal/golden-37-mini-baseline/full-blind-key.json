@@ -1,0 +1,339 @@
+{
+  "schema": "golden-37-blind-key-v1",
+  "generated_at": "2026-08-01T10:15:24.584Z",
+  "entries": [
+    {
+      "run_id": "G2cf7d96a10a44807",
+      "question_id": "kov_kuusalu_koduteenus",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G181625c539b097f6",
+      "question_id": "kov_harku_sotsiaaltransport",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G0acdff7acfcbf92d",
+      "question_id": "kov_kuusalu_vormid",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Ga3a63e974dc4abf9",
+      "question_id": "kov_leakage_guard_narva",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G911cb7c5dcbebad6",
+      "question_id": "legal_shs_42",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G14cae24b07d4370c",
+      "question_id": "legal_shs_17",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Ge8023f321b236a43",
+      "question_id": "legal_inflected_paragraph",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G8a729a096bab2f57",
+      "question_id": "ajakiri_overview_lastekaitse",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G11729a4d9b50012a",
+      "question_id": "ajakiri_overview_omastehooldus",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gb20d1e71070c875c",
+      "question_id": "ajakiri_ai_eetika",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gbb2b36873062cac9",
+      "question_id": "ajakiri_sloveenia_hooldus",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G9ed79ff47747d28b",
+      "question_id": "pdf_hea_tava_terviseprobleemiga_laps",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G71eaa37019362ebc",
+      "question_id": "pdf_eestkoste_uuring",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Ga58468811c597e2e",
+      "question_id": "pdf_vaimne_tervis_koolis",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G324006b80555d769",
+      "question_id": "pdf_tarkvanem_tooleht",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G80a3fbe177fcc8bd",
+      "question_id": "org_astangu",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G73479c47305f50a3",
+      "question_id": "org_puudega_inimese_abi",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G6fd26a876e546e60",
+      "question_id": "life_raha_uur_toit",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gcdd405d03884052a",
+      "question_id": "life_eakas_kodus",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G1b588d7260d8afae",
+      "question_id": "comparison_kodu_tugiisik",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G41022066e5090752",
+      "question_id": "comparison_kodu_isiklik_abistaja",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gd0a002d470718af5",
+      "question_id": "edge_inflected_tugiisikuteenusel",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G11836073f370e816",
+      "question_id": "edge_crisis",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G6bbd4f08bf48a36e",
+      "question_id": "pdf_abivajav_laps_andmekaitse",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G1ce0c6aac30a3ae2",
+      "question_id": "pdf_opilase_toetamine_koolis",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gfc8292fefe545e86",
+      "question_id": "pdf_marac_mudel",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G68f304ba43b18132",
+      "question_id": "pdf_vaesus_statistika",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Geaf6918f2f6a338a",
+      "question_id": "pdf_lapse_heaolu_hindamine",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G617ccc4d5b75b5cb",
+      "question_id": "edge_followup_paragraph",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Gace8564797085424",
+      "question_id": "edge_no_corpus_answer_v2",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G079dc2879126c0d8",
+      "question_id": "pdf_inimkaubandus_ennetus",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "Ga506042f78bde981",
+      "question_id": "pdf_kubervagivald_ohver",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G2a3e2f8ede1c67d0",
+      "question_id": "pdf_hoolekande_kvaliteet",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G591d017281aae069",
+      "question_id": "pdf_toovoime_reform",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G3615634ebdfffe24",
+      "question_id": "graph_kov_vormid_kontaktid",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G849de6a024613cf0",
+      "question_id": "ajakiri_integreeritud_teenused",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    },
+    {
+      "run_id": "G869a388df6af7b10",
+      "question_id": "ajakiri_kinnise_lasteasutuse_alternatiiv",
+      "model": "gpt-5.4-mini",
+      "reasoning_effort": "low",
+      "verbosity": "medium",
+      "max_output_tokens": 1100,
+      "run_type": "original"
+    }
+  ]
+}

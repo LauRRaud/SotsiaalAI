@@ -1,0 +1,27 @@
+[Unit]
+Description=SotsiaalAI controlled B0 idle-RAG measurement group
+Wants=network-online.target
+After=network-online.target
+OnFailure=sotsiaalai-b0-idle-rag-measure-stop.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+EnvironmentFile=/home/ubuntu/.b0-idle-rag-test-session.env
+EnvironmentFile=/etc/sotsiaalai/b0-idle-rag-measurement.env
+Environment=B0_MEASUREMENT_CSV=/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/b0-idle-rag-measurements.csv
+Environment=B0_MEASUREMENT_STATE=/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/state.json
+Environment=B0_PRISMA_CLIENT_PATH=/home/ubuntu/apps/sotsiaalai/generated/prisma/client.ts
+ExecStart=/usr/bin/flock --nonblock /home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data/b0-idle-rag-measure.lock /usr/bin/node --import tsx /home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/scripts/ops/b0-idle-rag-measure.mjs
+TimeoutStartSec=180s
+Restart=no
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/ubuntu/apps/sotsiaalai-b0-idle-rag-measurement/data
+StandardOutput=journal
+StandardError=journal

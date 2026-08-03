@@ -1,0 +1,489 @@
+{
+  "schema": "golden-37-mini-preflight-v1",
+  "generated_at": "2026-08-01T10:26:14.450Z",
+  "question_set": {
+    "path": "eval/golden-rag-v1.json",
+    "sha256": "3a47407ce93fbf9fc7cdb33f9f2e3bcc05b0ad0bef788e184e03580b4df50089",
+    "case_count": 37,
+    "ids": [
+      "kov_kuusalu_koduteenus",
+      "kov_harku_sotsiaaltransport",
+      "kov_kuusalu_vormid",
+      "kov_leakage_guard_narva",
+      "legal_shs_42",
+      "legal_shs_17",
+      "legal_inflected_paragraph",
+      "ajakiri_overview_lastekaitse",
+      "ajakiri_overview_omastehooldus",
+      "ajakiri_ai_eetika",
+      "ajakiri_sloveenia_hooldus",
+      "pdf_hea_tava_terviseprobleemiga_laps",
+      "pdf_eestkoste_uuring",
+      "pdf_vaimne_tervis_koolis",
+      "pdf_tarkvanem_tooleht",
+      "org_astangu",
+      "org_puudega_inimese_abi",
+      "life_raha_uur_toit",
+      "life_eakas_kodus",
+      "comparison_kodu_tugiisik",
+      "comparison_kodu_isiklik_abistaja",
+      "edge_inflected_tugiisikuteenusel",
+      "edge_crisis",
+      "pdf_abivajav_laps_andmekaitse",
+      "pdf_opilase_toetamine_koolis",
+      "pdf_marac_mudel",
+      "pdf_vaesus_statistika",
+      "pdf_lapse_heaolu_hindamine",
+      "edge_followup_paragraph",
+      "edge_no_corpus_answer_v2",
+      "pdf_inimkaubandus_ennetus",
+      "pdf_kubervagivald_ohver",
+      "pdf_hoolekande_kvaliteet",
+      "pdf_toovoime_reform",
+      "graph_kov_vormid_kontaktid",
+      "ajakiri_integreeritud_teenused",
+      "ajakiri_kinnise_lasteasutuse_alternatiiv"
+    ],
+    "fixed_multiturn_cases": [
+      "edge_followup_paragraph"
+    ]
+  },
+  "rubric": {
+    "path": "docs/internal/golden-37-mini-evaluation-form.md",
+    "sha256": "414b9102b12171b8f41f9c23c0305224bac95c53a5887caf9170b7b3eefb1f4d"
+  },
+  "runner": {
+    "path": "scripts/run-golden-eval.mjs",
+    "sha256": "2a6d231f75e536bbdf187dc68b1618e063f278dddf46ed397981fbde055a5a32"
+  },
+  "production_configuration": {
+    "model": "gpt-5.4-mini",
+    "reasoning_effort": "low",
+    "verbosity": "medium",
+    "max_output_tokens": 1100,
+    "prompt_token_audit": "0",
+    "retrieval_timeout_ms": 12000
+  },
+  "synthetic_session": {
+    "http_status": 200,
+    "user_present": true,
+    "synthetic_domain": true,
+    "role": "SOCIAL_WORKER",
+    "subscription_active": true,
+    "real_person_data_present": false,
+    "profile_present": true,
+    "profile_fields_synthetic_or_blank": true
+  },
+  "corpus_inventory": {
+    "document_count": 5824,
+    "cases": [
+      {
+        "question_id": "kov_kuusalu_koduteenus",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "koduteenus",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 178
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "kov_harku_sotsiaaltransport",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "kov_kuusalu_vormid",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "kov_leakage_guard_narva",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "legal_shs_42",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "§ 42",
+            "method": "exact_legal_paragraph_search",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "legal_shs_17",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "§ 17",
+            "method": "exact_legal_paragraph_search",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "legal_inflected_paragraph",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "§ 23",
+            "method": "exact_legal_paragraph_search",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_overview_lastekaitse",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_overview_omastehooldus",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_ai_eetika",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "tehisintellekt",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_sloveenia_hooldus",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "sloveenia",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_hea_tava_terviseprobleemiga_laps",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "terviseprobleemiga",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_eestkoste_uuring",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "eestkoste",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 32
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_vaimne_tervis_koolis",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "vaimne tervis",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 3
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_tarkvanem_tooleht",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "org_astangu",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "astangu",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "org_puudega_inimese_abi",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "life_raha_uur_toit",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "life_eakas_kodus",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "comparison_kodu_tugiisik",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "§ 17",
+            "method": "exact_legal_paragraph_search",
+            "matching_corpus_item_count": 1
+          },
+          {
+            "anchor": "§ 23",
+            "method": "exact_legal_paragraph_search",
+            "matching_corpus_item_count": 1
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "comparison_kodu_isiklik_abistaja",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "edge_inflected_tugiisikuteenusel",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "edge_crisis",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_abivajav_laps_andmekaitse",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "abivajavast lapsest",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 11
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_opilase_toetamine_koolis",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "kool",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 168
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_marac_mudel",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "MARAC",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 6
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_vaesus_statistika",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_lapse_heaolu_hindamine",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "lapse heaolu",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 5
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "edge_followup_paragraph",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 2,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "edge_no_corpus_answer_v2",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "intentional_no_corpus_answer"
+      },
+      {
+        "question_id": "pdf_inimkaubandus_ennetus",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "inimkaubandus",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 10
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_kubervagivald_ohver",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_hoolekande_kvaliteet",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": [
+          {
+            "anchor": "kvaliteed",
+            "method": "document_title_contains",
+            "matching_corpus_item_count": 8
+          }
+        ],
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "pdf_toovoime_reform",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "graph_kov_vormid_kontaktid",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_integreeritud_teenused",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      },
+      {
+        "question_id": "ajakiri_kinnise_lasteasutuse_alternatiiv",
+        "role": "SOCIAL_WORKER",
+        "history_turns": 0,
+        "explicit_anchor_check": null,
+        "missing_explicit_anchor": false,
+        "corpus_expectation": "corpus_anchored"
+      }
+    ],
+    "missing_explicit_anchor_case_ids": [],
+    "intentional_no_corpus_case_ids": [
+      "edge_no_corpus_answer_v2"
+    ]
+  }
+}
