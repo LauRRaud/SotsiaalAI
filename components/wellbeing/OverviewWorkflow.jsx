@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import ContentTrustBadge from "@/components/ui/ContentTrustBadge";
 import { formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
 import { WellbeingOutputCard as OutputCard } from "./WellbeingControls";
@@ -266,22 +267,16 @@ export default function OverviewWorkflow() {
             />
           </label>
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={userReviewed}
-                onChange={(event) => setUserReviewed(event.target.checked)}
-              />
-              {t("wellbeing.overview.reviewed", "Olen memo üle vaadanud ja liigsed detailid eemaldanud.")}
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={userConfirmed}
-                onChange={(event) => setUserConfirmed(event.target.checked)}
-              />
-              {t("wellbeing.overview.confirmed", "Kinnitan, et see versioon sobib juhiga arutelu sisendiks.")}
-            </label>
+            <Checkbox
+              checked={userReviewed}
+              onChange={setUserReviewed}
+              label={t("wellbeing.overview.reviewed", "Olen memo üle vaadanud ja liigsed detailid eemaldanud.")}
+            />
+            <Checkbox
+              checked={userConfirmed}
+              onChange={setUserConfirmed}
+              label={t("wellbeing.overview.confirmed", "Kinnitan, et see versioon sobib juhiga arutelu sisendiks.")}
+            />
           </div>
           <div>
             <Button

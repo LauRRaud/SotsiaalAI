@@ -10,6 +10,7 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
+import Checkbox from "@/components/ui/Checkbox";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
@@ -3702,8 +3703,8 @@ export default function AnalyticsDashboard() {
                 <thead>
                   <tr>
                     <th className={tableHeadCellClassName}>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         className={checkboxClassName}
                         checked={allVisibleSelected}
                         onChange={toggleAllVisibleUsers}
@@ -3730,8 +3731,8 @@ export default function AnalyticsDashboard() {
                     visibleUserRows.map(row => (
                       <tr key={row.userId}>
                         <td className={tableCellClassName}>
-                          <input
-                            type="checkbox"
+                          <Checkbox
+                            bare
                             className={checkboxClassName}
                             checked={selectedUserIds.includes(row.userId)}
                             onChange={() => toggleUserSelection(row.userId)}
@@ -3855,8 +3856,8 @@ export default function AnalyticsDashboard() {
                 <div key={row.userId} className={mobileRowCardClassName}>
                   <div className={mobileRowHeadClassName}>
                     <div>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         className={checkboxClassName}
                         checked={selectedUserIds.includes(row.userId)}
                         onChange={() => toggleUserSelection(row.userId)}

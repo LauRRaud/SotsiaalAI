@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
@@ -534,21 +535,20 @@ function PreInquirySharePanel({ journey, href, t }) {
       </div>
       <div>
         {shareOptions.filter(([, , present]) => present).map(([key, label]) => (
-          <label key={key}>
-            <input
-              type="checkbox"
-              checked={selectedShareKeys.includes(key)}
-              onChange={() => toggleShareKey(key)}
-            />
-            <span>{label}</span>
-          </label>
+          <Checkbox
+            key={key}
+            checked={selectedShareKeys.includes(key)}
+            onChange={() => toggleShareKey(key)}
+            label={label}
+          />
         ))}
       </div>
       {selectedPersonContext ? (
-        <label>
-          <input type="checkbox" checked={thirdPartyAcknowledged} onChange={(event) => setThirdPartyAcknowledged(event.target.checked)} />
-          <span>{t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}</span>
-        </label>
+        <Checkbox
+          checked={thirdPartyAcknowledged}
+          onChange={setThirdPartyAcknowledged}
+          label={t("journey.share.person_context_ack", "Kinnitan, et mul on õigus seda teise isiku teavet jagada.")}
+        />
       ) : null}
       <section aria-live="polite">
         <h4>{t("journey.share.recipient_preview", "Adressaat näeb")}</h4>
@@ -603,14 +603,12 @@ function HelpRequestSharePanel({ journey, href, t }) {
       </div>
       <div>
         {shareOptions.map(([key, label]) => (
-          <label key={key}>
-            <input
-              type="checkbox"
-              checked={selectedShareKeys.includes(key)}
-              onChange={() => toggleShareKey(key)}
-            />
-            <span>{label}</span>
-          </label>
+          <Checkbox
+            key={key}
+            checked={selectedShareKeys.includes(key)}
+            onChange={() => toggleShareKey(key)}
+            label={label}
+          />
         ))}
       </div>
       <div>

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
@@ -302,10 +303,11 @@ export default function AdminWellbeingClient() {
               Lõpp
               <Input type="date" value={pilotForm.endsAt} onChange={(event) => updatePilotForm("endsAt", event.target.value)} />
             </label>
-            <label>
-              <input type="checkbox" checked={pilotForm.active} onChange={(event) => updatePilotForm("active", event.target.checked)} />
-              Aktiivne piloot
-            </label>
+            <Checkbox
+              checked={pilotForm.active}
+              onChange={(checked) => updatePilotForm("active", checked)}
+              label="Aktiivne piloot"
+            />
           </div>
           <div>
             <Button type="submit" variant="primary" disabled={pilotStatus === "saving"}>

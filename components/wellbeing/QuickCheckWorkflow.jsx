@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildQuickCheckRecord, formatQuickCheckFactor } from "@/lib/wellbeing/quickCheck";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -234,30 +235,21 @@ export default function QuickCheckWorkflow({ onNavigate }) {
 
       <fieldset>
         <legend>{t("wellbeing.quick_check.risk_support", "Riskimärgid ja toe vajadus")}</legend>
-        <label>
-          <input
-            type="checkbox"
-            checked={fields.difficultCaseMarker}
-            onChange={(event) => updateField("difficultCaseMarker", event.target.checked)}
-          />
-          {t("wellbeing.quick_check.difficult_case_marker", "Raske juhtum, mida ei peaks üksi kandma")}
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={fields.covisionNeed}
-            onChange={(event) => updateField("covisionNeed", event.target.checked)}
-          />
-          {t("wellbeing.quick_check.covision_need", "Vajab kovisiooni või kolleegituge")}
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={fields.supportNeed}
-            onChange={(event) => updateField("supportNeed", event.target.checked)}
-          />
-          {t("wellbeing.quick_check.support_need", "Vajab juhiga toe kokkulepet")}
-        </label>
+        <Checkbox
+          checked={fields.difficultCaseMarker}
+          onChange={(checked) => updateField("difficultCaseMarker", checked)}
+          label={t("wellbeing.quick_check.difficult_case_marker", "Raske juhtum, mida ei peaks üksi kandma")}
+        />
+        <Checkbox
+          checked={fields.covisionNeed}
+          onChange={(checked) => updateField("covisionNeed", checked)}
+          label={t("wellbeing.quick_check.covision_need", "Vajab kovisiooni või kolleegituge")}
+        />
+        <Checkbox
+          checked={fields.supportNeed}
+          onChange={(checked) => updateField("supportNeed", checked)}
+          label={t("wellbeing.quick_check.support_need", "Vajab juhiga toe kokkulepet")}
+        />
       </fieldset>
 
       <section aria-labelledby="quick-check-output-heading">

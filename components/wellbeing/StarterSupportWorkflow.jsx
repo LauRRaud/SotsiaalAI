@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildStarterSupportRecord } from "@/lib/wellbeing/starterSupport";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -221,30 +222,21 @@ export default function StarterSupportWorkflow({ onNavigate }) {
             <SelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
           ))}
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.mentorDiscussionNeed}
-                onChange={(event) => updateField("mentorDiscussionNeed", event.target.checked)}
-              />
-              {t("wellbeing.starter_support.mentor_discussion_need", "Vaja on mentori arutelu")}
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.managerDiscussionNeed}
-                onChange={(event) => updateField("managerDiscussionNeed", event.target.checked)}
-              />
-              {t("wellbeing.starter_support.manager_discussion_need", "Vaja on juhiga arutelu")}
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.workBoundaryNeed}
-                onChange={(event) => updateField("workBoundaryNeed", event.target.checked)}
-              />
-              {t("wellbeing.starter_support.work_boundary_need", "Vaja on alustaja tööpiiride kokkulepet")}
-            </label>
+            <Checkbox
+              checked={fields.mentorDiscussionNeed}
+              onChange={(checked) => updateField("mentorDiscussionNeed", checked)}
+              label={t("wellbeing.starter_support.mentor_discussion_need", "Vaja on mentori arutelu")}
+            />
+            <Checkbox
+              checked={fields.managerDiscussionNeed}
+              onChange={(checked) => updateField("managerDiscussionNeed", checked)}
+              label={t("wellbeing.starter_support.manager_discussion_need", "Vaja on juhiga arutelu")}
+            />
+            <Checkbox
+              checked={fields.workBoundaryNeed}
+              onChange={(checked) => updateField("workBoundaryNeed", checked)}
+              label={t("wellbeing.starter_support.work_boundary_need", "Vaja on alustaja tööpiiride kokkulepet")}
+            />
           </div>
         </fieldset>
 

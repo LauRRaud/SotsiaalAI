@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
@@ -108,14 +109,11 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
               options={rooms.map((room) => ({ value: room.id, label: room.title || room.id }))}
             />
           </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={requestApproval}
-              onChange={(event) => setRequestApproval(event.target.checked)}
-            />
-            <span>{t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}</span>
-          </label>
+          <Checkbox
+            checked={requestApproval}
+            onChange={setRequestApproval}
+            label={t("documents.meeting_summary_share.request_approval", "Küsi osalejatelt kinnitust")}
+          />
           <Button
             type="button"
             size="sm"

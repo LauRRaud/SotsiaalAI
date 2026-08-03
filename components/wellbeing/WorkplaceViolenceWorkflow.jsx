@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildWorkplaceViolenceRecord } from "@/lib/wellbeing/workplaceViolence";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -224,14 +225,12 @@ export default function WorkplaceViolenceWorkflow({ onNavigate }) {
           {selectFields.slice(5).map((field) => (
             <SelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
           ))}
-          <label>
-            <span>{t("wellbeing.workplace_violence.covision_need", "Vajan kovisiooni sisendit")}</span>
-            <input
-              type="checkbox"
-              checked={fields.covisionNeed}
-              onChange={(event) => updateField("covisionNeed", event.target.checked)}
-            />
-          </label>
+          <Checkbox
+            labelPosition="before"
+            label={t("wellbeing.workplace_violence.covision_need", "Vajan kovisiooni sisendit")}
+            checked={fields.covisionNeed}
+            onChange={(checked) => updateField("covisionNeed", checked)}
+          />
         </fieldset>
       </div>
 

@@ -13,6 +13,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import {
@@ -848,10 +849,10 @@ export default function FieldVisitRoom({ visitId }) {
                 <div className="fld-handover">
                   <h2 className="fld-h2">{t("field.handover.title")}</h2>
                   <label className="fld-check">
-                    <input
-                      type="checkbox"
+                    <Checkbox
+                      bare
                       checked={handoverArtifact}
-                      onChange={(event) => setHandoverArtifact(event.target.checked)}
+                      onChange={setHandoverArtifact}
                     />
                     <span>{t("field.handover.toArtifact")}</span>
                   </label>

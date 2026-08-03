@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildRecoveryRecord } from "@/lib/wellbeing/recovery";
 import SupportRequestPanel from "./SupportRequestPanel";
 import { WellbeingOutputCard as OutputCard, WellbeingSelectField as SelectField } from "./WellbeingControls";
@@ -190,23 +191,18 @@ export default function RecoveryWorkflow({ onNavigate }) {
           <legend>{t("wellbeing.recovery.load_factors", "Peamised koormustegurid")}</legend>
           <div>
             {loadOptions.map(([value, label]) => (
-              <label key={value}>
-                <input
-                  type="checkbox"
-                  checked={fields.primaryLoadFactors.includes(value)}
-                  onChange={() => toggleLoadFactor(value)}
-                />
-                {label}
-              </label>
-            ))}
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.covisionNeed}
-                onChange={(event) => updateField("covisionNeed", event.target.checked)}
+              <Checkbox
+                key={value}
+                checked={fields.primaryLoadFactors.includes(value)}
+                onChange={() => toggleLoadFactor(value)}
+                label={label}
               />
-              {t("wellbeing.recovery.covision_need", "Vajab kovisiooni või kolleegituge")}
-            </label>
+            ))}
+            <Checkbox
+              checked={fields.covisionNeed}
+              onChange={(checked) => updateField("covisionNeed", checked)}
+              label={t("wellbeing.recovery.covision_need", "Vajab kovisiooni või kolleegituge")}
+            />
           </div>
         </fieldset>
       </div>

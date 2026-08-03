@@ -31,6 +31,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
@@ -827,14 +828,14 @@ export default function ServiceLogDay() {
               keskel uembervahetatuna tekiks jada, mille esimene samm on juba
               moeoedas ja mille juurde ei saa enam tagasi. */}
           <label className="sl-travel-toggle">
-            <input
-              type="checkbox"
+            <Checkbox
+              bare
               name="withTravel"
               checked={withTravel}
               disabled={started}
-              onChange={(event) => {
-                setWithTravel(event.target.checked);
-                withTravelRef.current = event.target.checked;
+              onChange={(checked) => {
+                setWithTravel(checked);
+                withTravelRef.current = checked;
               }}
             />
             <span>{t("service_log.stamps.with_travel", "")}</span>

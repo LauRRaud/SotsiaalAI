@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 
@@ -153,10 +154,10 @@ export default function OrgSupportClient({ context, recipients, received, sent }
             </div>
             {/* Kinnitus on eraldi TEGU, mitte vaikimisi eeldus (§5.8). */}
             <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-              <input
-                type="checkbox"
+              <Checkbox
+                bare
                 checked={confirmed}
-                onChange={(event) => setConfirmed(event.target.checked)}
+                onChange={setConfirmed}
               />
               <span>{t("org.support.confirm")}</span>
             </label>

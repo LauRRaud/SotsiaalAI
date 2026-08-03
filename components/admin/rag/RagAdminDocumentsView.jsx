@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
+import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
 import ModalConfirm from "@/components/ui/ModalConfirm";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
@@ -527,14 +528,11 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
 
           <div className="ra-form">
             <div className="ra-bulkbar">
-              <label className="ui-checkbox">
-                <input
-                  type="checkbox"
-                  onChange={toggleSelectAllVisible}
-                  checked={Boolean(visibleDocs.length && visibleDocs.every(doc => selectedIds.has(doc.id)))}
-                />
-                <span>{tr("admin.rag.documents.select_visible")}</span>
-              </label>
+              <Checkbox
+                onChange={toggleSelectAllVisible}
+                checked={Boolean(visibleDocs.length && visibleDocs.every(doc => selectedIds.has(doc.id)))}
+                label={tr("admin.rag.documents.select_visible")}
+              />
               <div className="ra-toolbar-meta">
                 <span>{tr("admin.rag.documents.total", { total: docMetrics.total })}</span>
                 <span aria-hidden="true">|</span>
@@ -572,10 +570,11 @@ export default function RagAdminDocumentsView({ controller, showMessage = true }
                       }}
                     >
                       <div onClick={event => event.stopPropagation()}>
-                        <input
-                          type="checkbox"
+                        <Checkbox
+                          bare
                           checked={isSelected}
                           onChange={() => toggleSelect(doc.id)}
+                          aria-label={doc.title || tr("admin.rag.documents.untitled")}
                         />
                       </div>
                       <div className="ra-row-body">

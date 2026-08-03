@@ -1,5 +1,7 @@
 "use client";
 
+import Checkbox from "@/components/ui/Checkbox";
+
 function text(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
 }
@@ -123,11 +125,11 @@ export default function WorkspaceContinuity({
         <details className="workspace-continuity-preferences">
           <summary>{text(t, "workspace_continuity.notification_settings", "Teavituste seaded")}</summary>
           <label className="workspace-continuity-preference">
-            <input
-              type="checkbox"
+            <Checkbox
+              bare
               checked={preference.emailEnabled === true}
               disabled={preference.status === "saving"}
-              onChange={(event) => onPreferenceChange?.(event.target.checked)}
+              onChange={(checked) => onPreferenceChange?.(checked)}
             />
             <span>
               {text(t, "notifications.email_preference", "Saada valikulised märguanded ka e-postiga")}

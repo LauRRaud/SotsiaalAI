@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { localizePath } from "@/lib/localizePath";
@@ -827,14 +828,11 @@ export default function KovDetailPanel({
                   rows={4}
                   size="sm"
                 />
-                <label className="ui-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={detailDraft.readyForIngest === true}
-                    onChange={event => updateDraft(onDraftChange, { readyForIngest: event.target.checked })}
-                  />
-                  {et ? "Valmis ingestiks" : "Ready for ingest"}
-                </label>
+                <Checkbox
+                  checked={detailDraft.readyForIngest === true}
+                  onChange={checked => updateDraft(onDraftChange, { readyForIngest: checked })}
+                  label={et ? "Valmis ingestiks" : "Ready for ingest"}
+                />
               </div>
             </div>
 

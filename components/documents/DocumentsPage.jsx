@@ -7,6 +7,7 @@ import { useEffectiveRole } from "@/components/auth/useEffectiveRole"
 import { useI18n } from "@/components/i18n/I18nProvider"
 import AdminRoleViewCycleButton from "@/components/workspace/AdminRoleViewCycleButton"
 import Button from "@/components/ui/Button"
+import Checkbox from "@/components/ui/Checkbox"
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot"
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown"
 import { SubpageHeader } from "@/components/ui/SubpageHeader"
@@ -586,10 +587,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
 
         {(item.type === "source" || item.type === "transcript") && !item.readOnly ? (
           <label className="documents-item__ragtoggle">
-            <input
-              type="checkbox"
+            <Checkbox
+              bare
               checked={Boolean(raw.agentAllowed)}
-              onChange={(event) => void patchDocument(item.id, { agentAllowed: event.target.checked })}
+              onChange={(checked) => void patchDocument(item.id, { agentAllowed: checked })}
             />
             <span>{t("documents.workspace.rag_toggle")}</span>
           </label>

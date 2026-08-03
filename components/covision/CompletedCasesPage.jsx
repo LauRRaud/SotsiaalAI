@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
@@ -302,7 +303,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                   </Form>
                   <Form onSubmit={(event) => { event.preventDefault(); decide("close", { reason: closeReason }); }}>
                     <label>{m(t, "completed_cases.decision.close_reason", "Sulgemise professionaalne põhjendus")}<textarea required rows={3} value={closeReason} onChange={(event) => setCloseReason(event.target.value)} /></label>
-                    <label className="ccp-confirm-check"><input type="checkbox" required checked={closeConfirmed} onChange={(event) => setCloseConfirmed(event.target.checked)} />{m(t, "completed_cases.decision.close_confirm", "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus.")}</label>
+                    <label className="ccp-confirm-check"><Checkbox bare required checked={closeConfirmed} onChange={setCloseConfirmed} />{m(t, "completed_cases.decision.close_confirm", "Kinnitan, et järelvaade on läbi vaadatud ja teema sulgemine on teadlik otsus.")}</label>
                     <button type="submit" data-variant="primary" disabled={busy || !closeConfirmed || !closeReason.trim()}>{m(t, "completed_cases.actions.close_topic", "Sulge teema")}</button>
                   </Form>
                 </section>
@@ -324,7 +325,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
               <section><h3>{m(t, "completed_cases.data.package", "Kovisioonipakk")}</h3><p>{item.package?.contentVisible ? m(t, "completed_cases.package.visible_owner", "Selle paki sisu on nähtav ainult sulle.") : m(t, "completed_cases.package.hidden_other", "Näed paki tehnilist olekut, mitte selle sisu.")}</p>{item.package?.content ? <dl>{Object.entries(item.package.content).filter(([, value]) => typeof value === "string").map(([key, value]) => <div key={key}><dt>{key.replaceAll("_", " ")}</dt><dd>{value}</dd></div>)}</dl> : null}</section>
               {isOwner && ["CLOSED", "CONTINUATION_PENDING"].includes(item.lifecycleStatus) ? (
                 <section className="ccp-archive-confirm">
-                  <label className="ccp-confirm-check"><input type="checkbox" checked={archiveConfirmed} onChange={(event) => setArchiveConfirmed(event.target.checked)} />{m(t, "completed_cases.data.archive_confirm", "Kinnitan, et soovin selle lõpetatud juhtumi aktiivvaatest arhiveerida.")}</label>
+                  <label className="ccp-confirm-check"><Checkbox bare checked={archiveConfirmed} onChange={setArchiveConfirmed} />{m(t, "completed_cases.data.archive_confirm", "Kinnitan, et soovin selle lõpetatud juhtumi aktiivvaatest arhiveerida.")}</label>
                   <button type="button" data-variant="quiet" disabled={busy || !archiveConfirmed} onClick={() => onMutate("archive", "POST", {})}>{m(t, "completed_cases.actions.archive", "Arhiveeri")}</button>
                 </section>
               ) : null}

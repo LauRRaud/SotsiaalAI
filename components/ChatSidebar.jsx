@@ -9,6 +9,7 @@ import { LIST_STATE, resolveListState, shouldSettleRequest } from "@/lib/chat/si
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import ModalConfirm from "@/components/ui/ModalConfirm";
 import Input from "@/components/ui/Input";
 function uuid() {
@@ -692,7 +693,7 @@ export default function ChatSidebar() {
         <div>
           <div>
             {selectMode && !isRoom ? <label className="drawer-select-check">
-                <input type="checkbox" checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} aria-label={t("chat.sidebar.selection.select")} />
+                <Checkbox bare checked={selectedIds.has(item.id)} onChange={() => toggleSelected(item.id)} disabled={isActionBusy} aria-label={t("chat.sidebar.selection.select")} />
               </label> : null}
             <div onClick={() => selectMode ? null : onPick(item)} onKeyDown={event => {
             if (selectMode) return;

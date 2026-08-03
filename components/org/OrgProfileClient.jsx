@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 
@@ -138,10 +139,10 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
               </p>
               <p className="ow-subtitle">{t("org.profile.convertHint")}</p>
               <label style={{ display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
-                <input
-                  type="checkbox"
+                <Checkbox
+                  bare
                   checked={convertConfirmed}
-                  onChange={(event) => setConvertConfirmed(event.target.checked)}
+                  onChange={setConvertConfirmed}
                 />
                 <span>{t("org.profile.convertConfirm")}</span>
               </label>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
@@ -276,7 +277,7 @@ function OwnApplicationCard({ application, t, locale, busy, onResubmit }) {
         <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /></label>
         <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /></label>
         <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<Input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
-        <label className="epp-confirm"><input type="checkbox" checked={value.needsReview} onChange={(event) => set("needsReview", event.target.checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
+        <label className="epp-confirm"><Checkbox bare checked={value.needsReview} onChange={(checked) => set("needsReview", checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
         <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.application.resubmit", "Saada täiendatud kogemus uuesti")}</button>
       </Form> : <dl><div><dt>{m(t, "effective_practices.labels.modified", "Viimati muudetud")}</dt><dd>{formatDate(application.updatedAt, locale)}</dd></div><div><dt>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}</dt><dd>{formatDate(application.followUpAt, locale)}</dd></div></dl>}
     </article>
@@ -348,7 +349,7 @@ function CandidateEditor({ initial, t, busy, error, onCancel, onSave }) {
         <label>{m(t, "effective_practices.fields.environments", "Rakendamiskeskkonnad")}<textarea rows={3} value={draft.environments} onChange={(event) => set("environments", event.target.value)} /></label>
         <label className="is-wide">{m(t, "effective_practices.fields.topics", "Teemad ja märksõnad")}<Input value={draft.topics} onChange={(event) => set("topics", event.target.value)} /></label>
       </div>
-      <label className="epp-confirm"><input type="checkbox" checked={draft.ownerConfirmedNoIdentifiers} onChange={(event) => set("ownerConfirmedNoIdentifiers", event.target.checked)} /><span>{m(t, "effective_practices.editor.identifiers_confirm", "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile.")}</span></label>
+      <label className="epp-confirm"><Checkbox bare checked={draft.ownerConfirmedNoIdentifiers} onChange={(checked) => set("ownerConfirmedNoIdentifiers", checked)} /><span>{m(t, "effective_practices.editor.identifiers_confirm", "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile.")}</span></label>
       <footer><button type="button" data-variant="quiet" onClick={onCancel}>{m(t, "common.cancel", "Loobu")}</button><button type="submit" data-variant="primary" disabled={busy}>{busy ? m(t, "common.saving", "Salvestan…") : m(t, "effective_practices.actions.save_private", "Salvesta privaatne mustand")}</button></footer>
     </Form>
   );
@@ -373,7 +374,7 @@ function ApplicationForm({ practice, t, busy, error, onSubmit }) {
       <label>{m(t, "effective_practices.application.not_worked", "Mis ei toiminud")}<textarea required rows={2} value={value.whatDidNot} onChange={(event) => set("whatDidNot", event.target.value)} /></label>
       <label>{m(t, "effective_practices.application.limitation", "Ilmnenud piirang või risk")}<textarea required rows={2} value={value.limitationOrRisk} onChange={(event) => set("limitationOrRisk", event.target.value)} /></label>
       <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<Input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
-      <label className="epp-confirm"><input type="checkbox" checked={value.needsReview} onChange={(event) => set("needsReview", event.target.checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
+      <label className="epp-confirm"><Checkbox bare checked={value.needsReview} onChange={(checked) => set("needsReview", checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
       <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.actions.submit_application", "Saada rakendamiskogemus ülevaatamiseks")}</button>
     </Form>
   );

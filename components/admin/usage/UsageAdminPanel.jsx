@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
@@ -257,7 +258,7 @@ export default function UsageAdminPanel() {
                   return (
                     <fieldset key={metric} className="usage-admin__entitlement">
                       <legend>{t(`profile.usage.metrics.${metric}`)}</legend>
-                      <label className="usage-admin__toggle"><input type="checkbox" checked={item.enabled} onChange={event => updateEntitlement(metric, { enabled: event.target.checked })} />{t("admin.usage.enabled")}</label>
+                      <label className="usage-admin__toggle"><Checkbox bare checked={item.enabled} onChange={enabled => updateEntitlement(metric, { enabled })} />{t("admin.usage.enabled")}</label>
                       <label>{t("admin.usage.period")}<Dropdown ariaLabel={t("admin.usage.period")} value={item.period} onChange={period => updateEntitlement(metric, { period })} options={PERIODS.map(period => ({ value: period, label: t(`profile.usage.periods.${period}`) }))} /></label>
                       <label>{t("admin.usage.soft_limit")}<Input data-variant inputMode="numeric" value={item.softLimit} onChange={event => updateEntitlement(metric, { softLimit: event.target.value })} /></label>
                       <label>{t("admin.usage.hard_limit")}<Input data-variant inputMode="numeric" value={item.hardLimit} onChange={event => updateEntitlement(metric, { hardLimit: event.target.value })} /></label>

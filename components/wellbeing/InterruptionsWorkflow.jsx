@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import { buildInterruptionsRecord } from "@/lib/wellbeing/interruptions";
 import SupportRequestPanel from "./SupportRequestPanel";
 import WellbeingActionList from "./WellbeingActionList";
@@ -233,14 +234,11 @@ export default function InterruptionsWorkflow({ onNavigate }) {
             <SelectField key={field.key} field={field} value={fields[field.key]} onChange={updateField} />
           ))}
           <div>
-            <label>
-              <input
-                type="checkbox"
-                checked={fields.documentationInterruption}
-                onChange={(event) => updateField("documentationInterruption", event.target.checked)}
-              />
-              {t("wellbeing.interruptions.documentation_interruption", "Dokumenteerimine või süsteem katkestab töövoogu")}
-            </label>
+            <Checkbox
+              checked={fields.documentationInterruption}
+              onChange={(checked) => updateField("documentationInterruption", checked)}
+              label={t("wellbeing.interruptions.documentation_interruption", "Dokumenteerimine või süsteem katkestab töövoogu")}
+            />
           </div>
         </fieldset>
       </div>
@@ -249,14 +247,12 @@ export default function InterruptionsWorkflow({ onNavigate }) {
         <h3 id="interruptions-sources-heading">{t("wellbeing.interruptions.sources", "Katkestuste allikad")}</h3>
         <div>
           {sourceOptions.map(([value, label]) => (
-            <label key={value}>
-              <input
-                type="checkbox"
-                checked={fields.sources.includes(value)}
-                onChange={() => toggleSource(value)}
-              />
-              {label}
-            </label>
+            <Checkbox
+              key={value}
+              checked={fields.sources.includes(value)}
+              onChange={() => toggleSource(value)}
+              label={label}
+            />
           ))}
         </div>
       </section>

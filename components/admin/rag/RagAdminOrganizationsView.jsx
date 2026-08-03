@@ -3,6 +3,7 @@
 import { useRef } from "react";
 
 import Button from "@/components/ui/Button";
+import Checkbox from "@/components/ui/Checkbox";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { ORGANIZATION_CORE_FILE_KEYS, ORGANIZATION_FILE_ROLE_META } from "@/lib/admin/rag/organizations/shared";
@@ -206,8 +207,8 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                 <thead>
                   <tr>
                     <th>
-                      <input
-                        type="checkbox"
+                      <Checkbox
+                        bare
                         checked={Boolean(filteredItems.length && filteredItems.every(item => selectedSlugs.has(item.slug)))}
                         onChange={toggleSelectAllFiltered}
                         aria-label={et ? "Vali koik" : "Select all"}
@@ -229,8 +230,8 @@ export default function RagAdminOrganizationsView({ locale, initialItems = [] })
                         onClick={() => setSelectedSlug(item.slug)}
                       >
                         <td onClick={event => event.stopPropagation()}>
-                          <input
-                            type="checkbox"
+                          <Checkbox
+                            bare
                             checked={selectedSlugs.has(item.slug)}
                             disabled={!canSelect}
                             onChange={() => toggleSelected(item.slug)}

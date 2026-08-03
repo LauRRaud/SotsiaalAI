@@ -547,8 +547,9 @@ export default function MentoringRelationPage({ relationId }) {
                             <>
                               <label className={styles.inlineForm}>
                                 <Checkbox
+                                  bare
                                   checked={shareConfirmed}
-                                  onChange={(event) => setShareConfirmed(event.target.checked)}
+                                  onChange={setShareConfirmed}
                                 />
                                 <span className={styles.fieldHint}>{t("mentoring.relation.preparation_confirm_no_clients")}</span>
                               </label>
@@ -756,8 +757,9 @@ export default function MentoringRelationPage({ relationId }) {
                     </label>
                     <label className={styles.inlineForm}>
                       <Checkbox
+                        bare
                         checked={closeConfirmed}
-                        onChange={(event) => setCloseConfirmed(event.target.checked)}
+                        onChange={setCloseConfirmed}
                       />
                       <span>{t("mentoring.relation.close_confirm_label")}</span>
                     </label>
