@@ -8804,7 +8804,8 @@
       "service_time": "service",
       "make_entry_hour": "Create entry (hours)",
       "make_entry_session": "Create entry (session)",
-      "entry_done": "Service entry created"
+      "entry_done": "Service entry created",
+      "ahead": "{km} km to destination · ~{minutes} min"
     }
   },
   "date_field": {

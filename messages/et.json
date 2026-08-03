@@ -8804,7 +8804,8 @@
       "service_time": "teenus",
       "make_entry_hour": "Tee kirje (tundides)",
       "make_entry_session": "Tee kirje (kord)",
-      "entry_done": "Teenuskirje on tehtud"
+      "entry_done": "Teenuskirje on tehtud",
+      "ahead": "Sihtkohani {km} km · ~{minutes} min"
     }
   },
   "date_field": {

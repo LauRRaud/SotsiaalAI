@@ -5575,6 +5575,18 @@ model ServiceVisit {
   addressLat        Float?
   addressLng        Float?
   addressAdsId      String?
+  /// ETTE ARVUTATUD SÕIT: mitu kilomeetrit ja minutit on siia jõudmiseks.
+  ///
+  /// Arvutatakse SÕIDU ALGUSE hetkel, mitte pärast: töötaja peab teadma ENNE
+  /// sõitu, kui kaugele ta läheb. Allikas on ise majutatud OSRM ja lähtepunkt
+  /// on sõidu alguse märk — mitte eelmise kliendi aadress, sest vahepeal võidi
+  /// käia poes.
+  ///
+  /// EI OLE ARVE ALUS. Arvele läheb tegelik sõit (`enRouteAt`→`arrivedAt`
+  /// punktide vahelt); see arv on plaan ja tema säilitamine lubab hiljem näha,
+  /// kas päev läks nii, nagu arvati.
+  plannedTravelKm      Float?
+  plannedTravelMinutes Int?
   status            ServiceVisitStatus @default(PLANNED)
   /// Plaanitud algus. NULL = planeerimata töö, mille töötaja ise lisas —
   /// päevateekond peab toimima ka ilma päevaplaanita (leping E2a).

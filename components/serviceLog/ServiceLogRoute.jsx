@@ -159,8 +159,13 @@ export default function ServiceLogRoute() {
        * Nüüd algab päring KOHE ja tema vastust oodatakse alles siis, kui
        * tempel on juba serveris. Ootamine ei blokeeri midagi.
        */
+      /* PUNKT VÕETAKSE KA SÕIDU ALGUSES (omaniku otsus 03.08): „üldiselt võib
+         töötaja alustada sõitu igalt poolt, käib enne poes." Märk ISE on
+         lähtekoht — konfigureeritavat kontoriaadressi ei ole vaja. DoD 10 ei
+         murdu: reegel on üks punkt TEADLIKU SÜNDMUSE kohta ja sõidu algus on
+         omaette sündmus. */
       let locationPromise = null;
-      if (action === "arrive") {
+      if (action === "arrive" || action === "depart") {
         const token = ++visitTokenRef.current;
         locationPromise = captureLocationPoint(undefined, {
           onReason: (why) => {
@@ -189,17 +194,26 @@ export default function ServiceLogRoute() {
         if (locationPromise) {
           locationPromise.then((point) => {
             if (!point) return;
-            setLocationNote({
-              visitId,
-              key: point.trusted ? "service_log.location.captured_accuracy" : "service_log.location.coarse",
-              meters: String(point.acc ?? "")
-            });
+            /* Teate näitame ainult saabumisel: sõidu alguse punkt on vahend
+               kauguse arvutamiseks, mitte kohalolu tõend, ja tema täpsuse
+               kuvamine oleks müra keset teele asumist. */
+            if (action === "arrive") {
+              setLocationNote({
+                visitId,
+                key: point.trusted ? "service_log.location.captured_accuracy" : "service_log.location.coarse",
+                meters: String(point.acc ?? "")
+              });
+            }
             call(`/api/service-visits/${visitId}`, {
               method: "PATCH",
               /* OMA TOIMING, mitte teine `arrive`: `ARRIVED → ARRIVED` ei ole
                  lubatud üleminek ja punkt oleks alati 409-ga kukkunud. */
               body: JSON.stringify({ action: "attach_location", locationPoint: point })
-            }).catch(() => {});
+            })
+              /* Ette arvutatud kaugus tuleb serverist selle sama kutse
+                 vastusega — vaade laeb uuesti, et ta ekraanile jõuaks. */
+              .then(() => load())
+              .catch(() => {});
           });
         }
 
@@ -430,6 +444,17 @@ export default function ServiceLogRoute() {
                     : ""}
                 </span>
                 {visit.address ? <span className="sl-entry-meta">{visit.address}</span> : null}
+
+                {/* KAUGUS ETTE — ainus hetk, mil see arv on kasulik. Pärast
+                    kohalejõudmist on ta ajalugu. */}
+                {visit.status === "EN_ROUTE" && visit.plannedTravelKm !== null ? (
+                  <span className="sl-entry-meta">
+                    {t("service_log.route.ahead", "", {
+                      km: String(visit.plannedTravelKm),
+                      minutes: String(visit.plannedTravelMinutes ?? 0)
+                    })}
+                  </span>
+                ) : null}
                 {visit.outcomeReason ? <span className="sl-source">{visit.outcomeReason}</span> : null}
 
                 {/* RISTKONTROLL. Ühe punkti puhul ei ole võimalik teada, kas ta

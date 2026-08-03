@@ -8804,7 +8804,8 @@
       "service_time": "услуга",
       "make_entry_hour": "Создать запись (часы)",
       "make_entry_session": "Создать запись (раз)",
-      "entry_done": "Служебная запись создана"
+      "entry_done": "Служебная запись создана",
+      "ahead": "До цели {km} км · ~{minutes} мин"
     }
   },
   "date_field": {
