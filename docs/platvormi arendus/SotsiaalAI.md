@@ -4,8 +4,18 @@ STATUS: SINGLE SOURCE OF TRUTH. **See on projekti ainus elav fail.** Siin on kor
 mis platvorm on, kus ta täna on ja mis on tegemata. Konkureerivat seisu- ega
 registrifaili ei looda.
 
-Kõrval on [`ideed.md`](./ideed.md) (otsustamata ideed) ning ~130 analüüsi-, lepingu- ja
-auditifaili — detail ja tõend, mitte olek. Vastuolu korral kehtib see fail.
+Kõrval on [`ideed.md`](./ideed.md) — **tegemata teemade kontseptsioonid ja taust**: S4
+ütleb, MIS on tegemata ja mis seda blokeerib, `ideed.md` ütleb, MIS ASI SEE ON. Sinna
+lisandub ~130 analüüsi-, lepingu- ja auditifaili. Kõik need on detail ja tõend, mitte olek —
+vastuolu korral kehtib see fail.
+
+Rollijaotus, mida ei tohi segi ajada:
+
+| Fail | Vastab küsimusele | Millal loetakse |
+|---|---|---|
+| `SotsiaalAI.md` S4 | mis on tegemata, mis blokeerib | iga kord |
+| `ideed.md` | mis asi see on | üks kord, kui teemat alustatakse |
+| `tXX-…-ulesanne.md` | kuidas see tehakse | kirjutatakse alustamisel |
 
 **Kuidas fail on jaotatud:**
 
@@ -50,8 +60,8 @@ langeb ära, ta lihtsalt kaob — sektsioon kirjeldab seda, mis on, ja seda, mis
 on ainult **tootepiir**, mille inimene või partner peab teadma (nt „AI ei hinda õigust
 teenusele", „ei ole hädaabinumber") — see ei ole hüljatud variant, vaid lubadus.
 
-**Muud reeglid.** Olekut kannab AINULT see fail. `ideed.md` (otsustamata ideed) ning ~130
-analüüsi-, lepingu- ja auditifaili on detail ja tõend, mitte olek; vastuolu korral kehtib see fail. Pooleliolek kirjutatakse siia KOHE,
+**Muud reeglid.** Olekut kannab AINULT see fail. `ideed.md` (kontseptsioonid ja taust) ning
+~130 analüüsi-, lepingu- ja auditifaili on detail ja tõend, mitte olek; vastuolu korral kehtib see fail. Pooleliolek kirjutatakse siia KOHE,
 mitte töö lõpus.
 
 ### Osa I sektsioonid
@@ -702,7 +712,7 @@ jooksutata. Kui kontrollitud fakt erineb sellest failist, kehtib fakt — parand
 
 | Fail | Mille jaoks |
 |---|---|
-| `ideed.md` | otsustamata ideed |
+| `ideed.md` | tegemata teemade kontseptsioonid ja taust (2946 rida, 29 ptk; sisaldab ka juba ehitatut — olekut EI kanna) |
 | `arendusteemade-masterregister.md` | teemade definitsioonid ja piirid |
 | `tXX-…-ulesanne.md` | teemalepingud — ei muutu pärast väljastamist |
 
