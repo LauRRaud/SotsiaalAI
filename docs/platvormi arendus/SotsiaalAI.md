@@ -61,13 +61,17 @@ mitte töö lõpus.
 | **S2** | Pöörduja rada | ✅ |
 | **S3** | Hääl ja multimodaalsus | ✅ |
 | **S4** | **Kogu lahtine töö — täisnimekiri** | ✅ |
-| **S5** | Töökord | ✅ |
-| **S6** | Seisutabel — ülejäänud teemad | ⏳ ootab sektsioonideks kirjutamist |
+| **S5** | Spetsialisti rada | ✅ |
+| **S6** | Professionaalne areng ja ühistegevus | ✅ |
+| **S7** | Ruumid ja kõned | ✅ |
+| **S8** | Organisatsioon ja partnerid | ✅ |
+| **S9** | Platvormi alused | ✅ |
+| **S10** | Avalik pind ja release | ✅ |
+| **S11** | Töökord | ✅ |
 
 **S4 on kogu lahtise töö täisnimekiri — sealt ei tohi ükski tegemata või poolik asi
-puududa.** S6 kannab veel tabelina neid teemasid, mis pole oma sektsiooni saanud
-(spetsialisti rada, professionaalne areng, ruumid, organisatsioon, platvormi alused,
-avalik pind). Need kirjutatakse S2–S3 mustri järgi lahti ja S6 kaob.
+puududa.** S2–S10 kirjeldavad valdkonna kaupa, mis on olemas ja mis on selle sees lahti;
+tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ---
 
@@ -427,7 +431,221 @@ juhendite värskuskanal, lubaduste audit, ukraina keel, SOTSIAALVALVE, Häirekes
 järelsuunamise sild.
 
 ---
-## S5. Töökord
+## S5. Spetsialisti rada
+
+### Tehtud
+
+**Töölaud.**
+Töölaud on sotsiaaltöötaja päeva algusekraan: mis on saabunud, mis ootab vastust, mis on
+tähtaja lähedal. Kaardid toovad esile selle, mis vajab tegutsemist, ja viivad ühe vajutusega
+õigesse tööruumi. Teavitused ei tule e-postiga peale, vaid seisavad siin, kuni töötaja nad
+ise ette võtab.
+
+**Teenuspäevik.**
+Teenuspäevik on osutaja ja tema töötajate igapäevane teenuskirjete raamat. Töötaja märgib
+külastuse või teenuse hetkel, mis tehti ja kui kaua see võttis; kuu lõpus koostatakse sellest
+kuuaruanne, mille saab esitada, kinnitada ja osakonna juhatajale jagada. Aruanne salvestub
+dokumendina, mitte kaduva allalaadimisena.
+
+Päev on modelleeritud päris tööpäevana, mitte ühe külastusena: olekumasin viib töö
+plaanitust teel-olekusse, kohalejõudmiseni ja lõpetamiseni, kus järgmise kliendi juurde
+sõitmine ongi eelmise juurest lahkumine. Marsruudi pikkuse arvutab platvormi enda
+marsruudimootor, aadressid tulevad Maa-ameti registrist, ja terve päeva saab ühe vajutusega
+navigaatorisse saata. Sõidupäevik tekib kõrvalsaadusena, ilma odomeetrit lugemata.
+Sisestada saab ka võrguta — kirje läheb järjekorda ja sünkroniseerub hiljem.
+
+Teenuspäevikul on **STAR/s-veebi väljavõtte kuju**: sotsiaalhoolekande seadus paneb
+andmete registrisse kandmise kohustuse ka teenuseosutajale, ja platvorm aitab seda täita
+ilma sama asja kaks korda sisestamata. Platvorm ei ole register ega püüa selleks saada.
+
+**Välitöö.**
+Välitöö kest on mõeldud tööks väljaspool kontorit: ühe käega, halva levialaga, sageli
+seistes. Külastuse märkme saab dikteerida, lisada fotod ja dokumendid, ning kõik see elab
+seadmes seni, kuni võrk tagasi tuleb. Fotod puhastatakse metaandmetest enne saatmist ja
+manused kannavad oma säilitustähtaega.
+
+**Juhtumitugi.**
+Juhtumi juurde kuuluvad artefaktid — juhtumi kokkuvõte, lühikirjeldus, tegevusplaan,
+eelhinnangu kokkuvõte, STAR-i abitekst — koostatakse platvormil ja kannavad alati märget,
+kas tegemist on kliendi öelduga või masina mustandiga. Lõpetatud juhtumid liiguvad omaette
+vaatesse, kust saab neid hiljem üle vaadata ja meetodipeeglisse viia.
+
+### Poolik
+
+| Teema | Mis töötab | Lahtised sabad |
+|---|---|---|
+| Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
+| Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
+| Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid | **juhtumi objekt elutsükliga puudub** (S4.1); STAR2 kandmise järjekord; genogramm ja ökokaart |
+
+### Tegemata
+
+Juhtumitöö assistent, juhtumi objekt, genogramm, ökokaart, erihoolekande profiil,
+sotsiaaltransport — kõik **S4.1**-s koos blokeerijatega. Siin ei dubleerita.
+
+---
+
+## S6. Professionaalne areng ja ühistegevus
+
+### Tehtud
+
+**Kovisioon.**
+Kovisioon on kolleegide omavaheline juhtumiarutelu ilma välise superviisorita. Platvorm
+juhib grupi läbi kaheksa etapi — juhtumi toomisest kuni valiku ja järgmiste sammudeni —
+nii et arutelu ei jää poolele teele ega kaldu nõuandmiseks. Igal osalejal on privaatne
+tööpind ja grupil ühine lõuend; juhtumi saab tuua nii sotsiaaltöötaja kui teenuseosutaja.
+Lõpetatud kovisioonist jääb alles see, mille grupp ise otsustas alles jätta.
+
+**Supervisioon.**
+Supervisioon on struktureeritud töösuhe superviisori ja töötaja või grupi vahel: teemade
+jagamine, kohtumiste rütm, kokkulepped ja nende lõpetamine. Superviisor näeb ainult seda,
+mida talle on jagatud, ja töötaja privaatne osa jääb privaatseks. Supervisioonist saab
+vajadusel tööheaolu poolele üle anda, ilma et inimene peaks oma lugu uuesti jutustama.
+
+**Mentorlus.**
+Mentorlus viib kogenud spetsialisti ja alustaja kokku: mentoriprofiilid, soovi esitamine,
+suhte kujunemine, kohtumiste ettevalmistus ja märkmed. Mentori profiil on tema enda hallata
+ja suhe lõpeb selgelt, mitte vaikselt.
+
+**Meetodipeegel.**
+Meetodipeegel on koht, kus töötaja vaatab oma tööd meetodi pilguga: mida ta tegi, mis oli
+fakt ja mis tõlgendus, mis vahetulemus tekkis ja millist tuge ta ise vajab. See ei ole
+aruanne kellelegi — see on professionaalse arengu materjal, mis kuulub töötajale.
+
+**Tööheaolu.**
+Tööheaolu on töötaja enda ruum: koormus, katkestused, töö piirid, rollipiirid, rasked
+juhtumid, taastumine. Kirjed kuuluvad inimesele endale ja ükski juht ei näe neid
+individuaalselt — see ei ole poliitika, vaid arhitektuur. Koondid avanevad alles siis, kui
+grupis on piisavalt eristuvaid inimesi, et kedagi ei saaks üksikuna ära tunda.
+
+**Materjalid ja praktikad.**
+Spetsialistid saavad esitada materjale ja häid praktikaid, mis pärast ülevaatust jõuavad
+teistele. Kogutud praktika ei kao inimesega koos ära.
+
+### Poolik
+
+| Teema | Mis töötab | Lahtised sabad |
+|---|---|---|
+| Kovisioon | 8 etappi, lõuend, privaatne pind, osutaja saab luua | privaatne märkmik puudub; lõuendireegel uues kestas rikutud (S4.2 nr 23–24) |
+| Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
+| Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
+| Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
+| Tööheaolu | E0 + piloodirada + koondid | P3–P5; nädalarütm ja naasmispunkt; **O-WB-K: kas tõsta lävi 3 → 5** |
+| Ühistegevus | osaleja- ja jagamiskiht, kokkuvõtte kinnitusring | võrgustiku vertikaal, kohtumise ühisvaade (S4.1) |
+| Materjalid | esitamise ja ülevaatuse rada | esimesed päris esitused puuduvad — kasutajad, mitte kood |
+
+---
+
+## S7. Ruumid ja kõned
+
+### Tehtud
+
+**Vestlusruumid.**
+Ruum on koht, kus mitu inimest töötavad ühe asja kallal — kovisioonigrupp, supervisioonipaar,
+võrgustik või klient ja töötaja. Ruumi kutsutakse nimeliselt, liikmelisus on nähtav ja
+ruumist saab lahkuda. Ruumi kokkuvõtte saab kinnitusringi kaudu ühiselt heaks kiita, nii et
+keegi ei kirjuta teiste eest kokkuvõtet, mida nad ei ole näinud.
+
+**Helikõned.**
+Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei ole vaikimisi
+sees; see käivitub ainult osalejate selgesõnalisel nõusolekul ja salvestise eesmärk
+märgitakse ette ära.
+
+### Poolik
+
+| Mis töötab | Lahtised sabad |
+|---|---|
+| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog | **neli nõusolekuviga (S4.2 nr 1–4) — need on lubaduse rikkumised, mitte kosmeetika**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
+
+---
+
+## S8. Organisatsioon ja partnerid
+
+### Tehtud
+
+**Organisatsiooni kiht.**
+Asutus saab platvormil oma ruumi: liikmed, üksused, kohad, rollid ja õigused. Organisatsioon
+saab võtta vastu pöördumisi ühisele lauale, hallata oma teenuseprofiili, jagada tööd üksuste
+vahel ja koostada aruandeid. Sponsorluse kaudu saab asutus katta oma klientide või töötajate
+ligipääsu. Kõik ligipääsumuudatused jäävad auditijälge.
+
+### Poolik
+
+| Mis töötab | Lahtised sabad |
+|---|---|
+| org-ruum, liikmed, üksused, kohad, vastuvõtulaud, sponsorlus, audit, aruannete eksport | esimene päris organisatsioon puudub — aktiveerimine on partneri-, mitte tehnoloogiaotsus |
+
+### Tegemata
+
+Partnerpiloot (üks KOV-i sotsiaaltööosakond, eelpöördumise täisrada), SOTSIAALVALVE,
+Häirekeskuse järelsuunamise sild, KOV kuukoond, teenuste puudujäägikoond — vt **S4** ja
+horisondid osas II.
+
+---
+
+## S9. Platvormi alused
+
+### Tehtud
+
+**Konto, ligipääs ja turve.**
+Kasutaja loob konto, kinnitab e-posti, kasutab PIN-i ja saab oma konto kustutada nii, et
+kustutus käib päriselt läbi kõigi kihtide. Privaatsuspiirid on jõustatud serveris, mitte
+liideses — ka administraator ei pääse võõra kovisioonijuhtumi ega tööheaolu kirjete juurde.
+
+**Keeled ja ligipääsetavus.**
+Platvorm töötab eesti, inglise ja vene keeles ning tõlkepariteeti kontrollib eraldi värav —
+üheski keeles ei tohi jääda auk. Ekraanilugeja, klaviatuurinavigatsioon ja liikumise
+vähendamise eelistus on arvesse võetud.
+
+**Maksed ja kvoodid.**
+Tellimuspaketid, ühekordne ost ja sponsoreeritud ligipääs töötavad. Kasutus arvestatakse
+läbipaistvalt ja kvoot ei kao märkamatult. **Ligipääs oma andmetele ei aegu kunagi** — ka
+siis, kui tasuline pakett lõpeb.
+
+**Eksport ja andmekoopia.**
+GDPR-i andmekoopia ja materjali väljaviimine PDF- või DOCX-kujul on sisse ehitatud.
+
+**Admin ja analüütika.**
+Administraatoril on kasutajate, tellimuste, teadmusbaasi ja koondnäitajate haldus. Koondid
+on kaitstud väikese arvu summutusega.
+
+### Poolik
+
+| Teema | Lahtised sabad |
+|---|---|
+| Ligipääsetavus | RV-P1 rollivahetaja jätk, tõlkestrateegia, P1 juured |
+| Jõudlus ja kulu | kvoodileke, L3 renewals-timerid, L5 kuluajalugu (S4.2 nr 13–15) |
+| Maksed | recurring on koodis ja väljas — **lüliti, mitte arendus**; päris ost toodangus tõendamata |
+| Admin | ADMIN-P0.2…P0.4, P1 |
+| Koondite kaitse | **O-WB-K** — kas ühtne avalik number või mehhanismi kirjeldus; admini kriisiloendur vajab enne mistahes avalikku „k≥5" lubadust karastust (vt osa II ptk 1) |
+
+---
+
+## S10. Avalik pind ja release
+
+### Tehtud
+
+**Avalikud lehed.**
+Võimalused, kasutusjuhend, kasutustingimused, privaatsustingimused, tööalase kasutuse
+raamistik, hinnastus, „Meist" ja „Autorilt" on olemas kolmes keeles. Registreerimine on
+teadlikult suletud kuni avaliku käivituseni.
+
+### Poolik
+
+| Mis töötab | Lahtised sabad |
+|---|---|
+| avalikud pinnad ja juriidilised tekstid | avaliku kesta viil (E1) — **kontrollimata**; lubaduste audit: /voimalused kannab 19 avalikku lubadust, iga lause vajab tõendit või parandust |
+
+### Tegemata
+
+**T27 OPS-FINAL-A0** — release candidate'i koondvärav, kuhu on teadlikult kogutud kõik
+edasi lükatud QA-d: brauseri- ja seadmematriks, Playwright, päris Maksekeskus ja e-kirjad,
+juristi kinnitused, täissviidid ja sõltumatud auditid. Käivitab omanik otsusega „lähme
+turule".
+
+---
+## S11. Töökord
 
 **Uude aknasse kleepimiseks üks rida:**
 
@@ -465,95 +683,11 @@ jooksutata. Kui kontrollitud fakt erineb sellest failist, kehtib fakt — parand
 | Fail | Mille jaoks |
 |---|---|
 | `SEIS-ajalugu.md` | kronoloogia ja põhjendused |
-| `SotsiaalAI.md` | visioon, strateegia, piirid |
 | `ideed.md` | otsustamata ideed |
 | `arendusteemade-masterregister.md` | teemade definitsioonid ja piirid |
 | `tXX-…-ulesanne.md` | teemalepingud — ei muutu pärast väljastamist |
 
 
-## S6. Seisutabel — ülejäänud teemad (03.08, ootab sektsioonideks kirjutamist)
-
-Koostatud 03.08 **koodist üle käies**, mitte varasemaid tabeleid kopeerides. Allpool olev
-„SEISUTABEL — 2026-07-18" jääb alles teostuse detaili ja SHA-de pärast, aga **tema
-olekuveerg on 20.07 seisuga ja ei kehti**. Sama kehtib `SotsiaalAI.md` täisarenduse
-registri (A/B/C tabelid) kohta — see on 28.07 plaanitõmmis.
-
-Alus: `main` = `origin/main` = `db514ba0` (03.08 konsolideerimine). **Serveri seisu selles
-ringis eraldi üle ei kontrollitud** — varasem kanne ütleb, et server on samal SHA-l.
-
-Olekusõnad: **TEHTUD** = kood olemas ja teema oma V1-DoD ulatuses suletud · **POOLIK** =
-tuum töötab, nimetatud saba lahtine · **TEGEMATA** = koodi ei ole või ootab
-otsust/partnerit/QA-d.
-
-### TEHTUD
-
-| Teema | Tõend koodist |
-|---|---|
-| T01 ADMIN-V1-CORE | `app/admin/`, `lib/admin/` |
-| T02 ACCOUNT + T16 EXPORT (lepitus) | `lib/dataExport/`, `lib/privacy/` |
-| T04+T05 WORKSPACE + WORKBENCH | `lib/workspaces/`, `lib/preInquiryReceiverWorkflow.js` |
-| T06 JOURNEY-V1 | `lib/journey/` — sh `assistiveDevices.js`, `healthContact.js` ja **kolm üleandmissilda** (`preInquiryHandoff`, `serviceMapHandoff`, `helpMediationHandoff`) |
-| T07 DOCUMENTS-RESEARCH-V1 | `CLOSED_SCOPED`; `app/documents/`, `lib/documents/`, `lib/research/` |
-| T11 SERVICE-MEDIATION-V1 | `lib/help/` 26 moodulit (`requests`, `offers`, `matches`, `workflow*`), `app/teenusekaart/` |
-| T17 SEARCH-LANGUAGE-V1 | `lib/search/` |
-| T22 SUPERVISION-V1 | E1–E7 LIVE `17b5d7cc`; `lib/supervision/`, `app/supervisioon/` |
-| T23 ESTA-MENTOR-V1 | `lib/mentoring/`, `app/mentorlus/` (kood; partnerlus eraldi) |
-| T25 ORG-V1 | **EI OLE ENAM „ANALÜÜS":** `app/org/` (`vastuvott`, `liitu`, `toetus`, `[orgId]/graafik`), `lib/org/{audit,units,constants}.js`, kontrolliring `91eea927` |
-| **TEENUSPÄEVIK-V1** | **Registrist puudub täielikult.** OSA I (E1–E9, migratsioon `20260802100000_service_log_v1`) + OSA II (E10–E12) 02.–03.08; `lib/serviceLog/` (sh `dayRouteMachine`, `dispatchAssign`), `app/teenuspaevik/`; sünteetiline runtime 35/35 |
-| Geokodeerimine + marsruudimootor | `lib/serviceMap/geocoding.js` (Maa-amet in-ADS, `e9d0ed94`); ise majutatud OSRM `af446748` |
-| RAG-QM-P0 baasjoon | `npm run rag:qm:baseline`, `scripts/rag-quality-baseline.mjs`, `scripts/ops/golden-37-*`; `docs/internal/` baseline-freeze + pimeevalveerija + Luna-võrdlus + `luna-rag-run-results.csv` |
-| RAG P8.0 | `rag-p8-0-codex-progress.md` + `rag-p8-0-independent-audit.md`; `rag:master:inventory/check/recheck`, `rag:audit:freshness` |
-| VEST-P0 vestlusaken/kriisirada | `vest-p0-codex-progress.md` + `sol-vest-p0-independent-audit.md` |
-| A11Y-I18N-P0 | kontrollitud 20.07: juba main'is (`meta.*` ×3 keelt, `tests/i18n/metaTitles.test.js`) |
-| GPS juurparandus | `e04c4c46` + `04c2c6c4` — `Permissions-Policy` keelas asukoha, oli surnud sünnist saati |
-| Vormielementide koondamine | 03.08 neli viilu: rippmenüüd, vorm/veakeel, tekstiväljad, märkeruudud (`5df4568a`…`f7cd1f97`) |
-
-### POOLIK
-
-| Teema | Mis töötab | Mis on lahtine |
-|---|---|---|
-| T03 CHAT-VOICE-V1 | mitte-häälne turvapakett LIVE `86df453c` | häälvestlus pargitud (`codex/chat-voice-v1 @ 7bdd1288` = retsept); ärkab kriisiraja analüüsi + WER-mõõtmisega |
-| T09 PAYMENTS-V1 | tuum LIVE `7b49e9f7`, Maksekeskuse parandus tehtud | recurring teadlikult väljas (`lib/payments/constants.js`-is konstanti ei ole); päris ost toodangus tõendamata |
-| T10 PUBLIC-V1 | avalikud teed olemas (`voimalused`, `kasutusjuhend`, `kasutustingimused`, `privaatsustingimused`, `meist`, `autorilt`, `hinnastus`, `tooalase-kasutuse-raamistik`); sisu merge `0f66685d` (võimalused 14→19 sektsiooni) | E1 kest + avalehe viil — **selles ringis kontrollimata**; lubaduste audit (19 lubadust → tõend) tegemata |
-| T12 ROOMS-CALLS-V1 | E1 LIVE `2e945ee1`; `lib/rooms/`, `lib/calls/`, `ops/livekit/` | päris-egress QA (T27); `RECORDING_ENABLED` |
-| T13 COVISION-V2 | etapid + lõuend main'is; `components/covision/`, `lib/covision*.js` (12 moodulit); teenuseosutaja saab juhtumi luua `ecd268d2` | privaatne märkmik puudub (grep ei leidnud); lõuendireegel uues cvl-kestas rikutud |
-| T14 WELLBEING-V2 | `lib/wellbeing/` 24 moodulit, E0 + piloodirada (`pilotAccess`, `pilotReport`) | P3–P5; TH-RUUM-P0 nädalarütm; TO-otsused |
-| T15 A11Y/RV | P0 LIVE `7ca89462`; rollivahetaja RV-P0 | RV-P1+, tõlkestrateegia, P1 juured |
-| T18 PERF | L1 worker LIVE; L4 reaper koodis (`lib/usage/reservationReaper.js`) | kvoodileke (`lib/storageGuardrails.js`), L3 renewals-timerid, L5 kuluajalugu |
-| T20 COLLAB-V1 | P0–P3 LIVE `86df453c` | **U1 mitme-osaleja audience-reegel — tõendatult lahtine:** `lib/events/recipients.js` tunneb ainult `OWNER`/`AUTHOR`/`RECIPIENT_OWNER`; P4–P6 ootavad O-CO-6 |
-| T21 CASEWORK-V1 | tuum + P3 Meetodipeegel LIVE `e5c62e0b` | P2 STAR2 eksport-uks; P4/P5 genogramm+ökokaart (O-CW-7); Meetodipeegli sekkumispäevik + vahehindamine (koodivastet ei ole) |
-| T24 FIELD-V1 | LIVE `ae59516f`; `lib/field/` täiskomplekt sh `ocr.js`, GPS parandatud | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| T28 RAG-V1 | LIVE; `lib/rag/`, 20+ `rag:*` skripti | P8.6 päris allikate proovipakk; timerite aktiveerimine (omaniku otsus) |
-| Teenusekaart + profiil | `lib/serviceAvailability{,.server,Operations}.js` = kättesaadavuse elav signaal **on koodis** | loendivaade/klasterdamine; usaldusmärgistus (MTR-i kaudu — vt allpool) |
-
-### TEGEMATA
-
-| Teema | Miks | Mis avab |
-|---|---|---|
-| **SOTSIAALKIIRABI-V1** | 0 rida koodi; `READY_FOR_BUILD` | E1+E2 on otsustevabad, võib alustada kohe |
-| T08 FILES-MEDIA | omaniku otsusega hilisemaks | omaniku „nüüd" |
-| T19 SPATIAL-WORKSPACE-V1 | DEFERRED; kasvab viiludena (dokk, jaamalend, klaas) | horisont C |
-| T26 PILOT-PARTNER-V1 | piloodikoodi ei avata enne RC-d | T27 RC |
-| T27 OPS-FINAL-A0 | värav teadlikult käivitamata | omaniku „lähme turule" |
-| Toimetulekutoetuse eelkalkulaator | eraldi koodi ei ole (ainult RAG/chat mainib mõistet) | SHS § 131–134 valem; pöörduja tapjafunktsioon |
-| MTR/tegevusloa kontroll | `lib/serviceMap/`-is vastet ei ole | **topeltroll: teenusekaardi usaldusmärgise objektiivne alus JA SK-V1 O-SK-5 soovitatud värav** |
-| SOTSIAALVALVE, Häirekeskuse sild | partner-gated | 1–2 valve-KOV-i / Häirekeskus+SoM |
-| Omastehooldaja ruum | ainult `lib/chat/questionPlanner.js` mainib sõna | vajaduskaardistus (EPIK) |
-| Ukraina keel | 4. keele kandidaat | Šveitsi-Eesti programmi taotlus |
-| Kestlikkuse baromeeter, KOV kuukoond, U5 puudujäägikoond | analüüsid valmis, kood alustamata | partnerlepe + k≥5 |
-| ESTA nõusolekud, eelpöördumise piloot | ei ole koodiküsimused | partner |
-
-### Mida see ring EI tõendanud
-
-Kaks asja jäid kontrollimata **kummaski suunas** — ära tsiteeri neid kummaski lahtris:
-Teekonna **TK-P0 jagamispiir** (`lib/journey/constants.js`-is jagamis-konstante ei näinud,
-võib elada mujal) ja **P8.6** päris allikate proovipaki teostus. Samuti ei mõõdetud selles
-ringis serveri seisu ega jooksutatud väravaid — viimane roheline mõõtmine on 03.08
-konsolideerimise kandes (2483/2483, i18n OK, eslint 0).
-
----
-
----
 
 # OSA II — OLEMUS JA SUUND
 
