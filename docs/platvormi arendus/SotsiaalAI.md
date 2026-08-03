@@ -89,7 +89,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **server** = `ccb569af` (deploy 03.08). Üks tööpuu, üks haru.
+`main` = `origin/main` = **server**. Töötav build on **`ccb569af`** (deploy 03.08); hilisemad
+dokumendicommit'id on checkout'is peal ja koodimuutust ei sisalda, seega build'i ei korratud.
+Üks tööpuu, üks haru.
 Rollback `bb9ca541`. Väravad enne: `npm test` 2510/2510, eslint 0, `i18n:check` OK,
 `npm run build` OK; 0 migratsiooni. Smoke pärast: kolm teenust `active`,
 `/` `/meist` `/vestlus` `/voimalused` → 200, `https://sotsiaal.ai/vestlus` → 200,
