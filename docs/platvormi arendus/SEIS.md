@@ -958,17 +958,6 @@ T06 Git-ahel, remote SHA, diff ja tööpuu puhtus on kontrollitud; registreid on
 
 T06 on `CODE_READY @ f17a3c36`; TK-P0…P5 eraldi pakette ei avata. Haru hoitakse muutmata T27-ni.
 
-## Mudelivalik
-
-- Terra Medium: tavapärane terviklik frontend/backend teemaarendus.
-- Sol Medium: suurema turva-, privaatsus-, migratsiooni- või keeruka olekumasina raskusega arendus.
-- Terra High: kasuta ainult siis, kui teema vajab erakordselt laia repoülest integratsiooni; see ei ole vaikimisi valik.
-- T06 soovitus: Sol Medium.
-- Claude Fable 5 Low: ainult väike, madala riskiga ja selgelt piiritletud muudatus; mitte tervikliku T-teema jaoks.
-- Claude Fable 5 Medium, kui see on valikus: hea vaikimisi tase tavapärase tervikliku teemaarenduse jaoks.
-- Claude Fable 5 High: kasuta privaatsus-, turva-, migratsiooni-, retention'i-, kustutamis- või keeruka olekumasinaga tervikteemal. T06 soovitus Claude'i keskkonnas on Fable 5 High.
-- Fable 5 kõrgeimat/max effort'i ei kasutata tavapärase lõpparuande vastuvõtuks ega dokumentide uuendamiseks; see kulutaks koordinaatoritöös limiiti tarbetult.
-
 ## Dokumentide muutmise reeglid
 
 - Kasuta olemasolevaid dokumente; ära loo sama teema kohta uut konkureerivat registrit.
