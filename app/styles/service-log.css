@@ -768,3 +768,25 @@
   border-radius: var(--radius-md, 0.5rem);
   background: var(--panel-row-bg, rgb(255 255 255 / 5%));
 }
+
+/* KÄSITSI KIRJE on ABITEE, mitte peamine rada. Ta jääb alles (telefoninõustamine
+ * ei ole külastus), aga ta ei võistle enam päevateekonnaga — kaks võrdset
+ * sisestusviisi ühel ekraanil õpetas kasutajale, et kumbki ei ole päris. */
+.sl-manual {
+  margin-top: var(--space-4, 1rem);
+  padding-top: var(--space-3, 0.75rem);
+  border-top: 1px solid var(--panel-border, rgb(255 255 255 / 12%));
+}
+
+.sl-manual > summary {
+  cursor: pointer;
+  font-size: 0.875rem;
+  opacity: 0.8;
+}
+
+/* Kokku volditud olekus on käsitsi vormi väljad peidus. `:has()` hoiab loogika
+ * ühes kohas — ilma temata peaks iga väli teadma, kas dokk on lahti. */
+.sl-form:has(.sl-manual:not([open])) .sl-manual-field,
+.sl-form:has(.sl-manual:not([open])) .sl-manual-field ~ * {
+  display: none;
+}

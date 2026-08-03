@@ -8427,7 +8427,9 @@
       "group_entry": "Entry",
       "note_provenance": "Where this knowledge comes from",
       "unit_choose": "Choose a unit",
-      "measured_minutes": "{minutes} min on site."
+      "measured_minutes": "{minutes} min on site.",
+      "manual_entry": "Add an entry manually",
+      "manual_hint": "Use this only for work that is not a visit — a phone consultation or paperwork. Record home visits under the work day above."
     },
     "tabs": {
       "label": "Service log sections",

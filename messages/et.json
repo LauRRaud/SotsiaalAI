@@ -8427,7 +8427,9 @@
       "group_entry": "Kirje",
       "note_provenance": "Kust see teadmine tuleb",
       "unit_choose": "Vali ühik",
-      "measured_minutes": "Kohal oldud {minutes} min."
+      "measured_minutes": "Kohal oldud {minutes} min.",
+      "manual_entry": "Lisa kirje käsitsi",
+      "manual_hint": "Kasuta seda ainult töö jaoks, mis ei ole külastus — näiteks telefoninõustamine või asjaajamine. Koduskäigud märgi tööpäeva alt ülal."
     },
     "tabs": {
       "label": "Teenuspäeviku osad",

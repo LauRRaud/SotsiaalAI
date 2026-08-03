@@ -8427,7 +8427,9 @@
       "group_entry": "Запись",
       "note_provenance": "Откуда это сведение",
       "unit_choose": "Выберите единицу",
-      "measured_minutes": "На месте {minutes} мин."
+      "measured_minutes": "На месте {minutes} мин.",
+      "manual_entry": "Добавить запись вручную",
+      "manual_hint": "Используйте только для работы, которая не является визитом."
     },
     "tabs": {
       "label": "Разделы журнала услуг",

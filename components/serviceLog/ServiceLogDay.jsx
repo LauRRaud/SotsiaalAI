@@ -758,8 +758,26 @@ export default function ServiceLogDay() {
             {t("service_log.from_visit.load_error", "")}
           </p>
         ) : null}
+        {/* KAKS SISESTUSVIISI ÜHEL EKRAANIL OLI VIGA — minu oma.
+            Päevateekonna sisselülitamisel peitsin ainult nelja märke ploki,
+            aga kiirsisestuse vorm jäi alles: ekraanil oli KAKS „Klient" välja
+            ja kaks eri viisi sama tööd kirja panna. Omanik ütles otse, et ta
+            ei saanud aru, kumba kasutada.
+
+            Nüüd on teekond ainus esmane rada ja käsitsi kirje on kokku
+            volditud abitee — ta jääb alles (mõni töö ei ole külastus), aga ta
+            ei võistle enam peamise vooga. */}
+        {isServiceLogDayRouteUiEnabled() ? <ServiceLogRoute /> : null}
+
+        {isServiceLogDayRouteUiEnabled() ? (
+          <details className="sl-manual">
+            <summary>{t("service_log.form.manual_entry", "")}</summary>
+            <p className="sl-source">{t("service_log.form.manual_hint", "")}</p>
+          </details>
+        ) : null}
+
         {/* KLIENT ENNE — see väli on esimene ja fookuses. */}
-        <label className="sl-field">
+        <label className={isServiceLogDayRouteUiEnabled() ? "sl-field sl-manual-field" : "sl-field"}>
           <span className="sl-label">{t("service_log.form.client", "")}</span>
           <input
             name="clientDisplayName"
@@ -796,14 +814,6 @@ export default function ServiceLogDay() {
             sel hetkel ei tee, ja ta seisis ekraanil ka siis, kui vastust ei
             olnud vaja. Loa dialoog tuleb nüüd täpselt seal, kus asukohta
             päriselt vaja on — [Olen kohal] vajutuse peal. */}
-        {/* KAKS VOOGU, ÜKS KORRAGA.
-            Päevateekond ASENDAB nelja märke voo, mitte ei seisa tema kõrval:
-            kaks konkureerivat „märgi külastus" mehhanismi ühel ekraanil
-            õpetaks kasutajale, et kumbki neist ei ole päris. Lipp otsustab,
-            kumb on nähtav — nii saab piloodi teha ühe meeskonnaga korraga ja
-            vana voog jääb puutumata. */}
-        {isServiceLogDayRouteUiEnabled() ? <ServiceLogRoute /> : null}
-
         {/* NELJA MÄRKE VOOG (OSA I) — nähtav ainult siis, kui päevateekonda ei
             ole. Vt kommentaari ülal: kaks voogu korraga oleks halvem kui
             kumbki neist üksi. */}
