@@ -63,6 +63,8 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
   const { t, locale } = useI18n();
   const [report, setReport] = useState(null);
   const [loadError, setLoadError] = useState(false);
+  const [busy, setBusy] = useState("");
+  const [actionError, setActionError] = useState("");
 
   const load = useCallback(async () => {
     try {
@@ -81,6 +83,44 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
   useEffect(() => {
     load();
   }, [load]);
+
+  /**
+   * KINNITAMINE KOLIS PÄEVA LEHELT SIIA.
+   *
+   * Omanik: „ma ei näe, mida kinnitan" ja „kas need kirjed peavad seal lehel
+   * olema... need on päeva kirjed". Mõlemad viitasid samale: kinnitamine ei ole
+   * päeva toiming, vaid KUU LÕPU oma. Seda tehakse siis, kui koond on ees ja
+   * eksport tuleb — mitte iga kirje järel eraldi.
+   *
+   * Ja siin on koond PÄRISELT ees: kinnitamata arv on lehe ülaosas ja
+   * kinnitamata read on loendis esimesed.
+   */
+  const lifecycle = useCallback(
+    async (entryId, action) => {
+      setBusy(entryId);
+      setActionError("");
+      try {
+        const response = await fetch(`/api/service-entries/${entryId}/lifecycle`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify({ action })
+        });
+        if (!response.ok) {
+          /* TÕRGE EI TOHI OLLA VAIKNE: kinnitamata kirje tähendab kuu lõpus
+             tühja eksporti ja seda avastataks alles KOV-i küsimuse peale. */
+          const body = await response.json().catch(() => ({}));
+          setActionError(body?.message || t("service_log.errors.invalid_input", ""));
+          return;
+        }
+        await load();
+      } catch {
+        setActionError(t("service_log.errors.invalid_input", ""));
+      } finally {
+        setBusy("");
+      }
+    },
+    [load, locale, t]
+  );
 
   if (loadError) return <p className="sl-error">{t("service_log.month.load_error", "")}</p>;
   if (!report) return null;
@@ -177,6 +217,63 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
               </li>
             ))}
           </ul>
+        </section>
+      ) : null}
+
+      {/* KUU KIRJED — kinnitamata ees. Siin otsustatakse, kas eksport tuleb
+          täis või tühi, ja siin peab olema NÄHA, mida kinnitatakse. */}
+      {report.entries?.length ? (
+        <section>
+          <h3 className="sl-list-title">{t("service_log.month.entries", "")}</h3>
+          {actionError ? <p className="sl-error">{actionError}</p> : null}
+          <ul className="sl-entries">
+            {report.entries.map((entry) => (
+              <li key={entry.id} className="sl-entry">
+                <span className="sl-entry-client">{entry.clientDisplayName || "—"}</span>
+                <span className="sl-entry-meta">
+                  {entry.date} · {entry.quantity} {unitLabel(t, entry.unit)} ·{" "}
+                  {t(`service_log.status.${String(entry.status || "DRAFT").toLowerCase()}`, entry.status)}
+                </span>
+                {/* MIDA MA KINNITAN. Märkus ja tema päritolu on täpselt see,
+                    mida kuu lõpus üle vaadatakse: kas „kliendi öeldu" on
+                    tõesti kliendi öeldu. */}
+                {entry.note ? (
+                  <span className="sl-entry-meta">
+                    {entry.note}
+                    {entry.noteProvenance
+                      ? ` · ${t(`casework.provenance.${entry.noteProvenance.toLowerCase()}`, entry.noteProvenance)}`
+                      : ""}
+                  </span>
+                ) : null}
+                <div className="sl-entry-actions">
+                  <button
+                    type="button"
+                    className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
+                    disabled={busy === entry.id}
+                    aria-pressed={Boolean(entry.confirmedManually)}
+                    onClick={() =>
+                      lifecycle(entry.id, entry.confirmedManually ? "unconfirm_manual" : "confirm_manual")
+                    }
+                  >
+                    {t("service_log.list.manual_confirm", "")}
+                  </button>
+                  {entry.status === "DRAFT" ? (
+                    <button
+                      type="button"
+                      className="sl-entry-btn is-primary"
+                      disabled={busy === entry.id}
+                      onClick={() => lifecycle(entry.id, "finalize")}
+                    >
+                      {t("service_log.month.finalize", "")}
+                    </button>
+                  ) : null}
+                </div>
+              </li>
+            ))}
+          </ul>
+          {/* TAGAJÄRG ÖELDAKSE VÄLJA. „Kinnita" ei ole salvestamine — ta teeb
+              kirjest arve alusdokumendi. */}
+          <p className="sl-source">{t("service_log.month.finalize_hint", "")}</p>
         </section>
       ) : null}
 

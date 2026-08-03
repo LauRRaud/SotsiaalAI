@@ -8481,7 +8481,10 @@
       "report_meta": "{format} · {date}",
       "report_issued_times": "issued {count} times",
       "report_stored": "a copy is kept in documents",
-      "report_open": "Open the report"
+      "report_open": "Open the report",
+      "entries": "Entries this month",
+      "finalize": "Confirm as final",
+      "finalize_hint": "A confirmed entry goes into the export. It can no longer be changed silently — a correction needs a reason and leaves a trace. Unconfirmed entries are LEFT OUT of the file sent to the municipality."
     },
     "rhythms": {
       "feedback_survey": "Feedback survey",

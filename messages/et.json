@@ -8481,7 +8481,10 @@
       "report_meta": "{format} · {date}",
       "report_issued_times": "väljastatud {count} korda",
       "report_stored": "koopia on alles dokumentides",
-      "report_open": "Ava aruanne"
+      "report_open": "Ava aruanne",
+      "entries": "Kuu kirjed",
+      "finalize": "Kinnita lõplikuks",
+      "finalize_hint": "Kinnitatud kirje läheb ekspordile. Teda ei saa enam vaikselt muuta — parandus nõuab põhjust ja jätab jälje. Kinnitamata kirjed jäävad KOV-ile minevast failist VÄLJA."
     },
     "rhythms": {
       "feedback_survey": "Tagasisideküsitlus",
