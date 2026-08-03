@@ -29,10 +29,17 @@ function formatTime(value, locale) {
   }
 }
 
-export default function OrgDispatchBoard({ organizationId, initialBoard }) {
+export default function OrgDispatchBoard({ organizationId, initialBoard, initialWorkers = [] }) {
   const { t, locale } = useI18n();
   const [board, setBoard] = useState(initialBoard || null);
+  const [workers, setWorkers] = useState(initialWorkers);
   const [date, setDate] = useState(initialBoard?.date || "");
+  const [assignTo, setAssignTo] = useState("");
+  const [client, setClient] = useState("");
+  const [address, setAddress] = useState("");
+  const [startAt, setStartAt] = useState("");
+  const [notice, setNotice] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const load = useCallback(
     async (nextDate) => {
@@ -45,6 +52,7 @@ export default function OrgDispatchBoard({ organizationId, initialBoard }) {
         if (!response.ok) return;
         const body = await response.json();
         setBoard(body.board || null);
+        if (Array.isArray(body.workers)) setWorkers(body.workers);
       } catch {
         /* Vaikne: tahvel on ülevaade, mitte toiming. Tema laadimise tõrge ei
            tohi juhti takistada mujal tööd tegemast. */
@@ -56,6 +64,69 @@ export default function OrgDispatchBoard({ organizationId, initialBoard }) {
   useEffect(() => {
     if (date && date !== board?.date) load(date);
   }, [board?.date, date, load]);
+
+  const post = useCallback(
+    async (payload) => {
+      setBusy(true);
+      setNotice("");
+      try {
+        const response = await fetch(`/api/org/${organizationId}/graafik`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+          body: JSON.stringify(payload)
+        });
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) {
+          /* TÕRGE EI TOHI OLLA VAIKNE: „vajutasin määra, ei juhtunud midagi"
+             tähendab juhi jaoks, et töötaja EI TEA tööst — ja ta ei saa seda
+             kuidagi teada. */
+          setNotice(body?.message || t("org.board.assign_failed"));
+          return false;
+        }
+        setNotice(t("org.board.assigned"));
+        await load(date);
+        return true;
+      } catch {
+        setNotice(t("org.board.assign_failed"));
+        return false;
+      } finally {
+        setBusy(false);
+      }
+    },
+    [date, load, locale, organizationId, t]
+  );
+
+  const assign = useCallback(async () => {
+    if (!assignTo || !client.trim()) return;
+    const ok = await post({
+      action: "assign",
+      workerUserId: assignTo,
+      clientDisplayName: client,
+      address,
+      plannedStartAt: startAt ? new Date(startAt).toISOString() : null
+    });
+    if (ok) {
+      setClient("");
+      setAddress("");
+      setStartAt("");
+    }
+  }, [address, assignTo, client, post, startAt]);
+
+  /* ASENDUS. Nimi küsitakse loendist, mitte vabalt: vale nimi tähendaks, et
+     töö läheb inimesele, kes sellest ei tea. */
+  const reassign = useCallback(
+    async (visitId) => {
+      const names = workers.map((worker, index) => `${index + 1}. ${worker.name}`).join(", ");
+      const pick = window.prompt(`${t("org.board.reassign_prompt")} — ${names}`);
+      const index = Number(pick) - 1;
+      const worker = workers[index];
+      if (!worker) return;
+      const reason = window.prompt(t("org.board.reassign_reason"));
+      if (!reason || !reason.trim()) return;
+      await post({ action: "reassign", visitId, workerUserId: worker.userId, reason });
+    },
+    [post, t, workers]
+  );
 
   if (!board?.allowed) {
     return (
@@ -88,6 +159,47 @@ export default function OrgDispatchBoard({ organizationId, initialBoard }) {
         {totals.late ? ` · ${t("org.board.late_count", { count: String(totals.late) })}` : ""}
         {totals.needsCheck ? ` · ${t("org.board.check_count", { count: String(totals.needsCheck) })}` : ""}
       </p>
+
+      {/* MÄÄRAMINE ON PLAAN, MITTE TEHTUD TÖÖ. Juht loob plaanitud külastuse;
+          kohalejõudmise ja teenuse märgib see, kes päriselt kohal käis. */}
+      {workers.length ? (
+        <div className="org-assign">
+          <h3>{t("org.board.assign")}</h3>
+          <label className="org-field">
+            <span>{t("org.board.assign_worker")}</span>
+            <select value={assignTo} onChange={(event) => setAssignTo(event.target.value)}>
+              <option value="">—</option>
+              {workers.map((worker) => (
+                <option key={worker.userId} value={worker.userId}>
+                  {worker.name}
+                  {worker.jobTitle ? ` · ${worker.jobTitle}` : ""}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="org-field">
+            <span>{t("org.board.assign_client")}</span>
+            <input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
+          </label>
+          <label className="org-field">
+            <span>{t("org.board.assign_address")}</span>
+            <input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
+          </label>
+          <label className="org-field">
+            <span>{t("org.board.assign_time")}</span>
+            <input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
+          </label>
+          <button
+            type="button"
+            className="sl-entry-btn is-primary"
+            disabled={busy || !assignTo || !client.trim()}
+            onClick={assign}
+          >
+            {t("org.board.assign_send")}
+          </button>
+          {notice ? <p className="org-hint">{notice}</p> : null}
+        </div>
+      ) : null}
 
       {board.workers.length === 0 ? (
         <p className="org-empty">{t("org.board.empty")}</p>
@@ -140,6 +252,19 @@ export default function OrgDispatchBoard({ organizationId, initialBoard }) {
                       {/* PÕHJUS ON NÄHTAV. „Tegemata" ilma põhjuseta on number,
                           mille tähendust juht kuu pärast ei tea. */}
                       {visit.outcomeReason ? ` — ${visit.outcomeReason}` : ""}
+                      {/* ALUSTATUD TÖÖD EI SAA ÜMBER MÄÄRATA — nuppu ei ole.
+                          Asendus tähendab „mine sina selle asemel", mitte
+                          „kirjuta tema tehtud töö enda nimele". */}
+                      {visit.status === "PLANNED" && workers.length > 1 ? (
+                        <button
+                          type="button"
+                          className="sl-entry-btn"
+                          disabled={busy}
+                          onClick={() => reassign(visit.id)}
+                        >
+                          {t("org.board.reassign")}
+                        </button>
+                      ) : null}
                     </li>
                   ))}
                 </ol>

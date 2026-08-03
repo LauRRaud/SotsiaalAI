@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import OrgDispatchBoard from "@/components/org/OrgDispatchBoard";
 import { getDispatchBoard } from "@/lib/serviceLog/dispatchBoard";
+import { listAssignableWorkers } from "@/lib/serviceLog/dispatchAssign";
 import { isServiceLogDayRouteEnabled } from "@/lib/serviceLog/flags";
 
 import { requireOrgPageContext } from "../../_serverContext";
@@ -32,6 +33,9 @@ export default async function OrgDispatchPage({ params }) {
   /* Lipp väljas = päevateekonda ei ole olemas, seega ka tahvlit ei ole. */
   if (!isServiceLogDayRouteEnabled()) notFound();
 
-  const board = await getDispatchBoard(auth.userId, { organizationId: orgId });
-  return <OrgDispatchBoard organizationId={orgId} initialBoard={board} />;
+  const [board, workers] = await Promise.all([
+    getDispatchBoard(auth.userId, { organizationId: orgId }),
+    listAssignableWorkers(auth.userId, orgId)
+  ]);
+  return <OrgDispatchBoard organizationId={orgId} initialBoard={board} initialWorkers={workers} />;
 }
