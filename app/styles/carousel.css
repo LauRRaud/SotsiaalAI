@@ -272,19 +272,27 @@
      Ülal: suletud ülariba lõpeb 29 px peal, avatud kiirnuppude paneel
      ~64 px peal — varu arvestab avatud olekuga.
      Küljed: nimi peab ka 11% kasvades ekraanile jääma. */
-  /* Varude EBAVÕRDSUS on siin tahtlik ja arvutatud: laua plokk
-     tsentreeritakse polsterkasti, aga sihiks on see, et KESKMINE RIDA
-     satuks ekraani püstisele keskjoonele (omanik 25.07). Kasutatav aken
-     ei ole ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —,
-     seega peavad ka varud olema ebavõrdsed. Mõõdetud: keskmine rida on
-     ekraani keskmest 2 px kaugusel, dokini jääb 53 px, üles 120 px. */
-  /* Laud istub ekraanil KÕRGEMAL kui geomeetriline kese (omanik 25.07:
-     "töölaua kaardid võiks üleval pool olla"). Alumine varu on ülemisest
-     kolm korda suurem — nii jääb lähima astme ja doki vahele õhku ning
-     pilk maandub kaartidele, mitte tühjale ülaservale. Ülemine varu peab
-     ikka mahutama avatud ülariba (~64 px). */
-  --desk-pad-top: clamp(2rem, 8vh, 6rem);
-  --desk-pad-bottom: clamp(7rem, 24vh, 15rem);
+  /* LAUD ISTUB ALLPOOL (omanik 03.08: "kaardid peaks all pool olema
+     töölaual ja tööheaolus"). See PÖÖRAB ÜMBER 25.07 otsuse ("töölaua
+     kaardid võiks üleval pool olla"), mille järgi alumine varu oli
+     ülemisest kolm korda suurem — kirjutan selle siia välja, et keegi ei
+     "parandaks" seda vana kommentaari järgi tagasi.
+
+     Varude EBAVÕRDSUS ise jääb ja on endiselt arvutatud, ainult suund on
+     vastupidine: nüüd on ÜLEMINE varu suurem. Kasutatav aken ei ole
+     ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —, seega
+     ei anna võrdsed varud võrdset tulemust.
+
+     MÕÕDETUD (7 veergu, sisu 595 px kõrge):
+       1920×1000  enne 122 px ülalt / 193 px dokini → nüüd 237 / 78
+       1440×800   enne 111 / 155                    → nüüd 203 / 63
+       1280×640   enne  70 /  94                    → nüüd 128 / 37
+     Alumise varu MIINIMUM (6rem) on lühikese akna päästik: `10vh` kukub
+     640 px kõrgusel 64 px peale ja lähim rida oleks doki peal kinni.
+     Ülemine varu peab ikka mahutama avatud ülariba (~64 px).
+     Kui veel allapoole: `20vh / 8vh` annab 262 / 53 (1920×1000). */
+  --desk-pad-top: clamp(2rem, 17vh, 12rem);
+  --desk-pad-bottom: clamp(6rem, 10vh, 8rem);
   /* Külgvaru kannab FOOKUSE kasvu: valitud aste kasvab ~9% oma keskme
      ümber, seega iga serv liigub väljapoole võrdeliselt kaugusega
      keskmest. Kõige kaugemal on nimeveerg (~46vw) → tema nihe on ~4vw ja
