@@ -303,84 +303,240 @@ tööriist ja vajab lepingut.
 
 ### 4.1. TÖÖRIISTAD — suuremad funktsioonid
 
-#### Juhtumikorraldus
+Iga tööriist on siin kirjeldatud nii, et alustamiseks ei pea mujalt lugema. Detailne
+lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse alustamisel.
 
-`ideed.md` ptk 4 kannab tervet kontseptsiooni **„Juhtumitöö assistent STAR2 kõrval"**, mida
-üheski senises seisunimekirjas ei olnud.
+---
 
-| Tööriist | Sisu | Mis blokeerib |
-|---|---|---|
-| **Juhtumi objekt elutsükliga** | juhtum → plaan → tegevused → ülevaatus → sulgemine. **Skeemis on 157 mudelit ja juhtumit nende hulgas ei ole** — on ainult artefaktid (`CASE_SUMMARY`, `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`) | analüüsimata; ptk 4.7/10 „paralleelset kliendibaasi ei looda" on otsus, mis väärib ülevaatust |
-| Juhtumitöö assistendi töölaud (4.3) | töötaja juhtumite koondvaade | eelmine |
-| Ühe tööprotsessi assistendivaade (4.4) | üks juhtum algusest lõpuni | eelmine |
-| STAR2 kandmise järjekord + mustand (4.5–4.6) | mustand registri väljade kujul | Teenuspäeviku väljavõte on olemas (`lib/serviceLog/export/star.js`); juhtumi mustandit ei ole |
+#### Juhtumitöö assistent
 
-#### Võrgustikutöö ja ühistegevus
+*Lähtematerjal: `ideed.md` ptk 4. Koodis 0 rida.*
 
-| Tööriist | Sisu | Mis blokeerib |
-|---|---|---|
-| **COLLAB-P4 võrgustiku vertikaal** | kinnitatud kokkuvõte → üks piiratud nähtavusega kutse → kirjalik ruum → kokkuleppemustand | **miski ei blokeeri** — kõik osalejad on kasutajad, O-CO-6 ei kehti |
-| COLLAB-P5 võrgustiku täisfunktsioon | mittekasutajate kirjed võrgustikus | O-CO-6 GDPR-analüüs |
-| COLLAB-P6 kohtumise ühisvaade | päevakord, otsused, ülesanded, kinnitusring. **Täna kannavad kohtumisi kolm eraldi mudelit** (`SupervisionMeeting`, `MentoringMeeting`, `lib/calls/`) ja ühist vaadet ei ole | O-CO-2 |
-| Võrgustikukaart (`ideed.md` 5.5) | professionaalne võrgustikukaart | vt visuaalsed |
+Juhtumitöö assistent aitab sotsiaaltöötajal korraldada **enda jooksvat professionaalset
+tööd, ilma STAR2 ametlikku toimikut dubleerimata**. Ta vastab küsimustele, millele register
+ei vasta: millele järgmisel kohtumisel keskenduda, milline info on puudu või kontrollimata,
+milliseid küsimusi kliendile esitada, kuidas sõnastada kliendiga eesmärki, millist meetodit
+kasutati ja kuidas see töötas, ning kas juhtum vajab kovisiooni, supervisiooni või
+võrgustikutööd.
 
-#### Visuaalsed professionaalsed tööriistad
+**Assistendi töölaud** koondab: saabunud eelpöördumised · tänased vastuvõtud · aktiivsed
+ettevalmistustööd · STAR2-sse kandmist ootavad mustandid · puuduv ja kontrollimist vajav
+info · järgmised kontaktid · võrgustikutöö ettevalmistus · meetodipeegel · kovisiooni või
+supervisiooni ettevalmistus · STAR2 ülekandmise ajalugu.
 
-| Tööriist | Seis | Mis blokeerib |
-|---|---|---|
-| **Genogramm** (9.1, T21 E4) | **0 rida koodi**; leping valmis: [`t21-casework-vorgustikuvaated-ulesanne.md`](./t21-casework-vorgustikuvaated-ulesanne.md) | V1 + V2 (allpool) |
-| **Ökokaart** (9.2, T21 E5) | **0 rida koodi** | sama |
-| Professionaalne võrgustikukaart (9.3) | 0 rida | sama |
+**Ühe tööprotsessi vaade** hoiab koos praeguse fookuse (miks inimene pöördus, mida ta ise
+soovib, mis vajab lahendamist, milline on järgmine kontakt), kohtumise ettevalmistuse
+(eesmärk, täpsustavad küsimused, puuduva info loend, kliendiga kontrollitavad väited,
+lihtsas keeles selgitused) ja kohtumise märkmed. Märge on jaotatud kihtidesse, mida ei tohi
+kokku valada: *kliendi enda vaade · faktilised asjaolud · töötaja tähelepanek ·
+kontrollimata info · kokkulepped · järgmised sammud · STAR2-sse kantav info · privaatne
+professionaalne refleksioon*. **Privaatne refleksioon ei lähe STAR2-sse kunagi.**
 
-Väravad: **V1** art 14 teavitamiskohustus (kas kolmandat isikut teavitatakse, millal, mis
-mehhanismiga) ja **V2** vastutav töötleja (KOV või platvorm). O-CW-7 lahendas juba raskema
-küsimuse — genogramm on tavapraktika seadusest tuleneva ülesande peal, meedium ei loo uut
-töötlemist. **V1/V2 ja COLLAB-P5 O-CO-6 on osaliselt sama küsimus:** mis staatuses on
-inimene, kes ei ole kasutaja, aga kelle kohta kaardil kirje on. Küsi ühe
-selgitustaotlusega — vastus avab korraga T21 E1–E6 ja COLLAB-P5.
+**Info päritolu on kohustuslik iga olulise infokillu juures:** kliendi öeldud · kliendi
+kinnitatud · dokumendist · teise spetsialisti info · töötaja tähelepanek · töötaja
+tõlgendus · AI koostatud mustand · STAR2-s kontrollitud. Platvormil on selle jaoks juba
+jagatud päritolusõnastik (`lib/workspaces/provenance.js`) — uut ei leiutata.
 
-#### Meetodid ja refleksioon
+**STAR2 rada.** Kandmist ootavad elemendid seisavad nimekirjas (pöördumise kokkuvõte,
+abivajaduse hindamise mustand, eluvaldkonna kirjeldus, eesmärgi sõnastus, tegevus,
+vastutaja ja tähtaeg, kohtumise märge, teenuse suunamise alus), igaüks oma seisuga:
+*mustand · vajab kliendiga kontrollimist · vajab dokumenti või registripäringut · töötaja
+kontrollitud · valmis kandmiseks · kantud · ei kanta*. **Esimeses versioonis on tegevus
+„Kopeeri STAR2 jaoks", mitte „Saada STAR2-sse"** — ametlik saatmine saab tulla ainult SKA
+ja TEHIK-uga kokku lepitud liidestuse kaudu.
 
-| Tööriist | Mis blokeerib |
-|---|---|
-| **Meetodite ja töövõtete kataloog** (`ideed.md` ptk 7, kuus perekonda A–F) | — |
-| Meetodi valimise assistent (8.4) | eelmine |
-| Sekkumispäevik (8.5) | — |
-| Kliendi tagasiside (8.6) | omaniku otsus |
-| Praktika arenguvaade (8.8) | — |
+**Paralleelset andmebaasi ei teki.** Assistent säilitab eelpöördumise algmaterjali,
+töösolevad mustandid, puuduva info loendi, kohtumise ettevalmistuse, STAR2 viitenumbri,
+ülekandmise staatuse ja professionaalse refleksiooni. Pärast STAR2-sse kandmist ei hoita
+teist aktiivset ametliku juhtumiplaani koopiat — ülekantud mustand muutub kirjutuskaitstuks
+või arhiveerub säilitusreegli järgi.
+
+**Mis blokeerib:** analüüsimata on üks eeldus — **juhtumi objekt** (allpool). Ilma selleta
+on assistendil laud, aga mitte seda, mille ümber laud käib.
+
+---
+
+#### Juhtumi objekt elutsükliga
+
+*Koodis 0 rida. Analüüsimata — see küsimus tõstatati 03.08.*
+
+Skeemis on 157 mudelit ja **juhtumit nende hulgas ei ole**. On artefaktid — `CASE_SUMMARY`,
+`CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`, `PRE_ASSESSMENT_SUMMARY` — ehk platvorm toodab
+juhtumi *dokumente*, aga ei hoia juhtumit ennast. Elutsükkel juhtum → plaan → tegevused →
+ülevaatus → sulgemine puudub.
+
+See on olnud teadlik valik (ptk 4.7 ja 10: paralleelset kliendibaasi ei looda), aga valik
+tehti enne Teenuspäevikut ja org-kihti. Küsimus, mis vajab vastust: **kui töötaja peab
+juhtumi seisu ikkagi kuskil hoidma, siis kus ta seda täna hoiab?** Töötaja enda töökorralduse
+hoidmine ei ole registri dubleerimine — samamoodi nagu Teenuspäevik hoiab kirjeid, mis
+lõpuks STAR-i lähevad.
+
+---
+
+#### Võrgustikutöö
+
+*Lähtematerjal: `ideed.md` ptk 5 + COLLAB-analüüs ptk 11. Koodis on alus (P0–P2), vertikaal puudub.*
+
+Võrgustikutöö on juhtumitöö assistendiga seotud, aga **eraldi nähtavusega koostöökiht**. Ta
+ei ole juhtumiplaani koopia ega anna osalejatele ligipääsu töötaja privaatsele vaatele.
+
+**Info kolm taset, mida ei tohi ühte valada:** (1) privaatne juhtumiinfo — ainult volitatud
+juhtumitöötajale; (2) võrgustikuga jagatud kokkuvõte — ainult sellele võrgustikule; (3)
+osalejaga seotud ülesanne — osalejale ja koordinaatorile. **Võrgustikku kutsumine ei anna
+ligipääsu juhtumile.** Vestlusruumi liikmelisus ei ava juhtumitöö assistenti, meetodipeeglit,
+kliendi teekonda ega STAR2 toimikut.
+
+**Esimene vertikaalne lõik (COLLAB-P4)** on väikseim töötav rada: eelpöördumine või
+kohtumise tulemus → töötaja kaardistab vajaliku võrgustiku → **klient näeb ja kinnitab, mida
+jagatakse** → töötaja leiab teenusekaardilt osutaja → valitud osapoolele läheb piiratud
+kutse → avaneb kirjalik ruum → osaleja näeb ainult talle jagatud kokkuvõtet → töötaja
+kontrollib tulemuse → ametlik osa dokumenteeritakse STAR2-s. **Kõik osalejad on siin
+platvormi kasutajad, seega mittekasutajate õigusküsimus (O-CO-6) ei kehti — miski ei
+blokeeri.**
+
+**Võrgustikukaart** hoiab osapooli: klient · lähedased · vastutav sotsiaaltöötaja · teised
+KOV-i spetsialistid · teenuseosutajad · perearst või muu tervishoiukontakt · kool või
+lasteaed · Töötukassa · tugiorganisatsioonid. Iga osapoole juures roll, organisatsioon,
+kontakt, kaasamise eesmärk, **jagamispiir**, osalemise algus ja lõpp, viimane kontakt,
+kokkulepitud tegevus.
+
+**Teenuseosutaja näeb ainult talle jagatut** — kontaktisoovi, kokkuvõtet, dokumenti,
+ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
+assistenti.
+
+**COLLAB-P5** (võrgustiku täisfunktsioon, mittekasutajate kirjed) ootab O-CO-6 GDPR-analüüsi.
+**COLLAB-P6** (kohtumise ühisvaade: päevakord, otsused, ülesanded, kinnitusring) ootab
+O-CO-2. Täna kannavad kohtumisi kolm eraldi mudelit — `SupervisionMeeting`,
+`MentoringMeeting`, `lib/calls/` — ja ühist vaadet ei ole.
+
+---
+
+#### Genogramm, ökokaart ja professionaalne võrgustikukaart
+
+*Lähtematerjal: `ideed.md` ptk 9; leping valmis: [`t21-casework-vorgustikuvaated-ulesanne.md`](./t21-casework-vorgustikuvaated-ulesanne.md). Koodis 0 rida.*
+
+**Genogramm** on interaktiivne pere struktuuri ja põlvkondadevaheliste suhete kaart.
+**Ökokaart** on kliendi seoste kaart pere, lähedaste, kooli, töö, kogukonna, teenuste ja
+spetsialistidega, kus seosele saab määrata tüübi, tugevuse ja suuna. **Professionaalne
+võrgustikukaart** on midagi muud ja neid ei tohi segada: ta näitab, kes juhtumiga töötab,
+milline on osaleja roll, mida temaga võib jagada, milline tegevus on tema vastutada ja
+millal toimus viimane kontakt. Ökokaart kirjeldab **elukeskkonda**, võrgustikukaart
+**koordineeritud koostööd**.
+
+Leping lukustab tundlikud otsused: miinimumväljad (kuvanimi võib olla roll või initsiaal —
+„ema", „perearst R"; **kontaktandmeid, isikukoodi ega terviseinfot vaikimisi ei ole**),
+versioonitud parandamine, kustutus mõjub läbi kõigi vaadete korraga, **kaardistamise lõpp on
+kohustuslik väli** („igavesti vaikimisi" on keelatud), ja lapse kirje kannab ainult
+struktuurifakte ega ole kunagi jagatava väljavõtte vaikimisi osa. Elav kaart ei liigu kunagi
+— jagatakse ainult külmutatud väljavõtet.
+
+**Mis blokeerib:** **V1** — art 14 teavitamiskohustus: kas, millal ja mis mehhanismiga
+teavitatakse kolmandat isikut, kes kaardile satub. **V2** — vastutav töötleja: KOV või
+platvorm. `O-CW-7` on juba otsustatud (genogramm on tavapraktika seadusest tuleneva ülesande
+peal, meedium ei loo uut töötlemist) — **ära oota seda, see vastus on olemas.** V1/V2 ja
+COLLAB-P5 O-CO-6 on osaliselt sama küsimus: mis staatuses on inimene, kes ei ole kasutaja,
+aga kelle kohta kaardil kirje on. Küsi ühe selgitustaotlusega.
+
+---
+
+#### Meetodite ja töövõtete kataloog
+
+*Lähtematerjal: `ideed.md` ptk 7 (kuus perekonda, ~50 meetodit). Koodis 0 rida.*
+
+Kataloog kirjeldab sotsiaaltöö meetodeid nii, et neid saab tööle külge panna: mida meetod
+eeldab, mida ta annab, millal ta ei sobi, mida tema kohta kirja panna. Kuus perekonda:
+**A** hindamise ja info kogumise meetodid (struktureeritud vestlus, vaatlus, kodukülastus,
+dokumentide läbivaatamine) · **B** otsese klienditöö meetodid · **C** pere, rühma ja
+võrgustiku meetodid · **D** abi koordineerimise ja õiguste kaitse meetodid · **E** keskkonna
+ja kogukonnaga töötamise meetodid · **F** professionaalset tööd toetavad meetodid.
+
+Läbiv nõue: **süsteem peab eristama nähtud fakti töötaja tõlgendusest.** Vaatlus annab
+fakti, järeldus on tõlgendus, ja need ei tohi kirjes koos seista.
+
+Kataloog on eeldus **meetodi valimise assistendile**: AI pakub kaalumiseks võimalikke
+meetodeid, sobivuse põhjuseid, olukordi kus meetod ei pruugi sobida, puuduvaid andmeid,
+riske, alternatiive ja refleksiooniküsimusi. **AI ei määra õiget meetodit ega asenda
+professionaalset otsust.**
+
+---
+
+#### Sekkumispäevik ja vahehindamine
+
+*Lähtematerjal: `ideed.md` 8.5. Vahehindamise tulemused on koodis (`lib/reflection/`), päevik ise puudub.*
+
+Sekkumispäevik on juhtumi ajajoon, kus iga sündmus kannab eesmärki, meetodit, tegevust,
+fakte, kliendi vaadet, töötaja tõlgendust, kokkulepet ja vahehindamise aega. Vahehindamise
+tulemus on üks kaheteistkümnest: jätkata · jätkata kohandatult · vajab rohkem aega · mõju ei
+ole veel hinnatav · klient ei soovi jätkata · väline takistus · valida teine lähenemine ·
+vajab kovisiooni · vajab supervisiooni · vajab eetilist arutelu.
+
+See on koht, kus „kas see töötas?" saab vastuse, mis ei ole mälupõhine.
+
+---
+
+#### Kliendi tagasiside
+
+*Lähtematerjal: `ideed.md` 8.6. Omaniku otsuse taga.*
+
+Kliendilt küsitakse: kas ta tundis end kuulatuna · kas eesmärk oli arusaadav · kas ta
+nõustus järgmise sammuga · mida ta pidas kasulikuks · mida ta soovib muuta · kas ta soovib
+lisada oma sõnastuses kommentaari.
+
+**Töötaja kirjeldatud kliendi reaktsioon ja kliendi enda tagasiside peavad jääma
+eristatavaks.** See on ka platvormi strateegiline lubadus: riik mõõdab tegevusi, inimene
+saab mõõta muutust.
+
+---
+
+#### Kovisiooni ettevalmistuse mustand ja praktika arenguvaade
+
+*Lähtematerjal: `ideed.md` 8.7–8.8.*
+
+Juhtumist koostatakse **privaatsust arvestav kovisioonimustand**: keskne küsimus, kasutatud
+lähenemine ja meetod, valiku põhjus, seni proovitu, kliendi reaktsioon, töötaja kahtlus või
+pimekoht, eetiline vastuolu, kolleegidelt oodatav abi. Mustand **deidentifitseeritakse enne
+kovisiooni viimist** ja töötaja kinnitab selle.
+
+**Praktika arenguvaade** näitab töötajale tema enda kasutatud meetodeid, korduvaid küsimusi,
+toe vajadusi ja soovitatavaid õppimisteemasid. **Seda ei tohi kasutada töötajate edetabeli
+ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte poliitikas.
+
+---
 
 #### Seadusest tulenevad moodulid (`shs-katvuskaart.md`)
 
 | # | Moodul | Mis blokeerib |
 |---|---|---|
-| A1 | Erihoolekande profiil Teenuspäevikule (§ 70–107) — tegevusplaan + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; kataloogis „suurim leid" | — |
-| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — deterministlik valem, informatiivne eelhinnang, MITTE otsus | **miski ei blokeeri** |
-| A4 | **MTR/tegevusloa kontroll** (§ 147–155) | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
-| A5 | Võlanõustamise eelkaardistus (§ 44–45) | — |
-| A6 | Sotsiaaltransport Teenuspäeviku tüübina (§ 38–40) | — |
-| A7 | „Teata abivajajast" avalik juhis (§ 13, igaühe kohustus) — kontota avalik leht | — |
-| A8 | Hooldekodu valiku rada (§ 20–22²) | — |
+| A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
+| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — deterministlik valem ja selge keel; informatiivne eelhinnang, MITTE otsus. Avalik versioon on ühtlasi SEO-uks | **miski ei blokeeri** |
+| A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
+| A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
+| A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |
+| A7 | **„Teata abivajajast" avalik juhis** (§ 13 — igaühe seadusekohustus) + teenusekaardi KOV-kontaktid; kontota avalik leht | — |
+| A8 | Hooldekodu valiku rada (§ 20–22²) — hooldereformi rahastus + valikujuhis | — |
 | A9 | Kriisirežiimi seaduslik konks (§ 13¹) | — |
 
 *(A3 abivahendi teekond on tehtud — `lib/journey/assistiveDevices.js`.)*
 
+---
+
 #### Hääl ja multimodaalsus
 
-Kõnerežiim, häälkäsklused („kaks rada, üks mikrofon"), lokaalsed mudelid, häälvestlus
-supervisiooniruumis, kaamera/žestid — täisloend koos blokeerijatega on **sektsioonis S3**,
-siin ei dubleerita.
+Kõnerežiim, häälkäsklused („kaks rada, üks mikrofon"), eesti TTS suveräänsus, lokaalsed
+mudelid, häälvestlus supervisiooniruumis, kaamera ja žestid — täiskirjeldused koos
+blokeerijatega on **S3**-s, siin ei dubleerita.
 
-#### Muud
+---
+
+#### Muud tööriistad
 
 | Tööriist | Mis blokeerib |
 |---|---|
-| **SOTSIAALKIIRABI-V1** — 0 rida, `READY_FOR_BUILD` | E1+E2 otsustevabad; leping [`sotsiaalkiirabi-v1-arendusleping.md`](./sotsiaalkiirabi-v1-arendusleping.md) |
+| **SOTSIAALKIIRABI-V1** — pöörduja-poolne kiireloomulise abi kanal; 0 rida, `READY_FOR_BUILD` | E1+E2 otsustevabad; leping [`sotsiaalkiirabi-v1-arendusleping.md`](./sotsiaalkiirabi-v1-arendusleping.md) |
 | SUP-P1…P11 supervisiooni täismudel | omaniku prioriseerimine |
-| TK-P1…P5 + Teekonna kompass | — |
+| TK-P1…P5 + Teekonna kompass („kus olen / mis on muutunud / mis järgmiseks") | — |
 | T08 failide ja meedia elutsükkel | omaniku otsus |
-| T19 ruumiline töölaud | DEFERRED |
-
----
+| T19 ruumiline töölaud | DEFERRED; kasvab viiludena |
 
 ### 4.2. VÄIKSED MUUDATUSED JA LISAD — olemasoleva sees
 
@@ -451,17 +607,85 @@ kontrollpass on ise eraldi töö ja seda ei ole tehtud.
 
 ---
 
-### 4.4. Sahtel ja kaugemad ideed
+### 4.4. Sahtel — ideed, mis ootavad tingimust
 
-`ideed.md`: ESTA foorum + piirkonnaruumid + teemakogukonnad (27), ESTA liikmepakett ja
-1 € mudel (26), tööheaolu anonüümne valdkondlik andmekiht (20), KOV osakonna kuukoond (21),
-supervisioon tasuta teenuse ja töölauana (22), supervisiooniruum keskse töövormina (23),
-ruumilise kasutuskogemuse täpsustus (28). `SotsiaalAI.md` C-tabel: omastehooldaja ruum,
-VIPS-spetsialistide tööruum, tervise teejuhi tööruum, heaoluplaani peegel, kriisirežiim,
-juhendite värskuskanal, lubaduste audit, ukraina keel, SOTSIAALVALVE, Häirekeskuse
-järelsuunamise sild.
+Need ei ole „kunagi võib-olla". Igal on kirjas, mis ta on ja mis ta äratab.
 
----
+#### Tööheaolu anonüümne valdkondlik andmekiht
+
+*`ideed.md` ptk 20. Analüüs valmis.*
+
+Tööheaolul on kaks rangelt eraldatud eesmärki: **töötajale privaatne töötoe töölaud** ja
+**valdkonnale anonüümne töökorralduslik ülevaade**. Ahel on privaatne tööheaolu →
+standardiseeritud näitajate anonüümne koond → KOV-i osakonna juhtimisvaade → ESTA
+valdkondlik analüüs → ministeeriumi süsteemne ülevaade. **Privaatseid vastuseid, vabatekste
+ega üksiktulemusi sellesse ahelasse ei edastata kunagi.**
+
+Väärtus: Eestis ei ole täna ühtegi andmestikku sotsiaaltöötajate töötingimuste kohta, mis ei
+oleks küsitlus. **Äratab:** ESTA tõlgendaja + O-WB-3 õigusanalüüs.
+
+#### KOV-i osakonna igakuine tööheaolu koond
+
+*`ideed.md` ptk 21. Analüüs valmis.*
+
+Osakonna juht saaks kord kuus anonüümse töökorraldusliku ülevaate. Raport kannab nähtavat
+põhisõnumit: *„See ülevaade kirjeldab osakonna töötingimuste ja toe mustreid. Seda ei tohi
+kasutada üksikute töötajate hindamiseks ega tuvastamiseks."* Raport algab andmete piisavuse
+plokiga — periood, kas valim lubab avaldada, mis on privaatsuse tõttu peidetud,
+representatiivsuse märkus.
+
+**Äratab:** partnerlepe + baromeetri pretsedent. Seotud otsusega **O-WB-K** (koondite lävi).
+
+#### ESTA liikmepakett ja ühe euro mudel
+
+*`ideed.md` ptk 26.*
+
+Kui kontrollitud ESTA liige kasutab tasulist SotsiaalAI paketti, suunab platvorm iga aktiivse
+liikmekuu eest **ühe euro ESTA-le**. Kasutaja kuutasu ei suurene. Arvestus käib ainult siis,
+kui liikmestaatus on kontrollitud, pakett on aktiivne, kuu makse on laekunud, makset ei ole
+tagastatud ja sama liikme eest ei arvestata kuus mitut eurot. Aastapaketi puhul jagatakse
+arvestus aktiivsete kuude vahel.
+
+See lahendab ka küsimuse „kes maksab tööriistade eest". **Äratab:** ESTA partnerlusleping.
+
+#### ESTA foorum, piirkonnaruumid ja teemakogukonnad
+
+*`ideed.md` ptk 27.*
+
+ESTA liikmeala võib kanda üleriigilist professionaalset foorumit ja liikmestaatusel põhinevaid
+piirkonnaruume — ESTA kuus ametlikku piirkonda: Ida-, Kesk-, Lõuna-, Lääne-, Põhja-Eesti ja
+Saaremaa. Juurde teemakogukonnad. **Äratab:** ESTA partnerlus; MVP on kirjeldatud ptk 27.12.
+
+#### Supervisiooniruum kui keskne töövorm
+
+*`ideed.md` ptk 23.*
+
+Supervisioon ruumina, mitte vormina: fookusküsimus, ühine lõuend, jagatud märkmed,
+refleksiooniküsimused, osalejad, taimer, järgmiste sammude ala. Sinna kuulub ka **häälvestlus
+range privaatsuslepinguga** (ei salvestata vaikimisi, automaatset transkripti ei tehta, AI ei
+kuula ega koosta kokkuvõtet, superviisor ei saa ühepoolselt salvestamist käivitada, MVP-s
+võib salvestamise täielikult välistada) ja **visuaalne valgetahvel**.
+
+Seotud ideega, et supervisioon võiks olla eraldi tasuta teenus ja töölaud (ptk 22).
+**Äratab:** ESTA partnerlus + päris superviisorid.
+
+#### Ruumiline kasutuskogemus
+
+*`ideed.md` ptk 28 + ruumilise platvormi visioon.*
+
+Hõljuvad klaaspaneelid, dokk, jaamalend, kaamera- ja näpistusgrammatika. Tehniline alus on
+juba kolmes kohas koodis ja kasvab viiludena. **Äratab:** VR-viilude järjekord; tervikuna on
+see horisont C.
+
+#### Riigi dokumentidest sündinud ideed
+
+Omastehooldaja ruum (hooldaja märgib OMA olukorra, mitte teise inimese diagnoosi) · VIPS-
+spetsialistide tööruum · tervise teejuhi tööruum (1.07.2027 heaolupiirkondade tähtaeg) ·
+heaoluplaani peegel · kriisirežiim · juhendite värskuskanal · lubaduste audit (/voimalused
+kannab 19 avalikku lubadust, iga lause vajab tõendit) · ukraina keel · **SOTSIAALVALVE**
+(KOV-i valvelaud) · **Häirekeskuse järelsuunamise sild**. Kirjeldused ja ajendid on osa II
+ptk 4 C-tabelis.
+
 ## S5. Spetsialisti rada
 
 ### Tehtud
