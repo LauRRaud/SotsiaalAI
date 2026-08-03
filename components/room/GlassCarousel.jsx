@@ -21,11 +21,6 @@ import GlassCard from "@/components/glass/GlassCard";
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import RoleViewSwitcher from "@/components/workspace/RoleViewSwitcher";
 
-/* Kui kaua peab kursor real seisma, enne kui hõljumine loeb valikuna.
-   Piisavalt lühike, et tahtlik osutamine tunduks kohene; piisavalt pikk,
-   et dokist üle teiste ridade möödumine ei jätaks jälge. */
-const HOVER_DWELL_MS = 180;
-
 /* Sama brauserivaate eluea jooksul hoitav kiire mälu. sessionStorage on
    endiselt püsiv varuvariant (F5 ja route-remount), kuid seda saab lugeda
    alles pärast esimest renderit. See kaart võimaldab tavalisel
@@ -119,69 +114,34 @@ export default function GlassCarousel({
     [zoneGroups]
   );
 
-  /* Esiletõstetud tsoon. Aste tõuseb OMAL KOHAL sinu poole ja udu langeb
-     temalt ära; teised astmed taanduvad sammu võrra. Astmed EI VAHETA
-     kohta — varem tõmbasin valitud tsooni ritta esimeseks (flex order),
-     aga `order` on hetkeline ümberpaigutus, mitte üleminek: element
-     hüppas kohe uude ritta ja alles siis libises transform järele. Just
-     see jõnksatus tegi vahetuse arusaamatuks (omanik 25.07). Nüüd
-     muutuvad ainult transform ja udu — mõlemad animeeruvad sujuvalt. */
-  const [focusZone, setFocusZone] = useState(null);
-  /* Hiir astme kohal tõstab selle esile täpselt nagu doki nupp — käega
-     juhitud fookus, mis ei nõua klikki (omanik 25.07). Klikitud fookus
-     jääb alla: kui hiir lahkub, naaseb laud sinna, mille sa VALISID.
-     Hover ja klikk elavad eri muutujates, aga suubuvad ühte
-     `activeZone`-i, sest laud ja dokk peavad näitama sama rida. */
-  const [hoverZone, setHoverZone] = useState(null);
-  /* KLIKK VÕIDAB HÕLJUMISE. Kui rida on dokist valitud, ei tohi teekond
-     sinna teda ümber lükata: dokist ülemise reani liikudes läheb kursor
-     paratamatult vahepealsetest ridadest läbi ja need haarasid fookuse
-     ükshaaval endale (omanik 25.07, kaks korda). Ooteaeg üksi seda ei
-     lahendanud — sihilik hiireliigutus viibib real kauem kui iga lävi,
-     mida saaks veel kohesena tunda. Seega: valitud rida jääb valituks,
-     kuni sa valid teise või vajutad sama silti uuesti. Hõljumine juhib
-     lauda ainult siis, kui midagi ei ole valitud. */
-  const activeZone = focusZone || hoverZone;
+  /* ASTE EI TÕUSE ENAM — EI HÕLJUMISE EGA VAJUTUSE PEALE (omanik 03.08:
+     "terve rida tuleb suureks ja fookusesse, tahan seda, et ainult see
+     kaart tuleb, millel on hiire hover").
+
+     Mis siit ära läks ja miks seda tagasi ei tooda: 25.07 tõstis rida end
+     esile kahel teel — hiir rea kohal (ooteajaga, et läbisõit ei jätaks
+     jälge) ja doki silt. Mõlemad suubusid ühte `activeZone`-i, mis kasvatas
+     valitud astet ja tuhmistas teisi. Tulemus oli, et üheainsa kaardi
+     otsimine liigutas tervet maastikku: silm pidi iga hiireliigutuse järel
+     uuesti kohanema. Nüüd liigub ainult see, mille peal käsi on — kaart ise
+     (.gc-card:hover, translateZ + vari, mõõt ei muutu).
+
+     Astmete PUHKESÜGAVUS jääb: `data-d` annab kaugusudu ja Z-nihke, sest
+     see kannab tähendust (lähim aste = vahetuim suhe), mitte tähelepanu. */
+  const deskRef = useRef(null);
+  /* Dokk on nüüd HÜPPESILT, mitte lüliti: ta ei muuda enam laua kuju, vaid
+     viib fookuse selle astme esimesele kaardile. Klaviatuuriga liikujale on
+     see päris otsetee; hiirega vajutajale ütleb ta, kus rida asub. */
+  const [jumpZone, setJumpZone] = useState(null);
   useEffect(() => {
-    setFocusZone(null);
-    setHoverZone(null);
+    setJumpZone(null);
   }, [setKey]);
-  /* Hõljumine loeb alles PEATUMISE järel, mitte läbiminekul. Dokist oma
-     valitud rea juurde liikudes läheb kursor paratamatult teistest
-     ridadest läbi, ja hetkeline pointerenter tegi igast läbiminekust
-     valiku: read süttisid teel ükshaaval (omanik 25.07: "kiirmenüüst kui
-     valin töölaua osa välja, siis sinna minnes ei tohiks teised
-     aktiveeruda"). Lühike ooteaeg eristab transiidi kavatsusest —
-     lahkumine tühistab ootel valiku, seega läbisõit ei jäta jälge. */
-  const hoverTimer = useRef(null);
-  const cancelHoverTimer = useCallback(() => {
-    if (hoverTimer.current) {
-      clearTimeout(hoverTimer.current);
-      hoverTimer.current = null;
-    }
+  const jumpToZone = useCallback((id) => {
+    setJumpZone(id);
+    const list = deskRef.current?.querySelector(`[data-zone-list="${CSS.escape(id)}"]`);
+    const first = list?.querySelector("a, button");
+    first?.focus?.();
   }, []);
-  useEffect(() => cancelHoverTimer, [cancelHoverTimer]);
-  /* Puude ei hõlju: seal oleks "hover" tegelikult vajutus ja aste jääks
-     kinni sinna, kust sõrm üle libises. */
-  const onZoneEnter = useCallback(
-    (id, e) => {
-      if (e.pointerType && e.pointerType !== "mouse") return;
-      cancelHoverTimer();
-      hoverTimer.current = setTimeout(() => {
-        hoverTimer.current = null;
-        setHoverZone(id);
-      }, HOVER_DWELL_MS);
-    },
-    [cancelHoverTimer]
-  );
-  const onZoneLeave = useCallback(
-    (id, e) => {
-      if (e.pointerType && e.pointerType !== "mouse") return;
-      cancelHoverTimer();
-      setHoverZone((cur) => (cur === id ? null : cur));
-    },
-    [cancelHoverTimer]
-  );
 
   /* Viimase keskkaardi mälu komplekti kohta (sessionStorage), et elaks
      üle karusselli remountide (key={carouselSet}) ja route-vahetuste. */
@@ -541,26 +501,30 @@ export default function GlassCarousel({
     return true;
   }, []);
 
-  /* Laual liigutab rullik rea FOOKUST, mitte kaarte: kaardid on nagunii
-     kõik väljas, seega ainus asi, mida kerida saab, on tähelepanu.
-     Suund on ekraaniga kooskõlas — rullik üles läheb ülemise rea poole.
-     Ring on kinnine, nii et pikk kerimine ei jää seina taha kinni. */
-  const stepZone = useCallback(
+  /* ↑/↓ liigutab laual KLAVIATUURI FOOKUST reast ritta. Varem liigutas ta
+     rea esiletõstet; kui see 03.08 kadus, ei jäänud žestile mõtet, aga
+     rea-kaupa liikumine ise on klaviatuuriga liikujale endiselt vajalik —
+     seega sama nupp, aus uus tähendus: kursor astub järgmise rea esimesele
+     kaardile.
+
+     Suund on ekraaniga kooskõlas ja virn ei ole ringkäik: ülemiselt realt
+     edasi vajutades jääb fookus paigale, mitte ei hüppa alla tagasi. */
+  const stepZoneFocus = useCallback(
     (dir) => {
       const ids = zoneGroups.map((g) => g.id);
       if (!ids.length) return;
-      setFocusZone((cur) => {
-        const at = cur ? ids.indexOf(cur) : -1;
-        /* Fookuseta haarab esimene kerimine selle serva, kust žest tuleb:
-           üles kerides alumise rea, alla kerides ülemise. */
-        if (at < 0) return dir > 0 ? ids[0] : ids[ids.length - 1];
-        /* Read on füüsiline virn, mitte ringkäik: ülemiselt realt edasi
-           kerides ei hüppa fookus alla tagasi, vaid jääb paigale. */
-        const next = Math.min(ids.length - 1, Math.max(0, at + dir));
-        return ids[next];
-      });
+      const at = jumpZone ? ids.indexOf(jumpZone) : -1;
+      /* Ilma eelmise sammuta haarab esimene vajutus selle serva, kust žest
+         tuleb: üles liikudes alumise rea, alla liikudes ülemise. */
+      const next =
+        at < 0
+          ? dir > 0
+            ? 0
+            : ids.length - 1
+          : Math.min(ids.length - 1, Math.max(0, at + dir));
+      jumpToZone(ids[next]);
     },
-    [zoneGroups]
+    [jumpToZone, jumpZone, zoneGroups]
   );
 
   useEffect(() => {
@@ -575,7 +539,7 @@ export default function GlassCarousel({
         if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
         if (!roomInteractive()) return;
         e.preventDefault();
-        if (stepAllowed()) stepZone(e.key === "ArrowUp" ? 1 : -1);
+        if (stepAllowed()) stepZoneFocus(e.key === "ArrowUp" ? 1 : -1);
         return;
       }
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
@@ -586,14 +550,15 @@ export default function GlassCarousel({
     const onWheel = (e) => {
       if (e.defaultPrevented) return;
       if (!roomInteractive()) return;
+      /* LAUAL EI HAARA RULLIK ENAM MIDAGI. Ta liigutas rea esiletõstet;
+         kui see 03.08 kadus, ei jäänud tal midagi liigutada — ja `wheel`,
+         mis `preventDefault`-ib ega tee seejärel midagi, on halvem kui
+         puuduv käsitleja: kerimine tundub katkisena. Klaviatuuri ↑/↓ jäi
+         alles, sest fookuse liigutamine on päris tegu. */
+      if (isDesk) return;
       const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
       if (Math.abs(d) < 12) return;
       e.preventDefault();
-      if (isDesk) {
-        /* Sammulukk hoiab tempo: üks žest = üks rida, mitte vuhin läbi. */
-        if (stepAllowed()) stepZone(d > 0 ? -1 : 1);
-        return;
-      }
       step(d > 0 ? 1 : -1);
     };
     window.addEventListener("keydown", onKey);
@@ -602,7 +567,7 @@ export default function GlassCarousel({
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("wheel", onWheel);
     };
-  }, [isDesk, roomInteractive, step, stepZone]);
+  }, [isDesk, roomInteractive, step, stepZoneFocus]);
 
   const handleActivate = useCallback(
     (e, item, i) => {
@@ -695,7 +660,7 @@ export default function GlassCarousel({
         /* ---------- Sügavuslaud ----------
            Astmed pöördjärjestuses (column-reverse): lähim aste ALL, doki
            juures, kaugem taga ülal — nii nagu laud, mille taga sa istud. */
-        <div className="gc-desk">
+        <div className="gc-desk" ref={deskRef}>
           {zoneGroups.map((group, d) => {
             return (
               <div
@@ -703,8 +668,9 @@ export default function GlassCarousel({
                 className="gc-tier"
                 data-zone={group.id}
                 data-d={d}
-                data-focus={activeZone === group.id ? "1" : "0"}
-                data-dimmed={activeZone && activeZone !== group.id ? "1" : "0"}
+                /* data-focus / data-dimmed on 03.08 KADUNUD: aste ei tõuse
+                   ega tuhmu enam kellegi teise arvelt. Alles on ainult
+                   `data-d` — puhkesügavus, mis kannab tähendust. */
                 /* --abs toidab käivituse astakut (gc-ignite): esiaste
                    süttib esimesena, tagumine viimasena. */
                 style={{ "--d": d, "--abs": d }}
@@ -723,9 +689,8 @@ export default function GlassCarousel({
                 </span>
                 <ul
                   className="gc-tier-list"
+                  data-zone-list={group.id}
                   aria-label={zoneLabel(group.id, "name") || undefined}
-                  onPointerEnter={(e) => onZoneEnter(group.id, e)}
-                  onPointerLeave={(e) => onZoneLeave(group.id, e)}
                 >
                   {group.items.map((item) => (
                     <li key={item.key} className="gc-item" data-hidden="0">
@@ -899,21 +864,20 @@ export default function GlassCarousel({
             ) : isDesk ? (
               <div className="gc-zone-track">
                 {zoneGroups.map((group) => {
-                  /* data-on järgib sedasama activeZone'i mis laud: kui hiir
-                     on rea kohal, süttib ka doki silt (omanik 25.07: "kui
-                     ma hoveriga muudan ridu, siis all kiirmenüü ka näitab
-                     seda"). aria-pressed jääb KLIKI külge — hõljumine ei
-                     ole vajutus ja ekraanilugejale ei tohi seda nii öelda. */
-                  const on = activeZone === group.id;
-                  const pressed = focusZone === group.id;
+                  /* Silt on nüüd HÜPPESILT, mitte lüliti. `aria-pressed`
+                     kadus koos lülitiga: vajutus ei jäta enam midagi „sisse
+                     lülitatuks" (laud ei muutu), vaid viib fookuse selle
+                     astme esimesele kaardile. `aria-current` ütleb sedasama
+                     ausalt — siin sa viimati käisid. */
+                  const here = jumpZone === group.id;
                   return (
                     <button
                       key={group.id}
                       type="button"
                       className="gc-zone"
-                      data-on={on ? "1" : "0"}
-                      aria-pressed={pressed}
-                      onClick={() => setFocusZone(pressed ? null : group.id)}
+                      data-on={here ? "1" : "0"}
+                      aria-current={here ? "true" : undefined}
+                      onClick={() => jumpToZone(group.id)}
                     >
                       {zoneLabel(group.id, "name")}
                     </button>

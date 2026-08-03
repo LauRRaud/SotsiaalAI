@@ -231,21 +231,18 @@
      astmed kokku — kitsaks ja üksteise sisse. Lamedam kooniline vaade
      hoiab kaugemad read loetavas mõõdus; sügavuse kannab siin suuresti
      kaugusudu (--gc-haze), mitte ainult kahanemine. */
-  /* Perspektiiv ja astmevahe hoitakse ÜHIKUTETA numbritena, sest fookuse
-     skaala peab neid omavahel jagama (calc ei jaga pikkust pikkusega). */
+  /* Perspektiiv ja astmevahe hoitakse ÜHIKUTETA numbritena. */
   --desk-perspective-num: 2400;
   --desk-tier-z-num: 90;
   --desk-perspective: calc(var(--desk-perspective-num) * 1px);
-  /* PUHKESEIS on peaaegu tasapinnaline: kõik 15 kaarti ühesuurused ja
-     ühtviisi loetavad. Sügavus on siin ainult vihje (~93% taper), mis
-     hoiab laua pinnana, mitte menüüna tapeedi peal — aga ei maksa selle
-     eest loetavusega, nagu 240px maksis.
-     SÜGAVUS TULEB FOOKUSEST: valitud aste astub päriselt ette ja on
-     teistest SUUREM (omanik 25.07). Tahad täiesti lameda puhkeseisu →
-     pane see 0px; tahad tugevat sügavust ka puhkeseisus → 200px+.
-     See üks number juhib kogu laua iseloomu. */
-  --desk-tier-z: calc(var(--desk-tier-z-num) * 1px); /* kaugus astme kohta */
-  --desk-focus-growth: 1.09; /* kui palju fookuses rida ESIREAST suurem on */
+  /* Kaugus astme kohta. 03.08 alates on see laua AINUS sügavus: varem
+     seisis laud peaaegu tasapinnalisena ja ruumilisuse tõi fookus (valitud
+     aste astus ette ja kasvas). Fookust enam ei ole — kaardid on kõik ühes
+     mõõdus ja liigub ainult see, mille peal hiir on.
+     Kui laud tundub nüüd liiga lame, on see number see, mida keerata:
+     0px = päris tasapind, 200px+ = tugev sügavus. Loetavuse hind kasvab
+     koos temaga (240px oli 25.07 mõõdetult liiga palju). */
+  --desk-tier-z: calc(var(--desk-tier-z-num) * 1px);
   --desk-tilt: 3deg;
   /* Nimeveerg on KITSAS, sest nimi seisab püsti (vt .gc-tier-name).
      Lamav nimi nõudis ~9vw veergu ja seesama veerg oligi see, mis laua
@@ -346,16 +343,11 @@
   transform-style: preserve-3d;
   transform: rotateX(var(--desk-tilt))
     translate3d(0, 0, calc(var(--d) * -1 * var(--desk-tier-z)));
-  /* Fookus kasvatab astet SELLE ENDA keskme ümber (eraldi scale-omadus),
-     mitte translateZ-ga. Z-tõuge lükkab astme kaovpunktist EEMALE, ja
-     kuna kaovpunkt on keskmise rea kõrgusel, liigub keskmine rida vaevu,
-     üla- ja alarida aga palju — read paiskusid eri kaugusele ja vahed
-     läksid ebaühtlaseks (omanik 25.07). Tasapinnaline kasv nihutab iga
-     serva sama palju, ükskõik millist rida sa valid. */
-  scale: var(--desk-scale, 1);
-  transition:
-    transform 640ms var(--ease-soft),
-    scale 640ms var(--ease-soft);
+  /* 03.08: aste ei kasva enam. Varem oli siin `scale: var(--desk-scale)`
+     + 640 ms üleminek, mis kandis rea esiletõstet; kui esiletõst kadus, ei
+     jäänud tal midagi animeerida. `transform` üleminek jääb, sest teda
+     kasutab veel laua käivitus ja kaldenurga muutus. */
+  transition: transform 640ms var(--ease-soft);
 }
 /* NB: astmele EI TOHI panna filter'it (blur/brightness). Filter lamestab
    preserve-3d ruumi ja kaardi tõus (translateZ hoveril) kaotaks sügavuse.
@@ -371,37 +363,20 @@
 .gc-tier[data-d="3"] {
   --gc-haze: 0.2;
 }
-/* Esiletõst toimub OMAL KOHAL: aste astub päriselt ette ja on teistest
-   SUUREM, teised taanduvad. Kohta ei vahetata (vt GlassCarousel: flex
-   `order` on hetkeline reflow, mitte üleminek → jõnks).
-   Tõus on suur (+220 vs −110), sest just SEE on nüüd laua sügavus:
-   puhkeseis on peaaegu tasapinnaline, kogu ruumilisus elab fookuses. */
-/* Fookuses jõuab IGA rida sama absoluutmõõtu, ükskõik kui kaugel ta
-   puhkeseisus on. Ühtlane 9% kasv seda ei anna: perspektiiv jätab
-   tagumise rea niigi väiksemaks, nii et 9% temast on vähem kui 9%
-   esireast ja alumine rida paistis fookuses alati suurim (omanik 25.07).
-   Kompensatsioon = rea enda puhkeseisu kahanemine tagasi võidetud:
-   skaala × (1 + d·z/perspektiiv) taastab esirea mõõdu. */
-.gc-tier[data-focus="1"] {
-  --desk-scale: calc(
-    var(--desk-focus-growth) *
-    (1 + var(--d) * var(--desk-tier-z-num) / var(--desk-perspective-num))
-  );
-  --gc-haze: 0;
-}
-/* Ülejäänud astmed EI liigu — nad ainult tuhmuvad. Katsetasin ka nende
-   tahapoole lükkamist: see nägi kenam välja, aga sõi keskmise astme
-   fookuses ülemise vahe nulli. Liigub üks asi korraga, ja see üks on
-   see, mille sa valisid. */
-.gc-tier[data-dimmed="1"] {
-  --gc-haze: 0.22;
-}
+/* SIIN OLI ASTME ESILETÕST (25.07–03.08) ja siia teda tagasi ei tule.
+   `.gc-tier[data-focus="1"]` kasvatas valitud rea suuremaks ja
+   `.gc-tier[data-dimmed="1"]` tuhmistas ülejäänud; mõlemat juhtis
+   GlassCarouseli `activeZone` (hiir rea kohal VÕI doki silt).
 
-/* Hover = fookus ilma klikita. Seda EI tehta siin CSS-i :has'iga, vaid
-   sama olekuraja kaudu mis klikk (GlassCarousel hoverZone): dokk peab
-   näitama, MILLINE rida on käe all (omanik 25.07), ja seda ei saa CSS
-   naaberpuust välja lugeda. Üks allikas → aste ja doki silt ei saa
-   põhimõtteliselt eri asja näidata. */
+   Omanik 03.08: "terve rida tuleb suureks ja fookusesse, tahan seda, et
+   ainult see kaart tuleb, millel on hiire hover." Ühe kaardi otsimine
+   liigutas tervet maastikku ja silm pidi iga hiireliigutuse järel uuesti
+   kohanema.
+
+   Nüüd liigub ainult see, mille peal käsi on — kaart ise
+   (`.gc[data-desk="1"] .gc-card:hover`, allpool). Astmete PUHKESÜGAVUS
+   (`data-d` → udu + Z-nihe) jääb: ta kannab tähendust (lähim aste =
+   vahetuim suhe), mitte tähelepanu. */
 
 /* Astme nimi elab LAUAL oma rea kõrval ja taandub koos temaga — ta ei
    ole kroom ekraani peal, vaid silt ruumis.
@@ -456,9 +431,6 @@
   letter-spacing: 0.1em;
 }
 
-.gc-tier[data-focus="1"] .gc-tier-name {
-  color: var(--room-text);
-}
 
 /* PEEGEL. Rida on flex-rühma keskel ainult siis, kui tal on mõlemal pool
    võrdne veerg — muidu tsentreeritakse [nimi + rida] koos ja rida seisab
