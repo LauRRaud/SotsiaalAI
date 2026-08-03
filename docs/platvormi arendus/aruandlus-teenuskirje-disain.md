@@ -228,6 +228,22 @@ kood); kliendi-nähtavus ehitatakse LÜLITINA valmis (otsus keerab lüliti). Tee
   selle vajutuse hetkel ühe asukohapunkti; loa puudumine või GPS-i viga EI TOHI takistada
   ajatemplit ega teenuse osutamist. Töötaja näeb, kas punkt salvestati. `watchPosition`-i,
   taustajälgimist ega punktijada ei kasutata.
+  **E2b PARANDUS 03.08 (omaniku otsus, tühistab varasema ühe-punkti tõlgenduse):**
+  asukohapunkt võetakse **igas teadlikus sõidusündmuses**, mitte ainult saabumisel:
+  `[Läksin teele]`, `[Olen kohal]` ja sõidu lõpp. Põhjendus omanikult sõna-sõnalt:
+  „üldiselt võib töötaja alustada sõitu igalt poolt, käib enne poes või kuskil
+  lihtsalt kodukülastuses. Seega mingi märk on vaja maha panna. Samuti sõidu lõpus
+  on vaja märk panna, et arvutada teekonda. **Tähtis on see, et ei ole reaalajas
+  jälgimist, kõik muu on lubatud.**"
+  See EI riku DoD punkti 10 — reegel on „maksimaalselt üks punkt TEADLIKU SÜNDMUSE
+  kohta", mitte „üks punkt külastuse kohta"; `watchPosition` ja taustajälg jäävad
+  keelatuks. Kaks tagajärge: (1) **konfigureeritavat lähtekohta ei ole vaja** —
+  märk ise on lähtekoht, olgu see pood, eelmine klient või kodu; (2) sõidulõik
+  muutub täpsemaks: `enRouteAt` punkt → `arrivedAt` punkt on PÄRIS sõit, mitte
+  eelmise kliendi ja järgmise kliendi vaheline sirge. Sõidu alguses arvutab OSRM
+  kohe teepikkuse sihtkohta („Sihtkohani 7,4 km · ~10 min"), saabumine kinnitab ja
+  päeva lõpp annab kokkuvõtte.
+
   **E2c Päevateekond (parandus 02.08):** nelja fikseeritud märke
   [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI] asemel juhib OSA II külastuste olekumasinat:
   `PLANNED → EN_ROUTE → ARRIVED → COMPLETED → FINAL`, kõrvalharud `CANCELLED`,
