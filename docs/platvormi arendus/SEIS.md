@@ -239,95 +239,152 @@ Koostatud 03.08 läbiva korjega: `ideed.md` (29 peatükki), `SotsiaalAI.md` regi
 
 **Miks see sektsioon olemas on:** omanik 03.08 — *„lihtsalt kõik kanna tegemata, ma ei
 näinud neid."* Kui funktsioon ei ole siin, siis teda praktikas ei ole olemas: teda ei
-plaanita, ei prioriseerita ega mäletata. Sektsioon kolib teemasektsioonidesse 5–11, aga
-enne peab ta olema **täielik**.
+plaanita, ei prioriseerita ega mäletata.
 
-### 4.1. Juhtumikorraldus — kirjeldatud, ehitamata
+**Kaks liiki tööd, mida ei tohi ühte nimekirja panna (omanik 03.08).**
+
+| Liik | Mis see on | Mida vajab |
+|---|---|---|
+| **TÖÖRIIST** | suurem funktsioon — uus võimekus, mida täna ei ole | oma arendusleping, oma DoD, sageli migratsioon ja otsus/partner |
+| **VÄIKE MUUDATUS või LISA** | parandus, saba või täiendus olemasoleva funktsiooni sees | ei vaja lepingut; kirjelduse ja väravad mahuvad ühte tööringi |
+
+Kõik allpool on üks või teine. Vahepealset kategooriat ei tehta — kui kahtled, on ta
+tööriist ja vajab lepingut.
+
+---
+
+### 4.1. TÖÖRIISTAD — suuremad funktsioonid
+
+#### Juhtumikorraldus
 
 `ideed.md` ptk 4 kannab tervet kontseptsiooni **„Juhtumitöö assistent STAR2 kõrval"**, mida
 üheski senises seisunimekirjas ei olnud.
 
-| Osa | Kirjeldus | Seis |
+| Tööriist | Sisu | Mis blokeerib |
 |---|---|---|
-| Juhtumitöö assistendi töölaud (4.3) | töötaja juhtumite koondvaade | TEGEMATA |
-| Ühe tööprotsessi assistendivaade (4.4) | üks juhtum algusest lõpuni | TEGEMATA |
-| STAR2-sse kandmise järjekord (4.5) | mis järjekorras kanded ametlikku registrisse lähevad | TEGEMATA |
-| STAR2 struktuurile vastav mustand (4.6) | mustand registri väljade kujul | **osaliselt** — `lib/serviceLog/export/star.js` annab Teenuspäeviku väljavõtte; juhtumi mustandit ei ole |
-| Juhtumi objekt elutsükliga | juhtum → plaan → tegevused → ülevaatus → sulgemine | **TEGEMATA ja analüüsimata** — skeemis on 157 mudelit, juhtumit nende hulgas ei ole; on ainult artefaktid (`CASE_SUMMARY`, `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`) |
+| **Juhtumi objekt elutsükliga** | juhtum → plaan → tegevused → ülevaatus → sulgemine. **Skeemis on 157 mudelit ja juhtumit nende hulgas ei ole** — on ainult artefaktid (`CASE_SUMMARY`, `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`) | analüüsimata; ptk 4.7/10 „paralleelset kliendibaasi ei looda" on otsus, mis väärib ülevaatust |
+| Juhtumitöö assistendi töölaud (4.3) | töötaja juhtumite koondvaade | eelmine |
+| Ühe tööprotsessi assistendivaade (4.4) | üks juhtum algusest lõpuni | eelmine |
+| STAR2 kandmise järjekord + mustand (4.5–4.6) | mustand registri väljade kujul | Teenuspäeviku väljavõte on olemas (`lib/serviceLog/export/star.js`); juhtumi mustandit ei ole |
 
-Ptk 4.7 „Paralleelse andmebaasi vältimine" ja ptk 10 „STAR2 piir" on **otsus, mitte auk** —
-platvorm ei klooni registrit. Aga otsus tehti enne Teenuspäevikut ja org-kihti ning väärib
-ülevaatust: töötaja enda töökorralduse hoidmine ei ole registri dubleerimine.
+#### Võrgustikutöö ja ühistegevus
 
-### 4.2. Võrgustikutöö
-
-| Pakett | Sisu | Seis |
+| Tööriist | Sisu | Mis blokeerib |
 |---|---|---|
-| COLLAB-P0, P1, P2 | osaleja-/jagamisdescriptor, U10 jagamise ausus, kokkuvõtte kinnitusring | **TEHTUD** |
-| COLLAB-P3 | ruumi elutsükli miinimum | **POOLIK** — `ROOM_OWNERSHIP_TRANSFERRED` teavitus puudub |
-| **COLLAB-P4** | võrgustiku vertikaal: kinnitatud kokkuvõte → üks piiratud nähtavusega kutse → kirjalik ruum → kokkuleppemustand. **Kõik osalejad on kasutajad, O-CO-6 EI blokeeri** | **TEGEMATA — miski ei blokeeri** |
-| COLLAB-P5 | võrgustiku täisfunktsioon, mittekasutajate kirjed | TEGEMATA — O-CO-6 GDPR-analüüs |
-| COLLAB-P6 | professionaalse ühistegevuse täisfunktsioon: kohtumise mudel (päevakord, otsused, ülesanded, kinnitusring) | TEGEMATA |
-| Võrgustikukaart (`ideed.md` 5.5) | professionaalne võrgustikukaart | TEGEMATA |
-| Osapoolte ühendamine (5.4), osutaja kaasamine (5.6) | | TEGEMATA |
-| Perearst/tervishoiukontakt (5.7) | | **TEHTUD** — `lib/journey/healthContact.js` |
+| **COLLAB-P4 võrgustiku vertikaal** | kinnitatud kokkuvõte → üks piiratud nähtavusega kutse → kirjalik ruum → kokkuleppemustand | **miski ei blokeeri** — kõik osalejad on kasutajad, O-CO-6 ei kehti |
+| COLLAB-P5 võrgustiku täisfunktsioon | mittekasutajate kirjed võrgustikus | O-CO-6 GDPR-analüüs |
+| COLLAB-P6 kohtumise ühisvaade | päevakord, otsused, ülesanded, kinnitusring. **Täna kannavad kohtumisi kolm eraldi mudelit** (`SupervisionMeeting`, `MentoringMeeting`, `lib/calls/`) ja ühist vaadet ei ole | O-CO-2 |
+| Võrgustikukaart (`ideed.md` 5.5) | professionaalne võrgustikukaart | vt visuaalsed |
 
-Kohtumisi kannavad täna kolm eraldi mudelit (`SupervisionMeeting`, `MentoringMeeting`,
-`lib/calls/`) — **ühist kohtumise ühisvaadet ei ole**, see ongi COLLAB-P6.
+#### Visuaalsed professionaalsed tööriistad
 
-### 4.3. Visuaalsed professionaalsed tööriistad
+| Tööriist | Seis | Mis blokeerib |
+|---|---|---|
+| **Genogramm** (9.1, T21 E4) | **0 rida koodi**; leping valmis: [`t21-casework-vorgustikuvaated-ulesanne.md`](./t21-casework-vorgustikuvaated-ulesanne.md) | V1 + V2 (allpool) |
+| **Ökokaart** (9.2, T21 E5) | **0 rida koodi** | sama |
+| Professionaalne võrgustikukaart (9.3) | 0 rida | sama |
 
-| Tööriist | Seis |
+Väravad: **V1** art 14 teavitamiskohustus (kas kolmandat isikut teavitatakse, millal, mis
+mehhanismiga) ja **V2** vastutav töötleja (KOV või platvorm). O-CW-7 lahendas juba raskema
+küsimuse — genogramm on tavapraktika seadusest tuleneva ülesande peal, meedium ei loo uut
+töötlemist. **V1/V2 ja COLLAB-P5 O-CO-6 on osaliselt sama küsimus:** mis staatuses on
+inimene, kes ei ole kasutaja, aga kelle kohta kaardil kirje on. Küsi ühe
+selgitustaotlusega — vastus avab korraga T21 E1–E6 ja COLLAB-P5.
+
+#### Meetodid ja refleksioon
+
+| Tööriist | Mis blokeerib |
 |---|---|
-| **Genogramm** (`ideed.md` 9.1, T21 E4) | **TEGEMATA — 0 rida koodi.** Leping valmis: [`t21-casework-vorgustikuvaated-ulesanne.md`](./t21-casework-vorgustikuvaated-ulesanne.md) |
-| **Ökokaart** (9.2, T21 E5) | **TEGEMATA — 0 rida** |
-| Professionaalne võrgustikukaart (9.3) | TEGEMATA |
+| **Meetodite ja töövõtete kataloog** (`ideed.md` ptk 7, kuus perekonda A–F) | — |
+| Meetodi valimise assistent (8.4) | eelmine |
+| Sekkumispäevik (8.5) | — |
+| Kliendi tagasiside (8.6) | omaniku otsus |
+| Praktika arenguvaade (8.8) | — |
 
-Väravad mõlemal: **V1** art 14 teavitamiskohustus (kas kolmandat isikut teavitatakse, millal,
-mis mehhanismiga) ja **V2** vastutav töötleja (KOV või platvorm). Omaniku otsus O-CW-7 juba
-lahendas raskema küsimuse — genogramm on tavapraktika seadusest tuleneva ülesande peal,
-meedium ei loo uut töötlemist. **V1/V2 ja COLLAB-P5 O-CO-6 on osaliselt sama küsimus** —
-küsi ühe selgitustaotlusega, mitte kahena; vastus avab korraga T21 E1–E6 ja COLLAB-P5.
+#### Seadusest tulenevad moodulid (`shs-katvuskaart.md`)
 
-### 4.4. Meetodipeegel ja meetodid
+| # | Moodul | Mis blokeerib |
+|---|---|---|
+| A1 | Erihoolekande profiil Teenuspäevikule (§ 70–107) — tegevusplaan + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; kataloogis „suurim leid" | — |
+| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — deterministlik valem, informatiivne eelhinnang, MITTE otsus | **miski ei blokeeri** |
+| A4 | **MTR/tegevusloa kontroll** (§ 147–155) | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
+| A5 | Võlanõustamise eelkaardistus (§ 44–45) | — |
+| A6 | Sotsiaaltransport Teenuspäeviku tüübina (§ 38–40) | — |
+| A7 | „Teata abivajajast" avalik juhis (§ 13, igaühe kohustus) — kontota avalik leht | — |
+| A8 | Hooldekodu valiku rada (§ 20–22²) | — |
+| A9 | Kriisirežiimi seaduslik konks (§ 13¹) | — |
 
-| Osa | Seis |
+*(A3 abivahendi teekond on tehtud — `lib/journey/assistiveDevices.js`.)*
+
+#### Hääl ja multimodaalsus
+
+Kõnerežiim, häälkäsklused („kaks rada, üks mikrofon"), lokaalsed mudelid, häälvestlus
+supervisiooniruumis, kaamera/žestid — täisloend koos blokeerijatega on **sektsioonis 3**,
+siin ei dubleerita.
+
+#### Muud
+
+| Tööriist | Mis blokeerib |
 |---|---|
-| Professionaalse refleksiooni kirje (8.2), faktid vs tõlgendused (8.3) | **TEHTUD** — `lib/reflection/` |
-| Vahehindamine (8.5, osa) | **TEHTUD** — `INTERIM_OUTCOME` / `INTERIM_OUTCOMES` |
-| Sekkumispäevik (8.5) | TEGEMATA |
-| **Meetodite ja töövõtete kataloog** (ptk 7, kuus perekonda A–F) | **TEGEMATA** — kataloogi koodis ei ole |
-| Meetodi valimise assistent (8.4) | TEGEMATA |
-| Kliendi tagasiside (8.6) | TEGEMATA — otsuse taga |
-| Praktika arenguvaade (8.8) | TEGEMATA |
+| **SOTSIAALKIIRABI-V1** — 0 rida, `READY_FOR_BUILD` | E1+E2 otsustevabad; leping [`sotsiaalkiirabi-v1-arendusleping.md`](./sotsiaalkiirabi-v1-arendusleping.md) |
+| SUP-P1…P11 supervisiooni täismudel | omaniku prioriseerimine |
+| TK-P1…P5 + Teekonna kompass | — |
+| T08 failide ja meedia elutsükkel | omaniku otsus |
+| T19 ruumiline töölaud | DEFERRED |
 
-### 4.5. Seadusest tulenevad moodulid (`shs-katvuskaart.md` A1–A10)
+---
 
-| # | Moodul | Seis |
+### 4.2. VÄIKSED MUUDATUSED JA LISAD — olemasoleva sees
+
+Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpetamata ots ·
+**LISA** = väike täiendus · **LÜLITI** = kood olemas, ootab otsust.
+
+| # | Mis | Kus | Liik |
+|---|---|---|---|
+| 1 | Hiline liituja saab ainult `REQUESTED` nõusolekurea, **aga salvestus jätkub katkematult** | ruumid | **VIGA** |
+| 2 | **Nõusoleku tagasivõtmine ei peata egressi** — toorheli maandub storage'isse, failirida jääb igaveseks `PROCESSING` | ruumid | **VIGA** |
+| 3 | „Helikõne toimus …" tekib ruumi kaks korda | ruumid | VIGA |
+| 4 | Salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt | ruumid | VIGA |
+| 5 | Salvestuse katkestamine enne transkribeerimist — blob peab ära lendama, providerikutset ei tehta | hääl (T03 E4) | **VIGA** |
+| 6 | 2,5 min hoiatus/piir + taimerite ja helirajade puhastus abort/error/success radadel | hääl (T03 E4) | SABA |
+| 7 | TTS locale-fallback — RU/EN kasutaja ei tohi jääda vaikivasse ebaõnnestumisse | hääl (T03 E4) | SABA |
+| 8 | Mikrofoninupu kolm keeldu eristatud tekstina (tellimus / brauseri loakeeld / tehniline viga) | hääl (T03 E4) | SABA |
+| 9 | VEST-L8 — RU/EN TTS kvaliteedierinevus | hääl | SABA |
+| 10 | TartuNLP kolmanda TTS-pakkujana, **~50 rida lipu taga** — ise-hostitav, 12 eesti häält | hääl | LISA |
+| 11 | `ROOM_OWNERSHIP_TRANSFERRED` teavitus | COLLAB-P3 jääk | SABA |
+| 12 | U1 mitme-osaleja audience-reegel — `lib/events/recipients.js` tunneb ainult `OWNER`/`AUTHOR`/`RECIPIENT_OWNER` | töölaud/teavitused | SABA |
+| 13 | Kvoodileke (`lib/storageGuardrails.js`) | PERF-P0 jääk | VIGA |
+| 14 | L3 renewals-timerid | PERF-P0 jääk | SABA |
+| 15 | L5 kuluajaloo retention | PERF-P0 jääk | SABA |
+| 16 | Teenusekaardi loendivaade / klasterdamine | teenusekaart | LISA |
+| 17 | RV-P1 rollivahetaja jätk + tõlkestrateegia | a11y | SABA |
+| 18 | A11Y P1 juured | a11y | SABA |
+| 19 | RAG P8.6 päris allikate proovipakk | teadmusbaas | SABA |
+| 20 | RAG allikavärskuse timerite aktiveerimine | teadmusbaas | **LÜLITI** |
+| 21 | Maksete recurring sisselülitamine — mõlemad rajad koodis olemas | maksed | **LÜLITI** |
+| 22 | Päris Maksekeskuse ost toodangus tõendamata | maksed | SABA (QA) |
+| 23 | Kovisiooni privaatne märkmik | kovisioon | LISA |
+| 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
+| 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
+
+**Neli esimest ja punkt 5 on nõusoleku- ja privaatsuslubaduse rikkumised** — need ei ole
+kosmeetika ja peaksid liikuma enne uusi tööriistu.
+
+---
+
+### 4.3. Paketikoodide täisinventuur
+
+Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
+
+| Perekond | Koodid | Lahtised |
 |---|---|---|
-| A1 | Erihoolekande profiil Teenuspäevikule (§ 70–107) — kataloogis „suurim leid"; tegevusplaan + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm | TEGEMATA |
-| A2 | Toimetulekutoetuse eelkalkulaator (§ 131–134) | TEGEMATA — puhas kooditöö |
-| A3 | Abivahendi teekonna selgitaja (§ 46–55) | **TEHTUD** — `lib/journey/assistiveDevices.js` |
-| A4 | Tegevusloa/MTR-kontroll teenuseprofiilil (§ 147–155) | TEGEMATA — vajalik ka SK-V1 O-SK-5 jaoks |
-| A5 | Võlanõustamise eelkaardistus (§ 44–45) | TEGEMATA |
-| A6 | Sotsiaaltransport Teenuspäeviku tüübina (§ 38–40) | TEGEMATA |
-| A7 | „Teata abivajajast" avalik juhis (§ 13 — igaühe kohustus) | TEGEMATA — kontota avalik leht |
-| A8 | Hooldekodu valiku rada (§ 20–22²) | TEGEMATA |
-| A9 | Kriisirežiimi seaduslik konks (§ 13¹) | TEGEMATA |
-
-### 4.6. Paketikoodide täisinventuur
-
-Korje leidis **122 koodi**. Perekonnad ja lahtised liikmed:
-
-| Perekond | Koodid | Teadaolevalt lahtised |
-|---|---|---|
-| RAG | P0–P8.1, RAG-QM-P0/P0a/P1 | P8.1, RAG-QM-P1; P8.6 proovipakk |
+| RAG | P0–P8.1, RAG-QM-P0/P0a/P1 | P8.1, RAG-QM-P1, P8.6 |
 | SUP supervisioon | P0–P11 | P1–P11 |
-| TK teekond | P0–P5, KOMPASS-P0 | TK-P0 (kontrollimata), P1–P5, KOMPASS-P0 |
-| COLLAB | P0–P6 | P3 (jääk), P4, P5, P6 |
+| TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
+| COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
 | CASEWORK | P0–P6 | P2–P6 |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
-| PERF | P0–P6 | P0 jääk (kvoodileke, L3, L5), P1–P6 |
+| PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
 | RV rollivahetaja | P0–P3 | P1, P2, P3 |
 | VEST vestlusaken | P0/P0a, P1–P4 | P1–P4 |
@@ -344,7 +401,9 @@ Korje leidis **122 koodi**. Perekonnad ja lahtised liikmed:
 dokumentidest ja **võib olla sama vananenud nagu A/B/C register oli** — täielik
 kontrollpass on ise eraldi töö ja seda ei ole tehtud.
 
-### 4.7. Sahtel ja kaugemad ideed
+---
+
+### 4.4. Sahtel ja kaugemad ideed
 
 `ideed.md`: ESTA foorum + piirkonnaruumid + teemakogukonnad (27), ESTA liikmepakett ja
 1 € mudel (26), tööheaolu anonüümne valdkondlik andmekiht (20), KOV osakonna kuukoond (21),
