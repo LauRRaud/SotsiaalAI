@@ -8790,7 +8790,10 @@
       "map": "Route on the map",
       "map_note": "The map shows addresses and the visit order. Worker movement is not shown here.",
       "order_hint": "Current order ≈ {current} km, suggested ≈ {suggested} km.",
-      "order_apply": "Reorder"
+      "order_apply": "Reorder",
+      "navigate_day": "Open the whole day in the navigator ({stops} stops)",
+      "navigate_waze": "Waze",
+      "navigate_truncated": "The navigator takes up to 10 stops at a time — open the rest separately."
     }
   },
   "date_field": {

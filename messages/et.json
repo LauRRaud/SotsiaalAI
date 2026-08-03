@@ -8790,7 +8790,10 @@
       "map": "Teekond kaardil",
       "map_note": "Kaardil on aadressid ja külastuste järjekord. Töötaja liikumist siin ei näidata.",
       "order_hint": "Praegune järjekord ≈ {current} km, soovitatud ≈ {suggested} km.",
-      "order_apply": "Järjesta ümber"
+      "order_apply": "Järjesta ümber",
+      "navigate_day": "Ava terve päev navigaatoris ({stops} peatust)",
+      "navigate_waze": "Waze",
+      "navigate_truncated": "Navigaator võtab korraga kuni 10 peatust — ülejäänud tuleb avada eraldi."
     }
   },
   "date_field": {

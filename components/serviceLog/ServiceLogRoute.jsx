@@ -324,6 +324,28 @@ export default function ServiceLogRoute() {
         </div>
       ) : null}
 
+      {/* MEIE KAART = ÜLEVAADE, NAVIGAATOR = SÕITMINE.
+          Päris teed meie kaardile ei joonista: selleks oleks vaja
+          marsruudimootorit, kuhu läheksid KLIENTIDE KODUAADRESSID — ja isegi
+          siis ei annaks väike joon hääljuhiseid ega liiklusinfot. Selle asemel
+          kannab üleandmine tervet päeva: üks vajutus avab kõik järelejäänud
+          külastused mitmepeatuselise marsruudina. */}
+      {day.dayNavigation ? (
+        <div className="sl-suggest-order">
+          <a
+            className="sl-entry-btn is-primary"
+            href={day.dayNavigation.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {t("service_log.route.navigate_day", "", { stops: String(day.dayNavigation.stops) })}
+          </a>
+          {day.dayNavigation.truncated ? (
+            <span className="sl-source sl-source-warn">{t("service_log.route.navigate_truncated", "")}</span>
+          ) : null}
+        </div>
+      ) : null}
+
       <ServiceLogRouteMap visits={visits} />
 
       {visits.length === 0 ? (
@@ -384,6 +406,12 @@ export default function ServiceLogRoute() {
                     rel="noreferrer"
                   >
                     {t("service_log.route.navigate", "")}
+                  </a>
+                ) : null}
+
+                {visit.wazeUrl && !isTerminal(visit.status) ? (
+                  <a className="sl-entry-btn" href={visit.wazeUrl} target="_blank" rel="noreferrer">
+                    {t("service_log.route.navigate_waze", "")}
                   </a>
                 ) : null}
 

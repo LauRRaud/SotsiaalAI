@@ -13,7 +13,9 @@ import assert from "node:assert/strict";
 import {
   ROAD_FACTOR,
   buildLegs,
+  buildDayNavigationUrl,
   buildNavigationUrl,
+  buildWazeUrl,
   haversineKm,
   summarizeMileage
 } from "../../lib/serviceLog/mileage.js";
@@ -111,4 +113,45 @@ test("navigatsioon eelistab aadressi koordinaadile", () => {
   assert.ok(withoutAddress.includes("59.432534,24.52342"));
 
   assert.equal(buildNavigationUrl(visit("c")), null, "kuhugi navigeerida ei ole — nuppu ei kuvata");
+});
+
+/* TERVE PÄEV NAVIGAATORIS. Meie kaart on ülevaade; sõites vajab inimene päris
+   navigaatorit hääljuhiste ja liiklusinfoga. Üleandmine kannab nüüd tervet
+   päeva, mitte ühte aadressi korraga. */
+test("päeva link viib järelejäänud külastused ühe marsruudina", () => {
+  const day = [
+    { id: "a", status: "COMPLETED", address: "Tehtud tn 1" },
+    { id: "b", status: "PLANNED", address: "Kolde tn 6, Tabasalu" },
+    { id: "c", status: "PLANNED", address: "Instituudi tee 2, Harku" },
+    { id: "d", status: "PLANNED", address: "Sõle tn 40, Tallinn" }
+  ];
+  const nav = buildDayNavigationUrl(day);
+  assert.equal(nav.stops, 3, "tehtud külastus ei tohi marsruudile jõuda");
+  assert.ok(nav.url.includes(encodeURIComponent("Sõle tn 40, Tallinn")), "viimane on sihtkoht");
+  assert.ok(nav.url.includes("waypoints="), "vahepeatused on olemas");
+  assert.equal(nav.truncated, false);
+});
+
+test("tehtud päev ei anna marsruuti", () => {
+  assert.equal(buildDayNavigationUrl([{ id: "a", status: "COMPLETED", address: "x" }]), null);
+  assert.equal(buildDayNavigationUrl([]), null);
+});
+
+/* Google lubab URL-is kuni 9 vahepeatust. Rohkem EI kärbita vaikselt. */
+test("üle piiri minev päev märgitakse kärbituks", () => {
+  const many = Array.from({ length: 14 }, (_, index) => ({
+    id: `v${index}`,
+    status: "PLANNED",
+    address: `Tee ${index}, Tallinn`
+  }));
+  const nav = buildDayNavigationUrl(many);
+  assert.equal(nav.stops, 14);
+  assert.equal(nav.truncated, true, "vaikne kärpimine jätaks kliendi vahele");
+});
+
+/* Waze mitut peatust ei toeta — seda ei varjata, nupp on külastuse juures. */
+test("Waze link on ühe külastuse oma", () => {
+  assert.ok(buildWazeUrl({ address: "Kolde tn 6" }).includes("navigate=yes"));
+  assert.ok(buildWazeUrl({ addressLat: 59.43, addressLng: 24.52 }).includes("59.43%2C24.52"));
+  assert.equal(buildWazeUrl({}), null);
 });
