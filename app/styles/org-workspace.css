@@ -365,3 +365,15 @@
   border-bottom: 1px solid var(--panel-border, rgb(255 255 255 / 8%));
   white-space: nowrap;
 }
+
+/* Vormingu valik. Ilmub vajutuse peale ja on nõrgem kui nupp, mis ta avas —
+ * ta ei ole eraldi otsus, vaid sama toimingu täpsustus. */
+.org-report-formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3, 0.75rem);
+  margin-top: var(--space-1, 0.25rem);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md, 0.5rem);
+  background: var(--panel-row-bg, rgb(255 255 255 / 5%));
+}

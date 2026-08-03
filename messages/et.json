@@ -8336,8 +8336,11 @@
       "entries": "{count} kirjet",
       "audit_note": "Avamine jääb auditijälge ja saatja näeb, et sa aruande avasid.",
       "view": "Vaata",
-      "download_csv": "Laadi CSV alla",
-      "no_preview": "Seda vormingut ei saa siin näidata — laadi fail alla."
+      "no_preview": "Seda vormingut ei saa siin näidata — laadi fail alla.",
+      "download": "Laadi alla",
+      "format_csv": "CSV — esitatud fail",
+      "format_pdf": "PDF — lugemiseks",
+      "no_pdf": "Sellest vormingust ei saa PDF-i teha."
     },
     "board": {
       "title": "Graafik ja päevaseis",

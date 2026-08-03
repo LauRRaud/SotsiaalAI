@@ -10,6 +10,7 @@
  * ID-lt failini siin ei ole.
  */
 import { buildDownloadHeaders, readStoredDocument } from "@/lib/documents/server";
+import { createPdfBufferFromText, isPdfTextSupported } from "@/lib/chat/exportDocument";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { openShareForRecipient } from "@/lib/serviceLog/reportShare";
 import { orgErrorResponse, orgJson, requireOrgContext } from "../../../_shared";
@@ -63,6 +64,48 @@ export async function GET(request, context) {
         .map((line) => line.split(";"))
         .slice(0, 500);
       return orgJson({ ok: true, previewable: true, fileName: document.originalName, rows });
+    }
+
+    /**
+     * VORMINGU VALIK ALLALAADIMISEL.
+     *
+     * KAKS ERI ASJA JA SEDA EI TOHI SEGADA:
+     *
+     *   CSV = ESITATUD FAIL. Külmutatud bait'id, mille räsi tõendab, et see on
+     *   täpselt see, mis KOV-ile läks. Vaidluses kõlbab ainult tema.
+     *
+     *   PDF = LUGEMISEKS. Sünnib samadest ridadest, aga ta on RENDER, mitte
+     *   esitatud dokument. Ta on mugav (avaneb ise, saab välja printida), aga
+     *   teda ei tohi kunagi esitada tõendina — ja seepärast kannab ta seda
+     *   lauset ka failis endas.
+     */
+    if (new URL(request.url).searchParams.get("vorming") === "pdf") {
+      const isCsv = String(document.mime || "").includes("csv");
+      if (!isCsv) return orgJson({ ok: false, message: "org.reports.no_pdf" }, 400);
+
+      const text = [
+        document.originalName,
+        "",
+        /* AUS PÄIS. Ilma temata võiks keegi selle PDF-i KOV-ile edasi saata ja
+           arvata, et ta on esitatud dokument. */
+        "Lugemiseks renditud koopia. Esitatud fail on CSV.",
+        "",
+        ...fileBuffer
+          .toString("utf8")
+          .split(/\r?\n/)
+          .filter((line) => line.trim().length)
+          .map((line) => line.split(";").join("  "))
+      ].join("\n");
+
+      /* PDF-kirjutaja on WinAnsi: kirillitsa asendamine küsimärkidega oleks
+         vaikne andmekadu. Parem aus tõrge ja CSV, mis kannab kõike. */
+      if (!isPdfTextSupported(text)) return orgJson({ ok: false, message: "org.reports.no_pdf" }, 422);
+
+      const name = document.originalName.replace(/\.csv$/i, "") + ".pdf";
+      return new Response(createPdfBufferFromText(text), {
+        status: 200,
+        headers: buildDownloadHeaders(name, "application/pdf")
+      });
     }
 
     return new Response(fileBuffer, {

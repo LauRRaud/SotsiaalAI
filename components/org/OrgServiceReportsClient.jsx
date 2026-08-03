@@ -44,6 +44,8 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
      kedagi ja juht vaatab niikuinii ühte rida korraga. */
   const [preview, setPreview] = useState(null);
   const [busy, setBusy] = useState("");
+  /* Vormingu valik on ÜHE aruande kohta lahti korraga. */
+  const [picking, setPicking] = useState("");
 
   /* Avamine muudab seisu serveris. Loendi kohalik uuendamine hoiab ära selle,
      et juht vajutab teist korda, sest ekraanil ei muutunud midagi. */
@@ -121,16 +123,42 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
                 <Button type="button" variant="secondary" disabled={busy === row.id} onClick={() => open(row.id)}>
                   {t("org.reports.view")}
                 </Button>
+                {/* VALIK TULEB VAJUTUSE PEALE, mitte kahe nupuna kõrvuti:
+                    tavaline tee on üks („laadi alla") ja vorming on erand,
+                    mille pärast ei pea iga päev otsustama. */}
                 <Button
-                  as="a"
-                  href={`/api/org/${organizationId}/aruanded/${row.id}`}
-                  download
+                  type="button"
                   variant="secondary"
-                  onClick={() => markOpened(row.id)}
+                  onClick={() => setPicking(picking === row.id ? "" : row.id)}
                 >
-                  {t("org.reports.download_csv")}
+                  {t("org.reports.download")}
                 </Button>
               </div>
+
+              {picking === row.id ? (
+                <div className="org-report-formats" role="group">
+                  {/* KAKS ERI ASJA JA SEDA EI TOHI SEGADA. CSV on ESITATUD
+                      fail — tema räsi tõendab, et see on täpselt see, mis
+                      KOV-ile läks. PDF on lugemiseks renditud koopia ja ta
+                      ütleb seda ka failis endas. */}
+                  <a
+                    className="org-inline-btn"
+                    href={`/api/org/${organizationId}/aruanded/${row.id}`}
+                    download
+                    onClick={() => { markOpened(row.id); setPicking(""); }}
+                  >
+                    {t("org.reports.format_csv")}
+                  </a>
+                  <a
+                    className="org-inline-btn"
+                    href={`/api/org/${organizationId}/aruanded/${row.id}?vorming=pdf`}
+                    download
+                    onClick={() => { markOpened(row.id); setPicking(""); }}
+                  >
+                    {t("org.reports.format_pdf")}
+                  </a>
+                </div>
+              ) : null}
 
               {preview?.shareId === row.id ? (
                 preview.previewable ? (

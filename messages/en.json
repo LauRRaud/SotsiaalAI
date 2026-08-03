@@ -8336,8 +8336,11 @@
       "entries": "{count} entries",
       "audit_note": "Opening is recorded in the audit trail and the sender sees that you opened it.",
       "view": "View",
-      "download_csv": "Download CSV",
-      "no_preview": "This format cannot be shown here — download the file."
+      "no_preview": "This format cannot be shown here — download the file.",
+      "download": "Download",
+      "format_csv": "CSV — the submitted file",
+      "format_pdf": "PDF — for reading",
+      "no_pdf": "A PDF cannot be made from this format."
     },
     "board": {
       "title": "Schedule and day status",
