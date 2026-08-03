@@ -91,7 +91,9 @@ test("My sharings page is linked from profile and uses the single aggregate endp
   assert.match(component, /mutationInFlightRef\.current/);
   assert.match(component, /if \(!action \|\| mutationInFlightRef\.current\) return/);
   assert.match(component, /if \(!correction \|\| mutationInFlightRef\.current\) return/);
-  assert.match(component, /<input disabled=\{Boolean\(busyKey\)\}/);
+  /* Väli käib 03.08 alates platvormi Input-komponendi kaudu. Kontrakt on
+     sama: parandust saatva päringu ajal on ta kinni. */
+  assert.match(component, /<Input disabled=\{Boolean\(busyKey\)\}/);
   assert.match(component, /<textarea required disabled=\{Boolean\(busyKey\)\}/);
   assert.doesNotMatch(component, /\sanchorBack(?:\s|\/>)/);
   assert.match(component, /overlayClassName=\{styles\.modalOverlay\}/);

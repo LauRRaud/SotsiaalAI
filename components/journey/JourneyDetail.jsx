@@ -9,6 +9,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
@@ -643,7 +644,7 @@ function ContinuityTextField({ id, label, value, onChange, placeholder = "", typ
       <label htmlFor={id}>
         {label}
       </label>
-      <input
+      <Input
         id={id}
         type={type}
         value={value}
@@ -1602,7 +1603,7 @@ export default function JourneyDetail({ journeyId }) {
                     <label htmlFor="journey-detail-title">
                       {t("journey.labels.title", "Title")}
                     </label>
-                    <input
+                    <Input
                       id="journey-detail-title"
                       value={form.title}
                       onChange={(event) => updateForm("title", event.target.value)}

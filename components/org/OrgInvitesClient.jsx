@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { CAPABILITY_TEMPLATE_KEYS, CAPABILITY_TEMPLATES, ORGANIZATION_SEAT_ROLES } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -87,7 +88,7 @@ export default function OrgInvitesClient({ context, initialInvites, units }) {
           <div className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.invites.email")}</span>
-              <input
+              <Input
                 required
                 type="email"
                 value={email}

@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 
 const RECORDING_PURPOSE_OPTIONS = [
   ["GENERAL_SUMMARY", "kokkuvõtte koostamine"],
@@ -306,7 +307,7 @@ export default function RoomCallBar({
                     ariaLabel={text(t, "calls.recording_purpose", "Salvestamise eesmärk")}
                     options={RECORDING_PURPOSE_OPTIONS.map(([value, label]) => ({ value, label }))}
                   />
-                  <input
+                  <Input
                     value={recordingPurposeText}
                     onChange={event => setRecordingPurposeText(event.target.value)}
                     placeholder={text(t, "calls.recording_purpose_text", "Eesmärgi täpsustus")}

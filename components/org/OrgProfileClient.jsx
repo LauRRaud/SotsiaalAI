@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -80,7 +81,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
               ].map(([field, label]) => (
                 <label key={field}>
                   <span className="ow-meta__term">{label}</span>
-                  <input
+                  <Input
                     value={form[field]}
                     onChange={(event) => setForm((old) => ({ ...old, [field]: event.target.value }))}
                     style={{ width: "100%" }}

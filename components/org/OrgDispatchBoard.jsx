@@ -18,6 +18,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import Panel from "@/components/ui/Panel";
+import Input from "@/components/ui/Input";
 
 function formatTime(value, locale) {
   if (!value) return "";
@@ -149,7 +150,7 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
 
       <label className="org-field">
         <span>{t("org.board.date")}</span>
-        <input type="date" value={date} onChange={(event) => setDate(event.target.value)} />
+        <Input type="date" value={date} onChange={(event) => setDate(event.target.value)} />
       </label>
 
       <p className="org-hint">
@@ -181,15 +182,15 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
           </label>
           <label className="org-field">
             <span>{t("org.board.assign_client")}</span>
-            <input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
+            <Input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
           </label>
           <label className="org-field">
             <span>{t("org.board.assign_address")}</span>
-            <input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
+            <Input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
           </label>
           <label className="org-field">
             <span>{t("org.board.assign_time")}</span>
-            <input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
+            <Input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
           </label>
           <button
             type="button"

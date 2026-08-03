@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import {
   CLIENT_SPONSORSHIP_REFERENCE_PRICE_CENTS,
   ORGANIZATION_SEAT_ROLES,
@@ -273,7 +274,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
             </label>
             <label>
               <span className="ow-meta__term">{t("org.funding.seatLimit")}</span>
-              <input
+              <Input
                 type="number"
                 min="0"
                 value={seatLimit}
@@ -324,7 +325,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
           <Form onSubmit={sponsor} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.funding.sponsorEmail")}</span>
-              <input
+              <Input
                 required
                 type="email"
                 value={sponsorEmail}

@@ -10,6 +10,7 @@ import LoginModal from "@/components/LoginModal";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
 export default function UuendaEpostiBody() {
@@ -220,19 +221,19 @@ export default function UuendaEpostiBody() {
                 </Button>
               </div>
             </div> : <Form onSubmit={handleSubmit} autoComplete="on" aria-busy={loading ? "true" : "false"}>
-              <input aria-label={usernameLabel} id="email-username" name="username" type="email" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
+              <Input aria-label={usernameLabel} id="email-username" name="username" type="email" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-email" className="sr-only">
                 {t("profile.email_update.current_placeholder")}
               </label>
-              <input type="email" id="current-email" name="current-email" placeholder={t("profile.email_update.current_placeholder")} value={currentEmail} readOnly aria-readonly="true" autoComplete="username" inputMode="email" />
+              <Input type="email" id="current-email" name="current-email" placeholder={t("profile.email_update.current_placeholder")} value={currentEmail} readOnly aria-readonly="true" autoComplete="username" inputMode="email" />
               <label htmlFor="email" className="sr-only">
                 {t("profile.email_update.new_placeholder")}
               </label>
-              <input type="email" id="email" name="email" placeholder={t("profile.email_update.new_placeholder")} value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email" inputMode="email" disabled={loading} aria-invalid={error ? "true" : "false"} aria-describedby={errorId} />
+              <Input type="email" id="email" name="email" placeholder={t("profile.email_update.new_placeholder")} value={email} onChange={e => setEmail(e.target.value)} required autoComplete="email" inputMode="email" disabled={loading} aria-invalid={error ? "true" : "false"} aria-describedby={errorId} />
               <label htmlFor="pin" className="sr-only">
                 {t("profile.email_update.pin_placeholder")}
               </label>
-              <input type="password" id="pin" name="pin" placeholder={pinPlaceholder} value={pin} onChange={e => setPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
+              <Input type="password" id="pin" name="pin" placeholder={pinPlaceholder} value={pin} onChange={e => setPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
               {error && <p id={errorId} role="alert">
                   {error}
                 </p>}

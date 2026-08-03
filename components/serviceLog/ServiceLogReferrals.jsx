@@ -30,6 +30,7 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import DateField from "@/components/ui/DateField";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { ALLOCATION_PERIODS, SERVICE_UNITS } from "@/lib/serviceLog/constants";
 
 function formatQuantity(value, unit, t) {
@@ -151,7 +152,7 @@ export default function ServiceLogReferrals({ month }) {
 
           <label className="sl-field">
             <span className="sl-label">{t("service_log.referrals.kov", "")}</span>
-            <input
+            <Input
               name="kovName"
               className="sl-input"
               value={vorm.kovName}
@@ -164,7 +165,7 @@ export default function ServiceLogReferrals({ month }) {
           <div className="sl-row">
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.number", "")}</span>
-              <input
+              <Input
                 name="referralNumber"
                 className="sl-input"
                 value={vorm.referralNumber}
@@ -174,7 +175,7 @@ export default function ServiceLogReferrals({ month }) {
             </label>
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.client", "")}</span>
-              <input
+              <Input
                 name="clientDisplayName"
                 className="sl-input"
                 value={vorm.clientDisplayName}
@@ -188,7 +189,7 @@ export default function ServiceLogReferrals({ month }) {
           <div className="sl-row">
             <label className="sl-field">
               <span className="sl-label">{t("service_log.referrals.allocated", "")}</span>
-              <input
+              <Input
                 name="allocatedQuantity"
                 className="sl-input"
                 type="number"

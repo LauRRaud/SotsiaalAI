@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import AdminHelpButton from "@/components/admin/AdminHelpButton";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
@@ -247,7 +248,7 @@ export default function UsageAdminPanel() {
           {draft ? (
             <Form onSubmit={savePlan} className="usage-admin__form">
               <div className="usage-admin__plan-meta">
-                <label>{t("admin.usage.price")}<input data-variant inputMode="decimal" value={draft.price} onChange={event => setDraft({ ...draft, price: event.target.value })} /></label>
+                <label>{t("admin.usage.price")}<Input data-variant inputMode="decimal" value={draft.price} onChange={event => setDraft({ ...draft, price: event.target.value })} /></label>
                 <span>{t("admin.usage.subscriptions", { count: selectedPlan?._count?.subscriptions || 0 })}</span>
               </div>
               <div className="usage-admin__entitlements">
@@ -258,8 +259,8 @@ export default function UsageAdminPanel() {
                       <legend>{t(`profile.usage.metrics.${metric}`)}</legend>
                       <label className="usage-admin__toggle"><input type="checkbox" checked={item.enabled} onChange={event => updateEntitlement(metric, { enabled: event.target.checked })} />{t("admin.usage.enabled")}</label>
                       <label>{t("admin.usage.period")}<Dropdown ariaLabel={t("admin.usage.period")} value={item.period} onChange={period => updateEntitlement(metric, { period })} options={PERIODS.map(period => ({ value: period, label: t(`profile.usage.periods.${period}`) }))} /></label>
-                      <label>{t("admin.usage.soft_limit")}<input data-variant inputMode="numeric" value={item.softLimit} onChange={event => updateEntitlement(metric, { softLimit: event.target.value })} /></label>
-                      <label>{t("admin.usage.hard_limit")}<input data-variant inputMode="numeric" value={item.hardLimit} onChange={event => updateEntitlement(metric, { hardLimit: event.target.value })} /></label>
+                      <label>{t("admin.usage.soft_limit")}<Input data-variant inputMode="numeric" value={item.softLimit} onChange={event => updateEntitlement(metric, { softLimit: event.target.value })} /></label>
+                      <label>{t("admin.usage.hard_limit")}<Input data-variant inputMode="numeric" value={item.hardLimit} onChange={event => updateEntitlement(metric, { hardLimit: event.target.value })} /></label>
                     </fieldset>
                   );
                 })}
@@ -279,7 +280,7 @@ export default function UsageAdminPanel() {
         <section className="usage-admin__surface" aria-labelledby="usage-overrides-title">
           <div className="usage-admin__section-head"><div><h3 id="usage-overrides-title">{t("admin.usage.overrides_title")}</h3><p>{t("admin.usage.overrides_help")}</p></div></div>
           <Form className="usage-admin__search" onSubmit={findUser}>
-            <input data-variant value={userQuery} onChange={event => setUserQuery(event.target.value)} placeholder={t("admin.usage.user_search_placeholder")} />
+            <Input data-variant value={userQuery} onChange={event => setUserQuery(event.target.value)} placeholder={t("admin.usage.user_search_placeholder")} />
             <Button type="submit" disabled={loadingUser}>{t("admin.usage.find_user")}</Button>
           </Form>
           {userResult?.user ? (
@@ -294,7 +295,7 @@ export default function UsageAdminPanel() {
               {userResult.user.suspension ? <div className="usage-admin__suspension"><strong>{t("admin.usage.suspended")}</strong><span>{userResult.user.suspension.reason}</span></div> : null}
               {!userResult.user.isAdmin ? (
                 <div className="usage-admin__access-controls">
-                  <label>{t("admin.usage.access_reason")}<input data-variant value={accessReason} onChange={event => setAccessReason(event.target.value)} /></label>
+                  <label>{t("admin.usage.access_reason")}<Input data-variant value={accessReason} onChange={event => setAccessReason(event.target.value)} /></label>
                   <Button type="button" disabled={mutatingAccess || !accessReason.trim()} onClick={() => changeAccess(userResult.user.suspension ? "resume" : "suspend")}>
                     {t(userResult.user.suspension ? "admin.usage.resume_user" : "admin.usage.suspend_user")}
                   </Button>
@@ -306,9 +307,9 @@ export default function UsageAdminPanel() {
               <Form className="usage-admin__override-form" onSubmit={saveOverride}>
                 <label>{t("admin.usage.metric")}<Dropdown ariaLabel={t("admin.usage.metric")} value={overrideDraft.metric} onChange={metric => setOverrideDraft({ ...overrideDraft, metric })} options={METRICS.map(metric => ({ value: metric, label: t(`profile.usage.metrics.${metric}`) }))} /></label>
                 <label>{t("admin.usage.period")}<Dropdown ariaLabel={t("admin.usage.period")} value={overrideDraft.period} onChange={period => setOverrideDraft({ ...overrideDraft, period })} options={PERIODS.map(period => ({ value: period, label: t(`profile.usage.periods.${period}`) }))} /></label>
-                <label>{t("admin.usage.soft_limit")}<input data-variant inputMode="numeric" value={overrideDraft.softLimit} onChange={event => setOverrideDraft({ ...overrideDraft, softLimit: event.target.value })} /></label>
-                <label>{t("admin.usage.hard_limit")}<input data-variant inputMode="numeric" value={overrideDraft.hardLimit} onChange={event => setOverrideDraft({ ...overrideDraft, hardLimit: event.target.value })} required /></label>
-                <label>{t("admin.usage.valid_until")}<input data-variant type="datetime-local" value={overrideDraft.validUntil} onChange={event => setOverrideDraft({ ...overrideDraft, validUntil: event.target.value })} /></label>
+                <label>{t("admin.usage.soft_limit")}<Input data-variant inputMode="numeric" value={overrideDraft.softLimit} onChange={event => setOverrideDraft({ ...overrideDraft, softLimit: event.target.value })} /></label>
+                <label>{t("admin.usage.hard_limit")}<Input data-variant inputMode="numeric" value={overrideDraft.hardLimit} onChange={event => setOverrideDraft({ ...overrideDraft, hardLimit: event.target.value })} required /></label>
+                <label>{t("admin.usage.valid_until")}<Input data-variant type="datetime-local" value={overrideDraft.validUntil} onChange={event => setOverrideDraft({ ...overrideDraft, validUntil: event.target.value })} /></label>
                 <label className="usage-admin__reason">{t("admin.usage.reason")}<textarea data-variant value={overrideDraft.reason} onChange={event => setOverrideDraft({ ...overrideDraft, reason: event.target.value })} required /></label>
                 <div className="usage-admin__actions"><Button type="submit" disabled={savingOverride}>{t("admin.usage.add_override")}</Button></div>
               </Form>

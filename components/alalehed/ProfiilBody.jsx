@@ -20,6 +20,7 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import UsageOverview from "@/components/profile/UsageOverview";
 import DataExportPanel from "@/components/profile/DataExportPanel";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+import Input from "@/components/ui/Input";
 
 const CHAT_SKIP_ENTRY_SETTLE_KEY = "sotsiaalai:chat:skip-entry-settle";
 const CHAT_BACK_HOVER_ARM_KEY = "sotsiaalai:chat:back-hover-arm-on-move";
@@ -785,7 +786,7 @@ export default function ProfiilBody({
           <label htmlFor="delete-current-pin" className="sr-only">
             {t("profile.current_pin_label")}
           </label>
-          <input
+          <Input
             id="delete-current-pin"
             name="delete-current-pin"
             type="password"

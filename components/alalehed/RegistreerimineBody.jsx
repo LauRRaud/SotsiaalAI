@@ -19,6 +19,7 @@ import OptionCard from "@/components/ui/OptionCard";
 import RichText from "@/components/i18n/RichText";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 /* Sama nool mis ruumi ja ligipääsetavuse dokis — Tagasi on üks žest. */
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
@@ -797,7 +798,7 @@ export default function RegistreerimineBody({}) {
             {t("auth.register.email_question")}
           </label>
           <div className="rgf-controls">
-            <input
+            <Input
               type="email"
               id="email"
               name="email"
@@ -830,7 +831,7 @@ export default function RegistreerimineBody({}) {
             {t("auth.register.pin_question")}
           </label>
           <div className="rgf-controls">
-            <input
+            <Input
               type="text"
               id="pin"
               name="pin"

@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 import {
   FIELD_ITEM_STATE,
   FIELD_NOTE_KIND,
@@ -566,7 +567,7 @@ export default function FieldVisitRoom({ visitId }) {
                       <p className="fld-hint">{t("field.safety.explain")}</p>
                       <p className="fld-hint fld-hint--strong">{t("field.safety.notEmergency")}</p>
                       <label className="fld-label" htmlFor="fld-safety-deadline">{t("field.safety.deadline")}</label>
-                      <input
+                      <Input
                         id="fld-safety-deadline"
                         type="datetime-local"
                         className="fld-input"
@@ -574,7 +575,7 @@ export default function FieldVisitRoom({ visitId }) {
                         onChange={(event) => setSafetyDeadline(event.target.value)}
                       />
                       <label className="fld-label" htmlFor="fld-safety-email">{t("field.safety.contactEmail")}</label>
-                      <input
+                      <Input
                         id="fld-safety-email"
                         type="email"
                         className="fld-input"
@@ -583,7 +584,7 @@ export default function FieldVisitRoom({ visitId }) {
                         autoComplete="off"
                       />
                       <label className="fld-label" htmlFor="fld-safety-name">{t("field.safety.contactName")}</label>
-                      <input
+                      <Input
                         id="fld-safety-name"
                         className="fld-input"
                         value={safetyName}
@@ -704,7 +705,7 @@ export default function FieldVisitRoom({ visitId }) {
                   ]}
                 />
                 <label className="fld-label" htmlFor="fld-consent-subject">{t("field.consent.subject")}</label>
-                <input
+                <Input
                   id="fld-consent-subject"
                   className="fld-input"
                   value={consentSubject}
@@ -866,7 +867,7 @@ export default function FieldVisitRoom({ visitId }) {
                         placeholder={t("field.handover.notePlaceholder")}
                       />
                       <label className="fld-label" htmlFor="fld-next-contact">{t("field.handover.nextContact")}</label>
-                      <input
+                      <Input
                         id="fld-next-contact"
                         type="date"
                         className="fld-input"

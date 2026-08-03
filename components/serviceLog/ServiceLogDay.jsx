@@ -34,6 +34,7 @@ import Button from "@/components/ui/Button";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
@@ -780,7 +781,7 @@ export default function ServiceLogDay() {
         {/* KLIENT ENNE — see väli on esimene ja fookuses. */}
         <label className={isServiceLogDayRouteUiEnabled() ? "sl-field sl-manual-field" : "sl-field"}>
           <span className="sl-label">{t("service_log.form.client", "")}</span>
-          <input
+          <Input
             name="clientDisplayName"
             className="sl-input"
             value={clientName}
@@ -948,7 +949,7 @@ export default function ServiceLogDay() {
 
           <label className="sl-field">
             <span className="sl-label">{t("service_log.form.quantity", "")}</span>
-            <input
+            <Input
               name="quantity"
               className="sl-input"
               type="number"

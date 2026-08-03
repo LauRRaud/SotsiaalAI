@@ -9,6 +9,7 @@ import Panel from "@/components/ui/Panel";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -317,7 +318,7 @@ export default function MySharingsPage() {
                         </div>
                         <label>
                           <span>{t("my_sharings.correction.topic")}</span>
-                          <input disabled={Boolean(busyKey)} maxLength={1000} value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
+                          <Input disabled={Boolean(busyKey)} maxLength={1000} value={correction.topic} onChange={(event) => setCorrection((current) => ({ ...current, topic: event.target.value }))} />
                         </label>
                         <label>
                           <span>{t("my_sharings.correction.situation")}</span>

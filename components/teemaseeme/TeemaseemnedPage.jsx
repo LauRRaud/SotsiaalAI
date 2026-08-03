@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -1422,7 +1423,7 @@ export default function TeemaseemnedPage({ owner = null }) {
                   "Üldistatud, ilma nime või muu tuvastava detailita."
                 )}
               </p>
-              <input
+              <Input
                 id="ts-title"
                 className="ts-input"
                 type="text"

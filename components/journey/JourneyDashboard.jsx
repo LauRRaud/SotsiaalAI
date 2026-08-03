@@ -9,6 +9,7 @@ import Button from "@/components/ui/Button";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
 
@@ -206,7 +207,7 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
         <label htmlFor="journey-title">
           {t("journey.labels.title", "Teekonna pealkiri")}
         </label>
-        <input
+        <Input
           id="journey-title"
           value={draft.title}
           onChange={(event) => updateField("title", event.target.value)}

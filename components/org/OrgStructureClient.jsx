@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { ORGANIZATION_UNIT_TYPES } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -95,7 +96,7 @@ export default function OrgStructureClient({ context, initialUnits }) {
           <div className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.structure.name")}</span>
-              <input
+              <Input
                 required
                 value={name}
                 onChange={(event) => setName(event.target.value)}

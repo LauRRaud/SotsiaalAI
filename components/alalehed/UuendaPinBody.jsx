@@ -10,6 +10,7 @@ import LoginModal from "@/components/LoginModal";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import SpecularButton from "@/components/SpecularButton/SpecularButton";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -142,24 +143,24 @@ export default function UuendaPinBody() {
               <label htmlFor="pin-username" className="sr-only">
                 {usernameLabel}
               </label>
-              <input id="pin-username" name="username" type="text" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
+              <Input id="pin-username" name="username" type="text" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-pin" className="sr-only">
                 {currentPinLabel}
               </label>
               <SpecularButton as="div" size={null} radius={14} proximity={1} intensity={0.8} shineSize={6} shineFade={18} thickness={0.9} className="specular-input">
-                <input type="password" id="current-pin" name="current-pin" placeholder={currentPinLabel} value={currentPin} onChange={e => setCurrentPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
+                <Input type="password" id="current-pin" name="current-pin" placeholder={currentPinLabel} value={currentPin} onChange={e => setCurrentPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="current-password" disabled={loading} />
               </SpecularButton>
               <label htmlFor="next-pin" className="sr-only">
                 {pinLabel}
               </label>
               <SpecularButton as="div" size={null} radius={14} proximity={1} intensity={0.8} shineSize={6} shineFade={18} thickness={0.9} className="specular-input">
-                <input type="password" id="next-pin" name="next-pin" placeholder={pinLabel} value={nextPin} onChange={e => setNextPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
+                <Input type="password" id="next-pin" name="next-pin" placeholder={pinLabel} value={nextPin} onChange={e => setNextPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
               </SpecularButton>
               <label htmlFor="confirm-pin" className="sr-only">
                 {confirmPinLabel}
               </label>
               <SpecularButton as="div" size={null} radius={14} proximity={1} intensity={0.8} shineSize={6} shineFade={18} thickness={0.9} className="specular-input">
-                <input type="password" id="confirm-pin" name="confirm-pin" placeholder={confirmPinLabel} value={confirmPin} onChange={e => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
+                <Input type="password" id="confirm-pin" name="confirm-pin" placeholder={confirmPinLabel} value={confirmPin} onChange={e => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, PIN_MAX))} required minLength={PIN_MIN} maxLength={PIN_MAX} autoComplete="new-password" disabled={loading} />
               </SpecularButton>
               {error ? <p role="alert">
                   {error}

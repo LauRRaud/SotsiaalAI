@@ -6,6 +6,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import useStationFlight from "@/components/register/useStationFlight";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import {
   COVISION_STAGE_COMPLETION_PHASES,
   COVISION_STAGE_PROGRESS_PHASES,
@@ -1010,7 +1011,7 @@ function Composer({ stage, canWrite, isOwner, paused, busy, dispatchAction, copy
         {mode === "shared" ? (
           <label>
             {copyValue(copy, "fields.source")} <small>{copyValue(copy, "ui.optional")}</small>
-            <input value={sourceLabel} onChange={(event) => setSourceLabel(event.target.value)} maxLength={240} />
+            <Input value={sourceLabel} onChange={(event) => setSourceLabel(event.target.value)} maxLength={240} />
           </label>
         ) : (
           <p className="cvl-private-note">{copyValue(copy, "ui.private_draft_notice")}</p>
@@ -1081,7 +1082,7 @@ function StageOneControls({ session, covisionCase, isOwner, canLead, busy, dispa
         <Form className="cvl-settings-form" onSubmit={saveSettings}>
           <label>
             {copyValue(copy, "fields.duration_minutes")}
-            <input type="number" min="30" max="240" value={durationMinutes} onChange={(event) => setDurationMinutes(event.target.value)} />
+            <Input type="number" min="30" max="240" value={durationMinutes} onChange={(event) => setDurationMinutes(event.target.value)} />
           </label>
           <label>
             {copyValue(copy, "fields.support_agreement")}
@@ -1102,7 +1103,7 @@ function StageOneControls({ session, covisionCase, isOwner, canLead, busy, dispa
           <strong>{copyValue(copy, "invite_participant.title")}</strong>
           <label>
             {copyValue(copy, "fields.email")}
-            <input
+            <Input
               type="email"
               autoComplete="email"
               value={inviteEmail}
@@ -1282,7 +1283,7 @@ function StageSevenOwnerPanel({ privateStates, isOwner, busy, dispatchAction, co
             <textarea rows={3} value={nextStep} onChange={(event) => setNextStep(event.target.value)} placeholder={copyValue(copy, "placeholders.next_step")} />
           </label>
           <label>{copyValue(copy, "continuity.timeframe")}
-            <input value={timeframe} onChange={(event) => setTimeframe(event.target.value)} placeholder={copyValue(copy, "placeholders.timeframe")} />
+            <Input value={timeframe} onChange={(event) => setTimeframe(event.target.value)} placeholder={copyValue(copy, "placeholders.timeframe")} />
           </label>
           <button type="submit" disabled={busy || !nextStep.trim() || !timeframe.trim()}>{copyValue(copy, "actions.save_step")}</button>
         </Form>
@@ -1308,7 +1309,7 @@ function StageSevenOwnerPanel({ privateStates, isOwner, busy, dispatchAction, co
           });
         }}>
           <label>{copyValue(copy, "stage7.follow_up_when")}
-            <input value={followWhen} onChange={(event) => setFollowWhen(event.target.value)} placeholder={copyValue(copy, "placeholders.follow_up_when")} />
+            <Input value={followWhen} onChange={(event) => setFollowWhen(event.target.value)} placeholder={copyValue(copy, "placeholders.follow_up_when")} />
           </label>
           <label>{copyValue(copy, "stage7.follow_up_responsible")}
             <Dropdown

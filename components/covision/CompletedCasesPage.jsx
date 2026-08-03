@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 
@@ -281,7 +282,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                   </Form>
                   <Form onSubmit={reschedule}>
                     <h3>{m(t, "completed_cases.follow_up.reschedule", "Määra uus aeg")}</h3>
-                    <label>{m(t, "completed_cases.labels.time", "Kuupäev või sündmus")}<input required value={scheduleLabel} onChange={(event) => setScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
+                    <label>{m(t, "completed_cases.labels.time", "Kuupäev või sündmus")}<Input required value={scheduleLabel} onChange={(event) => setScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.reschedule", "Määra uus aeg")}</button>
                   </Form>
                 </div>
@@ -296,7 +297,7 @@ function DetailPanel({ item, t, busy, error, onClose, onMutate }) {
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.create_continuation", "Loo seotud Teemaseeme")}</button>
                   </Form>
                   <Form onSubmit={(event) => { event.preventDefault(); decide("new_follow_up", { scheduleLabel: decisionScheduleLabel }); }}>
-                    <label>{m(t, "completed_cases.decision.new_follow_up_time", "Uue järelvaate kuupäev või sündmus")}<input required value={decisionScheduleLabel} onChange={(event) => setDecisionScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
+                    <label>{m(t, "completed_cases.decision.new_follow_up_time", "Uue järelvaate kuupäev või sündmus")}<Input required value={decisionScheduleLabel} onChange={(event) => setDecisionScheduleLabel(event.target.value)} placeholder={m(t, "completed_cases.follow_up.schedule_placeholder", "nt 24.08.2026 või järgmise kohtumise alguses")} /></label>
                     <button type="submit" data-variant="quiet" disabled={busy}>{m(t, "completed_cases.actions.new_follow_up", "Määra uus järelvaade")}</button>
                   </Form>
                   <Form onSubmit={(event) => { event.preventDefault(); decide("close", { reason: closeReason }); }}>
@@ -591,7 +592,7 @@ export default function CompletedCasesPage({ owner = {} }) {
         <div className="ccp-layout">
           <section className="ccp-content">
             <div className="ccp-toolbar">
-              <label className="ccp-search"><span aria-hidden="true">⌕</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} aria-label={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} placeholder={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} /></label>
+              <label className="ccp-search"><span aria-hidden="true">⌕</span><Input type="search" value={query} onChange={(event) => setQuery(event.target.value)} aria-label={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} placeholder={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} /></label>
               <Dropdown
                 value={sort}
                 onChange={setSort}

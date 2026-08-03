@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { PrivacyShieldIcon, TermsDocIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Input from "@/components/ui/Input";
 
 const copy = {
   title: "KOV piloodi koondvaade",
@@ -215,20 +216,20 @@ export default function WellbeingPilotClient({ allowedRoleGroups = [], pilotScop
                 options={scopedRoleGroups.map((group) => ({ value: group, label: group }))}
               />
             ) : (
-              <input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
+              <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder={isAdmin ? "nt child_protection" : "piloodi rolligrupp"} disabled={!isAdmin} />
             )}
           </label>
           <label>
             {copy.workflowType}
-            <input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
+            <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
             {copy.periodStart}
-            <input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
+            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
           </label>
           <label>
             {copy.periodEnd}
-            <input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
           </label>
           <label>
             {copy.aggregationLevel}

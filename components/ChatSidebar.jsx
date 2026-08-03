@@ -10,6 +10,7 @@ import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import Button from "@/components/ui/Button";
 import ModalConfirm from "@/components/ui/ModalConfirm";
+import Input from "@/components/ui/Input";
 function uuid() {
   const rnd = typeof window !== "undefined" && window.crypto?.randomUUID?.() || null;
   return rnd ? `conv-${rnd}` : `conv-${Date.now()}`;
@@ -750,7 +751,7 @@ export default function ChatSidebar() {
       </div> : null}
       {isConversationView ? <div>
           <div>
-            <input id="chat-sidebar-search" name="chat-sidebar-search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder={t("chat.sidebar.search.placeholder", "Otsi vestlusi...")} aria-label={t("chat.sidebar.search.label", "Otsi vestlusi")} />
+            <Input id="chat-sidebar-search" name="chat-sidebar-search" value={searchQuery} onChange={event => setSearchQuery(event.target.value)} placeholder={t("chat.sidebar.search.placeholder", "Otsi vestlusi...")} aria-label={t("chat.sidebar.search.label", "Otsi vestlusi")} />
           </div>
         </div> : null}
       {selectMode && isConversationView ? <div className="drawer-actions">

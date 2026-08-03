@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
 import Panel from "@/components/ui/Panel";
+import Input from "@/components/ui/Input";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
@@ -138,7 +139,7 @@ export default function FrameworkAcceptancesAdmin() {
           </div>
 
           <div>
-            <input
+            <Input
               type="search"
               value={query}
               onChange={event => setQuery(event.target.value)}

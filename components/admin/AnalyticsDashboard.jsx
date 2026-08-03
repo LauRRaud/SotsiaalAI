@@ -11,6 +11,7 @@ import { localizePath } from "@/lib/localizePath";
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 
 // Kasutajate tabeli lehekülje suurus = serveri MAX_LIMIT. Kui kokku on rohkem
@@ -3381,7 +3382,7 @@ export default function AnalyticsDashboard() {
             {/* Otsing elab SAMAL real lehekülgede loenduri ja nooltega:
                 eraldi real täitis ta 42% laiusest ja ülejäänu oli tühjus. */}
             <Form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
-              <input
+              <Input
                 className={inputClassName}
                 value={usersQueryDraft}
                 onChange={event => setUsersQueryDraft(event.target.value)}
@@ -3526,7 +3527,7 @@ export default function AnalyticsDashboard() {
                     "Type exactly: {confirmation}"
                   )}
                 </p>
-                <input
+                <Input
                   className={inputClassName}
                   value={bulkDeleteConfirmation}
                   onChange={event => setBulkDeleteConfirmation(event.target.value)}
@@ -3575,7 +3576,7 @@ export default function AnalyticsDashboard() {
                 <label className={labelClassName} htmlFor="analytics-email-subject">
                   {t("admin.analytics.users.actions.email_subject", "Email subject")}
                 </label>
-                <input
+                <Input
                   id="analytics-email-subject"
                   className={inputClassName}
                   value={bulkEmailSubject}
@@ -3666,7 +3667,7 @@ export default function AnalyticsDashboard() {
                     "Type exactly: {confirmation}"
                   )}
                 </p>
-                <input
+                <Input
                   className={inputClassName}
                   value={bulkEmailConfirmation}
                   onChange={event => setBulkEmailConfirmation(event.target.value)}
@@ -4509,7 +4510,7 @@ export default function AnalyticsDashboard() {
                   "Type exactly: {confirmation}"
                 )}
               </p>
-              <input
+              <Input
                 className={inputClassName}
                 value={logsConfirmation}
                 onChange={event => setLogsConfirmation(event.target.value)}
@@ -4687,7 +4688,7 @@ export default function AnalyticsDashboard() {
                   "Type exactly: {confirmation}"
                 )}
               </p>
-              <input
+              <Input
                 className={inputClassName}
                 value={resetConfirmation}
                 onChange={event => setResetConfirmation(event.target.value)}

@@ -14,6 +14,7 @@ import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { FIELD_VISIT_STATUS } from "@/lib/field/constants";
 import { useFieldSync } from "./useFieldSync";
 
@@ -157,7 +158,7 @@ export default function FieldShell() {
               maxLength={4000}
             />
             <label className="fld-label" htmlFor="fld-location">{t("field.prepare.location")}</label>
-            <input
+            <Input
               id="fld-location"
               className="fld-input"
               value={locationText}

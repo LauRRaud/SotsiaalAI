@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { wellbeingLabel } from "@/lib/wellbeing/displayLabels";
 import { CHECKPOINT_FOLLOW_UP_STATES, describeWellbeingCheckpoint } from "@/lib/wellbeing/checkpointState";
 
@@ -574,7 +575,7 @@ function RecordDetail({
         <Form onSubmit={saveCheckpoint}>
           <label>
             <span>{t("wellbeing.checkpoint.next_step_label", "Järgmine samm")}</span>
-            <input
+            <Input
               type="text"
               value={checkpointStep}
               maxLength={500}
@@ -583,7 +584,7 @@ function RecordDetail({
           </label>
           <label>
             <span>{t("wellbeing.checkpoint.due_label", "Kontrollkuupäev")}</span>
-            <input
+            <Input
               type="date"
               value={checkpointDue}
               onChange={(event) => setCheckpointDue(event.target.value)}

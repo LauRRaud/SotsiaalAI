@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 
 function formatDate(value, locale) {
@@ -51,7 +52,7 @@ export default function PersonalSearchPage() {
       <Form role="search" onSubmit={onSubmit}>
         <label htmlFor="personal-search-query">{t("personal_search.label", "Otsing")}</label>
         <div>
-          <input id="personal-search-query" value={query} onChange={(event) => setQuery(event.target.value)} maxLength={120} autoComplete="off" />
+          <Input id="personal-search-query" value={query} onChange={(event) => setQuery(event.target.value)} maxLength={120} autoComplete="off" />
           <button type="submit">{t("personal_search.submit", "Otsi")}</button>
         </div>
       </Form>

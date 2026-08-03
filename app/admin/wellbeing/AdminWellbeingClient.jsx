@@ -6,6 +6,7 @@ import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/Ca
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 
 /* Skoobi tasemed on serveri enda võtmed (`role_group` jne) ja neid näidatakse
    admini vaates TEADLIKULT toorel kujul — see on tehniline vaade, kus silt
@@ -209,19 +210,19 @@ export default function AdminWellbeingClient() {
         <div>
           <label>
             Rolligrupp
-            <input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder="nt child_protection" />
+            <Input value={roleGroup} onChange={(event) => setRoleGroup(event.target.value)} placeholder="nt child_protection" />
           </label>
           <label>
             Töövoog
-            <input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
+            <Input value={workflowType} onChange={(event) => setWorkflowType(event.target.value)} placeholder="nt quick-check" />
           </label>
           <label>
             Algus
-            <input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
+            <Input type="date" value={periodStart} onChange={(event) => setPeriodStart(event.target.value)} />
           </label>
           <label>
             Lõpp
-            <input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
+            <Input type="date" value={periodEnd} onChange={(event) => setPeriodEnd(event.target.value)} />
           </label>
           <label>
             Tase
@@ -258,7 +259,7 @@ export default function AdminWellbeingClient() {
           <div>
             <label>
               Nimi
-              <input value={pilotForm.name} onChange={(event) => updatePilotForm("name", event.target.value)} placeholder="nt Tartu KOV piloot" required />
+              <Input value={pilotForm.name} onChange={(event) => updatePilotForm("name", event.target.value)} placeholder="nt Tartu KOV piloot" required />
             </label>
             <label>
               Skoobi tüüp
@@ -271,35 +272,35 @@ export default function AdminWellbeingClient() {
             </label>
             <label>
               KOV tunnus
-              <input value={pilotForm.municipalityId} onChange={(event) => updatePilotForm("municipalityId", event.target.value)} placeholder="nt tartu_linn" />
+              <Input value={pilotForm.municipalityId} onChange={(event) => updatePilotForm("municipalityId", event.target.value)} placeholder="nt tartu_linn" />
             </label>
             <label>
               Organisatsioon
-              <input value={pilotForm.organizationId} onChange={(event) => updatePilotForm("organizationId", event.target.value)} placeholder="organisatsiooni tunnus" />
+              <Input value={pilotForm.organizationId} onChange={(event) => updatePilotForm("organizationId", event.target.value)} placeholder="organisatsiooni tunnus" />
             </label>
           </div>
           <div>
             <label>
               Rolligrupid
-              <input value={pilotForm.roleGroups} onChange={(event) => updatePilotForm("roleGroups", event.target.value)} placeholder="child_protection, family_support" required />
+              <Input value={pilotForm.roleGroups} onChange={(event) => updatePilotForm("roleGroups", event.target.value)} placeholder="child_protection, family_support" required />
             </label>
             <label>
               Vaatajate e-postid
-              <input value={pilotForm.viewerEmails} onChange={(event) => updatePilotForm("viewerEmails", event.target.value)} placeholder="kov@example.test" />
+              <Input value={pilotForm.viewerEmails} onChange={(event) => updatePilotForm("viewerEmails", event.target.value)} placeholder="kov@example.test" />
             </label>
             <label>
               Miinimum
-              <input type="number" min="3" value={pilotForm.minimumGroupSize} onChange={(event) => updatePilotForm("minimumGroupSize", event.target.value)} />
+              <Input type="number" min="3" value={pilotForm.minimumGroupSize} onChange={(event) => updatePilotForm("minimumGroupSize", event.target.value)} />
             </label>
           </div>
           <div>
             <label>
               Algus
-              <input type="date" value={pilotForm.startsAt} onChange={(event) => updatePilotForm("startsAt", event.target.value)} />
+              <Input type="date" value={pilotForm.startsAt} onChange={(event) => updatePilotForm("startsAt", event.target.value)} />
             </label>
             <label>
               Lõpp
-              <input type="date" value={pilotForm.endsAt} onChange={(event) => updatePilotForm("endsAt", event.target.value)} />
+              <Input type="date" value={pilotForm.endsAt} onChange={(event) => updatePilotForm("endsAt", event.target.value)} />
             </label>
             <label>
               <input type="checkbox" checked={pilotForm.active} onChange={(event) => updatePilotForm("active", event.target.checked)} />
@@ -328,7 +329,7 @@ export default function AdminWellbeingClient() {
           </label>
           <label>
             Vaataja e-post
-            <input type="email" value={viewerEmail} onChange={(event) => setViewerEmail(event.target.value)} placeholder="kov@example.test" />
+            <Input type="email" value={viewerEmail} onChange={(event) => setViewerEmail(event.target.value)} placeholder="kov@example.test" />
           </label>
           <Button type="submit" variant="primary" disabled={!selectedPilotScopeId || !viewerEmail.trim() || pilotStatus === "saving"}>
             Lisa vaataja

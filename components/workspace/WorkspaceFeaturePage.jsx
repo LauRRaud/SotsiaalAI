@@ -16,6 +16,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
 import Form from "@/components/ui/Form";
+import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
@@ -2143,7 +2144,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             </Label>
             <Label>
               <span>{readText(t, "workspace_feature_pages.pre_inquiries.fields.next_contact_on", "Järgmise kontakti kuupäev")}</span>
-              <input
+              <Input
                 type="date"
                 value={nextContactOnDraft}
                 onChange={(event) => setNextContactOnDraft(event.target.value)}
@@ -3212,7 +3213,7 @@ function ServiceMapSurface({
           <div className="service-map-fields">
             <label>
               <span className="sr-only">{readText(t, "workspace_feature_pages.service_map.fields.keyword", "Keyword")}</span>
-              <input
+              <Input
                 value={keyword}
                 onChange={handleKeywordChange}
                 placeholder={keywordPlaceholder}
@@ -3220,7 +3221,7 @@ function ServiceMapSurface({
             </label>
             <label>
               <span className="sr-only">{readText(t, "workspace_feature_pages.service_map.fields.region", "Region")}</span>
-              <input
+              <Input
                 value={region}
                 onChange={handleRegionChange}
                 placeholder={regionPlaceholder}
@@ -3782,7 +3783,7 @@ function ServiceProfileChipField({
 function ServiceProfileInput({ className, ...props }) {
   return (
     <ServiceProfileGlowField>
-      <input
+      <Input
         className={className}
         {...props}
       />
