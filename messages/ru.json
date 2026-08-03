@@ -8801,7 +8801,10 @@
       "navigate_truncated": "Навигатор принимает до 10 остановок за раз.",
       "km_road": "{km} км (по дороге)",
       "travel_time": "в пути",
-      "service_time": "услуга"
+      "service_time": "услуга",
+      "make_entry_hour": "Создать запись (часы)",
+      "make_entry_session": "Создать запись (раз)",
+      "entry_done": "Служебная запись создана"
     }
   },
   "date_field": {

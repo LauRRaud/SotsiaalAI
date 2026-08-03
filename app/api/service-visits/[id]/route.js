@@ -14,7 +14,7 @@
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
-import { buildEntryDraftFromVisit, transitionVisit } from "@/lib/serviceLog/dayRoute";
+import { buildEntryDraftFromVisit, createEntryFromVisit, transitionVisit } from "@/lib/serviceLog/dayRoute";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError, isServiceLogDayRouteEnabled } from "@/lib/serviceLog/flags";
 
@@ -39,6 +39,18 @@ export async function PATCH(req, context) {
 
   try {
     const body = await req.json().catch(() => ({}));
+
+    /* KIRJE LOOMINE on oma toiming, mitte olekuüleminek: külastus jääb
+       `COMPLETED`-iks ja tema kõrvale tekib arve alusdokument. */
+    if (body?.action === "create_entry") {
+      const result = await createEntryFromVisit(userId, await routeId(context), {
+        unit: body?.unit || null,
+        quantity: body?.quantity ?? null,
+        clientRequestId: body?.clientRequestId || null
+      });
+      return json({ entry: result.entry, visit: result.visit }, 201);
+    }
+
     const visit = await transitionVisit(userId, await routeId(context), body?.action, {
       at: body?.at || null,
       reason: body?.reason || null,

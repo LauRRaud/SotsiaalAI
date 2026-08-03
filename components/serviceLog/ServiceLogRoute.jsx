@@ -238,6 +238,41 @@ export default function ServiceLogRoute() {
     };
   }, [address]);
 
+  /**
+   * KÜLASTUSEST TEENUSKIRJE — üks vajutus, mitte vormi täitmine uuesti.
+   *
+   * Kestus, kellaajad, klient, suunamine ja asukoht on juba mõõdetud. Töötaja
+   * ainus otsus on ÜHIK: tund tuleb mõõdetud minutitest, kord on kord. Kogust
+   * ta ei sisesta — server tuletab ta templite vahelt.
+   *
+   * KIRJET EI LOODA AUTOMAATSELT: külastus ei ole alati arveldatav teenus
+   * (tutvumiskäik, kliendi keeldumine). Aga vajutus peab olema ÜKS.
+   */
+  const makeEntry = useCallback(
+    async (visitId, unit) => {
+      setBusy(true);
+      setError("");
+      try {
+        await call(`/api/service-visits/${visitId}`, {
+          method: "PATCH",
+          body: JSON.stringify({
+            action: "create_entry",
+            unit,
+            /* Idempotentsus: kordusvajutus võrgu taastumisel ei tee teist
+               arve alusdokumenti. */
+            clientRequestId: `visit-entry-${visitId}`
+          })
+        });
+        await load();
+      } catch (entryError) {
+        setError(entryError.message);
+      } finally {
+        setBusy(false);
+      }
+    },
+    [call, load]
+  );
+
   const addVisit = useCallback(async () => {
     if (!clientName.trim()) return;
     setBusy(true);
@@ -446,6 +481,35 @@ export default function ServiceLogRoute() {
                   <Button type="button" onClick={() => transition(visit.id, primary)} disabled={busy}>
                     {t(`service_log.route.action.${primary}`, "")}
                   </Button>
+                ) : null}
+
+                {/* SILD ARVELDUSENI. Ilma selleta mõõtis teekond kõik ära ja
+                    töötaja pidi sama töö veel kord käsitsi sisestama —
+                    mõõtmisest ei ole kasu, kui ta ei jõua sinna, kus temaga
+                    midagi tehakse. */}
+                {visit.status === "COMPLETED" && !visit.serviceEntryId ? (
+                  <div className="sl-entry-actions">
+                    <button
+                      type="button"
+                      className="sl-entry-btn is-primary"
+                      disabled={busy}
+                      onClick={() => makeEntry(visit.id, "HOUR")}
+                    >
+                      {t("service_log.route.make_entry_hour", "")}
+                    </button>
+                    <button
+                      type="button"
+                      className="sl-entry-btn"
+                      disabled={busy}
+                      onClick={() => makeEntry(visit.id, "SESSION")}
+                    >
+                      {t("service_log.route.make_entry_session", "")}
+                    </button>
+                  </div>
+                ) : null}
+
+                {visit.serviceEntryId ? (
+                  <span className="sl-source">{t("service_log.route.entry_done", "")}</span>
                 ) : null}
 
                 {secondary.map((action) => (

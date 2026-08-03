@@ -8801,7 +8801,10 @@
       "navigate_truncated": "The navigator takes up to 10 stops at a time — open the rest separately.",
       "km_road": "{km} km (by road)",
       "travel_time": "travel",
-      "service_time": "service"
+      "service_time": "service",
+      "make_entry_hour": "Create entry (hours)",
+      "make_entry_session": "Create entry (session)",
+      "entry_done": "Service entry created"
     }
   },
   "date_field": {
