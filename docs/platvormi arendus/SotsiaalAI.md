@@ -89,15 +89,28 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **server** = `bb9ca541` (deploy 03.08). Üks tööpuu, üks haru.
-Rollback `671b7aa0`. Väravad enne: `npm test` 2485/2485, eslint 0, `i18n:check` OK;
-0 migratsiooni. Smoke pärast: kolm teenust `active`, `/` `/meist` `/vestlus` `/voimalused`
-→ 200.
+`main` = `origin/main` = **server** = `ccb569af` (deploy 03.08). Üks tööpuu, üks haru.
+Rollback `bb9ca541`. Väravad enne: `npm test` 2510/2510, eslint 0, `i18n:check` OK,
+`npm run build` OK; 0 migratsiooni. Smoke pärast: kolm teenust `active`,
+`/` `/meist` `/vestlus` `/voimalused` → 200, `https://sotsiaal.ai/vestlus` → 200,
+teenuselogis 0 viga.
 
 ### Järgmine samm — ootab omaniku valikut
 
-**T03 E4/E5 punktid 1–4 (hääle karastus) on 03.08 tehtud** — vt S3. Commit'imata, deploy'mata.
-Selle sees läks kinni ka S4.2 nr 5–8 ja VEST-L8 struktuurne juur.
+**T03 E4/E5 punktid 1–4 (hääle karastus) on 03.08 tehtud, deploy'tud ja LIVE.** Vt S3.
+Selle sees läks kinni ka S4.2 nr 5–8.
+
+**Eesti TTS on 03.08 LIVE TartuNLP `kylli` häälega** — omaniku otsus. `TARTUNLP_TTS_URL` ja
+`TARTUNLP_TTS_SPEAKER=kylli` on serveris seatud, Google jääb varuks. Serveri
+kättesaadavus kontrollitud (HTTP 200, 0,54 s).
+
+> ⚠️ **AVATUD JURIIDILINE KOHUSTUS, mis tekkis selle otsusega.** Toodang kasutab
+> **avalikku** `api.tartunlp.ai` teenust, seega iga eestikeelse ettelugemise tekst — AI
+> vastus, mis võib sisaldada inimese enda olukorda — läheb Tartu Ülikooli teenusesse.
+> Omanikule öeldi see enne otsust välja ja ta otsustas teadlikult „pane peale" (03.08).
+> **Sellest tulenevad kaks tegemata asja:** (1) privaatsustingimused peavad nimetama
+> TartuNLP volitatud töötlejana kolmes keeles; (2) art. 28 andmetöötlusleping või
+> ise-hostitud eksemplar. Ise-hostimine lahendab mõlemad korraga. Vt S4.2 nr 26–27.
 
 **Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei ole millegi taga:
 
@@ -111,9 +124,9 @@ Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
 ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 
-**Kuulatud ja valitud:** TartuNLP eesti hääled on `/api/tts`-s lipu taga olemas, omanik
-kuulas 03.08 viis häält ja valis `kylli`. Lahtine on üks otsus: **kas ise-hostida ja teha
-eestikeelne ettelugemine tasuta** — vt S3 „Eesti TTS suveräänsus — katse tulemus".
+**Otsustatud ja LIVE:** omanik kuulas 03.08 viis häält, valis `kylli` ja käskis serveris
+sisse lülitada. Lahtiseks jäid kaks juriidilist saba (S4.2 nr 26–27) ja kvoodiotsus — kas
+eesti keelelt `TTS_CHARS` ära võtta, kui teenus enam tähemärgi kaupa ei maksa.
 
 **Töökord (omanik 03.08, ülimuslik):** tööpuid ja harusid ei tehta, kõik läheb otse
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
@@ -360,10 +373,10 @@ tähemärgitasu ja `TTS_CHARS` kvoodi võib eesti keelelt ära võtta — ehk sa
 mis RU/EN-il juba on, aga päris eesti häälega. Enne otsust on vaja **kuulata** (näidised
 sünteesitud 03.08) ja otsustada ise-hostimise koht.
 
-**Lahtised sabad, kui otsus on „läheme":** ise-hostitud eksemplar (avalik
-`api.tartunlp.ai` ei sobi toodangusse — kasutaja tekst läheks välja); MP3/Opus kodeerimine,
-kui PCM16 maht ei rahulda; seadmematriks; kvoodiotsus (kas eesti keelelt `TTS_CHARS` ära
-võtta).
+**Omanik otsustas 03.08 „läheme" ja teenus on toodangus sees.** Lahtised sabad:
+**ise-hostitud eksemplar** (praegu käib toodang avaliku `api.tartunlp.ai` peal — vt S1
+juriidiline hoiatus ja S4.2 nr 26–27); MP3/Opus kodeerimine, kui PCM16 maht ei rahulda;
+seadmematriks (päris iOS/Safari); kvoodiotsus (kas eesti keelelt `TTS_CHARS` ära võtta).
 
 ### Tegemata
 
@@ -667,6 +680,8 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 23 | Kovisiooni privaatne märkmik | kovisioon | LISA |
 | 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
+| 26 | **Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana** — eesti ettelugemine läheb 03.08 alates avalikku `api.tartunlp.ai` teenusesse; tekst peab olema ET/EN/RU | juriidiline | **VIGA (LIVE)** |
+| 27 | **Art. 28 andmetöötlusleping TartuNLP-ga puudub** — või ise-hostitud eksemplar, mis kaotab küsimuse üldse. Ise-hostimine lahendab ka nr 26 | juriidiline | **VIGA (LIVE)** |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
