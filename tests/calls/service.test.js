@@ -12,6 +12,20 @@ import {
   serializeCallSession
 } from "../../lib/calls/service.js";
 
+function matchRows(rows, where = {}) {
+  return rows.filter(row => {
+    if (where?.id != null && row.id !== where.id) return false;
+    if (where?.roomId != null && row.roomId !== where.roomId) return false;
+    if (where?.callSessionId != null && row.callSessionId !== where.callSessionId) return false;
+    if (where?.recordingRequestId != null && row.recordingRequestId !== where.recordingRequestId) return false;
+    if (where?.userId != null && row.userId !== where.userId) return false;
+    if (where?.leftAt === null && row.leftAt != null) return false;
+    if (where?.status != null && typeof where.status !== "object" && row.status !== where.status) return false;
+    if (where?.status?.in && !where.status.in.includes(row.status)) return false;
+    return true;
+  });
+}
+
 function createModel(initial = []) {
   const rows = [...initial];
   return {
@@ -68,10 +82,17 @@ function createModel(initial = []) {
       Object.assign(row, data, { updatedAt: new Date() });
       return row;
     },
-    async updateMany({ where, data }) {
-      const matches = await this.findMany({ where });
+    updateMany({ where, data }) {
+      // Üks UPDATE ... WHERE on andmebaasis atomaarne: sobivate ridade leidmine ja
+      // muutmine ei ole eraldi samme, mille vahele teine kutse mahub. Varem tegi
+      // see fake `await this.findMany(...)` ENNE mutatsiooni, nii et kaks
+      // paralleelset kutset said mõlemad sama rea kätte ja tingimuslik üleminek
+      // (`where: { status: "ACTIVE" }`) ei kaitsnud millegi eest. Match + mutatsioon
+      // käivad nüüd ühes sünkroonses lõigus, nii et testid mõõdavad koodi, mitte
+      // fake'i puudust. Tagastab Promise'i, sest kutsujad await'ivad.
+      const matches = matchRows(rows, where);
       matches.forEach(row => Object.assign(row, data, { updatedAt: new Date() }));
-      return { count: matches.length };
+      return Promise.resolve({ count: matches.length });
     },
     async deleteMany({ where } = {}) {
       const matches = await this.findMany({ where });
@@ -765,4 +786,39 @@ test("T12 E6: a non-owner non-moderator cannot delete a recording", async () => 
     /call\.recording_forbidden/
   );
   assert.equal(prisma.callRecordingFile.rows[0].status, "AVAILABLE", "a forbidden delete leaves the recording intact");
+});
+
+test("T12: two simultaneous last-leavers end the call once and write one system message (audit 4 K4)", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, now: () => new Date("2026-08-03T20:00:00Z") });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "user_1" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+
+  // Mõlemad lahkuvad korraga: mõlemad loevad activeCount = 0 ja mõlemad jõuavad
+  // lõpetamiseni. Varem kirjutas kumbki oma „Helikõne toimus …" sõnumi.
+  const [first, second] = await Promise.all([
+    service.leaveCall({ callSessionId: call.id, userId: "user_1" }),
+    service.leaveCall({ callSessionId: call.id, userId: "user_2" })
+  ]);
+
+  assert.equal(first.status, "ENDED");
+  assert.equal(second.status, "ENDED");
+  assert.equal(prisma.callSession.rows.filter(row => row.status === "ENDED").length, 1);
+  const systemMessages = prisma.roomMessage.rows.filter(row => /Helikõne toimus/.test(row.content || ""));
+  assert.equal(systemMessages.length, 1);
+});
+
+test("T12: ending an already ended call does not add a second system message (audit 4 K4)", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, now: () => new Date("2026-08-03T20:05:00Z") });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "user_1" });
+
+  await service.endCall({ callSessionId: call.id, userId: "user_1" });
+  await assert.rejects(
+    () => service.endCall({ callSessionId: call.id, userId: "user_1" }),
+    /call.not_active/
+  );
+
+  const systemMessages = prisma.roomMessage.rows.filter(row => /Helikõne toimus/.test(row.content || ""));
+  assert.equal(systemMessages.length, 1);
 });
