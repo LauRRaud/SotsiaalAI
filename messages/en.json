@@ -1343,7 +1343,7 @@
     },
     "section5": {
       "heading": "5. Processors",
-      "body": "<p>SotsiaalAI uses processors where needed to provide the service, for example payment processing, email delivery, AI and speech services, hosting, and logging infrastructure. Processors handle data only under SotsiaalAI's instructions and subject to contractual and technical safeguards.</p>"
+      "body": "<p>SotsiaalAI uses processors where needed to provide the service, for example payment processing, email delivery, AI and speech services, hosting, and logging infrastructure. Processors handle data only under SotsiaalAI's instructions and subject to contractual and technical safeguards.</p><p><strong>Read-aloud.</strong> When a user presses the listen button on an answer, the text to be read is sent to a speech synthesis service. For Estonian read-aloud this is the University of Tartu service (TartuNLP), located in Estonia. Only the text being read is sent — no account, email address or other identifier is sent with it. Read-aloud never starts on its own. English and Russian read-aloud uses the user's own browser speech synthesis, and the platform does not send that text to any service provider.</p>"
     },
     "section6": {
       "heading": "6. Data Disclosure and Sharing",

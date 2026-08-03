@@ -110,9 +110,10 @@ kättesaadavus kontrollitud (HTTP 200, 0,54 s).
 > **avalikku** `api.tartunlp.ai` teenust, seega iga eestikeelse ettelugemise tekst — AI
 > vastus, mis võib sisaldada inimese enda olukorda — läheb Tartu Ülikooli teenusesse.
 > Omanikule öeldi see enne otsust välja ja ta otsustas teadlikult „pane peale" (03.08).
-> **Sellest tulenevad kaks tegemata asja:** (1) privaatsustingimused peavad nimetama
-> TartuNLP volitatud töötlejana kolmes keeles; (2) art. 28 andmetöötlusleping või
-> ise-hostitud eksemplar. Ise-hostimine lahendab mõlemad korraga. Vt S4.2 nr 26–27.
+> **Privaatsustingimused on 03.08 uuendatud** — §5 nimetab TartuNLP eesti ettelugemise
+> juures kolmes keeles, `PRIVACY_VERSION` = `2026-08-03`. **Alles on art. 28
+> andmetöötlusleping või ise-hostitud eksemplar** (S4.2 nr 27) — ise-hostimine kaotab
+> küsimuse üldse. Juristi sisukinnitust ei ole ühelgi avalikul õigustekstil.
 
 **Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei ole millegi taga:
 
@@ -682,8 +683,8 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 23 | Kovisiooni privaatne märkmik | kovisioon | LISA |
 | 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
-| 26 | **Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana** — eesti ettelugemine läheb 03.08 alates avalikku `api.tartunlp.ai` teenusesse; tekst peab olema ET/EN/RU | juriidiline | **VIGA (LIVE)** |
-| 27 | **Art. 28 andmetöötlusleping TartuNLP-ga puudub** — või ise-hostitud eksemplar, mis kaotab küsimuse üldse. Ise-hostimine lahendab ka nr 26 | juriidiline | **VIGA (LIVE)** |
+| 26 | ~~Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana~~ — **TEHTUD 03.08**: §5 nimetab TartuNLP eesti ettelugemise juures, ET/EN/RU; `PRIVACY_VERSION` → `2026-08-03`. Juristi sisukinnitus puudub endiselt (kehtib kogu dokumendi kohta) | juriidiline | tehtud |
+| 27 | **Art. 28 andmetöötlusleping TartuNLP-ga puudub** — või ise-hostitud eksemplar, mis kaotab küsimuse üldse | juriidiline | **VIGA (LIVE)** |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
