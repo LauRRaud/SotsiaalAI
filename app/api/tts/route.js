@@ -7,7 +7,9 @@ import { logEvent } from "@/lib/chat/logger";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
+import { normalizeTartuNlpSpeaker, tartuNlpSupportsLocale } from "@/lib/chat/voiceState";
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
+import { convertFloat32WavToPcm16 } from "@/lib/audio/wavPcm";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -24,6 +26,17 @@ export const revalidate = 0;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const OPENAI_TTS_MODEL = process.env.OPENAI_TTS_MODEL || "gpt-4o-mini-tts";
 const OPENAI_TTS_VOICE = process.env.OPENAI_TTS_VOICE || "alloy";
+// Eesti TTS suveräänsuse KATSE (S4.2 nr 10). Vaikimisi VÄLJAS — ilma
+// `TARTUNLP_TTS_URL`-ita ei muutu ükski rada.
+//
+// Katseks sobib avalik `https://api.tartunlp.ai/text-to-speech/v2`, aga
+// TOODANGUSSE mitte: siis läheks kasutaja tekst välisesse teenusesse. Päris
+// kasutus tähendab ise-hostitud eksemplari (mudelid on MIT) — sealt tuleb ka
+// kogu mõte, et eestikeelne ettelugemine ei maksa tähemärgi kaupa.
+const TARTUNLP_TTS_URL = process.env.TARTUNLP_TTS_URL || "";
+// Omaniku valik 03.08 pärast viie hääle kuulamist: `kylli`.
+const TARTUNLP_TTS_SPEAKER = process.env.TARTUNLP_TTS_SPEAKER || "kylli";
+const TARTUNLP_TTS_TIMEOUT_MS = Number(process.env.TARTUNLP_TTS_TIMEOUT_MS || 20_000);
 const TTS_RATE_LIMIT_WINDOW_MS = Number(process.env.TTS_RATE_LIMIT_WINDOW_MS || 60_000);
 const TTS_RATE_LIMIT_MAX = Number(process.env.TTS_RATE_LIMIT_MAX || 30);
 const NO_STORE_HEADERS = {
@@ -122,6 +135,48 @@ async function synthGoogle({ text, locale }) {
   };
 }
 
+async function synthTartuNlp({ text, speaker }) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TARTUNLP_TTS_TIMEOUT_MS);
+  const startedAt = Date.now();
+  try {
+    const res = await fetch(TARTUNLP_TTS_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "audio/wav"
+      },
+      body: JSON.stringify({
+        text,
+        speaker,
+        speed: 1
+      }),
+      signal: controller.signal
+    });
+    if (!res.ok) {
+      return { ok: false, messageKey: "api.tts.synthesis_failed" };
+    }
+    const raw = Buffer.from(await res.arrayBuffer());
+    if (!raw.length) {
+      return { ok: false, messageKey: "api.tts.synthesis_failed" };
+    }
+    // Float32 → PCM16: pool mahtu ja formaadikood, mida iga brauser tunneb.
+    const buf = convertFloat32WavToPcm16(raw);
+    return {
+      ok: true,
+      audioBuffer: buf,
+      audioContent: buf.toString("base64"),
+      contentType: "audio/wav",
+      provider: "tartunlp",
+      voice: speaker,
+      latencyMs: Date.now() - startedAt,
+      audioBytes: buf.length
+    };
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function synthOpenAI({ text }) {
   const { default: OpenAI } = await import("openai");
   const client = new OpenAI({
@@ -181,7 +236,8 @@ export async function POST(req) {
 
   const googleEnabled = Boolean(resolveGoogleApplicationCredentialsPath());
   const openaiEnabled = !!OPENAI_API_KEY;
-  if (!googleEnabled && !openaiEnabled) {
+  const tartuConfigured = Boolean(TARTUNLP_TTS_URL);
+  if (!googleEnabled && !openaiEnabled && !tartuConfigured) {
     return errorJson("api.tts.not_configured", 503, uiLocale);
   }
 
@@ -204,6 +260,16 @@ export async function POST(req) {
     });
   }
 
+  // Katse on eesti keele oma ja ainult siis, kui URL on seatud. Admin võib
+  // kõneleja päringus valida — 12 häält üksteise järel kuulata on kogu
+  // katse mõte ja env-i vahetamine iga hääle jaoks tähendaks restarti.
+  const tartuEnabled = tartuConfigured && tartuNlpSupportsLocale(locale);
+  const tartuSpeaker = normalizeTartuNlpSpeaker(
+    roleState.isAdmin ? payload?.speaker : null,
+    normalizeTartuNlpSpeaker(TARTUNLP_TTS_SPEAKER, "mari")
+  );
+  const plannedProvider = tartuEnabled ? "tartunlp" : googleEnabled ? "google" : "openai";
+
   let usageHandle = null;
   let synthesisCompleted = false;
   try {
@@ -214,14 +280,30 @@ export async function POST(req) {
       amount: text.length,
       scope: "tts.synthesize",
       idempotencyKey: payload?.idempotencyKey,
-      metadata: { locale, provider: googleEnabled ? "google" : "openai" }
+      metadata: { locale, provider: plannedProvider }
     });
   } catch (error) {
     return usageErrorJson(error, "tts.synthesize", localeFromRequest(req, locale));
   }
 
   try {
-    const result = googleEnabled ? await synthGoogle({ text, locale }) : await synthOpenAI({ text });
+    // Katse ei tohi ettelugemist katki teha: kui TartuNLP ei vasta, läheb
+    // sama päring edasi senist teed pidi.
+    let result = null;
+    if (tartuEnabled) {
+      result = await synthTartuNlp({ text, speaker: tartuSpeaker }).catch(error => {
+        console.error("tts tartunlp", safeError(error));
+        return null;
+      });
+      if (result && !result.ok) result = null;
+    }
+    if (!result) {
+      result = googleEnabled
+        ? await synthGoogle({ text, locale })
+        : openaiEnabled
+          ? await synthOpenAI({ text })
+          : { ok: false, messageKey: "api.tts.synthesis_failed" };
+    }
     if (!result.ok) {
       throw new Error(result.messageKey || "api.tts.synthesis_failed");
     }
@@ -255,7 +337,10 @@ export async function POST(req) {
     await logEvent("tts_request", {
       userId: session.user.id,
       role,
-      provider: result.provider || (googleEnabled ? "google" : "openai"),
+      provider: result.provider || plannedProvider,
+      // Katse võrdlusandmed: kumb pakkuja ja milline hääl päriselt kõneles.
+      voice: result.voice || null,
+      latencyMs: toNullableNumber(result.latencyMs),
       locale,
       textLength: text.length,
       durationSeconds: toNullableNumber(durationSeconds)

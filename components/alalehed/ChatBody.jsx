@@ -1320,12 +1320,15 @@ export default function ChatBody({
     recording,
     recordingPulse,
     recordingError,
-    handleMic
+    voiceNotice,
+    handleMic,
+    cancelRecording
   } = useSpeech({
     locale,
     latestAiText,
     onAppendText: txt => composerDraftApiRef.current?.appendText?.(txt),
     onError: msg => setErrorBanner(msg),
+    voiceEnabled,
     t
   });
   const revealOlder = useCallback(() => {
@@ -2808,7 +2811,8 @@ export default function ChatBody({
       voiceEnabled={voiceEnabled}
       recording={recording}
       recordingPulse={recordingPulse}
-      handleMic={voiceEnabled ? handleMic : undefined}
+      handleMic={handleMic}
+      cancelRecording={cancelRecording}
       composerDraftApiRef={composerDraftApiRef}
       onDraftStateChange={handleDraftStateChange}
       onComposerLayoutChange={handleComposerLayoutChange}
@@ -2816,6 +2820,7 @@ export default function ChatBody({
       setSendToAssistant={setSendToAssistant}
       aiNote={aiNote}
       recordingError={recordingError}
+      voiceNotice={voiceNotice}
       closeSourcesPanel={closeSourcesPanel}
       analysisPanelWidth={analysisPanelWidth}
     />

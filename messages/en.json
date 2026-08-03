@@ -2441,7 +2441,18 @@
       "unsupported": "Microphone is not supported in this browser.",
       "silence": "Dictation: no audio detected.",
       "error": "Dictation failed.",
-      "cannot_start": "Could not open microphone."
+      "cannot_start": "Could not open microphone.",
+      "cancel": "Discard recording",
+      "requires_subscription": "Dictation is part of a paid plan.",
+      "permission_denied": "The browser blocked the microphone. Allow it in your browser settings and try again.",
+      "no_device": "No microphone found. Connect a microphone and try again.",
+      "discarded": "Recording discarded and deleted. Nothing was sent.",
+      "limit_warning": "The recording is approaching the 2.5 minute limit.",
+      "limit_reached": "The recording reached the 2.5 minute limit and was stopped. What you said so far will be transcribed."
+    },
+    "tts": {
+      "browser_fallback": "Read-aloud is currently using the browser voice — it sounds different from the platform voice.",
+      "unavailable": "Read-aloud did not work. Try again or read the answer on screen."
     },
     "fallback": {
       "no_context_client": "I could not find an exact answer in the materials right now. Please describe your situation in a bit more detail and include at least your municipality or city.",

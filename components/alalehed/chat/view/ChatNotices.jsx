@@ -69,13 +69,22 @@ export function ChatTopNotices({
   </>;
 }
 
+// Kaks eri kanalit tahtlikult: viga on `alert` (katkestab ekraanilugeja),
+// kinnitus/hoiatus on `status` (ei katkesta). Katkestuse KINNITUS ei ole
+// viga ja teda ei tohi vea toonis esitada (T03 E4).
 export function ChatRecordingNotice({
   recordingError,
+  voiceNotice,
   floating = false
 }) {
   void floating;
-  if (!recordingError) return null;
-  return <div role="alert">
-    {recordingError}
-  </div>;
+  if (!recordingError && !voiceNotice) return null;
+  return <>
+    {recordingError ? <div role="alert">
+      {recordingError}
+    </div> : null}
+    {voiceNotice ? <div role="status" data-voice-notice="true">
+      {voiceNotice}
+    </div> : null}
+  </>;
 }

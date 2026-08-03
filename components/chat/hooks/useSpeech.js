@@ -1,5 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import {
+  RECORDING_LIMIT_MS,
+  RECORDING_WARNING_MS,
+  VOICE_NOTICE_KEYS,
+  classifyMicStartError,
+  micBlockReason,
+  micMessageKey,
+  pickBrowserVoice,
+  resolveTtsOutcome,
+  usesServerTts
+} from "@/lib/chat/voiceState";
 
 function getAudioContextClass() {
   if (typeof window === "undefined") return null;
@@ -66,6 +77,7 @@ export function useSpeech({
   onAppendText,
   onTranscribeAudio,
   onError,
+  voiceEnabled = true,
   t
 }) {
   const [speechReady, setSpeechReady] = useState(false);
@@ -73,6 +85,9 @@ export function useSpeech({
   const [recording, setRecording] = useState(false);
   const [recordingPulse, setRecordingPulse] = useState(false);
   const [recordingError, setRecordingError] = useState(null);
+  // Mitte-vea teated (katkestuse KINNITUS, 2,5 min hoiatus, märgistatud
+  // brauserihääle varu). Eraldi kanalis, sest need ei ole tõrked.
+  const [voiceNotice, setVoiceNotice] = useState(null);
   const synthesisRef = useRef(null);
   const audioRef = useRef(null);
   const recorderRef = useRef(null);
@@ -81,6 +96,10 @@ export function useSpeech({
   const recordingPulseTimerRef = useRef(null);
   const recordingLevelRef = useRef(0);
   const recordingStartedAtRef = useRef(0);
+  const recordingWarningTimerRef = useRef(null);
+  const recordingLimitTimerRef = useRef(null);
+  // E4 punkt 1: kui see on püsti, EI jõua salvestus providerini.
+  const recordingDiscardRef = useRef(false);
   const audioContextRef = useRef(null);
   const audioMeterTimerRef = useRef(null);
   const onErrorRef = useRef(onError);
@@ -108,6 +127,16 @@ export function useSpeech({
       return () => synth.removeEventListener("voiceschanged", handleVoicesChanged);
     }
   }, []);
+  const clearRecordingTimers = useCallback(() => {
+    if (recordingWarningTimerRef.current) {
+      clearTimeout(recordingWarningTimerRef.current);
+      recordingWarningTimerRef.current = null;
+    }
+    if (recordingLimitTimerRef.current) {
+      clearTimeout(recordingLimitTimerRef.current);
+      recordingLimitTimerRef.current = null;
+    }
+  }, []);
   useEffect(() => () => {
     try {
       synthesisRef.current?.cancel?.();
@@ -119,6 +148,9 @@ export function useSpeech({
         audioRef.current = null;
       }
     } catch {}
+    // Lahtivõtmine on ALATI katkestus: pooleli salvestus ei tohi lahkuvalt
+    // ekraanilt providerini rännata.
+    recordingDiscardRef.current = true;
     try {
       recorderRef.current?.stop?.();
     } catch {}
@@ -141,18 +173,18 @@ export function useSpeech({
     }
     setIsSpeaking(false);
   }, []);
+  // Tagastab TRUE ainult siis, kui brauserile jõuti kõne päriselt anda.
+  // Vale tagastus siin = vaikiv ebaõnnestumine kasutaja jaoks (E4).
   const speakWithBrowser = useCallback(text => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined") return false;
     const synth = synthesisRef.current;
-    if (!synth || !text) return;
+    if (!synth || typeof synth.speak !== "function" || !text) return false;
+    if (typeof window.SpeechSynthesisUtterance !== "function") return false;
     try {
       synth.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      const voices = synth.getVoices() || [];
+      const utterance = new window.SpeechSynthesisUtterance(text);
       const normLocale = (locale || "").toLowerCase();
-      const base = normLocale.split("-")[0] || normLocale;
-      const prefs = base === "et" ? [normLocale, "et-ee", "et", "en-us", "en"] : base === "ru" ? [normLocale, "ru-ru", "ru", "en-us", "en", "et-ee", "et"] : base === "en" ? [normLocale, "en-us", "en-gb", "en", "et-ee", "et", "ru-ru", "ru"] : [normLocale, base, "en-us", "en", "et-ee", "et", "ru-ru", "ru"].filter(Boolean);
-      const pick = prefs.map(pref => voices.find(v => (v.lang || "").toLowerCase().startsWith(pref))).find(Boolean);
+      const pick = pickBrowserVoice(synth.getVoices?.() || [], normLocale);
       if (pick) {
         utterance.voice = pick;
         utterance.lang = pick.lang || normLocale || "en-US";
@@ -161,12 +193,17 @@ export function useSpeech({
       }
       utterance.onstart = () => setIsSpeaking(true);
       utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
+      utterance.onerror = () => {
+        setIsSpeaking(false);
+        setVoiceNotice(tr(VOICE_NOTICE_KEYS.tts_unavailable));
+      };
       synth.speak(utterance);
+      return true;
     } catch {
       setIsSpeaking(false);
+      return false;
     }
-  }, [locale]);
+  }, [locale, tr]);
   const speakText = useCallback(async (textToSpeak) => {
     if (typeof window === "undefined") return;
     if (isSpeaking) {
@@ -175,45 +212,53 @@ export function useSpeech({
     }
     const text = String(textToSpeak || "").trim();
     if (!text) return;
-    const base = (locale || "").toLowerCase().split("-")[0];
-    if (base === "ru" || base === "en") {
-      stopSpeaking();
-      speakWithBrowser(text);
-      return;
+    stopSpeaking();
+    setVoiceNotice(null);
+    setIsSpeaking(true);
+    // Serveritee AINULT ET-le (omanik 03.08: RU/EN ettelugemine jääb
+    // kasutajale tasuta ehk brauserihäälele). RU/EN jaoks on brauserihääl
+    // kavatsetud rada, mitte varu — aga tema TÕRGE öeldakse ikka välja.
+    const serverRoute = usesServerTts(locale);
+    if (serverRoute) {
+      try {
+        const res = await fetch("/api/tts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            text: text.slice(0, 4500),
+            locale
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data?.ok && data?.audioContent) {
+          const src = `data:${data.contentType || "audio/mpeg"};base64,${data.audioContent}`;
+          const audio = new Audio(src);
+          audioRef.current = audio;
+          audio.onended = () => {
+            audioRef.current = null;
+            setIsSpeaking(false);
+          };
+          audio.onerror = () => {
+            audioRef.current = null;
+            setIsSpeaking(false);
+            setVoiceNotice(tr(VOICE_NOTICE_KEYS.tts_unavailable));
+          };
+          await audio.play();
+          return;
+        }
+      } catch {}
     }
     stopSpeaking();
-    setIsSpeaking(true);
-    try {
-      const res = await fetch("/api/tts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          text: text.slice(0, 4500),
-          locale
-        })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && data?.ok && data?.audioContent) {
-        const src = `data:${data.contentType || "audio/mpeg"};base64,${data.audioContent}`;
-        const audio = new Audio(src);
-        audioRef.current = audio;
-        audio.onended = () => {
-          audioRef.current = null;
-          setIsSpeaking(false);
-        };
-        audio.onerror = () => {
-          audioRef.current = null;
-          setIsSpeaking(false);
-        };
-        await audio.play();
-        return;
-      }
-    } catch {}
-    stopSpeaking();
-    speakWithBrowser(text);
-  }, [isSpeaking, locale, speakWithBrowser, stopSpeaking]);
+    const browserSpoke = speakWithBrowser(text);
+    const outcome = resolveTtsOutcome({
+      serverSpoke: false,
+      browserSpoke,
+      browserIsPrimary: !serverRoute
+    });
+    if (outcome.noticeKey) setVoiceNotice(tr(outcome.noticeKey));
+  }, [isSpeaking, locale, speakWithBrowser, stopSpeaking, tr]);
   const speakLatestReply = useCallback(() => {
     return speakText(latestAiText);
   }, [latestAiText, speakText]);
@@ -242,6 +287,14 @@ export function useSpeech({
   const processRecordingBlob = useCallback(async ({ blob, mimeType, fileName = "audio.webm" }) => {
     setRecording(false);
     stopAudioMeter();
+    clearRecordingTimers();
+    // E4 punkt 1 — AINUS värav providerini. Katkestatud salvestus lõpeb
+    // siin: blob jääb viiteta, `onTranscribeAudio`/`/api/stt` ei kutsuta.
+    if (recordingDiscardRef.current) {
+      recordingDiscardRef.current = false;
+      recordingChunksRef.current = [];
+      return;
+    }
     triggerRecordingPulse();
     if (!blob?.size) return;
     const durationMs = Math.max(0, Date.now() - recordingStartedAtRef.current);
@@ -282,7 +335,7 @@ export function useSpeech({
     } catch (err) {
       setRecordingError(err?.message || tr("chat.mic.error"));
     }
-  }, [locale, onAppendText, onTranscribeAudio, stopAudioMeter, tr, triggerRecordingPulse]);
+  }, [clearRecordingTimers, locale, onAppendText, onTranscribeAudio, stopAudioMeter, tr, triggerRecordingPulse]);
 
   const stopRecording = useCallback(() => {
     const recorder = recorderRef.current;
@@ -290,6 +343,7 @@ export function useSpeech({
     recorderRef.current = null;
     recorderKindRef.current = null;
     setRecording(false);
+    clearRecordingTimers();
     try {
       recorder?.stop?.();
     } catch {}
@@ -298,7 +352,17 @@ export function useSpeech({
         recorder?.stream?.getTracks?.().forEach(t => t.stop && t.stop());
       } catch {}
     }
-  }, []);
+  }, [clearRecordingTimers]);
+  // E4 punkt 1: katkesta ja viska ära. Kasutaja saab KINNITUSE, mitte vaikuse.
+  const cancelRecording = useCallback(() => {
+    if (!recorderRef.current) return;
+    recordingDiscardRef.current = true;
+    recordingChunksRef.current = [];
+    setRecordingError(null);
+    setVoiceNotice(tr(VOICE_NOTICE_KEYS.discarded));
+    stopRecording();
+    stopAudioMeter();
+  }, [stopAudioMeter, stopRecording, tr]);
   const startAudioMeter = useCallback(stream => {
     const AudioContextClass = typeof window !== "undefined" ? window.AudioContext || window.webkitAudioContext : null;
     if (!AudioContextClass) return;
@@ -379,15 +443,24 @@ export function useSpeech({
       return;
     }
     setRecordingError(null);
+    setVoiceNotice(null);
     if (recordingPulseTimerRef.current) {
       clearTimeout(recordingPulseTimerRef.current);
       recordingPulseTimerRef.current = null;
     }
     setRecordingPulse(false);
-    if (!navigator?.mediaDevices?.getUserMedia) {
-      setRecordingError(tr("chat.mic.unsupported"));
+    // E4 punkt 4: kolm keeldu on kolm eri teksti. Tellimusnõuet ei tohi
+    // esitada "mikrofon ei ole toetatud" ega "ei saanud avada" all.
+    const blocked = micBlockReason({
+      voiceEnabled,
+      mediaDevicesAvailable: Boolean(navigator?.mediaDevices?.getUserMedia)
+    });
+    if (blocked) {
+      setRecordingError(tr(micMessageKey(blocked)));
       return;
     }
+    recordingDiscardRef.current = false;
+    clearRecordingTimers();
     try {
       stream = await navigator.mediaDevices.getUserMedia({
         audio: true
@@ -428,27 +501,36 @@ export function useSpeech({
         await startWaveRecorder(stream);
       }
       setRecording(true);
+      // E4 punkt 2 — 2,5 min pehme piir koos hoiatusega. Piir LÕPETAB
+      // salvestuse (ei viska ära): senine kõne läheb transkribeerimisse.
+      recordingWarningTimerRef.current = setTimeout(() => {
+        recordingWarningTimerRef.current = null;
+        setVoiceNotice(tr(VOICE_NOTICE_KEYS.limit_warning));
+      }, RECORDING_WARNING_MS);
+      recordingLimitTimerRef.current = setTimeout(() => {
+        recordingLimitTimerRef.current = null;
+        setVoiceNotice(tr(VOICE_NOTICE_KEYS.limit_reached));
+        stopRecording();
+        stopAudioMeter();
+      }, RECORDING_LIMIT_MS);
     } catch (error) {
       try {
         stream?.getTracks?.().forEach(track => track.stop && track.stop());
       } catch {}
-      if (String(error?.message || "") === "UNSUPPORTED_RECORDING") {
-        setRecordingError(tr("chat.mic.unsupported"));
-      } else {
-        setRecordingError(tr("chat.mic.cannot_start"));
-      }
+      setRecordingError(tr(micMessageKey(classifyMicStartError(error))));
       stopRecording();
       stopAudioMeter();
     }
-  }, [processRecordingBlob, recording, startAudioMeter, stopAudioMeter, stopRecording, tr]);
+  }, [clearRecordingTimers, processRecordingBlob, recording, startAudioMeter, stopAudioMeter, stopRecording, tr, voiceEnabled]);
   useEffect(() => {
     return () => {
       if (recordingPulseTimerRef.current) {
         clearTimeout(recordingPulseTimerRef.current);
       }
+      clearRecordingTimers();
       stopAudioMeter();
     };
-  }, [stopAudioMeter]);
+  }, [clearRecordingTimers, stopAudioMeter]);
   useEffect(() => {
     return () => {
       stopSpeaking();
@@ -463,6 +545,8 @@ export function useSpeech({
     recording,
     recordingPulse,
     recordingError,
-    handleMic
-  }), [speechReady, isSpeaking, speakText, speakLatestReply, stopSpeaking, recording, recordingPulse, recordingError, handleMic]);
+    voiceNotice,
+    handleMic,
+    cancelRecording
+  }), [speechReady, isSpeaking, speakText, speakLatestReply, stopSpeaking, recording, recordingPulse, recordingError, voiceNotice, handleMic, cancelRecording]);
 }

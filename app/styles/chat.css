@@ -261,6 +261,7 @@ form:has(#chat-input) > div:has(#chat-input) > div > div:not(:has(#chat-input)) 
 
 /* Mikrofon + saada (tühi markup → glüüfid maskidena) */
 form:has(#chat-input) button[data-recording],
+form:has(#chat-input) button[data-recording-cancel],
 form:has(#chat-input) button[type="submit"] {
   flex: none;
   display: grid;
@@ -299,6 +300,7 @@ form:has(#chat-input) button[type="submit"]:active {
   scale: 0.96;
 }
 form:has(#chat-input) button[data-recording]::before,
+form:has(#chat-input) button[data-recording-cancel]::before,
 form:has(#chat-input) button[type="submit"]::before {
   content: "";
   background: currentColor;
@@ -316,6 +318,18 @@ form:has(#chat-input) button[data-recording]::before {
 form:has(#chat-input) button[data-recording="true"] {
   color: #ff9d8a;
   border-color: rgba(255, 157, 138, 0.5);
+}
+/* Katkesta salvestus (× ) — ilmub mikri kõrvale AINULT salvestamise ajal.
+   Tahtlikult vaiksem kui punane salvestusnupp: see on väljapääs, mitte
+   hoiatus. */
+form:has(#chat-input) button[data-recording-cancel]::before {
+  width: 1.35rem;
+  height: 1.35rem;
+  --glyph: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6.5 6.5l11 11M17.5 6.5l-11 11'/%3E%3C/svg%3E");
+}
+/* Tellimuseta: nupp on VAJUTATAV (ütleb põhjuse), aga näeb passiivne välja. */
+form:has(#chat-input) button[data-recording-blocked="true"] {
+  opacity: 0.45;
 }
 /* Saada-nool = brändi "sabata" chevron (ChevronIcon/BackArrowIcon kuju,
    mitte varasem joonega nool). Sabata kurv jääb visuaalselt kergemaks kui
@@ -1409,6 +1423,7 @@ button[aria-controls="chat-window-scroll"] {
 /* Mikrofon + saada nupukastid SUUREMAD (tellija 16.07: ikoonid olid
    liiga väikesed); glüüfid (::before mask) samuti suuremad allpool. */
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording],
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording-cancel],
 .panel-scrim[data-conversation="1"] form:has(#chat-input) button[type="submit"] {
   width: 2.5rem;
   height: 2.5rem;
@@ -1418,6 +1433,10 @@ button[aria-controls="chat-window-scroll"] {
   width: 2rem;
   height: 2rem;
 }
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording-cancel]::before {
+  width: 1.6rem;
+  height: 1.6rem;
+}
 /* NB: kõnenuppude ja sädelusnupu SAMA kasv EI SAA siin olla. See fail on
    kaheks jaotatud: kuni `@layer components` sulgumiseni (~rida 1627) on
    reeglid KIHIS, pärast seda kihita. .room-call-controls ja
@@ -1426,14 +1445,16 @@ button[aria-controls="chat-window-scroll"] {
    vaikselt kihita `.room-call-controls > button { width: 2.35rem }`-ile.
    Nende kasv on seepärast oma plokkides allpool. */
 /* Mikrofon: lihtne ikoon; salvestus = korall + laienevad helilained */
-.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording] {
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording],
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording-cancel] {
   color: rgba(233, 233, 233, 0.64);
   background: none;
   transition:
     color var(--dur-fast) var(--ease-soft),
     scale var(--dur-fast) var(--ease-soft);
 }
-.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording]:hover {
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording]:hover,
+.panel-scrim[data-conversation="1"] form:has(#chat-input) button[data-recording-cancel]:hover {
   color: var(--text-warm);
   background: none;
   scale: 1.08;

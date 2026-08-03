@@ -2568,6 +2568,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   onStop={() => {}}
                   onSend={handleComposerSend}
                   voiceEnabled={false}
+                  showDictationButton={false}
                   recording={false}
                   recordingPulse={false}
                   handleMic={() => {}}

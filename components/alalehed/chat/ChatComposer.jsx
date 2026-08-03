@@ -166,6 +166,7 @@ export default function ChatComposer({
   recording,
   recordingPulse,
   handleMic,
+  cancelRecording,
   draftApiRef,
   onDraftStateChange,
   onLayoutChange,
@@ -601,6 +602,14 @@ export default function ChatComposer({
     void submitSend();
   }, [closeToolsMenu, isGenerating, onStop, submitSend]);
   const handleKeyDown = useCallback(e => {
+    // Escape = katkesta salvestus. Sama žest, mis mujal platvormil sulgeb
+    // pooleli oleva tegevuse; klaviatuuriga kasutaja ei pea nuppu otsima.
+    if (e.key === "Escape" && recording && cancelRecording) {
+      e.preventDefault();
+      closeToolsMenu();
+      cancelRecording(e);
+      return;
+    }
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       closeToolsMenu();
@@ -609,7 +618,7 @@ export default function ChatComposer({
         void submitSend();
       }
     }
-  }, [closeToolsMenu, draft, isGenerating, submitSend]);
+  }, [cancelRecording, closeToolsMenu, draft, isGenerating, recording, submitSend]);
   const runPrimaryAction = useCallback(event => {
     closeToolsMenu();
     if (isGenerating || isStreamingAny) {
@@ -628,6 +637,13 @@ export default function ChatComposer({
     closeToolsMenu();
     handleMic?.(event);
   }, [closeToolsMenu, handleMic]);
+  const handleDiscardRecordingClick = useCallback(event => {
+    closeToolsMenu();
+    cancelRecording?.(event);
+  }, [cancelRecording, closeToolsMenu]);
+  // Tellimusnõue on OMA seis: nupp jääb vajutatavaks ja ütleb põhjuse ära,
+  // sest tumm hall nupp ei selgita midagi (T03 E4 punkt 4).
+  const micBlockedLabel = !voiceEnabled ? t("chat.mic.requires_subscription") : "";
   const handlePrimaryActionPointerDown = useCallback(e => {
     e.preventDefault();
     e.stopPropagation();
@@ -797,7 +813,11 @@ export default function ChatComposer({
             <span id="chat-ai-hint" className="sr-only">{aiNote}</span>
           </>
         ) : null}
-        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : t("chat.mic.start")} title={recording ? t("chat.mic.stop") : t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={!voiceEnabled || isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
+        {/* Katkesta salvestus — nähtav AINULT salvestamise ajal. Ilma
+            selleta oli ainus väljapääs "lõpeta", mis SAADAB heli ära
+            (T03 E4 punkt 1: privaatsuslubadus, mitte mugavus). */}
+        {showDictationButton && !useSimpleRoomActionButtons && recording && cancelRecording ? <button type="button" aria-label={t("chat.mic.cancel")} title={t("chat.mic.cancel")} onClick={handleDiscardRecordingClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} data-recording-cancel="true" /> : null}
+        {showDictationButton && !useSimpleRoomActionButtons ? <button type="button" aria-label={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} title={recording ? t("chat.mic.stop") : micBlockedLabel || t("chat.mic.start")} onClick={handleDictateClick} onMouseDown={preserveDesktopInputFocusOnMouseDown} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} data-speaking={recording ? "true" : "false"} data-recording={recording ? "true" : "false"} data-recording-blocked={micBlockedLabel ? "true" : undefined} data-recording-complete={recordingPulse ? "true" : "false"} /> : null}
         {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
