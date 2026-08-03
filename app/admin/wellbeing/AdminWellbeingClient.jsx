@@ -4,6 +4,13 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
+
+/* Skoobi tasemed on serveri enda võtmed (`role_group` jne) ja neid näidatakse
+   admini vaates TEADLIKULT toorel kujul — see on tehniline vaade, kus silt
+   peab kattuma sellega, mida API tagastab. */
+const SCOPE_LEVELS = Object.freeze(["role_group", "organization", "municipality"]);
+const PILOT_SCOPE_TYPES = Object.freeze(["municipality", "organization", "role_group"]);
 
 function metricLabel(metricKey) {
   return String(metricKey || "")
@@ -217,11 +224,12 @@ export default function AdminWellbeingClient() {
           </label>
           <label>
             Tase
-            <select value={aggregationLevel} onChange={(event) => setAggregationLevel(event.target.value)}>
-              <option value="role_group">role_group</option>
-              <option value="organization">organization</option>
-              <option value="municipality">municipality</option>
-            </select>
+            <Dropdown
+              value={aggregationLevel}
+              onChange={setAggregationLevel}
+              ariaLabel="Tase"
+              options={SCOPE_LEVELS.map((value) => ({ value, label: value }))}
+            />
           </label>
         </div>
         <div>
@@ -253,11 +261,12 @@ export default function AdminWellbeingClient() {
             </label>
             <label>
               Skoobi tüüp
-              <select value={pilotForm.scopeType} onChange={(event) => updatePilotForm("scopeType", event.target.value)}>
-                <option value="municipality">municipality</option>
-                <option value="organization">organization</option>
-                <option value="role_group">role_group</option>
-              </select>
+              <Dropdown
+                value={pilotForm.scopeType}
+                onChange={(next) => updatePilotForm("scopeType", next)}
+                ariaLabel="Skoobi tüüp"
+                options={PILOT_SCOPE_TYPES.map((value) => ({ value, label: value }))}
+              />
             </label>
             <label>
               KOV tunnus
@@ -307,10 +316,14 @@ export default function AdminWellbeingClient() {
         <form onSubmit={addPilotViewer}>
           <label>
             Piloot
-            <select value={selectedPilotScopeId} onChange={(event) => setSelectedPilotScopeId(event.target.value)}>
-              <option value="">Vali piloot</option>
-              {pilotScopes.map((scope) => <option key={scope.id} value={scope.id}>{scope.name}</option>)}
-            </select>
+            <Dropdown
+              value={selectedPilotScopeId}
+              onChange={setSelectedPilotScopeId}
+              ariaLabel="Piloot"
+              placeholder="Vali piloot"
+              emptyLabel="Pilootskoope ei ole"
+              options={pilotScopes.map((scope) => ({ value: scope.id, label: scope.name }))}
+            />
           </label>
           <label>
             Vaataja e-post

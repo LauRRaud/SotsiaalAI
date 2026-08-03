@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import { useI18n } from "@/components/i18n/I18nProvider";
 
 const MEETING_SUMMARY_SHARE_ROLES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
@@ -99,16 +100,13 @@ export default function MeetingSummaryRoomShare({ artifactId }) {
         <div>
           <label>
             <span>{t("documents.meeting_summary_share.room_label", "Ruum")}</span>
-            <select value={selectedRoomId} onChange={(event) => setSelectedRoomId(event.target.value)}>
-              <option value="" disabled>
-                {t("documents.meeting_summary_share.select_room", "Vali ühine ruum")}
-              </option>
-              {rooms.map((room) => (
-                <option key={room.id} value={room.id}>
-                  {room.title || room.id}
-                </option>
-              ))}
-            </select>
+            <Dropdown
+              value={selectedRoomId}
+              onChange={setSelectedRoomId}
+              ariaLabel={t("documents.meeting_summary_share.room_label", "Ruum")}
+              placeholder={t("documents.meeting_summary_share.select_room", "Vali ühine ruum")}
+              options={rooms.map((room) => ({ value: room.id, label: room.title || room.id }))}
+            />
           </label>
           <label>
             <input

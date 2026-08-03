@@ -8814,5 +8814,9 @@
     "previous": "Previous",
     "next": "Next",
     "required": "A date is required."
+  },
+  "dropdown": {
+    "empty": "No options available.",
+    "required": "Please make a selection."
   }
 }

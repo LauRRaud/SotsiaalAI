@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import { CAPABILITY_TEMPLATE_KEYS, CAPABILITY_TEMPLATES, ORGANIZATION_SEAT_ROLES } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -95,51 +96,48 @@ export default function OrgInvitesClient({ context, initialInvites, units }) {
             </label>
             <label>
               <span className="ow-meta__term">{t("org.invites.seatRole")}</span>
-              <select
+              <Dropdown
                 value={seatRole}
-                onChange={(event) => setSeatRole(event.target.value)}
-                style={{ width: "100%" }}
-              >
-                {ORGANIZATION_SEAT_ROLES.map((role) => (
-                  <option key={role} value={role}>
-                    {t(`org.seatRole.${role}`)}
-                  </option>
-                ))}
-              </select>
+                onChange={setSeatRole}
+                ariaLabel={t("org.invites.seatRole")}
+                options={ORGANIZATION_SEAT_ROLES.map((role) => ({
+                  value: role,
+                  label: t(`org.seatRole.${role}`)
+                }))}
+              />
             </label>
             <label>
               <span className="ow-meta__term">{t("org.invites.template")}</span>
-              <select
+              <Dropdown
                 value={templateKey}
-                onChange={(event) => setTemplateKey(event.target.value)}
-                style={{ width: "100%" }}
-              >
-                {CAPABILITY_TEMPLATE_KEYS.map((key) => (
-                  <option key={key} value={key}>
-                    {t(CAPABILITY_TEMPLATES[key].labelKey)}
-                  </option>
-                ))}
-              </select>
+                onChange={setTemplateKey}
+                ariaLabel={t("org.invites.template")}
+                options={CAPABILITY_TEMPLATE_KEYS.map((key) => ({
+                  value: key,
+                  label: t(CAPABILITY_TEMPLATES[key].labelKey)
+                }))}
+              />
             </label>
             <label>
               <span className="ow-meta__term">{t("org.invites.unit")}</span>
-              <select
+              <Dropdown
                 required={templateNeedsUnit}
                 value={primaryUnitId}
-                onChange={(event) => setPrimaryUnitId(event.target.value)}
-                style={{ width: "100%" }}
-              >
-                <option value="">—</option>
-                {units.map((unit) => (
-                  <option key={unit.id} value={unit.id}>
-                    {unit.name}
-                  </option>
-                ))}
-              </select>
+                onChange={setPrimaryUnitId}
+                ariaLabel={t("org.invites.unit")}
+                options={[
+                  { value: "", label: "—" },
+                  ...units.map((unit) => ({ value: unit.id, label: unit.name }))
+                ]}
+              />
             </label>
           </div>
           <div className="ow-actions">
-            <Button type="submit" disabled={busy}>
+            {/* Üksuse VÄRAV. Varem hoidis seda kinni natiivne `required`
+                <select>'il; oma valikmenüü juures tuleb värav siia, muidu
+                saaks üksusepõhise malli kutse välja saata ilma üksuseta.
+                Põhjust ütleb välja all seisev vihje (.dd-required). */}
+            <Button type="submit" disabled={busy || (templateNeedsUnit && !primaryUnitId)}>
               {t("org.invites.create")}
             </Button>
           </div>

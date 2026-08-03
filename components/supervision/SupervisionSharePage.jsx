@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { localizePath } from "@/lib/localizePath";
 import PrivacyBadge from "./PrivacyBadge";
@@ -172,10 +173,15 @@ export default function SupervisionSharePage({ processId }) {
               <section className={styles.section}>
                 <label className={styles.form}>
                   {t("supervision.share.audienceLabel")}
-                  <select onChange={(event) => setAudience(event.target.value)} value={audience}>
-                    <option value="SUPERVISOR_ONLY">{t("supervision.share.audience_SUPERVISOR_ONLY")}</option>
-                    <option value="PROCESS">{t("supervision.share.audience_PROCESS")}</option>
-                  </select>
+                  <Dropdown
+                    onChange={setAudience}
+                    value={audience}
+                    ariaLabel={t("supervision.share.audienceLabel")}
+                    options={[
+                      { value: "SUPERVISOR_ONLY", label: t("supervision.share.audience_SUPERVISOR_ONLY") },
+                      { value: "PROCESS", label: t("supervision.share.audience_PROCESS") }
+                    ]}
+                  />
                 </label>
               </section>
             ) : null}

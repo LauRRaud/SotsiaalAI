@@ -8814,5 +8814,9 @@
     "previous": "Eelmine",
     "next": "Järgmine",
     "required": "Kuupäev on vajalik."
+  },
+  "dropdown": {
+    "empty": "Valikuid ei ole.",
+    "required": "Tee valik."
   }
 }

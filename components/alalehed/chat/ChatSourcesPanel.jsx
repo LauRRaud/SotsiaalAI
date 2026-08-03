@@ -2,6 +2,8 @@
 
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+
+import Dropdown from "@/components/ui/Dropdown";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
   open,
   t,
@@ -299,13 +301,15 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                           }}>
                             <label>
                               <span>{t("chat.sources.report_category")}</span>
-                              <select value={reportCategory} onChange={event => setReportCategory(event.target.value)}>
-                                {["outdated", "wrong_content", "broken_link", "wrong_source", "other"].map(category => (
-                                  <option key={category} value={category}>
-                                    {t(`chat.sources.report_${category}`)}
-                                  </option>
-                                ))}
-                              </select>
+                              <Dropdown
+                                value={reportCategory}
+                                onChange={setReportCategory}
+                                ariaLabel={t("chat.sources.report_category")}
+                                options={["outdated", "wrong_content", "broken_link", "wrong_source", "other"].map(category => ({
+                                  value: category,
+                                  label: t(`chat.sources.report_${category}`)
+                                }))}
+                              />
                             </label>
                             <label>
                               <span>{t("chat.sources.report_note")}</span>

@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -111,27 +112,23 @@ export default function OrgSupportClient({ context, recipients, received, sent }
             <div className="ow-grid">
               <label>
                 <span className="ow-meta__term">{t("org.support.recipients")}</span>
-                <select
+                <Dropdown
                   required
                   value={recipientMembershipId}
-                  onChange={(event) => setRecipientMembershipId(event.target.value)}
-                  style={{ width: "100%" }}
-                >
-                  <option value="">—</option>
-                  {recipients.map((entry) => (
-                    <option key={`${entry.membershipId}:${entry.contactType}`} value={entry.membershipId}>
-                      {recipientLabel(entry)}
-                      {" · "}
-                      {t(
-                        entry.contactType === "DIRECT_MANAGER"
-                          ? "org.support.directManager"
-                          : entry.contactType === "SAFETY_CONTACT"
-                            ? "org.support.safety"
-                            : "org.support.alternate"
-                      )}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setRecipientMembershipId}
+                  ariaLabel={t("org.support.recipients")}
+                  placeholder="—"
+                  options={recipients.map((entry) => ({
+                    value: entry.membershipId,
+                    label: `${recipientLabel(entry)} · ${t(
+                      entry.contactType === "DIRECT_MANAGER"
+                        ? "org.support.directManager"
+                        : entry.contactType === "SAFETY_CONTACT"
+                          ? "org.support.safety"
+                          : "org.support.alternate"
+                    )}`
+                  }))}
+                />
               </label>
               <label>
                 <span className="ow-meta__term">{t("org.support.summary")}</span>
@@ -163,7 +160,9 @@ export default function OrgSupportClient({ context, recipients, received, sent }
               <span>{t("org.support.confirm")}</span>
             </label>
             <div className="ow-actions">
-              <Button type="submit" disabled={busy || !confirmed}>
+              {/* Saaja VÄRAV. Varem hoidis seda kinni natiivne `required`
+                  valikuväljal; oma valikmenüü juures tuleb värav siia. */}
+              <Button type="submit" disabled={busy || !confirmed || !recipientMembershipId}>
                 {t("org.support.send")}
               </Button>
             </div>

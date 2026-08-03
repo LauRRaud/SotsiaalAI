@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import styles from "./MentoringPage.module.css";
@@ -153,15 +154,15 @@ export default function AdminMentoringPage() {
                       >
                         {t("mentoring.admin.approve")}
                       </Button>
-                      <select
-                        aria-label={t("mentoring.admin.reason_label")}
-                        onChange={(event) => setReasonByProfile((prev) => ({ ...prev, [profile.id]: event.target.value }))}
+                      <Dropdown
+                        ariaLabel={t("mentoring.admin.reason_label")}
+                        onChange={(next) => setReasonByProfile((prev) => ({ ...prev, [profile.id]: next }))}
                         value={reasonByProfile[profile.id] || "incomplete"}
-                      >
-                        {REVIEW_REASONS.map((reason) => (
-                          <option key={reason} value={reason}>{t(`mentoring.review_reason.${reason}`)}</option>
-                        ))}
-                      </select>
+                        options={REVIEW_REASONS.map((reason) => ({
+                          value: reason,
+                          label: t(`mentoring.review_reason.${reason}`)
+                        }))}
+                      />
                       <Button
                         disabled={busy}
                         onClick={() => act(`/api/admin/mentoring/${encodeURIComponent(profile.id)}`, {
@@ -229,17 +230,15 @@ export default function AdminMentoringPage() {
                           <td>{formatDate(record.checkedAt)}</td>
                           <td>
                             <div className={styles.inlineForm}>
-                              <select
-                                aria-label={t("mentoring.admin.consent_label")}
-                                onChange={(event) => setConsentByProfile((prev) => ({ ...prev, [record.id]: event.target.value }))}
+                              <Dropdown
+                                ariaLabel={t("mentoring.admin.consent_label")}
+                                onChange={(next) => setConsentByProfile((prev) => ({ ...prev, [record.id]: next }))}
                                 value={consentByProfile[record.id] || record.consentStatus || "PENDING_CONSENT"}
-                              >
-                                {CONSENT_STATUSES.map((status) => (
-                                  <option key={status} value={status}>
-                                    {t(`mentoring.consent_status.${status.toLowerCase()}`)}
-                                  </option>
-                                ))}
-                              </select>
+                                options={CONSENT_STATUSES.map((status) => ({
+                                  value: status,
+                                  label: t(`mentoring.consent_status.${status.toLowerCase()}`)
+                                }))}
+                              />
                               <Button
                                 disabled={busy}
                                 onClick={() => act(`/api/admin/mentoring/${encodeURIComponent(record.id)}`, {

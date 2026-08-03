@@ -246,6 +246,11 @@
   --input-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   /* Fookuse õrn kuma (mahe, nagu nupu hover-rim — mitte kõva ere joon) */
   --input-focus-glow: 0 0 0 3px rgba(251, 251, 251, 0.09);
+  /* Vigane väli (aria-invalid="true"). VÄRV EI OLE AINUS MÄRK — teate teksti
+     paneb kohale Form.jsx, siin on ainult see, mis silmale servas näha on.
+     Toon tuleb admini danger'ist, et vea punane oleks terves rakenduses üks. */
+  --input-border-invalid: 1px solid rgba(224, 138, 106, 0.85);
+  --input-invalid-glow: 0 0 0 3px rgba(224, 138, 106, 0.16);
 
   /* ---- Admin (funktsionaalne, soe-neutraalne) ---- */
   --admin-surface: #171717;
@@ -339,6 +344,10 @@ html[data-contrast="hc"] {
   --input-blur: 0px;
   --input-highlight: none;
   --input-shadow: none;
+  /* Kõrgkontrastis peab vea ääris ERINEMA tavalisest paksuse, mitte
+     ainult tooni poolest — hallskaalas näeja ei loe värvi. */
+  --input-border-invalid: 2px solid #ffb59a;
+  --input-invalid-glow: none;
 }
 
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */

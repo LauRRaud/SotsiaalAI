@@ -3308,10 +3308,13 @@ function ServiceMapSurface({
           <p>{readText(t, "workspace_feature_pages.service_map.match.choose_note", "Vali, millise avatud kuulutusega soovid ühendust võtta.")}</p>
           <label className="service-map-match-choice">
             <span>{readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}</span>
-            <select value={counterpartSelection.selectedId} onChange={(event) => setCounterpartSelection((current) => current ? { ...current, selectedId: event.target.value } : current)}>
-              <option value="">{readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}</option>
-              {counterpartSelection.options.map((item) => <option key={item.id} value={item.id}>{item.title || item.categoryLabel || item.id}</option>)}
-            </select>
+            <DocumentsDropdown
+              value={counterpartSelection.selectedId}
+              onChange={(next) => setCounterpartSelection((current) => current ? { ...current, selectedId: next } : current)}
+              ariaLabel={readText(t, "workspace_feature_pages.service_map.match.choose_label", "Minu kuulutus")}
+              placeholder={readText(t, "workspace_feature_pages.service_map.match.choose_placeholder", "Vali kuulutus")}
+              options={counterpartSelection.options.map((item) => ({ value: item.id, label: item.title || item.categoryLabel || item.id }))}
+            />
           </label>
           <div className="service-map-match-actions">
             <Button type="button" size="sm" disabled={!counterpartSelection.selectedId} onClick={async () => {

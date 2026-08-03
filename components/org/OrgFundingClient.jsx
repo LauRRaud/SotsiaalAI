@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import {
   CLIENT_SPONSORSHIP_REFERENCE_PRICE_CENTS,
   ORGANIZATION_SEAT_ROLES,
@@ -216,27 +217,31 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
                         <div className="ow-actions">
                           <label>
                             <span className="ow-meta__term">{t("org.funding.assign")}</span>
-                            <select
-                              defaultValue=""
+                            {/* TOIMINGUMENÜÜ, mitte väli: valik käivitab
+                                määramise ja liige liigub kohe ülal olevasse
+                                loendisse. Seetõttu jääb menüü ise alati tühja
+                                seisu (varem tegi sama `defaultValue=""`). */}
+                            <Dropdown
+                              value=""
                               disabled={busy}
-                              onChange={(event) => assign(plan.id, event.target.value)}
-                            >
-                              <option value="">{t("org.funding.chooseMember")}</option>
-                              {members
+                              onChange={(membershipId) => assign(plan.id, membershipId)}
+                              ariaLabel={t("org.funding.assign")}
+                              placeholder={t("org.funding.chooseMember")}
+                              options={members
                                 .filter(
                                   (member) =>
                                     member.seatRole === plan.seatRole &&
                                     member.status === "ACTIVE" &&
                                     !seatedMembershipIds.has(member.membershipId)
                                 )
-                                .map((member) => (
-                                  <option key={member.membershipId} value={member.membershipId}>
-                                    {[member.person.firstName, member.person.lastName]
+                                .map((member) => ({
+                                  value: member.membershipId,
+                                  label:
+                                    [member.person.firstName, member.person.lastName]
                                       .filter(Boolean)
-                                      .join(" ") || member.person.email}
-                                  </option>
-                                ))}
-                            </select>
+                                      .join(" ") || member.person.email
+                                }))}
+                            />
                           </label>
                           <Button type="button" onClick={() => endPlan(plan.id)} disabled={busy}>
                             {t("org.funding.endPlan")}
@@ -255,13 +260,15 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
           <form onSubmit={addPlan} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.funding.seatRole")}</span>
-              <select value={seatRole} onChange={(event) => setSeatRole(event.target.value)}>
-                {ORGANIZATION_SEAT_ROLES.map((role) => (
-                  <option key={role} value={role}>
-                    {t(`org.seatRole.${role}`)}
-                  </option>
-                ))}
-              </select>
+              <Dropdown
+                value={seatRole}
+                onChange={setSeatRole}
+                ariaLabel={t("org.funding.seatRole")}
+                options={ORGANIZATION_SEAT_ROLES.map((role) => ({
+                  value: role,
+                  label: t(`org.seatRole.${role}`)
+                }))}
+              />
             </label>
             <label>
               <span className="ow-meta__term">{t("org.funding.seatLimit")}</span>

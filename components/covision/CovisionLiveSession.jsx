@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import useStationFlight from "@/components/register/useStationFlight";
+import Dropdown from "@/components/ui/Dropdown";
 import {
   COVISION_STAGE_COMPLETION_PHASES,
   COVISION_STAGE_PROGRESS_PHASES,
@@ -988,9 +989,12 @@ function Composer({ stage, canWrite, isOwner, paused, busy, dispatchAction, copy
       <form onSubmit={submit}>
         <label>
           {copyValue(copy, "fields.card_kind")}
-          <select value={kind} onChange={(event) => setKind(event.target.value)}>
-            {kinds.map((value) => <option key={value} value={value}>{kindLabel(value, copy)}</option>)}
-          </select>
+          <Dropdown
+            value={kind}
+            onChange={setKind}
+            ariaLabel={copyValue(copy, "fields.card_kind")}
+            options={kinds.map((value) => ({ value, label: kindLabel(value, copy) }))}
+          />
         </label>
         <label>
           {copyValue(copy, "fields.wording")}
@@ -1108,11 +1112,15 @@ function StageOneControls({ session, covisionCase, isOwner, canLead, busy, dispa
           </label>
           <label>
             {copyValue(copy, "fields.role")}
-            <select value={inviteRole} onChange={(event) => setInviteRole(event.target.value)}>
-              {["CO_MODERATOR", "SUMMARY_REVIEWER", "PARTICIPANT", "OBSERVER"].map((value) => (
-                <option key={value} value={value}>{roleLabel(value, copy)}</option>
-              ))}
-            </select>
+            <Dropdown
+              value={inviteRole}
+              onChange={setInviteRole}
+              ariaLabel={copyValue(copy, "fields.role")}
+              options={["CO_MODERATOR", "SUMMARY_REVIEWER", "PARTICIPANT", "OBSERVER"].map((value) => ({
+                value,
+                label: roleLabel(value, copy)
+              }))}
+            />
           </label>
           <p className="cvl-private-note">{copyValue(copy, "invite_participant.privacy_notice")}</p>
           <button type="submit" disabled={busy || !inviteEmail.trim()}>{copyValue(copy, "actions.send_invite")}</button>
@@ -1302,14 +1310,20 @@ function StageSevenOwnerPanel({ privateStates, isOwner, busy, dispatchAction, co
             <input value={followWhen} onChange={(event) => setFollowWhen(event.target.value)} placeholder={copyValue(copy, "placeholders.follow_up_when")} />
           </label>
           <label>{copyValue(copy, "stage7.follow_up_responsible")}
-            <select value={followResponsible} onChange={(event) => setFollowResponsible(event.target.value)}>
-              {Object.entries(copy?.follow_up_responsible || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-            </select>
+            <Dropdown
+              value={followResponsible}
+              onChange={setFollowResponsible}
+              ariaLabel={copyValue(copy, "stage7.follow_up_responsible")}
+              options={Object.entries(copy?.follow_up_responsible || {}).map(([value, label]) => ({ value, label }))}
+            />
           </label>
           <label>{copyValue(copy, "stage7.follow_up_channel")}
-            <select value={followChannel} onChange={(event) => setFollowChannel(event.target.value)}>
-              {Object.entries(copy?.follow_up_channels || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-            </select>
+            <Dropdown
+              value={followChannel}
+              onChange={setFollowChannel}
+              ariaLabel={copyValue(copy, "stage7.follow_up_channel")}
+              options={Object.entries(copy?.follow_up_channels || {}).map(([value, label]) => ({ value, label }))}
+            />
           </label>
           <button type="submit" disabled={busy || !followWhen.trim()}>{copyValue(copy, "actions.save_follow_up")}</button>
         </form>
@@ -1371,34 +1385,23 @@ function StageEightPanel({ privateStates, isOwner, busy, dispatchAction, copy })
         <span className="cvl-lock" aria-label={copyValue(copy, "ui.private_aria")}>⌁</span>
       </header>
       <form onSubmit={save}>
-        <label>
-          {copyValue(copy, "fields.group_generalization")}
-          <select value={values.generalizationDecision} onChange={(event) => setValues((current) => ({ ...current, generalizationDecision: event.target.value }))}>
-            <option value="">{copyValue(copy, "ui.choose")}</option>
-            {Object.entries(copy?.decisions?.generalization || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select>
-        </label>
-        <label>
-          {copyValue(copy, "fields.learning_circle")}
-          <select value={values.learningDecision} onChange={(event) => setValues((current) => ({ ...current, learningDecision: event.target.value }))}>
-            <option value="">{copyValue(copy, "ui.choose")}</option>
-            {Object.entries(copy?.decisions?.learning || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select>
-        </label>
-        <label>
-          {copyValue(copy, "fields.retention")}
-          <select value={values.retentionDecision} onChange={(event) => setValues((current) => ({ ...current, retentionDecision: event.target.value }))}>
-            <option value="">{copyValue(copy, "ui.choose")}</option>
-            {Object.entries(copy?.decisions?.retention || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select>
-        </label>
-        <label>
-          {copyValue(copy, "fields.practice_candidate")}
-          <select value={values.practiceDecision} onChange={(event) => setValues((current) => ({ ...current, practiceDecision: event.target.value }))}>
-            <option value="">{copyValue(copy, "ui.choose")}</option>
-            {Object.entries(copy?.decisions?.practice || {}).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-          </select>
-        </label>
+        {[
+          ["generalizationDecision", "fields.group_generalization", copy?.decisions?.generalization],
+          ["learningDecision", "fields.learning_circle", copy?.decisions?.learning],
+          ["retentionDecision", "fields.retention", copy?.decisions?.retention],
+          ["practiceDecision", "fields.practice_candidate", copy?.decisions?.practice]
+        ].map(([field, labelKey, decisions]) => (
+          <label key={field}>
+            {copyValue(copy, labelKey)}
+            <Dropdown
+              value={values[field]}
+              onChange={(next) => setValues((current) => ({ ...current, [field]: next }))}
+              ariaLabel={copyValue(copy, labelKey)}
+              placeholder={copyValue(copy, "ui.choose")}
+              options={Object.entries(decisions || {}).map(([value, label]) => ({ value, label }))}
+            />
+          </label>
+        ))}
         <button type="submit" className="cvl-primary" disabled={busy || !complete}>{copyValue(copy, "actions.confirm_owner_package")}</button>
       </form>
       <p className="cvl-private-note">{copyValue(copy, "stage8.not_close_notice")}</p>

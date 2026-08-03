@@ -16,6 +16,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Dropdown from "@/components/ui/Dropdown";
 import Panel from "@/components/ui/Panel";
 
 function formatTime(value, locale) {
@@ -167,15 +168,16 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
           <h3>{t("org.board.assign")}</h3>
           <label className="org-field">
             <span>{t("org.board.assign_worker")}</span>
-            <select value={assignTo} onChange={(event) => setAssignTo(event.target.value)}>
-              <option value="">—</option>
-              {workers.map((worker) => (
-                <option key={worker.userId} value={worker.userId}>
-                  {worker.name}
-                  {worker.jobTitle ? ` · ${worker.jobTitle}` : ""}
-                </option>
-              ))}
-            </select>
+            <Dropdown
+              value={assignTo}
+              onChange={setAssignTo}
+              ariaLabel={t("org.board.assign_worker")}
+              placeholder="—"
+              options={workers.map((worker) => ({
+                value: worker.userId,
+                label: `${worker.name}${worker.jobTitle ? ` · ${worker.jobTitle}` : ""}`
+              }))}
+            />
           </label>
           <label className="org-field">
             <span>{t("org.board.assign_client")}</span>

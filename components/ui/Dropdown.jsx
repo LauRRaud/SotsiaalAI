@@ -24,12 +24,29 @@
  * API on TÄPSELT sama, mis senisel DocumentsDropdownil (value / onChange(value)
  * / options / placeholder / ariaLabel / disabled), et olemasolevad ~40
  * kasutuskohta ei vaja ühtki muudatust.
+ *
+ * 03.08 laiendus — see komponent on nüüd platvormi AINUS valikmenüü, seega
+ * peab ta katma ka need juhud, mille pärast leht muidu natiivse <select>'i
+ * juurde tagasi läheks:
+ *   required / invalid / describedBy — vormiväärav. Peidetud <input> EI OSALE
+ *     natiivses valideerimises (spetsifikatsioon jätab `hidden` tüübi
+ *     kontrollist välja), seega ei tule brauseri oma teadet. Puuduv valik
+ *     ÜTLEB SEDA ISE välja all — sama muster mis DateFieldil (.df-required),
+ *     et kaks oma-juhtelementi käituksid kõrvuti üheselt.
+ *   emptyLabel — tühi loend. Natiivne <select> ilma <option>'iteta avab tühja
+ *     kasti; siin ütleme sõnadega, et valikut ei ole.
+ * TEKST TULEB KOMPONENDIST, mitte kutsujalt: nii kandub ta ühest kohast kõigi
+ * ~90 kasutuskohani ja ei saa jääda kolmes keeles lahku.
+ * Mida TEADLIKULT ei ehitatud: `multiple` ja <optgroup>. Terves rakenduses ei
+ * ole kumbagi ühtki kasutust (skaneering 03.08) — ehitamata jäetud API oleks
+ * kood, mida keegi ei jooksuta ja mis vaikselt katki läheb.
  */
 
 import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import ChevronIcon from "@/components/brand/icons/ChevronIcon";
+import { useI18n } from "@/components/i18n/I18nProvider";
 
 const GAP = 6;
 const MIN_PANEL_H = 140;
@@ -49,8 +66,13 @@ export default function Dropdown({
   placeholder,
   ariaLabel,
   name,
-  disabled = false
+  disabled = false,
+  required = false,
+  invalid = false,
+  describedBy,
+  emptyLabel
 }) {
+  const { t } = useI18n();
   const items = useMemo(() => (Array.isArray(options) ? options : []), [options]);
   const selectedIndex = useMemo(
     () => items.findIndex(option => String(option?.value ?? "") === String(value ?? "")),
@@ -124,13 +146,15 @@ export default function Dropdown({
     return () => document.removeEventListener("pointerdown", onPointerDown, true);
   }, [open, close]);
 
-  /* Avades hüppab fookus loendile ja aktiivne rida on valitud väärtus. */
+  /* Avades hüppab fookus loendile ja aktiivne rida on valitud väärtus.
+     Tühja loendi juures EI ole aktiivset rida: `0` osutaks reale, mida ei
+     ole, ja aria-activedescendant viitaks olematule id-le. */
   useEffect(() => {
     if (!open) return;
-    setActiveIndex(selectedIndex >= 0 ? selectedIndex : 0);
+    setActiveIndex(items.length ? (selectedIndex >= 0 ? selectedIndex : 0) : -1);
     const raf = requestAnimationFrame(() => listRef.current?.focus());
     return () => cancelAnimationFrame(raf);
-  }, [open, selectedIndex]);
+  }, [open, selectedIndex, items.length]);
 
   /* Aktiivne rida hoitakse nähtaval ka siis, kui loend ise kerib. */
   useEffect(() => {
@@ -251,6 +275,9 @@ export default function Dropdown({
         aria-controls={open ? listId : undefined}
         aria-label={ariaLabel}
         aria-disabled={disabled ? "true" : undefined}
+        aria-required={required ? "true" : undefined}
+        aria-invalid={invalid ? "true" : undefined}
+        aria-describedby={describedBy}
         disabled={disabled}
         /* TEADLIKULT ilma data-variant'ita: see nupp on VORMIVÄLI, mitte
            nupp. `data-variant` annaks talle glass.css-i nupumaterjali ja
@@ -269,6 +296,17 @@ export default function Dropdown({
 
       {name ? <input type="hidden" name={name} value={value ?? ""} readOnly /> : null}
 
+      {/* `required` ilma natiivse väljata: valimata jäänud valik ütleb seda
+          ise, sest brauseri oma teadet siin enam ei tule. Sama muster ja
+          sama koht mis DateFieldil.
+
+          Tingimus vaatab VÄÄRTUST, mitte seda, kas mõni rida on tabatud:
+          loendis võib olla päris rida tühja väärtusega („—" = ühikut ei ole)
+          ja SEE ON IKKA valimata jäänud kohustuslik väli. */}
+      {required && !String(value ?? "") ? (
+        <span className="dd-required">{t("dropdown.required", "")}</span>
+      ) : null}
+
       {mounted && open && panelStyle
         ? createPortal(
             <ul
@@ -282,6 +320,11 @@ export default function Dropdown({
               style={panelStyle}
               onKeyDown={onListKeyDown}
             >
+              {items.length === 0 ? (
+                <li className="dd-option" role="option" aria-selected="false" aria-disabled="true">
+                  <span>{emptyLabel ?? t("dropdown.empty", "")}</span>
+                </li>
+              ) : null}
               {items.map((option, index) => (
                 <li
                   key={String(option?.value ?? index)}

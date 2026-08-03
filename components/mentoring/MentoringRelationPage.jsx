@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Checkbox from "@/components/ui/Checkbox";
+import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import Textarea from "@/components/ui/Textarea";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
@@ -403,13 +404,15 @@ export default function MentoringRelationPage({ relationId }) {
                   </label>
                   <label>
                     <span>{t("mentoring.relation.meeting_mode")}</span>
-                    <select
-                      onChange={(event) => setMeetingForm((prev) => ({ ...prev, mode: event.target.value }))}
+                    <Dropdown
+                      onChange={(next) => setMeetingForm((prev) => ({ ...prev, mode: next }))}
                       value={meetingForm.mode}
-                    >
-                      <option value="EXTERNAL">{t("mentoring.meeting_mode.external")}</option>
-                      <option value="PLATFORM_ROOM">{t("mentoring.meeting_mode.platform_room")}</option>
-                    </select>
+                      ariaLabel={t("mentoring.relation.meeting_mode")}
+                      options={[
+                        { value: "EXTERNAL", label: t("mentoring.meeting_mode.external") },
+                        { value: "PLATFORM_ROOM", label: t("mentoring.meeting_mode.platform_room") }
+                      ]}
+                    />
                     <span className={styles.fieldHint}>{t("mentoring.relation.meeting_mode_hint")}</span>
                   </label>
                   <label>
@@ -740,11 +743,15 @@ export default function MentoringRelationPage({ relationId }) {
                     </div>
                     <label>
                       <span>{t("mentoring.relation.close_reason")}</span>
-                      <select onChange={(event) => setCloseReason(event.target.value)} value={closeReason}>
-                        {CLOSE_REASONS.map((reason) => (
-                          <option key={reason} value={reason}>{t(`mentoring.close_reason.${reason}`)}</option>
-                        ))}
-                      </select>
+                      <Dropdown
+                        onChange={setCloseReason}
+                        value={closeReason}
+                        ariaLabel={t("mentoring.relation.close_reason")}
+                        options={CLOSE_REASONS.map((reason) => ({
+                          value: reason,
+                          label: t(`mentoring.close_reason.${reason}`)
+                        }))}
+                      />
                     </label>
                     <label className={styles.inlineForm}>
                       <Checkbox

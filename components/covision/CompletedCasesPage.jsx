@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Dropdown from "@/components/ui/Dropdown";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 
@@ -590,13 +591,18 @@ export default function CompletedCasesPage({ owner = {} }) {
           <section className="ccp-content">
             <div className="ccp-toolbar">
               <label className="ccp-search"><span aria-hidden="true">⌕</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} aria-label={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} placeholder={m(t, "completed_cases.search", "Otsi pealkirja, märksõna või juhtumi tooja järgi…")} /></label>
-              <select value={sort} onChange={(event) => setSort(event.target.value)} aria-label={m(t, "completed_cases.sort.title", "Sortimine")}>
-                <option value="attention">{m(t, "completed_cases.sort.attention", "Tähelepanu vajavad ees")}</option>
-                <option value="follow_up">{m(t, "completed_cases.sort.follow_up", "Lähim järelvaade")}</option>
-                <option value="newest">{m(t, "completed_cases.sort.newest", "Uusim Kovisioon")}</option>
-                <option value="oldest">{m(t, "completed_cases.sort.oldest", "Vanim Kovisioon")}</option>
-                <option value="title">{m(t, "completed_cases.sort.title_alpha", "Pealkiri")}</option>
-              </select>
+              <Dropdown
+                value={sort}
+                onChange={setSort}
+                ariaLabel={m(t, "completed_cases.sort.title", "Sortimine")}
+                options={[
+                  { value: "attention", label: m(t, "completed_cases.sort.attention", "Tähelepanu vajavad ees") },
+                  { value: "follow_up", label: m(t, "completed_cases.sort.follow_up", "Lähim järelvaade") },
+                  { value: "newest", label: m(t, "completed_cases.sort.newest", "Uusim Kovisioon") },
+                  { value: "oldest", label: m(t, "completed_cases.sort.oldest", "Vanim Kovisioon") },
+                  { value: "title", label: m(t, "completed_cases.sort.title_alpha", "Pealkiri") }
+                ]}
+              />
               <div className="ccp-view-switch" aria-label={m(t, "completed_cases.view.title", "Vaade")}><button type="button" data-variant aria-pressed={view === "cards"} onClick={() => setView("cards")}>▦ {m(t, "completed_cases.view.cards", "Kaardivaade")}</button><button type="button" data-variant aria-pressed={view === "list"} onClick={() => setView("list")}>☷ {m(t, "completed_cases.view.list", "Nimekirjavaade")}</button></div>
             </div>
             <div className="ccp-filters" aria-label={m(t, "completed_cases.filters.title", "Olekufiltrid")}>

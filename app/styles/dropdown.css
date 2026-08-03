@@ -68,6 +68,15 @@
   cursor: default;
   opacity: 0.55;
 }
+/* Puuduva kohustusliku valiku vihje. Sama mõõt ja sama koht mis
+   kuupäevaväljal (.df-required), et kaks oma-juhtelementi ei räägiks
+   kõrvuti kahes eri hääles. */
+.dd-required {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  opacity: 0.75;
+}
 @media (prefers-reduced-motion: reduce) {
   .dd-caret {
     transition: none;

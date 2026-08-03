@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Dropdown from "@/components/ui/Dropdown";
 import PrivacyBadge from "./PrivacyBadge";
 import styles from "./SupervisionPage.module.css";
 import { isConflict, supervisionMessage, supervisionRequest } from "./supervisionClient";
@@ -192,28 +193,31 @@ export default function SummariesPanel({ process, onReload, onConflict, particip
           </div>
           <label>
             {t("supervision.summaries.title")}
-            <select
-              onChange={(event) => setDraft((prev) => ({ ...prev, kind: event.target.value }))}
+            <Dropdown
+              onChange={(next) => setDraft((prev) => ({ ...prev, kind: next }))}
               value={draft.kind}
-            >
-              <option value="FINAL">{t("supervision.summaries.final")}</option>
-              <option value="MEETING">{t("supervision.summaries.meeting")}</option>
-            </select>
+              ariaLabel={t("supervision.summaries.title")}
+              options={[
+                { value: "FINAL", label: t("supervision.summaries.final") },
+                { value: "MEETING", label: t("supervision.summaries.meeting") }
+              ]}
+            />
           </label>
           {draft.kind === "MEETING" ? (
             <label>
               {t("supervision.meetings.title")}
-              <select
-                onChange={(event) => setDraft((prev) => ({ ...prev, meetingId: event.target.value }))}
+              <Dropdown
+                onChange={(next) => setDraft((prev) => ({ ...prev, meetingId: next }))}
                 value={draft.meetingId}
-              >
-                <option value="">{""}</option>
-                {(process.meetings || []).map((meeting) => (
-                  <option key={meeting.id} value={meeting.id}>
-                    {t("supervision.meetings.meetingN", { n: meeting.seq })}
-                  </option>
-                ))}
-              </select>
+                ariaLabel={t("supervision.meetings.title")}
+                options={[
+                  { value: "", label: "—" },
+                  ...(process.meetings || []).map((meeting) => ({
+                    value: meeting.id,
+                    label: t("supervision.meetings.meetingN", { n: meeting.seq })
+                  }))
+                ]}
+              />
             </label>
           ) : null}
           <label>

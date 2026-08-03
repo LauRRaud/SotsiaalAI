@@ -34,7 +34,7 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
    rippmenüüd veidi suuremad — üks rida, üks kõrgus (tellija 10.07).
    Globaalne primitiiv on :where() (0-spetsiifilisus), nii et see
    klassiga reegel võidab; materjal jääb glass.css-ist. */
-.ra-shell :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not(.sr-only), select) {
+.ra-shell :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not(.sr-only), select, .dd-trigger) {
   font-size: 0.98rem;
   line-height: 1.4;
   padding: 0.5em 1.15em;
@@ -330,7 +330,11 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) .ra-shell::be
 .ra-toolbar-search input {
   width: 100%;
 }
-.ra-toolbar select {
+/* .dd-trigger seisab `select`-i kõrval: platvormi valikmenüü on element
+   poolest <button>, seega ei taba teda ükski `select`-reegel. Ilma selleta
+   kaoks siit lehelt tema mõõt ja pind. */
+.ra-toolbar select,
+.ra-toolbar .dd-trigger {
   width: auto;
   flex: 1 1 10.5rem;
   min-width: 0;
