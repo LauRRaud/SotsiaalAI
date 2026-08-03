@@ -275,6 +275,14 @@ andmetega tohib pime funktsioon elada täisvormis.
 
 ### Täisarenduse register
 
+> **NB (03.08.2026): allolevad A/B/C tabelid on 28.07 PLAANITÕMMIS, mitte elav olek.**
+> Nad ütlevad „tegemata" asjade kohta, mis on vahepeal tehtud (RAG kvaliteedi baasjoon,
+> T25 org-kiht, abivahendi teekond, tervishoiukontakt, OCR), ja Teenuspäevik-V1 puudub
+> siit täielikult. **Elav olek — tehtud / poolik / tegemata — elab ainult
+> `SEIS.md` sektsioonis „SEISUTABEL — 2026-08-03 (KEHTIV)".** Neid tabeleid hoitakse
+> edasi *plaani ja järjestuse* pärast („mis on lõpuni" + „järgmine ühik"), mitte oleku
+> pärast; oleku vastuolu korral kehtib SEIS.md.
+
 **A. Toodangus, sabad lõpetada** („valmis" = saba loend tühi + päriskasutuses tõendatud)
 
 | Võimekus | Mis on „lõpuni" | Järgmine ühik |
