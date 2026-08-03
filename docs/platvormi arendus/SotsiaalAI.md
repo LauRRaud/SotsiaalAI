@@ -80,6 +80,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 `main` = `origin/main` = **server** = `671b7aa0` (deploy 03.08). Üks tööpuu, üks haru.
 Rollback `db514ba0`.
 
+### Järgmine samm — ootab omaniku valikut
+
+Kooditööd ei ole pooleli. 03.08 tehti dokumendikoondus (kogu projekt ühte faili) ja see on
+push'itud ning serveris. **Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei
+ole millegi taga:
+
+| Kandidaat | Miks laual |
+|---|---|
+| **Ruumide neli nõusolekuviga** (S4.2 nr 1–4) | ainsad, mis on märgitud lubaduse rikkumiseks **toodangus** — nõusoleku tagasivõtmine ei peata lindistust, hiline liituja salvestatakse `REQUESTED` nõusolekuga. Soovitus: need enne uusi tööriistu |
+| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | puhas kooditöö, O-CO-6 ei kehti (kõik osalejad on kasutajad) |
+| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | deterministlik valem, ei vaja partnerit ega õigusanalüüsi |
+
+Otsustatud, aga alustamata: **T03 E4/E5 punktid 1–4** (hääle karastus, vt S3) — omaniku
+verdikt 03.08 „teha ära".
+
+Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
+allikavärskuse timerid (S9, S2).
+
 **Töökord (omanik 03.08, ülimuslik):** tööpuid ja harusid ei tehta, kõik läheb otse
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
