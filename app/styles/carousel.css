@@ -227,23 +227,34 @@
      Iga aste saab --d korda selle sammu lisaks — vahed loevad ühtlasena
      ja fookus mahub igas reas ära. */
   --desk-gap-step: clamp(0.45rem, 0.75vw, 1.1rem);
-  /* Perspektiivi SÜGAVUS, mitte ainult kaugus: 1500px surus tagumised
-     astmed kokku — kitsaks ja üksteise sisse. Lamedam kooniline vaade
-     hoiab kaugemad read loetavas mõõdus; sügavuse kannab siin suuresti
-     kaugusudu (--gc-haze), mitte ainult kahanemine. */
-  /* Perspektiiv ja astmevahe hoitakse ÜHIKUTETA numbritena. */
+  /* Perspektiiv jääb, sest teda vajab veel KAARDI tõus hoveril
+     (translateZ 46px) — see on nüüd laua ainus 3D-liigutus. Väärtus on
+     ajalooline: 1500px surus astmed kokku, 2400px hoidis nad loetavas
+     mõõdus. Astmeid enam ei ole, aga arv otsustab, kui palju hoveri-tõus
+     kaardi mõõdust võidab, seega ta ei ole suvaline. */
   --desk-perspective-num: 2400;
-  --desk-tier-z-num: 90;
   --desk-perspective: calc(var(--desk-perspective-num) * 1px);
-  /* Kaugus astme kohta. 03.08 alates on see laua AINUS sügavus: varem
-     seisis laud peaaegu tasapinnalisena ja ruumilisuse tõi fookus (valitud
-     aste astus ette ja kasvas). Fookust enam ei ole — kaardid on kõik ühes
-     mõõdus ja liigub ainult see, mille peal hiir on.
-     Kui laud tundub nüüd liiga lame, on see number see, mida keerata:
-     0px = päris tasapind, 200px+ = tugev sügavus. Loetavuse hind kasvab
-     koos temaga (240px oli 25.07 mõõdetult liiga palju). */
+  /* ASTMEVAHE JA KALLE ON 0 — LAUD ON TASAPIND (omanik 03.08: "lisaks on
+     read eri suurused. kui sul on tasapinnaline, siis read sama suureks
+     tee").
+
+     Miks read enne eri suurused olid: astmevahe 90px lükkas iga järgmise
+     rea 90px kaugemale ja perspektiiv (2400px) kahandas ta 2400/2490 =
+     ~96% peale. MÕÕDETUD 1920×1000, 7 veergu: 220 / 212 / 205 px ehk
+     ülemine rida 7% väiksem. Kalle 3° lisas veel 1,6px kõrgusevahet.
+     Mõlemad nulli → MÕÕDETUD 218,3 / 218,3 / 218,3 px ja 170,6 kõik kolm,
+     ehk read on TÄPSELT ühesuurused.
+
+     Sügavus oli seni tähenduse kandja (lähim aste = vahetuim suhe), aga
+     ta jäi 03.08 ilma oma paarilisest: fookuse kadumisega ei olnud tal
+     enam midagi vastandada ja alles jäi ainult see, et ülemine rida on
+     väiksem. Tähenduse kannab nüüd JÄRJEKORD (lähim aste all) ja astme
+     nimi tema kõrval.
+
+     Tagasitee on kaks numbrit: 90 + 3deg = endine laud. */
+  --desk-tier-z-num: 0;
   --desk-tier-z: calc(var(--desk-tier-z-num) * 1px);
-  --desk-tilt: 3deg;
+  --desk-tilt: 0deg;
   /* Nimeveerg on KITSAS, sest nimi seisab püsti (vt .gc-tier-name).
      Lamav nimi nõudis ~9vw veergu ja seesama veerg oligi see, mis laua
      viltu ajas: rida sai keskele ainult kaartide arvelt. Püsti keeratud
@@ -352,17 +363,12 @@
 /* NB: astmele EI TOHI panna filter'it (blur/brightness). Filter lamestab
    preserve-3d ruumi ja kaardi tõus (translateZ hoveril) kaotaks sügavuse.
    Kaugus antakse looriga kaardi sees (.gc-haze), mitte filtriga. */
-/* Puhkeseisus on udu vaevumärgatav — kõik read on loetavad. Udu on siin
-   sügavuse VIHJE, mitte tuhmistaja (omanik 25.07: "tekst liiga kaugel"). */
-.gc-tier[data-d="1"] {
-  --gc-haze: 0.07;
-}
-.gc-tier[data-d="2"] {
-  --gc-haze: 0.14;
-}
-.gc-tier[data-d="3"] {
-  --gc-haze: 0.2;
-}
+/* KAUGUSUDU ON KA 0 (omanik 03.08). Siin seisis `data-d` järgi kasvav loor
+   (0,07 / 0,14 / 0,2) ja ta oli SAMA signaal mis mõõt: "see rida on
+   kaugemal". Kui read said ühesuuruseks, jäi udust järele ainult see, et
+   ülemised read on tuhmimad ilma põhjuseta — kaks eri juttu ühe laua peal.
+   Loorikiht `.gc-haze` ise jääb alles, sest kaardi hover kustutab teda
+   (`background: transparent`) ja karussellis on ta niikuinii 0. */
 /* SIIN OLI ASTME ESILETÕST (25.07–03.08) ja siia teda tagasi ei tule.
    `.gc-tier[data-focus="1"]` kasvatas valitud rea suuremaks ja
    `.gc-tier[data-dimmed="1"]` tuhmistas ülejäänud; mõlemat juhtis
@@ -639,9 +645,17 @@ html[data-reduce-motion="1"] .gc-item {
   transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
     scale(var(--tilt-scale, 1));
   transform-style: preserve-3d;
-  /* Sisse kiiresti (järgneb kursorile), välja pehmelt (vedru-tunne
-     ilma vedrumootorita — motion'i springi siia ei ole vaja). */
-  transition: transform 220ms var(--ease-soft);
+  /* KALDE TEMPO (omanik 03.08: "karussellis tahan, et kaardid reageeriks
+     hiirele aeglasemalt"). 220 → 420 ms.
+
+     See number ei ole tavaline üleminek, vaid MAHAJÄÄMUS: CardTilt kirjutab
+     `--tilt-*` iga hiirekaadri peale, seega kaart jõuab kursorile järele
+     alles selle aja pärast ja annab käele aeglaselt järele, mitte ei nõksa
+     temaga kaasa. Ülemine piir on olemas — kui kaart jääb kursorist nii
+     kaugele maha, et ta enam ei paista sama liigutuse osana, loeb ta
+     viivitusena, mitte raskusena. 420 ms istub sügavuslaua oma 380 ms
+     kõrval, nii et kaks pinda ei reageeri erineva iseloomuga. */
+  transition: transform 420ms var(--ease-soft);
 }
 @media (prefers-reduced-motion: reduce) {
   .gc-card {
