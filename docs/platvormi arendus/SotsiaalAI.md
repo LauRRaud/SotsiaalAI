@@ -4,10 +4,8 @@ STATUS: SINGLE SOURCE OF TRUTH. **See on projekti ainus elav fail.** Siin on kor
 mis platvorm on, kus ta täna on ja mis on tegemata. Konkureerivat seisu- ega
 registrifaili ei looda.
 
-Kaks kaasfaili, mõlemad ilma elava olekuta:
-[`SEIS-ajalugu.md`](./SEIS-ajalugu.md) (kronoloogia ja põhjendused — „miks nii tehti") ja
-[`ideed.md`](./ideed.md) (otsustamata ideed). ~130 analüüsi-, lepingu- ja auditifaili on
-detail ja tõend. Vastuolu korral kehtib see fail.
+Kõrval on [`ideed.md`](./ideed.md) (otsustamata ideed) ning ~130 analüüsi-, lepingu- ja
+auditifaili — detail ja tõend, mitte olek. Vastuolu korral kehtib see fail.
 
 **Kuidas fail on jaotatud:**
 
@@ -23,8 +21,13 @@ detail ja tõend. Vastuolu korral kehtib see fail.
 ## S0. Kuidas seda faili lugeda ja kirjutada
 
 **Fail on järjestatud TEEMA, mitte kuupäeva järgi.** Kronoloogiline kandevoog kolis
-03.08.2026 faili [`SEIS-ajalugu.md`](./SEIS-ajalugu.md) — sealt ei loeta olekut, sealt
-loetakse põhjendust („miks see nii tehti"). Põhjus: ajajärjestuses ei saa fakti parandada,
+03.08.2026 välja. Ta ei kolinud teise faili — **ta elab gitis**, mis on kroonika õige koht:
+
+```
+git show db514ba0:"docs/platvormi arendus/SEIS.md"
+```
+
+Põhjus: ajajärjestuses ei saa fakti parandada,
 saab ainult uue kande lisada, ja sama teema laguneb kümnesse kohta. Teemasektsiooni saab
 parandada kohapeal.
 
@@ -47,9 +50,8 @@ langeb ära, ta lihtsalt kaob — sektsioon kirjeldab seda, mis on, ja seda, mis
 on ainult **tootepiir**, mille inimene või partner peab teadma (nt „AI ei hinda õigust
 teenusele", „ei ole hädaabinumber") — see ei ole hüljatud variant, vaid lubadus.
 
-**Muud reeglid.** Olekut kannab AINULT see fail. `ideed.md` (otsustamata ideed),
-`SEIS-ajalugu.md` (kronoloogia) ning ~130 analüüsi-, lepingu- ja auditifaili on detail ja
-tõend, mitte olek; vastuolu korral kehtib see fail. Pooleliolek kirjutatakse siia KOHE,
+**Muud reeglid.** Olekut kannab AINULT see fail. `ideed.md` (otsustamata ideed) ning ~130
+analüüsi-, lepingu- ja auditifaili on detail ja tõend, mitte olek; vastuolu korral kehtib see fail. Pooleliolek kirjutatakse siia KOHE,
 mitte töö lõpus.
 
 ### Osa I sektsioonid
@@ -683,8 +685,7 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 6. **Ära korda teostaja teste, build'i ega auditeid**, kui lõpparuanne juba sisaldab nende tulemusi.
 7. **Olekut kannab ainult see fail.** Pooleliolek kirjutatakse siia kohe, mitte töö lõpus.
 
-Miks need reeglid tekkisid — [`SEIS-ajalugu.md`](./SEIS-ajalugu.md), „Töökorra reeglite
-põhjendused".
+Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.md"`.
 
 ### Ülesande lõpus
 
@@ -701,7 +702,6 @@ jooksutata. Kui kontrollitud fakt erineb sellest failist, kehtib fakt — parand
 
 | Fail | Mille jaoks |
 |---|---|
-| `SEIS-ajalugu.md` | kronoloogia ja põhjendused |
 | `ideed.md` | otsustamata ideed |
 | `arendusteemade-masterregister.md` | teemade definitsioonid ja piirid |
 | `tXX-…-ulesanne.md` | teemalepingud — ei muutu pärast väljastamist |
@@ -1810,5 +1810,5 @@ sotsiaalteenuste kvaliteedijuhis (12.11.2024) · Heaolu arengukava 2023–2030 �
 Sotsiaalhoolekande programm 2026–2029 (+ Lisa 1 ja 2) · EPIKoja arvamus TERVIK-eelnõule ·
 AI-määruse III lisa ajaraam. Tsitaatidega viited: `sugiskool-2026-kusimustik.md` ptk 9.
 
-Platvormi dokumendid: `ideed.md` · fable-5 analüüsid (44 tk) · `SEIS-ajalugu.md` (kronoloogia) ·
+Platvormi dokumendid: `ideed.md` · fable-5 analüüsid (44 tk) · arhiveeritud kroonika (`git show db514ba0:…SEIS.md`) ·
 usaldusmudel · ruumilise platvormi visioon · tulevikufunktsioonide register.
