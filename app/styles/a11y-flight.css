@@ -61,11 +61,22 @@ div[role="presentation"][aria-hidden="true"].a11f-veil {
 .a11f-plane .a11f-optional-hint {
   margin: 0.9rem 0 0;
   text-align: center;
-  font-size: 0.8rem;
-  line-height: 1.4;
+  /* 0.8rem oli LOETAMATULT väike (omanik 03.08: „tunduvalt suurem"), ja
+     kahekordselt: kiri ise oli 12,8 px JA tuhm toon 0.72 alfa peal. Kuna see
+     rida elab just ligipääsetavuse lehel, on pisike hall tekst siin eriti
+     vale koht. Kasvab mõlemat pidi — mõõt üles, alfa läbipaistvusest välja
+     (tooni annab nüüd --room-text-dim üksi). */
+  font-size: 1.05rem;
+  line-height: 1.45;
   letter-spacing: 0.01em;
   color: var(--room-text-dim);
-  opacity: 0.72;
+  opacity: 1;
+}
+/* „Keri edasi" on sama rea teine pool, mitte eraldi silt: kaks lauset ühes
+   reas loevad koos („see on vabatahtlik, lend läheb edasi"). Eristub ainult
+   heleduse võrra — see on juhis, mitte kordus. */
+.a11f-plane .a11f-optional-hint-scroll {
+  color: var(--room-text-soft);
 }
 
 /* --- Lava -------------------------------------------------- */
@@ -242,15 +253,38 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
 .a11f-plane .csp-step.a11f-save {
   display: grid;
   justify-items: center;
-  gap: 1.1rem;
+  /* 1,1rem → 1,8rem: pealkiri istus nupu peal kinni (omanik 03.08: „pealkiri
+     veidi kõrgemale"). Plokk on jaamas keskel, seega vahe kasvatamine tõstab
+     pealkirja üles — just seda siin taheti. */
+  gap: 1.8rem;
 }
 .a11f-save-title {
   margin: 0;
   text-align: center;
   font-family: var(--font-display);
   font-weight: 430;
-  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+  /* Suurem (omanik 03.08). See on lennu viimane jaam ja pealkiri on seal
+     ainus tekst — tohib kanda peategelase mõõtu, mitte sildi oma. */
+  font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.85rem);
   color: var(--room-text);
+}
+/* Salvesta on selle lennu AINUS tegevusnupp ja seisab tühjal jaamal üksi —
+   platvormi tavamõõt (--fs-small + 0.66em polster) luges seal pisikesena
+   (omanik 03.08: „liiga väike nupp on"). Kasv on SIIN, mitte glass.css
+   baasreeglis: mujal on nupp rea sees teiste kõrval ja see mõõt oleks vale.
+   Polster on em-des, seega järgib kirja ega vaja eraldi häälestust.
+   Spetsiifilisus (2 klassi) võidab glass.css `button[data-variant]` reegli —
+   mõlemad on @layer components. */
+.a11f-plane .a11f-save button[data-variant="primary"] {
+  /* Nupp VÄIKSEMAKS, kiri SUUREMAKS (omanik 03.08) — need kaks tõmbavad eri
+     suunas, sest polster on em-des ja järgib kirja. Seega ei piisa kirja
+     kasvatamisest: polster peab kahanema rohkem, kui kiri kasvab.
+       kiri    1.05rem → 1.18rem
+       polster 0.85em × 2.4em → 0.6em × 1.7em
+     Kõrguseks jääb ~45 px ehk endiselt üle 44 px puutesihi — allapoole seda
+     ei tohi minna, ükskõik kui palju polstrit veel ära võtta tahaks. */
+  font-size: 1.18rem;
+  padding: 0.6em 1.7em;
 }
 
 /* --- Dokk: ruumi kaardimenüü DNA ---------------------------- */

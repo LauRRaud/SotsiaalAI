@@ -52,6 +52,10 @@ const Button = forwardRef(function Button({
         size={null}
         radius={999}
         proximity={1}
+        /* Servahelk oli vaikeväärtusel (1) ja luges nupu ümber kõva valge
+           joonena (omanik 03.08: „nupu läige on hetkel liiga tugev, veidi
+           vähemaks"). 0.7 hoiab liikuva helgi alles, aga võtab tipu maha. */
+        intensity={0.7}
         {...sharedProps}
       >
         {children}

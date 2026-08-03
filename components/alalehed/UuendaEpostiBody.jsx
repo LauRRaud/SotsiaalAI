@@ -218,7 +218,12 @@ export default function UuendaEpostiBody() {
                   </span>
                 </Button>
               </div>
-            </div> : <form onSubmit={handleSubmit} autoComplete="on" aria-busy={loading ? "true" : "false"}>
+            </div> : /* noValidate: brauseri natiivne valideerimine ("Please fill out
+                 this field") tuleb BRAUSERI keeles, mitte lehe omas, ja jookseb
+                 ENNE onSubmit'i — seega ei jõudnud handleSubmit'i eestikeelsed
+                 kontrollid (allpool: error_email_required jne) kunagi ekraanile.
+                 Sama lipp on juba UuendaPinBody vormil; see leht oli erand. */
+            <form onSubmit={handleSubmit} autoComplete="on" noValidate aria-busy={loading ? "true" : "false"}>
               <input aria-label={usernameLabel} id="email-username" name="username" type="email" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-email" className="sr-only">
                 {t("profile.email_update.current_placeholder")}

@@ -105,22 +105,7 @@ button.specular-button[data-variant]:hover {
   border: var(--input-border-hover);
 }
 
-.specular-input {
-  display: block;
-  width: 100%;
-  border: 0;
-  border-radius: var(--input-radius);
-  background: transparent;
-  box-shadow: none;
-  cursor: text;
-}
-
-.specular-input > .specular-button__fx {
-  z-index: 3;
-}
-
-.specular-input > .specular-button__label {
-  display: block;
-  width: 100%;
-  z-index: 2;
-}
+/* .specular-input on EEMALDATUD (03.08). See oli mähis, millega PIN-lehe
+   väljad said WebGL-servahelgi — ainsana platvormil. Helk on nüüd vormivälja
+   vaikeomadus (tokens.css --input-spec + components/glass/SpecularHighlight),
+   seega mähist ei ole enam kellelgi ja klass jäi surnuks. */

@@ -11,6 +11,7 @@ import { PanelInfoSlotProvider } from "@/components/ui/PanelInfoSlot";
 import SkipLink from "@/components/room/SkipLink";
 import AmbientAudio from "@/components/room/AmbientAudio";
 import LiquidCursor from "@/components/brand/LiquidCursor";
+import SpecularHighlight from "@/components/glass/SpecularHighlight";
 import GlassFilters from "@/components/glass/GlassFilters";
 import { authConfig } from "@/auth";
 
@@ -353,6 +354,11 @@ export default async function RootLayout({
           <ViewportLayoutSetter />
           <ServiceWorkerRegistrar />
           <LiquidCursor />
+          {/* Vormiväljade servahelk — üks passiivne pointermove-kuular kogu
+              dokumendil, mis annab kursori all olevale väljale --spec-*
+              muutujad. Joonistab CSS (tokens.css --input-spec). Siin, mitte
+              lehtedel: „läige peaks olema default igal pool". */}
+          <SpecularHighlight />
           <SkipLink />
           <AmbientAudio />
           {/* Provider mähib RoomStage'i, PanelFrame'i JA lapsi: leht registreerib

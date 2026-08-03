@@ -42,6 +42,11 @@
     border: var(--input-border);
     border-radius: var(--input-radius);
     color: var(--input-text);
+    /* Servahelki SIIN EI OLE. Vahepeal seisis siin inset-box-shadow, mis
+       jäljendas nupu helki — aga see on teine efekt (pehme suunatud sisekuma,
+       mitte servajoon) ja luges kohe võltsina. Väli kannab nüüd sama
+       WebGL-shaderit mis nupp; joonistab components/glass/SpecularHighlight,
+       lõuend elab välja KOHAL (.specular-rim), mitte tema box-shadow's. */
     box-shadow: var(--input-highlight), var(--input-shadow);
     -webkit-backdrop-filter: blur(var(--input-blur));
     backdrop-filter: blur(var(--input-blur));
@@ -74,9 +79,10 @@
     border-radius: 18px; /* mitmerealine pole pill */
     text-align: left;
   }
-  /* Hover: õrn tooni-tõus (fookuse ja baasi VAHEL) — sama sujuv üleminek
-     mis nuppudel (tellija 2026-07-06: "nagu login-keypad"). Transition on
-     juba baasreeglil; :not(:focus) hoiab fookuse tugevama seisu peal. */
+  /* Hover: väli TUMENEB (omanik 03.08). Suund on ühine kogu interaktsioonil —
+     baas 0.10 → hover 0.07 → fookus 0.05 — ja see on taotluslik: heledust
+     lisab ainult kursorit jälgiv servahelk, täide läheb aina rahulikumaks.
+     Transition on juba baasreeglil; :not(:focus) hoiab fookuse oma seisu peal. */
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger):hover:not(:focus) {
     border: var(--input-border-hover);
     background-color: var(--input-bg-hover);
@@ -87,6 +93,23 @@
     border: var(--input-border-focus);
     background-color: var(--input-bg-focus);
     box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
+  }
+  /* Vormivälja servahelgi lõuend — üks kogu dokumendi peale, positsioneerib
+     end kursori all oleva välja kohale (components/glass/SpecularHighlight).
+     `fixed` + transform, sest ta elab body's ja peab järgima ekraanikoordinaati.
+     z-index kõrge: väli võib olla modaali sees, ja helk peab jääma tema peale;
+     alla jääb ainult vedelklaas-kursor (base.css, 2147483000). */
+  .specular-rim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2147482000;
+    pointer-events: none;
+    opacity: 0;
+    will-change: transform;
+  }
+  .specular-rim canvas {
+    display: block;
   }
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select)::placeholder {
     color: var(--input-placeholder);

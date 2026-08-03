@@ -374,5 +374,7 @@ html[data-reduce-motion="1"] *::after {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+/* Vormivälja servahelk on WebGL-lõuend, mitte CSS: reduce-motion'i lüliti
+   elab komponendis (SpecularHighlight), mitte siin. */
 
 }

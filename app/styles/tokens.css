@@ -117,6 +117,31 @@
     rgba(var(--light-warm), 0.42) 100%
   );
 
+  /* ---- Juhtpind: peidetud ülariba (.room-quickbar) JA kiirmenüü/dokk
+     (.gc-shortcut-menu). Omanik 03.08 küsis mõlemale sama: „läbipaistvam ja
+     kerge blur". Materjal elab siin ÜHE korra, sest need kaks pilli seisavad
+     samal ekraanil ja lahkuminev alfa/hägu paistaks kohe välja.
+
+     See pöörab tagasi 26.07 täisvärvi-otsuse. Toona oli kaks põhjust:
+     LOETAVUS (läbipaistev pill võttis tooni sellelt, mille peal seisis) ja
+     HIND (backdrop-filter sämplib ruumi animeeritud tähevälja iga kaadri).
+     Loetavuse vastu töötab nüüd hägu ise — 14 px lõhub pilli taga oleva
+     teksti loetamatuks, nii et pill ei „kao" enam tekstitahvli peal. Hind
+     jääb päriselt alles: kiirmenüü on püsiv pind ja ruumi-lava on WebGL.
+     Kui mobiilil hakkab kerimine jõnksuma, on esimene koht, kust vaadata,
+     just see kaks rida.
+
+     ÜHTLANE alfa, MITTE gradient — ja see on nõue, mitte maitse. Ülariba
+     seisab suurema osa ajast peidus ja näha on ainult tema ALASERV; gradiendi
+     kõige tihedam ots sattus täpselt sinna, nii et puhkeasend näitas
+     materjali kõige läbipaistmatumat kohta ja riba paistis endiselt umbne
+     (omanik 03.08: „sel peab olema ka läbipaistvust siis kui ta on peidetud
+     ja serv on näha"). Ühtlase alfaga on iga tükk pillist sama läbipaistev —
+     ükskõik kui palju teda parasjagu näha on. Sügavuse annab läige (ülariba
+     ::before, kiirmenüü inset-joon), mitte alfa kalle. ---- */
+  --control-glass-bg: rgba(24, 24, 24, 0.4);
+  --control-glass-blur: blur(14px) saturate(125%);
+
   /* Klaasi sisepinnad (read, kaardid klaasi peal) — neutraalne alfa */
   --glass-cell-bg: rgba(255, 255, 255, 0.055);
   --glass-cell-bg-hover: rgba(255, 255, 255, 0.11);
@@ -213,8 +238,19 @@
      helk üleval + õrn peegeldus all, pehme vari; fookus = ere ääris.
      Materjal rakendub globaalselt glass.css :where()-primitiivist. */
   --input-bg: rgba(255, 255, 255, 0.1);
+  /* Välja reaktsioon on TUMENEMINE, ühes suunas: 0.10 → 0.07 → 0.05.
+     Katki oli fookus, mitte hover (omanik 03.08: „input lahter pidi hoveriga
+     tumedamaks minema, mitte heledamaks" — vastuseks sellele, et kirjeldatud
+     viga oli hoopis „kui peale vajutan, siis läheb see heledamaks").
+     Fookus seisis 0.15 peal ehk baasist HELEDAM ja pööras liikumise keset
+     interaktsiooni ümber: väli tumenes hoveril ja hüppas klõpsul heledamaks.
+     Fookust EI märgi enam täide, vaid ere ääris (--input-border-focus) ja
+     kuma (--input-focus-glow) — need on juba olemas ja kannavad selle rolli
+     üksi välja.
+     NB: glass.css kõrval seisev kommentaar räägib veel „õrnast tooni-
+     TÕUSUST" — see kirjeldab kunagist heledamaks-suunda ja on aegunud. */
   --input-bg-hover: rgba(255, 255, 255, 0.07);
-  --input-bg-focus: rgba(255, 255, 255, 0.15);
+  --input-bg-focus: rgba(255, 255, 255, 0.05);
   --input-text: var(--text-warm);
   --input-placeholder: rgba(255, 255, 255, 0.65);
   --input-border: 1px solid rgba(255, 255, 255, 0.18);
@@ -244,6 +280,11 @@
     inset 0 1px 1px rgba(255, 255, 255, 0.26),
     inset 0 -1px 1px rgba(255, 255, 255, 0.05);
   --input-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  /* Kursorit jälgiv SERVAHELK ei ole token ega CSS: väli kannab sama
+     WebGL-shaderit mis nupp (components/SpecularButton/specularShader.js),
+     joonistab components/glass/SpecularHighlight. CSS-i siia ei jää, sest
+     `<input>`-il ei saa olla pseudoelementi ja box-shadow'ga tehtud jäljendus
+     on nähtavalt teine efekt. */
   /* Fookuse õrn kuma (mahe, nagu nupu hover-rim — mitte kõva ere joon) */
   --input-focus-glow: 0 0 0 3px rgba(251, 251, 251, 0.09);
 
@@ -339,6 +380,12 @@ html[data-contrast="hc"] {
   --input-blur: 0px;
   --input-highlight: none;
   --input-shadow: none;
+  /* Servahelk on kõrgkontrastis väljas — lüliti elab komponendis
+     (SpecularHighlight loeb data-contrast'i iga liigutuse ajal), sest lõuend
+     on CSS-ist väljaspool ja tokeniga teda ei peata. */
+  /* Juhtpinnad kõrgkontrastis: täisvärv, hägu maas (ääre annab reegel ise) */
+  --control-glass-bg: #111111;
+  --control-glass-blur: none;
 }
 
 /* Läbipaistvuse vähendamine (kasutaja eelistus) */
@@ -351,4 +398,7 @@ html[data-reduce-transparency="1"] {
   --input-bg-hover: rgba(39, 39, 39, 0.96);
   --input-bg-focus: rgba(43, 43, 43, 0.97);
   --input-highlight: none;
+  /* Juhtpinnad: tagasi täisvärvile, sama toon mis enne 03.08 klaasi */
+  --control-glass-bg: linear-gradient(165deg, #1c1c1c 0%, #171717 55%, #141414 100%);
+  --control-glass-blur: none;
 }

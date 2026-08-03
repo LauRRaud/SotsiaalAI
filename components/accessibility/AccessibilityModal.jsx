@@ -641,7 +641,18 @@ export default function AccessibilityModal({
                     Igal jaamal korrates muutub ta müraks; ühes kohas loeb ta
                     kogu modaali kohta. */}
                 {station.key === "motion" && (
-                  <p className="a11f-optional-hint">{t("accessibility.optional_hint")}</p>
+                  <p className="a11f-optional-hint">
+                    {t("accessibility.optional_hint")}{" "}
+                    {/* „Keri edasi" saab siit püsiva koha (omanik 03.08).
+                        Ülal lendav .a11f-scroll-hint kaob JÄÄDAVALT pärast
+                        esimest kerimist (omanik 26.07) — see otsus jääb
+                        kehtima, aga siis ei ütle keegi enam, et lend jätkub.
+                        Siin ta ei sega: rida on niikuinii ainult selles
+                        jaamas ja seisab valikute all. */}
+                    <span className="a11f-optional-hint-scroll">
+                      {t("accessibility.scroll_on")}
+                    </span>
+                  </p>
                 )}
               </section>
             ))}

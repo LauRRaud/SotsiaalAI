@@ -697,18 +697,20 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
      kujuga ja ikoonid ilmuvad alles kui paneel on väljas (tellija 07.07). */
   padding: 0.45rem 0.95rem;
   border-radius: 1.5rem;
-  /* LÄBIPAISTMATU pind, mitte klaas — sama otsus mis kiirmenüül (omanik
-     26.07: „ei peakski kasutama kiirmenüüdel ja nt ka peidetud paneelil
-     blur efekti, vaid vähem ressurssi võtab kui element on nö täisvärviga,
-     aga reguleeritud fade efektiga tekkima ja kaduma"). Siin oli
-     `--card-glass-bg` (rgba .46/.52/.58) + avatud olekus blur. Toon allpool
-     on selle sama gradiendi läbipaistmatu vaste musta ruumi peal
-     (40·.46+7·.54 ≈ #161616 jne) + väike lisa selle valguse eest, mille
-     backdrop varem ruumist sisse tõi — riba peaks nägema välja nagu enne,
-     lihtsalt ilma tausta lugemata. Kaardi-token jääb KAARTIDELE; ülariba
-     ei ole kaart, vaid juhtpind. Läige (::before) ja serv (::after)
-     jäävad — kuju tuleb neist, mitte blurist. */
-  background: linear-gradient(165deg, #1c1c1c 0%, #171717 55%, #141414 100%);
+  /* KLAAS, kerge häguga (omanik 03.08: „kas peidetud paneel saaks olla
+     läbipaistvam ja kerge blur?"). Materjal on JAGATUD kiirmenüüga —
+     `--control-glass-*` tokens.css'is, kus seisab ka põhjendus ja mõlema
+     ligipääsetavuse-vaste. Kaardi-token jääb KAARTIDELE; ülariba ei ole
+     kaart, vaid juhtpind.
+
+     Blur elab BAASreeglis, mitte avatud olekus: varasem „hägu alles pärast
+     liigutust, 220 ms hilinemisega" konstruktsioon oli möönduste jada ühe
+     efekti ümber, ja üks väike pill ei vaja seda. Prefiks ENNE standardit —
+     Lightning CSS jätab paarist viimase alles ja Chrome 148 ei tunne
+     -webkit- aliast (26.07 lõks). Läige (::before) ja serv (::after) jäävad. */
+  background: var(--control-glass-bg);
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
   box-shadow: var(--card-glass-shadow);
   color: var(--room-text);
   /* Peidus: näha ~1.55rem klaasi alaserv (paneel veidi allpool), ikoonid
@@ -746,17 +748,18 @@ html[data-contrast="hc"] .glass-btn.room-veil-enter {
 .room-topbar[data-open="1"] .room-quickbar {
   transform: translate(-50%, 0.3rem);
   pointer-events: auto;
-  /* Siin seisis „blur AINULT väljas olles" — kogu see konstruktsioon
-     (hägu alles pärast liigutust, 220 ms hilinemisega, et liikuv
-     transform ei sunniks brauserit tausta iga kaadri uuesti lugema) oli
-     möönduste jada ühe kalli efekti ümber. Efekt ise on nüüd maas
-     (vt baasreegli selgitust) ja koos temaga kadus ka põhjus tema
-     ümber ehitada: riba on lihtsalt läbipaistmatu pind, mis libiseb
-     sisse ja välja. Alles jääb üksainus üleminek. */
+  /* Üksainus üleminek. Hägu on baasreeglis ega sõltu olekust, seega siin
+     ei ole midagi ajastada — riba lihtsalt libiseb sisse ja välja. */
   transition: transform var(--dur-med) var(--ease-soft);
 }
 html[data-reduce-motion="1"] .room-topbar .room-quickbar {
   transition: none;
+}
+/* Läbipaistvuse-vähendus ja kõrgkontrast tulevad tokenist (--control-glass-*),
+   nii et siin ei ole pinda üle kirjutada. Ainult kõrgkontrasti nähtav ääris
+   on lokaalne — sama muster mis kiirmenüül (carousel.css). */
+html[data-contrast="hc"] .room-quickbar {
+  border: 1px solid #ffffff;
 }
 
 /* Püüdeala — katab kogu .room-topbari (päris <button>, läbipaistev). Püüab

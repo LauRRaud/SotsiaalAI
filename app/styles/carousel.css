@@ -962,29 +962,33 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   gap: 0.7rem;
   max-width: calc(100vw - 2rem);
 }
-/* Dokk on LÄBIPAISTMATU pind, mitte klaas (omanik 26.07: „ei peakski
-   kasutama kiirmenüüdel blur efekti, vaid vähem ressurssi võtab kui element
-   on nö täisvärviga, aga reguleeritud fade efektiga tekkima ja kaduma").
-   Kaks põhjust, mõlemad kaaluvad klaasist üle:
-   1) LOETAVUS. Läbipaistev pill võttis oma tooni sellelt, mille peal ta
-      parajasti seisis. Tekstitahvli kohal luges tekst temast läbi ja dokk
-      kadus ära. Läbipaistmatu pind näeb igal lehel ühesugune välja.
-   2) HIND. `backdrop-filter` sunnib brauserit iga kaadri jaoks tausta uuesti
-      sämplima ja hägustama — ruumis tähendab see animeeritud WebGL-tähevälja
-      ülelugemist 60 korda sekundis, terve doki pindala ulatuses. Mobiilil on
-      see kõige kallim üksik asi kogu püsivas UI-s. Ilmumine/kadumine käib
+/* Dokk on KLAAS, kerge häguga (omanik 03.08: „teeme kiirmenüüd ka" — sama
+   soov mis ülaribal: läbipaistvam + kerge blur). Materjal on JAGATUD peidetud
+   ülaribaga: `--control-glass-*` tokens.css'is, kus seisab ka põhjendus ja
+   ligipääsetavuse-vasted. Kaks pilli seisavad samal ekraanil, seega üks
+   materjal — mitte kaks lähedast.
+
+   Mis 26.07 täisvärvi juurde viis ja mis sellest alles jääb:
+   1) LOETAVUS oli siis päris probleem — läbipaistev pill ILMA häguta võttis
+      oma tooni sellelt, mille peal seisis, ja kadus tekstitahvli kohal ära.
+      Hägu lahendab just selle: 14 px lõhub pilli taga oleva teksti laiguks.
+   2) HIND jääb alles. `backdrop-filter` sunnib brauserit iga kaadri jaoks
+      tausta uuesti sämplima — ruumis tähendab see animeeritud WebGL-tähevälja
+      ülelugemist doki pindala ulatuses. Kui mobiilil hakkab jõnksuma, on see
+      esimene koht, kust vaadata. Ilmumine/kadumine käib endiselt
       opacity-fade'iga (--gc-shortcuts-opacity), mis on GPU-le peaaegu tasuta.
-   Toon on valitud nii, et pill näeks MUSTA ruumi peal välja täpselt nagu
-   varem (rgba .5/.38 musta peal ≈ #151515/#070707) + väike lisa selle valguse
-   eest, mille backdrop varem ruumist sisse tõi. Läige ja vari jäävad — nemad
-   annavad serva, mitte blur. */
+   Läige ja vari jäävad — nemad annavad serva, mitte blur. */
 .gc-shortcut-menu,
 .admin-role-view-cycle.admin-role-view-cycle--cards {
   display: flex;
   align-items: center;
   padding: 0.35rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, #1f1f1f, #0e0e0e);
+  background: var(--control-glass-bg);
+  /* Prefiks ENNE standardit — Lightning CSS jätab paarist viimase alles ja
+     Chrome 148 ei tunne -webkit- aliast (26.07 lõks, 14 klaaspinda). */
+  -webkit-backdrop-filter: var(--control-glass-blur);
+  backdrop-filter: var(--control-glass-blur);
   box-shadow: 0 9px 28px rgba(5, 5, 5, 0.2), inset 0 1px rgba(247, 247, 247, 0.08);
 }
 /* Dokk ei jaga laiust enam rolli-lülitiga (see kolis nurka), seega ei ole
@@ -1245,10 +1249,16 @@ html[data-reduce-motion="1"] .gc-shortcuts {
   inset: -0.32rem -0.08rem;
   border-radius: inherit;
 }
+/* Alfad on 03.08 alla toodud (hover .09 → .055, aktiivne .115 → .075).
+   Põhjus on doki materjali muutus samal päeval: kuni dokk oli täisvärv,
+   pidi nupp end tema pealt ise välja joonistama. Nüüd on doki all HÄGU, ja
+   liiga tugev valge plaat kattis just selle kinni (omanik: „see nupp peab
+   olema ka veidi läbipaistvam lihtsalt, kui seal all on blur paneel").
+   Järjekord peab püsima: puhkeolek läbipaistev < hover < aktiivne. */
 .gc-shortcut:hover,
 .gc-shortcut:focus-visible {
   color: var(--room-text);
-  background: rgba(248, 248, 248, 0.09);
+  background: rgba(248, 248, 248, 0.055);
   outline: none;
 }
 .gc-shortcut:focus-visible {
@@ -1262,8 +1272,10 @@ html[data-reduce-motion="1"] .gc-shortcuts {
 }
 .gc-shortcut[data-on="1"] {
   color: var(--room-text);
-  background: rgba(248, 248, 248, 0.115);
-  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.1);
+  /* Kuju kannab nüüd peamiselt 1 px sisering, mitte täide — nii jääb
+     „sa oled siin" loetavaks ka õhemal taustal. */
+  background: rgba(248, 248, 248, 0.075);
+  box-shadow: inset 0 0 0 1px rgba(248, 248, 248, 0.13);
 }
 .gc-shortcut-icon {
   display: grid;
