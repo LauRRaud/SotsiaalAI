@@ -8757,8 +8757,8 @@
       "on_break": "On break",
       "add_visit": "Add a client",
       "next_client": "Next client",
-      "summary": "{visits} visits · travel {travel} min · service {service} min",
-      "break_total": "break {minutes} min",
+      "summary": "{visits} visits · travel {travel} · service {service}",
+      "break_total": "break {minutes}",
       "needs_check": "This visit has been open a long time. Is everything all right?",
       "empty": "No clients on today's route yet.",
       "action": {
@@ -8782,7 +8782,7 @@
       "reason_prompt": "Why? (this is recorded)",
       "make_entry": "Create a service entry",
       "address": "Address",
-      "summary_one": "{visits} visit · travel {travel} min · service {service} min",
+      "summary_one": "{visits} visit · travel {travel} · service {service}",
       "navigate": "Navigate",
       "mileage": "Mileage log",
       "km_estimated": "≈ {km} km",
@@ -8799,7 +8799,9 @@
       "navigate_day": "Open the whole day in the navigator ({stops} stops)",
       "navigate_waze": "Waze",
       "navigate_truncated": "The navigator takes up to 10 stops at a time — open the rest separately.",
-      "km_road": "{km} km (by road)"
+      "km_road": "{km} km (by road)",
+      "travel_time": "travel",
+      "service_time": "service"
     }
   },
   "date_field": {

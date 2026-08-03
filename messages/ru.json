@@ -8757,8 +8757,8 @@
       "on_break": "Идёт перерыв",
       "add_visit": "Добавить клиента",
       "next_client": "Следующий клиент",
-      "summary": "визитов: {visits} · в пути {travel} мин · услуга {service} мин",
-      "break_total": "перерыв {minutes} мин",
+      "summary": "визитов: {visits} · в пути {travel} · услуга {service}",
+      "break_total": "перерыв {minutes}",
       "needs_check": "Этот визит открыт уже давно. Всё в порядке?",
       "empty": "На сегодняшнем маршруте пока нет клиентов.",
       "action": {
@@ -8782,7 +8782,7 @@
       "reason_prompt": "Почему? (будет записано)",
       "make_entry": "Создать служебную запись",
       "address": "Адрес",
-      "summary_one": "{visits} визит · в пути {travel} мин · услуга {service} мин",
+      "summary_one": "{visits} визит · в пути {travel} · услуга {service}",
       "navigate": "Маршрут",
       "mileage": "Журнал поездок",
       "km_estimated": "≈ {km} км",
@@ -8799,7 +8799,9 @@
       "navigate_day": "Открыть весь день в навигаторе ({stops} остановок)",
       "navigate_waze": "Waze",
       "navigate_truncated": "Навигатор принимает до 10 остановок за раз.",
-      "km_road": "{km} км (по дороге)"
+      "km_road": "{km} км (по дороге)",
+      "travel_time": "в пути",
+      "service_time": "услуга"
     }
   },
   "date_field": {

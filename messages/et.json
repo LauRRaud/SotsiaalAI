@@ -8757,8 +8757,8 @@
       "on_break": "Paus käib",
       "add_visit": "Lisa klient",
       "next_client": "Järgmine klient",
-      "summary": "{visits} külastust · sõit {travel} min · teenus {service} min",
-      "break_total": "paus {minutes} min",
+      "summary": "{visits} külastust · sõit {travel} · teenus {service}",
+      "break_total": "paus {minutes}",
       "needs_check": "See külastus on kaua lahti olnud. Kas kõik on korras?",
       "empty": "Tänasel teekonnal ei ole veel ühtegi klienti.",
       "action": {
@@ -8782,7 +8782,7 @@
       "reason_prompt": "Miks? (jääb kirja)",
       "make_entry": "Tee teenuskirje",
       "address": "Aadress",
-      "summary_one": "{visits} külastus · sõit {travel} min · teenus {service} min",
+      "summary_one": "{visits} külastus · sõit {travel} · teenus {service}",
       "navigate": "Navigeeri",
       "mileage": "Sõidupäevik",
       "km_estimated": "≈ {km} km",
@@ -8799,7 +8799,9 @@
       "navigate_day": "Ava terve päev navigaatoris ({stops} peatust)",
       "navigate_waze": "Waze",
       "navigate_truncated": "Navigaator võtab korraga kuni 10 peatust — ülejäänud tuleb avada eraldi.",
-      "km_road": "{km} km (mööda teed)"
+      "km_road": "{km} km (mööda teed)",
+      "travel_time": "sõit",
+      "service_time": "teenus"
     }
   },
   "date_field": {

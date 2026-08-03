@@ -41,6 +41,23 @@ const isTerminal = (status) => TERMINAL.has(status);
 /** Millist toimingut pakume SUURE nupuna. Ülejäänud jäävad kõrvalvalikuks. */
 const PRIMARY_ACTION = ["arrive", "complete", "depart", "resolve_correction"];
 
+/**
+ * KESTUS INIMESE KEELES. „85 min" on tehniliselt õige ja praktikas loetamatu —
+ * töötaja peab peast jagama, et teada, kas ta oli tund ja veerand või poolteist.
+ * Alla tunni jääb minutitesse, sest „0 h 45 min" oleks omakorda müra.
+ *
+ * MÕÕDETUD, MITTE KÜSITUD: seda arvu ei sisesta keegi. Ta tuleb kahe vajutuse
+ * vahelt ja just see ongi kogu jadanupu mõte.
+ */
+function formatDuration(minutes) {
+  if (!Number.isFinite(Number(minutes)) || Number(minutes) <= 0) return null;
+  const total = Math.round(Number(minutes));
+  if (total < 60) return `${total} min`;
+  const hours = Math.floor(total / 60);
+  const rest = total % 60;
+  return rest ? `${hours} h ${rest} min` : `${hours} h`;
+}
+
 function formatTime(value, locale) {
   if (!value) return "";
   const date = new Date(value);
@@ -365,7 +382,17 @@ export default function ServiceLogRoute() {
                 <span className="sl-entry-meta">
                   {t(`service_log.route.status.${visit.status.toLowerCase()}`, visit.status)}
                   {visit.arrivedAt ? ` · ${formatTime(visit.arrivedAt, locale)}` : ""}
-                  {visit.travelMinutes !== null ? ` · ${visit.travelMinutes} min` : ""}
+                  {/* KAKS KESTUST, KAKS ERI ASJA ja mõlemad mõõdetud:
+                      sõit on teele asumisest kohalejõudmiseni, teenus
+                      kohalejõudmisest lõpetamiseni. Töötaja ei sisesta
+                      kumbagi. Varem oli ekraanil ainult sõit — teenuse kestus
+                      arvutati ja saadeti, aga ei jõudnud reale. */}
+                  {formatDuration(visit.travelMinutes)
+                    ? ` · ${t("service_log.route.travel_time", "")} ${formatDuration(visit.travelMinutes)}`
+                    : ""}
+                  {formatDuration(visit.serviceMinutes)
+                    ? ` · ${t("service_log.route.service_time", "")} ${formatDuration(visit.serviceMinutes)}`
+                    : ""}
                 </span>
                 {visit.address ? <span className="sl-entry-meta">{visit.address}</span> : null}
                 {visit.outcomeReason ? <span className="sl-source">{visit.outcomeReason}</span> : null}
