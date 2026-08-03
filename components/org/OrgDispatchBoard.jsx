@@ -16,7 +16,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Panel from "@/components/ui/Panel";
+import Button from "@/components/ui/Button";
 
 function formatTime(value, locale) {
   if (!value) return "";
@@ -31,6 +33,9 @@ function formatTime(value, locale) {
 
 export default function OrgDispatchBoard({ organizationId, initialBoard, initialWorkers = [] }) {
   const { t, locale } = useI18n();
+  /* KIIRMENÜÜ INFO IGAL LEHEL (omaniku reegel): lehe nimi ja sektsioonid on
+     kirjas `lib/dashboardInfoContent.js`-is, mitte laiali komponentides. */
+  usePanelInfoSlot({ infoId: "org_dispatch" });
   const [board, setBoard] = useState(initialBoard || null);
   const [workers, setWorkers] = useState(initialWorkers);
   const [date, setDate] = useState(initialBoard?.date || "");
@@ -165,38 +170,43 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
       {workers.length ? (
         <div className="org-assign">
           <h3>{t("org.board.assign")}</h3>
-          <label className="org-field">
-            <span>{t("org.board.assign_worker")}</span>
-            <select value={assignTo} onChange={(event) => setAssignTo(event.target.value)}>
-              <option value="">—</option>
-              {workers.map((worker) => (
-                <option key={worker.userId} value={worker.userId}>
-                  {worker.name}
-                  {worker.jobTitle ? ` · ${worker.jobTitle}` : ""}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="org-field">
-            <span>{t("org.board.assign_client")}</span>
-            <input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
-          </label>
-          <label className="org-field">
-            <span>{t("org.board.assign_address")}</span>
-            <input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
-          </label>
-          <label className="org-field">
-            <span>{t("org.board.assign_time")}</span>
-            <input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
-          </label>
-          <button
-            type="button"
-            className="sl-entry-btn is-primary"
-            disabled={busy || !assignTo || !client.trim()}
-            onClick={assign}
-          >
+          {/* KLIENT JA AADRESS ÜHEL REAL. Neli välja üksteise all, iga üks
+              servast servani, tegi lihtsast toimingust vormi. Kaks lühikest
+              välja kõrvuti on sama info poole väiksema kõrgusega. */}
+          <div className="org-assign-row">
+            <label className="org-field">
+              <span>{t("org.board.assign_worker")}</span>
+              <select value={assignTo} onChange={(event) => setAssignTo(event.target.value)}>
+                <option value="">—</option>
+                {workers.map((worker) => (
+                  <option key={worker.userId} value={worker.userId}>
+                    {worker.name}
+                    {worker.jobTitle ? ` · ${worker.jobTitle}` : ""}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="org-field">
+              <span>{t("org.board.assign_time")}</span>
+              <input type="datetime-local" value={startAt} onChange={(event) => setStartAt(event.target.value)} />
+            </label>
+          </div>
+          <div className="org-assign-row">
+            <label className="org-field">
+              <span>{t("org.board.assign_client")}</span>
+              <input value={client} onChange={(event) => setClient(event.target.value)} maxLength={200} />
+            </label>
+            <label className="org-field">
+              <span>{t("org.board.assign_address")}</span>
+              <input value={address} onChange={(event) => setAddress(event.target.value)} maxLength={300} />
+            </label>
+          </div>
+          {/* PLATVORMI NUPUPRIMITIIV, mitte minu oma klass. `sl-entry-btn
+              is-primary` oli teenuspäeviku kirjerea stiil ja siin nägi ta välja
+              nagu võõras sinine nupp — omanik ütles seda otse. */}
+          <Button type="button" disabled={busy || !assignTo || !client.trim()} onClick={assign}>
             {t("org.board.assign_send")}
-          </button>
+          </Button>
           {notice ? <p className="org-hint">{notice}</p> : null}
         </div>
       ) : null}
@@ -258,7 +268,7 @@ export default function OrgDispatchBoard({ organizationId, initialBoard, initial
                       {visit.status === "PLANNED" && workers.length > 1 ? (
                         <button
                           type="button"
-                          className="sl-entry-btn"
+                          className="org-inline-btn"
                           disabled={busy}
                           onClick={() => reassign(visit.id)}
                         >

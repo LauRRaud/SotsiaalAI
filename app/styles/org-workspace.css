@@ -291,3 +291,48 @@
     transition: none;
   }
 }
+
+/* TEENUSPÄEVIKU ORG-VAADETE PAIGUTUS.
+ *
+ * KAKS LÜHIKEST VÄLJA KÕRVUTI. Neli välja üksteise all, iga üks servast
+ * servani, tegi lihtsast toimingust vormi. Sama info mahub poole väiksemasse
+ * kõrgusse ja silm leiab seose (klient ↔ aadress) ilma otsimata. */
+.org-assign-row {
+  display: grid;
+  gap: var(--space-2, 0.5rem);
+  align-items: end;
+}
+
+@media (min-width: 34rem) {
+  .org-assign-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* SERVAST SERVANI EI OLE. Määramise plokk saab oma laiuse piiri — pikk rida
+ * on raskem lugeda ja vorm ei pea olema laiem kui tema sisu vajab. */
+.org-assign {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+  max-width: 44rem;
+  margin: var(--space-3, 0.75rem) 0;
+  padding: 0.875rem;
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 14%));
+  border-radius: var(--radius-lg, 0.75rem);
+}
+
+/* Reasisene teisene toiming (asendus). Mitte nupp-primitiiv: ta elab loendi
+ * sees ja peab jääma tekstist nõrgemaks, mitte temaga võistlema. */
+.org-inline-btn {
+  align-self: flex-start;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8125rem;
+  opacity: 0.75;
+  text-decoration: underline;
+  cursor: pointer;
+}

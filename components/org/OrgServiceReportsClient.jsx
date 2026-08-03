@@ -19,6 +19,7 @@
 import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Panel from "@/components/ui/Panel";
 import Button from "@/components/ui/Button";
 
@@ -35,6 +36,9 @@ function formatDate(value, locale) {
 
 export default function OrgServiceReportsClient({ organizationId, items = [] }) {
   const { t, locale } = useI18n();
+  /* KIIRMENÜÜ INFO IGAL LEHEL (omaniku reegel): lehe nimi ja sektsioonid on
+     kirjas `lib/dashboardInfoContent.js`-is, mitte laiali komponentides. */
+  usePanelInfoSlot({ infoId: "org_service_reports" });
   const [rows, setRows] = useState(items);
 
   /* Avamine muudab seisu serveris. Loendi kohalik uuendamine hoiab ära selle,
