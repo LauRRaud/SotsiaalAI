@@ -545,9 +545,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 
 | # | Mis | Kus | Liik |
 |---|---|---|---|
-| 1 | Hiline liituja saab ainult `REQUESTED` nõusolekurea, **aga salvestus jätkub katkematult** | ruumid | **VIGA** |
-| 2 | **Nõusoleku tagasivõtmine ei peata egressi** — toorheli maandub storage'isse, failirida jääb igaveseks `PROCESSING` | ruumid | **VIGA** |
-| 3 | „Helikõne toimus …" tekib ruumi kaks korda | ruumid | VIGA |
+| 3 | ~~„Helikõne toimus …" tekib ruumi kaks korda~~ — **PARANDATUD 03.08** (`9cef880e`): tingimuslik `updateMany`, süsteemsõnum ainult üleminekut teinud kutsest | ruumid | tehtud |
 | 4 | Salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt | ruumid | VIGA |
 | 5 | Salvestuse katkestamine enne transkribeerimist — blob peab ära lendama, providerikutset ei tehta | hääl (T03 E4) | **VIGA** |
 | 6 | 2,5 min hoiatus/piir + taimerite ja helirajade puhastus abort/error/success radadel | hääl (T03 E4) | SABA |
@@ -571,8 +569,18 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
 
-**Neli esimest ja punkt 5 on nõusoleku- ja privaatsuslubaduse rikkumised** — need ei ole
-kosmeetika ja peaksid liikuma enne uusi tööriistu.
+**KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
+`fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
+nõusoleku tagasivõtmise mõjutut egressi, aga E5-töö parandas mõlemad: `joinCall` peatab
+ACTIVE salvestuse fail-closed, kui uus liituja pole nõustunud, ja
+`respondToRecordingConsent` suunab WITHDRAWN/DECLINED ACTIVE ajal `discardActiveRecording`
+kaudu (egress-stopp + artefakti kõrvaldus + rida `DELETED`). `cancelRecordingRequest` on
+piiratud eel-ACTIVE staatustele. **Õppetund kordub: analüüsidokumendi leid ei ole olek.**
+Ma kandsin need siia dokumendist, koodist kontrollimata — sama viga, mille pärast A/B/C
+register kandis vale väravat.
+
+**Punkt 5 (katkestatud salvestus võib jõuda providerile) on endiselt kontrollimata** —
+see elab hääle poolel (`useSpeech.js`), mitte kõnede omal, ja seda ei ole üle vaadatud.
 
 ---
 
