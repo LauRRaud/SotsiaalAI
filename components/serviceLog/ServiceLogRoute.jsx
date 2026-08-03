@@ -455,11 +455,13 @@ export default function ServiceLogRoute() {
                   {leg.km === null
                     ? t("service_log.route.km_unknown", "")
                     : t(
-                        leg.source === "address"
-                          ? "service_log.route.km_address"
-                          : leg.estimated
-                            ? "service_log.route.km_estimated"
-                            : "service_log.route.km_confirmed",
+                        leg.source === "road"
+                          ? "service_log.route.km_road"
+                          : leg.source === "address"
+                            ? "service_log.route.km_address"
+                            : leg.estimated
+                              ? "service_log.route.km_estimated"
+                              : "service_log.route.km_confirmed",
                         "",
                         { km: String(leg.km) }
                       )}

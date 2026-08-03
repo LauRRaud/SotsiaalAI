@@ -8793,7 +8793,8 @@
       "order_apply": "Järjesta ümber",
       "navigate_day": "Ava terve päev navigaatoris ({stops} peatust)",
       "navigate_waze": "Waze",
-      "navigate_truncated": "Navigaator võtab korraga kuni 10 peatust — ülejäänud tuleb avada eraldi."
+      "navigate_truncated": "Navigaator võtab korraga kuni 10 peatust — ülejäänud tuleb avada eraldi.",
+      "km_road": "{km} km (mööda teed)"
     }
   },
   "date_field": {

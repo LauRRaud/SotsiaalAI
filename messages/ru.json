@@ -8793,7 +8793,8 @@
       "order_apply": "Переупорядочить",
       "navigate_day": "Открыть весь день в навигаторе ({stops} остановок)",
       "navigate_waze": "Waze",
-      "navigate_truncated": "Навигатор принимает до 10 остановок за раз."
+      "navigate_truncated": "Навигатор принимает до 10 остановок за раз.",
+      "km_road": "{km} км (по дороге)"
     }
   },
   "date_field": {

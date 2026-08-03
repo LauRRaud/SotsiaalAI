@@ -8793,7 +8793,8 @@
       "order_apply": "Reorder",
       "navigate_day": "Open the whole day in the navigator ({stops} stops)",
       "navigate_waze": "Waze",
-      "navigate_truncated": "The navigator takes up to 10 stops at a time — open the rest separately."
+      "navigate_truncated": "The navigator takes up to 10 stops at a time — open the rest separately.",
+      "km_road": "{km} km (by road)"
     }
   },
   "date_field": {
