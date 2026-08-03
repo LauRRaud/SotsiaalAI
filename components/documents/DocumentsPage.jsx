@@ -13,6 +13,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader"
 import Input from "@/components/ui/Input"
 import Panel from "@/components/ui/Panel"
 import OptionCard from "@/components/ui/OptionCard"
+import Form from "@/components/ui/Form";
 import { ARTIFACT_LIST_LIMIT_ALL, TEMPLATE_FOR_VALUES } from "@/lib/documents/constants"
 import {
   describeProvenance,
@@ -655,7 +656,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
           </div>
 
           {uploadOpen ? (
-            <form onSubmit={submitUpload} className="documents-upload">
+            <Form onSubmit={submitUpload} className="documents-upload">
               <div className="documents-upload__row">
                 <label>
                   <span>{t("documents.form.title_label", "Pealkiri")}</span>
@@ -718,7 +719,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
                 </Button>
                 <Button type="button" size="sm" variant="linkBrand" onClick={() => setUploadOpen(false)}>{t("common.close")}</Button>
               </div>
-            </form>
+            </Form>
           ) : null}
         </Panel>
 

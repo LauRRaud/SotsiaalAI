@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import PrivacyBadge from "./PrivacyBadge";
 import styles from "./SupervisionPage.module.css";
 import { isConflict, supervisionMessage, supervisionRequest } from "./supervisionClient";
@@ -187,7 +188,7 @@ export default function SummariesPanel({ process, onReload, onConflict, particip
       ) : null}
 
       {canCreate ? (
-        <form className={styles.form} onSubmit={create}>
+        <Form className={styles.form} onSubmit={create}>
           <div className={styles.sectionHeading}>
             <h3>{t(`supervision.summaries.${draft.kind === "FINAL" ? "newFinal" : "meeting"}`)}</h3>
           </div>
@@ -236,7 +237,7 @@ export default function SummariesPanel({ process, onReload, onConflict, particip
               {t("supervision.common.save")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
     </section>
   );

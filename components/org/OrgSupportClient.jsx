@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -108,7 +109,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
         {recipients.length === 0 ? (
           <p className="ow-empty">{t("org.support.noRecipients")}</p>
         ) : writable ? (
-          <form onSubmit={send}>
+          <Form onSubmit={send}>
             <div className="ow-grid">
               <label>
                 <span className="ow-meta__term">{t("org.support.recipients")}</span>
@@ -166,7 +167,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
                 {t("org.support.send")}
               </Button>
             </div>
-          </form>
+          </Form>
         ) : null}
       </section>
 

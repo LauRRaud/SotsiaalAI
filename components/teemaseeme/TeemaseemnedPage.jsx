@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import Form from "@/components/ui/Form";
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
@@ -1392,7 +1393,7 @@ export default function TeemaseemnedPage({ owner = null }) {
       ) : null}
 
       <div className="ts-create-main">
-        <form
+        <Form
           className="ts-form"
           onSubmit={(e) => {
             e.preventDefault();
@@ -1605,7 +1606,7 @@ export default function TeemaseemnedPage({ owner = null }) {
               </p>
             ) : null}
           </div>
-        </form>
+        </Form>
 
         {previewColumn}
       </div>

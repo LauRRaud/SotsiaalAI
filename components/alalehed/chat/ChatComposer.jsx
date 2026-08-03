@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
 import { MAX_USER_MESSAGE_CHARS, MESSAGE_COUNTER_VISIBLE_FROM } from "@/lib/chat/messageLimits";
 
 function resolvePrivacyWorkflow({ activeModeKey, isRoomMode }) {
@@ -800,7 +801,7 @@ export default function ChatComposer({
         {isGenerating || isStreamingAny ? <button type="submit" aria-label={t("chat.send.stop")} title={t("chat.send.title_stop")} disabled={isRoomMode && (roomBlocked || roomAuthRequired) || !hasInput && !isGenerating && !isStreamingAny} data-loader-active="true" onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : hasInput ? <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={isRoomMode && (roomBlocked || roomAuthRequired)} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} /> : <button type="submit" aria-label={t("chat.send.send")} title={t("chat.send.title_send")} disabled={!hasInput || isRoomMode && (roomBlocked || roomAuthRequired)} data-empty-disabled={!hasInput ? "true" : undefined} onPointerDown={handlePrimaryActionPointerDown} onMouseDown={preserveDesktopInputFocusOnMouseDown} />}
       </div>
     </>;
-  return <form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
+  return <Form ref={inputRowRef} style={inputRowStyle} onSubmit={handleSubmit} autoComplete="off">
       {showSideControls ? <div>
         {hideTools ? null : <>
             <button ref={toolsButtonRef} type="button" aria-label={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.aria")} title={modeToggleShowsActiveState ? activeModeKey === "deep_research" ? t("chat.deep_research.exit_mode_aria") : t("chat.tools.exit_mode_aria") : t("chat.tools.tooltip")} aria-haspopup={modeToggleShowsActiveState ? undefined : "menu"} aria-expanded={modeToggleShowsActiveState ? undefined : toolsOpen ? "true" : "false"} onMouseDown={preserveDesktopInputFocusOnMouseDown} onClick={handleToolsButtonClick}>
@@ -843,5 +844,5 @@ export default function ChatComposer({
             <span aria-hidden="true">{displayModeLabel}</span>
           </div>
         </div> : null}
-    </form>;
+    </Form>;
 }

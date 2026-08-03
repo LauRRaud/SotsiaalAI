@@ -7,6 +7,7 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./SupervisionPage.module.css";
 import { supervisionMessage, supervisionRequest } from "./supervisionClient";
@@ -85,7 +86,7 @@ export default function SupervisionCreatePage() {
           {formError}
         </p>
 
-        <form className={styles.form} onSubmit={submit}>
+        <Form className={styles.form} onSubmit={submit}>
           <label>
             {t("supervision.create.typeLabel")}
             <Dropdown
@@ -139,7 +140,7 @@ export default function SupervisionCreatePage() {
               {t("supervision.common.cancel")}
             </Button>
           </div>
-        </form>
+        </Form>
       </div>
     </main>
   );

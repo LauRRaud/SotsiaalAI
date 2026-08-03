@@ -5,6 +5,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import PrivacyBadge from "./PrivacyBadge";
 import styles from "./SupervisionPage.module.css";
@@ -253,7 +254,7 @@ export default function EeskamberPanel({ process }) {
         ) : null}
 
         {canWrite ? (
-          <form className={styles.form} onSubmit={create}>
+          <Form className={styles.form} onSubmit={create}>
             <div className={styles.sectionHeading}>
               <h3>{t("supervision.eeskamber.new")}</h3>
             </div>
@@ -290,7 +291,7 @@ export default function EeskamberPanel({ process }) {
                 {busy === "create" ? t("supervision.common.saving") : t("supervision.common.save")}
               </Button>
             </div>
-          </form>
+          </Form>
         ) : null}
       </div>
     </section>

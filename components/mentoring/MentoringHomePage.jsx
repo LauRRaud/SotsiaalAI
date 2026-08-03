@@ -5,6 +5,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./MentoringPage.module.css";
@@ -294,7 +295,7 @@ export default function MentoringHomePage() {
               help={t("mentoring.home.catalog_help")}
               title={t("mentoring.home.catalog")}
             >
-              <form className={styles.filters} onSubmit={applyFilters}>
+              <Form className={styles.filters} onSubmit={applyFilters}>
                 <Input
                   aria-label={t("mentoring.home.filter_field")}
                   onChange={(event) => setFilters((prev) => ({ ...prev, field: event.target.value }))}
@@ -316,7 +317,7 @@ export default function MentoringHomePage() {
                 <Button size="sm" type="submit" variant="secondary">
                   {t("mentoring.home.filter_apply")}
                 </Button>
-              </form>
+              </Form>
               {catalog.length ? (
                 <div className={styles.cards}>
                   {catalog.map((mentor) => (

@@ -8,6 +8,7 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import { buildServiceMapHandoff } from "@/lib/journey/serviceMapHandoff";
 import { buildAssistiveDevicesHandoff } from "@/lib/journey/assistiveDevices";
@@ -1428,7 +1429,7 @@ export default function JourneyDetail({ journeyId }) {
                 ) : null}
 
                 {continuityOpen ? (
-                  <form onSubmit={handleSaveContinuity}>
+                  <Form onSubmit={handleSaveContinuity}>
                     <div>
                       <ContinuityTextField
                         id="journey-continuity-service-name"
@@ -1538,7 +1539,7 @@ export default function JourneyDetail({ journeyId }) {
                         {t("journey.serviceContinuity.close", "Sulge kontroll")}
                       </Button>
                     </div>
-                  </form>
+                  </Form>
                 ) : null}
               </section>
 
@@ -1596,7 +1597,7 @@ export default function JourneyDetail({ journeyId }) {
               ) : null}
 
               {editing ? (
-                <form onSubmit={handleSave}>
+                <Form onSubmit={handleSave}>
                   <div>
                     <label htmlFor="journey-detail-title">
                       {t("journey.labels.title", "Title")}
@@ -1670,7 +1671,7 @@ export default function JourneyDetail({ journeyId }) {
                       {t("journey.actions.cancel", "Cancel")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               ) : (
                 <>
                   <section>

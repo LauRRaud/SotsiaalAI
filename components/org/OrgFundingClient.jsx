@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import {
   CLIENT_SPONSORSHIP_REFERENCE_PRICE_CENTS,
   ORGANIZATION_SEAT_ROLES,
@@ -257,7 +258,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
         )}
 
         {writable ? (
-          <form onSubmit={addPlan} className="ow-grid">
+          <Form onSubmit={addPlan} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.funding.seatRole")}</span>
               <Dropdown
@@ -287,7 +288,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
                 {t("org.funding.addPlan")}
               </Button>
             </div>
-          </form>
+          </Form>
         ) : null}
       </section>
 
@@ -320,7 +321,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
         )}
 
         {writable ? (
-          <form onSubmit={sponsor} className="ow-grid">
+          <Form onSubmit={sponsor} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.funding.sponsorEmail")}</span>
               <input
@@ -339,7 +340,7 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
                 {t("org.funding.createSponsorship")}
               </Button>
             </div>
-          </form>
+          </Form>
         ) : null}
 
         {issuedLink ? (

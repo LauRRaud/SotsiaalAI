@@ -112,6 +112,15 @@
   :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="color"]):not([type="submit"]):not([type="button"]):not([type="reset"]):not(.sr-only), textarea, select, .dd-trigger)[aria-invalid="true"]:focus {
     box-shadow: var(--input-highlight), var(--input-focus-glow), var(--input-shadow);
   }
+  /* Vormi enda veateade (components/ui/Form.jsx). Ta seisab vormi ESIMESE
+     lapsena, seega peab ta võrgus üle KOGU rea minema — muidu istuks ta
+     kahe veeru vormis ühte lahtrisse ja lükkaks väljad paigast. */
+  .form-error {
+    grid-column: 1 / -1;
+    margin: 0 0 0.6rem;
+    color: var(--status-error, #e08a6a);
+    font-size: var(--fs-small);
+  }
 
   /* ---------- LIQUID BEND — serva refraktsioon (tellija 07.07) ----
      Päris "klaas painutab tausta" efekt: feDisplacementMap layout'i

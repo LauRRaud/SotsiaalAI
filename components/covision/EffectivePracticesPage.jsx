@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { createLatestRequestGate, isAbortError } from "@/lib/client/latestRequestGate";
 import {
@@ -266,7 +267,7 @@ function OwnApplicationCard({ application, t, locale, busy, onResubmit }) {
     <article className="epp-own-application">
       <header><span aria-hidden="true">↻</span><div><small>{m(t, "effective_practices.application.my_experience", "Minu rakendamiskogemus")}</small><h2>{application.practice.title}</h2></div><strong>{statusLabel(application.status, t)}</strong></header>
       {application.reviewNote ? <p className="epp-application-feedback"><strong>{m(t, "effective_practices.application.reviewer_feedback", "Retsensendi tagasiside")}</strong>{application.reviewNote}</p> : null}
-      {editable ? <form className="epp-application" onSubmit={(event) => { event.preventDefault(); onResubmit(application.id, { action: "RESUBMIT", expectedVersion: application.version, ...value }); }}>
+      {editable ? <Form className="epp-application" onSubmit={(event) => { event.preventDefault(); onResubmit(application.id, { action: "RESUBMIT", expectedVersion: application.version, ...value }); }}>
         <label>{m(t, "effective_practices.application.context", "Kasutamise kontekst")}<textarea required rows={2} value={value.context} onChange={(event) => set("context", event.target.value)} /></label>
         <label>{m(t, "effective_practices.application.target", "Sihtrühm")}<input required value={value.targetGroup} onChange={(event) => set("targetGroup", event.target.value)} /></label>
         <label>{m(t, "effective_practices.application.adaptations", "Mida kohandasin")}<textarea required rows={2} value={value.adaptations} onChange={(event) => set("adaptations", event.target.value)} /></label>
@@ -276,7 +277,7 @@ function OwnApplicationCard({ application, t, locale, busy, onResubmit }) {
         <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
         <label className="epp-confirm"><input type="checkbox" checked={value.needsReview} onChange={(event) => set("needsReview", event.target.checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
         <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.application.resubmit", "Saada täiendatud kogemus uuesti")}</button>
-      </form> : <dl><div><dt>{m(t, "effective_practices.labels.modified", "Viimati muudetud")}</dt><dd>{formatDate(application.updatedAt, locale)}</dd></div><div><dt>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}</dt><dd>{formatDate(application.followUpAt, locale)}</dd></div></dl>}
+      </Form> : <dl><div><dt>{m(t, "effective_practices.labels.modified", "Viimati muudetud")}</dt><dd>{formatDate(application.updatedAt, locale)}</dd></div><div><dt>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}</dt><dd>{formatDate(application.followUpAt, locale)}</dd></div></dl>}
     </article>
   );
 }
@@ -323,7 +324,7 @@ function CandidateEditor({ initial, t, busy, error, onCancel, onSave }) {
     });
   };
   return (
-    <form ref={dialogRef} className="epp-editor" onSubmit={submit}>
+    <Form ref={dialogRef} className="epp-editor" onSubmit={submit}>
       <header><div><small>{m(t, "effective_practices.editor.private", "Privaatne praktikakandidaat")}</small><h2 id="epp-editor-title">{initial ? m(t, "effective_practices.editor.edit", "Täienda kandidaati") : m(t, "effective_practices.editor.create", "Loo praktikakandidaat")}</h2></div><button type="button" data-variant className="epp-close" autoFocus onClick={onCancel} aria-label={m(t, "common.close", "Sulge")}>×</button></header>
       {error ? <p className="epp-inline-error" role="alert">{error}</p> : null}
       <div className="epp-form-grid">
@@ -348,7 +349,7 @@ function CandidateEditor({ initial, t, busy, error, onCancel, onSave }) {
       </div>
       <label className="epp-confirm"><input type="checkbox" checked={draft.ownerConfirmedNoIdentifiers} onChange={(event) => set("ownerConfirmedNoIdentifiers", event.target.checked)} /><span>{m(t, "effective_practices.editor.identifiers_confirm", "Kinnitan pärast viimaseid muudatusi, et see kandidaatversioon ei sisalda klienti, last, perekonda ega konkreetset juhtumit tuvastavaid detaile.")}</span></label>
       <footer><button type="button" data-variant="quiet" onClick={onCancel}>{m(t, "common.cancel", "Loobu")}</button><button type="submit" data-variant="primary" disabled={busy}>{busy ? m(t, "common.saving", "Salvestan…") : m(t, "effective_practices.actions.save_private", "Salvesta privaatne mustand")}</button></footer>
-    </form>
+    </Form>
   );
 }
 
@@ -360,7 +361,7 @@ function ApplicationForm({ practice, t, busy, error, onSubmit }) {
     onSubmit({ ...value, versionUsed: practice.version, submit: true });
   };
   return (
-    <form className="epp-application" onSubmit={submit}>
+    <Form className="epp-application" onSubmit={submit}>
       <h3>{m(t, "effective_practices.application.title", "Lisa struktureeritud rakendamiskogemus")}</h3>
       <p>{m(t, "effective_practices.application.note", "See ei ole hinne ega kommentaar. Kirjelda konteksti, kohandusi, piiranguid ja järelvaadet.")}</p>
       {error ? <p className="epp-inline-error" role="alert">{error}</p> : null}
@@ -373,7 +374,7 @@ function ApplicationForm({ practice, t, busy, error, onSubmit }) {
       <label>{m(t, "effective_practices.application.follow_up", "Järelvaate aeg")}<input type="date" required value={value.followUpAt} onChange={(event) => set("followUpAt", event.target.value)} /></label>
       <label className="epp-confirm"><input type="checkbox" checked={value.needsReview} onChange={(event) => set("needsReview", event.target.checked)} /><span>{m(t, "effective_practices.application.needs_review", "Kogemus toob esile uue riski või vajaduse praktika uuesti üle vaadata.")}</span></label>
       <button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.actions.submit_application", "Saada rakendamiskogemus ülevaatamiseks")}</button>
-    </form>
+    </Form>
   );
 }
 
@@ -422,7 +423,7 @@ function DetailDialog({ detail, types, t, locale, busy, error, onClose, onEdit, 
           {isPublished ? <section className="epp-review-proof"><h3>{m(t, "effective_practices.labels.review_basis", "Professionaalse ülevaatuse alus")}</h3><p>{(practice.reviewRoles || []).map((item) => capabilityLabel(item, t)).join(" · ")}</p><dl><div><dt>{m(t, "effective_practices.labels.reviewed", "Professionaalselt üle vaadatud")}</dt><dd>{formatDate(practice.professionalReviewedAt, locale)}</dd></div><div><dt>{m(t, "effective_practices.labels.next_review", "Järgmine ülevaatus")}</dt><dd>{formatDate(practice.nextReviewAt, locale)}</dd></div></dl></section> : null}
           {practice.versionHistory?.length ? <section className="epp-review-proof"><h3>{m(t, "effective_practices.version_history", "Avaldatud versioonide ajalugu")}</h3>{practice.versionHistory.map((item) => <article key={item.version}><strong>{m(t, "effective_practices.labels.version", "Versioon")} {item.version} · {formatDate(item.publishedAt, locale)}</strong><p>{item.snapshot.title}</p><p>{item.snapshot.summary || "—"}</p><small>{(item.reviewRoles || []).map((role) => capabilityLabel(role, t)).join(" · ")}</small></article>)}</section> : null}
           {isOwner ? <section className="epp-owner-actions"><h3>{m(t, "effective_practices.candidate.next", "Kandidaadi järgmine samm")}</h3><p>{practice.source?.linked ? m(t, "effective_practices.candidate.from_closure", "Mustand loodi lõpetatud juhtumi kinnitatud üldistusest. Juhtumilugu ei ole kopeeritud.") : m(t, "effective_practices.candidate.from_experience", "Mustand põhineb sinu üldistatud professionaalsel kogemusel.")}</p><div>{["DRAFT", "NEEDS_CHANGES"].includes(practice.status) ? <button type="button" data-variant="quiet" onClick={() => onEdit(practice)}>{m(t, "effective_practices.actions.edit", "Täienda")}</button> : null}{["DRAFT", "NEEDS_CHANGES"].includes(practice.status) ? <button type="button" data-variant="primary" disabled={busy} onClick={() => onAction({ action: "submit", expectedVersion: practice.version })}>{m(t, "effective_practices.actions.submit_review", "Esita ülevaatamiseks")}</button> : null}<button type="button" data-variant="quiet" disabled={busy} onClick={() => { if (window.confirm(m(t, "effective_practices.actions.archive_confirm", "Kas arhiveerida see praktikakandidaat?"))) onAction({ action: "archive", expectedVersion: practice.version }); }}>{m(t, "effective_practices.actions.archive", "Arhiveeri")}</button></div></section> : null}
-          {canReviewNow ? <form className="epp-review-form" onSubmit={(event) => { event.preventDefault(); onAction({ action: "review", expectedVersion: practice.version, capabilityType: reviewType, decision, conflictStatus, authorFeedback, privateNotes }); }}>
+          {canReviewNow ? <Form className="epp-review-form" onSubmit={(event) => { event.preventDefault(); onAction({ action: "review", expectedVersion: practice.version, capabilityType: reviewType, decision, conflictStatus, authorFeedback, privateNotes }); }}>
             <h3>{m(t, "effective_practices.review.title", "Professionaalne ülevaatus")}</h3>
             <label>{m(t, "effective_practices.review.role", "Ülevaatuse roll")}<Dropdown value={reviewType} onChange={setReviewType} ariaLabel={m(t, "effective_practices.review.role", "Ülevaatuse roll")} options={reviewRoles.map((item) => ({ value: item, label: capabilityLabel(item, t) }))} /></label>
             <label>{m(t, "effective_practices.review.conflict_status", "Huvide konflikti kontroll")}<Dropdown required value={conflictStatus} onChange={(value) => { setConflictStatus(value); if (value === "DECLINED") setDecision("CONFLICT"); else if (decision === "CONFLICT") setDecision("APPROVED"); }} ariaLabel={m(t, "effective_practices.review.conflict_status", "Huvide konflikti kontroll")} placeholder={m(t, "effective_practices.review.choose_conflict", "Vali kontrolli tulemus")} options={[{ value: "NONE", label: m(t, "effective_practices.review.no_conflict", "Huvide konflikti ei ole") }, { value: "MANAGEABLE", label: m(t, "effective_practices.review.manageable_conflict", "Seos on olemas, kuid juhitav") }, { value: "DECLINED", label: m(t, "effective_practices.review.declined_conflict", "Taandun huvide konflikti tõttu") }]} /></label>
@@ -435,8 +436,8 @@ function DetailDialog({ detail, types, t, locale, busy, error, onClose, onEdit, 
                 salvestada ilma konfliktikontrollita. Põhjust ütleb välja all
                 seisev vihje (.dd-required). */}
             <button type="submit" data-variant="primary" disabled={busy || !conflictStatus}>{m(t, "effective_practices.actions.save_review", "Salvesta ülevaatus")}</button>
-          </form> : null}
-          {isReviewer && practice.status === "READY_TO_PUBLISH" && types.includes("APPROVER") ? <form className="epp-publish" onSubmit={(event) => { event.preventDefault(); onAction({ action: "publish", expectedVersion: practice.version, nextReviewAt }); }}><h3>{m(t, "effective_practices.publish.title", "Lõplik kinnitamine")}</h3><p>{m(t, "effective_practices.publish.note", "Avaldamine lukustab eraldi versiooni. RAG-sünk käivitub alles pärast edukat avaldamist ja selle olek raporteeritakse eraldi.")}</p><label>{m(t, "effective_practices.labels.next_review", "Järgmine ülevaatus")}<input type="date" required value={nextReviewAt} onChange={(event) => setNextReviewAt(event.target.value)} /></label><button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.actions.publish", "Kinnita ja avalda versioon")}</button></form> : null}
+          </Form> : null}
+          {isReviewer && practice.status === "READY_TO_PUBLISH" && types.includes("APPROVER") ? <Form className="epp-publish" onSubmit={(event) => { event.preventDefault(); onAction({ action: "publish", expectedVersion: practice.version, nextReviewAt }); }}><h3>{m(t, "effective_practices.publish.title", "Lõplik kinnitamine")}</h3><p>{m(t, "effective_practices.publish.note", "Avaldamine lukustab eraldi versiooni. RAG-sünk käivitub alles pärast edukat avaldamist ja selle olek raporteeritakse eraldi.")}</p><label>{m(t, "effective_practices.labels.next_review", "Järgmine ülevaatus")}<input type="date" required value={nextReviewAt} onChange={(event) => setNextReviewAt(event.target.value)} /></label><button type="submit" data-variant="primary" disabled={busy}>{m(t, "effective_practices.actions.publish", "Kinnita ja avalda versioon")}</button></Form> : null}
           {isPublished && types.includes("ETHICS") ? <section className="epp-owner-actions"><h3>{m(t, "effective_practices.status.re_review", "Uuesti ülevaatamine")}</h3><button type="button" data-variant disabled={busy} onClick={() => { if (window.confirm(m(t, "effective_practices.actions.re_review_confirm", "Kas eemaldada versioon teadmistekogust ja alustada uut ülevaatust?"))) onAction({ action: "re_review", expectedVersion: practice.version }); }}>{m(t, "effective_practices.actions.re_review", "Alusta uut ülevaatust")}</button></section> : null}
           {isPublished ? <ApplicationForm practice={practice} t={t} busy={busy} error="" onSubmit={onApplication} /> : null}
         </div>

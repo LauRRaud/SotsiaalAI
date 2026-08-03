@@ -15,6 +15,7 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
@@ -4260,7 +4261,7 @@ function ServiceProfileSurface({ t }) {
   ];
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       {loading ? (
         <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.service_profile.loading", "Teenuseprofiili laadimine...")}</p>
       ) : null}
@@ -4929,7 +4930,7 @@ function ServiceProfileSurface({ t }) {
           </div>
         </div>
       </ServiceProfileSection>
-    </form>
+    </Form>
   );
 }
 

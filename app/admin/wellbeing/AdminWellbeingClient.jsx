@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AdminSlidersIcon, PrivacyShieldIcon } from "@/components/brand/icons/CardIcons";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 
 /* Skoobi tasemed on serveri enda võtmed (`role_group` jne) ja neid näidatakse
    admini vaates TEADLIKULT toorel kujul — see on tehniline vaade, kus silt
@@ -253,7 +254,7 @@ export default function AdminWellbeingClient() {
           </Button>
         </div>
 
-        <form onSubmit={createPilotScope}>
+        <Form onSubmit={createPilotScope}>
           <div>
             <label>
               Nimi
@@ -311,9 +312,9 @@ export default function AdminWellbeingClient() {
             </Button>
             {pilotError ? <span>{pilotError}</span> : null}
           </div>
-        </form>
+        </Form>
 
-        <form onSubmit={addPilotViewer}>
+        <Form onSubmit={addPilotViewer}>
           <label>
             Piloot
             <Dropdown
@@ -332,7 +333,7 @@ export default function AdminWellbeingClient() {
           <Button type="submit" variant="primary" disabled={!selectedPilotScopeId || !viewerEmail.trim() || pilotStatus === "saving"}>
             Lisa vaataja
           </Button>
-        </form>
+        </Form>
 
         <div>
           {pilotScopes.length > 0 ? pilotScopes.map((scope) => (

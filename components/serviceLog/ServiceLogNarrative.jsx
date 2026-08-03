@@ -27,6 +27,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import { PROVENANCE } from "@/lib/serviceLog/constants";
 
 const PROPOSALS = ["CONTINUE", "CHANGE_VOLUME", "END"];
@@ -234,7 +235,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
           keskele. Sama põhjus, miks siin ei ole natiivset `select`-i ega
           kuupäevavälja. Nõue ise jääb alles: väli kannab endiselt `required`-i
           (ekraanilugeja jaoks) ja puuduva välja ütleb meie oma teade. */}
-      <form className="sl-form" noValidate onSubmit={submit}>
+      <Form className="sl-form" noValidate validate={false} onSubmit={submit}>
         <label className="sl-field">
           <span className="sl-label">{t("service_log.narrative.body", "")}</span>
           <textarea
@@ -308,7 +309,7 @@ export default function ServiceLogNarrative({ month, referrals = [] }) {
         <Button type="submit" disabled={saving || !referralId || !bodyText.trim()}>
           {saving ? t("service_log.form.saving", "") : t("service_log.narrative.save", "")}
         </Button>
-      </form>
+      </Form>
     </section>
   );
 }

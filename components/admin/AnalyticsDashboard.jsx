@@ -10,6 +10,7 @@ import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import Button from "@/components/ui/Button";
 import CardTitle from "@/components/ui/CardTitle";
+import Form from "@/components/ui/Form";
 import DocumentsDropdown from "@/components/documents/DocumentsDropdown";
 
 // Kasutajate tabeli lehekülje suurus = serveri MAX_LIMIT. Kui kokku on rohkem
@@ -3379,7 +3380,7 @@ export default function AnalyticsDashboard() {
             </div>
             {/* Otsing elab SAMAL real lehekülgede loenduri ja nooltega:
                 eraldi real täitis ta 42% laiusest ja ülejäänu oli tühjus. */}
-            <form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
+            <Form className={toolbarPrimaryClassName} onSubmit={handleUsersSearch}>
               <input
                 className={inputClassName}
                 value={usersQueryDraft}
@@ -3400,7 +3401,7 @@ export default function AnalyticsDashboard() {
               >
                 {t("buttons.cancel", "Clear")}
               </Button>
-            </form>
+            </Form>
             <div className={actionMetaClassName}>
               <Button
                 size="sm"

@@ -4,6 +4,7 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 const ChatSourcesPanel = memo(function ChatSourcesPanel({
   open,
   t,
@@ -295,7 +296,7 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                           {t("chat.sources.report_action")}
                         </button>
                         {reportingKey === src.key ? (
-                          <form onSubmit={event => {
+                          <Form onSubmit={event => {
                             event.preventDefault();
                             submitReport(src);
                           }}>
@@ -325,7 +326,7 @@ const ChatSourcesPanel = memo(function ChatSourcesPanel({
                                 ? t("chat.sources.report_sending")
                                 : t("chat.sources.report_send")}
                             </button>
-                          </form>
+                          </Form>
                         ) : null}
                         <span role="status" aria-live="polite">
                           {reportState[src.key] === "sent"

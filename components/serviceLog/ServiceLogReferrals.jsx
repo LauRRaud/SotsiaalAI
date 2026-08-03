@@ -29,6 +29,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import DateField from "@/components/ui/DateField";
+import Form from "@/components/ui/Form";
 import { ALLOCATION_PERIODS, SERVICE_UNITS } from "@/lib/serviceLog/constants";
 
 function formatQuantity(value, unit, t) {
@@ -145,7 +146,7 @@ export default function ServiceLogReferrals({ month }) {
       {avatud ? (
         /* `noValidate`: brauseri oma valideerimismull on ingliskeelne ja teda ei
            saa kujundada — vt ServiceLogDay. Puuduva välja ütleb meie teade. */
-        <form className="sl-form" noValidate onSubmit={salvesta}>
+        <Form className="sl-form" noValidate validate={false} onSubmit={salvesta}>
           <h3 className="sl-group-title">{t("service_log.referrals.add_title", "")}</h3>
 
           <label className="sl-field">
@@ -271,7 +272,7 @@ export default function ServiceLogReferrals({ month }) {
           <button type="button" className="sl-flow-undo" onClick={() => setAvatud(false)}>
             {t("service_log.referrals.cancel", "")}
           </button>
-        </form>
+        </Form>
       ) : (
         <Button onClick={() => setAvatud(true)}>{t("service_log.referrals.add", "")}</Button>
       )}

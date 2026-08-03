@@ -5,6 +5,7 @@ import { useCallback, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import { ORGANIZATION_UNIT_TYPES } from "@/lib/org/constants";
 
 import OrgHeader from "./OrgHeader";
@@ -87,7 +88,7 @@ export default function OrgStructureClient({ context, initialUnits }) {
       </div>
 
       {canEdit ? (
-        <form className="ow-card" onSubmit={addUnit}>
+        <Form className="ow-card" onSubmit={addUnit}>
           <h2 className="ow-title" style={{ fontSize: "1rem" }}>
             {t("org.structure.add")}
           </h2>
@@ -133,7 +134,7 @@ export default function OrgStructureClient({ context, initialUnits }) {
               {t("org.structure.add")}
             </Button>
           </div>
-        </form>
+        </Form>
       ) : null}
 
       {error ? (

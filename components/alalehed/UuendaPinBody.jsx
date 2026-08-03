@@ -9,6 +9,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import LoginModal from "@/components/LoginModal";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
 import SpecularButton from "@/components/SpecularButton/SpecularButton";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -137,7 +138,7 @@ export default function UuendaPinBody() {
               <Button type="button" variant="primary" onClick={() => setLoginOpen(true)}>
                 <span>{t("auth.login.title")}</span>
               </Button>
-            </div> : <form onSubmit={handleSubmit} autoComplete="on" noValidate aria-busy={loading ? "true" : "false"}>
+            </div> : <Form onSubmit={handleSubmit} autoComplete="on" noValidate validate={false} aria-busy={loading ? "true" : "false"}>
               <label htmlFor="pin-username" className="sr-only">
                 {usernameLabel}
               </label>
@@ -171,7 +172,7 @@ export default function UuendaPinBody() {
                   <span>{loading ? t("profile.saving") : t("buttons.save")}</span>
                 </Button>
               </div>
-            </form>}
+            </Form>}
         </div>
       </div>
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} suppressRedirect onAuthSuccess={() => {

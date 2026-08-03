@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
 
 import OrgHeader from "./OrgHeader";
 import { useOrgApi } from "./useOrgApi";
@@ -69,7 +70,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
 
       {profile ? (
         <>
-          <form className="ow-card" onSubmit={save}>
+          <Form className="ow-card" onSubmit={save}>
             <div className="ow-grid">
               {[
                 ["organizationName", t("org.create.displayName")],
@@ -103,7 +104,7 @@ export default function OrgProfileClient({ context, profile, editors, convertibl
                 </Button>
               </div>
             ) : null}
-          </form>
+          </Form>
 
           <section className="ow-card" aria-labelledby="ow-editors">
             <h3 id="ow-editors" className="ow-title" style={{ fontSize: "1rem" }}>

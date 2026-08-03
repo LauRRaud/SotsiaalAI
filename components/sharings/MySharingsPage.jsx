@@ -8,6 +8,7 @@ import ModalConfirm from "@/components/ui/ModalConfirm";
 import Panel from "@/components/ui/Panel";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
@@ -309,7 +310,7 @@ export default function MySharingsPage() {
                       ) : null}
                     </div>
                     {isCorrecting ? (
-                      <form className={styles.correctionForm} onSubmit={(event) => { event.preventDefault(); void sendCorrection(); }}>
+                      <Form className={styles.correctionForm} onSubmit={(event) => { event.preventDefault(); void sendCorrection(); }}>
                         <div className={styles.correctionHeading}>
                           <h4>{t("my_sharings.correction.title")}</h4>
                           <p>{t("my_sharings.notice.correction")}</p>
@@ -340,7 +341,7 @@ export default function MySharingsPage() {
                           <Button type="submit" disabled={Boolean(busyKey)}>{t("my_sharings.actions.send_correction")}</Button>
                           <Button type="button" variant="secondary" disabled={Boolean(busyKey)} onClick={() => { setCorrection(null); setPrivacyPrompt(null); }}>{t("my_sharings.actions.cancel")}</Button>
                         </div>
-                      </form>
+                      </Form>
                     ) : null}
                   </Panel>
                 );

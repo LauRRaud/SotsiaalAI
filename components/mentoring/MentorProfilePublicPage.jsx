@@ -5,6 +5,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Textarea from "@/components/ui/Textarea";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { localizePath } from "@/lib/localizePath";
 import styles from "./MentoringPage.module.css";
@@ -159,7 +160,7 @@ export default function MentorProfilePublicPage({ profileId }) {
                   <h2>{t("mentoring.profile_public.request_title")}</h2>
                   <p>{t("mentoring.profile_public.request_help")}</p>
                 </div>
-                <form className={styles.form} onSubmit={submitRequest}>
+                <Form className={styles.form} onSubmit={submitRequest}>
                   <label>
                     <span>{t("mentoring.profile_public.request_message")}</span>
                     <Textarea
@@ -176,7 +177,7 @@ export default function MentorProfilePublicPage({ profileId }) {
                       {t("mentoring.profile_public.request_submit")}
                     </Button>
                   </div>
-                </form>
+                </Form>
               </section>
             ) : null}
 

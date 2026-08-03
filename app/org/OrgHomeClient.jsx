@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
+import Form from "@/components/ui/Form";
 import { ORGANIZATION_LEGAL_KINDS } from "@/lib/org/constants";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
@@ -114,7 +115,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
             {t("org.home.createHeading")}
           </h2>
           <p className="ow-subtitle">{t("org.create.hint")}</p>
-          <form onSubmit={submit} className="ow-grid">
+          <Form onSubmit={submit} className="ow-grid">
             <label>
               <span className="ow-meta__term">{t("org.create.displayName")}</span>
               <input
@@ -165,7 +166,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
                 {t("org.create.submit")}
               </Button>
             </div>
-          </form>
+          </Form>
           {error ? (
             <p className="ow-notice ow-notice--warning" role="alert">
               {error}

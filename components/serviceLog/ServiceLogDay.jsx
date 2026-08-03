@@ -33,6 +33,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import DateField from "@/components/ui/DateField";
 import Dropdown from "@/components/ui/Dropdown";
+import Form from "@/components/ui/Form";
 import { PROVENANCE, SERVICE_UNITS, VISIT_STAMP } from "@/lib/serviceLog/constants";
 import { dequeue, enqueue, outboxCount, readOutbox, shouldRetry } from "@/lib/serviceLog/outbox";
 import { SAMPLE_KIND } from "@/lib/serviceLog/measurement";
@@ -736,7 +737,7 @@ export default function ServiceLogDay() {
           keskele. Sama põhjus, miks siin ei ole natiivset `select`-i ega
           kuupäevavälja. Nõue ise jääb alles: väli kannab endiselt `required`-i
           (ekraanilugeja jaoks) ja puuduva välja ütleb meie oma teade. */}
-      <form className="sl-form" noValidate onSubmit={submit} onInput={markInputStart}>
+      <Form className="sl-form" noValidate validate={false} onSubmit={submit} onInput={markInputStart}>
         {/* PÄRITOLU ON NÄHTAV. Ilma selleta ei saa kasutaja aru, miks väljad on
             juba täidetud — ja täidetud väli, mille päritolu ei tea, on halvem
             kui tühi väli. */}
@@ -1052,7 +1053,7 @@ export default function ServiceLogDay() {
             {t("service_log.outbox.pending", "", { count: pending })}
           </p>
         ) : null}
-      </form>
+      </Form>
 
       <div className="sl-list">
         <h2 className="sl-list-title">{t("service_log.list.title", "")}</h2>

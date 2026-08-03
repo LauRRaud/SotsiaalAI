@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
 import { FIELD_VISIT_STATUS } from "@/lib/field/constants";
 import { useFieldSync } from "./useFieldSync";
 
@@ -144,7 +145,7 @@ export default function FieldShell() {
 
       <section className="fld-section" aria-label={t("field.prepare.title")}>
         {showForm ? (
-          <form className="fld-form" onSubmit={createVisit}>
+          <Form className="fld-form" onSubmit={createVisit}>
             <h2 className="fld-h2">{t("field.prepare.title")}</h2>
             <label className="fld-label" htmlFor="fld-goal">{t("field.prepare.goal")}</label>
             <textarea
@@ -172,7 +173,7 @@ export default function FieldShell() {
               <Button variant="secondary" onClick={() => setShowForm(false)}>{t("field.cancel")}</Button>
             </div>
             {!sync.online ? <p className="fld-hint">{t("field.prepare.needsOnline")}</p> : null}
-          </form>
+          </Form>
         ) : (
           <Button fullWidth onClick={() => setShowForm(true)}>{t("field.prepare.open")}</Button>
         )}

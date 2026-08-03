@@ -8,6 +8,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import BackButton from "@/components/ui/BackButton";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { getFooterNote } from "@/lib/footerNote";
 
@@ -111,7 +112,7 @@ export default function ResetPasswordForm({
               </Button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} autoComplete="off">
+            <Form onSubmit={handleSubmit} autoComplete="off">
               <label htmlFor="pin" className="sr-only">
                 {t("auth.resetForm.fields.pin", { min: PIN_MIN, max: PIN_MAX })}
               </label>
@@ -154,7 +155,7 @@ export default function ResetPasswordForm({
                   {loading ? t("auth.resetForm.submitting") : t("auth.resetForm.submit")}
                 </Button>
               </div>
-            </form>
+            </Form>
           )}
           <footer>{getFooterNote()}</footer>
         </div>

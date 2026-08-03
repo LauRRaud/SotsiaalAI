@@ -12,6 +12,7 @@ import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
 import Input from "@/components/ui/Input";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
+import Form from "@/components/ui/Form";
 const MODAL_FOCUSABLE_SELECTOR = [
   "a[href]",
   "button:not([disabled])",
@@ -1050,7 +1051,7 @@ export default function LoginModal({
             </div>
           </div>
 
-        {!isOtpStep && <form onSubmit={e => {
+        {!isOtpStep && <Form onSubmit={e => {
         e.preventDefault();
         submitPinStep();
       }} autoComplete="off">
@@ -1265,9 +1266,9 @@ export default function LoginModal({
                 {t("auth.login.toggle_keypad")}
               </button>
             </div>
-          </form>}
+          </Form>}
 
-        {isOtpStep && <form className="login-otp-content" onSubmit={e => {
+        {isOtpStep && <Form className="login-otp-content" onSubmit={e => {
         e.preventDefault();
       }}>
             <div className="login-otp-copy">
@@ -1350,7 +1351,7 @@ export default function LoginModal({
                 </button>
               </div>
             </div>
-          </form>}
+          </Form>}
 
         {!isOtpStep ? (
           <div className="login-register-row">

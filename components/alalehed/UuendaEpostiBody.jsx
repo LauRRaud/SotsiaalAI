@@ -9,6 +9,7 @@ import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import LoginModal from "@/components/LoginModal";
 import BackButton from "@/components/ui/BackButton";
 import Button from "@/components/ui/Button";
+import Form from "@/components/ui/Form";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 
 export default function UuendaEpostiBody() {
@@ -218,7 +219,7 @@ export default function UuendaEpostiBody() {
                   </span>
                 </Button>
               </div>
-            </div> : <form onSubmit={handleSubmit} autoComplete="on" aria-busy={loading ? "true" : "false"}>
+            </div> : <Form onSubmit={handleSubmit} autoComplete="on" aria-busy={loading ? "true" : "false"}>
               <input aria-label={usernameLabel} id="email-username" name="username" type="email" autoComplete="username" value={usernameAutoFill} readOnly tabIndex={-1} className="sr-only" />
               <label htmlFor="current-email" className="sr-only">
                 {t("profile.email_update.current_placeholder")}
@@ -242,7 +243,7 @@ export default function UuendaEpostiBody() {
                   </span>
                 </Button>
               </div>
-            </form>}
+            </Form>}
         </div>
       </div>
       <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} suppressRedirect onAuthSuccess={() => {

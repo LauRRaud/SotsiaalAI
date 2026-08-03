@@ -8,6 +8,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
+import Form from "@/components/ui/Form";
 import { localizePath } from "@/lib/localizePath";
 import { pushWithTransition } from "@/lib/routeTransition";
 
@@ -200,7 +201,7 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
   const suggestedActions = useMemo(() => normalizeListItems(draft.suggestedActions), [draft.suggestedActions]);
 
   return (
-    <form onSubmit={onSave}>
+    <Form onSubmit={onSave}>
       <div>
         <label htmlFor="journey-title">
           {t("journey.labels.title", "Teekonna pealkiri")}
@@ -289,7 +290,7 @@ function DraftReview({ draft, setDraft, onSave, onEditDescription, onDecline, bu
           {t("journey.actions.decline", "Loobu")}
         </Button>
       </div>
-    </form>
+    </Form>
   );
 }
 
@@ -782,7 +783,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
               {t("journey.sections.start_description", "Tere. Alustame sinu teekonda. Kirjelda oma olukorda oma sõnadega. Sa ei pea kõike teadma ega õigesti sõnastama — kirjuta lihtsalt, mis toimub.")}
             </p>
 
-            <form onSubmit={handleDraftSubmit}>
+            <Form onSubmit={handleDraftSubmit}>
               <label htmlFor="journey-situation">
                 {t("journey.labels.situation", "Olukorra kirjeldus")}
                 <textarea
@@ -800,7 +801,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
                   {t("journey.empty_start.label", "Alusta teekonda")}
                 </Button>
               </div>
-            </form>
+            </Form>
           </section>
         ) : null}
 
