@@ -89,8 +89,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **server** = `671b7aa0` (deploy 03.08). Üks tööpuu, üks haru.
-Rollback `db514ba0`.
+`main` = `origin/main` = **server** = `bb9ca541` (deploy 03.08). Üks tööpuu, üks haru.
+Rollback `671b7aa0`. Väravad enne: `npm test` 2485/2485, eslint 0, `i18n:check` OK;
+0 migratsiooni. Smoke pärast: kolm teenust `active`, `/` `/meist` `/vestlus` `/voimalused`
+→ 200.
 
 ### Järgmine samm — ootab omaniku valikut
 
