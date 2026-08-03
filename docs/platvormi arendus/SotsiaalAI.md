@@ -77,7 +77,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = `db514ba0`. Üks tööpuu, üks haru.
+`main` = `origin/main` = **server** = `671b7aa0` (deploy 03.08). Üks tööpuu, üks haru.
+Rollback `db514ba0`.
 
 **Töökord (omanik 03.08, ülimuslik):** tööpuid ja harusid ei tehta, kõik läheb otse
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
