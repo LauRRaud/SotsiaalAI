@@ -1077,7 +1077,13 @@ export default function ServiceLogDay() {
           <p className="sl-empty">{t("service_log.list.empty", "")}</p>
         ) : (
           <ul className="sl-entries">
-            {entries.map((entry) => (
+            {/* PÄEVA LEHT NÄITAB PÄEVA. Siin oli kuu jagu kirjeid vahekaardi
+                all, mille nimi on „Päev" — omanik luges ekraanilt 26., 22.,
+                19. ja 15. augustit korraga. Kuu ülevaatamine ja kinnitamine
+                kuuluvad „Aruannete" alla, kus on ka koond ees. */}
+            {entries
+              .filter((entry) => !date || entry.date === date)
+              .map((entry) => (
               <li key={entry.id} className="sl-entry">
                 <span className="sl-entry-client">{entry.clientDisplayName || "—"}</span>
                 <span className="sl-entry-meta">
@@ -1092,6 +1098,22 @@ export default function ServiceLogDay() {
                       ole siin midagi, ka siis kui brauser punkti kätte sai. */}
                   {entry.locationStampedAt?.length ? ` · ${t("service_log.location.saved", "")}` : ""}
                 </span>
+
+                {/* MIDA MA KINNITAN. „Kinnita" muudab mustandi arve
+                    alusdokumendiks, aga real oli ainult kuupäev ja tundide arv
+                    — omanik ütles otse, et ta ei näe, mida ta kinnitab.
+                    Sisu ei ole hoiatus, ta on lihtsalt see, mis kirjes on. */}
+                {entry.note ? (
+                  <span className="sl-entry-meta">
+                    {entry.note}
+                    {entry.noteProvenance
+                      ? ` · ${t(`casework.provenance.${entry.noteProvenance.toLowerCase()}`, entry.noteProvenance)}`
+                      : ""}
+                  </span>
+                ) : null}
+                {entry.clientExternalRef ? (
+                  <span className="sl-entry-meta">{entry.clientExternalRef}</span>
+                ) : null}
                 {/* NUPUD PEAVAD NÄGEMA VÄLJA NAGU NUPUD.
                     Siin oli `sl-tab` — vahekaardi stiil, mille ääris on
                     LÄBIPAISTEV. Vahekaardiribal (flex-row) töötab see hästi,

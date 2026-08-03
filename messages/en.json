@@ -8434,7 +8434,7 @@
     "tabs": {
       "label": "Service log sections",
       "day": "Day",
-      "referrals": "Referrals",
+      "referrals": "Funding decisions",
       "reports": "Reports"
     },
     "referrals": {
@@ -8595,7 +8595,7 @@
       "month": "month"
     },
     "list": {
-      "title": "Recent entries",
+      "title": "Today's entries",
       "empty": "No entries yet.",
       "load_error": "Loading the entries failed.",
       "finalize": "Confirm",
