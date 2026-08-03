@@ -102,18 +102,12 @@ teenuselogis 0 viga.
 **T03 E4/E5 punktid 1–4 (hääle karastus) on 03.08 tehtud, deploy'tud ja LIVE.** Vt S3.
 Selle sees läks kinni ka S4.2 nr 5–8.
 
-**Eesti TTS on 03.08 LIVE TartuNLP `kylli` häälega** — omaniku otsus. `TARTUNLP_TTS_URL` ja
-`TARTUNLP_TTS_SPEAKER=kylli` on serveris seatud, Google jääb varuks. Serveri
-kättesaadavus kontrollitud (HTTP 200, 0,54 s).
-
-> ⚠️ **AVATUD JURIIDILINE KOHUSTUS, mis tekkis selle otsusega.** Toodang kasutab
-> **avalikku** `api.tartunlp.ai` teenust, seega iga eestikeelse ettelugemise tekst — AI
-> vastus, mis võib sisaldada inimese enda olukorda — läheb Tartu Ülikooli teenusesse.
-> Omanikule öeldi see enne otsust välja ja ta otsustas teadlikult „pane peale" (03.08).
-> **Privaatsustingimused on 03.08 uuendatud** — §5 nimetab TartuNLP eesti ettelugemise
-> juures kolmes keeles, `PRIVACY_VERSION` = `2026-08-03`. **Alles on art. 28
-> andmetöötlusleping või ise-hostitud eksemplar** (S4.2 nr 27) — ise-hostimine kaotab
-> küsimuse üldse. Juristi sisukinnitust ei ole ühelgi avalikul õigustekstil.
+**Eesti TTS on 03.08 LIVE TartuNLP `kylli` häälega ja teema on LUKUS.** `TARTUNLP_TTS_URL`
+ja `TARTUNLP_TTS_SPEAKER=kylli` on serveris seatud, Google jääb varuks; serveri
+kättesaadavus kontrollitud (HTTP 200, 0,54 s). Hääl valitud · privaatsustingimused
+uuendatud (`PRIVACY_VERSION` = `2026-08-03`) · kasutusluba omaniku kinnitusel olemas ·
+ise-hostimist ei tehta (server ei kanna, tasuta on niigi saavutatud). Kaks saba läksid
+**T27-sse** (S10): seadmematriks ja art. 28 paberitöö. Täielik lugu on S3-s.
 
 **Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei ole millegi taga:
 
@@ -127,9 +121,8 @@ Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
 ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 
-**Otsustatud ja LIVE:** omanik kuulas 03.08 viis häält, valis `kylli` ja käskis serveris
-sisse lülitada. Lahtiseks jäid kaks juriidilist saba (S4.2 nr 26–27) ja kvoodiotsus — kas
-eesti keelelt `TTS_CHARS` ära võtta, kui teenus enam tähemärgi kaupa ei maksa.
+Üks kvoodiotsus jäi lahti ja on väike: kas võtta eesti ettelugemiselt `TTS_CHARS` kvoot
+ära, kui teenus enam tähemärgi kaupa ei maksa. Täna kulub kvoot edasi.
 
 **Töökord (omanik 03.08, ülimuslik):** tööpuid ja harusid ei tehta, kõik läheb otse
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
@@ -317,15 +310,20 @@ Kuulub sektsiooni S4 (ruumid), aga on sama pere.
   Erinevus on nüüd hinnaotsus, mitte tehniline puudus, ja avaneb päeval, mil keegi on nõus
   RU/EN häälekulu kandma (kasutaja kvoodist või meie omast).
 
-### Eesti TTS suveräänsus — katse tulemus (03.08)
+### Eesti TTS — TEEMA LUKUS 03.08
 
 Küsimus oli: **kas eestikeelse ettelugemise saab teha tasuta?** Brauseri hääl vastuseks ei
 kõlba — brauserites ei ole eesti häält, seega loetaks eesti tekst inglise häälega ette.
-Alternatiiv on TartuNLP: mudelid MIT-litsentsi all ja ise-hostitavad, seega tähemärgitasu
-ei teki.
+Vastus tuli TartuNLP-st ja ta on **toodangus sees**: eesti ettelugemine käib Tartu Ülikooli
+kõnesünteesi teenuse `kylli` häälega, tähemärgitasu ei teki, Google jääb varuks.
 
-**Kood on olemas ja väljas.** `/api/tts` võtab kolmanda pakkuja `TARTUNLP_TTS_URL` taga.
-Ilma selle env-muutujata ei muutu ükski rada. Admin võib päringus kõneleja valida
+**Kolm asja, mis selle sulgesid:** omanik kuulas hääled ja valis (`kylli`) ·
+privaatsustingimuste §5 nimetab TartuNLP kolmes keeles · omanik kinnitas, et avaliku API
+kasutamine on lubatud. **Ise-hostimist ei tehta** — vt „Miks mitte ise-hostida" allpool.
+
+**Kood.** `/api/tts` võtab kolmanda pakkuja `TARTUNLP_TTS_URL` taga; ilma selle
+env-muutujata ei muutu ükski rada (arendusmasinal saab teda niimoodi välja lülitada).
+Admin võib päringus kõneleja valida
 (`speaker`), et 12 häält järjest kuulata ilma restardita. Vaikimisi hääl on
 `TARTUNLP_TTS_SPEAKER`, vaikeväärtus **`kylli`** (omaniku valik 03.08).
 
@@ -367,19 +365,28 @@ Brauseris kontrollitud päris kylli-näidisel: teisendatud fail dekodeerub sama 
 müra; `canplaythrough` OK.
 
 **Alles jääv mahuvahe:** Google'i MP3 on ~4 KB/s, meie PCM16 ~43 KB/s ehk ikka ~10×
-suurem. MP3/Opus kodeerimine viiks ta Google'i tasemele, aga see nõuab uut sõltuvust ja
-kuulub ise-hostimise otsuse juurde. **Seadmematriks (päris iOS/Safari) on tegemata** ja
-kuulub T27 alla.
+suurem. MP3/Opus kodeerimine viiks ta Google'i tasemele, aga nõuab uut sõltuvust — tehakse
+siis, kui maht kellelegi ette jääb, mitte ette ära.
 
-**Mida see avab:** kui TartuNLP ise-hostitakse, kaob eestikeelse ettelugemise
-tähemärgitasu ja `TTS_CHARS` kvoodi võib eesti keelelt ära võtta — ehk sama tasuta lubadus,
-mis RU/EN-il juba on, aga päris eesti häälega. Enne otsust on vaja **kuulata** (näidised
-sünteesitud 03.08) ja otsustada ise-hostimise koht.
+#### Miks mitte ise-hostida
 
-**Omanik otsustas 03.08 „läheme" ja teenus on toodangus sees.** Lahtised sabad:
-**ise-hostitud eksemplar** (praegu käib toodang avaliku `api.tartunlp.ai` peal — vt S1
-juriidiline hoiatus ja S4.2 nr 26–27); MP3/Opus kodeerimine, kui PCM16 maht ei rahulda;
-seadmematriks (päris iOS/Safari); kvoodiotsus (kas eesti keelelt `TTS_CHARS` ära võtta).
+Ise-hostimine oli algne suveräänsuse-idee ja see **ei ole keelatud** — mudelid on MIT ja
+omanik kinnitas 03.08, et luba on olemas. Ta lihtsalt ei osta enam midagi:
+
+- **Tasuta on juba saavutatud.** Avalik API on tasuta ja live'is; tähemärgitasu on null.
+  Varasem lause „ise-hostimine teeb eesti ettelugemise tasuta" oli eksitav ja on parandatud.
+- **Server ei kanna.** 3 vCPU, 6,8 GB RAM (4,5 GB vaba), 35 töötavat teenust. Vaja läheks
+  RabbitMQ + worker + API konteinerit; mudel ise on väike (185 MB, v3.1.0 `multispeaker.zip`),
+  aga PyTorch-i mälujälg on ~1,5–2,5 GB ja CPU-inferents konkureeriks samade kolme tuumaga,
+  millel jooksevad frontend, RAG ja research-worker. Ketast jätkuks (20 GB vaba).
+- Seega tähendaks ise-hostimine suuremat või teist VPS-i ehk **päris raha** — probleemi
+  eest, mida praegu ei ole.
+
+Kui olud muutuvad (kättesaadavus muutub probleemiks või server saab niikuinii suuremaks),
+on rada teada ja lipp on koodis olemas: `serverTtsLocales()` + `TARTUNLP_TTS_URL`.
+
+**Alles jäänud sabad on mõlemad T27-s** (S10): eestikeelse PCM16-heli seadmematriks päris
+iOS/Safari peal, ja art. 28 paberitöö. Kumbki ei blokeeri midagi täna.
 
 ### Tegemata
 
@@ -387,7 +394,7 @@ seadmematriks (päris iOS/Safari); kvoodiotsus (kas eesti keelelt `TTS_CHARS` ä
 |---|---|---|
 | **Kõnerežiim** | eraldi pind nagu telefonikõne: lahtine mikrofon, VAD teeb vooruvahetuse (~0,7 s vaikus), elavad subtiitrid + allikakaardid ekraanil, barge-in kohustuslik. Arhitektuur: kaskaad (STT → olemasolev torustik → voogav TTS) → siht „õhuke hääl, paks server". **Uusi teenusepakkujaid ei vaja, uut kvooti ei looda.** „3 lause leping": hääl annab tuuma, täisvastus koos allikatega maandub tekstina | omaniku hinnastusotsus (kas kõigil tasulistel või 14,99+) |
 | **Häälkäsklused — „kaks rada, üks mikrofon"** | ruuter valib raja: sõnastikuvaste → kohalik refleks (sõnastik olemas, `roomDock.js`); muu → LLM kui kavatsuste tõlk. **AI ei saa kunagi vaba kätt ekraani üle** — sama piiratud kavatsuste sõnastik mis nooleklahvidel; navigeerimine kohe, loomine/saatmine/kustutamine kinnitusega | faas 1 (sõnastik + esiletõst) on otsustevaba |
-| **Eesti TTS suveräänsus — TartuNLP** | **KATSE TEHTUD 03.08** — kolmas pakkuja on `/api/tts`-s lipu taga olemas ja mõõdetud. Vt „Katse tulemus" allpool | otsus: kas ise-hostida ja teha eesti ettelugemine tasuta |
+| ~~Eesti TTS suveräänsus — TartuNLP~~ | **TEHTUD JA LUKUS 03.08** — eesti ettelugemine käib toodangus `kylli` häälega, tasuta. Ise-hostimist ei tehta. Vt „Eesti TTS — teema lukus" ülal | — |
 | **Lokaalsed mudelid** | Whisper/whisper.cpp eesti dikteerimiseks seadmes; VAD; eesti TTS-mudel; PII-märkaja | päästikud: riigipartneri „kus heli töödeldakse?", kasvav pilvearve, võrguta välitöö |
 | **Häälvestlus supervisiooni-/kovisiooniruumis** | `ideed.md` 23.6. Range leping: ei salvestata vaikimisi, **automaatset transkripti ei tehta, AI ei kuula ega koosta kokkuvõtet**, superviisor ei saa ühepoolselt salvestamist käivitada | ESTA partnerlus |
 | **Piiratud häälruum tervishoiukontaktis** | `ideed.md` MVP-loend | TERVIK-reform |
@@ -684,7 +691,8 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
 | 26 | ~~Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana~~ — **TEHTUD 03.08**: §5 nimetab TartuNLP eesti ettelugemise juures, ET/EN/RU; `PRIVACY_VERSION` → `2026-08-03`. Juristi sisukinnitus puudub endiselt (kehtib kogu dokumendi kohta) | juriidiline | tehtud |
-| 27 | **Art. 28 andmetöötlusleping TartuNLP-ga puudub** — või ise-hostitud eksemplar, mis kaotab küsimuse üldse | juriidiline | **VIGA (LIVE)** |
+| 27 | ~~Art. 28 andmetöötlusleping TartuNLP-ga~~ — **SULETUD 03.08**: kasutusluba on omaniku kinnitusel olemas; paberitöö läks T27 juristi-kinnituste korvi (S10) | juriidiline | viidud T27-sse |
+| 28 | ~~Vestlus nimetab KOV-ist ainult üht-kaht üldnimetusega spetsialisti~~ — **KOOD TEHTUD 03.08, DEPLOY'MATA**: kontaktiplokk kannab nüüd rollide katet (nt Harku vallal 15 kontakti seitsmes rollis, mitte kaks nime) ja vastus valib kolme režiimi vahel — teemata küsimuses kirjeldab rolle ja küsib teemat, kontaktipäringus nimetab kõik selle teema rolliga inimesed, konkreetse teenuse juures teemale lähima rolli. Kehtib kõigis KOV-ides | vestlus / KOV-kontaktid | tehtud (deploy ootab) |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
@@ -1025,6 +1033,11 @@ teadlikult suletud kuni avaliku käivituseni.
 edasi lükatud QA-d: brauseri- ja seadmematriks, Playwright, päris Maksekeskus ja e-kirjad,
 juristi kinnitused, täissviidid ja sõltumatud auditid. Käivitab omanik otsusega „lähme
 turule".
+
+Juristi-kinnituste korvis nimeliselt: kõigi avalike õigustekstide sisukinnitus (ükski ei
+ole juristi üle vaadatud), **TartuNLP art. 28 andmetöötlusleping** (kasutusluba on olemas,
+paberitöö mitte), art. 15 ekspordi kinnitus (T16) ja O-CW-7 järgsed juhtumitöö küsimused.
+Seadmematriksis nimeliselt: **eestikeelse ettelugemise PCM16-heli päris iOS/Safari peal**.
 
 ---
 ## S11. Töökord

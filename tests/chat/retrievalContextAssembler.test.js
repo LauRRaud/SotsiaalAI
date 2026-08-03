@@ -5,7 +5,10 @@ import { readFileSync } from "node:fs";
 import {
   buildLegalExactSelection,
   buildRagSearchErrorPayload,
+  buildServiceMapKovContactContext,
+  buildServiceMapKovContactInstruction,
   mergePackageDisplayedSources,
+  resolveKovContactMode,
   shouldUseReportedPracticeInstruction
 } from "../../lib/chat/retrievalContextAssembler.js";
 
@@ -136,11 +139,84 @@ test("municipality chat context can use service map KOV contacts", () => {
   assert.match(source, /KOV_GENERAL_CONTACT/);
   assert.match(source, /contextParts\.push\(serviceMapKovContactContext\)/);
   assert.match(source, /serviceMapKovContactCount/);
-  assert.match(source, /sobiv spetsialist soltub teemast/);
-  assert.match(source, /Ara nimeta uht-kaht inimest, telefoninumbrit ega e-posti vaikimisi kontaktina/);
-  assert.match(source, /loetle koik olemasolevad kontaktid rollide kaupa/);
   assert.match(source, /preciseServiceContactUnsupported/);
   assert.match(source, /CONTACT_EVIDENCE_STATUS: insufficient_service_match/);
+});
+
+const HARKU_CONTACTS = [
+  { id: "c1", municipalityName: "Harku vald", title: "Meeli Vaarpuu", description: "Roll: sotsiaalhoolekandespetsialist\nOsakond: Sotsiaal- ja tervishoiuosakond", phone: "5552 0232", email: "meeli.vaarpuu@harku.ee" },
+  { id: "c2", municipalityName: "Harku vald", title: "Epp Sõna", description: "Roll: sotsiaalhoolekandespetsialist\nOsakond: Sotsiaal- ja tervishoiuosakond", phone: "5308 3290", email: "epp.sona@harku.ee" },
+  { id: "c3", municipalityName: "Harku vald", title: "Heli Tuulik", description: "Roll: laste heaolu spetsialist\nOsakond: Sotsiaal- ja tervishoiuosakond", phone: "5323 0694", email: "heli.tuulik@harku.ee" },
+  { id: "c4", municipalityName: "Harku vald", title: "Ivika Kelder", description: "Roll: laste heaolu spetsialist\nOsakond: Sotsiaal- ja tervishoiuosakond", phone: "5912 4800", email: "ivika.kelder@harku.ee" },
+  { id: "c5", municipalityName: "Harku vald", title: "Kadi Netse", description: "Roll: toetuste spetsialist\nOsakond: Sotsiaal- ja tervishoiuosakond", phone: "5884 7260", email: "kadi.netse@harku.ee" },
+  { id: "c6", municipalityName: "Harku vald", title: "Katri Heinjärv", description: "Osakond: Sotsiaal- ja tervishoiuosakond", email: "katri.heinjarv@harku.ee" }
+];
+
+test("KOV contact context exposes the role palette, not just a flat name list", () => {
+  const context = buildServiceMapKovContactContext(HARKU_CONTACTS);
+  const roleIndexLine = context
+    .split("\n")
+    .find((line) => line.startsWith("- Harku vald:"));
+
+  assert.match(context, /^SERVICE_MAP_KOV_CONTACTS:/);
+  assert.match(context, /KOV_CONTACT_ROLES/);
+  assert.match(roleIndexLine, /laste heaolu spetsialist \(2\)/);
+  assert.match(roleIndexLine, /sotsiaalhoolekandespetsialist \(2\)/);
+  assert.match(roleIndexLine, /toetuste spetsialist \(1\)/);
+  // Role missing from the description falls back to the department, never dropped.
+  assert.match(roleIndexLine, /Sotsiaal- ja tervishoiuosakond \(1\)/);
+  assert.equal(context.match(/^- Harku vald \| roll: /gmu).length, HARKU_CONTACTS.length);
+  assert.match(context, /roll: toetuste spetsialist \| Kadi Netse \| .*tel: 5884 7260/);
+});
+
+test("KOV contact context stays empty without entries", () => {
+  assert.equal(buildServiceMapKovContactContext([]), "");
+  assert.equal(buildServiceMapKovContactContext(), "");
+});
+
+test("resolveKovContactMode asks for the topic when the turn names none", () => {
+  assert.equal(resolveKovContactMode({ message: "millega sa mind aidata saad?" }), "overview");
+  assert.equal(resolveKovContactMode({ message: "tere" }), "overview");
+  assert.equal(
+    resolveKovContactMode({ message: "millised sotsiaalteenused Harku vallas on?", listRequest: true }),
+    "overview"
+  );
+});
+
+test("resolveKovContactMode routes explicit contact requests to the role listing", () => {
+  assert.equal(resolveKovContactMode({ message: "kelle poole ma pean pöörduma?" }), "contacts");
+  assert.equal(resolveKovContactMode({ message: "kes tegeleb lastega?" }), "contacts");
+  assert.equal(resolveKovContactMode({ message: "anna spetsialisti telefon" }), "contacts");
+  // An explicit contact request wins even when a service package matched.
+  assert.equal(
+    resolveKovContactMode({ message: "kelle poole koduteenuse asjus pöörduda?", serviceSpecific: true }),
+    "contacts"
+  );
+});
+
+test("resolveKovContactMode keeps concrete service and benefit turns service-scoped", () => {
+  assert.equal(resolveKovContactMode({ message: "kui palju koduteenus maksab?" }), "service");
+  assert.equal(resolveKovContactMode({ message: "kuidas taotleda hooldajatoetust?" }), "service");
+  assert.equal(resolveKovContactMode({ message: "mu lapsel on abi vaja" }), "service");
+  assert.equal(resolveKovContactMode({ message: "kuidas edasi?", serviceSpecific: true }), "service");
+});
+
+test("KOV contact instruction carries the mode-specific rule in both languages", () => {
+  const overviewEt = buildServiceMapKovContactInstruction("et", { mode: "overview" });
+  assert.match(overviewEt, /Ara nimeta uht-kaht inimest, telefoninumbrit ega e-posti vaikimisi kontaktina/);
+  assert.match(overviewEt, /Lopeta kusimusega, mis teemaga inimest aidata saab/);
+  assert.match(overviewEt, /KOV_CONTACT_ROLES/);
+
+  const contactsEt = buildServiceMapKovContactInstruction("et", { mode: "contacts" });
+  assert.match(contactsEt, /nimeta koik selle teema rolliga kontaktid/);
+
+  const serviceEn = buildServiceMapKovContactInstruction("en", { mode: "service" });
+  assert.match(serviceEn, /Do not fall back to the general social welfare specialist/);
+
+  // Unknown or missing mode must not drop the block-level rules.
+  const fallback = buildServiceMapKovContactInstruction("et", {});
+  assert.match(fallback, /SERVICE_MAP_CONTACT_MODE:/);
+  assert.match(fallback, /toetuste spetsialist/);
 });
 
 test("buildLegalExactSelection keeps only requested legal paragraph groups", () => {
