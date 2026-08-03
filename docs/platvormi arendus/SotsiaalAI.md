@@ -96,28 +96,32 @@ Rollback `671b7aa0`. Väravad enne: `npm test` 2485/2485, eslint 0, `i18n:check`
 
 ### Järgmine samm — ootab omaniku valikut
 
-Kooditööd ei ole pooleli. 03.08 tehti dokumendikoondus (kogu projekt ühte faili) ja see on
-push'itud ning serveris. **Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei
-ole millegi taga:
+**T03 E4/E5 punktid 1–4 (hääle karastus) on 03.08 tehtud** — vt S3. Commit'imata, deploy'mata.
+Selle sees läks kinni ka S4.2 nr 5–8 ja VEST-L8 struktuurne juur.
+
+**Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei ole millegi taga:
 
 | Kandidaat | Miks laual |
 |---|---|
-| **Ruumide neli nõusolekuviga** (S4.2 nr 1–4) | ainsad, mis on märgitud lubaduse rikkumiseks **toodangus** — nõusoleku tagasivõtmine ei peata lindistust, hiline liituja salvestatakse `REQUESTED` nõusolekuga. Soovitus: need enne uusi tööriistu |
+| **Salvestusriba eestikeelsed staatusetekstid ruumides** (S4.2 nr 4) | ainus alles jäänud ruumide nõusolekupere viga — RU/EN kasutaja näeb salvestuse ajal eesti keelt. Väike, otsustevaba |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | puhas kooditöö, O-CO-6 ei kehti (kõik osalejad on kasutajad) |
 | **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | deterministlik valem, ei vaja partnerit ega õigusanalüüsi |
 
-Otsustatud, aga alustamata: **T03 E4/E5 punktid 1–4** (hääle karastus, vt S3) — omaniku
-verdikt 03.08 „teha ära".
-
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
-allikavärskuse timerid (S9, S2).
+allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
+ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
+
+**Kuulatud ja valitud:** TartuNLP eesti hääled on `/api/tts`-s lipu taga olemas, omanik
+kuulas 03.08 viis häält ja valis `kylli`. Lahtine on üks otsus: **kas ise-hostida ja teha
+eestikeelne ettelugemine tasuta** — vt S3 „Eesti TTS suveräänsus — katse tulemus".
 
 **Töökord (omanik 03.08, ülimuslik):** tööpuid ja harusid ei tehta, kõik läheb otse
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (03.08): `npm test` 2483/2483, `npm run i18n:check` OK,
-`npx eslint .` 0 viga. Serveri seisu 03.08 tabeliringis eraldi üle ei kontrollitud.
+**Viimane roheline mõõtmine** (03.08, hääle karastuse järel): `npm test` 2498/2498,
+`npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK.
+Serveri seisu 03.08 tabeliringis eraldi üle ei kontrollitud.
 
 ---
 
@@ -215,11 +219,14 @@ ei ole inimese tugevus — saab oma mure vestlusaknasse rääkida. Mikrofon on k
 tekstivälja kõrval, salvestus käib vajutusega ja kõne muudetakse tekstiks, mille inimene
 näeb ja saab enne saatmist parandada. Tekstiväli on alati nähtav ja mikrofon seisab selle
 kõrval lisavõimalusena — inimene võib vahetada kirjutamise ja rääkimise vahel keset vestlust.
+Alustatud salvestuse saab katkestada nii, et heli ei lähe kuhugi: katkestus kustutab
+salvestise enne saatmist ja inimene saab selle kohta kinnituse.
 
 **Ettelugemine.**
 Vastuseid saab kuulata eesti, inglise ja vene keeles. See teenib kahte gruppi korraga:
 nägemispuudega või lugemisraskustega inimesi ning neid, kes tahavad pikka selgitust kuulata
-samal ajal, kui käed on muuga hõivatud.
+samal ajal, kui käed on muuga hõivatud. Kui ettelugemine ei õnnestu, öeldakse see välja —
+vaikus ei ole vastus.
 
 **Helikõned ruumides.**
 Platvormi ruumides saab pidada helikõne — kovisiooniks, supervisiooniks, võrgustikutööks või
@@ -241,32 +248,122 @@ Kõne ja ettelugemine kasutavad platvormi ühiseid arvesteid (`STT_SECONDS`, `TT
 `CHAT_ASSISTANT_REPLY`) — häälekasutus käib olemasoleva kvoodi arvelt, eraldi häälepaketti
 ei ole.
 
-### Poolik — T03 E4/E5 karastus
+### T03 E4/E5 karastus — punktid 1–4 TEHTUD 03.08
 
-Hääl töötab, aga tema servajuhud ei ole karastatud. Leping:
+Omaniku verdikt 03.08 oli „teha ära". Tehtud. Leping:
 [`t03-chat-voice-v1-ulesanne.md`](./t03-chat-voice-v1-ulesanne.md) ptk E4/E5.
 
-1. **Salvestuse katkestamine enne transkribeerimist** — blob visatakse ära, providerikutset ei tehta. *Privaatsuslubaduse küsimus, mitte mugavus.*
-2. **2,5 min hoiatus/piir** + taimerite ja helirajade puhastus abort/error/success radadel.
-3. **TTS locale-fallback** — RU/EN kasutaja ei tohi jääda vaikivasse ebaõnnestumisse.
-4. **Mikrofoninupu kolm keeldu eristatud tekstina** — tellimusnõue vs brauseri loakeeld vs tehniline viga.
-5. A11Y-seisud klaviatuuriga + reduced-motion → kuulub sektsiooni S4 a11y-sappa, ei dubleerita siin.
-6. ET/EN/RU sümmeetria uuel copy'l → sama.
+**Salvestuse saab katkestada, ilma et heli kuhugi läheks.** Mikrofoni kõrvale ilmub
+salvestamise ajal katkestusnupp (ja Escape teeb sama klaviatuurilt). Katkestus viskab
+salvestise ära enne, kui teda kellelegi saadetakse — transkribeerimisteenust ei kutsuta
+üldse — ja inimene saab selle kohta kirjaliku kinnituse, mitte vaikuse. Sama kehtib
+ekraanilt lahkumisel: pooleli salvestus ei rända lahkuvalt ekraanilt teenusesse.
 
-**Omaniku verdikt 03.08:** punktid 1–4 teha ära.
+**Pikk salvestus lõpeb ise ära.** Kahe minuti juures tuleb hoiatus ja 2,5 minuti juures
+salvestus lõpetatakse — seni räägitu läheb tekstiks, ei lähe kaotsi. Salvestuse taimerid ja
+mikrofonirajad vabastatakse igal rajal: katkestusel, veal ja õnnestumisel.
 
-### Poolik — häälega seotud vead ruumides
+**Ettelugemine ei kao vaikselt ära.** Eesti keel käib platvormi häält mööda; kui see ei ole
+saadaval, kasutatakse brauseri häält ja kasutajale öeldakse, et hääl on praegu brauseri oma.
+Inglise ja vene keel käivad brauseri häält mööda — **see on omaniku otsus 03.08: RU/EN
+ettelugemine jääb kasutajale tasuta ega kuluta kvooti.** Uus on see, et kui brauseri hääl ei
+kõnele, öeldakse tõrge välja. Vaikus ei ole enam üks võimalikest tulemustest üheski keeles.
 
-Tõendatud ruumianalüüsis, **osa neist on nõusolekulubaduse rikkumine toodangus**:
+**Mikrofoni keeldumine ütleb põhjuse.** Tellimusnõue, brauseri loakeeld, puuduv mikrofon ja
+tehniline viga on neli eri teksti, mitte üks hall nupp — igaühe parandustee on erinev ja
+kasutaja peab teadma, kumb pool teda takistab.
 
-- hiline liituja saab ainult `REQUESTED` nõusolekurea, **aga salvestus jätkub katkematult**;
-- **nõusoleku tagasivõtmine ei peata egressi** — toorheli maandub storage'isse, failirida jääb igaveseks `PROCESSING`;
-- „Helikõne toimus …" tekib ruumi kaks korda;
+**Omaniku otsus 03.08 — RU/EN ettelugemine on tasuta.** Serveritee oskaks ka vene ja inglise
+keelt (`/api/tts` hääled on olemas), aga ta kulutab `TTS_CHARS` kvooti. Omanik otsustas, et
+RU/EN peab jääma tasuta, seega need kaks jäävad brauseri häälele. **See on teadlik vahetus:
+kvaliteedierinevus (VEST-L8) jääb sisse, vaikiv ebaõnnestumine ei jää.** Kui otsus kunagi
+muutub, on lüliti üherealine — `serverTtsLocales()` failis `lib/chat/voiceState.js`.
+
+**NOT_PROVEN:** brauseris tõendati 03.08 ainult tellimusnõude rada (märgistus, tekst,
+teade). Katkestus, 2,5 min piir ja ettelugemise varurada vajavad tellimusega kontot ja
+päris mikrofoni — need on tõendatud ainult testilepinguga
+(`tests/chat/voiceHardening.test.js`).
+
+Punktid 5–6 (a11y-seisud klaviatuuriga + reduced-motion, ET/EN/RU sümmeetria) kuuluvad
+sektsiooni S4 a11y-sappa ja neid siin ei dubleerita.
+
+### Poolik — häälega seotud viga ruumides
+
+**Kolm neljast on parandatud** (kaks olid E5-tööga juba koodis, „Helikõne toimus" kaks
+korda parandati 03.08 — vt S4.2). Alles on üks:
+
 - salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt.
 
-Kuuluvad sektsiooni S4 (ruumid), aga on sama pere. **Tõsidusaste kõrgem kui T03 E4/E5.**
+Kuulub sektsiooni S4 (ruumid), aga on sama pere.
 
-- **VEST-L8** — RU/EN TTS kvaliteedierinevus, märgitud lahtiseks ligipääsetavuse analüüsis.
+- **VEST-L8** — RU/EN TTS kvaliteedierinevus. **Jääb lahti teadliku otsusena**, mitte
+  tegemata tööna: omanik valis 03.08 tasuta RU/EN ettelugemise kvaliteedipariteedi ees.
+  Erinevus on nüüd hinnaotsus, mitte tehniline puudus, ja avaneb päeval, mil keegi on nõus
+  RU/EN häälekulu kandma (kasutaja kvoodist või meie omast).
+
+### Eesti TTS suveräänsus — katse tulemus (03.08)
+
+Küsimus oli: **kas eestikeelse ettelugemise saab teha tasuta?** Brauseri hääl vastuseks ei
+kõlba — brauserites ei ole eesti häält, seega loetaks eesti tekst inglise häälega ette.
+Alternatiiv on TartuNLP: mudelid MIT-litsentsi all ja ise-hostitavad, seega tähemärgitasu
+ei teki.
+
+**Kood on olemas ja väljas.** `/api/tts` võtab kolmanda pakkuja `TARTUNLP_TTS_URL` taga.
+Ilma selle env-muutujata ei muutu ükski rada. Admin võib päringus kõneleja valida
+(`speaker`), et 12 häält järjest kuulata ilma restardita. Vaikimisi hääl on
+`TARTUNLP_TTS_SPEAKER`, vaikeväärtus **`kylli`** (omaniku valik 03.08).
+
+**Läbiv rada tõendatud 03.08** sünteetilise kontoga (`ai.client@sotsiaalai.test`,
+CLIENT + aktiivne tellimus): päris sisselogimine → `POST /api/tts` locale `et` → HTTP 200,
+`provider: "tartunlp"`, `contentType: "audio/wav"`, **formaadikood 1, 16 bit, 22 050 Hz**,
+4,92 s kõnet 212 KB-s, kogu päring 2,5 s. Ehk: pakkuja valik, teisendus ja kvoodivärav
+töötavad päriselt koos, mitte ainult tükkidena.
+
+**Fallback on NOT_PROVEN.** Kood ütleb: kui TartuNLP ei vasta või jääb üle 20 s rippuma,
+läheb sama päring edasi Google'i teed. Lähtekoodi tasemel on see lukustatud testiga, aga
+**runtime'is seda tõendada ei õnnestunud** — arendusmasinal ei ole Google'i ega OpenAI
+võtmeid, seega surnud TartuNLP annab seal HTTP 500 (varem oleks sama masin andnud 503
+„not_configured"; mõlemal juhul kukub klient märgistatud brauserihäälele, nii et kasutaja
+vaikusesse ei jää). Omanik kinnitas 03.08, et **serveris on Google seatud** — seal on
+fallbackil millelegi kukkuda. Tõendamine kuulub serveri-QA alla.
+
+**Omanik kuulas viis häält (mari, albert, kylli, tambet, vesta) ja valis `kylli`.** See on
+nüüd vaikimisi hääl; `TARTUNLP_TTS_SPEAKER` saab teda muuta.
+
+**Mõõdetud avalikul API-l** (5 häält, sama valdkonnalause, ~10 s kõnet):
+
+| Leid | Number | Mida see tähendab |
+|---|---|---|
+| Vastuseaeg | 0,7–1,3 s | kiirem kui vaja; ei ole probleem |
+| Hääli | 12 eesti + 2 võro | valikut on rohkem kui Google'il (üks) |
+| Väljundi kuju | 22 050 Hz, mono, 32-bitine float WAV | teisendatakse serveris, vt allpool |
+| Maht enne teisendust | ~86 KB sekundis | 11 s kõnet = 955 KB |
+| **Maht pärast teisendust** | ~43 KB sekundis | sama 11 s = **478 KB, 50% vähem** |
+
+**Float32 → PCM16 teisendus on tehtud** (`lib/audio/wavPcm.js`). Ta lahendab korraga kaks
+asja: poolitab mahu ja annab formaadikoodi 1, mida iga brauser tunneb (32-bitine float on
+formaadikood 3, millega vanemad Safari/iOS versioonid on ajalooliselt kitsid olnud).
+Teisendus on fail-safe — iga ootamatuse korral tuleb algne heli muutmata tagasi, sest
+katkine heli on halvem kui suur heli.
+
+Brauseris kontrollitud päris kylli-näidisel: teisendatud fail dekodeerub sama pikkusega
+(11,09 s), tipp 0,83 ja keskmine amplituud 0,071 — päris kõne, mitte vaikus ega klipitud
+müra; `canplaythrough` OK.
+
+**Alles jääv mahuvahe:** Google'i MP3 on ~4 KB/s, meie PCM16 ~43 KB/s ehk ikka ~10×
+suurem. MP3/Opus kodeerimine viiks ta Google'i tasemele, aga see nõuab uut sõltuvust ja
+kuulub ise-hostimise otsuse juurde. **Seadmematriks (päris iOS/Safari) on tegemata** ja
+kuulub T27 alla.
+
+**Mida see avab:** kui TartuNLP ise-hostitakse, kaob eestikeelse ettelugemise
+tähemärgitasu ja `TTS_CHARS` kvoodi võib eesti keelelt ära võtta — ehk sama tasuta lubadus,
+mis RU/EN-il juba on, aga päris eesti häälega. Enne otsust on vaja **kuulata** (näidised
+sünteesitud 03.08) ja otsustada ise-hostimise koht.
+
+**Lahtised sabad, kui otsus on „läheme":** ise-hostitud eksemplar (avalik
+`api.tartunlp.ai` ei sobi toodangusse — kasutaja tekst läheks välja); MP3/Opus kodeerimine,
+kui PCM16 maht ei rahulda; seadmematriks; kvoodiotsus (kas eesti keelelt `TTS_CHARS` ära
+võtta).
 
 ### Tegemata
 
@@ -274,7 +371,7 @@ Kuuluvad sektsiooni S4 (ruumid), aga on sama pere. **Tõsidusaste kõrgem kui T0
 |---|---|---|
 | **Kõnerežiim** | eraldi pind nagu telefonikõne: lahtine mikrofon, VAD teeb vooruvahetuse (~0,7 s vaikus), elavad subtiitrid + allikakaardid ekraanil, barge-in kohustuslik. Arhitektuur: kaskaad (STT → olemasolev torustik → voogav TTS) → siht „õhuke hääl, paks server". **Uusi teenusepakkujaid ei vaja, uut kvooti ei looda.** „3 lause leping": hääl annab tuuma, täisvastus koos allikatega maandub tekstina | omaniku hinnastusotsus (kas kõigil tasulistel või 14,99+) |
 | **Häälkäsklused — „kaks rada, üks mikrofon"** | ruuter valib raja: sõnastikuvaste → kohalik refleks (sõnastik olemas, `roomDock.js`); muu → LLM kui kavatsuste tõlk. **AI ei saa kunagi vaba kätt ekraani üle** — sama piiratud kavatsuste sõnastik mis nooleklahvidel; navigeerimine kohe, loomine/saatmine/kustutamine kinnitusega | faas 1 (sõnastik + esiletõst) on otsustevaba |
-| **Eesti TTS suveräänsus — TartuNLP** | MIT-litsents, ise-hostitav, 12 eesti neuraalset häält + 2 võro. Katsetus = kolmas pakkuja olemasolevasse TTS-route'i, **~50 rida lipu taga** | miski ei blokeeri; EKI on alternatiiv, aga ärikasutus vajab luba |
+| **Eesti TTS suveräänsus — TartuNLP** | **KATSE TEHTUD 03.08** — kolmas pakkuja on `/api/tts`-s lipu taga olemas ja mõõdetud. Vt „Katse tulemus" allpool | otsus: kas ise-hostida ja teha eesti ettelugemine tasuta |
 | **Lokaalsed mudelid** | Whisper/whisper.cpp eesti dikteerimiseks seadmes; VAD; eesti TTS-mudel; PII-märkaja | päästikud: riigipartneri „kus heli töödeldakse?", kasvav pilvearve, võrguta välitöö |
 | **Häälvestlus supervisiooni-/kovisiooniruumis** | `ideed.md` 23.6. Range leping: ei salvestata vaikimisi, **automaatset transkripti ei tehta, AI ei kuula ega koosta kokkuvõtet**, superviisor ei saa ühepoolselt salvestamist käivitada | ESTA partnerlus |
 | **Piiratud häälruum tervishoiukontaktis** | `ideed.md` MVP-loend | TERVIK-reform |
@@ -549,12 +646,12 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 |---|---|---|---|
 | 3 | ~~„Helikõne toimus …" tekib ruumi kaks korda~~ — **PARANDATUD 03.08** (`9cef880e`): tingimuslik `updateMany`, süsteemsõnum ainult üleminekut teinud kutsest | ruumid | tehtud |
 | 4 | Salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt | ruumid | VIGA |
-| 5 | Salvestuse katkestamine enne transkribeerimist — blob peab ära lendama, providerikutset ei tehta | hääl (T03 E4) | **VIGA** |
-| 6 | 2,5 min hoiatus/piir + taimerite ja helirajade puhastus abort/error/success radadel | hääl (T03 E4) | SABA |
-| 7 | TTS locale-fallback — RU/EN kasutaja ei tohi jääda vaikivasse ebaõnnestumisse | hääl (T03 E4) | SABA |
-| 8 | Mikrofoninupu kolm keeldu eristatud tekstina (tellimus / brauseri loakeeld / tehniline viga) | hääl (T03 E4) | SABA |
-| 9 | VEST-L8 — RU/EN TTS kvaliteedierinevus | hääl | SABA |
-| 10 | TartuNLP kolmanda TTS-pakkujana, **~50 rida lipu taga** — ise-hostitav, 12 eesti häält | hääl | LISA |
+| 5 | ~~Salvestuse katkestamine enne transkribeerimist~~ — **TEHTUD 03.08**: katkestusnupp + Escape, lipp tõuseb enne stop'i, ainus värav providerini on `processRecordingBlob` | hääl (T03 E4) | tehtud |
+| 6 | ~~2,5 min hoiatus/piir + taimerite ja helirajade puhastus~~ — **TEHTUD 03.08**: hoiatus 2 min, pehme piir 2,5 min, `clearRecordingTimers` abort/error/success/unmount rajal | hääl (T03 E4) | tehtud |
+| 7 | ~~TTS locale-fallback~~ — **TEHTUD 03.08**: brauserihääle tõrge öeldakse välja kõigis keeltes; ET-l on serverivaru MÄRGISTATUD. RU/EN jäid omaniku otsusega tasuta brauserihäälele | hääl (T03 E4) | tehtud |
+| 8 | ~~Mikrofoninupu kolm keeldu eristatud tekstina~~ — **TEHTUD 03.08**: tellimus / loakeeld / puuduv seade / tehniline viga = neli eri teksti; tellimuseta nupp ei ole enam tumm | hääl (T03 E4) | tehtud |
+| 9 | VEST-L8 — RU/EN TTS kvaliteedierinevus. **Omanik valis 03.08 tasuta RU/EN pariteedi ees** — jääb hinnaotsusena lahti, mitte tegemata tööna | hääl | LÜLITI (`serverTtsLocales()`) |
+| 10 | ~~TartuNLP kolmanda TTS-pakkujana~~ — **KATSE TEHTUD 03.08**: kood on `/api/tts`-s `TARTUNLP_TTS_URL` taga, mõõdetud (0,7–1,3 s, 12 häält, aga 32-bit float WAV ≈ 20× Google'i maht). Vt S3 „Katse tulemus" | hääl | tehtud (katse) |
 | 11 | `ROOM_OWNERSHIP_TRANSFERRED` teavitus | COLLAB-P3 jääk | SABA |
 | 12 | U1 mitme-osaleja audience-reegel — `lib/events/recipients.js` tunneb ainult `OWNER`/`AUTHOR`/`RECIPIENT_OWNER` | töölaud/teavitused | SABA |
 | 13 | Kvoodileke (`lib/storageGuardrails.js`) | PERF-P0 jääk | VIGA |
@@ -581,8 +678,10 @@ piiratud eel-ACTIVE staatustele. **Õppetund kordub: analüüsidokumendi leid ei
 Ma kandsin need siia dokumendist, koodist kontrollimata — sama viga, mille pärast A/B/C
 register kandis vale väravat.
 
-**Punkt 5 (katkestatud salvestus võib jõuda providerile) on endiselt kontrollimata** —
-see elab hääle poolel (`useSpeech.js`), mitte kõnede omal, ja seda ei ole üle vaadatud.
+**Punkt 5 sai 03.08 kontrollitud ja parandatud.** Kontroll näitas, et katkestusrada
+puudus täielikult: mikrofoninupp oli lüliti, mille teine vajutus SAATIS heli ära, ja muud
+väljapääsu ei olnud. Nüüd on katkestus oma nupp (+ Escape) ja providerini viib täpselt üks
+värav, mis kontrollib katkestuslippu enne kutset.
 
 ---
 
@@ -821,7 +920,7 @@ märgitakse ette ära.
 
 | Mis töötab | Lahtised sabad |
 |---|---|
-| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog | **neli nõusolekuviga (S4.2 nr 1–4) — need on lubaduse rikkumised, mitte kosmeetika**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
+| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog | salvestusriba staatusetekstid kõvakodeeritud eesti keeles (S4.2 nr 4) — **kolm ülejäänud nõusolekuviga on parandatud**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
 
 ---
 
