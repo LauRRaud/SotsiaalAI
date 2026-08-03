@@ -40,6 +40,10 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
      kirjas `lib/dashboardInfoContent.js`-is, mitte laiali komponentides. */
   usePanelInfoSlot({ infoId: "org_service_reports" });
   const [rows, setRows] = useState(items);
+  /* Eelvaade on ÜHE aruande kohta korraga: kaks tabelit kõrvuti ei aita
+     kedagi ja juht vaatab niikuinii ühte rida korraga. */
+  const [preview, setPreview] = useState(null);
+  const [busy, setBusy] = useState("");
 
   /* Avamine muudab seisu serveris. Loendi kohalik uuendamine hoiab ära selle,
      et juht vajutab teist korda, sest ekraanil ei muutunud midagi. */
@@ -52,6 +56,37 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
       )
     );
   }, []);
+
+  /**
+   * VAATA — aruanne loetavaks brauseris.
+   *
+   * Omanik proovis päris kontoga: „sain salvestada, aga vaadata ei saanud."
+   * CSV läheb brauserist mööda otse ketta peale ja juht, kes tahab lihtsalt üle
+   * vaadata, peab avama teise programmi.
+   *
+   * VAATAMINE ON KA AVAMINE: server märgib ta samamoodi nagu allalaadimise.
+   * Kui ainult allalaadimine loeks, näeks saatja „avamata" ka siis, kui juht
+   * luges terve aruande läbi.
+   */
+  const open = useCallback(
+    async (shareId) => {
+      setBusy(shareId);
+      try {
+        const response = await fetch(`/api/org/${organizationId}/aruanded/${shareId}?eelvaade=1`, {
+          headers: { "x-ui-locale": locale || "et" }
+        });
+        if (!response.ok) return;
+        const body = await response.json();
+        setPreview({ shareId, ...body });
+        markOpened(shareId);
+      } catch {
+        /* Eelvaade on mugavus, mitte ainus tee: allalaadimine jääb alles. */
+      } finally {
+        setBusy("");
+      }
+    },
+    [locale, markOpened, organizationId]
+  );
 
   return (
     <Panel as="section" variant="secondary" padding="sm">
@@ -79,15 +114,46 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
                   : ` · ${t("org.reports.unopened")}`}
               </div>
               {row.note ? <p className="org-list__note">{row.note}</p> : null}
-              <Button
-                as="a"
-                href={`/api/org/${organizationId}/aruanded/${row.id}`}
-                download
-                variant="secondary"
-                onClick={() => markOpened(row.id)}
-              >
-                {t("org.reports.open")}
-              </Button>
+              {/* KAKS TEED, MITTE ÜKS. „Vaata" avab tabeli siinsamas;
+                  „Laadi alla" annab CSV-faili neile, kes teda Excelis edasi
+                  töötlevad. Omanik küsis mõlemat. */}
+              <div className="org-report-actions">
+                <Button type="button" variant="secondary" disabled={busy === row.id} onClick={() => open(row.id)}>
+                  {t("org.reports.view")}
+                </Button>
+                <Button
+                  as="a"
+                  href={`/api/org/${organizationId}/aruanded/${row.id}`}
+                  download
+                  variant="secondary"
+                  onClick={() => markOpened(row.id)}
+                >
+                  {t("org.reports.download_csv")}
+                </Button>
+              </div>
+
+              {preview?.shareId === row.id ? (
+                preview.previewable ? (
+                  <div className="org-report-preview">
+                    <table>
+                      <tbody>
+                        {preview.rows.map((cells, index) => (
+                          <tr key={`${row.id}-${index}`}>
+                            {cells.map((cell, cellIndex) => (
+                              <td key={cellIndex}>{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : (
+                  /* PDF ja DOCX ei ole tekst — nende „eelvaade" oleks prügi.
+                     Siis on allalaadimine ainus tee ja seda öeldakse välja. */
+                  <p className="org-hint">{t("org.reports.no_preview")}</p>
+                )
+              ) : null}
+
             </li>
           ))}
         </ul>

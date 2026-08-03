@@ -1309,7 +1309,8 @@
     },
     "save": "Save",
     "screen_profile": "Screen profile",
-    "optional_hint": "Tick only if you need it."
+    "optional_hint": "Tick only if you need it.",
+    "scroll_on": "Keep scrolling."
   },
   "privacy_guard": {
     "title": "This text contains personal data",
@@ -8333,8 +8334,10 @@
       "opened_at": "opened {date}",
       "unopened": "not opened",
       "entries": "{count} entries",
-      "open": "Open the report",
-      "audit_note": "Opening is recorded in the audit trail and the sender sees that you opened it."
+      "audit_note": "Opening is recorded in the audit trail and the sender sees that you opened it.",
+      "view": "View",
+      "download_csv": "Download CSV",
+      "no_preview": "This format cannot be shown here — download the file."
     },
     "board": {
       "title": "Schedule and day status",

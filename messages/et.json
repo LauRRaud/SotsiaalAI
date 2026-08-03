@@ -1309,7 +1309,8 @@
     },
     "save": "Salvesta",
     "screen_profile": "Ekraani profiil",
-    "optional_hint": "Märgi ainult siis, kui vajad."
+    "optional_hint": "Märgi ainult siis, kui vajad.",
+    "scroll_on": "Keri edasi."
   },
   "privacy_guard": {
     "title": "Tekst sisaldab isikuandmeid",
@@ -8333,8 +8334,10 @@
       "opened_at": "avatud {date}",
       "unopened": "avamata",
       "entries": "{count} kirjet",
-      "open": "Ava aruanne",
-      "audit_note": "Avamine jääb auditijälge ja saatja näeb, et sa aruande avasid."
+      "audit_note": "Avamine jääb auditijälge ja saatja näeb, et sa aruande avasid.",
+      "view": "Vaata",
+      "download_csv": "Laadi CSV alla",
+      "no_preview": "Seda vormingut ei saa siin näidata — laadi fail alla."
     },
     "board": {
       "title": "Graafik ja päevaseis",

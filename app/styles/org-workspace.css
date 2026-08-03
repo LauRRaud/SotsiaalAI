@@ -336,3 +336,32 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+/* ARUANDE EELVAADE. Tabel kerib OMA kastis — pikk rida ei tohi lehte
+ * horisontaalselt liigutada. */
+.org-report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 0.5rem);
+  margin-top: var(--space-2, 0.5rem);
+}
+
+.org-report-preview {
+  margin-top: var(--space-2, 0.5rem);
+  max-height: 22rem;
+  overflow: auto;
+  border: 1px solid var(--panel-border, rgb(255 255 255 / 14%));
+  border-radius: var(--radius-md, 0.5rem);
+}
+
+.org-report-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8125rem;
+}
+
+.org-report-preview td {
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid var(--panel-border, rgb(255 255 255 / 8%));
+  white-space: nowrap;
+}
