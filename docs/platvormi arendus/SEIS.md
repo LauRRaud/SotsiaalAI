@@ -2,6 +2,18 @@
 
 STATUS: SINGLE SOURCE OF TRUTH
 
+**03.08 KÕIK TÖÖPUUD JA HARUD ON MAIN-I KOKKU VIIDUD — 18 tööpuud → 1, ~30 haru → 1.** Enne oli töö laiali: `main` ise kandis 15 commit'imata faili (SpecularButton shader), kaks tänast haru elasid eraldi tööpuudes ja 16 vana tööpuud seisid kettal. Nüüd on kõik main'is ja main on `origin`-iga sünkroonis.
+
+**Mis kokku läks:** vormielemendid + töölaud (`claude/youthful-khayyam-0fbf6a`, 9 commit'i), märkeruudud (`claude/clever-borg-63ef82`), servahelgi shader (main'i commit'imata töö) ja viis b0b/RAG-ajastu haru, sh **Luna Golden-37 eval-stend — 46 faili, 30 235 rida, mida main'is EI OLNUD** (`scripts/ops/*golden*`, mõõtmisandmed, otsusdokumendid). Päästetud ka kaks commit'imata faili kustutatavatest tööpuudest: `docs/internal/rag-world-class-development-plan.md` (27 KB) ja `ops/b0-idle-rag-measurement.env`.
+
+**KONFLIKTIDES KEHTIS ÜKS REEGEL: main'i pool kandis uuemat SISULIST otsust, haru pool uut KOMPONENTI — võeti mõlemad.** Neli koodikonflikti: `tokens.css` (mõlemad lisasid kõrgkontrasti eri tokeneid → mõlemad alles); `UuendaEpostiBody` (käsitsi `noValidate` → `Form`, kes kannab teda vaikimisi); `UuendaPinBody` (main eemaldas kolme välja `SpecularButton`-mähise ehk kolm igavest rAF-tsüklit, haru vahetas `input`→`Input` → **mähis maha JA komponent peale**); `OrgDispatchBoard` (main'i kaks-välja-real paigutus + `Button`-primitiiv, haru `Dropdown`/`Input` → mõlemad). `retrievalContextAssembler.js`-is oli `let` vs `const` — `let` on KOHUSTUSLIK, sest rida 1756 kirjutab `ragRiskPolicy` üle; `const` oleks visanud vea.
+
+**MIDA EI MERGE'ITUD ja miks — see on oluline.** Neli haru (`backup/*-pre-rebase`, `codex/export-p0-pdf-docx-audit`) oleks „kokku viimisel" **kustutanud main'ist 12 000–14 500 rida**: nad on 18.07 eelsed hetketõmmised tööst, mis on ammu rebase'itud main'i, ja main on neist kaugele ette läinud. Merge oleks olnud regressioon, mitte kokkupanek — nad kustutati, SHA-d on reflog'is alles (`db3589f5`, `32b9800d`, `cb99b092`, `65c82d04`).
+
+**ÜKS HARU JÄI TEADLIKULT ALLES: `claude/clever-bassi-243deb` (`359d779c`, 04.–05.07).** Tal EI OLE main'iga ühist eellast (`no merge base`) — ta on omaette juur, „SotsiaalAI — paljas funktsionaalne platvorm (redesign-prep Fable 5-le)". Teda ei saa merge'ida, teda saaks ainult peale kirjutada. Vt [[redesign-day-night-plan]] — kui redisain sellelt alt läheb, on ta vajalik; kui mitte, tuleb ta eraldi otsusega kustutada.
+
+**Väravad pärast kokkupanekut: `npm test` 2483/2483, `npm run i18n:check` OK, `npx eslint .` 0 viga (3 varasemat hoiatust).**
+
 **03.08 MÄRKERUUDUD KÄIVAD NÜÜD KA ÜHEST KOMPONENDIST — VORMIELEMENTIDE KOONDAMISE NELJAS VIIL (COMMIT'IMATA, haru `claude/clever-borg-63ef82` allpool oleva `b07fe22f` OTSA).** Allpool olev kanne jättis 55 märkeruutu teadlikult välja põhjendusega, et `Checkbox.jsx` ei ole drop-in. Nüüd on nad sees: **55 paljast `<input type="checkbox">`-i 31 failis läinud, alles on ainult komponendi enda oma.**
 
 **KOMPONENT SAI ENNE MIGRATSIOONI JUURDE NEED JUHUD, MILLE PÄRAST LEHT MUIDU ERANDIT TEEKS** (`required`, `indeterminate`, sildita kast, kohandatud `className`, silt kasti EES, suvaliste atribuutide edasiandmine). Ilma nendeta oleks migratsioon paratamatult jätnud osa kaste paljaks — ja pooleldi koondatud element on halvem kui koondamata, sest siis ei tea keegi, kumb reegel kehtib.
