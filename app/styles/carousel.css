@@ -283,25 +283,26 @@
      ekraani keskme suhtes sümmeetriline — all sööb dokk oma osa —, seega
      ei anna võrdsed varud võrdset tulemust.
 
-     KOHT ON MÕÕDETUD KAHE OTSA VAHELT, mitte pakutud. Esimene katse
-     (17vh / 10vh) läks omaniku sõnul „liiga all" — laud vajus doki peale
-     ja ülaserv haigutas. Praegune seis on 25.07 kõrge ja selle liiga
-     madala vahel, umbes pooles teel.
+     KOHT ON MÕÕDETUD, mitte pakutud, ja ta leiti kahe otsa vahelt kolme
+     sammuga: 17vh/10vh oli „liiga all", 11vh/16vh „veidi veel üles".
+     Praegune seis maandub kohta, mis ei ole suvaline vahepunkt — ÜLEMINE
+     JA ALUMINE ÕHK ON PRAKTILISELT VÕRDSED (1920×1000: 158 vs 157 px).
+     Ehk laud seisab keskel selles ruumis, mis tal PÄRISELT on: ülariba ja
+     doki vahel, mitte ekraani geomeetrilise keskme järgi.
 
-     MÕÕDETUD (7 veergu, sisu 595 px kõrge):
+     MÕÕDETUD (7 veergu; ülalt px / lähima rea ja doki vahe px):
                        25.07 (kõrge)   liiga all      NÜÜD
-       1920×1000       122 / 193       235 /  79      178 / 137
-       1440×800        111 / 155       203 /  63      156 / 110
-       1280×640         70 /  94       128 /  37      106 /  58
-     (ülalt px / lähima rea ja doki vahe px)
+       1920×1000       122 / 193       235 /  79      158 / 157
+       1440×800        111 / 155       203 /  63      140 / 126
+       1280×640         70 /  94       128 /  37       94 /  71
 
      Alumise varu MIINIMUM (6rem) on lühikese akna päästik: protsent üksi
      kukub 640 px kõrgusel liiga väikeseks ja lähim rida jääks doki peale.
      Ülemine varu peab ikka mahutama avatud ülariba (~64 px).
      Kummalegi poole liikumiseks: kaks protsenti allpool käivad KOOS —
      nende VAHE otsustab koha, summa otsustab õhu hulga. */
-  --desk-pad-top: clamp(2rem, 11vh, 8rem);
-  --desk-pad-bottom: clamp(6rem, 16vh, 11rem);
+  --desk-pad-top: clamp(2rem, 9vh, 7rem);
+  --desk-pad-bottom: clamp(6rem, 18vh, 12rem);
   /* Külgvaru kannab FOOKUSE kasvu: valitud aste kasvab ~9% oma keskme
      ümber, seega iga serv liigub väljapoole võrdeliselt kaugusega
      keskmest. Kõige kaugemal on nimeveerg (~46vw) → tema nihe on ~4vw ja
