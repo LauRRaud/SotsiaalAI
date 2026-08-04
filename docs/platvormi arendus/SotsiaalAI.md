@@ -119,7 +119,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
-| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 tuum TEHTUD 04.08** + leping väljastatud; alles P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärad |
+| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 EI OLE VALMIS** — sõltumatu audit 04.08 leidis, et tuum annab mitmes olukorras usutava, aga vale summa. Kood on prototüübi aritmeetika, mitte P0. Vt lepingu „Parandusskoop" |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **lepingu MUSTAND 04.08, ootab omaniku kinnitust** ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md), E1–E6); koodi veel ei ole — **järgmine järjekorras** |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
@@ -218,7 +218,7 @@ See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
 ### Tegemata
 
-- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 deterministlik tuum on TEHTUD 04.08** (`lib/benefits/subsistence.js`, 20 testi). Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md). Tegemata on P1 pöörduja vorm, P2 dokumentide kontrollnimekiri, P3 kontota avalik leht (SEO-uks), P4 KOV piirmäärade andmekiht (partneri taga).
+- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 EI OLE VALMIS.** Koodis on prototüübi aritmeetika (`lib/benefits/subsistence.js`, 20 testi rohelised), aga sõltumatu audit 04.08 leidis, et ta annab mitmes olukorras **usutava, kuid vale summa**: tuleviku kuupäev saab vaikselt 2026. määra „kinnitatud" märkega, maamaks on valesti pinnast sõltumatu, kohustuslikud § 131–133 erandid puuduvad, tundmatu sisend kaob vaikselt nulliks. **Avalikku vormi ei tohi selle peale ehitada.** Leping (mustand + parandusskoop): [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
 - **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
 
@@ -535,7 +535,43 @@ kokkulepitud tegevus.
 ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
 assistenti.
 
-**COLLAB-P5** (võrgustiku täisfunktsioon, mittekasutajate kirjed) ootab O-CO-6 GDPR-analüüsi.
+#### O-CO-6 ei ole õiguslik sein, vaid lepinguline värav (omanik 04.08)
+
+> „Väga suure tõenäosusega tohib käidelda isikuandmeid kellegi teise omi serveris, aga siis
+> peab olema raamleping allkirjastatud nii sotsiaaltöö spetsialistiga kui ta
+> teenuseosutajaga. Nii et see otsene blokk ei ole, sest leping tõenäoliselt sõlmitakse, aga
+> siis meil on nö poolik toode."
+
+See muudab O-CO-6 tähendust: küsimus **ei ole** „kas tohib", vaid „kas leping on
+allkirjastatud". Seega ei blokeeri ta ehitust — ta blokeerib **aktiveerimist**, täpselt nagu
+osa II ptk 4 teine omaniku otsus ette näeb.
+
+**Masinavärk on juba olemas ja kontrollitud koodist 04.08:**
+
+- Raamlepingu tekst paneb rollid paika: *„Organisatsioon on **vastutav töötleja** nende
+  isikuandmete suhtes, mida tema kasutajad töötlevad SotsiaalAI-s tööülesannete
+  täitmiseks"* · *„SotsiaalAI OÜ on **volitatud töötleja** ulatuses, milles ta töötleb
+  organisatsiooni tööandmeid organisatsiooni nimel ja dokumenteeritud juhiste alusel."*
+  Just see konstruktsioon kannab kolmanda isiku kirjet võrgustikukaardil.
+- `FrameworkAcceptance` hoiab nõustumist masinloetavalt: `frameworkKey`,
+  `frameworkVersion`, `roleAtAcceptance`, `acceptedAt`, allkirjastatud dokumendi
+  allalaadimise aeg.
+- Võti `WORKER_DATA_PROCESSING` (`lib/frameworkAcceptances.js`) ja
+  `isWorkerEligible` katavad **mõlemat rolli — `SOCIAL_WORKER` ja `SERVICE_PROVIDER`** ehk
+  täpselt need kaks poolt, keda omanik nimetas.
+
+**Mida see tähendab ehituse jaoks.** O-CO-6 värav on kirjutatav serverikontrolliks, mitte
+lahtiseks otsuseks: *mittekasutaja isikuandmetega kirje tohib tekkida ainult siis, kui nii
+vastutaval töötajal kui kaasatud teenuseosutajal on kehtiv allkirjastatud raamleping.* Kui
+mõlemat ei ole, jääb rada fail-closed.
+
+**Omaniku hoiatus, mis jääb kehtima:** kuni lepingud on allkirjastamata, on tegemist poolikult
+kasutatava tootega — funktsioon on olemas, aga ei tööta ühelegi päris kasutajale. Seepärast
+ehitatakse **esimene vertikaal ikkagi kasutajate peal** (COLLAB-P4) ja mittekasutajate rada
+tuleb eraldi (COLLAB-P5) koos väravaga, mitte enne.
+
+**COLLAB-P5** (võrgustiku täisfunktsioon, mittekasutajate kirjed) = P4 + ülalkirjeldatud
+raamlepingu värav.
 **COLLAB-P6** (kohtumise ühisvaade: päevakord, otsused, ülesanded, kinnitusring) ootab
 O-CO-2. Täna kannavad kohtumisi kolm eraldi mudelit — `SupervisionMeeting`,
 `MentoringMeeting`, `lib/calls/` — ja ühist vaadet ei ole.
@@ -639,7 +675,7 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 | # | Moodul | Mis blokeerib |
 |---|---|---|
 | A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
-| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 tuum TEHTUD 04.08**, leping väljastatud. Valem, määrad (220/176/264 alates 01.01.2026) ja eluruumi norm (18 m²/liige + 15 m²/pere; üksi elav pensionär kuni 51 m²) on kontrollitud SKA kommenteeritud variandist 12.03.2026. Alles P1–P4 | **miski ei blokeeri**; P4 vajab KOV-partnerit, sest piirmäärad kehtestab iga volikogu ise (§ 133 lg 6) |
+| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 POOLIK**, leping mustandis. Kinnitatud on määrad (220/176/264 alates 01.01.2026) ja eluruumi norm (18 m²/liige + 15 m²/pere; üksi elav pensionär kuni 51 m²). Kinnitamata jäi kärpimismehhanism ise ja rida kohustuslikke erandeid | ehitust ei blokeeri miski, aga **avalikku numbrit ei tohi näidata enne parandusskoopi**; P4 vajab KOV-partnerit (§ 133 lg 6) |
 | A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
 | A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
 | A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |

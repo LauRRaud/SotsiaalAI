@@ -116,9 +116,37 @@ tavaosalejana, ilma ühegi terviseandmeta.
 
 - **`O-CW-7` on otsustatud:** võrgustikukaardistus on tavapraktika seadusest tuleneva
   ülesande peal; meedium ei loo uut töötlemist.
-- **`O-CO-6` ei kehti P4-le** — tingimusel, et iga osaleja on platvormi kasutaja. See
-  tingimus on P4 värav, mitte eeldus: hetkel, kui lõiku tahetakse mittekasutajale
-  (nt perearst väljastpoolt), läheb ta P5-i.
+- **`O-CO-6` on lepinguline värav, mitte õiguslik sein** (omanik 04.08). Mittekasutaja
+  isikuandmeid tohib käidelda, kui raamleping on allkirjastatud nii sotsiaaltöö
+  spetsialisti kui teenuseosutajaga. Masinavärk on olemas: `FrameworkAcceptance` +
+  `WORKER_DATA_PROCESSING`, mida `isWorkerEligible` lubab **mõlemal** rollil
+  (`SOCIAL_WORKER`, `SERVICE_PROVIDER`). Vt `SotsiaalAI.md` S4.1. **P4 ei kasuta seda
+  rada** — P4 jääb kasutajate peale, mittekasutajate värav on P5.
+
+## AUDITI LEIUD 04.08 — mustandit ei tohi selle kujuga kinnitada
+
+Sõltumatu audit (Codex) leidis, et kolm siinset väidet ei pea paika ja skoop on liiga lai.
+
+| # | Leid |
+|---|---|
+| **1** | **„Klassid 1–2 on testiga lukus" oli LIIGA TUGEV VÄIDE.** Validaator keelab nende otsese jagamise, aga **ei võrdle** `frozen`, `validity` ega `revocable` väärtusi klassilepingu tabeliga — `CONFIRMED_SUMMARY` võttis vastu `frozen:false` ja vale tagasivõtureegli. Enforcement tuleb P4-l ise ehitada. |
+| **2** | **„Kõik osalejad on kasutajad" ei pea.** `participation.js` lubab `userId: null`, kui identiteet elab kutses, ja `roomParticipationAdapter` loobki e-posti kutsele sellise kirje. Lisaks: **E1 võrgustikukaart ise loob mittekasutajate kirjeid** (lähedased, kool, „muud olulised inimesed") juba enne kutsumist. |
+| **3** | **`THIRD_PARTY_INFO` on koodis juba `blockedByDecision: "O-CO-6"`** (`sharing.js`). Lepingu autor luges sellest failist read 9–48 ja jäi 20 rida enne vastutõendit seisma. |
+| **4** | **„12 adapterit" on failiarvuna tõene, võimekusena eksitav** — need on peamiselt kirjutuskaitstud projektsioonid. `roomAdapter` ainult loeb liikmesusi, ta **ei ava ruumi ega loo kutset**. `network_case` on `registry.js`-s `RESERVED`. |
+| **5** | **E5 ei ole väike audience-lisa.** `lib/events/recipients.js` on praegu sisuliselt `PreInquiry`-põhine → tegemist on uue horisontaalse sündmusearhitektuuriga. |
+| **6** | **E1–E6 ei ole üks vertikaal, vaid vähemalt kuus tööriista** (andmemudel · puuduva rolli märkaja · külmutatud jagamise töövoog · kutse+ruum · sündmuste adressaadikiht · STAR2 rada). DoD lõpeb osaleja vastusega, aga E5 ja E6 väidetavalt kuuluvad samasse lõiku; E1b, E5 ja E6 jaoks vastuvõtukriteeriume ei ole. |
+
+### Kitsam esimene vertikaal, mida audit soovitab
+
+Üks olemasoleva kontoga klient + üks olemasoleva kontoga teenuseosutaja + üks konkreetne
+eelpöördumine + üks kliendi kinnitatud külmutatud kokkuvõte + tekstiruum + osaleja vastus.
+
+**Välja jäävad:** vaba võrgustikukaart · mittekasutajad · tervishoid · hääl · puuduva rolli
+märkaja · üldise sündmusekihi laiendus. Need lisanduvad eraldi tööriistadena pärast seda, kui
+esimene rada on serveripoolselt ja negatiivsete testidega tõendatud.
+
+**Negatiivsed testid, mis peavad olema:** vabatekstilise lähedase salvestamine keelatud ·
+kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti kutse keelatud.
 - **Teenuseosutaja näeb ainult talle jagatut** — kontaktisoovi, kokkuvõtet, dokumenti,
   ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
   assistenti.

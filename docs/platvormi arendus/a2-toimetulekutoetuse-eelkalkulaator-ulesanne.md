@@ -1,7 +1,10 @@
 # A2 — Toimetulekutoetuse eelkalkulaator: arendusleping
 
-STATUS: väljastatud 04.08.2026. Leping ei muutu pärast väljastamist — muudatused
-lähevad `SotsiaalAI.md`-sse.
+STATUS: **MUSTAND 04.08.2026 — ootab omaniku kinnitust.**
+
+**P0 EI OLE VALMIS.** Sõltumatu audit (Codex, 04.08) leidis, et olemasolev tuum annab mitmes
+olukorras usutava, kuid vale summa. Kood on **prototüübi aritmeetika**, mitte lõpetatud P0.
+Avalikku vormi (P1/P3) ei tohi selle peale ehitada enne allpool olevat parandusskoopi.
 
 ## Mis see on
 
@@ -45,7 +48,16 @@ toimetulekutoetus = pereliikmete arvestuslik toimetulekupiir
 
 **Pereliige** = samas eluruumis elav ühise majapidamisega isik (SHS § 131 lg 7). Määrav on
 ühine majandamine, mitte sissekirjutus. 18. sünnipäeva kuul loetakse inimene **kogu kuu**
-lapseks. 18–19-aastased õpilased jäävad lapse piirmäära alla.
+lapseks.
+
+**PARANDATUD 04.08.** Varasem lause „18–19-aastased õpilased jäävad lapse piirmäära alla"
+oli **dateerimata ja pärines uudisest, mitte seadusest**. Audit väidab, et see laiendus
+jõustub alles **01.04.2027** ja 2026. aastal kehtib lapse määr ainult 18-aastaseks saamise
+kuu lõpuni; kontrolli Riigi Teatajast enne kasutamist. Eraldi ja MITTE sama säte: SKA
+kommenteeritud variant kirjeldab reeglit, mille järgi põhikoolis, gümnaasiumis või
+kutseõppes õppiva keskhariduseta lapse **töine sissetulek** ei lähe pere sissetulekute hulka
+kuni 19-aastaseks saamiseni või jooksva õppeaasta lõpuni. Leping ajas need varem segamini;
+kood ei implementeeri kumbagi.
 
 **Eluasemekulud** (SHS § 133 lg 5) — 11 liiki, millele KOV volikogu kehtestab piirmäärad
 (§ 133 lg 6), pluss eluasemelaenu tagasimakse: üür · korterelamu haldamise kulu · korterelamu
@@ -106,6 +118,21 @@ normpinna suhtega; tarbimispõhised (elekter, vesi, gaas, jäätmevedu, maamaks)
 ulatuses — nende suurus ei sõltu korteri pindalast.
 
 Väravad: `npm test` roheline, 20 uut testi.
+
+### Parandusskoop enne P1 — auditi leiud (Codex, 04.08)
+
+Kuni need on lahendatud, ei tohi kalkulaator avalikku numbrit näidata.
+
+| # | Leid | Kus |
+|---|---|---|
+| **A** | **Tuleviku kuupäev saab vaikselt 2026. määra `exact: true` märkega.** 04.08.2027 → 220/176/264, hoiatuseta. Kommentaar lubab vastupidist; test kontrollib ainult liiga vana kuupäeva. **Peab olema fail-closed:** toetamata kuupäev keeldub summat andmast | `subsistenceRates.js` `resolveSubsistenceRates` |
+| **B** | **Maamaks on valesti pinnast sõltumatu.** SKA järgi on maamaksu piirmäär m²-põhine ja SHS § 133 lg 5 p 9 ütleb ise „arvestamise aluseks on kolmekordne elamualune pind" | `subsistenceRates.js` `HOUSING_COST_KINDS` |
+| **C** | **Kärpimismehhanism on tõlgendus, mitte seaduse ümberkirjutus.** Kood skaleerib proportsionaalselt (`norm/tegelik`), aga KOV kehtestab üüri piirmäära **ruutmeetrile** → õige tehe on tõenäoliselt `min(tegelik, piirmäär_m² × normpind)`. Need annavad eri tulemuse | `subsistence.js` `calculateHousingNormCost` |
+| **D** | **Implementeerimata norm-erand:** kui eluruumi tubade arv võrdub alaliste elanike arvuga ja pind on normist suurem, võetakse normpinnana **kogu üldpind**. Kood ei tea tubade arvust midagi → alahindab | `subsistence.js` `socallyJustifiedAreaM2` |
+| **E** | **Puuduvad kohustuslikud (mitte kaalutluslikud) reeglid:** § 131 lg 7–12 perekoosseisu erandid · sugulastevahelise üüri piirang · eluasemelaenu tingimused ja kuue kuu piir · korterelamu haldus- ja renoveerimiskulu elamutüübi tingimus · varasema eluasemevõla välistamine · maamaksuvabastuse mõju · õppiva alla 19-aastase töise tulu erand | `subsistence.js` |
+| **F** | **Sisendivead muutuvad vaikides nulliks.** Tundmatu kululiik (`{internet: 99}`) → 0 € ja `caveats: []`; puuduv pind → ei kärbita; null pereliiget → siiski positiivne tulemus. Avalik kalkulaator peab keelduma või hoiatama nähtavalt | `subsistence.js`, testid |
+| **G** | **Sissetuleku leping ei vasta vormile.** `excludedIncome` ainult kuvatakse, ei lahutata — eeldab, et välistatud tulud on juba `netIncome`-st eemaldatud. P1 vorm küsib aga ainult „eelmise kuu netosissetulekut"; tavakasutaja ei tea, mida sinna panna | `subsistence.js` + P1 |
+| **H** | **DoD ei tõenda arvutuse ohutust** — kontrollib hoiatusi, keeli ja mittesalvestamist, aga mitte sisendivalideerimist, toetatud kuupäevavahemikku ega kohustuslikke erandeid | DoD allpool |
 
 ### P1 — mida vorm peab küsima
 
