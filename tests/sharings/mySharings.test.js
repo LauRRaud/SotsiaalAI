@@ -326,3 +326,28 @@ test("päring on kliendi enda peale piiratud ja MUSTANDEID ei tooda", async () =
   // Mustandi kohta ei ole kliendil millegi üle otsustada.
   assert.equal(call.query.where.status.in.includes("DRAFT"), false);
 });
+
+test("migreerimata võrgustikutabel EI võta tervet 'Minu jagamiste' lehte maha", async () => {
+  const { db } = fixtureDb();
+  db.networkShare.findMany = async () => {
+    const error = new Error("The table `public.NetworkShare` does not exist in the current database.");
+    error.code = "P2021";
+    throw error;
+  };
+
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  // Tuumlubadus jääb kehtima: eelpöördumised ja ruumid on endiselt nähtavad.
+  assert.equal(result.preInquiries.length, 1);
+  assert.equal(result.rooms.length, 1);
+  assert.deepEqual(result.networkShares, []);
+});
+
+test("PÄRIS andmebaasiviga ei jää vaikselt tühja loendi taha", async () => {
+  const { db } = fixtureDb();
+  db.networkShare.findMany = async () => {
+    const error = new Error("connection refused");
+    error.code = "P1001";
+    throw error;
+  };
+  await assert.rejects(loadMySharings(USER_ID, { db, now: NOW }), /connection refused/);
+});
