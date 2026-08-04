@@ -2,9 +2,16 @@
 
 STATUS: **MUSTAND 04.08.2026 — ootab omaniku kinnitust.**
 
-**P0 EI OLE VALMIS.** Sõltumatu audit (Codex, 04.08) leidis, et olemasolev tuum annab mitmes
-olukorras usutava, kuid vale summa. Kood on **prototüübi aritmeetika**, mitte lõpetatud P0.
-Avalikku vormi (P1/P3) ei tohi selle peale ehitada enne allpool olevat parandusskoopi.
+**P0 tuum on 04.08 auditi järel ümber kirjutatud.** Sõltumatu audit (Codex) leidis, et esimene
+versioon andis mitmes olukorras usutava, kuid vale summa. Leiud **A–G on parandatud ja
+testidega lukus** (32 testi); H on osaliselt lahtine, vt DoD.
+
+**Muutunud põhimõte: kahtluse korral ei anna tuum numbrit, vaid keeldub.** Tulemusel on nüüd
+`usable` lipp — `false` korral on `estimate` alati `null` ja kuvakiht ei tohi summat näidata.
+Blokeerivad `issues` ja mitteblokeerivad `caveats` on eraldi.
+
+Üks õigusküsimus jääb lahtiseks (leid C, vt DoD lõpp): milline on õige kärpimistehe siis, kui
+KOV-i piirmäärad ei ole teada.
 
 ## Mis see on
 
@@ -144,8 +151,30 @@ töövõimega inimene (51 m² erisus) · eluasemekulud liikide kaupa.
 
 ### DoD
 
-- [ ] Iga tulemus kannab nähtavat lauset „see ei ole otsus, määrab KOV".
-- [ ] Iga eluasemekuluga tulemus kannab nähtavat lauset KOV-i piirmäärade kohta.
+**Arvutuse ohutus** (leid H — varem puudus täielikult):
+
+- [x] Toetamata kuupäev **keeldub** summat andmast (`UNSUPPORTED_DATE`), ei kuva lähimat määra.
+- [x] Tundmatu kululiik **blokeerib**, ei kao vaikselt nulliks.
+- [x] Puuduv eluruumi pind või tubade arv blokeerib, kui norm mõjutaks tulemust.
+- [x] Negatiivne või vigane summa blokeerib.
+- [x] Null pereliiget ei anna kunagi positiivset tulemust.
+- [x] Vastamata õigusvärav blokeerib, ei muutu vaikseks eelduseks.
+- [x] `usable: false` korral on `estimate` ja `surplus` alati `null`.
+- [ ] P1 vorm suudab tuuma KÕIGI nõutud sisenditega varustada (pind, toad, väravad,
+      tululiigid) — kui vorm ei küsi, ei tohi tuum arvata.
+
+**Nähtavad lubadused:**
+
+- [x] Iga tulemus kannab `isDecision: false` + `decidedBy: "KOV"`.
+- [x] Iga eeldusel põhinev eluasemearvutus kannab `HOUSING_METHOD_ASSUMED_PROPORTIONAL`
+      ja `KOV_HOUSING_LIMITS_UNKNOWN`.
+- [ ] Need kaks jõuavad ka **nähtava lausena** kasutajani, mitte ainult koodikoodina.
 - [ ] Selgitus on kolmes keeles (et/en/ru), `i18n:check` roheline.
-- [ ] Määrade tabelis on jooksva aasta rida ja allikaviide.
+- [x] Määrade tabelis on jooksva aasta rida, `confirmedUntil` ja allikaviide.
 - [ ] Kontota avalik versioon ei salvesta sisestatud andmeid.
+
+**Endiselt lahtine õigusküsimus (leid C).** Kui KOV-i piirmäärad on teadmata, kasutab tuum
+proportsionaalset lähendit ja märgib selle eeldusena. Statuudijärgne tehe
+`min(kulu, piirmäär_m² × normpind)` on koodis olemas ja rakendub kohe, kui `capsPerM2`
+antakse. **Kumb on õige, kui piirmäärasid ei tea, on endiselt vastuseta** — see vastus tuleb
+KOV-partnerilt või SoM-i selgitustaotlusest, mitte koodist.

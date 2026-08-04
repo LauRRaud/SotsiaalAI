@@ -119,7 +119,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
-| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 EI OLE VALMIS** — sõltumatu audit 04.08 leidis, et tuum annab mitmes olukorras usutava, aga vale summa. Kood on prototüübi aritmeetika, mitte P0. Vt lepingu „Parandusskoop" |
+| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 tuum TEHTUD 04.08**, auditi 8 leiust A–G parandatud ja testidega lukus (32 testi). Alles P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärad |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **lepingu MUSTAND 04.08, ootab omaniku kinnitust** ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md), E1–E6); koodi veel ei ole — **järgmine järjekorras** |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
@@ -218,7 +218,7 @@ See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
 ### Tegemata
 
-- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 EI OLE VALMIS.** Koodis on prototüübi aritmeetika (`lib/benefits/subsistence.js`, 20 testi rohelised), aga sõltumatu audit 04.08 leidis, et ta annab mitmes olukorras **usutava, kuid vale summa**: tuleviku kuupäev saab vaikselt 2026. määra „kinnitatud" märkega, maamaks on valesti pinnast sõltumatu, kohustuslikud § 131–133 erandid puuduvad, tundmatu sisend kaob vaikselt nulliks. **Avalikku vormi ei tohi selle peale ehitada.** Leping (mustand + parandusskoop): [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
+- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 tuum tehtud 04.08, auditi järel ümber kirjutatud** (`lib/benefits/subsistence.js`, 32 testi). Sõltumatu audit leidis 8 viga; A–G on parandatud ja testidega lukus. Muutunud põhimõte: **kahtluse korral ei anna tuum numbrit, vaid keeldub** (`usable: false` → `estimate: null`). Lahtine on üks õigusküsimus: milline on õige kärpimistehe, kui KOV-i piirmäärad on teadmata — statuudijärgne rada (`min(kulu, piirmäär_m² × normpind)`) on koodis olemas ja rakendub kohe, kui piirmäärad antakse. Tegemata: P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärade andmekiht. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
 - **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
 
@@ -675,7 +675,7 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 | # | Moodul | Mis blokeerib |
 |---|---|---|
 | A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
-| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 POOLIK**, leping mustandis. Kinnitatud on määrad (220/176/264 alates 01.01.2026) ja eluruumi norm (18 m²/liige + 15 m²/pere; üksi elav pensionär kuni 51 m²). Kinnitamata jäi kärpimismehhanism ise ja rida kohustuslikke erandeid | ehitust ei blokeeri miski, aga **avalikku numbrit ei tohi näidata enne parandusskoopi**; P4 vajab KOV-partnerit (§ 133 lg 6) |
+| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 tuum TEHTUD 04.08**, auditi järel ümber kirjutatud fail-closed'iks. Kaetud: määrad, normpind (sh tubade arv = elanike arv), maamaks pinnapõhisena, eluasemelaenu 6 kuu piir, sugulase üür, töise tulu erand (2 kuud 100% + 4 kuud 50%), sisendivalideerimine | ehitust ei blokeeri miski; **P4 KOV piirmäärad** vajavad partnerit (§ 133 lg 6) ja avavad ühtlasi ainsa lahtise õigusküsimuse |
 | A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
 | A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
 | A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |
