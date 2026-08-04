@@ -7245,21 +7245,24 @@
       "rooms": "Active rooms",
       "invites": "Active invites",
       "help": "Published help requests and offers",
-      "frameworks": "My confirmations"
+      "frameworks": "My confirmations",
+      "network_shares": "Network involvement"
     },
     "section_help": {
       "pre_inquiries": "Recall removes an unopened in-platform pre-inquiry from the recipient's active list. The audit trail remains.",
       "rooms": "Shared room content is visible to its active members.",
       "invites": "An invite grants access only after it is accepted.",
       "help": "These listings are public until they are closed or expire.",
-      "frameworks": "An informative overview of frameworks you confirmed."
+      "frameworks": "An informative overview of frameworks you confirmed.",
+      "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether and what is shared."
     },
     "empty": {
       "pre_inquiries": "No sent pre-inquiries.",
       "rooms": "No active room memberships.",
       "invites": "No active sent invites.",
       "help": "No published help requests or offers.",
-      "frameworks": "No framework confirmations."
+      "frameworks": "No framework confirmations.",
+      "network_shares": "No network involvement proposals."
     },
     "ownership": {
       "visibility": "Who can see it",
@@ -7299,7 +7302,12 @@
       "room_owner": "Room owner",
       "room_member": "Room member",
       "unknown_recipient": "Recipient not specified",
-      "unknown_time": "Time unknown"
+      "unknown_time": "Time unknown",
+      "awaiting_your_decision": "Waiting for your decision",
+      "share_purpose": "Why they are involved",
+      "share_boundary": "What is shared and what is not",
+      "share_ends": "Involvement ends",
+      "share_incoming": "Proposal about you"
     },
     "status": {
       "sent": "Sent",
@@ -7320,7 +7328,9 @@
       "leave_room": "Leave room",
       "retry": "Try again",
       "use_redacted": "Use redacted version",
-      "send_original": "Send original text"
+      "send_original": "Send original text",
+      "confirm_share": "I agree to this sharing",
+      "decline_share": "I do not agree"
     },
     "confirm": {
       "recall": "Recall this unopened pre-inquiry? It will disappear from the recipient's active list, but its audit trail remains.",
@@ -7333,7 +7343,9 @@
       "recalled": "The pre-inquiry was recalled.",
       "corrected": "The corrected version was sent.",
       "invite_revoked": "The invite was revoked.",
-      "room_left": "You left the room."
+      "room_left": "You left the room.",
+      "share_confirmed": "You confirmed the sharing. The worker can now send the summary.",
+      "share_declined": "You declined. This summary will not be sent."
     },
     "correction": {
       "title": "Corrected version",
@@ -7367,6 +7379,17 @@
       "limits_memory": "Recall cannot erase information the recipient may already have seen or remembered. It is a platform action, not a memory wipe.",
       "limits_audit": "The audit trail remains. That way what happened can be evidenced later — in your favour too.",
       "limits_external": "A message sent to an external email cannot be recalled from the platform. That is why external sending is marked separately."
+    },
+    "share_status": {
+      "AWAITING_CLIENT": "waiting for your decision",
+      "CONFIRMED": "confirmed",
+      "DECLINED": "declined",
+      "SENT": "sent",
+      "OPENED": "opened",
+      "RESPONDED": "answered",
+      "RECALLED": "recalled",
+      "ENDED": "ended",
+      "DRAFT": "draft"
     }
   },
   "effective_practices": {

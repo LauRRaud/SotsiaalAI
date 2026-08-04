@@ -7245,21 +7245,24 @@
       "rooms": "Aktiivsed ruumid",
       "invites": "Aktiivsed kutsed",
       "help": "Avaldatud abisoovid ja -pakkumised",
-      "frameworks": "Minu kinnitused"
+      "frameworks": "Minu kinnitused",
+      "network_shares": "Võrgustikku kaasamine"
     },
     "section_help": {
       "pre_inquiries": "Tagasivõtt eemaldab avamata platvormisisese pöördumise adressaadi aktiivsest loendist. Auditijälg jääb alles.",
       "rooms": "Ruumis näevad jagatud sisu selle aktiivsed liikmed.",
       "invites": "Kutse annab ligipääsu alles pärast vastuvõtmist.",
       "help": "Need kirjed on avalikud kuni sulgemise või aegumiseni.",
-      "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest."
+      "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest.",
+      "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas ja mida jagatakse."
     },
     "empty": {
       "pre_inquiries": "Saadetud eelpöördumisi ei ole.",
       "rooms": "Aktiivseid ruumiliikmesusi ei ole.",
       "invites": "Aktiivseid saadetud kutseid ei ole.",
       "help": "Avaldatud abisoove ega -pakkumisi ei ole.",
-      "frameworks": "Raamistikukinnitusi ei ole."
+      "frameworks": "Raamistikukinnitusi ei ole.",
+      "network_shares": "Ühtegi võrgustikku kaasamise ettepanekut ei ole."
     },
     "ownership": {
       "visibility": "Kes näeb",
@@ -7299,7 +7302,12 @@
       "room_owner": "Ruumi omanik",
       "room_member": "Ruumi liige",
       "unknown_recipient": "Adressaat täpsustamata",
-      "unknown_time": "Aeg teadmata"
+      "unknown_time": "Aeg teadmata",
+      "awaiting_your_decision": "Ootab sinu otsust",
+      "share_purpose": "Miks kaasatakse",
+      "share_boundary": "Mida jagatakse ja mida mitte",
+      "share_ends": "Kaasamine lõpeb",
+      "share_incoming": "Ettepanek sinu kohta"
     },
     "status": {
       "sent": "Saadetud",
@@ -7320,7 +7328,9 @@
       "leave_room": "Lahku ruumist",
       "retry": "Proovi uuesti",
       "use_redacted": "Kasuta varjatud versiooni",
-      "send_original": "Saada algne tekst"
+      "send_original": "Saada algne tekst",
+      "confirm_share": "Nõustun jagamisega",
+      "decline_share": "Ei nõustu"
     },
     "confirm": {
       "recall": "Kas võtta see avamata pöördumine tagasi? See kaob adressaadi aktiivsest loendist, kuid auditijälg säilib.",
@@ -7333,7 +7343,9 @@
       "recalled": "Pöördumine võeti tagasi.",
       "corrected": "Parandatud versioon saadeti.",
       "invite_revoked": "Kutse võeti tagasi.",
-      "room_left": "Lahkusid ruumist."
+      "room_left": "Lahkusid ruumist.",
+      "share_confirmed": "Kinnitasid jagamise. Töötaja saab kokkuvõtte nüüd saata.",
+      "share_declined": "Keeldusid. Seda kokkuvõtet ei saadeta."
     },
     "correction": {
       "title": "Parandatud versioon",
@@ -7367,6 +7379,17 @@
       "limits_memory": "Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada. See on platvormi toiming, mitte mälukustutus.",
       "limits_audit": "Auditijälg jääb alles. Nii saab hiljem tõendada, mis toimus — ka sinu enda kasuks.",
       "limits_external": "Välisele e-postile saadetud kirja ei saa platvormilt tagasi kutsuda. Seepärast on väline saatmine eraldi märgitud."
+    },
+    "share_status": {
+      "AWAITING_CLIENT": "ootab sinu otsust",
+      "CONFIRMED": "kinnitatud",
+      "DECLINED": "keeldusid",
+      "SENT": "saadetud",
+      "OPENED": "avatud",
+      "RESPONDED": "vastatud",
+      "RECALLED": "tagasi võetud",
+      "ENDED": "lõppenud",
+      "DRAFT": "mustand"
     }
   },
   "effective_practices": {

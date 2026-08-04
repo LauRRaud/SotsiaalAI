@@ -22,7 +22,8 @@ const EMPTY_SHARINGS = Object.freeze({
   invites: [],
   helpListings: [],
   frameworkAcceptances: [],
-  mentoringPreparations: []
+  mentoringPreparations: [],
+  networkShares: []
 });
 
 function statusKey(item) {
@@ -121,6 +122,46 @@ export default function MySharingsPage() {
     setFeedback("");
     setActionError("");
   }, []);
+
+  /* COLLAB-P4. Suund on siin teistpidi kui ülejäänud lehel: need ei ole asjad,
+     mida inimene on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste
+     ei ole suund, vaid „kus mu info liigub" — seepärast on nad samas kohas ja
+     eristuvad pealkirja, mitte eraldi lehega.
+     Otsus läheb otse, ilma ModalConfirm'ita: kinnitamine EI ole pöördumatu
+     (töötaja peab veel saatma) ja keeldumine on ohutu suund. Lisaklikk siin
+     ainult väsitaks inimest, kes nagunii kaalub. */
+  const decideNetworkShare = useCallback(async (share, decision) => {
+    const key = `share:${share.id}`;
+    if (mutationInFlightRef.current) return;
+    mutationInFlightRef.current = key;
+    setBusyKey(key);
+    resetMessages();
+    try {
+      const response = await fetch(`/api/network-shares/${encodeURIComponent(share.id)}/decision`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        body: JSON.stringify({ decision })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) {
+        throw new Error(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "my_sharings.errors.action_failed"
+        }));
+      }
+      setFeedback(t(`my_sharings.notice.${decision === "CONFIRMED" ? "share_confirmed" : "share_declined"}`));
+      const refreshed = await loadSharings({ preserveData: true });
+      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+    } catch (error) {
+      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+    } finally {
+      if (mutationInFlightRef.current === key) {
+        mutationInFlightRef.current = "";
+        setBusyKey("");
+      }
+    }
+  }, [loadSharings, locale, resetMessages, t]);
 
   const openConfirmAction = useCallback((action) => {
     resetMessages();
@@ -269,6 +310,69 @@ export default function MySharingsPage() {
 
         {!loading && !loadError ? (
           <div className={styles.ledger}>
+            {/* Kõige ülal, sest need on ainsad read lehel, mis nõuavad inimeselt
+                tegutsemist. Ajaloo alla jäädes kaoksid nad ära. */}
+            <Section
+              title={t("my_sharings.sections.network_shares")}
+              help={t("my_sharings.section_help.network_shares")}
+              empty={t("my_sharings.empty.network_shares")}
+              items={sharings.networkShares}
+            >
+              {sharings.networkShares.map((item) => {
+                const busy = busyKey === `share:${item.id}`;
+                return (
+                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                    <div className={styles.cardTopline}>
+                      <div>
+                        <span className={styles.eyebrow}>
+                          {item.awaitingDecision
+                            ? t("my_sharings.labels.awaiting_your_decision")
+                            : t(`my_sharings.share_status.${item.status}`, item.status)}
+                        </span>
+                        <h3>{t("my_sharings.labels.share_incoming")}</h3>
+                      </div>
+                    </div>
+
+                    <p className={styles.sharedText}>{item.summaryText}</p>
+
+                    <dl className={styles.meta}>
+                      <div>
+                        <dt>{t("my_sharings.labels.share_purpose")}</dt>
+                        <dd>{item.purpose}</dd>
+                      </div>
+                      <div>
+                        <dt>{t("my_sharings.labels.share_boundary")}</dt>
+                        <dd>{item.sharingBoundary}</dd>
+                      </div>
+                      <div>
+                        <dt>{t("my_sharings.labels.share_ends")}</dt>
+                        <dd>{formatDate(item.participationEndsOn)}</dd>
+                      </div>
+                    </dl>
+
+                    {item.awaitingDecision ? (
+                      <div className={styles.cardActions}>
+                        <Button
+                          variant="primary"
+                          disabled={busy}
+                          onClick={() => void decideNetworkShare(item, "CONFIRMED")}
+                        >
+                          {t("my_sharings.actions.confirm_share")}
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          disabled={busy}
+                          onClick={() => void decideNetworkShare(item, "DECLINED")}
+                        >
+                          {t("my_sharings.actions.decline_share")}
+                        </Button>
+                      </div>
+                    ) : null}
+                  </Panel>
+                );
+              })}
+            </Section>
+
             <Section
               title={t("my_sharings.sections.pre_inquiries")}
               help={t("my_sharings.section_help.pre_inquiries")}
