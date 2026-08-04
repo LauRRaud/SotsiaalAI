@@ -119,7 +119,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
-| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0+P1 TEHTUD 04.08** — tuum ja pöörduja vorm lehel `/toimetulekutoetus`, **konto nõutav** (omanik 04.08). **Brauseris tõendatud**, sh SoM-i enda näitega. Alles P2 checklist, P3 kontota versioon, P4 KOV piirmäärad |
+| ~~A2 toimetulekutoetuse eelkalkulaator~~ | **VALMIS 04.08** — vt S2 „Tehtud". Sabad: P2 checklist, P3 kontota versioon, P4 KOV piirmäärad |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)). Liides on brauseris TÕENDAMATA |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
@@ -206,6 +206,23 @@ kokkuvõte. Iga AI koostatud osa kannab märget, et tegemist on mustandiga.
 Inimene saab oma andmetest koopia ja saab oma materjali välja viia PDF- või DOCX-kujul.
 See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
+**Toimetulekutoetuse eelhinnang.**
+Inimene saab teada, kas tal võib olla õigus toimetulekutoetusele ja umbes kui palju — enne
+seda, kui ta kellegagi räägib või ühtegi blanketti näeb. Kalkulaator küsib pere koosseisu,
+eelmise kuu sissetuleku ja eluasemekulud ning näitab tulemuse **koos koosseisuga**: kui suur
+on pere toimetulekupiir, kui palju eluasemekulusid arvesse läheb ja mis sissetulekust maha
+arvatakse. Number ilma koosseisuta ei ole selgitus.
+
+Kaks piiri on inimesele ette öeldud, mitte tulemuse juurde peidetud. **See ei ole otsus** —
+toimetulekutoetuse määrab valla- või linnavalitsus. Ja **arvutus käib inimese enda seadmes**:
+sissetulek, pere koosseis ja eluasemekulud ei lähe kuhugi ära ega salvestu. Platvorm teab, et
+keegi kalkulaatorit kasutas; ta ei tea, mida sinna kirjutati.
+
+Kui sisendist ei saa ohutult vastust anda, **ei näidata summat** — öeldakse, mis on puudu.
+Usutav vale number on siin halvim võimalik väljund, sest inimene teeb tema põhjal otsuse.
+Kui omavalitsus kehtestab eluasemekuludele oma piirmäärad, mida kalkulaator ei tea, öeldakse
+seegi välja.
+
 ### Poolik
 
 | Teema | Mis töötab | Lahtised sabad |
@@ -218,7 +235,7 @@ See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
 ### Tegemata
 
-- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 tuum + P1 vorm tehtud 04.08, auditi järel ümber kirjutatud** (`lib/benefits/subsistence.js`, 32 testi). Sõltumatu audit leidis 8 viga; A–G on parandatud ja testidega lukus. Muutunud põhimõte: **kahtluse korral ei anna tuum numbrit, vaid keeldub** (`usable: false` → `estimate: null`). Lahtine on üks õigusküsimus: milline on õige kärpimistehe, kui KOV-i piirmäärad on teadmata — statuudijärgne rada (`min(kulu, piirmäär_m² × normpind)`) on koodis olemas ja rakendub kohe, kui piirmäärad antakse. Tegemata: P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärade andmekiht. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
+- **Toimetulekutoetuse eelkalkulaator (A2)** — **funktsioon on valmis** (vt „Tehtud" ülal, leht `/toimetulekutoetus`, konto nõutav). Lahtised sabad: P2 dokumentide kontrollnimekiri · P3 kontota avalik versioon (omanik otsustas 04.08 konto kasuks) · P4 KOV piirmäärade andmekiht (vajab partnerit) · üks õigusküsimus kärpimistehte kohta. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
 - **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
 
@@ -693,7 +710,7 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 | # | Moodul | Mis blokeerib |
 |---|---|---|
 | A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
-| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 tuum TEHTUD 04.08**, auditi järel ümber kirjutatud fail-closed'iks. Kaetud: määrad, normpind (sh tubade arv = elanike arv), maamaks pinnapõhisena, eluasemelaenu 6 kuu piir, sugulase üür, töise tulu erand (2 kuud 100% + 4 kuud 50%), sisendivalideerimine | ehitust ei blokeeri miski; **P4 KOV piirmäärad** vajavad partnerit (§ 133 lg 6) ja avavad ühtlasi ainsa lahtise õigusküsimuse |
+| A2 | ~~Toimetulekutoetuse eelkalkulaator~~ (§ 131–134) — **FUNKTSIOON VALMIS 04.08**, vt S2 „Tehtud". Tuum on sõltumatu auditi järel ümber kirjutatud fail-closed'iks; vorm ja leht `/toimetulekutoetus` on brauseris tõendatud | sabad: P2 checklist · P3 kontota versioon · **P4 KOV piirmäärad** (vajab partnerit, § 133 lg 6) ja nendega koos ainus lahtine õigusküsimus |
 | A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
 | A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
 | A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |
