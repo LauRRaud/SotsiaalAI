@@ -158,9 +158,28 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
 | **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon) | **TEHTUD 04.08** |
 | **V2a — ruumi avamine** (`lib/network/shareRoom.js`, `ROOM_ORIGIN_TYPES.NETWORK_SHARE`) | **TEHTUD 04.08** |
 | **V2b — API-marsruudid** (8 marsruuti + `lib/network/shareRoutes.js`) | **TEHTUD 04.08** |
-| V3 — töötaja ja kliendi liides | tegemata (pinnad otsustatud, vt allpool) |
-| V4 — saaja vaade ja vastamine | tegemata |
-| V5 — „Minu jagamised" haakumine | tegemata |
+| **V3a — kliendi otsustussektsioon** (`/minu-jagamised`) | **TEHTUD 04.08**, brauseris tõendamata |
+| **V3b — töötaja koostamisvorm** (`components/network/NetworkShareComposer.jsx`) | **TEHTUD 04.08**, brauseris tõendamata |
+| V4 — saaja vaade ja vastamine (vastuvõtulaud) | **tegemata — viimane tükk, mis vertikaali sulgeb** |
+| V5 — töölauakaart (seis + lähenev lõppkuupäev) | tegemata |
+
+### Mis V3-s ehitamisel selgus
+
+**Klient tuletatakse eelpöördumise autorist, mitte liidesest.** Esimene disain oleks lasknud
+liidesel `clientUserId` kaasa anda — vale tõeallikas. Pöördumise autor ONGI see inimene,
+kelle loost kokkuvõte tehakse; kui liides tohiks kliendi ise nimetada, saaks töötaja
+kokkuvõtte kogemata siduda vale inimesega, **ja see viga oleks kliendile nähtamatu**, sest
+tema näeks ainult „keegi tahab sinu kohta jagada". `clientUserId` on nüüd ka marsruudi kehast
+eemaldatud — kui domeen ta tuletab, ei tohi API-l olla teist rada sisse.
+
+Sellest järeldub kahe raja lihtne reegel: **autoriga pöördumine → kontoga klient, `IN_APP`
+kinnitus. Autorita pöördumine → väline klient, kuvanimi töötajalt, raamlepingu värav.**
+
+**Saaja antakse e-postiga**, server lahendab ta kasutajaks. Värav ei nõrgene: e-post on
+otsingutee, mitte uus rada mittekasutajani.
+
+**Vorm ei näita tegevust, mida seis ei luba.** Domeenikiht keelduks nagunii, aga nupp, mis
+alati kukub, on halb liides.
 
 ### Pinnad — otsustatud 04.08. UUT LEHTE EI TULE.
 
