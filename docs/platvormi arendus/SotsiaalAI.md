@@ -1162,6 +1162,26 @@ paranda see kohapeal. Konkureerivat seisufaili ega „handoff-<kuupäev>" faili 
 Kontrolli read-only: `git status`, `git log -1`, `origin/main`. Teste ega build'i selleks ei
 jooksutata. Kui kontrollitud fakt erineb sellest failist, kehtib fakt — paranda fail.
 
+### Lokaalne testkeskkond (seatud 04.08, omanik: „las jääb")
+
+Autenditud kontrollid ei ole lisatöö — 04.08 leidis päris sessiooniga läbisõit **kolm viga,
+mida 2622 rohelist testi ei püüdnud**: puuduv tabel, korduv veateade ja **IDOR**. Roheline
+sviit fake-prismaga ei tõenda ligipääsupiiri.
+
+| Mis | Kus |
+|---|---|
+| **Viis kontot**, PIN **`45671234`** | `ai.admin` · `ai.specialist.a` · `ai.specialist.b` · `ai.client` · `ai.service-provider`, kõik `@sotsiaalai.test` |
+| **OTP-värav lahti** | `.env`-is `LOGIN_OTP_BYPASS_EMAILS` (varukoopia `.env.backup-2026-08-04`). NB **`LOGIN_ALLOW_DIRECT_PIN` ei ole vaja** — see gate'ib teist rada |
+| **Testandmestik** | üks eelpöördumine `ai.client` → `ai.specialist.a` + kolm `NetworkShare` kirjet |
+
+**Login:** `POST /api/auth/login-step1 {email,pin}` → `temp_login_token` (ühekordne) →
+`GET /api/auth/csrf` → `POST /api/auth/callback/credentials` form-encoded
+`{csrfToken, temp_login_token, redirect:false, json:true}`.
+
+**Mitu rolli korraga: eraldi küpsisefailid** (`curl -c/-b`). Brauseripaani vahekaardid
+jagavad ühte küpsisepurki, seega nendega kahte sessiooni ei saa. Kolmerollilised rajad on
+ainult nii testitavad.
+
 ### Viitematerjal (ei kanna olekut)
 
 | Fail | Mille jaoks |
