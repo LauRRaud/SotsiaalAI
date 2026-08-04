@@ -89,8 +89,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **`5ef13fb6`**, tööpuu puhas. Üks tööpuu, üks haru.
-Rollback `bb9ca541`. Serveri seis vt „Deploy'mata" allpool.
+`main` = `origin/main` = **serveris** = **`d7e9fcd5`**, tööpuu puhas. Üks tööpuu, üks haru.
+Rollback `215fac39`. Vt „Deploy tehtud" allpool.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -105,10 +105,9 @@ ise-hostimist ei tehta (server ei kanna, tasuta on niigi saavutatud). Kaks saba 
 **T27-sse** (S10): seadmematriks ja art. 28 paberitöö. Täielik lugu on S3-s.
 
 **Omanik valis 04.08: tehakse kõik neli** — salvestuse nõusolekukeel (tehtud, vt S7),
-COLLAB-P4, A2 eelkalkulaator ja deploy. **Kolm arendustööd on tehtud; lahti on ainult
-neljas, deploy** — ja selle sisu on vahepeal kasvanud ühest dokumendi-commit'ist 23
-commit'ini koos kasutajapinna ja kahe migratsiooniga (vt „Deploy'mata" allpool), seega
-küsitakse luba uuesti. Käimasolev järjekord:
+COLLAB-P4, A2 eelkalkulaator ja deploy. **Kõik neli on tehtud**, deploy 05.08. Selle peale
+tuli omaniku viies valik: **SOTSIAALKIIRABI-V1**, mis on samuti tehtud ja välja läinud.
+Tehtud järjekord:
 
 | Kandidaat | Seis |
 |---|---|
@@ -133,17 +132,20 @@ eraldi.
 `npm run db:migrate:check` OK (126 migratsiooni päris andmebaasi vastu),
 `npm run urgent:probe` **16/16** päris andmebaasi vastu.
 
-**Deploy'mata (seisuga 05.08).** Server on `215fac39` (kontrollitud 04.08: kolm teenust
-`active`, `/` `/meist` `/vestlus` `/voimalused` → 200, teenuselogis 0 viga). Sealt edasi on
-main'is **30 commit'i** ja need **kannavad kasutajapinda**: kogu COLLAB-P4 vertikaal,
-A2 kalkulaator lehega `/toimetulekutoetus` ja kogu SOTSIAALKIIRABI-V1 (`/kiireloomuline-abi`,
-`/toolaud/kiireloomuline-abi`, `/admin/urgent-desks`). Kaasas on **kolm migratsiooni**
-(`20260804140000_collab_p4_network_share`, `20260804160000_network_share_external_client`,
-`20260805090000_sk_v1_urgent_request`). Deploy ootab omaniku luba.
+**Deploy tehtud 05.08 (omaniku luba samal päeval).** Server on **`d7e9fcd5`** — sama mis
+`main` ja `origin/main`, deploy'mata ei ole midagi. Välja läksid kolm valdkonda korraga:
+COLLAB-P4 vertikaal, A2 kalkulaator (`/toimetulekutoetus`) ja kogu SOTSIAALKIIRABI-V1
+(`/kiireloomuline-abi`, `/toolaud/kiireloomuline-abi`, `/admin/urgent-desks`).
+Rollback `215fac39`.
 
-**SK-V1 deploy on ohutu ka enne partnerit:** ilma seadistatud lauata ei ole rada üheski
-piirkonnas nähtav ega API kaudu kasutatav, ja päris isikuandmeid temas ei teki. Vt „Lüliti"
-S2-s.
+Smoke pärast deploy'd: kolm teenust `active` · `/` `/meist` `/vestlus` `/voimalused`
+`/kiireloomuline-abi` `/toimetulekutoetus` → 200 · SK API autentimata → 401 ·
+teenuselogides **0 viga** · 126 migratsiooni rakendatud, neli SK-tabelit toodangus olemas.
+
+**SK-V1 on toodangus ja DORMANT:** `UrgentDesk` 0 rida, `UrgentRequest` 0 rida. Ilma
+seadistatud lauata ei ole rada üheski piirkonnas nähtav ega API kaudu kasutatav ja päris
+isikuandmeid temas ei teki — see on omaniku 28.07 „ehitus võib alata kohe, värav kehtib
+sisselülitamisele" reegli puhas rakendus. Vt „Lüliti" S2-s ja „Mis avab" S4.1-s.
 
 ---
 
