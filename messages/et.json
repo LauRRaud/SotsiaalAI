@@ -8875,5 +8875,50 @@
       "badInput": "Sisestust ei saa lugeda.",
       "invalid": "Väärtus ei sobi."
     }
+  },
+  "network_share": {
+    "intro": "Koosta kokkuvõte ühele teenuseosutajale. Klient näeb ja kinnitab selle enne saatmist.",
+    "actions": {
+      "toggle": "Kaasa võrgustikku",
+      "create": "Loo mustand",
+      "submit": "Saada kliendile ülevaatamiseks",
+      "attest": "Klient kinnitas suuliselt",
+      "send": "Saada saajale",
+      "recall": "Võta tagasi"
+    },
+    "fields": {
+      "recipient_email": "Saaja e-post (peab olema platvormi kasutaja)",
+      "client_display_name": "Kliendi kuvanimi (initsiaal või roll)",
+      "summary": "Jagatav kokkuvõte",
+      "purpose": "Miks see osapool kaasatakse",
+      "boundary": "Jagamispiir — mida jagatakse ja mida mitte",
+      "ends_on": "Kaasamine lõpeb"
+    },
+    "hints": {
+      "external_client": "Sellel pöördumisel ei ole platvormi kasutajat. Hoia nimi miinimumis ja kanna kliendi otsus hiljem ise üle.",
+      "summary": "See tekst on see, mida klient kinnitab ja mida saaja näeb. Muutmine pärast kinnitust tühistab kinnituse.",
+      "ends_on": "Kohustuslik. Kaasamine ei tohi kesta määramata ajani."
+    },
+    "notice": {
+      "draft_created": "Mustand loodud.",
+      "submitted": "Saadetud kliendile ülevaatamiseks.",
+      "attested": "Kliendi kinnitus kantud üle.",
+      "sent": "Saadetud. Ruum on avatud.",
+      "recalled": "Tagasi võetud."
+    },
+    "errors": {
+      "action_failed": "Toiming ebaõnnestus."
+    },
+    "status": {
+      "DRAFT": "mustand",
+      "AWAITING_CLIENT": "ootab kliendi otsust",
+      "CONFIRMED": "klient kinnitas",
+      "DECLINED": "klient keeldus",
+      "SENT": "saadetud",
+      "OPENED": "avatud",
+      "RESPONDED": "vastatud",
+      "RECALLED": "tagasi võetud",
+      "ENDED": "lõppenud"
+    }
   }
 }

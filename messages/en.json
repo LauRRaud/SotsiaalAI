@@ -8875,5 +8875,50 @@
       "badInput": "The input cannot be read.",
       "invalid": "The value is not valid."
     }
+  },
+  "network_share": {
+    "intro": "Prepare a summary for one service provider. The client sees and confirms it before it is sent.",
+    "actions": {
+      "toggle": "Involve the network",
+      "create": "Create draft",
+      "submit": "Send to client for review",
+      "attest": "Client confirmed verbally",
+      "send": "Send to recipient",
+      "recall": "Recall"
+    },
+    "fields": {
+      "recipient_email": "Recipient email (must be a platform user)",
+      "client_display_name": "Client display name (initial or role)",
+      "summary": "Summary to share",
+      "purpose": "Why this party is involved",
+      "boundary": "Sharing boundary — what is shared and what is not",
+      "ends_on": "Involvement ends"
+    },
+    "hints": {
+      "external_client": "This inquiry has no platform user. Keep the name minimal and record the client decision yourself later.",
+      "summary": "This is the text the client confirms and the recipient sees. Editing after confirmation cancels the confirmation.",
+      "ends_on": "Required. Involvement must not run indefinitely."
+    },
+    "notice": {
+      "draft_created": "Draft created.",
+      "submitted": "Sent to the client for review.",
+      "attested": "Client confirmation recorded.",
+      "sent": "Sent. The room is open.",
+      "recalled": "Recalled."
+    },
+    "errors": {
+      "action_failed": "The action failed."
+    },
+    "status": {
+      "DRAFT": "draft",
+      "AWAITING_CLIENT": "awaiting client decision",
+      "CONFIRMED": "client confirmed",
+      "DECLINED": "client declined",
+      "SENT": "sent",
+      "OPENED": "opened",
+      "RESPONDED": "answered",
+      "RECALLED": "recalled",
+      "ENDED": "ended"
+    }
   }
 }

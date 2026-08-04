@@ -28,6 +28,20 @@ export async function POST(req) {
 
   const body = await req.json().catch(() => ({}));
 
+  // Töötaja ei tea kasutaja-ID-d — ta teab e-posti. Lahendame selle SERVERIS
+  // kasutajaks; kui sellist kasutajat ei ole, jääb `recipientUserId` tühjaks ja
+  // domeenikiht keeldub. Värav ei nõrgene: e-post on ainult otsingutee, mitte
+  // uus rada mittekasutajani.
+  let recipientUserId = String(body?.recipientUserId || "").trim();
+  const recipientEmail = String(body?.recipientEmail || "").trim().toLowerCase();
+  if (!recipientUserId && recipientEmail) {
+    const found = await prisma.user.findFirst({
+      where: { email: { equals: recipientEmail, mode: "insensitive" } },
+      select: { id: true }
+    });
+    recipientUserId = found?.id || "";
+  }
+
   return handleShareRoute(async () => {
     const share = await createNetworkShare({
       prisma,
@@ -38,7 +52,7 @@ export async function POST(req) {
       // saaks kokkuvõtte kogemata siduda vale inimesega.
       clientDisplayName: body?.clientDisplayName || "",
       clientExternalRef: body?.clientExternalRef || "",
-      recipientUserId: body?.recipientUserId,
+      recipientUserId,
       summaryText: body?.summaryText,
       purpose: body?.purpose,
       sharingBoundary: body?.sharingBoundary,

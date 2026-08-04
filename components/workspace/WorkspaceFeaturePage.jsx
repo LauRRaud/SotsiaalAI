@@ -13,6 +13,7 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Checkbox from "@/components/ui/Checkbox";
+import NetworkShareComposer from "@/components/network/NetworkShareComposer";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
 import Form from "@/components/ui/Form";
@@ -2164,6 +2165,10 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 {readText(t, "workspace_feature_pages.pre_inquiries.actions.archive", "Arhiveeri")}
               </Button>
             </div>
+            {/* COLLAB-P4: võrgustikku kaasamine sünnib SIIT, sest jagamise
+                lähteobjekt on just see pöördumine. Eraldi komponent hoiab selle
+                faili muudatuse ühe rea peal. */}
+            <NetworkShareComposer preInquiryId={activeReceivedInquiry.id} />
           </SectionCard>
         ) : null}
 
