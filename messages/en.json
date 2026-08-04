@@ -5948,6 +5948,54 @@
         "type": "type",
         "language": "language"
       }
+    },
+    "urgent_desks": {
+      "eyebrow": "Urgent help request",
+      "title": "Intake desks",
+      "lead": "The desk IS the switch. A region opens to people only once its desk is confirmed, staffed and switched on. There is no separate feature flag.",
+      "conditions_note": "Changing a condition revokes the confirmation and closes the desk. An old confirmation does not cover new text.",
+      "table_caption": "Urgent help request desks by region",
+      "empty": "No desk has been configured. Until one exists, the urgent help request path stays hidden everywhere.",
+      "columns": {
+        "municipality": "Region",
+        "public_name": "Public name",
+        "reading_time": "Reading time",
+        "state": "State",
+        "verified": "Confirmed",
+        "members": "Staff",
+        "blockers": "What is missing"
+      },
+      "state": {
+        "open": "Open to people",
+        "closed": "Closed"
+      },
+      "verified_never": "Not confirmed",
+      "actions": {
+        "verify": "Confirm conditions",
+        "activate": "Switch on",
+        "deactivate": "Switch off"
+      },
+      "errors": {
+        "load_failed": "Loading the desks failed.",
+        "save_failed": "Saving the change failed.",
+        "not_ready": "The desk cannot be switched on because its conditions are not met."
+      },
+      "block_reasons": {
+        "missing": "No desk",
+        "inactive": "Switched off",
+        "unstaffed": "No staff assigned",
+        "direct_contact_not_allowed": "Direct contact not permitted",
+        "reading_time_missing": "Reading time missing",
+        "emergency_boundary_missing": "112 boundary missing",
+        "public_name_missing": "Public name missing",
+        "opening_hours_missing": "Opening hours missing",
+        "who_may_contact_missing": "Eligible contacts undefined",
+        "cost_missing": "Cost to the person undefined",
+        "contact_channel_missing": "Intake channel missing",
+        "never_verified": "Conditions not confirmed",
+        "verification_stale": "Confirmation has expired",
+        "lifetime_invalid": "Expiry window undefined"
+      }
     }
   },
   "journey": {
@@ -9009,5 +9057,72 @@
     },
     "auth_required": "Log in to make an estimate.",
     "loading": "Loading..."
+  },
+  "urgent": {
+    "title": "Urgent help request",
+    "lead": "If the situation cannot wait until morning, describe it here in your own words. Your description goes to your municipality's intake desk.",
+    "not_emergency": "This is not an emergency number. If there is immediate danger to life or health, call 112.",
+    "loading": "Loading...",
+    "unavailable": {
+      "title": "This path is not available in your region right now",
+      "body": "An urgent help request can only be sent where an intake desk and a reading time have been agreed. Your region has neither at the moment.",
+      "services_link": "Open the service map",
+      "pre_inquiry_link": "Prepare a pre-inquiry"
+    },
+    "emergency": {
+      "title": "Call 112 now",
+      "body": "You described a situation where someone may be in immediate danger. That must not be left waiting for someone to read it later.",
+      "back": "Back to the form"
+    },
+    "desk": {
+      "heading": "Where this goes",
+      "reading_time": "Reading time",
+      "reading_time_note": "The platform can only promise when someone reads your description. Coming to you is the municipality's decision.",
+      "opening_hours": "Opening hours",
+      "who_may_contact": "Who may contact",
+      "cost": "Your cost",
+      "contact_channel": "Intake",
+      "emergency_boundary": "When to call 112",
+      "pre_assessment_required": "This municipality expects a prior assessment."
+    },
+    "form": {
+      "municipality_label": "Where are you?",
+      "municipality_placeholder": "Choose a municipality",
+      "situation_label": "What is happening?",
+      "situation_help": "Write in your own words. The receiver sees your text exactly as you wrote it.",
+      "contact_name_label": "Your name",
+      "contact_phone_label": "A phone number where you can be reached",
+      "safety_label": "Is anyone in danger right now?",
+      "safety_yes": "Yes",
+      "safety_no": "No",
+      "consent_note": "Sending is your consent: you are asking for this information to be passed to the desk named above.",
+      "submit": "Send the request",
+      "submitting": "Sending..."
+    },
+    "sent": {
+      "title": "Your request has been sent",
+      "reading_time": "Promised reading time: {readingTime}",
+      "recall": "Take it back",
+      "recall_hint": "You can take it back for as long as nobody has read it.",
+      "convert": "Turn this into a pre-inquiry",
+      "converted": "A pre-inquiry draft has been created from this."
+    },
+    "status": {
+      "SENT": "Sent, waiting to be read",
+      "READ": "Read",
+      "TAKEN": "Taken on",
+      "DECLINED": "Could not be taken on",
+      "RESOLVED": "The desk's work is done",
+      "EXPIRED": "No answer came within the promised time",
+      "RECALLED": "You took it back"
+    },
+    "errors": {
+      "desk_not_available": "There is no urgent help request desk in this region.",
+      "situation_required": "Describe what is happening.",
+      "contact_name_required": "Add a name so the receiver knows who they are speaking with.",
+      "contact_phone_required": "Add a phone number where you can be reached.",
+      "municipality_required": "Choose a municipality.",
+      "generic": "Sending failed. Please try again."
+    }
   }
 }

@@ -5948,6 +5948,54 @@
         "type": "Tüüp",
         "language": "Keel"
       }
+    },
+    "urgent_desks": {
+      "eyebrow": "Kiireloomuline abipalve",
+      "title": "Vastuvõtulauad",
+      "lead": "Laud ON lüliti. Piirkond avaneb inimesele alles siis, kui laud on kinnitatud, mehitatud ja sisse lülitatud. Eraldi funktsioonilippu ei ole.",
+      "conditions_note": "Tingimuse muutmine tühistab kinnituse ja sulgeb laua. Vana kinnitus ei kata uut teksti.",
+      "table_caption": "Kiireloomulise abipalve lauad piirkondade kaupa",
+      "empty": "Ühtegi lauda ei ole seadistatud. Kuni lauda ei ole, on kiireloomulise abipalve rada kõikjal peidus.",
+      "columns": {
+        "municipality": "Piirkond",
+        "public_name": "Avalik nimi",
+        "reading_time": "Lugemisaeg",
+        "state": "Seis",
+        "verified": "Kinnitatud",
+        "members": "Mehitajaid",
+        "blockers": "Mis on puudu"
+      },
+      "state": {
+        "open": "Avatud inimesele",
+        "closed": "Suletud"
+      },
+      "verified_never": "Kinnitamata",
+      "actions": {
+        "verify": "Kinnita tingimused",
+        "activate": "Lülita sisse",
+        "deactivate": "Lülita välja"
+      },
+      "errors": {
+        "load_failed": "Laudade laadimine ebaõnnestus.",
+        "save_failed": "Muudatuse salvestamine ebaõnnestus.",
+        "not_ready": "Lauda ei saa sisse lülitada, sest tingimused ei ole täidetud."
+      },
+      "block_reasons": {
+        "missing": "Lauda ei ole",
+        "inactive": "Välja lülitatud",
+        "unstaffed": "Mehitajaid ei ole",
+        "direct_contact_not_allowed": "Otsepöördumine ei ole lubatud",
+        "reading_time_missing": "Lugemisaeg puudub",
+        "emergency_boundary_missing": "112 piir puudub",
+        "public_name_missing": "Avalik nimi puudub",
+        "opening_hours_missing": "Tööaeg puudub",
+        "who_may_contact_missing": "Pöördujate ring on määramata",
+        "cost_missing": "Inimese kulu on määramata",
+        "contact_channel_missing": "Vastuvõtuviis puudub",
+        "never_verified": "Tingimused on kinnitamata",
+        "verification_stale": "Kinnitus on aegunud",
+        "lifetime_invalid": "Aegumisaken on määramata"
+      }
     }
   },
   "journey": {
@@ -9009,5 +9057,72 @@
     },
     "auth_required": "Eelhinnangu tegemiseks logi sisse.",
     "loading": "Laen..."
+  },
+  "urgent": {
+    "title": "Kiireloomuline abipalve",
+    "lead": "Kui olukord ei kannata hommikuni, kirjelda see siin oma sõnadega. Sinu kirjeldus läheb sinu omavalitsuse vastuvõtulauale.",
+    "not_emergency": "See ei ole hädaabinumber. Kui on vahetu oht elule või tervisele, helista 112.",
+    "loading": "Laen...",
+    "unavailable": {
+      "title": "Selles piirkonnas seda rada praegu ei ole",
+      "body": "Kiireloomulise abipalve saab saata ainult sinna, kus on kokku lepitud vastuvõtulaud ja lugemisaeg. Sinu piirkonnas neid praegu ei ole.",
+      "services_link": "Vaata teenusekaarti",
+      "pre_inquiry_link": "Koosta eelpöördumine"
+    },
+    "emergency": {
+      "title": "Helista kohe 112",
+      "body": "Sa kirjeldasid olukorda, kus keegi võib olla vahetus ohus. Seda ei tohi jätta ootama, et keegi selle hiljem läbi loeks.",
+      "back": "Tagasi vormile"
+    },
+    "desk": {
+      "heading": "Kuhu see läheb",
+      "reading_time": "Lugemisaeg",
+      "reading_time_note": "Platvorm saab lubada ainult seda, millal keegi sinu kirjelduse läbi loeb. Kohalesõitmine on omavalitsuse otsus.",
+      "opening_hours": "Tööaeg",
+      "who_may_contact": "Kes tohib pöörduda",
+      "cost": "Sinu kulu",
+      "contact_channel": "Vastuvõtt",
+      "emergency_boundary": "Millal helistada 112",
+      "pre_assessment_required": "See omavalitsus eeldab eelhindamist."
+    },
+    "form": {
+      "municipality_label": "Kus sa oled?",
+      "municipality_placeholder": "Vali omavalitsus",
+      "situation_label": "Mis toimub?",
+      "situation_help": "Kirjuta oma sõnadega. Vastuvõtja näeb sinu teksti täpselt nii, nagu sa selle kirjutasid.",
+      "contact_name_label": "Sinu nimi",
+      "contact_phone_label": "Telefon, millelt sind kätte saab",
+      "safety_label": "Kas keegi on praegu ohus?",
+      "safety_yes": "Jah",
+      "safety_no": "Ei",
+      "consent_note": "Saatmine ongi sinu nõusolek: sa palud selle info edastada ülalnimetatud lauale.",
+      "submit": "Saada abipalve",
+      "submitting": "Saadan..."
+    },
+    "sent": {
+      "title": "Abipalve on saadetud",
+      "reading_time": "Lubatud lugemisaeg: {readingTime}",
+      "recall": "Võta tagasi",
+      "recall_hint": "Saad selle tagasi võtta seni, kuni keegi ei ole seda läbi lugenud.",
+      "convert": "Tee sellest eelpöördumine",
+      "converted": "Sellest on tehtud eelpöördumise mustand."
+    },
+    "status": {
+      "SENT": "Saadetud, ootab lugemist",
+      "READ": "Loetud",
+      "TAKEN": "Võetud töösse",
+      "DECLINED": "Ei jõutud vastu võtta",
+      "RESOLVED": "Laua töö on tehtud",
+      "EXPIRED": "Vastust ei tulnud lubatud aja jooksul",
+      "RECALLED": "Sina võtsid tagasi"
+    },
+    "errors": {
+      "desk_not_available": "Selles piirkonnas ei ole kiireloomulise abipalve lauda.",
+      "situation_required": "Kirjelda, mis toimub.",
+      "contact_name_required": "Lisa nimi, et vastuvõtja teaks, kellega ta räägib.",
+      "contact_phone_required": "Lisa telefon, millelt sind kätte saab.",
+      "municipality_required": "Vali omavalitsus.",
+      "generic": "Saatmine ebaõnnestus. Proovi uuesti."
+    }
   }
 }
