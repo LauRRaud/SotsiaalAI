@@ -158,9 +158,30 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
 | **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon) | **TEHTUD 04.08** |
 | **V2a — ruumi avamine** (`lib/network/shareRoom.js`, `ROOM_ORIGIN_TYPES.NETWORK_SHARE`) | **TEHTUD 04.08** |
 | **V2b — API-marsruudid** (8 marsruuti + `lib/network/shareRoutes.js`) | **TEHTUD 04.08** |
-| V3 — töötaja ja kliendi liides | tegemata |
+| V3 — töötaja ja kliendi liides | tegemata (pinnad otsustatud, vt allpool) |
 | V4 — saaja vaade ja vastamine | tegemata |
 | V5 — „Minu jagamised" haakumine | tegemata |
+
+### Pinnad — otsustatud 04.08. UUT LEHTE EI TULE.
+
+Juhtprintsiip: **uus funktsioon ei tohi tekitada uut kohta, mida kontrollida.** Kui
+võrgustikujagamine saaks oma lehe, peaks töötaja vaatama nelja kohta ja klient kahte.
+Kõik haakub kolme olemasoleva pinna külge.
+
+| Tegevus | Pind | Miks just seal |
+|---|---|---|
+| **Töötaja koostab jagamise** | `/eelpoordumised` — avatud pöördumise juures | `sourcePreInquiryId` on kohustuslik: jagamine SÜNNIB pöördumisest. Tegevus kuulub sinna, kus tema lähteobjekt juba on. Tühi vorm töölaual sunniks juhtumi uuesti üles otsima — sama viga, mille eest teekond→eelpöördumine üleminek juba hoiab („ilma et midagi tuleks uuesti kirjutada") |
+| **Töötaja näeb seisu** | `/toolaud` kaart | Töölaud on määratluse järgi „mis on saabunud, mis ootab vastust, mis on tähtaja lähedal". Kliendi kinnitust ootav jagamine ON ootamine; lähenev `participationEndsOn` ON tähtaeg. Kaart näitab seisu ja viib sisse — **koostamise vormi seal ei ole** |
+| **Klient kinnitab või keeldub** | `/minu-jagamised`, uus sektsioon kõige ülal: „Ootab sinu otsust" | Kõige kaalukam otsus. Platvorm juba lubab inimesele **ühte kohta, kus ta näeb oma info liikumist** koos tagasivõtmisega. Teine pind selleks, et „keegi tahab sinu kohta jagada", lõhuks selle lubaduse pooleks |
+| **Töötaja kannab välise kliendi otsuse üle** | sama koht, kus ta jagamise koostas | See on töötaja tegevus tema enda jagamise kohta, mitte eraldi töövoog |
+| **Saaja näeb ja vastab** | `/eelpoordumised` vastuvõtulaud, tüübimärkega | Osutaja jaoks on saabuv võrgustikujagamine sama kujuga mis saabuv eelpöördumine: midagi tuli, vaja lugeda ja vastata. Teine postkast tähendaks, et ta peab valvama kahte kohta |
+| **Arutelu** | `/ruum` | Ruum on juba olemas ja kannab `originType: NETWORK_SHARE` |
+
+**Üks aus vastuväide, mis sai kaalutud ja tagasi lükatud.** `/minu-jagamised` loetleb täna
+seda, mida inimene ON jaganud (väljuv suund); kinnitusootel jagamine on **sissetulev**
+päring. Suund on tõesti erinev. Aga ühendav mõiste ei ole suund, vaid **„kus mu info
+liigub"** — ja selle jaoks peab jääma üks koht. Sektsioon eristab suunad pealkirjaga, mitte
+eraldi lehega.
 
 ### V2b — marsruudid
 

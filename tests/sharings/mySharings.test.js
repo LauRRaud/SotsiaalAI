@@ -87,7 +87,35 @@ function fixtureDb() {
       acceptanceType: "ACCEPTED",
       acceptedAt: sentAt
     }], calls),
-    mentoringPrivateNote: model("mentoringPrivateNote", [], calls)
+    mentoringPrivateNote: model("mentoringPrivateNote", [], calls),
+    networkShare: model("networkShare", [
+      {
+        id: "share_done",
+        summaryText: "Juba saadetud kokkuvõte.",
+        purpose: "Võlanõustaja kaasamine.",
+        sharingBoundary: "Ainult võlaolukord.",
+        participationEndsOn: new Date("2026-12-31T00:00:00.000Z"),
+        status: "SENT",
+        clientConfirmedAt: new Date("2026-07-14T09:00:00.000Z"),
+        clientDeclinedAt: null,
+        sentAt,
+        openedAt: null,
+        roomId: "room_ns"
+      },
+      {
+        id: "share_waiting",
+        summaryText: "Ootab sinu otsust.",
+        purpose: "Kooli sotsiaalpedagoogi kaasamine.",
+        sharingBoundary: "Ainult koolikohustuse teema.",
+        participationEndsOn: new Date("2026-11-30T00:00:00.000Z"),
+        status: "AWAITING_CLIENT",
+        clientConfirmedAt: null,
+        clientDeclinedAt: null,
+        sentAt: null,
+        openedAt: null,
+        roomId: null
+      }
+    ], calls)
   };
   return { db, calls };
 }
@@ -96,7 +124,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const { db, calls } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(calls.length, 7);
+  assert.equal(calls.length, 8);
   assert.equal(calls.find((call) => call.name === "mentoringPrivateNote").query.where.ownerId, USER_ID);
   assert.equal(calls.find((call) => call.name === "preInquiry").query.where.authorId, USER_ID);
   assert.equal(calls.find((call) => call.name === "roomMember").query.where.userId, USER_ID);
@@ -121,7 +149,8 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
     "invites",
     "helpListings",
     "frameworkAcceptances",
-    "mentoringPreparations"
+    "mentoringPreparations",
+    "networkShares"
   ]);
 });
 
@@ -252,6 +281,48 @@ test("room owners cannot leave and an empty user id is rejected before queries",
     return true;
   });
   // preInquiry, invite, helpRequest, helpOffer, frameworkAcceptance,
-  // mentoringPrivateNote (roomMember is overridden and does not push).
-  assert.equal(calls.length, 6);
+  // mentoringPrivateNote, networkShare (roomMember is overridden and does not push).
+  assert.equal(calls.length, 7);
+});
+
+// --- COLLAB-P4: võrgustikujagamised „Minu jagamiste" all ---------------------
+// Suund on siin teistpidi kui ülejäänud read: need ei ole asjad, mida inimene
+// on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste ei ole suund,
+// vaid „kus mu info liigub" — seepärast on nad samas kohas.
+
+test("otsust ootav võrgustikujagamine tuleb esimesena, mitte ei kao ajaloo sisse", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+
+  assert.equal(result.networkShares.length, 2);
+  assert.equal(result.networkShares[0].id, "share_waiting");
+  assert.equal(result.networkShares[0].awaitingDecision, true);
+  assert.equal(result.networkShares[1].awaitingDecision, false);
+});
+
+test("võrgustikujagamine kannab suunamärget, et kuvakiht ei peaks seda tüübist ära arvama", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  for (const share of result.networkShares) {
+    assert.equal(share.direction, "INCOMING_REQUEST");
+  }
+});
+
+test("klient näeb otsustamiseks vajalikku: kokkuvõtet, eesmärki, jagamispiiri ja lõppu", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  const waiting = result.networkShares.find((share) => share.id === "share_waiting");
+  assert.equal(waiting.summaryText, "Ootab sinu otsust.");
+  assert.equal(waiting.purpose, "Kooli sotsiaalpedagoogi kaasamine.");
+  assert.equal(waiting.sharingBoundary, "Ainult koolikohustuse teema.");
+  assert.equal(waiting.participationEndsOn, "2026-11-30T00:00:00.000Z");
+});
+
+test("päring on kliendi enda peale piiratud ja MUSTANDEID ei tooda", async () => {
+  const { db, calls } = fixtureDb();
+  await loadMySharings(USER_ID, { db, now: NOW });
+  const call = calls.find((entry) => entry.name === "networkShare");
+  assert.equal(call.query.where.clientUserId, USER_ID);
+  // Mustandi kohta ei ole kliendil millegi üle otsustada.
+  assert.equal(call.query.where.status.in.includes("DRAFT"), false);
 });

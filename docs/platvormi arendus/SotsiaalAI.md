@@ -133,7 +133,7 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2598/2598**,
+**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2602/2602**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
 `npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
 
