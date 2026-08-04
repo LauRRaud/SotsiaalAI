@@ -157,10 +157,33 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
 |---|---|
 | **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon) | **TEHTUD 04.08** |
 | **V2a — ruumi avamine** (`lib/network/shareRoom.js`, `ROOM_ORIGIN_TYPES.NETWORK_SHARE`) | **TEHTUD 04.08** |
-| V2b — API-marsruudid | tegemata |
+| **V2b — API-marsruudid** (8 marsruuti + `lib/network/shareRoutes.js`) | **TEHTUD 04.08** |
 | V3 — töötaja ja kliendi liides | tegemata |
 | V4 — saaja vaade ja vastamine | tegemata |
 | V5 — „Minu jagamised" haakumine | tegemata |
+
+### V2b — marsruudid
+
+| Marsruut | Kes | Mida teeb |
+|---|---|---|
+| `POST /api/network-shares` | töötaja | mustand; **annab raamlepingu kontrolli pordina edasi** |
+| `GET /api/network-shares?role=worker\|client\|recipient` | kõik kolm | nimekiri — **sama päring, kolm eri kuju** |
+| `GET/PATCH /api/network-shares/[id]` | kõik kolm / töötaja | vaade rolli järgi; mustandi muutmine |
+| `POST …/submit` | töötaja | → `AWAITING_CLIENT` |
+| `POST …/decision` | **klient ise** | `IN_APP` kinnitus või keeldumine |
+| `POST …/attest` | töötaja | **välise** kliendi otsuse ülekanne |
+| `POST …/send` | töötaja | nõuab kinnitust, avab ruumi |
+| `POST …/open` | saaja | sulgeb tagasivõtmise akna |
+| `POST …/recall` | töötaja | ainult enne avamist |
+
+Marsruudikihi lepingutestid (`tests/network/shareRoutes.test.js`) lukustavad neli asja, mis
+on lekkeohtlikud just marsruudi, mitte domeeni tasemel:
+
+1. **Klient ja töötaja võetakse SESSIOONIST, mitte päringu kehast.** Kui `clientUserId`
+   tuleks kehast, saaks igaüks kellegi teise eest kinnitada.
+2. **Saaja rajad ei kasuta kunagi `workerProjection`-it.**
+3. **Mitteosaline saab 404, mitte 403** — jagamise olemasolu ei lekitata.
+4. **Tundmatu viga annab 500 + üldise sõnumi**, mitte andmebaasi teate.
 
 ### V1 — mis on tehtud
 

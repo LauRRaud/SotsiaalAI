@@ -120,7 +120,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
 | **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 tuum TEHTUD 04.08**, auditi 8 leiust A–G parandatud ja testidega lukus (32 testi). Alles P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärad |
-| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1 kitsas tuum TEHTUD 04.08** (`lib/network/share.js`, 19 testi); leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)). Tegemata: API-marsruudid, liides, saaja vaade |
+| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1+V2 TEHTUD 04.08**: domeenikiht, ruum ja 8 API-marsruuti (44 testi) — rada on serverist läbitav. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)). Tegemata: liides (V3–V5) |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
@@ -133,7 +133,7 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2588/2588**,
+**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2598/2598**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
 `npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
 
@@ -521,7 +521,8 @@ kokkuvõte ühele olemasoleva kontoga saajale → kliendi kinnitus → ruum. Kol
 testidega lukus: saaja peab olema kasutaja · kinnitamata jagamist ei saa saata · teksti
 muutmine pärast kinnitust tühistab kinnituse. Ruumi avamine on samuti koodis
 (`lib/network/shareRoom.js`). **Klient ei pea olema kasutaja** (omanik 04.08) — kaks rada,
-vt allpool. Tegemata on API-marsruudid ja liides. Leping on mustand ja ootab kinnitust
+vt allpool. **API-marsruudid on olemas** (8 marsruuti, rada on serverist läbitav);
+tegemata on liides. Leping on mustand ja ootab kinnitust
 ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md),
 osad E1–E6; koodi veel ei ole). Väikseim töötav rada: eelpöördumine või
 kohtumise tulemus → töötaja kaardistab vajaliku võrgustiku → **klient näeb ja kinnitab, mida
