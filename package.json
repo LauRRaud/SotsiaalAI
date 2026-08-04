@@ -21,6 +21,7 @@
     "css:budget": "node scripts/css-cleanup/important-budget.mjs",
     "db:push:local": "dotenv -e .env.local -- prisma db push",
     "db:migrate:check": "node scripts/check-clean-migrations.mjs",
+    "urgent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-request-probe.mjs",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",
     "prisma:generate:local": "dotenv -e .env.local -- prisma generate",
     "seed:municipalities": "node scripts/seed-municipalities.mjs",
