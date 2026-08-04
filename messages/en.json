@@ -8926,5 +8926,85 @@
       "title": "Network work shared with you",
       "intro": "Network summaries have been shared with you. You see only what was shared with you."
     }
+  },
+  "subsistence": {
+    "title": "Subsistence benefit estimate",
+    "not_a_decision": "This is not a decision. The local authority decides subsistence benefit.",
+    "stays_on_device": "The calculation runs on your device. What you enter is not sent anywhere and is not saved.",
+    "actions": {
+      "calculate": "Calculate estimate"
+    },
+    "section": {
+      "family": "Family",
+      "income": "Income last month",
+      "housing": "Housing",
+      "gates": "Clarifications"
+    },
+    "fields": {
+      "adults": "Adult family members",
+      "minors": "Minor family members",
+      "work_income": "Work income (net)",
+      "other_income": "Other income (pension, benefits, maintenance paid to you)",
+      "paid_maintenance": "Maintenance you pay",
+      "enforcement": "Amount withheld by a bailiff",
+      "area": "Dwelling area (m²)",
+      "rooms": "Number of rooms",
+      "single_occupant": "I live alone and am a pensioner or have partial or no work ability"
+    },
+    "hints": {
+      "excluded_income": "Do not include one-off benefits, disability benefits, student loans or study allowances — the law does not count them as income.",
+      "rooms": "If there are as many rooms as residents, the whole area is counted.",
+      "current_month": "Earlier housing debt is not counted."
+    },
+    "gates": {
+      "current_month": "Are these costs due in the current month?",
+      "landlord_family": "Is the landlord a family member or their company?",
+      "apartment": "Do you live in an apartment building?",
+      "loan": "Is the housing loan in your name and is the home your registered residence?"
+    },
+    "result": {
+      "title": "Estimate",
+      "incomplete": "An estimate cannot be given yet",
+      "limit": "Family subsistence limit",
+      "housing": "Housing costs counted",
+      "income": "Income counted"
+    },
+    "caveat": {
+      "kov_limits": "Your municipality sets its own caps on housing costs, which this calculation does not know. The real amount may be lower.",
+      "above_line": "With this input there would be no benefit. Recalculate if your situation changes."
+    },
+    "costs": {
+      "rent": "Rent",
+      "buildingManagement": "Building management cost",
+      "buildingRenovationLoan": "Renovation loan repayment",
+      "water": "Water and sewerage",
+      "hotWater": "Hot water",
+      "heating": "Heating",
+      "electricity": "Electricity",
+      "gas": "Household gas",
+      "landTax": "Land tax",
+      "buildingInsurance": "Building insurance",
+      "wasteRemoval": "Waste removal",
+      "housingLoan": "Housing loan repayment"
+    },
+    "issues": {
+      "NO_FAMILY_MEMBERS": "Add at least one family member.",
+      "UNSUPPORTED_DATE": "There is no confirmed subsistence rate for this date.",
+      "DWELLING_AREA_REQUIRED": "Enter the dwelling area — the norm cannot be applied without it.",
+      "ROOM_COUNT_REQUIRED": "Enter the number of rooms — it decides whether the area is capped.",
+      "GATE_UNANSWERED": "Answer all the clarifying questions.",
+      "UNKNOWN_HOUSING_COST_KIND": "Unknown housing cost type.",
+      "NEGATIVE_AMOUNT": "An amount cannot be negative.",
+      "INVALID_AMOUNT": "Check the amounts you entered.",
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Rent from a family member is generally not counted.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Apartment building costs do not apply outside an apartment building.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "The housing loan conditions are not met.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "A housing loan counts for up to six months per year.",
+      "INVALID_WORK_EXEMPTION_MONTH": "Check the work income exemption month."
+    },
+    "answers": {
+      "yes": "Yes",
+      "no": "No"
+    }
   }
 }

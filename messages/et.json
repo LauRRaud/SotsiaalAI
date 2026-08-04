@@ -8926,5 +8926,85 @@
       "title": "Sinuga jagatud võrgustikutöö",
       "intro": "Sulle on jagatud võrgustikutöö kokkuvõtteid. Näed ainult seda, mis on sinuga jagatud."
     }
+  },
+  "subsistence": {
+    "title": "Toimetulekutoetuse eelhinnang",
+    "not_a_decision": "See ei ole otsus. Toimetulekutoetuse määrab valla- või linnavalitsus.",
+    "stays_on_device": "Arvutus käib sinu seadmes. Sisestatud andmed ei lähe kuhugi ära ega salvestu.",
+    "actions": {
+      "calculate": "Arvuta eelhinnang"
+    },
+    "section": {
+      "family": "Pere",
+      "income": "Eelmise kuu sissetulek",
+      "housing": "Eluase",
+      "gates": "Täpsustused"
+    },
+    "fields": {
+      "adults": "Täisealisi pereliikmeid",
+      "minors": "Alaealisi pereliikmeid",
+      "work_income": "Töine sissetulek (netos)",
+      "other_income": "Muu sissetulek (pension, toetused, elatis sulle)",
+      "paid_maintenance": "Sinu makstud elatis",
+      "enforcement": "Kohtutäituri kinni peetud summa",
+      "area": "Eluruumi üldpind (m²)",
+      "rooms": "Tubade arv",
+      "single_occupant": "Elan üksi ja olen pensionär või osalise/puuduva töövõimega"
+    },
+    "hints": {
+      "excluded_income": "Ära arvesta siia ühekordseid toetusi, puudetoetusi, õppelaenu ega õppetoetusi — neid seadus sissetulekuks ei loe.",
+      "rooms": "Kui tube on sama palju kui elanikke, võetakse arvesse kogu pind.",
+      "current_month": "Varasemat eluasemevõlga arvesse ei võeta."
+    },
+    "gates": {
+      "current_month": "Kas need on jooksval kuul tasumisele kuuluvad kulud?",
+      "landlord_family": "Kas üürileandja on pereliige või tema äriühing?",
+      "apartment": "Kas elad korterelamus?",
+      "loan": "Kas eluasemelaen on sinu nimel ja laenatud eluase on sinu rahvastikuregistrijärgne elukoht?"
+    },
+    "result": {
+      "title": "Eelhinnang",
+      "incomplete": "Eelhinnangut ei saa veel anda",
+      "limit": "Pere toimetulekupiir",
+      "housing": "Arvesse minev eluasemekulu",
+      "income": "Arvesse minev sissetulek"
+    },
+    "caveat": {
+      "kov_limits": "Sinu omavalitsus kehtestab eluasemekuludele oma piirmäärad, mida see arvutus ei tea. Tegelik summa võib olla väiksem.",
+      "above_line": "Selle sisendi juures toetust ei tuleks. Olukorra muutudes tasub uuesti arvutada."
+    },
+    "costs": {
+      "rent": "Üür",
+      "buildingManagement": "Korterelamu haldamise kulu",
+      "buildingRenovationLoan": "Renoveerimislaenu tagasimakse",
+      "water": "Vesi ja kanalisatsioon",
+      "hotWater": "Soojavesi",
+      "heating": "Küte",
+      "electricity": "Elekter",
+      "gas": "Majapidamisgaas",
+      "landTax": "Maamaks",
+      "buildingInsurance": "Hoonekindlustus",
+      "wasteRemoval": "Olmejäätmete vedu",
+      "housingLoan": "Eluasemelaenu tagasimakse"
+    },
+    "issues": {
+      "NO_FAMILY_MEMBERS": "Märgi vähemalt üks pereliige.",
+      "UNSUPPORTED_DATE": "Selle kuupäeva kohta ei ole kinnitatud toimetulekupiiri määra.",
+      "DWELLING_AREA_REQUIRED": "Märgi eluruumi üldpind — ilma selleta ei saa normpinda arvestada.",
+      "ROOM_COUNT_REQUIRED": "Märgi tubade arv — sellest sõltub, kas pinda kärbitakse.",
+      "GATE_UNANSWERED": "Vasta kõigile täpsustavatele küsimustele.",
+      "UNKNOWN_HOUSING_COST_KIND": "Tundmatu eluasemekulu liik.",
+      "NEGATIVE_AMOUNT": "Summa ei saa olla negatiivne.",
+      "INVALID_AMOUNT": "Kontrolli sisestatud summasid.",
+      "RENT_FROM_FAMILY_NOT_COUNTED": "Pereliikmelt üüritud eluaseme üüri üldjuhul arvesse ei võeta.",
+      "APARTMENT_BUILDING_COSTS_NOT_APPLICABLE": "Korterelamu kulud ei kohaldu, kui sa korterelamus ei ela.",
+      "HOUSING_LOAN_CONDITIONS_NOT_MET": "Eluasemelaenu tingimused ei ole täidetud.",
+      "HOUSING_LOAN_MONTH_LIMIT_REACHED": "Eluasemelaenu saab arvesse võtta kuni kuus kuud aastas.",
+      "INVALID_WORK_EXEMPTION_MONTH": "Kontrolli töise tulu erandi kuud."
+    },
+    "answers": {
+      "yes": "Jah",
+      "no": "Ei"
+    }
   }
 }
