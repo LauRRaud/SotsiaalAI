@@ -119,8 +119,8 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
-| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | puhas kooditöö, O-CO-6 ei kehti (kõik osalejad on kasutajad) |
-| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | deterministlik valem, ei vaja partnerit ega õigusanalüüsi |
+| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 tuum TEHTUD 04.08** + leping väljastatud; alles P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärad |
+| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | puhas kooditöö, O-CO-6 ei kehti (kõik osalejad on kasutajad) — **järgmine järjekorras** |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
@@ -213,7 +213,7 @@ See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
 ### Tegemata
 
-- **Toimetulekutoetuse eelkalkulaator** — SHS § 131–134 deterministlik valem, informatiivne eelhinnang, MITTE otsus. Eraldi koodi ei ole. Registris märgitud „pöörduja tapjafunktsiooniks"; ei vaja partnerit ega õigusanalüüsi.
+- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 deterministlik tuum on TEHTUD 04.08** (`lib/benefits/subsistence.js`, 20 testi). Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md). Tegemata on P1 pöörduja vorm, P2 dokumentide kontrollnimekiri, P3 kontota avalik leht (SEO-uks), P4 KOV piirmäärade andmekiht (partneri taga).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
 - **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
 
@@ -632,7 +632,7 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 | # | Moodul | Mis blokeerib |
 |---|---|---|
 | A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
-| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — deterministlik valem ja selge keel; informatiivne eelhinnang, MITTE otsus. Avalik versioon on ühtlasi SEO-uks | **miski ei blokeeri** |
+| A2 | **Toimetulekutoetuse eelkalkulaator** (§ 131–134) — **P0 tuum TEHTUD 04.08**, leping väljastatud. Valem, määrad (220/176/264 alates 01.01.2026) ja eluruumi norm (18 m²/liige + 15 m²/pere; üksi elav pensionär kuni 51 m²) on kontrollitud SKA kommenteeritud variandist 12.03.2026. Alles P1–P4 | **miski ei blokeeri**; P4 vajab KOV-partnerit, sest piirmäärad kehtestab iga volikogu ise (§ 133 lg 6) |
 | A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
 | A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
 | A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |
