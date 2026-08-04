@@ -9132,6 +9132,78 @@
       "title": "Kontrolli enne saatmist",
       "what_goes": "Mis läheb",
       "back": "Muuda"
+    },
+    "desk_queue": {
+      "title": "Kiireloomuline vastuvõtt",
+      "lead": "Kiireloomulised abipalved ja eelpöördumised ühes järjekorras. Kaua oodanud on ees — muud järjestust siin ei ole.",
+      "promise_note": "Lugemisaja lubadust kannab ainult kiireloomuline abipalve. Eelpöördumisel seda ei ole ja tühi lahter tähendabki seda.",
+      "no_desks": "Sa ei istu ühegi kiireloomulise vastuvõtu laua taga.",
+      "desk_closed": "See laud on praegu suletud — uusi abipalveid siia ei tule. Vanad jäävad nähtavaks.",
+      "empty": "Järjekord on tühi.",
+      "awaiting": "Ootab vastust: {count}",
+      "overdue": "Üle lubatud aja: {count}",
+      "table_caption": "Vastuvõtu järjekord",
+      "columns": {
+        "kind": "Allikas",
+        "received": "Saabus",
+        "status": "Seis",
+        "promise": "Lugemisaeg",
+        "actions": "Toimingud"
+      },
+      "kinds": {
+        "URGENT_REQUEST": "Kiireloomuline abipalve",
+        "PRE_INQUIRY": "Eelpöördumine"
+      },
+      "overdue_badge": "Üle lubatud aja",
+      "open": "Ava",
+      "close": "Sulge",
+      "actions": {
+        "mark_read": "Märgi loetuks",
+        "take": "Võtan",
+        "decline": "Ei jõua",
+        "resolve": "Lõpeta",
+        "handover": "Anna üle",
+        "accept_handover": "Võta üleandmine vastu"
+      },
+      "decline": {
+        "reason_label": "Miks ei jõua? Inimene näeb seda.",
+        "reason_required": "Põhjus on kohustuslik. Vaikus on halvim tulemus."
+      },
+      "handover": {
+        "target_label": "Kellele annad üle?",
+        "note_label": "Mida vastuvõtja peab teadma?",
+        "title": "Saabunud üleandmised",
+        "pending": "Ootab sinu kinnitust",
+        "note": "Üleandja märkus"
+      },
+      "request": {
+        "verbatim_label": "Inimese enda sõnad",
+        "verbatim_note": "See tekst on muutmata. Kokkuvõte ei asenda seda.",
+        "assistant_label": "AI koostatud mustand",
+        "assistant_note": "Masina mustand. Ei ole inimese ütlus.",
+        "contact": "Kontakt",
+        "promise": "Lubatud lugemisaeg"
+      },
+      "trail": {
+        "title": "Vastutusjälg",
+        "kinds": {
+          "CREATED": "Saadetud",
+          "VIEWED": "Vaadatud",
+          "READ_MARKED": "Märgitud loetuks",
+          "TAKEN": "Võetud",
+          "DECLINED": "Keeldutud",
+          "RESOLVED": "Lõpetatud",
+          "RECALLED": "Tagasi võetud",
+          "EXPIRED": "Aegunud",
+          "HANDED_OVER": "Antud üle",
+          "HANDOVER_ACCEPTED": "Üleandmine kinnitatud",
+          "CONVERTED": "Tehtud eelpöördumiseks"
+        }
+      },
+      "errors": {
+        "load_failed": "Järjekorra laadimine ebaõnnestus.",
+        "action_failed": "Toiming ebaõnnestus."
+      }
     }
   }
 }

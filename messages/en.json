@@ -9132,6 +9132,78 @@
       "title": "Check before sending",
       "what_goes": "What is being sent",
       "back": "Edit"
+    },
+    "desk_queue": {
+      "title": "Urgent intake",
+      "lead": "Urgent help requests and pre-inquiries in one queue. Whoever has waited longest is first — there is no other ordering here.",
+      "promise_note": "Only an urgent help request carries a reading-time promise. A pre-inquiry has none, and the empty cell means exactly that.",
+      "no_desks": "You are not staffing any urgent intake desk.",
+      "desk_closed": "This desk is currently closed — no new requests arrive here. Existing ones stay visible.",
+      "empty": "The queue is empty.",
+      "awaiting": "Awaiting an answer: {count}",
+      "overdue": "Past the promised time: {count}",
+      "table_caption": "Intake queue",
+      "columns": {
+        "kind": "Source",
+        "received": "Arrived",
+        "status": "State",
+        "promise": "Reading time",
+        "actions": "Actions"
+      },
+      "kinds": {
+        "URGENT_REQUEST": "Urgent help request",
+        "PRE_INQUIRY": "Pre-inquiry"
+      },
+      "overdue_badge": "Past the promised time",
+      "open": "Open",
+      "close": "Close",
+      "actions": {
+        "mark_read": "Mark as read",
+        "take": "I'll take it",
+        "decline": "Cannot take it",
+        "resolve": "Close",
+        "handover": "Hand over",
+        "accept_handover": "Accept the handover"
+      },
+      "decline": {
+        "reason_label": "Why not? The person sees this.",
+        "reason_required": "A reason is required. Silence is the worst outcome."
+      },
+      "handover": {
+        "target_label": "Hand over to whom?",
+        "note_label": "What does the receiver need to know?",
+        "title": "Incoming handovers",
+        "pending": "Awaiting your confirmation",
+        "note": "Note from the sender"
+      },
+      "request": {
+        "verbatim_label": "The person's own words",
+        "verbatim_note": "This text is unchanged. A summary does not replace it.",
+        "assistant_label": "AI-drafted structure",
+        "assistant_note": "A machine draft. Not the person's statement.",
+        "contact": "Contact",
+        "promise": "Promised reading time"
+      },
+      "trail": {
+        "title": "Accountability trail",
+        "kinds": {
+          "CREATED": "Sent",
+          "VIEWED": "Viewed",
+          "READ_MARKED": "Marked as read",
+          "TAKEN": "Taken on",
+          "DECLINED": "Declined",
+          "RESOLVED": "Closed",
+          "RECALLED": "Taken back",
+          "EXPIRED": "Expired",
+          "HANDED_OVER": "Handed over",
+          "HANDOVER_ACCEPTED": "Handover accepted",
+          "CONVERTED": "Turned into a pre-inquiry"
+        }
+      },
+      "errors": {
+        "load_failed": "Loading the queue failed.",
+        "action_failed": "The action failed."
+      }
     }
   }
 }
