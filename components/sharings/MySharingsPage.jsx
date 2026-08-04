@@ -23,7 +23,8 @@ const EMPTY_SHARINGS = Object.freeze({
   helpListings: [],
   frameworkAcceptances: [],
   mentoringPreparations: [],
-  networkShares: []
+  networkShares: [],
+  urgentRequests: []
 });
 
 function statusKey(item) {
@@ -130,6 +131,45 @@ export default function MySharingsPage() {
      Otsus läheb otse, ilma ModalConfirm'ita: kinnitamine EI ole pöördumatu
      (töötaja peab veel saatma) ja keeldumine on ohutu suund. Lisaklikk siin
      ainult väsitaks inimest, kes nagunii kaalub. */
+  /**
+   * SK-V1: kiireloomulise abipalve tagasivõtt.
+   *
+   * Sama piir mis eelpöördumisel — kuni keegi ei ole lugenud. Serveri kontroll
+   * on ülimuslik: `canRecall` siin on ainult nupu nähtavus, mitte luba.
+   */
+  const recallUrgentRequest = useCallback(async (request) => {
+    const key = `urgent:${request.id}`;
+    if (mutationInFlightRef.current) return;
+    mutationInFlightRef.current = key;
+    setBusyKey(key);
+    resetMessages();
+    try {
+      const response = await fetch(`/api/urgent-requests/${encodeURIComponent(request.id)}/recall`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
+        body: "{}"
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || payload?.ok === false) {
+        throw new Error(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "my_sharings.errors.action_failed"
+        }));
+      }
+      setFeedback(t("my_sharings.notice.urgent_recalled"));
+      const refreshed = await loadSharings({ preserveData: true });
+      if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
+    } catch (error) {
+      setActionError(error?.message || t("my_sharings.errors.action_failed"));
+    } finally {
+      if (mutationInFlightRef.current === key) {
+        mutationInFlightRef.current = "";
+        setBusyKey("");
+      }
+    }
+  }, [loadSharings, locale, resetMessages, t]);
+
   const decideNetworkShare = useCallback(async (share, decision) => {
     const key = `share:${share.id}`;
     if (mutationInFlightRef.current) return;
@@ -365,6 +405,59 @@ export default function MySharingsPage() {
                           onClick={() => void decideNetworkShare(item, "DECLINED")}
                         >
                           {t("my_sharings.actions.decline_share")}
+                        </Button>
+                      </div>
+                    ) : null}
+                  </Panel>
+                );
+              })}
+            </Section>
+
+            {/* SK-V1. Vastust ootav kiireloomuline abipalve on kõige ärevamas
+                hetkes tehtud jagamine — ta seisab kohe otsust ootavate järel ja
+                mitte ajaloo all. Keeldumise PÕHJUS on siin nähtav tekst: ilma
+                temata oleks „ei jõudnud" ainult uks, mis kinni käis. */}
+            <Section
+              title={t("my_sharings.sections.urgent_requests")}
+              help={t("my_sharings.section_help.urgent_requests")}
+              empty={t("my_sharings.empty.urgent_requests")}
+              items={sharings.urgentRequests}
+            >
+              {sharings.urgentRequests.map((item) => {
+                const busy = busyKey === `urgent:${item.id}`;
+                return (
+                  <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                    <div className={styles.cardTopline}>
+                      <div>
+                        <span className={styles.eyebrow}>{t(`urgent.status.${item.status}`, item.status)}</span>
+                        <h3>{t("my_sharings.labels.urgent_request")}</h3>
+                      </div>
+                      <time dateTime={item.sentAt || undefined}>{formatDate(item.sentAt)}</time>
+                    </div>
+
+                    <p className={styles.sharedText}>{item.situationVerbatim}</p>
+
+                    <dl className={styles.meta}>
+                      <div>
+                        <dt>{t("urgent.desk.reading_time")}</dt>
+                        <dd>{item.readingTimePromise}</dd>
+                      </div>
+                      {item.declineReason ? (
+                        <div>
+                          <dt>{t("my_sharings.labels.urgent_decline_reason")}</dt>
+                          <dd>{item.declineReason}</dd>
+                        </div>
+                      ) : null}
+                    </dl>
+
+                    {item.canRecall ? (
+                      <div className={styles.cardActions}>
+                        <Button
+                          variant="secondary"
+                          disabled={busy || Boolean(busyKey)}
+                          onClick={() => void recallUrgentRequest(item)}
+                        >
+                          {t("urgent.sent.recall")}
                         </Button>
                       </div>
                     ) : null}

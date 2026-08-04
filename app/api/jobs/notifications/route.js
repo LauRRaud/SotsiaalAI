@@ -9,6 +9,7 @@ import { reconcileNotificationEvents } from "@/lib/notificationReconciler";
 import { projectDomainEvents } from "@/lib/events/projector";
 import { runMentoringSweep } from "@/lib/mentoring/sweep";
 import { runFieldSafetySweep } from "@/lib/field/safety";
+import { runUrgentExpirySweep } from "@/lib/urgent/sweep";
 import { safeError } from "@/lib/privacy/safeError";
 
 const NO_STORE = { "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0" };
@@ -69,6 +70,10 @@ export async function POST(request) {
     // FIELD-V1 safety check-in sweep rides the same production timer so the
     // dead-man escalation needs no new ops surface.
     const fieldSafety = await runFieldSafetySweep({ dryRun, batchSize });
+    // SK-V1 E5: urgent help requests that nobody answered within the desk's
+    // promised window must reach a visible end. Same timer, no new ops surface —
+    // silence is the worst possible outcome for the person who wrote at 23:47.
+    const urgentExpiry = await runUrgentExpirySweep({ dryRun, batchSize });
     const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
     projected.truncated = Boolean(projectorCursor);
     if (truncated) console.error("[jobs/notifications] processing truncated", {
@@ -85,7 +90,8 @@ export async function POST(request) {
       projected,
       mentoring,
       delivery,
-      fieldSafety
+      fieldSafety,
+      urgentExpiry
     });
   } catch (error) {
     console.error("[jobs/notifications] failed", safeError(error));

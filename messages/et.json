@@ -7294,7 +7294,8 @@
       "invites": "Aktiivsed kutsed",
       "help": "Avaldatud abisoovid ja -pakkumised",
       "frameworks": "Minu kinnitused",
-      "network_shares": "Võrgustikku kaasamine"
+      "network_shares": "Võrgustikku kaasamine",
+      "urgent_requests": "Kiireloomulised abipalved"
     },
     "section_help": {
       "pre_inquiries": "Tagasivõtt eemaldab avamata platvormisisese pöördumise adressaadi aktiivsest loendist. Auditijälg jääb alles.",
@@ -7302,7 +7303,8 @@
       "invites": "Kutse annab ligipääsu alles pärast vastuvõtmist.",
       "help": "Need kirjed on avalikud kuni sulgemise või aegumiseni.",
       "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest.",
-      "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas ja mida jagatakse."
+      "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas ja mida jagatakse.",
+      "urgent_requests": "Abipalved, mille sa saatsid kohaliku omavalitsuse vastuvõtulauale. Siin on näha, kas keegi on need läbi lugenud ja mis vastus tuli."
     },
     "empty": {
       "pre_inquiries": "Saadetud eelpöördumisi ei ole.",
@@ -7310,7 +7312,8 @@
       "invites": "Aktiivseid saadetud kutseid ei ole.",
       "help": "Avaldatud abisoove ega -pakkumisi ei ole.",
       "frameworks": "Raamistikukinnitusi ei ole.",
-      "network_shares": "Ühtegi võrgustikku kaasamise ettepanekut ei ole."
+      "network_shares": "Ühtegi võrgustikku kaasamise ettepanekut ei ole.",
+      "urgent_requests": "Sa ei ole ühtegi kiireloomulist abipalvet saatnud."
     },
     "ownership": {
       "visibility": "Kes näeb",
@@ -7355,7 +7358,9 @@
       "share_purpose": "Miks kaasatakse",
       "share_boundary": "Mida jagatakse ja mida mitte",
       "share_ends": "Kaasamine lõpeb",
-      "share_incoming": "Ettepanek sinu kohta"
+      "share_incoming": "Ettepanek sinu kohta",
+      "urgent_request": "Kiireloomuline abipalve",
+      "urgent_decline_reason": "Miks ei jõutud"
     },
     "status": {
       "sent": "Saadetud",
@@ -7393,7 +7398,8 @@
       "invite_revoked": "Kutse võeti tagasi.",
       "room_left": "Lahkusid ruumist.",
       "share_confirmed": "Kinnitasid jagamise. Töötaja saab kokkuvõtte nüüd saata.",
-      "share_declined": "Keeldusid. Seda kokkuvõtet ei saadeta."
+      "share_declined": "Keeldusid. Seda kokkuvõtet ei saadeta.",
+      "urgent_recalled": "Abipalve on tagasi võetud."
     },
     "correction": {
       "title": "Parandatud versioon",

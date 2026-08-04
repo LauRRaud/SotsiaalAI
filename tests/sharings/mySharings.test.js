@@ -115,6 +115,41 @@ function fixtureDb() {
         openedAt: null,
         roomId: null
       }
+    ], calls),
+    // SK-V1: kiireloomuline abipalve kuulub „Minu jagamistesse", sest ta on
+    // kõige ärevamas hetkes tehtud jagamine. Kaks rida: üks ootab veel vastust,
+    // teine sai keeldumise koos põhjusega.
+    urgentRequest: model("urgentRequest", [
+      {
+        id: "urgent_declined",
+        status: "DECLINED",
+        situationVerbatim: "Ma ei tea, mis ma teen.",
+        readingTimePromise: "Loeme läbi 2 tunni jooksul.",
+        sentAt,
+        readAt: openedAt,
+        takenAt: null,
+        declinedAt: openedAt,
+        declineReason: "Öine valve on täna mehitamata, palun helista hommikul 9-st.",
+        resolvedAt: null,
+        expiresAt: new Date("2026-07-14T22:00:00.000Z"),
+        recalledAt: null,
+        convertedPreInquiryId: null
+      },
+      {
+        id: "urgent_waiting",
+        status: "SENT",
+        situationVerbatim: "Mul ei ole täna öösel kuhugi minna.",
+        readingTimePromise: "Loeme läbi 2 tunni jooksul.",
+        sentAt,
+        readAt: null,
+        takenAt: null,
+        declinedAt: null,
+        declineReason: null,
+        resolvedAt: null,
+        expiresAt: new Date("2026-07-14T22:00:00.000Z"),
+        recalledAt: null,
+        convertedPreInquiryId: null
+      }
     ], calls)
   };
   return { db, calls };
@@ -124,7 +159,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const { db, calls } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(calls.length, 8);
+  assert.equal(calls.length, 9);
   assert.equal(calls.find((call) => call.name === "mentoringPrivateNote").query.where.ownerId, USER_ID);
   assert.equal(calls.find((call) => call.name === "preInquiry").query.where.authorId, USER_ID);
   assert.equal(calls.find((call) => call.name === "roomMember").query.where.userId, USER_ID);
@@ -150,7 +185,8 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
     "helpListings",
     "frameworkAcceptances",
     "mentoringPreparations",
-    "networkShares"
+    "networkShares",
+    "urgentRequests"
   ]);
 });
 
@@ -281,11 +317,12 @@ test("room owners cannot leave and an empty user id is rejected before queries",
     return true;
   });
   // preInquiry, invite, helpRequest, helpOffer, frameworkAcceptance,
-  // mentoringPrivateNote, networkShare (roomMember is overridden and does not push).
-  assert.equal(calls.length, 7);
+  // mentoringPrivateNote, networkShare, urgentRequest
+  // (roomMember is overridden and does not push).
+  assert.equal(calls.length, 8);
 });
 
-// --- COLLAB-P4: võrgustikujagamised „Minu jagamiste" all ---------------------
+// --- COLLAB-P4: võrgustikujagamised „Minu jagamiste“ all ---------------------
 // Suund on siin teistpidi kui ülejäänud read: need ei ole asjad, mida inimene
 // on jaganud, vaid ettepanek jagada tema KOHTA. Ühendav mõiste ei ole suund,
 // vaid „kus mu info liigub" — seepärast on nad samas kohas.
@@ -350,4 +387,60 @@ test("PÄRIS andmebaasiviga ei jää vaikselt tühja loendi taha", async () => {
     throw error;
   };
   await assert.rejects(loadMySharings(USER_ID, { db, now: NOW }), /connection refused/);
+});
+
+// --- SK-V1: kiireloomuline abipalve „Minu jagamiste“ all ---------------------
+// Ta kuulub siia, sest see leht kannab platvormi tuumlubadust: inimene näeb,
+// kuhu ta info läks, ja saab selle tagasi võtta. Kui just kõige ärevamas hetkes
+// tehtud jagamine siit puuduks, oleks lubadus katki seal, kus ta kõige rohkem
+// loeb.
+
+test("kiireloomuline abipalve on „Minu jagamiste“ all ja vastust ootav tuleb ees", async () => {
+  const { db, calls } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+
+  assert.equal(calls.find((call) => call.name === "urgentRequest").query.where.authorId, USER_ID);
+  assert.equal(result.urgentRequests.length, 2);
+  assert.equal(result.urgentRequests[0].id, "urgent_waiting");
+  assert.equal(result.urgentRequests[0].awaitingAnswer, true);
+  assert.equal(result.urgentRequests[1].awaitingAnswer, false);
+});
+
+test("keeldumise PÕHJUS jõuab inimeseni — muidu on „DECLINED“ ainult kinni käinud uks", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  const declined = result.urgentRequests.find((row) => row.id === "urgent_declined");
+  assert.equal(declined.status, "DECLINED");
+  assert.match(declined.declineReason, /helista hommikul/);
+});
+
+test("lugemata abipalve on tagasivõetav, loetud mitte", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  const waiting = result.urgentRequests.find((row) => row.id === "urgent_waiting");
+  const declined = result.urgentRequests.find((row) => row.id === "urgent_declined");
+  assert.equal(waiting.canRecall, true);
+  assert.equal(declined.canRecall, false);
+});
+
+test("külmutatud lugemisaja lubadus on inimese vaates näha", async () => {
+  const { db } = fixtureDb();
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  for (const row of result.urgentRequests) {
+    assert.equal(row.readingTimePromise, "Loeme läbi 2 tunni jooksul.");
+  }
+});
+
+test("migreerimata SK-tabel EI võta tervet „Minu jagamiste“ lehte maha", async () => {
+  const { db } = fixtureDb();
+  db.urgentRequest.findMany = async () => {
+    const error = new Error("The table `public.UrgentRequest` does not exist in the current database.");
+    error.code = "P2021";
+    throw error;
+  };
+
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  assert.equal(result.preInquiries.length, 1);
+  assert.equal(result.networkShares.length, 2);
+  assert.deepEqual(result.urgentRequests, []);
 });

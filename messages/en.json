@@ -7294,7 +7294,8 @@
       "invites": "Active invites",
       "help": "Published help requests and offers",
       "frameworks": "My confirmations",
-      "network_shares": "Network involvement"
+      "network_shares": "Network involvement",
+      "urgent_requests": "Urgent help requests"
     },
     "section_help": {
       "pre_inquiries": "Recall removes an unopened in-platform pre-inquiry from the recipient's active list. The audit trail remains.",
@@ -7302,7 +7303,8 @@
       "invites": "An invite grants access only after it is accepted.",
       "help": "These listings are public until they are closed or expire.",
       "frameworks": "An informative overview of frameworks you confirmed.",
-      "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether and what is shared."
+      "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether and what is shared.",
+      "urgent_requests": "Requests you sent to a municipality's intake desk. You can see here whether anyone has read them and what answer came back."
     },
     "empty": {
       "pre_inquiries": "No sent pre-inquiries.",
@@ -7310,7 +7312,8 @@
       "invites": "No active sent invites.",
       "help": "No published help requests or offers.",
       "frameworks": "No framework confirmations.",
-      "network_shares": "No network involvement proposals."
+      "network_shares": "No network involvement proposals.",
+      "urgent_requests": "You have not sent any urgent help requests."
     },
     "ownership": {
       "visibility": "Who can see it",
@@ -7355,7 +7358,9 @@
       "share_purpose": "Why they are involved",
       "share_boundary": "What is shared and what is not",
       "share_ends": "Involvement ends",
-      "share_incoming": "Proposal about you"
+      "share_incoming": "Proposal about you",
+      "urgent_request": "Urgent help request",
+      "urgent_decline_reason": "Why it could not be taken on"
     },
     "status": {
       "sent": "Sent",
@@ -7393,7 +7398,8 @@
       "invite_revoked": "The invite was revoked.",
       "room_left": "You left the room.",
       "share_confirmed": "You confirmed the sharing. The worker can now send the summary.",
-      "share_declined": "You declined. This summary will not be sent."
+      "share_declined": "You declined. This summary will not be sent.",
+      "urgent_recalled": "The request has been taken back."
     },
     "correction": {
       "title": "Corrected version",
