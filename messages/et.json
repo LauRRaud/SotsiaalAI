@@ -8932,7 +8932,8 @@
     "not_a_decision": "See ei ole otsus. Toimetulekutoetuse määrab valla- või linnavalitsus.",
     "stays_on_device": "Arvutus käib sinu seadmes. Sisestatud andmed ei lähe kuhugi ära ega salvestu.",
     "actions": {
-      "calculate": "Arvuta eelhinnang"
+      "calculate": "Arvuta eelhinnang",
+      "login": "Logi sisse"
     },
     "section": {
       "family": "Pere",
@@ -9005,6 +9006,8 @@
     "answers": {
       "yes": "Jah",
       "no": "Ei"
-    }
+    },
+    "auth_required": "Eelhinnangu tegemiseks logi sisse.",
+    "loading": "Laen..."
   }
 }

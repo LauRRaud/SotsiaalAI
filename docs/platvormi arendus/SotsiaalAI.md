@@ -119,7 +119,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
-| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0+P1+P3 TEHTUD 04.08** — tuum, pöörduja vorm ja avalik leht `/toimetulekutoetus`. **Brauseris tõendatud**, sh SoM-i enda näitega. Alles P2 dokumentide checklist ja P4 KOV piirmäärad |
+| **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0+P1 TEHTUD 04.08** — tuum ja pöörduja vorm lehel `/toimetulekutoetus`, **konto nõutav** (omanik 04.08). **Brauseris tõendatud**, sh SoM-i enda näitega. Alles P2 checklist, P3 kontota versioon, P4 KOV piirmäärad |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)). Liides on brauseris TÕENDAMATA |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
@@ -133,7 +133,7 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, A2 vormi järel): `npm test` **2618/2618**,
+**Viimane roheline mõõtmine** (04.08, A2 vormi järel): `npm test` **2620/2620**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
 `npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
 
@@ -218,7 +218,7 @@ See lubadus ei sõltu tellimusest: ligipääs oma andmetele ei aegu kunagi.
 
 ### Tegemata
 
-- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 tuum tehtud 04.08, auditi järel ümber kirjutatud** (`lib/benefits/subsistence.js`, 32 testi). Sõltumatu audit leidis 8 viga; A–G on parandatud ja testidega lukus. Muutunud põhimõte: **kahtluse korral ei anna tuum numbrit, vaid keeldub** (`usable: false` → `estimate: null`). Lahtine on üks õigusküsimus: milline on õige kärpimistehe, kui KOV-i piirmäärad on teadmata — statuudijärgne rada (`min(kulu, piirmäär_m² × normpind)`) on koodis olemas ja rakendub kohe, kui piirmäärad antakse. Tegemata: P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärade andmekiht. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
+- **Toimetulekutoetuse eelkalkulaator (A2)** — **P0 tuum + P1 vorm tehtud 04.08, auditi järel ümber kirjutatud** (`lib/benefits/subsistence.js`, 32 testi). Sõltumatu audit leidis 8 viga; A–G on parandatud ja testidega lukus. Muutunud põhimõte: **kahtluse korral ei anna tuum numbrit, vaid keeldub** (`usable: false` → `estimate: null`). Lahtine on üks õigusküsimus: milline on õige kärpimistehe, kui KOV-i piirmäärad on teadmata — statuudijärgne rada (`min(kulu, piirmäär_m² × normpind)`) on koodis olemas ja rakendub kohe, kui piirmäärad antakse. Tegemata: P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärade andmekiht. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
 - **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
 

@@ -8932,7 +8932,8 @@
     "not_a_decision": "This is not a decision. The local authority decides subsistence benefit.",
     "stays_on_device": "The calculation runs on your device. What you enter is not sent anywhere and is not saved.",
     "actions": {
-      "calculate": "Calculate estimate"
+      "calculate": "Calculate estimate",
+      "login": "Log in"
     },
     "section": {
       "family": "Family",
@@ -9005,6 +9006,8 @@
     "answers": {
       "yes": "Yes",
       "no": "No"
-    }
+    },
+    "auth_required": "Log in to make an estimate.",
+    "loading": "Loading..."
   }
 }

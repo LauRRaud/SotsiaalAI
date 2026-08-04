@@ -3,11 +3,17 @@
 /**
  * A2 — toimetulekutoetuse eelkalkulaator, pöörduja vorm (P1).
  *
- * ARVUTUS KÄIB BRAUSERIS. `lib/benefits/subsistence.js` on puhas funktsioon
- * ilma serverisõltuvusteta, seega sissetulek, pere koosseis ja eluasemekulud
- * EI LAHKU SEADMEST — API-kutset ei ole, logisse ei jää midagi, salvestamist ei
- * toimu. Just see info on kõige tundlikum osa kogu arvestusest, ja parim viis
- * teda kaitsta on mitte teda kuhugi saata.
+ * KONTO ON NÕUTAV (omaniku otsus 04.08).
+ *
+ * ARVUTUS KÄIB SELLEGIPOOLEST BRAUSERIS. `lib/benefits/subsistence.js` on puhas
+ * funktsioon ilma serverisõltuvusteta, seega sissetulek, pere koosseis ja
+ * eluasemekulud EI LAHKU SEADMEST — API-kutset ei ole, logisse ei jää midagi,
+ * salvestamist ei toimu.
+ *
+ * Need kaks on eri asjad ja neid ei tohi segi ajada: **sisselogimine avab lehe,
+ * aga ei tee sisestatud andmeid serverile nähtavaks.** Platvorm teab, et sa
+ * kalkulaatorit avasid; ta ei tea, mida sa sinna kirjutasid. Kui keegi kunagi
+ * lisab siia `fetch`-i, kaob see vahe ära — seepärast on ta testiga lukus.
  *
  * Vorm peegeldab tuuma fail-closed loogikat: kui sisendist ei saa ohutult
  * numbrit teha, EI KUVATA summat, vaid öeldakse, mis puudu on. Usutav vale
@@ -15,8 +21,10 @@
  */
 
 import { useMemo, useState } from "react";
+import { useSession } from "next-auth/react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { estimateSubsistenceBenefit } from "@/lib/benefits/subsistence";
 import { HOUSING_COST_KINDS } from "@/lib/benefits/subsistenceRates";
@@ -60,6 +68,7 @@ function YesNo({ label, value, onChange, hint, yesLabel, noLabel }) {
 
 export default function SubsistenceCalculator() {
   const { t } = useI18n();
+  const { status } = useSession();
   const [form, setForm] = useState(EMPTY);
   const [costs, setCosts] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -95,6 +104,25 @@ export default function SubsistenceCalculator() {
       housingLoanConditionsMet: form.housingLoanConditionsMet
     }
   }), [form, costs]);
+
+  if (status === "loading") {
+    return <p>{txt(t, "subsistence.loading", "Laen...")}</p>;
+  }
+
+  // Konto on nõutav (omanik 04.08). Arvutus ise jääb sellegipoolest brauserisse
+  // — sisselogimine avab lehe, aga ei tee sisestatud andmeid serverile
+  // nähtavaks. Need kaks on eri asjad ja teine neist ei tohi esimesega kaduda.
+  if (status !== "authenticated") {
+    return (
+      <section>
+        <h2>{txt(t, "subsistence.title", "Toimetulekutoetuse eelhinnang")}</h2>
+        <p>{txt(t, "subsistence.auth_required", "Eelhinnangu tegemiseks logi sisse.")}</p>
+        <Button as="a" href="/vestlus?login=1">
+          {txt(t, "subsistence.actions.login", "Logi sisse")}
+        </Button>
+      </section>
+    );
+  }
 
   return (
     <section>

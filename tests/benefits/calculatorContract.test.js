@@ -52,3 +52,20 @@ test("sama puudujääk ei kuvata kaks korda", async () => {
   // Kaks vastamata väravat annavad sama teate — kordus näeb välja nagu viga.
   assert.match(s, /new Set\(result\.issues\.map/);
 });
+
+test("kalkulaator NÕUAB kontot — autentimata kasutajale vormi ei näidata", async () => {
+  const s = await source();
+  assert.match(s, /useSession\(\)/);
+  assert.match(s, /status !== "authenticated"/);
+  // Vorm on auth-haru JÄREL: autentimata kasutaja ei näe ühtki välja.
+  const authGate = s.indexOf('status !== "authenticated"');
+  const firstField = s.indexOf("subsistence.fields.adults");
+  assert.ok(authGate > -1 && authGate < firstField, "auth-värav peab olema enne vormi");
+});
+
+test("konto nõue EI vii arvutust serverisse — see vahe peab püsima", async () => {
+  const s = await source();
+  // Sisselogimine avab lehe; ta ei tohi teha sisestatud andmeid serverile
+  // nähtavaks. Kui siia ilmub fetch, kaob see vahe ära.
+  assert.doesNotMatch(s, /fetch\(/);
+});

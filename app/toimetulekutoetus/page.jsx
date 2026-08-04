@@ -7,14 +7,15 @@ import { buildLocalizedMetadata } from "@/lib/metadata";
 /**
  * A2 — toimetulekutoetuse eelkalkulaator.
  *
- * Leht on AVALIK ja kontot ei nõua. See ei ole mööndus, vaid selle funktsiooni
- * mõte: inimene, kes kaalub, kas tal võib olla õigus toimetulekutoetusele, on
- * tihti täpselt see, kes ei taha end kuskile kirja panna. Kontonõue oleks siin
- * müür vale koha peal.
+ * KONTO ON NÕUTAV (omaniku otsus 04.08). Värav elab komponendis, sama mustriga
+ * mis teekonnal: `useSession()` → sisselogimise kutse.
  *
- * Turvaline avalikuks tegemiseks on ta konstruktsiooni tõttu, mitte lubaduse
- * tõttu: arvutus käib brauseris, andmeid ei saadeta kuhugi ega salvestata.
- * Server ei näe kunagi kellegi sissetulekut.
+ * See EI muuda seda, kus arvutus toimub. Arvutus käib endiselt brauseris ja
+ * sisestatud andmed ei lähe kuhugi — sisselogimine avab lehe, aga ei tee
+ * sissetulekut serverile nähtavaks.
+ *
+ * Kontota avalik versioon (lepingu P3, „SEO-uks") jääb seega lahtiseks
+ * küsimuseks, mitte tehtud tööks.
  */
 
 export async function generateMetadata() {

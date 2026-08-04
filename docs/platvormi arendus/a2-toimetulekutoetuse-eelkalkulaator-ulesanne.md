@@ -105,9 +105,9 @@ Need ei ole hüljatud variandid, vaid **lubadused**, mis peavad kasutajani jõud
 | Osa | Seis |
 |---|---|
 | **P0 — deterministlik tuum** (`lib/benefits/subsistence.js`, `subsistenceRates.js`) | **TEHTUD 04.08** |
-| **P1 — pöörduja vorm** (`components/benefits/SubsistenceCalculator.jsx`) | **TEHTUD 04.08, brauseris tõendatud** |
-| **P3 — kontota avalik leht** `/toimetulekutoetus` | **TEHTUD 04.08** |
+| **P1 — pöörduja vorm** (`components/benefits/SubsistenceCalculator.jsx`, leht `/toimetulekutoetus`) | **TEHTUD 04.08, brauseris tõendatud. KONTO ON NÕUTAV** |
 | **P2 — dokumentide kontrollnimekiri** taotluse jaoks | tegemata |
+| **P3 — kontota avalik versioon** (SEO-uks) | **tegemata — omanik otsustas 04.08, et leht nõuab kontot** |
 | **P4 — KOV piirmäärade andmekiht** (kui KOV-partner annab oma määrused) | tegemata, partneri taga |
 
 ### P0 — mis on tehtud
@@ -141,16 +141,25 @@ Kuni need on lahendatud, ei tohi kalkulaator avalikku numbrit näidata.
 | **G** | **Sissetuleku leping ei vasta vormile.** `excludedIncome` ainult kuvatakse, ei lahutata — eeldab, et välistatud tulud on juba `netIncome`-st eemaldatud. P1 vorm küsib aga ainult „eelmise kuu netosissetulekut"; tavakasutaja ei tea, mida sinna panna | `subsistence.js` + P1 |
 | **H** | **DoD ei tõenda arvutuse ohutust** — kontrollib hoiatusi, keeli ja mittesalvestamist, aga mitte sisendivalideerimist, toetatud kuupäevavahemikku ega kohustuslikke erandeid | DoD allpool |
 
-### P1 + P3 — mis on tehtud (04.08)
+### P1 — mis on tehtud (04.08)
 
 **Arvutus käib brauseris.** Tuum on puhas funktsioon, seega sissetulek, pere koosseis ja
 eluasemekulud **ei lahku seadmest** — `fetch`-i ei ole, `localStorage`-it ei ole, server ei
 näe kunagi kellegi sissetulekut. Testid keelavad nende ilmumise sellesse faili.
 
-**Leht on avalik ja kontot ei nõua.** See ei ole mööndus: inimene, kes kaalub, kas tal võib
-olla õigus toimetulekutoetusele, on tihti täpselt see, kes ei taha end kuskile kirja panna.
-Turvaline on ta **konstruktsiooni, mitte lubaduse tõttu** — kui midagi ei saadeta, ei ole
-midagi kaitsta.
+**Konto on nõutav (omaniku otsus 04.08).** Värav elab komponendis, sama mustriga mis
+teekonnal. Autentimata kasutaja näeb pealkirja ja sisselogimise kutset — **null sisendivälja**,
+brauseris tõendatud.
+
+**Need kaks on eri asjad ja neid ei tohi segi ajada:** sisselogimine avab lehe, aga **ei tee
+sisestatud andmeid serverile nähtavaks**. Platvorm teab, et sa kalkulaatorit avasid; ta ei
+tea, mida sa sinna kirjutasid. Kui keegi kunagi lisab siia `fetch`-i, kaob see vahe ära —
+seepärast on ta eraldi testiga lukus.
+
+**Lahtiseks jääb P3 — kontota avalik versioon.** Argument tema poolt on endiselt olemas
+(inimene, kes kaalub toimetulekutoetust, on tihti täpselt see, kes ei taha end kirja panna,
+ja arvutus oleks kontota sama turvaline, sest ta ei saada midagi). Argument vastu on omaniku
+oma ja see kehtib. Kood on kontota versiooniks valmis — värav on üks komponendi haru.
 
 Mõlemad lubadused („ei ole otsus" ja „jääb seadmesse") seisavad **enne vormi**, mitte tulemuse
 juures: inimene peab teadma, mida ta teeb, enne kui ta sissetuleku sisestab.
