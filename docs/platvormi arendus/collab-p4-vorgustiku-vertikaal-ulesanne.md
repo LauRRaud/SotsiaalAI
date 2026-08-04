@@ -151,6 +151,38 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
   ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
   assistenti.
 
+## Teostuse seis
+
+| Osa | Seis |
+|---|---|
+| **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon, 19 testi) | **TEHTUD 04.08** |
+| V2 — API-marsruudid ja ruumi päris avamine | tegemata |
+| V3 — töötaja ja kliendi liides | tegemata |
+| V4 — saaja vaade ja vastamine | tegemata |
+| V5 — „Minu jagamised" haakumine | tegemata |
+
+### V1 — mis on tehtud
+
+Auditi soovitatud kitsas rada on koodis: üks eelpöördumine → töötaja koostab külmutatud
+kokkuvõtte **ühele olemasoleva kontoga saajale** → **klient kinnitab** → saatmine avab ruumi
+→ saaja näeb ainult talle jagatut → tagasivõtmine ainult enne avamist.
+
+Kolm asja on **arhitektuur, mitte poliitika**, ja igaühel on oma test:
+
+1. **`recipientUserId` on kohustuslik FK olemasolevale kasutajale.** E-posti kutset ega
+   `userId: null` rada siin ei ole → lõik jääb O-CO-6-st väljas. Kontroll on serveris.
+2. **Kinnitamata jagamist ei saa saata ühegi rajaga.** `AWAITING_CLIENT` on eraldi olek,
+   mitte lipp; töötaja ei saa kliendi eest kinnitada.
+3. **Kokkuvõte külmub kinnitamisel.** Teksti muutmine pärast kinnitust viib jagamise tagasi
+   mustandisse ja kustutab kinnituse — muidu saaks kinnituse alt teksti välja vahetada.
+
+`recipientProjection()` on ehitatud **valgest nimekirjast**, mitte kustutamise teel: uus veerg
+mudelis ei leki saajani iseenesest. Test kontrollib välja-välja ja lisaks seda, et
+serialiseeritud vaates ei esine lähteallika ega osapoolte identiteete.
+
+**Väljas hoitud teadlikult** (auditi soovitus): vaba võrgustikukaart · mittekasutajad ·
+tervishoid · hääl · puuduva rolli märkaja · üldise sündmusekihi laiendus.
+
 ## Osad
 
 | Osa | Sisu |

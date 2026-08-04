@@ -835,6 +835,13 @@ model User {
   @@index([acceptsPreInquiries])
   @@index([accessSuspendedAt])
   serviceReportShares  ServiceReportShare[]  @relation("ServiceReportShareOwner")
+
+  // COLLAB-P4: kolm eri rolli samas jagamises — töötaja koostab, klient
+  // kinnitab, saaja loeb. Eraldi relatsioonid, sest need kolm ei ole
+  // vahetatavad ja iga rada peab olema eraldi päritav.
+  networkSharesAsWorker    NetworkShare[] @relation("NetworkShareWorker")
+  networkSharesAsClient    NetworkShare[] @relation("NetworkShareClient")
+  networkSharesAsRecipient NetworkShare[] @relation("NetworkShareRecipient")
 }
 
 model Profile {
@@ -2210,6 +2217,8 @@ model PreInquiry {
      org-postkasti päringut. Need kaks on selle jaoks. */
   @@index([recipientOrganizationId, status, updatedAt])
   @@index([recipientOrganizationId, sentAt])
+  networkShares NetworkShare[] @relation("NetworkShareSource")
+
   @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
@@ -3257,6 +3266,8 @@ model Room {
   calls     CallSession[]
   mentoringMeetings MentoringMeeting[] @relation("MentoringMeetingRoom")
   sharedSummaries   RoomSharedSummary[]
+
+  networkShare NetworkShare? @relation("NetworkShareRoom")
 
   @@index([ownerId])
   @@index([originType])
@@ -5641,4 +5652,77 @@ enum ServiceVisitStatus {
   CANCELLED
   NOT_DONE
   NEEDS_CORRECTION
+}
+
+// ---------------------------------------------------------------------------
+// COLLAB-P4 — võrgustikujagamine, kitsas esimene vertikaal.
+//
+// Töötaja jagab ÜHE eelpöördumise põhjal koostatud külmutatud kokkuvõtte ÜHELE
+// teenuseosutajale, ja klient kinnitab ENNE saatmist, mida jagatakse.
+//
+// Kaks väljajäetust on tahtlikud ja kannavad kogu lõigu õiguslikku väravat:
+//   1. `recipientUserId` on KOHUSTUSLIK viide olemasolevale kasutajale. E-posti
+//      kutset ega `userId: null` rada siin EI OLE — see hoiab lõigu O-CO-6-st
+//      väljas (mittekasutajate rada on COLLAB-P5, koos raamlepingu väravaga).
+//   2. Vaba võrgustikukaarti kolmandate isikute kirjetega siin ei ole. Kirje
+//      käib alati kliendi ja ühe saaja vahel.
+//
+// `summaryText` on KÜLMUTATUD väljavõte (jagamisklass 9 CONFIRMED_SUMMARY),
+// mitte viide originaalile. Klassid 1–2 ei lahku kunagi originaalina.
+model NetworkShare {
+  id                  String             @id @default(cuid())
+  sourcePreInquiryId  String
+  workerId            String
+  clientUserId        String
+  /// Saaja PEAB olema platvormi kasutaja. Vt mudeli päise punkt 1.
+  recipientUserId     String
+
+  /// Külmutatud kokkuvõte — see, mida klient nägi ja kinnitas.
+  summaryText         String             @db.Text
+  /// Miks see osapool kaasatakse.
+  purpose             String             @db.Text
+  /// Mida saaja tohib näha ja mida mitte — töötaja sõnastuses.
+  sharingBoundary     String             @db.Text
+  /// Kaardistamise lõpp on KOHUSTUSLIK väli. „Igavesti vaikimisi" on keelatud.
+  participationEndsOn DateTime           @db.Date
+
+  status              NetworkShareStatus @default(DRAFT)
+  clientConfirmedAt   DateTime?
+  clientDeclinedAt    DateTime?
+  clientDecisionNote  String?            @db.Text
+  sentAt              DateTime?
+  openedAt            DateTime?
+  recalledAt          DateTime?
+  respondedAt         DateTime?
+
+  /// Kirjalik ruum avaneb alles saatmisel, mitte mustandi loomisel.
+  roomId              String?            @unique
+
+  createdAt           DateTime           @default(now())
+  updatedAt           DateTime           @updatedAt
+
+  sourcePreInquiry PreInquiry @relation("NetworkShareSource", fields: [sourcePreInquiryId], references: [id], onDelete: Cascade)
+  worker           User       @relation("NetworkShareWorker", fields: [workerId], references: [id], onDelete: Cascade)
+  client           User       @relation("NetworkShareClient", fields: [clientUserId], references: [id], onDelete: Cascade)
+  recipient        User       @relation("NetworkShareRecipient", fields: [recipientUserId], references: [id], onDelete: Cascade)
+  room             Room?      @relation("NetworkShareRoom", fields: [roomId], references: [id], onDelete: SetNull)
+
+  @@index([workerId, status])
+  @@index([clientUserId, status])
+  @@index([recipientUserId, status])
+  @@index([sourcePreInquiryId])
+}
+
+/// AWAITING_CLIENT on eraldi olek, mitte lipp: jagamine, mille klient ei ole
+/// veel näinud, ei tohi olla saadetavas seisus üheski koodirajas.
+enum NetworkShareStatus {
+  DRAFT
+  AWAITING_CLIENT
+  CONFIRMED
+  DECLINED
+  SENT
+  OPENED
+  RESPONDED
+  RECALLED
+  ENDED
 }
