@@ -163,6 +163,25 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
 | V4 — saaja vaade ja vastamine (vastuvõtulaud) | **tegemata — viimane tükk, mis vertikaali sulgeb** |
 | V5 — töölauakaart (seis + lähenev lõppkuupäev) | tegemata |
 
+### PÄRIS SESSIOONIGA LEITUD IDOR (04.08) — parandatud
+
+Rada käidi 04.08 läbi kolme päris sessiooniga (töötaja, klient, teenuseosutaja; eraldi
+küpsisefailid). Kõik lubadused pidasid — **peale ühe.**
+
+**`createNetworkShare` kontrollis ainult, et lähte-eelpöördumine EKSISTEERIB.** Seega sai iga
+sotsiaaltöötaja võtta suvalise eelpöördumise ID ja luua sellest jagamise: `HTTP 201`.
+Tagajärg oleks olnud see, et **klient saab kinnitustaotluse juhtumi kohta, mille selle
+töötajaga tal mingit seost ei ole** — ja kliendi identiteet seotakse võõra töötaja
+koostatud kokkuvõttega, sest klient tuletatakse pöördumise autorist.
+
+Parandus: jagamist tohib luua ainult see, **kellele pöördumine tuli**
+(`source.recipientOwnerId === workerId`); adressaadita pöördumisest ei saa keegi.
+Tõendatud päris sessioonidega: võõras töötaja → **403**, õige töötaja → **201**.
+
+**Õppetund, mis kordus juba kolmandat korda samal päeval: 2600 rohelist testi ei tõenda
+ligipääsupiiri.** Testid kasutasid fake-prismat ja üht töötajat; auku nägi alles teine
+sessioon. Iga ligipääsupiir vajab negatiivset testi VÕÕRA identiteediga — nüüd on kaks.
+
 ### Mis V3-s ehitamisel selgus
 
 **Klient tuletatakse eelpöördumise autorist, mitte liidesest.** Esimene disain oleks lasknud

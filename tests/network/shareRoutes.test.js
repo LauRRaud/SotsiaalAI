@@ -125,7 +125,7 @@ test("saaja postkast kuvab AINULT saaja-projektsiooni välju", async () => {
     "clientConfirmationMethod",
     "workerId"
   ]) {
-    assert.doesNotMatch(source, new RegExp(`share\.${forbidden}`), `${forbidden} lekkis saaja vaatesse`);
+    assert.doesNotMatch(source, new RegExp(`share[.]${forbidden}`), `${forbidden} lekkis saaja vaatesse`);
   }
   // Ja jagamispiir PEAB seal olema: ta ütleb saajale, mida temaga ei jagatud.
   assert.match(source, /share\.sharingBoundary/);

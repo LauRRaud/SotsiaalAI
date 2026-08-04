@@ -42,9 +42,9 @@ function createPrisma() {
     networkShare: createModel(),
     preInquiry: createModel([
       // Autoriga pöördumine -> klient on kasutaja ja tuletatakse siit.
-      { id: "pre_1", authorId: "client_1" },
+      { id: "pre_1", authorId: "client_1", recipientOwnerId: "worker_1" },
       // Autorita pöördumine -> väline klient, kuvanimi tuleb töötajalt.
-      { id: "pre_ext", authorId: null }
+      { id: "pre_ext", authorId: null, recipientOwnerId: "worker_1" }
     ]),
     user: createModel([
       { id: "worker_1" },
@@ -606,7 +606,7 @@ test("klient TULETATAKSE eelpöördumise autorist — liides ei pea teda nimetam
 
 test("autorita eelpöördumine annab välise kliendi raja", async () => {
   const prisma = createPrisma();
-  prisma.preInquiry.rows.push({ id: "pre_anon", authorId: null });
+  prisma.preInquiry.rows.push({ id: "pre_anon", authorId: null, recipientOwnerId: "worker_1" });
   const share = await createNetworkShare(baseInput(prisma, {
     sourcePreInquiryId: "pre_anon",
     sourcePreInquiryId: "pre_ext",
@@ -620,7 +620,7 @@ test("autorita eelpöördumine annab välise kliendi raja", async () => {
 
 test("autorita eelpöördumine ilma kuvanimeta keeldub", async () => {
   const prisma = createPrisma();
-  prisma.preInquiry.rows.push({ id: "pre_anon2", authorId: null });
+  prisma.preInquiry.rows.push({ id: "pre_anon2", authorId: null, recipientOwnerId: "worker_1" });
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
       sourcePreInquiryId: "pre_anon2",
@@ -641,4 +641,27 @@ test("autoriga eelpöördumise puhul EI nõuta raamlepingut — klient on kasuta
     hasFrameworkAcceptance: async () => { asked = true; return true; }
   }));
   assert.equal(asked, false);
+});
+
+// --- IDOR: võõrast eelpöördumisest jagamist teha ei saa ---------------------
+// Leitud 04.08 PÄRIS sessiooniga, mitte testidega: teine töötaja sai luua
+// jagamise pöördumisest, millega tal seost ei olnud (HTTP 201). Klient oleks
+// saanud kinnitustaotluse juhtumi kohta, mille selle töötajaga tal seost ei ole.
+
+test("IDOR: võõrale töötajale saadetud eelpöördumisest ei saa jagamist luua", async () => {
+  const prisma = createPrisma();
+  prisma.user.rows.push({ id: "worker_2" });
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, { workerId: "worker_2" })),
+    (err) => err.code === "network_share.source_forbidden"
+  );
+});
+
+test("IDOR: adressaadita eelpöördumisest ei saa keegi jagamist luua", async () => {
+  const prisma = createPrisma();
+  prisma.preInquiry.rows.push({ id: "pre_orphan", authorId: "client_1", recipientOwnerId: null });
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, { sourcePreInquiryId: "pre_orphan" })),
+    (err) => err.code === "network_share.source_forbidden"
+  );
 });
