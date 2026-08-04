@@ -331,13 +331,30 @@ async function run() {
   );
 }
 
+/**
+ * Koristus.
+ *
+ * Iga samm on OMAS try/catch'is. Ühine `await`-ahel oleks siin lõks: kui sond
+ * kukub enne, kui mõni tabel üldse olemas on (nt migratsioon jooksmata), viskab
+ * esimene kustutus vea ja ÜLEJÄÄNUD PRÜGI JÄÄB MAHA. Nii juhtus 05.08 esimesel
+ * käivitusel — sünteetilised kasutajad jäid andmebaasi.
+ */
 async function cleanup() {
-  await prisma.urgentRequestEvent.deleteMany({ where: { requestId: { in: created.requests } } });
-  await prisma.urgentRequest.deleteMany({ where: { id: { in: created.requests } } });
-  await prisma.urgentDeskMember.deleteMany({ where: { deskId: { in: created.desks } } });
-  await prisma.urgentDesk.deleteMany({ where: { id: { in: created.desks } } });
-  await prisma.user.deleteMany({ where: { id: { in: created.users } } });
-  await prisma.municipality.deleteMany({ where: { id: { in: created.municipalities } } });
+  const steps = [
+    ["urgentRequestEvent", () => prisma.urgentRequestEvent.deleteMany({ where: { requestId: { in: created.requests } } })],
+    ["urgentRequest", () => prisma.urgentRequest.deleteMany({ where: { id: { in: created.requests } } })],
+    ["urgentDeskMember", () => prisma.urgentDeskMember.deleteMany({ where: { deskId: { in: created.desks } } })],
+    ["urgentDesk", () => prisma.urgentDesk.deleteMany({ where: { id: { in: created.desks } } })],
+    ["user", () => prisma.user.deleteMany({ where: { id: { in: created.users } } })],
+    ["municipality", () => prisma.municipality.deleteMany({ where: { id: { in: created.municipalities } } })]
+  ];
+  for (const [name, step] of steps) {
+    try {
+      await step();
+    } catch (error) {
+      console.error(`[sk-probe] koristus ${name} ebaõnnestus: ${error?.message || error}`);
+    }
+  }
 }
 
 let exitCode = 0;
