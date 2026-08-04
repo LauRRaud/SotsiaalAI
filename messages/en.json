@@ -8884,7 +8884,9 @@
       "submit": "Send to client for review",
       "attest": "Client confirmed verbally",
       "send": "Send to recipient",
-      "recall": "Recall"
+      "recall": "Recall",
+      "mark_opened": "I have read this",
+      "open_room": "Open discussion"
     },
     "fields": {
       "recipient_email": "Recipient email (must be a platform user)",
@@ -8919,6 +8921,10 @@
       "RESPONDED": "answered",
       "RECALLED": "recalled",
       "ENDED": "ended"
+    },
+    "inbox": {
+      "title": "Network work shared with you",
+      "intro": "Network summaries have been shared with you. You see only what was shared with you."
     }
   }
 }

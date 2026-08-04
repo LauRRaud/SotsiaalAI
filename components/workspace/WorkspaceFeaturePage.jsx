@@ -14,6 +14,7 @@ import { cn } from "@/components/ui/cn";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Checkbox from "@/components/ui/Checkbox";
 import NetworkShareComposer from "@/components/network/NetworkShareComposer";
+import NetworkShareInbox from "@/components/network/NetworkShareInbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import OptionCard from "@/components/ui/OptionCard";
 import Form from "@/components/ui/Form";
@@ -2831,6 +2832,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       </SectionCard>
       </div>
       </div>
+
+      {/* COLLAB-P4: saabuv võrgustikujagamine on saaja jaoks sama kujuga mis
+          saabuv eelpöördumine — samal laual, mitte teises postkastis. Komponent
+          ei renderda midagi, kui jagamisi ei ole. */}
+      {showReceivedInquiries ? <NetworkShareInbox /> : null}
 
       {showReceivedInquiries ? (
         <SectionCard flat={embedded} title={readText(t, "workspace_feature_pages.pre_inquiries.sections.received", "Saabunud eelpöördumised")}>

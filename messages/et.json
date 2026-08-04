@@ -8884,7 +8884,9 @@
       "submit": "Saada kliendile ülevaatamiseks",
       "attest": "Klient kinnitas suuliselt",
       "send": "Saada saajale",
-      "recall": "Võta tagasi"
+      "recall": "Võta tagasi",
+      "mark_opened": "Olen läbi lugenud",
+      "open_room": "Ava arutelu"
     },
     "fields": {
       "recipient_email": "Saaja e-post (peab olema platvormi kasutaja)",
@@ -8919,6 +8921,10 @@
       "RESPONDED": "vastatud",
       "RECALLED": "tagasi võetud",
       "ENDED": "lõppenud"
+    },
+    "inbox": {
+      "title": "Sinuga jagatud võrgustikutöö",
+      "intro": "Sulle on jagatud võrgustikutöö kokkuvõtteid. Näed ainult seda, mis on sinuga jagatud."
     }
   }
 }

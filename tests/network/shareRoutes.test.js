@@ -107,3 +107,44 @@ test("loomise marsruut EI võta klienti päringu kehast — ta tuletatakse eelp�
   assert.doesNotMatch(source, /clientUserId: body/);
   assert.match(source, /sourcePreInquiryId: body\?\.sourcePreInquiryId/);
 });
+
+// --- Saaja vaade (V4) --------------------------------------------------------
+
+test("saaja postkast kuvab AINULT saaja-projektsiooni välju", async () => {
+  const source = await readFile(
+    new URL("../../components/network/NetworkShareInbox.jsx", import.meta.url),
+    "utf8"
+  );
+  // Need väljad EI TOHI saaja ekraanile jõuda ka siis, kui keegi nad
+  // kogemata API-sse lisab.
+  for (const forbidden of [
+    "sourcePreInquiryId",
+    "clientUserId",
+    "clientDisplayName",
+    "clientDecisionNote",
+    "clientConfirmationMethod",
+    "workerId"
+  ]) {
+    assert.doesNotMatch(source, new RegExp(`share\.${forbidden}`), `${forbidden} lekkis saaja vaatesse`);
+  }
+  // Ja jagamispiir PEAB seal olema: ta ütleb saajale, mida temaga ei jagatud.
+  assert.match(source, /share\.sharingBoundary/);
+});
+
+test("saaja postkast küsib ainult oma rolli nimekirja", async () => {
+  const source = await readFile(
+    new URL("../../components/network/NetworkShareInbox.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.match(source, /role=recipient/);
+  assert.doesNotMatch(source, /role=worker/);
+});
+
+test("koostamisvorm ei saada klienti kaasa — server tuletab ta", async () => {
+  const source = await readFile(
+    new URL("../../components/network/NetworkShareComposer.jsx", import.meta.url),
+    "utf8"
+  );
+  assert.doesNotMatch(source, /clientUserId:/);
+  assert.match(source, /recipientEmail: draft\.recipientEmail/);
+});
