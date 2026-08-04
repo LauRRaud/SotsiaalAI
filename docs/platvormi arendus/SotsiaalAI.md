@@ -133,7 +133,7 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, A2 tuuma järel): `npm test` **2542/2542**,
+**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2576/2576**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
 `npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
 
@@ -519,7 +519,9 @@ kliendi teekonda ega STAR2 toimikut.
 (`lib/network/share.js` + `NetworkShare` mudel, 19 testi): üks eelpöördumine → külmutatud
 kokkuvõte ühele olemasoleva kontoga saajale → kliendi kinnitus → ruum. Kolm garantiid on
 testidega lukus: saaja peab olema kasutaja · kinnitamata jagamist ei saa saata · teksti
-muutmine pärast kinnitust tühistab kinnituse. Tegemata on marsruudid ja liides.
+muutmine pärast kinnitust tühistab kinnituse. Ruumi avamine on samuti koodis
+(`lib/network/shareRoom.js`). Tegemata on API-marsruudid ja liides. **Üks lahtine
+tooteotsus: kas klient on selle ruumi liige** — praegu ei ole, vt lepingut.
 Leping on mustand ja ootab kinnitust
 ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md),
 osad E1–E6; koodi veel ei ole). Väikseim töötav rada: eelpöördumine või

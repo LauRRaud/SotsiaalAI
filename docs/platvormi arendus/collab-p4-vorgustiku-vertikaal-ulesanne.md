@@ -155,8 +155,9 @@ kontaktisiku e-post/telefon keelatud · `userId: null` rada suletud · e-posti k
 
 | Osa | Seis |
 |---|---|
-| **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon, 19 testi) | **TEHTUD 04.08** |
-| V2 — API-marsruudid ja ruumi päris avamine | tegemata |
+| **V1 — kitsas vertikaali tuum** (`lib/network/share.js`, `NetworkShare` mudel + migratsioon) | **TEHTUD 04.08** |
+| **V2a — ruumi avamine** (`lib/network/shareRoom.js`, `ROOM_ORIGIN_TYPES.NETWORK_SHARE`) | **TEHTUD 04.08** |
+| V2b — API-marsruudid | tegemata |
 | V3 — töötaja ja kliendi liides | tegemata |
 | V4 — saaja vaade ja vastamine | tegemata |
 | V5 — „Minu jagamised" haakumine | tegemata |
@@ -182,6 +183,22 @@ serialiseeritud vaates ei esine lähteallika ega osapoolte identiteete.
 
 **Väljas hoitud teadlikult** (auditi soovitus): vaba võrgustikukaart · mittekasutajad ·
 tervishoid · hääl · puuduva rolli märkaja · üldise sündmusekihi laiendus.
+
+### LAHTINE TOOTEOTSUS — kas klient on ruumi liige?
+
+Ruum avaneb praegu **kahe liikmega: töötaja (omanik) ja saaja**. Klient ei ole liige — ta
+kinnitas *kokkuvõtte*, mitte kogu edasise erialase arutelu, ja vaikiv kaasamine tähendaks,
+et ta loeb vestlust, millega ta ei nõustunud.
+
+**Vastuargument on sama kaalukas:** „mitte midagi minu kohta ilma minuta" on platvormi
+tuumlubadus, ja klient, kes ei näe, mida tema loo ümber räägitakse, on täpselt see olukord,
+mille vastu SotsiaalAI ehitatud on.
+
+Valitud on kitsam variant ühel praktilisel põhjusel: **liikme lisamine on hiljem lihtne,
+eemaldamine mitte.** Otsus vajab omaniku sõna.
+
+Ruumi pealkirja, kirjeldusse ega metaandmetesse **ei panda jagatud kokkuvõtte teksti** —
+ruumi metaandmed on nähtavad laiemalt kui jagatud sisu. Testiga lukus.
 
 ## Osad
 

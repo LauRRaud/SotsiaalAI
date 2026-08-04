@@ -316,3 +316,65 @@ test("keegi teine ei näe saaja vaadet", async () => {
   // Ka töötaja ise ei kasuta seda vaadet — tal on oma täisvaade.
   assert.equal(recipientProjection(sent, { viewerUserId: "worker_1" }), null);
 });
+
+// --- Ruumi avamine (COLLAB-P4 V2) -------------------------------------------
+
+test("ruum avaneb kahe liikmega: töötaja omanikuna ja saaja liikmena", async () => {
+  const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
+  const created = [];
+  const db = {
+    room: {
+      async findFirst() { return null; },
+      async create({ data }) { created.push(data); return { id: "room_9", title: data.title }; }
+    }
+  };
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  const room = await createRoomForNetworkShare({ share: confirmed, db });
+
+  assert.equal(room.id, "room_9");
+  assert.equal(created[0].ownerId, "worker_1");
+  assert.deepEqual(
+    created[0].members.create.map((member) => [member.userId, member.role]).sort(),
+    [["provider_1", "MEMBER"], ["worker_1", "OWNER"]]
+  );
+  assert.equal(created[0].originType, "NETWORK_SHARE");
+  assert.equal(created[0].originId, confirmed.id);
+});
+
+test("ruumi kirjeldusse ega pealkirja EI panda jagatud kokkuvõtte teksti", async () => {
+  const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
+  const created = [];
+  const db = {
+    room: {
+      async findFirst() { return null; },
+      async create({ data }) { created.push(data); return { id: "room_9", title: data.title }; }
+    }
+  };
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  await createRoomForNetworkShare({ share: confirmed, db });
+
+  const metaBlob = JSON.stringify({
+    title: created[0].title,
+    description: created[0].description,
+    originMeta: created[0].originMeta
+  });
+  assert.doesNotMatch(metaBlob, /eluasemevõlg/i);
+});
+
+test("olemasoleva ruumiga jagamine ei loo teist ruumi", async () => {
+  const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
+  let creates = 0;
+  const db = {
+    room: {
+      async findFirst() { return { id: "room_existing", title: "olemas" }; },
+      async create() { creates += 1; return { id: "room_new" }; }
+    }
+  };
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  const room = await createRoomForNetworkShare({ share: { ...confirmed, roomId: "room_existing" }, db });
+  assert.equal(room.id, "room_existing");
+  assert.equal(creates, 0);
+});
