@@ -3482,6 +3482,10 @@ model CallRecordingRequest {
   status              CallRecordingRequestStatus @default(REQUESTED)
   consentTextVersion  String
   consentTextSnapshot String                     @db.Text
+  // Nõusolekuteksti sisse küpsetatud küsija nimi eraldi väljana, et sama teksti
+  // saaks hiljem teises keeles uuesti renderdada ilma nime tekstist välja
+  // parsimata. NULL = enne 04.08.2026 loodud taotlus.
+  requesterNameSnapshot String?
   requestedAt         DateTime                   @default(now())
   startedAt           DateTime?
   stoppedAt           DateTime?
@@ -3506,6 +3510,10 @@ model CallRecordingConsent {
   status              CallRecordingConsentStatus @default(REQUESTED)
   consentTextVersion  String
   consentTextSnapshot String                     @db.Text
+  // Keel, milles SEE inimene nõusoleku andis — snapshot renderdatakse vastamise
+  // hetkel tema liidese keeles. NULL = vastamata rida või enne 04.08.2026 antud
+  // nõusolek (need on eestikeelsed). Sama muster mis FrameworkAcceptance.locale.
+  locale              String?
   respondedAt         DateTime?
   withdrawnAt         DateTime?
   ipAddressHash       String?

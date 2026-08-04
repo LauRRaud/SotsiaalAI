@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { useI18n } from "@/components/i18n/I18nProvider";
+
 function callPath(roomId, suffix = "", basePath = "") {
   if (basePath) return `${basePath}${suffix}`;
   return `/api/rooms/${encodeURIComponent(String(roomId || ""))}/calls${suffix}`;
@@ -19,6 +21,10 @@ async function readPayload(response) {
 }
 
 export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
+  // Salvestuse nõusolek kirjutatakse serveris SELLES keeles, mida kasutaja
+  // parasjagu näeb — seepärast käib liidese keel iga nõusolekupäringuga kaasas.
+  // `accept-language` ei kõlba: brauseri keel ja valitud liidese keel lahknevad.
+  const { locale } = useI18n();
   const [call, setCall] = useState(null);
   const [config, setConfig] = useState({ provider: "mock", providerAvailable: true, maxParticipants: 8 });
   const [canModerate, setCanModerate] = useState(false);
@@ -345,7 +351,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     try {
       const payload = await fetch(callPath(roomId, `/${encodeURIComponent(call.id)}/recording/request`, basePath), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
         body: JSON.stringify({ purpose, purposeText })
       }).then(readPayload);
       setCall(payload.call || null);
@@ -354,7 +360,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     } finally {
       setBusy(false);
     }
-  }, [basePath, call?.id, roomId]);
+  }, [basePath, call?.id, locale, roomId]);
 
   const respondRecordingConsent = useCallback(async (recordingRequestId, decision) => {
     if (!roomId || !call?.id || !recordingRequestId) return;
@@ -363,7 +369,8 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     setError("");
     try {
       const payload = await fetch(callPath(roomId, `/${encodeURIComponent(call.id)}/recording/${encodeURIComponent(recordingRequestId)}/${action}`, basePath), {
-        method: "POST"
+        method: "POST",
+        headers: { "x-ui-locale": locale || "et" }
       }).then(readPayload);
       setCall(payload.call || null);
     } catch (err) {
@@ -371,7 +378,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     } finally {
       setBusy(false);
     }
-  }, [basePath, call?.id, roomId]);
+  }, [basePath, call?.id, locale, roomId]);
 
   const cancelRecordingRequest = useCallback(async recordingRequestId => {
     if (!roomId || !call?.id || !recordingRequestId) return;

@@ -1,6 +1,7 @@
 import {
   callError,
   callJson,
+  callRequestLocale,
   createRoomCallService,
   emitCallEvent,
   loadCallForResponse,
@@ -37,7 +38,8 @@ export async function POST(req, { params }) {
       userId: access.userId,
       decision: "WITHDRAWN",
       ipAddress: ipFromRequest(req),
-      userAgent: req.headers.get("user-agent") || ""
+      userAgent: req.headers.get("user-agent") || "",
+      locale: callRequestLocale(req)
     });
     const call = await loadCallForResponse(callSessionId);
     await emitCallEvent(roomId, call);

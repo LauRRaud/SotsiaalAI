@@ -6,6 +6,9 @@ import ChevronIcon from "@/components/brand/icons/ChevronIcon";
 import Dropdown from "@/components/ui/Dropdown";
 import Input from "@/components/ui/Input";
 
+// Eesti tekst on ainult varuväärtus. Sildid tulevad `calls.recording_purpose_*`
+// võtmetest — samadest, millest server ehitab salvestatava nõusolekuteksti, et
+// valitud eesmärk oleks rippmenüüs ja nõusolekukirjes sama sõnastusega.
 const RECORDING_PURPOSE_OPTIONS = [
   ["GENERAL_SUMMARY", "kokkuvõtte koostamine"],
   ["CASE_SUMMARY", "juhtumikokkuvõtte mustand"],
@@ -15,6 +18,13 @@ const RECORDING_PURPOSE_OPTIONS = [
   ["MENTORING_SUMMARY", "mentorluskohtumise kokkuvõte"],
   ["OTHER", "muu eesmärk"]
 ];
+
+function recordingPurposeOptions(t) {
+  return RECORDING_PURPOSE_OPTIONS.map(([value, fallback]) => ({
+    value,
+    label: text(t, `calls.recording_purpose_${value.toLowerCase()}`, fallback)
+  }));
+}
 
 function text(t, key, fallback, values = undefined) {
   if (typeof t !== "function") return fallback;
@@ -305,7 +315,7 @@ export default function RoomCallBar({
                     value={recordingPurpose}
                     onChange={setRecordingPurpose}
                     ariaLabel={text(t, "calls.recording_purpose", "Salvestamise eesmärk")}
-                    options={RECORDING_PURPOSE_OPTIONS.map(([value, label]) => ({ value, label }))}
+                    options={recordingPurposeOptions(t)}
                   />
                   <Input
                     value={recordingPurposeText}

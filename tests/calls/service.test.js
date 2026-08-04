@@ -1,16 +1,22 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { AccessToken, TrackSource } from "livekit-server-sdk";
 
 import {
   buildLiveKitGrant,
+  buildRecordingConsentText,
   cancelSpeakRequest,
   createCallService,
   createRecordingRequest,
   createSpeakRequest,
+  normalizeConsentLocale,
   serializeCallSession
 } from "../../lib/calls/service.js";
+import et from "../../messages/et.json" with { type: "json" };
+import en from "../../messages/en.json" with { type: "json" };
+import ru from "../../messages/ru.json" with { type: "json" };
 
 function matchRows(rows, where = {}) {
   return rows.filter(row => {
@@ -821,4 +827,136 @@ test("T12: ending an already ended call does not add a second system message (au
 
   const systemMessages = prisma.roomMessage.rows.filter(row => /Helikõne toimus/.test(row.content || ""));
   assert.equal(systemMessages.length, 1);
+});
+
+// --- Salvestuse nõusolek osaleja enda keeles (04.08.2026) ---------------------
+// Kuvatav dialoog oli kolmes keeles juba varem, aga SALVESTATUD tõend ehitati
+// eestikeelsest kõvakodeeritud tekstist: vene- või ingliskeelne osaleja luges
+// üht teksti ja tema nõusolekukirjesse jäi teine. Need testid lukustavad, et
+// kirje tekib selles keeles, milles inimene teksti luges.
+
+test("nõusolekutekst ehitatakse tõlkekataloogist, mitte koodi kõvakodeeritud eesti keelest", () => {
+  const ruText = buildRecordingConsentText({
+    requesterName: "Ivan",
+    purpose: "CASE_SUMMARY",
+    locale: "ru"
+  });
+  assert.match(ruText, /Ivan/);
+  assert.ok(ruText.includes(ru.calls.recording_purpose_case_summary));
+  assert.ok(ruText.includes(ru.calls.recording_consent_question));
+  assert.ok(!ruText.includes("Kas nõustud selle kõne salvestamisega?"));
+
+  const enText = buildRecordingConsentText({
+    requesterName: "Anna",
+    purpose: "STAR_HELPER",
+    locale: "en"
+  });
+  assert.ok(enText.includes(en.calls.recording_purpose_star_helper));
+  assert.ok(enText.includes(en.calls.recording_consent_question));
+});
+
+test("tundmatu või puuduv keel jääb eesti keelde, mitte ei kuku serveri en-vaikimisele", () => {
+  assert.equal(normalizeConsentLocale(""), "et");
+  assert.equal(normalizeConsentLocale(undefined), "et");
+  assert.equal(normalizeConsentLocale("de"), "et");
+  assert.equal(normalizeConsentLocale("ru-RU"), "ru");
+  const fallback = buildRecordingConsentText({ requesterName: "Mari", purpose: "GENERAL_SUMMARY" });
+  assert.ok(fallback.includes(et.calls.recording_purpose_general_summary));
+  assert.match(fallback, /Mari soovib selle helikõne salvestada/);
+});
+
+test("nimeta küsija saab keelekohase üldnimetuse, mitte eestikeelse 'Kõne osaleja'", () => {
+  const ruText = buildRecordingConsentText({ requesterName: "", purpose: "GENERAL_SUMMARY", locale: "ru" });
+  assert.ok(ruText.includes(ru.calls.recording_requester_fallback));
+  assert.ok(!ruText.includes("Kõne osaleja"));
+});
+
+test("iga osaleja nõusolekukirje salvestub tema enda keeles ja keel jääb kirje juurde", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, now: () => new Date("2026-08-04T09:00:00Z") });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await service.createRecordingRequest({
+    callSessionId: call.id,
+    userId: "host",
+    canModerate: true,
+    purpose: "CASE_SUMMARY",
+    requesterName: "Test Admin",
+    locale: "et"
+  });
+  // Küsija nimi jääb eraldi väljana alles, et sama teksti saaks teises keeles
+  // uuesti renderdada ilma nime tekstist välja parsimata.
+  assert.equal(prisma.callRecordingRequest.rows[0].requesterNameSnapshot, "Test Admin");
+
+  await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "host",
+    decision: "CONSENTED",
+    locale: "et"
+  });
+  await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "user_2",
+    decision: "CONSENTED",
+    locale: "ru"
+  });
+
+  const hostConsent = prisma.callRecordingConsent.rows.find(row => row.userId === "host");
+  const ruConsent = prisma.callRecordingConsent.rows.find(row => row.userId === "user_2");
+
+  assert.equal(hostConsent.locale, "et");
+  assert.ok(hostConsent.consentTextSnapshot.includes(et.calls.recording_purpose_case_summary));
+
+  assert.equal(ruConsent.locale, "ru");
+  assert.ok(ruConsent.consentTextSnapshot.includes(ru.calls.recording_purpose_case_summary));
+  assert.ok(ruConsent.consentTextSnapshot.includes(ru.calls.recording_consent_question));
+  // Kõige olulisem rida: venekeelse osaleja tõend EI tohi olla eestikeelne.
+  assert.ok(!ruConsent.consentTextSnapshot.includes("Kas nõustud selle kõne salvestamisega?"));
+  // Mõlemad nimetavad sama küsijat — tõlgitakse tekst, mitte inimese nimi.
+  assert.match(ruConsent.consentTextSnapshot, /Test Admin/);
+});
+
+test("tagasivõtmine ei kirjuta üle teksti, millega inimene kunagi nõustus", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, now: () => new Date("2026-08-04T09:00:00Z") });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await service.createRecordingRequest({
+    callSessionId: call.id,
+    userId: "host",
+    canModerate: true,
+    purpose: "GENERAL_SUMMARY",
+    requesterName: "Test Admin",
+    locale: "et"
+  });
+  await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "user_2",
+    decision: "CONSENTED",
+    locale: "ru"
+  });
+  const afterConsent = prisma.callRecordingConsent.rows.find(row => row.userId === "user_2").consentTextSnapshot;
+
+  // Tagasivõtmine tuleb teise seadme pealt, kus liides on eesti keeles.
+  await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "user_2",
+    decision: "WITHDRAWN",
+    locale: "et"
+  });
+  const withdrawn = prisma.callRecordingConsent.rows.find(row => row.userId === "user_2");
+
+  assert.equal(withdrawn.status, "WITHDRAWN");
+  assert.equal(withdrawn.consentTextSnapshot, afterConsent);
+  assert.equal(withdrawn.locale, "ru");
+});
+
+test("salvestuse eesmärgi rippmenüü sildid tulevad tõlkevõtmetest, mitte kõvakodeeritud loendist", async () => {
+  const source = await readFile(new URL("../../components/rooms/RoomCallBar.jsx", import.meta.url), "utf8");
+  assert.match(source, /options=\{recordingPurposeOptions\(t\)\}/);
+  assert.match(source, /calls\.recording_purpose_\$\{value\.toLowerCase\(\)\}/);
 });

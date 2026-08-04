@@ -89,9 +89,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **server**. Töötav build on **`ccb569af`** (deploy 03.08); hilisemad
-dokumendicommit'id on checkout'is peal ja koodimuutust ei sisalda, seega build'i ei korratud.
-Üks tööpuu, üks haru.
+`main` = `origin/main` = **`e1934c5c`**. **Serveris on `496e8aaf`** — kontrollitud 04.08
+(`ssh sotsiaalai`, `/home/ubuntu/apps/sotsiaalai`). Varasem lause „töötav build on
+`ccb569af`, hilisemad commit'id on ainult dokumendid" oli vale kahes kohas korraga: server
+on sellest kaks commit'i edasi JA mõlemad tagumised commit'id sisaldavad koodi, mitte ainult
+dokumente. Deploy'mata on täpselt üks commit — **`e1934c5c`**, KOV-kontaktide viimistlus
+(kirjeldusest dubleeriv „Roll:" rida välja, laiem eestikeelsete sihtrühma-käänete regex) koos
+testidega. Üks tööpuu, üks haru.
 Rollback `bb9ca541`. Väravad enne: `npm test` 2510/2510, eslint 0, `i18n:check` OK,
 `npm run build` OK; 0 migratsiooni. Smoke pärast: kolm teenust `active`,
 `/` `/meist` `/vestlus` `/voimalused` → 200, `https://sotsiaal.ai/vestlus` → 200,
@@ -109,11 +113,12 @@ uuendatud (`PRIVACY_VERSION` = `2026-08-03`) · kasutusluba omaniku kinnitusel o
 ise-hostimist ei tehta (server ei kanna, tasuta on niigi saavutatud). Kaks saba läksid
 **T27-sse** (S10): seadmematriks ja art. 28 paberitöö. Täielik lugu on S3-s.
 
-**Järgmine teema on valimata.** Kandidaadid on S4-s; kolm neist ei ole millegi taga:
+**Omanik valis 04.08: tehakse kõik neli** — salvestuse nõusolekukeel (tehtud, vt S7),
+COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 
-| Kandidaat | Miks laual |
+| Kandidaat | Seis |
 |---|---|
-| **Salvestusriba eestikeelsed staatusetekstid ruumides** (S4.2 nr 4) | ainus alles jäänud ruumide nõusolekupere viga — RU/EN kasutaja näeb salvestuse ajal eesti keelt. Väike, otsustevaba |
+| **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | puhas kooditöö, O-CO-6 ei kehti (kõik osalejad on kasutajad) |
 | **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | deterministlik valem, ei vaja partnerit ega õigusanalüüsi |
 
@@ -296,14 +301,11 @@ päris mikrofoni — need on tõendatud ainult testilepinguga
 Punktid 5–6 (a11y-seisud klaviatuuriga + reduced-motion, ET/EN/RU sümmeetria) kuuluvad
 sektsiooni S4 a11y-sappa ja neid siin ei dubleerita.
 
-### Poolik — häälega seotud viga ruumides
+### Ruumide nõusolekupere — kõik neli parandatud
 
-**Kolm neljast on parandatud** (kaks olid E5-tööga juba koodis, „Helikõne toimus" kaks
-korda parandati 03.08 — vt S4.2). Alles on üks:
-
-- salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt.
-
-Kuulub sektsiooni S4 (ruumid), aga on sama pere.
+Kaks olid E5-tööga juba koodis, „Helikõne toimus" kaks korda parandati 03.08, ja neljas —
+salvestuse eesmärgisildid koos nõusolekukirjega — sai tehtud 04.08 (vt S7). Selle pere sees
+ei ole enam lahtist viga.
 
 - **VEST-L8** — RU/EN TTS kvaliteedierinevus. **Jääb lahti teadliku otsusena**, mitte
   tegemata tööna: omanik valis 03.08 tasuta RU/EN ettelugemise kvaliteedipariteedi ees.
@@ -668,7 +670,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | # | Mis | Kus | Liik |
 |---|---|---|---|
 | 3 | ~~„Helikõne toimus …" tekib ruumi kaks korda~~ — **PARANDATUD 03.08** (`9cef880e`): tingimuslik `updateMany`, süsteemsõnum ainult üleminekut teinud kutsest | ruumid | tehtud |
-| 4 | Salvestusriba staatusetekstid kõvakodeeritud eesti keeles — RU/EN kasutaja näeb eesti keelt | ruumid | VIGA |
+| 4 | ~~Salvestuse eesmärgisildid ja nõusolekukirje eesti keeles~~ — **TEHTUD 04.08**. Kirjeldus oli algselt vale („staatusetekstid"); koodist kontrollimisel selgus, et staatusetekstid on tõlgitud ja katki on hoopis eesmärgisildid + **salvestatav nõusolekutõend**. Nüüd renderdab server nõusolekuteksti samadest `calls.recording_*` võtmetest, mida liides kuvab, vastamise hetkel vastaja enda keeles; keel jääb kirje juurde (`CallRecordingConsent.locale`). Vt S7 | ruumid | tehtud |
 | 5 | ~~Salvestuse katkestamine enne transkribeerimist~~ — **TEHTUD 03.08**: katkestusnupp + Escape, lipp tõuseb enne stop'i, ainus värav providerini on `processRecordingBlob` | hääl (T03 E4) | tehtud |
 | 6 | ~~2,5 min hoiatus/piir + taimerite ja helirajade puhastus~~ — **TEHTUD 03.08**: hoiatus 2 min, pehme piir 2,5 min, `clearRecordingTimers` abort/error/success/unmount rajal | hääl (T03 E4) | tehtud |
 | 7 | ~~TTS locale-fallback~~ — **TEHTUD 03.08**: brauserihääle tõrge öeldakse välja kõigis keeltes; ET-l on serverivaru MÄRGISTATUD. RU/EN jäid omaniku otsusega tasuta brauserihäälele | hääl (T03 E4) | tehtud |
@@ -692,7 +694,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
 | 26 | ~~Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana~~ — **TEHTUD 03.08**: §5 nimetab TartuNLP eesti ettelugemise juures, ET/EN/RU; `PRIVACY_VERSION` → `2026-08-03`. Juristi sisukinnitus puudub endiselt (kehtib kogu dokumendi kohta) | juriidiline | tehtud |
 | 27 | ~~Art. 28 andmetöötlusleping TartuNLP-ga~~ — **SULETUD 03.08**: kasutusluba on omaniku kinnitusel olemas; paberitöö läks T27 juristi-kinnituste korvi (S10) | juriidiline | viidud T27-sse |
-| 28 | ~~Vestlus nimetab KOV-ist ainult üht-kaht üldnimetusega spetsialisti~~ — **KOOD TEHTUD 03.08, DEPLOY'MATA**: kontaktiplokk kannab nüüd rollide katet (nt Harku vallal 15 kontakti seitsmes rollis, mitte kaks nime) ja vastus valib kolme režiimi vahel — teemata küsimuses kirjeldab rolle ja küsib teemat, kontaktipäringus nimetab kõik selle teema rolliga inimesed, konkreetse teenuse juures teemale lähima rolli. Kehtib kõigis KOV-ides | vestlus / KOV-kontaktid | tehtud (deploy ootab) |
+| 28 | ~~Vestlus nimetab KOV-ist ainult üht-kaht üldnimetusega spetsialisti~~ — **KOOD TEHTUD JA SERVERIS** (`496e8aaf`, kontrollitud 04.08; deploy'mata on ainult viimistlus `e1934c5c`): kontaktiplokk kannab nüüd rollide katet (nt Harku vallal 15 kontakti seitsmes rollis, mitte kaks nime) ja vastus valib kolme režiimi vahel — teemata küsimuses kirjeldab rolle ja küsib teemat, kontaktipäringus nimetab kõik selle teema rolliga inimesed, konkreetse teenuse juures teemale lähima rolli. Kehtib kõigis KOV-ides | vestlus / KOV-kontaktid | tehtud (viimistlus ootab deploy'd) |
 
 **KONTROLLITUD KOODIST 03.08 — kaks „viga" olid juba parandatud.** Analüüsidokument
 `fable-5-ruumid-liitumine-ja-konevoog.md` kirjeldab hilise liituja salvestamist ja
@@ -942,11 +944,21 @@ Ruumis saab pidada helikõne ilma eraldi konverentsitarkvarata. Salvestamine ei 
 sees; see käivitub ainult osalejate selgesõnalisel nõusolekul ja salvestise eesmärk
 märgitakse ette ära.
 
+**Nõusolek antakse inimese enda keeles.**
+Kui keegi kõnes salvestamise nõusolekut küsib, näeb iga osaleja küsimust — kes küsib, mis
+eesmärgil salvestatakse, mis salvestisega edasi juhtub ja mis on tema valik — selles keeles,
+milles ta platvormi kasutab: eesti, inglise või vene. Nii oli juba varem. Uus on see, et
+**ka salvestatav nõusolekukirje tekib samas keeles**: platvorm paneb tõendisse täpselt selle
+teksti, mida inimene luges, ja märgib kirje juurde keele. Varem kuvati küsimus kolmes keeles,
+aga tõendisse jäi alati eestikeelne tekst — ehk kirjas seisis, et venekeelne osaleja nõustus
+tekstiga, mida talle kunagi ei näidatud. Nõusoleku tagasivõtmine ei kirjuta seda teksti üle:
+alles jääb see, millega inimene tegelikult nõustus.
+
 ### Poolik
 
 | Mis töötab | Lahtised sabad |
 |---|---|
-| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog | salvestusriba staatusetekstid kõvakodeeritud eesti keeles (S4.2 nr 4) — **kolm ülejäänud nõusolekuviga on parandatud**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
+| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog kolmes keeles | **nõusolekupere on terve — kõik neli viga parandatud**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
 
 ---
 

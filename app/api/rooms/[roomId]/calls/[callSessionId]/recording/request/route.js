@@ -1,6 +1,7 @@
 import {
   callError,
   callJson,
+  callRequestLocale,
   createRoomCallService,
   emitCallEvent,
   loadCallForResponse,
@@ -33,7 +34,8 @@ export async function POST(req, { params }) {
       canModerate: access.canModerate,
       purpose: body?.purpose,
       purposeText: body?.purposeText,
-      requesterName: await requesterDisplayName(access)
+      requesterName: await requesterDisplayName(access),
+      locale: callRequestLocale(req)
     });
     const call = await loadCallForResponse(callSessionId);
     await emitCallEvent(roomId, call);
