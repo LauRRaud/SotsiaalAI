@@ -9123,6 +9123,15 @@
       "contact_phone_required": "Add a phone number where you can be reached.",
       "municipality_required": "Choose a municipality.",
       "generic": "Sending failed. Please try again."
+    },
+    "auth_required": "Sign in to send a request. That way you can take it back later and see what came of it.",
+    "actions": {
+      "login": "Sign in"
+    },
+    "confirm": {
+      "title": "Check before sending",
+      "what_goes": "What is being sent",
+      "back": "Edit"
     }
   }
 }

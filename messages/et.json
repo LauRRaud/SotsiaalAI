@@ -9123,6 +9123,15 @@
       "contact_phone_required": "Lisa telefon, millelt sind kätte saab.",
       "municipality_required": "Vali omavalitsus.",
       "generic": "Saatmine ebaõnnestus. Proovi uuesti."
+    },
+    "auth_required": "Abipalve saatmiseks logi sisse. Nii saad selle hiljem tagasi võtta ja näed, mis sellest sai.",
+    "actions": {
+      "login": "Logi sisse"
+    },
+    "confirm": {
+      "title": "Kontrolli enne saatmist",
+      "what_goes": "Mis läheb",
+      "back": "Muuda"
     }
   }
 }
