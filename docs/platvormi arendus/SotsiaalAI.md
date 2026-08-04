@@ -133,9 +133,14 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (03.08, hääle karastuse järel): `npm test` 2498/2498,
-`npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK.
-Serveri seisu 03.08 tabeliringis eraldi üle ei kontrollitud.
+**Viimane roheline mõõtmine** (04.08, A2 tuuma järel): `npm test` **2542/2542**,
+`npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
+`npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
+
+**Serveri seis kontrollitud 04.08:** deploy `215fac39`, kolm teenust `active`,
+`/` `/meist` `/vestlus` `/voimalused` → 200, teenuselogis 0 viga, salvestuse nõusoleku
+migratsioon toodangus kohal. Deploy'mata on `0fe5dfe4` (A2 tuum) ja `3a345138` (leping) —
+kumbki ei kanna kasutajapinda, seega serverit uuesti ei ehitatud.
 
 ---
 
