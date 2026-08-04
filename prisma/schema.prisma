@@ -843,6 +843,15 @@ model User {
   networkSharesAsClient    NetworkShare[] @relation("NetworkShareClient")
   networkSharesAsRecipient NetworkShare[] @relation("NetworkShareRecipient")
   networkSharesAttested    NetworkShare[] @relation("NetworkShareAttestedBy")
+
+  // SK-V1: laud on FUNKTSIONAALNE, mitte nimeline töötaja — aga laual on omanik
+  // ja mehitajad, sest ilma nendeta ei ole kellelegi vastutust omistada.
+  // `urgentRequestEvents` kannab isikulist vastutusjälge (KOV-lepingu p 8):
+  // iga vaatamine, toiming ja edasisuunamine seotakse konkreetse inimesega.
+  urgentDesksOwned         UrgentDesk[]         @relation("UrgentDeskOwner")
+  urgentDeskMemberships    UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
+  urgentRequestsAuthored   UrgentRequest[]      @relation("UrgentRequestAuthor")
+  urgentRequestEvents      UrgentRequestEvent[] @relation("UrgentRequestEventActor")
 }
 
 model Profile {
@@ -1779,6 +1788,8 @@ model Municipality {
   kovAdmin          MunicipalityKovAdmin?
   serviceMapEntries ServiceMapEntry[]
   organizations     Organization[]
+  urgentDesks       UrgentDesk[]
+  urgentRequests    UrgentRequest[]
 
   @@index([baseName])
   @@index([type])
@@ -2154,6 +2165,7 @@ model ServiceMapEntry {
   municipality    Municipality?           @relation(fields: [municipalityId], references: [id], onDelete: SetNull)
   providerProfile ServiceProviderProfile? @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
   preInquiries    PreInquiry[]
+  urgentDesks     UrgentDesk[]
 
   @@index([type])
   @@index([status])
@@ -2219,6 +2231,9 @@ model PreInquiry {
   @@index([recipientOrganizationId, status, updatedAt])
   @@index([recipientOrganizationId, sentAt])
   networkShares NetworkShare[] @relation("NetworkShareSource")
+  /// SK-V1 E5: esiuks → tuba. Kiireloomulisest abipalvest saab teha
+  /// eelpöördumise, ilma et inimene peaks midagi uuesti trükkima.
+  convertedFromUrgentRequest UrgentRequest? @relation("UrgentRequestConversion")
 
   @@index([sourceJourneyId])
   @@index([recipientType])
@@ -5757,4 +5772,241 @@ enum NetworkShareStatus {
   RESPONDED
   RECALLED
   ENDED
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SOTSIAALKIIRABI-V1 (SK-V1) — avalik nimi „Kiireloomuline abipalve" (O-SK-7).
+//
+// Pöörduja ütleb ISE, et olukord ei kannata hommikuni, ja tema enda sõnadega
+// kirjeldus liigub tema valitud KOV-i lauale. Neli asja on siin arhitektuur,
+// mitte poliitika:
+//
+//   1. **Lüliti on saaja seadistus ise** (leping 3.6). Eraldi funktsioonilippu
+//      EI OLE. `UrgentRequest.deskId` on NOT NULL viide `UrgentDesk`-ile, mille
+//      valmidustingimused on serveris kontrollitud — lekkinud lipp, vana
+//      vahemälu ega otse-URL ei suuda toota pöördumist, mis ei vii kuhugi.
+//   2. **Platvorm lubab LUGEMISAEGA, mitte reageerimisaega.** `readingTimePromise`
+//      külmutatakse pöördumise KÜLGE tekstina saatmise hetkel: kui KOV muudab
+//      hiljem oma lubadust, ei tohi see tagantjärele muuta seda, mida inimesele
+//      öeldi.
+//   3. **`situationVerbatim` on ainus koht, kust vastuvõtja sisu loeb.**
+//      `assistantStructured` kuvatakse alati eraldi ja märgistatult, mitte selle
+//      asemel. „Ma ei tea, mis ma teen" ja „isik väljendas ebakindlust" ei ole
+//      sama teade.
+//   4. **AI ei triaaži.** Kiireloomulisuse allikas on ainult inimese enda tegu.
+//      Skeemis ei ole ühtegi masinhinnangu, skoori ega järjekorranumbri välja —
+//      ja seda tühjust ei tohi täita.
+//
+// Kõrvalekalle lepingu ptk 4 mustandist, teadlik: seal oli `regionCode String`,
+// siin on `municipalityId` viide `Municipality`-le. Põhjus on referentsiaalne
+// terviklikkus — vaba tekstiga piirkonnakood laseks luua laua piirkonnale, mida
+// ei ole, ja pöördumise piirkonda, mille nimi on kirjaviga.
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum UrgentRequestRecipientType {
+  KOV_CONTACT
+  SERVICE_PROVIDER
+}
+
+/// SK olekud EI OLE PreInquiry omad (leping 3.1: oma objekt, oma elutsükkel).
+/// `EXPIRED` on siin olemas sellepärast, et SK-teade AEGUB hommikuks —
+/// eelpöördumine ei aegu kunagi.
+enum UrgentRequestStatus {
+  SENT
+  READ
+  TAKEN
+  DECLINED
+  RESOLVED
+  EXPIRED
+  RECALLED
+}
+
+/// Isikuline vastutusjälg (KOV-lepingu p 8 + Soome kogemuse nõue 2).
+/// Iga rida seob toimingu KONKREETSE inimese ja kellaajaga.
+enum UrgentRequestEventKind {
+  CREATED
+  VIEWED
+  READ_MARKED
+  TAKEN
+  DECLINED
+  RESOLVED
+  RECALLED
+  EXPIRED
+  HANDED_OVER
+  HANDOVER_ACCEPTED
+  CONVERTED
+}
+
+/// Vastuvõtulaud = SK-V1 ainus lüliti.
+///
+/// Piirkond avaneb inimesele ALLES siis, kui siin on aktiivne, otsepöördumist
+/// lubav, lugemisaja ja 112-piiriga laud, mille tingimused ei ole aegunud.
+/// Valmiduse reegel elab `lib/urgent/desk.js`-is (`deskReadiness`) — siin on
+/// ainult andmed.
+model UrgentDesk {
+  id             String                     @id @default(cuid())
+  municipalityId String
+  recipientType  UrgentRequestRecipientType @default(KOV_CONTACT)
+
+  /// Avalik nimi, mida inimene näeb. NB O-SK-7: partneri teenusenime tohib
+  /// näidata ainult siis, kui rada viib päriselt selle teenuse mehitatud
+  /// vastuvõttu — mujal on nimi „Kiireloomuline abipalve".
+  publicName String
+
+  /// Laud on funktsionaalne, aga omanik on nimeline (KOV-lepingu p 1).
+  ownerUserId String?
+  /// Teenuseosutaja laud on seotud teenusekaardi kirjega.
+  serviceEntryId String?
+
+  openingHours          String
+  /// Kes tohib pöörduda — inimesele nähtav tingimus, mitte sisemine reegel.
+  whoMayContact         String
+  /// Kas KOV nõuab eelhindamist. INFORMATIIVNE väli: ta ei sulge otseteed,
+  /// vaid öeldakse inimesele ette. Otsetee sulgeb `directContactAllowed`.
+  preAssessmentRequired Boolean @default(false)
+  /// Inimese kulu. Estkeeri õppetund: sama nime all oli ühes vallas tasuline ja
+  /// teises tasuta teenus — hind peab olema kirjas laua juures.
+  costToPerson          String
+
+  /// LUGEMISAEG, mitte reageerimisaeg. Ilma selleta laud ei avane.
+  readingTimePromise String
+  /// Otsene kontakt või vastuvõtulaud — kumb see on.
+  contactChannel     String
+  /// 112 piir: mis olukorras see rada EI ole õige uks.
+  emergencyBoundary  String
+
+  /// Kui kaua pöördumine lauda OOTAB, enne kui ta aegub ja inimesele öeldakse,
+  /// et vastust ei tulnud. Laua oma väli, mitte globaalne konstant: laud, mis
+  /// lubab lugeda 30 minutiga, ei tohi lasta inimesel ööpäeva rippuda, ja laud,
+  /// mis loeb hommikul, ei tohi aeguda enne hommikut.
+  requestLifetimeHours Int @default(24)
+
+  /// Estkeeri õppetund nr 1: öisel teenusel oli päevane värav. Kui KOV nõuab,
+  /// et pöördumine käiks päevase sotsiaaltöötaja kaudu, EI OLE see SK-rada ja
+  /// piirkond jääb inimese jaoks suletuks.
+  directContactAllowed Boolean @default(false)
+
+  /// Mehitatud ja avatud. Vaikimisi VÄLJAS — laud ei teki kogemata.
+  isActive       Boolean   @default(false)
+  /// Millal partner tingimusi viimati kinnitas. Aegunud kinnitus sulgeb laua
+  /// (`DESK_VERIFICATION_MAX_AGE_DAYS`) — vana lubadus ei ole lubadus.
+  lastVerifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  municipality Municipality       @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
+  owner        User?              @relation("UrgentDeskOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  serviceEntry ServiceMapEntry?   @relation(fields: [serviceEntryId], references: [id], onDelete: SetNull)
+  members      UrgentDeskMember[]
+  requests     UrgentRequest[]    @relation("UrgentRequestDesk")
+  handovers    UrgentRequest[]    @relation("UrgentRequestHandoverDesk")
+
+  /// Üks laud piirkonna ja saajatüübi kohta. Kaks aktiivset KOV-lauda samas
+  /// vallas tähendaks, et pöördumine läheb sinna, kus keegi teda ei oota.
+  @@unique([municipalityId, recipientType])
+  @@index([isActive])
+  @@index([ownerUserId])
+  @@index([serviceEntryId])
+}
+
+/// Laua mehitajad. Vahetuse üleandmine (E5) ja isikuline vastutusjälg (E4)
+/// eeldavad, et laua taga on nimetatud inimesed — muidu ei ole kellelegi
+/// vaatamist omistada.
+model UrgentDeskMember {
+  id       String   @id @default(cuid())
+  deskId   String
+  userId   String
+  isActive Boolean  @default(true)
+  addedAt  DateTime @default(now())
+
+  desk UrgentDesk @relation(fields: [deskId], references: [id], onDelete: Cascade)
+  user User       @relation("UrgentDeskMemberUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([deskId, userId])
+  @@index([userId, isActive])
+}
+
+model UrgentRequest {
+  id             String    @id @default(cuid())
+  authorId       String?
+  authorErasedAt DateTime?
+
+  /// NOT NULL — see ongi fail-closed lukk. Pöördumist ilma lauata ei saa
+  /// eksisteerida ka siis, kui mõni koodirada seda kunagi proovib.
+  deskId         String
+  municipalityId String
+  recipientType  UrgentRequestRecipientType
+
+  /// Inimese enda sõnad, MUUTMATA. Ainus koht, kust vastuvõtja sisu loeb.
+  situationVerbatim   String  @db.Text
+  /// AI mustand — alati eraldi ja märgistatult, mitte verbatim-teksti asemel.
+  assistantStructured String? @db.Text
+
+  contactName  String
+  contactPhone String
+  /// „Kas keegi on ohus" — ainus jah/ei. `true` ei jõua siia kunagi: see vastus
+  /// viib 112-ekraanile ja kirjet ei teki (leping ptk 5 haru C).
+  safetyAnswer Boolean @default(false)
+
+  status UrgentRequestStatus @default(SENT)
+
+  /// KÜLMUTATUD saatmise hetkel, tekstina mitte viitena. Kui KOV muudab hiljem
+  /// oma lugemisaega, ei muutu see, mida inimesele lubati.
+  readingTimePromise String
+
+  sentAt        DateTime  @default(now())
+  readAt        DateTime?
+  takenAt       DateTime?
+  declinedAt    DateTime?
+  /// E5: eitav vastus on KOHUSTUSLIK rada. Vaikus on halvim tulemus, seega
+  /// keeldumine ilma põhjuseta ei ole võimalik.
+  declineReason String?   @db.Text
+  resolvedAt    DateTime?
+  expiresAt     DateTime
+  recalledAt    DateTime?
+
+  /// Vahetuse ja üksuse üleandmine (E5 + Soome nõue 3): öine juhtum peab jõudma
+  /// hommikul õige üksuseni JA üleandmine vajab vastuvõtukinnitust.
+  handoverDeskId     String?
+  handedOverAt       DateTime?
+  handoverAcceptedAt DateTime?
+  handoverNote       String?   @db.Text
+
+  /// Esiuks → tuba. Konversioon ei kaota verbatim-teksti.
+  convertedPreInquiryId String? @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  author              User?                @relation("UrgentRequestAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  desk                UrgentDesk           @relation("UrgentRequestDesk", fields: [deskId], references: [id], onDelete: Restrict)
+  handoverDesk        UrgentDesk?          @relation("UrgentRequestHandoverDesk", fields: [handoverDeskId], references: [id], onDelete: SetNull)
+  municipality        Municipality         @relation(fields: [municipalityId], references: [id], onDelete: Restrict)
+  convertedPreInquiry PreInquiry?          @relation("UrgentRequestConversion", fields: [convertedPreInquiryId], references: [id], onDelete: SetNull)
+  events              UrgentRequestEvent[]
+
+  @@index([deskId, status, sentAt])
+  @@index([authorId, sentAt])
+  @@index([status, expiresAt])
+  @@index([municipalityId, sentAt])
+  @@index([handoverDeskId, handoverAcceptedAt])
+}
+
+/// Vastutusjälg. Sisu siia EI kirjutata — rida ütleb, KES mida millal tegi,
+/// mitte mida ta luges. `note` on toimingu põhjendus (nt keeldumise põhjus),
+/// mitte pöörduja teksti koopia.
+model UrgentRequestEvent {
+  id        String                 @id @default(cuid())
+  requestId String
+  kind      UrgentRequestEventKind
+  actorId   String?
+  note      String?                @db.Text
+  createdAt DateTime               @default(now())
+
+  request UrgentRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actor   User?         @relation("UrgentRequestEventActor", fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([requestId, createdAt])
+  @@index([actorId, createdAt])
 }
