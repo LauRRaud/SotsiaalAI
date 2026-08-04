@@ -184,18 +184,34 @@ serialiseeritud vaates ei esine lähteallika ega osapoolte identiteete.
 **Väljas hoitud teadlikult** (auditi soovitus): vaba võrgustikukaart · mittekasutajad ·
 tervishoid · hääl · puuduva rolli märkaja · üldise sündmusekihi laiendus.
 
-### LAHTINE TOOTEOTSUS — kas klient on ruumi liige?
+### Klient kahel rajal (omanik 04.08) — PARANDATUD
 
-Ruum avaneb praegu **kahe liikmega: töötaja (omanik) ja saaja**. Klient ei ole liige — ta
-kinnitas *kokkuvõtte*, mitte kogu edasise erialase arutelu, ja vaikiv kaasamine tähendaks,
-et ta loeb vestlust, millega ta ei nõustunud.
+Esimene versioon nõudis, et klient oleks platvormi kasutaja. **See oli vale.** Omanik:
 
-**Vastuargument on sama kaalukas:** „mitte midagi minu kohta ilma minuta" on platvormi
-tuumlubadus, ja klient, kes ei näe, mida tema loo ümber räägitakse, on täpselt see olukord,
-mille vastu SotsiaalAI ehitatud on.
+> „Klient ei pea olema kasutaja, kui see on üks sotsiaaltöötaja töö osa, klient saab selle
+> info hiljem ka. Seega me ei saa nõuda kliendi kasutajaks olemist, aga võib ju võimaldada,
+> kui on soov."
 
-Valitud on kitsam variant ühel praktilisel põhjusel: **liikme lisamine on hiljem lihtne,
-eemaldamine mitte.** Otsus vajab omaniku sõna.
+Nüüd on kaks rada — sama muster, mis `ServiceReferral`-il juba oli:
+
+| | Kontoga klient | Väline klient |
+|---|---|---|
+| Kirje | `clientUserId` | `clientDisplayName` (miinimum: initsiaal või roll) + `clientExternalRef` |
+| Kinnitus | **klient ise**, meetod `IN_APP` | **töötaja kannab üle**, meetod `IN_PERSON` / `PHONE` / `WRITTEN` |
+| Tõendiväärtus | kliendi enda toiming | nõrgem — jääb eristatavaks |
+| Ruumis | jah, `MEMBER` | ei — teda ei ole platvormil olemas |
+| O-CO-6 | ei kohaldu | **nõuab kehtivat raamlepingut töötajal JA saajal** |
+
+**Kumbki rada ei teeskle teist.** `isClientOwnConfirmation()` on olemas selleks, et ükski
+kuvakiht ei saaks ülekantud kinnitust esitada kliendi enda vajutusena — sama piir, mis kehtib
+AI mustandi ja inimese ütluse vahel.
+
+**Kontoga klient on ruumis** (`MEMBER`, mitte vaataja — `RoomRole`-l vaatajarolli ei ole).
+Ruum sündis tema eelpöördumisest ja tema kinnitatud kokkuvõttest; kirjutamisõigus on tahtlik,
+sest inimene, kes näeb enda kohta käivat arutelu, peab saama ka parandada.
+
+**Kontota kliendi puhul ruum tema jaoks läbipaistev ei ole.** See on teadlik hind ja ühtlasi
+kõige selgem põhjus, miks konto pakkumine on väärt tegemist — aga konto ei ole tingimus.
 
 Ruumi pealkirja, kirjeldusse ega metaandmetesse **ei panda jagatud kokkuvõtte teksti** —
 ruumi metaandmed on nähtavad laiemalt kui jagatud sisu. Testiga lukus.

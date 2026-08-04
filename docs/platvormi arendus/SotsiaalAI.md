@@ -133,7 +133,7 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2576/2576**,
+**Viimane roheline mõõtmine** (04.08, COLLAB-P4 V1+V2a järel): `npm test` **2588/2588**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
 `npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
 
@@ -520,9 +520,8 @@ kliendi teekonda ega STAR2 toimikut.
 kokkuvõte ühele olemasoleva kontoga saajale → kliendi kinnitus → ruum. Kolm garantiid on
 testidega lukus: saaja peab olema kasutaja · kinnitamata jagamist ei saa saata · teksti
 muutmine pärast kinnitust tühistab kinnituse. Ruumi avamine on samuti koodis
-(`lib/network/shareRoom.js`). Tegemata on API-marsruudid ja liides. **Üks lahtine
-tooteotsus: kas klient on selle ruumi liige** — praegu ei ole, vt lepingut.
-Leping on mustand ja ootab kinnitust
+(`lib/network/shareRoom.js`). **Klient ei pea olema kasutaja** (omanik 04.08) — kaks rada,
+vt allpool. Tegemata on API-marsruudid ja liides. Leping on mustand ja ootab kinnitust
 ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md),
 osad E1–E6; koodi veel ei ole). Väikseim töötav rada: eelpöördumine või
 kohtumise tulemus → töötaja kaardistab vajaliku võrgustiku → **klient näeb ja kinnitab, mida
@@ -571,6 +570,17 @@ osa II ptk 4 teine omaniku otsus ette näeb.
 lahtiseks otsuseks: *mittekasutaja isikuandmetega kirje tohib tekkida ainult siis, kui nii
 vastutaval töötajal kui kaasatud teenuseosutajal on kehtiv allkirjastatud raamleping.* Kui
 mõlemat ei ole, jääb rada fail-closed.
+
+**See värav on 04.08 koodis** (`lib/network/share.js`, COLLAB-P4): välise kliendiga jagamine
+kontrollib raamlepingut mõlemal poolel ja keeldub, kui kas või üks puudub. Kontoga kliendi
+rada seda kontrolli ei vaja.
+
+**Klient ise ei pea olema kasutaja (omanik 04.08).** Võrgustikutöö on sotsiaaltöötaja
+tööülesanne ja klient saab info nagunii hiljem; kasutajaks olemist ei saa nõuda, aga
+võimaldada võib. Kaks rada käivad läbi kogu lõigu: kontoga klient kinnitab ise (`IN_APP`) ja
+on ruumi liige; väline klient hoitakse miinimumkujul ja tema kinnituse kannab töötaja üle
+(`IN_PERSON`/`PHONE`/`WRITTEN`). **Ülekantud kinnitus on nõrgem tõend ja jääb eristatavaks** —
+sama piir, mis AI mustandi ja inimese ütluse vahel.
 
 **Omaniku hoiatus, mis jääb kehtima:** kuni lepingud on allkirjastamata, on tegemist poolikult
 kasutatava tootega — funktsioon on olemas, aga ei tööta ühelegi päris kasutajale. Seepärast

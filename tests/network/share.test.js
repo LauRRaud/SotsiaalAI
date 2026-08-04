@@ -319,7 +319,7 @@ test("keegi teine ei näe saaja vaadet", async () => {
 
 // --- Ruumi avamine (COLLAB-P4 V2) -------------------------------------------
 
-test("ruum avaneb kahe liikmega: töötaja omanikuna ja saaja liikmena", async () => {
+test("ruum avaneb kolme liikmega: klient, töötaja omanikuna ja saaja", async () => {
   const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
   const created = [];
   const db = {
@@ -334,9 +334,10 @@ test("ruum avaneb kahe liikmega: töötaja omanikuna ja saaja liikmena", async (
 
   assert.equal(room.id, "room_9");
   assert.equal(created[0].ownerId, "worker_1");
+  // Klient on ruumis: ruum sündis tema loost ja tema kinnitatud kokkuvõttest.
   assert.deepEqual(
     created[0].members.create.map((member) => [member.userId, member.role]).sort(),
-    [["provider_1", "MEMBER"], ["worker_1", "OWNER"]]
+    [["client_1", "MEMBER"], ["provider_1", "MEMBER"], ["worker_1", "OWNER"]]
   );
   assert.equal(created[0].originType, "NETWORK_SHARE");
   assert.equal(created[0].originId, confirmed.id);
@@ -377,4 +378,206 @@ test("olemasoleva ruumiga jagamine ei loo teist ruumi", async () => {
   const room = await createRoomForNetworkShare({ share: { ...confirmed, roomId: "room_existing" }, db });
   assert.equal(room.id, "room_existing");
   assert.equal(creates, 0);
+});
+
+test("klient EI SAA ruumist välja jääda — tema loo ümber käiv arutelu ei ole tema eest varjatud", async () => {
+  const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
+  const created = [];
+  const db = {
+    room: {
+      async findFirst() { return null; },
+      async create({ data }) { created.push(data); return { id: "room_9", title: data.title }; }
+    }
+  };
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  await createRoomForNetworkShare({ share: confirmed, db });
+  const memberIds = created[0].members.create.map((member) => member.userId);
+  assert.ok(memberIds.includes(confirmed.clientUserId));
+});
+
+test("kontota kliendi puhul avaneb ruum kahe liikmega, mitte ei kuku", async () => {
+  const { createRoomForNetworkShare } = await import("../../lib/network/shareRoom.js");
+  const created = [];
+  const db = {
+    room: {
+      async findFirst() { return null; },
+      async create({ data }) { created.push(data); return { id: "room_ext", title: data.title }; }
+    }
+  };
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  const room = await createRoomForNetworkShare({
+    share: { ...confirmed, clientUserId: null, clientDisplayName: "Mari M." },
+    db
+  });
+  assert.equal(room.id, "room_ext");
+  assert.deepEqual(
+    created[0].members.create.map((member) => member.userId).sort(),
+    ["provider_1", "worker_1"]
+  );
+});
+
+// --- Väline klient: kaks rada, kumbki ei teeskle teist ----------------------
+
+const frameworkOk = async () => true;
+
+test("klient EI PEA olema kasutaja — kuvanimega väline klient sobib", async () => {
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    clientExternalRef: "juhtum 2026/144",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  assert.equal(share.clientUserId, null);
+  assert.equal(share.clientDisplayName, "Mari M.");
+});
+
+test("kliendita ja kuvanimeta jagamist siiski ei saa luua", async () => {
+  const prisma = createPrisma();
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, {
+      clientUserId: null,
+      clientDisplayName: "",
+      hasFrameworkAcceptance: frameworkOk
+    })),
+    (err) => err.code === "network_share.client_required"
+  );
+});
+
+test("O-CO-6 VÄRAV: väline klient nõuab raamlepingut töötajal JA saajal", async () => {
+  const prisma = createPrisma();
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, {
+      clientUserId: null,
+      clientDisplayName: "Mari M.",
+      hasFrameworkAcceptance: async (userId) => userId !== "worker_1"
+    })),
+    (err) => err.code === "network_share.worker_framework_agreement_required"
+  );
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, {
+      clientUserId: null,
+      clientDisplayName: "Mari M.",
+      hasFrameworkAcceptance: async (userId) => userId !== "provider_1"
+    })),
+    (err) => err.code === "network_share.recipient_framework_agreement_required"
+  );
+});
+
+test("O-CO-6 VÄRAV: ilma kontrollivõimaluseta välist rada ei avata", async () => {
+  const prisma = createPrisma();
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, {
+      clientUserId: null,
+      clientDisplayName: "Mari M.",
+      hasFrameworkAcceptance: null
+    })),
+    (err) => err.code === "network_share.framework_check_unavailable"
+  );
+});
+
+test("kontoga kliendi rada EI nõua raamlepingu kontrolli", async () => {
+  const prisma = createPrisma();
+  const share = await draftedShare(prisma);
+  assert.equal(share.clientUserId, "client_1");
+});
+
+test("töötaja saab välise kliendi otsuse üle kanda, aga see jääb ERISTATAVAKS", async () => {
+  const { attestClientDecision, isClientOwnConfirmation, ClientConfirmationMethod } =
+    await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+
+  const attested = await attestClientDecision({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    decision: "CONFIRMED",
+    method: "IN_PERSON",
+    note: "Kinnitas kodukülastusel.",
+    now
+  });
+
+  assert.equal(attested.status, NetworkShareStatus.CONFIRMED);
+  assert.equal(attested.clientConfirmationMethod, ClientConfirmationMethod.IN_PERSON);
+  assert.equal(attested.clientConfirmationAttestedById, "worker_1");
+  // Kõige olulisem rida: ülekantud kinnitus EI OLE kliendi enda toiming.
+  assert.equal(isClientOwnConfirmation(attested), false);
+});
+
+test("kliendi enda kinnitus märgitakse IN_APP-ina ja on eristatavalt tema oma", async () => {
+  const { isClientOwnConfirmation, ClientConfirmationMethod } =
+    await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const confirmed = await confirmedShare(prisma);
+  assert.equal(confirmed.clientConfirmationMethod, ClientConfirmationMethod.IN_APP);
+  assert.equal(confirmed.clientConfirmationAttestedById, null);
+  assert.equal(isClientOwnConfirmation(confirmed), true);
+});
+
+test("KONTOGA kliendi eest ei saa töötaja üle kanda", async () => {
+  const { attestClientDecision } = await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const share = await draftedShare(prisma);
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+  await assert.rejects(
+    () => attestClientDecision({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      decision: "CONFIRMED",
+      method: "IN_PERSON",
+      now
+    }),
+    (err) => err.code === "network_share.client_must_confirm_themselves"
+  );
+});
+
+test("ülekandmine nõuab päris meetodit — IN_APP-i ei saa võltsida", async () => {
+  const { attestClientDecision } = await import("../../lib/network/share.js");
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+  await assert.rejects(
+    () => attestClientDecision({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      decision: "CONFIRMED",
+      method: "IN_APP",
+      now
+    }),
+    (err) => err.code === "network_share.attested_method_required"
+  );
+});
+
+test("välist klienti ei saa kontorajal kinnitada", async () => {
+  const prisma = createPrisma();
+  const share = await createNetworkShare(baseInput(prisma, {
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: frameworkOk
+  }));
+  await submitToClient({ prisma, shareId: share.id, workerId: "worker_1", now });
+  await assert.rejects(
+    () => clientRespondToShare({
+      prisma,
+      shareId: share.id,
+      clientUserId: "client_1",
+      decision: "CONFIRMED",
+      now
+    }),
+    (err) => err.code === "network_share.client_is_external"
+  );
 });

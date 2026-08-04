@@ -842,6 +842,7 @@ model User {
   networkSharesAsWorker    NetworkShare[] @relation("NetworkShareWorker")
   networkSharesAsClient    NetworkShare[] @relation("NetworkShareClient")
   networkSharesAsRecipient NetworkShare[] @relation("NetworkShareRecipient")
+  networkSharesAttested    NetworkShare[] @relation("NetworkShareAttestedBy")
 }
 
 model Profile {
@@ -5660,12 +5661,17 @@ enum ServiceVisitStatus {
 // Töötaja jagab ÜHE eelpöördumise põhjal koostatud külmutatud kokkuvõtte ÜHELE
 // teenuseosutajale, ja klient kinnitab ENNE saatmist, mida jagatakse.
 //
-// Kaks väljajäetust on tahtlikud ja kannavad kogu lõigu õiguslikku väravat:
-//   1. `recipientUserId` on KOHUSTUSLIK viide olemasolevale kasutajale. E-posti
-//      kutset ega `userId: null` rada siin EI OLE — see hoiab lõigu O-CO-6-st
-//      väljas (mittekasutajate rada on COLLAB-P5, koos raamlepingu väravaga).
+// Kaks piiri on tahtlikud:
+//   1. `recipientUserId` on KOHUSTUSLIK viide olemasolevale kasutajale. Saajale
+//      e-posti kutset ega konto-loomist siin ei ole — jagamine läheb ainult
+//      inimesele, kes on juba platvormil ja seega raamlepingu all.
 //   2. Vaba võrgustikukaarti kolmandate isikute kirjetega siin ei ole. Kirje
-//      käib alati kliendi ja ühe saaja vahel.
+//      käib alati ühe kliendi ja ühe saaja vahel.
+//
+// Klient seevastu EI PEA olema kasutaja (omanik 04.08): võrgustikutöö on
+// sotsiaaltöötaja tööülesanne ja klient saab info nagunii hiljem. Väline klient
+// hoitakse miinimumkujul ja tema kinnituse kannab töötaja üle — kumbki rada ei
+// teeskle teist. Väline rada nõuab kehtivat raamlepingut, vt `lib/network/share.js`.
 //
 // `summaryText` on KÜLMUTATUD väljavõte (jagamisklass 9 CONFIRMED_SUMMARY),
 // mitte viide originaalile. Klassid 1–2 ei lahku kunagi originaalina.
@@ -5673,7 +5679,16 @@ model NetworkShare {
   id                  String             @id @default(cuid())
   sourcePreInquiryId  String
   workerId            String
-  clientUserId        String
+
+  /// Klient KAHEL RAJAL, sama muster mis `ServiceReferral`-il (omanik 04.08):
+  /// võrgustikutöö on sotsiaaltöötaja tööülesanne ja me EI SAA nõuda, et klient
+  /// oleks platvormi kasutaja. Kui ta on — kinnitab ta ise. Kui ei ole —
+  /// kannab töötaja tema kinnituse üle ja see märgitakse eraldi meetodina.
+  /// Väline rada hoiab MIINIMUMI: kuvanimi võib olla initsiaal või roll.
+  clientUserId        String?
+  clientDisplayName   String?
+  clientExternalRef   String?
+
   /// Saaja PEAB olema platvormi kasutaja. Vt mudeli päise punkt 1.
   recipientUserId     String
 
@@ -5690,6 +5705,13 @@ model NetworkShare {
   clientConfirmedAt   DateTime?
   clientDeclinedAt    DateTime?
   clientDecisionNote  String?            @db.Text
+
+  /// Kuidas kinnitus saadi. `IN_APP` = klient ise oma kontolt. Ülejäänud on
+  /// TÖÖTAJA ÜLEKANTUD kinnitus ja see on nõrgem tõend — neid ei tohi kunagi
+  /// esitada nii, nagu oleks klient ise vajutanud. Sama piir mis „AI mustandit
+  /// ei esitata inimese ütlusena".
+  clientConfirmationMethod       ClientConfirmationMethod?
+  clientConfirmationAttestedById String?
   sentAt              DateTime?
   openedAt            DateTime?
   recalledAt          DateTime?
@@ -5703,8 +5725,9 @@ model NetworkShare {
 
   sourcePreInquiry PreInquiry @relation("NetworkShareSource", fields: [sourcePreInquiryId], references: [id], onDelete: Cascade)
   worker           User       @relation("NetworkShareWorker", fields: [workerId], references: [id], onDelete: Cascade)
-  client           User       @relation("NetworkShareClient", fields: [clientUserId], references: [id], onDelete: Cascade)
+  client           User?      @relation("NetworkShareClient", fields: [clientUserId], references: [id], onDelete: SetNull)
   recipient        User       @relation("NetworkShareRecipient", fields: [recipientUserId], references: [id], onDelete: Cascade)
+  attestedBy       User?      @relation("NetworkShareAttestedBy", fields: [clientConfirmationAttestedById], references: [id], onDelete: SetNull)
   room             Room?      @relation("NetworkShareRoom", fields: [roomId], references: [id], onDelete: SetNull)
 
   @@index([workerId, status])
@@ -5715,6 +5738,15 @@ model NetworkShare {
 
 /// AWAITING_CLIENT on eraldi olek, mitte lipp: jagamine, mille klient ei ole
 /// veel näinud, ei tohi olla saadetavas seisus üheski koodirajas.
+/// IN_APP on ainus, kus klient ise vajutas. Ülejäänud kolm on töötaja ülekantud
+/// kinnitus — nõrgem tõend, mis peab jääma eristatavaks.
+enum ClientConfirmationMethod {
+  IN_APP
+  IN_PERSON
+  PHONE
+  WRITTEN
+}
+
 enum NetworkShareStatus {
   DRAFT
   AWAITING_CLIENT
