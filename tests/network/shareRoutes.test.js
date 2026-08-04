@@ -101,3 +101,9 @@ test("töötaja vaade kannab kinnituse tõendiväärtust nähtavalt", () => {
   assert.equal(view.clientConfirmationMethod, "IN_PERSON");
   assert.equal(view.clientConfirmationAttestedById, "worker_1");
 });
+
+test("loomise marsruut EI võta klienti päringu kehast — ta tuletatakse eelpöördumisest", async () => {
+  const source = await readRoute("route.js");
+  assert.doesNotMatch(source, /clientUserId: body/);
+  assert.match(source, /sourcePreInquiryId: body\?\.sourcePreInquiryId/);
+});

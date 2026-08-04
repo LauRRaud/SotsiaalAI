@@ -33,7 +33,9 @@ export async function POST(req) {
       prisma,
       workerId: auth.userId,
       sourcePreInquiryId: body?.sourcePreInquiryId,
-      clientUserId: body?.clientUserId || null,
+      // `clientUserId` EI tule päringu kehast: domeenikiht tuletab kliendi
+      // lähte-eelpöördumise autorist. Kui liides tohiks kliendi ise nimetada,
+      // saaks kokkuvõtte kogemata siduda vale inimesega.
       clientDisplayName: body?.clientDisplayName || "",
       clientExternalRef: body?.clientExternalRef || "",
       recipientUserId: body?.recipientUserId,

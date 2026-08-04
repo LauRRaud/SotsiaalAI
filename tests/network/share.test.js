@@ -40,7 +40,12 @@ function createModel(initial = []) {
 function createPrisma() {
   return {
     networkShare: createModel(),
-    preInquiry: createModel([{ id: "pre_1", authorId: "client_1" }]),
+    preInquiry: createModel([
+      // Autoriga pöördumine -> klient on kasutaja ja tuletatakse siit.
+      { id: "pre_1", authorId: "client_1" },
+      // Autorita pöördumine -> väline klient, kuvanimi tuleb töötajalt.
+      { id: "pre_ext", authorId: null }
+    ]),
     user: createModel([
       { id: "worker_1" },
       { id: "client_1" },
@@ -425,6 +430,7 @@ const frameworkOk = async () => true;
 test("klient EI PEA olema kasutaja — kuvanimega väline klient sobib", async () => {
   const prisma = createPrisma();
   const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
     clientUserId: null,
     clientDisplayName: "Mari M.",
     clientExternalRef: "juhtum 2026/144",
@@ -438,6 +444,7 @@ test("kliendita ja kuvanimeta jagamist siiski ei saa luua", async () => {
   const prisma = createPrisma();
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
+      sourcePreInquiryId: "pre_ext",
       clientUserId: null,
       clientDisplayName: "",
       hasFrameworkAcceptance: frameworkOk
@@ -450,6 +457,7 @@ test("O-CO-6 VÄRAV: väline klient nõuab raamlepingut töötajal JA saajal", a
   const prisma = createPrisma();
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
+      sourcePreInquiryId: "pre_ext",
       clientUserId: null,
       clientDisplayName: "Mari M.",
       hasFrameworkAcceptance: async (userId) => userId !== "worker_1"
@@ -458,6 +466,7 @@ test("O-CO-6 VÄRAV: väline klient nõuab raamlepingut töötajal JA saajal", a
   );
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
+      sourcePreInquiryId: "pre_ext",
       clientUserId: null,
       clientDisplayName: "Mari M.",
       hasFrameworkAcceptance: async (userId) => userId !== "provider_1"
@@ -470,6 +479,7 @@ test("O-CO-6 VÄRAV: ilma kontrollivõimaluseta välist rada ei avata", async ()
   const prisma = createPrisma();
   await assert.rejects(
     () => createNetworkShare(baseInput(prisma, {
+      sourcePreInquiryId: "pre_ext",
       clientUserId: null,
       clientDisplayName: "Mari M.",
       hasFrameworkAcceptance: null
@@ -489,6 +499,7 @@ test("töötaja saab välise kliendi otsuse üle kanda, aga see jääb ERISTATAV
     await import("../../lib/network/share.js");
   const prisma = createPrisma();
   const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
     clientUserId: null,
     clientDisplayName: "Mari M.",
     hasFrameworkAcceptance: frameworkOk
@@ -544,6 +555,7 @@ test("ülekandmine nõuab päris meetodit — IN_APP-i ei saa võltsida", async 
   const { attestClientDecision } = await import("../../lib/network/share.js");
   const prisma = createPrisma();
   const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
     clientUserId: null,
     clientDisplayName: "Mari M.",
     hasFrameworkAcceptance: frameworkOk
@@ -565,6 +577,7 @@ test("ülekandmine nõuab päris meetodit — IN_APP-i ei saa võltsida", async 
 test("välist klienti ei saa kontorajal kinnitada", async () => {
   const prisma = createPrisma();
   const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_ext",
     clientUserId: null,
     clientDisplayName: "Mari M.",
     hasFrameworkAcceptance: frameworkOk
@@ -580,4 +593,52 @@ test("välist klienti ei saa kontorajal kinnitada", async () => {
     }),
     (err) => err.code === "network_share.client_is_external"
   );
+});
+
+// --- Klient tuletatakse lähteallikast, mitte liidesest ----------------------
+
+test("klient TULETATAKSE eelpöördumise autorist — liides ei pea teda nimetama", async () => {
+  const prisma = createPrisma();
+  // Ei anna clientUserId'd üldse; pre_1 autor on client_1.
+  const share = await createNetworkShare(baseInput(prisma, { clientUserId: null }));
+  assert.equal(share.clientUserId, "client_1");
+});
+
+test("autorita eelpöördumine annab välise kliendi raja", async () => {
+  const prisma = createPrisma();
+  prisma.preInquiry.rows.push({ id: "pre_anon", authorId: null });
+  const share = await createNetworkShare(baseInput(prisma, {
+    sourcePreInquiryId: "pre_anon",
+    sourcePreInquiryId: "pre_ext",
+    clientUserId: null,
+    clientDisplayName: "Mari M.",
+    hasFrameworkAcceptance: async () => true
+  }));
+  assert.equal(share.clientUserId, null);
+  assert.equal(share.clientDisplayName, "Mari M.");
+});
+
+test("autorita eelpöördumine ilma kuvanimeta keeldub", async () => {
+  const prisma = createPrisma();
+  prisma.preInquiry.rows.push({ id: "pre_anon2", authorId: null });
+  await assert.rejects(
+    () => createNetworkShare(baseInput(prisma, {
+      sourcePreInquiryId: "pre_anon2",
+      sourcePreInquiryId: "pre_ext",
+      clientUserId: null,
+      clientDisplayName: "",
+      hasFrameworkAcceptance: async () => true
+    })),
+    (err) => err.code === "network_share.client_required"
+  );
+});
+
+test("autoriga eelpöördumise puhul EI nõuta raamlepingut — klient on kasutaja", async () => {
+  const prisma = createPrisma();
+  let asked = false;
+  await createNetworkShare(baseInput(prisma, {
+    clientUserId: null,
+    hasFrameworkAcceptance: async () => { asked = true; return true; }
+  }));
+  assert.equal(asked, false);
 });
