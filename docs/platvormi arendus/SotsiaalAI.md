@@ -89,8 +89,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **serveris** = **`d7e9fcd5`**, tööpuu puhas. Üks tööpuu, üks haru.
-Rollback `215fac39`. Vt „Deploy tehtud" allpool.
+`main` = `origin/main`, tööpuu puhas. Üks tööpuu, üks haru.
+**Serveris on `d7e9fcd5` ja see kannab kogu koodi** — `main` on temast ees ainult selle
+sektsiooni enda kannete võrra. Rollback `215fac39`. Vt „Deploy tehtud" allpool.
 
 ### Järgmine samm — ootab omaniku valikut
 
