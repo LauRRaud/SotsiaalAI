@@ -105,9 +105,9 @@ Need ei ole hüljatud variandid, vaid **lubadused**, mis peavad kasutajani jõud
 | Osa | Seis |
 |---|---|
 | **P0 — deterministlik tuum** (`lib/benefits/subsistence.js`, `subsistenceRates.js`) | **TEHTUD 04.08** |
-| **P1 — pöörduja vorm ja selgitus** vestluses / teekonnal | tegemata |
+| **P1 — pöörduja vorm** (`components/benefits/SubsistenceCalculator.jsx`) | **TEHTUD 04.08, brauseris tõendatud** |
+| **P3 — kontota avalik leht** `/toimetulekutoetus` | **TEHTUD 04.08** |
 | **P2 — dokumentide kontrollnimekiri** taotluse jaoks | tegemata |
-| **P3 — kontota avalik leht** (SEO-uks) | tegemata |
 | **P4 — KOV piirmäärade andmekiht** (kui KOV-partner annab oma määrused) | tegemata, partneri taga |
 
 ### P0 — mis on tehtud
@@ -140,6 +140,30 @@ Kuni need on lahendatud, ei tohi kalkulaator avalikku numbrit näidata.
 | **F** | **Sisendivead muutuvad vaikides nulliks.** Tundmatu kululiik (`{internet: 99}`) → 0 € ja `caveats: []`; puuduv pind → ei kärbita; null pereliiget → siiski positiivne tulemus. Avalik kalkulaator peab keelduma või hoiatama nähtavalt | `subsistence.js`, testid |
 | **G** | **Sissetuleku leping ei vasta vormile.** `excludedIncome` ainult kuvatakse, ei lahutata — eeldab, et välistatud tulud on juba `netIncome`-st eemaldatud. P1 vorm küsib aga ainult „eelmise kuu netosissetulekut"; tavakasutaja ei tea, mida sinna panna | `subsistence.js` + P1 |
 | **H** | **DoD ei tõenda arvutuse ohutust** — kontrollib hoiatusi, keeli ja mittesalvestamist, aga mitte sisendivalideerimist, toetatud kuupäevavahemikku ega kohustuslikke erandeid | DoD allpool |
+
+### P1 + P3 — mis on tehtud (04.08)
+
+**Arvutus käib brauseris.** Tuum on puhas funktsioon, seega sissetulek, pere koosseis ja
+eluasemekulud **ei lahku seadmest** — `fetch`-i ei ole, `localStorage`-it ei ole, server ei
+näe kunagi kellegi sissetulekut. Testid keelavad nende ilmumise sellesse faili.
+
+**Leht on avalik ja kontot ei nõua.** See ei ole mööndus: inimene, kes kaalub, kas tal võib
+olla õigus toimetulekutoetusele, on tihti täpselt see, kes ei taha end kuskile kirja panna.
+Turvaline on ta **konstruktsiooni, mitte lubaduse tõttu** — kui midagi ei saadeta, ei ole
+midagi kaitsta.
+
+Mõlemad lubadused („ei ole otsus" ja „jääb seadmesse") seisavad **enne vormi**, mitte tulemuse
+juures: inimene peab teadma, mida ta teeb, enne kui ta sissetuleku sisestab.
+
+**Brauseris tõendatud** (localhost, 04.08):
+
+| Katse | Tulemus |
+|---|---|
+| 1 täisealine, muu sissetulek 150 € | **70,00 €** — piir 220, eluase 0, sissetulek 150. Kattub [SoM-i enda avaldatud näitega](https://www.sm.ee/uudised/toimetulekutoetus-touseb-ja-muutub-inimestele-lihtsamini-kattesaadavaks) |
+| üür 300 € ilma täpsustusteta | **summat EI kuvata** — ilmusid kaks väravaküsimust ja kaks nimetatud puudujääki |
+
+Brauseris leitud ja parandatud: kaks vastamata väravat andsid sama teate kaks korda järjest —
+korduv lause näeb välja nagu viga, mitte nagu juhis.
 
 ### P1 — mida vorm peab küsima
 
