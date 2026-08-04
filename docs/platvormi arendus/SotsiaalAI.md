@@ -89,17 +89,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **`e1934c5c`**. **Serveris on `496e8aaf`** — kontrollitud 04.08
-(`ssh sotsiaalai`, `/home/ubuntu/apps/sotsiaalai`). Varasem lause „töötav build on
-`ccb569af`, hilisemad commit'id on ainult dokumendid" oli vale kahes kohas korraga: server
-on sellest kaks commit'i edasi JA mõlemad tagumised commit'id sisaldavad koodi, mitte ainult
-dokumente. Deploy'mata on täpselt üks commit — **`e1934c5c`**, KOV-kontaktide viimistlus
-(kirjeldusest dubleeriv „Roll:" rida välja, laiem eestikeelsete sihtrühma-käänete regex) koos
-testidega. Üks tööpuu, üks haru.
-Rollback `bb9ca541`. Väravad enne: `npm test` 2510/2510, eslint 0, `i18n:check` OK,
-`npm run build` OK; 0 migratsiooni. Smoke pärast: kolm teenust `active`,
-`/` `/meist` `/vestlus` `/voimalused` → 200, `https://sotsiaal.ai/vestlus` → 200,
-teenuselogis 0 viga.
+`main` = `origin/main` = **`5ef13fb6`**, tööpuu puhas. Üks tööpuu, üks haru.
+Rollback `bb9ca541`. Serveri seis vt „Deploy'mata" allpool.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -114,13 +105,17 @@ ise-hostimist ei tehta (server ei kanna, tasuta on niigi saavutatud). Kaks saba 
 **T27-sse** (S10): seadmematriks ja art. 28 paberitöö. Täielik lugu on S3-s.
 
 **Omanik valis 04.08: tehakse kõik neli** — salvestuse nõusolekukeel (tehtud, vt S7),
-COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
+COLLAB-P4, A2 eelkalkulaator ja deploy. **Kolm arendustööd on tehtud; lahti on ainult
+neljas, deploy** — ja selle sisu on vahepeal kasvanud ühest dokumendi-commit'ist 23
+commit'ini koos kasutajapinna ja kahe migratsiooniga (vt „Deploy'mata" allpool), seega
+küsitakse luba uuesti. Käimasolev järjekord:
 
 | Kandidaat | Seis |
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
 | ~~A2 toimetulekutoetuse eelkalkulaator~~ | **VALMIS 04.08** — vt S2 „Tehtud". Sabad: P2 checklist, P3 kontota versioon, P4 KOV piirmäärad |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. **Rada tõendatud 04.08 kolme päris sessiooniga** ja selle käigus leitud + parandatud **IDOR**: iga töötaja sai luua jagamise võõrast eelpöördumisest. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)) |
+| **SOTSIAALKIIRABI-V1** (omaniku valik 05.08) | **E1–E6 TEHTUD 05.08 — tervik on koodis ja peidus.** Vt S2 „Tehtud" ja S5. Rada tõendatud päris andmebaasi ja päris sessioonidega, nelja identiteediga; brauseris läbi käidud pöörduja vorm, kriisiekraan, laua koondvaade ja admini laudade register. Aktiveerimine ootab partnerit — vt „Mis avab" allpool |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
@@ -133,14 +128,22 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (04.08, A2 vormi järel): `npm test` **2622/2622**,
+**Viimane roheline mõõtmine** (05.08, SK-V1 järel): `npm test` **2766/2766**,
 `npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
-`npm run db:migrate:check` OK (123 migratsiooni päris andmebaasi vastu).
+`npm run db:migrate:check` OK (126 migratsiooni päris andmebaasi vastu),
+`npm run urgent:probe` **16/16** päris andmebaasi vastu.
 
-**Serveri seis kontrollitud 04.08:** deploy `215fac39`, kolm teenust `active`,
-`/` `/meist` `/vestlus` `/voimalused` → 200, teenuselogis 0 viga, salvestuse nõusoleku
-migratsioon toodangus kohal. Deploy'mata on `0fe5dfe4` (A2 tuum) ja `3a345138` (leping) —
-kumbki ei kanna kasutajapinda, seega serverit uuesti ei ehitatud.
+**Deploy'mata (seisuga 05.08).** Server on `215fac39` (kontrollitud 04.08: kolm teenust
+`active`, `/` `/meist` `/vestlus` `/voimalused` → 200, teenuselogis 0 viga). Sealt edasi on
+main'is **30 commit'i** ja need **kannavad kasutajapinda**: kogu COLLAB-P4 vertikaal,
+A2 kalkulaator lehega `/toimetulekutoetus` ja kogu SOTSIAALKIIRABI-V1 (`/kiireloomuline-abi`,
+`/toolaud/kiireloomuline-abi`, `/admin/urgent-desks`). Kaasas on **kolm migratsiooni**
+(`20260804140000_collab_p4_network_share`, `20260804160000_network_share_external_client`,
+`20260805090000_sk_v1_urgent_request`). Deploy ootab omaniku luba.
+
+**SK-V1 deploy on ohutu ka enne partnerit:** ilma seadistatud lauata ei ole rada üheski
+piirkonnas nähtav ega API kaudu kasutatav, ja päris isikuandmeid temas ei teki. Vt „Lüliti"
+S2-s.
 
 ---
 
@@ -223,6 +226,37 @@ Usutav vale number on siin halvim võimalik väljund, sest inimene teeb tema põ
 Kui omavalitsus kehtestab eluasemekuludele oma piirmäärad, mida kalkulaator ei tea, öeldakse
 seegi välja.
 
+**Kiireloomuline abipalve.**
+Kui olukord ei kannata hommikuni, saab inimene selle oma sõnadega kirja panna ja saata oma
+omavalitsuse vastuvõtulauale. Küsitakse nelja asja: mis toimub, kus sa oled, kuidas sind
+kätte saab ja kas keegi on praegu ohus. Rohkem mitte — sissetulek, leibkond ja eluase on
+vastuvõtja töö küsida, ja pikk küsimustik kell 23.47 ei ole eelinfo kogumine, vaid filter,
+mis jätab välja täpselt need, kelle pärast see funktsioon olemas on.
+
+**Kiireloomulisuse ütleb inimene ise.** Ükski mudel ega märksõnaloend ei järjesta pöördujaid
+— järjekord on ajaline ja ainult ajaline. Vastuvõtja näeb inimese teksti **sõna-sõnalt**;
+kui AI midagi struktureerib, seisab see eraldi ja märgistatult, mitte inimese sõnade asemel.
+
+Enne saatmist on näha, kuhu ja mis läheb: laua nimi, **millal seda loetakse**, tööaeg, kes
+tohib pöörduda, mis see inimesele maksab ja millal tuleb hoopis 112 helistada. Platvorm
+lubab ainult **lugemisaega, mitte reageerimisaega** — kohalesõitmine on omavalitsuse otsus,
+mitte platvormi lubadus. Saatmine ise ongi nõusolek: eraldi linnukest ei ole, sest inimene
+ise palub info edasi saata. Kirje läheb „Minu jagamistesse" ja seda saab tagasi võtta seni,
+kuni keegi ei ole seda lugenud.
+
+**Kolm piiri on ette öeldud.** See **ei ole hädaabinumber**: kui vastad, et keegi on ohus,
+või kui tekstist tuleb välja vahetu oht, ei liigu vorm edasi — ette tulevad 112 ja
+usaldustelefonid, ja mingit järjekorda ei teki. **Vaikus ei ole vastus**: kui laud ei jõua,
+peab ta keeldumise põhjendama, ja kui keegi ei vasta lubatud aja jooksul, saab inimene
+sellest ise teada. **Ja platvorm ei ole register** — pärast üleandmist on ametlik kandja
+omavalitsuse oma; platvormile jääb inimese enda koopia.
+
+**Lüliti on saaja seadistus ise.** Piirkonnas, kus ei ole kokku lepitud vastuvõtulauda koos
+lugemisajaga, ei ole nuppu, vormi ega valikut — leht ütleb selle välja ja pakub asemele
+teenusekaarti ja eelpöördumist. See ei ole liidese peitmine: server keeldub sellises
+piirkonnas pöördumist vastu võtma, seega lekkinud lipp, vana vahemälu ega otse-URL ei suuda
+toota nuppu, mis ei vii kuhugi.
+
 ### Poolik
 
 | Teema | Mis töötab | Lahtised sabad |
@@ -237,7 +271,7 @@ seegi välja.
 
 - **Toimetulekutoetuse eelkalkulaator (A2)** — **funktsioon on valmis** (vt „Tehtud" ülal, leht `/toimetulekutoetus`, konto nõutav). Lahtised sabad: P2 dokumentide kontrollnimekiri · P3 kontota avalik versioon (omanik otsustas 04.08 konto kasuks) · P4 KOV piirmäärade andmekiht (vajab partnerit) · üks õigusküsimus kärpimistehte kohta. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
 - **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
-- **SOTSIAALKIIRABI-V1** — 0 rida koodi, `READY_FOR_BUILD`. Vt sektsioon S4.
+- ~~SOTSIAALKIIRABI-V1~~ — **E1–E6 TEHTUD 05.08**, vt „Tehtud" ülal. Lahtised sabad on ainult aktiveerimise omad, mitte ehituse: **O-SK-2** (kaks vastutavat töötlejat või vastutav + volitatud), **O-SK-4** (säilitusaeg pärast üleandmist — praegu kirjeid ei kustutata, see on teadlik ootamine), **O-SK-5** (kes lülitab teenuseosutaja raja, mis tõendi alusel — soovitus: MTR-kontroll), **KOV-lepingu 10 punkti** ja **konto nõue** (täna nõutav; kontota rada kell 23.47 on tootepiiri küsimus, mille peab omanik otsustama).
 
 ---
 
@@ -718,6 +752,14 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 | A8 | Hooldekodu valiku rada (§ 20–22²) — hooldereformi rahastus + valikujuhis | — |
 | A9 | Kriisirežiimi seaduslik konks (§ 13¹) | — |
 
+**Mis avab SOTSIAALKIIRABI-V1 (05.08).** Kood on tervikuna valmis ja peidus. Avamiseks on
+vaja täpselt kolme asja ja mitte ühtegi rida koodi juurde: **(1)** üks KOV, kes on nõus
+mehitatud lauda pidama ja lugemisaega lubama; **(2)** KOV-lepingu 10 punkti allkirjastatult
+(lepingu ptk 8) — nendest kannab kõige rohkem p 4 „eitava vastuse kohustus" ja p 6 „KOV ei
+tohi saabuvatest teadetest koostada riskinimekirja"; **(3)** kolm otsust — O-SK-2 (rollid),
+O-SK-4 (säilitusaeg), O-SK-5 (kes lülitab osutaja raja). Alles siis loob admin laua,
+kinnitab tingimused ja lülitab sisse. Enne seda ei näe rada ükski inimene.
+
 *(A3 abivahendi teekond on tehtud — `lib/journey/assistiveDevices.js`.)*
 
 ---
@@ -734,7 +776,7 @@ blokeerijatega on **S3**-s, siin ei dubleerita.
 
 | Tööriist | Mis blokeerib |
 |---|---|
-| **SOTSIAALKIIRABI-V1** — pöörduja-poolne kiireloomulise abi kanal; 0 rida, `READY_FOR_BUILD` | E1+E2 otsustevabad; leping [`sotsiaalkiirabi-v1-arendusleping.md`](./sotsiaalkiirabi-v1-arendusleping.md) |
+| ~~SOTSIAALKIIRABI-V1~~ — **E1–E6 TEHTUD 05.08**, kirjeldus S2-s. Ehitust ei blokeeri enam miski; aktiveerimist blokeerib partner (KOV-lepingu 10 punkti) ja kolm otsust: O-SK-2, O-SK-4, O-SK-5 | leping [`sotsiaalkiirabi-v1-arendusleping.md`](./sotsiaalkiirabi-v1-arendusleping.md) |
 | SUP-P1…P11 supervisiooni täismudel | omaniku prioriseerimine |
 | TK-P1…P5 + Teekonna kompass („kus olen / mis on muutunud / mis järgmiseks") | — |
 | T08 failide ja meedia elutsükkel | omaniku otsus |
@@ -814,6 +856,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | TÖÖLAUD | P0–P3 | P2, P3 |
 | DOK-XTEN | P0, P1 | P1 |
 | HELP | P0/P0a/P0b | — tehtud |
+| SK kiireloomuline abipalve | E1–E6 | — **kõik tehtud 05.08**; lahtised on ainult aktiveerimise otsused O-SK-2/4/5 |
 | VÄLI, OPS, VOICE-V1, KOV, PROF, SOL, OPUS | üksikud | vt lähtefaile |
 
 **Aus piirang:** neist 122-st kontrollisin koodist ~25. Ülejäänute seis pärineb
@@ -940,6 +983,22 @@ eelhinnangu kokkuvõte, STAR-i abitekst — koostatakse platvormil ja kannavad a
 kas tegemist on kliendi öelduga või masina mustandiga. Lõpetatud juhtumid liiguvad omaette
 vaatesse, kust saab neid hiljem üle vaadata ja meetodipeeglisse viia.
 
+**Kiireloomuline vastuvõtt.**
+Omavalitsuse laua taga istuv töötaja näeb ühte järjekorda, kus seisavad koos kiireloomulised
+abipalved ja tavalised eelpöördumised — kaua oodanud on ees. Kaks allikat kannavad kahte eri
+lubadust ja neid ei valata kokku: lugemisaeg on kirjas ainult kiireloomulise abipalve real
+ja eelpöördumise tühi lahter tähendabki, et sellist lubadust ei antud.
+
+Töötaja saab pöördumise märkida loetuks, võtta töösse, põhjendatult keelduda või anda üle
+järgmisele üksusele. **Üleandmine üksi ei liiguta vastutust** — kuni vastuvõttev laud ei ole
+kinnitanud, vastutab endine. **„Loetud" on teadlik toiming, mitte nimekirja avamise
+kõrvalmõju**, sest muidu täituks lugemisaja lubadus ilma, et keegi teksti loeks. Iga
+vaatamine, toiming ja edasisuunamine jääb kellaajaga ja nimeliselt kirja, ka siis, kui
+töötaja ainult vaatas.
+
+Laud ise on funktsionaalne, mitte nimeline: tema taga on nimetatud mehitajad ja omanik.
+Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib laua liikmelisusest.
+
 ### Poolik
 
 | Teema | Mis töötab | Lahtised sabad |
@@ -948,6 +1007,7 @@ vaatesse, kust saab neid hiljem üle vaadata ja meetodipeeglisse viia.
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
 | Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid | **juhtumi objekt elutsükliga puudub** (S4.1); STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata
 
@@ -1173,6 +1233,7 @@ sviit fake-prismaga ei tõenda ligipääsupiiri.
 | **Viis kontot**, PIN **`45671234`** | `ai.admin` · `ai.specialist.a` · `ai.specialist.b` · `ai.client` · `ai.service-provider`, kõik `@sotsiaalai.test` |
 | **OTP-värav lahti** | `.env`-is `LOGIN_OTP_BYPASS_EMAILS` (varukoopia `.env.backup-2026-08-04`). NB **`LOGIN_ALLOW_DIRECT_PIN` ei ole vaja** — see gate'ib teist rada |
 | **Testandmestik** | üks eelpöördumine `ai.client` → `ai.specialist.a` + kolm `NetworkShare` kirjet |
+| **SK-V1 laud** (05.08) | Harku vallal on seadistatud `UrgentDesk` (mehitaja `ai.specialist.a`, lugemisaeg 2 h, aegumine 12 h) + kaks abipalvet seisudes `SENT` ja `DECLINED`. **Ainult lokaalselt** — serveris ühtegi lauda ei ole ja rada on seal peidus |
 
 **Login:** `POST /api/auth/login-step1 {email,pin}` → `temp_login_token` (ühekordne) →
 `GET /api/auth/csrf` → `POST /api/auth/callback/credentials` form-encoded
@@ -1180,7 +1241,24 @@ sviit fake-prismaga ei tõenda ligipääsupiiri.
 
 **Mitu rolli korraga: eraldi küpsisefailid** (`curl -c/-b`). Brauseripaani vahekaardid
 jagavad ühte küpsisepurki, seega nendega kahte sessiooni ei saa. Kolmerollilised rajad on
-ainult nii testitavad.
+ainult nii testitavad. Brauseris saab rolli vahetada `fetch`-iga: `signout` → `login-step1`
+→ `csrf` → `callback/credentials`, kõik lehe enda kontekstis.
+
+**Skeemimuudatuse järel ei kõlba võõra sessiooni dev-server (leitud 05.08).** Kui pordil
+3000 käib teise akna dev-server, hoiab ta **vana Prisma klienti** ka pärast `prisma
+generate` — `globalForPrisma` vahemälu elab HMR-i üle. Kõik uut tabelit puutuvad päringud
+annavad seal HTTP 500 ja see näeb välja nagu koodiviga. Võõrast serverit ei tapeta ja
+Next lukustab kausta ka teisel pordil, aga **`next start` toodangu-build'iga töötab**:
+
+```
+npm run build
+(set -a; . ./.env; set +a; NEXTAUTH_URL=http://localhost:3100 npx next start -p 3100)
+```
+
+NB `next start` seab `NODE_ENV=production`, mille peale `lib/prisma.js` otsib
+`.env.production`-it — seda ei ole, seega env tuleb ise shelli sisse laadida.
+Ja **build peab olema uuem kui viimane uus marsruut**: vana build andis
+`/api/admin/urgent-desks/aggregate` peale 405, sest tee langes `[deskId]`-i alla.
 
 ### Viitematerjal (ei kanna olekut)
 
