@@ -1,7 +1,9 @@
 # COLLAB-P4 — võrgustikutöö esimene vertikaalne lõik: arendusleping
 
-STATUS: väljastatud 04.08.2026. Leping ei muutu pärast väljastamist — muudatused
-lähevad `SotsiaalAI.md`-sse.
+STATUS: **MUSTAND 04.08.2026 — ootab omaniku kinnitust.** Alles kinnitamise hetkel muutub ta
+väljastatud lepinguks, mis enam ei muutu (S11). Seni tohib teda muuta.
+
+Koostatud `SotsiaalAI.md` S4.1 + `ideed.md` ptk 5 + koodist kontrollitud K1 aluse peale.
 
 ## Miks see on lahti ja miks ta ei ole blokeeritud
 
@@ -69,9 +71,13 @@ serveris jõustatud ja IDOR-testiga tõendatud — samamoodi nagu ülejäänud p
 
 ## Võrgustikukaardi kirje
 
+**Võrgustikul endal on eesmärk** (`ideed.md` 5.1) — miks see võrgustik kokku pandi. Ilma
+selleta on kaart nimekiri, mitte töövahend, ja keegi ei oska hiljem öelda, millal ta oma
+töö ära tegi. Sinna juurde käib **järgmine kohtumine või kontrollpunkt**.
+
 Osapooled: klient · lähedased · vastutav sotsiaaltöötaja · teised KOV-i spetsialistid ·
-teenuseosutajad · perearst või muu tervishoiukontakt · kool või lasteaed · Töötukassa ·
-tugiorganisatsioonid.
+teenuseosutajad · perearst või muu tervishoiukontakt (vt piir allpool) · kool või lasteaed ·
+Töötukassa · tugiorganisatsioonid · **muud olulised inimesed**.
 
 Iga osapoole juures: roll · organisatsioon · kontakt · **kaasamise eesmärk** ·
 **jagamispiir** · osalemise algus ja lõpp · viimane kontakt · kokkulepitud tegevus.
@@ -79,11 +85,40 @@ Iga osapoole juures: roll · organisatsioon · kontakt · **kaasamise eesmärk**
 **Kaardistamise lõpp on kohustuslik väli** — „igaveseks vaikimisi" on keelatud. Sama reegel,
 mis genogrammi/ökokaardi lepingus (T21).
 
+## Assistendi abi võrgustiku kokkupanemisel (`ideed.md` 5.4)
+
+Assistent ei tee ühtegi otsust, aga võib ette valmistada: olemasoleva võrgustiku
+kaardistamine · **puuduva rolli või teenuse märkamine** · teenuseosutajate otsimine
+teenusekaardilt · kontaktisoovi või eelpöördumise ettevalmistus · kliendilt küsimine, mida
+tohib jagada · piiratud jagatava kokkuvõtte koostamine · osapoole kutsumine ruumi ·
+kokkulepete ettevalmistus STAR2-sse dokumenteerimiseks.
+
+**„Puuduva rolli märkamine" on selle lõigu kõige omanäolisem osa** — võrgustikukaart, mis
+oskab öelda „siin loos ei ole kedagi, kes kannaks eluaseme teemat", teeb midagi, mida
+paberil kaardistus ei tee. Ta pakub kaalumiseks, ei täida ise.
+
+## Perearst ja tervishoiukontakt — P4-st VÄLJAS (`ideed.md` 5.7)
+
+`ideed.md` näeb perearsti **piiratud välise võrgustikuliikmena** ja loetleb MVP-s:
+kontaktivajaduse märkimine · kliendi kinnitatud küsimuste ettevalmistus · turvalise
+kontaktisoovi koostamine · võrgustikukohtumise kutse · piiratud häälruumis osalemine.
+
+Kõva piir jääb kehtima: **SotsiaalAI ei loe Terviseportaali, ei hoia ravilugu, ei kuva
+diagnoose, ei soovita ravi ega muutu perearsti dokumenteerimiskeskkonnaks.**
+
+**Aga P4-s teda ei ole.** Põhjus on P4 enda värav: P4 on lahti just sellepärast, et kõik
+osalejad on platvormi kasutajad. Perearst „välise liikmena" on definitsiooni järgi see, kes
+ei pruugi kasutaja olla — ja terviseandmed on eriliiki isikuandmed. See on `O-CO-6`
+territoorium ja kuulub P5-i. Kui konkreetne perearst ON platvormi kasutaja, mahub ta P4-de
+tavaosalejana, ilma ühegi terviseandmeta.
+
 ## Otsused, mis on juba tehtud — ära küsi neid uuesti
 
 - **`O-CW-7` on otsustatud:** võrgustikukaardistus on tavapraktika seadusest tuleneva
   ülesande peal; meedium ei loo uut töötlemist.
-- **`O-CO-6` ei kehti P4-le** — kõik osalejad on kasutajad.
+- **`O-CO-6` ei kehti P4-le** — tingimusel, et iga osaleja on platvormi kasutaja. See
+  tingimus on P4 värav, mitte eeldus: hetkel, kui lõiku tahetakse mittekasutajale
+  (nt perearst väljastpoolt), läheb ta P5-i.
 - **Teenuseosutaja näeb ainult talle jagatut** — kontaktisoovi, kokkuvõtet, dokumenti,
   ülesannet või ruumiarutelu. Mitte meetodipeeglit, tööheaolu, kliendi teekonda ega
   assistenti.
@@ -92,9 +127,10 @@ mis genogrammi/ökokaardi lepingus (T21).
 
 | Osa | Sisu |
 |---|---|
-| **E1** | Võrgustikukaardi mudel + osapoole kirje koos jagamispiiri ja lõpukuupäevaga. Migratsioon additiivne. |
+| **E1** | Võrgustikukaardi mudel: võrgustiku **eesmärk**, järgmine kontrollpunkt, ja osapoole kirje koos jagamispiiri ja lõpukuupäevaga. Migratsioon additiivne. |
+| **E1b** | Puuduva rolli märkaja: kaart võrdleb olemasolevaid rolle loo teemadega ja **pakub kaalumiseks** puuduvat rolli või teenust. Ei täida ise, ei otsusta. |
 | **E2** | Kliendi kinnitusring: klient näeb TÄPSELT seda külmutatud väljavõtet, mis välja läheb, ja kinnitab või keeldub. Kinnitamata väljavõte ei liigu. |
-| **E3** | Piiratud kutse osalejale (`participation.js` kutseseisundid) + kirjaliku ruumi avamine olemasoleva `roomAdapter`-i peal. |
+| **E3** | Piiratud kutse osalejale (`participation.js` kutseseisundid) + ruumi avamine olemasoleva `roomAdapter`-i peal. `ideed.md` 5.3 lubab ruumi olla **kirjalik või häälpõhine** — helikõne on ruumides juba olemas (S7), seega häälvariant on lüliti, mitte uus ehitus. Vaikimisi kirjalik. |
 | **E4** | Osaleja vaade: ainult talle jagatu. Server jõustab, IDOR-test tõendab. |
 | **E5** | U1 audience-reegli laiendus mitmele osalejale (`lib/events/recipients.js`) — S4.2 nr 12 saba sulgub siin. |
 | **E6** | Töötaja tulemuse kontroll + „STAR2-sse kandmiseks kopeeri" (MITTE „saada STAR2-sse"). |

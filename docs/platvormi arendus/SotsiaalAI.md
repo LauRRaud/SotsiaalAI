@@ -120,7 +120,7 @@ COLLAB-P4, A2 eelkalkulaator ja `e1934c5c` deploy. Käimasolev järjekord:
 |---|---|
 | **Salvestuse eesmärgisildid + nõusolekukirje keel** (S4.2 nr 4) | **TEHTUD 04.08** |
 | **A2 toimetulekutoetuse eelkalkulaator** (S4.1) | **P0 tuum TEHTUD 04.08** + leping väljastatud; alles P1 vorm, P2 checklist, P3 avalik leht, P4 KOV piirmäärad |
-| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **leping väljastatud 04.08** ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md), E1–E6); koodi veel ei ole — **järgmine järjekorras** |
+| **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **lepingu MUSTAND 04.08, ootab omaniku kinnitust** ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md), E1–E6); koodi veel ei ole — **järgmine järjekorras** |
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
@@ -515,7 +515,7 @@ osalejaga seotud ülesanne — osalejale ja koordinaatorile. **Võrgustikku kuts
 ligipääsu juhtumile.** Vestlusruumi liikmelisus ei ava juhtumitöö assistenti, meetodipeeglit,
 kliendi teekonda ega STAR2 toimikut.
 
-**Esimene vertikaalne lõik (COLLAB-P4)** — leping väljastatud 04.08
+**Esimene vertikaalne lõik (COLLAB-P4)** — lepingu mustand 04.08, ootab omaniku kinnitust
 ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md),
 osad E1–E6; koodi veel ei ole). Väikseim töötav rada: eelpöördumine või
 kohtumise tulemus → töötaja kaardistab vajaliku võrgustiku → **klient näeb ja kinnitab, mida
