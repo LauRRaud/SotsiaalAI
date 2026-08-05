@@ -3,7 +3,12 @@ import assert from "node:assert/strict";
 
 import { LICENCE_PUBLIC_STATUS } from "../../lib/mtr/assessment.js";
 import { LICENCE_COVERAGE } from "../../lib/mtr/licensedServices.js";
-import { LICENCE_SIGNAL_USAGE, licenceSignalFrom, licenceSignalsForServices } from "../../lib/mtr/licenceSignal.js";
+import {
+  LICENCE_SIGNAL_USAGE,
+  UNKNOWN_LICENCE_SIGNAL,
+  licenceSignalFrom,
+  licenceSignalsForServices
+} from "../../lib/mtr/licenceSignal.js";
 
 const NOW = new Date("2026-08-05T12:00:00.000Z");
 
@@ -122,7 +127,22 @@ test("värske seis loetakse teenuse ID järgi otse andmebaasist", async () => {
 
   const signals = await licenceSignalsForServices(["s1", "s2", "s1", null, ""], { prisma, now: NOW });
 
-  assert.equal(signals.size, 1, "sidumata teenus ei jõua kaardile");
   assert.equal(signals.get("s1").licence_public_status, LICENCE_PUBLIC_STATUS.VERIFIED);
+
+  /* IGA küsitud ID saab vastuse. Sidumata teenuse sisemist seisu ei avaldata,
+     aga kasutusreegel PEAB kaasas käima — puuduv kirje kaardil tähendaks, et
+     kutsuja peab reeglit mälu järgi teadma. */
+  assert.equal(signals.size, 2, "iga küsitud teenus saab vastuse");
+  assert.equal(signals.get("s2").licence_public_status, null, "sidumata seisu ei avaldata");
+  assert.equal(signals.get("s2").licence_usage, LICENCE_SIGNAL_USAGE.UNKNOWN);
+  assert.deepEqual(signals.get("s2"), UNKNOWN_LICENCE_SIGNAL);
+
+  /* Hinnanguta teenus käitub samamoodi. */
+  const missing = await licenceSignalsForServices(["s9"], {
+    prisma: { serviceLicenceAssessment: { findMany: async () => [] } },
+    now: NOW
+  });
+  assert.equal(missing.get("s9").licence_usage, LICENCE_SIGNAL_USAGE.UNKNOWN);
+
   assert.deepEqual(await licenceSignalsForServices([], { prisma, now: NOW }), new Map());
 });

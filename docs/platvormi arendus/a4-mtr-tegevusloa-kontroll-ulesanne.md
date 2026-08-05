@@ -58,9 +58,32 @@ loaseisu üldse. **Sond kontrollib seda** (`RAG-dokument ei kanna loaseisu`) —
 kunagi dokumenti lisab, läheb kontroll punaseks. Aegunud positiivne väide langeb ka siin ise
 „teadmata" peale, sest see on sama väide teises kohas.
 
+**Puuduva signaali leping:** iga küsitud teenuse ID **saab vastuse**. Kui hinnangut ei ole või
+seis on kinni hoitud, tuleb tagasi `UNKNOWN_LICENCE_SIGNAL` — sisemist seisu ei avaldata, aga
+käsk `MUST_NOT_CLAIM_EITHER_WAY` käib kaardilt kaasa. Puuduv kirje tähendaks, et kutsuja peab
+reeglit mälu järgi teadma, mis on selle kihi eesmärgiga vastuolus.
+
+**Kutsuja leping:** `licenceSignalsForServices` ei kontrolli, kas teenus on avaldatud või
+kaardil nähtav. Siia tohib anda ainult ID-sid, mis on juba avalikust tulemusest tulnud; mujalt
+kutsumisel tuleb avalikkuse filtrid päringusse lisada.
+
 **Tegemata jääb seos:** soovituskihti, mis RAG-i tulemused ja selle signaali kokku paneb, meil
 veel ei ole — assistent saab teenuseinfo välise RAG-teenuse kaudu. `licenceSignalsForServices`
 on valmis ja ootab seda kihti; kuni teda ei ole, jääb signaal kasutusele võtmata.
+
+## Sond tõendab nüüd seda, mida ta lubab (39/39)
+
+Viiendas ülevaatuses tuli välja, et sondi lubadus oli tugevam kui tema test. Parandatud:
+
+- **Atomaarsust tõendatakse päriselt läbi `runLicenceCheck`-i:** viga sunnitakse TEISE teenuse
+  hinnangu kirjutamise ajal ja kontrollitakse, et ei jää ei uut kontrollikirjet ega osaliselt
+  uuendatud hinnanguid. Varem tõendas see koht ainult, et `$transaction` veereb tagasi.
+- **`assessmentReason` on nüüd kontrollitud** (`PENDING_SECOND_CHECK` esimese puudumise järel).
+- **Kaks eraldi kaetusjuhtu:** kõik tellitud tulbad olemas → `EXACT_MATCH`; „Tegevusala liik"
+  puudub ja `activityType: null` → `ACTIVITY_VERIFIED` + `ACTIVITY_MATCH_ONLY`. Varem väitis
+  sond korraga, et tulp puudub JA liik on täpne — ebarealistlik kombinatsioon.
+- **Tootmiskaitse vaatab ka ühenduse sihtkohta:** `NODE_ENV` üksi ei ole värav, sest
+  tootmisbaasi võib ühendada seadistamata shellist. Kaugbaas nõuab alati `ALLOW_A4_DB_PROBE=1`.
 
 **E7 EI OLE tegemata töö, vaid otsuse taga:** O-A4-3 on juba vastatud — MTR-luba on
 kiireloomulise osutaja-raja jaoks **vajalik, aga mitte piisav** tõend. Enne on vaja

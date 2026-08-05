@@ -36,10 +36,23 @@ import {
   upsertServiceProviderProfileForOwner
 } from "../lib/serviceProviderProfiles.js";
 
-/* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Tootmises käivitub ta ainult
-   selgesõnalise loaga, ja ka siis on see teadlik otsus, mitte kogemata. */
-if (process.env.NODE_ENV === "production" && process.env.ALLOW_A4_DB_PROBE !== "1") {
-  console.error("A4 runtime-sond ei käivitu tootmisandmebaasis ilma ALLOW_A4_DB_PROBE=1.");
+/* TOOTMISKAITSE: sond KIRJUTAB andmebaasi.
+   `NODE_ENV` üksi EI OLE piisav värav — tootmisbaasi võib ühendada ka
+   seadistamata shellist, staging'ust või valesti seatud keskkonnaga. Seepärast
+   vaatame ka SEDA, kuhu ühendus päriselt läheb: kaugbaas nõuab alati
+   selgesõnalist luba. */
+const dbHost = (() => {
+  try {
+    return new URL(process.env.DATABASE_URL || "").hostname || "";
+  } catch {
+    return "";
+  }
+})();
+const localHosts = new Set(["localhost", "127.0.0.1", "::1", ""]);
+if ((process.env.NODE_ENV === "production" || !localHosts.has(dbHost)) && process.env.ALLOW_A4_DB_PROBE !== "1") {
+  console.error(
+    `A4 runtime-sond ei käivitu kaug- ega tootmisandmebaasi vastu ilma ALLOW_A4_DB_PROBE=1 (host: ${dbHost || "tundmatu"}).`
+  );
   process.exit(1);
 }
 
@@ -69,7 +82,9 @@ function syntheticLicences(licences, overrides = {}) {
     checksumValid: true,
     licences,
     unknownColumns: [],
-    missingOrderedColumns: ["tegevusala liik"],
+    /* Vaikimisi on KÕIK tellitud tulbad olemas — see on realistlik vastus ja
+       ainult siis saab liik olla täpne. Puuduva tulba juhtum on eraldi allpool. */
+    missingOrderedColumns: [],
     attemptedAt: new Date().toISOString(),
     checkedAt: new Date().toISOString(),
     ...overrides
@@ -208,7 +223,31 @@ try {
   check("tõendi loanumber salvestus", byKey.get("TOETATUD_ELAMINE")?.coveringLicenceNumber === `SEH-${runId}`);
   check("tõendi seos salvestus", byKey.get("TOETATUD_ELAMINE")?.statusSourceCheckId === run.checkId);
   check("kataloogi versioon salvestus", Boolean(byKey.get("TOETATUD_ELAMINE")?.catalogueVersion));
-  check("missingOrderedColumns salvestus", JSON.stringify((await prisma.licenceCheck.findUnique({ where: { id: run.checkId }, select: { missingOrderedColumns: true } }))?.missingOrderedColumns) === '["tegevusala liik"]');
+
+  /* PEHME DEGRADEERUMINE päris runtime'is: kui registri väljundist puudub
+     „Tegevusala liik", ei ole see vastuolu vaid jämedam seis. Kaetus langeb
+     `ACTIVITY_MATCH_ONLY` peale ja seis saab OMA nime — mitte `NO_MATCH`. */
+  const degraded = await runLicenceCheck({
+    providerProfileId: profile.id,
+    prisma,
+    resolveEntity: okEntity,
+    fetchLicences: syntheticLicences([syntheticLicence({ activityType: null })], {
+      missingOrderedColumns: ["tegevusala liik"]
+    })
+  });
+  const degradedRow = await prisma.serviceLicenceAssessment.findFirst({
+    where: { serviceKey: "TOETATUD_ELAMINE", providerService: { providerProfileId: profile.id } },
+    select: { publicStatus: true, coverage: true }
+  });
+  check("liigita luba annab ACTIVITY_VERIFIED", degradedRow?.publicStatus === LICENCE_PUBLIC_STATUS.ACTIVITY_VERIFIED);
+  check("kaetus langeb jämedale tasemele", degradedRow?.coverage === "ACTIVITY_MATCH_ONLY");
+  check(
+    "missingOrderedColumns salvestus",
+    JSON.stringify(
+      (await prisma.licenceCheck.findUnique({ where: { id: degraded.checkId }, select: { missingOrderedColumns: true } }))
+        ?.missingOrderedColumns
+    ) === '["tegevusala liik"]'
+  );
 
   check("loakohustuseta teenus", byKey.get("TUGIISIK")?.publicStatus === LICENCE_PUBLIC_STATUS.NO_SHS_LICENCE_REQUIRED);
   check("loakohustuseta teenusel EI OLE kontrolli seost", byKey.get("TUGIISIK")?.lastAttemptCheckId === null);
@@ -232,11 +271,17 @@ try {
   });
   const afterFirst = await prisma.serviceLicenceAssessment.findFirst({
     where: { serviceKey: "TOETATUD_ELAMINE", providerService: { providerProfileId: profile.id } },
-    select: { publicStatus: true, confirmedMissCount: true, statusSourceCheckId: true }
+    select: { publicStatus: true, confirmedMissCount: true, statusSourceCheckId: true, assessmentReason: true }
   });
-  check("esimene puudumine hoiab märgist vana tõendi najal", afterFirst?.publicStatus === LICENCE_PUBLIC_STATUS.VERIFIED);
-  check("tõend jääb VANA kontrolli külge", afterFirst?.statusSourceCheckId === run.checkId, `viimane katse oli ${firstMiss.checkId}`);
+  /* Eelmine EDUKAS kontroll on siin degradeerunud juhtum, seega seis on
+     `ACTIVITY_VERIFIED` ja tõend viitab temale — mitte esimesele kontrollile. */
+  check(
+    "esimene puudumine hoiab märgist vana tõendi najal",
+    afterFirst?.publicStatus === LICENCE_PUBLIC_STATUS.ACTIVITY_VERIFIED
+  );
+  check("tõend jääb VANA kontrolli külge", afterFirst?.statusSourceCheckId === degraded.checkId, `viimane katse oli ${firstMiss.checkId}`);
   check("puudumiste loendur kasvas", afterFirst?.confirmedMissCount === 1);
+  check("esimese puudumise PÕHJUS salvestus", afterFirst?.assessmentReason === "PENDING_SECOND_CHECK");
 
   await runLicenceCheck({
     providerProfileId: profile.id,
@@ -321,26 +366,68 @@ try {
   const leaked = ["licence", "tegevusluba", "verified", "mtr"].filter((word) => ragSerialized.includes(word));
   check("RAG-dokument ei kanna loaseisu", leaked.length === 0, leaked.length ? `lekkis: ${leaked.join(", ")}` : "");
 
-  /* 8: tehinguline terviklikkus. */
-  const before = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });
+  /* 8: TEENUSKIHI atomaarsus — mitte lihtsalt „Prisma tehing töötab".
+     Sunnime vea TEISE teenuse hinnangu kirjutamise ajal ja kontrollime, et ei
+     jää ei uut kontrollikirjet ega osaliselt uuendatud hinnanguid. Varem
+     tõendas see koht ainult seda, et `$transaction` veereb tagasi — mitte seda,
+     et `runLicenceCheck` ise kirjutab kõik ühe tehingu sees. */
+  const beforeChecks = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });
+  const beforeStatuses = await prisma.serviceLicenceAssessment.findMany({
+    where: { providerService: { providerProfileId: profile.id } },
+    select: { providerServiceId: true, publicStatus: true },
+    orderBy: { providerServiceId: "asc" }
+  });
+
+  let upsertCalls = 0;
+  const failingPrisma = new Proxy(prisma, {
+    get(target, prop) {
+      if (prop === "$transaction") {
+        return (fn) =>
+          target.$transaction(async (tx) => {
+            const guardedTx = new Proxy(tx, {
+              get(txTarget, txProp) {
+                if (txProp !== "serviceLicenceAssessment") return txTarget[txProp];
+                return {
+                  ...txTarget.serviceLicenceAssessment,
+                  upsert: async (args) => {
+                    upsertCalls += 1;
+                    if (upsertCalls === 2) throw new Error("sunnitud katkestus teise teenuse peal");
+                    return txTarget.serviceLicenceAssessment.upsert(args);
+                  }
+                };
+              }
+            });
+            return fn(guardedTx);
+          });
+      }
+      return target[prop];
+    }
+  });
+
+  let threw = false;
   try {
-    await prisma.$transaction(async (tx) => {
-      await tx.licenceCheck.create({
-        data: {
-          providerProfileId: profile.id,
-          registryCode: SYNTHETIC_CODE,
-          result: "OK",
-          licenceSourceResult: "OK",
-          entitySourceResult: "OK"
-        }
-      });
-      throw new Error("sunnitud katkestus");
+    await runLicenceCheck({
+      providerProfileId: profile.id,
+      prisma: failingPrisma,
+      resolveEntity: okEntity,
+      fetchLicences: syntheticLicences([syntheticLicence()])
     });
   } catch {
-    /* oodatud */
+    threw = true;
   }
-  const after = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });
-  check("tehing veereb vea korral tervikuna tagasi", after === before, `enne ${before}, pärast ${after}`);
+
+  const afterChecks = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });
+  const afterStatuses = await prisma.serviceLicenceAssessment.findMany({
+    where: { providerService: { providerProfileId: profile.id } },
+    select: { providerServiceId: true, publicStatus: true },
+    orderBy: { providerServiceId: "asc" }
+  });
+  check("katkestus teise hinnangu peal viskab", threw && upsertCalls >= 2, `upsert-kutseid ${upsertCalls}`);
+  check("uut kontrollikirjet ei jäänud", afterChecks === beforeChecks, `enne ${beforeChecks}, pärast ${afterChecks}`);
+  check(
+    "ükski hinnang ei jäänud poolikult uuendatuks",
+    JSON.stringify(afterStatuses) === JSON.stringify(beforeStatuses)
+  );
 } catch (error) {
   failures += 1;
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);

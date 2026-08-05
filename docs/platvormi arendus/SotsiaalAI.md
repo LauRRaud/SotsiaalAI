@@ -131,7 +131,8 @@ austab `nextCheckAt`-i, käib profiilid ükshaaval; viis admini alarmisignaali r
 `GET /api/admin/licence-alarms`). **Neljas ülevaatus leidis veel ühe päris vea:** profiili
 salvestamine tegi teenustele `delete + create` ja kustutas kaskaadis kogu loahinnangu —
 osutaja oleks kaotanud märgise iga kirjavea parandusega. Nüüd uuendatakse rida kohapeal ja
-sond tõendab seda päris andmebaasis (34/34). **RAG-otsus tehtud 05.08:** tegevusloa seis tohib
+sond tõendab seda päris andmebaasis (39/39; sond tõendab nüüd ka teenuskihi enda atomaarsust,
+mitte ainult seda, et Prisma tehing veereb tagasi). **RAG-otsus tehtud 05.08:** tegevusloa seis tohib
 jõuda assistendini **piiratud usaldussignaalina** (`lib/mtr/licenceSignal.js`) — kuus välja
 pluss kasutusreegel, kontrolliajalugu ja veakoodid mitte. Seis **liidetakse soovituse ajal
 andmebaasist**, mitte ei kirjutata RAG-indeksisse: „kontrollitud" on väide, mis aegub, ja
