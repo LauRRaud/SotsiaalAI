@@ -3,8 +3,36 @@
 STATUS: **v2, 05.08.2026. E1–E6 TEHTUD. E7 ootab otsust O-A4-3, mitte arendust.**
 
 **E5 avalik silt** on teenusekaardi hüpikus: server annab valmis märgise (tekst, toon,
-kuupäev, hoiatus), vaade ei tõlgenda midagi. **E6 korje** on `npm run mtr:refresh` — austab
-`nextCheckAt`-i, käib profiilid ükshaaval ja annab adminile viis signaali.
+kuupäev, hoiatus, **allikas**), vaade ei tõlgenda midagi. **E6 korje** on
+`npm run mtr:refresh` — austab `nextCheckAt`-i, käib profiilid ükshaaval ja annab adminile
+viis signaali (`GET /api/admin/licence-alarms`).
+
+**Neljanda ülevaatuse leiud (05.08), kõik parandatud:**
+
+1. **`delete + create` kustutas hinnangu ikkagi.** `serviceKey` säilitamisest EI PIISANUD:
+   teenuserea kustutamisel kadus kaskaadis kogu `ServiceLicenceAssessment` ja sama ID
+   taasloomine seda ei taasta. Osutaja kaotanuks märgise iga kirjavea parandusega. Nüüd
+   **uuendatakse olemasolevat rida kohapeal** ja kustutatakse ainult need, mis vormilt kadusid.
+   Sondis on selle kohta oma kontroll: *„HINNANG säilis salvestuse üle"*.
+2. **„Ei vaja luba" viitas MTR-ile.** See seis ei tule registri vastusest, vaid E2
+   vastavustabelist. Märgis kannab nüüd **`sourceKey`-d** (register · kontrolliallikas ·
+   loakohustuse kaardistus) ja vaade ei vali allikat ise.
+3. **`dueProfiles` nälgimine.** Eelpiirang „võtame neli korda rohkem" tähendas, et kui
+   esimesed N profiili ei ole küpsed, ei jõua järgmised MITTE KUNAGI kontrollini. Nüüd
+   **kursoripagineerimine** läbi kõigi kandidaatide; test tõendab 61. profiili leidmist.
+4. **Cron kord ööpäevas tegi 1 h ja 6 h korduskatsed olematuks.** Rütm on nüüd **kord tunnis**
+   (`0 * * * *`) — see ei kontrolli iga profiili tunnis, vaid vaatab tunnis korra, kes on küps.
+5. Alarmid arvutatakse **iga profiili viimase kontrolli** pealt, mitte viimase 100 rea pealt.
+6. Aegunud positiivsed seisud filtreeritakse **andmebaasis**, mitte mälus.
+7. Korje annab kontrollile **sama kella**, millega küpsust hinnati.
+8. Alarmid on ühendatud päris rajaga: `GET /api/admin/licence-alarms`.
+9. Tühja sildiplokki ei teki (puuduv tõlge → märgist ei renderdata) ja kõrge tõrkemäär läheb
+   korje logis eraldi alarmireana välja.
+
+**Lahtiseks jäi teadlikult üks otsus:** kas tegevusloa seis peab jõudma ka **RAG-i**, st kas
+assistent peab teenust soovitades märgist teadma. Täna näeb inimene silti kaardil, aga
+assistent seda ei tea. Kui vastus on jah, läheb sinna ainult semantiliselt ohutu kokkuvõte
+(seis + kaetus + kuupäev), mitte kontrolliajalugu.
 
 **E7 EI OLE tegemata töö, vaid otsuse taga:** O-A4-3 on juba vastatud — MTR-luba on
 kiireloomulise osutaja-raja jaoks **vajalik, aga mitte piisav** tõend. Enne on vaja

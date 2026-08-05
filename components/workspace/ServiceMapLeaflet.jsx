@@ -354,16 +354,18 @@ function appendLicenceBadge(parent, badge, t) {
   const label = typeof t === "function"
     ? t(badge.key, { date: formatLicenceDate(badge.params?.date), activity: badge.params?.activity || "" }, "")
     : "";
+  /* Puuduv tõlge ei tohi jätta ekraanile tühja märgiseplokki, kus seisab
+     ainult allikarida. */
+  if (!String(label || "").trim()) return null;
   appendText(block, "p", "service-map-popup__licence-label", label);
   if (badge.caveatKey) {
     appendText(block, "p", "service-map-popup__licence-caveat", readText(t, badge.caveatKey, ""));
   }
-  appendText(
-    block,
-    "p",
-    "service-map-popup__licence-source",
-    readText(t, "service_provider_profile.licence.public.source", "Allikas: majandustegevuse register")
-  );
+  /* ALLIKAS tuleb märgiselt: „ei vaja luba" ei tulene MTR-ist, vaid
+     vastavustabelist, ja vaade ei tohi seda ise valida. */
+  if (badge.sourceKey) {
+    appendText(block, "p", "service-map-popup__licence-source", readText(t, badge.sourceKey, ""));
+  }
   parent.appendChild(block);
   return block;
 }

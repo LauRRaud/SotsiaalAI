@@ -22,7 +22,7 @@
     "db:push:local": "dotenv -e .env.local -- prisma db push",
     "db:migrate:check": "node scripts/check-clean-migrations.mjs",
     "urgent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-request-probe.mjs",
-    "mtr:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-probe.mjs",
+    "mtr:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",

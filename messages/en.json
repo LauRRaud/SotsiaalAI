@@ -1462,7 +1462,11 @@
         "no_licence_required": "This service does not require a social service activity licence verifiable in the business register",
         "not_found": "No valid activity licence for this service was found in the register at the time of the check",
         "unconfirmed": "The activity licence status could not be confirmed in the register",
-        "source": "Source: Estonian business register"
+        "source": {
+          "register": "Source: Estonian business register",
+          "register_check": "Checked against: Estonian business register",
+          "shs_mapping": "Basis: social service licence-obligation mapping"
+        }
       },
       "internal": {
         "heading": "Activity licence check",

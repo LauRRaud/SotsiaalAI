@@ -1462,7 +1462,11 @@
         "no_licence_required": "Selle teenuse puhul ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba nõutud",
         "not_found": "MTR-ist ei leitud kontrolli ajal sellele teenusele kehtivat tegevusluba",
         "unconfirmed": "Tegevusloa staatust ei saanud MTR-is kinnitada",
-        "source": "Allikas: majandustegevuse register"
+        "source": {
+          "register": "Allikas: majandustegevuse register",
+          "register_check": "Kontrolliallikas: majandustegevuse register",
+          "shs_mapping": "Alus: sotsiaalteenuse loakohustuse kaardistus"
+        }
       },
       "internal": {
         "heading": "Tegevusloa kontroll",

@@ -30,6 +30,7 @@
 import { prisma } from "../lib/prisma.js";
 import { LICENCE_PUBLIC_STATUS } from "../lib/mtr/assessment.js";
 import { runLicenceCheck } from "../lib/mtr/licenceCheckService.js";
+import { upsertServiceProviderProfileForOwner } from "../lib/serviceProviderProfiles.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Tootmises käivitub ta ainult
    selgesõnalise loaga, ja ka siis on see teadlik otsus, mitte kogemata. */
@@ -92,6 +93,7 @@ function syntheticLicence(overrides = {}) {
 const okEntity = async () => ({ status: "OK", reason: null, found: true, name: SYNTHETIC_NAME });
 
 let profileId = null;
+let createdUserId = null;
 
 try {
   const profile = await prisma.serviceProviderProfile.create({
@@ -258,6 +260,47 @@ try {
   });
   check("lahendamata identiteet ei anna VERIFIED", afterUnresolved?.publicStatus === LICENCE_PUBLIC_STATUS.UNCONFIRMED);
 
+  /* 9: PROFIILI SALVESTAMINE EI TOHI HINNANGUT KUSTUTADA.
+     Vana `delete + create` hävitas kaskaadis kogu `ServiceLicenceAssessment`
+     kirje — osutaja kaotanuks märgise iga kirjavea parandusega. */
+  const owner = await prisma.user.create({
+    data: { email: `a4-sond-${runId}@sotsiaalai.test`, role: "SERVICE_PROVIDER" },
+    select: { id: true }
+  });
+  createdUserId = owner.id;
+  const saved = await upsertServiceProviderProfileForOwner(owner.id, {
+    organizationName: `${SYNTHETIC_NAME} salvestus`,
+    registryCode: SYNTHETIC_CODE,
+    serviceItems: [{ name: `Salvestuse teenus ${runId}`, description: "esimene" }]
+  });
+  const savedServiceId = saved.serviceItems?.[0]?.id;
+  await prisma.serviceProviderService.update({ where: { id: savedServiceId }, data: { serviceKey: "TOETATUD_ELAMINE" } });
+  await prisma.serviceLicenceAssessment.create({
+    data: {
+      providerServiceId: savedServiceId,
+      serviceKey: "TOETATUD_ELAMINE",
+      catalogueVersion: "sond",
+      requirementAtAssessment: "REQUIRED",
+      coverage: "EXACT_MATCH",
+      publicStatus: "VERIFIED"
+    }
+  });
+
+  await upsertServiceProviderProfileForOwner(owner.id, {
+    organizationName: `${SYNTHETIC_NAME} salvestus`,
+    registryCode: SYNTHETIC_CODE,
+    serviceItems: [{ id: savedServiceId, name: `Salvestuse teenus ${runId}`, description: "TEINE, muudetud" }]
+  });
+
+  const afterSave = await prisma.serviceProviderService.findUnique({
+    where: { id: savedServiceId },
+    select: { description: true, serviceKey: true, licenceAssessment: { select: { publicStatus: true } } }
+  });
+  check("profiili salvestus säilitab teenuserea", Boolean(afterSave), `id=${savedServiceId}`);
+  check("kirjelduse muutmine jõudis kohale", afterSave?.description === "TEINE, muudetud");
+  check("serviceKey säilis", afterSave?.serviceKey === "TOETATUD_ELAMINE");
+  check("HINNANG säilis salvestuse üle", afterSave?.licenceAssessment?.publicStatus === "VERIFIED");
+
   /* 8: tehinguline terviklikkus. */
   const before = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });
   try {
@@ -283,6 +326,14 @@ try {
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);
 } finally {
   /* Koristus ei tohi esimese vea peale katkeda. */
+  if (createdUserId) {
+    try {
+      await prisma.user.delete({ where: { id: createdUserId } });
+    } catch (error) {
+      failures += 1;
+      lines.push(`  VIGA kasutaja koristus: ${error?.message || error}`);
+    }
+  }
   if (profileId) {
     try {
       await prisma.serviceProviderProfile.delete({ where: { id: profileId } });

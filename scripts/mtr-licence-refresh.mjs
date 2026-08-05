@@ -2,9 +2,11 @@
 /**
  * A4 E6 — ajastatud loakontrolli korje.
  *
- * Käivitatakse cron'ist (soovitus: kord ööpäevas). Korje ei käi kõiki
- * profiile läbi, vaid ainult neid, mille `nextCheckAt` on möödas — nii kulub
- * korduva tõrke korral vähem päringuid kui eduka raja korral.
+ * Käivitatakse cron'ist **kord tunnis** (`0 * * * *`). See EI tähenda, et iga
+ * profiili kontrollitakse tunnis: korje võtab ainult need, mille `nextCheckAt`
+ * on möödas. Tunnine rütm on vajalik selleks, et tõrkejärgsed 1 h ja 6 h
+ * korduskatsed päriselt toimuksid — kord ööpäevas käiv korje ei tuleks neid
+ * kunagi õigel ajal vaatama ja astmestik jääks paberile.
  *
  * Profiilid käiakse läbi ÜKSHAAVAL. Paralleelsust ei ole teadlikult: MTR on
  * aeglane avalik register, üks kontroll on kolm päringut, ja mõõdetud 05.08 —
@@ -23,7 +25,9 @@ const dryRun = process.argv.includes("--dry") || process.argv.includes("--dry-ru
 try {
   if (dryRun) {
     const due = await dueProfiles({ prisma });
-    console.log(`[mtr:refresh] küpseid profiile: ${due.length}`);
+    /* `dueProfiles` tagastab ÜHE partii, mitte kogu küpsete arvu — sõnastus
+       peab seda ütlema, muidu loeb inimene siit vale koguarvu. */
+    console.log(`[mtr:refresh] järgmises korjepartiis: ${due.length} profiili`);
     due.forEach((profile) => console.log(`  - ${profile.organizationName} (${profile.id})`));
   } else {
     const summary = await refreshDueLicenceChecks({
@@ -38,6 +42,12 @@ try {
         `õnnestus ${summary.succeeded}, ebaõnnestus ${summary.failed}`
     );
     for (const error of summary.errors) console.error(`  VIGA ${error.profileId}: ${error.message}`);
+    /* `UNCONFIRMED` ei ole skripti viga — register lihtsalt ei vastanud, ja
+       see on juba kirjes. Aga vaikida ka ei tohi: kõrge tõrkemäär läheb
+       seiresse eraldi reana, et rikkis korje ei näeks välja nagu edukas. */
+    if (summary.checked && summary.failed / summary.checked >= 0.5) {
+      console.warn(`[mtr:refresh] ALARM: ${summary.failed}/${summary.checked} kontrolli ei kinnitanud midagi`);
+    }
     if (summary.errors.length) process.exitCode = 1;
   }
 } catch (error) {

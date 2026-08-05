@@ -126,8 +126,12 @@ Tehtud järjekord:
 identiteedivärav → lubade päring → kirje → iga teenuse hinnang; tegemata on ainult liides.
 **E4–E6 on samuti koodis:** teenuskiht, tekstikiht (`lib/mtr/statusText.js` on ainus koht, kus
 seisust saab tekst), osutaja API ja vaade eraldi failina, ET/EN/RU tekstid seitsmele seisule,
-**avalik märgis teenusekaardil** ja **ajastatud korje** (`npm run mtr:refresh`, austab
-`nextCheckAt`-i, käib profiilid ükshaaval, viis admini alarmisignaali). **E7 ei ole tegemata
+**avalik märgis teenusekaardil** ja **ajastatud korje** (`npm run mtr:refresh` kord tunnis,
+austab `nextCheckAt`-i, käib profiilid ükshaaval; viis admini alarmisignaali rajal
+`GET /api/admin/licence-alarms`). **Neljas ülevaatus leidis veel ühe päris vea:** profiili
+salvestamine tegi teenustele `delete + create` ja kustutas kaskaadis kogu loahinnangu —
+osutaja oleks kaotanud märgise iga kirjavea parandusega. Nüüd uuendatakse rida kohapeal ja
+sond tõendab seda päris andmebaasis (33/33). **E7 ei ole tegemata
 töö, vaid otsuse taga** — O-A4-3 järgi on MTR-luba kiireloomulise osutaja-raja jaoks vajalik,
 aga mitte piisav.
 **Rada on 05.08 tõendatud elava MTR-i vastu:** identiteet `Masaan OÜ`, kolm luba eristuvate

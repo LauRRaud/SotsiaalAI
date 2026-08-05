@@ -12,8 +12,18 @@ function profile(id, nextCheckAt, name = `Osutaja ${id}`) {
 
 function fakePrisma({ profiles = [], checks = [], assessments = [] }) {
   return {
-    serviceProviderProfile: { findMany: async () => profiles },
-    licenceCheck: { findMany: async () => checks },
+    serviceProviderProfile: {
+      findMany: async (args = {}) => {
+        /* Kursoripagineerimise jäljendus, et nälgimistesti saaks päriselt teha. */
+        const size = args.take || profiles.length;
+        const from = args.cursor ? profiles.findIndex((row) => row.id === args.cursor.id) + (args.skip || 0) : 0;
+        return profiles.slice(from, from + size);
+      }
+    },
+    licenceCheck: {
+      findMany: async () => checks,
+      findFirst: async ({ where }) => checks.find((row) => row.providerProfileId === where.providerProfileId) || null
+    },
     serviceLicenceAssessment: { findMany: async () => assessments }
   };
 }
@@ -30,6 +40,20 @@ test("küps on kontrollimata profiil ja see, mille tähtaeg on möödas", async 
   const due = await dueProfiles({ prisma, now: NOW });
 
   assert.deepEqual(due.map((row) => row.id), ["a", "b"], "tuleviku tähtajaga profiili ei puututa");
+});
+
+test("küps profiil ei jää kandidaadi eelpiirangu taha kinni", async () => {
+  /* Nälgimise juhtum: esimesed 60 profiili ei ole küpsed, küps on alles 61. */
+  const future = new Date("2026-08-09T06:00:00.000Z");
+  const profiles = [
+    ...Array.from({ length: 60 }, (_, index) => profile(`x${String(index).padStart(3, "0")}`, future)),
+    profile("zz-kups", new Date("2026-08-01T06:00:00.000Z"))
+  ];
+  const prisma = fakePrisma({ profiles });
+
+  const due = await dueProfiles({ prisma, now: NOW, limit: 25, pageSize: 20 });
+
+  assert.deepEqual(due.map((row) => row.id), ["zz-kups"], "kursor peab jõudma lehekülgedest läbi");
 });
 
 test("korje käib profiilid ükshaaval ja üks tõrge ei katkesta teisi", async () => {
@@ -61,11 +85,29 @@ test("korje käib profiilid ükshaaval ja üks tõrge ei katkesta teisi", async 
   assert.equal(summary.errors.length, 1);
 });
 
-test("alarmid toovad välja neli signaali, mis avaliku sildini ei jõua", async () => {
+test("korje annab kontrollile SAMA aja, millega küpsust hinnati", async () => {
+  const prisma = fakePrisma({ profiles: [profile("a")] });
+  let seen = null;
+
+  await refreshDueLicenceChecks({
+    prisma,
+    now: NOW,
+    runCheck: async ({ now }) => {
+      seen = now;
+      return { succeeded: true };
+    }
+  });
+
+  assert.equal(seen.toISOString(), NOW.toISOString(), "kaks eri kella teeksid nextCheckAt-i ebatäpseks");
+});
+
+test("alarmid toovad välja viis signaali, mis avaliku sildini ei jõua", async () => {
   const prisma = fakePrisma({
+    profiles: [{ id: "p1" }, { id: "p2" }, { id: "p3" }],
     checks: [
       {
         id: "c1",
+        providerProfileId: "p1",
         missingOrderedColumns: ["tegevusala liik"],
         unknownColumns: [],
         entityResolved: true,
@@ -76,6 +118,7 @@ test("alarmid toovad välja neli signaali, mis avaliku sildini ei jõua", async 
       },
       {
         id: "c2",
+        providerProfileId: "p2",
         missingOrderedColumns: [],
         unknownColumns: [],
         entityResolved: false,
@@ -86,6 +129,7 @@ test("alarmid toovad välja neli signaali, mis avaliku sildini ei jõua", async 
       },
       {
         id: "c3",
+        providerProfileId: "p3",
         missingOrderedColumns: [],
         unknownColumns: [],
         entityResolved: true,

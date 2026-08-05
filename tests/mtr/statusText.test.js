@@ -69,6 +69,31 @@ test("kolm ülejäänud seisu on avalikud ja neutraalsed", () => {
   }
 });
 
+test("allikas tuleb seisust, mitte vaate oletusest", () => {
+  /* Seda seisu EI tuletata registri vastusest, vaid E2 vastavustabelist —
+     „Allikas: majandustegevuse register" oleks seal vale allikaviide. */
+  const mapping = publicLicenceBadge(
+    assessment({ publicStatus: LICENCE_PUBLIC_STATUS.NO_SHS_LICENCE_REQUIRED, publicStatusValidUntil: null }),
+    { now: NOW }
+  );
+  assert.equal(mapping.sourceKey, "service_provider_profile.licence.public.source.shs_mapping");
+
+  assert.equal(publicLicenceBadge(assessment(), { now: NOW }).sourceKey, "service_provider_profile.licence.public.source.register");
+  assert.equal(
+    publicLicenceBadge(assessment({ publicStatus: LICENCE_PUBLIC_STATUS.NOT_FOUND, publicStatusValidUntil: null }), { now: NOW }).sourceKey,
+    "service_provider_profile.licence.public.source.register"
+  );
+  assert.equal(
+    publicLicenceBadge(assessment({ publicStatus: LICENCE_PUBLIC_STATUS.NOT_CHECKED, publicStatusValidUntil: null }), { now: NOW }).sourceKey,
+    "service_provider_profile.licence.public.source.register_check"
+  );
+  /* Sidumata teenusel ei ole ka allikat — silti ennast ei ole. */
+  assert.equal(
+    publicLicenceBadge(assessment({ publicStatus: LICENCE_PUBLIC_STATUS.SERVICE_MAPPING_REQUIRED }), { now: NOW }).sourceKey,
+    null
+  );
+});
+
 test("sidumata teenusel ei ole avalikku silti", () => {
   const badge = publicLicenceBadge(assessment({ publicStatus: LICENCE_PUBLIC_STATUS.SERVICE_MAPPING_REQUIRED }), { now: NOW });
   assert.equal(badge.visibility, BADGE_VISIBILITY.INTERNAL_ONLY);
@@ -151,6 +176,7 @@ test("iga viidatud tõlkevõti on olemas kõigis kolmes keeles", () => {
     if (badge?.key) keys.add(badge.key);
     if (badge?.caveatKey) keys.add(badge.caveatKey);
     if (badge?.reasonKey) keys.add(badge.reasonKey);
+    if (badge?.sourceKey) keys.add(badge.sourceKey);
     if (badge?.actionKey) keys.add(badge.actionKey);
   };
 
