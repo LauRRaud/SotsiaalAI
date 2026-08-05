@@ -120,7 +120,10 @@ Tehtud järjekord:
 **Uus teema 05.08: A4 MTR/tegevusloa kontroll.** Leping on v2 kujul olemas
 ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
 **E1–E2 on tehtud** — allikaklient `lib/mtr/licences.js` ja vastavustabel
-`lib/mtr/licensedServices.js` + 22 testi, väravad rohelised (`npm test` 2788/2788). E3–E7 on
+`lib/mtr/licensedServices.js` + 27 testi, väravad rohelised (`npm test` 2793/2793). E1
+karastati sõltumatu ülevaatuse järel: kõige tõsisem leid oli, et registri vastuse
+registrikoodi ei kontrollitud ja rakendumata filtri korral oleks võõra ettevõtte load tulnud
+tagasi `OK`-na. E3–E7 on
 tegemata ja kood ei ole veel ühegi vaate küljes. Vastavustabeli read ootavad omaniku kinnitust
 ja üks uus otsus on lahti (O-A4-4). Vt S2 „Tegemata".
 

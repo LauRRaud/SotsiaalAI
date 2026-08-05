@@ -2,10 +2,37 @@
 
 STATUS: **v2, 05.08.2026. E1–E2 TEHTUD, E3–E7 tegemata.**
 
-**E1 on koodis** (`lib/mtr/licences.js`, 14 testi `tests/mtr/licences.test.js`): sessioon +
+**E1 on koodis** (`lib/mtr/licences.js`, 19 testi `tests/mtr/licences.test.js`): sessioon +
 CSRF, otsing registrikoodi järgi, CSV-parser skeemikontrolliga, identiteedivärav
 (`resolveEntityByRegistryCode`) ja fail-safe seisud. Env: `MTR_BASE_URL` · `MTR_DISABLED=1` ·
 `MTR_USER_AGENT` · `MTR_CSV_ENCODING`.
+
+**E1 karastati sõltumatu ülevaatuse järel 05.08** — viis leidu, kõik parandatud ja testidega
+lukus:
+
+1. **Vastuse registrikoodi ei kontrollitud.** Rida `at(row,"registrikood") || registryCode`
+   asendas puuduva või VÕÕRA koodi otsituga — rakendumata filtri korral oleks funktsioon
+   tagastanud teise ettevõtte load `OK`-na. Nüüd: iga rea kood peab täpselt kattuma, muidu
+   `RESULT_MISMATCH`. Sama kontroll lisati identiteedivärava juurde (varem võeti lihtsalt
+   esimene rida).
+2. **Vigane CSV läks läbi.** Sulgemata jutumärk ja lühem rida võeti vastu ning puuduvad väljad
+   said tühja stringi. Nüüd on kontrollitud: jutumärgi sulgumine, iga rea veergude arv,
+   kohustuslike väljade sisu, kuupäevade tõlgendatavus (ka olematu „31.02"), `Kehtiv` lubatud
+   väärtused. Iga rike → `PARSE_FAILED` või `MALFORMED_ROW`.
+3. **Tegevuskoha read hävisid.** Deduplitseerimise võti `number|activity` viskas ära just
+   selle info, mida E5 vajab (luba käib teenuse JA koha külge). Nüüd koondatakse read loa
+   kaupa ja tegevuskohad säilivad `locations[]`-is.
+4. **„Ei viska kunagi erindit" ei olnud tõsi** — `arrayBuffer()`, `TextDecoder`, `text()` ja
+   vigane `options.now` said läbi lipsata. Mõlemal avalikul funktsioonil on nüüd viimane
+   `try/catch` → `UNEXPECTED_ERROR`.
+5. **`checkedAt` tekkis enne päringut.** Nüüd on `attemptedAt` päringu alguses ja `checkedAt`
+   ainult tõlgendatud vastuse järel. `maxPersons` → **`licensedMaxPersons`**, et keegi ei
+   loeks seda vabaks mahuks.
+
+**Üks koht jääb ausalt kontrollimata:** tegevuskoha veeru NIMI CSV-s
+(`ADDRESS_COLUMN_CANDIDATES`) on oletus, sest päris eksporti ei ole alla laetud. Kui ükski
+kandidaat ei sobi, jääb `locations` tühjaks ja teenuse+koha täpsust lihtsalt ei väideta —
+vale suunas see ei eksi.
 
 **E2 on koodis** (`lib/mtr/licensedServices.js`, 8 testi): versioonitud vastavustabel — kogu
 SHS § 151 loetelu + § 147, iga rida oma õigusviite ja MTR tegevusalaga, pluss kuus
