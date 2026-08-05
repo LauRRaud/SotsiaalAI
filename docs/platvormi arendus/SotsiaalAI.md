@@ -90,8 +90,9 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ## S1. Alus
 
 `main` = `origin/main`, tööpuu puhas. Üks tööpuu, üks haru.
-**Serveris on `d7e9fcd5` ja see kannab kogu koodi** — `main` on temast ees ainult selle
-sektsiooni enda kannete võrra. Rollback `215fac39`. Vt „Deploy tehtud" allpool.
+**Serveris on `8ab68f98`** (A4 deploy 05.08). `main` on temast ees ühe kande võrra —
+sondi koristuse parandus `1c99793e`, mis läheb välja järgmise deploy'ga.
+Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -193,9 +194,9 @@ ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
 `main`-i. Vt JADATÖÖ-sektsiooni täiendust allpool. Merge'i ja deploy luba küsitakse endiselt
 eraldi.
 
-**Viimane roheline mõõtmine** (05.08, SK-V1 järel): `npm test` **2766/2766**,
-`npm run i18n:check` OK, eslint muudetud failidel 0 viga, `npm run build` OK,
-`npm run db:migrate:check` OK (126 migratsiooni päris andmebaasi vastu),
+**Viimane roheline mõõtmine** (05.08, A4 järel): `npm test` **2860/2860**,
+`npm run i18n:check` OK, eslint puhas, `npm run build` OK,
+`npm run db:migrate:check` OK (128 migratsiooni), `npm run mtr:probe` **44/44** ja
 `npm run urgent:probe` **16/16** päris andmebaasi vastu.
 
 **Deploy tehtud 05.08 (omaniku luba samal päeval).** Server on **`d7e9fcd5`** — sama mis
@@ -207,6 +208,43 @@ Rollback `215fac39`.
 Smoke pärast deploy'd: kolm teenust `active` · `/` `/meist` `/vestlus` `/voimalused`
 `/kiireloomuline-abi` `/toimetulekutoetus` → 200 · SK API autentimata → 401 ·
 teenuselogides **0 viga** · 126 migratsiooni rakendatud, neli SK-tabelit toodangus olemas.
+
+**A4 deploy tehtud 05.08 (omaniku luba samal päeval).** Server on **`8ab68f98`**, 19 commit'i,
+128 migratsiooni, kolm teenust `active`. Smoke: avalikud lehed 200 · uued rajad autentimata
+401 (`licence-check`, `licence-alarms`, `service-licence-binding`) · neli A4 tabelit toodangus
+olemas · `mtr:probe` sihtbaasi vastu **44/44**.
+
+**Sond jättis toodangusse jälje ja see on koristatud.** `ServiceProviderProfile.ownerId` on
+`SetNull`, mitte `Cascade`, seega sünteetilise kasutaja kustutamine ei kustutanud profiili,
+mille salvestusraja test talle lõi — jäi üks profiil ja üks hinnang. Read on käsitsi
+kustutatud (toodangus 0 kontrolli, 0 hinnangut, 0 sünteetilist rida) ja sond parandatud
+(`1c99793e`): salvestusraja profiil kustutatakse eraldi ja koristust **kontrollitakse**, mitte
+ei eeldata.
+
+### A4 — TEGEMATA (ootab omanikku)
+
+Kood on toodangus, aga **funktsioon on veel dormant**: ükski teenus ei ole kataloogiga seotud,
+seega ühtegi märgist kusagil ei kuva. Neli sammu on tegemata ja kolm neist vajavad admini
+sessiooni, mida ma ise ei ava.
+
+| # | Mis | Miks tegemata |
+|---|---|---|
+| 1 | **Üks kontrollitud käsitsi sidumine** (`POST /api/admin/service-licence-binding`) | vajab admini sessiooni |
+| 2 | **Avaliku ja sisemise märgise smoke** — teenusekaardi hüpik + osutaja vaade | eeldab sammu 1 |
+| 3 | **Tunnine cron** (rida allpool) | serveri cron-tabeli muudatus |
+| 4 | **Alarmiraja kontroll** (`GET /api/admin/licence-alarms`) | vajab admini sessiooni |
+
+Cron-rida valmis kujul — `flock` hoiab ära, et pika MTR-i tõrke korral järgmine käivitus
+eelmisele otsa jookseks:
+
+```
+0 * * * * flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
+  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && MTR_REFRESH_BATCH=10 npm run mtr:refresh' \
+  >> /var/log/sotsiaalai/mtr-refresh.log 2>&1
+```
+
+Enne esimest käivitust tasub teha `npm run mtr:refresh:dry` — küpseid profiile on täna null,
+sest ükski teenus ei ole veel seotud.
 
 **SK-V1 on toodangus ja DORMANT:** `UrgentDesk` 0 rida, `UrgentRequest` 0 rida. Ilma
 seadistatud lauata ei ole rada üheski piirkonnas nähtav ega API kaudu kasutatav ja päris

@@ -1,6 +1,16 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1–E6 TEHTUD. E7 ootab otsust O-A4-3, mitte arendust.**
+STATUS: **v2, 05.08.2026. E1–E6 TEHTUD JA TOODANGUS (`8ab68f98`). Funktsioon on DORMANT.**
+
+**Kasutuselevõtt on pooleli.** Kood töötab, aga ükski teenus ei ole kataloogiga seotud, seega
+ühtegi märgist kusagil ei kuva. Neli sammu on tegemata:
+
+1. üks kontrollitud käsitsi sidumine (vajab admini sessiooni);
+2. avaliku ja sisemise märgise smoke (eeldab sammu 1);
+3. tunnine cron `flock`-iga (serveri cron-tabel);
+4. alarmiraja kontroll (vajab admini sessiooni).
+
+Cron-rida ja täpsem seis on `SotsiaalAI.md` S1-s. **E7 ootab otsust O-A4-3, mitte arendust.**
 
 **E5 avalik silt** on teenusekaardi hüpikus: server annab valmis märgise (tekst, toon,
 kuupäev, hoiatus, **allikas**), vaade ei tõlgenda midagi. **E6 korje** on
