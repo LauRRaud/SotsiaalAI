@@ -155,6 +155,13 @@ puudumine midagi.
 | **LUBA_PUUDUB** | „MTR-ist ei leitud kontrolli ajal sellele teenusele kehtivat tegevusluba" | mida otsiti: registrikood, tegevusala, kuupäev + parandustee |
 | **KINNITAMATA** | „Tegevusloa staatust ei saanud MTR-is kinnitada" | põhjus: päring kukkus · registrikood ei lahendunud · CSV tundmatu kuju · kontroll vananes |
 | **KONTROLLIMATA** | „Tegevusloa staatust ei saanud MTR-is kinnitada" | registrikood puudub profiililt · korje pole veel jõudnud |
+| **SIDUMATA** (`SERVICE_MAPPING_REQUIRED`) | **silti ei ole** | „Teenuse liik pole veel tegevusloa kontrolliga seotud" + tuvastaja kandidaadid |
+
+**`SIDUMATA` ja `KINNITAMATA` on eri asjad ja neid ei tohi ühte valada** (omaniku otsus 05.08):
+esimesel juhul me ei tea, MIDA kontrollida — teenus ei ole vastavustabeli reaga seotud;
+teisel juhul me teadsime, mida küsida, aga kontroll ei õnnestunud. Ainult teine on registri
+või võrgu probleem. Sidumata teenusel **ei ole avalikku silti üldse** — ei märgist, ei
+„ei vaja luba", ei „ei leitud".
 
 **Neutraalne kujundus ei tähenda ebatäpseid sõnu.** Punast värvi, hüüumärki ega ähvardavat
 kujundust ei ole üheski seisus. „Ei leitud" ütleb, mida register kontrolli hetkel näitas —
@@ -263,7 +270,7 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 |---|---|
 | **E1** | ~~Allikaklient~~ — **TEHTUD 05.08**: `lib/mtr/licences.js`. Sessioon + CSRF → otsing registrikoodi järgi → CSV → parse + skeemikontroll; identiteedivärav eraldi funktsioonina; iga tõrge annab `UNCONFIRMED` koos põhjusega, mitte tühja tulemust |
 | **E2** | ~~Vastavustabel~~ — **TEHTUD 05.08**: `lib/mtr/licensedServices.js`. Kogu § 151 loetelu + § 147 + kuus loakohustuseta teenust; iga rida kannab õigusviidet, MTR tegevusala ja teralisust; versioon `2026-08-05`; vabatekst annab ainult kandidaadi. **Ridade sisu ootab omaniku kinnitust** |
-| **E3** | Andmemudel: loakirjed (loanumber, tegevusala, kehtivus, mahupiir, tegevuskoht) + kontrolli tulemus ja aeg. `registryCode` ja `checkedAt` on profiilil juba olemas |
+| **E3** | Andmemudel. **BLOKEERITUD kuni vastavustabeli read on kinnitatud** — skeem hakkab kandma nende võtmeid. Lähtekuju (omanik 05.08): `ServiceLicenceRequirement` (serviceKey, requirement, catalogueVersion, granularity, mappingStatus) · `LicenceCheck` (providerId, registryCode, attemptedAt, verifiedAt, nextCheckAt, result, reason, catalogueVersion) · `LicenceRecord` (licenceNumber, registryCode, activity, validFrom, validUntil, organizationName, licensedMaxPersons) · `ServiceLicenceAssessment` (providerServiceId, checkId, serviceKey, coverage, publicStatus, assessedAt). `registryCode` ja `checkedAt` on profiilil juba olemas |
 | **E4** | Osutaja vaade: mida kontrolliti, millise koodiga, millise tegevusala vastu, millal, miks selline tulemus, kuidas parandada, kuidas teatada valest vastavusest |
 | **E5** | Avalik silt teenusekaardil ja profiilil — **neli teksti**, teenuse ja koha täpsusega |
 | **E6** | Admini vaade (alarmid, nimeanomaaliad, korje seis) + korje ajastus |
@@ -320,9 +327,9 @@ pärinevatele andmetele.
 
 | Kood | Küsimus | Soovitatud vaikeväärtus |
 |---|---|---|
-| **O-A4-1** | korje sagedus ja vananemise aken | automaatkontroll 1×/ööpäevas · käsitsi „kontrolli uuesti" kohe · positiivne märgis kehtib **72 h** viimasest edukast kontrollist · loa lõppkuupäev lõpetab kohe |
+| ~~**O-A4-1**~~ | ~~korje sagedus ja vananemise aken~~ | **OTSUSTATUD 05.08.** Automaatkontroll **1×/ööpäevas** · eduka kontrolli kehtivus **72 h** · tõrke korduskatsed **1 h, 6 h, 24 h** · käsitsi „kontrolli uuesti" kohe, aga **mitte tihedamini kui 1× 15 minuti jooksul** · loa lõppkuupäev lõpetab positiivse seisu kohe, sõltumata korjest. **Kõik väärtused on konfiguratsioon**, mitte koodi laiali puistatud konstandid ega andmebaasi read |
 | **O-A4-2** | kas mahupiir läheb avalikule kaardile | **V1-s ei lähe.** Hoitakse osutaja ja admini vaates. Kui kunagi läheb, siis ainult sõnastuses „Tegevusloal märgitud maksimaalne isikute arv: 40" — **mitte kunagi „vabad kohad", „kättesaadavus" ega „mahutavus"** |
-| **O-A4-4** | **mida näeb avalikult teenus, mis ei ole tabeli reaga seotud** (vaba tekst, mida tuvastaja ei tunne). Kolm valikut: silti ei ole · „tegevusloa staatust ei saanud kinnitada" · osutajalt küsitakse liigitust enne avaldamist | **soovitus: silti ei ole.** „Ei vaja luba" oleks siin oletus ja vale rahustus inimesele, kes valib hooldekodu; „ei saanud kinnitada" jätaks mulje, et me üritasime. Sildita jääb aus |
+| ~~**O-A4-4**~~ | ~~mida näeb avalikult sidumata teenus~~ | **OTSUSTATUD 05.08: silti ei ole**, ja seis on eraldi (`SERVICE_MAPPING_REQUIRED`), mitte `KINNITAMATA` alla peidetud. Osutaja ja admin näevad „Teenuse liik pole veel tegevusloa kontrolliga seotud" koos tuvastaja kandidaatidega; **tuvastaja ei vali teenust automaatselt** |
 | **O-A4-3** | kas MTR-luba avab SK-V1 osutaja-raja | **Vajalik, kuid mitte piisav.** Lisaks nõutav: kontrollitud organisatsioonikonto · organisatsiooni teadlik nõusolek kiireid pöördumisi vastu võtta · aktiivne vastutav kontakt · määratud teeninduspiirkond ja reageerimisviis · perioodiline kinnitus, et rada on aktiivne |
 
 Allikad: [MTR tegevuslubade otsing](https://mtr.ttja.ee/tegevusluba?m=97) ·

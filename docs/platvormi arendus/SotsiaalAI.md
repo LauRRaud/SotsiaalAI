@@ -127,8 +127,11 @@ E2 tõsiseim leid: MTR-i üldine „Erihoolekandeteenus" vaste andis `true` kõi
 alateenusele — nüüd tagastab kaetus seisu (`ACTIVITY_MATCH_ONLY` ≠ `EXACT_MATCH`) ja avalik
 „ei vaja luba" on kitsendatud kujule „ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba
 nõutud", sest tabel ei tõenda muude seaduste lubade puudumist. E3–E7 on
-tegemata ja kood ei ole veel ühegi vaate küljes. Vastavustabeli read ootavad omaniku kinnitust
-ja üks uus otsus on lahti (O-A4-4). Vt S2 „Tegemata".
+tegemata ja kood ei ole veel ühegi vaate küljes. **O-A4-1 ja O-A4-4 said 05.08 vastuse**
+(korje 1×/ööpäevas, kehtivus 72 h, korduskatsed 1/6/24 h, käsitsi ≤1× 15 min kohta,
+kõik konfiguratsioonis; sidumata teenusel ei ole avalikku silti ja tal on oma seis
+`SERVICE_MAPPING_REQUIRED`, mitte „ei saanud kinnitada"). **E3 on teadlikult blokeeritud
+vastavustabeli ridade kinnituse taga** — skeem hakkab kandma nende võtmeid. Vt S2 „Tegemata".
 
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
