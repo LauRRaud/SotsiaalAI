@@ -6065,8 +6065,12 @@ enum LicenceCoverage {
 /// esimene tähendab „me ei tea, MIDA kontrollida", teine „teadsime, mida
 /// küsida, aga kontroll ei õnnestunud". Ainult teine on registri või võrgu
 /// probleem, ja ainult esimesel ei ole avalikku silti üldse.
+/// `VERIFIED` ja `ACTIVITY_VERIFIED` on ERI SEISUD, mitte sama seis eri
+/// kaetusega. Nii ei saa liides renderdada täpset märgist ainult
+/// `publicStatus` põhjal — jämeda vaste jaoks ON OMA seis ja oma tekst.
 enum LicencePublicStatus {
   VERIFIED
+  ACTIVITY_VERIFIED
   NO_SHS_LICENCE_REQUIRED
   NOT_FOUND
   UNCONFIRMED
@@ -6084,21 +6088,36 @@ model LicenceCheck {
   /// Kood, MILLEGA päriti. Ta ei pruugi enam võrduda profiili praeguse
   /// koodiga — ajalooline kirje peab ütlema, mida tol hetkel küsiti.
   registryCode      String
-  result            LicenceCheckResult
-  reason            String?
+
+  /// ÜLDINE tulemus: `OK` ainult siis, kui MÕLEMAD päringud õnnestusid ja
+  /// identiteet lahendus. Kaks allikat on eraldi väljadel, sest muidu võib
+  /// audit või hilisem kood lugeda `result: OK` ja saada vale ettekujutuse
+  /// kirjest, mille identiteet jäi lahendamata.
+  result              LicenceCheckResult
+  licenceSourceResult LicenceCheckResult
+  entitySourceResult  LicenceCheckResult
+  licenceReason       String?
+  entityReason        String?
 
   /// Identiteedivärav: kas kood vastas MTR-is päris juriidilisele isikule.
   /// Ilma selleta ei tohi tekkida väidet „luba puudub".
   entityResolved Boolean @default(false)
   /// Registrist tulnud nimi — anomaaliakontrolliks profiili nime vastu.
   entityName     String?
-  checksumValid  Boolean @default(false)
+  /// KOLM väärtust: true = kontrollnumber klapib · false = ei klapi ·
+  /// NULL = ei saanud hinnata. `false` vaikeväärtusena valetaks.
+  checksumValid  Boolean?
 
-  /// Päringu algus ja tõlgendatud vastuse hetk on ERI ASJAD: `verifiedAt`
-  /// tekib ainult siis, kui vastus päriselt loeti.
-  attemptedAt DateTime  @default(now())
-  verifiedAt  DateTime?
-  nextCheckAt DateTime?
+  /// Kolm ERI aega. `attemptedAt` = päring algas. `licenceSourceCheckedAt` =
+  /// lubade vastus loeti. `verifiedAt` = KOGU kontroll õnnestus (sh
+  /// identiteet) — ainult see kõlbab avaliku märgise kuupäevaks.
+  attemptedAt            DateTime  @default(now())
+  licenceSourceCheckedAt DateTime?
+  verifiedAt             DateTime?
+  nextCheckAt            DateTime?
+  /// Mitmes järjestikune ebaõnnestumine see on. Ilma selleta ei saa
+  /// korduskatsete astmestik (1 h → 6 h → 24 h) tegelikult rakenduda.
+  consecutiveFailureCount Int @default(0)
 
   /// Tehnilised metaandmed E6 alarmi jaoks (põhimõtted 5 ja 6).
   unknownColumns        String[] @default([])
@@ -6106,9 +6125,10 @@ model LicenceCheck {
 
   createdAt DateTime @default(now())
 
-  providerProfile ServiceProviderProfile     @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
-  licences        LicenceRecord[]
-  assessments     ServiceLicenceAssessment[]
+  providerProfile   ServiceProviderProfile     @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  licences          LicenceRecord[]
+  lastAttemptFor    ServiceLicenceAssessment[] @relation("AssessmentLastAttempt")
+  statusSourceFor   ServiceLicenceAssessment[] @relation("AssessmentStatusSource")
 
   @@index([providerProfileId, attemptedAt])
   @@index([registryCode, attemptedAt])
@@ -6128,8 +6148,11 @@ model LicenceRecord {
   /// vastuolu.
   activityType  String?
 
-  validFrom  DateTime
-  validUntil DateTime?
+  /// KALENDRIPÄEV, mitte ajahetk. `DateTime` UTC-kesköödega nihutaks Eesti
+  /// suveajal loa kehtivuse kolm tundi: luba „hakkaks kehtima" kohaliku päeva
+  /// algusest hiljem ja jääks kehtima järgmise päeva esimesteks tundideks.
+  validFrom  DateTime  @db.Date
+  validUntil DateTime? @db.Date
   indefinite Boolean   @default(false)
   valid      Boolean   @default(false)
 
@@ -6170,7 +6193,15 @@ model LicenceRecordLocation {
 model ServiceLicenceAssessment {
   id                String @id @default(cuid())
   providerServiceId String
-  checkId           String?
+
+  /// KAKS ERI SEOST, mida ei tohi ühte valada:
+  ///   `lastAttemptCheckId`  — viimane kontroll, ka siis, kui ta midagi ei kinnitanud;
+  ///   `statusSourceCheckId` — kontroll, mille TÕENDIL praegune avalik seis põhineb.
+  /// Ilma selle vaheta kuvaks liides „kontrollitud 5. augustil" ka siis, kui
+  /// just 5. augusti kontroll enam luba ei leidnud ja märgis püsib vanema
+  /// tõendi najal. `statusSourceCheckId` on NULL, kui seis ei tulene MTR-ist.
+  lastAttemptCheckId  String?
+  statusSourceCheckId String?
 
   /// Laiendatav string, MITTE enum (põhimõte 1).
   serviceKey       String
@@ -6182,19 +6213,35 @@ model ServiceLicenceAssessment {
 
   coverage     LicenceCoverage
   publicStatus LicencePublicStatus
+  /// Miks seis selline on (`CHECK_STALE`, `IDENTITY_UNRESOLVED`,
+  /// `PENDING_SECOND_CHECK`, allikakliendi põhjus). Ilma selleta ei oska
+  /// osutaja vaade öelda, mida parandada.
+  assessmentReason String?
 
-  /// Mitu järjestikust edukat kontrolli on luba puudunud. Avalik seis tohib
-  /// muutuda „ei leitud" peale alles teisel korral — ühekordne registrikapriis
-  /// ei tohi muutuda avalikuks väiteks.
-  consecutiveMissCount Int @default(0)
+  /// MILLAL POSITIIVNE SEIS AEGUB — lühim ankur kontrolli värskusest ja loa
+  /// lõppkuupäevast. Lugemisrada peab seda jõustama: möödunud aeg tähendab, et
+  /// märgist EI TOHI enam kuvada, ka siis, kui korje pole veel jõudnud.
+  publicStatusValidUntil DateTime?
+  /// Loakirje, millel seis põhineb — jälgitavuse jaoks.
+  coveringLicenceNumber  String?
+  /// V1 märgis on ORGANISATSIOONI tasandi kontroll: ta ütleb, et osutajal on
+  /// sellele teenusele luba, MITTE et just see teeninduskoht on kaetud.
+  coverageScope          String @default("ORGANISATION")
+
+  /// Mitu järjestikust EDUKAT registrivastust on luba puudunud. Tehniline
+  /// tõrge NULLIB selle — muidu loeks kaks tõrkega eraldatud puudumist
+  /// „järjestikuseks" ja avalik negatiivne väide tekiks liiga vara.
+  confirmedMissCount Int @default(0)
 
   assessedAt DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
   providerService ServiceProviderService @relation(fields: [providerServiceId], references: [id], onDelete: Cascade)
-  check           LicenceCheck?          @relation(fields: [checkId], references: [id], onDelete: SetNull)
+  lastAttempt     LicenceCheck?          @relation("AssessmentLastAttempt", fields: [lastAttemptCheckId], references: [id], onDelete: SetNull)
+  statusSource    LicenceCheck?          @relation("AssessmentStatusSource", fields: [statusSourceCheckId], references: [id], onDelete: SetNull)
 
   @@unique([providerServiceId])
   @@index([serviceKey])
   @@index([publicStatus])
+  @@index([publicStatusValidUntil])
 }

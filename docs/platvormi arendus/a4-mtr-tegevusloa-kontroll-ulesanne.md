@@ -7,11 +7,42 @@ STATUS: **v2, 05.08.2026. E1–E3 TEHTUD, E4 teenuskiht tehtud (liides tegemata)
 rütm. **E4 teenuskiht on samuti koodis** (`lib/mtr/licenceCheckService.js`) — ahel identiteedi
 kontrollist kuni iga teenuse hinnanguni; tegemata on ainult liides.
 
-**Päris andmebaasi sond: `npm run mtr:probe` → 11/11** (`scripts/mtr-licence-probe.mjs`).
+**E3/E4 karastati teise sõltumatu ülevaatuse järel 05.08** — üksteist leidu, kõik parandatud
+(migratsioon `20260805190000_a4_licence_assessment_evidence`). Kolm neist oleksid tootnud
+päriselt vale avaliku märgise:
+
+1. **Aegumist ei salvestatud.** `publicStatusValidUntil`, `assessmentReason` ja tõendi seos
+   arvutati ja visati ära — tähtajalise loa märgis oleks jäänud rippuma üle loa lõpu. Nüüd on
+   nad veergudena olemas ja **lugemisrada jõustab neid**: aegunud positiivne seis langeb
+   „ei saanud kinnitada" peale ka siis, kui korje pole veel jõudnud.
+2. **Vana märgis seoti uue kontrolliga.** Kui uus kontroll luba ei leidnud, aga märgis püsis
+   vanema tõendi najal, oleks liides kuvanud „kontrollitud [uue kontrolli kuupäev]" — kuupäev,
+   mille kontroll seda luba EI leidnud. Nüüd on kaks eraldi seost: `lastAttemptCheckId` ja
+   `statusSourceCheckId`.
+3. **`VERIFIED` kandis nii täpset kui jämedat vastet.** Nüüd on `ACTIVITY_VERIFIED` **oma
+   seis**, seega liides ei saa renderdada täpset märgist ainult `publicStatus` põhjal.
+
+Ülejäänud kaheksa: kirje + hinnangud on nüüd **üks tehing** · paralleelne kontroll ei kirjuta
+üle (`SUPERSEDED`) · `LicenceCheck` kannab mõlema allika tulemust eraldi, seega `result: OK`
+ei saa esineda koos `entityResolved: false` · korduskatsete astmestik kasvab päriselt
+(`consecutiveFailureCount`) · `checksumValid` on kolmeväärtuseline · loa kuupäevad on
+`@db.Date` ja võrdlus käib **Eesti kalendripäevades** (varem oleks suveajal nihkunud 3 h) ·
+avalik `NOT_FOUND` nõuab **kahte järjestikust edukat** tühja vastust ka siis, kui märgist
+polnudki · tehniline tõrge **nullib** puudumiste loenduri · seis, mis ei tulene kontrollist,
+ei seostu kontrolliga.
+
+**V1 märgise ulatus on lukus:** `coverageScope = "ORGANISATION"`. Märgis ütleb, et osutajal on
+sellele teenusele luba — **mitte**, et just see teeninduskoht on kaetud. Kohatasandi vaste
+nõuaks teenusekirje sidumist tegevuskohaga ja on eraldi töö.
+
+**Päris andmebaasi sond: `npm run mtr:probe` → 29/29** (`scripts/mtr-licence-probe.mjs`).
+Sond on tootmiskaitsega (`ALLOW_A4_DB_PROBE`), kasutab juhuslikku jooksu-ID-d ja sünteetilist
+registrikoodi, ning kontrollib nüüd ka kahe taseme kaskaadi, mõlemasuunalist seost, tõendi
+seost, esimese ja teise puudumise poliitikat ning tehingu tagasiveeremist.
 Fake-prisma ei valideeri skeemi, seega sond kirjutab päris tabelitesse, loeb tagasi, kontrollib
 kaskaadkustutust ja laseb terve teenuskihi läbi sünteetilise registrivastusega — võõrast
-registrit ta ei koorma. Väravad 05.08: `npm test` **2822/2822**, `db:migrate:check` OK
-(127 migratsiooni), eslint puhas, `i18n:check` OK.
+registrit ta ei koorma. Väravad 05.08: `npm test` **2826/2826**, `db:migrate:check` OK
+(128 migratsiooni), eslint puhas, `i18n:check` OK.
 
 **E1 on koodis** (`lib/mtr/licences.js`, 19 testi `tests/mtr/licences.test.js`): sessioon +
 CSRF, otsing registrikoodi järgi, CSV-parser skeemikontrolliga, identiteedivärav

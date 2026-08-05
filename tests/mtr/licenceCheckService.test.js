@@ -8,29 +8,43 @@ import { LICENCE_COVERAGE } from "../../lib/mtr/licensedServices.js";
 const NOW = new Date("2026-08-05T12:00:00.000Z");
 const FRESH = "2026-08-05T09:00:00.000Z";
 
-function fakePrisma({ profile, assessments = [], services = [] }) {
-  const state = { checks: [], upserts: [] };
-  return {
-    state,
-    serviceProviderProfile: {
-      findUnique: async () => profile
+function fakePrisma({ profile, assessments = [], services = [], newestCheckId = undefined }) {
+  const state = { checks: [], upserts: [], transactions: 0 };
+  const tx = {
+    licenceCheck: {
+      findFirst: async () => (newestCheckId === undefined ? profile?.licenceChecks?.[0] || null : { id: newestCheckId }),
+      create: async (args) => {
+        state.checks.push(args);
+        return { id: "check-new" };
+      }
     },
     serviceLicenceAssessment: {
-      findMany: async () => assessments,
       upsert: async (args) => {
         state.upserts.push(args);
         return args.create;
       }
-    },
-    licenceCheck: {
-      create: async (args) => {
-        state.checks.push(args);
-        return { id: "check-1" };
-      }
-    },
-    serviceProviderService: {
-      findMany: async () => services
     }
+  };
+  return {
+    state,
+    $transaction: async (fn) => {
+      state.transactions += 1;
+      return fn(tx);
+    },
+    serviceProviderProfile: { findUnique: async () => profile },
+    serviceLicenceAssessment: { findMany: async () => assessments },
+    serviceProviderService: { findMany: async () => services }
+  };
+}
+
+function profileWith(services, overrides = {}) {
+  return {
+    id: "p1",
+    registryCode: "17027241",
+    organizationName: "Masaan OÜ",
+    serviceItems: services,
+    licenceChecks: [],
+    ...overrides
   };
 }
 
@@ -52,7 +66,7 @@ function licencePayload(overrides = {}) {
   };
 }
 
-function okLicences(licences = [licencePayload()]) {
+function okLicences(licences = [licencePayload()], overrides = {}) {
   return async () => ({
     status: "OK",
     reason: null,
@@ -62,23 +76,25 @@ function okLicences(licences = [licencePayload()]) {
     unknownColumns: [],
     missingOrderedColumns: [],
     attemptedAt: FRESH,
-    checkedAt: FRESH
+    checkedAt: FRESH,
+    ...overrides
   });
 }
 
-const okEntity = async () => ({ status: "OK", reason: null, registryCode: "17027241", found: true, name: "Masaan OÜ" });
+const okEntity = async () => ({ status: "OK", reason: null, found: true, name: "Masaan OÜ" });
 
 test("puuduv profiil ei tee midagi", async () => {
   const prisma = fakePrisma({ profile: null });
   const result = await runLicenceCheck({ providerProfileId: "x", prisma, now: NOW });
   assert.equal(result.skipped, CHECK_SKIPPED.PROFILE_NOT_FOUND);
+  assert.equal(result.completed, false);
   assert.equal(prisma.state.checks.length, 0);
 });
 
 test("ilma registrikoodita ei tehta päringut ega kirjet, aga seis kirjutatakse", async () => {
   let queried = false;
   const prisma = fakePrisma({
-    profile: { id: "p1", registryCode: null, organizationName: "X", serviceItems: [{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], licenceChecks: [] }
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], { registryCode: null })
   });
 
   const result = await runLicenceCheck({
@@ -94,25 +110,21 @@ test("ilma registrikoodita ei tehta päringut ega kirjet, aga seis kirjutatakse"
 
   assert.equal(queried, false, "koodita ei küsita registrist midagi");
   assert.equal(result.skipped, CHECK_SKIPPED.NO_REGISTRY_CODE);
-  assert.equal(prisma.state.checks.length, 0, "kontrollikirjet ei teki");
+  assert.equal(result.succeeded, false);
+  assert.equal(prisma.state.checks.length, 0);
   assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.NOT_CHECKED);
 });
 
-test("käsitsi kontroll austab jahtumisaega", async () => {
+test("käsitsi kontroll austab jahtumisaega ja ütleb, millal tohib uuesti", async () => {
   const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "Masaan OÜ",
-      serviceItems: [],
-      licenceChecks: [{ attemptedAt: new Date("2026-08-05T11:55:00.000Z"), result: "OK" }]
-    }
+    profile: profileWith([], { licenceChecks: [{ id: "c0", attemptedAt: new Date("2026-08-05T11:55:00.000Z"), result: "OK", consecutiveFailureCount: 0 }] })
   });
 
   const blocked = await runLicenceCheck({ providerProfileId: "p1", prisma, now: NOW, trigger: CHECK_TRIGGER.MANUAL });
   assert.equal(blocked.skipped, CHECK_SKIPPED.COOLDOWN);
+  /* `retryAfter` on JÄRGMINE lubatud aeg, mitte eelmine katse. */
+  assert.equal(blocked.retryAfter.toISOString(), "2026-08-05T12:10:00.000Z");
 
-  /* Automaatkorje ei ole jahtumisaja taga — teda ajastab `nextCheckAt`. */
   const auto = await runLicenceCheck({
     providerProfileId: "p1",
     prisma,
@@ -121,22 +133,16 @@ test("käsitsi kontroll austab jahtumisaega", async () => {
     fetchLicences: okLicences([]),
     resolveEntity: okEntity
   });
-  assert.equal(auto.ok, true);
+  assert.equal(auto.completed, true);
 });
 
-test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu", async () => {
+test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu ühe tehinguga", async () => {
   const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "Masaan OÜ",
-      serviceItems: [
-        { id: "s1", serviceKey: "TOETATUD_ELAMINE" },
-        { id: "s2", serviceKey: "TUGIISIK" },
-        { id: "s3", serviceKey: null }
-      ],
-      licenceChecks: []
-    }
+    profile: profileWith([
+      { id: "s1", serviceKey: "TOETATUD_ELAMINE" },
+      { id: "s2", serviceKey: "TUGIISIK" },
+      { id: "s3", serviceKey: null }
+    ])
   });
 
   const result = await runLicenceCheck({
@@ -147,40 +153,55 @@ test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu", async () =>
     resolveEntity: okEntity
   });
 
-  assert.equal(result.ok, true);
-  assert.equal(result.entityResolved, true);
+  assert.equal(result.completed, true);
+  assert.equal(result.succeeded, true);
+  assert.equal(result.result, "OK");
   assert.equal(result.nameMismatch, false);
+  assert.equal(prisma.state.transactions, 1, "kirje ja kõik hinnangud ühes tehingus");
 
   const check = prisma.state.checks[0].data;
   assert.equal(check.result, "OK");
-  assert.equal(check.registryCode, "17027241");
-  assert.equal(check.entityResolved, true);
+  assert.equal(check.licenceSourceResult, "OK");
+  assert.equal(check.entitySourceResult, "OK");
+  assert.equal(check.checksumValid, true);
+  assert.equal(check.consecutiveFailureCount, 0);
+  assert.equal(check.verifiedAt.toISOString(), FRESH);
   assert.equal(check.nextCheckAt.toISOString(), "2026-08-06T12:00:00.000Z");
   const record = check.licences.create[0];
-  assert.equal(record.licenceNumber, "SEH000598");
   assert.equal(record.activityType, "Toetatud elamise teenus");
-  assert.equal(record.validFrom.toISOString(), "2025-10-13T00:00:00.000Z");
   assert.equal(record.locations.create[0].address, "Riia 5, Tartu");
 
   const byService = new Map(prisma.state.upserts.map((row) => [row.where.providerServiceId, row.create]));
   assert.equal(byService.get("s1").publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
   assert.equal(byService.get("s1").coverage, LICENCE_COVERAGE.EXACT_MATCH);
-  assert.equal(byService.get("s1").checkId, "check-1");
+  assert.equal(byService.get("s1").statusSourceCheckId, "check-new");
+  assert.equal(byService.get("s1").lastAttemptCheckId, "check-new");
+  assert.ok(byService.get("s1").publicStatusValidUntil, "aegumine salvestub");
+  assert.equal(byService.get("s1").coveringLicenceNumber, "SEH000598");
+
+  /* 9. leid: seis, mis ei tulene kontrollist, EI seostu kontrolliga. */
   assert.equal(byService.get("s2").publicStatus, LICENCE_PUBLIC_STATUS.NO_SHS_LICENCE_REQUIRED);
+  assert.equal(byService.get("s2").lastAttemptCheckId, null);
   assert.equal(byService.get("s3").publicStatus, LICENCE_PUBLIC_STATUS.SERVICE_MAPPING_REQUIRED);
-  assert.equal(byService.get("s3").serviceKey, "", "sidumata teenusel ei ole võtit");
+  assert.equal(byService.get("s3").lastAttemptCheckId, null);
 });
 
-test("lahendamata identiteet ei anna avalikku väidet, kuigi load tulid", async () => {
-  const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "Masaan OÜ",
-      serviceItems: [{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }],
-      licenceChecks: []
-    }
+test("jäme vaste salvestub OMA seisuna", async () => {
+  const prisma = fakePrisma({ profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }]) });
+
+  await runLicenceCheck({
+    providerProfileId: "p1",
+    prisma,
+    now: NOW,
+    fetchLicences: okLicences([licencePayload({ activityType: null })]),
+    resolveEntity: okEntity
   });
+
+  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.ACTIVITY_VERIFIED);
+});
+
+test("lahendamata identiteet: üldine result on UNCONFIRMED, kuigi load tulid", async () => {
+  const prisma = fakePrisma({ profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }]) });
 
   const result = await runLicenceCheck({
     providerProfileId: "p1",
@@ -190,21 +211,22 @@ test("lahendamata identiteet ei anna avalikku väidet, kuigi load tulid", async 
     resolveEntity: async () => ({ status: "UNCONFIRMED", reason: "RESULT_MISMATCH", found: false, name: null })
   });
 
-  assert.equal(result.entityResolved, false);
-  assert.equal(prisma.state.checks[0].data.entityResolved, false);
-  assert.equal(prisma.state.checks[0].data.reason, "RESULT_MISMATCH");
+  assert.equal(result.succeeded, false);
+  const check = prisma.state.checks[0].data;
+  assert.equal(check.result, "UNCONFIRMED", "üldine tulemus arvestab identiteeti");
+  assert.equal(check.licenceSourceResult, "OK", "lubade päring ise õnnestus");
+  assert.equal(check.entitySourceResult, "UNCONFIRMED");
+  assert.equal(check.entityReason, "RESULT_MISMATCH");
+  assert.equal(check.verifiedAt, null, "üldine kinnitusaeg tekib ainult täisedu korral");
+  assert.ok(check.licenceSourceCheckedAt, "lubade vastuse aeg jääb siiski kirja");
   assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.UNCONFIRMED);
 });
 
-test("ebaõnnestunud päring salvestub kontrollina, mitte vaikusena", async () => {
+test("korduskatsete astmestik kasvab, mitte ei jää esimesele astmele", async () => {
   const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "Masaan OÜ",
-      serviceItems: [{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }],
-      licenceChecks: []
-    }
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], {
+      licenceChecks: [{ id: "c0", attemptedAt: new Date("2026-08-05T06:00:00.000Z"), result: "UNCONFIRMED", consecutiveFailureCount: 1 }]
+    })
   });
 
   await runLicenceCheck({
@@ -224,44 +246,18 @@ test("ebaõnnestunud päring salvestub kontrollina, mitte vaikusena", async () =
   });
 
   const check = prisma.state.checks[0].data;
-  assert.equal(check.result, "UNCONFIRMED");
-  assert.equal(check.reason, "TIMEOUT");
-  assert.equal(check.verifiedAt, null, "tõlgendamata vastusel ei ole kinnitusaega");
-  /* Tõrke korral järgmine katse tuleb tunni pärast, mitte ööpäeva pärast. */
+  assert.equal(check.consecutiveFailureCount, 2, "teine järjestikune tõrge");
+  /* Teine tõrge → 6 h, mitte uuesti 1 h. */
   assert.equal(check.nextCheckAt.toISOString(), "2026-08-05T18:00:00.000Z");
-  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.UNCONFIRMED);
+  assert.equal(check.checksumValid, null, "puuduv teadmine ei ole false");
 });
 
-test("varasem hinnang kandub edasi: kadunud luba ei kustuta märgist kohe", async () => {
+test("vahepeal tekkinud uuem kontroll ei lase vana tulemust peale kirjutada", async () => {
   const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "Masaan OÜ",
-      serviceItems: [{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }],
-      licenceChecks: []
-    },
-    assessments: [
-      { providerServiceId: "s1", publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED, coverage: LICENCE_COVERAGE.EXACT_MATCH, consecutiveMissCount: 0 }
-    ]
-  });
-
-  await runLicenceCheck({ providerProfileId: "p1", prisma, now: NOW, fetchLicences: okLicences([]), resolveEntity: okEntity });
-
-  const written = prisma.state.upserts[0].create;
-  assert.equal(written.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
-  assert.equal(written.consecutiveMissCount, 1);
-});
-
-test("nimeanomaalia on admini signaal, mitte avalik seis", async () => {
-  const prisma = fakePrisma({
-    profile: {
-      id: "p1",
-      registryCode: "17027241",
-      organizationName: "MTÜ Masaan",
-      serviceItems: [{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }],
-      licenceChecks: []
-    }
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], {
+      licenceChecks: [{ id: "c0", attemptedAt: new Date("2026-08-05T06:00:00.000Z"), result: "OK", consecutiveFailureCount: 0 }]
+    }),
+    newestCheckId: "c1"
   });
 
   const result = await runLicenceCheck({
@@ -272,28 +268,94 @@ test("nimeanomaalia on admini signaal, mitte avalik seis", async () => {
     resolveEntity: okEntity
   });
 
-  assert.equal(result.nameMismatch, true, "profiilil MTÜ, registris OÜ");
-  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED, "nimi ei muuda avalikku seisu");
+  assert.equal(result.skipped, CHECK_SKIPPED.SUPERSEDED);
+  assert.equal(prisma.state.checks.length, 0);
+  assert.equal(prisma.state.upserts.length, 0);
 });
 
-test("lugemisrada annab teenuse kaupa seisu", async () => {
+test("varasem tõend kandub edasi: märgis püsib vana kontrolli najal", async () => {
+  const prisma = fakePrisma({
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }]),
+    assessments: [
+      {
+        providerServiceId: "s1",
+        publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED,
+        coverage: LICENCE_COVERAGE.EXACT_MATCH,
+        confirmedMissCount: 0,
+        publicStatusValidUntil: new Date("2026-08-08T09:00:00.000Z"),
+        statusSourceCheckId: "check-old",
+        coveringLicenceNumber: "SEH000598"
+      }
+    ]
+  });
+
+  await runLicenceCheck({ providerProfileId: "p1", prisma, now: NOW, fetchLicences: okLicences([]), resolveEntity: okEntity });
+
+  const written = prisma.state.upserts[0].create;
+  assert.equal(written.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
+  assert.equal(written.confirmedMissCount, 1);
+  assert.equal(written.statusSourceCheckId, "check-old", "tõend jääb vana kontrolli külge");
+  assert.equal(written.lastAttemptCheckId, "check-new");
+});
+
+test("nimeanomaalia on admini signaal, mitte avalik seis", async () => {
+  const prisma = fakePrisma({
+    profile: profileWith([{ id: "s1", serviceKey: "TOETATUD_ELAMINE" }], { organizationName: "MTÜ Masaan" })
+  });
+
+  const result = await runLicenceCheck({
+    providerProfileId: "p1",
+    prisma,
+    now: NOW,
+    fetchLicences: okLicences(),
+    resolveEntity: okEntity
+  });
+
+  assert.equal(result.nameMismatch, true);
+  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
+});
+
+test("lugemisrada jõustab aegumise, mitte ei usu salvestatud seisu", async () => {
   const prisma = fakePrisma({
     profile: null,
     services: [
       {
         id: "s1",
-        name: "Toetatud elamine",
+        name: "Kehtiv",
         serviceKey: "TOETATUD_ELAMINE",
-        licenceAssessment: { publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED, coverage: LICENCE_COVERAGE.EXACT_MATCH }
+        licenceAssessment: {
+          publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED,
+          coverage: LICENCE_COVERAGE.EXACT_MATCH,
+          publicStatusValidUntil: new Date("2026-08-08T09:00:00.000Z"),
+          statusSource: { verifiedAt: new Date(FRESH) }
+        }
       },
-      { id: "s2", name: "Muu teenus", serviceKey: null, licenceAssessment: null }
+      {
+        id: "s2",
+        name: "Aegunud",
+        serviceKey: "TOETATUD_ELAMINE",
+        licenceAssessment: {
+          publicStatus: LICENCE_PUBLIC_STATUS.VERIFIED,
+          coverage: LICENCE_COVERAGE.EXACT_MATCH,
+          publicStatusValidUntil: new Date("2026-08-04T09:00:00.000Z"),
+          statusSource: { verifiedAt: new Date("2026-08-01T09:00:00.000Z") }
+        }
+      },
+      { id: "s3", name: "Sidumata", serviceKey: null, licenceAssessment: null }
     ]
   });
 
-  const rows = await licenceStatusesForProfile({ providerProfileId: "p1", prisma });
+  const rows = await licenceStatusesForProfile({ providerProfileId: "p1", prisma, now: NOW });
 
-  assert.equal(rows.length, 2);
-  assert.equal(rows[0].assessment.publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
-  assert.equal(rows[1].assessment, null);
-  assert.equal(rows[1].serviceKey, null);
+  assert.equal(rows[0].publicStatus, LICENCE_PUBLIC_STATUS.VERIFIED);
+  assert.equal(rows[0].publicClaimIsCurrent, true);
+  assert.equal(rows[0].verifiedAt.toISOString(), FRESH);
+
+  /* Salvestatud VERIFIED, mille aegumine on möödas, EI TOHI avalikult
+     positiivsena paista — ka siis, kui korje pole veel jõudnud. */
+  assert.equal(rows[1].publicStatus, LICENCE_PUBLIC_STATUS.UNCONFIRMED);
+  assert.equal(rows[1].publicClaimIsCurrent, false);
+
+  assert.equal(rows[2].publicStatus, null);
+  assert.equal(rows[2].serviceKey, null);
 });

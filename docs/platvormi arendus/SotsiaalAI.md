@@ -124,8 +124,12 @@ Tehtud järjekord:
 4 tabelit, 3 enum'i) ning seisuloogika `lib/mtr/assessment.js` + `lib/mtr/policy.js`; kokku
 53 testi. Lisaks on **E4 teenuskiht** (`lib/mtr/licenceCheckService.js`) olemas — ahel
 identiteedivärav → lubade päring → kirje → iga teenuse hinnang; tegemata on ainult liides.
-Väravad: `npm test` **2822/2822**, `db:migrate:check` OK (127 migratsiooni), **`npm run
-mtr:probe` 11/11 päris andmebaasi vastu** (fake-prisma ei valideeri skeemi).
+**E3/E4 karastati teise sõltumatu ülevaatuse järel** (11 leidu): aegumine ja tõendi seos
+salvestatakse ja lugemisrada **jõustab** neid, seega märgis ei ripu üle loa lõpu; `VERIFIED` ja
+`ACTIVITY_VERIFIED` on eri seisud; kirje ja hinnangud on üks tehing; loa kuupäevi võrreldakse
+**Eesti kalendripäevades**, mitte UTC-hetkedena. Väravad: `npm test` **2826/2826**,
+`db:migrate:check` OK (128 migratsiooni), **`npm run mtr:probe` 29/29 päris andmebaasi vastu**
+(fake-prisma ei valideeri skeemi).
 **E3 kaheksa lukustatud põhimõtet** on lepingus tabelina — kandev on see, et `serviceKey` on
 laiendatav string, mitte DB-enum, ja et loakohustuse otsus salvestatakse kontrolli hetke
 koopiana, nii et vastavustabeli hilisem muutus ei anna vanale kirjele vaikselt uut tähendust. **Mõlemad
