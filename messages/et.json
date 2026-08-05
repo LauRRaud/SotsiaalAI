@@ -1453,6 +1453,42 @@
       "availability_confirmation_failed": "Kättesaadavust ei saanud kinnitada.",
       "availability_conflict": "Kättesaadavuse info muutus vahepeal. Laadi värske seis ja kinnita uuesti.",
       "service_not_found": "Teenust ei leitud sinu teenuseprofiilist."
+    },
+    "licence": {
+      "public": {
+        "verified": "Tegevusluba MTR-is kontrollitud {date}",
+        "activity_verified": "{activity} tegevusluba MTR-is kontrollitud {date}",
+        "activity_verified_caveat": "MTR-i avalik väljund ei näita, millist konkreetset erihoolekandeteenust tegevusluba katab.",
+        "no_licence_required": "Selle teenuse puhul ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba nõutud",
+        "not_found": "MTR-ist ei leitud kontrolli ajal sellele teenusele kehtivat tegevusluba",
+        "unconfirmed": "Tegevusloa staatust ei saanud MTR-is kinnitada",
+        "source": "Allikas: majandustegevuse register"
+      },
+      "internal": {
+        "heading": "Tegevusloa kontroll",
+        "verified": "Tegevusluba on registris olemas",
+        "activity_verified": "Tegevusala luba on registris olemas, täpset alaliiki register ei näita",
+        "no_licence_required": "See teenus ei vaja sotsiaalhoolekande seaduse alusel tegevusluba",
+        "not_found": "Register vastas, aga sellele teenusele kehtivat tegevusluba ei leitud",
+        "unconfirmed": "Kontroll ei andnud vastust",
+        "not_checked": "Kontroll ei ole veel käinud",
+        "expired": "Viimane kinnitus on aegunud",
+        "mapping_required": "Teenuse liik pole veel tegevusloa kontrolliga seotud",
+        "checked_with": "Kontrolliti registrikoodiga {registryCode}",
+        "checked_against": "Tegevusala, mille vastu kontrolliti: {activity}",
+        "action_recheck": "Kontrolli uuesti",
+        "action_fix_registry_code": "Kontrolli profiili registrikoodi",
+        "action_map_service": "Seo teenus kataloogi kirjega",
+        "action_report": "Teata valest vastavusest",
+        "cooldown": "Järgmise kontrolli saab käivitada {time}",
+        "reason": {
+          "identity_unresolved": "Registrikood ei vastanud registris ühelegi juriidilisele isikule",
+          "check_stale": "Viimasest õnnestunud kontrollist on liiga palju aega möödas",
+          "pending_second_check": "Esimene kontroll ei leidnud luba; avalik seis muutub alles teise kinnituse järel",
+          "invalid_registry_code": "Profiilil ei ole kehtivat registrikoodi",
+          "timeout": "Register ei vastanud õigeks ajaks"
+        }
+      }
     }
   },
   "service_availability": {

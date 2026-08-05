@@ -1453,6 +1453,42 @@
       "availability_confirmation_failed": "Availability could not be confirmed.",
       "availability_conflict": "Availability changed in the meantime. Load the latest state and confirm again.",
       "service_not_found": "The service was not found in your service profile."
+    },
+    "licence": {
+      "public": {
+        "verified": "Activity licence verified in the Estonian business register on {date}",
+        "activity_verified": "{activity} licence verified in the Estonian business register on {date}",
+        "activity_verified_caveat": "The register's public output does not show which specific special care service the licence covers.",
+        "no_licence_required": "This service does not require a social service activity licence verifiable in the business register",
+        "not_found": "No valid activity licence for this service was found in the register at the time of the check",
+        "unconfirmed": "The activity licence status could not be confirmed in the register",
+        "source": "Source: Estonian business register"
+      },
+      "internal": {
+        "heading": "Activity licence check",
+        "verified": "The licence exists in the register",
+        "activity_verified": "The activity licence exists; the register does not show the exact sub-service",
+        "no_licence_required": "This service does not require a licence under the Social Welfare Act",
+        "not_found": "The register answered, but no valid licence for this service was found",
+        "unconfirmed": "The check returned no answer",
+        "not_checked": "The check has not run yet",
+        "expired": "The last confirmation has expired",
+        "mapping_required": "This service is not linked to the licence catalogue yet",
+        "checked_with": "Checked using registry code {registryCode}",
+        "checked_against": "Activity checked against: {activity}",
+        "action_recheck": "Check again",
+        "action_fix_registry_code": "Review the registry code on the profile",
+        "action_map_service": "Link the service to a catalogue entry",
+        "action_report": "Report an incorrect mapping",
+        "cooldown": "The next check can be started {time}",
+        "reason": {
+          "identity_unresolved": "The registry code did not match any legal entity in the register",
+          "check_stale": "Too much time has passed since the last successful check",
+          "pending_second_check": "The first check found no licence; the public state changes only after a second confirmation",
+          "invalid_registry_code": "The profile has no valid registry code",
+          "timeout": "The register did not answer in time"
+        }
+      }
     }
   },
   "service_availability": {
