@@ -114,6 +114,7 @@ const okEntity = async () => ({ status: "OK", reason: null, found: true, name: S
 
 let profileId = null;
 let createdUserId = null;
+let savedProfileId = null;
 
 try {
   const profile = await prisma.serviceProviderProfile.create({
@@ -318,11 +319,15 @@ try {
     select: { id: true }
   });
   createdUserId = owner.id;
+  /* NB see profiil EI KUSTU koos kasutajaga: `ServiceProviderProfile.ownerId`
+     on `SetNull`, mitte `Cascade`. Ilma eraldi kustutuseta jääks sünteetiline
+     profiil andmebaasi rippuma — nii juhtus 05.08 tootmises. */
   const saved = await upsertServiceProviderProfileForOwner(owner.id, {
     organizationName: `${SYNTHETIC_NAME} salvestus`,
     registryCode: SYNTHETIC_CODE,
     serviceItems: [{ name: `Salvestuse teenus ${runId}`, description: "esimene" }]
   });
+  savedProfileId = saved.id;
   const savedServiceId = saved.serviceItems?.[0]?.id;
   await prisma.serviceProviderService.update({ where: { id: savedServiceId }, data: { serviceKey: "TOETATUD_ELAMINE" } });
   await prisma.serviceLicenceAssessment.create({
@@ -471,6 +476,16 @@ try {
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);
 } finally {
   /* Koristus ei tohi esimese vea peale katkeda. */
+  /* Salvestusraja profiil kustutatakse ERALDI ja ENNE kasutajat: `ownerId` on
+     `SetNull`, seega kasutaja kustutamine jätaks profiili omanikuta rippuma. */
+  if (savedProfileId) {
+    try {
+      await prisma.serviceProviderProfile.delete({ where: { id: savedProfileId } });
+    } catch (error) {
+      failures += 1;
+      lines.push(`  VIGA salvestusprofiili koristus: ${error?.message || error}`);
+    }
+  }
   if (createdUserId) {
     try {
       await prisma.user.delete({ where: { id: createdUserId } });
@@ -482,8 +497,12 @@ try {
   if (profileId) {
     try {
       await prisma.serviceProviderProfile.delete({ where: { id: profileId } });
-      const leftovers = await prisma.licenceCheck.count({ where: { providerProfileId: profileId } });
-      lines.push(leftovers === 0 ? "koristatud: profiil ja kogu kaskaad kustutatud" : `  VIGA koristus jättis ${leftovers} kontrolli`);
+      /* Koristus KONTROLLITAKSE, mitte ei eeldata: 05.08 jäi tootmisse üks
+         sünteetiline profiil, sest kustutati ainult see, mida mäletati. */
+      const leftovers =
+        (await prisma.serviceProviderProfile.count({ where: { organizationName: { contains: runId } } })) +
+        (await prisma.user.count({ where: { email: { contains: runId } } }));
+      lines.push(leftovers === 0 ? "koristatud: sünteetilisi ridu ei jäänud" : `  VIGA koristus jättis ${leftovers} rida`);
       if (leftovers !== 0) failures += 1;
     } catch (error) {
       failures += 1;
