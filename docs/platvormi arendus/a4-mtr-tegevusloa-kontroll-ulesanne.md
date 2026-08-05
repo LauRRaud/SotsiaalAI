@@ -1,11 +1,17 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1–E3 TEHTUD, E4–E7 tegemata.**
+STATUS: **v2, 05.08.2026. E1–E3 TEHTUD, E4 teenuskiht tehtud (liides tegemata), E5–E7 tegemata.**
 
 **E3 on koodis** (migratsioon `20260805170000_a4_mtr_licence_check`, `lib/mtr/assessment.js`,
-`lib/mtr/policy.js`, 11 testi): neli tabelit, kuue seisuga olekumasin ja konfiguratsioonist
-tulev korje rütm. `npm run db:migrate:check` OK (127 migratsiooni), `npm test` **2813/2813**.
-Kood ei ole veel ühegi marsruudi ega vaate küljes — E4 on liidese esimene samm.
+`lib/mtr/policy.js`): neli tabelit, kuue seisuga olekumasin ja konfiguratsioonist tulev korje
+rütm. **E4 teenuskiht on samuti koodis** (`lib/mtr/licenceCheckService.js`) — ahel identiteedi
+kontrollist kuni iga teenuse hinnanguni; tegemata on ainult liides.
+
+**Päris andmebaasi sond: `npm run mtr:probe` → 11/11** (`scripts/mtr-licence-probe.mjs`).
+Fake-prisma ei valideeri skeemi, seega sond kirjutab päris tabelitesse, loeb tagasi, kontrollib
+kaskaadkustutust ja laseb terve teenuskihi läbi sünteetilise registrivastusega — võõrast
+registrit ta ei koorma. Väravad 05.08: `npm test` **2822/2822**, `db:migrate:check` OK
+(127 migratsiooni), eslint puhas, `i18n:check` OK.
 
 **E1 on koodis** (`lib/mtr/licences.js`, 19 testi `tests/mtr/licences.test.js`): sessioon +
 CSRF, otsing registrikoodi järgi, CSV-parser skeemikontrolliga, identiteedivärav
@@ -301,7 +307,7 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 | **E1** | ~~Allikaklient~~ — **TEHTUD 05.08**: `lib/mtr/licences.js`. Sessioon + CSRF → otsing registrikoodi järgi → CSV → parse + skeemikontroll; identiteedivärav eraldi funktsioonina; iga tõrge annab `UNCONFIRMED` koos põhjusega, mitte tühja tulemust |
 | **E2** | ~~Vastavustabel~~ — **TEHTUD 05.08**: `lib/mtr/licensedServices.js`. Kogu § 151 loetelu + § 147 + kuus loakohustuseta teenust; iga rida kannab õigusviidet, MTR tegevusala ja teralisust; versioon `2026-08-05`; vabatekst annab ainult kandidaadi. **Ridade sisu ootab omaniku kinnitust** |
 | **E3** | ~~Andmemudel~~ — **TEHTUD 05.08**: migratsioon `20260805170000_a4_mtr_licence_check` (3 enum'i, 4 tabelit, 1 uus veerg), seisuloogika `lib/mtr/assessment.js` ja rütm `lib/mtr/policy.js`. Vt „E3 kaheksa põhimõtet" allpool |
-| **E4** | Osutaja vaade: mida kontrolliti, millise koodiga, millise tegevusala vastu, millal, miks selline tulemus, kuidas parandada, kuidas teatada valest vastavusest |
+| **E4** | **Teenuskiht TEHTUD 05.08** (`lib/mtr/licenceCheckService.js`, 9 testi): `runLicenceCheck` = identiteedivärav + lubade päring + kirje + iga teenuse hinnang; `licenceStatusesForProfile` = lugemisrada. **Tegemata on liides**: osutaja vaade (mida kontrolliti, millise koodiga, millal, miks, kuidas parandada, kuidas teatada valest vastavusest) |
 | **E5** | Avalik silt teenusekaardil ja profiilil — **neli teksti**, teenuse ja koha täpsusega |
 | **E6** | Admini vaade (alarmid, nimeanomaaliad, korje seis) + korje ajastus |
 | **E7** | SK-V1 O-SK-5 haakumine — **eraldi otsuse taga, ei ehita enne** |

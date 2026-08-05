@@ -117,12 +117,15 @@ Tehtud järjekord:
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. **Rada tõendatud 04.08 kolme päris sessiooniga** ja selle käigus leitud + parandatud **IDOR**: iga töötaja sai luua jagamise võõrast eelpöördumisest. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)) |
 | **SOTSIAALKIIRABI-V1** (omaniku valik 05.08) | **E1–E6 TEHTUD 05.08 — tervik on koodis ja peidus.** Vt S2 „Tehtud" ja S5. Rada tõendatud päris andmebaasi ja päris sessioonidega, nelja identiteediga; brauseris läbi käidud pöörduja vorm, kriisiekraan, laua koondvaade ja admini laudade register. Aktiveerimine ootab partnerit — vt „Mis avab" allpool |
 
-**Uus teema 05.08: A4 MTR/tegevusloa kontroll — E1–E3 tehtud.** Leping on v2 kujul olemas
+**Uus teema 05.08: A4 MTR/tegevusloa kontroll — E1–E3 + E4 teenuskiht tehtud.** Leping on v2 kujul olemas
 ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
 **E1–E3 on tehtud** — allikaklient `lib/mtr/licences.js`, vastavustabel
 `lib/mtr/licensedServices.js`, andmemudel (migratsioon `20260805170000_a4_mtr_licence_check`:
 4 tabelit, 3 enum'i) ning seisuloogika `lib/mtr/assessment.js` + `lib/mtr/policy.js`; kokku
-44 testi, väravad rohelised (`npm test` 2813/2813, `db:migrate:check` OK 127 migratsiooniga).
+53 testi. Lisaks on **E4 teenuskiht** (`lib/mtr/licenceCheckService.js`) olemas — ahel
+identiteedivärav → lubade päring → kirje → iga teenuse hinnang; tegemata on ainult liides.
+Väravad: `npm test` **2822/2822**, `db:migrate:check` OK (127 migratsiooni), **`npm run
+mtr:probe` 11/11 päris andmebaasi vastu** (fake-prisma ei valideeri skeemi).
 **E3 kaheksa lukustatud põhimõtet** on lepingus tabelina — kandev on see, et `serviceKey` on
 laiendatav string, mitte DB-enum, ja et loakohustuse otsus salvestatakse kontrolli hetke
 koopiana, nii et vastavustabeli hilisem muutus ei anna vanale kirjele vaikselt uut tähendust. **Mõlemad
