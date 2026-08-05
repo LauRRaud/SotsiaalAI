@@ -341,6 +341,40 @@ function appendAccessPath(parent, entry, t) {
   return section;
 }
 
+/* A4 — avalik tegevusloa märgis teenusekaardil.
+   Sisu tuleb serverist valmis kujul (`lib/mtr/statusText.js`): siin ei
+   otsustata ei teksti ega tooni. `null` või sisemine märgis = silti ei ole,
+   ja seda EI TOHI tõlgendada kummaski suunas. */
+function appendLicenceBadge(parent, badge, t) {
+  if (!badge || badge.visibility === "INTERNAL_ONLY" || !badge.key) return null;
+  const block = document.createElement("div");
+  block.className = "service-map-popup__licence";
+  block.dataset.tone = badge.tone || "NEUTRAL";
+  block.dataset.status = badge.status || "UNKNOWN";
+  const label = typeof t === "function"
+    ? t(badge.key, { date: formatLicenceDate(badge.params?.date), activity: badge.params?.activity || "" }, "")
+    : "";
+  appendText(block, "p", "service-map-popup__licence-label", label);
+  if (badge.caveatKey) {
+    appendText(block, "p", "service-map-popup__licence-caveat", readText(t, badge.caveatKey, ""));
+  }
+  appendText(
+    block,
+    "p",
+    "service-map-popup__licence-source",
+    readText(t, "service_provider_profile.licence.public.source", "Allikas: majandustegevuse register")
+  );
+  parent.appendChild(block);
+  return block;
+}
+
+function formatLicenceDate(value) {
+  if (!value) return "";
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("et-EE", { dateStyle: "long", timeZone: "Europe/Tallinn" }).format(date);
+}
+
 function appendServiceItems(parent, entry, t) {
   const services = (entry?.providerProfile?.serviceItems || [])
     .filter((service) => service?.mapVisible !== false && String(service?.status || "PUBLISHED").toUpperCase() === "PUBLISHED")
@@ -390,6 +424,7 @@ function appendServiceItems(parent, entry, t) {
     appendText(availabilityBlock, "p", "service-map-popup__availability-age", availability.ageText);
     appendText(availabilityBlock, "p", "service-map-popup__availability-warning", availability.warning);
     item.appendChild(availabilityBlock);
+    appendLicenceBadge(item, service.licenceBadge, t);
     section.appendChild(item);
   }
 

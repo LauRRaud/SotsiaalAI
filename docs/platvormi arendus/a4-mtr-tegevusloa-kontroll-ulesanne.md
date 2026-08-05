@@ -1,6 +1,16 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1–E5 TEHTUD (avalik teenusekaardi silt ja E6/E7 tegemata).**
+STATUS: **v2, 05.08.2026. E1–E6 TEHTUD. E7 ootab otsust O-A4-3, mitte arendust.**
+
+**E5 avalik silt** on teenusekaardi hüpikus: server annab valmis märgise (tekst, toon,
+kuupäev, hoiatus), vaade ei tõlgenda midagi. **E6 korje** on `npm run mtr:refresh` — austab
+`nextCheckAt`-i, käib profiilid ükshaaval ja annab adminile viis signaali.
+
+**E7 EI OLE tegemata töö, vaid otsuse taga:** O-A4-3 on juba vastatud — MTR-luba on
+kiireloomulise osutaja-raja jaoks **vajalik, aga mitte piisav** tõend. Enne on vaja
+kontrollitud organisatsioonikontot, teadlikku nõusolekut, aktiivset kontakti, määratud
+piirkonda ja perioodilist kinnitust. Koodi kirjutamine enne neid ei ole ettevalmistus, vaid
+poolik lüliti.
 
 **E4–E5 on koodis:** teenuskiht `lib/mtr/licenceCheckService.js`, tekstikiht
 `lib/mtr/statusText.js`, API `app/api/service-provider/profile/licence-check/`, osutaja vaade
@@ -370,8 +380,8 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 | **E2** | ~~Vastavustabel~~ — **TEHTUD 05.08**: `lib/mtr/licensedServices.js`. Kogu § 151 loetelu + § 147 + kuus loakohustuseta teenust; iga rida kannab õigusviidet, MTR tegevusala ja teralisust; versioon `2026-08-05`; vabatekst annab ainult kandidaadi. **Ridade sisu ootab omaniku kinnitust** |
 | **E3** | ~~Andmemudel~~ — **TEHTUD 05.08**: migratsioon `20260805170000_a4_mtr_licence_check` (3 enum'i, 4 tabelit, 1 uus veerg), seisuloogika `lib/mtr/assessment.js` ja rütm `lib/mtr/policy.js`. Vt „E3 kaheksa põhimõtet" allpool |
 | **E4** | **Teenuskiht TEHTUD 05.08** (`lib/mtr/licenceCheckService.js`, 9 testi): `runLicenceCheck` = identiteedivärav + lubade päring + kirje + iga teenuse hinnang; `licenceStatusesForProfile` = lugemisrada. **Tegemata on liides**: osutaja vaade (mida kontrolliti, millise koodiga, millal, miks, kuidas parandada, kuidas teatada valest vastavusest) |
-| **E5** | Avalik silt teenusekaardil ja profiilil — **neli teksti**, teenuse ja koha täpsusega |
-| **E6** | Admini vaade (alarmid, nimeanomaaliad, korje seis) + korje ajastus |
+| **E5** | ~~Avalik silt~~ — **TEHTUD 05.08**: `lib/mtr/statusText.js` otsustab teksti ja tooni; avalik märgis teenusekaardi hüpikus (`ServiceMapLeaflet`), andmed `listPublishedServiceMapEntries` kaudu koos aegumise ja tõendi kuupäevaga. Sidumata teenusel silti ei ole |
+| **E6** | ~~Korje ja alarmid~~ — **TEHTUD 05.08**: `lib/mtr/refresh.js` + `npm run mtr:refresh` (ja `mtr:refresh:dry`). Korje austab `nextCheckAt`-i ja käib profiilid **ükshaaval**; üks tõrge ei katkesta korjet. Viis admini signaali: skeemitriiv, lahendamata identiteet, nimeanomaalia, korduvad tõrked, aegunud märgised |
 | **E7** | SK-V1 O-SK-5 haakumine — **eraldi otsuse taga, ei ehita enne** |
 
 ## E3 kaheksa põhimõtet (omanik 05.08) — ja kus nad koodis elavad
