@@ -20,7 +20,13 @@ import {
 test("iga rida kannab õigusviidet, võtit ja korrektseid aliaseid", () => {
   const keys = new Set();
   for (const row of allCatalogueRows()) {
-    assert.match(row.legalBasis, /^SHS §/u, `${row.key} vajab õigusviidet`);
+    /* Õigusalus on kas § viide VÕI aus `null` koos selgitusega, miks teda ei
+       ole. Aegunud paragrahvi väljamõtlemine on keelatud. */
+    if (row.legalBasis === null) {
+      assert.ok(row.legalNote, `${row.key}: null-õigusalus vajab selgitust`);
+    } else {
+      assert.match(row.legalBasis, /^SHS §/u, `${row.key} vajab õigusviidet`);
+    }
     assert.ok(row.label && row.key, "rida vajab võtit ja nime");
     assert.equal(keys.has(row.key), false, `võti ${row.key} kordub`);
     keys.add(row.key);
@@ -46,7 +52,7 @@ test("loakohustuslikel ridadel on MTR tegevusala ja teralisus", () => {
   }
 });
 
-test("SHS § 151 loetelu on täies mahus kaetud", () => {
+test("§ 151 loetelu on täies mahus kaetud", () => {
   const bases = LICENSED_SERVICES.map((row) => row.legalBasis);
   for (const point of ["p 1", "p 2", "p 3", "p 4", "p 5", "p 6", "p 7", "p 8", "p 8¹", "p 9"]) {
     assert.ok(bases.includes(`SHS § 151 ${point}`), `§ 151 ${point} puudub tabelist`);
@@ -54,46 +60,75 @@ test("SHS § 151 loetelu on täies mahus kaetud", () => {
   assert.ok(bases.includes("SHS § 147"), "rehabilitatsiooniteenus puudub");
 });
 
-test("KUUS erihoolekandeteenust jagavad üht MTR tegevusala ja on jämedad", () => {
+test("kuus erihoolekandeteenust jagavad tegevusala, aga eristuvad LIIGI kaudu", () => {
   const erihoolekanne = LICENSED_SERVICES.filter((row) => row.activity.id === MTR_SOCIAL_ACTIVITIES.ERIHOOLEKANNE.id);
   assert.equal(erihoolekanne.length, 6, "§ 151 p 5, 6, 7, 8, 8¹ ja 9");
-  for (const row of erihoolekanne) assert.equal(row.granularity, "COARSE");
+  const types = erihoolekanne.map((row) => row.activityType);
+  assert.equal(new Set(types).size, 6, "iga alateenus vajab OMA registri liiki");
+  for (const row of erihoolekanne) {
+    assert.equal(row.granularity, "EXACT", `${row.key} on liigi kaudu täpselt tuvastatav`);
+    assert.equal(row.needsVerification, undefined, `${row.key} on registri vastu kontrollitud`);
+  }
+  /* Registri sõnastus, mitte meie oma. */
+  assert.ok(types.includes("Päeva- ja nädalahoiuteenus"));
+  assert.ok(types.includes("Ööpäevaringne erihooldusteenus kokku"));
 });
 
-test("jämeda teralisusega vaste EI ole konkreetse alateenuse tõend", () => {
-  const licence = { activity: "Erihoolekandeteenus" };
+test("täpne liik annab EXACT_MATCH, puuduv liik langeb jämedale tasemele", () => {
+  const täpne = { activity: "Erihoolekandeteenus", activityType: "Toetatud elamise teenus" };
+  assert.equal(licenceCoverageForService(täpne, "TOETATUD_ELAMINE"), LICENCE_COVERAGE.EXACT_MATCH);
 
-  /* Kõige tähtsam rida selles failis: MTR ütleb ainult, et erihoolekandeluba on
-     olemas — mitte, et just toetatud elamine on kaetud. */
-  assert.equal(licenceCoverageForService(licence, "TOETATUD_ELAMINE"), LICENCE_COVERAGE.ACTIVITY_MATCH_ONLY);
+  /* Vale alateenus on päris mittevaste — erihoolekandeluba ühele teenusele ei
+     tõenda teist. */
+  assert.equal(licenceCoverageForService(täpne, "KOGUKONNAS_ELAMINE"), LICENCE_COVERAGE.NO_MATCH);
+
+  /* Puuduv liik EI ole vastuolu: vana kirje või tellimata tulp annab jämedama
+     seisu, mitte eitava vastuse. */
+  const liigita = { activity: "Erihoolekandeteenus" };
+  assert.equal(licenceCoverageForService(liigita, "TOETATUD_ELAMINE"), LICENCE_COVERAGE.ACTIVITY_MATCH_ONLY);
+  assert.equal(
+    licenceCoverageForService({ activity: "Erihoolekandeteenus", activityType: "" }, "PAEVA_JA_NADALAHOID"),
+    LICENCE_COVERAGE.ACTIVITY_MATCH_ONLY
+  );
 
   assert.equal(
     licenceCoverageForService({ activity: "Väljaspool kodu osutatav üldhooldusteenus" }, "YLDHOOLDUS_VALJASPOOL_KODU"),
     LICENCE_COVERAGE.EXACT_MATCH
   );
-  assert.equal(licenceCoverageForService(licence, "YLDHOOLDUS_VALJASPOOL_KODU"), LICENCE_COVERAGE.NO_MATCH);
+  assert.equal(licenceCoverageForService(liigita, "YLDHOOLDUS_VALJASPOOL_KODU"), LICENCE_COVERAGE.NO_MATCH);
   assert.equal(licenceCoverageForService({ activity: "Taksoveo tegevusluba" }, "TOETATUD_ELAMINE"), LICENCE_COVERAGE.NO_MATCH);
-  assert.equal(licenceCoverageForService(licence, "TUGIISIK"), LICENCE_COVERAGE.UNCONFIRMED);
-  assert.equal(licenceCoverageForService(licence, "PUUDUB"), LICENCE_COVERAGE.UNCONFIRMED);
+  assert.equal(licenceCoverageForService(liigita, "TUGIISIK"), LICENCE_COVERAGE.UNCONFIRMED);
+  assert.equal(licenceCoverageForService(liigita, "PUUDUB"), LICENCE_COVERAGE.UNCONFIRMED);
   assert.equal(licenceCoverageForService(null, "TOETATUD_ELAMINE"), LICENCE_COVERAGE.NO_MATCH);
 });
 
-test("kontrollimata kaardistus on koodiga blokeeritud, mitte kommentaariga", () => {
-  const unverified = LICENSED_SERVICES.filter((row) => row.needsVerification).map((row) => row.key);
-  assert.deepEqual(unverified, ["PAEVA_JA_NADALAHOID"]);
+test("päeva- ja nädalahoid ei ole enam blokeeritud — seos on registri vastu kontrollitud", () => {
+  assert.deepEqual(LICENSED_SERVICES.filter((row) => row.needsVerification), []);
 
   const result = licenceRequirementFor({ serviceKey: "PAEVA_JA_NADALAHOID" });
-  /* Loakohustus jääb — seadus on selge (§ 151 p 8¹). Kontrollimata on ainult
-     seos MTR tegevusalaga, seega tegevusala on null ja kontrolli ei käivitata. */
   assert.equal(result.requirement, LICENCE_REQUIREMENT.REQUIRED);
-  assert.equal(result.mappingStatus, MAPPING_STATUS.NEEDS_VERIFICATION);
-  assert.equal(result.activity, null, "ilma tegevusalata ei saa MTR-ist küsida");
-  assert.equal(result.granularity, null);
+  assert.equal(result.mappingStatus, MAPPING_STATUS.MAPPED);
+  assert.equal(result.activity.label, "Erihoolekandeteenus");
+  assert.equal(result.activityType, "Päeva- ja nädalahoiuteenus");
 
   assert.equal(
-    licenceCoverageForService({ activity: "Erihoolekandeteenus" }, "PAEVA_JA_NADALAHOID"),
-    LICENCE_COVERAGE.UNCONFIRMED
+    licenceCoverageForService({ activity: "Erihoolekandeteenus", activityType: "Päeva- ja nädalahoiuteenus" }, "PAEVA_JA_NADALAHOID"),
+    LICENCE_COVERAGE.EXACT_MATCH
   );
+});
+
+test("hoolduspere ja sotsiaalnõustamine kannavad oma erisust struktuurselt", () => {
+  const hoolduspere = findServiceByKey("ASENDUSHOOLDUS_HOOLDUSPERES");
+  assert.equal(hoolduspere.requirement, LICENCE_REQUIREMENT.NO_SHS_LICENCE_REQUIRED);
+  /* "Luba ei ole nõutud" ei tohi lugeda "kontrolli ei ole": sobivust hindab SKA
+     ja kanne on STAR-is, mis ei ole avalik register. */
+  assert.equal(hoolduspere.otherVerification, "SKA_SUITABILITY_AND_STAR");
+  assert.match(hoolduspere.publicNote, /Sotsiaalkindlustusamet/u);
+  assert.equal(licenceRequirementFor({ serviceKey: "ASENDUSHOOLDUS_HOOLDUSPERES" }).otherVerification, "SKA_SUITABILITY_AND_STAR");
+
+  const noustamine = findServiceByKey("SOTSIAALNOUSTAMINE");
+  assert.equal(noustamine.legalBasis, null, "aegunud § viidet ei leiutata");
+  assert.match(noustamine.legalNote, /eraldi nummerdatud/u);
 });
 
 test("selge seos annab otsuse, vabatekst mitte kunagi", () => {
@@ -186,7 +221,20 @@ test("versioon kannab ka sama päeva kordust", () => {
 });
 
 test("loata teenuste read on olemas ja leitavad võtme järgi", () => {
-  assert.ok(NON_LICENSED_SERVICES.length >= 6);
-  assert.equal(findServiceByKey("KODUTEENUS").requirement, LICENCE_REQUIREMENT.NO_SHS_LICENCE_REQUIRED);
+  assert.ok(NON_LICENSED_SERVICES.length >= 10);
+  for (const key of [
+    "KODUTEENUS",
+    "TUGIISIK",
+    "ISIKLIK_ABISTAJA",
+    "VOLANOUSTAMINE",
+    "SOTSIAALTRANSPORT",
+    "VARJUPAIGATEENUS",
+    "TAISEALISE_ISIKU_HOOLDUS",
+    "ELURUUMI_TAGAMINE",
+    "ASENDUSHOOLDUS_HOOLDUSPERES",
+    "SOTSIAALNOUSTAMINE"
+  ]) {
+    assert.equal(findServiceByKey(key)?.requirement, LICENCE_REQUIREMENT.NO_SHS_LICENCE_REQUIRED, `${key} puudub`);
+  }
   assert.equal(findServiceByKey("PUUDUB"), null);
 });

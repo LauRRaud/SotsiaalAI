@@ -56,6 +56,7 @@ test("kehtiv tähtajatu luba parsitakse koos mahupiiri ja kuupäevaga", async ()
     organizationName: "Masaan OÜ",
     registryCode: "17027241",
     activity: "Erihoolekandeteenus",
+    activityType: null,
     validFrom: "2025-10-13",
     validUntil: null,
     indefinite: true,
@@ -74,6 +75,52 @@ test("kehtiv tähtajatu luba parsitakse koos mahupiiri ja kuupäevaga", async ()
   assert.match(String(calls[1].body), /taotluse_tulemus_filters%5B_csrf_token%5D=token-123/);
   assert.match(String(calls[1].body), /ettevotte_kood%5D%5Btext%5D=17027241/);
   assert.match(String(calls[2].cookie), /MTRSESSION=abc/);
+});
+
+test("väljundtulbad tellitakse nimeliselt ja tegevusala liik parsitakse", async () => {
+  const header = `${HEADER};Tegevusala liik;Tegevuskohtade aadressid (eraldi ridadel);Tegevusloa väljaandja;Maksimaalne isikute arv`;
+  const csv = [
+    header,
+    "1;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;;Toetatud elamise teenus;Riia 5, Tartu;Sotsiaalkindlustusamet;42",
+    "2;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;;Päeva- ja nädalahoiuteenus;Riia 5, Tartu;Sotsiaalkindlustusamet;7"
+  ].join("\n");
+  const calls = stubRegistry({ csv });
+
+  const result = await fetchLicencesByRegistryCode("17027241");
+
+  /* Tellimus läheb päringus kaasa — parser ei sõltu MTR-i vaikeseadistusest. */
+  const body = String(calls[1].body);
+  for (const field of ["tegevusala_liigid", "tegevuskoha_aadressid", "tegevusloa_valjaandja", "tegevuskohtade_kohtade_arvu_summa"]) {
+    assert.ok(body.includes(field), `${field} tuleb tellida`);
+  }
+
+  assert.equal(result.status, MTR_RESULT.OK);
+  assert.deepEqual(result.missingOrderedColumns, []);
+  /* Sama loanumber, ERI alateenus — need on eri read ja neid ei tohi liita. */
+  assert.equal(result.licences.length, 2);
+  assert.deepEqual(
+    result.licences.map((licence) => licence.activityType),
+    ["Toetatud elamise teenus", "Päeva- ja nädalahoiuteenus"]
+  );
+  /* Tellitud tulp on täpsem kui Lisainfost loetud number. */
+  assert.equal(result.licences[0].licensedMaxPersons, 42);
+  assert.equal(result.licences[1].licensedMaxPersons, 7);
+  assert.equal(result.licences[0].locations[0].address, "Riia 5, Tartu");
+});
+
+test("tellitud tulba puudumine ei ole fataalne, aga tuleb alarmi jaoks tagasi", async () => {
+  stubRegistry({ csv: `${HEADER}\n${ROW_MASAAN}\n` });
+
+  const result = await fetchLicencesByRegistryCode("17027241");
+
+  assert.equal(result.status, MTR_RESULT.OK, "loa identiteet tuleb ikka kohustuslikest veergudest");
+  assert.equal(result.licences[0].activityType, null);
+  assert.deepEqual(result.missingOrderedColumns, [
+    "tegevusala liik",
+    "tegevuskohtade aadressid (eraldi ridadel)",
+    "tegevusloa väljaandja",
+    "maksimaalne isikute arv"
+  ]);
 });
 
 test("võõra registrikoodiga rida annab RESULT_MISMATCH, mitte võõraid lube", async () => {

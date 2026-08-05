@@ -29,10 +29,16 @@ lukus:
    ainult tõlgendatud vastuse järel. `maxPersons` → **`licensedMaxPersons`**, et keegi ei
    loeks seda vabaks mahuks.
 
-**Üks koht jääb ausalt kontrollimata:** tegevuskoha veeru NIMI CSV-s
-(`ADDRESS_COLUMN_CANDIDATES`) on oletus, sest päris eksporti ei ole alla laetud. Kui ükski
-kandidaat ei sobi, jääb `locations` tühjaks ja teenuse+koha täpsust lihtsalt ei väideta —
-vale suunas see ei eksi.
+**E1 tellib väljundtulbad nimeliselt (05.08).** Päring saadab kaasa
+`tegevusala_liigid` · `tegevuskoha_aadressid` · `tegevusloa_valjaandja` ·
+`tegevuskohtade_kohtade_arvu_summa`, seega parser ei sõltu MTR-i vaikeseadistusest ja
+varasem reservatsioon „aadressiveeru nimi on oletus" kadus.
+
+**Tellitud tulba puudumine ei ole fataalne** (erinevus ülevaatuse soovitusest, teadlik):
+loa identiteet tuleb kohustuslikest veergudest ja hard-fail muudaks iga MTR-i sõnastusmuutuse
+täielikuks katkestuseks. Puuduv tellitud tulp tuleb tagasi `missingOrderedColumns` all (E6
+alarm) ja kaetus langeb `ACTIVITY_MATCH_ONLY` peale — täpselt see varurada, mida ülevaatus ise
+E2 poolel nõudis.
 
 **E2 on koodis** (`lib/mtr/licensedServices.js`, 14 testi): versioonitud vastavustabel — kogu
 SHS § 151 loetelu + § 147, iga rida oma õigusviite ja MTR tegevusalaga, pluss kuus
@@ -187,11 +193,19 @@ profiili peal.
 
 ### Kaks piirangut, mis E2 ehitamisel välja tulid (05.08)
 
-**1. MTR on jämedama teralisusega kui seadus.** SHS-i viis erihoolekandeteenust (§ 151 p 5–9)
-ja päeva- ja nädalahoid kannavad MTR-is **üht tegevusala „Erihoolekandeteenus"**, ja loakirje
-ei ütle, milline alateenus on kaetud (Masaani kirjetes oli Lisainfos ainult mahupiir). Nende
-teenuste märgis tohib öelda ainult **„erihoolekandeteenuse tegevusluba"** — mitte, et just see
-alateenus on kontrollitud. Tabelis kannavad need read `granularity: "COARSE"`.
+**1. ~~MTR on jämedama teralisusega kui seadus~~ — PARANDATUD 05.08, järeldus oli vale.**
+Esialgu tundus, et kuus erihoolekandeteenust (§ 151 p 5–9 ja p 8¹) kannavad ühte tegevusala
+„Erihoolekandeteenus" ja loakirje ei ütle, milline alateenus on kaetud. See tuli **vaikimisi
+väljundtulpade** pealt. Päris registri kontroll näitas, et MTR-il on nende jaoks eraldi väli
+**„Tegevusala liik"** (filter `tegevusala_liik_kontrolliga`, väljundtulp `tegevusala_liigid`)
+kuue väärtusega, mis vastavad täpselt SHS-i alateenustele. Kontroll: filter Erihoolekandeteenus
++ „Päeva- ja nädalahoiuteenus" → **21 kehtivat kirjet**.
+
+Seega **E1 tellib väljundtulbad nimeliselt** ja vaste on täpne. `ACTIVITY_MATCH_ONLY` jääb
+**varuseisuks**: kui liik puudub, on tühi või MTR muudab sõnastust, langeb kaetus jämedale
+tasemele — **puuduv liik ei anna kunagi `NO_MATCH`**. Selles olukorras kehtib omaniku 05.08
+sõnastus: *„Erihoolekandeteenuse tegevusluba MTR-is kontrollitud [kuupäev]"* + lisainfo
+*„MTR-i avalik väljund ei näita, millist konkreetset erihoolekandeteenust tegevusluba katab."*
 
 **2. Platvormil ei ole kontrollitud teenusesõnastikku.** `ServiceProviderService.categories` ja
 `services` on vaba tekst (`splitList` komadega). Seega ei saa E2 olla ainult kaardistus — ta
@@ -200,10 +214,21 @@ peab tooma sisse ka nimekirja, mille külge kaardistada. Kood teeb vabatekstist 
 ole tabeli reaga selgelt seotud. Nii ei saa oletusest sündida ei avalikku rahustust
 („ei vaja luba") ega avalikku kontrolli vale teenuse peal.
 
-**Üks rida on teadlikult märgitud kontrollimata.** Päeva- ja nädalahoiuteenuse (§ 151 p 8¹)
-MTR tegevusala ei ole registri kuuest valikust otse tuletatav; tabelis on ta
-`needsVerification: true` ja teda ei tohi märgise arvutamisel usaldada enne, kui päris loakirje
-seda kinnitab.
+**~~Üks rida on kontrollimata~~ — KONTROLLITUD 05.08.** Päeva- ja nädalahoiuteenus (§ 151 p 8¹)
+on registris „Erihoolekandeteenus" tegevusala all ja eristub liigi kaudu (21 kehtivat kirjet).
+`needsVerification` on maas.
+
+**Kataloogi lisandusid 05.08 neli loakohustuseta teenust** (omaniku otsus): täisealise isiku
+hooldus (§ 26) · eluruumi tagamine (§ 41–43) · asendushooldus hooldusperes (§ 45¹⁰ lg 2) ·
+sotsiaalnõustamine. Kaks neist kannavad erisust, mida ei tohi ära kaotada:
+
+- **Hoolduspere** — tegevusluba ei ole nõutud, aga see EI tähenda kontrolli puudumist: sobivust
+  hindab SKA ja kanne tehakse STAR-i, mis ei ole avalik register. Rida kannab struktuurset välja
+  `otherVerification: "SKA_SUITABILITY_AND_STAR"` ja avalikku selgitust. **A4 ei tohi kuvada
+  „SKA-s kontrollitud" ega „STAR-i kantud"** — ainult seda, et kontrollimehhanism on teistsugune.
+- **Sotsiaalnõustamine** — kehtivas SHS-is ei ole eraldi nummerdatud teenus (§ 16 on tasu
+  sotsiaalteenuse eest). Rida kannab `legalBasis: null` + `legalNote`. Aegunud paragrahvi
+  ei leiutata.
 
 Mitme loa koondamine üheks märgiseks on lubatud **ainult organisatsiooni üldprofiilil**.
 Konkreetse teenusekaardi kirje juures peab märgis põhinema just sellele teenusele ja kohale

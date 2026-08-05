@@ -126,7 +126,15 @@ ei kontrollitud ja rakendumata filtri korral oleks võõra ettevõtte load tulnu
 E2 tõsiseim leid: MTR-i üldine „Erihoolekandeteenus" vaste andis `true` kõigile kuuele
 alateenusele — nüüd tagastab kaetus seisu (`ACTIVITY_MATCH_ONLY` ≠ `EXACT_MATCH`) ja avalik
 „ei vaja luba" on kitsendatud kujule „ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba
-nõutud", sest tabel ei tõenda muude seaduste lubade puudumist. E3–E7 on
+nõutud", sest tabel ei tõenda muude seaduste lubade puudumist.
+
+**Parandus 05.08: MTR EI OLE jämedam kui seadus.** Registril on erihoolekande lubade jaoks
+eraldi väli „Tegevusala liik" kuue väärtusega, mis vastavad täpselt SHS-i alateenustele —
+kontrollitud päris filtriga (päeva- ja nädalahoiuteenus = 21 kehtivat kirjet). E1 tellib
+väljundtulbad nüüd nimeliselt, seega vaste on täpne; jäme seis jääb ainult varuks. Kataloogi
+lisandusid neli loakohustuseta teenust, neist hoolduspere kannab eraldi märget, et sobivust
+hindab SKA ja kanne on STAR-is (mitte avalik register), ning sotsiaalnõustamine kannab ausat
+`legalBasis: null`, sest kehtivas SHS-is teda eraldi teenusena ei ole. E3–E7 on
 tegemata ja kood ei ole veel ühegi vaate küljes. **O-A4-1 ja O-A4-4 said 05.08 vastuse**
 (korje 1×/ööpäevas, kehtivus 72 h, korduskatsed 1/6/24 h, käsitsi ≤1× 15 min kohta,
 kõik konfiguratsioonis; sidumata teenusel ei ole avalikku silti ja tal on oma seis
