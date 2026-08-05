@@ -30,7 +30,11 @@
 import { prisma } from "../lib/prisma.js";
 import { LICENCE_PUBLIC_STATUS } from "../lib/mtr/assessment.js";
 import { runLicenceCheck } from "../lib/mtr/licenceCheckService.js";
-import { upsertServiceProviderProfileForOwner } from "../lib/serviceProviderProfiles.js";
+import {
+  serviceProviderProfileRagMetadata,
+  serviceProviderProfileRagText,
+  upsertServiceProviderProfileForOwner
+} from "../lib/serviceProviderProfiles.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Tootmises käivitub ta ainult
    selgesõnalise loaga, ja ka siis on see teadlik otsus, mitte kogemata. */
@@ -300,6 +304,22 @@ try {
   check("kirjelduse muutmine jõudis kohale", afterSave?.description === "TEINE, muudetud");
   check("serviceKey säilis", afterSave?.serviceKey === "TOETATUD_ELAMINE");
   check("HINNANG säilis salvestuse üle", afterSave?.licenceAssessment?.publicStatus === "VERIFIED");
+
+  /* 10: RAG-DOKUMENT EI TOHI KANDA LOASEISU.
+     „Kontrollitud" on väide, mis AEGUB, ja indeksisse kirjutatud tekst ei
+     aegu iseenesest. Kui keegi selle kunagi dokumenti lisab, peab see
+     kontroll punaseks minema — seis liidetakse soovituse ajal andmebaasist. */
+  const ragProfile = {
+    id: profile.id,
+    organizationName: SYNTHETIC_NAME,
+    serviceItems: [{ id: "s1", name: "Toetatud elamine", status: "PUBLISHED", serviceKey: "TOETATUD_ELAMINE" }],
+    serviceLocations: []
+  };
+  const ragSerialized = `${serviceProviderProfileRagText(ragProfile)}\n${JSON.stringify(
+    serviceProviderProfileRagMetadata(ragProfile, "sond")
+  )}`.toLowerCase();
+  const leaked = ["licence", "tegevusluba", "verified", "mtr"].filter((word) => ragSerialized.includes(word));
+  check("RAG-dokument ei kanna loaseisu", leaked.length === 0, leaked.length ? `lekkis: ${leaked.join(", ")}` : "");
 
   /* 8: tehinguline terviklikkus. */
   const before = await prisma.licenceCheck.count({ where: { providerProfileId: profile.id } });

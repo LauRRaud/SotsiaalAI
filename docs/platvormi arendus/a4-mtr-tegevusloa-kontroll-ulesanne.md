@@ -29,10 +29,38 @@ viis signaali (`GET /api/admin/licence-alarms`).
 9. Tühja sildiplokki ei teki (puuduv tõlge → märgist ei renderdata) ja kõrge tõrkemäär läheb
    korje logis eraldi alarmireana välja.
 
-**Lahtiseks jäi teadlikult üks otsus:** kas tegevusloa seis peab jõudma ka **RAG-i**, st kas
-assistent peab teenust soovitades märgist teadma. Täna näeb inimene silti kaardil, aga
-assistent seda ei tea. Kui vastus on jah, läheb sinna ainult semantiliselt ohutu kokkuvõte
-(seis + kaetus + kuupäev), mitte kontrolliajalugu.
+## Assistendi usaldussignaal — OTSUSTATUD 05.08
+
+> Tegevusloa avalik seis on assistendi soovitustes kasutatav **piiratud
+> usaldussignaal**. Assistent võib kasutada ainult kehtivat avalikku seisu, kaetuse taset ja
+> kontrollimise kuupäeva. Kontrolliajalugu ja tehnilised registrivead RAG-i ei lähe.
+> `UNCONFIRMED` ja `NOT_CHECKED` ei ole negatiivsed hinnangud; `NOT_FOUND` ei ole õiguslik
+> järeldus ega automaatne välistus. `SERVICE_MAPPING_REQUIRED` jääb sisemiseks. Võimaluse
+> korral liidetakse värske loaseis soovituse ajal andmebaasist, mitte ei usaldata ainult
+> RAG-indeksisse salvestatud koopiat.
+
+**Koodis:** `lib/mtr/licenceSignal.js`. Kuus lubatud välja + kasutusreegel, mis käib signaaliga
+KAASAS (`licence_usage`), et soovituskiht ei peaks reegleid mälu järgi teadma:
+
+| Seis | Mida assistent tohib öelda |
+|---|---|
+| `VERIFIED` | „Tegevusluba on MTR-is kontrollitud" |
+| `ACTIVITY_VERIFIED` | ainult ÜLDINE tegevusala; alaliiki **ei tohi** kinnitada |
+| `NO_SHS_LICENCE_REQUIRED` | **ei ole halvem** kui kontrollitud luba; hoolduspere erisus käib kaasas |
+| `UNCONFIRMED` / `NOT_CHECKED` | teadmata — ei nimeta kontrollituks EGA ei väida, et luba puudub |
+| `NOT_FOUND` | „viimase kontrolli ajal ei leitud" — **mitte** õiguslik järeldus ega automaatne välistus |
+| `SERVICE_MAPPING_REQUIRED` | ei jõua assistendini üldse |
+
+**Arhitektuurivalik on ajaline, mitte maitse asi:** „kontrollitud" on väide, mis **aegub**, ja
+indeksisse kirjutatud tekst ei aegu iseenesest. Seepärast liidetakse seis
+`licenceSignalsForServices()` kaudu **soovituse ajal andmebaasist** ja RAG-dokument ei kanna
+loaseisu üldse. **Sond kontrollib seda** (`RAG-dokument ei kanna loaseisu`) — kui keegi selle
+kunagi dokumenti lisab, läheb kontroll punaseks. Aegunud positiivne väide langeb ka siin ise
+„teadmata" peale, sest see on sama väide teises kohas.
+
+**Tegemata jääb seos:** soovituskihti, mis RAG-i tulemused ja selle signaali kokku paneb, meil
+veel ei ole — assistent saab teenuseinfo välise RAG-teenuse kaudu. `licenceSignalsForServices`
+on valmis ja ootab seda kihti; kuni teda ei ole, jääb signaal kasutusele võtmata.
 
 **E7 EI OLE tegemata töö, vaid otsuse taga:** O-A4-3 on juba vastatud — MTR-luba on
 kiireloomulise osutaja-raja jaoks **vajalik, aga mitte piisav** tõend. Enne on vaja
