@@ -1,6 +1,11 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1–E2 TEHTUD, E3–E7 tegemata.**
+STATUS: **v2, 05.08.2026. E1–E3 TEHTUD, E4–E7 tegemata.**
+
+**E3 on koodis** (migratsioon `20260805170000_a4_mtr_licence_check`, `lib/mtr/assessment.js`,
+`lib/mtr/policy.js`, 11 testi): neli tabelit, kuue seisuga olekumasin ja konfiguratsioonist
+tulev korje rütm. `npm run db:migrate:check` OK (127 migratsiooni), `npm test` **2813/2813**.
+Kood ei ole veel ühegi marsruudi ega vaate küljes — E4 on liidese esimene samm.
 
 **E1 on koodis** (`lib/mtr/licences.js`, 19 testi `tests/mtr/licences.test.js`): sessioon +
 CSRF, otsing registrikoodi järgi, CSV-parser skeemikontrolliga, identiteedivärav
@@ -295,11 +300,33 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 |---|---|
 | **E1** | ~~Allikaklient~~ — **TEHTUD 05.08**: `lib/mtr/licences.js`. Sessioon + CSRF → otsing registrikoodi järgi → CSV → parse + skeemikontroll; identiteedivärav eraldi funktsioonina; iga tõrge annab `UNCONFIRMED` koos põhjusega, mitte tühja tulemust |
 | **E2** | ~~Vastavustabel~~ — **TEHTUD 05.08**: `lib/mtr/licensedServices.js`. Kogu § 151 loetelu + § 147 + kuus loakohustuseta teenust; iga rida kannab õigusviidet, MTR tegevusala ja teralisust; versioon `2026-08-05`; vabatekst annab ainult kandidaadi. **Ridade sisu ootab omaniku kinnitust** |
-| **E3** | Andmemudel. **BLOKEERITUD kuni vastavustabeli read on kinnitatud** — skeem hakkab kandma nende võtmeid. Lähtekuju (omanik 05.08): `ServiceLicenceRequirement` (serviceKey, requirement, catalogueVersion, granularity, mappingStatus) · `LicenceCheck` (providerId, registryCode, attemptedAt, verifiedAt, nextCheckAt, result, reason, catalogueVersion) · `LicenceRecord` (licenceNumber, registryCode, activity, validFrom, validUntil, organizationName, licensedMaxPersons) · `ServiceLicenceAssessment` (providerServiceId, checkId, serviceKey, coverage, publicStatus, assessedAt). `registryCode` ja `checkedAt` on profiilil juba olemas |
+| **E3** | ~~Andmemudel~~ — **TEHTUD 05.08**: migratsioon `20260805170000_a4_mtr_licence_check` (3 enum'i, 4 tabelit, 1 uus veerg), seisuloogika `lib/mtr/assessment.js` ja rütm `lib/mtr/policy.js`. Vt „E3 kaheksa põhimõtet" allpool |
 | **E4** | Osutaja vaade: mida kontrolliti, millise koodiga, millise tegevusala vastu, millal, miks selline tulemus, kuidas parandada, kuidas teatada valest vastavusest |
 | **E5** | Avalik silt teenusekaardil ja profiilil — **neli teksti**, teenuse ja koha täpsusega |
 | **E6** | Admini vaade (alarmid, nimeanomaaliad, korje seis) + korje ajastus |
 | **E7** | SK-V1 O-SK-5 haakumine — **eraldi otsuse taga, ei ehita enne** |
+
+## E3 kaheksa põhimõtet (omanik 05.08) — ja kus nad koodis elavad
+
+| # | Põhimõte | Kus |
+|---|---|---|
+| 1 | `serviceKey` on laiendatav **string, mitte DB-enum** | `ServiceProviderService.serviceKey` ja `ServiceLicenceAssessment.serviceKey` on `TEXT` |
+| 2 | `catalogueVersion` iga hinnangu juures | `ServiceLicenceAssessment.catalogueVersion` |
+| 3 | Otsus salvestatakse **kontrolli hetke koopiana** | `requirementAtAssessment`, `activityExpected`, `activityTypeExpected` |
+| 4 | `EXACT_MATCH` ja `ACTIVITY_MATCH_ONLY` on eraldi seisud | enum `LicenceCoverage` |
+| 5 | `missingOrderedColumns` säilib tehnilise metaandmena | `LicenceCheck.missingOrderedColumns` |
+| 6 | Rikastusvälja puudumine ei kustuta usaldusväärset tulemust | `assessServiceLicence` → liigita luba annab `VERIFIED` + `ACTIVITY_MATCH_ONLY` |
+| 7 | Sidumata teenus ei tekita päringut ega väidet | `serviceKey IS NULL` → `SERVICE_MAPPING_REQUIRED`, silti ei ole |
+| 8 | Uus võti = andmed, mitte migratsioon | võtmeid ei ole üheski enum'is ega `CHECK`-piirangus |
+
+**Kolm ajaankrut on eraldi ja neid ei tohi segada** (`lib/mtr/policy.js`, kõik env-ist
+muudetavad): automaatkontroll 24 h · eduka kontrolli värskus 72 h · tõrke korduskatsed
+1/6/24 h · käsitsi kontroll ≤1× 15 min. Positiivne seis kehtib **lühima ankru järgi** — kas
+kontroll vananeb või luba lõpeb, kumb enne tuleb.
+
+**Kadunud luba ei kustuta märgist esimese kontrolliga.** `consecutiveMissCount` peab jõudma
+kaheni; enne seda jääb märgis püsti põhjusega `PENDING_SECOND_CHECK`. Kui märgist polnudki,
+ei ole midagi kaitsta ja `NOT_FOUND` tekib kohe.
 
 ## Olekumasin
 

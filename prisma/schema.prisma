@@ -1950,6 +1950,9 @@ model ServiceProviderProfile {
   ownershipMode               ServiceProviderOwnershipMode @default(SOLO)
   organizationName            String
   organizationType            String?
+  /// A4 identiteedivõti: MTR-i päring käib SELLE koodi järgi, mitte nime
+  /// järgi. Sarnase nimega MTÜ ja OÜ on eri juriidilised isikud ja load
+  /// võivad olla ainult ühel neist.
   registryCode                String?
   shortDescription            String?                      @db.Text
   longDescription             String?                      @db.Text
@@ -1992,6 +1995,7 @@ model ServiceProviderProfile {
   serviceMapEntry  ServiceMapEntry?
   serviceItems     ServiceProviderService[]
   serviceLocations ServiceProviderLocation[]
+  licenceChecks    LicenceCheck[]
 
   // TEENUSPÄEVIK-V1. NB seosed on `Restrict`, mitte `Cascade` — vt mudelite
   // juures olevat säilituse-selgitust.
@@ -2076,12 +2080,22 @@ model ServiceProviderService {
   /// kestusest. Ühik on TEENUSE omadus, mitte kirje oma.
   defaultUnit                 String?
 
+  /// A4: seos loakohustuse kataloogiga (`lib/mtr/licensedServices.js`).
+  ///
+  /// NULL = SIDUMATA ja see on tähendusrikas seis, mitte puuduv andmed:
+  /// sidumata teenus EI tekita MTR-i päringut ega ühtki avalikku loaväidet —
+  /// ei märgist, ei „ei vaja luba", ei „ei leitud". String, MITTE enum:
+  /// kataloogi kasvamine peab olema andmeline muudatus.
+  serviceKey                  String?
+
   locationLinks ServiceProviderServiceLocation[]
 
-  serviceReferrals ServiceReferral[]
-  serviceEntries   ServiceEntry[]
+  serviceReferrals   ServiceReferral[]
+  serviceEntries     ServiceEntry[]
+  licenceAssessment  ServiceLicenceAssessment?
 
   @@index([providerProfileId])
+  @@index([serviceKey])
   @@index([status])
   @@index([mapVisible])
   @@index([feeType])
@@ -6009,4 +6023,178 @@ model UrgentRequestEvent {
 
   @@index([requestId, createdAt])
   @@index([actorId, createdAt])
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   A4 E3 — MTR tegevusloa kontrolli andmemudel.
+
+   KAHEKSA LUKUSTATUD PÕHIMÕTET (omanik 05.08), mis seletavad, miks skeem on
+   just selline:
+
+   1. `serviceKey` on LAIENDATAV STRING, mitte DB-enum. Uue kataloogirea
+      lisamine peab olema andmeline muudatus, mitte migratsioon.
+   2. `catalogueVersion` salvestatakse iga hinnangu juurde.
+   3. Loakohustuse otsus salvestatakse KONTROLLI HETKE KOOPIANA — vana kirje
+      tähendus ei tohi tagantjärele muutuda, kui vastavustabel muutub.
+   4. `EXACT_MATCH` ja `ACTIVITY_MATCH_ONLY` on eraldi seisud.
+   5. `missingOrderedColumns` säilib kontrolli tehnilise metaandmena.
+   6. Rikastusvälja puudumine ei kustuta identiteedi ja tegevusala põhjal
+      saadud usaldusväärset tulemust.
+   7. SIDUMATA teenus ei tekita MTR-i päringut ega avalikku loaväidet.
+   8. Uus `serviceKey` = andmed või konfiguratsioon, mitte skeemimuudatus.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/// Kontrolli tulemus tervikuna. Tahtlikult kaheväärtuseline: kõik täpsem
+/// (miks ei õnnestunud) elab `reason`-is STRINGINA, sest põhjuste loend kasvab
+/// koos MTR-i ootamatustega ja iga uus põhjus ei tohi nõuda migratsiooni.
+enum LicenceCheckResult {
+  OK
+  UNCONFIRMED
+}
+
+/// Mida loakirje teenuse kohta TÕENDAB (vt `lib/mtr/licensedServices.js`).
+/// `ACTIVITY_MATCH_ONLY` = tegevusala sobib, aga täpne alateenus ei ole teada.
+enum LicenceCoverage {
+  EXACT_MATCH
+  ACTIVITY_MATCH_ONLY
+  NO_MATCH
+  UNCONFIRMED
+}
+
+/// Avalik seis. `SERVICE_MAPPING_REQUIRED` EI OLE `UNCONFIRMED` alaliik:
+/// esimene tähendab „me ei tea, MIDA kontrollida", teine „teadsime, mida
+/// küsida, aga kontroll ei õnnestunud". Ainult teine on registri või võrgu
+/// probleem, ja ainult esimesel ei ole avalikku silti üldse.
+enum LicencePublicStatus {
+  VERIFIED
+  NO_SHS_LICENCE_REQUIRED
+  NOT_FOUND
+  UNCONFIRMED
+  NOT_CHECKED
+  SERVICE_MAPPING_REQUIRED
+}
+
+/// Üks MTR-i päring ühe registrikoodi kohta.
+///
+/// Kirje jääb alles ka siis, kui päring ebaõnnestus — „me proovisime ja ei
+/// saanud" on omaette fakt, mida osutaja ja admin peavad nägema.
+model LicenceCheck {
+  id                String             @id @default(cuid())
+  providerProfileId String
+  /// Kood, MILLEGA päriti. Ta ei pruugi enam võrduda profiili praeguse
+  /// koodiga — ajalooline kirje peab ütlema, mida tol hetkel küsiti.
+  registryCode      String
+  result            LicenceCheckResult
+  reason            String?
+
+  /// Identiteedivärav: kas kood vastas MTR-is päris juriidilisele isikule.
+  /// Ilma selleta ei tohi tekkida väidet „luba puudub".
+  entityResolved Boolean @default(false)
+  /// Registrist tulnud nimi — anomaaliakontrolliks profiili nime vastu.
+  entityName     String?
+  checksumValid  Boolean @default(false)
+
+  /// Päringu algus ja tõlgendatud vastuse hetk on ERI ASJAD: `verifiedAt`
+  /// tekib ainult siis, kui vastus päriselt loeti.
+  attemptedAt DateTime  @default(now())
+  verifiedAt  DateTime?
+  nextCheckAt DateTime?
+
+  /// Tehnilised metaandmed E6 alarmi jaoks (põhimõtted 5 ja 6).
+  unknownColumns        String[] @default([])
+  missingOrderedColumns String[] @default([])
+
+  createdAt DateTime @default(now())
+
+  providerProfile ServiceProviderProfile     @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  licences        LicenceRecord[]
+  assessments     ServiceLicenceAssessment[]
+
+  @@index([providerProfileId, attemptedAt])
+  @@index([registryCode, attemptedAt])
+  @@index([nextCheckAt])
+}
+
+/// Üks MTR-i loakirje ühe kontrolli sees.
+model LicenceRecord {
+  id      String @id @default(cuid())
+  checkId String
+
+  licenceNumber String
+  registryCode  String
+  activity      String
+  /// Erihoolekandeloa TÄPNE alateenus („Tegevusala liik"). NULL on lubatud ja
+  /// tähendab ainult, et täpsust ei tellitud või registris ei olnud — mitte
+  /// vastuolu.
+  activityType  String?
+
+  validFrom  DateTime
+  validUntil DateTime?
+  indefinite Boolean   @default(false)
+  valid      Boolean   @default(false)
+
+  organizationName    String
+  /// TEGEVUSLOAL LUBATUD MAKSIMAALNE MAHT, mitte vabad kohad. Nime pikkus on
+  /// tahtlik: „maxPersons" oleks varem või hiljem loetud kättesaadavuseks.
+  licensedMaxPersons  Int?
+  note                String? @db.Text
+
+  createdAt DateTime @default(now())
+
+  check     LicenceCheck            @relation(fields: [checkId], references: [id], onDelete: Cascade)
+  locations LicenceRecordLocation[]
+
+  @@index([checkId])
+  @@index([registryCode, activity])
+}
+
+/// Loa tegevuskoht. Eraldi tabel, sest luba käib teenuse JA KOHA külge —
+/// ühe maja luba ei rohelista teist maja.
+model LicenceRecordLocation {
+  id       String  @id @default(cuid())
+  recordId String
+  address  String
+  licensedMaxPersons Int?
+
+  record LicenceRecord @relation(fields: [recordId], references: [id], onDelete: Cascade)
+
+  @@index([recordId])
+}
+
+/// Ühe osutaja teenuse loahinnang — see, mille pealt märgis kuvatakse.
+///
+/// KOOPIA, MITTE VAADE (põhimõte 3): `requirementAtAssessment`,
+/// `activityExpected` ja `activityTypeExpected` on salvestatud sellisena, nagu
+/// vastavustabel neid HINDAMISE HETKEL nägi. Kui tabel hiljem muutub, ei tohi
+/// vana kirje vaikselt uut tähendust omandada.
+model ServiceLicenceAssessment {
+  id                String @id @default(cuid())
+  providerServiceId String
+  checkId           String?
+
+  /// Laiendatav string, MITTE enum (põhimõte 1).
+  serviceKey       String
+  catalogueVersion String
+
+  requirementAtAssessment String
+  activityExpected        String?
+  activityTypeExpected    String?
+
+  coverage     LicenceCoverage
+  publicStatus LicencePublicStatus
+
+  /// Mitu järjestikust edukat kontrolli on luba puudunud. Avalik seis tohib
+  /// muutuda „ei leitud" peale alles teisel korral — ühekordne registrikapriis
+  /// ei tohi muutuda avalikuks väiteks.
+  consecutiveMissCount Int @default(0)
+
+  assessedAt DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  providerService ServiceProviderService @relation(fields: [providerServiceId], references: [id], onDelete: Cascade)
+  check           LicenceCheck?          @relation(fields: [checkId], references: [id], onDelete: SetNull)
+
+  @@unique([providerServiceId])
+  @@index([serviceKey])
+  @@index([publicStatus])
 }
