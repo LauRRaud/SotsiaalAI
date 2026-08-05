@@ -71,7 +71,32 @@ kutsumisel tuleb avalikkuse filtrid päringusse lisada.
 veel ei ole — assistent saab teenuseinfo välise RAG-teenuse kaudu. `licenceSignalsForServices`
 on valmis ja ootab seda kihti; kuni teda ei ole, jääb signaal kasutusele võtmata.
 
-## Sond tõendab nüüd seda, mida ta lubab (39/39)
+## Sidumisoperatsioon — TEHTUD 05.08
+
+`lib/mtr/serviceBinding.js` + `POST /api/admin/service-licence-binding`. **Ainus koht, kus
+`serviceKey` muutub:** profiili salvestus teda ei puuduta, sest vale seos annab vale märgise ja
+seos peab olema teadlik toiming, mitte vormivälja kõrvalmõju.
+
+| Reegel | Kuidas jõustub |
+|---|---|
+| Ainult kataloogis olev võti | tundmatu võti lükatakse tagasi ega jõua andmebaasi |
+| Teenus peab olemas olema | `SERVICE_NOT_FOUND` |
+| Muud teenuseandmed säilivad | muudetakse ainult `serviceKey` |
+| **Vana hinnang ei kehti uuele liigile** | seis läheb kohe `NOT_CHECKED`, tõend (`statusSourceCheckId`, `publicStatusValidUntil`, `coveringLicenceNumber`) **kustub** |
+| Jälg | `DataAuditLog`: kes, millal, vana võti, uus võti, kataloogi versioon |
+| Kohene kontroll | käivitub `AUTO` päästikuga — **jahtumisaeg ei tohi seda ära jätta** |
+
+**Automaatset sidumist nime järgi EI OLE.** `bindingCandidates` pakub kandidaate koos vaste
+põhjuse ja kindlusastmega (`GET` samal rajal), aga kinnitab inimene. Madala kindlusega alias
+kannab selgitust — „lapsehoid" tähendab tänases seaduses hoopis teist teenust.
+
+**Lahutamine** (`serviceKey: null`) kustutab hinnangu ega käivita kontrolli: seotud teenust ei
+ole, seega ei ole ka seisu, mida kuvada.
+
+Sond kontrollib seda päris andmebaasi vastu (viis kontrolli, sh „VANA TÕEND kustus" ja
+„jälg jäi").
+
+## Sond tõendab nüüd seda, mida ta lubab (44/44)
 
 Viiendas ülevaatuses tuli välja, et sondi lubadus oli tugevam kui tema test. Parandatud:
 

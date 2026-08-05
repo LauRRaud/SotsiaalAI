@@ -30,6 +30,7 @@
 import { prisma } from "../lib/prisma.js";
 import { LICENCE_PUBLIC_STATUS } from "../lib/mtr/assessment.js";
 import { runLicenceCheck } from "../lib/mtr/licenceCheckService.js";
+import { BINDING_AUDIT_ACTION, bindServiceKey } from "../lib/mtr/serviceBinding.js";
 import {
   serviceProviderProfileRagMetadata,
   serviceProviderProfileRagText,
@@ -365,6 +366,43 @@ try {
   )}`.toLowerCase();
   const leaked = ["licence", "tegevusluba", "verified", "mtr"].filter((word) => ragSerialized.includes(word));
   check("RAG-dokument ei kanna loaseisu", leaked.length === 0, leaked.length ? `lekkis: ${leaked.join(", ")}` : "");
+
+  /* 11: SIDUMISOPERATSIOON päris andmebaasi vastu.
+     Vana tõend EI TOHI uue teenuseliigi külge rännata: „kontrollitud" oli
+     väide eelmise liigi kohta. */
+  const boundService = profile.serviceItems.find((item) => item.serviceKey === "TOETATUD_ELAMINE");
+  const beforeBinding = await prisma.serviceLicenceAssessment.findUnique({
+    where: { providerServiceId: boundService.id },
+    select: { publicStatus: true }
+  });
+  const bind = await bindServiceKey({
+    providerServiceId: boundService.id,
+    serviceKey: "KOGUKONNAS_ELAMINE",
+    actorUserId: createdUserId,
+    prisma,
+    checkNow: false
+  });
+  const afterBinding = await prisma.serviceLicenceAssessment.findUnique({
+    where: { providerServiceId: boundService.id },
+    select: { publicStatus: true, serviceKey: true, statusSourceCheckId: true, publicStatusValidUntil: true, activityTypeExpected: true }
+  });
+  const auditRow = await prisma.dataAuditLog.findFirst({
+    where: { action: BINDING_AUDIT_ACTION, resourceId: boundService.id },
+    orderBy: { createdAt: "desc" },
+    select: { actorUserId: true, meta: true }
+  });
+
+  check("sidumine muutis võtme", bind.ok === true && bind.changed === true, `${bind.previousServiceKey} → ${bind.serviceKey}`);
+  check("uus võti salvestus", afterBinding?.serviceKey === "KOGUKONNAS_ELAMINE");
+  check("ootus uuenes uue liigi järgi", afterBinding?.activityTypeExpected === "Kogukonnas elamise teenus");
+  check(
+    "VANA TÕEND kustus",
+    afterBinding?.publicStatus === LICENCE_PUBLIC_STATUS.NOT_CHECKED &&
+      afterBinding?.statusSourceCheckId === null &&
+      afterBinding?.publicStatusValidUntil === null,
+    `enne oli ${beforeBinding?.publicStatus}`
+  );
+  check("jälg jäi", auditRow?.actorUserId === createdUserId && auditRow?.meta?.nextServiceKey === "KOGUKONNAS_ELAMINE");
 
   /* 8: TEENUSKIHI atomaarsus — mitte lihtsalt „Prisma tehing töötab".
      Sunnime vea TEISE teenuse hinnangu kirjutamise ajal ja kontrollime, et ei
