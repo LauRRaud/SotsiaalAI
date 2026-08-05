@@ -1,12 +1,19 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1 TEHTUD, E2–E7 tegemata.**
+STATUS: **v2, 05.08.2026. E1–E2 TEHTUD, E3–E7 tegemata.**
 
 **E1 on koodis** (`lib/mtr/licences.js`, 14 testi `tests/mtr/licences.test.js`): sessioon +
 CSRF, otsing registrikoodi järgi, CSV-parser skeemikontrolliga, identiteedivärav
-(`resolveEntityByRegistryCode`) ja fail-safe seisud. Väravad 05.08: `npm test` **2780/2780**,
-eslint puhas, `i18n:check` OK. Env: `MTR_BASE_URL` · `MTR_DISABLED=1` · `MTR_USER_AGENT` ·
-`MTR_CSV_ENCODING`. Kood ei ole veel ühegi marsruudi ega vaate küljes.
+(`resolveEntityByRegistryCode`) ja fail-safe seisud. Env: `MTR_BASE_URL` · `MTR_DISABLED=1` ·
+`MTR_USER_AGENT` · `MTR_CSV_ENCODING`.
+
+**E2 on koodis** (`lib/mtr/licensedServices.js`, 8 testi): versioonitud vastavustabel — kogu
+SHS § 151 loetelu + § 147, iga rida oma õigusviite ja MTR tegevusalaga, pluss kuus
+loakohustuseta teenust. Väravad 05.08: `npm test` **2788/2788**, eslint puhas,
+`i18n:check` OK. Kood ei ole veel ühegi marsruudi ega vaate küljes.
+
+**E2 tõi välja kaks piirangut, mis muudavad märgise sõnastust ja avavad ühe otsuse
+(O-A4-4).** Vt „Sidumise reegel" ja „Lahtised otsused".
 
 v2 sisaldab omaniku ülevaatuse **viit lukustatud muudatust**: (1) „ei leitud" ja „ei saanud
 kinnitada" on avalikult eri tekstid · (2) luba seotakse teenuse ja tegevuskohaga, mitte ainult
@@ -116,6 +123,26 @@ teenusel mitu kohta ja kohas mitu teenust (`ServiceProviderService`,
 `ServiceProviderLocation`, `ServiceProviderServiceLocation`) — märgis elab selle ristmiku, mitte
 profiili peal.
 
+### Kaks piirangut, mis E2 ehitamisel välja tulid (05.08)
+
+**1. MTR on jämedama teralisusega kui seadus.** SHS-i viis erihoolekandeteenust (§ 151 p 5–9)
+ja päeva- ja nädalahoid kannavad MTR-is **üht tegevusala „Erihoolekandeteenus"**, ja loakirje
+ei ütle, milline alateenus on kaetud (Masaani kirjetes oli Lisainfos ainult mahupiir). Nende
+teenuste märgis tohib öelda ainult **„erihoolekandeteenuse tegevusluba"** — mitte, et just see
+alateenus on kontrollitud. Tabelis kannavad need read `granularity: "COARSE"`.
+
+**2. Platvormil ei ole kontrollitud teenusesõnastikku.** `ServiceProviderService.categories` ja
+`services` on vaba tekst (`splitList` komadega). Seega ei saa E2 olla ainult kaardistus — ta
+peab tooma sisse ka nimekirja, mille külge kaardistada. Kood teeb vabatekstist ainult
+**kandidaadi**, mitte otsuse: `licenceRequirementFor` annab `UNKNOWN` iga kord, kui teenus ei
+ole tabeli reaga selgelt seotud. Nii ei saa oletusest sündida ei avalikku rahustust
+(„ei vaja luba") ega avalikku kontrolli vale teenuse peal.
+
+**Üks rida on teadlikult märgitud kontrollimata.** Päeva- ja nädalahoiuteenuse (§ 151 p 8¹)
+MTR tegevusala ei ole registri kuuest valikust otse tuletatav; tabelis on ta
+`needsVerification: true` ja teda ei tohi märgise arvutamisel usaldada enne, kui päris loakirje
+seda kinnitab.
+
 Mitme loa koondamine üheks märgiseks on lubatud **ainult organisatsiooni üldprofiilil**.
 Konkreetse teenusekaardi kirje juures peab märgis põhinema just sellele teenusele ja kohale
 vastaval loal.
@@ -180,7 +207,7 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 | Osa | Sisu |
 |---|---|
 | **E1** | ~~Allikaklient~~ — **TEHTUD 05.08**: `lib/mtr/licences.js`. Sessioon + CSRF → otsing registrikoodi järgi → CSV → parse + skeemikontroll; identiteedivärav eraldi funktsioonina; iga tõrge annab `UNCONFIRMED` koos põhjusega, mitte tühja tulemust |
-| **E2** | **Vastavustabel — funktsiooni äriloogika süda.** Platvormi teenusekataloogi kirje → kas loakohustuslik → milline MTR tegevusala. Versioonitud, omaniku kinnitatud, testidega kaetud, muudetav ilma parserit puutumata, iga rea juures õigus- või registriallika viide |
+| **E2** | ~~Vastavustabel~~ — **TEHTUD 05.08**: `lib/mtr/licensedServices.js`. Kogu § 151 loetelu + § 147 + kuus loakohustuseta teenust; iga rida kannab õigusviidet, MTR tegevusala ja teralisust; versioon `2026-08-05`; vabatekst annab ainult kandidaadi. **Ridade sisu ootab omaniku kinnitust** |
 | **E3** | Andmemudel: loakirjed (loanumber, tegevusala, kehtivus, mahupiir, tegevuskoht) + kontrolli tulemus ja aeg. `registryCode` ja `checkedAt` on profiilil juba olemas |
 | **E4** | Osutaja vaade: mida kontrolliti, millise koodiga, millise tegevusala vastu, millal, miks selline tulemus, kuidas parandada, kuidas teatada valest vastavusest |
 | **E5** | Avalik silt teenusekaardil ja profiilil — **neli teksti**, teenuse ja koha täpsusega |
@@ -240,6 +267,7 @@ pärinevatele andmetele.
 |---|---|---|
 | **O-A4-1** | korje sagedus ja vananemise aken | automaatkontroll 1×/ööpäevas · käsitsi „kontrolli uuesti" kohe · positiivne märgis kehtib **72 h** viimasest edukast kontrollist · loa lõppkuupäev lõpetab kohe |
 | **O-A4-2** | kas mahupiir läheb avalikule kaardile | **V1-s ei lähe.** Hoitakse osutaja ja admini vaates. Kui kunagi läheb, siis ainult sõnastuses „Tegevusloal märgitud maksimaalne isikute arv: 40" — **mitte kunagi „vabad kohad", „kättesaadavus" ega „mahutavus"** |
+| **O-A4-4** | **mida näeb avalikult teenus, mis ei ole tabeli reaga seotud** (vaba tekst, mida tuvastaja ei tunne). Kolm valikut: silti ei ole · „tegevusloa staatust ei saanud kinnitada" · osutajalt küsitakse liigitust enne avaldamist | **soovitus: silti ei ole.** „Ei vaja luba" oleks siin oletus ja vale rahustus inimesele, kes valib hooldekodu; „ei saanud kinnitada" jätaks mulje, et me üritasime. Sildita jääb aus |
 | **O-A4-3** | kas MTR-luba avab SK-V1 osutaja-raja | **Vajalik, kuid mitte piisav.** Lisaks nõutav: kontrollitud organisatsioonikonto · organisatsiooni teadlik nõusolek kiireid pöördumisi vastu võtta · aktiivne vastutav kontakt · määratud teeninduspiirkond ja reageerimisviis · perioodiline kinnitus, et rada on aktiivne |
 
 Allikad: [MTR tegevuslubade otsing](https://mtr.ttja.ee/tegevusluba?m=97) ·
