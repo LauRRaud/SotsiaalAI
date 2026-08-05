@@ -76,13 +76,63 @@ test("sidumata teenusel ei ole avalikku silti", () => {
   assert.equal(publicLicenceBadge(null, { now: NOW }), null);
 });
 
+test("varske positiivne seis saab OMA teksti", () => {
+  /* See rida oli päris viga: positiivsed seisud kukkusid lõppu ja
+     kontrollitud luba kuvati osutajale kui „tegevusluba ei ole nõutud". */
+  const verified = internalLicenceStatus(assessment(), { now: NOW });
+  assert.equal(verified.key, "service_provider_profile.licence.internal.verified");
+
+  const coarse = internalLicenceStatus(
+    assessment({ publicStatus: LICENCE_PUBLIC_STATUS.ACTIVITY_VERIFIED, coverage: LICENCE_COVERAGE.ACTIVITY_MATCH_ONLY }),
+    { now: NOW }
+  );
+  assert.equal(coarse.key, "service_provider_profile.licence.internal.activity_verified");
+
+  const pending = internalLicenceStatus(assessment({ assessmentReason: "PENDING_SECOND_CHECK" }), { now: NOW });
+  assert.equal(pending.key, "service_provider_profile.licence.internal.verified");
+  assert.equal(pending.reasonKey, "service_provider_profile.licence.internal.reason.pending_second_check");
+  assert.equal(pending.actionKey, "service_provider_profile.licence.internal.action_recheck");
+});
+
+test("jäme vaste ei ole positiivse tooniga", () => {
+  const badge = publicLicenceBadge(
+    assessment({ publicStatus: LICENCE_PUBLIC_STATUS.ACTIVITY_VERIFIED, coverage: LICENCE_COVERAGE.ACTIVITY_MATCH_ONLY }),
+    { now: NOW }
+  );
+  assert.equal(badge.tone, BADGE_TONE.NEUTRAL, "infomärgis, mitte roheline kinnitus");
+  assert.equal(publicLicenceBadge(assessment(), { now: NOW }).tone, BADGE_TONE.POSITIVE);
+});
+
+test("iga E1 põhjus leiab rühma, ükski ei jää selgituseta", () => {
+  const codes = [
+    "IDENTITY_UNRESOLVED", "INVALID_REGISTRY_CODE", "RESULT_MISMATCH", "ENTITY_NOT_FOUND",
+    "TIMEOUT", "REQUEST_FAILED", "SESSION_FAILED", "DISABLED",
+    "SCHEMA_CHANGED", "ENCODING_FAILED", "PARSE_FAILED", "MALFORMED_ROW", "UNEXPECTED_ERROR",
+    "CHECK_STALE", "PENDING_SECOND_CHECK"
+  ];
+  for (const reason of codes) {
+    const row = internalLicenceStatus(
+      assessment({ publicStatus: LICENCE_PUBLIC_STATUS.UNCONFIRMED, assessmentReason: reason, publicStatusValidUntil: null }),
+      { now: NOW }
+    );
+    assert.ok(row.reasonKey, `${reason} jäi ilma selgituseta`);
+  }
+});
+
 test("osutaja vaade ütleb põhjuse ja parandustee", () => {
   const unresolved = internalLicenceStatus(
     assessment({ publicStatus: LICENCE_PUBLIC_STATUS.UNCONFIRMED, assessmentReason: "IDENTITY_UNRESOLVED", publicStatusValidUntil: null }),
     { now: NOW }
   );
-  assert.equal(unresolved.reasonKey, "service_provider_profile.licence.internal.reason.identity_unresolved");
+  assert.equal(unresolved.reasonKey, "service_provider_profile.licence.internal.reason.identity");
   assert.equal(unresolved.actionKey, "service_provider_profile.licence.internal.action_fix_registry_code");
+
+  /* NOT_FOUND ei tohi soovitada ainult registrikoodi parandamist. */
+  const notFound = internalLicenceStatus(
+    assessment({ publicStatus: LICENCE_PUBLIC_STATUS.NOT_FOUND, publicStatusValidUntil: null }),
+    { now: NOW }
+  );
+  assert.equal(notFound.actionKey, "service_provider_profile.licence.internal.action_investigate");
 
   const mapping = internalLicenceStatus(assessment({ publicStatus: LICENCE_PUBLIC_STATUS.SERVICE_MAPPING_REQUIRED }), { now: NOW });
   assert.equal(mapping.key, "service_provider_profile.licence.internal.mapping_required");

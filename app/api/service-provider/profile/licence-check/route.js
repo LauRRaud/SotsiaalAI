@@ -76,7 +76,9 @@ export async function POST(request) {
 
     /* Jahtumisaeg ei ole viga, vaid vastus: ütleme, millal tohib uuesti. */
     if (result.skipped === CHECK_SKIPPED.COOLDOWN) {
-      return json({ ok: false, skipped: result.skipped, retryAfter: result.retryAfter }, { status: 429 });
+      /* `json(data, status)` — teine argument on staatus, MITTE Response init.
+         Vale kuju andis siin 500 ja jahtumisaeg oleks paistnud serverivena. */
+      return json({ ok: false, skipped: result.skipped, retryAfter: result.retryAfter }, 429);
     }
 
     const rows = await licenceStatusesForProfile({ providerProfileId: auth.profile.id, now });

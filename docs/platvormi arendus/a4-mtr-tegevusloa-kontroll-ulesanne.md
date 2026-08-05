@@ -1,6 +1,37 @@
 # A4 — MTR tegevusloa kontroll teenuseprofiilil: arendusleping
 
-STATUS: **v2, 05.08.2026. E1–E3 TEHTUD, E4 teenuskiht tehtud (liides tegemata), E5–E7 tegemata.**
+STATUS: **v2, 05.08.2026. E1–E5 TEHTUD (avalik teenusekaardi silt ja E6/E7 tegemata).**
+
+**E4–E5 on koodis:** teenuskiht `lib/mtr/licenceCheckService.js`, tekstikiht
+`lib/mtr/statusText.js`, API `app/api/service-provider/profile/licence-check/`, osutaja vaade
+`components/service-provider/ServiceLicenceStatus.jsx` (eraldi failis, mitte 5000-realises
+`WorkspaceFeaturePage.jsx`-is) ja ET/EN/RU tekstid seitsmele seisule.
+
+**Kolmanda ülevaatuse seitse leidu on parandatud** (05.08):
+
+1. **Värske positiivne seis kukkus osutaja vaates „ei ole nõutud" peale** — `VERIFIED` ja
+   `ACTIVITY_VERIFIED` ei olnud `internalLicenceStatus`-es üldse käsitletud ja langesid lõppu.
+   See oli päris viga: kontrollitud loaga teenus oleks osutajale näidanud vastupidist.
+2. **`serviceKey` oleks kadunud iga profiilisalvestusega.** Profiili PUT teeb teenustele
+   `deleteMany` + `create`, seega seos oleks nullitud ja koos teenuse reaga oleks kaskaadis
+   kustunud kogu hinnang. Nüüd **säilitab server varasema väärtuse** ja PUT ei loe teda
+   sisendist — sidumine käib eraldi operatsiooniga.
+3. **Mitte-429 tõrge kustutas liidesest seisud** (tühi vastus asendas kaardi). Nüüd jäävad
+   varasemad seisud alles ja osutaja näeb, et kontroll ebaõnnestus.
+4. **Pärast profiili salvestamist jäid vanad märgised ekraanile** — nüüd tühjendatakse ja
+   laetakse uuesti.
+5. **`ACTIVITY_VERIFIED` toon → NEUTRAALNE.** Jäme vaste on infomärgis, mitte rohelise
+   kinnitusega samaväärne.
+6. **Vaade kasutab nüüd märgise enda tooni ja kuupäeva** (`data-tone`, `badge.params.date`) —
+   varem tuli kuupäev viimaselt katselt ja CSS oleks saanud aegunud seisu positiivseks värvida.
+7. **`NOT_FOUND` parandustee laiendatud** (registrikood ei ole ainus võimalik põhjus) ja
+   **põhjused rühmitatud** nii, et iga E1 veakood leiab selgituse.
+
+Lisaks leidis elav QA ühe vea, mida ükski ülevaatus ei näinud: **jahtumisaeg andis 500 asemel
+429** alles pärast seda, kui `json(data, status)` teine argument sai õige kuju.
+
+Väravad 05.08: `npm test` **2839/2839**, `npm run mtr:probe` **29/29**, `npm run build` OK,
+eslint puhas, `i18n:check` OK.
 
 **E3 on koodis** (migratsioon `20260805170000_a4_mtr_licence_check`, `lib/mtr/assessment.js`,
 `lib/mtr/policy.js`): neli tabelit, kuue seisuga olekumasin ja konfiguratsioonist tulev korje
@@ -364,6 +395,31 @@ kontroll vananeb või luba lõpeb, kumb enne tuleb.
 **Kadunud luba ei kustuta märgist esimese kontrolliga.** `consecutiveMissCount` peab jõudma
 kaheni; enne seda jääb märgis püsti põhjusega `PENDING_SECOND_CHECK`. Kui märgist polnudki,
 ei ole midagi kaitsta ja `NOT_FOUND` tekib kohe.
+
+## Mida päris register õpetas (05.08, elav päring)
+
+Need seitse asja EI TULNUD välja üheski testis ega ülevaatuses — ainult elavast
+päringust. Nad on siin kirjas, sest järgmine inimene ei pea neid uuesti avastama:
+
+1. **`valjund_valjad[]` ASENDAB vaiketulbad**, mitte ei lisandu neile. Ainult lisatulpade
+   tellimine andis 64-baidise CSV kolme veeru ja **null reaga**. Baastulbad tuleb kaasa saata.
+2. **Peidetud väljad `tulemus_id[]` (4 ja 1) on kohustuslikud** — ilma nendeta otsing ei rakendu.
+3. **CSV on windows-1257, kuigi päis ütleb `charset=utf-8`.** Kodeeringut ei usu me päise
+   järgi, vaid proovime kaht kandidaati ja võtame selle, mis ei tooda asendusmärke.
+4. **Mitme tegevuskohaga luba tuleb JÄTKURIDADENA**: teine koht on oma rida, kus kõik
+   identiteedi veerud on tühjad ja rida on päisest **lühem**. Esimene versioon luges need
+   vigasteks ridadeks ja kogu vastus kukkus `MALFORMED_ROW` peale.
+5. **Aadressiveeru päis on „Tegevuskoha aadress"** (ainsuses), mitte tellimisvaliku nimi.
+6. **„Maksimaalne isikute arv" ei tule oma veeruna** — mahupiir jääb „Lisainfo" sisse.
+7. **Kaks paralleelset otsingut on registrile liiga palju:** entity- ja lubade päring
+   `Promise.all`-iga andsid mõlemad TIMEOUT-i, kuigi eraldi töötasid mõlemad. Nüüd
+   **järjestikku** — aeglasem tervik, aga me ei koorma võõrast registrit kahe samaaegse
+   otsinguga ühe osutaja pärast. Ajapiir 8 s → 20 s (mõõdetud ahel ~18 s).
+
+**Tõendatud 05.08 elava registri vastu:** `succeeded: true`, identiteet `Masaan OÜ`,
+kolm luba eristuvate alateenustega, jätkurida kinnitatud teise tegevuskohana,
+`Toetatud elamine → VERIFIED`, `Tugiisik → NO_SHS_LICENCE_REQUIRED`, nimeanomaalia
+tuvastatud.
 
 ## Olekumasin
 

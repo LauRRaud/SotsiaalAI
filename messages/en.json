@@ -1482,12 +1482,15 @@
         "action_report": "Report an incorrect mapping",
         "cooldown": "The next check can be started {time}",
         "reason": {
-          "identity_unresolved": "The registry code did not match any legal entity in the register",
-          "check_stale": "Too much time has passed since the last successful check",
-          "pending_second_check": "The first check found no licence; the public state changes only after a second confirmation",
-          "invalid_registry_code": "The profile has no valid registry code",
-          "timeout": "The register did not answer in time"
-        }
+          "identity": "The registry code did not resolve to any legal entity in the register",
+          "temporary": "The register was temporarily unavailable",
+          "structure": "The register's output could not be interpreted safely",
+          "stale": "Too much time has passed since the last successful check",
+          "pending_second_check": "The first check found no licence; the public state changes only after a second confirmation"
+        },
+        "action_investigate": "Review the registry code and the service mapping; if both are correct, compare the result with the register",
+        "check_failed": "The licence check could not be run. Previous states were kept.",
+        "load_failed": "Licence states could not be loaded."
       }
     }
   },

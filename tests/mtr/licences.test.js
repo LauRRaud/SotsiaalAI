@@ -77,35 +77,62 @@ test("kehtiv tähtajatu luba parsitakse koos mahupiiri ja kuupäevaga", async ()
   assert.match(String(calls[2].cookie), /MTRSESSION=abc/);
 });
 
-test("väljundtulbad tellitakse nimeliselt ja tegevusala liik parsitakse", async () => {
-  const header = `${HEADER};Tegevusala liik;Tegevuskohtade aadressid (eraldi ridadel);Tegevusloa väljaandja;Maksimaalne isikute arv`;
+test("väljundtulbad ja peidetud väljad tellitakse nimeliselt", async () => {
+  const header = `${HEADER};Tegevusala liik;Tegevuskoha aadress;Tegevusloa väljaandja`;
   const csv = [
     header,
-    "1;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;;Toetatud elamise teenus;Riia 5, Tartu;Sotsiaalkindlustusamet;42",
-    "2;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;;Päeva- ja nädalahoiuteenus;Riia 5, Tartu;Sotsiaalkindlustusamet;7"
+    "1;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;Maksimaalne isikute arv: 42;Toetatud elamise teenus;Riia 5, Tartu;Sotsiaalkindlustusamet",
+    "2;SEH000585;Masaan OÜ;17027241;09.06.2025;Tähtajatu;Jah;Erihoolekandeteenus;;Päeva- ja nädalahoiuteenus;Kassi 1, Tallinn;Sotsiaalkindlustusamet"
   ].join("\n");
   const calls = stubRegistry({ csv });
 
   const result = await fetchLicencesByRegistryCode("17027241");
-
-  /* Tellimus läheb päringus kaasa — parser ei sõltu MTR-i vaikeseadistusest. */
   const body = String(calls[1].body);
-  for (const field of ["tegevusala_liigid", "tegevuskoha_aadressid", "tegevusloa_valjaandja", "tegevuskohtade_kohtade_arvu_summa"]) {
+
+  /* BAASTULBAD peavad kaasas olema: mõõdetud 05.08, et tellimus ASENDAB
+     vaikeseade — ainult lisatulpade saatmine andis CSV ilma loanumbrita. */
+  for (const field of ["number", "juriidiline_isik", "juriidiline_isik_kood", "tegevusala", "tegevusala_liigid", "tegevuskoha_aadressid"]) {
     assert.ok(body.includes(field), `${field} tuleb tellida`);
   }
+  /* Ilma peidetud väljadeta otsing ei rakendu. */
+  assert.ok(body.includes("tulemus_id%5D%5B%5D=4"), "tulemus_id 4");
+  assert.ok(body.includes("tulemus_id%5D%5B%5D=1"), "tulemus_id 1");
 
   assert.equal(result.status, MTR_RESULT.OK);
   assert.deepEqual(result.missingOrderedColumns, []);
-  /* Sama loanumber, ERI alateenus — need on eri read ja neid ei tohi liita. */
-  assert.equal(result.licences.length, 2);
+  assert.equal(result.addressColumn, "tegevuskoha aadress");
   assert.deepEqual(
     result.licences.map((licence) => licence.activityType),
     ["Toetatud elamise teenus", "Päeva- ja nädalahoiuteenus"]
   );
-  /* Tellitud tulp on täpsem kui Lisainfost loetud number. */
   assert.equal(result.licences[0].licensedMaxPersons, 42);
-  assert.equal(result.licences[1].licensedMaxPersons, 7);
-  assert.equal(result.licences[0].locations[0].address, "Riia 5, Tartu");
+});
+
+test("jätkurida on teine tegevuskoht, mitte vigane rida", async () => {
+  /* Päris kuju MTR-ist 05.08: teine tegevuskoht tuleb OMA reana, kus kõik
+     identiteedi veerud on tühjad ja rida on päisest LÜHEM. */
+  const header = `${HEADER};Tegevusala liik;Tegevuskoha aadress`;
+  const csv = [
+    header,
+    "1;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;Maksimaalne isikute arv: 60;Töötamise toetamise teenus;Kassi tn 1, Tallinn",
+    ';;;;;;;;;;"Piiri tn 5, Rapla"'
+  ].join("\n");
+  stubRegistry({ csv });
+
+  const result = await fetchLicencesByRegistryCode("17027241");
+
+  assert.equal(result.status, MTR_RESULT.OK);
+  assert.equal(result.licences.length, 1, "jätkurida ei ole uus luba");
+  assert.deepEqual(
+    result.licences[0].locations.map((location) => location.address),
+    ["Kassi tn 1, Tallinn", "Piiri tn 5, Rapla"]
+  );
+});
+
+test("lühem rida ilma aadressita on endiselt vigane", async () => {
+  stubRegistry({ csv: `${HEADER}\n1;SEH000598;Masaan OÜ\n` });
+  const result = await fetchLicencesByRegistryCode("17027241");
+  assert.equal(result.reason, MTR_REASON.MALFORMED_ROW);
 });
 
 test("tellitud tulba puudumine ei ole fataalne, aga tuleb alarmi jaoks tagasi", async () => {
@@ -117,10 +144,21 @@ test("tellitud tulba puudumine ei ole fataalne, aga tuleb alarmi jaoks tagasi", 
   assert.equal(result.licences[0].activityType, null);
   assert.deepEqual(result.missingOrderedColumns, [
     "tegevusala liik",
-    "tegevuskohtade aadressid (eraldi ridadel)",
-    "tegevusloa väljaandja",
-    "maksimaalne isikute arv"
+    "tegevuskoha aadress",
+    "tegevusloa väljaandja"
   ]);
+});
+
+test("windows-1257 CSV loetakse, kuigi päis lubab utf-8", async () => {
+  /* Mõõdetud 05.08: MTR saadab `charset=utf-8`, aga baidid on windows-1257. */
+  const csv = `${HEADER}\n${ROW_MASAAN}\n`;
+  const bytes = Buffer.from(csv, "latin1");
+  stubRegistry({ csvBytes: bytes });
+
+  const result = await fetchLicencesByRegistryCode("17027241");
+
+  assert.equal(result.status, MTR_RESULT.OK);
+  assert.equal(result.licences[0].organizationName, "Masaan OÜ");
 });
 
 test("võõra registrikoodiga rida annab RESULT_MISMATCH, mitte võõraid lube", async () => {
@@ -161,8 +199,8 @@ test("mitu luba tulevad kõik tagasi, identne duplikaatrida kaob", async () => {
   );
 });
 
-test("sama loa tegevuskoha read säilivad, mitte ei kustu deduplitseerimisel", async () => {
-  const header = `${HEADER};Tegevuskohtade aadressid`;
+test("sama loa korduvad read säilitavad kõik tegevuskohad", async () => {
+  const header = `${HEADER};Tegevuskoha aadress`;
   const csv = [
     header,
     `1;SEH000598;Masaan OÜ;17027241;13.10.2025;Tähtajatu;Jah;Erihoolekandeteenus;Maksimaalne isikute arv: 60;Tartu mnt 1, Tallinn`,
@@ -178,7 +216,7 @@ test("sama loa tegevuskoha read säilivad, mitte ei kustu deduplitseerimisel", a
     result.licences[0].locations.map((location) => location.address),
     ["Tartu mnt 1, Tallinn", "Riia 5, Tartu"]
   );
-  assert.equal(result.addressColumn, "tegevuskohtade aadressid");
+  assert.equal(result.addressColumn, "tegevuskoha aadress");
 });
 
 test("lõppenud ja tulevikus algav luba säilitavad kuupäeva ja kehtivuse", async () => {
@@ -246,7 +284,9 @@ test("tundmatu veerg ei blokeeri, vaid tuleb alarmi jaoks tagasi", async () => {
 });
 
 test("vigane kodeering peatab parsimise", async () => {
-  stubRegistry({ csvBytes: new Uint8Array([0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0xff, 0xfe]) });
+  /* 0xA1 on vigane UTF-8 järg JA windows-1257-s määramata — kumbki kandidaat
+     ei anna puhast teksti, seega me ei tõlgenda seda vastust üldse. */
+  stubRegistry({ csvBytes: new Uint8Array([0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0xa1, 0xa5]) });
 
   const result = await fetchLicencesByRegistryCode("17027241");
 

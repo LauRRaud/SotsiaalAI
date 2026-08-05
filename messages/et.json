@@ -1482,12 +1482,15 @@
         "action_report": "Teata valest vastavusest",
         "cooldown": "Järgmise kontrolli saab käivitada {time}",
         "reason": {
-          "identity_unresolved": "Registrikood ei vastanud registris ühelegi juriidilisele isikule",
-          "check_stale": "Viimasest õnnestunud kontrollist on liiga palju aega möödas",
-          "pending_second_check": "Esimene kontroll ei leidnud luba; avalik seis muutub alles teise kinnituse järel",
-          "invalid_registry_code": "Profiilil ei ole kehtivat registrikoodi",
-          "timeout": "Register ei vastanud õigeks ajaks"
-        }
+          "identity": "Registrikood ei lahendunud registris ühegi juriidilise isikuni",
+          "temporary": "Register oli ajutiselt kättesaamatu",
+          "structure": "Registri väljundit ei saanud ohutult tõlgendada",
+          "stale": "Viimasest õnnestunud kontrollist on liiga palju aega möödas",
+          "pending_second_check": "Esimene kontroll ei leidnud luba; avalik seis muutub alles teise kinnituse järel"
+        },
+        "action_investigate": "Kontrolli registrikoodi ja teenuse seost; kui need on õiged, võrdle tulemust MTR-i andmetega",
+        "check_failed": "Tegevusloa kontrolli ei saanud teha. Varasemad seisud jäid alles.",
+        "load_failed": "Tegevusloa seise ei saanud laadida."
       }
     }
   },

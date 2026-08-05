@@ -117,13 +117,22 @@ Tehtud järjekord:
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. **Rada tõendatud 04.08 kolme päris sessiooniga** ja selle käigus leitud + parandatud **IDOR**: iga töötaja sai luua jagamise võõrast eelpöördumisest. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)) |
 | **SOTSIAALKIIRABI-V1** (omaniku valik 05.08) | **E1–E6 TEHTUD 05.08 — tervik on koodis ja peidus.** Vt S2 „Tehtud" ja S5. Rada tõendatud päris andmebaasi ja päris sessioonidega, nelja identiteediga; brauseris läbi käidud pöörduja vorm, kriisiekraan, laua koondvaade ja admini laudade register. Aktiveerimine ootab partnerit — vt „Mis avab" allpool |
 
-**Uus teema 05.08: A4 MTR/tegevusloa kontroll — E1–E3 + E4 teenuskiht tehtud.** Leping on v2 kujul olemas
+**Uus teema 05.08: A4 MTR/tegevusloa kontroll — E1–E5 tehtud.** Leping on v2 kujul olemas
 ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
 **E1–E3 on tehtud** — allikaklient `lib/mtr/licences.js`, vastavustabel
 `lib/mtr/licensedServices.js`, andmemudel (migratsioon `20260805170000_a4_mtr_licence_check`:
 4 tabelit, 3 enum'i) ning seisuloogika `lib/mtr/assessment.js` + `lib/mtr/policy.js`; kokku
 53 testi. Lisaks on **E4 teenuskiht** (`lib/mtr/licenceCheckService.js`) olemas — ahel
 identiteedivärav → lubade päring → kirje → iga teenuse hinnang; tegemata on ainult liides.
+**E4–E5 on samuti koodis:** teenuskiht, tekstikiht (`lib/mtr/statusText.js` on ainus koht, kus
+seisust saab tekst), osutaja API ja vaade eraldi failina, ET/EN/RU tekstid seitsmele seisule.
+**Rada on 05.08 tõendatud elava MTR-i vastu:** identiteet `Masaan OÜ`, kolm luba eristuvate
+alateenustega, `Toetatud elamine → VERIFIED`, `Tugiisik → NO_SHS_LICENCE_REQUIRED`.
+Elav päring õpetas seitse asja, mida ükski test ega ülevaatus ei näinud (väljundtulbad
+asendavad vaiketulpi · peidetud `tulemus_id` väljad · CSV on windows-1257, kuigi päis lubab
+utf-8 · mitme kohaga luba tuleb jätkuridadena · kaks paralleelset otsingut ajavad registri
+ajapiiri üle) — kõik kirjas lepingus.
+
 **E3/E4 karastati teise sõltumatu ülevaatuse järel** (11 leidu): aegumine ja tõendi seos
 salvestatakse ja lugemisrada **jõustab** neid, seega märgis ei ripu üle loa lõpu; `VERIFIED` ja
 `ACTIVITY_VERIFIED` on eri seisud; kirje ja hinnangud on üks tehing; loa kuupäevi võrreldakse

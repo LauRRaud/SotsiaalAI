@@ -51,6 +51,7 @@ import { pushWithTransition } from "@/lib/routeTransition";
 import AdminRoleViewCycleButton from "./AdminRoleViewCycleButton";
 import HelpMatchDecisionPanel from "./HelpMatchDecisionPanel";
 import ServiceMapLeaflet from "./ServiceMapLeaflet";
+import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
 const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 500;
@@ -3567,6 +3568,10 @@ function createServiceProfileServiceForm(service = null, index = 0, profile = nu
   );
   return {
     id: service?.id || "",
+    /* A4: seos loakataloogiga säilib kliendipoolses mudelis, et vorm ei
+       teeskleks seost olematuks. VÄLJA temast ei tehta — `serviceKey` muutub
+       ainult eraldi sidumisoperatsiooniga ja server ei loe teda PUT-ist. */
+    serviceKey: service?.serviceKey || null,
     name: service?.name || "",
     description: service?.description || "",
     longDescription: service?.longDescription || "",
@@ -3934,6 +3939,7 @@ function ServiceProfileSurface({ t }) {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [confirmingServiceId, setConfirmingServiceId] = useState("");
+  const licence = useServiceLicenceStatuses({ t });
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const feeOptions = useMemo(
@@ -4105,6 +4111,13 @@ function ServiceProfileSurface({ t }) {
         .map((item, itemIndex) => ({ ...item, sortOrder: itemIndex }))
     }));
   }, []);
+  /* A4: loakontrolli seisud on eraldi päring, mitte profiili osa — nii ei
+     pea profiili salvestamine kunagi ootama võõra registri taga. */
+  const loadLicenceStatuses = licence.load;
+  useEffect(() => {
+    void loadLicenceStatuses();
+  }, [loadLicenceStatuses]);
+
   async function confirmServiceAvailability(service) {
     if (!service?.id || !service?.availabilityFingerprint || confirmingServiceId) return;
     setConfirmingServiceId(service.id);
@@ -4209,6 +4222,11 @@ function ServiceProfileSurface({ t }) {
       }
       const savedProfile = payload?.profile || null;
       applyLoadedProfile(savedProfile);
+      /* Salvestus loob teenused uuesti (delete + create), seega hinnangud
+         kaovad kaskaadis ja registrikood võis muutuda. Vana märgis ei tohi
+         ekraanile jääda — tühjendame ja laeme värske seisu. */
+      licence.reset();
+      void licence.load();
       setNotice(readText(t, "workspace_feature_pages.service_profile.save_success", "Teenuseprofiil salvestati."));
     } catch (saveError) {
       setError(saveError?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
@@ -4386,6 +4404,12 @@ function ServiceProfileSurface({ t }) {
             "Kirjelda siin konkreetseid teenuseid. Kategooriad, sihtrühmad, keeled ja pöördumise tingimused salvestuvad teenuse tasemele."
           )}
         </ServiceProfileFieldHelp>
+        <div className="service-profile-licence-actions">
+          <Button type="button" onClick={() => void licence.recheck()} disabled={licence.checking}>
+            {readText(t, "service_provider_profile.licence.internal.action_recheck", "Kontrolli uuesti")}
+          </Button>
+          {licence.notice ? <p className="service-profile-licence__notice">{licence.notice}</p> : null}
+        </div>
         <div>
           <div>
           {form.serviceItems.length ? form.serviceItems.map((service, index) => (
@@ -4406,6 +4430,7 @@ function ServiceProfileSurface({ t }) {
                 <span>{readText(t, "workspace_feature_pages.service_profile.service_items.name", "Teenuse nimi")}</span>
                 <ServiceProfileInput value={service.name} onChange={(event) => updateServiceItem(index, "name", event.target.value)} />
               </Label>
+              <ServiceLicenceStatus t={t} row={service.id ? licence.statuses.get(service.id) : null} />
               <Label>
                 <span>{readText(t, "workspace_feature_pages.service_profile.service_items.description", "Kirjeldus")}</span>
                 <ServiceProfileTextarea
