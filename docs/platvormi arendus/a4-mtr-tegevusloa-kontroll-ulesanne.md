@@ -34,10 +34,38 @@ lukus:
 kandidaat ei sobi, jääb `locations` tühjaks ja teenuse+koha täpsust lihtsalt ei väideta —
 vale suunas see ei eksi.
 
-**E2 on koodis** (`lib/mtr/licensedServices.js`, 8 testi): versioonitud vastavustabel — kogu
+**E2 on koodis** (`lib/mtr/licensedServices.js`, 14 testi): versioonitud vastavustabel — kogu
 SHS § 151 loetelu + § 147, iga rida oma õigusviite ja MTR tegevusalaga, pluss kuus
-loakohustuseta teenust. Väravad 05.08: `npm test` **2788/2788**, eslint puhas,
-`i18n:check` OK. Kood ei ole veel ühegi marsruudi ega vaate küljes.
+loakohustuseta teenust. Kood ei ole veel ühegi marsruudi ega vaate küljes.
+
+**E2 karastati sõltumatu ülevaatuse järel 05.08** — piirid, mis olid kommentaarides,
+on nüüd API-s jõustatud:
+
+1. **`licenceCoversService` boolean kadus.** `licenceCoverageForService` tagastab seisu:
+   `EXACT_MATCH` · `ACTIVITY_MATCH_ONLY` · `NO_MATCH` · `UNCONFIRMED`. Varem andis MTR-i üldine
+   „Erihoolekandeteenus" vaste `true` kõigile kuuele alateenusele — täpselt see viga, mille
+   fail ise kirjelduses keelas.
+2. **`needsVerification` blokeerib nüüd koodis.** Päeva- ja nädalahoiu real nullitakse
+   tegevusala ja `mappingStatus` on `NEEDS_VERIFICATION`, seega MTR-kontrolli ei saa tema peal
+   käivitada. **Erinevus ülevaatuse soovitusest:** loakohustus ise jääb `REQUIRED`, sest
+   § 151 p 8¹ on selge — kontrollimata on ainult seos MTR tegevusalaga. Avalikult tähendab
+   see „ei saanud kinnitada", mis on täpsem kui „ei tea, kas luba on vaja".
+3. **`NOT_REQUIRED` → `NO_SHS_LICENCE_REQUIRED`.** Tabel tõendab ainult SHS-i loakohustuse
+   puudumist. Avalik tekst muutub vastavalt: **„Selle teenuse puhul ei ole MTR-is
+   kontrollitavat sotsiaalteenuse tegevusluba nõutud"** — mitte „ei vaja tegevusluba".
+   Näide, miks: sotsiaaltranspordile võivad kehtida ühistranspordiseaduse nõuded.
+4. **„Naiste tugikeskus" eemaldati** turvakoduteenuse aliaste hulgast — see on ohvriabi
+   seaduse alusel eraldi tervikteenus, mitte turvakodu teine nimi. Testiga lukus.
+5. **Kataloog on sügavkülmutatud** (`deepFreeze`) — varem sai reaobjekte ja aliaseid jooksvalt
+   muuta, mis oleks vahetanud äriloogika kogu protsessi ulatuses.
+6. Aliased kannavad nüüd **kindlusastet ja vaste põhjust** (`matchedText`, `matchedBy`,
+   `confidence`, `note`); mitmetähenduslikud — „lapsehoid" (alates 01.09.2025 on tavaline
+   lastehoid haridusvaldkonnas), „hooldushaigla", „rehabilitatsioon", „sotsiaaltransport" —
+   on `LOW` koos selgitusega, millega neid segi aetakse.
+7. Kommentaari „viis erihoolekandeteenust" parandatud **kuueks** (p 5, 6, 7, 8, 8¹, 9);
+   kataloogi versioon on nüüd `2026-08-05.1`, et sama päeva kordused eristuksid.
+
+Väravad 05.08 pärast karastust: `npm test` **2799/2799**, eslint puhas, `i18n:check` OK.
 
 **E2 tõi välja kaks piirangut, mis muudavad märgise sõnastust ja avavad ühe otsuse
 (O-A4-4).** Vt „Sidumise reegel" ja „Lahtised otsused".
@@ -123,7 +151,7 @@ puudumine midagi.
 | Sisemine seis | Avalik tekst | Osutaja ja admin näevad lisaks |
 |---|---|---|
 | **KONTROLLITUD** | „Tegevusluba MTR-is kontrollitud 5. augustil 2026" | loanumbrid, tegevusalad, mahupiirid, tegevuskohad |
-| **EI_VAJA_LUBA** | „Selle teenuse osutamiseks ei ole tegevusluba nõutav" | vastavustabeli rida, mille alusel nii otsustati |
+| **EI_VAJA_LUBA** | „Selle teenuse puhul ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba nõutud" | vastavustabeli rida, mille alusel nii otsustati |
 | **LUBA_PUUDUB** | „MTR-ist ei leitud kontrolli ajal sellele teenusele kehtivat tegevusluba" | mida otsiti: registrikood, tegevusala, kuupäev + parandustee |
 | **KINNITAMATA** | „Tegevusloa staatust ei saanud MTR-is kinnitada" | põhjus: päring kukkus · registrikood ei lahendunud · CSV tundmatu kuju · kontroll vananes |
 | **KONTROLLIMATA** | „Tegevusloa staatust ei saanud MTR-is kinnitada" | registrikood puudub profiililt · korje pole veel jõudnud |

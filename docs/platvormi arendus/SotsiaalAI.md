@@ -120,10 +120,13 @@ Tehtud järjekord:
 **Uus teema 05.08: A4 MTR/tegevusloa kontroll.** Leping on v2 kujul olemas
 ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
 **E1–E2 on tehtud** — allikaklient `lib/mtr/licences.js` ja vastavustabel
-`lib/mtr/licensedServices.js` + 27 testi, väravad rohelised (`npm test` 2793/2793). E1
-karastati sõltumatu ülevaatuse järel: kõige tõsisem leid oli, et registri vastuse
-registrikoodi ei kontrollitud ja rakendumata filtri korral oleks võõra ettevõtte load tulnud
-tagasi `OK`-na. E3–E7 on
+`lib/mtr/licensedServices.js` + 33 testi, väravad rohelised (`npm test` 2799/2799). **Mõlemad
+osad karastati sõltumatu ülevaatuse järel.** E1 tõsiseim leid: registri vastuse registrikoodi
+ei kontrollitud ja rakendumata filtri korral oleks võõra ettevõtte load tulnud tagasi `OK`-na.
+E2 tõsiseim leid: MTR-i üldine „Erihoolekandeteenus" vaste andis `true` kõigile kuuele
+alateenusele — nüüd tagastab kaetus seisu (`ACTIVITY_MATCH_ONLY` ≠ `EXACT_MATCH`) ja avalik
+„ei vaja luba" on kitsendatud kujule „ei ole MTR-is kontrollitavat sotsiaalteenuse tegevusluba
+nõutud", sest tabel ei tõenda muude seaduste lubade puudumist. E3–E7 on
 tegemata ja kood ei ole veel ühegi vaate küljes. Vastavustabeli read ootavad omaniku kinnitust
 ja üks uus otsus on lahti (O-A4-4). Vt S2 „Tegemata".
 
