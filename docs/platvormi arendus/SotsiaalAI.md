@@ -117,6 +117,12 @@ Tehtud järjekord:
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. **Rada tõendatud 04.08 kolme päris sessiooniga** ja selle käigus leitud + parandatud **IDOR**: iga töötaja sai luua jagamise võõrast eelpöördumisest. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)) |
 | **SOTSIAALKIIRABI-V1** (omaniku valik 05.08) | **E1–E6 TEHTUD 05.08 — tervik on koodis ja peidus.** Vt S2 „Tehtud" ja S5. Rada tõendatud päris andmebaasi ja päris sessioonidega, nelja identiteediga; brauseris läbi käidud pöörduja vorm, kriisiekraan, laua koondvaade ja admini laudade register. Aktiveerimine ootab partnerit — vt „Mis avab" allpool |
 
+**Uus teema 05.08: A4 MTR/tegevusloa kontroll.** Leping on v2 kujul olemas
+([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
+**E1 (allikaklient) on tehtud** — `lib/mtr/licences.js` + 14 testi, väravad rohelised
+(`npm test` 2780/2780). E2–E7 on tegemata ja kood ei ole veel ühegi vaate küljes. Vt S2
+„Tegemata".
+
 Kaks lülitit ootavad ainult otsust, mitte arendust: maksete recurring ja RAG-i
 allikavärskuse timerid (S9, S2). Kolmas lüliti on nüüd olemas ja **otsustatud**: RU/EN
 ettelugemine jääb tasuta brauserihäälele (`serverTtsLocales()`, vt S3).
@@ -273,7 +279,7 @@ toota nuppu, mis ei vii kuhugi.
 ### Tegemata
 
 - **Toimetulekutoetuse eelkalkulaator (A2)** — **funktsioon on valmis** (vt „Tehtud" ülal, leht `/toimetulekutoetus`, konto nõutav). Lahtised sabad: P2 dokumentide kontrollnimekiri · P3 kontota avalik versioon (omanik otsustas 04.08 konto kasuks) · P4 KOV piirmäärade andmekiht (vajab partnerit) · üks õigusküsimus kärpimistehte kohta. Leping: [`a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md`](./a2-toimetulekutoetuse-eelkalkulaator-ulesanne.md).
-- **MTR/tegevusloa kontroll** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5).
+- **MTR/tegevusloa kontroll (A4)** — avalik register → usaldusmärgise objektiivne alus. Topeltroll: vajalik ka SK-V1 osutaja-raja otsustamiseks (O-SK-5). **Leping v2 + E1 tehtud 05.08** ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) — allikaklient `lib/mtr/licences.js` on koodis ja testitud, E2–E7 tegemata. **Allikaküsimus on lahendatud:** X-teed ei ole vaja — rada on MTR-i avalik otsing → CSV-väljavõte → parse, mõõdetud 05.08 päris päringuga. **Võti on registrikood, mitte nimi** (sama nimega MTÜ ja OÜ kannavad eri lube). Omaniku otsused 05.08: hoiatus ei ole avalik ega punane · loata teenus jääb kaardile nähtavaks · avalikke tekste on **neli** ja need on neutraalsed, aga täpsed — „ei leitud kehtivat luba" ja „ei saanud kinnitada" on **eri tekstid** (varasem ühine sõnastus „ei ole märgitud" tühistati omaniku ülevaatusega, sest ta vihjas, et osutaja oleks pidanud loa ise lisama). Ülevaatus lukustas veel neli asja: luba seotakse **teenuse ja tegevuskohaga**, mitte firmaga · mahupiir EI ole kättesaadavuse signaal ega lähe V1-s avalikule kaardile · MTR-i veebipäring on ebastabiilne väline sõltuvus (skeemimuutuse tuvastus, alarm, circuit breaker) · **MTR-luba üksi ei ava SK-V1 osutaja-rada** (O-SK-5 vajab lisaks nõusolekut, kontakti, piirkonda ja perioodilist kinnitust).
 - ~~SOTSIAALKIIRABI-V1~~ — **E1–E6 TEHTUD 05.08**, vt „Tehtud" ülal. Lahtised sabad on ainult aktiveerimise omad, mitte ehituse: **O-SK-2** (kaks vastutavat töötlejat või vastutav + volitatud), **O-SK-4** (säilitusaeg pärast üleandmist — praegu kirjeid ei kustutata, see on teadlik ootamine), **O-SK-5** (kes lülitab teenuseosutaja raja, mis tõendi alusel — soovitus: MTR-kontroll), **KOV-lepingu 10 punkti** ja **konto nõue** (täna nõutav; kontota rada kell 23.47 on tootepiiri küsimus, mille peab omanik otsustama).
 
 ---
@@ -748,7 +754,7 @@ ega tulemuslikkuse hindamiseks** — see keeld peab olema arhitektuuris, mitte p
 |---|---|---|
 | A1 | **Erihoolekande profiil Teenuspäevikule** (§ 70–107) — tegevusplaan koos isikuga + kvartali- ja aastahinnang on seadusega ette kirjutatud aruanderütm; tegevusjuhendajad on suur kasutajaskond | — |
 | A2 | ~~Toimetulekutoetuse eelkalkulaator~~ (§ 131–134) — **FUNKTSIOON VALMIS 04.08**, vt S2 „Tehtud". Tuum on sõltumatu auditi järel ümber kirjutatud fail-closed'iks; vorm ja leht `/toimetulekutoetus` on brauseris tõendatud | sabad: P2 checklist · P3 kontota versioon · **P4 KOV piirmäärad** (vajab partnerit, § 133 lg 6) ja nendega koos ainus lahtine õigusküsimus |
-| A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse | miski ei blokeeri; **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
+| A4 | **MTR/tegevusloa kontroll** (§ 147–155) — avalik register annab usaldusmärgisele objektiivse aluse. **Leping mustandis 05.08**, koodis 0 rida | miski ei blokeeri; allikas kontrollitud (avalik otsing + CSV, **mitte X-tee**); **avab ka teenusekaardi usaldusmärgise ja SK-V1 O-SK-5 värava** |
 | A5 | Võlanõustamise eelkaardistus (§ 44–45) — eelpöördumise erikuju võlaprofiiliga | — |
 | A6 | Sotsiaaltransport Teenuspäeviku teenusetüübina (§ 38–40) | — |
 | A7 | **„Teata abivajajast" avalik juhis** (§ 13 — igaühe seadusekohustus) + teenusekaardi KOV-kontaktid; kontota avalik leht | — |
