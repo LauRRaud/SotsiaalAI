@@ -166,7 +166,7 @@ test("õnnestunud kontroll kirjutab kirje, load, kohad ja hinnangu ühe tehingug
   assert.equal(check.checksumValid, true);
   assert.equal(check.consecutiveFailureCount, 0);
   assert.equal(check.verifiedAt.toISOString(), FRESH);
-  assert.equal(check.nextCheckAt.toISOString(), "2026-08-06T12:00:00.000Z");
+  assert.equal(check.nextCheckAt.toISOString(), "2026-08-19T12:00:00.000Z", "edukas kontroll -> 14 paeva");
   const record = check.licences.create[0];
   assert.equal(record.activityType, "Toetatud elamise teenus");
   assert.equal(record.locations.create[0].address, "Riia 5, Tartu");

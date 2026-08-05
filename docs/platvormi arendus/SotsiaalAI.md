@@ -135,7 +135,10 @@ sond tõendab seda päris andmebaasis (44/44; sond tõendab nüüd ka teenuskihi
 mitte ainult seda, et Prisma tehing veereb tagasi). **Sidumisoperatsioon on tehtud**
 (`lib/mtr/serviceBinding.js` + admini rada): ainus koht, kus `serviceKey` muutub, vana tõend
 kustub kohe ja iga muudatus jätab auditijälje. Automaatset sidumist nime järgi ei ole —
-kandidaate pakutakse, kinnitab inimene. **RAG-otsus tehtud 05.08:** tegevusloa seis tohib
+kandidaate pakutakse, kinnitab inimene. **Rütm on lukus (omanik 05.08):** edukas kontroll →
+14 päeva, tõrge → 1/6/24 h, positiivse märgise värskus → 16 päeva (kahepäevane puhver, et üks
+ebaõnnestunud kontroll ei kustutaks märgist), käsitsi ≤1× 15 min, cron `0 * * * *` koos
+`flock`-iga. **RAG-otsus tehtud 05.08:** tegevusloa seis tohib
 jõuda assistendini **piiratud usaldussignaalina** (`lib/mtr/licenceSignal.js`) — kuus välja
 pluss kasutusreegel, kontrolliajalugu ja veakoodid mitte. Seis **liidetakse soovituse ajal
 andmebaasist**, mitte ei kirjutata RAG-indeksisse: „kontrollitud" on väide, mis aegub, ja

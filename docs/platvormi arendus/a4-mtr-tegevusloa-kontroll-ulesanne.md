@@ -96,6 +96,24 @@ ole, seega ei ole ka seisu, mida kuvada.
 Sond kontrollib seda päris andmebaasi vastu (viis kontrolli, sh „VANA TÕEND kustus" ja
 „jälg jäi").
 
+**Kolm täpsustust ülevaatuse järel (05.08):**
+
+1. **Osaline õnnestumine ei ole viga.** Kui sidumine salvestus, aga kohene kontroll ei
+   õnnestunud, tuleb vastus **200 koos `checkError`-iga** — mitte 500. Vastasel juhul arvaks
+   admin, et midagi ei salvestunud, ja kordamine annaks `changed: false` ega prooviks kontrolli
+   uuesti.
+2. **Loakohustuseta rida ei tee MTR-päringut.** Tema seis tuleb kataloogist ja salvestub kohe
+   `NO_SHS_LICENCE_REQUIRED`-ina — teda ei tohi siduda registri kättesaadavusega ega jätta
+   ajutiselt vale `NOT_CHECKED` seisu.
+3. **Teenus loetakse tehingu sees.** Kahe admini samaaegsel sidumisel jääks enne tehingut
+   loetud „eelmine võti" auditisse aegunult.
+
+**Üks ülevaatuse soovitus jäeti teadlikult tegemata:** `json(payload, { status })` objektikuju.
+Selle projekti helper on `json(data, status = 200, extraHeaders = {})` ja objektikuju oli
+täpselt see viga, mille elav QA leidis — cooldown andis **HTTP 500** koos
+`RangeError: init["status"] must be in the range of 200 to 599`, ja **429** tuli alles pärast
+parandust `json(payload, 429)`.
+
 ## Sond tõendab nüüd seda, mida ta lubab (44/44)
 
 Viiendas ülevaatuses tuli välja, et sondi lubadus oli tugevam kui tema test. Parandatud:
@@ -501,10 +519,23 @@ küsimus tugevam, sest siis on midagi konkreetset näidata.
 | 7 | Sidumata teenus ei tekita päringut ega väidet | `serviceKey IS NULL` → `SERVICE_MAPPING_REQUIRED`, silti ei ole |
 | 8 | Uus võti = andmed, mitte migratsioon | võtmeid ei ole üheski enum'is ega `CHECK`-piirangus |
 
-**Kolm ajaankrut on eraldi ja neid ei tohi segada** (`lib/mtr/policy.js`, kõik env-ist
-muudetavad): automaatkontroll 24 h · eduka kontrolli värskus 72 h · tõrke korduskatsed
-1/6/24 h · käsitsi kontroll ≤1× 15 min. Positiivne seis kehtib **lühima ankru järgi** — kas
-kontroll vananeb või luba lõpeb, kumb enne tuleb.
+### Lukustatud rütm (omanik 05.08)
+
+```
+Edukas kontroll        → järgmine automaatne kontroll 14 päeva pärast
+Registritõrge          → uus katse 1 h, siis 6 h, siis 24 h
+Positiivse märgise värskus → 16 päeva
+Käsitsi kontroll       → maksimaalselt kord 15 minuti jooksul
+Cron                   → 0 * * * * (koos flock-iga)
+```
+
+**Miks 16 päeva, mitte 14:** kahepäevane puhver 14-päevase korje ümber. Ilma selleta kaoks
+märgis kohe, kui täpselt 14. päeva kontroll ajutiselt ebaõnnestub — puhvriga jõuab korduskatse
+enne ära. **Miks cron ikkagi kord tunnis:** ta ei kontrolli kõiki, vaid vaatab, kelle
+`nextCheckAt` on käes. Ainult nii saavad 1 h ja 6 h korduskatsed päriselt toimuda.
+
+Kõik väärtused on env-ist muudetavad (`lib/mtr/policy.js`). Positiivne seis kehtib **lühima
+ankru järgi** — kas kontroll vananeb või luba lõpeb, kumb enne tuleb.
 
 **Kadunud luba ei kustuta märgist esimese kontrolliga.** `consecutiveMissCount` peab jõudma
 kaheni; enne seda jääb märgis püsti põhjusega `PENDING_SECOND_CHECK`. Kui märgist polnudki,

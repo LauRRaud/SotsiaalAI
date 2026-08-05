@@ -4,9 +4,20 @@
  *
  * Käivitatakse cron'ist **kord tunnis** (`0 * * * *`). See EI tähenda, et iga
  * profiili kontrollitakse tunnis: korje võtab ainult need, mille `nextCheckAt`
- * on möödas. Tunnine rütm on vajalik selleks, et tõrkejärgsed 1 h ja 6 h
- * korduskatsed päriselt toimuksid — kord ööpäevas käiv korje ei tuleks neid
- * kunagi õigel ajal vaatama ja astmestik jääks paberile.
+ * on möödas — edukas kontroll paneb selle **14 päeva** ettepoole. Tunnine rütm
+ * on vajalik selleks, et tõrkejärgsed 1 h ja 6 h korduskatsed päriselt
+ * toimuksid; kord ööpäevas käiv korje ei tuleks neid kunagi õigel ajal vaatama.
+ *
+ * ÜKS EKSEMPLAR KORRAGA. Skript ise lukku ei võta — pika MTR-i tõrke korral
+ * võib tunnine käivitus eelmisele otsa joosta. Ühe Linuxi serveri puhul
+ * lahendab selle `flock`:
+ *
+ *   0 * * * * flock -n /var/lock/sotsiaalai-mtr-refresh.lock \
+ *     /bin/bash -lc 'cd /RAKENDUSE/KAUST && MTR_REFRESH_BATCH=10 npm run mtr:refresh'
+ *
+ * Andmebaasilukk muutub kohustuslikuks alles siis, kui korje võib käivituda
+ * mitmes serveris või konteineris, või kui sama täiskorje saab käivitada ka
+ * adminiliidesest.
  *
  * Profiilid käiakse läbi ÜKSHAAVAL. Paralleelsust ei ole teadlikult: MTR on
  * aeglane avalik register, üks kontroll on kolm päringut, ja mõõdetud 05.08 —

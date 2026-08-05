@@ -84,7 +84,7 @@ test("lahendamata identiteet ja vananenud kontroll ei tooda kunagi NOT_FOUND", (
 
   const stale = assessServiceLicence({
     serviceKey: "TOETATUD_ELAMINE",
-    check: okCheck([licence()], { verifiedAt: new Date("2026-08-01T09:00:00.000Z") }),
+    check: okCheck([licence()], { verifiedAt: new Date("2026-07-01T09:00:00.000Z") }),
     now: NOW
   });
   assert.equal(stale.publicStatus, LICENCE_PUBLIC_STATUS.UNCONFIRMED);
@@ -202,7 +202,7 @@ test("vale alateenuse luba ei kata teist alateenust", () => {
 
 test("positiivne seis kehtib lühima ankru järgi ja lugemisrada jõustab selle", () => {
   const indefinite = assessServiceLicence({ serviceKey: "TOETATUD_ELAMINE", check: okCheck([licence()]), now: NOW });
-  assert.equal(indefinite.publicStatusValidUntil.toISOString(), "2026-08-08T09:00:00.000Z", "ankruks kontrolli värskus");
+  assert.equal(indefinite.publicStatusValidUntil.toISOString(), "2026-08-21T09:00:00.000Z", "ankruks kontrolli värskus (16 päeva)");
 
   const ending = assessServiceLicence({
     serviceKey: "TOETATUD_ELAMINE",
@@ -218,10 +218,10 @@ test("positiivne seis kehtib lühima ankru järgi ja lugemisrada jõustab selle"
 });
 
 test("korje rütm ja käsitsi jahtumine on konfiguratsioonist", () => {
-  assert.equal(nextCheckAfter({ succeeded: true, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z");
+  assert.equal(nextCheckAfter({ succeeded: true, now: NOW }).toISOString(), "2026-08-19T12:00:00.000Z", "edukas kontroll -> 14 paeva");
   assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 0, now: NOW }).toISOString(), "2026-08-05T13:00:00.000Z");
   assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 1, now: NOW }).toISOString(), "2026-08-05T18:00:00.000Z");
-  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 9, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z");
+  assert.equal(nextCheckAfter({ succeeded: false, consecutiveFailures: 9, now: NOW }).toISOString(), "2026-08-06T12:00:00.000Z", "torkeastmestik jaab 1/6/24 h");
 
   assert.equal(manualCheckAllowed({ lastAttemptAt: null, now: NOW }), true);
   assert.equal(manualCheckAllowed({ lastAttemptAt: new Date("2026-08-05T11:50:00.000Z"), now: NOW }), false);

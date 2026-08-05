@@ -23,6 +23,9 @@ function catalogue() {
   return [...LICENSED_SERVICES, ...NON_LICENSED_SERVICES].map((row) => ({
     serviceKey: row.key,
     label: row.label,
+    /* Admin peab nägema, kas rida on loakohustuslik, loakohustuseta või
+       erikontrolliga — muidu ei saa ta valikut sisuliselt teha. */
+    requirement: LICENSED_SERVICES.includes(row) ? "REQUIRED" : "NO_SHS_LICENCE_REQUIRED",
     legalBasis: row.legalBasis,
     legalNote: row.legalNote || null,
     activity: row.activity?.label || null,
@@ -81,7 +84,11 @@ export async function POST(request) {
       serviceKey: result.serviceKey,
       /* Sidumise järel käivitub kohe kontroll — liides ei pea seda ise
          käivitama ega kasutaja järgmist korjet ootama. */
-      check: result.check ? { completed: result.check.completed, succeeded: result.check.succeeded } : null
+      check: result.check ? { completed: result.check.completed, succeeded: result.check.succeeded } : null,
+      /* OSALINE ÕNNESTUMINE on 200, mitte 500: sidumine ON salvestatud ja
+         500 paneks admini arvama, et midagi ei muutunud — kordamine annaks
+         `changed: false` ega prooviks kontrolli uuesti. */
+      checkError: result.checkError || null
     });
   } catch (error) {
     console.error("[mtr-binding] bind failed", safeError(error));

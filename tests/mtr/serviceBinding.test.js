@@ -10,6 +10,7 @@ function fakePrisma({ service }) {
   const state = { updates: [], upserts: [], deletes: [], audits: [], transactions: 0 };
   const tx = {
     serviceProviderService: {
+      findUnique: async () => service,
       update: async (args) => {
         state.updates.push(args);
         return { ...service, ...args.data };
@@ -129,7 +130,53 @@ test("sama võti ei tee midagi", async () => {
   const result = await bindServiceKey({ providerServiceId: "s1", serviceKey: "TOETATUD_ELAMINE", prisma, now: NOW });
 
   assert.equal(result.changed, false);
-  assert.equal(prisma.state.transactions, 0, "muutumatu seos ei tekita ei kirjet ega jälge");
+  assert.equal(prisma.state.audits.length, 0, "muutumatu seos ei jäta jälge");
+  assert.equal(prisma.state.updates.length, 0);
+});
+
+test("loakohustuseta teenus saab seisu kohe, ilma MTR-päringuta", async () => {
+  const prisma = fakePrisma({ service });
+  let ran = false;
+
+  const result = await bindServiceKey({
+    providerServiceId: "s1",
+    serviceKey: "TUGIISIK",
+    prisma,
+    now: NOW,
+    runCheck: async () => {
+      ran = true;
+      return {};
+    }
+  });
+
+  /* Otsus on juba E2 kataloogis — teda ei tohi siduda registri
+     kättesaadavusega ega jätta ajutiselt vale `NOT_CHECKED` seisu. */
+  assert.equal(prisma.state.upserts[0].create.publicStatus, LICENCE_PUBLIC_STATUS.NO_SHS_LICENCE_REQUIRED);
+  assert.equal(ran, false, "loakohustuseta rida ei koorma registrit");
+  assert.equal(result.check, null);
+});
+
+test("kohese kontrolli tõrge EI tühista sidumist", async () => {
+  const prisma = fakePrisma({ service });
+
+  const result = await bindServiceKey({
+    providerServiceId: "s1",
+    serviceKey: "TOETATUD_ELAMINE",
+    prisma,
+    now: NOW,
+    runCheck: async () => {
+      throw new Error("register ei vastanud");
+    }
+  });
+
+  /* Võti ON muudetud, tõend kustutatud ja audit kirjutatud — vea tagastamine
+     paneks admini arvama, et midagi ei salvestunud, ja kordamine annaks
+     `changed: false` ega prooviks kontrolli uuesti. */
+  assert.equal(result.ok, true);
+  assert.equal(result.changed, true);
+  assert.equal(result.serviceKey, "TOETATUD_ELAMINE");
+  assert.equal(result.checkError, BINDING_ERROR.IMMEDIATE_CHECK_FAILED);
+  assert.equal(prisma.state.audits.length, 1);
 });
 
 test("kandidaadid on ettepanek koos kindlusastmega, mitte valik", async () => {
