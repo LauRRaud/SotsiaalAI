@@ -100,7 +100,13 @@ Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas 
 blokeerivale küsimusele. Leping on kirjutatud ja **läbinud neli omaniku auditit**:
 [`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) — v6, olek **`READY_TO_ASSIGN`
 kinnitatud**, etapid E1–E6, 21 lukustatud otsust, 4 lahtist, 40 testilepingut, migratsioon jah.
-Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
+Vt S4.1 „Juhtumi objekt elutsükliga".
+
+**E1 on tehtud 06.08** (`5a8ce7d7`): viis tabelit, neli enum'i, migratsioon
+`20260806100000_juhtum_v1_case_work_assist` (129 kokku), viis DB CHECK-i ja sond
+`npm run case:probe` **25/25 päris andmebaasi vastu**. Väravad: `npm test` **2860/2860**,
+`i18n:check` OK, eslint puhas, `db:migrate:check` OK, `npm run build` OK. **Funktsioon on
+koodis ja peidus** — liidest ei ole, tabelites 0 rida. Tegemata E2–E6.
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
@@ -685,8 +691,9 @@ uuesti looma.
 #### Juhtumi objekt elutsükliga
 
 *Lähtematerjal: `ideed.md` **ptk 12** (kontseptuaalne andmemudel — objekt on seal nimega
-`CaseWorkAssist`) + **ptk 4**. Koodis 0 rida. **Leping kirjutatud 06.08** —
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), `READY_TO_ASSIGN`.*
+`CaseWorkAssist`) + **ptk 4**. Leping:
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1 tehtud 06.08, E2–E6
+tegemata.** Skeem on koodis, liidest ei ole, tabelites 0 rida.*
 
 > **Selle rea juures puudus `Lähtematerjal:` viide ja see maksis kätte.** Naaberread
 > (assistent, võrgustikutöö, meetodite kataloog) kannavad kõik `ideed.md` peatüki numbrit;
