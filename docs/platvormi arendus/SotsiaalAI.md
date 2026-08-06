@@ -102,11 +102,26 @@ blokeerivale küsimusele. Leping on kirjutatud ja **läbinud neli omaniku auditi
 kinnitatud**, etapid E1–E6, 21 lukustatud otsust, 4 lahtist, 40 testilepingut, migratsioon jah.
 Vt S4.1 „Juhtumi objekt elutsükliga".
 
-**E1 on tehtud 06.08** (`5a8ce7d7`): viis tabelit, neli enum'i, migratsioon
-`20260806100000_juhtum_v1_case_work_assist` (129 kokku), viis DB CHECK-i ja sond
-`npm run case:probe` **25/25 päris andmebaasi vastu**. Väravad: `npm test` **2860/2860**,
-`i18n:check` OK, eslint puhas, `db:migrate:check` OK, `npm run build` OK. **Funktsioon on
-koodis ja peidus** — liidest ei ole, tabelites 0 rida. Tegemata E2–E6.
+**E1 ja E2 on tehtud 06.08** (`5a8ce7d7`, `0e036a4c`).
+
+**E1 — skeem:** viis tabelit, neli enum'i, migratsioon
+`20260806100000_juhtum_v1_case_work_assist` (129 kokku), **viis DB CHECK-i**. Seosemudel on
+typed-FK, mitte polümorfne, seega „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist ja
+kehtib ka otse-SQL kustutusel — sond tõendab seda just nii.
+
+**E2 — teenuskiht:** `lib/casework/` (flags, errors, `caseWorkAssist`). Omanikupiir on
+teenuskihis, mitte marsruudis; võõras ja olematu juhtum annavad mõlemad **404**. Kolm
+kirjutusrada kasutavad **tingimuslikku update'i**, mitte loe-siis-kirjuta mustrit, seega
+vahepealne retention-siire tapab kirjutuse. **Aktiveerimisvärav `CASEWORK_V1_ENABLED` on
+vaikimisi väljas** ja lahutab kaks otsust: deploy'da tohib, avamine vajab lisaks Õ2/Õ3
+kinnitust. Konto kustutamise rada kutsub nüüd `eraseCaseClientReference()` — FK `SetNull`
+üksi jätaks `clientErasedAt` määramata ja kustutus oleks jäljetu.
+
+Väravad: `npm test` **2877/2877**, `i18n:check` OK, eslint puhas, `db:migrate:check` OK,
+`npm run build` OK, **`npm run case:probe` 33/33 päris andmebaasi vastu**.
+
+**Funktsioon on koodis ja peidus** — värav väljas, liidest ei ole, tabelites 0 rida.
+Tegemata **E3–E6**: seoseregister · puuduv info · K1 adapter · vaade + sondi laiendus.
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
@@ -692,8 +707,8 @@ uuesti looma.
 
 *Lähtematerjal: `ideed.md` **ptk 12** (kontseptuaalne andmemudel — objekt on seal nimega
 `CaseWorkAssist`) + **ptk 4**. Leping:
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1 tehtud 06.08, E2–E6
-tegemata.** Skeem on koodis, liidest ei ole, tabelites 0 rida.*
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1–E2 tehtud 06.08, E3–E6
+tegemata.** Skeem ja teenuskiht on koodis; värav väljas, liidest ei ole, tabelites 0 rida.*
 
 > **Selle rea juures puudus `Lähtematerjal:` viide ja see maksis kätte.** Naaberread
 > (assistent, võrgustikutöö, meetodite kataloog) kannavad kõik `ideed.md` peatüki numbrit;
