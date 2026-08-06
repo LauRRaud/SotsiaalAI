@@ -46,6 +46,22 @@ function schemaCodeOnly(source) {
 
 const SCHEMA_CODE = schemaCodeOnly(SCHEMA);
 
+/**
+ * Viil B mudeliplokid NIMELISELT — vt sama parandust `contracts.test.js`-is
+ * (06.08). Vana `slice(indexOf(...))` võttis kaasa faili lõpuni KÕIK mudelid,
+ * seega keeld kehtis ainult seni, kuni viil B juhtus olema faili lõpus.
+ */
+function organizationModelCode(source, fromModelName) {
+  const blocks = [...source.matchAll(/model\s+(\w+)\s*\{([\s\S]*?)\n\}/gu)];
+  const start = blocks.findIndex((block) => block[1] === fromModelName);
+  assert.notEqual(start, -1, `model ${fromModelName} must exist in the schema`);
+  return blocks
+    .slice(start)
+    .filter((block) => block[1].startsWith("Organization"))
+    .map((block) => `model ${block[1]} {${block[2]}\n}`)
+    .join("\n");
+}
+
 test("seat reference prices are exactly the platform's role prices — one pricing truth", () => {
   assert.equal(SEAT_ROLE_REFERENCE_PRICE_CENTS.SOCIAL_WORKER, Math.round(DEFAULT_SOCIAL_WORKER_AMOUNT * 100));
   assert.equal(
@@ -194,7 +210,7 @@ test("only PENDING and ACCEPTED count as live work", () => {
 test("no viil B model references a private object", () => {
   /* Nihe TULEB arvutada samast stringist, mida lõigatakse — kommentaaride
      eemaldamine muudab pikkused ja segamini nihe lõikaks vale koha. */
-  const block = SCHEMA_CODE.slice(SCHEMA_CODE.indexOf("model OrganizationSeatPlan {"));
+  const block = organizationModelCode(SCHEMA_CODE, "OrganizationSeatPlan");
   for (const forbidden of [
     "WellbeingRecord",
     "WellbeingOutputDraft",

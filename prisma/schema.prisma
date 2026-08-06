@@ -852,6 +852,15 @@ model User {
   urgentDeskMemberships    UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
   urgentRequestsAuthored   UrgentRequest[]      @relation("UrgentRequestAuthor")
   urgentRequestEvents      UrgentRequestEvent[] @relation("UrgentRequestEventActor")
+
+  // JUHTUM-V1: KAKS ERI ROLLI ja neid ei tohi segada.
+  // `caseWorkAssistsOwned` = töötaja enda juhtumid (Cascade — kustuvad koos kontoga).
+  // `caseWorkAssistsAsClient` = juhtumid, kus SEE inimene on märgitud kliendiks
+  // (SetNull). Kliendi konto kustutamine ei tohi töötaja juhtumit hävitada, aga
+  // FK `SetNull` üksi ei määra `clientErasedAt`-i — seda teeb
+  // `eraseCaseClientReference()` konto kustutamise rajalt (leping L17).
+  caseWorkAssistsOwned     CaseWorkAssist[]     @relation("CaseWorkAssistOwner")
+  caseWorkAssistsAsClient  CaseWorkAssist[]     @relation("CaseWorkAssistClient")
 }
 
 model Profile {
@@ -2225,6 +2234,8 @@ model PreInquiry {
   updatedAt               DateTime                  @updatedAt
 
   author         User?            @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  /// JUHTUM-V1 päritolu (L12). SetNull: pöördumise kustutus ei hävita juhtumit.
+  caseWorkAssists CaseWorkAssist[] @relation("CaseWorkAssistPreInquiry")
   recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
   recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
   recipientOrganization Organization? @relation("PreInquiryRecipientOrganization", fields: [recipientOrganizationId], references: [id], onDelete: SetNull)
@@ -2370,6 +2381,8 @@ model FieldVisit {
   preInquiry  PreInquiry?            @relation(fields: [preInquiryId], references: [id], onDelete: SetNull)
   notes       FieldVisitNote[]
   attachments FieldVisitAttachment[]
+  /// JUHTUM-V1 seos (L15), Cascade — vt `UserDocument.caseWorkItems`.
+  caseWorkItems CaseWorkItem[]
 
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, status, updatedAt])
@@ -3625,6 +3638,9 @@ model UserDocument {
   audits              DocumentAudit[]
   callRecordingFiles  CallRecordingFile[]
   fieldVisitAttachments FieldVisitAttachment[]         @relation("FieldVisitAttachmentDocument")
+  /// JUHTUM-V1 seos (L15). Cascade: dokumendi kustutus eemaldab seose ANDMEBAASIST,
+  /// mitte rakenduse kustutusteelt — seega rippuvat viidet ei jää ka otse-SQL kustutusel.
+  caseWorkItems       CaseWorkItem[]
 
   @@index([ownerId, updatedAt])
   @@index([ownerId, kind, updatedAt])
@@ -3676,6 +3692,8 @@ model AgentArtifact {
   template        UserDocument?                 @relation("AgentArtifactTemplate", fields: [templateId], references: [id], onDelete: SetNull)
   sourceDocuments AgentArtifactSourceDocument[]
   audits          DocumentAudit[]
+  /// JUHTUM-V1 seos (L15), Cascade — vt `UserDocument.caseWorkItems`.
+  caseWorkItems   CaseWorkItem[]
 
   @@unique([ownerId, idempotencyKey])
   @@index([ownerId, updatedAt])
@@ -5994,6 +6012,8 @@ model UrgentRequest {
   updatedAt DateTime @updatedAt
 
   author              User?                @relation("UrgentRequestAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  /// JUHTUM-V1 päritolu (L12). SetNull: abipalve kustutus ei hävita juhtumit.
+  caseWorkAssists     CaseWorkAssist[]     @relation("CaseWorkAssistUrgentRequest")
   desk                UrgentDesk           @relation("UrgentRequestDesk", fields: [deskId], references: [id], onDelete: Restrict)
   handoverDesk        UrgentDesk?          @relation("UrgentRequestHandoverDesk", fields: [handoverDeskId], references: [id], onDelete: SetNull)
   municipality        Municipality         @relation(fields: [municipalityId], references: [id], onDelete: Restrict)
@@ -6244,4 +6264,216 @@ model ServiceLicenceAssessment {
   @@index([serviceKey])
   @@index([publicStatus])
   @@index([publicStatusValidUntil])
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   JUHTUM-V1 (CASEWORK-P7) — juhtumi objekt.
+
+   Leping: docs/platvormi arendus/juhtum-v1-arendusleping.md (v6).
+
+   MIS SEE ON: töötaja enda töökorralduse KONTEINER. Ta seob olemasolevat ja
+   EI KOPEERI ühtegi rida. Mustandeid hoiab endiselt `AgentArtifact`.
+
+   MIS SEE EI OLE: kliendiregister. Isikuvälju siin ei ole — klient on kahe raja
+   mustris (L11), sama muster mis `ServiceReferral`-il ja `NetworkShare`-il.
+
+   PIIR CASEWORK-P2 VASTU (leping ptk „Piir"): mustandi ülekandeahel (8 elementi
+   × 7 seisu) EI KUULU siia ja on kolme otsuse taga (O-CW-2/4/10). Sellepärast ei
+   ole üheski siinses mudelis ülekande- ega ülevaatuse seisu välja.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+enum CaseWorkRetentionState {
+  ACTIVE
+  READ_ONLY
+  ARCHIVED
+}
+
+enum CaseWorkMissingInfoStatus {
+  OPEN
+  RESOLVED
+  NOT_APPLICABLE
+}
+
+/// Kes kliendiviite kustutuse käivitas. `SYSTEM` on vajalik, sest
+/// `lib/privacy/userDeletionOrchestrator.js` teeb seda ilma kasutaja seansita.
+enum CaseWorkErasureActorKind {
+  USER
+  SYSTEM
+}
+
+/// V1-s on lubatud ainult STAR2. Erinevalt `serviceKey`-st (A4) EI OLE see
+/// kasvav kataloog: uus väline süsteem tähendab uut liidestust, seega
+/// koodimuudatust — enum on siin õige tugevus.
+enum CaseWorkExternalSystem {
+  STAR2
+}
+
+model CaseWorkAssist {
+  id          String @id @default(cuid())
+  ownerUserId String
+
+  /* PÄRITOLU (L12). Kaks otsevälja, MAKSIMAALSELT ÜKS määratud — CHECK
+     migratsioonis. Nad EI ole `CaseWorkItem` sihttüübid: sama seos kahel viisil
+     laseks kahel tõel lahku minna.
+     Päritolu määratakse loomisel ja V1-s ei muudeta. Päritoluobjekti kustutus
+     annab `SetNull` — juhtum ise säilib. */
+  preInquiryId    String?
+  urgentRequestId String?
+
+  /* KLIENT KAHEL RAJAL (L11), sama muster mis `ServiceReferral`-il ja
+     `NetworkShare`-il (omaniku otsus 04.08).
+       Rada A — `clientUserId`: platvormi kasutaja. V1-s tohib ta olla AINULT
+       päritoluobjekti autor; kliendiotsingut ega kasutajakataloogi ei ole.
+       Rada B — `clientDisplayName` / `clientExternalRef`: miinimumkuju, kuvanimi
+       võib olla initsiaal või roll.
+     Päritolu olemasolu EI KEELA rada B: pöördumise võib esitada lähedane või
+     esindaja, ja siis ei ole autor klient. Automaatset tuletust ei tehta —
+     `PreInquiry`-l ega `UrgentRequest`-il EI OLE kliendivälja, on ainult autor.
+     `clientExternalRef` on ISIKU tunnus. Menetluse viide elab `externalReference`-is. */
+  clientUserId      String?
+  clientDisplayName String?
+  clientExternalRef String?
+  /// Kustutus nullib kõik kolm välja ja jätab ainult selle märke (L17).
+  /// FK `SetNull` üksi EI PIISA — ta ei määra seda välja.
+  clientErasedAt DateTime?
+
+  /* STAR-i viide (L6). Mõlemad või kumbki — CHECK migratsioonis. */
+  externalSystem    CaseWorkExternalSystem?
+  externalReference String?
+
+  nextContactAt DateTime?
+
+  /// L14: ainult ACTIVE → READ_ONLY → ARCHIVED, tagasisiirdeid ei ole.
+  /// READ_ONLY ja ARCHIVED keelavad ka LASTE muutmise; ainus erand on
+  /// kliendiviite kustutus, mis on lubatud kõigis olekutes.
+  retentionState CaseWorkRetentionState @default(ACTIVE)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  owner         User           @relation("CaseWorkAssistOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  client        User?          @relation("CaseWorkAssistClient", fields: [clientUserId], references: [id], onDelete: SetNull)
+  preInquiry    PreInquiry?    @relation("CaseWorkAssistPreInquiry", fields: [preInquiryId], references: [id], onDelete: SetNull)
+  urgentRequest UrgentRequest? @relation("CaseWorkAssistUrgentRequest", fields: [urgentRequestId], references: [id], onDelete: SetNull)
+
+  items          CaseWorkItem[]
+  missingInfo    CaseWorkMissingInfo[]
+  retentionAudit CaseWorkRetentionAudit[]
+  erasureAudit   CaseWorkClientErasureAudit[]
+
+  @@index([ownerUserId, updatedAt])
+  @@index([ownerUserId, retentionState, updatedAt])
+  @@index([ownerUserId, nextContactAt])
+  @@index([preInquiryId])
+  @@index([urgentRequestId])
+  @@index([clientUserId])
+}
+
+/* SEOS (L15) — TYPED-FK, MITTE POLÜMORFNE.
+
+   `PreInquiry` skeemikommentaar ütleb platvormi reegli välja: „iga adressaadi-
+   liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus."
+   Polümorfne `targetType + targetId` tähendaks, et lubadus „ei jää rippuvat
+   viidet" on ainult nii tugev kui rakenduse kustutusteede kaetus. Typed-FK +
+   `onDelete: Cascade` annab garantii ANDMEBAASIST — ta kehtib ka otse-SQL
+   kustutuse korral.
+
+   Hind on teadlik: uus sihttüüp on migratsioon, mitte rea lisamine loendisse.
+
+   `updatedAt` PUUDUB TEADLIKULT — seos on kas olemas või mitte, teda ei muudeta. */
+model CaseWorkItem {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+
+  userDocumentId  String?
+  agentArtifactId String?
+  fieldVisitId    String?
+
+  createdAt DateTime @default(now())
+
+  caseWorkAssist CaseWorkAssist @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+  userDocument   UserDocument?  @relation(fields: [userDocumentId], references: [id], onDelete: Cascade)
+  agentArtifact  AgentArtifact? @relation(fields: [agentArtifactId], references: [id], onDelete: Cascade)
+  fieldVisit     FieldVisit?    @relation(fields: [fieldVisitId], references: [id], onDelete: Cascade)
+
+  /* NULL-e ei loeta Postgresis võrdseks, seega mitu `NULL`-iga rida elab kõrvuti
+     ja unikaalsus kehtib ainult päris seostele — täpselt see, mida vaja. */
+  @@unique([caseWorkAssistId, userDocumentId])
+  @@unique([caseWorkAssistId, agentArtifactId])
+  @@unique([caseWorkAssistId, fieldVisitId])
+  @@index([caseWorkAssistId, createdAt])
+}
+
+model CaseWorkMissingInfo {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+
+  text String @db.Text
+
+  /* L5: päritolusõnastik on `lib/workspaces/provenance.js` (8 väärtust,
+     CASEWORK-P0). TEKST, mitte DB-enum — muidu tekiks teine tõde ja sõnastiku
+     muutus nõuaks migratsiooni. Sama põhjendus mis A4 `serviceKey`-l.
+     Validaator elab teenuskihis ja tundmatu väärtus lükatakse tagasi. */
+  provenance String
+
+  status CaseWorkMissingInfoStatus @default(OPEN)
+  /// Invariant: OPEN → NULL; RESOLVED/NOT_APPLICABLE → serveris määratud.
+  resolvedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseWorkAssist CaseWorkAssist @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+
+  @@index([caseWorkAssistId, status])
+  @@index([caseWorkAssistId, createdAt])
+}
+
+/* AUDITID (L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.
+
+   `DataAuditLog` on ADMINI LOETAV (kasutusel `app/api/admin/usage/*`
+   marsruutidel), ja retention-põhjus ON juhtumi sisu. L2 ütleb, et admin ei näe
+   juhtumi sisu — seega olemasolev audititaristu ei sobi mõõdetud faktil, mitte
+   eelistusel. `lib/privacy/audit.js` on sama tabeli ümbris.
+
+   Mõlemad on APPEND-ONLY: update- ja delete-API-t ei eksisteeri.
+   `actorUserId` on FK-ta String (sama muster mis `DataAuditLog`-il) — auditirida
+   ei tohi kaduda ega muutuda kasutaja kustutamisest. */
+model CaseWorkRetentionAudit {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+  ownerUserId      String
+  actorUserId      String
+
+  fromState CaseWorkRetentionState
+  toState   CaseWorkRetentionState
+  reason    String                 @db.Text
+
+  createdAt DateTime @default(now())
+
+  caseWorkAssist CaseWorkAssist @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+
+  @@index([caseWorkAssistId, createdAt])
+  @@index([ownerUserId, createdAt])
+}
+
+model CaseWorkClientErasureAudit {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+  ownerUserId      String
+
+  /// NULLABLE: konto kustutamise orkestreerija ei ole kasutaja (`SYSTEM`).
+  actorUserId String?
+  actorKind   CaseWorkErasureActorKind
+
+  /// EI SISALDA kustutatud väärtusi — ei nime, ei välisviidet, ei kuvanime.
+  reason String @db.Text
+
+  createdAt DateTime @default(now())
+
+  caseWorkAssist CaseWorkAssist @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+
+  @@index([caseWorkAssistId, createdAt])
+  @@index([ownerUserId, createdAt])
 }

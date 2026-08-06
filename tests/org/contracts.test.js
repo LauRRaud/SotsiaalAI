@@ -45,6 +45,31 @@ function schemaCodeOnly(source) {
 
 const SCHEMA_CODE = schemaCodeOnly(SCHEMA);
 
+/**
+ * Org-kihi mudeliplokid NIMELISELT.
+ *
+ * MIKS SEE OLEMAS ON (parandatud 06.08): varem lõikas keeld
+ * `SCHEMA_CODE.slice(indexOf("model Organization {"))` — ehk org-mudeli algusest
+ * FAILI LÕPUNI. Nii luges ta „org-kihiks" ka kõik hiljem lisatud mudelid, mis
+ * org-kihiga mingit pistmist ei oma. Keeld pidas ainult seni, kuni org-mudelid
+ * juhtusid olema faili viimased; JUHTUM-V1 `CaseWorkItem` (owner-skoobitud
+ * juhtum → töötaja enda dokument) oli esimene, mis selle valehäirena välja tõi.
+ *
+ * Nüüd kontrollitakse ainult `Organization*` mudeleid. Keeld ise EI NÕRGENE —
+ * ta muutub täpsemaks: uus org-mudel satub kontrolli alla nime järgi
+ * automaatselt, uus mitte-org-mudel enam mitte.
+ */
+function organizationModelCode(source, fromModelName) {
+  const blocks = [...source.matchAll(/model\s+(\w+)\s*\{([\s\S]*?)\n\}/gu)];
+  const start = blocks.findIndex((block) => block[1] === fromModelName);
+  assert.notEqual(start, -1, `model ${fromModelName} must exist in the schema`);
+  return blocks
+    .slice(start)
+    .filter((block) => block[1].startsWith("Organization"))
+    .map((block) => `model ${block[1]} {${block[2]}\n}`)
+    .join("\n");
+}
+
 test("global Role enum stays exactly the four priced product personas", () => {
   const match = SCHEMA.match(/enum Role \{([^}]*)\}/u);
   assert.ok(match, "Role enum must exist");
@@ -221,7 +246,7 @@ test("database CHECK constraints enforce scope XOR, depth limit and verified act
    ------------------------------------------------------------------------- */
 
 test("no organisation model carries a foreign key into any private object", () => {
-  const orgBlock = SCHEMA_CODE.slice(SCHEMA_CODE.indexOf("model Organization {"));
+  const orgBlock = organizationModelCode(SCHEMA_CODE, "Organization");
   for (const forbidden of [
     "WellbeingRecord",
     "WellbeingOutputDraft",
