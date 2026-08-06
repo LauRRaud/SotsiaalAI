@@ -110,6 +110,11 @@ tõendada, et kaks töötajat on üksteise juhtumitest pimedad (04.08 IDOR-i õp
 päris sessiooniga läbi käidud loomine, puuduva info lisamine, kirjutuskaitse ja kliendiviite
 kustutamine; HTML tekstiväljas kuvatakse tekstina.
 
+Pind ei ole kättesaadav ainult URL-i kaudu: töölaual on kaart **„Juhtum" tsoonis** Välitöö
+kõrval (UI-lipu ja rolli taga — kliendi ega admini lauale ta ei leki) ja pind kannab oma
+**ⓘ juhendit** kolmes keeles, mille viimane osa ütleb välja piirid (ei ole register · rangelt
+isiklik · ei anta üle ega kustutata · kliendiviite kustutamine on lõplik).
+
 **Avamine on eraldi otsus.** `CASEWORK_V1_ENABLED` on vaikimisi väljas: siis vastab `/juhtumid`
 `notFound()`-iga, töölaual kaarti ei ole ja API on eristamatu olematust marsruudist. Deploy'da
 tohib väravaga väljas; **avamine vajab omaniku luba JA Õ2/Õ3 andmekaitseanalüüsi kinnitust**.
