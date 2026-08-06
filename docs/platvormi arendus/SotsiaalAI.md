@@ -89,10 +89,10 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main` = **`724d7680`**, tööpuu puhas. Üks tööpuu, üks haru.
-**Serveris on `8ab68f98`** (A4 deploy 05.08). `main` on temast ees **kahe kande võrra**:
-sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja `724d7680`
-(ainult dokumentatsioon). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+Lokaalne `main` = **`529dd3e4`**, tööpuu puhas. Üks tööpuu, üks haru.
+**`origin/main` on `724d7680`** ja lokaalne main on temast **17 kannet ees** — kogu JUHTUM-V1
+(E1–E6) on **push'imata**, sest push ja deploy käivad ainult omaniku selgel loal.
+**Serveris on `8ab68f98`** (A4 deploy 05.08). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
 ### Viimati tehtud (07.08): JUHTUM-V1 — juhtumi objekt
 
