@@ -99,11 +99,19 @@ sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja
 Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas juhtumi objekti
 blokeerivale küsimusele. Leping on kirjutatud:
 [`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), olek `READY_TO_ASSIGN`, etapid
-E1–E5, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
+E1–E6, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
 kolme otsuse taga ja seda lepingusse ei neelata.
+
+**Kirjeldus on vanem kui platvorm ja leping kannab selle vahe eraldi peatükina
+(„Sidumiskaart").** Kuus haakepunkti on vahepeal koodi tekkinud, neist kandvaim:
+`lib/workspaces/registry.js` kannab **`WorkspaceKind.CASE_WORK` seisus `RESERVED`** — K1
+tööruumiregister ootab seda objekti juba täna, ja ilma selleta sünniks juhtum, mida platvormi
+enda tööruumikiht ei tunne. Teine: klient esindatakse **olemasoleva kahe raja mustriga**
+(`ServiceReferral`, `NetworkShare`, omaniku otsus 04.08), mitte vabatekstiga. Kolm teadlikku
+MITTE-seost on samuti kirjas: Teekond, tööheaolu ja A2 kalkulaator.
 
 ### Järgmine samm — ootab omaniku valikut
 

@@ -2,7 +2,7 @@
 
 **Olek:** `READY_TO_ASSIGN`.
 **Perekond:** CASEWORK — **P7**. Ei ole P0/P1 (tehtud) ega P2 (vt piir allpool).
-**Teostus:** üks teema, etapid E1–E5, töö otse `main`-is (S11 reegel 1). Migratsioon: jah.
+**Teostus:** üks teema, etapid E1–E6, töö otse `main`-is (S11 reegel 1). Migratsioon: jah.
 **Kirjeldus („mis asi see on"):** `ideed.md` **ptk 4** (Juhtumitöö assistent) ja **ptk 12**
 (kontseptuaalne andmemudel) — **loe mõlemad enne E1-e**.
 **Muu alus:** `t21-casework-v1-ulesanne.md` (P0/P1 tehtud) · `SotsiaalAI.md` S4.1.
@@ -72,6 +72,41 @@ teist keha** — ta annab talle koha, kuhu kuuluda.
 
 ---
 
+## Sidumiskaart — mis on tekkinud pärast kirjeldust
+
+`ideed.md` ptk 4 ja 12 on kirjutatud enne 11.07. Vahepeal on platvorm kasvanud ja **kirjeldus
+ei tea sellest midagi** — ta ei ole vale, ta on lihtsalt varasem. Need on haakepunktid, mis on
+täna päriselt koodis (kontrollitud 06.08), ja see, mida igaüks lepingus muudab.
+
+| # | Mis on vahepeal tekkinud | Mida see siin muudab |
+|---|---|---|
+| **1** | **K1 tööruumiregister** — `lib/workspaces/registry.js` kannab `WorkspaceKind.CASE_WORK` seisus **RESERVED** | **uus etapp E5.** Register ootab seda objekti; JUHTUM-V1 lülitab ta `SUPPORTED`-iks koos adapteriga |
+| **2** | **Kliendi kahe raja muster** (omaniku otsus 04.08) — `ServiceReferral` ja `NetworkShare` kannavad mõlemad `clientUserId?` / `clientDisplayName?` / `clientExternalRef?` / `clientErasedAt?` | **muudab E1.** Leiutatud vabatekstiline `label` asendub platvormi olemasoleva miinimumkujuga |
+| **3** | **`UrgentRequest`** (SK-V1, 05.08) — teine sissetulekukanal | ptk 12 tunneb ainult `preInquiryId`; juhtum peab sündima ka kiireloomulisest abipalvest |
+| **4** | **`NetworkShare`** (COLLAB-P4, 04.08) — jagamised on ankurdatud `sourcePreInquiryId` külge | juhtum on nende loomulik konteiner; ta laenab ka mustrit „jagamispiir + kohustuslik lõppkuupäev" |
+| **5** | **`ServiceReferral` + Teenuspäevik** (`lib/serviceLog/`, 30 moodulit) | ptk 4.5 „teenuse suunamise alus" ei ole enam ainult mustandi element, vaid päris objekt |
+| **6** | **A4 tegevusloa märgis** (05.08) | kui juhtum viitab teenusele, on osutaja loaseis kontrollitav — aga ainult `lib/mtr/licenceSignal.js` piiratud kujul: seis jah, kontrolliajalugu ei |
+
+### Kaks seost, mis vajavad suunda, mitte ainult viita
+
+**Kovisioon.** Ptk 4.2 küsib „kas juhtum vajab kovisiooni". Kovisioon on nüüd olemas, aga tema
+teemaseeme on **teadlikult deidentifitseeritud**. Seos tohib olla **ühesuunaline**: juhtumist
+saab kovisiooni ettevalmistuse algatada, **kovisiooni objektilt ei tohi juhtumile tagasi
+viidata** — muidu muutub deidentifitseerimine kosmeetikaks.
+
+**Meetodipeegel.** Seos käib olemasolevast `PracticeReflection.sourceKind`/`sourceId`-st
+(L10), mitte uuest võtmest.
+
+### Teadlikud MITTE-seosed (sama tähtsad kui seosed)
+
+| Mis | Miks mitte |
+|---|---|
+| **Teekond** | kliendi enda lugu, kuulub temale; juhtum on töötaja töökorraldus. Kaks eri objekti, mida ei ühendata |
+| **Tööheaolu** | töötaja privaatne ruum. Juhtumiga sidumine muudaks ta koormuse mõõdikuks — täpselt see, mida arhitektuur keelab |
+| **A2 kalkulaator** | arvutus käib inimese seadmes ja midagi ei salvestu; seosepunkti ei ole olemas |
+
+---
+
 ## Mis JUHTUM-V1 on
 
 `CaseWorkAssist` on **töötaja enda töökorralduse konteiner**: mille ümber see töö käib, mis on
@@ -92,9 +127,15 @@ kokku selle, mis on juba olemas, ja ei kopeeri ühtegi rida.
 
 ## Aus riskilause, mida ei tohi ilustada
 
-`label` on vabatekst ja praktikas kirjutab töötaja sinna inimese nime. **Juhtum kannab
-isikuandmeid ka siis, kui skeemis ei ole ühtki isikuvälja** — ja leping, mis seda eitab, on
-vale leping.
+**Juhtum kannab isikuandmeid** — ja leping, mis seda eitab, on vale leping. Lepingu eelmine
+versioon lahendas selle halvasti: ta pani sinna vabatekstilise `label`-i ja tunnistas ausalt,
+et töötaja kirjutab sinna nime. Aus, aga vale — **platvormil on selle jaoks juba kanooniline
+kuju** (L11) ja vabatekst oleks olnud kolmas paralleelne viis sama asja teha.
+
+Nüüd on klient esindatud sama mustriga, mis kannab `ServiceReferral`-i ja `NetworkShare`-i:
+kas platvormi kasutajana või **miinimumkujul** — kuvanimi võib olla initsiaal või roll, mitte
+täisandmestik. See ei kaota riski ära, aga ta teeb temast mõõdetava ja kustutatava
+(`clientErasedAt`) suuruse vabatekstiväljas peituva asemel.
 
 Sellepärast kehtib juhtumile sama kaitse, mis kannab täna tööheaolu ja kovisiooni:
 serveripoolne omanikupiir, mille alt **ka administraator ei näe sisu**. Õiguslikku alust juurde
@@ -119,6 +160,9 @@ juhtum ei laienda töötlust, ta korrastab selle.
 | L8 | **0 automaatset loomist.** Juhtumi loob alati inimene | muidu tekiks juhtumeid inimestest, keda töötaja pole vaadanudki |
 | L9 | **0 U1 sündmust, 0 teavitust V1-s** | ühe inimese privaatne töökorraldus |
 | L10 | **Meetodipeegli seos käib olemasolevast `PracticeReflection.sourceKind`/`sourceId`-st** — uut võtit ei lisata | mudel on koodis, seam olemas |
+| L11 | **Klienti esindab kahe raja muster, mitte vabatekst.** `clientUserId?` (platvormi kasutaja) VÕI miinimumkuju `clientDisplayName?` (initsiaal või roll) + `clientExternalRef?`; kustutus `clientErasedAt?` | omaniku otsus 04.08; `ServiceReferral` ja `NetworkShare` kannavad juba sama mustrit. Kolmas koopia oleks kolmas tõde |
+| L12 | **Kovisiooni seos on ühesuunaline** — juhtumist seemneni jah, seemnest juhtumini mitte | teemaseeme on deidentifitseeritud; tagasiviide tühistaks selle |
+| L13 | **K1 register saab adapteri, mitte teise juhtumi mõiste** — `WorkspaceKind.CASE_WORK` `RESERVED → SUPPORTED` | sama käik, mille `ORG_SPACE` tegi (registri kommentaar): üks kanooniline ajajoone- ja auditivõti |
 
 ---
 
@@ -136,10 +180,15 @@ juhtum ei laienda töötlust, ta korrastab selle.
 
 ### E1 — `CaseWorkAssist` (konteiner)
 
-Väljad ptk 12 järgi, mitte leiutatuna:
+Väljad ptk 12 järgi, **pluss sidumiskaardi punkt 2** (kliendi kahe raja muster):
 
-- `id` · `ownerUserId` · `label` · `preInquiryId?` · `externalSystem?` (`STAR2`) ·
-  `externalReference?` · `nextContactAt?` · `retentionState` (L7) · `createdAt` · `updatedAt`.
+- `id` · `ownerUserId` · `preInquiryId?` · `urgentRequestId?` (sidumiskaart 3) ·
+  `clientUserId?` · `clientDisplayName?` · `clientExternalRef?` · `clientErasedAt?` ·
+  `externalSystem?` (`STAR2`) · `externalReference?` · `nextContactAt?` ·
+  `retentionState` (L7) · `createdAt` · `updatedAt`.
+- **`label`-välja ei ole.** Kirjeldus ütles „juhtumi viide" ja lepingu eelmine versioon tegi
+  sellest vabateksti. Platvormil on selle jaoks juba kanooniline kuju ja seda ei leiutata
+  uuesti — vt L11.
 - Teenuskiht `lib/casework/caseWorkAssist.js` — **uus kaust**; `lib/casework/` täna EI OLE
   olemas. Genogrammi leping viitab talle kui olemasolevale — **see viide on aegunud, paranda
   oma raportis.**
@@ -149,7 +198,9 @@ Väljad ptk 12 järgi, mitte leiutatuna:
 ### E2 — Sidumine olemasolevaga (0 koopiat)
 
 - `CaseWorkItem`: `caseWorkAssistId` · `targetType` · `targetId` · `createdAt`, unikaalne kolmik.
-- `targetType` V1-s: `USER_DOCUMENT` · `AGENT_ARTIFACT` · `PRE_INQUIRY` · `FIELD_VISIT`.
+- `targetType` V1-s: `USER_DOCUMENT` · `AGENT_ARTIFACT` · `PRE_INQUIRY` · `FIELD_VISIT` ·
+  **`URGENT_REQUEST`** (sidumiskaart 3) · **`NETWORK_SHARE`** (sidumiskaart 4) ·
+  **`SERVICE_REFERRAL`** (sidumiskaart 5).
 - **L3 ja L4 on testiga lukus, mitte kommentaariga.**
 - Sihtobjekti kustutamine ei jäta rippuvat viidet.
 - **Mustandi ülekande seisu siia EI salvestata** — see on P2 (vt piir ülal).
@@ -161,7 +212,19 @@ Väljad ptk 12 järgi, mitte leiutatuna:
 - See on ptk 4.3 „puuduv ja kontrollimist vajav info" ja ptk 4.4 „puuduva info loend" —
   assistent hakkab teda lugema, mitte uuesti looma.
 
-### E4 — Vaade „Minu juhtumid"
+### E4 — K1 tööruumiregistri adapter (sidumiskaart 1)
+
+- `lib/workspaces/adapters/caseWorkAdapter.js` — read-only, omaniku-skoobitud, tagastab
+  `WorkspaceDescriptor[]` (muster: `orgSpaceAdapter.js`, `fieldVisitAdapter.js`).
+- `registry.js`: `WorkspaceKind.CASE_WORK` `RESERVED → SUPPORTED` koos adapteri nimega.
+- **Miks see etapp olemas on:** register kannab `CASE_WORK`-i juba täna reserveeritud kujul.
+  `ORG_SPACE` kommentaar registris ütleb, miks see oluline on — reserveeritud võti tähendab, et
+  objektil on **üks kanooniline ajajoone- ja auditivõti** (`workspaceKind` + `workspaceId`) ja
+  teist paralleelset mõistet ei teki. Kui JUHTUM-V1 selle vahele jätaks, tekiks juhtum, mida
+  platvormi enda tööruumikiht ei tunne.
+- `SUPPORTED_WORKSPACE_KINDS` muutub — kontrolli, et olemasolevad testid seda arvestavad.
+
+### E5 — Vaade „Minu juhtumid"
 
 - Loend: silt, järgmine kontakt, avatud punktide arv, retention-seis, viimane muudatus.
 - Ühe juhtumi vaade: seotud dokumendid ja artefaktid päritolumärgisega, avatud punktid,
@@ -171,7 +234,7 @@ Väljad ptk 12 järgi, mitte leiutatuna:
 - **NB `listCaseArtifacts` on `take: 100` ilma pagineerimiseta** — juhtumivaates kaoks 101.
   artefakt vaikselt. Kas pagineeri või piira päring juhtumi seotud ridadega.
 
-### E5 — Tõend
+### E6 — Tõend
 
 - **Sond `npm run case:probe` päris andmebaasi vastu.** Fake-prisma ei valideeri skeemi ega
   tõenda ligipääsupiiri (04.08 IDOR-i õppetund).
@@ -203,7 +266,13 @@ teavitused · merge ja deploy.
    `lib/workspaces/provenance.js` vastu; tundmatu väärtus lükatakse tagasi.
 6. **Rippuv viit:** sihtobjekti kustutamine eemaldab seose.
 7. **P2 piir:** `CaseWorkItem`-il ei ole ülekande- ega ülevaatuse seisu välja.
-8. **i18n:** ET/EN/RU pariteet, 0 hard-coded JSX-teksti.
+8. **L11 kliendi muster:** kirje, millel on korraga `clientUserId` ja `clientDisplayName`,
+   lükatakse tagasi; `clientErasedAt` peidab miinimumkuju väljad lugemisrajal.
+9. **L13 K1:** `CASE_WORK` on `SUPPORTED` ja tal on adapter; adapter on omaniku-skoobitud
+   (võõras → tühi) ja tagastab kehtiva `WorkspaceDescriptor`-i.
+10. **L12 kovisiooni suund:** juhtumilt seemneni viit on lubatud; seemnelt juhtumile viidet
+    ei eksisteeri üheski mudelis ega vastuses.
+11. **i18n:** ET/EN/RU pariteet, 0 hard-coded JSX-teksti.
 
 ---
 
@@ -216,7 +285,7 @@ teavitused · merge ja deploy.
 sviit fake-prismaga ei tõenda siin midagi. Võõra sessiooni dev-server pordil 3000 hoiab vana
 Prisma klienti — kasuta `next start -p 3100` retsepti (S11).
 
-**Valmis on siis, kui** E1–E5 on `main`-is, sond on roheline päris andmebaasi vastu, kaks
+**Valmis on siis, kui** E1–E6 on `main`-is, sond on roheline päris andmebaasi vastu, kaks
 töötajat on üksteise juhtumitest tõendatult pimedad, P2 piir on testiga lukus, ja
 `SotsiaalAI.md` S4.1 rida on liikunud TEGEMATA → TEHTUD.
 
