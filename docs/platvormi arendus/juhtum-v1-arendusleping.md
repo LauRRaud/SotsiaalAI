@@ -1,6 +1,6 @@
 # ÜLESANNE: `JUHTUM-V1` — juhtumi objekt (`CaseWorkAssist`)
 
-**Olek:** `READY_TO_ASSIGN` (v5, omaniku kolmanda auditi järel).
+**Olek:** **`READY_TO_ASSIGN`** — kinnitatud omaniku neljanda auditiga 06.08 (v6).
 **Perekond:** CASEWORK — **P7**. Ei ole P0/P1 (tehtud) ega P2 (vt piir allpool).
 **Teostus:** üks teema, etapid E1–E6. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
 worktree-kaustu ei tehta. **Push ja deploy ainult omaniku selgel loal**; merge'imist selles
@@ -16,7 +16,8 @@ mudelis ei toimu.
 | v2 | joondatud kirjeldusega: objekt on `CaseWorkAssist`, elutsükkel on **mustandi** peal (= CASEWORK-P2) |
 | v3 | **omaniku audit** — 7 blokeerivat vastuolu parandatud, kolm peidetud arhitektuuriotsust lukustatud, tulevased integratsioonid V1 vastuvõtukriteeriumidest välja |
 | v4 | **omaniku kordusaudit** — 5 blokeerivat: rada A kuvanimi (kõik oleksid olnud „Nimetu juhtum"), `authorId ≠ klient`, kliendiviite kustutus vs retention, retention-auditi mudel, aktiveerimisvärav. Lisaks 6 täpsustust |
-| **v5** | **omaniku kolmas audit** — 2 blokeerivat: (a) v4 keelas päritoluga juhtumil B-raja, mis muutis lähedase esitatud pöördumise puhul **tegeliku kliendi märkimise võimatuks**; (b) kliendiviite kustutamise auditil ei olnud salvestuskohta. Lisaks L19 sõnastus: lippude lahknemine ei ole „alati 404" |
+| v5 | **omaniku kolmas audit** — 2 blokeerivat: (a) v4 keelas päritoluga juhtumil B-raja, mis muutis lähedase esitatud pöördumise puhul **tegeliku kliendi märkimise võimatuks**; (b) kliendiviite kustutamise auditil ei olnud salvestuskohta. Lisaks L19 sõnastus: lippude lahknemine ei ole „alati 404" |
+| **v6** | **omaniku neljas audit** — 4 täpsustust: `clientExternalRef` STAR-i näide vastuolus omaenda reegliga · DoD viitas testile 36 (õige 37) · E6 p 11 viitas L11-le (õige L17) · **idempotentsus lukustatud kõrvalmõjudeni** (teine kutse ei loo teist auditirida). **Staatus kinnitatud.** |
 
 ---
 
@@ -183,7 +184,7 @@ Resolveri reeglid:
 | Rada A | `clientUserId` määratud → `clientDisplayName` ja `clientExternalRef` peavad olema `null` |
 | Rada B | `clientDisplayName` ja/või `clientExternalRef` määratud → `clientUserId` peab olema `null` |
 | Mõlemad puuduvad | **lubatud** — juhtum võib eksisteerida enne kliendiviite lisamist |
-| `clientExternalRef` ilma kuvanimeta | **lubatud** (nt ainult STAR-i number) |
+| `clientExternalRef` ilma kuvanimeta | **lubatud** (nt ainult välise kliendiregistri tunnus) |
 | `clientDisplayName` ilma välisviiteta | **lubatud** |
 | `clientErasedAt` | kehtib **mõlemale rajale**; on **süsteemioperatsioon** (L17), mitte vabalt kirjutatav väli |
 | Kustutamise semantika | väljad **nullitakse andmebaasis** (`clientUserId`, `clientDisplayName`, `clientExternalRef` → `null`), `clientErasedAt` jääb märkeks. Peitmisest ei piisa |
@@ -257,7 +258,7 @@ Eraldi operatsioon, mitte tavaline update. Auditi punkt 3: kustutamine oli korra
 | Teeb ühes tehingus | `clientUserId`, `clientDisplayName`, `clientExternalRef` → `null` |
 | `clientErasedAt` | määratakse **serveris** |
 | `retentionState` | **ei muutu** |
-| Idempotentne | jah — teine kutse ei ole viga |
+| Idempotentne | jah, ja **kõrvalmõjudeni välja**: kui `clientErasedAt` on juba määratud, tagastab operatsioon edu **ilma andmeid muutmata** ega loo uut `CaseWorkClientErasureAudit` **ega** `logDataAudit()` rida. Muidu oleks korduv kutse idempotentne ainult väljade, mitte auditijälje mõttes — ja konto kustutamise korduskatse tekitaks rea iga korra kohta |
 | Audit | `CaseWorkClientErasureAudit` (L21) — **oma mudel**, mitte retention-audit |
 | `clientUserId` FK | `onDelete: SetNull` — **aga sellest üksi EI PIISA**, sest see ei määra `clientErasedAt`-i |
 | Konto kustutamine | `lib/privacy/userDeletionOrchestrator.js` rada peab **kutsuma seda operatsiooni**, mitte lootma FK `SetNull`-ile. Sama muster, mis kannab `PreInquiry.authorErasedAt`-i |
@@ -484,7 +485,7 @@ sama `take: 100` ja **JUHTUM-V1 oma pinnad pagineeritakse ise** (E6).
 määramine ja eemaldamine · 4. STAR-i viite lisamine või muutmine · 5. seose lisamine ja
 eemaldamine · 6. puuduva info lisamine · 7. puuduva info staatuse muutmine · 8.
 retention-siire (L14) · 9. **pagineeritud** juhtumiloend · 10. detailvaade, kus ligipääsmatuid
-sihtobjekte ei näidata **ega loendata** · 11. kliendiviite kustutamine (L11).
+sihtobjekte ei näidata **ega loendata** · 11. kliendiviite kustutamine (L17).
 
 **Pagineerimine on kohustuslik JUHTUM-V1 oma loenditel** (adapter järgib K1 tava, vt E5).
 **Cursor vajab stabiilset sortimisvõtit** — ainult kuupäevast ei piisa, sest mitmel real võib
@@ -564,7 +565,8 @@ kasutajakataloogi sirvimine** (L11: rada A ainult päritoluobjekti autor) · gen
 
 19. lubatud `ACTIVE`, `READ_ONLY` **ja** `ARCHIVED` olekus
 20. nullib kõik kolm välja ja määrab `clientErasedAt`; `retentionState` ei muutu
-21. idempotentne — teine kutse ei ole viga
+21. idempotentne **kõrvalmõjudeni**: teine kutse tagastab edu, ei muuda andmeid ega loo teist
+    `CaseWorkClientErasureAudit` ega `logDataAudit()` rida
 22. **`CaseWorkClientErasureAudit` ei sisalda kustutatud nime ega välisviidet**; on append-only
     ja owner-skoobitud, admin saab 0 rida
 23. konto kustutamise rada kutsub operatsiooni (FK `SetNull` üksi jätaks `clientErasedAt`
@@ -615,7 +617,7 @@ Prisma klienti — kasuta `next start -p 3100` retsepti (S11).
 
 **Valmis on siis, kui** E1–E6 on `main`-is, sond on roheline päris andmebaasi vastu, kaks
 töötajat on üksteise juhtumitest tõendatult pimedad, P2 piir ja L20 CHECK-id on testiga lukus,
-**`CASEWORK_V1_ENABLED` on vaikimisi väljas ja seda tõendab test 36**, ja `SotsiaalAI.md` S4.1
+**`CASEWORK_V1_ENABLED` on vaikimisi väljas ja seda tõendab test 37**, ja `SotsiaalAI.md` S4.1
 rida on liikunud TEGEMATA → TEHTUD.
 
 **Push ja deploy ainult omaniku selgel loal.** Deploy'da tohib väravaga väljas — funktsiooni

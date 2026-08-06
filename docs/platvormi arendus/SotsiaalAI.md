@@ -97,9 +97,10 @@ sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja
 ### Käimasolev teema (06.08): JUHTUM-V1
 
 Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas juhtumi objekti
-blokeerivale küsimusele. Leping on kirjutatud:
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), olek `READY_TO_ASSIGN`, etapid
-E1–E6, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
+blokeerivale küsimusele. Leping on kirjutatud ja **läbinud neli omaniku auditit**:
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) — v6, olek **`READY_TO_ASSIGN`
+kinnitatud**, etapid E1–E6, 21 lukustatud otsust, 4 lahtist, 40 testilepingut, migratsioon jah.
+Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
