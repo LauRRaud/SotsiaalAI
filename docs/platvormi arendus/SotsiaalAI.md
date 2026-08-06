@@ -94,77 +94,34 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja `724d7680`
 (ainult dokumentatsioon). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
-### Käimasolev teema (06.08): JUHTUM-V1
+### Viimati tehtud (07.08): JUHTUM-V1 — juhtumi objekt
 
-Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas juhtumi objekti
-blokeerivale küsimusele. Leping on kirjutatud ja **läbinud neli omaniku auditit**:
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) — v6, olek **`READY_TO_ASSIGN`
-kinnitatud**, etapid E1–E6, 21 lukustatud otsust, 4 lahtist, 40 testilepingut, migratsioon jah.
-Vt S4.1 „Juhtumi objekt elutsükliga".
+**E1–E6 on tehtud, tervik on koodis ja peidus.** Leping
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6 (`READY_TO_ASSIGN`, 21
+lukustatud otsust, 40 testilepingut) on täidetud: skeem viie DB CHECK-iga, teenuskiht,
+seoseregister, puuduv info, K1 adapter (`case_work` `RESERVED → SUPPORTED`) ja pind
+**„Minu juhtumid" (`/juhtumid`)** üheteistkümne kasutusvooga. **Mida funktsioon inimese jaoks
+teeb, on S4.1 „Juhtumi objekt elutsükliga".**
 
-**E1–E5 on tehtud 06.08.** Tegemata on ainult **E6** (vaade + sondi laiendus).
+Väravad 07.08: `npm test` **2924/2924** · `i18n:check` OK · eslint puhas · `db:migrate:check`
+OK · `npm run build` OK · **`npm run case:probe` 81/81** päris andmebaasi ja **kahe päris
+sessiooni** vastu. Sondi E6 osa käib HTTP kaudu, mitte teenuskihi otsekutsega — ainult nii saab
+tõendada, et kaks töötajat on üksteise juhtumitest pimedad (04.08 IDOR-i õppetund). Brauseris
+päris sessiooniga läbi käidud loomine, puuduva info lisamine, kirjutuskaitse ja kliendiviite
+kustutamine; HTML tekstiväljas kuvatakse tekstina.
 
-**E1 — skeem:** viis tabelit, neli enum'i, migratsioon
-`20260806100000_juhtum_v1_case_work_assist` (129 kokku), **viis DB CHECK-i**. Seosemudel on
-typed-FK, mitte polümorfne, seega „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist ja
-kehtib ka otse-SQL kustutusel — sond tõendab seda just nii.
-
-**E2 — teenuskiht:** `lib/casework/` (flags, errors, `caseWorkAssist`). Omanikupiir on
-teenuskihis, mitte marsruudis; võõras ja olematu juhtum annavad mõlemad **404**. Kolm
-kirjutusrada kasutavad **tingimuslikku update'i**, mitte loe-siis-kirjuta mustrit, seega
-vahepealne retention-siire tapab kirjutuse. **Aktiveerimisvärav `CASEWORK_V1_ENABLED` on
-vaikimisi väljas** ja lahutab kaks otsust: deploy'da tohib, avamine vajab lisaks Õ2/Õ3
-kinnitust. Konto kustutamise rada kutsub nüüd `eraseCaseClientReference()` — FK `SetNull`
-üksi jätaks `clientErasedAt` määramata ja kustutus oleks jäljetu.
-
-**E3 — seoseregister:** `lib/casework/caseWorkItem.js`. Kandev otsus on, et ligipääsufilter on
-**päringus, mitte JS-is**: loend ja loendur kasutavad sama filtrit, sest kui nad lahku läheksid,
-ütleks vaade „3 seost" ja näitaks kahte — ja see vahe ise oleks leke. Sond kirjutab viida võõrale
-dokumendile **otse andmebaasi** ja tõendab, et teenuskiht ei tagasta teda ega loenda.
-
-**E4 — puuduv info:** `lib/casework/caseWorkMissingInfo.js`. Päritolu valideeritakse olemasoleva
-sõnastiku vastu; staatuse invariant kehtib **mõlemas suunas** (`resolvedAt` tuleb serverist,
-tagasi avamine nullib ta). Kirjutuskeeld laieneb **lastele**: `READ_ONLY` juhtumi punkte ei saa
-lisada, aga lugemine jääb alles.
-
-**E5 — K1 adapter:** `case_work` liikus `RESERVED → SUPPORTED`, sama käik mis `org_space` tegi.
-Pealkiri tuleb **samast `caseDisplayLabel()`-ist** mida kasutab liides, ja deskriptor **ei kanna
-`nextContactAt`-i** — järgmine kontakt on juhtumi sisu, mitte tööruumi metaandmed.
-
-Väravad: `npm test` **2899/2899**, `i18n:check` OK, eslint puhas, `db:migrate:check` OK,
-`npm run build` OK, **`npm run case:probe` 57/57 päris andmebaasi vastu**.
-
-**Funktsioon on koodis ja peidus** — värav väljas, liidest ei ole, tabelites 0 rida.
-Tegemata **E6**: vaade „Minu juhtumid" (11 operatsiooni, pagineerimine) + sondi laiendus.
+**Avamine on eraldi otsus.** `CASEWORK_V1_ENABLED` on vaikimisi väljas: siis vastab `/juhtumid`
+`notFound()`-iga, töölaual kaarti ei ole ja API on eristamatu olematust marsruudist. Deploy'da
+tohib väravaga väljas; **avamine vajab omaniku luba JA Õ2/Õ3 andmekaitseanalüüsi kinnitust**.
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
-kolme otsuse taga ja seda lepingusse ei neelata.
+kolme otsuse taga ja seda lepingusse ei neelatud.
 
-**Kirjeldus on vanem kui platvorm ja leping kannab selle vahe eraldi peatükina
-(„Sidumiskaart").** Kandvaim haakepunkt: `lib/workspaces/registry.js` kannab
-**`WorkspaceKind.CASE_WORK` seisus `RESERVED`** — K1 tööruumiregister ootab seda objekti juba
-täna, ja ilma selleta sünniks juhtum, mida platvormi enda tööruumikiht ei tunne.
-
-**Leping on 06.08 läbinud omaniku KAKS auditit ja on nüüd v4.** Esimene leidis 7 blokeerivat
-vastuolu (kandvaimad: `label` oli korraga „kandev väli" ja „ei ole olemas"; eelpöördumine oli
-seotud kahel paralleelsel viisil, mis oleks lubanud kahel tõel lahku minna). Teine leidis 5,
-millest ohtlikem oli vaikne: **rada A kuvanimi** — L11 nõuab platvormi kasutajaga seotud
-juhtumil, et vabatekstiväljad on tühjad, ja kuvafunktsioon ei näinud `clientUserId`-d, seega
-**kõik päris kasutajaga seotud juhtumid oleksid loendis olnud „Nimetu juhtum"**.
-
-Teine kandev parandus tuli mudelifaktist: v3 tõstis `authorId` automaatselt kliendiks. Ei
-`PreInquiry`-l ega `UrgentRequest`-il **ole kliendivälja** — mõlemal on ainult autor, ja
-pöördumise võib esitada lähedane või esindaja. Automaatne tuletus on maas; `clientUserId` on
-inimese teadlik valik ja tema ainus lubatud väärtus on päritoluobjekti autor.
-
-**Auditi kõrvalsaadus, mis ulatub sellest teemast kaugemale:** `PreInquiry` skeemikommentaar
-ütleb platvormi reegli välja — *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne
-`recipientId`… muidu kaob referentsiaalne terviklikkus."* Lepingu seosemudel on seetõttu
-**typed-FK, mitte polümorfne**, ja „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte
-rakenduse kustutusteede kaetusest. Kovisioon, meetodipeegel ja A4 märgis liikusid V1
-vastuvõtukriteeriumidest **tulevaste integratsioonipiiride** alla — neid nimetati, aga ei
-ehitatud, ja test ei tohi nõuda funktsiooni, mida leping ei ehita.
+**Platvormi reegel, mis sellest teemast kaugemale ulatub:** `PreInquiry` skeemikommentaar ütleb
+välja, et *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne `recipientId`… muidu
+kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte polümorfne**, ja
+„ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte rakenduse kustutusteede kaetusest.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -189,6 +146,7 @@ Tehtud järjekord:
 | ~~A2 toimetulekutoetuse eelkalkulaator~~ | **VALMIS 04.08** — vt S2 „Tehtud". Sabad: P2 checklist, P3 kontota versioon, P4 KOV piirmäärad |
 | **COLLAB-P4 võrgustiku vertikaal** (S4.1) | **V1–V4 TEHTUD 04.08 — vertikaal on suletud**: domeenikiht, ruum, 8 API-marsruuti, kliendi otsustussektsioon, töötaja koostamisvorm ja saaja vaade. **Rada tõendatud 04.08 kolme päris sessiooniga** ja selle käigus leitud + parandatud **IDOR**: iga töötaja sai luua jagamise võõrast eelpöördumisest. Leping on mustand ja ootab kinnitust ([`collab-p4-vorgustiku-vertikaal-ulesanne.md`](./collab-p4-vorgustiku-vertikaal-ulesanne.md)) |
 | **SOTSIAALKIIRABI-V1** (omaniku valik 05.08) | **E1–E6 TEHTUD 05.08 — tervik on koodis ja peidus.** Vt S2 „Tehtud" ja S5. Rada tõendatud päris andmebaasi ja päris sessioonidega, nelja identiteediga; brauseris läbi käidud pöörduja vorm, kriisiekraan, laua koondvaade ja admini laudade register. Aktiveerimine ootab partnerit — vt „Mis avab" allpool |
+| **JUHTUM-V1 juhtumi objekt** (omaniku valik 06.08) | **E1–E6 TEHTUD 07.08 — tervik on koodis ja peidus.** Vt eespool ja S4.1. Aktiveerimine vajab omaniku luba JA Õ2/Õ3 andmekaitseanalüüsi kinnitust |
 
 **Uus teema 05.08: A4 MTR/tegevusloa kontroll — E1–E6 tehtud, E7 otsuse taga.** Leping on v2 kujul olemas
 ([`a4-mtr-tegevusloa-kontroll-ulesanne.md`](./a4-mtr-tegevusloa-kontroll-ulesanne.md)) ja
@@ -710,8 +668,8 @@ teist aktiivset ametliku juhtumiplaani koopiat — ülekantud mustand muutub kir
 või arhiveerub säilitusreegli järgi.
 
 **Mis blokeerib:** üks eeldus — **juhtumi objekt** (allpool). Ilma selleta on assistendil laud,
-aga mitte seda, mille ümber laud käib. **06.08 seis: objekti analüüs on tehtud ja leping
-olemas, kood mitte.** Kui juhtumi selgroog on koodis, vajab assistent ainult oma lepingut —
+aga mitte seda, mille ümber laud käib. **07.08 seis: eeldus on täidetud — objekt on koodis
+(E1–E6), värav väljas.** Assistent vajab nüüd ainult oma lepingut —
 tema „puuduva info loend" ja „järgmised kontaktid" hakkavad lugema juhtumi objekti, mitte neid
 uuesti looma.
 
@@ -721,8 +679,8 @@ uuesti looma.
 
 *Lähtematerjal: `ideed.md` **ptk 12** (kontseptuaalne andmemudel — objekt on seal nimega
 `CaseWorkAssist`) + **ptk 4**. Leping:
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1–E5 tehtud 06.08, E6
-tegemata.** Skeem, teenuskiht, seosed, puuduv info ja K1 adapter on koodis; värav väljas, liidest ei ole, tabelites 0 rida.*
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1–E6 TEHTUD 07.08 — tervik
+on koodis ja peidus.** Värav `CASEWORK_V1_ENABLED` on vaikimisi väljas, tabelites 0 rida.*
 
 > **Selle rea juures puudus `Lähtematerjal:` viide ja see maksis kätte.** Naaberread
 > (assistent, võrgustikutöö, meetodite kataloog) kannavad kõik `ideed.md` peatüki numbrit;
@@ -730,42 +688,40 @@ tegemata.** Skeem, teenuskiht, seosed, puuduv info ja K1 adapter on koodis; vär
 > versioon kirjutati seetõttu kirjeldust lugemata, leiutades oma mudeli. Kirjeldus oli olemas.
 > **Iga uue S4.1 rea juurde käib `Lähtematerjal:` rida, ka siis, kui vastus on „ei ole".**
 
-Skeemis on **166 mudelit** ja **juhtumit nende hulgas ei ole** — ükski ptk 12 `CaseWork*` nimi
-ei ole koodis. On artefaktid — `CASE_SUMMARY`, `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`,
-`PRE_ASSESSMENT_SUMMARY` — ehk platvorm toodab juhtumi *dokumente*, aga ei hoia juhtumit ennast.
+**Mida see töötaja jaoks teeb.** „Minu juhtumid" on sotsiaaltöötaja ja teenuseosutaja **enda
+töökorralduse** pind. Juhtum on konteiner, mille ümber töö käib: tema küljes on kliendiviide
+(kas platvormi kasutaja või töötaja enda vabatekstiline märge — nt „perearst R" või välise
+registri tunnus), järgmise kontakti aeg, STAR-i viitenumber, seotud materjal ja loend sellest,
+**mis on puudu või kontrollimata**. Iga puuduva info punkt kannab päritolumärgist (kliendi
+öeldu · kliendi kinnitatud · dokumendist · teise spetsialisti info · töötaja tähelepanek ·
+töötaja tõlgendus · AI mustand · ametlikult kontrollitud) ja liigub lahtise, lahendatu ja
+„ei ole asjakohane" vahel; lahtised on loendis alati ees.
 
-**Parandus 06.08:** siin seisis varem, et puudub „elutsükkel juhtum → plaan → tegevused →
-ülevaatus → sulgemine". See sõnastus on eksitav ja ta eksitas. Kirjelduses (ptk 4.5) **ei ole
-elutsükkel juhtumi peal, vaid mustandi peal**: kaheksa elementi × seitse seisu (*mustand →
-vajab kliendiga kontrollimist → vajab dokumenti → töötaja kontrollitud → valmis kandmiseks →
-kantud → ei kanta*). **See ahel on CASEWORK-P2** ja ta on kolme otsuse taga (O-CW-2/4/10).
-Juhtumi objekt on **konteiner**, mitte olekumasin.
+**Juhtum seob olemasolevat — 0 rida ei kopeerita.** Siduda saab dokumendi, mustandi või
+välitöökäigu, ja ainult seda, mida töötaja niikuinii juba näeb; seos ise ei ava kunagi
+ligipääsu. Kui algobjekt kustub, kaob seos koos temaga, ja kättesaamatu seos ei ilmu ei
+loendisse ega loendurisse — vahe „3 seost, näidatakse kahte" oleks ise leke.
 
-**Blokeeriv küsimus sai 06.08 omanikult vastuse:** töötaja hoiab juhtumi seisu täna oma
-**dokumentides** ja talle serveris tagatud mahus (SOCIAL_WORKER 100 MB). Koht on seega olemas
-— juhtumi objekt ei too platvormile uut andmeliiki, ta annab struktuuri sellele, mis on juba
-siin.
+**Mis see ei ole.** Ei kliendiregister ega STAR-i vari: ametlik kandja jääb STAR-i ja platvorm
+ei paku „saada STAR2-sse", vaid oma töökorraldust. Juhtum on **rangelt isiklik** — kaks
+töötajat on üksteise juhtumitest täielikult pimedad (võõras juhtum vastab „ei leitud", mitte
+„ei tohi") ja admin ei näe sisu. Juhtumit ei anta üle ega kustutata. Kliendiotsingut ei ole:
+platvormi kasutaja saab kliendiks märkida ainult siis, kui ta ise selle pöördumise saatis.
 
-Struktuuri puudumine on mõõdetud, mitte oletatud: `UserDocument` ja `AgentArtifact` on mõlemad
-**lamedad ja owner-skoobitud**, indekseeritud ainult muutmisaja järgi, ja kummalgi ei ole ühtki
-välja, mis viitaks juhtumile või inimesele. **Kaks `CASE_SUMMARY` artefakti kahe eri inimese
-kohta erinevad ainult pealkirja tekstis.** Ainus koht, kus täna elab töötaja „järgmine samm",
-on `PreInquiry.nextContactOn` — ühe pöördumise, mitte juhtumi omadus, ja ta kaob koos
-pöördumise menetlemisega.
+**Elutsükkel on ühesuunaline:** aktiivne → kirjutuskaitstud → arhiveeritud. Põhjus on
+kohustuslik ja jääb auditisse, tagasiteed ei ole, ja kirjutuskaitse laieneb ka lastele —
+lugemine jääb alles. **Erand on kliendiviite kustutamine:** see töötab igas seisus, sest
+andmesubjekti õigus ei tohi jääda kirjutuskaitse taha kinni. Kustutatud viide kaob ka
+kuvanimest („Kustutatud kliendiviide") ega tule tagasi, ka mitte konto kustutamise rajalt —
+FK `SetNull` üksi jätaks jälje määramata.
 
-Leping ehitab **konteineri** ptk 12 väljadega: `ownerUserId`, `label`, `preInquiryId`,
-`externalSystem`/`externalReference` (STAR-i viide), `nextContactAt`, `retentionState` — pluss
-puuduva info loend (`CaseWorkMissingInfo`) ja viited olemasolevale. **0 kopeeritud rida.**
-Isikuvälju ei ole; kandev väli on töötaja enda vabatekstiline viide.
-
-Aus piirang on lepingus kirjas: `label` kannab praktikas ikkagi isikuandmeid, seega juhtum saab
-sama serveripoolse omanikupiiri, mis kannab täna tööheaolu ja kovisiooni — ka admin ei näe
-sisu. Õiguslik alus on olemasolev `WORKER_DATA_PROCESSING` raamleping; juhtum ei laienda
-töötlust, ta korrastab selle.
+Õiguslik alus on olemasolev `WORKER_DATA_PROCESSING` raamleping; **see on `LEGAL_ASSUMPTION`,
+mitte tõestatud fakt**, ja just seda lahutab aktiveerimisvärav: deploy'da tohib, avamine vajab
+lisaks andmekaitseanalüüsi kinnitust (Õ2/Õ3).
 
 Kolm otsust on lahtised (O-JU-1 säilitusreegel — **sama küsimus mis O-CW-2, küsi koos** ·
 O-JU-2 üleandmine kolleegile · O-JU-3 loomine eelpöördumisest ühe vajutusega), aga **ükski ei
-blokeeri ehitust**.
+blokeerinud ehitust** ja V1 vastab neile „ei".
 
 ---
 
@@ -1059,7 +1015,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P2–P6; **P7 = juhtumi objekt, leping 06.08** |
+| CASEWORK | P0–P7 | P2–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1228,7 +1184,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid | **juhtumi objekt elutsükliga puudub — leping olemas 06.08, kood mitte** (S4.1, `juhtum-v1-arendusleping.md`); STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud; STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata
