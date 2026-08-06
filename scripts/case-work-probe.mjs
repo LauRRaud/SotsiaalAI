@@ -48,6 +48,8 @@ import {
   removeMissingInfo,
   setMissingInfoStatus
 } from "../lib/casework/caseWorkMissingInfo.js";
+import { listCaseWorkWorkspaces } from "../lib/workspaces/adapters/caseWorkAdapter.js";
+import { WORKSPACE_KIND_REGISTRY, WorkspaceKind } from "../lib/workspaces/registry.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Sama värav mis A4 sondil —
    `NODE_ENV` üksi ei ole piisav, sest tootmisbaasi võib ühendada ka
@@ -650,6 +652,35 @@ try {
   check(
     "L14: lugemine jääb READ_ONLY juhtumis alles",
     (await listMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id })).items.length === 2
+  );
+
+  lines.push("");
+  lines.push("E5 — K1 tööruumiadapter");
+
+  check(
+    "register: `case_work` on SUPPORTED ja tal on adapter",
+    WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].status === "SUPPORTED" &&
+      WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].adapter === "caseWork"
+  );
+
+  const workspaces = await listCaseWorkWorkspaces(workerId);
+  check("adapter: tagastab omaniku juhtumid deskriptoritena", workspaces.length >= 3);
+  check(
+    "adapter: iga deskriptor on PRIVATE ja kannab `case_work` võtit",
+    workspaces.every((item) => item.visibility === "PRIVATE" && item.ref.kind === "case_work")
+  );
+  check("adapter: võõras saab tühja loendi", (await listCaseWorkWorkspaces(strangerId)).length === 0);
+
+  /* Kustutatud kliendiviitega juhtum (E2-s tühjendatud) peab kandma TÕLKEVÕTIT,
+     mitte vana nime — sama kuvanime-funktsioon mis liideses. */
+  const erasedWorkspace = workspaces.find((item) => item.ref.id === serviceCase.id);
+  check(
+    "adapter: kustutatud kliendiviide annab tõlkevõtme, mitte vana nime",
+    erasedWorkspace?.title === "casework.label.erased_client"
+  );
+  check(
+    "adapter: ükski deskriptor ei kanna järgmise kontakti kuupäeva",
+    workspaces.every((item) => item.nextAction === null)
   );
 } catch (error) {
   failures += 1;

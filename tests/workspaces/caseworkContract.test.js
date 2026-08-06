@@ -119,18 +119,20 @@ test("carrier class and STAR2 transfer dictionaries validate and fail closed on 
 // Registry — two new kinds reserved, supported list unchanged.
 // ---------------------------------------------------------------------------
 
-/* T21 P3: practice_reflection muutus SUPPORTED-iks (adapter olemas). case_work
-   jääb RESERVED kuni P2 STAR2-ülekanne selle avab. */
-test("registry keeps case_work reserved; practice_reflection is supported since P3", () => {
-  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].status, WorkspaceKindStatus.RESERVED);
+/* T21 P3: practice_reflection muutus SUPPORTED-iks (adapter olemas).
+   JUHTUM-V1 E5 (06.08): case_work SAI SAMUTI adapteri ja on nüüd SUPPORTED.
+   Varasem märge „jääb RESERVED kuni P2 STAR2-ülekanne selle avab" oli eksitav —
+   võtme avas juhtumi objekt ise (CASEWORK-P7), mitte ülekandeahel (P2). */
+test("registry: case_work and practice_reflection are both supported", () => {
+  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].status, WorkspaceKindStatus.SUPPORTED);
   assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].status, WorkspaceKindStatus.SUPPORTED);
-  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].adapter, null);
+  assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.CASE_WORK].adapter, "caseWork");
   assert.equal(WORKSPACE_KIND_REGISTRY[WorkspaceKind.PRACTICE_REFLECTION].adapter, "practiceReflection");
-  assert.ok(RESERVED_WORKSPACE_KINDS.includes("case_work"));
+  assert.ok(SUPPORTED_WORKSPACE_KINDS.includes("case_work"));
   assert.ok(SUPPORTED_WORKSPACE_KINDS.includes("practice_reflection"));
-  assert.equal(SUPPORTED_WORKSPACE_KINDS.includes("case_work"), false);
+  assert.equal(RESERVED_WORKSPACE_KINDS.includes("case_work"), false);
   assert.equal(RESERVED_WORKSPACE_KINDS.includes("practice_reflection"), false);
-  // Kuus algset adapterit + practice_reflection (T21 P3) + org_space (T25 viil A).
+  // Kuus algset adapterit + org_space (T25 viil A) + case_work (P7) + practice_reflection (P3).
   assert.deepEqual(SUPPORTED_WORKSPACE_KINDS, [
     "room",
     "covision_case",
@@ -139,6 +141,7 @@ test("registry keeps case_work reserved; practice_reflection is supported since 
     "mentoring_process",
     "field_visit",
     "org_space",
+    "case_work",
     "practice_reflection"
   ]);
 });
