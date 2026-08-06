@@ -786,6 +786,31 @@
       "CHECKLIST": "Checklist",
       "LETTER_DRAFT": "Letter draft",
       "OTHER": "Other"
+    },
+    "label": {
+      "erased_client": "Erased client reference",
+      "untitled": "Untitled case"
+    },
+    "errors": {
+      "not_found": "Case not found.",
+      "invalid_input": "The input is not valid.",
+      "conflict": "This action is not allowed in the current state.",
+      "client_track_conflict": "The client is either a platform account or a minimal reference, not both.",
+      "client_account_not_origin_author": "Only the person who sent the request can be linked as an account client.",
+      "client_reference_erased": "The client reference has been erased and is not restored.",
+      "display_name_too_long": "The display name is too long.",
+      "external_ref_too_long": "The client external reference is too long.",
+      "external_reference_incomplete": "The external system and reference always go together.",
+      "external_reference_too_long": "The external reference is too long.",
+      "external_system_unsupported": "That external system is not supported.",
+      "origin_conflict": "A case can have at most one origin.",
+      "origin_immutable": "The origin is set when the case is created and is not changed later.",
+      "origin_not_found": "The origin request was not found.",
+      "not_active": "The case is not active and cannot be changed.",
+      "reason_required": "A reason is required.",
+      "reason_too_long": "The reason is too long.",
+      "retention_transition_forbidden": "That state change is not allowed.",
+      "retention_unknown": "Unknown state."
     }
   },
   "common": {

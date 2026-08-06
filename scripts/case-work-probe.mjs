@@ -28,6 +28,13 @@
  */
 
 import { prisma } from "../lib/prisma.js";
+import {
+  createCaseWorkAssist,
+  eraseCaseClientReference,
+  getCaseWorkAssist,
+  transitionRetention,
+  updateCaseWorkAssist
+} from "../lib/casework/caseWorkAssist.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Sama värav mis A4 sondil —
    `NODE_ENV` üksi ei ole piisav, sest tootmisbaasi võib ühendada ka
@@ -74,6 +81,7 @@ async function expectRejected(label, fn) {
 
 let workerId = null;
 let clientId = null;
+let strangerId = null;
 let documentId = null;
 let artifactId = null;
 let fieldVisitId = null;
@@ -296,6 +304,104 @@ try {
     "audit: `actorKind = SYSTEM` rida ei vaja `actorUserId`-d",
     (await prisma.caseWorkClientErasureAudit.count({ where: { ownerUserId: workerId, actorUserId: null } })) >= 0
   );
+
+  lines.push("");
+  lines.push("E2 — teenuskiht päris andmebaasi vastu");
+
+  /* Teenuskiht on värava taga (L19) ja sond peab teda tõendama — seega lülitame
+     ta SELLE PROTSESSI jaoks sisse. Andmebaasi see ei muuda: värav elab
+     keskkonnamuutujas, mitte kirjes. */
+  process.env.CASEWORK_V1_ENABLED = "1";
+
+  const stranger = await prisma.user.create({
+    data: { email: `juhtum.sond.stranger.${runId}@sotsiaalai.test`, role: "SOCIAL_WORKER" }
+  });
+  strangerId = stranger.id;
+
+  const serviceCase = await createCaseWorkAssist({
+    ownerUserId: workerId,
+    clientDisplayName: "perearst R",
+    clientExternalRef: `REF-${runId}`
+  });
+  check("teenuskiht: juhtum luuakse ja kannab kuvanime", serviceCase.label?.text === "perearst R");
+
+  // Omanikupiir (L2): võõras saab 404, mitte 403 — ta ei tohi teada, et ID on olemas.
+  let strangerStatus = null;
+  try {
+    await getCaseWorkAssist({ ownerUserId: strangerId, id: serviceCase.id });
+  } catch (error) {
+    strangerStatus = error?.status ?? null;
+  }
+  check("omanikupiir: võõras töötaja saab 404", strangerStatus === 404);
+
+  // Retention-siire loob auditi SAMAS tehingus.
+  await transitionRetention({
+    ownerUserId: workerId,
+    id: serviceCase.id,
+    toState: "READ_ONLY",
+    reason: "sondi kontroll"
+  });
+  const audits = await prisma.caseWorkRetentionAudit.findMany({ where: { caseWorkAssistId: serviceCase.id } });
+  check(
+    "retention: siire kirjutas auditi samas tehingus",
+    audits.length === 1 && audits[0].fromState === "ACTIVE" && audits[0].toState === "READ_ONLY"
+  );
+
+  // READ_ONLY keelab kirjutamise — tingimuslik update, mitte loe-kontrolli-kirjuta.
+  let readOnlyStatus = null;
+  try {
+    await updateCaseWorkAssist({ ownerUserId: workerId, id: serviceCase.id, patch: { nextContactAt: new Date() } });
+  } catch (error) {
+    readOnlyStatus = error?.status ?? null;
+  }
+  check("retention: READ_ONLY juhtumit ei saa muuta (409)", readOnlyStatus === 409);
+
+  // Tagasisiiret ei ole.
+  let reverseStatus = null;
+  try {
+    await transitionRetention({ ownerUserId: workerId, id: serviceCase.id, toState: "ACTIVE", reason: "tagasi" });
+  } catch (error) {
+    reverseStatus = error?.status ?? null;
+  }
+  check("retention: tagasisiire READ_ONLY → ACTIVE keeldub", reverseStatus === 409);
+
+  await transitionRetention({
+    ownerUserId: workerId,
+    id: serviceCase.id,
+    toState: "ARCHIVED",
+    reason: "sondi arhiveerimine"
+  });
+
+  /* KUSTUTUS ON LUBATUD KA ARHIVEERITUD JUHTUMIS (L17 erand). Kirjutuskaitse
+     kaitseb töötaja tööd, mitte kolmanda isiku andmeid tema eest. */
+  const firstErase = await eraseCaseClientReference({
+    caseWorkAssistId: serviceCase.id,
+    actorUserId: workerId,
+    reason: "sondi kustutus"
+  });
+  const afterErase = await prisma.caseWorkAssist.findUnique({ where: { id: serviceCase.id } });
+  check(
+    "kustutus: lubatud ka ARCHIVED juhtumis ja nullib kõik kolm välja",
+    firstErase.changed === true &&
+      afterErase.clientDisplayName === null &&
+      afterErase.clientExternalRef === null &&
+      afterErase.clientUserId === null &&
+      afterErase.clientErasedAt !== null
+  );
+  check("kustutus: retention-seis EI muutu", afterErase.retentionState === "ARCHIVED");
+
+  const secondErase = await eraseCaseClientReference({
+    caseWorkAssistId: serviceCase.id,
+    actorUserId: workerId,
+    reason: "sondi kordus"
+  });
+  const erasureAudits = await prisma.caseWorkClientErasureAudit.count({
+    where: { caseWorkAssistId: serviceCase.id }
+  });
+  check(
+    "kustutus: IDEMPOTENTNE kõrvalmõjudeni — teine kutse ei loo teist auditirida",
+    secondErase.changed === false && erasureAudits === 1
+  );
 } catch (error) {
   failures += 1;
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);
@@ -308,6 +414,7 @@ try {
     if (artifactId) await prisma.agentArtifact.deleteMany({ where: { id: artifactId } });
     if (fieldVisitId) await prisma.fieldVisit.deleteMany({ where: { id: fieldVisitId } });
     if (clientId) await prisma.user.deleteMany({ where: { id: clientId } });
+    if (strangerId) await prisma.user.deleteMany({ where: { id: strangerId } });
     if (workerId) await prisma.user.deleteMany({ where: { id: workerId } });
 
     const leftovers =

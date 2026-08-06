@@ -786,6 +786,31 @@
       "CHECKLIST": "Kontrollnimekiri",
       "LETTER_DRAFT": "Kirja mustand",
       "OTHER": "Muu"
+    },
+    "label": {
+      "erased_client": "Kustutatud kliendiviide",
+      "untitled": "Nimetu juhtum"
+    },
+    "errors": {
+      "not_found": "Juhtumit ei leitud.",
+      "invalid_input": "Sisestus ei ole kehtiv.",
+      "conflict": "Toiming ei ole selles seisus lubatud.",
+      "client_track_conflict": "Klient saab olla kas platvormi kasutaja või miinimumkujul viide, mitte mõlemat korraga.",
+      "client_account_not_origin_author": "Kontoga kliendiks saab märkida ainult selle inimese, kes pöördumise ise saatis.",
+      "client_reference_erased": "Kliendiviide on kustutatud ja seda ei taastata.",
+      "display_name_too_long": "Kuvanimi on liiga pikk.",
+      "external_ref_too_long": "Kliendi välisviide on liiga pikk.",
+      "external_reference_incomplete": "Välise süsteemi nimi ja viide käivad alati koos.",
+      "external_reference_too_long": "Väline viide on liiga pikk.",
+      "external_system_unsupported": "Seda välist süsteemi ei toetata.",
+      "origin_conflict": "Juhtumil saab olla kõige rohkem üks päritolu.",
+      "origin_immutable": "Päritolu määratakse juhtumi loomisel ja seda hiljem ei muudeta.",
+      "origin_not_found": "Päritolupöördumist ei leitud.",
+      "not_active": "Juhtum ei ole aktiivne ja seda ei saa muuta.",
+      "reason_required": "Põhjus on kohustuslik.",
+      "reason_too_long": "Põhjus on liiga pikk.",
+      "retention_transition_forbidden": "See seisumuutus ei ole lubatud.",
+      "retention_unknown": "Tundmatu seis."
     }
   },
   "common": {
