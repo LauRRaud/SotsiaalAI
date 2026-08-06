@@ -12,13 +12,17 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
+import { getDashboardInfoContent } from "../../lib/dashboardInfoContent.js";
 import { PROVENANCES } from "../../lib/workspaces/provenance.js";
 
 const UI_FILES = [
   "../../components/casework/CaseWorkShell.jsx",
   "../../components/casework/CaseWorkDetail.jsx",
   "../../components/casework/caseWorkClient.js",
-  "../../app/juhtumid/page.jsx"
+  "../../app/juhtumid/page.jsx",
+  /* ⓘ juhend on osa pinnast: tema tekstid peavad olema kolmes keeles täpselt
+     samamoodi nagu nuppude omad. */
+  "../../lib/dashboardInfoContent.js"
 ];
 
 /* Teenuskihi veavõtmed jõuavad kasutajani pinna kaudu (`t(messageKey)`), seega
@@ -132,6 +136,59 @@ test("pind ei loo juhtumit automaatselt ega paku kustutust (L8, L16)", async () 
   for (const source of [shell, detail]) {
     assert.doesNotMatch(source, /caseWorkRequest\(`\/cases\/\$\{encodeURIComponent\(caseId\)\}`,\s*\{\s*method: "DELETE"/);
   }
+});
+
+test("pinnal on ⓘ juhend ja kiirmenüü kirje — pind ei ole kättesaadav ainult URL-i kaudu", async () => {
+  /* Kaks eri auku, mõlemad on platvormil varem juhtunud: pind ilma ⓘ-ta (info
+     puudub just seal, kus piirid on kõige olulisemad) ja pind ilma kiirmenüü
+     kirjeta (Teenuspäeviku ja `/org` muster — pind olemas, aga sinna sai ainult
+     URL-i käsitsi kirjutades). */
+  const shell = await readCode("../../components/casework/CaseWorkShell.jsx");
+  assert.match(shell, /usePanelInfoSlot\(\{ infoId: "casework" \}\)/, "ⓘ juhendit ei registreerita");
+
+  const dock = await readCode("../../components/room/RoomStage.jsx");
+  assert.match(dock, /isCaseWorkUiEnabled\(\)/, "kiirmenüü kirje ei ole lipu taga");
+  assert.match(dock, /key: "juhtumid".*href: "\/juhtumid"/, "kiirmenüü kirje puudub");
+  /* Roll on kirje tingimus: klient ja admin ei tohi näha ust, mille taga API
+     neile 403 vastab. */
+  assert.match(dock, /key: "juhtumid", zone: "juhtum", roles: SPECIALIST/);
+});
+
+test("ⓘ juhend on olemas, tõlgitud ja katab juhtumi piirid", async () => {
+  const messages = await readMessages("et");
+  /* `t` nagu päris rakenduses: võtme puudumine annaks tagasi võtme enda ja
+     just see paistaks ⓘ-s välja „casework.info.…" reana. */
+  const t = (key, fallback) => {
+    let current = messages;
+    for (const part of String(key).split(".")) {
+      if (!current || !Object.prototype.hasOwnProperty.call(current, part)) return fallback ?? key;
+      current = current[part];
+    }
+    return typeof current === "string" ? current : (fallback ?? key);
+  };
+
+  const info = getDashboardInfoContent(t, "casework");
+  assert.ok(info, "juhendit ei ole registris");
+  assert.equal(info.title, "Minu juhtumid");
+  assert.equal(info.details.length, 7, "juhend peab katma kõik seitse osa");
+
+  /* AINULT LAHENDATUD VÄLJAD. `resolveDetail` jätab `titleKey`/`itemKeys` ka
+     vastusesse alles, seega tervest objektist otsimine leiaks võtmed ka siis,
+     kui tõlge on täiesti korras — ja test läheks punaseks põhjusel, millel
+     kasutajaga pole pistmist. */
+  const rendered = [
+    info.title,
+    ...info.details.flatMap((section) => [section.title, section.body, ...(section.items || [])])
+  ]
+    .filter(Boolean)
+    .join("\n");
+  assert.doesNotMatch(rendered, /casework\.info\./, "ⓘ-s on tõlkimata võti");
+
+  /* KOLM PIIRI, mida kasutaja ei tohi ise avastama pidada. Kui keegi juhendit
+     lühendab, peavad just need üle jääma. */
+  assert.match(rendered, /STAR/);
+  assert.match(rendered, /Tagasiteed ei ole/);
+  assert.match(rendered, /rangelt isiklik/);
 });
 
 test("kliendiviite kustutamine jääb alles ka kirjutuskaitstud juhtumis (L17)", async () => {

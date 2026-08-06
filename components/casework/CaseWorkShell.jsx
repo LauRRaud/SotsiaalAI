@@ -21,6 +21,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 import CaseWorkDetail from "./CaseWorkDetail";
 import { caseLabelText, caseWorkRequest, fromLocalInputValue, retentionLabelKey } from "./caseWorkClient";
@@ -35,6 +36,14 @@ export default function CaseWorkShell() {
   const { t, locale } = useI18n();
   const { effectiveRole, isRoleResolved } = useEffectiveRole();
   const allowed = WORKER_ROLES.has(String(effectiveRole || "").toUpperCase());
+
+  /* ⓘ SISU TULEB LEHELT, mitte staatilisest marsruudikaardist. Juhend elab
+     `lib/dashboardInfoContent.js`-is võtme `casework` all ja avaneb kiirmenüüs
+     lehe nime kõrval. Ilma selle kutseta oleks pind ainus koht platvormil, kus
+     ⓘ vaikib — ja juhtumi piirid (ei ole register · ei anta üle · kliendiviite
+     kustutamine on lõplik) on täpselt see, mida ei tohi jätta kasutaja enda
+     avastada. */
+  usePanelInfoSlot({ infoId: "casework" });
 
   const [cases, setCases] = useState([]);
   const [nextCursor, setNextCursor] = useState(null);

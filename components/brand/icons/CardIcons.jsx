@@ -478,6 +478,16 @@ export const ServiceLogIcon = (props) => (
    ERINEV RoomsCardIcon-ist (inimrühm) ja ServiceProfileIcon-ist (ID-kaart):
    organisatsioon on ASUTUS, mille tööruumi sa sisened, mitte inimeste kogum
    ega kellegi profiil. */
+/* Juhtumid — kaustaklapp ja kaks rida: konteiner, mille ümber töö käib.
+   Kaust, mitte inimene: juhtum on töötaja töökorraldus, mitte kliendikirje. */
+export const CaseWorkIcon = (props) => (
+  <Svg {...props}>
+    <path {...P} d="M3.9 7.2a1.9 1.9 0 0 1 1.9-1.9h3.1l1.8 2.1h7.4a1.9 1.9 0 0 1 1.9 1.9v7.6a1.9 1.9 0 0 1-1.9 1.9H5.8a1.9 1.9 0 0 1-1.9-1.9V7.2Z" />
+    <path {...P} d="M8.3 12.5h5.4" />
+    <path {...P} d="M8.3 15.2h3.2" />
+  </Svg>
+);
+
 export const OrgIcon = (props) => (
   <Svg {...props}>
     <path {...P} d="M4 20h16" />
