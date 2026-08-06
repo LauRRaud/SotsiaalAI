@@ -1,6 +1,6 @@
 # ÜLESANNE: `JUHTUM-V1` — juhtumi objekt (`CaseWorkAssist`)
 
-**Olek:** `READY_TO_ASSIGN` (v4, omaniku kordusauditi järel).
+**Olek:** `READY_TO_ASSIGN` (v5, omaniku kolmanda auditi järel).
 **Perekond:** CASEWORK — **P7**. Ei ole P0/P1 (tehtud) ega P2 (vt piir allpool).
 **Teostus:** üks teema, etapid E1–E6. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
 worktree-kaustu ei tehta. **Push ja deploy ainult omaniku selgel loal**; merge'imist selles
@@ -15,7 +15,8 @@ mudelis ei toimu.
 | v1 | kirjutatud `ideed.md`-d lugemata — leiutas `CaseRecord`/`CaseLink`/`CaseOpenItem` ja juhtumi peal oleva elutsükli |
 | v2 | joondatud kirjeldusega: objekt on `CaseWorkAssist`, elutsükkel on **mustandi** peal (= CASEWORK-P2) |
 | v3 | **omaniku audit** — 7 blokeerivat vastuolu parandatud, kolm peidetud arhitektuuriotsust lukustatud, tulevased integratsioonid V1 vastuvõtukriteeriumidest välja |
-| **v4** | **omaniku kordusaudit** — 5 blokeerivat: rada A kuvanimi (kõik oleksid olnud „Nimetu juhtum"), `authorId ≠ klient`, kliendiviite kustutus vs retention, retention-auditi mudel, aktiveerimisvärav. Lisaks 6 täpsustust (L15 täismudel, L20 DB CHECK-id, stabiilne cursor, K1 pagineerimise piir, `clientExternalRef` vs `externalReference`, aus laienduslause) |
+| v4 | **omaniku kordusaudit** — 5 blokeerivat: rada A kuvanimi (kõik oleksid olnud „Nimetu juhtum"), `authorId ≠ klient`, kliendiviite kustutus vs retention, retention-auditi mudel, aktiveerimisvärav. Lisaks 6 täpsustust |
+| **v5** | **omaniku kolmas audit** — 2 blokeerivat: (a) v4 keelas päritoluga juhtumil B-raja, mis muutis lähedase esitatud pöördumise puhul **tegeliku kliendi märkimise võimatuks**; (b) kliendiviite kustutamise auditil ei olnud salvestuskohta. Lisaks L19 sõnastus: lippude lahknemine ei ole „alati 404" |
 
 ---
 
@@ -148,6 +149,7 @@ funktsiooni nähtavaks lülitamist päris kasutajatele.
 | **L18** | **Retention-audit on oma kitsas owner-skoobitud mudel**, mitte admini loetav `DataAuditLog` (allpool) |
 | **L19** | **Aktiveerimisvärav `CASEWORK_V1_ENABLED`, vaikimisi väljas** — `lib/serviceLog/flags.js` mustri järgi (allpool) |
 | **L20** | **Staatilised invariandid on ka DB CHECK-idena**, mitte ainult teenusekihis (allpool) |
+| **L21** | **Kliendiviite kustutusel on oma auditimudel** — retention-audit ei kanna teda (allpool) |
 
 ### L10 — `caseDisplayLabel(caseWorkAssist, resolvedClientName, t)`
 
@@ -218,6 +220,16 @@ viite ise. `clientUserId` määramine on **inimese teadlik valik**, mitte masina
 tema ainus lubatud väärtus on päritoluobjekti autor (L11), sest just seda inimest omanik selle
 juhtumi kontekstis juba näeb.
 
+**Päritolu olemasolu EI keela B-rada.** Kui pöördumise autor ei ole klient — lähedane,
+esindaja, teine spetsialist — või kui klient ei ole platvormi kasutajana kontrollitavalt
+seostatav, **sisestab töötaja käsitsi `clientDisplayName` ja/või `clientExternalRef`**. Seda ei
+tuletata automaatselt.
+
+*(v4 sisaldas siin vastuolu: rada A oli piiratud päritolu autoriga JA test keelas
+päritoluga juhtumil B-raja. Koos tähendas see, et lähedase esitatud pöördumise puhul ei saanud
+tegelikku klienti üldse märkida — täpselt see olukord, mille pärast automaatne tuletus üldse
+maha võeti.)*
+
 ### L14 — retention
 
 | Reegel | Väärtus |
@@ -246,7 +258,7 @@ Eraldi operatsioon, mitte tavaline update. Auditi punkt 3: kustutamine oli korra
 | `clientErasedAt` | määratakse **serveris** |
 | `retentionState` | **ei muutu** |
 | Idempotentne | jah — teine kutse ei ole viga |
-| Audit | tegija või süsteemne käivitaja · aeg · põhjus. **Kustutatud nime ega välisviite väärtust auditisse ei kirjutata** |
+| Audit | `CaseWorkClientErasureAudit` (L21) — **oma mudel**, mitte retention-audit |
 | `clientUserId` FK | `onDelete: SetNull` — **aga sellest üksi EI PIISA**, sest see ei määra `clientErasedAt`-i |
 | Konto kustutamine | `lib/privacy/userDeletionOrchestrator.js` rada peab **kutsuma seda operatsiooni**, mitte lootma FK `SetNull`-ile. Sama muster, mis kannab `PreInquiry.authorErasedAt`-i |
 
@@ -267,6 +279,34 @@ CaseWorkRetentionAudit
 - **append-only** — update- ja delete-API-t ei eksisteeri;
 - `reason` on plain text, trimmitud, piiratud pikkusega;
 - auditikirje luuakse **samas tehingus** retention-siirdega.
+
+### L21 — `CaseWorkClientErasureAudit`
+
+L17 nõuab kliendiviite kustutamisel auditit, aga `CaseWorkRetentionAudit` väljad
+(`fromState`/`toState`) on retention-siirde omad ja kustutus ei muuda olekut. **Kaks eri
+sündmust ei mahu ühte mudelisse.**
+
+**Olemasolev mehhanism ei sobi (kontrollitud 06.08):** `lib/privacy/audit.js` on ümbris
+`DataAuditLog` peal, mis on admini loetav — sama põhjus, mis välistas ta L18 juures.
+
+```
+CaseWorkClientErasureAudit
+- id · caseWorkAssistId · ownerUserId
+- actorUserId?          NULLABLE — süsteemne käivitaja ei ole kasutaja
+- actorKind             USER | SYSTEM
+- reason · createdAt
+```
+
+- **append-only**, owner-skoobitud, admin saab 0 rida;
+- **ei sisalda kustutatud väärtusi** — ei nime, ei välisviidet, ei kuvanime;
+- kirje luuakse **samas tehingus** kustutusega;
+- `actorUserId` on nullable, sest `lib/privacy/userDeletionOrchestrator.js` käivitab kustutuse
+  süsteemselt — `actorKind = SYSTEM`.
+
+**Platvormiülene vastutusjälg jääb alles, aga sisuta:** `logDataAudit()` saab lisaks
+**sisuvaba** rea (toiming + `resourceType` + `resourceId`), nagu `userDeletion.js` juba teeb.
+Sinna **ei lähe** `reason`, kustutatud väärtused ega kuvanimi — admin näeb, et kustutus
+toimus, mitte mida kustutati.
 
 ### L15 — `CaseWorkItem` on typed-FK
 
@@ -311,9 +351,11 @@ lubas.
 | `CASEWORK_V1_ENABLED` | **server**, loetakse päringu ajal — **see on ainus tõde** |
 | `NEXT_PUBLIC_CASEWORK_V1_ENABLED` | **UI**, küpsetatakse build'i — **tohib ainult PEITA, mitte avada** |
 
-Sama faili hoiatus kehtib siin sõna-sõnalt: `NEXT_PUBLIC_*` asendatakse bundle'is ehitamise
-hetkel, seega tema muutmine serveris ei mõju enne uut build'i; kui pooled lähevad lahku, on
-tagajärg alati „nupp on nähtav, API ütleb 404".
+Sama faili hoiatus kehtib siin: `NEXT_PUBLIC_*` asendatakse bundle'is ehitamise hetkel, seega
+tema muutmine serveris ei mõju enne uut build'i. **Lippude lahknemine tekitab ebajärjekindla
+kasutuskogemuse kummaski suunas** — UI `true` + server `false` = nupp on nähtav ja API keeldub;
+UI `false` + server `true` = nupp on peidus, aga API on lahti. **Turvalisuse ainus tõde on
+serverilipp**, ja just teine suund on põhjus, miks UI-lipp tohib ainult peita.
 
 - **Vaikimisi `false`.** Kogu väravaloogika käib ühest moodulist läbi (`lib/casework/flags.js`).
 - Värav katab: „Minu juhtumid" navigatsiooni · UI-marsruudid · create/update API-d ·
@@ -356,12 +398,14 @@ tagajärg alati „nupp on nähtav, API ütleb 404".
   piiratud pikkusega; sorteerimine `status`, siis `createdAt`.
 - `CaseWorkItem`: L15 mudel + CHECK.
 - `CaseWorkRetentionAudit`: L18 mudel, append-only.
+- `CaseWorkClientErasureAudit`: L21 mudel, append-only, `actorUserId` **nullable**.
 - **Indeksid:** `CaseWorkAssist(ownerUserId, updatedAt)` · `(ownerUserId, retentionState,
   updatedAt)` · `(ownerUserId, nextContactAt)` · FK-indeksid `preInquiryId`,
   `urgentRequestId`, `clientUserId` · `CaseWorkItem(caseWorkAssistId, createdAt)` + unikaalne
   `(caseWorkAssistId, userDocumentId)`, `(caseWorkAssistId, agentArtifactId)`,
   `(caseWorkAssistId, fieldVisitId)` · `CaseWorkMissingInfo(caseWorkAssistId, status)` ·
-  `CaseWorkRetentionAudit(caseWorkAssistId, createdAt)`.
+  `CaseWorkRetentionAudit(caseWorkAssistId, createdAt)` ·
+  `CaseWorkClientErasureAudit(caseWorkAssistId, createdAt)`.
 
 #### L20 — DB CHECK-id, mitte ainult teenusekiht
 
@@ -500,7 +544,8 @@ kasutajakataloogi sirvimine** (L11: rada A ainult päritoluobjekti autor) · gen
    ega detailvastuses
 7. mõlemat päritolu korraga ei saa määrata
 8. päritoluobjekt peab olema omaniku nähtavas skoobis
-9. päritoluga juhtumil ei saa kirjutada B-raja kliendiviidet
+9. **päritoluga juhtumil TOHIB kirjutada B-raja kliendiviite** — päritolu olemasolu ei keela
+   käsitsi sisestust (L12)
 10. päritolu ei ole `CaseWorkItem` sihttüübina olemas
 11. päritoluobjekti kustutamine → `SetNull`, juhtum säilib
 
@@ -520,40 +565,42 @@ kasutajakataloogi sirvimine** (L11: rada A ainult päritoluobjekti autor) · gen
 19. lubatud `ACTIVE`, `READ_ONLY` **ja** `ARCHIVED` olekus
 20. nullib kõik kolm välja ja määrab `clientErasedAt`; `retentionState` ei muutu
 21. idempotentne — teine kutse ei ole viga
-22. **audit ei sisalda kustutatud nime ega välisviite väärtust**
+22. **`CaseWorkClientErasureAudit` ei sisalda kustutatud nime ega välisviidet**; on append-only
+    ja owner-skoobitud, admin saab 0 rida
 23. konto kustutamise rada kutsub operatsiooni (FK `SetNull` üksi jätaks `clientErasedAt`
-    määramata)
+    määramata) ja kirje saab `actorKind = SYSTEM`, `actorUserId = null`
+24. `logDataAudit()` rida on **sisuvaba** — `reason` ega kustutatud väärtused sinna ei jõua
 
 **Kuvanimi (L10)**
 
-24. **rada A juhtum ei kuva „Nimetu juhtum"** — resolveri nimi võidab
-25. kustutatud kliendiviide võidab **kõik**, ka rada A resolveri nime
-26. kui kliendi profiil ei ole enam nähtav → „Nimetu juhtum", **mitte vana nimi**
-27. loendipäring lahendab nimed **hulgi** — N juhtumit ei tekita N päringut
-28. sama funktsioon annab sama tulemuse loendis, detailvaates ja adapteris
+25. **rada A juhtum ei kuva „Nimetu juhtum"** — resolveri nimi võidab
+26. kustutatud kliendiviide võidab **kõik**, ka rada A resolveri nime
+27. kui kliendi profiil ei ole enam nähtav → „Nimetu juhtum", **mitte vana nimi**
+28. loendipäring lahendab nimed **hulgi** — N juhtumit ei tekita N päringut
+29. sama funktsioon annab sama tulemuse loendis, detailvaates ja adapteris
 
 **Mudel ja terviklikkus**
 
-29. L20 iga DB CHECK eraldi: päritolu ≤ 1 · kliendi rajad · STAR mõlemad-või-kumbki ·
+30. L20 iga DB CHECK eraldi: päritolu ≤ 1 · kliendi rajad · STAR mõlemad-või-kumbki ·
     `clientErasedAt` nullib kõik · `CaseWorkItem` täpselt üks FK
-30. sihtobjekti kustutamine eemaldab seose **igal kolmel sihttüübil**
-31. `CaseWorkMissingInfo` `status`/`resolvedAt` invariant mõlemas suunas
-32. L5 päritolusõnastik: tundmatu väärtus lükatakse tagasi
-33. **P2 piir:** `CaseWorkItem`-il ega `CaseWorkAssist`-il ei ole ülekande- ega ülevaatuse
+31. sihtobjekti kustutamine eemaldab seose **igal kolmel sihttüübil**
+32. `CaseWorkMissingInfo` `status`/`resolvedAt` invariant mõlemas suunas
+33. L5 päritolusõnastik: tundmatu väärtus lükatakse tagasi
+34. **P2 piir:** `CaseWorkItem`-il ega `CaseWorkAssist`-il ei ole ülekande- ega ülevaatuse
     seisu välja
 
 **Liides, adapter ja värav**
 
-34. L13: `CASE_WORK` on `SUPPORTED`, adapter omaniku-skoobitud, descriptor E5 kuju järgi
-35. juhtumiloendi ja seoste pagineerimine **stabiilse cursor-võtmega** (sama ajatempliga read
+35. L13: `CASE_WORK` on `SUPPORTED`, adapter omaniku-skoobitud, descriptor E5 kuju järgi
+36. juhtumiloendi ja seoste pagineerimine **stabiilse cursor-võtmega** (sama ajatempliga read
     ei kordu ega kao)
-36. **L19: väravaga väljas ei ole JUHTUM-V1 kasutajale navigeeritav ega API kaudu kasutatav**
-37. HTML või skript tekstiväljas kuvatakse tekstina, mitte markup'ina
-38. i18n ET/EN/RU pariteet, 0 hard-coded JSX-teksti
+37. **L19: väravaga väljas ei ole JUHTUM-V1 kasutajale navigeeritav ega API kaudu kasutatav**
+38. HTML või skript tekstiväljas kuvatakse tekstina, mitte markup'ina
+39. i18n ET/EN/RU pariteet, 0 hard-coded JSX-teksti
 
 **Sond**
 
-39. sond keeldub tootmis- või tundmatu andmebaasi vastu käivitumast
+40. sond keeldub tootmis- või tundmatu andmebaasi vastu käivitumast
 
 ---
 
