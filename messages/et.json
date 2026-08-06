@@ -813,7 +813,11 @@
       "retention_unknown": "Tundmatu seis.",
       "target_type_unknown": "Tundmatu seose tüüp.",
       "target_not_found": "Seotavat objekti ei leitud.",
-      "target_already_linked": "See objekt on juhtumiga juba seotud."
+      "target_already_linked": "See objekt on juhtumiga juba seotud.",
+      "missing_info_text_required": "Puuduva info kirjeldus on kohustuslik.",
+      "missing_info_text_too_long": "Puuduva info kirjeldus on liiga pikk.",
+      "missing_info_status_unknown": "Tundmatu seis.",
+      "provenance_unknown": "Tundmatu info päritolu."
     }
   },
   "common": {

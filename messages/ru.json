@@ -813,7 +813,11 @@
       "retention_unknown": "Неизвестное состояние.",
       "target_type_unknown": "Неизвестный тип связи.",
       "target_not_found": "Объект для связывания не найден.",
-      "target_already_linked": "Этот объект уже связан со случаем."
+      "target_already_linked": "Этот объект уже связан со случаем.",
+      "missing_info_text_required": "Описание недостающей информации обязательно.",
+      "missing_info_text_too_long": "Описание недостающей информации слишком длинное.",
+      "missing_info_status_unknown": "Неизвестный статус.",
+      "provenance_unknown": "Неизвестное происхождение информации."
     }
   },
   "common": {

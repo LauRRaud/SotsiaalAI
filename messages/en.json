@@ -813,7 +813,11 @@
       "retention_unknown": "Unknown state.",
       "target_type_unknown": "Unknown link type.",
       "target_not_found": "The object to link was not found.",
-      "target_already_linked": "That object is already linked to the case."
+      "target_already_linked": "That object is already linked to the case.",
+      "missing_info_text_required": "A description of the missing information is required.",
+      "missing_info_text_too_long": "The description of the missing information is too long.",
+      "missing_info_status_unknown": "Unknown status.",
+      "provenance_unknown": "Unknown information provenance."
     }
   },
   "common": {

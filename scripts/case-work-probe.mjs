@@ -41,6 +41,13 @@ import {
   listCaseWorkItems,
   unlinkCaseWorkItem
 } from "../lib/casework/caseWorkItem.js";
+import {
+  addMissingInfo,
+  countOpenMissingInfo,
+  listMissingInfo,
+  removeMissingInfo,
+  setMissingInfoStatus
+} from "../lib/casework/caseWorkMissingInfo.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Sama värav mis A4 sondil —
    `NODE_ENV` üksi ei ole piisav, sest tootmisbaasi võib ühendada ka
@@ -551,6 +558,99 @@ try {
     linkReadOnlyStatus = error?.status ?? null;
   }
   check("L14: READ_ONLY juhtumisse ei saa seost lisada (409)", linkReadOnlyStatus === 409);
+
+  lines.push("");
+  lines.push("E4 — puuduv info");
+
+  const infoCase = await createCaseWorkAssist({ ownerUserId: workerId, clientDisplayName: "puuduva info juhtum" });
+  const first = await addMissingInfo({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    text: "Puudub sissetuleku tõend",
+    provenance: "DOKUMENDIST"
+  });
+  await addMissingInfo({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    text: "Vajab kliendiga kontrollimist",
+    provenance: "KLIENDI_OELDUD"
+  });
+  const third = await addMissingInfo({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    text: "Teise spetsialisti kinnitus",
+    provenance: "TEISE_SPETSIALISTI_INFO"
+  });
+
+  check(
+    "puuduv info: kolm lahtist punkti",
+    (await countOpenMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id })) === 3
+  );
+
+  const resolved = await setMissingInfoStatus({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    itemId: first.id,
+    status: "RESOLVED"
+  });
+  check("puuduv info: RESOLVED määrab `resolvedAt` serveris", resolved.resolvedAt instanceof Date);
+  check(
+    "puuduv info: lahendatud punkt kaob loendurist",
+    (await countOpenMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id })) === 2
+  );
+
+  const reopened = await setMissingInfoStatus({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    itemId: first.id,
+    status: "OPEN"
+  });
+  check("puuduv info: tagasi avamine NULLIB `resolvedAt`", reopened.resolvedAt === null);
+
+  /* SORTIMINE tugineb Postgresi enum'i deklaratsioonijärjekorrale — seda ei saa
+     fake-prismaga tõendada, aga just siin ta katki läheks, kui keegi enum'i
+     väärtusi ümber järjestaks. */
+  await setMissingInfoStatus({
+    ownerUserId: workerId,
+    caseWorkAssistId: infoCase.id,
+    itemId: third.id,
+    status: "NOT_APPLICABLE"
+  });
+  const ordered = await listMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id });
+  const statuses = ordered.items.map((item) => item.status);
+  check(
+    "puuduv info: lahtised enne lahendatuid (enum'i järjekord)",
+    statuses[0] === "OPEN" && statuses[1] === "OPEN" && statuses[2] === "NOT_APPLICABLE"
+  );
+
+  await removeMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id, itemId: third.id });
+  check(
+    "puuduv info: eemaldamine vähendab loendit",
+    (await listMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id })).items.length === 2
+  );
+
+  await transitionRetention({
+    ownerUserId: workerId,
+    id: infoCase.id,
+    toState: "READ_ONLY",
+    reason: "puuduva info lukk"
+  });
+  let infoReadOnlyStatus = null;
+  try {
+    await addMissingInfo({
+      ownerUserId: workerId,
+      caseWorkAssistId: infoCase.id,
+      text: "Ei tohi lisanduda",
+      provenance: "DOKUMENDIST"
+    });
+  } catch (error) {
+    infoReadOnlyStatus = error?.status ?? null;
+  }
+  check("L14: kirjutuskeeld laieneb LASTELE — READ_ONLY blokib punkti lisamise", infoReadOnlyStatus === 409);
+  check(
+    "L14: lugemine jääb READ_ONLY juhtumis alles",
+    (await listMissingInfo({ ownerUserId: workerId, caseWorkAssistId: infoCase.id })).items.length === 2
+  );
 } catch (error) {
   failures += 1;
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);
