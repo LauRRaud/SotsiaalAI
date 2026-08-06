@@ -102,7 +102,7 @@ blokeerivale küsimusele. Leping on kirjutatud ja **läbinud neli omaniku auditi
 kinnitatud**, etapid E1–E6, 21 lukustatud otsust, 4 lahtist, 40 testilepingut, migratsioon jah.
 Vt S4.1 „Juhtumi objekt elutsükliga".
 
-**E1 ja E2 on tehtud 06.08** (`5a8ce7d7`, `0e036a4c`).
+**E1–E5 on tehtud 06.08.** Tegemata on ainult **E6** (vaade + sondi laiendus).
 
 **E1 — skeem:** viis tabelit, neli enum'i, migratsioon
 `20260806100000_juhtum_v1_case_work_assist` (129 kokku), **viis DB CHECK-i**. Seosemudel on
@@ -117,11 +117,25 @@ vaikimisi väljas** ja lahutab kaks otsust: deploy'da tohib, avamine vajab lisak
 kinnitust. Konto kustutamise rada kutsub nüüd `eraseCaseClientReference()` — FK `SetNull`
 üksi jätaks `clientErasedAt` määramata ja kustutus oleks jäljetu.
 
-Väravad: `npm test` **2877/2877**, `i18n:check` OK, eslint puhas, `db:migrate:check` OK,
-`npm run build` OK, **`npm run case:probe` 33/33 päris andmebaasi vastu**.
+**E3 — seoseregister:** `lib/casework/caseWorkItem.js`. Kandev otsus on, et ligipääsufilter on
+**päringus, mitte JS-is**: loend ja loendur kasutavad sama filtrit, sest kui nad lahku läheksid,
+ütleks vaade „3 seost" ja näitaks kahte — ja see vahe ise oleks leke. Sond kirjutab viida võõrale
+dokumendile **otse andmebaasi** ja tõendab, et teenuskiht ei tagasta teda ega loenda.
+
+**E4 — puuduv info:** `lib/casework/caseWorkMissingInfo.js`. Päritolu valideeritakse olemasoleva
+sõnastiku vastu; staatuse invariant kehtib **mõlemas suunas** (`resolvedAt` tuleb serverist,
+tagasi avamine nullib ta). Kirjutuskeeld laieneb **lastele**: `READ_ONLY` juhtumi punkte ei saa
+lisada, aga lugemine jääb alles.
+
+**E5 — K1 adapter:** `case_work` liikus `RESERVED → SUPPORTED`, sama käik mis `org_space` tegi.
+Pealkiri tuleb **samast `caseDisplayLabel()`-ist** mida kasutab liides, ja deskriptor **ei kanna
+`nextContactAt`-i** — järgmine kontakt on juhtumi sisu, mitte tööruumi metaandmed.
+
+Väravad: `npm test` **2899/2899**, `i18n:check` OK, eslint puhas, `db:migrate:check` OK,
+`npm run build` OK, **`npm run case:probe` 57/57 päris andmebaasi vastu**.
 
 **Funktsioon on koodis ja peidus** — värav väljas, liidest ei ole, tabelites 0 rida.
-Tegemata **E3–E6**: seoseregister · puuduv info · K1 adapter · vaade + sondi laiendus.
+Tegemata **E6**: vaade „Minu juhtumid" (11 operatsiooni, pagineerimine) + sondi laiendus.
 
 Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
 olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
@@ -707,8 +721,8 @@ uuesti looma.
 
 *Lähtematerjal: `ideed.md` **ptk 12** (kontseptuaalne andmemudel — objekt on seal nimega
 `CaseWorkAssist`) + **ptk 4**. Leping:
-[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1–E2 tehtud 06.08, E3–E6
-tegemata.** Skeem ja teenuskiht on koodis; värav väljas, liidest ei ole, tabelites 0 rida.*
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md) v6. **E1–E5 tehtud 06.08, E6
+tegemata.** Skeem, teenuskiht, seosed, puuduv info ja K1 adapter on koodis; värav väljas, liidest ei ole, tabelites 0 rida.*
 
 > **Selle rea juures puudus `Lähtematerjal:` viide ja see maksis kätte.** Naaberread
 > (assistent, võrgustikutöö, meetodite kataloog) kannavad kõik `ideed.md` peatüki numbrit;
