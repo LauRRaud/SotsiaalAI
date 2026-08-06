@@ -89,10 +89,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-`main` = `origin/main`, tööpuu puhas. Üks tööpuu, üks haru.
-**Serveris on `8ab68f98`** (A4 deploy 05.08). `main` on temast ees ühe kande võrra —
-sondi koristuse parandus `1c99793e`, mis läheb välja järgmise deploy'ga.
-Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+`main` = `origin/main` = **`724d7680`**, tööpuu puhas. Üks tööpuu, üks haru.
+**Serveris on `8ab68f98`** (A4 deploy 05.08). `main` on temast ees **kahe kande võrra**:
+sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja `724d7680`
+(ainult dokumentatsioon). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+
+### Käimasolev teema (06.08): JUHTUM-V1
+
+Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas juhtumi objekti
+blokeerivale küsimusele. Leping on kirjutatud:
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), olek `READY_TO_ASSIGN`, etapid
+E1–E6, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -637,25 +644,46 @@ töösolevad mustandid, puuduva info loendi, kohtumise ettevalmistuse, STAR2 vii
 teist aktiivset ametliku juhtumiplaani koopiat — ülekantud mustand muutub kirjutuskaitstuks
 või arhiveerub säilitusreegli järgi.
 
-**Mis blokeerib:** analüüsimata on üks eeldus — **juhtumi objekt** (allpool). Ilma selleta
-on assistendil laud, aga mitte seda, mille ümber laud käib.
+**Mis blokeerib:** üks eeldus — **juhtumi objekt** (allpool). Ilma selleta on assistendil laud,
+aga mitte seda, mille ümber laud käib. **06.08 seis: objekti analüüs on tehtud ja leping
+olemas, kood mitte.** Kui juhtumi selgroog on koodis, vajab assistent ainult oma lepingut —
+tema „puuduva info loend" ja „järgmised kontaktid" hakkavad lugema juhtumi objekti, mitte neid
+uuesti looma.
 
 ---
 
 #### Juhtumi objekt elutsükliga
 
-*Koodis 0 rida. Analüüsimata — see küsimus tõstatati 03.08.*
+*Koodis 0 rida. **Analüüs tehtud ja leping kirjutatud 06.08** —
+[`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), `READY_TO_ASSIGN`.*
 
-Skeemis on 157 mudelit ja **juhtumit nende hulgas ei ole**. On artefaktid — `CASE_SUMMARY`,
+Skeemis on **166 mudelit** ja **juhtumit nende hulgas ei ole**. On artefaktid — `CASE_SUMMARY`,
 `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`, `PRE_ASSESSMENT_SUMMARY` — ehk platvorm toodab
 juhtumi *dokumente*, aga ei hoia juhtumit ennast. Elutsükkel juhtum → plaan → tegevused →
 ülevaatus → sulgemine puudub.
 
-See on olnud teadlik valik (ptk 4.7 ja 10: paralleelset kliendibaasi ei looda), aga valik
-tehti enne Teenuspäevikut ja org-kihti. Küsimus, mis vajab vastust: **kui töötaja peab
-juhtumi seisu ikkagi kuskil hoidma, siis kus ta seda täna hoiab?** Töötaja enda töökorralduse
-hoidmine ei ole registri dubleerimine — samamoodi nagu Teenuspäevik hoiab kirjeid, mis
-lõpuks STAR-i lähevad.
+**Blokeeriv küsimus sai 06.08 omanikult vastuse:** töötaja hoiab juhtumi seisu täna oma
+**dokumentides** ja talle serveris tagatud mahus (SOCIAL_WORKER 100 MB). Koht on seega olemas
+— juhtumi objekt ei too platvormile uut andmeliiki, ta annab struktuuri sellele, mis on juba
+siin.
+
+Struktuuri puudumine on mõõdetud, mitte oletatud: `UserDocument` ja `AgentArtifact` on mõlemad
+**lamedad ja owner-skoobitud**, indekseeritud ainult muutmisaja järgi, ja kummalgi ei ole ühtki
+välja, mis viitaks juhtumile või inimesele. **Kaks `CASE_SUMMARY` artefakti kahe eri inimese
+kohta erinevad ainult pealkirja tekstis.** Ainus koht, kus täna elab töötaja „järgmine samm",
+on `PreInquiry.nextContactOn` — ühe pöördumise, mitte juhtumi omadus, ja ta kaob koos
+pöördumise menetlemisega.
+
+Leping ehitab **õhukese selgroo**: silt, elutsükkel, järgmine samm, puuduva info loend ja
+viited olemasolevale — 0 kopeeritud rida. Isikuvälju juhtumil ei ole; kandev väli on töötaja
+enda vabatekstiline viide. Aus piirang on lepingus kirjas: `label` kannab praktikas ikkagi
+isikuandmeid, seega juhtum saab sama serveripoolse omanikupiiri, mis kannab täna tööheaolu ja
+kovisiooni — ka admin ei näe sisu. Õiguslik alus on olemasolev `WORKER_DATA_PROCESSING`
+raamleping; juhtum ei laienda töötlust, ta korrastab selle.
+
+Viis otsust (O-JU-1…5: säilitusaeg, kliendiviite väli, üleandmine, meetodipeegli seos,
+meeldetuletus) on lahtised, aga **ükski ei blokeeri ehitust** — igal on konservatiivne
+vaikeväärtus, mis avaneb lülitiga.
 
 ---
 
@@ -903,9 +931,9 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 8 | ~~Mikrofoninupu kolm keeldu eristatud tekstina~~ — **TEHTUD 03.08**: tellimus / loakeeld / puuduv seade / tehniline viga = neli eri teksti; tellimuseta nupp ei ole enam tumm | hääl (T03 E4) | tehtud |
 | 9 | VEST-L8 — RU/EN TTS kvaliteedierinevus. **Omanik valis 03.08 tasuta RU/EN pariteedi ees** — jääb hinnaotsusena lahti, mitte tegemata tööna | hääl | LÜLITI (`serverTtsLocales()`) |
 | 10 | ~~TartuNLP kolmanda TTS-pakkujana~~ — **KATSE TEHTUD 03.08**: kood on `/api/tts`-s `TARTUNLP_TTS_URL` taga, mõõdetud (0,7–1,3 s, 12 häält, aga 32-bit float WAV ≈ 20× Google'i maht). Vt S3 „Katse tulemus" | hääl | tehtud (katse) |
-| 11 | `ROOM_OWNERSHIP_TRANSFERRED` teavitus | COLLAB-P3 jääk | SABA |
+| 11 | ~~`ROOM_OWNERSHIP_TRANSFERRED` teavitus~~ — **KONTROLLITUD KOODIST 06.08: TEHTUD.** Tüüp, spec, ET/EN/RU tekstid ja test on olemas; `lib/rooms/lifecycleNotifications.js` on ühendatud transfer-marsruuti ja teavitab kõiki liikmeid peale algataja | ruumid | tehtud |
 | 12 | U1 mitme-osaleja audience-reegel — `lib/events/recipients.js` tunneb ainult `OWNER`/`AUTHOR`/`RECIPIENT_OWNER` | töölaud/teavitused | SABA |
-| 13 | Kvoodileke (`lib/storageGuardrails.js`) | PERF-P0 jääk | VIGA |
+| 13 | ~~Kvoodileke~~ — **KONTROLLITUD KOODIST 06.08: TEHTUD, ja viide oli vale.** `lib/storageGuardrails.js` on 43 rida puhtaid predikaate, seal ei saanud lekkida; leke oli `lib/research/jobStore.js` katkenud töö rajal ja `settleResearchUsage(…, "release", …)` kutsutakse nüüd, kaks testi lukustavad selle | PERF-P0 jääk | tehtud |
 | 14 | L3 renewals-timerid | PERF-P0 jääk | SABA |
 | 15 | L5 kuluajaloo retention | PERF-P0 jääk | SABA |
 | 16 | Teenusekaardi loendivaade / klasterdamine | teenusekaart | LISA |
@@ -916,7 +944,7 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 | 21 | Maksete recurring sisselülitamine — mõlemad rajad koodis olemas | maksed | **LÜLITI** |
 | 22 | Päris Maksekeskuse ost toodangus tõendamata | maksed | SABA (QA) |
 | 23 | Kovisiooni privaatne märkmik | kovisioon | LISA |
-| 24 | Lõuendireegel uues cvl-kestas rikutud | kovisioon | VIGA |
+| 24 | ~~Lõuendireegel uues cvl-kestas rikutud~~ — **KONTROLLITUD KOODIST 06.08: TEHTUD.** `.cvl-shell` kannab reeglit „kest EI keri" ja `.cvl-canvas` `min-height` on 0; parandus tuli jaamalennu tööga | kovisioon | tehtud |
 | 25 | TK-P0 jagamispiir — **kontrollimata, ei tea kummaski suunas** | teekond | kontrolli enne liigitamist |
 | 26 | ~~Privaatsustingimused ei nimeta TartuNLP-d volitatud töötlejana~~ — **TEHTUD 03.08**: §5 nimetab TartuNLP eesti ettelugemise juures, ET/EN/RU; `PRIVACY_VERSION` → `2026-08-03`. Juristi sisukinnitus puudub endiselt (kehtib kogu dokumendi kohta) | juriidiline | tehtud |
 | 27 | ~~Art. 28 andmetöötlusleping TartuNLP-ga~~ — **SULETUD 03.08**: kasutusluba on omaniku kinnitusel olemas; paberitöö läks T27 juristi-kinnituste korvi (S10) | juriidiline | viidud T27-sse |
@@ -949,7 +977,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P6 | P2–P6 |
+| CASEWORK | P0–P7 | P2–P6; **P7 = juhtumi objekt, leping 06.08** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -968,6 +996,12 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 **Aus piirang:** neist 122-st kontrollisin koodist ~25. Ülejäänute seis pärineb
 dokumentidest ja **võib olla sama vananenud nagu A/B/C register oli** — täielik
 kontrollpass on ise eraldi töö ja seda ei ole tehtud.
+
+**06.08 mõõt selle piirangu kohta: kontrollisin S4.2-st kolme rida ja kõik kolm olid
+aegunud** (nr 11, 13, 24 — kõik juba tehtud, nr 13-l oli lisaks vale failiviide). Valim on
+väike ja teadlikult juhuslik, aga suund on selge: **lahtiste ridade nimekiri on pessimistlik,
+mitte optimistlik.** Enne ükskõik millise S4.2 rea kallale asumist kontrolli ta koodist —
+tõenäosus, et töö on juba tehtud, ei ole väike.
 
 ---
 
@@ -1112,7 +1146,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid | **juhtumi objekt elutsükliga puudub** (S4.1); STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid | **juhtumi objekt elutsükliga puudub — leping olemas 06.08, kood mitte** (S4.1, `juhtum-v1-arendusleping.md`); STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata
@@ -1163,7 +1197,7 @@ teistele. Kogutud praktika ei kao inimesega koos ära.
 
 | Teema | Mis töötab | Lahtised sabad |
 |---|---|---|
-| Kovisioon | 8 etappi, lõuend, privaatne pind, osutaja saab luua | privaatne märkmik puudub; lõuendireegel uues kestas rikutud (S4.2 nr 23–24) |
+| Kovisioon | 8 etappi, lõuend, privaatne pind, osutaja saab luua, lõuendireegel terve | privaatne märkmik puudub (S4.2 nr 23) |
 | Supervisioon | V1 tervikuna | SUP-P1…P11 täismudel; autenditud läbiv voog tõendamata |
 | Mentorlus | kood tervikuna | ESTA mentorite individuaalsed nõusolekud — partner, mitte kood |
 | Meetodipeegel | refleksioonikirje, faktid vs tõlgendused, vahehindamine | sekkumispäevik, meetodite kataloog, meetodi valimise assistent, kliendi tagasiside, arenguvaade (S4.1) |
@@ -1202,7 +1236,7 @@ alles jääb see, millega inimene tegelikult nõustus.
 
 | Mis töötab | Lahtised sabad |
 |---|---|
-| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog kolmes keeles | **nõusolekupere on terve — kõik neli viga parandatud**; päris-egress QA; `ROOM_OWNERSHIP_TRANSFERRED` teavitus; ruumi elutsükli miinimum |
+| ruumid, liikmelisus, kokkuvõtte kinnitusring, helikõned, salvestuse nõusolekuvoog kolmes keeles, omanikuvahetuse teavitus | **nõusolekupere on terve — kõik neli viga parandatud**; päris-egress QA; ruumi elutsükli miinimum |
 
 ---
 
