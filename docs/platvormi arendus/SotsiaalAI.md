@@ -106,12 +106,23 @@ olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett
 kolme otsuse taga ja seda lepingusse ei neelata.
 
 **Kirjeldus on vanem kui platvorm ja leping kannab selle vahe eraldi peatükina
-(„Sidumiskaart").** Kuus haakepunkti on vahepeal koodi tekkinud, neist kandvaim:
-`lib/workspaces/registry.js` kannab **`WorkspaceKind.CASE_WORK` seisus `RESERVED`** — K1
-tööruumiregister ootab seda objekti juba täna, ja ilma selleta sünniks juhtum, mida platvormi
-enda tööruumikiht ei tunne. Teine: klient esindatakse **olemasoleva kahe raja mustriga**
-(`ServiceReferral`, `NetworkShare`, omaniku otsus 04.08), mitte vabatekstiga. Kolm teadlikku
-MITTE-seost on samuti kirjas: Teekond, tööheaolu ja A2 kalkulaator.
+(„Sidumiskaart").** Kandvaim haakepunkt: `lib/workspaces/registry.js` kannab
+**`WorkspaceKind.CASE_WORK` seisus `RESERVED`** — K1 tööruumiregister ootab seda objekti juba
+täna, ja ilma selleta sünniks juhtum, mida platvormi enda tööruumikiht ei tunne.
+
+**Leping on 06.08 läbinud omaniku auditi ja on nüüd v3.** Audit leidis 7 blokeerivat vastuolu,
+millest kandvaimad kaks olid: `label`-väli oli korraga „kandev väli" ja „ei ole olemas", ning
+eelpöördumine oli seotud kahel paralleelsel viisil (otseväli + üldseos), mis oleks lubanud
+kahel tõel lahku minna. Auditi järel on lukustatud kolm varem peidetud arhitektuuriotsust:
+päritoluseose kardinaalsus, retention-siirete graaf ja kliendiviite täielik invariant.
+
+**Auditi kõrvalsaadus, mis ulatub sellest teemast kaugemale:** `PreInquiry` skeemikommentaar
+ütleb platvormi reegli välja — *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne
+`recipientId`… muidu kaob referentsiaalne terviklikkus."* Lepingu seosemudel on seetõttu
+**typed-FK, mitte polümorfne**, ja „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte
+rakenduse kustutusteede kaetusest. Kovisioon, meetodipeegel ja A4 märgis liikusid V1
+vastuvõtukriteeriumidest **tulevaste integratsioonipiiride** alla — neid nimetati, aga ei
+ehitatud, ja test ei tohi nõuda funktsiooni, mida leping ei ehita.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -1371,7 +1382,7 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 
 1. **Töö käib otse `main`-is.** Harusid ega worktree-kaustu ei tehta. Üks teema korraga.
 2. **Väravad enne igat commit'i:** `npm test`, `npm run i18n:check`, eslint muudetud failidel; skeemimuudatusel `npm run db:migrate:check`.
-3. **Merge ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta.
+3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
 4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
 5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
 6. **Ära korda teostaja teste, build'i ega auditeid**, kui lõpparuanne juba sisaldab nende tulemusi.
