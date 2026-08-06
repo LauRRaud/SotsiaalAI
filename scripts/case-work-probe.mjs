@@ -20,13 +20,27 @@
  *   4. unikaalindeksid piiravad ainult päris seoseid: mitu `NULL`-iga rida elab
  *      kõrvuti (Postgres ei loe NULL-e võrdseks).
  *
+ * ETAPP E6 tõendab sama asja MARSRUUDIKIHIS ja kahe PÄRIS sessiooniga:
+ *   5. üksteist kasutusvoogu käivad läbi HTTP, mitte teenuskihi otsekutse —
+ *      värav, sessioon, roll ja päringupiirang on siis ka tõendatud;
+ *   6. kaks töötajat on üksteise juhtumitest PIMEDAD (04.08 IDOR-i õppetund:
+ *      see viga oli koodis ja ükski üheseansiline test ei näinud teda).
+ *
  * Andmed on sünteetilised ja sond koristab enda järelt ära. Päris kasutajate
  * sisu ta ei loe ega puutu (töökorra reegel 4).
  *
  * Käivitamine:
  *   npm run case:probe
+ *
+ * E6 osa vajab TÖÖTAVAT serverit, mis kasutab SAMA andmebaasi ja millel on
+ * serverivärav sees (vaikimisi on ta väljas):
+ *   CASEWORK_V1_ENABLED=1 npx next start -p 3100
+ *   CASE_PROBE_BASE_URL=http://localhost:3100 npm run case:probe
  */
 
+import { randomBytes } from "node:crypto";
+
+import { hashOpaqueToken } from "../lib/auth/pin-login.js";
 import { prisma } from "../lib/prisma.js";
 import {
   createCaseWorkAssist,
@@ -92,6 +106,95 @@ async function expectRejected(label, fn) {
     const isConstraint = /constraint|chk|check/i.test(message);
     check(label, isConstraint, isConstraint ? "" : `vale veapõhjus: ${message.slice(0, 120)}`);
   }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────
+   E6 — PÄRIS SESSIOONID HTTP KAUDU
+   ──────────────────────────────────────────────────────────────────────────── */
+
+const baseUrl = (process.env.CASE_PROBE_BASE_URL || "http://localhost:3000").replace(/\/+$/, "");
+
+/**
+ * Küpsisepurk MÄLUS, üks iga sessiooni kohta.
+ *
+ * MIKS MITTE FAILI: leping lubab küpsisefailid ajutisse kausta, aga mällu
+ * jäänud sessioon ei saa põhimõtteliselt kogemata commit'i sattuda ega üle elada
+ * protsessi lõppu. Kaks ERALDI purki on kandev nõue — jagatud purk tähendaks, et
+ * teine sessioon kirjutab esimese üle ja „kaks töötajat" oleks tegelikult üks.
+ */
+function makeCookieJar() {
+  const jar = new Map();
+  return {
+    header: () => [...jar].map(([name, value]) => `${name}=${value}`).join("; "),
+    absorb(response) {
+      for (const raw of response.headers.getSetCookie?.() || []) {
+        const [pair] = raw.split(";");
+        const index = pair.indexOf("=");
+        if (index < 1) continue;
+        const name = pair.slice(0, index).trim();
+        const value = pair.slice(index + 1).trim();
+        if (!value) jar.delete(name);
+        else jar.set(name, value);
+      }
+    }
+  };
+}
+
+async function apiFetch(path, { jar = null, method = "GET", body = null } = {}) {
+  const response = await fetch(`${baseUrl}${path}`, {
+    method,
+    redirect: "manual",
+    headers: {
+      ...(jar ? { cookie: jar.header() } : {}),
+      ...(body ? { "content-type": "application/json" } : {})
+    },
+    ...(body ? { body: JSON.stringify(body) } : {})
+  });
+  if (jar) jar.absorb(response);
+  let payload = null;
+  try {
+    payload = await response.json();
+  } catch {
+    payload = null;
+  }
+  return { status: response.status, body: payload || {} };
+}
+
+/**
+ * Päris sessioon ILMA PIN-ita: ühekordne login-token kirjutatakse otse
+ * andmebaasi ja vahetatakse `credentials` provideri kaudu sessiooniküpsise
+ * vastu. Nii ei ole sondil vaja ühtki saladust ei koodis ega keskkonnas — ja
+ * PIN-i, mida ei ole, ei saa ka kogemata logida.
+ */
+async function signIn(userId) {
+  const rawToken = randomBytes(24).toString("hex");
+  await prisma.loginTempToken.create({
+    data: { userId, tokenHash: hashOpaqueToken(rawToken), expiresAt: new Date(Date.now() + 10 * 60 * 1000) }
+  });
+
+  const jar = makeCookieJar();
+  const csrfResponse = await fetch(`${baseUrl}/api/auth/csrf`);
+  jar.absorb(csrfResponse);
+  const { csrfToken } = await csrfResponse.json();
+
+  const form = new URLSearchParams({
+    csrfToken,
+    temp_login_token: rawToken,
+    callbackUrl: `${baseUrl}/vestlus`,
+    json: "true"
+  });
+  const loginResponse = await fetch(`${baseUrl}/api/auth/callback/credentials`, {
+    method: "POST",
+    redirect: "manual",
+    headers: { "content-type": "application/x-www-form-urlencoded", cookie: jar.header() },
+    body: form.toString()
+  });
+  jar.absorb(loginResponse);
+
+  /* Sessiooni OLEMASOLU ei eeldata, vaid küsitakse serverilt: küpsis võib olla
+     purgis ja ikkagi mitte kehtida. */
+  const session = await apiFetch("/api/auth/session", { jar });
+  return { jar, userId: session.body?.user?.id || null };
 }
 
 let workerId = null;
@@ -682,6 +785,286 @@ try {
     "adapter: ükski deskriptor ei kanna järgmise kontakti kuupäeva",
     workspaces.every((item) => item.nextAction === null)
   );
+
+  lines.push("");
+  lines.push(`E6 — marsruudid ja pind PÄRIS sessioonidega (${baseUrl})`);
+
+  let serverUp = false;
+  try {
+    const health = await fetch(`${baseUrl}/api/auth/csrf`, { signal: AbortSignal.timeout(5000) });
+    serverUp = health.ok;
+  } catch {
+    serverUp = false;
+  }
+
+  if (!serverUp) {
+    /* MITTE VAIKNE VAHELEJÄTMINE. Kui E6 osa jääks tegemata ja sond ütleks
+       ikka „OK", tähendaks roheline tulemus midagi muud kui eile — ja just seda
+       vahet keegi hiljem ei märka. */
+    check(
+      "server vastab ja E6 vooge saab tõendada",
+      false,
+      `käivita server väravaga sees (CASEWORK_V1_ENABLED=1 npx next start -p 3100) ja anna CASE_PROBE_BASE_URL`
+    );
+  } else {
+    const workerSession = await signIn(workerId);
+    const strangerSession = await signIn(strangerId);
+    check(
+      "kaks päris sessiooni, eraldi küpsisepurgid",
+      workerSession.userId === workerId &&
+        strangerSession.userId === strangerId &&
+        workerSession.userId !== strangerSession.userId,
+      `${workerSession.userId ? "" : "töötaja sessioon puudub "}${strangerSession.userId ? "" : "teine sessioon puudub"}`
+    );
+
+    const workerJar = workerSession.jar;
+    const listProbe = await apiFetch("/api/casework/cases", { jar: workerJar });
+
+    if (listProbe.status === 404) {
+      /* Väljas värav vastab 404-ga ka kehtiva sessiooniga — see ON õige
+         käitumine (L19), aga siis ei saa üheski voos vahet teha „keelatud" ja
+         „olematu" vahel, ja E6 jääks tõendamata. */
+      check(
+        "serveri värav on E6 tõendamiseks sees",
+        false,
+        "server vastab 404 — CASEWORK_V1_ENABLED on selle serveri protsessis väljas"
+      );
+    } else {
+      const anonymous = await apiFetch("/api/casework/cases");
+      check("sessioonita päring ei pääse ligi (401)", anonymous.status === 401, `staatus ${anonymous.status}`);
+      check("sessiooniga töötaja saab loendi (200)", listProbe.status === 200, `staatus ${listProbe.status}`);
+
+      // ── 1. Juhtumi käsitsi loomine ─────────────────────────────────────────
+      const createdA = await apiFetch("/api/casework/cases", {
+        jar: workerJar,
+        method: "POST",
+        body: { clientDisplayName: `sondi juhtum A ${runId}` }
+      });
+      const createdB = await apiFetch("/api/casework/cases", {
+        jar: workerJar,
+        method: "POST",
+        body: { clientDisplayName: `sondi juhtum B ${runId}` }
+      });
+      const caseIdA = createdA.body?.case?.id || null;
+      const caseIdB = createdB.body?.case?.id || null;
+      check(
+        "1. juhtumi loomine annab 201 ja kuvanime",
+        createdA.status === 201 && createdA.body?.case?.label?.text === `sondi juhtum A ${runId}`,
+        `staatus ${createdA.status}`
+      );
+
+      // ── 9. Pagineeritud loend stabiilse cursor'iga ─────────────────────────
+      const page1 = await apiFetch("/api/casework/cases?limit=1", { jar: workerJar });
+      const page2 = await apiFetch(`/api/casework/cases?limit=1&cursor=${encodeURIComponent(page1.body?.nextCursor || "")}`, {
+        jar: workerJar
+      });
+      check(
+        "9. pagineeritud loend: kaks lehte, kaks ERI rida, cursor liigub",
+        page1.body?.items?.length === 1 &&
+          page2.body?.items?.length === 1 &&
+          page1.body.items[0].id !== page2.body.items[0].id
+      );
+
+      // ── 2.–4. Põhiandmed, järgmine kontakt, STAR-i viide ───────────────────
+      const patched = await apiFetch(`/api/casework/cases/${caseIdA}`, {
+        jar: workerJar,
+        method: "PATCH",
+        body: {
+          nextContactAt: new Date(Date.now() + 86_400_000).toISOString(),
+          externalSystem: "STAR2",
+          externalReference: `STAR-${runId}`
+        }
+      });
+      check(
+        "2.–4. põhiandmed, järgmine kontakt ja STAR-i viide salvestuvad",
+        patched.status === 200 &&
+          patched.body?.case?.externalSystem === "STAR2" &&
+          Boolean(patched.body?.case?.nextContactAt),
+        `staatus ${patched.status}`
+      );
+
+      const cleared = await apiFetch(`/api/casework/cases/${caseIdA}`, {
+        jar: workerJar,
+        method: "PATCH",
+        body: { nextContactAt: null }
+      });
+      check("3. järgmise kontakti EEMALDAMINE jõuab kohale", cleared.body?.case?.nextContactAt === null);
+
+      /* Päritolu on muutumatu (L12) ja marsruut ei tohi teda vaikselt ära
+         filtreerida — vastasel juhul arvaks klient, et muudatus õnnestus. */
+      const originAttempt = await apiFetch(`/api/casework/cases/${caseIdA}`, {
+        jar: workerJar,
+        method: "PATCH",
+        body: { preInquiryId: "midagi" }
+      });
+      check("L12: päritolu muutmine keeldub selge veaga (400)", originAttempt.status === 400);
+
+      // ── 5. Seose lisamine ja eemaldamine ───────────────────────────────────
+      const linked = await apiFetch(`/api/casework/cases/${caseIdA}/items`, {
+        jar: workerJar,
+        method: "POST",
+        body: { targetType: "USER_DOCUMENT", targetId: ownDocument.id }
+      });
+      const afterLink = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar });
+      check(
+        "5. seose lisamine ja detailvaate arv liiguvad koos",
+        linked.status === 201 && afterLink.body?.counts?.items === 1,
+        `staatus ${linked.status}`
+      );
+
+      const foreignLink = await apiFetch(`/api/casework/cases/${caseIdA}/items`, {
+        jar: workerJar,
+        method: "POST",
+        body: { targetType: "USER_DOCUMENT", targetId: strangerDocument.id }
+      });
+      check("L4: võõra objekti sidumine annab 404 ka marsruudil", foreignLink.status === 404);
+
+      const unlinked = await apiFetch(
+        `/api/casework/cases/${caseIdA}/items/${encodeURIComponent(linked.body?.item?.id || "")}`,
+        { jar: workerJar, method: "DELETE" }
+      );
+      const afterUnlink = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar });
+      check(
+        "5. seose eemaldamine vähendab ka arvu",
+        unlinked.status === 200 && afterUnlink.body?.counts?.items === 0
+      );
+
+      // ── 6.–7. Puuduv info ja tema staatus ──────────────────────────────────
+      const addedInfo = await apiFetch(`/api/casework/cases/${caseIdA}/missing-info`, {
+        jar: workerJar,
+        method: "POST",
+        body: { text: "Puudub sissetuleku tõend", provenance: "DOKUMENDIST" }
+      });
+      const afterInfo = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar });
+      check(
+        "6. puuduva info lisamine ja lahtiste loendur",
+        addedInfo.status === 201 && afterInfo.body?.counts?.openMissingInfo === 1,
+        `staatus ${addedInfo.status}`
+      );
+
+      const unknownProvenance = await apiFetch(`/api/casework/cases/${caseIdA}/missing-info`, {
+        jar: workerJar,
+        method: "POST",
+        body: { text: "Tundmatu päritolu", provenance: "MINU_OMA_SÕNASTIK" }
+      });
+      check("L5: tundmatu päritolu lükatakse tagasi (400)", unknownProvenance.status === 400);
+
+      const resolvedInfo = await apiFetch(
+        `/api/casework/cases/${caseIdA}/missing-info/${encodeURIComponent(addedInfo.body?.item?.id || "")}`,
+        { jar: workerJar, method: "PATCH", body: { status: "RESOLVED", resolvedAt: "1999-01-01T00:00:00.000Z" } }
+      );
+      const afterResolve = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar });
+      /* `resolvedAt` tuleb SERVERIST: sond saadab kaasa võltsi kuupäeva ja
+         kontrollib, et teda ei võetud vastu. */
+      const resolvedAt = new Date(resolvedInfo.body?.item?.resolvedAt || 0).getFullYear();
+      check(
+        "7. staatuse muutmine: `resolvedAt` tuleb serverist ja loendur langeb",
+        resolvedInfo.status === 200 && resolvedAt > 2000 && afterResolve.body?.counts?.openMissingInfo === 0
+      );
+
+      // ── KAKS PÄRIS SESSIOONI: üksteise juhtumitest pimedad ─────────────────
+      const strangerJar = strangerSession.jar;
+      const strangerDetail = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: strangerJar });
+      const strangerList = await apiFetch("/api/casework/cases", { jar: strangerJar });
+      const strangerRetention = await apiFetch(`/api/casework/cases/${caseIdA}/retention`, {
+        jar: strangerJar,
+        method: "POST",
+        body: { toState: "READ_ONLY", reason: "võõras katse" }
+      });
+      const strangerErase = await apiFetch(`/api/casework/cases/${caseIdA}/client-reference`, {
+        jar: strangerJar,
+        method: "DELETE",
+        body: { reason: "võõras katse" }
+      });
+      check(
+        "IDOR: teine töötaja saab võõrale juhtumile 404 (mitte 403) igal rajal",
+        strangerDetail.status === 404 && strangerRetention.status === 404 && strangerErase.status === 404,
+        `${strangerDetail.status}/${strangerRetention.status}/${strangerErase.status}`
+      );
+      check(
+        "IDOR: võõras juhtum ei ilmu teise töötaja loendisse",
+        (strangerList.body?.items || []).every((item) => item.id !== caseIdA)
+      );
+
+      // ── 8. Retention-siire ja kirjutuskeeld ────────────────────────────────
+      const noReason = await apiFetch(`/api/casework/cases/${caseIdB}/retention`, {
+        jar: workerJar,
+        method: "POST",
+        body: { toState: "READ_ONLY" }
+      });
+      check("15. põhjuseta siire keeldub (400)", noReason.status === 400);
+
+      const moved = await apiFetch(`/api/casework/cases/${caseIdA}/retention`, {
+        jar: workerJar,
+        method: "POST",
+        body: { toState: "READ_ONLY", reason: "sondi E6 kirjutuskaitse" }
+      });
+      const writeAfter = await apiFetch(`/api/casework/cases/${caseIdA}`, {
+        jar: workerJar,
+        method: "PATCH",
+        body: { nextContactAt: null }
+      });
+      const childWriteAfter = await apiFetch(`/api/casework/cases/${caseIdA}/missing-info`, {
+        jar: workerJar,
+        method: "POST",
+        body: { text: "Ei tohi lisanduda", provenance: "DOKUMENDIST" }
+      });
+      check(
+        "8. retention-siire õnnestub ja lukustab nii juhtumi kui LAPSED (409)",
+        moved.status === 200 && writeAfter.status === 409 && childWriteAfter.status === 409,
+        `${moved.status}/${writeAfter.status}/${childWriteAfter.status}`
+      );
+
+      const backwards = await apiFetch(`/api/casework/cases/${caseIdA}/retention`, {
+        jar: workerJar,
+        method: "POST",
+        body: { toState: "ACTIVE", reason: "tagasi" }
+      });
+      check("12. tagasisiire keeldub ka marsruudil (409)", backwards.status === 409);
+
+      // ── 11. Kliendiviite kustutamine (L17) ─────────────────────────────────
+      const erasedFirst = await apiFetch(`/api/casework/cases/${caseIdA}/client-reference`, {
+        jar: workerJar,
+        method: "DELETE",
+        body: { reason: "sondi kustutus" }
+      });
+      const erasedSecond = await apiFetch(`/api/casework/cases/${caseIdA}/client-reference`, {
+        jar: workerJar,
+        method: "DELETE",
+        body: { reason: "sondi kordus" }
+      });
+      const afterErase = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar });
+      const erasureAuditRows = await prisma.caseWorkClientErasureAudit.count({
+        where: { caseWorkAssistId: caseIdA }
+      });
+      check(
+        "11. kliendiviite kustutamine töötab KIRJUTUSKAITSTUD juhtumis",
+        erasedFirst.status === 200 && erasedFirst.body?.changed === true,
+        `staatus ${erasedFirst.status}`
+      );
+      check(
+        "11. teine kutse on idempotentne kõrvalmõjudeni (üks auditirida)",
+        erasedSecond.status === 200 && erasedSecond.body?.changed === false && erasureAuditRows === 1,
+        `auditiridu ${erasureAuditRows}`
+      );
+      check(
+        "11. kustutatud nimi ei leki detailvastusesse ja kuvanimi on tõlkevõti",
+        afterErase.body?.case?.clientDisplayName === null &&
+          afterErase.body?.case?.label?.labelKey === "casework.label.erased_client"
+      );
+
+      // ── L16: juhtumi kustutamise marsruuti EI OLE ──────────────────────────
+      const deleteAttempt = await apiFetch(`/api/casework/cases/${caseIdA}`, { jar: workerJar, method: "DELETE" });
+      check(
+        "L16: juhtumi kustutamise API-t ei eksisteeri (405)",
+        deleteAttempt.status === 405,
+        `staatus ${deleteAttempt.status}`
+      );
+
+      const stillThere = await prisma.caseWorkAssist.count({ where: { id: caseIdA } });
+      check("L16: juhtum on pärast kustutuskatset alles", stillThere === 1);
+    }
+  }
 } catch (error) {
   failures += 1;
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);
@@ -701,7 +1084,11 @@ try {
       (await prisma.user.count({ where: { email: { contains: runId } } })) +
       (await prisma.caseWorkAssist.count({ where: { ownerUserId: workerId || "-" } })) +
       (await prisma.caseWorkRetentionAudit.count({ where: { ownerUserId: workerId || "-" } })) +
-      (await prisma.caseWorkClientErasureAudit.count({ where: { ownerUserId: workerId || "-" } }));
+      (await prisma.caseWorkClientErasureAudit.count({ where: { ownerUserId: workerId || "-" } })) +
+      /* E6 sessioonide login-tokenid kustuvad kaskaadis koos kasutajaga — aga
+         seda EI EELDATA: just siia jääks vaikselt alles kirje, mis lubab
+         sünteetilise kasutajana sisse logida. */
+      (await prisma.loginTempToken.count({ where: { userId: { in: [workerId || "-", strangerId || "-"] } } }));
     if (leftovers === 0) lines.push("", "koristatud: sünteetilisi ridu ei jäänud");
     else {
       failures += 1;
