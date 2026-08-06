@@ -99,7 +99,11 @@ sondi koristuse parandus `1c99793e` (kood, läheb välja järgmise deploy'ga) ja
 Omanik valis 06.08 **täiesti tegemata töö** lahtiste sabade asemel ja vastas juhtumi objekti
 blokeerivale küsimusele. Leping on kirjutatud:
 [`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), olek `READY_TO_ASSIGN`, etapid
-E1–E6, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
+E1–E5, migratsioon jah. Vt S4.1 „Juhtumi objekt elutsükliga". **Koodi ei ole veel ühtki rida.**
+
+Objekt on `ideed.md` ptk 12 nimega **`CaseWorkAssist`** ja ta on **konteiner, mitte
+olekumasin** — mustandi ülekandeahel (8 elementi × 7 seisu) on eraldi pakett **CASEWORK-P2**
+kolme otsuse taga ja seda lepingusse ei neelata.
 
 ### Järgmine samm — ootab omaniku valikut
 
@@ -654,13 +658,26 @@ uuesti looma.
 
 #### Juhtumi objekt elutsükliga
 
-*Koodis 0 rida. **Analüüs tehtud ja leping kirjutatud 06.08** —
+*Lähtematerjal: `ideed.md` **ptk 12** (kontseptuaalne andmemudel — objekt on seal nimega
+`CaseWorkAssist`) + **ptk 4**. Koodis 0 rida. **Leping kirjutatud 06.08** —
 [`juhtum-v1-arendusleping.md`](./juhtum-v1-arendusleping.md), `READY_TO_ASSIGN`.*
 
-Skeemis on **166 mudelit** ja **juhtumit nende hulgas ei ole**. On artefaktid — `CASE_SUMMARY`,
-`CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`, `PRE_ASSESSMENT_SUMMARY` — ehk platvorm toodab
-juhtumi *dokumente*, aga ei hoia juhtumit ennast. Elutsükkel juhtum → plaan → tegevused →
-ülevaatus → sulgemine puudub.
+> **Selle rea juures puudus `Lähtematerjal:` viide ja see maksis kätte.** Naaberread
+> (assistent, võrgustikutöö, meetodite kataloog) kannavad kõik `ideed.md` peatüki numbrit;
+> juhtumi objekti oma ei kandnud, sest küsimus tõstatati 03.08 hiljem — ja lepingu esimene
+> versioon kirjutati seetõttu kirjeldust lugemata, leiutades oma mudeli. Kirjeldus oli olemas.
+> **Iga uue S4.1 rea juurde käib `Lähtematerjal:` rida, ka siis, kui vastus on „ei ole".**
+
+Skeemis on **166 mudelit** ja **juhtumit nende hulgas ei ole** — ükski ptk 12 `CaseWork*` nimi
+ei ole koodis. On artefaktid — `CASE_SUMMARY`, `CASE_BRIEF`, `ACTION_PLAN`, `STAR_HELPER`,
+`PRE_ASSESSMENT_SUMMARY` — ehk platvorm toodab juhtumi *dokumente*, aga ei hoia juhtumit ennast.
+
+**Parandus 06.08:** siin seisis varem, et puudub „elutsükkel juhtum → plaan → tegevused →
+ülevaatus → sulgemine". See sõnastus on eksitav ja ta eksitas. Kirjelduses (ptk 4.5) **ei ole
+elutsükkel juhtumi peal, vaid mustandi peal**: kaheksa elementi × seitse seisu (*mustand →
+vajab kliendiga kontrollimist → vajab dokumenti → töötaja kontrollitud → valmis kandmiseks →
+kantud → ei kanta*). **See ahel on CASEWORK-P2** ja ta on kolme otsuse taga (O-CW-2/4/10).
+Juhtumi objekt on **konteiner**, mitte olekumasin.
 
 **Blokeeriv küsimus sai 06.08 omanikult vastuse:** töötaja hoiab juhtumi seisu täna oma
 **dokumentides** ja talle serveris tagatud mahus (SOCIAL_WORKER 100 MB). Koht on seega olemas
@@ -674,16 +691,19 @@ kohta erinevad ainult pealkirja tekstis.** Ainus koht, kus täna elab töötaja 
 on `PreInquiry.nextContactOn` — ühe pöördumise, mitte juhtumi omadus, ja ta kaob koos
 pöördumise menetlemisega.
 
-Leping ehitab **õhukese selgroo**: silt, elutsükkel, järgmine samm, puuduva info loend ja
-viited olemasolevale — 0 kopeeritud rida. Isikuvälju juhtumil ei ole; kandev väli on töötaja
-enda vabatekstiline viide. Aus piirang on lepingus kirjas: `label` kannab praktikas ikkagi
-isikuandmeid, seega juhtum saab sama serveripoolse omanikupiiri, mis kannab täna tööheaolu ja
-kovisiooni — ka admin ei näe sisu. Õiguslik alus on olemasolev `WORKER_DATA_PROCESSING`
-raamleping; juhtum ei laienda töötlust, ta korrastab selle.
+Leping ehitab **konteineri** ptk 12 väljadega: `ownerUserId`, `label`, `preInquiryId`,
+`externalSystem`/`externalReference` (STAR-i viide), `nextContactAt`, `retentionState` — pluss
+puuduva info loend (`CaseWorkMissingInfo`) ja viited olemasolevale. **0 kopeeritud rida.**
+Isikuvälju ei ole; kandev väli on töötaja enda vabatekstiline viide.
 
-Viis otsust (O-JU-1…5: säilitusaeg, kliendiviite väli, üleandmine, meetodipeegli seos,
-meeldetuletus) on lahtised, aga **ükski ei blokeeri ehitust** — igal on konservatiivne
-vaikeväärtus, mis avaneb lülitiga.
+Aus piirang on lepingus kirjas: `label` kannab praktikas ikkagi isikuandmeid, seega juhtum saab
+sama serveripoolse omanikupiiri, mis kannab täna tööheaolu ja kovisiooni — ka admin ei näe
+sisu. Õiguslik alus on olemasolev `WORKER_DATA_PROCESSING` raamleping; juhtum ei laienda
+töötlust, ta korrastab selle.
+
+Kolm otsust on lahtised (O-JU-1 säilitusreegel — **sama küsimus mis O-CW-2, küsi koos** ·
+O-JU-2 üleandmine kolleegile · O-JU-3 loomine eelpöördumisest ühe vajutusega), aga **ükski ei
+blokeeri ehitust**.
 
 ---
 
