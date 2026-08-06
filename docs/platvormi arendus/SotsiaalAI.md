@@ -110,11 +110,17 @@ kolme otsuse taga ja seda lepingusse ei neelata.
 **`WorkspaceKind.CASE_WORK` seisus `RESERVED`** — K1 tööruumiregister ootab seda objekti juba
 täna, ja ilma selleta sünniks juhtum, mida platvormi enda tööruumikiht ei tunne.
 
-**Leping on 06.08 läbinud omaniku auditi ja on nüüd v3.** Audit leidis 7 blokeerivat vastuolu,
-millest kandvaimad kaks olid: `label`-väli oli korraga „kandev väli" ja „ei ole olemas", ning
-eelpöördumine oli seotud kahel paralleelsel viisil (otseväli + üldseos), mis oleks lubanud
-kahel tõel lahku minna. Auditi järel on lukustatud kolm varem peidetud arhitektuuriotsust:
-päritoluseose kardinaalsus, retention-siirete graaf ja kliendiviite täielik invariant.
+**Leping on 06.08 läbinud omaniku KAKS auditit ja on nüüd v4.** Esimene leidis 7 blokeerivat
+vastuolu (kandvaimad: `label` oli korraga „kandev väli" ja „ei ole olemas"; eelpöördumine oli
+seotud kahel paralleelsel viisil, mis oleks lubanud kahel tõel lahku minna). Teine leidis 5,
+millest ohtlikem oli vaikne: **rada A kuvanimi** — L11 nõuab platvormi kasutajaga seotud
+juhtumil, et vabatekstiväljad on tühjad, ja kuvafunktsioon ei näinud `clientUserId`-d, seega
+**kõik päris kasutajaga seotud juhtumid oleksid loendis olnud „Nimetu juhtum"**.
+
+Teine kandev parandus tuli mudelifaktist: v3 tõstis `authorId` automaatselt kliendiks. Ei
+`PreInquiry`-l ega `UrgentRequest`-il **ole kliendivälja** — mõlemal on ainult autor, ja
+pöördumise võib esitada lähedane või esindaja. Automaatne tuletus on maas; `clientUserId` on
+inimese teadlik valik ja tema ainus lubatud väärtus on päritoluobjekti autor.
 
 **Auditi kõrvalsaadus, mis ulatub sellest teemast kaugemale:** `PreInquiry` skeemikommentaar
 ütleb platvormi reegli välja — *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne
