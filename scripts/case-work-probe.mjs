@@ -35,6 +35,12 @@ import {
   transitionRetention,
   updateCaseWorkAssist
 } from "../lib/casework/caseWorkAssist.js";
+import {
+  countCaseWorkItems,
+  linkCaseWorkItem,
+  listCaseWorkItems,
+  unlinkCaseWorkItem
+} from "../lib/casework/caseWorkItem.js";
 
 /* TOOTMISKAITSE: sond KIRJUTAB andmebaasi. Sama värav mis A4 sondil —
    `NODE_ENV` üksi ei ole piisav, sest tootmisbaasi võib ühendada ka
@@ -402,6 +408,149 @@ try {
     "kustutus: IDEMPOTENTNE kõrvalmõjudeni — teine kutse ei loo teist auditirida",
     secondErase.changed === false && erasureAudits === 1
   );
+
+  lines.push("");
+  lines.push("E3 — seoseregister ja ligipääsupiir");
+
+  const linkCase = await createCaseWorkAssist({ ownerUserId: workerId, clientDisplayName: "seoste juhtum" });
+
+  const ownDocument = await prisma.userDocument.create({
+    data: {
+      ownerId: workerId,
+      title: `Seotav dokument ${runId}`,
+      originalName: `link-${runId}.txt`,
+      mime: "text/plain",
+      size: 8,
+      sha256: `a${runId}`.padEnd(64, "1").slice(0, 64),
+      storagePath: `synthetic/link-${runId}.txt`
+    }
+  });
+  const ownArtifact = await prisma.agentArtifact.create({
+    data: { ownerId: workerId, type: "ACTION_PLAN", content: `Seotav artefakt ${runId}` }
+  });
+  const ownVisit = await prisma.fieldVisit.create({ data: { ownerUserId: workerId } });
+
+  await linkCaseWorkItem({
+    ownerUserId: workerId,
+    caseWorkAssistId: linkCase.id,
+    targetType: "USER_DOCUMENT",
+    targetId: ownDocument.id
+  });
+  await linkCaseWorkItem({
+    ownerUserId: workerId,
+    caseWorkAssistId: linkCase.id,
+    targetType: "AGENT_ARTIFACT",
+    targetId: ownArtifact.id
+  });
+  await linkCaseWorkItem({
+    ownerUserId: workerId,
+    caseWorkAssistId: linkCase.id,
+    targetType: "FIELD_VISIT",
+    targetId: ownVisit.id
+  });
+  const linked = await listCaseWorkItems({ ownerUserId: workerId, caseWorkAssistId: linkCase.id });
+  check("seos: kolm oma objekti seotud ja loetavad", linked.items.length === 3);
+
+  // L4: võõra objekti sidumine keeldub.
+  const strangerDocument = await prisma.userDocument.create({
+    data: {
+      ownerId: strangerId,
+      title: `Võõras dokument ${runId}`,
+      originalName: `stranger-${runId}.txt`,
+      mime: "text/plain",
+      size: 8,
+      sha256: `b${runId}`.padEnd(64, "2").slice(0, 64),
+      storagePath: `synthetic/stranger-${runId}.txt`
+    }
+  });
+  let foreignLinkStatus = null;
+  try {
+    await linkCaseWorkItem({
+      ownerUserId: workerId,
+      caseWorkAssistId: linkCase.id,
+      targetType: "USER_DOCUMENT",
+      targetId: strangerDocument.id
+    });
+  } catch (error) {
+    foreignLinkStatus = error?.status ?? null;
+  }
+  check("L4: võõra objekti sidumine annab 404", foreignLinkStatus === 404);
+
+  /* L3 — KANDEV KONTROLL. Kirjutame viida VÕÕRALE dokumendile OTSE andmebaasi,
+     nii nagu leping ette näeb („kirjuta viit otse, loe API kaudu"). Teenuskiht
+     ei tohi teda tagastada EGA LOENDADA: kui `count` ütleks 4 ja loend näitaks
+     3, ei lekiks sisu — aga lekiks fakt, et neljas objekt on olemas. */
+  await prisma.$executeRawUnsafe(
+    `INSERT INTO "CaseWorkItem" (id, "caseWorkAssistId", "userDocumentId", "createdAt") VALUES ($1, $2, $3, NOW())`,
+    `leak-${runId}`,
+    linkCase.id,
+    strangerDocument.id
+  );
+  const rawCount = await prisma.caseWorkItem.count({ where: { caseWorkAssistId: linkCase.id } });
+  const visible = await listCaseWorkItems({ ownerUserId: workerId, caseWorkAssistId: linkCase.id });
+  const visibleCount = await countCaseWorkItems({ ownerUserId: workerId, caseWorkAssistId: linkCase.id });
+  check("L3: andmebaasis on neli rida (sond kirjutas võõra viida)", rawCount === 4);
+  check("L3: ligipääsmatu seos EI ILMU loendisse", visible.items.length === 3);
+  check("L3: ligipääsmatu seos EI MÕJUTA ARVU", visibleCount === 3);
+  check(
+    "L3: ligipääsmatu sihi ID ei leki vastusesse",
+    visible.items.every((item) => item.targetId !== strangerDocument.id)
+  );
+
+  let unlinkInvisibleStatus = null;
+  try {
+    await unlinkCaseWorkItem({
+      ownerUserId: workerId,
+      caseWorkAssistId: linkCase.id,
+      itemId: `leak-${runId}`
+    });
+  } catch (error) {
+    unlinkInvisibleStatus = error?.status ?? null;
+  }
+  check("L3: ligipääsmatut seost ei saa ka eemaldada (404)", unlinkInvisibleStatus === 404);
+
+  // Pagineerimine stabiilse võtmega: kaks lehte katavad kolm nähtavat rida.
+  const firstPage = await listCaseWorkItems({ ownerUserId: workerId, caseWorkAssistId: linkCase.id, limit: 2 });
+  const secondPage = await listCaseWorkItems({
+    ownerUserId: workerId,
+    caseWorkAssistId: linkCase.id,
+    limit: 2,
+    cursor: firstPage.nextCursor
+  });
+  const paged = [...firstPage.items, ...secondPage.items].map((item) => item.id);
+  check(
+    "pagineerimine: kaks lehte annavad kolm ERINEVAT rida ja cursor lõpeb",
+    firstPage.items.length === 2 && secondPage.items.length === 1 && new Set(paged).size === 3 && !secondPage.nextCursor
+  );
+
+  await unlinkCaseWorkItem({
+    ownerUserId: workerId,
+    caseWorkAssistId: linkCase.id,
+    itemId: visible.items[0].id
+  });
+  check(
+    "seose eemaldamine vähendab nii loendit kui arvu",
+    (await countCaseWorkItems({ ownerUserId: workerId, caseWorkAssistId: linkCase.id })) === 2
+  );
+
+  await transitionRetention({
+    ownerUserId: workerId,
+    id: linkCase.id,
+    toState: "READ_ONLY",
+    reason: "seoste lukk"
+  });
+  let linkReadOnlyStatus = null;
+  try {
+    await linkCaseWorkItem({
+      ownerUserId: workerId,
+      caseWorkAssistId: linkCase.id,
+      targetType: "USER_DOCUMENT",
+      targetId: ownDocument.id
+    });
+  } catch (error) {
+    linkReadOnlyStatus = error?.status ?? null;
+  }
+  check("L14: READ_ONLY juhtumisse ei saa seost lisada (409)", linkReadOnlyStatus === 409);
 } catch (error) {
   failures += 1;
   lines.push(`  VIGA sond kukkus: ${error?.message || error}`);

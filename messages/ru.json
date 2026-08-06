@@ -810,7 +810,10 @@
       "reason_required": "Причина обязательна.",
       "reason_too_long": "Причина слишком длинная.",
       "retention_transition_forbidden": "Такое изменение состояния не разрешено.",
-      "retention_unknown": "Неизвестное состояние."
+      "retention_unknown": "Неизвестное состояние.",
+      "target_type_unknown": "Неизвестный тип связи.",
+      "target_not_found": "Объект для связывания не найден.",
+      "target_already_linked": "Этот объект уже связан со случаем."
     }
   },
   "common": {

@@ -810,7 +810,10 @@
       "reason_required": "A reason is required.",
       "reason_too_long": "The reason is too long.",
       "retention_transition_forbidden": "That state change is not allowed.",
-      "retention_unknown": "Unknown state."
+      "retention_unknown": "Unknown state.",
+      "target_type_unknown": "Unknown link type.",
+      "target_not_found": "The object to link was not found.",
+      "target_already_linked": "That object is already linked to the case."
     }
   },
   "common": {
