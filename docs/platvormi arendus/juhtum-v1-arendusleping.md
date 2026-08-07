@@ -2,6 +2,11 @@
 
 **Olek:** **TEOSTATUD** — kinnitatud omaniku viienda auditiga 08.08 (v7).
 *(v7 lisas ühe teostusparanduse juba valmis koodi peale — vt L14 alt. Ülejäänud leping on v6 kujul.)*
+
+> **`TEOSTATUD` EI TÄHENDA „tootmises aktiveeritud"** (omanik 08.08). Ta tähendab: kood on olemas,
+> migratsioonid tehtud, testitud — ja **`CASEWORK_V1_ENABLED` taga peidus**. Värava avamine on
+> eraldi otsus ja eraldi tegu. `READY_TO_ASSIGN` kirjeldaks siin faktiliselt valet etappi, aga
+> `TEOSTATUD` lugemine „siis on ju live" oleks sama viga teises suunas.
 **Perekond:** CASEWORK — **P7**. Ei ole P0/P1 (tehtud) ega P2 (vt piir allpool).
 **Teostus:** üks teema, etapid E1–E6. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
 worktree-kaustu ei tehta. **Push ja deploy ainult omaniku selgel loal**; merge'imist selles
