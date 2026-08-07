@@ -127,6 +127,45 @@ test("loa kuupäevad on Eesti kalendripäevad, mitte UTC-hetked", () => {
   assert.equal(licenceInForce(licence({ validFrom: new Date("2025-10-13T00:00:00.000Z") }), NOW), true, "Date-kuju");
 });
 
+test("loa lõpp on õige ka DST-päevadel — päev ei ole alati 24 tundi", () => {
+  /* REGRESSIOON. Vana `estonianDayEnd()` tegi `base + 24h - offset(base)`:
+     nihe mõõdeti ÜHEL hetkel ja päeva pikkuseks eeldati 24 tundi. Eestis on
+     kalendripäev 29.03.2026 kakskümmend kolm ja 25.10.2026 kakskümmend viis
+     tundi, seega vastus oli neil kahel päeval tund nihkes:
+
+       29.03   vana 22:00Z   →  luba kehtis tunni liiga kaua
+       25.10   vana 21:00Z   →  luba suri tunni liiga vara
+
+     Kaks päeva aastas ja tund korraga — aga see on KEHTIVUSE piir. */
+  assert.equal(estonianDayEnd("2026-03-29").toISOString(), "2026-03-29T21:00:00.000Z", "kevadine üleminek");
+  assert.equal(estonianDayEnd("2026-10-25").toISOString(), "2026-10-25T22:00:00.000Z", "sügisene üleminek");
+
+  /* Ja sama asi läbi selle, mida see funktsioon päriselt teenindab: luba, mis
+     lõpeb üleminekupäeval, peab kehtima täpselt Eesti keskööni. */
+  const springEnd = licence({ indefinite: false, validUntil: "2026-03-29" });
+  assert.equal(licenceInForce(springEnd, new Date("2026-03-29T20:59:00.000Z")), true, "veel 29.03 Eestis");
+  assert.equal(licenceInForce(springEnd, new Date("2026-03-29T21:01:00.000Z")), false, "juba 30.03 Eestis");
+
+  const autumnEnd = licence({ indefinite: false, validUntil: "2026-10-25" });
+  assert.equal(licenceInForce(autumnEnd, new Date("2026-10-25T21:59:00.000Z")), true, "veel 25.10 Eestis");
+  assert.equal(licenceInForce(autumnEnd, new Date("2026-10-25T22:01:00.000Z")), false, "juba 26.10 Eestis");
+});
+
+test("loa lõpp ei sõltu SERVERI ajavööndist", () => {
+  const previous = process.env.TZ;
+  const seen = new Set();
+  try {
+    for (const zone of ["UTC", "Europe/Tallinn", "America/Los_Angeles", "Pacific/Kiritimati"]) {
+      process.env.TZ = zone;
+      seen.add([estonianDayEnd("2026-08-06"), estonianDayEnd("2026-03-29")].map((d) => d.toISOString()).join("|"));
+    }
+  } finally {
+    if (previous === undefined) delete process.env.TZ;
+    else process.env.TZ = previous;
+  }
+  assert.equal(seen.size, 1, `ajavöönd muutis loa lõppu: ${[...seen].join(" / ")}`);
+});
+
 test("esimene tühi vastus ei tooda avalikku negatiivset väidet", () => {
   /* Variant 1: KÕIK avalikud NOT_FOUND seisud vajavad kahte järjestikust
      edukat tühja vastust — ka siis, kui varem märgist ei olnudki. */
