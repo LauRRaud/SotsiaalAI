@@ -1,6 +1,6 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **`DRAFT`** — v2 parandab omaniku auditi 6 blokeerivat ja 6 täpsustust; ootab kinnitust.
+**Olek:** **`DRAFT`** — v3 parandab omaniku teise auditi 1 blokeeriva ja 4 täpsustust; ootab kinnitust.
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -17,11 +17,13 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 |---|---|
 | v1 | esimene kuju. Kirjutatud **pärast** `ideed.md` ptk 4 lugemist ja pärast koodi mõõtmist — mitte mälust (JUHTUM-V1 v1 õppetund) |
 | **v2** | **omaniku audit — 6 blokeerivat + 6 täpsustust.** Kandvad muutused: (a) E3–E6 said täieliku teostuslepingu `teenus → API → pind → värav → valideerimine → testid`; (b) laua sektsioonid said **ühe kanoonilise tabeli** (L12) — kaks vastuolulist loendit kadusid; (c) **säilituse jõustamine sai oma etapi E7**, varem oli otsus ilma mehhanismita; (d) **L6 parandatud — SQL CHECK ei oska olekuüleminekut**, jõustab tingimuslik update; (e) **L8 parandatud — v1 väide „säilitusreegel ei ulatu auditini" oli vale** ja vastuolus sellega, et audit ripub kustuva juhtumi küljes; (f) päritolu sai **normaliseeritud kuju** (L4), varem oleks kaheksa tekstivälja lepingut täitnud ja L4 rikkunud |
+| **v3** | **omaniku teine audit — 1 blokeeriv + 4 täpsustust.** (a) **KELLA VIGA:** v2 hoiatus kirjutas `CaseWorkRetentionAudit`-i uue `toState = ARCHIVED` rea, mis nihutas kustutuse 12 → 23 kuuni. Parandatud kahes kohas — kell otsib **päris üleminekut** ja hoiatus **ei kirjuta auditisse üldse** (L17); (b) **E3 regressioon taastatud** — v2 refaktor kaotas kogemata päritolu-, `AI_MUSTAND`- ja puuduva info nõuded; (c) L5 sõnastus lepitatud O-JTA-4-ga; (d) **`markTransferred` tehingupiir lukus** (L18); (e) hoiatus on **30 päeva**, mitte 11 kuud — lubadus ja teostus on nüüd identsed |
 
-**v2 parandas kaks minu enda viga, mitte ainult lünka.** L6 lubas andmebaasi CHECK-ilt garantiid,
-mida `CHECK` üldse anda ei saa — ta näeb rea uut väärtust, mitte seda, kust sinna jõuti. L8
-väitis, et säilitusreegel ei ulatu auditikirjeteni, aga samas rippus audit juhtumi küljes, mis
-säilitusreegli lõpus kustub. Mõlemad on allpool ümber sõnastatud.
+**v2 parandas kaks ja v3 ühe minu enda vea.** L6 lubas andmebaasi CHECK-ilt garantiid, mida
+`CHECK` üldse anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga audit
+rippus juhtumi küljes, mis säilitusreegli lõpus kustub. **Ja v2 hoiatusmehhanism nullis kella,
+mida ta pidi teenindama** — hoiatus kirjutas auditisse ülemineku, mida ei toimunud, ja
+lükkas kustutuse ligi kaks korda kaugemale. Kõik kolm on allpool ümber sõnastatud.
 
 ---
 
@@ -205,9 +207,17 @@ KLIENDI_VAADE · FAKTID · TOOTAJA_TAHELEPANEK · KONTROLLIMATA
 KOKKULEPPED · JARGMISED_SAMMUD · STAR2_KANTAV · PRIVAATNE_REFLEKSIOON
 ```
 
-**Ainult `STAR2_KANTAV` jõuab E5 mustandisse.** Ülejäänud seitse ei ole ekspordirajal ja
-teenuskiht ei paku neile teed sinna. **`PRIVAATNE_REFLEKSIOON` ei lähe STAR2-sse kunagi** —
-E6 eksport ei tunne seda väärtust ja E8 sond tõendab selle nimeliselt.
+**Täpne sõnastus (v3 — v1/v2 kuju luges vastuolus O-JTA-4-ga):** *E4 märkme kihtidest jõuab E5
+mustandisse ainult `STAR2_KANTAV`. Mustandi võib E5-s luua ka **iseseisvalt, ilma ühegi märketa**,
+ja siis kannavad tema väljad oma päritolu `CaseWorkDraftField.provenance`-is.*
+
+Kaks väidet ei ole vastuolus: L5 piirab **teed märkmest mustandisse**, O-JTA-4 lubab **mustandit
+ilma märketa**. Ptk 4.5 kaheksa elementi ei eelda kohtumist — „teenuse suunamise alus" võib
+sündida ilma ühegi kohtumiseta.
+
+Ülejäänud seitse kihti ei ole ekspordirajal ja teenuskiht ei paku neile teed sinna.
+**`PRIVAATNE_REFLEKSIOON` ei lähe STAR2-sse kunagi** — E6 eksport ei tunne seda väärtust ja E8
+sond tõendab selle nimeliselt.
 
 ### L6 — Olekusiirde jõustab tingimuslik update, MITTE andmebaasi CHECK
 
@@ -266,9 +276,9 @@ juhtumiga (L15 kaskaad), mitte enne.
 | Reegel | Miks nii |
 |---|---|
 | **`ARCHIVED` on ja jääb teadlikuks teoks** kohustusliku põhjusega | automaatne arhiveerimine tähendaks, et vaikne juhtum kustub ilma otsuseta |
-| kell käib **`ARCHIVED`-ist** (`CaseWorkRetentionAudit` viimane siire), mitte `updatedAt`-ist | „12 kuud puutumata → kustub" tapaks pika ja aeglase juhtumitöö, mis ongi valdkonna norm |
+| kell käib **päris üleminekust `ARCHIVED`-i** (L17), mitte `updatedAt`-ist | „12 kuud puutumata → kustub" tapaks pika ja aeglase juhtumitöö, mis ongi valdkonna norm |
 | **loendus on juhtumil nähtav** kogu 12 kuu jooksul | — |
-| **hoiatus 30 päeva ette** | teavitus U1 kaudu; kordumatu juhtumi kohta |
+| **hoiatus 30 päeva ette** — `warningAt = deletionAt − 30 päeva` | **v3 parandus:** v2 rakendas „`ARCHIVED` + 11 kuud", mis ei ole sama asi. Kalendrikuu on 28–31 päeva ja lubadus oli antud päevades — lubadus ja teostus peavad olema identsed |
 | **vaikset kustutust ei ole** | — |
 
 Juhtum on töötaja **enda** töökorraldus, mitte kliendi kirje. Automaatne kustutus, millest ta
@@ -423,6 +433,7 @@ Mõlemad on õiged, aga eri kihtide kohta, ja seda ei olnud kirjas.
 | Laps | Vanem | `onDelete` | Miks |
 |---|---|---|---|
 | `CaseWorkMeetingPrep` | `CaseWorkAssist` | `Cascade` | juhtumi kustutus on täielik |
+| `CaseWorkQuestion` | `CaseWorkMeetingPrep` | `Cascade` | küsimus ei ela üle ettevalmistuse |
 | `CaseWorkMeetingNote` | `CaseWorkAssist` | `Cascade` | sama |
 | `CaseWorkMeetingNoteEntry` | `CaseWorkMeetingNote` | `Cascade` | sisu ei ela üle konteineri |
 | `CaseWorkDraft` | `CaseWorkAssist` | `Cascade` | sama |
@@ -456,6 +467,62 @@ Kaks tõrget saavad **ausa teate**, mitte vaikuse:
 
 Teine juhtum on tahtlikult ebamugav: L8 järgi on audit tõend, ja vaikne tõendi kadu on halvem
 kui nähtav.
+
+### L17 — `CaseWorkRetentionAudit` kannab AINULT päris üleminekuid
+
+**v3 parandus — see oli v2 blokeeriv viga.** v2 salvestas hoiatuse fakti
+`CaseWorkRetentionAudit`-i reana `toState = ARCHIVED`, `reason = "retention_warning_sent"`, ja
+kell otsis „viimast rida, kus `toState = ARCHIVED`". Tagajärg oli mõõdetav:
+
+```
+0 kuud     päris üleminek READ_ONLY → ARCHIVED
+11 kuud    hoiatus kirjutab UUE ARCHIVED-rea      ← kell nullitakse
+23 kuud    „ARCHIVED + 12 kuud" saab alles nüüd täis
+```
+
+**Hoiatus lükkas kustutust, mida ta pidi ette hoiatama** — ja iga järgmine hoiatus oleks
+lükanud uuesti. Viga oli kahekordne, seega on ka parandus kahes kohas:
+
+**1. Audit kannab ainult päris üleminekuid.** `CaseWorkRetentionAudit`-i kirjutab **ainult**
+`transitionRetention()`. Ükski taustatöö, hoiatus ega märge sinna rida ei lisa. Rida, mis väidab
+olekusiiret, mida ei toimunud, rikub auditi tähenduse — ka siis, kui `reason` seda seletab.
+
+**2. Kell otsib päris üleminekut, mitte viimast rida:**
+
+```
+WHERE fromState = 'READ_ONLY' AND toState = 'ARCHIVED'
+```
+
+Elutsükkel on ühesuunaline ja `ARCHIVED` on terminaalne (JUHTUM-V1 L14), seega selliseid ridu on
+**täpselt üks, igavesti**. See on tugevam invariant kui „viimane" ja ta kehtiks ka siis, kui
+keegi tulevikus reeglit 1 rikuks.
+
+**Hoiatuse kordumatus tuleb teavituskihist, mitte auditist.** `createNotificationEvent()` kannab
+juba unikaalset `dedupeKey`-d kujul `${type}:${sourceId}:${userId}:${suffix}` ja tagastab
+kokkupõrkel `{ created: false }`. Hoiatuse võti on
+`casework.case.retention_warning:<caseId>:<ownerId>:v1` — **teine käivitus ei saada teist korda
+ja ei kirjuta kuhugi midagi.** Uut mudelit ei teki ja migratsioonide arv jääb neljaks.
+
+### L18 — `markTransferred` on üks tehing
+
+**v3 täpsustus.** E5 `transitionDraft` oli atomaarne, aga E6 `markTransferred` jäi lahti — kaks
+halba tulemust olid võimalikud: mustand `ULE_KANTUD` ilma auditireata, või auditirida ilma
+olekusiirdeta.
+
+**Ühes DB-tehingus sünnib kolm asja:**
+
+```
+1. tingimuslik siire   WHERE transferState = expectedFrom   (0 rida → 409, L6)
+2. transferredAt = now()
+3. CaseWorkTransferEvent(kind = MARKED_AS_TRANSFERRED)
+```
+
+`markTransferred()` **kasutab sama tingimusliku siirde primitiivi** mis `transitionDraft()` —
+teist teed `ULE_KANTUD`-ini ei ole.
+
+**U1 sündmus emiteeritakse PÄRAST edukat commit'i**, mitte tehingu sees. Tehingu sees emiteeritud
+sündmus jõuaks välja ka siis, kui tehing hiljem tagasi veereb — sama põhjendus, mis kannab
+U1-outbox mustrit mujal platvormil.
 
 ---
 
@@ -537,27 +604,51 @@ tõlgitud.
 
 | | |
 |---|---|
-| **Teenus** | **uus** `lib/casework/caseWorkMeetingPrep.js` — `createMeetingPrep`, `updateMeetingPrep`, `getMeetingPrep`, `listMeetingPreps`, `deleteMeetingPrep` |
-| **API** | **uus** `app/api/casework/cases/[caseId]/meeting-preps/route.js` (`GET`, `POST`) · `.../[prepId]/route.js` (`GET`, `PATCH`, `DELETE`) |
+| **Teenus** | **uus** `lib/casework/caseWorkMeetingPrep.js` — `createMeetingPrep`, `updateMeetingPrep`, `getMeetingPrep`, `listMeetingPreps`, `deleteMeetingPrep`, `addQuestion`, `updateQuestion`, `removeQuestion` |
+| **API** | **uus** `app/api/casework/cases/[caseId]/meeting-preps/route.js` (`GET`, `POST`) · `.../[prepId]/route.js` (`GET`, `PATCH`, `DELETE`) · `.../[prepId]/questions/route.js` (`GET`, `POST`) · `.../questions/[questionId]/route.js` (`PATCH`, `DELETE`) |
 | **Pind** | **uus** `app/juhtumid/[caseId]/page.jsx` — juhtumi detailvaade (**täna ei ole**), ettevalmistuse sektsioon |
 | **Värav** | `guardCaseWorkRequest()`, scope `casework:meeting-prep` |
-| **Valideerimine** | vt allpool |
+| **Valideerimine** | `provenance` ∈ 8 väärtusest **prep-real ja igal küsimusel**; `kind` ∈ 2 |
 | **Testid** | `tests/casework/meetingPrep.test.js` + marsruuditest |
 
-**Mudel `CaseWorkMeetingPrep`**, FK `CaseWorkAssist`, `onDelete: Cascade` (L15). Väljad ptk 4.4:
-`goal` · `clarifyingQuestions` · `claimsToVerify` · `requiredDocuments` · `lifeDomains` ·
-`agenda` · `plainLanguageNotes` · `meetingAt`.
+**Kaks mudelit** (v3 taastas siia v2 refaktoris kaotatud päritolunõude):
+
+**`CaseWorkMeetingPrep`** — FK `CaseWorkAssist`, `onDelete: Cascade` (L15). Väljad ptk 4.4:
+`goal` · `requiredDocuments` · `lifeDomains` · `agenda` · `plainLanguageNotes` · `meetingAt` ·
+**`provenance`**.
+
+**`CaseWorkQuestion`** — `ideed.md` **ptk 12 nimi, uut ei leiutata**. FK prep-ile, `Cascade`.
+Väljad: `kind` ∈ `{CLARIFYING_QUESTION, CLAIM_TO_VERIFY}` · `text` · **`provenance` `NOT NULL`** ·
+`ordinal`.
+
+Kaks ptk 4.4 välja on **loendid, mille iga rida vajab oma päritolu** — „täpsustavad küsimused" ja
+„kliendiga kontrollitavad väited". v2 tegi neist tekstiväljad ja kaotas sellega L4 nõude täpselt
+nii, nagu L4 ise hoiatab. Nüüd on nad `CaseWorkQuestion` read.
+
+**Kolm nõuet, mille v2 refaktor kogemata maha jättis, on tagasi:**
+
+| # | Nõue | Kus ta nüüd elab |
+|---|---|---|
+| 1 | täpsustavad küsimused kannavad päritolu | `CaseWorkQuestion.provenance`, `NOT NULL` |
+| 2 | **AI koostatud osa kannab `AI_MUSTAND` märgist ja seda ei saa vaikselt maha võtta** | `provenance` prep-real ja igal küsimusel. Märgise muutmine on **oma operatsioon** oma marsruudil, mitte `PATCH`-i kõrvalmõju — L4 „märgis ei parane ise" |
+| 3 | puuduva info loend | **read-side**, mitte uus tabel — vt allpool |
+
+**Puuduv info EI kopeerita prep-i.** Prep-i vaade loeb juhtumi enda `CaseWorkMissingInfo` lahtised
+punktid (`listMissingInfo`). Koopia oleks teine tõde ja rikuks ptk 4.7 („paralleelset andmebaasi
+ei teki") — kaks loendit läheksid esimese lahendamise järel lahku. **Valikut „need 3 punkti
+võtan sellel kohtumisel ette" V1-s ei ole** ja see on välja öeldud, mitte vaikimisi kadunud.
 
 **Nõuded:** kirjutuskaitse **pärib juhtumilt** — `READ_ONLY`/`ARCHIVED` keelab ka laste muutmise
-(JUHTUM-V1 L14), ja seda jõustab **tingimuslik update** koos vanema seisu tingimusega, mitte
-eelnev lugemine.
+(JUHTUM-V1 L14), jõustatud **tingimusliku update'iga** koos vanema seisu tingimusega.
 
 **`DELETE` on olemas** (erinevalt märkmest ja mustandist): ettevalmistus on tulevikuplaan, mitte
 tõend. Kustutus on kõva kustutus ja seda ei auditeerita eraldi.
 
 **Testileping:** võõra juhtumi prep → **404, mitte 403** · kirjutuskaitstud juhtumi prep ei
-muutu (409) · `caseId` ja `prepId` ristkontroll — teise juhtumi `prepId` ei ava · `DELETE`
-kaks korda = idempotentne (teine 404).
+muutu (409) · `caseId`/`prepId` ristkontroll · `DELETE` kaks korda = idempotentne (teine 404) ·
+**päritoluta küsimus ei salvestu** · tundmatu `provenance` või `kind` → 400 · **`AI_MUSTAND`
+märgis ei kao tavalise `PATCH`-iga** · prep-i vaade kuvab juhtumi puuduva info, aga ei salvesta
+sellest koopiat (kontroll: lahendamine juhtumis muudab prep-i vaadet).
 
 ---
 
@@ -649,14 +740,18 @@ sünnib STAR-is.
 **Järjekord on L16 järgi:** plokk → lõikelaud → **alles siis** `copy-events`. Auditi tõrge
 öeldakse kasutajale välja.
 
-**U1 sündmus ainult `markTransferred`-i peal:** `casework.draft.external_transfer_marked`.
-Kopeerimine ei emiteeri (L9).
+**`markTransferred()` on L18 järgi ÜKS TEHING:** tingimuslik siire + `transferredAt` +
+`MARKED_AS_TRANSFERRED` auditirida. **U1 sündmus
+`casework.draft.external_transfer_marked` emiteeritakse pärast edukat commit'i**, mitte tehingu
+sees. Kopeerimine ei emiteeri (L9).
 
 **Testileping:** auditirida **ei sisalda ühtegi välja väärtust** (kontroll: iga
 `CaseWorkDraftField.text` ei esine auditireas) · `PRIVAATNE_REFLEKSIOON` ei esine ploki
 väljundis · kopeerimine **ei muuda** `transferState`-i · `markTransferred` emiteerib sündmuse,
 `recordCopyEvent` mitte · võõra mustandi `fieldKeys` → 400 · transfer-event tabelil ei ole
-update/delete rada.
+update/delete rada · **`markTransferred` tehingu tagasiveeremisel ei jää ei olekusiiret ega
+auditirida** · **teine `markTransferred` sama `expectedFrom` pealt → 409, teist auditirida ei
+teki**.
 
 ---
 
@@ -680,18 +775,29 @@ ole säilitusreegel.**
 | # | Töö | Tingimus | Tulemus |
 |---|---|---|---|
 | 1 | **mustandi sisu purge** | `transferredAt` + 12 kuud, `contentPurgedAt IS NULL` | `deleteMany` `CaseWorkDraftField` + `contentPurgedAt = now()` **ühes tehingus** |
-| 2 | **juhtumi hoiatus** | `ARCHIVED` + 11 kuud, hoiatust ei ole saadetud | U1 teavitus `casework.case.retention_warning` |
-| 3 | **juhtumi kustutus** | `ARCHIVED` + 12 kuud | `delete` — kaskaad viib kõik lapsed (L15) |
+| 2 | **juhtumi hoiatus** | `archivedAt` + 12 kuud **− 30 päeva** | U1 teavitus `casework.case.retention_warning` |
+| 3 | **juhtumi kustutus** | `archivedAt` + 12 kuud | `delete` — kaskaad viib kõik lapsed (L15) |
 
-**Kell tuleb auditist, mitte `updatedAt`-ist:** arhiveerimise hetk on `CaseWorkRetentionAudit`
-viimane rida `toState = ARCHIVED`. See on juba append-only ja teda ei saa tagasi kirjutada.
+**`archivedAt` tuleb PÄRIS ÜLEMINEKUST** (L17), mitte viimasest auditireast ega `updatedAt`-ist:
+
+```
+CaseWorkRetentionAudit WHERE fromState = 'READ_ONLY' AND toState = 'ARCHIVED'
+```
+
+Elutsükkel on ühesuunaline ja terminaalne, seega selliseid ridu on **täpselt üks**.
+
+**Hoiatuse aeg on `deletionAt − 30 päeva`, mitte „11 kuud"** (v3 parandus). L7 lubab kasutajale
+30 päeva; kalendrikuu on 28–31 päeva, seega „11 kuud" oleks andnud 28–31-päevase akna sõltuvalt
+sellest, millal juhtum arhiveeriti. **Lubadus ja teostus arvutatakse samast valemist.**
 
 **Idempotentsus.** Kõik kolm tööd on kordumatud ja seda **tõendab test, mitte kommentaar**:
 
-- purge: `contentPurgedAt IS NULL` on päringutingimus — teine käivitus ei leia rida
-- hoiatus: hoiatuse fakt salvestub `CaseWorkRetentionAudit`-i eraldi reana
-  (`toState = ARCHIVED`, `reason = "retention_warning_sent"`) — teine käivitus ei saada uuesti
-- kustutus: kustutatud rida ei tule järgmises päringus
+- **purge:** `contentPurgedAt IS NULL` on päringutingimus — teine käivitus ei leia rida
+- **hoiatus:** kordumatus tuleb **teavituskihist** (L17) — `createNotificationEvent()`
+  `dedupeKey = casework.case.retention_warning:<caseId>:<ownerId>:v1` on unikaalne ja
+  kokkupõrkel tagastatakse `{ created: false }`. **Säilitustöö ei kirjuta
+  `CaseWorkRetentionAudit`-i ühtegi rida** — see oli v2 kella viga (L17)
+- **kustutus:** kustutatud rida ei tule järgmises päringus
 
 **Tõrge ja kordus.** Ühe rea tõrge **ei peata partiid** — logitakse ja liigutakse edasi; järgmine
 käivitus proovib uuesti, sest tingimus on ikka täidetud. Eraldi retry-taristut ei ehitata.
@@ -713,10 +819,14 @@ võtaks andmebaasi enda alla.
 3. purge ei puuduta mustandit ilma `transferredAt`-ita (`MUSTAND`, `EI_KANTA`)
 4. **`CaseWorkTransferEvent` jääb pärast purge'i alles** ja `draftId` ei ripu
 5. hoiatus läheb üks kord, mitte igal käivitusel
-6. kustutus viib kaskaadis prep-i, märkme, kirjed, mustandi, väljad ja transfer-eventid
-7. kell arvutatakse `CaseWorkRetentionAudit`-ist, mitte `updatedAt`-ist
-8. värav väljas → skript ei tee ühtegi kirjutust
-9. ühe rea tõrge ei peata partiid
+6. kustutus viib kaskaadis prep-i, küsimused, märkme, kirjed, mustandi, väljad ja transfer-eventid
+7. kell arvutatakse **päris üleminekust** (`fromState = READ_ONLY`), mitte viimasest auditireast
+8. **säilitustöö ei kirjuta `CaseWorkRetentionAudit`-i ühtegi rida** — L17 kella viga ei saa
+   taastekkida (kontroll: auditiridade arv enne ja pärast kolme käivitust on sama)
+9. **hoiatuse saatmine ei nihuta kustutuse aega** — pärast hoiatust arvutatud `deletionAt` on
+   sama, mis enne (see on v2 vea otsene regressioonitest)
+10. värav väljas → skript ei tee ühtegi kirjutust
+11. ühe rea tõrge ei peata partiid
 
 ---
 
@@ -754,7 +864,8 @@ Automaatne STAR2 saatmine (ptk 4.8) · `PracticeReflection` mudel (P3) · genogr
 võrgustikukaart (P5) · meetodikataloog ja valiku-assistent (P6) · kliendi tagasiside (ptk 8.6) ·
 sekkumispäevik (ptk 8.5) · juhtumi üleandmine kolleegile (O-JU-2) · org-koondid
 refleksiooniandmetest (O-CW-6 vaikekeeld) · **päringu tühistamise taristu** (L13) ·
-push, deploy, tootmisandmete lugemine.
+**puuduva info punktide valik ettevalmistuse peale** (E3 — prep loeb juhtumi loendit, koopiat ega
+valikutabelit ei teki) · push, deploy, tootmisandmete lugemine.
 
 ---
 
