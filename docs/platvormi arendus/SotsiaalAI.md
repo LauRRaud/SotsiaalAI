@@ -89,8 +89,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` = **`529dd3e4`**, tööpuu puhas. Üks tööpuu, üks haru.
-**`origin/main` on `724d7680`** ja lokaalne main on temast **17 kannet ees** — kogu JUHTUM-V1
+Lokaalne `main` = **`bb9b4712`**, tööpuu puhas. Üks tööpuu, üks haru.
+**`origin/main` on `724d7680`** ja lokaalne main on temast **20 kannet ees** — kogu JUHTUM-V1
 (E1–E6) on **push'imata**, sest push ja deploy käivad ainult omaniku selgel loal.
 **Serveris on `8ab68f98`** (A4 deploy 05.08). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
@@ -128,7 +128,42 @@ välja, et *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne `r
 kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte polümorfne**, ja
 „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte rakenduse kustutusteede kaetusest.
 
-### Järgmine samm — ootab omaniku valikut
+### Käib praegu (07.08): JTA-V1 — juhtumitöö assistent
+
+**Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping on kirjutatud
+([`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) v1, `DRAFT` — ootab omaniku auditit),
+etapid **E1–E7**. Koodi veel ei ole.
+
+Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
+eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
+ole.
+
+**Kolm otsust langesid samal päeval** ja nad on lepingus lukus:
+
+| Kood | Küsimus | Vastus 07.08 |
+|---|---|---|
+| **O-CW-4** | JTA konteiner vs adapterid | **suletud faktiga** — konteiner on ehitatud (JUHTUM-V1). Analüüsi soovitus oli „adapterid kuni tõendatud vajaduseni"; teostus vastas küsimusele enne, kui ta otsusena esitati |
+| **O-JU-1 + O-CW-2** | juhtumi ja ülekantud mustandi säilitus | **kirjutuskaitse + 12 kuud arhiivis + kustutus.** Jõustamise kuju on lepingus L7: kell käib **`ARCHIVED`-ist**, mitte viimasest muutmisest; loendus on juhtumil nähtav; hoiatus 30 päeva ette; **vaikset kustutust ei ole** — automaatne kustutus, millest töötaja ette teada ei saa, hävitaks tema enda töö ilma taastevõimaluseta |
+| **O-CW-10** | „Kopeeri STAR2 jaoks" auditisügavus | **fakt + väljade loend**, mitte täissnapshot. Auditikirjed on append-only ja ükski säilitusreegel ei ulatu nendeni — täissnapshot oleks varju-register, ehitatud selle mehhanismi sisse, mis pidi teda ära hoidma |
+
+**Ulatus on järjestatud otsuste järgi, mitte teemade järgi:** E1–E2 (laud) on migratsiooni- ja
+otsustevabad ning käivad esimesena; STAR2-mustandite ahel (= **CASEWORK-P2**) on viimane, sest
+tema säilitusreegel vajab veel õigusabi kinnitust (Õ2). Kui kinnitus viibib, jõuab laud ikka
+valmis.
+
+**Kaks mõõdetud fakti kujundasid lepingut.** Esiteks: **STAR2 ülekande olekumasin on koodis
+juba olemas ja kasutamata** — `lib/workspaces/provenance.js` kannab kuut seisu, lubatud
+üleminekuid ja `canTransitionStar2()`-t, ning faili enda kommentaar näeb ette, et ebaseaduslik
+üleminek annab „409 once the state is persisted in P2". E5 ei projekteeri olekumasinat, ta
+annab olemasolevale salvestuse. Teiseks: **laua kümnest sektsioonist kaheksa on lugemistöö** —
+allikad (`listReceivedCaseWork`, `listCaseWorkAssists`, `countOpenMissingInfo`,
+`listPracticeReflectionWorkspaces`, COLLAB-P4 jagamised, `TopicSeed`) on kõik olemas.
+
+**JTA-V1 elab sama värava taga** (`CASEWORK_V1_ENABLED`) — uut lippu ei looda. Assistent ilma
+juhtumi objektita on mõttetu ja juhtumi objekt ilma assistendita poolik; kaks lippu annaks neli
+kombinatsiooni, millest kaks on katkised olekud.
+
+### Eelmine samm — omaniku valik
 
 **T03 E4/E5 punktid 1–4 (hääle karastus) on 03.08 tehtud, deploy'tud ja LIVE.** Vt S3.
 Selle sees läks kinni ka S4.2 nr 5–8.
@@ -631,7 +666,14 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 
 #### Juhtumitöö assistent
 
-*Lähtematerjal: `ideed.md` ptk 4. Koodis 0 rida.*
+*Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) v1 (`DRAFT`, etapid E1–E7). **Koodis 0
+rida** — leping kirjutatud 07.08, ehitus ei ole alanud.*
+
+**Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
+(tehtud) · **P2 STAR2-mustandite ahel** (selle lepingu E5–E6) · P3 Meetodipeegel (eraldi, O-CW-3
+taga). JTA-V1 katab laua, kohtumise ettevalmistuse, kihilise märkme ja P2 — **mitte P3, P5 ega
+P6**.
 
 Juhtumitöö assistent aitab sotsiaaltöötajal korraldada **enda jooksvat professionaalset
 tööd, ilma STAR2 ametlikku toimikut dubleerimata**. Ta vastab küsimustele, millele register
@@ -672,11 +714,14 @@ töösolevad mustandid, puuduva info loendi, kohtumise ettevalmistuse, STAR2 vii
 teist aktiivset ametliku juhtumiplaani koopiat — ülekantud mustand muutub kirjutuskaitstuks
 või arhiveerub säilitusreegli järgi.
 
-**Mis blokeerib:** üks eeldus — **juhtumi objekt** (allpool). Ilma selleta on assistendil laud,
-aga mitte seda, mille ümber laud käib. **07.08 seis: eeldus on täidetud — objekt on koodis
-(E1–E6), värav väljas.** Assistent vajab nüüd ainult oma lepingut —
-tema „puuduva info loend" ja „järgmised kontaktid" hakkavad lugema juhtumi objekti, mitte neid
-uuesti looma.
+**Mis blokeeris:** üks eeldus — **juhtumi objekt** (allpool). Ilma selleta oli assistendil laud,
+aga mitte seda, mille ümber laud käib. **07.08: eeldus täidetud** (objekt on koodis, värav
+väljas) **ja leping kirjutatud — miski ei blokeeri enam ehitust.** Tema „puuduva info loend" ja
+„järgmised kontaktid" loevad juhtumi objekti, ei loo neid uuesti.
+
+Aktiveerimist blokeerib sama, mis juhtumi objektil (Õ2/Õ3), **pluss üks uus**: säilitusreegli
+12-kuuline kell vajab õigusabi kinnitust (lepingu Õ2). Ehitust see ei blokeeri — E1–E2 on
+kellast sõltumatud.
 
 ---
 
@@ -724,9 +769,10 @@ FK `SetNull` üksi jätaks jälje määramata.
 mitte tõestatud fakt**, ja just seda lahutab aktiveerimisvärav: deploy'da tohib, avamine vajab
 lisaks andmekaitseanalüüsi kinnitust (Õ2/Õ3).
 
-Kolm otsust on lahtised (O-JU-1 säilitusreegel — **sama küsimus mis O-CW-2, küsi koos** ·
-O-JU-2 üleandmine kolleegile · O-JU-3 loomine eelpöördumisest ühe vajutusega), aga **ükski ei
-blokeerinud ehitust** ja V1 vastab neile „ei".
+Kolmest lahtisest otsusest **O-JU-1 sai 07.08 vastuse koos O-CW-2-ga** (kirjutuskaitse + 12 kuud
+arhiivis + kustutus; jõustamise kuju JTA-V1 lepingu L7-s — kell käib `ARCHIVED`-ist ja vaikset
+kustutust ei ole). Lahtised jäävad **O-JU-2** (üleandmine kolleegile) ja **O-JU-3** (loomine
+eelpöördumisest ühe vajutusega); kumbki ei blokeerinud ehitust ja V1 vastab neile „ei".
 
 ---
 
@@ -1020,7 +1066,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P2–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
