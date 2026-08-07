@@ -130,9 +130,23 @@ kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte p
 
 ### Käib praegu (07.08): JTA-V1 — juhtumitöö assistent
 
-**Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping on kirjutatud
-([`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) v1, `DRAFT` — ootab omaniku auditit),
-etapid **E1–E7**. Koodi veel ei ole.
+**Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v4 / `READY_TO_ASSIGN`** — kolm
+omaniku auditiringi, **19 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1 on tehtud
+(08.08).**
+
+Kolm auditiringi leidsid nimeliselt neli kohta, kus leping lubas garantiid ilma jõustajata:
+CHECK ei oska olekuüleminekut · audit rippus juhtumi küljes, mis säilitusreegli lõpus kustub ·
+hoiatus nullis kella, mida ta pidi teenindama (12 → 23 kuud) · „ainus tee `ULE_KANTUD`-ini" ja
+teine uks lahti. **Sellepärast kannab iga L-otsus nüüd nime, kes teda jõustab.**
+
+**E1 (laua koondlugeja) on koodis:** `lib/casework/workbench.js` koondab kaheksa sektsiooni
+olemasolevatest lugejatest, 0 migratsiooni. Kolm uut lugejat läksid omaniku-moodulisse, mitte
+lauda (L10) — neist **neljas oli leid**: võrgustikujagamiste nimekirja päring elas
+marsruudi sees ja moodulil ei olnud ühtegi lugejat, seega laud oleks pidanud kirjutama oma
+`findMany`-t. Väravad: `npm test` **2937/2937** · `i18n:check` OK · eslint puhas.
+
+**Järgmine: E2** — laua pind `/toolaud/juhtumitoo`, marsruut, kolme keele tekstid ja ⓘ juhend.
 
 Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
 eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
