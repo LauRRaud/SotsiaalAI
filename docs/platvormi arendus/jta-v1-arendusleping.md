@@ -1,6 +1,7 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **`DRAFT`** — v3 parandab omaniku teise auditi 1 blokeeriva ja 4 täpsustust; ootab kinnitust.
+**Olek:** **`READY_TO_ASSIGN`** — kinnitatud omaniku kolmanda auditiga 07.08 (v4).
+**19 lukustatud otsust, 8 etappi, 4 migratsiooni.**
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -17,13 +18,19 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 |---|---|
 | v1 | esimene kuju. Kirjutatud **pärast** `ideed.md` ptk 4 lugemist ja pärast koodi mõõtmist — mitte mälust (JUHTUM-V1 v1 õppetund) |
 | **v2** | **omaniku audit — 6 blokeerivat + 6 täpsustust.** Kandvad muutused: (a) E3–E6 said täieliku teostuslepingu `teenus → API → pind → värav → valideerimine → testid`; (b) laua sektsioonid said **ühe kanoonilise tabeli** (L12) — kaks vastuolulist loendit kadusid; (c) **säilituse jõustamine sai oma etapi E7**, varem oli otsus ilma mehhanismita; (d) **L6 parandatud — SQL CHECK ei oska olekuüleminekut**, jõustab tingimuslik update; (e) **L8 parandatud — v1 väide „säilitusreegel ei ulatu auditini" oli vale** ja vastuolus sellega, et audit ripub kustuva juhtumi küljes; (f) päritolu sai **normaliseeritud kuju** (L4), varem oleks kaheksa tekstivälja lepingut täitnud ja L4 rikkunud |
-| **v3** | **omaniku teine audit — 1 blokeeriv + 4 täpsustust.** (a) **KELLA VIGA:** v2 hoiatus kirjutas `CaseWorkRetentionAudit`-i uue `toState = ARCHIVED` rea, mis nihutas kustutuse 12 → 23 kuuni. Parandatud kahes kohas — kell otsib **päris üleminekut** ja hoiatus **ei kirjuta auditisse üldse** (L17); (b) **E3 regressioon taastatud** — v2 refaktor kaotas kogemata päritolu-, `AI_MUSTAND`- ja puuduva info nõuded; (c) L5 sõnastus lepitatud O-JTA-4-ga; (d) **`markTransferred` tehingupiir lukus** (L18); (e) hoiatus on **30 päeva**, mitte 11 kuud — lubadus ja teostus on nüüd identsed |
+| **v3** | **omaniku teine audit — 1 blokeeriv + 4 täpsustust.** (a) **KELLA VIGA:** v2 hoiatus kirjutas `CaseWorkRetentionAudit`-i uue `toState = ARCHIVED` rea, mis nihutas kustutuse 12 → 23 kuuni. Parandatud kahes kohas — kell otsib **päris üleminekut** ja hoiatus **ei kirjuta auditisse üldse** (L17); (b) **E3 regressioon taastatud** — v2 refaktor kaotas kogemata päritolu-, `AI_MUSTAND`- ja puuduva info nõuded; (c) L5 sõnastus lepitatud O-JTA-4-ga; (d) **`markTransferred` tehingupiir lukus** (L18); (e) hoiatus on **30 päeva**, mitte 11 kuud |
+| **v4** | **omaniku kolmas audit — 1 blokeeriv + 2 täpsustust.** (a) **KAKS TEED `ULE_KANTUD`-ini:** v3 L18 lubas garantiid, mille E5 avalik `POST …/transition` oleks ümbert läbi lasknud — mustand oleks jõudnud `ULE_KANTUD`-i **ilma auditireata** ja säilituskell oleks hakanud käima tõendita ülekande peal. Kolm kihti, üks tee (L19); (b) `confirm-provenance` marsruut oli **nimetatud, aga API-loendist puudu**; (c) **prep-i väljad said oma tabeli** — üks jäme `provenance` terve ettevalmistuse peal ei suutnud väljendada „`agenda` = töötaja, `plainLanguageNotes` = AI", kuigi leping ise ütleb „AI koostatud **osa**". **Staatus kinnitatud.** |
 
-**v2 parandas kaks ja v3 ühe minu enda vea.** L6 lubas andmebaasi CHECK-ilt garantiid, mida
-`CHECK` üldse anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga audit
-rippus juhtumi küljes, mis säilitusreegli lõpus kustub. **Ja v2 hoiatusmehhanism nullis kella,
-mida ta pidi teenindama** — hoiatus kirjutas auditisse ülemineku, mida ei toimunud, ja
-lükkas kustutuse ligi kaks korda kaugemale. Kõik kolm on allpool ümber sõnastatud.
+**Neli minu enda viga on selles ahelas parandatud, mitte lünka.** L6 lubas andmebaasi CHECK-ilt
+garantiid, mida `CHECK` anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga
+audit rippus juhtumi küljes, mis säilitusreegli lõpus kustub. v2 hoiatusmehhanism nullis kella,
+mida ta pidi teenindama. **Ja v3 L18 lubas ainsat teed `ULE_KANTUD`-ini samal ajal, kui E5 hoidis
+teist ust lahti.**
+
+Muster on läbi nelja versiooni sama: **iga kord, kui leping ütles „garantii", aga jõustaja jäi
+nimetamata, oli garantii katki.** Just seepärast kannab iga etapp nüüd rida
+`teenus → API → pind → värav → valideerimine → testid` ja iga L-otsus nimetab, **kes** teda
+jõustab.
 
 ---
 
@@ -182,11 +189,13 @@ päritolu ei ütle midagi selle sees oleva kolme lõigu kohta.
 
 | Kandja | Laps | Päritolu asub |
 |---|---|---|
+| `CaseWorkMeetingPrep` | `CaseWorkMeetingPrepField` · `CaseWorkQuestion` | **iga välja ja iga küsimuse real**, `NOT NULL` |
 | `CaseWorkMeetingNote` | `CaseWorkMeetingNoteEntry` | **iga kirje real**, `NOT NULL` |
 | `CaseWorkDraft` | `CaseWorkDraftField` | **iga välja real**, `NOT NULL` |
 
-**Vanem ei kanna teksti üldse.** `CaseWorkMeetingNote` ja `CaseWorkDraft` on konteinerid;
-kogu sisu elab lastes. Kolm tagajärge, mis kõik on soovitud:
+**Kolm kandjat, üks muster (v4).** Ettevalmistus, märge ja mustand käituvad ühtemoodi ja seda
+ei otsustata igaühe juures eraldi. **Vanem ei kanna teksti üldse** — ta on konteiner, kogu sisu
+elab lastes. Kolm tagajärge, mis kõik on soovitud:
 
 1. **L4 muutub skeemi faktiks**, mitte teenuskihi kombeks — päritoluta rida ei mahu tabelisse
 2. **L5 kihipiir on andmebaasis** — `layer` on lapse veerg, mitte vanema väljanimi
@@ -433,6 +442,7 @@ Mõlemad on õiged, aga eri kihtide kohta, ja seda ei olnud kirjas.
 | Laps | Vanem | `onDelete` | Miks |
 |---|---|---|---|
 | `CaseWorkMeetingPrep` | `CaseWorkAssist` | `Cascade` | juhtumi kustutus on täielik |
+| `CaseWorkMeetingPrepField` | `CaseWorkMeetingPrep` | `Cascade` | sisu ei ela üle konteineri |
 | `CaseWorkQuestion` | `CaseWorkMeetingPrep` | `Cascade` | küsimus ei ela üle ettevalmistuse |
 | `CaseWorkMeetingNote` | `CaseWorkAssist` | `Cascade` | sama |
 | `CaseWorkMeetingNoteEntry` | `CaseWorkMeetingNote` | `Cascade` | sisu ei ela üle konteineri |
@@ -524,6 +534,34 @@ teist teed `ULE_KANTUD`-ini ei ole.
 sündmus jõuaks välja ka siis, kui tehing hiljem tagasi veereb — sama põhjendus, mis kannab
 U1-outbox mustrit mujal platvormil.
 
+### L19 — `ULE_KANTUD`-ini viib TÄPSELT ÜKS tee
+
+**v4 parandus — v3 lubas L18-s garantiid, mille E5 avalik marsruut oleks ümbert läbi lasknud.**
+L18 ütles „teist teed `ULE_KANTUD`-ini ei ole", aga E5 `POST …/transition` võttis vastu iga
+lubatud sihi, sealhulgas `ULE_KANTUD`. Tulemus oleks olnud:
+
+```
+transferState = ULE_KANTUD        ✓
+transferredAt = <aeg>             ✓
+MARKED_AS_TRANSFERRED auditirida  PUUDUB          ← L18 garantii katki
+```
+
+Ja sealt edasi oleks L7 säilituskell hakanud käima mustandi peal, millel ei ole ühtegi tõendit,
+et keegi selle kunagi kuhugi kandis.
+
+**Kolm kihti, üks tee:**
+
+| Kiht | Roll |
+|---|---|
+| `transitionDraftStateTx()` | **sisemine primitiiv** — tingimuslik siire tehingu sees. Ei ole avalik eksport |
+| `transitionDraft()` | avalik operatsioon **kõigi muude** siirete jaoks. `to = ULE_KANTUD` → **400** |
+| `markTransferred()` | **ainus** kasutajaoperatsioon, mis jõuab `ULE_KANTUD`-ini. Primitiiv + auditirida ühes tehingus (L18) |
+
+**Miks 400, mitte vaikne ümbersuunamine `markTransferred`-ile:** kaks operatsiooni tähendavad
+kahte eri tegu ja kahte eri tähendust. „Märgi üle kantuks" on avaldus selle kohta, et info on
+STAR-is; „vii mustand järgmisse seisu" ei ole. Vaikne ümbersuunamine tekitaks auditirea teo
+kohta, mida kasutaja ei teinud.
+
 ---
 
 ## Lahtised otsused — ükski ei blokeeri ehitust
@@ -604,39 +642,62 @@ tõlgitud.
 
 | | |
 |---|---|
-| **Teenus** | **uus** `lib/casework/caseWorkMeetingPrep.js` — `createMeetingPrep`, `updateMeetingPrep`, `getMeetingPrep`, `listMeetingPreps`, `deleteMeetingPrep`, `addQuestion`, `updateQuestion`, `removeQuestion` |
-| **API** | **uus** `app/api/casework/cases/[caseId]/meeting-preps/route.js` (`GET`, `POST`) · `.../[prepId]/route.js` (`GET`, `PATCH`, `DELETE`) · `.../[prepId]/questions/route.js` (`GET`, `POST`) · `.../questions/[questionId]/route.js` (`PATCH`, `DELETE`) |
+| **Teenus** | **uus** `lib/casework/caseWorkMeetingPrep.js` — `createMeetingPrep`, `updateMeetingPrep`, `getMeetingPrep`, `listMeetingPreps`, `deleteMeetingPrep`, `setPrepField`, `addQuestion`, `updateQuestion`, `removeQuestion`, **`confirmProvenance`** |
+| **API** | **uus** `app/api/casework/cases/[caseId]/meeting-preps/route.js` (`GET`, `POST`) · `.../[prepId]/route.js` (`GET`, `PATCH`, `DELETE`) · `.../[prepId]/fields/route.js` (`PUT`) · `.../[prepId]/questions/route.js` (`GET`, `POST`) · `.../questions/[questionId]/route.js` (`PATCH`, `DELETE`) · **`.../[prepId]/fields/[fieldKey]/confirm-provenance/route.js` (`POST`)** · **`.../questions/[questionId]/confirm-provenance/route.js` (`POST`)** |
 | **Pind** | **uus** `app/juhtumid/[caseId]/page.jsx` — juhtumi detailvaade (**täna ei ole**), ettevalmistuse sektsioon |
 | **Värav** | `guardCaseWorkRequest()`, scope `casework:meeting-prep` |
 | **Valideerimine** | `provenance` ∈ 8 väärtusest **prep-real ja igal küsimusel**; `kind` ∈ 2 |
 | **Testid** | `tests/casework/meetingPrep.test.js` + marsruuditest |
 
-**Kaks mudelit** (v3 taastas siia v2 refaktoris kaotatud päritolunõude):
+**Kolm mudelit** (v3 taastas päritolunõude, **v4 viis prep-i sama mustri alla mis märkme ja
+mustandi**):
 
-**`CaseWorkMeetingPrep`** — FK `CaseWorkAssist`, `onDelete: Cascade` (L15). Väljad ptk 4.4:
-`goal` · `requiredDocuments` · `lifeDomains` · `agenda` · `plainLanguageNotes` · `meetingAt` ·
-**`provenance`**.
+**`CaseWorkMeetingPrep`** — FK `CaseWorkAssist`, `onDelete: Cascade` (L15). **Tekstita.**
+Ainus sisuline väli on `meetingAt` — see on ajahetk, mitte autoritekst, ja päritolu tal ei ole.
+
+**`CaseWorkMeetingPrepField`** — FK prep-ile, `Cascade`. `fieldKey` ∈
+`{GOAL, REQUIRED_DOCUMENTS, LIFE_DOMAINS, AGENDA, PLAIN_LANGUAGE_NOTES}` · `text` ·
+**`provenance` `NOT NULL`**. `@@unique([meetingPrepId, fieldKey])` — üks rida välja kohta.
 
 **`CaseWorkQuestion`** — `ideed.md` **ptk 12 nimi, uut ei leiutata**. FK prep-ile, `Cascade`.
-Väljad: `kind` ∈ `{CLARIFYING_QUESTION, CLAIM_TO_VERIFY}` · `text` · **`provenance` `NOT NULL`** ·
+`kind` ∈ `{CLARIFYING_QUESTION, CLAIM_TO_VERIFY}` · `text` · **`provenance` `NOT NULL`** ·
 `ordinal`.
 
-Kaks ptk 4.4 välja on **loendid, mille iga rida vajab oma päritolu** — „täpsustavad küsimused" ja
-„kliendiga kontrollitavad väited". v2 tegi neist tekstiväljad ja kaotas sellega L4 nõude täpselt
-nii, nagu L4 ise hoiatab. Nüüd on nad `CaseWorkQuestion` read.
+**Miks prep-i väljad said oma tabeli (v4 parandus).** v3 andis tervele ettevalmistusele **ühe**
+`provenance` väärtuse. See ei suuda väljendada päris juhtu:
+
+```
+goal                → töötaja kirjutas      TOOTAJA_TAHELEPANEK
+agenda              → töötaja kirjutas      TOOTAJA_TAHELEPANEK
+plainLanguageNotes  → AI koostas            AI_MUSTAND
+```
+
+Leping ise ütleb **„AI koostatud osa"**, mitte „AI koostatud ettevalmistus tervikuna" — ja üks
+jäme märgis oleks pidanud kogu prep-i `AI_MUSTAND`-iks või kaotanud märgise sealt, kus ta loeb.
+Küsimuste juures oli see juba õigesti tehtud; nüüd on kogu prep sama loogika all.
+
+**Kaks välja jäävad V1-s üheks tekstiplokiks** (`requiredDocuments`, `lifeDomains`), kuigi nad on
+loendilaadsed. See on teadlik: nad ei kanna eri päritolu ridade kaupa ja loendiks lammutamine
+oleks skeemi kasv ilma tõendatud vajaduseta.
 
 **Kolm nõuet, mille v2 refaktor kogemata maha jättis, on tagasi:**
 
 | # | Nõue | Kus ta nüüd elab |
 |---|---|---|
 | 1 | täpsustavad küsimused kannavad päritolu | `CaseWorkQuestion.provenance`, `NOT NULL` |
-| 2 | **AI koostatud osa kannab `AI_MUSTAND` märgist ja seda ei saa vaikselt maha võtta** | `provenance` prep-real ja igal küsimusel. Märgise muutmine on **oma operatsioon** oma marsruudil, mitte `PATCH`-i kõrvalmõju — L4 „märgis ei parane ise" |
+| 2 | **AI koostatud osa kannab `AI_MUSTAND` märgist ja seda ei saa vaikselt maha võtta** | `provenance` igal väljal ja igal küsimusel. Märgise muutmine käib **ainult** `confirm-provenance` marsruudi kaudu (vt allpool) — `PATCH` ei puutu `provenance`-i ja saadetud `provenance` väli **eiratakse vaikselt, mitte ei võeta vastu** |
 | 3 | puuduva info loend | **read-side**, mitte uus tabel — vt allpool |
 
 **Puuduv info EI kopeerita prep-i.** Prep-i vaade loeb juhtumi enda `CaseWorkMissingInfo` lahtised
 punktid (`listMissingInfo`). Koopia oleks teine tõde ja rikuks ptk 4.7 („paralleelset andmebaasi
 ei teki") — kaks loendit läheksid esimese lahendamise järel lahku. **Valikut „need 3 punkti
 võtan sellel kohtumisel ette" V1-s ei ole** ja see on välja öeldud, mitte vaikimisi kadunud.
+
+**`confirmProvenance({ … , from, to })`** on **oma operatsioon oma marsruudil**, mitte `PATCH`-i
+kõrvalmõju. Ta võtab `from` väärtuse ja teeb tingimusliku update'i (sama muster mis L6) — nii ei
+saa kaks samaaegset kinnitust teineteist üle kirjutada. **Ainus lubatud suund on `AI_MUSTAND` →
+inimese märgis**; tagasiteed masina märgise juurde ei ole, sest see kirjutaks inimese kinnituse
+ümber.
 
 **Nõuded:** kirjutuskaitse **pärib juhtumilt** — `READ_ONLY`/`ARCHIVED` keelab ka laste muutmise
 (JUHTUM-V1 L14), jõustatud **tingimusliku update'iga** koos vanema seisu tingimusega.
@@ -646,9 +707,10 @@ tõend. Kustutus on kõva kustutus ja seda ei auditeerita eraldi.
 
 **Testileping:** võõra juhtumi prep → **404, mitte 403** · kirjutuskaitstud juhtumi prep ei
 muutu (409) · `caseId`/`prepId` ristkontroll · `DELETE` kaks korda = idempotentne (teine 404) ·
-**päritoluta küsimus ei salvestu** · tundmatu `provenance` või `kind` → 400 · **`AI_MUSTAND`
-märgis ei kao tavalise `PATCH`-iga** · prep-i vaade kuvab juhtumi puuduva info, aga ei salvesta
-sellest koopiat (kontroll: lahendamine juhtumis muudab prep-i vaadet).
+**päritoluta väli ega küsimus ei salvestu** · tundmatu `provenance`, `fieldKey` või `kind` →
+400 · **`PATCH` koos `provenance` väljaga ei muuda märgist** · `confirm-provenance` vale
+`from`-iga → 409 · **`inimese märgis → AI_MUSTAND` → 400** · prep-i vaade kuvab juhtumi puuduva
+info, aga ei salvesta sellest koopiat (kontroll: lahendamine juhtumis muudab prep-i vaadet).
 
 ---
 
@@ -693,13 +755,21 @@ teenuskihi tasemel, mitte UI-s) · kirjutuskaitse pärib juhtumilt · võõra m�
 `transferredAt`, `contentPurgedAt`, **tekstita**) ja `CaseWorkDraftField` (`fieldKey`, `text`,
 `provenance`).
 
-**`transitionDraft({ ownerUserId, caseId, draftId, expectedFrom, to })`:**
+**Kaks funktsiooni, üks primitiiv (v4 parandus — vt L19).**
+
+**`transitionDraftStateTx(tx, { … , expectedFrom, to })`** — **sisemine**, ei ole eksporditud
+avaliku API-na:
 
 1. `canTransitionStar2(expectedFrom, to)` → **eelkontroll**, annab ausa 400 tundmatu sihi peale
 2. **tingimuslik `updateMany`** `WHERE … transferState = expectedFrom` → 0 rida = **409** (L6)
-3. `to === ULE_KANTUD` → **samas tehingus** `transferredAt = now()`
-4. kirjutuskaitse: `ULE_KANTUD` ja `EI_KANTA` on terminaalsed — `setField`/`removeField`
-   keelduvad **409**-ga
+3. `to === ULE_KANTUD` → samas tehingus `transferredAt = now()`
+
+**`transitionDraft({ … })`** — avalik kasutajaoperatsioon. Kutsub primitiivi, **aga
+`to = ULE_KANTUD` lükatakse tagasi 400-ga** (`casework.errors.use_mark_transferred`).
+`ULE_KANTUD`-ini viib ainult E6 `markTransferred()`, mis loob samas tehingus ka auditirea.
+
+**Kirjutuskaitse:** `ULE_KANTUD` ja `EI_KANTA` on terminaalsed — `setField`/`removeField`
+keelduvad **409**-ga.
 
 **DB CHECK-id** (L6 — väärtused, mitte üleminekud): `transferState` lubatud väärtustes ·
 `transferredAt IS NOT NULL` ⟺ `transferState = 'ULE_KANTUD'` · `contentPurgedAt IS NOT NULL` →
@@ -709,9 +779,13 @@ teenuskihi tasemel, mitte UI-s) · kirjutuskaitse pärib juhtumilt · võõra m�
 `carrierClassForArtifactStatus()` on `provenance.js`-is juba olemas ja jääb ainsaks allikaks.
 
 **Testileping:** ebaseaduslik üleminek → 409 · **kaks samaaegset üleminekut sama `expectedFrom`
-pealt → üks 200, teine 409** · terminaalse mustandi väli ei muutu · `ULE_KANTUD` paneb
-`transferredAt` samas tehingus · võõra juhtumi `draftId` → 404 · `MUSTAND`-il ei saa olla
-`transferredAt` (DB CHECK).
+pealt → üks 200, teine 409** · terminaalse mustandi väli ei muutu · võõra juhtumi `draftId` →
+404 · `MUSTAND`-il ei saa olla `transferredAt` (DB CHECK) · **`POST /transition` `to=ULE_KANTUD`
+→ 400, ja `transferState` EI muutu** (L19) · `transitionDraftStateTx` ei ole mooduli avalik
+eksport.
+
+*(Test „`ULE_KANTUD` paneb `transferredAt` samas tehingus" **kolis E6-sse** — see on nüüd
+`markTransferred`-i omadus, mitte `transitionDraft`-i oma.)*
 
 ---
 
@@ -740,10 +814,10 @@ sünnib STAR-is.
 **Järjekord on L16 järgi:** plokk → lõikelaud → **alles siis** `copy-events`. Auditi tõrge
 öeldakse kasutajale välja.
 
-**`markTransferred()` on L18 järgi ÜKS TEHING:** tingimuslik siire + `transferredAt` +
-`MARKED_AS_TRANSFERRED` auditirida. **U1 sündmus
-`casework.draft.external_transfer_marked` emiteeritakse pärast edukat commit'i**, mitte tehingu
-sees. Kopeerimine ei emiteeri (L9).
+**`markTransferred()` on L18 järgi ÜKS TEHING ja L19 järgi AINUS TEE `ULE_KANTUD`-ini:**
+`transitionDraftStateTx()` + `transferredAt` + `MARKED_AS_TRANSFERRED` auditirida — kõik kolm
+samas tehingus. **U1 sündmus `casework.draft.external_transfer_marked` emiteeritakse pärast
+edukat commit'i**, mitte tehingu sees. Kopeerimine ei emiteeri (L9).
 
 **Testileping:** auditirida **ei sisalda ühtegi välja väärtust** (kontroll: iga
 `CaseWorkDraftField.text` ei esine auditireas) · `PRIVAATNE_REFLEKSIOON` ei esine ploki
@@ -751,7 +825,9 @@ väljundis · kopeerimine **ei muuda** `transferState`-i · `markTransferred` em
 `recordCopyEvent` mitte · võõra mustandi `fieldKeys` → 400 · transfer-event tabelil ei ole
 update/delete rada · **`markTransferred` tehingu tagasiveeremisel ei jää ei olekusiiret ega
 auditirida** · **teine `markTransferred` sama `expectedFrom` pealt → 409, teist auditirida ei
-teki**.
+teki** · **`markTransferred` paneb `transferState`, `transferredAt` ja auditirea ühes tehingus**
+(kolis E5-st, L19) · **ükski `ULE_KANTUD` mustand ei saa eksisteerida ilma
+`MARKED_AS_TRANSFERRED` auditireata** — kontroll käib andmete, mitte kutsete tasemel.
 
 ---
 
