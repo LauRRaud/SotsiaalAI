@@ -82,15 +82,42 @@ test("päev on sama, mis ka poleks SERVERI ajavöönd", () => {
   assert.equal([...seen][0], "2026-08-08|2026-08-07T21:00:00.000Z|2026-08-08T21:00:00.000Z");
 });
 
-test("kesköö ümberarvutus tabab ka olematut ja topelt-tundi", () => {
-  /* 29.03 kell 03:30 Eesti aja järgi EI EKSISTEERI (kell hüppab 03:00 → 04:00).
-     Iteratsioon peab andma määratud vastuse, mitte jooksma lõputult. */
-  const missing = localDateTimeToUtc({ year: 2026, month: 3, day: 29, hour: 3, minute: 30 });
-  assert.ok(missing instanceof Date && !Number.isNaN(missing.getTime()));
+test("olematu ja mitmene kohalik aeg annavad MÄÄRATUD vastuse", () => {
+  /* Need kaks ei ole vead vaid VALIKUD, ja nad on siin lukus, sest
+     `localDateTimeToUtc()` nimi lubab üldist teisendust, mitte ainult keskööd.
+     Kui käitumine muutub, peab see olema otsus — mitte iteratsiooni
+     kõrvalmõju, mis avastatakse kuskilt kolmandast kohast. */
 
-  /* 25.10 kell 03:30 esineb KAKS korda; vastus peab olema üks kindel hetk. */
+  const tallinn = (date) =>
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Tallinn",
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit"
+    }).format(date);
+
+  /* AUK: 29.03.2026 kell 03:30 Eestis EI EKSISTEERI — kell hüppab 03:00 → 04:00.
+     Vastus on augu VÕRRA edasi, ja funktsioon EI teata, et sisend oli olematu. */
+  const missing = localDateTimeToUtc({ year: 2026, month: 3, day: 29, hour: 3, minute: 30 });
+  assert.equal(missing.toISOString(), "2026-03-29T01:30:00.000Z");
+  assert.equal(tallinn(missing), "04:30", "olematu aeg nihkub augu võrra edasi");
+
+  /* KORDUS: 25.10.2026 kell 03:30 esineb KAKS korda (00:30Z suveajal ja
+     01:30Z talveajal). Vastus on HILISEM esinemine. */
   const doubled = localDateTimeToUtc({ year: 2026, month: 10, day: 25, hour: 3, minute: 30 });
   assert.equal(doubled.toISOString(), "2026-10-25T01:30:00.000Z");
+  assert.equal(tallinn(doubled), "03:30", "mitmene aeg annab hilisema esinemise");
+
+  /* Ja piiri lähedal olevad OLEMASOLEVAD ajad jäävad täpseks — auk ei tohi
+     nihutada seda, mis augu kõrval on. */
+  assert.equal(
+    localDateTimeToUtc({ year: 2026, month: 3, day: 29, hour: 2, minute: 59 }).toISOString(),
+    "2026-03-29T00:59:00.000Z"
+  );
+  assert.equal(
+    localDateTimeToUtc({ year: 2026, month: 3, day: 29, hour: 4, minute: 0 }).toISOString(),
+    "2026-03-29T01:00:00.000Z"
+  );
 });
 
 test("vigane sisend annab TypeError'i, mitte vaikselt Invalid Date piirid", () => {

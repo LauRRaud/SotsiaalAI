@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   CASE_WORK_TARGET,
   CASE_WORK_TARGETS,
+  countCaseWorkItems,
   linkCaseWorkItem,
   unlinkCaseWorkItem
 } from "../../lib/casework/caseWorkItem.js";
@@ -30,9 +31,11 @@ function db({ assists = [], documents = [], artifacts = [], visits = [], items =
       return rows.find((row) => row.id === where.id && row[ownerField] === where[ownerField]) || null;
     }
   });
+  const seen = { countCalls: 0 };
   const database = {
     items,
     assists,
+    seen,
     /* L14 jõustaja elab tehingus (`withActiveCaseLock`); `beforeTransaction`
        laseb testil „teisel tehingul" täpselt sinna vahele jõuda. */
     async $transaction(callback) {
@@ -66,6 +69,10 @@ function db({ assists = [], documents = [], artifacts = [], visits = [], items =
         /* Nähtavusfiltrit fake-db ei jäljenda — seda tõendab sond päris
            andmebaasi vastu. Siin on oluline ainult, et kutse üldse toimub. */
         return { count: 0 };
+      },
+      async count({ where }) {
+        seen.countCalls += 1;
+        return items.filter((row) => row.caseWorkAssistId === where.caseWorkAssistId).length;
       }
     }
   };
@@ -122,6 +129,49 @@ test(
         }),
       (error) => error.status === 409 && error.messageKey === "casework.errors.not_active"
     );
+  })
+);
+
+test(
+  "countCaseWorkItems kannab SAMA omanikupiiri mis loend — võõras juhtum annab 404",
+  withFeatureOn(async () => {
+    /* v5 leid. Loendur kandis ainult `visibleItemWhere()`-i, mis piirab
+       SIHTOBJEKTE, mitte juhtumit ennast — võõra `caseWorkAssistId`-ga kutse ei
+       kukkunud, vaid arvutas „mitu MINU objekti on seotud TEMA juhtumiga".
+
+       Fikstuur on tahtlikult see, mis tavaandmetel EI teki: võõras juhtum, mille
+       küljes on KUTSUJALE NÄHTAV siht. Nii ei tugine test sellele, et vastus
+       oleks nagunii 0 — vastus OLEKS mitte-null, ja just seda loendur ei tohi
+       öelda. */
+    const database = db({
+      assists: [{ id: "case_1", ownerUserId: "keegi-teine", retentionState: "ACTIVE" }],
+      documents: [{ id: "d1", ownerId: "w1" }],
+      items: [{ id: "item_1", caseWorkAssistId: "case_1", userDocumentId: "d1", createdAt: new Date() }]
+    });
+
+    await assert.rejects(
+      () => countCaseWorkItems({ ownerUserId: "w1", caseWorkAssistId: "case_1", db: database }),
+      (error) => error.status === 404
+    );
+
+    /* Ja ta ei tohi päringuni JÕUDA: kontroll enne loendust, mitte loenduse
+       tulemuse filtreerimine tagantjärele. */
+    assert.equal(database.seen.countCalls, 0, "loendur käivitas päringu võõra juhtumi peal");
+  })
+);
+
+test(
+  "countCaseWorkItems loeb oma juhtumi seosed normaalselt",
+  withFeatureOn(async () => {
+    const database = db({
+      assists: [{ id: "case_1", ownerUserId: "w1", retentionState: "READ_ONLY" }],
+      documents: [{ id: "d1", ownerId: "w1" }],
+      items: [{ id: "item_1", caseWorkAssistId: "case_1", userDocumentId: "d1", createdAt: new Date() }]
+    });
+
+    /* `READ_ONLY` on tahtlik: kirjutuskaitse ei tohi LUGEMIST katkestada. */
+    assert.equal(await countCaseWorkItems({ ownerUserId: "w1", caseWorkAssistId: "case_1", db: database }), 1);
+    assert.equal(database.seen.countCalls, 1);
   })
 );
 
