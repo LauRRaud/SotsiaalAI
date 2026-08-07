@@ -24,17 +24,33 @@ function withFeatureOn(fn) {
   };
 }
 
-function db({ assists = [], documents = [], artifacts = [], visits = [], items = [] } = {}) {
+function db({ assists = [], documents = [], artifacts = [], visits = [], items = [], beforeTransaction = null } = {}) {
   const ownerScoped = (rows, ownerField) => ({
     async findFirst({ where }) {
       return rows.find((row) => row.id === where.id && row[ownerField] === where[ownerField]) || null;
     }
   });
-  return {
+  const database = {
     items,
+    assists,
+    /* L14 jõustaja elab tehingus (`withActiveCaseLock`); `beforeTransaction`
+       laseb testil „teisel tehingul" täpselt sinna vahele jõuda. */
+    async $transaction(callback) {
+      if (beforeTransaction) await beforeTransaction();
+      return callback(database);
+    },
     caseWorkAssist: {
       async findFirst({ where }) {
         return assists.find((row) => row.id === where.id && row.ownerUserId === where.ownerUserId) || null;
+      },
+      async updateMany({ where }) {
+        const matching = assists.filter(
+          (row) =>
+            row.id === where.id &&
+            row.ownerUserId === where.ownerUserId &&
+            (where.retentionState === undefined || row.retentionState === where.retentionState)
+        );
+        return { count: matching.length };
       }
     },
     userDocument: ownerScoped(documents, "ownerId"),
@@ -53,6 +69,7 @@ function db({ assists = [], documents = [], artifacts = [], visits = [], items =
       }
     }
   };
+  return database;
 }
 
 test("sihttüüpide register katab täpselt need veerud, mis skeemis on", () => {
@@ -105,6 +122,37 @@ test(
         }),
       (error) => error.status === 409 && error.messageKey === "casework.errors.not_active"
     );
+  })
+);
+
+test(
+  "VÕISTLUS: vahepealne retention-siire tapab sidumise, mitte ei kaota",
+  withFeatureOn(async () => {
+    /* Sama muster mis puuduva info juures: `requireOwnedCase` andis vastuse
+       „ACTIVE", `transitionRetention` jõudis vahele, ja seos tekkis
+       kirjutuskaitstud juhtumisse. Jõustaja on nüüd kirjutuse enda sees. */
+    const parent = { id: "case_1", ownerUserId: "w1", retentionState: "ACTIVE" };
+    const database = db({
+      assists: [parent],
+      documents: [{ id: "d1", ownerId: "w1" }],
+      beforeTransaction: () => {
+        parent.retentionState = "READ_ONLY";
+      }
+    });
+
+    await assert.rejects(
+      () =>
+        linkCaseWorkItem({
+          ownerUserId: "w1",
+          caseWorkAssistId: "case_1",
+          targetType: CASE_WORK_TARGET.USER_DOCUMENT,
+          targetId: "d1",
+          db: database
+        }),
+      (error) => error.status === 409 && error.messageKey === "casework.errors.not_active"
+    );
+
+    assert.equal(database.items.length, 0, "kirjutuskaitstud juhtumisse tekkis ikkagi seos");
   })
 );
 

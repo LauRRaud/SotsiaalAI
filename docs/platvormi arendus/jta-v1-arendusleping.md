@@ -1,7 +1,7 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **`READY_TO_ASSIGN`** — kinnitatud omaniku kolmanda auditiga 07.08 (v4).
-**19 lukustatud otsust, 8 etappi, 4 migratsiooni.**
+**Olek:** **E1 TEHTUD** — kinnitatud omaniku neljanda auditiga 08.08 (v5). **E2–E8 `READY_TO_ASSIGN`.**
+**21 lukustatud otsust, 8 etappi, 4 migratsiooni.**
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -19,6 +19,7 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 | v1 | esimene kuju. Kirjutatud **pärast** `ideed.md` ptk 4 lugemist ja pärast koodi mõõtmist — mitte mälust (JUHTUM-V1 v1 õppetund) |
 | **v2** | **omaniku audit — 6 blokeerivat + 6 täpsustust.** Kandvad muutused: (a) E3–E6 said täieliku teostuslepingu `teenus → API → pind → värav → valideerimine → testid`; (b) laua sektsioonid said **ühe kanoonilise tabeli** (L12) — kaks vastuolulist loendit kadusid; (c) **säilituse jõustamine sai oma etapi E7**, varem oli otsus ilma mehhanismita; (d) **L6 parandatud — SQL CHECK ei oska olekuüleminekut**, jõustab tingimuslik update; (e) **L8 parandatud — v1 väide „säilitusreegel ei ulatu auditini" oli vale** ja vastuolus sellega, et audit ripub kustuva juhtumi küljes; (f) päritolu sai **normaliseeritud kuju** (L4), varem oleks kaheksa tekstivälja lepingut täitnud ja L4 rikkunud |
 | **v3** | **omaniku teine audit — 1 blokeeriv + 4 täpsustust.** (a) **KELLA VIGA:** v2 hoiatus kirjutas `CaseWorkRetentionAudit`-i uue `toState = ARCHIVED` rea, mis nihutas kustutuse 12 → 23 kuuni. Parandatud kahes kohas — kell otsib **päris üleminekut** ja hoiatus **ei kirjuta auditisse üldse** (L17); (b) **E3 regressioon taastatud** — v2 refaktor kaotas kogemata päritolu-, `AI_MUSTAND`- ja puuduva info nõuded; (c) L5 sõnastus lepitatud O-JTA-4-ga; (d) **`markTransferred` tehingupiir lukus** (L18); (e) hoiatus on **30 päeva**, mitte 11 kuud |
+| **v5** | **omaniku neljas audit — esimene, mis vaatas KOODI, mitte lepingut.** Kaks P0-d ja kolm leidu valminud E1-s: (a) **`estonianDayBounds()` sõltus serveri ajavööndist** — kommentaar ütles „Europe/Tallinn", arvutus kasutas serveri lokaalset parsingut ja päeva lõpuks `+24 h`. UTC-serveris nihkus Eesti päev suvel 3 tundi ja DST-päevad (23 h / 25 h) olid valed mõlemas vööndis; (b) **lapse kirjutuskaitses oli võistlus** — `requireActiveCase()` oli EELKONTROLL, mitte jõustaja, ja `transitionRetention()` mahtus kontrolli ja kirjutuse vahele. Mõlemad vead olid nähtamatud arendusmasinal, mille vöönd on juhtumisi `Europe/Tallinn`. Lisandusid **L20** (deskriptor) ja **L21** (lapse kirjutuse atomaarsus) |
 | **v4** | **omaniku kolmas audit — 1 blokeeriv + 2 täpsustust.** (a) **KAKS TEED `ULE_KANTUD`-ini:** v3 L18 lubas garantiid, mille E5 avalik `POST …/transition` oleks ümbert läbi lasknud — mustand oleks jõudnud `ULE_KANTUD`-i **ilma auditireata** ja säilituskell oleks hakanud käima tõendita ülekande peal. Kolm kihti, üks tee (L19); (b) `confirm-provenance` marsruut oli **nimetatud, aga API-loendist puudu**; (c) **prep-i väljad said oma tabeli** — üks jäme `provenance` terve ettevalmistuse peal ei suutnud väljendada „`agenda` = töötaja, `plainLanguageNotes` = AI", kuigi leping ise ütleb „AI koostatud **osa**". **Staatus kinnitatud.** |
 
 **Neli minu enda viga on selles ahelas parandatud, mitte lünka.** L6 lubas andmebaasi CHECK-ilt
@@ -31,6 +32,13 @@ Muster on läbi nelja versiooni sama: **iga kord, kui leping ütles „garantii"
 nimetamata, oli garantii katki.** Just seepärast kannab iga etapp nüüd rida
 `teenus → API → pind → värav → valideerimine → testid` ja iga L-otsus nimetab, **kes** teda
 jõustab.
+
+**v5 näitas sama mustri teist poolt: jõustaja võib olla nimetatud ja ikkagi vale kohas.** L14
+ütles, et kirjutuskeeld laieneb lastele, ja teostus tegi kontrolli — ainult et kirjutuse EES,
+mitte SEES. Kommentaar `estonianDayBounds()` kohal ütles „Europe/Tallinn" ja arvutus mõõtis
+serveri vööndit. **Kaks korda oli kood täpselt nii kirjutatud, nagu leping nõudis, ja ikkagi
+vale.** Sellepärast lisandus v5-ga tõendamise reegel: iga selline garantii vajab testi, mis
+**kukub vana teostuse peal** — mitte ainult testi, mis uuel roheline on.
 
 ---
 
@@ -562,6 +570,74 @@ kahte eri tegu ja kahte eri tähendust. „Märgi üle kantuks" on avaldus selle
 STAR-is; „vii mustand järgmisse seisu" ei ole. Vaikne ümbersuunamine tekitaks auditirea teo
 kohta, mida kasutaja ei teinud.
 
+### L20 — Laud tagastab AINULT kokkulepitud deskriptori
+
+**v5, omaniku neljas audit.** Koondlugeja tagastab ainult sektsioonides kokkulepitud
+deskriptor-kuju. **Omaniku-mooduli täisrida ei liigu koondlaua API-sse.** Iga sektsioon
+whitelist'ib väljad **nimeliselt**; tundlik või sektsiooni jaoks mittevajalik sisu ei jõua isegi
+koondvastusesse.
+
+**Miks nimeline valge nimekiri, mitte „võta rida ja eemalda tundlikud väljad":** kustutusnimekiri
+vananeb. Uus veerg mudelis ei lisa end kustutusnimekirja, aga lisab end vastusesse — ja E2 saadab
+selle vastuse brauserisse. Valge nimekiri katkeb märgatavalt, must nimekiri vaikselt.
+
+| Sektsioon | Deskriptor |
+|---|---|
+| `todaysContacts` · `upcomingContacts` | `caseId` · `label` · `nextContactAt` |
+| `activePreparations` | sama + `openMissingInfoCount` |
+| `openMissingInfo` | `itemId` · `caseId` · `text` · `provenance` · `createdAt` |
+| `networkPreparation` | `shareId` · `status` · `updatedAt` |
+| `covisionPreparation` | `seedId` · `title` · `status` · `updatedAt` |
+| `receivedPreInquiries` · `practiceReflection` | **K1 adapteri oma** — vt allpool |
+
+**Kaks sektsiooni jäävad kaardistamata TEADLIKULT.** Eelpöördumised ja meetodipeegel tulevad K1
+adapteritest, mis on juba `assertWorkspaceDescriptor()` läbinud. Teine kaardistus siin tekitaks
+teise tõe selle kohta, mis on tööruumi kirje.
+
+**Mis nimeliselt VÄLJA jääb ja miks:** `clientUserId` \ `clientDisplayName` \ `clientExternalRef`
+— kliendi identiteet on juba `label`-is lahendatud kujul (L10) ja toorväli annaks sama info
+mööda kuvanime reeglist. `preInquiryId` \ `urgentRequestId` \ `externalReference` — juhtumi
+sisemised viited, mis seovad ta menetlusega. `summaryText` \ `purpose` \ `sharingBoundary`
+(jagamine) ja `whyNow` \ `sharedCardSnapshot` (teemaseeme) — kliendi sisu, mis avaneb objekti
+enda vaates, kus lugemine on teadlik tegu.
+
+**Jõustaja on kahepoolne.** Deskriptor lauas ei aita, kui lugeja toob terve rea protsessi mällu:
+`listWorkerActionableShares()` kannab **oma `select`-i**. Test kontrollib mõlemat suunda —
+istutatud toorväärtused ei tohi vastusesse jõuda, **ja** iga sektsiooni võtmete hulk peab olema
+täpselt see, mis siin tabelis, mitte „vähemalt see".
+
+### L21 — Lapse kirjutuskaitse jõustatakse kirjutusega SAMAS atomaarses piiris
+
+**v5, omaniku neljas audit — see oli teine P0.** Lapse kirjutuskaitse jõustatakse kirjutusega
+samas atomaarse piiri sees. **Eelnev `ACTIVE` kontroll EI OLE jõustaja.** Vanema `ACTIVE` olek ja
+lapse mutatsioon peavad olema seotud nii, et samaaegne retention-siire ja lapse kirjutus ei saa
+mõlemad võita.
+
+Vana kuju oli `loe → kontrolli → kirjuta` ja kahe päringu vahele mahtus terve teine tehing:
+
+```
+A: requireActiveCase()   → juhtum on ACTIVE
+B: transitionRetention() → READ_ONLY (commit)
+A: create / update / delete lapsel        ← kirjutuskaitse on juba jõus
+```
+
+**Jõustaja on `withActiveCaseLock()`** (`lib/casework/caseWorkAssist.js`): tehing, mille sees
+tingimuslik `updateMany` vanema real võtab reataseme luku, ja alles seejärel käib lapse
+kirjutus. Samaaegne `transitionRetention()` kas ootab või tapab kirjutuse. **Lukustusjärjekord on
+mõlemal rajal sama** — vanem enne last —, seega deadlock'i ei teki.
+
+| | |
+|---|---|
+| **Vead jäävad eristatavaks** | võõras või olematu juhtum → **404**, oma aga kirjutuskaitstud → **409**. Lisapäring tehakse ainult ebaõnnestumisel |
+| **Kõrvalmõju on teadlik ja soovitud** | lukustav update puudutab `@updatedAt`-i, seega lapse lisamine tõstab juhtumi loendis ettepoole. `updatedAt` tähendab „juhtumiga tehti tööd", mitte „vanemrea välja muudeti" |
+| **Säilituskell EI sõltu sellest** | L7 järgi käib kell päris üleminekust `ARCHIVED`-isse, mitte `updatedAt`-ist — ja just see teeb ülaltoodud kõrvalmõju ohutuks |
+
+**SEE EI OLE JTA UUS SEMANTIKA.** Invariant on JUHTUM-V1 lepingus L14 real „Atomaarsus" juba
+kirjas ja oli seal enne seda lepingut: *„Loe-kontrolli-kirjuta muster ei jõusta L14-t
+paralleelsete päringute korral."* Teostus rikkus oma enda reeglit LASTE peal —
+`caseWorkMissingInfo.js` ja `caseWorkItem.js`. Parandus kuulub seega mõlemasse lepingusse ja
+JUHTUM-V1 v7 kannab sama leiu.
+
 ---
 
 ## Lahtised otsused — ükski ei blokeeri ehitust
@@ -583,16 +659,16 @@ Kus mõni neist puudub, on see **välja öeldud**, mitte vaikimisi lahti.
 
 ---
 
-### E1 — Laua koondlugeja *(0 migratsiooni, 0 otsust)*
+### E1 — Laua koondlugeja *(0 migratsiooni, 0 otsust)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
-| **Teenus** | **uus** `lib/casework/workbench.js` → `getCaseWorkbench({ userId, roleState, db })`. **Uued lugejad** (L10): `listUpcomingContacts()` → `lib/casework/caseWorkAssist.js`; `countOpenMissingInfoByCase()` ja `listOpenMissingInfoForOwner()` → `lib/casework/caseWorkMissingInfo.js` |
+| **Teenus** | **uus** `lib/casework/workbench.js` → `getCaseWorkbench({ userId, roleState, db })`. **Uued lugejad** (L10): `listUpcomingContacts()` → `lib/casework/caseWorkAssist.js`; `countOpenMissingInfoByCase()` ja `listOpenMissingInfoForOwner()` → `lib/casework/caseWorkMissingInfo.js`; `listWorkerActionableShares()` → `lib/network/share.js` *(lepinguväline leid: päring elas marsruudi sees ja moodulil ei olnud ühtegi lugejat)*. **Uus jagatud moodul** `lib/time/estonianDay.js` (v5) ja **uus jõustaja** `withActiveCaseLock()` (L21) |
 | **API** | *ei ole* — E1 on teegikiht. Marsruut tuleb E2-s |
 | **Pind** | *ei ole* |
 | **Värav** | `getCaseWorkbench()` ise ei väravata (teek); L14 |
-| **Valideerimine** | `userId` tühi → tühjad sektsioonid, mitte erind |
-| **Testid** | `tests/casework/workbench.test.js` |
+| **Valideerimine** | `userId` tühi → tühjad sektsioonid, mitte erind. Vastus on **deskriptor** (L20), mitte lugeja rida |
+| **Testid** | `tests/casework/workbench.test.js` · `tests/time/estonianDay.test.js` |
 
 **Sektsioonid:** L12 tabeli E1-veerg — **7 täit + 1 kitsendatud (`activePreparations`)**.
 Sektsioonid #4 ja #10 **puuduvad täielikult**, mitte tühjad.
@@ -603,7 +679,7 @@ Iga sektsioon tagastab ühesuguse kuju:
 { state: "OK" | "EMPTY" | "FORBIDDEN" | "TIMEOUT" | "ERROR", items: [...], notice: <i18n-võti|null> }
 ```
 
-**Nõuded:** L1 · L3 · L10 · L13 (2500 ms tähtaeg sektsiooni kohta) · L14.
+**Nõuded:** L1 · L3 · L10 · L13 (2500 ms tähtaeg sektsiooni kohta) · L14 · **L20** · **L21**.
 
 **Testileping:**
 
@@ -615,6 +691,21 @@ Iga sektsioon tagastab ühesuguse kuju:
 6. `activePreparations` kannab E1-s `notice`-võtit, mitte `EMPTY`-t
 7. `todaysContacts` ja `upcomingContacts` ei kattu — piir on **Eesti kalendripäev**
 8. koondlugeja ei kutsu ühtegi `prisma.*`-meetodit otse (staatiline kontroll testis)
+9. **(v5, L20)** istutatud toorväärtused ei jõua vastusesse, **ja** iga sektsiooni võtmete hulk on
+   **täpselt** L20 tabelist — „vähemalt see" ei kõlba, sest just nii uus veerg vaikselt sisse tuleb
+10. **(v5)** erindi teade ei jõua **vastusesse EGA LOGISSE**. Logisse tohib jõuda ainult see, mis
+    on sisu poolest konstant: sektsiooni võti, erindi klass, masinloetav kood. `console.error`
+    püütakse testis kinni — ainult vastuse kontrollimine jättis selle koha vahele
+11. **(v5, L21)** samaaegne retention-siire ja lapse kirjutus: kui siire võidab, siis lapse
+    kirjutus **ei õnnestu** ja ridu ei muutu. Kehtib kolmel rajal — lisamine, muutmine, kustutamine
+
+**Eesti kalendripäev on eraldi testileping** (`tests/time/estonianDay.test.js`): tavaline suvepäev ·
+tavaline talvepäev · **29.03.2026 = 23 tundi** · **25.10.2026 = 25 tundi** · ja üks, mis vana vea
+oleks kohe tabanud — **sama hetk läbi nelja serveri-ajavööndi peab andma identse tulemuse**.
+
+**E1 fikstuuride õppetund:** algne „ei kattu" test kasutas päeva keskel olevaid kontakte, kus
+UTC-piir ja Eesti piir annavad SAMA vastuse — seepärast läbis ta ka katkise arvutusega. Piiriread
+(`07.08 21:30Z` = 08.08 00:30 Eestis) on nüüd fikstuurides nimeliselt.
 
 ---
 

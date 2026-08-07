@@ -818,6 +818,7 @@
       "missing_info_text_too_long": "Puuduva info kirjeldus on liiga pikk.",
       "missing_info_status_unknown": "Tundmatu seis.",
       "provenance_unknown": "Tundmatu info päritolu.",
+      "next_contact_invalid": "Järgmise kontakti aeg ei ole korrektne kuupäev.",
       "unexpected": "Midagi läks valesti."
     },
     "page": {

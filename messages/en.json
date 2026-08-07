@@ -818,6 +818,7 @@
       "missing_info_text_too_long": "The description of the missing information is too long.",
       "missing_info_status_unknown": "Unknown status.",
       "provenance_unknown": "Unknown information provenance.",
+      "next_contact_invalid": "The next contact time is not a valid date.",
       "unexpected": "Something went wrong."
     },
     "page": {

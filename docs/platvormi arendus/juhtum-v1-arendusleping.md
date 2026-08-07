@@ -1,6 +1,7 @@
 # ÜLESANNE: `JUHTUM-V1` — juhtumi objekt (`CaseWorkAssist`)
 
-**Olek:** **`READY_TO_ASSIGN`** — kinnitatud omaniku neljanda auditiga 06.08 (v6).
+**Olek:** **TEOSTATUD** — kinnitatud omaniku viienda auditiga 08.08 (v7).
+*(v7 lisas ühe teostusparanduse juba valmis koodi peale — vt L14 alt. Ülejäänud leping on v6 kujul.)*
 **Perekond:** CASEWORK — **P7**. Ei ole P0/P1 (tehtud) ega P2 (vt piir allpool).
 **Teostus:** üks teema, etapid E1–E6. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
 worktree-kaustu ei tehta. **Push ja deploy ainult omaniku selgel loal**; merge'imist selles
@@ -17,6 +18,7 @@ mudelis ei toimu.
 | v3 | **omaniku audit** — 7 blokeerivat vastuolu parandatud, kolm peidetud arhitektuuriotsust lukustatud, tulevased integratsioonid V1 vastuvõtukriteeriumidest välja |
 | v4 | **omaniku kordusaudit** — 5 blokeerivat: rada A kuvanimi (kõik oleksid olnud „Nimetu juhtum"), `authorId ≠ klient`, kliendiviite kustutus vs retention, retention-auditi mudel, aktiveerimisvärav. Lisaks 6 täpsustust |
 | v5 | **omaniku kolmas audit** — 2 blokeerivat: (a) v4 keelas päritoluga juhtumil B-raja, mis muutis lähedase esitatud pöördumise puhul **tegeliku kliendi märkimise võimatuks**; (b) kliendiviite kustutamise auditil ei olnud salvestuskohta. Lisaks L19 sõnastus: lippude lahknemine ei ole „alati 404" |
+| **v7** | **omaniku viies audit 08.08 — 1 blokeeriv, leitud JTA-V1 E1 ülevaatusest.** L14 „Atomaarsus" rida kehtis juhtumi enda peal, aga **MITTE LASTE peal**: `caseWorkMissingInfo.js` ja `caseWorkItem.js` tegid loe-kontrolli-kirjuta, mille vahele mahtus `transitionRetention()`, ja `READ_ONLY` juhtumi laps muutus ikkagi. Jõustaja on nüüd `withActiveCaseLock()` ja ta on **kirjutuse sees** (vt L14 alt). Invariant ise on selles lepingus vana — JTA seda ei leiutanud, ta paljastas teostuse lünga |
 | **v6** | **omaniku neljas audit** — 4 täpsustust: `clientExternalRef` STAR-i näide vastuolus omaenda reegliga · DoD viitas testile 36 (õige 37) · E6 p 11 viitas L11-le (õige L17) · **idempotentsus lukustatud kõrvalmõjudeni** (teine kutse ei loo teist auditirida). **Staatus kinnitatud.** |
 
 ---
@@ -246,6 +248,46 @@ maha võeti.)*
 | **Erand** | **kliendiviite kustutamine (L17) on lubatud KÕIGIS retention-olekutes** — andmesubjekti õigus ei tohi jääda retention-oleku taha kinni |
 | `READ_ONLY → ARCHIVED` | lubatud **ainult** retention-operatsiooni kaudu (mitte tavakirjutusena) |
 | **Atomaarsus** | kõik aktiivse juhtumi kirjutused käivad tingimusliku update'i või tehinguga, mis õnnestub **ainult tingimusel `retentionState = ACTIVE`**; retention-siire ja auditikirje luuakse **ühes tehingus**. Loe-kontrolli-kirjuta muster ei jõusta L14-t paralleelsete päringute korral |
+| **Jõustaja LASTE peal** | **`withActiveCaseLock()`** (`lib/casework/caseWorkAssist.js`) — vt v7 parandust allpool |
+
+#### v7 parandus — atomaarsuse rida kehtis paberil, mitte laste peal
+
+**Leitud omaniku auditiga 08.08, JTA-V1 E1 ülevaatuse käigus.** Ülemine „Atomaarsus" rida ütles
+juba v3-st alates välja, et *loe-kontrolli-kirjuta muster ei jõusta L14-t*. **Juhtumi enda peal
+oli reegel täidetud** — `updateCaseWorkAssist()` ja `transitionRetention()` teevad tingimusliku
+update'i ja kannavad põhjenduse kommentaaris. **Laste peal ta ei olnud:**
+
+| Fail | Mis seal oli |
+|---|---|
+| `lib/casework/caseWorkMissingInfo.js` | `requireActiveCase()` → eraldi päring, siis `create` / `updateMany` / `deleteMany` |
+| `lib/casework/caseWorkItem.js` | `requireOwnedCase({ mustBeActive: true })` → siis `create` / `deleteMany` |
+
+Kahe päringu vahele mahtus terve teine tehing:
+
+```
+A: kontroll → juhtum on ACTIVE
+B: transitionRetention → READ_ONLY (commit)
+A: kirjutus lapsel                      ← kirjutuskaitse on juba jõus
+```
+
+Tagajärg oli `READ_ONLY` juhtumi muutmine **pärast** kirjutuskaitse jõustumist — täpselt see, mille
+vastu see rida kirjutati.
+
+**Parandus:** vanema seisu tingimus on nüüd kirjutusega **samas tehingus**. Tingimuslik
+`updateMany` vanema real võtab reataseme luku ja alles siis käib lapse kirjutus; samaaegne
+`transitionRetention()` kas ootab või tapab kirjutuse. Eelkontroll on **kustutatud**, mitte
+kõrvale jäetud — alles jäänuna oleks ta jätnud mulje, et jõustaja on tema.
+
+**Kolm asja, mis sellest järelduvad ja mis kehtivad ka tulevastele lastele** (JTA E3–E6
+`CaseWorkMeetingPrep`, `CaseWorkMeetingNote`, `CaseWorkDraft`):
+
+1. **iga uus laps läheb sama jõustaja alla** — oma kontrolli ei kirjutata;
+2. **lukustusjärjekord on vanem enne last** kõigil radadel, seega deadlock'i ei teki;
+3. **404 ja 409 jäävad eristatavaks** — võõras juhtum 404, oma kirjutuskaitstud 409.
+
+**Kõrvalmõju on teadlik:** lukustav update puudutab `@updatedAt`-i, seega lapse lisamine tõstab
+juhtumi loendis ettepoole. See on aus — juhtumiga tehti tööd. **Säilituskella see ei liiguta**,
+sest kell käib päris retention-üleminekust, mitte `updatedAt`-ist.
 
 ### L17 — `eraseCaseClientReference()`
 
