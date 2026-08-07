@@ -18,6 +18,7 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { inertOutside } from "@/lib/inertOutside";
 import Button from "@/components/ui/Button";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useRouter } from "next/navigation";
@@ -81,6 +82,7 @@ export default function AccessibilityModal({
   requireInitialSelection = false,
 }) {
   const boxRef = useRef(null);
+  const backdropRef = useRef(null);
   const firstFocusRef = useRef(null);
   const stageRef = useRef(null);
   const {
@@ -237,6 +239,26 @@ export default function AccessibilityModal({
     document.addEventListener("keydown", onKey, true);
     return () => document.removeEventListener("keydown", onKey, true);
   }, [onClose]);
+  /* Taust inertseks. Tab-lõks üksi hoiab ainult klaviatuuri — ekraanilugeja
+     pühib DOM-i järjekorras ja luges seni kogu ruumi (avalehel esmakülastusel
+     ka laadimisloori „Sisenen") selle akna kõrvalt ette. Aken on ekraani
+     kõrgeim kiht, seega puu kuulub temale. Oma taustaloor jääb puutumata:
+     ta on juba aria-hidden ja tema klõps sulgeb akna. */
+  useEffect(() => {
+    const box = boxRef.current;
+    const release = inertOutside(box, { except: [backdropRef.current] });
+    /* Kui fookus jäi inertseks muutunud tausta sisse — avalehel fokusseerib
+       laadimisloor ennast enne, kui see aken jõuab avaneda — siis Chrome ei
+       vii teda alati ise ära ja ekraanilugeja kursor jääks surnud alale.
+       Jaama esimese juhtelemendi võtab järgmine efekt üle, kui ta on olemas. */
+    if (box && !box.contains(document.activeElement)) {
+      try {
+        box.focus({ preventScroll: true });
+      } catch {}
+    }
+    return release;
+  }, []);
+
   useEffect(() => {
     const target = firstFocusRef.current;
     if (!target || typeof target.focus !== "function") return;
@@ -597,7 +619,7 @@ export default function AccessibilityModal({
           paista (omanik 21.07). NB: dialoog ise on täisekraanil ja loorist
           KÕRGEMAL (a11y-modal.css z-index), seega see onClick praktikas ei
           käivitu — nähtavad väljapääsud on doki tagasi/sulge-nupp ja Esc. */}
-      <div className="a11f-veil" onClick={onClose} role="presentation" aria-hidden="true" />
+      <div ref={backdropRef} className="a11f-veil" onClick={onClose} role="presentation" aria-hidden="true" />
 
       <div ref={boxRef} role="dialog" aria-modal="true" aria-labelledby="a11y-title" onClick={stopInside} tabIndex={-1}>
         <div aria-hidden="false">

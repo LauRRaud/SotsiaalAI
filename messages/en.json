@@ -7032,6 +7032,8 @@
     "panel_region": "Open panel",
     "close_panel": "Close and return to the room",
     "enter": "Enter",
+    "enter_pending": "The room is getting ready. The “Enter” button becomes available in a few seconds.",
+    "enter_ready": "The “Enter” button is now available.",
     "scroll_label": "Scroll",
     "install_card": "Install",
     "admin_analytics": "Analytics",

@@ -7032,6 +7032,8 @@
     "panel_region": "Avatud paneel",
     "close_panel": "Sulge ja naase ruumi",
     "enter": "Sisenen",
+    "enter_pending": "Ruum valmistub. Nupp „Sisenen“ muutub kasutatavaks mõne sekundi pärast.",
+    "enter_ready": "Nupp „Sisenen“ on nüüd kasutatav.",
     "scroll_label": "Keri",
     "install_card": "Paigalda",
     "admin_analytics": "Analüütika",

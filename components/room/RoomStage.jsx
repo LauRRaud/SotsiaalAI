@@ -27,6 +27,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import { localizePath } from "@/lib/localizePath";
+import { inertOutside } from "@/lib/inertOutside";
 import { rememberRoomHubPath, readRoomHubPath } from "@/lib/roomHubReturn";
 import { panelHasRoomDock } from "@/lib/roomDock";
 import { usePanelInfoView } from "@/components/ui/PanelInfoSlot";
@@ -382,6 +383,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   );
 
   const stageRef = useRef(null);
+  const veilRef = useRef(null);
   const textRefs = useRef([]);
   const hintRef = useRef(null);
   const skipRef = useRef(null);
@@ -753,6 +755,53 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     };
   }, [isHome, veil, veilReady, readReduced]);
 
+  /* ---------- loor ekraanilugejale ----------
+     `aria-modal` üksi ei kärpinud puud: TalkBack luges loori all olevad
+     nupud ette („Jäta vahele", „Lülita taustaheli välja", „Käivita",
+     kiirriba) ja lävi „Sisenen" jäi järjekorras kuuendaks. `inert`
+     eemaldab tausta päriselt, fookus astub dialoogi sisse ja pühkimine
+     algab sealt.
+
+     Esmakülastaja keele- ja ligipääsetavusaken seisab loorist KÕRGEMAL
+     (.a11f-veil elab .room'ist väljaspool, mille z-index on 0) — siis
+     omab puud tema ja meie ei sekku, muidu teeksime ta enda inertseks. */
+  const a11yModalOpen = Boolean(a11y?.isModalOpen);
+  const veilOwnsFocus = isHome && veil === "shown" && !a11yModalOpen;
+  useEffect(() => {
+    if (!veilOwnsFocus) return undefined;
+    const el = veilRef.current;
+    if (!el) return undefined;
+    const release = inertOutside(el);
+    /* Ilma selleta jääb fookus <body> peale ja esimene pühkimine viib
+       ekraanilugeja dokumendi algusesse, mitte lävele. */
+    try {
+      el.focus({ preventScroll: true });
+    } catch {
+      try {
+        el.focus();
+      } catch {}
+    }
+    return () => {
+      release();
+      /* Fookus ei tohi loori sisse jääda, kui loor kaob: `aria-hidden`
+         fokusseeritud elemendil on viga (Chrome blokeerib ta ja logib
+         hoiatuse) ning ekraanilugeja kursor jääks surnud alale. Anname ta
+         lehe sisule — seal elab kõnni sr-only tekst. */
+      const active = document.activeElement;
+      if (!el.contains(active)) return;
+      const main = document.getElementById("main");
+      if (main && !main.inert) {
+        try {
+          main.focus({ preventScroll: true });
+          return;
+        } catch {}
+      }
+      try {
+        active.blur();
+      } catch {}
+    };
+  }, [veilOwnsFocus]);
+
   const enterRoom = useCallback(() => {
     if (enteringRef.current) return;
     enteringRef.current = true;
@@ -841,13 +890,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   useEffect(() => () => rafId.current && cancelAnimationFrame(rafId.current), []);
 
   /* Karussell on klaviatuurile/fookusele avatud alles siis, kui
-     käivituse MÕLEMAD faasid on läbi (tellija: enne ei saa kerida) */
+     käivituse MÕLEMAD faasid on läbi (tellija: enne ei saa kerida).
+     `veil` on sõltuvustes, sest loori ligipääsetavusvärav märgib kogu
+     tausta (ka selle mähise) inertseks ja vabastab ta loori kadudes —
+     efektide järjekord mount'il annab värava käe ENNE seda rida, seega
+     ilma kordusväiteta jääks karussell pärast sisenemist lahti. */
   useEffect(() => {
     const el = carouselWrapRef.current;
     if (!el) return;
     const open = power === "on" && cardsReady;
     if (el.inert !== !open) el.inert = !open;
-  }, [power, cardsReady, mode]);
+  }, [power, cardsReady, mode, veil]);
 
   /* Brauseri enda kerimistaastus välja — saabumine juhib ise. */
   useEffect(() => {
@@ -1624,12 +1677,17 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           .room-veil-logo-metal) — voolamisväli nagu kinnitatud näidisel. */}
       <div
         className="room-veil"
+        ref={veilRef}
         data-state={veil}
         data-logo-ready={veilLogoReady ? "1" : "0"}
         role="dialog"
         aria-modal={veil !== "gone" ? "true" : undefined}
         aria-labelledby="room-veil-message"
+        aria-describedby="room-veil-status"
         aria-hidden={veil === "gone"}
+        /* Fookusankur: ekraanilugeja peab alustama loori seest, mitte
+           dokumendi algusest. Nähtavat fookusrõngast ei teki (tabindex -1). */
+        tabIndex={-1}
       >
         {/* „Selguse väli“: hajus info koguneb lauseks ja muutub kasutaja
             kutsel läveks. Kunstikiht ei püüa sündmusi; päris tekst ja
@@ -1705,6 +1763,15 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
                 {word}
               </span>,
             ])}
+        </p>
+        {/* Lävi ilmub alles pärast osakestelavastust (~5 s) ja on seni
+            `disabled` ehk ekraanilugeja jaoks olematu. Ilma selle reata
+            oleks dialoog nägemispuudega kasutaja jaoks umbtee: kaks lauset
+            ja mitte ühtki tegevust. Fookust EI viida nupule automaatselt —
+            fookus käivitaks VeilArt'i neeldumislavastuse (button "focus"
+            → activateGate) ka nendel, kes ei ole lävele lähenenud. */}
+        <p id="room-veil-status" className="sr-only" role="status">
+          {veilReady ? t("room.enter_ready") : t("room.enter_pending")}
         </p>
         <GlassButton
           layoutClassName="room-veil-enter"
