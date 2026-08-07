@@ -128,23 +128,55 @@ välja, et *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne `r
 kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte polümorfne**, ja
 „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte rakenduse kustutusteede kaetusest.
 
-### Käib praegu (07.08): JTA-V1 — juhtumitöö assistent
+### Käib praegu (08.08): JTA-V1 — juhtumitöö assistent
 
 **Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v4 / `READY_TO_ASSIGN`** — kolm
-omaniku auditiringi, **19 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1 on tehtud
-(08.08).**
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v5** — **neli** omaniku auditiringi,
+**21 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1 on TEHTUD ja push'itud (08.08); E2–E8
+`READY_TO_ASSIGN`.**
 
-Kolm auditiringi leidsid nimeliselt neli kohta, kus leping lubas garantiid ilma jõustajata:
+Kolm esimest ringi leidsid nimeliselt neli kohta, kus leping lubas garantiid ilma jõustajata:
 CHECK ei oska olekuüleminekut · audit rippus juhtumi küljes, mis säilitusreegli lõpus kustub ·
 hoiatus nullis kella, mida ta pidi teenindama (12 → 23 kuud) · „ainus tee `ULE_KANTUD`-ini" ja
 teine uks lahti. **Sellepärast kannab iga L-otsus nüüd nime, kes teda jõustab.**
+
+**Neljas ring oli esimene, mis vaatas KOODI**, ja leidis kaks P0-d. Mõlemad olid nähtamatud
+arendusmasinal, mille ajavöönd on juhtumisi `Europe/Tallinn`:
+
+- **Eesti kalendripäev sõltus serveri ajavööndist.** UTC-serveris nihkus päev suvel 3 tundi, ja
+  `+24 h` tegi DST-päevad (23 h / 25 h) valeks kõikjal. Ühine teostus on nüüd
+  `lib/time/estonianDay.js` — kolmest koopiast sai üks.
+- **Lapse kirjutuskaitses oli võistlus.** `requireActiveCase()` oli eelkontroll, mitte jõustaja,
+  ja retention-siire mahtus kontrolli ja kirjutuse vahele. Jõustaja on nüüd
+  `withActiveCaseLock()` — kirjutuse sees.
+
+Lisandusid **L20** (laud tagastab ainult kokkulepitud deskriptori) ja **L21** (lapse
+kirjutuskaitse jõustatakse kirjutusega samas atomaarses piiris). **L21 ei ole uus semantika** —
+JUHTUM-V1 L14 nõudis seda juba v3-st; teostus rikkus oma enda reeglit laste peal. Parandus on ka
+baaslepingus (v7).
+
+**Muster, mis neljandas ringis välja tuli.** Kolm esimest ringi leidsid „garantii ilma
+jõustajata". Neljas leidis **„jõustaja nimetatud, aga vales kohas"** — kood oli mõlemal korral
+täpselt nii kirjutatud, nagu leping nõudis, ja ikkagi vale. Sellest tuli reegel, mis kehtib
+edasi: selline garantii vajab testi, mis **kukub vana teostuse peal**, mitte ainult testi, mis
+uuel roheline on.
 
 **E1 (laua koondlugeja) on koodis:** `lib/casework/workbench.js` koondab kaheksa sektsiooni
 olemasolevatest lugejatest, 0 migratsiooni. Kolm uut lugejat läksid omaniku-moodulisse, mitte
 lauda (L10) — neist **neljas oli leid**: võrgustikujagamiste nimekirja päring elas
 marsruudi sees ja moodulil ei olnud ühtegi lugejat, seega laud oleks pidanud kirjutama oma
-`findMany`-t. Väravad: `npm test` **2937/2937** · `i18n:check` OK · eslint puhas.
+`findMany`-t.
+
+**Väravad:** `npm test` **2953/2953** — jooksutatud nii `Europe/Tallinn` kui `UTC` all ·
+`i18n:check` OK · eslint puhas · `case:probe` **58/59** päris andmebaasi vastu.
+
+**`NOT_PROVEN`:** sondi E6 rida nõuab serverit lipuga `CASEWORK_V1_ENABLED=1`, mis oli väljas.
+Teenuskihi read läbivad, **marsruudikiht on selle ringiga tõendamata**. See ei ole `FAIL` — aga
+sondi ei tohi nimetada roheliseks enne, kui server on õige lipuga käivitatud.
+
+**Kõrvalsaak:** A4 loakontrolli `estonianDayEnd()` kandis sama viga — luba kehtis 29.03 tunni
+liiga kaua ja suri 25.10 tunni liiga vara. Parandatud **eraldi commit'is** samale ühisele
+helperile, et loakontrolli semantika muutus jääks auditeeritavaks ilma JTA muudatusteta.
 
 **Järgmine: E2** — laua pind `/toolaud/juhtumitoo`, marsruut, kolme keele tekstid ja ⓘ juhend.
 
@@ -681,8 +713,9 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 #### Juhtumitöö assistent
 
 *Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) v1 (`DRAFT`, etapid E1–E7). **Koodis 0
-rida** — leping kirjutatud 07.08, ehitus ei ole alanud.*
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v5**, etapid E1–E8. **E1 (laua
+koondlugeja) on koodis ja push'itud 08.08** — teegikiht, 0 migratsiooni. Pinda, marsruuti ega
+migratsioone veel ei ole.*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
 (tehtud) · **P2 STAR2-mustandite ahel** (selle lepingu E5–E6) · P3 Meetodipeegel (eraldi, O-CW-3
@@ -1081,7 +1114,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1 tehtud 08.08** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1250,7 +1283,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud; STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja tehtud (E1), pind tegemata (E2)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata
