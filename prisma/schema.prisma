@@ -6309,6 +6309,28 @@ enum CaseWorkExternalSystem {
   STAR2
 }
 
+/// JTA-V1 (E5) — STAR2-sse kandmise järjekorra kaheksa elementi (`ideed.md` ptk 4.5).
+///
+/// ENUM, MITTE TEKST — ja see on teadlik erinevus `transferState`-ist samas
+/// tabelis. Kaheksa elementi on SELLE ahela struktuur: üheksas element tähendaks
+/// uut vormirida, uut silti kolmes keeles ja uut lepingurida, ehk niikuinii
+/// koodimuudatust. `transferState` seevastu elab jagatud sõnastikus
+/// (`lib/workspaces/provenance.js`) ja teda kasutab ka K1 kiht — DB-enum
+/// tekitaks temast teise tõe.
+///
+/// NB VÄÄRTUSI EI TOHI ÜMBER JÄRJESTADA — Postgres sordib enum'i deklaratsiooni,
+/// mitte tähestiku järgi. Uued väärtused LÕPPU.
+enum CaseWorkDraftType {
+  POORDUMISE_KOKKUVOTE
+  ABIVAJADUSE_HINDAMINE
+  ELUVALDKONNA_KIRJELDUS
+  EESMARGI_SONASTUS
+  TEGEVUS
+  VASTUTAJA_JA_TAHTAEG
+  KOHTUMISE_MARGE
+  TEENUSE_SUUNAMISE_ALUS
+}
+
 /// JTA-V1 (E3) — kohtumise ettevalmistuse väljad.
 ///
 /// ENUM, MITTE TEKST, ja see on TEADLIK ERINEVUS `provenance`-ist. Päritolu on
@@ -6394,6 +6416,7 @@ model CaseWorkAssist {
   missingInfo    CaseWorkMissingInfo[]
   meetingPreps   CaseWorkMeetingPrep[]
   meetingNotes   CaseWorkMeetingNote[]
+  drafts         CaseWorkDraft[]
   retentionAudit CaseWorkRetentionAudit[]
   erasureAudit   CaseWorkClientErasureAudit[]
 
@@ -6624,6 +6647,82 @@ model CaseWorkMeetingNoteEntry {
 
   @@index([meetingNoteId, layer, ordinal])
   @@index([meetingNoteId, ordinal])
+}
+
+/// JTA-V1 (E5) — STAR2-sse kandmist ootav mustand. CASEWORK-P2 tuum.
+///
+/// TEKSTITA KONTEINER, sama muster mis ettevalmistusel ja märkmel: sisu elab
+/// väljades, sest just seal on igal real oma päritolu (L4).
+///
+/// OLEKUMASIN EI SÜNNI SIIN — ta on `lib/workspaces/provenance.js`-is olemas ja
+/// oli seni kasutamata: kuus seisu, lubatud üleminekud ja `canTransitionStar2()`.
+/// E5 annab talle SALVESTUSE. `transferState` ja `reviewKind` on seetõttu TEKST
+/// + `CHECK`, mitte enum: sõnastik peab jääma üheks tõeks.
+///
+/// KOLM `CHECK`-i migratsioonis jõustavad VÄÄRTUSI, mitte üleminekuid (L6):
+/// üleminekut andmebaas ei oska kontrollida ja tema jõustaja on tingimuslik
+/// `updateMany` teenuskihis. Aga „`transferredAt` on täidetud ⟺ seis on
+/// `ULE_KANTUD`" on väärtuste vaheline invariant ja tema koht ON andmebaasis —
+/// muidu saaks rakenduse viga jätta ülekantud mustandi ajatembita ja
+/// säilituskell (L7) ei hakkaks kunagi käima.
+model CaseWorkDraft {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+
+  draftType CaseWorkDraftType
+
+  /// `STAR2_TRANSFER_STATE` väärtus. Vaikimisi `MUSTAND` — ptk 4.5 järgi algab
+  /// iga element sealt.
+  transferState String @default("MUSTAND")
+
+  /// `VAJAB_KONTROLLI` alamliik (`KLIENDIGA` / `DOKUMENDIGA`). Muudes seisudes
+  /// `null` — ptk 2.2 järgi on ta selle ühe seisu täpsustus, mitte oma veerg
+  /// kogu tee peale.
+  reviewKind String?
+
+  /// Ülekande hetk. Teda paneb AINULT E6 `markTransferred()` samas tehingus
+  /// auditireaga (L18/L19) — siit käib säilituskell (L7).
+  transferredAt DateTime?
+
+  /// Sisu purge'imise hetk (E7). Rida jääb alles, `CaseWorkDraftField` read
+  /// kustuvad — sisu sureb, tõend elab.
+  contentPurgedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseWorkAssist CaseWorkAssist       @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+  fields         CaseWorkDraftField[]
+
+  @@index([caseWorkAssistId, transferState])
+  @@index([caseWorkAssistId, createdAt])
+  @@index([transferState, transferredAt])
+}
+
+/// JTA-V1 (E5) — mustandi üks väli koos OMA päritoluga.
+///
+/// `fieldKey` on VABA MASINVÕTI, mitte sõnastik, ja see on teadlik V1 valik:
+/// kaheksa mustanditüüpi kannavad eri struktuuri ning kanoonilist väljaloendit
+/// ei ole veel kokku lepitud. Vorm on `CHECK`-iga piiratud (`^[A-Z][A-Z0-9_]*$`,
+/// ≤ 64) — nii ei saa võtmest kogemata sisuvälja, kuhu keegi teksti kirjutab.
+model CaseWorkDraftField {
+  id      String @id @default(cuid())
+  draftId String
+
+  fieldKey String
+  text     String @db.Text
+
+  /// L4: `NOT NULL`. Päritoluta sisu ei tohi tekkida.
+  provenance String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  draft CaseWorkDraft @relation(fields: [draftId], references: [id], onDelete: Cascade)
+
+  /// Üks rida välja kohta — mustand on väljade kogum, mitte ajalugu.
+  @@unique([draftId, fieldKey])
+  @@index([draftId])
 }
 
 /* AUDITID (L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.

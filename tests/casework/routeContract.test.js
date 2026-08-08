@@ -39,11 +39,26 @@ const ROUTES = [
   "cases/[caseId]/meeting-notes/route.js",
   "cases/[caseId]/meeting-notes/[noteId]/route.js",
   "cases/[caseId]/meeting-notes/[noteId]/entries/route.js",
-  "cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js"
+  "cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js",
+  /* JTA-V1 E5 — STAR2 mustandi ahel, neli marsruuti. */
+  "cases/[caseId]/drafts/route.js",
+  "cases/[caseId]/drafts/[draftId]/route.js",
+  "cases/[caseId]/drafts/[draftId]/fields/route.js",
+  "cases/[caseId]/drafts/[draftId]/transition/route.js"
 ];
 
 async function readRoute(name) {
   return readFile(new URL(`../../app/api/casework/${name}`, import.meta.url), "utf8");
+}
+
+/**
+ * Kommentaarideta kuju. Marsruudifailid SELETAVAD, miks nad teatud asju ei tee
+ * (nt „`transferState` EI TULE kehast") — toores tekstiotsing loeks selgituse
+ * kasutuseks ja test läheks punaseks õige põhjenduse peale.
+ */
+async function readRouteCode(name) {
+  const source = await readRoute(name);
+  return source.replace(/\/\*[\s\S]*?\*\//g, " ").replace(/(^|\s)\/\/.*$/gm, "$1");
 }
 
 async function readLib(name) {
@@ -240,4 +255,37 @@ test("E4 kirje lisamine nõuab NII kihti kui päritolu", async () => {
   const entries = await readRoute("cases/[caseId]/meeting-notes/[noteId]/entries/route.js");
   assert.match(entries, /layer: body\?\.layer \?\? null/, "kiht ei tule kehast või tal on vaikeväärtus");
   assert.match(entries, /provenance: body\?\.provenance \?\? null/, "päritolu ei tule kehast");
+});
+
+test("E5 mustandil EI OLE kustutus- ega seisu-uuendusrada väljaspool `transition`-i", async () => {
+  /* Mustand on ülekandeahela lüli ja tema jälg on tõend; lõpetamise tee on
+     `EI_KANTA` — teadlik lõpp, mitte „jäi seisma". Kustutus laseks otsuse
+     ajaloost vaikselt kaduda. */
+  const detail = await readRoute("cases/[caseId]/drafts/[draftId]/route.js");
+  assert.doesNotMatch(detail, /export async function DELETE/, "mustandil on kustutusrada");
+  assert.doesNotMatch(detail, /export async function PATCH/, "mustandi konteineril on uuendusrada");
+
+  /* Seisu muudab AINULT `transition` marsruut. `transferState` mujal tähendaks
+     teed, mis läheb olekumasinast mööda. */
+  for (const name of ["cases/[caseId]/drafts/route.js", "cases/[caseId]/drafts/[draftId]/fields/route.js"]) {
+    const source = await readRouteCode(name);
+    assert.doesNotMatch(source, /transferState/, `${name}: seis tuleb väljaspool transition-marsruuti`);
+  }
+});
+
+test("E5 siirdemarsruut nõuab `expectedFrom`-i ja ei võta seisu mujalt", async () => {
+  /* Ilma `expectedFrom`-ita ei ole tingimuslikku update'it (L6) ja kaks
+     samaaegset siiret kirjutaksid teineteist üle. */
+  const source = await readRoute("cases/[caseId]/drafts/[draftId]/transition/route.js");
+  assert.match(source, /expectedFrom: body\?\.expectedFrom/, "expectedFrom ei tule kehast");
+  assert.match(source, /to: body\?\.to/, "siht ei tule kehast");
+  assert.match(source, /caseWorkAssistId: caseId/, "juhtumi ID ei jõua teenuskihti");
+});
+
+test("E5 väljamarsruut ei edasta päritolu uuendusse", async () => {
+  const source = await readRoute("cases/[caseId]/drafts/[draftId]/fields/route.js");
+  /* `provenance` võetakse vastu ainult UUE rea jaoks; teenuskiht eirab teda
+     olemasoleval real (L4). Marsruut ei tohi tal olla teist teed. */
+  assert.match(source, /provenance: body\?\.provenance/);
+  assert.doesNotMatch(source, /export async function PATCH/, "väljal on eraldi märgise-uuendus");
 });
