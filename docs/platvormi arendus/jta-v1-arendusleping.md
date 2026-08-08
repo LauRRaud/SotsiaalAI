@@ -1,7 +1,7 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **E1–E2 TEHTUD** (E2 08.08, brauseris tõendatud).
-**E3–E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
+**Olek:** **E1–E3 TEHTUD** (E3 08.08, päris andmebaasi ja kahe päris sessiooni vastu tõendatud).
+**E4–E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
 **E6–E7 `READY_TO_ASSIGN`, aga nende lõplik lukk ootab O-JTA-5 vastust** (vt „Lahtine otsus").
 **23 lukustatud otsust, 8 etappi, 4 migratsiooni.**
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
@@ -947,13 +947,13 @@ nüüd on ka kirjas — mitmetimõistetavus oli lepingus, mitte koodis.
 
 ---
 
-### E3 — Kohtumise ettevalmistus *(migratsioon 1/4)*
+### E3 — Kohtumise ettevalmistus *(migratsioon 1/4)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
 | **Teenus** | **uus** `lib/casework/caseWorkMeetingPrep.js` — `createMeetingPrep`, `updateMeetingPrep`, `getMeetingPrep`, `listMeetingPreps`, `deleteMeetingPrep`, `setPrepField`, `addQuestion`, `updateQuestion`, `removeQuestion`, **`confirmProvenance`** |
 | **API** | **uus** `app/api/casework/cases/[caseId]/meeting-preps/route.js` (`GET`, `POST`) · `.../[prepId]/route.js` (`GET`, `PATCH`, `DELETE`) · `.../[prepId]/fields/route.js` (`PUT`) · `.../[prepId]/questions/route.js` (`GET`, `POST`) · `.../questions/[questionId]/route.js` (`PATCH`, `DELETE`) · **`.../[prepId]/fields/[fieldKey]/confirm-provenance/route.js` (`POST`)** · **`.../questions/[questionId]/confirm-provenance/route.js` (`POST`)** |
-| **Pind** | **uus** `app/juhtumid/[caseId]/page.jsx` — juhtumi detailvaade (**täna ei ole**), ettevalmistuse sektsioon |
+| **Pind** | `components/casework/MeetingPrepSection.jsx` juhtumi detailvaates. **v6 parandus: lepingu väide „juhtumi detailvaade täna ei ole" oli VALE** — vt allpool |
 | **Värav** | `guardCaseWorkRequest()`, scope `casework:meeting-prep` |
 | **Valideerimine** | `provenance` ∈ 8 väärtusest **prep-real ja igal küsimusel**; `kind` ∈ 2 |
 | **Testid** | `tests/casework/meetingPrep.test.js` + marsruuditest |
@@ -1020,6 +1020,52 @@ muutu (409) · `caseId`/`prepId` ristkontroll · `DELETE` kaks korda = idempoten
 400 · **`PATCH` koos `provenance` väljaga ei muuda märgist** · `confirm-provenance` vale
 `from`-iga → 409 · **`inimese märgis → AI_MUSTAND` → 400** · prep-i vaade kuvab juhtumi puuduva
 info, aga ei salvesta sellest koopiat (kontroll: lahendamine juhtumis muudab prep-i vaadet).
+
+#### E3 teostus — kolm asja, mis lepingust erinevad
+
+**1. Pind on olemasolevas detailvaates, mitte uuel marsruudil — ja leping eksis.** E3 rida
+lubas `app/juhtumid/[caseId]/page.jsx`-i põhjendusega „juhtumi detailvaade **täna ei ole**".
+Koodist mõõdetuna oli see vale: detailvaade ON olemas (`CaseWorkDetail.jsx`,
+`/juhtumid?juhtum=<id>`) ja JUHTUM-V1 E6 valis teadlikult **ühe marsruudi** — *„kaks eri
+marsruuti tähendaks kahte kohta, kust sama asja otsida."* Uus tee samale objektile oleks
+tühistanud juba tehtud otsuse, mitte täitnud lepingut. Ettevalmistus elab
+`components/casework/MeetingPrepSection.jsx`-is ja seisab puuduva info **järel**, kliendiviite
+**ees**.
+
+**2. Kinnitamise 404 käib suunakontrolli EES.** Leitud päris sessioonidega: võõras töötaja sai
+`confirm-provenance`-ilt **400 `provenance_confirm_source`**, kuigi kõik teised operatsioonid
+vastasid samale inimesele 404. Andmeid see ei lekitanud — 400 sõltus ainult päringu kehast —,
+aga kaks asja olid valed: **omanikule** oli vastus eksitav (olematu välja kinnitamine ütles
+„ainult AI mustandit saab kinnitada", mitte „välja ei ole") ja **võõrale** oli vastus
+ebaühtlane. Järjekord on nüüd `rida olemas? (404) → suund? (400) → tingimuslik update (409)`.
+
+**3. Suunakontrolli kahe reegli järjekord on tähendusega.** `from = inimene, to = AI_MUSTAND`
+rikub mõlemat reeglit korraga. **Sihi reegel käib ees**, sest ta on absoluutne; lähte reegel on
+kontekstuaalne. Vale järjekord ütleks inimesele, kes üritab oma kinnitust tagasi võtta, et
+probleem on lähtekohas — ja ta prooviks uuesti teise `from`-iga.
+
+**Migratsioon on KÄSITSI kirjutatud, mitte `migrate diff` väljund.** Diff arendusbaasi vastu
+tõi kaasa võõra triivi (`DROP TABLE "AnalyzeUsageLegacy"`, mitu `ALTER COLUMN`, kaks
+`DROP CONSTRAINT`), mis ei ole selle etapi töö — kokku liidetuna oleks „lisa kolm tabelit"
+migratsioon kustutanud tabeli ja muutnud veerutüüpe kolmes võõras mudelis. Lisaks on kaks
+`CHECK`-i, mida skeem ei oska väljendada: `provenance` ei tohi olla tühi string. `NOT NULL`
+üksi lubaks `''` ehk „märgistatud tühjaga".
+
+**Mõõdetud päris andmebaasi ja kahe päris sessiooni vastu** (värav ajutiselt sees, andmed
+sünteetilised ja pärast kustutatud): prep loodud koos `meetingAt`-iga · väli `AI_MUSTAND`-iga ·
+**teksti uuendus koos teise `provenance` väärtusega EI MUUTNUD märgist** · kinnitus
+`AI_MUSTAND → TOOTAJA_TAHELEPANEK` OK · tagasitee **400** · aegunud `from` **409** ·
+päritoluta küsimus **400** · teine kirjutus samale `fieldKey`-le andis **ühe rea, mitte kaks** ·
+teine töötaja sai **kõigilt viielt rajalt 404** · **kaskaad tõendatud**: juhtumi kustutus viis
+prep-i, välja ja küsimuse (1/1/1 → 0/0/0), kontrollitud loendusega, mitte eeldatud.
+
+**Brauseris läbi käidud:** ettevalmistuse sektsioon juhtumi vaates · viis välja kolmes keeles ·
+küsimuse read koos liigi- ja päritolusildiga · **`<b>` küsimuse tekstis kuvatud tekstina**
+(0 loodud elementi) · kinnitusnupp AINULT `AI_MUSTAND` rea juures, kinnitatud väljal mitte.
+
+**Väravad:** `npm test` **2995/2995** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**130 migratsiooni**) · eslint puhas · `npm run build` OK ·
+`prisma generate` tehtud enne päris päringut.
 
 ---
 

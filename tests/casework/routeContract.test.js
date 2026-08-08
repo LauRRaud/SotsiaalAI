@@ -26,7 +26,15 @@ const ROUTES = [
      selleks, et ülalolevad ühised reeglid (värav ees, skoop sessioonist, lipu
      lugemine ainult ühes moodulis) kehtiksid ka tema kohta — uus marsruut, mis
      nimekirja ei jõua, on täpselt see, mis muutmisel maha jääb. */
-  "workbench/route.js"
+  "workbench/route.js",
+  /* JTA-V1 E3 — kohtumise ettevalmistus, seitse marsruuti. */
+  "cases/[caseId]/meeting-preps/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/fields/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/fields/[fieldKey]/confirm-provenance/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/questions/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/route.js",
+  "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/confirm-provenance/route.js"
 ];
 
 async function readRoute(name) {
@@ -149,5 +157,46 @@ test("loendid on pagineeritud ja cursor tuleb päringust", async () => {
     const source = await readRoute(name);
     assert.match(source, /cursor: (params|search)\.get\("cursor"\)/, `${name}: cursor ei tule päringust`);
     assert.match(source, /limit: (params|search)\.get\("limit"\)/, `${name}: limiit ei tule päringust`);
+  }
+});
+
+test("E3 päritolu kinnitamine elab OMA marsruudil, mitte PATCH-i sees (L4)", async () => {
+  /* KANDEV GARANTII: AI mustandi märgist ei saa maha võtta teksti parandamise
+     kõrvalmõjuna. Kaks kohta, kust see auk tekiks — ja mõlemad on vaiksed. */
+  const PREP = "cases/[caseId]/meeting-preps/[prepId]";
+
+  /* 1. Väljade marsruut võtab `provenance` vastu (uue rea jaoks), aga ei tohi
+        omada eraldi märgise-muutmise rada. */
+  const fields = await readRoute(`${PREP}/fields/route.js`);
+  assert.doesNotMatch(fields, /export async function PATCH/, "väljadel on eraldi märgise-uuendus");
+
+  /* 2. Küsimuse `PATCH` ei tohi `provenance`-i teenuskihile edasi anda. */
+  const question = await readRoute(`${PREP}/questions/[questionId]/route.js`);
+  assert.doesNotMatch(question, /provenance:\s*body/, "küsimuse PATCH edastab päritolu");
+
+  /* Kinnitamisel on oma marsruut ja ta nõuab `from`-i — ilma selleta ei ole
+     tingimuslikku update'i ja kaks samaaegset kinnitust kirjutaksid teineteist üle. */
+  for (const name of [
+    `${PREP}/fields/[fieldKey]/confirm-provenance/route.js`,
+    `${PREP}/questions/[questionId]/confirm-provenance/route.js`
+  ]) {
+    const source = await readRoute(name);
+    assert.match(source, /export async function POST/, `${name}: POST puudub`);
+    assert.match(source, /from: body\?\.from/, `${name}: from ei tule kehast`);
+    assert.match(source, /to: body\?\.to/, `${name}: to ei tule kehast`);
+  }
+});
+
+test("E3 marsruudid kannavad BOTH juhtumi ja prep-i ID-d (ristkontroll)", async () => {
+  /* Ilma `caseWorkAssistId`-ta jõuaks teenuskihti ainult prep-i ID ja
+     omanikupiir kehtiks juhtumile, mille ID kutsuja ise valis — sama muster,
+     mis 04.08 IDOR-i tekitas, ainult ühe tasandi võrra sügavamal. */
+  const NESTED = ROUTES.filter((name) => name.includes("meeting-preps/[prepId]"));
+  assert.ok(NESTED.length >= 5, "pesastatud marsruute ei leitud");
+
+  for (const name of NESTED) {
+    const source = await readRoute(name);
+    assert.match(source, /caseWorkAssistId: caseId/, `${name}: juhtumi ID ei jõua teenuskihti`);
+    assert.match(source, /meetingPrepId: prepId/, `${name}: prep-i ID ei jõua teenuskihti`);
   }
 });

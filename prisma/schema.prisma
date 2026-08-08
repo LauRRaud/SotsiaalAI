@@ -6309,6 +6309,39 @@ enum CaseWorkExternalSystem {
   STAR2
 }
 
+/// JTA-V1 (E3) — kohtumise ettevalmistuse väljad.
+///
+/// ENUM, MITTE TEKST, ja see on TEADLIK ERINEVUS `provenance`-ist. Päritolu on
+/// JAGATUD sõnastik (`lib/workspaces/provenance.js`, kaheksa väärtust, kasutusel
+/// ka FIELD-is) ja DB-enum tekitaks temast teise tõe. `fieldKey` on selle mudeli
+/// OMA suletud hulk: uus väli tähendab uut vormirida, uut teksti kolmes keeles
+/// ja uut lepingurida — ehk niikuinii koodimuudatust. Siis on migratsioon aus
+/// hind ja andmebaas jõustab seda, mida `@@unique([meetingPrepId, fieldKey])`
+/// niikuinii eeldab.
+///
+/// NB VÄÄRTUSI EI TOHI ÜMBER JÄRJESTADA — vt `CaseWorkMissingInfoStatus`
+/// kommentaari `caseWorkMissingInfo.js`-is: Postgres sordib enum'i
+/// DEKLARATSIOONI, mitte tähestiku järgi. Uued väärtused LÕPPU.
+enum CaseWorkPrepFieldKey {
+  GOAL
+  REQUIRED_DOCUMENTS
+  LIFE_DOMAINS
+  AGENDA
+  PLAIN_LANGUAGE_NOTES
+}
+
+/// JTA-V1 (E3) — küsimuse liik (`ideed.md` ptk 12 nimi, uut ei leiutata).
+///
+/// Kaks liiki, mida ei tohi kokku valada: `CLARIFYING_QUESTION` on see, mida
+/// töötaja kliendilt KÜSIB, `CLAIM_TO_VERIFY` on väide, mille ta kliendiga üle
+/// KONTROLLIB. Esimene otsib infot, teine kinnitab olemasolevat — ja just see
+/// vahe kannab ptk 4.6 nõuet, et nähtud fakt ja kontrollimata info seisavad
+/// eraldi.
+enum CaseWorkQuestionKind {
+  CLARIFYING_QUESTION
+  CLAIM_TO_VERIFY
+}
+
 model CaseWorkAssist {
   id          String @id @default(cuid())
   ownerUserId String
@@ -6359,6 +6392,7 @@ model CaseWorkAssist {
 
   items          CaseWorkItem[]
   missingInfo    CaseWorkMissingInfo[]
+  meetingPreps   CaseWorkMeetingPrep[]
   retentionAudit CaseWorkRetentionAudit[]
   erasureAudit   CaseWorkClientErasureAudit[]
 
@@ -6428,6 +6462,96 @@ model CaseWorkMissingInfo {
 
   @@index([caseWorkAssistId, status])
   @@index([caseWorkAssistId, createdAt])
+}
+
+/// JTA-V1 (E3) — ühe kohtumise ettevalmistus.
+///
+/// TEKSTITA MUDEL. Ainus sisuline väli on `meetingAt` ja tal EI OLE päritolu:
+/// ajahetk ei ole autoritekst, vaid plaan. Kogu sisu elab `fields`-is ja
+/// `questions`-is, sest just seal on igal real oma päritolu (L4).
+///
+/// MITU ETTEVALMISTUST ÜHE JUHTUMI KOHTA on lubatud (O-JTA-3): iga kohtumine on
+/// oma. Seepärast ei ole siin `@@unique([caseWorkAssistId])`.
+///
+/// PUUDUVAT INFOT SIIA EI KOPEERITA. Vaade loeb juhtumi enda
+/// `CaseWorkMissingInfo` lahtised punktid. Koopia oleks teine tõde ja läheks
+/// esimese lahendamise järel originaalist lahku (ptk 4.7).
+model CaseWorkMeetingPrep {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+
+  /// Plaanitud kohtumise aeg. Võib puududa — ettevalmistust tohib alustada
+  /// enne, kui aeg on kokku lepitud.
+  meetingAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseWorkAssist CaseWorkAssist             @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+  fields         CaseWorkMeetingPrepField[]
+  questions      CaseWorkQuestion[]
+
+  @@index([caseWorkAssistId, meetingAt])
+  @@index([caseWorkAssistId, createdAt])
+}
+
+/// JTA-V1 (E3) — ettevalmistuse üks väli koos OMA päritoluga.
+///
+/// MIKS OMA TABEL (lepingu v4 parandus). Üks jäme `provenance` terve
+/// ettevalmistuse peal ei suuda väljendada päris juhtu:
+///
+///     goal               → töötaja kirjutas   TOOTAJA_TAHELEPANEK
+///     agenda             → töötaja kirjutas   TOOTAJA_TAHELEPANEK
+///     plainLanguageNotes → AI koostas         AI_MUSTAND
+///
+/// Leping ütleb „AI koostatud OSA", mitte „AI koostatud ettevalmistus" — üks
+/// märgis oleks pidanud kogu prep-i `AI_MUSTAND`-iks või kaotanud märgise
+/// sealt, kus ta loeb.
+model CaseWorkMeetingPrepField {
+  id            String @id @default(cuid())
+  meetingPrepId String
+
+  fieldKey CaseWorkPrepFieldKey
+  text     String               @db.Text
+
+  /// L4: `NOT NULL`. Päritoluta sisu ei tohi tekkida — vt `CaseWorkMissingInfo`
+  /// kommentaari selle kohta, miks see on tekst ja mitte enum.
+  /// Märgist muudab AINULT `confirmProvenance()`; `PATCH` teda ei puutu.
+  provenance String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetingPrep CaseWorkMeetingPrep @relation(fields: [meetingPrepId], references: [id], onDelete: Cascade)
+
+  /// Üks rida välja kohta — vorm on väljade kogum, mitte ajalugu.
+  @@unique([meetingPrepId, fieldKey])
+  @@index([meetingPrepId])
+}
+
+/// JTA-V1 (E3) — täpsustav küsimus või kliendiga kontrollitav väide.
+///
+/// `ideed.md` ptk 12 nimi (`CaseWorkQuestion`), uut ei leiutata.
+model CaseWorkQuestion {
+  id            String @id @default(cuid())
+  meetingPrepId String
+
+  kind CaseWorkQuestionKind
+  text String               @db.Text
+
+  /// L4: `NOT NULL`, sama reegel mis väljal.
+  provenance String
+
+  /// Järjekord on töötaja oma — küsimused ei ole tähestikus ega ajas.
+  ordinal Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetingPrep CaseWorkMeetingPrep @relation(fields: [meetingPrepId], references: [id], onDelete: Cascade)
+
+  @@index([meetingPrepId, kind, ordinal])
+  @@index([meetingPrepId, ordinal])
 }
 
 /* AUDITID (L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.

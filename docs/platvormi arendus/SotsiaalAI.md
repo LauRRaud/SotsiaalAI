@@ -260,7 +260,44 @@ siht on **päris leht**. Kolmas leid oli kääne: „1 lahtist punkti" → „la
 sõnastikus ei olnud**. E1 oli teegikiht, seega ainus koht, kus see oleks paistnud, oli pind —
 ja pinda ei olnud. Test loeb need võtmed nüüd koondlugeja **koodist**, mitte nimekirjast.
 
-**Järgmine: E3** — kohtumise ettevalmistus, esimene neljast migratsioonist.
+### E3 tehtud (08.08): kohtumise ettevalmistus
+
+**Töötaja saab kohtumise ette valmistada nii, et hiljem on näha, kust iga lause tuli.** Juhtumi
+juurde saab luua ettevalmistuse (üks kohtumine = üks ettevalmistus, neid võib olla mitu) ja
+selle sisse viis välja: kohtumise eesmärk, vajalikud dokumendid, eluvaldkonnad, päevakord ja
+selgitused lihtsas keeles. Kõrvale käivad **täpsustavad küsimused** ja **kliendiga
+kontrollitavad väited** — kaks eri asja, mida ei valata kokku: küsimus otsib infot, väide
+kinnitab olemasolevat.
+
+**Kandev asi ei ole vorm, vaid päritolu.** Iga väli ja iga küsimus kannab **oma** märgist —
+mitte üks jäme märgis terve ettevalmistuse peal. Nii saab öelda „eesmärgi kirjutas töötaja,
+lihtsas keeles selgituse koostas AI", mis on täpselt see, mida leping lubab.
+
+**Ja AI märgist ei saa vaikselt maha võtta.** Teksti parandamine **ei muuda** märgist: server
+eirab saadetud väärtust. Märgis muutub ainult eraldi teoga („kinnita päritolu"), see käib
+ainult suunas AI mustand → inimese märgis, ja **tagasiteed masina märgise juurde ei ole** —
+see kirjutaks inimese kinnituse ümber. Liides kannab kinnitusnuppu ainult AI mustandi real.
+
+**Puuduvat infot ettevalmistusse ei kopeerita** — ta loeb juhtumi enda loendit. Koopia oleks
+teine tõde ja läheks esimese lahendamise järel originaalist lahku.
+
+Väravad: `npm test` **2995/2995** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**130 migratsiooni**) · eslint puhas · `npm run build` OK.
+
+**Kolm asja, mis lepingust erinesid.** Esiteks: leping lubas uut marsruuti põhjendusega
+„juhtumi detailvaade täna ei ole" — **koodist mõõdetuna oli see vale** ja JUHTUM-V1 oli
+teadlikult valinud ühe marsruudi. Ettevalmistus läks olemasolevasse detailvaatesse; leping on
+parandatud. Teiseks: **migratsioon on käsitsi kirjutatud**, sest `migrate diff` arendusbaasi
+vastu tõi kaasa võõra triivi — kokku liidetuna oleks „lisa kolm tabelit" migratsioon kustutanud
+võõra tabeli. Kolmandaks leid päris sessioonidest: **kinnitamise 404 käis suunakontrolli
+järel**, seega võõras töötaja sai ühelt rajalt 400 ja kõigilt teistelt 404. Andmeid ei lekkinud,
+aga omanikule oli vastus eksitav — olematu välja kinnitamine ütles „ainult AI mustandit saab
+kinnitada". Järjekord on nüüd `rida olemas? → suund? → tingimuslik update`.
+
+**Tõendatud päris andmebaasi ja kahe päris sessiooni vastu**, sh **kaskaad**: juhtumi kustutus
+viis prep-i, välja ja küsimuse kaasa (1/1/1 → 0/0/0), kontrollitud loendusega.
+
+**Järgmine: E4** — kohtumise märge kaheksa kihiga, migratsioon 2/4.
 
 Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
 eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
@@ -796,8 +833,8 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 
 *Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
 [`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v6**, etapid E1–E8. **E1 (laua
-koondlugeja) ja E2 (laua pind `/toolaud/juhtumitoo`) on koodis, 0 migratsiooni — laud on
-nähtav ja väravaga peidus.** Migratsioone veel ei ole; nad tulevad E3–E6-ga.
+koondlugeja), E2 (laua pind `/toolaud/juhtumitoo`) ja E3 (kohtumise ettevalmistus,
+migratsioon 1/4) on koodis — värav on väljas.** Kolm migratsiooni jääb: E4–E6.
 **E6/E7 lõplik lukk ootab O-JTA-5** (hüljatud töömaterjali säilitus).*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
@@ -1197,7 +1234,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E2 tehtud 08.08** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E3 tehtud 08.08** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1366,7 +1403,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja ja pind tehtud (E1–E2), kohtumise ettevalmistus tegemata (E3)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja, pind ja kohtumise ettevalmistus tehtud (E1–E3), kihiline märge tegemata (E4)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata

@@ -29,6 +29,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
+import MeetingPrepSection from "./MeetingPrepSection";
 import {
   caseLabelText,
   caseWorkRequest,
@@ -637,6 +638,11 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           </>
         )}
       </section>
+
+      {/* JTA-V1 E3 — kohtumise ettevalmistus. Ta seisab puuduva info JÄREL ja
+          kliendiviite EES, sest ettevalmistus loeb puuduvat infot (ptk 4.7:
+          koopiat ei tehta) ja kliendiviite kustutus on lehe lõpupunkt. */}
+      <MeetingPrepSection caseId={caseId} writeDisabled={writeDisabled} onChanged={loadCase} />
 
       <section className="cw-section">
         <h2 className="cw-section-title">{t("casework.page.section_client_reference", "")}</h2>
