@@ -814,7 +814,7 @@
       "review_kind": "Review kind",
       "terminal_notice": "This element is in a final state — its content is no longer edited.",
       "transferred_at": "Transferred",
-      "mark_transferred_elsewhere": "The transferred state is set by the separate “Mark as transferred” action, which arrives in the next stage.",
+      "mark_transferred_elsewhere": "The state “transferred” is set only by the separate action “Mark as transferred”, which also writes a trace into the transfer history in the same transaction.",
       "type_POORDUMISE_KOKKUVOTE": "Summary of the inquiry",
       "type_ABIVAJADUSE_HINDAMINE": "Needs-assessment draft",
       "type_ELUVALDKONNA_KIRJELDUS": "Life-domain description",
