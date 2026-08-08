@@ -89,11 +89,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` = **`4e22812a`**, tööpuu puhas. Üks tööpuu, üks haru.
-**`origin/main` on `84d64b22`**, seega **push'imata on 10 kannet** — kogu JTA-V1 E2–E8.
-Push ja deploy käivad endiselt ainult omaniku selgel loal.
-**Serveris on `8ab68f98`** (A4 deploy 05.08), seega **deploy'mata on 30 kannet**.
-Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+Lokaalne `main`: viimane **koodikanne** on **`4e22812a`** (JTA-V1 E8), selle peal seisavad
+dokumendikanded. Tööpuu puhas. Üks tööpuu, üks haru.
+**`origin/main` on `84d64b22`** — **push'imata on kogu JTA-V1 E2–E8** koos oma
+dokumendikannetega. Push ja deploy käivad endiselt ainult omaniku selgel loal.
+**Serveris on `8ab68f98`** (A4 deploy 05.08), seega deploy'mata on lisaks kogu see, mis
+`84d64b22`-ni juba `origin`-is oli. Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
 **TEGEMATA (ootab omanikku):** JTA-V1 säilitustöö vajab serveri **cron-rida** — ilma temata on
 kell olemas, aga keegi ei käivita teda:
