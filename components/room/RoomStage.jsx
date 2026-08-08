@@ -1065,6 +1065,13 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       ...(isCaseWorkUiEnabled()
         ? [{ key: "juhtumid", zone: "juhtum", roles: SPECIALIST, label: t("casework.page.title", "Minu juhtumid"), href: "/juhtumid", icon: <CaseWorkIcon /> }]
         : []),
+      /* JUHTUMITÖÖ LAUD (JTA-V1, leping E2) — sama lipp ja sama rollihulk mis
+         juhtumitel (L11), sest laud ja juhtum on üks funktsioon kahes vaates.
+         Kirje seisab juhtumite JÄREL: laud on päeva algusekraan, aga ta on
+         tähenduses juhtumi objekti peal, mitte tema ees. */
+      ...(isCaseWorkUiEnabled()
+        ? [{ key: "juhtumitoo", zone: "juhtum", roles: SPECIALIST, label: t("casework.workbench.title", "Juhtumitöö laud"), href: "/toolaud/juhtumitoo", icon: <CaseWorkIcon /> }]
+        : []),
       { key: "teenusekaart", zone: "teadmine", roles: ALL, label: t("chat.workspace.cards.service_map.title", "Teenusekaart"), href: "/teenusekaart", icon: <ServiceMapIcon /> },
       { key: "otsi", zone: "teadmine", roles: ALL, label: t("personal_search.title", "Minu otsing"), href: "/otsi", icon: <SearchIcon /> },
       { key: "materjalid", zone: "teadmine", roles: SPECIALIST, label: t("chat.workspace.cards.materials.title", "Materjalid"), href: "/vestlus?workspace=materials", icon: <MaterialsIcon /> },

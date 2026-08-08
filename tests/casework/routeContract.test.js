@@ -21,7 +21,12 @@ const ROUTES = [
   "cases/[caseId]/missing-info/route.js",
   "cases/[caseId]/missing-info/[itemId]/route.js",
   "cases/[caseId]/retention/route.js",
-  "cases/[caseId]/client-reference/route.js"
+  "cases/[caseId]/client-reference/route.js",
+  /* JTA-V1 E2 — laud käib täpselt samast väravast läbi. Ta on siin nimeliselt
+     selleks, et ülalolevad ühised reeglid (värav ees, skoop sessioonist, lipu
+     lugemine ainult ühes moodulis) kehtiksid ka tema kohta — uus marsruut, mis
+     nimekirja ei jõua, on täpselt see, mis muutmisel maha jääb. */
+  "workbench/route.js"
 ];
 
 async function readRoute(name) {
