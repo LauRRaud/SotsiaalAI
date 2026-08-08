@@ -1,5 +1,6 @@
 import { json } from "@/lib/documents/server";
 import { getDraft } from "@/lib/casework/caseWorkDraft";
+import { purgeDueAt } from "@/lib/casework/retention";
 import { caseWorkErrorResponse, guardCaseWorkRequest } from "@/lib/casework/routes";
 
 export const runtime = "nodejs";
@@ -23,7 +24,10 @@ export async function GET(request, { params }) {
   try {
     const { caseId, draftId } = await params;
     const draft = await getDraft({ ownerUserId: guard.userId, caseWorkAssistId: caseId, draftId });
-    return json({ ok: true, draft });
+    /* L7 loendus MUSTANDI vaates. Kuupäev tuleb säilitusmoodulist — samast
+       valemist, mille järgi sisu päriselt kustub. Teine arvutus siin tähendaks,
+       et ekraanil seisab üks kuupäev ja purge juhtub teisel. */
+    return json({ ok: true, draft: { ...draft, purgeDueAt: purgeDueAt(draft.transferredAt) } });
   } catch (error) {
     return caseWorkErrorResponse(error, guard.locale);
   }

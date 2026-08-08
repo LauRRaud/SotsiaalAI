@@ -60,6 +60,8 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
 
   const [record, setRecord] = useState(null);
   const [counts, setCounts] = useState({ items: 0, openMissingInfo: 0 });
+  /* L7 säilituskell. Serverist, mitte pinnal arvutatud — vt `retention.js`. */
+  const [retentionClock, setRetentionClock] = useState(null);
   const [state, setState] = useState("loading");
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
@@ -91,6 +93,7 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
     const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}`, { locale });
     setRecord(body.case || null);
     setCounts(body.counts || { items: 0, openMissingInfo: 0 });
+    setRetentionClock(body.retentionClock || null);
     /* Vormiväljad tulevad ALATI serveri vastusest, mitte kohalikust mälust:
        kustutatud kliendiviide peab tühjendama ka välja, mille sisse töötaja
        parasjagu vaatab. */
@@ -268,6 +271,28 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         await loadCase();
       }),
     [caseId, loadCase, locale, retentionReason, run]
+  );
+
+  /**
+   * O-JTA-5 rada C. `POST`, mitte `DELETE`: kustuv asi ei ole see, mida URL
+   * nimetab — mustandi read ja ülekande tõend JÄÄVAD, kustub ainult sisu.
+   *
+   * KEHA EI SAADETA. Ulatuse otsustab server (kandmata mustandid selles
+   * juhtumis); kliendi saadetud loend tähendaks, et pöördumatu kustutuse piiri
+   * valib liides.
+   */
+  const archiveWorkingMaterial = useCallback(
+    () =>
+      run(async () => {
+        await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/working-material`, {
+          method: "POST",
+          locale,
+          body: {}
+        });
+        await loadCase();
+        onChanged?.();
+      }),
+    [caseId, loadCase, locale, onChanged, run]
   );
 
   const eraseClientReference = useCallback(
@@ -608,6 +633,20 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           <span className="cw-badge">{t(retentionLabelKey(record.retentionState), "")}</span>
         </p>
 
+        {/* L7: LOENDUS ON NÄHTAV KOGU 12 KUU JOOKSUL, mitte alles siis, kui
+            hoiatus saabub. Kuupäev tuleb serverist sama valemiga, millega
+            kustutus päriselt juhtub. */}
+        {record.retentionState === "ARCHIVED" && retentionClock?.deletionAt ? (
+          <p className="cw-notice">
+            {t("casework.page.retention_countdown", "")
+              .replace("{days}", String(retentionClock.daysLeft ?? 0))
+              .replace(
+                "{date}",
+                new Date(retentionClock.deletionAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
+              )}
+          </p>
+        ) : null}
+
         {record.retentionState === "ARCHIVED" ? null : (
           <>
             <div className="cw-field">
@@ -626,6 +665,21 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
                 onChange={(event) => setRetentionReason(event.target.value)}
               />
             </div>
+
+            {/* L23 — KELL ÖELDAKSE VÄLJA ENNE TEGU, mitte 30 päeva enne
+                kustutust. Olemasolev `retention_hint` ütleb „tagasiteed ei ole"
+                ja oli oma ajal täielik: JUHTUM-V1-s ei olnud kella. Kell tuleb
+                selle lepinguga, seega tekstivõlg on JTA oma.
+
+                `READ_ONLY` siire EI KANNA seda teksti ja see ei ole väljajätt:
+                tema ei käivita kella, ja vale hoiatus õpetab kasutajat hoiatusi
+                ignoreerima. */}
+            {record.retentionState === "READ_ONLY" ? (
+              <p className="cw-error" role="note">
+                {t("casework.page.archive_clock_warning", "")}
+              </p>
+            ) : null}
+
             <div className="cw-row">
               {record.retentionState === "ACTIVE" ? (
                 <button
@@ -637,18 +691,37 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
                   {t("casework.page.retention_to_read_only", "")}
                 </button>
               ) : (
-                <button
-                  className="cw-button cw-button--danger"
-                  type="button"
+                /* Kaheastmeline, sest `ARCHIVED` on terminaalne JA käivitab
+                   kustutuskella — ühe vajutusega pöördumatu tegu on täpselt see
+                   muster, mille seitsmes audit mujalt maha võttis. */
+                <ConfirmButton
+                  label={t("casework.page.retention_to_archived", "")}
+                  confirmLabel={t("casework.page.confirm_retention_to_archived", "")}
+                  cancelLabel={t("casework.page.cancel", "")}
                   disabled={busy || !retentionReason.trim()}
-                  onClick={() => transitionRetention("ARCHIVED")}
-                >
-                  {t("casework.page.retention_to_archived", "")}
-                </button>
+                  onConfirm={() => transitionRetention("ARCHIVED")}
+                />
               )}
             </div>
           </>
         )}
+
+        {/* O-JTA-5 rada C — töötaja tegu „arhiveeri töömaterjal".
+            SEE EI ARHIVEERI JUHTUMIT ja seepärast seisab ta arhiveerimisest
+            eraldi: juhtum jääb `ACTIVE`-ks ja tööle, kustub ainult kandmata
+            mustandite SISU. */}
+        {isActive ? (
+          <div className="cw-row">
+            <p className="cw-hint">{t("casework.page.working_material_hint", "")}</p>
+            <ConfirmButton
+              label={t("casework.page.archive_working_material", "")}
+              confirmLabel={t("casework.page.confirm_archive_working_material", "")}
+              cancelLabel={t("casework.page.cancel", "")}
+              disabled={busy}
+              onConfirm={archiveWorkingMaterial}
+            />
+          </div>
+        ) : null}
       </section>
 
       {/* JTA-V1 E3 — kohtumise ettevalmistus. Ta seisab puuduva info JÄREL ja

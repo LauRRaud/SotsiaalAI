@@ -822,7 +822,8 @@
       "type_TEGEVUS": "Action",
       "type_VASTUTAJA_JA_TAHTAEG": "Responsible person and deadline",
       "type_KOHTUMISE_MARGE": "Meeting note",
-      "type_TEENUSE_SUUNAMISE_ALUS": "Basis for the service referral"
+      "type_TEENUSE_SUUNAMISE_ALUS": "Basis for the service referral",
+      "purge_due_at": "The content is deleted after the retention period on {date}. The row, the transfer fact and the list of fields remain."
     },
     "star2": {
       "MUSTAND": "Draft",
@@ -1012,7 +1013,8 @@
       "transfer_field_keys_required": "Select at least one field to copy.",
       "transfer_field_keys_unknown": "At least one field does not belong to this draft.",
       "transfer_field_keys_too_many": "Too many fields at once.",
-      "transfer_action_key_invalid": "The copy identifier has an invalid format."
+      "transfer_action_key_invalid": "The copy identifier has an invalid format.",
+      "working_material_empty": "There are no untransferred drafts whose content could be deleted."
     },
     "page": {
       "confirm_erase_client_reference": "Confirm: erase the client reference permanently",
@@ -1079,7 +1081,13 @@
       "meta": {
         "title": "My cases — SotsiaalAI",
         "description": "A social worker's own case work organisation."
-      }
+      },
+      "retention_countdown": "Archived. The case and all of its content are deleted on {date} — {days} days left.",
+      "confirm_retention_to_archived": "Confirm: archive and start the deletion clock",
+      "archive_clock_warning": "Archiving starts a 12-month deletion clock. At the end of it the whole case is deleted together with its children — preparations, notes, drafts and the transfer history. This state cannot be reversed.",
+      "archive_working_material": "Archive working material",
+      "confirm_archive_working_material": "Confirm: delete the content of untransferred drafts",
+      "working_material_hint": "Deletes the content of every draft not transferred to STAR2. The case stays open, the draft rows and the transfer history remain. Meeting preparations and notes are not touched."
     },
     "info": {
       "title": "My cases",
@@ -5062,7 +5070,8 @@
       "room_summary_approval_requested": "A meeting summary is waiting for your confirmation",
       "room_summary_approval_response": "A participant responded to the summary confirmation round",
       "room_ownership_transferred": "The room owner has changed",
-      "casework_draft_external_transfer_marked": "A draft was marked as transferred"
+      "casework_draft_external_transfer_marked": "A draft was marked as transferred",
+      "casework_retention_warning": "An archived case will be deleted in 30 days"
     },
     "center": {
       "title": "Notifications",

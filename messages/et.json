@@ -822,7 +822,8 @@
       "type_TEGEVUS": "Tegevus",
       "type_VASTUTAJA_JA_TAHTAEG": "Vastutaja ja tähtaeg",
       "type_KOHTUMISE_MARGE": "Kohtumise märge",
-      "type_TEENUSE_SUUNAMISE_ALUS": "Teenuse suunamise alus"
+      "type_TEENUSE_SUUNAMISE_ALUS": "Teenuse suunamise alus",
+      "purge_due_at": "Sisu kustub säilitustähtaja järel {date}. Rida, ülekande fakt ja väljade loend jäävad alles."
     },
     "star2": {
       "MUSTAND": "Mustand",
@@ -1012,7 +1013,8 @@
       "transfer_field_keys_required": "Vali vähemalt üks väli, mida kopeerida.",
       "transfer_field_keys_unknown": "Vähemalt üks väli ei kuulu sellele mustandile.",
       "transfer_field_keys_too_many": "Välju on korraga liiga palju.",
-      "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga."
+      "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga.",
+      "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole."
     },
     "page": {
       "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
@@ -1079,7 +1081,13 @@
       "meta": {
         "title": "Minu juhtumid — SotsiaalAI",
         "description": "Sotsiaaltöötaja enda töökorralduse juhtumid."
-      }
+      },
+      "retention_countdown": "Arhiveeritud. Juhtum ja kõik selle sisu kustuvad {date} — jäänud on {days} päeva.",
+      "confirm_retention_to_archived": "Kinnita: arhiveeri ja käivita kustutuskell",
+      "archive_clock_warning": "Arhiveerimine käivitab 12 kuu kustutuskella. Kella lõpus kustub kogu juhtum koos lastega — ettevalmistused, märkmed, mustandid ja ülekandeajalugu. Seda olekut ei saa tagasi pöörata.",
+      "archive_working_material": "Arhiveeri töömaterjal",
+      "confirm_archive_working_material": "Kinnita: kustuta kandmata mustandite sisu",
+      "working_material_hint": "Kustutab kõigi STAR2-sse kandmata mustandite sisu. Juhtum jääb tööle, mustandite read ja ülekandeajalugu jäävad alles. Kohtumise ettevalmistusi ja märkmeid see ei puuduta."
     },
     "info": {
       "title": "Minu juhtumid",
@@ -5062,7 +5070,8 @@
       "room_summary_approval_requested": "Kohtumise kokkuvõte ootab sinu kinnitust",
       "room_summary_approval_response": "Osaleja vastas kokkuvõtte kinnitusringile",
       "room_ownership_transferred": "Ruumi omanik vahetus",
-      "casework_draft_external_transfer_marked": "Mustand märgiti üle kantuks"
+      "casework_draft_external_transfer_marked": "Mustand märgiti üle kantuks",
+      "casework_retention_warning": "Arhiveeritud juhtum kustub 30 päeva pärast"
     },
     "center": {
       "title": "Teavitused",

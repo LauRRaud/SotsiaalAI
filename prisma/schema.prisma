@@ -6379,6 +6379,27 @@ enum CaseWorkTransferEventKind {
   MARKED_AS_TRANSFERRED
 }
 
+/// JTA-V1 (E7) — MIKS mustandi sisu kustus.
+///
+/// KAKS RADA, KAKS TÄHENDUST, ja neid ei tohi kokku valada:
+///
+///   `RETENTION_AFTER_TRANSFER`         L7 automaatne kell — 12 kuud pärast
+///                                      ülekannet. Eeldab `transferredAt`-i ja
+///                                      seda jõustab `CHECK`.
+///   `WORKER_ARCHIVED_WORKING_MATERIAL` O-JTA-5 rada C — töötaja tegu „arhiveeri
+///                                      töömaterjal". Mustandit EI OLE kuhugi
+///                                      kantud ja just see ongi mõte: kandmata
+///                                      töömaterjal ei saanud L7-s kunagi oma
+///                                      kella ja võis juhtumis aastaid istuda.
+///
+/// Ilma selle veeruta oleks purge'itud kandmata mustand eristamatu andmeveast:
+/// `contentPurgedAt` üksi ei ütle, kas sisu kustutati teadlikult või kadus ta
+/// millegi katki mineku tõttu.
+enum CaseWorkPurgeReason {
+  RETENTION_AFTER_TRANSFER
+  WORKER_ARCHIVED_WORKING_MATERIAL
+}
+
 model CaseWorkAssist {
   id          String @id @default(cuid())
   ownerUserId String
@@ -6703,6 +6724,11 @@ model CaseWorkDraft {
   /// Sisu purge'imise hetk (E7). Rida jääb alles, `CaseWorkDraftField` read
   /// kustuvad — sisu sureb, tõend elab.
   contentPurgedAt DateTime?
+
+  /// MIKS sisu kustus. `contentPurgedAt`-iga kahesuunaline: kumbki ei tohi
+  /// eksisteerida ilma teiseta (`CHECK`), sest kuupäev ilma põhjuseta on
+  /// eristamatu andmeveast.
+  contentPurgeReason CaseWorkPurgeReason?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

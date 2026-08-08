@@ -336,6 +336,17 @@ function DraftEditor({
         </p>
       ) : null}
 
+      {/* L7 loendus mustandi vaates: SISU kustub, rida ja ülekande tõend jäävad.
+          Kuupäev tuleb serverist, mitte pinnal arvutatuna. */}
+      {draft.purgeDueAt && !draft.contentPurgedAt ? (
+        <p className="cw-hint">
+          {t("casework.draft.purge_due_at", "").replace(
+            "{date}",
+            new Date(draft.purgeDueAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
+          )}
+        </p>
+      ) : null}
+
       {terminal ? <p className="cw-notice">{t("casework.draft.terminal_notice", "")}</p> : null}
 
       <button className="cw-button" type="button" onClick={onClose}>

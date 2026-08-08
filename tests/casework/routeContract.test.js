@@ -50,7 +50,10 @@ const ROUTES = [
   "cases/[caseId]/drafts/[draftId]/star2-block/route.js",
   "cases/[caseId]/drafts/[draftId]/copy-events/route.js",
   "cases/[caseId]/drafts/[draftId]/mark-transferred/route.js",
-  "cases/[caseId]/transfer-events/route.js"
+  "cases/[caseId]/transfer-events/route.js",
+  /* JTA-V1 E7 — O-JTA-5 rada C. Säilitustööl ENDAL ei ole marsruuti: ta ei ole
+     kasutaja tegu, vaid cron. */
+  "cases/[caseId]/working-material/route.js"
 ];
 
 async function readRoute(name) {

@@ -205,3 +205,36 @@ test("kliendiviite kustutamine jääb alles ka kirjutuskaitstud juhtumis (L17)",
   assert.doesNotMatch(detail, /disabled=\{writeDisabled\}[\s\S]{0,120}onConfirm=\{eraseClientReference\}/);
   assert.match(detail, /const writeDisabled = busy \|\| !isActive;/);
 });
+
+test("L23: arhiveerimine ütleb KELLA välja enne tegu, `READ_ONLY` siire mitte", async () => {
+  /* Aus hoiatus vales kohas ei ole hoiatus, vaid teade. L7 lubab 30 päeva
+     hoiatust, aga see saabub 11 kuud PÄRAST otsust, mida enam muuta ei saa —
+     seega peab kell olema öeldud siis, kui otsus tehakse.
+
+     `retention_hint` („tagasiteed ei ole") oli oma ajal TÄIELIK: JUHTUM-V1-s ei
+     olnud kella. Kell tuleb JTA lepinguga, seega on tekstivõlg JTA oma. */
+  const detail = await read("../../components/casework/CaseWorkDetail.jsx");
+
+  const warning = detail.match(/retentionState === "READ_ONLY"[\s\S]{0,300}?archive_clock_warning/);
+  assert.ok(warning, "arhiveerimise juures ei ole kella-hoiatust");
+
+  /* `ACTIVE → READ_ONLY` EI KANNA seda teksti: tema ei käivita kella, ja vale
+     hoiatus õpetab kasutajat hoiatusi ignoreerima. */
+  assert.doesNotMatch(
+    detail,
+    /retention_to_read_only[\s\S]{0,200}archive_clock_warning/,
+    "READ_ONLY siire kannab kustutuskella hoiatust"
+  );
+
+  /* Pöördumatu + kella käivitav tegu on kaheastmeline. */
+  assert.match(detail, /confirm_retention_to_archived/, "arhiveerimine ei ole kaheastmeline");
+
+  /* TEKST peab nimetama kustutuse ULATUST — mitte ainult mustandi sisu. */
+  for (const locale of ["et", "en", "ru"]) {
+    const messages = await readMessages(locale);
+    const text = messages.casework.page.archive_clock_warning;
+    assert.equal(typeof text, "string", `${locale}: hoiatuse tekst puudub`);
+    assert.ok(text.includes("12"), `${locale}: tekst ei nimeta 12 kuu kella`);
+    assert.ok(text.length > 80, `${locale}: tekst on liiga lühike, et kolme asja välja öelda`);
+  }
+});

@@ -2,6 +2,7 @@ import { json } from "@/lib/documents/server";
 import { getCaseWorkAssist, updateCaseWorkAssist } from "@/lib/casework/caseWorkAssist";
 import { countCaseWorkItems } from "@/lib/casework/caseWorkItem";
 import { countOpenMissingInfo } from "@/lib/casework/caseWorkMissingInfo";
+import { getCaseRetentionClock } from "@/lib/casework/retention";
 import { caseWorkErrorResponse, guardCaseWorkRequest } from "@/lib/casework/routes";
 
 export const runtime = "nodejs";
@@ -19,11 +20,20 @@ export async function GET(request, { params }) {
     /* Mõlemad loendurid kasutavad SAMA nähtavusfiltrit mis loendid. Kui nad
        lahku läheksid, ütleks vaade „3 seost" ja näitaks kahte — ja see vahe ise
        oleks leke (leping L3). */
-    const [itemCount, openMissingInfo] = await Promise.all([
+    const [itemCount, openMissingInfo, retentionClock] = await Promise.all([
       countCaseWorkItems({ ownerUserId: guard.userId, caseWorkAssistId: caseId }),
-      countOpenMissingInfo({ ownerUserId: guard.userId, caseWorkAssistId: caseId })
+      countOpenMissingInfo({ ownerUserId: guard.userId, caseWorkAssistId: caseId }),
+      /* L7: LOENDUS ON NÄHTAV KOGU 12 KUU JOOKSUL, mitte alles hoiatuse hetkel.
+         Ta tuleb SAMAST valemist mis jõustaja — teine arvutus pinnal tähendaks,
+         et ekraanil seisab üks kuupäev ja kustutus juhtub teisel. */
+      getCaseRetentionClock({ ownerUserId: guard.userId, caseWorkAssistId: caseId })
     ]);
-    return json({ ok: true, case: record, counts: { items: itemCount, openMissingInfo } });
+    return json({
+      ok: true,
+      case: record,
+      counts: { items: itemCount, openMissingInfo },
+      retentionClock
+    });
   } catch (error) {
     return caseWorkErrorResponse(error, guard.locale);
   }
