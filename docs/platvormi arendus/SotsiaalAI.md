@@ -89,10 +89,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` = **`bb9b4712`**, tööpuu puhas. Üks tööpuu, üks haru.
-**`origin/main` on `724d7680`** ja lokaalne main on temast **20 kannet ees** — kogu JUHTUM-V1
-(E1–E6) on **push'imata**, sest push ja deploy käivad ainult omaniku selgel loal.
-**Serveris on `8ab68f98`** (A4 deploy 05.08). Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+Lokaalne `main` = **`84d64b22`**, tööpuu puhas. Üks tööpuu, üks haru.
+**`origin/main` on sama `84d64b22`** — push'imata ei ole midagi: kogu JUHTUM-V1 (E1–E6) ja
+JTA-V1 E1 on `origin`-is. Push ja deploy käivad endiselt ainult omaniku selgel loal.
+**Serveris on `8ab68f98`** (A4 deploy 05.08), seega **deploy'mata on 20 kannet**.
+Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
 ### Viimati tehtud (07.08): JUHTUM-V1 — juhtumi objekt
 
@@ -131,9 +132,10 @@ kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte p
 ### Käib praegu (08.08): JTA-V1 — juhtumitöö assistent
 
 **Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v5** — **neli** omaniku auditiringi,
-**21 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1 on TEHTUD ja push'itud (08.08); E2–E8
-`READY_TO_ASSIGN`.**
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v6** — **viis** omaniku auditiringi,
+**23 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1–E2 on TEHTUD (08.08).
+E3–E5 said 08.08 viienda auditiga rohelise tule; E6–E7 ehitust ei blokeeri miski, aga nende
+lõplik lukk ootab O-JTA-5 vastust.**
 
 Kolm esimest ringi leidsid nimeliselt neli kohta, kus leping lubas garantiid ilma jõustajata:
 CHECK ei oska olekuüleminekut · audit rippus juhtumi küljes, mis säilitusreegli lõpus kustub ·
@@ -178,7 +180,74 @@ sondi ei tohi nimetada roheliseks enne, kui server on õige lipuga käivitatud.
 liiga kaua ja suri 25.10 tunni liiga vara. Parandatud **eraldi commit'is** samale ühisele
 helperile, et loakontrolli semantika muutus jääks auditeeritavaks ilma JTA muudatusteta.
 
-**Järgmine: E2** — laua pind `/toolaud/juhtumitoo`, marsruut, kolme keele tekstid ja ⓘ juhend.
+### Viies audit (08.08): kaks uut lukku ja üks päris lahtine otsus
+
+**Omanik andis E2–E5-le rohelise tule ja pani E6/E7 luku ette kaks küsimust.** Kontrollisin
+mõlemad koodist ja lepingust — mõlemad pidasid paika, ja kolmandaks tuli tekstivõlg, mida
+kumbki pool ei olnud nimetanud.
+
+- **L22 — `COPIED_FOR_STAR2` idempotentsus.** L16 kirjeldas ausalt juhu „lõikelaud õnnestus,
+  audit ebaõnnestus", aga mitte teist serva: kui klient **ei tea**, kas `POST` jõudis kohale,
+  on kordus ainus mõistlik käitumine ja append-only tabel võtab ta vastu — **kaks auditirida
+  ühe päris kopeerimise kohta**. `markTransferred` oli kaitstud tingimusliku siirdega,
+  `recordCopyEvent` ei olnud millegagi. Jõustaja on **unikaalne indeks**
+  `[draftId, clientActionId]`, võti sünnib kliendis enne lõikelauda, kokkupõrge annab **200**
+  (üks tegu = üks tulemus). Migratsioone ei lisandu.
+- **L23 — arhiveerimine ütleb kella välja ENNE tegu.** Mõõdetud koodist: olemasolev tekst
+  (`casework.page.retention_hint`, [CaseWorkDetail.jsx:591](components/casework/CaseWorkDetail.jsx:591))
+  ütleb „ühesuunaline, tagasiteed ei ole" — ja ei ütle, **mis kell käima hakkab**. See tekst oli
+  oma ajal täielik, sest JUHTUM-V1-s ei olnud kella; kell tuleb selle lepinguga, seega **võlg on
+  JTA oma**. 30 päeva hoiatus jääb, aga ta saabub 11 kuud pärast otsust, mida enam muuta ei saa.
+- **O-JTA-5 — hüljatud töömaterjali säilitus. Lahtine, omaniku otsustada.** L7 jätab `MUSTAND`
+  ja `EI_KANTA` teadlikult kellata ja see on õige vastus **varju-registri** küsimusele — aga mitte
+  **andmeminimeerimise** omale. Õ2 12 kuud katab ülekantud sisu; L15 kaskaad katab kustuva
+  juhtumi. Vahele jääb juhtum, mis on aastaid `ACTIVE` — ja pikk aeglane juhtumitöö ongi norm,
+  seda ütleb L7 ise. Kolm rada lepingus, **soovitus on rada C** (töötaja tegu „arhiveeri
+  töömaterjal"), sest ta ei nõua uut jälge ega uut vaikset kustutust. Ükski rada ei muuda
+  migratsioonide arvu.
+
+Neljas leid ei saanud lukku: **2500 ms `Promise.race` ei katkesta DB-päringut**. See jääb
+teadlikuks kompromissiks; E8 sond hakkab `TIMEOUT`-sektsioonide arvu mõõtma, et number oleks
+olemas enne kui ta probleem on. Päringu tühistamine on omaette töö mõõdetud määra peal.
+
+Ja üks dokumendiparandus: pealkiri „Lahtised otsused — ükski ei blokeeri ehitust" oli eksitav,
+sest kõigil ridadel seisis juba V1 vastus. Teostaja jaoks tähendab „lahtine" seda, et tal ei ole
+õigust valida. Nüüd on „V1 vaikeotsused" ja päris lahtine otsus (O-JTA-5) seisab eraldi.
+
+### E2 tehtud (08.08): laud on nähtav
+
+**Juhtumitöö laud on pind, kust sotsiaaltöötaja ja teenuseosutaja näevad oma päeva ühelt
+ekraanilt:** mis eelpöördumine on saabunud, kellega on täna kontakt, millised juhtumid on
+töös, mis info on puudu või kontrollimata, kellega on järgmine kontakt, mis võrgustikujagamine
+ootab tegu, mis on meetodipeeglis ja mis ootab kovisiooni. Iga rida viib sinna, kus tegu
+tehakse — **laual endal ei ole ühtegi nuppu, mis midagi muudaks.**
+
+**Tühi sektsioon ütleb, MIKS ta tühi on**, ja neid põhjuseid on neli: tööd ei ole · seda
+tööriista sinu rollil ei ole · allikas ei jõudnud vastata · allikas on katki. Need tähendavad
+vastupidiseid asju ja üks hall kast oleks neist kolm valeks teinud. Ühe allika tõrge ei võta
+lauda maha.
+
+**Laud ei ole koormuse mõõdik ja see on arhitektuur, mitte lubadus.** Ainus arv pinnal on ühe
+juhtumi lahtiste punktide oma; mahajäämust, keskmisi, tähtaja ületamise märgiseid ega võrdlust
+eelmise perioodiga ei ole ja neid ei tule. ⓘ juhend ütleb selle välja koos kolme ülejäänud
+piiriga (laud on isiklik · keegi teine ei näe sinu oma · AI ei otsusta ega järjesta).
+
+Väravad: `npm test` **2966/2966** — jooksutatud nii `Europe/Tallinn` kui `UTC` all ·
+`i18n:check` OK · eslint puhas · `npm run build` OK · 0 migratsiooni.
+
+**Kaks leidu tulid brauserist, mitte testidest** — mõlemad on nüüd regressioonitestiga lukus.
+Esiteks lekkis K1 tööruumi pealkiri **tõlkevõtmena**: laual seisis „workspace.kind.pre_inquiry",
+sest sisuta tööruum annab `title`-ks võtme (pealkiri ei tohi kanda kliendi sisu) ja nimega
+tööruum annab teksti. **Kuju oli õige, tähendus vale** — kuju-test ei saanudki seda näha.
+Teiseks oli tuletatud aadress katkine: `pre_inquiry` (tööruumi liik) ja `pre_inquiries`
+(töölaua võti) ei ole sama string. Nüüd on nimeline marsruudikaart ja test kontrollib, et iga
+siht on **päris leht**. Kolmas leid oli kääne: „1 lahtist punkti" → „lahtisi punkte: 1".
+
+**Ja üks võlg tuli E1-st välja:** koondlugeja saatis välja kaks `notice`-võtit, mida **üheski
+sõnastikus ei olnud**. E1 oli teegikiht, seega ainus koht, kus see oleks paistnud, oli pind —
+ja pinda ei olnud. Test loeb need võtmed nüüd koondlugeja **koodist**, mitte nimekirjast.
+
+**Järgmine: E3** — kohtumise ettevalmistus, esimene neljast migratsioonist.
 
 Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
 eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
@@ -713,9 +782,10 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 #### Juhtumitöö assistent
 
 *Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v5**, etapid E1–E8. **E1 (laua
-koondlugeja) on koodis ja push'itud 08.08** — teegikiht, 0 migratsiooni. Pinda, marsruuti ega
-migratsioone veel ei ole.*
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v6**, etapid E1–E8. **E1 (laua
+koondlugeja) ja E2 (laua pind `/toolaud/juhtumitoo`) on koodis, 0 migratsiooni — laud on
+nähtav ja väravaga peidus.** Migratsioone veel ei ole; nad tulevad E3–E6-ga.
+**E6/E7 lõplik lukk ootab O-JTA-5** (hüljatud töömaterjali säilitus).*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
 (tehtud) · **P2 STAR2-mustandite ahel** (selle lepingu E5–E6) · P3 Meetodipeegel (eraldi, O-CW-3
@@ -1114,7 +1184,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1 tehtud 08.08** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E2 tehtud 08.08** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1283,7 +1353,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja tehtud (E1), pind tegemata (E2)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja ja pind tehtud (E1–E2), kohtumise ettevalmistus tegemata (E3)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata

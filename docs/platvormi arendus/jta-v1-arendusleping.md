@@ -1,7 +1,9 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **E1 TEHTUD** — kinnitatud omaniku neljanda auditiga 08.08 (v5). **E2–E8 `READY_TO_ASSIGN`.**
-**21 lukustatud otsust, 8 etappi, 4 migratsiooni.**
+**Olek:** **E1–E2 TEHTUD** (E2 08.08, brauseris tõendatud).
+**E3–E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
+**E6–E7 `READY_TO_ASSIGN`, aga nende lõplik lukk ootab O-JTA-5 vastust** (vt „Lahtine otsus").
+**23 lukustatud otsust, 8 etappi, 4 migratsiooni.**
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -21,6 +23,7 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 | **v3** | **omaniku teine audit — 1 blokeeriv + 4 täpsustust.** (a) **KELLA VIGA:** v2 hoiatus kirjutas `CaseWorkRetentionAudit`-i uue `toState = ARCHIVED` rea, mis nihutas kustutuse 12 → 23 kuuni. Parandatud kahes kohas — kell otsib **päris üleminekut** ja hoiatus **ei kirjuta auditisse üldse** (L17); (b) **E3 regressioon taastatud** — v2 refaktor kaotas kogemata päritolu-, `AI_MUSTAND`- ja puuduva info nõuded; (c) L5 sõnastus lepitatud O-JTA-4-ga; (d) **`markTransferred` tehingupiir lukus** (L18); (e) hoiatus on **30 päeva**, mitte 11 kuud |
 | **v5** | **omaniku neljas audit — esimene, mis vaatas KOODI, mitte lepingut.** Kaks P0-d ja kolm leidu valminud E1-s: (a) **`estonianDayBounds()` sõltus serveri ajavööndist** — kommentaar ütles „Europe/Tallinn", arvutus kasutas serveri lokaalset parsingut ja päeva lõpuks `+24 h`. UTC-serveris nihkus Eesti päev suvel 3 tundi ja DST-päevad (23 h / 25 h) olid valed mõlemas vööndis; (b) **lapse kirjutuskaitses oli võistlus** — `requireActiveCase()` oli EELKONTROLL, mitte jõustaja, ja `transitionRetention()` mahtus kontrolli ja kirjutuse vahele. Mõlemad vead olid nähtamatud arendusmasinal, mille vöönd on juhtumisi `Europe/Tallinn`. Lisandusid **L20** (deskriptor) ja **L21** (lapse kirjutuse atomaarsus) |
 | **v4** | **omaniku kolmas audit — 1 blokeeriv + 2 täpsustust.** (a) **KAKS TEED `ULE_KANTUD`-ini:** v3 L18 lubas garantiid, mille E5 avalik `POST …/transition` oleks ümbert läbi lasknud — mustand oleks jõudnud `ULE_KANTUD`-i **ilma auditireata** ja säilituskell oleks hakanud käima tõendita ülekande peal. Kolm kihti, üks tee (L19); (b) `confirm-provenance` marsruut oli **nimetatud, aga API-loendist puudu**; (c) **prep-i väljad said oma tabeli** — üks jäme `provenance` terve ettevalmistuse peal ei suutnud väljendada „`agenda` = töötaja, `plainLanguageNotes` = AI", kuigi leping ise ütleb „AI koostatud **osa**". **Staatus kinnitatud.** |
+| **v6** | **omaniku viies audit — 2 uut otsust, 1 uus lukk, 1 dokumendiparandus. E2–E5 said rohelise tule.** (a) **`COPIED_FOR_STAR2` auditil puudus idempotentsusvõti** — L16 kirjeldas ausalt juhtu „lõikelaud õnnestus, audit ebaõnnestus", aga mitte selle **teist serva**: kui klient ei tea, kas `POST` jõudis kohale, teeb ta korduse ja tekib **kaks auditirida ühe päris kopeerimise kohta**. `markTransferred` oli kaitstud tingimusliku siirdega (L6/L18), `recordCopyEvent` **ei olnud millegagi** — append-only ilma võtmeta. Uus **L22**; (b) **arhiveerimine käivitab 12 kuu kella, aga UI ei ütle seda tegemise hetkel** — olemasolev `casework.page.retention_hint` ütleb ainult „ühesuunaline, tagasiteed ei ole". 30 päeva hoiatus on aus, aga saabub siis, kui otsust enam muuta ei saa. Uus **L23**; (c) **O-JTA-5 — hüljatud töömaterjali säilitus**: L7 jätab `MUSTAND` ja `EI_KANTA` teadlikult kellata, aga Õ2 12-kuuline reegel katab ainult **ülekantud** sisu. Aastaid aktiivne juhtum hoiab aastaid vana ettevalmistavat teksti. **See on eraldi andmeminimeerimise küsimus, mitte Õ2 alamhulk**; (d) pealkiri „Lahtised otsused — ükski ei blokeeri ehitust" oli eksitav, sest O-JTA-1…4 kandsid juba V1 vastuseid — teostaja jaoks tähendab „lahtine" tavaliselt „sul ei ole õigust valida". Ümber nimetatud |
 
 **Neli minu enda viga on selles ahelas parandatud, mitte lünka.** L6 lubas andmebaasi CHECK-ilt
 garantiid, mida `CHECK` anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga
@@ -39,6 +42,13 @@ mitte SEES. Kommentaar `estonianDayBounds()` kohal ütles „Europe/Tallinn" ja 
 serveri vööndit. **Kaks korda oli kood täpselt nii kirjutatud, nagu leping nõudis, ja ikkagi
 vale.** Sellepärast lisandus v5-ga tõendamise reegel: iga selline garantii vajab testi, mis
 **kukub vana teostuse peal** — mitte ainult testi, mis uuel roheline on.
+
+**v6 näitas kolmandat kuju: garantii oli õige, aga ainult ühe servajuhu kohta.** L16 kirjeldas
+täpselt ja ausalt, mis juhtub, kui audit ebaõnnestub — ja jättis kirjeldamata, mis juhtub, kui
+klient **ei tea**, kas ta ebaõnnestus. Sama kuju kannab L23: „ühesuunaline, tagasiteed ei ole"
+on tõsi, aga ta ei ütle, **mis kell käima hakkab**. Reegel, mis siit tuleb: iga koht, kus leping
+kirjeldab tõrget, peab kirjeldama ka **korduse** ja **kasutaja teadmatuse** — need on eri asjad
+ja ainult üks neist oli kirjas.
 
 ---
 
@@ -288,6 +298,13 @@ Kustub **sisu** — `CaseWorkDraftField` read. Alles jääb mustandi rida koos `
 tahtlik**: ettevalmistav mustand on töötaja töömaterjal, mitte STAR-i koopia. Ta kustub koos
 juhtumiga (L15 kaskaad), mitte enne.
 
+> **v6 aus piirang (omaniku viies audit).** See otsus lahendab varju-registri probleemi, aga
+> **ei ole andmeminimeerimise vastus**. Juhtum ise kustub 12 kuud pärast `ARCHIVED`-it; juhtum,
+> mis püsib aastaid `ACTIVE` või `READ_ONLY`, hoiab **aastaid** vana ettevalmistavat teksti,
+> milles on kliendi sisu. Õ2 kinnitus katab **ülekantud** sisu 12 kuu reeglit ja see küsimus
+> jääb tema alt välja. Vastus on **O-JTA-5** ja ta **blokeerib E7 lõpliku luku**, mitte E2–E6
+> ehitust.
+
 **Juhtumi rada:**
 
 | Reegel | Miks nii |
@@ -428,6 +445,14 @@ Tähtaeg on **testitav**: E1 testileping nõuab, et tahtlikult aeglane fake-luge
 **Aegunud päringut ei katkestata andmebaasi tasemel** — `Promise.race` jätab ta lõpuni jooksma.
 See on teadlik: V1-s ei ole päringu tühistamise taristut ja selle ehitamine on omaette töö.
 Tagajärg on aus — aegunud sektsioon ei blokeeri kasutajat, aga koormus jääb.
+
+**v6 saba (omaniku viies audit) — see vajab operatiivset jälgimist, mitte teist mehhanismi.**
+Servajuht, mida V1 ei lahenda: kui tähtaeg hakkab **korrapäraselt** täis saama, muutub „kiire
+laud" andmebaasi taustakoormuseks — kasutaja saab vastuse 2,5 sekundiga ja server jooksutab
+tema taga kümneid hüljatud päringuid. **See ei blokeeri E2-e ja lahendust V1-s ei ehitata**;
+E8 sond mõõdab `TIMEOUT`-sektsioonide arvu ära, et number oleks olemas enne kui ta probleem on.
+Päringu tühistamine (`AbortSignal` → `pg` `cancel`) on omaette töö ja tema päästik on **mõõdetud
+timeout-määr**, mitte oletus.
 
 ### L14 — Roll: koondlugeja vaikib, HTTP-piir keeldub
 
@@ -638,9 +663,83 @@ paralleelsete päringute korral."* Teostus rikkus oma enda reeglit LASTE peal �
 `caseWorkMissingInfo.js` ja `caseWorkItem.js`. Parandus kuulub seega mõlemasse lepingusse ja
 JUHTUM-V1 v7 kannab sama leiu.
 
+### L22 — `COPIED_FOR_STAR2` kannab idempotentsusvõtme
+
+**v6, omaniku viies audit.** L16 lukustas järjekorra (plokk → lõikelaud → audit) ja kirjeldas
+ausalt tõrke, kus audit ei salvestu. **Teine serv jäi katmata:** kui `POST` läheb välja ja vastus
+ei jõua tagasi — võrk katkeb, vahekaart suletakse, kasutaja vajutab uuesti —, ei tea klient, kas
+rida tekkis. Kordus on siis ainus mõistlik käitumine ja **append-only tabel võtab ta vastu**.
+
+```
+kopeerimisi päriselt: 1
+auditiridu:           2          ← audit valetab ülespoole
+```
+
+**Miks see loeb rohkem kui tavaline duplikaat:** L8 järgi on `CaseWorkTransferEvent` **tõend**.
+Tõend, mis loeb ühe teo kaheks, on sama katki nagu tõend, mis teo maha vaikib — ainult vastupidises
+suunas, ja hiljem ei ole kummastki võimalik aru saada, kumb juhtus.
+
+| | |
+|---|---|
+| **Jõustaja** | **unikaalne indeks** `@@unique([draftId, clientActionId])` `CaseWorkTransferEvent`-il — mitte teenuskihi „kas on juba olemas" kontroll, mis on sama loe-kontrolli-kirjuta muster, mille L21 just maha võttis |
+| **Võtme sünnikoht** | **klient**, `crypto.randomUUID()`, **enne** lõikelauale kirjutust. Sama tegu = sama võti, ka korduskatsel. Serveris genereeritud võti oleks iga kutse peale uus ja ei kaitseks millegi eest |
+| **Kokkupõrge** | **200**, mitte 409 — koos juba olemasoleva auditirea id-ga. Kasutaja tegi ühe teo ja peab nägema ühte tulemust; 409 sunniks liidese seletama viga, mida ei ole |
+| **Ulatus** | ainult `COPIED_FOR_STAR2`. `MARKED_AS_TRANSFERRED` on kaitstud tingimusliku siirdega (L18/L19) ja teine kaitse ainult varjaks, kumb töötab |
+| **Migratsioon** | **ei lisandu** — `CaseWorkTransferEvent` sünnib E6 migratsioonis 4/4, veerg ja indeks käivad sellega kaasa |
+
+**`clientActionId` on läbipaistmatu string, mitte tähendust kandev väli:** ta ei tohi sisaldada
+`fieldKey`-sid, ajatemplit ega midagi, millest saaks sisu tuletada. Formaadikontroll on serveris
+(UUID-kuju), sest kliendilt tulnud vaba string on võti, mille kasutaja saab ise valida.
+
+**Veerg on `String?` ja see on tahtlik.** Postgres loeb `NULL`-e unikaalses indeksis
+**eristuvateks**, seega `MARKED_AS_TRANSFERRED` read (võti `null`) ei põrka omavahel kokku ja
+indeks piirab täpselt seda, mida ta piirama peab. **Kohustuslikkust jõustab teenuskiht `kind`
+järgi**, mitte skeem: `COPIED_FOR_STAR2` ilma võtmeta → **400**. Skeemitasemel `NOT NULL` nõuaks
+`MARKED_AS_TRANSFERRED`-ile mõttetut võtit ja tekitaks teise koha, kus võtit genereeritakse.
+
+**Kordus ei ole sama, mis teine kopeerimine.** Töötaja **tohib** sama mustandit päriselt kaks
+korda kopeerida ja siis peavad tekkima **kaks** rida — sellepärast on võti teo, mitte mustandi
+peal. „Üks copy-event mustandi kohta" oleks vale reegel ja kaotaks päris ajaloo.
+
+**Testileping (E6):** sama `clientActionId` kaks korda → **üks rida**, vastus 200 mõlemal ·
+kaks eri `clientActionId`-d → **kaks rida** (päris korduskopeerimine) · puuduv või vigase kujuga
+`clientActionId` → **400**, rida ei teki · unikaalsust jõustab **indeks** — test kirjutab
+teenuskihist mööda ja andmebaas keeldub.
+
+### L23 — Arhiveerimine ütleb kella välja ENNE tegu, mitte 30 päeva enne kustutust
+
+**v6, omaniku viies audit.** L7 lubab kasutajale 30 päeva hoiatust ja E7 jõustab selle. Aga
+hoiatus saabub **11 kuud pärast otsust**, mille kohta L17 ütleb, et ta on terminaalne — ja
+`ARCHIVED`-ist ei ole JTA tasemel tagasiteed. **Aus hoiatus vales kohas ei ole hoiatus, vaid
+teade.**
+
+Mõõdetud olemasolev tekst (`messages/et.json`, võti `casework.page.retention_hint`, kuvatud
+`components/casework/CaseWorkDetail.jsx:591` kohal, arhiveerimisnupp sealsamas real 633):
+
+> *„Kirjutuskaitse on ühesuunaline. Tagasiteed ei ole ja põhjus jääb auditisse."*
+
+See on JUHTUM-V1 tekst ja ta oli **oma ajal täielik** — JUHTUM-V1-s ei olnud kella. Kell tuleb
+selle lepinguga (L7), seega **teksti võlg on JTA oma, mitte JUHTUM-V1 oma.**
+
+| | |
+|---|---|
+| **Jõustaja** | E7 lisab arhiveerimise kinnitusdialoogile eraldi võtme `casework.page.archive_clock_warning` ET/EN/RU; `retention_hint` jääb alles ja katab endiselt `READ_ONLY` siirde |
+| **Mida tekst peab ütlema** | kolm asja nimeliselt: **(1)** see käivitab 12 kuu kustutuskella · **(2)** kella lõpus kustub **kogu juhtum koos lastega**, mitte ainult sisu · **(3)** seda olekut **ei saa tagasi pöörata** |
+| **Kus ta seisab** | arhiveerimise **kinnituse juures**, mitte sektsiooni jaluses. Tekst, mida loetakse pärast vajutust, ei mõjuta otsust |
+| **`READ_ONLY` ei saa sama teksti** | tema ei käivita kella (L7) ja vale hoiatus õpetab kasutajat hoiatusi ignoreerima |
+
+**Testileping (E7):** arhiveerimise kinnitus kannab `archive_clock_warning` võtit · võti on
+olemas kolmes keeles (`i18n:check`) · `READ_ONLY` siirde kinnitus **ei** kanna seda võtit ·
+tekst nimetab kustutuse ulatust („juhtum koos lastega"), mitte ainult mustandi sisu.
+
 ---
 
-## Lahtised otsused — ükski ei blokeeri ehitust
+## V1 vaikeotsused — otsustatud, mitte lahtised
+
+**v6 parandus.** Selle tabeli pealkiri oli „Lahtised otsused — ükski ei blokeeri ehitust", aga
+igal real seisis juba V1 vastus. Teostaja jaoks tähendab „lahtine otsus" tavaliselt, et **tal ei
+ole õigust valida** — ja siin on täpselt vastupidi: valik on tehtud, ta on lihtsalt tagasipööratav
+hilisemas versioonis. Päris lahtine otsus on all eraldi.
 
 | Kood | Küsimus | V1 vastus |
 |---|---|---|
@@ -650,7 +749,43 @@ JUHTUM-V1 v7 kannab sama leiu.
 | **O-JTA-4** | kas mustandi saab luua ilma märketa | **jah** — ptk 4.5 elemendid ei eelda kohtumist |
 | **O-CW-3** | refleksiooni ja ametliku dokumentatsiooni piir | **ei ole vaja V1-s** — E4 ehitab märkme kihi, mitte `PracticeReflection` mudeli |
 
----
+## Lahtine otsus — O-JTA-5, hüljatud töömaterjali säilitus
+
+**v6, omaniku viies audit. See on ainus päris lahtine otsus selles lepingus** ja ta **blokeerib
+E7 lõpliku luku**, mitte E2–E6 ehitust.
+
+**Küsimus:** mis juhtub mustandiga, mis jääb `MUSTAND` või `EI_KANTA` seisu ja mida keegi kunagi
+üle ei kanna?
+
+**Praegune vastus on „mitte midagi, kuni juhtum kustub"** (L7) ja ta on teadlik. Aga ta on
+vastus **varju-registri** küsimusele, mitte **andmeminimeerimise** omale — ja need kaks küsiti
+eri kohtades:
+
+| | Katab | Ei kata |
+|---|---|---|
+| **Õ2 / L7 12 kuud** | `ULE_KANTUD` mustandi sisu | mustand, mida ei kantud |
+| **L15 kaskaad** | kõik, kui juhtum kustub | juhtum, mis ei kustu |
+
+Kahe reegli vahele jääb päris juht: **juhtum, mis on aastaid `ACTIVE` või `READ_ONLY`** — ja
+pikk aeglane juhtumitöö ongi valdkonna norm, seda ütleb L7 ise põhjenduses. Selles juhtumis
+võib istuda kaks aastat vana kohtumise ettevalmistus, milles on kliendi sisu ja mida keegi ei ole
+avanud pärast seda kohtumist. **Ta ei ole varju-register — ta on lihtsalt unustatud.**
+
+**Kolm rada, mis on lauas** (ükski ei ole valitud):
+
+| Rada | Kuju | Hind |
+|---|---|---|
+| **A — jätta nii** | staatus quo; töömaterjal elab juhtumi elu | aus, aga tähendab, et „andmeminimeerimine" ei ole selle funktsiooni kohta öeldav |
+| **B — puutumatuse kell** | mustand, mida ei ole N kuud avatud ega muudetud → hoiatus → sisu purge, rida ja fakt jäävad (sama kuju mis L7 ülekantud rajal) | vajab „viimati avatud" jälge, mida täna ei ole — ja **lugemise logimine on ise uus töötlus**, mida see leping mujal väldib. Kui B, siis kell käib `updatedAt`-ist, mitte lugemisest |
+| **C — töötaja otsus** | juhtum kannab „arhiveeri töömaterjal" tegu, mis purgeb kandmata mustandite sisu ilma juhtumit arhiveerimata | ei kustuta midagi kellegi selja taga (sama põhimõte mis L7 „vaikset kustutust ei ole"), aga jätab tegemata jätmise korral olukorra samaks mis A |
+
+**Mida see otsus muudab:** E7 saab neljanda töö (rada B) või E3/E5 saab ühe operatsiooni (rada C)
+või kumbagi ei tule (rada A). **Migratsioonide arv ei muutu üheski radadest** — `contentPurgedAt`
+on mustandil juba olemas (L7) ja B vajab ainult päringutingimust.
+
+**Ettepanek omanikule: rada C.** Ta on ainus, mis ei nõua uut jälge ega uut vaikset kustutust, ja
+ta on sama kuju mis platvormi ülejäänud säilitusotsused — inimene teeb teo, süsteem jõustab.
+**Aga see on omaniku otsus ja E7 ei lukustu enne teda.**
 
 ## Teostus
 
@@ -709,16 +844,16 @@ UTC-piir ja Eesti piir annavad SAMA vastuse — seepärast läbis ta ka katkise 
 
 ---
 
-### E2 — Laua pind *(0 migratsiooni)*
+### E2 — Laua pind *(0 migratsiooni)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
 | **Teenus** | E1 oma |
-| **API** | **uus** `GET app/api/casework/workbench/route.js` → `guardCaseWorkRequest(req, { scope: "casework:workbench" })` |
-| **Pind** | **uus** `app/toolaud/juhtumitoo/page.jsx` + töölaua kaart (UI-lipu ja rolli taga) + **ⓘ juhend ET/EN/RU** |
+| **API** | `GET app/api/casework/workbench/route.js` → `guardCaseWorkRequest(req, { scope: "casework:workbench" })`. **Ainult `GET`** — laud on lugeja (L1) |
+| **Pind** | `app/toolaud/juhtumitoo/page.jsx` + `components/casework/CaseWorkbenchShell.jsx` + töölaua kaart `casework_workbench` + **kiirmenüü kirje** `juhtumitoo` (mõlemad UI-lipu ja rolli taga) + **ⓘ juhend ET/EN/RU** (`casework_workbench`, neli osa) |
 | **Värav** | L11 — värav väljas → `notFound()`; vale roll → 403 (L14) |
 | **Valideerimine** | vastus on ainult descriptor-kuju; teenuskihi tekste ei renderdata toorelt |
-| **Testid** | marsruuditest + i18n pariteet |
+| **Testid** | `tests/casework/workbenchUi.test.js` (13 lepingut) + `routeContract.test.js` laiendatud |
 
 **ⓘ juhendi viimane osa ütleb piirid välja**, sama kujuga nagu `/juhtumid` oma: laud on isiklik ·
 **ei ole koormuse mõõdik** · ei näita kellegi teise tööd · AI ei otsusta.
@@ -726,6 +861,40 @@ UTC-piir ja Eesti piir annavad SAMA vastuse — seepärast läbis ta ka katkise 
 **Testileping:** värav väljas → kõik 404 · vale roll → 403 · **HTML tekstiväljas kuvatakse
 tekstina** (JUHTUM-V1 E6 õppetund) · i18n pariteet kolmes keeles · `notice`-võtmed on kõik
 tõlgitud.
+
+**Kaks leidu tulid BRAUSERIST, mitte testidest**, ja mõlemad on nüüd regressioonitestiga lukus:
+
+- **K1 tööruumi pealkiri lekkis tõlkevõtmena.** Laual seisis „workspace.kind.pre_inquiry".
+  Sisuta tööruumi adapter (eelpöördumine, meetodipeegel) paneb `title`-ks **tõlkevõtme**, sest
+  pealkiri ei tohi kanda kliendi sisu; nimega tööruum (teekond, ruum) paneb sinna **teksti**.
+  `t(title, title)` katab mõlemat. **Kuju oli õige, tähendus vale** — ükski kuju-test ei
+  saanudki seda näha.
+- **Tuletatud aadress oli katkine.** `/vestlus?workspace=${ref.kind}` eeldas, et tööruumi liik
+  ja töölaua võti on sama string — `pre_inquiry` vs `pre_inquiries`. Nüüd on nimeline
+  `WORKSPACE_ROUTES` kaart ja **test kontrollib, et iga siht on päris leht** (`app/<tee>/page.jsx`).
+  Tundmatu liik annab rea **ilma lingita**: katkine link lubab teed, mida ei ole.
+
+**Kolmas leid oli sõnastuses:** „1 lahtist punkti" on eesti keeles vale kääne. Sildi kuju on
+nüüd **„lahtisi punkte: N"**, mis on õige iga arvu juures — sama probleem oleks tulnud vene
+keeles ja seal veel teravamalt.
+
+**`notice`-võtmete võlg oli E1-st ja ta leiti siin:** koondlugeja saatis välja
+`casework.workbench.preparations_not_yet` ja `network_worker_only`, mida **üheski sõnastikus ei
+olnud** — E1 oli teegikiht, seega ainus koht, kus see oleks paistnud, oli pind, ja pinda ei
+olnud. Test loeb need võtmed nüüd **koondlugeja koodist**, mitte nimekirjast: E3 uus `notice`
+läheb punaseks ilma, et keegi testi uuendaks.
+
+**Mõõdetud brauseris päris sessiooniga** (värav ajutiselt sees, andmed sünteetilised ja pärast
+kustutatud, kustutus **kontrollitud**): kaheksa sektsiooni kanoonilises järjekorras · `<b>` ja
+`<script>` puuduva info tekstis kuvatud **tekstina** (0 loodud elementi) · päritolusilt
+„AI mustand" · `activePreparations` `notice` kuvatud **koos ridadega** · teenuseosutajal
+`networkPreparation` = `FORBIDDEN` põhjendusega, mitte tühi · kliendile **403** ·
+väravaga väljas API **404** `casework.errors.not_found` ja lehe `<title>` **„404"**.
+
+**Aus piirang, mis EI ole E2 oma:** funktsiooni nimi („Juhtumitöö laud") ilmub kliendi
+paketti ka väljas väravaga, sest kogu `messages/*.json` saadetakse igale lehele — mõõdetuna
+kehtib sama `/juhtumid`-i ja isegi `/` kohta. L11 lubab, et **marsruut** on eristamatu
+olematust; ta ei luba, et string ei sõida kaasa. Platvormiülene, mitte selle etapi oma.
 
 ---
 
@@ -893,7 +1062,9 @@ eksport.
 
 **Mudel `CaseWorkTransferEvent`** — **append-only**, `kind` ∈ `{COPIED_FOR_STAR2,
 MARKED_AS_TRANSFERRED}` (L9), FK-d L8 tabeli järgi. **`update` ja `delete` teenuskihis ei
-eksisteeri** ja marsruuti nendeni ei ole.
+eksisteeri** ja marsruuti nendeni ei ole. **`clientActionId String?` + `@@unique([draftId,
+clientActionId])`** (L22) — `COPIED_FOR_STAR2` kannab võtme kohustuslikult, `MARKED_AS_TRANSFERRED`
+jätab ta `null`-iks, sest tema kaitse on tingimuslik siire (L18/L19).
 
 **`buildStar2Block`** koostab teksti `CaseWorkDraftField` ridadest. **Ta ei tunne
 `PRIVAATNE_REFLEKSIOON` kihti** — see väärtus ei jõua temani, sest E4 kihid ja E5 väljad on eri
@@ -903,7 +1074,8 @@ tabelites ja ülekanne käib ainult `STAR2_KANTAV` kaudu.
 sünnib STAR-is.
 
 **Järjekord on L16 järgi:** plokk → lõikelaud → **alles siis** `copy-events`. Auditi tõrge
-öeldakse kasutajale välja.
+öeldakse kasutajale välja. **`clientActionId` sünnib L22 järgi enne lõikelauda** — kordus pärast
+teadmata tulemusega `POST`-i annab sama võtme ja seega sama rea, mitte teist.
 
 **`markTransferred()` on L18 järgi ÜKS TEHING ja L19 järgi AINUS TEE `ULE_KANTUD`-ini:**
 `transitionDraftStateTx()` + `transferredAt` + `MARKED_AS_TRANSFERRED` auditirida — kõik kolm
@@ -920,6 +1092,13 @@ teki** · **`markTransferred` paneb `transferState`, `transferredAt` ja auditire
 (kolis E5-st, L19) · **ükski `ULE_KANTUD` mustand ei saa eksisteerida ilma
 `MARKED_AS_TRANSFERRED` auditireata** — kontroll käib andmete, mitte kutsete tasemel.
 
+**Testileping, L22 osa (v6):** sama `clientActionId` kaks korda → **üks rida**, mõlemal vastus
+**200** ja sama auditirea id · kaks eri `clientActionId`-d → **kaks rida**, sest päris
+korduskopeerimine on lubatud · `COPIED_FOR_STAR2` ilma võtmeta või vigase kujuga → **400**, rida
+ei teki · **unikaalsust jõustab indeks** — test kirjutab teenuskihist mööda otse andmebaasi ja
+saab keeldumise · kaks `MARKED_AS_TRANSFERRED` rida `clientActionId = null`-iga **ei põrka**
+(`NULL` on Postgresis eristuv) — see test hoiab ära, et keegi teeks veeru hiljem `NOT NULL`-iks.
+
 ---
 
 ### E7 — Säilituse jõustamine *(0 migratsiooni — mudelid on E3–E6-s)*
@@ -928,12 +1107,18 @@ teki** · **`markTransferred` paneb `transferState`, `transferredAt` ja auditire
 keegi ei käivitanud seda ja E7 tõendas ainult kuupäeva arvutamist. **Otsus ilma jõustajata ei
 ole säilitusreegel.**
 
+> **v6: E7 on ainus etapp, mis ei lukustu enne omaniku otsust.** **O-JTA-5** (hüljatud
+> töömaterjali säilitus) võib lisada siia neljanda töö (rada B) või jätta E7 kuju muutmata
+> (rada A/C). E2–E6 on sellest sõltumatud. Lisaks kannab E7 nüüd **L23** tekstivõla — see ei ole
+> säilitustöö, vaid arhiveerimise kinnitusdialoogi tekst, ja ta seisab siin, sest kell, millest
+> ta räägib, sünnib selles etapis.
+
 | | |
 |---|---|
 | **Teenus** | **uus** `lib/casework/retention.js` — `findDraftsDueForPurge`, `purgeDraftContent`, `findCasesDueForWarning`, `findCasesDueForDeletion`, `deleteArchivedCase` |
 | **Skript** | **uus** `scripts/casework-retention.mjs`, `npm run casework:retention` (+ `:dry`) |
 | **API** | *ei ole* — säilitus ei ole kasutaja tegu |
-| **Pind** | juhtumi ja mustandi vaates **nähtav loendus** (L7) |
+| **Pind** | juhtumi ja mustandi vaates **nähtav loendus** (L7) + **arhiveerimise kinnituse kella-hoiatus** `casework.page.archive_clock_warning` ET/EN/RU (L23) |
 | **Värav** | skript austab `CASEWORK_V1_ENABLED`-t: väljas → 0 tööd |
 | **Testid** | `tests/casework/retention.test.js` |
 
@@ -994,6 +1179,9 @@ võtaks andmebaasi enda alla.
    sama, mis enne (see on v2 vea otsene regressioonitest)
 10. värav väljas → skript ei tee ühtegi kirjutust
 11. ühe rea tõrge ei peata partiid
+12. **(v6, L23)** arhiveerimise kinnitus kannab `archive_clock_warning` võtit, `READ_ONLY` siirde
+    kinnitus **ei kanna**; võti on olemas kolmes keeles ja tekst nimetab kustutuse ulatust
+    („juhtum koos lastega"), mitte ainult mustandi sisu
 
 ---
 
@@ -1015,6 +1203,11 @@ Sond tõendab nimeliselt:
 9. **purge kustutab sisu päriselt** (loendus enne ja pärast)
 10. kopeerimine ei muuda `transferState`-i
 11. värav väljas → kõik marsruudid 404
+12. **(v6, L22)** korratud `copy-events` sama `clientActionId`-ga → **üks rida**, ja seda
+    kontrollitakse **päris andmebaasist**, mitte vastusest
+13. **(v6, L13 saba)** sond **mõõdab ja logib `TIMEOUT`-sektsioonide arvu** päris laua kutsel.
+    See ei ole väravanumber vaid **lähtejoon**: päringu tühistamise töö päästik on mõõdetud
+    timeout-määr, ja mõõt peab olema olemas enne, kui ta probleem on
 
 **Brauseris päris sessiooniga:** laud · ettevalmistuse koostamine · märkme kaheksa kihti ·
 mustandi tee `MUSTAND → ULE_KANTUD` · kopeerimine (sh **lõikelaua tõrke tekst**) · ajalugu.
