@@ -89,11 +89,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` = **`84d64b22`**, tööpuu puhas. Üks tööpuu, üks haru.
-**`origin/main` on sama `84d64b22`** — push'imata ei ole midagi: kogu JUHTUM-V1 (E1–E6) ja
-JTA-V1 E1 on `origin`-is. Push ja deploy käivad endiselt ainult omaniku selgel loal.
-**Serveris on `8ab68f98`** (A4 deploy 05.08), seega **deploy'mata on 20 kannet**.
+Lokaalne `main` = **`4e22812a`**, tööpuu puhas. Üks tööpuu, üks haru.
+**`origin/main` on `84d64b22`**, seega **push'imata on 10 kannet** — kogu JTA-V1 E2–E8.
+Push ja deploy käivad endiselt ainult omaniku selgel loal.
+**Serveris on `8ab68f98`** (A4 deploy 05.08), seega **deploy'mata on 30 kannet**.
 Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+
+**TEGEMATA (ootab omanikku):** JTA-V1 säilitustöö vajab serveri **cron-rida** — ilma temata on
+kell olemas, aga keegi ei käivita teda:
+
+```
+15 3 * * * flock -n /var/lock/sotsiaalai-casework-retention.lock \
+  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention' \
+  >> /var/log/sotsiaalai/casework-retention.log 2>&1
+```
 
 ### Viimati tehtud (07.08): JUHTUM-V1 — juhtumi objekt
 
@@ -129,13 +138,28 @@ välja, et *„adressaadiväljad on teadlikult eraldi, mitte üks polümorfne `r
 kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte polümorfne**, ja
 „ei jää rippuvat viidet" tuleb andmebaasi kaskaadist, mitte rakenduse kustutusteede kaetusest.
 
-### Käib praegu (08.08): JTA-V1 — juhtumitöö assistent
+### Viimati tehtud (08.08): JTA-V1 — juhtumitöö assistent, E1–E8 VALMIS
 
 **Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v6** — **viis** omaniku auditiringi,
-**23 lukustatud otsust, 8 etappi, 4 migratsiooni**. **E1–E2 on TEHTUD (08.08).
-E3–E5 said 08.08 viienda auditiga rohelise tule; E6–E7 ehitust ei blokeeri miski, aga nende
-lõplik lukk ootab O-JTA-5 vastust.**
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v7** — **viis** omaniku auditiringi,
+**23 lukustatud otsust, 8 etappi, 5 migratsiooni**. **Kõik kaheksa etappi on TEHTUD 08.08 ja
+tervik on koodis ning peidus** (`CASEWORK_V1_ENABLED` vaikimisi väljas, sama värav mis
+JUHTUM-V1-l — uut lippu ei loodud).
+
+**Väravad:** `npm test` **3110/3110** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**134 migratsiooni**) · eslint puhas · `npm run build` OK ·
+**`npm run jta:probe` 31/31** päris andmebaasi ja **kahe päris sessiooni** vastu.
+
+**Mida assistent inimese jaoks teeb, on S4.1.** Lühidalt: laud näitab päeva ühelt ekraanilt ·
+kohtumise saab ette valmistada nii, et iga lause päritolu on näha · kohtumise märge hoiab
+kaheksa kihti lahus · STAR2-sse kandmise järjekord on nähtav ahel · **kopeerimine ja
+ülekantuks märkimine on kaks eri tegu** · ja säilituskell on nüüd mehhanism, mitte lubadus.
+
+**Omanik otsustas 08.08 O-JTA-5: rada C.** Juhtum kannab tegu **„arhiveeri töömaterjal"**, mis
+kustutab STAR2-sse kandmata mustandite sisu, ilma et juhtumit arhiveeritaks. See on vastus
+küsimusele, mille L7 lahtiseks jättis: ülekantud sisu saab oma 12 kuu kella, **kandmata
+töömaterjal ei saanud kunagi ühtegi** ja aastaid aktiivne juhtum hoidis teda tähtajatult.
+Rada C ei kustuta midagi kellegi selja taga — inimene teeb teo, süsteem jõustab.
 
 Kolm esimest ringi leidsid nimeliselt neli kohta, kus leping lubas garantiid ilma jõustajata:
 CHECK ei oska olekuüleminekut · audit rippus juhtumi küljes, mis säilitusreegli lõpus kustub ·
@@ -369,11 +393,93 @@ Väravad pärast parandusi: `npm test` **3031/3031** (`Europe/Tallinn` ja `UTC`)
 päritolu sundvalik, teksti säilimine sunnitud tõrke korral, kinnitusnupu kaks astet ja
 `limit=1.5` → **400** (varem 500).
 
-**Järgmine: E5** — STAR2 mustandi ahel, migratsioon 3/4 (CASEWORK-P2 tuum).
+### E5 tehtud (08.08): STAR2-sse kandmise ahel
 
-Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
-eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
-ole.
+**Töötaja näeb, kus iga STAR2-sse minev tükk parajasti on.** Juhtumi alla saab luua kaheksa
+liiki elemente (pöördumise kokkuvõte, abivajaduse hindamine, eluvaldkonna kirjeldus, eesmärgi
+sõnastus, tegevus, vastutaja ja tähtaeg, kohtumise märge, teenuse suunamise alus) ja igaüks
+neist liigub ühes suunas: mustand → vajab kontrollimist → kontrollitud → valmis kandmiseks.
+**„Ei kanta" on teadlik lõpp**, mitte seisma jäämine, ja mõlemad lõpp-punktid on
+kirjutuskaitstud.
+
+**Olekumasinat ei projekteeritud** — kuus seisu ja lubatud üleminekud olid koodis olemas ja
+kasutamata (`lib/workspaces/provenance.js`); E5 andis neile salvestuse. Iga väli kannab **oma**
+päritolu, mitte üks märgis terve elemendi peal.
+
+### E6 tehtud (08.08): kopeerimine ja ülekandeajalugu
+
+**„Kopeeri STAR2 jaoks" annab teksti, mille esimene rida ütleb välja, et tegemist on
+ettevalmistava mustandiga ja ametlik kanne sünnib STAR-is.** Lõikelaualt läheb tekst kuhugi,
+kus keegi teine võib teda ilma kontekstita lugeda — hoiatuseta näeks ta välja nagu ametlik kanne.
+
+**Kopeerimine ja ülekantuks märkimine on kaks eri tegu ja neid ei valata kokku.** Kopeerimine
+ei muuda midagi; „märgi üle kantuks" on **avaldus**, et info on STAR-is, ja alles tema käivitab
+säilituskella. Kui kopeerimine märgiks automaatselt üle kantuks, hakkaks kell käima hetkest, mil
+keegi ainult vaatas.
+
+**Ajalugu kannab tegu, aega ja VÄLJADE NIMESID — kopeeritud teksti seal ei ole.** Täissnapshot
+oleks varju-register, ehitatud selle mehhanismi sisse, mis pidi teda ära hoidma: mustandi sisu
+kustuks 12 kuu pärast, aga sama sisu elaks auditis kuni juhtumi lõpuni.
+
+**Kaks tõrget saavad eri teate ja teine on tahtlikult ebamugav:** „ei õnnestunud kopeerida" +
+plokk jääb ekraanile käsitsi valimiseks, versus **„kopeeritud, aga jälge ei õnnestunud
+salvestada"**. Vaikne tõendi kadu on halvem kui nähtav. Korduskatse kannab **sama** tunnust,
+seega üks tegu jääb auditis üheks reaks ka siis, kui võrk katkes.
+
+**Laud sai täis:** L12 kanoonilise tabeli kümme sektsiooni on nüüd kõik olemas — juurde tulid
+„STAR2-sse kandmist ootavad mustandid" ja „STAR2 ülekandmise ajalugu". **Sektsioon #4 oleks
+pidanud tulema juba E5-ga ja jäi tegemata** — see leiti E6 ehitades lepingu tabelit koodiga
+kõrvutades.
+
+### E7 tehtud (08.08): säilitus on nüüd mehhanism, mitte lubadus
+
+**Kolm tööd, üks öine käivitus** (`npm run casework:retention`): ülekantud mustandi **sisu**
+kustub 12 kuud pärast ülekannet · arhiveeritud juhtumi omanik saab hoiatuse **30 päeva** ette ·
+arhiveeritud juhtum kustub 12 kuud pärast arhiveerimist, kaskaadis koos kõigi lastega.
+**Loendus on juhtumil ja mustandil nähtav kogu aja**, mitte alles hoiatuse hetkel, ja ta tuleb
+samast valemist, mille järgi kustutus päriselt juhtub.
+
+**Kell käib teadlikust teost, mitte puutumatusest.** Juhtumi kell algab päris üleminekust
+`ARCHIVED`-i, mitte viimasest muudatusest — „12 kuud puutumata → kustub" tapaks pika ja aeglase
+juhtumitöö, mis ongi valdkonna norm.
+
+**Ja arhiveerimine ütleb kella välja ENNE tegu.** Vana tekst ütles „ühesuunaline, tagasiteed ei
+ole" ja oli oma ajal täielik — kella siis veel ei olnud. Nüüd ütleb kinnitus välja kolm asja:
+käivitub 12 kuu kell, lõpus kustub **kogu juhtum koos lastega**, ja tagasiteed ei ole.
+30 päeva hoiatus jääb, aga ta saabub 11 kuud pärast otsust — aus hoiatus vales kohas ei ole
+hoiatus, vaid teade.
+
+**Üks asi on lepingust erinev ja tema hind on migratsioon.** O-JTA-5 lubas, et ükski rada ei
+lisa migratsiooni. Koodist mõõtes oli see vale: E5 andmebaasi-`CHECK` keelab sisu kustutamise
+mustandil, mida ei ole üle kantud — ja rada C on täpselt see juht, ainult et teadlik. Purge sai
+**põhjuse** ja garantii kitsenes automaatsele rajale, selle asemel et ta lihtsalt maha võtta.
+
+### E8 tehtud (08.08): tõend
+
+`npm run jta:probe` — **31/31** päris andmebaasi vastu, marsruudikiht **kahe päris sessiooniga
+HTTP kaudu**, mitte teenuskihi otsekutsega (04.08 IDOR-i õppetund). Tõendatud nimeliselt: kaks
+töötajat on üksteise laudadest pimedad · võõra juhtumi mustand, plokk, ajalugu, kopeerimine,
+ülekantuks märkimine ja töömaterjali arhiveerimine annavad kõik **404, mitte 403** ·
+kirjutuskaitstud juhtumi laps ei muutu · **privaatne refleksioon ei esine ülekandeplokis üheski
+vormis** · auditirida ei kanna ühtegi kopeeritud väärtust · ebaseaduslik ja aegunud üleminek
+annavad 400/409 · kaks samaaegset siiret → üks 200, teine 409.
+
+**Brauseris läbi käidud päris sessiooniga:** kopeerimine (sh lõikelaua tõrke rada — **audit jäi
+õigesti kirjutamata**), ülekantuks märkimine kaheastmelise kinnitusega, säilituskella loendus
+arhiveeritud juhtumil ja rada C, mis kustutas kandmata mustandi sisu ja jättis ülekantud oma
+puutumata. Säilitusskript jooksutatud päris andmebaasi vastu kuivalt, päriselt ja teist korda —
+**hoiatus läks üks kord**.
+
+**Üks leid tuli brauserist:** mustandi sektsioon lubas endiselt, et ülekantuks märkimine
+„tuleb järgmise etapiga" — tekst oli E5-aegne ja E6 oli ta juba kohale toonud. Parandatud
+kolmes keeles.
+
+### Lahtine ots, mis väärib omaniku otsust: O-JTA-6
+
+Rada C põhjendus nimetab näitena **kaks aastat vana kohtumise ettevalmistust**, aga raja enda
+sõnastus katab ainult **mustandid**. Teostus järgib sõnastust — ulatuse laiendamine oleks olnud
+otsus, mida sa ei teinud. Tagajärg on aus: „arhiveeri töömaterjal" ei puuduta ettevalmistusi,
+neil on oma ükshaaval kustutamise rada. Kolm võimalikku vastust on lepingus.
 
 **Kolm otsust langesid samal päeval** ja nad on lepingus lukus:
 
@@ -383,10 +489,10 @@ ole.
 | **O-JU-1 + O-CW-2** | juhtumi ja ülekantud mustandi säilitus | **kirjutuskaitse + 12 kuud arhiivis + kustutus.** Jõustamise kuju on lepingus L7: kell käib **`ARCHIVED`-ist**, mitte viimasest muutmisest; loendus on juhtumil nähtav; hoiatus 30 päeva ette; **vaikset kustutust ei ole** — automaatne kustutus, millest töötaja ette teada ei saa, hävitaks tema enda töö ilma taastevõimaluseta |
 | **O-CW-10** | „Kopeeri STAR2 jaoks" auditisügavus | **fakt + väljade loend**, mitte täissnapshot. Auditikirjed on append-only ja ükski säilitusreegel ei ulatu nendeni — täissnapshot oleks varju-register, ehitatud selle mehhanismi sisse, mis pidi teda ära hoidma |
 
-**Ulatus on järjestatud otsuste järgi, mitte teemade järgi:** E1–E2 (laud) on migratsiooni- ja
-otsustevabad ning käivad esimesena; STAR2-mustandite ahel (= **CASEWORK-P2**) on viimane, sest
-tema säilitusreegel vajab veel õigusabi kinnitust (Õ2). Kui kinnitus viibib, jõuab laud ikka
-valmis.
+**Ulatus oli järjestatud otsuste järgi, mitte teemade järgi:** E1–E2 (laud) migratsiooni- ja
+otsustevabana esimesena, STAR2-mustandite ahel (= **CASEWORK-P2**) viimasena. **Kõik kaheksa
+etappi said 08.08 valmis**, aga Õ2 ei kadunud kuhugi: ta ei blokeerinud EHITUST ja blokeerib
+**avamist** — värav on väljas ja avamine vajab omaniku luba JA Õ2/Õ3 kinnitust.
 
 **Kaks mõõdetud fakti kujundasid lepingut.** Esiteks: **STAR2 ülekande olekumasin on koodis
 juba olemas ja kasutamata** — `lib/workspaces/provenance.js` kannab kuut seisu, lubatud
@@ -904,15 +1010,17 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 #### Juhtumitöö assistent
 
 *Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v6**, etapid E1–E8. **E1 (laua
-koondlugeja), E2 (laua pind `/toolaud/juhtumitoo`), E3 (kohtumise ettevalmistus) ja E4
-(kohtumise märge kaheksa kihiga) on koodis — värav on väljas.** Kaks migratsiooni jääb: E5–E6.
-**E6/E7 lõplik lukk ootab O-JTA-5** (hüljatud töömaterjali säilitus).*
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v7**, etapid E1–E8. **KÕIK KAHEKSA
+ETAPPI ON KOODIS (08.08) ja värav on väljas.** E1 laua koondlugeja · E2 laua pind
+`/toolaud/juhtumitoo` · E3 kohtumise ettevalmistus · E4 kihiline märge · E5 STAR2 mustandi ahel ·
+E6 kopeerimine ja ülekandeajalugu · E7 säilituse jõustamine (`npm run casework:retention`) ·
+E8 sond. **O-JTA-5 = rada C** (otsustatud 08.08). Lahtine: **O-JTA-6** — kas rada C peaks katma
+ka kohtumise ettevalmistused.*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
-(tehtud) · **P2 STAR2-mustandite ahel** (selle lepingu E5–E6) · P3 Meetodipeegel (eraldi, O-CW-3
-taga). JTA-V1 katab laua, kohtumise ettevalmistuse, kihilise märkme ja P2 — **mitte P3, P5 ega
-P6**.
+(tehtud) · **P2 STAR2-mustandite ahel — TEHTUD 08.08** (selle lepingu E5–E6) · P3 Meetodipeegel
+(eraldi, O-CW-3 taga). JTA-V1 katab laua, kohtumise ettevalmistuse, kihilise märkme ja P2 —
+**mitte P3, P5 ega P6**.
 
 Juhtumitöö assistent aitab sotsiaaltöötajal korraldada **enda jooksvat professionaalset
 tööd, ilma STAR2 ametlikku toimikut dubleerimata**. Ta vastab küsimustele, millele register
@@ -1306,7 +1414,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E4 tehtud 08.08** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6 — TEHTUD 08.08**; **JTA-V1 E1–E8 tehtud 08.08, värav väljas**; lahtine: **O-JTA-6** (kas rada C katab ka ettevalmistused) |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1475,7 +1583,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja, pind, kohtumise ettevalmistus ja kihiline märge tehtud (E1–E4), STAR2 mustandi ahel tegemata (E5–E6)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** + **juhtumitöö assistent E1–E8 koos STAR2 kandmise järjekorra ja säilituse jõustamisega (TEHTUD 08.08, värav väljas)** | **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1) ning säilitustöö cron-rida serveris (S1); genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata

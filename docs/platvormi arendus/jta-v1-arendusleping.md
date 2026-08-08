@@ -1,9 +1,11 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **E1–E4 TEHTUD** (E3–E4 08.08, päris andmebaasi ja kahe päris sessiooni vastu tõendatud).
-**E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
-**E6–E7 `READY_TO_ASSIGN`, aga nende lõplik lukk ootab O-JTA-5 vastust** (vt „Lahtine otsus").
-**23 lukustatud otsust, 8 etappi, 4 migratsiooni.**
+**Olek:** **E1–E8 TEHTUD (08.08). Leping on täidetud.** Tervik on koodis ja **peidus**
+(`CASEWORK_V1_ENABLED` vaikimisi väljas). Tõendatud päris andmebaasi ja **kahe päris sessiooni**
+vastu: `npm run jta:probe` **31/31**, sh brauseris läbi käidud kopeerimine, ülekantuks märkimine,
+säilituskell ja rada C.
+**O-JTA-5 on OTSUSTATUD (omanik 08.08): rada C** — töötaja tegu „arhiveeri töömaterjal".
+**23 lukustatud otsust, 8 etappi, 5 migratsiooni** (lubatud oli 4 — vt v7 rida allpool).
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -24,6 +26,8 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 | **v5** | **omaniku neljas audit — esimene, mis vaatas KOODI, mitte lepingut.** Kaks P0-d ja kolm leidu valminud E1-s: (a) **`estonianDayBounds()` sõltus serveri ajavööndist** — kommentaar ütles „Europe/Tallinn", arvutus kasutas serveri lokaalset parsingut ja päeva lõpuks `+24 h`. UTC-serveris nihkus Eesti päev suvel 3 tundi ja DST-päevad (23 h / 25 h) olid valed mõlemas vööndis; (b) **lapse kirjutuskaitses oli võistlus** — `requireActiveCase()` oli EELKONTROLL, mitte jõustaja, ja `transitionRetention()` mahtus kontrolli ja kirjutuse vahele. Mõlemad vead olid nähtamatud arendusmasinal, mille vöönd on juhtumisi `Europe/Tallinn`. Lisandusid **L20** (deskriptor) ja **L21** (lapse kirjutuse atomaarsus) |
 | **v4** | **omaniku kolmas audit — 1 blokeeriv + 2 täpsustust.** (a) **KAKS TEED `ULE_KANTUD`-ini:** v3 L18 lubas garantiid, mille E5 avalik `POST …/transition` oleks ümbert läbi lasknud — mustand oleks jõudnud `ULE_KANTUD`-i **ilma auditireata** ja säilituskell oleks hakanud käima tõendita ülekande peal. Kolm kihti, üks tee (L19); (b) `confirm-provenance` marsruut oli **nimetatud, aga API-loendist puudu**; (c) **prep-i väljad said oma tabeli** — üks jäme `provenance` terve ettevalmistuse peal ei suutnud väljendada „`agenda` = töötaja, `plainLanguageNotes` = AI", kuigi leping ise ütleb „AI koostatud **osa**". **Staatus kinnitatud.** |
 | **v6** | **omaniku viies audit — 2 uut otsust, 1 uus lukk, 1 dokumendiparandus. E2–E5 said rohelise tule.** (a) **`COPIED_FOR_STAR2` auditil puudus idempotentsusvõti** — L16 kirjeldas ausalt juhtu „lõikelaud õnnestus, audit ebaõnnestus", aga mitte selle **teist serva**: kui klient ei tea, kas `POST` jõudis kohale, teeb ta korduse ja tekib **kaks auditirida ühe päris kopeerimise kohta**. `markTransferred` oli kaitstud tingimusliku siirdega (L6/L18), `recordCopyEvent` **ei olnud millegagi** — append-only ilma võtmeta. Uus **L22**; (b) **arhiveerimine käivitab 12 kuu kella, aga UI ei ütle seda tegemise hetkel** — olemasolev `casework.page.retention_hint` ütleb ainult „ühesuunaline, tagasiteed ei ole". 30 päeva hoiatus on aus, aga saabub siis, kui otsust enam muuta ei saa. Uus **L23**; (c) **O-JTA-5 — hüljatud töömaterjali säilitus**: L7 jätab `MUSTAND` ja `EI_KANTA` teadlikult kellata, aga Õ2 12-kuuline reegel katab ainult **ülekantud** sisu. Aastaid aktiivne juhtum hoiab aastaid vana ettevalmistavat teksti. **See on eraldi andmeminimeerimise küsimus, mitte Õ2 alamhulk**; (d) pealkiri „Lahtised otsused — ükski ei blokeeri ehitust" oli eksitav, sest O-JTA-1…4 kandsid juba V1 vastuseid — teostaja jaoks tähendab „lahtine" tavaliselt „sul ei ole õigust valida". Ümber nimetatud |
+
+| **v7** | **teostus 08.08 — E5–E8 tehtud, O-JTA-5 otsustatud (rada C).** Neli asja, mis lepingust ERINEVAD ja mille kohta otsus on koodis: (a) **migratsioone on 5, mitte 4.** O-JTA-5 ütles „migratsioonide arv ei muutu üheski rajas — `contentPurgedAt` on juba olemas". **Koodist mõõtes vale:** E5 migratsioon kannab `CHECK ("contentPurgedAt" IS NULL OR "transferredAt" IS NOT NULL)`, mis lükkab rada C rea tagasi ANDMEBAASIS, ükskõik mida teenuskiht teeb. Lahendus ei olnud `CHECK`-i kustutamine (see jätaks kaitseta ka automaatse raja) — purge sai **põhjuse** (`CaseWorkPurgeReason`) ja garantii kitsenes sinna, kuhu ta kuulub; (b) **`mark-transferred` marsruut puudus E6 API-loendist.** L19 ütleb, et `markTransferred()` on ainus tee `ULE_KANTUD`-ini ja liides vajab nuppu — aga ühtegi marsruuti talle nimetatud ei olnud. Lisatud omaette marsruudina, mitte `transition`-i parameetrina (L19 mõte on, et need on kaks eri tegu); (c) **laua sektsioon #4 jäi E5-s tegemata.** L12 tabel lubab `draftsAwaitingTransfer`-i „E5 järel", aga E5 ei puutunud `workbench.js`-i. Mõlemad puuduvad sektsioonid (#4 ja #10) tehti E6-s ja L12 tabel on nüüd täis; (d) **rada C ulatus = ainult mustandid**, nagu lepingu sõnastus ütleb — vt **O-JTA-6** allpool |
 
 **Neli minu enda viga on selles ahelas parandatud, mitte lünka.** L6 lubas andmebaasi CHECK-ilt
 garantiid, mida `CHECK` anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga
@@ -749,7 +753,45 @@ hilisemas versioonis. Päris lahtine otsus on all eraldi.
 | **O-JTA-4** | kas mustandi saab luua ilma märketa | **jah** — ptk 4.5 elemendid ei eelda kohtumist |
 | **O-CW-3** | refleksiooni ja ametliku dokumentatsiooni piir | **ei ole vaja V1-s** — E4 ehitab märkme kihi, mitte `PracticeReflection` mudeli |
 
-## Lahtine otsus — O-JTA-5, hüljatud töömaterjali säilitus
+## O-JTA-5 — OTSUSTATUD 08.08: rada C
+
+> **Omaniku otsus 08.08: rada C — töötaja tegu „arhiveeri töömaterjal".** Teostatud E7-s
+> (`archiveWorkingMaterial()`, `POST …/cases/[caseId]/working-material`, kaheastmeline nupp
+> juhtumi elutsükli sektsioonis). **Ulatus on MUSTANDID**, nagu raja sõnastus ütleb: kandmata
+> mustandi väljad kustuvad, mustandi rida ja ülekandeajalugu jäävad, `contentPurgeReason` ütleb
+> välja, et kustutas TÖÖTAJA, mitte kell. `ULE_KANTUD` mustandit tegu ei puuduta — tema sisu on
+> automaatse kella all ja enneaegne kustutus viiks tõendi ära enne, kui STAR-i kanne on kinnitatud.
+> Juhtum jääb `ACTIVE`-ks; `READ_ONLY` juhtumis annab tegu **409**.
+>
+> **Üks hind sai mõõdetud alles teostuses ja ta on lepingu enda vastu:** rada C **vajas viiendat
+> migratsiooni**, kuigi see lõik allpool lubab, et migratsioonide arv ei muutu. Põhjus on E5
+> `CHECK`, mis keelab purge'i ilma ülekandeta. Vt v7 rida versiooniloos.
+
+**Algne sõnastus (v6, omaniku viies audit) on allpool alles**, sest tema kaalutlused kannavad
+edasi O-JTA-6-t.
+
+### O-JTA-6 — LAHTINE: kas rada C peaks katma ka ettevalmistused?
+
+**Leitud teostuses 08.08, omaniku otsustada.** O-JTA-5 põhjendus nimetab näitena juhtumit, milles
+„võib istuda **kaks aastat vana kohtumise ettevalmistus**, milles on kliendi sisu" — aga raja C
+sõnastus ütleb „purgeb **kandmata mustandite** sisu". Need kaks ei kata sama asja.
+
+**Teostus järgib sõnastust, mitte näidet**, ja seda teadlikult: ulatuse laiendamine oleks olnud
+otsus, mida omanik ei teinud. Tagajärg on aus ja tuleb välja öelda: **rada C ei lahenda oma enda
+motiveerivat näidet lõpuni.**
+
+| Rada | Kuju | Hind |
+|---|---|---|
+| **jätta nii** | ettevalmistusel on juba oma kustutusrada (E3) ja töötaja saab ta ükshaaval kustutada | „arhiveeri töömaterjal" ei tähenda seda, mida ta lubab |
+| **laiendada** | sama tegu kustutab ka ettevalmistused (kaskaad viib väljad ja küsimused) | ettevalmistuse rida KAOB, mustandi oma jääb — kaks eri semantikat ühe nupu all |
+| **laiendada + purge-marker prep-il** | ettevalmistus saab oma `contentPurgedAt` | kuues migratsioon |
+
+**Märge on igal juhul väljas:** E4 ütleb, et märget ei kustutata — ta kirjeldab seda, mis juba
+juhtus.
+
+---
+
+## Lahtine otsus — O-JTA-5, hüljatud töömaterjali säilitus *(algne sõnastus, otsustatud ülal)*
 
 **v6, omaniku viies audit. See on ainus päris lahtine otsus selles lepingus** ja ta **blokeerib
 E7 lõpliku luku**, mitte E2–E6 ehitust.
@@ -1194,7 +1236,7 @@ käitumise tõendab `listNotes`/`listMeetingPreps` sviit.
 
 ---
 
-### E5 — STAR2 mustandi ahel *(migratsioon 3/4 — CASEWORK-P2 tuum)*
+### E5 — STAR2 mustandi ahel *(migratsioon 3/5 — CASEWORK-P2 tuum)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
@@ -1243,7 +1285,7 @@ eksport.
 
 ---
 
-### E6 — „Kopeeri STAR2 jaoks" + ülekandeajalugu *(migratsioon 4/4)*
+### E6 — „Kopeeri STAR2 jaoks" + ülekandeajalugu *(migratsioon 4/5)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
@@ -1295,7 +1337,7 @@ saab keeldumise · kaks `MARKED_AS_TRANSFERRED` rida `clientActionId = null`-iga
 
 ---
 
-### E7 — Säilituse jõustamine *(0 migratsiooni — mudelid on E3–E6-s)*
+### E7 — Säilituse jõustamine *(migratsioon 5/5 — vt v7)* — **TEHTUD 08.08**
 
 **v2 uus etapp.** v1-s oli säilitus otsus ilma mehhanismita: L7 ütles, mis peab juhtuma, aga
 keegi ei käivitanud seda ja E7 tõendas ainult kuupäeva arvutamist. **Otsus ilma jõustajata ei
@@ -1379,7 +1421,7 @@ võtaks andmebaasi enda alla.
 
 ---
 
-### E8 — Tõend
+### E8 — Tõend — **TEHTUD 08.08, `npm run jta:probe` 31/31**
 
 **Sond:** `npm run jta:probe` — päris andmebaasi ja **vähemalt kahe päris sessiooni** vastu,
 **HTTP kaudu** (04.08 IDOR-i õppetund: teenuskihi otsekutse ei tõenda ligipääsupiiri).
