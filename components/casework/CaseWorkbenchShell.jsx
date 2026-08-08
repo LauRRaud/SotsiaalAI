@@ -26,6 +26,7 @@
  * vastu. Kaks tõde ilma testita on ainult aja küsimus.
  */
 
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
@@ -34,36 +35,10 @@ import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import { caseLabelText, caseWorkRequest } from "./caseWorkClient";
+import { resolveSection, WORKBENCH_SECTION_ORDER } from "./workbenchView";
 
 /** Töötaja rollid — sama hulk mis `lib/casework/routes.js` väraval. */
 const WORKER_ROLES = new Set(["SOCIAL_WORKER", "SERVICE_PROVIDER"]);
-
-/**
- * L12 kanooniline järjekord. Peab olema BAIT-TÄPSELT sama mis
- * `WORKBENCH_SECTIONS` — seda kontrollib test, mitte see kommentaar.
- *
- * #4 (`draftsAwaitingTransfer`) ja #10 (`transferHistory`) PUUDUVAD teadlikult:
- * nad sünnivad E5-s ja E6-s. Kuni selleta ei ole nad tühjad — neid ei ole, ja
- * tühi kast väidaks, et tööriist on olemas ja tööd ei ole.
- */
-export const WORKBENCH_SECTION_ORDER = Object.freeze([
-  "receivedPreInquiries",
-  "todaysContacts",
-  "activePreparations",
-  "openMissingInfo",
-  "upcomingContacts",
-  "networkPreparation",
-  "practiceReflection",
-  "covisionPreparation"
-]);
-
-/** Sektsiooni olek → tõlkevõti. Tundmatu olek ei kuva toorest enum'i nime. */
-function sectionStateKey(state) {
-  if (state === "FORBIDDEN") return "casework.workbench.state_forbidden";
-  if (state === "TIMEOUT") return "casework.workbench.state_timeout";
-  if (state === "ERROR") return "casework.workbench.state_error";
-  return "casework.workbench.state_empty";
-}
 
 function timeText(value, locale) {
   if (!value) return "";
@@ -98,9 +73,18 @@ function Row({ href, title, meta, badge, t }) {
   return (
     <li className="cw-case">
       {href ? (
-        <a className="cw-case-label" href={href}>
+        /* `Link`, MITTE `<a>`: toores ankur teeb täisdokumendi-navigatsiooni,
+           laadib rakenduse uuesti ja viskab ära sessiooni-, i18n- ja
+           rollikonteksti, mille pind just üles ehitas. Platvormi ülejäänud
+           sisenavigatsioon käib `Link`-i või `router.push`-i kaudu.
+
+           Teed on siin LOKAALINEUTRAALSED ja see on õige: `localizePath()`
+           EEMALDAB keeleprefiksi ja `proxy.js` suunab `/et|/ru|/en` teed
+           308-ga neutraalsele kujule, pannes keele küpsisesse. Prefiksi
+           lisamine oleks siin viga, mitte parandus. */
+        <Link className="cw-case-label" href={href}>
           {title}
-        </a>
+        </Link>
       ) : (
         <span className="cw-case-label">{title}</span>
       )}
@@ -129,6 +113,16 @@ export default function CaseWorkbenchShell() {
   const [state, setState] = useState("loading");
   const [errorKey, setErrorKey] = useState(null);
 
+  /**
+   * VANA LAUD JÄÄB EKRAANILE, AGA MÄRGISTATULT (omaniku kuues audit 08.08).
+   *
+   * Kaks halba varianti, mille vahelt see valitud on: tühjendada laud iga
+   * ebaõnnestunud värskenduse peale (töötaja kaotab kogu vaate ühe võrgutõrke
+   * pärast) või jätta vana info alles VAIKIDES — ja see teine on siin kõige
+   * ohtlikum, sest juhtumitöö laual tähendab „ei ole enam puuduvat infot"
+   * midagi. Alles jääb, aga laud ütleb välja, et need on eelmise laadimise
+   * andmed.
+   */
   const load = useCallback(async () => {
     setState("loading");
     setErrorKey(null);
@@ -279,6 +273,13 @@ export default function CaseWorkbenchShell() {
         </p>
       ) : null}
 
+      {/* Vana laud on ekraanil ja värskendus kukkus — seda ei tohi vaikida. */}
+      {state === "error" && sections ? (
+        <p className="cw-hint" role="status">
+          {t("casework.workbench.stale_notice", "")}
+        </p>
+      ) : null}
+
       {state === "loading" && !sections ? <p className="cw-empty">{t("casework.workbench.loading", "")}</p> : null}
 
       {sections
@@ -289,7 +290,10 @@ export default function CaseWorkbenchShell() {
                väidaks vastupidist. */
             if (!data) return null;
 
-            const items = Array.isArray(data.items) ? data.items : [];
+            /* OLEK OTSUSTAB, mitte ridade arv — otsus ise on
+               `workbenchView.js`-is, et teda saaks päriselt testida. */
+            const { showItems, noticeKey, items } = resolveSection(data);
+
             return (
               <section className="cw-section" key={key}>
                 <h2 className="cw-section-title">{t(`casework.workbench.section_${key}`, "")}</h2>
@@ -299,19 +303,19 @@ export default function CaseWorkbenchShell() {
                     ettevalmistused. */}
                 {data.notice ? <p className="cw-hint">{t(data.notice, "")}</p> : null}
 
-                {items.length ? (
-                  <ul className="cw-list">{renderRows(key, items)}</ul>
-                ) : (
-                  <p className="cw-empty">{t(sectionStateKey(data.state), "")}</p>
-                )}
+                {showItems ? <ul className="cw-list">{renderRows(key, items)}</ul> : null}
+                {noticeKey ? <p className="cw-empty">{t(noticeKey, "")}</p> : null}
               </section>
             );
           })
         : null}
 
-      {state === "ready" ? (
+      {/* Nupp on olemas MÕLEMAS lõppseisus. Varem kuvati ta ainult `ready`
+          peal, seega ebaõnnestunud laadimise järel ei olnud pinnal ühtegi teed
+          uuesti proovida — ainus väljapääs oli lehe taaslaadimine. */}
+      {state !== "loading" ? (
         <button className="cw-button" type="button" onClick={() => load()}>
-          {t("casework.workbench.refresh", "")}
+          {t(state === "error" ? "casework.workbench.retry" : "casework.workbench.refresh", "")}
         </button>
       ) : null}
     </section>

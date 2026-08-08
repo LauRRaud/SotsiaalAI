@@ -232,8 +232,21 @@ juhtumi lahtiste punktide oma; mahajäämust, keskmisi, tähtaja ületamise mär
 eelmise perioodiga ei ole ja neid ei tule. ⓘ juhend ütleb selle välja koos kolme ülejäänud
 piiriga (laud on isiklik · keegi teine ei näe sinu oma · AI ei otsusta ega järjesta).
 
-Väravad: `npm test` **2966/2966** — jooksutatud nii `Europe/Tallinn` kui `UTC` all ·
+Väravad: `npm test` **2978/2978** — jooksutatud nii `Europe/Tallinn` kui `UTC` all ·
 `i18n:check` OK · eslint puhas · `npm run build` OK · 0 migratsiooni.
+
+**Kuues audit (08.08) leidis kolm parandust ja need on tehtud.** Kandev neist:
+**sektsiooni oleku semantika oli pinnal fail-open** — kuju valiti ridade arvu järgi ja olekut
+loeti ainult siis, kui ridu ei olnud, seega `FORBIDDEN` või `TIMEOUT` koos ridadega oleks
+kuvanud read ja oleku vaikides ära visanud; tundmatu olek ütles kasutajale „tööd ei ole" siis,
+kui laud tegelikult ei teadnud. Server hoiab neid olekuid täna tühjana, **aga pind saab
+HTTP-vastuse ja ei tohi sõltuda sellest, et teine pool end korralikult üleval peab.** Otsus
+kolis JSX-ist välja omaette moodulisse, sest testijooksja ei teisenda JSX-i — ja alles siis sai
+teda päriselt testida: **neli testi üheksast kukuvad vana teostuse peal, kontrollitud.**
+Ülejäänud kaks: sisenavigatsioon käib nüüd `next/link`-iga (toores ankur laadis rakenduse
+uuesti) ja ebaõnnestunud värskendus **ütleb välja**, et andmed on eelmisest laadimisest, ning
+pakub „Proovi uuesti" — varem jäi vana laud ekraanile vaikides ja ainus väljapääs oli lehe
+taaslaadimine.
 
 **Kaks leidu tulid brauserist, mitte testidest** — mõlemad on nüüd regressioonitestiga lukus.
 Esiteks lekkis K1 tööruumi pealkiri **tõlkevõtmena**: laual seisis „workspace.kind.pre_inquiry",

@@ -851,7 +851,7 @@ UTC-piir ja Eesti piir annavad SAMA vastuse — seepärast läbis ta ka katkise 
 | **Teenus** | E1 oma |
 | **API** | `GET app/api/casework/workbench/route.js` → `guardCaseWorkRequest(req, { scope: "casework:workbench" })`. **Ainult `GET`** — laud on lugeja (L1) |
 | **Pind** | `app/toolaud/juhtumitoo/page.jsx` + `components/casework/CaseWorkbenchShell.jsx` + töölaua kaart `casework_workbench` + **kiirmenüü kirje** `juhtumitoo` (mõlemad UI-lipu ja rolli taga) + **ⓘ juhend ET/EN/RU** (`casework_workbench`, neli osa) |
-| **Värav** | L11 — värav väljas → `notFound()`; vale roll → 403 (L14) |
+| **Värav** | L11 — värav väljas → `notFound()`; **API kihis** vale roll → 403 (L14). Pinna rollikontroll on viisakus, mitte värav — vt kuuenda auditi tabel allpool |
 | **Valideerimine** | vastus on ainult descriptor-kuju; teenuskihi tekste ei renderdata toorelt |
 | **Testid** | `tests/casework/workbenchUi.test.js` (13 lepingut) + `routeContract.test.js` laiendatud |
 
@@ -895,6 +895,55 @@ väravaga väljas API **404** `casework.errors.not_found` ja lehe `<title>` **�
 paketti ka väljas väravaga, sest kogu `messages/*.json` saadetakse igale lehele — mõõdetuna
 kehtib sama `/juhtumid`-i ja isegi `/` kohta. L11 lubab, et **marsruut** on eristamatu
 olematust; ta ei luba, et string ei sõida kaasa. Platvormiülene, mitte selle etapi oma.
+
+#### E2 kuues audit (omanik 08.08) — neli leidu, kolm parandatud, üks mõõdetud
+
+**Kolm parandust:**
+
+- **P1 — sektsiooni oleku semantika oli UI-s fail-open.** Pind valis kuju `items.length` järgi
+  ja luges olekut ainult siis, kui ridu EI OLNUD. `FORBIDDEN` või `TIMEOUT` koos ridadega oleks
+  **kuvanud read ja oleku vaikides ära visanud**; tundmatu olek langes `EMPTY`-le ehk kasutajale
+  öeldi „tööd ei ole" siis, kui laud tegelikult ei teadnud. Server hoiab neid olekuid täna
+  tühjana — aga **pind saab HTTP-vastuse ja ei tohi sõltuda sellest, et teine pool end
+  korralikult üleval peab.** Otsus kolis JSX-ist välja `components/casework/workbenchView.js`-i,
+  sest testijooksja ei teisenda JSX-i ja regex-test oleks kontrollinud koodi kuju, mitte
+  käitumist. Uus olek: **`OK` ilma ridadeta on vastuolu**, mitte tühjus. Uus tekst
+  `state_invalid` ET/EN/RU. `tests/casework/workbenchView.test.js` — **neli testi üheksast
+  kukuvad vana teostuse peal, kontrollitud** (v5 reegel).
+- **P1/P2 — sisenavigatsioon käis toore ankruga.** `<a href>` teeb täisdokumendi-navigatsiooni:
+  laadib rakenduse uuesti ja viskab ära konteksti, mille pind just üles ehitas. Nüüd `next/link`.
+  **Keeleprefiksit siin EI lisata ja see on õige, mitte puudujääk:** `localizePath()` EEMALDAB
+  prefiksi („Keep links locale-neutral; language selection is handled via cookie") ja `proxy.js`
+  suunab `/et|/ru|/en` teed **308-ga** neutraalsele kujule. Mõõdetud brauseris: URL vahetus
+  `/eelpoordumised`-iks ja lehele jäetud JS-marker **elas üle** ehk dokumenti ei laaditud uuesti.
+- **P2 — ebaõnnestunud värskendus jättis vana laua ekraanile vaikides.** `load()` ei tühjendanud
+  sektsioone ja `refresh` nupp kuvati ainult `ready` seisus — pinnal ei olnud ühtegi teed uuesti
+  proovida. Juhtumitöö laual on **vaikiv vana info kõige halvem variant**, sest „ei ole enam
+  puuduvat infot" tähendab siin midagi. Valitud: vana laud **jääb**, aga kannab märget
+  (`stale_notice`), ja nupp on olemas mõlemas lõppseisus (`retry`). Laua tühjendamine iga
+  võrgutõrke peale oleks teine äärmus. Mõõdetud brauseris `fetch`-i tõrkega: error + märge +
+  „Proovi uuesti" + andmed alles → klikk taastas seisu.
+
+**Neljas leid oli õige tähelepanek, aga mitte E2 defekt — ja ta on nüüd MÕÕDETUD, mitte
+oletatud.** HTML-pind kontrollib ainult väravalippu; rolli kontrollib klient. Mõõtmine
+(päris sessioonid, värav sees):
+
+| Roll | `/toolaud/juhtumitoo` | `/api/casework/workbench` | `/juhtumid` (JUHTUM-V1) |
+|---|---|---|---|
+| `CLIENT` | **200** + „ei ole lubatud" | **403** | **200** |
+| `ADMIN` | 200 | **200**, oma tühi skoop | 200 |
+
+Kaks järeldust. **(1)** Pinna 200 on sama, mis JUHTUM-V1 E6-l, ja L14 tabel ütleb ise välja, et
+`guardCaseWorkRequest()` on **ainus turvapiir** — pinna rollikontroll on viisakus, mitte värav.
+Andmeid pind ise ei kanna. Serveripoolne rollivärav oleks omaette muudatus ja ta kuuluks
+**mõlemale** pinnale korraga, mitte ainult lauale; ühe pinna muutmine teeks ühest funktsioonist
+kaks reeglit. **(2)** `ADMIN` saab 200, sest `resolveSessionRoleState()` annab administraatorile
+`effectiveRole = adminViewRole || "SOCIAL_WORKER"` — see on rollivahetaja mehhanism, mitte
+casework'i auk, ja ta kehtib täpselt samamoodi `/api/casework/cases` peal (mõõdetud). **Skoop
+jääb `guard.userId` peale**, seega admin näeb oma tühja lauda, mitte kellegi teise oma.
+
+**E2 rea „vale roll → 403" täpsustus:** see käib **API kihi** kohta. Nii oli mõeldud (L14) ja
+nüüd on ka kirjas — mitmetimõistetavus oli lepingus, mitte koodis.
 
 ---
 

@@ -18,6 +18,7 @@ import { createWorkspaceDashboardRows } from "../../lib/workspaceDashboardCards.
 
 const UI_FILES = [
   "../../components/casework/CaseWorkbenchShell.jsx",
+  "../../components/casework/workbenchView.js",
   "../../app/toolaud/juhtumitoo/page.jsx",
   "../../lib/dashboardInfoContent.js"
 ];
@@ -66,20 +67,48 @@ async function withFlag(value, run) {
   }
 }
 
-test("pinna sektsioonide järjekord on BAIT-TÄPSELT koondlugeja oma (L12)", async () => {
-  /* Pind ei tohi importida `lib/casework/workbench.js`-i (ta toob Prisma
-     kliendi), seega järjekord on seal oma konstandina. Kaks loendit ilma
-     testita lähevad lahku — ja siis kaob laualt sektsioon, mille server
-     saadab, ilma et keegi seda märkaks.
+test("kuvaotsus elab JSX-ist VÄLJAS, et teda saaks päriselt testida", async () => {
+  /* Omaniku kuues audit: sektsiooni oleku semantika oli katki, aga teda ei
+     saanud tõendada, sest ta elas JSX-failis ja testijooksja ei teisenda
+     JSX-i. Regex-test kontrollib koodi kuju, mitte käitumist.
+     Käitumislepingut kannab nüüd `workbenchView.test.js`. */
+  const shell = await readCode("../../components/casework/CaseWorkbenchShell.jsx");
+  assert.match(shell, /from "\.\/workbenchView"/, "kuvaotsus ei tule eraldi moodulist");
+  assert.doesNotMatch(shell, /items\.length \?/, "kuju valitakse ridade arvu järgi");
+});
 
-     LOETAKSE TEKSTIST, mitte impordist: testijooksja ei teisenda JSX-i, seega
-     komponenti ei saa siin importida. */
-  const source = await read("../../components/casework/CaseWorkbenchShell.jsx");
-  const block = source.match(/WORKBENCH_SECTION_ORDER = Object\.freeze\(\[([\s\S]*?)\]\)/);
-  assert.ok(block, "pinnal ei ole `WORKBENCH_SECTION_ORDER` konstanti");
+test("sektsioonide järjekord tuleb ühest kohast (L12)", async () => {
+  /* Ainult see, et pinna moodul ei kirjuta oma teist loendit. Sisuline võrdlus
+     `WORKBENCH_SECTIONS`-iga on `workbenchView.test.js`-is. */
+  const shell = await readCode("../../components/casework/CaseWorkbenchShell.jsx");
+  assert.doesNotMatch(shell, /WORKBENCH_SECTION_ORDER = /, "pinnal on oma teine järjekorra-loend");
+  assert.ok(WORKBENCH_SECTIONS.length === 8, "koondlugeja sektsioonide arv muutus — vaata L12 üle");
+});
 
-  const order = [...block[1].matchAll(/"([A-Za-z0-9_]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(order, [...WORKBENCH_SECTIONS]);
+test("sisenavigatsioon käib `Link`-iga, mitte toore ankruga", async () => {
+  /* Omaniku kuues audit. Toores `<a href="/…">` teeb täisdokumendi-navigatsiooni:
+     laadib rakenduse uuesti ja viskab ära konteksti, mille pind just üles
+     ehitas.
+
+     NB keeleprefiksit siin EI lisata ja see on õige, mitte puudujääk:
+     `localizePath()` EEMALDAB prefiksi ja `proxy.js` suunab `/et|/ru|/en` teed
+     308-ga neutraalsele kujule, pannes keele küpsisesse. */
+  const shell = await readCode("../../components/casework/CaseWorkbenchShell.jsx");
+  assert.match(shell, /^import Link from "next\/link";/m, "`next/link` importimata");
+  assert.doesNotMatch(shell, /<a\s+[^>]*href=/, "pinnal on toores ankur");
+});
+
+test("ebaõnnestunud värskendus ütleb VÄLJA, et andmed on vanad, ja pakub uut katset", async () => {
+  /* Omaniku kuues audit: `load()` ei tühjenda sektsioone, seega ebaõnnestunud
+     värskenduse järel jäi ekraanile vana laud — ja `refresh` nupp kuvati ainult
+     `ready` seisus, seega pinnal ei olnud ühtegi teed uuesti proovida.
+
+     Juhtumitöö laual on vaikiv vana info kõige halvem variant: „ei ole enam
+     puuduvat infot" tähendab siin midagi. */
+  const shell = await readCode("../../components/casework/CaseWorkbenchShell.jsx");
+  assert.match(shell, /casework\.workbench\.stale_notice/, "vana info ei ole märgistatud");
+  assert.match(shell, /casework\.workbench\.retry/, "uuesti proovimise teksti ei ole");
+  assert.doesNotMatch(shell, /state === "ready" \?[\s\S]{0,120}casework\.workbench\.refresh/, "nupp on ainult `ready` seisus");
 });
 
 test("laua tõlkevõtmed on olemas KÕIGIS kolmes keeles", async () => {
