@@ -338,6 +338,37 @@ töötava dev-serveri registrisse ja vastuseks tuli Next-i **HTML 404**, mitte t
 see näeb välja täpselt nagu omanikupiiri viga. Kontroll on `content-type`; restart lahendas,
 koodis viga ei olnud.
 
+### Seitsmes audit (08.08): seitse leidu PINNAL, mitte teenuskihis
+
+**Kandev õppetund: kõik senised väravad olid rohelised.** Teenuskihi sviit, marsruudileping ja
+IDOR-sond ei näinud ühtegi neist — nad kõik elasid kasutajaliideses. Pind võib kõiki teenuskihi
+garantiisid austada ja ikkagi **kaotada kasutaja teksti või salvestada ta vale objekti alla**.
+Neli olid P1 andmeterviklusega ja kõik seitse on parandatud.
+
+- **Vormi olek kandus teise objekti.** Märkme vahetamisel jäid editor ja kihiplokid samadeks
+  komponentideks — märkmes A pooleli jäänud teksti sai salvestada **B alla**. Nüüd võtab
+  `key` puu maha, aegunud päring visatakse ära ja **avatud märkme aeg on ekraanil**.
+- **Päritolu oli eelvalitud.** Rea sai lisada märgist teadlikult valimata — L4 otsene
+  rikkumine, ja märkmel ei ole hiljem parandusrada. Nüüd on „Vali päritolu" ja nupp on kinni.
+- **Tõrge kustutas sisestuse.** Ebaõnnestunud salvestus tühjendas välja — töö kadus ja põhjust
+  ei olnud näha. Nüüd tühjeneb väli ainult õnnestumisel.
+- **Vanemad kui 25 kirjet olid kättesaamatud** — teenuskiht toetas lehekülgi, pind viskas selle
+  ära. Nüüd on „Näita rohkem".
+- **Pöördumatud kustutused ühe vajutusega.** Uus kaheastmeline kinnitusnupp märkme kirjel,
+  ettevalmistusel, küsimusel ja **kliendiviitel**. Tagasivõtuakent ei pakuta: kliendiviide ei
+  tule tagasi ka konto kustutamise rajalt — **lubadus, mille taga ei ole mehhanismi, on halvem
+  kui küsimus**.
+- **Murdarvuline `limit` andis Prisma vea, mitte 400.** `?limit=1.5` → `take = 2.5`. Fake-prisma
+  ei valideeri argumente, seega sviit oli roheline. **Sama rida oli seitsmes koopias** — nüüd üks
+  normaliseerija viies moodulis.
+- **Detailvaate lehevahetus oli veakäsitlusest väljas** — nupp ei lukustunud ja tõrge jäi
+  näitamata.
+
+Väravad pärast parandusi: `npm test` **3031/3031** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK
+· eslint puhas · `npm run build` OK. Brauseris mõõdetud: vormi tühjenemine märkme vahetusel,
+päritolu sundvalik, teksti säilimine sunnitud tõrke korral, kinnitusnupu kaks astet ja
+`limit=1.5` → **400** (varem 500).
+
 **Järgmine: E5** — STAR2 mustandi ahel, migratsioon 3/4 (CASEWORK-P2 tuum).
 
 Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see

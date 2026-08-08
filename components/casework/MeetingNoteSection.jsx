@@ -14,11 +14,12 @@
  * lubadust ei tohi saada tühistada ümbernimetamisega.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
-import { PROVENANCE, PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
+import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
+import ConfirmButton from "./ConfirmButton";
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
 
 /**
@@ -40,15 +41,23 @@ export const NOTE_LAYER_ORDER = Object.freeze([
 ]);
 
 const PRIVATE_LAYER = "PRIVAATNE_REFLEKSIOON";
+const PAGE_SIZE = 25;
 
 export default function MeetingNoteSection({ caseId, writeDisabled, onChanged }) {
   const { t, locale } = useI18n();
 
   const [notes, setNotes] = useState([]);
+  const [notesCursor, setNotesCursor] = useState(null);
   const [openNote, setOpenNote] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [meetingAt, setMeetingAt] = useState("");
+
+  /* AVATUD MÄRKME ID SEISAB `ref`-is, mitte ainult olekus. Kaks `loadNote()`
+     päringut võivad lõppeda VALES JÄRJEKORRAS ja aeglasem vastus kirjutaks
+     värskema üle — töötaja vaataks siis märget A ja näeks märkme B sisu. Iga
+     vastus kontrollib, kas tema päring on ikka veel see, mida oodatakse. */
+  const requestedNoteId = useRef(null);
 
   const run = useCallback(async (task) => {
     setBusy(true);
@@ -63,24 +72,43 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
     }
   }, []);
 
-  const loadNotes = useCallback(async () => {
-    try {
-      const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/meeting-notes?limit=25`, { locale });
-      setNotes(body.items || []);
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
-    }
-  }, [caseId, locale]);
+  /**
+   * PAGINEERIMINE ON KOHUSTUSLIK. Ilma cursor'ita jäid vanemad kui 25 märget
+   * liidesest KÄTTESAAMATUKS — teenuskiht toetab lehekülgi ja pind viskas selle
+   * võimaluse ära. Juhtumitöö on pikk: 25 kohtumist ei ole palju.
+   */
+  const loadNotes = useCallback(
+    async ({ cursor = null, append = false } = {}) => {
+      try {
+        const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
+        if (cursor) params.set("cursor", cursor);
+        const body = await caseWorkRequest(
+          `/cases/${encodeURIComponent(caseId)}/meeting-notes?${params.toString()}`,
+          { locale }
+        );
+        setNotes((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
+        setNotesCursor(body.nextCursor || null);
+      } catch (error) {
+        setErrorKey(error?.messageKey || "casework.errors.unexpected");
+      }
+    },
+    [caseId, locale]
+  );
 
   const loadNote = useCallback(
     async (noteId) => {
+      requestedNoteId.current = noteId;
       try {
         const body = await caseWorkRequest(
           `/cases/${encodeURIComponent(caseId)}/meeting-notes/${encodeURIComponent(noteId)}`,
           { locale }
         );
+        /* Vahepeal avati juba teine märge — see vastus on aegunud ja teda EI
+           panda ekraanile. */
+        if (requestedNoteId.current !== noteId) return;
         setOpenNote(body.note || null);
       } catch (error) {
+        if (requestedNoteId.current !== noteId) return;
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
     },
@@ -118,7 +146,9 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
           { method: "POST", locale, body: { layer, text, provenance } }
         )
       );
-      if (done) await loadNote(openNote.id);
+      if (!done) return false;
+      await loadNote(openNote.id);
+      return true;
     },
     [caseId, loadNote, locale, openNote, run]
   );
@@ -131,7 +161,9 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
           { method: "DELETE", locale }
         )
       );
-      if (done) await loadNote(openNote.id);
+      if (!done) return false;
+      await loadNote(openNote.id);
+      return true;
     },
     [caseId, loadNote, locale, openNote, run]
   );
@@ -190,25 +222,56 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
         ))}
       </ul>
 
+      {notesCursor ? (
+        <button
+          className="cw-button"
+          type="button"
+          disabled={busy}
+          onClick={() => run(() => loadNotes({ cursor: notesCursor, append: true }))}
+        >
+          {t("casework.note.load_more", "")}
+        </button>
+      ) : null}
+
       {openNote ? (
+        /* `key` ON SIIN GARANTII, MITTE OPTIMEERIMINE. Ilma temata jäävad
+           `NoteEditor` ja kihiplokid märkme vahetamisel SAMADEKS komponentideks
+           ja nende kohalik `text`/`provenance` olek elab üle: märkmes A pooleli
+           jäänud rea saaks salvestada märkme B alla. Uus `key` sunnib React'i
+           puu maha võtma. */
         <NoteEditor
+          key={openNote.id}
           note={openNote}
+          locale={locale}
           disabled={disabled}
           t={t}
           onAddEntry={addEntry}
           onRemoveEntry={removeEntry}
-          onClose={() => setOpenNote(null)}
+          onClose={() => {
+            requestedNoteId.current = null;
+            setOpenNote(null);
+          }}
         />
       ) : null}
     </section>
   );
 }
 
-function NoteEditor({ note, disabled, t, onAddEntry, onRemoveEntry, onClose }) {
+function NoteEditor({ note, locale, disabled, t, onAddEntry, onRemoveEntry, onClose }) {
   const entries = Array.isArray(note.entries) ? note.entries : [];
 
   return (
     <div className="cw-section">
+      {/* AVATUD MÄRKME IDENTITEET ON NÄHTAV. Ilma selleta ei ütle ükski asi
+          ekraanil, MILLISE kohtumise alla parasjagu kirjutatakse — ja märkmeid
+          on juhtumil mitu. */}
+      <h3 className="cw-section-title">
+        {t("casework.note.open_note", "")}:{" "}
+        {note.meetingAt
+          ? new Date(note.meetingAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })
+          : t("casework.note.no_meeting_time", "")}
+      </h3>
+
       <button className="cw-button" type="button" onClick={onClose}>
         {t("casework.note.close", "")}
       </button>
@@ -230,7 +293,11 @@ function NoteEditor({ note, disabled, t, onAddEntry, onRemoveEntry, onClose }) {
 
 function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
   const [text, setText] = useState("");
-  const [provenance, setProvenance] = useState(PROVENANCE.TOOTAJA_TAHELEPANEK);
+  /* PÄRITOLUL EI OLE VAIKEVÄÄRTUST ja see on L4 otsene nõue. Eelvalitud
+     `TOOTAJA_TAHELEPANEK` tähendas, et rea sai lisada päritolu TEADLIKULT
+     valimata — ja märgis, mille inimene ei valinud, ei ole märgis. Server
+     keeldub tühjast; vorm ei lase enne saata. */
+  const [provenance, setProvenance] = useState("");
   const isPrivate = layer === PRIVATE_LAYER;
 
   return (
@@ -250,9 +317,16 @@ function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
                 {t(provenanceLabelKey(entry.provenance) || "casework.errors.provenance_unknown", "")}
               </span>
             </span>
-            <button className="cw-button" type="button" onClick={() => onRemove(entry.id)} disabled={disabled}>
-              {t("casework.note.remove_entry", "")}
-            </button>
+            {/* KUSTUTUS ON PÖÖRDUMATU ja teda ei auditeerita eraldi — seega
+                küsitakse üle. Tagasivõtuakent EI pakuta: lubadus, mille taga ei
+                ole mehhanismi, on halvem kui küsimus. */}
+            <ConfirmButton
+              label={t("casework.note.remove_entry", "")}
+              confirmLabel={t("casework.note.confirm_remove_entry", "")}
+              cancelLabel={t("casework.note.cancel", "")}
+              disabled={disabled}
+              onConfirm={() => onRemove(entry.id)}
+            />
           </li>
         ))}
       </ul>
@@ -261,8 +335,15 @@ function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
         className="cw-form cw-form--inline"
         onSubmit={async (event) => {
           event.preventDefault();
-          await onAdd(layer, text, provenance);
-          setText("");
+          const saved = await onAdd(layer, text, provenance);
+          /* VÄLI TÜHJENDATAKSE AINULT ÕNNESTUMISEL. Varem käis `setText("")`
+             tingimusteta ja ebaõnnestunud salvestus KUSTUTAS kasutaja teksti —
+             kõige halvem tulemus, mis vormil olla saab: töö kadus ja põhjust ei
+             olnud näha. */
+          if (saved) {
+            setText("");
+            setProvenance("");
+          }
         }}
       >
         <input
@@ -279,15 +360,17 @@ function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
           value={provenance}
           onChange={(event) => setProvenance(event.target.value)}
           disabled={disabled}
-          aria-label={t("casework.page.provenance_placeholder", "")}
+          required
+          aria-label={t("casework.note.provenance_required", "")}
         >
+          <option value="">{t("casework.note.provenance_required", "")}</option>
           {PROVENANCES.map((value) => (
             <option key={value} value={value}>
               {t(provenanceLabelKey(value) || "", "")}
             </option>
           ))}
         </select>
-        <button className="cw-button" type="submit" disabled={disabled || !text.trim()}>
+        <button className="cw-button" type="submit" disabled={disabled || !text.trim() || !provenance}>
           {t("casework.note.add_entry", "")}
         </button>
       </form>

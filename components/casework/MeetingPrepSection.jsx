@@ -16,11 +16,12 @@
  * (server eirab saadetud `provenance`-i) ja seda tõendab teenuskihi test.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCE, PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
+import ConfirmButton from "./ConfirmButton";
 import { caseWorkRequest, fromLocalInputValue } from "./caseWorkClient";
 
 /** Sama hulk mis `CaseWorkPrepFieldKey` skeemis ja `PREP_FIELD_KEYS` teenuskihis. */
@@ -34,12 +35,18 @@ const QUESTION_KINDS = ["CLARIFYING_QUESTION", "CLAIM_TO_VERIFY"];
  * märgise juurde kirjutaks inimese kinnituse ümber ja server annab 400.
  */
 const CONFIRM_TARGETS = PROVENANCES.filter((value) => value !== PROVENANCE.AI_MUSTAND);
+const PAGE_SIZE = 25;
 
 export default function MeetingPrepSection({ caseId, writeDisabled, onChanged }) {
   const { t, locale } = useI18n();
 
   const [preps, setPreps] = useState([]);
+  const [prepsCursor, setPrepsCursor] = useState(null);
   const [openPrep, setOpenPrep] = useState(null);
+
+  /* Kaks `loadPrep()` päringut võivad lõppeda VALES JÄRJEKORRAS ja aeglasem
+     vastus kirjutaks värskema üle. Vt sama selgitust märkme sektsioonis. */
+  const requestedPrepId = useRef(null);
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [meetingAt, setMeetingAt] = useState("");
@@ -57,24 +64,37 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
     }
   }, []);
 
-  const loadPreps = useCallback(async () => {
-    try {
-      const body = await caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/meeting-preps?limit=25`, { locale });
-      setPreps(body.items || []);
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
-    }
-  }, [caseId, locale]);
+  /** Pagineerimine on kohustuslik — vanemad ettevalmistused ei tohi kaduda. */
+  const loadPreps = useCallback(
+    async ({ cursor = null, append = false } = {}) => {
+      try {
+        const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
+        if (cursor) params.set("cursor", cursor);
+        const body = await caseWorkRequest(
+          `/cases/${encodeURIComponent(caseId)}/meeting-preps?${params.toString()}`,
+          { locale }
+        );
+        setPreps((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
+        setPrepsCursor(body.nextCursor || null);
+      } catch (error) {
+        setErrorKey(error?.messageKey || "casework.errors.unexpected");
+      }
+    },
+    [caseId, locale]
+  );
 
   const loadPrep = useCallback(
     async (prepId) => {
+      requestedPrepId.current = prepId;
       try {
         const body = await caseWorkRequest(
           `/cases/${encodeURIComponent(caseId)}/meeting-preps/${encodeURIComponent(prepId)}`,
           { locale }
         );
+        if (requestedPrepId.current !== prepId) return;
         setOpenPrep(body.prep || null);
       } catch (error) {
+        if (requestedPrepId.current !== prepId) return;
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
       }
     },
@@ -155,7 +175,9 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
           { method: "POST", locale, body: { kind, text, provenance } }
         )
       );
-      if (done) await loadPrep(openPrep.id);
+      if (!done) return false;
+      await loadPrep(openPrep.id);
+      return true;
     },
     [caseId, loadPrep, locale, openPrep, run]
   );
@@ -231,15 +253,36 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
             <button className="cw-button" type="button" onClick={() => loadPrep(prep.id)}>
               {t("casework.prep.open", "")}
             </button>
-            <button className="cw-button" type="button" onClick={() => deletePrep(prep.id)} disabled={disabled}>
-              {t("casework.prep.delete", "")}
-            </button>
+            {/* Kustutus on pöördumatu ja teda ei auditeerita — küsitakse üle. */}
+            <ConfirmButton
+              label={t("casework.prep.delete", "")}
+              confirmLabel={t("casework.prep.confirm_delete", "")}
+              cancelLabel={t("casework.prep.cancel", "")}
+              disabled={disabled}
+              onConfirm={() => deletePrep(prep.id)}
+            />
           </li>
         ))}
       </ul>
 
+      {prepsCursor ? (
+        <button
+          className="cw-button"
+          type="button"
+          disabled={busy}
+          onClick={() => run(() => loadPreps({ cursor: prepsCursor, append: true }))}
+        >
+          {t("casework.prep.load_more", "")}
+        </button>
+      ) : null}
+
       {openPrep ? (
+        /* `key` sunnib React'i puu maha võtma, kui avatakse teine ettevalmistus.
+           Ilma temata elab väljade ja küsimusevormi kohalik olek üle ning
+           märkmes A pooleli jäänud teksti saaks salvestada B alla. */
         <PrepEditor
+          key={openPrep.id}
+          locale={locale}
           prep={openPrep}
           disabled={disabled}
           t={t}
@@ -257,6 +300,7 @@ export default function MeetingPrepSection({ caseId, writeDisabled, onChanged })
 
 function PrepEditor({
   prep,
+  locale,
   disabled,
   t,
   onSaveField,
@@ -270,7 +314,13 @@ function PrepEditor({
 
   return (
     <div className="cw-section">
-      <h3 className="cw-section-title">{t("casework.prep.editor_title", "")}</h3>
+      {/* Avatud ettevalmistuse identiteet on nähtav — juhtumil on neid mitu. */}
+      <h3 className="cw-section-title">
+        {t("casework.prep.open_prep", "")}:{" "}
+        {prep.meetingAt
+          ? new Date(prep.meetingAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })
+          : t("casework.prep.no_meeting_time", "")}
+      </h3>
       <button className="cw-button" type="button" onClick={onClose}>
         {t("casework.prep.close", "")}
       </button>
@@ -311,9 +361,13 @@ function PrepEditor({
                 onConfirm={(to) => onConfirmQuestion(question.id, question.provenance, to)}
               />
             ) : null}
-            <button className="cw-button" type="button" onClick={() => onRemoveQuestion(question.id)} disabled={disabled}>
-              {t("casework.prep.remove", "")}
-            </button>
+            <ConfirmButton
+              label={t("casework.prep.remove", "")}
+              confirmLabel={t("casework.prep.confirm_remove", "")}
+              cancelLabel={t("casework.prep.cancel", "")}
+              disabled={disabled}
+              onConfirm={() => onRemoveQuestion(question.id)}
+            />
           </li>
         ))}
       </ul>
@@ -323,7 +377,9 @@ function PrepEditor({
 
 function PrepField({ fieldKey, row, disabled, t, onSave, onConfirm }) {
   const [text, setText] = useState(row?.text || "");
-  const [provenance, setProvenance] = useState(row?.provenance || PROVENANCE.TOOTAJA_TAHELEPANEK);
+  /* Uuel real EI OLE vaikimisi päritolu (L4). Olemasoleval real ei ole see väli
+     üldse nähtav — märgist muudab ainult kinnitamine. */
+  const [provenance, setProvenance] = useState(row?.provenance || "");
 
   useEffect(() => {
     setText(row?.text || "");
@@ -361,8 +417,10 @@ function PrepField({ fieldKey, row, disabled, t, onSave, onConfirm }) {
           value={provenance}
           onChange={(event) => setProvenance(event.target.value)}
           disabled={disabled}
-          aria-label={t("casework.page.provenance_placeholder", "")}
+          required
+          aria-label={t("casework.prep.provenance_required", "")}
         >
+          <option value="">{t("casework.prep.provenance_required", "")}</option>
           {PROVENANCES.map((value) => (
             <option key={value} value={value}>
               {t(provenanceLabelKey(value) || "", "")}
@@ -375,7 +433,7 @@ function PrepField({ fieldKey, row, disabled, t, onSave, onConfirm }) {
         className="cw-button"
         type="button"
         onClick={() => onSave(fieldKey, text, row?.provenance || provenance)}
-        disabled={disabled || !text.trim()}
+        disabled={disabled || !text.trim() || (!row && !provenance)}
       >
         {t("casework.prep.save_field", "")}
       </button>
@@ -386,15 +444,22 @@ function PrepField({ fieldKey, row, disabled, t, onSave, onConfirm }) {
 function QuestionForm({ disabled, t, onAdd }) {
   const [kind, setKind] = useState(QUESTION_KINDS[0]);
   const [text, setText] = useState("");
-  const [provenance, setProvenance] = useState(PROVENANCE.TOOTAJA_TAHELEPANEK);
+  /* PÄRITOLUL EI OLE VAIKEVÄÄRTUST (L4): märgis, mille inimene ei valinud, ei
+     ole märgis. Server keeldub tühjast; vorm ei lase enne saata. */
+  const [provenance, setProvenance] = useState("");
 
   return (
     <form
       className="cw-form cw-form--inline"
       onSubmit={async (event) => {
         event.preventDefault();
-        await onAdd(kind, text, provenance);
-        setText("");
+        const saved = await onAdd(kind, text, provenance);
+        /* Väli tühjendatakse AINULT õnnestumisel — ebaõnnestunud salvestus ei
+           tohi kasutaja teksti ära kustutada. */
+        if (saved) {
+          setText("");
+          setProvenance("");
+        }
       }}
     >
       <select className="cw-input" value={kind} onChange={(event) => setKind(event.target.value)} disabled={disabled} aria-label={t("casework.prep.questions_title", "")}>
@@ -418,15 +483,17 @@ function QuestionForm({ disabled, t, onAdd }) {
         value={provenance}
         onChange={(event) => setProvenance(event.target.value)}
         disabled={disabled}
-        aria-label={t("casework.page.provenance_placeholder", "")}
+        required
+        aria-label={t("casework.prep.provenance_required", "")}
       >
+        <option value="">{t("casework.prep.provenance_required", "")}</option>
         {PROVENANCES.map((value) => (
           <option key={value} value={value}>
             {t(provenanceLabelKey(value) || "", "")}
           </option>
         ))}
       </select>
-      <button className="cw-button" type="submit" disabled={disabled || !text.trim()}>
+      <button className="cw-button" type="submit" disabled={disabled || !text.trim() || !provenance}>
         {t("casework.prep.add_question", "")}
       </button>
     </form>

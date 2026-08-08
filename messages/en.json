@@ -792,6 +792,11 @@
       "untitled": "Untitled case"
     },
     "note": {
+      "load_more": "Show more",
+      "provenance_required": "Choose the provenance",
+      "confirm_remove_entry": "Confirm: remove entry",
+      "cancel": "Cancel",
+      "open_note": "Open note",
       "section_title": "Meeting note",
       "section_hint": "The eight layers are not merged: the client's own words, the facts and your interpretation are different things. Each line also carries its provenance.",
       "meeting_at": "Meeting time",
@@ -816,6 +821,12 @@
       "layer_PRIVAATNE_REFLEKSIOON": "Private professional reflection"
     },
     "prep": {
+      "load_more": "Show more",
+      "provenance_required": "Choose the provenance",
+      "confirm_delete": "Confirm: delete preparation",
+      "confirm_remove": "Confirm: remove",
+      "cancel": "Cancel",
+      "open_prep": "Open preparation",
       "section_title": "Meeting preparation",
       "section_hint": "Every field and every question carries its own provenance. An AI-drafted marker cannot be removed by editing the text — confirming is a separate act.",
       "meeting_at": "Meeting time",
@@ -941,9 +952,12 @@
       "note_text_too_long": "The entry text is too long.",
       "note_layer_unknown": "Unknown note layer.",
       "note_private_layer_locked": "The private reflection layer cannot be relabelled. If this belongs in STAR, write it into the STAR2-transferable layer.",
+      "limit_invalid": "The list limit is not valid.",
       "unexpected": "Something went wrong."
     },
     "page": {
+      "confirm_erase_client_reference": "Confirm: erase the client reference permanently",
+      "cancel": "Cancel",
       "title": "My cases",
       "subtitle": "Your own work organisation. This is not a register or an official file — the official record stays in STAR.",
       "empty": "No cases yet.",

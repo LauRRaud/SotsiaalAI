@@ -196,6 +196,12 @@ test("kliendiviite kustutamine jääb alles ka kirjutuskaitstud juhtumis (L17)",
   /* Kõik ülejäänud kirjutusnupud on `writeDisabled` taga (= ka retention-seis),
      kustutus AINULT `busy` taga: andmesubjekti õigus ei tohi jääda
      retention-oleku taha kinni. */
-  assert.match(detail, /disabled=\{busy\} onClick=\{eraseClientReference\}/);
+  /* Kuju muutus 08.08 (omaniku seitsmes audit): kustutus käib nüüd
+     kaheastmelise `ConfirmButton`-i kaudu, sest ta on selle vaate kõige
+     pöördumatum tegu. INVARIANT ON SAMA ja seda kontrollitakse edasi: takistus
+     on AINULT `busy`, mitte `writeDisabled` — muidu jääks andmesubjekti õigus
+     retention-oleku taha kinni. */
+  assert.match(detail, /<ConfirmButton[\s\S]{0,400}disabled=\{busy\}[\s\S]{0,120}onConfirm=\{eraseClientReference\}/);
+  assert.doesNotMatch(detail, /disabled=\{writeDisabled\}[\s\S]{0,120}onConfirm=\{eraseClientReference\}/);
   assert.match(detail, /const writeDisabled = busy \|\| !isActive;/);
 });

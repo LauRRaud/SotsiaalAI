@@ -29,6 +29,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
+import ConfirmButton from "./ConfirmButton";
 import MeetingNoteSection from "./MeetingNoteSection";
 import MeetingPrepSection from "./MeetingPrepSection";
 import {
@@ -439,7 +440,15 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         )}
 
         {itemsCursor ? (
-          <button className="cw-button" type="button" onClick={() => loadItems({ cursor: itemsCursor, append: true })}>
+          /* `run()` SEES ja `busy` taga: väljaspool teda ei lukustunud nupp,
+             sama cursor sai kaks korda lisanduda ja tõrge jäi hoopis
+             käsitlemata — kasutaja vajutas ja ei juhtunud midagi. */
+          <button
+            className="cw-button"
+            type="button"
+            disabled={busy}
+            onClick={() => run(() => loadItems({ cursor: itemsCursor, append: true }))}
+          >
             {t("casework.page.load_more", "")}
           </button>
         ) : null}
@@ -537,7 +546,8 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
           <button
             className="cw-button"
             type="button"
-            onClick={() => loadMissingInfo({ cursor: missingCursor, append: true })}
+            disabled={busy}
+            onClick={() => run(() => loadMissingInfo({ cursor: missingCursor, append: true }))}
           >
             {t("casework.page.load_more", "")}
           </button>
@@ -658,9 +668,18 @@ export default function CaseWorkDetail({ caseId, onBack, onChanged }) {
         ) : (
           /* NUPP ON ALLES KA `READ_ONLY` JA `ARCHIVED` JUHTUMIS (L17) — ainus
              koht selles vaates, kus `busy` on ainus takistus. */
-          <button className="cw-button cw-button--danger" type="button" disabled={busy} onClick={eraseClientReference}>
-            {t("casework.page.erase_client_reference", "")}
-          </button>
+          /* KÕIGE PÖÖRDUMATUM TEGU SELLES VAATES: viide ei tule tagasi ka
+             konto kustutamise rajalt ja juhtumi nimeks jääb jäädavalt
+             „Kustutatud kliendiviide". Üks vajutus oli selle jaoks liiga vähe.
+             `busy` jääb ainsaks lisatakistuseks — L17 järgi ei tohi see nupp
+             sõltuda retention-olekust. */
+          <ConfirmButton
+            label={t("casework.page.erase_client_reference", "")}
+            confirmLabel={t("casework.page.confirm_erase_client_reference", "")}
+            cancelLabel={t("casework.page.cancel", "")}
+            disabled={busy}
+            onConfirm={eraseClientReference}
+          />
         )}
       </section>
     </>

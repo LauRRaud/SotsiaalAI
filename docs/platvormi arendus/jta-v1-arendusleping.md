@@ -1150,6 +1150,48 @@ serverist. **Kontroll: kas vastuse `content-type` on `text/html` või `applicati
 Serveri restart lahendas; koodis viga ei olnud. Toodangu-build nägi kõiki nelja marsruuti kogu
 aeg.
 
+#### E3–E4 seitsmes audit (omanik 08.08) — seitse leidu PINNAL, mitte teenuskihis
+
+**Kandev õppetund: kõik senised väravad olid rohelised.** Teenuskihi sviit, marsruudileping ja
+IDOR-sond ei näinud ühtegi neist, sest nad kõik elasid kasutajaliideses — ja pind võib kõiki
+teenuskihi garantiisid austada ning ikkagi kaotada kasutaja teksti või salvestada ta vale
+objekti alla. **Neli olid P1 andmeterviklusega.**
+
+| # | Leid | Parandus |
+|---|---|---|
+| 1 | **Vormi olek kandus teise objekti.** `NoteEditor`/`PrepEditor` jäid märkme vahetamisel samadeks komponentideks: märkmes A pooleli jäänud teksti sai salvestada **B alla**. Lisaks võisid kaks `load…()` päringut lõppeda vales järjekorras | `key={openNote.id}` võtab puu maha · `useRef` valvur viskab aegunud vastuse ära · avatud objekti **identiteet on ekraanil** |
+| 2 | **Päritolu oli eelvalitud** (`TOOTAJA_TAHELEPANEK`) — rea sai lisada märgist **teadlikult valimata**, mis on L4 otsene rikkumine. Süvendas see, et märkmel ei ole parandusrada | vaikeväärtus kadus · valik on `required` koos „Vali päritolu" reaga · nupp on kinni, kuni valik puudub |
+| 3 | **Tõrge kustutas sisestuse.** `setText("")` käis tingimusteta pärast `await`-i; `run()` neelab vea ja tagastab `null`, seega töö kadus ja põhjust ei olnud näha | lisamisoperatsioon **tagastab edu** ja väli tühjeneb ainult siis |
+| 4 | **Vanemad kui 25 kirjet olid liidesest kättesaamatud** — teenuskiht toetas lehekülgi, pind viskas cursor'i ära | cursor hoitakse, „Näita rohkem" lisab lehe olemasolevale |
+| 5 | **Pöördumatud kustutused ühe vajutusega** | uus `ConfirmButton` (kaheastmeline, i18n-tekstiga) märkme kirjel, ettevalmistusel, küsimusel ja **kliendiviitel** |
+| 6 | **Murdarvuline `limit` andis Prisma vea, mitte 400.** `?limit=1.5` → `take = 2.5` → päris Prisma keeldub; fake-prisma ei valideeri ühtegi argumenti, seega sviit oli roheline | uus `lib/casework/paging.js` · **seitse koopiat ühest reast** asendati ühe normaliseerijaga viies moodulis |
+| 7 | **Detailvaate lehevahetus `run()`-ist väljas** — nupp ei lukustunud, sama cursor sai kaks korda lisanduda, tõrge jäi käsitlemata | `run()` sees ja `disabled={busy}` |
+
+**Miks `ConfirmButton`, mitte `window.confirm` ega tagasivõtuaken.** Brauseri dialoog ei ole
+tõlgitav ega testitav. Tagasivõtuaken lubaks midagi, mida meil **ei ole**: kliendiviide ei tule
+tagasi ka konto kustutamise rajalt ja märkme kirjet ei auditeerita. **Lubadus, mille taga ei ole
+mehhanismi, on halvem kui küsimus.** Teine aste nullitakse, kui nupp keelatakse — muidu jääks
+„kinnita" ripakile.
+
+**JUHTUM-V1 L17 test kohandati INVARIANDILE, mitte kujule.** Vana test nõudis
+`disabled={busy} onClick={eraseClientReference}`. Kustutus käib nüüd kinnitusnupu kaudu, aga
+invariant on sama ja teda kontrollitakse edasi: takistus on **ainult `busy`**, mitte
+`writeDisabled` — muidu jääks andmesubjekti õigus retention-oleku taha kinni.
+
+**Mõõdetud brauseris ja päris andmebaasi vastu:** märkme vahetus **tühjendas** poolikuvormi
+(„POOLIK TEKST MÄRKMES A" → `""`) ja pealkiri vahetus · päritolu vaikeväärtus on `""`, „Lisa
+kirje" on kinni kuni valikuni · sunnitud `fetch`-tõrge jättis **teksti JA päritolu alles** koos
+veateatega · kinnitusnupp: relvastus → „Loobu" → rida alles → relvastus → „Kinnita" → rida
+kustutatud · `?limit=1.5` **400 `limit_invalid`** (varem Prisma 500), `abc` ja `0` samuti 400,
+`25` ja puuduv piir 200.
+
+**Väravad:** `npm test` **3031/3031** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK · eslint
+puhas · `npm run build` OK.
+
+**Aus piirang:** „Näita rohkem" nupp on tõendatud **kuju-testiga ja teenuskihi
+pagineerimistestiga**, mitte brauseris — 26 märkme loomine ei olnud selle ringi väärt. Cursor'i
+käitumise tõendab `listNotes`/`listMeetingPreps` sviit.
+
 ---
 
 ### E5 — STAR2 mustandi ahel *(migratsioon 3/4 — CASEWORK-P2 tuum)*

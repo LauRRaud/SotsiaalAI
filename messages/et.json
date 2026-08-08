@@ -792,6 +792,11 @@
       "untitled": "Nimetu juhtum"
     },
     "note": {
+      "load_more": "Näita rohkem",
+      "provenance_required": "Vali päritolu",
+      "confirm_remove_entry": "Kinnita: eemalda kirje",
+      "cancel": "Loobu",
+      "open_note": "Avatud märge",
       "section_title": "Kohtumise märge",
       "section_hint": "Kaheksa kihti ei valata kokku: kliendi enda sõnad, faktid ja sinu tõlgendus on eri asjad. Iga rida kannab lisaks päritolu.",
       "meeting_at": "Kohtumise aeg",
@@ -816,6 +821,12 @@
       "layer_PRIVAATNE_REFLEKSIOON": "Privaatne professionaalne refleksioon"
     },
     "prep": {
+      "load_more": "Näita rohkem",
+      "provenance_required": "Vali päritolu",
+      "confirm_delete": "Kinnita: kustuta ettevalmistus",
+      "confirm_remove": "Kinnita: eemalda",
+      "cancel": "Loobu",
+      "open_prep": "Avatud ettevalmistus",
       "section_title": "Kohtumise ettevalmistus",
       "section_hint": "Iga väli ja iga küsimus kannab oma päritolu. AI koostatud osa märgist ei saa maha võtta teksti parandamisega — kinnitamine on eraldi tegu.",
       "meeting_at": "Kohtumise aeg",
@@ -941,9 +952,12 @@
       "note_text_too_long": "Kirje tekst on liiga pikk.",
       "note_layer_unknown": "Tundmatu märkme kiht.",
       "note_private_layer_locked": "Privaatse refleksiooni kihti ei saa ümber nimetada. Kui see info peab STAR-i jõudma, kirjuta ta STAR2-sse kantava kihti.",
+      "limit_invalid": "Loendipiir ei ole kehtiv.",
       "unexpected": "Midagi läks valesti."
     },
     "page": {
+      "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
+      "cancel": "Loobu",
       "title": "Minu juhtumid",
       "subtitle": "Sinu enda töökorraldus. See ei ole register ega ametlik toimik — ametlik kandja jääb STAR-i.",
       "empty": "Ühtegi juhtumit ei ole veel.",
