@@ -6393,6 +6393,7 @@ model CaseWorkAssist {
   items          CaseWorkItem[]
   missingInfo    CaseWorkMissingInfo[]
   meetingPreps   CaseWorkMeetingPrep[]
+  meetingNotes   CaseWorkMeetingNote[]
   retentionAudit CaseWorkRetentionAudit[]
   erasureAudit   CaseWorkClientErasureAudit[]
 
@@ -6490,6 +6491,7 @@ model CaseWorkMeetingPrep {
   caseWorkAssist CaseWorkAssist             @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
   fields         CaseWorkMeetingPrepField[]
   questions      CaseWorkQuestion[]
+  meetingNotes   CaseWorkMeetingNote[]
 
   @@index([caseWorkAssistId, meetingAt])
   @@index([caseWorkAssistId, createdAt])
@@ -6552,6 +6554,76 @@ model CaseWorkQuestion {
 
   @@index([meetingPrepId, kind, ordinal])
   @@index([meetingPrepId, ordinal])
+}
+
+/// JTA-V1 (E4) — ühe kohtumise märge.
+///
+/// TEKSTITA KONTEINER, sama muster mis ettevalmistusel: kogu sisu elab
+/// kirjetes, sest just seal on igal real oma KIHT ja oma PÄRITOLU (L4, L5).
+///
+/// SEOS ETTEVALMISTUSEGA ON VALIKULINE ja `SetNull`, mitte `Cascade`:
+/// ettevalmistus on tulevikuplaan ja teda TOHIB kustutada (E3), aga märge on
+/// kohtumise JÄLG — ta ei tohi kaduda koos plaaniga, mille põhjal kohtumine
+/// toimus. Kustunud plaan jätab märkme alles ilma viiteta.
+///
+/// `DELETE` MÄRKMELE PUUDUB TEADLIKULT (E3-l on). Ettevalmistus kirjeldab
+/// kohtumist, mida veel ei olnud; märge kirjeldab seda, mis juba juhtus. Üksik
+/// kirje on eemaldatav, märge tervikuna mitte — juhtumi kustutus viib ta
+/// kaskaadis.
+model CaseWorkMeetingNote {
+  id               String @id @default(cuid())
+  caseWorkAssistId String
+  meetingPrepId    String?
+
+  /// Millal kohtumine toimus. Määratakse loomisel; märkme konteineril ei ole
+  /// uuendusoperatsiooni, sest muutuv sisu elab kirjetes.
+  meetingAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  caseWorkAssist CaseWorkAssist       @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+  meetingPrep    CaseWorkMeetingPrep? @relation(fields: [meetingPrepId], references: [id], onDelete: SetNull)
+  entries        CaseWorkMeetingNoteEntry[]
+
+  @@index([caseWorkAssistId, meetingAt])
+  @@index([caseWorkAssistId, createdAt])
+  @@index([meetingPrepId])
+}
+
+/// JTA-V1 (E4) — märkme üks rida ühes kihist.
+///
+/// KAHEKSA KIHTI EI VALATA KOKKU (L5, ptk 4.4): kliendi enda vaade · faktilised
+/// asjaolud · töötaja tähelepanek · kontrollimata info · kokkulepped · järgmised
+/// sammud · STAR2-sse kantav info · privaatne professionaalne refleksioon.
+///
+/// `layer` on TEKST + validaator, MITTE DB-enum, ja see on lepingus nimeliselt
+/// lukus (L5) — sama põhjendus mis `provenance`-il: kaheksa kihti on ptk 4.4
+/// valdkonnasõnastik, mitte selle tabeli vorminupud. Erinevus `fieldKey`-st ja
+/// `kind`-ist (E3), mis ON enum'id: nemad kirjeldavad ÜHE vormi kuju.
+///
+/// `PRIVAATNE_REFLEKSIOON` EI LÄHE STAR2-sse KUNAGI. E6 eksport ei tunne seda
+/// väärtust; lisaks keelab teenuskiht kihi muutmise sellesse ja sellest välja,
+/// et lubadust ei saaks ümber nimetamisega tühistada.
+model CaseWorkMeetingNoteEntry {
+  id            String @id @default(cuid())
+  meetingNoteId String
+
+  layer String
+  text  String @db.Text
+
+  /// L4: `NOT NULL`, sama reegel mis ettevalmistuse väljal ja küsimusel.
+  provenance String
+
+  ordinal Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  meetingNote CaseWorkMeetingNote @relation(fields: [meetingNoteId], references: [id], onDelete: Cascade)
+
+  @@index([meetingNoteId, layer, ordinal])
+  @@index([meetingNoteId, ordinal])
 }
 
 /* AUDITID (L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.

@@ -1,7 +1,7 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **E1–E3 TEHTUD** (E3 08.08, päris andmebaasi ja kahe päris sessiooni vastu tõendatud).
-**E4–E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
+**Olek:** **E1–E4 TEHTUD** (E3–E4 08.08, päris andmebaasi ja kahe päris sessiooni vastu tõendatud).
+**E5 `READY_TO_ASSIGN` — roheline tuli omaniku viiendalt auditilt 08.08 (v6).**
 **E6–E7 `READY_TO_ASSIGN`, aga nende lõplik lukk ootab O-JTA-5 vastust** (vt „Lahtine otsus").
 **23 lukustatud otsust, 8 etappi, 4 migratsiooni.**
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
@@ -1069,13 +1069,13 @@ küsimuse read koos liigi- ja päritolusildiga · **`<b>` küsimuse tekstis kuva
 
 ---
 
-### E4 — Kohtumise märge kaheksa kihiga *(migratsioon 2/4)*
+### E4 — Kohtumise märge kaheksa kihiga *(migratsioon 2/4)* — **TEHTUD 08.08**
 
 | | |
 |---|---|
 | **Teenus** | **uus** `lib/casework/caseWorkMeetingNote.js` — `createNote`, `getNote`, `listNotes`, `addEntry`, `updateEntry`, `removeEntry` |
 | **API** | **uus** `.../[caseId]/meeting-notes/route.js` · `.../[noteId]/route.js` · `.../[noteId]/entries/route.js` · `.../entries/[entryId]/route.js` |
-| **Pind** | `app/juhtumid/[caseId]/page.jsx` — märkme sektsioon, kaheksa kihti eraldi |
+| **Pind** | `components/casework/MeetingNoteSection.jsx` juhtumi detailvaates — **kaheksa eraldi plokki**, mitte üks loend siltidega |
 | **Värav** | `guardCaseWorkRequest()`, scope `casework:meeting-note` |
 | **Valideerimine** | `layer` ∈ 8 väärtusest · `provenance` ∈ 8 väärtusest · **mõlemad kohustuslikud** |
 | **Testid** | `tests/casework/meetingNote.test.js` + marsruuditest |
@@ -1092,6 +1092,63 @@ salvestu** · `PRIVAATNE_REFLEKSIOON` kirje **ei esine** üheski ekspordikujus (
 teenuskihi tasemel, mitte UI-s) · kirjutuskaitse pärib juhtumilt · võõra märkme `entryId` → 404.
 
 **Piir:** ei loo `PracticeReflection` rida ega selle eelkäijat.
+
+#### E4 teostus — üks lisatud garantii ja üks lepingu täpsustus
+
+**1. Kihi ümbernimetamine `PRIVAATNE_REFLEKSIOON`-i ja sellest välja on KEELATUD (409).**
+Leping ütleb, et privaatne refleksioon ei lähe STAR2-sse kunagi, ja paneb kontrolli **E6
+teenuskihi tasemele**. Ehitades tuli välja, et ilma kihikeeluta on see kontroll **teatrike**:
+kirje liigutatakse `STAR2_KANTAV`-isse ja läheb välja, ilma et kuskil tekiks jälge või
+veateadet. Keeld on **kahesuunaline** — vastasel juhul saaks juba jagatud rea „tagasi
+privaatseks" nimetada ja lugeja ajalugu läheks segi. Teksti ja järjekorda tohib muuta; keeld
+käib **kihi**, mitte kirje kohta. Kui töötaja tahab midagi päriselt STAR-i, kirjutab ta selle
+`STAR2_KANTAV` kihti — see on autorlus, mitte silt ümber.
+
+Lisaks on ekspordirajal **oma lugeja** `listTransferableEntries()`, kus kihi väärtus on
+`WHERE`-is **konstandina, mitte parameetrina**. Üldine „anna kirjed" + kutsuja poolel
+filtreerimine tähendaks, et filter võib ühes kutsujas maha jääda.
+
+**2. `confirm-provenance` rada märkmel EI OLE ja see on lepingu valik, mitte unustus.** E3
+annab ettevalmistusele kinnitusraja; E4 API-loend seda ei sisalda. Tagajärg: `AI_MUSTAND`
+märgisega märkmekirjet ei saa V1-s inimese märgiseks kinnitada — teda saab eemaldada ja uuesti
+kirjutada. **See on lahtine ots, mitte viga**, ja ta väärib omaniku otsust E5/E6 luku ajal.
+
+**3. Pind on olemasolevas detailvaates** — sama parandus mis E3-l, samal põhjusel (JUHTUM-V1
+valis teadlikult ühe marsruudi).
+
+**Kaheksa kihti on pinnal KAHEKSA ERALDI PLOKKI.** See ei ole kujundusvalik: kui kliendi enda
+sõnad ja töötaja tõlgendus seisavad ühes voos, loeb inimene neid ühe tekstina ka siis, kui
+igal real on silt küljes. Eraldi plokk sunnib **kirjutamise hetkel** valima, kuhu rida käib —
+ja just see valik ongi kihilise märkme mõte.
+
+**Mõõdetud päris andmebaasi ja kahe päris sessiooni vastu** (värav ajutiselt sees, andmed
+sünteetilised ja pärast kustutatud): märge loodud koos seosega ettevalmistusele · **võõra
+juhtumi ettevalmistuse külge sidumine → 404** · kõik kaheksa kihti salvestusid · **privaatse
+kihi ümbernimetamine mõlemas suunas → 409** · **teksti uuendus koos teise `provenance`
+väärtusega EI MUUTNUD märgist** · tavaline kihivahetus (`KONTROLLIMATA → FAKTID`) lubatud ·
+tundmatu kiht **400** · päritoluta kirje **400** · märkme `DELETE` **405** (marsruuti ei ole) ·
+teine töötaja sai **kõigilt kuuelt rajalt 404**, sh kihikeeldu rikkuva kehaga.
+
+**Kaks FK-semantikat on TÕENDATUD, mitte eeldatud.** Ettevalmistuse kustutus jättis märkme
+alles (`meetingPrepId → null`, **kõik 8 kirjet puutumata**) — see on `SetNull` mõte: plaani
+kustutus ei tohi kaasa võtta tõendit selle kohta, mis päriselt räägiti. Juhtumi kustutus viis
+märkmed ja kirjed (2/9 → 0/0).
+
+**Brauseris läbi käidud:** kaheksa kihiplokki õiges järjekorras kolmes keeles · `<b>` kirje
+tekstis kuvatud **tekstina** (0 loodud elementi) · päritolusilt igal real · privaatse kihi
+selgitus kohal.
+
+**Väravad:** `npm test` **3019/3019** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**131 migratsiooni**) · eslint puhas · `npm run build` OK ·
+`prisma generate` tehtud enne päris päringut.
+
+**Dev-serveri lõks, mis maksis ühe silumisringi:** uus SÜGAVALT PESASTATUD marsruudikaust
+(`meeting-notes/[noteId]/entries/…`) ei jõudnud juba töötava dev-serveri marsruudiregistrisse.
+Vastuseks tuli Next-i **HTML 404**, mitte teenuskihi JSON — ja see näeb välja täpselt nagu
+omanikupiiri viga. Ülemine tase (`meeting-notes/route.js`) töötas, seega asi ei paistnud
+serverist. **Kontroll: kas vastuse `content-type` on `text/html` või `application/json`.**
+Serveri restart lahendas; koodis viga ei olnud. Toodangu-build nägi kõiki nelja marsruuti kogu
+aeg.
 
 ---
 

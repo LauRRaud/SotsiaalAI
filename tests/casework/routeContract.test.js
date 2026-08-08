@@ -34,7 +34,12 @@ const ROUTES = [
   "cases/[caseId]/meeting-preps/[prepId]/fields/[fieldKey]/confirm-provenance/route.js",
   "cases/[caseId]/meeting-preps/[prepId]/questions/route.js",
   "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/route.js",
-  "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/confirm-provenance/route.js"
+  "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/confirm-provenance/route.js",
+  /* JTA-V1 E4 — kohtumise märge, neli marsruuti. */
+  "cases/[caseId]/meeting-notes/route.js",
+  "cases/[caseId]/meeting-notes/[noteId]/route.js",
+  "cases/[caseId]/meeting-notes/[noteId]/entries/route.js",
+  "cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js"
 ];
 
 async function readRoute(name) {
@@ -199,4 +204,40 @@ test("E3 marsruudid kannavad BOTH juhtumi ja prep-i ID-d (ristkontroll)", async 
     assert.match(source, /caseWorkAssistId: caseId/, `${name}: juhtumi ID ei jõua teenuskihti`);
     assert.match(source, /meetingPrepId: prepId/, `${name}: prep-i ID ei jõua teenuskihti`);
   }
+});
+
+test("E4 märkmel EI OLE kustutus- ega uuendusrada (märge on kohtumise jälg)", async () => {
+  /* Ettevalmistus on tulevikuplaan ja teda tohib kustutada; märge kirjeldab
+     seda, mis juba juhtus. Kõige lihtsam koht, kust kustutus märkamatult
+     tekiks, on märkme enda marsruut — sinna kirjutatakse `DELETE` „sümmeetria
+     pärast", sest kõrvalolev prep-marsruut kannab teda. */
+  const note = await readRoute("cases/[caseId]/meeting-notes/[noteId]/route.js");
+  assert.doesNotMatch(note, /export async function DELETE/, "märkmel on kustutusrada");
+  assert.doesNotMatch(note, /export async function PATCH/, "märkme konteineril on uuendusrada");
+
+  const service = await readLib("caseWorkMeetingNote.js");
+  assert.doesNotMatch(service, /caseWorkMeetingNote\.delete/, "teenuskiht: märkme kustutus");
+});
+
+test("E4 kirje PATCH ei edasta päritolu ja kannab mõlemat ID-d", async () => {
+  const entry = await readRoute("cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js");
+  /* L4: märgis ei tohi kaduda teksti parandamise kõrvalmõjuna. */
+  assert.doesNotMatch(entry, /provenance:\s*body/, "kirje PATCH edastab päritolu");
+
+  const NESTED = ROUTES.filter((name) => name.includes("meeting-notes/[noteId]"));
+  assert.ok(NESTED.length >= 3, "pesastatud märkme-marsruute ei leitud");
+  for (const name of NESTED) {
+    const source = await readRoute(name);
+    assert.match(source, /caseWorkAssistId: caseId/, `${name}: juhtumi ID ei jõua teenuskihti`);
+    assert.match(source, /meetingNoteId: noteId/, `${name}: märkme ID ei jõua teenuskihti`);
+  }
+});
+
+test("E4 kirje lisamine nõuab NII kihti kui päritolu", async () => {
+  /* Vaikeväärtus tähendaks, et märgistamata rida saab vaikselt tähendada
+     „faktiline asjaolu, töötaja kirjutatud" — ja just see vahe on kogu kihilise
+     märkme mõte. */
+  const entries = await readRoute("cases/[caseId]/meeting-notes/[noteId]/entries/route.js");
+  assert.match(entries, /layer: body\?\.layer \?\? null/, "kiht ei tule kehast või tal on vaikeväärtus");
+  assert.match(entries, /provenance: body\?\.provenance \?\? null/, "päritolu ei tule kehast");
 });

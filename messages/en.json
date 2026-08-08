@@ -791,6 +791,30 @@
       "erased_client": "Erased client reference",
       "untitled": "Untitled case"
     },
+    "note": {
+      "section_title": "Meeting note",
+      "section_hint": "The eight layers are not merged: the client's own words, the facts and your interpretation are different things. Each line also carries its provenance.",
+      "meeting_at": "Meeting time",
+      "create": "Start a note",
+      "empty": "There are no notes.",
+      "no_meeting_time": "Time not recorded",
+      "open": "Open",
+      "close": "Close",
+      "entries_empty": "This layer has no entries.",
+      "entry_text": "Entry text",
+      "add_entry": "Add entry",
+      "remove_entry": "Remove",
+      "linked_prep": "Linked to a preparation",
+      "private_locked_hint": "Entries in this layer cannot be moved to another layer — that is a promise, not a restriction.",
+      "layer_KLIENDI_VAADE": "The client's own view",
+      "layer_FAKTID": "Factual circumstances",
+      "layer_TOOTAJA_TAHELEPANEK": "Worker's observation",
+      "layer_KONTROLLIMATA": "Unverified information",
+      "layer_KOKKULEPPED": "Agreements",
+      "layer_JARGMISED_SAMMUD": "Next steps",
+      "layer_STAR2_KANTAV": "Information transferable to STAR2",
+      "layer_PRIVAATNE_REFLEKSIOON": "Private professional reflection"
+    },
     "prep": {
       "section_title": "Meeting preparation",
       "section_hint": "Every field and every question carries its own provenance. An AI-drafted marker cannot be removed by editing the text — confirming is a separate act.",
@@ -913,6 +937,10 @@
       "provenance_conflict": "The provenance marker changed in the meantime. Refresh and try again.",
       "provenance_confirm_source": "Only an AI-drafted entry can be confirmed.",
       "provenance_confirm_target": "A human-confirmed marker cannot be turned back into a machine marker.",
+      "note_text_required": "Entry text is required.",
+      "note_text_too_long": "The entry text is too long.",
+      "note_layer_unknown": "Unknown note layer.",
+      "note_private_layer_locked": "The private reflection layer cannot be relabelled. If this belongs in STAR, write it into the STAR2-transferable layer.",
       "unexpected": "Something went wrong."
     },
     "page": {

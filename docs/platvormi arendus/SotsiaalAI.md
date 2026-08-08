@@ -297,7 +297,48 @@ kinnitada". Järjekord on nüüd `rida olemas? → suund? → tingimuslik update
 **Tõendatud päris andmebaasi ja kahe päris sessiooni vastu**, sh **kaskaad**: juhtumi kustutus
 viis prep-i, välja ja küsimuse kaasa (1/1/1 → 0/0/0), kontrollitud loendusega.
 
-**Järgmine: E4** — kohtumise märge kaheksa kihiga, migratsioon 2/4.
+### E4 tehtud (08.08): kohtumise märge kaheksa kihiga
+
+**Kohtumise järel kirjutab töötaja märkme, milles kaheksa kihti ei ole kokku valatud:**
+kliendi enda vaade · faktilised asjaolud · töötaja tähelepanek · kontrollimata info ·
+kokkulepped · järgmised sammud · STAR2-sse kantav info · privaatne professionaalne
+refleksioon. Iga rida kannab lisaks **oma päritolu**. Märkme saab siduda kohtumise
+ettevalmistusega, aga ei pea.
+
+**Pinnal on kaheksa eraldi plokki, mitte üks loend siltidega** — ja see ei ole
+kujundusvalik. Kui kliendi enda sõnad ja töötaja tõlgendus seisavad ühes voos, loeb inimene
+neid ühe tekstina ka siis, kui igal real on silt küljes. Eraldi plokk sunnib **kirjutamise
+hetkel** valima, kuhu rida käib.
+
+**Märget ei kustutata.** Ettevalmistus on tulevikuplaan ja teda tohib kustutada; märge
+kirjeldab seda, mis juba juhtus. Üksik kirje on eemaldatav, märge tervikuna mitte.
+
+**Privaatne refleksioon on lukus mõlemas suunas.** Leping lubab, et see kiht ei lähe STAR2-sse
+kunagi, ja paneb kontrolli E6-sse. Ehitades tuli välja, et **ilma kihikeeluta on see kontroll
+teatrike**: kirje liigutatakse „STAR2-sse kantavasse" ja läheb välja, ilma et kuskil tekiks
+jälge. Nüüd keeldub server ümbernimetamisest mõlemas suunas. Teksti tohib parandada — keeld
+käib kihi, mitte kirje kohta. Kui midagi peab päriselt STAR-i jõudma, kirjutab töötaja selle
+STAR2-kihti; see on autorlus, mitte silt ümber.
+
+Väravad: `npm test` **3019/3019** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**131 migratsiooni**) · eslint puhas · `npm run build` OK.
+
+**Kaks FK-semantikat on tõendatud, mitte eeldatud:** ettevalmistuse kustutus jättis märkme
+alles koos kõigi kaheksa kirjega (seos nullitakse) — plaani kustutus ei tohi kaasa võtta
+tõendit selle kohta, mis päriselt räägiti; juhtumi kustutus viis märkmed ja kirjed täielikult.
+Teine töötaja sai kõigilt kuuelt rajalt **404**, sh kihikeeldu rikkuva kehaga.
+
+**Üks lahtine ots, mis väärib sinu otsust:** märkmel **ei ole** päritolu kinnitamise rada
+(ettevalmistusel on). Leping ei anna talle marsruuti, seega ma ei leiutanud seda juurde — aga
+tagajärg on, et AI mustandi märgisega märkmerida ei saa V1-s inimese märgiseks kinnitada, teda
+saab ainult eemaldada ja uuesti kirjutada.
+
+**Ja üks dev-serveri lõks kirja:** uus sügavalt pesastatud marsruudikaust ei jõudnud juba
+töötava dev-serveri registrisse ja vastuseks tuli Next-i **HTML 404**, mitte teenuskihi JSON —
+see näeb välja täpselt nagu omanikupiiri viga. Kontroll on `content-type`; restart lahendas,
+koodis viga ei olnud.
+
+**Järgmine: E5** — STAR2 mustandi ahel, migratsioon 3/4 (CASEWORK-P2 tuum).
 
 Valiku alus: S4.1 kandis assistendi juures ühte blokeerijat — juhtumi objekti — ja **see
 eeldus täideti 07.08**. Täna on olukord tagurpidi: on see, mille ümber laud käib, aga lauda ei
@@ -833,8 +874,8 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 
 *Lähtematerjal: `ideed.md` **ptk 4** (4.2–4.8). Leping:
 [`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) **v6**, etapid E1–E8. **E1 (laua
-koondlugeja), E2 (laua pind `/toolaud/juhtumitoo`) ja E3 (kohtumise ettevalmistus,
-migratsioon 1/4) on koodis — värav on väljas.** Kolm migratsiooni jääb: E4–E6.
+koondlugeja), E2 (laua pind `/toolaud/juhtumitoo`), E3 (kohtumise ettevalmistus) ja E4
+(kohtumise märge kaheksa kihiga) on koodis — värav on väljas.** Kaks migratsiooni jääb: E5–E6.
 **E6/E7 lõplik lukk ootab O-JTA-5** (hüljatud töömaterjali säilitus).*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
@@ -1234,7 +1275,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E3 tehtud 08.08** |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6, leping olemas, otsused all**; **JTA-V1 E1–E4 tehtud 08.08** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
@@ -1403,7 +1444,7 @@ Sotsiaaltöötaja roll üksi ei ava võõra valla lauda — ligipääs käib lau
 | Töölaud + teavitused | kaardid, järeltegevused, sündmusekiht | U1 mitme-osaleja audience-reegel (vt S4.2 nr 12) |
 | Teenuspäevik | OSA I + OSA II tervikuna | erihoolekande profiil (A1) ja sotsiaaltransport (A6) on eraldi tööriistad, vt S4.1 |
 | Välitöö | kest, GPS, OCR, võrguta rada | seadme-QA maatriks; oma piloot outreach-osakonnaga |
-| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja, pind ja kohtumise ettevalmistus tehtud (E1–E3), kihiline märge tegemata (E4)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
+| Juhtumitugi | artefaktid + päritolumärgistus + lõpetatud juhtumid + **juhtumi objekt elutsükliga (TEHTUD 07.08, värav väljas)** | juhtumi objekti **aktiveerimine** ootab Õ2/Õ3 andmekaitseanalüüsi ja omaniku luba (S4.1); juhtumitöö assistendi laud — **lugeja, pind, kohtumise ettevalmistus ja kihiline märge tehtud (E1–E4), STAR2 mustandi ahel tegemata (E5–E6)**; STAR2 kandmise järjekord; genogramm ja ökokaart |
 | Kiireloomuline vastuvõtt | kogu rada koodis ja tõendatud | ükski päris laud ei ole seadistatud — **aktiveerimine on partneri-, mitte tehnoloogiaotsus**; laua loomise ja mehitajate haldamise vorm on admini API-s olemas, aga admini vaates saab täna ainult kinnitada ja lülitada |
 
 ### Tegemata

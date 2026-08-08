@@ -791,6 +791,30 @@
       "erased_client": "Kustutatud kliendiviide",
       "untitled": "Nimetu juhtum"
     },
+    "note": {
+      "section_title": "Kohtumise märge",
+      "section_hint": "Kaheksa kihti ei valata kokku: kliendi enda sõnad, faktid ja sinu tõlgendus on eri asjad. Iga rida kannab lisaks päritolu.",
+      "meeting_at": "Kohtumise aeg",
+      "create": "Alusta märget",
+      "empty": "Märkmeid ei ole.",
+      "no_meeting_time": "Aeg märkimata",
+      "open": "Ava",
+      "close": "Sulge",
+      "entries_empty": "Selles kihis ei ole kirjeid.",
+      "entry_text": "Kirje tekst",
+      "add_entry": "Lisa kirje",
+      "remove_entry": "Eemalda",
+      "linked_prep": "Seotud ettevalmistusega",
+      "private_locked_hint": "Selle kihi kirjeid ei saa teise kihti tõsta — see on lubadus, mitte piirang.",
+      "layer_KLIENDI_VAADE": "Kliendi enda vaade",
+      "layer_FAKTID": "Faktilised asjaolud",
+      "layer_TOOTAJA_TAHELEPANEK": "Töötaja tähelepanek",
+      "layer_KONTROLLIMATA": "Kontrollimata info",
+      "layer_KOKKULEPPED": "Kokkulepped",
+      "layer_JARGMISED_SAMMUD": "Järgmised sammud",
+      "layer_STAR2_KANTAV": "STAR2-sse kantav info",
+      "layer_PRIVAATNE_REFLEKSIOON": "Privaatne professionaalne refleksioon"
+    },
     "prep": {
       "section_title": "Kohtumise ettevalmistus",
       "section_hint": "Iga väli ja iga küsimus kannab oma päritolu. AI koostatud osa märgist ei saa maha võtta teksti parandamisega — kinnitamine on eraldi tegu.",
@@ -913,6 +937,10 @@
       "provenance_conflict": "Päritolumärgis on vahepeal muutunud. Värskenda ja proovi uuesti.",
       "provenance_confirm_source": "Kinnitada saab ainult AI koostatud mustandit.",
       "provenance_confirm_target": "Inimese kinnitatud märgist ei saa masina märgiseks tagasi muuta.",
+      "note_text_required": "Kirje tekst on kohustuslik.",
+      "note_text_too_long": "Kirje tekst on liiga pikk.",
+      "note_layer_unknown": "Tundmatu märkme kiht.",
+      "note_private_layer_locked": "Privaatse refleksiooni kihti ei saa ümber nimetada. Kui see info peab STAR-i jõudma, kirjuta ta STAR2-sse kantava kihti.",
       "unexpected": "Midagi läks valesti."
     },
     "page": {
