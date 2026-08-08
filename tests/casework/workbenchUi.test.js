@@ -82,7 +82,8 @@ test("sektsioonide järjekord tuleb ühest kohast (L12)", async () => {
      `WORKBENCH_SECTIONS`-iga on `workbenchView.test.js`-is. */
   const shell = await readCode("../../components/casework/CaseWorkbenchShell.jsx");
   assert.doesNotMatch(shell, /WORKBENCH_SECTION_ORDER = /, "pinnal on oma teine järjekorra-loend");
-  assert.ok(WORKBENCH_SECTIONS.length === 8, "koondlugeja sektsioonide arv muutus — vaata L12 üle");
+  /* E6 järel on L12 tabel TÄIS: kümme sektsiooni kümnest. */
+  assert.ok(WORKBENCH_SECTIONS.length === 10, "koondlugeja sektsioonide arv muutus — vaata L12 üle");
 });
 
 test("sisenavigatsioon käib `Link`-iga, mitte toore ankruga", async () => {

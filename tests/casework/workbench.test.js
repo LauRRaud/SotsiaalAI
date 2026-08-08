@@ -388,14 +388,16 @@ test(
   })
 );
 
-test("8b. vastus kannab täpselt L12 tabeli E1-veeru sektsioone", async () => {
+test("8b. vastus kannab täpselt L12 tabeli E6-veeru sektsioone", async () => {
   const run = withFeature("1", async () => getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: db({}) }));
   const { sections } = await run();
 
   assert.deepEqual(Object.keys(sections).sort(), [...WORKBENCH_SECTIONS].sort());
 
-  /* #4 ja #10 sünnivad E5-s ja E6-s. Kuni selleta nad EI OLE tühjad — neid ei
-     ole. Tühi kast tähendaks töötajale, et tal ei ole ühtegi mustandit ootel. */
-  assert.equal("draftsAwaitingTransfer" in sections, false);
-  assert.equal("transferHistory" in sections, false);
+  /* #4 ja #10 SÜNDISID E6-s ja L12 tabel on nüüd täis. Enne seda nad ei olnud
+     tühjad — neid EI OLNUD, ja tühi kast oleks tähendanud töötajale, et tal ei
+     ole ühtegi mustandit ootel. */
+  assert.equal("draftsAwaitingTransfer" in sections, true);
+  assert.equal("transferHistory" in sections, true);
+  assert.equal(WORKBENCH_SECTIONS.length, 10);
 });

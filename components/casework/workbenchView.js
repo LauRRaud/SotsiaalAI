@@ -18,19 +18,20 @@
  * Pind ei tohi seda serverimoodulist importida, sest ta toob endaga Prisma
  * kliendi. Kaks loendit ilma testita on ainult aja küsimus.
  *
- * #4 (`draftsAwaitingTransfer`) ja #10 (`transferHistory`) PUUDUVAD teadlikult:
- * nad sünnivad E5-s ja E6-s. Kuni selleta ei ole nad tühjad — neid ei ole, ja
- * tühi kast väidaks, et tööriist on olemas ja tööd ei ole.
+ * #4 (`draftsAwaitingTransfer`) ja #10 (`transferHistory`) lisandusid E6-s ja
+ * seisavad L12 tabeli kohal, mitte loendi lõpus.
  */
 export const WORKBENCH_SECTION_ORDER = Object.freeze([
   "receivedPreInquiries",
   "todaysContacts",
   "activePreparations",
+  "draftsAwaitingTransfer",
   "openMissingInfo",
   "upcomingContacts",
   "networkPreparation",
   "practiceReflection",
-  "covisionPreparation"
+  "covisionPreparation",
+  "transferHistory"
 ]);
 
 /**

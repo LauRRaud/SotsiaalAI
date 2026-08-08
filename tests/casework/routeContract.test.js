@@ -44,7 +44,13 @@ const ROUTES = [
   "cases/[caseId]/drafts/route.js",
   "cases/[caseId]/drafts/[draftId]/route.js",
   "cases/[caseId]/drafts/[draftId]/fields/route.js",
-  "cases/[caseId]/drafts/[draftId]/transition/route.js"
+  "cases/[caseId]/drafts/[draftId]/transition/route.js",
+  /* JTA-V1 E6 — ülekanne, neli marsruuti. `mark-transferred` on OMA marsruut,
+     mitte `transition`-i parameeter (L19). */
+  "cases/[caseId]/drafts/[draftId]/star2-block/route.js",
+  "cases/[caseId]/drafts/[draftId]/copy-events/route.js",
+  "cases/[caseId]/drafts/[draftId]/mark-transferred/route.js",
+  "cases/[caseId]/transfer-events/route.js"
 ];
 
 async function readRoute(name) {
@@ -288,4 +294,49 @@ test("E5 väljamarsruut ei edasta päritolu uuendusse", async () => {
      olemasoleval real (L4). Marsruut ei tohi tal olla teist teed. */
   assert.match(source, /provenance: body\?\.provenance/);
   assert.doesNotMatch(source, /export async function PATCH/, "väljal on eraldi märgise-uuendus");
+});
+
+test("E6 ülekandeauditil EI OLE muutmis- ega kustutusrada (L8: append-only)", async () => {
+  /* Tõend, mida saab tagantjärele parandada, ei ole tõend. Kaks kõige
+     tõenäolisemat kohta, kust rada märkamatult tekiks, on ajaloo marsruut
+     („paranda vale rida") ja kopeerimise oma („eemalda duplikaat") — L22 järgi
+     ei ole duplikaati, mida eemaldada. */
+  for (const name of [
+    "cases/[caseId]/transfer-events/route.js",
+    "cases/[caseId]/drafts/[draftId]/copy-events/route.js"
+  ]) {
+    const source = await readRoute(name);
+    assert.doesNotMatch(source, /export async function DELETE/, `${name}: auditil on kustutusrada`);
+    assert.doesNotMatch(source, /export async function PATCH/, `${name}: auditil on uuendusrada`);
+    assert.doesNotMatch(source, /export async function PUT/, `${name}: auditil on ülekirjutusrada`);
+  }
+
+  const service = await readLib("caseWorkTransfer.js");
+  assert.doesNotMatch(service, /caseWorkTransferEvent\.delete/, "teenuskiht: auditirea kustutus");
+  assert.doesNotMatch(service, /caseWorkTransferEvent\.update/, "teenuskiht: auditirea uuendus");
+});
+
+test("E6 kopeerimine nõuab kliendi võtit ja välju, MITTE seisu", async () => {
+  /* L22: võti sünnib kliendis ENNE lõikelauda. Serveris genereeritud võti oleks
+     iga kutse peale uus ja ei kaitseks korduse eest millegi vastu. */
+  const source = await readRouteCode("cases/[caseId]/drafts/[draftId]/copy-events/route.js");
+  assert.match(source, /clientActionId: body\?\.clientActionId/, "võti ei tule kehast");
+  assert.match(source, /fieldKeys: body\?\.fieldKeys/, "väljade loend ei tule kehast");
+  /* Kopeerimine EI liiguta olekumasinat (L9) — seis ei tohi selle marsruudi
+     kaudu üldse liikuda. */
+  assert.doesNotMatch(source, /transferState/, "kopeerimine puudutab seisu");
+});
+
+test("E6 `ULE_KANTUD`-ini viib TÄPSELT ÜKS marsruut (L19)", async () => {
+  const mark = await readRouteCode("cases/[caseId]/drafts/[draftId]/mark-transferred/route.js");
+  assert.match(mark, /markTransferred/, "märkimismarsruut ei kutsu teenust");
+  assert.match(mark, /expectedFrom: body\?\.expectedFrom/, "expectedFrom ei tule kehast");
+
+  /* Ükski TEINE marsruut ei tohi `markTransferred`-i kutsuda ega `ULE_KANTUD`-i
+     nimetada: teine kutsuja on teine uks olekumasinasse. */
+  for (const name of ROUTES.filter((route) => !route.endsWith("mark-transferred/route.js"))) {
+    const source = await readRouteCode(name);
+    assert.doesNotMatch(source, /markTransferred/, `${name}: teine tee ULE_KANTUD-ini`);
+    assert.doesNotMatch(source, /ULE_KANTUD/, `${name}: seis kirjutatakse mujal`);
+  }
 });

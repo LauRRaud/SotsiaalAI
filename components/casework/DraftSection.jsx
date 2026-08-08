@@ -22,6 +22,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { PROVENANCES, provenanceLabelKey } from "@/lib/workspaces/provenance";
 
 import ConfirmButton from "./ConfirmButton";
+import { TransferActions, TransferHistory } from "./TransferPanel";
 import { caseWorkRequest } from "./caseWorkClient";
 
 /**
@@ -72,6 +73,9 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [draftType, setDraftType] = useState("");
+  /* Ülekandeajalugu laetakse uuesti iga teo järel — ta on TÕEND ja vananenud
+     ajalugu ütleks, et jälge ei tekkinud. */
+  const [transferToken, setTransferToken] = useState(0);
 
   const requestedDraftId = useRef(null);
 
@@ -200,6 +204,17 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
     [caseId, loadDraft, loadDrafts, locale, onChanged, openDraft, run]
   );
 
+  /**
+   * Ülekandetegu muutis midagi: mustandi seis, ajalugu ja laud käivad kõik
+   * kaasa. Ajalugu värskendatakse ka siis, kui seis EI MUUTUNUD (kopeerimine ei
+   * liiguta olekumasinat, L9) — just seepärast on tal oma märk.
+   */
+  const onTransferChanged = useCallback(async () => {
+    setTransferToken((value) => value + 1);
+    if (openDraft?.id) await Promise.all([loadDraft(openDraft.id), loadDrafts()]);
+    onChanged?.();
+  }, [loadDraft, loadDrafts, onChanged, openDraft]);
+
   const disabled = writeDisabled || busy;
 
   return (
@@ -267,6 +282,7 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
       {openDraft ? (
         <DraftEditor
           key={openDraft.id}
+          caseId={caseId}
           draft={openDraft}
           locale={locale}
           disabled={disabled}
@@ -274,17 +290,34 @@ export default function DraftSection({ caseId, writeDisabled, onChanged }) {
           onSaveField={saveField}
           onRemoveField={removeField}
           onTransition={transition}
+          onTransferChanged={onTransferChanged}
           onClose={() => {
             requestedDraftId.current = null;
             setOpenDraft(null);
           }}
         />
       ) : null}
+
+      {/* Ajalugu on JUHTUMI oma, mitte avatud mustandi oma: ülekanne on juhtumi
+          sündmus ja töötaja peab teda nägema ka siis, kui ükski element ei ole
+          lahti. */}
+      <TransferHistory caseId={caseId} locale={locale} t={t} refreshToken={transferToken} />
     </section>
   );
 }
 
-function DraftEditor({ draft, locale, disabled, t, onSaveField, onRemoveField, onTransition, onClose }) {
+function DraftEditor({
+  caseId,
+  draft,
+  locale,
+  disabled,
+  t,
+  onSaveField,
+  onRemoveField,
+  onTransition,
+  onTransferChanged,
+  onClose
+}) {
   const fields = Array.isArray(draft.fields) ? draft.fields : [];
   const terminal = isTerminal(draft.transferState);
   const writable = disabled || terminal;
@@ -337,6 +370,19 @@ function DraftEditor({ draft, locale, disabled, t, onSaveField, onRemoveField, o
       {!terminal ? <FieldForm disabled={disabled} t={t} onSave={onSaveField} /> : null}
 
       <TransitionForm draft={draft} disabled={disabled} t={t} onTransition={onTransition} />
+
+      {/* Kopeerimine on lubatud KA terminaalses seisus: `ULE_KANTUD` mustandi
+          sisu võib olla vaja teist korda STAR-i viia ja kopeerimine ei muuda
+          midagi (L9). Ülekantuks märkimise nupu näitab paneel ise ainult sealt,
+          kust olekumasin edasi lubab. */}
+      <TransferActions
+        caseId={caseId}
+        draft={draft}
+        locale={locale}
+        disabled={disabled}
+        t={t}
+        onChanged={onTransferChanged}
+      />
     </div>
   );
 }

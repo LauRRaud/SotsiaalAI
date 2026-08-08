@@ -241,6 +241,37 @@ export default function CaseWorkbenchShell() {
             />
           ));
 
+        /* #4 (E6). Siht on JUHTUM, mitte mustand: mustandil ei ole oma
+           marsruuti ja tema koht on juhtumi detailvaates. Tüüp ja seis on
+           tõlkevõtmed — laual ei ole ühtegi mustandi VÄLJA, sest väljad
+           kannavad kliendi teksti. */
+        case "draftsAwaitingTransfer":
+          return items.map((row) => (
+            <Row
+              key={row.draftId}
+              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
+              title={t(`casework.draft.type_${row.draftType}`, "")}
+              meta={timeText(row.updatedAt, locale)}
+              badge={t(`casework.star2.${row.transferState}`, "")}
+              t={t}
+            />
+          ));
+
+        /* #10 (E6). Ajalugu kannab TEGU ja aega. Väljade võtmed on auditis
+           olemas, aga laual neid ei ole (L20): siin on küsimus „mis juhtus",
+           mitte „mis täpselt kopeeriti". */
+        case "transferHistory":
+          return items.map((row) => (
+            <Row
+              key={row.eventId}
+              href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
+              title={t(`casework.transfer.kind_${row.kind}`, "")}
+              meta={timeText(row.createdAt, locale)}
+              badge={t(`casework.draft.type_${row.draftType}`, "")}
+              t={t}
+            />
+          ));
+
         default:
           return null;
       }

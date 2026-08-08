@@ -952,7 +952,9 @@
       "meta": {
         "title": "Juhtumitöö laud — SotsiaalAI",
         "description": "Sotsiaaltöötaja ja teenuseosutaja enda juhtumitöö koondvaade."
-      }
+      },
+      "section_draftsAwaitingTransfer": "STAR2-sse kandmist ootavad mustandid",
+      "section_transferHistory": "STAR2 ülekandmise ajalugu"
     },
     "errors": {
       "not_found": "Juhtumit ei leitud.",
@@ -1006,7 +1008,11 @@
       "transfer_transition_illegal": "See seisumuutus ei ole lubatud.",
       "transfer_state_conflict": "Seis on vahepeal muutunud. Värskenda ja proovi uuesti.",
       "use_mark_transferred": "Seisu „üle kantud“ paneb ainult tegevus „Märgi üle kantuks“.",
-      "unexpected": "Midagi läks valesti."
+      "unexpected": "Midagi läks valesti.",
+      "transfer_field_keys_required": "Vali vähemalt üks väli, mida kopeerida.",
+      "transfer_field_keys_unknown": "Vähemalt üks väli ei kuulu sellele mustandile.",
+      "transfer_field_keys_too_many": "Välju on korraga liiga palju.",
+      "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga."
     },
     "page": {
       "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
@@ -1108,6 +1114,26 @@
       "privacy_no_transfer": "Juhtumit ei saa kolleegile üle anda ega kustutada.",
       "privacy_no_register": "See ei ole kliendiregister ega STAR-i koopia. Kirjuta siia nii vähe isikuandmeid, kui sinu enda töö nõuab.",
       "privacy_no_notifications": "Juhtum ei saada teavitusi ega jaga midagi automaatselt kellelegi teisele."
+    },
+    "transfer": {
+      "actions_title": "STAR2-sse viimine",
+      "copy": "Kopeeri STAR2 jaoks",
+      "copy_ok": "Kopeeritud. Ametlik kanne tuleb teha STAR-is.",
+      "copy_failed": "Lõikelauale kopeerimine ei õnnestunud. Vali tekst allpool ja kopeeri käsitsi.",
+      "copy_audit_failed": "Kopeeritud, aga jälge ei õnnestunud salvestada. Proovi jälje salvestamist uuesti.",
+      "retry_audit": "Salvesta jälg uuesti",
+      "mark_transferred": "Märgi üle kantuks",
+      "confirm_mark_transferred": "Kinnita: info on STAR-is",
+      "cancel": "Loobu",
+      "content_purged": "Selle mustandi sisu on säilitustähtaja järel kustutatud. Ülekande fakt ja väljade loend on alles.",
+      "history_title": "STAR2 ülekandmise ajalugu",
+      "history_hint": "Ajalugu kannab tegu, aega ja väljade nimesid — kopeeritud teksti siin ei ole.",
+      "history_empty": "Ülekandeid ei ole.",
+      "fields_label": "Väljad",
+      "load_more": "Näita rohkem",
+      "kind_COPIED_FOR_STAR2": "Kopeeritud STAR2 jaoks",
+      "kind_MARKED_AS_TRANSFERRED": "Märgitud üle kantuks",
+      "block_warning": "ETTEVALMISTAV MUSTAND. See tekst ei ole ametlik kanne — ametlik kanne sünnib STAR-is."
     }
   },
   "common": {
@@ -5035,7 +5061,8 @@
       "mentoring_share_recalled": "Mentee võttis jagatud ettevalmistuse tagasi",
       "room_summary_approval_requested": "Kohtumise kokkuvõte ootab sinu kinnitust",
       "room_summary_approval_response": "Osaleja vastas kokkuvõtte kinnitusringile",
-      "room_ownership_transferred": "Ruumi omanik vahetus"
+      "room_ownership_transferred": "Ruumi omanik vahetus",
+      "casework_draft_external_transfer_marked": "Mustand märgiti üle kantuks"
     },
     "center": {
       "title": "Teavitused",

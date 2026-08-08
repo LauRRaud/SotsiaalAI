@@ -952,7 +952,9 @@
       "meta": {
         "title": "Casework desk — SotsiaalAI",
         "description": "A combined view of a social worker's or service provider's own casework."
-      }
+      },
+      "section_draftsAwaitingTransfer": "Drafts awaiting transfer to STAR2",
+      "section_transferHistory": "STAR2 transfer history"
     },
     "errors": {
       "not_found": "Case not found.",
@@ -1006,7 +1008,11 @@
       "transfer_transition_illegal": "This state change is not allowed.",
       "transfer_state_conflict": "The state changed in the meantime. Refresh and try again.",
       "use_mark_transferred": "Only the “Mark as transferred” action can set the transferred state.",
-      "unexpected": "Something went wrong."
+      "unexpected": "Something went wrong.",
+      "transfer_field_keys_required": "Select at least one field to copy.",
+      "transfer_field_keys_unknown": "At least one field does not belong to this draft.",
+      "transfer_field_keys_too_many": "Too many fields at once.",
+      "transfer_action_key_invalid": "The copy identifier has an invalid format."
     },
     "page": {
       "confirm_erase_client_reference": "Confirm: erase the client reference permanently",
@@ -1108,6 +1114,26 @@
       "privacy_no_transfer": "A case cannot be handed over to a colleague or deleted.",
       "privacy_no_register": "This is not a client register or a copy of STAR. Write as little personal data here as your own work requires.",
       "privacy_no_notifications": "A case sends no notifications and shares nothing with anyone automatically."
+    },
+    "transfer": {
+      "actions_title": "Transfer to STAR2",
+      "copy": "Copy for STAR2",
+      "copy_ok": "Copied. The official entry must be made in STAR.",
+      "copy_failed": "Copying to the clipboard failed. Select the text below and copy it manually.",
+      "copy_audit_failed": "Copied, but the trace could not be saved. Try saving the trace again.",
+      "retry_audit": "Save the trace again",
+      "mark_transferred": "Mark as transferred",
+      "confirm_mark_transferred": "Confirm: the information is in STAR",
+      "cancel": "Cancel",
+      "content_purged": "The content of this draft was deleted after the retention period. The transfer fact and the list of fields remain.",
+      "history_title": "STAR2 transfer history",
+      "history_hint": "The history carries the action, the time and the field names — the copied text is not here.",
+      "history_empty": "No transfers yet.",
+      "fields_label": "Fields",
+      "load_more": "Show more",
+      "kind_COPIED_FOR_STAR2": "Copied for STAR2",
+      "kind_MARKED_AS_TRANSFERRED": "Marked as transferred",
+      "block_warning": "PREPARATORY DRAFT. This text is not an official entry — the official entry is made in STAR."
     }
   },
   "common": {
@@ -5035,7 +5061,8 @@
       "mentoring_share_recalled": "The mentee recalled a shared preparation",
       "room_summary_approval_requested": "A meeting summary is waiting for your confirmation",
       "room_summary_approval_response": "A participant responded to the summary confirmation round",
-      "room_ownership_transferred": "The room owner has changed"
+      "room_ownership_transferred": "The room owner has changed",
+      "casework_draft_external_transfer_marked": "A draft was marked as transferred"
     },
     "center": {
       "title": "Notifications",
