@@ -551,3 +551,43 @@ test(
     );
   })
 );
+
+/* ── O-JTA-6: purge'itud ettevalmistus ──────────────────────────────────── */
+
+test(
+  "O-JTA-6: purge'itud ettevalmistusse ei kirjutata uut sisu",
+  withFeatureOn(async () => {
+    const store = db({
+      preps: [{ id: "prep_purged", caseWorkAssistId: CASE_ID, contentPurgedAt: new Date(), contentPurgeReason: "WORKER_ARCHIVED_WORKING_MATERIAL" }]
+    });
+    const base = { ownerUserId: OWNER, caseWorkAssistId: CASE_ID, meetingPrepId: "prep_purged", db: store };
+
+    /* KANDEV ASI: `contentPurgedAt` on AVALDUS, et selle ettevalmistuse kliendi
+       sisu on kustutatud. Kui sinna saaks kohe uue välja kirjutada, oleks see
+       avaldus vale ja ekraanil seisaks korraga „arhiveeritud" ja sisu. */
+    await rejects(
+      setPrepField({ ...base, fieldKey: "GOAL", text: "uus sisu", provenance: PROVENANCE.TOOTAJA_TAHELEPANEK }),
+      409,
+      "casework.errors.prep_content_purged"
+    );
+    await rejects(
+      addQuestion({
+        ...base,
+        kind: "CLARIFYING_QUESTION",
+        text: "uus küsimus",
+        provenance: PROVENANCE.TOOTAJA_TAHELEPANEK
+      }),
+      409,
+      "casework.errors.prep_content_purged"
+    );
+
+    assert.equal(store.fields.length, 0, "purge'itud ettevalmistusse tekkis väli");
+    assert.equal(store.questions.length, 0, "purge'itud ettevalmistusse tekkis küsimus");
+
+    /* 409, MITTE 404: ettevalmistus on kasutajale nähtav ja takistus on seisund,
+       mitte ligipääs. Uus kohtumine = uus ettevalmistus (O-JTA-3). */
+    const fresh = await createMeetingPrep({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, db: store });
+    assert.ok(fresh.id);
+    assert.equal(fresh.contentPurgedAt ?? null, null);
+  })
+);

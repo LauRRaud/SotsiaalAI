@@ -311,6 +311,12 @@ function PrepEditor({
   onClose
 }) {
   const byKey = new Map((prep.fields || []).map((row) => [row.fieldKey, row]));
+  /* O-JTA-6: purge'itud ettevalmistus on TÜHJAST ERISTATAV ja kirjutuskaitstud.
+     Ilma selleta näeks „töötaja arhiveeris töömaterjali" välja täpselt nagu
+     „ettevalmistust ei ole veel alustatud" — ja iga uus väli oleks vaikne
+     vastuolu markeriga, mis ütleb, et sisu on kustutatud. */
+  const purged = Boolean(prep.contentPurgedAt);
+  const writeBlocked = disabled || purged;
 
   return (
     <div className="cw-section">
@@ -321,6 +327,16 @@ function PrepEditor({
           ? new Date(prep.meetingAt).toLocaleString(locale || "et", { dateStyle: "short", timeStyle: "short" })
           : t("casework.prep.no_meeting_time", "")}
       </h3>
+
+      {purged ? (
+        <p className="cw-notice">
+          {t("casework.prep.content_purged", "").replace(
+            "{date}",
+            new Date(prep.contentPurgedAt).toLocaleDateString(locale || "et", { dateStyle: "medium" })
+          )}
+        </p>
+      ) : null}
+
       <button className="cw-button" type="button" onClick={onClose}>
         {t("casework.prep.close", "")}
       </button>
@@ -330,7 +346,7 @@ function PrepEditor({
           key={fieldKey}
           fieldKey={fieldKey}
           row={byKey.get(fieldKey) || null}
-          disabled={disabled}
+          disabled={writeBlocked}
           t={t}
           onSave={onSaveField}
           onConfirm={onConfirmField}
@@ -340,7 +356,9 @@ function PrepEditor({
       <h3 className="cw-section-title">{t("casework.prep.questions_title", "")}</h3>
       <p className="cw-hint">{t("casework.prep.questions_hint", "")}</p>
 
-      <QuestionForm disabled={disabled} t={t} onAdd={onAddQuestion} />
+      {/* Purge'itud ettevalmistusse ei kirjutata uut sisu — server keeldub 409-ga
+          ja vorm, mis seda ei tea, annaks kasutajale vea tema enda teo eest. */}
+      {purged ? null : <QuestionForm disabled={disabled} t={t} onAdd={onAddQuestion} />}
 
       {!(prep.questions || []).length ? <p className="cw-empty">{t("casework.prep.questions_empty", "")}</p> : null}
 

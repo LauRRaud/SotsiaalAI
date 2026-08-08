@@ -60,7 +60,17 @@ function ago({ months = 0, days = 0 } = {}) {
   return new Date(addMonths(NOW, -months).getTime() - days * DAY_MS);
 }
 
-function db({ assists = [], drafts = [], fields = [], audits = [], notifications = [], events = [] } = {}) {
+function db({
+  assists = [],
+  drafts = [],
+  fields = [],
+  preps = [],
+  prepFields = [],
+  questions = [],
+  audits = [],
+  notifications = [],
+  events = []
+} = {}) {
   let sequence = 0;
   const nextId = (prefix) => `${prefix}_${++sequence}`;
 
@@ -125,9 +135,13 @@ function db({ assists = [], drafts = [], fields = [], audits = [], notifications
        rippuma, ja kaskaadi katkemine paistaks välja alles sondis. */
     for (const caseId of doomed) {
       const doomedDrafts = drafts.filter((row) => row.caseWorkAssistId === caseId).map((row) => row.id);
+      const doomedPreps = preps.filter((row) => row.caseWorkAssistId === caseId).map((row) => row.id);
       for (const list of [
         [fields, (row) => doomedDrafts.includes(row.draftId)],
         [drafts, (row) => row.caseWorkAssistId === caseId],
+        [prepFields, (row) => doomedPreps.includes(row.meetingPrepId)],
+        [questions, (row) => doomedPreps.includes(row.meetingPrepId)],
+        [preps, (row) => row.caseWorkAssistId === caseId],
         [audits, (row) => row.caseWorkAssistId === caseId],
         [events, (row) => row.caseWorkAssistId === caseId]
       ]) {
@@ -157,6 +171,9 @@ function db({ assists = [], drafts = [], fields = [], audits = [], notifications
     assists,
     drafts,
     fields,
+    preps,
+    prepFields,
+    questions,
     audits,
     notifications,
     events,
@@ -167,6 +184,9 @@ function db({ assists = [], drafts = [], fields = [], audits = [], notifications
     caseWorkAssist,
     caseWorkDraft: collection(drafts, "draft"),
     caseWorkDraftField: collection(fields, "field"),
+    caseWorkMeetingPrep: collection(preps, "prep"),
+    caseWorkMeetingPrepField: collection(prepFields, "prep_field"),
+    caseWorkQuestion: collection(questions, "question"),
     caseWorkRetentionAudit: collection(audits, "audit"),
     caseWorkTransferEvent: collection(events, "event"),
     notificationEvent,
@@ -646,5 +666,112 @@ test(
       archiveWorkingMaterial({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, now: NOW, db: store }),
       (error) => error.status === 409
     );
+  })
+);
+
+/* ── O-JTA-6: rada C katab ka ettevalmistused ───────────────────────────── */
+
+test(
+  "O-JTA-6: rada C kustutab ka ettevalmistuse sisu, AGA jätab konteineri ja seosed",
+  withFeatureOn(async () => {
+    const store = db({
+      assists: [{ id: CASE_ID, ownerUserId: OWNER, retentionState: "ACTIVE" }],
+      drafts: [
+        { id: "d1", caseWorkAssistId: CASE_ID, transferState: "MUSTAND", transferredAt: null, contentPurgedAt: null }
+      ],
+      fields: [{ id: "f1", draftId: "d1", fieldKey: "EESMARK", text: "kliendi sisu" }],
+      preps: [
+        { id: "p1", caseWorkAssistId: CASE_ID, meetingAt: ago({ months: 20 }), contentPurgedAt: null },
+        { id: "p2", caseWorkAssistId: CASE_ID, meetingAt: null, contentPurgedAt: null }
+      ],
+      prepFields: [
+        { id: "pf1", meetingPrepId: "p1", fieldKey: "GOAL", text: "kaks aastat vana kliendi sisu" },
+        { id: "pf2", meetingPrepId: "p2", fieldKey: "AGENDA", text: "kliendi sisu" }
+      ],
+      questions: [{ id: "q1", meetingPrepId: "p1", kind: "CLARIFYING_QUESTION", text: "kliendi sisu" }]
+    });
+
+    const result = await archiveWorkingMaterial({
+      ownerUserId: OWNER,
+      caseWorkAssistId: CASE_ID,
+      now: NOW,
+      db: store
+    });
+
+    assert.deepEqual(result, { drafts: 1, fields: 1, preps: 2, prepFields: 2, questions: 1 });
+
+    /* SISU KAOB. See on O-JTA-5 motiveeriv näide — kaks aastat vana
+       ettevalmistus, milles on kliendi sisu ja mida keegi ei ole avanud. */
+    assert.equal(store.prepFields.length, 0, "ettevalmistuse väljad jäid alles");
+    assert.equal(store.questions.length, 0, "ettevalmistuse küsimused jäid alles");
+
+    /* KONTEINER JÄÄB. Terve rea kustutamine annaks mustandiga võrreldes
+       vastuolulise elutsükli ja viiks ära info, et ettevalmistus üldse toimus —
+       märge, mis talle viitab, kaotaks oma seose. */
+    assert.equal(store.preps.length, 2, "ettevalmistuse rida kustus koos sisuga");
+    for (const prep of store.preps) {
+      assert.ok(prep.contentPurgedAt, "purge'i märk puudub");
+      assert.equal(prep.contentPurgeReason, PURGE_REASON.WORKER_ARCHIVED_WORKING_MATERIAL);
+    }
+  })
+);
+
+test(
+  "O-JTA-6: ainult ettevalmistustega juhtumis tegu TÖÖTAB (ei ole enam tühi)",
+  withFeatureOn(async () => {
+    /* Enne O-JTA-6-t andis see juht 409 „midagi ei ole" — kuigi kliendi sisu
+       oli olemas, lihtsalt vales tabelis. */
+    const store = db({
+      assists: [{ id: CASE_ID, ownerUserId: OWNER, retentionState: "ACTIVE" }],
+      preps: [{ id: "p1", caseWorkAssistId: CASE_ID, contentPurgedAt: null }],
+      prepFields: [{ id: "pf1", meetingPrepId: "p1", fieldKey: "GOAL", text: "kliendi sisu" }]
+    });
+
+    const result = await archiveWorkingMaterial({
+      ownerUserId: OWNER,
+      caseWorkAssistId: CASE_ID,
+      now: NOW,
+      db: store
+    });
+    assert.equal(result.preps, 1);
+    assert.equal(result.prepFields, 1);
+    assert.equal(store.prepFields.length, 0);
+  })
+);
+
+test(
+  "O-JTA-6: juba purge'itud ettevalmistust ei võeta teist korda ette",
+  withFeatureOn(async () => {
+    const store = db({
+      assists: [{ id: CASE_ID, ownerUserId: OWNER, retentionState: "ACTIVE" }],
+      preps: [{ id: "p1", caseWorkAssistId: CASE_ID, contentPurgedAt: null }],
+      prepFields: [{ id: "pf1", meetingPrepId: "p1", fieldKey: "GOAL", text: "sisu" }]
+    });
+
+    await archiveWorkingMaterial({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, now: NOW, db: store });
+    await assert.rejects(
+      archiveWorkingMaterial({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, now: NOW, db: store }),
+      (error) => error.status === 409 && error.messageKey === "casework.errors.working_material_empty"
+    );
+  })
+);
+
+test(
+  "O-JTA-6: automaatne säilitustöö EI PUUDUTA ettevalmistusi",
+  withFeatureOn(async () => {
+    /* Ettevalmistusel ei ole kella — ta ei lähe kuhugi üle. Kui taustatöö
+       hakkaks teda purge'ima, tekiks vaikne kustutus täpselt sellel rajal,
+       mille kogu mõte on, et inimene teeb teo. Sama reeglit jõustab `CHECK`. */
+    const store = db({
+      assists: [{ id: CASE_ID, ownerUserId: OWNER, retentionState: "ACTIVE" }],
+      preps: [{ id: "p1", caseWorkAssistId: CASE_ID, meetingAt: ago({ months: 36 }), contentPurgedAt: null }],
+      prepFields: [{ id: "pf1", meetingPrepId: "p1", fieldKey: "GOAL", text: "väga vana kliendi sisu" }]
+    });
+
+    const result = await runRetention({ now: NOW, db: store });
+
+    assert.equal(result.draftsPurged, 0);
+    assert.equal(store.prepFields.length, 1, "säilitustöö kustutas ettevalmistuse sisu");
+    assert.equal(store.preps[0].contentPurgedAt, null);
   })
 );

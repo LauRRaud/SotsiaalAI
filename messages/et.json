@@ -895,7 +895,8 @@
       "field_REQUIRED_DOCUMENTS": "Vajalikud dokumendid",
       "field_LIFE_DOMAINS": "Eluvaldkonnad",
       "field_AGENDA": "Päevakord",
-      "field_PLAIN_LANGUAGE_NOTES": "Selgitused lihtsas keeles"
+      "field_PLAIN_LANGUAGE_NOTES": "Selgitused lihtsas keeles",
+      "content_purged": "Selle ettevalmistuse sisu arhiveeriti {date}. Väljad ja küsimused on kustutatud; uut sisu siia ei kirjutata — alusta uus ettevalmistus."
     },
     "workbench": {
       "title": "Juhtumitöö laud",
@@ -1014,7 +1015,8 @@
       "transfer_field_keys_unknown": "Vähemalt üks väli ei kuulu sellele mustandile.",
       "transfer_field_keys_too_many": "Välju on korraga liiga palju.",
       "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga.",
-      "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole."
+      "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole.",
+      "prep_content_purged": "Selle ettevalmistuse sisu on arhiveeritud. Uut sisu siia ei lisata."
     },
     "page": {
       "confirm_erase_client_reference": "Kinnita: kustuta kliendiviide jäädavalt",
@@ -1086,8 +1088,8 @@
       "confirm_retention_to_archived": "Kinnita: arhiveeri ja käivita kustutuskell",
       "archive_clock_warning": "Arhiveerimine käivitab 12 kuu kustutuskella. Kella lõpus kustub kogu juhtum koos lastega — ettevalmistused, märkmed, mustandid ja ülekandeajalugu. Seda olekut ei saa tagasi pöörata.",
       "archive_working_material": "Arhiveeri töömaterjal",
-      "confirm_archive_working_material": "Kinnita: kustuta kandmata mustandite sisu",
-      "working_material_hint": "Kustutab kõigi STAR2-sse kandmata mustandite sisu. Juhtum jääb tööle, mustandite read ja ülekandeajalugu jäävad alles. Kohtumise ettevalmistusi ja märkmeid see ei puuduta."
+      "confirm_archive_working_material": "Kinnita: kustuta kandmata mustandite ja ettevalmistuste sisu",
+      "working_material_hint": "Kustutab kõigi STAR2-sse kandmata mustandite ja kõigi kohtumise ettevalmistuste sisu. Juhtum jääb tööle; mustandite ja ettevalmistuste read, ülekandeajalugu ja märkmed jäävad alles."
     },
     "info": {
       "title": "Minu juhtumid",

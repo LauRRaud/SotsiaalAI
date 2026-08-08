@@ -6545,6 +6545,17 @@ model CaseWorkMeetingPrep {
   /// enne, kui aeg on kokku lepitud.
   meetingAt DateTime?
 
+  /// Sisu purge'imise hetk (O-JTA-6, omaniku otsus 08.08). KONTEINER JÄÄB:
+  /// kustuvad `fields` ja `questions` read, mitte see rida ega tema seosed —
+  /// märge, mis sellele ettevalmistusele viitab, ei tohi jääda rippuma ega
+  /// kaotada infot, et ettevalmistus üldse toimus.
+  contentPurgedAt DateTime?
+
+  /// MIKS sisu kustus. Ettevalmistusel EI OLE kella (ta ei lähe kuhugi üle),
+  /// seega on ainus lubatud väärtus `WORKER_ARCHIVED_WORKING_MATERIAL` ja seda
+  /// jõustab `CHECK`. Automaatne säilitustöö ei tohi siia kunagi kirjutada.
+  contentPurgeReason CaseWorkPurgeReason?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

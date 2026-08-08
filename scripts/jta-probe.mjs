@@ -230,6 +230,32 @@ try {
     radaCRow?.contentPurgeReason === "WORKER_ARCHIVED_WORKING_MATERIAL" && radaCRow?.transferredAt === null
   );
 
+  // ── 10b. O-JTA-6: ettevalmistuse purge-marker ─────────────────────────────
+  const prep = await prisma.caseWorkMeetingPrep.create({ data: { caseWorkAssistId: ownCase.id } });
+  await prisma.caseWorkMeetingPrep.update({
+    where: { id: prep.id },
+    data: { contentPurgedAt: new Date(), contentPurgeReason: "WORKER_ARCHIVED_WORKING_MATERIAL" }
+  });
+  const prepRow = await prisma.caseWorkMeetingPrep.findUnique({ where: { id: prep.id } });
+  check("O-JTA-6: ettevalmistuse sisu tohib töötaja teoga purge'ida", Boolean(prepRow?.contentPurgedAt));
+
+  await expectRejected("O-JTA-6: ettevalmistuse purge ilma põhjuseta on keelatud", () =>
+    prisma.caseWorkMeetingPrep.update({
+      where: { id: prep.id },
+      data: { contentPurgedAt: new Date(), contentPurgeReason: null }
+    })
+  );
+
+  /* KANDEV `CHECK`: ettevalmistusel EI OLE kella, seega automaatne põhjus ei
+     tohi siia kunagi jõuda. Ilma selleta võiks tulevane taustatöö tekitada
+     vaikse kustutuse rajale, mille kogu mõte on, et inimene teeb teo. */
+  await expectRejected("O-JTA-6: `RETENTION_AFTER_TRANSFER` ettevalmistusel on keelatud", () =>
+    prisma.caseWorkMeetingPrep.update({
+      where: { id: prep.id },
+      data: { contentPurgedAt: new Date(), contentPurgeReason: "RETENTION_AFTER_TRANSFER" }
+    })
+  );
+
   // ── `transferredAt` ⟺ `ULE_KANTUD` (E5 CHECK 2) ───────────────────────────
   await expectRejected("mustand: `transferredAt` ilma `ULE_KANTUD`-ita on keelatud", () =>
     prisma.caseWorkDraft.update({ where: { id: draft.id }, data: { transferredAt: new Date() } })

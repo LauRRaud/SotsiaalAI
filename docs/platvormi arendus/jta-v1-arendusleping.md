@@ -1,11 +1,11 @@
 # ÜLESANNE: `JTA-V1` — juhtumitöö assistent
 
-**Olek:** **E1–E8 TEHTUD (08.08). Leping on täidetud.** Tervik on koodis ja **peidus**
-(`CASEWORK_V1_ENABLED` vaikimisi väljas). Tõendatud päris andmebaasi ja **kahe päris sessiooni**
-vastu: `npm run jta:probe` **31/31**, sh brauseris läbi käidud kopeerimine, ülekantuks märkimine,
-säilituskell ja rada C.
-**O-JTA-5 on OTSUSTATUD (omanik 08.08): rada C** — töötaja tegu „arhiveeri töömaterjal".
-**23 lukustatud otsust, 8 etappi, 5 migratsiooni** (lubatud oli 4 — vt v7 rida allpool).
+**Olek:** **E1–E8 TEHTUD (08.08). Leping on täidetud ja ükski otsus ei ole enam lahti.** Tervik on
+koodis ja **peidus** (`CASEWORK_V1_ENABLED` vaikimisi väljas). Tõendatud päris andmebaasi ja
+**kahe päris sessiooni** vastu: `npm run jta:probe` **34/34**, sh brauseris läbi käidud
+kopeerimine, ülekantuks märkimine, säilituskell ja rada C mõlemas ulatuses.
+**O-JTA-5 = rada C** ja **O-JTA-6 = laiendada + purge-marker ettevalmistusel** (omanik 08.08).
+**23 lukustatud otsust, 8 etappi, 6 migratsiooni** (lubatud oli 4 — vt v7 ja v8 read allpool).
 **Perekond:** CASEWORK — **P1 jätk + P2**. Ei ole P3 (Meetodipeegel), P4/P5 (kaardid) ega P6
 (meetodikataloog).
 **Teostus:** üks teema, etapid **E1–E8**. **Töö otse `main`-is** (S11 reegel 1) — harusid ega
@@ -28,6 +28,8 @@ Kõrvale ptk 13 (privaatsusprintsiibid) ja ptk 15 (mida MVP ei sisalda).
 | **v6** | **omaniku viies audit — 2 uut otsust, 1 uus lukk, 1 dokumendiparandus. E2–E5 said rohelise tule.** (a) **`COPIED_FOR_STAR2` auditil puudus idempotentsusvõti** — L16 kirjeldas ausalt juhtu „lõikelaud õnnestus, audit ebaõnnestus", aga mitte selle **teist serva**: kui klient ei tea, kas `POST` jõudis kohale, teeb ta korduse ja tekib **kaks auditirida ühe päris kopeerimise kohta**. `markTransferred` oli kaitstud tingimusliku siirdega (L6/L18), `recordCopyEvent` **ei olnud millegagi** — append-only ilma võtmeta. Uus **L22**; (b) **arhiveerimine käivitab 12 kuu kella, aga UI ei ütle seda tegemise hetkel** — olemasolev `casework.page.retention_hint` ütleb ainult „ühesuunaline, tagasiteed ei ole". 30 päeva hoiatus on aus, aga saabub siis, kui otsust enam muuta ei saa. Uus **L23**; (c) **O-JTA-5 — hüljatud töömaterjali säilitus**: L7 jätab `MUSTAND` ja `EI_KANTA` teadlikult kellata, aga Õ2 12-kuuline reegel katab ainult **ülekantud** sisu. Aastaid aktiivne juhtum hoiab aastaid vana ettevalmistavat teksti. **See on eraldi andmeminimeerimise küsimus, mitte Õ2 alamhulk**; (d) pealkiri „Lahtised otsused — ükski ei blokeeri ehitust" oli eksitav, sest O-JTA-1…4 kandsid juba V1 vastuseid — teostaja jaoks tähendab „lahtine" tavaliselt „sul ei ole õigust valida". Ümber nimetatud |
 
 | **v7** | **teostus 08.08 — E5–E8 tehtud, O-JTA-5 otsustatud (rada C).** Neli asja, mis lepingust ERINEVAD ja mille kohta otsus on koodis: (a) **migratsioone on 5, mitte 4.** O-JTA-5 ütles „migratsioonide arv ei muutu üheski rajas — `contentPurgedAt` on juba olemas". **Koodist mõõtes vale:** E5 migratsioon kannab `CHECK ("contentPurgedAt" IS NULL OR "transferredAt" IS NOT NULL)`, mis lükkab rada C rea tagasi ANDMEBAASIS, ükskõik mida teenuskiht teeb. Lahendus ei olnud `CHECK`-i kustutamine (see jätaks kaitseta ka automaatse raja) — purge sai **põhjuse** (`CaseWorkPurgeReason`) ja garantii kitsenes sinna, kuhu ta kuulub; (b) **`mark-transferred` marsruut puudus E6 API-loendist.** L19 ütleb, et `markTransferred()` on ainus tee `ULE_KANTUD`-ini ja liides vajab nuppu — aga ühtegi marsruuti talle nimetatud ei olnud. Lisatud omaette marsruudina, mitte `transition`-i parameetrina (L19 mõte on, et need on kaks eri tegu); (c) **laua sektsioon #4 jäi E5-s tegemata.** L12 tabel lubab `draftsAwaitingTransfer`-i „E5 järel", aga E5 ei puutunud `workbench.js`-i. Mõlemad puuduvad sektsioonid (#4 ja #10) tehti E6-s ja L12 tabel on nüüd täis; (d) **rada C ulatus = ainult mustandid**, nagu lepingu sõnastus ütleb — vt **O-JTA-6** allpool |
+
+| **v8** | **omaniku kuues audit — O-JTA-6 otsustatud, ulatus laiendatud.** Rada C katab nüüd **kogu ettevalmistava töömaterjali**: kandmata mustandid JA kohtumise ettevalmistused. Ettevalmistus sai oma purge-markeri (migratsioon 6) ja **kirjutuskaitse** — `contentPurgedAt` on avaldus, mille peab saama uskuda, ja ilma kirjutuskaitseta oleks ta järgmise klõpsuga vale. Kaks `CHECK`-i jõustavad, et ettevalmistuse sisu kustutab AINULT inimene: kella tal ei ole ja automaatne põhjus on andmebaasi tasemel keelatud. **Konteiner ja seosed jäävad** — märge, mis ettevalmistusele viitab, ei tohi kaotada infot, et ettevalmistus toimus |
 
 **Neli minu enda viga on selles ahelas parandatud, mitte lünka.** L6 lubas andmebaasi CHECK-ilt
 garantiid, mida `CHECK` anda ei saa. L8 väitis, et säilitusreegel ei ulatu auditikirjeteni, aga
@@ -770,24 +772,31 @@ hilisemas versioonis. Päris lahtine otsus on all eraldi.
 **Algne sõnastus (v6, omaniku viies audit) on allpool alles**, sest tema kaalutlused kannavad
 edasi O-JTA-6-t.
 
-### O-JTA-6 — LAHTINE: kas rada C peaks katma ka ettevalmistused?
+### O-JTA-6 — OTSUSTATUD 08.08: laiendada + purge-marker ettevalmistusel
 
-**Leitud teostuses 08.08, omaniku otsustada.** O-JTA-5 põhjendus nimetab näitena juhtumit, milles
-„võib istuda **kaks aastat vana kohtumise ettevalmistus**, milles on kliendi sisu" — aga raja C
-sõnastus ütleb „purgeb **kandmata mustandite** sisu". Need kaks ei kata sama asja.
+**Küsimus tuli teostusest:** O-JTA-5 põhjendus nimetab näitena juhtumit, milles „võib istuda
+**kaks aastat vana kohtumise ettevalmistus**, milles on kliendi sisu" — aga raja C sõnastus ütles
+„purgeb **kandmata mustandite** sisu". Esimene teostus järgis sõnastust, mitte näidet, ja
+tagajärg oli aus, aga ebamugav: **tegu ei katnud seda, mida ta lubab.**
 
-**Teostus järgib sõnastust, mitte näidet**, ja seda teadlikult: ulatuse laiendamine oleks olnud
-otsus, mida omanik ei teinud. Tagajärg on aus ja tuleb välja öelda: **rada C ei lahenda oma enda
-motiveerivat näidet lõpuni.**
+> **Omaniku otsus 08.08: laiendada + purge-marker ettevalmistusel.** Põhjendus omaniku sõnadega:
+> see on ainus variant, kus „arhiveeri töömaterjal" tähendab päriselt kogu töömaterjali, kuid
+> ettevalmistuse **konteiner ja seosed säilivad**; terve ettevalmistuse kustutamine tekitaks
+> mustandiga võrreldes vastuolulise elutsükli. **Kuues migratsioon on siin põhjendatud.**
 
-| Rada | Kuju | Hind |
-|---|---|---|
-| **jätta nii** | ettevalmistusel on juba oma kustutusrada (E3) ja töötaja saab ta ükshaaval kustutada | „arhiveeri töömaterjal" ei tähenda seda, mida ta lubab |
-| **laiendada** | sama tegu kustutab ka ettevalmistused (kaskaad viib väljad ja küsimused) | ettevalmistuse rida KAOB, mustandi oma jääb — kaks eri semantikat ühe nupu all |
-| **laiendada + purge-marker prep-il** | ettevalmistus saab oma `contentPurgedAt` | kuues migratsioon |
+| | |
+|---|---|
+| **Skeem** | `CaseWorkMeetingPrep.contentPurgedAt` + `contentPurgeReason` (migratsioon 6) |
+| **Jõustaja** | kaks `CHECK`-i: aeg ⟺ põhjus, JA prep'i **ainus** lubatud põhjus on `WORKER_ARCHIVED_WORKING_MATERIAL` — ettevalmistusel ei ole kella, seega automaatne põhjus ei tohi siia kunagi jõuda |
+| **Mis kustub** | `CaseWorkMeetingPrepField` ja `CaseWorkQuestion` read |
+| **Mis jääb** | prep'i rida, `meetingAt`, ja **seos märkmega** — plaani kustutamine ei tohi viia tõendit selle kohta, mis päriselt räägiti |
+| **Kirjutuskaitse** | purge'itud prep'i `setPrepField` ja `addQuestion` annavad **409** (`casework.errors.prep_content_purged`). Ilma selleta oleks `contentPurgedAt` avaldus, mille saab järgmise klõpsuga valeks teha. Uus kohtumine = uus ettevalmistus (O-JTA-3) |
+| **Märge** | **väljas** — E4 ütleb, et märget ei kustutata: ettevalmistus on tulevikuplaan, märge kirjeldab seda, mis JUBA juhtus |
 
-**Märge on igal juhul väljas:** E4 ütleb, et märget ei kustutata — ta kirjeldab seda, mis juba
-juhtus.
+**Testileping:** ettevalmistuse väljad ja küsimused kaovad, **rida ja seos märkmega jäävad** ·
+ainult ettevalmistustega juhtumis tegu TÖÖTAB (enne andis 409 „midagi ei ole") · teine vajutus
+annab 409 · **automaatne säilitustöö ei puuduta ettevalmistusi** · purge'itud prep'i kirjutus →
+409 · `RETENTION_AFTER_TRANSFER` ettevalmistusel → **andmebaas keeldub**.
 
 ---
 

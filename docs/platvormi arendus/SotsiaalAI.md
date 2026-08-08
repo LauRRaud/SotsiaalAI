@@ -96,8 +96,15 @@ dokumendikannetega. Push ja deploy käivad endiselt ainult omaniku selgel loal.
 **Serveris on `8ab68f98`** (A4 deploy 05.08), seega deploy'mata on lisaks kogu see, mis
 `84d64b22`-ni juba `origin`-is oli. Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
 
-**TEGEMATA (ootab omanikku):** JTA-V1 säilitustöö vajab serveri **cron-rida** — ilma temata on
-kell olemas, aga keegi ei käivita teda:
+**TEGEMATA (ootab omanikku): JTA-V1 aktiveerimine ja tema cron.** Omaniku otsus 08.08:
+**funktsiooni ei aktiveerita ilma säilitustöö käivitajata** — kell ilma cron'ita on lubadus, mitte
+mehhanism. **Järjekord on lukus ja seda ei tohi ümber tõsta:**
+
+1. **Õ2/Õ3 andmekaitseanalüüsi kinnitus**
+2. **cron paigaldatakse** (sama väljalase, mis aktiveerib)
+3. **kuivjooks** — `npm run casework:retention:dry`
+4. **aktiveerimine** — `CASEWORK_V1_ENABLED=1`
+5. **päris jooks + logikontroll**
 
 ```
 15 3 * * * flock -n /var/lock/sotsiaalai-casework-retention.lock \
@@ -142,14 +149,14 @@ kaob referentsiaalne terviklikkus."* Seosemudel on seetõttu **typed-FK, mitte p
 ### Viimati tehtud (08.08): JTA-V1 — juhtumitöö assistent, E1–E8 VALMIS
 
 **Omanik valis 07.08 kuuenda teema: juhtumitöö assistent.** Leping
-[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v7** — **viis** omaniku auditiringi,
-**23 lukustatud otsust, 8 etappi, 5 migratsiooni**. **Kõik kaheksa etappi on TEHTUD 08.08 ja
+[`jta-v1-arendusleping.md`](./jta-v1-arendusleping.md) on **v8** — **kuus** omaniku auditiringi,
+**23 lukustatud otsust, 8 etappi, 6 migratsiooni**. **Kõik kaheksa etappi on TEHTUD 08.08 ja
 tervik on koodis ning peidus** (`CASEWORK_V1_ENABLED` vaikimisi väljas, sama värav mis
 JUHTUM-V1-l — uut lippu ei loodud).
 
-**Väravad:** `npm test` **3110/3110** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
-`db:migrate:check` OK (**134 migratsiooni**) · eslint puhas · `npm run build` OK ·
-**`npm run jta:probe` 31/31** päris andmebaasi ja **kahe päris sessiooni** vastu.
+**Väravad:** `npm test` **3115/3115** (`Europe/Tallinn` ja `UTC`) · `i18n:check` OK ·
+`db:migrate:check` OK (**135 migratsiooni**) · eslint puhas · `npm run build` OK ·
+**`npm run jta:probe` 34/34** päris andmebaasi ja **kahe päris sessiooni** vastu.
 
 **Mida assistent inimese jaoks teeb, on S4.1.** Lühidalt: laud näitab päeva ühelt ekraanilt ·
 kohtumise saab ette valmistada nii, et iga lause päritolu on näha · kohtumise märge hoiab
@@ -157,7 +164,8 @@ kaheksa kihti lahus · STAR2-sse kandmise järjekord on nähtav ahel · **kopeer
 ülekantuks märkimine on kaks eri tegu** · ja säilituskell on nüüd mehhanism, mitte lubadus.
 
 **Omanik otsustas 08.08 O-JTA-5: rada C.** Juhtum kannab tegu **„arhiveeri töömaterjal"**, mis
-kustutab STAR2-sse kandmata mustandite sisu, ilma et juhtumit arhiveeritaks. See on vastus
+kustutab ettevalmistava töömaterjali sisu (kandmata mustandid ja kohtumise ettevalmistused —
+vt O-JTA-6 allpool), ilma et juhtumit arhiveeritaks. See on vastus
 küsimusele, mille L7 lahtiseks jättis: ülekantud sisu saab oma 12 kuu kella, **kandmata
 töömaterjal ei saanud kunagi ühtegi** ja aastaid aktiivne juhtum hoidis teda tähtajatult.
 Rada C ei kustuta midagi kellegi selja taga — inimene teeb teo, süsteem jõustab.
@@ -475,12 +483,28 @@ puutumata. Säilitusskript jooksutatud päris andmebaasi vastu kuivalt, pärisel
 „tuleb järgmise etapiga" — tekst oli E5-aegne ja E6 oli ta juba kohale toonud. Parandatud
 kolmes keeles.
 
-### Lahtine ots, mis väärib omaniku otsust: O-JTA-6
+### O-JTA-6 otsustatud (08.08): rada C katab ka ettevalmistused
 
-Rada C põhjendus nimetab näitena **kaks aastat vana kohtumise ettevalmistust**, aga raja enda
-sõnastus katab ainult **mustandid**. Teostus järgib sõnastust — ulatuse laiendamine oleks olnud
-otsus, mida sa ei teinud. Tagajärg on aus: „arhiveeri töömaterjal" ei puuduta ettevalmistusi,
-neil on oma ükshaaval kustutamise rada. Kolm võimalikku vastust on lepingus.
+**Esimene kuju kattis ainult mustandeid** — see oli lepingu sõnastus tähttäheline, aga jättis
+katmata otsuse enda motiveeriva näite: kaks aastat vana kohtumise ettevalmistus, milles on
+kliendi sisu. Tegu, mis ei kata seda, mida ta lubab, on halvem kui puuduv tegu.
+
+**Omanik otsustas: laiendada + purge-marker ettevalmistusel.** Nüüd kustutab „arhiveeri
+töömaterjal" **kogu ettevalmistava töömaterjali sisu** — kandmata mustandid ja kohtumise
+ettevalmistused —, aga **kummaski ei kustu rida**: mustandil jääb ülekande tõend, ettevalmistusel
+jääb konteiner koos oma seosega märkmega. Plaani kustutamine ei tohi viia kaasa tõendit selle
+kohta, mis päriselt räägiti.
+
+**Purge'itud ettevalmistus on kirjutuskaitstud** ja see ei ole lisapiirang, vaid sama lubaduse
+teine pool: „sisu on arhiveeritud" on avaldus, mille peab saama uskuda ka viie minuti pärast.
+Uus kohtumine tähendab uut ettevalmistust.
+
+**Märge jääb puutumata** — E4 ütleb, et märget ei kustutata. Ettevalmistus on tulevikuplaan,
+märge kirjeldab seda, mis juba juhtus.
+
+**Ettevalmistusel ei ole kella ja seda jõustab andmebaas:** ainus lubatud purge-põhjus on
+töötaja tegu. Automaatne säilitustöö ei saa siia kirjutada ka siis, kui keegi ta tulevikus
+kogemata sinna suunaks.
 
 **Kolm otsust langesid samal päeval** ja nad on lepingus lukus:
 
@@ -1015,8 +1039,8 @@ lähtematerjal on `ideed.md`-s viidatud peatükis; teostuse leping kirjutatakse 
 ETAPPI ON KOODIS (08.08) ja värav on väljas.** E1 laua koondlugeja · E2 laua pind
 `/toolaud/juhtumitoo` · E3 kohtumise ettevalmistus · E4 kihiline märge · E5 STAR2 mustandi ahel ·
 E6 kopeerimine ja ülekandeajalugu · E7 säilituse jõustamine (`npm run casework:retention`) ·
-E8 sond. **O-JTA-5 = rada C** (otsustatud 08.08). Lahtine: **O-JTA-6** — kas rada C peaks katma
-ka kohtumise ettevalmistused.*
+E8 sond. **O-JTA-5 = rada C** ja **O-JTA-6 = laiendada + purge-marker ettevalmistusel**
+(mõlemad otsustatud 08.08). Lahtisi otsuseid ei ole.*
 
 **Assistent ei ole üks pakett, vaid kolm** (analüüsi ptk 10 jaotus): P1 ettevalmistuspaneel
 (tehtud) · **P2 STAR2-mustandite ahel — TEHTUD 08.08** (selle lepingu E5–E6) · P3 Meetodipeegel
@@ -1415,7 +1439,7 @@ Korje leidis **122 koodi**. Perekonnad ja teadaolevalt lahtised liikmed:
 | SUP supervisioon | P0–P11 | P1–P11 |
 | TK teekond | P0–P5, KOMPASS-P0 | P0 (kontrollimata), P1–P5, KOMPASS-P0 |
 | COLLAB | P0–P6 | P3 jääk, P4, P5, P6 |
-| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6 — TEHTUD 08.08**; **JTA-V1 E1–E8 tehtud 08.08, värav väljas**; lahtine: **O-JTA-6** (kas rada C katab ka ettevalmistused) |
+| CASEWORK | P0–P7 | P3–P6; **P7 = juhtumi objekt — TEHTUD 07.08, värav väljas**; **P2 = JTA-V1 E5–E6 — TEHTUD 08.08**; **JTA-V1 E1–E8 tehtud 08.08, värav väljas, ükski otsus ei ole lahti** |
 | WB-V2 tööheaolu | P0–P5, TH-RUUM-P0, TO-P1, TO-P4 | P3–P5, TH-RUUM-P0 |
 | PERF | P0–P6 | P0 jääk, P1–P6 |
 | MAKSED | P0–P3 (+P1a/b/d/e) | P2, P3, recurring |
