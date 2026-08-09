@@ -89,15 +89,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main`, `origin/main` ja **server on kõik `ff4547b9`** (SOL-auditi parandused
-BUILD-01, AUTH-01/02, CW-01…CW-12). **Deploy tehtud 09.08.2026 kell 16:53 omaniku selgel
-loal** — 48 commit'i ja **8 migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö,
-a11y-laadimisloor ja A4 DST-parandus. Rollback `8ab68f98` (A4 deploy 05.08).
+Lokaalne `main`, `origin/main` ja **server on kõik `df82b4f0`** (SOL-auditi parandused
+BUILD-01, AUTH-01/02, CW-01…CW-13 ja CW-15…CW-17). **Deploy tehtud 09.08.2026 kaks korda omaniku selgel
+loal** (16:53 `ff4547b9`, hiljem `df82b4f0`) — esimene kandis 48 commit'i ja **8
+migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö,
+a11y-laadimisloor ja A4 DST-parandus. Teine lisas veel **2 migratsiooni** (SOL-CW-15 märkme paranduste
+ajalugu, SOL-CW-16 kopeerimisauditi sisu sõrmejälg). Rollback `8ab68f98` (A4
+deploy 05.08).
 Tööpuu puhas. Üks tööpuu, üks haru.
 
 **Mõõdetud kohe pärast deploy'd, mitte eeldatud:** `_prisma_migrations` kannab kõiki
 kaheksat rida · `CaseWorkAssist` kannab kolme unikaalset indeksit (SOL-CW-12) ja on
-**tühi** · `CASEWORK_V1_ENABLED` **ei ole** `/etc/sotsiaalai/frontend.env`-is, seega värav
+**tühi**; teise deploy järel on kohal ka `CaseWorkMeetingNoteEntryRevision`
+muutumatuse-trigger ja mõlemad `contentHash` `CHECK`-id · `CASEWORK_V1_ENABLED` **ei ole** `/etc/sotsiaalai/frontend.env`-is, seega värav
 on väljas · `sotsiaal.ai` 200, `/juhtumid` **404** (SOL-CW-02 nõutud käitumine: väljas
 väravaga peab marsruut olema olematust eristamatu) · frontend/rag/worker `active`, viimases
 10 minutis ühtegi `err`-taseme rida.
