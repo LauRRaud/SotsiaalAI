@@ -89,15 +89,11 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` ja `origin/main` on **`68d11ac0`**, **server on `df82b4f0`** — vahele jääb
-kaheksa commit'i ja see on **DEPLOY'MATA**: SOL-CW-14 (ajastuse mehhanism `e48a1068` +
-runtime-sond `195cde2e`), **SOL-CW-18** (`4d668cb2`), **SOL-SCHEMA-01** (`1ca5131b`),
-**SOL-CW-20** (`68d11ac0`) ja kolm dokumendi-commit'i. Kaasa tuleb **üks migratsioon**
-(`CaseWorkRetentionRun` jooksulogi), mis puudutab ainult uut tühja tabelit ega riiva ühtegi
-väravat.
+Lokaalne `main`, `origin/main` ja **server on kõik `841b6fa8`** — deploy'mata ei ole midagi.
 
-**SOL-CW peatükk on nüüd tehtud 18/20** — lahtised on ainult CW-14 saba (taimeri lubamine
-serveris) ja **CW-19, mis ootab sinu otsust**. Peatükkide ülevaade:
+**SOL-CW peatükk on tehtud 18/20** — lahtised on ainult CW-14 saba (taimeri lubamine
+serveris) ja **CW-19, mis ootab sinu otsust**. **SOL-RAGADMIN on 3/4** — alles ainult
+RAGADMIN-04 (P2, hävitava reseti serveripoolne kinnitusvärav). Peatükkide ülevaade:
 [`docs/audits/parandusaudit.md`](../audits/parandusaudit.md).
 
 **SOL-SCHEMA-01 on uus P0 ja ta muudab seda, mida „JTA-V1 on valmis ootama" tähendas.**
@@ -109,22 +105,34 @@ värav on väljas. Parandatud mudelis (uut migratsiooni ei ole vaja), väravates
 `db:migrate:check` olid kõik kolm rohelised. Ainus värav, mis teda nägi, oli päris andmebaasi
 vastu kirjutav sond. Kolm juhtumitöö sondi on nüüd olemas: `casework:retention:probe`,
 `casework:workbench:probe`, `casework:deletion:probe`.
-Tootmises on SOL-auditi parandused BUILD-01, AUTH-01/02, CW-01…CW-13 ja CW-15…CW-17.
-**Deploy tehtud 09.08.2026 kaks korda omaniku selgel
-loal** (16:53 `ff4547b9`, hiljem `df82b4f0`) — esimene kandis 48 commit'i ja **8
-migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö,
-a11y-laadimisloor ja A4 DST-parandus. Teine lisas veel **2 migratsiooni** (SOL-CW-15 märkme paranduste
-ajalugu, SOL-CW-16 kopeerimisauditi sisu sõrmejälg). Rollback `8ab68f98` (A4
-deploy 05.08).
+Tootmises on SOL-auditi parandused BUILD-01, AUTH-01/02, CW-01…CW-18, CW-20, SCHEMA-01 ja
+RAGADMIN-01/02/03. **Deploy tehtud 09.08.2026 kolm korda omaniku selgel loal**
+(16:53 `ff4547b9`, siis `df82b4f0`, siis 22:24 `841b6fa8`) — esimene kandis 48 commit'i ja
+**8 migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö, a11y-laadimisloor ja A4
+DST-parandus. Teine lisas **2 migratsiooni** (SOL-CW-15 märkme paranduste ajalugu, SOL-CW-16
+kopeerimisauditi sisu sõrmejälg). Kolmas kandis 13 commit'i ja **2 migratsiooni**
+(`CaseWorkRetentionRun` jooksulogi, SOL-RAGADMIN-03 ingest-claim'i lease). Rollback
+`8ab68f98` (A4 deploy 05.08).
 Tööpuu puhas. Üks tööpuu, üks haru.
 
-**Mõõdetud kohe pärast deploy'd, mitte eeldatud:** `_prisma_migrations` kannab kõiki
-kaheksat rida · `CaseWorkAssist` kannab kolme unikaalset indeksit (SOL-CW-12) ja on
-**tühi**; teise deploy järel on kohal ka `CaseWorkMeetingNoteEntryRevision`
-muutumatuse-trigger ja mõlemad `contentHash` `CHECK`-id · `CASEWORK_V1_ENABLED` **ei ole** `/etc/sotsiaalai/frontend.env`-is, seega värav
-on väljas · `sotsiaal.ai` 200, `/juhtumid` **404** (SOL-CW-02 nõutud käitumine: väljas
-väravaga peab marsruut olema olematust eristamatu) · frontend/rag/worker `active`, viimases
-10 minutis ühtegi `err`-taseme rida.
+**Mõõdetud kohe pärast kolmandat deploy'd, mitte eeldatud:** server `841b6fa8`, `.next`
+ehitatud 22:24 · `_prisma_migrations` 140 rida, `migrate status` „up to date" · kõik kuus
+claim-veergu ja kolm `ingest_claim_pair` `CHECK`-i on kohal · toodangus ei ole **ühtki**
+`INGESTING` rida (KOV veeb 11 INGESTED / 2 READY / 65 NOT_INGESTED, RT 11/67,
+organisatsioonid 4× NOT_INGESTED), seega uus lease-mehhanism ei pärinud ühtki ummikut ·
+`sotsiaal.ai` `/` `/vestlus` `/admin/rag` **200** · frontend/rag/worker `active`, viimases
+6 minutis ühtegi vea-rida.
+
+**Juhtumitöö säilitustöö taimer on paigaldatud, aga VÄLJAS** — deploy kirjutas
+`sotsiaalai-casework-retention.{service,timer}` `/etc/systemd/system`-i ja tegi
+`daemon-reload`, `is-enabled` = **disabled**, `is-active` = **inactive**. See on nõutud
+käitumine: lubamine kuulub aktiveerimise väljalaskesse, mitte igasse deploy'sse.
+
+**Varasem mõõtmine (teine deploy) jääb kehtima:** `CaseWorkAssist` kannab kolme unikaalset
+indeksit (SOL-CW-12) ja on tühi · `CaseWorkMeetingNoteEntryRevision` muutumatuse-trigger ja
+mõlemad `contentHash` `CHECK`-id on kohal · `CASEWORK_V1_ENABLED` **ei ole**
+`/etc/sotsiaalai/frontend.env`-is, seega värav on väljas ja `/juhtumid` annab **404**
+(SOL-CW-02 nõutud käitumine: väljas väravaga peab marsruut olema olematust eristamatu).
 
 **TEGEMATA (ootab omanikku): JTA-V1 aktiveerimine ja tema cron.** Omaniku otsus 08.08:
 **funktsiooni ei aktiveerita ilma säilitustöö käivitajata** — kell ilma cron'ita on lubadus, mitte
