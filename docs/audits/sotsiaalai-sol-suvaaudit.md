@@ -1127,6 +1127,23 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Provider-stop'i kinnitus peab olema salvestuse terminalseisu eeltingimus; ebaselge/tõrkunud stop jätab nähtava `STOPPING/STOP_FAILED` oleku, blokeerib või lõpetab kõne konservatiivselt ning käivitab püsiva reconcile/retry kuni provider kinnitab lõpu. Nõusoleku tagasivõtu vastus ei tohi olla `ok:true`, kui salvestamise peatumine pole tõendatud. Provider-veasüstetest peab jätma stop-promise'i tõrkuma/aeguma ja kontrollima providerit, DB-d, UI-d ning füüsilist faili.
 
+**Seis (09.08.2026): DONE — tingimuslik lõppseis, kolm uut seisu, jagatud kinnitusloogika, püsiv taasproov ja 3 uut testi; rakenduse runtime: not_run.**
+
+Lõppseis on nüüd providerikinnituse taga. `STOPPING` kirjutatakse ENNE providerikutset;
+kinnituseta jääb taotlus `STOP_FAILED`-iks ja fail `QUARANTINED`-iks (mitte `DELETED`,
+mis on väide faili puudumise kohta). Kaks tõrget, mis said vanas koodis sama vastuse, on
+lahku viidud: „provider ei peatunud" on nõusolekupiir ja lahkub `STOP_FAILED`-iga, „provider
+peatus, järeltöötlus kukkus" jõuab `catch`-i, kus `FAILED` on aus. Withdraw ja decline
+vastavad `202` + `ok:false`, kui peatumine ei ole tõendatud — nõusoleku tagasivõtt ise
+õnnestus, seega mitte 4xx. Kinnitusloogika (`confirmEgressStopped`) on ÜKS implementatsioon
+`lib/calls/egress.js`-is, sest sama küsimust küsib ka püsiv taasproov. Taasproov kasutab
+olemasolevat `DataDeletionJob` järjekorda (`CALL_EGRESS_STOP`); uut töölist ei ehitatud.
+
+Vastuvõtukriteeriumist on KATMATA kaks osa: „blokeerib või lõpetab kõne konservatiivselt"
+on täidetud ainult osaliselt (uut salvestust samas kõnes ei saa alustada, aga kõnet ennast
+ei lõpetata), ja päris provideri veasüstetest puudub — tõendatud on teenuse-, marsruudi- ja
+skeemitasand, mitte päris LiveKit Egress. Commit'id `c58f6c3c` (alus) ja `12f896a2`.
+
 ### SOL-CALL-02 — salvestuse start võib võita hilise liituja või nõusoleku tagasivõtu ja alustada nõusolekuta — P0
 
 **Tõend.** `startRecording()` loeb aktiivse osalejaskonna ja kontrollib kõigi CONSENTED olekut enne salvestusruumi ettevalmistust ning välist providerikutset (`lib/calls/service.js:876-916`). `CallRecordingRequest` jääb selle aja jooksul `READY_TO_RECORD` olekusse ja muutub ACTIVE-ks alles pärast egressi starti ning faili update'i (`:925-941`). Paralleelne `joinCall()` lisab uue aktiivse osaleja, kuid otsib peatamiseks ainult juba ACTIVE taotlust; kui start pole veel ACTIVE update'ini jõudnud, ei leia ta midagi ja tagastab uuele osalejale tokeni (`:1190-1246`). Sama aken on nõusoleku tagasivõtul: consent-rada võib vana READY requesti DECLINED-iks muuta, kuid start kirjutab hiljem sama rea tingimusteta ACTIVE-ks (`:657-740`, `:935-940`); wrapper kõrvaldab egressi ainult siis, kui consent-raja enda tagastatud staatus oli ACTIVE (`:1374-1397`).
