@@ -1,0 +1,30 @@
+[Unit]
+# JTA-V1 / SOL-CW-14 — säilitustöö ajastus.
+Description=SotsiaalAI juhtumitoo sailitustoo ajastus (JTA-V1 E7)
+
+[Timer]
+# IGA TUND, MITTE KORD ÖÖS.
+#
+# Kolm põhjust, ja esimene on see, mille pärast leid kirjutati:
+#   1. RETRY. `oneshot` teenus ei tohi `Restart`-i kanda, seega kordus saab
+#      tulla ainult taimerilt. Kord ööpäevas tähendaks, et üks kukkunud jooks
+#      lükkab säilituse 24 tundi edasi; tunniga on kordus sisse ehitatud, ilma
+#      eraldi retry-mehhanismita, mida keegi ei testi.
+#   2. TÖÖ ON ODAV, KUI TEHA EI OLE MIDAGI: päring otsib ainult tähtaja
+#      ületanud ridu ja partii on piiratud (`CASEWORK_RETENTION_BATCH`).
+#   3. ALARMI LÄVI muutub kasutatavaks: „viimasest õnnestumisest üle kahe tunni"
+#      on tegelik signaal, „üle kahe päeva" ei ole.
+OnCalendar=hourly
+
+# VAHELEJÄÄNUD JOOKS TEHAKSE JÄRELE. Ilma selleta kaotab iga taaskäivitus ja iga
+# hoolduspaus oma akna vaikselt ära — ja säilitustähtaeg ei oota hooldusakent.
+Persistent=true
+
+# Hajutus, et taimer ei satuks iga kord täpselt teiste tundide-tööde peale.
+RandomizedDelaySec=300
+AccuracySec=1min
+
+Unit=sotsiaalai-casework-retention.service
+
+[Install]
+WantedBy=timers.target

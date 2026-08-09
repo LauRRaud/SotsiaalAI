@@ -165,6 +165,31 @@ if [ "$SKIP_BUILD" != "1" ]; then
   fi
 fi
 
+# HALLATAVAD AJASTUSED (SOL-CW-14). Unit-failid elavad repositooriumis
+# (\`deploy/systemd/\`), sest ajastus, mis elab ainult ühe masina crontabis, ei ole
+# platvormi oma — ja just tema puudumine jäi märkamatuks: koodis olev
+# säilitusreegel ei muutu iseenesest päris tööks.
+#
+# TAIMEREID SIIN EI LUBATA SISSE. See on teadlik: \`SotsiaalAI.md\` S1 lukustab
+# järjekorra (andmekaitseanalüüs → cron → kuivjooks → aktiveerimine) ja
+# lubamine kuulub aktiveerimise väljalaskesse, mitte igasse deploy'sse.
+if [ -d "$APP_DIR/deploy/systemd" ]; then
+  installed_units=""
+  for unit in "$APP_DIR"/deploy/systemd/*.service "$APP_DIR"/deploy/systemd/*.timer; do
+    [ -e "$unit" ] || continue
+    name="$(basename "$unit")"
+    if ! sudo cmp -s "$unit" "/etc/systemd/system/$name"; then
+      sudo install -m 0644 "$unit" "/etc/systemd/system/$name"
+      installed_units="$installed_units $name"
+    fi
+  done
+  if [ -n "$installed_units" ]; then
+    sudo systemctl daemon-reload
+    echo "[deploy:server] Systemd units updated:$installed_units"
+    echo "[deploy:server] NB: timers are NOT enabled by deploy — see deploy/systemd/README.md"
+  fi
+fi
+
 if systemctl list-unit-files sotsiaalai-rag.service >/dev/null 2>&1; then
   sudo systemctl restart sotsiaalai-rag.service
 fi

@@ -6941,6 +6941,52 @@ model CaseWorkTransferEvent {
   @@index([ownerUserId, createdAt])
   @@index([draftId, createdAt])
 }
+/* SÄILITUSTÖÖ JOOKSU LOGI (SOL-CW-14).
+
+   MIKS ANDMEBAASIS, MITTE LOGIFAILIS. Leid oli, et koodis olev säilitusreegel
+   ei muutu iseenesest päris tööks: `runRetention()` oli olemas ja testitud, aga
+   teda kutsus ainult käsitsi käivitatav skript ning cron oli näide skripti
+   päises, mitte repositooriumi hallatav ajastus. Ilma püsiva jooksuseisuta ei
+   saa keegi vastata kolmele küsimusele, mida järelevalve küsib: **millal töö
+   viimati õnnestus**, **millal ta järgmine kord käib** ja **kas keegi märkab,
+   kui ta lakkab käimast**. Logifail vastab neist mitte ühelegi masinloetavalt
+   ja kaob koos hostiga.
+
+   RIDA ON JOOKSU KOHTA, MITTE JUHTUMI KOHTA — siin ei ole ühtegi isikuandmete
+   välja ja `CaseWorkRetentionAudit` (mis on juhtumi oma) jääb puutumata.
+
+   VEATEADET SIIN EI SALVESTATA, ainult erindi klass ja kood. Prisma paneb
+   ebaõnnestunud päringu argumendid teatesse ja mõni teenuskiht kirje teksti —
+   sama põhjendus, mis laual (workbench L13). */
+model CaseWorkRetentionRun {
+  id String @id @default(cuid())
+
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+
+  /// Kas jooks lõppes ilma tõrgeteta. `false` on ALARMI alus.
+  ok Boolean @default(false)
+
+  /// Kuiv käivitus ei kirjuta midagi ja EI KÕLBA tõendiks, et töö toimib.
+  dryRun Boolean @default(false)
+
+  /// Värav oli väljas — töö käis, aga tegi teadlikult 0 tööd.
+  disabled Boolean @default(false)
+
+  draftsPurged       Int @default(0)
+  draftFieldsDeleted Int @default(0)
+  warningsSent       Int @default(0)
+  casesDeleted       Int @default(0)
+  failed             Int @default(0)
+
+  /// Erindi KLASS ja kood, mitte teade. Vt mudeli päist.
+  errorName String?
+  errorCode String?
+
+  @@index([startedAt])
+  @@index([ok, startedAt])
+}
+
 model CaseWorkRetentionAudit {
   id               String @id @default(cuid())
   caseWorkAssistId String

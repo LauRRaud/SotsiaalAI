@@ -1,0 +1,53 @@
+[Unit]
+# JTA-V1 / SOL-CW-14 — säilitustöö käivitaja.
+#
+# MIKS SEE FAIL ON REPOSITOORIUMIS. Audit leidis, et cron oli NÄIDE skripti
+# päises, mitte hallatav ajastus: kui serverivälist cron'i eraldi paigaldatud ei
+# olnud, ei kustunud ülekantud mustandite sisu 12 kuu järel ja arhiveeritud
+# juhtumid ei saanud hoiatust ega kustunud tähtajal — ilma ühegi märgita.
+# Ajastus, mis elab ainult ühe masina crontabis, ei ole platvormi oma.
+Description=SotsiaalAI juhtumitoo sailitustoo (JTA-V1 E7)
+Documentation=file:///home/ubuntu/apps/sotsiaalai/docs/audits/sotsiaalai-sol-suvaaudit.md
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/apps/sotsiaalai
+
+# Sama env, mis frontendil — `DATABASE_URL` ja `CASEWORK_V1_ENABLED` tulevad
+# SIIT, mitte skripti seest. Värav väljas → töö teeb teadlikult 0 tööd.
+EnvironmentFile=/etc/sotsiaalai/frontend.env
+
+# LUKK. Kaks korraga käivitunud partiid võitleksid samade ridade pärast ja teine
+# kirjutaks esimese tulemuse üle. `-n` = ära oota: kui eelmine jooks veel käib,
+# on õige vastus mitte käivituda, mitte järjekorda seista.
+#
+# Lukk on failil, MITTE ainult systemd'i „üks instants" käitumisel: käsitsi
+# käivitatud `npm run casework:retention` ei tea systemd'ist midagi.
+ExecStart=/usr/bin/flock -n /var/lock/sotsiaalai-casework-retention.lock \
+  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention'
+
+# Ühe jooksu ülempiir. Ilma selleta hoiaks kinni jäänud jooks LUKKU ja kõik
+# järgmised jooksud jääksid vaikselt tegemata — täpselt see seis, mille smoke
+# alles tundide pärast avastaks.
+TimeoutStartSec=900
+
+# RETRY. `oneshot` + `Restart` ei ole lubatud kombinatsioon, seega kordus tuleb
+# TAIMERILT (`Persistent=true` + tunniajane intervall): kukkunud jooks proovitakse
+# uuesti tunni pärast ja töö ise on idempotentne — ta töötab ainult tähtaja
+# ületanud ridadega ja partii on piiratud.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=casework-retention
+
+# Vähim vajalik: töö loeb ja kirjutab andmebaasi, mitte failisüsteemi.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/ubuntu/apps/sotsiaalai/.next/cache /var/lock
+
+[Install]
+WantedBy=multi-user.target

@@ -19,24 +19,29 @@
  *   npm run casework:retention        päriselt
  *   npm run casework:retention:dry    ainult loendab, ei kirjuta
  *
- * Cron (sama `flock`-muster mis A4-l — kaks korraga käivitunud partiid
- * võitleksid samade ridade pärast ja teine kirjutaks esimese tulemuse üle):
+ * AJASTUS ON NÜÜD REPOSITOORIUMI OMA (SOL-CW-14), mitte näide selles päises.
+ * Vt `deploy/systemd/` — lukustatud (`flock`), monitooritud
+ * (`CaseWorkRetentionRun` + `npm run casework:retention:smoke`) ja
+ * vahelejäänud jooksu järelt käivituv (`Persistent=true`).
  *
- *   15 3 * * * flock -n /var/lock/sotsiaalai-casework-retention.lock \
- *     /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention' \
- *     >> /var/log/sotsiaalai/casework-retention.log 2>&1
+ * IGA JOOKS JÄTAB RIDA, ka see, mis kukub. Rida tekib ENNE tööd: töö, mis suri
+ * keset partiid, näeks lõpus kirjutatud reaga välja täpselt nagu töö, mis ei
+ * käivitunudki.
  */
 
 import { prisma } from "../lib/prisma.js";
 import { runRetention } from "../lib/casework/retention.js";
+import { finishRetentionRun, startRetentionRun } from "../lib/casework/retentionRuns.js";
 
 const dryRun = process.argv.includes("--dry-run") || process.env.CASEWORK_RETENTION_DRY_RUN === "1";
 const batch = Number(process.env.CASEWORK_RETENTION_BATCH || 50);
 
 const startedAt = new Date();
+const run = await startRetentionRun({ startedAt, dryRun, db: prisma });
 
 try {
   const result = await runRetention({ now: startedAt, batch, dryRun, db: prisma });
+  await finishRetentionRun({ runId: run.id, result, db: prisma });
 
   const stamp = startedAt.toISOString();
   if (result.disabled) {
@@ -59,6 +64,9 @@ try {
      rida ei tohi teisi kinni hoida ja järgmine käivitus proovib uuesti. */
   process.exitCode = result.failed ? 1 : 0;
 } catch (error) {
+  /* Rida suletakse ka kukkumisel — muidu jääb ta igaveseks „algas ja ei
+     lõpetanud" seisu ja tervis ei erista surnud protsessi vigasest jooksust. */
+  await finishRetentionRun({ runId: run.id, error, db: prisma }).catch(() => {});
   console.error(`[casework:retention] KUKKUS: ${error?.message || error}`);
   process.exitCode = 1;
 } finally {
