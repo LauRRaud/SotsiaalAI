@@ -6717,6 +6717,15 @@ model CaseWorkMeetingNoteEntry {
      aktiivselt pinnalt kaob ainult tekst. */
   retractedAt DateTime?
 
+  /* NEED KAKS OLID ANDMEBAASIS, AGA MITTE MUDELIS (SOL-SCHEMA-01).
+     `20260808160000_jta_v1_meeting_note` lõi `"updatedAt" TIMESTAMP(3) NOT NULL`
+     ILMA vaikeväärtuseta; mudel neid ei kandnud, seega Prisma ei saatnud neid
+     kaasa ja iga kirje loomine kukkus päris PostgreSQL-is `23502`-ga. Sviit oli
+     roheline, sest fake-Prisma ei jõusta `NOT NULL`-i, ja `db:migrate:check`
+     rakendab migratsioone, aga ei kirjuta ühtegi rida. */
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   meetingNote CaseWorkMeetingNote                @relation(fields: [meetingNoteId], references: [id], onDelete: Cascade)
   revisions   CaseWorkMeetingNoteEntryRevision[]
 
