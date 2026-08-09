@@ -186,6 +186,12 @@ enum CallRecordingRequestStatus {
   COMPLETED
   FAILED
   DELETED
+  // SOL-CALL-01. `STOPPING` = stop on providerile saadetud, kinnitust EI OLE veel.
+  // `STOP_FAILED` = stop tõrkus või aegus ja püsiv taasproov on järjekorras. Kumbki
+  // EI OLE terminaalne: mõlemad tähendavad „egress võib veel kirjutada", mida senine
+  // `STOPPED` varjas.
+  STOPPING
+  STOP_FAILED
 }
 
 enum CallRecordingConsentStatus {
@@ -201,6 +207,10 @@ enum CallRecordingFileStatus {
   AVAILABLE
   FAILED
   DELETED
+  // SOL-CALL-01. Artefakt on olemas või võib olemas olla, teda EI TOHI kellelegi
+  // väljastada, ja tema kustutus ei ole kinnitatud. Senine rada kirjutas siia
+  // `DELETED`, mis on väide faili puudumise kohta — vale väide, kui kustutus tõrkus.
+  QUARANTINED
 }
 
 enum MunicipalityType {
@@ -3607,6 +3617,10 @@ model CallRecordingFile {
   status             CallRecordingFileStatus @default(NOT_CREATED)
   createdDocumentId  String?
   retentionUntil     DateTime?
+  // SOL-CALL-01 — hetk, mil PROVIDER ISE ütles egress'i kohta terminaalse seisu.
+  // NULL tähendab „ei ole tõendatud", mitte „ei ole lõppenud". Ainult mitte-NULL
+  // väärtus annab õiguse kirjutada taotlusele lõppseisu.
+  providerStopConfirmedAt DateTime?
   createdAt          DateTime                @default(now())
   updatedAt          DateTime                @updatedAt
 
