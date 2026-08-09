@@ -20,6 +20,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 
 import { PROVENANCE } from "../../lib/workspaces/provenance.js";
 import { CASEWORK_FLAG_KEYS } from "../../lib/casework/flags.js";
@@ -27,6 +28,7 @@ import { DRAFT_TYPE, createDraft, setField, transitionDraft } from "../../lib/ca
 import {
   TRANSFER_EVENT_KIND,
   buildStar2Block,
+  star2ContentHash,
   listTransferEvents,
   listTransferEventsForOwner,
   markTransferred,
@@ -235,6 +237,24 @@ async function seed(store, { fields = [["EESMARK", "Klient soovib tuge"]], advan
   return { draft, base };
 }
 
+/**
+ * Ploki sõrmejälg PRAEGUSEST sisust (SOL-CW-16).
+ *
+ * Räsi EI OLE valikuline: ilma temata annab teenuskiht 400 ja auditirida jääks
+ * jälle ilma tekstiversioonita. Testid, mis aegumist ei uuri, kasutavad seda
+ * abilist; aegumise testid annavad räsi käsitsi.
+ */
+function currentHash(base) {
+  const fields = base.db.fields
+    .filter((row) => row.draftId === base.draftId)
+    .map((row) => ({ fieldKey: row.fieldKey, text: row.text }));
+  return star2ContentHash(fields);
+}
+
+function copy(base, extra = {}) {
+  return recordCopyEvent({ ...base, contentHash: currentHash(base), ...extra });
+}
+
 /* ── plokk ──────────────────────────────────────────────────────────────── */
 
 test(
@@ -276,7 +296,7 @@ test(
       ]
     });
 
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK", "TEGEVUS"], clientActionId: ACTION_KEY });
+    await copy(base, { fieldKeys: ["EESMARK", "TEGEVUS"], clientActionId: ACTION_KEY });
 
     const [row] = store.events;
     const serialized = JSON.stringify(row);
@@ -294,7 +314,7 @@ test(
     const store = db();
     const { base } = await seed(store, { advanceTo: "VALMIS_ULEKANDEKS" });
 
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
 
     assert.equal(store.drafts[0].transferState, "VALMIS_ULEKANDEKS");
     assert.equal(store.drafts[0].transferredAt, null);
@@ -308,8 +328,8 @@ test(
     const store = db();
     const { base } = await seed(store);
 
-    const first = await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
-    const second = await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    const first = await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    const second = await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
 
     assert.equal(first.created, true);
     assert.equal(second.created, false, "kordus lõi teise rea");
@@ -331,11 +351,11 @@ test(
       ]
     });
 
-    const first = await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    const first = await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
     assert.equal(first.created, true);
 
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: ["OLUKORD"], clientActionId: ACTION_KEY }),
+      copy(base, { fieldKeys: ["OLUKORD"], clientActionId: ACTION_KEY }),
       409,
       "casework.errors.transfer_action_key_conflict"
     );
@@ -356,13 +376,13 @@ test(
     });
     const keys = ["EESMARK", "OLUKORD"];
 
-    const first = await recordCopyEvent({ ...base, fieldKeys: keys, clientActionId: ACTION_KEY });
-    const repeat = await recordCopyEvent({ ...base, fieldKeys: [...keys], clientActionId: ACTION_KEY });
+    const first = await copy(base, { fieldKeys: keys, clientActionId: ACTION_KEY });
+    const repeat = await copy(base, { fieldKeys: [...keys], clientActionId: ACTION_KEY });
     assert.equal(repeat.created, false, "täpselt sama tegu peab jääma idempotentseks");
     assert.equal(repeat.event.id, first.event.id);
 
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: ["OLUKORD", "EESMARK"], clientActionId: ACTION_KEY }),
+      copy(base, { fieldKeys: ["OLUKORD", "EESMARK"], clientActionId: ACTION_KEY }),
       409,
       "casework.errors.transfer_action_key_conflict"
     );
@@ -376,8 +396,8 @@ test(
     const store = db();
     const { base } = await seed(store);
 
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: OTHER_KEY });
+    await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    await copy(base, { fieldKeys: ["EESMARK"], clientActionId: OTHER_KEY });
 
     assert.equal(store.events.length, 2);
   })
@@ -390,12 +410,12 @@ test(
     const { base } = await seed(store);
 
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: null }),
+      copy(base, { fieldKeys: ["EESMARK"], clientActionId: null }),
       400,
       "casework.errors.transfer_action_key_invalid"
     );
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: "1234" }),
+      copy(base, { fieldKeys: ["EESMARK"], clientActionId: "1234" }),
       400,
       "casework.errors.transfer_action_key_invalid"
     );
@@ -409,7 +429,7 @@ test(
     const store = db();
     const { base, draft } = await seed(store);
 
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
 
     /* Otse tabelisse, teenuskihi valideerimisest mööda. Kui unikaalsust hoiaks
        ainult teenuskiht, läheks see rida läbi ja audit loeks ühe teo kaheks. */
@@ -424,7 +444,8 @@ test(
           draftType: DRAFT_TYPE.EESMARGI_SONASTUS,
           transferStateAtEvent: "MUSTAND",
           fieldKeys: ["EESMARK"],
-          clientActionId: ACTION_KEY
+          clientActionId: ACTION_KEY,
+          contentHash: "a".repeat(64)
         }
       }),
       (error) => error.code === "P2002"
@@ -466,12 +487,12 @@ test(
     const { base } = await seed(store);
 
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: ["MUU_VALI"], clientActionId: ACTION_KEY }),
+      copy(base, { fieldKeys: ["MUU_VALI"], clientActionId: ACTION_KEY }),
       400,
       "casework.errors.transfer_field_keys_unknown"
     );
     await rejects(
-      recordCopyEvent({ ...base, fieldKeys: [], clientActionId: ACTION_KEY }),
+      copy(base, { fieldKeys: [], clientActionId: ACTION_KEY }),
       400,
       "casework.errors.transfer_field_keys_required"
     );
@@ -487,7 +508,7 @@ test(
 
     const stranger = { ownerUserId: "worker_b", caseWorkAssistId: CASE_ID, draftId: draft.id, db: store };
     await rejects(buildStar2Block(stranger), 404);
-    await rejects(recordCopyEvent({ ...stranger, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY }), 404);
+    await rejects(copy(stranger, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY }), 404);
     await rejects(markTransferred({ ...stranger, expectedFrom: "VALMIS_ULEKANDEKS" }), 404);
     await rejects(listTransferEvents({ ownerUserId: "worker_b", caseWorkAssistId: CASE_ID, db: store }), 404);
   })
@@ -676,7 +697,7 @@ test(
     const store = db();
     const { base } = await seed(store, { fields: [["EESMARK", "Väga eristuv tekstijupp 12345"]] });
 
-    await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    await copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
 
     const { items } = await listTransferEvents({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, db: store });
     assert.equal(items.length, 1);
@@ -696,8 +717,174 @@ test(
     const store = db();
     const base = { ownerUserId: OWNER, caseWorkAssistId: CASE_ID, draftId: "draft_1", db: store };
     await rejects(buildStar2Block(base), 404);
-    await rejects(recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY }), 404);
+    await rejects(copy(base, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY }), 404);
     await rejects(markTransferred({ ...base, expectedFrom: "VALMIS_ULEKANDEKS" }), 404);
     await rejects(listTransferEvents({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, db: store }), 404);
   }
 );
+
+/* ── SOL-CW-16: audit on seotud kopeeritud tekstiversiooniga ────────────── */
+
+test(
+  "SOL-CW-16: VERSIOON A kopeeritud, VERSIOON B andmebaasis — audit ei lähe läbi",
+  withFeatureOn(async () => {
+    /* Auditi enda negatiivkontroll, sõna-sõnalt. Vana teostus võttis selle
+       vastu, sest ta kontrollis ainult, et samanimeline väli PRAEGU olemas on. */
+    const store = db();
+    const { base } = await seed(store, { fields: [["SISU", "VERSIOON A"]] });
+
+    const block = await buildStar2Block({ ...base, locale: "et" });
+    assert.ok(block.text.includes("VERSIOON A"));
+    assert.match(block.contentHash, /^[0-9a-f]{64}$/, "plokk ei kanna sisu sõrmejälge");
+
+    /* Keegi teine (või sama töötaja teises aknas) muudab teksti ära. */
+    await setField({ ...base, fieldKey: "SISU", text: "VERSIOON B", provenance: PROVENANCE.TOOTAJA_TAHELEPANEK });
+
+    await rejects(
+      recordCopyEvent({
+        ...base,
+        fieldKeys: block.fieldKeys,
+        clientActionId: ACTION_KEY,
+        contentHash: block.contentHash
+      }),
+      409,
+      "casework.errors.transfer_block_stale"
+    );
+    assert.equal(store.events.length, 0, "audit seoti vale sisuseisuga");
+  })
+);
+
+test(
+  "SOL-CW-16: värske plokk läheb läbi ja sõrmejälg JÄÄB auditirea külge",
+  withFeatureOn(async () => {
+    const store = db();
+    const { base } = await seed(store, { fields: [["SISU", "VERSIOON A"]] });
+    const block = await buildStar2Block({ ...base, locale: "et" });
+
+    const { created, event } = await recordCopyEvent({
+      ...base,
+      fieldKeys: block.fieldKeys,
+      clientActionId: ACTION_KEY,
+      contentHash: block.contentHash
+    });
+
+    assert.equal(created, true);
+    assert.equal(event.contentHash, block.contentHash, "tõend ei kanna sõrmejälge");
+    /* L8 jääb kehtima: räsi ei ole väärtus. Sisu ise auditireas ei ole. */
+    assert.equal(JSON.stringify(event).includes("VERSIOON A"), false);
+  })
+);
+
+test(
+  "SOL-CW-16: sõrmejälg on KOHUSTUSLIK ja tema kuju kontrollitakse",
+  withFeatureOn(async () => {
+    /* Vaikselt lubatud puuduv väärtus tähendaks, et vana klient taastab vea:
+       auditirida ilma ühegi tekstiversioonita. */
+    const store = db();
+    const { base } = await seed(store);
+
+    for (const contentHash of [undefined, null, "", "   ", "lyhike", "Z".repeat(64)]) {
+      await rejects(
+        recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY, contentHash }),
+        400,
+        "casework.errors.transfer_content_hash_invalid"
+      );
+    }
+    assert.equal(store.events.length, 0);
+  })
+);
+
+test(
+  "SOL-CW-16: sama võti TEISE sisuversiooniga on 409, mitte vaikne 200",
+  withFeatureOn(async () => {
+    /* Sama reegel mis SOL-CW-06 väljaloendil: vana võti uue sisu all on uus
+       tegu vana nime all. Vaikne 200 tagastaks eelmise kopeerimise auditirea ja
+       teine tegu jääks tõendita. */
+    const store = db();
+    const { base } = await seed(store, { fields: [["SISU", "VERSIOON A"]] });
+    const first = await buildStar2Block({ ...base, locale: "et" });
+    await recordCopyEvent({
+      ...base,
+      fieldKeys: first.fieldKeys,
+      clientActionId: ACTION_KEY,
+      contentHash: first.contentHash
+    });
+
+    await setField({ ...base, fieldKey: "SISU", text: "VERSIOON B", provenance: PROVENANCE.TOOTAJA_TAHELEPANEK });
+    const second = await buildStar2Block({ ...base, locale: "et" });
+    assert.notEqual(second.contentHash, first.contentHash, "sisu muutus ei muutnud sõrmejälge");
+
+    await rejects(
+      recordCopyEvent({
+        ...base,
+        fieldKeys: second.fieldKeys,
+        clientActionId: ACTION_KEY,
+        contentHash: second.contentHash
+      }),
+      409,
+      "casework.errors.transfer_action_key_conflict"
+    );
+    assert.equal(store.events.length, 1);
+  })
+);
+
+test(
+  "SOL-CW-16: KORDUS sama sisuga jääb idempotentseks (L22 ei murdu)",
+  withFeatureOn(async () => {
+    const store = db();
+    const { base } = await seed(store, { fields: [["SISU", "VERSIOON A"]] });
+    const block = await buildStar2Block({ ...base, locale: "et" });
+    const payload = {
+      ...base,
+      fieldKeys: block.fieldKeys,
+      clientActionId: ACTION_KEY,
+      contentHash: block.contentHash
+    };
+
+    const first = await recordCopyEvent(payload);
+    const repeat = await recordCopyEvent(payload);
+
+    assert.equal(first.created, true);
+    assert.equal(repeat.created, false, "kordus tegi teise rea");
+    assert.equal(repeat.event.id, first.event.id);
+    assert.equal(store.events.length, 1);
+  })
+);
+
+test("SOL-CW-16: sõrmejälg on KANOONILINE — järjekord ei loe, sisu loeb", () => {
+  /* Päringu järjekord võib muutuda ja siis annaks sama sisu kaks eri räsi —
+     iga audit läheks „aegunuks" ilma ühegi päris muudatuseta. */
+  const a = star2ContentHash([
+    { fieldKey: "B", text: "teine" },
+    { fieldKey: "A", text: "esimene" }
+  ]);
+  const b = star2ContentHash([
+    { fieldKey: "A", text: "esimene" },
+    { fieldKey: "B", text: "teine" }
+  ]);
+  assert.equal(a, b, "sama sisu andis eri järjekorras kaks eri räsi");
+
+  /* Ja iga päris muudatus muudab räsi: tekst, võti, väljade arv. */
+  assert.notEqual(a, star2ContentHash([{ fieldKey: "A", text: "esimene" }, { fieldKey: "B", text: "TEINE" }]));
+  assert.notEqual(a, star2ContentHash([{ fieldKey: "A", text: "esimene" }, { fieldKey: "C", text: "teine" }]));
+  assert.notEqual(a, star2ContentHash([{ fieldKey: "A", text: "esimene" }]));
+
+  /* Piiride segunemine ei tohi anda kokkupõrget: „AB" + „c" ei ole „A" + „Bc". */
+  assert.notEqual(
+    star2ContentHash([{ fieldKey: "AB", text: "c" }]),
+    star2ContentHash([{ fieldKey: "A", text: "Bc" }])
+  );
+});
+
+test("SOL-CW-16: sõrmejälje kohustuslikkus ja kuju on ANDMEBAASIS", async () => {
+  /* Teenuskihi kontroll kaitseb ainult neid teid, mis temast läbi käivad. */
+  const sql = await readFile(
+    new URL("../../prisma/migrations/20260809170000_jta_v1_transfer_event_content_hash/migration.sql", import.meta.url),
+    "utf8"
+  );
+  assert.match(sql, /ADD COLUMN "contentHash" TEXT/);
+  assert.match(sql, /CHECK \(\("kind" = 'COPIED_FOR_STAR2'\) = \("contentHash" IS NOT NULL\)\)/);
+  assert.match(sql, /\^\[0-9a-f\]\{64\}\$/);
+  /* Värav enne CHECK-i: olemasolevat rida ei saa tagantjärele õigeks arvutada. */
+  assert.match(sql, /RAISE EXCEPTION/);
+});

@@ -6914,6 +6914,15 @@ model CaseWorkTransferEvent {
   /// Milliste väljade `fieldKey`-d kopeeriti. VÄÄRTUSI SIIN EI OLE.
   fieldKeys String[] @default([])
 
+  /* KOPEERITUD SISU KANOONILINE SÕRMEJÄLG (SOL-CW-16, sha256 hex).
+     Rida tõendas seni teo aega ja väljanimesid, aga MITTE seda, milline tekst
+     lõikelauale läks: sisu sai auditi ja kopeerimise vahel asendada ja audit
+     võeti vastu. Räsi seob rea tekstiversiooniga ILMA väärtusi hoidmata — L8
+     keelab snapshot'i, sest see elaks üle E7 sisu-purge'i ja oleks
+     varju-register. `String?`, sest `MARKED_AS_TRANSFERRED` real plokki ei ole;
+     kohustuslikkust `kind` järgi jõustab `CHECK` migratsioonis. */
+  contentHash String?
+
   /// L22 idempotentsusvõti. `String?` on TAHTLIK: Postgres loeb `NULL`-e
   /// unikaalses indeksis eristuvateks, seega `MARKED_AS_TRANSFERRED` read
   /// (võti `null`) ei põrka omavahel ja indeks piirab täpselt seda, mida ta

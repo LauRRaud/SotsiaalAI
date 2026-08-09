@@ -1029,6 +1029,8 @@
       "transfer_field_keys_too_many": "Too many fields at once.",
       "transfer_action_key_invalid": "The copy identifier has an invalid format.",
       "transfer_action_key_conflict": "That copy identifier is already in use with different fields. Start the copy again.",
+      "transfer_content_hash_invalid": "The copied content fingerprint is missing or malformed.",
+      "transfer_block_stale": "The draft content changed after you copied it. Copy again so the record is tied to the right version of the text.",
       "create_action_key_invalid": "The case creation identifier has an invalid format.",
       "create_action_key_conflict": "That creation identifier is already in use with different content. Start creating the case again.",
       "working_material_empty": "There are no untransferred drafts whose content could be deleted.",

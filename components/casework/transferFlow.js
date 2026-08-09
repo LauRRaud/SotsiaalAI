@@ -44,7 +44,7 @@ function errorKeyOf(error) {
  * @param {object} steps
  * @param {() => Promise<object>} steps.loadBlock      server → plokk
  * @param {(text: string) => Promise<boolean>} steps.writeClipboard
- * @param {(input: { fieldKeys: string[], clientActionId: string }) => Promise<unknown>} steps.recordCopy
+ * @param {(input: { fieldKeys: string[], clientActionId: string, contentHash: string }) => Promise<unknown>} steps.recordCopy
  * @param {() => string} steps.createActionKey
  * @returns {Promise<{ phase: string, block: object|null, errorKey: string|null, pendingAudit: object|null }>}
  */
@@ -79,7 +79,11 @@ export async function runCopyForStar2({ loadBlock, writeClipboard, recordCopy, c
   }
 
   try {
-    await recordCopy({ fieldKeys: block.fieldKeys, clientActionId });
+    /* SÕRMEJÄLG KÄIB KAASA (SOL-CW-16). Ta tuleb PLOKIST, mille tekst
+       lõikelauale läks — mitte praegusest andmebaasi seisust. Ilma temata
+       tõendaks audit ainult aega ja väljanimesid ning vahepealne muudatus
+       seoks rea vale sisuseisuga. */
+    await recordCopy({ fieldKeys: block.fieldKeys, clientActionId, contentHash: block.contentHash });
     return { phase: COPY_PHASE.COPIED, block, errorKey: null, pendingAudit: null };
   } catch (error) {
     /* Lõikelaud VÕTTIS vastu, jälg jäi salvestamata. Kasutaja peab seda teadma
@@ -89,7 +93,7 @@ export async function runCopyForStar2({ loadBlock, writeClipboard, recordCopy, c
       phase: COPY_PHASE.AUDIT_FAILED,
       block,
       errorKey: errorKeyOf(error),
-      pendingAudit: { fieldKeys: block.fieldKeys, clientActionId }
+      pendingAudit: { fieldKeys: block.fieldKeys, clientActionId, contentHash: block.contentHash }
     };
   }
 }
@@ -100,8 +104,8 @@ export async function runCopyForStar2({ loadBlock, writeClipboard, recordCopy, c
  * SAMA VÕTI EI SATU KAKS KORDA JÄRJEKORDA: korduskatse ebaõnnestumine ei tohi
  * järjekorda kasvatada, muidu kirjutaks üks tegu mitu auditirida.
  *
- * @param {Array<{ fieldKeys: string[], clientActionId: string }>} queue
- * @param {{ fieldKeys: string[], clientActionId: string } | null} pendingAudit
+ * @param {Array<{ fieldKeys: string[], clientActionId: string, contentHash: string }>} queue
+ * @param {{ fieldKeys: string[], clientActionId: string, contentHash: string } | null} pendingAudit
  */
 export function queuePendingAudit(queue, pendingAudit) {
   const current = Array.isArray(queue) ? queue : [];

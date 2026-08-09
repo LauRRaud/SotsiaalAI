@@ -48,8 +48,18 @@ function lookup(dictionary, key) {
   return current;
 }
 
-/** Sammud, mis kirjutavad oma kutse ühte logisse — järjekord ON tulemus. */
-function steps({ block = { text: "HOIATUS\n\nEESMARK: tekst", fieldKeys: ["EESMARK"] }, clipboard = true, audit = true } = {}) {
+const CONTENT_HASH = "b".repeat(64);
+
+/** Sammud, mis kirjutavad oma kutse ühte logisse — järjekord ON tulemus.
+ *
+ * Plokk kannab SISU SÕRMEJÄLGE (SOL-CW-16) ja ta peab jõudma auditisse muutmata
+ * kujul: ta tuleb sellest tekstist, mis lõikelauale läks, mitte praegusest
+ * andmebaasi seisust. */
+function steps({
+  block = { text: "HOIATUS\n\nEESMARK: tekst", fieldKeys: ["EESMARK"], contentHash: CONTENT_HASH },
+  clipboard = true,
+  audit = true
+} = {}) {
   const log = [];
   const calls = { record: [] };
   return {
@@ -109,7 +119,13 @@ test("lõikelaud õnnestus, audit ei — kasutaja saab ERI teate ja võti jääb
 
   assert.deepEqual(log, ["key", "block", "clipboard", "audit"]);
   assert.equal(result.phase, COPY_PHASE.AUDIT_FAILED);
-  assert.deepEqual(result.pendingAudit, { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+  assert.deepEqual(result.pendingAudit, {
+    fieldKeys: ["EESMARK"],
+    clientActionId: ACTION_KEY,
+    /* Sõrmejälg jääb ootel auditi külge (SOL-CW-16): korduskatse peab kandma
+       SELLE teksti tõendit, mida kopeeriti, mitte uut. */
+    contentHash: CONTENT_HASH
+  });
 });
 
 test("L22: korduskatse kannab SAMA võtit, mitte uut", async () => {

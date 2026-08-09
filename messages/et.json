@@ -1029,6 +1029,8 @@
       "transfer_field_keys_too_many": "Välju on korraga liiga palju.",
       "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga.",
       "transfer_action_key_conflict": "Sama kopeerimise tunnus on juba kasutusel teiste väljadega. Alusta kopeerimist uuesti.",
+      "transfer_content_hash_invalid": "Kopeeritud sisu tunnus puudub või on vigase kujuga.",
+      "transfer_block_stale": "Mustandi sisu muutus pärast kopeerimist. Kopeeri uuesti — nii jääb jälg õige tekstiversiooni külge.",
       "create_action_key_invalid": "Juhtumi loomistunnus on vigase kujuga.",
       "create_action_key_conflict": "Sama loomistunnus on juba kasutusel teise sisuga. Alusta juhtumi loomist uuesti.",
       "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole.",

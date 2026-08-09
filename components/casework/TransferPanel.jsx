@@ -46,11 +46,11 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
   const [pendingAudits, setPendingAudits] = useState([]);
 
   const postCopyEvent = useCallback(
-    ({ fieldKeys, clientActionId }) =>
+    ({ fieldKeys, clientActionId, contentHash }) =>
       caseWorkRequest(`/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/copy-events`, {
         method: "POST",
         locale,
-        body: { fieldKeys, clientActionId }
+        body: { fieldKeys, clientActionId, contentHash }
       }),
     [caseId, draft.id, locale]
   );

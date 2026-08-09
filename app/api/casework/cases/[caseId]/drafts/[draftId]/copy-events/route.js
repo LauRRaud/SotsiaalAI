@@ -29,7 +29,11 @@ export async function POST(request, { params }) {
       caseWorkAssistId: caseId,
       draftId,
       fieldKeys: body?.fieldKeys ?? null,
-      clientActionId: body?.clientActionId ?? null
+      clientActionId: body?.clientActionId ?? null,
+      /* Sisu sõrmejälg (SOL-CW-16). Ta tuleb PLOKIST, mille tekst lõikelauale
+         läks; server kontrollib teda praeguse sisu vastu ja lükkab aegunud
+         ploki 409-ga tagasi. */
+      contentHash: body?.contentHash ?? null
     });
     return json({ ok: true, created, event });
   } catch (error) {
