@@ -48,6 +48,40 @@ function caseRow(overrides = {}) {
   };
 }
 
+/** STAR2 mustand, mis ootab kandmist (sektsioon #4). */
+function draftRow(overrides = {}) {
+  return {
+    id: "draft_1",
+    caseWorkAssistId: "case_1",
+    draftType: "EESMARGI_SONASTUS",
+    transferState: "VALMIS_ULEKANDEKS",
+    reviewKind: null,
+    transferredAt: null,
+    contentPurgedAt: null,
+    createdAt: NOW,
+    updatedAt: NOW,
+    ...overrides
+  };
+}
+
+/** Ülekandeauditi rida (sektsioon #10). `ownerUserId` on denormaliseeritud. */
+function transferEventRow(overrides = {}) {
+  return {
+    id: "event_1",
+    caseWorkAssistId: "case_1",
+    draftId: "draft_1",
+    ownerUserId: "w1",
+    actorUserId: "w1",
+    kind: "COPIED_FOR_STAR2",
+    draftType: "EESMARGI_SONASTUS",
+    transferStateAtEvent: "VALMIS_ULEKANDEKS",
+    fieldKeys: ["EESMARK"],
+    contentHash: "c".repeat(64),
+    createdAt: NOW,
+    ...overrides
+  };
+}
+
 /** Kohtumise ettevalmistus (SOL-CW-13). Vaikimisi homme, sisu alles. */
 function prepRow(overrides = {}) {
   return {
@@ -68,6 +102,8 @@ function prepRow(overrides = {}) {
 function db({
   cases = [],
   preps = [],
+  drafts = [],
+  transferEvents = [],
   missingInfo = [],
   preInquiries = [],
   shares = [],
@@ -168,6 +204,31 @@ function db({
         return seeds.filter((row) => row.ownerId === where.ownerId);
       }
     },
+    /* SOL-CW-17: KAKS PUUDUVAT MUDELIT. `draftsAwaitingTransfer` ja
+       `transferHistory` kutsusid lugejaid, mida see fake ei defineerinud —
+       sektsioonid viskasid `TypeError`-i, `Promise.allSettled` neelas ta
+       `ERROR`-iks ja privaatsustest jäi roheliseks, sest ta vaatas ainult kahte
+       teist sektsiooni. Kümnest sektsioonist oli kaks tõendamata. */
+    caseWorkDraft: {
+      async findMany({ where }) {
+        const owner = requireOwner(where);
+        const retention = where?.caseWorkAssist?.retentionState;
+        const blocked = where?.transferState?.notIn || [];
+        return drafts.filter((row) => {
+          const parent = cases.find((item) => item.id === row.caseWorkAssistId);
+          if (!parent || parent.ownerUserId !== owner) return false;
+          if (retention && parent.retentionState !== retention) return false;
+          if (blocked.includes(row.transferState)) return false;
+          return true;
+        });
+      }
+    },
+    caseWorkTransferEvent: {
+      async findMany({ where }) {
+        const owner = requireOwner(where);
+        return transferEvents.filter((row) => row.ownerUserId === owner);
+      }
+    },
     practiceReflection: {
       async findFirst() {
         return reflection;
@@ -180,6 +241,27 @@ function db({
   };
 }
 
+/**
+ * Laud KOOS konsooli valvuriga (SOL-CW-17).
+ *
+ * `Promise.allSettled` teeb iga erindi vaikseks `ERROR` sektsiooniks. Roheline
+ * test tähendas seni „laud vastas", mitte „laud töötas" — 246/246 jooks logis
+ * kogu aeg `TypeError`-eid ja keegi ei näinud neid. Nüüd on ootamatu
+ * konsoolikirje TESTI KUKUTAJA, mitte müra.
+ */
+async function workbenchWithoutErrors(input) {
+  const logged = [];
+  const originalError = console.error;
+  console.error = (...args) => logged.push(args.map((arg) => JSON.stringify(arg)).join(" "));
+  try {
+    const result = await getCaseWorkbench(input);
+    assert.deepEqual(logged, [], `laud logis ootamatu vea: ${logged.join(" | ")}`);
+    return result;
+  } finally {
+    console.error = originalError;
+  }
+}
+
 test(
   "1. võõra kasutaja andmeid ei jõua ühessegi sektsiooni",
   withFeature("1", async () => {
@@ -189,19 +271,80 @@ test(
         prepRow({ id: "prep_minu", caseWorkAssistId: "mine" }),
         prepRow({ id: "prep_voeras", caseWorkAssistId: "theirs" })
       ],
+      /* SOL-CW-17: mõlemal varem katmata sektsioonil on nüüd OMA ja VÕÕRAS rida.
+         Ilma võõra reata ei tõendaks positiivne rida omanikupiiri — ta ütleks
+         ainult, et lugeja midagi tagastab. */
+      drafts: [
+        draftRow({ id: "draft_minu", caseWorkAssistId: "mine" }),
+        draftRow({ id: "draft_voeras", caseWorkAssistId: "theirs" })
+      ],
+      transferEvents: [
+        transferEventRow({ id: "event_minu", caseWorkAssistId: "mine", draftId: "draft_minu" }),
+        transferEventRow({
+          id: "event_voeras",
+          caseWorkAssistId: "theirs",
+          draftId: "draft_voeras",
+          ownerUserId: "w2"
+        })
+      ],
       missingInfo: [
         { id: "m1", ownerUserId: "w1", caseWorkAssistId: "mine", status: "OPEN", text: "minu" },
         { id: "m2", ownerUserId: "w2", caseWorkAssistId: "theirs", status: "OPEN", text: "võõras" }
       ]
     });
 
-    const { sections } = await getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: store });
+    const { sections } = await workbenchWithoutErrors({ userId: "w1", roleState: WORKER, now: NOW, db: store });
 
     const rendered = JSON.stringify(sections);
     assert.equal(rendered.includes("theirs"), false, "võõra juhtumi id lekkis lauale");
     assert.equal(rendered.includes("võõras"), false, "võõra puuduva info tekst lekkis lauale");
+    assert.equal(rendered.includes("draft_voeras"), false, "võõra mustandi id lekkis lauale");
+    assert.equal(rendered.includes("event_voeras"), false, "võõra auditirea id lekkis lauale");
+
     assert.equal(sections.activePreparations.items.length, 1);
     assert.equal(sections.openMissingInfo.items.length, 1);
+    /* POSITIIVNE POOL: need kaks sektsiooni ei olnud varem üheski jooksus
+       täidetud, seega „ei leki" oli tühi tõend. */
+    assert.equal(sections.draftsAwaitingTransfer.items.length, 1);
+    assert.equal(sections.draftsAwaitingTransfer.items[0].draftId, "draft_minu");
+    assert.equal(sections.transferHistory.items.length, 1);
+    assert.equal(sections.transferHistory.items[0].eventId, "event_minu");
+  })
+);
+
+test(
+  "1b. SOL-CW-17: ÜKSKI kümnest sektsioonist ei tohi olla ERROR",
+  withFeature("1", async () => {
+    /* Vana fake ei defineerinud `caseWorkDraft` ega `caseWorkTransferEvent`
+       meetodeid: kaks sektsiooni viskasid `TypeError`-i, muutusid `ERROR`-iks
+       ja test jäi roheliseks. Nüüd on ootus NIMELINE — iga sektsioon peab olema
+       `OK` või `EMPTY`, mitte „vastas kuidagi". */
+    const täis = db({
+      cases: [caseRow()],
+      preps: [prepRow()],
+      drafts: [draftRow()],
+      transferEvents: [transferEventRow()],
+      missingInfo: [{ id: "m1", ownerUserId: "w1", caseWorkAssistId: "case_1", status: "OPEN", text: "punkt" }],
+      shares: [{ id: "share_1", workerId: "w1", status: "DRAFT", updatedAt: NOW }],
+      seeds: [{ id: "seed_1", ownerId: "w1", title: "teema", status: "DRAFT", updatedAt: NOW }]
+    });
+
+    const { sections } = await workbenchWithoutErrors({ userId: "w1", roleState: WORKER, now: NOW, db: täis });
+
+    for (const key of WORKBENCH_SECTIONS) {
+      assert.notEqual(sections[key].state, SECTION_STATE.ERROR, `sektsioon ${key} on ERROR`);
+      assert.notEqual(sections[key].state, SECTION_STATE.TIMEOUT, `sektsioon ${key} on TIMEOUT`);
+      assert.ok(
+        [SECTION_STATE.OK, SECTION_STATE.EMPTY].includes(sections[key].state),
+        `sektsioon ${key} on ootamatus seisus: ${sections[key].state}`
+      );
+    }
+
+    /* Ja tühja andmestikuga peavad KÕIK olema EMPTY — mitte ERROR. */
+    const tühi = await workbenchWithoutErrors({ userId: "w1", roleState: WORKER, now: NOW, db: db({}) });
+    for (const key of WORKBENCH_SECTIONS) {
+      assert.equal(tühi.sections[key].state, SECTION_STATE.EMPTY, `tühi sektsioon ${key} ei ole EMPTY`);
+    }
   })
 );
 
@@ -409,6 +552,8 @@ test(
         })
       ],
       preps: [prepRow()],
+      drafts: [draftRow()],
+      transferEvents: [transferEventRow()],
       missingInfo: [
         { id: "m1", ownerUserId: "w1", caseWorkAssistId: "case_1", status: "OPEN", text: "puuduv tõend" }
       ],
@@ -452,6 +597,24 @@ test(
       ["caseId", "createdAt", "itemId", "provenance", "text"]
     );
     assert.deepEqual(Object.keys(sections.networkPreparation.items[0]).sort(), ["shareId", "status", "updatedAt"]);
+    /* SOL-CW-17: need kaks kuju ei olnud varem üheski jooksus täidetud, sest
+       fake-DB-s puudusid nende mudelid — L20 valge nimekiri oli neil tõendamata. */
+    assert.deepEqual(Object.keys(sections.draftsAwaitingTransfer.items[0]).sort(), [
+      "caseId",
+      "draftId",
+      "draftType",
+      "reviewKind",
+      "transferState",
+      "updatedAt"
+    ]);
+    assert.deepEqual(Object.keys(sections.transferHistory.items[0]).sort(), [
+      "caseId",
+      "createdAt",
+      "draftId",
+      "draftType",
+      "eventId",
+      "kind"
+    ]);
     assert.deepEqual(Object.keys(sections.covisionPreparation.items[0]).sort(), [
       "seedId",
       "status",

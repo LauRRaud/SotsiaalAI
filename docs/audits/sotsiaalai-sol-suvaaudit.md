@@ -385,6 +385,15 @@
 
 **Vastuvõtukriteerium.** Fake-DB peab kõik kümme sektsiooni päriselt toetama ja põhilepingutest peab nõudma nende olekuks `OK/EMPTY`, mitte lubama ootamatut `ERROR`-it. Lisada kummalegi sektsioonile oma ja võõra omaniku read ning katkestada test ootamatu konsoolivea korral.
 
+**Seis (09.08.2026): DONE — testid; tootmiskoodi see leid ei muutnud.**
+- **Fake-DB sai puuduvad kaks mudelit:** `caseWorkDraft` ja `caseWorkTransferEvent`. Mõlemad nõuavad skoopi (`requireOwner`) — mustandil vanema kaudu (`caseWorkAssist.ownerUserId` + `retentionState`), auditireal denormaliseeritud `ownerUserId` kaudu. Skoobita lugeja kukub nüüd fake'i peal, mitte alles toodangus.
+- **Ootamatu konsoolikirje on TESTI KUKUTAJA.** `Promise.allSettled` teeb iga erindi vaikseks `ERROR` sektsiooniks; roheline test tähendas seni „laud vastas", mitte „laud töötas". Uus abiline `workbenchWithoutErrors()` püüab `console.error`-i kinni ja nõuab, et teda ei oleks.
+- **Uus nimeline leping (test 1b):** iga kümnest sektsioonist peab olema `OK` **või** `EMPTY` — mitte `ERROR`, mitte `TIMEOUT`. Tühja andmestikuga peavad kõik olema `EMPTY`. Varem ei kontrollinud seda ükski test ja kaks sektsiooni olid iga jooksu ajal `ERROR`.
+- **Mõlemal sektsioonil on nüüd OMA ja VÕÕRAS rida.** Ilma võõra reata ei tõendaks positiivne rida omanikupiiri — ta ütleks ainult, et lugeja midagi tagastab. Privaatsustest kontrollib nüüd ka `draft_voeras` ja `event_voeras` puudumist väljundist ning **positiivset poolt**: minu mustand ja minu auditirida on kohal.
+- **L20 valge nimekiri sai tõendi ka nende kahe peal:** deskriptori kuju test (`9.`) kontrollib nüüd `draftsAwaitingTransfer` ja `transferHistory` võtmehulki, mida varem üheski jooksus ei täidetud.
+- **Negatiivkontroll (09.08.2026):** ühe fake-mudeli eemaldamisel kukuvad mõlemad uued testid läbi (`1.` ja `1b.`); tagasi pannes 12/12. Roheline tuleb katvusest, mitte testi kujust.
+- Kontroll: `npm test` **3211/3211**, `npx eslint` puhas.
+
 ### SOL-CW-18 — workbench'i timeout ei lõpeta aegunud päringuid — P2
 
 **Tõend.** Iga kümnest sektsioonist käivitatakse paralleelselt `Promise.race`-is; 2,5 sekundi täitumisel tagastatakse `TIMEOUT`, kuid algne teenuse-/DB-promise jätkab taustal (`lib/casework/workbench.js:204-245`, `:356-364`). Faili kommentaar nimetab koormuse jätkumist teadlikuks piiranguks. Päringutele ei anta abort-signaali ega PostgreSQL statement timeout'i.
