@@ -89,8 +89,13 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main`, `origin/main` ja **server on kõik `df82b4f0`** (SOL-auditi parandused
-BUILD-01, AUTH-01/02, CW-01…CW-13 ja CW-15…CW-17). **Deploy tehtud 09.08.2026 kaks korda omaniku selgel
+Lokaalne `main` ja `origin/main` on **`195cde2e`**, **server on `df82b4f0`** — vahele jääb
+**SOL-CW-14 (ajastuse mehhanism `e48a1068` + runtime-sond `195cde2e`) ja kaks
+dokumendi-commit'i. See on DEPLOY'MATA.** Kaasa tuleb **üks migratsioon**
+(`CaseWorkRetentionRun` jooksulogi), mis puudutab ainult uut tühja tabelit ega riiva
+ühtegi väravat.
+Tootmises on SOL-auditi parandused BUILD-01, AUTH-01/02, CW-01…CW-13 ja CW-15…CW-17.
+**Deploy tehtud 09.08.2026 kaks korda omaniku selgel
 loal** (16:53 `ff4547b9`, hiljem `df82b4f0`) — esimene kandis 48 commit'i ja **8
 migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö,
 a11y-laadimisloor ja A4 DST-parandus. Teine lisas veel **2 migratsiooni** (SOL-CW-15 märkme paranduste
@@ -116,11 +121,23 @@ mehhanism. **Järjekord on lukus ja seda ei tohi ümber tõsta:**
 4. **aktiveerimine** — `CASEWORK_V1_ENABLED=1`
 5. **päris jooks + logikontroll**
 
+**Cron ei ole enam crontabi rida — ta on repositooriumi oma (SOL-CW-14, `e48a1068`).**
+`deploy/systemd/sotsiaalai-casework-retention.{service,timer}` kannavad ajastust, lukku
+(`flock`) ja timeout'i; deploy **paigaldab** unit-failid ja teeb `daemon-reload`, aga
+**ei luba taimerit sisse**. Ajastus, mis elab ainult ühe masina crontabis, ei ole
+platvormi oma — ja just tema puudumine oli see, mis jäi märkamatuks. Sammu 2 sisu on
+seega üks käsk aktiveerimise väljalaskes:
+
 ```
-15 3 * * * flock -n /var/lock/sotsiaalai-casework-retention.lock \
-  /bin/bash -lc 'cd /home/ubuntu/apps/sotsiaalai && npm run casework:retention' \
-  >> /var/log/sotsiaalai/casework-retention.log 2>&1
+sudo systemctl enable --now sotsiaalai-casework-retention.timer
 ```
+
+Kontroll pärast lubamist: `systemctl list-timers sotsiaalai-casework-retention.timer` ja
+`npm run casework:retention:smoke` (alarm = **väljumiskood 1**, mitte lause). Alarm ise on
+tõendatud päris PostgreSQL-is: `npm run casework:retention:probe` **22/22** (visatav
+andmebaas, lävi mõlemast otsast, smoke lapsprotsessina). **Tõendamata jääb säilitustähtaeg
+ise** — hoiatus ja kustutus päris kellaga —, sest see nõuab, et värav oleks kuskil sees.
+Vt `deploy/systemd/README.md`.
 
 ### Viimati tehtud (07.08): JUHTUM-V1 — juhtumi objekt
 
