@@ -49,6 +49,10 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
   const [notes, setNotes] = useState([]);
   const [notesCursor, setNotesCursor] = useState(null);
   const [openNote, setOpenNote] = useState(null);
+  /* Paranduste ja tühistuste ajalugu (SOL-CW-15). Ta EI OLE lisainfo: ilma
+     temata ei erista pind puutumata märget sellest, mille kõik read on
+     tühistatud — ja just see vahe on kogu leiu sisu. */
+  const [revisions, setRevisions] = useState([]);
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
   const [meetingAt, setMeetingAt] = useState("");
@@ -98,15 +102,20 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
   const loadNote = useCallback(
     async (noteId) => {
       requestedNoteId.current = noteId;
+      const base = `/cases/${encodeURIComponent(caseId)}/meeting-notes/${encodeURIComponent(noteId)}`;
       try {
-        const body = await caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-notes/${encodeURIComponent(noteId)}`,
-          { locale }
-        );
+        /* Märge ja tema ajalugu tulevad KOOS. Eraldi laadimine tähendaks akent,
+           kus read on juba tühistatud, aga ajalugu veel tühi — ja siis näeks
+           töötaja täpselt seda tühja konteinerit, mille SOL-CW-15 maha võttis. */
+        const [body, history] = await Promise.all([
+          caseWorkRequest(base, { locale }),
+          caseWorkRequest(`${base}/revisions`, { locale })
+        ]);
         /* Vahepeal avati juba teine märge — see vastus on aegunud ja teda EI
            panda ekraanile. */
         if (requestedNoteId.current !== noteId) return;
         setOpenNote(body.note || null);
+        setRevisions(history.items || []);
       } catch (error) {
         if (requestedNoteId.current !== noteId) return;
         setErrorKey(error?.messageKey || "casework.errors.unexpected");
@@ -153,12 +162,19 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
     [caseId, loadNote, locale, openNote, run]
   );
 
-  const removeEntry = useCallback(
-    async (entryId) => {
+  /**
+   * TÜHISTUS, MITTE KUSTUTUS (SOL-CW-15).
+   *
+   * `POST .../retract` koos põhjusega. Vana rada oli `DELETE` ilma põhjuseta ja
+   * ilma jäljeta: kõik read sai ükshaaval ära võtta ning alles jäi tühi
+   * konteiner, mis näis endiselt kohtumise tõendina.
+   */
+  const retractEntry = useCallback(
+    async (entryId, reason) => {
       const done = await run(() =>
         caseWorkRequest(
-          `/cases/${encodeURIComponent(caseId)}/meeting-notes/${encodeURIComponent(openNote.id)}/entries/${encodeURIComponent(entryId)}`,
-          { method: "DELETE", locale }
+          `/cases/${encodeURIComponent(caseId)}/meeting-notes/${encodeURIComponent(openNote.id)}/entries/${encodeURIComponent(entryId)}/retract`,
+          { method: "POST", locale, body: { reason } }
         )
       );
       if (!done) return false;
@@ -242,14 +258,16 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
         <NoteEditor
           key={openNote.id}
           note={openNote}
+          revisions={revisions}
           locale={locale}
           disabled={disabled}
           t={t}
           onAddEntry={addEntry}
-          onRemoveEntry={removeEntry}
+          onRetractEntry={retractEntry}
           onClose={() => {
             requestedNoteId.current = null;
             setOpenNote(null);
+            setRevisions([]);
           }}
         />
       ) : null}
@@ -257,8 +275,9 @@ export default function MeetingNoteSection({ caseId, writeDisabled, onChanged })
   );
 }
 
-function NoteEditor({ note, locale, disabled, t, onAddEntry, onRemoveEntry, onClose }) {
+function NoteEditor({ note, revisions, locale, disabled, t, onAddEntry, onRetractEntry, onClose }) {
   const entries = Array.isArray(note.entries) ? note.entries : [];
+  const history = Array.isArray(revisions) ? revisions : [];
 
   return (
     <div className="cw-section">
@@ -284,14 +303,101 @@ function NoteEditor({ note, locale, disabled, t, onAddEntry, onRemoveEntry, onCl
           disabled={disabled}
           t={t}
           onAdd={onAddEntry}
-          onRemove={onRemoveEntry}
+          onRetract={onRetractEntry}
         />
       ))}
+
+      <NoteHistory history={history} locale={locale} t={t} />
     </div>
   );
 }
 
-function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
+/**
+ * Paranduste ja tühistuste ajalugu (SOL-CW-15).
+ *
+ * SIIN ON ASENDATUD TEKST NÄHTAV — see ongi tõend. Ilma temata oleks „eelmine
+ * versioon säilib" lubadus, mida keegi kontrollida ei saa, ja pärast kõigi
+ * ridade tühistamist näeks märge välja nagu puutumata tühi konteiner.
+ *
+ * Tühja ajaloo kohta öeldakse VÄLJA, et parandusi ei ole. Kadunud plokk
+ * tähendaks, et lugeja ei tea, kas parandusi ei olnud või ei oska pind neid
+ * näidata.
+ */
+function NoteHistory({ history, locale, t }) {
+  return (
+    <div className="cw-field">
+      <h3 className="cw-section-title">{t("casework.note.history_title", "")}</h3>
+      <p className="cw-hint">{t("casework.note.history_hint", "")}</p>
+
+      {!history.length ? <p className="cw-empty">{t("casework.note.history_empty", "")}</p> : null}
+
+      <ul className="cw-list">
+        {history.map((item) => (
+          <li className="cw-item" key={item.id}>
+            {/* Asendatud tekst on TEKST, sama reegel mis aktiivsel real. */}
+            <span className="cw-item-text">{item.text}</span>
+            <span className="cw-item-meta">
+              <span className="cw-badge">{t(`casework.note.revision_kind_${item.kind}`, "")}</span>
+              <span className="cw-badge">{t(`casework.note.layer_${item.layer}`, "")}</span>
+              <span className="cw-badge">
+                {new Date(item.createdAt).toLocaleString(locale || "et", {
+                  dateStyle: "short",
+                  timeStyle: "short"
+                })}
+              </span>
+              {/* Põhjus on kasutaja enda tekst ja ta on selle rea MÕTE. */}
+              <span className="cw-muted">
+                {t("casework.note.revision_reason", "")}: {item.reason}
+              </span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * Tühistamise juhtnupp (SOL-CW-15).
+ *
+ * PÕHJUS ON VÄLJAL, MITTE KINNITUSTEKSTIS. Kaheastmeline „kas oled kindel" ei
+ * tekita auditile midagi; server nõuab põhjust ja kui pind seda ei küsi, saab
+ * töötaja 400 alles pärast otsust. Nupp on kinni, kuni põhjus on kirjutatud.
+ */
+function RetractControl({ entryId, disabled, t, onRetract }) {
+  const [reason, setReason] = useState("");
+  const ready = Boolean(reason.trim());
+
+  return (
+    <div className="cw-form cw-form--inline">
+      <label className="cw-label" htmlFor={`cw-retract-reason-${entryId}`}>
+        {t("casework.note.retract_reason", "")}
+      </label>
+      <input
+        id={`cw-retract-reason-${entryId}`}
+        className="cw-input"
+        type="text"
+        value={reason}
+        onChange={(event) => setReason(event.target.value)}
+        maxLength={1000}
+      />
+      <ConfirmButton
+        label={t("casework.note.retract_entry", "")}
+        confirmLabel={t("casework.note.confirm_retract_entry", "")}
+        cancelLabel={t("casework.note.cancel", "")}
+        disabled={disabled || !ready}
+        onConfirm={async () => {
+          const done = await onRetract(entryId, reason.trim());
+          /* Väli tühjendatakse AINULT õnnestumisel — sama reegel mis kirje
+             lisamisel: ebaõnnestunud katse ei tohi kasutaja teksti kustutada. */
+          if (done) setReason("");
+        }}
+      />
+    </div>
+  );
+}
+
+function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRetract }) {
   const [text, setText] = useState("");
   /* PÄRITOLUL EI OLE VAIKEVÄÄRTUST ja see on L4 otsene nõue. Eelvalitud
      `TOOTAJA_TAHELEPANEK` tähendas, et rea sai lisada päritolu TEADLIKULT
@@ -310,23 +416,31 @@ function NoteLayerBlock({ layer, entries, disabled, t, onAdd, onRemove }) {
       <ul className="cw-list">
         {entries.map((entry) => (
           <li className="cw-item" key={entry.id}>
-            {/* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */}
-            <span className="cw-item-text">{entry.text}</span>
+            {/* TÜHISTATUD RIDA JÄÄB LOENDISSE (SOL-CW-15), aga ei kanna oma
+                teksti: server saadab `text: null`. Rea kadumine tähendaks tühja
+                konteinerit, mis näib puutumata; teksti alles jätmine tähendaks,
+                et tühistus ei tee midagi. Sisu on paranduste ajaloos. */}
+            {entry.retractedAt ? (
+              <span className="cw-item-text cw-muted">{t("casework.note.entry_retracted", "")}</span>
+            ) : (
+              /* Tekst on TEKST: sisu tuleb React'i lapsena, mitte HTML-ina. */
+              <span className="cw-item-text">{entry.text}</span>
+            )}
             <span className="cw-item-meta">
               <span className="cw-badge">
                 {t(provenanceLabelKey(entry.provenance) || "casework.errors.provenance_unknown", "")}
               </span>
+              {/* Parandatud rida ütleb seda VÄLJA. Vaikselt parandatud tõend on
+                  täpselt see, mille SOL-CW-15 maha võttis. */}
+              {entry.revision > 1 ? (
+                <span className="cw-badge">
+                  {t("casework.note.revision_count", "").replace("{count}", String(entry.revision - 1))}
+                </span>
+              ) : null}
             </span>
-            {/* KUSTUTUS ON PÖÖRDUMATU ja teda ei auditeerita eraldi — seega
-                küsitakse üle. Tagasivõtuakent EI pakuta: lubadus, mille taga ei
-                ole mehhanismi, on halvem kui küsimus. */}
-            <ConfirmButton
-              label={t("casework.note.remove_entry", "")}
-              confirmLabel={t("casework.note.confirm_remove_entry", "")}
-              cancelLabel={t("casework.note.cancel", "")}
-              disabled={disabled}
-              onConfirm={() => onRemove(entry.id)}
-            />
+            {entry.retractedAt ? null : (
+              <RetractControl entryId={entry.id} disabled={disabled} t={t} onRetract={onRetract} />
+            )}
           </li>
         ))}
       </ul>

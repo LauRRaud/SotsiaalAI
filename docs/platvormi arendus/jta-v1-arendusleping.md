@@ -1140,8 +1140,25 @@ küsimuse read koos liigi- ja päritolusildiga · **`<b>` küsimuse tekstis kuva
 `CaseWorkMeetingPrep`-ile `SetNull`) ja `CaseWorkMeetingNoteEntry` (`layer`, `text`,
 `provenance`, `ordinal`).
 
-**`DELETE` märkmele puudub teadlikult** — märge on kohtumise jälg. Kirje saab eemaldada
-(`removeEntry`), märget mitte. Juhtumi kustutus viib ta kaskaadis.
+**`DELETE` märkmele puudub teadlikult** — märge on kohtumise jälg. ~~Kirje saab eemaldada
+(`removeEntry`), märget mitte.~~ Juhtumi kustutus viib ta kaskaadis.
+
+**Muudetud 09.08.2026 (SOL-CW-15).** Konteineri kustutuskeeld oli ainult pool lubadust:
+`removeEntry()` tegi `deleteMany`-t ja `updateEntry()` asendas teksti ilma versiooni, põhjuse
+ja tegijata. Kõik sisuread sai ükshaaval ära võtta ja alles jäi **tühi konteiner, mis näis
+endiselt kohtumise tõendina**. Nüüd:
+
+- **kõva kustutust EI OLE** — `removeEntry` on kadunud, asemel on `retractEntry()`
+  (`POST .../entries/<id>/retract`), mis jätab rea alles ja viib tema teksti ajalukku;
+- **parandus on auditeeritud** — `updateEntry()` nõuab põhjust ja kirjutab asendatava
+  versiooni tabelisse `CaseWorkMeetingNoteEntryRevision` (kolmas mudel, migratsioon
+  `20260809160000`); rida on `BEFORE UPDATE` triggeriga muutumatu;
+- **ajalool on oma lugeja** — `GET .../meeting-notes/<id>/revisions`, kirjutusteedeta;
+- kirje kannab `revision` loendurit ja `retractedAt` markerit; tühistatud rida ei kanna oma
+  teksti aktiivsele pinnale ega jõua STAR2 ekspordilugejasse.
+
+**Uus testileping:** kõigi ridade tühistamine ei tohi anda tühja puutumata märget ja algne
+sisu peab jääma ajaloost taastatavaks.
 
 **Testileping:** tundmatu `layer` → 400 · tundmatu `provenance` → 400 · **päritoluta kirje ei
 salvestu** · `PRIVAATNE_REFLEKSIOON` kirje **ei esine** üheski ekspordikujus (kontroll on E6

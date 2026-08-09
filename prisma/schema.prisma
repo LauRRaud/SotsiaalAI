@@ -6704,13 +6704,85 @@ model CaseWorkMeetingNoteEntry {
 
   ordinal Int @default(0)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  /* MITMES VERSIOON SEE RIDA ON (SOL-CW-15). 1 = esmane salvestus. Iga parandus
+     kasvatab teda ühe võrra ja paneb ASENDATAVA versiooni
+     `CaseWorkMeetingNoteEntryRevision`-isse. Ilma loendurita ei saaks ajalugu
+     järjestada ega öelda, mitu korda rida on muutunud. */
+  revision Int @default(1)
 
-  meetingNote CaseWorkMeetingNote @relation(fields: [meetingNoteId], references: [id], onDelete: Cascade)
+  /* TÜHISTUS, MITTE KUSTUTUS (SOL-CW-15). Varem oli kirje kõvasti kustutatav
+     ilma versiooni, paranduse ega auditireata: kõik read sai ükshaaval ära
+     võtta ja alles jäi tühi konteiner, mis näis endiselt kohtumise tõendina.
+     Nüüd jääb rida alles, tema sisu läheb tühistuse hetkel ajalukku ja
+     aktiivselt pinnalt kaob ainult tekst. */
+  retractedAt DateTime?
+
+  meetingNote CaseWorkMeetingNote                @relation(fields: [meetingNoteId], references: [id], onDelete: Cascade)
+  revisions   CaseWorkMeetingNoteEntryRevision[]
 
   @@index([meetingNoteId, layer, ordinal])
   @@index([meetingNoteId, ordinal])
+  @@index([meetingNoteId, retractedAt, ordinal])
+}
+
+/// Miks see versioon tekkis (SOL-CW-15).
+enum CaseWorkNoteRevisionKind {
+  /// Sisu asendati uuega. Rida kannab ASENDATUD versiooni.
+  CORRECTION
+
+  /// Rida võeti tagasi. Rida kannab tühistamise hetke sisu.
+  RETRACTION
+}
+
+/* KOHTUMISE MÄRKME PARANDUSTE JA TÜHISTUSTE AJALUGU (SOL-CW-15).
+
+   MIKS ERALDI TABEL, MITTE VÄLI KIRJE PEAL. Üks „eelmine tekst" väli kannaks
+   ainult viimast muutust; teine parandus kirjutaks esimese üle ja lubadus
+   „eelmine versioon säilib" katkeks vaikselt just siis, kui teda kõige rohkem
+   vaja on — korduvalt muudetud rea juures.
+
+   RIDA ON MUUTUMATU ja seda jõustab migratsioonis `BEFORE UPDATE` trigger, sama
+   muster mis `UsageEvent`-il. `DELETE`-i trigger EI blokeeri: konto kustutus ja
+   säilituse purge peavad kaskaadi kaudu läbi minema, ja nemad viivad kaasa kogu
+   juhtumi, mitte üksiku tõendi. Piir on aus: sisu ei saa MUUTA, ta saab kaduda
+   ainult koos juhtumiga. */
+model CaseWorkMeetingNoteEntryRevision {
+  id      String @id @default(cuid())
+  entryId String
+
+  /// Denormaliseeritud, sama muster mis `CaseWorkTransferEvent`-il: märkme
+  /// ajaloo lugeja ei pea kirjetabelisse liituma.
+  meetingNoteId String
+
+  kind CaseWorkNoteRevisionKind
+
+  /* SISU, MIS SEISAB SELLE VERSIOONI TAGA. Parandusel on see ASENDATUD tekst,
+     tühistusel tühistamise hetke tekst. Kiht ja päritolu käivad kaasa, sest
+     ka nemad on muudetavad ja ilma nendeta ei saaks vana rida taastada. */
+  layer      String
+  text       String @db.Text
+  provenance String
+  ordinal    Int
+
+  /// Mitmes versioon see oli. 1 = esmane salvestus.
+  revision Int
+
+  /// PÕHJUS ON KOHUSTUSLIK. Parandus ilma põhjuseta on sama, mis parandus ilma
+  /// jäljeta: hilisemas vaidluses ei erista miski eksituse parandamist sisu
+  /// ümberkirjutamisest. Tühjust keelab `CHECK` migratsioonis.
+  reason String @db.Text
+
+  /// Kes tegi. Denormaliseeritud `String`, FK-ta — sama muster mis
+  /// `CaseWorkTransferEvent.actorUserId`-l: audit peab üle elama ka konto
+  /// kustutuse, mis FK `SetNull`-iga jätaks rea tegijata.
+  actorUserId String
+
+  createdAt DateTime @default(now())
+
+  entry CaseWorkMeetingNoteEntry @relation(fields: [entryId], references: [id], onDelete: Cascade)
+
+  @@index([entryId, revision])
+  @@index([meetingNoteId, createdAt])
 }
 
 /// JTA-V1 (E5) — STAR2-sse kandmist ootav mustand. CASEWORK-P2 tuum.

@@ -134,8 +134,15 @@ test("pöördumatud kustutused käivad kaheastmelise kinnituse kaudu", async () 
   const detail = await readCode("../../components/casework/CaseWorkDetail.jsx");
   assert.match(detail, /<ConfirmButton[\s\S]{0,400}onConfirm=\{eraseClientReference\}/, "kliendiviite kustutus ei küsi üle");
 
+  /* SOL-CW-15: märkme kirjet EI KUSTUTATA enam — teda võetakse tagasi ja see
+     jätab jälje. Kinnitus jääb (tegu on ikka pöördumatu), aga tema kõrvale on
+     tulnud KOHUSTUSLIK PÕHJUS: kaheastmeline „kas oled kindel" ei tekita
+     auditile midagi, ja kui pind põhjust ei küsi, saab töötaja 400 alles pärast
+     otsust. Nupp on kinni, kuni põhjus on kirjutatud. */
   const note = await readCode("../../components/casework/MeetingNoteSection.jsx");
-  assert.match(note, /<ConfirmButton[\s\S]{0,400}onConfirm=\{\(\) => onRemove\(entry\.id\)\}/, "kirje eemaldus ei küsi üle");
+  assert.match(note, /<ConfirmButton[\s\S]{0,400}onRetract\(entryId, reason\.trim\(\)\)/, "kirje tagasivõtt ei küsi üle");
+  assert.match(note, /disabled=\{disabled \|\| !ready\}/, "tagasivõtu nupp on lahti ka ilma põhjuseta");
+  assert.doesNotMatch(note, /method: "DELETE"/, "pinnal on ikka kirje kõva kustutus");
 
   const prep = await readCode("../../components/casework/MeetingPrepSection.jsx");
   assert.match(prep, /onConfirm=\{\(\) => deletePrep\(prep\.id\)\}/, "ettevalmistuse kustutus ei küsi üle");

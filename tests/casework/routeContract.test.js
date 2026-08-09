@@ -35,11 +35,15 @@ const ROUTES = [
   "cases/[caseId]/meeting-preps/[prepId]/questions/route.js",
   "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/route.js",
   "cases/[caseId]/meeting-preps/[prepId]/questions/[questionId]/confirm-provenance/route.js",
-  /* JTA-V1 E4 — kohtumise märge, neli marsruuti. */
+  /* JTA-V1 E4 — kohtumise märge. SOL-CW-15 lisas kaks: tühistus on OMA
+     marsruut (`DELETE`, mis ei kustuta, oleks vale lubadus API pinnal) ja
+     paranduste ajalool on oma lugeja. */
   "cases/[caseId]/meeting-notes/route.js",
   "cases/[caseId]/meeting-notes/[noteId]/route.js",
+  "cases/[caseId]/meeting-notes/[noteId]/revisions/route.js",
   "cases/[caseId]/meeting-notes/[noteId]/entries/route.js",
   "cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js",
+  "cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/retract/route.js",
   /* JTA-V1 E5 — STAR2 mustandi ahel, neli marsruuti. */
   "cases/[caseId]/drafts/route.js",
   "cases/[caseId]/drafts/[draftId]/route.js",
@@ -241,6 +245,33 @@ test("E4 märkmel EI OLE kustutus- ega uuendusrada (märge on kohtumise jälg)",
 
   const service = await readLib("caseWorkMeetingNote.js");
   assert.doesNotMatch(service, /caseWorkMeetingNote\.delete/, "teenuskiht: märkme kustutus");
+
+  /* SOL-CW-15: JA KIRJEL SAMUTI MITTE. Konteineri kustutuskeeld oli ainult
+     pool lubadust — kirje `DELETE` võttis sisuread ükshaaval ära ja alles jäi
+     tühi märge, mis näis endiselt kohtumise tõendina. */
+  const entry = await readRoute("cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/route.js");
+  assert.doesNotMatch(entry, /export async function DELETE/, "kirjel on kõva kustutusrada");
+  assert.doesNotMatch(service, /caseWorkMeetingNoteEntry\.delete/, "teenuskiht: kirje kõva kustutus");
+
+  /* Tühistus on OMA marsruut ja ta nõuab põhjust; ajalool on oma LUGEJA ja
+     mitte ühtegi kirjutusteed. */
+  const retract = await readRoute("cases/[caseId]/meeting-notes/[noteId]/entries/[entryId]/retract/route.js");
+  assert.match(retract, /export async function POST/, "tühistusel puudub marsruut");
+  assert.match(retract, /reason: body\?\.reason/, "tühistus ei võta põhjust kehast");
+  assert.doesNotMatch(retract, /export async function DELETE/, "tühistus kustutab");
+
+  const revisions = await readRoute("cases/[caseId]/meeting-notes/[noteId]/revisions/route.js");
+  assert.match(revisions, /export async function GET/, "ajalool puudub lugeja");
+  for (const method of ["POST", "PATCH", "PUT", "DELETE"]) {
+    assert.doesNotMatch(
+      revisions,
+      new RegExp(`export async function ${method}`),
+      `ajalool on kirjutustee: ${method}`
+    );
+  }
+
+  /* Ja parandus ise nõuab põhjust — muidu oleks auditirida ilma põhjuseta. */
+  assert.match(entry, /reason: body\?\.reason/, "parandus ei võta põhjust kehast");
 });
 
 test("E4 kirje PATCH ei edasta päritolu ja kannab mõlemat ID-d", async () => {
