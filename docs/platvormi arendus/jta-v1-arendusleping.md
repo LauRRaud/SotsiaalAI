@@ -448,9 +448,37 @@ ainult viimase — 40 sekundit kestev päring paneb `allSettled`-i 40 sekundiks 
 Tähtaeg on **testitav**: E1 testileping nõuab, et tahtlikult aeglane fake-lugeja annab
 `TIMEOUT`-i ja et koondkutse tagastab enne, kui see lugeja lõpetab.
 
-**Aegunud päringut ei katkestata andmebaasi tasemel** — `Promise.race` jätab ta lõpuni jooksma.
-See on teadlik: V1-s ei ole päringu tühistamise taristut ja selle ehitamine on omaette töö.
-Tagajärg on aus — aegunud sektsioon ei blokeeri kasutajat, aga koormus jääb.
+**~~Aegunud päringut ei katkestata andmebaasi tasemel~~ — PARANDATUD 09.08.2026 (SOL-CW-18).**
+v6 kandis siin teadlikku piirangut: `Promise.race` jättis päringu lõpuni jooksma, sest
+„V1-s ei ole päringu tühistamise taristut". Audit näitas, mida see maksab — üks HTTP vastus
+võis jätta kuni **kümme** tööd ühendusi ja CPU-d kasutama, ja korduvad värskendused kuhjasid
+selle just tõrke ajal, mil süsteem on juba aeglane. `Promise.race` ei katkesta midagi; ta
+lõpetab ainult **ootamise**.
+
+**Lukus (SOL-CW-18):**
+
+| Parameeter | Väärtus |
+|---|---|
+| laua ühendustepesa | **oma**, `lib/casework/workbenchDb.js`, `application_name = sotsiaalai-casework-workbench` |
+| päringu tähtaeg | PostgreSQL `statement_timeout` = **sama 2500 ms** |
+| pesa ülempiir | **10** ühendust — üks sektsiooni kohta, ja edasi ei kasva |
+| ühenduse ootamine | `connectionTimeoutMillis` = 2500 ms (ammendunud pesa ei tohi oodata igavesti) |
+| sama kasutaja paralleelpäringud | **2**, üle selle **429** (`casework.errors.too_many_requests`) |
+| katkestus (`57014`) | sektsioon → `TIMEOUT`, **mitte** `ERROR` |
+
+**Miks oma pesa, mitte `SET LOCAL` ühises pesas:** `SET LOCAL` kehtib ainult tehingus, seega
+iga sektsioon vajaks interaktiivset tehingut — kümme tehingut kinnitaks kümme ühendust ja `pg`
+vaikepesa on täpselt kümme. Üks laua päring võiks lukustada terve rakenduse pesa: halvem viga
+kui see, mida parandati. Konstandid elavad ühes kohas (`workbenchLimits.js`), sest sama arv
+peab kehtima nii JS-tähtajana kui `statement_timeout`-ina ja kaks kirjapanekut läheksid
+esimese muudatusega vaikselt lahku.
+
+**JS-`race` jääb alles backstop'iks** — ta katab rippumise, mis EI OLE päring. Logis on kaks
+allikat eristatud (`source: "database"` vs `"deadline"`), sest pärast seda parandust tähendab
+`deadline` hoopis teist viga.
+
+Tõend: `npm run casework:workbench:probe` päris PostgreSQL-i vastu — sh negatiivkontroll, et
+**ilma** statement-timeout'ita jääb sama töö elama.
 
 **v6 saba (omaniku viies audit) — see vajab operatiivset jälgimist, mitte teist mehhanismi.**
 Servajuht, mida V1 ei lahenda: kui tähtaeg hakkab **korrapäraselt** täis saama, muutub „kiire

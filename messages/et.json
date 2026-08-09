@@ -970,6 +970,7 @@
       "not_found": "Juhtumit ei leitud.",
       "invalid_input": "Sisestus ei ole kehtiv.",
       "conflict": "Toiming ei ole selles seisus lubatud.",
+      "too_many_requests": "Laud on juba avanemas. Oota hetk ja proovi uuesti.",
       "client_track_conflict": "Klient saab olla kas platvormi kasutaja või miinimumkujul viide, mitte mõlemat korraga.",
       "client_account_not_origin_author": "Kontoga kliendiks saab märkida ainult selle inimese, kes pöördumise ise saatis.",
       "client_reference_erased": "Kliendiviide on kustutatud ja seda ei taastata.",

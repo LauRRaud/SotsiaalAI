@@ -1,5 +1,7 @@
 import { json } from "@/lib/documents/server";
 import { caseWorkErrorResponse, guardCaseWorkRequest } from "@/lib/casework/routes";
+import { tooManyRequests } from "@/lib/casework/errors";
+import { acquireWorkbenchSlot } from "@/lib/casework/workbenchConcurrency";
 import { getCaseWorkbench } from "@/lib/casework/workbench";
 
 export const runtime = "nodejs";
@@ -21,6 +23,14 @@ export async function GET(request) {
   const guard = await guardCaseWorkRequest(request, { scope: "casework:workbench" });
   if (guard.response) return guard.response;
 
+  /* SOL-CW-18 — sama kasutaja paralleelsete laua-päringute piir.
+     Laud käivitab kümme lugejat korraga; tõrke ajal vajutab inimene värskendust
+     rohkem, mitte vähem, ja ilma piirita korrutab iga vajutus selle kümne läbi.
+     Slott võetakse PÄRAST väravat: enne teda ei ole kasutajat, kelle kohta
+     lugeda, ja autentimata päring ei tohi kellegi kvooti kulutada. */
+  const release = acquireWorkbenchSlot(guard.userId);
+  if (!release) return caseWorkErrorResponse(tooManyRequests(), guard.locale);
+
   try {
     /* Koondlugeja EI VISKA sektsiooni vea peale (L2/L13) — ta annab sektsioonile
        oleku. See `try` katab ainult selle, mis on tema ümber: ootamatu erind
@@ -29,5 +39,9 @@ export async function GET(request) {
     return json({ ok: true, ...result });
   } catch (error) {
     return caseWorkErrorResponse(error, guard.locale);
+  } finally {
+    /* `finally`, MITTE mõlemas harus eraldi: vabastamata slott jätaks kasutaja
+       igaveseks 429 taha ja seda ei parandaks ükski järgmine päring. */
+    release();
   }
 }
