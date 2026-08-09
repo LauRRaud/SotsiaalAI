@@ -89,12 +89,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main`: viimane **koodikanne** on **`4e22812a`** (JTA-V1 E8), selle peal seisavad
-dokumendikanded. Tööpuu puhas. Üks tööpuu, üks haru.
-**`origin/main` on `84d64b22`** — **push'imata on kogu JTA-V1 E2–E8** koos oma
-dokumendikannetega. Push ja deploy käivad endiselt ainult omaniku selgel loal.
-**Serveris on `8ab68f98`** (A4 deploy 05.08), seega deploy'mata on lisaks kogu see, mis
-`84d64b22`-ni juba `origin`-is oli. Rollback `d7e9fcd5`. Vt „Deploy tehtud" allpool.
+Lokaalne `main`, `origin/main` ja **server on kõik `ff4547b9`** (SOL-auditi parandused
+BUILD-01, AUTH-01/02, CW-01…CW-12). **Deploy tehtud 09.08.2026 kell 16:53 omaniku selgel
+loal** — 48 commit'i ja **8 migratsiooni** korraga: kogu JUHTUM-V1 + JTA-V1 juhtumitöö,
+a11y-laadimisloor ja A4 DST-parandus. Rollback `8ab68f98` (A4 deploy 05.08).
+Tööpuu puhas. Üks tööpuu, üks haru.
+
+**Mõõdetud kohe pärast deploy'd, mitte eeldatud:** `_prisma_migrations` kannab kõiki
+kaheksat rida · `CaseWorkAssist` kannab kolme unikaalset indeksit (SOL-CW-12) ja on
+**tühi** · `CASEWORK_V1_ENABLED` **ei ole** `/etc/sotsiaalai/frontend.env`-is, seega värav
+on väljas · `sotsiaal.ai` 200, `/juhtumid` **404** (SOL-CW-02 nõutud käitumine: väljas
+väravaga peab marsruut olema olematust eristamatu) · frontend/rag/worker `active`, viimases
+10 minutis ühtegi `err`-taseme rida.
 
 **TEGEMATA (ootab omanikku): JTA-V1 aktiveerimine ja tema cron.** Omaniku otsus 08.08:
 **funktsiooni ei aktiveerita ilma säilitustöö käivitajata** — kell ilma cron'ita on lubadus, mitte
