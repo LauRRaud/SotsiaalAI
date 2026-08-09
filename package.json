@@ -28,6 +28,7 @@
     "casework:retention": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention.mjs",
     "casework:retention:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention.mjs --dry-run",
     "casework:retention:smoke": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention-smoke.mjs",
+    "casework:retention:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/casework-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",

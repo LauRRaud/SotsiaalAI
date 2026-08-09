@@ -249,6 +249,27 @@ test("SOL-CW-14: smoke on olemas, käivitatav ja alarm annab MITTE-NULLI", async
   assert.match(smoke, /isCaseWorkEnabled/, "väljas värav teeks alarmi");
 });
 
+test("SOL-CW-14: runtime-sond on olemas ja mõõdab VISATAVAT baasi, mitte arendusbaasi", async () => {
+  /* See sviit jookseb fake-Prisma peal ega tõenda skeemi ega protsessi. Sond
+     tõendab neid — aga ainult siis, kui ta ise ei kirjuta päris andmestikku.
+     Jooksulogi ridade segamine päris seisuga teeks iga järgmise mõõtmise
+     valelikuks, ja seda ei paranda ükski hilisem koristus. */
+  const pkg = JSON.parse(await readRepoFile("package.json"));
+  assert.ok(pkg.scripts["casework:retention:probe"], "sondi käsku ei ole");
+
+  const probe = await readRepoFile("scripts/casework-retention-probe.mjs");
+  assert.match(probe, /CREATE DATABASE/, "sond ei loo oma andmebaasi");
+  assert.match(probe, /DROP DATABASE IF EXISTS/, "sond ei kustuta oma andmebaasi");
+  /* Koristust KONTROLLITAKSE, mitte ei eeldata — A4 sondi õppetund. */
+  assert.match(probe, /SELECT 1 FROM pg_database WHERE datname/, "koristust ei kontrollita");
+  /* Kaugbaasi vastu ta ei käivitu ilma nimelise loata. */
+  assert.match(probe, /RETENTION_PROBE_ALLOW_REMOTE/, "tootmiskaitse puudub");
+
+  /* Ja ta mõõdab alarmi MÕLEMAST otsast — ainult roheline sond ei mõõda midagi. */
+  assert.match(probe, /VÄLJUMISKOOD 1/, "sond ei mõõda alarmi väljumiskoodi");
+  assert.match(probe, /üks millisekund üle piiri/, "sond ei mõõda läve teist poolt");
+});
+
 test("SOL-CW-14: käivitaja kirjutab jooksurea ka siis, kui töö KUKUB", async () => {
   const runner = await readRepoFile("scripts/casework-retention.mjs");
   assert.match(runner, /startRetentionRun/, "jooksurida ei alustata");
