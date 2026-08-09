@@ -107,9 +107,30 @@ function db({
     async findUnique({ where = {} }) {
       return rows.find((row) => Object.entries(where).every(([key, value]) => row[key] === value)) || null;
     },
-    async findMany({ where = {}, take }) {
-      const found = rows.filter((row) => matches(row, where));
-      return typeof take === "number" ? found.slice(0, take) : found;
+    /**
+     * `orderBy` ja `skip` on siin PÄRISELT, mitte kaunistuseks.
+     *
+     * Ilma nendeta „läbiks" iga lehitsev päring testi ka siis, kui ta annab
+     * alati sama esimese lehe — ja just seda viga SOL-CW-07 kirjeldab. Fake,
+     * mis ignoreerib `skip`-i, teeb nälgimise nähtamatuks.
+     */
+    async findMany({ where = {}, take, skip = 0, orderBy }) {
+      let found = rows.filter((row) => matches(row, where));
+      const order = Array.isArray(orderBy) ? orderBy : orderBy ? [orderBy] : [];
+      for (const rule of [...order].reverse()) {
+        const [key, direction] = Object.entries(rule)[0] || [];
+        if (!key) continue;
+        found = [...found].sort((a, b) => {
+          const left = a[key] instanceof Date ? a[key].getTime() : a[key];
+          const right = b[key] instanceof Date ? b[key].getTime() : b[key];
+          if (left === right) return 0;
+          const compared = left < right ? -1 : 1;
+          return direction === "desc" ? -compared : compared;
+        });
+      }
+      const offset = Number.isInteger(skip) && skip > 0 ? skip : 0;
+      const sliced = found.slice(offset);
+      return typeof take === "number" ? sliced.slice(0, take) : sliced;
     },
     async updateMany({ where = {}, data }) {
       const found = rows.filter((row) => matches(row, where));
@@ -419,6 +440,91 @@ test(
     assert.deepEqual(
       due.map((row) => row.caseWorkAssistId),
       ["case_window"]
+    );
+  })
+);
+
+/* ── SOL-CW-07: hoiatuste nälgimine ─────────────────────────────────────── */
+
+/** `count` juhtumit hoiatusaknas, vanimast uuemani. */
+function warningWindowCases(count) {
+  const assists = [];
+  const audits = [];
+  for (let index = 0; index < count; index += 1) {
+    /* Vanim ees: `days: -1 - index` tähendab, et index 0 on kustutuspiirile
+       kõige lähemal ja tuleb `orderBy createdAt asc` järgi esimesena. */
+    const seeded = archivedCase({
+      id: `case_${String(index).padStart(2, "0")}`,
+      archivedAt: ago({ months: RETENTION_MONTHS, days: -1 - index })
+    });
+    assists.push(seeded.assist);
+    audits.push(seeded.audit);
+  }
+  return { assists, audits };
+}
+
+test(
+  "SOL-CW-07: juba hoiatatud read ei täida batch'i — korduvad käivitused jõuavad kõigini",
+  withFeatureOn(async () => {
+    /* Auditis kirjeldatud stsenaarium: hoiatusaknas on rohkem kõlblikke ridu
+       kui batch'i suurus. Enne parandust tõi iga käivitus samad vanimad read
+       ja töö raporteeris ausalt „0 hoiatust", sest kõik olid duplikaadid —
+       uuemad juhtumid ei saanud hoiatust enne, kui vanad kustutusaknasse
+       liikusid. */
+    const { assists, audits } = warningWindowCases(7);
+    const store = db({ assists, audits });
+
+    const first = await runRetention({ now: NOW, batch: 3, db: store });
+    const second = await runRetention({ now: NOW, batch: 3, db: store });
+    const third = await runRetention({ now: NOW, batch: 3, db: store });
+
+    assert.equal(first.warningsSent, 3);
+    assert.equal(second.warningsSent, 3, "teine käivitus tõi samad juba hoiatatud read");
+    assert.equal(third.warningsSent, 1, "kolmas käivitus ei jõudnud sabani");
+
+    const warnedCases = store.notifications.map((row) => row.sourceId).sort();
+    assert.equal(warnedCases.length, 7, "iga juhtum peab saama TÄPSELT ühe hoiatuse");
+    assert.deepEqual(warnedCases, assists.map((row) => row.id).sort());
+
+    const fourth = await runRetention({ now: NOW, batch: 3, db: store });
+    assert.equal(fourth.warningsSent, 0, "neljas käivitus hoiatas kedagi teist korda");
+    assert.equal(store.notifications.length, 7);
+  })
+);
+
+test(
+  "SOL-CW-07: üks käivitus täidab batch'i HOIATAMATA ridadega, mitte duplikaatidega",
+  withFeatureOn(async () => {
+    const { assists, audits } = warningWindowCases(6);
+    const store = db({ assists, audits });
+
+    /* Kaks vanimat on juba hoiatatud — nemad ei tohi batch'i kohti võtta. */
+    await runRetention({ now: NOW, batch: 2, db: store });
+    assert.equal(store.notifications.length, 2);
+
+    const due = await findCasesDueForWarning({ now: NOW, limit: 3, db: store });
+    assert.equal(due.length, 3, "juba hoiatatud read täitsid batch'i");
+    assert.deepEqual(
+      due.map((row) => row.caseWorkAssistId),
+      ["case_02", "case_03", "case_04"]
+    );
+  })
+);
+
+test(
+  "SOL-CW-07: hoiatatud juhtumi vahepealne kustumine ei lõpeta lehitsemist ennatlikult",
+  withFeatureOn(async () => {
+    /* `alive` pikkus ei kõlba „allikas otsas" otsuseks: temast on kustutatud
+       juhtumid juba välja filtreeritud. Kui lehitsemine seda mõõdaks, jääks
+       saba leidmata. */
+    const { assists, audits } = warningWindowCases(5);
+    /* Esimene auditirida on olemas, aga juhtum ise on kustunud. */
+    const store = db({ assists: assists.slice(1), audits });
+
+    const due = await findCasesDueForWarning({ now: NOW, limit: 2, db: store });
+    assert.deepEqual(
+      due.map((row) => row.caseWorkAssistId),
+      ["case_01", "case_02"]
     );
   })
 );

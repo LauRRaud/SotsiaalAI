@@ -73,7 +73,8 @@ function db({
   fields = [],
   events = [],
   domainEvents = [],
-  failEventCreate = false
+  failEventCreate = false,
+  failDomainEventCreate = false
 } = {}) {
   let sequence = 0;
   const nextId = (prefix) => `${prefix}_${++sequence}`;
@@ -141,6 +142,15 @@ function db({
     return baseCreate({ data });
   };
 
+  /* SOL-CW-04 veasüst: outbox-rea kirjutus kukub. Enne parandust jäi see viga
+     teise, commit'i-järgse tehingu sisse ja neelati alla. */
+  const outbox = collection(domainEvents, "domain_event");
+  const baseOutboxCreate = outbox.create;
+  outbox.create = async (args) => {
+    if (failDomainEventCreate) throw new Error("outbox write failed");
+    return baseOutboxCreate(args);
+  };
+
   const database = {
     assists,
     drafts,
@@ -188,7 +198,7 @@ function db({
     }),
     caseWorkDraftField: collection(fields, "field"),
     caseWorkTransferEvent: transferEvents,
-    domainEvent: collection(domainEvents, "domain_event")
+    domainEvent: outbox
   };
 
   return database;
@@ -304,6 +314,58 @@ test(
     assert.equal(first.created, true);
     assert.equal(second.created, false, "kordus lõi teise rea");
     assert.equal(second.event.id, first.event.id);
+    assert.equal(store.events.length, 1);
+  })
+);
+
+test(
+  "SOL-CW-06: sama võti ERI väljadega annab 409, mitte vaikset 200",
+  withFeatureOn(async () => {
+    /* Ilma payload'i kontrollita tagastaks teine kutse eelmise kopeerimise
+       auditirea ja teine tegu jääks jäädavalt tõendita. */
+    const store = db();
+    const { base } = await seed(store, {
+      fields: [
+        ["EESMARK", "Klient soovib tuge"],
+        ["OLUKORD", "Elamistingimused"]
+      ]
+    });
+
+    const first = await recordCopyEvent({ ...base, fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY });
+    assert.equal(first.created, true);
+
+    await rejects(
+      recordCopyEvent({ ...base, fieldKeys: ["OLUKORD"], clientActionId: ACTION_KEY }),
+      409,
+      "casework.errors.transfer_action_key_conflict"
+    );
+    assert.equal(store.events.length, 1, "vastuoluline kutse ei tohi rida lisada");
+    assert.deepEqual(store.events[0].fieldKeys, ["EESMARK"], "esimese teo audit muutus");
+  })
+);
+
+test(
+  "SOL-CW-06: sama võti sama väljade JÄRJEKORRAGA on idempotentne, teine järjekord ei ole",
+  withFeatureOn(async () => {
+    const store = db();
+    const { base } = await seed(store, {
+      fields: [
+        ["EESMARK", "Klient soovib tuge"],
+        ["OLUKORD", "Elamistingimused"]
+      ]
+    });
+    const keys = ["EESMARK", "OLUKORD"];
+
+    const first = await recordCopyEvent({ ...base, fieldKeys: keys, clientActionId: ACTION_KEY });
+    const repeat = await recordCopyEvent({ ...base, fieldKeys: [...keys], clientActionId: ACTION_KEY });
+    assert.equal(repeat.created, false, "täpselt sama tegu peab jääma idempotentseks");
+    assert.equal(repeat.event.id, first.event.id);
+
+    await rejects(
+      recordCopyEvent({ ...base, fieldKeys: ["OLUKORD", "EESMARK"], clientActionId: ACTION_KEY }),
+      409,
+      "casework.errors.transfer_action_key_conflict"
+    );
     assert.equal(store.events.length, 1);
   })
 );
@@ -466,6 +528,76 @@ test(
     assert.equal(store.drafts[0].transferState, "VALMIS_ULEKANDEKS");
     assert.equal(store.drafts[0].transferredAt, null);
     assert.equal(store.events.length, 0);
+  })
+);
+
+test(
+  "SOL-CW-04: outbox-sündmuse kirjutuse viga veeretab KOGU ülekande tagasi",
+  withFeatureOn(async () => {
+    /* Enne parandust emiteeriti sündmus PÄRAST commit'i, eraldi tehingus, ja
+       viga neelati alla: API vastas eduga, mustand jäi `ULE_KANTUD`-iks ja
+       ajajoone-/teavitussündmus kadus jäädavalt ilma ühegi taastajata. */
+    const store = db({ failDomainEventCreate: true });
+    const { base } = await seed(store, { advanceTo: "VALMIS_ULEKANDEKS" });
+
+    await assert.rejects(
+      markTransferred({ ...base, expectedFrom: "VALMIS_ULEKANDEKS" }),
+      /outbox write failed/,
+      "vaikne osaline edu: kutse õnnestus, kuigi sündmus jäi kirjutamata"
+    );
+
+    assert.equal(store.drafts[0].transferState, "VALMIS_ULEKANDEKS", "seis muutus ilma sündmuseta");
+    assert.equal(store.drafts[0].transferredAt, null, "transferredAt jäi ilma sündmuseta külge");
+    assert.equal(store.events.length, 0, "auditirida jäi ilma sündmuseta alles");
+    assert.equal(store.domainEvents.length, 0);
+  })
+);
+
+test(
+  "SOL-CW-04: kordus pärast outbox-viga õnnestub tervikuna",
+  withFeatureOn(async () => {
+    /* Aus 500 on kasutatav ainult siis, kui kordus töötab: tagasiveeremise
+       järel peab sama `expectedFrom` uuesti läbi minema ja andma nii seisu,
+       auditirea kui sündmuse. */
+    const store = db({ failDomainEventCreate: true });
+    const { base } = await seed(store, { advanceTo: "VALMIS_ULEKANDEKS" });
+    await assert.rejects(markTransferred({ ...base, expectedFrom: "VALMIS_ULEKANDEKS" }));
+
+    const healthy = db({
+      assists: store.assists,
+      drafts: store.drafts,
+      fields: store.fields,
+      events: store.events,
+      domainEvents: store.domainEvents
+    });
+    const { draft } = await markTransferred({ ...base, db: healthy, expectedFrom: "VALMIS_ULEKANDEKS" });
+
+    assert.equal(draft.transferState, "ULE_KANTUD");
+    assert.equal(healthy.events.length, 1, "auditirida puudub");
+    assert.equal(healthy.domainEvents.length, 1, "sündmus puudub");
+  })
+);
+
+test(
+  "SOL-CW-04: sündmus ja auditirida sünnivad SAMAS tehingus",
+  withFeatureOn(async () => {
+    /* Kui sündmus liiguks tagasi commit'i-järgsesse tehingusse, näeks
+       `$transaction` kutseid kaks. Üks tehing = üks atomaarne piir. */
+    const store = db();
+    let transactions = 0;
+    const original = store.$transaction.bind(store);
+    store.$transaction = async (callback) => {
+      transactions += 1;
+      return original(callback);
+    };
+    const { base } = await seed(store, { advanceTo: "VALMIS_ULEKANDEKS" });
+    transactions = 0;
+
+    await markTransferred({ ...base, expectedFrom: "VALMIS_ULEKANDEKS" });
+
+    assert.equal(transactions, 1, "ülekanne kasutab rohkem kui üht tehingut");
+    assert.equal(store.events.length, 1);
+    assert.equal(store.domainEvents.length, 1);
   })
 );
 

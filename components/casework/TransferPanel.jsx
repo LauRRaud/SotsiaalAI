@@ -20,31 +20,10 @@
 import { useCallback, useEffect, useState } from "react";
 
 import ConfirmButton from "./ConfirmButton";
-import { caseWorkRequest } from "./caseWorkClient";
-import { COPY_PHASE, runCopyForStar2 } from "./transferFlow";
+import { caseWorkRequest, newClientActionKey } from "./caseWorkClient";
+import { COPY_PHASE, flushPendingAudits, queuePendingAudit, runCopyForStar2 } from "./transferFlow";
 
 const HISTORY_PAGE_SIZE = 25;
-
-/**
- * UUID ilma `crypto.randomUUID()`-ta ka siis, kui kontekst ei ole turvaline.
- * `randomUUID` puudub HTTP-lehel ja vanemas WebView-s; ilma varuteeta jääks
- * kopeerimine seal tegemata veateatega, mis räägiks hoopis võtme kujust.
- */
-function newActionKey() {
-  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
-    return crypto.randomUUID();
-  }
-  const bytes = new Uint8Array(16);
-  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
-    crypto.getRandomValues(bytes);
-  } else {
-    for (let i = 0; i < bytes.length; i += 1) bytes[i] = Math.floor(Math.random() * 256);
-  }
-  bytes[6] = (bytes[6] & 0x0f) | 0x40;
-  bytes[8] = (bytes[8] & 0x3f) | 0x80;
-  const hex = [...bytes].map((byte) => byte.toString(16).padStart(2, "0")).join("");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
-}
 
 async function writeClipboard(text) {
   if (typeof navigator === "undefined" || !navigator.clipboard?.writeText) return false;
@@ -61,8 +40,10 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
   const [block, setBlock] = useState(null);
   const [errorKey, setErrorKey] = useState(null);
   const [busy, setBusy] = useState(false);
-  /* Ootel audit HOIAB OMA VÕTIT (L22) — „proovi uuesti" ei tohi teha uut. */
-  const [pendingAudit, setPendingAudit] = useState(null);
+  /* Ootel auditid HOIAVAD OMA VÕTIT (L22) — „proovi uuesti" ei tohi teha uut.
+     JÄRJEKORD, mitte üks pesa (SOL-CW-05): uus kopeerimine ei tohi eelmise
+     kirjutamata jälge üle kirjutada, sest mõlemad teod toimusid päriselt. */
+  const [pendingAudits, setPendingAudits] = useState([]);
 
   const postCopyEvent = useCallback(
     ({ fieldKeys, clientActionId }) =>
@@ -74,22 +55,20 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
     [caseId, draft.id, locale]
   );
 
-  /** Korduskatse SAMA võtmega (L22) — uus võti oleks andmebaasi jaoks teine tegu. */
+  /** Korduskatse SAMA võtmetega (L22) — uus võti oleks andmebaasi jaoks teine tegu. */
   const retryAudit = useCallback(async () => {
-    if (!pendingAudit) return;
+    if (!pendingAudits.length) return;
     setBusy(true);
     try {
-      await postCopyEvent(pendingAudit);
-      setPendingAudit(null);
-      setPhase(COPY_PHASE.COPIED);
-      setErrorKey(null);
-      onChanged?.();
-    } catch (error) {
-      setErrorKey(error?.messageKey || "casework.errors.unexpected");
+      const { remaining, flushed, errorKey: failureKey } = await flushPendingAudits(pendingAudits, postCopyEvent);
+      setPendingAudits(remaining);
+      setErrorKey(remaining.length ? failureKey : null);
+      if (!remaining.length) setPhase(COPY_PHASE.COPIED);
+      if (flushed > 0) onChanged?.();
     } finally {
       setBusy(false);
     }
-  }, [onChanged, pendingAudit, postCopyEvent]);
+  }, [onChanged, pendingAudits, postCopyEvent]);
 
   const copyForStar2 = useCallback(async () => {
     setBusy(true);
@@ -97,7 +76,7 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
     setBlock(null);
     try {
       const result = await runCopyForStar2({
-        createActionKey: newActionKey,
+        createActionKey: newClientActionKey,
         loadBlock: async () => {
           const body = await caseWorkRequest(
             `/cases/${encodeURIComponent(caseId)}/drafts/${encodeURIComponent(draft.id)}/star2-block`,
@@ -112,7 +91,8 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
       setPhase(result.phase);
       setBlock(result.block);
       setErrorKey(result.errorKey);
-      setPendingAudit(result.pendingAudit);
+      /* LISAB, ei asenda: eelmise kopeerimise kirjutamata jälg jääb alles. */
+      setPendingAudits((queue) => queuePendingAudit(queue, result.pendingAudit));
       if (result.phase === COPY_PHASE.COPIED) onChanged?.();
     } finally {
       setBusy(false);
@@ -170,7 +150,9 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
         />
       ) : null}
 
-      {phase === COPY_PHASE.COPIED ? <p className="cw-notice">{t("casework.transfer.copy_ok", "")}</p> : null}
+      {phase === COPY_PHASE.COPIED && !pendingAudits.length ? (
+        <p className="cw-notice">{t("casework.transfer.copy_ok", "")}</p>
+      ) : null}
 
       {phase === COPY_PHASE.CLIPBOARD_FAILED ? (
         <div className="cw-transfer-fallback">
@@ -182,18 +164,22 @@ export function TransferActions({ caseId, draft, locale, disabled, t, onChanged 
         </div>
       ) : null}
 
-      {phase === COPY_PHASE.AUDIT_FAILED ? (
+      {/* Hoiatust juhib JÄRJEKORD, mitte viimane faas (SOL-CW-05): pärast uut
+          õnnestunud kopeerimist läheb `phase` väärtusele `COPIED`, aga eelmise
+          teo jälg on endiselt salvestamata ja seda ei tohi ekraanilt kaotada. */}
+      {pendingAudits.length ? (
         <div className="cw-transfer-fallback">
           <p className="cw-error" role="alert">
             {t("casework.transfer.copy_audit_failed", "")}
+            {pendingAudits.length > 1 ? ` (${pendingAudits.length})` : ""}
           </p>
-          <button className="cw-button" type="button" disabled={working || !pendingAudit} onClick={retryAudit}>
+          <button className="cw-button" type="button" disabled={working} onClick={retryAudit}>
             {t("casework.transfer.retry_audit", "")}
           </button>
         </div>
       ) : null}
 
-      {errorKey && phase !== COPY_PHASE.CLIPBOARD_FAILED && phase !== COPY_PHASE.AUDIT_FAILED ? (
+      {errorKey && phase !== COPY_PHASE.CLIPBOARD_FAILED && !pendingAudits.length ? (
         <p className="cw-error" role="alert">
           {t(errorKey, "")}
         </p>

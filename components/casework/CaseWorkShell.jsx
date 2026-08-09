@@ -17,16 +17,22 @@
  * numbrit — sama ajatempliga read ei tohi korduda ega kaduda.
  */
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 
 import CaseWorkDetail from "./CaseWorkDetail";
-import { caseLabelText, caseWorkRequest, fromLocalInputValue, retentionLabelKey } from "./caseWorkClient";
+import { mergeCaseRows, planCaseNavigation, readCaseIdFromSearch } from "./caseListState";
+import {
+  caseLabelText,
+  caseWorkRequest,
+  fromLocalInputValue,
+  newClientActionKey,
+  retentionLabelKey
+} from "./caseWorkClient";
 
-const CASE_PARAM = "juhtum";
 const PAGE_SIZE = 25;
 
 /** Töötaja rollid — sama hulk mis `lib/casework/routes.js` väraval. */
@@ -50,11 +56,33 @@ export default function CaseWorkShell() {
   const [state, setState] = useState("loading");
   const [errorKey, setErrorKey] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  /* Mitu ajalookirjet oleme ISE lisanud (SOL-CW-09). Otselingiga saabunud
+     kasutaja juures ei tohi „tagasi" viia teda platvormilt välja. */
+  const pushedDepthRef = useRef(0);
 
   const [displayName, setDisplayName] = useState("");
   const [externalRef, setExternalRef] = useState("");
   const [nextContact, setNextContact] = useState("");
   const [creating, setCreating] = useState(false);
+  /* Loomistunnus (SOL-CW-12). Keelatud nupp katab ainult topeltklõpsu ÜHES
+     brauseris; võrgu timeout ja kliendi korduskatse jõuavad serverini nii, et
+     nupp on juba vabastatud. Võti elab REF-is, mitte state'is: tema muutus ei
+     tohi vormi uuesti renderdada, ja saatmise hetkel peab kehtima viimane
+     väärtus, mitte renderdusse kinni jäänud. */
+  const actionKeyRef = useRef(null);
+
+  /**
+   * Väljamuutja, mis tühistab ka loomistunnuse.
+   *
+   * VÕTI ON SEOTUD SELLE SISUGA, mida kasutaja parasjagu saadab. Muutmata
+   * sisuga korduskatse peab jõudma sama juhtumini; muudetud sisu on uus tegu ja
+   * peab saama uue võtme — vana võtme all annaks server 409 („sama tunnus teise
+   * sisuga"), mis oleks kasutajale arusaamatu ja tema töö kinni panek.
+   */
+  const changeField = (setter) => (event) => {
+    actionKeyRef.current = null;
+    setter(event.target.value);
+  };
 
   const load = useCallback(
     async ({ cursor = null, append = false } = {}) => {
@@ -64,7 +92,9 @@ export default function CaseWorkShell() {
         const params = new URLSearchParams({ limit: String(PAGE_SIZE) });
         if (cursor) params.set("cursor", cursor);
         const body = await caseWorkRequest(`/cases?${params.toString()}`, { locale });
-        setCases((previous) => (append ? [...previous, ...(body.items || [])] : body.items || []));
+        /* Liitmine käib ID järgi (SOL-CW-10): sama kursoriga vastus ei tohi
+           samu ridu kaks korda loendisse panna. */
+        setCases((previous) => (append ? mergeCaseRows(previous, body.items || []) : body.items || []));
         setNextCursor(body.nextCursor || null);
         setState("ready");
       } catch (error) {
@@ -80,21 +110,45 @@ export default function CaseWorkShell() {
     load();
   }, [allowed, load]);
 
-  /* Valitud juhtum tuleb URL-ist ja läheb URL-i tagasi. `replaceState`, mitte
-     marsruut: juhtumi avamine ei ole navigatsioon ja ei tohi täita ajalugu. */
+  /* Valitud juhtum tuleb URL-ist ja läheb URL-i tagasi. `pushState`, MITTE
+     `replaceState` (SOL-CW-09): juhtumi avamine ON navigatsioon ja Back peab
+     viima loendisse. `replaceState` kirjutas loendi ajalookirje üle ja Back
+     viis eelmisele LEHELE. */
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const requested = params.get(CASE_PARAM);
-    if (requested) setSelectedId(requested);
+    setSelectedId(readCaseIdFromSearch(window.location.search));
+
+    /* Ilma `popstate` kuulajata jääks Back/Forward URL-i muutma, aga vaade
+       samaks — kaks tõde ühe asja kohta. */
+    const onPopState = () => {
+      pushedDepthRef.current = Math.max(0, pushedDepthRef.current - 1);
+      setSelectedId(readCaseIdFromSearch(window.location.search));
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   const openCase = useCallback((id) => {
-    setSelectedId(id);
-    const url = new URL(window.location.href);
-    if (id) url.searchParams.set(CASE_PARAM, id);
-    else url.searchParams.delete(CASE_PARAM);
-    window.history.replaceState(null, "", url);
-  }, []);
+    const plan = planCaseNavigation({
+      href: window.location.href,
+      currentId: selectedId,
+      nextId: id,
+      pushedDepth: pushedDepthRef.current
+    });
+    if (plan.action === "none") return;
+    if (plan.action === "back") {
+      /* Vaate muudab `popstate` kuulaja — nii jäävad URL ja vaade ühte tõtte
+         ka siis, kui kasutaja vajutab brauseri nuppu, mitte meie oma. */
+      window.history.back();
+      return;
+    }
+    setSelectedId(id || null);
+    if (plan.action === "push") {
+      pushedDepthRef.current += 1;
+      window.history.pushState(null, "", plan.url);
+    } else {
+      window.history.replaceState(null, "", plan.url);
+    }
+  }, [selectedId]);
 
   const createCase = useCallback(
     async (event) => {
@@ -102,15 +156,21 @@ export default function CaseWorkShell() {
       setCreating(true);
       setErrorKey(null);
       try {
+        /* SAMA VÕTI kuni sisu püsib: korduskatse peab jõudma sama juhtumini,
+           mitte tegema teist. Uus võti sünnib alles siis, kui eelmine tegu on
+           lõpetatud või sisu muutunud. */
+        if (!actionKeyRef.current) actionKeyRef.current = newClientActionKey();
         const body = await caseWorkRequest("/cases", {
           method: "POST",
           locale,
           body: {
             clientDisplayName: displayName.trim() || null,
             clientExternalRef: externalRef.trim() || null,
-            nextContactAt: fromLocalInputValue(nextContact)
+            nextContactAt: fromLocalInputValue(nextContact),
+            clientActionId: actionKeyRef.current
           }
         });
+        actionKeyRef.current = null;
         setDisplayName("");
         setExternalRef("");
         setNextContact("");
@@ -166,7 +226,7 @@ export default function CaseWorkShell() {
               className="cw-input"
               type="text"
               value={displayName}
-              onChange={(event) => setDisplayName(event.target.value)}
+              onChange={changeField(setDisplayName)}
               maxLength={120}
             />
           </div>
@@ -179,7 +239,7 @@ export default function CaseWorkShell() {
               className="cw-input"
               type="text"
               value={externalRef}
-              onChange={(event) => setExternalRef(event.target.value)}
+              onChange={changeField(setExternalRef)}
               maxLength={120}
             />
           </div>
@@ -192,7 +252,7 @@ export default function CaseWorkShell() {
               className="cw-input"
               type="datetime-local"
               value={nextContact}
-              onChange={(event) => setNextContact(event.target.value)}
+              onChange={changeField(setNextContact)}
             />
           </div>
           <button className="cw-button" type="submit" disabled={creating}>
@@ -225,8 +285,15 @@ export default function CaseWorkShell() {
         ))}
       </ul>
 
+      {/* Nupp on laadimise ajal KEELATUD (SOL-CW-10): kiire topeltvajutus
+          saatis kaks sama kursoriga päringut ja lisas samad read kaks korda. */}
       {nextCursor ? (
-        <button className="cw-button" type="button" onClick={() => load({ cursor: nextCursor, append: true })}>
+        <button
+          className="cw-button"
+          type="button"
+          disabled={state === "loading"}
+          onClick={() => load({ cursor: nextCursor, append: true })}
+        >
           {t("casework.page.load_more", "")}
         </button>
       ) : null}

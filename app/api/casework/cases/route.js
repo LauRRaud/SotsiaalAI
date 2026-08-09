@@ -45,7 +45,10 @@ export async function POST(request) {
       clientExternalRef: body?.clientExternalRef ?? null,
       externalSystem: body?.externalSystem ?? null,
       externalReference: body?.externalReference ?? null,
-      nextContactAt: body?.nextContactAt ?? null
+      nextContactAt: body?.nextContactAt ?? null,
+      /* Idempotentsusvõti (SOL-CW-12). Kliendi loodud ja valikuline: vana
+         klient ilma võtmeta töötab edasi, aga kaotab korduskaitse. */
+      clientActionId: body?.clientActionId ?? null
     });
     return json({ ok: true, case: created }, 201);
   } catch (error) {

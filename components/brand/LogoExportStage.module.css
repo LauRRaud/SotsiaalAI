@@ -19,22 +19,9 @@
   height: min(100dvh, 100vw);
 }
 
-/* Eksport ei tohi pärida avalehe juhtnuppe ega taustaruumi. */
-:global(html:has(main[aria-label="SotsiaalAI logo"])),
-:global(body:has(main[aria-label="SotsiaalAI logo"])) {
-  background: #000;
-}
-:global(body:has(main[aria-label="SotsiaalAI logo"]) .room),
-:global(body:has(main[aria-label="SotsiaalAI logo"]) .room-topbar) {
-  display: none;
-}
-
-:global(main#main:has(main[aria-label="SotsiaalAI logo"])) {
-  position: fixed;
-  z-index: 2147483647;
-  inset: 0;
-  height: 100%;
-}
+/* Eksport ei tohi pärida avalehe juhtnuppe ega taustaruumi. Need `html`,
+   `body` ja `main#main` reeglid elavad `app/logo-eksport/logo-export.css`
+   failis: CSS Modules `pure`-režiim ei luba kohaliku klassita selektorit. */
 
 .wordmark {
   position: absolute;

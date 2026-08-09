@@ -973,6 +973,7 @@
       "origin_conflict": "A case can have at most one origin.",
       "origin_immutable": "The origin is set when the case is created and is not changed later.",
       "origin_not_found": "The origin request was not found.",
+      "origin_already_has_case": "You already have a case from this request.",
       "not_active": "The case is not active and cannot be changed.",
       "reason_required": "A reason is required.",
       "reason_too_long": "The reason is too long.",
@@ -1015,6 +1016,9 @@
       "transfer_field_keys_unknown": "At least one field does not belong to this draft.",
       "transfer_field_keys_too_many": "Too many fields at once.",
       "transfer_action_key_invalid": "The copy identifier has an invalid format.",
+      "transfer_action_key_conflict": "That copy identifier is already in use with different fields. Start the copy again.",
+      "create_action_key_invalid": "The case creation identifier has an invalid format.",
+      "create_action_key_conflict": "That creation identifier is already in use with different content. Start creating the case again.",
       "working_material_empty": "There are no untransferred drafts whose content could be deleted.",
       "prep_content_purged": "The content of this preparation has been archived. No new content is added here."
     },

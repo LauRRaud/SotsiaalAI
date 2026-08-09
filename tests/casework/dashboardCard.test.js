@@ -67,10 +67,21 @@ test("kaart ei leki kliendi ega admini töölauale ka lipuga", async () => {
   });
 });
 
-test("kaart järgib requiresPaid reeglit", async () => {
+test("SOL-CW-01: kaart on tellimuseta lahti, sest lugemine on tasuta", async () => {
+  /* Omanik 09.08.2026: juhtumite lugemine ei sõltu tellimusest, tasulised on
+     tööriistatoimingud. Varem oli kaart tellimuseta lukus, aga server lubas
+     kõik API-d läbi — kaart ja server rääkisid eri tõde (SOL-CW-01). Nüüd on
+     kaart lahti ja piiri jõustab server 402-ga. */
   await withFlag("1", () => {
-    assert.equal(findCard("SOCIAL_WORKER", { hasPaidAccess: false }).disabled, true);
+    assert.equal(findCard("SOCIAL_WORKER", { hasPaidAccess: false }).disabled, false);
     assert.equal(findCard("SOCIAL_WORKER", { hasPaidAccess: true }).disabled, false);
+    assert.equal(
+      createWorkspaceDashboardRows({ activeRole: "SOCIAL_WORKER", hasPaidAccess: false })
+        .flat()
+        .find((card) => card?.key === "casework_workbench")?.disabled,
+      false,
+      "juhtumitöö laud peab tellimuseta samuti loetav olema"
+    );
   });
 });
 

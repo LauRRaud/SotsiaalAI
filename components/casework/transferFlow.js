@@ -19,6 +19,13 @@
  * `clientActionId` sünnib SIIN, kohe alguses ja ENNE lõikelauda (L22) — ning ta
  * jääb `pendingAudit`-i sisse alles, kui audit ebaõnnestus. Uus võti korduskatsel
  * tähendaks andmebaasi jaoks TEIST tegu ja audit loeks ühe kopeerimise kaheks.
+ *
+ * OOTEL AUDITID ON JÄRJEKORD, MITTE ÜKS PESA (SOL-CW-05). Varem hoidis liides
+ * ühte `pendingAudit`-i ja iga uus kopeerimine kirjutas eelmise üle: kasutaja
+ * kopeeris kaks korda, esimese teo jälg kadus jäädavalt ja ükski veateade ei
+ * tekkinud. Kopeerimise keelamine ootel auditi ajal oleks teine võimalik
+ * lahendus, aga see lukustaks töötaja välja tööst, mille ta juba tegi — ja
+ * mõlemad kopeerimised TOIMUSID päriselt, seega mõlemad väärivad tõendit.
  */
 
 export const COPY_PHASE = Object.freeze({
@@ -85,4 +92,46 @@ export async function runCopyForStar2({ loadBlock, writeClipboard, recordCopy, c
       pendingAudit: { fieldKeys: block.fieldKeys, clientActionId }
     };
   }
+}
+
+/**
+ * Lisab ootel auditi järjekorda (SOL-CW-05).
+ *
+ * SAMA VÕTI EI SATU KAKS KORDA JÄRJEKORDA: korduskatse ebaõnnestumine ei tohi
+ * järjekorda kasvatada, muidu kirjutaks üks tegu mitu auditirida.
+ *
+ * @param {Array<{ fieldKeys: string[], clientActionId: string }>} queue
+ * @param {{ fieldKeys: string[], clientActionId: string } | null} pendingAudit
+ */
+export function queuePendingAudit(queue, pendingAudit) {
+  const current = Array.isArray(queue) ? queue : [];
+  if (!pendingAudit?.clientActionId) return current;
+  if (current.some((entry) => entry.clientActionId === pendingAudit.clientActionId)) return current;
+  return [...current, pendingAudit];
+}
+
+/**
+ * Proovib kogu järjekorra uuesti, JÄRJEKORRAS ja LÕPUNI.
+ *
+ * ESIMESE VEA PEALE EI PEATUTA: iga kirje kannab oma võtit, seega hilisema
+ * kirje õnnestumine ei sõltu varasemast ega tekita duplikaati. Peatumine
+ * tähendaks, et üks püsivalt vigane kirje hoiab kõiki teisi pantvangis.
+ *
+ * @returns {Promise<{ remaining: Array<object>, flushed: number, errorKey: string|null }>}
+ */
+export async function flushPendingAudits(queue, recordCopy) {
+  const current = Array.isArray(queue) ? queue : [];
+  const remaining = [];
+  let errorKey = null;
+
+  for (const entry of current) {
+    try {
+      await recordCopy(entry);
+    } catch (error) {
+      remaining.push(entry);
+      if (!errorKey) errorKey = errorKeyOf(error);
+    }
+  }
+
+  return { remaining, flushed: current.length - remaining.length, errorKey };
 }

@@ -16,7 +16,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-import { COPY_PHASE, runCopyForStar2 } from "../../components/casework/transferFlow.js";
+import {
+  COPY_PHASE,
+  flushPendingAudits,
+  queuePendingAudit,
+  runCopyForStar2
+} from "../../components/casework/transferFlow.js";
 import { TRANSFER_EVENT_KIND } from "../../lib/casework/caseWorkTransfer.js";
 
 const UI = "../../components/casework/TransferPanel.jsx";
@@ -119,6 +124,91 @@ test("L22: korduskatse kannab SAMA võtit, mitte uut", async () => {
   assert.equal(retry.calls.record[0].clientActionId, first.calls.record[0].clientActionId);
 });
 
+/* ── SOL-CW-05: ootel auditite järjekord ────────────────────────────────── */
+
+test("SOL-CW-05: kopeerimine → audit kukub → UUS kopeerimine ei kustuta esimest ootel jälge", async () => {
+  /* Auditi kirjeldatud järjestus. Enne parandust hoidis pind ÜHTE
+     `pendingAudit`-i ja teine kopeerimine kirjutas esimese üle — esimest tegu
+     ei saanud enam kunagi tõendada ja ükski veateade ei tekkinud. */
+  const first = steps({ audit: false });
+  const firstResult = await runCopyForStar2(first.flow);
+  assert.equal(firstResult.phase, COPY_PHASE.AUDIT_FAILED);
+
+  let queue = queuePendingAudit([], firstResult.pendingAudit);
+  assert.equal(queue.length, 1);
+
+  const second = steps({ audit: false });
+  second.flow.createActionKey = () => "9a9a9a9a-2222-4333-8444-555566667777";
+  const secondResult = await runCopyForStar2(second.flow);
+  queue = queuePendingAudit(queue, secondResult.pendingAudit);
+
+  assert.equal(queue.length, 2, "teine kopeerimine kirjutas esimese ootel jälje üle");
+  assert.deepEqual(
+    queue.map((entry) => entry.clientActionId),
+    [ACTION_KEY, "9a9a9a9a-2222-4333-8444-555566667777"],
+    "järjekord peab säilitama tegude ajalise järjestuse"
+  );
+});
+
+test("SOL-CW-05: korduskatse tühjendab järjekorra ja säilitab võtmed", async () => {
+  const recorded = [];
+  const queue = [
+    { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY },
+    { fieldKeys: ["OLUKORD"], clientActionId: "9a9a9a9a-2222-4333-8444-555566667777" }
+  ];
+
+  const result = await flushPendingAudits(queue, async (entry) => {
+    recorded.push(entry.clientActionId);
+  });
+
+  assert.deepEqual(result.remaining, []);
+  assert.equal(result.flushed, 2);
+  assert.equal(result.errorKey, null);
+  assert.deepEqual(recorded, [ACTION_KEY, "9a9a9a9a-2222-4333-8444-555566667777"]);
+});
+
+test("SOL-CW-05: püsivalt vigane kirje ei hoia teisi pantvangis", async () => {
+  const recorded = [];
+  const queue = [
+    { fieldKeys: ["EESMARK"], clientActionId: "broken" },
+    { fieldKeys: ["OLUKORD"], clientActionId: "healthy" }
+  ];
+
+  const result = await flushPendingAudits(queue, async (entry) => {
+    recorded.push(entry.clientActionId);
+    if (entry.clientActionId === "broken") {
+      throw Object.assign(new Error("fail"), { messageKey: "casework.errors.unexpected" });
+    }
+  });
+
+  assert.deepEqual(recorded, ["broken", "healthy"], "esimese vea peale peatuti");
+  assert.equal(result.flushed, 1);
+  assert.deepEqual(
+    result.remaining.map((entry) => entry.clientActionId),
+    ["broken"]
+  );
+  assert.equal(result.errorKey, "casework.errors.unexpected");
+});
+
+test("SOL-CW-05: ebaõnnestunud korduskatse ei kasvata järjekorda", async () => {
+  /* Muidu kirjutaks üks tegu mitu auditirida. */
+  const pending = { fieldKeys: ["EESMARK"], clientActionId: ACTION_KEY };
+  const queue = queuePendingAudit(queuePendingAudit([], pending), { ...pending });
+  assert.equal(queue.length, 1);
+  assert.equal(queuePendingAudit(queue, null).length, 1);
+});
+
+test("SOL-CW-05: pind hoiab järjekorda, mitte üht pesa, ja hoiatus sõltub järjekorrast", async () => {
+  const panel = await readCode(UI);
+  assert.match(panel, /pendingAudits/, "pind hoiab endiselt üht ootel auditit");
+  assert.doesNotMatch(panel, /setPendingAudit\(/, "vana ühepesaline setter on alles");
+  assert.match(panel, /queuePendingAudit/, "uus kopeerimine ei lisa järjekorda");
+  assert.match(panel, /flushPendingAudits/, "korduskatse ei tühjenda järjekorda");
+  /* Hoiatust ei tohi juhtida viimane faas: pärast uut õnnestunud kopeerimist
+     on `phase === COPIED`, aga eelmine jälg on endiselt salvestamata. */
+  assert.match(panel, /\{pendingAudits\.length \?/, "hoiatuse tingimus tuleb järjekorrast");
+});
+
 test("tühi plokk ei jõua lõikelauale ega auditisse", async () => {
   const { log, flow } = steps({ block: { text: "HOIATUS", fieldKeys: [] } });
   const result = await runCopyForStar2(flow);
@@ -153,8 +243,36 @@ test("pind ei kirjuta auditit enne lõikelauda ega genereeri võtit serveris", a
   const auditIndex = panel.indexOf("copy-events");
   assert.ok(clipboardIndex > 0 && auditIndex > 0);
   assert.ok(clipboardIndex < auditIndex, "auditi marsruut esineb enne lõikelauda");
-  /* Võti sünnib kliendis (L22) — pind peab teda ISE tegema. */
-  assert.match(panel, /randomUUID/, "kliendipoolne võtmegeneraator puudub");
+  /* Võti sünnib KLIENDIS (L22). Generaator ise kolis `caseWorkClient.js`-i,
+     sest sama kuju ja sama varutee vajab ka juhtumi loomine (SOL-CW-12) — kaks
+     koopiat tähendaks, et üks jääb parandamata. Pind peab teda kutsuma, mitte
+     serverilt küsima. */
+  assert.match(panel, /newClientActionKey/, "kliendipoolset võtmegeneraatorit ei kutsuta");
+  assert.match(panel, /createActionKey: newClientActionKey/, "võti ei jõua kopeerimisvoogu");
+});
+
+test("SOL-CW-12: võtmegeneraator on JAGATUD ja töötab ka ilma `randomUUID`-ta", async () => {
+  /* `randomUUID` puudub HTTP-lehel ja vanemas WebView-s. Ilma varuteeta jääks
+     nii kopeerimine kui juhtumi loomine seal tegemata veateatega, mis räägiks
+     hoopis võtme kujust. */
+  const client = await readCode("../../components/casework/caseWorkClient.js");
+  assert.match(client, /export function newClientActionKey/, "jagatud generaator puudub");
+  assert.match(client, /randomUUID/, "generaator ei kasuta `randomUUID`-d");
+  assert.match(client, /getRandomValues/, "varutee puudub — HTTP-lehel jääks tegu tegemata");
+
+  const { newClientActionKey } = await import("../../components/casework/caseWorkClient.js");
+  const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+  assert.match(newClientActionKey(), uuid, "vaiketee ei anna UUID-kuju");
+  assert.notEqual(newClientActionKey(), newClientActionKey(), "kaks kutset annavad sama võtme");
+
+  /* Varutee PÄRISELT läbi käidud, mitte ainult lähtekoodist loetud. */
+  const realCrypto = globalThis.crypto;
+  try {
+    Object.defineProperty(globalThis, "crypto", { value: undefined, configurable: true });
+    assert.match(newClientActionKey(), uuid, "ilma `crypto`-ta ei sünni kehtivat võtit");
+  } finally {
+    Object.defineProperty(globalThis, "crypto", { value: realCrypto, configurable: true });
+  }
 });
 
 test("ülekantuks märkimine on kaheastmeline ja kannab `expectedFrom`-i", async () => {

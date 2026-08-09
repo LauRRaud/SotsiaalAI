@@ -973,6 +973,7 @@
       "origin_conflict": "Juhtumil saab olla kõige rohkem üks päritolu.",
       "origin_immutable": "Päritolu määratakse juhtumi loomisel ja seda hiljem ei muudeta.",
       "origin_not_found": "Päritolupöördumist ei leitud.",
+      "origin_already_has_case": "Sellest pöördumisest on sul juba juhtum olemas.",
       "not_active": "Juhtum ei ole aktiivne ja seda ei saa muuta.",
       "reason_required": "Põhjus on kohustuslik.",
       "reason_too_long": "Põhjus on liiga pikk.",
@@ -1015,6 +1016,9 @@
       "transfer_field_keys_unknown": "Vähemalt üks väli ei kuulu sellele mustandile.",
       "transfer_field_keys_too_many": "Välju on korraga liiga palju.",
       "transfer_action_key_invalid": "Kopeerimise tunnus on vigase kujuga.",
+      "transfer_action_key_conflict": "Sama kopeerimise tunnus on juba kasutusel teiste väljadega. Alusta kopeerimist uuesti.",
+      "create_action_key_invalid": "Juhtumi loomistunnus on vigase kujuga.",
+      "create_action_key_conflict": "Sama loomistunnus on juba kasutusel teise sisuga. Alusta juhtumi loomist uuesti.",
       "working_material_empty": "Kandmata mustandeid, mille sisu kustutada, ei ole.",
       "prep_content_purged": "Selle ettevalmistuse sisu on arhiveeritud. Uut sisu siia ei lisata."
     },

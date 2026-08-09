@@ -6435,6 +6435,14 @@ model CaseWorkAssist {
 
   nextContactAt DateTime?
 
+  /* IDEMPOTENTSUSVÕTI (SOL-CW-12). Kliendi loodud võti; topeltklõps, võrgu
+     timeout või kliendi korduskatse peavad andma SAMA juhtumi, mitte teist.
+     Jõustaja on unikaalne indeks `(ownerUserId, clientActionId)`, mitte
+     teenuskihi eelkontroll — kaks paralleelset päringut jõuaksid eelkontrollist
+     mõlemad läbi. NULL on lubatud ja NULL-id ei põrka: vana klient ja
+     serveripoolne loomine töötavad edasi. */
+  clientActionId String?
+
   /// L14: ainult ACTIVE → READ_ONLY → ARCHIVED, tagasisiirdeid ei ole.
   /// READ_ONLY ja ARCHIVED keelavad ka LASTE muutmise; ainus erand on
   /// kliendiviite kustutus, mis on lubatud kõigis olekutes.
@@ -6457,6 +6465,14 @@ model CaseWorkAssist {
   retentionAudit CaseWorkRetentionAudit[]
   erasureAudit   CaseWorkClientErasureAudit[]
 
+  /* ÜKS JUHTUM LÄHTEOBJEKTI KOHTA OMANIKU KOHTA (SOL-CW-12, omanik 09.08.2026).
+     Postgres loeb NULL-id eristuvaks, seega päritoluta juhtumeid see ei puuduta
+     ja sama pöördumisest võib juhtumi teha KAKS ERI töötajat. Jõustus on siin,
+     mitte teenuskihis: kaks paralleelset päringut jõuaksid eelkontrollist
+     mõlemad läbi ja tekitaksid kaks juhtumit ühest pöördumisest. */
+  @@unique([ownerUserId, preInquiryId])
+  @@unique([ownerUserId, urgentRequestId])
+  @@unique([ownerUserId, clientActionId])
   @@index([ownerUserId, updatedAt])
   @@index([ownerUserId, retentionState, updatedAt])
   @@index([ownerUserId, nextContactAt])

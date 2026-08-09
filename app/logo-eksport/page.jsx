@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import LogoExportStage from "@/components/brand/LogoExportStage";
 import { getLocaleFromCookies, getMessagesSync } from "@/lib/i18n";
+import "./logo-export.css";
 
 export const metadata = {
   title: "SotsiaalAI logo eksport",

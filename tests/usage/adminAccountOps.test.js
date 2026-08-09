@@ -35,18 +35,22 @@ function fakeDeletionDb(job, { failTransaction = false } = {}) {
 }
 
 test("user suspension is persisted and enforced by every login path", async () => {
-  const [schema, migration, auth, loginStep1, resend, route] = await Promise.all([
+  const [schema, migration, auth, jwtAuthorization, loginStep1, resend, route] = await Promise.all([
     readFile(new URL("../../prisma/schema.prisma", import.meta.url), "utf8"),
     readFile(new URL("../../prisma/migrations/20260711170000_user_access_suspension/migration.sql", import.meta.url), "utf8"),
     readFile(new URL("../../auth.js", import.meta.url), "utf8"),
+    readFile(new URL("../../lib/auth/jwtAuthorization.js", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/auth/login-step1/route.js", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/auth/login-resend-otp/route.js", import.meta.url), "utf8"),
     readFile(new URL("../../app/api/admin/usage/users/route.js", import.meta.url), "utf8")
   ]);
   assert.match(schema, /accessSuspendedAt\s+DateTime\?/);
   assert.match(migration, /ADD COLUMN "accessSuspendedAt"/);
+  // Sisselogimisrajad (temp-token ja otse-PIN) elavad auth.js-is; JWT
+  // värskenduse peatamiskontroll kolis SOL-AUTH-01 parandusega eraldi moodulisse.
   assert.ok((auth.match(/accessSuspendedAt/g) || []).length >= 4);
-  assert.match(auth, /currentUser\.accessSuspendedAt[\s\S]*SESSION_REVOKED/);
+  assert.match(jwtAuthorization, /currentUser\.accessSuspendedAt[\s\S]*SESSION_REVOKED/);
+  assert.match(auth, /refreshTokenAuthorization\(token,[\s\S]*db: prisma/);
   assert.match(loginStep1, /!user\.passwordHash \|\| user\.accessSuspendedAt/);
   assert.match(resend, /!user\?\.email \|\| user\.accessSuspendedAt/);
   assert.match(route, /sessionVersion: \{ increment: 1 \}/);

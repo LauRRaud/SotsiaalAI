@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { REGISTRATION_OPEN } from "@/lib/publicRegistration";
+import { isCaseWorkEnabled } from "@/lib/casework/flags";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 
 function isLocalHostname(hostname = "") {
@@ -30,13 +31,31 @@ function resolvePublicOrigin() {
 
 const PUBLIC_ORIGIN = resolvePublicOrigin();
 
+/**
+ * Teed, mille lehe enda `notFound()` EI TOHI olla ainus 404-allikas.
+ *
+ * `matcher` allpool peab sisaldama täpselt neidsamu teid — matcher'ist välja
+ * jäänud tee ei jõua siia funktsiooni üldse ja ümberkirjutus jääks vaikselt
+ * tegemata (SOL-CW-02 juur: juhtumitöö lehed kasutasid sama `notFound()`
+ * mustrit, aga matcher neid ei katnud).
+ */
+export const FLAGGED_PAGE_REWRITES = [
+  { pathname: "/teenuspaevik", isEnabled: isServiceLogEnabled },
+  { pathname: "/juhtumid", isEnabled: isCaseWorkEnabled },
+  { pathname: "/toolaud/juhtumitoo", isEnabled: isCaseWorkEnabled }
+];
+
+/** Olematu tee, mille peale suletud pind kirjutatakse. */
+const MISSING_ROUTE_PATHNAME = "/_puudub";
+
 export async function proxy(req) {
   const {
     pathname
   } = req.nextUrl;
 
-  /* TEENUSPÄEVIK — väljas lipuga peab marsruut olema ERISTAMATU olematust
-     marsruudist (leping, DoD 7). Lehe enda `notFound()` sellest EI PIISA:
+  /* LIPU TAGA OLEVAD LEHED (Teenuspäevik, juhtumitöö) — väljas lipuga peab
+     marsruut olema ERISTAMATU olematust marsruudist (Teenuspäeviku leping
+     DoD 7, juhtumitöö leping L19). Lehe enda `notFound()` sellest EI PIISA:
      mõõdetud päris production-build'iga, `/teenuspaevik` andis staatuse 200 ja
      olematu marsruut 404 — sisu oli küll 404-leht, aga staatus reetis, et pind
      on olemas. Sama kehtib platvormi teiste `notFound()` lehtede kohta (nt
@@ -47,9 +66,10 @@ export async function proxy(req) {
      ÜMBERKIRJUTUS OLEMATULE TEELE, mitte `new NextResponse(null, {status:404})`:
      tühi keha oleks omaette sõrmejälg. Nii tuleb TÄPSELT seesama 404-leht, mille
      annab iga muu olematu marsruut. */
-  if (pathname === "/teenuspaevik" && !isServiceLogEnabled()) {
+  const flaggedPage = FLAGGED_PAGE_REWRITES.find(entry => entry.pathname === pathname);
+  if (flaggedPage && !flaggedPage.isEnabled()) {
     const gone = req.nextUrl.clone();
-    gone.pathname = "/_puudub";
+    gone.pathname = MISSING_ROUTE_PATHNAME;
     gone.search = "";
     return NextResponse.rewrite(gone);
   }
@@ -87,6 +107,16 @@ export async function proxy(req) {
   }
   return NextResponse.next();
 }
+/* MATCHER PEAB KATMA IGA `FLAGGED_PAGE_REWRITES` TEE. Matcher on staatiline
+   massiiv (Next loeb ta build'i ajal), seega teda ei saa ülalt tuletada —
+   `tests/casework/closedSurface.test.js` hoiab need kaks nimekirja sünkroonis. */
 export const config = {
-  matcher: ["/registreerimine", "/teenuspaevik", "/(et|ru|en)", "/(et|ru|en)/:path*"]
+  matcher: [
+    "/registreerimine",
+    "/teenuspaevik",
+    "/juhtumid",
+    "/toolaud/juhtumitoo",
+    "/(et|ru|en)",
+    "/(et|ru|en)/:path*"
+  ]
 };

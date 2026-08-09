@@ -8,10 +8,9 @@ import {
   normalizeEmail,
   normalizePin,
   isValidPin,
-  isDirectPinLoginAllowed,
-  generateOpaqueToken,
-  getActiveSessionMaxForUser
+  isDirectPinLoginAllowed
 } from "@/lib/auth/pin-login";
+import { refreshTokenAuthorization } from "@/lib/auth/jwtAuthorization";
 const CredentialsProvider = CredentialsProviderImport?.default ?? CredentialsProviderImport;
 const LOCALHOST_RE = /^https?:\/\/(?:localhost|127(?:\.\d{1,3}){1,3})(?::\d+)?$/i;
 const DEFAULT_SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60;
@@ -43,87 +42,6 @@ const SESSION_MAX_AGE_SECONDS = readPositiveInteger(
   process.env.NEXTAUTH_SESSION_MAX_AGE_SECONDS || process.env.AUTH_SESSION_MAX_AGE_SECONDS,
   DEFAULT_SESSION_MAX_AGE_SECONDS
 );
-
-function buildSessionExpires(now = new Date()) {
-  return new Date(now.getTime() + SESSION_MAX_AGE_SECONDS * 1000);
-}
-
-async function createTrackedSessionForUser(user) {
-  const userId = String(user?.id || "");
-  if (!userId) return null;
-
-  const now = new Date();
-  const maxSessions = Math.max(1, getActiveSessionMaxForUser(user));
-
-  return prisma.$transaction(async tx => {
-    await tx.session.deleteMany({
-      where: {
-        userId,
-        expires: {
-          lte: now
-        }
-      }
-    });
-
-    const activeSessions = await tx.session.findMany({
-      where: {
-        userId,
-        expires: {
-          gt: now
-        }
-      },
-      select: {
-        id: true
-      },
-      orderBy: {
-        expires: "asc"
-      }
-    });
-
-    const overflow = activeSessions.length - maxSessions + 1;
-    const evictIds = overflow > 0
-      ? activeSessions.slice(0, overflow).map(session => session.id)
-      : [];
-
-    if (evictIds.length > 0) {
-      await tx.session.deleteMany({
-        where: {
-          id: {
-            in: evictIds
-          }
-        }
-      });
-    }
-
-    return tx.session.create({
-      data: {
-        sessionToken: generateOpaqueToken(32),
-        userId,
-        expires: buildSessionExpires(now)
-      },
-      select: {
-        id: true
-      }
-    });
-  });
-}
-
-async function hasActiveTrackedSession(sessionRecordId, userId) {
-  if (!sessionRecordId || !userId) return false;
-  const sessionRecord = await prisma.session.findFirst({
-    where: {
-      id: String(sessionRecordId),
-      userId: String(userId),
-      expires: {
-        gt: new Date()
-      }
-    },
-    select: {
-      id: true
-    }
-  });
-  return Boolean(sessionRecord);
-}
 
 function isIgnorableJwtDecryptError(code, metadata) {
   if (code !== "JWT_SESSION_ERROR") return false;
@@ -273,69 +191,13 @@ export const authConfig = {
         token.sessionVersion = Number.isFinite(user.sessionVersion) ? user.sessionVersion : 0;
       }
       if (token.id) {
-        try {
-          const currentUser = await prisma.user.findUnique({
-            where: {
-              id: String(token.id)
-            },
-            select: {
-              role: true,
-              isAdmin: true,
-              sessionVersion: true,
-              accessSuspendedAt: true,
-              subscriptions: {
-                where: {
-                  status: "ACTIVE",
-                  OR: [{
-                    validUntil: null
-                  }, {
-                    validUntil: {
-                      gt: new Date()
-                    }
-                  }]
-                },
-                select: {
-                  id: true
-                },
-                take: 1
-              }
-            }
-          });
-          if (!currentUser) {
-            throw new Error("SESSION_USER_MISSING");
-          }
-          if (currentUser.accessSuspendedAt) {
-            throw new Error("SESSION_REVOKED");
-          }
-          if (Number(token.sessionVersion ?? 0) !== Number(currentUser.sessionVersion ?? 0)) {
-            throw new Error("SESSION_REVOKED");
-          }
-
-          if (token.sessionRecordId) {
-            const active = await hasActiveTrackedSession(token.sessionRecordId, token.id);
-            if (!active) {
-              throw new Error("SESSION_REVOKED");
-            }
-          } else {
-            const sessionRecord = await createTrackedSessionForUser({
-              id: token.id,
-              role: currentUser.role,
-              isAdmin: currentUser.isAdmin
-            });
-            if (sessionRecord?.id) {
-              token.sessionRecordId = sessionRecord.id;
-            }
-          }
-
-          token.role = currentUser.role ?? "CLIENT";
-          token.isAdmin = Boolean(currentUser.isAdmin);
-          token.subActive = currentUser.subscriptions.length > 0;
-        } catch (error) {
-          const reason = String(error?.message || "");
-          if (reason === "SESSION_USER_MISSING" || reason === "SESSION_REVOKED") {
-            throw error;
-          }
-          token.subActive = false;
+        // Ootamatu tõrge langetab õigused (SOL-AUTH-01); SESSION_* visatakse edasi.
+        const { degraded, error } = await refreshTokenAuthorization(token, {
+          db: prisma,
+          sessionMaxAgeSeconds: SESSION_MAX_AGE_SECONDS
+        });
+        if (degraded) {
+          console.error("[auth] authorization refresh failed, session degraded", error);
         }
       } else {
         token.subActive = false;
@@ -351,6 +213,9 @@ export const authConfig = {
       session.user.role = token?.role || "CLIENT";
       session.user.isAdmin = Boolean(token?.isAdmin);
       session.subActive = Boolean(token?.subActive);
+      // Langetatud sessioon (SOL-AUTH-01): roll ja admin-õigus on tõrke tõttu
+      // maha võetud, mitte kasutaja tegelik seis.
+      session.authDegraded = Boolean(token?.authDegraded);
       return session;
     },
     async redirect({

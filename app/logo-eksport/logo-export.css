@@ -1,0 +1,27 @@
+/* Logo ekspordilava globaalne taust (SOL-BUILD-01).
+ *
+ * Need reeglid puudutavad `html`, `body` ja paigutuse `main#main` elementi.
+ * Neile ei saa kohalikku CSS Modules'i klassi anda, seega ei ole nad
+ * `*.module.css` failis lubatud: webpacki css-loader töötab `pure`-režiimis
+ * ja nõuab igalt selektorilt vähemalt üht kohalikku klassi või ID-d.
+ * Reeglid elavad siin, ainult `/logo-eksport` marsruudi stiililehes, ja on
+ * `:has()` värava tõttu mujal niikuinii inertsed.
+ */
+
+/* Eksport ei tohi pärida avalehe juhtnuppe ega taustaruumi. */
+html:has(main[aria-label="SotsiaalAI logo"]),
+body:has(main[aria-label="SotsiaalAI logo"]) {
+  background: #000;
+}
+
+body:has(main[aria-label="SotsiaalAI logo"]) .room,
+body:has(main[aria-label="SotsiaalAI logo"]) .room-topbar {
+  display: none;
+}
+
+main#main:has(main[aria-label="SotsiaalAI logo"]) {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  height: 100%;
+}
