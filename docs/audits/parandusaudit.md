@@ -1,41 +1,94 @@
-# Parandusaudit — peatükkide seis
+# Parandusaudit — SOL-süvaauditi seis
 
-Tuletatud loend. Seisu kannab `sotsiaalai-sol-suvaaudit.md` ise (Seis-lõik iga leiu all); see fail on ainult ülevaade. Mõõdetud 09.08.2026.
+**Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
+see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
+käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja nende all olevaid
+`**Seis (…): DONE…` lõike. Mõõdetud **09.08.2026**.
 
-- **Skeemi ja Prisma mudeli vastavus** (SOL-SCHEMA) — tehtud — 1/1
-- **Build** (SOL-BUILD) — tehtud — 1/1
-- **Autentimine ja autoriseerimine** (SOL-AUTH) — ei — 2/15
-- **Juhtumitöö (JTA-V1)** (SOL-CW) — ei — 18/20, 1 poolik, 1 otsuse taga
-- **RAG-i admin ja failihaldus** (SOL-RAGADMIN) — ei — 3/4
-- **Organisatsioonid ja skoop** (SOL-ORG) — ei — 0/12
-- **Välitöö** (SOL-FIELD) — ei — 0/6
-- **Dokumendid ja AI-kasutus** (SOL-DOC) — ei — 0/9
-- **Uuringud** (SOL-RES) — ei — 0/7
-- **Koosolekukokkuvõtted** (SOL-MEET) — ei — 0/6
-- **Vestlus** (SOL-CHAT) — ei — 0/13
-- **Hääl (STT/TTS)** (SOL-VOICE) — ei — 0/3
-- **Ruumid** (SOL-ROOM) — ei — 0/7
-- **Kõned ja salvestus** (SOL-CALL) — ei — 0/13
-- **Kutsed ja sponsorlus** (SOL-INV) — ei — 0/3
-- **Maksed** (SOL-PAY) — ei — 0/11
-- **Teavitused** (SOL-NOTIF) — ei — 0/7
-- **Domeenisündmused** (SOL-EVENT) — ei — 0/1
-- **Kiireloomuline abi** (SOL-URG) — ei — 0/13
-- **Tööheaolu** (SOL-WB) — ei — 0/14
-- **Teenuspäevik** (SOL-SLOG) — ei — 0/24
-- **RAG-teenus ja ingest** (SOL-RAGSVC) — ei — 0/28
-- **Migratsioonid** (SOL-PRISMA) — ei — 0/4
-- **Mentorlus** (SOL-MENT) — ei — 0/7
-- **Supervisioon** (SOL-SUP) — ei — 0/15
-- **Kovisioon** (SOL-COV) — ei — 0/8
-- **Tõenduspõhised praktikad** (SOL-PRAC) — ei — 0/8
-- **Teemaseemned** (SOL-SEED) — ei — 0/5
-- **Teekond ja jagamine** (SOL-JOUR) — ei — 0/17
-- **Eelpöördumised** (SOL-PRE) — ei — 0/18
-- **Abikuulutused** (SOL-HELP) — ei — 0/13
-- **Võrgustikutöö** (SOL-NET) — ei — 0/13
-- **Refleksioonid** (SOL-REF) — ei — 0/9
-- **Otsing** (SOL-SEARCH) — ei — 0/7
-- **Teenuseosutaja profiil** (SOL-SPROF) — ei — 0/15
+## Kokkuvõte
 
-Kokku: 2/35 peatükki tehtud · 25/357 leidu.
+| | |
+|---|---|
+| Tehtud leidu | **25 / 357** |
+| Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
+| Lahtised prioriteedi järgi | **21 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
+| Toodangus | server = `main` = `origin/main` = `841b6fa8`, kolm deploy'd 09.08 |
+| Esimene lahtine peatükk dokumendi järjekorras | **SOL-AUTH** (13 lahtist: 8 × P1, 5 × P2) |
+
+Kõik 25 tehtud leidu on tootmises. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
+allpool eraldi veerus.
+
+## Peatükid dokumendi järjekorras
+
+| Peatükk | Kood | Tehtud | Lahtised P0 | P1 | P2 | Märkus |
+|---|---|---|---|---|---|---|
+| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | – | – | **tehtud** |
+| Build | SOL-BUILD | **1/1** | – | – | – | **tehtud** |
+| Autentimine ja autoriseerimine | SOL-AUTH | 2/15 | – | 8 | 5 | järjekorras järgmine |
+| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
+| RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
+| Organisatsioonid ja skoop | SOL-ORG | 0/12 | – | 10 | 2 | |
+| Välitöö | SOL-FIELD | 0/6 | – | 4 | 2 | |
+| Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
+| Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
+| Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
+| Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
+| Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
+| Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
+| Kõned ja salvestus | SOL-CALL | 0/13 | **4** | 6 | 3 | |
+| Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
+| Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
+| Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
+| Domeenisündmused | SOL-EVENT | 0/1 | – | – | 1 | |
+| Kiireloomuline abi | SOL-URG | 0/13 | **2** | 11 | – | |
+| Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
+| Teenuspäevik | SOL-SLOG | 0/24 | **5** | 18 | 1 | kõige rohkem P0-sid |
+| RAG-teenus ja ingest | SOL-RAGSVC | 0/28 | **2** | 19 | 7 | suurim peatükk |
+| Migratsioonid | SOL-PRISMA | 0/4 | – | 3 | 1 | |
+| Mentorlus | SOL-MENT | 0/7 | – | 7 | – | |
+| Supervisioon | SOL-SUP | 0/15 | – | 11 | 4 | |
+| Kovisioon | SOL-COV | 0/8 | – | 8 | – | |
+| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | – | 8 | – | |
+| Teemaseemned | SOL-SEED | 0/5 | – | 3 | 2 | |
+| Teekond ja jagamine | SOL-JOUR | 0/17 | **2** | 12 | 3 | |
+| Eelpöördumised | SOL-PRE | 0/18 | **2** | 15 | 1 | |
+| Abikuulutused | SOL-HELP | 0/13 | – | 11 | 2 | |
+| Võrgustikutöö | SOL-NET | 0/13 | **2** | 9 | 2 | |
+| Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
+| Otsing | SOL-SEARCH | 0/7 | – | 1 | 5 | + 1 × P3 |
+| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | |
+
+## Mis on tehtud
+
+- **SOL-SCHEMA-01** · **SOL-BUILD-01**
+- **SOL-AUTH-01, AUTH-02**
+- **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
+- **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
+
+## Lahtised, mis EI OLE lihtsalt tegemata
+
+Neid kolme ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
+kood ei anna:
+
+- **SOL-CW-09** (P2) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
+  tagasinupu käitumist ei ole päris brauserist läbi käidud. Loendis on ta seepärast lahtine.
+- **SOL-CW-14** (P1) — *mehhanism DONE ja alarm tõendatud päris PostgreSQL-is; taimeri
+  LUBAMINE ootab omaniku enda lukustatud järjekorda* (Õ2/Õ3 andmekaitseanalüüs → cron →
+  kuivjooks → aktiveerimine). Unit-failid on serveris paigaldatud, taimer on `disabled`.
+- **SOL-CW-19** (P1) — *BLOCKED_DECISION.* Leid on mõõdetud ja tõene, aga kriteerium algab
+  tooteotsusest, mis on omaniku oma. Koodi ei ole muudetud.
+
+## Kuidas seda loendit lugeda
+
+- **Loend on mehaaniline.** Tehtuks loetakse ainult leid, mille Seis-lõik ALGAB sõnaga
+  `DONE`. Kvalifitseeritud seisud („kood DONE; brauseritest NOT_PROVEN", „mehhanism DONE…")
+  loetakse **lahtiseks**. Seepärast on SOL-CW siin **17/20**, mitte varem kirjas olnud 18/20 —
+  see ei ole tagasiminek, vaid rangem lugemine. Kolm kvalifitseeritud leidu on ülal nimetatud.
+- **`runtime: not_run` ei tee leidu lahtiseks.** Enamik parandusi on tõendatud teenuse- ja
+  andmebaasitasemel; „päris admini sessioonist läbi käimata" on kirjas iga leiu Seis-lõigus
+  eraldi ja seda ei loeta siin puuduseks.
+- **Peatüki järjekord on dokumendi järjekord** — sama, milles omanik parandusi teeb. „Esimene
+  lahtine peatükk" ülal tähendab dokumendi järjekorda, mitte prioriteeti: SOL-AUTH on
+  SOL-CW-st ja SOL-RAGADMIN-ist eespool ja tema 13 lahtist leidu on endiselt ootel.
+- **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
+  vananenud, raport ei ole.

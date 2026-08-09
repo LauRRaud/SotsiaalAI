@@ -668,6 +668,25 @@ export function useKovAdminController(locale, initialItems = []) {
     async slug => {
       if (!slug) return null;
 
+      /* SOL-RAGADMIN-04: põhjus küsitakse ENNE dry-run'i, sest server seob ta
+         eelvaate sõrmejälje sisse — hiljem teise põhjusega kirjutamine ei ole
+         see, mida keegi kinnitas. Põhjus läheb auditisse. */
+      const reasonInput = window.prompt(
+        et
+          ? `Miks sa ${slug} KOV RAG state'i resetid? Põhjus läheb auditisse (vähemalt 3 tähemärki).`
+          : `Why are you resetting the KOV RAG state for ${slug}? The reason is recorded in the audit log (min 3 characters).`
+      );
+      const reason = String(reasonInput || "").trim();
+      if (!reason || reason.length < 3) {
+        if (reasonInput !== null) {
+          setMessage({
+            type: "error",
+            text: et ? "Reset vajab vähemalt 3 tähemärgi pikkust põhjust." : "The reset needs a reason of at least 3 characters."
+          });
+        }
+        return { ok: false, cancelled: true };
+      }
+
       setResetBusySlug(slug);
       try {
         const dryRunResponse = await fetch(`/api/admin/rag/kov/${encodeURIComponent(slug)}/reset-rag-state`, {
@@ -675,7 +694,7 @@ export function useKovAdminController(locale, initialItems = []) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({})
+          body: JSON.stringify({ reason })
         });
         const dryRunPayload = await dryRunResponse.json();
         if (!dryRunResponse.ok || dryRunPayload?.ok === false) {
@@ -684,16 +703,30 @@ export function useKovAdminController(locale, initialItems = []) {
 
         setRagResetPlan(dryRunPayload);
 
+        const gate = dryRunPayload?.reset_gate || null;
+        if (!gate?.previewToken || !gate?.confirmation) {
+          throw new Error(
+            et
+              ? "Server ei andnud kinnitusväravat. Reset jäi tegemata."
+              : "The server did not return a confirmation gate. The reset was not performed."
+          );
+        }
+
         const summary = dryRunPayload?.summary || {};
         const confirmText = [
           et ? `Resetin ${slug} KOV RAG state'i?` : `Reset RAG state for ${slug}?`,
           et ? `RAG dokumendid: ${summary.matched_rag_doc_ids || 0}` : `RAG documents: ${summary.matched_rag_doc_ids || 0}`,
           et ? `Aktiivsed source package'id: ${summary.active_snapshot_count || 0}` : `Active source packages: ${summary.active_snapshot_count || 0}`,
           et ? `Admin state reset: ${summary.admin_row_will_reset ? "jah" : "ei"}` : `Admin state reset: ${summary.admin_row_will_reset ? "yes" : "no"}`,
-          et ? "Repo faile see ei puuduta." : "This does not touch repo files."
+          et ? "Repo faile see ei puuduta." : "This does not touch repo files.",
+          "",
+          /* Täpne tekst tuleb SERVERILT ja kannab mõju arvu — kui plaan
+             vahepeal muutub, ei kehti ka see tekst. */
+          et ? `Kirjuta kinnituseks TÄPSELT: ${gate.confirmation}` : `Type this EXACT confirmation: ${gate.confirmation}`
         ].join("\n");
 
-        if (!window.confirm(confirmText)) {
+        const typedConfirmation = window.prompt(confirmText);
+        if (typedConfirmation === null) {
           return {
             ok: false,
             cancelled: true,
@@ -706,7 +739,12 @@ export function useKovAdminController(locale, initialItems = []) {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ confirmReset: true })
+          body: JSON.stringify({
+            confirmReset: true,
+            reason,
+            confirmation: typedConfirmation,
+            previewToken: gate.previewToken
+          })
         });
         const writePayload = await writeResponse.json();
 

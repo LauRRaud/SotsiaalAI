@@ -91,9 +91,14 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 Lokaalne `main`, `origin/main` ja **server on kõik `841b6fa8`** — deploy'mata ei ole midagi.
 
-**SOL-CW peatükk on tehtud 18/20** — lahtised on ainult CW-14 saba (taimeri lubamine
-serveris) ja **CW-19, mis ootab sinu otsust**. **SOL-RAGADMIN on 3/4** — alles ainult
-RAGADMIN-04 (P2, hävitava reseti serveripoolne kinnitusvärav). Peatükkide ülevaade:
+**SOL-RAGADMIN on 4/4 — peatükk lõpuni tehtud.** SOL-CW on 17/20 ja kolm lahtist ei ole
+lihtsalt tegemata: CW-09 (kood tehtud, brauseritest tegemata), CW-14 (mehhanism tehtud,
+taimeri lubamine sinu lukustatud järjekorras) ja **CW-19, mis ootab sinu otsust**.
+
+**Dokumendi järjekorras on esimene lahtine peatükk SOL-AUTH (2/15, 13 lahtist: 8 × P1,
+5 × P2)** — tema leiud on SOL-CW-st ja SOL-RAGADMIN-ist eespool ja jäid vahele.
+Kokku on tehtud **25/357 leidu, 3/35 peatükki**; lahtiseid P0-sid on **21**, kõige rohkem
+SOL-SLOG-is (5) ja SOL-CALL-is (4). Täielik ülevaade koos prioriteedijaotusega:
 [`docs/audits/parandusaudit.md`](../audits/parandusaudit.md).
 
 **SOL-SCHEMA-01 on uus P0 ja ta muudab seda, mida „JTA-V1 on valmis ootama" tähendas.**
