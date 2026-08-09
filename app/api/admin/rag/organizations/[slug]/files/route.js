@@ -16,6 +16,7 @@ import { ORGANIZATION_FILE_ROLE_META, resolveOrganizationFileKeyFromParam } from
 import { expectedOrganizationCoreFileName } from "@/lib/admin/rag/organizations/package";
 import { validateOrganizationFileContent } from "@/lib/admin/rag/organizations/validation";
 import { errorJson, json, requireOrganizationAdminSession } from "@/lib/admin/rag/organizations/api";
+import { afterCommit, commitFileSwap, RAG_ADMIN_FILE_RESOURCE } from "@/lib/admin/rag/fileSwap";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -55,6 +56,8 @@ export async function POST(request, { params }) {
   if (!entry) return errorJson("api.common.not_found", 404, auth.locale);
 
   let newStoragePath = "";
+  /* Vt `catch` lõpus ja `lib/admin/rag/fileSwap.js` — SOL-RAGADMIN-01. */
+  let committed = false;
 
   try {
     await ensureOrganizationStorage();
@@ -71,41 +74,52 @@ export async function POST(request, { params }) {
         ? entry.files.find(item => item.role === roleMeta.dbRole) || null
         : null;
 
-    if (existingCoreFile) {
-      await prisma.organizationAdminFile.update({
-        where: { id: existingCoreFile.id },
-        data: {
-          role: roleMeta.dbRole,
-          originalName: String(file.name || existingCoreFile.originalName),
-          mime: stored.mime,
-          size: stored.size,
-          sha256: stored.sha256,
-          storagePath: newStoragePath,
-          validationStatus: validation.validationStatus,
-          validationMessage: validation.validationMessage,
-          validatedAt: validation.validatedAt
-        }
-      });
-      await deleteStoredOrganizationFile(existingCoreFile.storagePath);
-    } else {
-      await prisma.organizationAdminFile.create({
-        data: {
-          organizationId: entry.id,
-          role: roleMeta.dbRole,
-          originalName: String(file.name || "organization-file"),
-          mime: stored.mime,
-          size: stored.size,
-          sha256: stored.sha256,
-          storagePath: newStoragePath,
-          validationStatus: validation.validationStatus,
-          validationMessage: validation.validationMessage,
-          validatedAt: validation.validatedAt
-        }
-      });
-    }
+    /* SOL-RAGADMIN-01 — sama protokoll mis KOV-rajal, sama põhjendus.
+       Vt `lib/admin/rag/fileSwap.js`. */
+    const swap = await commitFileSwap({
+      commit: () =>
+        existingCoreFile
+          ? prisma.organizationAdminFile.update({
+              where: { id: existingCoreFile.id },
+              data: {
+                role: roleMeta.dbRole,
+                originalName: String(file.name || existingCoreFile.originalName),
+                mime: stored.mime,
+                size: stored.size,
+                sha256: stored.sha256,
+                storagePath: newStoragePath,
+                validationStatus: validation.validationStatus,
+                validationMessage: validation.validationMessage,
+                validatedAt: validation.validatedAt
+              }
+            })
+          : prisma.organizationAdminFile.create({
+              data: {
+                organizationId: entry.id,
+                role: roleMeta.dbRole,
+                originalName: String(file.name || "organization-file"),
+                mime: stored.mime,
+                size: stored.size,
+                sha256: stored.sha256,
+                storagePath: newStoragePath,
+                validationStatus: validation.validationStatus,
+                validationMessage: validation.validationMessage,
+                validatedAt: validation.validatedAt
+              }
+            }),
+      newStoragePath,
+      previousStoragePath: existingCoreFile?.storagePath || null,
+      deleteFile: deleteStoredOrganizationFile,
+      resourceType: RAG_ADMIN_FILE_RESOURCE.ORGANIZATION,
+      resourceId: entry.id,
+      actorUserId: auth.session?.user?.id || null
+    });
+    committed = swap.committed;
 
-    await syncOrganizationFileCountById(entry.id);
-    const updated = await syncOrganizationIngestStatusById(entry.id);
+    await afterCommit("organizations.syncFileCount", () => syncOrganizationFileCountById(entry.id));
+    const updated = await afterCommit("organizations.syncIngestStatus", () =>
+      syncOrganizationIngestStatusById(entry.id)
+    );
 
     return json(
       {
@@ -115,7 +129,9 @@ export async function POST(request, { params }) {
       201
     );
   } catch (error) {
-    if (newStoragePath) {
+    /* `committed` — vt KOV-raja sama kohta. Ilma temata kustutaks see haru uue
+       faili ka pärast seda, kui DB temale juba osutab. */
+    if (newStoragePath && !committed) {
       try {
         await deleteStoredOrganizationFile(newStoragePath);
       } catch {}

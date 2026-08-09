@@ -7,6 +7,7 @@ import {
 } from "@/lib/admin/rag/organizations/service";
 import { deleteStoredOrganizationFile } from "@/lib/admin/rag/organizations/storage";
 import { errorJson, json, requireOrganizationAdminSession } from "@/lib/admin/rag/organizations/api";
+import { afterCommit, commitFileRemoval, RAG_ADMIN_FILE_RESOURCE } from "@/lib/admin/rag/fileSwap";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -35,12 +36,20 @@ export async function DELETE(request, { params }) {
     const file = entry.files.find(item => item.id === fileId);
     if (!file) return errorJson("api.common.not_found", 404, auth.locale);
 
-    await deleteStoredOrganizationFile(file.storagePath);
-    await prisma.organizationAdminFile.delete({
-      where: { id: fileId }
+    /* SOL-RAGADMIN-01 — DB nähtavus esimesena, fail järeltegevusena. */
+    await commitFileRemoval({
+      removeRecord: () => prisma.organizationAdminFile.delete({ where: { id: fileId } }),
+      storagePath: file.storagePath,
+      deleteFile: deleteStoredOrganizationFile,
+      resourceType: RAG_ADMIN_FILE_RESOURCE.ORGANIZATION,
+      resourceId: entry.id,
+      actorUserId: auth.session?.user?.id || null
     });
-    await syncOrganizationFileCountById(entry.id);
-    const updated = await syncOrganizationIngestStatusById(entry.id);
+
+    await afterCommit("organizations.syncFileCount", () => syncOrganizationFileCountById(entry.id));
+    const updated = await afterCommit("organizations.syncIngestStatus", () =>
+      syncOrganizationIngestStatusById(entry.id)
+    );
     return json({
       ok: true,
       item: updated || serializeOrganizationAdmin(await getOrganizationAdminEntryBySlug(slug))

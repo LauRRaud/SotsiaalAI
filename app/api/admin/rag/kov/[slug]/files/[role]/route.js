@@ -3,6 +3,7 @@ import { getKovAdminEntryBySlug, serializeKovAdminWithRepositoryFallback, syncKo
 import { deleteStoredKovFile } from "@/lib/admin/rag/kov/storage";
 import { KOV_FILE_ROLE_META, resolveKovFileKeyFromParam } from "@/lib/admin/rag/kov/shared";
 import { errorJson, json, requireKovAdminSession } from "@/lib/admin/rag/kov/api";
+import { afterCommit, commitFileRemoval, RAG_ADMIN_FILE_RESOURCE } from "@/lib/admin/rag/fileSwap";
 import { safeError } from "@/lib/privacy/safeError";
 
 export const runtime = "nodejs";
@@ -34,23 +35,37 @@ export async function DELETE(request, { params }) {
       return errorJson("api.common.not_found", 404, auth.locale);
     }
 
-    await deleteStoredKovFile(existing.storagePath);
-    await prisma.municipalityKovAdminFile.delete({
-      where: {
-        kovAdminId_role: {
-          kovAdminId: entry.id,
-          role: existing.role
-        }
-      }
+    /* SOL-RAGADMIN-01 — DB NÄHTAVUS ESIMESENA. Varem kadus füüsiline fail enne
+       DB-rida, seega DB tõrge jättis kirje failile, mida enam ei ole. Orb fail
+       on ohutu (talle ei osuta keegi) ja tema koristus on järjekorras; kirje
+       ilma failita ei ole ohutu. */
+    await commitFileRemoval({
+      removeRecord: () =>
+        prisma.municipalityKovAdminFile.delete({
+          where: {
+            kovAdminId_role: {
+              kovAdminId: entry.id,
+              role: existing.role
+            }
+          }
+        }),
+      storagePath: existing.storagePath,
+      deleteFile: deleteStoredKovFile,
+      resourceType: RAG_ADMIN_FILE_RESOURCE.KOV,
+      resourceId: entry.id,
+      actorUserId: auth.session?.user?.id || null
     });
-    await prisma.municipalityKovAdmin.update({
-      where: { id: entry.id },
-      data:
-        KOV_FILE_ROLE_META[fileKey].layer === "RT"
-          ? { rtCheckedAt: new Date() }
-          : { checkedAt: new Date() }
-    });
-    await syncKovAdminIngestStatusById(entry.id);
+
+    await afterCommit("kov.checkedAt", () =>
+      prisma.municipalityKovAdmin.update({
+        where: { id: entry.id },
+        data:
+          KOV_FILE_ROLE_META[fileKey].layer === "RT"
+            ? { rtCheckedAt: new Date() }
+            : { checkedAt: new Date() }
+      })
+    );
+    await afterCommit("kov.syncIngestStatus", () => syncKovAdminIngestStatusById(entry.id));
 
     const updated = await getKovAdminEntryBySlug(slug);
     return json({

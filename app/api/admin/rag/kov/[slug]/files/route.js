@@ -4,6 +4,7 @@ import { buildKovStoredFilePath, deleteStoredKovFile, ensureKovStorage, readStor
 import { KOV_FILE_ROLE_META, resolveKovFileKeyFromParam } from "@/lib/admin/rag/kov/shared";
 import { validateKovFileContent } from "@/lib/admin/rag/kov/validation";
 import { errorJson, json, requireKovAdminSession } from "@/lib/admin/rag/kov/api";
+import { afterCommit, commitFileSwap, RAG_ADMIN_FILE_RESOURCE } from "@/lib/admin/rag/fileSwap";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -41,6 +42,9 @@ export async function POST(request, { params }) {
     : null;
 
   let newStoragePath = "";
+  /* Kas vahetuspunkt on läbitud. Vt `catch` lõpus — see lipp on SOL-RAGADMIN-01
+     paranduse kandev osa. */
+  let committed = false;
 
   try {
     await ensureKovStorage();
@@ -54,55 +58,71 @@ export async function POST(request, { params }) {
       displayName: entry.municipality.displayName
     });
 
-    if (existingFile) {
-      await prisma.municipalityKovAdminFile.update({
-        where: {
-          kovAdminId_role: {
-            kovAdminId: entry.id,
-            role: existingFile.role
-          }
-        },
-        data: {
-          originalName: String(file.name || existingFile.originalName),
-          mime: stored.mime,
-          size: stored.size,
-          sha256: stored.sha256,
-          storagePath: newStoragePath,
-          version: existingFile.version + 1,
-          validationStatus: validation.validationStatus,
-          validationMessage: validation.validationMessage,
-          validatedAt: validation.validatedAt
-        }
-      });
-
-      await deleteStoredKovFile(existingFile.storagePath);
-    } else {
-      await prisma.municipalityKovAdminFile.create({
-        data: {
-          kovAdminId: entry.id,
-          role: KOV_FILE_ROLE_META[fileKey].dbRole,
-          originalName: String(file.name || KOV_FILE_ROLE_META[fileKey].fileNamePattern.replace("{slug}", slug)),
-          mime: stored.mime,
-          size: stored.size,
-          sha256: stored.sha256,
-          storagePath: newStoragePath,
-          version: 1,
-          validationStatus: validation.validationStatus,
-          validationMessage: validation.validationMessage,
-          validatedAt: validation.validatedAt
-        }
-      });
-    }
-
-    await prisma.municipalityKovAdmin.update({
-      where: { id: entry.id },
-      data: {
-        ...(KOV_FILE_ROLE_META[fileKey].layer === "RT"
-          ? { rtCheckedAt: new Date() }
-          : { checkedAt: new Date() })
-      }
+    /* SOL-RAGADMIN-01 — vahetuspunkt on ÜKS DB-kirjutus ja ta on siin nimeliselt.
+       Vana faili koristus ja kõik järeltegevused on temast VÄLJASPOOL: enne teda
+       on ainus ohutu koristus uus fail, pärast teda ei tohi uut faili puutuda
+       mitte keegi. Vt `lib/admin/rag/fileSwap.js`. */
+    const swap = await commitFileSwap({
+      commit: () =>
+        existingFile
+          ? prisma.municipalityKovAdminFile.update({
+              where: {
+                kovAdminId_role: {
+                  kovAdminId: entry.id,
+                  role: existingFile.role
+                }
+              },
+              data: {
+                originalName: String(file.name || existingFile.originalName),
+                mime: stored.mime,
+                size: stored.size,
+                sha256: stored.sha256,
+                storagePath: newStoragePath,
+                version: existingFile.version + 1,
+                validationStatus: validation.validationStatus,
+                validationMessage: validation.validationMessage,
+                validatedAt: validation.validatedAt
+              }
+            })
+          : prisma.municipalityKovAdminFile.create({
+              data: {
+                kovAdminId: entry.id,
+                role: KOV_FILE_ROLE_META[fileKey].dbRole,
+                originalName: String(
+                  file.name || KOV_FILE_ROLE_META[fileKey].fileNamePattern.replace("{slug}", slug)
+                ),
+                mime: stored.mime,
+                size: stored.size,
+                sha256: stored.sha256,
+                storagePath: newStoragePath,
+                version: 1,
+                validationStatus: validation.validationStatus,
+                validationMessage: validation.validationMessage,
+                validatedAt: validation.validatedAt
+              }
+            }),
+      newStoragePath,
+      previousStoragePath: existingFile?.storagePath || null,
+      deleteFile: deleteStoredKovFile,
+      resourceType: RAG_ADMIN_FILE_RESOURCE.KOV,
+      resourceId: entry.id,
+      actorUserId: auth.session?.user?.id || null
     });
-    await syncKovAdminIngestStatusById(entry.id);
+    committed = swap.committed;
+
+    /* JÄRELTEGEVUSED. Nende tõrge on seisuvõlg, mille järgmine lugemine
+       parandab — mitte põhjus öelda adminile, et üleslaadimine ebaõnnestus. */
+    await afterCommit("kov.checkedAt", () =>
+      prisma.municipalityKovAdmin.update({
+        where: { id: entry.id },
+        data: {
+          ...(KOV_FILE_ROLE_META[fileKey].layer === "RT"
+            ? { rtCheckedAt: new Date() }
+            : { checkedAt: new Date() })
+        }
+      })
+    );
+    await afterCommit("kov.syncIngestStatus", () => syncKovAdminIngestStatusById(entry.id));
     const updated = await getKovAdminEntryBySlug(slug);
 
     return json(
@@ -113,7 +133,10 @@ export async function POST(request, { params }) {
       201
     );
   } catch (error) {
-    if (newStoragePath) {
+    /* `committed` ON SIIN KOGU LEIU TUUM. Varem kustutas see haru uue faili ka
+       siis, kui DB temale juba osutas ja vana fail oli kustutatud — üks tõrge
+       hilisemas sammus hävitas mõlemad failid korraga. */
+    if (newStoragePath && !committed) {
       try {
         await deleteStoredKovFile(newStoragePath);
       } catch {}
