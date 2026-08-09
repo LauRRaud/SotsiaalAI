@@ -1818,6 +1818,12 @@ model MunicipalityKovAdmin {
   lastIngestedAt          DateTime?
   lastIngestError         String?            @db.Text
   ragDocId                String?
+  // SOL-RAGADMIN-03: ingest'i tingimuslik claim koos lease'iga. `claimId` on
+  // ühe katse töö-ID (DB lõppseis kirjutatakse ainult tema järgi), `claimedAt`
+  // on lease'i algus. NULL `claimedAt` = aegunud claim, seega enne seda
+  // migratsiooni INGESTING-usse jäänud rida on taastatav ilma backfill'ita.
+  ingestClaimId           String?
+  ingestClaimedAt         DateTime?
   rtCheckedAt             DateTime?
   rtNotes                 String?            @db.Text
   rtStatus                KovRtStatus        @default(NOT_STARTED)
@@ -1825,6 +1831,8 @@ model MunicipalityKovAdmin {
   rtLastIngestedAt        DateTime?
   rtLastIngestError       String?            @db.Text
   rtRagDocId              String?
+  rtIngestClaimId         String?
+  rtIngestClaimedAt       DateTime?
   reviewCadence           String             @default("ANNUAL_JAN_PLUS_JULY_CHECK")
   autoCheckStatus         KovAutoCheckStatus @default(IDLE)
   lastFullReviewAt        DateTime?
@@ -1901,6 +1909,9 @@ model OrganizationAdmin {
   lastIngestedAt  DateTime?
   lastIngestError String?   @db.Text
   ragDocId        String?
+  // SOL-RAGADMIN-03 — vt `MunicipalityKovAdmin.ingestClaimId`.
+  ingestClaimId   String?
+  ingestClaimedAt DateTime?
   fileCount       Int       @default(0)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt

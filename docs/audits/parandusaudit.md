@@ -6,7 +6,7 @@ Tuletatud loend. Seisu kannab `sotsiaalai-sol-suvaaudit.md` ise (Seis-lõik iga 
 - **Build** (SOL-BUILD) — tehtud — 1/1
 - **Autentimine ja autoriseerimine** (SOL-AUTH) — ei — 2/15
 - **Juhtumitöö (JTA-V1)** (SOL-CW) — ei — 18/20, 1 poolik, 1 otsuse taga
-- **RAG-i admin ja failihaldus** (SOL-RAGADMIN) — ei — 2/4
+- **RAG-i admin ja failihaldus** (SOL-RAGADMIN) — ei — 3/4
 - **Organisatsioonid ja skoop** (SOL-ORG) — ei — 0/12
 - **Välitöö** (SOL-FIELD) — ei — 0/6
 - **Dokumendid ja AI-kasutus** (SOL-DOC) — ei — 0/9
@@ -38,4 +38,4 @@ Tuletatud loend. Seisu kannab `sotsiaalai-sol-suvaaudit.md` ise (Seis-lõik iga 
 - **Otsing** (SOL-SEARCH) — ei — 0/7
 - **Teenuseosutaja profiil** (SOL-SPROF) — ei — 0/15
 
-Kokku: 2/35 peatükki tehtud · 24/357 leidu.
+Kokku: 2/35 peatükki tehtud · 25/357 leidu.

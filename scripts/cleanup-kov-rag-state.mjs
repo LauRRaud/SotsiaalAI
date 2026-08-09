@@ -409,7 +409,13 @@ async function executePlan(plan, args) {
         lastIngestError: null,
         rtIngestStatus: adminPlan.after.rtIngestStatus,
         rtLastIngestedAt: null,
-        rtLastIngestError: null
+        rtLastIngestError: null,
+        /* SOL-RAGADMIN-03: lähtestatud pakett ei ole kellegi käes. Veerupaar
+           käib koos (DB CHECK) — kumbagi poolt eraldi ei jäeta. */
+        ingestClaimId: null,
+        ingestClaimedAt: null,
+        rtIngestClaimId: null,
+        rtIngestClaimedAt: null
       },
       select: {
         id: true,
