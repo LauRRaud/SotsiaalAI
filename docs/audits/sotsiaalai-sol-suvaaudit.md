@@ -3139,6 +3139,19 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Tõend.** RAG-sünk kontrollib kõigepealt võtme olemasolu ja tagastab `syncStatus:"skipped"`; alles järgmises harus hinnatakse, kas profiil tuleb eemaldada (`lib/serviceProviderProfiles.js:475-517`). Seega puuduva `RAG_SERVICE_KEY` korral ei kustutata vana `ragSourceId` dokumenti ka siis, kui kasutaja lülitab `assistantRecommendationAllowed` välja või peidab profiili. Kustutus-/ingest-vea püüab profiilisalvestus kinni, kirjutab ainult `ragMetadata.syncStatus:"failed"` ja tagastab route'ile tavapärase profiili (`:1121-1139`); UI kuvab selle järel tingimusteta „Teenuseprofiil salvestati” ega näita RAG-meta seisu (`components/workspace/WorkspaceFeaturePage.jsx:4219-4234`). Püsivat profiili-RAG retry-job'i pole.
 
+**Täpsustus (09.08, mõõdetud).** Kustutuse harul ei ole ka ülalmainitud nõrka võrku.
+`deleteRagDocument()` ei viska kunagi erindit: puuduva ID korral tagastab ta
+`{ ok: false, skipped: true }`, 404 korral `{ ok: true, missing: true }` ning päris tõrke
+(võrk, 5xx, autentimine) korral `{ ok: false, error }` (`lib/documents/ragService.js:127-157`).
+Seetõttu `:1121-1139` `catch` sellel rajal ei käivitu ja `syncStatus:"failed"` ei jõua kustutusel
+kunagi kirja — võrk ei ole nõrk, teda ei ole. `:497` kutsub kustutust tagastusväärtust vaatamata
+ja kirjutab kohe järel tingimusteta `ragSourceId: null` + `ragMetadata.syncStatus:"removed"`
+(`:495-517`). Vale eduteade sünnib seega ka siis, kui `RAG_SERVICE_KEY` on olemas — puuduv võti
+on ainult üks kolmest teest sinna. Ühtlasi kaob ainus salvestatud viit orvule; doc-ID
+`service-provider-profile::${profile.id}` on determinist (`:268-270`), nii et orb on sweep'iga
+leitav, kuid miski ei märgi, et teda otsida tuleks. Sama klass nagu SOL-RAGADMIN-02, ainult ilma
+snapshot-ridadeta, mis seal jälje alles jätsid.
+
 **Mõju.** Kasutaja selgesõnaline AI-soovitusloa tagasivõtmine või profiili peitmine võib olla ainult DB/UI muudatus; kontaktid ja teenusekirjeldused jäävad assistendile leitavaks. Kasutaja saab vale eduteate ega tea, et nõusolekupiir pole välises koopias jõustunud.
 
 **Vastuvõtukriteerium.** Loa eemaldamine peab fail-closed lõpetama retrieval'i kohe ning looma deterministliku püsiva delete-job'i, mida retry-worker ja deploy-värav jälgivad. Route/UI peab näitama ausat pending/failed olekut. Testida puuduva võtme, timeout'i, osalise RAG-vea, restardi ja korduva tagasivõtmisega; lõpptõend on 0 tulemust vana teenuse unikaalse markeriga.

@@ -12,8 +12,9 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 | Tehtud leidu | **25 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
 | Lahtised prioriteedi järgi | **21 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
-| Toodangus | server = `main` = `origin/main` = `841b6fa8`, kolm deploy'd 09.08 |
-| Esimene lahtine peatükk dokumendi järjekorras | **SOL-AUTH** (13 lahtist: 8 × P1, 5 × P2) |
+| Toodangus | server = `841b6fa8` (kolm deploy'd 09.08); `main` = `origin/main` = `310b1634` — **üks commit deploy'mata** |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-CALL** (13 lahtist: 4 × P0, 6 × P1, 3 × P2) |
+| Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
 Kõik 25 tehtud leidu on tootmises. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
 allpool eraldi veerus.
@@ -24,7 +25,7 @@ allpool eraldi veerus.
 |---|---|---|---|---|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | – | – | **tehtud** |
 | Build | SOL-BUILD | **1/1** | – | – | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 2/15 | – | 8 | 5 | järjekorras järgmine |
+| Autentimine ja autoriseerimine | SOL-AUTH | 2/15 | – | 8 | 5 | 13 lahtist, P0-sid ei ole |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 0/12 | – | 10 | 2 | |
@@ -35,7 +36,7 @@ allpool eraldi veerus.
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 0/13 | **4** | 6 | 3 | |
+| Kõned ja salvestus | SOL-CALL | 0/13 | **4** | 6 | 3 | **järjekorras järgmine** |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
@@ -87,8 +88,11 @@ kood ei anna:
 - **`runtime: not_run` ei tee leidu lahtiseks.** Enamik parandusi on tõendatud teenuse- ja
   andmebaasitasemel; „päris admini sessioonist läbi käimata" on kirjas iga leiu Seis-lõigus
   eraldi ja seda ei loeta siin puuduseks.
-- **Peatüki järjekord on dokumendi järjekord** — sama, milles omanik parandusi teeb. „Esimene
-  lahtine peatükk" ülal tähendab dokumendi järjekorda, mitte prioriteeti: SOL-AUTH on
-  SOL-CW-st ja SOL-RAGADMIN-ist eespool ja tema 13 lahtist leidu on endiselt ootel.
+- **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
+  otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
+  lahtiseid P0-sid on 21 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. Uue reegli järgi on järgmine **SOL-CALL** (4 × P0) — mitte SOL-SLOG,
+  kus P0-sid on rohkem (5), sest SOL-CALL on dokumendis eespool ja järjekord otsustab alles
+  võrdse prioriteedi juures. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.
