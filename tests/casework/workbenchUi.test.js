@@ -126,8 +126,10 @@ test("laua tõlkevõtmed on olemas KÕIGIS kolmes keeles", async () => {
 
   /* Koondlugeja `notice`-võtmed tulevad SERVERIST ja pind ainult tõlgib nad.
      E1 saatis neid välja juba enne, kui sõnastikus rida oli — pind oli siis
-     ainus koht, kus see paistnuks, ja pinda ei olnud. */
-  keys.add("casework.workbench.preparations_not_yet");
+     ainus koht, kus see paistnuks, ja pinda ei olnud.
+
+     `preparations_not_yet` EI OLE siin: ta kadus koos oma põhjusega
+     (SOL-CW-13), kui sektsioon hakkas lugema päris ettevalmistusi. */
   keys.add("casework.workbench.network_worker_only");
 
   keys.add("casework.workbench.card_meta");
@@ -151,7 +153,10 @@ test("koondlugeja `notice`-võtmed on kõik sõnastikus (E2 testileping)", async
      `notice`-i, peab see test punaseks minema ilma, et keegi teda uuendaks. */
   const reader = await read("../../lib/casework/workbench.js");
   const notices = [...reader.matchAll(/"(casework\.workbench\.[A-Za-z0-9_]+)"/g)].map((match) => match[1]);
-  assert.ok(notices.length >= 2, "koondlugejast ei leitud ühtegi notice-võtit");
+  /* Üks piisab. Varem nõuti kahte, sest neid OLI kaks; `preparations_not_yet`
+     kadus SOL-CW-13-ga ja arv ei ole see, mida see test kaitseb — kaitstav asi
+     on, et iga koodis olev võti oleks sõnastikus. */
+  assert.ok(notices.length >= 1, "koondlugejast ei leitud ühtegi notice-võtit");
 
   for (const locale of ["et", "en", "ru"]) {
     const messages = await readMessages(locale);

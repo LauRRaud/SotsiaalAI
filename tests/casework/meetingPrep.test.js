@@ -26,6 +26,7 @@ import {
   createMeetingPrep,
   deleteMeetingPrep,
   getMeetingPrep,
+  listActiveMeetingPrepsForOwner,
   listMeetingPreps,
   removeQuestion,
   setPrepField,
@@ -589,5 +590,272 @@ test(
     const fresh = await createMeetingPrep({ ownerUserId: OWNER, caseWorkAssistId: CASE_ID, db: store });
     assert.ok(fresh.id);
     assert.equal(fresh.contentPurgedAt ?? null, null);
+  })
+);
+
+/* ── SOL-CW-13: laua ettevalmistuste lugeja ─────────────────────────────── */
+
+/**
+ * Fake laua lugejale — PÄRISELT filtrit hindav, mitte ridu tagastav.
+ *
+ * Ülemine `db()` fake võrdleb `where` välju lamedalt ega oskaks pesastatud
+ * `caseWorkAssist: { ownerUserId, retentionState }` filtrit ega `OR`-i
+ * tõlgendada: ta laseks KÕIK read läbi ja iga allolev test läheks roheliseks
+ * ka siis, kui lugeja skoopi ega elutsüklit ei kontrolli. See on sama lõks,
+ * mille SOL-CW-11 fake-DB juures juba maha võttis.
+ */
+function deskDb({ assists = [], preps = [], users = [] } = {}) {
+  const byCase = new Map(assists.map((row) => [row.id, row]));
+
+  const matches = (prep, where) => {
+    const parent = byCase.get(prep.caseWorkAssistId);
+    const scope = where.caseWorkAssist;
+    if (scope) {
+      if (!parent) return false;
+      if (scope.ownerUserId !== undefined && parent.ownerUserId !== scope.ownerUserId) return false;
+      if (scope.retentionState !== undefined && parent.retentionState !== scope.retentionState) return false;
+    }
+    if (where.contentPurgedAt === null && (prep.contentPurgedAt ?? null) !== null) return false;
+    if (Array.isArray(where.OR)) {
+      const ok = where.OR.some((clause) => {
+        if ("meetingAt" in clause && clause.meetingAt === null) return (prep.meetingAt ?? null) === null;
+        if (clause.meetingAt?.gte) return prep.meetingAt && prep.meetingAt.getTime() >= clause.meetingAt.gte.getTime();
+        return false;
+      });
+      if (!ok) return false;
+    }
+    return true;
+  };
+
+  /** `nulls: "last"` PÄRISELT: ilma selleta ei tõendaks järjestustest midagi. */
+  const compare = (left, right) => {
+    const a = left.meetingAt ? left.meetingAt.getTime() : null;
+    const b = right.meetingAt ? right.meetingAt.getTime() : null;
+    if (a === null && b !== null) return 1;
+    if (a !== null && b === null) return -1;
+    if (a !== null && b !== null && a !== b) return a - b;
+    const ua = left.updatedAt ? left.updatedAt.getTime() : 0;
+    const ub = right.updatedAt ? right.updatedAt.getTime() : 0;
+    if (ua !== ub) return ub - ua;
+    return left.id < right.id ? 1 : -1;
+  };
+
+  const store = {
+    calls: { userFindMany: 0 },
+    caseWorkMeetingPrep: {
+      async findMany({ where, select, orderBy, take }) {
+        store.seenSelect = select;
+        store.seenOrderBy = orderBy;
+        const rows = preps.filter((row) => matches(row, where)).sort(compare);
+        const page = typeof take === "number" ? rows.slice(0, take) : rows;
+        return page.map((row) => {
+          const parent = byCase.get(row.caseWorkAssistId) || null;
+          return {
+            id: row.id,
+            caseWorkAssistId: row.caseWorkAssistId,
+            meetingAt: row.meetingAt ?? null,
+            updatedAt: row.updatedAt ?? null,
+            caseWorkAssist: parent
+              ? {
+                  clientUserId: parent.clientUserId ?? null,
+                  clientDisplayName: parent.clientDisplayName ?? null,
+                  clientExternalRef: parent.clientExternalRef ?? null,
+                  clientErasedAt: parent.clientErasedAt ?? null
+                }
+              : null
+          };
+        });
+      }
+    },
+    user: {
+      async findMany({ where }) {
+        store.calls.userFindMany += 1;
+        return users.filter((row) => where.id.in.includes(row.id));
+      }
+    }
+  };
+  return store;
+}
+
+const DAY_START = new Date("2026-08-09T00:00:00.000Z");
+
+function prepRow(overrides = {}) {
+  return {
+    id: "prep_1",
+    caseWorkAssistId: CASE_ID,
+    meetingAt: new Date("2026-08-10T09:00:00.000Z"),
+    contentPurgedAt: null,
+    updatedAt: new Date("2026-08-09T08:00:00.000Z"),
+    ...overrides
+  };
+}
+
+function activeCase(overrides = {}) {
+  return { id: CASE_ID, ownerUserId: OWNER, retentionState: "ACTIVE", ...overrides };
+}
+
+test(
+  "SOL-CW-13: juhtum ILMA ettevalmistuseta ei tekita lauale rida",
+  withFeatureOn(async () => {
+    /* Vana teostus kuvas iga aktiivse juhtumi ettevalmistustööna — just seda
+       see test keelab. */
+    const store = deskDb({ assists: [activeCase()], preps: [] });
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(items, []);
+  })
+);
+
+test(
+  "SOL-CW-13: mitu ettevalmistust — lähim kohtumine ees, ajata plaan viimane",
+  withFeatureOn(async () => {
+    const store = deskDb({
+      assists: [activeCase(), activeCase({ id: "case_2" })],
+      preps: [
+        prepRow({ id: "prep_kaugem", meetingAt: new Date("2026-08-20T09:00:00.000Z") }),
+        prepRow({ id: "prep_ajata", meetingAt: null }),
+        prepRow({ id: "prep_lahim", caseWorkAssistId: "case_2", meetingAt: new Date("2026-08-09T15:00:00.000Z") })
+      ]
+    });
+
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(
+      items.map((row) => row.id),
+      ["prep_lahim", "prep_kaugem", "prep_ajata"],
+      "laud on tööjärg: lähim kohtumine ees ja ajata plaan ei tohi ette upuda"
+    );
+    assert.equal(items[0].caseWorkAssistId, "case_2");
+  })
+);
+
+test(
+  "SOL-CW-13: purge'itud ettevalmistus ei ole laual tööjärg",
+  withFeatureOn(async () => {
+    /* Marker jääb juhtumi pinnale (O-JTA-6), aga laual ei ole tal midagi öelda:
+       töötaja arhiveeris töömaterjali ise. */
+    const store = deskDb({
+      assists: [activeCase()],
+      preps: [
+        prepRow({ id: "prep_purged", contentPurgedAt: new Date("2026-08-08T10:00:00.000Z") }),
+        prepRow({ id: "prep_elus" })
+      ]
+    });
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(items.map((row) => row.id), ["prep_elus"]);
+  })
+);
+
+test(
+  "SOL-CW-13: võõra omaniku ettevalmistus ei jõua lauale",
+  withFeatureOn(async () => {
+    const store = deskDb({
+      assists: [activeCase(), activeCase({ id: "case_voeras", ownerUserId: STRANGER })],
+      preps: [prepRow({ id: "prep_minu" }), prepRow({ id: "prep_voeras", caseWorkAssistId: "case_voeras" })]
+    });
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(items.map((row) => row.id), ["prep_minu"]);
+
+    const empty = await listActiveMeetingPrepsForOwner({ ownerUserId: "", from: DAY_START, db: store });
+    assert.deepEqual(empty.items, [], "omanikuta kutse ei tohi anda kellegi ridu");
+  })
+);
+
+test(
+  "SOL-CW-13: READ_ONLY ja ARCHIVED juhtumi ettevalmistus on laualt läinud",
+  withFeatureOn(async () => {
+    /* Sama reegel mis mustanditel (SOL-CW-03): mida keegi enam muuta ei tohi,
+       ei ole tööjärg. */
+    const store = deskDb({
+      assists: [
+        activeCase(),
+        activeCase({ id: "case_ro", retentionState: "READ_ONLY" }),
+        activeCase({ id: "case_arh", retentionState: "ARCHIVED" })
+      ],
+      preps: [
+        prepRow({ id: "prep_aktiivne" }),
+        prepRow({ id: "prep_ro", caseWorkAssistId: "case_ro" }),
+        prepRow({ id: "prep_arh", caseWorkAssistId: "case_arh" })
+      ]
+    });
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(items.map((row) => row.id), ["prep_aktiivne"]);
+  })
+);
+
+test(
+  "SOL-CW-13: möödunud kohtumine kaob, TÄNANE jääb terveks päevaks",
+  withFeatureOn(async () => {
+    /* Piir on päeva ALGUS, mitte `now`: kell 09:00 algav kohtumine ei tohi
+       laualt kaduda 09:01, kui töötaja alles istub selles. */
+    const store = deskDb({
+      assists: [activeCase()],
+      preps: [
+        prepRow({ id: "prep_eile", meetingAt: new Date("2026-08-08T09:00:00.000Z") }),
+        prepRow({ id: "prep_tana_hommikul", meetingAt: new Date("2026-08-09T09:00:00.000Z") })
+      ]
+    });
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.deepEqual(items.map((row) => row.id), ["prep_tana_hommikul"]);
+
+    /* Ilma piirita EI filtreerita midagi — piir tuleb kutsujalt, mitte lugejalt. */
+    const all = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, db: store });
+    assert.equal(all.items.length, 2);
+  })
+);
+
+test(
+  "SOL-CW-13: silt tuleb JUHTUMILT ja kustutatud kliendiviide võidab",
+  withFeatureOn(async () => {
+    const store = deskDb({
+      assists: [
+        activeCase({ id: "case_nimi", clientUserId: "u1" }),
+        activeCase({ id: "case_kustutatud", clientUserId: "u1", clientErasedAt: new Date("2026-08-01T00:00:00.000Z") })
+      ],
+      preps: [
+        prepRow({ id: "prep_nimi", caseWorkAssistId: "case_nimi", meetingAt: new Date("2026-08-09T10:00:00.000Z") }),
+        prepRow({
+          id: "prep_kustutatud",
+          caseWorkAssistId: "case_kustutatud",
+          meetingAt: new Date("2026-08-09T11:00:00.000Z")
+        })
+      ],
+      users: [{ id: "u1", profile: { firstName: "Mari", lastName: "Tamm" } }]
+    });
+
+    const { items } = await listActiveMeetingPrepsForOwner({ ownerUserId: OWNER, from: DAY_START, db: store });
+    assert.equal(items[0].label.text, "Mari Tamm");
+    assert.equal(items[1].label.labelKey, "casework.label.erased_client");
+    assert.equal(items[1].label.text, null, "kustutatud kliendiviite nime ei tohi laual kuvada");
+    assert.equal(store.calls.userFindMany, 1, "N rida ei tohi teha N päringut");
+  })
+);
+
+test(
+  "SOL-CW-13: deskriptor ei kanna ettevalmistuse SISU ja limiit peab",
+  withFeatureOn(async () => {
+    const store = deskDb({
+      assists: [activeCase()],
+      preps: [
+        prepRow({ id: "prep_a", meetingAt: new Date("2026-08-09T10:00:00.000Z") }),
+        prepRow({ id: "prep_b", meetingAt: new Date("2026-08-09T11:00:00.000Z") }),
+        prepRow({ id: "prep_c", meetingAt: new Date("2026-08-09T12:00:00.000Z") })
+      ]
+    });
+
+    const { items } = await listActiveMeetingPrepsForOwner({
+      ownerUserId: OWNER,
+      from: DAY_START,
+      limit: 2,
+      db: store
+    });
+    assert.equal(items.length, 2);
+    assert.deepEqual(Object.keys(items[0]).sort(), ["caseWorkAssistId", "id", "label", "meetingAt", "updatedAt"]);
+
+    /* Väljavalik on osa lepingust: pesastatud juhtum toob AINULT sildi väljad. */
+    assert.deepEqual(Object.keys(store.seenSelect.caseWorkAssist.select).sort(), [
+      "clientDisplayName",
+      "clientErasedAt",
+      "clientExternalRef",
+      "clientUserId"
+    ]);
   })
 );

@@ -48,12 +48,32 @@ function caseRow(overrides = {}) {
   };
 }
 
+/** Kohtumise ettevalmistus (SOL-CW-13). Vaikimisi homme, sisu alles. */
+function prepRow(overrides = {}) {
+  return {
+    id: "prep_1",
+    caseWorkAssistId: "case_1",
+    meetingAt: new Date("2026-08-09T09:00:00.000Z"),
+    contentPurgedAt: null,
+    updatedAt: NOW,
+    ...overrides
+  };
+}
+
 /**
  * Fake-db, mis JÄLJENDAB SKOOPI: iga päring peab kandma `ownerUserId`-d, muidu
  * ta viskab. Nii ei saa test läbi minna kogemata — skoobita lugeja kukub siin,
  * mitte alles toodangus.
  */
-function db({ cases = [], missingInfo = [], preInquiries = [], shares = [], seeds = [], reflection = null } = {}) {
+function db({
+  cases = [],
+  preps = [],
+  missingInfo = [],
+  preInquiries = [],
+  shares = [],
+  seeds = [],
+  reflection = null
+} = {}) {
   const seen = {};
   const requireOwner = (where, field = "ownerUserId") => {
     const owner = where?.[field] ?? where?.caseWorkAssist?.[field];
@@ -77,6 +97,39 @@ function db({ cases = [], missingInfo = [], preInquiries = [], shares = [], seed
           }
           return true;
         });
+      }
+    },
+    /* SOL-CW-13: sektsioon #3 loeb nüüd ettevalmistusi, mitte juhtumeid.
+       Skoop tuleb VANEMALT (`caseWorkAssist.ownerUserId`) ja `requireOwner`
+       nõuab teda ka siin — skoobita lugeja kukub selle fake'i peal, mitte
+       alles toodangus. */
+    caseWorkMeetingPrep: {
+      async findMany({ where }) {
+        const owner = requireOwner(where);
+        const retention = where?.caseWorkAssist?.retentionState;
+        return preps
+          .filter((row) => {
+            const parent = cases.find((item) => item.id === row.caseWorkAssistId);
+            if (!parent || parent.ownerUserId !== owner) return false;
+            if (retention && parent.retentionState !== retention) return false;
+            if (where.contentPurgedAt === null && (row.contentPurgedAt ?? null) !== null) return false;
+            return true;
+          })
+          .map((row) => {
+            const parent = cases.find((item) => item.id === row.caseWorkAssistId);
+            return {
+              id: row.id,
+              caseWorkAssistId: row.caseWorkAssistId,
+              meetingAt: row.meetingAt ?? null,
+              updatedAt: row.updatedAt ?? NOW,
+              caseWorkAssist: {
+                clientUserId: parent.clientUserId ?? null,
+                clientDisplayName: parent.clientDisplayName ?? null,
+                clientExternalRef: parent.clientExternalRef ?? null,
+                clientErasedAt: parent.clientErasedAt ?? null
+              }
+            };
+          });
       }
     },
     caseWorkMissingInfo: {
@@ -132,6 +185,10 @@ test(
   withFeature("1", async () => {
     const store = db({
       cases: [caseRow({ id: "mine" }), caseRow({ id: "theirs", ownerUserId: "w2" })],
+      preps: [
+        prepRow({ id: "prep_minu", caseWorkAssistId: "mine" }),
+        prepRow({ id: "prep_voeras", caseWorkAssistId: "theirs" })
+      ],
       missingInfo: [
         { id: "m1", ownerUserId: "w1", caseWorkAssistId: "mine", status: "OPEN", text: "minu" },
         { id: "m2", ownerUserId: "w2", caseWorkAssistId: "theirs", status: "OPEN", text: "võõras" }
@@ -167,7 +224,7 @@ test(
 test(
   "3. ühe allika erind annab ainult selle sektsiooni ERROR, ülejäänud jäävad terveks",
   withFeature("1", async () => {
-    const store = db({ cases: [caseRow()] });
+    const store = db({ cases: [caseRow()], preps: [prepRow()] });
     store.topicSeed.findMany = async () => {
       /* Erindi teade jäljendab päris juhtu: Prisma paneb teatesse ebaõnnestunud
          päringu argumendid ja teenuskiht kirje teksti. */
@@ -206,7 +263,7 @@ test(
 test(
   "4. aeglane lugeja annab TIMEOUT ja koondkutse tagastab enne tema lõppu",
   withFeature("1", async () => {
-    const store = db({ cases: [caseRow()] });
+    const store = db({ cases: [caseRow()], preps: [prepRow()] });
     let slowResolved = false;
     store.topicSeed.findMany = async () => {
       await new Promise((resolve) => setTimeout(resolve, 300));
@@ -256,17 +313,36 @@ test(
 );
 
 test(
-  "6. activePreparations kannab notice-võtit ka siis, kui ridu ON",
+  "6. SOL-CW-13: activePreparations loeb ETTEVALMISTUSI, mitte aktiivseid juhtumeid",
   withFeature("1", async () => {
-    const store = db({ cases: [caseRow()] });
-    const { sections } = await getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: store });
+    /* Vana test kinnitas ainult seda, et sektsioon kannab placeholder-võtit
+       `preparations_not_yet` — see oli leiu tuum, mitte tõend. Nüüd on tõend
+       vastupidine: aktiivne juhtum ILMA ettevalmistuseta ei tohi anda rida. */
+    const ilmaPrepita = db({ cases: [caseRow()] });
+    const tyhi = await getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: ilmaPrepita });
+    assert.equal(tyhi.sections.activePreparations.state, SECTION_STATE.EMPTY);
+    assert.equal(tyhi.sections.activePreparations.items.length, 0);
+    assert.equal(tyhi.sections.activePreparations.notice, null, "placeholder-hoiatus jäi alles");
 
+    /* Ja ettevalmistusega juhtum annab rea, mille aeg on KOHTUMISE oma. */
+    const prepiga = db({ cases: [caseRow()], preps: [prepRow()] });
+    const { sections } = await getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: prepiga });
     assert.equal(sections.activePreparations.state, SECTION_STATE.OK);
-    assert.equal(sections.activePreparations.notice, "casework.workbench.preparations_not_yet");
+    assert.equal(sections.activePreparations.items.length, 1);
+    assert.equal(sections.activePreparations.items[0].prepId, "prep_1");
+    assert.equal(
+      sections.activePreparations.items[0].meetingAt.toISOString(),
+      "2026-08-09T09:00:00.000Z",
+      "laud kuvab juhtumi järgmist kontakti, mitte kohtumise aega"
+    );
 
-    const empty = await getCaseWorkbench({ userId: "w9", roleState: WORKER, now: NOW, db: db({}) });
-    assert.equal(empty.sections.activePreparations.state, SECTION_STATE.EMPTY);
-    assert.equal(empty.sections.activePreparations.notice, "casework.workbench.preparations_not_yet");
+    /* Purge'itud ettevalmistus ei ole tööjärg — laud jääb tühjaks. */
+    const purgeitud = db({
+      cases: [caseRow()],
+      preps: [prepRow({ contentPurgedAt: new Date("2026-08-07T10:00:00.000Z") })]
+    });
+    const arhiveeritud = await getCaseWorkbench({ userId: "w1", roleState: WORKER, now: NOW, db: purgeitud });
+    assert.equal(arhiveeritud.sections.activePreparations.state, SECTION_STATE.EMPTY);
   })
 );
 
@@ -332,6 +408,7 @@ test(
           externalReference: "STAR-menetlus-777"
         })
       ],
+      preps: [prepRow()],
       missingInfo: [
         { id: "m1", ownerUserId: "w1", caseWorkAssistId: "case_1", status: "OPEN", text: "puuduv tõend" }
       ],
@@ -368,7 +445,7 @@ test(
     assert.deepEqual(Object.keys(sections.todaysContacts.items[0]).sort(), ["caseId", "label", "nextContactAt"]);
     assert.deepEqual(
       Object.keys(sections.activePreparations.items[0]).sort(),
-      ["caseId", "label", "nextContactAt", "openMissingInfoCount"]
+      ["caseId", "label", "meetingAt", "openMissingInfoCount", "prepId"]
     );
     assert.deepEqual(
       Object.keys(sections.openMissingInfo.items[0]).sort(),

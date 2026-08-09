@@ -916,7 +916,6 @@
       "state_invalid": "Laud ei saanud sellest sektsioonist aru. Proovi värskendada.",
       "stale_notice": "Värskendamine ebaõnnestus — allpool on eelmise laadimise andmed.",
       "retry": "Proovi uuesti",
-      "preparations_not_yet": "Kohtumise ettevalmistust veel ei ole — siin on praegu sinu aktiivsed juhtumid.",
       "network_worker_only": "Võrgustikutöö ettevalmistus on sotsiaaltöötaja tööriist.",
       "section_receivedPreInquiries": "Saabunud eelpöördumised",
       "section_todaysContacts": "Tänased kontaktid",

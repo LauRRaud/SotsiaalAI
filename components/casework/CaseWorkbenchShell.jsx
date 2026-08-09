@@ -179,14 +179,18 @@ export default function CaseWorkbenchShell() {
           ));
 
         /* L3: arv on SELLE juhtumi lahtiste punktide oma. Ta ei summeeru
-           sektsiooni peale kokku ja tal ei ole „liiga palju" läve. */
+           sektsiooni peale kokku ja tal ei ole „liiga palju" läve.
+
+           Võti on `prepId`, mitte `caseId` (SOL-CW-13): ühel juhtumil võib olla
+           mitu kohtumist ja `caseId` annaks React'ile korduva võtme. Aeg on
+           KOHTUMISE oma. */
         case "activePreparations":
           return items.map((row) => (
             <Row
-              key={row.caseId}
+              key={row.prepId}
               href={`/juhtumid?juhtum=${encodeURIComponent(row.caseId)}`}
               title={caseLabelText(row.label, t)}
-              meta={timeText(row.nextContactAt, locale)}
+              meta={timeText(row.meetingAt, locale)}
               badge={
                 row.openMissingInfoCount
                   ? t("casework.workbench.missing_count", "").replace("{count}", String(row.openMissingInfoCount))
@@ -329,9 +333,11 @@ export default function CaseWorkbenchShell() {
               <section className="cw-section" key={key}>
                 <h2 className="cw-section-title">{t(`casework.workbench.section_${key}`, "")}</h2>
 
-                {/* `notice` käib kaasa ka siis, kui ridu ON — just nii ütleb
-                    `activePreparations`, et need on juhtumid, mitte veel
-                    ettevalmistused. */}
+                {/* `notice` käib kaasa ka siis, kui ridu ON. Praegu ei kasuta
+                    seda ükski sektsioon — `activePreparations` hoiatus kadus
+                    koos põhjusega (SOL-CW-13) — aga mehhanism jääb: sektsioon,
+                    mis kuvab midagi muud kui oma nimi lubab, peab saama seda
+                    välja öelda ka siis, kui read on olemas. */}
                 {data.notice ? <p className="cw-hint">{t(data.notice, "")}</p> : null}
 
                 {showItems ? <ul className="cw-list">{renderRows(key, items)}</ul> : null}

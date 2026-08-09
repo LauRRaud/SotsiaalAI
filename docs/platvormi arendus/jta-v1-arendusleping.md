@@ -615,7 +615,7 @@ selle vastuse brauserisse. Valge nimekiri katkeb märgatavalt, must nimekiri vai
 | Sektsioon | Deskriptor |
 |---|---|
 | `todaysContacts` · `upcomingContacts` | `caseId` · `label` · `nextContactAt` |
-| `activePreparations` | sama + `openMissingInfoCount` |
+| `activePreparations` | **`prepId` · `caseId` · `label` · `meetingAt` · `openMissingInfoCount`** (muudetud 09.08.2026, SOL-CW-13) |
 | `openMissingInfo` | `itemId` · `caseId` · `text` · `provenance` · `createdAt` |
 | `networkPreparation` | `shareId` · `status` · `updatedAt` |
 | `covisionPreparation` | `seedId` · `title` · `status` · `updatedAt` |
@@ -874,7 +874,12 @@ Iga sektsioon tagastab ühesuguse kuju:
 3. ühe allika erind → **ainult see** sektsioon `ERROR`, ülejäänud `OK`
 4. **tahtlikult aeglane lugeja → `TIMEOUT`**, ja koondkutse tagastab enne tema lõppu
 5. rollita kutse → tühjad sektsioonid, **mitte erind**
-6. `activePreparations` kannab E1-s `notice`-võtit, mitte `EMPTY`-t
+6. ~~`activePreparations` kannab E1-s `notice`-võtit, mitte `EMPTY`-t~~ — **muudetud 09.08.2026
+   (SOL-CW-13).** L12 tabel lubas selle sektsiooni täiskujule juba E3-ga, aga ta jäi E1
+   kitsendusse: laud luges `listCaseWorkAssists()`-i ja nimetas iga aktiivse juhtumi
+   ettevalmistustööks. Nüüd loeb ta `listActiveMeetingPrepsForOwner()`-it ja `notice`
+   (`preparations_not_yet`) on kadunud koos oma põhjusega — juhtum ilma ettevalmistuseta annab
+   `EMPTY`. Uus nõue: **aktiivne juhtum ILMA ettevalmistuseta ei tohi anda rida.**
 7. `todaysContacts` ja `upcomingContacts` ei kattu — piir on **Eesti kalendripäev**
 8. koondlugeja ei kutsu ühtegi `prisma.*`-meetodit otse (staatiline kontroll testis)
 9. **(v5, L20)** istutatud toorväärtused ei jõua vastusesse, **ja** iga sektsiooni võtmete hulk on

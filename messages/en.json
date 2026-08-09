@@ -916,7 +916,6 @@
       "state_invalid": "The desk did not understand this section. Try refreshing.",
       "stale_notice": "Refreshing failed — what you see below is from the previous load.",
       "retry": "Try again",
-      "preparations_not_yet": "Meeting preparation does not exist yet — these are your active cases for now.",
       "network_worker_only": "Network preparation is a social worker's tool.",
       "section_receivedPreInquiries": "Received pre-inquiries",
       "section_todaysContacts": "Today's contacts",
