@@ -971,6 +971,7 @@
       "invalid_input": "The input is not valid.",
       "conflict": "This action is not allowed in the current state.",
       "too_many_requests": "The workbench is already loading. Wait a moment and try again.",
+      "cursor_invalid": "That list position is no longer valid. Refresh the list.",
       "client_track_conflict": "The client is either a platform account or a minimal reference, not both.",
       "client_account_not_origin_author": "Only the person who sent the request can be linked as an account client.",
       "client_reference_erased": "The client reference has been erased and is not restored.",
