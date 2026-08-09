@@ -89,11 +89,16 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` ja `origin/main` on **`1ca5131b`**, **server on `df82b4f0`** — vahele jääb
-kuus commit'i ja see on **DEPLOY'MATA**: SOL-CW-14 (ajastuse mehhanism `e48a1068` +
-runtime-sond `195cde2e`), **SOL-CW-18** (`4d668cb2`), **SOL-SCHEMA-01** (`1ca5131b`) ja kaks
-dokumendi-commit'i. Kaasa tuleb **üks migratsioon** (`CaseWorkRetentionRun` jooksulogi),
-mis puudutab ainult uut tühja tabelit ega riiva ühtegi väravat.
+Lokaalne `main` ja `origin/main` on **`68d11ac0`**, **server on `df82b4f0`** — vahele jääb
+kaheksa commit'i ja see on **DEPLOY'MATA**: SOL-CW-14 (ajastuse mehhanism `e48a1068` +
+runtime-sond `195cde2e`), **SOL-CW-18** (`4d668cb2`), **SOL-SCHEMA-01** (`1ca5131b`),
+**SOL-CW-20** (`68d11ac0`) ja kolm dokumendi-commit'i. Kaasa tuleb **üks migratsioon**
+(`CaseWorkRetentionRun` jooksulogi), mis puudutab ainult uut tühja tabelit ega riiva ühtegi
+väravat.
+
+**SOL-CW peatükk on nüüd tehtud 18/20** — lahtised on ainult CW-14 saba (taimeri lubamine
+serveris) ja **CW-19, mis ootab sinu otsust**. Peatükkide ülevaade:
+[`docs/audits/parandusaudit.md`](../audits/parandusaudit.md).
 
 **SOL-SCHEMA-01 on uus P0 ja ta muudab seda, mida „JTA-V1 on valmis ootama" tähendas.**
 `CaseWorkMeetingNoteEntry` mudel ei kandnud kaht veergu, mis andmebaasis on `NOT NULL` ilma
