@@ -89,11 +89,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main` ja `origin/main` on **`195cde2e`**, **server on `df82b4f0`** — vahele jääb
-**SOL-CW-14 (ajastuse mehhanism `e48a1068` + runtime-sond `195cde2e`) ja kaks
-dokumendi-commit'i. See on DEPLOY'MATA.** Kaasa tuleb **üks migratsioon**
-(`CaseWorkRetentionRun` jooksulogi), mis puudutab ainult uut tühja tabelit ega riiva
-ühtegi väravat.
+Lokaalne `main` ja `origin/main` on **`1ca5131b`**, **server on `df82b4f0`** — vahele jääb
+kuus commit'i ja see on **DEPLOY'MATA**: SOL-CW-14 (ajastuse mehhanism `e48a1068` +
+runtime-sond `195cde2e`), **SOL-CW-18** (`4d668cb2`), **SOL-SCHEMA-01** (`1ca5131b`) ja kaks
+dokumendi-commit'i. Kaasa tuleb **üks migratsioon** (`CaseWorkRetentionRun` jooksulogi),
+mis puudutab ainult uut tühja tabelit ega riiva ühtegi väravat.
+
+**SOL-SCHEMA-01 on uus P0 ja ta muudab seda, mida „JTA-V1 on valmis ootama" tähendas.**
+`CaseWorkMeetingNoteEntry` mudel ei kandnud kaht veergu, mis andmebaasis on `NOT NULL` ilma
+vaikeväärtuseta — **iga kohtumise märkme kirje loomine oleks toodangus kukkunud** koodiga
+`23502`. Kogu E4 ja kogu SOL-CW-15 karastus. Kasutajakahju ei tekkinud ainult sellepärast, et
+värav on väljas. Parandatud mudelis (uut migratsiooni ei ole vaja), väravatest lisatud.
+**Õppetund on suurem kui üks veerg:** `npm test` (fake-Prisma), `prisma validate` ja
+`db:migrate:check` olid kõik kolm rohelised. Ainus värav, mis teda nägi, oli päris andmebaasi
+vastu kirjutav sond. Kolm juhtumitöö sondi on nüüd olemas: `casework:retention:probe`,
+`casework:workbench:probe`, `casework:deletion:probe`.
 Tootmises on SOL-auditi parandused BUILD-01, AUTH-01/02, CW-01…CW-13 ja CW-15…CW-17.
 **Deploy tehtud 09.08.2026 kaks korda omaniku selgel
 loal** (16:53 `ff4547b9`, hiljem `df82b4f0`) — esimene kandis 48 commit'i ja **8
