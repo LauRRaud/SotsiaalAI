@@ -49,6 +49,13 @@ function recordingStatusText(t, recording) {
     return text(t, "calls.recording_status_requested", `Ootame nõusolekuid: ${consented}/${required}`, { consented, required });
   }
   if (recording.status === "STOPPED") return text(t, "calls.recording_status_stopped", "Salvestamise taotlus tühistati");
+  /* SOL-CALL-01 — kinnitamata peatumine peab olema NÄHTAV. Kui need kaks siit puuduks,
+     langeks salvestus tagasi tühja stringi peale ja riba ei ütleks midagi täpselt sel
+     hetkel, mil inimene peab teadma, et mikrofon ei pruugi veel vaikida. */
+  if (recording.status === "STOPPING") return text(t, "calls.recording_status_stopping", "Peatame salvestust…");
+  if (recording.status === "STOP_FAILED") {
+    return text(t, "calls.recording_status_stop_failed", "Salvestuse peatumine ei ole kinnitatud — kontrollime");
+  }
   return "";
 }
 

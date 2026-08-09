@@ -123,6 +123,10 @@ function createPrisma() {
     callRecordingRequest: createModel(),
     callRecordingConsent: createModel(),
     callRecordingFile: createModel(),
+    // SOL-CALL-01: püsiva taasproovi järjekord. Ilma selleta ei saaks test tõendada,
+    // et kinnitamata stop üldse kuhugi kirja läheb — `enqueueEgressStopJob` on
+    // valikuline (`prisma.dataDeletionJob?.create`) ja vaikiks fake'i puudumise maha.
+    dataDeletionJob: createModel(),
     dataAuditLog: createModel(),
     userDocument: createModel(),
     roomMessage: createModel(),
@@ -514,35 +518,146 @@ test("stopping an active recording finalizes file and creates a call audio docum
   assert.equal(prisma.dataAuditLog.rows.some(row => row.action === "CALL_TRANSCRIPTION_STARTED"), false);
 });
 
-test("failed Egress stop marks recording and file failed", async () => {
-  const prisma = createPrisma();
-  const service = createCallService({
+/**
+ * SOL-CALL-01 — kinnitamata stop ei tohi kanda terminaalset seisu.
+ *
+ * MIDA SEE TEST VAREM KINNITAS. Sama nime all elas siin test, mis nõudis, et
+ * provider-stopi erind märgib taotluse ja faili `FAILED`-iks. `FAILED` on väide
+ * LÕPPENUD töö kohta („salvestis ei saanud valmis"), mille järel start/stop route ei
+ * leia enam ACTIVE salvestust ja peatamise nuppu ei ole. Kui egress tegelikult
+ * kirjutas edasi, oli see väide vale JA ainus tee tagasi kadus koos sellega. Test oli
+ * roheline, sest ta mõõtis koodi kavatsust, mitte maailma seisu.
+ *
+ * Terminaalsete seiside loend on siin invariandina välja kirjutatud, et uue seisu
+ * lisaja peaks teadlikult otsustama, kummale poole ta kuulub.
+ */
+const TERMINAL_RECORDING_STATUSES = ["STOPPED", "COMPLETED", "FAILED", "DELETED"];
+
+function unconfirmedStopService(prisma, { statusProbe = null } = {}) {
+  return createCallService({
     prisma,
     egress: {
       configured: true,
       startAudioRecording: async () => ({ egressId: "egress_failed_1" }),
       stopRecording: async () => {
         throw new Error("egress with status EGRESS_FAILED cannot be stopped");
-      }
+      },
+      ...(statusProbe ? { getEgressStatus: statusProbe } : {})
     },
     recordingStorage: {
       finalizeRecordingFile: async () => {
-        throw new Error("should not finalize after failed stop");
+        throw new Error("should not finalize after an unconfirmed stop");
+      },
+      discardEgressArtifact: async () => {
+        throw new Error("should not discard the artifact before the stop is confirmed");
       }
     }
   });
+}
+
+async function startedRecording(prisma, service) {
   const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
   const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
   await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
   await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  return { call, request };
+}
+
+test("SOL-CALL-01: kinnitamata egress-stop jätab STOP_FAILED, karantiini ja taasproovi, mitte terminaalse seisu", async () => {
+  const prisma = createPrisma();
+  const service = unconfirmedStopService(prisma);
+  const { call, request } = await startedRecording(prisma, service);
 
   await assert.rejects(
     () => service.stopRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
-    /EGRESS_FAILED/
+    /call\.recording_stop_unconfirmed/
   );
 
-  assert.equal(prisma.callRecordingRequest.rows[0].status, "FAILED");
-  assert.equal(prisma.callRecordingFile.rows[0].status, "FAILED");
+  const stored = prisma.callRecordingRequest.rows[0];
+  assert.equal(stored.status, "STOP_FAILED");
+  assert.equal(
+    TERMINAL_RECORDING_STATUSES.includes(stored.status),
+    false,
+    "kinnitamata stop ei tohi kanda terminaalset seisu"
+  );
+  assert.equal(prisma.callRecordingFile.rows[0].status, "QUARANTINED");
+  assert.equal(
+    prisma.callRecordingFile.rows[0].providerStopConfirmedAt ?? null,
+    null,
+    "kinnitusaeg tohib tekkida ainult providerikinnituse peale"
+  );
+
+  const job = prisma.dataDeletionJob.rows.find(row => row.action === "CALL_EGRESS_STOP");
+  assert.ok(job, "kinnitamata stop peab jõudma püsivasse taasproovi järjekorda");
+  assert.equal(job.externalRef, "egress_failed_1");
+  assert.equal(job.status, "pending");
+  assert.equal(
+    prisma.dataAuditLog.rows.some(row => row.action === "CALL_RECORDING_STOP_UNCONFIRMED"),
+    true
+  );
+});
+
+test("SOL-CALL-01: kontrollpäring päästab tõrkunud stopi, kui provider kinnitab lõppemise", async () => {
+  const prisma = createPrisma();
+  /* Stop viskab erindi, aga kontrollpäring ütleb, et egress on terminaalses seisus.
+     See ON tõend ja lõppseisu tohib kirjutada — muidu läheks iga võrgusärin
+     asjatult STOP_FAILED-i ja aus seis muutuks müraks, mida keegi ei loe. */
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_failed_1" }),
+      stopRecording: async () => {
+        throw new Error("connection reset");
+      },
+      getEgressStatus: async () => ({ known: true, stopped: true, status: "EGRESS_COMPLETE" })
+    },
+    recordingStorage: {
+      finalizeRecordingFile: async () => ({
+        storagePath: "recordings/final.ogg",
+        mimeType: "audio/ogg",
+        fileSizeBytes: 10,
+        durationSeconds: 1,
+        checksum: "abc"
+      })
+    }
+  });
+  const { call, request } = await startedRecording(prisma, service);
+
+  const stopped = await service.stopRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  assert.equal(stopped.status, "COMPLETED");
+  assert.ok(prisma.callRecordingFile.rows[0].providerStopConfirmedAt, "kinnitus peab olema jäädvustatud");
+  assert.equal(
+    prisma.dataDeletionJob.rows.some(row => row.action === "CALL_EGRESS_STOP"),
+    false,
+    "kinnitatud stop ei tohi jätta taasproovi järjekorda prügi"
+  );
+});
+
+test("SOL-CALL-01: nõusoleku tagasivõtt kinnitamata stopi korral EI raporteeri edu ega kustuta faili", async () => {
+  const prisma = createPrisma();
+  const service = unconfirmedStopService(prisma);
+  const { call, request } = await startedRecording(prisma, service);
+
+  /* See on leiu tuum: inimene võtab nõusoleku tagasi, egress ei kinnita peatumist.
+     Vana kood kirjutas siin STOPPED + DELETED ja route vastas ok:true. */
+  const outcome = await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "host",
+    decision: "WITHDRAWN"
+  });
+
+  assert.equal(outcome.providerStopConfirmed, false);
+  assert.equal(outcome.reconcileQueued, true);
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "STOP_FAILED");
+  assert.equal(prisma.callRecordingFile.rows[0].status, "QUARANTINED");
+  assert.notEqual(
+    prisma.callRecordingFile.rows[0].status,
+    "DELETED",
+    "DELETED on väide faili puudumise kohta ja seda ei tohi teha kinnitamata kustutuse peale"
+  );
 });
 
 // --- T12 ROOMS-CALLS-V1 ---

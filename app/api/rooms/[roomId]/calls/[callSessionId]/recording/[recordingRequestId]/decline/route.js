@@ -1,7 +1,7 @@
 import {
   callError,
-  callJson,
   callRequestLocale,
+  consentDecisionJson,
   createRoomCallService,
   emitCallEvent,
   loadCallForResponse,
@@ -32,7 +32,8 @@ export async function POST(req, { params }) {
 
   try {
     const service = createRoomCallService();
-    await service.respondToRecordingConsent({
+    /* SOL-CALL-01 — vt withdraw: sama voog, sama kohustus vastata ausalt. */
+    const outcome = await service.respondToRecordingConsent({
       callSessionId,
       recordingRequestId,
       userId: access.userId,
@@ -43,7 +44,7 @@ export async function POST(req, { params }) {
     });
     const call = await loadCallForResponse(callSessionId);
     await emitCallEvent(roomId, call);
-    return callJson({ ok: true, call });
+    return consentDecisionJson({ outcome, call });
   } catch (error) {
     const mapped = statusForCallError(error);
     return callError(mapped.message, mapped.status);
