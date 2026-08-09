@@ -335,6 +335,8 @@ async function executePlan(plan, args) {
   }
 
   const result = {
+    reset_state: "PARTIAL",
+    db_state_changed: false,
     deleted_rag_documents: [],
     failed_rag_documents: [],
     archived_source_package_snapshots: 0,
@@ -360,6 +362,20 @@ async function executePlan(plan, args) {
         error: deleteResult.error || deleteResult.reason || "delete_failed"
       });
     }
+  }
+
+  /* SOL-RAGADMIN-02: kustutamata dokument katkestab ENNE ühtki DB-kirjutust.
+     Varem arhiveeriti snapshot'id ja lähtestati admini read ka siis, kui
+     dokument jäi RAG-teenusesse alles, ja alles päris lõpus pandi `plan.ok`
+     valeks — DB ütles „lähtestatud", RAG ütles „olemas". Kordamine on ohutu:
+     juba kustutatud dokument annab 404, mille `deleteRagDocument` loeb eduks.
+     (Erinevalt API-rajast ei pane see skript püsivat järjekorrarida — operaator
+     näeb tõrked logist/JSON-ist ja väljumiskood on 1.) */
+  if (result.failed_rag_documents.length > 0) {
+    result.reset_state = "PARTIAL";
+    result.db_state_changed = false;
+    plan.ok = false;
+    return result;
   }
 
   if (plan.summary.active_source_package_snapshots_to_archive > 0) {
@@ -432,7 +448,9 @@ async function executePlan(plan, args) {
     }
   }
 
-  if (result.failed_rag_documents.length > 0 || result.failed_runtime_files.length > 0) {
+  result.reset_state = "DONE";
+  result.db_state_changed = true;
+  if (result.failed_runtime_files.length > 0) {
     plan.ok = false;
   }
   return result;

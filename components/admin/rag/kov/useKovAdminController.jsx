@@ -13,6 +13,7 @@ import {
   fetchRagDocumentStatus,
   shouldFetchRagDocumentStatus
 } from "@/components/admin/rag/ragDocumentStatusClient";
+import { describeKovRagResetOutcome } from "@/components/admin/rag/kov/ragResetMessage";
 import { KOV_FILE_ROLE_META } from "@/lib/admin/rag/kov/shared";
 
 /* "Vajab tähelepanu" = PÄRIS probleem, mitte "pole veel valmis" (tellija
@@ -708,20 +709,28 @@ export function useKovAdminController(locale, initialItems = []) {
           body: JSON.stringify({ confirmReset: true })
         });
         const writePayload = await writeResponse.json();
-        if (!writeResponse.ok || writePayload?.ok === false) {
-          throw new Error(writePayload?.message || "KOV RAG reset failed");
+
+        /* SOL-RAGADMIN-02: teate otsustab TÖÖ TULEMUS, mitte staatus. Kustutamata
+           dokument on viga ka siis, kui vastus ütleb `ok: true`. */
+        const outcome = describeKovRagResetOutcome(
+          writeResponse.ok ? writePayload : { ...writePayload, ok: false },
+          { et }
+        );
+
+        if (outcome.type === "error") {
+          /* Loend laetakse ka osalise reseti järel: admin peab nägema PÄRIS
+             seisu, mitte seda, mida ta vajutas. */
+          await loadItems();
+          setSelectedSlug(slug);
+          setMessage(outcome);
+          return { ok: false, partial: outcome.partial, payload: writePayload };
         }
 
         setRagResetPlan(writePayload);
         await loadItems();
         setSelectedSlug(slug);
         setEditingLinks(false);
-        setMessage({
-          type: "success",
-          text: et
-            ? "KOV RAG state resetiti paketina. Documents üksikuid ridu ei pea eraldi kustutama."
-            : "KOV RAG state was reset package-wise. No individual document deletes are needed."
-        });
+        setMessage(outcome);
         return writePayload;
       } catch (error) {
         setMessage({
