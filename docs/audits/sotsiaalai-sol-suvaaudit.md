@@ -776,6 +776,37 @@ ega saa (403).
 
 **Vastuvõtukriteerium.** Koha andmine, limiidi muutmine ja plaani lõpetamine peavad kasutama sama plaanirea lukku ning lugema staatuse/limiidi uuesti alles luku all. Maksja päring peab nõudma ka aktiivset ja kehtivat vanemplaani. Päris PostgreSQLi paralleelsustestid peavad katma `assign vs limit decrease` ja `assign vs end plan` mõlemas ajastuses ning tõendama, et `usedSeats <= seatLimit` ja lõpetatud plaanil pole aktiivseid kohti.
 
+**Seis (10.08.2026): DONE — kood ja paralleelsussond (`npm run org:seat:probe` 26/26; vana koodi vastu 10 punast).**
+
+**LUKK OLI ÕIGEL REAL, AGA OTSUS TEHTI LUKU-EELSE TÕE PEALT.** `assignSeat` võttis
+`FOR UPDATE`-i, aga luges `status`-e ja `seatLimit`-i **enne** seda ja kasutas pärast luku
+saamist sama, juba vananenud objekti. Vahepeal commit'unud limiidi langetus või plaani
+lõpetamine oli talle nähtamatu. See on TOCTOU peenem kuju kui „lukku ei ole" — ja just
+seepärast nägi kood parandatud välja.
+
+`updateSeatLimit` ja `endSeatPlan` ei võtnud lukku üldse: Postgres andis neile rea luku
+alles `UPDATE` hetkel, ehk **pärast** loendust.
+
+**Üks protokoll kolmele kirjutajale.** Uus `lockSeatPlan(tx, orgId, planId)` teeb kaks
+sammu ja nende järjekord on kogu mõte: **(1) lukusta plaanirida, (2) loe plaani seis alles
+siis.** Kõik kolm rada kutsuvad teda. Invariant, mille kolm kirjutajat hoiavad kolme eri
+protokolliga, ei ole invariant.
+
+**Maksja nõuab nüüd ka kehtivat vanemplaani.** Kaks tingimust, mis on eri asjad ja mõlemad
+vajalikud: `status: ACTIVE` (plaani ei ole lõpetatud) ja `validUntil` tulevikus või tühi
+(plaan ei ole aegunud). Aegunud plaan võib jääda `ACTIVE`-ks, kuni keegi ta lõpetab —
+ilma teise tingimuseta maksaks organisatsioon ligipääsu eest, mida ta enam ei tellinud.
+
+**Sond on deterministlik, mitte „mahtusid ühte sekundisse".** Kolmas tehing võtab plaanirea
+luku ja hoiab; mõlemad võistlejad käivitatakse ja **mõõdetakse, et nad ootavad**; lukk
+lastakse lahti ja Postgres annab ta ootejärjekorra järjekorras — seega võistlejate järjekord
+on see, mille meie valisime. Kumbki ajastus jooksutatakse eraldi.
+
+**Sond kukub vana koodi vastu: 10 punast 26-st** — `used=2 limit=1` mõlemas
+limiidi-ajastuses, aktiivne koht lõpetatud plaani all mõlemas lõpetamis-ajastuses, ja
+maksja, kes ütleb `ORGANIZATION` nii lõpetatud kui aegunud plaani all. Ilma selle
+kontrollita ei tõendaks roheline sond midagi.
+
 ### SOL-ORG-06 — sponsorluse vastuvõtmine ja tühistamine võivad anda vastuolulise lõppseisu — P1
 
 **Tõend.** Vastuvõtmine, keeldumine ja organisatsioonipoolne tagasivõtmine loevad sponsorluse esmalt olekus `PENDING`, kuid ükski neist ei lukusta rida ega tee tingimuslikku `UPDATE ... WHERE status = 'PENDING'` üleminekut (`lib/org/sponsorship.js:155-178`, `:233-295`, `:310-327`). Vastuvõtmine loob või kirjutab kasutaja tellimuse üle enne sponsorluse `ACCEPTED` olekut. Kui vastuvõtmine ja tagasivõtmine/keeldumine loevad mõlemad sama algseisu, võib hilisem tingimusteta update teise tehingu tulemuse üle kirjutada. Migratsioonis on unikaalsus ainult ühe organisatsiooni ja e-posti avatud kutse kohta; olekumasina üleminekuid ega sponsorluse/tellimuse kooskõla DB ei jõusta (`prisma/migrations/20260801120000_org_funding_inbox_v1/migration.sql:279-282`). Olemasolevad rahastuslepingutestid kontrollivad skeemi kuju, mitte konkureerivaid teenusekutseid.
