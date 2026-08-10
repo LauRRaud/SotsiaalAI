@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **66 / 357** |
+| Tehtud leidu | **67 / 357** |
 | Peatükke lõpuni | **4 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, **SOL-ORG** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 212 × P1 · 78 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 211 × P1 · 78 × P2 · 1 × P3 |
 | Toodangus | **kaheksas deploy 10.08 21:45 omaniku selgel loal: server = `main` = `origin/main` = `ae599200`**, 21 commit'i ja kaks migratsiooni (`20260810180000` võrgustikujagamise räsi, `20260810200000` külastuse päritolu muutumatus). Mõõdetud, mitte eeldatud: `.next` 21:45, kolm teenust `active`, `/` `/vestlus` `/admin/rag` `/meist` `/voimalused` **200**, mõlemad migratsioonid lõpetatud ja tagasi kerimata, trigger olemas ja lubatud, veatasemel logi tühi |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01 ja -02 tehtud, järgmine **SOL-FIELD-03**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01…-03 tehtud, järgmine **SOL-FIELD-04**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**65 tehtud leidu 66-st on tootmises** (kaheksas deploy 10.08 21:45). Deploy'mata on ainult
-**SOL-FIELD-02**, mis on täies ulatuses kliendipoolne (IndexedDB säilitus) ega vaja
-migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**65 tehtud leidu 67-st on tootmises** (kaheksas deploy 10.08 21:45). Deploy'mata on
+**SOL-FIELD-02** (kliendipoolne IndexedDB säilitus) ja **SOL-FIELD-03** (kohustuslikud
+auditikirjed põhitehingusse); kumbki ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -39,7 +39,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
-| Välitöö | SOL-FIELD | 2/6 | – | 2 | 2 | **käsil**, järgmine FIELD-03 |
+| Välitöö | SOL-FIELD | 3/6 | – | 1 | 2 | **käsil**, järgmine FIELD-04 |
 | Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
@@ -223,6 +223,16 @@ kadus seadmest ainult käsitsi. FIELD-02 sond käib **päris Chromiumi päris In
 WebCrypto vastu** (`npm run field:pack:probe` 26/26), sest fake-hoidla ei tõenda seda, et
 otsus tuleb toime ainult metaandmetega — sisu on seadmes krüptitud. Vana koodi vastu 6 plokki
 punast. FIELD-01 brauserikiht jääb `NOT_PROVEN`.
+
+**SOL-FIELD-03 (10.08): audit kirjutas alati globaalse ühenduse kaudu ja neelas iga vea.**
+Nüüd on kaks eksporti ja kaks lepingut — `writeDataAudit()` võtab `db` süstituna ja VISKAB,
+`logDataAudit()` jääb best-effort'iks. Viis kohustuslikku välitöö rada on põhitehingus;
+turvahoiatuse ja säilituskäigu kirjed said süstitud kliendi, aga jäid teadlikult
+best-effort'iks, sest seal on kiri juba saadetud ja fail juba kustutatud — rollback teeks
+rohkem kahju. Teine pool leidu oli TESTIDES: fake-DB-ga roheline test proovis vaikselt päris
+andmebaasi kirjutada (mõõdetud: 241 ms esimesel kirjutusel). Fake-hoidla ise pidi saama
+päris rollback'i ja pesastatud seose-projektsiooni — mõlemad peitsid veaklassi. Vana koodi
+vastu **8/12 punast**.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

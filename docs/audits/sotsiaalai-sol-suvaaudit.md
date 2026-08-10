@@ -1178,6 +1178,59 @@ peabki olema — paketil on serveris koopia, erinevalt saatmata sisust (4.5 piir
 
 **Vastuvõtukriteerium.** Kohustuslikud välitöö auditikirjed peavad kasutama sama süstitud tehinguklienti ja auditi vea korral põhitoimingu tagasi pöörama; ainult selgelt mittekriitiline telemeetria võib olla best-effort. Test peab veasüstiga tõendama rollback’i ja kontrollima auditirida fake-/päris test-DB-s, ilma globaalse ühenduse või `--test-force-exit` vajaduseta.
 
+**Seis (10.08.2026): DONE — kood ja testid; veasüstiga tõendatud, ilma globaalse ühenduseta.**
+
+**KAKS EXPORTI, KAKS LEPINGUT** (`lib/privacy/audit.js`). `writeDataAudit()` võtab `db`
+süstituna ja **VISKAB** vea; `logDataAudit()` jääb best-effort'iks ja neelab. Vana kood pakkus
+ainult teist ja kirjutas ALATI moodulitaseme globaalse ühenduse kaudu. Tagajärg oli
+kahekordne ja teine pool on see, mis leiu nii kauaks peitis:
+
+- **toodangus** võis nõusoleku tagasivõtmine, turvatoiming, üleandmine või manuse kustutamine
+  õnnestuda ilma ühegi tõendita, kes seda tegi;
+- **testides** proovis fake-DB-ga roheline test vaikselt PÄRIS andmebaasi kirjutada, logis
+  ühendusvea ja jäi ikka roheliseks. Mõõtsin selle ära: vanade kutsujate vastu kulub esimesel
+  auditikirjutusel **241 ms** — see on päris ühenduse katse, mitte test.
+
+**Viis kohustuslikku rada on nüüd põhitehingus:** visiidi turvatoiming ja sulgemine
+(`field.visit_*`), nõusoleku tagasivõtmine, üleandmine artefakti, üleandmine eelpöördumisse ja
+manuse kustutamine. Auditita rajad (nt `confirm_arrival`) tehingut EI ava — parandus ei tohi
+olla vaikne jõudluskulu igale klahvivajutusele, ja seda mõõdab eraldi test.
+
+**Tühi `action` on `writeDataAudit`-is VIGA, mitte vaikne `null`:** kohustuslikku kirjet ei
+tohi saada „täidetuks" kirjaveaga.
+
+**KAKS TEADLIKKU ERANDIT, mis ei ole „telemeetria", vaid koht, kus tagasipööramine teeks
+rohkem kahju.** Turvahoiatuse eskalatsioon (`lib/field/safety.js`) ja säilituskäigu kustutus
+(`lib/field/retentionSweep.js`) said süstitud kliendi, aga jäid best-effort'iks: seal on
+**e-kiri juba välja läinud** ja **fail juba kettalt ning RAG-ist läinud**. Rollback tähendaks
+teist kirja samale inimesele või rida, mis viitab olematule failile. Ütlen selle välja, sest
+kriteeriumi sõna „mittekriitiline telemeetria" seda päris täpselt ei kata.
+
+**Aus piir üleandmisel eelpöördumisse:** `updatePreInquiryReceiverWorkflow` võtab ise
+ruumiluku ja commit'ib OMA tehingu — teda ei saa välisesse tehingusse mähkida. Atomaarne on
+see, mis on välitöö enda kirjutus: üleandmise tempel ja tema tõend.
+
+**Fake-hoidla pidi saama kaks asja ja MÕLEMAD peitsid päris veaklassi**
+(`tests/helpers/fieldDb.mjs`): (1) `$transaction` oli **läbilase** — olemasolev test „vea
+korral ei jää templit maha" oli roheline ainult seepärast, et vigane kirjutus juhtus ajaliselt
+esimesena; tõend, et tehing HOIAB, nõuab hoidlat, mis oskab ka unustada. (2) Pesastatud
+seose-select (`document: { select: … }`) jäi projektsioonist VAIKSELT välja, seega nägi iga
+test manust nii, nagu tal poleks dokumenti — täpselt see haru, kus kustutus võtab maha ka
+faili rea. Enne seda ei olnud manuse kustutusel ühtki jooksvat testi, ainult allika-regex.
+
+**Vana koodi vastu 8/12 punast** (`tests/field/audit.test.js`, mõõdetud nii, et uus
+auditimoodul jäi alles ja vahetusid ainult kutsujad — vastasel juhul kukuks import ja mõõta
+ei saaks midagi). Neli rohelist on õigesti rohelised: fake-tehingu kontroll, auditita rada ja
+kaks auditimooduli enda testi.
+
+**Üks õppetund läks testi kommentaari, sest ta oleks mind peaaegu ära petnud:**
+`assert.rejects(promise)` üksi rahuldub SUVALISE veaga. Esimene versioon läks roheliseks
+hoopis `invalid_transition` 409 pealt (sulgeda saab ainult `WRAP_UP` pealt) — kontroll, mis ei
+nimeta oodatavat viga, ei mõõda midagi. Nüüd nõuab helper `/audit_write_failed/`.
+
+**Kriteeriumi viimane osa mõõdetud eraldi:** `tests/field/audit.test.js` väljub koodiga 0
+**ilma `--test-force-exit` liputa** — globaalset ühendust ei avata enam üldse.
+
 ### SOL-FIELD-04 — võrguühenduseta saabumise/lahkumise markerit ei salvestata ja flush võib vea järel selle kustutada — P1
 
 **Tõend.** Offline saabumise või lahkumise toiming lisab `localArrivalAt`/`localDepartureAt` välja `sync.storePack()` sisendisse ja kuvab kohe teate „salvestatud” (`components/field/FieldVisitRoom.jsx:184-200`). `storePack()` koostab aga uue payload’i kinnise väljaloendi järgi ning ei kopeeri kumbagi markerivälja (`components/field/useFieldSync.js:421-445`). Marker puudub seega juba järgmisel `getPack()` lugemisel ja `flushMarkers()` ei leia midagi saata. Isegi kui marker oleks payload’is, ignoreerib flush PATCH vastuse staatust: pärast mis tahes täidetud fetch’i eemaldab ta markerivälja ja kirjutab paki ümber (`components/field/FieldVisitRoom.jsx:112-138`). 409, 401 või 500 vastus kaotaks kohaliku tõendi samamoodi. Markerite tervikahela testi pole.

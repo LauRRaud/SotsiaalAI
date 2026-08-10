@@ -90,7 +90,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ## S1. Alus
 
 **Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
-**server on `ae599200`** — deploy'mata on ainult SOL-FIELD-02 (kliendipoolne, migratsioonita).
+**server on `ae599200`** — deploy'mata on SOL-FIELD-02 ja -03 (kumbki migratsioonita).
 **Kaheksas deploy 10.08 21:45
 sinu selgel loal:** 21 commit'i (SOL-NET-01/-02, SPROF-plokk, kogu SOL-ORG, SOL-FIELD-01 +
 docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 21:45, kolm
@@ -110,7 +110,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 66/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 67/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -176,12 +176,32 @@ usub: seadmes on sisu krüptitud ja säilituskäik näeb ainult metaandmeid. Van
 olnud — katkine krüptogramm oleks blokeerinud uue paketi võtmise, ja kohaliku hoidla viga
 oleks kestale öelnud „server ei vastanud".
 
-Lahtiseks jääb **212 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-FIELD-03** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+**SOL-FIELD-03: audit kirjutas alati globaalse ühenduse kaudu ja neelas iga vea.** Nüüd on
+kaks eksporti ja kaks lepingut — `writeDataAudit()` võtab `db` süstituna ja **viskab**,
+`logDataAudit()` jääb best-effort'iks. Viis kohustuslikku välitöö rada (turvatoiming,
+sulgemine, nõusoleku tagasivõtmine, kaks üleandmist, manuse kustutus) kirjutavad tõendi nüüd
+**samas tehingus** põhikirjutusega; auditita rajad tehingut ei ava.
+
+**Leiu teine pool oli TESTIDES ja just see peitis teda nii kaua:** fake-DB-ga roheline test
+proovis vaikselt PÄRIS andmebaasi kirjutada, logis ühendusvea ja jäi ikka roheliseks.
+Mõõtsin ära — vanade kutsujate vastu kulub esimesel auditikirjutusel **241 ms**, mis on päris
+ühenduse katse. Fake-hoidla ise pidi saama kaks asja ja mõlemad peitsid veaklassi: päris
+rollback (varem läbilase) ja pesastatud seose-projektsioon (manuse dokument jäi vaikselt
+välja, seega kustutuse selle haru kohta ei olnud ühtki jooksvat testi).
+
+**Kaks teadlikku erandit:** turvahoiatuse eskalatsioon ja säilituskäigu kustutus said
+süstitud kliendi, aga jäid best-effort'iks — seal on kiri juba välja läinud ja fail juba
+kettalt kadunud, seega tagasipööramine tähendaks teist kirja või rida olematu faili kohta.
+
+Vana koodi vastu **8/12 punast**. Üks õppetund läks testi sisse: `assert.rejects(p)` üksi
+rahuldub suvalise veaga ja mu esimene versioon läks roheliseks hoopis 409 pealt.
+
+Lahtiseks jääb **211 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-FIELD-04** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
 brauseri-QA taga).
 
-**Deploy'mata on ainult SOL-FIELD-02** — ta on täies ulatuses kliendipoolne ega vaja
-migratsiooni. Ütle, kui viin serverisse.
+**Deploy'mata on SOL-FIELD-02 ja -03** — kumbki ei vaja migratsiooni. Ütle, kui viin
+serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
