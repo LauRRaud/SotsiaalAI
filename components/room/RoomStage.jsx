@@ -166,6 +166,22 @@ let walkDoneThisLoad = false;
 
 const STANDBY_FROM = 0.958; // ooterežiimi elemendid pärast viimast teksti
 
+/* ⏻-vajutuse ja esimese klaasi vaheline pimeduse hetk (omanik 10.08:
+   „klaasid võiks sekund hiljem ilmuda"). SAMA arv on carousel.css-is
+   `gc-ignite` animation-delay'is — kui muudad ühte, muuda teist, muidu
+   läheb rituaali rütm paigast: klaasid tuleksid kas enne või pärast oma
+   faasimärgist. */
+const IGNITE_HOLD_MS = 1000;
+
+/* Vahepala (S) algus, loetuna klaaside ootepausi lõpust. Äärekaart saab
+   täis 1340 ms peal (240 ms viide + 1100 ms gc-ignite), seega jääb S-i
+   ette ~200 ms hingamist — omanik 10.08: varasem 1900 ms oli liiga pikk
+   ootamine. S-i oma aken ja sellele järgnev paus on muutmata, need
+   käivad monogrammi SMIL-pöördega kaasa. */
+const SAI_INTRO_MS = 1550;
+const SAI_HOLD_MS = 3300;        // münt-pööre 1.7 s + paigalseis (tellija 07.07)
+const CARDS_AFTER_SAI_MS = 700;  // paus logo kadumise ja kaardisisu vahel (tellija 06.07)
+
 /* Tekstipeatused püsivad ühes kompaktses fookusväljas. Mitmelauselise
    peatuse read ei lenda enam eri ekraaniservadesse. Iga peatus "lendab
    läbi" kaamera ees (flight-effect: vt public/room/flight-effect.md) —
@@ -628,19 +644,30 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
     setIntroSai(false);
     setPower("igniting");
     setMode("room");
-    window.setTimeout(() => setPower("on"), 900);      // klaaskaardid (kestad) tekivad
+    /* Klaaside ootepaus (omanik 10.08): esimene klaas tuleb alles
+       IGNITE_HOLD_MS pärast vajutust — sama arv elab carousel.css-i
+       `gc-ignite` viites. Kogu ülejäänud rituaal nihkub sama võrra, et
+       peatuste vahed jääksid endiseks. */
+    window.setTimeout(() => setPower("on"), IGNITE_HOLD_MS + 900); // klaaskaardid (kestad) on käes
     // Vahepala (tellija 06.07): SAI-monogramm mount'ib, teeb münt-pöörde
     // (SMIL 1.7 s, freeze), pööre SEISAB ja logo hoiab end veel ~2 s
     // liikumatuna; alles SIIS laeme kaartidele sisu — nii ei jõua kaardi-
     // ikoonid vahepalaga kattuda. Sujuv fade in/out elab CSS-is.
-    // Viivitus pärast klaaside teket (900 ms) enne kui SAI-logo ilmub —
-    // tellija 06.07: logo tekkis ON-vajutusest liiga kähku. Aken 3.3 s
+    // Viivitus pärast klaaside teket enne kui SAI-logo ilmub — tellija
+    // 06.07: logo tekkis ON-vajutusest liiga kähku, omanik 10.08: aga
+    // 1900 ms oli teises servas liiga kaua (vt SAI_INTRO_MS). Aken 3.3 s
     // (tellija 07.07: paigalseisu-hoidu kokku ~2 s lühemaks — S kaob
     // kohe pärast 3 s pööret).
-    window.setTimeout(() => setIntroSai(true), 1900);
-    window.setTimeout(() => setIntroSai(false), 5200);
+    window.setTimeout(() => setIntroSai(true), IGNITE_HOLD_MS + SAI_INTRO_MS);
+    window.setTimeout(
+      () => setIntroSai(false),
+      IGNITE_HOLD_MS + SAI_INTRO_MS + SAI_HOLD_MS
+    );
     // Väike paus pärast logo kadumist enne kaardisisu (tellija 06.07)
-    window.setTimeout(() => setCardsReady(true), 5900);
+    window.setTimeout(
+      () => setCardsReady(true),
+      IGNITE_HOLD_MS + SAI_INTRO_MS + SAI_HOLD_MS + CARDS_AFTER_SAI_MS
+    );
   }, []);
 
 
