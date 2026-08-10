@@ -962,6 +962,37 @@ on täpselt see koopia, mida ei tohi lasta lahku minna.
 
 **Vastuvõtukriteerium.** Liikmesuse lõpetamine ning kõik uut tööd, kohta või õigust loovad rajad peavad kasutama ühist liikmesusrea lukku ja kontrollima `ACTIVE` staatust luku all. Offboarding peab vahetult enne commit’i tõendama, et elavaid töid/kohti pole. Päris PostgreSQLi testid peavad katma `endMembership vs assignWork`, `endMembership vs handover`, `endMembership vs assignSeat` ning viimase omaniku paralleelsed lõpetamised.
 
+**Seis (10.08.2026): DONE — kood ja paralleelsussond (`npm run org:offboard:probe` 39/39; vana koodi vastu 13 punast).**
+
+**KAKS KÜSIMUST, ÜKS RIDA.** Lahkumine küsib „kas sellel inimesel on veel elavat tööd või
+kohta"; töö määramine ja koha andmine küsivad „kas see liikmesus on veel aktiivne". Ilma
+ühise lukuta võisid **mõlemad vastused olla korraga õiged ja tulemus vale**. Sond
+reprodutseeris vana koodiga täpselt selle: `ENDED` liikmesus, mille küljes on elav juhtum
+(1) ja aktiivne makstav koht (1).
+
+**`lockMembershipRow` on nüüd jagatud** (`lib/org/members.js`) ja teda võtavad `assignWork`,
+`handOverWork` ja `assignSeat` **enne** aktiivsuse lugemist, `endMembership` enne kõike muud.
+
+**LUKUJÄRJEKORD ON OSA PARANDUSEST:** liikmesuse rida võetakse ALATI VIIMASENA. Töö
+määramine hoiab enne teda postkastikirjet, koha andmine kohaplaani, lahkumine
+organisatsiooni rida — ükski neist ei taotle teise „vanemat", seega tsüklit ja ummikseisu
+ei teki.
+
+**Viimase omaniku võistlus on TEISEST reast.** Kaks omanikku lahkumas korraga on eri
+liikmesustel: kummagi enda lukk ei pane neid järjekorda ja mõlemad näevad, et nad ei ole
+viimased. Ainus ühine rida on **organisatsioon ise** — `lockOrganizationRow` serialiseerib
+lahkumised ja teine saab „viimane omanik ei saa lahkuda".
+
+**Koht EI BLOKEERI lahkumist, ta LÕPETATAKSE — ja see vahe on tahtlik.** Töö on kellegi
+teise juhtum, mille üleandmine on inimlik otsus; koht on arve rida, mille lõpetamine on
+lahkumise otsene tagajärg. Sond mõõdab mõlemat: elava tööga inimene ei saa lahkuda, äsja
+antud kohaga saab — ja lõppseisus ei ole kohta.
+
+**Aus märkus sondi enda kohta:** viimase omaniku stsenaarium kukub vana koodi vastu
+„ootamise" kontrolli peal (vana `endMembership` ei võta organisatsiooni lukku, seega ta ei
+oota), mitte lõppseisu peal — minu ajastusega jõudsid nad niikuinii järjest. Struktuurne
+puudumine on tõendatud, päris kahe-omaniku kadu ei ole reprodutseeritud.
+
 ### SOL-ORG-11 — viimase organisatsiooniomaniku õiguse saab eemaldada — P1
 
 **Tõend.** Liikmesuse lõpetamine kutsub `isLastActiveOwner()` kontrolli ja keeldub viimase `ORG_OWNER` liikme lahkumisest (`lib/org/members.js:393-406`, `:461-476`). Capability eemaldamise rada loeb aga ainult sihtgrandi olemasolu ja tühistab selle tingimusteta; erandit viimase aktiivse `ORG_OWNER` grandi jaoks ei ole (`:182-218`). API nõuab küll kutsujalt `ORG_OWNER` õigust, kuid lubab tal sihtida ka enda granti (`app/api/org/[orgId]/members/[membershipId]/capabilities/[grantId]/route.js:10-23`).
