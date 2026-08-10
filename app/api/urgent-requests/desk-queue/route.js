@@ -27,7 +27,17 @@ export async function GET(req) {
       const desks = await listMyUrgentDesks({ prisma, userId: auth.userId });
       return urgentJson({ ok: true, desks, queue: null });
     }
-    const queue = await loadDeskQueue({ prisma, userId: auth.userId, deskId });
+    /* SOL-URG-01: ajaloo lehekülg tuleb päringust. Ilma temata näeks töötaja
+       ainult esimest lehte ja vanem ajalugu kaoks — sama vaikne kadumine, mille
+       vastu see leid üldse on. Vigane väärtus = leht 0, mitte viga: nihe ei ole
+       õigustepiir ja veaga vastamine peidaks järjekorra tervikuna. */
+    const historyOffset = Number.parseInt(url.searchParams.get("historyOffset") || "0", 10);
+    const queue = await loadDeskQueue({
+      prisma,
+      userId: auth.userId,
+      deskId,
+      historyOffset: Number.isFinite(historyOffset) && historyOffset > 0 ? historyOffset : 0
+    });
     return urgentJson({ ok: true, queue });
   });
 }

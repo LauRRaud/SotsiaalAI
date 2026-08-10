@@ -18,6 +18,34 @@ function matches(row, where = {}) {
   });
 }
 
+/**
+ * SOL-URG-01 — `orderBy` ja `skip` on nüüd MODELLEERITUD.
+ *
+ * Varem neelas fake mõlemad alla ja `findMany` tagastas read sisestusjärjekorras.
+ * See tähendas, et lehekülgitamise test oleks mõõtnud, mis järjekorras TEST ise
+ * read lisas — mitte seda, mida kood küsib. Roheline sviit oleks tõendanud
+ * paginatsiooni, mida ei ole. Sama klass tabas 09.08 SOL-SCHEMA-01-t ja 10.08
+ * SOL-CALL-10 kestuselage.
+ */
+function compareBy(orderBy) {
+  const clauses = Array.isArray(orderBy) ? orderBy : orderBy ? [orderBy] : [];
+  return (a, b) => {
+    for (const clause of clauses) {
+      for (const [key, direction] of Object.entries(clause || {})) {
+        const left = a[key] instanceof Date ? a[key].getTime() : a[key];
+        const right = b[key] instanceof Date ? b[key].getTime() : b[key];
+        if (left === right) continue;
+        // `null` läheb lõppu, nagu Postgresis vaikimisi ASC puhul.
+        if (left == null) return 1;
+        if (right == null) return -1;
+        const order = left < right ? -1 : 1;
+        return direction === "desc" ? -order : order;
+      }
+    }
+    return 0;
+  };
+}
+
 export function createModel(initial = [], prefix = "row") {
   // Koopia, mitte viide: näidislaud on külmutatud ja testid peavad saama teda
   // muuta (nt „KOV muutis lugemisaega") ilma näidist rikkumata.
@@ -28,9 +56,12 @@ export function createModel(initial = [], prefix = "row") {
     async findFirst({ where } = {}) {
       return rows.find((row) => matches(row, where)) || null;
     },
-    async findMany({ where, take } = {}) {
+    async findMany({ where, take, orderBy, skip } = {}) {
       const found = rows.filter((row) => matches(row, where));
-      return typeof take === "number" ? found.slice(0, take) : found;
+      if (orderBy) found.sort(compareBy(orderBy));
+      const start = Number.isInteger(skip) && skip > 0 ? skip : 0;
+      const sliced = found.slice(start);
+      return typeof take === "number" ? sliced.slice(0, take) : sliced;
     },
     async count({ where } = {}) {
       return rows.filter((row) => matches(row, where)).length;

@@ -147,13 +147,17 @@ export default function UrgentDeskView() {
     }
   }, [deskId]);
 
-  const loadQueue = useCallback(async (id) => {
+  /* SOL-URG-01: ajalugu on nüüd lehekülgitav, seega vaade peab lehe numbrit
+     kandma. Ilma temata näeks töötaja ainult ajaloo esimest lehte ja vanem osa
+     kaoks — sama vaikne kadumine, ainult teisest otsast. */
+  const loadQueue = useCallback(async (id, historyOffset = 0) => {
     if (!id) return;
     setError("");
     try {
-      const response = await fetch(`/api/urgent-requests/desk-queue?deskId=${encodeURIComponent(id)}`, {
-        cache: "no-store"
-      });
+      const response = await fetch(
+        `/api/urgent-requests/desk-queue?deskId=${encodeURIComponent(id)}&historyOffset=${historyOffset}`,
+        { cache: "no-store" }
+      );
       const payload = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(txt(t, "urgent.desk_queue.errors.load_failed", "Laadimine ebaõnnestus."));
       setQueue(payload?.queue || null);
@@ -303,6 +307,41 @@ export default function UrgentDeskView() {
       ) : (
         <p role="status">{txt(t, "urgent.desk_queue.empty", "Järjekord on tühi.")}</p>
       )}
+
+      {/* SOL-URG-01: kärbe ütleb ennast VÄLJA. Vaikne lõikamine näeb välja täpselt
+          nagu „rohkem ei olegi" ja just see peitis siin uued abipalved. */}
+      {queue?.activeTruncated ? (
+        <p role="alert">
+          {txt(
+            t,
+            "urgent.desk_queue.active_truncated",
+            "Järjekorras on rohkem pooleliolevaid kirjeid, kui siia mahub. Võta laua haldajaga ühendust."
+          )}
+        </p>
+      ) : null}
+
+      {queue?.historyTotal ? (
+        <p>
+          <small>
+            {txt(t, "urgent.desk_queue.history_shown", "Ajaloost näidatud")} {queue.historyOffset + queue.history.length}/
+            {queue.historyTotal}
+          </small>
+          {queue.hasMoreHistory ? (
+            <Button
+              type="button"
+              disabled={busy}
+              onClick={() => void loadQueue(deskId, queue.historyOffset + queue.historyPageSize)}
+            >
+              {txt(t, "urgent.desk_queue.history_more", "Näita vanemat ajalugu")}
+            </Button>
+          ) : null}
+          {queue.historyOffset ? (
+            <Button type="button" disabled={busy} onClick={() => void loadQueue(deskId, 0)}>
+              {txt(t, "urgent.desk_queue.history_reset", "Tagasi algusesse")}
+            </Button>
+          ) : null}
+        </p>
+      ) : null}
 
       <RequestDetail
         t={t}

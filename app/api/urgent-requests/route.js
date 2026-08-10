@@ -10,6 +10,7 @@ import {
   deskProjection,
   isDeskStaff
 } from "@/lib/urgent/request";
+import { selectDeskRequests } from "@/lib/urgent/deskQueue";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
@@ -68,12 +69,22 @@ export async function GET(req) {
     const staff = await isDeskStaff(prisma, { deskId, userId: auth.userId });
     if (!staff) return urgentError("api.common.forbidden", 403);
 
-    const rows = await prisma.urgentRequest.findMany({
-      where: { deskId },
-      orderBy: { sentAt: "asc" },
-      take: 200
+    /* SOL-URG-01: valik tuleb jagatud kohast. Siin oli varem `take: 200` oma
+       koopia, mis peitis 201. abipalve täpselt samamoodi nagu laua järjekord. */
+    const page = await selectDeskRequests({
+      prisma,
+      deskId,
+      historyOffset: Number.parseInt(url.searchParams.get("historyOffset") || "0", 10) || 0
     });
-    return urgentJson({ ok: true, requests: rows.map(deskProjection) });
+    return urgentJson({
+      ok: true,
+      requests: page.rows.map(deskProjection),
+      activeTruncated: page.activeTruncated,
+      historyOffset: page.historyOffset,
+      historyPageSize: page.historyPageSize,
+      historyTotal: page.historyTotal,
+      hasMoreHistory: page.hasMoreHistory
+    });
   }
 
   const rows = await prisma.urgentRequest.findMany({

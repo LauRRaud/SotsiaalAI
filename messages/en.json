@@ -9672,7 +9672,11 @@
       "errors": {
         "load_failed": "Loading the queue failed.",
         "action_failed": "The action failed."
-      }
+      },
+      "active_truncated": "There are more open items in this queue than fit here. Contact the desk administrator.",
+      "history_shown": "Shown from history",
+      "history_more": "Show older history",
+      "history_reset": "Back to the start"
     }
   }
 }

@@ -9672,7 +9672,11 @@
       "errors": {
         "load_failed": "Järjekorra laadimine ebaõnnestus.",
         "action_failed": "Toiming ebaõnnestus."
-      }
+      },
+      "active_truncated": "Järjekorras on rohkem pooleliolevaid kirjeid, kui siia mahub. Võta laua haldajaga ühendust.",
+      "history_shown": "Ajaloost näidatud",
+      "history_more": "Näita vanemat ajalugu",
+      "history_reset": "Tagasi algusesse"
     }
   }
 }

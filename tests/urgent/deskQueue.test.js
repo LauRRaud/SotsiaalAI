@@ -185,6 +185,99 @@ test("kinnitatud üleandmine kaob saabuvate hulgast", async () => {
   assert.equal(queue.items.length, 1);
 });
 
+// --- SOL-URG-01: ajalugu ei tohi tööd peita ----------------------------------
+
+/* Vastuvõtukriteeriumi täht: vähemalt 201 lõpetatud vana rida ja üks uus SENT
+   rida. Vana kood võttis `take: 200` vanimast alates, seega uus rida ei mahtunud
+   valikusse KUNAGI — mitte „harva", vaid deterministlikult. */
+function historyBacklog(count, { deskId = "desk_kov", from = new Date("2026-01-01T00:00:00Z") } = {}) {
+  return Array.from({ length: count }, (_, index) =>
+    urgent({
+      id: `req_old_${String(index).padStart(4, "0")}`,
+      deskId,
+      status: index % 2 === 0 ? "RESOLVED" : "DECLINED",
+      sentAt: new Date(from.getTime() + index * 60_000),
+      expiresAt: new Date(from.getTime() + index * 60_000 + 3600_000)
+    })
+  );
+}
+
+test("SOL-URG-01: 201 lõpetatud vana rida ei peida uut abipalvet", async () => {
+  const prisma = createPrisma({
+    requests: [...historyBacklog(201), urgent({ id: "req_uus", status: "SENT", sentAt: NOW })]
+  });
+
+  const queue = await loadDeskQueue({ prisma, userId: "staff_1", deskId: "desk_kov", now });
+
+  assert.equal(queue.items[0].id, "req_uus", "uus abipalve on ESIMENE rida, mitte 202.");
+  assert.equal(queue.active.length, 1);
+  assert.equal(queue.active[0].id, "req_uus");
+  assert.equal(queue.awaitingCount, 1, "loendur tuleb andmebaasist, mitte lõigatud lehelt");
+  assert.equal(queue.historyTotal, 201);
+  assert.equal(queue.history.length, 50, "ajalugu on lehekülgitav, mitte kõik korraga");
+  assert.equal(queue.hasMoreHistory, true);
+  assert.equal(queue.activeTruncated, false);
+});
+
+test("SOL-URG-01: ajaloo leheküljed on stabiilsed ja katavad kogu ajaloo", async () => {
+  const prisma = createPrisma({ requests: historyBacklog(120) });
+
+  const seen = [];
+  for (let offset = 0; offset < 120; offset += 50) {
+    const page = await loadDeskQueue({
+      prisma,
+      userId: "staff_1",
+      deskId: "desk_kov",
+      now,
+      historyOffset: offset
+    });
+    assert.equal(page.historyOffset, offset);
+    seen.push(...page.history.map((row) => row.id));
+    assert.equal(page.hasMoreHistory, offset + page.history.length < 120);
+  }
+
+  assert.equal(seen.length, 120, "iga rida esineb täpselt ühel lehel");
+  assert.equal(new Set(seen).size, 120, "ükski rida ei kordu kahel lehel");
+  // ASC-järjestus: vanim ees, ja leheküljed ei tohi järjekorda vahetada.
+  assert.deepEqual(seen, [...seen].sort(), "leheküljed peavad kandma ühte täielikku järjestust");
+});
+
+test("SOL-URG-01: pooleliolev TAKEN on töö, mitte ajalugu", async () => {
+  const prisma = createPrisma({
+    requests: [
+      ...historyBacklog(60),
+      urgent({ id: "req_taken", status: "TAKEN", sentAt: new Date("2026-02-01T00:00:00Z") })
+    ]
+  });
+  const queue = await loadDeskQueue({ prisma, userId: "staff_1", deskId: "desk_kov", now });
+
+  assert.equal(queue.active.length, 1);
+  assert.equal(queue.active[0].id, "req_taken");
+  /* TAKEN ei oota enam vastust, seega loenduris teda ei ole — aga järjekorras
+     ta ON, sest töö on pooleli. Kaks eri küsimust, kaks eri vastust. */
+  assert.equal(queue.awaitingCount, 0);
+  assert.equal(queue.items[0].id, "req_taken");
+});
+
+test("SOL-URG-01: üle lubatud aja loendur ei sõltu leheküljest", async () => {
+  const prisma = createPrisma({
+    requests: [
+      ...historyBacklog(300),
+      urgent({
+        id: "req_hilinenud",
+        status: "SENT",
+        sentAt: new Date("2026-08-05T10:00:00Z"),
+        expiresAt: new Date("2026-08-05T12:00:00Z")
+      })
+    ]
+  });
+  const queue = await loadDeskQueue({ prisma, userId: "staff_1", deskId: "desk_kov", now });
+
+  assert.equal(queue.overdueCount, 1);
+  assert.equal(queue.historyTotal, 300);
+  assert.equal(queue.active[0].overdue, true);
+});
+
 // --- Vastutusjälg ------------------------------------------------------------
 
 test("vastutusjälg ütleb kes-mida-millal, aga mitte mida ta luges", async () => {
