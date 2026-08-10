@@ -2504,6 +2504,8 @@
       },
       "loading": "Loading service profile...",
       "save_success": "Service profile saved.",
+      "save_success_removal_pending": "Service profile saved. Removing the assistant's copy is still in progress and will finish automatically.",
+      "save_success_assistant_sync_failed": "Service profile saved, but updating the assistant's copy failed. We will retry automatically.",
       "errors": {
         "load_failed": "Service profile could not be loaded.",
         "save_failed": "Service profile could not be saved.",

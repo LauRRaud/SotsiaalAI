@@ -3936,7 +3936,7 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Konto kustutuse tehing peab SOLO-profiili enne User-kustutust vähemalt `HIDDEN` olekusse viima, avalikud kaardiobjektid sulgema ja RAG-kustutuse püsivasse retry-järjekorda panema; äriliselt säilitatavad väljad tuleb anonüümida või üle anda selge õigusliku alusega. Runtime-test loob avaliku SOLO-profiili, kustutab konto ja tõendab seejärel 0 avalikku kaardivastet, 0 RAG-vastet ning hallatava järeltegevuse.
 
-**Seis (10.08.2026): kood DONE; runtime NOT_PROVEN.**
+**Seis (10.08.2026): DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).**
 
 Kolm sammu käivad nüüd **enne `user.delete`-i ja samas lukustatud tehingus**
 (`deleteUserAfterFinalPracticeSweep`, seesama tehing, kus elavad SOL-PRE-01 ja
@@ -3957,11 +3957,21 @@ tõenduspõhised praktikad. Teine järjekord tähendaks teist kohta, kust orbe o
 kukutama, mitte muutuma vaikseks nulliks. Kaks testifake'i said seepärast uued mudelid,
 mitte kood uue valve.
 
-**NOT_PROVEN:** kriteeriumi runtime-test (loo avalik SOLO-profiil → kustuta konto →
-tõenda 0 avalikku kaardivastet, 0 RAG-vastet) **ei ole jooksutatud**. Tõendatud on
-tehingusisene järjekord ja loendurid ühiktestiga; päris andmebaasi vastu käiv sond on
-tegemata. **Anonüümimise/üleandmise osa** („äriliselt säilitatavad väljad") on samuti
-lahtine — täna profiil PEIDETAKSE, tema sisu jääb reale alles.
+**Runtime on jooksutatud.** `npm run sprof:consent:probe` (uus,
+`scripts/service-profile-consent-probe.mjs`) teeb päris andmebaasis avaliku SOLO-profiili
+koos avaliku `ServiceMapEntry`-ga, kustutab konto ja mõõdab tulemuse: profiil `HIDDEN`,
+`ownerId` null (SetNull), **avalikke kaardivasteid 0**, RAG-koopial püsiv `pending` töö
+põhjusega `owner_account_deleted`, `User` rida läinud — ja seejärel, et sama profiil
+**ei jõua enam retrieval'i vastustesse**. 22/22.
+
+Sond leidis kirjutamisel ka ühe päris vea iseendas (`ServiceMapEntry` nõuab `type` ja
+`title`, mitte `entryType`/`name`) — fake-Prisma ei oleks seda näinud, vt
+[[fake-prisma-ei-valideeri]] klassi.
+
+**Lahtine jääb üks asi, mis ei ole tõendamine, vaid otsus:** kriteeriumi
+**anonüümimise/üleandmise** osa („äriliselt säilitatavad väljad"). Täna profiil
+PEIDETAKSE, tema sisu jääb reale alles. See vajab õiguslikku alust, mitte koodi, ja on
+kirjas lahtise tooteotsusena — leid ise on kaetud.
 
 ### SOL-SPROF-02 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — P0
 
@@ -3984,7 +3994,7 @@ snapshot-ridadeta, mis seal jälje alles jätsid.
 
 **Vastuvõtukriteerium.** Loa eemaldamine peab fail-closed lõpetama retrieval'i kohe ning looma deterministliku püsiva delete-job'i, mida retry-worker ja deploy-värav jälgivad. Route/UI peab näitama ausat pending/failed olekut. Testida puuduva võtme, timeout'i, osalise RAG-vea, restardi ja korduva tagasivõtmisega; lõpptõend on 0 tulemust vana teenuse unikaalse markeriga.
 
-**Seis (10.08.2026): kood DONE; retrieval-pool ja runtime NOT_PROVEN.**
+**Seis (10.08.2026): DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).**
 
 Uus jagatud moodul `lib/privacy/serviceProfileRagRemoval.js` kannab kogu protokolli ja tal
 on **kaks reeglit**:
@@ -4008,13 +4018,41 @@ TEADLIKULT ei ole: seadistamata teenus annab `rag_delete_not_configured`, mitte 
 Retry-teenus sai `ServiceProviderProfile` haru, mis kinnitatud kustutuse järel viida
 lõpuks kustutab — sama muster, mis praktikatel.
 
-**NOT_PROVEN, kolm asja:**
-- **„fail-closed lõpetama retrieval'i KOHE"** — täna peatub retrieval alles siis, kui
-  kaugkoopia on kustutatud. Kohalikku päringuaegset keeldu (deny-list või
-  `patch-meta` märge) EI OLE. See on lahtine ja ta on selle kriteeriumi kõige raskem osa.
-- **Route/UI aus pending/failed seis** — server kirjutab nüüd `pending_removal`, aga
-  `WorkspaceFeaturePage` näitab endiselt tingimusteta „Teenuseprofiil salvestati".
-- **Runtime-tõend** („0 tulemust vana teenuse unikaalse markeriga") — jooksutamata.
+**Päringuaegne fail-closed värav on olemas** — `lib/privacy/serviceProfileRetrievalGuard.js`.
+Ta on **teine, kohalik** kaitse: kaugkoopia kustutamine on õige lõpplahendus, aga ta on
+võrgutoiming, mis võib kukkuda, aeguda või oodata retry-workerit. Kasutaja tahe ei tohi
+oodata võõra teenuse kättesaadavust. Värav loeb tõe meie enda andmebaasist ja nõuab
+**mõlemat** tingimust (`status:PUBLISHED` JA `assistantRecommendationAllowed:true`).
+**Fail-closed on sõna-sõnalt:** kui loakontroll ise ei õnnestu (andmebaasi ei ole, päring
+viskab), kaovad KÕIK teenuseprofiili vasted — muud allikad jäävad puutumata. Vale suunas
+eksides oleks värav dekoratsioon.
+
+**Värav istub ukse peal, mitte koridoris — ja seda mõõtis test.** Esimene katse pani ta
+`searchRagQueries` lõppu. See funktsioon tagastab **kahest** kohast: ühe päringu kiirtee
+(`retrievalOrchestrator.js:853`) annab `searchRagDirect`-i tulemuse otse edasi, ja just see
+on vestluses kõige tavalisem kuju. Ühiktest langes punaseks ühe päringu juhtumil ja jäi
+roheliseks mitme päringu omal — värav kolis `searchRagDirect`-i sisse, ainsasse kohta, kus
+RAG-vastus rakendusse siseneb.
+
+**Teine uks oli lahti: kovisiooni teadmusotsing.** `fetchCovisionKnowledgeSupport` käib
+sama RAG-indeksi peal **ilma kollektsioonifiltrita**, seega võis ta tagastada
+teenuseprofiili dokumendi ka siis, kui vestlusaken seda enam ei teinud. Nüüd käib ka see
+rada läbi värava (`filterCovisionKnowledgeConsent`), **enne** `top_k` lõikamist — pärast
+lõikamist filtreerimine tähendaks, et keelatud vaste võtab lubatud vastelt koha ära.
+
+**Route/UI ütleb nüüd tõtt.** `serviceProfileSaveNoticeKey` (testitav, JSX-ist väljas)
+valib teate `ragMetadata.syncStatus` järgi: `pending_removal` → „eemaldamine on pooleli",
+`failed` → „assistendi koopia uuendamine ebaõnnestus", muidu tavaline eduteade. Kõik kolm
+võtit on ET/EN/RU sõnastikes ja test kontrollib nende olemasolu.
+
+**Doc-ID prefiksil on nüüd üks omanik.** Ehitaja (`serviceProviderProfiles.js`) ja lugeja
+(värav) jagavad sama `serviceProfileRagDocId`-d. Kaks koopiat oleks tähendanud, et prefiksi
+muutmine ühes kohas teeb väravast vaikse läbilaskja — ta lihtsalt ei tunneks profiile ära.
+
+**Runtime-tõend on olemas:** `npm run sprof:consent:probe`, 22/22 päris PostgreSQL-i vastu.
+Ta katab kukkunud kustutuse (`pending_removal` + viit alles + töö järjekorras), korduva
+tagasivõtmise (teist tööd ei teki), kinnitatud kustutuse (`removed` + viit kustub + töö
+suletud), negatiivkontrolli (kehtiva loaga profiil JÄÄB) ja fail-closed haru.
 
 ### SOL-SPROF-03 — nähtav teeninduskoht võib avalikustada temaga seotud peidetud teenuse — P1
 

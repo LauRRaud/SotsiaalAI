@@ -5,8 +5,10 @@ import {
   buildEffectivePracticeRagDocId,
   buildEffectivePracticeRagText,
   buildCovisionKnowledgeQuery,
+  filterCovisionKnowledgeConsent,
   normalizeCovisionKnowledgeResults
 } from "../../lib/covisionKnowledge.js";
+import { serviceProfileRagDocId } from "../../lib/privacy/serviceProfileRetrievalGuard.js";
 
 test("covision knowledge query combines case question, topics, risks and support intent", () => {
   const query = buildCovisionKnowledgeQuery({
@@ -51,6 +53,54 @@ test("covision knowledge results keep usable source details and drop empty hits"
   assert.equal(results[0].title, "Terviseprobleemiga laste ja perede toetamise hea tava");
   assert.equal(results[0].url, "https://example.ee/hea-tava");
   assert.match(results[0].snippet, /võrgustikutöö/);
+});
+
+/**
+ * SOL-SPROF-02 — kovisiooni teadmusotsing on TEINE uks samasse RAG-indeksisse.
+ * Vestlusakna värav üksi ei kaitse siin midagi.
+ */
+test("kovisiooni teadmus ei tagasta tagasi võetud loaga teenuseprofiili", async () => {
+  const allowed = await filterCovisionKnowledgeConsent(
+    [
+      { id: "hit-profile", doc_id: serviceProfileRagDocId("p1"), chunk: "Osutaja kontaktid" },
+      { id: "hit-practice", doc_id: "effective-practice::x::v1", chunk: "Praktikanäide" }
+    ],
+    { db: { serviceProviderProfile: { findMany: async () => [] } } }
+  );
+  assert.deepEqual(allowed.map((entry) => entry.id), ["hit-practice"]);
+});
+
+test("kovisiooni teadmus ei küsi luba ilma profiilivasteta ja jätab muu puutumata", async () => {
+  const results = [{ id: "hit-practice", doc_id: "effective-practice::x::v1", chunk: "Praktikanäide" }];
+  const allowed = await filterCovisionKnowledgeConsent(results, {
+    db: {
+      serviceProviderProfile: {
+        findMany: async () => {
+          throw new Error("seda ei tohi kutsuda");
+        }
+      }
+    }
+  });
+  assert.deepEqual(allowed, results);
+});
+
+test("kovisiooni värav filtreerib ENNE top_k lõikamist", async () => {
+  /* Kui filtreerida pärast normaliseerimist, võtaks keelatud vaste lubatud
+     vastelt koha ära — kaheksa kohta, üheksas jääks ukse taha. */
+  const raw = [
+    { id: "hit-profile", doc_id: serviceProfileRagDocId("p1"), chunk: "Osutaja kontaktid" },
+    ...Array.from({ length: 8 }, (_, index) => ({
+      id: `hit-${index}`,
+      doc_id: `effective-practice::x${index}::v1`,
+      chunk: `Praktikanäide ${index}`
+    }))
+  ];
+  const allowed = await filterCovisionKnowledgeConsent(raw, {
+    db: { serviceProviderProfile: { findMany: async () => [] } }
+  });
+  const normalized = normalizeCovisionKnowledgeResults(allowed);
+  assert.equal(normalized.length, 8, "kõik kaheksa lubatud vastet peavad mahtuma");
+  assert.equal(normalized.some((entry) => entry.docId?.startsWith("service-provider-profile::")), false);
 });
 
 test("published effective practice rag text is structured as a reusable practice example", () => {

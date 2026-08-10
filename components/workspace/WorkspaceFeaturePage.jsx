@@ -23,6 +23,7 @@ import { localizePath } from "@/lib/localizePath";
 import { preInquiryAvailabilityNotices, serviceAvailabilityPresentation } from "@/lib/serviceAvailabilityUi";
 import { normalizePreInquiryJourneySharedInfo } from "@/lib/preInquiryJourneySharedInfo";
 import { normalizePreInquiryReceiverChecklist } from "@/lib/preInquiryReceiverWorkflow";
+import { serviceProfileSaveNoticeKey } from "@/lib/privacy/serviceProfileSaveNotice";
 import {
   CARRIER_CLASS,
   carrierClassLabelKey,
@@ -97,6 +98,13 @@ const PRE_INQUIRY_START_OPTIONS = Object.freeze([
 
 function readText(t, key, fallback) {
   return typeof t === "function" ? t(key, fallback) : fallback;
+}
+
+/* SOL-SPROF-02: „salvestati" ei tohi katta kinni seda, et assistendi koopia
+   eemaldamine alles käib või ebaõnnestus. Otsuse ise teeb testitav moodul. */
+function serviceProfileSaveNotice(t, profile) {
+  const notice = serviceProfileSaveNoticeKey(profile);
+  return readText(t, notice.key, notice.fallback);
 }
 
 // The receiver checklist is stored with its Estonian text for legacy rows, but
@@ -4343,7 +4351,7 @@ function ServiceProfileSurface({ t }) {
          ekraanile jääda — tühjendame ja laeme värske seisu. */
       licence.reset();
       void licence.load();
-      setNotice(readText(t, "workspace_feature_pages.service_profile.save_success", "Teenuseprofiil salvestati."));
+      setNotice(serviceProfileSaveNotice(t, savedProfile));
     } catch (saveError) {
       setError(saveError?.message || readText(t, "workspace_feature_pages.service_profile.errors.save_failed", "Teenuseprofiili ei saanud salvestada."));
     } finally {

@@ -101,12 +101,18 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 50/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN). Lahtiseid P0-sid on **kaks** ja mõlemad on **SOL-SPROF**-is (SPROF-01,
-SPROF-02) — kogu ülejäänud audit on P0-dest tühi. **Mõlema kood on 10.08 tehtud, aga seis on
-KVALIFITSEERITUD ja nad jäävad loendis lahtiseks:** tegemata on päringuaegne fail-closed
-retrieval, UI aus pending-seis ja runtime-tõend. Kui need kolm on kaetud, ei ole auditis
-enam ühtegi P0-d ja järjekord langeb tagasi dokumendijärjekorrale ehk **SOL-AUTH**-ile.
+**SOL-süvaaudit: 52/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
+ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
+(`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
+runtime-tõend päris PostgreSQL-i vastu (`npm run sprof:consent:probe` 22/22). Ühiktest
+leidis seejuures, et esimene värav oli **vales kohas** — `searchRagQueries` tagastab kahest
+kohast ja ühe päringu kiirtee (vestluses kõige tavalisem kuju) käis mööda; värav kolis
+`searchRagDirect`-i sisse. Teine, seni märkamata uks oli **kovisiooni teadmusotsing**, mis
+käib sama RAG-indeksi peal ilma kollektsioonifiltrita — ka see rada on nüüd väravaga.
+Lahtiseks jääb **224 P1, 80 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-ORG-01** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA
+taga).
 
 **SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

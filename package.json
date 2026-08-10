@@ -36,6 +36,7 @@
     "call:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/call-consent-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
+    "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",

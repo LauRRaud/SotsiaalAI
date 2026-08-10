@@ -2504,6 +2504,8 @@
       },
       "loading": "Laen teenuseprofiili...",
       "save_success": "Teenuseprofiil salvestatud.",
+      "save_success_removal_pending": "Teenuseprofiil salvestati. Assistendi koopia eemaldamine on pooleli ja lõpetatakse automaatselt.",
+      "save_success_assistant_sync_failed": "Teenuseprofiil salvestati, aga assistendi koopia uuendamine ebaõnnestus. Proovime automaatselt uuesti.",
       "errors": {
         "load_failed": "Teenuseprofiili laadimine ebaõnnestus.",
         "save_failed": "Teenuseprofiili salvestamine ebaõnnestus.",
