@@ -13,6 +13,12 @@ import Input from "@/components/ui/Input";
 import AppLink from "@/components/ui/Link";
 import Checkbox from "@/components/ui/Checkbox";
 import Form from "@/components/ui/Form";
+/* Kinnituslingi leht kuulab seda kanalit: kui PIN-i aken on samas brauseris
+   elus, ei hüppa ta rakendusse, vaid jääb „valmis" teate peale. Nii jääb
+   rakendus lahti ÜHTE aknasse — sellesse, kus sisselogimist alustati.
+   Kanal on sama-päritolu ja sama-brauseri, seega kuulutuse kohalejõudmine
+   ONGI tõend, et teine aken on siinsamas. Teisel seadmel kuulutust ei tule. */
+const LOGIN_TAB_CHANNEL = "sotsiaalai-login";
 const MODAL_FOCUSABLE_SELECTOR = [
   "a[href]",
   "button:not([disabled])",
@@ -853,6 +859,27 @@ export default function LoginModal({
     t,
     tempToken
   ]);
+  useEffect(() => {
+    if (!isOtpStep || !open) return undefined;
+    if (typeof BroadcastChannel === "undefined") return undefined;
+    let channel = null;
+    try {
+      channel = new BroadcastChannel(LOGIN_TAB_CHANNEL);
+    } catch {
+      return undefined;
+    }
+    const announce = () => {
+      try {
+        channel.postMessage({ type: "login-pin-tab" });
+      } catch {}
+    };
+    announce();
+    const intervalId = window.setInterval(announce, 500);
+    return () => {
+      window.clearInterval(intervalId);
+      channel.close();
+    };
+  }, [isOtpStep, open]);
   useEffect(() => {
     if (!isOtpStep || !tempToken || !open || otpLoading) return undefined;
     let stopped = false;

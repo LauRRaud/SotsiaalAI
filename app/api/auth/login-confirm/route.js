@@ -52,7 +52,17 @@ const COPY = {
    kiri telefonis) — seal seda küpsist kunagi ei tule, seega pärast
    ooteakent tuleb tagasi vana teade koos nupuga.
    `location.replace`, mitte `href`: kinnituslink on ühekordne ja ei tohi
-   tagasi-nupuga uuesti käiku minna. */
+   tagasi-nupuga uuesti käiku minna.
+   Kanalikuulamine (omanik 10.08): küpsis on brauseriülene, seega SAMAS
+   brauseris said mõlemad aknad rakenduse ette — kaks akent sama asjaga.
+   Kumbagi ei saa skriptiga sulgeda (mõlema avas kasutaja), nii et ainus
+   viis ühe akna juurde jõuda on, et see leht ise ei liigu. PIN-i aken
+   kuulutab OTP-sammu ajal `sotsiaalai-login` kanalis iga 0,5 s. Kanal on
+   sama-päritolu ja sama-brauseri, seega kuulutuse KOHALEJÕUDMINE ongi
+   tõend, et rakendus avaneb juba mujal — siis jääme siia „valmis" teate
+   peale ja nupp jääb NÄHTAVALE, et mobiilis saaks ühe puutega ikkagi siin
+   jätkata. Kuulutust ootame 1,2 s (aken kuulutab 0,5 s takti); kui seda ei
+   tule — teine seade, teine brauser või aken kinni — käib kõik nagu enne. */
 const REDIRECT_SCRIPT = `(function () {
   var msg = document.getElementById("lc-msg");
   var btn = document.getElementById("lc-open");
@@ -61,8 +71,9 @@ const REDIRECT_SCRIPT = `(function () {
   var settled = msg.textContent;
   var deadline = Date.now() + 15000;
   var timer = null;
-  msg.textContent = msg.getAttribute("data-waiting") || settled;
-  btn.hidden = true;
+  var pinTabAlive = false;
+  var channel = null;
+  try { channel = new BroadcastChannel("sotsiaalai-login"); } catch (e) { channel = null; }
   function giveUp() {
     if (timer) clearTimeout(timer);
     msg.textContent = settled;
@@ -74,16 +85,30 @@ const REDIRECT_SCRIPT = `(function () {
     timer = setTimeout(poll, 700);
   }
   function poll() {
+    if (pinTabAlive) return;
     fetch("/api/auth/session", { credentials: "same-origin", cache: "no-store" })
       .then(function (res) { return res.ok ? res.json() : null; })
       .then(function (data) {
+        if (pinTabAlive) return;
         if (data && data.user) { window.location.replace(home); return; }
         again();
       })
       .catch(again);
   }
-  document.body.setAttribute("data-waiting", "1");
-  poll();
+  function startWaiting() {
+    msg.textContent = msg.getAttribute("data-waiting") || settled;
+    btn.hidden = true;
+    document.body.setAttribute("data-waiting", "1");
+    poll();
+  }
+  if (!channel) { startWaiting(); return; }
+  channel.addEventListener("message", function (event) {
+    if (!event || !event.data || event.data.type !== "login-pin-tab") return;
+    pinTabAlive = true;
+    giveUp();
+    try { channel.close(); } catch (e) {}
+  });
+  setTimeout(function () { if (!pinTabAlive) startWaiting(); }, 1200);
 })();`;
 
 function escapeHtml(value) {
