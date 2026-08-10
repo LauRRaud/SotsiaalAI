@@ -34,7 +34,32 @@
     "recording_purpose_star_helper": "STAR-i sisestamise abimaterjal",
     "recording_purpose_mentoring_summary": "mentorluskohtumise kokkuvõte",
     "recording_purpose_covision_summary": "kovisiooni kokkuvõte",
-    "recording_purpose_other": "muu eesmärk"
+    "recording_purpose_other": "muu eesmärk",
+    "speak": {
+      "one": "1 soovib sõna",
+      "many": "{count} soovivad sõna"
+    },
+    "not_configured": "Helikõne teenus ei ole veel seadistatud.",
+    "leave": "Lahku",
+    "join": "Liitu",
+    "start_audio": "Alusta helikõnet",
+    "mic_off": "Mikrofon väljas",
+    "mic_on": "Mikrofon sees",
+    "open_details": "Ava helikõne detailid",
+    "active": "Helikõne aktiivne",
+    "participants_short": "osalejat",
+    "connection": "Ühendus",
+    "cancel_short": "Tühista",
+    "request_to_speak": "Soovin sõna",
+    "end": "Lõpeta kõne",
+    "participants": "Osalejad",
+    "participant": "Osaleja",
+    "host": "host",
+    "participant_lower": "osaleja",
+    "no_participants": "Osalejaid pole.",
+    "speak_requests": "Sõnasoovid",
+    "resolve": "Lahenda",
+    "recording_moderator_only": "Salvestamise nõusolekut saab küsida host või moderaator."
   },
   "field": {
     "meta": {
@@ -4091,7 +4116,8 @@
     "error": "Liitumine ebaõnnestus",
     "invite_not_pending": "See kutse pole enam kehtiv või ei kuulu sellele kontole.",
     "name_label": "Sinu nimi vestluses",
-    "name_required": "Palun sisesta oma nimi."
+    "name_required": "Palun sisesta oma nimi.",
+    "verify_email_first": "Kinnita esmalt oma e-posti aadress, siis saad kutsega liituda."
   },
   "pendingInvite": {
     "title": "Sul on ootel kutse",
@@ -8953,7 +8979,10 @@
       "unit_choose": "Vali ühik",
       "measured_minutes": "Kohal oldud {minutes} min.",
       "manual_entry": "Lisa kirje käsitsi",
-      "manual_hint": "Kasuta seda ainult töö jaoks, mis ei ole külastus — näiteks telefoninõustamine või asjaajamine. Koduskäigud märgi tööpäeva alt ülal."
+      "manual_hint": "Kasuta seda ainult töö jaoks, mis ei ole külastus — näiteks telefoninõustamine või asjaajamine. Koduskäigud märgi tööpäeva alt ülal.",
+      "referral": "Suunamine",
+      "referral_choose": "Vali suunamine",
+      "overrun_saved": "Salvestatud, kuid maht ületab suunamise limiiti:"
     },
     "tabs": {
       "label": "Teenuspäeviku osad",

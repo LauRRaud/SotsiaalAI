@@ -40,6 +40,75 @@ const formatList = (items, limit = 20) => {
   return `${head}, ... (+${items.length - limit} more)`;
 };
 
+/**
+ * KATTEKONTROLL — miks ta siia lisandus.
+ *
+ * See skript oli PARITEEDIkontroll: ta võrdles kolme kataloogi omavahel. Kui võti puudus
+ * KÕIGIST kolmest, oli pariteet korras ja värav roheline — aga kood langes tagasi
+ * kõvakodeeritud eestikeelsele varuvariandile ja inglise keele valinud kasutaja nägi
+ * eesti keelt. Just nii elas `components/rooms/RoomCallBar.jsx`-is 22 võtit: pool
+ * kõneribast oli igas keeles eestikeelne ja ükski roheline gate seda ei näinud.
+ *
+ * Omanik leidis selle SILMAGA, brauserist. Seda ei tohi teist korda juhtuda.
+ *
+ * MIDA SEE EI PÜÜA. Dünaamiliselt koostatud võtmed (`t(`calls.${x}`)`) jäävad välja —
+ * neid ei saa staatiliselt lugeda. Kontroll on seetõttu ALAHINNANG, mitte täisgarantii;
+ * ta püüab kirjavead ja unustatud lisamised, mis on see klass, mis siin päriselt juhtus.
+ */
+const SCAN_DIRS = ["components", "app"];
+const SKIP_DIRS = new Set(["node_modules", ".next", ".git", "generated"]);
+const KEY_PATTERNS = [
+  /\btext\(\s*t\s*,\s*["']([a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)+)["']/g,
+  /\bt\(\s*["']([a-zA-Z0-9_]+(?:\.[a-zA-Z0-9_]+)+)["']/g
+];
+
+async function collectSourceFiles(dir, out = []) {
+  let entries;
+  try {
+    entries = await fs.readdir(dir, { withFileTypes: true });
+  } catch {
+    return out;
+  }
+  for (const entry of entries) {
+    if (SKIP_DIRS.has(entry.name)) continue;
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) await collectSourceFiles(full, out);
+    else if (/\.(jsx?|mjs)$/.test(entry.name)) out.push(full);
+  }
+  return out;
+}
+
+/**
+ * ALAMPUU LOEB SAMUTI OLEMASOLUKS. `components/covision/CovisionLiveSession.jsx`
+ * kutsub `t("covision.live")` TEADLIKULT, et saada kogu alampuu objektina
+ * (`copyObject`) ja lugeda sealt hiljem välju. Lehepõhine loend seda ei sisalda, seega
+ * pelk `baseKeys.has(key)` annaks vale-positiivse — ja vale-positiiv on väravale
+ * surmav: esimese müra peale keegi lülitab ta välja.
+ */
+const resolveKeyPath = (data, key) =>
+  key.split(".").reduce((node, seg) => (isObject(node) ? node[seg] : undefined), data);
+
+async function checkKeyCoverage(baseData, rootDir) {
+  const files = [];
+  for (const dir of SCAN_DIRS) await collectSourceFiles(path.join(rootDir, dir), files);
+
+  const missing = new Map();
+  for (const file of files) {
+    const src = await fs.readFile(file, "utf8");
+    for (const pattern of KEY_PATTERNS) {
+      pattern.lastIndex = 0;
+      let match;
+      while ((match = pattern.exec(src))) {
+        const key = match[1];
+        if (resolveKeyPath(baseData, key) !== undefined) continue;
+        const rel = path.relative(rootDir, file);
+        if (!missing.has(key)) missing.set(key, rel);
+      }
+    }
+  }
+  return missing;
+}
+
 async function main() {
   const files = (await fs.readdir(MESSAGES_DIR)).filter((file) => {
     if (!file.endsWith(".json")) return false;
@@ -103,6 +172,20 @@ async function main() {
   }
 
   console.log(`[i18n:check] All locales match ${BASE_LOCALE}.`);
+
+  const rootDir = path.resolve(__dirname, "..");
+  const uncovered = await checkKeyCoverage(baseData, rootDir);
+  if (uncovered.size) {
+    console.error(
+      `[i18n:check] ${uncovered.size} key(s) used in code but missing from ${BASE_LOCALE}.json —`
+      + " these render their hard-coded fallback in EVERY language:"
+    );
+    for (const [key, file] of [...uncovered].sort(([a], [b]) => a.localeCompare(b))) {
+      console.error(`  - ${key}  (${file})`);
+    }
+    process.exit(1);
+  }
+  console.log("[i18n:check] Key coverage: every statically readable key exists in the catalog.");
 }
 
 main().catch((error) => {

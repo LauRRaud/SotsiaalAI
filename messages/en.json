@@ -34,7 +34,32 @@
     "recording_purpose_star_helper": "STAR entry helper material",
     "recording_purpose_mentoring_summary": "mentoring meeting summary",
     "recording_purpose_covision_summary": "co-vision summary",
-    "recording_purpose_other": "other purpose"
+    "recording_purpose_other": "other purpose",
+    "speak": {
+      "one": "1 wants to speak",
+      "many": "{count} want to speak"
+    },
+    "not_configured": "The audio call service is not set up yet.",
+    "leave": "Leave",
+    "join": "Join",
+    "start_audio": "Start audio call",
+    "mic_off": "Microphone off",
+    "mic_on": "Microphone on",
+    "open_details": "Open call details",
+    "active": "Call active",
+    "participants_short": "participants",
+    "connection": "Connection",
+    "cancel_short": "Cancel",
+    "request_to_speak": "Request to speak",
+    "end": "End call",
+    "participants": "Participants",
+    "participant": "Participant",
+    "host": "host",
+    "participant_lower": "participant",
+    "no_participants": "No participants.",
+    "speak_requests": "Speak requests",
+    "resolve": "Resolve",
+    "recording_moderator_only": "Only the host or a moderator can request recording consent."
   },
   "field": {
     "meta": {
@@ -4091,7 +4116,8 @@
     "error": "Joining failed",
     "invite_not_pending": "This invitation is no longer valid or does not belong to this account.",
     "name_label": "Your name in the chat",
-    "name_required": "Please enter your name."
+    "name_required": "Please enter your name.",
+    "verify_email_first": "Confirm your email address first, then you can accept the invitation."
   },
   "pendingInvite": {
     "title": "You have a pending invitation",
@@ -8953,7 +8979,10 @@
       "unit_choose": "Choose a unit",
       "measured_minutes": "{minutes} min on site.",
       "manual_entry": "Add an entry manually",
-      "manual_hint": "Use this only for work that is not a visit — a phone consultation or paperwork. Record home visits under the work day above."
+      "manual_hint": "Use this only for work that is not a visit — a phone consultation or paperwork. Record home visits under the work day above.",
+      "referral": "Referral",
+      "referral_choose": "Choose a referral",
+      "overrun_saved": "Saved, but the amount exceeds the referral limit:"
     },
     "tabs": {
       "label": "Service log sections",
