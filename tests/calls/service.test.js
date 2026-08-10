@@ -36,9 +36,22 @@ function matchRows(rows, where = {}) {
         if (row[key] != null) return false;
         continue;
       }
-      // Keerukamaid operaatoreid (in, lte, not …) see fake ei modelleeri; nad on juba
-      // ülal käsitletud või neid selles sviidis ei kasutata.
-      if (typeof value === "object" && !(value instanceof Date)) continue;
+      /* SOL-CALL-10: võrdlusoperaatorid on nüüd MODELLEERITUD. Varem lasti nad
+         `continue`-ga läbi, st `startedAt: { lte: cutoff }` ei filtreerinud MITTE
+         MIDAGI — kestuselae test oleks olnud roheline ka siis, kui kood valib kõik
+         käimasolevad salvestused, ka äsja alustatud. Fake, mis tingimuse ära neelab,
+         tõendab oma puudust, mitte koodi. */
+      if (value && typeof value === "object" && !(value instanceof Date)) {
+        const actual = row[key];
+        const time = candidate => (candidate instanceof Date ? candidate.getTime() : candidate);
+        if ("lte" in value && !(time(actual) <= time(value.lte))) return false;
+        if ("lt" in value && !(time(actual) < time(value.lt))) return false;
+        if ("gte" in value && !(time(actual) >= time(value.gte))) return false;
+        if ("gt" in value && !(time(actual) > time(value.gt))) return false;
+        if ("in" in value && !value.in.includes(actual)) return false;
+        if ("not" in value && actual === value.not) return false;
+        continue;
+      }
       if (row[key] !== value) return false;
     }
     return true;
@@ -144,6 +157,16 @@ function createModel(initial = []) {
         }
       }
       return { count };
+    },
+    /* SOL-CALL-10: kvoodilugeja kasutab `aggregate`-i. Ilma temata oleks
+       `readRecordingStorageBudget` fake'i peal alati `null` tagastanud ja
+       kvoodikontroll oleks testides VAIKSELT vahele jäänud — täpselt see
+       „fake ei valideeri" klass, mis 09.08 SOL-SCHEMA-01-t tabas. */
+    async aggregate({ where, _sum } = {}) {
+      const field = Object.keys(_sum || {})[0];
+      const matches = matchRows(rows, where);
+      const total = field ? matches.reduce((sum, row) => sum + Number(row?.[field] || 0), 0) : 0;
+      return { _sum: field ? { [field]: total } : {} };
     }
   };
 }
@@ -162,6 +185,10 @@ function createPrisma() {
     dataDeletionJob: createModel(),
     dataAuditLog: createModel(),
     userDocument: createModel(),
+    // SOL-CALL-10: kvoodilugeja kolm potti + rolli lugemine.
+    materialSubmission: createModel(),
+    agentArtifact: createModel(),
+    user: createModel(),
     roomMessage: createModel(),
     $transaction: async callback => callback(createPrisma())
   };
@@ -1365,6 +1392,118 @@ test("SOL-CALL-06: kustutamata fail annab vea, mitte ok:true", async () => {
 test("SOL-CALL-06: kustutuse tõrge kaardistub 503-ks, mitte vaikseks 200-ks", async () => {
   const source = await readFile(new URL("../../lib/calls/roomRoutes.js", import.meta.url), "utf8");
   assert.match(source, /call\.recording_delete_failed"\) return \{ message, status: 503 \}/);
+});
+
+/* SOL-CALL-10 — kvoot ja kestus. Mõlemad on piirid, mida enne EI OLNUD: salvestus
+   võis kasvada lõputult ja lõpuks kirjutati `UserDocument` ilma ühegi mahupilguta. */
+
+const RECORDING_MB = 1024 * 1024;
+
+function recordingReadyService(prisma, { egressStarts = [], now = () => new Date("2026-08-10T10:00:00Z") } = {}) {
+  return createCallService({
+    prisma,
+    now,
+    egress: {
+      configured: true,
+      startAudioRecording: async ({ fileName }) => {
+        egressStarts.push(fileName);
+        return { egressId: "egress_limits_1" };
+      },
+      stopRecording: async () => ({ ok: true })
+    },
+    recordingStorage: {
+      ensureReady: async () => {},
+      finalizeRecordingFile: async ({ fileName }) => ({
+        storagePath: `uploads/${fileName}`,
+        mimeType: "audio/ogg",
+        fileSizeBytes: 2048,
+        durationSeconds: 7200,
+        checksum: "sha256-limits"
+      }),
+      deleteStoredArtifact: async () => {}
+    }
+  });
+}
+
+async function consentedRecording(service, prisma) {
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const request = await createRecordingRequest({
+    prisma,
+    callSessionId: call.id,
+    userId: "host",
+    canModerate: true,
+    requesterName: "Host"
+  });
+  await service.respondToRecordingConsent({
+    callSessionId: call.id,
+    recordingRequestId: request.id,
+    userId: "host",
+    decision: "CONSENTED"
+  });
+  return { call, request };
+}
+
+test("SOL-CALL-10: täis salvestusruum peatab salvestuse ENNE egressi", async () => {
+  const prisma = createPrisma();
+  const egressStarts = [];
+  const service = recordingReadyService(prisma, { egressStarts });
+  const { call, request } = await consentedRecording(service, prisma);
+
+  // Kliendirolli kvoot on 50 MB; reserv on 120 min × 32 kbps ≈ 28,8 MB.
+  prisma.user.rows.push({ id: "host", role: "CLIENT" });
+  prisma.userDocument.rows.push({ id: "doc_full", ownerId: "host", size: 40 * RECORDING_MB });
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_storage_quota_exceeded/
+  );
+
+  assert.equal(egressStarts.length, 0, "keeldumine peab tulema ENNE providerit — pärast oleks valik 'ületa kvoot' või 'kustuta nõusolekuga saadud heli'");
+  const stored = prisma.callRecordingRequest.rows.find(row => row.id === request.id);
+  assert.equal(stored.status, "READY_TO_RECORD", "start-claim vabastatakse, muidu jääks taotlus igaveseks STARTING-uks");
+});
+
+test("SOL-CALL-10: mahtuv salvestus ei jää kvoodi taha kinni", async () => {
+  const prisma = createPrisma();
+  const egressStarts = [];
+  const service = recordingReadyService(prisma, { egressStarts });
+  const { call, request } = await consentedRecording(service, prisma);
+  prisma.user.rows.push({ id: "host", role: "SOCIAL_WORKER" });
+  prisma.userDocument.rows.push({ id: "doc_small", ownerId: "host", size: 10 * RECORDING_MB });
+
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  assert.equal(egressStarts.length, 1);
+});
+
+test("SOL-CALL-10: kestuselae ületanud salvestus peatatakse automaatselt", async () => {
+  const prisma = createPrisma();
+  let clock = new Date("2026-08-10T10:00:00Z");
+  const service = recordingReadyService(prisma, { now: () => clock });
+  const { call, request } = await consentedRecording(service, prisma);
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  // Kaks tundi ei ole veel möödas: valve ei tohi töötavat salvestust katkestada.
+  clock = new Date("2026-08-10T11:30:00Z");
+  const early = await service.stopOverdueRecordings({});
+  assert.equal(early.scanned, 0, "cutoff peab päriselt filtreerima");
+  assert.equal(prisma.callRecordingRequest.rows.find(row => row.id === request.id).status, "ACTIVE");
+
+  clock = new Date("2026-08-10T13:00:00Z");
+  const swept = await service.stopOverdueRecordings({});
+  assert.equal(swept.scanned, 1);
+  assert.equal(swept.stopped, 1);
+  assert.equal(swept.failed, 0);
+
+  const stopped = prisma.callRecordingRequest.rows.find(row => row.id === request.id);
+  assert.equal(stopped.status, "COMPLETED", "peatamine käib sama teed nagu inimese vajutatud stopp");
+  const actions = prisma.dataAuditLog.rows.map(row => row.action);
+  assert.equal(actions.includes("CALL_RECORDING_AUTO_STOPPED"), true, "automaatne peatamine peab olema eristatav inimese omast");
+  assert.equal(actions.includes("CALL_RECORDING_STOPPED"), true);
+});
+
+test("SOL-CALL-10: kestuse valve elab retention-tsüklis, mitte kommentaaris", async () => {
+  const source = await readFile(new URL("../../lib/retention.js", import.meta.url), "utf8");
+  assert.match(source, /stopOverdueRecordings/);
 });
 
 test("T12: two simultaneous last-leavers end the call once and write one system message (audit 4 K4)", async () => {

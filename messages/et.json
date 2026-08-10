@@ -61,7 +61,9 @@
     "no_participants": "Osalejaid pole.",
     "speak_requests": "Sõnasoovid",
     "resolve": "Lahenda",
-    "recording_moderator_only": "Salvestamise nõusolekut saab küsida host või moderaator."
+    "recording_moderator_only": "Salvestamise nõusolekut saab küsida host või moderaator.",
+    "recording_storage_quota_exceeded": "Salvestusruum on täis — salvestust ei alustatud. Vabasta dokumentide vaates ruumi ja proovi uuesti.",
+    "recording_too_large": "Salvestis ületas lubatud mahu ja seda ei salvestatud."
   },
   "field": {
     "meta": {

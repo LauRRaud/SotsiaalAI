@@ -240,7 +240,14 @@ export default function RoomCallBar({
                 ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.")
                 : error === "call.mic_not_controlled_here"
                   ? micBlockedTitle
-                  : error}
+                  : /* SOL-CALL-10 — kaks mahupiiri, kaks eri lauset. „Ruumi ei ole"
+                       ja „salvestis jäi liiga pikaks" nõuavad inimeselt ERI tegevust,
+                       seega ei tohi neid ühte teksti kokku suruda. */
+                  error === "call.recording_storage_quota_exceeded"
+                    ? text(t, "calls.recording_storage_quota_exceeded", "Salvestusruum on täis — vabasta dokumentide vaates ruumi ja proovi uuesti.")
+                    : error === "call.recording_too_large"
+                      ? text(t, "calls.recording_too_large", "Salvestis ületas lubatud mahu ja seda ei salvestatud.")
+                      : error}
             </div>
           ) : null}
 

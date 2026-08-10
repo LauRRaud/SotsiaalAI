@@ -61,7 +61,9 @@
     "no_participants": "No participants.",
     "speak_requests": "Speak requests",
     "resolve": "Resolve",
-    "recording_moderator_only": "Only the host or a moderator can request recording consent."
+    "recording_moderator_only": "Only the host or a moderator can request recording consent.",
+    "recording_storage_quota_exceeded": "Storage is full — the recording was not started. Free up space in your documents and try again.",
+    "recording_too_large": "The recording exceeded the allowed size and was not saved."
   },
   "field": {
     "meta": {
