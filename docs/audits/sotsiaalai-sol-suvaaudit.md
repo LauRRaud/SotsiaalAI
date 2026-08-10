@@ -2436,14 +2436,29 @@ naaberkaust** (`/…/storage-evil` ei ole `/…/storage` sees — `startswith` �
 **sümling hoidlast välja**). Negatiivkontroll: mõlema värava tühistamine kukutab 4 testi.
 `python -m unittest test_storage_paths test_search_security` 20/20.
 
-**HTTP-negatiivtest: `runtime: not_run`, ja seda TEADLIKULT.** Kaks põhjust:
-arendusmasinas ei ole `rag-service` sõltuvusi (fastapi/chromadb puuduvad), ja **enne
-deploy'd on see test ise rünnak** — ta kirjutaks päris serveris faile hoidlast välja.
-Test on kirjutatud ja ootab: `npm run rag:path:probe`
-(`scripts/rag-path-containment-probe.mjs`) katab `/ingest/file` ja `/upload` kolme vaenuliku
-nimega, `/ingest/text` + `/documents/{id}/source` raja `/etc/passwd`-iga, ja ütleb lõpuks
-välja `find`-käsu, millega serveris tõendada, et ühtegi baiti hoidlast välja ei tekkinud.
-**Jooksuta kohe pärast deploy'd.**
+**HTTP-negatiivtest: JOOKSUTATUD 10.08 pärast deploy'd — `PROBE_OK 8/8` päris
+toodanguteenuse vastu.** Kuni deploy'ni oli ta `runtime: not_run` ja seda teadlikult:
+arendusmasinas ei ole `rag-service` sõltuvusi, ja **enne parandust oleks see test ise
+rünnak** olnud. `npm run rag:path:probe` (`scripts/rag-path-containment-probe.mjs`) katab
+`/ingest/file` ja `/upload` kolme vaenuliku nimega ning `/ingest/text` +
+`/documents/{id}/source` raja `/etc/passwd`-iga.
+
+Tulemus toodangus: kõik kuus vaenulikku nime maandusid **oma doc-kausta hoidla sees**
+(`/var/lib/sotsiaalai-rag/docs/<hash>/…`), `/etc/passwd` andis meie oma salvestatud teksti.
+Kettalt tõendatud kaks korda: `find / -name 'rag-escape-probe-*'` **tühi**, `/tmp` tühi,
+probe-dokumendid koristatud.
+
+**ESIMENE JOOKS ANDIS `PROBE_FAIL 6/7` — ja viga oli SONDIS, mitte serveris.**
+Otsustusreegel oli `path.includes("..") || /rag-escape-probe/.test(path)`. Teine pool on
+**iseenesest tõene**: vaenuliku faili nimi ONGI `rag-escape-probe-…` ja pärast õiget
+puhastust jääb just see nimi tema oma doc-kausta alles. Sond kuulutas seega korrektse
+ohjeldamise „põgenemiseks". Ilma kettakontrollita oleks see saatnud parandaja otsima viga,
+mida ei ole — **või, mis hullem, oleks hiljem päris põgenemise puhul olnud juba
+„teadaolevalt punane" ja seetõttu vaadatud üle**. Parandatud: sond **õpib hoidla juure**
+(saadab kahjutu nimega kontrollfaili ja võtab juureks tema kausta emakausta) ning küsib
+„KUS see fail on", mitte „kas nimi näeb kahtlane välja". Kõva tee sondi sisse ei kirjutatud
+— see oleks teine tõde, mis teenuse kolides vaikselt vananeb. Kontrollfail on ühtlasi
+sondi enda negatiivkontroll (8. rida tulemuses).
 
 ### SOL-RAGSVC-02 — tekstidokumendi `source_path` annab serverifaili lugemise primitiivi — P0
 
@@ -2453,7 +2468,9 @@ välja `find`-käsu, millega serveris tõendada, et ühtegi baiti hoidlast välj
 
 **Vastuvõtukriteerium.** TEXT-sisend peab kas salvestama allikateksti enda hallatavasse hoidlasse või aktsepteerima ainult eelnevalt registreeritud, containment-kontrolliga sisemist faili-ID-d. Suvalist kliendi failiteed ei tohi registrisse ega `FileResponse`-i usaldada. Testida absoluutset teed, `..`, sümlinki ja registrisse käsitsi sattunud välist teed.
 
-**Seis (10.08.2026): DONE (kood); HTTP-negatiivtest deploy-järgne, vt SOL-RAGSVC-01.**
+**Seis (10.08.2026): DONE — HTTP-negatiivtest jooksutatud toodangus, `PROBE_OK 8/8`.**
+`/documents/{id}/source` andis pärast `source_path=/etc/passwd` ingesti **meie oma
+salvestatud teksti**, mitte paroolifaili. Sondi enda vea lugu on SOL-RAGSVC-01 all.
 Valitud on kriteeriumi ESIMENE haru: `/ingest/text` **salvestab allikateksti ise**
 (`<hoidla>/docs/<räsi>/source.md`) ja registri `path` on nüüd meie oma tee. Kliendi
 `source_path` jääb alles ainult päritolusildina metaandmetes — teda ei avata enam kunagi

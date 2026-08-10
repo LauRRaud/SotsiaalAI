@@ -89,10 +89,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 10.08 õhtul (mõõdetud, mitte mäletatud):** `origin/main` = `1858ff61`, lokaalne
-`main` on temast **neli commit'i ees** (SLOG-17/18, RAGSVC-01/02, JOUR-01/02, PRE-02).
-Tööpuu puhas. Push ja deploy ootavad sinu luba. Kolm migratsiooni on samuti deploy'mata:
-`20260810120000`, `20260810140000`, `20260810160000`.
+**Seis 10.08 õhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
+**server on kõik `4c6c9cc9`** — deploy'mata ei ole midagi. **Seitsmes deploy 10.08 17:04
+sinu selgel loal:** viis commit'i (SLOG-17/18, RAGSVC-01/02, JOUR-01/02, PRE-02 + docs) ja
+üks migratsioon (`20260810160000` külastuse org-päritolu). Kontrollitud kohe pärast:
+`migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**, kolm teenust `active`,
+vea-ridu ei ole.
+
+**Deploy järel jooksis ka `rag:path:probe`** (RAGSVC-01/02 tõend, mis ootas teadlikult
+deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili hoidlast
+väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
+faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
 **SOL-süvaaudit: 48/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN). Lahtiseid P0-sid on **neli** ja nad on kahes peatükis: **SOL-NET**

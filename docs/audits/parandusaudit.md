@@ -12,15 +12,21 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 | Tehtud leidu | **48 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
 | Lahtised prioriteedi järgi | **4 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
-| Toodangus | viimane deploy 10.08 (kuues, kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud). **Mõõdetud 10.08 õhtul: `origin/main` = `1858ff61` ja lokaalne `main` on temast NELI commit'i ees** — vt allpool, mis on koodis ja deploy'mata |
+| Toodangus | **seitsmes deploy 10.08 17:04 omaniku selgel loal: server = `main` = `origin/main` = `4c6c9cc9`**, viis commit'i ja üks migratsioon (`20260810160000` külastuse org-päritolu; `20260810120000` ja `20260810140000` olid juba kuuenda deploy'ga sees). Mõõdetud, mitte eeldatud: `migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**, frontend/rag/worker `active`, vea-ridu ei ole. **Kõik seni tehtud parandused on nüüd toodangus** |
 | Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-NET** (2 × P0: NET-01, NET-02); edasi **SOL-SPROF** (2 × P0). Need neli on kogu auditi ainsad lahtised P0-d |
 | Käsil oleva peatüki saba | SOL-PRE 16 lahtist (15 × P1, 1 × P2) · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01/02, SLOG-01/13/14/17/18, RAGSVC-01/02 ja JOUR-01/02 on koodis ja deploy'mata (kolm migratsiooni:
-`20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`, `20260810160000`
-külastuse org-päritolu)**. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
-allpool eraldi veerus.
+**Kõik 48 tehtud leidu on tootmises** (seitsmes deploy 10.08 17:04). Deploy'mata ei ole
+midagi. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+
+**Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
+HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
+`PROBE_FAIL 6/7`, **aga viga oli sondis, mitte serveris**. Kettalt mõõdetuna ei olnud ühtki
+faili hoidlast väljas. Sondi otsustusreegel oli iseenesest tõene (`/rag-escape-probe/`
+vastab vaenuliku faili enda nimele ka pärast korrektset puhastust). Parandatud: sond õpib
+hoidla juure kontrollfailist ja küsib „kus fail on", mitte „kas nimi näeb kahtlane välja".
+Teine jooks: **`PROBE_OK 8/8`**.
 
 ## Peatükid dokumendi järjekorras
 

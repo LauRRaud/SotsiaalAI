@@ -75,21 +75,84 @@ function verdictForIngest(status, body, docId) {
   return { ok: false, detail: `ootamatu ${status}: ${JSON.stringify(body).slice(0, 200)}` };
 }
 
-async function pathStaysInsideStorage(docId) {
+async function registryPath(docId) {
   const { status, body } = await call(`/documents?limit=2000`);
-  if (status !== 200) return { ok: false, detail: `dokumentide loend andis ${status}` };
+  if (status !== 200) return { path: "", detail: `dokumentide loend andis ${status}` };
   const rows = Array.isArray(body?.documents) ? body.documents : Array.isArray(body) ? body : [];
   const row = rows.find((item) => (item?.docId || item?.doc_id) === docId);
-  const path = String(row?.path || row?.source_path || "");
+  return { path: String(row?.path || row?.source_path || ""), detail: "" };
+}
+
+/**
+ * HOIDLA JUUR ÕPITAKSE, MITTE EI KIRJUTATA SISSE.
+ *
+ * Kõva tee (`/var/lib/sotsiaalai-rag/docs`) oleks teine tõde, mis vananeb
+ * vaikselt: teenus võib kolida ja sond ütleks siis „kõik korras" kohta, mida
+ * ta enam ei mõõda. Seepärast saadame KAHJUTU nimega faili, loeme registrist
+ * tema tee ja võtame juureks tema kausta emakausta.
+ */
+async function learnStorageRoot() {
+  const docId = `probe-control-${STAMP}`;
+  const { status, body } = await call("/ingest/file", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      docId,
+      fileName: `harmless-${STAMP}.txt`,
+      mimeType: "text/plain",
+      data: Buffer.from("probe control").toString("base64"),
+      title: "SOL-RAGSVC probe control"
+    })
+  });
+  if (status < 200 || status >= 300) {
+    record("negatiivkontroll — kahjutu nimi salvestub", "2xx", false, `${status}: ${JSON.stringify(body).slice(0, 200)}`);
+    return "";
+  }
+  createdDocIds.push(docId);
+  const { path } = await registryPath(docId);
+  const root = path.slice(0, path.lastIndexOf("/", path.lastIndexOf("/") - 1));
+  record(
+    "negatiivkontroll — kahjutu nimi salvestub ja on registris leitav",
+    "tee on olemas ja tema kaks viimast osa on doc-kaust + failinimi",
+    Boolean(root) && path.endsWith(`harmless-${STAMP}.txt`),
+    path || "registris ei ole teed"
+  );
+  return root;
+}
+
+/**
+ * Kas tee jäi hoidlasse?
+ *
+ * VAREM OLI SIIN VIGA, mis oleks maksnud terve leiu: reegel oli
+ * `path.includes("..") || /rag-escape-probe/.test(path)`. Teine pool on
+ * ISEENESEST TÕENE — vaenuliku faili nimi ONGI `rag-escape-probe-…`, ja pärast
+ * õiget puhastust jääb just see nimi tema oma doc-kausta alles. Sond kuulutas
+ * seega korrektse ohjeldamise „põgenemiseks" ja oleks saatnud parandaja
+ * otsima viga, mida ei ole (mõõdetud 10.08: kettal ei olnud ühtki faili
+ * hoidlast väljas).
+ *
+ * Õige küsimus ei ole „kas nimi näeb kahtlane välja", vaid „KUS see fail on".
+ */
+function pathStaysInsideStorage(path, root) {
   if (!path) return { ok: false, detail: "registris ei ole teed — ei saa tõendada" };
-  const escaped = path.includes("..") || /rag-escape-probe/.test(path);
+  if (!root) return { ok: false, detail: `hoidla juur on teadmata, tee oli ${path}` };
+  const traversal = path.includes("..") || path.includes("\\");
+  const inside = path.startsWith(`${root}/`);
   return {
-    ok: !escaped,
-    detail: escaped ? `TEE VÄLJUS HOIDLAST: ${path}` : `tee jäi hoidlasse: ${path}`
+    ok: inside && !traversal,
+    detail: inside && !traversal
+      ? `tee jäi hoidlasse: ${path}`
+      : `TEE VÄLJUS HOIDLAST (juur ${root}): ${path}`
   };
 }
 
-async function probeIngestFile() {
+async function checkContainment(docId, root) {
+  const { path, detail } = await registryPath(docId);
+  if (!path) return { ok: false, detail: detail || "registris ei ole teed — ei saa tõendada" };
+  return pathStaysInsideStorage(path, root);
+}
+
+async function probeIngestFile(root) {
   for (const name of HOSTILE_NAMES) {
     const docId = `probe-file-${STAMP}-${HOSTILE_NAMES.indexOf(name)}`;
     const { status, body } = await call("/ingest/file", {
@@ -105,7 +168,7 @@ async function probeIngestFile() {
     });
     const first = verdictForIngest(status, body, docId);
     if (first.ok === null) {
-      const inside = await pathStaysInsideStorage(docId);
+      const inside = await checkContainment(docId, root);
       record(`/ingest/file  ${name}`, "400 või tee hoidla sees", inside.ok, inside.detail);
     } else {
       record(`/ingest/file  ${name}`, "400 või tee hoidla sees", first.ok, first.detail);
@@ -113,7 +176,7 @@ async function probeIngestFile() {
   }
 }
 
-async function probeUpload() {
+async function probeUpload(root) {
   for (const name of HOSTILE_NAMES) {
     const docId = `probe-upload-${STAMP}-${HOSTILE_NAMES.indexOf(name)}`;
     const form = new FormData();
@@ -124,7 +187,7 @@ async function probeUpload() {
     const { status, body } = await call("/upload", { method: "POST", body: form });
     const first = verdictForIngest(status, body, docId);
     if (first.ok === null) {
-      const inside = await pathStaysInsideStorage(docId);
+      const inside = await checkContainment(docId, root);
       record(`/upload       ${name}`, "400 või tee hoidla sees", inside.ok, inside.detail);
     } else {
       record(`/upload       ${name}`, "400 või tee hoidla sees", first.ok, first.detail);
@@ -180,8 +243,9 @@ async function cleanup() {
 
 async function main() {
   console.log(`RAG teede piiri probe → ${BASE} (stamp ${STAMP})\n`);
-  await probeIngestFile();
-  await probeUpload();
+  const root = await learnStorageRoot();
+  await probeIngestFile(root);
+  await probeUpload(root);
   await probeTextSourceRead();
   await cleanup();
 
