@@ -89,17 +89,22 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-Lokaalne `main`, `origin/main` ja **server on kõik `841b6fa8`** — deploy'mata ei ole midagi.
+**Seis 10.08 õhtul (mõõdetud, mitte mäletatud):** `origin/main` = `1858ff61`, lokaalne
+`main` on temast **neli commit'i ees** (SLOG-17/18, RAGSVC-01/02, JOUR-01/02, PRE-02).
+Tööpuu puhas. Push ja deploy ootavad sinu luba. Kolm migratsiooni on samuti deploy'mata:
+`20260810120000`, `20260810140000`, `20260810160000`.
 
-**SOL-RAGADMIN on 4/4 — peatükk lõpuni tehtud.** SOL-CW on 17/20 ja kolm lahtist ei ole
-lihtsalt tegemata: CW-09 (kood tehtud, brauseritest tegemata), CW-14 (mehhanism tehtud,
-taimeri lubamine sinu lukustatud järjekorras) ja **CW-19, mis ootab sinu otsust**.
+**SOL-süvaaudit: 48/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN). Lahtiseid P0-sid on **neli** ja nad on kahes peatükis: **SOL-NET**
+(NET-01, NET-02) ja **SOL-SPROF** (SPROF-01, SPROF-02). Kõik ülejäänud peatükid on
+P0-dest tühjad. **Järgmine töö on SOL-NET.** Kui need neli on kaetud, langeb järjekord
+tagasi puhtale dokumendijärjekorrale ja järgmine oleks **SOL-AUTH** (2/15, 13 lahtist).
 
-**Dokumendi järjekorras on esimene lahtine peatükk SOL-AUTH (2/15, 13 lahtist: 8 × P1,
-5 × P2)** — tema leiud on SOL-CW-st ja SOL-RAGADMIN-ist eespool ja jäid vahele.
-Kokku on tehtud **25/357 leidu, 3/35 peatükki**; lahtiseid P0-sid on **21**, kõige rohkem
-SOL-SLOG-is (5) ja SOL-CALL-is (4). Täielik ülevaade koos prioriteedijaotusega:
-[`docs/audits/parandusaudit.md`](../audits/parandusaudit.md).
+SOL-CW on 17/20 ja kolm lahtist ei ole lihtsalt tegemata: CW-09 (kood tehtud, brauseritest
+tegemata), CW-14 (mehhanism tehtud, taimeri lubamine sinu lukustatud järjekorras) ja
+**CW-19, mis ootab sinu otsust**. Täielik ülevaade koos prioriteedijaotusega:
+[`docs/audits/parandusaudit.md`](../audits/parandusaudit.md); **olekut kannab raport ise**,
+iga leiu all on Seis-lõik.
 
 **SOL-SCHEMA-01 on uus P0 ja ta muudab seda, mida „JTA-V1 on valmis ootama" tähendas.**
 `CaseWorkMeetingNoteEntry` mudel ei kandnud kaht veergu, mis andmebaasis on `NOT NULL` ilma

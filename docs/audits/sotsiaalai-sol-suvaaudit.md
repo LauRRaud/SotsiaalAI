@@ -3308,6 +3308,65 @@ päriselt muutva fake'iga; parandusahelat ma eraldi ei mudeldanud.
 
 **Vastuvõtukriteerium.** `RECALLED` kirje detail peab tagastama ainult sisuta ajaloomarkeri või 404 ning ei tohi muuta `openedAt` väärtust. Kõik assign/transition/handover rajad peavad terminalolekus serveris sulguma. Päris DB võistlustest peab katma open-vs-recall ja assign-vs-recall mõlemad järjestused ning tõendama, et recall-võidu järel ei tagasta ükski organisatsiooni API sisumarkerit.
 
+**Seis (10.08.2026): DONE — terminalne seis ei anna sisu ega tööd. Sond `npm run org:recall:probe` 42/42 päris PostgreSQL-is.**
+
+Invariant on üks lause ja ta on kahes tükis, sest tema kaks poolt on eri asjad:
+
+- **sisu** — `projectSourcePackage()` tagastab `recalledAt` korral **`null`**. Värav on
+  projektsiooni sees, mitte kutsujas: see funktsioon on ainus uks sisu juurde ja iga
+  tulevane kutsuja pärib värava tasuta.
+- **töö** — `isTerminalInboxStatus()` (`lib/org/constants.js`) on **tuletatud
+  seisumasinast** (`INBOX_STATUS_TRANSITIONS[x].length === 0`), mitte teine käsitsi hoitud
+  loend. Teda kontrollivad `assignWork`, `transitionInboxItem`, `handOverWork` ja
+  `respondToAssignment`. Tundmatu seis loetakse terminaliks — fail-closed.
+
+Detail tagastab **sisuta ajaloomarkeri, mitte 404**: kirje ise jääb `includeClosed=1`
+loendis nähtavaks, seega 404 tekitaks vastuolu, kus koordinaator näeb nimekirjas rida,
+mida avada ei saa. Marker on `sourceWithheldReason: "RECALLED"` + `recalledAt`.
+
+**Kolm asja, mida raportis ei olnud, aga mis sama juure all olid:**
+
+1. **`urgencyDeclaredBySender` on saatja oma tekst** organisatsiooni tabelis. Tagasivõtmine
+   kustutab selle koopia (`recallInboxItemForSourceWithin`), ja loend maskeerib ta ka
+   vanadel ridadel, mis võeti tagasi enne seda parandust.
+2. **Avamise võistlus ei olnud lugemisega lahendatav.** Esimene katse kontrollis mälus
+   loetud `recalledAt`-i — aga `findUnique` võib olla vananenud ja samaaegne tagasivõtmine
+   commit'ib lugemise ja otsuse vahel. Nüüd on **kirjutus kohtunik**: `updateMany({openedAt:
+   null, recalledAt: null})` on korraga idempotentsus, võistlusvärav JA tõendiallikas — kui
+   ta ei kirjutanud, loetakse värskelt üle, MIKS ta ei kirjutanud.
+3. **Seisukontroll üksi ei püüa võistlust** — ta mõõdab hetke, mis on möödas enne, kui ta
+   jõuab otsustada. Kõik kirjutavad rajad võtavad nüüd `SELECT … FOR UPDATE` postkastikirje
+   real **enne lugemist**, ühesuguses järjekorras (kirje rida → määramised).
+
+**Tõendus.** `scripts/org-inbox-recall-probe.mjs` on **deterministlik, mitte
+`Promise.all`-lootus**: ta hoiab luku juba võtnud tehingut lahti, käivitab teise poole,
+**mõõdab et see OOTAB**, laseb siis luku lahti ja mõõdab tulemust. Kaetud on mõlemad
+järjestused mõlemal võistlusel — open-vs-recall (recall võidab: sisu ei tule ja `openedAt`
+jääb `null`; open võidab: sisu tuleb ja recall saab ausa 409) ja assign-vs-recall
+(recall enne: määramine kukub `inbox_item_terminal`-iga; assign enne: recall ootab ära ja
+**lõpetab just tekkinud määramise**, kirje lõpeb `RECALLED`-is).
+
+**Negatiivkontroll on kahekihiline.** Sondis endas on „tavaline kirje töötab endiselt"
+plokk (sisu tuleb, `openedAt` tekib, määramine ja üleandmine õnnestuvad). Lisaks jooksutasin
+sondi **vana koodi vastu**: `21 passed, 21 failed` — sh „assigning work on a recalled item
+is refused — **expected rejection, got success**", „opening a recalled item does NOT stamp
+openedAt" ja „assign-first: the assignment created under the lock is ENDED by the recall".
+Sond mõõdab täpselt seda, mida leid väitis.
+
+**Brauseris läbi käidud** (päris sessioon, `ai.specialist.a` koordinaatorina, kaks kirjet
+kõrvuti): tagasivõetud kirje leht ei kanna olukorra teksti ega kiirusmärget, näitab
+tagasivõtu teadet ja **ei paku ühtki nuppu**; avamise teade („sinu avamine on pöördujale
+nähtav") on peidus, sest avamist ei toimunudki. Kõrvalolev tavaline kirje näitab kõike —
+maskeerimine on sihitud, mitte üldine. HTTP-tasemel: `GET .../inbox/{id}` → `source: null`,
+`POST .../assign` → **409 `org.errors.inbox_item_terminal`**.
+
+**Väravad:** `npm test` 3395/3395 · `i18n:check` OK (uued võtmed et/en/ru) · eslint puhas ·
+`npm run org:recall:probe` 42/42.
+
+**NOT_PROVEN:** kolme muu terminaalse seisu (`CLOSED`, `REJECTED`) sisu **ei ole**
+peidetud ja see on teadlik — need on organisatsiooni enda töö ajalugu, mitte saatja
+tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil kolmel.
+
 ### SOL-PRE-03 — eelpöördumine möödub teenusekaardi avaldamis- ja moderatsioonipiirist — P1
 
 **Tõend.** Tavaline teenusekaardi API lubab `NEEDS_REVIEW` eelvaadet ainult administraatorile ja tagastab muidu üksnes `PUBLISHED` read (`app/api/service-map/entries/route.js:28-46`; `lib/serviceMap/entriesQueryPolicy.js:1-16`; `lib/serviceProviderProfiles.js:1142-1154`). Eelpöördumise assistent pärib aga iga autentitud kasutaja jaoks korraga `PUBLISHED` ja `NEEDS_REVIEW` read (`lib/preInquiries.js:1697-1789`). Salvestuse `resolveRecipient()` kasutab omakorda pelka `findUnique({id})` päringut ilma `status`-piirita, nii et teadaoleva ID-ga sobivad ka `DRAFT` ja `HIDDEN` (`lib/preInquiries.js:481-501`). Serializer tagastab valitud kirje nime, aadressi, telefoni, e-posti ja veebilehe (`lib/preInquiries.js:630-640`).
