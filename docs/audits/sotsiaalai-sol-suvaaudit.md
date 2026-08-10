@@ -1633,6 +1633,40 @@ rajal ei ole; klient saab tulemuse kätte järgmise päringuga, mis näeb valmis
 
 **Vastuvõtukriteerium.** Salvestusmaht vajab andmebaasis atomaarset kasutajapõhist reservatsiooni/loendurit, mis hõlmab dokumente, materjale ja artefakte ning vabastatakse kustutamisel või vea korral. Paralleelsustestid peavad täitma limiidi lähedale ja saatma korraga mitu upload/create/update päringut, millest võib võita ainult limiiti mahtuv hulk.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (8/8).**
+
+**PIIR KEHTIS AINULT ÜHELE PÄRINGULE KORRAGA.** Neli rada — tavaline üleslaadimine, helifaili
+üleslaadimine, artefakti loomine ja artefakti muutmine — lugesid kasutaja senise mahu
+agregaatpäringuga ja lõid rea ALLES HILJEM. Kaks päringut mahtusid seega mõlemad VANA summa järgi
+ära ja ületasid koos limiidi; kasutaja sai rohkem püsisalvestust kui pakett lubab ja järgnev
+tavakasutus lukustus ootamatult „üle kvoodi" seisu.
+
+**Mõõtmine ja kirjutus ühes tehingus.** `lib/documents/storageQuota.js` võtab kasutajapõhise
+nõuandeluku, mõõdab summa ja jooksutab kirjutuse **sama tehingu sees** (`write(tx)`). Kui kirjutus
+jookseks väljaspool, oleks tulemus täpselt vana kood. Teine päring ootab luku taga ja mõõdab siis
+juba uut summat.
+
+**Miks lukk, mitte loenduriveerg.** Kanooniline maht on tuletatav summa mitmest tabelist ja tema
+ainus tõde on nendes tabelites endis. Eraldi loendur oleks neljas koht, mida peaks iga kustutuse ja
+iga muutuse peale sünkroonis hoidma — ja tema lahknemine oleks nähtamatu. Lukk annab sama
+garantii ilma teist tõde loomata ja ilma migratsioonita.
+
+**Asendus vabastab oma senise mahu.** Muutmine ei ole lisamine: `releaseBytes` hoiab ära selle, et
+sama suure sisu asendamine täis kvoodi all põhjendamatult kukuks. Eraldi mõõdetud mõlemat pidi.
+
+**Üleslaadimine sai ühtlasi SOL-DOC-04 lepingu.** Fail läheb esmalt ajutisse faili ja avaldatakse
+sama tehingu sees viimasena, seega kvoodi 413 ei jäta enam faili kettale.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run storage:quota:probe`, **8/8**): ruumi kahele + neli
+võistlejat → õnnestub täpselt kaks, ülejäänud saavad 413, **lõppsumma ei ületa limiiti** · sama
+päevase üleslaadimispiiriga (429) · asendus mahub, kasvav asendus ei mahu. Negatiivkontroll näitab,
+et vana muster ületab sama samaaegsuse all limiidi.
+
+**Aus piir mõõtmises.** Sond mõõdab lukukihti päris andmebaasi vastu, mitte HTTP-marsruute; et
+marsruudid teda ka kasutavad ja summat enam väljaspool ei loe, valvab lähtekoodi-leping. Kvoodi
+„vabastamine kustutamisel" tuleb kanoonilisest summast iseenesest: kustutatud rida ei ole enam
+summas.
+
 ### SOL-RES-01 — kasutaja ei saa oma uuringut kustutada ja tellimuse lõpp sulgeb ka lugemise — P1
 
 **Tõend.** Kõik uuringu list/detail/stream/DELETE rajad kasutavad `requireResearchAuth()` funktsiooni, mis nõuab alati aktiivset tellimust (`lib/research/auth.js:17-57`, `app/api/research/jobs/route.js:121-155`, `app/api/research/jobs/[id]/route.js:57-96`). See erineb dokumentide kanoonilisest kõvast reeglist, mille järgi oma failide ja tulemuste GET/DELETE ei sõltu tellimusest (`lib/documents/server.js:98-117`), ning platvorm lubab, et ligipääs oma andmetele ei aegu (`docs/platvormi arendus/SotsiaalAI.md:752-754`). Lisaks näitab Minu dokumentide UI kustutamisnuppu ainult terminaluuringule ja ootab päriselt kustutamist (`components/documents/DocumentsPage.jsx:382-392`, `:531-545`), kuid serveri DELETE kutsub ainult `cancelResearchJob()`. Terminaltöö puhul tagastab see kohe midagi muutmata ja route vastab ikkagi eduga `status: cancelled`; DB-rida jääb alles (`app/api/research/jobs/[id]/route.js:79-96`, `lib/research/jobStore.js:447-471`).
