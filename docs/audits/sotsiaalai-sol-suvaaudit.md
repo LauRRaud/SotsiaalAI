@@ -1152,6 +1152,24 @@ skeemitasand, mitte päris LiveKit Egress. Commit'id `c58f6c3c` (alus) ja `12f89
 
 **Vastuvõtukriteerium.** Salvestuse start vajab atomaarset claim'i koos osalejaskonna/nõusoleku revisjoniga; join/leave/consent/withdraw peavad sama call-lock'i või fencing-versiooni all kas starti katkestama või enne egressi uue rosteri uuesti kinnitama. Päris DB + kontrollitava provideriga test peab peatama starti enne providerit, provideris ja enne ACTIVE update'i ning võistlema join'i ja withdraw'ga; mitte üheski järjestuses ei tohi egress salvestada nõusolekuta osalejat.
 
+**Seis (10.08.2026): DONE — atomaarne claim, fencing-loend, tingimuslikud üleminekud ja 3 võidujooksutesti; rakenduse runtime: not_run.**
+
+Start on nüüd claim, mitte kavatsus. `READY_TO_RECORD → STARTING` on tingimuslik
+`updateMany` (CAS), nõusolekut kontrollitakse ALLES claim'i järel, ja enne `ACTIVE`-t
+võrreldakse `CallSession.rosterVersion`-i claim'i hetke väärtusega. Loendit kasvatavad
+liitumine, lahkumine ja iga nõusolekuotsus. Selle mõte on, et liituja EI PEA starti
+„püüdma" — tal piisab numbri kasvatamisest; püüdmisel oleks alati aken, kasvatamisel ei
+ole. Fencing'u katkestus peatab äsja käivitatud egress'i ja paneb faili karantiini.
+
+Üks asi, mis peaaegu märkamata jäi: `updateRecordingReadiness` ei puuduta `STARTING`-ut
+(rida kuulub starterile), seega claim'i ajal saabunud tagasivõtt ei jõudnud reale.
+Claim'i vabastus arvutab pildi nüüd uuesti — muidu oleks tagasi võetud nõusolekuga
+taotlus jäänud `READY_TO_RECORD`-iks ja järgmine start oleks kohe uuesti alustanud.
+
+KATMATA: kriteerium nõuab testi „päris DB + kontrollitava provideriga". Võidujooksud on
+tõendatud fake-prisma ja süstitava provideri peal (aken on päris providerikutse sees, mitte
+kunstlik `await`), päris PostgreSQL-i ja LiveKiti vastu mitte. Commit `88e19c82`.
+
 ### SOL-CALL-03 — provider võib salvestada ilma taastatava ACTIVE-seisuta — P0
 
 **Tõend.** `startRecording()` seab faili PROCESSING-uks ja käivitab `startAudioRecording()`; ainult provider-start'i enda erind märgib faili FAILED-iks (`lib/calls/service.js:896-923`). Pärast provider'i edu kirjutatakse egressId faili ning alles siis taotlus ACTIVE-ks (`:925-941`). Nende kahe DB update'i ümber pole catch-kompensatsiooni: kummagi vea korral route tagastab 500, kuid providerile stop'i ei saadeta ja DB võib sisaldada egressId-ta PROCESSING või READY taotlust. `createConfiguredEgressProvider()` ei paku list/status reconcile'i ega webhook'i (`lib/calls/egress.js:17-58`). Samuti võivad import või SDK-kutse määramata ajaks ootele jääda, sest rakenduse timeout/abort puudub.
@@ -1160,7 +1178,30 @@ skeemitasand, mitte päris LiveKit Egress. Commit'id `c58f6c3c` (alus) ja `12f89
 
 **Vastuvõtukriteerium.** Enne providerikutset peab DB-s olema püsiv STARTING claim/attempt-ID; provider-start peab olema idempotentne ning egressId taastatav. Iga järgnev DB-viga peab käivitama tõendatud provider-stop'i või durable reconcile'i. SDK-kutsetel peab olema timeout. Veasüstetestid peavad katkestama mõlemad DB update'id pärast päris/fake provider-start'i ja tõendama, et ühtki tundmatut egressi ei jää.
 
+**Seis (10.08.2026): DONE — püsiv STARTING claim, kompensatsioon mõlemal DB-tõrkel, ruumipõhine orvukontroll ja 3 veasüstetesti; rakenduse runtime: not_run.**
+
+Enne providerikutset on DB-s püsiv claim (`startClaimId` + `startClaimedAt` lease'iga,
+sama muster nagu SOL-RAGADMIN-03). Mõlemad kirjutused providerikutse JÄREL on nüüd
+kompenseeritud: failikirjutuse tõrge ja seisukirjutuse tõrge saadavad mõlemad providerile
+tõendatud stopi ning vabastavad claim'i — vana kood tagastas 500 ja jättis egress'i käima.
+Kinnitamata jäänud stop läheb `CALL_EGRESS_STOP` järjekorda.
+
+Aegunud start on eraldi juhtum: timeout EI OLE tõend, et start ei jõudnud kohale, ja siis
+me egressId-d EI TEA. Selleks on `listActiveRoomEgress` + `CALL_EGRESS_ORPHAN_STOP`, mis
+otsib orvu ruumi kaudu üles. SDK-timeout tuli juba `c58f6c3c`-ga.
+
+KATMATA: „provider-start peab olema idempotentne" ei ole tehtud — LiveKitile ei saadeta
+idempotentsusvõtit, seega taasproov võib teoreetiliselt teise egress'i sünnitada. Praegu
+kaitseb selle vastu CAS (kaotaja ei jõua providerini), mitte provider ise. Commit `88e19c82`.
+
 ### SOL-CALL-04 — paralleelne salvestuse Start võib käivitada mitu egressi — P1
+
+**Märkus (10.08.2026, EI OLE DONE).** SOL-CALL-02 CAS sulgeb selle leiu peamise raja:
+tingimuslik `READY_TO_RECORD → STARTING` tähendab, et kahest paralleelsest start-kutsest
+jõuab providerini täpselt üks (tõendatud testiga „kaks paralleelset starti annavad ÜHE
+egress'i"). Kriteeriumist on aga katmata kaks osa: igal katsel EI OLE unikaalset
+attempt/file key'd (failiplaceholder on endiselt jagatud) ja kordus EI TAGASTA olemasolevat
+starti, vaid põrkab `call.recording_not_ready`-ga. Leid jääb seetõttu lahtiseks.
 
 **Tõend.** Kaks `startRecording()` kutset võivad mõlemad lugeda sama `READY_TO_RECORD` taotluse ja sama nõusolekuseisu (`lib/calls/service.js:876-895`). Taotlusel pole STARTING claim'i ega tingimuslikku `READY → ACTIVE` update'i. Mõlemad kasutavad sama või võistluses loodud failiplaceholderit, kutsuvad eraldi `startAudioRecording()` ja kirjutavad hiljem oma egressId sama faili reale (`:896-940`). Skeemi/migratsiooni osaline unikaalindeks tagab ainult ühe avatud request'i kõne kohta, mitte ühe start-attempt'i või faili (`prisma/migrations/20260721000000_rooms_calls_v1/migration.sql:51-60`; `prisma/schema.prisma:3585-3612`).
 

@@ -9,9 +9,9 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **26 / 357** |
+| Tehtud leidu | **28 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **20 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **18 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `99c68ef3`, neljas deploy 10.08 kell 00:03; migratsioon `20260809200000` on tootmisbaasis mõõdetult kohal |
 | Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-CALL** (13 lahtist: 4 × P0, 6 × P1, 3 × P2) |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
@@ -36,7 +36,7 @@ allpool eraldi veerus.
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 1/13 | **3** | 6 | 3 | **käsil**, CALL-01 tehtud |
+| Kõned ja salvestus | SOL-CALL | 3/13 | **1** | 6 | 3 | **käsil**, CALL-01/02/03 tehtud |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
@@ -65,7 +65,9 @@ allpool eraldi veerus.
 - **SOL-AUTH-01, AUTH-02**
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
-- **SOL-CALL-01** — vastuvõtukriteeriumist on kaks osa katmata, vt leiu Seis-lõiku
+- **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
+  Seis-lõike. SOL-CALL-04 peamine rada on CALL-02 CAS-iga suletud, aga kaks kriteeriumi
+  osa on täitmata ja leid jääb **lahtiseks** (märkus tema all raportis).
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
