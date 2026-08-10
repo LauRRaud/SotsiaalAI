@@ -96,6 +96,7 @@
     "rag:ingest:kov": "node scripts/ingest-kov-rag.mjs",
     "rag:ingest:rt-national": "node scripts/ingest-national-rt-xml.mjs",
     "rag:ingest:ajakiri": "node scripts/ingest-ajakiri-sotsiaaltoo.mjs",
+    "rag:path:probe": "node scripts/rag-path-containment-probe.mjs",
     "rag:audit:freshness": "node scripts/audit-rag-source-freshness.mjs",
     "rag:hybrid:test": "node scripts/test-rag-hybrid-search.mjs",
     "rag:smoke:v1": "node scripts/smoke-rag-v1-contract.mjs",

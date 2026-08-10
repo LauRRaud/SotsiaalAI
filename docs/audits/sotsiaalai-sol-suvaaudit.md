@@ -2411,6 +2411,40 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 
 **Vastuvõtukriteerium.** Kõik failinimed tuleb serveris basename'iks normaliseerida, lõpptee `resolve()`-ida ja tõendada, et see jääb konkreetse dokumendi hoidla sisse; absoluutne, `..`, eraldajate ja sümlinkide kaudu põgenev tee peab andma 400. HTTP-negatiivtest peab katma mõlemad endpointid ning tõendama, et ükski bait ei teki väljaspool ajutist RAG-hoidlat.
 
+**Seis (10.08.2026): DONE (kood); HTTP-negatiivtest deploy-järgne, vt allpool.**
+Parandatud koos SOL-RAGSVC-02-ga — kaks leidu, üks viga: kliendi tekst kasutati failiteena
+ilma tõendamata, et ta jääb hoidlasse.
+
+- **Uus `rag-service/storage_paths.py`** (eraldi moodul samal põhjusel, mis
+  `search_security.py`: `main.py` impordib fastapi/chromadb/openai ja teda ei saa
+  ühiktestis laadida — **piir, mida ei saa testida, ei ole piir**).
+- **KAKS VÄRAVAT JÄRJEST, mitte üks.** `safe_basename()` vastab küsimusele „mis on selle
+  faili nimi", `resolve_within()` küsimusele „kas see tee on meie oma". Teine ei ole
+  esimese pärast üleliigne: `doc_dir` ise võib olla sümling.
+- **`_process_ingest_file`** kasutab neid mõlemat; ebaõnnestumine annab **400**. Registri
+  `fileName` on nüüd see nimi, mis päriselt kettal on, mitte kliendi oma.
+- **Leiu tuum ühe lausega:** Pythoni `/` EI OLE liitmine. `Path("/srv/storage/docs/abc") /
+  "/etc/cron.d/x"` == `Path("/etc/cron.d/x")` — vasak pool visatakse ära. Seda ei näe koodi
+  lugedes, kui seda mustrit ei tunne, ja just seepärast on selle peal nüüd nimeline test.
+- **Windowsi eraldaja `\` võeti eraldi maha.** POSIX-il ei ole ta kataloogieraldaja, seega
+  `Path(...).name` jätab `..\..\evil.dll` TERVIKUNA alles — vana `_sanitize_filename`
+  asendas ta alles hiljem `_`-ga, aga `_process_ingest_file` ei kutsunud teda üldse.
+
+**Testid.** `rag-service/test_storage_paths.py` (uus, 15 testi: absoluutne tee, `..`,
+Windowsi eraldaja, NTFS-i vooeraldaja `:`, puhas punktijada, tühi string, **sama prefiksiga
+naaberkaust** (`/…/storage-evil` ei ole `/…/storage` sees — `startswith` ütleks JAH) ja
+**sümling hoidlast välja**). Negatiivkontroll: mõlema värava tühistamine kukutab 4 testi.
+`python -m unittest test_storage_paths test_search_security` 20/20.
+
+**HTTP-negatiivtest: `runtime: not_run`, ja seda TEADLIKULT.** Kaks põhjust:
+arendusmasinas ei ole `rag-service` sõltuvusi (fastapi/chromadb puuduvad), ja **enne
+deploy'd on see test ise rünnak** — ta kirjutaks päris serveris faile hoidlast välja.
+Test on kirjutatud ja ootab: `npm run rag:path:probe`
+(`scripts/rag-path-containment-probe.mjs`) katab `/ingest/file` ja `/upload` kolme vaenuliku
+nimega, `/ingest/text` + `/documents/{id}/source` raja `/etc/passwd`-iga, ja ütleb lõpuks
+välja `find`-käsu, millega serveris tõendada, et ühtegi baiti hoidlast välja ei tekkinud.
+**Jooksuta kohe pärast deploy'd.**
+
 ### SOL-RAGSVC-02 — tekstidokumendi `source_path` annab serverifaili lugemise primitiivi — P0
 
 **Tõend.** `/ingest/text` võtab kliendi `metadata.source_path` väärtuse ja salvestab selle registri `path` väljale (`rag-service/main.py:3576-3589`, `:3617-3665`). `GET /documents/{doc_id}/source` avab TEXT-kirje `Path(entry["path"])` väärtuse ilma hoidla-containment'i kontrollita ja tagastab selle `FileResponse`-ina (`:4224-4242`). Eelnev admini catch-all lubab samal administraatoril mõlemat päringut teha.
@@ -2418,6 +2452,35 @@ Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
 **Mõju.** Adminikonto kaudu saab lugeda RAG-protsessile nähtavaid kohalikke faile, sealhulgas keskkonna-/teenusefaile ja võtmeid; leitud teenusevõtmeid saab kasutada täiendavaks liikumiseks. See ei ole tavapärane teadmisteallika eelvaade, sest tee ei pea osutama ingestitud ega RAG-hoidlas olevale failile.
 
 **Vastuvõtukriteerium.** TEXT-sisend peab kas salvestama allikateksti enda hallatavasse hoidlasse või aktsepteerima ainult eelnevalt registreeritud, containment-kontrolliga sisemist faili-ID-d. Suvalist kliendi failiteed ei tohi registrisse ega `FileResponse`-i usaldada. Testida absoluutset teed, `..`, sümlinki ja registrisse käsitsi sattunud välist teed.
+
+**Seis (10.08.2026): DONE (kood); HTTP-negatiivtest deploy-järgne, vt SOL-RAGSVC-01.**
+Valitud on kriteeriumi ESIMENE haru: `/ingest/text` **salvestab allikateksti ise**
+(`<hoidla>/docs/<räsi>/source.md`) ja registri `path` on nüüd meie oma tee. Kliendi
+`source_path` jääb alles ainult päritolusildina metaandmetes — teda ei avata enam kunagi
+failina.
+
+**Kõrvalkasu, mis ei olnud kriteeriumis:** allikavaade näitab nüüd SEDA teksti, mis
+päriselt vektoritesse läks. Varem osutas ta kettal olevale failile, mis võis vahepeal olla
+muutunud või olla hoopis muu asi.
+
+**Containment ei ole ainult allalaadimisel.** Auditi tõend nimetas
+`GET /documents/{id}/source`, aga sama registri `path` avatakse veel **viies kohas** ja igaüks
+neist oleks andnud sama lugemisprimitiivi ühe sammu kaudu:
+`_load_pdf_pages()`, artiklite ingesti failisuurus, `reindex` FILE / URL / TEXT harud ja
+metaandmete uuendus. Kõik käivad nüüd läbi `_storage_path_or_404()`. Reindeks oli neist
+kõige vaiksem: ta LOEB faili ja paneb sisu vektoritesse, kust ta tuleb välja tavalise
+otsinguga.
+
+**Vastus on 404, mitte 400.** Kutsuja küsib dokumendi allikat; hoidlast välja osutav rida
+ei ole „vigane päring", vaid „sellist allikat ei ole".
+
+**Vana register.** Ridu, mille `path` osutab hoidlast välja (varem CLI-ingestiga
+salvestatud), enam ei serveerita — nad annavad 404 ja logisse jääb hoiatus. See on
+kriteeriumi „registrisse käsitsi sattunud väline tee" haru ja ta on **teadlik
+funktsionaalne muutus**: nende dokumentide allikavaade lakkab töötamast, kuni nad uuesti
+ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
+
+**Testid ja runtime:** vt SOL-RAGSVC-01 Seis (sama sviit, sama probe).
 
 ### SOL-RAGSVC-03 — puuduva teenusevõtmega lülitub RAG autentimine välja — P1
 

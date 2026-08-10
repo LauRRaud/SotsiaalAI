@@ -44,6 +44,12 @@ from search_security import (
     build_general_search_where,
     is_general_search_metadata_allowed,
 )
+from storage_paths import (
+    PathOutsideStorage,
+    doc_file_path,
+    resolve_within,
+    safe_basename,
+)
 
 # OpenAI embeddings
 from openai import OpenAI, OpenAIError, RateLimitError
@@ -1102,16 +1108,24 @@ def _doc_dir(doc_id: str) -> Path:
     return d
 
 def _sanitize_filename(name: str, fallback: str = "document.pdf") -> str:
-    base = Path(name).name
-    if not base or base in {".", ".."}:
-        base = fallback
-    base = re.sub(r"[\\/:]+", "_", base)
-    base = base.strip()
-    if not base:
-        base = fallback
-    if "." not in base and "." in fallback:
-        base = f"{base}{Path(fallback).suffix}"
-    return base
+    # Üks reegel, üks koht (SOL-RAGSVC-01): teine koopia lahkneks vaikselt ja
+    # täpselt siin oli vahe kallis — `main.py` vana versioon ei võtnud `\` maha.
+    return safe_basename(name, fallback)
+
+
+def _storage_path_or_404(raw_path: object, what: str) -> Path:
+    """Registris olev tee, mis TÕENDATULT jääb hoidlasse (SOL-RAGSVC-02).
+
+    404, mitte 400: kutsuja küsib dokumendi allikat ja hoidlast välja osutav
+    rida ei ole „vigane päring", vaid „sellist allikat ei ole". Vana register
+    võib sisaldada ridu, mille `path` osutab suvalisse serverikohta — nemad
+    kaovad siit vaikselt ära ega anna kellelegi baiti.
+    """
+    try:
+        return resolve_within(STORAGE_DIR, str(raw_path or ""))
+    except PathOutsideStorage:
+        logger.warning("Refused to serve %s outside RAG storage: %r", what, raw_path)
+        raise HTTPException(404, f"Stored {what} is missing")
 
 # --- OpenAI embedding helpers ---
 # OpenAI embeddings API limits (text-embedding-3-*): <=2048 inputs and
@@ -3401,8 +3415,18 @@ def _process_ingest_file(
         raise HTTPException(415, f"MIME not allowed: {mime}")
 
     # save raw
+    #
+    # SOL-RAGSVC-01 (P0). Siin oli `raw_path = d / file_name` ja `file_name`
+    # tuli muutmata kliendilt — nii `/ingest/file` JSON-ist kui `/upload`
+    # vormiväljast. Pythoni `/` ei ole liitmine: absoluutne parem pool viskab
+    # vasaku ära, seega `fileName: "/etc/cron.d/x"` kirjutas sinna, kuhu ta
+    # ütles. Nüüd võetakse nimest basename JA tõendatakse, et tulemus jääb
+    # hoidlasse — kaks eri väravat, vt `storage_paths.py`.
     d = _doc_dir(doc_id)
-    raw_path = d / file_name
+    try:
+        raw_path = doc_file_path(d, file_name, fallback="document.bin", storage_root=STORAGE_DIR)
+    except PathOutsideStorage:
+        raise HTTPException(400, "Invalid fileName")
     raw_path.write_bytes(raw)
     logger.info("Saved ingest file '%s' (%0.2f MB) for doc_id=%s", raw_path, size_mb, doc_id)
 
@@ -3459,7 +3483,9 @@ def _process_ingest_file(
 
     reg_entry = {
         "type": "FILE",
-        "fileName": file_name,
+        # Registrisse läheb see nimi, mis PÄRISELT kettal on — mitte see, mille
+        # klient saatis. Muidu näitaks allalaadimine nime, mida ei eksisteeri.
+        "fileName": raw_path.name,
         "mimeType": mime,
         "lastIngested": now_iso(),
         "path": str(raw_path),
@@ -3614,6 +3640,33 @@ def ingest_text(payload: IngestText, request: Request):
             observability=observability,
         )
 
+    # SOL-RAGSVC-02 (P0). ALLIKAS SALVESTATAKSE MEIE ENDA HOIDLASSE.
+    #
+    # Varem läks registri `path` välja kliendi `metadata.source_path` — suvaline
+    # string, mille `GET /documents/{id}/source` avas `FileResponse`-ina. See ei
+    # olnud teadmisteallika eelvaade, vaid serverifaili lugemise primitiiv:
+    # tee ei pidanud osutama ühelegi ingestitud failile.
+    #
+    # Kirjutame nüüd selle teksti, mille me ise indekseerisime. Nii on
+    # allikavaade tõesti SEE, mis vektoritesse läks (varem võis fail kettal
+    # olla vahepeal muutunud või üldse muu asi), ja `path` on definitsiooni
+    # järgi hoidla sees.
+    stored_source: Optional[Path] = None
+    try:
+        # Tükkidel on `text` väli — `str(chunk)` kirjutaks failina pydantic'u
+        # repr'i ja allikavaade näitaks objekti, mitte teksti.
+        parts = [str(chunk.text or "") for chunk in (payload.chunks or [])] or [str(payload.text or "")]
+        source_text = "\n\n".join(part for part in parts if part.strip())
+        if source_text.strip():
+            stored_source = doc_file_path(
+                _doc_dir(doc_id), "source.md", fallback="source.md", storage_root=STORAGE_DIR
+            )
+            stored_source.write_text(source_text, encoding="utf-8")
+    except (OSError, PathOutsideStorage):
+        # Allikakoopia on MUGAVUS, indeks on töö. Ketta tõrge ei tohi ingestit
+        # tagasi keerata — `path` jääb siis lihtsalt tühjaks.
+        stored_source = None
+
     reg_entry = {
         "type": "TEXT",
         "lastIngested": now_iso(),
@@ -3652,7 +3705,11 @@ def ingest_text(payload: IngestText, request: Request):
         "is_current_version": meta.get("is_current_version") if meta.get("is_current_version") is not None else meta.get("isCurrentVersion"),
         "text_type": (meta.get("text_type") or meta.get("textType") or None),
         "source_type": meta.get("source_type") or "agent_document",
-        "path": meta.get("source_path"),
+        # `path` on MEIE hoidla tee, mitte kliendi väide (SOL-RAGSVC-02).
+        # Kliendi `source_path` jääb alles päritolusildina (`source_path`
+        # metaandmetes), aga teda ei avata kunagi failina.
+        "path": str(stored_source) if stored_source else None,
+        "source_path": meta.get("source_path"),
         "url": meta.get("source_url") or meta.get("url"),
         "source_sha256": meta.get("source_sha256"),
         "source_updated_at": meta.get("source_updated_at"),
@@ -3986,7 +4043,7 @@ def _require_pdf_registry(entry: Dict):
         raise HTTPException(400, "Articles ingest requires a PDF source.")
 
 def _load_pdf_pages(entry: Dict) -> List[Tuple[int, str]]:
-    p = Path(entry["path"])
+    p = _storage_path_or_404(entry.get("path"), "file")
     raw = p.read_bytes()
     return _extract_text_from_pdf(raw)
 
@@ -4035,7 +4092,7 @@ def ingest_articles(payload: IngestArticlesIn, request: Request):
     pdf_pages = _load_pdf_pages(entry)
     file_size_bytes = None
     try:
-        file_size_bytes = Path(entry["path"]).stat().st_size
+        file_size_bytes = _storage_path_or_404(entry.get("path"), "file").stat().st_size
     except Exception:
         file_size_bytes = None
     total_inserted = 0
@@ -4234,7 +4291,10 @@ def get_document_source(doc_id: str):
         if target_url:
             return RedirectResponse(target_url, status_code=307)
 
-        text_path = Path(entry.get("path") or "")
+        # SOL-RAGSVC-02: registri tee TÕENDATAKSE hoidla sisse enne avamist.
+        # Vana register sisaldab ridu, mille `path` osutab hoidlast välja —
+        # nemad annavad nüüd 404, mitte baite.
+        text_path = _storage_path_or_404(entry.get("path"), "text source")
         if not text_path.exists():
             raise HTTPException(404, "Stored text source is missing")
         media_type = entry.get("mimeType") or "text/markdown; charset=utf-8"
@@ -4246,7 +4306,7 @@ def get_document_source(doc_id: str):
         if target_url:
             return RedirectResponse(target_url, status_code=307)
 
-        html_path = Path(entry.get("path") or "")
+        html_path = _storage_path_or_404(entry.get("path"), "URL snapshot")
         if not html_path.exists():
             raise HTTPException(404, "Stored URL snapshot is missing")
         return FileResponse(
@@ -4258,7 +4318,9 @@ def get_document_source(doc_id: str):
     if entry_type != "FILE":
         raise HTTPException(400, "Source download is supported only for FILE and URL documents.")
 
-    path = Path(entry.get("path") or "")
+    # FILE-rida kirjutab server ise, aga kontroll on siin sellepärast, et
+    # register on FAIL — kes ta kätte saab, kirjutab ka `path` välja.
+    path = _storage_path_or_404(entry.get("path"), "file")
     if not path.exists():
         raise HTTPException(404, "Stored file is missing")
 
@@ -4274,7 +4336,10 @@ def reindex(doc_id: str):
         raise HTTPException(404, "Document not in registry")
 
     if entry.get("type") == "FILE":
-        p = Path(entry["path"])
+        # Sama piir mis allika allalaadimisel: reindeks LOEB faili ja tema sisu
+        # jõuab vektoritesse, kust ta on otsinguga kättesaadav. Kontrollimata
+        # tee annaks siin sama lugemisprimitiivi, ainult ühe sammu kaudu.
+        p = _storage_path_or_404(entry.get("path"), "file")
         raw = p.read_bytes()
         mime = entry.get("mimeType") or _detect_mime(p.name, raw, None)
         if mime == "application/pdf":
@@ -4320,7 +4385,7 @@ def reindex(doc_id: str):
         return {"ok": True, "inserted": inserted, "doc": entry}
 
     if entry.get("type") == "URL":
-        html_path = Path(entry["path"])
+        html_path = _storage_path_or_404(entry.get("path"), "URL snapshot")
         html = html_path.read_text(encoding="utf-8")
         text = _extract_text_from_html(html)
         inserted = _replace_document_vectors(doc_id, text, meta_common={
@@ -4358,7 +4423,7 @@ def reindex(doc_id: str):
         return {"ok": True, "inserted": inserted, "doc": entry}
 
     if entry.get("type") == "TEXT":
-        text_path = Path(entry.get("path") or "")
+        text_path = _storage_path_or_404(entry.get("path"), "text source")
         if not text_path.exists():
             raise HTTPException(404, "Stored text source is missing")
         text = text_path.read_text(encoding="utf-8")
@@ -4378,7 +4443,7 @@ def update_document_metadata(doc_id: str, payload: UpdateMetadata):
     if entry.get("type") != "FILE":
         raise HTTPException(400, "Metadata update is currently supported only for FILE documents.")
 
-    path = Path(entry["path"])
+    path = _storage_path_or_404(entry.get("path"), "file")
     if not path.exists():
         raise HTTPException(404, "Stored file is missing; cannot update.")
 

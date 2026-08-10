@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **43 / 357** |
+| Tehtud leidu | **45 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **9 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **7 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-RAGSVC** (2 × P0) või **SOL-JOUR** (2 × P0) — SOL-SLOG on P0-dest tühi; dokumendi järjekorras on RAGSVC eespool |
-| Käsil oleva peatüki saba | SOL-SLOG 19 lahtist (18 × P1, 1 × P2) · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-JOUR** (2 × P0) — SOL-SLOG ja SOL-RAGSVC on P0-dest tühjad; edasi SOL-NET (2), SOL-SPROF (2), SOL-PRE (1) |
+| Käsil oleva peatüki saba | SOL-RAGSVC 26 lahtist (19 × P1, 7 × P2) · SOL-SLOG 19 · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-01/13/14/17/18 on koodis ja deploy'mata (kolm migratsiooni:
+31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-01/13/14/17/18 ja RAGSVC-01/02 on koodis ja deploy'mata (kolm migratsiooni:
 `20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`, `20260810160000`
 külastuse org-päritolu)**. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
 allpool eraldi veerus.
@@ -47,7 +47,7 @@ allpool eraldi veerus.
 | Kiireloomuline abi | SOL-URG | 2/13 | – | 11 | – | **käsil**, mõlemad P0-d tehtud |
 | Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
 | Teenuspäevik | SOL-SLOG | 5/24 | – | 18 | 1 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
-| RAG-teenus ja ingest | SOL-RAGSVC | 0/28 | **2** | 19 | 7 | suurim peatükk |
+| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | – | 19 | 7 | suurim peatükk; **käsil**, mõlemad P0 tehtud |
 | Migratsioonid | SOL-PRISMA | 0/4 | – | 3 | 1 | |
 | Mentorlus | SOL-MENT | 0/7 | – | 7 | – | |
 | Supervisioon | SOL-SUP | 0/15 | – | 11 | 4 | |
@@ -120,6 +120,17 @@ allpool eraldi veerus.
   „kõigile". Ümbermääramine annab võõrale päritolule **404** enne olekukontrolli, ja audit
   on nüüd `$transaction`-is, mitte `.catch(() => {})` taga. Tõendatud päris PostgreSQL-is
   (üks teekond, kaks maja + päritoluta rida; `EXPLAIN` = Index Scan).
+- **SOL-RAGSVC-01 + SOL-RAGSVC-02** (10.08) — **kaks P0-d, üks viga:** kliendi tekst
+  kasutati failiteena ilma tõendamata, et ta jääb hoidlasse. `-01` andis kirjutamise
+  (`raw_path = d / file_name`, kus Pythoni `/` viskab absoluutse parema poole korral vasaku
+  ära), `-02` lugemise (kliendi `source_path` → registri `path` → `FileResponse`). Uus
+  `rag-service/storage_paths.py` on eraldi moodul, sest `main.py` sõltuvusi ei saa
+  ühiktestis laadida — **piir, mida ei saa testida, ei ole piir**. `/ingest/text` salvestab
+  nüüd allikateksti ise. Auditis nimetatud ühe lugemiskoha asemel leidsin **kuus**: sama
+  registri `path` avatakse ka `reindex`-i kolmes harus, artiklite ingestis ja metaandmete
+  uuenduses. **HTTP-negatiivtest on kirjutatud, aga teadlikult jooksmata** — enne deploy'd
+  oleks ta ise rünnak päris serveri vastu; `npm run rag:path:probe` ootab deploy-järgset
+  käivitust.
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -152,9 +163,9 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 9 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
-  kus P0-sid EI OLE ühtegi. SOL-CALL, SOL-URG ja nüüd ka **SOL-SLOG** on selle reegli järgi
-  P0-dest tühjaks tehtud; järgmine on **SOL-RAGSVC** (2 × P0) — tema on lahtiste P0-dega
+  lahtiseid P0-sid on 7 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. SOL-CALL, SOL-URG, **SOL-SLOG** ja **SOL-RAGSVC** on selle reegli
+  järgi P0-dest tühjaks tehtud; järgmine on **SOL-JOUR** (2 × P0) — tema on lahtiste P0-dega
   peatükkidest dokumendis kõige eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d
   on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
