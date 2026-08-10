@@ -94,6 +94,39 @@ test("the three paid document routes settle usage through the shared paid-result
   );
 });
 
+// SOL-DOC-02. Kaks otsepunkti, kus tekkis päris väline kulu ilma ühegi perioodikvoodita:
+// helifaili transkriptsioon (STT_SECONDS) ja transkripti kokkuvõte (DOCUMENT_GENERATE).
+// Mõlemal oli ainult minutipõhine mälupõhine rate-limit, mis ei ole lepinguline piir.
+test("the transcription and transcript-summary routes are inside the usage contract", () => {
+  const transcribe = read("app/api/documents/[id]/transcribe/route.js");
+  assert.match(transcribe, /metric:\s*"STT_SECONDS"/, "transcription must reserve STT capacity");
+  assert.match(transcribe, /amount:\s*reservationSeconds/, "the reservation must be the measured upper bound");
+  assert.match(
+    transcribe,
+    /commitUsageForRequest\(handle,\s*\{[\s\S]{0,120}resolveSttCommittedSeconds/,
+    "the commit must carry the actual duration, not the reserved upper bound"
+  );
+  assert.match(transcribe, /runPaidResult\(/);
+
+  const summary = read("app/api/documents/[id]/summary/route.js");
+  assert.match(summary, /metric:\s*"DOCUMENT_GENERATE"/, "the summary is document generation like any other");
+  assert.match(summary, /runPaidResult\(/);
+
+  // Olemasoleva transkripti tagastamine ei kutsu teenusepakkujat, seega ei tohi ka
+  // reserveerida: reuse-haru väljub enne kvoodirida.
+  const reuseIndex = transcribe.indexOf("reused: true");
+  const reserveCallIndex = transcribe.indexOf("await reserveUsageForRequest({");
+  assert.ok(reuseIndex > 0, "the reuse branch must exist");
+  assert.ok(reserveCallIndex > reuseIndex, "the reuse branch must return before any reservation");
+
+  // Piiri ületamise negatiivne rada on ahel: teenus VISKAB piiril (service.test.js),
+  // deskriptor teeb sellest 429 (routeAdapter.test.js), ja siin mõõdetakse ahela viimane
+  // lüli — et marsruut ka päriselt seda kaardistust kasutab, mitte ei neela viga.
+  for (const src of [transcribe, summary]) {
+    assert.match(src, /catch \(error\) \{\s*return usageErrorJson\(error,/);
+  }
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {

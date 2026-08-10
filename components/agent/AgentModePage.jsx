@@ -137,6 +137,7 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   // seega tahtlik uus jooks on aus uus töö. Vt lib/usage/intentKey.js.
   const generateIntentRef = useRef(null)
   const refineIntentRef = useRef(null)
+  const summaryIntentRef = useRef(null)
   const [selectedDocumentIds, setSelectedDocumentIds] = useState(initialSelectedDocumentIds)
   const [documents, setDocuments] = useState([])
   const [templates, setTemplates] = useState([])
@@ -998,7 +999,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "Content-Type": "application/json",
           "x-ui-locale": locale
         },
-        body: JSON.stringify({ language })
+        // Ühe helifaili transkriptsioon ON kavatsus: sama allika teist transkripti ei ole
+        // olemas (marsruut tagastab olemasoleva), seega on allika id ise stabiilne võti.
+        body: JSON.stringify({ language, idempotencyKey: selectedAudioSource.id })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.transcription_failed"))
@@ -1079,6 +1082,16 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         createdAt: transcript.createdAt,
         updatedAt: transcript.updatedAt
       }
+      // Sama transkripti võib pärast muutmist ausalt uuesti kokku võtta, seega ei ole võti
+      // siin transkripti id, vaid kavatsuse allkiri: kordus sama sisuga kannab sama võtit.
+      const summaryPayload = {
+        language,
+        content: transcriptDocument.content
+      }
+      summaryIntentRef.current = resolveIntentKey(
+        summaryIntentRef.current,
+        buildIntentSignature({ ...summaryPayload, transcriptId: transcript.id })
+      )
       const response = await fetch(`/api/documents/${encodeURIComponent(transcript.id)}/summary`, {
         method: "POST",
         headers: {
@@ -1086,12 +1099,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "x-ui-locale": locale
         },
         body: JSON.stringify({
-          language,
-          content: transcriptDocument.content
+          ...summaryPayload,
+          idempotencyKey: summaryIntentRef.current.key
         })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.summary_failed"))
+      summaryIntentRef.current = null
       const summary = payload?.summaryArtifact || null
       if (!summary?.id) throw new Error(t("documents.errors.summary_failed"))
       setAudioSummaryArtifact(summary)

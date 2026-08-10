@@ -20,8 +20,17 @@ import {
   publicErrorStatus,
   readStoredDocument,
   requireDocumentUser,
+  usageErrorJson,
   writeStoredTextDocument
 } from "@/lib/documents/server"
+import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration"
+import { runPaidResult } from "@/lib/usage/paidResult"
+import { resolveSttCommittedSeconds, resolveSttReservationSeconds } from "@/lib/usage/sttDuration"
+import {
+  commitUsageForRequest,
+  releaseUsageForRequest,
+  reserveUsageForRequest
+} from "@/lib/usage/routeAdapter"
 import { transcribeAudioFile } from "@/lib/transcription/provider"
 import {
   createTranscriptionJob,
@@ -175,93 +184,151 @@ export async function POST(request, { params }) {
     }
 
     const transcriptKind = transcriptKindForAudioSource(source.kind)
-    transcriptionJob = await createTranscriptionJob({
-      sourceDocumentId: source.id,
-      requestedByUserId: auth.userId,
-      provider: config.provider,
-      model: config.model,
-      language: body?.language || config.language
-    })
 
-    await startTranscriptionJob({ jobId: transcriptionJob.id })
-
-    await logDocumentsAudit("document.transcription_started", {
-      userId: auth.userId,
-      documentId: source.id,
-      jobId: transcriptionJob.id,
-      provider: config.provider,
-      model: config.model,
-      language: body?.language || config.language,
-      size: source.size,
-      mime: source.mime
-    })
-
+    // Maht tuleb reserveerida ENNE teenusepakkuja kutset, seega enne, kui vastus on olemas.
+    // Puhver loetakse siin ka kestuse mõõtmiseks: kõnesalvestisel on kestus andmebaasis,
+    // muidu loetakse ta failist, ja kui kumbagi ei saa, tuleb baitidest tuletatud ülempiir.
     const buffer = await readStoredDocument(source.storagePath)
-    const result = await transcribeAudioFile({
-      buffer,
-      fileName: source.originalName,
-      mime: source.mime,
-      language: body?.language || config.language,
-      env: process.env
+    const knownSeconds = Number(source.callRecordingFiles?.[0]?.durationSeconds) || null
+    const measuredSeconds = knownSeconds ? null : await readAudioDurationSecondsFromBuffer(buffer, source.mime)
+    const reservationSeconds = resolveSttReservationSeconds({
+      knownSeconds,
+      measuredSeconds,
+      sizeBytes: source.size
     })
-    const now = new Date()
-    const transcriptFileName = buildTranscriptFileName(now)
-    const storagePath = getStoredDocumentPath(transcriptFileName)
-    await ensureDocumentsStorage()
-    const stored = await writeStoredTextDocument(result.text, storagePath)
 
-    const transcriptDocument = await prisma.userDocument.create({
-      data: {
-        ownerId: auth.userId,
-        title: buildTranscriptTitle(now, locale),
-        originalName: transcriptFileName,
-        kind: transcriptKind,
-        agentAllowed: true,
-        mime: "text/plain",
-        size: stored.size,
-        sha256: stored.sha256,
-        storagePath,
-        sourceDocumentId: source.id,
-        content: result.text,
+    let usageHandle = null
+    try {
+      usageHandle = await reserveUsageForRequest({
+        request,
+        userId: auth.userId,
+        metric: "STT_SECONDS",
+        amount: reservationSeconds,
+        scope: "documents.transcribe",
+        idempotencyKey: body?.idempotencyKey,
         metadata: {
-          transcriptionProvider: result.provider,
+          sourceDocumentId: source.id,
+          sizeBytes: source.size,
+          mimeType: source.mime || null,
+          durationSource: knownSeconds ? "call_recording" : measuredSeconds ? "file" : "size_upper_bound"
+        }
+      })
+    } catch (error) {
+      return usageErrorJson(error, "documents.transcribe", locale)
+    }
+
+    let transcriptionResult = null
+
+    const { persisted: transcriptDocument } = await runPaidResult({
+      reserve: () => usageHandle,
+      produce: async () => {
+        transcriptionJob = await createTranscriptionJob({
+          sourceDocumentId: source.id,
+          requestedByUserId: auth.userId,
+          provider: config.provider,
+          model: config.model,
+          language: body?.language || config.language
+        })
+
+        await startTranscriptionJob({ jobId: transcriptionJob.id })
+
+        await logDocumentsAudit("document.transcription_started", {
+          userId: auth.userId,
+          documentId: source.id,
+          jobId: transcriptionJob.id,
+          provider: config.provider,
+          model: config.model,
+          language: body?.language || config.language,
+          size: source.size,
+          mime: source.mime,
+          reservedSeconds: reservationSeconds
+        })
+
+        transcriptionResult = await transcribeAudioFile({
+          buffer,
+          fileName: source.originalName,
+          mime: source.mime,
+          language: body?.language || config.language,
+          env: process.env
+        })
+        return transcriptionResult
+      },
+      persist: async (result) => {
+        const now = new Date()
+        const transcriptFileName = buildTranscriptFileName(now)
+        const storagePath = getStoredDocumentPath(transcriptFileName)
+        await ensureDocumentsStorage()
+        const stored = await writeStoredTextDocument(result.text, storagePath)
+
+        const created = await prisma.userDocument.create({
+          data: {
+            ownerId: auth.userId,
+            title: buildTranscriptTitle(now, locale),
+            originalName: transcriptFileName,
+            kind: transcriptKind,
+            agentAllowed: true,
+            mime: "text/plain",
+            size: stored.size,
+            sha256: stored.sha256,
+            storagePath,
+            sourceDocumentId: source.id,
+            content: result.text,
+            metadata: {
+              transcriptionProvider: result.provider,
+              model: result.model,
+              language: result.language,
+              sourceAudioDocumentId: source.id,
+              generatedAt: now.toISOString(),
+              sourceAudioKind: source.kind,
+              sourceAudioMime: source.mime
+            }
+          },
+          select: {
+            id: true,
+            title: true,
+            originalName: true,
+            kind: true,
+            mime: true,
+            size: true,
+            sourceDocumentId: true,
+            content: true,
+            metadata: true,
+            createdAt: true,
+            updatedAt: true
+          }
+        })
+
+        await logDocumentsAudit("document.transcription_completed", {
+          userId: auth.userId,
+          documentId: created.id,
+          sourceDocumentId: source.id,
+          jobId: transcriptionJob.id,
+          provider: result.provider,
           model: result.model,
           language: result.language,
-          sourceAudioDocumentId: source.id,
-          generatedAt: now.toISOString(),
-          sourceAudioKind: source.kind,
-          sourceAudioMime: source.mime
-        }
+          size: created.size
+        })
+
+        await completeTranscriptionJob({
+          jobId: transcriptionJob.id,
+          transcriptDocumentId: created.id
+        })
+
+        return created
       },
-      select: {
-        id: true,
-        title: true,
-        originalName: true,
-        kind: true,
-        mime: true,
-        size: true,
-        sourceDocumentId: true,
-        content: true,
-        metadata: true,
-        createdAt: true,
-        updatedAt: true
-      }
-    })
-
-    await logDocumentsAudit("document.transcription_completed", {
-      userId: auth.userId,
-      documentId: transcriptDocument.id,
-      sourceDocumentId: source.id,
-      jobId: transcriptionJob.id,
-      provider: result.provider,
-      model: result.model,
-      language: result.language,
-      size: transcriptDocument.size
-    })
-
-    await completeTranscriptionJob({
-      jobId: transcriptionJob.id,
-      transcriptDocumentId: transcriptDocument.id
+      // Reserveeritud oli ülempiir; arvestatakse tegelik kestus, mille teenusepakkuja mõõtis.
+      commit: (handle) =>
+        commitUsageForRequest(handle, {
+          actualAmount: resolveSttCommittedSeconds({
+            providerUsage: transcriptionResult?.usage || null,
+            knownSeconds,
+            measuredSeconds,
+            reservedSeconds: reservationSeconds
+          })
+        }),
+      release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
+      onReleaseError: (releaseError) =>
+        console.error("[documents transcription] usage release failed", safeError(releaseError))
     })
 
     const refreshedSource = {

@@ -335,7 +335,10 @@ export default function FieldVisitRoom({ visitId }) {
       if (!attachment.documentId) return;
       try {
         const response = await fetch(`/api/documents/${encodeURIComponent(attachment.documentId)}/transcribe`, {
-          method: "POST"
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // Allika id on kavatsuse võti: kordus ei võta teist korda STT-mahtu.
+          body: JSON.stringify({ idempotencyKey: attachment.documentId })
         });
         const body = await response.json().catch(() => ({}));
         if (!response.ok) {
