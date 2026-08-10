@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **50 / 357** |
-| Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **2 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
-| Toodangus | **seitsmes deploy 10.08 17:04 omaniku selgel loal: server = `main` = `origin/main` = `4c6c9cc9`**, viis commit'i ja üks migratsioon (`20260810160000` külastuse org-päritolu; `20260810120000` ja `20260810140000` olid juba kuuenda deploy'ga sees). Mõõdetud, mitte eeldatud: `migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**, frontend/rag/worker `active`, vea-ridu ei ole. **Kõik seni tehtud parandused on nüüd toodangus** |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SPROF** (SPROF-01, SPROF-02) — auditi **viimased kaks lahtist P0-d**. Pärast neid langeb järjekord tagasi dokumendijärjekorrale ehk **SOL-AUTH**-ile |
+| Tehtud leidu | **66 / 357** |
+| Peatükke lõpuni | **4 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, **SOL-ORG** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 212 × P1 · 78 × P2 · 1 × P3 |
+| Toodangus | **kaheksas deploy 10.08 21:45 omaniku selgel loal: server = `main` = `origin/main` = `ae599200`**, 21 commit'i ja kaks migratsiooni (`20260810180000` võrgustikujagamise räsi, `20260810200000` külastuse päritolu muutumatus). Mõõdetud, mitte eeldatud: `.next` 21:45, kolm teenust `active`, `/` `/vestlus` `/admin/rag` `/meist` `/voimalused` **200**, mõlemad migratsioonid lõpetatud ja tagasi kerimata, trigger olemas ja lubatud, veatasemel logi tühi |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01 ja -02 tehtud, järgmine **SOL-FIELD-03**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**48 tehtud leidu 50-st on tootmises** (seitsmes deploy 10.08 17:04). Deploy'mata on
-**SOL-NET-01 ja -02** koos migratsiooniga `20260810180000` (`contentHash`,
-`confirmedContentHash`). Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**65 tehtud leidu 66-st on tootmises** (kaheksas deploy 10.08 21:45). Deploy'mata on ainult
+**SOL-FIELD-02**, mis on täies ulatuses kliendipoolne (IndexedDB säilitus) ega vaja
+migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -38,8 +38,8 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Autentimine ja autoriseerimine | SOL-AUTH | 2/15 | – | 8 | 5 | 13 lahtist, P0-sid ei ole |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 0/12 | – | 10 | 2 | |
-| Välitöö | SOL-FIELD | 0/6 | – | 4 | 2 | |
+| Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
+| Välitöö | SOL-FIELD | 2/6 | – | 2 | 2 | **käsil**, järgmine FIELD-03 |
 | Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
@@ -67,7 +67,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Võrgustikutöö | SOL-NET | 2/13 | – | 9 | 2 | **käsil**, mõlemad P0 tehtud |
 | Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
 | Otsing | SOL-SEARCH | 0/7 | – | 1 | 5 | + 1 × P3 |
-| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | **käsil** — mõlemal P0-l on kood tehtud, seis kvalifitseeritud (vt allpool) |
+| Teenuseosutaja profiil | SOL-SPROF | 2/15 | – | 6 | 7 | auditi viimased kaks P0-d, mõlemad tehtud |
 
 ## Mis on tehtud
 
@@ -194,9 +194,35 @@ orvule. Uus jagatud moodul `lib/privacy/serviceProfileRagRemoval.js` kirjutab p�
 kustutuse järel**; puuduv RAG-võti ei ole enam „skipped". Konto kustutus peidab SOLO-profiili
 ja tema kaardikirjed ning kirjutab töö — kõik enne `user.delete`-i, samas lukustatud
 tehingus. Uut töölist ei ehitatud: `DataDeletionJob` + `deletionJobRetryService` +
-deploy-värav olid olemas. **Loendis on nad LAHTISED**, sest kolm kriteeriumi osa on
-tegemata: päringuaegne fail-closed retrieval, UI aus pending-seis ja runtime-tõend.
-`npm test` 3411/3411.
+deploy-värav olid olemas. Kolm puuduvat otsa said **10.08 õhtul** kaetud: päringuaegne
+fail-closed nõusolekuvärav (`lib/privacy/serviceProfileRetrievalGuard.js`), aus
+pending/failed seis liideses ja runtime-tõend päris PostgreSQL-i vastu
+(`npm run sprof:consent:probe` 22/22). Ühiktest leidis seejuures, et esimene värav oli
+**vales kohas** — `searchRagQueries` tagastab kahest kohast ja ühe päringu kiirtee käis
+mööda; värav kolis `searchRagDirect`-i. Teine, seni märkamata uks oli **kovisiooni
+teadmusotsing**, mis käib sama RAG-indeksi peal ilma kollektsioonifiltrita.
+
+**Kogu SOL-ORG peatükk (01…12) on 10.08 õhtul tehtud** — auditi neljas lõpuni viidud
+peatükk. Muster kordus enamikus: loe seis → otsusta → kirjuta tingimusteta; parandus on kas
+`updateMany ... WHERE <eeldatav seis>` või rea lukk ENNE lugemist. Viis uut sondi, kõik päris
+PostgreSQL-i vastu (`slog:org:probe` 34/34 · `org:seat:probe` 26/26 · `org:sponsor:probe`
+33/33 · `org:inbox:probe` 51/51 · `org:invite:probe` 38/38 · `org:offboard:probe` 60/60) ja
+**iga sond jooksutati ka vana koodi vastu**, punaste arv on kirjas iga leiu Seis-lõigus.
+Neli asja tulid välja alles sondiga ja audit ise neid ei nimetanud: korduv sponsorluse
+vastuvõtmine tegi kaks tellimusrida · korduv kutse vastuvõtmine oleks teinud kaks liikmesust ·
+`REVOKED` kutse all oli aktiivne liikmesus koos õigustega · ühest olekumuutusest jäi auditisse
+kaks sündmust. Migratsioon `20260810200000` teeb külastuse organisatsioonilise päritolu
+andmebaasi tasemel muutumatuks.
+
+**SOL-FIELD-01 ja -02 (10.08): kaks sama klassi leidu vastupidises suunas.** FIELD-01-l oli
+otsus õige, aga teda TOITEV loendur luges vale asja — hoiatuste loendurit kasvatas taustakäik,
+mida mitte ükski komponent ei kuvanud („kolm hoiatust" = „rakendus avati kolmel eri päeval").
+FIELD-02-l on otsus õige ja teda ei kutsu mitte keegi: `fieldPackPurgeDue()` oli olemas, aga
+ainus automaatne säilituskäik luges `items`, mitte pakke — ohutusinfot kandev külastuspakett
+kadus seadmest ainult käsitsi. FIELD-02 sond käib **päris Chromiumi päris IndexedDB ja
+WebCrypto vastu** (`npm run field:pack:probe` 26/26), sest fake-hoidla ei tõenda seda, et
+otsus tuleb toime ainult metaandmetega — sisu on seadmes krüptitud. Vana koodi vastu 6 plokki
+punast. FIELD-01 brauserikiht jääb `NOT_PROVEN`.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

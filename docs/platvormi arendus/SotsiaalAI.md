@@ -90,8 +90,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 ## S1. Alus
 
 **Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
-**server on kõik `ae599200`** — koodis ei ole deploy'mata midagi (main-is on peale seda
-ainult käesolev docs-commit). **Kaheksas deploy 10.08 21:45
+**server on `ae599200`** — deploy'mata on ainult SOL-FIELD-02 (kliendipoolne, migratsioonita).
+**Kaheksas deploy 10.08 21:45
 sinu selgel loal:** 21 commit'i (SOL-NET-01/-02, SPROF-plokk, kogu SOL-ORG, SOL-FIELD-01 +
 docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 21:45, kolm
 teenust `active`, `https://sotsiaal.ai` **200**, mõlemad migratsioonid `_prisma_migrations`-is
@@ -110,7 +110,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 65/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 66/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -157,9 +157,31 @@ Poliitika kolis komponendist välja (`lib/field/localRetention.js`) — see ei o
 korrastus, vaid tõendatavuse tingimus. **NOT_PROVEN jääb brauserikiht:** DOM-iga
 testisviiti selles projektis ei ole, seega bänneri päris renderdumine on kontrollimata.
 
-Lahtiseks jääb **213 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-FIELD-02** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+**SOL-FIELD-02 on sama klass vastupidises suunas** ja ta tehti 10.08 hilisõhtul: seal oli
+otsus õige ja teda ei kutsunud mitte keegi. `fieldPackPurgeDue()` oli koodis olemas ja
+arvutas lepingu tähtaegu õigesti, aga ainus koht, kust teda kutsuti, oli ühiktest —
+rakenduse ainus automaatne säilituskäik luges `items`, mitte pakke. Eesmärki, asukohta,
+ajakava ja **ohutusinfot** kandev külastuspakett kadus seadmest ainult siis, kui inimene
+vajutas „Eemalda pakett". Nüüd on kolm tähtaega järjekord, mitte valik: sulgemine kustutab
+**kohe**, hiljemalt 72 h pärast planeeritud akent, ja 7 päeva, kui akent ei olegi.
+
+**Minu otsus, mille sa võid pöörata:** lugesin lepingu sõna „hiljemalt" ÜLEMPIIRIKS ja
+72 h piir kehtib ka lõpetamata jäänud külastuse paketile — muidu jääks tähtajatuks just see
+juht, mis leiu tekitas. Kaotus on taastatav („Võta seadmesse" uuesti), säilimine ei ole.
+
+**Sond käib päris Chromiumi päris IndexedDB ja WebCrypto vastu** (`npm run field:pack:probe`
+**26/26**), sest fake-hoidla on minu enda kirjutatud ega tõenda seda, mida otsus kõige rohkem
+usub: seadmes on sisu krüptitud ja säilituskäik näeb ainult metaandmeid. Vana koodi vastu
+6 plokki punast. Kirjutamise käigus tuli välja kaks vastupidavuse auku, mida auditis ei
+olnud — katkine krüptogramm oleks blokeerinud uue paketi võtmise, ja kohaliku hoidla viga
+oleks kestale öelnud „server ei vastanud".
+
+Lahtiseks jääb **212 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-FIELD-03** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
 brauseri-QA taga).
+
+**Deploy'mata on ainult SOL-FIELD-02** — ta on täies ulatuses kliendipoolne ega vaja
+migratsiooni. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

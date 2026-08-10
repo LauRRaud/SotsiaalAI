@@ -1110,6 +1110,66 @@ päriselt renderdub ja klikitav on.
 
 **Vastuvõtukriteerium.** Rakenduse käivituse retention-käik peab läbima kõik kasutaja paketid, rakendama `fieldPackPurgeDue()` otsust ning kustutama tähtaja ületanud paketi sõltumata sellest, milline külastus parasjagu avatud on. Külastuse sulgemine peab käivitama lepingus otsustatud kohese või hiljemalt tähtajalise eemaldamise. Fake IndexedDB brauseritest peab tõendama 72 tunni, 7 päeva, käsitsi eemaldamise ja veel kehtiva paketi säilimise juhud.
 
+**Seis (10.08.2026): DONE — kood, testid ja runtime-tõend PÄRIS IndexedDB vastu.**
+
+**OTSUS OLI ÕIGE, TEDA EI KUTSUNUD KEEGI.** `fieldPackPurgeDue()` oli koodis olemas ja
+arvutas lepingu tähtaegu õigesti — aga ainus koht, kust teda kutsuti, oli ühiktest.
+Rakenduse ainus automaatne säilituskäik luges `items`, mitte pakke. See on sama klass mis
+SOL-FIELD-01, ainult teistpidi: seal oli otsus õige ja teda TOITEV loendur luges vale
+asja, siin on otsus õige ja teda ei küsi mitte keegi. Eesmärki, asukohta, ajakava,
+võtmeküsimusi ja OHUTUSINFOT kandev pakett kadus seadmest ainult siis, kui inimene vajutas
+„Eemalda pakett".
+
+**Kolm tähtaega on nüüd järjekord, mitte valik** (`lib/field/syncMachine.js`):
+1. **külastuse sulgemine** — pakett kaob KOHE;
+2. **hiljemalt 72 h pärast planeeritud akent**;
+3. **7 p seadmesse võtmisest**, kui planeeritud akent ei olegi.
+
+**Minu otsus, mille omanik võib pöörata:** lugesin lepingu sõna „hiljemalt" ÜLEMPIIRIKS,
+mitte soovituseks — punkt 2 kehtib ka `IN_PROGRESS`/`WRAP_UP` külastuse paketile. Vastasel
+juhul jääks tähtajatuks just see juht, mis leiu üldse tekitas: lõpetamata jäänud külastus.
+Kaotus on taastatav (online „Võta seadmesse" uuesti), säilimine ei ole.
+
+**Sulgemist ei saa taustakäik ise teada** — seadmel on ainult see olek, mis paketti
+kirjutades kehtis. Seepärast annab kest iga värske külastuse vastuse paketile edasi
+(`applyFieldVisitStatusToPack`); nii kaob pakett ka siis, kui sulges teine seade või teine
+inimene. „Lõpetatud" küsitakse seisumasinalt (`isFieldVisitClosed` = masin ei anna ühtegi
+väljapääsu), mitte teisest nimekirjast — SOL-ORG-08 õppetund vastupidises suunas. Tundmatu
+olek EI ole lõpetatud: vale pool oleks vaikne kustutus.
+
+**Kaks välja pidid kirje peal PÜSIMA, muidu ei jõua tähtaeg kunagi kohale.** `status` elab
+paketi PEALMISEL kirjel, mitte krüptitud sisu sees, sest säilituskäik loeb `listPacks()`-iga
+ainult metaandmeid ega tohi iga paketti lahti krüptida. Ja `takenAt` ei nullita enam iga
+kirjutusega: sama `storePack()` kutsuvad ka markerite rajad, ja kui nemad kella nullivad, ei
+jõua 7 päeva tähtaeg kunagi kohale. Kella alustab otsast ainult teadlik `retake: true`.
+
+**Sond käib päris Chromiumi päris IndexedDB ja päris WebCrypto vastu**
+(`npm run field:pack:probe`, `scripts/field-pack-retention-probe.mjs`): **26/26**. Fake-hoidla
+on minu enda kirjutatud ja ta võib eksida just seal, kus otsus teda kõige rohkem usub —
+seepärast mõõdab sond `lib/field/localStore.js`-i ennast. Serverit ega sisselogimist ta ei
+vaja: moodulid serveeritakse repost ühele https-päritolule (IndexedDB ja `crypto.subtle`
+nõuavad turvalist konteksti) ja aeg ei jookse, sest säilituskäik võtab `now` parameetrina.
+Kaetud on kriteeriumi kõik neli juhtu + hoidla kuju + sulgemine + saatmata sisu puutumatus.
+
+**Vana koodi vastu: 6 plokki punast, 7 kontrolli rohelist** — ja need rohelised on
+ÕIGESTI rohelised: hoidla kuju ja käsitsi eemaldamine töötasid ka enne, leid oli automaatika
+puudumises. Ühikutasandil `tests/field/localRetention.test.js` **9 punast** vana koodi vastu
+(neist 4 kannab käitumist, 3 ainult tulemuse kuju, 1 kesta sidet) ja 2 testi, mis vana koodis
+ei käivitu üldse, sest funktsiooni polnud olemas. Sondi plokid on eraldi piiratud just
+selleks — nimeline import oleks andnud ühe krahhi, mitte loetava punaste rea.
+
+**Kaks vastupidavuse auku tuli välja sondi kirjutamisel, mitte auditist.** (1) `storePack`
+loeb nüüd vana kirje ja katkine krüptogramm oleks blokeerinud UUE võtmise — just selle
+tegevuse, mis olukorra parandaks. (2) `applyVisitStatus` kutsub `loadDetail`, kelle catch
+tähendab „server ei vastanud"; kohaliku hoidla viga oleks öelnud selle vale lause. Mõlemad
+on nüüd piiratud.
+
+**Aus piir:** sond juhib hoidlat ja poliitikat, MITTE React-komponenti. Käivituskäigu
+seob kesta külge `FieldShell` (`useFieldSync({ userId })` ilma külastuseta — seepärast on
+käik terve kasutaja ulatuses) ja seda sidet hoiab staatiline lepingutest, mitte renderdus.
+Mida see EI tõenda: et mount-effect brauseris päriselt käivitub. Kustutus ise on vaikne ja
+peabki olema — paketil on serveris koopia, erinevalt saatmata sisust (4.5 piir).
+
 ### SOL-FIELD-03 — välitöö kohustuslik audit ei kuulu põhitehingusse ja võib vaikselt kaduda — P1
 
 **Tõend.** Välitöö teenus teeb nõusoleku tagasivõtmise, turvatoimingu, üleandmise ja manuse kustutamise põhikirjutused süstitud `db`/tehingukliendis, kuid kutsub seejärel `logDataAudit()` ilma sama kliendita (`lib/field/service.js:520-528`, `:635-644`, `:831-837`, `:873-883`; `lib/field/attachments.js:297-308`). `logDataAudit()` kasutab alati moodulitaseme globaalset Prismat, neelab iga kirjutusvea ja tagastab `null` (`lib/privacy/audit.js:1-40`). Sihttestides õnnestusid põhitoimingud fake-DB-ga, samal ajal proovis audit päris globaalse ühenduse kaudu kirjutada, logis ühendusvea ja test jäi roheliseks; privacy/handover protsessid ei lõpetanud ilma `--test-force-exit` liputa.
