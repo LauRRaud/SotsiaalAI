@@ -1289,6 +1289,36 @@ vanast reeglist, mitte vana kood ise.
 
 **Vastuvõtukriteerium.** Kinnituse eduteade tuleb anda ainult pärast serveri 2xx vastust. Teksti vastuvõtmine ja `transcriptConfirmedAt` vajavad üht serveripoolset idempotentset toimingut või püsivat retry-olekut. Negatiivne test peab sundima kinnituse päringu 500/võrguveale ja tõendama nähtava vea ning korduskatse võimaluse.
 
+**Seis (10.08.2026): DONE — kood ja testid.**
+
+**KAKS TÕDE ÜHEST TOIMINGUST EI TOHI LAHKNEDA.** Valisin kriteeriumi esimese haru: teksti
+vastuvõtmine ja toorheli kella käivitamine on nüüd **üks serveripoolne idempotentne toiming**.
+Märge kannab välja `transcriptClientItemId` ja `putFieldVisitNote` seab
+`transcriptConfirmedAt` SAMAS tehingus, kus ta teksti vastu võtab. Teist päringut ei ole enam
+olemas — koos temaga kadus ka koht, kus viga sai vaikselt neelduda.
+
+**Miks see on ka ilma võrguta parem.** Vana kest saatis kinnituse KOHE, samal ajal kui märge
+läks sünkroonijärjekorda. Võrguta seadmes tähendas see, et kinnitus kukkus vaikselt ja tekst
+jõudis serverisse alles tunde hiljem — kell aga ei käivitunud kunagi. Nüüd rändavad nad koos
+ja järjekord ISE on püsiv retry-olek (kriteeriumi teine haru tuleb tasuta kaasa).
+
+**Eduteade ainult 2xx järel.** `approveItem` tagastab nüüd kirje LÕPPSEISU ja kest ütleb
+täpselt seda, mis juhtus: `SYNCED` → „kinnitatud", `FAILED`/`CONFLICT` → nähtav tõrge,
+muidu ausalt „seadmes, saadetakse — kell käivitub alles siis, kui tekst on serveris". Kolm
+teadet kolmes keeles.
+
+**Idempotentsus on mõõdetud, mitte eeldatud:** `updateMany` tingimusega
+`transcriptConfirmedAt: null` — kordus ei liiguta kella. Kadunud salvestis EI OLE viga
+(kustutada ei ole midagi ja märge on kasutaja sisu, mis ei tohi kaduda vana viite pärast).
+Vana otsetee (`PUT { confirmTranscript: true }`) jääb alles **taasteteena** ja sai sama
+väravа: kordus vastab `alreadyConfirmed`, mitte 404, ja kella ei liiguta.
+
+**Vana koodi vastu 4/9 punast.** Aus lisamärkus: kolm rohelist on vana koodi all
+**tühjalt** rohelised — „kell ei käivitunud" ja „kordus ei liiguta kella" kehtivad
+triviaalselt, kui kella ei käivitata kunagi. Punased on need, mis mõõdavad tegelikku
+sidumist: kell käivitub koos tekstiga, järgmine revisjon käivitab seisva kella, otsetee on
+idempotentne, ja kest ei tee enam teist päringut.
+
 ### SOL-FIELD-06 — lubatud automaatne retry/backoff ei käivitu tähtaja saabumisel — P2
 
 **Tõend.** Olekumasin seab retryable vea järel `nextAttemptAt` väärtuse ja `isUploadDue()` lubab uue katse alles selle aja saabumisel (`lib/field/syncMachine.js:97-143`). Hook’i `runSync()` kontrollib järjekorda ainult funktsiooni kutsumise hetkel ja lõpetab, kui uus tähtaeg on veel tulevikus (`components/field/useFieldSync.js:166-180`). Koodis pole taimerit ega scheduler’it, mis käivitaks `runSync()` uuesti `nextAttemptAt` saabumisel. Uus katse toimub ainult mount’il, brauseri `online` sündmusel või kasutaja approve/retry toimingul (`:239-287`, `:338-355`). Ühiktest kontrollib kuupäeva arvutamist, mitte päris automaatset korduskatset.
@@ -1296,6 +1326,36 @@ vanast reeglist, mitte vana kood ise.
 **Mõju.** Ajutise 429/5xx/võrguvea järel võib kinnitatud välitöösisu jääda kogu avatud rakenduse ajaks järjekorda, kuigi ühendus taastub ja UI lubab automaatset 5 s → 5 min retry’d. Kasutaja peab teadmata tegema uue sündmuse või rakenduse taasavama.
 
 **Vastuvõtukriteerium.** Sünkimootor peab planeerima ühe tühistatava äratuse varaseima `nextAttemptAt` järgi, hoidma korraga ühe sync’i ja arvutama järgneva tähtaja pärast iga katset uuesti. Fake-timer test peab tõendama 5 automaatset katset, backoff’i, edu korral peatumist, offline/auth parkimist ja unmount’i taimerikoristust.
+
+**Seis (10.08.2026): DONE — kood ja testid võltskella all.**
+
+**BACKOFF OLI OLEMAS AINULT ARVUTUSENA.** `nextAttemptAt` seati, `isUploadDue()` oskas teda
+lugeda — aga pärast tähtaja saabumist ei küsinud teda MITTE KEEGI. Uus katse tuli ainult
+mount'il, brauseri `online` sündmusel või kasutaja vajutusel. Ajutise 429 või 5xx järel võis
+kinnitatud välitöösisu jääda kogu avatud rakenduse ajaks järjekorda, kuigi ühendus oli ammu
+tagasi ja liides lubas automaatset 5 s → 5 min kordust.
+
+**Kaks uut tükki, mõlemad Reactist väljas.** `nextFieldSyncWakeup()` (`syncMachine.js`) on
+puhas funktsioon „millal on varaseim mõtet ärgata"; `createFieldSyncScheduler()`
+(`lib/field/syncScheduler.js`) on ajastaja, kelle `setTimer`/`clearTimer`/`now` on
+**süstitavad**. Taimeri õigsus on AJALINE omadus — „viis katset kasvava vahega" ei ole midagi,
+mida saaks renderdamata mõõta, ja päris ootamine testis oleks lubadus, mitte tõend.
+
+**Kolm reeglit, mis hoiavad ta ohutuna:** korraga üks ootel äratus (uus plaan tühistab vana) ·
+tähtaeg arvutatakse PÄRAST iga katset, mitte ette · minevikus olev tähtaeg ei anna kunagi
+nulliga silmust, vaid lükkub lepingu baas-backoffi võrra edasi. Viimane on eraldi test, sest
+just see viga oleks parandusest hullem kui leid ise.
+
+**Mõõdetud võltskella all** (`tests/field/syncScheduler.test.js`, 9 testi): viis automaatset
+katset **ilma ühegi kasutaja tegevuseta**, vahed täpselt lepingu backoffi järgi
+(5 s → 10 s → 20 s → 40 s), peatumine `FAILED` ülempiiril, peatumine edu korral, `needsLogin`
+ja offline parkimine, üksainus ootel äratus korduva plaanimise järel, ja `stop()` ehk
+unmount'i taimerikoristus koos kontrolliga, et peatatud ajastaja ei ärka enam ellu. Kirje
+läbib PÄRIS olekumasina, seega ka backoff on päris, mitte testi oma.
+
+**Aus piir mõõtmises:** vana koodi vastu läheb punaseks üks test — kesta ja mootori side.
+Ülejäänud kaheksa mõõdavad moodulit, mida vanas koodis **ei olnud olemas**, ja see ongi leiu
+sisu: ajastajat ei olnud. Sama piir mis SOL-FIELD-04-l.
 
 ### SOL-DOC-01 — AI-kasutus arvestatakse enne püsivat või kasutajale tagastatud tulemust — P1
 

@@ -114,8 +114,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 68/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
+**SOL-süvaaudit: 70/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
 runtime-tõend päris PostgreSQL-i vastu (`npm run sprof:consent:probe` 22/22). Ühiktest
@@ -219,11 +219,27 @@ elas React-i `useCallback`-is. Vana kesta vastu läheb punaseks staatiline lepin
 tõendab, et ta sama 500 peale tõendi kustutab. Silt on ausalt küljes: see on transkriptsioon,
 mitte vana kood.
 
-Lahtiseks jääb **210 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-FIELD-05** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
-brauseri-QA taga).
+**SOL-FIELD-05 ja -06 lõpetasid peatüki — SOL-FIELD on 6/6.** FIELD-05: kinnitatud
+transkripti tekst ja toorheli kustutuskell olid kaks eraldi päringut, millest teise viga
+neelati vaikselt ja eduteade anti alati. Kui teine kukkus, oli tekst serveris ja toorheli
+jäi kuni 7-päevase varutähtajani — kaks tõde ühest toimingust lahknesid. Nüüd on nad **üks
+idempotentne serveritoiming**: märge kannab viidet salvestisele ja kell käivitub samas
+tehingus, kus tekst vastu võetakse. Eduteade tuleb ainult siis, kui kirje jõudis `SYNCED`-i;
+järjekorda jäänud kirje ütleb ausalt „saadetakse, kell käivitub siis, kui tekst on serveris".
 
-**Deploy'mata on ainult SOL-FIELD-04** — migratsiooni ta ei vaja. Ütle, kui viin serverisse.
+FIELD-06: lubatud **5 s → 5 min backoff oli olemas ainult arvutusena**. `nextAttemptAt` seati
+ja `isUploadDue()` oskas teda lugeda, aga pärast tähtaja saabumist ei küsinud teda mitte
+keegi — uus katse tuli ainult rakenduse avamisel, `online` sündmusel või sinu enda vajutusel.
+Uus `lib/field/syncScheduler.js` elab Reactist väljas ja tema kell on süstitav, seega **viis
+automaatset katset, kasvav backoff, peatumine edu ja ülempiiri korral, offline/auth parkimine
+ja unmount'i taimerikoristus on mõõdetud võltskella all** — ilma ühegi päris ootamiseta.
+
+Lahtiseks jääb **210 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Dokumendijärjekorras
+on järgmine käsilevõetav **SOL-DOC**, aga kõige eespool lahtine on endiselt **SOL-AUTH**
+(13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+
+**Deploy'mata on SOL-FIELD-04, -05 ja -06** — ükski ei vaja migratsiooni. Ütle, kui viin
+serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

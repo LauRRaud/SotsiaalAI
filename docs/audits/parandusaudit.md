@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **68 / 357** |
-| Peatükke lõpuni | **4 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, **SOL-ORG** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 210 × P1 · 78 × P2 · 1 × P3 |
+| Tehtud leidu | **70 / 357** |
+| Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 210 × P1 · 76 × P2 · 1 × P3 |
 | Toodangus | **üheksas deploy 10.08 22:49 omaniku selgel loal: server = `a2aa7435`**, neli commit'i (SOL-FIELD-02 ja -03 + docs), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 22:49, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi. (Kaheksas deploy 21:45 = `ae599200`, kaks migratsiooni.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01…-04 tehtud, järgmine **SOL-FIELD-05**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD sai lõpuni.** Dokumendijärjekorras on järgmine käsilevõetav peatükk **SOL-DOC** (0/9), aga kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**67 tehtud leidu 68-st on tootmises** (üheksas deploy 10.08 22:49, server `a2aa7435` —
-FIELD-02 ja -03 läksid välja, migratsioone ei olnud). Deploy'mata on ainult
-**SOL-FIELD-04**, samuti migratsioonita. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**67 tehtud leidu 70-st on tootmises** (üheksas deploy 10.08 22:49, server `a2aa7435` —
+FIELD-02 ja -03 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-FIELD-04, -05
+ja -06**; ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -39,7 +39,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
-| Välitöö | SOL-FIELD | 4/6 | – | – | 2 | **käsil**, alles kaks P2: FIELD-05, -06 |
+| Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
@@ -242,6 +242,16 @@ Marker on nüüd versioonitud pakiskeemi osa ja kaob ainult 2xx või tõendatud 
 kõik muu jätab ta alles nähtava tõrkeseisu ja korduskatsega. Sond **35/35** päris IndexedDB
 vastu (sh rakenduse taasavamine), ühikuid **18**. Mõõtmise aus piir on Seis-lõigus: vanal
 koodil ei olnud moodulipiiri, mille vastu jooksutada.
+
+**SOL-FIELD-05 ja -06 (10.08) lõpetasid peatüki.** FIELD-05: teksti vastuvõtmine ja toorheli
+kustutuskell olid kaks eraldi päringut, millest teise viga neelati ja eduteade anti alati —
+nüüd on nad **üks idempotentne serveritoiming** (märge kannab viidet salvestisele, kell
+käivitub samas tehingus) ja eduteade tuleb ainult siis, kui kirje jõudis `SYNCED`-i. Vana
+koodi vastu 4/9 punast; kolm rohelist on seal **tühjalt** rohelised, sest kella ei
+käivitatud kunagi. FIELD-06: lubatud 5 s → 5 min backoff oli olemas ainult arvutusena —
+ükski taimer ei käivitanud kordust. Uus `lib/field/syncScheduler.js` on Reactist väljas ja
+tema kell on süstitav, seega **viis automaatset katset, backoff, peatumine, parkimine ja
+unmount'i koristus on mõõdetud võltskella all**, ilma ühegi päris ootamiseta.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
