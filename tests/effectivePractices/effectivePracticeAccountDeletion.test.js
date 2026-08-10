@@ -170,6 +170,8 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   let userExists = true;
   let locked = false;
   const preInquiryUpdates = [];
+  const urgentUpdates = [];
+  const preInquiryDeletes = [];
   const tx = {
     $queryRaw: async () => {
       rows.push({
@@ -197,6 +199,20 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
       updateMany: async (input) => {
         preInquiryUpdates.push(input);
         return { count: 1 };
+      },
+      // SOL-PRE-01: saatmata mustandid kustutatakse samas tehingus.
+      deleteMany: async (input) => {
+        preInquiryDeletes.push(input);
+        return { count: 3 };
+      }
+    },
+    /* SOL-URG-02: kiire abi pöördumiste anonümiseerimine käib samas tehingus.
+       Enne oli see mudel siit puudu ja kutse oleks vaikselt vahele jäänud —
+       nüüd ta EI JÄÄ, sest kood ei valva enam mudeli olemasolu. */
+    urgentRequest: {
+      updateMany: async (input) => {
+        urgentUpdates.push(input);
+        return { count: 2 };
       }
     },
     user: {
@@ -209,9 +225,20 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
     }
   };
   const db = { $transaction: async (callback) => callback(tx) };
-  await deleteUserAfterFinalPracticeSweep("user-1", db);
+  const deleted = await deleteUserAfterFinalPracticeSweep("user-1", db);
   assert.deepEqual(deletedPractices, ["created-before-lock"]);
   assert.equal(userExists, false);
+  // SOL-URG-02: kiire abi read anonümiseeritakse samas tehingus, enne User rea kustutust.
+  assert.deepEqual(urgentUpdates[0].where, { authorId: "user-1" });
+  assert.equal(urgentUpdates[0].data.situationVerbatim, "");
+  assert.equal(urgentUpdates[0].data.contactName, "");
+  assert.equal(urgentUpdates[0].data.contactPhone, "");
+  assert.equal(urgentUpdates[0].data.authorId, null);
+  assert.ok(urgentUpdates[0].data.authorErasedAt instanceof Date);
+  assert.equal(deleted.privacyCounts.anonymizedUrgentRequests, 2);
+  // SOL-PRE-01: saatmata mustandid kustutatakse, mitte ei puhastata.
+  assert.deepEqual(preInquiryDeletes[0].where, { authorId: "user-1", sentAt: null });
+  assert.equal(deleted.privacyCounts.deletedUnsentPreInquiries, 3);
   assert.deepEqual(preInquiryUpdates[0].where, { authorId: "user-1", sentAt: { not: null } });
   assert.equal(preInquiryUpdates[0].data.authorId, null);
   assert.equal(preInquiryUpdates[0].data.situation, "");
