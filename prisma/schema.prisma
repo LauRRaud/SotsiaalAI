@@ -216,6 +216,12 @@ enum CallRecordingFileStatus {
   // väljastada, ja tema kustutus ei ole kinnitatud. Senine rada kirjutas siia
   // `DELETED`, mis on väide faili puudumise kohta — vale väide, kui kustutus tõrkus.
   QUARANTINED
+  // SOL-CALL-06. Kustutus on ALUSTATUD, aga mitte kinnitatud.
+  // Vahe `QUARANTINED`-ist on kavatsus: karantiin ütleb „seda ei väljastata", see
+  // ütleb „seda kustutatakse ja töö on pooleli". Ilma selle seisuta oli kustutus
+  // ühesammuline väide: parim pingutus kolmele sammule ja `DELETED` ka siis, kui
+  // ükski neist ei õnnestunud.
+  DELETE_PENDING
 }
 
 enum MunicipalityType {

@@ -1329,6 +1329,44 @@ test("T12 E6: a non-owner non-moderator cannot delete a recording", async () => 
   assert.equal(prisma.callRecordingFile.rows[0].status, "AVAILABLE", "a forbidden delete leaves the recording intact");
 });
 
+/* SOL-CALL-06 — käsitsi kustutus ei tohi kinnitada seda, mida ta ei suutnud teha.
+   Vana rada kutsus purge'i tulemust vaatamata ja vastas `ok:true` ka siis, kui
+   füüsiline fail jäi kettale. Tundliku heli puhul on „kustutatud" lubadus: kui me
+   teda tõendada ei suuda, peab inimene seda TEADMA ja rida peab jääma seisu, mille
+   retention uuesti üles korjab. */
+test("SOL-CALL-06: kustutamata fail annab vea, mitte ok:true", async () => {
+  const prisma = createPrisma();
+  const service = completedRecordingService(prisma, {});
+  const { call, request } = await completeARecording(service, prisma);
+  const failing = createCallService({
+    prisma,
+    recordingStorage: {
+      ensureReady: async () => {},
+      deleteStoredArtifact: async () => {
+        const error = new Error("EACCES: permission denied");
+        error.code = "EACCES";
+        throw error;
+      }
+    }
+  });
+
+  await assert.rejects(
+    () => failing.deleteRecordingFile({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: false }),
+    /call\.recording_delete_failed/
+  );
+
+  assert.equal(prisma.callRecordingFile.rows[0].status, "DELETE_PENDING", "rida ei tohi väita, et faili ei ole");
+  assert.equal(prisma.userDocument.rows.length, 1, "dokumendirida jääb alles, kuni objekt on tõesti kadunud");
+  const actions = prisma.dataAuditLog.rows.map(row => row.action);
+  assert.equal(actions.includes("CALL_RECORDING_DELETED"), false, "õnnestumise auditit ei tohi kirjutada");
+  assert.equal(actions.includes("CALL_RECORDING_DELETE_FAILED"), true, "tõrge peab jälje jätma");
+});
+
+test("SOL-CALL-06: kustutuse tõrge kaardistub 503-ks, mitte vaikseks 200-ks", async () => {
+  const source = await readFile(new URL("../../lib/calls/roomRoutes.js", import.meta.url), "utf8");
+  assert.match(source, /call\.recording_delete_failed"\) return \{ message, status: 503 \}/);
+});
+
 test("T12: two simultaneous last-leavers end the call once and write one system message (audit 4 K4)", async () => {
   const prisma = createPrisma();
   const service = createCallService({ prisma, now: () => new Date("2026-08-03T20:00:00Z") });

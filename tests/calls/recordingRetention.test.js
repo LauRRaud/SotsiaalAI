@@ -101,9 +101,125 @@ test("T12 E6: purgeRecordingFile is idempotent and falls back to filePath when t
   });
   const deleted = [];
 
-  const ok = await purgeRecordingFile({ db, file: db._files[0], storage: fakeStorage(deleted) });
+  // SOL-CALL-06: tagastus on nüüd astmete kinnitus, mitte tõeväärtus „proovisime".
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: fakeStorage(deleted) });
 
-  assert.equal(ok, true);
+  assert.equal(result.purged, true);
   assert.deepEqual(deleted, ["uploads/rec1.ogg"], "falls back to the file's own path when the document is missing");
   assert.equal(db._files[0].status, "DELETED");
+});
+
+/* SOL-CALL-06 — kolm sammu, kolm veasüsti. Iga test tõendab kaht asja korraga:
+   kutsuja EI SAA „purged: true" ja rida EI jää valetama, vaid jääb `DELETE_PENDING`-iks,
+   kust sweep ta uuesti üles korjab. Negatiivkontroll on vana teostus: ta tagastas
+   KÕIGIL kolmel juhul `true` ja kirjutas reale `DELETED`. */
+
+function failingStorage(step, deleted = []) {
+  return {
+    async deleteStoredArtifact({ storagePath }) {
+      if (step === "artifact") throw Object.assign(new Error("EACCES"), { code: "EACCES" });
+      deleted.push(storagePath);
+    },
+    async discardEgressArtifact({ fileName }) {
+      if (step === "egress_artifact") throw Object.assign(new Error("EBUSY"), { code: "EBUSY" });
+      deleted.push(fileName);
+    }
+  };
+}
+
+test("SOL-CALL-06: füüsilise objekti tõrge ei anna DELETED-i ega 'purged'", async () => {
+  const db = fakeDb({
+    files: [{ id: "f1", createdDocumentId: "d1", filePath: "uploads/rec1.ogg", status: "AVAILABLE", retentionUntil: new Date("2026-07-01T00:00:00Z") }],
+    documents: [{ id: "d1", storagePath: "uploads/rec1.ogg" }]
+  });
+
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: failingStorage("artifact") });
+
+  assert.equal(result.purged, false);
+  assert.equal(result.step, "artifact");
+  assert.equal(db._files[0].status, "DELETE_PENDING", "rida ei tohi väita, et faili ei ole");
+  assert.equal(db._docs.length, 1, "dokumendi rida ei tohi kaduda enne objekti");
+});
+
+test("SOL-CALL-06: dokumendi rea tõrge jätab kustutuse pooleli, mitte lõpetatuks", async () => {
+  const db = fakeDb({
+    files: [{ id: "f1", createdDocumentId: "d1", filePath: "uploads/rec1.ogg", status: "AVAILABLE", retentionUntil: new Date("2026-07-01T00:00:00Z") }],
+    documents: [{ id: "d1", storagePath: "uploads/rec1.ogg" }]
+  });
+  db.userDocument.deleteMany = async () => {
+    throw new Error("db down");
+  };
+
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: failingStorage(null) });
+
+  assert.equal(result.purged, false);
+  assert.equal(result.step, "document_row");
+  assert.equal(db._files[0].status, "DELETE_PENDING");
+});
+
+test("SOL-CALL-06: failirea tõrge ei tohi jääda nähtamatuks", async () => {
+  const db = fakeDb({
+    files: [{ id: "f1", filePath: "uploads/rec1.ogg", status: "AVAILABLE", retentionUntil: new Date("2026-07-01T00:00:00Z") }]
+  });
+  let calls = 0;
+  const realUpdate = db.callRecordingFile.update;
+  db.callRecordingFile.update = async args => {
+    calls += 1;
+    if (calls > 1) throw new Error("db down");
+    return realUpdate.call(db.callRecordingFile, args);
+  };
+
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: failingStorage(null) });
+
+  assert.equal(result.purged, false);
+  assert.equal(result.step, "file_row");
+  assert.equal(db._files[0].status, "DELETE_PENDING", "kavatsus jääb kirja, seega sweep proovib uuesti");
+});
+
+test("SOL-CALL-06: pooleli jäänud kustutus korjatakse sweep'iga uuesti üles ja läheb siis lõpuni", async () => {
+  const db = fakeDb({
+    files: [{ id: "f1", createdDocumentId: "d1", filePath: "uploads/rec1.ogg", status: "AVAILABLE", retentionUntil: new Date("2026-07-01T00:00:00Z") }],
+    documents: [{ id: "d1", storagePath: "uploads/rec1.ogg" }]
+  });
+  const now = () => new Date("2026-07-19T12:00:00Z");
+
+  const first = await purgeExpiredCallRecordings({ db, now, storage: failingStorage("artifact") });
+  assert.equal(first.purged, 0, "'purged' ei tohi kasvada kinnitamata kustutuse peale");
+  assert.equal(first.failed, 1);
+  assert.equal(db._files[0].status, "DELETE_PENDING");
+
+  const deleted = [];
+  const second = await purgeExpiredCallRecordings({ db, now, storage: failingStorage(null, deleted) });
+  assert.equal(second.scanned, 1, "DELETE_PENDING peab sweep'i valikusse kuuluma");
+  assert.equal(second.purged, 1);
+  assert.deepEqual(deleted, ["uploads/rec1.ogg"]);
+  assert.equal(db._files[0].status, "DELETED");
+});
+
+test("SOL-CALL-06: finaliseerimata salvestise TOORES fail kustutatakse egress-kaustast", async () => {
+  /* See samm puudus täielikult: toores nimi saadeti dokumendisalvestusse, mis nõuab
+     `uploads/` prefiksit — tee-viga neelati alla ja partiaal jäi kettale, samal ajal
+     kui raport luges rea „purged" hulka. */
+  const db = fakeDb({
+    files: [{ id: "f1", filePath: "call-recording-x-y-20260810090000-abc.ogg", status: "QUARANTINED", providerStopConfirmedAt: new Date("2026-07-01T00:00:00Z"), retentionUntil: new Date("2026-07-01T00:00:00Z") }]
+  });
+  const deleted = [];
+
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: failingStorage(null, deleted) });
+
+  assert.equal(result.purged, true);
+  assert.deepEqual(deleted, ["call-recording-x-y-20260810090000-abc.ogg"], "toores fail peab minema egress-rajale");
+  assert.equal(db._files[0].status, "DELETED");
+});
+
+test("SOL-CALL-06: toore faili kustutuse tõrge jätab rea DELETE_PENDING-iks", async () => {
+  const db = fakeDb({
+    files: [{ id: "f1", filePath: "call-recording-x-y-20260810090000-abc.ogg", status: "QUARANTINED", providerStopConfirmedAt: new Date("2026-07-01T00:00:00Z"), retentionUntil: new Date("2026-07-01T00:00:00Z") }]
+  });
+
+  const result = await purgeRecordingFile({ db, file: db._files[0], storage: failingStorage("egress_artifact") });
+
+  assert.equal(result.purged, false);
+  assert.equal(result.step, "egress_artifact");
+  assert.equal(db._files[0].status, "DELETE_PENDING");
 });

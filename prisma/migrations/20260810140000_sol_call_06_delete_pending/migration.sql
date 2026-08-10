@@ -1,0 +1,21 @@
+-- SOL-CALL-06 — salvestise kustutus ja retention raporteerisid edu ka kustutamata failist.
+--
+-- Audit: docs/audits/sotsiaalai-sol-suvaaudit.md, SOL-CALL-06.
+--
+-- MIS KATKI OLI. `purgeRecordingFile()` neelas eraldi nii füüsilise objekti kustutuse,
+-- `UserDocument` delete'i kui `CallRecordingFile` update'i vea ja tagastas ALATI `true`.
+-- Käsitsi kustutus vastas seepeale `ok:true` ja retention luges sama väärtuse `purged`
+-- hulka. Kui füüsiline kustutus tõrkus, kirjutati reale ikkagi `DELETED` — pärast mida
+-- sweep seda rida enam kunagi ei vali. Fail jäi kettale ja automaatne taasproov kadus.
+--
+-- MIDA SEE VÄÄRTUS TEEB. `DELETE_PENDING` on KAVATSUSE püsiv kirje: ta kirjutatakse
+-- ENNE ühegi artefakti puutumist ja ta jääb seisma seni, kuni KÕIK sammud on kinnitatud.
+-- Vahe `QUARANTINED`-ist on tähendus, mitte aste: karantiin ütleb „seda ei väljastata",
+-- `DELETE_PENDING` ütleb „seda kustutatakse ja töö on pooleli". Sweep valib mõlemad,
+-- seega pooleli jäänud kustutus on nüüd ISE oma taasproovi allikas — uut töölist ei ole
+-- vaja, sest retention käib niikuinii üle.
+--
+-- PG 16: `ALTER TYPE ... ADD VALUE` tohib olla tehingus, kui uut väärtust samas
+-- tehingus ei kasutata. Siin teda ei kasutata — ta pannakse käiku alles rakenduse koodis.
+
+ALTER TYPE "CallRecordingFileStatus" ADD VALUE IF NOT EXISTS 'DELETE_PENDING';
