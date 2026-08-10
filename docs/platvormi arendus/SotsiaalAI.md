@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 74/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 75/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -277,11 +277,17 @@ jäi vea korral tundlik tekst kettale ilma ühegi omaniku- ja säilitusreata. N�
 esmalt ajutisse faili ja avaldatakse alles pärast andmebaasi; vea korral tuleb vana fail tagasi
 ja ajutine kaob. Tõendatud **päris hoidla ja päris tehinguga 17/17**.
 
-Lahtiseks jääb **206 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(4/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-05: kolme paranduse piir ei pidanud kiirele topeltklõpsule vastu.** Piir oli loendus
+enne AI-kutset, aga jälg kirjutati alles pärast — kaks samaaegset päringut lugesid sama arvu ja
+mõlemad said läbi. Koht võetakse nüüd enne kutset ära ja jääb kinni ka siis, kui vastus veel
+tuleb; ebaõnnestunud katse annab koha tagasi. Tõendatud **päris andmebaasis 13/13**: kui kolmest
+kohast on kaks võetud, võidab neljast korraga saadetud päringust täpselt üks.
+
+Lahtiseks jääb **206 P1, 75 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(5/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on SOL-DOC-01…-04** — ükski ei vaja migratsiooni. Ütle, kui viin
+**Deploy'mata on SOL-DOC-01…-05** — ükski ei vaja migratsiooni. Ütle, kui viin
 serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`

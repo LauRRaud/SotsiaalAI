@@ -1553,6 +1553,37 @@ lähtekoodi-leping valvab ainult neid kahte marsruuti.
 
 **Vastuvõtukriteerium.** Refinement'i slot tuleb reserveerida atomaarse artefaktipõhise loenduri või unikaalsete slotiridadega enne AI-kutset ja vea korral vabastada; korraga ei tohi olla võimalik võita üle kolme slot'i. Paralleelsustest peab saatma vähemalt neli võistlevat päringut piirile 2/3 ning tõendama täpselt ühe edu.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).**
+
+**PIIR OLI LOENDUS, MITTE KOHT.** Marsruut luges varasemad `ARTIFACT_REFINE` auditiread kokku ja
+võrdles kolmega — enne AI-kutset. Auditirida lisandus aga alles PÄRAST genereerimist ja kasutuse
+commit'i. Kaks või enam samaaegset päringut lugesid seega kõik sama arvu, kõik nägid ruumi ja kõik
+lõpetasid edukalt. Kiire topeltklõps, mitu vahekaarti või otse-API päring kasvatas AI-kulu ja tegi
+UI-le tagastatava `used/limit` lepingu ebausaldusväärseks.
+
+**Koht võetakse ENNE kutset ja ta on püsiv rida.** `lib/documents/refinementSlots.js` teeb
+kontrollist ja kirjutusest ühe tehingu, mille serialiseerib **artefaktipõhine nõuandelukk**
+(`pg_advisory_xact_lock`, AINULT `$executeRaw` kaudu — `$queryRaw` kukub void-tüübi
+deserialiseerimisel). „Loe arv → otsusta → kirjuta" ei saa enam kahe päringu vahel läbi põimuda.
+
+**Miks lukk, mitte unikaalne indeks.** Slot ei ole eraldi tabel — ta ON auditirida, ja „mitmes see
+rida on" ei ole väärtus, mille peale saaks unikaalsust panna ilma uue veeru ja migratsioonita.
+Lukk annab sama garantii skeemi puutumata.
+
+**Kolm seisu, mis hoiavad auditi ausana.** Reserveeritud rida kannab `pending: true`; õnnestumisel
+ta kinnitatakse (samas tehingus, kus tasu arvestatakse — SOL-DOC-01 leping), ebaõnnestumisel
+vabastatakse. Kustutada saab AINULT veel kinnitamata rea, seega päris auditijälge see tee kunagi
+ei puuduta — see on eraldi mõõdetud.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run refine:slot:probe`, **13/13**): 2/3 täis + neli
+võistlejat → võidab **täpselt üks**, ülejäänud kolm saavad 429 · tühi artefakt + kuus võistlejat →
+võidab täpselt kolm (piir ei tohi olla ka liiga range) · vabastatud koht läheb tagasi ringi ·
+kinnitatud auditirida ei kustu vabastusega.
+
+**Negatiivkontroll on osa sondist.** Sama harnessi all jäljendatakse vana mustrit (loe arv,
+otsusta, kirjuta hiljem) ja nõutakse, et see limiidist **üle laseks**. Laseb. Seega on
+samaaegsus päris ja ülejäänud 12 rohelist on paranduse teene.
+
 ### SOL-DOC-06 — sama helifaili paralleelne transkribeerimine teeb mitu kallist tööd ja mitu transkripti — P1
 
 **Tõend.** Route kontrollib esmalt, kas `derivedDocuments` hulgas on transkript, ning kui ei ole, loob uue job'i, kutsub teenusepakkujat ja loob seejärel uue `UserDocument` rea (`app/api/documents/[id]/transcribe/route.js:101-169`, `:177-249`). Skeemis pole aktiivsele job'ile ega `(sourceDocumentId, transcript kind)` paarile unikaalsust (`prisma/schema.prisma:3611-3649`, `:3705-3728`). Kahel paralleelsel esmakutsel on seega võimalik mõlemal näha „transkript puudub”, mõlemal teenusepakkujat kasutada ning mõlemal eri transkript luua.

@@ -9,16 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **74 / 357** |
+| Tehtud leidu | **75 / 357** |
 | Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 206 × P1 · 76 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 206 × P1 · 75 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (4/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (5/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 74-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-04**;
+**70 tehtud leidu 75-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-05**;
 ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 4/9 | – | 2 | 3 | **käsil**, DOC-01…-04 tehtud |
+| Dokumendid ja AI-kasutus | SOL-DOC | 5/9 | – | 2 | 2 | **käsil**, DOC-01…-05 tehtud |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -296,6 +296,16 @@ Järjekord on nüüd ümber: uus sisu läheb ajutisse faili ja avaldatakse `rena
 viimase sammuna**, ülekirjutusel hoitakse vana varukoopiana, et ka „rename õnnestus, tehing
 kukkus" aken taastuks. **`npm run doc:staging:probe` 17/17** päris hoidla ja päris tehinguga,
 kolm veasüsti: viga enne avaldamist, viga PÄRAST avaldamist, ja loomise viga (orbfaili ei teki).
+
+**SOL-DOC-05 (11.08): piir oli loendus, mitte koht.** Kolme paranduse limiit luges auditiread
+kokku ENNE AI-kutset, aga auditirida lisandus alles PÄRAST — kaks samaaegset päringut lugesid
+sama arvu, mõlemad nägid ruumi ja mõlemad said läbi. Koht võetakse nüüd enne kutset ja on püsiv
+rida; kontrolli ja kirjutuse tehingut serialiseerib artefaktipõhine nõuandelukk
+(`pg_advisory_xact_lock`, ainult `$executeRaw` kaudu). Reserveeritud rida kannab `pending: true`
+ja kustutada saab AINULT kinnitamata koha, seega päris auditijälge see tee ei puuduta.
+**`npm run refine:slot:probe` 13/13**: 2/3 täis + neli võistlejat → võidab täpselt üks; tühi
+artefakt + kuus võistlejat → võidab täpselt kolm. Negatiivkontroll näitab, et vana muster laseb
+sama samaaegsuse all limiidist üle.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
