@@ -1030,6 +1030,31 @@ eemaldamine, ja `offboard vs revoke` võistlus organisatsiooni luku peal. Vana k
 
 **Vastuvõtukriteerium.** Olekusiire peab lukustama organisatsioonirea või tegema atomaarse `UPDATE` tingimusega `id + expected fromStatus`; kaotaja peab saama 409 ja kõrvalmõju/audit peab puuduma. Päris PostgreSQLi test peab katma vähemalt `activate vs archive`, `suspend vs archive` ja kaks eri lubatud siiret samast algolekust ning tõendama, et `ARCHIVED` ei taastu kunagi.
 
+**Seis (10.08.2026): DONE — kood ja sond (`npm run org:offboard:probe` 60/60; vana koodi vastu 6 punast).**
+
+**Siire on nüüd TINGIMUSLIK.** `updateMany ... WHERE id = ? AND status = fromStatus` hindab
+algolekut andmebaasis, rea luku all. Ülemine `canTransitionOrganizationStatus` kontroll
+hindas MÄLUS loetud algolekut — ja kaks lubatud siiret samast algolekust
+(`PENDING_VERIFICATION → ACTIVE` ja `→ ARCHIVED`) võisid mõlemad selle läbida.
+
+**Vana koodi vastu reprodutseeritud, täpselt nagu leid ennustas:** `archive→activate`
+lõppseis oli **`ACTIVE`** — terminaliks lubatud maja taastus koos vanade liikmesuste ja
+grantidega.
+
+**Kaotaja EI JÄTA auditijälge.** Vana koodiga jäi ühe päris muutuse kohta **kaks**
+siirdesündmust ja ajalugu luges „arhiveeritud, siis aktiveeritud" — ilma et taasavamine
+oleks kunagi lubatud olnud. Nüüd viskab kaotaja enne kirjutust ja tema tehing keritakse
+tagasi: sündmust, mida ei toimunud, ei tohi ajaloos olla.
+
+**Veateade loeb VÄRSKE seisu.** „ARCHIVED → ACTIVE ei ole lubatud" on kasutajale
+arusaadav; „PENDING_VERIFICATION → ACTIVE ei ole lubatud" oleks vale ja segane, sest tema
+alus oli vahepeal aegunud.
+
+**Aus märkus:** kaotaja saab 409 ka siis, kui tema siire oleks värske seisu pealt olnud
+LUBATUD (nt `activate→archive`: arhiveerija otsus tehti `PENDING_VERIFICATION` pealt ja maja
+on nüüd `ACTIVE`). See on optimistliku samaaegsuse leping, mitte puudus — kordus on kutsuja
+otsus, sest vahepeal muutunud maailmas võib ta ümber mõelda.
+
 ### SOL-FIELD-01 — saatmata kohalik sisu võib kustuda ilma kolme kasutajale näidatud hoiatuseta — P1
 
 **Tõend.** Välitöö leping nõuab, et serverisse jõudmata `DEVICE_ONLY/QUEUED/FAILED` sisu ei kustutataks vaikselt: 30. päeval peab tekkima püsiv hoiatus ja kustutamine on lubatud alles 37. päeval pärast kolme selget hoiatust (`docs/platvormi arendus/fable-5-valitoo-mobiilne-kest.md:222-231`). Puhas olekufunktsioon lubab 37 päeva järel purge’i, kui `warnCount >= 3` (`lib/field/syncMachine.js:152-177`). Runtime-hook ei kuva aga hoiatust ega loo kasutajale nähtavat kinnitust: iga retention-käik lihtsalt suurendab `warnCount` väärtust kord ööpäevas ja kustutab otsuse `PURGE` korral kirje IndexedDB-st (`components/field/useFieldSync.js:215-236`). `warnCount` ega `lastWarnAt` pole üheski välitöö komponendis kasutajale renderdatud. Ühiktest sisestab `warnCount: 3` käsitsi ja kontrollib ainult puhast otsust, mitte seda, kas kolm hoiatust päriselt kuvati (`tests/field/stateMachine.test.js:76-98`).

@@ -22,6 +22,7 @@
 import prisma from "../lib/prisma.js";
 import { endMembership, revokeCapability } from "../lib/org/members.js";
 import { assignSeat, createSeatPlan } from "../lib/org/seats.js";
+import { changeOrganizationStatus } from "../lib/org/organizations.js";
 import { assignWork, deliverPreInquiryToOrganization, handOverWork } from "../lib/org/inbox.js";
 import { resolveOrgAccessContext } from "../lib/org/accessContext.js";
 import { raceOnLockedRow } from "./probe-race-harness.mjs";
@@ -458,6 +459,64 @@ async function main() {
       }
     });
     expect("offboard→revoke: majja jääb vähemalt üks omanik", ownersLeft >= 1, `${ownersLeft}`);
+  }
+
+  // === 7. SOL-ORG-12: ARHIVEERITU EI TAASTU ==============================
+  /* `ARCHIVED` on TERMINAL. Kaks lubatud siiret SAMAST algolekust said mõlemad
+     mälus loetud kontrolli läbida ja hilisem kirjutas varasema üle — nii sai
+     arhiveeritud maja tagasi `ACTIVE`-ks koos vanade liikmesuste ja grantidega. */
+  for (const order of ["archive", "activate"]) {
+    const label = order === "archive" ? "archive→activate" : "activate→archive";
+    const org = await prisma.organization.create({
+      data: {
+        displayName: `Olekumaja ${MARK}`,
+        legalKind: "COMPANY",
+        status: "PENDING_VERIFICATION"
+      }
+    });
+    const actor = await makeUser(`admin-${order}`);
+
+    const archive = () =>
+      changeOrganizationStatus(
+        org.id,
+        { actorUserId: actor.id, isPlatformAdmin: true, toStatus: "ARCHIVED", reason: "proov" },
+        { db: prisma, now: NOW }
+      );
+    const activate = () =>
+      changeOrganizationStatus(
+        org.id,
+        { actorUserId: actor.id, isPlatformAdmin: true, toStatus: "ACTIVE" },
+        { db: prisma, now: NOW }
+      );
+
+    const { resultA, resultB } = await raceOnLockedRow({
+      prisma,
+      lockRow: lockOrganization(org.id),
+      first: order === "archive" ? archive : activate,
+      second: order === "archive" ? activate : archive,
+      label,
+      expect
+    });
+    expect(`${label}: esimene siire õnnestub`, !resultA.error, String(resultA.error?.messageKey));
+    expect(
+      `${label}: teine siire KUKUB, mitte ei kirjuta üle`,
+      resultB.error?.messageKey === "org.errors.invalid_status_transition",
+      String(resultB.error?.messageKey || resultB.value?.status)
+    );
+
+    const row = await prisma.organization.findUnique({ where: { id: org.id } });
+    expect(
+      `${label}: lõppseis on ${order === "archive" ? "ARCHIVED" : "ACTIVE"}`,
+      row.status === (order === "archive" ? "ARCHIVED" : "ACTIVE"),
+      row.status
+    );
+
+    /* KAOTAJA EI TOHI JÄTTA AUDITIJÄLGE — sündmust, mida ei toimunud, ei tohi
+       ajaloos olla. */
+    const events = await prisma.dataAuditLog.count({
+      where: { action: "org.organization_status_changed", resourceId: org.id }
+    });
+    expect(`${label}: auditisse jäi täpselt üks siire`, events === 1, `${events}`);
   }
 }
 
