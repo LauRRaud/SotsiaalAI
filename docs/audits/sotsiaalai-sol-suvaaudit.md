@@ -929,6 +929,31 @@ uut lugejat.**
 
 **Vastuvõtukriteerium.** `accept`, `revoke` ja `decline` peavad võistlema ühe atomaarse `PENDING` olekusiirde või sama kutser ea luku pärast; liikmesus ja capability’d luuakse ainult accept’i võidetud tehingus. Päris PostgreSQLi testid peavad katma kõik kolm paarisvõistlust ja tõendama, et `REVOKED/DECLINED` kutsel pole sellest kutsest loodud aktiivset liikmesust.
 
+**Seis (10.08.2026): DONE — kood ja paralleelsussond (`npm run org:invite:probe` 38/38; vana koodi vastu 14 punast).**
+
+**Sama muster mis SOL-ORG-06-l, aga rangem tagajärg.** Seal oli valeks lõppseisuks vale
+maksja; siin on selleks **liikmesus ja capability-grandid**. `claimPendingInvite` teeb
+`updateMany ... WHERE status = 'PENDING'`: rea lukk ja tingimuse uuestihindamine on üks
+samm, ja kaotaja leiab 0 rida.
+
+**Nõue on vastuvõtmise ESIMENE kirjutus.** Varem loodi liikmesus ja grandid esimesena ning
+kutse olek alles pärast. Kes nõude kaotab, ei jõua nüüd liikmesuseni.
+
+**Vana koodi vastu 14 punast 38-st ja üks neist on see leid ise:**
+`REVOKED` kutse all oli **aktiivne liikmesus koos grandiga** — administraatori tühistamine
+ei olnud turvapiir, vaid ajastuse küsimus. Vastupidises ajastuses kirjutati tühistamine üle
+ja lõppseis oli `ACCEPTED`.
+
+**Sond mõõdab koherentsust, mitte olekut:** iga stsenaariumi järel kontrollitakse, et kutse
+olek ja **väljaantud õigused** kirjeldavad sama sündmust. Mall on teadlikult `MEMBER_ADMIN`,
+et „kutse ei tohi õigusi anda" oleks mõõdetav rohkem kui ühe grandi peal. Kaetud on kõik
+kolm paari (`accept/revoke`, `accept/decline`, `revoke/decline`) mõlemas ajastuses ja
+korduv `accept`.
+
+**Võistlusriist on nüüd jagatud** (`scripts/probe-race-harness.mjs`): sama retsept elas
+neljas sondis eraldi ja vigane võistlusriist annaks ROHELISE tulemuse, mitte punase — see
+on täpselt see koopia, mida ei tohi lasta lahku minna.
+
 ### SOL-ORG-10 — offboarding võib lõppeda aktiivse töö või kohaga — P1
 
 **Tõend.** `endMembership()` loeb liikmesuse, kontrollib viimast omanikku ja loendab elavad tööd, kuid ei lukusta liikmesuse rida ega töö/koha määramise väravat; seejärel lõpetab hetkel nähtavad kohad, capability’d ja üksuseseosed ning märgib liikmesuse lõppenuks (`lib/org/members.js:393-458`). Viimase omaniku kontroll loeb aktiivsed `ORG_OWNER` grantid samuti ilma lukuta (`:461-476`), mistõttu kaks allesjäänud omanikku võivad paralleelselt mõlemad näha, et nad pole viimased, ja mõlemad lahkuda. `assignWork()` kontrollib saaja aktiivsust eraldi päringuga ja loob määramise hiljem (`lib/org/inbox.js:607-638`); `assignSeat()` loeb liikmesuse aktiivsust enne loomist ning lukustab ainult kohaplaani (`lib/org/seats.js:201-250`). Kui offboarding loendab/lõpetab olemasolevad read ja paralleelne määramine on aktiivse liikmesuse juba lugenud, võib uus töö või koht lisanduda pärast vastavat kontrolli. Skeemi välisvõtmed tõendavad ainult liikmesuse rea olemasolu, mitte selle `ACTIVE` olekut; `onDelete: Restrict` ei aita, sest offboarding rida ei kustuta.
