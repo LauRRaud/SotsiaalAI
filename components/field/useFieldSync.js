@@ -24,6 +24,7 @@ import {
 } from "@/lib/field/syncMachine";
 import {
   acknowledgeFieldWarning,
+  applyFieldVisitStatusToPack,
   confirmFieldPurge,
   runFieldLocalRetention
 } from "@/lib/field/localRetention";
@@ -226,6 +227,11 @@ export function useFieldSync({ userId, visitId = null }) {
    * kasutajale näidata — loenduri liigutab inimene, kes hoiatust päriselt nägi
    * (`acknowledgeWarning`). Poliitika ise elab `lib/field/localRetention.js`-is,
    * et teda saaks mõõta ilma Reactita ja ilma IndexedDB-ta.
+   *
+   * SOL-FIELD-02: sama käik puhastab nüüd ka külastuspaketid — KÕIK, mitte ainult
+   * praegu avatud külastuse oma. Kui käik võttis just selle paketi, mida ekraan
+   * näitab, tuleb vaade värskendada; muidu jääks liidesesse pakett, mida seadmes
+   * enam ei ole.
    */
   const runLocalRetention = useCallback(async () => {
     const store = storeRef.current;
@@ -233,8 +239,29 @@ export function useFieldSync({ userId, visitId = null }) {
     const outcome = await runFieldLocalRetention({ store, now: new Date() });
     setRetentionWarnings(outcome.warned);
     setRetentionAwaitingConfirmation(outcome.awaitingConfirmation);
+    if (visitId && outcome.packsPurged.includes(String(visitId))) setPack(null);
     await refreshItems();
-  }, [refreshItems]);
+  }, [refreshItems, visitId]);
+
+  /**
+   * Server ütles, mis külastusest sai. Sulgemine on lepingu esimene tähtaeg —
+   * pakett kaob KOHE, ka siis, kui sulges teine seade või teine inimene.
+   */
+  const applyVisitStatus = useCallback(
+    async (visit) => {
+      const store = storeRef.current;
+      if (!store) return;
+      /* Kutsuja on `loadDetail`, kelle catch tähendab „server ei vastanud".
+         Kohaliku hoidla viga EI TOHI seda valet lauset öelda — pakett on
+         mugavus, serveri vastus on käes. */
+      try {
+        const outcome = await applyFieldVisitStatusToPack({ store, visit, now: new Date() });
+        if (!outcome || String(visit?.id) !== String(visitId)) return;
+        setPack(outcome.removed ? null : await store.getPack(visitId));
+      } catch {}
+    },
+    [visitId]
+  );
 
   /** Inimene kinnitab, et NÄGI hoiatust. Alles see loeb hoiatuseks. */
   const acknowledgeWarning = useCallback(
@@ -440,15 +467,34 @@ export function useFieldSync({ userId, visitId = null }) {
     [persist, visitId]
   );
 
-  /** Store the prep pack for offline use ("Võta seadmesse"). */
+  /**
+   * Store the prep pack for offline use ("Võta seadmesse").
+   *
+   * SOL-FIELD-02, KAKS VÄLJA, MIS PEAVAD KIRJE PEAL PÜSIMA:
+   * - `takenAt` on säilituskell ja teda EI nullita iga kirjutusega. Seda funktsiooni
+   *   kutsuvad ka markerite rajad (`confirmMarker`, `flushMarkers`) — kui nemad
+   *   kella nullivad, ei jõua 7 päeva tähtaeg kunagi kohale ja säilituskäik ei
+   *   leia midagi. Ainult teadlik uuesti võtmine (`retake`) alustab kella otsast.
+   * - `status` elab PEALMISEL kirjel, mitte krüptitud sisu sees: säilituskäik loeb
+   *   `listPacks()`-iga ainult metaandmeid ega tohi iga paketti lahti krüptida.
+   *   Kui kutsuja olekut kaasa ei anna (markerite rada), jääb kehtima vana.
+   */
   const storePack = useCallback(
-    async (visit) => {
+    async (visit, { retake = false } = {}) => {
       const store = storeRef.current;
       if (!store || !visit?.id) return;
+      /* Vana kirje lugemine ei tohi UUE võtmist blokeerida: kui salvestatud
+         pakett on loetamatu (katkine krüptogramm), on „Võta seadmesse" just see
+         tegevus, mis olukorra parandab. Siis algab ka säilituskell otsast. */
+      let existing = null;
+      try {
+        existing = await store.getPack(visit.id);
+      } catch {}
       const record = {
         visitId: visit.id,
-        takenAt: new Date().toISOString(),
+        takenAt: !retake && existing?.takenAt ? existing.takenAt : new Date().toISOString(),
         plannedEndAt: visit.plannedEndAt || null,
+        status: visit.status || existing?.status || null,
         payload: {
           goal: visit.goal,
           locationText: visit.locationText,
@@ -508,6 +554,7 @@ export function useFieldSync({ userId, visitId = null }) {
     runSync,
     storePack,
     removePack,
+    applyVisitStatus,
     refreshItems,
     retentionWarnings,
     retentionAwaitingConfirmation,

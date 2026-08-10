@@ -54,6 +54,9 @@ export default function FieldVisitRoom({ visitId }) {
   const allowed = ["ADMIN", "SOCIAL_WORKER", "SERVICE_PROVIDER"].includes(role);
 
   const sync = useFieldSync({ userId, visitId });
+  /* Stabiilne viide: `sync.applyVisitStatus` meetodikutse `loadDetail`-i sees
+     nõuaks sõltuvusena kogu `sync`-objekti, mis muutub igal renderdusel. */
+  const { applyVisitStatus } = sync;
   const [detail, setDetail] = useState(null);
   const [loadState, setLoadState] = useState("loading");
   const [phase, setPhase] = useState("prep");
@@ -100,10 +103,14 @@ export default function FieldVisitRoom({ visitId }) {
       setDetail(body);
       setLoadState("ready");
       setPhase((current) => (current === "prep" ? phaseForStatus(body?.visit?.status) : current));
+      /* SOL-FIELD-02: sulgemine on paketi esimene tähtaeg. Seadmel on ainult see
+         olek, mis paketti kirjutades kehtis — värske vastus on ainus koht, kus
+         me sulgemisest üldse teada saame (ka siis, kui sulges teine seade). */
+      await applyVisitStatus(body?.visit);
     } catch {
       setLoadState(sync.pack ? "offline" : "error");
     }
-  }, [visitId, sync.pack]);
+  }, [visitId, sync.pack, applyVisitStatus]);
 
   useEffect(() => {
     if (userId && allowed) loadDetail();
@@ -176,7 +183,9 @@ export default function FieldVisitRoom({ visitId }) {
   const takePack = useCallback(async () => {
     const updated = await patchVisit({ action: "take_pack" });
     if (updated) {
-      await sync.storePack(updated);
+      /* Teadlik võtmine alustab säilituskella otsast — markerite kirjutused
+         (`confirmMarker`, `flushMarkers`) EI tohi seda teha, vt `storePack`. */
+      await sync.storePack(updated, { retake: true });
       setNotice(t("field.pack.taken"));
     }
   }, [patchVisit, sync, t]);

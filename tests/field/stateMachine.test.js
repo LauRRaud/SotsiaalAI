@@ -3,7 +3,8 @@ import assert from "node:assert/strict";
 
 import {
   FIELD_ITEM_STATE,
-  FIELD_SYNC_MAX_AUTO_ATTEMPTS
+  FIELD_SYNC_MAX_AUTO_ATTEMPTS,
+  FIELD_VISIT_STATUS
 } from "../../lib/field/constants.js";
 import {
   applyFieldSyncEvent,
@@ -117,4 +118,16 @@ test("visit pack expiry: 72h after the planned window or 7 days for drafts", () 
   assert.equal(fieldPackPurgeDue(insideWindow, NOW), false);
   const draftOld = { takenAt: new Date(NOW.getTime() - 8 * 24 * 3600 * 1000).toISOString() };
   assert.equal(fieldPackPurgeDue(draftOld, NOW), true);
+});
+
+/* SOL-FIELD-02: sulgemine on lepingu ESIMENE tähtaeg, mitte kolmas. Ilma selleta
+   elaks suletud külastuse pakett veel kuni 72 h — ja külastus, mis planeeriti
+   kaugele ette, veel kauem. */
+test("visit pack expiry: a closed or cancelled visit drops its pack immediately", () => {
+  const future = { plannedEndAt: new Date(NOW.getTime() + 30 * 24 * 3600 * 1000).toISOString() };
+  assert.equal(fieldPackPurgeDue({ ...future, status: FIELD_VISIT_STATUS.PLANNED }, NOW), false);
+  assert.equal(fieldPackPurgeDue({ ...future, status: FIELD_VISIT_STATUS.CLOSED }, NOW), true);
+  assert.equal(fieldPackPurgeDue({ ...future, status: FIELD_VISIT_STATUS.CANCELLED }, NOW), true);
+  /* Tundmatu olek ei ole lõpetatud — vale pool oleks vaikne kustutus. */
+  assert.equal(fieldPackPurgeDue({ ...future, status: "MIDAGI_UUT" }, NOW), false);
 });

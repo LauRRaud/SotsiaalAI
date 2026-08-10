@@ -43,6 +43,7 @@
     "org:inbox:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-terminal-probe.mjs",
     "org:invite:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-invite-race-probe.mjs",
     "org:offboard:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-offboarding-race-probe.mjs",
+    "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",
