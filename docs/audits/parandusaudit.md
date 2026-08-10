@@ -12,7 +12,7 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 | Tehtud leidu | **28 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
 | Lahtised prioriteedi järgi | **18 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
-| Toodangus | server = `main` = `origin/main` = `99c68ef3`, neljas deploy 10.08 kell 00:03; migratsioon `20260809200000` on tootmisbaasis mõõdetult kohal |
+| Toodangus | server = `main` = `origin/main` = `2b535e5f`, viies deploy 10.08 kell 09:06; migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
 | Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-CALL** (13 lahtist: 4 × P0, 6 × P1, 3 × P2) |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
