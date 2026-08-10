@@ -3,6 +3,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import {
+  resolveMicControl,
+  shouldApplyCallSnapshot,
+  shouldReleaseLocalCall
+} from "@/lib/calls/clientState";
 
 function callPath(roomId, suffix = "", basePath = "") {
   if (basePath) return `${basePath}${suffix}`;
@@ -33,10 +38,20 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [connectionState, setConnectionState] = useState("idle");
+  // SOL-CALL-12: „selles vahekaardis on publitseeritud kohalik heli" on OMAETTE tõde,
+  // mitte serveriosaluse tuletis. Ta peab olema state (mitte ref), sest vaigistusnupp
+  // sõltub temast ja ref'i muutus ei renderda.
+  const [audioOwner, setAudioOwner] = useState(false);
   const roomRef = useRef(null);
   const audioTrackRef = useRef(null);
   const remoteAudioElsRef = useRef(new Map());
   const joinedCallIdRef = useRef("");
+  // SOL-CALL-13: iga laadimine saab kasvava numbri ja ainus rakendatav vastus on
+  // uusima numbriga oma. `roomIdRef` kannab seda, mida PRAEGU vaadatakse — closure'i
+  // roomId on see, mida küsiti.
+  const loadGenerationRef = useRef(0);
+  const loadAbortRef = useRef(null);
+  const roomIdRef = useRef(roomId);
 
   const activeSpeakRequest = useMemo(() => {
     if (!call || !userId) return null;
@@ -48,6 +63,16 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     return (call.participants || []).find(participant => participant.userId === userId && !participant.leftAt) || null;
   }, [call, userId]);
 
+  // SOL-CALL-12: serveriosalus („ma olen kõnes") ja selle vahekaardi provideriühendus
+  // („ma saan siit mikrofoni juhtida") on kaks eri küsimust. Vaigistusnupp kuulub
+  // teisele; otsus ise elab `lib/calls/clientState.js`-is, et tal oleks test.
+  const micControl = useMemo(() => resolveMicControl({
+    provider: call?.provider,
+    joinedHere: joined,
+    hasServerParticipant: Boolean(joinedParticipant),
+    audioOwner
+  }), [audioOwner, call?.provider, joined, joinedParticipant]);
+
   const cleanupLiveKit = useCallback(async () => {
     remoteAudioElsRef.current.forEach(element => {
       try {
@@ -57,6 +82,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     remoteAudioElsRef.current = new Map();
     const track = audioTrackRef.current;
     audioTrackRef.current = null;
+    setAudioOwner(false);
     try {
       track?.stop?.();
     } catch {}
@@ -70,19 +96,47 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
 
   const load = useCallback(async () => {
     if (!roomId) return;
+    // SOL-CALL-13: number ENNE päringut, kontroll PÄRAST vastust. Korraga on lennus
+    // ainult üks laadimine — eelmine katkestatakse, sest tema vastus ei saa enam
+    // ühtegi küsimust vastata, millele uuem juba vastab.
+    const generation = loadGenerationRef.current + 1;
+    loadGenerationRef.current = generation;
+    const requestRoomId = roomId;
     try {
-      const payload = await fetch(callPath(roomId, "", basePath), { cache: "no-store" }).then(readPayload);
+      loadAbortRef.current?.abort?.();
+    } catch {}
+    const controller = typeof AbortController === "function" ? new AbortController() : null;
+    loadAbortRef.current = controller;
+    const fresh = () => shouldApplyCallSnapshot({
+      requestGeneration: generation,
+      currentGeneration: loadGenerationRef.current,
+      requestRoomId,
+      currentRoomId: roomIdRef.current
+    });
+    try {
+      const payload = await fetch(callPath(requestRoomId, "", basePath), {
+        cache: "no-store",
+        ...(controller ? { signal: controller.signal } : {})
+      }).then(readPayload);
+      // Aegunud vastus ei tohi kirjutada state'i EGA koristada ühendust, mille lõi
+      // keegi teine — teine pool on see, mis vanas koodis katkestas ruumi B heli.
+      if (!fresh()) return;
       setCall(payload.call || null);
       setConfig(payload.config || { provider: "mock", providerAvailable: true, maxParticipants: 8 });
       setCanModerate(payload.canModerate === true);
       setError("");
-      if (!payload.call || joinedCallIdRef.current && payload.call.id !== joinedCallIdRef.current) {
+      if (!payload.call || shouldReleaseLocalCall({
+        snapshotCallId: payload.call.id,
+        joinedCallId: joinedCallIdRef.current
+      })) {
         setJoined(false);
         setMicMuted(false);
         joinedCallIdRef.current = "";
         await cleanupLiveKit();
       }
     } catch (err) {
+      if (err?.name === "AbortError") return;
+      if (!fresh()) return;
       setError(err.message || "call.load_failed");
     }
   }, [basePath, cleanupLiveKit, roomId]);
@@ -110,6 +164,15 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
   }, [basePath]);
 
   useEffect(() => {
+    // SOL-CALL-13: ruumi vahetus katkestab vana päringu JA aegub tema põlvkonna.
+    // Kaks sammu, sest abort ei ole garantii: juba lahendunud fetch jõuab `then`-i
+    // ka pärast `abort()`-i, ja siis on ainus kaitse number.
+    roomIdRef.current = roomId;
+    loadGenerationRef.current += 1;
+    try {
+      loadAbortRef.current?.abort?.();
+    } catch {}
+    loadAbortRef.current = null;
     setCall(null);
     setJoined(false);
     setMicMuted(false);
@@ -122,6 +185,11 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     }, 5000);
     return () => {
       clearInterval(timer);
+      loadGenerationRef.current += 1;
+      try {
+        loadAbortRef.current?.abort?.();
+      } catch {}
+      loadAbortRef.current = null;
       const callSessionId = joinedCallIdRef.current;
       joinedCallIdRef.current = "";
       if (callSessionId) sendLeaveSignal(roomId, callSessionId);
@@ -155,8 +223,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     return payload;
   }, [basePath, roomId]);
 
-  const connectLiveKit = useCallback(async ({ token, url }) => {
-    if (!token || !url) return;
+  const openLiveKitSession = useCallback(async ({ token, url }) => {
     const livekit = await import("livekit-client");
     const liveRoom = new livekit.Room({
       adaptiveStream: false,
@@ -216,52 +283,109 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     await liveRoom.localParticipant.publishTrack(track, {
       source: livekit.Track.Source.Microphone
     });
+    // SOL-CALL-12: alles PUBLITSEERITUD track teeb sellest vahekaardist mikrofoni
+    // omaniku. Enne seda ei tohi vaigistusnuppu pakkuda — tal ei oleks jõustajat.
+    setAudioOwner(true);
     setConnectionState("connected");
   }, []);
+
+  /**
+   * SOL-CALL-11 — connect/create/publish on ÜKS fail-closed plokk.
+   *
+   * Vanas koodis ei olnud selle jada sees ühtegi catch'i: kui `connect()` õnnestus ja
+   * `publishTrack()` viskas, jäi juba loodud mikrofoni-track elama (brauseris põleb
+   * salvestusmärk) ja LiveKit Room jäi ühendatuks. Väline catch pani ainult
+   * veateate — see on nähtav tõrge, mille taga mikrofon töötab edasi.
+   */
+  const connectLiveKit = useCallback(async ({ token, url }) => {
+    if (!token || !url) return;
+    try {
+      await openLiveKitSession({ token, url });
+    } catch (error) {
+      await cleanupLiveKit();
+      throw error;
+    }
+  }, [cleanupLiveKit, openLiveKitSession]);
+
+  /**
+   * SOL-CALL-11 — katkenud liitumine ei tohi jätta ei mikrofoni ega SERVERIOSALUST.
+   *
+   * Serveri `/join` (ja `/start`) loob osalusrea ENNE, kui klient providerini jõuab.
+   * Kui provider kukub, jääb kasutaja serveri silmis kõnesse: koht on hõivatud,
+   * viimase lahkuja auto-lõpp ei käivitu ja salvestuse nõusolekuring ootab inimest,
+   * keda kõnes ei ole. Seepärast on liitumis-ID kirjas ENNE providerikutset ja see
+   * funktsioon on ainus koht, kus ta maha võetakse.
+   */
+  const releaseFailedJoin = useCallback(async callSessionId => {
+    await cleanupLiveKit();
+    setJoined(false);
+    setMicMuted(false);
+    if (!callSessionId) return;
+    if (joinedCallIdRef.current === callSessionId) joinedCallIdRef.current = "";
+    try {
+      await postAction("/leave", { callSessionId });
+    } catch {
+      // Serveri leave võib ise kukkuda (võrk, aegunud kõne). Beacon ei oota vastust
+      // ega saa siin enam midagi rikkuda — parem üks lisakatse kui fantoom.
+      sendLeaveSignal(roomId, callSessionId);
+    }
+  }, [cleanupLiveKit, postAction, roomId, sendLeaveSignal]);
 
   const start = useCallback(async () => {
     if (!roomId || busy) return;
     setBusy(true);
     setError("");
+    // Serveri `/start` lisab alustaja KOHE HOST-osalejaks, seega osalus on olemas
+    // juba enne join'i — ja iga edasine tõrge peab ta maha võtma.
+    let claimedCallId = "";
     try {
       const payload = await postAction("/start");
       setCall(payload.call || null);
       if (payload.call?.id) {
+        claimedCallId = payload.call.id;
+        joinedCallIdRef.current = claimedCallId;
         const joinPayload = await postAction("/join", { callSessionId: payload.call.id });
         setCall(joinPayload.call || null);
+        claimedCallId = joinPayload.call?.id || claimedCallId;
+        joinedCallIdRef.current = claimedCallId;
         if (joinPayload.call?.provider === "LIVEKIT_SELF_HOSTED") {
           await connectLiveKit({ token: joinPayload.token, url: joinPayload.livekitUrl });
         }
-        joinedCallIdRef.current = joinPayload.call?.id || payload.call.id;
         setJoined(true);
         setMicMuted(false);
       }
     } catch (err) {
+      await releaseFailedJoin(claimedCallId);
       setError(err.message || "call.start_failed");
     } finally {
       setBusy(false);
     }
-  }, [busy, connectLiveKit, postAction, roomId]);
+  }, [busy, connectLiveKit, postAction, releaseFailedJoin, roomId]);
 
   const join = useCallback(async () => {
     if (!roomId || !call?.id || busy) return;
     setBusy(true);
     setError("");
+    let claimedCallId = "";
     try {
       const payload = await postAction("/join", { callSessionId: call.id });
       setCall(payload.call || null);
+      // SOL-CALL-11: ID kirja ENNE providerit — muidu ei tea ei teardown ega
+      // veakäsitlus, millisest kõnest tuleb lahkuda.
+      claimedCallId = payload.call?.id || call.id;
+      joinedCallIdRef.current = claimedCallId;
       if (payload.call?.provider === "LIVEKIT_SELF_HOSTED") {
         await connectLiveKit({ token: payload.token, url: payload.livekitUrl });
       }
-      joinedCallIdRef.current = payload.call?.id || call.id;
       setJoined(true);
       setMicMuted(false);
     } catch (err) {
+      await releaseFailedJoin(claimedCallId);
       setError(err.message || "call.join_failed");
     } finally {
       setBusy(false);
     }
-  }, [busy, call?.id, connectLiveKit, postAction, roomId]);
+  }, [busy, call?.id, connectLiveKit, postAction, releaseFailedJoin, roomId]);
 
   const leave = useCallback(async () => {
     if (!roomId || !call?.id || busy) return;
@@ -299,12 +423,32 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     }
   }, [busy, call?.id, cleanupLiveKit, postAction, roomId]);
 
+  /**
+   * SOL-CALL-12 — vaigistus on käsk provideri poole, mitte kirje andmebaasis.
+   *
+   * Kaks asja on siin tahtlikult sellises järjekorras. Esiteks: kui see vahekaart
+   * mikrofoni ei juhi, EI KIRJUTATA andmebaasi midagi — vana kood tegi `?.mute?.()`
+   * `null`-i peal (vaikne no-op) ja kirjutas siis `micMuted: true`, mille peale nii
+   * see kasutaja kui kõik teised nägid „mikrofon väljas" ajal, mil teine vahekaart
+   * heli edasi saatis. Teiseks: track peab pärast käsku ISE kinnitama uut seisu;
+   * alles siis tohib lipp andmebaasi minna. Lipp on vastuse, mitte kavatsuse kirje.
+   */
   const setMuted = useCallback(async nextMuted => {
     if (!roomId || !call?.id) return;
     setError("");
+    if (!micControl.available) {
+      setError("call.mic_not_controlled_here");
+      return;
+    }
     try {
-      if (nextMuted) await audioTrackRef.current?.mute?.();
-      else await audioTrackRef.current?.unmute?.();
+      const track = audioTrackRef.current;
+      if (track) {
+        if (nextMuted) await track.mute();
+        else await track.unmute();
+        if (typeof track.isMuted === "boolean" && track.isMuted !== nextMuted) {
+          throw new Error("call.mic_not_applied");
+        }
+      }
       const payload = await fetch(callPath(roomId, `/${encodeURIComponent(call.id)}/mute`, basePath), {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -315,7 +459,7 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     } catch (err) {
       setError(err.message || "call.mute_failed");
     }
-  }, [basePath, call?.id, roomId]);
+  }, [basePath, call?.id, micControl.available, roomId]);
 
   const toggleSpeakRequest = useCallback(async () => {
     if (!roomId || !call?.id) return;
@@ -434,6 +578,8 @@ export function useRoomCall(roomId, userId, { basePath = "" } = {}) {
     canModerate,
     joined: joined || Boolean(joinedParticipant),
     micMuted: micMuted || joinedParticipant?.micMuted === true,
+    // Pind peab eristama „olen kõnes" ja „saan siit mikrofoni juhtida" — vt SOL-CALL-12.
+    micControl,
     activeSpeakRequest,
     busy,
     error,

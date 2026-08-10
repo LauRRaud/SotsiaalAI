@@ -45,6 +45,8 @@
     "start_audio": "Start audio call",
     "mic_off": "Microphone off",
     "mic_on": "Microphone on",
+    "mic_control_other_tab": "The microphone is controlled by the tab you joined the call from",
+    "mic_control_no_audio": "The microphone is not connected in this tab",
     "open_details": "Open call details",
     "active": "Call active",
     "participants_short": "participants",

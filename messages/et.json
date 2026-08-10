@@ -45,6 +45,8 @@
     "start_audio": "Alusta helikõnet",
     "mic_off": "Mikrofon väljas",
     "mic_on": "Mikrofon sees",
+    "mic_control_other_tab": "Mikrofoni juhib see vahekaart, kust kõnega liituti",
+    "mic_control_no_audio": "Mikrofon ei ole selles vahekaardis ühendatud",
     "open_details": "Ava helikõne detailid",
     "active": "Helikõne aktiivne",
     "participants_short": "osalejat",

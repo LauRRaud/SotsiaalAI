@@ -118,6 +118,7 @@ export default function RoomCallBar({
     canModerate,
     joined,
     micMuted,
+    micControl,
     activeSpeakRequest,
     busy,
     error,
@@ -149,6 +150,19 @@ export default function RoomCallBar({
   const speakCount = speakRequests.length;
 
   const inCall = joined;
+  /* SOL-CALL-12: nupp, mis ei jõua mikrofonini, ei tohi olla vajutatav. Serveriosalus
+     võib tulla teisest vahekaardist (või olla üle elanud lehe taaslaadimise) — siis on
+     see riba kõnes, aga mikrofon on mujal. Vaikne no-op oli vanas koodis kõige
+     halvem variant: inimene vajutas, liides kinnitas ja heli läks edasi. */
+  const micControlBlocked = inCall && micControl?.available === false;
+  const micBlockedTitle = micControl?.reason === "no_audio"
+    ? text(t, "calls.mic_control_no_audio", "Mikrofon ei ole selles vahekaardis ühendatud")
+    : text(t, "calls.mic_control_other_tab", "Mikrofoni juhib see vahekaart, kust kõnega liituti");
+  const micTitle = micControlBlocked
+    ? micBlockedTitle
+    : micMuted
+      ? text(t, "calls.mic_off", "Mikrofon väljas")
+      : text(t, "calls.mic_on", "Mikrofon sees");
   // "Alusta" = "Liitu" (omanik 23.07): kõne olemas → liitu; kõnet pole → alusta;
   // kõnes → lahku (host jaoks lõpetab, kui viimane).
   const handleToggle = () => {
@@ -189,10 +203,11 @@ export default function RoomCallBar({
             type="button"
             className="room-call-mute"
             data-muted={micMuted ? "true" : undefined}
+            data-mic-elsewhere={micControlBlocked ? "true" : undefined}
             onClick={() => setMuted(!micMuted)}
-            disabled={busy}
-            title={micMuted ? text(t, "calls.mic_off", "Mikrofon väljas") : text(t, "calls.mic_on", "Mikrofon sees")}
-            aria-label={micMuted ? text(t, "calls.mic_off", "Mikrofon väljas") : text(t, "calls.mic_on", "Mikrofon sees")}
+            disabled={busy || micControlBlocked}
+            title={micTitle}
+            aria-label={micTitle}
             aria-pressed={micMuted ? "true" : "false"}
           >
             <MicGlyph muted={micMuted} />
@@ -221,12 +236,22 @@ export default function RoomCallBar({
 
           {error ? (
             <div className="room-call-error">
-              {error === "call.livekit_not_configured" ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.") : error}
+              {error === "call.livekit_not_configured"
+                ? text(t, "calls.not_configured", "Helikõne teenus ei ole veel seadistatud.")
+                : error === "call.mic_not_controlled_here"
+                  ? micBlockedTitle
+                  : error}
             </div>
           ) : null}
 
           {joined && connectionState && connectionState !== "idle" && connectionState !== "connected" ? (
             <div>{text(t, "calls.connection", "Ühendus")}: {connectionState}</div>
+          ) : null}
+
+          {/* SOL-CALL-12: kinni nupp ilma põhjuseta on omaette viga — inimene peab
+              teadma, KUS mikrofon on, mitte ainult seda, et siin ta ei tööta. */}
+          {micControlBlocked ? (
+            <div className="room-call-mic-elsewhere">{micBlockedTitle}</div>
           ) : null}
 
           <div className="room-call-actions-row">
