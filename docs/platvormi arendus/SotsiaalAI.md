@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 77/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 78/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -298,11 +298,17 @@ järgi ära ja ületasid koos limiidi. Mõõtmine ja kirjutus käivad nüüd üh
 seega teine päring näeb juba esimese oma. Tõendatud **päris andmebaasis 8/8**: kui ruumi on veel
 kahele, õnnestub neljast korraga saadetud kirjutusest täpselt kaks ja lõppsumma ei ületa piiri.
 
-Lahtiseks jääb **205 P1, 74 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(7/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-08: salvestatud analüüsid ei läinud kvoodi arvestusse.** Analüüsi salvestamine
+kontrollis sinu üldist salvestusmahtu, aga see summa analüüse ei lugenud — seega ei muutnud ükski
+salvestatud analüüs järgmise kontrolli sisendit ja neid sai järjest salvestada piiramatult.
+Analüüsid on nüüd samas summas mis dokumendid ja artefaktid, ja nende salvestamine käib sama
+atomaarse reservatsiooni all.
+
+Lahtiseks jääb **204 P1, 74 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(8/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on SOL-DOC-01…-07** — ükski ei vaja migratsiooni. Ütle, kui viin
+**Deploy'mata on SOL-DOC-01…-08** — ükski ei vaja migratsiooni. Ütle, kui viin
 serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`

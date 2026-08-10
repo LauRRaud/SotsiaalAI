@@ -1731,6 +1731,26 @@ summas.
 
 **Vastuvõtukriteerium.** `SavedAnalysis.content` peab kuuluma kanoonilisse `STORAGE_BYTES` loendurisse ning kasutama sama atomaarset reservatsiooni nagu muud isiklikud objektid. Test peab täitma limiidi analüüsidega, kontrollima järgmise salvestuse 413 vastust ning vabastatud mahtu pärast kustutamist.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).**
+
+**KONTROLL, MIS ISEENNAST EI NÄINUD.** `createSavedAnalysis()` kontrollis enne loomist kasutaja
+üldist salvestusmahtu — aga see summa luges ainult dokumente, materjale ja artefakte. Salvestatud
+analüüs võib olla kuni 200 000 baiti, ja ükski neist ei muutnud järgmise kontrolli sisendit:
+kasutaja sai järjest salvestada piiramatult, ilma ühegi 413-ta. Kasutusülevaade alahindas
+tegelikku isikliku AI-sisu mahtu ja retention/kulu planeerimine lähtus valest summast.
+
+**Analüüs on nüüd kanoonilise summa neljas pott** (`analysisBytes`) ja salvestamine kasutab sama
+atomaarset kasutajapõhist reservatsiooni nagu iga teine isiklik objekt (SOL-DOC-07 lukk).
+
+**Mõõdetud päris PostgreSQL-is** (`npm run storage:quota:probe`, **13/13**): analüüsideta on pott
+null · kaks analüüsi annavad täpselt oma baidid nii omas potis kui kogusummas · täis kvoodi all
+saab järgmine analüüs **413** · kustutamine vabastab mahu ja sama kirjutus läheb siis läbi.
+
+**Kõrvalleid, mille parandus välja tõi.** Kõneteenuse ühiktesti fake-klient ei tundnud
+`savedAnalysis` mudelit ja puuduv pott ei andnud seal nulli, vaid krahhi — mis oleks maskeerinud
+kvoodikeelu millekski muuks. Fake sai neljanda poti — roheline fake-testi sviit ei tõenda
+skeemimuudatuse järel iseenesest midagi.
+
 ### SOL-DOC-09 — analüüsi salvestamise ja kustutamise auditikutsed ei loo auditirida — P2
 
 **Tõend.** `createSavedAnalysis()` ja `deleteSavedAnalysisForOwner()` kutsuvad vastavalt sündmusi `analysis.saved` ja `analysis.deleted` (`lib/documents/savedAnalysis.js:106-123`, `:146-151`). `buildDocumentAuditRecord()` loob kirje ainult `AUDIT_EVENT_TO_ACTION` kaardis olevale sündmusele, kuid kumbagi analüüsisündmust kaardis pole; tundmatu sündmus tagastab `null` ja `logDocumentsAudit()` lõpetab kirjutamata (`lib/documents/auditShared.js:5-37`, `:77-107`, `lib/documents/audit.js:23-35`).

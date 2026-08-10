@@ -9,16 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **77 / 357** |
+| Tehtud leidu | **78 / 357** |
 | Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 205 × P1 · 74 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 204 × P1 · 74 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (7/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (8/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 77-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-07**;
+**70 tehtud leidu 78-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-08**;
 ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 7/9 | – | 1 | 1 | **käsil**, DOC-01…-07 tehtud |
+| Dokumendid ja AI-kasutus | SOL-DOC | 8/9 | – | – | 1 | **käsil**, lahtine ainult DOC-09 |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -327,6 +327,15 @@ eraldi loendur oleks neljas koht, mille lahknemine oleks nähtamatu. **`npm run
 storage:quota:probe` 8/8**: ruumi kahele + neli võistlejat annab täpselt kaks võitjat ja lõppsumma
 ei ületa limiiti; negatiivkontroll näitab, et vana muster ületab. Üleslaadimine sai ühtlasi
 SOL-DOC-04 lepingu, seega kvoodi 413 ei jäta enam faili kettale.
+
+**SOL-DOC-08 (11.08): kontroll, mis iseennast ei näinud.** Salvestatud analüüsi loomine
+kontrollis kasutaja üldist salvestusmahtu, aga see summa luges ainult dokumente, materjale ja
+artefakte. Analüüs võib olla kuni 200 kB ja ükski neist ei muutnud järgmise kontrolli sisendit —
+neid sai järjest salvestada piiramatult, ilma 413-ta. Analüüs on nüüd kanoonilise summa neljas
+pott ja salvestamine kasutab sama atomaarset reservatsiooni. Sondis mõõdetud: kaks analüüsi
+annavad oma baidid nii omas potis kui kogusummas, täis kvoodi all saab järgmine 413, kustutamine
+vabastab mahu. **Kõrvalleid:** kõneteenuse fake-klient ei tundnud `savedAnalysis` mudelit ja
+puuduv pott ei andnud seal nulli, vaid krahhi — see oleks maskeerinud kvoodikeelu millekski muuks.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
