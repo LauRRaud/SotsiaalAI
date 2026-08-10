@@ -23,6 +23,11 @@ import {
   FIELD_PROVENANCES,
   FIELD_VISIT_STATUS
 } from "@/lib/field/constants";
+import {
+  FIELD_MARKER,
+  FIELD_MARKER_STATE,
+  FIELD_MARKERS
+} from "@/lib/field/visitMarkers";
 import { useFieldSync } from "./useFieldSync";
 import { isServiceLogUiEnabled } from "@/lib/serviceLog/flags";
 
@@ -116,36 +121,16 @@ export default function FieldVisitRoom({ visitId }) {
     if (userId && allowed) loadDetail();
   }, [userId, allowed, loadDetail, sync.online]);
 
-  // Offline arrival/departure markers flush once the network returns.
-  const flushMarkers = useCallback(async () => {
-    if (!navigator.onLine || !sync.pack?.payload) return;
-    const markers = sync.pack.payload;
-    for (const [flag, action] of [
-      ["localArrivalAt", "confirm_arrival"],
-      ["localDepartureAt", "confirm_departure"]
-    ]) {
-      if (!markers[flag]) continue;
-      try {
-        const fresh = await fetch(`/api/field/visits/${encodeURIComponent(visitId)}`).then((r) => r.json());
-        if (!fresh?.visit) return;
-        const already = action === "confirm_arrival" ? fresh.visit.arrivedConfirmedAt : fresh.visit.departedConfirmedAt;
-        if (!already) {
-          await fetch(`/api/field/visits/${encodeURIComponent(visitId)}`, {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ action, version: fresh.visit.version })
-          });
-        }
-        const nextPayload = { ...markers };
-        delete nextPayload[flag];
-        await sync.storePack({ ...fresh.visit, ...nextPayload, id: visitId });
-      } catch {}
-    }
-    loadDetail();
-  }, [visitId, sync, loadDetail]);
+  /* SOL-FIELD-04: kogu otsustamine elab `lib/field/visitMarkers.js`-is, sest
+     just VASTUSE KÄSITLUS oli katki — teda peab saama mõõta ilma Reactita. */
+  const { flushMarkers } = sync;
+  const flushAndReload = useCallback(async () => {
+    const outcome = await flushMarkers();
+    if (outcome?.confirmed?.length) await loadDetail();
+  }, [flushMarkers, loadDetail]);
 
   useEffect(() => {
-    if (sync.online) flushMarkers();
+    if (sync.online) flushAndReload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sync.online]);
 
@@ -197,17 +182,10 @@ export default function FieldVisitRoom({ visitId }) {
         return;
       }
       // Offline: record locally and tell the truth about server state.
-      const markers = sync.pack?.payload || {};
-      const key = which === "arrival" ? "localArrivalAt" : "localDepartureAt";
-      await sync.storePack({
-        id: visitId,
-        ...markers,
-        [key]: new Date().toISOString(),
-        plannedEndAt: sync.pack?.plannedEndAt || null
-      });
-      setNotice(t("field.markers.storedOffline"));
+      const stored = await sync.recordMarker(which === "arrival" ? FIELD_MARKER.ARRIVAL : FIELD_MARKER.DEPARTURE);
+      setNotice(t(stored ? "field.markers.storedOffline" : "field.markers.needsPack"));
     },
-    [visit, patchVisit, sync, visitId, t]
+    [visit, patchVisit, sync, t]
   );
 
   const saveNote = useCallback(async () => {
@@ -465,6 +443,9 @@ export default function FieldVisitRoom({ visitId }) {
 
   const offline = !sync.online;
   const packView = sync.pack?.payload || null;
+  const markerList = FIELD_MARKERS.map((which) => sync.markers[which]).filter(Boolean);
+  const failedMarkers = markerList.filter((marker) => marker.state === FIELD_MARKER_STATE.FAILED);
+  const pendingMarkers = markerList.filter((marker) => marker.state !== FIELD_MARKER_STATE.FAILED);
   const view = visit || packView;
   const readOnly = view?.status === FIELD_VISIT_STATUS.CLOSED || view?.status === FIELD_VISIT_STATUS.CANCELLED;
 
@@ -624,23 +605,34 @@ export default function FieldVisitRoom({ visitId }) {
                 <Button
                   variant="secondary"
                   onClick={() => confirmMarker("arrival")}
-                  disabled={readOnly || Boolean(visit?.arrivedConfirmedAt)}
+                  disabled={readOnly || Boolean(visit?.arrivedConfirmedAt) || Boolean(sync.markers.arrival)}
                 >
-                  {visit?.arrivedConfirmedAt || packView?.localArrivalAt
+                  {visit?.arrivedConfirmedAt || sync.markers.arrival
                     ? t("field.markers.arrived")
                     : t("field.markers.confirmArrival")}
                 </Button>
                 <Button
                   variant="secondary"
                   onClick={() => confirmMarker("departure")}
-                  disabled={readOnly || Boolean(visit?.departedConfirmedAt)}
+                  disabled={readOnly || Boolean(visit?.departedConfirmedAt) || Boolean(sync.markers.departure)}
                 >
-                  {visit?.departedConfirmedAt || packView?.localDepartureAt
+                  {visit?.departedConfirmedAt || sync.markers.departure
                     ? t("field.markers.departed")
                     : t("field.markers.confirmDeparture")}
                 </Button>
               </div>
-              {packView?.localArrivalAt || packView?.localDepartureAt ? (
+              {/* SOL-FIELD-04: ootel marker on hoiatus, LÄBIKUKKUNUD marker on
+                  tõrge koos põhjuse ja korduskatsega. Vaikselt kadumine on
+                  keelatud, sest ta on edust eristamatu. */}
+              {failedMarkers.length ? (
+                <div className="fld-warn" role="status">
+                  <p>{t("field.markers.failedTitle")}</p>
+                  <p>{t(`field.markers.reason.${failedMarkers[0].reason || "server"}`)}</p>
+                  <Button variant="secondary" onClick={flushAndReload} disabled={offline}>
+                    {t("field.markers.retry")}
+                  </Button>
+                </div>
+              ) : pendingMarkers.length ? (
                 <p className="fld-hint">{t("field.markers.pendingSync")}</p>
               ) : null}
 

@@ -31,6 +31,7 @@ const ORIGIN = "https://field-pack-probe.test";
 const SERVED = new Set([
   "/lib/field/localStore.js",
   "/lib/field/localRetention.js",
+  "/lib/field/visitMarkers.js",
   "/lib/field/syncMachine.js",
   "/lib/field/constants.js",
   "/lib/workspaces/provenance.js"
@@ -45,7 +46,8 @@ const SHELL = `<!doctype html><meta charset="utf-8"><title>field pack probe</tit
 <script type="module">
   import { openFieldStore } from "/lib/field/localStore.js";
   import * as retention from "/lib/field/localRetention.js";
-  window.__field = { openFieldStore, retention };
+  import * as markers from "/lib/field/visitMarkers.js";
+  window.__field = { openFieldStore, retention, markers };
   window.__fieldReady = true;
 </script>`;
 
@@ -68,7 +70,7 @@ async function main() {
   await page.waitForFunction(() => window.__fieldReady === true, null, { timeout: 15000 });
 
   const results = await page.evaluate(async () => {
-    const { openFieldStore, retention } = window.__field;
+    const { openFieldStore, retention, markers } = window.__field;
     const out = [];
     const check = (label, cond, detail = "") => out.push({ label, pass: Boolean(cond), detail });
 
@@ -214,6 +216,76 @@ async function main() {
       const item = await store.getItem("fld_unsent");
       check("saatmata märge on endiselt loetav", item?.payload?.body === "Saatmata märge");
       check("ja tema hoiatuste loendurit ei liigutatud", !item?.warnCount);
+      store.close();
+    });
+
+    /* 9. SOL-FIELD-04: marker peab elama üle rakenduse SULGEMISE. Just seda ei
+       saa fake-hoidlaga tõendada — päris IndexedDB avatakse siin uuesti. */
+    await block("9 marker elab üle taasavamise", async () => {
+      const applyLocalMarker = markers.applyLocalMarker || missing("applyLocalMarker");
+      const readPackMarkers = markers.readPackMarkers || missing("readPackMarkers");
+      const userId = `sol-field-04-probe-${(seq += 1)}`;
+
+      const first = await openFieldStore(userId);
+      await first.putPack(pack({ status: "IN_PROGRESS" }));
+      const taken = await first.getPack("vis_1");
+      await first.putPack({ ...taken, payload: applyLocalMarker(taken.payload, "arrival", T0) });
+      first.close();
+
+      /* Rakendus suletakse ja avatakse uuesti — sama partitsioon, uus ühendus. */
+      const second = await openFieldStore(userId);
+      const reopened = await second.getPack("vis_1");
+      const after = readPackMarkers(reopened?.payload);
+      check("marker on pärast taasavamist alles", after.arrival?.at === T0.toISOString());
+      check("marker on PENDING", after.arrival?.state === "PENDING");
+      check("ja paketi sisu on ka alles", reopened?.payload?.locationText === "Tabasalu");
+      second.close();
+    });
+
+    /* 10. Flush päris hoidla vastu: 500 jätab alles, 200 võtab ära. */
+    await block("10 flush päris hoidlaga", async () => {
+      const applyLocalMarker = markers.applyLocalMarker || missing("applyLocalMarker");
+      const readPackMarkers = markers.readPackMarkers || missing("readPackMarkers");
+      const flushVisitMarkers = markers.flushVisitMarkers || missing("flushVisitMarkers");
+      const store = await fresh();
+      await store.putPack(pack({ status: "IN_PROGRESS" }));
+      const taken = await store.getPack("vis_1");
+      await store.putPack({ ...taken, payload: applyLocalMarker(taken.payload, "arrival", T0) });
+
+      const scripted = (statuses) => {
+        const queue = [...statuses];
+        return async () => {
+          const next = queue.shift();
+          return { status: next.status, json: async () => next.body ?? {} };
+        };
+      };
+
+      const failing = await flushVisitMarkers({
+        store,
+        visitId: "vis_1",
+        fetchImpl: scripted([
+          { status: 200, body: { visit: { id: "vis_1", version: 3, arrivedConfirmedAt: null } } },
+          { status: 500, body: {} }
+        ]),
+        now: at(0, 1)
+      });
+      check("serveri viga jätab markeri alles", failing.kept.join(",") === "arrival");
+      const kept = readPackMarkers((await store.getPack("vis_1")).payload).arrival;
+      check("ja ta on päris IndexedDB-s FAILED-seisus", kept?.state === "FAILED" && kept?.reason === "server");
+      check("aeg ei muutunud", kept?.at === T0.toISOString());
+
+      const okRun = await flushVisitMarkers({
+        store,
+        visitId: "vis_1",
+        fetchImpl: scripted([
+          { status: 200, body: { visit: { id: "vis_1", version: 3, arrivedConfirmedAt: null } } },
+          { status: 200, body: { visit: { id: "vis_1", version: 4 } } }
+        ]),
+        now: at(0, 2)
+      });
+      check("2xx võtab markeri ära", okRun.confirmed.join(",") === "arrival");
+      check("ja teda ei ole enam hoidlas", !readPackMarkers((await store.getPack("vis_1")).payload).arrival);
+      check("pakett ise on endiselt terve", (await store.getPack("vis_1"))?.payload?.goal === "Kodukülastus");
       store.close();
     });
 

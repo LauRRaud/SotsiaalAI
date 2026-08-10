@@ -33,6 +33,12 @@ import {
   openFieldStore,
   requestPersistentStorage
 } from "@/lib/field/localStore";
+import {
+  applyLocalMarker,
+  FIELD_PACK_SCHEMA_VERSION,
+  flushVisitMarkers,
+  readPackMarkers
+} from "@/lib/field/visitMarkers";
 
 function makeClientItemId() {
   const bytes = new Uint8Array(12);
@@ -496,6 +502,7 @@ export function useFieldSync({ userId, visitId = null }) {
         plannedEndAt: visit.plannedEndAt || null,
         status: visit.status || existing?.status || null,
         payload: {
+          /* SERVERI POOL: ettevalmistuse sisu ehitatakse värskest külastusest. */
           goal: visit.goal,
           locationText: visit.locationText,
           plannedStartAt: visit.plannedStartAt,
@@ -505,7 +512,13 @@ export function useFieldSync({ userId, visitId = null }) {
           status: visit.status,
           version: visit.version,
           preInquiryId: visit.preInquiryId || null,
-          safety: visit.safety || null
+          safety: visit.safety || null,
+          /* SEADME POOL: seda EI EHITATA ümber, teda kantakse edasi. Kinnine
+             väljaloend on selle faili korduv viga — SOL-FIELD-02 kaotas nii
+             `takenAt`/`status`, SOL-FIELD-04 kaotas markerid. Kui siia tuleb
+             neljas seadmepoolne väli, kuulub ta SIIA plokki. */
+          schemaVersion: FIELD_PACK_SCHEMA_VERSION,
+          markers: readPackMarkers(existing?.payload)
         }
       };
       await store.putPack(record);
@@ -519,6 +532,43 @@ export function useFieldSync({ userId, visitId = null }) {
     await storeRef.current.deletePack(visitId);
     setPack(null);
   }, [visitId]);
+
+  /**
+   * SOL-FIELD-04: võrguta kinnitus.
+   *
+   * Varem läks see läbi `storePack`-i VÕLTSVISIIDIGA (`{ id, ...markers }`) ja
+   * kirjutas seetõttu üle kogu ettevalmistuspaketi sisu. Nüüd on marker paketi
+   * seadmepoolne osa ja teda kirjutatakse ainuüksi teda puudutava tehtega.
+   */
+  const recordMarker = useCallback(
+    async (which) => {
+      const store = storeRef.current;
+      if (!store || !visitId) return null;
+      const existing = await store.getPack(visitId);
+      if (!existing) return null;
+      await store.putPack({ ...existing, payload: applyLocalMarker(existing.payload, which, new Date()) });
+      const fresh = await store.getPack(visitId);
+      setPack(fresh);
+      return fresh;
+    },
+    [visitId]
+  );
+
+  /** Ühenduse taastudes: marker kaob AINULT 2xx või tõendatud sündmuse peale. */
+  const flushMarkers = useCallback(async () => {
+    const store = storeRef.current;
+    if (!store || !visitId || !navigator.onLine) return null;
+    const outcome = await flushVisitMarkers({
+      store,
+      visitId,
+      fetchImpl: (url, init) => fetch(url, init),
+      now: new Date()
+    });
+    setPack(await store.getPack(visitId));
+    return outcome;
+  }, [visitId]);
+
+  const markers = useMemo(() => readPackMarkers(pack?.payload), [pack]);
 
   const pendingCount = useMemo(
     () =>
@@ -555,6 +605,9 @@ export function useFieldSync({ userId, visitId = null }) {
     storePack,
     removePack,
     applyVisitStatus,
+    markers,
+    recordMarker,
+    flushMarkers,
     refreshItems,
     retentionWarnings,
     retentionAwaitingConfirmation,

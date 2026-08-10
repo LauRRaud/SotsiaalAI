@@ -193,7 +193,17 @@
       "confirmDeparture": "Kinnita lahkumine",
       "departed": "Lahkumine kinnitatud",
       "storedOffline": "Kinnitus on seadmes; see jõuab serverisse ühenduse taastumisel.",
-      "pendingSync": "Kinnitus EI OLE veel serverisse jõudnud — kui tähtaeg möödub enne ühendust, saab usalduskontakt teate."
+      "pendingSync": "Kinnitus EI OLE veel serverisse jõudnud — kui tähtaeg möödub enne ühendust, saab usalduskontakt teate.",
+      "needsPack": "Kinnitamiseks võta pakett enne seadmesse.",
+      "failedTitle": "Kinnitus EI JÕUDNUD serverisse — ta on seadmes alles.",
+      "retry": "Proovi kinnitust uuesti",
+      "reason": {
+        "auth": "Sisselogimine on aegunud. Logi uuesti sisse ja proovi uuesti.",
+        "conflict": "Külastust muudeti mujal. Ava vaade uuesti ja proovi siis.",
+        "rate_limit": "Server palub oodata. Proovi mõne hetke pärast uuesti.",
+        "server": "Serveri viga. Kinnitus on seadmes alles ja teda saab uuesti saata.",
+        "network": "Ühendust ei olnud. Kinnitus on seadmes alles."
+      }
     },
     "note": {
       "title": "Kiire märge",

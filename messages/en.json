@@ -193,7 +193,17 @@
       "confirmDeparture": "Confirm departure",
       "departed": "Departure confirmed",
       "storedOffline": "The confirmation is on the device; it reaches the server when the connection returns.",
-      "pendingSync": "The confirmation has NOT reached the server yet — if the deadline passes before you are online, the trusted contact will be notified."
+      "pendingSync": "The confirmation has NOT reached the server yet — if the deadline passes before you are online, the trusted contact will be notified.",
+      "needsPack": "Take the pack onto the device before confirming.",
+      "failedTitle": "The confirmation did NOT reach the server — it is still on the device.",
+      "retry": "Try the confirmation again",
+      "reason": {
+        "auth": "Your session expired. Sign in again and retry.",
+        "conflict": "The visit changed elsewhere. Reopen the view and try again.",
+        "rate_limit": "The server asked to wait. Try again in a moment.",
+        "server": "Server error. The confirmation is still on the device and can be sent again.",
+        "network": "There was no connection. The confirmation is still on the device."
+      }
     },
     "note": {
       "title": "Quick note",
