@@ -881,6 +881,46 @@ Harku vald", on see eraldi tootemuudatus.
 
 **Vastuvõtukriteerium.** Määramine, vastamine, üleandmine, sulgemine ja tagasivõtmine peavad kasutama sama kirje lukku ning tingimuslikke olekusiirdeid. `assignWork` peab lubama ainult lepingus nimetatud avatud seisud; `respond` ja `handover` peavad tõendama nii määramise kui põhikirje jätkuva elususe. Negatiivsed teenuse- ja HTTP-testid peavad katma kõik terminalolekud ning `assign/respond/handover vs close/recall` võistlused, tõendades et terminalkirjel pole elavat määramist ega uut lugejat.
 
+**Seis (10.08.2026): DONE — kood, testid ja võistlussond (`npm run org:inbox:probe` 51/51).**
+
+**AUS PIIR ESIMESENA: suurem osa sellest leiust oli juba parandatud SOL-PRE-02 all.** Kirje
+rea lukk (`lockInboxItemRow`) ja terminalseisu värav on olemas kõigil viiel rajal. Sond
+kukub vana koodi vastu ainult **2 korda 51-st** — mitte kümme, nagu ORG-05/-06 juures. Kes
+loeb ülalolevat tõendilõiku, loeb seisu ENNE SOL-PRE-02-t.
+
+**Kaks päris auku, mis alles jäid, ja mõlemad on samast juurest:** määramise elusust
+kontrolliti **enne kirje lukku loetud koopiast**.
+- `respondToAssignment` luges `assignment.status`, siis võttis luku. Vahepealne **üleandmine
+  ei tee kirjet terminaalseks**, seega terminalivärav ei püüdnud teda — tingimusteta
+  `update` oleks äraantud töö tagasi ellu äratanud.
+- `handOverWork` sama muster: kaks samaaegset üleandmist nägid mõlemad elavat rida.
+
+Mõlemad on nüüd **tingimuslikud `updateMany`-d**: `WHERE id = ? AND status = 'PENDING'`
+(vastamine) ja `... status IN ('PENDING','ACCEPTED')` (üleandmine). Kui kirjutus ei
+toimunud, siis me kaotasime.
+
+**Mis vana koodi PÄÄSTIS ja miks sellest ei piisa.** Osaline unikaalindeks
+`(inboxItemId) WHERE status IN ('PENDING','ACCEPTED')` püüdis mõlemad juhtumid kinni —
+andmed ei riknenud. Aga kaotaja sai **`P2002`**, mitte konflikti: kasutajale tähendab see
+tundmatut viga seal, kus vastus on lihtne ja aus („selle töö andis keegi juba edasi").
+Indeks on viimane kaitseliin, mitte veateade.
+
+**Siirded arvutatakse nüüd luku all loetud seisust** (`inboxNow.status`), mitte tehingu
+alguse koopiast — vananenud alus otsustaks, kuhu kirje liigub.
+
+**`assignWork` küsib nüüd seisumasinalt, mitte terminali-eitust.** „Mitte-terminaalne" ei
+ole sama mis „määratav": `ACCEPTED` kirjel EI OLE siiret `ASSIGNED`-isse, aga vana kood
+laskis ta läbi ja lõi uue `PENDING` määramise, ilma et laual midagi muutuks. **Ausalt: seda
+seisu ei ole täna võimalik tekitada** — iga rada, mis määramise lõpetab, viib kirje ka
+terminaali. See muudatus teeb invariandi kohalikuks ja selgeks, selle asemel et sõltuda
+kättesaadavuse-arutlusest, mis järgmise raja lisandumisel vaikselt katkeb.
+
+**Sond katab kõik kolm terminalseisu eraldi** (`CLOSED`, `REJECTED`, `RECALLED` — kolm eri
+sündmust, mitte üks) ja neli võistlust mõlemas ajastuses: `assign vs recall`,
+`respond vs close`, `handover vs respond`, `handover vs handover`. Iga stsenaariumi järel
+mõõdetakse sama invariant: **terminalkirjel ei ole ühtki elavat määramist — ehk mitte ühtki
+uut lugejat.**
+
 ### SOL-ORG-09 — tagasivõetud liikmekutse võib samaaegse vastuvõtmisega siiski õigused anda — P1
 
 **Tõend.** `acceptInvite()` loeb kutse `PENDING` oleku tehingu sees, kuid ei lukusta kutserida; pärast liikmesuse ja capability-grantide loomist muudab ta kutse ID järgi tingimusteta `ACCEPTED`-iks (`lib/org/inviteService.js:212-299`). `revokeInvite()` ja `declineInvite()` kasutavad sama loe-olek → tingimusteta update mustrit (`:144-167`, `:320-345`). Kaks tehingut võivad seega mõlemad lugeda `PENDING`: revoke võib pärast edukat accept’i lõppoleku `REVOKED`-iks üle kirjutada, jättes liikmesuse ja õigused alles, või accept võib enne revoke’i commit’i loetud kutse põhjal õigused siiski luua. Aktiivse liikmesuse osaline unikaalindeks piirab kahte paralleelset accept’i, kuid ei seo liikmesuse loomist kutse võidetud olekusiirdega.

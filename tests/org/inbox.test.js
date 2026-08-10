@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { INBOX_STATUS_TRANSITIONS, isTerminalInboxStatus } from "../../lib/org/constants.js";
+import {
+  canTransitionInboxStatus,
+  INBOX_STATUS_TRANSITIONS,
+  isTerminalInboxStatus
+} from "../../lib/org/constants.js";
 import { projectSourcePackage } from "../../lib/org/inbox.js";
 
 /**
@@ -171,4 +175,32 @@ test("an unknown status is treated as terminal, never as workable", () => {
   assert.equal(isTerminalInboxStatus("SOMETHING_NEW"), true);
   assert.equal(isTerminalInboxStatus(undefined), true);
   assert.equal(isTerminalInboxStatus(null), true);
+});
+
+/**
+ * SOL-ORG-08 — MÄÄRATAVAD SEISUD TULEVAD SEISUMASINAST, MITTE TEISEST LOENDIST.
+ *
+ * „Mitte-terminaalne" ei ole sama mis „määratav". `ACCEPTED` kirjel ei ole
+ * siiret `ASSIGNED`-isse: kui `assignWork` lubaks teda edasi, tekiks uus
+ * `PENDING` määramine, ilma et laual midagi muutuks — määramine ilma nähtava
+ * seisumuutuseta on vaikne kõrvaluks.
+ *
+ * Test kirjeldab reeglit ÜHES kohas ja loeb seisud tabelist: uus seis, mille
+ * keegi lisab, saab automaatselt õige vastuse ilma seda faili puutumata.
+ */
+test("assignable statuses are exactly those with a transition into ASSIGNED", () => {
+  const assignable = Object.keys(INBOX_STATUS_TRANSITIONS).filter((status) =>
+    canTransitionInboxStatus(status, "ASSIGNED")
+  );
+  assert.deepEqual(assignable.sort(), ["ASSIGNMENT_PENDING", "RECEIVED", "REVIEWING"]);
+
+  /* Terminalseis ei ole kunagi määratav — see on invariant, mitte kokkusattumus. */
+  for (const status of Object.keys(INBOX_STATUS_TRANSITIONS)) {
+    if (isTerminalInboxStatus(status)) {
+      assert.equal(canTransitionInboxStatus(status, "ASSIGNED"), false, `${status} ei tohi olla määratav`);
+    }
+  }
+  /* Juba määratud või vastu võetud kirjele ei määrata ÜLE — seda teeb üleandmine. */
+  assert.equal(canTransitionInboxStatus("ASSIGNED", "ASSIGNED"), false);
+  assert.equal(canTransitionInboxStatus("ACCEPTED", "ASSIGNED"), false);
 });
