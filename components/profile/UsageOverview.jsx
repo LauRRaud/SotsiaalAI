@@ -110,7 +110,9 @@ export default function UsageOverview({ active = true, onManageSubscription }) {
   const price = asNumber(plan.price);
   const priceText = plan.key === "admin_internal"
     ? t("profile.usage.internal")
-    : snapshot.subscription?.billingSource === "SPONSORED_BY_HOST"
+    /* SOL-ORG-07: serveri otsus, mitte sõnevõrdlus. Vana `=== "SPONSORED_BY_HOST"`
+       jättis organisatsiooni makstud pöörduja „omamaksjaks". */
+    : snapshot.subscription?.isSponsored
       ? t("profile.usage.sponsored")
       : price === 0
         ? t("profile.usage.free")

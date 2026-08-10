@@ -848,6 +848,31 @@ olema. Just see paar läks vana koodiga lahku.
 
 **Vastuvõtukriteerium.** Keskne serialiseerija peab käsitlema mõlemat sponsorlusallikat sponsoreerituna, säilitades UI jaoks vajadusel täpse sponsori liigi ja organisatsiooni nime minimaalse projektsioonina. Tellimuse, kasutusülevaate ja tühistamise UI peab lähtuma samast serveritõest. Testid peavad katma aktiivse, peatselt lõppeva ja aegunud `SPONSORED_BY_ORGANIZATION` tellimuse ning tõendama, et kasutaja ei näe mittetoimivat omamakse tühistamist.
 
+**Seis (10.08.2026): DONE — kood ja testid.**
+
+**Kaks allikat, üks mõiste.** `SPONSORED_BY_HOST` on üksikisiku kutse, `SPONSORED_BY_ORGANIZATION`
+on organisatsiooni oma. Kasutaja jaoks on need sama asi: **keegi teine maksab ja mina ei saa
+seda tellimust tühistada.** Serialiseerija tunneb nüüd mõlemat (`isSponsoredBillingSource`),
+ja `sponsorKind` (`"HOST"` / `"ORGANIZATION"` / `null`) hoiab vahe alles neile, kes seda
+päriselt vajavad — ilma et keegi peaks sõnesid võrdlema.
+
+**Vale nupp on halvem kui puuduv nupp.** Tühistamisnupp ilmus `isSponsored === false` peale,
+aga server puudutab ainult `SELF` ridu: organisatsiooni rahastatud pöörduja vajutas nuppu,
+mis ei teinud midagi. Nüüd on nupp peidus, sest serverivastus ütleb tõtt.
+
+**Kasutusülevaade küsib nüüd serverilt, mitte ei võrdle sõnet.** `UsageOverview` luges
+`billingSource === "SPONSORED_BY_HOST"` — täpselt see võrdlus jäi uue allika lisandumisel
+uuendamata. `lib/usage/snapshot.js` annab nüüd `isSponsored` ja `sponsorKind`.
+
+**Test loeb enum'i SKEEMIST, mitte käsitsi kirjutatud loendist.** Uus maksjaallikas, mida
+keegi ei registreeri sponsorluseks, kukutab testi — mitte kasutaja nuppu. See on sama
+klass, mis leidu tekitas: väärtus lisati enum'i ja üks võrdlus jäi maha.
+
+**Mis EI OLE tehtud ja miks:** kriteerium lubab „organisatsiooni nime minimaalse
+projektsioonina". Nime UI-sse ei lisatud — see oleks uus andmeväli kliendile, mitte
+paranduse osa, ja `sponsorKind` katab vajaduse eristada. Kui omanik tahab kuvada „Maksab
+Harku vald", on see eraldi tootemuudatus.
+
 ### SOL-ORG-08 — suletud või tagasivõetud pöördumise saab uuesti töötajale avada — P1
 
 **Tõend.** `assignWork()` kontrollib kirje olemasolu, määraja capability't, varasema elava määramise puudumist ja saaja aktiivset org-liikmesust, kuid ei nõua kirje määratavat olekut ega välista `CLOSED`, `REJECTED` või `RECALLED` seisu (`lib/org/inbox.js:607-654`). Kui olekumasin ei luba kirjet `ASSIGNED` olekusse viia, jäetakse põhikirje lihtsalt muutmata, kuid uus `PENDING` määramine on selleks hetkeks juba loodud (`:630-645`). `requireVisibleInboxItem()` annab elava määramise saajale kirje ja valge nimekirja projektsiooni vaatamise õiguse sõltumata põhikirje olekust (`:464-492`, `:495-540`). Samad read pole sulgemise/tagasivõtmisega ühise luku all: `recallInboxItemForSourceWithin()` ja sulgev `transitionInboxItem()` lõpetavad hetkel nähtavad määramised `updateMany` abil (`:303-340`, `:544-597`), kuid paralleelne assign võib pärast seda uue elava rea lisada. `respondToAssignment()` muudab varem loetud `PENDING` määramise tingimusteta `ACCEPTED`-iks ja võib sulgemisega võisteldes lõpetatud töö taaselustada (`:672-725`).
