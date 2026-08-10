@@ -748,6 +748,26 @@ teadlikult EI OLE: seal oleks ta muutnud seadistamata teenuse vaikseks õnnestum
 
 **Vastuvõtukriteerium.** Eemaldada paralleelne skoopiarvutus või kasutada sama `unitScopeCovers()` loogikat. Test peab katma valitud üksuse, lapse, õe ja vanema.
 
+**Seis (10.08.2026): DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 34/34).**
+
+**Sama funktsioon, mitte teine koopia.** `resolveBoardScope` laiendab üksuse-skoobiga
+grandid `collectSubtree()`-ga — seesama funktsioon, mille peal seisab `unitScopeCovers()`
+kanoonilises kontekstis. Paralleelset skoopiarvutust ei kirjutatud juurde; see, mis oli,
+sai õige alusega.
+
+**See viga oli KITSENDAV, mitte lekkiv** — osakonnajuht ei näinud oma allüksuse töötajaid
+ega saanud neile tööd määrata. Oht ei olnud seega andmelekkes, vaid selles, et ühes tootes
+elas kaks eri skoobimõistet ja keegi pidi meeles pidama, kumb kus kehtib.
+
+**Puud loetakse ainult vajadusel:** org-skoobiga juht katab niikuinii kõik üksused ja tema
+päring ei puuduta `OrganizationUnit` tabelit üldse (eraldi test mõõdab just seda).
+
+**Testid katavad kriteeriumi neli juhtumit** (`dispatchBoardScope.test.js`): valitud üksus,
+laps, õde (ei leki), vanem (ei leki), pluss juurüksus (kogu haru) ja leht (jääb üheks).
+Sondis on sama puu päris ridadena — osakond → allüksus → õeosakond, `depth` salvestatud
+väljana: osakonnajuht näeb ja saab määrata allüksuse töötajale, õeüksuse töötajale ei näe
+ega saa (403).
+
 ### SOL-ORG-05 — kohaplaani limiiti ja lõpetamist saab paralleelse kohaandmisega rikkuda — P1
 
 **Tõend.** `assignSeat()` loeb plaani staatuse ja limiidi enne plaanirea `FOR UPDATE` lukku ning kasutab pärast luku saamist sama varem loetud objekti (`lib/org/seats.js:201-210`, `:236-250`). `updateSeatLimit()` loeb aktiivsete kohtade arvu ja muudab limiiti ilma sama plaanirea eellukuta (`:114-130`). `endSeatPlan()` lõpetab olemasolevad kohad ja alles seejärel plaani, samuti ilma kohaandmisega ühist lukuprotokolli kasutamata (`:144-167`). Seetõttu võib limiidi vähendamisega paralleelselt vana limiidi järgi lisanduda uus koht või pärast kohtade hulgi lõpetamist lisanduda aktiivne koht plaani, mis seejärel lõpetatakse. Migratsiooni kontrollid nõuavad ainult mittenegatiivset limiiti ja ühe aktiivse koha olemasolu liikmesuse kohta; aktiivsete kohtade arvu ning aktiivse vanemplaani seost need ei jõusta (`prisma/migrations/20260801120000_org_funding_inbox_v1/migration.sql:263-271`, `:288-303`). `resolveAccessContext()` loeb maksja tuvastamisel aktiivset kohaandmist, kuid ei nõua aktiivset kohaplaani (`lib/org/accessContext.js:243-252`, `:295-315`).

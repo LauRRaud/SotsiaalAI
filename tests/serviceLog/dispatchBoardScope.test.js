@@ -22,12 +22,34 @@ const ORG_GRANT = { capability: "ORG_OWNER", scopeType: "ORGANIZATION", scopeUni
 const ASSIGNER_GRANT = { capability: "WORK_ASSIGNER", scopeType: "UNIT", scopeUnitId: "unit-1" };
 const UNIT_LEAD_GRANT = { capability: "UNIT_LEAD", scopeType: "UNIT", scopeUnitId: "unit-2" };
 
-function makeDb({ orgStatus = "ACTIVE", grants = [ORG_GRANT], modules = ["KOV_INTAKE"] } = {}) {
-  const queries = { modules: 0 };
+/**
+ * Üksuste puu (SOL-ORG-04). `unit-1` all on `unit-1a`, `unit-2` on tema ÕDE ja
+ * `unit-parent` on mõlema VANEM. Kriteerium nõuab kõike nelja katmist.
+ */
+const UNIT_TREE = [
+  { id: "unit-parent", parentUnitId: null },
+  { id: "unit-1", parentUnitId: "unit-parent" },
+  { id: "unit-1a", parentUnitId: "unit-1" },
+  { id: "unit-2", parentUnitId: "unit-parent" }
+];
+
+function makeDb({
+  orgStatus = "ACTIVE",
+  grants = [ORG_GRANT],
+  modules = ["KOV_INTAKE"],
+  units = UNIT_TREE
+} = {}) {
+  const queries = { modules: 0, units: 0 };
   return {
     queries,
     organization: {
       findUnique: async () => (orgStatus ? { id: "org-1", status: orgStatus } : null)
+    },
+    organizationUnit: {
+      findMany: async () => {
+        queries.units += 1;
+        return units;
+      }
     },
     organizationMembership: {
       findFirst: async () => (grants ? { id: "m-1", capabilityGrants: grants } : null)
@@ -90,6 +112,41 @@ test("moodulita jääb moodulinõudeta UNIT_LEAD alles", async () => {
   assert.equal(result.allowed, true);
   assert.deepEqual(result.unitIds, ["unit-2"]);
   assert.equal(result.wholeOrg, false);
+});
+
+/**
+ * SOL-ORG-04 — üksuse capability peab katma ALAMPUU.
+ *
+ * Leping on igal pool sama: „org-skoop katab kõik üksused; üksuse skoop katab
+ * valitud üksuse ja selle alampuu" — õeüksusesse ei leki. Graafiku resolver
+ * luges varem ainult grantis nimetatud üksust: osakonnajuht ei näinud oma
+ * allüksuste töötajaid. Kriteerium nõuab nelja juhtumit: valitud, laps, õde,
+ * vanem.
+ */
+test("üksuse skoop katab valitud üksuse ja lapse, mitte õde ega vanemat", async () => {
+  const result = await scope({ grants: [{ ...UNIT_LEAD_GRANT, scopeUnitId: "unit-1" }] });
+  assert.deepEqual([...result.unitIds].sort(), ["unit-1", "unit-1a"]);
+  assert.equal(result.unitIds.includes("unit-2"), false, "õeüksusesse ei tohi lekkida");
+  assert.equal(result.unitIds.includes("unit-parent"), false, "vanemasse ei tohi lekkida");
+});
+
+test("juurüksuse skoop katab kogu haru", async () => {
+  const result = await scope({ grants: [{ ...UNIT_LEAD_GRANT, scopeUnitId: "unit-parent" }] });
+  assert.deepEqual([...result.unitIds].sort(), ["unit-1", "unit-1a", "unit-2", "unit-parent"]);
+  assert.equal(result.wholeOrg, false, "üksuse skoop ei muutu org-skoobiks");
+});
+
+test("leht-üksuse skoop jääb üheks üksuseks", async () => {
+  const result = await scope({ grants: [{ ...UNIT_LEAD_GRANT, scopeUnitId: "unit-1a" }] });
+  assert.deepEqual(result.unitIds, ["unit-1a"]);
+});
+
+/* Org-skoobiga juht katab niikuinii kõik — puud ei ole vaja lugeda. */
+test("org-skoop ei küsi üksuste puud", async () => {
+  const db = makeDb();
+  const result = await resolveBoardScope("manager-1", "org-1", { db, now: NOW });
+  assert.equal(result.wholeOrg, true);
+  assert.equal(db.queries.units, 0);
 });
 
 /* SEGAJUHTUM: kui moodulita capability kaob, ei tohi tema üksus jääda skoopi

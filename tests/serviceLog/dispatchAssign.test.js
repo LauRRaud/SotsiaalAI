@@ -15,6 +15,15 @@ import { assertCanAssign, assignVisit, reassignVisit } from "../../lib/serviceLo
 const NOW = new Date("2026-08-03T09:00:00.000Z");
 const ENV = { SERVICE_LOG_ENABLED: "1" };
 
+/* Üksuste puu: `unit-1` all on `unit-1a`, `unit-2` on tema ÕDE. Üksuse skoop
+   katab alampuu, aga õeüksusesse ei leki (SOL-ORG-04). */
+const UNIT_TREE = [
+  { id: "unit-parent", parentUnitId: null },
+  { id: "unit-1", parentUnitId: "unit-parent" },
+  { id: "unit-1a", parentUnitId: "unit-1" },
+  { id: "unit-2", parentUnitId: "unit-parent" }
+];
+
 /**
  * Minimaalne fake, mis matkib AINULT seda, mida `assertCanAssign` puudutab:
  * organisatsiooni oleku, aktiivsed moodulid, juhi capability-load ja
@@ -29,7 +38,8 @@ function makeDb({
   grants = [],
   workerFound = true,
   orgStatus = "ACTIVE",
-  modules = ["KOV_INTAKE", "SERVICE_DELIVERY"]
+  modules = ["KOV_INTAKE", "SERVICE_DELIVERY"],
+  units = UNIT_TREE
 } = {}) {
   const seen = [];
   return {
@@ -39,6 +49,9 @@ function makeDb({
     },
     organizationModule: {
       findMany: async () => modules.map((moduleKey) => ({ moduleKey }))
+    },
+    organizationUnit: {
+      findMany: async () => units
     },
     organizationMembership: {
       findFirst: async ({ where, select }) => {
@@ -71,6 +84,16 @@ test("üksuse juht saab määrata oma üksuse töötajale", async () => {
   const workerQuery = db.seen[1].where;
   assert.ok(workerQuery.units?.some?.unitId?.in?.includes("unit-1"), "üksusepiirang puudub päringust");
   assert.equal(workerQuery.status, "ACTIVE", "lahkunud liikmele ei määrata tööd");
+});
+
+/* SOL-ORG-04 — sama capability katab mujal alampuud, siin ei katnud. Viga oli
+   KITSENDAV (osakonnajuht ei näinud allüksust), aga kaks skoobimõistet ühes
+   tootes on ise oht. */
+test("üksuse skoop katab alampuu, aga mitte õde ega vanemat", async () => {
+  const db = makeDb({ grants: [unitGrant] });
+  await assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW });
+  const scoped = db.seen[1].where.units.some.unitId.in;
+  assert.deepEqual([...scoped].sort(), ["unit-1", "unit-1a"], "alampuu peab olema sees, õde ja vanem mitte");
 });
 
 test("organisatsiooni omanikul ei ole üksusepiirangut", async () => {

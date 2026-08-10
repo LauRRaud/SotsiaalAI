@@ -70,8 +70,12 @@ async function makeOrg(name) {
   });
 }
 
-/** Aktiivne liikmesus; `capability` antud korral kogu organisatsiooni skoobis. */
-async function addMember(org, user, { capability = null } = {}) {
+/**
+ * Aktiivne liikmesus. `capability` antakse vaikimisi organisatsiooni skoobis;
+ * `scopeUnitId` teeb temast üksuse-skoobiga õiguse. `unitId` paneb inimese ise
+ * üksusesse — need kaks on eri asjad ja neid ei tohi segi ajada.
+ */
+async function addMember(org, user, { capability = null, scopeUnitId = null, unitId = null } = {}) {
   const membership = await prisma.organizationMembership.create({
     data: {
       organizationId: org.id,
@@ -80,17 +84,30 @@ async function addMember(org, user, { capability = null } = {}) {
       seatRole: "SERVICE_PROVIDER"
     }
   });
+  if (unitId) {
+    await prisma.organizationMembershipUnit.create({
+      data: { membershipId: membership.id, unitId, isPrimary: true }
+    });
+  }
   if (capability) {
     await prisma.organizationCapabilityGrant.create({
       data: {
         membershipId: membership.id,
         capability,
-        scopeType: "ORGANIZATION",
+        scopeType: scopeUnitId ? "UNIT" : "ORGANIZATION",
+        scopeUnitId,
         validFrom: new Date(NOW.getTime() - 60_000)
       }
     });
   }
   return membership;
+}
+
+/** Üksus üksuste puus. `depth` on salvestatud väli, mitte tuletatud. */
+async function makeUnit(org, name, { parentUnitId = null, depth = 1 } = {}) {
+  return prisma.organizationUnit.create({
+    data: { organizationId: org.id, name: `${name} ${MARK}`, parentUnitId, depth, status: "ACTIVE" }
+  });
 }
 
 function boardClients(board) {
@@ -360,6 +377,47 @@ async function main() {
     `${beforeMove.ownerUserId} → ${afterMove.ownerUserId}`
   );
   expect("auditita töö jäi ka endisele teekonnale", afterMove.routeId === beforeMove.routeId);
+
+  // === 9. SOL-ORG-04: ÜKSUSE SKOOP KATAB ALAMPUU =========================
+  /* Osakond → allüksus → õeüksus. Osakonnajuhi õigus on osakonna peal ja peab
+     katma allüksuse, aga mitte õde. Puu ehitatakse päris ridadena: `depth` on
+     salvestatud väli ja vale sügavus on omaette viga, mida fake ei näeks. */
+  const department = await makeUnit(orgA, "Osakond");
+  const subUnit = await makeUnit(orgA, "Allüksus", { parentUnitId: department.id, depth: 2 });
+  const sibling = await makeUnit(orgA, "Õeosakond");
+
+  const deptLead = await makeUser("dept-lead");
+  await addMember(orgA, deptLead, { capability: "UNIT_LEAD", scopeUnitId: department.id });
+
+  const subWorker = await makeUser("sub-worker");
+  await makeSoloProfile(subWorker);
+  await addMember(orgA, subWorker, { unitId: subUnit.id });
+
+  const siblingWorker = await makeUser("sibling-worker");
+  await makeSoloProfile(siblingWorker);
+  await addMember(orgA, siblingWorker, { unitId: sibling.id });
+
+  const leadBoard = await getDispatchBoard(deptLead.id, { organizationId: orgA.id }, { db: prisma, now: NOW });
+  const leadNames = (leadBoard.workers || []).map((row) => row.name);
+  expect("osakonnajuht NÄEB allüksuse töötajat", leadNames.includes(subWorker.email), leadNames.join(", "));
+  expect("osakonnajuht EI NÄE õeüksuse töötajat", !leadNames.includes(siblingWorker.email));
+
+  const subVisit = await assignVisit(
+    deptLead.id,
+    { organizationId: orgA.id, workerUserId: subWorker.id, clientDisplayName: `Allüksuse klient ${MARK}` },
+    { db: prisma, env: ENV, now: NOW, geocodeAddress: NO_GEOCODE }
+  );
+  expect("osakonnajuht SAAB määrata tööd allüksuse töötajale", Boolean(subVisit?.id));
+  await rejects(
+    "osakonnajuht EI SAA määrata tööd õeüksuse töötajale",
+    () =>
+      assignVisit(
+        deptLead.id,
+        { organizationId: orgA.id, workerUserId: siblingWorker.id, clientDisplayName: `Õeüksuse klient ${MARK}` },
+        { db: prisma, env: ENV, now: NOW, geocodeAddress: NO_GEOCODE }
+      ),
+    403
+  );
 }
 
 async function cleanup() {
@@ -367,7 +425,13 @@ async function cleanup() {
   await purge();
   const leftUsers = await prisma.user.count({ where: { email: { endsWith: SUFFIX } } });
   const leftOrgs = await prisma.organization.count({ where: { displayName: { contains: MARK } } });
-  console.log(`  leftovers: ${leftUsers} users, ${leftOrgs} organizations`);
+  /* Üksused ja külastused loetakse eraldi: nad kaovad kaskaadina ja „0 kasutajat"
+     ei ütleks nende kohta midagi. */
+  const leftUnits = await prisma.organizationUnit.count({ where: { name: { contains: MARK } } });
+  const leftVisits = await prisma.serviceVisit.count({ where: { clientDisplayName: { contains: MARK } } });
+  console.log(
+    `  leftovers: ${leftUsers} users, ${leftOrgs} organizations, ${leftUnits} units, ${leftVisits} visits`
+  );
 }
 
 try {
