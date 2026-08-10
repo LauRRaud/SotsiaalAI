@@ -707,6 +707,43 @@ async function readyRecording(prisma, service) {
   return { call, request };
 }
 
+test("SOL-CALL-01: hiline liituja ei kirjuta kinnitamata stopi FAILED-iga üle", async () => {
+  /* SEE TEST SÜNDIS PÄRIS JOOKSUST. Pime `FAILED`-catch elas KAHES kohas ja mu esimene
+     parandus katkas ainult ühe: `joinCall` kirjutas ausa `STOP_FAILED`-i endiselt üle.
+     Ükski varasem test seda ei näinud, sest nad jõudsid `stopRecording`-ini otse või
+     nõusolekuraja kaudu — mitte kunagi liitumise kaudu. */
+  const prisma = createPrisma();
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_join_1" }),
+      stopRecording: async () => {
+        throw new Error("livekit unreachable");
+      }
+      // getEgressStatus puudub → stoppi EI SAA kinnitada
+    },
+    recordingStorage: {
+      finalizeRecordingFile: async () => {
+        throw new Error("should not finalize an unconfirmed stop");
+      }
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  await service.joinCall({ callSessionId: call.id, userId: "late_user" });
+
+  const stored = prisma.callRecordingRequest.rows[0];
+  assert.equal(stored.status, "STOP_FAILED", "aus seis peab liitumise järel alles jääma");
+  assert.notEqual(stored.status, "FAILED", "pime ülekirjutus kustutaks taasproovi info");
+  assert.equal(prisma.callRecordingFile.rows[0].status, "QUARANTINED");
+  assert.ok(
+    prisma.dataDeletionJob.rows.some(row => row.action === "CALL_EGRESS_STOP"),
+    "taasproov peab järjekorda jääma ka siis, kui stopi käivitas liitumine"
+  );
+});
+
 test("SOL-CALL-02: hiline liituja katkestab käimasoleva stardi ja äsja käivitatud egress peatatakse", async () => {
   const prisma = createPrisma();
   const holder = {};
