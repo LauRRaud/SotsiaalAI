@@ -236,6 +236,17 @@ test("storage quota is measured and written inside one locked transaction", () =
   assert.match(quota, /\$transaction\([\s\S]{0,200}pg_advisory_xact_lock/);
   assert.match(quota, /\$executeRaw/, "advisory lock only through $executeRaw");
   assert.match(quota, /return write\(tx/, "the write must run inside the same transaction");
+
+  // SOL-DOC-08: salvestatud analüüsid kuuluvad kanoonilisse summasse. Ilma selleta kontrollis
+  // `createSavedAnalysis` mahtu summa vastu, mida ta ise ei kasvatanud.
+  const usage = read("lib/storageUsage.js");
+  assert.match(usage, /savedAnalysis\.findMany/, "SavedAnalysis belongs to the canonical sum");
+  assert.match(usage, /analysisBytes/);
+  assert.match(usage, /totalBytes: documentBytes \+ materialBytes \+ artifactBytes \+ analysisBytes/);
+
+  const analysis = read("lib/documents/savedAnalysis.js");
+  assert.match(analysis, /withStorageQuota\(/, "saving an analysis uses the same atomic reservation");
+  assert.doesNotMatch(analysis, /getUserStorageUsageBytes\(/);
 });
 
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---

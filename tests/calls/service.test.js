@@ -185,9 +185,12 @@ function createPrisma() {
     dataDeletionJob: createModel(),
     dataAuditLog: createModel(),
     userDocument: createModel(),
-    // SOL-CALL-10: kvoodilugeja kolm potti + rolli lugemine.
+    // SOL-CALL-10: kvoodilugeja potid + rolli lugemine. SOL-DOC-08 lisas neljanda poti
+    // (salvestatud analüüsid) — puuduv mudel ei anna siin nulli, vaid krahhi, ja krahh
+    // maskeeriks kvoodikeeldu millekski muuks.
     materialSubmission: createModel(),
     agentArtifact: createModel(),
+    savedAnalysis: createModel(),
     user: createModel(),
     roomMessage: createModel(),
     $transaction: async callback => callback(createPrisma())

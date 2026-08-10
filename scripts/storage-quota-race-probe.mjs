@@ -62,6 +62,7 @@ async function purge() {
   const owners = await prisma.user.findMany({ where: { email: { endsWith: SUFFIX } }, select: { id: true } });
   const ownerIds = owners.map((row) => row.id);
   if (ownerIds.length) {
+    await prisma.savedAnalysis.deleteMany({ where: { ownerId: { in: ownerIds } } });
     await prisma.agentArtifact.deleteMany({ where: { ownerId: { in: ownerIds } } });
     await prisma.userDocument.deleteMany({ where: { ownerId: { in: ownerIds } } });
   }
@@ -157,7 +158,58 @@ async function main() {
     expect("kasvav asendus EI mahu", grew === false);
   }
 
-  // === 4. NEGATIIVKONTROLL: VANA MUSTER SAMA SAMAAEGSUSE ALL ==============
+  // === 4. SOL-DOC-08: SALVESTATUD ANALÜÜSID ON KANOONILISES SUMMAS ========
+  /* Vana summa luges dokumendid, materjalid ja artefaktid — analüüse mitte. Seetõttu ei muutnud
+     ükski salvestatud analüüs järgmise kvoodikontrolli sisendit ja neid sai järjest salvestada
+     piiramatult, ilma 413-ta. */
+  {
+    const owner = await makeOwner();
+    const before = await getUserStorageUsageBytes(owner.id);
+    expect("analüüsideta on analüüsimaht null", before.analysisBytes === 0, String(before.analysisBytes));
+
+    const first = await prisma.savedAnalysis.create({
+      data: { ownerId: owner.id, title: "Analüüs 1", content: "x".repeat(CHUNK), sourceDocumentIds: [] }
+    });
+    await prisma.savedAnalysis.create({
+      data: { ownerId: owner.id, title: "Analüüs 2", content: "x".repeat(CHUNK), sourceDocumentIds: [] }
+    });
+
+    const after = await getUserStorageUsageBytes(owner.id);
+    expect("analüüsid loetakse eraldi potis", after.analysisBytes === 2 * CHUNK, String(after.analysisBytes));
+    expect("analüüsid on KOGUsummas", after.totalBytes === 2 * CHUNK, String(after.totalBytes));
+
+    // Kolmas ei mahu enam, sest kaks eelmist on nüüd summas.
+    let rejected = false;
+    try {
+      await withStorageQuota(
+        { userId: owner.id, addBytes: CHUNK, quotaBytes: 2 * CHUNK },
+        {},
+        (tx) => tx.savedAnalysis.create({
+          data: { ownerId: owner.id, title: "Analüüs 3", content: "x".repeat(CHUNK), sourceDocumentIds: [] }
+        })
+      );
+    } catch (error) {
+      rejected = error?.status === 413;
+    }
+    expect("täis kvoodi all järgmine analüüs saab 413", rejected);
+
+    // Kustutamine vabastab mahu — kanoonilisest summast iseenesest.
+    await prisma.savedAnalysis.delete({ where: { id: first.id } });
+    let acceptedAfterDelete = false;
+    try {
+      await withStorageQuota(
+        { userId: owner.id, addBytes: CHUNK, quotaBytes: 2 * CHUNK },
+        {},
+        (tx) => tx.savedAnalysis.create({
+          data: { ownerId: owner.id, title: "Analüüs 4", content: "x".repeat(CHUNK), sourceDocumentIds: [] }
+        })
+      );
+      acceptedAfterDelete = true;
+    } catch {}
+    expect("kustutamine vabastab mahu", acceptedAfterDelete);
+  }
+
+  // === 5. NEGATIIVKONTROLL: VANA MUSTER SAMA SAMAAEGSUSE ALL ==============
   {
     const owner = await makeOwner();
     const quotaBytes = 2 * CHUNK;
