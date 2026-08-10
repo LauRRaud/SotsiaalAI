@@ -20,8 +20,13 @@ function createModel(initial = []) {
   const rows = [...initial];
   return {
     rows,
+    /* HETKTÕMMIS, MITTE VIIDE. Päris Prisma annab lugemisel koopia; fake, mis
+       andis sama objekti, tegi võistlustestid MÕTTETUKS — samaaegne kirjutus
+       muutis rida, mida lugeja juba käes hoidis, ja lugeja „nägi" seda ilma
+       ühegi päringuta. Just see peitis SOL-NET-01/-02 klassi vea. */
     async findFirst({ where } = {}) {
-      return rows.find((row) => Object.entries(where || {}).every(([k, v]) => row[k] === v)) || null;
+      const row = rows.find((candidate) => Object.entries(where || {}).every(([k, v]) => candidate[k] === v));
+      return row ? { ...row } : null;
     },
     async create({ data }) {
       const row = { id: data.id || `row_${rows.length + 1}`, ...data };
@@ -33,6 +38,16 @@ function createModel(initial = []) {
       if (!row) throw new Error("not_found");
       Object.assign(row, data);
       return row;
+    },
+    /* `updateMany` on siin tõsiseltvõetav, mitte kaunistus: SOL-NET-01/-02
+       parandus TUGINEB sellele, et WHERE-i hinnatakse kirjutamise hetkel.
+       Fake, mis WHERE-i eirab, laseks katkisel koodil roheliseks minna. */
+    async updateMany({ where = {}, data = {} } = {}) {
+      const matched = rows.filter((row) =>
+        Object.entries(where).every(([key, value]) => row[key] === value)
+      );
+      for (const row of matched) Object.assign(row, data);
+      return { count: matched.length };
     }
   };
 }
@@ -664,4 +679,165 @@ test("IDOR: adressaadita eelpöördumisest ei saa keegi jagamist luua", async ()
     () => createNetworkShare(baseInput(prisma, { sourcePreInquiryId: "pre_orphan" })),
     (err) => err.code === "network_share.source_forbidden"
   );
+});
+
+// ---------------------------------------------------------------------------
+// SOL-NET-01 ja SOL-NET-02 — kinnitus viitab TEKSTILE, mitte reale.
+//
+// Need testid mängivad VÕISTLUSE käsitsi läbi: `afterRead` haak käivitab
+// konkureeriva toimingu täpselt selles aknas, kus vana kood oli pime — pärast
+// rea lugemist, enne kirjutamist. Päris atomaarsust tõendab `net:share:probe`;
+// siin tõendatakse, et loogika ise ei kirjuta vana vaate pealt.
+// ---------------------------------------------------------------------------
+
+/** Käivitab `hook`-i ÜHE korra, kohe pärast järgmist `findFirst`-i. */
+function onceAfterRead(prisma, hook) {
+  const model = prisma.networkShare;
+  const original = model.findFirst.bind(model);
+  let fired = false;
+  model.findFirst = async (args) => {
+    const row = await original(args);
+    if (!fired && row) {
+      fired = true;
+      await hook();
+    }
+    return row;
+  };
+}
+
+async function awaitingClientShare(prisma) {
+  const created = await createNetworkShare(baseInput(prisma));
+  await submitToClient({ prisma, shareId: created.id, workerId: "worker_1", now });
+  return created;
+}
+
+test("SOL-NET-01: kinnitus ei saa maanduda tekstile, mida klient ei näinud", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+
+  // Töötaja muudab teksti TÄPSELT kinnituse lugemise ja kirjutuse vahel.
+  onceAfterRead(prisma, async () => {
+    await updateNetworkShareDraft({
+      prisma,
+      shareId: share.id,
+      workerId: "worker_1",
+      summaryText: "UUS KINNITAMATA TEKST",
+      now
+    });
+  });
+
+  await assert.rejects(
+    () => clientRespondToShare({ prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now }),
+    (err) => err.code === "network_share.content_changed"
+  );
+
+  const row = prisma.networkShare.rows.find((candidate) => candidate.id === share.id);
+  assert.equal(row.status, NetworkShareStatus.DRAFT, "muudetud jagamine peab jääma mustandiks");
+  assert.equal(row.clientConfirmedAt, null, "vana vaate kinnitus ei tohi uuele tekstile kanduda");
+  assert.equal(row.confirmedContentHash, null);
+});
+
+test("negatiivkontroll: ilma vahepealse muutmiseta kinnitus ÕNNESTUB", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  const confirmed = await clientRespondToShare({
+    prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now
+  });
+  assert.equal(confirmed.status, NetworkShareStatus.CONFIRMED);
+  assert.equal(confirmed.confirmedContentHash, confirmed.contentHash);
+});
+
+test("SOL-NET-01: klient saab kinnitada AINULT seda räsi, mida ta ekraanil nägi", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  await assert.rejects(
+    () => clientRespondToShare({
+      prisma,
+      shareId: share.id,
+      clientUserId: "client_1",
+      decision: "CONFIRMED",
+      expectedContentHash: "räsi-mida-ta-nägi-aga-mis-enam-ei-kehti",
+      now
+    }),
+    (err) => err.code === "network_share.content_changed"
+  );
+});
+
+test("SOL-NET-02: saatmine ei saa edastada teksti, mis kinnitusest erineb", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  await clientRespondToShare({ prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now });
+
+  // Kinnitus jääb reale, aga sisu vahetatakse otse — nii nagu vana muutmisrada
+  // oleks saanud teha, kui ta kinnitust ei nulliks.
+  const row = prisma.networkShare.rows.find((candidate) => candidate.id === share.id);
+  row.summaryText = "SALAKAUBA TEKST";
+  row.contentHash = "teine-räsi";
+
+  await assert.rejects(
+    () => sendNetworkShare({ prisma, shareId: share.id, workerId: "worker_1", createRoom: async () => ({ id: "room_x" }), now }),
+    (err) => err.code === "network_share.confirmation_stale"
+  );
+  assert.equal(row.status, NetworkShareStatus.CONFIRMED, "kukkunud saatmine ei tohi olekut liigutada");
+});
+
+test("SOL-NET-02: paralleelne muutmine saatmise ajal ei jäta SENT rida kinnituseta", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  await clientRespondToShare({ prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now });
+
+  onceAfterRead(prisma, async () => {
+    await updateNetworkShareDraft({
+      prisma, shareId: share.id, workerId: "worker_1", summaryText: "MUUDETUD SAATMISE AJAL", now
+    });
+  });
+
+  await assert.rejects(
+    () => sendNetworkShare({ prisma, shareId: share.id, workerId: "worker_1", createRoom: async () => ({ id: "room_y" }), now }),
+    (err) => err.code === "network_share.concurrent_change"
+  );
+
+  const row = prisma.networkShare.rows.find((candidate) => candidate.id === share.id);
+  assert.notEqual(row.status, NetworkShareStatus.SENT, "kaotanud saatmine ei tohi jagamist ära saata");
+  assert.equal(row.sentAt ?? null, null);
+});
+
+test("SOL-NET-03: ruum sünnib ALLES pärast seda, kui rida on saatmisele nõutud", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  await clientRespondToShare({ prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now });
+
+  let statusWhenRoomCreated = null;
+  await sendNetworkShare({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    createRoom: async () => {
+      statusWhenRoomCreated = prisma.networkShare.rows.find((r) => r.id === share.id).status;
+      return { id: "room_z" };
+    },
+    now
+  });
+  assert.equal(
+    statusWhenRoomCreated,
+    NetworkShareStatus.SENT,
+    "ruumi loomise hetkel peab rida olema juba nõutud — muidu loob kaotaja ruumi"
+  );
+});
+
+test("SOL-NET-02: ruumi port saab tehingukliendi, mitte globaalse", async () => {
+  const prisma = createPrisma();
+  const share = await awaitingClientShare(prisma);
+  await clientRespondToShare({ prisma, shareId: share.id, clientUserId: "client_1", decision: "CONFIRMED", now });
+
+  let handedDb = null;
+  prisma.$transaction = async (work) => work(prisma);
+  await sendNetworkShare({
+    prisma,
+    shareId: share.id,
+    workerId: "worker_1",
+    createRoom: async ({ db }) => { handedDb = db; return { id: "room_tx" }; },
+    now
+  });
+  assert.equal(handedDb, prisma, "ruum peab sündima saatmise enda tehingus");
 });

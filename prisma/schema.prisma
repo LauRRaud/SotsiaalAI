@@ -5831,6 +5831,20 @@ model NetworkShare {
   /// Kaardistamise lõpp on KOHUSTUSLIK väli. „Igavesti vaikimisi" on keelatud.
   participationEndsOn DateTime           @db.Date
 
+  /// SOL-NET-01/-02: KINNITUS VIITAB TEKSTILE, MITTE REALE.
+  ///
+  /// `contentHash` on sha256 jagatavast sisust (kokkuvõte, eesmärk, jagamispiir,
+  /// lõppkuupäev) ja ta arvutatakse igal kirjutusel. `confirmedContentHash` on
+  /// see, MIDA KLIENT NÄGI kinnitamise hetkel.
+  ///
+  /// Ilma nendeta oli „klient kinnitab täpselt seda, mida jagatakse" ainult
+  /// koodi järjekord: kaks paralleelset päringut lugesid sama rea, üks kirjutas
+  /// uue teksti ja teine kirjutas peale vana vaate kinnituse. Saatmine nõuab
+  /// nüüd, et need kaks räsi oleksid VÕRDSED — `SENT` rida ei saa eksisteerida
+  /// ilma sama versiooni kinnitustõendita.
+  contentHash          String
+  confirmedContentHash String?
+
   status              NetworkShareStatus @default(DRAFT)
   clientConfirmedAt   DateTime?
   clientDeclinedAt    DateTime?

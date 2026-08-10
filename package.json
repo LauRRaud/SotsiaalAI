@@ -35,6 +35,7 @@
     "kov:claim:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/kov-ingest-claim-probe.mjs",
     "call:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/call-consent-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
+    "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",

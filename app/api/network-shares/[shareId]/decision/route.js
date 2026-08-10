@@ -24,7 +24,12 @@ export async function POST(req, { params }) {
       shareId,
       clientUserId: auth.userId,
       decision: body?.decision,
-      note: body?.note || ""
+      note: body?.note || "",
+      /* Räsi, mille klient sai koos tekstiga. Kui ta tuleb kaasa, kinnitab ta
+         SEDA teksti, mitte lihtsalt seda rida (SOL-NET-01). Valikuline, sest
+         vana klient ei tea temast midagi — tingimuslik kirjutus katab
+         võistluse niikuinii. */
+      expectedContentHash: typeof body?.expectedContentHash === "string" ? body.expectedContentHash : null
     });
     return shareJson({
       ok: true,
