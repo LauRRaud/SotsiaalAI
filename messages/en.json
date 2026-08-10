@@ -308,7 +308,9 @@
       "draft": "Draft text",
       "confirm": "I confirm — save as a note",
       "discard": "Discard",
-      "confirmed": "The draft was confirmed and saved as a note (origin: AI draft)."
+      "confirmed": "The draft was confirmed and saved as a note (origin: AI draft).",
+      "confirmQueued": "The confirmed text is on the device and will be sent when the connection returns. The raw-audio deletion clock starts only once the text is on the server.",
+      "confirmFailed": "Sending the confirmation failed. The text is still on the device — retry from the item."
     },
     "ocr": {
       "run": "Read text from the photo"

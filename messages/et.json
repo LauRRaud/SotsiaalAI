@@ -308,7 +308,9 @@
       "draft": "Mustandi tekst",
       "confirm": "Kinnitan — salvesta märkmena",
       "discard": "Loobu",
-      "confirmed": "Mustand kinnitati ja salvestati märkmena (päritolu: AI mustand)."
+      "confirmed": "Mustand kinnitati ja salvestati märkmena (päritolu: AI mustand).",
+      "confirmQueued": "Kinnitatud tekst on seadmes ja saadetakse ühenduse taastumisel. Toorheli kustutuskell käivitub alles siis, kui tekst on serveris.",
+      "confirmFailed": "Kinnituse saatmine ebaõnnestus. Tekst on seadmes alles — proovi kirje juures uuesti."
     },
     "ocr": {
       "run": "Loe tekst pildilt"

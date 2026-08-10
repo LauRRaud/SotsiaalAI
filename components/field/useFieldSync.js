@@ -20,8 +20,10 @@ import {
 import {
   applyFieldSyncEvent,
   FieldSyncEvent,
-  isUploadDue
+  isUploadDue,
+  nextFieldSyncWakeup
 } from "@/lib/field/syncMachine";
+import { createFieldSyncScheduler } from "@/lib/field/syncScheduler";
 import {
   acknowledgeFieldWarning,
   applyFieldVisitStatusToPack,
@@ -67,6 +69,9 @@ export function useFieldSync({ userId, visitId = null }) {
   const [retentionAwaitingConfirmation, setRetentionAwaitingConfirmation] = useState([]);
   const storeRef = useRef(null);
   const syncingRef = useRef(false);
+  const itemsRef = useRef([]);
+  const runSyncRef = useRef(null);
+  const schedulerRef = useRef(null);
 
   const refreshItems = useCallback(async () => {
     const store = storeRef.current;
@@ -74,6 +79,9 @@ export function useFieldSync({ userId, visitId = null }) {
     const list = await store.listItems(visitId ? { visitId } : {});
     const visible = list.filter((item) => item.state !== FIELD_ITEM_STATE.REMOVED);
     visible.sort((a, b) => String(a.createdAt || "").localeCompare(String(b.createdAt || "")));
+    /* SOL-FIELD-06: ajastaja loeb järjekorda viitest, mitte React-i olekust —
+       ta ärkab väljaspool renderdust ja vajab VÄRSKET nimekirja. */
+    itemsRef.current = visible;
     setItems(visible);
     return visible;
   }, [visitId]);
@@ -142,6 +150,7 @@ export function useFieldSync({ userId, visitId = null }) {
                 consentSubject: item.payload?.consentSubject,
                 consentForm: item.payload?.consentForm,
                 aiConfirmed: item.payload?.aiConfirmed || false,
+                transcriptClientItemId: item.payload?.transcriptClientItemId || null,
                 deviceCreatedAt: item.createdAt || null
               })
             }
@@ -190,6 +199,9 @@ export function useFieldSync({ userId, visitId = null }) {
       syncingRef.current = false;
       setSyncing(false);
       await refreshItems();
+      /* SOL-FIELD-06: järgmine tähtaeg arvutatakse PÄRAST katset, mitte ette —
+         backoff kasvab ja ajastaja järgib teda ise. */
+      schedulerRef.current?.schedule();
     }
   }, [refreshItems, uploadItem]);
 
@@ -326,6 +338,32 @@ export function useFieldSync({ userId, visitId = null }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, visitId]);
 
+  /**
+   * SOL-FIELD-06: mootor ärkab ise.
+   *
+   * Ajastaja luuakse ÜKS kord ja kutsub alati värsket `runSync`-i viite kaudu —
+   * muidu jääks ta esimese renderduse sulundisse kinni. Unmount peatab ta, seega
+   * lahkunud vaade ei jäta taimerit taha.
+   */
+  useEffect(() => {
+    runSyncRef.current = runSync;
+  }, [runSync]);
+
+  useEffect(() => {
+    const scheduler = createFieldSyncScheduler({
+      run: () => runSyncRef.current?.(),
+      wakeupAt: () => {
+        if (typeof navigator !== "undefined" && !navigator.onLine) return null;
+        return nextFieldSyncWakeup(itemsRef.current, new Date());
+      }
+    });
+    schedulerRef.current = scheduler;
+    return () => {
+      scheduler.stop();
+      schedulerRef.current = null;
+    };
+  }, []);
+
   useEffect(() => {
     const goOnline = () => {
       setOnline(true);
@@ -343,7 +381,20 @@ export function useFieldSync({ userId, visitId = null }) {
 
   /** Autosave a new or edited note item locally (state DEVICE_ONLY). */
   const saveLocalNote = useCallback(
-    async ({ clientItemId = null, kind, provenance, body, consentKind, consentSubject, consentForm, aiConfirmed = false }) => {
+    async ({
+      clientItemId = null,
+      kind,
+      provenance,
+      body,
+      consentKind,
+      consentSubject,
+      consentForm,
+      aiConfirmed = false,
+      /* SOL-FIELD-05: kinnitatud transkript kannab viidet salvestisele, mille
+         tekst ta on. Server käivitab toorheli kella SAMAS tehingus, kus ta
+         teksti vastu võtab — kaht eraldi päringut enam ei ole. */
+      transcriptClientItemId = null
+    }) => {
       const store = storeRef.current;
       if (!store || !visitId) return null;
       const existing = clientItemId ? await store.getItem(clientItemId) : null;
@@ -361,7 +412,16 @@ export function useFieldSync({ userId, visitId = null }) {
           };
       await persist({
         ...base,
-        payload: { kind, provenance, body, consentKind, consentSubject, consentForm, aiConfirmed }
+        payload: {
+          kind,
+          provenance,
+          body,
+          consentKind,
+          consentSubject,
+          consentForm,
+          aiConfirmed,
+          transcriptClientItemId
+        }
       });
       return id;
     },
@@ -390,12 +450,20 @@ export function useFieldSync({ userId, visitId = null }) {
     [persist, visitId]
   );
 
+  /**
+   * SOL-FIELD-05: tagastab LÕPPSEISU, mitte `undefined`.
+   *
+   * Ilma selleta ei saa kutsuja ausat teadet anda: „kinnitatud" tohib öelda
+   * ainult siis, kui server vastas 2xx (kirje on `SYNCED`). Kõik muu on ausalt
+   * „seadmes, saadetakse" või „saatmine ebaõnnestus".
+   */
   const approveItem = useCallback(
     async (clientItemId) => {
       const item = await storeRef.current?.getItem(clientItemId);
-      if (!item) return;
+      if (!item) return null;
       await transition(item, FieldSyncEvent.USER_APPROVED);
       if (navigator.onLine) await runSync();
+      return storeRef.current?.getItem(clientItemId) || null;
     },
     [runSync, transition]
   );

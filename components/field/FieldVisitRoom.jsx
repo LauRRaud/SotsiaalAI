@@ -359,26 +359,32 @@ export default function FieldVisitRoom({ visitId }) {
       setAiDraft(null);
       return;
     }
+    /* SOL-FIELD-05: ÜKS toiming, mitte kaks. Transkripti kinnitus rändab kaasa
+       märkme endaga ja server käivitab toorheli kella samas tehingus, kus ta
+       teksti vastu võtab. Varem läks kinnitus eraldi päringuga, mille viga
+       neelati vaikselt, ja eduteade anti alati — ka siis, kui toorheli jäi
+       kustutamata. */
     const id = await sync.saveLocalNote({
       kind: FIELD_NOTE_KIND.NOTE,
       provenance: FIELD_PROVENANCE.AI_MUSTAND,
       body: aiDraft.text.trim(),
-      aiConfirmed: true
+      aiConfirmed: true,
+      transcriptClientItemId: aiDraft.source === "transcript" ? aiDraft.clientItemId : null
     });
-    if (id) await sync.approveItem(id);
-    if (aiDraft.source === "transcript") {
-      await fetch(
-        `/api/field/visits/${encodeURIComponent(visitId)}/attachments/${encodeURIComponent(aiDraft.clientItemId)}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ confirmTranscript: true })
-        }
-      ).catch(() => {});
+    if (!id) {
+      setNotice(t("field.errors.saveFailed"));
+      return;
     }
+    const settled = await sync.approveItem(id);
     setAiDraft(null);
-    setNotice(t("field.ai.confirmed"));
-  }, [aiDraft, sync, visitId, t]);
+    /* Eduteade AINULT serveri 2xx järel. Järjekorda jäänud kirje on ausalt
+       „saadetakse", tõrge on ausalt tõrge — mõlemad on kasutajale nähtavad ka
+       kirje enda seisus, mille kest niikuinii kuvab. */
+    if (settled?.state === FIELD_ITEM_STATE.SYNCED) setNotice(t("field.ai.confirmed"));
+    else if (settled?.state === FIELD_ITEM_STATE.FAILED || settled?.state === FIELD_ITEM_STATE.CONFLICT) {
+      setNotice(t("field.ai.confirmFailed"));
+    } else setNotice(t("field.ai.confirmQueued"));
+  }, [aiDraft, sync, t]);
 
   const doHandover = useCallback(async () => {
     if (!navigator.onLine) {
