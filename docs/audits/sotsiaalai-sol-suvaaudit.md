@@ -2051,6 +2051,59 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Kohalikud read peavad olema kasutaja/profiili krüptograafiliselt või vähemalt autoriteetse ID järgi eraldatud, kasutajavahetusel lukustatud ning logout'il otsustatud korras eemaldatud või turvaliselt üle antud. Brauseritest peab jätma A konto mustandi/outbox'i, vahetama B kontole ja tõendama, et B ei näe ega saada A sisu.
 
+**Seis (10.08.2026): DONE.** Seadme read on nüüd konto omad, mitte brauseri omad.
+
+- **Eraldus autoriteetse ID järgi.** Uus `lib/serviceLog/deviceStore.js` on AINUS tee nende
+  ridadeni: `openDeviceStore(storage, ownerId)` annab võtme `…outbox::<userId>` ja tagastab
+  **`null`**, kui omanikku ei ole. `outbox.js` ja `visitDraft.js` võtavad nüüd selle
+  salvestuse, mitte `localStorage`-i, ning nende olemasolev „salvestust ei ole" haru katab
+  omanikuta hetke ära — identiteedita ei loeta ega kirjutata midagi. Struktuur välistab
+  „unustasin omaniku kaasa anda" (sama muster mis SLOG-14 juures).
+- **Kasutajavahetuse lukk.** Omanik tuleb toorest sessioonist (`useSession`), mitte
+  rollivaatest. Omaniku muutumisel tühjendatakse vorm MÄLUS (`clearFormFields`), salvestust
+  puutumata — `clearVisitDraft` läheks juba uue omaniku reale ja kustutaks tema õige
+  mustandi. See haru on vajalik, sest sessiooniküpsis on brauseriülene: teises vahekaardis
+  sisse logimine vahetab omaniku ka juba avatud vormi all.
+- **Logout'il valiti „turvaliselt üle antud", mitte „eemaldatud".** Järjekord hoiab TEHTUD
+  TÖÖD ja tema kustutamine on täpselt SLOG-02/-03 kahju (tasustamata töö). Rida jääb oma
+  konto skoopi; mustandil on lisaks 18-tunnine iga.
+- **Vana sildistamata rida kustutatakse.** Teda ei saa omistada (payload'is on kliendi nimi,
+  mitte töötaja), seega ainus lekkevaba valik. Kahju on mõõdetud, mitte oletatud: tootmises
+  on teenuspäevik sees (`SERVICE_LOG_ENABLED=1`), aga andmebaasis on 11 teenuskirjet ja ÜKS
+  osutajaprofiil (omaniku enda), viimane kirje 02.08 — flotti, kelle telefonis oleks saatmata
+  päevatöö, veel ei ole.
+
+**Kaks leidu, mida raportis kirjas ei olnud ja mis tulid parandust brauseris tõendades:**
+
+1. **Mustand kustus lehe avamisel.** Lipp „taastamine on tehtud" oli viide
+   (`draftReadyRef.current = true`) ja läks püsti taastamis-effecti sees, aga taastatud
+   väärtused jõudsid olekusse alles JÄRGMISES renderduses. Salvestav effect jooksis vahepeal
+   sama commit'i ajal — lipp püsti, väljad tühjad — ja luges tühja vormi „siin ei ole tööd",
+   mis kustutas rea, mille just taastasime. Lipp on nüüd olek (`draftOwner`), mis käib
+   taastatud väärtustega ühes commit'is. Ilma brauserita oleks see jäänud leidmata: unit-testid
+   ei renderda komponenti.
+2. **Üks ootel kirje läks teele kolme POST-iga.** `flushOutbox`-il ei olnud voo-lukku ja
+   käivitajaid on mitu (leht avaneb, omanik selgub, `online`, StrictMode). Server on
+   idempotentne ja topeltkirjet ei tekkinud, aga idempotentsus on turvavõrk, mitte luba
+   võrku raisata. Lukk viis 3 → 2 (järelejäänu on dev-StrictMode'i oma).
+
+**Tõend (runtime, lokaalne dev-server, päris sessioon `ai.service-provider@sotsiaalai.test`):**
+seadmesse pandi korraga (a) vana sildistamata mustand+outbox, (b) VÕÕRA omaniku mustand+outbox
+ja (c) oma mustand+outbox. Lehe avamisel: oma mustand tuli vormi (`MINU Klient`), oma
+järjekorra kirje läks serverisse ja kadus seadmest, vana sildistamata rida kustutati, **võõra
+omaniku mõlemad read jäid baidilt puutumata ja tema kirje EI JÕUDNUD serverisse** (`GET
+/api/service-entries` näitas ainult oma kirjet). Kumbagi võõrast nime ei olnud lehel.
+
+**Testid.** `tests/serviceLog/deviceStore.test.js` (uus, 7 testi) + olemasolevad outbox/draft
+sviidid käivad nüüd sama teed mis komponent. Negatiivkontroll: skoopimise eemaldamine
+`deviceRowKey`-st kukutab 4 testi 7-st, seega sviit mõõdab päriselt eraldust. `npm test`
+3374/3374 (TZ=UTC).
+
+**runtime: `A logib välja → B logib sisse` vahetus päris kahe kontoga on läbi käimata** —
+lokaalselt on üks SERVICE_PROVIDER konto. Vahetuse haru on kaetud ühikutestiga ja ülal
+kirjeldatud võõra omaniku katsega, mis mõõdab sedasama invarianti teisest otsast (seade
+sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
+
 ### SOL-SLOG-02 — iga 4xx vastus kustutab võrgujärjekorrast tehtud töö taastamisvõimaluseta — P1
 
 **Tõend.** `postEntry()` liigitab retry'ks ainult võrguvea ja 5xx-i; kõik 4xx-id on `rejected` (`components/serviceLog/ServiceLogDay.jsx:581-600`, `lib/serviceLog/outbox.js:105-118`). `flushOutbox()` eemaldab rejected payload'i kohe localStorage'ist ja jätab alles vaid komponendi mälus oleva üldteate (`ServiceLogDay.jsx:606-623`). Payload'i ega taastamis-/parandamisvaadet ei säilitata.

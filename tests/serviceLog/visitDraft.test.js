@@ -15,22 +15,38 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
-  DRAFT_KEY,
+  DRAFT_ROW,
   DRAFT_MAX_AGE_MS,
   clearVisitDraft,
   draftHasWork,
   readVisitDraft,
   writeVisitDraft
 } from "../../lib/serviceLog/visitDraft.js";
+import { deviceRowKey, openDeviceStore } from "../../lib/serviceLog/deviceStore.js";
+
+/**
+ * Mustand EI ELA enam brauseri ühises võtmes, vaid konto omas (SOL-SLOG-01).
+ * Testid käivad sama teed, mis komponent.
+ */
+const OWNER = "user-a";
+const DRAFT_KEY = deviceRowKey(DRAFT_ROW, OWNER);
 
 function fakeStorage(initial = {}) {
   const map = new Map(Object.entries(initial));
-  return {
-    getItem: (key) => (map.has(key) ? map.get(key) : null),
-    setItem: (key, value) => map.set(key, String(value)),
-    removeItem: (key) => map.delete(key),
+  const store = openDeviceStore(
+    {
+      getItem: (key) => (map.has(key) ? map.get(key) : null),
+      setItem: (key, value) => map.set(key, String(value)),
+      removeItem: (key) => map.delete(key)
+    },
+    OWNER
+  );
+  /* `raw` läheb VÕTMEST otse mööda skoopimisest: nii saab tõendada, et
+     kliendi nimi kadus päris salvestusest, mitte ainult lugeja silmist. */
+  return Object.assign(store, {
+    raw: (key) => (map.has(key) ? map.get(key) : null),
     size: () => map.size
-  };
+  });
 }
 
 const VISIT = {
@@ -66,13 +82,13 @@ test("üleöö seisnud mustand kustutatakse LUGEMISEL, mitte ei jäeta vahele", 
   const storage = fakeStorage();
   writeVisitDraft(storage, VISIT, 0);
   assert.equal(readVisitDraft(storage, DRAFT_MAX_AGE_MS + 1), null);
-  assert.equal(storage.getItem(DRAFT_KEY), null, "nimi ei tohi seadmesse seisma jääda");
+  assert.equal(storage.raw(DRAFT_KEY), null, "nimi ei tohi seadmesse seisma jääda");
 });
 
 test("ajatempliga sassi läinud mustand ei jää igaveseks", () => {
   const storage = fakeStorage({ [DRAFT_KEY]: JSON.stringify({ clientName: "Keegi" }) });
   assert.equal(readVisitDraft(storage, 5_000), null, "ilma `savedAt`-ita ei saa iga hinnata");
-  assert.equal(storage.getItem(DRAFT_KEY), null);
+  assert.equal(storage.raw(DRAFT_KEY), null);
 });
 
 test("salvestatud kirje kustutab mustandi kohe", () => {

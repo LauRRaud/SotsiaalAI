@@ -28,6 +28,7 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -45,6 +46,7 @@ import {
   isServiceLogMeasurementUiEnabled
 } from "@/lib/serviceLog/flags";
 import { captureLocationPoint } from "@/lib/serviceLog/geolocation";
+import { openDeviceStore, purgeUnscopedRows } from "@/lib/serviceLog/deviceStore";
 import { clearVisitDraft, readVisitDraft, writeVisitDraft } from "@/lib/serviceLog/visitDraft";
 import ServiceLogRoute from "./ServiceLogRoute";
 
@@ -133,6 +135,26 @@ export default function ServiceLogDay() {
      `ServiceLogShell` ja `lib/serviceLog/access.js`. */
   const { effectiveRole, isRoleResolved } = useEffectiveRole();
   const allowed = effectiveRole === "SERVICE_PROVIDER";
+
+  /**
+   * SEADME READ ON KONTO OMAD (SOL-SLOG-01).
+   *
+   * Omanik tuleb TOOREST sessioonist, mitte rollivaatest: admin, kes vaatab
+   * osutaja pinda, on endiselt sama konto ja tema seadmerida ei tohi rollivaate
+   * lülitamisel vahetuda. Kuni `status` ei ole `authenticated`, on `ownerId`
+   * tühi ja `openDeviceStore` annab `null` — seade on lukus, mitte lahti vale
+   * omaniku peale.
+   */
+  const { data: session, status: sessionStatus } = useSession();
+  const ownerId =
+    sessionStatus === "authenticated" && session?.user?.id ? String(session.user.id) : "";
+
+  /* Funktsioon, mitte väärtus: `window` puudub server-renderis ja salvestust
+     puudutame ainult siis, kui teda päriselt vaja on. */
+  const deviceStore = useCallback(
+    () => openDeviceStore(typeof window === "undefined" ? null : window.localStorage, ownerId),
+    [ownerId]
+  );
 
   const [entries, setEntries] = useState(null);
   const [loadError, setLoadError] = useState(false);
@@ -274,16 +296,97 @@ export default function ServiceLogDay() {
     return Math.round((minutes / 60) * 100) / 100;
   }, [stamps, unit]);
 
+  /**
+   * VORMI TÜHJENDUS ILMA SALVESTUST PUUTUMATA.
+   *
+   * Kaks kutsujat, kaks eri põhjust: `resetForm` (kirje sai salvestatud —
+   * mustand kustub ka seadmest) ja kasutajavahetus (mustand kuulub EELMISELE
+   * kontole ja tema rida ei ole enam meie käes). Ilma selle lahutuseta
+   * kustutaks vahetus uue konto õige mustandi.
+   *
+   * Defineeritud ENNE taastamis-effecti, sest tema sõltuvusloend loetakse
+   * renderduse ajal — allpool defineeritud `useCallback` oleks siin TDZ-viga
+   * (sama lõks, mille pärast `markInputStartRef` on viide).
+   */
+  const clearFormFields = useCallback(() => {
+    /* Uus kuelastus = uus number. Vana kuelastuse hilinenud asukohavastus ei
+       jou enam siia. */
+    visitTokenRef.current += 1;
+    setClientName("");
+    setQuantity("");
+    setNote("");
+    setNoteProvenance(PROVENANCE.TOOTAJA_TAHELEPANEK);
+    setStamps({});
+    setFromVisit(null);
+    setLocationStamps({});
+    setLocationState("");
+    setWithTravel(false);
+    setRestoredDraft(false);
+    setDefaults(null);
+    setServiceId("");
+    setReferralId("");
+    setDate(todayIso());
+  }, []);
+
   /* Taastame poooleli kaeaesoleva kuelastuse alles pärast esimest renderdust:
      `localStorage` ei ole serveris olemas ja `useState`-i algväärtusena tekitaks
      see hüdratsiooni lahknevuse. */
-  const draftReadyRef = useRef(false);
+  /**
+   * KELLE MUSTAND ON EKRAANILE TOODUD. Olek, MITTE viide — ja see vahe on
+   * mõõdetud, mitte maitse.
+   *
+   * Viitega (`draftReadyRef.current = true`) läks lipp püsti taastamis-effecti
+   * SEES, aga taastatud väärtused jõudsid olekusse alles JÄRGMISES renderduses.
+   * Salvestav effect jooksis vahepeal sama commit'i ajal — lipp juba püsti,
+   * väljad veel tühjad — ja `writeVisitDraft` luges tühja vormi „siin ei ole
+   * tööd" ja KUSTUTAS rea, mille just taastasime. Brauseris nägi see välja nii,
+   * et mustand kadus lehe avamisel ära.
+   *
+   * Olekuga käib lipp koos taastatud väärtustega ühes ja samas commit'is:
+   * salvestav effect ei saa neid enam lahus näha.
+   */
+  const [draftOwner, setDraftOwner] = useState(null);
+  /**
+   * Eelmise renderduse omanik. `null` = esimene kord; tühi string = välja
+   * logitud. Vahe on oluline, sest AINULT päris vahetus (A → B) tohib vormi
+   * tühjendada — esimene laadimine ei tohi.
+   */
+  const ownerRef = useRef(null);
   useEffect(() => {
-    const draft = readVisitDraft(typeof window === "undefined" ? null : window.localStorage);
+    const previousOwner = ownerRef.current;
+    ownerRef.current = ownerId;
+
+    /**
+     * KASUTAJAVAHETUSE LUKK. Sessiooniküpsis on brauseriülene (vahekaardid
+     * jagavad purki), seega teises aknas sisse logimine vahetab omaniku ka
+     * SELLE, juba avatud vormi all. Ekraanil olev töö kuulub eelmisele kontole:
+     * teda ei tohi uue konto seadmereale kirjutada ega talle näidata.
+     *
+     * Vorm puhastatakse MÄLUS, salvestust puutumata — `clearVisitDraft` läheks
+     * juba uue omaniku reale ja kustutaks tema õige mustandi.
+     */
+    if (previousOwner !== null && previousOwner !== ownerId) {
+      setDraftOwner(null);
+      clearFormFields();
+      setFormError("");
+      setOverrunNotice(null);
+      /* Loendur kuulus eelmise konto järjekorrale; uue oma tuleb `flushOutbox`
+         effectist, mis sõltub samuti omanikust. */
+      setPending(0);
+    }
+
+    /* Ilma omanikuta ei loeta ega kirjutata midagi: `draftOwner` jääb tühjaks
+       ja salvestav effect vaikib. */
+    if (!ownerId) {
+      setDraftOwner(null);
+      return;
+    }
+
+    const draft = readVisitDraft(deviceStore());
     /* Ka „mustandit ei olnud" lõpetab taastamise: muidu ei salvestuks enam
        kunagi midagi. */
     if (!draft) {
-      draftReadyRef.current = true;
+      setDraftOwner(ownerId);
       return;
     }
     setStamps(draft.stamps);
@@ -299,8 +402,8 @@ export default function ServiceLogDay() {
     if (draft.referralId) setReferralId(draft.referralId);
     if (draft.date) setDate(draft.date);
     if (Object.keys(draft.stamps || {}).length || draft.clientName) setRestoredDraft(true);
-    draftReadyRef.current = true;
-  }, []);
+    setDraftOwner(ownerId);
+  }, [clearFormFields, deviceStore, ownerId]);
 
   /**
    * SALVESTAMINE ON ÜKS EFEKT, MITTE KÜMME KUTSET.
@@ -313,8 +416,12 @@ export default function ServiceLogDay() {
    * StrictMode'is kaks korda ja kõrvalmõju uuendajas on iseenesest viga.
    */
   useEffect(() => {
-    if (!draftReadyRef.current) return;
-    writeVisitDraft(typeof window === "undefined" ? null : window.localStorage, {
+    /* Kirjutame ALLES SIIS, kui selle omaniku mustand on päriselt ekraanile
+       jõudnud. Muidu näeks siinne effect tühja vormi enne taastamist ja
+       „tühi vorm kustutab mustandi" reegel kustutaks rea, mida keegi ei
+       puutunud. */
+    if (!ownerId || draftOwner !== ownerId) return;
+    writeVisitDraft(deviceStore(), {
       stamps,
       locationStamps,
       withTravel,
@@ -326,7 +433,7 @@ export default function ServiceLogDay() {
       referralId,
       date
     });
-  }, [stamps, locationStamps, withTravel, clientName, note, noteProvenance, quantity, unit, referralId, date]);
+  }, [deviceStore, draftOwner, ownerId, stamps, locationStamps, withTravel, clientName, note, noteProvenance, quantity, unit, referralId, date]);
 
   /**
    * TÄPSUS ON OSA TÕENDIST, MITTE TEHNILINE DETAIL.
@@ -547,27 +654,11 @@ export default function ServiceLogDay() {
   );
 
   const resetForm = useCallback(() => {
-    /* Uus kuelastus = uus number. Vana kuelastuse hilinenud asukohavastus ei
-       jou enam siia. */
-    visitTokenRef.current += 1;
-    setClientName("");
-    setQuantity("");
-    setNote("");
-    setNoteProvenance(PROVENANCE.TOOTAJA_TAHELEPANEK);
-    setStamps({});
-    setFromVisit(null);
-    setLocationStamps({});
-    setLocationState("");
-    setWithTravel(false);
+    clearFormFields();
     /* Salvestatud kirje ei ole enam pooleli töö: nimi ei tohi seadmesse jääda
        hetkegi kauemaks, kui teda vaja oli. */
-    clearVisitDraft(typeof window === "undefined" ? null : window.localStorage);
-    setRestoredDraft(false);
-    setDefaults(null);
-    setServiceId("");
-    setReferralId("");
-    setDate(todayIso());
-  }, []);
+    clearVisitDraft(deviceStore());
+  }, [clearFormFields, deviceStore]);
 
   /**
    * ÜKS SAATMISFUNKTSIOON NII UUELE KUI JÄRJEKORRAS OLEVALE KIRJELE.
@@ -603,36 +694,67 @@ export default function ServiceLogDay() {
   /* Tühjendab järjekorra ükshaaval ja PEATUB esimese võrguvea peal: kui võrku
      ei ole, ei ole mõtet ülejäänuid läbi käia — ja järjekorra järjekord on
      ühtlasi kirjete sünniaeg. */
+  /**
+   * ÜKS TÜHJENDUS KORRAGA. Käivitajaid on mitu (leht avaneb, omanik selgub,
+   * brauser saab võrgu, StrictMode kordab effecti) ja nad võivad langeda samale
+   * hetkele. Ilma lukuta loevad kaks jooksu SAMA järjekorra enne, kui kumbki
+   * jõuab midagi kustutada, ja saadavad iga kirje kaks korda.
+   *
+   * Mõõdetud: ühe ootel kirje kohta läks kolm POST-i. Server on idempotentne
+   * (`clientRequestId`) ja topeltkirjet ei tekkinud — aga see on VÕRK, mille
+   * eest me töötajat kaitseme, ja idempotentsus on turvavõrk, mitte luba.
+   */
+  const flushingRef = useRef(false);
   const flushOutbox = useCallback(async () => {
-    const storage = typeof window === "undefined" ? null : window.localStorage;
-    const queued = readOutbox(storage);
+    if (flushingRef.current) return;
+    /* Omanikuta `store` on `null` → järjekord loetakse tühjaks ja MITTE MIDAGI
+       ei saadeta. Just siin oli SOL-SLOG-01 kallim pool: eelmise konto kirjed
+       läksid teele UUE konto sessiooniga ja said tema arve alusdokumendiks. */
+    const store = deviceStore();
+    const queued = readOutbox(store);
     if (!queued.length) return;
+    flushingRef.current = true;
     let sentAny = false;
-    for (const item of queued) {
-      const { outcome } = await postEntry(item);
-      if (outcome === "retry") break;
-      /* „rejected" kustutab samuti: server vaatas kirje üle ja ütles ei, seega
-         kordamine annaks igavesti sama vastuse ja järjekord ei tühjeneks enam.
-         Kadu on nähtav — pending-loendur langeb ja teade jääb ekraanile. */
-      dequeue(storage, item.clientRequestId);
-      if (outcome === "sent") sentAny = true;
-      else setFormError(t("service_log.outbox.rejected", ""));
+    try {
+      for (const item of queued) {
+        const { outcome } = await postEntry(item);
+        if (outcome === "retry") break;
+        /* „rejected" kustutab samuti: server vaatas kirje üle ja ütles ei, seega
+           kordamine annaks igavesti sama vastuse ja järjekord ei tühjeneks enam.
+           Kadu on nähtav — pending-loendur langeb ja teade jääb ekraanile. */
+        dequeue(store, item.clientRequestId);
+        if (outcome === "sent") sentAny = true;
+        else setFormError(t("service_log.outbox.rejected", ""));
+      }
+    } finally {
+      /* `finally`, sest lahti jäänud lukk oleks hullem kui topeltsaatmine:
+         järjekord ei tühjeneks enam kunagi. */
+      flushingRef.current = false;
     }
-    setPending(outboxCount(storage));
+    setPending(outboxCount(store));
     if (sentAny) await loadEntries();
-  }, [loadEntries, postEntry, t]);
+  }, [deviceStore, loadEntries, postEntry, t]);
 
   /* Kaks käivitajat: leht avaneb (seade võis vahepeal võrku saada) ja brauseri
      `online`. Kolmandat ei ole — perioodiline pollimine kulutaks akut just
      seal, kus töötaja on terve päeva väljas. */
   useEffect(() => {
     if (!allowed || typeof window === "undefined") return undefined;
-    setPending(outboxCount(window.localStorage));
+    /**
+     * VANA SILDISTAMATA RIDA KORISTATAKSE SIIN, ENNE kui midagi loetakse.
+     *
+     * Enne SOL-SLOG-01 parandust kirjutatud read ei kanna omanikku ja teda ei
+     * saa tagantjärele tuletada. Neid ei anta kellelegi (see oleks täpselt see
+     * leke) — nad kustutatakse. Vt `purgeUnscopedRows` kommentaari, miks see
+     * kolmest halvast valikust kõige väiksem on.
+     */
+    purgeUnscopedRows(window.localStorage);
+    setPending(outboxCount(deviceStore()));
     flushOutbox();
     const onOnline = () => flushOutbox();
     window.addEventListener("online", onOnline);
     return () => window.removeEventListener("online", onOnline);
-  }, [allowed, flushOutbox]);
+  }, [allowed, deviceStore, flushOutbox]);
 
   const submit = useCallback(
     async (event) => {
@@ -645,7 +767,7 @@ export default function ServiceLogDay() {
         return;
       }
       setSaving(true);
-      const storage = typeof window === "undefined" ? null : window.localStorage;
+      const store = deviceStore();
       /* VÕTI SÜNNIB SIIN, mitte serveris — server ei saa teda ise välja mõelda,
          ja just tema teeb kordussaatmise ohutuks. */
       const clientRequestId =
@@ -679,8 +801,8 @@ export default function ServiceLogDay() {
         if (outcome === "retry") {
           /* KIRJE EI KAO. Ta on seadmes ja läheb teele, kui võrk tuleb —
              vorm tühjendatakse, sest töötaja jaoks on see külastus tehtud. */
-          enqueue(storage, payload);
-          setPending(outboxCount(storage));
+          enqueue(store, payload);
+          setPending(outboxCount(store));
           /* Ka jaerjekorda laeinud kirje sisestamisele kulus paeris aeg — vork
              ei ole osa sellest, mida me moodame. */
           finishInputTimer();
@@ -710,7 +832,7 @@ export default function ServiceLogDay() {
         setSaving(false);
       }
     },
-    [clientName, date, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
+    [clientName, date, deviceStore, finishInputTimer, fromVisit, loadEntries, locationStamps, note, noteProvenance, postEntry, quantity, referralId, resetForm, serviceId, stamps, t, unit]
   );
 
   if (!isRoleResolved) return null;

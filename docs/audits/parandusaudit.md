@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **40 / 357** |
+| Tehtud leidu | **41 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **12 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **11 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SLOG jätk** — 3 lahtist P0 (SLOG-01, -17, -18); -17 ja -18 vajavad skeemimuudatust (külastuse org-snapshot) |
-| Käsil oleva peatüki saba | SOL-SLOG 22 lahtist (3 × P0, 18 × P1, 1 × P2) · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SLOG jätk** — 2 lahtist P0 (SLOG-17, -18), mõlemad vajavad sama skeemimuudatust (külastuse org-snapshot) ja moodustavad ühe ploki |
+| Käsil oleva peatüki saba | SOL-SLOG 21 lahtist (2 × P0, 18 × P1, 1 × P2) · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01 ja SLOG-13/14 on koodis ja deploy'mata (kaks migratsiooni:
+31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-13/14 ja SLOG-01 on koodis ja deploy'mata (kaks migratsiooni:
 `20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`)**. Ainus P3 kogu
 auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
@@ -45,7 +45,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Domeenisündmused | SOL-EVENT | 0/1 | – | – | 1 | |
 | Kiireloomuline abi | SOL-URG | 2/13 | – | 11 | – | **käsil**, mõlemad P0-d tehtud |
 | Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
-| Teenuspäevik | SOL-SLOG | 2/24 | **3** | 18 | 1 | **käsil**, SLOG-13/14 tehtud |
+| Teenuspäevik | SOL-SLOG | 3/24 | **2** | 18 | 1 | **käsil**, SLOG-01/13/14 tehtud |
 | RAG-teenus ja ingest | SOL-RAGSVC | 0/28 | **2** | 19 | 7 | suurim peatükk |
 | Migratsioonid | SOL-PRISMA | 0/4 | – | 3 | 1 | |
 | Mentorlus | SOL-MENT | 0/7 | – | 7 | – | |
@@ -101,6 +101,14 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
   („EI ANNA SISUÕIGUSI"). SLOG-14: kaks `OR`-i ühes objektis — teine kirjutas esimese üle ja
   `validUntil` kontroll kadus päris WHERE-st, seega aegunud luba töötas edasi. Kehtivus ja
   skoop on nüüd ühe `AND` harudena: struktuur ise välistab vea.
+- **SOL-SLOG-01** (10.08) — seadme `localStorage` oli BRAUSERI oma, mitte konto oma: jagatud
+  arvutis nägi järgmine töötaja eelmise kliendi nime ja märkust, ja võrgujärjekord saatis
+  need kirjed UUE töötaja teenuskirjeteks. Read on nüüd omaniku ID järgi eraldatud ühe
+  jagatud värava taga (`lib/serviceLog/deviceStore.js`), mis annab omanikuta **`null`** —
+  identiteedita on seade lukus. Parandus on **tõendatud päris brauseris päris sessiooniga**
+  ja tõi välja **kaks raportis kirjas mitte olnud leidu**: mustand kustus lehe avamisel
+  (lipp oli viide ja jooksis taastatud väärtustest ette) ning üks ootel kirje läks teele
+  kolme POST-iga (voo-lukk puudus). Mõlemad parandatud.
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -133,9 +141,9 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 12 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  lahtiseid P0-sid on 11 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
   kus P0-sid EI OLE ühtegi. SOL-CALL ja SOL-URG on selle reegli järgi P0-dest tühjaks tehtud;
-  järgmine on **SOL-SLOG** (5 × P0) — tema on lahtiste P0-dega peatükkidest dokumendis kõige
-  eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
+  käsil on **SOL-SLOG** (5-st P0-st 3 tehtud) — tema on lahtiste P0-dega peatükkidest
+  dokumendis kõige eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.

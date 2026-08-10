@@ -10,24 +10,41 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   OUTBOX_LIMIT,
+  OUTBOX_ROW,
   dequeue,
   enqueue,
   outboxCount,
   readOutbox,
   shouldRetry
 } from "../../lib/serviceLog/outbox.js";
+import { deviceRowKey, openDeviceStore } from "../../lib/serviceLog/deviceStore.js";
+
+/**
+ * Järjekord EI VÕTA enam `localStorage`-i, vaid kontoga seotud salvestust
+ * (SOL-SLOG-01). Testid käivad sama teed pidi, mis komponent — muidu mõõdaks
+ * siinne roheline sviit rada, mida tootmises ei ole.
+ */
+const OWNER = "user-a";
 
 function makeStorage(initial = {}) {
   const map = new Map(Object.entries(initial));
-  return {
-    getItem: (key) => (map.has(key) ? map.get(key) : null),
-    setItem: (key, value) => map.set(key, String(value)),
-    removeItem: (key) => map.delete(key),
+  const store = openDeviceStore(
+    {
+      getItem: (key) => (map.has(key) ? map.get(key) : null),
+      setItem: (key, value) => map.set(key, String(value)),
+      removeItem: (key) => map.delete(key)
+    },
+    OWNER
+  );
+  return Object.assign(store, {
     get size() {
       return map.size;
     }
-  };
+  });
 }
+
+/** Sildistamata sisendi ehitamiseks: rikutud JSON peab olema ÕIGE võtme all. */
+const rowKey = (row) => deviceRowKey(row, OWNER);
 
 test("kirje läheb järjekorda ja tuleb sealt tagasi", () => {
   const storage = makeStorage();
@@ -76,7 +93,7 @@ test("tühjenenud järjekord ei jäta jälge", () => {
 });
 
 test("rikutud salvestus ei lõhu lugemist", () => {
-  const storage = makeStorage({ "sotsiaalai.service_log.outbox": "{ see ei ole json" });
+  const storage = makeStorage({ [rowKey(OUTBOX_ROW)]: "{ see ei ole json" });
   assert.deepEqual(readOutbox(storage), []);
 });
 
