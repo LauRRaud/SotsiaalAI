@@ -6,6 +6,7 @@ import {
   normalizeArtifactTitle,
   serializeArtifact
 } from "@/lib/documents/artifacts"
+import { parseExpectedVersion, updateDraftArtifact } from "@/lib/documents/artifactMutation"
 import { getCachedRetrievalDebugMeta } from "@/lib/documents/retrievalObservability"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
@@ -138,6 +139,7 @@ export async function PATCH(request, { params }) {
   }
 
   try {
+    const expectedUpdatedAt = parseExpectedVersion(body?.expectedUpdatedAt)
     const artifact = await findOwnedArtifact(id, auth.userId)
     if (!artifact) {
       return errorJson("documents.artifacts.errors.not_found", 404, locale)
@@ -196,14 +198,16 @@ export async function PATCH(request, { params }) {
       })
     }
 
-    const updated = await prisma.agentArtifact.update({
-      where: { id },
-      data: {
-        title: nextTitle,
-        content: nextContent,
-        templateId: nextTemplateId
-      },
-      include: artifactInclude
+    // Kontroll ja kirjutus ühes lauses: `updateDraftArtifact` nõuab kirjutamise HETKEL, et rida
+    // on endiselt selle omaniku DRAFT ja täpselt see versioon, mida klient nägi. Ülalpool loetud
+    // seis ei otsusta enam midagi — tema ja kirjutuse vahele mahtus varem terve approve.
+    const updated = await updateDraftArtifact({
+      artifactId: id,
+      ownerId: auth.userId,
+      expectedUpdatedAt,
+      title: nextTitle,
+      content: nextContent,
+      templateId: nextTemplateId
     })
 
     await logDocumentsAudit("artifact.updated", {

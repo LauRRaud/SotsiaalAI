@@ -127,6 +127,30 @@ test("the transcription and transcript-summary routes are inside the usage contr
   }
 });
 
+// SOL-DOC-03. Leid ei olnud „unustatud kontroll" — kontroll oli olemas, aga ta oli MÄLUS ja
+// kirjutus toimus hiljem tingimusteta. Seepärast mõõdetakse siin just seda: kirjutus ei tohi
+// enam sihtida ainult id-d.
+test("artifact write and approve are conditional, not read-then-write-by-id", () => {
+  const detail = read("app/api/documents/artifacts/[id]/route.js");
+  const approve = read("app/api/documents/artifacts/[id]/approve/route.js");
+
+  assert.match(detail, /updateDraftArtifact\(/);
+  assert.match(approve, /approveArtifact\(/);
+  for (const [rel, src] of [["detail", detail], ["approve", approve]]) {
+    assert.doesNotMatch(
+      src,
+      /agentArtifact\.update\(\{\s*where:\s*\{\s*id\s*\}/,
+      `${rel} route must not write by id alone`
+    );
+    assert.match(src, /expectedUpdatedAt/, `${rel} route must accept the version the client saw`);
+  }
+
+  const mutation = read("lib/documents/artifactMutation.js");
+  assert.match(mutation, /updateMany\(\{\s*where,\s*data\s*\}\)/);
+  assert.match(mutation, /status:\s*DRAFT/);
+  assert.match(mutation, /where\.updatedAt = expectedUpdatedAt/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {

@@ -81,7 +81,9 @@ export default function ArtifactDetailPage({ artifactId }) {
       const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content })
+        // Versioonitunnus on see, mida SEE vaade nägi: kui teine vahekaart jõudis ette,
+        // saab siit 409 ja kasutaja teab, mitte ei kirjuta vaikselt üle.
+        body: JSON.stringify({ title, content, expectedUpdatedAt: artifact.updatedAt })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.update_failed"))
@@ -104,14 +106,14 @@ export default function ArtifactDetailPage({ artifactId }) {
     setErrorText("")
     setApprovalNotice(null)
     try {
-      const saveResponse = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}`, {
-        method: "PATCH",
+      // ÜKS päring: salvestus ja kinnitus olid varem kaks eraldi HTTP-toimingut ja nende
+      // vahele mahtus terve võistlus. Nüüd kinnitatakse täpselt see versioon ja see sisu,
+      // mida kasutaja siin nägi — või ei kinnitata midagi.
+      const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ title, content })
+        body: JSON.stringify({ title, content, expectedUpdatedAt: artifact.updatedAt })
       })
-      const savePayload = await saveResponse.json().catch(() => ({}))
-      if (!saveResponse.ok) throw new Error(savePayload?.message || t("documents.artifacts.errors.update_failed"))
-      const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, { method: "POST" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.approve_failed"))
       setArtifact(payload?.artifact || null)

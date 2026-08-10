@@ -1502,7 +1502,9 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           body: JSON.stringify({
             title: resultTitle,
             content: resultContent,
-            templateId: selectedTemplateId || null
+            templateId: selectedTemplateId || null,
+            // Versioon, mida SEE tööpind nägi. Teine vahekaart ei kirjuta enam vaikselt üle.
+            expectedUpdatedAt: workspaceResult.updatedAt
           })
         })
       : await fetch("/api/documents/artifacts", {
@@ -1566,7 +1568,10 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
 
       const response = await fetch(`/api/documents/artifacts/${encodeURIComponent(artifactId)}/approve`, {
         method: "POST",
-        headers: { "x-ui-locale": locale }
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale },
+        // Kinnitatakse täpselt see versioon, mille salvestus just tagastas — kui keegi jõudis
+        // vahepeale, tuleb 409, mitte võõra sisu kinnitamine.
+        body: JSON.stringify({ expectedUpdatedAt: artifact?.updatedAt })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.approve_failed"))

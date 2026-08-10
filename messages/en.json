@@ -3561,7 +3561,8 @@
         "source_not_allowed": "Selected documents must be allowed for work mode.",
         "template_not_found": "Selected template was not found.",
         "template_not_allowed": "Selected template must be allowed for work mode.",
-        "final_read_only": "Approved artifacts are read-only."
+        "final_read_only": "Approved artifacts are read-only.",
+        "version_conflict": "The document changed elsewhere in the meantime. Reload the view and try again."
       }
     },
     "analyses": {

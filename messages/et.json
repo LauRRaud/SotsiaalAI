@@ -3561,7 +3561,8 @@
         "source_not_allowed": "Valitud dokumendid peavad olema töörežiimiks lubatud.",
         "template_not_found": "Valitud malli ei leitud.",
         "template_not_allowed": "Valitud mall peab olema töörežiimiks lubatud.",
-        "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks."
+        "final_read_only": "Kinnitatud artefaktid on ainult lugemiseks.",
+        "version_conflict": "Dokumenti muudeti vahepeal mujal. Laadi vaade uuesti ja proovi siis."
       }
     },
     "analyses": {
