@@ -1365,6 +1365,48 @@ sisu: ajastajat ei olnud. Sama piir mis SOL-FIELD-04-l.
 
 **Vastuvõtukriteerium.** Kliendi ühe kavatsuse stabiilne idempotentsusvõti peab siduma reservatsiooni, loodud tulemuse ja retry. Genereerimise kasutus commit'itakse alles pärast püsiva mustandi edukat loomist või need kaks tulemust tehakse taastatava olekumasinaga koherentseks. Refinement peab kas tulemuse enne commit'i püsivalt talletama või tagama, et hilisem auditi/response'i tõrge on sama võtmega taastatav. Veasüstetestid peavad katma quota-check'i, artefakti create'i, refinement-auditi ja vastuse-eelse vea.
 
+**Seis (11.08.2026): DONE — kood ja testid; runtime: not_run.**
+
+**LIPP, MIS KEELAS VABASTUSE.** Kolm rada arvestasid kasutuse maha kohe pärast mudelikutset ja
+märkisid seejärel `generationCompleted`/`refinementCompleted` tõeseks. Sellest hetkest EI SAANUD
+catch enam midagi vabastada — mustandi loomise viga, üle kvoodi jäänud sisu (413) või kohustusliku
+auditirea viga tuli juba arvestatud ühiku otsa. Kasutaja nädalalimiit kahanes ilma leitava
+mustandi või isegi vastuses saadud tekstita, ja korduskatse ei taaskasutanud eelmist sündmust.
+
+**Valisin kriteeriumi esimese haru:** tasu võetakse ainult püsiva tulemuse järel. Järjekord
+`reserve → produce → persist → commit` kolis omaette moodulisse (`lib/usage/paidResult.js`), sest
+ta elab muidu ainult ridade järjestuses ja iga hilisem lisandus võib ta märkamatult ümber tõsta.
+Tal on kaks piiri: iga viga ENNE commit'i vabastab reservatsiooni · commit'i enda viga EI vabasta
+midagi, sest püsiv tulemus on juba omaniku oma ja vabastus annaks talle tasulise tulemuse tasuta.
+
+**Marsruutide kaupa.** Generate: mustand luuakse enne tasu. Artefakti POST: mahukontroll tõusis
+tasust ETTEPOOLE — varem mõõdeti alles pärast commit'i ja 413 tuli arvestatud ühikuga. Refine:
+tema tulemus ei ole server-poolel püsiv (tekst läheb vastusesse), küll aga on püsiv **auditirida**,
+mis on ühtlasi lubatud kolme refinement'i loenduri ainus allikas — nii et auditirida ja tasu käivad
+nüüd ÜHES tehingus (`commit({ tx })`). Kas mõlemad või mitte kumbki; poolikut slot'i ei teki.
+
+**Lõks, mille parandus ise oleks tekitanud.** Stabiilne kliendivõti + vabastus = igaveseks surnud
+kavatsus: `reserve` tagastaks RELEASED rea ja `commit` keelduks temast alati. Seepärast on
+vabastatud võti nüüd **sama perioodi sees** uuesti reserveeritav (üks rida, uus RESERVED-sündmus,
+sama ülempiiri kontroll). Suletud perioodist tulnud võti annab konflikti, mitte elustamist — muidu
+läheks tasu valesse arvestusaknasse.
+
+**Klient.** Agendi kest ei saatnud üldse `idempotencyKey` välja ja adapter mintis igal katsel uue
+UUID-i. Nüüd elab võti kuni serveri kindla vastuseni: sama sisendiga kordus kannab sama võtit
+(server ei võta teist tasu ega loo teist mustandit), õnnestumise järel ta kustub, seega tahtlik
+uus jooks on aus uus töö (`lib/usage/intentKey.js`).
+
+**Mõõdetud (23 uut testi).** Veasüst igasse sammu eraldi: mahukontroll, mustandi loomine,
+refinement'i audit ja vastuse-eelne commit — koos kontrolliga, MIS juhtus reservatsiooniga.
+Vana koodi vastu: kolm uut usage-teenuse testi on punased ja neljas ei kuku, vaid **lukustub** —
+vana `commit` avab alati oma tehingu, seega kutsuja tehingu sees jääb ta iseennast ootama. See
+lukk ongi tõend, miks auditirida ja tasu ei saanud varem üks toiming olla.
+
+**Aus piir mõõtmises.** `paidResult` ja `intentKey` testid mõõdavad mooduleid, mida vanas koodis ei
+olnud olemas (sama piir mis SOL-FIELD-04/06-l). Marsruuditasandi HTTP-veasüsti EI ole: järjekorda
+hoiab moodul, ja et marsruudid teda ka päriselt kasutaksid, valvab lähtekoodi-leping
+(`runPaidResult` olemas, `generationCompleted`/`refinementCompleted` lipud keelatud).
+
 ### SOL-DOC-02 — transkriptsiooni ja transkripti kokkuvõtte rajad mööduvad kasutuslimiitidest — P1
 
 **Tõend.** Plaanid annavad rollidele eraldi `STT_SECONDS` kuu- ja `DOCUMENT_GENERATE` nädalalimiidi (`lib/usage/planSeeds.js:25-34`, `:45-54`, `:65-74`). Helifaili transkribeerimise route kutsub päris OpenAI transkriptsiooni otse, kuid ei reserveeri ega commit'i ühtegi `STT_SECONDS` kasutust (`app/api/documents/[id]/transcribe/route.js:177-265`, `lib/transcription/provider.js:51-73`). Transkripti kokkuvõtte route kutsub AI genereerimist ja loob uue `TRANSCRIPT_SUMMARY` artefakti, kuid ei kasuta `DOCUMENT_GENERATE` reservatsiooni (`app/api/documents/[id]/summary/route.js:113-181`). Mõlemal rajal on ainult minutipõhine mälupõhine rate-limit, mitte lepinguline perioodikvoot.

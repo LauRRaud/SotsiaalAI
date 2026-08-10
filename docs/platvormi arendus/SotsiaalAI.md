@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 70/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 71/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -234,12 +234,27 @@ Uus `lib/field/syncScheduler.js` elab Reactist väljas ja tema kell on süstitav
 automaatset katset, kasvav backoff, peatumine edu ja ülempiiri korral, offline/auth parkimine
 ja unmount'i taimerikoristus on mõõdetud võltskella all** — ilma ühegi päris ootamiseta.
 
-Lahtiseks jääb **210 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Dokumendijärjekorras
-on järgmine käsilevõetav **SOL-DOC**, aga kõige eespool lahtine on endiselt **SOL-AUTH**
-(13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+**SOL-FIELD-04, -05 ja -06 on LIVE** (kümnes deploy 10.08 23:34, server `44144aba`,
+migratsioone ei olnud). Järelkontroll mõõdetud: `.next` 23:34, kolm teenust `active`,
+`/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi.
 
-**Deploy'mata on SOL-FIELD-04, -05 ja -06** — ükski ei vaja migratsiooni. Ütle, kui viin
-serverisse.
+**SOL-DOC-01 avas dokumendipeatüki: AI-tasu võeti enne, kui tulemus oli olemas.** Kolm rada
+(genereerimine, artefakti loomine, refinement) arvestasid kasutuse maha kohe pärast
+mudelikutset ja märkisid siis „valmis" lipu, mis keelas hilisema vabastuse. Mustandi loomise
+viga, üle salvestuskvoodi jäänud sisu või kohustusliku auditirea viga tuli seega juba
+arvestatud ühiku otsa: **sinu nädalalimiit kahanes ilma leitava mustandi või isegi vastuses
+saadud tekstita**. Järjekord `reserve → genereeri → talleta → tasu` on nüüd omaette moodulis
+(`lib/usage/paidResult.js`): viga enne tasu vabastab reservatsiooni, tasu enda viga ei vabasta
+midagi, sest püsiv tulemus on juba sinu oma. Refinement'i puhul on püsiv asi **auditirida** —
+ühtlasi lubatud kolme paranduse loenduri ainus allikas — seega käivad audit ja tasu ühes
+tehingus. Agendi kest saadab nüüd ka stabiilse kavatsusvõtme: sama sisendiga kordus ei võta
+teist tasu ega loo teist mustandit, aga tahtlik uus jooks on aus uus töö.
+
+Lahtiseks jääb **209 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(1/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+sinu otsuse ja brauseri-QA taga.
+
+**Deploy'mata on ainult SOL-DOC-01** — migratsiooni ta ei vaja. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

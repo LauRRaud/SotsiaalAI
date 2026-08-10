@@ -3,23 +3,23 @@
 **Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
 see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
 käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja nende all olevaid
-`**Seis (…): DONE…` lõike. Mõõdetud **10.08.2026**.
+`**Seis (…): DONE…` lõike. Mõõdetud **11.08.2026**.
 
 ## Kokkuvõte
 
 | | |
 |---|---|
-| Tehtud leidu | **70 / 357** |
+| Tehtud leidu | **71 / 357** |
 | Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 210 × P1 · 76 × P2 · 1 × P3 |
-| Toodangus | **üheksas deploy 10.08 22:49 omaniku selgel loal: server = `a2aa7435`**, neli commit'i (SOL-FIELD-02 ja -03 + docs), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 22:49, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi. (Kaheksas deploy 21:45 = `ae599200`, kaks migratsiooni.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD sai lõpuni.** Dokumendijärjekorras on järgmine käsilevõetav peatükk **SOL-DOC** (0/9), aga kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 209 × P1 · 76 × P2 · 1 × P3 |
+| Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (1/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**67 tehtud leidu 70-st on tootmises** (üheksas deploy 10.08 22:49, server `a2aa7435` —
-FIELD-02 ja -03 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-FIELD-04, -05
-ja -06**; ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**70 tehtud leidu 71-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on ainult
+**SOL-DOC-01**; ka tema ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
+| Dokumendid ja AI-kasutus | SOL-DOC | 1/9 | – | 5 | 3 | **käsil**, DOC-01 tehtud |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -252,6 +252,18 @@ käivitatud kunagi. FIELD-06: lubatud 5 s → 5 min backoff oli olemas ainult ar
 ükski taimer ei käivitanud kordust. Uus `lib/field/syncScheduler.js` on Reactist väljas ja
 tema kell on süstitav, seega **viis automaatset katset, backoff, peatumine, parkimine ja
 unmount'i koristus on mõõdetud võltskella all**, ilma ühegi päris ootamiseta.
+
+**SOL-DOC-01 (11.08) avas dokumendipeatüki: tasu võeti enne, kui tulemus oli olemas.** Kolm
+rada arvestasid kasutuse maha kohe pärast mudelikutset ja märkisid siis „valmis" lipu, mis
+keelas hilisema vabastuse — mustandi loomise viga, üle kvoodi jäänud sisu (413) või auditirea
+viga tuli juba arvestatud ühiku otsa. Järjekord `reserve → produce → persist → commit` on nüüd
+omaette moodulis (`lib/usage/paidResult.js`) kahe piiriga: viga enne tasu vabastab, tasu enda
+viga EI vabasta (püsiv tulemus on juba omaniku oma). Refine'i puhul on püsiv asi **auditirida**
+— ühtlasi kolme refinement'i loenduri ainus allikas — seega käivad audit ja tasu ühes tehingus.
+Parandus ise oleks tekitanud uue lõksu (stabiilne kliendivõti + vabastus = igaveseks surnud
+kavatsus), nii et vabastatud võti on nüüd sama perioodi sees uuesti reserveeritav. Vana koodi
+vastu kolm punast ja **üks, mis ei kuku, vaid lukustub** — vana `commit` avab alati oma
+tehingu, ja just see lukk on tõend, miks audit ja tasu ei saanud varem üks toiming olla.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
