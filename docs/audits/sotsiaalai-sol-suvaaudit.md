@@ -1282,6 +1282,44 @@ Kriteeriumi **päris DB paralleeltest** on sond, mitte `npm test`: fake-Prisma e
 
 **Vastuvõtukriteerium.** Purge vajab astmelist püsivat olekut (`DELETE_PENDING`, faili/documenti kinnitused) ja idempotentset retry'd; `purged` kasvab ainult pärast kõigi nõutud sammude kinnitust. Käsitsi delete peab vea nähtavaks jätma. Testid peavad süstima iga kolme sammu vea eraldi ja kontrollima korduskatset ning füüsilist faili.
 
+**Seis (10.08.2026): DONE — astmeline `DELETE_PENDING` kustutus, mis on ise oma taasproovi allikas. Commit `74d5cc80`.**
+
+Kustutus on nüüd neli kinnitatud astet: `DELETE_PENDING` kirja **enne** ühegi artefakti
+puutumist → artefakt(id) → `UserDocument` rida → alles siis `DELETED`. Iga aste, mis ei
+õnnestu, jätab rea `DELETE_PENDING`-iks ja sweep valib teda uuesti. Uut töölist ei ole
+vaja, sest retention käib niikuinii üle.
+
+**Uus enum-väärtus, mitte uus tabel.** Vahe `QUARANTINED`-ist on tähendus, mitte aste:
+karantiin ütleb „seda ei väljastata", `DELETE_PENDING` ütleb „seda kustutatakse ja töö on
+pooleli". Migratsioon `20260810140000` lisab väärtuse tehingus (PG 16 lubab, kui teda
+samas tehingus ei kasutata).
+
+**Kaks artefakti, mitte üks — see leidus ei olnud raportis kirjas.** Finaliseeritud
+salvestis elab dokumendisalvestuses (`uploads/…`), finaliseerimata (PROCESSING / FAILED /
+QUARANTINED) elab egress'i väljundkaustas ja tema nimi EI OLE dokumenditee. Vana kood
+saatis mõlemad `deleteStoredArtifact`-i, mis nõuab `uploads/` prefiksit — toores fail
+andis seal tee-vea, mis neelati alla. St **karantiini pandud partiaali ei kustutanud
+keegi**, kuigi raport luges ta `purged` hulka. See on täpselt see fail, mille SOL-CALL-01
+sinna karantiini pani.
+
+Sama neelamine oli tapnud ka ühe ohutusharu: `discardEgressArtifact` ei visanud kunagi,
+seega `discardActiveRecording()` valik `DELETED` ja `QUARANTINED` vahel oli **surnud
+kood** — kommentaar ilma mehhanismita. ENOENT jääb õnnestumiseks: puuduv fail ON soovitud
+lõppseis.
+
+Käsitsi kustutus viskab nüüd `call.recording_delete_failed` (route **503**, mitte vaikne
+200) ja kirjutab `CALL_RECORDING_DELETE_FAILED` auditi. 503, sest see ei ole kasutaja viga
+ega lõplik keeldumine — töö on pooleli. `purged` kasvab ainult kinnitatud kustutuse peale;
+sweep raporteerib ka `failed` ja `failures[]`.
+
+Väravad: `npm test` **3338/3338** (Europe/Tallinn ja UTC) · `i18n:check` roheline · eslint
+puhas · `db:migrate:check` OK (144 migratsiooni). **Negatiivkontroll: 9/9 uut ja muudetud
+testi kukub vana teostuse peal** (mõõdetud failide ajutise tagasivahetusega).
+
+**NOT_PROVEN:** kettaoperatsiooni ennast tõendab ainult mock-storage. Päris egress-faili
+kustutuse tõrget (õigused, lukus fail) ei ole reprodutseeritud — see nõuab serverit, kus
+egress päriselt kirjutab.
+
 ### SOL-CALL-07 — nõustunud osaleja saab „salvestis saadaval” teate, kuid fail kuulub ainult taotlejale — P2
 
 **Tõend.** Salvestuse lõpetamisel luuakse üks `UserDocument` omanikuga `recordingRequest.requestedByUserId` (`lib/calls/service.js:838-853`). Dokumentide list, detail ja download on rangelt `ownerId: auth.userId` skoopiga (`app/api/documents/route.js:96-105`, `app/api/documents/[id]/download/route.js:45-56`). Samas `notifyCallRecordingAvailable()` saadab teate kõigile CONSENTED osalejatele (`lib/calls/notifications.js:82-114`) ning notification-verifieri kommentaar väidab, et nõustunul on ligipääs ka pärast ruumist lahkumist (`lib/notifications.js:640-653`). UI nõusolekutekst lubab faili „õigustatud kasutajatele dokumentide vaates” (`components/rooms/RoomCallBar.jsx:235-241`), kuid consent-põhist dokumentide projektsiooni ega allalaadimisroute'i pole.
