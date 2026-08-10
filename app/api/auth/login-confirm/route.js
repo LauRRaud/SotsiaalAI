@@ -16,6 +16,7 @@ const COPY = {
     okTitle: "Sisenemine kinnitatud",
     okBody: "Sisselogimine jätkus automaatselt aknas, kus sisestasid PIN-koodi. Võid selle akna sulgeda.",
     waitBody: "Avan SotsiaalAI …",
+    handoffBody: "Mine tagasi aknasse, kus sisselogimist alustasid — seal oled juba sees. Selle akna võid sulgeda.",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
     openLabel: "Ava SotsiaalAI"
@@ -24,6 +25,7 @@ const COPY = {
     okTitle: "Sign-in confirmed",
     okBody: "Sign-in continued automatically in the window where you entered your PIN. You can close this window.",
     waitBody: "Opening SotsiaalAI …",
+    handoffBody: "Go back to the window where you started signing in — you are already signed in there. You can close this window.",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
     openLabel: "Open SotsiaalAI"
@@ -32,6 +34,7 @@ const COPY = {
     okTitle: "Вход подтвержден",
     okBody: "Вход продолжился автоматически в окне, где вы ввели PIN-код. Это окно можно закрыть.",
     waitBody: "Открываю SotsiaalAI …",
+    handoffBody: "Вернитесь в окно, где вы начали вход, — вы уже вошли там. Это окно можно закрыть.",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
     openLabel: "Открыть SotsiaalAI"
@@ -59,10 +62,12 @@ const COPY = {
    viis ühe akna juurde jõuda on, et see leht ise ei liigu. PIN-i aken
    kuulutab OTP-sammu ajal `sotsiaalai-login` kanalis iga 0,5 s. Kanal on
    sama-päritolu ja sama-brauseri, seega kuulutuse KOHALEJÕUDMINE ongi
-   tõend, et rakendus avaneb juba mujal — siis jääme siia „valmis" teate
-   peale ja nupp jääb NÄHTAVALE, et mobiilis saaks ühe puutega ikkagi siin
-   jätkata. Kuulutust ootame 1,2 s (aken kuulutab 0,5 s takti); kui seda ei
-   tule — teine seade, teine brauser või aken kinni — käib kõik nagu enne. */
+   tõend, et rakendus avaneb juba mujal — siis jääme siia paigale JA nupp
+   KAOB (omanik 10.08): teine aken on juba sees, siin nupu vajutamine annaks
+   ainult teise samasuguse akna. Tekst saadab kasutaja tagasi sinna, kus ta
+   sisselogimist alustas. Kuulutust ootame 1,2 s (aken kuulutab 0,5 s takti);
+   kui seda ei tule — teine seade, teine brauser või aken kinni — käib kõik
+   nagu enne ja nupp jääb alles, sest siis on ta ainus tee edasi. */
 const REDIRECT_SCRIPT = `(function () {
   var msg = document.getElementById("lc-msg");
   var btn = document.getElementById("lc-open");
@@ -78,6 +83,12 @@ const REDIRECT_SCRIPT = `(function () {
     if (timer) clearTimeout(timer);
     msg.textContent = settled;
     btn.hidden = false;
+    document.body.removeAttribute("data-waiting");
+  }
+  function handOff() {
+    if (timer) clearTimeout(timer);
+    msg.textContent = msg.getAttribute("data-handoff") || settled;
+    btn.hidden = true;
     document.body.removeAttribute("data-waiting");
   }
   function again() {
@@ -105,7 +116,7 @@ const REDIRECT_SCRIPT = `(function () {
   channel.addEventListener("message", function (event) {
     if (!event || !event.data || event.data.type !== "login-pin-tab") return;
     pinTabAlive = true;
-    giveUp();
+    handOff();
     try { channel.close(); } catch (e) {}
   });
   setTimeout(function () { if (!pinTabAlive) startWaiting(); }, 1200);
@@ -188,38 +199,63 @@ function htmlResponse(locale, ok, homeUrl) {
         line-height: 1.56;
         color: ${ok ? "#c4c4c4" : "#e8a3a3"};
       }
+      /* NB: see plokk elab JS-i malli-stringis — siia EI TOHI kirjutada
+         tagurpidi ülakoma ega dollar-loogsulgu (sama hoiatus mis allpool
+         [hidden]-reegli juures; kirjutasin ta 10.08 ise üle ja leht andis
+         500 kuni parandamiseni).
+         Nupp oli siin oma retseptiga: kaks gradienti, 0.30 serv, raske must
+         vari ja hoveril brightness(1.12). Platvormi primitiiv (glass.css
+         button[data-variant]) on hoopis ÜHEVÄRVILINE 10% valge veel
+         klaasil, background-image: none, kaks õhukest inset-helki — ja
+         HOVERIT EI OLE ÜLDSE (omanik 01.08 "ilma hoverita"; tagasiside
+         annab specular-helk, mida siin ei ole). Väärtused on käsitsi sisse
+         kirjutatud, sest see leht on eraldiseisev HTML ilma rakenduse
+         tokeniteta: kui --input-* muutub, tuleb see plokk käsitsi järele
+         viia. Erineb teadlikult kahes kohas: suurus on lehe-CTA oma (mitte
+         14px) ja kiri on süsteemifont, sest Exo 2 laadib next/font. */
       .button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 3.4rem;
+        gap: 0.5em;
+        min-height: 3.1rem;
         min-width: 11rem;
-        padding: 0 1.7rem;
+        padding: 0 1.6rem;
         margin-top: 0.4rem;
         border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.30);
         text-decoration: none;
-        background:
-          radial-gradient(130% 130% at 18% 14%, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0) 58%),
-          linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.05) 100%);
-        color: #ececec;
-        font-size: 1.1rem;
-        font-weight: 500;
-        letter-spacing: 0.02em;
+        color: #f1f1f1;
+        font-size: 1rem;
+        font-weight: 560;
+        letter-spacing: 0.04em;
+        background-color: rgba(255, 255, 255, 0.10);
+        background-image: none;
+        -webkit-backdrop-filter: blur(32px);
+        backdrop-filter: blur(32px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         box-shadow:
-          0 0.6rem 1.4rem rgba(0,0,0,0.35),
-          inset 0 1px 0 rgba(255,255,255,0.22);
-        transition: box-shadow 180ms ease, transform 180ms ease, filter 180ms ease;
+          inset 0 1px 1px rgba(255, 255, 255, 0.26),
+          inset 0 -1px 1px rgba(255, 255, 255, 0.05),
+          0 8px 24px rgba(0, 0, 0, 0.08);
+        transition:
+          background-color 240ms cubic-bezier(0.22, 0.61, 0.36, 1),
+          box-shadow 240ms cubic-bezier(0.22, 0.61, 0.36, 1),
+          scale 160ms cubic-bezier(0.22, 0.61, 0.36, 1);
       }
-      .button:hover,
       .button:focus-visible {
-        box-shadow:
-          0 0.75rem 1.7rem rgba(0,0,0,0.45),
-          inset 0 1px 0 rgba(255,255,255,0.30);
         outline: none;
-        filter: brightness(1.12);
+        box-shadow:
+          0 0 0 2px rgba(13, 13, 13, 0.9),
+          0 0 0 4.5px rgba(242, 242, 242, 0.95);
       }
-      .button:active { transform: translateY(1px); }
+      .button:active {
+        background-color: rgba(0, 0, 0, 0.14);
+        scale: 0.975;
+        box-shadow:
+          inset 0 1.5px 4px rgba(0, 0, 0, 0.22),
+          inset 0 -1px 1px rgba(255, 255, 255, 0.08),
+          0 3px 12px rgba(0, 0, 0, 0.22);
+      }
       /* NB: see plokk elab JS-i malli-stringis — siia EI TOHI kirjutada
          tagurpidi ülakoma ega dollar-loogsulgu, muidu lõpeb string keset
          CSS-i. [hidden] üksi ei võida inline-flex'i: ilma selle reeglita
@@ -254,7 +290,7 @@ function htmlResponse(locale, ok, homeUrl) {
   <body>
     <main>
       <h1>${escapeHtml(title)}</h1>
-      <p id="lc-msg" aria-live="polite"${ok ? ` data-waiting="${escapeHtml(copy.waitBody)}"` : ""}>${escapeHtml(body)}</p>
+      <p id="lc-msg" aria-live="polite"${ok ? ` data-waiting="${escapeHtml(copy.waitBody)}" data-handoff="${escapeHtml(copy.handoffBody)}"` : ""}>${escapeHtml(body)}</p>
       <a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>
       ${ok ? '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>' : ""}
     </main>

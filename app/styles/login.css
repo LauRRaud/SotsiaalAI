@@ -458,9 +458,15 @@
 .login-otp-content > div {
   width: 100%;
 }
+/* Kiri oli 0.875rem (`--fs-small`) — vaikeväärtus, mis siin lihtsalt vahele
+   jäi, kui naabrid 26.07 tellija tagasiside peale suuremaks läksid
+   (abipopover 1.12rem, klahvistikulink 1.14rem). Mitte mobiili pärast:
+   `--fs-small` ei ole kuskil vw/vh-ga seotud. Kest on `overflow: hidden`,
+   seega suurema kirja hind maksti koopia lühendamisega (`auth.login.otp_*`),
+   mitte kõrgusega. */
 .login-otp-copy {
   color: var(--text-soft);
-  font-size: var(--fs-small);
+  font-size: 1.05rem;
   line-height: 1.5;
   max-width: 26em;
   margin-inline: auto;
@@ -495,7 +501,7 @@
   align-items: center;
   gap: 0.55em;
   color: var(--text-soft);
-  font-size: var(--fs-small);
+  font-size: 1rem; /* koos koopiaga üles, vt .login-otp-copy */
   cursor: pointer;
 }
 /* OTP "jäta seade meelde" checkbox kasutab nüüd KANOONILIST klaas-checkboxi
