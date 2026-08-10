@@ -1141,8 +1141,24 @@ olemasolevat `DataDeletionJob` järjekorda (`CALL_EGRESS_STOP`); uut töölist e
 
 Vastuvõtukriteeriumist on KATMATA kaks osa: „blokeerib või lõpetab kõne konservatiivselt"
 on täidetud ainult osaliselt (uut salvestust samas kõnes ei saa alustada, aga kõnet ennast
-ei lõpetata), ja päris provideri veasüstetest puudub — tõendatud on teenuse-, marsruudi- ja
-skeemitasand, mitte päris LiveKit Egress. Commit'id `c58f6c3c` (alus) ja `12f896a2`.
+ei lõpetata), ja päris provideri VEASÜSTETEST puudub endiselt — toodangus ei saa LiveKiti
+stoppi tahtlikult katki teha. Commit'id `c58f6c3c` (alus) ja `12f896a2`.
+
+**RUNTIME (10.08.2026): õnnelik rada TÕENDATUD päris LiveKit Egressi vastu.** Toodangus
+käivitatud salvestus (`EG_uFk74QLBPbcV`), nõusoleku tagasivõtt → HTTP **200** (provider
+kinnitas stopi, seega aus `ok:true`), taotlus `STOPPED`, fail `DELETED`,
+`providerStopConfirmedAt` kirjas, ükski `CALL_EGRESS_*` töökäsk ei tekkinud ja füüsilist
+artefakti kettale ei jäänud. Kolme järjestikuse elutsükli ümbertegemise järel on see esimene
+tõend, et salvestamine üldse töötab.
+
+**JA SEESAMA JOOKS LEIDIS AUGU SELLES PARANDUSES.** Hiline liituja teise kontoga näitas:
+`providerStopConfirmedAt` sai kirja (stop tõendatud), aga taotlus läks `FAILED`. Põhjus —
+pime `FAILED`-catch elas KAHES kohas ja esimene parandus katkas ainult ühe:
+`stopActiveRecordingForCall` sai kaitse, `joinCall` (`:1610`) mitte. Kinnitamata stopi korral
+oleks `joinCall` ausa `STOP_FAILED`-i üle kirjutanud — täpselt see viga, mille vastu see leid
+tehti. 3313 testi ei näinud seda, sest ükski neist ei jõudnud `stopRecording`-ini LIITUMISE
+kaudu. Otsus on nüüd ühes kohas (`markStopFailure`), uus test käib liitumise rada ja tema
+negatiivkontroll on tehtud. Commit `51907670`.
 
 ### SOL-CALL-02 — salvestuse start võib võita hilise liituja või nõusoleku tagasivõtu ja alustada nõusolekuta — P0
 
