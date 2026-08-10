@@ -9221,6 +9221,7 @@
       "visit_not_completed": "Teenuskirje saab teha ainult lõpetatud külastusest.",
       "visit_already_billed": "Sellest külastusest on teenuskirje juba tehtud.",
       "assign_not_allowed": "Sul ei ole õigust sellele töötajale tööd määrata.",
+      "organization_not_writable": "Organisatsioon ei ole muudetavas seisus, seega uut tööd määrata ei saa. Olemasolev graafik jääb nähtavaks.",
       "worker_has_no_profile": "Sellel töötajal ei ole teenuseprofiili, seega tööd ei ole kuhugi määrata.",
       "visit_started": "Alustatud tööd ei saa ümber määrata. Tee asenduseks uus külastus."
     },

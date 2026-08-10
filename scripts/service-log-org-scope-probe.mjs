@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SOL-ORG-01 — üks töötaja, kaks maja, üks tööpäev.
+ * SOL-ORG-01 ja SOL-ORG-02 — üks töötaja, kaks maja, üks tööpäev.
  *
  *   npm run slog:org:probe
  *
@@ -115,7 +115,7 @@ async function purge() {
 }
 
 async function main() {
-  console.log("SOL-ORG-01 — üks töötaja, kaks maja, üks tööpäev\n");
+  console.log("SOL-ORG-01/-02 — üks töötaja, kaks maja, üks tööpäev\n");
   await purge();
 
   const worker = await makeUser("worker");
@@ -265,6 +265,56 @@ async function main() {
     data: { outcomeReason: `muudetud ${MARK}` }
   });
   expect("muud väljad on endiselt muudetavad", renamed.outcomeReason === `muudetud ${MARK}`);
+
+  // === 7. SOL-ORG-02: PEATATUD MAJA JA VÄLJALÜLITATUD MOODUL ==============
+  /* Peatamine EI TOHI tahvlit kustutada: juht peab nägema, mis pooleli jäi.
+     Ta peab lõpetama ainult kirjutamise. */
+  await prisma.organization.update({ where: { id: orgA.id }, data: { status: "SUSPENDED", suspendedAt: new Date() } });
+
+  const suspendedBoard = await getDispatchBoard(managerA.id, { organizationId: orgA.id }, { db: prisma, now: NOW });
+  expect("peatatud maja tahvel jääb loetavaks", suspendedBoard.allowed === true);
+  await rejects(
+    "peatatud majas ei saa uut tööd määrata (409, mitte 403)",
+    () =>
+      assignVisit(
+        managerA.id,
+        { organizationId: orgA.id, workerUserId: worker.id, clientDisplayName: `Uus klient ${MARK}` },
+        { db: prisma, env: ENV, now: NOW, geocodeAddress: NO_GEOCODE }
+      ),
+    409
+  );
+
+  await prisma.organization.update({ where: { id: orgA.id }, data: { status: "ACTIVE", suspendedAt: null } });
+
+  /* MOODUL. `WORK_ASSIGNER` on seotud `KOV_INTAKE`-iga. Kuni siiani on sond
+     jooksnud ORG_OWNER-iga, kellel moodulinõuet EI OLE — nüüd tuleb inimene,
+     kellel see nõue on, ja tema õigus peab mooduliga koos tulema ja minema. */
+  const assigner = await makeUser("assigner");
+  await addMember(orgA, assigner, { capability: "WORK_ASSIGNER" });
+
+  const withoutModule = await getDispatchBoard(assigner.id, { organizationId: orgA.id }, { db: prisma, now: NOW });
+  expect("moodulita WORK_ASSIGNER ei saa tahvlit", withoutModule.allowed === false);
+  await rejects(
+    "moodulita WORK_ASSIGNER ei saa tööd määrata",
+    () =>
+      assignVisit(
+        assigner.id,
+        { organizationId: orgA.id, workerUserId: worker.id, clientDisplayName: `Moodulita klient ${MARK}` },
+        { db: prisma, env: ENV, now: NOW, geocodeAddress: NO_GEOCODE }
+      ),
+    403
+  );
+
+  await prisma.organizationModule.create({
+    data: {
+      organizationId: orgA.id,
+      moduleKey: "KOV_INTAKE",
+      status: "ACTIVE",
+      validFrom: new Date(NOW.getTime() - 60_000)
+    }
+  });
+  const withModule = await getDispatchBoard(assigner.id, { organizationId: orgA.id }, { db: prisma, now: NOW });
+  expect("aktiivse mooduliga WORK_ASSIGNER saab tahvli", withModule.allowed === true);
 }
 
 async function cleanup() {

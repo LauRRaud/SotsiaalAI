@@ -672,6 +672,44 @@ võtmata**, ja trigger peab kinni mõlemad muutmiskatsed. 19/19.
 
 **Vastuvõtukriteerium.** Route peab nõudma `assertWritable(auth.context)` ning teenus peab kasutama kanoonilist `hasCapability()`/aktiivse mooduli konteksti, mitte teist raw-grant resolverit. Negatiivsed testid: `SUSPENDED`, puuduv/aegunud moodul, aegunud grant ja aktiivne kontrolljuhtum.
 
+**Seis (10.08.2026): DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 24/24).**
+
+**Värav on KAHES kohas ja see ei ole liigne.** Marsruut kutsub nüüd
+`assertWritable(auth.context)` nagu iga teine org-konteksti POST — ta fail'ib kiiresti ja
+ühtmoodi kõigi teistega. **Päris parandus on aga teenuskihis:** `resolveBoardScope` tuletab
+skoobi ise, seega peab ta ka reeglid ise kandma. Ainult marsruudi parandamine oleks
+parandanud ühe kutsuja ja jätnud järgmise lahti — sama kuju nagu SOL-SPROF-02 juures, kus
+värav oli algul koridoris, mitte ukse peal.
+
+**Kolm tingimust ühe asemel.** `resolveBoardScope` kontrollib nüüd
+(1) organisatsiooni **nähtavust** (arhiveeritu ei ole tööruum),
+(2) capability **nõutavat moodulit** (`WORK_ASSIGNER` → `KOV_INTAKE`) ja
+(3) **kirjutamisõigust** eraldi lugemisest.
+
+**Lugemine ja kirjutamine on eri küsimused.** Peatatud maja tahvel jääb LOETAVAKS — juht
+peab nägema, mis pooleli jäi, muidu kaob peatamise hetkel ülevaade käimasolevast tööst,
+mille keegi peab lõpetama. Kirjutamine lõpeb ja vastus on **409, mitte 403**: õigus on tal
+alles, muutunud on maja seis, ja see vahe peab teatest välja paistma — 403 saadaks ta oma
+capability't otsima, kus ei ole midagi valesti.
+
+**Reeglid on jagatud, mitte kopeeritud.** `requiredModulesForCapability` on sama funktsioon,
+mida kasutab `resolveOrgAccessContext`; `VISIBLE_ORG_STATUSES` ja `WRITABLE_ORG_STATUSES`
+on nüüd `accessContext`-ist eksporditud, mitte teine koopia. Teine koopia lahkneks esimese
+olekumuudatusega ja lahknemise suund oleks alati sama: värav jääks lahti seal, kus teda ei
+uuendatud.
+
+**Testid** (`tests/serviceLog/dispatchBoardScope.test.js` + `dispatchAssign.test.js`):
+SUSPENDED (loetav, mitte kirjutatav), ARCHIVED, olematu organisatsioon, puuduv moodul,
+aegunud/tühistatud grant, **ja kaks negatiivkontrolli** — moodulinõudeta `ORG_OWNER`/
+`UNIT_LEAD` ei tohi mooduli puudumise peale kaduda, ning moodulita capability üksus ei tohi
+jääda skoopi teise grandi varju. Päris andmebaasis: `npm run slog:org:probe` peatab maja,
+mõõdab loetavuse ja 409, lülitab mooduli välja ja sisse.
+
+**Mis JÄÄB lahti ja on eraldi leid:** kaks resolverit on endiselt olemas — teenuskihi oma
+ei kasuta `hasCapability()`-t, vaid samu poliitika-primitiive. Nähtav vahe on üksuse
+**alampuu**: kanooniline kontekst katab `unitScopeCovers()`-iga alampuu, graafiku resolver
+ainult grantis nimetatud üksuse. See on **SOL-ORG-04** (P2) ja jääb tema alla.
+
 ### SOL-ORG-03 — töö määramine võib õnnestuda ilma kohustusliku auditijäljeta — P1
 
 **Tõend.** Nii uue külastuse määramine kui ümbermääramine kirjutavad põhiseisu esmalt ja kutsuvad seejärel sama DB `writeOrgAudit()` funktsiooni `.catch(() => {})` kujul (`lib/serviceLog/dispatchAssign.js:153-173`, `:230-248`). Kommentaar lubab, et iga määramine jätab jälje, kuid auditi viga neelatakse ja põhitoiming tagastab edu.

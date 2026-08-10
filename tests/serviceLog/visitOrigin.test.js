@@ -33,10 +33,18 @@ const orgGrant = { capability: "ORG_OWNER", scopeType: "ORGANIZATION", scopeUnit
  * kandis. Külastused kannavad päritolu ja fake filtreerib neid nii, nagu
  * Postgres teeks.
  */
-function makeDb({ visits = [], grants = [orgGrant] } = {}) {
+function makeDb({ visits = [], grants = [orgGrant], orgStatus = "ACTIVE", modules = ["KOV_INTAKE"] } = {}) {
   const queries = [];
   return {
     queries,
+    /* SOL-ORG-02: skoop küsib nüüd ka organisatsiooni olekut ja aktiivseid
+       mooduleid. Mudeleid ei valvata `?.`-ga — puuduv mudel peab kukutama. */
+    organization: {
+      findUnique: async () => (orgStatus ? { id: "org", status: orgStatus } : null)
+    },
+    organizationModule: {
+      findMany: async () => modules.map((moduleKey) => ({ moduleKey }))
+    },
     organizationMembership: {
       findFirst: async ({ select }) =>
         select?.capabilityGrants

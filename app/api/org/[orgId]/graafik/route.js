@@ -5,6 +5,7 @@
  * Õiguseta liige saab TÜHJA tahvli, mitte 403 — veakood ütleks, et siin on
  * midagi, mida ta näha ei tohi, ja seegi on info.
  */
+import { assertWritable } from "@/lib/org/accessContext";
 import { getDispatchBoard } from "@/lib/serviceLog/dispatchBoard";
 import { assignVisit, listAssignableWorkers, reassignVisit } from "@/lib/serviceLog/dispatchAssign";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
@@ -51,6 +52,13 @@ export async function POST(request, context) {
 
   try {
     if (!isServiceLogDayRouteEnabled()) return orgErrorResponse({ status: 404 }, "org.errors.not_found", "org");
+
+    /* SOL-ORG-02 — sama värav, mis igal teisel org-konteksti kirjutusrajal.
+       See oli ainus tavapärane POST peale status-route'i, kus ta puudus.
+       TEENUSKIHIS ON SEE KONTROLL KA (`assertCanAssign`) ja see EI OLE
+       liigne: siin fail'ib marsruut kiiresti ja ühtmoodi kõigi teistega, seal
+       on kaitstud iga tulevane kutsuja, kes marsruudist mööda läheb. */
+    assertWritable(auth.context);
 
     const body = await request.json().catch(() => ({}));
     const action = String(body?.action || "");

@@ -9221,6 +9221,7 @@
       "visit_not_completed": "A service entry can only be made from a completed visit.",
       "visit_already_billed": "A service entry has already been made from this visit.",
       "assign_not_allowed": "You do not have permission to assign work to this member of staff.",
+      "organization_not_writable": "The organisation is not in an editable state, so new work cannot be assigned. The existing schedule stays visible.",
       "worker_has_no_profile": "This member of staff has no service profile, so there is nowhere to assign the work.",
       "visit_started": "Work that has started cannot be reassigned. Create a new visit for the substitution."
     },

@@ -16,12 +16,29 @@ const NOW = new Date("2026-08-03T09:00:00.000Z");
 
 /**
  * Minimaalne fake, mis matkib AINULT seda, mida `assertCanAssign` puudutab:
- * juhi capability-load ja sihttöötaja liikmesuse.
+ * organisatsiooni oleku, aktiivsed moodulid, juhi capability-load ja
+ * sihttöötaja liikmesuse.
+ *
+ * ORGANISATSIOON JA MOODULID ON SIIN ALATES SOL-ORG-02-st. `WORK_ASSIGNER` on
+ * seotud `KOV_INTAKE`-iga, seega ilma moodulireata EI OLE tal enam õigust — ja
+ * see ongi parandus. Mudeleid ei valvata `?.`-ga: puuduv mudel peab kukutama,
+ * mitte muutuma vaikseks nulliks.
  */
-function makeDb({ grants = [], workerFound = true } = {}) {
+function makeDb({
+  grants = [],
+  workerFound = true,
+  orgStatus = "ACTIVE",
+  modules = ["KOV_INTAKE", "SERVICE_DELIVERY"]
+} = {}) {
   const seen = [];
   return {
     seen,
+    organization: {
+      findUnique: async () => (orgStatus ? { id: "org-1", status: orgStatus } : null)
+    },
+    organizationModule: {
+      findMany: async () => modules.map((moduleKey) => ({ moduleKey }))
+    },
     organizationMembership: {
       findFirst: async ({ where, select }) => {
         /* Salvestame MÕLEMAD: õiguse kehtivus elab `select`-i sees (seotud
@@ -91,4 +108,56 @@ test("õiguse kehtivust küsitakse päringus, mitte mälust", async () => {
   assert.equal(grantWhere.revokedAt, null, "tühistatud luba ei tohi kehtida");
   assert.ok(grantWhere.validFrom?.lte, "tuleviku luba ei tohi veel kehtida");
   assert.ok(Array.isArray(grantWhere.OR), "aegunud luba ei tohi enam kehtida");
+});
+
+/**
+ * SOL-ORG-02 — kirjutusrada möödus peatatud organisatsiooni ja mooduli väravast.
+ *
+ * Graafiku POST oli ainus tavapärane org-konteksti kirjutusrada ilma
+ * `assertWritable()`-ita; skoop tuletati otse liikmesusest ja raw grantidest.
+ * Värav on nüüd teenuskihis, sest tuletamine ise on seal.
+ */
+test("peatatud organisatsioonis ei saa tööd määrata — 409, mitte 403", async () => {
+  const db = makeDb({ grants: [orgGrant], orgStatus: "SUSPENDED" });
+  await assert.rejects(
+    () => assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW }),
+    (error) =>
+      error.status === 409 && error.messageKey === "service_log.errors.organization_not_writable"
+  );
+});
+
+/* 409 ja mitte 403 on siin sisuline vahe: õigus on juhil alles, muutunud on maja
+   seis. 403 saadaks ta oma capability't otsima ja seal ei ole midagi valesti. */
+test("arhiveeritud organisatsioon ei ole tööruum — õigust ei ole üldse", async () => {
+  const db = makeDb({ grants: [orgGrant], orgStatus: "ARCHIVED" });
+  await assert.rejects(
+    () => assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW }),
+    (error) => error.status === 403
+  );
+});
+
+test("olematu organisatsioon ei anna õigust", async () => {
+  const db = makeDb({ grants: [orgGrant], orgStatus: null });
+  await assert.rejects(
+    () => assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW }),
+    (error) => error.status === 403
+  );
+});
+
+/* MOODULI VÄLJALÜLITAMINE PEAB VÕTMA ÕIGUSE. Muidu on toote väljalülitamine
+   ainult UI-otsus ja raw capability elab edasi. */
+test("ilma KOV_INTAKE moodulita ei saa WORK_ASSIGNER tööd määrata", async () => {
+  const db = makeDb({ grants: [unitGrant], modules: ["SERVICE_DELIVERY"] });
+  await assert.rejects(
+    () => assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW }),
+    (error) => error.status === 403
+  );
+});
+
+/* NEGATIIVKONTROLL: moodulinõudeta capability ei tohi mooduli puudumise peale
+   kaduda. `ORG_OWNER` ei ole ühegi mooduli taga ja tema õigus jääb. */
+test("moodulinõudeta ORG_OWNER jääb ka ilma moodulita alles", async () => {
+  const db = makeDb({ grants: [orgGrant], modules: [] });
+  const worker = await assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW });
+  assert.equal(worker.userId, "worker-1");
 });
