@@ -3620,6 +3620,11 @@ model CallRecordingConsent {
   recordingRequest CallRecordingRequest @relation(fields: [recordingRequestId], references: [id], onDelete: Cascade)
   user             User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  // SOL-CALL-05 — üks inimene, üks otsus. Ilma selle piirita tegi paralleelne
+  // join/consent samale inimesele mitu rida (`findFirst → create` ilma tehinguta) ja
+  // readiness luges neid kõiki: üks REQUESTED-duplikaat blokeeris, `allRequiredConsents`
+  // Map'is otsustas juhuslik viimane rida. Nõusolek ei ole loend, ta on ÜKS tahteavaldus.
+  @@unique([recordingRequestId, userId])
   @@index([recordingRequestId, status])
   @@index([callSessionId, userId])
 }

@@ -14,6 +14,7 @@ import {
   normalizeConsentLocale,
   serializeCallSession
 } from "../../lib/calls/service.js";
+import { buildRecordingFileName } from "../../lib/calls/recordingStorage.js";
 import et from "../../messages/et.json" with { type: "json" };
 import en from "../../messages/en.json" with { type: "json" };
 import ru from "../../messages/ru.json" with { type: "json" };
@@ -91,6 +92,28 @@ function createModel(initial = []) {
       };
       rows.push(row);
       return row;
+    },
+    /**
+     * SOL-CALL-05 — fake peab modelleerima LIITUNIKAALSUST, muidu mõõdab test fake'i
+     * lubadust, mitte koodi. `where` on Prisma liitvõtme kuju
+     * (`{ recordingRequestId_userId: { … } }`); rea leidmine ja loomine käivad ühes
+     * sünkroonses lõigus, nii et kaks paralleelset kutset ei saa mõlemad luua.
+     */
+    upsert({ where, create, update }) {
+      const compound = Object.values(where || {}).find(value => value && typeof value === "object") || where;
+      const existing = matchRows(rows, compound)[0] || null;
+      if (existing) {
+        if (update && Object.keys(update).length) applyData(existing, update);
+        return Promise.resolve(existing);
+      }
+      const row = {
+        id: create?.id || `row_${rows.length + 1}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        ...create
+      };
+      rows.push(row);
+      return Promise.resolve(row);
     },
     async update({ where, data }) {
       const row = rows.find(candidate => candidate.id === where.id);
@@ -921,6 +944,140 @@ test("SOL-CALL-04 (kõrvalsaak): kaks paralleelset starti annavad ÜHE egress'i"
   assert.equal(results.filter(r => r.status === "fulfilled").length, 1, "ainult üks start tohib võita");
   assert.equal(starts, 1, "kaotaja ei tohi providerini jõuda");
   assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
+});
+
+test("SOL-CALL-04: kordus pärast ACTIVE-t tagastab sama stardi, ei kutsu providerit ega kirjuta teist auditit", async () => {
+  const prisma = createPrisma();
+  let starts = 0;
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        starts += 1;
+        return { egressId: `egress_repeat_${starts}` };
+      },
+      stopRecording: async () => ({ ok: true, stopped: true, status: "EGRESS_COMPLETE" })
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+  const first = await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  const repeat = await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+
+  assert.equal(repeat.id, first.id, "kordus peab tagastama OLEMASOLEVA stardi");
+  assert.equal(repeat.status, "ACTIVE");
+  assert.equal(starts, 1, "kordus ei tohi providerini jõuda");
+  assert.equal(prisma.callRecordingFile.rows.length, 1, "üks fail");
+  assert.equal(
+    prisma.dataAuditLog.rows.filter(row => row.action === "CALL_RECORDING_STARTED").length,
+    1,
+    "üks tegu = üks auditirida"
+  );
+});
+
+test("SOL-CALL-04: ACTIVE ilma egressId-ta EI ole start, mida korrata", async () => {
+  // Aus piir: kui me ei tea egress'i, ei ole meil ka midagi, mille kohta öelda
+  // „salvestus juba käib". Siia ei valeta.
+  const prisma = createPrisma();
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => ({ egressId: "egress_no_id" }),
+      stopRecording: async () => ({ ok: true, stopped: true, status: "EGRESS_COMPLETE" })
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  prisma.callRecordingFile.rows[0].egressId = null;
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call.recording_not_ready/
+  );
+});
+
+test("SOL-CALL-04: kahel katsel on eri failivõti ka samas sekundis", async () => {
+  /* NEGATIIVKONTROLL on kell: mõlemal katsel on TÄPSELT sama `now`, seega vana
+     nimevalem (call + request + sekund) oleks andnud kaks identset nime ja teine
+     egress oleks kirjutanud esimese faili peale. Erinevuse saab teha ainult katse-ID. */
+  const frozen = new Date("2026-08-10T09:00:00.000Z");
+  const prisma = createPrisma();
+  let attempt = 0;
+  const service = createCallService({
+    prisma,
+    now: () => frozen,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        attempt += 1;
+        if (attempt === 1) throw new Error("provider down");
+        return { egressId: "egress_second_attempt" };
+      },
+      stopRecording: async () => ({ ok: true, stopped: true, status: "EGRESS_COMPLETE" })
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+
+  await assert.rejects(() => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }));
+  const firstName = prisma.callRecordingFile.rows[0].filePath;
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  const secondName = prisma.callRecordingFile.rows[0].filePath;
+
+  assert.ok(firstName && secondName, "mõlemal katsel peab olema failinimi");
+  assert.notEqual(firstName, secondName, "sama sekundi kaks katset ei tohi jagada failivõtit");
+  assert.equal(
+    buildRecordingFileName({ callSessionId: call.id, recordingRequestId: request.id, now: frozen }),
+    buildRecordingFileName({ callSessionId: call.id, recordingRequestId: request.id, now: frozen }),
+    "ilma katse-ID-ta on nimi sama — just see oli vana viga"
+  );
+});
+
+test("SOL-CALL-05: nõusolekurida sünnib ÜHE atomaarse lausega, mitte findFirst → create", async () => {
+  const prisma = createPrisma();
+  const consentModel = prisma.callRecordingConsent;
+  let creates = 0;
+  let upserts = 0;
+  const realCreate = consentModel.create.bind(consentModel);
+  const realUpsert = consentModel.upsert.bind(consentModel);
+  consentModel.create = async args => {
+    creates += 1;
+    return realCreate(args);
+  };
+  consentModel.upsert = args => {
+    upserts += 1;
+    return realUpsert(args);
+  };
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "guest" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+
+  // Sama inimene kahel korral: liitumine uuesti + vastamine.
+  await service.joinCall({ callSessionId: call.id, userId: "guest" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "guest", decision: "CONSENTED" });
+
+  const guestRows = prisma.callRecordingConsent.rows.filter(row => row.userId === "guest");
+  assert.equal(guestRows.length, 1, "üks inimene, üks rida");
+  assert.equal(guestRows[0].status, "CONSENTED", "korduv liitumine ei tohi antud otsust REQUESTED-iks tagasi keerata");
+  assert.ok(upserts > 0, "rida peab sündima upsert'iga");
+  assert.equal(creates, 0, "findFirst → create rada ei tohi enam nõusolekuridu luua");
+});
+
+test("SOL-CALL-05: liitunikaalsus on skeemis ja migratsioonis, mitte ainult koodis", async () => {
+  const schema = await readFile(new URL("../../prisma/schema.prisma", import.meta.url), "utf8");
+  const consentModel = schema.slice(schema.indexOf("model CallRecordingConsent"));
+  assert.match(consentModel.slice(0, consentModel.indexOf("\n}")), /@@unique\(\[recordingRequestId, userId\]\)/);
+
+  const migration = await readFile(
+    new URL("../../prisma/migrations/20260810120000_sol_call_05_consent_one_row_per_person/migration.sql", import.meta.url),
+    "utf8"
+  );
+  assert.match(migration, /CREATE UNIQUE INDEX/);
+  // Duplikaate ei tohi vaikides kustutada — nõusolek on õiguslik tõend.
+  assert.match(migration, /RAISE EXCEPTION/);
+  assert.doesNotMatch(migration, /DELETE FROM "CallRecordingConsent"/);
 });
 
 // --- T12 ROOMS-CALLS-V1 ---
