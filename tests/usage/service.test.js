@@ -90,6 +90,12 @@ function createFakePrisma() {
       }
     },
     usageEvent: {
+      async count({ where } = {}) {
+        return state.events.filter(row =>
+          (where?.reservationId == null || row.reservationId === where.reservationId) &&
+          (where?.type == null || row.type === where.type)
+        ).length;
+      },
       async create({ data }) {
         if (state.events.some(row => row.idempotencyKey === data.idempotencyKey)) {
           const error = new Error("unique constraint");
@@ -418,4 +424,163 @@ test("commit moves the reservation into used exactly once", async () => {
   assert.equal(secondCommit.reused, true);
   assert.equal(prisma.state.buckets[0].used, 1n);
   assert.deepEqual(prisma.state.events.map(event => event.type), ["RESERVED", "COMMITTED"]);
+});
+
+// SOL-DOC-01. Stabiilne kliendivõti muudab vabastuse tähenduse: RELEASED ei tohi olla
+// kavatsuse lõpp, vaid „see kord ei õnnestunud". Ilma alljärgnevata oleks üks ajutine
+// tehniline viga muutnud kavatsuse igaveseks surnuks — reserve annaks tagasi vabastatud
+// rea ja commit keelduks temast alati.
+test("released key is reservable again inside the same period", async () => {
+  const prisma = createFakePrisma();
+  const service = createUsageService({ prismaClient: prisma });
+
+  await service.reserve({
+    userId: "user_1",
+    metric: "DOCUMENT_GENERATE",
+    idempotencyKey: "documents.generate:intent_1",
+    entitlement,
+    now
+  });
+  await service.release({
+    userId: "user_1",
+    idempotencyKey: "documents.generate:intent_1",
+    reason: "paid_result_not_durable",
+    now
+  });
+  assert.equal(prisma.state.buckets[0].reserved, 0n);
+
+  const revived = await service.reserve({
+    userId: "user_1",
+    metric: "DOCUMENT_GENERATE",
+    idempotencyKey: "documents.generate:intent_1",
+    entitlement,
+    now
+  });
+
+  assert.equal(revived.reservation.status, "RESERVED");
+  assert.equal(revived.reused, false);
+  assert.equal(revived.reservation.releasedAt, null);
+  assert.equal(prisma.state.buckets[0].reserved, 1n);
+  assert.equal(prisma.state.reservations.length, 1, "revival must not mint a second row");
+
+  const committed = await service.commit({
+    userId: "user_1",
+    idempotencyKey: "documents.generate:intent_1",
+    now
+  });
+
+  assert.equal(committed.bucket.used, 1n);
+  assert.equal(committed.bucket.reserved, 0n);
+  assert.deepEqual(prisma.state.events.map(event => event.type), [
+    "RESERVED",
+    "RELEASED",
+    "RESERVED",
+    "COMMITTED"
+  ]);
+  // Teine RESERVED sündmus vajab oma võtit, muidu kukub ta unikaalsuse otsa.
+  const reservedKeys = prisma.state.events.filter(event => event.type === "RESERVED").map(event => event.idempotencyKey);
+  assert.equal(new Set(reservedKeys).size, 2);
+});
+
+test("revival honours the hard limit like a fresh reservation", async () => {
+  const prisma = createFakePrisma();
+  const service = createUsageService({ prismaClient: prisma });
+
+  await service.reserve({
+    userId: "user_1",
+    metric: "DOCUMENT_GENERATE",
+    idempotencyKey: "documents.generate:intent_1",
+    entitlement,
+    now
+  });
+  await service.release({
+    userId: "user_1",
+    idempotencyKey: "documents.generate:intent_1",
+    reason: "paid_result_not_durable",
+    now
+  });
+
+  for (const index of [1, 2, 3]) {
+    await service.reserve({
+      userId: "user_1",
+      metric: "DOCUMENT_GENERATE",
+      idempotencyKey: `filler_${index}`,
+      entitlement,
+      now
+    });
+  }
+  assert.equal(prisma.state.buckets[0].reserved, 3n);
+
+  await assert.rejects(
+    () => service.reserve({
+      userId: "user_1",
+      metric: "DOCUMENT_GENERATE",
+      idempotencyKey: "documents.generate:intent_1",
+      entitlement,
+      now
+    }),
+    error => error.code === "USAGE_LIMIT_EXCEEDED"
+  );
+  assert.equal(prisma.state.buckets[0].reserved, 3n);
+});
+
+test("released key from a closed period is a conflict, not a revival", async () => {
+  const prisma = createFakePrisma();
+  const service = createUsageService({ prismaClient: prisma });
+
+  await service.reserve({
+    userId: "user_1",
+    metric: "DOCUMENT_GENERATE",
+    idempotencyKey: "documents.generate:intent_1",
+    entitlement,
+    now
+  });
+  await service.release({
+    userId: "user_1",
+    idempotencyKey: "documents.generate:intent_1",
+    reason: "paid_result_not_durable",
+    now
+  });
+
+  // Kolm nädalat hiljem: sama võti kuuluks juba teise arvestusaknasse.
+  const laterPeriod = new Date(now.getTime() + 21 * 24 * 60 * 60 * 1000);
+  await assert.rejects(
+    () => service.reserve({
+      userId: "user_1",
+      metric: "DOCUMENT_GENERATE",
+      idempotencyKey: "documents.generate:intent_1",
+      entitlement,
+      now: laterPeriod
+    }),
+    error => error.code === "USAGE_IDEMPOTENCY_CONFLICT"
+  );
+  assert.equal(prisma.state.buckets[0].reserved, 0n);
+});
+
+test("commit can join the caller's transaction so the charge lands with its own write", async () => {
+  const prisma = createFakePrisma();
+  const service = createUsageService({ prismaClient: prisma });
+  const auditRows = [];
+
+  await service.reserve({
+    userId: "user_1",
+    metric: "DOCUMENT_REFINE",
+    idempotencyKey: "documents.refine:intent_1",
+    entitlement,
+    now
+  });
+
+  await prisma.$transaction(async tx => {
+    auditRows.push({ action: "ARTIFACT_REFINE" });
+    await service.commit({
+      userId: "user_1",
+      idempotencyKey: "documents.refine:intent_1",
+      now,
+      tx
+    });
+  });
+
+  assert.equal(auditRows.length, 1);
+  assert.equal(prisma.state.buckets[0].used, 1n);
+  assert.equal(prisma.state.buckets[0].reserved, 0n);
 });

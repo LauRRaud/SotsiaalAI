@@ -56,7 +56,7 @@ test("store-fetched routes convert the ownership-fail branch to the resource's o
 test("generation persists a durable DRAFT (no transient result) and both entry points share the idempotent helper", () => {
   const generate = read("app/api/documents/artifacts/generate/route.js");
   assert.match(generate, /persistArtifactDraft/);
-  assert.match(generate, /draft:\s*artifact/, "the persisted artifact is returned to the workspace client as draft");
+  assert.match(generate, /draft:\s*persisted\.artifact/, "the persisted artifact is returned to the workspace client as draft");
   assert.doesNotMatch(generate, /isTransient:\s*true/, "no transient, cost-losing draft is returned");
 
   const create = read("app/api/documents/artifacts/route.js");
@@ -66,6 +66,32 @@ test("generation persists a durable DRAFT (no transient result) and both entry p
   assert.match(helper, /idempotencyKey/);
   assert.match(helper, /P2002/, "a concurrent retry with the same key resolves to the existing draft");
   assert.match(helper, /findFirst\(\{\s*where:\s*\{\s*ownerId:\s*userId,\s*idempotencyKey:\s*key\s*\}/);
+});
+
+// SOL-DOC-01. Järjekord ise on marsruudi kõige kergemini katkev omadus — ta elab ainult ridade
+// järjestuses. Moodulitestid tõendavad reeglit, see siin tõendab, et marsruudid ka kasutavad
+// teda: vana viga oli täpselt „genereerimine õnnestus" lipp, mis keelas hilisema vabastuse.
+test("the three paid document routes settle usage through the shared paid-result order", () => {
+  for (const rel of [
+    "app/api/documents/artifacts/generate/route.js",
+    "app/api/documents/artifacts/route.js",
+    "app/api/documents/artifacts/refine/route.js"
+  ]) {
+    const src = read(rel);
+    assert.match(src, /runPaidResult\(/, `${rel} must settle usage through lib/usage/paidResult`);
+    assert.doesNotMatch(
+      src,
+      /generationCompleted|refinementCompleted/,
+      `${rel} must not gate the release on a "work finished" flag`
+    );
+  }
+
+  const refine = read("app/api/documents/artifacts/refine/route.js");
+  assert.match(
+    refine,
+    /\$transaction\([\s\S]{0,400}documentAudit\.create[\s\S]{0,200}commitUsageForRequest\(handle,\s*\{\s*tx\s*\}\)/,
+    "the mandatory refine audit row and the charge must land in one transaction"
+  );
 });
 
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---

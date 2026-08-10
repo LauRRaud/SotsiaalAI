@@ -31,6 +31,7 @@ import {
 } from "@/lib/documents/presentation"
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
+import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey"
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__"
 const WORKSPACE_VERSION_LIMIT = 8
@@ -131,6 +132,11 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   const audioUploadInputRef = useRef(null)
   const composerDraftApiRef = useRef(null)
   const activeRequestAbortRef = useRef(null)
+  // Ühe kavatsuse võti elab kuni serveri kindla vastuseni: sama sisendiga kordus kannab sama
+  // võtit (server ei võta teist tasu ega loo teist mustandit), õnnestumise järel ta kustub,
+  // seega tahtlik uus jooks on aus uus töö. Vt lib/usage/intentKey.js.
+  const generateIntentRef = useRef(null)
+  const refineIntentRef = useRef(null)
   const [selectedDocumentIds, setSelectedDocumentIds] = useState(initialSelectedDocumentIds)
   const [documents, setDocuments] = useState([])
   const [templates, setTemplates] = useState([])
@@ -1185,6 +1191,21 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         : effectiveInstruction
       const nextTemplate = allowedTemplates.find((template) => template.id === selectedTemplateId)
       const templateIdToUse = nextTemplate && isTemplateCompatible(nextTemplate, effectiveType) ? nextTemplate.id : ""
+      const generationPayload = {
+        documentIds: sourceDocuments.map((document) => document.id),
+        type: effectiveType,
+        templateId: isClientRole ? undefined : templateIdToUse || undefined,
+        instruction: nextInstruction,
+        audience,
+        tone,
+        language,
+        length,
+        privacyDecision
+      }
+      generateIntentRef.current = resolveIntentKey(
+        generateIntentRef.current,
+        buildIntentSignature(generationPayload)
+      )
       const response = await fetch("/api/documents/artifacts/generate", {
         method: "POST",
         signal: controller.signal,
@@ -1193,19 +1214,14 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "x-ui-locale": locale
         },
         body: JSON.stringify({
-          documentIds: sourceDocuments.map((document) => document.id),
-          type: effectiveType,
-          templateId: isClientRole ? undefined : templateIdToUse || undefined,
-          instruction: nextInstruction,
-          audience,
-          tone,
-          language,
-          length,
-          privacyDecision
+          ...generationPayload,
+          idempotencyKey: generateIntentRef.current.key
         })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.create_artifact_failed"))
+      // Server andis kindla vastuse: kavatsus on lahendatud ja järgmine jooks on uus töö.
+      generateIntentRef.current = null
 
       const nextDraft = payload?.draft || null
       // The draft is now persisted the instant it is generated, so it already carries a real id:
@@ -1258,6 +1274,23 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
       const effectiveType = isClientRole
         ? CLIENT_AGENT_TASK_OPTIONS.find((option) => option.value === clientTask)?.artifactType || "LETTER_DRAFT"
         : workspaceResult.type || outputType
+      const refinePayload = {
+        documentIds: documents.map((document) => document.id),
+        type: effectiveType,
+        artifactId: workspaceResult.id || undefined,
+        templateId: isClientRole ? undefined : selectedTemplateId || undefined,
+        currentContent: resultContent,
+        refinementInstruction: effectiveRefinement,
+        audience,
+        tone,
+        language,
+        length,
+        privacyDecision: options.privacyDecision
+      }
+      refineIntentRef.current = resolveIntentKey(
+        refineIntentRef.current,
+        buildIntentSignature(refinePayload)
+      )
       const response = await fetch("/api/documents/artifacts/refine", {
         method: "POST",
         signal: controller.signal,
@@ -1266,21 +1299,13 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "x-ui-locale": locale
         },
         body: JSON.stringify({
-          documentIds: documents.map((document) => document.id),
-          type: effectiveType,
-          artifactId: workspaceResult.id || undefined,
-          templateId: isClientRole ? undefined : selectedTemplateId || undefined,
-          currentContent: resultContent,
-          refinementInstruction: effectiveRefinement,
-          audience,
-          tone,
-          language,
-          length,
-          privacyDecision: options.privacyDecision
+          ...refinePayload,
+          idempotencyKey: refineIntentRef.current.key
         })
       })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.artifacts.errors.update_failed"))
+      refineIntentRef.current = null
 
       const nextContent = String(payload?.content || "")
       const nextUpdatedAt = String(payload?.updatedAt || "")

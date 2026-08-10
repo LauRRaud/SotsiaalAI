@@ -27,6 +27,7 @@ import {
   releaseUsageForRequest,
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
+import { runPaidResult } from "@/lib/usage/paidResult"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -99,7 +100,6 @@ export async function POST(request) {
   instruction = privacy.processedText || instruction
 
   let usageHandle = null
-  let generationCompleted = false
 
   try {
     const documents = await prisma.userDocument.findMany({
@@ -189,50 +189,48 @@ export async function POST(request) {
       return usageErrorJson(error, "documents.generate", locale)
     }
 
-    const result = await generateArtifactDraftContent({
-      type,
-      documents,
-      templateTitle: template?.title || null,
-      instruction,
-      audience,
-      tone,
-      language,
-      length,
-      observabilityRoute: "api/documents/artifacts/generate",
-      observabilityStage: "document_generate",
-      userId: auth.userId,
-      userRole: role
-    })
-    generationCompleted = true
-    await commitUsageForRequest(usageHandle)
-    const content = result?.content || ""
-
-    // Persist immediately: the committed generation cost is now bound to a durable DRAFT the owner
-    // can find, continue, rename, delete or approve — it never evaporates on navigation. enforceQuota
-    // is false here because the pre-generation check above already gated an over-quota owner.
-    const { artifact } = await persistArtifactDraft({
-      userId: auth.userId,
-      role,
-      type,
-      title,
-      templateId: template?.id || null,
-      documentIds: documents.map((document) => document.id),
-      content,
-      debugMeta: result?.debugMeta || null,
-      idempotencyKey: body?.idempotencyKey,
-      enforceQuota: false
+    // Arveldusjärjekord elab `runPaidResult`-is: tasu võetakse alles pärast püsivat mustandit.
+    // Enne seda tekkinud viga vabastab reservatsiooni, seega üle ei jää arvestatud ühikut ilma
+    // leitava tulemuseta. enforceQuota on false, sest üle kvoodi omaniku peatas juba eelkontroll.
+    const { persisted } = await runPaidResult({
+      reserve: () => usageHandle,
+      produce: () =>
+        generateArtifactDraftContent({
+          type,
+          documents,
+          templateTitle: template?.title || null,
+          instruction,
+          audience,
+          tone,
+          language,
+          length,
+          observabilityRoute: "api/documents/artifacts/generate",
+          observabilityStage: "document_generate",
+          userId: auth.userId,
+          userRole: role
+        }),
+      persist: (result) =>
+        persistArtifactDraft({
+          userId: auth.userId,
+          role,
+          type,
+          title,
+          templateId: template?.id || null,
+          documentIds: documents.map((document) => document.id),
+          content: result?.content || "",
+          debugMeta: result?.debugMeta || null,
+          idempotencyKey: usageHandle?.idempotencyKey,
+          enforceQuota: false
+        }),
+      commit: (handle) => commitUsageForRequest(handle),
+      release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
+      onReleaseError: (releaseError) =>
+        console.error("[documents artifacts] usage release failed", safeError(releaseError))
     })
 
     // `draft` mirrors `artifact` for the workspace client, which keys save-vs-update off draft.id.
-    return json({ ok: true, artifact, draft: artifact }, 201)
+    return json({ ok: true, artifact: persisted.artifact, draft: persisted.artifact }, 201)
   } catch (error) {
-    if (usageHandle && !generationCompleted) {
-      try {
-        await releaseUsageForRequest(usageHandle, { reason: "document_generation_failed" })
-      } catch (releaseError) {
-        console.error("[documents artifacts] usage release failed", safeError(releaseError))
-      }
-    }
     const status = Number(error?.status) || 500
     const messageKey =
       status === 500 ? "documents.artifacts.errors.create_failed" : error?.message || "documents.artifacts.errors.create_failed"

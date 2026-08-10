@@ -25,6 +25,7 @@ import {
   releaseUsageForRequest,
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
+import { runPaidResult } from "@/lib/usage/paidResult"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -91,7 +92,6 @@ export async function POST(request) {
   refinementInstruction = privacy.processedText || refinementInstruction
 
   let usageHandle = null
-  let refinementCompleted = false
 
   try {
     if (artifactId) {
@@ -195,54 +195,63 @@ export async function POST(request) {
       return usageErrorJson(error, "documents.refine", locale)
     }
 
-    const result = await refineArtifactDraftContent({
-      type,
-      documents,
-      templateTitle: template?.title || null,
-      currentContent,
-      refinementInstruction,
-      audience,
-      tone,
-      language,
-      length,
-      observabilityRoute: "api/documents/artifacts/refine",
-      observabilityStage: "document_refine",
-      userId: auth.userId,
-      userRole: role,
-      artifactId: artifactId || null
-    })
-    refinementCompleted = true
-    await commitUsageForRequest(usageHandle)
-    const content = result?.content || ""
-    if (content && result?.debugMeta) {
-      cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
-    }
+    // Refinement'i tulemus elab vastuses, mitte serveris — püsiv on siin ainult auditirida, ja
+    // just tema on ka lubatud kolme refinement'i loenduri allikas. Seepärast käivad auditirida ja
+    // tasu ÜHES tehingus: varem commit'iti enne auditit, ja auditi viga andis 500 juba arvestatud
+    // kasutusega — kasutaja ei saanud ei teksti ega oma ühikut tagasi.
+    const { persisted } = await runPaidResult({
+      reserve: () => usageHandle,
+      produce: () =>
+        refineArtifactDraftContent({
+          type,
+          documents,
+          templateTitle: template?.title || null,
+          currentContent,
+          refinementInstruction,
+          audience,
+          tone,
+          language,
+          length,
+          observabilityRoute: "api/documents/artifacts/refine",
+          observabilityStage: "document_refine",
+          userId: auth.userId,
+          userRole: role,
+          artifactId: artifactId || null
+        }),
+      persist: async (result, handle) => {
+        const content = result?.content || ""
+        if (content && result?.debugMeta) {
+          cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
+        }
 
-    if (artifactId && content) {
-      const auditRecord = buildDocumentAuditRecord("artifact.refined", {
-        userId: auth.userId,
-        artifactId
-      })
-      if (auditRecord) {
-        await prisma.documentAudit.create({
-          data: auditRecord
+        const auditRecord =
+          artifactId && content
+            ? buildDocumentAuditRecord("artifact.refined", {
+                userId: auth.userId,
+                artifactId
+              })
+            : null
+
+        await prisma.$transaction(async (tx) => {
+          if (auditRecord) {
+            await tx.documentAudit.create({ data: auditRecord })
+          }
+          await commitUsageForRequest(handle, { tx })
         })
-      }
-    }
+
+        return { content }
+      },
+      release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
+      onReleaseError: (releaseError) =>
+        console.error("[documents artifacts] usage release failed", safeError(releaseError))
+    })
 
     return json({
       ok: true,
-      content,
+      content: persisted?.content || "",
       updatedAt: new Date().toISOString()
     })
   } catch (error) {
-    if (usageHandle && !refinementCompleted) {
-      try {
-        await releaseUsageForRequest(usageHandle, { reason: "document_refinement_failed" })
-      } catch (releaseError) {
-        console.error("[documents artifacts] usage release failed", safeError(releaseError))
-      }
-    }
     const status = Number(error?.status) || 500
     const messageKey =
       status === 500 ? "documents.artifacts.errors.update_failed" : error?.message || "documents.artifacts.errors.update_failed"

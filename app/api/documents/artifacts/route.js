@@ -41,6 +41,7 @@ import {
   releaseUsageForRequest,
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
+import { runPaidResult } from "@/lib/usage/paidResult"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -216,7 +217,6 @@ export async function POST(request) {
   }
 
   let usageHandle = null
-  let generationCompleted = false
 
   try {
     const documents = await prisma.userDocument.findMany({
@@ -275,7 +275,6 @@ export async function POST(request) {
       }
     }
 
-    let generatedDebugMeta = null
     if (!hasProvidedContent) {
       try {
         usageHandle = await reserveUsageForRequest({
@@ -291,79 +290,91 @@ export async function POST(request) {
       }
     }
 
-    const finalContent = hasProvidedContent
-      ? content
-      : await (async () => {
-          const generated = await generateArtifactDraftContent({
-            type,
-            documents,
-            templateTitle: template?.title || null,
-            instruction,
-            audience,
-            tone,
-            language,
-            length,
-            observabilityRoute: "api/documents/artifacts",
-            observabilityStage: "document_generate",
-            userId: auth.userId,
-            userRole: effectiveRoleFromSession(auth.session)
-          })
-          generatedDebugMeta = generated?.debugMeta || null
-          return generated?.content || ""
-        })()
-    if (usageHandle) {
-      generationCompleted = true
-      await commitUsageForRequest(usageHandle)
-    }
+    // Kvoodikontroll ja mustandi loomine käivad ENNE tasu. Varem commit'iti kohe pärast
+    // mudelikutset ja alles seejärel mõõdeti mahtu — üle kvoodi jäänud sisu tagastas 413 juba
+    // arvestatud ühikuga, ilma ühegi leitava tulemuseta.
+    const persistArtifact = async (produced) => {
+      const finalContent = produced?.content || ""
+      const storageQuotaBytes = getStorageQuotaBytes(role)
+      const storageUsageBytes = await getUserStorageUsageBytes(auth.userId)
+      const finalContentBytes = getUtf8ByteLength(finalContent)
 
-    const cachedDebugMeta = hasProvidedContent
-      ? getCachedRetrievalDebugMeta(auth.userId, finalContent)
-      : null
-    const debugMeta = generatedDebugMeta || cachedDebugMeta || null
-    const storageQuotaBytes = getStorageQuotaBytes(role)
-    const storageUsageBytes = await getUserStorageUsageBytes(auth.userId)
-    const finalContentBytes = getUtf8ByteLength(finalContent)
+      if (
+        storageUsageBytes.totalBytes >= storageQuotaBytes ||
+        storageUsageBytes.totalBytes + finalContentBytes > storageQuotaBytes
+      ) {
+        const quotaError = new Error("documents.errors.storage_quota_exceeded")
+        quotaError.status = 413
+        quotaError.quota = { limit: storageQuotaBytes, used: storageUsageBytes.totalBytes }
+        throw quotaError
+      }
 
-    if (storageUsageBytes.totalBytes >= storageQuotaBytes || storageUsageBytes.totalBytes + finalContentBytes > storageQuotaBytes) {
-      return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
-        scope: "storage_quota",
-        limit: storageQuotaBytes,
-        used: storageUsageBytes.totalBytes
+      return persistArtifactDraft({
+        userId: auth.userId,
+        role,
+        type,
+        title,
+        templateId: template?.id || null,
+        documentIds: documents.map((document) => document.id),
+        content: finalContent,
+        debugMeta: produced?.debugMeta || null,
+        idempotencyKey: usageHandle?.idempotencyKey || body?.idempotencyKey,
+        enforceQuota: false
       })
     }
 
-    const { artifact } = await persistArtifactDraft({
-      userId: auth.userId,
-      role,
-      type,
-      title,
-      templateId: template?.id || null,
-      documentIds: documents.map((document) => document.id),
-      content: finalContent,
-      debugMeta,
-      idempotencyKey: body?.idempotencyKey,
-      enforceQuota: false
+    // Kliendi antud sisu ei ole tasuline töö: reservatsiooni ei ole ja arveldada pole midagi.
+    if (!usageHandle) {
+      const { artifact } = await persistArtifact({
+        content,
+        debugMeta: getCachedRetrievalDebugMeta(auth.userId, content)
+      })
+      return json({ ok: true, artifact }, 201)
+    }
+
+    const { persisted } = await runPaidResult({
+      reserve: () => usageHandle,
+      produce: async () => {
+        const generated = await generateArtifactDraftContent({
+          type,
+          documents,
+          templateTitle: template?.title || null,
+          instruction,
+          audience,
+          tone,
+          language,
+          length,
+          observabilityRoute: "api/documents/artifacts",
+          observabilityStage: "document_generate",
+          userId: auth.userId,
+          userRole: effectiveRoleFromSession(auth.session)
+        })
+        return { content: generated?.content || "", debugMeta: generated?.debugMeta || null }
+      },
+      persist: persistArtifact,
+      commit: (handle) => commitUsageForRequest(handle),
+      release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
+      onReleaseError: (releaseError) =>
+        console.error("[documents artifacts] usage release failed", safeError(releaseError))
     })
 
     return json(
       {
         ok: true,
-        artifact
+        artifact: persisted.artifact
       },
       201
     )
   } catch (error) {
-    if (usageHandle && !generationCompleted) {
-      try {
-        await releaseUsageForRequest(usageHandle, { reason: "document_generation_failed" })
-      } catch (releaseError) {
-        console.error("[documents artifacts] usage release failed", safeError(releaseError))
-      }
-    }
     const status = Number(error?.status) || 500
     const messageKey =
       status === 500 ? "documents.artifacts.errors.create_failed" : error?.message || "documents.artifacts.errors.create_failed"
     console.error("[documents artifacts] create failed", safeError(error))
-    return errorJson(messageKey, status, locale)
+    return errorJson(
+      messageKey,
+      status,
+      locale,
+      error?.quota ? { scope: "storage_quota", limit: error.quota.limit, used: error.quota.used } : undefined
+    )
   }
 }
