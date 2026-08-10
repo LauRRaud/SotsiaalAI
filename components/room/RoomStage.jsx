@@ -1649,6 +1649,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
               onSelect={handleSelect}
               onRoleChanged={refreshEffectiveRole}
               t={t}
+              /* Käivitusrituaal vs komplektivahetus: karussell peab teadma,
+                 kas ta sünnib põlevasse ruumi või ⏻-i ootavasse (vt
+                 GlassCarousel isSetEntry). */
+              roomPower={power}
               /* Töölaud ja tööheaolu: sügavuslaud. Tsooniloendi olemasolu
                  ONGI lauarežiimi signaal — kitsal ekraanil kukub tagasi
                  kolme kaardi karusselliks (GlassCarousel wideEnough). */

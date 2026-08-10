@@ -46,6 +46,10 @@ export default function GlassCarousel({
   forceInitial = false,
   visible = 3,
   zones = null,
+  /* Ruumi toiteseis (RoomStage `power`): "standby" | "igniting" | "on".
+     Karussell ei juhi seda, kuid peab teadma, kas ta tekkis PÕLEVASSE
+     ruumi (siis on tegu komplektivahetusega) või käivitusrituaali sisse. */
+  roomPower = "on",
   /* Ainult dokk, ilma kaartideta: avatud akna all püsiv kiirmenüü
      (omanik 26.07). Sama komponent, sest dokk EI TOHI olla teine
      komponent oma koopiaga — otseteede, tagasi-noole ja tooltip'ide
@@ -60,15 +64,33 @@ export default function GlassCarousel({
 }) {
   const n = items.length;
 
-  /* Esimene karussell kuulub ruumi käivituslavastusse. Kõik järgmised
-     mount'id samas brauserivaates on menüütaseme vahetused, mitte uus
-     käivitus — neile annab CSS lühikese viiteta hajumise. */
-  const [isSetEntry] = useState(
-    () => !dockOnly && typeof window !== "undefined" && hasMountedRoomCarousel
+  /* Esimene karussell kuulub ruumi käivituslavastusse. Iga järgmine mount
+     PÕLEVAS ruumis on menüütaseme vahetus, mitte uus käivitus — neile
+     annab CSS lühikese viiteta hajumise (gc-set-enter).
+
+     Toiteseis on siin värav, mitte ilustus. `.room[data-power="on"]
+     .gc[data-set-entry="1"] .gc-item` võidab spetsiifilisuses
+     käivitusreeglit, seega kui märgis jääks ⏻-i ajaks külge, vahetuks
+     900 ms pealt (igniting → on) animatsioon gc-ignite → gc-set-enter.
+     Nimevahetus katkestab poolelioleva hajumise ja alustab uue nullist:
+     kaardid sähvatavad korraks olematuks ja tulevad teist korda tagasi.
+     Seepärast: märgise saab AINULT mount põlevasse ruumi, ja ooterežiim
+     (või käivituse algus) kustutab ta. Kustutus on ohutu just seal —
+     standby's ei kehti kummagi reegli animatsioon ja karussell on
+     nähtamatu, seega vahetus ei saa midagi vilgutada. */
+  const [isSetEntry, setIsSetEntry] = useState(
+    () =>
+      !dockOnly &&
+      typeof window !== "undefined" &&
+      hasMountedRoomCarousel &&
+      roomPower === "on"
   );
   useEffect(() => {
     if (!dockOnly) hasMountedRoomCarousel = true;
   }, [dockOnly]);
+  useEffect(() => {
+    if (roomPower !== "on") setIsSetEntry(false);
+  }, [roomPower]);
 
   /* Laiad paigutused: 5-kaardiline karussell või sügavuslaud (zones).
      Kitsas aknas kukub mõlemad tagasi kolme kaardiga karusselliks.
