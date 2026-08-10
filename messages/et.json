@@ -8594,6 +8594,7 @@
       "membership_already_active": "Sellel inimesel on juba aktiivne liikmesus.",
       "membership_already_ended": "Liikmesus on juba lõppenud.",
       "last_owner_cannot_leave": "Organisatsioon ei saa jääda ilma omanikuta. Anna omaniku õigus enne kellelegi teisele.",
+      "last_owner_capability_required": "Viimase omaniku õigust ei saa eemaldada. Anna omaniku õigus enne kellelegi teisele.",
       "member_update_failed": "Liikmesuse muutmine ebaõnnestus.",
       "member_end_failed": "Liikmesuse lõpetamine ebaõnnestus.",
       "invalid_capability": "Tundmatu õigus.",

@@ -8594,6 +8594,7 @@
       "membership_already_active": "This person already has an active membership.",
       "membership_already_ended": "The membership has already ended.",
       "last_owner_cannot_leave": "An organisation cannot be left without an owner. Grant the owner right to someone else first.",
+      "last_owner_capability_required": "The last owner's right cannot be removed. Grant the owner right to someone else first.",
       "member_update_failed": "Changing the membership failed.",
       "member_end_failed": "Ending the membership failed.",
       "invalid_capability": "Unknown right.",

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * SOL-ORG-10 — lahkunuks märgitud inimesele ei jää tööd ega kohta.
+ * SOL-ORG-10 ja SOL-ORG-11 — lahkunuks märgitud inimesele ei jää tööd ega
+ * kohta, ja maja ei jää ilma omanikuta.
  *
  *   npm run org:offboard:probe
  *
@@ -19,7 +20,7 @@
  */
 
 import prisma from "../lib/prisma.js";
-import { endMembership } from "../lib/org/members.js";
+import { endMembership, revokeCapability } from "../lib/org/members.js";
 import { assignSeat, createSeatPlan } from "../lib/org/seats.js";
 import { assignWork, deliverPreInquiryToOrganization, handOverWork } from "../lib/org/inbox.js";
 import { resolveOrgAccessContext } from "../lib/org/accessContext.js";
@@ -341,6 +342,122 @@ async function main() {
       }
     });
     expect("owner×2: majja jääb vähemalt üks aktiivne omanik", owners >= 1, `${owners}`);
+  }
+
+  // === 5. SOL-ORG-11: VIIMASE OMANIKU ÕIGUST EI SAA EEMALDADA ============
+  /* Sama reegel, teine uks. Lahkumine oli kaitstud, õiguse eemaldamine mitte:
+     üks päring jättis maja ilma ühegi aktiivse omanikuta. */
+  {
+    const { org, admin } = await freshOrg({ withInbox: false });
+    const adminMembership = await prisma.organizationMembership.findFirst({
+      where: { organizationId: org.id, userId: admin.id },
+      select: { id: true }
+    });
+    const ownerGrant = await prisma.organizationCapabilityGrant.findFirst({
+      where: { membershipId: adminMembership.id, capability: "ORG_OWNER", revokedAt: null },
+      select: { id: true }
+    });
+
+    try {
+      await revokeCapability(
+        org.id,
+        adminMembership.id,
+        ownerGrant.id,
+        { actorUserId: admin.id },
+        { db: prisma, now: NOW }
+      );
+      bad("last-owner: enda viimane omanikuõigus läks eemaldatuks");
+    } catch (error) {
+      expect(
+        "last-owner: enda viimast omanikuõigust ei saa eemaldada",
+        error?.messageKey === "org.errors.last_owner_capability_required",
+        String(error?.messageKey)
+      );
+    }
+
+    /* NEGATIIVKONTROLL: teise omaniku olemasolul PEAB eemaldamine õnnestuma —
+       muidu oleks reegel lihtsalt lukk, mitte kaitse. */
+    const secondOwner = await makeUser("owner-3");
+    const secondMembership = await addMember(org, secondOwner, ["ORG_OWNER"]);
+    const removed = await revokeCapability(
+      org.id,
+      adminMembership.id,
+      ownerGrant.id,
+      { actorUserId: admin.id },
+      { db: prisma, now: NOW }
+    );
+    expect("last-owner: teise omaniku olemasolul saab õiguse eemaldada", Boolean(removed?.revokedAt));
+
+    /* Ja nüüd on TEMA viimane — sama keeld kehtib ka talle. */
+    const secondGrant = await prisma.organizationCapabilityGrant.findFirst({
+      where: { membershipId: secondMembership.id, capability: "ORG_OWNER", revokedAt: null },
+      select: { id: true }
+    });
+    try {
+      await revokeCapability(
+        org.id,
+        secondMembership.id,
+        secondGrant.id,
+        { actorUserId: admin.id },
+        { db: prisma, now: NOW }
+      );
+      bad("last-owner: viimaseks jäänud omaniku õigus läks eemaldatuks");
+    } catch (error) {
+      expect(
+        "last-owner: viimaseks jäänud omaniku õigust ei saa eemaldada",
+        error?.messageKey === "org.errors.last_owner_capability_required",
+        String(error?.messageKey)
+      );
+    }
+
+    const ownersLeft = await prisma.organizationCapabilityGrant.count({
+      where: {
+        capability: "ORG_OWNER",
+        revokedAt: null,
+        membership: { organizationId: org.id, status: "ACTIVE" }
+      }
+    });
+    expect("last-owner: majja jääb täpselt üks omanik", ownersLeft === 1, `${ownersLeft}`);
+  }
+
+  // === 6. REVOKE vs OFFBOARD — kaks viimast omanikku, kaks eri ust ========
+  {
+    const { org, admin } = await freshOrg({ withInbox: false });
+    const adminMembership = await prisma.organizationMembership.findFirst({
+      where: { organizationId: org.id, userId: admin.id },
+      select: { id: true }
+    });
+    const other = await makeUser("owner-4");
+    const otherMembership = await addMember(org, other, ["ORG_OWNER"]);
+    const otherGrant = await prisma.organizationCapabilityGrant.findFirst({
+      where: { membershipId: otherMembership.id, capability: "ORG_OWNER", revokedAt: null },
+      select: { id: true }
+    });
+
+    const { resultA, resultB } = await raceOnLockedRow({
+      prisma,
+      lockRow: lockOrganization(org.id),
+      first: () => endMembership(org.id, adminMembership.id, { actorUserId: admin.id }, { db: prisma, now: NOW }),
+      second: () =>
+        revokeCapability(org.id, otherMembership.id, otherGrant.id, { actorUserId: other.id }, { db: prisma, now: NOW }),
+      label: "offboard→revoke",
+      expect
+    });
+    expect("offboard→revoke: lahkumine õnnestub", !resultA.error, String(resultA.error?.messageKey));
+    expect(
+      "offboard→revoke: viimaseks jäänu õigust ei saa siis enam eemaldada",
+      resultB.error?.messageKey === "org.errors.last_owner_capability_required",
+      String(resultB.error?.messageKey)
+    );
+
+    const ownersLeft = await prisma.organizationCapabilityGrant.count({
+      where: {
+        capability: "ORG_OWNER",
+        revokedAt: null,
+        membership: { organizationId: org.id, status: "ACTIVE" }
+      }
+    });
+    expect("offboard→revoke: majja jääb vähemalt üks omanik", ownersLeft >= 1, `${ownersLeft}`);
   }
 }
 

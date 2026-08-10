@@ -1001,6 +1001,27 @@ puudumine on tõendatud, päris kahe-omaniku kadu ei ole reprodutseeritud.
 
 **Vastuvõtukriteerium.** `ORG_OWNER` grandi revoke ja liikmesuse lõpetamine peavad kasutama ühist organisatsioonipõhist lukku ning jätma commit’i hetkel vähemalt ühe aktiivse omaniku. Testid peavad katma enda viimase grandi revoke’i, teise viimase omaniku revoke’i ning kahe omaniku paralleelse revoke/offboard kombinatsioonid.
 
+**Seis (10.08.2026): DONE — kood ja sond (`npm run org:offboard:probe` 48/48).**
+
+**SAMA REEGEL, TEINE UKS.** Lahkumine oli kaitstud (`isLastActiveOwner`), õiguse eemaldamine
+mitte — üks päring jättis maja ilma ühegi aktiivse omanikuta. `revokeCapability` võtab nüüd
+**sama organisatsiooni rea luku**, mille lisas SOL-ORG-10, ja keeldub viimase `ORG_OWNER`
+grandi eemaldamisest.
+
+**Kutsuja OMA grant on sama range.** „Ma tean, mida teen" ei aita, kui tulemus on maja,
+mida keegi hallata ei saa: pärast seda ei saa ükski tavapärane route enam õigusi, mooduleid
+ega elutsüklit puutuda ja taastamine vajaks platvormiadmini erakorralist sekkumist.
+
+**Lukk on siin sama vajalik kui reegel.** „Viimane omanik" on ORGANISATSIOONI omadus, mitte
+grandi oma: kaks viimast omanikku, kes eemaldavad korraga teineteise (või iseenda) õiguse,
+on eri ridadel ja kummagi enda lukk ei paneks neid järjekorda.
+
+**Sond katab kriteeriumi kolm juhtumit** (`org:offboard:probe` osad 5–6): enda viimase
+grandi eemaldamine, **negatiivkontroll** (teise omaniku olemasolul PEAB eemaldamine
+õnnestuma — muidu oleks reegel lukk, mitte kaitse), viimaseks jäänud teise omaniku
+eemaldamine, ja `offboard vs revoke` võistlus organisatsiooni luku peal. Vana koodi vastu:
+**enda viimane omanikuõigus läks eemaldatuks.**
+
 ### SOL-ORG-12 — paralleelne olekusiire võib arhiveeritud organisatsiooni taas aktiveerida — P1
 
 **Tõend.** Olekuleping määrab `ARCHIVED` terminalseisuks, kust pole ühtegi lubatud siiret (`lib/org/constants.js:36-45`). `changeOrganizationStatus()` loeb algoleku, valideerib siirde mälus ja teeb hiljem organisatsiooni ID järgi tingimusteta update’i; rida ei lukustata ja update ei nõua enam algoleku püsimist (`lib/org/organizations.js:152-207`). Näiteks `PENDING_VERIFICATION → ACTIVE` ja `PENDING_VERIFICATION → ARCHIVED` on mõlemad lubatud. Kui platvormiadmin ja omanik loevad sama algoleku, võib arhiveerimine commit’ida esimesena ning varem kontrollitud aktiveerimine kirjutada selle järel staatuseks `ACTIVE`. Skeemi `verifiedAt` kontroll ei keela seda, sest aktiveeriv tehing lisab ka verifitseerimisaja. Olemasolev test tõendab ainult järjestikust `canTransitionOrganizationStatus("ARCHIVED", "ACTIVE") === false`, mitte võistlevat teenusekutset.
