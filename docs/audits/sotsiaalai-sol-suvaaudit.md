@@ -1239,6 +1239,48 @@ nimeta oodatavat viga, ei mõõda midagi. Nüüd nõuab helper `/audit_write_fai
 
 **Vastuvõtukriteerium.** Markerid peavad kuuluma versioonitud pakiskeemi ning säilima kuni server on vastanud 2xx või detail tõendab sama sündmuse olemasolu. 401/403/409/429/5xx ja võrguvea korral peab marker alles jääma nähtava tõrkeseisuga. Fake IndexedDB + fetch brauseritest peab katma offline salvestuse, rakenduse taasavamise, eduka flush’i ja kõik negatiivsed vastused.
 
+**Seis (10.08.2026): DONE — kood, testid ja runtime-tõend päris IndexedDB vastu.**
+
+**KOLMAS KORD SAMAS FAILIS, KOLMAS KINNINE VÄLJALOEND.** `storePack()` ehitas payload'i
+kinnise loendi järgi ja ei kopeerinud kumbagi markerivälja — SOL-FIELD-02 kaotas samamoodi
+`takenAt` ja `status`. Nüüd on payload koodis nähtavalt KAHES pooles: serveripoolne
+ettevalmistuse sisu ehitatakse ümber, seadmepoolne (`schemaVersion`, `markers`) kantakse
+edasi. Neljas seadmepoolne väli kuulub sinna plokki, mitte uude unustusse.
+
+**RAPORTIS NIMETAMATA TAGAJÄRG, mis on tegelikult rängem kui kadunud marker.** Võrguta
+kinnitus kutsus `storePack`-i **võltsvisiidiga** (`{ id: visitId, ...markers }`), kus
+`goal`, `locationText`, `packKeyQuestions` ja `safety` olid kõik `undefined`. Ehk: „Kinnita
+saabumine" ilma võrguta **kirjutas üle terve ettevalmistuspaketi** — sealhulgas
+OHUTUSINFO —, mille inimene just offline-kasutuseks seadmesse võttis. Marker on nüüd oma
+tehe (`recordMarker`), mitte paketi ülekirjutus, ja seda mõõdab eraldi väide.
+
+**Leping ühes lauses:** marker kaob AINULT kahel juhul — server vastas 2xx, või värske
+külastus tõendab, et sama sündmus on juba olemas. Kõik muu jätab ta alles ja annab talle
+**nähtava tõrkeseisu** koos põhjusega (`auth` / `conflict` / `rate_limit` / `server` /
+`network`) ja korduskatse nupuga. Põhjus on ANDMEVÄLI, mitte tekst — liides tõlgib ta ise,
+kolmes keeles.
+
+**Poliitika kolis komponendist välja** (`lib/field/visitMarkers.js`) ja `fetchImpl` on
+süstitav, sest just **vastuse käsitlus** oli katki: teda peab saama mõõta ilma serverita ja
+ilma brauseri võrgukihita. `classifyMarkerResponse()` on üks funktsioon, mille kogu sisu on
+„ok otsustab AINULT 2xx"; tundmatu staatus läheb `SERVER`-i alla, sest vaikimisi ALLES on
+ainus suund, mis tõendit ei kaota.
+
+**Kaks asja, mida ainult päris hoidlaga saab tõendada** (`npm run field:pack:probe`, nüüd
+**35/35**): marker elab üle rakenduse SULGEMISE (probe avab IndexedDB partitsiooni uuesti) ja
+tema seis on pärast 500-t päriselt kettal `FAILED`, mitte ainult mälus. Ühikutasandil
+**18 testi** (`tests/field/visitMarkers.test.js`), sh iga negatiivne staatus eraldi reana ja
+versiooni edasiliikumine kahe markeri vahel — teine PATCH peab kasutama esimese vastusest
+saadud versiooni, muidu saab ta 409 iseenda eelkäija pärast.
+
+**AUS PIIR MÕÕTMISES.** SOL-FIELD-02 ja -03 sai vana koodi vastu jooksutada, sest neil oli
+moodulipiir olemas. **Siin seda ei olnud** — vana loogika elas React-i `useCallback`-i sees
+ja kadus koos temaga. Vana kesta vastu läheb punaseks staatiline lepingutest (1/18); ülejäänud
+17 mõõdavad moodulit, mida vanas koodis EI OLE. Selle asemel on eraldi negatiivkontroll, mis
+kirjutab vana reegli („pärast täidetud fetch'i eemalda marker") testi sisse ümber ja tõendab,
+et ta sama 500 peale tõendi kustutab — silt on ausalt küljes: see on minu transkriptsioon
+vanast reeglist, mitte vana kood ise.
+
 ### SOL-FIELD-05 — transkripti kinnituse serveriviga peidetakse ning toorheli kustutuskell ei käivitu — P2
 
 **Tõend.** Kasutaja kinnitatud AI/transkripti tekst salvestatakse esmalt kohaliku märkmena ja saadetakse serverisse; seejärel teeb komponent eraldi `confirmTranscript: true` päringu, kuid neelab võrguvea, ei kontrolli `response.ok` väärtust ning kuvab alati kinnituse eduteate (`components/field/FieldVisitRoom.jsx:370-394`). Serveri eraldi toiming seab `transcriptConfirmedAt`, mis käivitab toorheli kohese retention-valiku (`app/api/field/visits/[id]/attachments/[clientItemId]/route.js:25-38`, `lib/field/attachments.js:312-332`, `lib/field/retentionSweep.js:37-45`). Kui see teine päring ebaõnnestub, võib kinnitatud tekst juba olemas olla, kuid toorheli jääb kuni 7-päevase varutähtajani ja UI ütleb ekslikult, et tervik õnnestus.

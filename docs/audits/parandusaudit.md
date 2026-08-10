@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **67 / 357** |
+| Tehtud leidu | **68 / 357** |
 | Peatükke lõpuni | **4 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, **SOL-ORG** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 211 × P1 · 78 × P2 · 1 × P3 |
-| Toodangus | **kaheksas deploy 10.08 21:45 omaniku selgel loal: server = `main` = `origin/main` = `ae599200`**, 21 commit'i ja kaks migratsiooni (`20260810180000` võrgustikujagamise räsi, `20260810200000` külastuse päritolu muutumatus). Mõõdetud, mitte eeldatud: `.next` 21:45, kolm teenust `active`, `/` `/vestlus` `/admin/rag` `/meist` `/voimalused` **200**, mõlemad migratsioonid lõpetatud ja tagasi kerimata, trigger olemas ja lubatud, veatasemel logi tühi |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01…-03 tehtud, järgmine **SOL-FIELD-04**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 210 × P1 · 78 × P2 · 1 × P3 |
+| Toodangus | **üheksas deploy 10.08 22:49 omaniku selgel loal: server = `a2aa7435`**, neli commit'i (SOL-FIELD-02 ja -03 + docs), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 22:49, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi. (Kaheksas deploy 21:45 = `ae599200`, kaks migratsiooni.) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-FIELD** — käsil, FIELD-01…-04 tehtud, järgmine **SOL-FIELD-05**. Peatüki järel langeb järjekord tagasi **SOL-AUTH**-ile, mis on dokumendis kõige eespool lahtine |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**65 tehtud leidu 67-st on tootmises** (kaheksas deploy 10.08 21:45). Deploy'mata on
-**SOL-FIELD-02** (kliendipoolne IndexedDB säilitus) ja **SOL-FIELD-03** (kohustuslikud
-auditikirjed põhitehingusse); kumbki ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**67 tehtud leidu 68-st on tootmises** (üheksas deploy 10.08 22:49, server `a2aa7435` —
+FIELD-02 ja -03 läksid välja, migratsioone ei olnud). Deploy'mata on ainult
+**SOL-FIELD-04**, samuti migratsioonita. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -39,7 +39,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
-| Välitöö | SOL-FIELD | 3/6 | – | 1 | 2 | **käsil**, järgmine FIELD-04 |
+| Välitöö | SOL-FIELD | 4/6 | – | – | 2 | **käsil**, alles kaks P2: FIELD-05, -06 |
 | Dokumendid ja AI-kasutus | SOL-DOC | 0/9 | – | 6 | 3 | |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
@@ -233,6 +233,15 @@ rohkem kahju. Teine pool leidu oli TESTIDES: fake-DB-ga roheline test proovis va
 andmebaasi kirjutada (mõõdetud: 241 ms esimesel kirjutusel). Fake-hoidla ise pidi saama
 päris rollback'i ja pesastatud seose-projektsiooni — mõlemad peitsid veaklassi. Vana koodi
 vastu **8/12 punast**.
+
+**SOL-FIELD-04 (10.08): marker kadus kolmel viisil, millest üks oli raportist väljas.**
+Kinnine väljaloend ei kopeerinud teda (kolmas kord samas failis), flush eemaldas ta pärast
+IGA täidetud päringut staatust vaatamata — ja võrguta kinnitus kutsus `storePack`-i
+**võltsvisiidiga**, mis kirjutas üle terve ettevalmistuspaketi, sealhulgas OHUTUSINFO.
+Marker on nüüd versioonitud pakiskeemi osa ja kaob ainult 2xx või tõendatud sündmuse peale;
+kõik muu jätab ta alles nähtava tõrkeseisu ja korduskatsega. Sond **35/35** päris IndexedDB
+vastu (sh rakenduse taasavamine), ühikuid **18**. Mõõtmise aus piir on Seis-lõigus: vanal
+koodil ei olnud moodulipiiri, mille vastu jooksutada.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

@@ -89,16 +89,20 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
-**server on `ae599200`** — deploy'mata on SOL-FIELD-02 ja -03 (kumbki migratsioonita).
-**Kaheksas deploy 10.08 21:45
-sinu selgel loal:** 21 commit'i (SOL-NET-01/-02, SPROF-plokk, kogu SOL-ORG, SOL-FIELD-01 +
-docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 21:45, kolm
-teenust `active`, `https://sotsiaal.ai` **200**, mõlemad migratsioonid `_prisma_migrations`-is
-lõpetatud ja tagasi kerimata, trigger `ServiceVisit_provenance_frozen` **olemas ja lubatud**
-(`tgenabled = O`). `NetworkShare` on toodangus 0 rida, seega `contentHash` backfill oli
-tühikäik ja `SET NOT NULL` läks läbi triviaalselt — esimene päris kinnitus arvutab räsi
-koodirajal.
+**Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main` ja `origin/main` on
+**`a2aa7435`**, **server samuti `a2aa7435`** — deploy'mata on ainult SOL-FIELD-04
+(migratsioonita). **Üheksas deploy 10.08 22:49 sinu selgel loal:** neli commit'i
+(SOL-FIELD-02 ja -03 + docs), migratsioone ei olnud. Mõõdetud kohe pärast: `.next` 22:49,
+kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, frontend'i veatasemel
+logi tühi.
+
+**Kaheksas deploy 10.08 21:45** oli `ae599200`: 21 commit'i (SOL-NET-01/-02, SPROF-plokk,
+kogu SOL-ORG, SOL-FIELD-01 + docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte
+eeldatud: `.next` 21:45, kolm teenust `active`, `https://sotsiaal.ai` **200**, mõlemad
+migratsioonid `_prisma_migrations`-is lõpetatud ja tagasi kerimata, trigger
+`ServiceVisit_provenance_frozen` **olemas ja lubatud** (`tgenabled = O`). `NetworkShare` on
+toodangus 0 rida, seega `contentHash` backfill oli tühikäik ja `SET NOT NULL` läks läbi
+triviaalselt — esimene päris kinnitus arvutab räsi koodirajal.
 
 **Seitsmes deploy 10.08 17:04** oli `4c6c9cc9`: viis commit'i (SLOG-17/18, RAGSVC-01/02,
 JOUR-01/02, PRE-02 + docs) ja üks migratsioon (`20260810160000` külastuse org-päritolu).
@@ -110,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 67/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 68/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -196,12 +200,30 @@ kettalt kadunud, seega tagasipööramine tähendaks teist kirja või rida olemat
 Vana koodi vastu **8/12 punast**. Üks õppetund läks testi sisse: `assert.rejects(p)` üksi
 rahuldub suvalise veaga ja mu esimene versioon läks roheliseks hoopis 409 pealt.
 
-Lahtiseks jääb **211 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-FIELD-04** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+**SOL-FIELD-04: marker kadus kolmel viisil ja üks neist oli raportist väljas.** Kinnine
+väljaloend ei kopeerinud teda (kolmas kord samas failis — SOL-FIELD-02 kaotas nii `takenAt`
+ja `status`), flush eemaldas ta pärast IGA täidetud päringut staatust vaatamata (401, 409,
+429 ja 500 kustutasid tõendi nagu edu) — **ja võrguta kinnitus kutsus `storePack`-i
+võltsvisiidiga, mis kirjutas üle terve ettevalmistuspaketi, sealhulgas OHUTUSINFO.** Ehk
+„Kinnita saabumine" ilma võrguta hävitas selle, mille inimene just offline-kasutuseks võttis.
+
+Nüüd on marker versioonitud pakiskeemi osa ja kaob AINULT kahel juhul: server vastas 2xx või
+värske külastus tõendab sama sündmust. Kõik muu jätab ta alles ja annab **nähtava
+tõrkeseisu** koos põhjuse ja korduskatsega. Paketi payload on koodis nähtavalt kahes pooles —
+serveripoolne sisu ehitatakse ümber, seadmepoolne kantakse edasi.
+
+Sond **35/35** päris IndexedDB vastu (sh rakenduse sulgemine ja taasavamine), ühikuid **18**.
+**Aus piir mõõtmises:** vanal koodil ei olnud moodulipiiri, mille vastu jooksutada — loogika
+elas React-i `useCallback`-is. Vana kesta vastu läheb punaseks staatiline lepingutest;
+ülejäänu asemel on eraldi negatiivkontroll, mis kirjutab vana reegli testi sisse ümber ja
+tõendab, et ta sama 500 peale tõendi kustutab. Silt on ausalt küljes: see on transkriptsioon,
+mitte vana kood.
+
+Lahtiseks jääb **210 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-FIELD-05** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
 brauseri-QA taga).
 
-**Deploy'mata on SOL-FIELD-02 ja -03** — kumbki ei vaja migratsiooni. Ütle, kui viin
-serverisse.
+**Deploy'mata on ainult SOL-FIELD-04** — migratsiooni ta ei vaja. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
