@@ -18,18 +18,47 @@ import et from "../../messages/et.json" with { type: "json" };
 import en from "../../messages/en.json" with { type: "json" };
 import ru from "../../messages/ru.json" with { type: "json" };
 
+/**
+ * SOL-CALL-02 — `where` võrreldakse nüüd ÜLDISELT, mitte kõvakodeeritud võtmeloendi
+ * järgi. Vana matcher tundis kuut võtit ja LASKIS KÕIK ÜLEJÄÄNUD VAIKIDES LÄBI. Uued
+ * tingimuslikud üleminekud (`where: { startClaimId }`, `where: { action, externalRef }`)
+ * oleksid seetõttu testis kaitsnud mitte millegi eest ja roheline sviit oleks
+ * tõendanud lukku, mida ei ole. Fake peab mõõtma koodi, mitte oma puudust.
+ */
 function matchRows(rows, where = {}) {
   return rows.filter(row => {
-    if (where?.id != null && row.id !== where.id) return false;
-    if (where?.roomId != null && row.roomId !== where.roomId) return false;
-    if (where?.callSessionId != null && row.callSessionId !== where.callSessionId) return false;
-    if (where?.recordingRequestId != null && row.recordingRequestId !== where.recordingRequestId) return false;
-    if (where?.userId != null && row.userId !== where.userId) return false;
-    if (where?.leftAt === null && row.leftAt != null) return false;
     if (where?.status != null && typeof where.status !== "object" && row.status !== where.status) return false;
     if (where?.status?.in && !where.status.in.includes(row.status)) return false;
+    for (const [key, value] of Object.entries(where || {})) {
+      if (key === "status") continue;
+      if (value === null) {
+        if (row[key] != null) return false;
+        continue;
+      }
+      // Keerukamaid operaatoreid (in, lte, not …) see fake ei modelleeri; nad on juba
+      // ülal käsitletud või neid selles sviidis ei kasutata.
+      if (typeof value === "object" && !(value instanceof Date)) continue;
+      if (row[key] !== value) return false;
+    }
     return true;
   });
+}
+
+/**
+ * Prisma `{ increment: n }` on aatomiline lisamine, mitte väärtus. `Object.assign`
+ * kirjutas ta objektina reale ja `rosterVersion` muutus objektiks — fencing oleks
+ * vaikides surnud.
+ */
+function applyData(row, data = {}) {
+  for (const [key, value] of Object.entries(data)) {
+    if (value && typeof value === "object" && !(value instanceof Date) && "increment" in value) {
+      row[key] = Number(row[key] || 0) + Number(value.increment || 0);
+      continue;
+    }
+    row[key] = value;
+  }
+  row.updatedAt = new Date();
+  return row;
 }
 
 function createModel(initial = []) {
@@ -37,33 +66,14 @@ function createModel(initial = []) {
   return {
     rows,
     async findFirst({ where, orderBy } = {}) {
-      const filtered = rows.filter(row => {
-        if (where?.id != null && row.id !== where.id) return false;
-        if (where?.roomId != null && row.roomId !== where.roomId) return false;
-        if (where?.status != null && typeof where.status !== "object" && row.status !== where.status) return false;
-        if (where?.callSessionId != null && row.callSessionId !== where.callSessionId) return false;
-        if (where?.recordingRequestId != null && row.recordingRequestId !== where.recordingRequestId) return false;
-        if (where?.userId != null && row.userId !== where.userId) return false;
-        if (where?.leftAt === null && row.leftAt != null) return false;
-        if (where?.status?.in && !where.status.in.includes(row.status)) return false;
-        return true;
-      });
+      const filtered = matchRows(rows, where);
       if (orderBy?.requestedAt === "asc") {
         filtered.sort((a, b) => new Date(a.requestedAt) - new Date(b.requestedAt));
       }
       return filtered[0] || null;
     },
     async findMany({ where, orderBy } = {}) {
-      let filtered = rows.filter(row => {
-        if (where?.id != null && row.id !== where.id) return false;
-        if (where?.callSessionId != null && row.callSessionId !== where.callSessionId) return false;
-        if (where?.recordingRequestId != null && row.recordingRequestId !== where.recordingRequestId) return false;
-        if (where?.userId != null && row.userId !== where.userId) return false;
-        if (where?.leftAt === null && row.leftAt != null) return false;
-        if (where?.status != null && typeof where.status !== "object" && row.status !== where.status) return false;
-        if (where?.status?.in && !where.status.in.includes(row.status)) return false;
-        return true;
-      });
+      let filtered = matchRows(rows, where);
       if (orderBy?.requestedAt === "asc") {
         filtered = [...filtered].sort((a, b) => new Date(a.requestedAt) - new Date(b.requestedAt));
       }
@@ -85,7 +95,7 @@ function createModel(initial = []) {
     async update({ where, data }) {
       const row = rows.find(candidate => candidate.id === where.id);
       if (!row) throw new Error("not_found");
-      Object.assign(row, data, { updatedAt: new Date() });
+      applyData(row, data);
       return row;
     },
     updateMany({ where, data }) {
@@ -97,7 +107,7 @@ function createModel(initial = []) {
       // käivad nüüd ühes sünkroonses lõigus, nii et testid mõõdavad koodi, mitte
       // fake'i puudust. Tagastab Promise'i, sest kutsujad await'ivad.
       const matches = matchRows(rows, where);
-      matches.forEach(row => Object.assign(row, data, { updatedAt: new Date() }));
+      matches.forEach(row => applyData(row, data));
       return Promise.resolve({ count: matches.length });
     },
     async deleteMany({ where } = {}) {
@@ -658,6 +668,222 @@ test("SOL-CALL-01: nõusoleku tagasivõtt kinnitamata stopi korral EI raporteeri
     "DELETED",
     "DELETED on väide faili puudumise kohta ja seda ei tohi teha kinnitamata kustutuse peale"
   );
+});
+
+/**
+ * SOL-CALL-02 + SOL-CALL-03 — start on claim, mitte kavatsus.
+ *
+ * VÕIDUJOOKS SÜSTITAKSE PROVIDERI SISSE, sest just seal oli aken: taotlus jäi
+ * `READY_TO_RECORD`-iks kogu välise kutse ajaks. Kui teine osaleja liitub või keegi
+ * võtab nõusoleku tagasi TÄPSELT siis, peab start katkema ja äsja käivitatud egress
+ * peatuma. Kunstlik `await` ei tõendaks midagi — aken peab olema päris kutse sees.
+ */
+function racingStartService(prisma, { stops, duringStart }) {
+  return createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        await duringStart();
+        return { egressId: "egress_race_1" };
+      },
+      stopRecording: async ({ egressId }) => {
+        stops.push(egressId);
+        return { ok: true, stopped: true, status: "EGRESS_COMPLETE" };
+      }
+    },
+    recordingStorage: {
+      finalizeRecordingFile: async () => {
+        throw new Error("should not finalize an aborted start");
+      }
+    }
+  });
+}
+
+async function readyRecording(prisma, service) {
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  const request = await createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" });
+  await service.respondToRecordingConsent({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", decision: "CONSENTED" });
+  return { call, request };
+}
+
+test("SOL-CALL-02: hiline liituja katkestab käimasoleva stardi ja äsja käivitatud egress peatatakse", async () => {
+  const prisma = createPrisma();
+  const holder = {};
+  const stops = [];
+  const service = racingStartService(prisma, {
+    stops,
+    duringStart: () => holder.service.joinCall({ callSessionId: holder.callId, userId: "late_user" })
+  });
+  holder.service = service;
+  const { call, request } = await readyRecording(prisma, service);
+  holder.callId = call.id;
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_roster_changed/
+  );
+
+  const stored = prisma.callRecordingRequest.rows[0];
+  assert.notEqual(stored.status, "ACTIVE", "nõusolekuta osalejaga koosseis ei tohi jõuda ACTIVE-ni");
+  assert.equal(stored.startClaimId ?? null, null, "claim tuleb vabastada");
+  assert.deepEqual(stops, ["egress_race_1"], "katkestatud start peab egress'i peatama");
+  assert.equal(prisma.callRecordingFile.rows[0].status, "QUARANTINED");
+});
+
+test("SOL-CALL-02: stardi ajal tagasi võetud nõusolek ei kao hilise ACTIVE-kirjutuse alla", async () => {
+  const prisma = createPrisma();
+  const holder = {};
+  const stops = [];
+  const service = racingStartService(prisma, {
+    stops,
+    duringStart: () => holder.service.respondToRecordingConsent({
+      callSessionId: holder.callId,
+      recordingRequestId: holder.requestId,
+      userId: "host",
+      decision: "WITHDRAWN"
+    })
+  });
+  holder.service = service;
+  const { call, request } = await readyRecording(prisma, service);
+  holder.callId = call.id;
+  holder.requestId = request.id;
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true })
+  );
+
+  /* Vana kood kirjutas siia tingimusteta ACTIVE ja tagasivõtt kadus. Nüüd peab
+     tagasivõtt olema real NÄHTAV — mitte lihtsalt „mitte-ACTIVE". */
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "DECLINED");
+  assert.deepEqual(stops, ["egress_race_1"]);
+});
+
+test("SOL-CALL-03: DB-tõrge pärast provideri starti peatab egress'i, ei jäta orbu", async () => {
+  const prisma = createPrisma();
+  const stops = [];
+  let failNextFileWrite = false;
+  const realUpdate = prisma.callRecordingFile.update.bind(prisma.callRecordingFile);
+  prisma.callRecordingFile.update = async args => {
+    if (failNextFileWrite && args?.data?.egressId) throw new Error("db down");
+    return realUpdate(args);
+  };
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        failNextFileWrite = true;
+        return { egressId: "egress_orphan_1" };
+      },
+      stopRecording: async ({ egressId }) => {
+        stops.push(egressId);
+        return { ok: true, stopped: true, status: "EGRESS_COMPLETE" };
+      }
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_start_failed/
+  );
+
+  assert.deepEqual(stops, ["egress_orphan_1"], "kirjutuse tõrge peab providerile stopi saatma");
+  assert.notEqual(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
+  assert.equal(prisma.callRecordingRequest.rows[0].startClaimId ?? null, null);
+});
+
+test("SOL-CALL-03: seisukirjutuse tõrge pärast provideri starti peatab samuti egress'i", async () => {
+  /* Kriteerium ütleb „MÕLEMAD DB update'id". Eelmine test katkestab failikirjutuse,
+     see katkestab taotluse seisukirjutuse — teine haru, sama kohustus. */
+  const prisma = createPrisma();
+  const stops = [];
+  let failStateWrite = false;
+  const realUpdateMany = prisma.callRecordingRequest.updateMany.bind(prisma.callRecordingRequest);
+  prisma.callRecordingRequest.updateMany = args => {
+    if (failStateWrite && args?.data?.status === "ACTIVE") return Promise.reject(new Error("db down"));
+    return realUpdateMany(args);
+  };
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        failStateWrite = true;
+        return { egressId: "egress_state_1" };
+      },
+      stopRecording: async ({ egressId }) => {
+        stops.push(egressId);
+        return { ok: true, stopped: true, status: "EGRESS_COMPLETE" };
+      }
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_start_failed/
+  );
+
+  assert.deepEqual(stops, ["egress_state_1"], "tundmatut egress'i ei tohi jääda");
+  assert.notEqual(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
+});
+
+test("SOL-CALL-03: aegunud start paneb ruumipõhise orvukontrolli järjekorda", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        /* Timeout EI OLE tõend, et start ei jõudnud kohale — vastus võis lihtsalt
+           kaduda. Siis on ainus tee orvuni ruum, sest egressId-d me ei tea. */
+        const error = new Error("call.egress_start_timeout");
+        error.code = "call.egress_start_timeout";
+        error.isTimeout = true;
+        throw error;
+      }
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /egress_start_timeout/
+  );
+
+  const job = prisma.dataDeletionJob.rows.find(row => row.action === "CALL_EGRESS_ORPHAN_STOP");
+  assert.ok(job, "aegunud start peab jätma ruumipõhise orvukontrolli");
+  assert.equal(job.resourceId, call.id);
+  assert.ok(job.storagePath, "orvukontroll vajab providerRoomName-i");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "READY_TO_RECORD");
+});
+
+test("SOL-CALL-04 (kõrvalsaak): kaks paralleelset starti annavad ÜHE egress'i", async () => {
+  const prisma = createPrisma();
+  let starts = 0;
+  const service = createCallService({
+    prisma,
+    egress: {
+      configured: true,
+      startAudioRecording: async () => {
+        starts += 1;
+        return { egressId: `egress_parallel_${starts}` };
+      },
+      stopRecording: async () => ({ ok: true, stopped: true, status: "EGRESS_COMPLETE" })
+    }
+  });
+  const { call, request } = await readyRecording(prisma, service);
+
+  const results = await Promise.allSettled([
+    service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true })
+  ]);
+
+  assert.equal(results.filter(r => r.status === "fulfilled").length, 1, "ainult üks start tohib võita");
+  assert.equal(starts, 1, "kaotaja ei tohi providerini jõuda");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "ACTIVE");
 });
 
 // --- T12 ROOMS-CALLS-V1 ---

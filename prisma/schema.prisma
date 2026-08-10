@@ -192,6 +192,11 @@ enum CallRecordingRequestStatus {
   // `STOPPED` varjas.
   STOPPING
   STOP_FAILED
+  // SOL-CALL-02/03. Start on CLAIM'itud ja väline providerikutse on käimas või äsja
+  // lõppenud. Taotlus ei ole veel ACTIVE ja EI OLE ka enam vabalt võetav. Ilma selle
+  // seisuta jäi rida kogu providerikutse ajaks `READY_TO_RECORD`-iks: hiline liituja
+  // ei näinud midagi peatatavat ja nõusoleku tagasivõtt kirjutati hiljem üle.
+  STARTING
 }
 
 enum CallRecordingConsentStatus {
@@ -3495,6 +3500,12 @@ model CallSession {
   startedAt        DateTime          @default(now())
   endedAt          DateTime?
   maxParticipants  Int               @default(8)
+  // SOL-CALL-02 — FENCING-LOEND. Kasvab iga kord, kui koosseis või nõusolekupilt
+  // muutub (liitumine, lahkumine, iga nõusolekuotsus). Salvestuse start jäädvustab
+  // tema väärtuse claim'i hetkel ja kontrollib enne ACTIVE-ks minekut uuesti: kui
+  // number on vahepeal muutunud, oli plaan, mille alusel nõusolekut kontrolliti,
+  // aegunud. Nii ei pea liituja starti „püüdma" — tal piisab numbri kasvatamisest.
+  rosterVersion    Int               @default(0)
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
 
@@ -3562,6 +3573,16 @@ model CallRecordingRequest {
   // parsimata. NULL = enne 04.08.2026 loodud taotlus.
   requesterNameSnapshot String?
   requestedAt         DateTime                   @default(now())
+  // SOL-CALL-02/03 — ÜHE start-katse töö-ID + lease + fencing-loend.
+  //   · `startClaimId`         — ainult SEDA id-d kandev rida tohib katse tulemuse
+  //     kirjutada; hiline zombi ei kirjuta üle plaani, mille vahepeal võttis teine
+  //   · `startClaimedAt`       — lease'i algus; aegunud claim on varastatav, seega
+  //     surnud protsess ei jäta luku igaveseks kinni
+  //   · `rosterVersionAtStart` — `CallSession.rosterVersion` claim'i hetkel. Kui ta
+  //     enne ACTIVE-ks minekut muutub, tuleb start katkestada ja egress peatada
+  startClaimId         String?
+  startClaimedAt       DateTime?
+  rosterVersionAtStart Int?
   startedAt           DateTime?
   stoppedAt           DateTime?
   completedAt         DateTime?

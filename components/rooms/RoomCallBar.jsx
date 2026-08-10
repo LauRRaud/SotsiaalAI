@@ -52,6 +52,7 @@ function recordingStatusText(t, recording) {
   /* SOL-CALL-01 — kinnitamata peatumine peab olema NÄHTAV. Kui need kaks siit puuduks,
      langeks salvestus tagasi tühja stringi peale ja riba ei ütleks midagi täpselt sel
      hetkel, mil inimene peab teadma, et mikrofon ei pruugi veel vaikida. */
+  if (recording.status === "STARTING") return text(t, "calls.recording_status_starting", "Käivitame salvestust…");
   if (recording.status === "STOPPING") return text(t, "calls.recording_status_stopping", "Peatame salvestust…");
   if (recording.status === "STOP_FAILED") {
     return text(t, "calls.recording_status_stop_failed", "Salvestuse peatumine ei ole kinnitatud — kontrollime");
