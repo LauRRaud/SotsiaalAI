@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **71 / 357** |
+| Tehtud leidu | **72 / 357** |
 | Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 209 × P1 · 76 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 208 × P1 · 76 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (1/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (2/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 71-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on ainult
-**SOL-DOC-01**; ka tema ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**70 tehtud leidu 72-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01 ja -02**;
+kumbki ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 1/9 | – | 5 | 3 | **käsil**, DOC-01 tehtud |
+| Dokumendid ja AI-kasutus | SOL-DOC | 2/9 | – | 4 | 3 | **käsil**, DOC-01 ja -02 tehtud |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -264,6 +264,18 @@ Parandus ise oleks tekitanud uue lõksu (stabiilne kliendivõti + vabastus = iga
 kavatsus), nii et vabastatud võti on nüüd sama perioodi sees uuesti reserveeritav. Vana koodi
 vastu kolm punast ja **üks, mis ei kuku, vaid lukustub** — vana `commit` avab alati oma
 tehingu, ja just see lukk on tõend, miks audit ja tasu ei saanud varem üks toiming olla.
+
+**SOL-DOC-02 (11.08): kaks otsepunkti väljaspool lepingut.** Helifaili transkriptsioon kutsus
+päris teenusepakkujat ilma ühegi `STT_SECONDS` reservatsioonita ja transkripti kokkuvõte tegi
+AI-genereerimise ilma `DOCUMENT_GENERATE` lepinguta; mõlemal oli ainult minutipõhine
+**mälupõhine** rate-limit, mis ei ole perioodikvoot. Uus `lib/usage/sttDuration.js` hoiab lahus
+kaks eri küsimust: **enne** kutset vastust ei ole, seega reserveeritakse turvaline ülempiir
+(kõnesalvestise teadaolev kestus → failist loetud kestus → baitidest tuletatud piir kõne
+madalaima usutava bitikiiruse järgi); **pärast** kutset on vastus olemas, seega arvestatakse
+tegelik kestus — piiratud reserveeritud mahuga, et vale hinnang ei muutuks 500-ks kasutajale,
+kelle transkript on juba olemas. Olemasoleva transkripti tagastamine ei reserveeri midagi.
+Limiidi ületamise negatiivne rada on tõendatud ahelana (teenus viskab → deskriptor teeb 429 →
+leping mõõdab, et marsruut seda kasutab), mitte ühe HTTP-testiga.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

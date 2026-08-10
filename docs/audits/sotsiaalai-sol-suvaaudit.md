@@ -1415,6 +1415,48 @@ hoiab moodul, ja et marsruudid teda ka päriselt kasutaksid, valvab lähtekoodi-
 
 **Vastuvõtukriteerium.** Transkriptsioon peab reserveerima STT mahu turvalise ülempiiri järgi ja commit'ima tegeliku kestuse; kokkuvõte peab kasutama sama `DOCUMENT_GENERATE` lepingut nagu teised dokumendiloomised. Mõlemad vajavad stabiilset idempotentsusvõtit, release'i enne tasulise etapi valmimist tekkinud vea korral ning limiidi ületamise negatiivset testi.
 
+**Seis (11.08.2026): DONE — kood ja testid; runtime: not_run.**
+
+**KAKS OTSEPUNKTI VÄLJASPOOL LEPINGUT.** Paketis on `STT_SECONDS` piir olemas ja ta on kitsas
+(klient 900 s/kuus, töötaja 3600, teenusepakkuja 7200) — aga helifaili transkribeerimise
+marsruut kutsus päris teenusepakkujat ilma ühegi reservatsioonita. Kokkuvõtte rada tegi
+AI-genereerimise ja lõi uue artefakti ilma `DOCUMENT_GENERATE` lepinguta. Mõlemal oli ainult
+minutipõhine **mälupõhine** rate-limit, mis ei ole perioodikvoot: kasutusülevaade ja arveldus ei
+näinud sellest kulust midagi.
+
+**Reservatsioon ja arvestus on kaks ERI küsimust.** Enne kutset vastust ei ole, seega peab
+reservatsioon olema turvaline ÜLEMPIIR; pärast kutset on vastus olemas, seega peab arvestus
+olema TÄPNE. `lib/usage/sttDuration.js` hoiab neid lahus. Ülempiir tuleb tugevuse järjekorras:
+kõnesalvestise teadaolev kestus andmebaasist → failist loetud kestus → **baitidest tuletatud
+piir kõne madalaima usutava bitikiiruse (8 kbps) järgi** → põrand 60 s. Viimane on teadlikult
+helde: liiga suurt reservatsiooni hoitakse ainult päringu kestel ja commit parandab ta tegeliku
+kestusega ära, liiga väike aga laseks piirist märkamatult mööda.
+
+**Arvestus on piiratud reserveeritud mahuga.** Kui teenusepakkuja ütleb rohkem, kui me
+ülempiiriks pidasime, oli meie hinnang vale — aga suurem commit kukuks ämbri invariandi otsa ja
+annaks 500 kasutajale, kelle transkript on juba olemas. Vale hinnang ei tohi muutuda kasutaja
+veaks; ta jääb piiratud kujul arvestusse ja on logist leitav.
+
+**Mõlemad rajad kasutavad SOL-DOC-01 järjekorda** (`runPaidResult`): tasu tuleb alles pärast
+püsivat transkripti või kokkuvõtte artefakti, ja viga enne seda vabastab reservatsiooni. Kokkuvõtte
+üle salvestuskvoodi 413 vabastab nüüd samuti. Olemasoleva transkripti tagastamine ei kutsu
+teenusepakkujat ega reserveeri midagi — reuse-haru väljub enne kvoodirida ja seda mõõdab leping.
+
+**Kavatsuse võtmed on eri kujuga, sest kavatsused on eri kujuga.** Transkriptsioonil on võti
+**allika enda id**: sama helifaili teist transkripti ei ole olemas, marsruut tagastab olemasoleva.
+Kokkuvõttel on võti kavatsuse allkiri, sest muudetud transkripti tohib ausalt uuesti kokku võtta.
+Mõlemad kliendid (agendi kest ja välitöö tuba) saadavad selle nüüd kaasa.
+
+**Mõõdetud (14 testi).** Ülempiiri ladder, ümardamine ÜLES, katkiste väärtuste kõrvalejätt,
+bitikiiruse mõju suund, ja arvestuse pool: teenusepakkuja mõõt võidab, tokeni-usage EI ole kestus,
+piiramine reserveeritud mahuga. Vana koodi vastu läheb leping punaseks õige lausega
+(„transcription must reserve STT capacity"); `sttDuration` testid mõõdavad moodulit, mida ei olnud.
+
+**Aus piir mõõtmises.** Limiidi ületamise negatiivne rada on tõendatud **ahelana**, mitte ühe
+HTTP-testiga: teenus viskab piiril (`service.test.js`), deskriptor teeb sellest 429
+(`routeAdapter.test.js`), ja leping mõõdab ahela viimast lüli — et marsruut seda kaardistust ka
+päriselt kasutab, mitte ei neela viga.
+
 ### SOL-DOC-03 — paralleelne muutmine saab FINAL-artefakti pärast kinnitamist üle kirjutada — P1
 
 **Tõend.** PATCH loeb omaniku artefakti ja kontrollib mälus, et see on `DRAFT`, kuid hilisem update sihib ainult `where: { id }` (`app/api/documents/artifacts/[id]/route.js:140-146`, `:199-207`). Approve loeb samuti oleku eraldi ja muudab rea hiljem ainult ID järgi `FINAL`-iks (`app/api/documents/artifacts/[id]/approve/route.js:69-110`). Kui PATCH loeb `DRAFT`, approve commit'ib `FINAL` ja PATCH jätkab seejärel, muudab ta juba lõplikuks kinnitatud rea sisu/pealkirja, sest update ei nõua enam `status: DRAFT`. Kliendi kinnitamine ise koosneb samuti kahest eraldi HTTP päringust — PATCH ja POST approve — ilma versiooni/CAS-ta (`components/documents/ArtifactDetailPage.jsx:100-124`, `components/agent/AgentModePage.jsx:1518-1541`).

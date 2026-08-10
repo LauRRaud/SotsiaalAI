@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 71/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 72/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -250,11 +250,21 @@ midagi, sest püsiv tulemus on juba sinu oma. Refinement'i puhul on püsiv asi *
 tehingus. Agendi kest saadab nüüd ka stabiilse kavatsusvõtme: sama sisendiga kordus ei võta
 teist tasu ega loo teist mustandit, aga tahtlik uus jooks on aus uus töö.
 
-Lahtiseks jääb **209 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(1/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-02: kaks otsepunkti, kus tekkis päris kulu ilma ühegi kvoodita.** Helifaili
+transkriptsioon kutsus päris teenusepakkujat, aga ei arvestanud ühtegi `STT_SECONDS` sekundit —
+kuigi paketis on see piir olemas ja kitsas (klient 900 s kuus, töötaja 3600). Transkripti
+kokkuvõte tegi AI-genereerimise ja lõi uue artefakti ilma dokumendiloome lepinguta. Mõlemal oli
+ainult minutipõhine mälupõhine piir, mis kaob serveri taaskäivitusel ega ole perioodikvoot: seda
+otsepunkti kaudu sai tekitada piiramatut kuukulu ja kasutusülevaade ei näidanud sellest midagi.
+Nüüd reserveeritakse enne kutset **turvaline ülempiir** (kõnesalvestise teadaolev kestus →
+failist loetud kestus → baitidest tuletatud piir) ja arvestatakse pärast kutset **tegelik
+kestus**. Olemasoleva transkripti tagastamine ei maksa endiselt midagi.
+
+Lahtiseks jääb **208 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(2/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on ainult SOL-DOC-01** — migratsiooni ta ei vaja. Ütle, kui viin serverisse.
+**Deploy'mata on SOL-DOC-01 ja -02** — kumbki ei vaja migratsiooni. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
