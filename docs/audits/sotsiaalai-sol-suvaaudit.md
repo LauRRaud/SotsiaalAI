@@ -1765,6 +1765,40 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Järjekord peab võtma kõik vastust ootavad ja pooleliolevad kirjed enne ajalugu ning ajalugu peab olema stabiilselt lehekülgitav. Test peab looma vähemalt 201 lõpetatud vana rida ja ühe uue SENT rea ning tõendama, et uus rida on esimesel lehel ja loendurites.
 
+**Seis (10.08.2026): DONE — töö ja ajalugu on eri päringud. Commit `0dd6bb18`.**
+
+Parandus **ei ole suurem `take`** — suurem number lükkab sama vaikse kadumise lihtsalt
+edasi. Vastust ootavad ja pooleliolevad kirjed (`SENT`, `READ`, `TAKEN`) on oma päring,
+mis ei jaga mahtu ajalooga; ajalugu on eraldi ja lehekülgitav. Olemasolev indeks
+`[deskId, status, sentAt]` katab mõlemad, **migratsiooni ei ole vaja**.
+
+See **ei ole triaaž** (mooduli reegel 1). Inimesi ei järjestata hinnangu ega
+kiireloomulisuse järgi — töö ja ajalugu on eri asjad nagu postkast ja arhiiv, ja ajaline
+järjestus kehtib mõlema sees muutmata kujul.
+
+**Ajalugu on ASC ja nihkepõhine, mitte DESC.** Nihkepaginatsioon on ebastabiilne siis, kui
+uued read tulevad loendi ETTE: iga lisandumine nihutab kõiki lehti ja lugeja näeb sama
+rida kaks korda või ei näe üldse. Ajalugu kasvab ainult lõpust, seega ASC-järjestuses ei
+nihuta uus rida ühtegi juba loetud lehte. `id` on tie-breaker — muidu võib sama
+millisekundi kaks rida lehtede vahele kaduda.
+
+**Loendurid tulevad andmebaasist**, mitte lehelt. Vana kood luges nad samast kärbitud
+massiivist, seega number valetas koos loendiga: „0 ootab" oli võimalik siis, kui ootas 40.
+
+Aktiivsete lagi 500 on **ohutusventiil, mitte lehekülg** — täitumisel tuleb
+`activeTruncated` ja vaade ütleb seda inimesele. Vaikne lõikamine näeb välja täpselt nagu
+„rohkem ei olegi" ja just see peitis siin uued abipalved. Sama parandus kehtib ka
+`GET /api/urgent-requests?role=desk` jaoks: valik elab nüüd ühes kohas
+(`selectDeskRequests`), mitte kahes koopias.
+
+Väravad: `npm test` **3359/3359** (Europe/Tallinn ja UTC) · i18n roheline · eslint puhas ·
+**negatiivkontroll: kõik 4 uut testi kukuvad vana teostuse peal**. Fake sai `orderBy` ja
+`skip` — ilma nendeta oleks lehekülgitamise test mõõtnud, mis järjekorras test ise read
+lisas.
+
+**NOT_PROVEN:** päris PostgreSQL-i ega autenditud brauseriga ei ole läbi käidud — fake ei
+jõusta indekseid ega päris `skip`-i.
+
 ### SOL-URG-02 — konto kustutamine jätab kiire abi nime, telefoni ja olukorra toorteksti andmebaasi — P0
 
 **Tõend.** `UrgentRequest` hoiab `situationVerbatim`, `assistantStructured`, `contactName` ja `contactPhone` välju; kasutajaseos on `onDelete: SetNull` (`prisma/schema.prisma:5962-6021`). Konto kustutuse lõpptehing puhastab saadetud `PreInquiry` read, seejärel kustutab User rea, kuid ei uuenda ühtegi `UrgentRequest` rida (`lib/privacy/effectivePracticeAccountCleanup.js:144-176`). Ka kustutuse sihtide kogumine ja orkestreerimine ei hõlma kiire abi kirjeid (`lib/privacy/userDeletion.js:17-65`, `:132-154`). `authorErasedAt` on skeemis olemas, kuid seda rada ei kirjutata.
@@ -1772,6 +1806,42 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Inimese konto ja autoriviide kaovad, kuid eriti tundlik abivajaduse kirjeldus ning otseselt tuvastavad nimi ja telefon säilivad muutmata. Konto kustutuse tulemus `ok: true` annab seetõttu ebaausa privaatsusgarantii.
 
 **Vastuvõtukriteerium.** Omanik peab määrama kiire abi õigusliku retentsiooni ja pärast konto kustutust vajaliku minimaalse vastutusjälje. Kustutustöö peab samas taastatavas protsessis kas read kustutama või eemaldama toorsisu ja kontaktid ning märkima anonümiseerimise aja; negatiivne test peab kontrollima andmebaasi pärast päris kustutustehingut, mitte ainult User rea puudumist.
+
+**Seis (10.08.2026): DONE — sisu ja kontaktid kaovad, vastutusjälje skelett jääb. Commit `97b28080`.**
+
+`authorErasedAt` oli skeemis juba olemas ja seda rada ei kirjutanud **keegi** — väli ilma
+mehhanismita on lubadus ilma katteta. Nüüd puhastab sama lukustatud tehing enne `User` rea
+kustutamist `situationVerbatim`, `assistantStructured`, `contactName` ja `contactPhone`
+ning stambib `authorErasedAt`. `""` mitte `null`, sest need veerud on skeemis NOT NULL.
+
+**Miks rida jääb, aga sisu kaob.** Vastuvõtulaud kannab lugemisaja lubadust ja selle
+täitmine on KOV-i vastutus — „kas see pöördumine loeti läbi lubatud aja jooksul" peab
+jääma vastatavaks ka pärast seda, kui inimene oma konto kustutab. Rea skelett (laud,
+seisud, kellaajad, sündmuslogi) ongi see vastutusjälg; sisu ja kontaktid ei ole
+vastutusjälg.
+
+Kutse on **tingimusteta**. `tx.urgentRequest?.updateMany ? … : { count: 0 }` oleks siin
+fail-open: puuduv mudel muutuks vaikseks nulliks ja kustutus vastaks endiselt `ok: true` —
+täpselt see, mida leid punub. Tõrke korral kukub kogu tehing tagasi ja kustutustöö läheb
+`failed` seisu, kus teda korratakse.
+
+**Sama parandusega läks kinni [SOL-PRE-01](#sol-pre-01--konto-kustutamine-jätab-saatmata-eelpöördumiste-tundliku-sisu-autorita-alles--p0)**,
+sest need kaks leidu elavad ühes funktsioonis ja ühe inimese ühe tekstiga: konversioon
+kopeerib kiire abi verbatim-teksti eelpöördumise mustandisse. Ainult URG-02 parandamine
+oleks jätnud täpselt samad sõnad andmebaasi teise tabeli alla ja „DONE" oleks olnud
+eksitav.
+
+Väravad: `npm test` **3359/3359** (Europe/Tallinn ja UTC) · eslint puhas ·
+**negatiivkontroll: 8 uut/muudetud testi 10-st kukub vana teostuse peal** (kaks on
+regressioonivalve, mis peabki mõlemal pool roheline olema). Testid kontrollivad
+**andmebaasi**, mitte kutseid — fake rakendab `updateMany`/`deleteMany` ridadele, nagu
+kriteerium sõnaselgelt nõuab.
+
+**LAHTINE OMANIKULE:** kriteeriumi esimene pool — kiire abi õigusliku retentsiooni
+**tähtaeg** (kui kaua anonümiseeritud skelett alles jääb) — on endiselt määramata. See on
+otsus, mitte kood, ja ma ei ole seda enda eest teinud.
+
+**NOT_PROVEN:** päris PostgreSQL-i tehingut ega FK-kaskaadi ei ole läbi käidud.
 
 ### SOL-URG-03 — server ja vorm käsitlevad vastamata ohuküsimust vastusena „ei” — P1
 
@@ -2908,6 +2978,32 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Konto kustutanud inimese olukorrakirjeldus, eelkaardistus, mustandid ja võimalik kolmanda isiku info jäävad andmebaasi määramata ajaks autorita orvuna. Kasutajale lubatud kustutus ei toimu ning tavavaatest nähtamatu jääk võib jõuda varukoopiasse, administraatoriandmetesse või tulevasse valesti skoopivasse päringusse.
 
 **Vastuvõtukriteerium.** Sama lukustatud kustutustehing peab enne `User` rea kustutamist kustutama kõik selle autori `sentAt = null` eelpöördumised ja puhastama ainult kohale toimetatud read. Päris PostgreSQL-i integratsioonitest peab looma DRAFT-, saatmata READY-, SENT- ja parandusahela, kustutama konto ning tõendama: saatmata ridu 0, saadetud ridadel 0 sisumarkerit, Journey-ridu 0 ja võõra autori andmed muutmata.
+
+**Seis (10.08.2026): DONE — saatmata mustandid kustutatakse samas lukustatud tehingus. Commit `97b28080`.**
+
+`deleteMany({ authorId, sentAt: null })` käib **enne** `User` rea kustutamist, samas
+`$queryRaw … FOR UPDATE` luku all. Saadetud read puhastatakse endiselt (sisu tühjaks +
+`authorErasedAt`) ja jäävad alles.
+
+**Miks kustutus, mitte puhastus.** Vahe saadetud reaga on sisuline, mitte tehniline:
+saadetud eelpöördumine on jõudnud teise inimeseni ja tema töö kohta jääb vastutusjälg.
+Saatmata mustand ei ole kellegi teise juures olnud — tema kohta ei ole midagi, mille eest
+vastutada.
+
+Kriteeriumi **„Journey-ridu 0"** katab juba skeem: `Journey.owner` on `Cascade`, seega
+teekonnad lähevad kasutajaga kaasa ilma eraldi koodita. Seda ei ole vaja lisada, aga see
+oli vaja üle vaadata — kontrollisin, mitte ei eeldanud.
+
+Leid tuli ette [SOL-URG-02](#sol-urg-02--konto-kustutamine-jätab-kiire-abi-nime-telefoni-ja-olukorra-toorteksti-andmebaasi--p0)
+parandust kirjutades: konversioon kopeerib kiire abi verbatim-teksti mustandisse, seega
+ainult URG-02 sulgemine oleks jätnud samad sõnad teise tabeli alla. Kaks eri peatükki, üks
+funktsioon, üks inimese tekst — nad said ühe paranduse.
+
+Väravad ja negatiivkontroll: vt SOL-URG-02 Seis-lõiku (sama commit).
+
+**NOT_PROVEN:** kriteerium nõudis **päris PostgreSQL-i integratsioonitesti** parandusahela
+(`supersededById`) ja FK-kaskaadidega. Tõendatud on ainult reatasandi loogika ridu
+päriselt muutva fake'iga; parandusahelat ma eraldi ei mudeldanud.
 
 ### SOL-PRE-02 — tagasivõetud organisatsioonipöördumise sisu saab hiljem avada ja uuesti töötajale määrata — P0
 

@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **35 / 357** |
+| Tehtud leidu | **38 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **17 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **14 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-URG** (13 lahtist: 2 × P0, 11 × P1) — esimene P0-ga peatükk pärast SOL-CALL-i |
-| Käsil oleva peatüki saba | SOL-CALL 3 lahtist (3 × P2), P0-sid ega P1-sid ei ole enam |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SLOG** (5 × P0) — SOL-URG on P0-dest tühi, SOL-PRE-l on veel 1 × P0 (PRE-02) |
+| Käsil oleva peatüki saba | SOL-URG 11 lahtist (kõik P1), P0-sid ei ole enam · SOL-CALL 3 lahtist (kõik P2) |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10 on koodis ja deploy'mata (kaks migratsiooni:
+31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02 ja PRE-01 on koodis ja deploy'mata (kaks migratsiooni:
 `20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`)**. Ainus P3 kogu
 auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
@@ -43,7 +43,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
 | Domeenisündmused | SOL-EVENT | 0/1 | – | – | 1 | |
-| Kiireloomuline abi | SOL-URG | 0/13 | **2** | 11 | – | |
+| Kiireloomuline abi | SOL-URG | 2/13 | – | 11 | – | **käsil**, mõlemad P0-d tehtud |
 | Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
 | Teenuspäevik | SOL-SLOG | 0/24 | **5** | 18 | 1 | kõige rohkem P0-sid |
 | RAG-teenus ja ingest | SOL-RAGSVC | 0/28 | **2** | 19 | 7 | suurim peatükk |
@@ -54,7 +54,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Tõenduspõhised praktikad | SOL-PRAC | 0/8 | – | 8 | – | |
 | Teemaseemned | SOL-SEED | 0/5 | – | 3 | 2 | |
 | Teekond ja jagamine | SOL-JOUR | 0/17 | **2** | 12 | 3 | |
-| Eelpöördumised | SOL-PRE | 0/18 | **2** | 15 | 1 | |
+| Eelpöördumised | SOL-PRE | 1/18 | **1** | 15 | 1 | PRE-01 tehti URG-02 kõrval, sama tehing |
 | Abikuulutused | SOL-HELP | 0/13 | – | 11 | 2 | |
 | Võrgustikutöö | SOL-NET | 0/13 | **2** | 9 | 2 | |
 | Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
@@ -84,6 +84,17 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
   automaatse peatamisega ja kvoodireserv enne providerit. Kriteeriumi osa **„jõustada
   maksimaalne kestus provideris"** ei ole teostatav — LiveKit'i egress ei tunne sellist
   seadet — ja ta on Seis-lõigus nimeliselt asendatud serveripoolse valvega.
+- **SOL-URG-01** (10.08) — laua järjekord võttis kõik pöördumised vanimast alates ja lõikas
+  200 peal, seega ajaloos 200 vanema rea taha jäi iga uus abipalve **deterministlikult**
+  nähtamatuks. Töö ja ajalugu on nüüd eri päringud, loendurid tulevad andmebaasist ja kärbe
+  ütleb ennast välja. Sama parandus kattis ka `GET /api/urgent-requests?role=desk`, kus oli
+  teine koopia samast valikureeglist.
+- **SOL-URG-02 + SOL-PRE-01** (10.08) — **kaks P0-d eri peatükkidest, üks tehing.** Konto
+  kustutus vastas `ok: true` töö kohta, mida ta ei teinud: kiire abi verbatim-tekst, nimi ja
+  telefon jäid alles, saatmata eelpöördumiste mustandid samuti. Neid ei saanud eraldi
+  parandada, sest konversioon kopeerib kiire abi teksti mustandisse — ainult ühe sulgemine
+  oleks jätnud samad sõnad teise tabeli alla. **Omanikule jääb lahtiseks retentsiooni
+  tähtaeg**, vt URG-02 Seis-lõiku.
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -116,10 +127,9 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 17 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
-  kus P0-sid EI OLE ühtegi. SOL-CALL on selle reegli järgi P0-dest tühjaks tehtud; järgmine on
-  **SOL-URG** (2 × P0) — mitte SOL-SLOG, kus P0-sid on rohkem (5), sest SOL-URG on dokumendis
-  eespool ja järjekord otsustab alles võrdse prioriteedi juures. SOL-AUTH 13 lahtist leidu
-  jäävad ootele kuni P0-d on kaetud.
+  lahtiseid P0-sid on 14 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. SOL-CALL ja SOL-URG on selle reegli järgi P0-dest tühjaks tehtud;
+  järgmine on **SOL-SLOG** (5 × P0) — tema on lahtiste P0-dega peatükkidest dokumendis kõige
+  eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.
