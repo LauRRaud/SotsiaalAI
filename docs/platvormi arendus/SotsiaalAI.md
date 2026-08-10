@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 73/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 74/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -270,11 +270,18 @@ kaotaja saab ausa teate „muudeti vahepeal mujal". Tõendatud **päris andmebaa
 sealhulgas negatiivkontroll: sond jäljendab samas olukorras vana käitumist ja näitab, et see
 rikub kinnitatud sisu — seega on võistlus päris, mitte teoreetiline.
 
-Lahtiseks jääb **207 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(3/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-04: sama dokument andis kaks eri vastust.** Transkripti muutmine kirjutas uue teksti
+vana faili peale ja alles siis andmebaasi. Kui DB-samm kukkus, luges allalaadimine juba uut
+sisu, aga vaade ja AI-kokkuvõte vana teksti — sama dokument, kaks tõde. Uue transkripti puhul
+jäi vea korral tundlik tekst kettale ilma ühegi omaniku- ja säilitusreata. Nüüd läheb uus sisu
+esmalt ajutisse faili ja avaldatakse alles pärast andmebaasi; vea korral tuleb vana fail tagasi
+ja ajutine kaob. Tõendatud **päris hoidla ja päris tehinguga 17/17**.
+
+Lahtiseks jääb **206 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(4/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on SOL-DOC-01, -02 ja -03** — ükski ei vaja migratsiooni. Ütle, kui viin
+**Deploy'mata on SOL-DOC-01…-04** — ükski ei vaja migratsiooni. Ütle, kui viin
 serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`

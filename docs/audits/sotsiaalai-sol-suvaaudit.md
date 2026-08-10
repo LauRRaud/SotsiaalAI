@@ -1515,6 +1515,36 @@ tagastas), aga ühe toiminguni kokku sai ainult detailivaade. Ühiktestid mõõd
 
 **Vastuvõtukriteerium.** Muudatus tuleb kirjutada uude ajutisse faili ning avaldada atomaarse asenduse/kompensatsiooniga alles pärast DB edu; vea korral peab säilima vana fail ja eemalduma ajutine. Uue transkripti loomisel peab iga kirjutatud fail olema DB-reaga seotud või tõendatult puhastatud. Veasüstetestid peavad katkestama DB update/create'i pärast failikirjutust ja võrdlema DB, allalaadimise ning kettaseisu.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i ja päris hoidla runtime-tõendiga (17/17).**
+
+**KAKS TÕDE ÜHEST DOKUMENDIST.** Transkripti muutmine kirjutas uue teksti VANA faili peale ja
+alles seejärel uuendas andmebaasi. DB-vea korral ei taastanud eelmist faili keegi: allalaadimine
+luges juba uut sisu, aga API ja AI-kokkuvõte lugesid `content` välja andmebaasist — sama dokument
+andis kaks eri vastust, olenevalt sellest, kust vaadata. Uue transkripti rada kirjutas samuti
+faili enne rea loomist ja catch ei teadnud loodud teed: DB-vea korral jäi **tundlik tekst kettale
+ilma omaniku- ja retention-reata**.
+
+**Järjekord on ümber pööratud ja lukus.** `lib/documents/storageStaging.js` kirjutab uue sisu
+esmalt ajutisse faili samas kaustas; `lib/documents/transcriptContent.js` teeb DB-kirjutuse
+tehingus ja avaldab faili (`rename`) **tehingu sees viimase sammuna**. Sama failisüsteemi sees on
+rename atomaarne, seega lugeja näeb kas vana või uut faili, mitte pooleliolevat.
+
+**Ülekirjutusel hoitakse vana alles.** `publish()` viib olemasoleva faili kõrvale varukoopiaks ja
+`rollback()` toob ta tagasi. Ilma selleta oleks „vea korral peab säilima vana fail" ainult lubadus:
+rename on kiire, aga tema JÄREL võib tehing ikka veel kukkuda. Just see kitsaim aken on sondis
+eraldi veasüstina.
+
+**Mõõdetud kahel tasemel.** Ühiktestid (`tests/documents/storageStaging.test.js`, 8) jooksevad
+PÄRIS failisüsteemi vastu ajutises kaustas — võltsitud failisüsteemi all oleks ka vana kood
+roheline. Sond (`npm run doc:staging:probe`, **17/17**) lisab päris hoidla ja päris tehingu ning
+süstib vea kolme eri kohta: DB-viga enne avaldamist (vana fail alles), tehingu viga PÄRAST
+avaldamist (vana fail tuleb tagasi, rida pöördub tagasi), ja loomise viga (**orbfaili ei teki
+üldse** — kontrollitud võõrvõtme veaga päris andmebaasis).
+
+**Aus piir mõõtmises.** Kaks tõde said üheks nende kahe raja jaoks, mida leid nimetab. Sama
+„kirjuta fail, siis rida" muster võib mujal alles olla; seda peatükki see leid ei kata, ja
+lähtekoodi-leping valvab ainult neid kahte marsruuti.
+
 ### SOL-DOC-05 — kolme refinement'i piirang pole paralleelsete päringute korral jõustatud — P2
 
 **Tõend.** Refinement loendab artefakti varasemad `ARTIFACT_REFINE` auditiread ja võrdleb arvu kolmega enne AI-kutset (`app/api/documents/artifacts/refine/route.js:97-127`). Piirangul pole artefaktipõhist lukku, reservatsioonirida ega unikaalset slot'i. Audit lisatakse alles pärast genereerimist ja kasutuse commit'i (`:198-230`). Kaks või enam samaaegset päringut võivad kõik lugeda sama arvu alla kolme ja kõik lõpetada edukalt.

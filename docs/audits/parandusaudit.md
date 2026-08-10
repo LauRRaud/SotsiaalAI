@@ -9,16 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **73 / 357** |
+| Tehtud leidu | **74 / 357** |
 | Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 207 × P1 · 76 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 206 × P1 · 76 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (3/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (4/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 73-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01, -02 ja -03**;
+**70 tehtud leidu 74-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-04**;
 ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 3/9 | – | 3 | 3 | **käsil**, DOC-01…-03 tehtud |
+| Dokumendid ja AI-kasutus | SOL-DOC | 4/9 | – | 2 | 3 | **käsil**, DOC-01…-04 tehtud |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -287,6 +287,15 @@ nii et detailivaate kaks päringut said üheks. **`npm run artifact:race:probe` 
 PostgreSQL-is**, sealhulgas negatiivkontroll: sond jäljendab samas harnessis vana mustrit ja
 nõuab, et see FINAL-i ära rikuks — rikub, seega on võistlus päris ja ülejäänud rohelised on
 paranduse teene.
+
+**SOL-DOC-04 (11.08): kaks tõde ühest dokumendist.** Transkripti muutmine kirjutas uue teksti
+vana faili PEALE ja alles siis andmebaasi: DB-vea korral luges allalaadimine juba uut sisu, aga
+API ja AI-kokkuvõte vana `content` välja. Uue transkripti rada kirjutas faili enne rea loomist ja
+catch ei teadnud loodud teed — tundlik tekst jäi kettale ilma omaniku- ja retention-reata.
+Järjekord on nüüd ümber: uus sisu läheb ajutisse faili ja avaldatakse `rename`-ga **tehingu sees
+viimase sammuna**, ülekirjutusel hoitakse vana varukoopiana, et ka „rename õnnestus, tehing
+kukkus" aken taastuks. **`npm run doc:staging:probe` 17/17** päris hoidla ja päris tehinguga,
+kolm veasüsti: viga enne avaldamist, viga PÄRAST avaldamist, ja loomise viga (orbfaili ei teki).
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
