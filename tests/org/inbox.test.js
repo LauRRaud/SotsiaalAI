@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
+import { INBOX_STATUS_TRANSITIONS, isTerminalInboxStatus } from "../../lib/org/constants.js";
 import { projectSourcePackage } from "../../lib/org/inbox.js";
 
 /**
@@ -110,4 +111,64 @@ test("recall and open timestamps travel so the receiver sees the honest state", 
   );
   assert.ok(projected.openedAt instanceof Date);
   assert.equal(projected.recalledAt, null);
+});
+
+/* ---------------------------------------------------------------------------
+   SOL-PRE-02 — tagasivõetud pakett ei ole enam sisu.
+   -------------------------------------------------------------------------*/
+
+test("a recalled package carries no content through the projection", () => {
+  const projected = projectSourcePackage(
+    fullInquiry({ recalledAt: new Date("2026-08-02T09:00:00.000Z") })
+  );
+  assert.equal(projected, null);
+});
+
+/* NEGATIIVKONTROLL: tõendab, et ülemine test mõõdab midagi. Sama fikstuur ilma
+   `recalledAt`-ita PEAB sisu andma — muidu võiks projektsioon olla lihtsalt
+   katki ja test läheks ikka roheliseks. */
+test("negative control — the same fixture without a recall still carries content", () => {
+  const projected = projectSourcePackage(fullInquiry({ recalledAt: null }));
+  assert.equal(projected.situation, "Kirjeldus, mille pöörduja ise kirjutas.");
+  assert.equal(projected.userEditedDraft, "Pöörduja parandatud tekst");
+});
+
+test("no field of a recalled inquiry survives serialisation", () => {
+  const projected = projectSourcePackage(
+    fullInquiry({
+      recalledAt: new Date("2026-08-02T09:00:00.000Z"),
+      topic: "SALAJANE-TEEMA",
+      situation: "SALAJANE-OLUKORD"
+    })
+  );
+  const serialized = JSON.stringify(projected);
+  assert.equal(serialized.includes("SALAJANE"), false);
+});
+
+/**
+ * Terminaalsus on TULETATUD seisumasinast, mitte teine loend. See test on
+ * ainus koht, kus need kaks tõde kohtuvad: kui keegi lisab tabelisse uue
+ * seisu tühja väljundiga, peab ta terminaliks muutuma ilma teist faili
+ * puutumata.
+ */
+test("terminal inbox statuses are derived from the transition table itself", () => {
+  for (const [status, allowed] of Object.entries(INBOX_STATUS_TRANSITIONS)) {
+    assert.equal(
+      isTerminalInboxStatus(status),
+      allowed.length === 0,
+      `${status} terminality must follow its transition list`
+    );
+  }
+  assert.equal(isTerminalInboxStatus("RECALLED"), true);
+  assert.equal(isTerminalInboxStatus("CLOSED"), true);
+  assert.equal(isTerminalInboxStatus("REJECTED"), true);
+  assert.equal(isTerminalInboxStatus("RECEIVED"), false);
+  assert.equal(isTerminalInboxStatus("ASSIGNED"), false);
+});
+
+/* Tundmatu seis on FAIL-CLOSED: töö sulgub, mitte ei avane. */
+test("an unknown status is treated as terminal, never as workable", () => {
+  assert.equal(isTerminalInboxStatus("SOMETHING_NEW"), true);
+  assert.equal(isTerminalInboxStatus(undefined), true);
+  assert.equal(isTerminalInboxStatus(null), true);
 });

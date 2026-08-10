@@ -8643,6 +8643,7 @@
       "inbox_source_mismatch": "Pöördumine ei ole sellele organisatsioonile adresseeritud.",
       "inbox_delivery_failed": "Pöördumise kohaletoimetamine ebaõnnestus. Proovi uuesti.",
       "inbox_item_not_found": "Kirjet ei leitud.",
+      "inbox_item_terminal": "See pöördumine on lõpetatud või saatja võttis selle tagasi. Tööd sellega enam teha ei saa.",
       "inbox_recall_is_sender_right": "Tagasivõtmine on saatja õigus.",
       "invalid_inbox_transition": "Sellist olekumuutust ei ole lubatud teha.",
       "inbox_transition_failed": "Oleku muutmine ebaõnnestus.",
@@ -8742,7 +8743,8 @@
       "handOver": "Anna üle",
       "close": "Sulge töö",
       "backToList": "Tagasi loendisse",
-      "openedNotice": "Sinu avamine on pöördujale nähtav ja pärast seda ei saa ta pöördumist enam tagasi võtta."
+      "openedNotice": "Sinu avamine on pöördujale nähtav ja pärast seda ei saa ta pöördumist enam tagasi võtta.",
+      "recalledNotice": "Saatja võttis selle pöördumise tagasi enne avamist. Sisu ei ole enam nähtav ja tööd sellega teha ei saa."
     },
     "inboxStatus": {
       "RECEIVED": "Saabunud",

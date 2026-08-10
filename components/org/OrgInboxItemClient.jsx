@@ -29,6 +29,11 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
   const source = item.source || {};
+  /* Server ei saatnud sisu ja ütles ka, miks. UI ei tohi seda tõlgendada
+     „andmed ei laadinud" veaks ega joonistada tühje välju, mille kõrval on
+     endiselt „määra töötaja" — nupp, mille server niikuinii 409-ga tagasi
+     lükkab. Tühi vorm annaks lubaduse, mida ei ole. */
+  const withheld = item.sourceWithheldReason || null;
   const assignment = item.assignment || null;
   const isMyAssignment = assignment?.membershipId === context.membership?.id;
 
@@ -101,36 +106,47 @@ export default function OrgInboxItemClient({ context, item, members, canAssign }
             </div>
           ) : null}
         </dl>
-        <p className="ow-notice ow-notice--privacy">{t("org.inbox.openedNotice")}</p>
+        {/* Avamise teade käib AVAMISE kohta. Tagasivõetud kirjet ei avatud —
+            server ei märkinud `openedAt`-i — ja lubadus „sinu avamine on
+            pöördujale nähtav" oleks siin lihtsalt vale. */}
+        {withheld ? null : (
+          <p className="ow-notice ow-notice--privacy">{t("org.inbox.openedNotice")}</p>
+        )}
       </div>
 
       <section className="ow-card" aria-labelledby="ow-package">
         <h2 id="ow-package" className="ow-title" style={{ fontSize: "1rem" }}>
           {t("org.inbox.sourcePackage")}
         </h2>
-        <dl className="ow-meta">
-          <div>
-            <dt className="ow-meta__term">{t("org.inbox.topic")}</dt>
-            <dd className="ow-meta__value">{source.topic || "—"}</dd>
-          </div>
-        </dl>
-        <div>
-          <h3 className="ow-meta__term">{t("org.inbox.situation")}</h3>
-          <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-            {source.situation || "—"}
-          </p>
-        </div>
-        {source.userEditedDraft || source.generatedDraft ? (
-          <div>
-            <h3 className="ow-meta__term">{t("org.inbox.draft")}</h3>
-            <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
-              {source.userEditedDraft || source.generatedDraft}
-            </p>
-          </div>
-        ) : null}
+        {withheld ? (
+          <p className="ow-notice ow-notice--privacy">{t("org.inbox.recalledNotice")}</p>
+        ) : (
+          <>
+            <dl className="ow-meta">
+              <div>
+                <dt className="ow-meta__term">{t("org.inbox.topic")}</dt>
+                <dd className="ow-meta__value">{source.topic || "—"}</dd>
+              </div>
+            </dl>
+            <div>
+              <h3 className="ow-meta__term">{t("org.inbox.situation")}</h3>
+              <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
+                {source.situation || "—"}
+              </p>
+            </div>
+            {source.userEditedDraft || source.generatedDraft ? (
+              <div>
+                <h3 className="ow-meta__term">{t("org.inbox.draft")}</h3>
+                <p className="ow-meta__value" style={{ whiteSpace: "pre-wrap" }}>
+                  {source.userEditedDraft || source.generatedDraft}
+                </p>
+              </div>
+            ) : null}
+          </>
+        )}
       </section>
 
-      {writable ? (
+      {writable && !withheld ? (
         <section className="ow-card" aria-labelledby="ow-work">
           <h2 id="ow-work" className="ow-title" style={{ fontSize: "1rem" }}>
             {t("org.members.actions")}

@@ -8643,6 +8643,7 @@
       "inbox_source_mismatch": "The inquiry is not addressed to this organisation.",
       "inbox_delivery_failed": "Delivering the inquiry failed. Please try again.",
       "inbox_item_not_found": "Item not found.",
+      "inbox_item_terminal": "This inquiry is finished or the sender recalled it. No further work is possible on it.",
       "inbox_recall_is_sender_right": "Recall is the sender's right.",
       "invalid_inbox_transition": "That status change is not allowed.",
       "inbox_transition_failed": "Changing the status failed.",
@@ -8742,7 +8743,8 @@
       "handOver": "Hand over",
       "close": "Close work",
       "backToList": "Back to list",
-      "openedNotice": "Your opening is visible to the sender, and after it they can no longer recall the inquiry."
+      "openedNotice": "Your opening is visible to the sender, and after it they can no longer recall the inquiry.",
+      "recalledNotice": "The sender recalled this inquiry before it was opened. The content is no longer visible and no work can be done on it."
     },
     "inboxStatus": {
       "RECEIVED": "Received",
