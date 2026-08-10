@@ -9,8 +9,9 @@ import {
 } from "@/lib/documents/audioWorkflow"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
-import { getDailyUploadQuotaBytes, getStorageQuotaBytes, getUtcDayStart } from "@/lib/storageGuardrails"
-import { getUserDailyUploadBytes, getUserStorageUsageBytes } from "@/lib/storageUsage"
+import { getUtcDayStart } from "@/lib/storageGuardrails"
+import { withStorageQuota } from "@/lib/documents/storageQuota"
+import { stageStoredBuffer } from "@/lib/documents/storageStaging"
 import {
   deleteStoredDocument,
   ensureDocumentsStorage,
@@ -19,8 +20,7 @@ import {
   json,
   localeFromRequest,
   normalizeDocumentTitle,
-  requireDocumentUser,
-  writeStoredBuffer
+  requireDocumentUser
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
 
@@ -145,63 +145,64 @@ export async function POST(request) {
 
   try {
     const mime = ensureAllowedAudioUpload(file)
-    const fileBytes = Number(file?.size || 0)
     const role = effectiveRoleFromSession(auth.session)
-    const storageQuotaBytes = getStorageQuotaBytes(role)
-    const [storageUsageBytes, dailyUploadBytes] = await Promise.all([
-      getUserStorageUsageBytes(auth.userId),
-      getUserDailyUploadBytes(auth.userId, getUtcDayStart())
-    ])
-
-    if (storageUsageBytes.totalBytes + fileBytes > storageQuotaBytes) {
-      return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
-        scope: "storage_quota",
-        limit: storageQuotaBytes,
-        used: storageUsageBytes.totalBytes
-      })
-    }
-
-    if (dailyUploadBytes + fileBytes > getDailyUploadQuotaBytes()) {
-      return errorJson("documents.errors.daily_upload_quota_exceeded", 429, locale, {
-        scope: "daily_upload",
-        limit: getDailyUploadQuotaBytes(),
-        used: dailyUploadBytes
-      })
-    }
 
     const buffer = Buffer.from(await file.arrayBuffer())
     assertAudioSignature(buffer, mime, file.name)
     await ensureDocumentsStorage()
     storagePath = getStoredDocumentPath(file.name || "audio.webm")
-    const stored = await writeStoredBuffer(buffer, storagePath)
 
-    const document = await prisma.userDocument.create({
-      data: {
-        ownerId: auth.userId,
-        title,
-        originalName: String(file.name || title),
-        kind: "UPLOADED_AUDIO_SOURCE",
-        agentAllowed: false,
-        mime,
-        size: stored.size,
-        sha256: stored.sha256,
-        storagePath,
-        metadata: {
-          source: "DOCUMENT_AUDIO_UPLOAD"
+    // Sama leping nagu tavalisel üleslaadimisel: kvoodi mõõtmine ja rea loomine ühes
+    // kasutajapõhise lukuga tehingus, fail avaldatakse selle sees viimasena.
+    const staged = await stageStoredBuffer(buffer, storagePath)
+    let document
+    try {
+      document = await withStorageQuota(
+        {
+          userId: auth.userId,
+          role,
+          addBytes: staged.size,
+          dailyAddBytes: staged.size,
+          dayStart: getUtcDayStart()
+        },
+        {},
+        async (tx) => {
+          const created = await tx.userDocument.create({
+            data: {
+              ownerId: auth.userId,
+              title,
+              originalName: String(file.name || title),
+              kind: "UPLOADED_AUDIO_SOURCE",
+              agentAllowed: false,
+              mime,
+              size: staged.size,
+              sha256: staged.sha256,
+              storagePath,
+              metadata: {
+                source: "DOCUMENT_AUDIO_UPLOAD"
+              }
+            },
+            select: {
+              id: true,
+              title: true,
+              originalName: true,
+              kind: true,
+              mime: true,
+              size: true,
+              createdAt: true,
+              updatedAt: true,
+              ...buildAudioInclude()
+            }
+          })
+          await staged.publish()
+          return created
         }
-      },
-      select: {
-        id: true,
-        title: true,
-        originalName: true,
-        kind: true,
-        mime: true,
-        size: true,
-        createdAt: true,
-        updatedAt: true,
-        ...buildAudioInclude()
-      }
-    })
+      )
+      await staged.cleanup()
+    } catch (error) {
+      await staged.rollback()
+      throw error
+    }
 
     await logDocumentsAudit("document.audio_uploaded", {
       userId: auth.userId,
@@ -235,7 +236,8 @@ export async function POST(request) {
       status
     })
     return errorJson(status === 500 ? "documents.errors.audio_upload_failed" : error?.message || "documents.errors.audio_upload_failed", status, locale, {
-      maxFileSizeMb: error?.maxFileSizeMb || undefined
+      maxFileSizeMb: error?.maxFileSizeMb || undefined,
+      ...(error?.quota || {})
     })
   }
 }

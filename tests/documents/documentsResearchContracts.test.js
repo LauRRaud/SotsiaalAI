@@ -214,6 +214,30 @@ test("one audio source can only have one transcription in flight", () => {
   assert.match(claim, /TRANSCRIPTION_CLAIM_STALE_MS/);
 });
 
+// SOL-DOC-07. Kvoot oli piir ainult ühe päringu jaoks korraga: summa loeti eraldi ja rida loodi
+// hiljem. Mõõtmine ja kirjutus peavad olema ühes kasutajapõhise lukuga tehingus.
+test("storage quota is measured and written inside one locked transaction", () => {
+  for (const rel of [
+    "app/api/documents/route.js",
+    "app/api/documents/audio-sources/route.js",
+    "app/api/documents/artifacts/[id]/route.js",
+    "lib/documents/persistDraft.js"
+  ]) {
+    const src = read(rel);
+    assert.match(src, /withStorageQuota\(/, `${rel} must decide the quota inside the write transaction`);
+    assert.doesNotMatch(
+      src,
+      /getUserStorageUsageBytes\(/,
+      `${rel} must not read the sum outside the locked transaction`
+    );
+  }
+
+  const quota = read("lib/documents/storageQuota.js");
+  assert.match(quota, /\$transaction\([\s\S]{0,200}pg_advisory_xact_lock/);
+  assert.match(quota, /\$executeRaw/, "advisory lock only through $executeRaw");
+  assert.match(quota, /return write\(tx/, "the write must run inside the same transaction");
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {

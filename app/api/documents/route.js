@@ -5,8 +5,9 @@ import { DOCUMENT_LIST_LIMIT } from "@/lib/documents/constants"
 import { buildPaginationMeta, parseListLimit, parseListOffset } from "@/lib/documents/listing"
 import { logDocumentsAudit } from "@/lib/documents/audit"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
-import { getDailyUploadQuotaBytes, getStorageQuotaBytes, getUtcDayStart } from "@/lib/storageGuardrails"
-import { getUserDailyUploadBytes, getUserStorageUsageBytes } from "@/lib/storageUsage"
+import { getUtcDayStart } from "@/lib/storageGuardrails"
+import { withStorageQuota } from "@/lib/documents/storageQuota"
+import { stageStoredBuffer } from "@/lib/documents/storageStaging"
 import {
   deleteStoredDocument,
   ensureAllowedUpload,
@@ -19,7 +20,7 @@ import {
   normalizeDocumentTitle,
   normalizeTemplateFor,
   requireDocumentUser,
-  writeUploadedFile
+  assertMimeMatchesBuffer
 } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
 
@@ -245,60 +246,64 @@ export async function POST(request) {
 
   try {
     const mime = ensureAllowedUpload(file)
-    const fileBytes = Number(file?.size || 0)
     const role = effectiveRoleFromSession(auth.session)
-    const storageQuotaBytes = getStorageQuotaBytes(role)
-    const [storageUsageBytes, dailyUploadBytes] = await Promise.all([
-      getUserStorageUsageBytes(auth.userId),
-      getUserDailyUploadBytes(auth.userId, getUtcDayStart())
-    ])
 
-    if (storageUsageBytes.totalBytes + fileBytes > storageQuotaBytes) {
-      return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
-        scope: "storage_quota",
-        limit: storageQuotaBytes,
-        used: storageUsageBytes.totalBytes
-      })
-    }
-
-    if (dailyUploadBytes + fileBytes > getDailyUploadQuotaBytes()) {
-      return errorJson("documents.errors.daily_upload_quota_exceeded", 429, locale, {
-        scope: "daily_upload",
-        limit: getDailyUploadQuotaBytes(),
-        used: dailyUploadBytes
-      })
-    }
-
+    const buffer = Buffer.from(await file.arrayBuffer())
+    assertMimeMatchesBuffer(buffer, mime)
     await ensureDocumentsStorage()
     storagePath = getStoredDocumentPath(file.name)
-    const stored = await writeUploadedFile(file, storagePath, mime)
 
-    const document = await prisma.userDocument.create({
-      data: {
-        ownerId: auth.userId,
-        title,
-        originalName: String(file.name || title),
-        kind,
-        templateFor,
-        agentAllowed: false,
-        mime,
-        size: stored.size,
-        sha256: stored.sha256,
-        storagePath
-      },
-      select: {
-        id: true,
-        title: true,
-        originalName: true,
-        kind: true,
-        templateFor: true,
-        agentAllowed: true,
-        mime: true,
-        size: true,
-        createdAt: true,
-        updatedAt: true
-      }
-    })
+    // Kvoodi mõõtmine ja rea loomine käivad ÜHES kasutajapõhise lukuga tehingus; fail
+    // avaldatakse selle sees viimasena. Varem loeti summa eraldi ja rida loodi hiljem, seega
+    // kaks päringut mahtusid mõlemad vana summa järgi ära ja ületasid koos limiidi.
+    const staged = await stageStoredBuffer(buffer, storagePath)
+    let document
+    try {
+      document = await withStorageQuota(
+        {
+          userId: auth.userId,
+          role,
+          addBytes: staged.size,
+          dailyAddBytes: staged.size,
+          dayStart: getUtcDayStart()
+        },
+        {},
+        async (tx) => {
+          const created = await tx.userDocument.create({
+            data: {
+              ownerId: auth.userId,
+              title,
+              originalName: String(file.name || title),
+              kind,
+              templateFor,
+              agentAllowed: false,
+              mime,
+              size: staged.size,
+              sha256: staged.sha256,
+              storagePath
+            },
+            select: {
+              id: true,
+              title: true,
+              originalName: true,
+              kind: true,
+              templateFor: true,
+              agentAllowed: true,
+              mime: true,
+              size: true,
+              createdAt: true,
+              updatedAt: true
+            }
+          })
+          await staged.publish()
+          return created
+        }
+      )
+      await staged.cleanup()
+    } catch (error) {
+      await staged.rollback()
+      throw error
+    }
     createdDocument = document
 
     await logDocumentsAudit("document.uploaded", {
@@ -343,6 +348,6 @@ export async function POST(request) {
       templateFor,
       status
     })
-    return errorJson(messageKey, status, locale)
+    return errorJson(messageKey, status, locale, error?.quota || undefined)
   }
 }

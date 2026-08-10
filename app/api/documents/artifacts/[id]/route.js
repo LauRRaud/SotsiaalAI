@@ -12,8 +12,8 @@ import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import { errorJson, json, localeFromRequest, requireDocumentUser } from "@/lib/documents/server"
 import { safeError } from "@/lib/privacy/safeError"
-import { getStorageQuotaBytes, getUtf8ByteLength } from "@/lib/storageGuardrails"
-import { getUserStorageUsageBytes } from "@/lib/storageUsage"
+import { getUtf8ByteLength } from "@/lib/storageGuardrails"
+import { withStorageQuota } from "@/lib/documents/storageQuota"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -184,31 +184,32 @@ export async function PATCH(request, { params }) {
     }
 
     const role = effectiveRoleFromSession(auth.session)
-    const storageQuotaBytes = getStorageQuotaBytes(role)
-    const storageUsageBytes = await getUserStorageUsageBytes(auth.userId)
-    const currentArtifactBytes = getUtf8ByteLength(artifact.content)
-    const nextArtifactBytes = getUtf8ByteLength(nextContent)
-    const projectedBytes = storageUsageBytes.totalBytes - currentArtifactBytes + nextArtifactBytes
-
-    if (projectedBytes > storageQuotaBytes) {
-      return errorJson("documents.errors.storage_quota_exceeded", 413, locale, {
-        scope: "storage_quota",
-        limit: storageQuotaBytes,
-        used: storageUsageBytes.totalBytes
-      })
-    }
 
     // Kontroll ja kirjutus ühes lauses: `updateDraftArtifact` nõuab kirjutamise HETKEL, et rida
     // on endiselt selle omaniku DRAFT ja täpselt see versioon, mida klient nägi. Ülalpool loetud
     // seis ei otsusta enam midagi — tema ja kirjutuse vahele mahtus varem terve approve.
-    const updated = await updateDraftArtifact({
-      artifactId: id,
-      ownerId: auth.userId,
-      expectedUpdatedAt,
-      title: nextTitle,
-      content: nextContent,
-      templateId: nextTemplateId
-    })
+    // Kvoodi mõõtmine käib sama tehingu ja sama kasutajapõhise luku all (SOL-DOC-07).
+    const updated = await withStorageQuota(
+      {
+        userId: auth.userId,
+        role,
+        addBytes: getUtf8ByteLength(nextContent),
+        releaseBytes: getUtf8ByteLength(artifact.content)
+      },
+      {},
+      (tx) =>
+        updateDraftArtifact(
+          {
+            artifactId: id,
+            ownerId: auth.userId,
+            expectedUpdatedAt,
+            title: nextTitle,
+            content: nextContent,
+            templateId: nextTemplateId
+          },
+          { db: tx }
+        )
+    )
 
     await logDocumentsAudit("artifact.updated", {
       userId: auth.userId,
@@ -231,7 +232,7 @@ export async function PATCH(request, { params }) {
       return errorJson(error.message, 409, locale)
     }
     if (error?.status === 400 || error?.status === 413) {
-      return errorJson(error.message, error.status, locale)
+      return errorJson(error.message, error.status, locale, error?.quota || undefined)
     }
     console.error("[documents artifacts] update failed", safeError(error))
     return errorJson("documents.artifacts.errors.update_failed", 500, locale)
