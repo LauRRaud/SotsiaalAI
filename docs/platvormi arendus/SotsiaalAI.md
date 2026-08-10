@@ -101,7 +101,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 52/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 58/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -110,8 +110,22 @@ leidis seejuures, et esimene värav oli **vales kohas** — `searchRagQueries` t
 kohast ja ühe päringu kiirtee (vestluses kõige tavalisem kuju) käis mööda; värav kolis
 `searchRagDirect`-i sisse. Teine, seni märkamata uks oli **kovisiooni teadmusotsing**, mis
 käib sama RAG-indeksi peal ilma kollektsioonifiltrita — ka see rada on nüüd väravaga.
-Lahtiseks jääb **224 P1, 80 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-ORG-01** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA
+
+**Sama õhtu jätk: SOL-ORG-01…-06 kaetud** (kõik P1 peale ORG-04, mis on P2). Kolm
+uut sondi, kõik päris PostgreSQL-i vastu:
+`slog:org:probe` (34/34) · `org:seat:probe` (26/26) · `org:sponsor:probe` (33/33).
+Kaks viimast on **paralleelsussondid** ja nad on deterministlikud, mitte „mahtusid ühte
+sekundisse": kolmas tehing hoiab rea lukku, mõlemad võistlejad käivitatakse ja MÕÕDETAKSE,
+et nad ootavad, siis lukk lastakse lahti. **Mõlemad kukuvad vana koodi vastu 10 korda** —
+ilma selle kontrollita ei tõendaks roheline sond midagi. Uus migratsioon `20260810200000`
+teeb külastuse organisatsioonilise päritolu **andmebaasi tasemel muutumatuks**.
+
+Kaks asja, mis nendest leidudest välja tulid ja mida audit ise ei nimetanud: korduv
+sponsorluse vastuvõtmine tegi kasutajale **kaks tellimusrida**, ja teenuspäeviku
+nõusolekuväraval oli **teine uks** kovisiooni kaudu.
+
+Lahtiseks jääb **219 P1, 79 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-ORG-07** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA
 taga).
 
 **SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
