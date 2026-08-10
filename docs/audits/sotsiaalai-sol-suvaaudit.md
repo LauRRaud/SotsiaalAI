@@ -3936,6 +3936,33 @@ taga veel ei ole.
 
 **Vastuvõtukriteerium.** Konto kustutuse tehing peab SOLO-profiili enne User-kustutust vähemalt `HIDDEN` olekusse viima, avalikud kaardiobjektid sulgema ja RAG-kustutuse püsivasse retry-järjekorda panema; äriliselt säilitatavad väljad tuleb anonüümida või üle anda selge õigusliku alusega. Runtime-test loob avaliku SOLO-profiili, kustutab konto ja tõendab seejärel 0 avalikku kaardivastet, 0 RAG-vastet ning hallatava järeltegevuse.
 
+**Seis (10.08.2026): kood DONE; runtime NOT_PROVEN.**
+
+Kolm sammu käivad nüüd **enne `user.delete`-i ja samas lukustatud tehingus**
+(`deleteUserAfterFinalPracticeSweep`, seesama tehing, kus elavad SOL-PRE-01 ja
+SOL-URG-02): profiil → `HIDDEN`, tema `ServiceMapEntry` read → `HIDDEN`, RAG-koopiale
+**püsiv `RAG_DELETE` töö**. Loendurid tulevad vastusesse (`hiddenServiceProfiles`,
+`hiddenServiceMapEntries`, `queuedServiceProfileRagDeletions`) — kustutus ei saa enam öelda
+„tehtud" ilma numbrita.
+
+**RAG-i ei kutsuta tehingu seest.** Võrgukutse hoiaks `User` rea lukku võõra teenuse
+vastuse ajaks ja tema tõrge keeraks tagasi kogu kustutuse, mis muidu õnnestus. Töö läheb
+järjekorda, mida ajab taga `deletionJobRetryService` ja mida loeb deploy-värav.
+
+**Uut töölist ei ehitatud.** `DataDeletionJob` kannab juba `RAG_DELETE`-i koos
+`nextAttemptAt`/`attempts`/`maxAttempts`-iga ning sama rada kasutavad SOL-RAGADMIN-02 ja
+tõenduspõhised praktikad. Teine järjekord tähendaks teist kohta, kust orbe otsida.
+
+**Mudeleid ei valvata `?.`-ga.** Sama põhjendus mis SOL-URG-02 juures: puuduv mudel peab
+kukutama, mitte muutuma vaikseks nulliks. Kaks testifake'i said seepärast uued mudelid,
+mitte kood uue valve.
+
+**NOT_PROVEN:** kriteeriumi runtime-test (loo avalik SOLO-profiil → kustuta konto →
+tõenda 0 avalikku kaardivastet, 0 RAG-vastet) **ei ole jooksutatud**. Tõendatud on
+tehingusisene järjekord ja loendurid ühiktestiga; päris andmebaasi vastu käiv sond on
+tegemata. **Anonüümimise/üleandmise osa** („äriliselt säilitatavad väljad") on samuti
+lahtine — täna profiil PEIDETAKSE, tema sisu jääb reale alles.
+
 ### SOL-SPROF-02 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — P0
 
 **Tõend.** RAG-sünk kontrollib kõigepealt võtme olemasolu ja tagastab `syncStatus:"skipped"`; alles järgmises harus hinnatakse, kas profiil tuleb eemaldada (`lib/serviceProviderProfiles.js:475-517`). Seega puuduva `RAG_SERVICE_KEY` korral ei kustutata vana `ragSourceId` dokumenti ka siis, kui kasutaja lülitab `assistantRecommendationAllowed` välja või peidab profiili. Kustutus-/ingest-vea püüab profiilisalvestus kinni, kirjutab ainult `ragMetadata.syncStatus:"failed"` ja tagastab route'ile tavapärase profiili (`:1121-1139`); UI kuvab selle järel tingimusteta „Teenuseprofiil salvestati” ega näita RAG-meta seisu (`components/workspace/WorkspaceFeaturePage.jsx:4219-4234`). Püsivat profiili-RAG retry-job'i pole.
@@ -3956,6 +3983,38 @@ snapshot-ridadeta, mis seal jälje alles jätsid.
 **Mõju.** Kasutaja selgesõnaline AI-soovitusloa tagasivõtmine või profiili peitmine võib olla ainult DB/UI muudatus; kontaktid ja teenusekirjeldused jäävad assistendile leitavaks. Kasutaja saab vale eduteate ega tea, et nõusolekupiir pole välises koopias jõustunud.
 
 **Vastuvõtukriteerium.** Loa eemaldamine peab fail-closed lõpetama retrieval'i kohe ning looma deterministliku püsiva delete-job'i, mida retry-worker ja deploy-värav jälgivad. Route/UI peab näitama ausat pending/failed olekut. Testida puuduva võtme, timeout'i, osalise RAG-vea, restardi ja korduva tagasivõtmisega; lõpptõend on 0 tulemust vana teenuse unikaalse markeriga.
+
+**Seis (10.08.2026): kood DONE; retrieval-pool ja runtime NOT_PROVEN.**
+
+Uus jagatud moodul `lib/privacy/serviceProfileRagRemoval.js` kannab kogu protokolli ja tal
+on **kaks reeglit**:
+
+1. **Töö kirjutatakse ENNE kustutuskatset.** Kui protsess sureb katse ajal, peab jälg alles
+   olema; vastupidine järjekord kaotab orvu vaikselt. (Ühiktest mõõdab just seda järjekorda.)
+2. **`ragSourceId` kustub AINULT kinnitatud kustutuse järel.** Kinnitamata eemaldus jääb
+   `pending_removal` seisu koos viida ja töö ID-ga. Vana kood kirjutas `ragSourceId: null`
+   tingimusteta ja kaotas nii **ainsa salvestatud viida orvule** — doc-ID on determinist,
+   aga miski ei märkinud, et teda otsida tuleks.
+
+**Puuduv `RAG_SERVICE_KEY` ei ole enam „skipped".** Eemalduse haru käib nüüd
+võtmekontrollist **eespool**: nõusoleku tagasivõtmine on kasutaja tahe, mitte meie
+konfiguratsiooni funktsioon, ja ta peab vähemalt jõudma püsivasse järjekorda ka siis, kui
+teenus on kättesaamatu.
+
+**Kustutusteenus on süstitav, mitte imporditud** — `lib/documents/ragService` veab endaga
+`server-only` ahela, mille peale iga seda moodulit importiv ühiktest kukuks. Vaikeväärtust
+TEADLIKULT ei ole: seadistamata teenus annab `rag_delete_not_configured`, mitte vaikse edu.
+
+Retry-teenus sai `ServiceProviderProfile` haru, mis kinnitatud kustutuse järel viida
+lõpuks kustutab — sama muster, mis praktikatel.
+
+**NOT_PROVEN, kolm asja:**
+- **„fail-closed lõpetama retrieval'i KOHE"** — täna peatub retrieval alles siis, kui
+  kaugkoopia on kustutatud. Kohalikku päringuaegset keeldu (deny-list või
+  `patch-meta` märge) EI OLE. See on lahtine ja ta on selle kriteeriumi kõige raskem osa.
+- **Route/UI aus pending/failed seis** — server kirjutab nüüd `pending_removal`, aga
+  `WorkspaceFeaturePage` näitab endiselt tingimusteta „Teenuseprofiil salvestati".
+- **Runtime-tõend** („0 tulemust vana teenuse unikaalse markeriga") — jooksutamata.
 
 ### SOL-SPROF-03 — nähtav teeninduskoht võib avalikustada temaga seotud peidetud teenuse — P1
 

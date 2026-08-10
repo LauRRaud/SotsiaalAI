@@ -83,6 +83,12 @@ function createDb({ urgentRequests = [], preInquiries = [] } = {}) {
     effectivePracticeReview: { updateMany: async () => ({ count: 0 }) },
     preInquiry,
     urgentRequest,
+    /* SOL-SPROF-01: SOLO-profiili peitmine ja tema RAG-koopia kustutustöö käivad
+       samas lukustatud tehingus, enne `user.delete`-i. Kood EI VALVA nende
+       mudelite olemasolu — puuduv mudel peab kukutama, mitte vaikima. */
+    serviceProviderProfile: { findMany: async () => [], updateMany: async () => ({ count: 0 }) },
+    serviceMapEntry: { updateMany: async () => ({ count: 0 }) },
+    dataDeletionJob: { findFirst: async () => null, create: async () => ({ id: "job_1" }) },
     user: {
       delete: async ({ where }) => ({ id: where.id })
     }
@@ -255,6 +261,10 @@ test("SOL-URG-02: kui anonümiseerimist ei saa teha, kukub kogu kustutus", async
             throw new Error("connection_lost");
           }
         },
+        /* SOL-SPROF-01: SOLO-profiili peitmine käib samas tehingus. */
+        serviceProviderProfile: { findMany: async () => [], updateMany: async () => ({ count: 0 }) },
+        serviceMapEntry: { updateMany: async () => ({ count: 0 }) },
+        dataDeletionJob: { findFirst: async () => null, create: async () => ({ id: "job_1" }) },
         user: {
           delete: async () => {
             throw new Error("user delete must not be reached");

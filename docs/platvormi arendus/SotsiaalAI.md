@@ -103,9 +103,10 @@ faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
 **SOL-süvaaudit: 50/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN). Lahtiseid P0-sid on **kaks** ja mõlemad on **SOL-SPROF**-is (SPROF-01,
-SPROF-02) — kogu ülejäänud audit on P0-dest tühi. **Järgmine töö on SOL-SPROF.** Kui need
-kaks on kaetud, ei ole auditis enam ühtegi P0-d ja järjekord langeb tagasi puhtale
-dokumendijärjekorrale ehk **SOL-AUTH**-ile (2/15, 13 lahtist).
+SPROF-02) — kogu ülejäänud audit on P0-dest tühi. **Mõlema kood on 10.08 tehtud, aga seis on
+KVALIFITSEERITUD ja nad jäävad loendis lahtiseks:** tegemata on päringuaegne fail-closed
+retrieval, UI aus pending-seis ja runtime-tõend. Kui need kolm on kaetud, ei ole auditis
+enam ühtegi P0-d ja järjekord langeb tagasi dokumendijärjekorrale ehk **SOL-AUTH**-ile.
 
 **SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

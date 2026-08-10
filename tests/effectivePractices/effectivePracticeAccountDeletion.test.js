@@ -171,6 +171,9 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   let locked = false;
   const preInquiryUpdates = [];
   const urgentUpdates = [];
+  const profileUpdates = [];
+  const mapEntryUpdates = [];
+  const ragJobs = [];
   const preInquiryDeletes = [];
   const tx = {
     $queryRaw: async () => {
@@ -215,6 +218,30 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
         return { count: 2 };
       }
     },
+    /* SOL-SPROF-01: konto kustutus peidab SOLO-teenuseprofiili ja tema
+       kaardikirjed ning kirjutab RAG-koopiale püsiva kustutustöö — kõik ENNE
+       `user.delete`-i ja samas lukustatud tehingus. Mudelid on siin, sest kood
+       EI VALVA nende olemasolu: puuduv mudel peab kukutama, mitte vaikima. */
+    serviceProviderProfile: {
+      findMany: async () => [{ id: "profile-1", ragSourceId: "service-provider-profile::profile-1" }],
+      updateMany: async (input) => {
+        profileUpdates.push(input);
+        return { count: 1 };
+      }
+    },
+    serviceMapEntry: {
+      updateMany: async (input) => {
+        mapEntryUpdates.push(input);
+        return { count: 1 };
+      }
+    },
+    dataDeletionJob: {
+      findFirst: async () => null,
+      create: async (input) => {
+        ragJobs.push(input.data);
+        return { id: "job-1" };
+      }
+    },
     user: {
       delete: async ({ where }) => {
         assert.equal(locked, true);
@@ -233,6 +260,19 @@ test("final user-row lock sweeps pre-lock candidates and prevents post-delete pr
   assert.equal(urgentUpdates[0].data.situationVerbatim, "");
   assert.equal(urgentUpdates[0].data.contactName, "");
   assert.equal(urgentUpdates[0].data.contactPhone, "");
+  /* SOL-SPROF-01: profiil ja tema kaardikirjed peidetakse ning RAG-koopiale
+     tekib PÜSIV kustutustöö — kõik enne `user.delete`-i. Ilma nendeta jäid
+     omanikuta profiili nimi, kontaktid ja teenused avalikule kaardile ning
+     assistendi teadmuskihti määramata ajaks. */
+  assert.equal(profileUpdates[0].data.status, "HIDDEN");
+  assert.equal(mapEntryUpdates[0].where.providerProfileId, "profile-1");
+  assert.equal(mapEntryUpdates[0].data.status, "HIDDEN");
+  assert.equal(ragJobs[0].action, "RAG_DELETE");
+  assert.equal(ragJobs[0].resourceType, "ServiceProviderProfile");
+  assert.equal(ragJobs[0].externalRef, "service-provider-profile::profile-1");
+  assert.equal(ragJobs[0].storagePath, "owner_account_deleted");
+  assert.equal(deleted.privacyCounts.hiddenServiceProfiles, 1);
+  assert.equal(deleted.privacyCounts.queuedServiceProfileRagDeletions, 1);
   assert.equal(urgentUpdates[0].data.authorId, null);
   assert.ok(urgentUpdates[0].data.authorErasedAt instanceof Date);
   assert.equal(deleted.privacyCounts.anonymizedUrgentRequests, 2);

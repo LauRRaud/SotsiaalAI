@@ -67,7 +67,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Võrgustikutöö | SOL-NET | 2/13 | – | 9 | 2 | **käsil**, mõlemad P0 tehtud |
 | Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
 | Otsing | SOL-SEARCH | 0/7 | – | 1 | 5 | + 1 × P3 |
-| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | **järgmine** — auditi viimased P0-d |
+| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | **käsil** — mõlemal P0-l on kood tehtud, seis kvalifitseeritud (vt allpool) |
 
 ## Mis on tehtud
 
@@ -186,6 +186,17 @@ Teine jooks: **`PROBE_OK 8/8`**.
   hookist välja `lib/calls/clientState.js`-i, sest testijooksja ei renderda React-hooke —
   seesama muster, mis JTA E2-s (laua sektsiooni olek). Kõigil kolmel on runtime katmata,
   vt Seis-lõike.
+
+**SOL-SPROF-01 ja -02 (10.08): kood tehtud, seis KVALIFITSEERITUD.** Mõlema juur oli sama —
+profiil ütles „eemaldatud" enne, kui midagi oli eemaldatud, ja kaotas seejuures ainsa viida
+orvule. Uus jagatud moodul `lib/privacy/serviceProfileRagRemoval.js` kirjutab püsiva
+`RAG_DELETE` töö **enne** kustutuskatset ja kustutab `ragSourceId` **ainult kinnitatud
+kustutuse järel**; puuduv RAG-võti ei ole enam „skipped". Konto kustutus peidab SOLO-profiili
+ja tema kaardikirjed ning kirjutab töö — kõik enne `user.delete`-i, samas lukustatud
+tehingus. Uut töölist ei ehitatud: `DataDeletionJob` + `deletionJobRetryService` +
+deploy-värav olid olemas. **Loendis on nad LAHTISED**, sest kolm kriteeriumi osa on
+tegemata: päringuaegne fail-closed retrieval, UI aus pending-seis ja runtime-tõend.
+`npm test` 3411/3411.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
