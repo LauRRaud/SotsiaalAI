@@ -101,7 +101,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 64/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 65/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -139,9 +139,22 @@ ENNE lugemist. Kaks kohta väärivad eraldi mainimist: SOL-ORG-05-l oli lukk **�
 aga otsus tehti luku-eelse tõe pealt**, ja SOL-SPROF-02-l oli värav **õige, aga vales
 kohas** — mõlemad nägid parandatud välja.
 
-Lahtiseks jääb **214 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-FIELD-01** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+**SOL-FIELD-01 on samuti tehtud** ja ta on selle õhtu kõige inimlikum leid: välitöö
+hoiatuste loendurit kasvatas TAUSTAKÄIK, mida mitte ükski komponent ei kuvanud. „Kolm
+hoiatust enne kustutamist" tähendas päriselt „rakendus avati kolmel eri päeval" — saatmata
+märge võis kaduda inimeselt, kes ei näinud ühtegi hoiatust. Nüüd on hoiatus **nähtav**,
+tema kinnitus on **eraldi tegevus**, ja kustutamine vajab lisaks **viimast selget luba**.
+Poliitika kolis komponendist välja (`lib/field/localRetention.js`) — see ei olnud
+korrastus, vaid tõendatavuse tingimus. **NOT_PROVEN jääb brauserikiht:** DOM-iga
+testisviiti selles projektis ei ole, seega bänneri päris renderdumine on kontrollimata.
+
+Lahtiseks jääb **213 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-FIELD-02** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
 brauseri-QA taga).
+
+**Deploy'mata on nüüd terve see õhtu:** SOL-NET-01/-02 (migratsioon `20260810180000`),
+SPROF-plokk, kogu SOL-ORG ja SOL-FIELD-01 — kokku kaks migratsiooni
+(`20260810180000`, `20260810200000`). Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
