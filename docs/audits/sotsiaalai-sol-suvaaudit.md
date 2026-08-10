@@ -623,6 +623,47 @@ kirjutatud siia, et ta ei kaoks.*
 
 **Vastuvõtukriteerium.** Iga organisatsioonist loodud külastus/teekond vajab muutumatut organisatsiooni ja vajadusel üksuse provenantsi; tahvel ja kõik mutatsioonid peavad filtreerima selle provenantsi järgi. Isiklik töö peab jääma eraldi. HTTP/teenusetest peab kasutama üht töötajat kahes organisatsioonis ning tõendama, et kummagi juht ei näe ega muuda teise organisatsiooni ega isiklikke külastusi.
 
+**Seis (10.08.2026): DONE — kood, migratsioon ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 19/19).**
+
+**Suurem osa sellest leiust oli juba parandatud SOL-SLOG-17/-18 all** (mõlemad P0,
+migratsioon `20260810160000`): `ServiceVisit.assignedOrganizationId` sündis, juhi tahvel
+sai teise filtri (`organizationVisitScope`) ja `reassignVisit` kontrollib päritolu **enne
+olekut ja enne õigusi**, vastusega **404, mitte 403** — võõra maja töö olemasolu on ise
+info. Ülal olev tõendilõik kirjeldab seisu ENNE seda parandust; loend luges leidu
+lahtiseks, sest kriteeriumil oli kaks katmata osa.
+
+**Kaks katmata osa said nüüd kaetud.**
+
+**1. „MUUTUMATUT" oli kommentaar, mitte reegel.** Skeem ütles „külmutatud loomise
+hetkel", aga miski ei takistanud `update({ data: { assignedOrganizationId } })`-t. See ei
+ole tavaline andmeväli: tema väärtus otsustab, KELLE juhi ekraanile kliendi nimi jõuab.
+Uus migratsioon `20260810200000` paneb `BEFORE UPDATE` triggeri, mis keelab muutuse **igas
+suunas** — `NULL → org` (tõendamata päritolu ei muutu tagantjärele tõendiks), `org → teine
+org`, `org → NULL`. **Rea kustutamine EI ole keelatud:** konto kustutus ja säilituse purge
+peavad kaskaadina läbi minema. Sama muster mis `UsageEvent`-il ja märkme parandusridadel.
+Ühiktest hoiab triggerit migratsiooniahelast vaikselt kadumast.
+
+**2. Kriteeriumi enda tõend puudus.** Olemasolevad testid mõõtsid filtri OTSUST fake-DB
+peal — nad ei saa öelda, kas päris PostgreSQL filtreerib samamoodi. `npm run slog:org:probe`
+teeb päris andmed: üks töötaja kahes ACTIVE organisatsioonis, **üks ühine tööpäev**
+(sond kontrollib, et mõlemad tööd on tõesti samal `routeId`-l — see ongi leiu tingimus),
+kummagi maja juht ORG_OWNER-iga, pluss isiklik töö tõendamata päritoluga. Mõõdetud:
+kumbki juht näeb ainult oma maja klienti, ei näe teise maja ega isiklikku, ei saa neid
+ümber määrata (404), oma maja töö liigub inimeselt inimesele **ilma päritolu kaasa
+võtmata**, ja trigger peab kinni mõlemad muutmiskatsed. 19/19.
+
+**Kaks teadlikku piiri, mis jäävad — need ei ole tegemata töö, vaid kirja pandud otsus.**
+- **`ServiceWorkRoute` ei kanna organisatsiooni.** Teekond EI OLE organisatsioonist loodud
+  objekt: ta on inimese enda tööpäev, üks päevas, ka siis kui ta töötab kahes majas.
+  Tagajärg on aus ja dokumenteeritud: mõlema maja juht näeb, **kas** tema liige on päeva
+  alustanud (avatud / paus / lõpetatud), ilma ühegi kliendi, aja või põhjuseta. See on
+  tahtlik — juht peab teadma, kas inimene on tööl. Kui sa tahad ka selle ära võtta, on see
+  tootemuudatus, mitte parandus.
+- **Üksuse provenantsi külastus ei kanna.** Üksuse-skoobiga juhi filter käib
+  liikmesuse kaudu PÄRINGU AJAL, seega üksusest lahkunud inimese töö kaob tema tahvlilt
+  järgmisel päringul, ilma et ükski kirje muutuks. Külmutatud üksus tähendaks vastupidist:
+  ümberkorraldus jätaks vana juhile igavese vaate.
+
 ### SOL-ORG-02 — graafiku kirjutusrada möödub peatatud organisatsiooni ja mooduli väravast — P1
 
 **Tõend.** `requireOrgContext()` lubab nähtava, kuid peatatud organisatsiooni konteksti `writable: false`; tavapärased org-mutatsioonid kutsuvad seejärel `assertWritable()`. `app/api/org/[orgId]/graafik/route.js:48-81` on ainus tavapärane org-konteksti POST peale status-route’i, mis seda kontrolli ei tee. Selle asemel loeb `resolveBoardScope()` otse aktiivseid liikmesusi ja raw capability-grante (`lib/serviceLog/dispatchBoard.js:60-90`). Ta ei kontrolli organisatsiooni `ACTIVE` staatust ega nõutava `KOV_INTAKE`/`SERVICE_DELIVERY` mooduli aktiivsust, kuigi organisatsioonileping ütleb, et capability kehtib ainult aktiivse organisatsiooni ja aktiivse mooduli korral ning `WORK_ASSIGNER` on mooduliga seotud (`lib/org/constants.js:146-154`).

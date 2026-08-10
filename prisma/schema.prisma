@@ -5755,6 +5755,12 @@ model ServiceVisit {
   /// `NULL` = päritolu EI OLE TÕENDATUD (töötaja lisas töö ise ja ta kuulub
   /// mitmesse või mitte ühessegi organisatsiooni). Sellist tööd ei näita ega
   /// liiguta ükski juhi tahvel — vaikimisi kinni, mitte vaikimisi lahti.
+  ///
+  /// MUUTUMATUS ON ANDMEBAASI OMA (SOL-ORG-01, migratsioon 20260810200000).
+  /// `BEFORE UPDATE` trigger keelab väärtuse muutmise igas suunas — NULL → org,
+  /// org → teine org, org → NULL. Rea kustutamine EI OLE keelatud: konto
+  /// kustutus ja säilituse purge käivad kaskaadina läbi. Prisma ei näe
+  /// triggereid, seega seda rida ei tohi lugeda skeemist tuletatuks.
   assignedOrganizationId String?
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt

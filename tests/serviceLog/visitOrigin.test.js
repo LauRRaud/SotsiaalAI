@@ -11,6 +11,9 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import {
   belongsToOrganization,
@@ -196,6 +199,33 @@ test("kaks aktiivset liikmesust ei anna päritolu", async () => {
     }
   });
   assert.equal(otsitud[0].where.status, "ACTIVE", "lõppenud liikmesus ei tohi päritolu anda");
+});
+
+/**
+ * SOL-ORG-01 — „MUUTUMATUT organisatsiooni provenantsi".
+ *
+ * Muutumatus, mida jõustab ainult teenuskiht, on lubadus. Ükski kood ei kirjuta
+ * täna päritolu üle, aga see väli otsustab, KELLE juhi ekraanile kliendi nimi
+ * jõuab — üks `update` vales kohas viiks töö teise majja, ilma et ükski
+ * käitumistest seda näeks. Trigger ise on mõõdetud `npm run slog:org:probe`-ga;
+ * see test hoiab ära tema VAIKSE KADUMISE migratsiooniahelast.
+ */
+test("päritolu muutumatus on migratsioonis, mitte ainult kommentaaris", () => {
+  const root = join(dirname(fileURLToPath(import.meta.url)), "../..");
+  const sql = readFileSync(
+    join(root, "prisma/migrations/20260810200000_sol_org_01_provenance_frozen/migration.sql"),
+    "utf8"
+  );
+  assert.match(sql, /CREATE TRIGGER "ServiceVisit_provenance_frozen"/);
+  assert.match(sql, /BEFORE UPDATE ON "ServiceVisit"/);
+  assert.match(
+    sql,
+    /NEW\."assignedOrganizationId" IS DISTINCT FROM OLD\."assignedOrganizationId"/,
+    "kontroll peab katma mõlemad suunad, ka NULL-i"
+  );
+  /* DELETE ei tohi olla keelatud: konto kustutus ja säilituse purge käivad
+     kaskaadina läbi ja nemad viivad kaasa terve külastuse, mitte päritolu. */
+  assert.equal(/BEFORE DELETE ON "ServiceVisit"/.test(sql), false);
 });
 
 test("päritolu võrdlus ei võta tühja väärtust vasteks", () => {
