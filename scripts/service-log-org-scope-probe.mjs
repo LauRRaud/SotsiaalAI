@@ -197,12 +197,14 @@ async function main() {
   );
 
   // === 4. KUMBKI JUHT EI MUUDA TEISE MAJA EGA ISIKLIKKU TÖÖD ==============
-  const rejects = async (label, run, status) => {
+  /** `check` on kas oodatud HTTP-staatus või predikaat vea enda kohta. */
+  const rejects = async (label, run, check) => {
     try {
       await run();
       bad(label, "läks läbi");
     } catch (error) {
-      expect(label, error?.status === status, `status=${error?.status}`);
+      const okay = typeof check === "function" ? check(error) : error?.status === check;
+      expect(label, okay, `status=${error?.status} message=${String(error?.message).slice(0, 60)}`);
     }
   };
 
@@ -315,6 +317,49 @@ async function main() {
   });
   const withModule = await getDispatchBoard(assigner.id, { organizationId: orgA.id }, { db: prisma, now: NOW });
   expect("aktiivse mooduliga WORK_ASSIGNER saab tahvli", withModule.allowed === true);
+
+  // === 8. SOL-ORG-03: AUDITIJÄLG ON TEHINGUS, MITTE TEMA KÕRVAL ===========
+  /* Kriteerium nõuab veasüstetesti MÕLEMAL rajal. Fake-DB `$transaction` ei
+     tõenda siin midagi: tagasikerimine on PostgreSQL-i käitumine, mitte meie
+     oma. Seepärast elab see kontroll sondis, mitte ühiktestis. */
+  const failingAudit = async () => {
+    throw new Error("auditirida ei õnnestunud");
+  };
+
+  const beforeAssign = await prisma.serviceVisit.count({ where: { assignedOrganizationId: orgA.id } });
+  await rejects(
+    "auditi tõrge kukutab MÄÄRAMISE",
+    () =>
+      assignVisit(
+        managerA.id,
+        { organizationId: orgA.id, workerUserId: worker.id, clientDisplayName: `Auditita klient ${MARK}` },
+        { db: prisma, env: ENV, now: NOW, geocodeAddress: NO_GEOCODE, writeAudit: failingAudit }
+      ),
+    (error) => /auditirida ei õnnestunud/.test(String(error?.message))
+  );
+  const afterAssign = await prisma.serviceVisit.count({ where: { assignedOrganizationId: orgA.id } });
+  expect("auditita külastust EI JÄÄNUD andmebaasi", afterAssign === beforeAssign, `${beforeAssign} → ${afterAssign}`);
+  const ghost = await prisma.serviceVisit.findFirst({ where: { clientDisplayName: `Auditita klient ${MARK}` } });
+  expect("kukkunud määramine ei jätnud orbu", ghost === null);
+
+  const beforeMove = await prisma.serviceVisit.findUnique({ where: { id: visitA.id } });
+  await rejects(
+    "auditi tõrge kukutab ÜMBERMÄÄRAMISE",
+    () =>
+      reassignVisit(
+        managerA.id,
+        { organizationId: orgA.id, visitId: visitA.id, toWorkerUserId: worker.id },
+        { db: prisma, env: ENV, now: NOW, writeAudit: failingAudit }
+      ),
+    (error) => /auditirida ei õnnestunud/.test(String(error?.message))
+  );
+  const afterMove = await prisma.serviceVisit.findUnique({ where: { id: visitA.id } });
+  expect(
+    "auditita töö EI LIIKUNUD — omanik on endine",
+    afterMove.ownerUserId === beforeMove.ownerUserId,
+    `${beforeMove.ownerUserId} → ${afterMove.ownerUserId}`
+  );
+  expect("auditita töö jäi ka endisele teekonnale", afterMove.routeId === beforeMove.routeId);
 }
 
 async function cleanup() {

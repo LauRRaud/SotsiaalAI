@@ -10,9 +10,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { assertCanAssign } from "../../lib/serviceLog/dispatchAssign.js";
+import { assertCanAssign, assignVisit, reassignVisit } from "../../lib/serviceLog/dispatchAssign.js";
 
 const NOW = new Date("2026-08-03T09:00:00.000Z");
+const ENV = { SERVICE_LOG_ENABLED: "1" };
 
 /**
  * Minimaalne fake, mis matkib AINULT seda, mida `assertCanAssign` puudutab:
@@ -160,4 +161,107 @@ test("moodulinõudeta ORG_OWNER jääb ka ilma moodulita alles", async () => {
   const db = makeDb({ grants: [orgGrant], modules: [] });
   const worker = await assertCanAssign("manager-1", "org-1", "worker-1", { db, now: NOW });
   assert.equal(worker.userId, "worker-1");
+});
+
+/**
+ * SOL-ORG-03 — auditijälg peab olema PÕHIMUUDATUSEGA SAMAS TEHINGUS.
+ *
+ * Varem oli `writeOrgAudit` `.catch(() => {})` taga: töö liikus ühelt inimeselt
+ * teisele ja „kes selle ära viis" võis vaikselt puududa. SOL-SLOG-18 viis ta
+ * tehingusse; need testid hoiavad, et ta sealt tagasi ei liiguks.
+ *
+ * MIDA NEED TESTID KATAVAD JA MIDA MITTE. Nad tõendavad, et viga EI NEELATA ja
+ * et audit kirjutatakse TEHINGU KÄEPIDEMEGA (`tx`), mitte välise kliendiga —
+ * viimane tähendaks, et auditirida jääks alles ka siis, kui põhimuudatus
+ * tagasi keritakse. Päris TAGASIKERIMIST nad ei tõenda: see on PostgreSQL-i
+ * käitumine, mitte meie oma, ja teda mõõdab `npm run slog:org:probe`.
+ */
+function makeWriteDb({ visit = null } = {}) {
+  const tx = {
+    serviceVisit: {
+      create: async ({ data }) => ({ id: "visit-uus", ...data }),
+      update: async ({ where, data }) => ({ id: where.id, ...visit, ...data })
+    }
+  };
+  return {
+    tx,
+    organization: { findUnique: async () => ({ id: "org-1", status: "ACTIVE" }) },
+    organizationModule: { findMany: async () => [{ moduleKey: "KOV_INTAKE" }] },
+    organizationMembership: {
+      findFirst: async ({ select }) =>
+        select?.capabilityGrants
+          ? { id: "m-juht", capabilityGrants: [orgGrant] }
+          : { id: "m-tootaja", userId: "worker-1" }
+    },
+    serviceProviderProfile: { findFirst: async () => ({ id: "profile-1", ownershipMode: "SOLO" }) },
+    serviceWorkRoute: {
+      findFirst: async () => ({ id: "route-1", providerProfileId: "profile-1", workerUserId: "worker-1" })
+    },
+    serviceVisit: {
+      findFirst: async () => (visit ? { ...visit } : { sortOrder: 0 })
+    },
+    $transaction: async (fn) => fn(tx)
+  };
+}
+
+const failingAudit = async () => {
+  throw new Error("auditirida ei õnnestunud");
+};
+
+test("auditi viga ei neelata ära — MÄÄRAMINE kukub", async () => {
+  const db = makeWriteDb();
+  await assert.rejects(
+    () =>
+      assignVisit(
+        "manager-1",
+        { organizationId: "org-1", workerUserId: "worker-1", clientDisplayName: "Klient" },
+        { db, env: ENV, now: NOW, geocodeAddress: async () => null, writeAudit: failingAudit }
+      ),
+    (error) => /auditirida ei õnnestunud/.test(error.message)
+  );
+});
+
+test("auditi viga ei neelata ära — ÜMBERMÄÄRAMINE kukub", async () => {
+  const visit = {
+    id: "visit-1",
+    status: "PLANNED",
+    ownerUserId: "worker-0",
+    assignedOrganizationId: "org-1",
+    clientDisplayName: "Klient"
+  };
+  const db = makeWriteDb({ visit });
+  db.serviceVisit.findFirst = async ({ select }) => (select?.status ? visit : { sortOrder: 0 });
+  await assert.rejects(
+    () =>
+      reassignVisit(
+        "manager-1",
+        { organizationId: "org-1", visitId: "visit-1", toWorkerUserId: "worker-1" },
+        { db, env: ENV, now: NOW, writeAudit: failingAudit }
+      ),
+    (error) => /auditirida ei õnnestunud/.test(error.message)
+  );
+});
+
+/* Audit peab saama TEHINGU käepideme. Välise kliendiga kirjutatud rida jääks
+   alles ka siis, kui põhimuudatus tagasi keritakse — ja siis oleks meil jälg
+   tööst, mida ei ole. */
+test("audit kirjutatakse tehingu käepidemega, mitte välise kliendiga", async () => {
+  const db = makeWriteDb();
+  const handles = [];
+  await assignVisit(
+    "manager-1",
+    { organizationId: "org-1", workerUserId: "worker-1", clientDisplayName: "Klient" },
+    {
+      db,
+      env: ENV,
+      now: NOW,
+      geocodeAddress: async () => null,
+      writeAudit: async (handle) => {
+        handles.push(handle);
+        return { id: "audit-1" };
+      }
+    }
+  );
+  assert.equal(handles.length, 1);
+  assert.equal(handles[0], db.tx, "audit ei tohi käia tehingust mööda");
 });

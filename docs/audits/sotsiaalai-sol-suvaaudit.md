@@ -718,6 +718,28 @@ ainult grantis nimetatud üksuse. See on **SOL-ORG-04** (P2) ja jääb tema alla
 
 **Vastuvõtukriteerium.** Külastuse kirjutus ja auditirida peavad olema ühes DB tehingus; auditi vea korral ei tohi põhimuudatus commit’ida. Veasüstetest peab sundima auditirea loomise vea mõlemal rajal.
 
+**Seis (10.08.2026): DONE — kood (SOL-SLOG-18), veasüstetestid ja päris PostgreSQL-i tagasikerimine (`npm run slog:org:probe` 30/30).**
+
+**Mehhanism oli juba parandatud SOL-SLOG-18 all:** `.catch(() => {})` on kadunud, mõlemal
+rajal on külastus ja auditirida ühes `$transaction`-is. Ülal olev tõendilõik kirjeldab
+seisu enne seda parandust. **Puudu oli kriteeriumi teine pool — veasüstetest** —, ja ilma
+selleta ei olnud midagi, mis hoiaks jälje tehingust välja rändamast.
+
+**Auditikirjutus on nüüd süstitav port** (`writeAudit`), vaikeväärtuseks päris
+`writeOrgAudit`. Vaikeväärtus on siin õige, sest ta EI OLE vaikne edu — ta on seesama
+kirjutus, mis tehingus niikuinii toimuks. (Vrd `serviceProfileRagRemoval`, kus vaikeväärtust
+teadlikult EI OLE: seal oleks ta muutnud seadistamata teenuse vaikseks õnnestumiseks.)
+
+**Kaks tasandit, sest üks ei piisa.**
+- **Ühiktestid** (`dispatchAssign.test.js`) tõendavad, et viga **ei neelata** — kumbki rada
+  ei tohi tagastada edu, kui audit kukkus — ja et audit saab **tehingu käepideme** (`tx`),
+  mitte välise kliendi. Väline klient tähendaks auditirida, mis jääb alles ka siis, kui
+  põhimuudatus tagasi keritakse: jälg tööst, mida ei ole.
+- **Sond** tõendab **tagasikerimise ise**, sest see on PostgreSQL-i käitumine, mitte meie
+  oma — fake-`$transaction` ei ütle selle kohta midagi. Mõõdetud: kukkunud auditiga
+  määramine ei jäta ühtki rida (loendur enne = pärast, orbu ei ole) ja kukkunud auditiga
+  ümbermääramine jätab töö endisele omanikule ja endisele teekonnale.
+
 ### SOL-ORG-04 — üksuse capability ei kata graafikus lubatud alampuud — P2
 
 **Tõend.** Kanooniline org-kontekst kasutab `unitScopeCovers()` funktsiooni ja loeb üksuseskoobi alla ka alampuu (`lib/org/accessContext.js`, `hasCapability`). Graafiku eraldi resolver taandab skoobi ainult grantides otseselt nimetatud `scopeUnitId` väärtustele ja filtreerib töötajad täpselt nende ID-dega (`lib/serviceLog/dispatchBoard.js:82-90`, `:113-118`).
