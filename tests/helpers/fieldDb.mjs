@@ -47,6 +47,12 @@ function project(row, select) {
   const out = {};
   for (const [key, want] of Object.entries(select)) {
     if (want === true) out[key] = clone(row[key]);
+    // Pesastatud seos (`document: { select: … }`) jäi varem VAIKSELT välja ja
+    // seetõttu nägi iga test manust nii, nagu tal poleks dokumenti — täpselt see
+    // haru, kus manuse kustutus ka faili rea maha võtab.
+    else if (want && typeof want === "object" && want.select) {
+      out[key] = project(row[key], want.select);
+    }
   }
   return out;
 }
@@ -129,20 +135,42 @@ export function createFieldDb({
   attachments = [],
   preInquiries = [],
   artifacts = [],
-  documents = []
+  documents = [],
+  auditLog = []
 } = {}) {
-  const store = { visits, notes, attachments, preInquiries, artifacts, documents };
+  const store = { visits, notes, attachments, preInquiries, artifacts, documents, auditLog };
   const db = {
     store,
+    /**
+     * SOL-FIELD-03: `$transaction` PÖÖRAB NÜÜD TAGASI.
+     *
+     * Varem oli ta läbilase ja see tegi terve veaklassi nähtamatuks: „vea korral
+     * ei jää templit maha" oli roheline ainult seepärast, et vigane kirjutus
+     * juhtus ajaliselt esimesena. Tõend, et tehing HOIAB, nõuab hoidlat, mis
+     * oskab ka unustada — muidu ei mõõda ükski rollback-test midagi.
+     */
     async $transaction(callback) {
-      return typeof callback === "function" ? callback(db) : Promise.all(callback);
+      if (typeof callback !== "function") return Promise.all(callback);
+      const snapshot = Object.fromEntries(
+        Object.entries(store).map(([name, rows]) => [name, rows.map((row) => clone(row))])
+      );
+      try {
+        return await callback(db);
+      } catch (error) {
+        for (const [name, rows] of Object.entries(store)) {
+          rows.length = 0;
+          rows.push(...snapshot[name]);
+        }
+        throw error;
+      }
     },
     fieldVisit: table(visits, { idPrefix: "visit" }),
     fieldVisitNote: table(notes, { idPrefix: "note", unique: ["visitId", "clientItemId"] }),
     fieldVisitAttachment: table(attachments, { idPrefix: "att", unique: ["visitId", "clientItemId"] }),
     preInquiry: table(preInquiries, { idPrefix: "inq" }),
     agentArtifact: table(artifacts, { idPrefix: "artifact" }),
-    userDocument: table(documents, { idPrefix: "doc" })
+    userDocument: table(documents, { idPrefix: "doc" }),
+    dataAuditLog: table(auditLog, { idPrefix: "audit" })
   };
   return db;
 }
