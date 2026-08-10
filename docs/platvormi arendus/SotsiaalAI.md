@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 72/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 73/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -260,11 +260,22 @@ Nüüd reserveeritakse enne kutset **turvaline ülempiir** (kõnesalvestise tead
 failist loetud kestus → baitidest tuletatud piir) ja arvestatakse pärast kutset **tegelik
 kestus**. Olemasoleva transkripti tagastamine ei maksa endiselt midagi.
 
-Lahtiseks jääb **208 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(2/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-03: kinnitatud dokumenti sai pärast kinnitamist veel muuta.** Nii salvestamine kui
+kinnitamine lugesid seisu eraldi päringuga ja kontrollisid mälus, et dokument on veel mustand —
+aga kirjutasid hiljem ilma ühegi tingimuseta. Kahe vahekaardi tavaline kasutus piisas: kui
+kinnitus jõudis vahele, muutis hilinenud salvestus juba **kinnitatud** dokumendi sisu, ja
+allalaaditav „lõplik" fail ei olnud enam see, mille sa kinnitasid. Nüüd on kontroll ja kirjutus
+üks toiming ning kinnitamine võtab su viimase sisu kaasa (detailivaate kaks päringut said üheks);
+kaotaja saab ausa teate „muudeti vahepeal mujal". Tõendatud **päris andmebaasi vastu 33/33**,
+sealhulgas negatiivkontroll: sond jäljendab samas olukorras vana käitumist ja näitab, et see
+rikub kinnitatud sisu — seega on võistlus päris, mitte teoreetiline.
+
+Lahtiseks jääb **207 P1, 76 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(3/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on SOL-DOC-01 ja -02** — kumbki ei vaja migratsiooni. Ütle, kui viin serverisse.
+**Deploy'mata on SOL-DOC-01, -02 ja -03** — ükski ei vaja migratsiooni. Ütle, kui viin
+serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

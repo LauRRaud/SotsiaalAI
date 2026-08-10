@@ -1465,6 +1465,48 @@ päriselt kasutab, mitte ei neela viga.
 
 **Vastuvõtukriteerium.** DRAFT-i muutmine peab olema atomaarne tingimuslik update (`id + ownerId + status + expected version/updatedAt`); approve peab kinnitama täpselt kliendi nähtud versiooni ühes serveritoimingus. Kaotaja peab saama 409. Päris PostgreSQLi test peab katma `PATCH vs approve`, kaks PATCH-i ja kaks approve'i eri ajastustes ning tõendama FINAL-sisu muutumatust.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (33/33).**
+
+**KONTROLL OLI OLEMAS — LIHTSALT VALES KOHAS.** Nii PATCH kui approve lugesid seisu eraldi
+päringuga ja kontrollisid mälus, et rida on `DRAFT`. Kontroll oli LUGEMISE hetkel õige. Katki
+oli see, et kirjutus tuli hiljem ja sihtis ainult `where: { id }`. Kahe vahekaardi tavaline
+kasutus piisas: PATCH luges `DRAFT` → approve commit'is `FINAL` → PATCH jätkas ja muutis **juba
+kinnitatud dokumendi sisu**. Allalaaditav „lõplik" fail ei olnud enam see, mille kasutaja
+kinnitas, ja kinnitusaudit ei kirjeldanud enam midagi tõest.
+
+**Parandus on struktuurne, mitte täiendav kontroll.** `lib/documents/artifactMutation.js` teeb
+kontrollist ja kirjutusest ÜHE lause: `updateMany` tingimus kannab kõike, mis peab kehtima
+kirjutamise hetkel — `id + ownerId + status + oodatud versioon` — ja `count === 0` tähendab
+kaotust. Mälus loetud seis ei otsusta enam midagi; teda loetakse alles PÄRAST kaotust, et öelda
+kasutajale, mis täpselt juhtus (409 „muudeti vahepeal" vs 409 „kinnitatud on ainult lugemiseks"
+vs 404). Versioon on `updatedAt` — eraldi veergu ja migratsiooni ei ole vaja, sest iga kirjutus
+liigutab teda niikuinii ja klient saab ta vastuses kaasa.
+
+**Kinnitamine võib sisu kaasa võtta.** Detailivaade tegi varem kaks HTTP-päringut — salvesta,
+siis kinnita — ja nende vahele mahtus terve võistlus. Nüüd on see üks päring: kinnitatakse
+täpselt see versioon ja see sisu, mida kasutaja nägi, või ei kinnitata midagi.
+
+**Üks eristus, mis kergesti kaoks.** „Juba FINAL" ei tähenda automaatselt, et minu töö on tehtud.
+Sama sisuga korduskinnitus on edu (võrgu retry ei tohi anda viga), aga MUU sisuga kinnitus juba
+kinnitatud rea peale on konflikt — muidu ütleks server „kinnitatud" inimesele, kelle sisu ei
+kinnitatud kunagi.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run artifact:race:probe`, **33/33**): võistlus on
+deterministlik, mitte „mahtus ühte millisekundisse" — kolmas tehing hoiab rea lukku, mõlemad
+võistlejad **mõõdetakse ootamas**, siis lukk vabastatakse. Kaetud on approve→patch, patch→approve,
+patch→patch, approve→approve sama ja eri sisuga, ning kinnitatud rea hilisem muutmine. Iga haru
+lõpeb sama invariandiga: FINAL-i sisu on täpselt see, mis kinnitati.
+
+**Negatiivkontroll on osa sondist.** Ilma temata ei teaks me, kas rohelised on tõend või lihtsalt
+see, et võistlust ei tekkinud. Sond jäljendab samas harnessis VANA mustrit (loe seis → kirjuta
+`where: { id }`) ja nõuab, et see FINAL-i **ära rikuks**. Rikub. Seega on harness päris ja
+ülejäänud 32 rohelist on paranduse teene.
+
+**Aus piir mõõtmises.** Agendi tööpind salvestab ja kinnitab endiselt kahe päringuga — mõlemad on
+nüüd versiooniga valvatud (kinnitus kannab seda versiooni, mille tema enda salvestus just
+tagastas), aga ühe toiminguni kokku sai ainult detailivaade. Ühiktestid mõõdavad otsust
+(mis seis → mis viga); võistlust ennast tõendab ainult sond.
+
 ### SOL-DOC-04 — transkripti fail ja andmebaas võivad osalise vea järel eri sisu näidata — P1
 
 **Tõend.** Olemasoleva transkripti PATCH kirjutab uue teksti esmalt vana `storagePath` faili peale ja alles seejärel uuendab DB `content`, `size` ning `sha256` välju (`app/api/documents/[id]/route.js:226-276`, `lib/documents/server.js:316-328`). DB update'i vea korral faili eelmist versiooni ei taastata. Allalaadimine loeb sisu failist, samas API ja AI-kokkuvõte kasutavad DB `content` välja (`app/api/documents/[id]/download/route.js:48-76`, `app/api/documents/[id]/summary/route.js:96-124`). Uue transkriptsiooni rada kirjutab samuti faili enne `userDocument.create()` toimingut, kuid catch ei tea loodud `storagePath` väärtust ega kustuta orbfaili (`app/api/documents/[id]/transcribe/route.js:207-249`, `:277-295`).
