@@ -1063,6 +1063,45 @@ otsus, sest vahepeal muutunud maailmas võib ta ümber mõelda.
 
 **Vastuvõtukriteerium.** Hoiatus peab olema püsiv kasutajale nähtav olek koos eraldi tõendatava kuvamis-/kinnitussündmusega; taustal retention-käigu arv ei tohi olla hoiatusarv. Saatmata sisu kustutus vajab lepingukohast kolme päris hoiatust ja viimast eksplitsiitset kinnitust või omaniku uut otsust. Brauseritest peab vanandama kirje üle 37 päeva ja tõendama, et pelk kolm käivitust ei kustuta seda.
 
+**Seis (10.08.2026): DONE — kood ja testid; brauserikiht NOT_PROVEN (vt allpool).**
+
+**KAKS ROLLI, MIDA VANA KOOD SEGAS.** Taustakäik kasvatas loendurit, mida mitte ükski
+komponent ei kuvanud — „kolm hoiatust" tähendas päriselt **„rakendus avati kolmel eri
+päeval"**. Nüüd:
+- **taustakäik** (`runFieldLocalRetention`) ainult NIMETAB, keda näidata; ta ei kirjuta
+  loendurit;
+- **inimene** kinnitab, et nägi hoiatust (`acknowledgeFieldWarning`) — alles see loeb
+  hoiatuseks — ja hiljem eraldi, et lubab kustutada (`confirmFieldPurge`).
+
+**Ööpäevane vahe on lepingu oma, mitte mugavus:** kolm nuppuvajutust ühe minuti jooksul ei
+ole kolm hoiatust. Test mõõdab just seda.
+
+**Kolm hoiatust EI OLE kustutusluba.** Nad ütlevad „ma tean, et see kaob"; `purgeConfirmedAt`
+ütleb „kustuta". Ilma selleta jääb otsus igavesti `WARN`-i — vaikimisi ALLES, mitte
+vaikimisi kustutatud. Luba enne 37. päeva või enne kolme hoiatust ei kehti: ta käib SELLE
+kustutuse kohta, mitte igavesti ette.
+
+**Poliitika kolis komponendist välja** (`lib/field/localRetention.js`). See ei ole
+korrastus, vaid tõendatavuse tingimus: `useCallback`-i sees ei olnud teda võimalik mõõta
+ilma Reactita ja ilma IndexedDB-ta, ja ainus testitav asi oli PUHAS otsus — täpselt see,
+mis jättis leidu nähtamatuks. Otsus oli õige, aga teda TOITEV loendur luges vale asja.
+
+**Testid jooksutavad päris käiku päris otsustega, ainult ajaga mängides**
+(`tests/field/localRetention.test.js`): seitse taustakäiku üle 40 päeva ei kustuta midagi;
+loendur ei liigu; kaks kinnitust ühel päeval on üks; kolm kinnitust ilma loata ei kustuta;
+luba enne kolme hoiatust ega enne 37. päeva ei kehti. **Negatiivkontroll:** sünkroonitud
+koopia kaob endiselt taustal 7 päeva pärast — parandus ei tohi kogu säilitust seisma panna.
+
+**Vana ühiktest kirjeldas VANA lepingut** (`warnCount: 3` → `PURGE`) ja on parandatud koos
+selgitusega, miks ta enam ei kehti.
+
+**NOT_PROVEN, aus piir:** kriteeriumi **brauseritesti ei jooksutatud**. Selles projektis ei
+ole DOM-iga testisviiti (`node:test` ilma jsdom-ita) ja päris jooks nõuaks autenditud
+sessiooni + IndexedDB seemendamist. Selle asemel on kaks asja: (1) poliitika ise on
+mõõdetud päris koodirajal, (2) kesta ja hoogi SIDET hoiab staatiline lepingutest, mis kukub,
+kui keegi bänneri või kinnitusnupu eemaldab. Mida see EI tõenda: et bänner brauseris
+päriselt renderdub ja klikitav on.
+
 ### SOL-FIELD-02 — tundlikud külastuspaketid ei läbi automaatset kohalikku retention’it — P1
 
 **Tõend.** Leping nõuab külastuspaketi kustutamist külastuse sulgemisel, hiljemalt 72 tundi pärast planeeritud ajaakent või DRAFT-i korral 7 päeva pärast loomist (`docs/platvormi arendus/fable-5-valitoo-mobiilne-kest.md:222-231`). `fieldPackPurgeDue()` arvutab need tähtajad (`lib/field/syncMachine.js:180-187`) ning kohalik hoidla pakub `listPacks()` ja `deletePack()` operatsioone (`lib/field/localStore.js:180-190`). Runtime’i ainus automaatne retention-käik loeb ja kustutab aga ainult `items` kirjeid; pakke ta ei loenda ega kontrolli (`components/field/useFieldSync.js:215-236`). Koodibaasis kasutab `fieldPackPurgeDue()` funktsiooni ainult ühiktest, mitte rakendus. Pakett eemaldub üksnes kasutaja käsitsi `removePack()` toiminguga (`components/field/useFieldSync.js:449-453`, `components/field/FieldVisitRoom.jsx:429-435`).

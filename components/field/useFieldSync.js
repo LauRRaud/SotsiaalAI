@@ -19,11 +19,14 @@ import {
 } from "@/lib/field/constants";
 import {
   applyFieldSyncEvent,
-  FieldPurgeDecision,
-  fieldItemPurgeDecision,
   FieldSyncEvent,
   isUploadDue
 } from "@/lib/field/syncMachine";
+import {
+  acknowledgeFieldWarning,
+  confirmFieldPurge,
+  runFieldLocalRetention
+} from "@/lib/field/localRetention";
 import {
   isFieldStoreSupported,
   openFieldStore,
@@ -51,6 +54,10 @@ export function useFieldSync({ userId, visitId = null }) {
   const [items, setItems] = useState([]);
   const [syncing, setSyncing] = useState(false);
   const [pack, setPack] = useState(null);
+  /* SOL-FIELD-01: hoiatus on NÄHTAV OLEK. Need kaks loendit lähevad otse
+     liidesesse — ilma nendeta oli „kolm hoiatust" ainult loendur andmebaasis. */
+  const [retentionWarnings, setRetentionWarnings] = useState([]);
+  const [retentionAwaitingConfirmation, setRetentionAwaitingConfirmation] = useState([]);
   const storeRef = useRef(null);
   const syncingRef = useRef(false);
 
@@ -212,29 +219,44 @@ export function useFieldSync({ userId, visitId = null }) {
     }
   }, [transition, visitId]);
 
-  /** Local retention pass (doc 4.5): silent purge only for synced copies. */
+  /**
+   * Local retention pass (doc 4.5): silent purge only for synced copies.
+   *
+   * SOL-FIELD-01: käik EI KASVATA hoiatuste loendurit. Ta ainult nimetab, keda
+   * kasutajale näidata — loenduri liigutab inimene, kes hoiatust päriselt nägi
+   * (`acknowledgeWarning`). Poliitika ise elab `lib/field/localRetention.js`-is,
+   * et teda saaks mõõta ilma Reactita ja ilma IndexedDB-ta.
+   */
   const runLocalRetention = useCallback(async () => {
     const store = storeRef.current;
     if (!store) return;
-    const list = await store.listItems({});
-    const now = new Date();
-    for (const item of list) {
-      const decision = fieldItemPurgeDecision(item, now);
-      if (decision === FieldPurgeDecision.PURGE) {
-        await store.deleteItem(item.clientItemId);
-      } else if (decision === FieldPurgeDecision.WARN) {
-        const lastWarnAt = item.lastWarnAt ? new Date(item.lastWarnAt).getTime() : 0;
-        if (now.getTime() - lastWarnAt > 24 * 60 * 60 * 1000) {
-          await store.putItem({
-            ...item,
-            warnCount: Number(item.warnCount || 0) + 1,
-            lastWarnAt: now.toISOString()
-          });
-        }
-      }
-    }
+    const outcome = await runFieldLocalRetention({ store, now: new Date() });
+    setRetentionWarnings(outcome.warned);
+    setRetentionAwaitingConfirmation(outcome.awaitingConfirmation);
     await refreshItems();
   }, [refreshItems]);
+
+  /** Inimene kinnitab, et NÄGI hoiatust. Alles see loeb hoiatuseks. */
+  const acknowledgeWarning = useCallback(
+    async (clientItemId) => {
+      const store = storeRef.current;
+      if (!store) return;
+      await acknowledgeFieldWarning({ store, clientItemId, now: new Date() });
+      await runLocalRetention();
+    },
+    [runLocalRetention]
+  );
+
+  /** Inimene lubab kustutada. Kolm nähtud hoiatust ei ole veel luba. */
+  const confirmPurge = useCallback(
+    async (clientItemId) => {
+      const store = storeRef.current;
+      if (!store) return;
+      await confirmFieldPurge({ store, clientItemId, now: new Date() });
+      await runLocalRetention();
+    },
+    [runLocalRetention]
+  );
 
   useEffect(() => {
     let closed = false;
@@ -486,6 +508,10 @@ export function useFieldSync({ userId, visitId = null }) {
     runSync,
     storePack,
     removePack,
-    refreshItems
+    refreshItems,
+    retentionWarnings,
+    retentionAwaitingConfirmation,
+    acknowledgeWarning,
+    confirmPurge
   };
 }

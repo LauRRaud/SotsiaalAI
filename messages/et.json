@@ -323,6 +323,16 @@
       "explain": "Kustutab sellest seadmest sünkroonitud koopiad ja külastuspaketi. Serveris midagi ei kustu. Saatmata sisu EI kustutata.",
       "run": "Eemalda sellest seadmest",
       "done": "Kohalikud koopiad on eemaldatud."
+    },
+    "retention": {
+      "warnTitle": "Saatmata sisu on kadumas",
+      "warnBody": "See sisu ei ole serverisse jõudnud ja on seadmes üle 30 päeva vana. Kinnita, et oled hoiatust näinud. Kolme kinnitatud hoiatuse järel küsime eraldi luba kustutamiseks — ilma selleta sisu ei kao.",
+      "warnCount": "Kinnitatud hoiatusi: {seen}/{needed}",
+      "acknowledge": "Sain aru",
+      "unnamedItem": "Nimeta kirje",
+      "confirmTitle": "Kustutamine ootab sinu luba",
+      "confirmBody": "Oled näinud kolme hoiatust ja sisu on seadmes üle 37 päeva. Serveris seda ei ole. Kustutamine on lõplik ja toimub ainult sinu selgel loal.",
+      "confirmDelete": "Kustuta sellest seadmest"
     }
   },
   "mentoring": {

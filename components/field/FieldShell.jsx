@@ -137,6 +137,66 @@ export default function FieldShell() {
 
       {!sync.supported ? <p className="fld-warn">{t("field.storeUnsupported")}</p> : null}
 
+      {/*
+        SOL-FIELD-01 — SAATMATA SISU EI KAO VAIKSELT.
+
+        Varem kasvatas hoiatuste loendurit taustal jooksev säilituskäik ja mitte
+        ükski komponent ei kuvanud teda: „kolm hoiatust" tähendas päriselt
+        „rakendus avati kolmel eri päeval". Siin on hoiatus NÄHTAV ja tema
+        kinnitus on eraldi tegevus — alles see loeb hoiatuseks.
+      */}
+      {sync.retentionWarnings.length ? (
+        <section className="fld-error" role="alert" aria-label={t("field.retention.warnTitle")}>
+          <h2 className="fld-h2">{t("field.retention.warnTitle")}</h2>
+          <p>{t("field.retention.warnBody")}</p>
+          <ul className="fld-list">
+            {sync.retentionWarnings.map((item) => (
+              <li key={item.clientItemId}>
+                <span className="fld-card__title">
+                  {item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}
+                </span>
+                <span className="fld-card__meta">
+                  {t("field.retention.warnCount")
+                    .replace("{seen}", String(Number(item.warnCount || 0)))
+                    .replace("{needed}", "3")}
+                </span>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => sync.acknowledgeWarning(item.clientItemId)}
+                >
+                  {t("field.retention.acknowledge")}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
+      {/* Kolm nähtud hoiatust ütlevad „ma tean"; kustutamine vajab eraldi „kustuta". */}
+      {sync.retentionAwaitingConfirmation.length ? (
+        <section className="fld-error" role="alert" aria-label={t("field.retention.confirmTitle")}>
+          <h2 className="fld-h2">{t("field.retention.confirmTitle")}</h2>
+          <p>{t("field.retention.confirmBody")}</p>
+          <ul className="fld-list">
+            {sync.retentionAwaitingConfirmation.map((item) => (
+              <li key={item.clientItemId}>
+                <span className="fld-card__title">
+                  {item.payload?.body?.slice(0, 80) || t("field.retention.unnamedItem")}
+                </span>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={() => sync.confirmPurge(item.clientItemId)}
+                >
+                  {t("field.retention.confirmDelete")}
+                </Button>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
+
       {loadError ? (
         <div className="fld-error" role="alert">
           <p>{t("field.errors.loadFailed")}</p>

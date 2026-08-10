@@ -92,8 +92,20 @@ test("local retention: synced copies purge after 7 days; unsent content only war
     FieldPurgeDecision.WARN,
     "even past day 37, unsent content is NOT purged before three warnings"
   );
+  /* SOL-FIELD-01: kolm hoiatust EI OLE kustutusluba. Varem lõppes see test siin
+     ja `warnCount: 3` andis `PURGE` — aga loendurit täitis TAUSTAKÄIK, mida
+     keegi ei kuvanud. Nüüd on vaja ka viimast eksplitsiitset kinnitust.
+     Käiku ennast mõõdab `tests/field/localRetention.test.js`. */
   assert.equal(
     fieldItemPurgeDecision({ ...unsent38d, warnCount: 3 }, NOW),
+    FieldPurgeDecision.WARN,
+    "kolm hoiatust ilma kinnituseta ei kustuta"
+  );
+  assert.equal(
+    fieldItemPurgeDecision(
+      { ...unsent38d, warnCount: 3, purgeConfirmedAt: new Date(NOW.getTime() - 1000).toISOString() },
+      NOW
+    ),
     FieldPurgeDecision.PURGE
   );
 });

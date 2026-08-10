@@ -323,6 +323,16 @@
       "explain": "Deletes the synced copies and the visit pack from this device. Nothing is deleted on the server. Unsent content is NOT deleted.",
       "run": "Remove from this device",
       "done": "Local copies have been removed."
+    },
+    "retention": {
+      "warnTitle": "Unsent content is about to be lost",
+      "warnBody": "This content never reached the server and has been on the device for over 30 days. Confirm that you have seen this warning. After three confirmed warnings we ask separately for permission to delete — without it, nothing is removed.",
+      "warnCount": "Confirmed warnings: {seen}/{needed}",
+      "acknowledge": "Understood",
+      "unnamedItem": "Untitled item",
+      "confirmTitle": "Deletion is waiting for your permission",
+      "confirmBody": "You have seen three warnings and the content has been on the device for over 37 days. The server does not have it. Deletion is final and happens only with your explicit permission.",
+      "confirmDelete": "Delete from this device"
     }
   },
   "mentoring": {
