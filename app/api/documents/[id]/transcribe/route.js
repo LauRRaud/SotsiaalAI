@@ -20,9 +20,9 @@ import {
   publicErrorStatus,
   readStoredDocument,
   requireDocumentUser,
-  usageErrorJson,
-  writeStoredTextDocument
+  usageErrorJson
 } from "@/lib/documents/server"
+import { createDocumentWithStagedText } from "@/lib/documents/transcriptContent"
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration"
 import { runPaidResult } from "@/lib/usage/paidResult"
 import { resolveSttCommittedSeconds, resolveSttReservationSeconds } from "@/lib/usage/sttDuration"
@@ -258,9 +258,13 @@ export async function POST(request, { params }) {
         const transcriptFileName = buildTranscriptFileName(now)
         const storagePath = getStoredDocumentPath(transcriptFileName)
         await ensureDocumentsStorage()
-        const stored = await writeStoredTextDocument(result.text, storagePath)
 
-        const created = await prisma.userDocument.create({
+        // Fail avaldatakse alles pärast rea loomist. Varem kirjutati ta ENNE `create`-t ja catch
+        // ei teadnud loodud teed — DB-vea korral jäi tundlik tekst kettale ilma omaniku- ja
+        // retention-reata.
+        const created = await createDocumentWithStagedText({
+          storagePath,
+          content: result.text,
           data: {
             ownerId: auth.userId,
             title: buildTranscriptTitle(now, locale),
@@ -268,11 +272,7 @@ export async function POST(request, { params }) {
             kind: transcriptKind,
             agentAllowed: true,
             mime: "text/plain",
-            size: stored.size,
-            sha256: stored.sha256,
-            storagePath,
             sourceDocumentId: source.id,
-            content: result.text,
             metadata: {
               transcriptionProvider: result.provider,
               model: result.model,

@@ -16,9 +16,9 @@ import {
   normalizeDocumentKind,
   normalizeDocumentTitle,
   normalizeTemplateFor,
-  requireDocumentUser,
-  writeStoredTextDocument
+  requireDocumentUser
 } from "@/lib/documents/server"
+import { updateDocumentWithStagedText } from "@/lib/documents/transcriptContent"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -226,54 +226,58 @@ export async function PATCH(request, { params }) {
     const canUpdateContent = ["CALL_TRANSCRIPT", "AUDIO_TRANSCRIPT", "TRANSCRIPT_SUMMARY"].includes(existing.kind)
     const nextContent =
       body?.content === undefined || !canUpdateContent ? undefined : String(body.content || "").replace(/\r\n?/g, "\n").trim()
-    let storedText = null
+    let contentWasReplaced = false
 
     if (body?.content !== undefined && !canUpdateContent) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
 
-    if (nextContent !== undefined) {
-      storedText = await writeStoredTextDocument(nextContent, existing.storagePath)
+    const documentSelect = {
+      id: true,
+      ownerId: true,
+      title: true,
+      originalName: true,
+      kind: true,
+      templateFor: true,
+      agentAllowed: true,
+      mime: true,
+      size: true,
+      storagePath: true,
+      sourceDocumentId: true,
+      content: true,
+      metadata: true,
+      createdAt: true,
+      updatedAt: true
     }
 
-    const document = await prisma.userDocument.update({
-      where: { id },
-      data: {
-        title,
-        kind,
-        templateFor,
-        agentAllowed,
-        ...(storedText
-          ? {
-              content: nextContent,
-              size: storedText.size,
-              sha256: storedText.sha256,
+    // Sisu muutmisel läheb uus tekst esmalt AJUTISSE faili ja avaldatakse alles pärast
+    // andmebaasi. Varem kirjutati vana faili peale ENNE DB-d: vea korral luges allalaadimine
+    // juba uut sisu, aga API ja AI-kokkuvõte vana `content` välja — kaks tõde ühest dokumendist.
+    const document =
+      nextContent === undefined
+        ? await prisma.userDocument.update({
+            where: { id },
+            data: { title, kind, templateFor, agentAllowed },
+            select: documentSelect
+          })
+        : await updateDocumentWithStagedText({
+            where: { id },
+            storagePath: existing.storagePath,
+            content: nextContent,
+            data: {
+              title,
+              kind,
+              templateFor,
+              agentAllowed,
               metadata: {
                 ...(existing.metadata && typeof existing.metadata === "object" ? existing.metadata : {}),
                 reviewedAt: new Date().toISOString(),
                 reviewedByUserId: auth.userId
               }
-            }
-          : {})
-      },
-      select: {
-        id: true,
-        ownerId: true,
-        title: true,
-        originalName: true,
-        kind: true,
-        templateFor: true,
-        agentAllowed: true,
-        mime: true,
-        size: true,
-        storagePath: true,
-        sourceDocumentId: true,
-        content: true,
-        metadata: true,
-        createdAt: true,
-        updatedAt: true
-      }
-    })
+            },
+            select: documentSelect
+          })
+    contentWasReplaced = nextContent !== undefined
 
     await logDocumentsAudit("document.updated", {
       userId: auth.userId,
@@ -284,7 +288,7 @@ export async function PATCH(request, { params }) {
       agentAllowed: document.agentAllowed
     })
 
-    if (storedText) {
+    if (contentWasReplaced) {
       await logDocumentsAudit("document.transcript_updated", {
         userId: auth.userId,
         documentId: document.id,

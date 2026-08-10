@@ -151,6 +151,28 @@ test("artifact write and approve are conditional, not read-then-write-by-id", ()
   assert.match(mutation, /where\.updatedAt = expectedUpdatedAt/);
 });
 
+// SOL-DOC-04. Leid on KETTA JA ANDMEBAASI JÄRJEKORRA kohta, ja järjekord elab ainult ridade
+// järjestuses. Kumbki rada ei tohi enam kirjutada hoidlasse otse.
+test("transcript writes stage the file and publish it only after the database", () => {
+  for (const rel of [
+    "app/api/documents/[id]/route.js",
+    "app/api/documents/[id]/transcribe/route.js"
+  ]) {
+    const src = read(rel);
+    assert.doesNotMatch(
+      src,
+      /writeStoredTextDocument\(/,
+      `${rel} must not write storage directly before the database`
+    );
+    assert.match(src, /(update|create)DocumentWithStagedText\(/, `${rel} must publish through the staged writer`);
+  }
+
+  const staging = read("lib/documents/transcriptContent.js");
+  // Avaldamine on tehingu SEES ja viimane samm — muidu ei kaitseks teda rollback.
+  assert.match(staging, /\$transaction\([\s\S]{0,400}staged\.publish\(\)/);
+  assert.match(staging, /catch[\s\S]{0,80}staged\.rollback\(\)/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
