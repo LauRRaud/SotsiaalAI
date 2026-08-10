@@ -9,15 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **28 / 357** |
+| Tehtud leidu | **31 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **18 × P0** · 230 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **17 × P0** · 228 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `2b535e5f`, viies deploy 10.08 kell 09:06; migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-CALL** (13 lahtist: 4 × P0, 6 × P1, 3 × P2) |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-URG** (13 lahtist: 2 × P0, 11 × P1) — esimene P0-ga peatükk pärast SOL-CALL-i |
+| Käsil oleva peatüki saba | SOL-CALL 7 lahtist (4 × P1, 3 × P2), P0-sid ei ole enam |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-Kõik 25 tehtud leidu on tootmises. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
-allpool eraldi veerus.
+28 tehtud leidu on tootmises; **CALL-11/12/13 on koodis ja deploy'mata**. Ainus P3 kogu
+auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 ## Peatükid dokumendi järjekorras
 
@@ -36,7 +37,7 @@ allpool eraldi veerus.
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 3/13 | **1** | 6 | 3 | **käsil**, CALL-01/02/03 tehtud |
+| Kõned ja salvestus | SOL-CALL | 6/13 | – | 4 | 3 | **käsil**, CALL-01/02/03 + 11/12/13 tehtud |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
@@ -68,6 +69,13 @@ allpool eraldi veerus.
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
   Seis-lõike. SOL-CALL-04 peamine rada on CALL-02 CAS-iga suletud, aga kaks kriteeriumi
   osa on täitmata ja leid jääb **lahtiseks** (märkus tema all raportis).
+- **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
+  `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
+  funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
+  peatüki ainus lahtine P0 ja CALL-04…-10 (P1/P2) jäid tema taha ootele. Otsused kolisid
+  hookist välja `lib/calls/clientState.js`-i, sest testijooksja ei renderda React-hooke —
+  seesama muster, mis JTA E2-s (laua sektsiooni olek). Kõigil kolmel on runtime katmata,
+  vt Seis-lõike.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

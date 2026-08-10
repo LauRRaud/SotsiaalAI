@@ -1281,6 +1281,22 @@ starti, vaid põrkab `call.recording_not_ready`-ga. Leid jääb seetõttu lahtis
 
 **Vastuvõtukriteerium.** LiveKit connect/create/publish peab olema ühe fail-closed try/finally all: iga vea korral stopi track, disconnecti Room, nulli ref'id ning kutsu serveri leave'i sama callSessionId-ga. Liitumis-ID tuleb säilitada enne klientproviderit. Brauseritest peab süstima vea igasse kolme etappi ja kontrollima mikrofoni, LiveKit-ühendust ning DB osalust.
 
+**Seis (10.08.2026): DONE — fail-closed connect, liitumis-ID enne providerit, serveri leave veakäsitluses; brauseri veasüstetest NOT_PROVEN.**
+
+`connectLiveKit` on nüüd kest: kogu connect/create/publish elab `openLiveKitSession`-is ja
+iga viga läheb läbi ühe `catch`-i, mis kutsub `cleanupLiveKit()` (stopib track'i,
+disconnectib Room'i, nullib ref'id) ja viskab edasi. Teine pool on serveripoolne:
+`joinedCallIdRef` kirjutatakse **enne** providerikutset ja uus `releaseFailedJoin()` on
+ainus koht, kus ta maha võetakse — tema saadab ka `POST /leave` (ebaõnnestumisel beacon).
+Sama rada katab `start()`, sest serveri `/start` lisab alustaja HOST-osalejaks juba enne
+join'i; ilma selleta oleks ebaõnnestunud liitumine jätnud alles nii kõne kui hosti.
+
+KATMATA: kriteerium nõuab **brauseritesti, mis süstib vea igasse kolme etappi**. Otsused on
+kaetud `lib/calls/clientState.js` sviidiga ja juhtmestik tekstilepinguga
+(`tests/calls/callLifecycleClient.test.js`); mõlemad kukuvad vana teostuse peal
+(12/12 kontrolli, mõõdetud). Päris `getUserMedia`/`publishTrack` tõrget ei ole süstitud.
+Commit `79d54db7`.
+
 ### SOL-CALL-12 — teise vahekaardi mute-nupp võib näidata mikrofoni väljas, kuigi heli läheb edasi — P0
 
 **Tõend.** Hook tagastab `joined: joined || Boolean(joinedParticipant)`, seega teises vahekaardis serverisse loodud sama kasutaja osalus paneb ka selles vahekaardis UI „liitunud” olekusse (`components/rooms/useRoomCall.js:431-437`). Mute-klikk kutsub lokaalset `audioTrackRef.current?.mute?.()` funktsiooni, mis selles vahekaardis on null ja seetõttu no-op, ning kirjutab seejärel ainult DB `micMuted` lipu (`:302-319`). Serveri `setMuted()` muudab üksnes `CallParticipant.micMuted` välja; ta ei juhi LiveKiti teise vahekaardi track'i (`lib/calls/service.js:1295-1307`). Poll kuvab sama lipu kõigile ning UI võib näidata „Mikrofon väljas”.
@@ -1289,6 +1305,35 @@ starti, vaid põrkab `call.recording_not_ready`-ga. Leid jääb seetõttu lahtis
 
 **Vastuvõtukriteerium.** UI peab eristama serveriosalust ja selle vahekaardi päris provider-ühendust; mute-nupp tohib olla aktiivne ainult track'i omavas kontekstis või peab käsk jõudma providerisse/teise tabi usaldusväärse kanali kaudu ja saama kinnituse. DB `micMuted` ei tohi olla autoriteet ilma provideritõendita. Kahe päris brauserikontekstiga test peab liituma tab A-s, mute'ima tab B-s ja mõõtma, et kaugosaleja audio päriselt lakkab või B ei paku valet nuppu.
 
+**Seis (10.08.2026): DONE — track'i omanik on omaette tõde, nupp on kinni ilma temata, lipp läheb DB-sse alles track'i kinnituse järel; kahe brauserikontekstiga mõõtmine NOT_PROVEN.**
+
+Valitud on kriteeriumi teine haru: **B ei paku valet nuppu**. Serveriosalus („olen kõnes")
+ja selle vahekaardi provideriühendus („saan siit mikrofoni juhtida") on nüüd kaks eri
+küsimust; otsus elab `lib/calls/clientState.js`-i `resolveMicControl()`-is, sest hooki sees
+ei olnud tal ühtegi väravat. `audioOwner` läheb tõeseks alles **publitseerimise järel** ja
+`cleanupLiveKit` võtab ta maha.
+
+Kolm asja muutusid korraga, sest üksinda oleks igaüks neist poolik. Esiteks: kui see
+vahekaart mikrofoni ei juhi, **ei kirjutata andmebaasi midagi** — vana kood tegi
+`audioTrackRef.current?.mute?.()` `null`-i peal (vaikne no-op) ja kirjutas siis
+`micMuted: true`. Teiseks: track peab pärast käsku **ise kinnitama** uut seisu
+(`track.isMuted !== nextMuted` → tõrge), seega lipp on vastuse, mitte kavatsuse kirje.
+Kolmandaks: pind võtab nupu kinni ja **ütleb põhjuse välja** kolmes keeles
+(`calls.mic_control_other_tab` / `calls.mic_control_no_audio`) — kinni nupp ilma põhjuseta
+oleks omaette viga. Mock-provideril jääb nupp alles: seal ei publitseeri brauser midagi ja
+lipp ONGI kogu tõde.
+
+Kaudne tagajärg, mis kriteeriumis eraldi ei seisa: kuna kirjutajaid on nüüd ainult üks —
+track'i omav vahekaart —, on `CallParticipant.micMuted` esimest korda provideritagatud ka
+**teiste osalejate** jaoks; varem võis teine vahekaart kirjutada sinna väite, mida keegi ei
+jõustanud.
+
+KATMATA: kriteeriumi mõõtmine („kaugosaleja audio päriselt lakkab") nõuab **kaht päris
+brauserikonteksti LiveKiti vastu**. Arendusmasinal on provider `mock` — seal ei ole track'i,
+mille kohta valetada, ja P0 stsenaariumi ei saa lokaalselt üldse reprodutseerida. Tõendatud
+on otsus (8 testi negatiivkontrollidega) ja juhtmestik; **runtime jääb toodangu peale, deploy
+järel**. Commit `79d54db7`.
+
 ### SOL-CALL-13 — vana ruumi kõneseisu vastus võib uue ruumi vaate ja ühenduse üle kirjutada — P1
 
 **Tõend.** `useRoomCall.load()` fetchib roomId closure'i alusel ilma AbortController'i või generation-tokenita ning kirjutab alati `call`, `config` ja `canModerate` state'i (`components/rooms/useRoomCall.js:71-88`). Ruumivahetuse effect nullib state'i ja käivitab uue load'i, kuid cleanup ei katkesta vana fetch'i (`:111-129`). Kui vana vastuse callId erineb parajasti liitutud callId-st, võib see lisaks kutsuda `cleanupLiveKit()` ja katkestada uue ruumi päris ühenduse (`:79-84`).
@@ -1296,6 +1341,24 @@ starti, vaid põrkab `call.recording_not_ready`-ga. Leid jääb seetõttu lahtis
 **Mõju.** Ruumis B võidakse kuvada ruumi A osalejate/kõne/salvestuse olek või katkestada B heliühendus. Järgnevad nupud kasutavad B URL-i koos A callId-ga ja annavad eksitavaid vigu; osalejate nimede kuvamine vales ruumis on konfidentsiaalsusrisk.
 
 **Vastuvõtukriteerium.** Iga load-vastus peab kandma ja kontrollima roomId/request-generation identiteeti ning eelmine fetch tuleb ruumivahetusel abortida. Vana vastus ei tohi kutsuda uue ühenduse cleanup'i. Deterministlik hook-test peab lahendama A vastuse pärast B ühenduse loomist ja kontrollima state'i, track'i ning serveriosalust.
+
+**Seis (10.08.2026): DONE — põlvkond + ruumi identiteet, abort ruumivahetusel, cleanup aegunud vastuse käest ära võetud; hook-tasandi test NOT_PROVEN.**
+
+Iga laadimine saab kasvava numbri **enne** päringut ja rakendamise otsus tehakse **pärast**
+vastust: `shouldApplyCallSnapshot()` nõuab korraga uusimat põlvkonda JA sama ruumi.
+Kaks tingimust, mitte üks — ainult numbrist ei piisa, sest ruumi vahetusel võib loendur
+juhtumisi klappida. Ruumivahetus katkestab lennus päringu (`AbortController`) ja aegub tema
+põlvkonna; abort üksi ei ole garantii, sest juba lahendunud `fetch` jõuab `then`-i ka pärast
+`abort()`-i.
+
+Kandev pool ei ole state, vaid **cleanup**: vana vastus ei kutsu enam `cleanupLiveKit()`-i
+ühenduse peal, mida ta ei loonud. Sama küsimus on nüüd nimeline funktsioon
+(`shouldReleaseLocalCall`) ja ta ütleb „ei" alati, kui me ise liitunud ei olnud.
+
+KATMATA: kriteerium nõuab **deterministlikku hook-testi**, mis lahendab A vastuse pärast B
+ühenduse loomist. Testijooksja ei renderda React-hooke (JSX-i ei transformita), seega on
+otsus testitud puhta funktsioonina (4 testi, sh sama ruumi vanem poll) ja juhtmestik
+tekstilepinguga. Commit `79d54db7`.
 
 ### SOL-INV-01 — sponsoreeritud liikmete 50 koha piir on eri kutsete paralleelvastuvõtul ületatav — P1
 
