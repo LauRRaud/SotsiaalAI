@@ -89,12 +89,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 10.08 õhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
-**server on kõik `4c6c9cc9`** — deploy'mata ei ole midagi. **Seitsmes deploy 10.08 17:04
-sinu selgel loal:** viis commit'i (SLOG-17/18, RAGSVC-01/02, JOUR-01/02, PRE-02 + docs) ja
-üks migratsioon (`20260810160000` külastuse org-päritolu). Kontrollitud kohe pärast:
-`migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**, kolm teenust `active`,
-vea-ridu ei ole.
+**Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja
+**server on kõik `ae599200`** — koodis ei ole deploy'mata midagi (main-is on peale seda
+ainult käesolev docs-commit). **Kaheksas deploy 10.08 21:45
+sinu selgel loal:** 21 commit'i (SOL-NET-01/-02, SPROF-plokk, kogu SOL-ORG, SOL-FIELD-01 +
+docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 21:45, kolm
+teenust `active`, `https://sotsiaal.ai` **200**, mõlemad migratsioonid `_prisma_migrations`-is
+lõpetatud ja tagasi kerimata, trigger `ServiceVisit_provenance_frozen` **olemas ja lubatud**
+(`tgenabled = O`). `NetworkShare` on toodangus 0 rida, seega `contentHash` backfill oli
+tühikäik ja `SET NOT NULL` läks läbi triviaalselt — esimene päris kinnitus arvutab räsi
+koodirajal.
+
+**Seitsmes deploy 10.08 17:04** oli `4c6c9cc9`: viis commit'i (SLOG-17/18, RAGSVC-01/02,
+JOUR-01/02, PRE-02 + docs) ja üks migratsioon (`20260810160000` külastuse org-päritolu).
+Kontrollitud kohe pärast: `migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**,
+kolm teenust `active`, vea-ridu ei ole.
 
 **Deploy järel jooksis ka `rag:path:probe`** (RAGSVC-01/02 tõend, mis ootas teadlikult
 deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili hoidlast
@@ -152,11 +161,7 @@ Lahtiseks jääb **213 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja
 tegelikult tehtav on **SOL-FIELD-02** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
 brauseri-QA taga).
 
-**Deploy'mata on nüüd terve see õhtu:** SOL-NET-01/-02 (migratsioon `20260810180000`),
-SPROF-plokk, kogu SOL-ORG ja SOL-FIELD-01 — kokku kaks migratsiooni
-(`20260810180000`, `20260810200000`). Ütle, kui viin serverisse.
-
-**SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
+**SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
 mitte reale: klient ei saa kinnitada sõnu, mida ta ei näinud, ja `SENT` rida ei saa
 eksisteerida ilma sama versiooni kinnitustõendita. Ruum sünnib saatmisega ühes tehingus.
