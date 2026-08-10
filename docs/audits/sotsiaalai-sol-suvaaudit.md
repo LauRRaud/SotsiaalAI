@@ -1759,6 +1759,32 @@ skeemimuudatuse järel iseenesest midagi.
 
 **Vastuvõtukriteerium.** Analüüsisündmused peavad saama skeemis sobivad auditi action'id või selgelt dokumenteeritud eraldi auditiandmekandja; kohustusliku jälje puudumisel ei tohi logifunktsioon vaikides edu teeselda. Test peab kontrollima päriselt loodud/kustutatud `DocumentAudit` rida, mitte ainult funktsioonikutse olemasolu.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (10/10). VAJAB MIGRATSIOONI.**
+
+**VAIKUS OLI LEIU TUUM.** `createSavedAnalysis()` ja `deleteSavedAnalysisForOwner()` kutsusid
+auditit sündmustega `analysis.saved` ja `analysis.deleted` — aga kumbagi ei olnud auditikaardis.
+Tundmatu sündmus andis `null` ja logifunktsioon lõpetas kirjutamata. Privaatse AI-analüüsi loomine
+ja kustutamine **paistsid koodis auditeerituna**, kuid `DocumentAudit` tabelisse ei jäänud neist
+ühtki jälge; hiljem ei saanud kasutaja kustutust eristada retentionist ega puuduvast objektist.
+Funktsioonikutse olemasolu kontrolliv test oleks olnud roheline kogu selle aja.
+
+**Kolm muudatust, mis vaikuse lõpetavad.** (1) Skeem sai kaks oma action'it — `ANALYSIS_SAVE` ja
+`ANALYSIS_DELETE` (migratsioon `20260811020000`, ainult enum-väärtused). (2) `writeDocumentAudit()`
+on KOHUSTUSLIK tee: ta ei neela midagi, kaardistamata sündmus ja kirjutuse viga **viskavad**, ja
+`db` on süstitav, seega jälg käib samas tehingus toiminguga. (3) Best-effort `logDocumentsAudit()`
+jääb alles, aga kaardistamata sündmus ei kao enam vaikselt — ta läheb veatasemel logisse.
+
+**Kustutus ja tema jälg on üks toiming.** Kui jälge ei õnnestu kirjutada, ei kehti ka kustutus —
+muidu tekiks täpselt seesama seis, mida leid kirjeldab: objekt on kadunud ja põhjus teadmata.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run analysis:audit:probe`, **10/10**): salvestus loob
+täpselt ühe `ANALYSIS_SAVE` rea, mis viitab analüüsile · kustutus loob oma `ANALYSIS_DELETE` rea ·
+**olematu analüüsi kustutus ei loo jälge** · kaardistamata sündmus kukub kohustuslikul teel.
+Ühiktestid (7) katavad kaardistuse ja kohustusliku tee ilma andmebaasita.
+
+**Migratsioon.** `20260811020000_sol_doc_09_analysis_audit_actions` lisab kaks enum-väärtust
+(`ADD VALUE IF NOT EXISTS`), andmeid ei muuda. See on selle peatüki AINUS migratsiooni vajav leid.
+
 ### SOL-MEET-01 — snapshoti tõrge võib jätta koosolekukokkuvõtte igaveseks aktiivseks — P1
 
 **Tõend.** `createMeetingSummaryJob()` lisab uue queued-job'i esmalt protsessi `jobs` Map'i ja alles seejärel kirjutab JSON-snapshoti (`lib/documents/meetingSummaryJobs.js:314-342`). Snapshoti vea korral route vabastab kasutusreservatsioonid ja tagastab 500, kuid Map'i lisatud aktiivset tööd ei eemaldata; sweep ei kustuta queued/running olekut (`:46-52`, `:254-262`). Töö käivitamisel muudetakse olek `running`-uks ja snapshot kirjutatakse enne põhifunktsiooni `try` plokki; ka OpenAI mooduli import jääb try'st välja (`:543-563`). Nende vigade korral jõuab erind ainult route'i `queueMicrotask(...).catch` logisse, job'i ei märgita error'iks ega vabastata kasutust (`app/api/documents/meeting-summary/jobs/route.js:145-151`).

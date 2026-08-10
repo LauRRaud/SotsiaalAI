@@ -9,17 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **78 / 357** |
-| Peatükke lõpuni | **5 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, **SOL-FIELD** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 204 × P1 · 74 × P2 · 1 × P3 |
+| Tehtud leidu | **79 / 357** |
+| Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 204 × P1 · 73 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC on käsil** (8/9). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC sai lõpuni** (9/9). Dokumendijärjekorras on järgmine käsilevõetav **SOL-RES** (0/7), aga kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 78-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **SOL-DOC-01…-08**;
-ükski neist ei vaja migratsiooni. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**70 tehtud leidu 79-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **kogu SOL-DOC peatükk (01…09)**;
+neist vajab migratsiooni ainult **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust, andmeid ei muuda). Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -40,7 +40,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 8/9 | – | – | 1 | **käsil**, lahtine ainult DOC-09 |
+| Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
@@ -336,6 +336,15 @@ pott ja salvestamine kasutab sama atomaarset reservatsiooni. Sondis mõõdetud: 
 annavad oma baidid nii omas potis kui kogusummas, täis kvoodi all saab järgmine 413, kustutamine
 vabastab mahu. **Kõrvalleid:** kõneteenuse fake-klient ei tundnud `savedAnalysis` mudelit ja
 puuduv pott ei andnud seal nulli, vaid krahhi — see oleks maskeerinud kvoodikeelu millekski muuks.
+
+**SOL-DOC-09 (11.08) lõpetas peatüki: vaikus oli leiu tuum.** Analüüsi salvestus ja kustutus
+kutsusid auditit sündmustega, mida auditikaardis ei olnud — tundmatu sündmus andis `null` ja
+logifunktsioon lõpetas kirjutamata. Toiming paistis koodis auditeerituna, aga ühtki rida ei
+jäänud, ja funktsioonikutset kontrolliv test oleks olnud roheline kogu selle aja. Skeem sai kaks
+oma action'it (ainus migratsiooni vajav leid selles peatükis), `writeDocumentAudit()` on
+kohustuslik tee, mis kaardistamata sündmuse ja kirjutuse vea peale VISKAB, ja kustutus koos oma
+jäljega on üks tehing. **`npm run analysis:audit:probe` 10/10**, sh „olematu analüüsi kustutus ei
+loo jälge".
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 

@@ -114,8 +114,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 78/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
+**SOL-süvaaudit: 79/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
 runtime-tõend päris PostgreSQL-i vastu (`npm run sprof:consent:probe` 22/22). Ühiktest
@@ -304,12 +304,20 @@ salvestatud analüüs järgmise kontrolli sisendit ja neid sai järjest salvesta
 Analüüsid on nüüd samas summas mis dokumendid ja artefaktid, ja nende salvestamine käib sama
 atomaarse reservatsiooni all.
 
-Lahtiseks jääb **204 P1, 74 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(8/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
-sinu otsuse ja brauseri-QA taga.
+**SOL-DOC-09 lõpetas peatüki: audit, mida ei olnud.** Analüüsi salvestamine ja kustutamine
+kutsusid auditit, aga kutsutud sündmust ei olnud auditikaardis — kutse nägi välja nagu jälg, kuid
+ühtki rida ei tekkinud. Hiljem ei saanud sinu enda kustutust eristada säilitustähtajast ega
+puuduvast objektist. Nüüd on mõlemal oma jälg, kustutus ja jälg on üks toiming, ja kaardistamata
+sündmus ei kao enam vaikselt. **See on peatüki ainus migratsiooni vajav parandus** (kaks
+enum-väärtust, andmeid ei muuda).
 
-**Deploy'mata on SOL-DOC-01…-08** — ükski ei vaja migratsiooni. Ütle, kui viin
-serverisse.
+**SOL-DOC on 9/9 — kuues lõpuni viidud peatükk.** Lahtiseks jääb **204 P1, 73 P2 ja 1 P3**.
+Dokumendijärjekorras on järgmine käsilevõetav **SOL-RES** (uuringud, 0/7), aga kõige eespool
+lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+brauseri-QA taga.
+
+**Deploy'mata on kogu SOL-DOC peatükk (01…09)** — neist vajab migratsiooni ainult DOC-09
+(kaks enum-väärtust). Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
