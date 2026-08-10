@@ -101,8 +101,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 58/357 leidu, 3/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
+**SOL-süvaaudit: 64/357 leidu, 4/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN, **SOL-ORG**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
 runtime-tõend päris PostgreSQL-i vastu (`npm run sprof:consent:probe` 22/22). Ühiktest
@@ -111,22 +111,37 @@ kohast ja ühe päringu kiirtee (vestluses kõige tavalisem kuju) käis mööda;
 `searchRagDirect`-i sisse. Teine, seni märkamata uks oli **kovisiooni teadmusotsing**, mis
 käib sama RAG-indeksi peal ilma kollektsioonifiltrita — ka see rada on nüüd väravaga.
 
-**Sama õhtu jätk: SOL-ORG-01…-06 kaetud** (kõik P1 peale ORG-04, mis on P2). Kolm
-uut sondi, kõik päris PostgreSQL-i vastu:
-`slog:org:probe` (34/34) · `org:seat:probe` (26/26) · `org:sponsor:probe` (33/33).
-Kaks viimast on **paralleelsussondid** ja nad on deterministlikud, mitte „mahtusid ühte
-sekundisse": kolmas tehing hoiab rea lukku, mõlemad võistlejad käivitatakse ja MÕÕDETAKSE,
-et nad ootavad, siis lukk lastakse lahti. **Mõlemad kukuvad vana koodi vastu 10 korda** —
-ilma selle kontrollita ei tõendaks roheline sond midagi. Uus migratsioon `20260810200000`
-teeb külastuse organisatsioonilise päritolu **andmebaasi tasemel muutumatuks**.
+**Sama õhtu jätk: kogu SOL-ORG peatükk (01…12) kaetud.** Viis uut sondi, kõik päris
+PostgreSQL-i vastu: `slog:org:probe` (34/34) · `org:seat:probe` (26/26) ·
+`org:sponsor:probe` (33/33) · `org:inbox:probe` (51/51) · `org:invite:probe` (38/38) ·
+`org:offboard:probe` (60/60).
 
-Kaks asja, mis nendest leidudest välja tulid ja mida audit ise ei nimetanud: korduv
-sponsorluse vastuvõtmine tegi kasutajale **kaks tellimusrida**, ja teenuspäeviku
-nõusolekuväraval oli **teine uks** kovisiooni kaudu.
+**Paralleelsussondid on deterministlikud, mitte „mahtusid ühte sekundisse":** kolmas
+tehing hoiab rea lukku, mõlemad võistlejad käivitatakse ja MÕÕDETAKSE, et nad ootavad,
+siis lukk lastakse lahti ja Postgres annab ta ootejärjekorra järjekorras. Võistlusriist
+elab ühes kohas (`scripts/probe-race-harness.mjs`) — vigane võistlusriist annaks ROHELISE
+tulemuse, mitte punase.
 
-Lahtiseks jääb **219 P1, 79 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
-tegelikult tehtav on **SOL-ORG-07** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA
-taga).
+**IGA sond jooksutati ka vana koodi vastu** ja punaste arv on kirjas iga leiu Seis-lõigus
+(ORG-05: 10, ORG-06: 10, ORG-08: 2, ORG-09: 14, ORG-10: 13, ORG-12: 6). Ilma selle
+kontrollita ei tõendaks roheline sond midagi. Uus migratsioon `20260810200000` teeb
+külastuse organisatsioonilise päritolu **andmebaasi tasemel muutumatuks**.
+
+**Neli asja, mida audit ise ei nimetanud ja mis tulid välja alles sondiga:**
+korduv sponsorluse vastuvõtmine tegi kasutajale **kaks tellimusrida** · korduv kutse
+vastuvõtmine oleks teinud **kaks liikmesust** · `REVOKED` kutse all oli **aktiivne
+liikmesus koos õigustega** · ühest olekumuutusest jäi auditisse **kaks sündmust**.
+Teenuspäeviku nõusolekuväraval oli lisaks **teine uks** kovisiooni kaudu.
+
+**Muster, mis kordus enamikus neist:** loe seis → otsusta → kirjuta tingimusteta. Parandus
+on igal pool sama kuju — kas `updateMany ... WHERE <eeldatav seis>` (nõue) või rea lukk
+ENNE lugemist. Kaks kohta väärivad eraldi mainimist: SOL-ORG-05-l oli lukk **õigel real,
+aga otsus tehti luku-eelse tõe pealt**, ja SOL-SPROF-02-l oli värav **õige, aga vales
+kohas** — mõlemad nägid parandatud välja.
+
+Lahtiseks jääb **214 P1, 78 P2 ja 1 P3**; järjekord on dokumendijärjekord ja järgmine
+tegelikult tehtav on **SOL-FIELD-01** (SOL-CW-09/-14/-19 seisavad sinu otsuse ja
+brauseri-QA taga).
 
 **SOL-NET-01/-02 on koodis ja DEPLOY'MATA** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
