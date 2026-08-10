@@ -561,22 +561,24 @@ function getInquiryJourneySharedInfo(inquiry) {
   return normalizePreInquiryJourneySharedInfo(inquiry?.assessmentState?.sharedJourneyInfo);
 }
 
-function filterJourneySharedInfoForPreInquiry(sharedInfo, selections = []) {
-  const normalized = normalizePreInquiryJourneySharedInfo(sharedInfo);
-  if (!normalized) return null;
-  const selected = new Set(selections);
-  const next = {
-    ...normalized,
-    summary: selected.has("summary") ? normalized.summary : "",
-    domains: selected.has("domains") ? normalized.domains : [],
-    missingInfo: selected.has("missingInfo") ? normalized.missingInfo : [],
-    suggestedActions: selected.has("personWish") ? normalized.suggestedActions : [],
-    primaryPath: selected.has("domains") ? normalized.primaryPath : "",
-    contextNote: selected.has("document") ? normalized.contextNote : "",
-    userConfirmed: true
-  };
-  return normalizePreInquiryJourneySharedInfo(next);
-}
+/**
+ * Jagamisvõtmete sildid. Võtmed on SERVERI sõnavara
+ * (`lib/journey/preInquiryHandoff.js` → `JOURNEY_SHARE_KEYS`), mitte selle
+ * ekraani oma — vana valik kasutas `personWish`, mida serveri allowlist ei
+ * tundnud, seega linnuke ei vastanud ühelegi päris väljale (SOL-JOUR-01).
+ */
+const JOURNEY_SHARE_LABELS = Object.freeze({
+  summary: "olukorra kokkuvõte",
+  domains: "seotud teemad",
+  missingInfo: "puuduolev info",
+  wish: "inimese soov",
+  personContext: "isiku kontekst",
+  assistiveDevices: "abivahendid ja kohandused",
+  serviceContinuity: "teenuse jätkumine",
+  municipality: "omavalitsus",
+  document: "seotud dokument või kontekst",
+  title: "pöördumise teema"
+});
 
 function isProviderInquiry(inquiry) {
   return inquiry?.recipientType === "SERVICE_PROVIDER" || inquiry?.recipientEntry?.type === "SERVICE_PROVIDER";
@@ -839,7 +841,21 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [workflowMode, setWorkflowMode] = useState("");
   const [activeWorkflowStep, setActiveWorkflowStep] = useState("collect");
   const [assessmentPathChosen, setAssessmentPathChosen] = useState(false);
-  const [journeyShareSelections, setJourneyShareSelections] = useState(["summary", "domains", "personWish", "missingInfo"]);
+  /**
+   * TEEKONNA JAGAMISVALIK (SOL-JOUR-01, P0).
+   *
+   * Tühi algväärtus, MITTE püsiv vaikehulk. Vana `["summary", "domains",
+   * "personWish", "missingInfo"]` oli kahekordselt vale: ta väitis valikut,
+   * mida kasutaja ei olnud teinud, ja tema võtmed (`personWish`) ei kuulunud
+   * isegi serveri sõnavarasse (`wish`). Valik tuleb nüüd serveri kinnitatud
+   * võtmetest ja iga muutus küsib serverilt UUE projektsiooni.
+   */
+  const [journeyShareSelections, setJourneyShareSelections] = useState([]);
+  const [journeyShareOptions, setJourneyShareOptions] = useState([]);
+  const [journeyShareBusy, setJourneyShareBusy] = useState(false);
+  /* Hiline vastus ei tohi uuemat valikut üle kirjutada — sama lõks, mis
+     SOL-WB-14 all kirjas (`AbortController`-ita paralleelsed laadimised). */
+  const journeyShareRequestRef = useRef(0);
   const journeyPrefillLoadedRef = useRef(false);
   const recipientPrefillLoadedRef = useRef(false);
   const openInquiryLoadedRef = useRef(false);
@@ -1221,11 +1237,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         }
         if (cancelled) return;
         const prefill = payload?.prefill || {};
+        const sharedInfo = normalizePreInquiryJourneySharedInfo(prefill.sharedJourneyInfo);
         const nextAssessmentState = createEmptyPreInquiryAssessmentState();
         nextAssessmentState.subject.municipalityText = String(prefill.municipality || "");
         nextAssessmentState.supportContext.personWish = String(prefill.personContext || "");
         nextAssessmentState.routing.contactSearchInput.municipalityText = String(prefill.municipality || "");
-        nextAssessmentState.sharedJourneyInfo = normalizePreInquiryJourneySharedInfo(prefill.sharedJourneyInfo);
+        nextAssessmentState.sharedJourneyInfo = sharedInfo;
 
         setActiveInquiryId("");
         setJourneySourceId(String(prefill.sourceJourneyId || fromJourney || ""));
@@ -1251,7 +1268,14 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         setWorkflowMode("journey");
         setActiveWorkflowStep("journey");
         setAssessmentPathChosen(false);
-        setJourneyShareSelections(["summary", "domains", "personWish", "missingInfo"]);
+        /* VALIK TULEB SERVERI KINNITATUD VÕTMETEST (SOL-JOUR-01), mitte
+           püsivast vaikehulgast. Valida saab ainult nende seast, mida esimene
+           läbi juba kinnitas — teine ekraan tohib KITSENDADA, mitte laiendada. */
+        {
+          const confirmed = Array.isArray(sharedInfo?.confirmedKeys) ? sharedInfo.confirmedKeys : [];
+          setJourneyShareOptions(confirmed);
+          setJourneyShareSelections(confirmed);
+        }
         setNotice(readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.loaded", "A pre-inquiry draft was prepared from the journey. Review and edit it before sending."));
       } catch (prefillError) {
         if (!cancelled) {
@@ -1265,6 +1289,88 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       cancelled = true;
     };
   }, [t]);
+
+  /**
+   * TEINE JAGAMISVALIK ON SERVERIS AUTORITEETNE (SOL-JOUR-01, P0).
+   *
+   * MIS OLI KATKI. Valikuid oli KAKS ja ainult esimene juhtis teksti. Teine —
+   * see, mida kasutaja näeb vahetult enne adressaadi valikut — filtreeris ainult
+   * `sharedJourneyInfo` koopiat. `topic`, `situation` ja kirjamustand jäid
+   * ESIMESE projektsiooni kujule ja läksid POST-i muutmata. Kasutaja võttis
+   * linnukese maha, nägi ekraanil valikut kitsenemas — ja sama tekst läks
+   * adressaadile. Manifest väitis pealegi muud võtmehulka, kui tekst sisaldas.
+   *
+   * ÜKS LÄVI, mitte kaks: iga muutus küsib SAMALT serveri projektsioonilt uue
+   * kuju ja KÕIK püsivad väljad ehitatakse sellest ühest vastusest. Kliendipoolne
+   * filter oleks olnud kolmas tõde — teda ei ole enam üldse.
+   *
+   * MIKS SERVER, KUI VALIK ON KLIENDIS. Sest allikas on serveris: projektsioon
+   * loeb Teekonna PÄRIS välju (`lib/journey/preInquiryHandoff.js` fail-closed
+   * allowlist'iga). Klient ei saa „eemaldatud" teksti tagasi arvutada — ta saab
+   * ainult küsida kitsamat kuju ja selle täies ulatuses üle võtta.
+   */
+  const refreshJourneyProjection = useCallback(
+    async (nextKeys) => {
+      if (!journeySourceId) return;
+      const requestId = journeyShareRequestRef.current + 1;
+      journeyShareRequestRef.current = requestId;
+      setJourneyShareBusy(true);
+      setError("");
+      try {
+        const response = await fetch(`/api/journeys/${encodeURIComponent(journeySourceId)}/pre-inquiry-draft`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ shareKeys: nextKeys }),
+          cache: "no-store"
+        });
+        const payload = await response.json().catch(() => ({}));
+        /* Vananenud vastus ei tohi uuemat valikut üle kirjutada. */
+        if (journeyShareRequestRef.current !== requestId) return;
+        if (!response.ok || !payload?.ok) {
+          throw new Error(payload?.message || readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.load_failed", "Journey prefill could not be loaded."));
+        }
+        const prefill = payload?.prefill || {};
+        const sharedInfo = normalizePreInquiryJourneySharedInfo(prefill.sharedJourneyInfo);
+        const municipality = String(prefill.municipality || "");
+
+        setTopic(String(prefill.topic || ""));
+        setSituation(String(prefill.situation || ""));
+        /* KIRJAMUSTAND EHITATAKSE UUESTI. Kui kasutaja oli teda käsitsi
+           muutnud, kaob see muudatus — ja see on õige suund: valik, mis teksti
+           ei muuda, ei ole valik. Teade ütleb selle välja. */
+        setDraft(String(prefill.suggestedMessageDraft || ""));
+        setDraftTouched(Boolean(prefill.suggestedMessageDraft));
+        setRecipientQuery(municipality);
+        setAssessmentState((current) => {
+          const base = normalizePreInquiryAssessmentState(current);
+          return normalizePreInquiryAssessmentState({
+            ...base,
+            subject: { ...base.subject, municipalityText: municipality },
+            supportContext: { ...base.supportContext, personWish: String(prefill.personContext || "") },
+            routing: {
+              ...base.routing,
+              contactSearchInput: { ...base.routing.contactSearchInput, municipalityText: municipality }
+            },
+            sharedJourneyInfo: sharedInfo
+          });
+        });
+        /* Linnukesed tulevad VASTUSEST, mitte kliendi soovist: nii kirjeldab
+           `confirmedKeys` täpselt seda kuju, mis salvestub. */
+        setJourneyShareSelections(Array.isArray(sharedInfo?.confirmedKeys) ? sharedInfo.confirmedKeys : []);
+        setNotice(readText(
+          t,
+          "workspace_feature_pages.pre_inquiries.journey_share.reprojected",
+          "Eelpöördumise tekst koostati valitud osadest uuesti."
+        ));
+      } catch (projectionError) {
+        if (journeyShareRequestRef.current !== requestId) return;
+        setError(projectionError?.message || readText(t, "workspace_feature_pages.pre_inquiries.journey_prefill.load_failed", "Journey prefill could not be loaded."));
+      } finally {
+        if (journeyShareRequestRef.current === requestId) setJourneyShareBusy(false);
+      }
+    },
+    [journeySourceId, t]
+  );
 
   useEffect(() => {
     if (recipientPrefillLoadedRef.current || typeof window === "undefined" || !entries.length) return;
@@ -1468,7 +1574,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setWorkflowMode("");
     setActiveWorkflowStep("collect");
     setAssessmentPathChosen(false);
-    setJourneyShareSelections(["summary", "domains", "personWish", "missingInfo"]);
+    /* Uus eelpöördumine ei ole ühestki Teekonnast tulnud — jagamisvalikut ei
+       ole olemas. Vaikehulk oleks siin väide kasutaja nõusoleku kohta, mida ta
+       ei ole andnud (SOL-JOUR-01). */
+    setJourneyShareOptions([]);
+    setJourneyShareSelections([]);
     setNotice("");
     setError("");
   }
@@ -1497,7 +1607,14 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setWorkflowMode("existing");
     setActiveWorkflowStep("preview");
     setAssessmentPathChosen(Boolean(inquiry.assessmentState?.path));
-    setJourneyShareSelections(["summary", "domains", "personWish", "missingInfo"]);
+    /* Avatud eelpöördumise valik on see, mis TEMA juures salvestatud on —
+       mitte vaikehulk. Vale vaikehulk näitaks siin võõra rea kohta valikut,
+       mida keegi ei teinud. */
+    {
+      const storedKeys = getInquiryJourneySharedInfo(inquiry)?.confirmedKeys || [];
+      setJourneyShareOptions(storedKeys);
+      setJourneyShareSelections(storedKeys);
+    }
     setNotice("");
     setError("");
   }
@@ -1514,13 +1631,12 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setSavePrivacyPrompt(null);
 
     try {
-      const assessmentStateForSave = normalizePreInquiryAssessmentState({
-        ...normalizedAssessmentState,
-        sharedJourneyInfo: filterJourneySharedInfoForPreInquiry(
-          normalizedAssessmentState.sharedJourneyInfo,
-          journeyShareSelections
-        )
-      });
+      /* SOL-JOUR-01: manifest tuleb SERVERI projektsioonist, mitte kliendi
+         filtrist. Vana `filterJourneySharedInfoForPreInquiry()` oli kolmas
+         tõde tekstist — ta kitsendas manifesti, aga `situation` ja mustand
+         jäid laiemaks. Nüüd on `sharedJourneyInfo` juba see kuju, mille server
+         viimasel valikul andis, ja teda ei tohi enne salvestust muuta. */
+      const assessmentStateForSave = normalizePreInquiryAssessmentState(normalizedAssessmentState);
       const response = await fetch(activeInquiryId ? `/api/pre-inquiries/${activeInquiryId}` : "/api/pre-inquiries", {
         method: activeInquiryId ? "PATCH" : "POST",
         headers: {
@@ -2265,22 +2381,22 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
             <p className={bodyTextClassName}>{readText(t, "workspace_feature_pages.pre_inquiries.journey_share.empty", "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.")}</p>
           )}
           <div>
-            {[
-              ["summary", "olukorra kokkuvõte"],
-              ["domains", "seotud teemad"],
-              ["personWish", "inimese soov"],
-              ["missingInfo", "puuduolev info"],
-              ["document", "seotud dokument või kontekst"]
-            ].map(([id, label]) => (
+            {journeyShareOptions.map((id) => (
               <Checkbox
                 key={id}
                 checked={journeyShareSelections.includes(id)}
+                disabled={journeyShareBusy}
                 onChange={(checked) => {
-                  setJourneyShareSelections((current) => checked
-                    ? [...new Set([...current, id])]
-                    : current.filter((item) => item !== id));
+                  /* Valik EI OLE lõplik enne serveri vastust: me ei muuda siin
+                     olekut ise, vaid küsime uue projektsiooni ja võtame ta
+                     tervikuna üle. Nii ei saa ekraan näidata kitsamat valikut
+                     kui tekst tegelikult on. */
+                  const nextKeys = checked
+                    ? [...new Set([...journeyShareSelections, id])]
+                    : journeyShareSelections.filter((item) => item !== id);
+                  void refreshJourneyProjection(nextKeys);
                 }}
-                label={label}
+                label={JOURNEY_SHARE_LABELS[id] || id}
               />
             ))}
           </div>

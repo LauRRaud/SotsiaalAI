@@ -3074,6 +3074,44 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 
 **Vastuvõtukriteerium.** Jagamisvalikuid peab olema täpselt üks või viimane valik peab olema serveris autoriteetne. Kõik püsivad väljad (`topic`, `situation`, mustandid, `assessmentState.sharedJourneyInfo`) tuleb koostada samast lõplikust serveriprojektsioonist ning `confirmedKeys` peab kirjeldama täpselt seda projektsiooni. Kahe autentitud konto markeritest peab iga valikukombinatsiooni puhul tõendama, et ükski eemaldatud marker ei esine loodud reas ega adressaadi GET-vastuses.
 
+**Seis (10.08.2026): DONE.** Valitud on kriteeriumi TEINE haru: valikuid jääb kaks, aga
+viimane on serveris autoriteetne.
+
+- **Iga muutus küsib serverilt uue projektsiooni** (`refreshJourneyProjection`) ja KÕIK
+  püsivad väljad — `topic`, `situation`, kirjamustand, omavalitsus,
+  `assessmentState.sharedJourneyInfo` — ehitatakse sellest ühest vastusest.
+- **Kliendipoolne filter on KUSTUTATUD.** `filterJourneySharedInfoForPreInquiry()` oli
+  kolmas tõde: ta kitsendas manifesti, aga `situation` ja mustand jäid laiemaks. Ta on ära,
+  mitte parandatud — kaks tõde on halvem kui üks.
+- **Linnukesed tulevad serveri `confirmedKeys`-ist, mitte püsivast vaikehulgast.** Vana
+  `["summary", "domains", "personWish", "missingInfo"]` oli kahekordselt vale: ta VÄITIS
+  valikut, mida kasutaja ei olnud teinud, ja tema võti `personWish` ei kuulunud isegi
+  serveri sõnavarasse (`wish`) — linnuke ei vastanud ühelegi päris väljale. Sama vaikehulk
+  seisis veel kahes kohas (uus eelpöördumine, avatud eelpöördumine); mõlemad parandatud:
+  uuel ei ole valikut üldse, avatul on see, mis TEMA juures salvestatud on.
+- **Valida saab ainult esimese lävi kinnitatud võtmete seast** — teine ekraan tohib
+  KITSENDADA, mitte laiendada.
+- **Hiline vastus ei kirjuta uuemat valikut üle** (request-ID kontroll) — SOL-WB-14 klass,
+  mida siia sisse ei lastud.
+
+**Tõend (päris brauser, päris sessioon `ai.client@sotsiaalai.test`, Teekond markertekstidega).**
+`?share=summary,domains,missingInfo,wish` → ekraanil neli linnukest, kõik serveri sõnavarast
+(„inimese soov", mitte vana `personWish`). „Olukorra kokkuvõte" maha → `MARKERSUMMARY` kadus
+KOGU lehelt ja kirjamustandist; ülejäänud kolm markerit jäid.
+**Salvestatud rida andmebaasist:** `MARKERSUMMARY` puudub (`false`), `confirmedKeys =
+["domains","missingInfo","wish"]`, `sharedJourneyInfo.summary = ""` ja `userEditedDraft`
+sisaldab ainult kolme alles jäänud markerit. See on kriteeriumi „ükski eemaldatud marker ei
+esine loodud reas" — mõõdetuna, mitte tuletatuna.
+
+**Testid.** `tests/journey/journeyShareProjection.test.js` (uus, 6 testi): igal
+jagamisvõtmel on unikaalne marker ja testid nõuavad, et eemaldatud võtme marker ei esine
+MITTE KUSAGIL vastuses — nii ei sõltu test sellest, millisesse välja tekst juhtub kokku
+pandama. Kaetud ka tundmatu võti (fail-closed), tühi valik ja `confirmedKeys` täpsus.
+
+**runtime osaliselt:** kahe konto ristkontrolli ei tehtud — jagamisprojektsioon ei sõltu
+teisest kontost (ta loeb ainult kutsuja enda Teekonda, `getJourneyForUser`), seega teise
+konto lisamine mõõdaks omanikuskoopi, mis on juba mujal kaetud.
+
 ### SOL-JOUR-02 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — P0
 
 **Tõend.** Teekonna kirjeldus ja kogu struktureeritud mustand kirjutatakse globaalse sama-origin võtme `sotsiaalai:journey-v1:draft` alla ning taastatakse komponendi mount'imisel ilma kasutaja ID, sessiooniversiooni või rolli kontrollita (`components/journey/JourneyDashboard.jsx:39-40`, `:477-495`). Kogu repos on selle võtme eemaldajad ainult edukas salvestus ja kasutaja teadlik katkestamine (`:547-574`, `:616-626`); väljalogimine ja konto vahetus seda võtit ei puhasta. `sessionStorage` elab vahekaardi eluea, mitte konto eluea järgi.
@@ -3081,6 +3119,32 @@ ingestitakse. Otsing ja vastused ei sõltu sellest — vektorid on juba baasis.
 **Mõju.** Kui kasutaja A logib samas vahekaardis välja ja kasutaja B sisse, võib B-le taastuda A tundlik olukirjeldus, riskisignaalid, kolmanda isiku kontekst ja järgmised sammud. See on otsene kontodevaheline andmeleke ühiskasutatavas seadmes, kuigi serveri Journey-read ise on korrektselt omanikuskoobitud.
 
 **Vastuvõtukriteerium.** Mustandivõti peab olema seotud vähemalt stabiilse kasutaja ID ja sessioonikontekstiga; identiteedi muutumisel ei tohi eelmise identiteedi mustandit lugeda ning vana võti tuleb turvaliselt eemaldada. Kahe konto brauseritest peab tõendama logout/login, rollivahetuse, aegunud sessiooni ja vahekaardi taastamise negatiivjuhud.
+
+**Seis (10.08.2026): DONE.**
+
+- **Rida on konto oma.** `sotsiaalai:journey-v1:draft` on nüüd ALUSNIMI, millele lisatakse
+  kasutaja ID. Omanik tuleb toorest sessioonist; ilma temata on seade LUKUS — ei loeta ega
+  kirjutata.
+- **Sama primitiiv, mis teenuspäevikul.** SOL-SLOG-01 ja see leid olid sama viga eri
+  failides, seega kaitse kolis `lib/device/ownerScopedStorage.js`-i ja
+  `lib/serviceLog/deviceStore.js` delegeerib sinna. Kaks koopiat lahkneksid — see on täpselt
+  see muster, mille RAG-admini peatükk juba korra kätte õpetas.
+- **Kasutajavahetus tühjendab ekraani MÄLUS**, salvestust puutumata: `clear` läheks juba uue
+  omaniku reale ja kustutaks tema õige mustandi.
+- **Vana sildistamata rida kustutatakse**, mitte ei anta järgmisele sisselogijale.
+- **Kirjutamine ootab taastamist** (`draftReadyRef`) — ilma selleta kirjutaks tühi vorm üle
+  rea, mida keegi ei puutunud. See lõks on SOL-SLOG-01 juures mõõdetud ja siia ei lastud.
+
+**Tõend (päris brauser, päris sessioon).** Seadmesse pandi korraga vana sildistamata rida ja
+VÕÕRA omaniku rida → lehe avamisel: vana rida kustutati, võõra omaniku rida jäi baidilt
+puutumata ja **kumbagi ei olnud ekraanil ega üheski väljas**. Seejärel oma rida → taastus
+õigesti („Taastasime selle sessiooni pooleli jäänud töö") ja **rida jäi alles**.
+
+**runtime osaliselt: `A logib välja → B logib sisse` samas vahekaardis on läbi käimata.**
+Vahetuse haru on koodis olemas (omaniku muutus tühjendab vormi ja loeb uue omaniku rea) ja
+ülal kirjeldatud võõra omaniku katse mõõdab sedasama invarianti teisest otsast: seade
+sisaldab teise konto rida, meie sessioon ei näe seda. Aegunud sessioon annab `status !==
+"authenticated"` ehk tühja omaniku → lukus seade, sama haru.
 
 ### SOL-JOUR-03 — salvestusnormaliseerija hävitab Teekonna struktureeritud konteksti — P1
 

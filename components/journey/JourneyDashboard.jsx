@@ -11,6 +11,7 @@ import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import Form from "@/components/ui/Form";
 import Input from "@/components/ui/Input";
 import { localizePath } from "@/lib/localizePath";
+import { openOwnerScopedStore, purgeUnscopedRows } from "@/lib/device/ownerScopedStorage";
 import { pushWithTransition } from "@/lib/routeTransition";
 
 const DEFAULT_DRAFT = Object.freeze({
@@ -37,7 +38,20 @@ const DEFAULT_LIFE_DOMAINS = Object.freeze([
 ]);
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
-const JOURNEY_DRAFT_STORAGE_KEY = "sotsiaalai:journey-v1:draft";
+/**
+ * TEEKONNA MUSTANDI RIDA (SOL-JOUR-02, P0).
+ *
+ * See oli GLOBAALNE sama-origin võti ilma kasutaja ID-ta ja teda ei puhastanud
+ * ei väljalogimine ega konto vahetus — ainult edukas salvestus ja teadlik
+ * katkestamine. `sessionStorage` elab VAHEKAARDI, mitte konto eluea järgi:
+ * kui A logis samas vahekaardis välja ja B sisse, taastus B-le A olukirjeldus,
+ * riskisignaalid ja kolmanda isiku kontekst.
+ *
+ * Nüüd on see ALUSNIMI, millele lisatakse omanik — vt
+ * `lib/device/ownerScopedStorage.js`. Sama kaitse mis teenuspäevikul
+ * (SOL-SLOG-01), ühest ja samast failist.
+ */
+const JOURNEY_DRAFT_ROW = "sotsiaalai:journey-v1:draft";
 
 function setJourneyStepInUrl(step = "") {
   if (typeof window === "undefined") return;
@@ -396,7 +410,17 @@ function EmptyJourneyStart({ onStart, disabled, t }) {
 export default function JourneyDashboard({ embedded = false, onBack = null, hideHeader = false, roleOverride = "" } = {}) {
   const { t, locale } = useI18n();
   const router = useRouter();
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  /**
+   * Mustandi omanik. Kuni sessioon ei ole autenditud, on ta tühi ja
+   * `openOwnerScopedStore` annab `null` — seade on lukus, mitte lahti vale
+   * omaniku peale (SOL-JOUR-02).
+   */
+  const draftOwnerId = status === "authenticated" && session?.user?.id ? String(session.user.id) : "";
+  const draftStore = useCallback(
+    () => openOwnerScopedStore(typeof window === "undefined" ? null : window.sessionStorage, draftOwnerId),
+    [draftOwnerId]
+  );
   const { effectiveRole, isRoleResolved } = useEffectiveRole();
   const [journeys, setJourneys] = useState([]);
   const [mode, setMode] = useState("list");
@@ -474,12 +498,38 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     });
   }, [isClientRole, isRoleResolved, loadJourneys, status, t]);
 
+  /* Eelmise renderduse omanik: `null` = esimene kord, tühi string = välja
+     logitud. Ainult PÄRIS vahetus (A → B) tühjendab ekraani. */
+  const draftOwnerRef = useRef(null);
+  const draftReadyRef = useRef(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
+    /* Vana sildistamata rida ei kuulu kellelegi ja teda ei saa omistada —
+       ta kustutatakse, mitte ei anta järgmisele sisselogijale. */
+    purgeUnscopedRows(window.sessionStorage, [JOURNEY_DRAFT_ROW]);
+
+    const previousOwner = draftOwnerRef.current;
+    draftOwnerRef.current = draftOwnerId;
+    if (previousOwner !== null && previousOwner !== draftOwnerId) {
+      /* KASUTAJAVAHETUS. Ekraanil olev tekst kuulub eelmisele kontole: teda ei
+         tohi uue konto reale kirjutada ega talle näidata. Salvestust me siin
+         EI puutu — see läheks juba uue omaniku reale. */
+      draftReadyRef.current = false;
+      setSituation("");
+      /* `DEFAULT_DRAFT`, mitte `null`: mustandi välju loetakse mujal otse
+         (`draft.summary`) ja `null` annaks siin lehe krahhi, mitte tühja vormi. */
+      setDraft(DEFAULT_DRAFT);
+      setNotice("");
+    }
+    if (!draftOwnerId) {
+      draftReadyRef.current = false;
+      return;
+    }
+
     const step = new URL(window.location.href).searchParams.get("samm");
     let saved = null;
     try {
-      saved = JSON.parse(window.sessionStorage.getItem(JOURNEY_DRAFT_STORAGE_KEY) || "null");
+      saved = JSON.parse(draftStore()?.getItem(JOURNEY_DRAFT_ROW) || "null");
     } catch {}
     if (saved?.situation) setSituation(String(saved.situation));
     if (saved?.draft && typeof saved.draft === "object") setDraft(saved.draft);
@@ -487,12 +537,16 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       setMode(step === "ulevaade" && saved?.draft ? "review" : "start");
       if (saved) setNotice(t("journey.autosave.restored", "Taastasime selle sessiooni pooleli jäänud töö."));
     }
-  }, [t]);
+    draftReadyRef.current = true;
+  }, [draftOwnerId, draftStore, t]);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !["start", "review"].includes(mode)) return;
-    window.sessionStorage.setItem(JOURNEY_DRAFT_STORAGE_KEY, JSON.stringify({ mode, situation, draft }));
-  }, [draft, mode, situation]);
+    /* Ilma omanikuta ega enne taastamist ei kirjutata midagi: muidu kirjutaks
+       tühi vorm üle rea, mida keegi ei puutunud. */
+    if (typeof window === "undefined" || !draftOwnerId || !draftReadyRef.current) return;
+    if (!["start", "review"].includes(mode)) return;
+    draftStore()?.setItem(JOURNEY_DRAFT_ROW, JSON.stringify({ mode, situation, draft }));
+  }, [draft, draftOwnerId, draftStore, mode, situation]);
 
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
@@ -569,7 +623,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
       setSituation("");
       setDraft(DEFAULT_DRAFT);
       setMode("list");
-      window.sessionStorage.removeItem(JOURNEY_DRAFT_STORAGE_KEY);
+      draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
       setJourneyStepInUrl("");
       pushWithTransition(router, localizePath(`/teekond/${encodeURIComponent(payload.journey.id)}`, locale));
     } catch (saveError) {
@@ -577,7 +631,7 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     } finally {
       setBusy(false);
     }
-  }, [draft, locale, router, t]);
+  }, [draft, draftStore, locale, router, t]);
 
   const handleArchive = useCallback(async (journeyId) => {
     setBusy(true);
@@ -617,14 +671,14 @@ export default function JourneyDashboard({ embedded = false, onBack = null, hide
     if (typeof window !== "undefined" && (situation.trim() || draft.summary)) {
       const confirmed = window.confirm(t("journey.autosave.discard_confirm", "Kas lõpetad koostamise ja kustutad selle sessiooni mustandi?"));
       if (!confirmed) return;
-      window.sessionStorage.removeItem(JOURNEY_DRAFT_STORAGE_KEY);
+      draftStore()?.removeItem(JOURNEY_DRAFT_ROW);
     }
     setMode("list");
     setSituation("");
     setDraft(DEFAULT_DRAFT);
     setError("");
     setJourneyStepInUrl("");
-  }, [draft.summary, situation, t]);
+  }, [draft.summary, draftStore, situation, t]);
 
   const handleEditDescription = useCallback(() => {
     setMode("start");

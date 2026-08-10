@@ -2111,7 +2111,8 @@
       },
       "journey_share": {
         "lead": "Journey information is private. Select only the parts you want to use when preparing this pre-inquiry.",
-        "empty": "No Journey summary has come along yet. Open the pre-inquiry from a specific Journey's view or continue with a new pre-inquiry."
+        "empty": "No Journey summary has come along yet. Open the pre-inquiry from a specific Journey's view or continue with a new pre-inquiry.",
+        "reprojected": "The pre-inquiry text was rebuilt from the selected parts."
       },
       "recipients_hint": "To get contact suggestions, add at least a region or municipality and a short description of the situation.",
       "preview": {

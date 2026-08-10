@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **45 / 357** |
+| Tehtud leidu | **47 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **7 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **5 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-JOUR** (2 × P0) — SOL-SLOG ja SOL-RAGSVC on P0-dest tühjad; edasi SOL-NET (2), SOL-SPROF (2), SOL-PRE (1) |
-| Käsil oleva peatüki saba | SOL-RAGSVC 26 lahtist (19 × P1, 7 × P2) · SOL-SLOG 19 · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-PRE** (1 × P0) — dokumendis kõige eespool lahtise P0-ga; edasi SOL-NET (2), SOL-SPROF (2) |
+| Käsil oleva peatüki saba | SOL-JOUR 15 lahtist (12 × P1, 3 × P2) · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-01/13/14/17/18 ja RAGSVC-01/02 on koodis ja deploy'mata (kolm migratsiooni:
+31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-01/13/14/17/18, RAGSVC-01/02 ja JOUR-01/02 on koodis ja deploy'mata (kolm migratsiooni:
 `20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`, `20260810160000`
 külastuse org-päritolu)**. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
 allpool eraldi veerus.
@@ -54,7 +54,7 @@ allpool eraldi veerus.
 | Kovisioon | SOL-COV | 0/8 | – | 8 | – | |
 | Tõenduspõhised praktikad | SOL-PRAC | 0/8 | – | 8 | – | |
 | Teemaseemned | SOL-SEED | 0/5 | – | 3 | 2 | |
-| Teekond ja jagamine | SOL-JOUR | 0/17 | **2** | 12 | 3 | |
+| Teekond ja jagamine | SOL-JOUR | 2/17 | – | 12 | 3 | **käsil**, mõlemad P0 tehtud |
 | Eelpöördumised | SOL-PRE | 1/18 | **1** | 15 | 1 | PRE-01 tehti URG-02 kõrval, sama tehing |
 | Abikuulutused | SOL-HELP | 0/13 | – | 11 | 2 | |
 | Võrgustikutöö | SOL-NET | 0/13 | **2** | 9 | 2 | |
@@ -131,6 +131,20 @@ allpool eraldi veerus.
   uuenduses. **HTTP-negatiivtest on kirjutatud, aga teadlikult jooksmata** — enne deploy'd
   oleks ta ise rünnak päris serveri vastu; `npm run rag:path:probe` ootab deploy-järgset
   käivitust.
+- **SOL-JOUR-01** (10.08) — eelpöördumise jagamisvalikuid oli KAKS ja ainult esimene juhtis
+  teksti. Teine — see, mida kasutaja näeb vahetult enne adressaadi valikut — filtreeris
+  ainult manifesti koopiat; `topic`, `situation` ja kirjamustand jäid esimese projektsiooni
+  kujule. Linnuke läks maha, tekst läks adressaadile. Nüüd küsib iga muutus serverilt uue
+  projektsiooni ja kõik püsivad väljad tulevad sellest ühest vastusest; kliendipoolne filter
+  on kustutatud, mitte parandatud. Vana vaikehulk `personWish` ei kuulunud isegi serveri
+  sõnavarasse. **Tõendatud lõpuni: salvestatud andmebaasireas eemaldatud võtme markerit EI
+  OLE**, `confirmedKeys` vastab täpselt projektsioonile.
+- **SOL-JOUR-02** (10.08) — Teekonna mustand elas globaalse `sessionStorage` võtme all ilma
+  kasutaja ID-ta; sama vahekaardi kontovahetus taastas eelmise inimese olukirjelduse.
+  Sama viga mis SOL-SLOG-01, seega kaitse kolis ühte kohta
+  (`lib/device/ownerScopedStorage.js`) ja teenuspäevik delegeerib sinna. Tõendatud brauseris:
+  vana sildistamata rida kustutati, võõra omaniku rida jäi puutumata ja kummastki ei jõudnud
+  ekraanile midagi.
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -163,10 +177,10 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 7 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
-  kus P0-sid EI OLE ühtegi. SOL-CALL, SOL-URG, **SOL-SLOG** ja **SOL-RAGSVC** on selle reegli
-  järgi P0-dest tühjaks tehtud; järgmine on **SOL-JOUR** (2 × P0) — tema on lahtiste P0-dega
-  peatükkidest dokumendis kõige eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d
-  on kaetud.
+  lahtiseid P0-sid on 5 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. SOL-CALL, SOL-URG, **SOL-SLOG**, **SOL-RAGSVC** ja **SOL-JOUR**
+  on selle reegli järgi P0-dest tühjaks tehtud; järgmine on **SOL-PRE** (1 × P0), siis
+  SOL-NET (2) ja SOL-SPROF (2). SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on
+  kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.

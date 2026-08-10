@@ -2111,7 +2111,8 @@
       },
       "journey_share": {
         "lead": "Teekonna info on privaatne. Märgi ainult need osad, mida soovid selle eelpöördumise koostamisel kasutada.",
-        "empty": "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist."
+        "empty": "Teekonna kokkuvõtet ei ole veel kaasa tulnud. Ava eelpöördumine konkreetse Teekonna vaatest või jätka uut eelpöördumist.",
+        "reprojected": "Eelpöördumise tekst koostati valitud osadest uuesti."
       },
       "recipients_hint": "Kontaktide soovitamiseks lisa vähemalt piirkond või KOV ning lühike olukorra kirjeldus.",
       "preview": {
