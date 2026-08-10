@@ -2147,6 +2147,22 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 
 **Vastuvõtukriteerium.** Sisu saaja peab omama selgelt nimetatud ja skoopitud aktiivset aruandelugemise capability't; reporting line võib ainult soovitada kandidaati, mitte autoriseerida. Negatiivtest peab tõendama, et manager-seos ilma capability-ta ei ilmu saajatesse ega läbi otsest POST-i.
 
+**Seis (10.08.2026): DONE — autoriseerib ainult capability, juhiseos võtab sõna. Commit `bcff4903`.**
+
+`listShareRecipients()` ei ole ainult UI valik — sama loend on ka saatmise
+autoriseerimise alus (`shareMonthlyReport` valideerib tema vastu), seega leid andis
+õigust, mitte ainult nähtavust. Nüüd lisab saaja **ainult** capability; juhiseos võib
+öelda ainult, KUIDAS teda nimetada („juht" on täpsem sõna kui „üksuse juht", kui sama
+inimene on mõlemat). Ilma capability-ta ei ilmu ta loendisse ega läbi otsest POST-i.
+
+Järjekord failis on nüüd **autoriseerimisotsus, mitte stiil** — grantide silmus käib enne
+juhiseoste oma ja see on kommentaaris välja öeldud, et järgmine muutja ei keeraks neid
+kogemata tagasi.
+
+Väravad ja negatiivkontroll: vt SOL-SLOG-14 Seis-lõiku (sama commit).
+
+**NOT_PROVEN:** päris PostgreSQL-i WHERE-d ega autenditud POST-i ei ole läbi käidud.
+
 ### SOL-SLOG-14 — aruandesaajate päring kirjutab kehtivusfiltri üle ja lubab aegunud capability — P0
 
 **Tõend.** `activeGrantWhere()` tagastab `OR` tingimuse `validUntil` kontrolliks (`lib/serviceLog/reportShare.js:87-97`). Capability päringu objektis spread'itakse see sisse, kuid hilisem teine `OR` skoobitüübi jaoks kirjutab JavaScripti samanimelise võtme üle (`reportShare.js:146-158`). Alles jäävad `revokedAt` ja `validFrom`, kuid `validUntil` tingimus kaob päris Prisma WHERE-st.
@@ -2154,6 +2170,30 @@ otsus, mitte kood, ja ma ei ole seda enda eest teinud.
 **Mõju.** Aegunud UNIT_LEAD või ORG_OWNER luba annab endiselt õiguse saada töötaja kliendiaruande külmutatud koopia. UI ja server kasutavad sama vigast loendit, seega otsene saatmine õnnestub ning näeb korrektse autoriseerimisena välja.
 
 **Vastuvõtukriteerium.** Kehtivus ja skoop peavad olema ühe `AND` struktuuri eri harudes või ühises testitud abis; aegunud, tulevane ja revoked grant peavad kõik välja jääma. Integratsioonitest peab kontrollima lõppenud luba nii saajaloendis kui saatmis-POST-is.
+
+**Seis (10.08.2026): DONE — kehtivus ja skoop on ühe `AND` eri harudes. Commit `bcff4903`.**
+
+Abifunktsioon tagastab nüüd **massiivi**, mitte objekti, ja tingimused elavad ühe `AND`
+harudena. Kaks haru kõrvuti ei saa teineteist üle kirjutada — **struktuur ise välistab vea,
+mitte tähelepanelikkus**. Vana kuju (objekt, mille sees `OR`, spread'itud `where`-i, kus oli
+juba teine `OR`) kaotas `validUntil` kontrolli päris Prisma WHERE-st ilma süntaksivea,
+hoiatuse või testita.
+
+Testi fake **hindab `AND`/`OR`-i päriselt**. Mõlemad leiud on vaikselt kadunud tingimused,
+seega fake, mis `where`-i sisu ära neelab, annaks sama vastuse nii vana kui uue koodiga —
+ta tõendaks oma puudust. Sama klass sundis 10.08 õpetama fake'ile ka `orderBy`/`skip`-i
+(SOL-URG-01) ja `lte`-d (SOL-CALL-10).
+
+Väravad: `npm test` **3367/3367** · eslint puhas. **Negatiivkontroll: 3 testi 8-st kukub
+vana teostuse peal** ja need kolm on täpselt kahe leiu omad. Ülejäänud 5 on
+regressioonivalve — sh „tulevikus algav ja tagasi võetud luba jäävad välja", mis vanas
+koodis **töötas**: ülekirjutamine kaotas ainult `validUntil`, mitte `validFrom` ega
+`revokedAt`. See vahe on mõõdetud, mitte oletatud.
+
+**NOT_PROVEN:** kriteerium nõudis integratsioonitesti, mis kontrollib lõppenud luba ka
+saatmis-POST-is. Tõendatud on saajaloend; POST kasutab sama loendit, aga seda ahelat ei ole
+päris päringuga läbi käidud. Just see leid näitab, miks vahe loeb — fake ei koosta päris
+WHERE-d.
 
 ### SOL-SLOG-15 — aruande koopia failikirjutus ja jagamis-/auditirida võivad jääda lahku — P1
 
