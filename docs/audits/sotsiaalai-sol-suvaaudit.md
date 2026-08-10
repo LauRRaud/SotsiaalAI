@@ -815,6 +815,31 @@ kontrollita ei tõendaks roheline sond midagi.
 
 **Vastuvõtukriteerium.** Kõik kolm üleminekut peavad serialiseeruma sama sponsorlusrea lukul või kasutama atomaarset tingimuslikku olekuvahetust, mille täpselt üks võistleja võidab. Tellimuse muutmine ja `ACCEPTED` olek peavad jääma samasse tehingusse. Päris PostgreSQLi testid peavad katma `accept vs revoke`, `accept vs decline` ja korduva `accept` kutse ning tõendama üheainsa koherentse lõppseisu.
 
+**Seis (10.08.2026): DONE — kood ja paralleelsussond (`npm run org:sponsor:probe` 33/33; vana koodi vastu 10 punast).**
+
+**Atomaarne tingimuslik üleminek, mitte eraldi lukk.** `claimPendingSponsorship` teeb
+`updateMany ... WHERE status = 'PENDING'`: Postgres võtab rea luku ja hindab tingimuse
+UUESTI luku all (READ COMMITTED), seega teine võistleja leiab 0 rida ja **teab, et ta
+kaotas**. Eraldi `SELECT ... FOR UPDATE` ei ole vaja — tingimuslik `UPDATE` ise ON see lukk.
+Kõik kolm väljapääsu (`accept`, `decline`, `revoke`) käivad sealt läbi.
+
+**Nõue on nüüd tehingu ESIMENE kirjutus.** Vastuvõtmine kirjutas varem `Subscription`-i
+enne sponsorluse olekut; paralleelne tagasivõtmine sai vahele jääda ja lõppseis oli
+**aktiivne organisatsiooni makstud tellimus `REVOKED` kutse all**. Kes nõude kaotab, ei
+jõua enam tellimuseni.
+
+**Sond kukub vana koodi vastu 10 korda 33-st,** igas neljas ajastuses „võitjaid 2". Kaks
+tulemust väärivad nimetamist:
+- `revoke→accept` lõppseis oli **`ACCEPTED`** — tagasivõtmine kirjutati üle, täpselt nagu
+  leid ennustas;
+- korduv `accept` tegi kasutajale **kaks `Subscription` rida**. Seda leid ise ei nimetanud;
+  ta tuli välja alles siis, kui sond kaht samaaegset vastuvõtmist päriselt proovis.
+
+**Sond mõõdab KOHERENTSUST, mitte ainult olekut:** iga ajastuse järel kontrollitakse, et
+sponsorluse olek ja tellimuse maksja kirjeldavad sama sündmust — `ACCEPTED` all peab
+organisatsiooni makstud tellimus OLEMA ja viitama samale kutsele, iga muu olek all mitte
+olema. Just see paar läks vana koodiga lahku.
+
 ### SOL-ORG-07 — organisatsiooni sponsoreeritud tellimus kuvatakse kasutajale omamaksena — P2
 
 **Tõend.** Organisatsiooni sponsorluse vastuvõtmine salvestab `billingSource: SPONSORED_BY_ORGANIZATION` (`lib/org/sponsorship.js:270-285`) ja access-context tunneb selle eraldi maksjaallikana ära (`lib/org/accessContext.js:102-120`). Tellimuse kanooniline serialiseerija loeb aga sponsoreerituks ainult `SPONSORED_BY_HOST` väärtuse (`lib/subscriptionView.js:40-51`), mistõttu uue allika olekuks jääb tavaline `ACTIVE`, `isSponsored` on väär ning sponsorluse lõpuhoiatusi ei teki. Tellimuse UI näitab `isSponsored === false` korral tühistamise tegevust (`components/alalehed/TellimusBody.jsx:433-450`), kuigi serveri DELETE muudab ainult `billingSource: SELF` ridu (`app/api/subscription/route.js:205-240`). Ka kasutusülevaade eristab sponsorlusena ainult `SPONSORED_BY_HOST` (`components/profile/UsageOverview.jsx:113`). `tests/payments/subscriptionView.test.js` sponsorlustestid kasutavad üksnes vana host-allikat.

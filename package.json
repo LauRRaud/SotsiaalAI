@@ -39,6 +39,7 @@
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",
     "slog:org:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-log-org-scope-probe.mjs",
     "org:seat:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-seat-race-probe.mjs",
+    "org:sponsor:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-sponsorship-race-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
     "db:seed:local": "dotenv -e .env.local -- prisma db seed",
