@@ -672,6 +672,10 @@ enum DocumentAuditAction {
   ARTIFACT_DELETE
   // T20 COLLAB-P1: U10 jagamine ruumi saab auditijälje (RUUM-A0 8 K2 auk).
   ARTIFACT_SHARE
+  // SOL-DOC-09: privaatse AI-analüüsi salvestus ja kustutus. Ilma nendeta ei jäänud kummastki
+  // ühtki rida ja hiljem ei saanud eristada kasutaja kustutust retentionist ega puuduvast objektist.
+  ANALYSIS_SAVE
+  ANALYSIS_DELETE
 }
 
 // T20 COLLAB-P2 — kokkuvõtte kinnitusringi vastus. Eriarvamus SÄILIB

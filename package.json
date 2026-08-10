@@ -48,6 +48,7 @@
     "refine:slot:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/refinement-slot-probe.mjs",
     "transcribe:claim:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/transcription-claim-probe.mjs",
     "storage:quota:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/storage-quota-race-probe.mjs",
+    "analysis:audit:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/analysis-audit-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
