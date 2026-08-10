@@ -1592,6 +1592,39 @@ samaaegsus päris ja ülejäänud 12 rohelist on paranduse teene.
 
 **Vastuvõtukriteerium.** Ühe allika transkriptsioon peab olema idempotentne: atomaarne claim/unikaalne aktiivne job ning üks kanooniline transkript või selgelt versioonitud uus katse. Konkureeriv päring peab liituma olemasoleva job'iga või saama 409/202. Päris DB paralleelsustest peab tõendama ühe provider-kutse ja ühe lõpptulemuse.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).**
+
+**MÕLEMAD NÄGID TÜHJA LAUDA.** Marsruut kontrollis, kas allikal on juba transkript; kui ei olnud,
+lõi job'i, kutsus teenusepakkujat ja lõi siis dokumendirea. Skeemis ei olnud unikaalsust ei
+aktiivsele job'ile ega paarile (allikas, transkripti liik). Kahel paralleelsel esmakutsel nägid
+seega mõlemad „transkripti ei ole", mõlemad maksid ja mõlemad lõid **eri sisuga** transkripti;
+liides näitas neist lihtsalt kõige uuemat. Kuna SOL-DOC-02 järgi STT-kasutust ei mõõdetud, ei
+peatanud seda ka paketilimiit.
+
+**Otsus ja tema jälg ühes lukustatud tehingus.** `lib/documents/transcriptionClaim.js` teeb kolm
+asja ühe allikapõhise nõuandeluku all: kas valmis transkript on olemas (→ `reused`, ilma ühegi
+kutseta), kas aktiivne töö käib (→ `busy`, marsruut vastab **409**), või tohin mina alustada
+(→ `claimed`, job luuakse kohe `PROCESSING` seisus). Job ei ole enam „kõrvalt loodud" rida, vaid
+ON see claim.
+
+**Vananemisaken on lepingu osa, mitte varjatud detail.** Protsessi surm jätab `PROCESSING` rea
+alles; ilma aknata ei saaks seda faili enam KUNAGI transkribeerida ja parandus oleks leiust
+hullem. Sellest vanem töö loetakse hüljatuks, märgitakse ausalt `FAILED`-iks põhjusega ja uus
+katse võtab üle — see on eraldi mõõdetud.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run transcribe:claim:probe`, **13/13**): neli esmakutset →
+täpselt üks saab töö, kolm saavad „töö käib", job'e on üks · täisvoog võltspakkujaga → **üks
+kutse, üks transkript** · valmis transkript → uut tööd ei tehta · hüljatud töö võetakse üle ·
+värske töö ei ole hüljatud.
+
+**Negatiivkontroll on osa sondist.** Sama samaaegsuse all jäljendatakse vana mustrit ja nõutakse,
+et see teeks MITU kutset ja MITU transkripti. Teeb. Seega on samaaegsus päris ja ülejäänud 12
+rohelist on paranduse teene.
+
+**Aus piir mõõtmises.** Konkureeriv päring saab 409, ta ei „liitu" olemasoleva job'iga — kriteerium
+lubab mõlemat („liituma … või saama 409/202"). Liitumine eeldaks voogedastavat tööseisu, mida sellel
+rajal ei ole; klient saab tulemuse kätte järgmise päringuga, mis näeb valmis transkripti.
+
 ### SOL-DOC-07 — faili- ja salvestuskvoodid on paralleelselt ületatavad — P2
 
 **Tõend.** Tavaline ja audio üleslaadimine loevad kasutaja senise salvestus- ning päevamahu agregaatpäringutega ja loovad faili/DB rea hiljem ilma kasutajapõhise luku või mahureservatsioonita (`app/api/documents/route.js:246-301`, `app/api/documents/audio-sources/route.js:146-204`). Artefakti loomine ja muutmine kasutavad sama loe-summa → kirjuta mustrit (`lib/documents/persistDraft.js:53-72`, `app/api/documents/artifacts/[id]/route.js:184-207`). Kaks päringut võivad mõlemad mahtuda vana summa järgi ja ühiselt limiidi ületada.

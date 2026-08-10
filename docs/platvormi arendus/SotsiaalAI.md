@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 75/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 76/357 leidu, 5/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, **SOL-FIELD**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -283,11 +283,20 @@ mõlemad said läbi. Koht võetakse nüüd enne kutset ära ja jääb kinni ka s
 tuleb; ebaõnnestunud katse annab koha tagasi. Tõendatud **päris andmebaasis 13/13**: kui kolmest
 kohast on kaks võetud, võidab neljast korraga saadetud päringust täpselt üks.
 
-Lahtiseks jääb **206 P1, 75 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
-(5/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
+**SOL-DOC-06: sama salvestist sai korraga kaks korda transkribeerida.** Kui kaks päringut
+jõudsid kohale samal hetkel, nägid mõlemad „transkripti veel ei ole", mõlemad maksid välise
+teenuse eest ja mõlemad lõid eri sisuga transkripti — liides näitas neist lihtsalt uuemat. Nüüd
+tehakse otsus ja tema jälg ühes lukustatud toimingus: valmis transkript tuleb tagasi ilma ühegi
+kutseta, käimasolev töö annab ausa „seda salvestist transkribeeritakse juba", ja tööle saab
+korraga hakata täpselt üks. Surnud protsess ei lukusta faili igaveseks — hüljatud töö võetakse
+üle. Tõendatud **päris andmebaasis 13/13**, sh üks kutse ja üks transkript nelja korraga saabuva
+päringu peale.
+
+Lahtiseks jääb **205 P1, 75 P2 ja 1 P3**; peatükke lõpuni viidud viis. Käsil on **SOL-DOC**
+(6/9), kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad
 sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on SOL-DOC-01…-05** — ükski ei vaja migratsiooni. Ütle, kui viin
+**Deploy'mata on SOL-DOC-01…-06** — ükski ei vaja migratsiooni. Ütle, kui viin
 serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
