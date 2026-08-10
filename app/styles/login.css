@@ -40,7 +40,15 @@
      0.72-lukk tegi sisu liiga väikeseks + kaardile tühja ruumi). Kuna
      login'i avades küljekaardid tuhmuvad, ei ole tarvis sundida
      sama kõrgust — kaart on lihtsalt puhas login-kaart. */
-  width: min(var(--gc-w), calc(100vw - 1.5rem));
+  /* LAIUSEL ON NÜÜD PÕRAND. Varem oli siin `min(var(--gc-w), calc(100vw - 1.5rem))`
+     ja `--gc-w` põrand on 15rem = 240px. Klahvistik seevastu mõõdetakse `vh`-st
+     (`.login-keypad-btn`), seega kitsal-ja-kõrgel ekraanil kasvas ta 229px-ni, samal
+     ajal kui kesta sisukast jäi 192px peale — ja `overflow: hidden` sõi vahe vaikselt
+     ära. Ära lõigatud veerus oli „3/6/9" JA saatmisnool, seega sellel laiusel ei
+     saanud PIN-i üldse ära saata. Ruumi oli: vaateava 534px, saadaval 510px.
+     `max(...)` puudutab AINULT kitsast otsa — laial ekraanil on `--gc-w` (21.75rem)
+     suurem ja kaardi-morfi proportsioon jääb muutumatuks. */
+  width: min(max(var(--gc-w), 20rem), calc(100vw - 1.5rem));
   height: auto;
   max-height: min(92lvh, 40rem);
   display: flex;
@@ -186,8 +194,12 @@
 .login-keypad-btn {
   display: grid;
   place-items: center;
-  width: clamp(3.4rem, 2.7rem + 3vh, 4.35rem);
-  height: clamp(3.4rem, 2.7rem + 3vh, 4.35rem);
+  /* TEINE OTS: klahv ei tohi olla laiem, kui talle ruumi jagub. Kõrguspõhine mõõt
+     üksi ei tea kesta laiusest midagi; `min()` lisab laiuse-lae, mis hakkab mõjuma
+     alles siis, kui vaateava on kitsam kui kesta 20rem põrand (u < 336px). Lahutatav
+     kannab: 1.5rem vaateava serv + 3rem kesta polster + veergudevahelised vahed. */
+  width: min(clamp(3.4rem, 2.7rem + 3vh, 4.35rem), calc((100vw - 6.6rem) / 3));
+  height: min(clamp(3.4rem, 2.7rem + 3vh, 4.35rem), calc((100vw - 6.6rem) / 3));
   padding: 0;
   border-radius: 50%;
   font-size: 1.45rem;
