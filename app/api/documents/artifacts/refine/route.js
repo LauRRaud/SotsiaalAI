@@ -1,4 +1,3 @@
-import { buildDocumentAuditRecord } from "@/lib/documents/auditShared"
 import {
   getMaxArtifactSourceDocumentsForRole,
   normalizeArtifactContent,
@@ -26,6 +25,12 @@ import {
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
 import { runPaidResult } from "@/lib/usage/paidResult"
+import {
+  ARTIFACT_REFINEMENT_LIMIT,
+  claimRefinementSlot,
+  confirmRefinementSlot,
+  releaseRefinementSlot
+} from "@/lib/documents/refinementSlots"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -33,7 +38,6 @@ export const revalidate = 0
 
 const DOCUMENTS_RATE_LIMIT_WINDOW_MS = readDocumentsRateLimit(process.env.DOCUMENTS_RATE_LIMIT_WINDOW_MS, 60_000, 1000)
 const ARTIFACTS_REFINE_RATE_LIMIT_MAX = readDocumentsRateLimit(process.env.ARTIFACTS_CREATE_RATE_LIMIT_MAX, 20)
-const ARTIFACT_REFINEMENT_LIMIT = 3
 
 export async function POST(request) {
   const locale = localeFromRequest(request)
@@ -92,6 +96,7 @@ export async function POST(request) {
   refinementInstruction = privacy.processedText || refinementInstruction
 
   let usageHandle = null
+  let refinementSlot = null
 
   try {
     if (artifactId) {
@@ -108,22 +113,6 @@ export async function POST(request) {
 
       if (!artifact) {
         return errorJson("documents.artifacts.errors.not_found", 404, locale)
-      }
-
-      const usedRefinements = await prisma.documentAudit.count({
-        where: {
-          ownerId: auth.userId,
-          artifactId: artifact.id,
-          action: "ARTIFACT_REFINE"
-        }
-      })
-
-      if (usedRefinements >= ARTIFACT_REFINEMENT_LIMIT) {
-        return errorJson("api.common.rate_limited", 429, locale, {
-          scope: "artifact_refine",
-          limit: ARTIFACT_REFINEMENT_LIMIT,
-          used: usedRefinements
-        })
       }
     }
 
@@ -182,6 +171,24 @@ export async function POST(request) {
       }
     }
 
+    // Koht reserveeritakse ENNE AI-kutset ja reservatsioon on püsiv rida. Varem oli piir ainult
+    // loendus enne kutset ja auditirida lisandus alles pärast — kaks samaaegset päringut lugesid
+    // sama arvu ja mõlemad said läbi.
+    if (artifactId) {
+      try {
+        refinementSlot = await claimRefinementSlot({ artifactId, ownerId: auth.userId })
+      } catch (error) {
+        if (error?.status === 429) {
+          return errorJson("api.common.rate_limited", 429, locale, {
+            scope: "artifact_refine",
+            limit: error.refinementLimit ?? ARTIFACT_REFINEMENT_LIMIT,
+            used: error.usedRefinements
+          })
+        }
+        throw error
+      }
+    }
+
     try {
       usageHandle = await reserveUsageForRequest({
         request,
@@ -192,13 +199,16 @@ export async function POST(request) {
         metadata: { artifactId: artifactId || null, sourceCount: documents.length, type }
       })
     } catch (error) {
+      await releaseRefinementSlot(refinementSlot?.auditId).catch((releaseError) =>
+        console.error("[documents artifacts] refinement slot release failed", safeError(releaseError))
+      )
       return usageErrorJson(error, "documents.refine", locale)
     }
 
     // Refinement'i tulemus elab vastuses, mitte serveris — püsiv on siin ainult auditirida, ja
-    // just tema on ka lubatud kolme refinement'i loenduri allikas. Seepärast käivad auditirida ja
-    // tasu ÜHES tehingus: varem commit'iti enne auditit, ja auditi viga andis 500 juba arvestatud
-    // kasutusega — kasutaja ei saanud ei teksti ega oma ühikut tagasi.
+    // just tema on ka lubatud kolme paranduse loenduri allikas. Seepärast käivad koha kinnitamine
+    // ja tasu ÜHES tehingus: varem commit'iti enne auditit, ja auditi viga andis 500 juba
+    // arvestatud kasutusega — kasutaja ei saanud ei teksti ega oma ühikut tagasi.
     const { persisted } = await runPaidResult({
       reserve: () => usageHandle,
       produce: () =>
@@ -224,26 +234,23 @@ export async function POST(request) {
           cacheRetrievalDebugMeta(auth.userId, content, result.debugMeta)
         }
 
-        const auditRecord =
-          artifactId && content
-            ? buildDocumentAuditRecord("artifact.refined", {
-                userId: auth.userId,
-                artifactId
-              })
-            : null
-
+        // Reserveeritud koht muutub päris auditijäljeks samas tehingus, kus tasu arvestatakse.
         await prisma.$transaction(async (tx) => {
-          if (auditRecord) {
-            await tx.documentAudit.create({ data: auditRecord })
-          }
+          await confirmRefinementSlot(
+            { auditId: refinementSlot?.auditId, meta: { used: refinementSlot?.used ?? null } },
+            { db: tx }
+          )
           await commitUsageForRequest(handle, { tx })
         })
 
         return { content }
       },
-      release: (handle, reason) => releaseUsageForRequest(handle, { reason }),
+      release: async (handle, reason) => {
+        await releaseUsageForRequest(handle, { reason })
+        await releaseRefinementSlot(refinementSlot?.auditId)
+      },
       onReleaseError: (releaseError) =>
-        console.error("[documents artifacts] usage release failed", safeError(releaseError))
+        console.error("[documents artifacts] release failed", safeError(releaseError))
     })
 
     return json({

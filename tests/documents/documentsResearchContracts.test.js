@@ -89,7 +89,7 @@ test("the three paid document routes settle usage through the shared paid-result
   const refine = read("app/api/documents/artifacts/refine/route.js");
   assert.match(
     refine,
-    /\$transaction\([\s\S]{0,400}documentAudit\.create[\s\S]{0,200}commitUsageForRequest\(handle,\s*\{\s*tx\s*\}\)/,
+    /\$transaction\([\s\S]{0,400}confirmRefinementSlot\([\s\S]{0,300}commitUsageForRequest\(handle,\s*\{\s*tx\s*\}\)/,
     "the mandatory refine audit row and the charge must land in one transaction"
   );
 });
@@ -171,6 +171,29 @@ test("transcript writes stage the file and publish it only after the database", 
   // Avaldamine on tehingu SEES ja viimane samm — muidu ei kaitseks teda rollback.
   assert.match(staging, /\$transaction\([\s\S]{0,400}staged\.publish\(\)/);
   assert.match(staging, /catch[\s\S]{0,80}staged\.rollback\(\)/);
+});
+
+// SOL-DOC-05. Piir oli loendus ENNE kutset ja auditirida lisandus alles PÄRAST — kaks
+// samaaegset päringut lugesid sama arvu ja mõlemad said läbi. Koht peab olema võetud enne kutset.
+test("the refinement limit claims a durable slot before the model call", () => {
+  const refine = read("app/api/documents/artifacts/refine/route.js");
+  const slots = read("lib/documents/refinementSlots.js");
+
+  const claimIndex = refine.indexOf("claimRefinementSlot(");
+  const produceIndex = refine.indexOf("refineArtifactDraftContent(");
+  assert.ok(claimIndex > 0, "the route must claim a slot");
+  assert.ok(claimIndex < produceIndex, "the slot must be claimed before the model call");
+  assert.match(refine, /releaseRefinementSlot\(/, "a failed refinement must give the slot back");
+  assert.doesNotMatch(
+    refine,
+    /documentAudit\.count\(/,
+    "the route must not decide the limit by counting outside the claim transaction"
+  );
+
+  // Otsus ja kirjutus ühes tehingus, mille serialiseerib artefaktipõhine nõuandelukk.
+  assert.match(slots, /\$transaction\([\s\S]{0,200}pg_advisory_xact_lock/);
+  assert.match(slots, /\$executeRaw/, "advisory lock only through $executeRaw");
+  assert.match(slots, /meta: \{ path: \["pending"\], equals: true \}/, "only an unconfirmed claim may be deleted");
 });
 
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---

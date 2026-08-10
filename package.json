@@ -45,6 +45,7 @@
     "org:offboard:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-offboarding-race-probe.mjs",
     "artifact:race:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/artifact-approval-race-probe.mjs",
     "doc:staging:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/document-staging-probe.mjs",
+    "refine:slot:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/refinement-slot-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",
