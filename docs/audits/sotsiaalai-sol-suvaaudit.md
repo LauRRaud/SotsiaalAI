@@ -1212,6 +1212,24 @@ kaitseb selle vastu CAS (kaotaja ei jõua providerini), mitte provider ise. Comm
 
 ### SOL-CALL-04 — paralleelne salvestuse Start võib käivitada mitu egressi — P1
 
+**Seis (10.08.2026): DONE — katsepõhine failivõti ja idempotentne kordus; kaks varasemat märkust allpool jäävad ajalooks.**
+
+Mõlemad katmata osad on nüüd tehtud. **Failivõti oli katsepõhine ainult näiliselt:**
+nimes on sekundi täpsusega ajatempel, seega kaks katset sama sekundi sees said TÄPSELT
+sama nime ja teine egress oleks kirjutanud esimese faili peale. Nüüd kannab nimi
+start-claim'i id-d (`buildRecordingFileName({ attemptId })`). **Kordus tagastab
+olemasoleva stardi**, kui taotlus on `ACTIVE` ja failil on `egressId` — topeltklõps ei
+tee teist egress'i ega teist auditirida. Vana vastus `call.recording_not_ready` tähendas
+vastupidist asja kui tegelikkus.
+
+Kaks piiri on teadlikud, mitte tegemata: **`STARTING` jääb veaks** (pooleliolev katse ei
+ole start, mille kohta saaks öelda „juba käib") ja **`ACTIVE` ilma `egressId`-ta samuti**
+— kui me egress'i ei tea, ei ole meil midagi, mille kohta valetada.
+
+Kriteeriumi paralleeltest on kahes tükis: „kaks paralleelset starti annavad ÜHE egress'i"
+(olemas CALL-02-st) ja uus „üks fail, üks auditirida". Negatiivkontroll tehtud: uued
+testid kukuvad vana teostuse peal. Commit `5af2e22b`.
+
 **Märkus (10.08.2026, EI OLE DONE).** SOL-CALL-02 CAS sulgeb selle leiu peamise raja:
 tingimuslik `READY_TO_RECORD → STARTING` tähendab, et kahest paralleelsest start-kutsest
 jõuab providerini täpselt üks (tõendatud testiga „kaks paralleelset starti annavad ÜHE
@@ -1232,6 +1250,29 @@ starti, vaid põrkab `call.recording_not_ready`-ga. Leid jääb seetõttu lahtis
 **Mõju.** Ühe inimese nõusolek võib käituda korraga antu ja andmata/keeldutuna, salvestus võib jääda lukku või ebadeterministlikult käivituda. Audititõend ei ole enam „üks inimene, üks viimane otsus” ning UI võib näidata duplikaate.
 
 **Vastuvõtukriteerium.** Lisada unikaalne `(recordingRequestId,userId)` piir ning kasutada atomaarset upsert'i; readiness peab lugema üht kanoonilist otsust osaleja kohta ja roster-revisjoni. Päris DB paralleeltest peab võistlema join'i, consent'i ja request'i loomise ning tõendama ühe rea ja ühe otsuse.
+
+**Seis (10.08.2026): DONE — unikaalne indeks + üks jagatud `upsert`-tee, tõendatud päris PostgreSQL-is (`npm run call:consent:probe` 8/8).**
+
+Ravim on kahepoolne, sest kumbki pool üksi ei piisa: andmebaasi
+`@@unique([recordingRequestId, userId])` (migratsioon `20260810120000`) **ja** üks jagatud
+`ensureConsentRow()`, mis kirjutab `upsert`-iga. Mõlemad kutsujad (liitumine ja
+vastamine) käivad nüüd sama teed — kaks koopiat sama otsusega lahknevad esimese
+muudatusega. `update: {}` on tahtlik: korduv liitumine EI keera juba antud (või tagasi
+võetud) otsust `REQUESTED`-iks tagasi.
+
+**Migratsioon ei kustuta duplikaate.** Kui neid leidub, kukub ta nimelise teatega —
+nõusolek on õiguslik tõend ja masin ei tohi valida, kumb kahest vastuolulisest
+tahteavaldusest ellu jääb. Toodangus mõõdetud 10.08: **13 rida, 13 unikaalset paari**,
+seega indeks tekib puhtalt.
+
+„Üks kanooniline otsus osaleja kohta" tuleb nüüd piirist endast: `findMany` ei saa enam
+tagastada kahte rida ühe inimese kohta, seega `allRequiredConsentsPresent()` Map ei sõltu
+enam järjekorrast. Roster-revisjon oli juba olemas (CALL-02 `rosterVersion`).
+
+Kriteeriumi **päris DB paralleeltest** on sond, mitte `npm test`: fake-Prisma ei jõusta
+ühtegi piirangut (sama klass tabas 09.08 SOL-SCHEMA-01-t). Sond mõõdab: duplikaat →
+**P2002** · teine inimene mahub · upsert tabab olemasoleva rea ja ei keera otsust tagasi ·
+**kolm paralleelset upsert'i → üks rida, null erindit**. Commit `5af2e22b`.
 
 ### SOL-CALL-06 — salvestise kustutus ja retention raporteerivad edu ka kustutamata faili korral — P1
 

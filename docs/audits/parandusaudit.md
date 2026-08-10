@@ -3,21 +3,21 @@
 **Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
 see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
 käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja nende all olevaid
-`**Seis (…): DONE…` lõike. Mõõdetud **09.08.2026**.
+`**Seis (…): DONE…` lõike. Mõõdetud **10.08.2026**.
 
 ## Kokkuvõte
 
 | | |
 |---|---|
-| Tehtud leidu | **31 / 357** |
+| Tehtud leidu | **33 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **17 × P0** · 228 × P1 · 80 × P2 · 1 × P3 |
-| Toodangus | server = `main` = `origin/main` = `2b535e5f`, viies deploy 10.08 kell 09:06; migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
+| Lahtised prioriteedi järgi | **17 × P0** · 226 × P1 · 80 × P2 · 1 × P3 |
+| Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
 | Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-URG** (13 lahtist: 2 × P0, 11 × P1) — esimene P0-ga peatükk pärast SOL-CALL-i |
-| Käsil oleva peatüki saba | SOL-CALL 7 lahtist (4 × P1, 3 × P2), P0-sid ei ole enam |
+| Käsil oleva peatüki saba | SOL-CALL 5 lahtist (2 × P1, 3 × P2), P0-sid ei ole enam |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-28 tehtud leidu on tootmises; **CALL-11/12/13 on koodis ja deploy'mata**. Ainus P3 kogu
+31 tehtud leidu on tootmises; **CALL-04/05 on koodis ja deploy'mata (üks migratsioon)**. Ainus P3 kogu
 auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 ## Peatükid dokumendi järjekorras
@@ -37,7 +37,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 6/13 | – | 4 | 3 | **käsil**, CALL-01/02/03 + 11/12/13 tehtud |
+| Kõned ja salvestus | SOL-CALL | 8/13 | – | 2 | 3 | **käsil**, lahtised CALL-06, -07, -08, -09, -10 |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
@@ -67,8 +67,11 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
-  Seis-lõike. SOL-CALL-04 peamine rada on CALL-02 CAS-iga suletud, aga kaks kriteeriumi
-  osa on täitmata ja leid jääb **lahtiseks** (märkus tema all raportis).
+  Seis-lõike.
+- **SOL-CALL-04, -05** (10.08) — üks plokk: mõlemad ütlevad, et salvestuse alustamise rajal
+  loetakse asju ÜHEKS, ilma et miski neid üheks hoiaks. CALL-04 sai katsepõhise failivõtme ja
+  idempotentse korduse; CALL-05 sai unikaalse indeksi + jagatud `upsert`-tee ja on **ainus
+  selle päeva parandus, mis on tõendatud päris PostgreSQL-is** (`npm run call:consent:probe` 8/8).
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -101,9 +104,10 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 21 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
-  kus P0-sid EI OLE ühtegi. Uue reegli järgi on järgmine **SOL-CALL** (4 × P0) — mitte SOL-SLOG,
-  kus P0-sid on rohkem (5), sest SOL-CALL on dokumendis eespool ja järjekord otsustab alles
-  võrdse prioriteedi juures. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
+  lahtiseid P0-sid on 17 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. SOL-CALL on selle reegli järgi P0-dest tühjaks tehtud; järgmine on
+  **SOL-URG** (2 × P0) — mitte SOL-SLOG, kus P0-sid on rohkem (5), sest SOL-URG on dokumendis
+  eespool ja järjekord otsustab alles võrdse prioriteedi juures. SOL-AUTH 13 lahtist leidu
+  jäävad ootele kuni P0-d on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.
