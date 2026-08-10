@@ -23,6 +23,7 @@ import {
   usageErrorJson
 } from "@/lib/documents/server"
 import { createDocumentWithStagedText } from "@/lib/documents/transcriptContent"
+import { claimTranscription } from "@/lib/documents/transcriptionClaim"
 import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration"
 import { runPaidResult } from "@/lib/usage/paidResult"
 import { resolveSttCommittedSeconds, resolveSttReservationSeconds } from "@/lib/usage/sttDuration"
@@ -31,12 +32,10 @@ import {
   releaseUsageForRequest,
   reserveUsageForRequest
 } from "@/lib/usage/routeAdapter"
-import { transcribeAudioFile } from "@/lib/transcription/provider"
 import {
-  createTranscriptionJob,
-  failTranscriptionJob,
   completeTranscriptionJob,
-  startTranscriptionJob
+  failTranscriptionJob,
+  transcribeAudioFile
 } from "@/lib/transcription/provider"
 import { safeError } from "@/lib/privacy/safeError"
 
@@ -197,6 +196,41 @@ export async function POST(request, { params }) {
       sizeBytes: source.size
     })
 
+    // Otsus „kas ma tohin transkribeerida" ja selle jälg tehakse ühes lukustatud tehingus.
+    // Varem nägid kaks paralleelset esmakutset MÕLEMAD tühja lauda, kutsusid mõlemad
+    // teenusepakkujat ja lõid mõlemad eri transkripti.
+    const claim = await claimTranscription({
+      sourceDocumentId: source.id,
+      ownerId: auth.userId,
+      provider: config.provider,
+      model: config.model,
+      language: body?.language || config.language
+    })
+
+    if (claim.outcome === "reused") {
+      await logDocumentsAudit("document.transcription_reused", {
+        userId: auth.userId,
+        documentId: claim.transcript.id,
+        sourceDocumentId: source.id,
+        provider: claim.transcript.metadata?.transcriptionProvider || null,
+        model: claim.transcript.metadata?.model || null
+      })
+      return json({
+        ok: true,
+        reused: true,
+        transcriptDocument: serializeTranscriptDocument(claim.transcript),
+        audioSource: serializeAudioSourceDocument({ ...source, derivedDocuments: [claim.transcript] })
+      })
+    }
+
+    if (claim.outcome === "busy") {
+      return errorJson("documents.errors.transcription_in_progress", 409, locale, {
+        jobId: claim.job.id
+      })
+    }
+
+    transcriptionJob = claim.job
+
     let usageHandle = null
     try {
       usageHandle = await reserveUsageForRequest({
@@ -222,16 +256,6 @@ export async function POST(request, { params }) {
     const { persisted: transcriptDocument } = await runPaidResult({
       reserve: () => usageHandle,
       produce: async () => {
-        transcriptionJob = await createTranscriptionJob({
-          sourceDocumentId: source.id,
-          requestedByUserId: auth.userId,
-          provider: config.provider,
-          model: config.model,
-          language: body?.language || config.language
-        })
-
-        await startTranscriptionJob({ jobId: transcriptionJob.id })
-
         await logDocumentsAudit("document.transcription_started", {
           userId: auth.userId,
           documentId: source.id,

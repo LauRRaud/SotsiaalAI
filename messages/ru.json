@@ -3512,6 +3512,7 @@
       "audio_upload_failed": "Не удалось загрузить аудиофайл.",
       "audio_source_required": "Выберите аудиофайл для транскрипции.",
       "transcription_not_configured": "Сервис транскрипции не настроен.",
+      "transcription_in_progress": "Эта запись уже расшифровывается. Дождитесь завершения задачи.",
       "transcription_failed": "Транскрипция не удалась.",
       "transcription_empty": "Транскрипция не вернула текст.",
       "update_failed": "Не удалось обновить документ.",

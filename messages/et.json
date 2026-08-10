@@ -3512,6 +3512,7 @@
       "audio_upload_failed": "Helifaili üleslaadimine ebaõnnestus.",
       "audio_source_required": "Vali transkribeerimiseks helifail.",
       "transcription_not_configured": "Transkriptsiooniteenus ei ole seadistatud.",
+      "transcription_in_progress": "Seda salvestist transkribeeritakse juba. Oota, kuni töö lõpeb.",
       "transcription_failed": "Transkriptsioon ebaõnnestus.",
       "transcription_empty": "Transkriptsioon ei tagastanud teksti.",
       "update_failed": "Dokumendi uuendamine ebaõnnestus.",

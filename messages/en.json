@@ -3512,6 +3512,7 @@
       "audio_upload_failed": "Failed to upload audio file.",
       "audio_source_required": "Choose an audio file to transcribe.",
       "transcription_not_configured": "Transcription service is not configured.",
+      "transcription_in_progress": "This recording is already being transcribed. Wait for the job to finish.",
       "transcription_failed": "Transcription failed.",
       "transcription_empty": "Transcription returned no text.",
       "update_failed": "Failed to update document.",

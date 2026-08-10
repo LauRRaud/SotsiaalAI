@@ -196,6 +196,24 @@ test("the refinement limit claims a durable slot before the model call", () => {
   assert.match(slots, /meta: \{ path: \["pending"\], equals: true \}/, "only an unconfirmed claim may be deleted");
 });
 
+// SOL-DOC-06. Kaks paralleelset esmakutset nägid mõlemad tühja lauda, kutsusid mõlemad
+// teenusepakkujat ja lõid mõlemad eri transkripti. Otsus peab olema lukustatud tehingus.
+test("one audio source can only have one transcription in flight", () => {
+  const route = read("app/api/documents/[id]/transcribe/route.js");
+  const claim = read("lib/documents/transcriptionClaim.js");
+
+  const claimIndex = route.indexOf("claimTranscription(");
+  const providerIndex = route.indexOf("transcribeAudioFile(");
+  assert.ok(claimIndex > 0 && claimIndex < providerIndex, "the claim must precede the provider call");
+  assert.match(route, /claim\.outcome === "busy"[\s\S]{0,160}409/, "a competing request must get 409");
+  assert.doesNotMatch(route, /createTranscriptionJob\(/, "the job must be created inside the claim, not beside it");
+
+  assert.match(claim, /\$transaction\([\s\S]{0,200}pg_advisory_xact_lock/);
+  assert.match(claim, /\$executeRaw/, "advisory lock only through $executeRaw");
+  // Vananemisaken on lepingu osa: ilma temata lukustaks surnud protsess allika igaveseks.
+  assert.match(claim, /TRANSCRIPTION_CLAIM_STALE_MS/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
