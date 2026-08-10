@@ -9,17 +9,18 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **41 / 357** |
+| Tehtud leidu | **43 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **11 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **9 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SLOG jätk** — 2 lahtist P0 (SLOG-17, -18), mõlemad vajavad sama skeemimuudatust (külastuse org-snapshot) ja moodustavad ühe ploki |
-| Käsil oleva peatüki saba | SOL-SLOG 21 lahtist (2 × P0, 18 × P1, 1 × P2) · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-RAGSVC** (2 × P0) või **SOL-JOUR** (2 × P0) — SOL-SLOG on P0-dest tühi; dokumendi järjekorras on RAGSVC eespool |
+| Käsil oleva peatüki saba | SOL-SLOG 19 lahtist (18 × P1, 1 × P2) · SOL-URG 11 × P1 · SOL-CALL 3 × P2 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-13/14 ja SLOG-01 on koodis ja deploy'mata (kaks migratsiooni:
-`20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`)**. Ainus P3 kogu
-auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+31 tehtud leidu on tootmises; **CALL-04/05/06/10, URG-01/02, PRE-01, SLOG-01/13/14/17/18 on koodis ja deploy'mata (kolm migratsiooni:
+`20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`, `20260810160000`
+külastuse org-päritolu)**. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole
+allpool eraldi veerus.
 
 ## Peatükid dokumendi järjekorras
 
@@ -45,7 +46,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Domeenisündmused | SOL-EVENT | 0/1 | – | – | 1 | |
 | Kiireloomuline abi | SOL-URG | 2/13 | – | 11 | – | **käsil**, mõlemad P0-d tehtud |
 | Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
-| Teenuspäevik | SOL-SLOG | 3/24 | **2** | 18 | 1 | **käsil**, SLOG-01/13/14 tehtud |
+| Teenuspäevik | SOL-SLOG | 5/24 | – | 18 | 1 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
 | RAG-teenus ja ingest | SOL-RAGSVC | 0/28 | **2** | 19 | 7 | suurim peatükk |
 | Migratsioonid | SOL-PRISMA | 0/4 | – | 3 | 1 | |
 | Mentorlus | SOL-MENT | 0/7 | – | 7 | – | |
@@ -109,6 +110,16 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
   ja tõi välja **kaks raportis kirjas mitte olnud leidu**: mustand kustus lehe avamisel
   (lipp oli viide ja jooksis taastatud väärtustest ette) ning üks ootel kirje läks teele
   kolme POST-iga (voo-lukk puudus). Mõlemad parandatud.
+- **SOL-SLOG-17 + SOL-SLOG-18** (10.08) — **kaks P0-d, üks juur.** Külastus ei kandnud
+  organisatsioonilist päritolu ja juhi tahvel tuletas skoobi INIMESE kaudu. Kahes majas
+  töötaval inimesel on aga üks SOLO-profiil ja üks tööpäev, seega org A juht nägi org B
+  klientide nimesid (-17) ja sai teadaoleva `visitId` abil org B töö oma töötajale ümber
+  määrata (-18). Neid ei saanud eraldi parandada: mõlema kriteerium algab samast
+  külmutatud väljast. `ServiceVisit.assignedOrganizationId` (migratsioon `20260810160000`)
+  kirjutatakse seal, kus ta on tõendatud; `NULL` tähendab „mitte kellelegi", mitte
+  „kõigile". Ümbermääramine annab võõrale päritolule **404** enne olekukontrolli, ja audit
+  on nüüd `$transaction`-is, mitte `.catch(() => {})` taga. Tõendatud päris PostgreSQL-is
+  (üks teekond, kaks maja + päritoluta rida; `EXPLAIN` = Index Scan).
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli
@@ -141,9 +152,10 @@ kood ei anna:
   eraldi ja seda ei loeta siin puuduseks.
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  lahtiseid P0-sid on 11 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
-  kus P0-sid EI OLE ühtegi. SOL-CALL ja SOL-URG on selle reegli järgi P0-dest tühjaks tehtud;
-  käsil on **SOL-SLOG** (5-st P0-st 3 tehtud) — tema on lahtiste P0-dega peatükkidest
-  dokumendis kõige eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d on kaetud.
+  lahtiseid P0-sid on 9 ning puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH,
+  kus P0-sid EI OLE ühtegi. SOL-CALL, SOL-URG ja nüüd ka **SOL-SLOG** on selle reegli järgi
+  P0-dest tühjaks tehtud; järgmine on **SOL-RAGSVC** (2 × P0) — tema on lahtiste P0-dega
+  peatükkidest dokumendis kõige eespool. SOL-AUTH 13 lahtist leidu jäävad ootele kuni P0-d
+  on kaetud.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.

@@ -2272,6 +2272,52 @@ WHERE-d.
 
 **Vastuvõtukriteerium.** Iga juhitav route/visit peab kandma loomise hetkel tõendatud organisatsiooni/üksuse snapshot-skoopi või juhitöö peab olema organisatsiooniprofiili all; board peab filtreerima seda seost. Negatiivtest peab looma ühe töötaja kahes organisatsioonis ja kummagi kliendid ning tõendama vastastikuse nähtamatuse.
 
+**Seis (10.08.2026): DONE.** Parandatud koos SOL-SLOG-18-ga — sama juur, kaks otsa.
+
+- **Snapshot elab KÜLASTUSEL, mitte teekonnal.** `ServiceVisit.assignedOrganizationId`
+  (migratsioon `20260810160000`). Teekond ei saanud teda kanda ja see on leiu tuum: kahes
+  majas töötaval inimesel on ÜKS SOLO-profiil ja ÜKS tööpäev. Org-veerg teekonnal oleks
+  eeldanud, et päev kuulub ühele majale — ta ei kuulu.
+- **Kirjutatakse seal, kus ta on TÕENDATUD.** Juhi määramisel (`assignVisit`) on
+  `assertCanAssign` just kontrollinud kutsuja kehtivat luba ja töötaja skoopi, seega
+  organisatsioon on teada, mitte tuletatud.
+- **Töötaja enda lisatud töö** (`createVisit`) saab päritolu ainult siis, kui see on
+  ühemõtteline — täpselt üks aktiivne liikmesus. Kahe puhul jääb `NULL` ja töö ei ilmu
+  KUMMALEGI juhile. Vale juht on halvem kui puuduv rida.
+- **`NULL` = mitte kellelegi, mitte kõigile.** Vaikimisi kinni.
+- **Tahvlil on nüüd kaks filtrit, mis vastavad eri küsimustele:** liikmesus ütleb, KELLE
+  read ilmuvad, külastuse päritolu ütleb, MILLISED tööd nendel ridadel on.
+- **Võõrvõtit teadlikult ei ole.** See on snapshot („kelle tööna see sündis"), mitte elav
+  seos: `Cascade` kustutaks tõendi koos organisatsiooniga, `SetNull` teeks tööst orvu.
+  Kustutatud organisatsiooni ID ei anna kellelegi ligipääsu — skoop nõuab kehtivat
+  liikmesust ja luba.
+
+**Teadlik jääk, mida see parandus EI kata.** Tahvel näitab endiselt tööpäeva enda seisu
+(avatud / paus / lõpetatud) ka siis, kui ühtegi selle maja tööd sellel päeval ei ole. See on
+selle inimese päev, kes ON selle juhi aktiivne liige, ja juht peab teadma, kas ta on
+alustanud; kliendi kohta ei ütle see mitte midagi. Kui omanik soovib ka seda peita, on see
+tooteotsus, mitte tehniline takistus — rida tuleks siis tahvlilt üldse välja jätta.
+
+**Kriteeriumi osa, mis on nimeliselt asendatud:** „organisatsiooni/**üksuse** snapshot".
+Salvestatud on organisatsioon, mitte üksus. Üksuse piir jõustub liikmesuse kaudu
+(`resolveBoardScope` → üksuse liikmed → `workerIds`) ja ta hinnatakse ÜMBER iga päringu ja
+iga ümbermääramise ajal — külmutatud üksus tähendaks, et üksusest lahkunud inimese töö jääb
+vanale juhile nähtavaks. Organisatsioon on turvapiir, üksus on töökorraldus.
+
+**Tõend (päris PostgreSQL, lokaalne):** üks teekond, kolm külastust — `org-a-probe`,
+`org-b-probe` ja päritoluta. `WHERE routeId = … AND assignedOrganizationId = 'org-a-probe'`
+tagastas ainult `A maja klient`, ja `EXPLAIN` näitab **Index Scan** uue
+`ServiceVisit_assignedOrganizationId_routeId_idx` peal, mitte skaneerimist.
+`npm run db:migrate:check` OK (145 migratsiooni, skeem vastab ahelale).
+
+**Testid.** `tests/serviceLog/visitOrigin.test.js` (uus, 10 testi, ülekaalus negatiivsed).
+Negatiivkontroll: päritolu-kontrolli tühistamine kukutab 8 testi 10-st.
+`npm test` 3384/3384 (TZ=UTC).
+
+**runtime: not_run** — kahe päris organisatsiooni ja ühe jagatud töötajaga läbimängu ei ole
+lokaalselt tehtud (nõuaks kaks organisatsiooni, üksused ja capability-grant'id). Andmekihi
+käitumine on ülal päris andmebaasis mõõdetud.
+
 ### SOL-SLOG-18 — ühe organisatsiooni juht saab teise organisatsiooni külastuse ümber määrata — P0
 
 **Tõend.** `reassignVisit()` otsib külastuse globaalselt ainult ID järgi ja seejärel kontrollib, kas vana ning uus töötaja kuuluvad kutsuja antud organisatsiooni skoopi (`lib/serviceLog/dispatchAssign.js:184-237`). Külastusel endal pole organizationId/provenance'i ning kontroll ei tõenda, milline organisatsioon töö algselt määras. Update muudab profiili, route'i ja omanikku tingimusteta; audit kirjutatakse best-effort (`:239-246`).
@@ -2279,6 +2325,35 @@ WHERE-d.
 **Mõju.** Kahes organisatsioonis töötava inimese org A juht saab teadaoleva visitId abil org B planeeritud klienditöö oma töötajale liigutada. Org B päevaplaanist kaob töö, kliendiandmed kanduvad A töötajale ning audit võib puududa.
 
 **Vastuvõtukriteerium.** Ümbermääramine peab kontrollima külastuse külmutatud organizationId/unitId seost ja samaaegselt aktiivset capability't; võõra päritoluga ID peab olema 404. Audit peab olema põhimuudatusega atomaarne. Testida mitme orgi töötaja ristümbermääramist ja auditiviga.
+
+**Seis (10.08.2026): DONE.** Sama plokk mis SOL-SLOG-17 (üks juur: külastusel puudus
+organisatsiooniline päritolu).
+
+- **Külmutatud seost kontrollitakse ESIMESENA.** `reassignVisit` küsib nüüd
+  `assignedOrganizationId` ja lükkab võõra maja töö tagasi ENNE olekukontrolli ja ENNE
+  õiguste kontrolli. Vastus on **404**, mitte 403 ega konflikt: „sul ei ole õigust" ja „see
+  töö on juba alustatud" ütleksid mõlemad välja, et selline külastus on olemas — ja seegi on
+  info teise organisatsiooni töö kohta. `NULL` päritolu langeb samasse harusse.
+- **Kehtiv capability jäi alles ja ta on endiselt KAHEKORDNE:** mõlemad töötajad peavad
+  olema kutsuja skoobis (`assertCanAssign` × 2), ja kehtivust küsitakse päringus
+  (`revokedAt`, `validFrom`, `validUntil`), mitte mälust.
+- **Audit on nüüd põhimuudatusega ühes tehingus.** Varem oli ta `.catch(() => {})` taga:
+  töö võis liikuda ühelt inimeselt teisele nii, et „kes selle ära viis" jäi kirjutamata.
+  Nüüd `db.$transaction`: kas „liikus ja on jälg" või „ei liikunud". Sama parandus tehti ka
+  `assignVisit`-ile — sama argument kehtib seal sõna-sõnalt.
+- **Päritolu ümbermääramisel EI MUUDETA:** töö jääb sellele majale, kelle oma ta on, ja
+  liigub ainult inimeselt inimesele.
+
+**Kriteeriumi osa „testida auditiviga"** on kaetud struktuurselt, mitte veasüstiga:
+audit ja update on ühes `$transaction`-is, seega auditi tõrge katkestab liigutuse
+andmebaasi enda jõuga. Eraldi veasüstitesti kirjutamine nõuaks tehingu-fake'i, mis
+tõendaks fake'i, mitte Postgresi.
+
+**Testid.** Vt SOL-SLOG-17 Seis: `tests/serviceLog/visitOrigin.test.js` katab võõra maja
+külastuse (404), sidumata päritolu (404) ja võõra maja ALUSTATUD töö (404, mitte konflikt).
+Olemasolev `dispatchAssign.test.js` hoiab kahekordse õiguse piiri edasi.
+
+**runtime: not_run** — vt SOL-SLOG-17.
 
 ### SOL-SLOG-19 — „üks aktiivne külastus” on ainult võidujooksule avatud eelkontroll — P1
 

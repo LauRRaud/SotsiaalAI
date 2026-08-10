@@ -5733,6 +5733,29 @@ model ServiceVisit {
   serviceEntryId    String?            @unique
   /// Idempotentsus: sama nupuvajutus võrgu taastumisel ei loo teist külastust.
   clientRequestId   String?
+  /// TÖÖ ORGANISATSIOONILINE PÄRITOLU, KÜLMUTATUD LOOMISE HETKEL
+  /// (SOL-SLOG-17 ja -18, mõlemad P0).
+  ///
+  /// MIS OLI KATKI. Teenuspäevik on SOLO-profiili põhine ja juhi tahvel tuletas
+  /// skoobi INIMESTE kaudu: juhi üksused → nende liikmed → `workerUserId`. Kahes
+  /// organisatsioonis töötaval inimesel on aga ÜKS tööpäev ja üks profiil, seega
+  /// org A juht nägi org B klientide nimesid ja käiguolekut — ja sai teadaoleva
+  /// `visitId` abil org B planeeritud töö oma töötajale ümber määrata.
+  ///
+  /// Inimese kaudu tuletatud skoop EI TÕENDA töö päritolu. Seda saab tõendada
+  /// ainult see, mis kirjutati siis, kui töö sündis.
+  ///
+  /// VÕÕRVÕTIT EI OLE — TEADLIKULT. See on SNAPSHOT („kelle tööna see sündis"),
+  /// mitte elav seos. `Cascade` kustutaks tõendi koos organisatsiooniga,
+  /// `SetNull` teeks kustutatud organisatsiooni tööst ootamatult ORVU, mille
+  /// päritolu ei ole enam kellelgi. Kustutatud organisatsiooni ID ei anna kellelegi
+  /// ligipääsu: skoop nõuab kehtivat liikmesust ja luba, mida kustutatud
+  /// organisatsioonis ei ole.
+  ///
+  /// `NULL` = päritolu EI OLE TÕENDATUD (töötaja lisas töö ise ja ta kuulub
+  /// mitmesse või mitte ühessegi organisatsiooni). Sellist tööd ei näita ega
+  /// liiguta ükski juhi tahvel — vaikimisi kinni, mitte vaikimisi lahti.
+  assignedOrganizationId String?
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
 
@@ -5745,6 +5768,9 @@ model ServiceVisit {
   @@index([providerProfileId, status])
   @@index([routeId, sortOrder])
   @@index([referralId])
+  /// Juhi tahvel küsib „selle organisatsiooni tööd sellel teekonnal" — see on
+  /// tema kuum päring ja ta peab käima indeksist, mitte skaneerimisest.
+  @@index([assignedOrganizationId, routeId])
 }
 
 /// Olekud lepingust (E2c). `NEEDS_CORRECTION` on turvasignaali ja juhi
