@@ -3624,6 +3624,53 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 
 **Vastuvõtukriteerium.** Kinnitus peab viitama külmutatud sisuversioonile/hashile ja kasutama atomaarset tingimuslikku update'i (`status=AWAITING_CLIENT` + versioon). Paralleelne edit-vs-confirm test peab lubama ainult ühe võitja ning vana kinnitus ei tohi uuele sisule kanduda.
 
+**Seis (10.08.2026): DONE — kinnitus viitab TEKSTILE, mitte reale. Sond `npm run net:share:probe` 30/30 päris PostgreSQL-is.**
+
+Kaks uut veergu (migratsioon `20260810180000`): `contentHash` (sha256 jagatavast
+sisust, arvutatakse igal kirjutusel) ja `confirmedContentHash` (see, MIDA klient
+kinnitamise hetkel nägi). Kinnitus kirjutatakse tingimuslikult:
+`updateMany({ status: AWAITING_CLIENT, contentHash: <loetud räsi> })` — kui töötaja jõudis
+vahepeal muuta, langeb tingimus **andmebaasis**, `count` on 0 ja klient saab
+`network_share.content_changed` (409). Vana kinnitus ei saa uuele tekstile kanduda, sest
+ta ei jõua reale, mille räsi on muutunud.
+
+Lisaks võtab kinnitus vastu valikulise **`expectedContentHash`** — räsi, mille klient
+ekraanil nägi. See on tugevam tõend kui serveri enda lugemine millisekund tagasi: ta katab
+ka „klient luges lehte tund aega tagasi" juhtumi, mida tingimuslik kirjutus üksi ei kata.
+
+**Kanooniline string on JS-is ja SQL-is SAMA** — väljad eraldajaga `\x1E`, mis ei saa
+kasutaja tekstis olla, aga on Postgresi `text`-is lubatud (erinevalt `\x00`-st, mille peale
+`convert_to` kukuks). Pariteet on **mõõdetud, mitte eeldatud**: sama sisend annab
+`computeShareContentHash`-ist ja migratsiooni SQL-ist identse räsi, ja kolmel olemasoleval
+lokaalsel real langes backfill JS-arvutusega kokku. Toodangus on `NetworkShare` **tühi**
+(mõõdetud), seega `contentHash NOT NULL` ei ohustanud ühtki rida.
+
+**Kogu faili vana muster oli sama viga:** „loe rida → kontrolli mälus → kirjuta
+`where:{id}`". Parandus ei ole seepärast kahes funktsioonis, vaid ühes primitiivis
+(`commitOnce`), mida kasutavad muutmine, ülevaatamisele saatmine, kinnitus, ülekantud
+kinnitus, avamine ja tagasivõtmine. Avamine-vs-tagasivõtmine oli **sama klassi leid, mida
+raportis ei olnud**: mõlemad lähtusid seisust `SENT` ja viimane kirjutaja määras tulemuse.
+
+**Sond on deterministlik, mitte `Promise.all`-lootus:** hoia tehingut, mis on rea luku juba
+võtnud → käivita teine pool → **mõõda et ta OOTAB** → lase lukk lahti → mõõda tulemust.
+Kaetud on mõlemad järjestused: muutmine-enne-kinnitust (kinnitus kukub, rida jääb
+mustandiks, `clientConfirmedAt` on `null`) ja kinnitus-enne-muutmist (muutmine kukub, tekst
+jääb selleks, mida klient kinnitas).
+
+**Negatiivkontroll: sond vana käitumise vastu 14 passed / 16 failed** — sh sõna-sõnalt
+leiu tekst: „muutmine enne: kinnitus lükatakse tagasi — **kinnitus õnnestus**" ja „rida
+jääb mustandiks — **CONFIRMED**". Ühiktestide fake sai samas parandatud: ta tagastas
+lugemisel **sama objektiviite**, seega samaaegne kirjutus muutis rida, mida lugeja juba käes
+hoidis — just see peitis selle veaklassi. Nüüd annab ta hetktõmmise, nagu päris Prisma.
+
+**Väravad:** `npm test` 3402/3402 · `i18n:check` OK · `db:migrate:check` OK · eslint puhas ·
+`npm run net:share:probe` 30/30.
+
+**NOT_PROVEN:** brauserist läbi käimata — võrgustikujagamise UI vajab kolme rolli korraga
+(töötaja, klient, saaja) ja see on eraldi istumine. Kogu rada on tõendatud teenuse- ja
+andmebaasitasemel, sh HTTP-veakoodid (`content_changed`, `concurrent_change`,
+`confirmation_stale` → 409).
+
 ### SOL-NET-02 — paralleelne muutmine ja saatmine võivad edastada kinnitamata uue teksti — P0
 
 **Tõend.** Saatmine loeb `CONFIRMED` rea ning kontrollib `clientConfirmedAt`, seejärel loob ruumi ja teeb hiljem tingimusteta ID-update'i `SENT` olekusse (`lib/network/share.js:416-437`). Paralleelne edit saab vahepeal kirjutada uue teksti, `DRAFT` oleku ja nullida kinnituse (`:272-307`). Fake-DB kontroll rakendas edit'i enne saatmise lõpp-update'i: lõpp oli `SENT`, uus kinnitamata tekst, `clientConfirmedAt:false` ja aktiivne `roomId`.
@@ -3631,6 +3678,39 @@ tagasivõetud pakett. Peidetud on ainult `RECALLED`. Töörajad sulguvad kõigil
 **Mõju.** Saaja saab teksti, mille klient pole kinnitanud; see on otsene nõusoleku- ja andmejagamispiiri rikkumine.
 
 **Vastuvõtukriteerium.** Saatmine peab ühes tehingus tingimuslikult lukustama sama kinnitatud sisuversiooni ja looma ruumi/outbox-sündmuse. Edit-vs-send võidujooksus peab ainult üks toiming commit'ima; `SENT` rida ei tohi kunagi eksisteerida ilma sama versiooni kinnitustõendita.
+
+**Seis (10.08.2026): DONE — `SENT` nõuab sama versiooni kinnitustõendit. Sama sond, `net:share:probe` 30/30.**
+
+Saatmine teeb nüüd kolm asja, mida ta enne ei teinud:
+
+1. **Väravas** nõuab, et `confirmedContentHash === contentHash` — olek `CONFIRMED` üksi
+   ütleb ainult, et KUNAGI kinnitati, mitte MIDA. Aegunud kinnitus annab
+   `network_share.confirmation_stale`.
+2. **Nõuab rea tingimuslikult endale ENNE ruumi loomist**
+   (`updateMany({status: CONFIRMED, contentHash, confirmedContentHash})`). Vana järjekord
+   (ruum enne olekut) tekitas kaks viga korraga: kaotanud saatmine jõudis ruumi luua ja
+   liikmed sisse panna, ja ruumi loomise tõrge jättis jagamise `CONFIRMED`-iks, ruum aga
+   alles.
+3. **Kõik ühes tehingus** — ruumi port saab nüüd `db` kutsujalt (`createRoomPort()` ei
+   kasuta enam alati globaalset klienti), seega ruumi loomise tõrge keerab ka `SENT` tagasi.
+
+**Tõendatud päris andmebaasis:** muutmine-enne-saatmist → saatmine kukub
+`concurrent_change`-iga, `SENT` rida ei teki, `sentAt` on `null` ja **ruumide arv ei
+muutu**. Süstitud ruumitõrge → jagamine jääb `CONFIRMED`-iks, `sentAt` `null`, ruume ei
+lisandu. **Kaks paralleelset saatmist → täpselt üks võitja ja täpselt üks ruum.**
+
+**Sellest kriteeriumist jäi katmata `outbox-sündmus`** — võrgustikujagamisel ei ole täna
+ühtki domeenisündmust ega teavitust ja see on SOL-NET-10 sisu, mitte selle leiu oma. Siin
+on tehtud see osa, mis kriteeriumis nimetatud: ruum ja olek sünnivad ühes tehingus.
+
+**Vana käitumise vastu jooksutatuna** langes sond just nendel ridadel: „SENT rida EI
+TEKKINUD — **SENT**", „kaotanud saatmine ei jätnud orbu ruumi — **7 → 8**", „kaks saatmist:
+täpselt üks võidab — **2 võitjat**", „tekkis TÄPSELT üks ruum — **9 → 11**".
+
+**NOT_PROVEN:** `Room(originType, originId)` unikaalindeksit **ei lisatud** — SOL-NET-03
+nõuab teda eraldi. Täna hoiab ühe ruumi invariandi tingimuslik nõudmine (kaotaja ei jõua
+ruumi loomiseni) ja see on tõendatud kahe paralleelse saatmisega; DB-tasandi lukku selle
+taga veel ei ole.
 
 ### SOL-NET-03 — ruum ja liikmed luuakse enne jagamise saatmisoleku commit'i — P1
 

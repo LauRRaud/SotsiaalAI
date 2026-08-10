@@ -9,16 +9,17 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **48 / 357** |
+| Tehtud leidu | **50 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **4 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **2 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | **seitsmes deploy 10.08 17:04 omaniku selgel loal: server = `main` = `origin/main` = `4c6c9cc9`**, viis commit'i ja üks migratsioon (`20260810160000` külastuse org-päritolu; `20260810120000` ja `20260810140000` olid juba kuuenda deploy'ga sees). Mõõdetud, mitte eeldatud: `migrate status` „up to date", `/` `/vestlus` `/admin/rag` **200**, frontend/rag/worker `active`, vea-ridu ei ole. **Kõik seni tehtud parandused on nüüd toodangus** |
-| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-NET** (2 × P0: NET-01, NET-02); edasi **SOL-SPROF** (2 × P0). Need neli on kogu auditi ainsad lahtised P0-d |
-| Käsil oleva peatüki saba | SOL-PRE 16 lahtist (15 × P1, 1 × P2) · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
+| Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-SPROF** (SPROF-01, SPROF-02) — auditi **viimased kaks lahtist P0-d**. Pärast neid langeb järjekord tagasi dokumendijärjekorrale ehk **SOL-AUTH**-ile |
+| Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**Kõik 48 tehtud leidu on tootmises** (seitsmes deploy 10.08 17:04). Deploy'mata ei ole
-midagi. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
+**48 tehtud leidu 50-st on tootmises** (seitsmes deploy 10.08 17:04). Deploy'mata on
+**SOL-NET-01 ja -02** koos migratsiooniga `20260810180000` (`contentHash`,
+`confirmedContentHash`). Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
 HTTP-negatiivtest, mis oli teadlikult deploy'd ootamas — andis esimesel jooksul
@@ -63,10 +64,10 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Teekond ja jagamine | SOL-JOUR | 2/17 | – | 12 | 3 | **käsil**, mõlemad P0 tehtud |
 | Eelpöördumised | SOL-PRE | 2/18 | – | 15 | 1 | **käsil**, mõlemad P0 tehtud |
 | Abikuulutused | SOL-HELP | 0/13 | – | 11 | 2 | |
-| Võrgustikutöö | SOL-NET | 0/13 | **2** | 9 | 2 | **järgmine** |
+| Võrgustikutöö | SOL-NET | 2/13 | – | 9 | 2 | **käsil**, mõlemad P0 tehtud |
 | Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
 | Otsing | SOL-SEARCH | 0/7 | – | 1 | 5 | + 1 × P3 |
-| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | |
+| Teenuseosutaja profiil | SOL-SPROF | 0/15 | **2** | 6 | 7 | **järgmine** — auditi viimased P0-d |
 
 ## Mis on tehtud
 
@@ -145,6 +146,19 @@ Teine jooks: **`PROBE_OK 8/8`**.
   on kustutatud, mitte parandatud. Vana vaikehulk `personWish` ei kuulunud isegi serveri
   sõnavarasse. **Tõendatud lõpuni: salvestatud andmebaasireas eemaldatud võtme markerit EI
   OLE**, `confirmedKeys` vastab täpselt projektsioonile.
+- **SOL-NET-01 + SOL-NET-02** (10.08) — **kaks P0-d, üks juur:** kogu `lib/network/share.js`
+  kirjutas mustriga „loe rida → kontrolli mälus → kirjuta `where:{id}`", seega kinnitus
+  viitas REALE, mitte tekstile. Parandus on kaks veergu (`contentHash`,
+  `confirmedContentHash`, migratsioon `20260810180000`) ja üks primitiiv `commitOnce`, mida
+  kasutavad kõik kuus kirjutavat rada. Saatmine nõuab rea tingimuslikult endale **enne**
+  ruumi loomist ja teeb mõlemad ühes tehingus — vana järjekord jättis kaotanud saatmise
+  järel orvu ruumi ja ruumitõrke järel `CONFIRMED` rea koos ruumiga. Kanooniline räsi-string
+  on JS-is ja SQL-is sama; pariteet **mõõdetud**, mitte eeldatud. Sama klassi leid, mida
+  raportis ei olnud: avamine-vs-tagasivõtmine, kus mõlemad lähtusid seisust `SENT`.
+  Sond `npm run net:share:probe` **30/30 päris PostgreSQL-is**, deterministlike
+  lukuvõistlustega mõlemas järjestuses; **vana käitumise vastu 14 passed / 16 failed**.
+  Ühiktestide fake sai parandatud (tagastas lugemisel sama objektiviite — just see peitis
+  selle veaklassi).
 - **SOL-PRE-02** (10.08) — tagasivõetud pöördumise pakett oli organisatsioonile endiselt
   avatav ja uuesti määratav. Parandus on üks invariant kahes tükis: **sisu** peatab
   `projectSourcePackage()` (`recalledAt` → `null`, värav on ainsa ukse sees, mitte
@@ -198,9 +212,9 @@ kood ei anna:
 - **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
   otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
   puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH, kus P0-sid EI OLE ühtegi.
-  SOL-CALL, SOL-URG, **SOL-SLOG**, **SOL-RAGSVC**, **SOL-JOUR** ja **SOL-PRE** on selle reegli
-  järgi P0-dest tühjaks tehtud. **Alles on neli P0-d kahes peatükis: SOL-NET (NET-01, NET-02)
-  ja SOL-SPROF (SPROF-01, SPROF-02).** Kui need on kaetud, ei ole auditis enam ühtegi P0-d ja
+  SOL-CALL, SOL-URG, **SOL-SLOG**, **SOL-RAGSVC**, **SOL-JOUR**, **SOL-PRE** ja **SOL-NET** on
+  selle reegli järgi P0-dest tühjaks tehtud. **Alles on KAKS P0-d, mõlemad SOL-SPROF-is
+  (SPROF-01, SPROF-02).** Kui need on kaetud, ei ole auditis enam ühtegi P0-d ja
   järjekord langeb tagasi puhtale dokumendijärjekorrale — see tähendab **SOL-AUTH-i** (13
   lahtist), mis on siis kõige eespool.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
