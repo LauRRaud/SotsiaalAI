@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **34 / 357** |
+| Tehtud leidu | **35 / 357** |
 | Peatükke lõpuni | **3 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN |
-| Lahtised prioriteedi järgi | **17 × P0** · 225 × P1 · 80 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **17 × P0** · 224 × P1 · 80 × P2 · 1 × P3 |
 | Toodangus | server = `main` = `origin/main` = `3245c973`, kuues deploy 10.08 (kliendipoole parandus + docs); migratsioonid `20260809200000` ja `20260810003000` on tootmisbaasis mõõdetult kohal (`STARTING`, `rosterVersion`, claim-veerud) |
 | Järgmine peatükk (P0 ees, siis dokumendi järjekord) | **SOL-URG** (13 lahtist: 2 × P0, 11 × P1) — esimene P0-ga peatükk pärast SOL-CALL-i |
-| Käsil oleva peatüki saba | SOL-CALL 4 lahtist (1 × P1, 3 × P2), P0-sid ei ole enam |
+| Käsil oleva peatüki saba | SOL-CALL 3 lahtist (3 × P2), P0-sid ega P1-sid ei ole enam |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-31 tehtud leidu on tootmises; **CALL-04/05/06 on koodis ja deploy'mata (kaks migratsiooni:
+31 tehtud leidu on tootmises; **CALL-04/05/06/10 on koodis ja deploy'mata (kaks migratsiooni:
 `20260810120000` liitunikaalsus, `20260810140000` `DELETE_PENDING`)**. Ainus P3 kogu
 auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
@@ -38,7 +38,7 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 9/13 | – | 1 | 3 | **käsil**, lahtised CALL-07, -08, -09, -10 |
+| Kõned ja salvestus | SOL-CALL | 10/13 | – | – | 3 | **käsil**, lahtised CALL-07, -08, -09 (kõik P2) |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
 | Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
 | Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
@@ -79,6 +79,11 @@ auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
   keegi, sest ta saadeti dokumendisalvestuse teele, kus ta andis neelatud tee-vea. Sama
   neelamine oli teinud `discardActiveRecording()` `DELETED`/`QUARANTINED` valiku surnud
   koodiks. Ketast ennast tõendab ainult mock — vt Seis-lõigu NOT_PROVEN.
+- **SOL-CALL-10** (10.08) — salvestis sai kolm piiri, kus enne oli null: voogedastav
+  finaliseerimine (mälukulu ei sõltu enam salvestise pikkusest), kestuselagi koos serveri
+  automaatse peatamisega ja kvoodireserv enne providerit. Kriteeriumi osa **„jõustada
+  maksimaalne kestus provideris"** ei ole teostatav — LiveKit'i egress ei tunne sellist
+  seadet — ja ta on Seis-lõigus nimeliselt asendatud serveripoolse valvega.
 - **SOL-CALL-11, -12, -13** (10.08) — kõneklienti puudutav plokk: kolm leidu elasid kõik
   `components/rooms/useRoomCall.js`-is ja neid parandati koos, sest üks fail on üks sidus
   funktsiooniplokk. **Dokumendi järjekorrast tehti siin teadlik erand**: CALL-12 oli

@@ -1352,6 +1352,44 @@ egress päriselt kirjutab.
 
 **Vastuvõtukriteerium.** Jõustada maksimaalne kestus ja maht provideris ning serveris; checksum ja kopeerimine peavad olema streamivad. Enne salvestamist tuleb reserveerida ohutu salvestusmaht või kasutada selget eraldi kvooti ning commit'ida tegelik maht. Suure fixture'i test peab jälgima mälulage, automaatset stoppi, kvooti ja veajärgset koristust.
 
+**Seis (10.08.2026): DONE — kolm piiri, kus enne oli null. Commit `446932e6`.**
+
+**1. Voog.** `readFile` + `writeFile` asemel `pipeline`, mis hashib ja kopeerib ühe
+käiguga. Mälus on korraga üks tükk, seega mälukulu ei sõltu enam salvestise pikkusest.
+Suurus loetakse kokku voost, mitte `stat`-ist: kui fail on lugemise ajal kasvanud, on tõde
+see, mille me päriselt kirjutasime. Katkestusel kustutatakse poolik sihtfail (ta näeks
+muidu välja nagu salvestis); allikas jääb alles. **Mahulagi on teadlikult ÜKS mehhanism** —
+`stat`-värav enne lugemist oleks teine teostus sama reegli jaoks ja tema kõrval ei
+käivituks voo pool kunagi, st ta oleks tõendamatu.
+
+**2. Kestus.** LiveKit'i egress ei tunne „maksimaalset kestust" — see on tema piir, mitte
+meie valik, ja seepärast EI OLE „provideris jõustamine" kriteeriumi selles osas
+teostatav. Asendus on `stopOverdueRecordings()`: sweep valib üle lae läinud ACTIVE
+salvestused ja peatab nad **täpselt sama teed pidi nagu inimese vajutatud stopp** (sama
+provider-kinnitus, sama finaliseerimine, sama audit), tegijaks taotluse esitaja. Eraldi
+audit `CALL_RECORDING_AUTO_STOPPED`. Elab retention-tsüklis, sest see on ainus töökäik,
+mis toodangus juba kindlalt käib. **Latents on ausalt selle tsükli sagedus** — ja just
+sellepärast on mahulagi olemas eraldi, tema ei sõltu ajastusest.
+
+**3. Kvoot.** Reserv käib enne providerit — ainus koht, kus keeldumine on veel odav ja
+aus. Pärast salvestamist oleks valik „ületa kvoot" või „kustuta nõusolekuga saadud heli",
+ja kumbki ei ole meie otsustada. Reserv on ülempiiri hinnang (kestuselagi × bitikiirus),
+tegelik maht commit'itakse `fileSizeBytes`-ina.
+
+Vaikeväärtused ei nõua ühtegi env-muutujat: **120 min · 50 MB · 32 kbps** (120 min ×
+32 kbps ≈ 28,8 MB mahub ka kliendirolli 50 MB kvooti). Häälestatavad
+`RECORDING_MAX_DURATION_MINUTES`, `RECORDING_MAX_FILE_MB`,
+`RECORDING_ESTIMATED_BITRATE_KBPS`; vigane väärtus ei võta piiri ära.
+
+Väravad: `npm test` **3346/3346** (Europe/Tallinn ja UTC) · `i18n:check` roheline · eslint
+puhas. **Negatiivkontroll: 7 uut testi 8-st kukub vana teostuse peal** (kaheksas on
+regressioonivalve, mis peabki mõlemal pool roheline olema). Mälulagi on mõõdetud, mitte
+väidetud: 24 MB fikstuur läbib finaliseerimise nii, et kuhi kasvab alla 8 MB.
+
+**NOT_PROVEN:** päris LiveKit-egressiga ei ole ükski kolmest piirist läbi käidud — mock ei
+kirjuta kettale tundide kaupa heli. Eraldi katmata on ka see, kas 32 kbps hinnang vastab
+päris egress'i väljundile; kui ta on tegelikkusest väiksem, on reserv liiga optimistlik.
+
 ### SOL-CALL-11 — ebaõnnestunud LiveKit-liitumine võib jätta mikrofoni ja serveriosaluse aktiivseks — P1
 
 **Tõend.** Serveri `/join` loob aktiivse `CallParticipant` rea enne tokeni tagastamist (`lib/calls/service.js:1190-1246`). Klient kutsub seejärel `connectLiveKit()`, mis salvestab Room-objekti ref'i, ühendub, loob kohaliku audiotrack'i ja publitseerib selle, kuid kogu jadal puudub sisemine catch/finally cleanup (`components/rooms/useRoomCall.js:158-221`). Kui connect, track creation või publish viskab, välimine start/join catch seab ainult errori (`:223-264`). `joinedCallIdRef` kirjutatakse alles pärast edukat `connectLiveKit()` lõppu (`:231-238`, `:252-259`), mistõttu teardown/pagehide ei saada ebaõnnestunud join'i kohta serverile leave'i. Juba loodud track'i ei stopita ja LiveKit Room'i ei disconnect'ita.
