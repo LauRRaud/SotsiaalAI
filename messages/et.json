@@ -4246,6 +4246,9 @@
   },
   "invite": {
     "success": "Kutsed saadetud",
+    "success_delivery_pending": "Kutsed on loodud, aga kõik kirjad ei jõudnud veel välja: {emails}. Proovime automaatselt uuesti — võid ka „Saada uuesti“ vajutada.",
+    "resend_sent": "Kutse saadeti uuesti.",
+    "resend_delivery_pending": "Kiri ei jõudnud kohe välja. Proovime automaatselt uuesti; link jääb kehtima.",
     "eyebrow": "Kutsu osaleja",
     "login_required": "Kutsumiseks logi sisse.",
     "classic": {

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
+import { deliverInviteEmail } from "@/lib/invites/inviteEmailDelivery";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -175,22 +175,26 @@ export async function POST(request, { params }) {
       }
     });
 
-    await enqueuePaymentEmail(prisma, {
-      dedupeKey: `invite_resend:${id}:${hash.slice(0, 24)}`,
-      template: "invite_resend",
-      toEmail: invite.inviteeEmail,
-      locale,
+    /* SOL-INV-03: kordussaatmine käib nüüd SAMA teed pidi mis loomine — kohene
+       katse + püsiv järjekord + aus vastus. Varem läks ta ainult järjekorda ja
+       vastas alati `ok: true`, seega „saatsin uuesti" oli kavatsuse, mitte
+       tulemuse kirjeldus. Kutse ise jääb sama: uut kutset ei looda. */
+    const emailDelivery = await deliverInviteEmail({
+      db: prisma,
+      kind: "resend",
       inviteId: id,
-      payload: {
-        joinToken: raw,
-        roomTitle: invite.room?.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
-        inviterName: auth.email || "SotsiaalAI"
-      }
+      toEmail: invite.inviteeEmail,
+      tokenRaw: raw,
+      tokenHash: hash,
+      roomTitle: invite.room?.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
+      inviterName: auth.email || "SotsiaalAI",
+      locale
     });
 
     return json({
       ok: true,
-      id
+      id,
+      emailDelivery
     });
   } catch (error) {
     console.error("[invite resend] failed", safeError(error));

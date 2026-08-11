@@ -4246,6 +4246,9 @@
   },
   "invite": {
     "success": "Invites sent",
+    "success_delivery_pending": "The invitations were created, but not every email has gone out yet: {emails}. We retry automatically — you can also press \"Resend\".",
+    "resend_sent": "The invitation was sent again.",
+    "resend_delivery_pending": "The email did not go out right away. We retry automatically; the link stays valid.",
     "eyebrow": "Invite participant",
     "login_required": "Sign in to send invites.",
     "classic": {

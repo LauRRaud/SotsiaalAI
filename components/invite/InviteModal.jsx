@@ -371,7 +371,21 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
           }),
         );
       }
-      setMessage(t("invite.success"));
+      /* SOL-INV-03: „Kutsed saadetud" oli varem tingimusteta. Kui mõni kiri ei
+         jõudnud välja, peab saatja seda NÄGEMA — muidu ootab ta vastust
+         inimeselt, kes ei saanud kunagi linki. */
+      const undelivered = (data?.invites || []).filter(
+        (inv) => inv.emailDelivery && inv.emailDelivery !== "sent",
+      );
+      if (undelivered.length) {
+        setMessage(
+          t("invite.success_delivery_pending", {
+            emails: undelivered.map((inv) => inv.inviteeEmail).join(", "),
+          }),
+        );
+      } else {
+        setMessage(t("invite.success"));
+      }
       setEmails("");
       if (!roomId && data?.roomId) {
         setRoomId(data.roomId);
@@ -406,6 +420,14 @@ export default function InviteModal({ embedded = false, onBack = null, hideHeade
             t,
             fallbackKey: "invite.error_generic",
           }),
+        );
+      }
+      // SOL-INV-03: kordussaatmine ütleb samuti tulemuse, mitte kavatsuse.
+      if (kind === "resend") {
+        setMessage(
+          data?.emailDelivery && data.emailDelivery !== "sent"
+            ? t("invite.resend_delivery_pending")
+            : t("invite.resend_sent"),
         );
       }
       await loadInvites();

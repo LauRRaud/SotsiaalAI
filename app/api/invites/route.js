@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
-import { getMailer, resolveBaseUrl } from "@/lib/mailer";
+import { deliverInviteEmail } from "@/lib/invites/inviteEmailDelivery";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -56,14 +56,6 @@ function errorJson(messageKey, status = 400, locale = "en", extras = {}) {
     },
     status
   );
-}
-
-function fail(messageKey, status = 400, code = "") {
-  const error = new Error(messageKey);
-  error.status = status;
-  error.messageKey = messageKey;
-  error.code = code;
-  return error;
 }
 
 function localeFromRequest(request, directLocale) {
@@ -156,44 +148,9 @@ async function resolveSponsor(room) {
   };
 }
 
-function buildJoinLink(token) {
-  const base = resolveBaseUrl() || "http://localhost:3000";
-  return `${base.replace(/\/+$/, "")}/join?token=${encodeURIComponent(token)}`;
-}
-
-async function sendInviteEmail({
-  to,
-  token,
-  roomTitle,
-  inviterName,
-  locale,
-  template
-}) {
-  const from = process.env.EMAIL_FROM || process.env.SMTP_FROM;
-  if (!from) {
-    throw fail("api.invites.email_from_missing", 500, "EMAIL_FROM_MISSING");
-  }
-
-  const joinLink = buildJoinLink(token);
-  const keyRoot = template === "resend" ? "email.invite.resend" : "email.invite.create";
-  const mailer = getMailer(template === "resend" ? "invite-resend" : "invite");
-
-  await mailer.sendMail({
-    to,
-    from,
-    subject: serverT(locale, `${keyRoot}.subject`, { roomTitle }),
-    text: serverT(locale, `${keyRoot}.text`, {
-      inviterName,
-      roomTitle,
-      joinLink
-    }),
-    html: serverT(locale, `${keyRoot}.html`, {
-      inviterName,
-      roomTitle,
-      joinLink
-    })
-  });
-}
+/* SOL-INV-03: kirja EHITAMINE ja SAATMINE kolisid `lib/invites/inviteEmailDelivery.js`-i,
+   sisu renderdus `lib/payments/emailOutbox.js`-i. Siin seisis oma teostus, mis
+   neelas vea logisse ja jättis vastuse ausalt ütlemata, kas kiri läks. */
 
 export async function GET(request) {
   const locale = localeFromRequest(request);
@@ -434,25 +391,29 @@ export async function POST(request) {
         }
       });
 
-      created.push({ ...invite, token: raw });
+      /* SOL-INV-03: iga adressaadi tulemus öeldakse VÄLJA. Vana kood neelas
+         mailer'i vea logisse ja vastas kõigi kohta ühetaoliselt „loodud" —
+         mitmest aadressist võisid mõned kirjad kohale jõuda ja teised mitte. */
+      const emailDelivery = await deliverInviteEmail({
+        db: prisma,
+        kind: "create",
+        inviteId: invite.id,
+        toEmail: email,
+        tokenRaw: raw,
+        tokenHash: hash,
+        roomTitle: room.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
+        inviterName: auth.email || "SotsiaalAI",
+        locale: mailLocale
+      });
 
-      try {
-        await sendInviteEmail({
-          to: email,
-          token: raw,
-          roomTitle: room.title || serverT(locale, "rooms.fallback_title", undefined, "Room"),
-          inviterName: auth.email || "SotsiaalAI",
-          locale: mailLocale,
-          template: "create"
-        });
-      } catch (mailError) {
-        console.error("[invite email] failed", safeError(mailError));
-      }
+      created.push({ ...invite, emailDelivery });
     }
 
     return ok({
       roomId: room.id,
-      invites: created.map(({ token: _token, ...rest }) => rest)
+      invites: created,
+      // Kokkuvõte kliendile: kas mõni adressaat vajab tähelepanu.
+      emailDeliveryPending: created.filter(entry => entry.emailDelivery !== "sent").length
     });
   } catch (error) {
     if (error?.status) {
