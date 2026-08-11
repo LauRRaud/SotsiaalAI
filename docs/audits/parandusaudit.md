@@ -23,7 +23,7 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 | Peatükke lõpuni | **6 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
 | Lahtised prioriteedi järgi | **P0-sid EI OLE** · 201 × P1 · 86 × P2 · 1 × P3 |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on üksteist: SOL-AUTH-03…-13** (kõik peale -01/-02). AUTH-03…-07 ja -11 on `origin/main`-is; **AUTH-08…-10 ja -12, -13 on veel commit'imata.** **Järgmine deploy VAJAB migratsiooni `20260811210000`** (`AuthThrottleCounter`, uus tabel) **ja üht env-rida: `TRUSTED_PROXY_IP_HEADER=x-real-ip`** — ilma selleta jääb AUTH-09 IP-piir välja (e-posti-põhine piir töötab). |
+| Toodangus | **viieteistkümnes deploy 11.08 18:31: server = `1ed23452`.** **Kõik 115 tehtud leidu on nüüd tootmises** — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
 | Järgmine peatükk | **SOL-AUTH on käsil, 13/15.** Lahtised on ainult **AUTH-14** (P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist) ja **AUTH-15** (P2 — paralleelsed paroolitaaste päringud tühistavad teineteise lingi); need kaks lõpetavad peatüki. SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
 | Käsil oleva peatüki saba | SOL-AUTH 2 lahtist (1 × P1, 1 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
@@ -53,12 +53,14 @@ Kolm tagajärge, mis ei ole kosmeetika:
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**104 tehtud leidu 115-st on tootmises; deploy'mata on üksteist — kogu SOL-AUTH-03…-13.**
-AUTH-03…-07 ja -11 on `origin/main`-is (`14501377`, `380274df` ja järgnev), AUTH-08…-10 ja -12,
--13 on veel commit'imata; server ei kanna neist ühtki. **Erinevalt eelmistest ringidest vajab
-järgmine deploy migratsiooni** (`20260811210000`, uus tabel `AuthThrottleCounter`; olemasolevaid
-ridu ei puudutata) **ja üht env-rida** (`TRUSTED_PROXY_IP_HEADER=x-real-ip`), ilma milleta jääb
-AUTH-09 IP-piir teadlikult välja.
+**Kõik 115 tehtud leidu on 11.08 18:31 seisuga tootmises.** Deploy'mata jääki EI OLE.
+
+**Üks asi, mille see ring välja tõi ja mis on siia varem valesti kirjutatud:** eelmine
+versioon väitis, et „AUTH-03…-07 ja -11 on `origin/main`-is". Mõõdetuna oli **`a4e00e43`
+(AUTH-07/-11) push'imata** ja harud olid lahknenud — teine sessioon oli sama vanema (`58e379a8`)
+pealt push'inud kaks PWA-commit'i. Rebase tehti eraldi worktree's, et peatöölaua võõrast
+poolelolevat tööd mitte puutuda, ja mõlema commit'i sisu on rebase'i järel bait-täpselt sama.
+Reegel jääb: **serveri ja `origin/main`-i seisu ei võeta selle faili pealt, vaid mõõdetakse.**
 Kolmeteistkümnes deploy
 (11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
 **`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
