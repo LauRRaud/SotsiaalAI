@@ -2609,6 +2609,7 @@
       "retry": "Proovi uuesti",
       "invalid_conv_id": "Vestluse ID on vigane.",
       "openai_request_failed": "OpenAI päring ebaõnnestus.",
+      "turn_in_flight": "Selle vestluse eelmine küsimus on veel töös. Oota vastust või vajuta Stop.",
       "service_unavailable": "Teenus ei ole praegu saadaval.",
       "not_saved": "Vastust ei õnnestunud vestlusse salvestada, seega jäi see saatmata. Limiiti ei arvestatud — palun proovi uuesti."
     },

@@ -134,7 +134,9 @@ export async function POST(req, deps = {}) {
     documentWorkflowState,
     helpForcedIntent,
     shouldUseDocumentWorkflow,
-    shouldUseHelpWorkflow
+    shouldUseHelpWorkflow,
+    clientTurnKey,
+    sessionTurnLimit
   } = bootstrapResult.data;
   let documentUsageHandle = null;
   let documentWorkflowResponse;
@@ -253,7 +255,10 @@ export async function POST(req, deps = {}) {
       userId,
       metric: "CHAT_ASSISTANT_REPLY",
       scope: "chat.reply",
-      idempotencyKey: payload?.idempotencyKey,
+      /* SOL-CHAT-03: kavatsuse võti on kliendi oma ja ta on stabiilne üle korduste. Ilma temata
+         genereeris adapter IGA HTTP-katse jaoks uue UUID-i — täpselt see tegi korduse uueks
+         tasuliseks tööks. `payload.idempotencyKey` jääb tagavaraks vanadele klientidele. */
+      idempotencyKey: clientTurnKey || payload?.idempotencyKey,
       metadata: { convId, role: normalizedRole, stream: wantStream }
     });
   } catch (error) {
@@ -297,9 +302,9 @@ export async function POST(req, deps = {}) {
         ragUsageHandle = await routeRuntime.reserveUsageForRequest({
           request: req,
           userId,
-          metric: "RAG_SEARCH",
+              metric: "RAG_SEARCH",
           scope: "chat.rag_search",
-          idempotencyKey: payload?.idempotencyKey,
+          idempotencyKey: clientTurnKey || payload?.idempotencyKey,
           metadata: { convId, role: normalizedRole }
         });
       }
@@ -422,6 +427,8 @@ export async function POST(req, deps = {}) {
     logEvent: routeRuntime.logEvent,
     /* SOL-CHAT-01/-02: mõlemad võtavad nüüd valikulise tehingukliendi, sest arveldus kuulub
        pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
+    clientTurnKey,
+    sessionTurnLimit,
     onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
     onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {
       reason,

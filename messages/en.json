@@ -2609,6 +2609,7 @@
       "retry": "Try again",
       "invalid_conv_id": "Conversation id is invalid.",
       "openai_request_failed": "OpenAI request failed.",
+      "turn_in_flight": "The previous question in this conversation is still running. Wait for the answer or press Stop.",
       "service_unavailable": "The service is currently unavailable.",
       "not_saved": "The answer could not be saved to the conversation, so it was not delivered. Your quota was not charged — please try again."
     },

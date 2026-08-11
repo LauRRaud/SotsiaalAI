@@ -2401,6 +2401,35 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 
 **Vastuvõtukriteerium.** Klient peab looma enne esimest saatmist ühe stabiilse pöörde-ID, saatma selle retry'del muutmata ning server peab selle alusel atomaarse pöörderea/tulemuse taaskasutama. USER- ja ASSISTANT-kirjed, chat/RAG kasutus ning `retryOf` peavad olema sama serveripoolse identiteediga seotud. Integratsioonitest peab kordama identset HTTP kavatsust paralleelselt ja pärast timeout'i ning tõendama üht providerikutset, üht kasutussettlement'i ja üht sõnumipaari.
 
+**Seis (11.08.2026): DONE — koos SOL-CHAT-04-ga üks plokk, sest mõlema kriteerium algab samast
+puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
+- **Uus mudel `ChatTurn`** (migratsioon `20260811160000`, uus tabel + uus enum `ChatTurnStatus`;
+  olemasolevaid ridu ei puudutata). Unikaalsus **`(userId, clientTurnKey)`** on ainus koht, kus üks
+  kavatsus muutub üheks reaks. Rida kannab mõlemat poolt (`userMessageId`, `assistantMessageId`),
+  seega USER/ASSISTANT paar on **seotud**, mitte ajatemplist tuletatud.
+- **Klient loob võtme enne esimest saatmist** ja hoiab teda kuni kavatsus on lahendatud:
+  võrguviga, Stop ja „Proovi uuesti" saadavad SAMA võtme; lõpetatud pöörde järel võti kustutatakse,
+  seega tahtlik sama küsimuse uuesti küsimine on aus uus töö. Primitiiv oli koodibaasis juba olemas
+  — `resolveIntentKey`/`buildIntentSignature` (SOL-DOC-01) — ja seda ei kirjutatud teist korda.
+- **Sama võti läheb NII pöörde reale kui kasutusarvestusse** (`idempotencyKey`). Kaks eri identiteeti
+  ühe kavatsuse peal oli osa leiust: `routeAdapter` genereeris iga HTTP-katse jaoks uue UUID-i.
+  Kordus taaskasutab nüüd reservatsiooni; `usageService` oskab RELEASED rea sama perioodi sees ise
+  üles äratada, seega parandus ei vajanud arvestusteenuses ühtegi muudatust.
+- **`retryOf` tüübiviga parandatud seal, kus ID sünnib:** `resolveRetryTarget()` tagastab stringi.
+  Vana test nõudis arvu `2` — ta kodeeris viga; nüüd on tüüp lepingu osa.
+- **Kolm uut serveri vastust:** lõpetatud kavatsuse kordus → **salvestatud vastus tagasi, ilma
+  providerita ja ilma uue tasuta**; sama kavatsus juba töös → **409**; teine kavatsus samas
+  vestluses → **409**.
+- **Mõõdetud päris PostgreSQL-is: `npm run chat:turn:probe` 20/20**, võistlejad `Promise.all`-iga.
+  Sh: sama võti kaks korda korraga → üks töö + üks „juba töös" + **üks kasutajasõnum**; lõpetatud
+  kordus ei loo uut pööret ega uut sõnumit; ebaõnnestunud pöörde kordus on **sama rida, `attempt`
+  kasvab**. Ühiktestid `tests/chat/turnIdentity.test.js` (7 uut) mõõdavad marsruudi otsust iga
+  tulemuse peale.
+- **Aus piir.** Ilma kliendivõtmeta (vana klient) jääb vana rada alles ja **kaitset ei ole** — see
+  on koodis ja testis nimeline, mitte vaikiv. Dokumendi- ja abitöövoo harud (`document`/`help`) ei
+  käi veel pöörde nõude alt läbi; nende oma leiud on eraldi. `runtime: not_run` — kahe vahekaardi
+  päris brauserirada on käimata.
+
 ### SOL-CHAT-04 — sama vestluse paralleelsed pöörded rikuvad järjekorda ja sessioonipiiri — P1
 
 **Tõend.** Sessioonipiir loeb olemasolevad USER-sõnumid ja otsustab lubamise enne uue sõnumi loomist, ilma vestluse lukuta või atomaarse loendurita (`lib/chat/requestBootstrap.js:269-288`). `persistInit()` teeb vestluse olemasolu kontrolli, USER-sõnumi loomise ja aktiivsusaja update'i, kuid ei loo aktiivse pöörde lukku ega järjekorranumbrit (`lib/chat/persistence.js:38-109`). Skeemis olevat `ConversationRun` mudelit aktiivne chat-kood ei kasuta; otsingus leiduvad ainult retention ja admin-reset (`prisma/schema.prisma:1348-1367`). Kliendi `isGeneratingRef` piirab topeltklikki ainult ühes hook'i instantsis (`components/chat/hooks/useChatStream.js:239-244`, `:1039-1048`), mitte teises vahekaardis ega otseses HTTP-s.
@@ -2408,6 +2437,33 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 **Mõju.** Kaks vahekaarti või paralleelpäringut võivad mõlemad läbida viimase lubatud pöörde kontrolli, käivitada kaks AI-tööd ja salvestada vastused vales kronoloogilises paaris. `/api/chat/run` tuletab oleku lihtsalt viimasest ajatempliga sõnumist, seega ühe pöörde terminalmarker võib varjata teise veel jooksvat või hiljem ebaõnnestuvat pööret (`app/api/chat/run/route.js:166-237`).
 
 **Vastuvõtukriteerium.** Vestlus vajab serveripoolset pöörde-ID-d ja kas ühte aktiivset pööret või selget järjestatud mitme pöörde lepingut. Limiidi reserveerimine peab olema atomaarne ning USER/ASSISTANT paarid seotud. Päris PostgreSQLi test peab saatma sama `convId`-ga paralleelpäringud limiidi eel ja tavaseisus ning kontrollima limiiti, järjekorda, kasutust ja `/api/chat/run` tõde.
+
+**Seis (11.08.2026): DONE — sama plokk mis SOL-CHAT-03, vt sealt mudel ja sond.**
+- **Valitud on „üks aktiivne pööre"**, mitte järjestatud mitme pöörde leping: teine samaaegne
+  kavatsus saab 409. Järjekorranumbriga variant oleks nõudnud kliendipoolset mitme voo haldust ja
+  poleks kaotanud ühtegi tegelikku kahju — kaks paralleelset pööret samas vestluses on kasutaja
+  jaoks niikuinii viga, mitte funktsioon.
+- **Sessioonipiir on nüüd atomaarne.** Lugemine ja kirjutamine käivad ühes tehingus
+  `pg_advisory_xact_lock(4712, hashtext(conversationId))` all — vestlusepõhine, seega eri vestlused
+  ei serialiseeru. Lukk `$executeRaw` kaudu ([[prisma-advisory-lock]]: `$queryRaw` kukub `void`
+  tüübil).
+- **Kaks kohta, kus piiri loetakse, ja see on teadlik.** `requestBootstrap` varane kontroll jäi
+  alles kui **mitteatomaarne odav värav** („kas tasub üldse alustada"); jõustaja on pöörde nõue
+  („kes sai viimase koha"). Mõlemad on koodis nimeliselt välja öeldud, et hilisem lugeja ei arvaks,
+  et üks neist on üleliigne.
+- **Rippuma jäänud pööre ei lukusta vestlust igaveseks:** `updatedAt` on lease (vaikimisi 15 min,
+  `CHAT_TURN_LEASE_MS`), aegunud RUNNING pööre suletakse ausalt `ERROR`-iks ja uus pööre saab töö.
+  Sama õppetund mis SOL-MEET-04 claim'il.
+- **Terminalseis pannakse paika `persistDone`-i TEHINGUS** (`closeChatTurn`), seega „vestluses on
+  vastus, aga pööre on igavesti RUNNING" ei ole seisund, mida kood suudab toota.
+- **Mõõdetud päris PostgreSQL-is: `npm run chat:turn:probe` 20/20**, sh „vabu kohti täpselt üks,
+  neli võistlejat → võidab täpselt üks ja kasutajasõnumeid on kokku kaks" ning **negatiivkontroll**:
+  sama harness jäljendab vana mustrit (loe loendur väljaspool lukku → kirjuta) ja NÕUAB piiri
+  ületamist. Ta ületab, seega ülejäänud rohelised on paranduse teene.
+- **Katmata jäi kriteeriumi viimane sõna — `/api/chat/run` tõde.** Marsruut tuletab oleku endiselt
+  viimasest sõnumist, mitte `ChatTurn` reast; nüüd, kus see rida on olemas, on see omaette
+  ühesammuline töö ja ta kuulub **SOL-CHAT-06** juurde, kus kliendi lõpukinnitus niikuinii sama
+  marsruuti kasutama hakkab. `runtime: not_run`.
 
 ### SOL-CHAT-05 — Stop võib provider'i `done` järel siiski commit'ida kasutajale kuvamata täisvastuse — P1
 

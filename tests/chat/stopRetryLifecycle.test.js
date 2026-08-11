@@ -174,7 +174,10 @@ test("resolveRetryTarget offers retry only for a failed latest assistant turn", 
   const target = resolveRetryTarget(errored);
   assert.equal(target.canRetry, true);
   assert.equal(target.userText, "Selgita SHS §5"); // same user message, not retyped
-  assert.equal(target.retryOf, 2);
+  /* SOL-CHAT-03: see ootus oli varem `2` (arv) ja just see oli leid — marsruut aktsepteerib
+     `retryOf` välja ainult stringina, seega seos visati vaikselt ära. Nüüd on tüüp osa lepingust. */
+  assert.equal(target.retryOf, "2");
+  assert.equal(typeof target.retryOf, "string");
 
   const aborted = [
     { role: "user", text: "Pikk küsimus", id: 3 },

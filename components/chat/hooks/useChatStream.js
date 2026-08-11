@@ -220,10 +220,14 @@ export function resolveRetryTarget(messages) {
     if (String(messages[i]?.role || "").toLowerCase() === "user") {
       const userText = String(messages[i]?.text || "").trim();
       if (!userText) return { canRetry: false };
+      const retryTarget = ai?.id ?? ai?.messageId ?? null;
       return {
         canRetry: true,
         userText,
-        retryOf: ai?.id ?? ai?.messageId ?? null
+        /* SOL-CHAT-03: marsruut aktsepteerib `retryOf` VÄLJA ainult stringina. Kohalik sõnumi-ID
+           on arv, seega seos visati vaikselt ära ja auditist ei saanud kordust ebaõnnestunud
+           pöördega siduda. Teisendus käib siin, kus ID sünnib. */
+        retryOf: retryTarget == null ? null : String(retryTarget)
       };
     }
   }
@@ -249,6 +253,11 @@ export function useChatStream(config) {
   // SOL-RES-02: ühe kavatsuse võti, mis elab kuni serveri kindla vastuseni.
   const researchIntentRef = useRef(null);
   const researchStreamingMessageIdRef = useRef(null);
+  /* SOL-CHAT-03: ühe vestluspöörde kavatsuse võti. Elab kuni kavatsus on lahendatud — võrguviga,
+     Stop ja „Proovi uuesti" kasutavad SAMA võtit, seega server näeb üht kavatsust, mitte kolme
+     tasulist tööd. Lõpetatud pöörde järel kustutatakse, et tahtlik sama küsimuse uuesti küsimine
+     oleks aus uus töö (sama reegel mis SOL-DOC-01 mustanditel). */
+  const chatIntentRef = useRef(null);
 
   /**
    * SOL-RES-07 — VESTLUSE AVAMISEL LEIA OMA AKTIIVNE TÖÖ ÜLES.
@@ -735,6 +744,16 @@ export function useChatStream(config) {
     const controller = new AbortController();
     abortRef.current = controller;
 
+    chatIntentRef.current = resolveIntentKey(
+      chatIntentRef.current,
+      buildIntentSignature({
+        convId: cfg.convId || null,
+        roomId: cfg.isRoomMode ? cfg.roomId || null : null,
+        text
+      })
+    );
+    const clientTurnKey = chatIntentRef.current.key;
+
     const clientTimeout = setTimeout(() => controller.abort(), 180000);
     let streamingMessageId = null;
     let visibleText = "";
@@ -790,7 +809,9 @@ export function useChatStream(config) {
               : undefined,
             roomId: cfg.isRoomMode ? cfg.roomId : undefined,
             privacyDecision: options?.privacyDecision,
-            retryOf: options?.retryOf || undefined,
+            retryOf: options?.retryOf ? String(options.retryOf) : undefined,
+            clientTurnKey,
+            idempotencyKey: clientTurnKey,
             ...(cfg.ephemeralChunks?.length
               ? {
                   ephemeralChunks: cfg.ephemeralChunks,
@@ -1012,6 +1033,8 @@ export function useChatStream(config) {
           completionStatus: "COMPLETED"
         }));
 
+        // Kavatsus on lahendatud: järgmine sama tekstiga saatmine on TAHTLIK uus töö, mitte kordus.
+        chatIntentRef.current = null;
         dispatchHelpListingsRefresh(workflow);
         cfg.requestConversationsRefresh?.();
         streamingMessageId = null;

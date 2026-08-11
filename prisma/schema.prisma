@@ -117,6 +117,13 @@ enum RunStatus {
   DELETED
 }
 
+enum ChatTurnStatus {
+  RUNNING
+  COMPLETED
+  ERROR
+  ABORTED
+}
+
 enum ConversationMessageRole {
   USER
   ASSISTANT
@@ -728,6 +735,7 @@ model User {
   conversationRuns        ConversationRun[]
   conversationMessages    ConversationMessage[]
   conversations           Conversation[]
+  chatTurns               ChatTurn[]
   usageBuckets            UsageBucket[]
   usageReservations       UsageReservation[]
   usageEvents             UsageEvent[]
@@ -1409,10 +1417,42 @@ model Conversation {
   user     User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
   messages ConversationMessage[]
   journeys Journey[]
+  turns    ChatTurn[]
 
   @@index([userId, isPinned, lastActivityAt])
   @@index([userId, archivedAt])
   @@index([expiresAt])
+}
+
+/// SOL-CHAT-03/-04: ühe vestluspöörde SERVERIPOOLNE identiteet.
+///
+/// Enne teda ei olnud pöördel midagi, mille külge kinnituda: kliendi kordus tegi uue kasutus-
+/// reservatsiooni ja uue sõnumipaari, kaks vahekaarti läbisid mõlemad sessioonipiiri kontrolli, ja
+/// `retryOf` viitas kohalikule sõnumi-ID-le, mida server ära ei tundnud. `clientTurnKey` on kliendi
+/// loodud stabiilne kavatsuse võti; unikaalsus `(userId, clientTurnKey)` teeb kavatsusest ühe rea,
+/// mis on ainus koht, kus korduse ja võistluse saab päriselt lõpetada.
+model ChatTurn {
+  id             String         @id @default(cuid())
+  userId         String
+  conversationId String
+  clientTurnKey  String
+  /// Mitmes katse sama kavatsuse peal. Kordus EI tee uut rida — ta kasvatab seda numbrit.
+  attempt        Int            @default(1)
+  status         ChatTurnStatus @default(RUNNING)
+  /// Pöörde kaks poolt ühe rea küljes: nii on USER- ja ASSISTANT-kirje seotud, mitte tuletatud.
+  userMessageId      String?
+  assistantMessageId String?
+  startedAt          DateTime  @default(now())
+  /// Südamelöök: aegunud RUNNING pööre ei tohi vestlust igaveseks lukku panna (vt SOL-MEET-04).
+  updatedAt          DateTime  @updatedAt
+  endedAt            DateTime?
+
+  user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, clientTurnKey])
+  @@index([conversationId, startedAt])
+  @@index([status, updatedAt])
 }
 
 model Journey {
