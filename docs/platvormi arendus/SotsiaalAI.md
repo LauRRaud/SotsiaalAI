@@ -89,13 +89,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 11.08 keskpäeval (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja server
-on kõik **`ae1f2055`** — deploy'mata tööd EI OLE. **Kaheteistkümnes deploy 11.08 11:42 sinu
-selgel loal:** kaheksa commit'i (SOL-MEET-01…-04 + docs) ja üks migratsioon. Mõõdetud kohe
-pärast, mitte eeldatud: `.next` 11:42, kolm teenust `active`, `/` `/vestlus` `/toolaud`
-`/teenusekaart` `/valitoo` **200**, frontend'i veatasemel logi tühi. Migratsioon
-`20260811120000` on lõpetatud ja tagasi kerimata; `MeetingSummaryJobClaim` on olemas koos
-unikaalse `userId` indeksi ja `ON DELETE CASCADE` võtmega, ridu 0.
+**Seis 11.08 pärastlõunal (mõõdetud, mitte mäletatud):** server on **`27af4a02`**; lokaalne `main`
+ja `origin/main` on temast täpselt ühe **docs-commit'i** võrra ees, mis koodi ei kanna (kontrollitud
+`git diff --name-only 27af4a02..HEAD -- . ':(exclude)docs/**'` — tühi). **Deploy'mata koodi EI OLE.** **Kolmeteistkümnes deploy 11.08 13:06 sinu
+selgel loal:** kaheksa commit'i (kogu SOL-CHAT-01…-08 plokk + eelmisest ringist üle jäänud
+SOL-MEET-05/-06) ja üks migratsioon. Mõõdetud kohe pärast, mitte eeldatud: `.next` 13:06:23,
+kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, frontend'i
+veatasemel logi tühi (ka hoiatustasemel null rida). Migratsioon `20260811160000` on lõpetatud ja
+tagasi kerimata; `ChatTurn` on olemas koos unikaalse `(userId, clientTurnKey)` indeksi ja kahe
+võõrvõtmega, ridu 0 — seega esimene päris kinnitus tuleb alles siis, kui kaks sama kavatsuse
+võtmega päringut tõesti kohtuvad.
+
+**Kaheteistkümnes deploy 11.08 11:42** oli `ae1f2055`: kaheksa commit'i (SOL-MEET-01…-04 + docs)
+ja üks migratsioon. Mõõdetud kohe pärast: `.next` 11:42, kolm teenust `active`, viis lehte **200**,
+veatasemel logi tühi. `MeetingSummaryJobClaim` olemas koos unikaalse `userId` indeksi ja
+`ON DELETE CASCADE` võtmega, ridu 0.
 
 **Enne deploy'd mõõdetud ja seetõttu ära jäänud mure:** SOL-MEET-03 toob kaasa
 snapshotikataloogi koristuse, aga `/var/lib/sotsiaalai/agent/meeting-summary-jobs` oli

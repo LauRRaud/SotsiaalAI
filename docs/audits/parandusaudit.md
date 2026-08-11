@@ -3,23 +3,24 @@
 **Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
 see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
 käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja nende all olevaid
-`**Seis (…): DONE…` lõike. Mõõdetud **11.08.2026**.
+`**Seis (…): DONE…` lõike. Mõõdetud **11.08.2026** (teine mõõtmine, pärast 13. deploy'd).
 
 ## Kokkuvõte
 
 | | |
 |---|---|
-| Tehtud leidu | **91 / 357** |
+| Tehtud leidu | **99 / 357** |
 | Peatükke lõpuni | **7 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, SOL-DOC, **SOL-MEET** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 193 × P1 · 72 × P2 · 1 × P3 |
-| Toodangus | **kaheteistkümnes deploy 11.08 11:42 omaniku selgel loal: server = `ae1f2055`**, kaheksa commit'i (SOL-MEET-01…-04 + docs) ja üks migratsioon. Mõõdetud, mitte eeldatud: `.next` 11:42, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, veatasemel logi tühi. `20260811120000` lõpetatud ja tagasi kerimata; `MeetingSummaryJobClaim` olemas koos unikaalse `userId` indeksi ja `ON DELETE CASCADE` võtmega, ridu 0. (Üheteistkümnes deploy 11.08 10:17 = `aafe4eaa`, kümnes 10.08 23:34 = `44144aba`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on LÕPETATUD** (6/6); järgmine dokumendi järjekorras on SOL-CHAT (0/13). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 186 × P1 · 71 × P2 · 1 × P3 |
+| Toodangus | **kolmeteistkümnes deploy 11.08 13:06 omaniku selgel loal: server = `27af4a02`**, kaheksa commit'i (SOL-CHAT-01…-08 + eelmisest ringist SOL-MEET-05/-06) ja üks migratsioon. Mõõdetud, mitte eeldatud: `.next` 13:06:23, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, veatasemel logi tühi (ka hoiatustasemel null rida). `20260811160000` lõpetatud ja tagasi kerimata; `ChatTurn` olemas koos unikaalse `(userId, clientTurnKey)` indeksiga ja kahe FK-ga, ridu 0. (Kaheteistkümnes deploy 11.08 11:42 = `ae1f2055`, üheteistkümnes 10:17 = `aafe4eaa`.) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-CHAT on käsil, 8/13** — lahtised CHAT-09…-13. SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**89 tehtud leidu 91-st on tootmises.** Deploy'mata on **SOL-MEET-05 ja -06** (migratsioonita). Kaheteistkümnes deploy
-(11.08 11:42, server `ae1f2055`) viis välja SOL-MEET-01…-04 koos migratsiooniga
-**`20260811120000`** (uus tabel `MeetingSummaryJobClaim`; olemasolevaid ridu ei puudutatud).
+**Kõik 99 tehtud leidu on tootmises** — deploy'mata ei ole ühtegi. Kolmeteistkümnes deploy
+(11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
+**`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
+puudutatud) ning ühtlasi eelmisest ringist üle jäänud SOL-MEET-05/-06.
 Üheteistkümnes deploy (11.08 10:17) oli kogu SOL-DOC (01…09) ja SOL-RES-01…-07 kahe
 migratsiooniga. `ResearchJob` ja `MeetingSummaryJobClaim` on toodangus mõlemad 0 rida, seega
 mõlemad unikaalsed indeksid läksid läbi triviaalselt — esimesed päris kinnitused tulevad alles
@@ -49,7 +50,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
 | Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | – | – | **tehtud** |
-| Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
+| Vestlus | SOL-CHAT | 8/13 | – | 1 | 4 | **käsil**, lahtised CHAT-09…-13 |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
 | Kõned ja salvestus | SOL-CALL | 10/13 | – | – | 3 | **käsil**, lahtised CALL-07, -08, -09 (kõik P2) |
@@ -452,6 +453,48 @@ JSON-snapshoti. Nüüd käib avalik viga `publicErrorMessageKey()` allowlist'ist
 ainult `safeError()`-iga redigeeritud logisse. Teel ühtlustus ka välja kuju: sama `error` väli
 kandis kolme eri asja (võti, tõlgitud lause, toortekst) — nüüd on kõik võtmed. Test kontrollib
 markeri puudumist eraldi ka kettalt, sest just snapshot on püsiv.
+
+**SOL-CHAT-01 ja -02 (11.08): tasu võeti püsivast kirjutusest LAHUS ja iga viga neelati.** Commit
+käis kohe pärast providerit ja püsistus tuli alles pärast seda, seega üks pööre sai lõppeda kolmel
+parandamata viisil: limiit kulus ja vastust ei olnud kuskil · vastus oli ja limiit kulumata ·
+katkestatud pööre jäi TTL-ini kinni. Arveldus on nüüd `persistDone`-i TEHINGUS — kas terminalmarker
+ja tasu mõlemad või mitte kumbki. `usageService.release` sai `tx` toe (commit'il oli ta olemas).
+Kinnitamata püsistus ei anna enam `done`-i. **`npm run chat:settle:probe` 23/23 päris
+PostgreSQL-is**, sondi tuum on ROLLBACK, mida fake-Prisma ei saa tõendada; negatiivkontroll näitab,
+et vana järjekord tekitab arvestatud ühiku ilma vastuseta.
+
+**SOL-CHAT-05 (11.08): kaks viga ühe pealkirja all.** `streamFinalized = true` pandi
+finaliseerimisse SISENEMISEL, seega hilisem `finalizeStreamAbort()` oli surnud kood; ja püsistati
+`accumulated` (provideri puhver), mitte seda, mida kasutaja nägi. Nüüd kasvab `emitted` ainult
+õnnestunud `enqueue` peale ja edurajal on kaks abordikontrolli. Neli testi neljale ajastusele, kaks
+neist **enesekontrolliga** (`discardedChars > 0` ja `rag_trace` await'i olemasolu) — muidu oleksid
+nad vaikselt rohelised.
+
+**SOL-CHAT-03 ja -04 (11.08): pöördel ei olnud rida, mille külge kinnituda.** Uus mudel `ChatTurn`
+(migratsioon `20260811160000`): `(userId, clientTurnKey)` unikaalsus = üks kavatsus, üks rida.
+Sessioonipiiri lugemine ja kirjutamine käivad ühes tehingus vestlusepõhise `pg_advisory_xact_lock`
+all; üks aktiivne pööre vestluse kohta; aegunud RUNNING suletakse ausalt ERROR-iks. Klient hoiab
+kavatsuse võtit kuni lahenduseni ja sama võti läheb ka kasutusarvestusse — **primitiiv
+`resolveIntentKey` oli koodibaasis olemas (SOL-DOC-01) ja teda ei kirjutatud teist korda.**
+`retryOf` tüübiviga parandatud seal, kus ID sünnib. **`npm run chat:turn:probe` 20/20 päris
+PostgreSQL-is** + negatiivkontroll: vana muster ületab sessioonipiiri.
+
+**SOL-CHAT-06 (11.08): EOF ilma `done`-ita märgiti alati eduks.** Nüüd küsitakse serverilt
+kinnitust (`readPersistedConversationResult` oli olemas, aga kasutusel ainult uuringu rajal) ja
+kinnituseta EOF annab nähtava vea koos Retry-nupuga. Kaasa tuli **SOL-CHAT-04 kriteeriumi viimane
+lause**: `/api/chat/run` loeb seisu nüüd `ChatTurn` realt, mitte „viimane sõnum oli kasutajalt"
+heuristikast.
+
+**SOL-CHAT-07 (11.08): leid oli KAHE REEGLI VAHE.** Ruumisõnumite API nõuab liikmesust kõigilt,
+chat bootstrap tegi adminile erandi, ja sõnumi kirjutaja ise ei kontrollinud midagi. Erand
+kustutatud; `saveAssistantRoomMessage()` kontrollib nüüd ise ja **VISKAB** — kirjutus on ainus koht,
+kust mööda ei saa. Break-glass jäeti teadlikult ehitamata.
+
+**SOL-CHAT-08 (11.08): commit'i viga viskas valmis analüüsi ära.** `analysisCompleted` lipp keelas
+vabastuse JA `catch` tagastas vea, seega kasutaja kaotas tulemuse ja reservatsioon jäi kinni. Nüüd
+kehtib `paidResult` teine piir: tasu viga ei vabasta ega tühista tulemust. Klient saadab
+failipõhise kavatsuse võtme. **Üks kriteeriumi lause jäi teadlikult täitmata** (kordus parsib faili
+uuesti), sest analüüs on lepingu järgi efemeerne — vt leiu Seis-lõiku.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
