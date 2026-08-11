@@ -130,8 +130,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 127/403 leidu, 9/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 130/403 leidu, 10/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -214,9 +214,14 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3771/3771**, i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE ja kogu SOL-ROOM** — server
-on `1ed23452`.
+`npm test` **3805/3805** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM ja
+SOL-CALL-07/-08/-09** — server on `1ed23452`. Deploy'mata on ka **migratsioon
+`20260811220000`** (`VerificationLinkDispatch`); SOL-CALL-07…-09 skeemi ei muutnud.
+
+**Kolm uut sondi 11.08 kõnepeatükist:** `call:seat:probe` 12/12 (deterministlik võistlus
+viimase koha pärast + tehingu tagasipööramine) · `call:audit:probe` 11/11 (otsus ja tema
+jälg commit'ivad koos või mitte kumbki) · mõlemal negatiivkontroll vana kuju vastu.
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
@@ -455,10 +460,25 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **193 P1, 82 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
-6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3) ja SOL-ROOM (7/7) on 11.08 lõpetatud** — kõige
-eespool lahtine peatükk on nüüd **SOL-CALL (10/13)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
+Lahtiseks jääb **193 P1, 79 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7) ja SOL-CALL (13/13) on 11.08
+lõpetatud** — kõige eespool täiesti lahtine peatükk on nüüd **SOL-INV (0/3: 1 × P1, 2 × P2)**,
+kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
 otsuse ja brauseri-QA taga.
+
+**Kõnepeatükk sai 11.08 kolm viimast leidu ja on täis.** Salvestisel on nüüd **üks kandja**:
+teade „salvestis on saadaval" läheb ainult sellele, kes salvestamist taotles, ja
+nõusolekutekst ütleb kolmes keeles välja, et teised annavad loa salvestamiseks, mitte
+koopiale — varem lubas tekst ligipääsu, mida ükski vaade ei andnud. **Osalejapiir peab nüüd
+koormusele vastu:** koht võetakse kõneluku all, seega kaks inimest ei mahu enam korraga
+viimasele kohale, ja kõne sünnib ühe tehinguga — poolikut kõnet ilma hosti või
+providerinimeta ei jää enam alles (vanad sellised read paranevad esimesel puutumisel).
+**Salvestuse jälg on kohustuslik:** loa küsimine, iga nõusolekuotsus, käivitus, peatus ja
+kustutus kirjutavad oma tõendi samas tehingus, kus seisumuutuse — kui tõendit ei saa
+kirjutada, ei jõustu ka otsus. Käivitus, mille algusest ei saa kirjutada, peatab egressi.
+**Omaniku otsus 11.08: salvestis on ainult taotleja oma** (alternatiiv oleks olnud
+consent-snapshotil põhinev ligipääs kõigile nõustunutele — see oleks nõudnud teist
+ligipääsuteed dokumentide piiris).
 
 **Kogu SOL-DOC peatükk (01…09) ja SOL-RES-01…-07 on LIVE** (üheteistkümnes deploy 11.08 10:17,
 vt S1) koos migratsioonidega `20260811020000` (`ANALYSIS_SAVE`/`ANALYSIS_DELETE`) ja

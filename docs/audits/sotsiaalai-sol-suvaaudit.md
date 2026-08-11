@@ -3219,6 +3219,41 @@ egress päriselt kirjutab.
 
 **Vastuvõtukriteerium.** Tooteomanik peab valima ühe lepingu: ainult taotleja omandus koos ainult talle saadetava teatega, või consent-snapshotil põhinev revocable/read-only ligipääs kõigile õigustatud osalejatele. Teavitus, nõusolekutekst, dokumentide projektsioon ja download peavad sama otsust jõustama. HTTP-testid peavad katma taotleja, nõustunu, tagasivõtnu, lahkunu ja mitteliikme.
 
+**Seis (11.08.2026): DONE — omaniku otsus on „ainult taotleja oma"; teade, saaja-verifitseerimine ja nõusolekutekst jõustavad nüüd ühte ja sama lepingut. Commit `4d2df0af`.**
+
+**Omaniku otsus 11.08.2026:** salvestis on AINULT taotleja privaatdokument. Nõusolek
+tähendab „mind tohib salvestada", mitte „ma saan koopia". Teine haru (consent-snapshotil
+põhinev ligipääs) oleks nõudnud TEIST ligipääsuteed dokumentide loendis, detailis ja
+allalaadimises — täna on seal ainus reegel `ownerId: auth.userId` — ja see oleks uus auk
+platvormi kõige tundlikumas piiris.
+
+Kolm kohta muutusid korraga, sest üksinda oleks igaüks neist jätnud lubaduse alles:
+
+- **Teade** läheb taotlejale. `notifyCallRecordingAvailable` ei loe enam nõusolekuridu
+  üldse — saaja tuleb `requestedByUserId` pealt.
+- **Saaja-verifitseerimine** (`assertNotificationRecipient`) küsib OMANDIT, mitte
+  nõusolekut. Seal seisis lisaks kommentaar, mis väitis, et „nõusoleku andnul on
+  artefakti ligipääs ka pärast ruumist lahkumist" — see väide ei olnud kunagi tõsi.
+- **Nõusolekutekst** ütleb kandja välja kolmes keeles (`calls.recording_consent_custody`)
+  ja lubadus „tehakse kättesaadavaks õigustatud kasutajatele dokumentide vaates" on välja
+  võetud. Tekst on **uus versioon `call-recording-consent-v2`**, sest muutus LUBADUS,
+  mitte sõnastus; v1 all antud nõusolekute snapshot jääb puutumata — inimese loetud teksti
+  ei kirjutata tagantjärele ümber.
+
+Kandja lõik tuleb liidesesse ja serveri tõendisse SAMAST võtmest, muidu loeks inimene üht
+teksti ja tema nõusolekukirjesse jääks teine.
+
+Väravad: `npm test` **3794/3794** · `i18n:check` OK · eslint puhas. **Negatiivkontroll:
+4 uut testi 5-st kukub vana teostuse peal** (viies on regressioonivalve). Fake-DB-st on
+`callRecordingConsent` MEELEGA eemaldatud: kui mõni rada saajaid ikka nõusolekuridadest
+loeb, kukub test kohe, mitte ei anna vaikselt vale rohelise.
+
+**KATMATA:** kriteeriumi „HTTP-testid taotleja, nõustunu, tagasivõtnu, lahkunu ja
+mitteliikme kohta" ei ole tehtud. Valitud lepingu all on nende viie vastus sama, mille
+annab juba olemasolev `ownerId`-piir (omanik saab, ülejäänud neli ei saa) — st uut
+ligipääsuteed, mille pärast neid rolle läbi käia, ei tekkinud. Tõendatud on saajate ring
+ja nõusolekuteksti sisu, mitte HTTP-kihi läbisõit.
+
 ### SOL-CALL-08 — osalejapiir ja kõne algseis pole paralleelselt ega veasüstiga usaldusväärsed — P2
 
 **Tõend.** `joinCall()` loeb osalejate arvu snapshotist ning teeb limiidikontrolli enne eraldi `ensureParticipant()` create'i (`lib/calls/service.js:1190-1203`). Unikaalindeks välistab ainult sama kasutaja topeltosaluse; kahe eri kasutaja samaaegne join viimasele kohale võib mõlemad läbi lasta. Kõne start loob ACTIVE `CallSession` rea, kirjutab seejärel eraldi providerRoomName'i ja alles kolmanda sammuna HOST osaluse (`:1114-1150`). Hilisema sammu vea korral jääb unikaalindeksiga aktiivne, kuid tühi/hostita kõne; järgmine start tagastab selle kohe ega paranda. Paralleelse starti kaotaja tagastab võitja kõne samuti alustajat osalejaks lisamata.
@@ -3227,6 +3262,48 @@ egress päriselt kirjutab.
 
 **Vastuvõtukriteerium.** Kõne loomine, providerRoomName ja host-osalus peavad olema üks taastatav DB-tehing/olekumasin. Liitumiskoht tuleb atomaarse loenduri/slotiga reserveerida. Päris DB testid peavad võistlema mitme eri kasutaja viimase sloti pärast ning süstima vea pärast iga start-sammu.
 
+**Seis (11.08.2026): DONE — koht võetakse kõneluku all, kõne sünnib ühes tehingus; `npm run call:seat:probe` 12/12 päris PostgreSQL-is. Commit `1f2df87c`.**
+
+Kaks poolt, üks juur: otsus ja tema jälg olid eri sammud.
+
+**Osalejapiir** on nüüd nõuandelukk, mitte loendus. Kogu otsus — kas kõne käib · kas ma
+olen juba sees · kas ruumi on · osalusrida · koosseisu loendi kasvatus — elab ühe
+kõnepõhise `pg_advisory_xact_lock`-i sees (sama muster nagu `lib/rooms/ownership.js`).
+Loenduriveergu EI lisatud: see oleks teine tõde, mida tuleks sünkroonis hoida (sama
+argument, mis SOL-DOC-07 loenduriveerul ja SOL-ROOM-07 saajate-veerul). `rosterVersion`
+kasvab samas tehingus, sest SOL-CALL-02 fencing eeldab, et uus koosseis ja tema number
+muutuvad nähtavaks korraga.
+
+**Kõne algseis** sündis kolmes sammus (`create` tühja nimega → nimekirjutus → HOST). Nüüd
+genereerime id ise, providerinimi on temast tuletatav ja kõik käib ühe tehinguga. Toodangus
+juba tekkinud tühi nimi parandatakse esimesel puutumisel (start ja join); hostita kõne
+paraneb ise, sest join annab alustajale HOST-rolli. Parandus tagastab tõrke korral
+ORIGINAALI — mälus paikneva nime tagastamine annaks kutsujale nime, mida andmebaasis ei
+ole, ja liitumistokenid läheksid lahku.
+
+Sond mõõdab kriteeriumi mõlemat poolt. Võistlus on **deterministlik**: kolmas tehing hoiab
+sama nõuandelukku ja MÕÕDETAKSE, et mõlemad liitujad ootavad, alles siis lastakse lukk
+lahti. Vea süstimine start-sammule on tõendatud andmebaasi enda tagasipööramisega, mitte
+mudeliga. **Negatiivkontroll on vana jada transkriptsioon** (loe arv → loo rida ilma
+lukuta) ja ta laseb mõlemad sisse: osalejaid 3, piir 2.
+
+**Fake-Prisma sai kolm puuduvat omadust ja igaüks neist peitis midagi:** `$transaction`
+andis tehingusse VÄRSKE TÜHJA andmebaasi (iga tehingusse kolinud koht oleks testis
+„töötanud" täpselt vastupidiselt sellele, mida ta päriselt teeb) · tagasipööramist ei olnud
+üldse · nõuandelukku ei olnud, seega kahe liituja võidujooks oleks fake'i peal olnud PÄRIS
+võidujooks. Tõmmis võetakse laisalt, esimese kirjutuse peale — tehingu alguses võetud
+tõmmis tegi vaikselt katki paralleeltesti, sest kaotaja tagasipööramine kustutas ka võitja
+rea.
+
+Väravad: `npm test` **3799/3799** (Europe/Tallinn ja UTC) · eslint puhas.
+**Negatiivkontroll `npm test`-is: 3 uut testi 5-st kukub vana teostuse peal** (kaks on
+regressioonivalve, mis peabki mõlemal pool roheline olema).
+
+**KATMATA:** kriteerium nõuab vea süstimist „pärast IGA start-sammu". Tõendatud on
+tehingu tagasipööramine (üks samm ei saa enam teisest lahku minna) ja tühja providerinime
+parandus, mitte iga sammu eraldi veasüst — kolmesammulist jada ei ole enam olemas, mille
+sammude vahele süstida.
+
 ### SOL-CALL-09 — kõnesalvestuse audit on best-effort ja võib vaikides puududa — P2
 
 **Tõend.** Kõik REQUESTED/CONSENTED/DECLINED/WITHDRAWN/STARTED/STOPPED/DISCARDED/DELETED auditid kasutavad `writeRecordingAudit()`, mis püüab `dataAuditLog.create()` vea kinni ja tagastab `null` (`lib/calls/service.js:444-459`). Ükski kutsuja tulemust ei kontrolli. Samal ajal võivad põhiseis, nõusolekusnapshot ja füüsiline helifail edukalt muutuda.
@@ -3234,6 +3311,61 @@ egress päriselt kirjutab.
 **Mõju.** Tundliku heli salvestamise loa, tagasivõtu, käivitamise ja kustutamise kohta võib kohustuslik tegevusjälg puududa, kuigi API kinnitas edu. Consent-rida säilitab osa tõendist, kuid ei asenda provider-start/stop/delete auditit.
 
 **Vastuvõtukriteerium.** Õiguslikult nõutud auditisündmus peab kuuluma sama DB-tehingusse või püsivasse outbox'i; audititõrge ei tohi muutuda vaikseks `null`-iks. Veasüstetest peab katkestama iga elutsüklitoimingu auditikirjutuse ja tõendama rollback'i või retry-sündmuse.
+
+**Seis (11.08.2026): DONE — jälg elab sama tehingu sees, mis tema otsus; `npm run call:audit:probe` 11/11 päris PostgreSQL-is. Commit `70d53835`.**
+
+Kirje on nüüd kohustuslik ja `db` süstitav, seega kutsuja paneb ta SAMASSE tehingusse
+seisumuutusega (sama muster nagu SOL-FIELD-03 `writeDataAudit` ja SOL-ROOM-05
+omanikuvahetus). Puuduv `dataAuditLog` mudel ei ole enam vaikne pääs: tõend, mida ei saa
+kirjutada, tähendab toimingut, mida ei tohi lõpetada. **Reegel ühe lausega: audititõrge ei
+saa kunagi panna ebaõnnestunud toimingut õnnestunuks ega lasta õnnestunud toimingul minna
+ilma tõendita.**
+
+Tehingusse kolisid: taotluse sünd (rida + nõusolekuread + failirida + jälg) · iga
+nõusolekuotsus koos koosseisuloendiga · tühistus · `STARTING → ACTIVE` üleminek ·
+salvestise lõpetamine (dokument + failirida + lõppseis + jälg) · kõrvaldamine. **Käivituse
+audititõrge langeb samasse harusse, kus DB enda tõrge** — egress peatatakse ja claim
+vabastatakse, sest salvestamine, mille algusest ei saa kirjutada „algas", ei tohi jääda
+käima. See on nõusolekupiir, mitte raamatupidamine.
+
+Kaks kohta said nimelise erikohtlemise:
+
+- **Kustutus.** Artefakt on jälje kirjutamise hetkeks juba kettalt kadunud, seega
+  „ennista rida" tähendaks rida olematu faili kohta (sama piir, mille SOL-FIELD-03
+  nimetas). Jälg läheb `purgeRecordingFile` uue `finalize`-hooki kaudu samasse tehingusse
+  VIIMASE astmega: tõrge jätab rea `DELETE_PENDING`-iks ja sweep proovib uuesti — puuduv
+  fail on siis ENOENT ehk õnnestumine ja jälg sünnib teisel katsel. Tõrge ja taasproov,
+  mitte vaikne null.
+- **Tõrke-annotatsioonid** (`*_STOP_UNCONFIRMED`, `TOO_LARGE`, `DELETE_FAILED`,
+  `START_ABORTED_*`) kirjutavad seisu ja jälje samas tehingus, aga selle tehingu tõrge ei
+  asenda kasutajale minevat ALGSET viga — muidu kaoks tema eest ära see, mis päriselt
+  juhtus. Vaikne see rada ei ole: tõrge läheb serveri logisse ja toiming lõpeb niikuinii
+  veaga ning korduskatsega. Püsiv `CALL_EGRESS_STOP` töökäsk kirjutatakse annotatsioonist
+  VÄLJASPOOL, sest ilma temata ei otsiks keegi kinnitamata egress'i enam kunagi üles.
+
+**Kõrvalleid, mida raportis ei olnud:** salvestise lõpetamine kirjutas neli asja järjest
+(dokument → failirida → lõppseis → jälg) ja vahepealne tõrge võis jätta maha dokumendi,
+millele ükski failirida ei viita. Nüüd langevad kõik neli kokku või mitte ükski.
+`bumpRosterVersion` ei neela enam viga — kasvatamata jäänud loend tähendab, et SOL-CALL-02
+fencing ei näe koosseisu muutust, ja selle leiu enda sõnadega „vale-negatiivne maksab
+nõusolekuta salvestatud hääle".
+
+Sond mõõdab kolme asja päris andmebaasi vastu: teenusekutse jätab maha KAKS rida (otsus +
+jälg) · sama kuju tehing, mis kukub, ei jäta maha KUMBAGI (ka koosseisuloend ei liigu) ·
+**negatiivkontroll näitab vana kuju tulemust** — otsus `WITHDRAWN`, jälgi 0.
+
+**Fake sai tagasipööramise, mis EI ole jäme:** ennistus puudutab ainult tõmmise hetkel
+olemas olnud ridu ja kustutab ainult need, mille SEE tehing lõi. Kaks korda tegi liiga lai
+ennistus testid vaikselt valeks — paralleeltestis kustutas ta võitja rea ja P2002-testis
+võõra tehingu commit'itud rea.
+
+Väravad: `npm test` **3805/3805** (Europe/Tallinn ja UTC) · `i18n:check` OK · eslint puhas.
+**Negatiivkontroll: kõik 6 uut testi kukuvad vana teostuse peal.**
+
+**KATMATA:** sondi negatiivkontroll on vana koodi TRANSKRIPTSIOON (kirjuta seis, siis neela
+audititõrge), mitte vana kood — vana teostust ei ole enam olemas. Retention-sweep'i enda
+kustutused (`purgeExpiredCallRecordings`) ei kirjuta auditit ei enne ega pärast; see ei ole
+selle leiu loendis, aga ta on lahtine ots.
 
 ### SOL-CALL-10 — piiramatu kestusega salvestis loetakse finaliseerimisel tervikuna Node'i mällu — P1
 
