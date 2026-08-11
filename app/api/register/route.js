@@ -10,7 +10,7 @@ import {
   WORKER_FRAMEWORK_VERSION,
   normalizeOptionalTimestamp
 } from "@/lib/frameworkAcceptances";
-import { createVerificationTokenSecret } from "@/lib/auth/verificationTokens";
+import { dispatchVerificationLink } from "@/lib/auth/verificationLinkDispatch";
 import { createFrameworkAcceptanceDocument } from "@/lib/frameworkAcceptances/server";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { buildRegistrationAcceptanceRows } from "@/lib/legalDocuments";
@@ -317,38 +317,29 @@ export async function POST(request, testOverrides = {}) {
     }
 
     try {
-      // raw goes into the link, stored goes into the row — never the reverse.
-      const { raw: token, stored } = createVerificationTokenSecret();
-      const hours = Number(process.env.EMAIL_VERIFY_HOURS || 24);
-      const expires = new Date(Date.now() + hours * 60 * 60 * 1000);
-      const identifier = buildEmailVerifyIdentifier(email);
-
-      await db.verificationToken.create({
-        data: {
-          identifier,
-          token: stored,
-          expires
-        }
-      });
-
-      const verifyUrl = buildVerifyUrl(email, token, locale);
-      if (!verifyUrl) {
+      // Ilma baas-URL-ita ei saa linki olla, seega tokenit ei mindita üldse — varem jäi
+      // siia orb rida, mida keegi kunagi ei kasutanud.
+      if (!resolveBaseUrl()) {
         console.warn("[register] verify email skipped: base URL is not configured");
       } else {
-        try {
-          await sendVerificationEmail(email, verifyUrl, locale);
-          await db.verificationToken.deleteMany({
-            where: {
-              identifier,
-              NOT: { token: stored }
-            }
-          });
+        const hours = Number(process.env.EMAIL_VERIFY_HOURS || 24);
+        // Mint → SAADA → alles siis rotatsioon, ühe identifikaatori omandis (SOL-AUTH-15):
+        // registreerimine ja kohe järgnenud „saada uuesti" tapsid varem teineteise lingi.
+        const dispatch = await dispatchVerificationLink({
+          db,
+          identifier: buildEmailVerifyIdentifier(email),
+          expires: new Date(Date.now() + hours * 60 * 60 * 1000),
+          deliver: (rawToken) =>
+            sendVerificationEmail(email, buildVerifyUrl(email, rawToken, locale), locale)
+        });
+
+        if (dispatch.outcome === "delivery_failed") {
+          console.error("register verification email send failed", safeError(dispatch.error));
+        } else if (dispatch.outcome !== "in_flight") {
           await db.user.update({
             where: { email },
             data: { emailVerificationSentAt: new Date() }
           });
-        } catch (sendError) {
-          console.error("register verification email send failed", safeError(sendError));
         }
       }
     } catch (verifyError) {

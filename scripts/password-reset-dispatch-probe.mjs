@@ -20,6 +20,11 @@
  * raporteerivad edu ja LÕPUKS EI TÖÖTA KUMBKI LINK. Ilma selleta ei tea me, kas roheline on
  * paranduse teene või selle, et võistlust pole kunagi olnudki.
  *
+ * VIIMANE JAAM on teine marsruut: `verify-email` resend. Auditis on leid ainult
+ * paroolitaastel, aga sama `create → send → deleteMany-not-mine` muster oli kolmes kohas ja
+ * kõigil kolmel oli sama tagajärg. Jaam mõõdab, et jagatud rada on seal päriselt kasutusel —
+ * import üksi ei tõenda midagi.
+ *
  * Andmed: ainult `@sol-auth-reset.invalid` kontod; skript koristab lõpus.
  */
 
@@ -46,6 +51,8 @@ process.env.RESET_RATE_LIMIT_POST_PER_IP = "1000";
 process.env.RESET_RATE_LIMIT_POST_PER_EMAIL = "1000";
 process.env.RESET_RATE_LIMIT_PUT_PER_IP = "1000";
 process.env.RESET_RATE_LIMIT_PUT_PER_TOKEN = "1000";
+process.env.VERIFY_RATE_LIMIT_PER_IP = "1000";
+process.env.VERIFY_RATE_LIMIT_PER_EMAIL = "1000";
 
 import prisma from "../lib/prisma.js";
 import {
@@ -55,6 +62,7 @@ import {
 import { createVerificationTokenSecret, hashVerificationToken } from "../lib/auth/verificationTokens.js";
 
 const { POST: resetPOST, PUT: resetPUT } = await import("../app/api/auth/password/reset/route.js");
+const { POST: verifyPOST } = await import("../app/api/verify-email/route.js");
 
 const SUFFIX = "@sol-auth-reset.invalid";
 const URL_BASE = "https://probe.invalid/api/auth/password/reset";
@@ -117,7 +125,10 @@ async function purge() {
     where: { email: { endsWith: SUFFIX } },
     select: { id: true, email: true }
   });
-  const identifiers = users.map((row) => `${IDENTIFIER_PREFIX}${row.email}`);
+  const identifiers = users.flatMap((row) => [
+    `${IDENTIFIER_PREFIX}${row.email}`,
+    `email-verify:${row.email}`
+  ]);
   if (identifiers.length) {
     await prisma.verificationToken.deleteMany({ where: { identifier: { in: identifiers } } });
     await prisma.verificationLinkDispatch.deleteMany({ where: { identifier: { in: identifiers } } });
@@ -306,6 +317,56 @@ async function main() {
     );
     expect("ülevõtja link taastab konto", (await usesLink(takeoverRaw, "9876")).works === true);
     void abandoned;
+  }
+
+  // === 7. SAMA KLASS TEISES MARSRUUDIS: E-POSTI KINNITUSE RESEND ==========
+  // Auditis on leid ainult paroolitaastel, aga muster oli kolmes kohas. See jaam mõõdab,
+  // et jagatud rada on `verify-email`-is päriselt kasutusel, mitte ainult imporditud.
+  {
+    const user = await prisma.user.create({
+      data: {
+        email: `verify-${tag()}${SUFFIX}`,
+        role: "SOCIAL_WORKER",
+        emailVerified: null,
+        passwordHash: "hashed:before",
+        sessionVersion: 1
+      }
+    });
+    sent.length = 0;
+
+    let release;
+    const inFlight = new Promise((resolve) => { release = resolve; });
+    deliverHook = async () => { await inFlight; };
+
+    const verifyPost = () =>
+      verifyPOST(
+        new Request("https://probe.invalid/api/verify-email", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email: user.email, locale: "et" })
+        })
+      );
+
+    const pair = Promise.all([verifyPost(), verifyPost()]);
+    await new Promise((resolve) => setTimeout(resolve, 150));
+    release();
+    const responses = await pair;
+    deliverHook = null;
+
+    expect("verify-email: mõlemad POST-id vastavad 200-ga", responses.every((row) => row.status === 200));
+    expect("verify-email: teel oleva saatmise ajal teist kirja ei saadeta", sent.length === 1, `kirju: ${sent.length}`);
+
+    const rows = await prisma.verificationToken.findMany({
+      where: { identifier: `email-verify:${user.email}` }
+    });
+    expect("verify-email: järele jääb täpselt üks token", rows.length === 1, `ridu: ${rows.length}`);
+    expect(
+      "verify-email: kehtima jääb TÄPSELT kirjas välja läinud token",
+      rows[0]?.token === hashVerificationToken(sent[0].raw)
+    );
+
+    await prisma.verificationToken.deleteMany({ where: { identifier: `email-verify:${user.email}` } });
+    await prisma.verificationLinkDispatch.deleteMany({ where: { identifier: `email-verify:${user.email}` } });
   }
 
   expect(

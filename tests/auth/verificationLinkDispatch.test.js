@@ -280,9 +280,23 @@ test("üle võetud liisung: kiri läks teele, aga rotatsiooni ma ei tee", async 
   assert.equal(db.state.dispatch.tokenValue, "v2:someone-else");
 });
 
-test("marsruut kasutab jagatud rada, mitte oma create/deleteMany paari", async () => {
-  const source = await readFile(new URL("../../app/api/auth/password/reset/route.js", import.meta.url), "utf8");
-  assert.match(source, /dispatchVerificationLink/);
-  assert.doesNotMatch(source, /verificationToken\.create/);
-  assert.doesNotMatch(source, /verificationToken\.deleteMany/);
+/**
+ * Kolm marsruuti mintisid lingi täpselt sama mustriga ja kõigil kolmel oli sama viga.
+ * Kui neljas tekib, peab ta jagatud raja üle võtma — see leping on siin, mitte kommentaaris.
+ */
+test("kõik kolm lingimarsruuti kasutavad jagatud rada, mitte oma create/deleteMany paari", async () => {
+  const routes = [
+    "../../app/api/auth/password/reset/route.js",
+    "../../app/api/verify-email/route.js",
+    "../../app/api/register/route.js"
+  ];
+
+  for (const route of routes) {
+    const source = await readFile(new URL(route, import.meta.url), "utf8");
+    assert.match(source, /dispatchVerificationLink/, route);
+    assert.doesNotMatch(source, /verificationToken\.create/, route);
+    // `verify-email` kustutab tarbimisel ka ise ridu — keelatud on ainult ROTATSIOON,
+    // st „kustuta kõik peale minu", mis oli leiu tegelik kuju.
+    assert.doesNotMatch(source, /NOT:\s*\{\s*token/, route);
+  }
 });

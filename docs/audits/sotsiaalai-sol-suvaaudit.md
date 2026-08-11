@@ -3679,10 +3679,16 @@ oma migratsioon on `20260811210000`).
   andmebaasi vastu läbi käidud, aga dev-serverist läbi ei ole — kaustalukk hoiab teise
   sessiooni serverit ja **skeemimuudatuse järel kannab ta vana Prisma klienti**. Sama põhjus
   on ka operatiivne: uus tabel jõuab jooksvasse dev-serverisse alles taaskäivitusega.
-- **Sama muster elab veel kahes kohas** (`app/api/verify-email/route.js:641-655` ja
-  `app/api/register/route.js:326-345`): e-posti kinnituse resend ja registreerimine teevad
-  identse `create → send → deleteMany(NOT mina)` paari. Auditis neid ei ole; jagatud
-  `dispatchVerificationLink()` on kirjutatud nii, et nad saavad selle üle võtta ühe kutsega.
+- **Sama muster elas veel kahes kohas ja mõlemad on nüüd samal rajal.** `verify-email` resend
+  ja registreerimine tegid identse `create → send → deleteMany(NOT mina)` paari — auditis neid
+  ei ole, aga tagajärg oli sama: kaks paralleelset „saada uuesti" jätsid kasutaja ilma ühegi
+  töötava kinnituslingita, ja konto jäi kinnitamata. Mõlemad kutsuvad nüüd
+  `dispatchVerificationLink()`-i; kummagi veakäitumine jäi endiseks (verify-email annab tõrke
+  edasi 500-na, register logib ja jätkab). Registreerimine ei mindi enam orbi tokenit, kui
+  baas-URL puudub. **Sond mõõdab teist marsruuti eraldi jaamana** (`verify-email` kaks
+  paralleelset POST-i → üks kiri, üks token, ja see ON kirjas välja läinud token), sest
+  import üksi ei tõenda kasutust; leping on lukus ka ühiktestis, mis nõuab kõigilt kolmelt
+  marsruudilt jagatud rada ja keelab neis rotatsioonimustri `NOT: { token }`.
 
 ### SOL-PAY-01 — kirjeldatud kordusmakse retry ei saa pärast esimest tõrget enam käivituda — P1
 

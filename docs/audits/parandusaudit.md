@@ -280,9 +280,11 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   vana rada samas harnessis: mõlemad raporteerivad edu, mõlemad kirjad lähevad teele ja
   andmebaasi ei jää ühtki tokenit. **Kõrvalparandus:** puuduv baas-URL või saatja andis 500
   ainult olemasolevale kontole — konfiguratsioonivea kujul sama oraakel, mille AUTH-10 sulges;
-  kontroll käib nüüd enne kasutaja otsimist. **Sama muster elab veel `verify-email` resend'is
-  ja registreerimises** — auditis neid ei ole, jagatud `dispatchVerificationLink()` on
-  kirjutatud nende ülevõtmiseks.
+  kontroll käib nüüd enne kasutaja otsimist. **Sama muster elas veel `verify-email` resend'is
+  ja registreerimises — mõlemad on nüüd samal rajal** (auditis neid ei ole; tagajärg oli sama:
+  kaks paralleelset „saada uuesti" jätsid konto ilma töötava kinnituslingita). Sond mõõdab
+  `verify-email`-i eraldi jaamana, **`npm run auth:reset:probe` 35/35**, ja ühiktest nõuab
+  jagatud rada kõigilt kolmelt marsruudilt.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude

@@ -1,9 +1,9 @@
 export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
+import { dispatchVerificationLink } from "@/lib/auth/verificationLinkDispatch";
 import {
   claimVerificationTokenRow,
-  createVerificationTokenSecret,
   verificationTokenLookupValues
 } from "@/lib/auth/verificationTokens";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
@@ -633,35 +633,33 @@ export async function POST(request) {
       return json();
     }
 
-    // raw goes into the link, stored goes into the row — never the reverse.
-    const { raw: token, stored } = createVerificationTokenSecret();
-    const expires = new Date(Date.now() + TOKEN_EXPIRY_HOURS * 60 * 60 * 1000);
-    const identifier = buildEmailVerifyIdentifier(email);
-
-    await prisma.verificationToken.create({
-      data: {
-        identifier,
-        token: stored,
-        expires
-      }
+    // Mint → SAADA → alles siis rotatsioon, ja kogu kolmik ühe identifikaatori omandis.
+    // Sama klass, mille SOL-AUTH-15 paroolitaastel sulges: kaks paralleelset resend'i
+    // kustutasid teineteise kinnituslingi ja kasutajale jäi kaks töötamatut kirja.
+    const dispatch = await dispatchVerificationLink({
+      db: prisma,
+      identifier: buildEmailVerifyIdentifier(email),
+      expires: new Date(Date.now() + TOKEN_EXPIRY_HOURS * 60 * 60 * 1000),
+      deliver: (rawToken) =>
+        sendVerificationEmail(email, buildVerifyUrl(email, rawToken, locale), locale)
     });
 
-    const verifyUrl = buildVerifyUrl(email, token, locale);
-    await sendVerificationEmail(email, verifyUrl, locale);
-    await prisma.verificationToken.deleteMany({
-      where: {
-        identifier,
-        NOT: { token: stored }
-      }
-    });
+    // Tarnetõrget siin ei neelatud ja ei neelata edasi: viga läheb samasse välisesse
+    // catch'i, kust ta varem tuli.
+    if (dispatch.outcome === "delivery_failed") {
+      throw dispatch.error;
+    }
 
-    try {
-      await prisma.user.update({
-        where: { email },
-        data: { emailVerificationSentAt: new Date() }
-      });
-    } catch {
-      // do not fail if metadata update fails
+    // „Viimati saadetud" märke kirjutab ainult see päring, kes kirja päriselt saatis.
+    if (dispatch.outcome !== "in_flight") {
+      try {
+        await prisma.user.update({
+          where: { email },
+          data: { emailVerificationSentAt: new Date() }
+        });
+      } catch {
+        // do not fail if metadata update fails
+      }
     }
 
     return json();

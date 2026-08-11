@@ -42,6 +42,10 @@ function makeDb({ failCreateMany = false } = {}) {
     outsideTxWrites: 0
   };
   let inTx = false;
+  // Kinnituslingi mint elab SOL-AUTH-15 järel oma tehingus (identifikaatoripõhine
+  // nõuandelukk), seega „mitu tehingut" ei ole enam aatomsuse mõõt. Mõõdame seda, mida
+  // testi pealkiri lubab: kasutaja ja tõendikirjed sünnivad SAMAS jooksus.
+  const runOf = () => calls.txRuns;
 
   const db = {
     async $transaction(fn) {
@@ -49,9 +53,12 @@ function makeDb({ failCreateMany = false } = {}) {
       inTx = true;
       try {
         const tx = {
+          async $executeRaw() {
+            return 1;
+          },
           user: {
             async create(args) {
-              calls.userCreates.push(args);
+              calls.userCreates.push({ ...args, run: runOf() });
               return { id: "user-test-1", email: args.data.email };
             }
           },
@@ -61,27 +68,41 @@ function makeDb({ failCreateMany = false } = {}) {
               if (failCreateMany) {
                 throw new Error("acceptance write failed");
               }
-              calls.acceptanceCreateManyInTx.push(args);
+              calls.acceptanceCreateManyInTx.push({ ...args, run: runOf() });
               return { count: args.data.length };
             },
             async create(args) {
               calls.frameworkCreates.push(args);
               return { id: "fw-1", ...args.data };
             }
+          },
+          verificationToken: {
+            async create(args) {
+              calls.verificationTokens.push(args);
+              return args;
+            },
+            async deleteMany() {
+              return { count: 0 };
+            }
+          },
+          verificationLinkDispatch: {
+            async findUnique() {
+              return null;
+            },
+            async upsert({ create }) {
+              return { ...create };
+            },
+            async updateMany() {
+              return { count: 1 };
+            },
+            async deleteMany() {
+              return { count: 1 };
+            }
           }
         };
         return await fn(tx);
       } finally {
         inTx = false;
-      }
-    },
-    verificationToken: {
-      async create(args) {
-        calls.verificationTokens.push(args);
-        return args;
-      },
-      async deleteMany() {
-        return { count: 0 };
       }
     },
     user: {
@@ -132,9 +153,14 @@ test("avatud rada: kasutaja ja tõendikirjed luuakse SAMAS transaktsioonis", asy
   const { db, calls } = makeDb();
   const res = await POST(makeRequest(VALID_BODY), { db, registrationOpen: true });
   assert.equal(res.status, 201);
-  assert.equal(calls.txRuns, 1);
   assert.equal(calls.userCreates.length, 1);
   assert.equal(calls.acceptanceCreateManyInTx.length, 1, "tõendikirjed peavad minema tx sees");
+  assert.equal(
+    calls.acceptanceCreateManyInTx[0].run,
+    calls.userCreates[0].run,
+    "kasutaja ja tõendikirjed peavad sündima ühes ja samas transaktsioonis"
+  );
+  assert.equal(calls.userCreates[0].run, 1, "registreerimine on ESIMENE tehing");
   assert.equal(calls.outsideTxWrites, 0);
 
   const rows = calls.acceptanceCreateManyInTx[0].data;
