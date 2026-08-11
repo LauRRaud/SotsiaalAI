@@ -84,6 +84,7 @@
     letter-spacing: 0.11em;
     text-align: center;
     text-transform: uppercase;
+    transform: translateY(0.4rem);
   }
 
   .pwa-install-promotion-orbit {
