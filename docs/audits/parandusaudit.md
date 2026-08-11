@@ -2,22 +2,49 @@
 
 **Tuletatud loend. Olekut kannab `sotsiaalai-sol-suvaaudit.md` ise** (Seis-lõik iga leiu all);
 see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist**, mitte
-käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja nende all olevaid
-`**Seis (…): DONE…` lõike. Mõõdetud **11.08.2026** (teine mõõtmine, pärast 13. deploy'd).
+käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
+(`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
+ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
+Mõõdetud **11.08.2026 õhtul** (kolmas mõõtmine, pärast SOL-AUTH-03…-06).
 
 ## Kokkuvõte
 
 | | |
 |---|---|
-| Tehtud leidu | **104 / 357** |
-| Peatükke lõpuni | **8 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 182 × P1 · 70 × P2 · 1 × P3 |
-| Toodangus | **neljateistkümnes deploy 11.08 13:45 omaniku selgel loal: server = `b7c9adf0`**, migratsioonita (SOL-CHAT-09…-13). Mõõdetud, mitte eeldatud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i ja rag-teenuse veatasemel logi tühi. Kolmeteistkümnes deploy 13:06 = `27af4a02` (SOL-CHAT-01…-08 + migratsioon `20260811160000`, `ChatTurn` ridu 0). **Kõik 104 tehtud leidu on tootmises.** |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-CHAT on LÕPETATUD** (13/13); järgmine dokumendi järjekorras on SOL-VOICE (0/3). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
-| Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
-| Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
+| Tehtud leidu | **108 / 397** |
+| Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, SOL-CHAT |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 202 × P1 · 86 × P2 · 1 × P3 |
+| Nimetaja kasvas 357 → 397 | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud seitset faili. |
+| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on SOL-AUTH-03…-06** (`14501377`, `380274df`) — nad on `origin/main`-is, aga server neid ei kanna. Migratsioone kumbki ei vaja. |
+| Järgmine peatükk | **SOL-AUTH on käsil, 6/15.** Järgmine plokk AUTH-07 + -11 (`LoginTempToken` elutsükkel). SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
+| Käsil oleva peatüki saba | SOL-AUTH 9 lahtist (5 × P1, 4 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
+| Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
-**Kõik 99 tehtud leidu on tootmises** — deploy'mata ei ole ühtegi. Kolmeteistkümnes deploy
+## Jätkuauditid — miks nimetaja muutus
+
+Loendus luges ainult peafaili pealkirju, seega **iga jätkufail oli tema alt väljas**. 11.08
+õhtuks on neid seitse (üks veel pooleli), kokku **40 leidu, kõik NOT_DONE**:
+
+| Jätkufail | Peatükk | Leiud | Mida ta teeb |
+|---|---|---|---|
+| `…-jatk-materjalid.md` | SOL-MAT | 13 | **uus peatükk** |
+| `…-jatk-teenusekaart.md` | SOL-SMAP | 8 | **uus peatükk** |
+| `…-jatk-minu-jagamised.md` | SOL-SHARE | 5 | **uus peatükk** |
+| `…-jatk-koosta-dokument.md` | SOL-COMP | 5 | **uus peatükk** |
+| `…-jatk-organisatsioonid.md` | SOL-ORG | 5 | laiendab **lõpetatuks loetud** peatükki |
+| `…-jatk-tooheaolu.md` | SOL-WB | 4 | laiendab olemasolevat (14 → 18) |
+| `…-jatk-dokumendid.md` | – | 0 | kirjutamise ajal pooleli |
+
+Kaks tagajärge, mis ei ole kosmeetika:
+
+- **„SOL-ORG 12/12 tehtud" ei kehti enam** — SOL-ORG-13…-17 on lahtised, seega lõpetatud
+  peatükke on 7, mitte 8.
+- **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
+  konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
+
+**104 tehtud leidu 108-st on tootmises; deploy'mata on neli — SOL-AUTH-03…-06.** Nad on
+`origin/main`-is (`14501377`, `380274df`), aga server neid ei kanna ja migratsiooni kumbki
+plokk ei vaja. Kolmeteistkümnes deploy
 (11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
 **`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
 puudutatud) ning ühtlasi eelmisest ringist üle jäänud SOL-MEET-05/-06.
@@ -38,48 +65,78 @@ Teine jooks: **`PROBE_OK 8/8`**.
 
 ## Peatükid dokumendi järjekorras
 
-| Peatükk | Kood | Tehtud | Lahtised P0 | P1 | P2 | Märkus |
-|---|---|---|---|---|---|---|
-| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | – | – | **tehtud** |
-| Build | SOL-BUILD | **1/1** | – | – | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 2/15 | – | 8 | 5 | 13 lahtist, P0-sid ei ole |
-| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | – | 2 | 1 | kolm kvalifitseeritud seisu, vt allpool |
-| RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | – | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
-| Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
-| Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
-| Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | – | – | **tehtud** |
-| Vestlus | SOL-CHAT | **13/13** | – | – | – | **tehtud** |
-| Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
-| Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
-| Kõned ja salvestus | SOL-CALL | 10/13 | – | – | 3 | **käsil**, lahtised CALL-07, -08, -09 (kõik P2) |
-| Kutsed ja sponsorlus | SOL-INV | 0/3 | – | 1 | 2 | |
-| Maksed | SOL-PAY | 0/11 | – | 9 | 2 | |
-| Teavitused | SOL-NOTIF | 0/7 | – | 3 | 4 | |
-| Domeenisündmused | SOL-EVENT | 0/1 | – | – | 1 | |
-| Kiireloomuline abi | SOL-URG | 2/13 | – | 11 | – | **käsil**, mõlemad P0-d tehtud |
-| Tööheaolu | SOL-WB | 0/14 | – | 9 | 5 | |
-| Teenuspäevik | SOL-SLOG | 5/24 | – | 18 | 1 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
-| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | – | 19 | 7 | suurim peatükk; **käsil**, mõlemad P0 tehtud |
-| Migratsioonid | SOL-PRISMA | 0/4 | – | 3 | 1 | |
-| Mentorlus | SOL-MENT | 0/7 | – | 7 | – | |
-| Supervisioon | SOL-SUP | 0/15 | – | 11 | 4 | |
-| Kovisioon | SOL-COV | 0/8 | – | 8 | – | |
-| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | – | 8 | – | |
-| Teemaseemned | SOL-SEED | 0/5 | – | 3 | 2 | |
-| Teekond ja jagamine | SOL-JOUR | 2/17 | – | 12 | 3 | **käsil**, mõlemad P0 tehtud |
-| Eelpöördumised | SOL-PRE | 2/18 | – | 15 | 1 | **käsil**, mõlemad P0 tehtud |
-| Abikuulutused | SOL-HELP | 0/13 | – | 11 | 2 | |
-| Võrgustikutöö | SOL-NET | 2/13 | – | 9 | 2 | **käsil**, mõlemad P0 tehtud |
-| Refleksioonid | SOL-REF | 0/9 | – | 3 | 6 | |
-| Otsing | SOL-SEARCH | 0/7 | – | 1 | 5 | + 1 × P3 |
-| Teenuseosutaja profiil | SOL-SPROF | 2/15 | – | 6 | 7 | auditi viimased kaks P0-d, mõlemad tehtud |
+Tabel on `npm run sol:tally` väljund; järjestus on peatüki ESIMESE leiu koht dokumendis.
+Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
+
+| Peatükk | Kood | Tehtud | Lahtised | Märkus |
+|---|---|---|---|---|
+| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
+| Build | SOL-BUILD | **1/1** | – | **tehtud** |
+| Autentimine ja autoriseerimine | SOL-AUTH | 6/15 | 5 × P1 · 4 × P2 | **käsil**, AUTH-01…-06 tehtud |
+| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
+| RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
+| Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
+| Välitöö | SOL-FIELD | **6/6** | – | **tehtud** |
+| Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | **tehtud** |
+| Uuringud | SOL-RES | 6/7 | 1 × P2 | lahtine ainult RES-07 (kvalifitseeritud) |
+| Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | **tehtud** |
+| Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
+| Hääl (STT/TTS) | SOL-VOICE | 0/3 | 2 × P1 · 1 × P2 | |
+| Ruumid | SOL-ROOM | 0/7 | 5 × P1 · 2 × P2 | |
+| Kõned ja salvestus | SOL-CALL | 10/13 | 3 × P2 | lahtised CALL-07, -08, -09 |
+| Kutsed ja sponsorlus | SOL-INV | 0/3 | 1 × P1 · 2 × P2 | |
+| Maksed | SOL-PAY | 0/11 | 9 × P1 · 2 × P2 | |
+| Teavitused | SOL-NOTIF | 0/7 | 3 × P1 · 4 × P2 | |
+| Domeenisündmused | SOL-EVENT | 0/1 | 1 × P2 | |
+| Kiireloomuline abi | SOL-URG | 2/13 | 11 × P1 | mõlemad P0-d tehtud |
+| Tööheaolu | SOL-WB | 0/18 | 12 × P1 · 6 × P2 | 4 leidu jätkufailist |
+| Teenuspäevik | SOL-SLOG | 5/24 | 18 × P1 · 1 × P2 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
+| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 | suurim peatükk; mõlemad P0 tehtud |
+| Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 | |
+| Mentorlus | SOL-MENT | 0/7 | 7 × P1 | |
+| Supervisioon | SOL-SUP | 0/15 | 11 × P1 · 4 × P2 | |
+| Kovisioon | SOL-COV | 0/8 | 8 × P1 | |
+| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 8 × P1 | |
+| Teemaseemned | SOL-SEED | 0/5 | 3 × P1 · 2 × P2 | |
+| Teekond ja jagamine | SOL-JOUR | 2/17 | 12 × P1 · 3 × P2 | mõlemad P0 tehtud |
+| Eelpöördumised | SOL-PRE | 2/18 | 15 × P1 · 1 × P2 | mõlemad P0 tehtud |
+| Abikuulutused | SOL-HELP | 0/13 | 11 × P1 · 2 × P2 | |
+| Võrgustikutöö | SOL-NET | 2/13 | 9 × P1 · 2 × P2 | mõlemad P0 tehtud |
+| Refleksioonid | SOL-REF | 0/9 | 3 × P1 · 6 × P2 | |
+| Otsing | SOL-SEARCH | 0/7 | 1 × P1 · 5 × P2 · 1 × P3 | auditi ainus P3 |
+| Teenuseosutaja profiil | SOL-SPROF | 2/15 | 6 × P1 · 7 × P2 | auditi viimased kaks P0-d, mõlemad tehtud |
+| Dokumendi koostamine | SOL-COMP | 0/5 | 3 × P1 · 2 × P2 | **ainult jätkufailis** |
+| Materjalid | SOL-MAT | 0/13 | 8 × P1 · 5 × P2 | **ainult jätkufailis**, suurim uus peatükk |
+| Minu jagamised | SOL-SHARE | 0/5 | 2 × P1 · 3 × P2 | **ainult jätkufailis** |
+| Teenusekaart | SOL-SMAP | 0/8 | 3 × P1 · 5 × P2 | **ainult jätkufailis** |
 
 ## Mis on tehtud
 
 - **SOL-SCHEMA-01** · **SOL-BUILD-01**
 - **SOL-AUTH-01, AUTH-02**
+- **SOL-AUTH-03** (11.08) — `VerificationToken.token` kandis paroolitaaste ja e-posti kinnituse
+  bearer-tokenit **toorkujul**: andmebaasi lugemisõigus, varukoopia või diagnostikaväljavõte
+  andis töötava lingi. Kirja läheb nüüd `raw`, ritta `v2:` + sha256; veerg ise ei muutunud,
+  seega migratsiooni ei ole. **Prefiks ei ole dekoratsioon, vaid kogu üleminekumehhanism:**
+  pärandread kannavad toorväärtust ja neid otsitakse ka verbatim, AGA ainult siis, kui sisend
+  ei ole juba salvestuskujul — ilma selle väravata saaks lugeja kleepida rea väärtuse lingi
+  asemele ja leid oleks paranduse enda sees tagasi. Tarbimine sai atomaarse ühekordse claim'i
+  (vana `delete` tehingu lõpus tegi topeltklikist 500). `npm run auth:token:probe` **26/26**
+  päris PostgreSQL-is, kaks negatiivkontrolli. **Kõrvalleid:** konto kustutus ei tühjendanud
+  `password-reset:<email>` nimeruumi.
+- **SOL-AUTH-04 + -05 + -06** (11.08) — **üks juur: kinnitus otsustas asjade üle, mida ta ei
+  hoidnud kinni.** `-04`: kinnituslingi pelk AVAMINE vahetas identiteedi, seega skanner tegi
+  seda kasutaja eest; GET annab nüüd vahelehe ja POST vahetab — muster oli koodibaasis olemas
+  (`verify-email`), uut ei ehitatud, ja GET ei tee ühtki DB-päringut. `-05`: `id` ei ole siin
+  identiteet, sest resend kirjutab SAMA rea peale ümber — kõik on nüüd ühes tehingus, rea lukk
+  tuleb lugemise ETTE ja tarbimine on tingimuslik `deleteMany({ id, tokenHash })`; eraldi
+  versiooniveergu ei tehtud, sest `tokenHash` ise on versioon. `-06`: parandus on **järjekord** —
+  mint → SAADA → alles siis rotatsioon, seega vana link elab kuni uus on teele läinud; vale
+  eduteade asendus 502-ga ja esmane PUT kannab ausat `emailDelivery` seisu.
+  `npm run auth:emailchange:probe` **27/27** päris PostgreSQL-is, **kolm negatiivkontrolli**:
+  vana GET-rada vahetab identiteedi pelgalt avamisel · vana kinnitusmuster vahetab VANA
+  aadressi peale ja hävitab värske tokeni · vana resend-järjekord tapab varem kohale jõudnud
+  lingi.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
@@ -498,7 +555,7 @@ uuesti), sest analüüs on lepingu järgi efemeerne — vt leiu Seis-lõiku.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
-Neid kolme ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
+Neid nelja ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
 kood ei anna:
 
 - **SOL-CW-09** (P2) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
@@ -515,20 +572,24 @@ kood ei anna:
 
 ## Kuidas seda loendit lugeda
 
-- **Loend on mehaaniline.** Tehtuks loetakse ainult leid, mille Seis-lõik ALGAB sõnaga
-  `DONE`. Kvalifitseeritud seisud („kood DONE; brauseritest NOT_PROVEN", „mehhanism DONE…")
-  loetakse **lahtiseks**. Seepärast on SOL-CW siin **17/20**, mitte varem kirjas olnud 18/20 —
-  see ei ole tagasiminek, vaid rangem lugemine. Kolm kvalifitseeritud leidu on ülal nimetatud.
+- **Loend on mehaaniline ja nüüd ka jooksutatav: `npm run sol:tally`.** Tehtuks loetakse ainult
+  leid, mille Seis-lõik ALGAB sõnaga `DONE`. Kvalifitseeritud seisud („kood DONE; brauseritest
+  NOT_PROVEN", „mehhanism DONE…") loetakse **lahtiseks**. Seepärast on SOL-CW siin **17/20**,
+  mitte varem kirjas olnud 18/20 — see ei ole tagasiminek, vaid rangem lugemine. Kolm
+  kvalifitseeritud leidu on ülal nimetatud.
+- **Loendur loeb ka jätkufaile** (`…-jatk-*.md`) ja just nende puudumine oli senise loenduse
+  suurim viga: SOL-MAT peatükk (13 leidu) ei olnud siin tabelis kordagi. Kui uus jätkufail
+  lisandub, muutub nimetaja — jooksuta loendur uuesti, ära paranda numbrit käsitsi.
 - **`runtime: not_run` ei tee leidu lahtiseks.** Enamik parandusi on tõendatud teenuse- ja
   andmebaasitasemel; „päris admini sessioonist läbi käimata" on kirjas iga leiu Seis-lõigus
   eraldi ja seda ei loeta siin puuduseks.
-- **Järjekorra reegel on 09.08 parandatud: P0 EES, dokumendi järjekord on tasavägiste vahel
-  otsustaja.** Vana reegel oli pelk dokumendi järjekord ja ta ei kannatanud seda tabelit välja:
-  puhta dokumendijärjekorra järgi oleks järgmine peatükk SOL-AUTH, kus P0-sid EI OLE ühtegi.
-  SOL-CALL, SOL-URG, **SOL-SLOG**, **SOL-RAGSVC**, **SOL-JOUR**, **SOL-PRE** ja **SOL-NET** on
-  selle reegli järgi P0-dest tühjaks tehtud. **Alles on KAKS P0-d, mõlemad SOL-SPROF-is
-  (SPROF-01, SPROF-02).** Kui need on kaetud, ei ole auditis enam ühtegi P0-d ja
-  järjekord langeb tagasi puhtale dokumendijärjekorrale — see tähendab **SOL-AUTH-i** (13
-  lahtist), mis on siis kõige eespool.
+- **Järjekorra reegel: P0 EES, dokumendi järjekord on tasavägiste vahel otsustaja.** Reegel
+  tekkis 09.08, sest pelk dokumendijärjekord ei kannatanud tabelit välja. **P0-sid ei ole
+  auditis enam ühtegi** (viimased kaks olid SPROF-01 ja -02, mõlemad 10.08 kaetud), seega
+  järjekord ON langenud tagasi puhtale dokumendijärjekorrale — ja selle järgi on käsil õige
+  peatükk, **SOL-AUTH**.
+- **Reegel ei ütle veel midagi jätkufailide kohta ja see on lahtine otsus.** Kui nad
+  liidetakse peaauditi järjekorda, tuleb SOL-ORG-13…-17 ette SOL-AUTH-i sabast; kui nad
+  jäävad eraldi järjekorraks, tuleb kokku leppida, millal seda tehakse.
 - **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
   vananenud, raport ei ole.

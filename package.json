@@ -22,6 +22,7 @@
     "db:push:local": "dotenv -e .env.local -- prisma db push",
     "db:migrate:check": "node scripts/check-clean-migrations.mjs",
     "urgent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/urgent-request-probe.mjs",
+    "sol:tally": "node scripts/sol-audit-tally.mjs",
     "auth:token:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/verification-token-probe.mjs",
     "auth:emailchange:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/email-change-probe.mjs",
     "mtr:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-probe.mjs",
