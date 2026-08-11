@@ -18,7 +18,7 @@ import {
 } from "@/lib/payments/maksekeskus";
 import { getInviteSponsoredPaymentKind } from "@/lib/payments/recurring";
 import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
-import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
+import { requireInviteRoomRole } from "@/lib/invites/roomAccess";
 import {
   formatEuroAmount,
   getRolePlanDescription,
@@ -70,14 +70,6 @@ function errorJson(messageKey, status = 400, locale = "en", extras = {}) {
     },
     status
   );
-}
-
-function fail(messageKey, status = 400, code = "") {
-  const error = new Error(messageKey);
-  error.status = status;
-  error.messageKey = messageKey;
-  error.code = code;
-  return error;
 }
 
 function localeFromRequest(request, directLocale) {
@@ -152,144 +144,13 @@ function isTruthyFlag(value) {
   return normalized === "1" || normalized === "true" || normalized === "yes" || normalized === "on";
 }
 
-async function ensureOwnerMembership(roomId, ownerId, ownerDisplayName) {
-  try {
-    await prisma.roomMember.upsert({
-      where: {
-        roomId_userId: {
-          roomId,
-          userId: ownerId
-        }
-      },
-      create: {
-        roomId,
-        userId: ownerId,
-        role: "OWNER",
-        displayName: ownerDisplayName || undefined
-      },
-      update: {
-        role: "OWNER",
-        leftAt: null,
-        ...(ownerDisplayName ? { displayName: ownerDisplayName } : {})
-      }
-    });
-  } catch {}
-}
-
-async function ensureRoom(userId, roomId, roomTitle, ownerDisplayName, locale) {
-  if (roomId) {
-    const room = await prisma.room.findUnique({ where: { id: roomId } });
-    if (!room) {
-      throw fail("api.rooms.not_found", 404, "ROOM_NOT_FOUND");
-    }
-    await ensureOwnerMembership(room.id, room.ownerId, ownerDisplayName);
-    return {
-      room,
-      created: false
-    };
-  }
-
-  const trimmedTitle = typeof roomTitle === "string" ? roomTitle.trim() : "";
-  if (trimmedTitle) {
-    const room = await prisma.room.create({
-      data: {
-        ownerId: userId,
-        title: trimmedTitle,
-        ...buildRoomOrigin({
-          originType: ROOM_ORIGIN_TYPES.MANUAL_INVITE
-        }),
-        members: {
-          create: {
-            userId,
-            role: "OWNER",
-            displayName: ownerDisplayName || undefined
-          }
-        }
-      }
-    });
-    return {
-      room,
-      created: true
-    };
-  }
-
-  const existing = await prisma.room.findFirst({
-    where: { ownerId: userId },
-    orderBy: { createdAt: "asc" }
-  });
-  if (existing) {
-    await ensureOwnerMembership(existing.id, existing.ownerId, ownerDisplayName);
-    return {
-      room: existing,
-      created: false
-    };
-  }
-
-  const fallbackTitle = serverT(locale, "rooms.fallback_title", undefined, "Room");
-  const room = await prisma.room.create({
-    data: {
-      ownerId: userId,
-      title: fallbackTitle,
-      ...buildRoomOrigin({
-        originType: ROOM_ORIGIN_TYPES.MANUAL_INVITE
-      }),
-      members: {
-        create: {
-          userId,
-          role: "OWNER",
-          displayName: ownerDisplayName || undefined
-        }
-      }
-    }
-  });
-  return {
-    room,
-    created: true
-  };
-}
-
-async function requireRoomRole({
-  userId,
-  roomId,
-  allowedRoles,
-  roomTitle,
-  ownerDisplayName,
-  locale
-}) {
-  const roomResult = await ensureRoom(
-    userId,
-    roomId,
-    roomTitle,
-    ownerDisplayName,
-    locale
-  );
-  const room = roomResult.room;
-
-  if (room.ownerId === userId) {
-    return {
-      room,
-      membership: { role: "OWNER" },
-      roomCreated: roomResult.created
-    };
-  }
-
-  const membership = await prisma.roomMember.findFirst({
-    where: {
-      roomId: room.id,
-      userId,
-      leftAt: null
-    }
-  });
-
-  if (!membership || !allowedRoles.includes(membership.role)) {
-    throw fail("api.common.forbidden", 403, "FORBIDDEN");
-  }
-
-  return {
-    room,
-    membership,
-    roomCreated: roomResult.created
-  };
+/* SOL-INV-02: siin seisis `app/api/invites/route.js`-i ruumivärava TEINE KOOPIA
+   ja tal oli sama viga — omaniku liikmerea upsert käis küsija payload'i nimega
+   ENNE õiguskontrolli. Koopia on kustutatud; värav elab `lib/invites/roomAccess.js`-is.
+   Ühtlasi jõuab siia esimest korda SOL-ROOM-01 arhiivikontroll, mis ainult teises
+   koopias olemas oli: lõpetatud ruumi ei saa ka sponsoreeritud kutsega täiendada. */
+function requireRoomRole(args) {
+  return requireInviteRoomRole({ db: prisma, ...args });
 }
 
 async function hasActiveSubscription(userId) {

@@ -170,7 +170,13 @@ test("iga ruumimarsruut käib jagatud värava kaudu", () => {
 });
 
 test("kutse loomine ja vastuvõtt tunnevad lõpetatud ruumi", () => {
-  assert.match(read("app/api/invites/route.js"), /isArchivedRoom\(room\)/);
+  /* SOL-INV-02 kolis kutsevoo ruumivärava ühte kohta. Reegel ei tohi seetõttu
+     enam elada marsruudis: kontrollime teda seal, kus ta on, JA nõuame, et
+     mõlemad kutseteed käiksid sellest väravast läbi. Varem oli arhiivikontroll
+     ainult ühes kahest koopiast — sponsoreeritud rada käis temast mööda. */
+  assert.match(read("lib/invites/roomAccess.js"), /isArchivedRoom\(room\)/);
+  assert.match(read("app/api/invites/route.js"), /requireInviteRoomRole/);
+  assert.match(read("app/api/invites/sponsored/init/route.js"), /requireInviteRoomRole/);
   assert.match(read("lib/invites/acceptInviteCore.js"), /isArchivedRoom\(invite\.room\)/);
 });
 

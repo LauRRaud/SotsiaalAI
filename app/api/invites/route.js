@@ -12,8 +12,7 @@ import {
   canInviteRelationshipType,
   normalizeInviteRelationshipType
 } from "@/lib/invites/participantTypes";
-import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
-import { ARCHIVED_ROOM_ERROR, isArchivedRoom } from "@/lib/rooms/accessGuard";
+import { requireInviteRoomRole } from "@/lib/invites/roomAccess";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -143,130 +142,11 @@ function normalizeDisplayName(value) {
   return trimmed.slice(0, 80);
 }
 
-async function ensureOwnerMembership(roomId, ownerId, ownerDisplayName) {
-  try {
-    await prisma.roomMember.upsert({
-      where: {
-        roomId_userId: {
-          roomId,
-          userId: ownerId
-        }
-      },
-      create: {
-        roomId,
-        userId: ownerId,
-        role: "OWNER",
-        displayName: ownerDisplayName || undefined
-      },
-      update: {
-        role: "OWNER",
-        leftAt: null,
-        ...(ownerDisplayName ? { displayName: ownerDisplayName } : {})
-      }
-    });
-  } catch {
-    // non-blocking sync
-  }
-}
-
-async function ensureRoom(userId, roomId, roomTitle, ownerDisplayName, locale) {
-  if (roomId) {
-    const room = await prisma.room.findUnique({ where: { id: roomId } });
-    if (!room) {
-      throw fail("api.rooms.not_found", 404, "ROOM_NOT_FOUND");
-    }
-    // SOL-ROOM-01: lõpetatud ruumi ei saa enam uute inimestega täiendada.
-    if (isArchivedRoom(room)) {
-      throw fail(ARCHIVED_ROOM_ERROR.message, ARCHIVED_ROOM_ERROR.status, "ROOM_ARCHIVED");
-    }
-    await ensureOwnerMembership(room.id, room.ownerId, ownerDisplayName);
-    return room;
-  }
-
-  const trimmedTitle = typeof roomTitle === "string" ? roomTitle.trim() : "";
-  if (trimmedTitle) {
-    return prisma.room.create({
-      data: {
-        ownerId: userId,
-        title: trimmedTitle,
-        ...buildRoomOrigin({
-          originType: ROOM_ORIGIN_TYPES.MANUAL_INVITE
-        }),
-        members: {
-          create: {
-            userId,
-            role: "OWNER",
-            displayName: ownerDisplayName || undefined
-          }
-        }
-      }
-    });
-  }
-
-  const existing = await prisma.room.findFirst({
-    where: { ownerId: userId },
-    orderBy: { createdAt: "asc" }
-  });
-  if (existing) {
-    await ensureOwnerMembership(existing.id, existing.ownerId, ownerDisplayName);
-    return existing;
-  }
-
-  const fallbackTitle = serverT(locale, "rooms.fallback_title", undefined, "Room");
-  return prisma.room.create({
-    data: {
-      ownerId: userId,
-      title: fallbackTitle,
-      ...buildRoomOrigin({
-        originType: ROOM_ORIGIN_TYPES.MANUAL_INVITE
-      }),
-      members: {
-        create: {
-          userId,
-          role: "OWNER",
-          displayName: ownerDisplayName || undefined
-        }
-      }
-    }
-  });
-}
-
-async function requireRoomRole({
-  userId,
-  roomId,
-  allowedRoles,
-  roomTitle,
-  ownerDisplayName,
-  locale
-}) {
-  const room = await ensureRoom(
-    userId,
-    roomId,
-    roomTitle,
-    ownerDisplayName,
-    locale
-  );
-
-  if (room.ownerId === userId) {
-    return {
-      room,
-      membership: { role: "OWNER" }
-    };
-  }
-
-  const membership = await prisma.roomMember.findFirst({
-    where: {
-      roomId: room.id,
-      userId,
-      leftAt: null
-    }
-  });
-
-  if (!membership || !allowedRoles.includes(membership.role)) {
-    throw fail("api.common.forbidden", 403, "FORBIDDEN");
-  }
-
-  return { room, membership };
+/* SOL-INV-02: ruumivärav elab nüüd ÜHES kohas (`lib/invites/roomAccess.js`) ja
+   ta ei kirjuta enne autoriseerimist mitte midagi. Siin seisis tema koopia,
+   teine elas `app/api/invites/sponsored/init`-is. */
+function requireRoomRole(args) {
+  return requireInviteRoomRole({ db: prisma, ...args });
 }
 
 async function resolveSponsor(room) {
