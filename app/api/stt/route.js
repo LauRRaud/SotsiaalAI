@@ -9,11 +9,15 @@ import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { readAudioDurationSecondsFromFile } from "@/lib/audio/duration";
 import { safeError } from "@/lib/privacy/safeError";
 import {
-  commitUsageForRequest,
-  releaseUsageForRequest,
-  reserveUsageForRequest,
-  usageErrorDescriptor
-} from "@/lib/usage/routeAdapter";
+  STT_PROVIDER_TIMEOUT_MS,
+  providerAbortSignal
+} from "@/lib/net/providerRequest";
+import {
+  resolveSttCommittedSeconds,
+  resolveSttReservationSeconds
+} from "@/lib/usage/sttDuration";
+import { commitProviderUsage, settleProviderFailure } from "@/lib/usage/providerSettlement";
+import { reserveUsageForRequest, usageErrorDescriptor } from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -159,22 +163,76 @@ export async function POST(req) {
     });
   }
   const inputDurationSeconds = await readAudioDurationSecondsFromFile(file);
-  const usageSeconds = Math.max(1, Math.ceil(Number(inputDurationSeconds) || 60));
+  // Enne kutset vastust EI OLE, seega reserveeritakse OHUTU ÜLEMPIIR, mitte oletus: tundmatu
+  // formaadi korral andis vana `|| 60` alla 12 MB pika tihendatud kõne eest täpselt minuti
+  // ühikuid (SOL-VOICE-01). Sama leping juba kehtis dokumendirajal (SOL-DOC-02).
+  const reservationSeconds = resolveSttReservationSeconds({
+    measuredSeconds: inputDurationSeconds,
+    sizeBytes: fileSize
+  });
   const rawIdempotencyKey = form.get("idempotencyKey");
   let usageHandle = null;
-  let transcriptionCompleted = false;
   try {
     usageHandle = await reserveUsageForRequest({
       request: req,
       userId: session.user.id,
       metric: "STT_SECONDS",
-      amount: usageSeconds,
+      amount: reservationSeconds,
       scope: "stt.transcribe",
       idempotencyKey: typeof rawIdempotencyKey === "string" ? rawIdempotencyKey : null,
       metadata: { fileSizeBytes: fileSize, mimeType: file.type || null }
     });
   } catch (error) {
     return usageErrorJson(error, "stt.transcribe", uiLocale);
+  }
+
+  // Üks signaal kannab kahte sündmust: meie ajapiiri ja kasutaja katkestust (SOL-VOICE-02).
+  const providerSignal = providerAbortSignal(req.signal, STT_PROVIDER_TIMEOUT_MS);
+
+  /**
+   * Arvestus käib PROVIDERI kinnitatud kestuse järgi, klammerdatuna reservatsiooni piiriga.
+   *
+   * Commit'i enda viga ei vabasta reservatsiooni EGA viska transkripti ära: tulemus on
+   * olemas ja kuulub kasutajale (vt `lib/usage/paidResult.js` teine piir). Vana kood tegi
+   * mõlemat vastupidi — märkis töö valmis ENNE commit'i ja vastas seejärel 502-ga, seega
+   * kasutaja kaotas teksti ja reservatsioon jäi rippuma.
+   */
+  async function commitMeasuredUsage(providerUsage) {
+    const seconds = resolveSttCommittedSeconds({
+      providerUsage,
+      measuredSeconds: inputDurationSeconds,
+      reservedSeconds: reservationSeconds
+    });
+    await commitProviderUsage({
+      handle: usageHandle,
+      actualAmount: seconds,
+      onError: (commitError) => console.error("[stt] usage commit failed", safeError(commitError))
+    });
+    return seconds;
+  }
+
+  /**
+   * Üks väljapääs kõigile providerivigadele. Kolm eri asja said varem sama 502 ja sama
+   * logirea: meie ajapiir, kasutaja Stop ja provideri päris viga. Nüüd on igal oma staatus
+   * ja `reason`, aga kõigil sama tagajärg reservatsioonile — teda EI OLE mille eest võtta.
+   * Kasutajatekst jääb olemasolevaks võtmeks: uut tõlget see leid ei nõua ja `messages/*`
+   * kannab praegu teise sessiooni pooleliolevat tööd.
+   */
+  async function failFromProvider(err, providerLabel) {
+    const failure = await settleProviderFailure({
+      handle: usageHandle,
+      error: err,
+      onError: (releaseError) => console.error("[stt] usage release failed", safeError(releaseError))
+    });
+    if (failure.log) {
+      console.error(`[stt] ${providerLabel} provider failed`, safeError(err));
+    }
+    if (failure.aborted) {
+      return errorJson("api.stt.service_error", failure.status, uiLocale, { reason: failure.reason });
+    }
+    return errorJson(err?.message || "api.stt.service_error", failure.status, uiLocale, {
+      reason: failure.reason
+    });
   }
 
   if (STT_URL) {
@@ -185,14 +243,16 @@ export async function POST(req) {
 
       const res = await fetch(STT_URL, {
         method: "POST",
-        body: fd
+        body: fd,
+        signal: providerSignal
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || data?.ok === false || !data?.text) {
         throw new Error(data?.message || "api.stt.transcription_failed");
       }
-      transcriptionCompleted = true;
-      await commitUsageForRequest(usageHandle);
+      // Väline teenus ei anna kestust, seega jääb mõõdetud kestus — aga ta läbib sama
+      // klambri, mitte vana „võta kogu reservatsioon" rada.
+      await commitMeasuredUsage(null);
       await logEvent("stt_request", {
         userId: session.user.id,
         role,
@@ -211,15 +271,7 @@ export async function POST(req) {
         provider: "external"
       });
     } catch (err) {
-      console.error("[stt] external provider failed", safeError(err));
-      if (usageHandle && !transcriptionCompleted) {
-        try {
-          await releaseUsageForRequest(usageHandle, { reason: "stt_provider_failed" });
-        } catch (releaseError) {
-          console.error("[stt] usage release failed", safeError(releaseError));
-        }
-      }
-      return errorJson(err?.message || "api.stt.service_error", 502, uiLocale);
+      return failFromProvider(err, "external");
     }
   }
 
@@ -230,20 +282,24 @@ export async function POST(req) {
     });
     const language = normalizeLanguage(locale);
     const startedAt = Date.now();
-    const transcription = await client.audio.transcriptions.create({
-      file,
-      model: OPENAI_STT_MODEL,
-      response_format: "json",
-      ...(language ? { language } : {})
-    });
+    const transcription = await client.audio.transcriptions.create(
+      {
+        file,
+        model: OPENAI_STT_MODEL,
+        response_format: "json",
+        ...(language ? { language } : {})
+      },
+      { signal: providerSignal }
+    );
     const text = String(transcription?.text || "").trim();
     if (!text) throw new Error("api.stt.transcription_failed");
-    transcriptionCompleted = true;
-    await commitUsageForRequest(usageHandle);
     const usage = transcription?.usage;
     const usageType = String(usage?.type || "").trim() || null;
     const isTokenUsage = usageType === "tokens";
     const isDurationUsage = usageType === "duration";
+    // Provideri enda mõõt on tugevaim allikas — tema järgi tekib ka päris kulu. Vana kood
+    // luges ta välja ALLES pärast commit'i ja ei kasutanud teda kunagi arvestuses.
+    const committedSeconds = await commitMeasuredUsage(usage);
     const measuredDurationSeconds =
       (isDurationUsage ? toNullableNumber(usage?.seconds) : null) ?? toNullableNumber(inputDurationSeconds);
     await logEvent("stt_cost_usage", {
@@ -267,7 +323,9 @@ export async function POST(req) {
       language: String(language || locale || "auto"),
       usage_type: usageType,
       cost_read_directly: Boolean(usageType),
-      cost_estimation_basis: usageType ? null : null
+      cost_estimation_basis: usageType ? null : null,
+      reserved_seconds: reservationSeconds,
+      committed_seconds: committedSeconds
     });
     await logEvent("stt_request", {
       userId: session.user.id,
@@ -287,14 +345,6 @@ export async function POST(req) {
       provider: "openai"
     });
   } catch (err) {
-    console.error("[stt] openai provider failed", safeError(err));
-    if (usageHandle && !transcriptionCompleted) {
-      try {
-        await releaseUsageForRequest(usageHandle, { reason: "stt_provider_failed" });
-      } catch (releaseError) {
-        console.error("[stt] usage release failed", safeError(releaseError));
-      }
-    }
-    return errorJson(err?.message || "api.stt.service_error", 502, uiLocale);
+    return failFromProvider(err, "openai");
   }
 }

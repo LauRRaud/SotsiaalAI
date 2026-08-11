@@ -2735,6 +2735,34 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Klient peab siduma ühe salvestuse stabiilse võtmega. Reservatsioon peab kasutama ohutut ülempiiri ning commit provider'i kinnitatud tegelikku kestust (`actualAmount`), selge fallback-lepinguga, mis ei alahinda. Valmis transkript vajab sama võtmega taastamist. Testid peavad katma tundmatu lokaalse formaadi + provider'i pika kestuse, commit'i ebamäärase vea ja identse retry.
 
+**Seis (11.08.2026): DONE, ühe kvalifikatsiooniga (vt viimane punkt). Migratsiooni ei ole vaja.**
+- **Lahendus oli koodibaasis olemas ja kasutamata.** `lib/usage/sttDuration.js` kirjutati
+  SOL-DOC-02 jaoks ja ta hoiab lahus täpselt need kaks küsimust, mille segamine SIIN leiu
+  tekitas: „kui palju reserveerida ENNE kutset" (vastust ei ole, seega OHUTU ÜLEMPIIR) ja
+  „kui palju arvestada PÄRAST" (vastus on olemas, seega provideri mõõdetud kestus). `/api/stt`
+  oli ainus rada, mis seda moodulit ei kasutanud, kuigi ta lahendas sama probleemi.
+- **Vana `|| 60` ei olnud konservatiivne oletus, vaid möödapääs.** Tundmatu formaadi korral
+  maksis kuni 12 MB tihendatud kõne täpselt minuti ühikuid. Ülempiir tuleb nüüd baitidest
+  kõne madalaima usutava bitikiiruse järgi; **sondis mõõdetud: 12 MB tundmatu fail EI mahu
+  enam 900-sekundilise kuulimiidi sisse** — vana rada laskis ta läbi 60 sekundi hinnaga.
+- **Commit kannab `actualAmount`-i**, klammerdatuna reservatsiooniga: vale hinnang ei tohi
+  muutuda 500-ks kasutajale, kelle transkript on juba olemas.
+- **`transcriptionCompleted` lipp on KADUNUD, mitte ümber tõstetud.** Ta pandi tõeseks enne
+  commit'i, seega commit'i viga tegi korraga kaks asja: jättis reservatsiooni rippuma JA
+  vastas 502-ga, nii et kasutaja kaotas valmis teksti. Nüüd kehtib `lib/usage/paidResult.js`
+  teine piir: commit'i viga ei vabasta midagi ega võta tulemust ära — ta läheb logisse ja
+  transkript jõuab kasutajani.
+- **Klient saadab `idempotencyKey`-d**, mis sünnib ühe korra salvestuse kohta ja elab kuni
+  tekst on käes, seega võrgukordus ei tekita teist reservatsiooni.
+- **`npm run voice:settle:probe` 15/15 päris PostgreSQL-is.** Tõend on `UsageReservation` rida
+  ja ämbri seis, mitte funktsiooni tagastusväärtus. Negatiivkontroll jooksutab vana arvestust
+  sama ämbri peal: commit ilma `actualAmount`-ita võtab KOGU reservatsiooni.
+- **Kvalifikatsioon — „valmis transkript vajab sama võtmega taastamist" on täidetud ainult
+  ARVELDUSE mõttes.** Sama võti ei tekita teist ühikut, aga teksti ennast ei hoita kuskil:
+  `/api/stt` ei püsista transkripti (erinevalt dokumendirajast, kus ta ON dokument), seega
+  kordus kutsub providerit uuesti. Salvestuskoha tegemine tähendaks kõne teksti hoidmist
+  ilma omaniku- ja säilitusreata — see on tooteotsus, mitte selle leiu parandus.
+
 ### SOL-VOICE-02 — STT ning Google/OpenAI TTS providerikutsetel puudub rakenduse timeout — P1
 
 **Tõend.** Välise STT fetch ei kasuta `AbortController`-it ega timeout'i (`app/api/stt/route.js:180-212`); ka OpenAI STT SDK-kutsel pole route'i signaali ega rakenduse ajapiiri (`:226-238`). TTS-is on timeout ainult katselisel TartuNLP fetch'il (`app/api/tts/route.js:138-177`); Google ja OpenAI sünteesikutsed on piirita (`:103-136`, `:180-203`). Kliendi `/api/stt` ja `/api/tts` fetch'idel pole samuti abort-signaali ega timeout'i (`components/chat/hooks/useSpeech.js:207-261`, `:287-339`). Reservatsioonid luuakse enne providerikutset ja vabastus toimub ainult catch'is, kuhu lõputult ootel promise ei jõua.
@@ -2743,6 +2771,30 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Igal provideril peab olema konfigureeritud serveripoolne timeout, request aborti edasi kandev signaal ja kontrollitud veavastus; klient vajab eraldi UX-timeout'i/aborti. Timeout peab vabastama sama idempotentsusvõtme reservatsiooni või jätma püsiva retry-seisundi. Testid peavad kasutama mitte kunagi lahenevat providerit ning tõendama ühenduse katkestuse, piiratud kestuse, UI taastumise ja settlement'i.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Üks signaal kannab kahte sündmust ja mõlemad on ERISTATAVAD** (`lib/net/providerRequest.js`):
+  meie ajapiir annab `TimeoutError` → 504, kasutaja katkestus `AbortError` → 499. Eristus ei
+  ole kosmeetika: Stop ei ole tõrge, mida logisse veaks kirjutada, ja meie ajapiir ei ole
+  midagi, mille eest kasutaja maksab. Põhjus tuleb platvormilt (`AbortSignal.timeout` +
+  `AbortSignal.any`), mitte oma `controller.abort()`-ist — ise kokku pandud taimer oleks
+  andnud mõlemale sama `AbortError`-i ja jätnud iga õnnestunud kutse järel lahtise
+  `setTimeout`-i.
+- **Neli kutset said signaali:** väline STT `fetch`, OpenAI STT SDK, Google TTS (gRPC oma
+  ajapiiriga) ja OpenAI TTS. Lisaks `withAbort`, sest „Next-i töölõng ei jää kinni" ei tohi
+  sõltuda sellest, kas KOLMAS OSAPOOL signaali austab — gRPC-klient ja mõni SDK ei austa.
+  Signaal antakse ikka edasi (et ka ülesvool lõpetaks), `withAbort` on lisaks, mitte asemel.
+- **Kliendil on oma piirid** (STT 90 s, TTS 30 s) `withRequestTimeout`-i kaudu, feature-checki
+  taga: `AbortSignal.any` puudumine vanas brauseris ei tohi ettelugemist üldse katki teha.
+- **Arveldus on nüüd üks moodul kahe lõpuga** (`lib/usage/providerSettlement.js`), mitte kaks
+  koopiat kahes marsruudis. Iga katkestus vabastab reservatsiooni — kasutajani ei jõudnud
+  midagi, seega ei ole mille eest võtta — ja ka vabastuse enda viga ei kao vaikselt.
+- **`npm run voice:settle:probe` 15/15 päris PostgreSQL-is, MITTE KUNAGI LAHENEVA
+  provideriga.** Kui ajapiiri ei oleks, jääks sond ise rippuma — see on aus tõend selle kohta,
+  et piir eksisteerib. Mõõdetud on ka mõlema katkestuse jälg: `RELEASED` +
+  `releaseReason: provider_timeout` / `client_aborted` ja ämber tagasi nullis.
+- `runtime: not_run` päris aeglase provideri osas: ajapiir on tõendatud sondi ja ühiktestiga,
+  päris OpenAI/Google poolavatud ühendust ei jäljendatud.
+
 ### SOL-VOICE-03 — „Peata ettelugemine” ei katkesta pooleliolevat serverisünteesi — P2
 
 **Tõend.** Eesti ettelugemine seab `isSpeaking`, alustab `/api/tts` fetch'i ja loob audio alles vastuse saabudes (`components/chat/hooks/useSpeech.js:207-249`). `stopSpeaking()` tühistab brauseri SpeechSynthesis'i ja juba loodud `audioRef` objekti, kuid serverifetch'il pole controller'it ega päringu põlvkonna tokenit (`:161-178`, `:224-233`). Kui kasutaja vajutab sama nuppu providerikutse ajal või komponent unmount'ib, jätkab algne async funktsioon ning võib hiljem luua ja käivitada audio (`:235-249`, `:534-538`). Server commit'ib TTS-kasutuse sünteesi valmimisel sõltumata sellest, et kasutaja oli vahepeal Stop'i valinud (`app/api/tts/route.js:273-353`).
@@ -2750,6 +2802,28 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Kasutaja peatamiskäsk võib näiliselt toimida, kuid heli hakkab hiljem ootamatult mängima, sh pärast lehelt lahkumist; tasuline tähemärgikvoot kulub. See on eriti halb avalikus või klienditöö keskkonnas, kus etteloetud sisu on tundlik.
 
 **Vastuvõtukriteerium.** Serveritee vajab ühe aktiivse sünteesipäringu controller'it ja monotonset request-tokenit; Stop/unmount peab abortima fetch'i ning hiline vastus ei tohi audioobjekti luua ega state'i muuta. Server peab kliendi aborti providerile edasi kandma ja kasutuse ausalt settle'ima vastavalt tehtud töö piirile. Hook-/brauseritest peab peatama enne vastust, pärast vastust enne `play()`-d ja pärast unmount'i.
+
+**Seis (11.08.2026): DONE, brauserikiht NOT_PROVEN. Migratsiooni ei ole vaja.**
+- **Controller ja monotonne token olid koodibaasis olemas ja kasutamata:**
+  `lib/client/latestRequestGate.js` on täpselt see primitiiv, mida kriteerium kirjeldab.
+  Uut ei ehitatud — `useSpeech` võtab ta kasutusele.
+- **Otsus „kas ma tohin veel heli teha" tehakse VASTUSE saabudes, mitte kutse alustamisel.**
+  Just see aken oli leid: `stopSpeaking()` tühistas brauseri kõnesünteesi ja juba loodud
+  `Audio` objekti, aga poolelioleva `fetch`-i kohta ei teadnud midagi, seega hiline vastus
+  võis heli mängima panna ka pärast lehelt lahkumist. Nüüd katkestab Stop päringu ja
+  `attempt.isCurrent()` valvab lisaks seda hetke, kus vastus juba käes on.
+- **Unmount oli juba kaetud** — mahavõtmise effect kutsub `stopSpeaking()`-i, ja see kutsub
+  nüüd `invalidate()`-i. Uut elutsükliharu ei tekkinud.
+- **Katkestus EI kuku varurajale.** TartuNLP katse `catch` neelas iga vea ja läks edasi
+  järgmise pakkuja juurde; kui ta neelaks ka Stop'i, tähendaks „Peata ettelugemine" lihtsalt
+  teise pakkuja poole pöördumist. Nüüd visatakse katkestus ja ajapiir edasi, tõrge mitte.
+- **Serveripool kannab kliendi abordi providerile edasi** (SOL-VOICE-02 signaal) ja arveldab
+  ausalt: heli ei jõudnud kasutajani, seega reservatsioon vabaneb. Sondis mõõdetud päris
+  ämbri peal.
+- **NOT_PROVEN: brauseritest.** Hooki otsuskiht on tõendatud `createLatestRequestGate`
+  käitumisega (Stop enne vastust · uus kutse katkestab eelmise · hiline vastus ei kuulu enam
+  ühelegi kutsele) ja marsruudi/hooki leping allkirjade tasemel, aga DOM-iga testisviiti
+  selles projektis ei ole — päris `Audio.play()` ajastust ei ole mõõdetud.
 
 ### SOL-ROOM-01 — arhiveeritud ruum ei ole serveris tegelikult kirjutuskaitstud — P1
 

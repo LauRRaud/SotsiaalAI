@@ -157,13 +157,19 @@ test("kõneleja valik päringus on AINULT admini oma", () => {
 
 test("katse ei saa ettelugemist katki teha", () => {
   // TartuNLP tõrge → sama päring läheb edasi senist teed pidi.
-  assert.match(ttsRoute, /synthTartuNlp\(\{ text, speaker: tartuSpeaker \}\)\.catch/);
+  assert.match(ttsRoute, /synthTartuNlp\(\{ text, speaker: tartuSpeaker, signal: req\.signal \}\)\.catch/);
   assert.match(ttsRoute, /if \(result && !result\.ok\) result = null;/);
   assert.match(ttsRoute, /if \(!result\) \{\s*\n\s*result = googleEnabled/);
-  // Ja ta ei tohi rippuma jääda.
-  assert.match(ttsRoute, /new AbortController\(\)/);
-  assert.match(ttsRoute, /TARTUNLP_TTS_TIMEOUT_MS/);
-  assert.match(ttsRoute, /clearTimeout\(timer\)/);
+  // Ja ta ei tohi rippuma jääda. Ajapiir tuli 11.08 oma `AbortController` + `clearTimeout`
+  // paari asemel jagatud `providerAbortSignal`-i peale (SOL-VOICE-02): põhjus tuleb nüüd
+  // platvormilt, seega timeout ja kasutaja Stop on eristatavad.
+  assert.match(ttsRoute, /providerAbortSignal\(signal, TARTUNLP_TTS_TIMEOUT_MS\)/);
+});
+
+test("kasutaja katkestus EI kuku varurajale", () => {
+  // Varurada on olemas provideri TÕRKE jaoks. Kui ta neelaks ka Stop'i, tähendaks
+  // „Peata ettelugemine" lihtsalt teise pakkuja poole pöördumist (SOL-VOICE-03).
+  assert.match(ttsRoute, /if \(isClientAbort\(error\) \|\| isProviderTimeout\(error\)\) throw error;/);
 });
 
 test("katse jätab võrdlusandmed maha", () => {

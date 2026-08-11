@@ -19,13 +19,13 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **117 / 403** selle tööpuu loenduri järgi · **117 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 85 × P2 · 1 × P3 |
+| Tehtud leidu | **120 / 403** selle tööpuu loenduri järgi · **120 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Peatükke lõpuni | **8 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 198 × P1 · 84 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 309) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 2 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is) ja SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH on LÕPETATUD (15/15)** — auditi seitsmes täis peatükk ja ühtlasi suurim. Dokumendi järjekorras järgmised on kvalifitseeritud või jätkufailide päralt (SOL-CW 3 lahtist = kaks otsust + üks brauseritest · SOL-ORG ja SOL-DOC lahtised tulevad AINULT jätkufailidest · SOL-RES-07 kvalifitseeritud), seega esimene puutumata peatükk on **SOL-VOICE (0/3)** — kui just ei otsustata jätkufaile ette tõsta. Vt lahtist tooteotsust allpool. |
-| Käsil oleva peatüki saba | SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
+| Toodangus | **DEPLOY'MATA JÄÄK: 5 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**) ja kogu SOL-VOICE (01…03). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
+| Järgmine peatükk | **SOL-AUTH (15/15) ja SOL-VOICE (3/3) on lõpetatud** — kaheksa täis peatükki. Dokumendi järjekorras järgmine puutumata peatükk on **SOL-ROOM (0/7, 5 × P1)**; tema ees seisvad SOL-CW, SOL-ORG, SOL-DOC ja SOL-RES lahtised on kas kvalifitseeritud, otsuse taga või tulevad AINULT jätkufailidest. Vt lahtist tooteotsust allpool. |
+| Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-WB 18 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-URG 11 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
 ## Auditikorpus ei ole ühes puus (mõõdetud 11.08 hilisõhtul)
@@ -147,7 +147,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 | Uuringud | SOL-RES | 6/7 | 1 × P2 | lahtine ainult RES-07 (kvalifitseeritud) |
 | Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | **tehtud** |
 | Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
-| Hääl (STT/TTS) | SOL-VOICE | 0/3 | 2 × P1 · 1 × P2 | |
+| Hääl (STT/TTS) | SOL-VOICE | **3/3** | – | **tehtud** |
 | Ruumid | SOL-ROOM | 0/7 | 5 × P1 · 2 × P2 | |
 | Kõned ja salvestus | SOL-CALL | 10/13 | 3 × P2 | lahtised CALL-07, -08, -09 |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | 1 × P1 · 2 × P2 | |
@@ -285,6 +285,25 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   kaks paralleelset „saada uuesti" jätsid konto ilma töötava kinnituslingita). Sond mõõdab
   `verify-email`-i eraldi jaamana, **`npm run auth:reset:probe` 35/35**, ja ühiktest nõuab
   jagatud rada kõigilt kolmelt marsruudilt.
+- **SOL-VOICE-01, -02, -03** (11.08) — **kogu häälepeatükk ühe plokina, sest kõik kolm elasid
+  ühes voos.** `-01`: tundmatu formaadi korral maksis kuni 12 MB tihendatud kõne täpselt
+  minuti ühikuid (`|| 60`) ja provideri kinnitatud kestust ei kasutatud arvestuses kunagi —
+  lahendus oli koodibaasis olemas ja kasutamata (`lib/usage/sttDuration.js`, SOL-DOC-02).
+  Lisaks kadus lipp `transcriptionCompleted`, mis pani commit'i vea kasutaja arvele:
+  reservatsioon jäi rippuma JA valmis transkript visati ära. `-02`: neljal providerikutsel ei
+  olnud ajapiiri ega päringu signaali — aeglane provider hoidis Next-i töölõnga, liidest ja
+  reservatsiooni määramata aja kinni, sest vabastus elab `catch`-is, kuhu igavesti ootel
+  promise ei jõua. Nüüd kannab üks signaal kahte ERISTATAVAT sündmust (meie ajapiir → 504,
+  kasutaja Stop → 499) ja `withAbort` hoiab piiri ka siis, kui SDK signaali eirab. `-03`:
+  „Peata ettelugemine" ei teadnud pooleliolevast serverikutsest midagi — heli võis hakata
+  mängima pärast Stop'i, ka pärast lehelt lahkumist; primitiiv oli olemas ja kasutamata
+  (`lib/client/latestRequestGate.js`), ja otsus „kas ma tohin veel heli teha" tehakse nüüd
+  VASTUSE saabudes. **`npm run voice:settle:probe` 15/15 päris PostgreSQL-is MITTE KUNAGI
+  LAHENEVA provideriga**; tõend on `UsageReservation` rida ja ämbri seis. Negatiivkontroll
+  sama ämbri peal: vana commit ilma tegeliku kestuseta võtab kogu reservatsiooni, ja 12 MB
+  fail, mis vanas rajas maksis 60 sekundit, ei mahu enam 900-sekundilise limiidi sisse.
+  **NOT_PROVEN jääb brauserikiht** (DOM-testisviiti ei ole) ja `-01` „transkripti taastamine"
+  ainult arvelduse mõttes — teksti ennast `/api/stt` ei püsista, vt leiu Seis-lõiku.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude

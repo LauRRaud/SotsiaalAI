@@ -13,11 +13,14 @@ import { convertFloat32WavToPcm16 } from "@/lib/audio/wavPcm";
 import { resolveGoogleApplicationCredentialsPath } from "@/lib/googleCredentials";
 import { safeError } from "@/lib/privacy/safeError";
 import {
-  commitUsageForRequest,
-  releaseUsageForRequest,
-  reserveUsageForRequest,
-  usageErrorDescriptor
-} from "@/lib/usage/routeAdapter";
+  TTS_PROVIDER_TIMEOUT_MS,
+  isClientAbort,
+  isProviderTimeout,
+  providerAbortSignal,
+  withAbort
+} from "@/lib/net/providerRequest";
+import { commitProviderUsage, settleProviderFailure } from "@/lib/usage/providerSettlement";
+import { reserveUsageForRequest, usageErrorDescriptor } from "@/lib/usage/routeAdapter";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -100,7 +103,7 @@ function readRequestSize(req) {
   return toNullableNumber(req.headers.get("content-length"));
 }
 
-async function synthGoogle({ text, locale }) {
+async function synthGoogle({ text, locale, signal }) {
   const credentialsPath = resolveGoogleApplicationCredentialsPath();
   const cacheKey = credentialsPath || "__default__";
   if (!cachedGcpTtsClient || cachedGcpTtsClientKey !== cacheKey) {
@@ -110,14 +113,22 @@ async function synthGoogle({ text, locale }) {
     cachedGcpTtsClientKey = cacheKey;
   }
 
-  const [resp] = await cachedGcpTtsClient.synthesizeSpeech({
-    input: { text },
-    voice: pickGoogleVoice(locale),
-    audioConfig: {
-      audioEncoding: "MP3",
-      speakingRate: 1.0
-    }
-  });
+  // gRPC-l on oma ajapiir; `withAbort` on marsruudi oma piir juhuks, kui klienditeek teda
+  // eirab, ja ühtlasi see, mis kannab kasutaja Stop'i (SOL-VOICE-02, -03).
+  const [resp] = await withAbort(
+    cachedGcpTtsClient.synthesizeSpeech(
+      {
+        input: { text },
+        voice: pickGoogleVoice(locale),
+        audioConfig: {
+          audioEncoding: "MP3",
+          speakingRate: 1.0
+        }
+      },
+      { timeout: TTS_PROVIDER_TIMEOUT_MS }
+    ),
+    signal
+  );
   if (!resp?.audioContent) {
     return {
       ok: false,
@@ -135,11 +146,11 @@ async function synthGoogle({ text, locale }) {
   };
 }
 
-async function synthTartuNlp({ text, speaker }) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TARTUNLP_TTS_TIMEOUT_MS);
+async function synthTartuNlp({ text, speaker, signal }) {
+  // Katse oli ainus koht, kus ajapiir juba oli. Nüüd kannab sama signaal ka kasutaja Stop'i.
+  const timeoutSignal = providerAbortSignal(signal, TARTUNLP_TTS_TIMEOUT_MS);
   const startedAt = Date.now();
-  try {
+  {
     const res = await fetch(TARTUNLP_TTS_URL, {
       method: "POST",
       headers: {
@@ -151,7 +162,7 @@ async function synthTartuNlp({ text, speaker }) {
         speaker,
         speed: 1
       }),
-      signal: controller.signal
+      signal: timeoutSignal
     });
     if (!res.ok) {
       return { ok: false, messageKey: "api.tts.synthesis_failed" };
@@ -172,24 +183,28 @@ async function synthTartuNlp({ text, speaker }) {
       latencyMs: Date.now() - startedAt,
       audioBytes: buf.length
     };
-  } finally {
-    clearTimeout(timer);
   }
 }
 
-async function synthOpenAI({ text }) {
+async function synthOpenAI({ text, signal }) {
   const { default: OpenAI } = await import("openai");
   const client = new OpenAI({
     apiKey: OPENAI_API_KEY
   });
   const startedAt = Date.now();
-  const speech = await client.audio.speech.create({
-    model: OPENAI_TTS_MODEL,
-    voice: OPENAI_TTS_VOICE,
-    input: text,
-    response_format: "mp3",
-    speed: 1.0
-  });
+  const speech = await withAbort(
+    client.audio.speech.create(
+      {
+        model: OPENAI_TTS_MODEL,
+        voice: OPENAI_TTS_VOICE,
+        input: text,
+        response_format: "mp3",
+        speed: 1.0
+      },
+      { signal }
+    ),
+    signal
+  );
   const buf = Buffer.from(await speech.arrayBuffer());
   return {
     ok: true,
@@ -271,7 +286,6 @@ export async function POST(req) {
   const plannedProvider = tartuEnabled ? "tartunlp" : googleEnabled ? "google" : "openai";
 
   let usageHandle = null;
-  let synthesisCompleted = false;
   try {
     usageHandle = await reserveUsageForRequest({
       request: req,
@@ -286,12 +300,18 @@ export async function POST(req) {
     return usageErrorJson(error, "tts.synthesize", localeFromRequest(req, locale));
   }
 
+  // Üks signaal kahe sündmuse jaoks: meie ajapiir ja kasutaja „Peata ettelugemine"
+  // (SOL-VOICE-02, -03). Ilma temata jätkas süntees pärast Stop'i lõpuni ja kvoot kulus.
+  const synthesisSignal = providerAbortSignal(req.signal, TTS_PROVIDER_TIMEOUT_MS);
+
   try {
     // Katse ei tohi ettelugemist katki teha: kui TartuNLP ei vasta, läheb
-    // sama päring edasi senist teed pidi.
+    // sama päring edasi senist teed pidi. Kasutaja katkestust see varurada EI neela —
+    // muidu tähendaks Stop lihtsalt teise pakkuja poole pöördumist.
     let result = null;
     if (tartuEnabled) {
-      result = await synthTartuNlp({ text, speaker: tartuSpeaker }).catch(error => {
+      result = await synthTartuNlp({ text, speaker: tartuSpeaker, signal: req.signal }).catch(error => {
+        if (isClientAbort(error) || isProviderTimeout(error)) throw error;
         console.error("tts tartunlp", safeError(error));
         return null;
       });
@@ -299,16 +319,20 @@ export async function POST(req) {
     }
     if (!result) {
       result = googleEnabled
-        ? await synthGoogle({ text, locale })
+        ? await synthGoogle({ text, locale, signal: synthesisSignal })
         : openaiEnabled
-          ? await synthOpenAI({ text })
+          ? await synthOpenAI({ text, signal: synthesisSignal })
           : { ok: false, messageKey: "api.tts.synthesis_failed" };
     }
     if (!result.ok) {
       throw new Error(result.messageKey || "api.tts.synthesis_failed");
     }
-    synthesisCompleted = true;
-    await commitUsageForRequest(usageHandle);
+    // Commit'i viga ei vabasta reservatsiooni ega viska valmis heli ära — sama piir, mis
+    // `lib/usage/paidResult.js`-is ja `/api/stt`-s.
+    await commitProviderUsage({
+      handle: usageHandle,
+      onError: (commitError) => console.error("[tts] usage commit failed", safeError(commitError))
+    });
     const durationSeconds = await readAudioDurationSecondsFromBuffer(result.audioBuffer, result.contentType);
     if (result.provider === "openai") {
       await logEvent("tts_cost_usage", {
@@ -352,14 +376,19 @@ export async function POST(req) {
       provider: result.provider
     });
   } catch (err) {
-    console.error("tts", safeError(err));
-    if (usageHandle && !synthesisCompleted) {
-      try {
-        await releaseUsageForRequest(usageHandle, { reason: "tts_provider_failed" });
-      } catch (releaseError) {
-        console.error("[tts] usage release failed", safeError(releaseError));
-      }
+    // Kolm eri asja said varem sama 500 ja sama logirea: meie ajapiir, kasutaja Stop ja
+    // provideri päris viga. Kõigil on sama tagajärg reservatsioonile — heli ei jõudnud
+    // kasutajani, seega tema eest ei võeta — aga staatus ja logi on eri (SOL-VOICE-02).
+    const failure = await settleProviderFailure({
+      handle: usageHandle,
+      error: err,
+      onError: (releaseError) => console.error("[tts] usage release failed", safeError(releaseError))
+    });
+    if (failure.log) {
+      console.error("tts", safeError(err));
     }
-    return errorJson("api.tts.service_error", 500, localeFromRequest(req, locale));
+    return errorJson("api.tts.service_error", failure.status, localeFromRequest(req, locale), {
+      reason: failure.reason
+    });
   }
 }

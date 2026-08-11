@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import {
+  createLatestRequestGate,
+  isAbortError,
+  withRequestTimeout
+} from "@/lib/client/latestRequestGate";
+import {
   RECORDING_LIMIT_MS,
   RECORDING_WARNING_MS,
   VOICE_NOTICE_KEYS,
@@ -11,6 +16,18 @@ import {
   resolveTtsOutcome,
   usesServerTts
 } from "@/lib/chat/voiceState";
+
+// Kliendi oma ajapiirid (SOL-VOICE-02). Serveril on omad ja need on lühemad — siin on
+// varu võrgu jaoks, mitte teine hinnang provideri kiirusele.
+const STT_CLIENT_TIMEOUT_MS = 90_000;
+const TTS_CLIENT_TIMEOUT_MS = 30_000;
+
+function createRecordingIntentKey() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return `rec-${crypto.randomUUID()}`;
+  }
+  return `rec-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
 
 function getAudioContextClass() {
   if (typeof window === "undefined") return null;
@@ -100,6 +117,12 @@ export function useSpeech({
   const recordingLimitTimerRef = useRef(null);
   // E4 punkt 1: kui see on püsti, EI jõua salvestus providerini.
   const recordingDiscardRef = useRef(false);
+  // Üks salvestus = üks kavatsus = üks tasutav ühik (SOL-VOICE-01). Ilma stabiilse võtmeta
+  // tekitab iga korduskatse uue reservatsiooni ja sama salvestuse eest makstakse mitu korda.
+  const recordingIntentKeyRef = useRef(null);
+  // Üks aktiivne serverisüntees korraga; Stop ja unmount katkestavad ta (SOL-VOICE-03).
+  const ttsGateRef = useRef(null);
+  if (!ttsGateRef.current) ttsGateRef.current = createLatestRequestGate();
   const audioContextRef = useRef(null);
   const audioMeterTimerRef = useRef(null);
   const onErrorRef = useRef(onError);
@@ -159,6 +182,10 @@ export function useSpeech({
     } catch {}
   }, []);
   const stopSpeaking = useCallback(() => {
+    // Katkestus peab jõudma ka POOLELIOLEVA serverikutseni. Varem tühistas Stop ainult
+    // brauseri kõnesünteesi ja juba loodud `Audio` objekti — server sünteesis lõpuni,
+    // kvoot kulus ja hiline vastus võis heli hiljem mängima panna, ka pärast lahkumist.
+    ttsGateRef.current?.invalidate();
     try {
       synthesisRef.current?.cancel?.();
     } catch {}
@@ -220,6 +247,10 @@ export function useSpeech({
     // kavatsetud rada, mitte varu — aga tema TÕRGE öeldakse ikka välja.
     const serverRoute = usesServerTts(locale);
     if (serverRoute) {
+      // `begin` katkestab eelmise kutse ja annab uue põlvkonna. Otsus „kas ma tohin veel
+      // heli teha" tehakse VASTUSE saabudes, mitte kutse alustamisel — vahepeal võis
+      // kasutaja Stop'i vajutada või komponent lahti võtta.
+      const attempt = ttsGateRef.current.begin(locale);
       try {
         const res = await fetch("/api/tts", {
           method: "POST",
@@ -229,9 +260,11 @@ export function useSpeech({
           body: JSON.stringify({
             text: text.slice(0, 4500),
             locale
-          })
+          }),
+          signal: withRequestTimeout(attempt.signal, TTS_CLIENT_TIMEOUT_MS)
         });
         const data = await res.json().catch(() => ({}));
+        if (!attempt.isCurrent()) return;
         if (res.ok && data?.ok && data?.audioContent) {
           const src = `data:${data.contentType || "audio/mpeg"};base64,${data.audioContent}`;
           const audio = new Audio(src);
@@ -248,7 +281,11 @@ export function useSpeech({
           await audio.play();
           return;
         }
-      } catch {}
+      } catch (error) {
+        // Katkestus ei ole tõrge: Stop on kasutaja enda otsus ja tema järel ei tohi
+        // brauserihääl varuna tööle hüpata.
+        if (isAbortError(error) || !attempt.isCurrent()) return;
+      }
     }
     stopSpeaking();
     const browserSpoke = speakWithBrowser(text);
@@ -317,9 +354,16 @@ export function useSpeech({
         const fd = new FormData();
         fd.append("audio", blob, fileName);
         fd.append("locale", locale || "auto");
+        // Sama salvestus = sama võti, ka korduskatsel: ilma temata tekitab iga kordus uue
+        // reservatsiooni ja ühe salvestuse eest kulub mitu ühikut (SOL-VOICE-01).
+        if (!recordingIntentKeyRef.current) {
+          recordingIntentKeyRef.current = createRecordingIntentKey();
+        }
+        fd.append("idempotencyKey", recordingIntentKeyRef.current);
         const res = await fetch("/api/stt", {
           method: "POST",
-          body: fd
+          body: fd,
+          signal: withRequestTimeout(null, STT_CLIENT_TIMEOUT_MS)
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || data?.ok === false || !data?.text) {
@@ -331,9 +375,13 @@ export function useSpeech({
           }));
         }
         onAppendText?.(data.text);
+        // Tekst on käes — kavatsus on lõpetatud ja järgmine salvestus algab uue võtmega.
+        recordingIntentKeyRef.current = null;
       }
     } catch (err) {
-      setRecordingError(err?.message || tr("chat.mic.error"));
+      setRecordingError(
+        isAbortError(err) ? tr("chat.mic.error") : err?.message || tr("chat.mic.error")
+      );
     }
   }, [clearRecordingTimers, locale, onAppendText, onTranscribeAudio, stopAudioMeter, tr, triggerRecordingPulse]);
 
