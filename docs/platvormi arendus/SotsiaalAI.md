@@ -130,8 +130,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 117/403 leidu, 7/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 120/403 leidu, 8/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -205,8 +205,17 @@ annab ühe kirja), ja vana link vahetub välja alles siis, kui uus on päriselt 
 mille kasutaja lingile klikkides käivitab. **Vajab migratsiooni `20260811220000`** (uus tabel
 `VerificationLinkDispatch`).
 
-`npm test` **3756/3756**, i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy'mata: AUTH-14 (`b7539345`) ja AUTH-15** — server on `1ed23452`.
+**Hääl sai 11.08 kolm piiri, kus enne oli null (SOL-VOICE, peatükk täis).** Ettelugemise
+„Peata" katkestab nüüd ka poolelioleva serverisünteesi — varem sünteesis server lõpuni, kvoot
+kulus ja heli võis hakata mängima pärast lehelt lahkumist. Igal välisel kutsel on ajapiir, mis
+eristab meie oma piiri kasutaja katkestusest, ja kummalgi juhul ei jää reservatsioon rippuma.
+Transkribeerimise arve käib nüüd teenusepakkuja kinnitatud kestuse järgi: tundmatu formaadiga
+fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voice:settle:probe`
+**15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
+**NOT_PROVEN** (DOM-testisviiti ei ole).
+
+`npm test` **3771/3771**, i18n ja eslint puhtad, `db:migrate:check` OK.
+**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15 ja kogu SOL-VOICE** — server on `1ed23452`.
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
@@ -445,9 +454,9 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **200 P1, 85 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
-6/7.** **SOL-AUTH on 11.08 lõpetatud, 15/15** — kõige eespool lahtine peatükk on nüüd
-**SOL-VOICE (0/3)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
+Lahtiseks jääb **198 P1, 84 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+6/7.** **SOL-AUTH (15/15) ja SOL-VOICE (3/3) on 11.08 lõpetatud** — kõige eespool lahtine
+peatükk on nüüd **SOL-ROOM (0/7)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
 otsuse ja brauseri-QA taga.
 
 **Kogu SOL-DOC peatükk (01…09) ja SOL-RES-01…-07 on LIVE** (üheteistkümnes deploy 11.08 10:17,
