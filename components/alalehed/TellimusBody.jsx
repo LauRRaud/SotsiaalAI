@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -11,6 +11,7 @@ import Checkbox from "@/components/ui/Checkbox";
 import { SubpageHeader } from "@/components/ui/SubpageHeader";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import { localizePath } from "@/lib/localizePath";
+import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
 import { backWithTransition, pushWithTransition } from "@/lib/routeTransition";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 const emailReplacement = {
@@ -85,6 +86,11 @@ export default function TellimusBody() {
   const [cancelConfirm, setCancelConfirm] = useState(false);
   const [cancelBusy, setCancelBusy] = useState(false);
   const [cancelError, setCancelError] = useState("");
+  /* SOL-PAY-03: kavatsuse võti elab kuni serveri kindla vastuseni. Topeltklõps ja
+     võrgu-retry kannavad sama võtit (server annab sama checkout'i, mitte teist
+     tasutavat), aga lõppenud või lahtiseks jäänud katse järel mindime uue —
+     muidu vastaks server igavesti „see kavatsus on juba kasutatud". */
+  const checkoutIntentRef = useRef(null);
   const {
     t,
     locale
@@ -255,6 +261,10 @@ export default function TellimusBody() {
       setProcessing(true);
       setError("");
       setInfo("");
+      checkoutIntentRef.current = resolveIntentKey(
+        checkoutIntentRef.current,
+        buildIntentSignature({ flow: "subscription_init", planRole })
+      );
       const res = await fetch("/api/subscription/init", {
         method: "POST",
         headers: {
@@ -262,11 +272,20 @@ export default function TellimusBody() {
         },
         body: JSON.stringify({
           locale,
-          acceptedTerms: checkoutAgreed
+          acceptedTerms: checkoutAgreed,
+          idempotencyKey: checkoutIntentRef.current.key
         })
       });
       const payload = await res.json().catch(() => ({}));
       if (!res.ok) {
+        /* Pooleliolev katse (409) tähendab, et sama kavatsus on juba töös —
+           võtit EI vahetata, muidu tekiks järgmise klõpsuga teine katse. Kõik
+           muud vead lõpetavad selle kavatsuse. */
+        if (res.status !== 409) {
+          checkoutIntentRef.current = null;
+        } else if (String(payload?.messageKey || "") === "api.subscription.checkout_intent_used") {
+          checkoutIntentRef.current = null;
+        }
         setError(resolveApiMessage({
           payload,
           t,
@@ -291,6 +310,8 @@ export default function TellimusBody() {
         }
 
         window.sotsiaalaiMaksekeskusCompleted = () => {
+          // Kavatsus on lahendatud: järgmine tellimus on aus uus kavatsus.
+          checkoutIntentRef.current = null;
           setError("");
           setInfo(t("subscription.payment.confirmation_pending"));
         };

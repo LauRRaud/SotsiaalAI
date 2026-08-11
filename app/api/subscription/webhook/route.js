@@ -23,6 +23,11 @@ import {
   verifyMaksekeskusMac,
 } from "@/lib/payments/maksekeskus";
 import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
+import { isTerminalPaymentStatus } from "@/lib/payments/providerOutcome";
+import {
+  buildRenewalFailureSubscriptionUpdate,
+  planRenewalFailure
+} from "@/lib/payments/recurring";
 import { logPaymentAudit, logPaymentEvent } from "@/lib/payments/observability";
 import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
 import { safeError } from "@/lib/privacy/safeError";
@@ -42,7 +47,10 @@ const SUBSCRIPTION_WEBHOOK_RATE_LIMIT_MAX = Number(process.env.SUBSCRIPTION_WEBH
 const REFUNDED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_REFUNDED_ACTION, "cancel");
 const CANCELED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_CANCELED_ACTION, "none");
 const FAILED_ACTION = normalizeSubscriptionAction(process.env.SUBSCRIPTION_WEBHOOK_FAILED_ACTION, "none");
-const FINAL_STATUSES = new Set([PaymentStatus.PAID, PaymentStatus.CANCELED, PaymentStatus.FAILED, PaymentStatus.REFUNDED]);
+/* SOL-PAY-02: lõplikkuse definitsioon elab ühes kohas. `RECONCILE_PENDING` EI
+   ole siin — see on kogu leiu mõte: ebamäärase tulemuse peale peab hilisem PAID
+   veel õiguse aktiveerima. */
+const isFinalStatus = isTerminalPaymentStatus;
 const OWNER_NOTIFICATION_EMAIL = String(process.env.PAYMENT_OWNER_EMAIL || "info@sotsiaal.ai")
   .trim()
   .toLowerCase();
@@ -352,7 +360,7 @@ export async function POST(request) {
         };
       }
 
-      if (FINAL_STATUSES.has(payment.status) && nextStatus !== PaymentStatus.REFUNDED) {
+      if (isFinalStatus(payment.status) && nextStatus !== PaymentStatus.REFUNDED) {
         return {
           ignored: true,
           paymentId: payment.id,
@@ -583,15 +591,27 @@ export async function POST(request) {
         (nextStatus === PaymentStatus.FAILED || nextStatus === PaymentStatus.CANCELED) &&
         payment.subscriptionId
       ) {
+        /* SOL-PAY-01/-02: providerilt KINNITATUD eitus on tõrge nagu iga teine
+           ja tema tagajärg tuleb samast kohast, kus worker'i oma
+           (`planRenewalFailure`). Vana kood kasvatas siin ainult loendurit ja
+           jättis `nextBilling`-u minevikku — järgmine jooks laadis kohe uuesti,
+           ilma päevagraafikuta, ja lae peal jäi tellimus igaveseks `PAST_DUE`
+           seisu ilma lõpliku tühistuseta. */
+        const failedAt = new Date();
+        const current = await tx.subscription.findUnique({
+          where: { id: payment.subscriptionId },
+          select: { billingRetryCount: true, nextBilling: true, billingMethodId: true }
+        });
+        const failurePlan = planRenewalFailure({
+          retryCountBefore: current?.billingRetryCount,
+          failedAt
+        });
         subscription = await tx.subscription.update({
           where: { id: payment.subscriptionId },
-          data: {
-            status: SubscriptionStatus.PAST_DUE,
-            pastDueSince: new Date(),
-            billingRetryCount: {
-              increment: 1
-            }
-          },
+          data: buildRenewalFailureSubscriptionUpdate(failurePlan, {
+            failedAt,
+            currentNextBilling: current?.nextBilling || null
+          }),
           select: {
             id: true,
             status: true,
@@ -599,9 +619,15 @@ export async function POST(request) {
             nextBilling: true
           }
         });
+        if (current?.billingMethodId && failurePlan.billingMethodStatus) {
+          await tx.billingMethod.update({
+            where: { id: current.billingMethodId },
+            data: { status: failurePlan.billingMethodStatus }
+          });
+        }
         logPaymentAudit({
-          action: "subscription_past_due",
-          result: "past_due",
+          action: failurePlan.cancel ? "subscription_renewal_canceled" : "subscription_past_due",
+          result: failurePlan.cancel ? "canceled" : "past_due",
           paymentId: updatedPayment.id,
           subscriptionId: payment.subscriptionId
         });

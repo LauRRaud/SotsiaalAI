@@ -5425,7 +5425,10 @@
       "webhook_process_failed": "Could not process payment webhook.",
       "direct_activation_disabled": "Direct activation is disabled. Start checkout first.",
       "plan_not_allowed": "The selected subscription plan does not match your account role.",
-      "checkout_terms_required": "Please agree to the terms before starting payment."
+      "checkout_terms_required": "Please agree to the terms before starting payment.",
+      "checkout_intent_required": "The payment request key is missing. Refresh the page and try again.",
+      "checkout_in_progress": "A payment is already being started. Finish or close the previous payment window and try again in a moment.",
+      "checkout_intent_used": "This payment attempt has already ended. Start a new payment."
     },
     "invites": {
       "email_from_missing": "Sender email is not configured.",

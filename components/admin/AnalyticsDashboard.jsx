@@ -3188,6 +3188,9 @@ export default function AnalyticsDashboard() {
                   : joinCounts(summary?.billing?.paymentsByStatus30d, {}, localeTag, [
                       "PAID",
                       "INITIATED",
+                      // SOL-PAY-02: ebamäärane tulemus on oma seis. Ilma temata
+                      // oleks järjekord siin vaikselt nähtamatu.
+                      "RECONCILE_PENDING",
                       "FAILED",
                       "CANCELED",
                       "REFUNDED"

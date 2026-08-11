@@ -9,9 +9,19 @@ import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
 import {
   createMaksekeskusRecurringSetup,
+  getMaksekeskusCheckoutClientConfig,
   makeProviderPaymentId,
 } from "@/lib/payments/maksekeskus";
 import { getInitialSubscriptionPaymentKind, isRecurringBillingEnabled } from "@/lib/payments/recurring";
+import {
+  claimCheckoutIntent,
+  getStoredCheckoutTransactionId,
+  normalizeClientIntentKey
+} from "@/lib/payments/checkoutIntent";
+import {
+  PaymentFailureStage,
+  classifyPaymentFailure
+} from "@/lib/payments/providerOutcome";
 import { logPaymentEvent } from "@/lib/payments/observability";
 import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { safeError } from "@/lib/privacy/safeError";
@@ -203,7 +213,16 @@ export async function POST(request) {
     return errorJson("api.subscription.recurring_provider_unavailable", 503, locale);
   }
 
+  /* SOL-PAY-03: kavatsus tuleb kliendilt ja ta on kohustuslik. Võtmeta päring
+     tähendaks „tee uus tasuline checkout", mis on täpselt see käitumine, mille
+     leid nimetas. */
+  const clientIntentKey = normalizeClientIntentKey(body?.idempotencyKey ?? body?.clientIntentKey);
+  if (!clientIntentKey) {
+    return errorJson("api.subscription.checkout_intent_required", 400, locale);
+  }
+
   let paymentRecord = null;
+  let providerCalled = false;
   try {
     logPaymentEvent("subscription_init_started", {
       userId: session.userId,
@@ -213,48 +232,19 @@ export async function POST(request) {
       currency
     });
 
-    const existing = await prisma.subscription.findFirst({
-      where: { userId: session.userId },
-      orderBy: [{ updatedAt: "desc" }],
-      select: {
-        id: true,
-        status: true,
-        validUntil: true,
-        plan: true
-      }
-    });
-
-    if (isSubscriptionActive(existing)) {
-      return errorJson("api.subscription.already_active", 409, locale);
-    }
-
-    const subscription = existing
-      ? await prisma.subscription.update({
-          where: { id: existing.id },
-          data: {
-            plan,
-            planDefinitionId,
-            billingMode: BillingMode.RECURRING,
-            billingInterval: BillingInterval.MONTHLY,
-            billingRetryCount: 0
-          },
-          select: {
-            id: true,
-            status: true,
-            validUntil: true,
-            plan: true
-          }
-        })
-      : await prisma.subscription.create({
-          data: {
-            userId: session.userId,
-            status: SubscriptionStatus.NONE,
-            plan,
-            planDefinitionId,
-            billingMode: BillingMode.RECURRING,
-            billingInterval: BillingInterval.MONTHLY,
-            billingRetryCount: 0
-          },
+    /* Kogu otsus „kas see kasutaja tohib avada uue tasutava checkout'i" käib ühe
+       nõuandeluku all: aktiivsuse kontroll, tellimuse upsert ja makse loomine.
+       Vana kood tegi kõik kolm eraldi päringutena, seega kaks paralleelset
+       init'i võisid mõlemad läbida. */
+    const claim = await claimCheckoutIntent({
+      db: prisma,
+      userId: session.userId,
+      clientIntentKey,
+      expected: { amount, currency, kind: getInitialSubscriptionPaymentKind() },
+      createAttempt: async (tx) => {
+        const existing = await tx.subscription.findFirst({
+          where: { userId: session.userId },
+          orderBy: [{ updatedAt: "desc" }],
           select: {
             id: true,
             status: true,
@@ -263,34 +253,118 @@ export async function POST(request) {
           }
         });
 
-    const providerPaymentId = makeProviderPaymentId(session.userId);
-    paymentRecord = await prisma.payment.create({
-      data: {
-        subscriptionId: subscription.id,
-        userId: session.userId,
-        provider: PaymentProvider.MAKSEKESKUS,
-        kind: getInitialSubscriptionPaymentKind(),
-        providerPaymentId,
-        amount,
-        currency,
-        status: PaymentStatus.INITIATED,
-        raw: {
-          flow: "subscription_init",
-          plan,
-          planRole,
-          locale,
-          billingMode: BillingMode.RECURRING,
-          recurringEnabled: true,
-          checkoutConsent: true
+        if (isSubscriptionActive(existing)) {
+          const activeError = new Error("api.subscription.already_active");
+          activeError.code = "SUBSCRIPTION_ALREADY_ACTIVE";
+          throw activeError;
         }
-      },
-      select: {
-        id: true,
-        providerPaymentId: true,
-        status: true,
-        raw: true
+
+        const subscription = existing
+          ? await tx.subscription.update({
+              where: { id: existing.id },
+              data: {
+                plan,
+                planDefinitionId,
+                billingMode: BillingMode.RECURRING,
+                billingInterval: BillingInterval.MONTHLY,
+                billingRetryCount: 0
+              },
+              select: {
+                id: true,
+                status: true,
+                validUntil: true,
+                plan: true
+              }
+            })
+          : await tx.subscription.create({
+              data: {
+                userId: session.userId,
+                status: SubscriptionStatus.NONE,
+                plan,
+                planDefinitionId,
+                billingMode: BillingMode.RECURRING,
+                billingInterval: BillingInterval.MONTHLY,
+                billingRetryCount: 0
+              },
+              select: {
+                id: true,
+                status: true,
+                validUntil: true,
+                plan: true
+              }
+            });
+
+        return tx.payment.create({
+          data: {
+            subscriptionId: subscription.id,
+            userId: session.userId,
+            provider: PaymentProvider.MAKSEKESKUS,
+            kind: getInitialSubscriptionPaymentKind(),
+            providerPaymentId: makeProviderPaymentId(session.userId),
+            clientIntentKey,
+            amount,
+            currency,
+            status: PaymentStatus.INITIATED,
+            raw: {
+              flow: "subscription_init",
+              plan,
+              planRole,
+              locale,
+              billingMode: BillingMode.RECURRING,
+              recurringEnabled: true,
+              checkoutConsent: true
+            }
+          },
+          select: {
+            id: true,
+            providerPaymentId: true,
+            status: true,
+            subscriptionId: true,
+            raw: true
+          }
+        });
       }
     });
+
+    if (claim.outcome === "spent") {
+      logPaymentEvent("subscription_init_intent_used", {
+        userId: session.userId,
+        paymentId: claim.payment?.id || null,
+        status: claim.payment?.status || ""
+      });
+      return errorJson("api.subscription.checkout_intent_used", 409, locale);
+    }
+
+    if (claim.outcome === "in_progress" || claim.outcome === "conflict") {
+      logPaymentEvent("subscription_init_checkout_in_progress", {
+        userId: session.userId,
+        paymentId: claim.payment?.id || null,
+        outcome: claim.outcome
+      });
+      return errorJson("api.subscription.checkout_in_progress", 409, locale);
+    }
+
+    if (claim.outcome === "reused") {
+      const clientConfig = getMaksekeskusCheckoutClientConfig();
+      logPaymentEvent("subscription_init_checkout_reused", {
+        userId: session.userId,
+        paymentId: claim.payment.id,
+        providerPaymentId: claim.payment.providerPaymentId
+      });
+      return ok({
+        paymentId: claim.payment.id,
+        providerPaymentId: claim.payment.providerPaymentId,
+        checkoutMode: "iframe_recurring",
+        reused: true,
+        transactionId: getStoredCheckoutTransactionId(claim.payment),
+        publishableKey: clientConfig.publishableKey,
+        scriptUrl: clientConfig.scriptUrl
+      });
+    }
+
+    paymentRecord = claim.payment;
+    const providerPaymentId = paymentRecord.providerPaymentId;
+    const subscription = { id: paymentRecord.subscriptionId };
 
     const returnUrl = resolveUrl(request, process.env.MAKSEKESKUS_RETURN_URL, "/api/subscription/callback");
     const cancelUrl = resolveUrl(request, process.env.MAKSEKESKUS_CANCEL_URL, "/api/subscription/callback");
@@ -316,6 +390,10 @@ export async function POST(request) {
     };
 
     const checkout = await createMaksekeskusRecurringSetup(commonCheckoutInput);
+    /* SOL-PAY-02: siit edasi on provideri pool transaktsioon OLEMAS. Iga
+       järgnev tõrge on MEIE oma ja ei tohi enam anda providerilt kinnitatud
+       eitust — muidu visatakse hilisem PAID ära. */
+    providerCalled = true;
     const finalProviderPaymentId = checkout.providerPaymentId || providerPaymentId;
 
     await prisma.payment.update({
@@ -356,12 +434,25 @@ export async function POST(request) {
       scriptUrl: checkout.scriptUrl
     });
   } catch (error) {
+    if (error?.code === "SUBSCRIPTION_ALREADY_ACTIVE") {
+      return errorJson("api.subscription.already_active", 409, locale);
+    }
+
+    /* SOL-PAY-02: kolm eri asja, mis vana koodi jaoks olid kõik „FAILED".
+       `outcome.status` on RECONCILE_PENDING alati, kui provider VÕIS makse vastu
+       võtta — sealt saab hilisem PAID webhook ta veel üles korjata. */
+    const outcome = classifyPaymentFailure({
+      stage: providerCalled ? PaymentFailureStage.AFTER_PROVIDER : PaymentFailureStage.PROVIDER_CALL,
+      error
+    });
+
     if (paymentRecord?.id) {
       try {
         await prisma.payment.update({
           where: { id: paymentRecord.id },
           data: {
-            status: PaymentStatus.FAILED,
+            status: outcome.status,
+            ...(outcome.terminal ? { failedAt: new Date() } : {}),
             raw: {
               ...(paymentRecord.raw && typeof paymentRecord.raw === "object" ? paymentRecord.raw : {}),
               flow: "subscription_init",
@@ -372,6 +463,8 @@ export async function POST(request) {
               locale,
               recurringEnabled: true,
               checkoutConsent: true,
+              failureReason: outcome.reason,
+              providerConfirmed: outcome.providerConfirmed,
               error: error?.message || "init_failed"
             }
           }
@@ -388,6 +481,8 @@ export async function POST(request) {
       paymentId: paymentRecord?.id || null,
       messageKey,
       status,
+      paymentStatus: outcome.status,
+      failureReason: outcome.reason,
       error
     });
     return errorJson(messageKey, status, locale);

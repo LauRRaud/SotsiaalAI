@@ -17,6 +17,10 @@ import {
   makeProviderPaymentId
 } from "@/lib/payments/maksekeskus";
 import { getInviteSponsoredPaymentKind } from "@/lib/payments/recurring";
+import {
+  PaymentFailureStage,
+  classifyPaymentFailure
+} from "@/lib/payments/providerOutcome";
 import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { requireInviteRoomRole } from "@/lib/invites/roomAccess";
 import {
@@ -396,6 +400,7 @@ export async function POST(request) {
     });
 
     let paymentRecord = null;
+    let providerCalled = false;
 
     try {
       const providerPaymentId = makeProviderPaymentId(auth.userId);
@@ -463,6 +468,10 @@ export async function POST(request) {
         ip,
       });
 
+      /* SOL-PAY-02: checkout on provideri pool olemas. Iga järgnev tõrge on MEIE
+         oma — sponsor võib olla juba maksnud, seega terminaalset FAILED-i siit
+         edasi ei kirjutata ega kutset ei revoke'ita. */
+      providerCalled = true;
       const finalProviderPaymentId =
         checkout.providerPaymentId || providerPaymentId;
 
@@ -494,15 +503,29 @@ export async function POST(request) {
         plan
       });
     } catch (error) {
+      /* SOL-PAY-02, kolmas koopia. Sama muster elas siin sõna-sõnalt: iga erind
+         märkis makse `FAILED`-iks. Sponsorkutse puhul on tagajärg veel karmim —
+         tagasipööramine revoke'ib ka kutse, ja webhook keeldub hiljem
+         terminaalset kutset äratamast (O-M6). Seega ebamäärase tulemuse korral
+         läks sponsori raha ja kutset ei tulnud kunagi. Nüüd pöörab
+         tagasipööramine ainult siis, kui raha KINDLASTI ei liikunud. */
+      const outcome = classifyPaymentFailure({
+        stage: providerCalled ? PaymentFailureStage.AFTER_PROVIDER : PaymentFailureStage.PROVIDER_CALL,
+        error
+      });
+
       if (paymentRecord?.id) {
         try {
           await prisma.payment.update({
             where: { id: paymentRecord.id },
             data: {
-              status: PaymentStatus.FAILED,
+              status: outcome.status,
+              ...(outcome.terminal ? { failedAt: new Date() } : {}),
               raw: {
                 flow: "invite_sponsored_init",
                 inviteId: invite.id,
+                failureReason: outcome.reason,
+                providerConfirmed: outcome.providerConfirmed,
                 error: error?.message || "checkout_create_failed"
               }
             }
@@ -510,19 +533,21 @@ export async function POST(request) {
         } catch {}
       }
 
-      await prisma.invite.update({
-        where: { id: invite.id },
-        data: {
-          status: "REVOKED"
-        }
-      });
+      if (outcome.terminal) {
+        await prisma.invite.update({
+          where: { id: invite.id },
+          data: {
+            status: "REVOKED"
+          }
+        });
 
-      if (roomCheck.roomCreated) {
-        try {
-          await prisma.room.delete({
-            where: { id: roomCheck.room.id }
-          });
-        } catch {}
+        if (roomCheck.roomCreated) {
+          try {
+            await prisma.room.delete({
+              where: { id: roomCheck.room.id }
+            });
+          } catch {}
+        }
       }
 
       throw error;

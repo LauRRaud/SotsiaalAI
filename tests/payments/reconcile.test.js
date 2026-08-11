@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { reconcileStuckPayments, getStuckInitiatedWhere } from "../../lib/payments/reconcile.js";
+import { reconcileStuckPayments, getUnresolvedPaymentWhere } from "../../lib/payments/reconcile.js";
 
 const NOW = new Date("2026-07-19T12:00:00.000Z");
 const HOUR = 60 * 60 * 1000;
@@ -26,8 +26,9 @@ function fakeDb(payments, subscriptions = new Map(), invites = new Map()) {
     },
     payment: {
       async findMany({ where, take }) {
+        const wanted = where.status?.in || [where.status];
         const rows = [...payments.values()]
-          .filter((p) => p.status === where.status)
+          .filter((p) => wanted.includes(p.status))
           .filter((p) => p.provider === where.provider)
           .filter((p) => new Date(p.createdAt).getTime() < new Date(where.createdAt.lt).getTime())
           .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
@@ -84,11 +85,80 @@ function fakeDb(payments, subscriptions = new Map(), invites = new Map()) {
   return db;
 }
 
-test("getStuckInitiatedWhere targets only expired INITIATED MAKSEKESKUS payments", () => {
-  const where = getStuckInitiatedWhere(NOW, 30 * 60 * 1000);
-  assert.equal(where.status, "INITIATED");
+test("getUnresolvedPaymentWhere targets expired INITIATED and RECONCILE_PENDING MAKSEKESKUS payments", () => {
+  const where = getUnresolvedPaymentWhere(NOW, 30 * 60 * 1000);
+  assert.deepEqual(where.status, { in: ["INITIATED", "RECONCILE_PENDING"] });
   assert.equal(where.provider, "MAKSEKESKUS");
   assert.ok(where.createdAt.lt instanceof Date);
+});
+
+/* SOL-PAY-02: ebamäärane katse hoiab tellimust kordusmakse valikust väljas, seega
+   reconciliation on tema AINUS teine väljapääs webhooki kõrval. Kui see valik teda
+   ei näeks, oleks „ei laadi teadmata tulemusega uuesti" vaikne arvelduse peatus. */
+test("RECONCILE_PENDING rida on lahendatav: verifitseeritud PAID aktiveerib kordusmakse", async () => {
+  const payments = new Map([
+    ["p1", {
+      id: "p1",
+      status: "RECONCILE_PENDING",
+      provider: "MAKSEKESKUS",
+      kind: "SUBSCRIPTION_RENEWAL",
+      subscriptionId: "s1",
+      billingMethodId: "bm1",
+      createdAt: new Date(NOW.getTime() - 2 * HOUR),
+      raw: {}
+    }]
+  ]);
+  const subscriptions = new Map([
+    ["s1", {
+      id: "s1",
+      status: "ACTIVE",
+      validUntil: new Date(NOW.getTime() - HOUR),
+      billingMode: "RECURRING",
+      planDefinitionId: "plan_client_v1",
+      plan: "client_monthly",
+      billingRetryCount: 0,
+      user: { role: "CLIENT" }
+    }]
+  ]);
+  const db = fakeDb(payments, subscriptions);
+  const result = await reconcileStuckPayments({
+    db,
+    now: NOW,
+    stuckAfterMs: HOUR,
+    queryProviderStatus: async () => ({ status: "PAID", payload: { status: "PAID" } })
+  });
+
+  assert.equal(result.reconcilePending, 1, "lahendamata katse on eraldi loetav");
+  assert.equal(result.activated, 1);
+  assert.equal(payments.get("p1").status, "PAID");
+  assert.equal(subscriptions.get("s1").status, "ACTIVE");
+  assert.ok(
+    new Date(subscriptions.get("s1").validUntil).getTime() > NOW.getTime(),
+    "kinnitatud makse pikendab perioodi"
+  );
+});
+
+test("RECONCILE_PENDING rida, mille provider kinnitab FAILED-ina, muutub terminaalseks", async () => {
+  const payments = new Map([
+    ["p1", {
+      id: "p1",
+      status: "RECONCILE_PENDING",
+      provider: "MAKSEKESKUS",
+      kind: "SUBSCRIPTION_RENEWAL",
+      subscriptionId: "s1",
+      createdAt: new Date(NOW.getTime() - 2 * HOUR),
+      raw: {}
+    }]
+  ]);
+  const db = fakeDb(payments);
+  const result = await reconcileStuckPayments({
+    db,
+    now: NOW,
+    stuckAfterMs: HOUR,
+    queryProviderStatus: async () => ({ status: "FAILED" })
+  });
+  assert.equal(result.failed, 1);
+  assert.equal(payments.get("p1").status, "FAILED");
 });
 
 test("report-only (no provider query) never activates", async () => {

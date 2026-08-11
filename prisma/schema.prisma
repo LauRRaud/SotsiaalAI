@@ -60,12 +60,18 @@ enum PaymentProvider {
   TEST
 }
 
+/// SOL-PAY-02: `FAILED` on PROVIDERI KINNITATUD eitus ja seetõttu terminaalne —
+/// hilisemat `PAID`-i tema peale ei võeta. Ebamäärane tulemus (timeout, katkenud
+/// võrk, 5xx, meie enda kirjutusviga PÄRAST providerikutset) ei ole eitus: raha
+/// võis liikuda. Selle jaoks on `RECONCILE_PENDING` — mitteterminaalne seis,
+/// mille webhook või reconciliation-worker lahendab.
 enum PaymentStatus {
   INITIATED
   PAID
   CANCELED
   FAILED
   REFUNDED
+  RECONCILE_PENDING
 }
 
 enum PaymentKind {
@@ -1202,6 +1208,10 @@ model Payment {
   kind              PaymentKind     @default(OTHER)
   billingMethodId   String?
   providerPaymentId String
+  /// SOL-PAY-03: kliendi kavatsuse võti. Sama võti = sama makse: topeltklõps,
+  /// teine vahekaart või võrgu-retry ei ava teist tasutavat checkout'i. NULL
+  /// jääb piiranguta (pärandread ja serveripoolsed kordusmaksed).
+  clientIntentKey   String?
   amount            Decimal         @db.Decimal(10, 2)
   currency          String          @default("EUR")
   status            PaymentStatus
@@ -1218,11 +1228,13 @@ model Payment {
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerPaymentId])
+  @@unique([userId, clientIntentKey])
   @@index([subscriptionId])
   @@index([billingMethodId])
   @@index([inviteId])
   @@index([userId])
   @@index([kind])
+  @@index([status])
 }
 
 model BillingMethod {

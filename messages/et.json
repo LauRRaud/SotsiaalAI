@@ -5425,7 +5425,10 @@
       "webhook_process_failed": "Maksete webhooki töötlemine ebaõnnestus.",
       "direct_activation_disabled": "Otse aktiveerimine on keelatud. Alusta kõigepealt makse algatamisest.",
       "plan_not_allowed": "Valitud tellimuspakett ei vasta sinu kontorollile.",
-      "checkout_terms_required": "Enne maksmist peab tingimustega nõustuma."
+      "checkout_terms_required": "Enne maksmist peab tingimustega nõustuma.",
+      "checkout_intent_required": "Makse algatamise võti puudub. Värskenda leht ja proovi uuesti.",
+      "checkout_in_progress": "Makse algatamine on juba pooleli. Lõpeta või sulge eelmine makseaken ja proovi hetke pärast uuesti.",
+      "checkout_intent_used": "See maksekatse on juba lõppenud. Alusta uut makset."
     },
     "invites": {
       "email_from_missing": "Saatja e-posti aadress ei ole seadistatud.",

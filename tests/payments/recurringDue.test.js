@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 
 import {
+  buildRenewalFailureSubscriptionUpdate,
   computeNextRetryAt,
   getDueRecurringSubscriptionWhere,
   getRecurringMaxRetryCount,
+  getUnresolvedRenewalSubscriptionWhere,
   planRenewalFailure,
   shouldCancelAfterRetryCount
 } from "../../lib/payments/recurring.js";
@@ -31,6 +34,16 @@ function matchesWhere(where, row) {
     if (key === "billingMethod") {
       if (!row.billingMethod) return false;
       if (!matchesWhere(value, row.billingMethod)) return false;
+      continue;
+    }
+    if (key === "payments") {
+      const rows = row.payments || [];
+      if (value.none && rows.some(payment => matchesWhere(value.none, payment))) return false;
+      if (value.some && !rows.some(payment => matchesWhere(value.some, payment))) return false;
+      continue;
+    }
+    if (key === "status" && value && typeof value === "object" && Array.isArray(value.in)) {
+      if (!value.in.includes(row.status)) return false;
       continue;
     }
     const actual = row[key];
@@ -60,6 +73,7 @@ function subscriptionRow(overrides = {}) {
     billingRetryCount: 0,
     nextBilling: new Date("2026-07-18T00:00:00.000Z"),
     billingMethod: { status: "ACTIVE", provider: "MAKSEKESKUS" },
+    payments: [],
     ...overrides
   };
 }
@@ -168,6 +182,72 @@ test("SOL-PAY-01: kogu jada failure #1 → retry #2 → retry #3 → cancel jook
   assert.deepEqual(seen, ["PAST_DUE", "PAST_DUE", "CANCELED"]);
   assert.equal(row.billingMethod.status, "FAILED", "meetod märgitakse katkiseks alles loobumisel");
   assert.equal(matchesWhere(where, row), false, "tühistatud tellimust ei valita enam");
+});
+
+/* SOL-PAY-02 — TEADMATA TULEMUSEGA KATSET EI KORRATA.
+
+   Ebamäärane providerikutse (timeout, 5xx, katkenud võrk) võis raha juba võtta.
+   Kui valik seda ei arvesta, laeb järgmine jooks sama kuu eest teist korda. */
+
+test("SOL-PAY-02: lahendamata katsega tellimust ei valita uuesti", () => {
+  const where = getDueRecurringSubscriptionWhere(NOW);
+  const row = subscriptionRow({ payments: [{ status: "RECONCILE_PENDING" }] });
+
+  assert.equal(matchesWhere(where, row), false);
+});
+
+test("SOL-PAY-02: lahendatud katsed ei blokeeri midagi", () => {
+  const where = getDueRecurringSubscriptionWhere(NOW);
+  const row = subscriptionRow({
+    payments: [{ status: "PAID" }, { status: "FAILED" }, { status: "INITIATED" }]
+  });
+
+  assert.equal(matchesWhere(where, row), true);
+});
+
+test("SOL-PAY-02: kinni jäänud tellimused on eraldi loetavad, mitte vaikne vahelejätt", () => {
+  const blockedWhere = getUnresolvedRenewalSubscriptionWhere(NOW);
+  const blocked = subscriptionRow({ payments: [{ status: "RECONCILE_PENDING" }] });
+  const normal = subscriptionRow();
+
+  assert.equal(matchesWhere(blockedWhere, blocked), true);
+  assert.equal(matchesWhere(blockedWhere, normal), false);
+});
+
+/* SOL-PAY-01/-02: tõrke tagajärg ei tohi sõltuda sellest, KUMB rada ta avastas. */
+test("tõrke tagajärg on sama kuju mõlemal rajal", () => {
+  const failedAt = new Date("2026-07-19T00:00:00.000Z");
+  const currentNextBilling = new Date("2026-07-18T00:00:00.000Z");
+
+  const retry = buildRenewalFailureSubscriptionUpdate(
+    planRenewalFailure({ retryCountBefore: 0, failedAt }),
+    { failedAt, currentNextBilling }
+  );
+  assert.equal(retry.status, "PAST_DUE");
+  assert.equal(retry.billingRetryCount, 1);
+  assert.ok(retry.nextBilling > failedAt, "järgmine katse on TULEVIKUS, mitte kohe");
+  assert.equal(retry.canceledAt, undefined);
+
+  const giveUp = buildRenewalFailureSubscriptionUpdate(
+    planRenewalFailure({ retryCountBefore: getRecurringMaxRetryCount() - 1, failedAt }),
+    { failedAt, currentNextBilling }
+  );
+  assert.equal(giveUp.status, "CANCELED");
+  assert.equal(giveUp.nextBilling, currentNextBilling, "loobumisel ei ajastata uut katset");
+  assert.equal(giveUp.canceledAt, failedAt);
+});
+
+test("webhooki tõrkeharu kasutab sama otsust, mitte oma loendurikasvatust", () => {
+  const source = readFileSync(
+    new URL("../../app/api/subscription/webhook/route.js", import.meta.url),
+    "utf8"
+  );
+  assert.match(source, /planRenewalFailure\(/);
+  assert.match(source, /buildRenewalFailureSubscriptionUpdate\(/);
+  assert.ok(
+    !/billingRetryCount:\s*\{\s*\n?\s*increment:/.test(source),
+    "vana kuju: ainult loenduri kasv, nextBilling jäi minevikku → kohene uus laadimine"
+  );
 });
 
 test("SOL-PAY-01: õnnestunud katse järel on tellimus jälle tavaline", () => {

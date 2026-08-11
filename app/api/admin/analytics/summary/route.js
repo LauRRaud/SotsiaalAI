@@ -917,15 +917,21 @@ export async function GET(req) {
     const ragSourceQuality = summarizeRagTraceSourceQuality(ragTraceLogs);
     const sourcePackageSummary = await getSourcePackageSnapshotSummary();
 
-    // E2: stuck INITIATED loendur (ainult-vaade). Reconciliation-worker töötleb
+    // E2: lahtiste maksete loendur (ainult-vaade). Reconciliation-worker töötleb
     // neid; admin ei saa neid nupust "PAID"-iks teha.
+    // SOL-PAY-02: `RECONCILE_PENDING` kuulub siia sisse — see on ebamäärase
+    // provideritulemuse seis ja ta hoiab kordusmakse valikut kinni, seega ta on
+    // täpselt see rida, mida operaator peab nägema.
     const stuckInitiatedMinutes = Math.max(
       5,
       Number(process.env.PAYMENT_RECONCILE_STUCK_MINUTES || 30)
     );
     const stuckInitiatedCutoff = new Date(now.getTime() - stuckInitiatedMinutes * 60 * 1000);
     const stuckInitiatedCount = await prisma.payment.count({
-      where: { status: "INITIATED", createdAt: { lt: stuckInitiatedCutoff } }
+      where: {
+        status: { in: ["INITIATED", "RECONCILE_PENDING"] },
+        createdAt: { lt: stuckInitiatedCutoff }
+      }
     });
     // E1: mittesiduv plaani-rolli anomaalia agregaat (ei avalda ühegi kasutaja infot).
     const planRoleAnomalies = await countPlanRoleAnomalies(prisma, { now });

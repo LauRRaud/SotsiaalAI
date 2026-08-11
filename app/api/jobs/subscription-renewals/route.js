@@ -16,11 +16,17 @@ import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { readBillingMethodRecurringToken } from "@/lib/payments/tokenCrypto";
 import {
   buildRecurringPaymentReference,
+  buildRenewalFailureSubscriptionUpdate,
   getDueRecurringSubscriptionWhere,
   getRenewalPaymentKind,
+  getUnresolvedRenewalSubscriptionWhere,
   isRecurringBillingEnabled,
   planRenewalFailure
 } from "@/lib/payments/recurring";
+import {
+  PaymentFailureStage,
+  classifyPaymentFailure
+} from "@/lib/payments/providerOutcome";
 import { getRoleMonthlyAmount, getRolePlanDescription, normalizeSubscriptionRole } from "@/lib/subscriptionPlans";
 
 const NO_STORE_HEADERS = {
@@ -162,6 +168,7 @@ export async function POST(request) {
     }
 
     let paymentRecord = null;
+    let chargeAccepted = false;
 
     try {
       paymentRecord = await prisma.payment.create({
@@ -204,6 +211,11 @@ export async function POST(request) {
         },
       });
 
+      /* SOL-PAY-02: provider on kaardi laadinud. Iga järgnev tõrge on MEIE oma
+         ja ei tohi enam kirjutada terminaalset FAILED-i — muidu visatakse
+         hilisem PAID webhook ära ja raha jääb ilma õiguseta. */
+      chargeAccepted = true;
+
       await prisma.payment.update({
         where: { id: paymentRecord.id },
         data: {
@@ -244,6 +256,53 @@ export async function POST(request) {
         continue;
       }
 
+      /* SOL-PAY-02: ebamäärane tulemus EI ole tõrge. Kui provider võis makse
+         vastu võtta (timeout, katkenud võrk, 5xx või meie oma viga pärast
+         laadimist), jääb makse `RECONCILE_PENDING` seisu ja tellimust EI
+         puudutata: katsete loendur ei liigu, `nextBilling` ei liigu, meetodit ei
+         märgita. See on tahtlik — teadmata tulemusega katset ei tohi korrata,
+         muidu on teine laadimine sama kuu eest. Sama tsükli ja katse number
+         annab ka identse `providerPaymentId` viite, seega järgmine jooks põrkab
+         unikaalsuse vastu (`duplicate_skipped`) ja valik ise jätab lahendamata
+         katsega tellimuse vahele (`getDueRecurringSubscriptionWhere`). */
+      const outcome = classifyPaymentFailure({
+        stage: chargeAccepted ? PaymentFailureStage.AFTER_PROVIDER : PaymentFailureStage.PROVIDER_CALL,
+        error
+      });
+
+      if (!outcome.terminal) {
+        if (paymentRecord?.id) {
+          await prisma.payment.update({
+            where: { id: paymentRecord.id },
+            data: {
+              status: outcome.status,
+              raw: {
+                flow: "subscription_renewal_job",
+                subscriptionId: subscription.id,
+                failureReason: outcome.reason,
+                providerConfirmed: false,
+                error: error?.message || "recurring_charge_unknown"
+              }
+            }
+          }).catch(() => {});
+        }
+
+        logPaymentEvent("subscription_renewal_charge_unresolved", {
+          paymentId: paymentRecord?.id || null,
+          subscriptionId: subscription.id,
+          reason: outcome.reason,
+          error
+        });
+
+        results.push({
+          subscriptionId: subscription.id,
+          paymentId: paymentRecord?.id || null,
+          action: "reconcile_pending",
+          reason: outcome.reason
+        });
+        continue;
+      }
+
       // SOL-PAY-01: kolm poolt (tellimuse seis, järgmise katse aeg, maksemeetodi
       // seis) tulevad ühest kohast ja on seal koos loetavad.
       const failurePlan = planRenewalFailure({
@@ -263,6 +322,8 @@ export async function POST(request) {
             raw: {
               flow: "subscription_renewal_job",
               subscriptionId: subscription.id,
+              failureReason: outcome.reason,
+              providerConfirmed: outcome.providerConfirmed,
               error: error?.message || "recurring_charge_failed"
             }
           }
@@ -271,12 +332,10 @@ export async function POST(request) {
 
       await prisma.subscription.update({
         where: { id: subscription.id },
-        data: {
-          status: failurePlan.subscriptionStatus,
-          pastDueSince: now,
-          billingRetryCount: retryCount,
-          nextBilling: shouldCancel ? subscription.nextBilling : nextRetryAt
-        }
+        data: buildRenewalFailureSubscriptionUpdate(failurePlan, {
+          failedAt: now,
+          currentNextBilling: subscription.nextBilling
+        })
       }).catch(() => {});
 
       /* SOL-PAY-01: maksemeetod märgitakse katkiseks ALLES loobumisel. Vana kood
@@ -309,10 +368,23 @@ export async function POST(request) {
     }
   }
 
+  /* SOL-PAY-02: lahendamata katse taha jäänud tellimused on osa vastusest, mitte
+     vaikiv vahelejätt — muidu näeks peatunud arveldus välja nagu „ei olnudki
+     midagi teha". */
+  const unresolvedBlocked = await prisma.subscription.count({
+    where: getUnresolvedRenewalSubscriptionWhere(now)
+  });
+  if (unresolvedBlocked > 0) {
+    logPaymentEvent("subscription_renewal_blocked_by_unresolved", {
+      count: unresolvedBlocked
+    });
+  }
+
   return json({
     ok: true,
     dryRun,
     processed: results.length,
+    unresolvedBlocked,
     results
   });
 }
