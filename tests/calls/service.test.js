@@ -211,11 +211,15 @@ function createPrisma() {
    *      on lukk, mitte tingimuslik kirjutus, ja no-op lukuga oleks kahe liituja
    *      võidujooks fake'i peal PÄRIS võidujooks (mõlemad mahuksid ära).
    *
-   * AUS PIIR: tõmmis võetakse LAISALT, esimese kirjutuse peale — st juba luku
-   * sees. Varasem katse võtta ta tehingu alguses tegi vaikselt katki
-   * paralleeltesti: kaotaja tagasipööramine kustutas ka võitja äsja loodud rea.
-   * Kahe kirjutava tehingu puhul, mis EI võta sama lukku, jääb see mudel
-   * ebatäpseks; päris isolatsiooni tõendab sond PostgreSQL-i vastu.
+   * TAGASIPÖÖRAMINE EI TOHI OLLA JÄME. Kaks korda tegi liiga lai tõmmis testid
+   * vaikselt valeks: tehingu alguses võetud tõmmis kustutas paralleeltestis ka
+   * VÕITJA rea, ja kogu tabeli ennistus kustutas võõra tehingu commit'itud rea
+   * (P2002 võidujooksu test). Ennistus puudutab seetõttu ainult neid ridu, mis
+   * olid tõmmise hetkel olemas, ja kustutab ainult need, mille SEE tehing lõi —
+   * võõras rida jääb puutumata, täpselt nagu päris isolatsioonis.
+   *
+   * AUS PIIR: see on ikkagi mudel. Päris isolatsiooni ja päris tagasipööramist
+   * tõendab sond PostgreSQL-i vastu.
    */
   const WRITE_METHODS = ["create", "update", "updateMany", "deleteMany", "upsert"];
   const lockTails = new Map();
@@ -230,9 +234,16 @@ function createPrisma() {
   db.$transaction = async callback => {
     const models = Object.values(db).filter(value => value && Array.isArray(value.rows));
     const releases = [];
+    const mine = new Set();
     let snapshot = null;
     const takeSnapshot = () => {
-      if (!snapshot) snapshot = models.map(model => [model, model.rows.map(row => ({ ...row }))]);
+      if (!snapshot) {
+        snapshot = models.map(model => [
+          model,
+          model.rows.map(row => ({ ...row })),
+          new Set(model.rows.map(row => row.id))
+        ]);
+      }
     };
     const tx = Object.create(db);
     tx.$executeRaw = async (_strings, ...values) => {
@@ -244,9 +255,11 @@ function createPrisma() {
       const wrapped = Object.create(model);
       for (const method of WRITE_METHODS) {
         if (typeof model[method] !== "function") continue;
-        wrapped[method] = (...args) => {
+        wrapped[method] = async (...args) => {
           takeSnapshot();
-          return model[method](...args);
+          const result = await model[method](...args);
+          if (result?.id) mine.add(result.id);
+          return result;
         };
       }
       tx[name] = wrapped;
@@ -254,9 +267,10 @@ function createPrisma() {
     try {
       return await callback(tx);
     } catch (error) {
-      for (const [model, rows] of snapshot || []) {
+      for (const [model, rows, known] of snapshot || []) {
+        const foreign = model.rows.filter(row => !known.has(row.id) && !mine.has(row.id));
         model.rows.length = 0;
-        model.rows.push(...rows);
+        model.rows.push(...rows, ...foreign);
       }
       throw error;
     } finally {
@@ -1864,4 +1878,142 @@ test("salvestuse eesmärgi rippmenüü sildid tulevad tõlkevõtmetest, mitte k�
   const source = await readFile(new URL("../../components/rooms/RoomCallBar.jsx", import.meta.url), "utf8");
   assert.match(source, /options=\{recordingPurposeOptions\(t\)\}/);
   assert.match(source, /calls\.recording_purpose_\$\{value\.toLowerCase\(\)\}/);
+});
+
+/* SOL-CALL-09 — AUDIT ON KOHUSTUSLIK JA ELAB SAMAS TEHINGUS.
+
+   Kõik salvestuse elutsükli auditid käisid läbi funktsiooni, mis püüdis vea kinni
+   ja tagastas `null`; ükski kutsuja ei vaadanud tulemust ja puuduv `dataAuditLog`
+   andis sama vaikse `null`-i. Samal ajal muutus põhiseis ja füüsiline helifail
+   edukalt — st loa, tagasivõtu, käivituse ja kustutuse kohta võis kohustuslik jälg
+   PUUDUDA, kuigi API kinnitas edu.
+
+   Need testid süstivad audititõrke igasse elutsüklitoimingusse ja mõõdavad, mida
+   toiming ENDAST maha jättis. Fake pöörab tehingu tagasi (vt `createPrisma`), päris
+   tagasipööramist tõendab `npm run call:seat:probe`. */
+
+async function readyToRecord(prisma, service, { participants = [] } = {}) {
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  for (const userId of participants) {
+    await service.joinCall({ callSessionId: call.id, userId });
+  }
+  const request = await createRecordingRequest({
+    prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host"
+  });
+  for (const userId of ["host", ...participants]) {
+    await service.respondToRecordingConsent({
+      callSessionId: call.id, recordingRequestId: request.id, userId, decision: "CONSENTED"
+    });
+  }
+  return { call, request };
+}
+
+function breakAudit(prisma) {
+  prisma.dataAuditLog.create = async () => {
+    throw new Error("audit down");
+  };
+}
+
+test("SOL-CALL-09: taotluse audititõrge ei jäta maha taotlust, nõusolekuridu ega failirida", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" }),
+    /audit down/
+  );
+
+  assert.equal(prisma.callRecordingRequest.rows.length, 0, "taotlust ilma jäljeta ei jää");
+  assert.equal(prisma.callRecordingConsent.rows.length, 0);
+  assert.equal(prisma.callRecordingFile.rows.length, 0);
+});
+
+test("SOL-CALL-09: nõusolekuotsuse audititõrge pöörab otsuse tagasi", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_2" });
+  const request = await createRecordingRequest({
+    prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host"
+  });
+  const rosterBefore = prisma.callSession.rows[0].rosterVersion;
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => service.respondToRecordingConsent({
+      callSessionId: call.id, recordingRequestId: request.id, userId: "user_2", decision: "CONSENTED"
+    }),
+    /audit down/
+  );
+
+  const consent = prisma.callRecordingConsent.rows.find(row => row.userId === "user_2");
+  assert.equal(consent.status, "REQUESTED", "salvestamise luba ei jõustu ilma tõendita");
+  assert.equal(prisma.callSession.rows[0].rosterVersion, rosterBefore, "koosseisu loend ei liigu poolikult");
+});
+
+test("SOL-CALL-09: käivituse audititõrge peatab egressi ega jäta ACTIVE salvestust", async () => {
+  const prisma = createPrisma();
+  const egressStops = [];
+  const service = activeRecordingService(prisma, { egressStops });
+  const { call, request } = await readyToRecord(prisma, service);
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /call\.recording_start_failed/
+  );
+
+  assert.notEqual(prisma.callRecordingRequest.rows[0].status, "ACTIVE", "salvestust, mille algusest ei ole jälge, ei loeta käimasolevaks");
+  assert.equal(egressStops.length, 1, "käivitatud egress peatatakse, mitte ei jäeta käima");
+});
+
+test("SOL-CALL-09: lõpetamise audititõrge ei jäta maha orvuks jäänud dokumenti", async () => {
+  const prisma = createPrisma();
+  const service = activeRecordingService(prisma, { finalize: true });
+  const { call, request } = await readyToRecord(prisma, service);
+  await service.startRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true });
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => service.stopRecording({ callSessionId: call.id, recordingRequestId: request.id, userId: "host", canModerate: true }),
+    /audit down/
+  );
+
+  assert.equal(prisma.userDocument.rows.length, 0, "dokument, millele ükski failirida ei viita, ei jää alles");
+  assert.equal(prisma.callRecordingRequest.rows[0].status, "FAILED");
+  assert.notEqual(prisma.callRecordingFile.rows[0].status, "AVAILABLE");
+});
+
+test("SOL-CALL-09: kustutuse jälg sünnib koos DELETED reaga", async () => {
+  const prisma = createPrisma();
+  const service = completedRecordingService(prisma, { deleted: [] });
+  const { call, request } = await completeARecording(service, prisma);
+  breakAudit(prisma);
+
+  await assert.rejects(
+    () => service.deleteRecordingFile({ callSessionId: call.id, recordingRequestId: request.id, userId: "host" }),
+    /call\.recording_delete_failed/
+  );
+
+  assert.equal(
+    prisma.callRecordingFile.rows[0].status,
+    "DELETE_PENDING",
+    "jäljeta kustutus jääb pooleli ja sweep proovib uuesti"
+  );
+});
+
+test("SOL-CALL-09: puuduv auditikiht ei ole enam vaikne pääs", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  delete prisma.dataAuditLog;
+
+  await assert.rejects(
+    () => createRecordingRequest({ prisma, callSessionId: call.id, userId: "host", canModerate: true, requesterName: "Host" })
+  );
+
+  assert.equal(prisma.callRecordingRequest.rows.length, 0);
 });

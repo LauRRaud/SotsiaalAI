@@ -43,6 +43,7 @@
     "kov:claim:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/kov-ingest-claim-probe.mjs",
     "call:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/call-consent-probe.mjs",
     "call:seat:probe": "node scripts/call-seat-probe.mjs",
+    "call:audit:probe": "node scripts/call-audit-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",
