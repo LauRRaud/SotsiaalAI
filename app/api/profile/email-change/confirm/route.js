@@ -49,11 +49,30 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
-function renderPage({ locale, title, body, actionLabel, actionUrl, isError = false }) {
+function renderPage({ locale, title, body, actionLabel, actionUrl, isError = false, postForm = null }) {
   const safeTitle = escapeHtml(title);
   const safeBody = escapeHtml(body);
   const safeActionLabel = escapeHtml(actionLabel);
   const safeActionUrl = escapeHtml(actionUrl);
+
+  // postForm: POST-vorm + auto-submit skript. Päris brauser POST-ib kohe ise, seega
+  // kasutaja jaoks ei muutu midagi; e-posti turvaskanner ja lingieelvaade EI käivita
+  // JS-i ega POST-i, seega nemad ei kinnita midagi (SOL-AUTH-04). JS-ita kasutajale
+  // jääb nähtav nupp. Sama muster on `app/api/verify-email/route.js`-is.
+  const actionMarkup = postForm
+    ? `<form id="email-change-confirm-form" method="POST" action="${escapeHtml(
+        postForm.action
+      )}">${Object.entries(postForm.fields)
+        .map(
+          ([key, value]) =>
+            `<input type="hidden" name="${escapeHtml(key)}" value="${escapeHtml(
+              String(value)
+            )}" />`
+        )
+        .join(
+          ""
+        )}<button class="button" type="submit">${safeActionLabel}</button></form><script>try{document.getElementById("email-change-confirm-form").submit();}catch(e){}</script>`
+    : `<a class="button" href="${safeActionUrl}">${safeActionLabel}</a>`;
 
   return new NextResponse(
     `<!doctype html>
@@ -95,7 +114,7 @@ function renderPage({ locale, title, body, actionLabel, actionUrl, isError = fal
       <div class="stack">
         <h1>${safeTitle}</h1>
         ${safeBody ? `<p>${safeBody}</p>` : ""}
-        <div class="actions"><a class="button" href="${safeActionUrl}">${safeActionLabel}</a></div>
+        <div class="actions">${actionMarkup}</div>
       </div>
     </main>
   </body>
@@ -124,10 +143,9 @@ async function sendEmailChangedNotice(oldEmail, locale) {
   });
 }
 
-export async function GET(request) {
+function pageContext(request, directLocale) {
   const url = new URL(request.url);
-  const locale = localeFromRequest(request, url.searchParams.get("locale"));
-  const token = String(url.searchParams.get("token") || "").trim();
+  const locale = localeFromRequest(request, directLocale ?? url.searchParams.get("locale"));
   const loginUrl = new URL(localizePath("/vestlus", locale), url.origin);
   loginUrl.searchParams.set("login", "1");
   loginUrl.searchParams.set("reason", "email-changed");
@@ -143,18 +161,75 @@ export async function GET(request) {
       isError: true
     });
 
+  return { url, locale, loginUrl, continueLabel, genericError };
+}
+
+function rateLimited(request) {
+  const ip = getRequestIpFromRequest(request);
+  const ipLimit = consumeRateLimit(
+    `email-change-confirm:ip:${ip}`,
+    CONFIRM_RATE_LIMIT_PER_IP,
+    CONFIRM_RATE_LIMIT_WINDOW_MS
+  );
+  return !ipLimit.allowed;
+}
+
+/**
+ * GET never changes anything — it only renders the confirmation interstitial.
+ *
+ * Opening the link used to swap the account's login identity outright, so any
+ * mail security scanner, link preview or automated URL check could change the
+ * address and end every session on the owner's behalf (SOL-AUTH-04). The token
+ * is not even looked up here: a scanner must not learn whether it is real.
+ */
+export async function GET(request) {
+  const { url, locale, genericError } = pageContext(request);
+  const token = String(url.searchParams.get("token") || "").trim();
+
   try {
-    const ip = getRequestIpFromRequest(request);
-    const ipLimit = consumeRateLimit(
-      `email-change-confirm:ip:${ip}`,
-      CONFIRM_RATE_LIMIT_PER_IP,
-      CONFIRM_RATE_LIMIT_WINDOW_MS
-    );
-    if (!ipLimit.allowed) {
+    if (rateLimited(request) || !token) {
       return genericError();
     }
 
-    if (!token) {
+    return renderPage({
+      locale,
+      title: serverT(locale, "profile.email_update.confirm_page.confirm_title"),
+      body: serverT(locale, "profile.email_update.confirm_page.confirming"),
+      actionLabel: serverT(locale, "profile.email_update.confirm_page.confirm_action"),
+      actionUrl: "",
+      postForm: {
+        action: url.pathname,
+        fields: { token, locale: locale || "" }
+      }
+    });
+  } catch (error) {
+    console.error("email-change confirm page error", safeError(error));
+    return genericError();
+  }
+}
+
+/** The identity change itself. Only a real browser (or a deliberate click) gets here. */
+export async function POST(request) {
+  const contentType = String(request.headers.get("content-type") || "");
+  let fields = {};
+  if (
+    contentType.includes("application/x-www-form-urlencoded") ||
+    contentType.includes("multipart/form-data")
+  ) {
+    const form = await request.formData().catch(() => null);
+    if (form) fields = Object.fromEntries(form.entries());
+  } else {
+    fields = await request.json().catch(() => ({}));
+  }
+
+  const { locale, loginUrl, continueLabel, genericError } = pageContext(
+    request,
+    typeof fields?.locale === "string" && fields.locale ? fields.locale : undefined
+  );
+  const token = String(fields?.token || "").trim();
+
+  try {
+    if (rateLimited(request) || !token) {
       return genericError();
     }
 

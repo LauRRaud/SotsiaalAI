@@ -125,6 +125,11 @@ export default function UuendaEpostiBody() {
       setPendingEmail(payload?.pendingEmail || nextEmail);
       setEmail("");
       setPin("");
+      // The pending change is real either way, but the letter may not have gone
+      // out. Saying "we sent it" when we did not is the whole of SOL-AUTH-06.
+      if (payload?.emailDelivery === "failed") {
+        setError(t("profile.email_update.delivery_failed"));
+      }
     } catch (err) {
       console.error("update email error", err);
       setError(t("profile.email_update.error_failed"));

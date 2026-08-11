@@ -3240,6 +3240,25 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** GET peab ainult valideerima üldise kujuga lingi ja kuvama kinnitava vahelehe; identiteedimuutus peab toimuma kasutaja algatatud POST-iga, turvalise PRG-jadaga. Skanneritest peab tegema GET-i ilma JS-i/vormi saatmiseta ja tõendama null DB-muutust, seejärel POST-i ning tõendama täpselt ühe vahetuse.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Lahendus oli koodibaasis olemas ja kasutamata.** `app/api/verify-email/route.js` kasutab juba
+  aastaid sama skannerikaitset: GET annab vahelehe, mille peal on POST-vorm ja auto-submit skript.
+  Päris brauser POST-ib kohe ise (kasutaja jaoks ei muutu midagi), skanner ja lingieelvaade
+  JS-i ei käivita ega POST-i, JS-ita kasutajale jääb nähtav nupp. Sama muster on nüüd ka siin —
+  uut mehhanismi ei ehitatud.
+- **GET ei tee ühtki andmebaasipäringut**, mitte ainult ei kirjuta. Tokenit ei otsita üles:
+  skanner ei tohi ka teada saada, kas link on ehtne. Identiteedimuutus elab `POST`-is.
+- **Kolm uut tõlkevõtit** (`confirm_page.confirm_title`, `.confirming`, `.confirm_action`)
+  kolmes keeles; `i18n:check` roheline.
+- **Mõõdetud päris marsruudi ja päris andmebaasi vastu** (`npm run auth:emailchange:probe`):
+  skanneri GET → e-post, sessiooniversioon ja ootel rida MUUTUMATUD, leht on vorm, mitte tulemus ·
+  sama lingi POST → täpselt üks vahetus, `sessionVersion + 1`, ootel rida tarbitud ·
+  kordus-POST ei muuda enam midagi. **Negatiivkontroll:** vana rada (GET kutsub kinnitust otse)
+  **vahetab identiteedi pelgalt avamisel** — seega ülemine roheline on paranduse teene, mitte
+  vigane token.
+- `runtime: not_run` päris meiliskanneri osas — mõõdetud on „GET ilma vormita", mitte konkreetse
+  turvatoote käitumine.
+
 ### SOL-AUTH-05 — asendatud e-posti vahetustoken võib pooleliolevas päringus siiski võita — P1
 
 **Tõend.** Kinnitamine loeb pending-rea `tokenHash` järgi, teeb aegumise, kasutaja ja aadressikonflikti kontrollid väljaspool tehingut ning kannab tehingusse ainult rea `id` (`lib/profile/emailChange.js:64-94`). Tehing vahetab e-posti ja kustutab pending-rea tingimusteta selle ID järgi (`:96-111`). Uus muutmistaotlus või resend kasutab `upsert({where:{userId}})` ning kirjutab sama rea `tokenHash`, aadressi ja aegumise üle, säilitades rea ID (`:18-38`; resend `app/api/profile/email-change/route.js:115-129`). Jada „vana token loetakse → resend/asendus uuendab sama rida → vana päring jätkab” võimaldab vana snapshot'i aadressi kinnitada ja kustutada uue tokeni rea.
@@ -3248,6 +3267,29 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Tokeni claim, aegumise kontroll, kasutaja/aadressi kontroll ja pending-rea tarbimine peavad olema üks lukustatud tehing ning update/delete peab nõudma sama `tokenHash`/versiooni, mida algselt loeti. Asendamine peab kasvatama monotonset versiooni. Päris DB paralleeltest peab peatama vana kinnituse pärast lugemist, tegema resend'i või uue aadressi taotluse ja tõendama, et vana commit ebaõnnestub ilma kasutaja või uue rea muutmiseta.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Kogu otsus kolis tehingusse ja rea lukk tuli lugemise ETTE.** Vana rada luges rea, tegi
+  aegumise/kasutaja/konflikti kontrollid lukustamata hetkeseisu peal ja kandis tehingusse ainult
+  rea `id`. Lukustamata rea kontroll mõõdab hetke, mis on möödas enne, kui ta jõuab otsustada —
+  sama lause on juba SOL-PRE-02 ja SOL-ORG-05 all.
+- **`id` EI OLE siin identiteet.** Rida on kasutaja kohta unikaalne, seega resend kirjutab
+  tokeni SAMA rea peale ümber. Iga tarbimine on nüüd tingimuslik `deleteMany({ id, tokenHash })`
+  ja tema `count` otsustab; vana `delete({ id })` oleks lasknud vananenud päringul kinnitada
+  VANA aadressi ja hävitada värske tokeni rea.
+- **Eraldi versiooniveergu ei tehtud ja see on teadlik.** `tokenHash` ise on versioon: ta on
+  32-baidise juhusliku tokeni räsi, seega asendus muudab teda alati ja ABA on välistatud.
+  Veerg oleks teine koht, mida sünkroonis hoida.
+- **Rea lukk on süstitav** (`lockPendingRow`), sest ühiktestide fake-klient ei oska `$queryRaw`-d;
+  vaikeväärtus on `SELECT … FOR UPDATE` ja test mõõdab, et lukk tuleb ENNE lugemist ja claim
+  ENNE mõju.
+- **`npm run auth:emailchange:probe` 27/27 päris PostgreSQL-is**, deterministliku lukuvõistlusega
+  (`scripts/probe-race-harness.mjs`): resend vs pooleliolev kinnitus → vana token ei vaheta
+  identiteeti, ei anna eduteadet, **värske token jääb alles ja töötab pärast seda**, lõppseis on
+  VÄRSKE aadress. **Negatiivkontroll:** vana muster sama võistluse all vahetab aadressi VANA
+  sihtmärgi peale JA hävitab värske tokeni — täpselt leiu kirjeldatud jada.
+- Ühiktestid: `tests/profile/emailChange.test.js` 5 → 12, sh „asendatud token ei tohi võita" ja
+  luku/claimi järjekord. `runtime: not_run` päris brauseri kahe akna osas.
+
 ### SOL-AUTH-06 — e-posti vahetuse resend tühistab vana lingi enne uue kirja kohaletoimetamist ja raporteerib mailerivea eduna — P2
 
 **Tõend.** Resend kutsub esmalt `createPendingEmailChange()`, mis asendab ainsa pending-rea tokeni ja aegumise (`app/api/profile/email-change/route.js:115-129`, `lib/profile/emailChange.js:18-38`). Alles seejärel proovitakse uut kirja saata. Maileri viga püütakse ainult logiga kinni ning route tagastab ikkagi `ok:true` koos uue aegumisega (`app/api/profile/email-change/route.js:130-139`). Esialgne profiili PUT kasutab sama „pending edukas, kiri best-effort” lepingut (`app/api/profile/route.js:258-266`, `lib/profile/accountLifecycle.js:153-168`).
@@ -3255,6 +3297,28 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Resend-nupu vajutus muudab varem kohale jõudnud ja veel kehtiva lingi kohe kasutuks. Kui uus kiri ei jõua, näitab UI siiski „uuesti saadetud”; kasutajal pole ühtegi töötavat linki ega delivery olekut ning ta saab taastuda ainult korduvate pimedate katsetega.
 
 **Vastuvõtukriteerium.** Tokeni rotatsioon ja delivery vajavad outbox/olekumasinat: vana link jääb kehtima vähemalt kuni uue kirja tõendatud enqueue/saatmiseni või uus katse säilitab eraldi piiratud kattuva tokeni. API/UI peab eristama `queued/sent/failed`. Maileri veasüstetest peab tõendama, et false-success'i ei tule ja vähemalt üks varem väljastatud link jääb taastatavalt kasutatavaks.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja, outbox'i ei ehitatud.**
+- **Parandus on JÄRJEKORD, mitte uus mehhanism.** `createPendingEmailChange` oli üks samm, mis
+  tegi mõlemat korraga; nüüd on kaks — `prepareEmailChangeToken()` (sünkroonne, ei puuduta
+  andmebaasi) ja `persistPendingEmailChange()` (ainus koht, kus varem väljastatud link sureb).
+  Resend teeb nüüd **mint → SAADA → alles siis rotatsioon**. Kriteeriumi „vana link jääb kehtima
+  vähemalt kuni uue kirja tõendatud saatmiseni" on täidetud selle järjekorraga; kattuvat teist
+  tokenit ega outbox'i ei olnud vaja, seega ka migratsiooni ei ole.
+- **Vale eduteade on kadunud.** Saatmise viga annab nüüd `502` + `profile.email_update.resend_failed`
+  (`delivery: "failed"`) ja liides näitab seda; õnnestumine kannab `delivery: "sent"`.
+- **Sama leping ka esmasel PUT-il** (`app/api/profile/route.js`), mille audit nimeliselt välja tõi:
+  seal EI SAA saatmise viga muudatust tagasi keerata (samas päringus võis vahetuda PIN), aga
+  vastus kannab nüüd `emailDelivery`-t ja liides ütleb ausalt „muudatus on kirjas, kirja ei
+  õnnestunud saata — vajuta „Saada uuesti"". Kaks uut tõlkevõtit kolmes keeles.
+- **`npm run auth:emailchange:probe`** mõõdab seda päris andmebaasi vastu võltsi saatjaga:
+  saatmise vea järel jääb ritta VANA tokeniräsi, **vana link töötab päriselt edasi** (mõõdetud
+  kinnitusrajal, mitte rea kuju järgi) ja kohale jõudmata uus token ei kehti kunagi.
+  **Negatiivkontroll:** vana järjekord (rotatsioon enne saatmist) **tapab varem kohale jõudnud
+  lingi** — ilma selleta ei tõendaks eelmine roheline midagi.
+- **Aus piir:** „API/UI peab eristama `queued/sent/failed`" on täidetud kahe seisuga (`sent`,
+  `failed`). `queued` eeldaks päris järjekorda, mida sellel rajal ei ole — kiri saadetakse
+  sünkroonselt ja tulemus on teada kohe. `runtime: not_run` päris SMTP osas.
 
 ### SOL-AUTH-07 — profiili PIN-i muutus ei tühista enne muudatust väljastatud ajutisi sisselogimisvolitusi — P1
 

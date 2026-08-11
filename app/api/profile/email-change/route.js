@@ -8,7 +8,8 @@ import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { prisma } from "@/lib/prisma";
 import {
   cancelPendingEmailChange,
-  createPendingEmailChange
+  persistPendingEmailChange,
+  prepareEmailChangeToken
 } from "@/lib/profile/emailChange";
 import { safeError } from "@/lib/privacy/safeError";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -119,23 +120,38 @@ export async function POST(request) {
       });
     }
 
-    const refreshed = await createPendingEmailChange({
+    // Order is the fix (SOL-AUTH-06): mint, DELIVER, and only then retire the
+    // link the user may already be holding. The old order rotated the token
+    // first and swallowed the delivery error, so a transient SMTP fault left the
+    // account with no working link at all — while the UI said "sent again".
+    const prepared = prepareEmailChangeToken();
+
+    try {
+      await sendEmailChangeConfirmLink(pending.newEmail, prepared.token, locale);
+    } catch (sendError) {
+      console.error("email-change resend send failed", safeError(sendError));
+      return errorJson("profile.email_update.resend_failed", 502, locale, {
+        code: "DELIVERY_FAILED",
+        delivery: "failed",
+        pendingEmail: pending.newEmail,
+        expiresAt: pending.expiresAt.toISOString()
+      });
+    }
+
+    await persistPendingEmailChange({
       db: prisma,
       userId,
       newEmail: pending.newEmail,
+      tokenHash: prepared.tokenHash,
+      expiresAt: prepared.expiresAt,
       request
     });
 
-    try {
-      await sendEmailChangeConfirmLink(pending.newEmail, refreshed.token, locale);
-    } catch (sendError) {
-      console.error("email-change resend send failed", safeError(sendError));
-    }
-
     return json({
       ok: true,
+      delivery: "sent",
       pendingEmail: pending.newEmail,
-      expiresAt: refreshed.expiresAt.toISOString()
+      expiresAt: prepared.expiresAt.toISOString()
     });
   } catch (error) {
     console.error("email-change resend error", safeError(error));

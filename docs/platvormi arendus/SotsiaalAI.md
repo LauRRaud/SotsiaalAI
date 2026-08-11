@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 105/384 leidu, 7/37 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 108/384 leidu, 7/37 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT**). **Auditis ei ole enam ühtegi
 lahtist P0-d.**
 
@@ -145,11 +145,23 @@ Kaks viimast laiendavad olemasolevaid peatükke, ja **SOL-ORG-13…-17 tähendab
 SOL-MAT-01 on tavaline serveripiiri puudumine tasulisel spetsialistifunktsioonil, mitte ääreala.
 **Otsustamata: kas jätkufailid liidetakse peaauditi järjekorda või jäävad eraldi.**
 
-**Käsil (commit'imata): SOL-AUTH.** AUTH-03 tehtud — toortoken kadus `VerificationToken` reast
-(`lib/auth/verificationTokens.js`, `v2:` + sha256; migratsiooni ei vaja) ja tarbimine sai
+**Käsil: SOL-AUTH, 6/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
+`VerificationToken` reast (`lib/auth/verificationTokens.js`, `v2:` + sha256) ja tarbimine sai
 atomaarse ühekordse claim'i. `npm run auth:token:probe` **26/26 päris PostgreSQL-is**, kaks
-negatiivkontrolli: vana rea väärtus ON töötav link, vana claim-muster viskab kaotaja peal
-erindi. `npm test` 3700/3700, i18n ja eslint puhtad. Lahtised AUTH-04…-15 (12 leidu).
+negatiivkontrolli: vana rea väärtus ON töötav link, vana claim-muster viskab kaotaja peal erindi.
+
+**AUTH-04 + -05 + -06 tehtud (commit'imata), üks juur: kinnitus otsustas asjade üle, mida ta ei
+hoidnud kinni.** -04: GET ei muuda enam identiteeti — sama skannerikaitse vaheleht, mis
+`verify-email`-is juba oli (GET ei tee ühtki DB-päringut, POST vahetab). -05: kogu otsus kolis
+tehingusse, rea lukk tuli lugemise ETTE ja tarbimine on tingimuslik `deleteMany({id, tokenHash})`
+— `id` ei ole identiteet, sest resend kirjutab sama rea peale ümber. -06: resend teeb nüüd
+**mint → SAADA → alles siis rotatsioon**, seega vana link elab kuni uus on teele läinud; vale
+eduteade asendus `502`-ga ja esmane PUT kannab ausat `emailDelivery` seisu.
+`npm run auth:emailchange:probe` **27/27 päris PostgreSQL-is**, **kolm negatiivkontrolli**: vana
+GET-rada vahetab identiteedi pelgalt avamisel · vana kinnitusmuster vahetab VANA aadressi peale ja
+hävitab värske tokeni · vana resend-järjekord tapab varem kohale jõudnud lingi.
+Migratsioone ei vaja kumbki plokk. `npm test` **3712/3712**, i18n ja eslint puhtad.
+Lahtised AUTH-07…-15 (9 leidu).
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav

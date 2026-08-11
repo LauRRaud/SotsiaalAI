@@ -247,6 +247,7 @@ export async function PUT(request) {
       typeof body?.password === "string" ? body.password.trim() : undefined;
     const currentPassword =
       typeof body?.currentPassword === "string" ? body.currentPassword : undefined;
+    let emailDelivery = null;
 
     const result = await updateProfileForUser({
       db: prisma,
@@ -256,12 +257,16 @@ export async function PUT(request) {
       nextPassword,
       currentPassword,
       onEmailChangeRequested: async ({ newEmail, token }) => {
-        // Send failure must not leave a half state: the pending change is already
-        // recorded, so we log and let the UI offer a resend rather than fail hard.
+        // Send failure must not roll back the recorded pending change — the user
+        // may have changed their PIN in the same request. But it must not be
+        // reported as a delivered letter either (SOL-AUTH-06): the outcome is
+        // carried out to the client, which offers the resend.
         try {
           await sendEmailChangeConfirmLink(newEmail, token, requestLocale);
+          emailDelivery = "sent";
         } catch (sendError) {
           console.error("profile email-change confirm send failed", safeError(sendError));
+          emailDelivery = "failed";
         }
       },
       onPinChanged: async ({ email }) => {
@@ -287,7 +292,8 @@ export async function PUT(request) {
       user: result.user,
       requiresReauth: result.requiresReauth,
       emailChangeRequested: Boolean(result.emailChangeRequested),
-      pendingEmail: result.pendingEmail || null
+      pendingEmail: result.pendingEmail || null,
+      emailDelivery
     });
   } catch (error) {
     if (error?.code === "P2002") {
