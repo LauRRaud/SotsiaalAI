@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { resetPasswordWithToken } from "@/lib/auth/passwordResetLifecycle";
+import { createVerificationTokenSecret } from "@/lib/auth/verificationTokens";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
@@ -163,14 +164,15 @@ export async function POST(request) {
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) return ok();
 
-    const token = crypto.randomBytes(32).toString("hex");
+    // raw goes into the link, stored goes into the row — never the reverse.
+    const { raw: token, stored } = createVerificationTokenSecret();
     const expires = new Date(Date.now() + TOKEN_EXPIRY_MINUTES * 60 * 1000);
     const identifier = buildResetIdentifier(email);
 
     await prisma.verificationToken.create({
       data: {
         identifier,
-        token,
+        token: stored,
         expires
       }
     });
@@ -181,7 +183,7 @@ export async function POST(request) {
       await prisma.verificationToken.deleteMany({
         where: {
           identifier,
-          NOT: { token }
+          NOT: { token: stored }
         }
       });
     } catch (sendError) {

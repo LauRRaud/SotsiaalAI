@@ -1,37 +1,54 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { resetPasswordWithToken } from "../../lib/auth/passwordResetLifecycle.js";
+import { hashVerificationToken } from "../../lib/auth/verificationTokens.js";
+
+// Fixed raw secret so the suite is deterministic. It has the shape the issuing
+// path produces (64 hex chars); the row stores its hash.
+const RAW_TOKEN = "9f".repeat(32);
+const STORED_TOKEN = hashVerificationToken(RAW_TOKEN);
 
 function makeDb({
   identifier = "password-reset:user@example.test",
-  token = "valid-token",
+  storedToken = STORED_TOKEN,
   expires = new Date("2999-01-01T00:00:00.000Z"),
   user = { id: "user-1", email: "user@example.test", sessionVersion: 3, passwordHash: "old-hash" }
 } = {}) {
   const state = {
-    verificationToken: token ? { identifier, token, expires } : null,
+    verificationToken: storedToken ? { identifier, token: storedToken, expires } : null,
     user: user ? { ...user } : null
   };
   const calls = {
     txRuns: 0,
+    findFirstWhere: [],
     userUpdate: [],
-    tokenDelete: [],
+    tokenClaims: [],
     deleteMany: { trustedDevice: [], session: [], loginTempToken: [], emailOtpCode: [] }
   };
 
-  function recordTokenDelete(args) {
-    calls.tokenDelete.push(args.where.identifier_token);
+  function claimToken(where) {
+    calls.tokenClaims.push(where);
+    const row = state.verificationToken;
+    const hit = row && row.identifier === where.identifier && row.token === where.token;
+    if (!hit) return { count: 0 };
     state.verificationToken = null;
-    return {};
+    return { count: 1 };
   }
 
   const db = {
     verificationToken: {
-      async findFirst() {
-        return state.verificationToken ? { ...state.verificationToken } : null;
+      async findFirst(args) {
+        calls.findFirstWhere.push(args.where);
+        const row = state.verificationToken;
+        if (!row) return null;
+        const candidates = args.where?.token?.in || [];
+        if (!candidates.includes(row.token)) return null;
+        const prefix = args.where?.identifier?.startsWith;
+        if (prefix && !row.identifier.startsWith(prefix)) return null;
+        return { ...row };
       },
-      async delete(args) {
-        return recordTokenDelete(args);
+      async deleteMany(args) {
+        return claimToken(args.where);
       }
     },
     user: {
@@ -80,8 +97,8 @@ function makeDb({
           }
         },
         verificationToken: {
-          async delete(args) {
-            return recordTokenDelete(args);
+          async deleteMany(args) {
+            return claimToken(args.where);
           }
         }
       };
@@ -98,7 +115,7 @@ test("valid reset applies the new PIN and revokes every prior session surface in
 
   const result = await resetPasswordWithToken({
     db: fixture.db,
-    token: "valid-token",
+    token: RAW_TOKEN,
     pin: "5678",
     hashPin: async (pin) => {
       hashArgs.push(pin);
@@ -125,13 +142,76 @@ test("valid reset applies the new PIN and revokes every prior session surface in
   assert.deepEqual(fixture.calls.deleteMany.loginTempToken, [{ userId: "user-1" }]);
   assert.deepEqual(fixture.calls.deleteMany.emailOtpCode, [{ userId: "user-1" }]);
 
-  // one-time token consumed inside the transaction
-  assert.equal(fixture.calls.tokenDelete.length, 1);
+  // one-time token claimed inside the transaction
+  assert.equal(fixture.calls.tokenClaims.length, 1);
   assert.equal(fixture.state.verificationToken, null);
 });
 
+test("the value stored in the database is not a usable link", async () => {
+  const fixture = makeDb();
+
+  const result = await resetPasswordWithToken({
+    db: fixture.db,
+    token: STORED_TOKEN,
+    pin: "5678",
+    hashPin: async () => "unused"
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "api.auth.reset.token_invalid");
+  assert.equal(fixture.calls.txRuns, 0);
+  assert.equal(fixture.calls.userUpdate.length, 0);
+  // the row survives: a database reader cannot even burn someone else's token
+  assert.notEqual(fixture.state.verificationToken, null);
+});
+
+test("the raw secret never appears in the row the issuing path writes", () => {
+  assert.notEqual(STORED_TOKEN, RAW_TOKEN);
+  assert.ok(STORED_TOKEN.startsWith("v2:"));
+  assert.equal(hashVerificationToken(STORED_TOKEN) === STORED_TOKEN, false);
+});
+
+test("a legacy row that still holds the raw secret stays consumable", async () => {
+  const fixture = makeDb({ storedToken: RAW_TOKEN });
+
+  const result = await resetPasswordWithToken({
+    db: fixture.db,
+    token: RAW_TOKEN,
+    pin: "5678",
+    hashPin: async () => "hashed:5678"
+  });
+
+  assert.equal(result.ok, true);
+  assert.equal(fixture.state.verificationToken, null);
+});
+
+test("losing the claim race changes nothing and reports an invalid token", async () => {
+  const fixture = makeDb();
+  // the winner consumed the row between our read and our claim
+  const originalFindFirst = fixture.db.verificationToken.findFirst;
+  fixture.db.verificationToken.findFirst = async (args) => {
+    const row = await originalFindFirst(args);
+    fixture.state.verificationToken = null;
+    return row;
+  };
+
+  const result = await resetPasswordWithToken({
+    db: fixture.db,
+    token: RAW_TOKEN,
+    pin: "5678",
+    hashPin: async () => "hashed:5678"
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "api.auth.reset.token_invalid");
+  assert.equal(result.error.status, 400);
+  assert.equal(fixture.calls.txRuns, 1);
+  assert.equal(fixture.calls.userUpdate.length, 0, "the loser must not touch the account");
+  assert.deepEqual(fixture.calls.deleteMany.session, [], "the loser must not end sessions");
+});
+
 test("missing token is rejected without touching the account", async () => {
-  const fixture = makeDb({ token: null });
+  const fixture = makeDb({ storedToken: null });
   const result = await resetPasswordWithToken({
     db: fixture.db,
     token: "does-not-exist",
@@ -146,11 +226,25 @@ test("missing token is rejected without touching the account", async () => {
   assert.equal(fixture.calls.userUpdate.length, 0);
 });
 
+test("empty token is rejected before any query runs", async () => {
+  const fixture = makeDb();
+  const result = await resetPasswordWithToken({
+    db: fixture.db,
+    token: "   ",
+    pin: "5678",
+    hashPin: async () => "unused"
+  });
+
+  assert.equal(result.ok, false);
+  assert.equal(result.error.messageKey, "api.auth.reset.token_invalid");
+  assert.equal(fixture.calls.findFirstWhere.length, 0);
+});
+
 test("expired token is consumed and rejected, with no session change", async () => {
   const fixture = makeDb({ expires: new Date("2000-01-01T00:00:00.000Z") });
   const result = await resetPasswordWithToken({
     db: fixture.db,
-    token: "valid-token",
+    token: RAW_TOKEN,
     pin: "5678",
     hashPin: async () => "unused"
   });
@@ -159,7 +253,7 @@ test("expired token is consumed and rejected, with no session change", async () 
   assert.equal(result.error.messageKey, "api.auth.reset.token_expired");
   assert.equal(result.error.status, 410);
   assert.equal(fixture.calls.txRuns, 0);
-  assert.equal(fixture.calls.tokenDelete.length, 1);
+  assert.equal(fixture.calls.tokenClaims.length, 1);
   assert.equal(fixture.state.verificationToken, null);
 });
 
@@ -167,7 +261,7 @@ test("token pointing at a missing user is consumed and rejected", async () => {
   const fixture = makeDb({ user: null });
   const result = await resetPasswordWithToken({
     db: fixture.db,
-    token: "valid-token",
+    token: RAW_TOKEN,
     pin: "5678",
     hashPin: async () => "unused"
   });
@@ -176,26 +270,25 @@ test("token pointing at a missing user is consumed and rejected", async () => {
   assert.equal(result.error.messageKey, "api.auth.reset.user_not_found");
   assert.equal(result.error.status, 404);
   assert.equal(fixture.calls.txRuns, 0);
-  assert.equal(fixture.calls.tokenDelete.length, 1);
+  assert.equal(fixture.calls.tokenClaims.length, 1);
 });
 
 test("only tokens in the password-reset namespace are accepted", async () => {
   const fixture = makeDb();
-  let seenWhere = null;
-  fixture.db.verificationToken.findFirst = async (args) => {
-    seenWhere = args.where;
-    return { identifier: "password-reset:user@example.test", token: "valid-token", expires: new Date("2999-01-01T00:00:00.000Z") };
-  };
 
   await resetPasswordWithToken({
     db: fixture.db,
-    token: "valid-token",
+    token: RAW_TOKEN,
     pin: "5678",
     hashPin: async () => "hashed"
   });
 
-  assert.deepEqual(seenWhere, {
-    token: "valid-token",
-    identifier: { startsWith: "password-reset:" }
-  });
+  assert.equal(fixture.calls.findFirstWhere.length, 1);
+  const where = fixture.calls.findFirstWhere[0];
+  assert.deepEqual(where.identifier, { startsWith: "password-reset:" });
+  assert.ok(where.token.in.includes(STORED_TOKEN), "the stored hash must be a candidate");
+  assert.ok(
+    !where.token.in.some((value) => value.startsWith("v2:") && value !== STORED_TOKEN),
+    "no second hashed candidate"
+  );
 });

@@ -1,6 +1,5 @@
 export const runtime = "nodejs";
 
-import crypto from "node:crypto";
 import { hash } from "bcrypt";
 import { NextResponse } from "next/server";
 import { Role } from "@/generated/prisma/client";
@@ -11,6 +10,7 @@ import {
   WORKER_FRAMEWORK_VERSION,
   normalizeOptionalTimestamp
 } from "@/lib/frameworkAcceptances";
+import { createVerificationTokenSecret } from "@/lib/auth/verificationTokens";
 import { createFrameworkAcceptanceDocument } from "@/lib/frameworkAcceptances/server";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { buildRegistrationAcceptanceRows } from "@/lib/legalDocuments";
@@ -317,7 +317,8 @@ export async function POST(request, testOverrides = {}) {
     }
 
     try {
-      const token = crypto.randomBytes(32).toString("hex");
+      // raw goes into the link, stored goes into the row — never the reverse.
+      const { raw: token, stored } = createVerificationTokenSecret();
       const hours = Number(process.env.EMAIL_VERIFY_HOURS || 24);
       const expires = new Date(Date.now() + hours * 60 * 60 * 1000);
       const identifier = buildEmailVerifyIdentifier(email);
@@ -325,7 +326,7 @@ export async function POST(request, testOverrides = {}) {
       await db.verificationToken.create({
         data: {
           identifier,
-          token,
+          token: stored,
           expires
         }
       });
@@ -339,7 +340,7 @@ export async function POST(request, testOverrides = {}) {
           await db.verificationToken.deleteMany({
             where: {
               identifier,
-              NOT: { token }
+              NOT: { token: stored }
             }
           });
           await db.user.update({

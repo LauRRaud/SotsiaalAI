@@ -2585,7 +2585,10 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
   (`privacy.ephemeral`, `api.chat.analyze.privacy_ephemeral`) — sisu on kasutaja dokument ja teda
   ei säilitata. Valitud on privaatsus: kordus parsib faili uuesti, aga **ei maksa teist korda**.
   See on tooteotsus, mitte tähelepanematus; kui omanik eelistab vastupidist, on muudatus üks
-  tabelirida ja üks säilitustähtaeg.
+  tabelirida ja üks säilitustähtaeg. **Omanik kinnitas 11.08: jääb efemeerseks.** Taastatav
+  tulemus oleks tähendanud kasutaja dokumendi täisteksti talletamist ja seega ka liidese
+  `privacy.ephemeral` lubaduse ümberkirjutamist — kaetav tõrge on haruldane, ei maksa enam teist
+  korda ja kordus on üks klikk. Kriteeriumi see lause jääb teadlikult täitmata.
 - **Testid** (`tests/chat/analyzeFileDurability.test.js`, 2 uut) mõõdavad järjekorda ja mõlemat
   piiri lähtekoodi tasemel: commit'i plokis EI TOHI olla `releaseUsageForRequest` ega `errorJson`.
   Kriteeriumi „veasüst enne ja pärast DB tehingut" ei ole siin kohaldatav — see marsruut ei tee
@@ -2649,8 +2652,10 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
   sündmuse kui kirjutuse vea peale. Eksport kasutab nüüd teda ja **jälg käib enne faili**.
 - **Kriteerium jättis valiku omanikule** (fail-closed vs transactional outbox). Valisin fail-closed:
   outbox tähendaks, et fail läheb välja ja jälg tuleb hiljem — see on ekspordi puhul nõrgem lubadus.
-  **Vastupidine valik on üherealine** (`writeDocumentAudit` → `logDocumentsAudit`) ja jääb sinu
-  otsustada.
+  **Vastupidine valik on üherealine** (`writeDocumentAudit` → `logDocumentsAudit`).
+  **Omanik kinnitas 11.08: jääb fail-closed.** Outbox tasub end ära siis, kui põhitoimingut ei saa
+  korrata või ta ei tohi blokeeruda — eksport ei ole kumbki. Aus hind: audititabeli kättesaadavus
+  on nüüd ekspordi kättesaadavus.
 - Testid: 2 uut (`tests/chat/exportRouteContract.test.js`) — mõlemal formaadil oma värav ja
   positsioonikontroll (värav ENNE faili), + käitumine süstitud kliendiga: kaardistamata sündmus ja
   DB-viga viskavad, **negatiivkontroll**: korras kirjutus peab läbi minema.
@@ -3191,6 +3196,41 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Andmebaasi lugemisõigus, varukoopia-, dump- või diagnostikaleke annab aktiivse paroolitaastuse toortokeniga otsese konto ülevõtmise võimaluse; e-posti kinnitustokeneid saab samuti kasutaja eest tarbida. Tokenite aegumine vähendab akent, kuid andmebaasi väärtus ise on bearer-saladus.
 
 **Vastuvõtukriteerium.** Kõik uued reset- ja verify-tokenid tuleb salvestada ühesuunalise räsi kujul ning toorväärtus peab eksisteerima ainult väljastatavas lingis; tarbimine räsib sisendi ja teeb atomaarse ühekordse claim'i. Migratsioon/üleminekuaken peab vanad toortokenid kontrollitult aeguma või eraldi pärandharus tarbima. Test peab tõendama, et DB-fixture ei sisalda kasutatavat linki ega toortokenit.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Väljastus ja rida on nüüd kaks eri asja.** Uus `lib/auth/verificationTokens.js`: `raw` läheb
+  kirja, `stored` = `v2:` + sha256(raw) läheb ritta. Kolm väljastavat rada (paroolitaaste POST,
+  registreerimine, kinnituskirja kordussaatmine) said sama primitiivi; ükski neist ei kirjuta enam
+  toorväärtust. Veerg ise ei muutunud — `String @unique` kannab mõlemat kuju, seega skeemimuudatust
+  ega migratsiooni ei ole.
+- **Prefiks EI OLE dekoratsioon, vaid kogu üleminekumehhanism.** Enne muudatust kirjutatud read
+  kannavad toorväärtust, seega tarbimine otsib ka verbatim — **aga ainult siis, kui sisend ei ole
+  juba salvestuskujul**. Ilma selle väravata saaks andmebaasi lugeja kleepida rea väärtuse otse
+  lingi asemele ja verbatim-haru võtaks ta vastu; see oleks kogu leiu tagasi toonud sama
+  paranduse sees. Väravata varianti mõõdeti kõrvuti: naiivne haru **tunnistab** rea väärtuse
+  lingiks, saadetav ei tunnista, ja päris link töötab mõlemas.
+- **Pärandaken sulgub ise:** reset-token elab 60 min, verify-token 24 h. Kui
+  `SELECT count(*) FROM "VerificationToken" WHERE token NOT LIKE 'v2:%'` on 0, saab verbatim-haru
+  kustutada — see on kirjas mooduli enda kommentaaris, mitte ainult siin.
+- **Tarbimine sai atomaarse ühekordse claim'i.** Vana rada luges rea, otsustas mälus ja kustutas
+  alles tehingu LÕPUS `delete`-ga: kaotaja sai P2025 → kogu tehing tagasi ja kasutajale 500.
+  Nüüd on `claimVerificationTokenRow()` (`deleteMany` + `count === 1`) tehingu ESIMENE lause ja
+  tema tulemus otsustab; kaotaja ei kirjuta midagi ja saab ausa 400.
+- **`npm run auth:token:probe` 26/26 päris PostgreSQL-is**, deterministliku lukuvõistlusega
+  (`scripts/probe-race-harness.mjs`). Mõõdetud reast ENDAST, mitte fixture'ist: rida ei sisalda
+  toorlinki · reast loetud väärtusega ei saa parooli vahetada ega ka võõrast linki ära põletada ·
+  päris link töötab ja tühjendab kogu sessioonipinna · kaks samaaegset tarbimist → võidab täpselt
+  üks. **Kaks negatiivkontrolli:** vana väljastusega rea väärtus **ON** töötav link (leke oli
+  päris) ja vana claim-muster viskab samas võistluses kaotaja peal erindi (seega plokk 4 mõõtis
+  päris võistlust, mitte kahte järjestikust kutset).
+- Ühiktestid: `tests/auth/verificationTokens.test.js` (8 uut) + `tests/auth/passwordResetLifecycle.test.js`
+  laiendatud 5 → 11. Fixture kannab nüüd räsitud kuju ja test „andmebaasis seisev väärtus ei ole
+  kasutatav link" on see, mis naiivse teostuse peale punaseks läheb.
+- **Kõrvalleid, mida raportis ei olnud:** konto kustutus tühjendas `VerificationToken` read ainult
+  kahest nimeruumist (`<email>`, `email-verify:<email>`) — `password-reset:<email>` jäi välja,
+  seega kustutatud konto jättis oma taastetokenid maha. Lisatud samasse loendisse.
+- `runtime: not_run` päris kirja ja brauseri osas — sond käib teenusetasemel, päris SMTP-linki
+  läbi ei klõpsatud.
 
 ### SOL-AUTH-04 — e-posti vahetuse lingi pelk avamine muudab konto identiteeti — P1
 

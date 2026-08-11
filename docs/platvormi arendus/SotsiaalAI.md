@@ -130,8 +130,28 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 85/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
+**SOL-süvaaudit: 105/384 leidu, 7/37 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT**). **Auditis ei ole enam ühtegi
+lahtist P0-d.**
+
+**Nimetaja parandatud 11.08: 384, mitte 357 — ja ta LIIKUS mõõtmise ajal.** Loend
+`parandusaudit.md`-s loeb ainult peafaili pealkirju, seega kõik jätkufailid on tema alt
+VÄLJAS. Neid on praegu neli, kokku **27 leidu (15 × P1, 12 × P2), kõik NOT_DONE**:
+`…-jatk-materjalid.md` (SOL-MAT-01…-13 — uus peatükk, tabelis ei ole),
+`…-jatk-minu-jagamised.md` (SOL-SHARE-01…-05 — samuti uus peatükk),
+`…-jatk-organisatsioonid.md` (SOL-ORG-13…-17) ja `…-jatk-tooheaolu.md` (SOL-WB-15…-18).
+Kaks viimast laiendavad olemasolevaid peatükke, ja **SOL-ORG-13…-17 tähendab, et
+„SOL-ORG 12/12 tehtud" ei kehti enam** — seepärast on lõpetatuid siin 7, mitte 8.
+SOL-MAT-01 on tavaline serveripiiri puudumine tasulisel spetsialistifunktsioonil, mitte ääreala.
+**Otsustamata: kas jätkufailid liidetakse peaauditi järjekorda või jäävad eraldi.**
+
+**Käsil (commit'imata): SOL-AUTH.** AUTH-03 tehtud — toortoken kadus `VerificationToken` reast
+(`lib/auth/verificationTokens.js`, `v2:` + sha256; migratsiooni ei vaja) ja tarbimine sai
+atomaarse ühekordse claim'i. `npm run auth:token:probe` **26/26 päris PostgreSQL-is**, kaks
+negatiivkontrolli: vana rea väärtus ON töötav link, vana claim-muster viskab kaotaja peal
+erindi. `npm test` 3700/3700, i18n ja eslint puhtad. Lahtised AUTH-04…-15 (12 leidu).
+**Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
+mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
 runtime-tõend päris PostgreSQL-i vastu (`npm run sprof:consent:probe` 22/22). Ühiktest

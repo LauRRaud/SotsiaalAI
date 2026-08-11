@@ -1,7 +1,11 @@
 export const runtime = "nodejs";
 
-import crypto from "node:crypto";
 import { NextResponse } from "next/server";
+import {
+  claimVerificationTokenRow,
+  createVerificationTokenSecret,
+  verificationTokenLookupValues
+} from "@/lib/auth/verificationTokens";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { localizePath } from "@/lib/localizePath";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
@@ -351,24 +355,17 @@ async function confirmVerification({ email, token }) {
   }
 
   const prefixedIdentifier = buildEmailVerifyIdentifier(email);
-  let verificationToken = await prisma.verificationToken.findUnique({
-    where: {
-      identifier_token: {
-        identifier: prefixedIdentifier,
-        token
-      }
-    }
-  });
-  if (!verificationToken) {
-    verificationToken = await prisma.verificationToken.findUnique({
-      where: {
-        identifier_token: {
-          identifier: email,
-          token
+  // The link carries the raw secret; the row carries its hash. `identifier: email`
+  // is the pre-prefix legacy namespace and stays a lookup candidate.
+  const lookupValues = verificationTokenLookupValues(token);
+  const verificationToken = lookupValues.length
+    ? await prisma.verificationToken.findFirst({
+        where: {
+          token: { in: lookupValues },
+          identifier: { in: [prefixedIdentifier, email] }
         }
-      }
-    });
-  }
+      })
+    : null;
 
   if (!verificationToken) {
     return {
@@ -380,13 +377,10 @@ async function confirmVerification({ email, token }) {
   }
 
   if (verificationToken.expires < new Date()) {
-    await prisma.verificationToken.delete({
-      where: {
-        identifier_token: {
-          identifier: verificationToken.identifier,
-          token: verificationToken.token
-        }
-      }
+    await claimVerificationTokenRow({
+      db: prisma,
+      identifier: verificationToken.identifier,
+      token: verificationToken.token
     });
     return {
       ok: false,
@@ -397,13 +391,10 @@ async function confirmVerification({ email, token }) {
   }
 
   if (!user) {
-    await prisma.verificationToken.delete({
-      where: {
-        identifier_token: {
-          identifier: verificationToken.identifier,
-          token: verificationToken.token
-        }
-      }
+    await claimVerificationTokenRow({
+      db: prisma,
+      identifier: verificationToken.identifier,
+      token: verificationToken.token
     });
     return {
       ok: false,
@@ -413,7 +404,17 @@ async function confirmVerification({ email, token }) {
     };
   }
 
+  // The claim decides, and it comes before the effect: a second confirmation of
+  // the same link blocks on the row lock and then writes nothing.
+  let claimed = false;
   await prisma.$transaction(async (tx) => {
+    claimed = await claimVerificationTokenRow({
+      db: tx,
+      identifier: verificationToken.identifier,
+      token: verificationToken.token
+    });
+    if (!claimed) return;
+
     await tx.user.update({
       where: { id: user.id },
       data: { emailVerified: new Date() }
@@ -422,16 +423,19 @@ async function confirmVerification({ email, token }) {
     // (see on findUnique/delete where-sisend) — kasuta tavalisi väljafiltreid.
     await tx.verificationToken.deleteMany({
       where: {
-        OR: [
-          { identifier: prefixedIdentifier },
-          {
-            identifier: verificationToken.identifier,
-            token: verificationToken.token
-          }
-        ]
+        identifier: { in: [prefixedIdentifier, email] }
       }
     });
   });
+
+  if (!claimed) {
+    return {
+      ok: false,
+      status: 400,
+      messageKey: "api.auth.verify.link_invalid_or_used",
+      code: "INVALID_LINK"
+    };
+  }
 
   return { ok: true, alreadyVerified: false };
 }
@@ -629,14 +633,15 @@ export async function POST(request) {
       return json();
     }
 
-    const token = crypto.randomBytes(32).toString("hex");
+    // raw goes into the link, stored goes into the row — never the reverse.
+    const { raw: token, stored } = createVerificationTokenSecret();
     const expires = new Date(Date.now() + TOKEN_EXPIRY_HOURS * 60 * 60 * 1000);
     const identifier = buildEmailVerifyIdentifier(email);
 
     await prisma.verificationToken.create({
       data: {
         identifier,
-        token,
+        token: stored,
         expires
       }
     });
@@ -646,7 +651,7 @@ export async function POST(request) {
     await prisma.verificationToken.deleteMany({
       where: {
         identifier,
-        NOT: { token }
+        NOT: { token: stored }
       }
     });
 
