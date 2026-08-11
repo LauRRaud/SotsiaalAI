@@ -616,13 +616,25 @@
 .room[data-power="igniting"] .gc-item:not([data-hidden="1"]),
 .room[data-power="on"] .gc-item:not([data-hidden="1"]) {
   animation: gc-ignite 1100ms var(--ease-soft) backwards;
-  /* Vajutuse ja esimese klaasi vahele jääb sekund pimedust (omanik 10.08:
-     „klaaskaardid võiks sekund hiljem ilmuda"). Ooterežiimi nupp hajub
-     180 ms (room.css), seega jõuab ta ammu ära kaduda enne, kui klaas
-     tuleb; `backwards` hoiab kaardid ooteajal opacity 0 peal. Rituaali
-     hilisemad peatused on RoomStage'i taimerites SAMA võrra edasi —
-     `IGNITE_HOLD_MS` seal peab selle arvuga kokku langema. */
-  animation-delay: calc(var(--abs) * 240ms + 1000ms);
+  animation-delay: calc(var(--abs) * 240ms + var(--gc-ignite-hold, 0ms));
+}
+/* Vajutuse ja esimese klaasi vahele jääb sekund pimedust (omanik 10.08:
+   „klaaskaardid võiks sekund hiljem ilmuda"). Ooterežiimi nupp hajub 180 ms
+   (room.css), seega jõuab ta ammu ära kaduda enne, kui klaas tuleb;
+   `backwards` hoiab kaardid ooteajal opacity 0 peal. Rituaali hilisemad
+   peatused on RoomStage'i taimerites SAMA võrra edasi — `IGNITE_HOLD_MS`
+   seal peab selle arvuga kokku langema.
+
+   Hoiuaeg elab AINULT käivitusaknas. `[data-power="on"]` jääb kehtima kogu
+   seansiks, seega ilma selle väravata saaks hoiuaja ka iga kaart, mis
+   HILJEM karusselli pöörates peidust välja tuleb: ülemineku reegel hakkab
+   talle kehtima alles siis ja alustab oma 1,24 s ooteaega otsast — reas
+   haigutab tühimik ja kaart ilmub alles pärast pööret (omanik 11.08).
+   Rituaali lõpus (cards-ready 0 → 1) muutub ainult viite VÄÄRTUS, mitte
+   animatsiooni nimi, seega pooleliolevat hajumist see ei katkesta. */
+.room[data-power="igniting"],
+.room[data-power="on"][data-cards-ready="0"] {
+  --gc-ignite-hold: 1000ms;
 }
 /* Peamenüü ↔ profiil (ja teised kaardikomplekti vahetused) ei ole ruumi
    uus käivitus. Uus komplekt on kohe õiges asendis ning hajub ühe kihina
