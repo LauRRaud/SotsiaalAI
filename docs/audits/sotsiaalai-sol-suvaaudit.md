@@ -1809,6 +1809,42 @@ eraldi ei mõõda: sama mehhanism kannab teda, sest lugeja ei hoia enam ühtki l
 
 **Vastuvõtukriteerium.** Iga heartbeat, progress ja terminalsiire peab kasutama fencing-tokenit/attempt-versiooni ning praegust workerId-d; `count=0` tähendab lease'i kaotust ja peab töö abortima. Vestluspersistence peab samuti olema job/attempt-idempotentne. Kahe päris workeriga test peab külmutama esimese üle lease'i tähtaja, laskma teisel claim'ida ning tõendama, et ainult uus omanik võib jätkata ja lõpetada.
 
+**Seis (11.08.2026): fencing DONE ja tõendatud kahe päris workeriga (9/9); kriteeriumi lause
+vestluspersistence'i idempotentsuse kohta on tegemata ja kuulub SOL-RES-05 alla — seepärast loeb
+loend selle leiu ENDISELT LAHTISEKS.**
+
+**KEEGI EI VAADANUD ARVU.** Heartbeat uuendas rida tingimusel `workerId`, aga ei vaadanud kunagi
+`updateMany.count` väärtust — ja seega ei saanud ka teada, kui rida enam talle ei kuulunud.
+Progressi kirjutus kasutas tingimusteta `update where id` ja kirjutas vana `workerId`/`leaseUntil`
+**tagasi**, varastades lease'i endale. Terminalsiire nõudis ainult aktiivset staatust. Pausi või
+heartbeat'i tõrke järel sai uus worker aegunud lease'i claim'ida, aga vana worker jätkas mudeli- ja
+RAG-kutseid ning võis terminaltulemuse esimesena commit'ida: topeltkulu ja **vale võitja tulemus**.
+
+**Fencing ilma uue veeruta.** `workerId` ON juba see märk, kes tohib kirjutada — eraldi
+fencing-tokenit ei ole vaja. Iga kirjutus käib nüüd tingimusega `workerId = minu oma` (inline-jooksja
+puhul `NULL`, mis fence'ib teda samamoodi), ja `count === 0` tähendab lease'i kaotust: lokaalne töö
+katkestatakse `abortController`-iga ja rohkem ei kirjutata midagi.
+
+**Üks vahetegemine, mis oleks kergesti valesti läinud.** Terminaalne TULEMUS (`done`/`error`) on
+fence'itud, aga TÜHISTUS ei ole. Peatamise päring tuleb frontendist, kes ei ole kunagi lease'i
+omanik — kui ka tühistus oleks fence'itud, kukuks omaniku enda Stop worker-režiimis **alati** läbi
+ja SOL-RES-01 parandus oleks vaikselt katki. Sond mõõdab mõlemat suunda.
+
+**Pipeline'i „kas tohin jätkata" küsimus sai teise poole.** `syncResearchCancellation()` küsis ainult
+„kas tühistatud"; nüüd vaatab ta ka rea omanikku. Üle võetud töö peatub vanas workeris sama teed
+pidi nagu tühistatud töö.
+
+**Mõõdetud kahe päris workeri ja kahe protsessiga** (`npm run research:lease:probe`, **9/9**): laps
+claim'ib tööna `worker-A` ja **külmub** (ei saada heartbeat'i) · vanem aegutab lease'i ja claim'ib
+`worker-B` nimel · uus omanik lõpetab oma tulemusega · vana worker üritab siis progressi kirjutada
+ja lõpetada — ei lähe läbi, ta **saab teada**, et lease on kadunud, ja andmebaasi jääb uue omaniku
+tulemus. Teine stsenaarium tõendab, et võõra protsessi Stop läheb ikka läbi.
+
+**Aus piir mõõtmises.** Kriteeriumi lause „vestluspersistence peab samuti olema job/attempt-
+idempotentne" EI ole selle plokiga kaetud — see on eraldi mehhanism vestlussõnumite kihis ja ühtib
+SOL-RES-05 sisuga („vestlusse püsivalt salvestamise viga ei takista tasulise uuringu edukaks
+märkimist"). Ta tehakse seal, mitte siin; kaks korda sama koodi ümber ei kirjutata.
+
 ### SOL-RES-05 — vestlusse püsivalt salvestamise viga ei takista tasulise uuringu edukaks märkimist — P1
 
 **Tõend.** Pipeline kutsub enne tööd `persistInit()` ning pärast sünteesi `persistAppend()` ja `persistDone()` funktsioone, kuid kõik kolm neelavad DB vead; `persistDone()` tagastab vea korral `null` (`lib/chat/persistence.js:38-116`, `:118-140`, `:147-241`). Pipeline ei kontrolli tagastusväärtusi ja märgib ResearchJob'i ikkagi `done`, pärast mida kasutus commit'itakse (`lib/research/pipeline.js:1154-1161`, `:1240-1280`, `lib/research/jobStore.js:399-420`). Minu dokumentide uuringurida ei kuva `ResearchJob.result` sisu, vaid pakub ainult vestluse linki (`components/documents/DocumentsPage.jsx:531-545`); job ise kustub vaikimisi 14 päeva pärast.

@@ -323,6 +323,25 @@ test("only the process that actually runs a job keeps a runtime object for it", 
   assert.match(store, /const local = jobs\.get\(record\.id\);\s*if \(local && !terminalStatus\(record\.status\)\) return local;/);
 });
 
+// SOL-RES-04. Heartbeat ei vaadanud kunagi `count` väärtust, progress kirjutas tingimusteta ja
+// terminalsiire nõudis ainult aktiivset staatust — seega kaotatud lease ei peatanud mitte midagi.
+test("a worker that lost its lease can no longer write", () => {
+  const store = read("lib/research/jobStore.js");
+
+  assert.match(store, /function leaseFence\(job\)[\s\S]{0,120}workerId: job\?\.workerId \|\| null/);
+  // Progressi kirjutus on tingimuslik ja count === 0 katkestab töö.
+  assert.match(store, /updateMany\(\{\s*where: \{ id: job\.id, \.\.\.leaseFence\(job\) \}/);
+  assert.match(store, /if \(!result\?\.count\) \{\s*abandonLostLease\(job\);/);
+  // Terminaalne TULEMUS on fence'itud, TÜHISTUS mitte — muidu kukuks omaniku Stop alati läbi.
+  assert.match(store, /\.\.\.\(fence \? leaseFence\(job\) : \{\}\)/);
+  assert.match(store, /status: "cancelled",[\s\S]{0,200}\{ fence: false \}/);
+  // Heartbeat peab count'i lugema ja töö katkestama.
+  assert.match(store, /const result = await prisma\.researchJob\.updateMany\([\s\S]{0,400}abandonLostLease\(job\)/);
+  // Pipeline'i „kas tohin jätkata" küsimus peab nägema ka lease'i kaotust, mitte ainult tühistust.
+  assert.match(store, /select: \{ status: true, error: true, workerId: true \}/);
+  assert.match(store, /String\(record\.workerId \|\| ""\) !== String\(job\.workerId \|\| ""\)/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {

@@ -52,6 +52,7 @@
     "research:delete:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-delete-probe.mjs",
     "research:intent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-intent-probe.mjs",
     "research:worker:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-worker-visibility-probe.mjs",
+    "research:lease:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-lease-fencing-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",

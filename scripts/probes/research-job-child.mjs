@@ -13,6 +13,10 @@
  *   node scripts/probes/research-job-child.mjs inline-hold <userId>
  *       — loob INLINE-režiimis töö (seega jääb tal runtime-objekt), ootab, ja ütleb siis, mida
  *         TEMA arvab töö seisuks. Just see on vana käitumine: oma mälu varjutab andmebaasi.
+ *
+ *   node scripts/probes/research-job-child.mjs worker-hold <workerId>
+ *       — claim'ib töö selle workeri nimel, KÜLMUB (ei saada heartbeat'i), ja üritab siis lõpetada.
+ *         Ütleb, kas tema kirjutus võeti vastu ja kas ta sai teada, et lease on kadunud.
  */
 
 const [, , command, argument] = process.argv;
@@ -43,6 +47,34 @@ if (command === "finish") {
   await sleep(2500);
   const snapshot = await getResearchJobSnapshot(job.id);
   say({ seenStatus: snapshot?.status || null });
+  process.exit(0);
+} else if (command === "worker-hold") {
+  process.env.RESEARCH_JOB_MODE = "worker";
+  const { prisma } = await import("../../lib/prisma.js");
+  const { claimNextResearchJob, hasLostResearchLease, markResearchDone, publishResearchProgress } =
+    await import("../../lib/research/jobStore.js");
+
+  const job = await claimNextResearchJob({ workerId: String(argument) });
+  if (!job) {
+    say({ claimed: false });
+    process.exit(0);
+  }
+  say({ id: job.id, workerId: job.workerId, pid: process.pid });
+
+  // KÜLMUMINE: heartbeat'i ei saadeta, seega lease aegub ja teine worker võtab töö üle.
+  await sleep(3000);
+
+  // Vana kood kirjutas siin rahulikult edasi. Nüüd peab kirjutus keelduma.
+  await publishResearchProgress(job, { stage: "synthesizing" });
+  await markResearchDone(job, { report: "VANA WORKERI TULEMUS" });
+
+  const record = await prisma.researchJob.findUnique({ where: { id: job.id } });
+  say({
+    leaseLost: hasLostResearchLease(job),
+    dbResult: record?.result?.report || null,
+    dbWorkerId: record?.workerId || null
+  });
+  await prisma.$disconnect();
   process.exit(0);
 } else {
   say({ error: `unknown command: ${String(command)}` });
