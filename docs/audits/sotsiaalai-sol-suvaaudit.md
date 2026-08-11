@@ -1809,9 +1809,8 @@ eraldi ei mõõda: sama mehhanism kannab teda, sest lugeja ei hoia enam ühtki l
 
 **Vastuvõtukriteerium.** Iga heartbeat, progress ja terminalsiire peab kasutama fencing-tokenit/attempt-versiooni ning praegust workerId-d; `count=0` tähendab lease'i kaotust ja peab töö abortima. Vestluspersistence peab samuti olema job/attempt-idempotentne. Kahe päris workeriga test peab külmutama esimese üle lease'i tähtaja, laskma teisel claim'ida ning tõendama, et ainult uus omanik võib jätkata ja lõpetada.
 
-**Seis (11.08.2026): fencing DONE ja tõendatud kahe päris workeriga (9/9); kriteeriumi lause
-vestluspersistence'i idempotentsuse kohta on tegemata ja kuulub SOL-RES-05 alla — seepärast loeb
-loend selle leiu ENDISELT LAHTISEKS.**
+**Seis (11.08.2026): DONE — fencing tõendatud kahe päris workeriga (9/9) ja kriteeriumi viimane
+lause (vestluspersistence job-idempotentne) sai kaetud SOL-RES-05 plokiga, `persistKey` kaudu.**
 
 **KEEGI EI VAADANUD ARVU.** Heartbeat uuendas rida tingimusel `workerId`, aga ei vaadanud kunagi
 `updateMany.count` väärtust — ja seega ei saanud ka teada, kui rida enam talle ei kuulunud.
@@ -1840,10 +1839,11 @@ claim'ib tööna `worker-A` ja **külmub** (ei saada heartbeat'i) · vanem aegut
 ja lõpetada — ei lähe läbi, ta **saab teada**, et lease on kadunud, ja andmebaasi jääb uue omaniku
 tulemus. Teine stsenaarium tõendab, et võõra protsessi Stop läheb ikka läbi.
 
-**Aus piir mõõtmises.** Kriteeriumi lause „vestluspersistence peab samuti olema job/attempt-
-idempotentne" EI ole selle plokiga kaetud — see on eraldi mehhanism vestlussõnumite kihis ja ühtib
-SOL-RES-05 sisuga („vestlusse püsivalt salvestamise viga ei takista tasulise uuringu edukaks
-märkimist"). Ta tehakse seal, mitte siin; kaks korda sama koodi ümber ei kirjutata.
+**Kriteeriumi viimane lause tuli järgmise plokiga.** „Vestluspersistence peab samuti olema
+job/attempt-idempotentne" on eraldi mehhanism vestlussõnumite kihis ja ühtib SOL-RES-05 sisuga —
+seepärast tehti ta seal: `persistDone()` võtab nüüd `persistKey` (`research:<jobId>`) ja sama
+tunnusega teist sõnumit ei looda. Kaks workerit ega kaks korduskatset ei kirjuta vestlusse kahte
+raportit. Mõõdetud `npm run research:persist:probe` all.
 
 ### SOL-RES-05 — vestlusse püsivalt salvestamise viga ei takista tasulise uuringu edukaks märkimist — P1
 
@@ -1852,6 +1852,35 @@ märkimist"). Ta tehakse seal, mitte siin; kaks korda sama koodi ümber ei kirju
 **Mõju.** Kasutaja võib näha jooksva SSE ajal tulemust ja kulutada uuringuühiku, kuid pärast navigeerimist avaneb vestlus ilma raportita. Täielik tulemus on ajutiselt ainult peidetud detail-API JSON-is ning kaob laisa retention'iga; UI ei paku selle taastamist.
 
 **Vastuvõtukriteerium.** Uuringu edukas lõpp peab tähendama vähemalt ühe kasutajale taasavatava püsikoopia kinnitatud olemasolu. Vestlussõnumi kirjutus peab olema job/attempt-idempotentne ja vea korral jääma taastatavasse `finalizing`/retry olekusse, mitte `done`. Veasüstetestid peavad katkestama init/append/done eri kohtades ning tõendama, et kasutus, job'i olek ja leitav raport jäävad koherentseks.
+
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (10/10).**
+
+**„EDU" TÄHENDAS KUTSE TEGEMIST, MITTE TULEMUST.** `persistInit`, `persistAppend` ja `persistDone`
+neelasid kõik DB-vead ja `persistDone()` tagastas vea korral `null`. Pipeline ei vaadanud
+tagastusväärtust ja märkis ResearchJob'i **ikkagi `done`**, mille järel kasutus commit'iti. Kasutaja
+nägi jooksva voo ajal tulemust ja kulutas uuringuühiku — aga pärast navigeerimist avanes vestlus
+ILMA raportita. Täielik tulemus jäi ainult peidetud detail-API JSON-i ja kadus laisa retention'iga.
+
+**Lõpp on nüüd seotud kinnitatud koopiaga.** `conversationCopyConfirmed` tuleb sellest, kas
+vestlussõnum PÄRISELT tekkis (`assistantMessageId`), mitte sellest, kas kutse tehti. Kui koopiat ei
+õnnestu kinnitada, siis tööd **ei märgita lõppenuks ja kasutust ei arvestata**: töö jääb aktiivseks
+ja on korratav. `done` on lubadus, mida ei anta enne, kui teda saab täita.
+
+**Üks kordus enne loobumist.** Ajutine DB-tõrge ei tohi tasulist tulemust ära visata, seega
+`persistDone` proovitakse teist korda — ja kuna kirjutus on idempotentne, ei tekita kordus teist
+raportit ka siis, kui esimene tegelikult õnnestus ja ainult vastus kadus.
+
+**Idempotentsus on `persistKey` (`research:<jobId>`).** Sõnumi metaandmesse jääb sama tunnus ja
+teist sama tunnusega sõnumit ei looda. See kattis ühtlasi SOL-RES-04 kriteeriumi viimase lause.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run research:persist:probe`, **10/10**): kaks kirjutust sama
+võtmega → **üks raport**, teine vastus `reused` sama id-ga · kaks eri tööd → kaks raportit (valvur ei
+ole liiga lai) · võtmeta kirjutus käitub nagu enne · **süstitud DB-viga annab `null`**, mitte vaikse
+edu, ja vestlusse ei jää midagi · võõra vestluse alla ei kirjutata.
+
+**Aus piir mõõtmises.** Sond mõõdab püsikoopia kihti ja veasüsti otse (`deps.prisma`); et pipeline
+sellele ka reageerib — `done` jääb tegemata ja `markResearchDone` on valve taga — mõõdab
+lähtekoodi-leping. Kogu pipeline'i läbijooksu ei mõõdeta, sest see kutsuks mudelit ja RAG-i.
 
 ### SOL-RES-06 — kasutuse lõplik commit/release on best-effort ja võib lõpptulemusest lahkneda — P1
 
