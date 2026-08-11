@@ -4135,6 +4135,36 @@ oma migratsioon on `20260811210000`).
 
 **Vastuvõtukriteerium.** Due-query peab valima lepinguga lubatud `PAST_DUE` retry-seisud ja kasutatava maksemeetodi või eristama provider-decline'i konfiguratsiooniveast; iga katse vajab CAS-claim'i ja järgmise katse püsivat aega. Jadakatse peab läbima vähemalt failure #1 → retry #2 → retry #3 → cancel ning eraldi recovery-success'i.
 
+**Seis (11.08.2026): DONE — valik näeb korduskatse seisu ja maksemeetod märgitakse katkiseks alles loobumisel; `npm run pay:renewal:probe` 13/13 päris PostgreSQL-is. Commit `d988ef87`.**
+
+Kaks muudatust, kumbki üksinda ei piisa:
+
+- **VALIK on kaks haru** — tavaline tähtaeg (`ACTIVE`) ja lubatud korduskatse (`PAST_DUE`,
+  mille katsete arv on lae all ja mille `nextBilling` kannab järgmise katse aega).
+- **MAKSEMEETOD märgitakse `FAILED`-iks ALLES loobumisel.** Tagasi lükatud kaardimakse on
+  tellimuse sündmus (`PAST_DUE` + loendur), mitte tõend, et meetod ise on katki — ja just
+  see märge lukustas vana koodi enda korduskatse välja, sest valik nõuab kasutatavat
+  meetodit. Otsuse kolm poolt (tellimuse seis, järgmise katse aeg, meetodi seis) tulevad
+  nüüd ühest kohast (`planRenewalFailure`).
+
+**Katse-claim** on endiselt `providerPaymentId` unikaalsus: viide kannab tsükli markerit ja
+katse numbrit, seega kaks paralleelset jooksu ei saa sama katset kaks korda laadida.
+**Konfiguratsiooniviga** (puuduv krüptovõti) oli juba eraldi rada ja jääb selleks — ta ei
+puutu tellimuse seisu.
+
+Sond ei kutsu providerit ega vaja teda: leid on VALIKUS, mitte laadimises. Ta kirjutab
+täpselt need seisud, mille tõrkeharu kirjutab, ja küsib pärast igat sammu ANDMEBAASILT, kas
+rida on valitav. **Negatiivkontroll: vana kuju (meetod `FAILED` esimese tõrke peale) võtab
+rea valikust välja.** Vana ühiktest lukustas just selle vea
+(`assert.equal(where.status, "ACTIVE")`) ja on ümber kirjutatud.
+
+Väravad: `npm test` **3831/3831** · eslint puhas.
+
+**KATMATA:** päris provideri tõrget (declined kaart, timeout) ei ole süstitud — jada on
+tõendatud tõrkeharu KIRJUTATUD seisude pealt, mitte päris Maksekeskuse vastuse pealt.
+Recurring on toodangus väljas (`SUBSCRIPTION_RECURRING_ENABLED`), seega päris jada saab
+tõendada alles aktiveerimise järel.
+
 ### SOL-PAY-02 — ebamäärane provideritulemus märgitakse lõplikult FAILED-iks ja hilisem PAID webhook visatakse ära — P1
 
 **Tõend.** Init-route loob provideri checkout'i ja teeb alles seejärel kohaliku Payment update'i; iga järgnev viga märgib olemasoleva makse `FAILED`-iks (`app/api/subscription/init/route.js:267-341`, `:359-378`). Renewal-worker teeb sama: provideritransaktsioon/charge toimub enne lokaalset update'i, kuid ükskõik milline catch märgib Payment rea `FAILED`-iks (`app/api/jobs/subscription-renewals/route.js:170-220`, `:249-266`). Webhook loeb `FAILED` lõplikuks ning ignoreerib hilisema `PAID` staatuse, sest erand lubab ainult `REFUNDED` ülemineku (`app/api/subscription/webhook/route.js:45`, `:336-361`).

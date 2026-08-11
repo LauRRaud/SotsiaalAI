@@ -467,9 +467,15 @@ väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt
 
 Lahtiseks jääb **192 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
-on 11.08 lõpetatud** — kõige eespool täiesti lahtine peatükk on nüüd **SOL-PAY (0/11:
-9 × P1, 2 × P2)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
-otsuse ja brauseri-QA taga.
+on 11.08 lõpetatud** — käsil on **SOL-PAY (1/11)**, kui just jätkufaile ette ei tõsteta.
+SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+
+**SOL-PAY-01 tehtud: automaatne uuendamine ei anna enam alla esimese tõrke peale.** Üks
+ajutine võrgu- või kaarditõrge lõpetas seni korduvmakse jäädavalt — server arvutas järgmise
+katse aja ja näitas seda ka liideses, aga ei valinud seda tellimust enam kunagi. Nüüd jõuab
+iga lubatud katse päriselt kohale ja maksemeetod märgitakse katkiseks alles siis, kui
+loobutakse. **PAY-09 ootab sinu ja juristi/raamatupidaja otsust** (konto kustutamine viib
+kaasa makseajaloo enne seitsmeaastast säilitustähtaega) — seda ei saa koodiga ette otsustada.
 
 **Kutsepeatükk sai 11.08 kolm leidu ja on täis.** Sponsorkoht on nüüd päriselt piir:
 50 tasutud kohta ei saa enam ületada ka siis, kui kaks inimest võtavad kaks eri kutset
