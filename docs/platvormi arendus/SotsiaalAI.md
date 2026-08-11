@@ -134,6 +134,21 @@ faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
+**AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
+pluss funktsioonideülene ring (kustutus, andmekoopia, retention, RAG, failid, SMTP, süvalingid,
+rolli- ja organisatsioonivahetus, samaaegsus). **Aga tema failid ei ole ühes puus:** üheksa
+auditifaili **26 leiuga** elab seitsmes kõrvalises tööpuus — kuus lahtise pea (detached HEAD)
+taga, kolm üldse commit'imata. Seega tegelik nimetaja on **429**, mitte 403, ja lahtiseid on
+**312**. Nende hulgas kolm uut leidu: `SOL-XFUNC-01` ja `-02` (P2) ning **`SOL-XFUNC-03` (P1,
+isikuandmete koopia registril puudub skeemiülene täielikkusvärav)**. Mõõdetud loend koos
+tööpuude nimede ja commit'idega on `parandusaudit.md`-s lõigus „Auditikorpus ei ole ühes puus".
+**See on andmekao risk:** lahtise pea peale ei näita ükski haru. Koondamine on S4-s.
+
+Sama klassi lahtine asi: **teenusekaardi klaaskujunduse parandus on commit'imata** tööpuus
+`SotsiaalAI-service-map-glass-a4e00e4` (+307/−85, 5 faili, 50/50 sihttesti läbis). Haru
+`codex/service-map-glass-visual-fix` on olemas, aga ta ei kanna ühtki oma commit'i — mõõdetuna
+ei ole parandus „harus", ta on ainult selle kausta töölaual.
+
 **Nimetaja ei ole 357 — ta liikus jätkufailidega 403-ni.** Loendur luges algul ainult peafaili
 pealkirju, seega jätkufailid olid tema alt VÄLJAS; 11.08 õhtul mõõdetuna on neid **seitse,
 kokku 46 leidu, kõik NOT_DONE** (`…-jatk-materjalid` 13 · `…-teenusekaart` 8 ·
@@ -1789,6 +1804,8 @@ Liik: **VIGA** = lubadus on katki · **SABA** = väljalastud funktsiooni lõpeta
 
 | # | Mis | Kus | Liik |
 |---|---|---|---|
+| 1 | **Auditikorpus ühte puusse.** Üheksa auditifaili **26 leiuga** (sh `SOL-XFUNC-01…-03`) elab seitsmes kõrvalises tööpuus — kuus lahtise pea taga, kolm commit'imata. Kuni nad ei ole `main`-is, ei saa `sol:tally` anda tervikpilti ja iga avaldatud number on osaline. Failide, tööpuude ja commit'ide loend: `parandusaudit.md` → „Auditikorpus ei ole ühes puus". **Koondamisel võetakse igast commit'ist AINULT uus fail** — nende `parandusaudit.md` ja `sotsiaalai-sol-suvaaudit.md` on rebase-eelsed ja vanemad kui siinsed | audit | VIGA (andmekao risk) |
+| 2 | **Teenusekaardi klaaskujunduse parandus commit'imata** tööpuus `SotsiaalAI-service-map-glass-a4e00e4` (+307/−85, 5 faili, 50/50 sihttesti läbis). Haru `codex/service-map-glass-visual-fix` ei kanna ühtki oma commit'i | teenusekaart | SABA |
 | 3 | ~~„Helikõne toimus …" tekib ruumi kaks korda~~ — **PARANDATUD 03.08** (`9cef880e`): tingimuslik `updateMany`, süsteemsõnum ainult üleminekut teinud kutsest | ruumid | tehtud |
 | 4 | ~~Salvestuse eesmärgisildid ja nõusolekukirje eesti keeles~~ — **TEHTUD 04.08**. Kirjeldus oli algselt vale („staatusetekstid"); koodist kontrollimisel selgus, et staatusetekstid on tõlgitud ja katki on hoopis eesmärgisildid + **salvestatav nõusolekutõend**. Nüüd renderdab server nõusolekuteksti samadest `calls.recording_*` võtmetest, mida liides kuvab, vastamise hetkel vastaja enda keeles; keel jääb kirje juurde (`CallRecordingConsent.locale`). Vt S7 | ruumid | tehtud |
 | 5 | ~~Salvestuse katkestamine enne transkribeerimist~~ — **TEHTUD 03.08**: katkestusnupp + Escape, lipp tõuseb enne stop'i, ainus värav providerini on `processRecordingBlob` | hääl (T03 E4) | tehtud |

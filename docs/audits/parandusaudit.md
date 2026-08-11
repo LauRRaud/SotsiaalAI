@@ -19,7 +19,7 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **117 / 403** |
+| Tehtud leidu | **117 / 403** selle tööpuu loenduri järgi · **117 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
 | Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
 | Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 85 × P2 · 1 × P3 |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
@@ -27,6 +27,53 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 | Järgmine peatükk | **SOL-AUTH on LÕPETATUD (15/15)** — auditi seitsmes täis peatükk ja ühtlasi suurim. Dokumendi järjekorras järgmised on kvalifitseeritud või jätkufailide päralt (SOL-CW 3 lahtist = kaks otsust + üks brauseritest · SOL-ORG ja SOL-DOC lahtised tulevad AINULT jätkufailidest · SOL-RES-07 kvalifitseeritud), seega esimene puutumata peatükk on **SOL-VOICE (0/3)** — kui just ei otsustata jätkufaile ette tõsta. Vt lahtist tooteotsust allpool. |
 | Käsil oleva peatüki saba | SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
+
+## Auditikorpus ei ole ühes puus (mõõdetud 11.08 hilisõhtul)
+
+**Audit ise on lõpuni viidud** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud ning
+lisandus funktsioonideülene ring (kustutus, andmekoopia, retention, RAG, failid, SMTP,
+süvalingid, rolli- ja organisatsioonivahetus, samaaegsus). **Tema failid on aga laiali seitsmes
+tööpuus ja üheksa neist ei ole `main`-is.** Seepärast ei saa ükski loendurijooks praegu anda
+tervikpilti: `npm run sol:tally` loeb ainult neid faile, mis on TEMA puus.
+
+| Fail | Leiud | Kus ta on | Seis |
+|---|---|---|---|
+| `…-jatk-valitoo.md` | 11 | `SotsiaalAI-sol-audit-field-eaca270` | commit `335fa002`, **lahtine pea** |
+| `…-jatk-teenuspaevik.md` | 7 | `SotsiaalAI-sol-audit-slog-11bc4f3` | commit `e82fc587`, **lahtine pea** |
+| `…-funktsioonideulene-lopetus.md` | 3 (`SOL-XFUNC-01…-03`) | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
+| `…-jatk-organisatsioonid-lopetus.md` | 2 | `SotsiaalAI-sol-audit-orgclose-a4e00e4` | commit `d0892171`, **lahtine pea** |
+| `…-jatk-minu-jagamised-lopetus.md` | 2 | `SotsiaalAI-sol-audit-shares-a4e00e4` | commit `116c99e6`, **lahtine pea** |
+| `…-jatk-teenusekaart-lopetus.md` | 1 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
+| `…-jatk-tooheaolu-lopetus.md` | 0 | `SotsiaalAI-sol-audit-wellclose-11bc4f3` | commit `ecc0cdb6`, **lahtine pea** |
+| `…-jatk-register.md` (raportiregister) | 0 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | commit `fc34d636`, **lahtine pea** |
+| `…-loppkoond.md` | 0 | `SotsiaalAI-sol-audit-smapclose-a4e00e4` | **jälgimata fail** |
+
+**Kokku 26 leidu, mida selle puu loendur ei ole kordagi näinud** — seega tegelik nimetaja on
+**429**, mitte 403, ja lahtiseid on **312**, mitte 286. Prioriteedijaotust ei saa siia kirjutada
+enne, kui failid on ühes puus ja loendur jookseb korra terve korpuse peal: käsitsi kokku pandud
+jaotus on täpselt see viga, mille pärast loendur üldse kirjutati.
+
+**Kolm uut leidu** on funktsioonideülesest ringist: `SOL-XFUNC-01` (P2, Haldus ei ole URL-iga
+taastatav ja jätab kolm halduspinda menüüst välja) · `SOL-XFUNC-02` (P2, Ruumid eirab serveri
+tegevuslippe ja peidab keelatud kustutuse vea) · `SOL-XFUNC-03` (P1, isikuandmete koopia
+registril puudub skeemiülene täielikkusvärav).
+
+**See on andmekao risk, mitte korrastusküsimus.** „Lahtine pea" tähendab detached HEAD-i, mille
+peale ei näita ükski haru — kui tööpuu kustutatakse või `git gc` jookseb, kaob commit. Kolm
+faili ei ole üldse commit'itud. **Kuus commit'i on lisaks tehtud `a4e00e43` pealt, mis on
+rebase-EELNE koopia** (`main`-is on tema sisu `1ed23452` all), seega nende `parandusaudit.md`
+ja `sotsiaalai-sol-suvaaudit.md` versioonid on **vanemad kui siinsed** — koondamisel võetakse
+neist AINULT uued failid, mitte nende versioonid nendest kahest.
+
+**Sama klassi lahtine asi kõrval:** teenusekaardi klaaskujunduse parandus (`workspace.css`,
+`ServiceMapLeaflet.jsx`, `WorkspaceFeaturePage.jsx` + kaks visuaallepingu testi, +307/−85) elab
+tööpuus `SotsiaalAI-service-map-glass-a4e00e4` **commit'imata**. Haru
+`codex/service-map-glass-visual-fix` on olemas, aga ta ei kanna ühtki oma commit'i — ta on
+lihtsalt silt `a4e00e43` peal. „Parandus on harus" ei pea mõõdetuna paika.
+
+**Autenditud tervikruntime jäi selles auditiringis `NOT_PROVEN`:** viis sünteetilist kontot olid
+olemas, aga 0/5 credential'ist kehtis. Kontosid ega seansse ei muudetud. Lokaalse testkeskkonna
+taastamine (vt SotsiaalAI.md S11) on eeldus, mitte kõrvalmärkus.
 
 ## Jätkuauditid — miks nimetaja muutus
 
