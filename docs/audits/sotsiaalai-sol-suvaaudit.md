@@ -1675,6 +1675,44 @@ summas.
 
 **Vastuvõtukriteerium.** Uue uuringu käivitamine võib jääda tellimusvärava taha, kuid omaniku GET/list/detail ja päris DELETE peavad töötama tellimuseta. Aktiivse töö Stop ja terminaltulemuse Delete peavad olema eri semantikaga idempotentsed toimingud. HTTP-testid peavad katma aktiivse/aegunud tellimuse ning queued/running/done/error/cancelled olekud ja tõendama DB-rea tegelikku eemaldumist.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (15/15).**
+
+**KAKS ERI ASJA OLID ÜHTE AETUD.** (1) Kogu uuringupind — loend, detail, voog ja DELETE — käis
+läbi `requireResearchAuth()`, mis nõudis alati aktiivset tellimust. Aegunud tellimusega inimene ei
+näinud oma uuringu sisendit, tulemust ega olekut ja ei saanud teda ka ära koristada. Dokumentidel
+on sama küsimus juba lahendatud KÕVA REEGLIGA (oma failide lugemine ja kustutamine ei sõltu
+tellimusest) ja platvorm lubab, et ligipääs oma andmetele ei aegu. (2) `DELETE` kutsus ainult
+`cancelResearchJob()`, mis terminaltöö puhul **väljus kohe midagi muutmata** — ja marsruut vastas
+ikkagi eduga `status: "cancelled"`. „Minu dokumentide" kustutusnupp näitas seega „kustutatud" ja
+rida ilmus kohe uuesti nimekirja.
+
+**Sama kõva reegel ka siin.** `requireResearchAuth({ allowWithoutSubscription: true })` on nüüd
+loendil, detailil, vool, peatamisel ja kustutamisel; **uue tasulise töö käivitamine (POST) jääb
+värava taha** — mõlemad on ühes failis kõrvuti, seega erand on nähtav, mitte peidetud.
+
+**Peatamine ja kustutamine on kaks tegu.** `POST /api/research/jobs/[id]/stop` peatab aktiivse töö
+ja on idempotentne: juba lõppenud töö puhul ei muudeta midagi ja vastuses on tema **päris**
+lõppseis, mitte teeseldud „cancelled". `DELETE` eemaldab rea päriselt; aktiivne töö annab **409
+„peata enne"**, sest muidu jääks tasuline töö rippuma. Klient läks kaasa: vestluse Stop kutsub
+stop-marsruuti (muidu oleks Stop hakanud tulemust ära viskama), „Minu dokumentide" kustutus jääb
+DELETE peale.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run research:delete:probe`, **15/15**) kõigis viies olekus:
+`done`/`error`/`cancelled` → **rida on andmebaasist kadunud** · `queued`/`running` → kustutus
+keeldub ja rida jääb alles · teine kustutus ütleb ausalt „ei ole" · **võõras töö ja olematu id
+annavad SAMA vastuse** (olemasolu-oraaklit ei teki). Negatiivkontroll kinnitab, et vana tee jättis
+terminaltöö rea alles.
+
+**Sond tõi välja ühe fakti, mida raportis ei olnud:** andmebaasis on osaline unikaalne indeks
+`ResearchJob_userId_active_unique_idx` — ühel kasutajal saab korraga olla ainult üks aktiivne töö.
+Sond pidi seetõttu andma igale aktiivsele olekule oma konto.
+
+**Aus piir mõõtmises.** Kriteerium küsis HTTP-testi aegunud tellimusega. Sond mõõdab kustutuskihti
+päris andmebaasi vastu ja lähtekoodi-leping mõõdab, et marsruudid kasutavad tellimusevaba väravat
+(ja et POST seda EI kasuta) — aga päris sessiooniga HTTP-jooksu aegunud tellimuse all ei ole.
+`requireResearchAuth` laadib `next-auth` dünaamiliselt ega ole süstitav; selle katmine eeldaks
+brauserisessiooni, mis on selle paranduse skoobist väljas.
+
 ### SOL-RES-02 — idempotentsusvõti seob ainult kasutusühiku, mitte uuringutöö — P1
 
 **Tõend.** Route reserveerib `DEEP_RESEARCH_RUN` kasutuse kliendi võtmega ja salvestab adapteri võtme payload'i, kuid loob töö alati uue juhusliku UUID-ga; võtme ja `ResearchJob` vahel pole unikaalset seost (`app/api/research/jobs/route.js:234-255`, `lib/research/jobStore.js:269-325`, `prisma/schema.prisma:1759-1782`). Usage-teenus tagastab sama võtme olemasoleva reservatsiooni — ka terminalse — `reused: true` vastusena, kui metric ja amount kattuvad (`lib/usage/service.js:222-240`). Pärast esimese töö lõppu pole aktiivse töö piirangut, seega sama idempotentsusvõtmega saab luua uue täismahus job'i, mille lõpp-commit taaskasutab juba arvestatud ühikut. Tavaklient ei saada üldse `idempotencyKey` väärtust (`components/chat/hooks/useChatStream.js:417-428`), mistõttu võrgu-/response'i retry saab vastupidiselt luua uue võtme ja uue tasulise töö.

@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 79/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 80/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -311,13 +311,21 @@ puuduvast objektist. Nüüd on mõlemal oma jälg, kustutus ja jälg on üks toi
 sündmus ei kao enam vaikselt. **See on peatüki ainus migratsiooni vajav parandus** (kaks
 enum-väärtust, andmeid ei muuda).
 
-**SOL-DOC on 9/9 — kuues lõpuni viidud peatükk.** Lahtiseks jääb **204 P1, 73 P2 ja 1 P3**.
-Dokumendijärjekorras on järgmine käsilevõetav **SOL-RES** (uuringud, 0/7), aga kõige eespool
-lahtine on endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja
-brauseri-QA taga.
+**SOL-DOC on 9/9 — kuues lõpuni viidud peatükk.**
 
-**Deploy'mata on kogu SOL-DOC peatükk (01…09)** — neist vajab migratsiooni ainult DOC-09
-(kaks enum-väärtust). Ütle, kui viin serverisse.
+**SOL-RES-01: aegunud tellimus võttis ligipääsu su enda uuringule, ja „kustuta" ei kustutanud.**
+Kogu uuringupind — loend, detail, edenemine ja kustutus — nõudis aktiivset tellimust, kuigi
+dokumentidel kehtib juba kõva reegel, et oma failide lugemine ja kustutamine sellest ei sõltu.
+Teine pool: kustutusnupp kutsus tegelikult tühistamist, mis lõppenud töö puhul ei teinud midagi —
+sulle öeldi „kustutatud" ja rida ilmus kohe uuesti. Nüüd on lugemine, peatamine ja kustutamine
+tellimusevabad (uue uuringu käivitamine jääb värava taha), peatamisel on oma nupp ja kustutus
+eemaldab rea päriselt. Tõendatud **päris andmebaasi vastu 15/15** kõigis viies olekus.
+
+Lahtiseks jääb **203 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (1/7), kõige eespool lahtine on
+endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+
+**Deploy'mata on kogu SOL-DOC peatükk (01…09) ja SOL-RES-01** — neist vajab migratsiooni ainult
+DOC-09 (kaks enum-väärtust). Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

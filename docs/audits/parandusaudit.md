@@ -9,16 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **79 / 357** |
+| Tehtud leidu | **80 / 357** |
 | Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 204 × P1 · 73 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 203 × P1 · 73 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-DOC sai lõpuni** (9/9). Dokumendijärjekorras on järgmine käsilevõetav **SOL-RES** (0/7), aga kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-RES on käsil** (1/7). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 79-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **kogu SOL-DOC peatükk (01…09)**;
+**70 tehtud leidu 80-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **kogu SOL-DOC peatükk (01…09) ja SOL-RES-01**;
 neist vajab migratsiooni ainult **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust, andmeid ei muuda). Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02
@@ -41,7 +41,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
-| Uuringud | SOL-RES | 0/7 | – | 6 | 1 | |
+| Uuringud | SOL-RES | 1/7 | – | 5 | 1 | **käsil**, RES-01 tehtud |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
@@ -345,6 +345,17 @@ oma action'it (ainus migratsiooni vajav leid selles peatükis), `writeDocumentAu
 kohustuslik tee, mis kaardistamata sündmuse ja kirjutuse vea peale VISKAB, ja kustutus koos oma
 jäljega on üks tehing. **`npm run analysis:audit:probe` 10/10**, sh „olematu analüüsi kustutus ei
 loo jälge".
+
+**SOL-RES-01 (11.08): kaks eri asja olid ühte aetud.** Kogu uuringupind käis läbi värava, mis
+nõudis alati aktiivset tellimust — aegunud tellimusega inimene ei näinud oma uuringu sisendit,
+tulemust ega olekut ja ei saanud teda ka koristada, kuigi dokumentidel on sama küsimus juba
+lahendatud kõva reegliga. Ja `DELETE` kutsus ainult `cancelResearchJob()`, mis terminaltöö puhul
+väljus kohe midagi muutmata, aga marsruut vastas ikkagi eduga: kasutajale öeldi „kustutatud" ja
+rida ilmus kohe uuesti. Nüüd on lugemine, peatamine ja kustutamine tellimusevabad (POST jääb
+värava taha, mõlemad ühes failis kõrvuti), peatamiseks on oma marsruut ja DELETE eemaldab rea
+päriselt; aktiivne töö annab 409 „peata enne". **`npm run research:delete:probe` 15/15** kõigis
+viies olekus. Sond tõi välja fakti, mida raportis ei olnud: andmebaasis on osaline unikaalne
+indeks „üks aktiivne töö kasutaja kohta".
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
