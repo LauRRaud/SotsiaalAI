@@ -89,12 +89,21 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 10.08 hilisõhtul (mõõdetud, mitte mäletatud):** lokaalne `main` ja `origin/main` on
-**`a2aa7435`**, **server samuti `a2aa7435`** — deploy'mata on ainult SOL-FIELD-04
-(migratsioonita). **Üheksas deploy 10.08 22:49 sinu selgel loal:** neli commit'i
-(SOL-FIELD-02 ja -03 + docs), migratsioone ei olnud. Mõõdetud kohe pärast: `.next` 22:49,
-kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, frontend'i veatasemel
-logi tühi.
+**Seis 11.08 hommikul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja server
+on kõik **`aafe4eaa`** — deploy'mata tööd EI OLE. **Üheteistkümnes deploy 11.08 10:17 sinu
+selgel loal:** 30 commit'i (kogu SOL-DOC 01…09, kogu SOL-RES 01…07 + docs) ja kaks
+migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 10:17, kolm teenust `active`,
+`/` `/vestlus` `/toolaud` `/teenusekaart` **200**, frontend'i veatasemel logi tühi.
+Mõlemad migratsioonid on `_prisma_migrations`-is lõpetatud ja tagasi kerimata:
+`ResearchJob.clientIntentKey` ja unikaalne `(userId, clientIntentKey)` indeks on olemas,
+`DocumentAuditAction` sai `ANALYSIS_SAVE` ja `ANALYSIS_DELETE`. `ResearchJob` on toodangus
+0 rida, seega unikaalne indeks läks läbi triviaalselt — esimene päris kinnitus tuleb siis,
+kui kaks sama võtmega kavatsust tõesti kohtuvad.
+
+**Kümnes deploy 10.08 23:34** oli `44144aba` (SOL-FIELD-04/-05/-06, migratsioonita) — vt S9.
+**Üheksas deploy 10.08 22:49** oli `a2aa7435`: neli commit'i (SOL-FIELD-02 ja -03 + docs),
+migratsioone ei olnud. Mõõdetud kohe pärast: `.next` 22:49, kolm teenust `active`,
+`/` `/vestlus` `/valitoo` `/admin/rag` **200**, frontend'i veatasemel logi tühi.
 
 **Kaheksas deploy 10.08 21:45** oli `ae599200`: 21 commit'i (SOL-NET-01/-02, SPROF-plokk,
 kogu SOL-ORG, SOL-FIELD-01 + docs) ja kaks migratsiooni. Mõõdetud kohe pärast, mitte
@@ -355,8 +364,9 @@ väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt
 Lahtiseks jääb **198 P1, 73 P2 ja 1 P3**. **SOL-RES on 6/7.** Kõige eespool lahtine on endiselt
 **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-07** — migratsiooni vajavad
-DOC-09 ja RES-02, kumbki olemasolevaid ridu muutmata. Ütle, kui viin serverisse.
+**Kogu SOL-DOC peatükk (01…09) ja SOL-RES-01…-07 on LIVE** (üheteistkümnes deploy 11.08 10:17,
+vt S1) koos migratsioonidega `20260811020000` (`ANALYSIS_SAVE`/`ANALYSIS_DELETE`) ja
+`20260811040000` (`clientIntentKey` + unikaalne indeks). Kumbki ei muutnud olemasolevaid ridu.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,
