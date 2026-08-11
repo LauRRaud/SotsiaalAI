@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 108/392 leidu, 7/38 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 110/397 leidu, 7/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT**). **Auditis ei ole enam ühtegi
 lahtist P0-d.**
 
@@ -153,7 +153,7 @@ spetsialistifunktsioonil, mitte ääreala. **Otsustamata ja see otsus on vaja te
 loenduse mõõtmist: kas jätkufailid liidetakse peaauditisse (siis kehtib nende peale sama
 dokumendijärjekorra reegel) või jäävad eraldi järjekorraks.**
 
-**Käsil: SOL-AUTH, 6/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
+**Käsil: SOL-AUTH, 8/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
 `VerificationToken` reast (`lib/auth/verificationTokens.js`, `v2:` + sha256) ja tarbimine sai
 atomaarse ühekordse claim'i. `npm run auth:token:probe` **26/26 päris PostgreSQL-is**, kaks
 negatiivkontrolli: vana rea väärtus ON töötav link, vana claim-muster viskab kaotaja peal erindi.
@@ -168,8 +168,22 @@ eduteade asendus `502`-ga ja esmane PUT kannab ausat `emailDelivery` seisu.
 `npm run auth:emailchange:probe` **27/27 päris PostgreSQL-is**, **kolm negatiivkontrolli**: vana
 GET-rada vahetab identiteedi pelgalt avamisel · vana kinnitusmuster vahetab VANA aadressi peale ja
 hävitab värske tokeni · vana resend-järjekord tapab varem kohale jõudnud lingi.
-Migratsioone ei vaja kumbki plokk. `npm test` **3712/3712**, i18n ja eslint puhtad.
-Lahtised AUTH-07…-15 (9 leidu).
+
+**AUTH-07 + -11 tehtud (commit'imata): `LoginTempToken` elutsükkel.** -07: PIN-i vahetus kasvatas
+ainult `sessionVersion`-it, aga vana PIN-iga alustatud sisselogimine loeb tarbimisel KÄESOLEVAT
+versiooni — rotatsioon nägi välja nagu tühistaks kõik ja ei tühistanud. Nüüd kustutatakse samas
+tehingus `LoginTempToken`, `EmailOtpCode`, `TrustedDevice` ja `Session`, täpselt nagu paroolitaaste
+ja e-posti vahetus juba tegid. -11: sama katse sai väljastada mitu usaldatud seadet, sest `usedAt`
+täideti alles NextAuthis; nüüd on tingimuslik claim `trustedDeviceId: null` peal + kasutajapõhine
+nõuandelukk (`4712`, kõrvuti AUTH-02 `4711`-ga), otsus kolis marsruudist välja
+(`lib/auth/loginAttemptVerification.js`). `npm run auth:attempt:probe` **19/19 päris
+PostgreSQL-is**, tõend on **NextAuthi päris `authorize()` vastus**, mitte rea puudumine; kaks
+negatiivkontrolli. **Sond leidis lõksu, mis oleks tõendi tühjaks teinud:** `provider.authorize` on
+next-auth'i tühi stub (`() => null`) ja päris funktsioon on `provider.options.authorize` — kinni
+püüdis baasjoone kontroll „enne vahetust ANNAB".
+
+Migratsioone ei vaja ükski kolmest plokist. `npm test` **3718/3718**, i18n ja eslint puhtad.
+Lahtised AUTH-08, -09, -10, -12, -13, -14, -15 (7 leidu).
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav

@@ -24,32 +24,56 @@ function makeDb({
   pendingConflict = null
 } = {}) {
   const user = { id, email, passwordHash, sessionVersion, role };
-  const calls = { findUnique: [], update: [], pendingFindFirst: [] };
-  const db = {
-    user: {
-      async findUnique(args) {
-        calls.findUnique.push(args);
-        if (args.where.id) return args.where.id === user.id ? { ...user } : null;
-        if (args.where.email) {
-          if (args.where.email === user.email) return { ...user };
-          const ownerId = emailOwners[args.where.email];
-          return ownerId ? { id: ownerId, email: args.where.email } : null;
-        }
-        return null;
-      },
-      async update(args) {
-        calls.update.push(args);
-        const { sessionVersion: sv, ...scalar } = args.data;
-        Object.assign(user, scalar);
-        if (sv?.increment) user.sessionVersion += sv.increment;
-        return { email: user.email, role: user.role };
+  const calls = {
+    findUnique: [],
+    update: [],
+    pendingFindFirst: [],
+    txRuns: 0,
+    // SOL-AUTH-07: a PIN rotation must end the whole prior credential surface.
+    revoked: { loginTempToken: [], emailOtpCode: [], trustedDevice: [], session: [] }
+  };
+  const userModel = {
+    async findUnique(args) {
+      calls.findUnique.push(args);
+      if (args.where.id) return args.where.id === user.id ? { ...user } : null;
+      if (args.where.email) {
+        if (args.where.email === user.email) return { ...user };
+        const ownerId = emailOwners[args.where.email];
+        return ownerId ? { id: ownerId, email: args.where.email } : null;
       }
+      return null;
     },
+    async update(args) {
+      calls.update.push(args);
+      const { sessionVersion: sv, ...scalar } = args.data;
+      Object.assign(user, scalar);
+      if (sv?.increment) user.sessionVersion += sv.increment;
+      return { email: user.email, role: user.role };
+    }
+  };
+  const revoker = (name) => ({
+    async deleteMany(args) {
+      calls.revoked[name].push(args.where);
+      return { count: 0 };
+    }
+  });
+  const db = {
+    user: userModel,
     pendingEmailChange: {
       async findFirst(args) {
         calls.pendingFindFirst.push(args);
         return pendingConflict;
       }
+    },
+    async $transaction(fn) {
+      calls.txRuns += 1;
+      return fn({
+        user: userModel,
+        loginTempToken: revoker("loginTempToken"),
+        emailOtpCode: revoker("emailOtpCode"),
+        trustedDevice: revoker("trustedDevice"),
+        session: revoker("session")
+      });
     }
   };
   return { db, user, calls };
@@ -264,6 +288,19 @@ test("PIN change requires the current PIN, hashes only after it passes, revokes 
   });
   assert.equal(accepted.user.sessionVersion, 5);
   assert.deepEqual(pinNotices, [{ email: "current@example.test" }]);
+
+  /* SOL-AUTH-07: bumping sessionVersion revokes issued JWTs but NOT a login that
+     was started with the old PIN — its LoginTempToken reads the CURRENT version
+     at consumption. The whole prior surface goes, in the same transaction. */
+  assert.equal(accepted.calls.txRuns, 1, "revocation must share the PIN write's transaction");
+  assert.deepEqual(accepted.calls.revoked.loginTempToken, [{ userId: "user-1" }]);
+  assert.deepEqual(accepted.calls.revoked.emailOtpCode, [{ userId: "user-1" }]);
+  assert.deepEqual(accepted.calls.revoked.trustedDevice, [{ userId: "user-1" }]);
+  assert.deepEqual(accepted.calls.revoked.session, [{ userId: "user-1" }]);
+
+  // A rejected PIN change must not revoke anything at all.
+  assert.equal(rejected.calls.txRuns, 0);
+  assert.deepEqual(rejected.calls.revoked.loginTempToken, []);
 });
 
 test("passwordless account cannot change email; it must set up a PIN first (step-up)", async () => {

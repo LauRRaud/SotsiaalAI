@@ -11,11 +11,11 @@ Mõõdetud **11.08.2026 õhtul** (kolmas mõõtmine, pärast SOL-AUTH-03…-06).
 
 | | |
 |---|---|
-| Tehtud leidu | **108 / 397** |
+| Tehtud leidu | **110 / 397** |
 | Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, SOL-CHAT |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 202 × P1 · 86 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 86 × P2 · 1 × P3 |
 | Nimetaja kasvas 357 → 397 | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud seitset faili. |
-| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on SOL-AUTH-03…-06** (`14501377`, `380274df`) — nad on `origin/main`-is, aga server neid ei kanna. Migratsioone kumbki ei vaja. |
+| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on kuus: SOL-AUTH-03…-07 ja -11** — nad on `origin/main`-is, aga server neid ei kanna. Migratsiooni ei vaja ükski. |
 | Järgmine peatükk | **SOL-AUTH on käsil, 6/15.** Järgmine plokk AUTH-07 + -11 (`LoginTempToken` elutsükkel). SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
 | Käsil oleva peatüki saba | SOL-AUTH 9 lahtist (5 × P1, 4 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
@@ -42,9 +42,9 @@ Kaks tagajärge, mis ei ole kosmeetika:
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**104 tehtud leidu 108-st on tootmises; deploy'mata on neli — SOL-AUTH-03…-06.** Nad on
-`origin/main`-is (`14501377`, `380274df`), aga server neid ei kanna ja migratsiooni kumbki
-plokk ei vaja. Kolmeteistkümnes deploy
+**104 tehtud leidu 110-st on tootmises; deploy'mata on kuus — SOL-AUTH-03…-07 ja -11.** Nad on
+`origin/main`-is (`14501377`, `380274df` ja järgnev), aga server neid ei kanna ja migratsiooni ei
+vaja ükski kolmest plokist. Kolmeteistkümnes deploy
 (11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
 **`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
 puudutatud) ning ühtlasi eelmisest ringist üle jäänud SOL-MEET-05/-06.
@@ -72,7 +72,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 |---|---|---|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
 | Build | SOL-BUILD | **1/1** | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 6/15 | 5 × P1 · 4 × P2 | **käsil**, AUTH-01…-06 tehtud |
+| Autentimine ja autoriseerimine | SOL-AUTH | 8/15 | 4 × P1 · 3 × P2 | **käsil**, AUTH-01…-07 ja -11 tehtud |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
@@ -137,6 +137,20 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   vana GET-rada vahetab identiteedi pelgalt avamisel · vana kinnitusmuster vahetab VANA
   aadressi peale ja hävitab värske tokeni · vana resend-järjekord tapab varem kohale jõudnud
   lingi.
+- **SOL-AUTH-07 + -11** (11.08) — **`LoginTempToken` elutsükkel, üks plokk.** `-07`: PIN-i
+  vahetus kasvatas ainult `sessionVersion`-it, aga vana PIN-iga alustatud sisselogimine loeb
+  tarbimisel KÄESOLEVAT versiooni — rotatsioon nägi välja nagu tühistaks kõik ja ei tühistanud.
+  Nüüd kustutatakse samas tehingus `LoginTempToken`, `EmailOtpCode`, `TrustedDevice` ja
+  `Session`; sama leping oli kõrval juba kaks korda olemas (paroolitaaste, e-posti vahetus) ja
+  PIN-i vahetus oli ainus credential-rotatsioon, mis seda ei teinud. `-11`: sama katse sai
+  väljastada mitu usaldatud seadet, sest `usedAt` täideti alles NextAuthis — nüüd tingimuslik
+  claim `trustedDeviceId: null` peal (kaotaja seaderida rullub tagasi) + kasutajapõhine
+  nõuandelukk `4712`. `npm run auth:attempt:probe` **19/19** päris PostgreSQL-is; tõend on
+  **NextAuthi päris `authorize()` vastus**, mitte rea puudumine. Kaks negatiivkontrolli: ainult
+  `sessionVersion` EI tühista pooleliolevat sisselogimist · vana muster väljastab samast
+  katsest KAKS seadet. **Sond leidis lõksu, mis oleks tõendi tühjaks teinud:**
+  `provider.authorize` on next-auth'i tühi stub ja päris funktsioon on
+  `provider.options.authorize` — kinni püüdis baasjoone kontroll „enne vahetust ANNAB".
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude

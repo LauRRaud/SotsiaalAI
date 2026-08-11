@@ -7,14 +7,15 @@ import {
   fingerprintUserAgent,
   computeIpFromHeaders,
   computeIpRange,
-  generateOpaqueToken,
   buildDeviceCookie,
   DEVICE_COOKIE_NAME,
   TRUSTED_DEVICE_DAYS,
-  pickTrustedDeviceIdsToEvict,
-  getTrustedDeviceMaxForUser,
   normalizeTrustedDeviceName
 } from "@/lib/auth/pin-login";
+import {
+  LoginAttemptClaimError,
+  verifyLoginAttempt
+} from "@/lib/auth/loginAttemptVerification";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { serverT, normalizeServerLocale } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
@@ -89,6 +90,7 @@ async function fetchLoginToken(rawToken) {
       otpVerifiedAt: true,
       expiresAt: true,
       usedAt: true,
+      trustedDeviceId: true,
       user: {
         select: {
           role: true,
@@ -167,85 +169,40 @@ export async function POST(request) {
       Date.now() + TRUSTED_DEVICE_DAYS * 24 * 60 * 60 * 1000
     );
 
-    let deviceCookieData = null;
-
-    await prisma.$transaction(async (tx) => {
-      let trustedDeviceId = null;
-      if (rememberDevice) {
-        const trustedDeviceMax = getTrustedDeviceMaxForUser(loginToken.user);
-
-        await tx.trustedDevice.deleteMany({
-          where: {
-            userId: loginToken.userId,
-            expiresAt: {
-              lte: now
-            }
-          }
+    let deviceToken = null;
+    try {
+      ({ deviceToken } = await verifyLoginAttempt({
+        db: prisma,
+        loginToken,
+        rememberDevice,
+        deviceName,
+        fingerprint,
+        ipRange,
+        deviceExpiresAt,
+        now
+      }));
+    } catch (claimError) {
+      if (claimError instanceof LoginAttemptClaimError) {
+        // The attempt already settled (or already handed out its one device).
+        // A used login attempt is not an error the caller can fix by retrying.
+        return errorJson("api.auth.login.token_expired", 400, locale, {
+          code: "TOKEN_EXPIRED"
         });
-
-        const activeTrustedDevices = await tx.trustedDevice.findMany({
-          where: {
-            userId: loginToken.userId,
-            expiresAt: {
-              gt: now
-            }
-          },
-          select: {
-            id: true,
-            lastUsedAt: true,
-            createdAt: true
-          }
-        });
-
-        const evictIds = pickTrustedDeviceIdsToEvict(
-          activeTrustedDevices,
-          Math.max(1, trustedDeviceMax)
-        );
-
-        if (evictIds.length > 0) {
-          await tx.trustedDevice.deleteMany({
-            where: {
-              id: {
-                in: evictIds
-              }
-            }
-          });
-        }
-
-        const deviceToken = generateOpaqueToken(32);
-        const record = await tx.trustedDevice.create({
-          data: {
-            userId: loginToken.userId,
-            name: deviceName,
-            deviceTokenHash: hashOpaqueToken(deviceToken),
-            userAgentFingerprint: fingerprint,
-            ipRange,
-            expiresAt: deviceExpiresAt,
-            lastUsedAt: now
-          }
-        });
-        trustedDeviceId = record.id;
-        deviceCookieData = { token: deviceToken };
       }
-
-      await tx.loginTempToken.update({
-        where: { id: loginToken.id },
-        data: {
-          otpVerifiedAt: now,
-          trustedDeviceId
-        }
-      });
-    });
+      throw claimError;
+    }
 
     const response = json({
       status: "verified",
       temp_login_token: rawToken
     });
 
-    if (deviceCookieData) {
-      const cookie = buildDeviceCookie(deviceCookieData.token);
+    if (deviceToken) {
+      const cookie = buildDeviceCookie(deviceToken);
       response.cookies.set(cookie.name, cookie.value, cookie.options);
-    } else {
+    } else if (!loginToken.trustedDeviceId) {
+      // Only clear the cookie when this attempt never had a device — otherwise a
+      // later remember_device=false call would strip the one it just issued.
       response.cookies.set(DEVICE_COOKIE_NAME, "", {
         path: "/",
         maxAge: 0

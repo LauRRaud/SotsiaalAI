@@ -3328,6 +3328,31 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** PIN-i muutus peab ühes tehingus tühistama kõik `LoginTempToken` ja `EmailOtpCode` read ning vajadusel tracked sessioonid/usaldatud seadmed; alternatiivina peab temp-token kandma väljastamishetke credential-versiooni, mida tarbimisel võrreldakse. Integratsioonitest peab looma vana PIN-iga temp-tokeni, muutma PIN-i ja tõendama, et vana temp-token/OTP/email-link ei saa uut sessiooni luua.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Valitud on kriteeriumi esimene haru: PIN-i vahetus lõpetab kogu eelmise volituspinna.** Ühes
+  tehingus koos uue `passwordHash`-iga kustutatakse `LoginTempToken`, `EmailOtpCode`,
+  `TrustedDevice` ja `Session` read. Teine haru (temp-token kannab väljastamishetke
+  credential-versiooni) oleks nõudnud uut veergu ja teist tõde, mida tuleks sünkroonis hoida.
+- **Sama leping oli kõrval juba kaks korda olemas** — paroolitaaste (`passwordResetLifecycle`) ja
+  e-posti vahetus (`emailChange`) tühjendavad täpselt need neli pinda. PIN-i vahetus oli ainus
+  credential-rotatsioon, mis seda ei teinud; nüüd on üks reegel, mitte kolm.
+- **Usaldatud seadmed lähevad kaasa ja see on teadlik.** PIN on esimene faktor; meelde jäetud
+  seade on täpselt see, mis lubab tema valdajal teisest faktorist mööda minna. Hind on see, et
+  kasutaja peab oma seadmed uuesti usaldama — sama hind, mis paroolitaastel juba on.
+- **`npm run auth:attempt:probe` 19/19 päris PostgreSQL-is.** Tõend ei ole rea puudumine, vaid
+  **NextAuthi päris credentials-provideri `authorize()` vastus**: enne vahetust annab vana katse
+  sessiooni, pärast vahetust `null`. **Negatiivkontroll:** ainult `sessionVersion` kasvatamine
+  (vana käitumine) jätab poolelioleva sisselogimise elama ja väljastab uue sessiooni **juba
+  kasvatatud versiooniga** — täpselt leiu kirjeldatud rada.
+- **Sond leidis ühe lõksu, mis oleks kogu tõendi tühjaks teinud:** `provider.authorize` on
+  next-auth'i enda tühi vaikeväärtus (`() => null`) ja päris funktsioon elab
+  `provider.options.authorize` all. Vale viide oleks andnud alati `null` ja „vana token ei saa
+  sessiooni" oleks olnud triviaalselt roheline VALEL põhjusel. Kinni püüdis selle **baasjoone
+  kontroll** („enne vahetust ANNAB"), mis on nüüd sondis nimeliselt sees.
+- Ühiktest (`tests/profile/accountLifecycle.test.js`) mõõdab, et tühjendus jagab PIN-i kirjutuse
+  tehingut ja et **tagasi lükatud PIN-i vahetus ei tühista mitte midagi**.
+- `runtime: not_run` päris brauseri osas — mõõdetud on teenusetasand ja `authorize()`.
+
 ### SOL-AUTH-08 — kirjalinki automaatselt avav skanner võib ründaja PIN-sisselogimise teise faktori kinnitada — P1
 
 **Tõend.** Pärast õiget PIN-i loob step1 kaks seotud saladust: brauserile antava `temp_login_token`-i ning e-kirja pandava `emailLinkToken`-i (`app/api/auth/login-step1/route.js:126-150`, `:321-356`). Kinnituslink osutab `GET /api/auth/login-confirm?token=...` teele (`lib/auth/login-email-link.js:20-25`). Selle GET-i ainus avamine teeb tingimusliku `updateMany`, seab `otpVerifiedAt` väärtuse ja nullib e-posti tokeni (`app/api/auth/login-confirm/route.js:247-273`). Algne brauser pollib seejärel staatust ja lõpetab sisselogimise automaatselt (`components/LoginModal.jsx:856-905`). Kasutaja kinnitavat POST-i ega inimese interaktsiooni ei nõuta; erinevalt esmase e-posti kinnituse route'ist puudub siin skannerikaitse.
@@ -3359,6 +3384,34 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Kinnitatud login-attempt ei ole seadme usaldamise suhtes ühekordne. Temp-tokeni valdaja saab luua mitu püsivat teise faktori bypass-cookie't, sh paralleelselt rohkem kui konto limiit, isegi kui ainult üks lõplik sessioon tokeni ära tarbib.
 
 **Vastuvõtukriteerium.** Temp-tokeni verifitseerimine, valikuline ühe seadme loomine ja sessiooniks claim'imine peavad moodustama ühe ühekordse state machine'i või eraldi CAS-etapid, kus sama attempt ei saa teist seadet väljastada. Seadmelimiit peab olema DB-s serialiseeritud. Paralleeltest peab saatma sama tokeniga mitu step2 päringut ning tõendama ühe cookie/rea ja ühe lõpliku sessiooni.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Otsus kolis marsruudist välja** (`lib/auth/loginAttemptVerification.js`), sest testijooksja ei
+  saa marsruudi tehingut osadeks võtta — sama põhjus mis `lib/calls/clientState.js`-il
+  (SOL-CALL-11…-13) ja `lib/chat/requestGeneration.js`-il (SOL-CHAT-12). Piir, mida ei saa
+  testida, ei ole piir.
+- **Kaks piiri, mõlemad andmebaasis.** (1) **Tingimuslik claim `trustedDeviceId: null` peal** teeb
+  samast katsest ühekordse seadmeväljastaja; ta on tehingu sees, seega kaotaja loodud seaderida
+  **rullub tagasi** — teda ei ole kunagi olnud. (2) **Kasutajapõhine nõuandelukk**
+  (`TRUSTED_DEVICE_LOCK_NAMESPACE = 4712`, kõrvuti AUTH-02 sessiooniluku `4711`-ga) serialiseerib
+  „loe seadmed → tõsta välja → loo uus" ka kahe ERI tokeni vahel — ilma temata oli limiit ainult
+  lootus.
+- **`usedAt` jäi teadlikult NextAuthi claim'ida.** Sessiooni loomine on eraldi samm ja tema CAS on
+  `auth.js`-is olemas; step2 otsustab lõplikult ainult selle, mille ta ise väljastab. Kahe koha
+  vahel jagatud „ühekordsus" oleks tähendanud, et step2 tarbib tokeni ära ja `signIn` ei saa enam
+  sessiooni luua.
+- **Üks kõrvalmõju sai teel parandatud:** vana kood kirjutas `trustedDeviceId` alati (ka `null`),
+  seega hilisem `remember_device=false` kutse **võttis just väljastatud seadme küljest lahti** ja
+  kustutas küpsise. Nüüd ei puuduta mittemäletav rada seda välja ega küpsist.
+- **`npm run auth:attempt:probe` 19/19 päris PostgreSQL-is**, deterministliku lukuvõistlusega:
+  sama katse kaks korda → **täpselt üks seade**, kaotaja saab nimelise claim-vea · täis limiidi
+  juures kaks ERI katset paralleelselt → limiiti ei ületata. **Negatiivkontroll:** vana muster
+  (loo seade, siis tingimusteta `update({ where: { id } })`) väljastab samast katsest **KAKS
+  seadet**.
+- Ühiktestid: `tests/auth/loginAttemptVerification.test.js` (6 uut). Fake modelleerib **päris
+  rollback'i** — ilma selleta oleks „kaotaja seaderida rullub tagasi" roheline fake'i vastu, kus
+  rollback'i ei ole (sama õppetund mis SOL-FIELD-03-l).
+- `runtime: not_run` — päris kahe brauserivahekaardi rada on käimata; mõõdetud on teenusetasand.
 
 ### SOL-AUTH-12 — puuduva avaliku baas-URL-i korral saab login-kirja hosti päringupäisega mürgitada — P1
 
