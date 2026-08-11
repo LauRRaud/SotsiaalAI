@@ -5,12 +5,72 @@ import path from "node:path";
 import test from "node:test";
 
 import {
-  createMeetingSummaryJob,
+  createMeetingSummaryJob as createMeetingSummaryJobRaw,
   retryPendingMeetingSummaryUsageSettlements,
-  runMeetingSummaryJob,
+  runMeetingSummaryJob as runMeetingSummaryJobRaw,
   shouldDeleteMeetingSummaryJob,
-  sweepMeetingSummarySnapshots,
+  sweepMeetingSummarySnapshots as sweepMeetingSummarySnapshotsRaw,
 } from "../../lib/documents/meetingSummaryJobs.js";
+
+// SOL-MEET-04: aktiivse töö claim elab nüüd andmebaasis. `lib/prisma` EI OLE testis fake, seega
+// ilma süstitud kliendita hakkaks kogu see sviit vaikselt elavast PostgreSQL-ist sõltuma — ja CI-s,
+// kus andmebaasi ei ole, kukuks. Võlts jäljendab täpselt seda ühte asja, mille peal leid seisab:
+// `userId` unikaalsust ja tema P2002 viga.
+function claimDb() {
+  const rows = new Map();
+  let seq = 0;
+  return {
+    rows,
+    meetingSummaryJobClaim: {
+      async create({ data }) {
+        if (rows.has(data.userId)) {
+          const error = new Error("Unique constraint failed on the fields: (`userId`)");
+          error.code = "P2002";
+          throw error;
+        }
+        const row = {
+          id: `claim_${(seq += 1)}`,
+          userId: data.userId,
+          jobId: data.jobId,
+          updatedAt: new Date(),
+        };
+        rows.set(data.userId, row);
+        return row;
+      },
+      async findUnique({ where }) {
+        return rows.get(where.userId) || null;
+      },
+      async updateMany({ where, data }) {
+        let count = 0;
+        for (const row of rows.values()) {
+          if (where.userId != null && row.userId !== where.userId) continue;
+          if (where.jobId != null && row.jobId !== where.jobId) continue;
+          Object.assign(row, data);
+          row.updatedAt = new Date();
+          count += 1;
+        }
+        return { count };
+      },
+      async deleteMany({ where }) {
+        let count = 0;
+        for (const [userId, row] of [...rows]) {
+          if (where.id != null && row.id !== where.id) continue;
+          if (where.updatedAt != null && row.updatedAt.getTime() !== new Date(where.updatedAt).getTime()) continue;
+          if (where.userId != null && row.userId !== where.userId) continue;
+          if (where.jobId != null && row.jobId !== where.jobId) continue;
+          rows.delete(userId);
+          count += 1;
+        }
+        return { count };
+      },
+    },
+  };
+}
+
+const db = claimDb();
+const createMeetingSummaryJob = (input, opts = {}) => createMeetingSummaryJobRaw(input, { db, ...opts });
+const runMeetingSummaryJob = (job, opts = {}) => runMeetingSummaryJobRaw(job, { db, ...opts });
+const sweepMeetingSummarySnapshots = (opts = {}) => sweepMeetingSummarySnapshotsRaw({ db, ...opts });
 
 // SOL-MEET-01. Leid oli VAIKNE kahes kohas korraga.
 //
@@ -626,6 +686,172 @@ test("elava töö snapshotti kataloogisweep EI puutu", async () => {
     assert.deepEqual(await fs.readdir(jobsDirFor(root)), [`${job.id}.json`]);
   } finally {
     restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+// ---------------------------------------------------------------------------------------------
+// SOL-MEET-04. Aktiivse töö piirangut kontrolliti Map'ist ja kataloogist ning uus töö lisati alles
+// hiljem: kaks põimuva `await`-iga POST-i lugesid MÕLEMAD „aktiivseid ei ole" ja lõid mõlemad oma
+// töö oma kasutusvõtmega. Siin mõõdetakse claim'i enda lepingut; päris samaaegsust päris
+// unikaalindeksi vastu mõõdab `npm run meeting:summary:probe`.
+// ---------------------------------------------------------------------------------------------
+
+test("kaks samaaegset loomist annavad ÜHE töö — teine saab ausa busy", async () => {
+  const root = await makeRoot();
+  const userId = "meet-04-user-race";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    const results = await Promise.allSettled([
+      createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("race-a") }),
+      createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("race-b") }),
+    ]);
+
+    const won = results.filter(r => r.status === "fulfilled");
+    const lost = results.filter(r => r.status === "rejected");
+
+    assert.equal(won.length, 1, "täpselt üks töö tohib sündida");
+    assert.equal(lost.length, 1);
+    assert.equal(lost[0].reason.code, "ACTIVE_JOB_LIMIT");
+    assert.equal(lost[0].reason.message, "documents.agent_workspace.meeting_summary.busy");
+
+    // Kaotaja ei tohi jätta kettale snapshotti — muidu oleks tal ka oma reservatsioonipaar elus.
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), [`${won[0].value.id}.json`]);
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("terminalolek vabastab claim'i ja järgmise töö saab kohe alustada", async () => {
+  const root = await makeRoot();
+  const userId = "meet-04-user-release";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const job = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("rel"),
+    });
+    assert.equal(db.rows.size, 1, "aktiivne töö hoiab claim'i");
+
+    await runMeetingSummaryJob(job, {
+      usage: usageRecorder(),
+      loadOpenAI: async () => { throw new Error("provider maas"); },
+    });
+
+    assert.equal(job.status, "error");
+    assert.equal(db.rows.size, 0, "terminalolek peab claim'i vabastama");
+
+    const next = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("rel-2"),
+    });
+    assert.equal(next.status, "queued");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("värsket claim'i EI saa üle võtta, aegunud oma saab", async () => {
+  const root = await makeRoot();
+  const userId = "meet-04-user-stale";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    await createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("s1") });
+
+    await assert.rejects(
+      createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("s2") }),
+      error => error.code === "ACTIVE_JOB_LIMIT"
+    );
+
+    // Claim vananeb (üle 15 min): rippuma jäänud protsess ei tohi kasutajat igaveseks lukustada.
+    const held = db.rows.get(userId);
+    held.updatedAt = new Date(Date.now() - 60 * 60 * 1000);
+
+    const taken = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("s3"),
+    });
+    assert.equal(taken.status, "queued");
+    assert.equal(db.rows.get(userId).jobId, taken.id, "claim peab kuuluma uuele tööle");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("kaks samaaegset ülevõtjat: aegunud claim'i saab ainult ÜKS", async () => {
+  const root = await makeRoot();
+  const userId = "meet-04-user-cas";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    await createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("c1") });
+    db.rows.get(userId).updatedAt = new Date(Date.now() - 60 * 60 * 1000);
+
+    const results = await Promise.allSettled([
+      createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("c2") }),
+      createMeetingSummaryJob({ userId, payload: samplePayload(), usage: reservedUsage("c3") }),
+    ]);
+
+    assert.equal(results.filter(r => r.status === "fulfilled").length, 1, "ülevõtt on compare-and-swap");
+    assert.equal(results.filter(r => r.status === "rejected")[0].reason.code, "ACTIVE_JOB_LIMIT");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("elavat claim'i ei saa üle võtta — jooks värskendab teda ise", async () => {
+  const root = await makeRoot();
+  const userId = "meet-04-user-heartbeat";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const job = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("hb"),
+    });
+
+    // Claim „vananeb" enne kui töö jõuab käivituda — täpselt see olukord, kus pikk töö
+    // muutuks vanas kujus ülevõetavaks.
+    db.rows.get(userId).updatedAt = new Date(Date.now() - 60 * 60 * 1000);
+
+    let takeoverDuringRun = null;
+    class SlowOpenAI {
+      constructor() {
+        this.audio = {
+          transcriptions: {
+            create: async () => {
+              // Jooks on siin juba käivitunud ja südamelöök tehtud.
+              takeoverDuringRun = await createMeetingSummaryJob({
+                userId, payload: samplePayload(), usage: reservedUsage("hb-2"),
+              }).then(() => "ÜLE VÕETUD", error => error.code);
+              return { text: "tekst", usage: { type: "duration", seconds: 3 } };
+            },
+          },
+        };
+        this.responses = { create: async () => ({ output_text: "kokkuvõte" }) };
+      }
+    }
+
+    await runMeetingSummaryJob(job, {
+      usage: usageRecorder(),
+      loadOpenAI: async () => ({ default: SlowOpenAI }),
+      persistDocument: async () => ({ id: "doc_hb", title: "Kokkuvõte" }),
+    });
+
+    assert.equal(takeoverDuringRun, "ACTIVE_JOB_LIMIT", "elav töö ei tohi olla ülevõetav");
+    assert.equal(job.status, "done");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
     await fs.rm(root, { recursive: true, force: true });
   }
 });

@@ -34,6 +34,7 @@ async function purge() {
   const owners = await prisma.user.findMany({ where: { email: { endsWith: SUFFIX } }, select: { id: true } });
   const ids = owners.map(row => row.id);
   if (ids.length) {
+    await prisma.meetingSummaryJobClaim.deleteMany({ where: { userId: { in: ids } } });
     await prisma.userDocument.deleteMany({ where: { ownerId: { in: ids } } });
     await prisma.usageEvent.deleteMany({ where: { userId: { in: ids } } });
     await prisma.usageReservation.deleteMany({ where: { userId: { in: ids } } });
@@ -224,6 +225,39 @@ async function main() {
 
       const after = await prisma.usageBucket.findUnique({ where: { id: bucket.id } });
       expect("D1 sama võtmega teine commit ei võta teist ühikut", after?.used === 1n, `used=${after?.used}`);
+    }
+
+    // ------------------- E (SOL-MEET-04): kaks SAMAAEGSET loomist, päris unikaalindeks
+    {
+      const owner = await makeOwner("race");
+      const agentRoot = await fs.mkdtemp(path.join(os.tmpdir(), "sol-meet-agent-"));
+      process.env.AGENT_STORAGE_DIR = agentRoot;
+
+      const { createMeetingSummaryJob } = await import("../lib/documents/meetingSummaryJobs.js");
+      const payload = () => ({
+        locale: "et", role: "SOCIAL_WORKER", fileName: "m.webm", mimeType: "audio/webm",
+        fileSizeBytes: 11, inputDurationSeconds: 12, audioBuffer: Buffer.from("audio"),
+      });
+
+      const settled = await Promise.allSettled([
+        createMeetingSummaryJob({ userId: owner.id, payload: payload(), usage: { stt: { idempotencyKey: "race-a-stt", state: "reserved" }, document: { idempotencyKey: "race-a-doc", state: "reserved" } } }),
+        createMeetingSummaryJob({ userId: owner.id, payload: payload(), usage: { stt: { idempotencyKey: "race-b-stt", state: "reserved" }, document: { idempotencyKey: "race-b-doc", state: "reserved" } } }),
+      ]);
+
+      const won = settled.filter(r => r.status === "fulfilled");
+      const lost = settled.filter(r => r.status === "rejected");
+      const claims = await prisma.meetingSummaryJobClaim.count({ where: { userId: owner.id } });
+      const snapshots = await fs.readdir(path.join(agentRoot, "meeting-summary-jobs")).catch(() => []);
+
+      expect("E1 täpselt üks töö sünnib", won.length === 1, `õnnestus=${won.length}`);
+      expect("E2 kaotaja saab ACTIVE_JOB_LIMIT", lost[0]?.reason?.code === "ACTIVE_JOB_LIMIT",
+        `kood=${lost[0]?.reason?.code} sõnum=${lost[0]?.reason?.message}`);
+      expect("E3 andmebaasis on täpselt üks claim", claims === 1, `claim'e=${claims}`);
+      expect("E4 kettal on täpselt ühe töö snapshot", snapshots.length === 1, `faile=${snapshots.length}`);
+
+      await prisma.meetingSummaryJobClaim.deleteMany({ where: { userId: owner.id } });
+      await fs.rm(agentRoot, { recursive: true, force: true });
+      delete process.env.AGENT_STORAGE_DIR;
     }
   } finally {
     await purge();

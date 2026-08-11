@@ -757,6 +757,7 @@ model User {
   requestedHelpMatches    HelpMatch[]              @relation("HelpMatchRequester")
   offeredHelpMatches      HelpMatch[]              @relation("HelpMatchOfferer")
   researchJobs            ResearchJob[]
+  meetingSummaryJobClaim  MeetingSummaryJobClaim?
   serviceProviderProfiles ServiceProviderProfile[]
   authoredPreInquiries    PreInquiry[]             @relation("PreInquiryAuthor")
   receivedPreInquiries    PreInquiry[]             @relation("PreInquiryRecipientOwner")
@@ -1807,6 +1808,22 @@ model ResearchJob {
   @@index([status, leaseUntil, updatedAt])
   @@index([workerId])
   @@index([endedAt])
+}
+
+/// SOL-MEET-04: ühe aktiivse kokkuvõttetöö claim. Piirangut ei saa hoida protsessi mälus ega
+/// snapshotikataloogis — kaks paralleelset POST-i loevad mõlemad „aktiivseid ei ole" ja loovad
+/// mõlemad oma töö. `userId` unikaalsus on ainus koht, kus see võidujooks päriselt lõpeb: teine
+/// insert kukub P2002-ga, tema reservatsioonid vabastatakse ja kasutaja saab ausa „busy".
+model MeetingSummaryJobClaim {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  jobId     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([updatedAt])
 }
 
 model Municipality {
