@@ -5,11 +5,9 @@ export const revalidate = 0;
 import crypto from "node:crypto";
 import { NextResponse } from "next/server";
 import {
-  BillingMethodStatus,
   BillingMode,
   PaymentProvider,
-  PaymentStatus,
-  SubscriptionStatus
+  PaymentStatus
 } from "@/generated/prisma/client";
 import { prisma } from "@/lib/prisma";
 import { createMaksekeskusRecurringCharge } from "@/lib/payments/maksekeskus";
@@ -18,11 +16,10 @@ import { projectProviderPaymentRaw } from "@/lib/payments/rawProjection";
 import { readBillingMethodRecurringToken } from "@/lib/payments/tokenCrypto";
 import {
   buildRecurringPaymentReference,
-  computeNextRetryAt,
   getDueRecurringSubscriptionWhere,
   getRenewalPaymentKind,
   isRecurringBillingEnabled,
-  shouldCancelAfterRetryCount
+  planRenewalFailure
 } from "@/lib/payments/recurring";
 import { getRoleMonthlyAmount, getRolePlanDescription, normalizeSubscriptionRole } from "@/lib/subscriptionPlans";
 
@@ -247,9 +244,15 @@ export async function POST(request) {
         continue;
       }
 
-      const retryCount = Number(subscription.billingRetryCount || 0) + 1;
-      const shouldCancel = shouldCancelAfterRetryCount(retryCount);
-      const nextRetryAt = computeNextRetryAt(now, retryCount - 1);
+      // SOL-PAY-01: kolm poolt (tellimuse seis, järgmise katse aeg, maksemeetodi
+      // seis) tulevad ühest kohast ja on seal koos loetavad.
+      const failurePlan = planRenewalFailure({
+        retryCountBefore: subscription.billingRetryCount,
+        failedAt: now
+      });
+      const retryCount = failurePlan.retryCount;
+      const shouldCancel = failurePlan.cancel;
+      const nextRetryAt = failurePlan.nextRetryAt;
 
       if (paymentRecord?.id) {
         await prisma.payment.update({
@@ -269,18 +272,21 @@ export async function POST(request) {
       await prisma.subscription.update({
         where: { id: subscription.id },
         data: {
-          status: shouldCancel ? SubscriptionStatus.CANCELED : SubscriptionStatus.PAST_DUE,
+          status: failurePlan.subscriptionStatus,
           pastDueSince: now,
           billingRetryCount: retryCount,
           nextBilling: shouldCancel ? subscription.nextBilling : nextRetryAt
         }
       }).catch(() => {});
 
-      if (subscription.billingMethodId) {
+      /* SOL-PAY-01: maksemeetod märgitakse katkiseks ALLES loobumisel. Vana kood
+         tegi seda esimese tõrke peale ja lukustas sellega enda korduskatse
+         välja — valik nõuab `ACTIVE` meetodit. */
+      if (subscription.billingMethodId && failurePlan.billingMethodStatus) {
         await prisma.billingMethod.update({
           where: { id: subscription.billingMethodId },
           data: {
-            status: BillingMethodStatus.FAILED
+            status: failurePlan.billingMethodStatus
           }
         }).catch(() => {});
       }
