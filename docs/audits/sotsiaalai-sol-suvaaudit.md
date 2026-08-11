@@ -2417,6 +2417,34 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 
 **Vastuvõtukriteerium.** Lõpetamine vajab üht atomaarset olekusiiret, kus abort võib võita kuni kliendile `done` kinnitamise piirini; püsistatav tekst peab olema serveri poolt tegelikult emiteeritud tekst, mitte kogu provider'i puhver. Deterministlik test peab abortima enne viimast flush'i, flush'i ajal, attribution/persistence'i ajal ja pärast `done` emiteerimist ning kontrollima iga kord nähtava teksti, terminalstaatust ja kasutust.
 
+**Seis (11.08.2026): DONE — kaks eraldi viga ühe pealkirja all.**
+- **Esimene: mida püsistati.** `accumulated` on PROVIDERI puhver, mitte see, mida kasutaja nägi.
+  Nüüd on kõrval `emitted`, mida kasvatab AINULT õnnestunud `controller.enqueue` — katkestuse
+  marker kannab täpselt seda. Vahe `accumulated.length - emitted.length` läheb `chat_stream_aborted`
+  sündmusesse (`discardedChars`), seega „kui palju jäi näitamata" on nüüd mõõdetav suurus, mitte
+  oletus.
+- **Teine: kes võidab.** `streamFinalized = true` sisenemisel tegi hilisema `finalizeStreamAbort()`
+  surnud koodiks. Abort- ja edurada jagavad nüüd üht keha (`finalizeAsAborted`) ja edurajal on
+  **kaks värava kontrolli**: kohe pärast viimast flush'i ja vahetult enne püsivat kirjutust
+  (omistamine ja RAG-jälg on `await`-id, mille ajal Stop saabub). Kumbki suunab katkestusse.
+- **Piir on nimeliselt VÄLJA ÖELDUD ja ta EI OLE `done` emiteerimine, vaid püsiv kirjutus.**
+  Kriteeriumi sõnastus lubab abordil võita kuni `done` kinnitamiseni; pärast tehingu commit'i oleks
+  see tagasivõtt, mitte võistluse lahendamine — vastus on siis juba kasutaja oma, salvestatud ja
+  taasavamisel nähtav, ja tema eest on tasutud. `done`-i mittejõudmine kliendini on **kohaletoimetamise**,
+  mitte olekuprobleem; selle lahendab SOL-CHAT-06 (`/api/chat/run` kinnitus EOF-i järel).
+- **Testid (`tests/chat/stopRaceAfterProviderDone.test.js`, 4 uut), kõik neli ajastust:** Stop
+  täpselt `done` hetkel · Stop pärast abort'i saabuvat teksti (püsiv tekst = emiteeritud tekst) ·
+  Stop finaliseerimise `await`-ide ajal · Stop PÄRAST `done`-i (ei tohi lõpetatud pööret tagasi
+  võtta — vastassuund). Kaks neist kannavad **enesekontrolli**: esimene nõuab
+  `discardedChars > 0` (võistlusaken oli selles jooksus päriselt olemas) ja kolmas nõuab
+  `rag_trace` sündmuse olemasolu (muidu ei oleks `await`-i, mille ajal Stop saaks saabuda, ja test
+  oleks vaikselt roheline).
+- **Kõrvalparandus, mis oli testitavuse eeldus:** `persistDone` on nüüd `deps` kaudu süstitav
+  (`completeTurnPersistence`), nagu `persistInit` juba oli. Ilma selleta ei saa terminalmarkeri
+  sisu üldse mõõta — piir, mida ei saa testida, ei ole piir.
+- Kontroll: `npm test` **3648/3648**, `npx eslint` puhas. **runtime: not_run** — päris brauseri
+  Stop-nuppu ei ole läbi käidud; tõend on voo tasemel.
+
 ### SOL-CHAT-06 — enneaegselt lõppenud SSE märgitakse kliendis edukalt lõpetatuks — P2
 
 **Tõend.** Klient seab `streamCompleted = true` ainult `event: done` korral (`components/chat/hooks/useChatStream.js:868-937`). Kui response body lõpeb aga võrgu-, proxy- või serverikatkestuse tõttu normaalse reader-EOF-iga ilma `done` sündmuseta, ei kontrolli kood pärast tsüklit `streamCompleted` väärtust: ta flush'ib nähtava osalise teksti ja märgib sõnumi alati `completionStatus: "COMPLETED"` (`:938-963`). Persisted-run kontrolli kasutatakse samas hook'is ainult pika uuringu rajal, mitte tavavestluse SSE lõpu kinnitamiseks (`:147-168`, `:396-408`, `:571-587`).
