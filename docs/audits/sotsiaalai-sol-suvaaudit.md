@@ -2258,6 +2258,38 @@ uuesti lahti. Selle sulgemine nõuaks perioodilist südamelööki jooksu sees ja
 
 **Vastuvõtukriteerium.** Tundmatu kestus peab kas fail-closed katkestama või reserveerima ohutu maksimaalse mahu faili/piiri järgi; pärast providerit tuleb commit'ida tõendatud tegelik amount lubatud reservatsiooni piires. Testid peavad katma parse'itava, parse'imatu, alla minuti ja pika audio ning kontrollima bucket'i täpset muutust.
 
+**Seis (11.08.2026): DONE.**
+
+**Fikseeritud 60 sekundit ei olnud konservatiivne oletus, vaid möödapääs.** Parser tagastab iga
+parse-vea korral `null` ja marsruut pani selle asemele täpselt 60 — sõltumata sellest, et fail võis
+olla kuni 12 MB. Sama toetatud MIME-ga fail, mille kestust parser ei tunne, võis olla tunnipikkune
+ja `STT_SECONDS` kuulimiidist sai nii **süsteemselt** mööda minna.
+
+**Kaks poolt.** (1) Reserv: teadaoleva kestuse korral `ceil(kestus)`, tundmatu korral **failimahust
+tuletatud ohutu ülempiir** (`estimateMaxAudioSecondsFromBytes`). Madalam eeldatav bitikiirus annab
+PIKEMA kestuse, seega on ta ohutu suund; vaikimisi 32 kbps, seadistatav. (2) Arveldus: mõõt
+arvutatakse nüüd **enne** commit'i ja commit kannab `actualAmount`-i, klammerdatuna reservatsiooni
+piiri. Varem käis commit kaks tosinat rida eespool ja ilma tegeliku mahuta, seega võeti alati kogu
+reserv.
+
+**Kasutaja maksab ainult tõe eest; suur on ainult ajutine reservatsioon.** Aga sellel on hind ja
+see on teadlik: **kliendi paketi kuulimiit on 900 s ja 12 MB tundmatu fail annab ülempiiriks üle
+3000 s**, seega selline üleslaadimine lükatakse tagasi. Kriteerium lubas kaks teed — fail-closed
+katkestamine või ohutu maksimum — ja suure faili puhul need kaks langevad praktikas kokku. See on
+õige suund: 60-sekundilise reserviga läbi lastud tunnipikkune fail oli täpselt see viga.
+
+**Mõõdetud (10 testi).** Töö pool: mõõdetud lühem kestus läheb arvele tegelikuna, mitte reservina ·
+mõõt klammerdub reservatsiooni piiri · murdosa sekundit ümardatakse ÜLES · **tundmatu mõõdu korral
+ei mõelda väiksemat summat välja**, commit jääb reservatsiooni peale. Hinnangu pool: maht → sekundid
+skaleerub lineaarselt, 12 MB annab üle 3000 s (mitte 60), madalam bitikiirus annab pikema kestuse,
+vigane seadistus langeb tagasi vaikeväärtusele, mitte `Infinity`-le.
+
+**Negatiivkontroll.** `actualAmount`-i eemaldamine kukutab kolm testi.
+
+**Aus piir.** Bitikiiruse põrand on **eeldus, mitte mõõt** — ta on valitud ohutus suunas, aga ta ei
+ole tõendatud päris salvestiste vastu. Seda rada sond ei kata: `meeting:summary:probe` mõõdab
+dokumenti, tehingut ja claim'i, mitte STT arvestust.
+
 ### SOL-MEET-06 — väline veateade salvestatakse ja tagastatakse kasutajale puhastamata — P2
 
 **Tõend.** Job'i catch annab `markMeetingSummaryFailed()` funktsioonile otse `String(error.message)` ning see salvestatakse snapshoti `error` väljale (`lib/documents/meetingSummaryJobs.js:434-441`, `:697-702`). Detailroute tagastab sama väärtuse kliendile muutmata (`app/api/documents/meeting-summary/jobs/[id]/route.js:45-48`, `lib/documents/meetingSummaryJobs.js:372-384`). Erinevalt transkriptsiooni ja summary tavaroutest ei kasutata `publicErrorMessageKey()` allowlist'i.
@@ -2265,6 +2297,32 @@ uuesti lahti. Selle sulgemine nõuaks perioodilist südamelööki jooksu sees ja
 **Mõju.** OpenAI SDK, failisüsteemi või DB täpne veatekst võib lekkida autentitud kasutajale ja püsivasse JSON-snapshoti; see võib avaldada sisemisi teid, teenusepakkuja detaile või diagnostilist konteksti ning rikub API lokaliseeritud vealepingut.
 
 **Vastuvõtukriteerium.** Avalik job.error peab olema allowlistitud lokaliseeritav võti; toorviga läheb ainult redigeeritud serverilogisse. Test peab süstima provider-, filesystem- ja DB-vea koos tundliku markeriga ning tõendama, et marker puudub HTTP vastusest ja snapshotist.
+
+**Seis (11.08.2026): DONE.**
+
+**Toorviga läks kahte kohta korraga:** kasutajale HTTP vastuses ja **püsivasse JSON-snapshoti**.
+`markMeetingSummaryFailed()` sai otse `String(error.message)` ja detailmarsruut tagastas selle
+muutmata. OpenAI SDK, failisüsteemi või andmebaasi täpne veatekst võis nii kanda sisemisi teid,
+teenusepakkuja detaile ja diagnostilist konteksti.
+
+**Nüüd käib avalik viga `publicErrorMessageKey()` allowlist'ist läbi** (sama, mida ülejäänud
+dokumendirajad kasutavad) ja toorviga läheb ainult `safeError()`-iga redigeeritud serverilogisse.
+
+**Teel ühtlustus ka välja kuju.** Sama `error` väli kandis kolme eri asja: katkestusrada salvestas
+**võtme**, seadistusrada **tõlgitud lause** ja provideri rada **toorteksti**. Nüüd on kõik kolm
+võtmed. Kontrollisin enne muutmist, et ükski klient `job.error`-it praegu ei tarbi — seega
+tõlgitud lauselt võtmele üleminek ei riku ühtki vaadet.
+
+**Mõõdetud (2 testi).** Provideri viga tundliku markeriga (`sk-live-…` + sisemine tee): avalik
+väärtus on täpselt `documents.agent_workspace.meeting_summary.error` ja marker puudub **nii
+väljundist kui ka kettale kirjutatud snapshotist** — snapshot kontrollitakse eraldi, sest just tema
+on püsiv. Teine test hoiab vastupidist: meie **oma** võtmega viga (`api.stt.not_configured`) peab
+kasutajani muutmata jõudma, muidu oleks „puhastamine" tähendanud kogu info kaotamist.
+
+**Negatiivkontroll.** Toorvea otse väljastamine kukutab lekketesti.
+
+**Aus piir.** Failisüsteemi ja DB vead jooksevad sama `catch`-i kaudu ja saavad seega sama kaitse,
+aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat, tõendatud on üks.
 
 ### SOL-CHAT-01 — tasuline vestlusvastus commit'itakse enne püsivat vestlust ja salvestusviga raporteeritakse eduna — P1
 

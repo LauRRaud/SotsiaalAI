@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **89 / 357** |
-| Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 194 × P1 · 73 × P2 · 1 × P3 |
+| Tehtud leidu | **91 / 357** |
+| Peatükke lõpuni | **7 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, SOL-DOC, **SOL-MEET** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 193 × P1 · 72 × P2 · 1 × P3 |
 | Toodangus | **kaheteistkümnes deploy 11.08 11:42 omaniku selgel loal: server = `ae1f2055`**, kaheksa commit'i (SOL-MEET-01…-04 + docs) ja üks migratsioon. Mõõdetud, mitte eeldatud: `.next` 11:42, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, veatasemel logi tühi. `20260811120000` lõpetatud ja tagasi kerimata; `MeetingSummaryJobClaim` olemas koos unikaalse `userId` indeksi ja `ON DELETE CASCADE` võtmega, ridu 0. (Üheteistkümnes deploy 11.08 10:17 = `aafe4eaa`, kümnes 10.08 23:34 = `44144aba`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on käsil** (4/6). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on LÕPETATUD** (6/6); järgmine dokumendi järjekorras on SOL-CHAT (0/13). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**Kõik 89 tehtud leidu on tootmises** — deploy'mata parandusi EI OLE. Kaheteistkümnes deploy
+**89 tehtud leidu 91-st on tootmises.** Deploy'mata on **SOL-MEET-05 ja -06** (migratsioonita). Kaheteistkümnes deploy
 (11.08 11:42, server `ae1f2055`) viis välja SOL-MEET-01…-04 koos migratsiooniga
 **`20260811120000`** (uus tabel `MeetingSummaryJobClaim`; olemasolevaid ridu ei puudutatud).
 Üheteistkümnes deploy (11.08 10:17) oli kogu SOL-DOC (01…09) ja SOL-RES-01…-07 kahe
@@ -48,7 +48,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
-| Koosolekukokkuvõtted | SOL-MEET | 4/6 | – | 1 | 1 | **käsil**, MEET-01…-04 tehtud |
+| Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | – | – | **tehtud** |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
@@ -438,6 +438,20 @@ loomise hetke peale seisma, muutuks üle 15 minuti kestev töö „aegunuks" ja 
 ELUSALT üle võtta — südamelöök käib nüüd jooksu kahes punktis. **`npm run meeting:summary:probe`
 16/16** päris PostgreSQL-is, sh kaks `Promise.all`-iga samaaegset loomist. **Vajab migratsiooni**
 (`20260811120000`, uus tabel; olemasolevaid ridu ei puudutata).
+
+**SOL-MEET-05 (11.08): fikseeritud 60 sekundit ei olnud konservatiivne oletus, vaid möödapääs.**
+Tundmatu kestusega fail — kuni 12 MB, seega potentsiaalselt tunnipikkune — reserveeris alati täpselt
+minuti, ja commit tehti ilma tegeliku mahuta, seega võeti alati kogu reserv. Nüüd tuleb tundmatu
+kestuse reserv failimahust (ohutu ülempiir, vaikimisi 32 kbps põrand) ja commit kannab mõõdetud
+tegelikku, klammerdatuna reservatsiooni piiri. **Hind on teadlik:** kliendi kuulimiit on 900 s ja
+12 MB tundmatu fail annab üle 3000 s, seega selline üleslaadimine lükatakse tagasi — 60-sekundilise
+reserviga läbi lastud tunnipikkune fail oligi see viga. 10 testi; negatiivkontroll kukutab kolm.
+
+**SOL-MEET-06 (11.08): toorviga läks kahte kohta korraga** — kasutajale HTTP vastuses ja PÜSIVASSE
+JSON-snapshoti. Nüüd käib avalik viga `publicErrorMessageKey()` allowlist'ist läbi ja toorviga
+ainult `safeError()`-iga redigeeritud logisse. Teel ühtlustus ka välja kuju: sama `error` väli
+kandis kolme eri asja (võti, tõlgitud lause, toortekst) — nüüd on kõik võtmed. Test kontrollib
+markeri puudumist eraldi ka kettalt, sest just snapshot on püsiv.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
