@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 133/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 134/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
