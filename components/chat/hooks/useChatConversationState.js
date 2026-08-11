@@ -1,7 +1,13 @@
+import { createRequestGeneration } from "@/lib/chat/requestGeneration";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  readActiveConversationId,
+  writeActiveConversationId
+} from "@/lib/chat/activeConversationKey";
 import { normalizeSources as defaultNormalizeSources } from "../utils/sources";
 const MAX_HISTORY = 8;
-const GLOBAL_CONV_KEY = "sotsiaalai:chat:convId";
+/* SOL-CHAT-11: üldine võti on SURNUD. Aktiivse vestluse ID elab nüüd konto ja rolli all
+   (`lib/chat/activeConversationKey.js`); vana sildistamata rida kustutatakse esimesel puutel. */
 const EMPTY_CONVERSATION_READY_KEY = "__empty__";
 
 function hasMeaningfulMessageContent(message) {
@@ -119,10 +125,12 @@ function makeChatStorage(key = "sotsiaalai:chat:v1") {
     clear
   };
 }
+/* SOL-CHAT-12: `cancel()` ei olnud olemas, seega unmount jättis ootel taimeri alles ja ta
+   ärkas juba lahtiühendatud vestluse peal. Puhastus peab tühistama NII taimeri kui päringu. */
 function throttle(fn, waitMs) {
   let last = 0;
   let timer = null;
-  return (...args) => {
+  const throttled = (...args) => {
     const now = Date.now();
     const remaining = waitMs - (now - last);
     if (remaining <= 0) {
@@ -137,6 +145,13 @@ function throttle(fn, waitMs) {
       fn(...args);
     }, remaining);
   };
+  throttled.cancel = () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+  };
+  return throttled;
 }
 export function useChatConversationState({
   isRoomMode,
@@ -156,6 +171,16 @@ export function useChatConversationState({
     const loc = locale || "et";
     return `sotsiaalai:chat:${uid}:${(userRole || "CLIENT").toLowerCase()}:${loc}:v1`;
   }, [userId, userRole, locale]);
+  /* SOL-CHAT-11: aktiivse vestluse valik on kasutaja JA rolli oma. Keelt siin teadlikult ei ole —
+     keelevahetus ei tee vestlust teise inimese omaks, aga rollivahetus muudab konteksti. */
+  const conversationScope = useMemo(() => ({
+    userId: userId || null,
+    role: userRole || "CLIENT"
+  }), [userId, userRole]);
+  const scopeRef = useRef(conversationScope);
+  useEffect(() => {
+    scopeRef.current = conversationScope;
+  }, [conversationScope]);
   const [convId, setConvId] = useState(null);
   const conversationStorageKey = useMemo(() => {
     if (!convId) return null;
@@ -172,6 +197,9 @@ export function useChatConversationState({
   const lastLocalMutationAtRef = useRef(0);
   const messagesRef = useRef(messages);
   const convIdRef = useRef(convId);
+  // SOL-CHAT-12: ainult viimasena ALANUD hüdreerimine tohib kirjutada (vt lib/chat/requestGeneration.js).
+  const hydrationGenerationRef = useRef(createRequestGeneration());
+  const hydrationAbortRef = useRef(null);
   useEffect(() => {
     messagesRef.current = messages;
   }, [messages]);
@@ -183,26 +211,28 @@ export function useChatConversationState({
   }, [convId]);
   useEffect(() => {
     mountedRef.current = true;
-    const idFromGlobal = typeof window !== "undefined" ? window.sessionStorage.getItem(GLOBAL_CONV_KEY) : null;
+    const scopedId = typeof window !== "undefined"
+      ? readActiveConversationId(window.sessionStorage, conversationScope)
+      : null;
     const idFromPerUser = typeof window !== "undefined" ? window.sessionStorage.getItem(`${storageKey}:convId`) : null;
-    const initialConvId = idFromGlobal || idFromPerUser || (typeof window !== "undefined" && window.crypto?.randomUUID ? window.crypto.randomUUID() : String(Date.now()));
+    const initialConvId = scopedId || idFromPerUser || (typeof window !== "undefined" && window.crypto?.randomUUID ? window.crypto.randomUUID() : String(Date.now()));
     setConvId(initialConvId);
     if (typeof window !== "undefined") {
-      if (!idFromGlobal) window.sessionStorage.setItem(GLOBAL_CONV_KEY, initialConvId);
+      if (!scopedId) writeActiveConversationId(window.sessionStorage, conversationScope, initialConvId);
       if (!idFromPerUser) window.sessionStorage.setItem(`${storageKey}:convId`, initialConvId);
     }
     return () => {
       mountedRef.current = false;
     };
-  }, [storageKey]);
+  }, [storageKey, conversationScope]);
   useEffect(() => {
     if (!convId) return;
     if (typeof window === "undefined") return;
     try {
-      window.sessionStorage.setItem(GLOBAL_CONV_KEY, convId);
+      writeActiveConversationId(window.sessionStorage, conversationScope, convId);
       window.sessionStorage.setItem(`${storageKey}:convId`, convId);
     } catch {}
-  }, [convId, storageKey]);
+  }, [convId, storageKey, conversationScope]);
   useEffect(() => {
     if (!mountedRef.current) return;
     if (!convId) {
@@ -371,22 +401,41 @@ export function useChatConversationState({
       }
     };
   }, [chatStore, isGenerating, messages]);
+  /* SOL-CHAT-12 — VANEM VASTUS EI TOHI UUEMAT SEISU TAGASI PÖÖRATA.
+     Mount, fookus, nähtavuse muutus ja `refresh-conversations` käivitasid sama laadimise kahe eri
+     throttle'i kaudu, ilma `AbortController`-i ja põlvkonnata. Aeglane VAREM alanud GET võis
+     lõpetada hiljem ja kirjutada uuema loendi vanemaga üle — kasutaja nägi viimase pöörde kadumist
+     ja võis ta uuesti saata (topeltkulu). Vestluse ID kontroll seda ei püüdnud: mõlemad päringud
+     olid SAMA vestluse omad.
+
+     Põlvkond on monotoonne loendur: ainult VIIMASENA alanud laadimine tohib kirjutada. */
   const hydrateFromServer = useCallback(async cancelledRef => {
     const id = convIdRef.current;
     if (!id) {
       setServerHydratedConversationId(EMPTY_CONVERSATION_READY_KEY);
       return;
     }
+    const generation = hydrationGenerationRef.current.next();
+    try {
+      hydrationAbortRef.current?.abort();
+    } catch {}
+    const ac = typeof AbortController !== "undefined" ? new AbortController() : null;
+    hydrationAbortRef.current = ac;
+    const isCurrent = () => hydrationGenerationRef.current.isCurrent(generation);
     try {
       const r = await fetch(`/api/chat/run?convId=${encodeURIComponent(id)}`, {
-        cache: "no-store"
+        cache: "no-store",
+        ...(ac ? { signal: ac.signal } : {})
       });
       if (!r.ok) return;
       const data = await r.json();
       if (!data?.ok) return;
       if (cancelledRef?.current) return;
-      const currentGlobalId = typeof window !== "undefined" ? window.sessionStorage.getItem(GLOBAL_CONV_KEY) : id;
-      if (id !== currentGlobalId) return;
+      if (!isCurrent()) return;
+      const currentActiveId = typeof window !== "undefined"
+        ? readActiveConversationId(window.sessionStorage, scopeRef.current)
+        : id;
+      if (currentActiveId && id !== currentActiveId) return;
       const serverText = String(data.text || "");
       const serverTextTrim = serverText.trim();
       const normalizeSourceList =
@@ -505,11 +554,12 @@ export function useChatConversationState({
     } catch {}
     finally {
       if (cancelledRef?.current) return;
-      const currentGlobalId =
+      if (!isCurrent()) return;
+      const currentActiveId =
         typeof window !== "undefined"
-          ? window.sessionStorage.getItem(GLOBAL_CONV_KEY)
+          ? readActiveConversationId(window.sessionStorage, scopeRef.current)
           : id;
-      if (id !== currentGlobalId) return;
+      if (currentActiveId && id !== currentActiveId) return;
       if (convIdRef.current !== id) return;
       setServerHydratedConversationId(id);
     }
@@ -531,6 +581,12 @@ export function useChatConversationState({
     window.addEventListener("sotsiaalai:refresh-conversations", refreshFromEvent);
     return () => {
       cancelledRef.current = true;
+      throttled.cancel();
+      refreshFromEvent.cancel();
+      try {
+        hydrationAbortRef.current?.abort();
+      } catch {}
+      hydrationAbortRef.current = null;
       window.removeEventListener("focus", throttled);
       document.removeEventListener("visibilitychange", throttled);
       window.removeEventListener("sotsiaalai:refresh-conversations", refreshFromEvent);

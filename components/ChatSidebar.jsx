@@ -2,10 +2,16 @@
 
 import { useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
 import { useI18n } from "@/components/i18n/I18nProvider";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
 import { LIST_STATE, resolveListState, shouldSettleRequest } from "@/lib/chat/sidebarListState";
+import {
+  clearActiveConversationIdIfMatches,
+  readActiveConversationId,
+  writeActiveConversationId
+} from "@/lib/chat/activeConversationKey";
 import { localizePath, stripLocaleFromPath } from "@/lib/localizePath";
 import { buildRoomChatPath } from "@/lib/roomPath";
 import Button from "@/components/ui/Button";
@@ -31,14 +37,21 @@ function formatDateTime(iso) {
     return "";
   }
 }
-function clearStoredConversationRefs(ids) {
+/* Rollid, mille all aktiivse vestluse rida elada saab. Kustutamisel ei ole rolli teada — kirje
+   võis olla valitud teises rollis samas kontos — seega käiakse kõik läbi. */
+const ACTIVE_CONVERSATION_ROLES = ["CLIENT", "SOCIAL_WORKER", "SERVICE_PROVIDER", "ADMIN"];
+
+function clearStoredConversationRefs(ids, ownerId) {
   if (typeof window === "undefined") return;
   const deletedIds = new Set((Array.isArray(ids) ? ids : [ids]).map(id => String(id || "").trim()).filter(Boolean));
   if (!deletedIds.size) return;
   try {
-    const current = window.sessionStorage.getItem("sotsiaalai:chat:convId");
-    if (deletedIds.has(current)) {
-      window.sessionStorage.removeItem("sotsiaalai:chat:convId");
+    /* SOL-CHAT-11: aktiivse vestluse rida on konto ja rolli all; siin ei ole rolli teada, seega
+       käiakse läbi kõik selle konto rollid. Võõra konto rida jääb puutumata — just see oli leid. */
+    for (const role of ACTIVE_CONVERSATION_ROLES) {
+      for (const id of deletedIds) {
+        clearActiveConversationIdIfMatches(window.sessionStorage, { userId: ownerId, role }, id);
+      }
     }
     const keysToRemove = [];
     for (let i = 0; i < window.sessionStorage.length; i += 1) {
@@ -76,11 +89,20 @@ export default function ChatSidebar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { effectiveRole, isAdmin } = useEffectiveRole();
+  const { data: sidebarSession } = useSession();
+  const sessionUserId = sidebarSession?.user?.id || null;
+  // SOL-CHAT-11: aktiivse vestluse valik on konto ja rolli oma.
+  const conversationScope = useMemo(() => ({
+    userId: sessionUserId,
+    role: effectiveRole || "CLIENT"
+  }), [sessionUserId, effectiveRole]);
   const [items, setItems] = useState([]);
   const [roomItems, setRoomItems] = useState([]);
   const [busy, setBusy] = useState(false);
   const [roomsBusy, setRoomsBusy] = useState(false);
   const [error, setError] = useState("");
+  // SOL-CHAT-13: ruumiloendil on oma veaseis; ühine `error` kuulus vestlusloendile.
+  const [roomsError, setRoomsError] = useState("");
   const [creating, setCreating] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [selectMode, setSelectMode] = useState(false);
@@ -188,7 +210,15 @@ export default function ChatSidebar() {
       }
     }
   }, [conversationListRole, pageSize, resolveErrorMessage, t]);
+  /* SOL-CHAT-13 — RUUMILOEND KASUTAB SAMA LEPINGUT MIS VESTLUSLOEND.
+     Kolm vahet, mis kõik andsid kasutajale vale pildi: (a) `catch` logis vea ainult console'i,
+     seega esmane 401/403/500 või võrguviga kuvati KINDLA tühja loendina ilma retry-võimaluseta;
+     (b) edu kirjutas `setRoomItems` tingimusteta, seega piiripealne vana vastus võis uuema üle
+     kirjutada; (c) `finally` tegi tingimusteta `setRoomsBusy(false)` ka siis, kui uus päring oli
+     juba käimas, ja eemaldas tema laadimisindikaatori. `shouldSettleRequest` on sama valve, mida
+     `fetchList` juba kasutab — siin ei ole uut mehhanismi, on ainult sama leping mõlemal rajal. */
   const fetchRooms = useCallback(async () => {
+    setRoomsError("");
     roomsAbortRef.current?.abort();
     const ac = new AbortController();
     roomsAbortRef.current = ac;
@@ -213,14 +243,20 @@ export default function ChatSidebar() {
         isHelpMatchRoom: room?.isHelpMatchRoom === true,
         kind: "room"
       })) : [];
-      setRoomItems(normalized);
+      // Ainult praegune controller tohib tulemuse kirjutada.
+      if (shouldSettleRequest(roomsAbortRef.current, ac)) {
+        setRoomItems(normalized);
+      }
     } catch (e) {
-      if (e?.name !== "AbortError") {
-        console.warn("Rooms load failed:", e);
+      if (e?.name !== "AbortError" && shouldSettleRequest(roomsAbortRef.current, ac)) {
+        // Tõrge EI OLE tühi loend: kasutaja peab nägema viga ja saama uuesti proovida.
+        setRoomsError(e?.message || t("chat.sidebar.error.rooms"));
       }
     } finally {
-      if (roomsAbortRef.current === ac) roomsAbortRef.current = null;
-      setRoomsBusy(false);
+      if (shouldSettleRequest(roomsAbortRef.current, ac)) {
+        roomsAbortRef.current = null;
+        setRoomsBusy(false);
+      }
     }
   }, [resolveErrorMessage, t]);
   const refreshAll = useCallback(() => {
@@ -379,7 +415,7 @@ export default function ChatSidebar() {
     if (!id) return;
     if (selectMode && !force) return;
     try {
-      window.sessionStorage.setItem("sotsiaalai:chat:convId", id);
+      writeActiveConversationId(window.sessionStorage, conversationScope, id);
     } catch {}
     try {
       window.dispatchEvent(new CustomEvent("sotsiaalai:switch-conversation", {
@@ -401,7 +437,7 @@ export default function ChatSidebar() {
         }
       }));
     } catch {}
-  }, [locale, normalizedPathname, router, searchParams, selectMode]);
+  }, [locale, normalizedPathname, router, searchParams, selectMode, conversationScope]);
   const onPick = useCallback(item => {
     if (!item?.id) return;
     if (selectMode) return;
@@ -477,7 +513,7 @@ export default function ChatSidebar() {
       if (!r.ok || data?.ok === false) {
         throw new Error(resolveErrorMessage(data, "chat.sidebar.error.delete"));
       }
-      clearStoredConversationRefs(id);
+      clearStoredConversationRefs(id, sessionUserId);
       notifyDeletedConversations(id);
       refreshAll();
     } catch (e) {
@@ -485,7 +521,7 @@ export default function ChatSidebar() {
     } finally {
       setBusy(false);
     }
-  }, [refreshAll, resolveErrorMessage, t]);
+  }, [refreshAll, resolveErrorMessage, t, sessionUserId]);
   const onDelete = useCallback(id => {
     if (!id || isActionBusy) return;
     setConfirmState({
@@ -577,7 +613,7 @@ export default function ChatSidebar() {
     if (failures.length) {
       setError(t("chat.sidebar.error.delete"));
     }
-    clearStoredConversationRefs(deletedIds);
+    clearStoredConversationRefs(deletedIds, sessionUserId);
     notifyDeletedConversations(deletedIds);
     refreshAll();
     setBulkDeleting(false);
@@ -586,7 +622,7 @@ export default function ChatSidebar() {
       failed: failures.length,
       deletedIds
     };
-  }, [refreshAll, resolveErrorMessage, t]);
+  }, [refreshAll, resolveErrorMessage, t, sessionUserId]);
   const handleDeleteSelected = useCallback(() => {
     if (!selectedIds.size || isActionBusy) return;
     setConfirmState({
@@ -666,9 +702,10 @@ export default function ChatSidebar() {
   // A failed request proves nothing about whether results exist, so `error`
   // outranks `no_matches` here — otherwise a technical failure would render as
   // the very false negative this package removes.
+  const currentError = isConversationView ? error : roomsError;
   const listState = resolveListState({
     busy: currentBusy,
-    error,
+    error: currentError,
     itemCount: currentItems.length,
     hasSearch: hasConversationSearch
   });
@@ -683,8 +720,7 @@ export default function ChatSidebar() {
         return activeRoomId === String(item.id || "");
       }
       try {
-        const current = window.sessionStorage.getItem("sotsiaalai:chat:convId");
-        return current === item.id;
+        return readActiveConversationId(window.sessionStorage, conversationScope) === item.id;
       } catch {
         return false;
       }
@@ -763,11 +799,12 @@ export default function ChatSidebar() {
             {t("chat.sidebar.selection.delete_all")}
           </Button>
         </div> : null}
-      {error ? <div role="alert" aria-live="assertive">
-          {error}
-          {isConversationView ? <Button type="button" size="sm" variant="ghost" onClick={() => fetchList({ reset: true })} disabled={busy}>
+      {currentError ? <div role="alert" aria-live="assertive">
+          {currentError}
+          {/* SOL-CHAT-13: retry oli ainult vestlusloendil; ruumide tõrge oli enne nähtamatu. */}
+          <Button type="button" size="sm" variant="ghost" onClick={() => (isConversationView ? fetchList({ reset: true }) : fetchRooms())} disabled={currentBusy}>
               {t("chat.sidebar.search.retry", "Proovi uuesti")}
-            </Button> : null}
+            </Button>
         </div> : null}
       <div>
         <div aria-label={isConversationView ? t("chat.sidebar.sections.conversations") : t("chat.sidebar.sections.groups")}>

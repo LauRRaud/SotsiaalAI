@@ -61,7 +61,10 @@ test("loading, empty-vs-no-results and error states are distinct", () => {
 
 test("a failed search offers a working retry", () => {
   assert.match(sidebar, /t\("chat\.sidebar\.search\.retry"/, "retry is labelled");
-  assert.match(sidebar, /onClick=\{\(\) => fetchList\(\{ reset: true \}\)\}/,
+  /* SOL-CHAT-13: retry-nupp on nüüd MÕLEMAL vaatel (ruumide tõrge oli enne nähtamatu), seega
+     vestlusvaate haru on tingimuse sees. Nõue ise ei muutu: vestlusvaates jookseb sama otsing
+     esimesest leheküljest uuesti. */
+  assert.match(sidebar, /isConversationView \? fetchList\(\{ reset: true \}\) : fetchRooms\(\)/,
     "retry re-runs the current search from page 1");
 });
 

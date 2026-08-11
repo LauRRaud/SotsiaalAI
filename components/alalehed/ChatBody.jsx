@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { writeActiveConversationId } from "@/lib/chat/activeConversationKey";
 import LoginModal from "@/components/LoginModal";
 import { useAccessibility } from "@/components/accessibility/AccessibilityProvider";
 import { useEffectiveRole } from "@/components/auth/useEffectiveRole";
@@ -2108,13 +2109,17 @@ export default function ChatBody({
     setActiveWorkflow(normalizeActiveWorkflow(nextWorkflow));
 
     if (typeof window !== "undefined") {
+      // SOL-CHAT-11: aktiivse vestluse valik on konto ja rolli oma, mitte brauseri oma.
       try {
-        window.sessionStorage.setItem("sotsiaalai:chat:convId", nextConvId);
+        writeActiveConversationId(window.sessionStorage, {
+          userId: sessionUserId,
+          role: userRole
+        }, nextConvId);
       } catch {}
     }
 
     return nextConvId;
-  }, [analysis, setConvId, setIsCrisis, setMessages, detach]);
+  }, [analysis, setConvId, setIsCrisis, setMessages, detach, sessionUserId, userRole]);
   useEffect(() => {
     if (isRoomMode) return;
     const workflow = readWorkflowFromSearchParams(searchParams);

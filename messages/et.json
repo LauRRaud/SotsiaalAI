@@ -2610,6 +2610,7 @@
       "retry": "Proovi uuesti",
       "invalid_conv_id": "Vestluse ID on vigane.",
       "openai_request_failed": "OpenAI päring ebaõnnestus.",
+      "conversation_unavailable": "See vestlus ei ole selle konto oma või on arhiveeritud. Alusta uut vestlust.",
       "turn_in_flight": "Selle vestluse eelmine küsimus on veel töös. Oota vastust või vajuta Stop.",
       "service_unavailable": "Teenus ei ole praegu saadaval.",
       "not_saved": "Vastust ei õnnestunud vestlusse salvestada, seega jäi see saatmata. Limiiti ei arvestatud — palun proovi uuesti."
@@ -2620,6 +2621,7 @@
     "sidebar": {
       "error": {
         "load": "Vestluste laadimine ebaõnnestus.",
+        "rooms": "Ruumide laadimine ebaõnnestus.",
         "history": "Vestluste ajalugu ei ole praegu saadaval.",
         "create": "Uue vestluse loomine ebaõnnestus.",
         "delete": "Vestluse kustutamine ebaõnnestus."
@@ -5257,6 +5259,7 @@
       "not_found": "Vestlust ei leitud.",
       "conversation_exists": "Vestlus on juba olemas.",
       "db_unavailable": "Andmebaas ei ole ajutiselt saadaval.",
+      "export_audit_failed": "Eksporti ei õnnestunud auditisse kirjutada, seega faili ei antud. Palun proovi hiljem uuesti.",
       "db_error_run_read": "Vestluse konteksti ei saanud laadida.",
       "db_error_analyze_usage": "Analyysi kasutust ei saanud laadida.",
       "search_query_too_long": "Otsingusõna on liiga pikk. Lühenda seda ja proovi uuesti.",

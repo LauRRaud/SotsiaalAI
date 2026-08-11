@@ -2642,6 +2642,20 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Omanik peab otsustama, kas eksport on fail-closed või transactional-outbox'iga taastatav; mõlemal juhul ei tohi auditikadu olla vaikne. Test peab süstima audititabeli kirjutusvea pärast edukat faili genereerimist ning tõendama kas ekspordi blokeerimise või püsiva retry-sündmuse.
 
+**Seis (11.08.2026): DONE — fail-closed, sama valik mis SOL-DOC-09-l.**
+- `logDocumentsAudit()` on best-effort: neelab `documentAudit.create()` vea ja kaardistamata sündmus
+  lõpetab kirjutamata. Tundliku vestluse faili sai seega alla laadida ilma püsiva jäljeta.
+- Mehhanism oli **koodibaasis olemas**: `writeDocumentAudit()` (SOL-DOC-09) viskab nii kaardistamata
+  sündmuse kui kirjutuse vea peale. Eksport kasutab nüüd teda ja **jälg käib enne faili**.
+- **Kriteerium jättis valiku omanikule** (fail-closed vs transactional outbox). Valisin fail-closed:
+  outbox tähendaks, et fail läheb välja ja jälg tuleb hiljem — see on ekspordi puhul nõrgem lubadus.
+  **Vastupidine valik on üherealine** (`writeDocumentAudit` → `logDocumentsAudit`) ja jääb sinu
+  otsustada.
+- Testid: 2 uut (`tests/chat/exportRouteContract.test.js`) — mõlemal formaadil oma värav ja
+  positsioonikontroll (värav ENNE faili), + käitumine süstitud kliendiga: kaardistamata sündmus ja
+  DB-viga viskavad, **negatiivkontroll**: korras kirjutus peab läbi minema.
+- `runtime: not_run`.
+
 ### SOL-CHAT-11 — üldine vestluse ID kandub konto ja rolli vahetusel valesse kasutajakonteksti — P1
 
 **Tõend.** Vestluse kohalik sisu kasutab küll kasutaja, rolli ja keele järgi eraldatud `storageKey` väärtust, kuid aktiivse vestluse valikul eelistatakse alati üldist `sotsiaalai:chat:convId` võtit kasutajapõhisele võtmele (`components/chat/hooks/useChatConversationState.js:154-163`, `:184-197`). Sama üldvõtit kirjutavad nii hook, vestluse sisu kui külgriba (`:198-205`, `components/alalehed/ChatBody.jsx:2092-2116`, `components/ChatSidebar.jsx:375-391`). Konto vahetuse järel keelab `/api/chat/run` õigesti teise omaniku ajaloo lugemise 403-ga (`app/api/chat/run/route.js:143-162`), kuid uue sõnumi persistence ei anna omaniku mittevastavusest viga: `persistInit()` lihtsalt tagastab ning neelab üldiselt ka kõik DB vead (`lib/chat/persistence.js:38-116`). Provideritöö ja usage settlement võivad seetõttu jätkuda, samas `persistDone()` ei kirjuta võõrasse vestlusse midagi (`:147-240`). Sama kasutaja rollivahetusel uuendab `persistInit()` vana vestluse rolli uueks ning eri rollide sisu võib ühe vestluse alla seguneda (`:73-87`). Vestlustestides puudub konto- või rollivahetuse `sessionStorage` stsenaarium.
@@ -2649,6 +2663,24 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Samas brauserivahekaardis teise kontoga jätkates võib kasutaja saada tasulise vastuse, mis pärast taasavamist kaob, sest see saadeti eelmise konto vestluse ID-ga, kuid sinna salvestada ei tohtinud. Rollivahetus võib muuta vana vestluse liigitust ja segada kliendi- ning spetsialistivaate konteksti. Otsest teise konto sõnumite lugemist see rada ei võimalda, kuid põhjustab kasutus- ja andmetervikluse vea.
 
 **Vastuvõtukriteerium.** Aktiivse vestluse võti peab olema kasutaja ja rolli suhtes skoopitud; autentimiskonteksti muutus peab üldvõtme valideerima serveris või looma uue vestluse. Persistence'i omaniku/arhiivi konflikt peab muutma pöörde enne providerikutset selgeks 409/403 veaks, mitte vaikseks eduks. Brauseritest peab samas tab'is tegema kasutaja A vestlus → logout/login kasutajana B → uus sõnum ning eraldi rollivahetuse, kontrollides vestluse ID-d, ajalugu, kasutust ja DB-ridu.
+
+**Seis (11.08.2026): DONE — klient JA server, sest leid oli mõlemal pool.**
+- **Klient:** üldine `sotsiaalai:chat:convId` on SURNUD. Aktiivne vestlus elab nüüd konto ja rolli
+  all (`lib/chat/activeConversationKey.js`), mis kasutab **olemasolevat** primitiivi
+  `lib/device/ownerScopedStorage.js` (SOL-SLOG-01 ja SOL-JOUR-02 sama klass). Omanikku ei ole →
+  `null` → identiteedita hetk ei loe ega kirjuta midagi.
+- **Vana sildistamata rida kustutatakse**, mitte ei anta esimesele avajale — sama otsus mis
+  SLOG-01-l ja samal põhjusel: teda ei saa tagantjärele omistada.
+- **Kolm kirjutuskohta said ühe tee.** Hook, `ChatBody` ja `ChatSidebar` kirjutasid kõik oma käega;
+  nüüd on üks moodul. Kustutus puudutab ainult vastet ja ainult oma konto rida.
+- **Server:** võõra omaniku või arhiveeritud vestlus oli VAIKNE EDU (`persistInit` lihtsalt väljus).
+  Nüüd annab pöörde nõue **409 `chat.error.conversation_unavailable` ENNE providerikutset** ja
+  reservatsioon vabastatakse.
+- Testid: 8 uut (`tests/chat/activeConversationScope.test.js`) — kaks kontot, rollivahetus,
+  identiteedita hetk, pärandrea kustutus, kustutuse ulatus, võtme kuju, kolme faili leping ja
+  serveri 409 positsioon.
+- **Aus piir:** keelt skoopi teadlikult EI võetud — keelevahetus ei tee vestlust teise inimese
+  omaks. `runtime: not_run` — kahe konto brauserirada on käimata.
 
 ### SOL-CHAT-12 — kattuvad ajaloo laadimised võivad uuema vestluse oleku vanema vastusega tagasi pöörata — P2
 
@@ -2658,6 +2690,19 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Igal vestlusel peab olema üks aktiivne hydration-päring või monotonse põlvkonna/revisjoni kontroll; vanem vastus ei tohi uuemat state'i kirjutada. Cleanup peab tühistama nii timeri kui fetch'i. Deterministlik hook-test peab lahendama kaks sama `convId` päringut vastupidises järjekorras üle kaheksa sekundi piiri ning tõendama, et uuem snapshot jääb alles.
 
+**Seis (11.08.2026): DONE.**
+- **Põlvkond, mitte lukk.** Uus `lib/chat/requestGeneration.js`: kirjutada tohib ainult viimasena
+  **ALANUD** päring (mitte viimasena lõppenud — just see vahe oli leid). Moodul on hookist väljas,
+  sest testijooksja ei renderda React-hooke — sama põhjus mis `lib/calls/clientState.js`-il
+  (SOL-CALL-11…-13).
+- Hüdreerimine sai ka `AbortController`-i ja **mõlemad** kirjutuskohad (sisu + lõppmärgend) on
+  värava taga. Puhastus tühistab nüüd nii ootel throttle-taimeri (`throttled.cancel()`, mida enne
+  ei olnud) kui käimasoleva päringu.
+- Test mõõdab **vastupidist lahendumisjärjekorda**: vanem päring algab esimesena ja lõpeb viimasena
+  → kirjutab ainult uuem. Negatiivkontroll kõrval: järjestikused päringud kirjutavad kõik, seega
+  põlvkond ei ole lukk.
+- `runtime: not_run`.
+
 ### SOL-CHAT-13 — ruumide külgriba laadimisviga näib tühja loendina ja asendatud päring võib uue laadimisoleku lõpetada — P2
 
 **Tõend.** Tavalise vestlusloendi `fetchList()` kasutab `shouldSettleRequest()` kaitset, et katkestatud vana päring ei kirjutaks state'i ega lõpetaks uue päringu loading-olekut (`components/ChatSidebar.jsx:128-189`). Kõrvalolev `fetchRooms()` seda lepingut ei kasuta: edu kirjutab alati `setRoomItems(normalized)`, catch logib vea ainult console'i ja `finally` teeb tingimusteta `setRoomsBusy(false)` ka siis, kui `roomsAbortRef` viitab juba uuele päringule (`:191-225`). Ruumivaate tühja/vea olek kasutab ühist `error` state'i, mida `fetchRooms()` ei sea (`:660-674`). Olemasolevad külgribatestid tõendavad superseded-request kaitset ainult vestlusloendi helperile, mitte ruumide rajale (`tests/chat/sidebarListState.test.js:12-25`, `tests/chat/conversationSearchUi.test.js:37-48`).
@@ -2665,6 +2710,17 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Esmane `/api/rooms` võrgu- või serveriviga kuvatakse kasutajale kindla tühja grupiloendina, ilma vea või retry võimaluseta. Fookuse ja drawer'i sündmustest kattuvate laadimiste korral võib vana päring eemaldada uue loading-indikaatori ning piiripealsel abort-rassil kirjutada uuema ruumiloendi üle vana vastusega.
 
 **Vastuvõtukriteerium.** Ruumide laadimine peab kasutama sama aktiivse päringu omandi-, abort- ja error-lepingut nagu `fetchList`; ainult praegune controller võib kirjutada tulemuse või lõpetada busy oleku. UI peab eristama päris tühja loendit tõrkest. Testid peavad katma A → B asendamise kõigi lahendumisjärjekordadega ning algse 401/403/500/võrguvea.
+
+**Seis (11.08.2026): DONE — sama leping mõlemal rajal, mitte uus mehhanism.**
+- `fetchRooms()` sai `shouldSettleRequest` valve, mida `fetchList` juba kasutas: **tulemuse
+  kirjutamine, veaseis ja busy-lõpetamine on kõik kolm värava taga**. Tingimusteta
+  `setRoomsBusy(false)` oli see, mis võõra laadimisindikaatori kustutas.
+- **Tõrge ei ole enam tühi loend:** ruumidel on oma `roomsError` seis (ühine `error` kuulus
+  vestlusloendile), vaade valib õige ja **retry-nupp on nüüd mõlemal vaatel** — ruumide tõrge oli
+  enne täiesti nähtamatu, ainult `console.warn`.
+- Testid: 2 uut (`tests/chat/hydrationOrdering.test.js`) + olemasolev otsingu-UI leping
+  parandatud kirjeldava kommentaariga (retry tingimus muutus, nõue mitte).
+- `runtime: not_run` — 401/403/500 rada päris brauseris käimata.
 
 ### SOL-VOICE-01 — STT arvestus ei kasuta provider'i tegelikku kestust ja kliendil puudub idempotentsus — P1
 

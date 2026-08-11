@@ -2610,6 +2610,7 @@
       "retry": "Try again",
       "invalid_conv_id": "Conversation id is invalid.",
       "openai_request_failed": "OpenAI request failed.",
+      "conversation_unavailable": "This conversation does not belong to this account or has been archived. Start a new conversation.",
       "turn_in_flight": "The previous question in this conversation is still running. Wait for the answer or press Stop.",
       "service_unavailable": "The service is currently unavailable.",
       "not_saved": "The answer could not be saved to the conversation, so it was not delivered. Your quota was not charged — please try again."
@@ -2620,6 +2621,7 @@
     "sidebar": {
       "error": {
         "load": "Failed to load conversations.",
+        "rooms": "Loading rooms failed.",
         "history": "Conversation history is currently unavailable.",
         "create": "Could not create a new conversation.",
         "delete": "Could not delete the conversation."
@@ -5257,6 +5259,7 @@
       "not_found": "Conversation not found.",
       "conversation_exists": "Conversation already exists.",
       "db_unavailable": "Database is temporarily unavailable.",
+      "export_audit_failed": "The export could not be written to the audit trail, so the file was not delivered. Please try again later.",
       "db_error_run_read": "Could not load conversation context.",
       "db_error_analyze_usage": "Could not load analysis usage.",
       "search_query_too_long": "The search term is too long. Shorten it and try again.",

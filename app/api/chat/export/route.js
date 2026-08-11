@@ -7,7 +7,7 @@ import {
   createChatDocxBuffer,
   isPdfTextSupported
 } from "@/lib/chat/exportDocument";
-import { logDocumentsAudit } from "@/lib/documents/audit";
+import { writeDocumentAudit } from "@/lib/documents/audit";
 import { DOCX_MIME_TYPE } from "@/lib/documents/constants";
 import { normalizeServerLocale, serverT } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
@@ -145,17 +145,35 @@ export async function GET(req) {
     const fileBase = sanitizeFileBase(
       String(url.searchParams.get("fileName") || "")
     );
+    /* SOL-CHAT-10 — JÄLG ENNE FAILI, MITTE FAILI KÕRVAL.
+       `logDocumentsAudit()` on best-effort: ta neelab `documentAudit.create()` vea täielikult ja
+       kaardistamata sündmus lõpetab kirjutamata. Tundliku vestluse faili sai seega alla laadida
+       ilma ühegi jäljeta selle kohta, kes, millal ja millises formaadis. Serveri console-rida ei
+       ole püsiv ega päritav tõend.
+
+       VALITUD ON FAIL-CLOSED, sama mis SOL-DOC-09-l: `writeDocumentAudit()` viskab nii
+       kaardistamata sündmuse kui kirjutuse vea peale, ja siis faili EI ANTA. Kriteerium jätab
+       valiku omanikule (fail-closed vs transactional outbox); outbox tähendaks siin, et fail läheb
+       välja ja jälg tuleb hiljem — see on ekspordi puhul nõrgem lubadus kui „jälg on olemas".
+       Vastupidine valik on üherealine: `writeDocumentAudit` → `logDocumentsAudit`. */
+    const writeExportAudit = () => writeDocumentAudit("chat.exported", {
+      userId: auth.userId,
+      conversationId: convId,
+      messageId,
+      format
+    });
+
     if (format === "pdf") {
       if (!isPdfTextSupported(msg.content)) {
         return jsonError(req, "api.exports.pdf_content_not_supported", 409);
       }
       const pdf = createPdfBufferFromText(msg.content);
-      await logDocumentsAudit("chat.exported", {
-        userId: auth.userId,
-        conversationId: convId,
-        messageId,
-        format
-      });
+      try {
+        await writeExportAudit();
+      } catch (auditError) {
+        console.error("[chat export] audit write failed", safeError(auditError));
+        return jsonError(req, "api.chat.export_audit_failed", 503);
+      }
       return new NextResponse(pdf, {
         status: 200,
         headers: buildDownloadHeaders(`${fileBase}.pdf`, "application/pdf")
@@ -163,12 +181,12 @@ export async function GET(req) {
     }
 
     const docx = createChatDocxBuffer(msg.content, "SotsiaalAI summary");
-    await logDocumentsAudit("chat.exported", {
-      userId: auth.userId,
-      conversationId: convId,
-      messageId,
-      format
-    });
+    try {
+      await writeExportAudit();
+    } catch (auditError) {
+      console.error("[chat export] audit write failed", safeError(auditError));
+      return jsonError(req, "api.chat.export_audit_failed", 503);
+    }
     return new NextResponse(docx, {
       status: 200,
       headers: buildDownloadHeaders(`${fileBase}.docx`, DOCX_MIME_TYPE)

@@ -9,11 +9,11 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **99 / 357** |
-| Peatükke lõpuni | **7 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, SOL-DOC, **SOL-MEET** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 186 × P1 · 71 × P2 · 1 × P3 |
+| Tehtud leidu | **104 / 357** |
+| Peatükke lõpuni | **8 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 182 × P1 · 70 × P2 · 1 × P3 |
 | Toodangus | **kolmeteistkümnes deploy 11.08 13:06 omaniku selgel loal: server = `27af4a02`**, kaheksa commit'i (SOL-CHAT-01…-08 + eelmisest ringist SOL-MEET-05/-06) ja üks migratsioon. Mõõdetud, mitte eeldatud: `.next` 13:06:23, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, veatasemel logi tühi (ka hoiatustasemel null rida). `20260811160000` lõpetatud ja tagasi kerimata; `ChatTurn` olemas koos unikaalse `(userId, clientTurnKey)` indeksiga ja kahe FK-ga, ridu 0. (Kaheteistkümnes deploy 11.08 11:42 = `ae1f2055`, üheteistkümnes 10:17 = `aafe4eaa`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-CHAT on käsil, 8/13** — lahtised CHAT-09…-13. SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-CHAT on LÕPETATUD** (13/13); järgmine dokumendi järjekorras on SOL-VOICE (0/3). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
@@ -50,7 +50,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
 | Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | – | – | **tehtud** |
-| Vestlus | SOL-CHAT | 8/13 | – | 1 | 4 | **käsil**, lahtised CHAT-09…-13 |
+| Vestlus | SOL-CHAT | **13/13** | – | – | – | **tehtud** |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
 | Kõned ja salvestus | SOL-CALL | 10/13 | – | – | 3 | **käsil**, lahtised CALL-07, -08, -09 (kõik P2) |
