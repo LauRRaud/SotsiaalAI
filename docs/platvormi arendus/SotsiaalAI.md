@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 134/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 136/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
@@ -214,16 +214,26 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3824/3824** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL
-ja kogu SOL-INV** — server on `1ed23452`. Deploy'mata on ka **migratsioon
-`20260811220000`** (`VerificationLinkDispatch`); SOL-CALL ja SOL-INV skeemi ei muutnud.
+`npm test` **3866/3866** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
+kogu SOL-INV ja SOL-PAY-01/-02/-03** — server on `1ed23452`. Deploy'mata on **kaks
+migratsiooni**: `20260811220000` (`VerificationLinkDispatch`) ja `20260811230000`
+(`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus; olemasolevaid ridu
+ei puudutata). Toodangu PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE`
+migratsioonitehingus nõuab PG 12+.
 
 **Neli uut sondi 11.08 kõne- ja kutsepeatükist:** `call:seat:probe` 12/12 (deterministlik
 võistlus viimase koha pärast + tehingu tagasipööramine) · `call:audit:probe` 11/11 (otsus ja
 tema jälg commit'ivad koos või mitte kumbki) · `invite:seat:probe` 11/11 (kaks eri kutset
 seisus 49/50) · `invite:mail:probe` 16/16 (kogu ahel päris outbox-workeriga). Igaühel
 negatiivkontroll vana kuju vastu.
+
+**Maksepeatükk lisas kolm sondi:** `pay:renewal:probe` 13/13 · `pay:outcome:probe` **27/27**
+(päris marsruudid + päris HTTP-provider, mille vastust sond juhib: 500, katkenud ühendus keset
+laadimist, päris `P2002` pärast õnnestunud laadimist, 402) · `pay:checkout:probe` **27/27**
+(deterministlik võistlus nõuandeluku peal, mõõdetud on makseridade JA provideri kutsete arv).
+Mõlemal uuel sondil on negatiivkontroll vana kuju vastu ja `pay:outcome` lisaks
+vastassuunaline: providerilt kinnitatud eitus PEAB jääma lõplikuks.
 
 **Mõõdetud serverist 11.08:** `sotsiaalai-payment-emails.timer` on toodangus **enabled ja
 active** (iga ~3 min). See on SOL-INV-03 eeldus — kirjade järjekord ei ole surnud postkast.
@@ -465,9 +475,9 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **192 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+Lahtiseks jääb **189 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
-on 11.08 lõpetatud** — käsil on **SOL-PAY (1/11)**, kui just jätkufaile ette ei tõsteta.
+on 11.08 lõpetatud** — käsil on **SOL-PAY (3/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
 **SOL-PAY-01 tehtud: automaatne uuendamine ei anna enam alla esimese tõrke peale.** Üks
@@ -476,6 +486,24 @@ katse aja ja näitas seda ka liideses, aga ei valinud seda tellimust enam kunagi
 iga lubatud katse päriselt kohale ja maksemeetod märgitakse katkiseks alles siis, kui
 loobutakse. **PAY-09 ootab sinu ja juristi/raamatupidaja otsust** (konto kustutamine viib
 kaasa makseajaloo enne seitsmeaastast säilitustähtaega) — seda ei saa koodiga ette otsustada.
+
+**SOL-PAY-02 tehtud: „me ei tea, kas makse õnnestus" ei ole enam sama mis „makse
+ebaõnnestus".** Kui provideri vastus jäi tulemata (aegumine, katkenud võrk, tema enda tõrge)
+või kukkus meie enda kirjutus juba pärast kaardi laadimist, märkis platvorm makse lõplikult
+ebaõnnestunuks. Hiljem saabuv kinnitus „makstud" võeti vastu ja visati ära: raha oli võetud,
+ligipääsu ei tulnud, ja järgmine katse võis lisaks võtta teist korda. Nüüd jääb teadmata
+tulemus omaette seisu, hilisem kinnitus annab õiguse ikka veel, ja teadmata tulemusega kuud ei
+laadita teist korda — peatus on nähtav nii töö vastuses kui halduse vaates. **Sama viga elas
+KOLMANDAS kohas, mida raport ei nimetanud:** sponsorkutse makse tegi sedasama ja lisaks tühistas
+kutse, mida hilisem kinnitus enam äratada ei saa — sponsori raha oleks läinud ilma kutseta.
+
+**SOL-PAY-03 tehtud: topeltklõps ei ava enam kaht tasutavat makseakent.** Iga „Telli" vajutus
+lõi seni uue makse ja uue provideritehingu; kaks vahekaarti või võrgu-retry võisid tekitada kaks
+kehtivat checkout'i ja mõlema tasumisel pikenes sama tellimus kaks korda. Nüüd kannab kavatsus
+oma tunnust: sama kavatsus annab sama makseakna, teine vahekaart saab sama akna, ja korraga
+saabunud päringutest saab tasutava akna täpselt üks. **Lahtine ja sinu teada:** sponsorkutse
+checkout ei ole endiselt idempotentne — see ei ole üheski auditileiu tekstis, aga ta on sama
+klassi asi.
 
 **Kutsepeatükk sai 11.08 kolm leidu ja on täis.** Sponsorkoht on nüüd päriselt piir:
 50 tasutud kohta ei saa enam ületada ka siis, kui kaks inimest võtavad kaks eri kutset

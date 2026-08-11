@@ -4173,6 +4173,53 @@ tõendada alles aktiveerimise järel.
 
 **Vastuvõtukriteerium.** Providerikutse timeout/ebaselge vastus peab jätma `UNKNOWN/RECONCILE_PENDING`, mitte provider-terminalse FAILED seisu. PAID peab suutma taastada ainult lokaalse/ebamäärase vea, eristades providerilt kinnitatud DECLINED-i. Veasüstetest peab katkestama pärast transaction-create'i, charge'i ja iga DB update'i ning hiljem saatma PAID webhooki, tõendades ühe makse ja ühe õiguse.
 
+**Seis (11.08.2026): DONE — ebamäärane tulemus on oma seis (`RECONCILE_PENDING`), millest hilisem PAID veel õiguse annab; `npm run pay:outcome:probe` 27/27 päris PostgreSQL-is päris marsruutide ja päris HTTP-provideriga. Vajab migratsiooni `20260811230000`.**
+
+Üks küsimus otsustab kõik kolm rada: **kas provider ütles ise ära?**
+
+- **Ta ei näinud päringut** (puuduv konfiguratsioon, puuduv token) — raha ei saanud liikuda,
+  `FAILED` on aus ja lõplik.
+- **Ta vastas selge eitusega** (4xx, mis ei ole ajastuse/konflikti oma) — `FAILED`, providerilt
+  kinnitatud.
+- **Kõik muu** — timeout, katkenud ühendus, 5xx, 408/409/429, arusaamatu vastus VÕI meie enda
+  viga PÄRAST providerikutset — jätab tulemuse lahtiseks. Vaikimisi ebamäärane: tundmatu vea
+  korral eeldatakse, et raha VÕIS liikuda (`lib/payments/providerOutcome.js`).
+
+**Sama muster elas KOLMES kohas ja raport nimetas kaks.** `app/api/invites/sponsored/init` kandis
+sedasama `catch`-i sõna-sõnalt ja tema tagajärg oli veel karmim: tagasipööramine revoke'is ka
+kutse, ja webhook keeldub hiljem terminaalset kutset äratamast (O-M6) — sponsori raha läks ja
+kutset ei tulnud kunagi. Nüüd pöörab tagasipööramine ainult siis, kui raha kindlasti ei liikunud.
+
+**Lahtine katse blokeerib kordusmakse valiku.** Teadmata tulemusega kutset ei tohi korrata, muidu
+on teine laadimine sama kuu eest. Peatus ei ole vaikne: worker'i vastuses on `unresolvedBlocked`,
+admini lahtiste maksete loendur ja `RECONCILE_PENDING` rida analüütika seisujaotuses. Teine
+väljapääs webhooki kõrval on reconciliation-worker, mis valib nüüd ka need read ja tohib
+kinnitatud PAID peale kordusmakse ise lõpetada (varem ootas ta kordusmakse puhul webhook'i —
+lahtise rea taga oleks see tähendanud peatunud arveldust).
+
+**Kõrvalparandus samas failis, SOL-PAY-01 sabast:** webhookilt tulnud KINNITATUD eitus kasvatas
+ainult loendurit ja jättis `nextBilling`-u minevikku — järgmine jooks laadis kohe uuesti, ilma
+päevagraafikuta, ja lae peal jäi tellimus igaveseks `PAST_DUE` seisu ilma lõpliku tühistuseta.
+Mõlemad rajad (worker'i `catch` ja webhook) kasutavad nüüd sama otsust ja sama kirjutuskuju
+(`planRenewalFailure` + `buildRenewalFailureSubscriptionUpdate`).
+
+**Sond ei imiteeri viga, vaid tekitab ta.** Provider on päris HTTP-server, mille vastust sond
+juhib: transaction-create 500 · ühendus katkeb keset charge'i · charge õnnestub ja MEIE järgmine
+kirjutus kukub päris `P2002`-ga (provider tagastab viite, mis põrkab olemasoleva rea
+unikaalsuse vastu) · transaction-create 402. Seejärel läheb teele päris allkirjastatud PAID
+webhook. **Mõõdetud on kaks numbrit: üks makserida ja üks õigus** (periood pikeneb täpselt
+korra). **Negatiivkontroll on vana kuju transkriptsioon:** makse märgitakse `FAILED`-iks ja sama
+PAID webhook vastab `ignored`-iga — raha on võetud, ligipääsu ei ole. **Teine negatiivkontroll
+käib vastassuunas:** providerilt kinnitatud eitus PEAB jääma terminaalseks ja korduskatse rajale
+liikuma, muidu oleks parandus lihtsalt „kõik on ebamäärane".
+
+Väravad: `npm test` **3866/3866** (Europe/Tallinn ja UTC) · eslint puhas · `db:migrate:check` OK.
+
+**KATMATA:** pärandread, mis on juba `FAILED` ebamäärase tõrke tõttu, jäävad `FAILED`-iks —
+koodist ei ole võimalik tagantjärele eristada, kumb `FAILED` oli kinnitatud eitus. Päris
+Maksekeskuse timeout'i ei ole süstitud (sond kasutab oma HTTP-serverit) ja recurring on toodangus
+väljas, seega päris jada saab tõendada alles aktiveerimise järel.
+
 ### SOL-PAY-03 — tellimuse init pole idempotentne ja võib luua mitu tasutavat recurring-checkout'i — P1
 
 **Tõend.** Init kontrollib ainult, kas viimane tellimus on juba aktiivne, ning uuendab/loob subscriptioni (`app/api/subscription/init/route.js:216-264`). Seejärel loob iga request uue juhusliku `providerPaymentId`-ga Payment rea ja uue provideritransaktsiooni (`:266-341`). Avatud `INITIATED` makset ei otsita, kliendi idempotentsusvõtit pole ja skeemi unikaalsus kehtib ainult juba erinevate provider-viidete suhtes (`prisma/schema.prisma:1141-1169`). Kaks paralleelset request'i võivad mõlemad enne aktiivseks muutumist läbida.
@@ -4180,6 +4227,45 @@ tõendada alles aktiveerimise järel.
 **Mõju.** Topeltklõps, kaks vahekaarti või võrgu-retry võib avada kaks kehtivat recurring-checkout'i. Mõlema tasumisel pikendab kumbki webhook sama tellimust veel kuu võrra ning võib salvestada mitu mandaati; kasutaja saab soovimatu topeltmakse, kuigi kavatsus oli üks kuu/üks mandaat.
 
 **Vastuvõtukriteerium.** Checkout-init vajab kliendi stabiilset idempotentsusvõtit ja kasutaja/tellimuse kohta atomaarset avatud-attempt'i claim'i; identne retry tagastab sama checkout'i, konkureeriv uus katse saab 409 või asendab eelmise tõendatult. Päris DB + fake-provider paralleeltest peab tõendama ühe Payment rea ja ühe transaction-create'i.
+
+**Seis (11.08.2026): DONE — kliendi kavatsuse võti + kasutajapõhine lukustatud claim; `npm run pay:checkout:probe` 27/27 päris PostgreSQL-is, päris marsruudiga ja deterministliku võistlusega. Vajab migratsiooni `20260811230000`.**
+
+Kaks kihti, sest kumbki üksinda ei kata (`lib/payments/checkoutIntent.js`):
+
+- **Kliendi võti** (`Payment.clientIntentKey`, unikaalne kasutaja kohta) — sama kavatsuse kordus
+  tagastab SAMA checkout'i, mitte uue. Võti on kohustuslik: võtmeta päring saab 400, sest
+  „võtmeta" tähendas vanas koodis täpselt „tee uus tasuline checkout".
+- **Avatud katse claim kasutaja kohta** — nõuandelukk (`4715`) serialiseerib otsuse ja lukustatud
+  otsus vaatab, kas kasutajal on juba avatud tasutav katse. Ainult võti üksi ei aitaks: **kaks
+  vahekaarti genereerivad kaks ERI võtit.** Sama luku alla kolisid ka aktiivsuse kontroll ja
+  tellimuse upsert — vana kood tegi kõik kolm eraldi päringutena.
+
+**Avatud katse taaskasutatakse, mitte ei keelata.** See on ainus rada, mis hoiab tasutavate
+checkout'ide arvu ühe peal ILMA kasutajale ummikteed tekitamata (kriteeriumi „409" haru jääb
+konkureerivale päringule, kes jõuab kohale sel ajal, kui võitja on veel provideri kutses).
+Erineva summa/paketi korral on vastus aus konflikt, mitte vaikne vale summa. Kaks piiri on
+mõõdetavad ja seatavad: avatud checkout elab 30 min (provideri transaktsiooni eluiga) ja
+„rida on olemas, checkout'i veel ei ole" on usutav 2 min (kutse enda ajapiir on 15 s) — ilma
+teiseta hoiaks protsessi surm keset kutset kasutajat ummikus terve akna.
+
+**Sond mõõdab kahte numbrit: mitu makserida tekkis ja mitu transaction-create'i provider nägi.**
+Võistlus on deterministlik (`scripts/probe-race-harness.mjs`): kolmas tehing hoiab sama
+nõuandelukku, mõlemad võistlejad käivitatakse ja MÕÕDETAKSE, et nad ootavad, alles siis lastakse
+lukk lahti. Kaetud on sama võtmega võistlus (topeltklõps), **kahe ERI võtmega võistlus** (kaks
+vahekaarti — seda ei lahenda võti, vaid lukk), järjestikune identne kordus, teine vahekaart pärast
+võitjat, ära kasutatud kavatsus ja uue kavatsuse aus uus katse. **Negatiivkontroll on vana kuju
+transkriptsioon:** võtmeta read lähevad andmebaasi mõlemad sisse — täpselt nii sai vana init avada
+kaks tasutavat checkout'i — ja sama võtmega teist rida andmebaas ei võta (`P2002`).
+
+Väravad: `npm test` **3866/3866** (Europe/Tallinn ja UTC) · i18n ja eslint puhtad ·
+`db:migrate:check` OK.
+
+**KATMATA:** sponsorkutse checkout (`app/api/invites/sponsored/init`) EI ole idempotentne — seal
+ei ole kliendi kavatsuse võtit ja kaks päringut loovad kaks kutset ja kaks makset. See ei ole selle
+leiu tekstis (kriteerium nimetab tellimuse init'i ja `Payment` skeemi) ega ole ka mujal auditis
+eraldi leiuna kirjas; **lahtine, omanikule teada antud**. Samuti ei ole tõendatud, kas
+MakeCommerce'i pool aegub avatud transaktsioon täpselt 30 minutiga — „asendab eelmise tõendatult"
+haru jääks selle taha ja seepärast on valitud taaskasutus.
 
 ### SOL-PAY-04 — pärast sponsorluse lõppu tehtud omamakse säilitab vana sponsori allika — P1
 
