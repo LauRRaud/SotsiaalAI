@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 84/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 85/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -342,10 +342,20 @@ töö. Ja teine: raporti salvestamine vestlusse neelas kõik vead, seega uuring 
 et püsikoopia PÄRISELT tekkis; muidu jääb töö aktiivseks ja ühikut ei arvestata. Tõendatud päris
 kahe workeri ja kahe protsessiga (9/9) ning päris andmebaasi vastu (10/10).
 
-Lahtiseks jääb **199 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (5/7), kõige eespool lahtine on
-endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+**SOL-RES-06: edukas uuring võis jääda arvestamata ja tühistatu hoidis kvooti kinni.** Kasutuse
+lõplik arvestus käis pärast töö valmiks märkimist ja tema vead kadusid vaikselt; tühistamisel ei
+leitud arveldusvõtit üldse üles. Nüüd jääb arvelduse tulemus tööle kirja ja pooleli jäänu
+korratakse üle, kuni teenus kinnitab.
 
-**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-05** — migratsiooni vajavad
+**SOL-RES-07 on osaliselt tehtud.** Aktiivse uuringu saab nüüd vestluse avamisel üles leida ja
+**peatada** (ka „Minu dokumentide" aktiivsel real on Stop-nupp) — varem ei olnud tema juurde ühtki
+teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
+väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
+
+Lahtiseks jääb **198 P1, 73 P2 ja 1 P3**. **SOL-RES on 6/7.** Kõige eespool lahtine on endiselt
+**SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+
+**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-07** — migratsiooni vajavad
 DOC-09 ja RES-02, kumbki olemasolevaid ridu muutmata. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`

@@ -1931,6 +1931,33 @@ tsükkel. Reaper'i enda käitumine on kaetud `tests/usage/reservationReaper.test
 
 **Vastuvõtukriteerium.** Vestluse avamisel peab klient leidma sama omaniku ja sama conversationId aktiivse job'i, taastama progressi/streami ning siduma Stop-nupu selle ID-ga. Minu dokumentide aktiivne rida peab võimaldama jätkamist ja selget Stop'i. Brauseritest peab tegema start → soft-nav → tagasi → progress → Stop ning tõendama, et uut job'i ei teki.
 
+**Seis (11.08.2026): leidmine ja Stop DONE ja mõõdetud; ELAVA EDENEMISVOO taastamine ning
+brauseritest on TEGEMATA — loend loeb selle leiu ENDISELT LAHTISEKS.**
+
+**MIS OLI VALESTI.** `detach()` jätab serveritöö teadlikult käima (see on T07 leping), aga
+taasavamisel ei otsinud teda **mitte keegi**: uuring jooksis edasi, ilma et kasutajal oleks olnud
+ühtki teed tema juurde tagasi — ei jälgimiseks ega peatamiseks. Uue uuringu käivitamine andis siis
+„üks aktiivne töö" vea ja inimene pidi ootama lõppu või kasutama otse-API-d. „Minu dokumentide"
+aktiivsel real oli ainult vestluse link; Stop/Delete renderdus alles terminalolekus.
+
+**MIS ON TEHTUD.** (1) Server oskab anda sama omaniku ja sama vestluse **aktiivse** töö:
+`listResearchJobsForOwner` sai `convId` ja `activeOnly` filtrid (convId elab payload'is, seega
+filtreeritakse JSON-tee järgi) ja marsruut võtab nad vastu. (2) Vestluse avamisel küsib klient selle
+töö ja **seob Stopi tema ID-ga** — peatamine ei ole enam kättesaamatu. (3) „Minu dokumentide"
+aktiivsel real on nüüd **Stop-nupp** (POST `.../stop`), mitte ainult link.
+
+**MIS ON TEGEMATA JA MIKS.** Elava SSE-edenemisvoo taastamine nõuab `useChatStream`-i
+voo-tarbimise osa väljatõstmist `sendMessage`-i seest (ta on seal ~200 rida, seotud
+`streamingMessageId`, `controller` ja tõlkefunktsiooniga). See on eraldi refaktor, mida P2 leid ei
+kanna, ja poolik väljatõste oleks halvem kui puuduv funktsioon. Samuti puudub kriteeriumi nõutud
+brauseritest (start → soft-nav → tagasi → progress → Stop). Seepärast ei ole see leid loendis
+tehtud — vaatamata sellele, et kasutaja olukord on nüüd oluliselt parem kui „ei mingit teed".
+
+**Mõõdetud.** Filtrid on kontrollitud päris andmebaasi vastu (sama vestluse aktiivne töö leitakse,
+teise vestluse ja lõppenud töö ei satu vastusesse); ülejäänu — et marsruut filtreid kasutab, et
+klient seob Stopi ja et aktiivsel real on nupp — lähtekoodi-lepinguga. Omanikuskoobi vana leping
+sai uue kuju: `where` on nüüd muutuja, aga `userId` peab olema tema esimene tingimus.
+
 ### SOL-DOC-08 — salvestatud analüüside sisu ei lähe salvestuskvoodi arvestusse — P1
 
 **Tõend.** Üks analüüs võib sisaldada kuni 200 000 baiti ja `createSavedAnalysis()` kontrollib enne loomist kasutaja üldist salvestuskasutust (`lib/documents/savedAnalysis.js:15-35`, `:69-114`). `getUserStorageUsageBytes()` liidab aga ainult `UserDocument`, `MaterialSubmission` ja `AgentArtifact.content` mahu; `SavedAnalysis` ridu ta ei loe (`lib/storageUsage.js:4-50`). Seetõttu ei muuda ühegi salvestatud analüüsi loomine järgmise analüüsi quota-check'i sisendit.

@@ -9,16 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **84 / 357** |
+| Tehtud leidu | **85 / 357** |
 | Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 199 × P1 · 73 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 198 × P1 · 73 × P2 · 1 × P3 |
 | Toodangus | **kümnes deploy 10.08 23:34 omaniku selgel loal: server = `44144aba`**, viis commit'i (SOL-FIELD-04, -05 ja -06 + kaks docs-commit'i), migratsioone ei olnud. Mõõdetud, mitte eeldatud: `.next` 23:34, kolm teenust `active`, `/` `/vestlus` `/valitoo` `/admin/rag` **200**, veatasemel logi tühi kõigis kolmes teenuses. (Üheksas deploy 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-RES on käsil** (5/7). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-RES on käsil** (6/7). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**70 tehtud leidu 84-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
-FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-05**;
+**70 tehtud leidu 85-st on tootmises** (kümnes deploy 10.08 23:34, server `44144aba` —
+FIELD-04, -05 ja -06 läksid välja, migratsioone ei olnud). Deploy'mata on **kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-07**;
 migratsiooni vajavad **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust) ja **SOL-RES-02**
 (`20260811040000`, veerg + unikaalne indeks); kumbki ei muuda olemasolevaid ridu. Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
@@ -42,7 +42,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Organisatsioonid ja skoop | SOL-ORG | **12/12** | – | – | – | **tehtud** |
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
-| Uuringud | SOL-RES | 5/7 | – | 1 | 1 | **käsil**, RES-01…-05 tehtud |
+| Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
 | Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
@@ -390,6 +390,13 @@ seotud KINNITATUD koopiaga; kui teda ei ole, jääb töö aktiivseks ja kasutust
 on job-idempotentne (`persistKey`), mis kattis ühtlasi RES-04 kriteeriumi viimase lause. **`npm run
 research:persist:probe` 10/10.**
 
+**SOL-RES-06 (11.08): vaikus oli kogu mehhanism.** Arveldus käis pärast `done`-iks märkimist ja
+tema vead neelati täielikult: edukaks märgitud töö võis jääda RESERVED-iks ja reaper vabastas ta
+hiljem kui kasutamata ühiku. Tühistatud töö arveldust ei saanud snapshot'ist üldse teha, sest võtit
+otsiti payload'ist, mida snapshot ei säilita. Nüüd loetakse võti vajadusel reast juurde, arvelduse
+tulemus jääb reale kirja ja pooleli jäänud arveldusi korratakse oma tempos. **`npm run
+research:settle:probe` 13/13**; migratsiooni ei olnud vaja.
+
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
 Neid kolme ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
@@ -400,6 +407,10 @@ kood ei anna:
 - **SOL-CW-14** (P1) — *mehhanism DONE ja alarm tõendatud päris PostgreSQL-is; taimeri
   LUBAMINE ootab omaniku enda lukustatud järjekorda* (Õ2/Õ3 andmekaitseanalüüs → cron →
   kuivjooks → aktiveerimine). Unit-failid on serveris paigaldatud, taimer on `disabled`.
+- **SOL-RES-07** (P2) — *leidmine ja Stop DONE; elava edenemisvoo taastamine ja brauseritest
+  TEGEMATA.* Aktiivse töö saab nüüd vestluse avamisel üles leida ja peatada (ka „Minu dokumentide"
+  real on Stop-nupp), aga SSE-progressi taastamine nõuab `useChatStream`-i voo-tarbimise
+  väljatõstmist `sendMessage`-i seest — eraldi refaktor, mida P2 leid ei kanna.
 - **SOL-CW-19** (P1) — *BLOCKED_DECISION.* Leid on mõõdetud ja tõene, aga kriteerium algab
   tooteotsusest, mis on omaniku oma. Koodi ei ole muudetud.
 
