@@ -66,6 +66,7 @@
     "research:settle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-usage-settlement-probe.mjs",
     "chat:settle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/chat-turn-settlement-probe.mjs",
     "voice:settle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/voice-settlement-probe.mjs",
+    "room:owner:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/room-ownership-probe.mjs",
     "chat:turn:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/chat-turn-claim-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",

@@ -173,3 +173,38 @@ test("kutse loomine ja vastuvõtt tunnevad lõpetatud ruumi", () => {
   assert.match(read("app/api/invites/route.js"), /isArchivedRoom\(room\)/);
   assert.match(read("lib/invites/acceptInviteCore.js"), /isArchivedRoom\(invite\.room\)/);
 });
+
+// --- SOL-ROOM-05: elutsüklisiire ja tema jälg ühes tehingus ----------------
+
+test("kustutus ja arhiveerimine kirjutavad auditi SAMAS tehingus", () => {
+  const source = read("app/api/rooms/[roomId]/route.js");
+
+  // Kustutus: audit ja `room.delete` peavad olema ühe `$transaction` sees, muidu jääb
+  // ebaõnnestunud kustutuse järel alles rida, mis väidab olematut kustutust.
+  const deleteTx = source.indexOf("await prisma.$transaction(async (tx) => {");
+  assert.ok(deleteTx > 0, "kustutus peab käima tehingus");
+  assert.match(source, /tx\.dataAuditLog\?\.create[\s\S]*?ROOM_DELETED[\s\S]*?tx\.room\.delete/);
+
+  // Arhiveerimine: tingimuslik update ja audit samas tehingus.
+  assert.match(source, /tx\.room\.updateMany\([\s\S]*?archivedAt: null[\s\S]*?ROOM_ARCHIVED/);
+
+  // Ja kumbki ei tohi enam kirjutada auditit tehingust VÄLJAS.
+  assert.doesNotMatch(source, /prisma\.dataAuditLog\?\.create/);
+});
+
+test("omanikuvahetus ja lahkumine käivad sama ruumiluku alt", () => {
+  const ownership = read("lib/rooms/ownership.js");
+  assert.match(ownership, /pg_advisory_xact_lock\(hashtext\(/);
+  assert.match(ownership, /lockRoom\(tx, roomId\)/);
+  // Kirjutus on kohtunik, mitte lugemine.
+  assert.match(ownership, /leftAt: null[\s\S]*?data: \{ role: "OWNER" \}/);
+  assert.match(ownership, /if \(promoted\.count < 1\)/);
+  assert.match(ownership, /if \(left\.count < 1\)/);
+
+  for (const route of ["app/api/rooms/[roomId]/transfer/route.js", "app/api/rooms/[roomId]/leave/route.js"]) {
+    const source = read(route);
+    assert.match(source, /transferRoomOwnership|leaveRoom/, route);
+    // Vana kuju: tingimusteta `roomMember.update` lahkumisel ja audit pärast tehingut.
+    assert.doesNotMatch(source, /prisma\.roomMember\.update\(\{/, route);
+  }
+});

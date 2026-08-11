@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { transferRoomOwnership } from "@/lib/rooms/ownership";
 import { notifyRoomOwnershipTransferred } from "@/lib/rooms/lifecycleNotifications";
 
 export const runtime = "nodejs";
@@ -60,54 +61,21 @@ export async function POST(req, { params }) {
   }
 
   try {
-    const room = await prisma.room.findUnique({ where: { id: roomId } });
-    if (!room) return errorJson("api.rooms.not_found", 404);
-    if (room.ownerId !== auth.userId) return errorJson("api.common.forbidden", 403);
-    if (room.archivedAt) return errorJson("api.rooms.archived_readonly", 409);
-
-    // Sihtmärk peab olema ruumi aktiivne liige.
-    const target = await prisma.roomMember.findFirst({
-      where: { roomId, userId: targetUserId, leftAt: null }
+    // Kogu otsus käib ruumipõhise nõuandeluku sees ja jälg sünnib samas tehingus
+    // (SOL-ROOM-04, SOL-ROOM-05). Varem loeti sihtmärgi aktiivsust ENNE tehingut ja
+    // audit kirjutati PÄRAST teda.
+    const outcome = await transferRoomOwnership({
+      db: prisma,
+      roomId,
+      actorUserId: auth.userId,
+      targetUserId
+    }).catch((error) => {
+      if (error?.roomTransferConflict) {
+        return { ok: false, status: 409, message: "api.rooms.transfer_conflict" };
+      }
+      throw error;
     });
-    if (!target) return errorJson("api.rooms.transfer_target_not_member", 404);
-
-    // Atomaarne omanikuvahetus: ruumi ownerId + mõlema liikme roll ühes tehingus.
-    // Ilma selleta jätaks protsessi katkemine kirjutuste vahel omandi ja rollid
-    // vastuollu (vana omanik võiks säilitada kutseõiguse, sest requireRoomRole
-    // aktsepteerib roomMember.role==OWNER). Tingimuslik kirjutus tehingu sees
-    // hoiab TOCTOU-kindluse: vaheta ainult siis, kui ruum kuulub veel algatajale.
-    const outcome = await prisma.$transaction(async (tx) => {
-      const moved = await tx.room.updateMany({
-        where: { id: roomId, ownerId: auth.userId },
-        data: { ownerId: targetUserId }
-      });
-      if (moved.count < 1) return { conflict: true };
-
-      // Rollivahetus: uus omanik → OWNER, vana omanik jääb liikmeks (MODERATOR).
-      await tx.roomMember.updateMany({
-        where: { roomId, userId: targetUserId },
-        data: { role: "OWNER" }
-      });
-      await tx.roomMember.updateMany({
-        where: { roomId, userId: auth.userId },
-        data: { role: "MODERATOR" }
-      });
-      return { conflict: false };
-    });
-    if (outcome.conflict) return errorJson("api.rooms.transfer_conflict", 409);
-
-    if (prisma.dataAuditLog?.create) {
-      await prisma.dataAuditLog.create({
-        data: {
-          actorUserId: auth.userId,
-          targetUserId,
-          action: "ROOM_OWNERSHIP_TRANSFERRED",
-          resourceType: "Room",
-          resourceId: roomId,
-          meta: { title: room.title || null }
-        }
-      });
-    }
+    if (!outcome.ok) return errorJson(outcome.message, outcome.status);
 
     /* T20 P3 (O-CO-3 b): üleminek on osalejatele nähtav — uus omanik ja liikmed
        saavad teate. Ei viska kunagi; vahetus ise on juba tehtud. */

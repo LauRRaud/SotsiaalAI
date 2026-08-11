@@ -3,6 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { createRoomCallService } from "@/lib/calls/roomRoutes";
+import { leaveRoom } from "@/lib/rooms/ownership";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -61,12 +62,15 @@ export async function POST(_req, { params }) {
   const roomId = await resolveRoomId(params);
   if (!roomId) return errorJson("api.common.missing_room_id", 400);
   try {
+    // Odav eelkontroll, et omaniku eest ei tehtaks kõnekoristust asjata. OTSUSTAB aga
+    // alles `leaveRoom` luku sees — see lugemine on juba möödunud hetk (SOL-ROOM-04).
     const membership = await prisma.roomMember.findFirst({
       where: {
         roomId,
         userId: auth.userId,
         leftAt: null
-      }
+      },
+      select: { role: true }
     });
     if (!membership) return errorJson("api.rooms.not_member", 404);
     if (membership.role === "OWNER") {
@@ -78,17 +82,10 @@ export async function POST(_req, { params }) {
     // et fantoom-osalejat ei jää (audit 16 K3, 4 K2).
     await createRoomCallService().releaseRoomMemberFromCalls({ roomId, userId: auth.userId });
 
-    await prisma.roomMember.update({
-      where: {
-        roomId_userId: {
-          roomId,
-          userId: auth.userId
-        }
-      },
-      data: {
-        leftAt: new Date()
-      }
-    });
+    // Roll loetakse UUESTI luku sees: vahepealne omanikuvahetus võis teha minust OWNER-i,
+    // ja tingimusteta `leftAt` kirjutus jättis ruumi ilma aktiivse omanikuta.
+    const outcome = await leaveRoom({ db: prisma, roomId, userId: auth.userId });
+    if (!outcome.ok) return errorJson(outcome.message, outcome.status);
 
     return json({
       ok: true

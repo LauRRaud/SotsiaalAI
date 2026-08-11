@@ -103,30 +103,31 @@ export async function DELETE(_req, { params }) {
       return errorJson("api.rooms.delete_failed", 500);
     }
 
-    // E1: auditijälg ENNE hävitamist (audit 16 K4).
+    // E1: auditijälg ENNE hävitamist (audit 16 K4) — ja SAMAS TEHINGUS (SOL-ROOM-05).
+    // Varem olid nad kaks eraldi kirjutust: kustutuse viga jättis alles auditirea, mis
+    // väitis olematut kustutust, ja kasutaja sai 500 seisu kohta, mida ei olnud.
     const [memberCount, messageCount] = await Promise.all([
       prisma.roomMember.count({ where: { roomId } }),
       prisma.roomMessage.count({ where: { roomId } })
     ]);
-    if (prisma.dataAuditLog?.create) {
-      await prisma.dataAuditLog.create({
-        data: {
-          actorUserId: auth.userId,
-          action: "ROOM_DELETED",
-          resourceType: "Room",
-          resourceId: roomId,
-          meta: {
-            title: room.title || null,
-            originType: room.originType || null,
-            memberCount,
-            messageCount
+    await prisma.$transaction(async (tx) => {
+      if (tx.dataAuditLog?.create) {
+        await tx.dataAuditLog.create({
+          data: {
+            actorUserId: auth.userId,
+            action: "ROOM_DELETED",
+            resourceType: "Room",
+            resourceId: roomId,
+            meta: {
+              title: room.title || null,
+              originType: room.originType || null,
+              memberCount,
+              messageCount
+            }
           }
-        }
-      });
-    }
-
-    await prisma.room.delete({
-      where: { id: roomId }
+        });
+      }
+      await tx.room.delete({ where: { id: roomId } });
     });
 
     return json({
@@ -181,22 +182,31 @@ export async function PATCH(req, { params }) {
       return errorJson("api.rooms.archive_failed", 500);
     }
 
+    // Arhiivimärge ja tema jälg on ÜKS tehing (SOL-ROOM-05): varem tuli audit pärast
+    // edukat `archivedAt` kirjutust, seega audititõrge andis 500 juba arhiveeritud ruumi
+    // kohta — kasutaja proovis uuesti seisu, mis oli juba olemas.
     const now = new Date();
-    const updated = await prisma.room.updateMany({
-      where: { id: roomId, archivedAt: null },
-      data: { archivedAt: now }
-    });
-    if (updated.count > 0 && prisma.dataAuditLog?.create) {
-      await prisma.dataAuditLog.create({
-        data: {
-          actorUserId: auth.userId,
-          action: "ROOM_ARCHIVED",
-          resourceType: "Room",
-          resourceId: roomId,
-          meta: { title: room.title || null, originType: room.originType || null }
-        }
+    const archived = await prisma.$transaction(async (tx) => {
+      const updated = await tx.room.updateMany({
+        where: { id: roomId, archivedAt: null },
+        data: { archivedAt: now }
       });
-    }
+      if (updated.count > 0 && tx.dataAuditLog?.create) {
+        await tx.dataAuditLog.create({
+          data: {
+            actorUserId: auth.userId,
+            action: "ROOM_ARCHIVED",
+            resourceType: "Room",
+            resourceId: roomId,
+            meta: { title: room.title || null, originType: room.originType || null }
+          }
+        });
+      }
+      return updated.count;
+    });
+    // Kirjutus on kohtunik: kui keegi jõudis vahele, on ruum ikka arhiveeritud — vastus
+    // jääb edukaks (idempotentne), aga teist auditirida ei teki.
+    void archived;
     return json({ ok: true, archivedAt: now });
   } catch (err) {
     console.error("[room archive] failed", err);

@@ -2913,6 +2913,25 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Sihtliikme aktiivsus, `Room.ownerId` ja mõlema rolli muutus peavad olema ühe lukustatud/serialiseeritud tehingu invariant; transferi commit'i hetkel peab uus omanik olema aktiivne ning vana omanik ei tohi lahkuda kontrolli ja commit'i vahel valesti. Päris PostgreSQLi test peab võistlema transferi ja target leave'i mõlemas järjekorras ning tõendama täpselt ühe aktiivse OWNER-i.
 
+**Seis (11.08.2026): DONE koos SOL-ROOM-05-ga, üks plokk. Migratsiooni ei ole vaja.**
+- **Mõlemad toimingud võtavad SAMA ruumipõhise nõuandeluku** (`lib/rooms/ownership.js`) ja
+  teevad kogu otsuse luku sees VÄRSKELT loetud seisu pealt. Varem luges omanikuvahetus
+  sihtmärgi aktiivsust enne tehingut ja lahkumine oma rolli enne aeglast kõnekoristust —
+  mõlemad otsustasid hetke pealt, mis oli möödas enne, kui otsus jõudis kirjutuseni.
+- **Kirjutus on kohtunik, mitte lugemine:** rolli tõstmine nõuab `leftAt: null` ja tema
+  `count` on kontrollitud; lahkumine kirjutab `leftAt` ainult tingimusel `role != OWNER`.
+  Kui sihtmärk kaob lugemise ja kirjutuse vahel, rullub kogu tehing tagasi — parem tühi
+  tulemus kui ruum, mille omanik on lahkunud liige.
+- **Lahkumise odav eelkontroll jäi alles**, et omaniku eest ei tehtaks kõnekoristust asjata,
+  aga ta ei OTSUSTA enam midagi; otsuse teeb `leaveRoom` luku sees.
+- **`npm run room:owner:probe` 22/22 päris PostgreSQL-is, deterministlike lukuvõistlustega
+  MÕLEMAS järjekorras** (jagatud `scripts/probe-race-harness.mjs`: kolmas tehing hoiab
+  ruumilukku, mõlemad võistlejad käivitatakse ja MÕÕDETAKSE, et nad ootavad). Mõõdetav
+  invariant ei ole „kes võitis", vaid **ruumil on täpselt üks aktiivne OWNER ja
+  `Room.ownerId` näitab aktiivse liikme peale**.
+- **Negatiivkontroll jooksutab vana rada sama andmebaasi vastu ja nõuab, et ta invariandi
+  RIKUKS** — rikub: `activeOwnerCount === 0` ja vana omanik on MODERATOR.
+
 ### SOL-ROOM-05 — ruumi lõpetamise ja omanikuvahetuse kõrvalmõjud ei ole ühe ausa lõpptulemusega seotud — P1
 
 **Tõend.** DELETE lõpetab kõne, kopeerib kokkuvõtted ja kirjutab `ROOM_DELETED` auditi enne `room.delete()` käsku (`app/api/rooms/[roomId]/route.js:82-130`). Lõpliku delete'i vea korral on kõne juba lõppenud, koopiad loodud ja audit väidab kustutamist, kuid ruum eksisteerib. Archive lõpetab samuti kõne ja teeb koopiad enne tingimuslikku archive-update'i; auditi viga toimub pärast edukat `archivedAt` kirjutust ning viib route'i 500 vastuseni (`:168-203`). Transfer teeb omandi tehingu enne auditi kirjutust, nii et audititõrge tagastab 500 juba tehtud omanikuvahetuse kohta (`app/api/rooms/[roomId]/transfer/route.js:76-119`).
@@ -2920,6 +2939,23 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Kasutaja saab 500 ning proovib toimingut uuesti, kuigi osa või kogu põhiseis on muutunud. Audit võib väita olematut kustutust või puududa tehtud arhiivi/transferi kohta; kõne võib olla lõpetatud aktiivseks jäänud ruumis. Seda ei saa ühest vastusest ega auditireast usaldusväärselt taastada.
 
 **Vastuvõtukriteerium.** DB-põhise elutsüklisiirde, auditirea ja püsivate handover-ledgerite kirjutus peab olema üks tehing või durable outbox/finalization olek. Välise kõne-egressi peatamine vajab eraldi idempotentset ette-/järelseisu, mida saab retry'da. Veasüstetestid peavad katkestama iga sammu järel ja kontrollima API vastust, ruumi olekut, kõnet, koopiat ning auditi tõde.
+
+**Seis (11.08.2026): DONE koos SOL-ROOM-04-ga, üks plokk. Migratsiooni ei ole vaja.**
+- **Kolm siiret said oma jälje samasse tehingusse.** Kustutus: audit + `room.delete` on nüüd
+  üks `$transaction` — varem jäi kustutuse vea korral alles rida, mis väitis olematut
+  kustutust. Arhiveerimine: tingimuslik `archivedAt` kirjutus + audit ühes tehingus — varem
+  tuli audit PÄRAST edukat arhiveerimist ja tema viga andis 500 seisu kohta, mis oli juba
+  olemas. Omanikuvahetus: audit sünnib siirdega samas lukustatud tehingus.
+- **Tõend on ROLLBACK, mitte rea olemasolu.** Sond süstib vea täpselt auditikirjutusse
+  (`Proxy` tehinguklient, kõik muu on päris) ja nõuab, et KOGU siire rulluks tagasi:
+  `ownerId` muutumata, sihtmärgi roll `MEMBER`, auditirida puudub, viga jõuab kutsujani.
+  Fake-Prisma seda tõendada ei saa — seal ei ole tehingut, mida tagasi rullida.
+- **Väline pool jäi teadlikult tehingust välja ja fail-closed'iks:** kõne lõpetamine ja
+  kokkuvõtete privaatkoopiad käivad ENNE siiret ja nende tõrge annab ausa 500 ilma
+  kustutuse või arhiveerimiseta (`copy-first`, sama muster mis T16 kustutusvoos). Nad on
+  idempotentsed, seega kordus on ohutu — see on kriteeriumi „eraldi ette-/järelseis".
+- **Aus piir:** veasüst käib auditikirjutuse pihta, mitte iga sammu järel eraldi. Väliste
+  sammude (egress, koopiad) katkestamine päris teenuse vastu on `runtime: not_run`.
 
 ### SOL-ROOM-06 — kokkuvõtte jagamine võib õnnestuda ilma hilisema privaatkoopia ja kinnitusringi kandjata — P1
 
