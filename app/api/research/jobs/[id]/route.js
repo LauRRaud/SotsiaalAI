@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { requireResearchAuth } from "@/lib/research/auth";
 import {
   assertResearchAccess,
-  cancelResearchJob,
+  deleteResearchJobForOwner,
   getResearchJob,
   getResearchJobResult,
   getResearchJobSnapshot,
@@ -55,7 +55,8 @@ async function getAndAuthorizeJob(params, userId) {
 }
 
 export async function GET(_req, { params }) {
-  const auth = await requireResearchAuth();
+  // Oma tulemuse lugemine ei sõltu tellimusest (SOL-RES-01, sama kõva reegel mis dokumentidel).
+  const auth = await requireResearchAuth({ allowWithoutSubscription: true });
   if (!auth.ok) {
     return json(
       {
@@ -76,8 +77,16 @@ export async function GET(_req, { params }) {
   });
 }
 
+/**
+ * SOL-RES-01 — DELETE tähendab KUSTUTAMIST, mitte tühistamist.
+ *
+ * Vana DELETE kutsus `cancelResearchJob()`, mis terminaltöö puhul ei muutnud midagi, aga marsruut
+ * vastas ikkagi eduga `status: "cancelled"`. „Minu dokumentide" kustutusnupp näitas seega
+ * „kustutatud" ja rida ilmus kohe uuesti. Peatamiseks on nüüd oma marsruut (`POST .../stop`);
+ * siin eemaldatakse rida päriselt ja aktiivne töö tuleb enne peatada.
+ */
 export async function DELETE(_req, { params }) {
-  const auth = await requireResearchAuth();
+  const auth = await requireResearchAuth({ allowWithoutSubscription: true });
   if (!auth.ok) {
     return json(
       {
@@ -90,8 +99,16 @@ export async function DELETE(_req, { params }) {
       auth.status
     );
   }
-  const check = await getAndAuthorizeJob(params, auth.userId);
-  if (!check.ok) return check.response;
-  await cancelResearchJob(check.job, "research.error.cancelled");
-  return json({ ok: true, status: "cancelled" });
+
+  const jobId = await getResearchJobId(params);
+  const outcome = await deleteResearchJobForOwner({ jobId, userId: auth.userId });
+
+  if (outcome === "active") {
+    return errorJson("research.error.stop_before_delete", 409);
+  }
+  if (outcome === "missing") {
+    // Sama vastus võõra ja juba kustutatud töö kohta — olemasolu-oraaklit ei teki.
+    return errorJson("research.error.not_found", 404);
+  }
+  return json({ ok: true, status: "deleted", deleted: true });
 }

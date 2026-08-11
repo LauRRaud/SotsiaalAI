@@ -264,8 +264,10 @@ export function useChatStream(config) {
   const stop = useCallback(() => {
     const activeResearchJobId = researchJobIdRef.current;
     if (activeResearchJobId && typeof fetch === "function") {
-      fetch(`/api/research/jobs/${encodeURIComponent(activeResearchJobId)}`, {
-        method: "DELETE"
+      // SOL-RES-01: peatamine on oma marsruut. Varem tegi seda DELETE, mis pidi olema ka kustutus
+      // — Stop oleks selle koha pealt hakanud tulemust ära viskama.
+      fetch(`/api/research/jobs/${encodeURIComponent(activeResearchJobId)}/stop`, {
+        method: "POST"
       }).catch(() => {});
     }
     teardownLocalStream();

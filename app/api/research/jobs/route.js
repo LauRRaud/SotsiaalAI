@@ -119,7 +119,8 @@ function normalizeOutputStyle(rawStyle, authRole) {
 // (RESEARCH_API_ENABLED off) — the `enabled` flag lets the UI show an honest "cannot start
 // new research right now" state without hiding the objects the user already has.
 export async function GET(req) {
-  const auth = await requireResearchAuth();
+  // Oma tööde loend ei sõltu tellimusest (SOL-RES-01) — uue töö käivitamine allpool jääb värava taha.
+  const auth = await requireResearchAuth({ allowWithoutSubscription: true });
   if (!auth.ok) {
     return errorJson(auth.message, auth.status, {
       requireSubscription: auth.requireSubscription,

@@ -249,16 +249,51 @@ test("storage quota is measured and written inside one locked transaction", () =
   assert.doesNotMatch(analysis, /getUserStorageUsageBytes\(/);
 });
 
+// SOL-RES-01. Kaks eri asja olid ühte aetud: kogu uuringupind oli tellimusvärava taga, ja DELETE
+// tähendas tühistamist, mitte kustutamist. Nüüd on lugemine tellimusest sõltumatu ning peatamisel
+// ja kustutamisel on oma marsruudid.
+test("research reads are subscription-free and delete really deletes", () => {
+  const detail = read("app/api/research/jobs/[id]/route.js");
+  const list = read("app/api/research/jobs/route.js");
+  const stream = read("app/api/research/jobs/[id]/stream/route.js");
+  const stop = read("app/api/research/jobs/[id]/stop/route.js");
+
+  for (const [rel, src] of [["detail", detail], ["stream", stream], ["stop", stop]]) {
+    assert.match(
+      src,
+      /requireResearchAuth\(\{ allowWithoutSubscription: true \}\)/,
+      `${rel} must not gate the owner's own data behind a subscription`
+    );
+    assert.doesNotMatch(src, /requireResearchAuth\(\)/, `${rel} must not keep the old hard gate`);
+  }
+
+  // Loend on tellimusevaba, aga UUE töö käivitamine jääb värava taha — mõlemad ühes failis.
+  assert.match(list, /GET\(req\) \{\s*\/\/[^\n]*\n\s*const auth = await requireResearchAuth\(\{ allowWithoutSubscription: true \}\)/);
+  assert.match(list, /export async function POST\(req\)[\s\S]{0,600}requireResearchAuth\(\)/);
+
+  // DELETE ei tohi enam olla tühistus.
+  assert.match(detail, /deleteResearchJobForOwner\(/);
+  assert.doesNotMatch(detail, /await cancelResearchJob\(/, "cancelling is the stop route's job, not delete's");
+  assert.match(detail, /research\.error\.stop_before_delete[\s\S]{0,40}409/);
+  assert.match(stop, /cancelResearchJob\(/);
+
+  // Klient: Stop läheb stop-marsruudile, mitte DELETE-le.
+  const hook = read("components/chat/hooks/useChatStream.js");
+  assert.match(hook, /\/stop`, \{\s*method: "POST"/);
+  assert.doesNotMatch(hook, /research\/jobs\/\$\{encodeURIComponent\(activeResearchJobId\)\}`, \{\s*method: "DELETE"/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
   const hook = read("components/chat/hooks/useChatStream.js");
   assert.match(hook, /const teardownLocalStream = useCallback/);
   assert.match(hook, /const detach = useCallback\(\(\) => \{\s*teardownLocalStream\(\);/);
-  // The DELETE (cancel) lives only in stop, and stop still exists.
-  assert.match(hook, /const stop = useCallback[\s\S]*?method:\s*"DELETE"[\s\S]*?teardownLocalStream\(\);/);
-  // detach must not issue the cancel: the only DELETE in the file is inside stop.
-  assert.equal((hook.match(/method:\s*"DELETE"/g) || []).length, 1, "there is exactly one DELETE (the explicit stop)");
+  // SOL-RES-01: tühistus läheb nüüd stop-marsruudile, mitte DELETE-le (DELETE kustutab).
+  assert.match(hook, /const stop = useCallback[\s\S]*?\/stop`, \{\s*method: "POST"[\s\S]*?teardownLocalStream\(\);/);
+  // detach ei tohi tühistada: ainus stop-kutse failis on selle sees.
+  assert.equal((hook.match(/\/stop`, \{\s*method: "POST"/g) || []).length, 1, "there is exactly one stop call (the explicit stop)");
+  assert.equal((hook.match(/method:\s*"DELETE"/g) || []).length, 0, "the hook must never delete a research job");
   assert.match(hook, /detach\s*\n?\s*\};\s*\}/, "detach is returned from the hook");
 });
 

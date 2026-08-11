@@ -73,7 +73,8 @@ async function getResearchJobId(params) {
 }
 
 export async function GET(req, { params }) {
-  const auth = await requireResearchAuth();
+  // Oma töö edenemise jälgimine ei sõltu tellimusest (SOL-RES-01).
+  const auth = await requireResearchAuth({ allowWithoutSubscription: true });
   if (!auth.ok) {
     return json(
       {
