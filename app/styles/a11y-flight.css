@@ -275,7 +275,8 @@ html:not([data-contrast="hc"]):not([data-reduce-transparency="1"]) [role="dialog
    Polster on em-des, seega järgib kirja ega vaja eraldi häälestust.
    Spetsiifilisus (2 klassi) võidab glass.css `button[data-variant]` reegli —
    mõlemad on @layer components. */
-.a11f-plane .a11f-save button[data-variant="primary"] {
+.a11f-plane .a11f-save button[data-variant="primary"],
+.a11f-plane .a11f-install button[data-variant="primary"] {
   /* Nupp VÄIKSEMAKS, kiri SUUREMAKS (omanik 03.08) — need kaks tõmbavad eri
      suunas, sest polster on em-des ja järgib kirja. Seega ei piisa kirja
      kasvatamisest: polster peab kahanema rohkem, kui kiri kasvab.

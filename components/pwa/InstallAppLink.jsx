@@ -1,6 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
+import Button from "@/components/ui/Button";
 import { useEffect, useLayoutEffect, useState, useCallback, useRef } from "react";
 import useT from "@/components/i18n/useT";
 import { useI18n } from "@/components/i18n/I18nProvider";
@@ -471,16 +472,17 @@ export default function InstallAppLink({
     return (
       <div className="pwa-install-station" data-state={canInstall ? "ready" : "manual"}>
         <p className="pwa-install-station-lead">{t("pwa.fullscreen_body")}</p>
-        <button
+        <Button
           type="button"
           ref={triggerRef}
-          className="pwa-install-action"
+          variant="primary"
+          className="a11f-install-action"
           data-autofocus=""
           onClick={handleClick}
           aria-expanded={helpOpen || undefined}
         >
           {t("pwa.install_short")}
-        </button>
+        </Button>
         {helpInline}
       </div>
     );
