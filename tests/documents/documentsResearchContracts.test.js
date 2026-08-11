@@ -342,6 +342,25 @@ test("a worker that lost its lease can no longer write", () => {
   assert.match(store, /String\(record\.workerId \|\| ""\) !== String\(job\.workerId \|\| ""\)/);
 });
 
+// SOL-RES-05. Persistence neelas kõik vead ja pipeline ei vaadanud tagastusväärtust: uuring
+// märgiti `done` ja kasutus commit'iti ka siis, kui vestlusse ei jäänud raportist jälgegi.
+test("research completion requires a confirmed durable copy in the conversation", () => {
+  const pipeline = read("lib/research/pipeline.js");
+  const persistence = read("lib/chat/persistence.js");
+
+  // Lõpp on seotud kinnitatud koopiaga, mitte kutse tegemisega.
+  assert.match(pipeline, /conversationCopyConfirmed = Boolean\(persisted\?\.assistantMessageId\)/);
+  const guardIndex = pipeline.indexOf("if (!conversationCopyConfirmed)");
+  const doneIndex = pipeline.indexOf("await markResearchDone(");
+  assert.ok(guardIndex > 0 && guardIndex < doneIndex, "the guard must come before markResearchDone");
+  assert.match(pipeline, /if \(!conversationCopyConfirmed\)[\s\S]{0,600}return;/, "an unconfirmed copy must not fall through to done");
+
+  // Kirjutus on job-idempotentne (ühtlasi SOL-RES-04 kriteeriumi viimane lause).
+  assert.match(pipeline, /persistKey = `research:\$\{job\.id\}`/);
+  assert.match(persistence, /metadata: \{ path: \["persistKey"\], equals: idempotencyKey \}/);
+  assert.match(persistence, /return \{ assistantMessageId: existing\.id, reused: true \}/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
