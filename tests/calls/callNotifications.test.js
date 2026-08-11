@@ -18,7 +18,7 @@ function matchesLeftAt(where, row) {
   return where?.leftAt === null ? row.leftAt == null : true;
 }
 
-function createDb({ members = [], consents = [], calls = [], users = [], failFor = null } = {}) {
+function createDb({ members = [], requests = [], calls = [], users = [], failFor = null } = {}) {
   const notifications = [];
   return {
     notifications,
@@ -42,19 +42,15 @@ function createDb({ members = [], consents = [], calls = [], users = [], failFor
           && (where.roomId == null || row.roomId === where.roomId)) || null;
       }
     },
-    callRecordingConsent: {
-      async findMany({ where } = {}) {
-        return consents
-          .filter(row => row.recordingRequestId === where.recordingRequestId
-            && (where.callSessionId == null || row.callSessionId === where.callSessionId)
-            && (where.status == null || row.status === where.status))
-          .map(row => ({ userId: row.userId }));
-      },
+    /* SOL-CALL-07: `callRecordingConsent` on siit MEELEGA ära. Saajate ring ei
+       tohi enam nõusolekuridu lugeda — kui mõni rada seda ikka teeb, kukub test
+       kohe `TypeError`-iga, mitte ei anna vaikselt vale rohelise. */
+    callRecordingRequest: {
       async findFirst({ where } = {}) {
-        const roomId = where?.recordingRequest?.callSession?.roomId ?? null;
-        return consents.find(row => row.recordingRequestId === where.recordingRequestId
-          && row.userId === where.userId
-          && row.status === where.status
+        const roomId = where?.callSession?.roomId ?? null;
+        return requests.find(row => row.id === where.id
+          && (where.callSessionId == null || row.callSessionId === where.callSessionId)
+          && (where.requestedByUserId == null || row.requestedByUserId === where.requestedByUserId)
           && (roomId == null || row.roomId === roomId)) || null;
       }
     },
@@ -150,38 +146,44 @@ test("ühe saaja tõrge ei peata teisi ega viska kõnerajale viga", async () => 
   assert.deepEqual(db.notifications.map(row => row.userId), ["member-c"]);
 });
 
-test("salvestisest teavitatakse ainult nõustunuks jäänud osalejaid", async () => {
-  const db = createDb({
-    consents: [
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, userId: "yes", status: "CONSENTED" },
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, userId: "withdrew", status: "WITHDRAWN" },
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, userId: "declined", status: "DECLINED" },
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, userId: "pending", status: "REQUESTED" }
+/* SOL-CALL-07 — SAAJA ON KANDJA, MITTE NÕUSTUNU.
+   Vana ootus („teavitatakse kõiki nõustunuks jäänuid") oli sõna-sõnalt leiu
+   kirjeldus testina: nõustunu sai teate faili kohta, mida ta ei leia ühestki
+   vaatest, sest `UserDocument` kuulub taotlejale ja dokumendipind on
+   `ownerId`-skoobiga. Need testid lukustavad omaniku otsuse 11.08.2026. */
+
+function recordingDb(overrides = {}) {
+  return createDb({
+    requests: [{ id: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, requestedByUserId: "requester" }],
+    users: [
+      { id: "requester", notificationEmailEnabled: false },
+      { id: "consenter", notificationEmailEnabled: false }
     ],
-    users: [{ id: "yes", notificationEmailEnabled: false }]
+    ...overrides
   });
+}
+
+test("salvestisest teavitatakse ainult selle kandjat — taotlejat", async () => {
+  const db = recordingDb();
 
   const result = await notifyCallRecordingAvailable({
     db, roomId: ROOM_ID, callSessionId: CALL_ID, recordingRequestId: REQUEST_ID
   });
 
   assert.equal(result.created, 1);
-  assert.deepEqual(db.notifications.map(row => row.userId), ["yes"]);
+  assert.deepEqual(db.notifications.map(row => row.userId), ["requester"]);
   assert.equal(db.notifications[0].type, "CALL_RECORDING_READY");
   assert.equal(db.notifications[0].sourceId, REQUEST_ID);
   assert.equal(db.notifications[0].targetId, ROOM_ID);
 });
 
-test("vahepeal tagasi võetud nõusolek jääb fail-closed'iks ka kirjutamise hetkel", async () => {
-  /* Race: kasutaja oli saajate loendis, aga võttis nõusoleku enne kirjutamist
-     tagasi. Saaja-verifitseerimine peab kirjutamise ära keelama. */
-  const db = createDb({
-    consents: [
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: ROOM_ID, userId: "racer", status: "WITHDRAWN" }
-    ],
-    users: [{ id: "racer", notificationEmailEnabled: false }]
-  });
-  db.callRecordingConsent.findMany = async () => [{ userId: "racer" }];
+test("nõustunu ei saa teadet ka siis, kui ta saajate loendisse satub", async () => {
+  /* Kandev kontroll: teine värav (assertNotificationRecipient) peab pidama ka
+     siis, kui esimene eksib. Nõusolek ei ole ligipääs. */
+  const db = recordingDb();
+  db.callRecordingRequest.findFirst = async ({ where } = {}) => (
+    where?.requestedByUserId ? null : { requestedByUserId: "consenter" }
+  );
 
   const result = await notifyCallRecordingAvailable({
     db, roomId: ROOM_ID, callSessionId: CALL_ID, recordingRequestId: REQUEST_ID
@@ -193,11 +195,8 @@ test("vahepeal tagasi võetud nõusolek jääb fail-closed'iks ka kirjutamise he
 });
 
 test("teise ruumi salvestis ei jõua saajani (siht peab kuuluma allikale)", async () => {
-  const db = createDb({
-    consents: [
-      { recordingRequestId: REQUEST_ID, callSessionId: CALL_ID, roomId: "other-room", userId: "yes", status: "CONSENTED" }
-    ],
-    users: [{ id: "yes", notificationEmailEnabled: false }]
+  const db = recordingDb({
+    requests: [{ id: REQUEST_ID, callSessionId: CALL_ID, roomId: "other-room", requestedByUserId: "requester" }]
   });
 
   const result = await notifyCallRecordingAvailable({
@@ -206,6 +205,18 @@ test("teise ruumi salvestis ei jõua saajani (siht peab kuuluma allikale)", asyn
 
   assert.equal(result.created, 0);
   assert.equal(result.failed, 1);
+  assert.equal(db.notifications.length, 0);
+});
+
+test("teadet ei teki, kui taotlust ei ole", async () => {
+  const db = recordingDb({ requests: [] });
+
+  const result = await notifyCallRecordingAvailable({
+    db, roomId: ROOM_ID, callSessionId: CALL_ID, recordingRequestId: REQUEST_ID
+  });
+
+  assert.equal(result.created, 0);
+  assert.equal(result.failed, 0);
   assert.equal(db.notifications.length, 0);
 });
 

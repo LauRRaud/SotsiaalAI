@@ -2,7 +2,8 @@
   "calls": {
     "recording_consent_intro": "{requesterName} soovib selle helikõne salvestada.",
     "recording_consent_purpose": "Salvestust kasutatakse ainult märgitud eesmärgil: {recordingPurpose}.",
-    "recording_consent_body": "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestus tehakse kättesaadavaks ainult õigustatud kasutajatele SotsiaalAI dokumentide vaates. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.",
+    "recording_consent_custody": "Salvestis läheb ainult salvestamise taotlejale ({requesterName}) tema SotsiaalAI dokumentide vaatesse. Sina annad nõusoleku salvestamiseks, mitte koopia saamiseks — salvestis sinuni ei jõua.",
+    "recording_consent_body": "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.",
     "recording_consent_question": "Kas nõustud selle kõne salvestamisega?",
     "recording_consent_yes": "Nõustun salvestamisega",
     "recording_consent_no": "Ei nõustu",

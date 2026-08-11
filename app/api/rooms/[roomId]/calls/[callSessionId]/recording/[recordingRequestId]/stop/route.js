@@ -40,7 +40,9 @@ export async function POST(_req, { params }) {
     await emitCallEvent(roomId, call);
     /* T12 E7: salvestis muutub kättesaadavaks alles COMPLETED-olekus (E5 c
        katkestusrajal jääb taotlus STOPPED ja fail DELETED — siis ei teavitata
-       kedagi). Saajate ring = sama nõusolekuvärav mis E6 ligipääsul. */
+       kedagi). SOL-CALL-07: saaja on salvestise KANDJA (taotleja), sest fail
+       kuulub temale — mitte kõik nõustunud, kelle jaoks see teade lubaks
+       ligipääsu, mida dokumendipind kunagi ei anna. */
     if (stopped?.status === "COMPLETED") {
       await notifyCallRecordingAvailable({
         roomId,

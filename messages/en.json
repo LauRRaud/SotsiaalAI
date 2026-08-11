@@ -2,7 +2,8 @@
   "calls": {
     "recording_consent_intro": "{requesterName} would like to record this audio call.",
     "recording_consent_purpose": "The recording will be used only for the stated purpose: {recordingPurpose}.",
-    "recording_consent_body": "The recording may contain personal or sensitive information. It is made available only to authorised users in the SotsiaalAI documents view. The recording is not transcribed or used to generate a summary automatically; those actions are triggered separately by a user.",
+    "recording_consent_custody": "The recording goes only to the person who requested it ({requesterName}), into their SotsiaalAI documents view. You are consenting to being recorded, not to receiving a copy — the recording will not reach you.",
+    "recording_consent_body": "The recording may contain personal or sensitive information. The recording is not transcribed or used to generate a summary automatically; those actions are triggered separately by a user.",
     "recording_consent_question": "Do you agree to this call being recorded?",
     "recording_consent_yes": "I agree to recording",
     "recording_consent_no": "I do not agree",

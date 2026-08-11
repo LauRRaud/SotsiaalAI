@@ -276,7 +276,11 @@ export default function RoomCallBar({
             <div className="room-call-consent">
               <p>{text(t, "calls.recording_consent_intro", `${requesterName} soovib selle helikõne salvestada.`, { requesterName })}</p>
               <p>{text(t, "calls.recording_consent_purpose", `Salvestust kasutatakse ainult märgitud eesmärgil: ${recordingPurposeShown}.`, { recordingPurpose: recordingPurposeShown })}</p>
-              <p>{text(t, "calls.recording_consent_body", "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestus tehakse kättesaadavaks ainult õigustatud kasutajatele SotsiaalAI dokumentide vaates. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.")}</p>
+              {/* SOL-CALL-07: kandja lõik on liideses SAMAST võtmest, millest server
+                  ehitab salvestatud tõendi — muidu loeks inimene üht teksti ja
+                  nõusolekukirjesse jääks teine. */}
+              <p>{text(t, "calls.recording_consent_custody", `Salvestis läheb ainult salvestamise taotlejale (${requesterName}) tema SotsiaalAI dokumentide vaatesse. Sina annad nõusoleku salvestamiseks, mitte koopia saamiseks — salvestis sinuni ei jõua.`, { requesterName })}</p>
+              <p>{text(t, "calls.recording_consent_body", "Salvestus võib sisaldada isikuandmeid või tundlikku infot. Salvestust ei transkribeerita ega kasutata kokkuvõtte koostamiseks automaatselt; need tegevused käivitatakse eraldi kasutaja toiminguna.")}</p>
               <p>{text(t, "calls.recording_consent_question", "Kas nõustud selle kõne salvestamisega?")}</p>
               <div className="room-call-actions-row">
                 <button type="button" disabled={busy} onClick={() => respondRecordingConsent(recording.id, "CONSENTED")}>

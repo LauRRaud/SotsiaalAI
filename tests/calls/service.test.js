@@ -395,6 +395,8 @@ test("moderator can request recording consent and every active participant gets 
   assert.equal(prisma.callRecordingConsent.rows.length, 2);
   assert.deepEqual(prisma.callRecordingConsent.rows.map(consent => consent.userId).sort(), ["host", "user_2"]);
   assert.match(request.consentTextSnapshot, /Test Admin soovib selle helikõne salvestada/);
+  // SOL-CALL-07: uus lubadus = uus versioon. Vana all antud nõusolekud jäävad v1-ks.
+  assert.equal(request.consentTextVersion, "call-recording-consent-v2");
   assert.equal(prisma.callRecordingFile.rows.length, 1);
   assert.equal(prisma.callRecordingFile.rows[0].status, "NOT_CREATED");
 });
@@ -1578,6 +1580,33 @@ test("tundmatu või puuduv keel jääb eesti keelde, mitte ei kuku serveri en-va
   const fallback = buildRecordingConsentText({ requesterName: "Mari", purpose: "GENERAL_SUMMARY" });
   assert.ok(fallback.includes(et.calls.recording_purpose_general_summary));
   assert.match(fallback, /Mari soovib selle helikõne salvestada/);
+});
+
+/* SOL-CALL-07 — NÕUSOLEKUTEKST ÜTLEB KANDJA VÄLJA.
+   Vana tekst lubas kõigis kolmes keeles, et salvestis „tehakse kättesaadavaks
+   õigustatud kasutajatele dokumentide vaates". Ligipääsu ei olnud kunagi kellelgi
+   peale taotleja — see lause oli tõendiks salvestatud lubadus, mida süsteem ei
+   täitnud. Test lukustab, et lubadus on nüüd sama, mis mehhanism. */
+test("nõusolekutekst nimetab salvestise kandja ega luba ligipääsu, mida ei ole", () => {
+  const cases = [["et", et], ["en", en], ["ru", ru]];
+  for (const [locale, catalog] of cases) {
+    const consentText = buildRecordingConsentText({
+      requesterName: "Mari Mets",
+      purpose: "GENERAL_SUMMARY",
+      locale
+    });
+    assert.ok(
+      consentText.includes(catalog.calls.recording_consent_custody.replaceAll("{requesterName}", "Mari Mets")),
+      `${locale}: kandja lõik puudub`
+    );
+  }
+
+  const etText = buildRecordingConsentText({ requesterName: "Mari Mets", purpose: "GENERAL_SUMMARY", locale: "et" });
+  assert.ok(!/õigustatud kasutajatele/.test(etText));
+  const enText = buildRecordingConsentText({ requesterName: "Mari Mets", purpose: "GENERAL_SUMMARY", locale: "en" });
+  assert.ok(!/authorised users/.test(enText));
+  const ruText = buildRecordingConsentText({ requesterName: "Mari Mets", purpose: "GENERAL_SUMMARY", locale: "ru" });
+  assert.ok(!/авторизованным пользователям/.test(ruText));
 });
 
 test("nimeta küsija saab keelekohase üldnimetuse, mitte eestikeelse 'Kõne osaleja'", () => {
