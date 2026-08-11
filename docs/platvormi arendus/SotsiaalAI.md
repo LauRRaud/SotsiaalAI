@@ -130,20 +130,28 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 108/384 leidu, 7/37 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 108/392 leidu, 7/38 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT**). **Auditis ei ole enam ühtegi
 lahtist P0-d.**
 
-**Nimetaja parandatud 11.08: 384, mitte 357 — ja ta LIIKUS mõõtmise ajal.** Loend
-`parandusaudit.md`-s loeb ainult peafaili pealkirju, seega kõik jätkufailid on tema alt
-VÄLJAS. Neid on praegu neli, kokku **27 leidu (15 × P1, 12 × P2), kõik NOT_DONE**:
-`…-jatk-materjalid.md` (SOL-MAT-01…-13 — uus peatükk, tabelis ei ole),
-`…-jatk-minu-jagamised.md` (SOL-SHARE-01…-05 — samuti uus peatükk),
-`…-jatk-organisatsioonid.md` (SOL-ORG-13…-17) ja `…-jatk-tooheaolu.md` (SOL-WB-15…-18).
-Kaks viimast laiendavad olemasolevaid peatükke, ja **SOL-ORG-13…-17 tähendab, et
-„SOL-ORG 12/12 tehtud" ei kehti enam** — seepärast on lõpetatuid siin 7, mitte 8.
-SOL-MAT-01 on tavaline serveripiiri puudumine tasulisel spetsialistifunktsioonil, mitte ääreala.
-**Otsustamata: kas jätkufailid liidetakse peaauditi järjekorda või jäävad eraldi.**
+**Nimetaja ei ole 357 — ja ta LIIGUB.** Loend `parandusaudit.md`-s loeb ainult peafaili
+pealkirju, seega kõik jätkufailid on tema alt VÄLJAS. 11.08 õhtul mõõdetuna on neid **viis
+lõpetatut, kokku 35 leidu (18 × P1, 17 × P2), kõik NOT_DONE** — ja kuues
+(`…-jatk-dokumendid.md`) oli kirjutamise ajal veel pooleli, seega 392 on **alumine** piir:
+
+| Jätkufail | Leiud | Mida ta teeb |
+|---|---|---|
+| `…-jatk-materjalid.md` | SOL-MAT-01…-13 | **uus peatükk**, tabelis ei ole |
+| `…-jatk-teenusekaart.md` | 8 | **uus peatükk** |
+| `…-jatk-minu-jagamised.md` | SOL-SHARE-01…-05 | **uus peatükk** |
+| `…-jatk-organisatsioonid.md` | SOL-ORG-13…-17 | laiendab lõpetatuks loetud peatükki |
+| `…-jatk-tooheaolu.md` | SOL-WB-15…-18 | laiendab olemasolevat (14 → 18) |
+
+**SOL-ORG-13…-17 tähendab, et „SOL-ORG 12/12 tehtud" ei kehti enam** — seepärast on lõpetatuid
+siin 7, mitte 8. SOL-MAT-01 on tavaline serveripiiri puudumine tasulisel
+spetsialistifunktsioonil, mitte ääreala. **Otsustamata ja see otsus on vaja teha enne järgmist
+loenduse mõõtmist: kas jätkufailid liidetakse peaauditisse (siis kehtib nende peale sama
+dokumendijärjekorra reegel) või jäävad eraldi järjekorraks.**
 
 **Käsil: SOL-AUTH, 6/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
 `VerificationToken` reast (`lib/auth/verificationTokens.js`, `v2:` + sha256) ja tarbimine sai
