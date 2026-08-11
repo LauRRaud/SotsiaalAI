@@ -54,6 +54,7 @@
     "research:worker:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-worker-visibility-probe.mjs",
     "research:lease:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-lease-fencing-probe.mjs",
     "research:persist:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-persistence-probe.mjs",
+    "research:settle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-usage-settlement-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",

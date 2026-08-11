@@ -1890,6 +1890,39 @@ lähtekoodi-leping. Kogu pipeline'i läbijooksu ei mõõdeta, sest see kutsuks m
 
 **Vastuvõtukriteerium.** Terminalsiire ja usage settlement vajavad püsivat outbox/finalization olekut ning korduskatset kuni idempotentse commit/release'i kinnituseni. Usage-võti peab olema DB-s eraldi väljal või turvalises snapshotis kättesaadav. Testid peavad sundima commit/release'i ajutisi vigu, protsessi restarti ja reaper'i ning tõendama, et done ei muutu tasuta tööks ja cancel ei jää kvooti kinni.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).**
+
+**VAIKUS OLI KOGU MEHHANISM.** `markResearchDone()` muutis rea esmalt `done`-iks ja kutsus alles
+seejärel kasutuse commit'i, mille vead **neelati täielikult**. Research-reservatsiooni TTL on 24
+tundi, seega edukaks märgitud töö võis commit'i vea järel jääda `RESERVED`-iks ja üldine reaper
+vabastas ta hiljem kui **kasutamata ühiku** — töö tulemust see enam tagasi ei pööranud. Edukas
+tasuline uuring jäi paketikasutuses arvestamata ja keegi ei saanud sellest kunagi teada.
+
+**Teine pool oli veel vaiksem.** Tühistatud töö arveldust ei saanud DB-snapshotist üldse teha:
+`toPublicFromRecord()` ei säilita payload'i, aga võtit otsiti just sealt. Peatamine teisest
+protsessist (mis on SOL-RES-01 järel tavaline tee) ei jõudnud seega reservatsioonini ja kvoot jäi
+TTL-ini kinni.
+
+**Kolm muudatust.** (1) Võti on alati leitav — kui teda objektil ei ole, loetakse ta reast juurde.
+(2) Arvelduse tulemus JÄÄB REALE KIRJA: õnnestumisel `usageSettledAt` + toiming, ebaõnnestumisel
+`usageSettlePending`. Vaikimine oleks siin kõige halvem: rida jääks „edukaks" ja arveldus lahkneks
+nähtamatult. (3) Pooleli jäänud arveldusi korratakse (`retryPendingResearchUsageSettlements`) oma
+tempos — vaikimisi minut, mitte säilitussweepi tunnine rütm, sest edukas töö ei tohi tunde
+arvestamata seista. Commit ja release on ise idempotentsed, seega kordus on ohutu ka siis, kui
+esimene kutse päriselt läbi läks ja ainult märge jäi kirjutamata.
+
+**Migratsiooni ei olnud vaja.** Märked elavad töö enda `payload`-is, kus juba on `usageIdempotencyKey`
+ja `intentFingerprint` — see on meie oma väli, mitte kliendi oma.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run research:settle:probe`, **13/13**): tundmatu reservatsioon
+jätab **pooleli märke, mitte vaikuse** · kordus töötava teenusega lõpetab arvelduse ja märge kaob ·
+**snapshot ilma payload'ita** (täpselt see, mida vana kood ei suutnud) leiab võtme ikkagi ja tühistus
+jõuab `release`-ni · tühja järjekorra kordus ei kuku.
+
+**Aus piir mõõtmises.** Protsessi restarti ja reaper'i sond eraldi ei jooksuta: kordussweep on
+protsessist sõltumatu (märge elab reas, mitte mälus), seega restart on tema jaoks sama mis järgmine
+tsükkel. Reaper'i enda käitumine on kaetud `tests/usage/reservationReaper.test.js`-is.
+
 ### SOL-RES-07 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — P2
 
 **Tõend.** Hook'i `detach()` katkestab lokaalse streami ja nullib `researchJobIdRef`, jättes serveritöö õigesti käima (`components/chat/hooks/useChatStream.js:250-279`). Taasavamise ajal pole aga ühtegi koodi, mis otsiks conversationId järgi aktiivset ResearchJob'i ja avaks selle streami uuesti; ainus uuringu POST/stream toimub uue `sendMessage()` sees (`:336-501`). Minu dokumentide aktiivsel uuringureal on ainult vestluse link; Stop/Delete nupp renderdub alles terminalolekus (`components/documents/DocumentsPage.jsx:531-545`). T07 leping nõuab sama aktiivse töö edenemise/tulemuse taastamist ja ütleb, et selge Stop on ainus tühistusrada (`docs/platvormi arendus/t07-documents-research-v1-ulesanne.md:72-77`, `:98`).

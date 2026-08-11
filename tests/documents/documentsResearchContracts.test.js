@@ -361,6 +361,22 @@ test("research completion requires a confirmed durable copy in the conversation"
   assert.match(persistence, /return \{ assistantMessageId: existing\.id, reused: true \}/);
 });
 
+// SOL-RES-06. Arveldus oli best-effort: vead neelati täielikult, seega edukaks märgitud töö võis
+// jääda arvestamata ja tühistatud töö hoidis kvooti TTL-ini kinni.
+test("usage settlement leaves a durable mark and is retried", () => {
+  const store = read("lib/research/jobStore.js");
+
+  // Võti on leitav ka siis, kui objekt tuli snapshot'ist ilma payload'ita.
+  assert.match(store, /async function resolveResearchUsageKey\(job\)[\s\S]{0,400}researchJob\.findUnique/);
+  // Õnnestumine ja ebaõnnestumine jäävad mõlemad reale kirja.
+  assert.match(store, /usageSettledAt: nowIso\(\)/);
+  assert.match(store, /usageSettlePending: \{ action, reason: reason \|\| null, at: nowIso\(\) \}/);
+  // Pooleli arveldust korratakse.
+  assert.match(store, /export async function retryPendingResearchUsageSettlements/);
+  assert.match(store, /path: \["usageSettlePending", "action"\], not: Prisma\.DbNull/);
+  assert.match(store, /await maybeRetryPendingSettlements\(\);/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
