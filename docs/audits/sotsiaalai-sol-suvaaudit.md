@@ -2028,6 +2028,56 @@ täpselt ühe `ANALYSIS_SAVE` rea, mis viitab analüüsile · kustutus loob oma 
 
 **Vastuvõtukriteerium.** Job muutub nähtavaks alles pärast snapshoti edukat loomist või create peab vea korral Map'i ja reservatsioonid atomaarse kompensatsiooniga puhastama. Kogu running/import/persistence algus peab kuuluma ühte fail-closed veakäsitlusse, mis viib terminalolekusse ja settle'ib kasutuse. Veasüstetestid peavad katkestama mkdir/write/rename/import etapid ning tõendama, et uut tööd saab kohe alustada.
 
+**Seis (11.08.2026): DONE.**
+
+**Kaks vaikset viga, mõlemad sama tagajärjega: kasutaja jäi lukku ja keegi ei saanud teada.**
+
+**Esimene oli järjekord.** `createMeetingSummaryJob` pani töö esmalt protsessi `jobs` Map'i ja
+kirjutas alles siis snapshoti. Kirjutuse vea korral vabastas route reservatsioonid ja vastas
+ausalt 500-ga — aga Map'i jäänud `queued` tööd ei eemaldanud **keegi**, sest sweep ei kustuta
+queued/running olekut. Kasutaja aktiivse töö limiit oli **protsessi elueaks** lukus ja iga
+järgmine katse sai `busy`. Nüüd kirjutatakse enne ja tehakse nähtavaks pärast; vea korral
+käib kaasas kompensatsioon, nii et kettale ei jää rida ega Map'i tööd.
+
+**Teine oli katuse auk.** Running-märge, tema snapshot ja `import("openai")` seisid `try`-plokist
+**väljas**. Nende viga jõudis ainult route'i `queueMicrotask(...).catch` logisse: tööd ei märgitud
+error'iks, kasutust ei vabastatud, ja limiit jäi samamoodi kinni. Nüüd on kogu jooksu algus ühe
+fail-closed katuse all.
+
+**Terminalolek ise on nüüd fail-closed.** Olek pannakse paika mälus ENNE ketast ja ketta viga ei
+pööra teda tagasi — just failisüsteemi tõrge on see, mis meid sinna tõi. Kui see viga erindiks
+jääks, jääks töö `queued`/`running` olekusse, mida sweep ei korista. Lisaks koristatakse nurjunud
+kirjutuse `.tmp` ära: snapshot kannab kohtumise kokkuvõtte teksti, seega poolik fail ei ole
+niisama prügi.
+
+**Üks nimeviga parandatud teel.** `runMeetingSummaryJob`-is oli kohalik `const usage =
+transcription?.usage` (provideri mõõt) kaks rida `job.usage` arvelduse kutsete all — kaks eri asja
+sama nimega. Nüüd on ta `transcriptionUsage`.
+
+**Mõõdetud (`tests/documents/meetingSummaryJobLifecycle.test.js`, 4/4) päris failisüsteemi
+vigadega, mitte fake-fs-iga:** kataloogi asemel tavaline fail annab päris `EEXIST` `mkdir`-il ·
+sihtfaili asemel kataloog annab päris `EPERM` `rename`-il · impordi tõrge on süstitud laaduri
+kaudu · kasutuse settle mõõdetakse süstitud arvestajaga, mis näitab **mõlemat** vabastatud
+idempotentsusvõtit.
+
+**Negatiivkontroll on igal testil.** Kolm neljast kukuvad muutmata `HEAD`-i vastu. Neljas —
+järjekorra oma — läks esimesel katsel vana koodi peal **läbi**, ja see oli minu testi viga, mitte
+paranduse tõend: vanas koodis kukub `createMeetingSummaryJob` juba aktiivsete tööde loendamisel
+(`listPersistedMeetingSummaryJobIds` teeb sama `mkdir`-i), seega `jobs.set()`-ini ei jõutagi.
+Isoleeritud kontroll — kus tagasi pööratakse AINULT järjekord — annab täpselt selle vea, mida leid
+kirjeldab: `documents.agent_workspace.meeting_summary.busy`.
+
+**Aus piir.** Puhast `write`-etappi eraldi failisüsteemi veana ei katkestata, vaid süstitava
+`persist`-õmbluse kaudu: iga kataloogitasandi viga tabaks enne kirjutust tema **lugemist**, seega
+päris fs-iga ei saa neid kahte lahku mõõta. Kasutuse settle on mõõdetud süstitud arvestajaga, mitte
+päris `usageService` ja PostgreSQL-i vastu — see rada jääb `not_run`.
+
+**Vana lepingutest kukkus ausalt läbi** (`tests/usage/legacyQuotaRemoval.test.js`): ta nõudis
+lähtekoodist sõna-sõnalt `settleMeetingSummaryUsage(job, "stt", "commit")` ja neljas argument
+lõhkus selle. Kontrolli ei lõdvendatud — ta sai **rangema** kuju: `workCompleted` märge ja tema
+etapi commit peavad olema KÕRVUTI (seda vana regexp ei nõudnud, seega ei takistanud ta märke ja
+arvelduse lahku triivimist), ning süstitava teenuse vaikeväärtus peab olema päris arveldus.
+
 ### SOL-MEET-02 — kokkuvõtte ühik commit'itakse enne kasutajale kuuluva dokumendi loomist — P1
 
 **Tõend.** Pärast mudelivastust seab job `document.workCompleted = true`, commit'ib `DOCUMENT_GENERATE` kasutuse ja persistib snapshoti enne `persistMeetingSummaryDocument()` kutset (`lib/documents/meetingSummaryJobs.js:668-680`). Kui faili või `UserDocument` rea loomine ebaõnnestub, catch kutsub küll üldise release'i, kuid `settleMeetingSummaryUsage()` keeldub release'ist kohe, kui `workCompleted` on tõene (`:84-117`, `:697-703`). Commit'i enda viga neelatakse olekusse `commit_pending`, kuid koodis pole selle oleku retry'd (`:92-109`). Dokumendi loomisel ei kontrollita ka kasutaja salvestuskvooti (`:444-515`).

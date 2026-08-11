@@ -9,15 +9,16 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **85 / 357** |
+| Tehtud leidu | **86 / 357** |
 | Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 198 × P1 · 73 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 197 × P1 · 73 × P2 · 1 × P3 |
 | Toodangus | **üheteistkümnes deploy 11.08 10:17 omaniku selgel loal: server = `aafe4eaa`**, 30 commit'i (kogu SOL-DOC 01…09, kogu SOL-RES 01…07 + docs) ja kaks migratsiooni. Mõõdetud, mitte eeldatud: `.next` 10:17, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` **200**, `/registreerimine` 307, veatasemel logi tühi. Mõlemad migratsioonid `_prisma_migrations`-is lõpetatud ja tagasi kerimata; `ResearchJob.clientIntentKey` + unikaalne `(userId, clientIntentKey)` indeks olemas, `DocumentAuditAction` sai `ANALYSIS_SAVE`/`ANALYSIS_DELETE`. (Kümnes deploy 10.08 23:34 = `44144aba`, üheksas 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-RES on käsil** (6/7). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on käsil** (1/6). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**Kõik 85 tehtud leidu on tootmises** — deploy'mata parandusi EI OLE. Üheteistkümnes deploy
+**85 tehtud leidu 86-st on tootmises.** Deploy'mata on **ainult SOL-MEET-01** (migratsioonita).
+Üheteistkümnes deploy
 (11.08 10:17, server `aafe4eaa`) viis välja kogu SOL-DOC peatüki (01…09) ja SOL-RES-01…-07
 koos mõlema migratsiooniga: **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust) ja
 **SOL-RES-02** (`20260811040000`, veerg + unikaalne indeks). Kumbki ei muutnud olemasolevaid
@@ -46,7 +47,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
-| Koosolekukokkuvõtted | SOL-MEET | 0/6 | – | 5 | 1 | |
+| Koosolekukokkuvõtted | SOL-MEET | 1/6 | – | 4 | 1 | **käsil**, MEET-01 tehtud |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
@@ -399,6 +400,15 @@ hiljem kui kasutamata ühiku. Tühistatud töö arveldust ei saanud snapshot'ist
 otsiti payload'ist, mida snapshot ei säilita. Nüüd loetakse võti vajadusel reast juurde, arvelduse
 tulemus jääb reale kirja ja pooleli jäänud arveldusi korratakse oma tempos. **`npm run
 research:settle:probe` 13/13**; migratsiooni ei olnud vaja.
+
+**SOL-MEET-01 (11.08): kaks vaikset viga, üks tagajärg — kasutaja jäi lukku.** Töö pandi protsessi
+Map'i ENNE snapshoti kirjutamist, seega kirjutuse vea korral jäi `queued` töö sinna igaveseks
+(sweep ei kustuta queued/running olekut) ja aktiivse töö limiit oli protsessi elueaks kinni. Teiseks
+seisid running-märge, tema snapshot ja `import("openai")` `try`-plokist väljas — nende viga jõudis
+ainult logisse, tööd ei märgitud error'iks ega vabastatud kasutust. Nüüd kirjutatakse enne ja
+tehakse nähtavaks pärast, kogu jooksu algus on ühe fail-closed katuse all ja terminalolek pannakse
+paika mälus enne ketast. **4/4 veasüstetesti päris fs-vigadega** (`EEXIST` `mkdir`-il, `EPERM`
+`rename`-il); igal testil on negatiivkontroll. Migratsiooni ei ole vaja.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
