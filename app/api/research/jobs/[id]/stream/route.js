@@ -89,6 +89,10 @@ export async function GET(req, { params }) {
   }
 
   const jobId = await getResearchJobId(params);
+  /* SOL-RES-03: runtime-objekt on ainult sellel protsessil, kes tööd päriselt jooksutab. Kui teda
+     siin ei ole (worker-režiim), langeb voog allpool automaatselt andmebaasi pollimisele — see on
+     protsessideülene kanal. Varem hoidis päritoluprotsess iga töö kohta stale objekti ja voog
+     tellis sellelt sündmusi, mida keegi kunagi ei saatnud. */
   const job = getResearchJob(jobId);
   const jobSnapshot = job || await getResearchJobSnapshot(jobId);
   if (!jobSnapshot) {

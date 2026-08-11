@@ -305,6 +305,24 @@ test("one client intent binds one research job", () => {
   assert.match(hook, /researchIntentRef\.current = null/);
 });
 
+// SOL-RES-03. Päritoluprotsess hoidis IGA töö kohta runtime-objekti, ka siis kui teda jooksutas
+// hoopis teine protsess — ja kõik lugejad eelistasid seda objekti andmebaasile.
+test("only the process that actually runs a job keeps a runtime object for it", () => {
+  const store = read("lib/research/jobStore.js");
+
+  assert.match(store, /RESEARCH_JOB_MODE/, "the store must know whether this process runs jobs");
+  assert.match(store, /ownedByThisProcess: RESEARCH_JOB_MODE !== "worker"/);
+  assert.match(
+    store,
+    /if \(job\.ownedByThisProcess\) \{\s*jobs\.set\(id, job\);/,
+    "a job this process will not run must not enter the local map"
+  );
+  // Võõra protsessi objekt ei tohi jääda igaveseks, kui ta kuidagi tekib.
+  assert.match(store, /if \(job\.ownedByThisProcess === false\) return true;/);
+  // Taaskasutatud kavatsuse lõppseis tuleb andmebaasist, mitte mälust.
+  assert.match(store, /const local = jobs\.get\(record\.id\);\s*if \(local && !terminalStatus\(record\.status\)\) return local;/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
