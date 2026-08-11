@@ -2200,6 +2200,56 @@ sweep ei kasuta protsessi mälu üldse, mitte selles, et masin oleks taaskäivit
 
 **Vastuvõtukriteerium.** Aktiivne claim peab olema protsessideülene ja atomaarne, eelistatult DB osalise unikaalindeksi/tingimusliku insertiga; kaotaja reservatsioonid vabastatakse. Paralleelsustest peab saatma vähemalt kaks samaaegset POST-i ja tõendama ühe job'i ning ühe STT+document reservatsioonipaari.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i samaaegsustõendiga (16/16).**
+
+**Vana kontroll ei olnud atomaarne ja ta on nüüd KADUNUD, mitte parandatud.**
+`getActiveMeetingSummaryJobCount()` luges aktiivsete tööde arvu protsessi Map'ist ja
+snapshotikataloogist ning uus töö lisati alles hiljem. Kahe põimuva `await`-iga POST-i puhul lugesid
+**mõlemad** „aktiivseid ei ole" ja lõid mõlemad oma töö oma kasutusvõtmega — üks kasutaja sai
+paralleelselt mitu mahukat STT+summary tööd ja mõlemad välised kulud arvestati.
+
+Loendus oli leiu **põhjus**, mitte tema vigane teostus, seega funktsioon on eemaldatud. Tema
+kõrvalülesande — rippuma jäänud snapshotide katkestamise ja nende kvoodi vabastamise — võttis
+SOL-MEET-03 kataloogisweep juba üle ja teeb seda **tsükliliselt**, mitte alles siis, kui keegi
+juhtub uut tööd proovima.
+
+**`MeetingSummaryJobClaim.userId` unikaalsus on ainus koht, kus see võidujooks päriselt lõpeb.**
+Mälulukk ei aita üle protsesside ja kataloogilugemine ei ole atomaarne. Kaotaja saab
+`ACTIVE_JOB_LIMIT` ja route vabastab tema reservatsioonid juba olemasoleval rajal
+(`meeting_summary_job_create_failed`).
+
+**Aegunud claim on üle võetav, aga ainult COMPARE-AND-SWAP'iga:** kustutus on seotud sama rea sama
+`updatedAt` väärtusega, seega kaks samaaegset ülevõtjat ei saa mõlemad võita.
+
+**Üks auk tuli välja alles paranduse kirjutamise ajal ja teda ei olnud raportis.** Kui claim'i
+`updatedAt` jääks loomise hetke peale seisma, muutuks üle 15 minuti kestev töö „aegunuks" ja teine
+POST võiks ta **elusalt üle võtta** — täpselt see kahju, mille vastu see leid on. Südamelöök käib
+nüüd jooksu kahes loomulikus punktis (running-märke järel ja transkriptsiooni järel, sest kokkuvõte
+võib omakorda kaua võtta). Eraldi taimerit ei ole, sest muid ootepunkte sellel tööl ei ole.
+Negatiivkontroll ilma südamelöögita annab sõna-sõnalt `ÜLE VÕETUD`.
+
+**Migratsioon.** `20260811120000_sol_meet_04_job_claim` loob uue tabeli koos `userId` unikaalindeksi
+ja `ON DELETE CASCADE` võtmega. **Olemasolevaid ridu ei puudutata** ja see on selle peatüki ainus
+migratsiooni vajav leid.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run meeting:summary:probe`, **16/16**, neli uut juhtu): kaks
+`Promise.all`-iga samaaegset loomist annavad **täpselt ühe** töö · kaotaja kood on
+`ACTIVE_JOB_LIMIT` · andmebaasis on täpselt üks claim · kettal täpselt ühe töö snapshot.
+
+**`npm test` pool** (20/20 failis): kaks samaaegset loomist → üks võidab · terminalolek vabastab
+claim'i ja järgmise saab kohe alustada · värsket claim'i ei saa üle võtta, aegunud oma saab · kaks
+samaaegset ülevõtjat → ainult üks · elav jooks värskendab oma claim'i ise.
+
+**Negatiivkontroll.** Atomaarse claim'i eemaldamine kukutab neli testi neljast; südamelöögi
+eemaldamine kukutab viienda.
+
+**Aus piir.** (1) Andmebaas on nüüd töö loomiseks kohustuslik. See ei ole regressioon — marsruut
+reserveerib kasutuse juba enne `createMeetingSummaryJob`-i ja see käib niikuinii andmebaasi kaudu —
+aga öeldagu välja. (2) Testide võlts-DB jäljendab ainult `userId` unikaalsust ja `P2002` viga;
+päris indeksi käitumist tõendab **ainult sond**. (3) Südamelöök vähendab elusa claim'i ülevõtmise
+akent, aga ei sulge teda matemaatiliselt: kui provideri üks kutse kestab üle 15 minuti, on aken
+uuesti lahti. Selle sulgemine nõuaks perioodilist südamelööki jooksu sees ja seda ei tehtud.
+
 ### SOL-MEET-05 — tundmatu audio kestus arvestatakse alati 60 sekundina ka pikema faili puhul — P1
 
 **Tõend.** Kestuse parser tagastab iga parse-vea korral `null` (`lib/audio/duration.js:8-21`). Route reserveerib sel juhul täpselt 60 `STT_SECONDS` ühikut sõltumata kuni 12 MB faili tegelikust kestusest (`app/api/documents/meeting-summary/jobs/route.js:82-105`). Pärast provider-kutset leitakse võimalusel tegelik `usage.seconds`, kuid usage commit tehakse enne seda ja ilma `actualAmount` väärtuseta (`lib/documents/meetingSummaryJobs.js:580-590`, `:84-103`).
