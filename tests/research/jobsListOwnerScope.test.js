@@ -23,7 +23,11 @@ test("GET /api/research/jobs authenticates and lists only the caller's own jobs"
 
 test("listResearchJobsForOwner filters by userId and maps every row through the safe projector", () => {
   const store = read("lib/research/jobStore.js")
-  assert.match(store, /findMany\(\{\s*where:\s*\{\s*userId:\s*targetUserId\s*\}/)
+  // SOL-RES-07 lisas filtrid (convId, activeOnly), seega `where` on nüüd muutuja — omanikuskoop
+  // peab aga OLEMA tema esimene tingimus ja mõlemad päringud peavad sama objekti kasutama.
+  assert.match(store, /const where = \{\s*userId: targetUserId,/)
+  assert.match(store, /count\(\{ where \}\)/)
+  assert.match(store, /findMany\(\{\s*where,/)
   assert.match(store, /rows\.map\(toOwnerListItem\)/)
 })
 

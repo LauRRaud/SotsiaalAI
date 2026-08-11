@@ -250,6 +250,44 @@ export function useChatStream(config) {
   const researchIntentRef = useRef(null);
   const researchStreamingMessageIdRef = useRef(null);
 
+  /**
+   * SOL-RES-07 — VESTLUSE AVAMISEL LEIA OMA AKTIIVNE TÖÖ ÜLES.
+   *
+   * `detach()` jätab serveritöö teadlikult käima, aga taasavamisel ei otsinud teda MITTE KEEGI:
+   * uuring jooksis edasi, ilma et kasutajal oleks olnud ühtki teed tema juurde tagasi — ei
+   * jälgimiseks ega peatamiseks. Uue uuringu käivitamine andis siis „üks aktiivne töö" vea ja
+   * inimene pidi ootama lõppu.
+   *
+   * Siin seotakse Stop uuesti selle töö ID-ga. Elava edenemisvoo taastamine on eraldi töö (vt
+   * leiu Seis-lõik) — aga peatamine ei tohi olla kättesaamatu.
+   */
+  useEffect(() => {
+    const convId = String(config?.convId || "").trim();
+    if (!convId || typeof fetch !== "function") return undefined;
+    if (researchJobIdRef.current) return undefined;
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const response = await fetch(
+          `/api/research/jobs?convId=${encodeURIComponent(convId)}&status=active&limit=1`,
+          { cache: "no-store" }
+        );
+        if (!response.ok) return;
+        const payload = await response.json().catch(() => ({}));
+        const active = Array.isArray(payload?.jobs) ? payload.jobs[0] : null;
+        const jobId = String(active?.id || "").trim();
+        if (!cancelled && jobId && !researchJobIdRef.current) {
+          researchJobIdRef.current = jobId;
+        }
+      } catch {}
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [config?.convId]);
+
   // Local-only teardown: stop reading the current stream and reset generating state, WITHOUT
   // touching any durable server-side research job.
   const teardownLocalStream = useCallback(() => {

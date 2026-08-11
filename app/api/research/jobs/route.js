@@ -142,7 +142,14 @@ export async function GET(req) {
 
   let listing;
   try {
-    listing = await listResearchJobsForOwner({ userId: auth.userId, limit, offset });
+    listing = await listResearchJobsForOwner({
+      userId: auth.userId,
+      limit,
+      offset,
+      // SOL-RES-07: vestluse avamisel küsib klient just selle vestluse aktiivset tööd.
+      convId: requestUrl.searchParams.get("convId"),
+      activeOnly: String(requestUrl.searchParams.get("status") || "").trim().toLowerCase() === "active"
+    });
   } catch (error) {
     console.error("[research] list failed", safeError(error));
     return errorJson("research.error.failed", 500);

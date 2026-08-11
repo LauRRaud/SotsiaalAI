@@ -379,6 +379,19 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     }
   }
 
+  async function stopResearch(id) {
+    if (!window.confirm(t("documents.workspace.research_confirm_stop"))) return
+    try {
+      const response = await fetch(`/api/research/jobs/${encodeURIComponent(id)}/stop`, { method: "POST" })
+      const payload = await response.json().catch(() => ({}))
+      if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_stop_failed"))
+      setSuccessNotice({ message: t("documents.workspace.research_stopped") })
+      await loadResearch()
+    } catch (error) {
+      setActionError(error?.message || t("documents.workspace.research_stop_failed"))
+    }
+  }
+
   async function deleteResearch(id) {
     if (!window.confirm(t("documents.workspace.research_confirm_delete"))) return
     try {
@@ -541,7 +554,13 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
             <Button type="button" size="sm" variant="danger" onClick={() => void deleteResearch(item.id)}>
               {t("documents.actions.delete")}
             </Button>
-          ) : null}
+          ) : (
+            /* SOL-RES-07: aktiivsel real oli varem ainult vestluse link — tööd ei saanud kuskilt
+               peatada. Peatamine on nüüd oma tegu ja ta on siin, kus töö nähtav on. */
+            <Button type="button" size="sm" variant="danger" onClick={() => void stopResearch(item.id)}>
+              {t("documents.workspace.research_stop")}
+            </Button>
+          )}
         </>
       )
     }

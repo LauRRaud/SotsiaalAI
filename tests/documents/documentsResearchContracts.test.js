@@ -377,6 +377,31 @@ test("usage settlement leaves a durable mark and is retried", () => {
   assert.match(store, /await maybeRetryPendingSettlements\(\);/);
 });
 
+// SOL-RES-07 (osaline). `detach()` jätab serveritöö teadlikult käima, aga taasavamisel ei otsinud
+// teda mitte keegi — ei jälgimiseks ega peatamiseks. Siin mõõdetakse seda osa, mis on tehtud:
+// aktiivse töö LEIDMINE ja Stopi kättesaadavus. Elava edenemisvoo taastamine on veel tegemata.
+test("an active research job can be found again and stopped after a soft nav", () => {
+  const store = read("lib/research/jobStore.js");
+  const route = read("app/api/research/jobs/route.js");
+  const hook = read("components/chat/hooks/useChatStream.js");
+  const documents = read("components/documents/DocumentsPage.jsx");
+
+  // Server oskab anda sama vestluse aktiivse töö.
+  assert.match(store, /convId = null, activeOnly = false/);
+  assert.match(store, /payload: \{ path: \["convId"\], equals: conversationId \}/);
+  assert.match(store, /activeOnly \? \{ status: \{ in: ACTIVE_STATUSES \} \}/);
+  assert.match(route, /convId: requestUrl\.searchParams\.get\("convId"\)/);
+
+  // Vestluse avamisel seotakse Stop uuesti selle töö ID-ga.
+  assert.match(hook, /status=active&limit=1/);
+  assert.match(hook, /researchJobIdRef\.current = jobId/);
+
+  // „Minu dokumentide" aktiivsel real on nüüd Stop, mitte ainult vestluse link.
+  assert.match(documents, /async function stopResearch\(id\)/);
+  assert.match(documents, /\/stop`, \{ method: "POST" \}/);
+  assert.match(documents, /research_stop"\)/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {
