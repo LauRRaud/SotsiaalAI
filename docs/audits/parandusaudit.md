@@ -19,12 +19,12 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **120 / 403** selle tööpuu loenduri järgi · **120 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **8 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 198 × P1 · 84 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 309) |
+| Tehtud leidu | **127 / 403** selle tööpuu loenduri järgi · **127 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Peatükke lõpuni | **9 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 193 × P1 · 82 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 302) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 5 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**) ja kogu SOL-VOICE (01…03). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH (15/15) ja SOL-VOICE (3/3) on lõpetatud** — kaheksa täis peatükki. Dokumendi järjekorras järgmine puutumata peatükk on **SOL-ROOM (0/7, 5 × P1)**; tema ees seisvad SOL-CW, SOL-ORG, SOL-DOC ja SOL-RES lahtised on kas kvalifitseeritud, otsuse taga või tulevad AINULT jätkufailidest. Vt lahtist tooteotsust allpool. |
+| Toodangus | **DEPLOY'MATA JÄÄK: 12 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**), kogu SOL-VOICE (01…03) ja kogu SOL-ROOM (01…07). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
+| Järgmine peatükk | **SOL-AUTH (15/15), SOL-VOICE (3/3) ja SOL-ROOM (7/7) on lõpetatud** — üheksa täis peatükki. Dokumendi järjekorras järgmine on **SOL-CALL** (10/13, kolm lahtist P2: CALL-07, -08, -09), siis **SOL-INV** (0/3) ja **SOL-PAY** (0/11, 9 × P1). Vt ka lahtist jätkufailide otsust allpool. |
 | Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-WB 18 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-URG 11 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
@@ -148,7 +148,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 | Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | **tehtud** |
 | Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
 | Hääl (STT/TTS) | SOL-VOICE | **3/3** | – | **tehtud** |
-| Ruumid | SOL-ROOM | 0/7 | 5 × P1 · 2 × P2 | |
+| Ruumid | SOL-ROOM | **7/7** | – | **tehtud** |
 | Kõned ja salvestus | SOL-CALL | 10/13 | 3 × P2 | lahtised CALL-07, -08, -09 |
 | Kutsed ja sponsorlus | SOL-INV | 0/3 | 1 × P1 · 2 × P2 | |
 | Maksed | SOL-PAY | 0/11 | 9 × P1 · 2 × P2 | |
@@ -304,6 +304,24 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   fail, mis vanas rajas maksis 60 sekundit, ei mahu enam 900-sekundilise limiidi sisse.
   **NOT_PROVEN jääb brauserikiht** (DOM-testisviiti ei ole) ja `-01` „transkripti taastamine"
   ainult arvelduse mõttes — teksti ennast `/api/stt` ei püsista, vt leiu Seis-lõiku.
+- **SOL-ROOM-01…-07** (11.08) — **kogu ruumipeatükk, neli plokki ühe päevaga.** `-01`: sama
+  „leia ruum → leia liikmesus → kontrolli arveldust" otsus elas neljas käsitsi hoitud
+  koopias ja KÕIK valisid ruumist ainult `id` ja `helpMatch`, seega `archivedAt` ei jõudnud
+  otsuseni kordagi — lõpetatud ruumi sai otse API kaudu edasi kirjutada. Uus jagatud värav
+  `lib/rooms/accessGuard.js` eristab kolme lepingut ja kolmas neist (`ROOM_WIND_DOWN`)
+  tekkis paranduse kirjutamise ajal: kui kõik kõnemarsruudid oleksid kirjutused, jääks
+  arhiveerimise hetkel käimasoleva kõne osaleja LUKKU. **Katvustest käib läbi kõik
+  `app/api/rooms` marsruudid** ja erandid on nimeline loend põhjustega. `-02`/`-03`: hiline
+  vastus kirjutas teise ruumi vaatesse võõra ajaloo ja SSE lammutas iseennast; otsused
+  kolisid Reactist välja (`lib/rooms/roomMessageSession.js`), sest leid ON ajastus. `-04`:
+  omanikuvahetus ja lahkumine jätsid ruumi ilma aktiivse omanikuta — mõlemad võtavad nüüd
+  sama ruumiluku ja kirjutus on kohtunik; **`npm run room:owner:probe` 22/22 päris
+  PostgreSQL-is, deterministlike võistlustega mõlemas järjekorras**, negatiivkontroll rikub
+  invariandi. `-05`: kolm elutsüklisiiret said jälje samasse tehingusse, tõend on ROLLBACK.
+  `-06`: jagamise kandja kirjutamise vaikiv tõrge jättis kõik ilma privaatkoopiata — nüüd
+  üks tehing ja VISKAB. `-07`: saajate ring on jagamise hetk, mitte ruumi lõpp.
+  **Kaks testi lukustasid VALE käitumise ja on ümber pööratud.** NOT_PROVEN: HTTP- ja
+  brauserikiht.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
