@@ -47,7 +47,20 @@ function createDb({
     roomMember: {
       async findMany({ where } = {}) {
         return members
-          .filter(row => row.roomId === where.roomId && (where.leftAt !== null || row.leftAt == null))
+          .filter(row => {
+            if (row.roomId !== where.roomId) return false;
+            // Praegu aktiivsed.
+            if (where.leftAt === null) return row.leftAt == null;
+            // Jagamise hetkel aktiivsed (SOL-ROOM-07): liitus enne jagamist ja ei olnud
+            // selleks hetkeks lahkunud.
+            if (where.joinedAt?.lte) {
+              const joinedAt = row.joinedAt || new Date(0);
+              if (joinedAt > where.joinedAt.lte) return false;
+              const leftAfter = where.OR?.find(clause => clause.leftAt?.gt)?.leftAt?.gt;
+              return row.leftAt == null || (leftAfter && row.leftAt > leftAfter);
+            }
+            return row.leftAt == null;
+          })
           .map(row => ({ userId: row.userId }));
       }
     },
@@ -107,21 +120,30 @@ function baseDb(overrides = {}) {
     summaries: [sharedSummaryRow()],
     messages: [{ id: "msg1", deletedAt: null }],
     members: [
-      { roomId: ROOM_ID, userId: SHARER, leftAt: null },
-      { roomId: ROOM_ID, userId: "member-b", leftAt: null },
-      { roomId: ROOM_ID, userId: "member-c", leftAt: null },
-      { roomId: ROOM_ID, userId: "member-left", leftAt: new Date("2026-07-18") }
+      { roomId: ROOM_ID, userId: SHARER, joinedAt: new Date("2026-07-01"), leftAt: null },
+      { roomId: ROOM_ID, userId: "member-b", joinedAt: new Date("2026-07-01"), leftAt: null },
+      { roomId: ROOM_ID, userId: "member-c", joinedAt: new Date("2026-07-01"), leftAt: null },
+      // Lahkus ENNE jagamist — tema kokkuvõtet ei näinud ja koopiat ei saa.
+      { roomId: ROOM_ID, userId: "member-left", joinedAt: new Date("2026-07-01"), leftAt: new Date("2026-07-18") },
+      // Lahkus PÄRAST jagamist — SOL-ROOM-07: tema koopia ei tohi sõltuda ruumi
+      // sulgemise juhuslikust ajast.
+      { roomId: ROOM_ID, userId: "member-left-after", joinedAt: new Date("2026-07-01"), leftAt: new Date("2026-07-20") }
     ],
     ...overrides
   });
 }
 
-test("iga praegune osaleja saab privaatkoopia; jagaja ja lahkunu ei saa", async () => {
+test("koopia saab see, kes oli ruumis JAGAMISE ajal või on praegu; jagaja ei saa", async () => {
   const db = baseDb();
   const result = await copyRoomSummariesToParticipants({ db, roomId: ROOM_ID });
 
-  assert.equal(result.created, 2);
-  assert.deepEqual(db.analyses.map(row => row.ownerId).sort(), ["member-b", "member-c"]);
+  // SOL-ROOM-07: `member-left-after` lahkus pärast jagamist ja saab siiski koopia.
+  // `member-left` lahkus ENNE jagamist ega saa. Jagajal on originaal oma dokumentides.
+  assert.equal(result.created, 3);
+  assert.deepEqual(
+    db.analyses.map(row => row.ownerId).sort(),
+    ["member-b", "member-c", "member-left-after"]
+  );
 });
 
 test("koopia kannab jagamise hetke snapshot'i, disclaimerit ja päritolu", async () => {
@@ -144,8 +166,8 @@ test("üleandmine on idempotentne (arhiveeri → kustuta ei tekita teist koopiat
   const second = await copyRoomSummariesToParticipants({ db, roomId: ROOM_ID });
 
   assert.equal(second.created, 0);
-  assert.equal(second.existing, 2);
-  assert.equal(db.analyses.length, 2);
+  assert.equal(second.existing, 3);
+  assert.equal(db.analyses.length, 3);
 });
 
 test("ruumist kustutatud jagamist ei anta tagantjärele edasi", async () => {
@@ -163,8 +185,11 @@ test("poolik pearaamatu rida lõpetatakse järgmisel katsel — koopia ei kao", 
   });
   const result = await copyRoomSummariesToParticipants({ db, roomId: ROOM_ID });
 
-  assert.equal(result.created, 2);
-  assert.deepEqual(db.analyses.map(row => row.ownerId).sort(), ["member-b", "member-c"]);
+  assert.equal(result.created, 3);
+  assert.deepEqual(
+    db.analyses.map(row => row.ownerId).sort(),
+    ["member-b", "member-c", "member-left-after"]
+  );
   assert.equal(db.ledger.find(row => row.userId === "member-b").savedAnalysisId, "a1");
 });
 
@@ -205,18 +230,34 @@ test("jagamise link salvestatakse snapshot'ina ja kordusjagamine ei paljunda rid
   assert.equal(db.sharedSummaries[0].messageId, "msg2");
 });
 
-test("lingi kirjutamise tõrge ei kukuta jagamist ennast", async () => {
+test("lingi kirjutamise tõrge VISKAB — jagamine ei tohi jääda kandjata (SOL-ROOM-06)", async () => {
   const db = createDb();
   db.roomSharedSummary.upsert = async () => {
     throw new Error("link write failed");
   };
 
-  const result = await recordSharedRoomSummary({
-    db,
-    roomId: ROOM_ID,
-    summary: { id: "artifact1", content: SNAPSHOT },
-    sharedByUserId: SHARER
-  });
+  // Vana leping oli vastupidine: viga neelati ja `{recorded:false}` läks marsruudile,
+  // kes seda ei vaadanud. Kõik nägid ruumis kokkuvõtet, aga ruumi lõppedes ei saanud
+  // sellest keegi privaatkoopiat. Nüüd kutsutakse teda sõnumiga samas tehingus, seega
+  // viskamine ONGI parandus: kas mõlemad või mitte kumbki.
+  await assert.rejects(
+    () => recordSharedRoomSummary({
+      db,
+      roomId: ROOM_ID,
+      summary: { id: "artifact1", content: SNAPSHOT },
+      sharedByUserId: SHARER
+    }),
+    /link write failed/
+  );
+});
 
-  assert.equal(result.recorded, false);
+test("marsruut loob sõnumi ja kandja ÜHES tehingus (SOL-ROOM-06)", async () => {
+  const source = await import("node:fs").then(fs =>
+    fs.readFileSync(new URL("../../app/api/rooms/[roomId]/messages/route.js", import.meta.url), "utf8")
+  );
+  // Sõnum sünnib tehingus ja kandja kirjutatakse SAMA `tx`-iga.
+  assert.match(source, /prisma\.\$transaction\(async \(tx\) => \{[\s\S]*?tx\.roomMessage\.create/);
+  assert.match(source, /recordSharedRoomSummary\(\{\s*\n\s*db: tx,/);
+  // Kinnitusringi tõrge ei tohi enam vaikida: jagaja saab vastuses ausa osalise seisu.
+  assert.match(source, /approvalFailed: approvalOutcome\?\.failed === true/);
 });

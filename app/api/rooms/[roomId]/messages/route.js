@@ -327,7 +327,12 @@ export async function POST(req, { params }) {
   if (!content) return errorJson("api.rooms.message_required", 400);
 
   try {
-    const msg = await prisma.roomMessage.create({
+    /* SOL-ROOM-06: sõnum ja jagamise kandja sünnivad ÜHES tehingus. Varem loodi sõnum
+       esimesena ja `recordSharedRoomSummary` neelas oma vea — kõik nägid ruumis
+       kokkuvõtet, aga ruumi lõppedes ei saanud keegi privaatkoopiat, sest üleandmine
+       loeb ainult `RoomSharedSummary` ridu. Nüüd on kas mõlemad või mitte kumbki. */
+    const msg = await prisma.$transaction(async (tx) => {
+      const created = await tx.roomMessage.create({
       data: {
         roomId,
         authorId: auth.userId,
@@ -352,6 +357,18 @@ export async function POST(req, { params }) {
           }
         }
       }
+      });
+
+      if (sharedSummary) {
+        await recordSharedRoomSummary({
+          db: tx,
+          roomId,
+          summary: sharedSummary,
+          messageId: created.id,
+          sharedByUserId: auth.userId
+        });
+      }
+      return created;
     });
 
     const memberDisplay = await prisma.roomMember.findFirst({
@@ -367,6 +384,7 @@ export async function POST(req, { params }) {
     /* T12 E7: jagatud kokkuvõte seotakse ruumiga, et ruumi lõppedes saaks iga
        osaleja sellest privaatse koopia. Sisu salvestatakse snapshot'ina —
        artefakti hilisem muutmine ei kirjuta ümber seda, mida ruumis nähti. */
+    let approvalOutcome = null;
     if (sharedSummary) {
       /* T20 P2: sisu-muutuse tuvastus vajab jagamise-EELSET snapshot'i —
          vana kinnitus ei tohi jääda uue teksti külge. */
@@ -377,15 +395,11 @@ export async function POST(req, { params }) {
           select: { content: true }
         });
       } catch {}
-      await recordSharedRoomSummary({
-        roomId,
-        summary: sharedSummary,
-        messageId: msg.id,
-        sharedByUserId: auth.userId
-      });
       /* T20 P2 (O-CO-2 = a): jagaja võib küsida osalejatelt kinnitusringi.
-         Ei viska — jagamine ise on juba õnnestunud. */
-      await applySummaryApprovalPolicy({
+         Ei viska — jagamine ise on juba õnnestunud ja kandja on tehingus kirjas.
+         SOL-ROOM-06: aga tema ebaõnnestumine ei tohi ka VAIKIDA — jagaja saab
+         vastuses ausa osalise seisu. */
+      approvalOutcome = await applySummaryApprovalPolicy({
         roomId,
         artifactId: sharedSummary.id,
         prior: priorShare,
@@ -403,6 +417,15 @@ export async function POST(req, { params }) {
 
     const responsePayload = {
       ok: true,
+      ...(sharedSummary
+        ? {
+            summaryShare: {
+              recorded: true,
+              approvalRequested: approvalOutcome?.ringOpened === true,
+              approvalFailed: approvalOutcome?.failed === true
+            }
+          }
+        : {}),
       message: {
         ...msg,
         authorName: memberDisplay?.displayName || [msg.author?.profile?.firstName, msg.author?.profile?.lastName].filter(Boolean).join(" ") || "",

@@ -2965,6 +2965,25 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Sõnum ja `RoomSharedSummary` snapshot peavad tekkima ühes DB-tehingus või jagamine peab jääma nähtavasse `link_pending` retry-olekusse; kinnitusringi vea korral peab vähemalt jagaja nägema taastatavat osalist seisu. Test peab süstima upsert/policy/audit vea ning tõendama, et edu ei tähenda kadunud handover-kandjat.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Valitud on kriteeriumi esimene haru: sõnum ja kandja on ÜKS tehing.** Teine haru
+  (`link_pending` retry-olek) oleks nõudnud uut seisu ja teist tõde selle kohta, mis ruumis
+  juba nähtaval on.
+- **Vaikimine oli leiu tuum, seega `recordSharedRoomSummary` VISKAB.** Ta neelas `upsert`
+  vea ja tagastas `{recorded:false}`, mida marsruut ei vaadanud: kõik nägid ruumis
+  kinnitatud kokkuvõtet, aga ruumi lõppedes ei saanud sellest keegi privaatkoopiat, sest
+  üleandmine loeb ainult `RoomSharedSummary` ridu. Nüüd on kas mõlemad või mitte kumbki.
+- **Kinnitusringi tõrge ei vaiki enam:** vastus kannab `summaryShare.approvalFailed`
+  välja, seega jagaja saab ausa osalise seisu (jagamine õnnestus, ring jäi avamata).
+  Ringi enda vea peale EI rullita jagamist tagasi — sõnum on ruumis nähtav ja tema
+  tagasivõtmine oleks suurem kahju kui avamata ring.
+- **Test, mis varem lukustas VALE käitumise, on ümber pööratud:** „lingi kirjutamise tõrge
+  ei kukuta jagamist ennast" oli sõna-sõnalt leiu kirjeldus testina. Nüüd nõuab ta
+  viskamist.
+- **Aus piir:** `summaryShare.approvalFailed` on API vastuses, aga liides ei kuva teda veel
+  eraldi tekstina — uut tõlkevõtit selles ringis ei lisatud (`messages/*` kannab teise
+  sessiooni pooleliolevat tööd). See on UI saba, mitte serveri lünk.
+
 ### SOL-ROOM-07 — enne ruumi lõppu lahkunud osaleja ei saa talle lubatud kokkuvõttekoopiat — P2
 
 **Tõend.** Mooduli leping ja kommentaar lubavad „iga osaleja” privaatkoopiat, mis elab ruumi kustutuse/arhiveerimise üle (`lib/rooms/summaryHandover.js:3-18`, `:119-125`). Tegelik saajate päring valib ainult lõpetamise hetkel aktiivsed `RoomMember` read tingimusega `leftAt: null` (`:140-147`). Lahkumisroute ei tee handover'it (`app/api/rooms/[roomId]/leave/route.js:59-89`). Ka test kirjeldab lahkunule koopia andmata jätmist oodatud käitumisena (`tests/rooms/summaryHandover.test.js`), kuigi ta võis jagatud sõnumit varem näha.
@@ -2972,6 +2991,24 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Osaleja, kes lahkub pärast kokkuvõtte jagamist, kaotab ruumi sulgemisel püsiva koopia, samal ajal kui hiljem lahkuvad liikmed selle saavad. Andmete kättesaadavus sõltub juhuslikust ruumi lõpetamise ajast, mitte sellest, kellele kokkuvõte tegelikult jagati.
 
 **Vastuvõtukriteerium.** Saajate ring peab tulema jagamise hetke auditeeritavast osalejasnapshot'ist või koopia tuleb luua jagamisel/lahkumisel; tooteomanik peab selgelt kinnitama, kui teadlik leping on ainult lõpetamise hetke aktiivsed liikmed. Test peab katma jagamine → üks liige lahkub → arhiiv/kustutus ja kontrollima otsustatud saajate hulka.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Saajate ring on JAGAMISE hetk, mitte ruumi lõpp.** Kättesaadavus ei sõltu enam sellest,
+  millal ruum juhtus suletama: pärast jagamist lahkunu saab oma koopia, enne jagamist
+  lahkunu ei saa.
+- **Ring on ÜHEND, mitte asendus:** praegused liikmed JA jagamise hetkel aktiivsed. Nii ei
+  võeta koopiat ära hiljem liitunult, kes näeb kokkuvõtet ruumi ajaloos — parandus on
+  puhtalt lisav.
+- **Snapshot'i veergu ei tehtud, sest ajalugu on juba olemas:** `RoomMember.joinedAt` ja
+  `leftAt` ütlevad, kes oli ruumis jagamise ajal. Eraldi saajate-veerg oleks teine tõde,
+  mida tuleks sünkroonis hoida (sama argument, mis SOL-DOC-07 loenduriveerul).
+- **Test kannab täpselt kriteeriumi jada:** jagamine → üks liige lahkub PÄRAST → üks lahkus
+  ENNE → arhiiv/kustutus → mõõdetakse saajate hulk. Vana ootus („lahkunu ei saa") oli
+  testis kirjas oodatud käitumisena ja on nüüd ümber kirjutatud.
+- **Aus piir:** üks `RoomMember` rida (roomId, userId) on unikaalne, seega korduv
+  lahkumine-liitumine kannab ainult VIIMAST seisu. Kes lahkus, jagamise ajal eemal oli ja
+  hiljem uuesti liitus, loetakse saajaks — ring on selles servas pigem lai kui kitsas, ja
+  see on teadlik valik: ta näeb sama teksti ruumi ajaloos niikuinii.
 
 ### SOL-CALL-01 — nõusoleku tagasivõtu järel võib egress edasi salvestada, kuigi API vastab eduga — P0
 
