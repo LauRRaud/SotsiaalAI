@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { publishRoomEvent } from "@/lib/roomStream";
-import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { ROOM_WRITE, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -95,37 +95,17 @@ export async function DELETE(_req, { params }) {
   if (!auth.ok) return errorJson(auth.message, auth.status);
 
   try {
-    const membership = await prisma.roomMember.findFirst({
-            where: {
-              roomId,
-              userId: auth.userId,
-              leftAt: null
-            }
-          });
-    if (!membership) return errorJson("api.common.forbidden", 403);
-
-    const [room, userActive] = await Promise.all([
-      prisma.room.findUnique({
-        where: { id: roomId },
-        select: {
-          id: true,
-          helpMatch: {
-            select: {
-              id: true
-            }
-          }
-        }
-      }),
-      auth.role === "ADMIN" ? Promise.resolve(true) : hasActiveSubscription(auth.userId)
-    ]);
-    if (!room) return errorJson("api.rooms.not_found", 404);
-    const billingAccess = hasRoomBillingAccess({
+    // Jagatud värav (SOL-ROOM-01): sõnumi kustutamine on ühise ajaloo muutmine, seega
+    // arhiveeritud ruumis ta EI toimu — varem tegi seda iga aktiivne liige otse API kaudu.
+    const access = await resolveRoomAccess({
+      userId: auth.userId,
       userRole: auth.role,
-      membership,
-      hasActiveSubscription: userActive,
-      room
+      roomId,
+      intent: ROOM_WRITE,
+      hasActiveSubscription
     });
-    if (!billingAccess.ok) return errorJson("api.common.forbidden", 403);
+    if (!access.ok) return errorJson(access.message, access.status);
+    const membership = access.member;
 
     const message = await prisma.roomMessage.findFirst({
       where: {

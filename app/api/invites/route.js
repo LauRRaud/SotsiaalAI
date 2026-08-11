@@ -13,6 +13,7 @@ import {
   normalizeInviteRelationshipType
 } from "@/lib/invites/participantTypes";
 import { ROOM_ORIGIN_TYPES, buildRoomOrigin } from "@/lib/rooms/origin";
+import { ARCHIVED_ROOM_ERROR, isArchivedRoom } from "@/lib/rooms/accessGuard";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -173,6 +174,10 @@ async function ensureRoom(userId, roomId, roomTitle, ownerDisplayName, locale) {
     const room = await prisma.room.findUnique({ where: { id: roomId } });
     if (!room) {
       throw fail("api.rooms.not_found", 404, "ROOM_NOT_FOUND");
+    }
+    // SOL-ROOM-01: lõpetatud ruumi ei saa enam uute inimestega täiendada.
+    if (isArchivedRoom(room)) {
+      throw fail(ARCHIVED_ROOM_ERROR.message, ARCHIVED_ROOM_ERROR.status, "ROOM_ARCHIVED");
     }
     await ensureOwnerMembership(room.id, room.ownerId, ownerDisplayName);
     return room;

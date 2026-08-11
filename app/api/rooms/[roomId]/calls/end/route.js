@@ -1,4 +1,5 @@
 import {
+  ROOM_WIND_DOWN,
   callError,
   callJson,
   createRoomCallService,
@@ -15,7 +16,8 @@ export const revalidate = 0;
 
 export async function POST(req, { params }) {
   const roomId = await readRoomId(params);
-  const access = await requireRoomCallAccess(roomId);
+  // SOL-ROOM-01: kõne lõpetamine sulgeb juba avatud asja, seega arhiveeritud ruumis lubatud.
+  const access = await requireRoomCallAccess(roomId, { intent: ROOM_WIND_DOWN });
   if (!access.ok) return callError(access.message, access.status);
   const body = await req.json().catch(() => ({}));
 

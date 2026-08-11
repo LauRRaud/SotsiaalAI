@@ -4,7 +4,7 @@ import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { publishRoomEvent } from "@/lib/roomStream";
 import { consumeRateLimit } from "@/lib/rate-limit";
-import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { ROOM_READ, ROOM_WRITE, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
 import { resolveShareableMeetingSummary } from "@/lib/rooms/meetingSummaryShare";
 import { recordSharedRoomSummary } from "@/lib/rooms/summaryHandover";
@@ -92,16 +92,6 @@ async function hasActiveSubscription(userId) {
   return Boolean(sub);
 }
 
-async function getMembership(userId, roomId) {
-  return prisma.roomMember.findFirst({
-    where: {
-      userId,
-      roomId,
-      leftAt: null
-    }
-  });
-}
-
 async function getMemberDisplayNames(roomId, authorIds) {
   if (!authorIds.length) return new Map();
   const rows = await prisma.roomMember.findMany({
@@ -119,48 +109,17 @@ async function getMemberDisplayNames(roomId, authorIds) {
   return new Map(rows.map(m => [m.userId, m.displayName || ""]));
 }
 
-async function ensureAccess(userId, roomId, userRole) {
-  const room = await prisma.room.findUnique({
-    where: { id: roomId },
-    select: {
-      id: true,
-      helpMatch: {
-        select: {
-          id: true
-        }
-      }
-    }
-  });
-  if (!room) return {
-    ok: false,
-    status: 404,
-    message: "api.rooms.not_found"
-  };
-
-  const member = await getMembership(userId, roomId);
-  if (!member) return {
-    ok: false,
-    status: 403,
-    message: "api.rooms.access_denied"
-  };
-
-  const userActive = await hasActiveSubscription(userId);
-  const billingAccess = hasRoomBillingAccess({
+// Värav on jagatud (SOL-ROOM-01): lugemine tohib arhiveeritud ruumis toimuda, kirjutus mitte.
+// Varem valis siinne koopia ruumist ainult `id` ja `helpMatch`, seega `archivedAt` ei jõudnud
+// otsuseni kunagi ja lõpetatud ruumi sai otse API kaudu edasi kirjutada.
+function ensureAccess(userId, roomId, userRole, intent) {
+  return resolveRoomAccess({
+    userId,
     userRole,
-    membership: member,
-    hasActiveSubscription: userActive,
-    room
+    roomId,
+    intent,
+    hasActiveSubscription
   });
-  if (billingAccess.ok) return {
-    ok: true,
-    member,
-    billingSource: billingAccess.billingSource
-  };
-  return {
-    ok: false,
-    status: 403,
-    message: "api.rooms.join_unavailable"
-  };
 }
 
 function parseCursor(token) {
@@ -195,7 +154,8 @@ export async function GET(req, { params }) {
   // E3 (audit 18 K1): püünis hoiab {ok, messageKey} lepingu ka DB-tõrkel 500-l,
   // muidu tagastaks Next.js geneerilise HTML-500 ja klient ei oska seda lugeda.
   try {
-  const access = await ensureAccess(auth.userId, roomId, auth.userRole);
+  // Ajaloo lugemine on arhiveeritud ruumis LUBATUD — see on lepingu osa, mitte lünk.
+  const access = await ensureAccess(auth.userId, roomId, auth.userRole, ROOM_READ);
   if (!access.ok) return errorJson(access.message, access.status || 403);
   const room = await prisma.room.findUnique({
     where: { id: roomId },
@@ -313,7 +273,7 @@ export async function POST(req, { params }) {
   const auth = await requireUser();
   if (!auth.ok) return errorJson(auth.message, auth.status);
 
-  const access = await ensureAccess(auth.userId, roomId, auth.userRole);
+  const access = await ensureAccess(auth.userId, roomId, auth.userRole, ROOM_WRITE);
   if (!access.ok) return errorJson(access.message, access.status || 403);
 
   // E3 (audit 18 K3/K4): väravab ENNE kallist tööd (JSON-parse, privaatsuskontroll,

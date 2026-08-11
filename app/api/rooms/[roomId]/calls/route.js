@@ -1,4 +1,4 @@
-import { callError, callJson, createRoomCallService, readRoomId, requireRoomCallAccess } from "@/lib/calls/roomRoutes";
+import { ROOM_READ, callError, callJson, createRoomCallService, readRoomId, requireRoomCallAccess } from "@/lib/calls/roomRoutes";
 import { getCallRuntimeConfig } from "@/lib/calls/service";
 
 export const runtime = "nodejs";
@@ -7,7 +7,8 @@ export const revalidate = 0;
 
 export async function GET(_req, { params }) {
   const roomId = await readRoomId(params);
-  const access = await requireRoomCallAccess(roomId);
+  // SOL-ROOM-01: kõne seisu lugemine, seega arhiveeritud ruumis lubatud.
+  const access = await requireRoomCallAccess(roomId, { intent: ROOM_READ });
   if (!access.ok) return callError(access.message, access.status);
 
   // E3 (audit 3 K1): püünis hoiab {ok, messageKey} lepingu ka DB-/teenusetõrkel.

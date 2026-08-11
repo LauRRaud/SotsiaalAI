@@ -39,20 +39,32 @@ test("assistendi ruumisõnumi kirjutaja kontrollib liikmesust ise ja VISKAB", ()
 
 test("ruumisõnumite API leping ei ole muutunud: liikmesus enne lugemist ja kirjutamist", () => {
   const source = read("app/api/rooms/[roomId]/messages/route.js");
-  assert.match(source, /const member = await getMembership\(userId, roomId\);[\s\S]*?api\.rooms\.access_denied/);
+  // Värav kolis 11.08 jagatud moodulisse (SOL-ROOM-01) — liikmesuse nõue ei kadunud, vaid
+  // sai juurde elutsükli piiri: lugemine tohib arhiveeritud ruumis toimuda, kirjutus mitte.
+  assert.match(source, /resolveRoomAccess\(\{[\s\S]*?intent,[\s\S]*?\}\)/);
+  assert.match(source, /ensureAccess\(auth\.userId, roomId, auth\.userRole, ROOM_READ\)/);
+  assert.match(source, /ensureAccess\(auth\.userId, roomId, auth\.userRole, ROOM_WRITE\)/);
+
+  const guard = read("lib/rooms/accessGuard.js");
+  assert.match(guard, /leftAt: null/, "lahkunud liige ei ole liige");
+  assert.match(guard, /api\.rooms\.access_denied/);
+  assert.match(guard, /api\.rooms\.archived_readonly/);
 });
 
 // --- Käitumine, mitte ainult kuju ---
 
 const { saveAssistantRoomMessage } = await import("../../lib/chat/mainRouteRuntime.js");
 
-function fakeDb({ member }) {
+function fakeDb({ member, archivedAt = null }) {
   const calls = { writes: 0 };
   return {
     calls,
     db: {
       roomMember: {
         findFirst: async () => (member ? { id: "member-1" } : null)
+      },
+      room: {
+        findUnique: async () => ({ archivedAt })
       },
       roomMessage: {
         create: async ({ data }) => {
@@ -86,4 +98,16 @@ test("liikmesusega kirjutus läheb läbi ja kannab ASSISTANT päritolu", async (
   assert.equal(calls.writes, 1);
   assert.equal(calls.lastWrite.senderType, "ASSISTANT");
   assert.equal(result.authorName, "Assistant");
+});
+
+test("lõpetatud ruumi ei kirjuta ka assistent (SOL-ROOM-01)", async () => {
+  const { db, calls } = fakeDb({ member: true, archivedAt: new Date("2026-08-01") });
+  await assert.rejects(
+    () => saveAssistantRoomMessage(
+      { roomId: "room-1", userId: "member-1", content: "Assistendi sõnum" },
+      { prisma: db }
+    ),
+    (error) => error?.code === "ROOM_ARCHIVED"
+  );
+  assert.equal(calls.writes, 0, "arhiveeritud ruumi ühine ajalugu ei tohi enam muutuda");
 });

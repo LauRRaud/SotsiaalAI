@@ -2833,6 +2833,33 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Üks keskne room-access helper peab eristama read-only lugemist ja kõiki mutatsioone; `archivedAt != null` peab sulgema serveris sõnumi-, kutse-, liikme-, kõne-, salvestus- ja AI-kirjutused. Olemasoleva ajaloo lubatud lugemine peab jääma eraldi selgeks lepinguks. HTTP-negatiivtestid peavad proovima iga mutatsiooniperet arhiveeritud ruumis nii omaniku kui liikmena.
 
+**Seis (11.08.2026): DONE, HTTP-kiht NOT_PROVEN. Migratsiooni ei ole vaja.**
+- **Leid ei olnud „üks marsruut unustas kontrolli", vaid „iga marsruut kandis oma koopiat".**
+  Sama „leia ruum → leia aktiivne liikmesus → kontrolli arveldust" otsus elas neljas
+  käsitsi hoitud koopias (sõnumid, SSE-voog, lugemismärge, liikmed) pluss kõnede oma, ja
+  KÕIK valisid ruumist ainult `id` ja `helpMatch` — `archivedAt` ei jõudnud otsuseni kordagi.
+  Uus `lib/rooms/accessGuard.js` on üks värav ja koopiad on kustutatud, mitte parandatud.
+- **Kolm lepingut, mitte kaks:** `ROOM_READ` (ajaloo lugemine on arhiveeritud ruumis LUBATUD
+  — see on lubadus, mitte lünk), `ROOM_WRITE` (409 `api.rooms.archived_readonly`, sama
+  vastus, mille omanikuvahetus juba andis) ja **`ROOM_WIND_DOWN`**. Kolmas tekkis paranduse
+  kirjutamise ajal: kui kõik kõnemarsruudid oleksid `WRITE`, jääks arhiveerimise hetkel
+  käimasoleva kõne osaleja LUKKU — ei saaks lahkuda, salvestust peatada ega nõusolekut
+  tagasi võtta. Piir, mis pidi kaitsma, oleks teinud kahju.
+- **Vaikeväärtus on `ROOM_WRITE` ja see on tahtlik.** Uus marsruut, mis lepingut ei nimeta,
+  on arhiveeritud ruumis KINNI. Erandid on nimelised ja igal on põhjus kirjas.
+- **Lugemismärge on teadlikult `READ`** — ta ei muuda ühist ajalugu ega koosseisu, ja
+  kirjutuseks lugemine jätaks lõpetatud ruumi igaveseks „lugemata".
+- **Kutse loomine ja vastuvõtt** said sama piiri (`isArchivedRoom`), samuti **assistendi
+  kirjutus** (`saveAssistantRoomMessage` viskab `ROOM_ARCHIVED`) — kirjutus on ainus koht,
+  kust mööda ei saa, sama argument mis SOL-CHAT-07-s.
+- **Katvustest on püsiv kaitse, mitte hetkeseis:** test käib läbi KÕIK `app/api/rooms` alla
+  jäävad marsruudid ja nõuab jagatud väravat; erandid on nimeline loend koos põhjusega.
+  Uus ruumimarsruut kukub selle testi peale, mitte alles järgmises auditis.
+- **NOT_PROVEN: HTTP-negatiivtestid.** Väravat ennast on mõõdetud käitumisena (arhiveeritud
+  + kirjutus → 409 ka omanikul ja adminil · lugemine ja lõpetamine lubatud · 404/403/403
+  vana leping alles), aga marsruutide läbisõit päris sessiooniga on tegemata — sama piir,
+  mis kogu selle auditiringi runtime-tõenditel.
+
 ### SOL-ROOM-02 — vana ruumi hiline laadimisvastus võib uues ruumis kuvada eelmise ruumi sõnumeid — P1
 
 **Tõend.** `useRoomMessages.load()` ei kasuta abort-signaali ega päringupõlvkonda; vastus kirjutab `setMessages(items)` või merge'ib loendi sõltumata sellest, kas hook'i `roomId` on vahepeal muutunud (`components/rooms/useRoomMessages.js:64-108`). Ruumivahetuse effect tühjendab state'i ja alustab uue `load(true)` päringu, kuid cleanup peatab ainult intervali/EventSource'i, mitte vana fetch'i (`:154-191`). `metaMatchesRoom` peidab küll vana ruumi pealkirja ja rolli, kuid sõnumiloendil samaväärset roomId-valvet ei ole (`:192-206`). Ka vana EventSource'i järjekorras callback'il puudub põlvkonnakontroll (`:115-151`).

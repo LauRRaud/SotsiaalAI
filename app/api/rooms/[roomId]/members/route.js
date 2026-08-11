@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { ROOM_READ, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { serializeRoomOrigin } from "@/lib/rooms/origin";
 
 export const runtime = "nodejs";
@@ -87,17 +87,17 @@ export async function GET(_req, { params }) {
 
   // E3 (audit 17 K1): püünis hoiab {ok, messageKey} lepingu ka DB-tõrkel 500-l.
   try {
-  const membership = await prisma.roomMember.findFirst({
-        where: {
-          roomId,
-          userId: auth.userId,
-          leftAt: null
-        },
-        select: {
-          role: true
-        }
-      });
-  if (!membership) return errorJson("api.common.forbidden", 403);
+  // Jagatud värav (SOL-ROOM-01). Koosseisu VAATAMINE on lugemine ja jääb arhiveeritud
+  // ruumis alles; koosseisu muutmine käib kutsete ja lahkumise kaudu, kus värav on omaette.
+  const access = await resolveRoomAccess({
+    userId: auth.userId,
+    userRole: auth.userRole,
+    roomId,
+    intent: ROOM_READ,
+    hasActiveSubscription
+  });
+  if (!access.ok) return errorJson(access.message, access.status);
+  const membership = access.member;
 
   const room = await prisma.room.findUnique({
     where: { id: roomId },
@@ -115,17 +115,6 @@ export async function GET(_req, { params }) {
     }
   });
   if (!room) return errorJson("api.rooms.not_found", 404);
-
-  const userActive = auth.userRole === "ADMIN" ? true : await hasActiveSubscription(auth.userId);
-  const billingAccess = hasRoomBillingAccess({
-    userRole: auth.userRole,
-    membership,
-    hasActiveSubscription: userActive,
-    room
-  });
-  if (!billingAccess.ok) {
-    return errorJson("api.common.forbidden", 403);
-  }
 
   const [, members] = await Promise.all([
     Promise.resolve(room),

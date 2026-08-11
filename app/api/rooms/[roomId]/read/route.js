@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { ROOM_READ, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 import { markNotificationSourceRead } from "@/lib/notifications";
 
 export const runtime = "nodejs";
@@ -86,46 +86,16 @@ export async function PUT(_req, { params }) {
   if (!auth.ok) return errorJson(auth.message, auth.status);
 
   try {
-    const room = await prisma.room.findUnique({
-      where: { id: roomId },
-      select: {
-        id: true,
-        helpMatch: {
-          select: {
-            id: true
-          }
-        }
-      }
-    });
-    if (!room) return errorJson("api.rooms.not_found", 404);
-
-    const member = await prisma.roomMember.findFirst({
-      where: {
-        roomId,
-        userId: auth.userId,
-        leftAt: null
-      },
-      select: {
-        roomId: true,
-        userId: true,
-        role: true,
-        billingSource: true,
-        lastReadAt: true,
-        leftAt: true
-      }
-    });
-    if (!member) return errorJson("api.common.forbidden", 403);
-
-    const userActive = auth.userRole === "ADMIN" ? true : await hasActiveSubscription(auth.userId);
-    const billingAccess = hasRoomBillingAccess({
+    // Lugemismärge on LUGEMINE, mitte kirjutus (SOL-ROOM-01): ta ei muuda ühist ajalugu ega
+    // koosseisu, ja arhiveeritud ruum peab jääma maha märgitavaks.
+    const access = await resolveRoomAccess({
+      userId: auth.userId,
       userRole: auth.userRole,
-      membership: member,
-      hasActiveSubscription: userActive,
-      room
+      roomId,
+      intent: ROOM_READ,
+      hasActiveSubscription
     });
-    if (!billingAccess.ok) {
-      return errorJson("api.common.forbidden", 403);
-    }
+    if (!access.ok) return errorJson(access.message, access.status);
 
     const latest = await prisma.roomMessage.findFirst({
       where: {
@@ -140,10 +110,9 @@ export async function PUT(_req, { params }) {
       }
     });
     const latestReadAt = latest?.createdAt || new Date();
+    const memberLastReadAt = access.member?.lastReadAt || null;
     const nextLastReadAt =
-      member.lastReadAt && member.lastReadAt > latestReadAt
-        ? member.lastReadAt
-        : latestReadAt;
+      memberLastReadAt && memberLastReadAt > latestReadAt ? memberLastReadAt : latestReadAt;
     await prisma.$transaction(async (tx) => {
       await tx.roomMember.update({
         where: {

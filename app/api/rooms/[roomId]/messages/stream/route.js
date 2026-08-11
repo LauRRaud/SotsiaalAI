@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { subscribeRoom } from "@/lib/roomStream";
-import { hasRoomBillingAccess } from "@/lib/rooms/access";
+import { ROOM_READ, resolveRoomAccess } from "@/lib/rooms/accessGuard";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -49,47 +49,16 @@ async function hasActiveSubscription(userId) {
   });
   return Boolean(sub);
 }
-async function ensureAccess(userId, roomId, userRole) {
-  const room = await prisma.room.findUnique({
-    where: { id: roomId },
-    select: {
-      id: true,
-      helpMatch: {
-        select: {
-          id: true
-        }
-      }
-    }
-  });
-  if (!room) return {
-    ok: false,
-    status: 404
-  };
-  const member = await prisma.roomMember.findFirst({
-    where: {
-      userId,
-      roomId,
-      leftAt: null
-    }
-  });
-  if (!member) return {
-    ok: false,
-    status: 403
-  };
-  const userActive = await hasActiveSubscription(userId);
-  const billingAccess = hasRoomBillingAccess({
+// Jagatud värav (SOL-ROOM-01). Voog on LUGEMINE, seega arhiveeritud ruumi ajalugu jääb
+// kättesaadavaks; kirjutused sulgeb sama helper mujal.
+function ensureAccess(userId, roomId, userRole) {
+  return resolveRoomAccess({
+    userId,
     userRole,
-    membership: member,
-    hasActiveSubscription: userActive,
-    room
+    roomId,
+    intent: ROOM_READ,
+    hasActiveSubscription
   });
-  if (billingAccess.ok) return {
-    ok: true
-  };
-  return {
-    ok: false,
-    status: 403
-  };
 }
 function sseHeaders() {
   return {
