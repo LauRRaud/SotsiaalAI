@@ -89,16 +89,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 11.08 pärastlõunal (mõõdetud, mitte mäletatud):** server on **`27af4a02`**; lokaalne `main`
-ja `origin/main` on temast täpselt ühe **docs-commit'i** võrra ees, mis koodi ei kanna (kontrollitud
-`git diff --name-only 27af4a02..HEAD -- . ':(exclude)docs/**'` — tühi). **Deploy'mata koodi EI OLE.** **Kolmeteistkümnes deploy 11.08 13:06 sinu
-selgel loal:** kaheksa commit'i (kogu SOL-CHAT-01…-08 plokk + eelmisest ringist üle jäänud
-SOL-MEET-05/-06) ja üks migratsioon. Mõõdetud kohe pärast, mitte eeldatud: `.next` 13:06:23,
-kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, frontend'i
-veatasemel logi tühi (ka hoiatustasemel null rida). Migratsioon `20260811160000` on lõpetatud ja
-tagasi kerimata; `ChatTurn` on olemas koos unikaalse `(userId, clientTurnKey)` indeksi ja kahe
-võõrvõtmega, ridu 0 — seega esimene päris kinnitus tuleb alles siis, kui kaks sama kavatsuse
-võtmega päringut tõesti kohtuvad.
+**Seis 11.08 pärastlõunal (mõõdetud, mitte mäletatud):** server on **`b7c9adf0`** ja `origin/main` sama — deploy'mata koodi EI OLE. **Neljateistkümnes deploy 11.08 13:45 sinu selgel loal:** SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud. Mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
 
 **Kaheteistkümnes deploy 11.08 11:42** oli `ae1f2055`: kaheksa commit'i (SOL-MEET-01…-04 + docs)
 ja üks migratsioon. Mõõdetud kohe pärast: `.next` 11:42, kolm teenust `active`, viis lehte **200**,
