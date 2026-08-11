@@ -5273,6 +5273,7 @@
         "mime_not_allowed": "This file format is not supported.",
         "quota_exceeded": "Analysis quota exceeded.",
         "quota_check_failed": "Could not verify analysis quota.",
+        "response_too_large": "The analysis response was too large. Please try a smaller file.",
         "rag_key_missing": "Analysis service is not configured.",
         "rag_host_external_denied": "External analysis host is not allowed.",
         "rag_service_failed": "Analysis service request failed.",

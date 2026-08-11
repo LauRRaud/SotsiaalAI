@@ -50,6 +50,13 @@ from storage_paths import (
     resolve_within,
     safe_basename,
 )
+from upload_limits import (
+    RESPONSE_MAX_FULL_TEXT_CHARS,
+    clamp_pages,
+    clamp_text,
+    mime_conflict,
+    zip_expansion_guard,
+)
 
 # OpenAI embeddings
 from openai import OpenAI, OpenAIError, RateLimitError
@@ -3358,18 +3365,38 @@ async def analyze(
     if ALLOWED_MIME and mime not in ALLOWED_MIME:
         raise HTTPException(415, f"MIME not allowed: {mime}")
 
+    # SOL-CHAT-09: DEKLARATSIOON EI VALI PARSERIT. Enne oli `_detect_mime()` deklaratsiooni
+    # kummitempel, seega kasutaja sai ise otsustada, milline parser tema baite näeb —
+    # „ütlen text/plain, saadan ZIP-pommi" oli täiesti lubatud rada. Fail-closed: tundmatu
+    # sisu ei kinnita ühtegi deklaratsiooni.
+    conflict = mime_conflict(mime, raw, file.filename or "")
+    if conflict:
+        raise HTTPException(415, f"Declared MIME does not match content: {conflict}")
+
     # extract text (without saving to storage or indexing)
     # NOTE: keep raw_text with lõigud/pealkirjad kasutajale kuvamiseks.
+    truncated_reasons: List[str] = []
     if mime == "application/pdf":
         pages = _extract_text_from_pdf(raw)
+        pages, pages_truncated = clamp_pages(pages)
+        if pages_truncated:
+            truncated_reasons.append("pdf_page_limit")
         texts = [t for (_, t) in pages if t]
         raw_text = "\n\n".join(texts)
     elif mime == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+        # Kataloogi kontroll ENNE lahtipakkimist: väike fail ei tohi anda tohutut tööd.
+        zip_ok, zip_reason, _zip_total = zip_expansion_guard(raw)
+        if not zip_ok:
+            raise HTTPException(413, f"DOCX rejected: {zip_reason}")
         raw_text = _extract_text_from_docx(raw)
     elif mime == "text/html":
         raw_text = _extract_text_from_html(raw.decode("utf-8", errors="ignore"))
     else:
         raw_text = raw.decode("utf-8", errors="ignore")
+
+    raw_text, text_truncated = clamp_text(raw_text)
+    if text_truncated:
+        truncated_reasons.append("extracted_char_limit")
 
     # clean up only for chunking (embeddings), mitte kasutaja eelvaadet
     cleaned_text = _clean_text(raw_text)
@@ -3382,17 +3409,27 @@ async def analyze(
         except Exception:
             pass
 
-    # Tagasta kliendile täistekst; eelvaateks kärbi, et vältida liiga suurt payloadi
-    # (kuid jäta lõigud alles).
+    # SOL-CHAT-09: `fullText` oli varem KÄRPIMATA — 25 MB sisendist võis saada kümnetesse
+    # megabaitidesse paisuv vastus, mille Node loeb esmalt üheks stringiks ja klient hoiab
+    # React-i olekus. Nüüd on ta versioonitud ja piiratud leping: sisu kannavad chunk'id,
+    # `fullText` on kuvamiseks ja tema kärbe on kliendile NÄHTAV, mitte vaikne.
     preview = raw_text[:8000]
+    full_text, response_truncated = clamp_text(raw_text, RESPONSE_MAX_FULL_TEXT_CHARS)
+    if response_truncated:
+        truncated_reasons.append("response_char_limit")
     return {
         "ok": True,
+        "analyzeContract": "v2",
         "fileName": file.filename,
         "mimeType": mime,
         "sizeMB": round(size_mb, 2),
         "chunks": chunks,
         "preview": preview,
-        "fullText": raw_text,
+        "fullText": full_text,
+        "fullTextChars": len(full_text),
+        "extractedChars": len(raw_text),
+        "truncated": bool(truncated_reasons),
+        "truncatedReasons": truncated_reasons,
     }
 
 # --- shared worker for file ingestion (used by JSON + multipart) ---

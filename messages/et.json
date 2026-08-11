@@ -5273,6 +5273,7 @@
         "mime_not_allowed": "Seda failiformaati ei toetata.",
         "quota_exceeded": "Analyysi limiit on tais.",
         "quota_check_failed": "Analyysi limiiti ei saanud kontrollida.",
+        "response_too_large": "Analüüsi vastus oli liiga suur. Palun proovi väiksema failiga.",
         "rag_key_missing": "Analyysi teenus ei ole seadistatud.",
         "rag_host_external_denied": "Valise analyysi host ei ole lubatud.",
         "rag_service_failed": "Analyysi teenuse paring ebaonnestus.",

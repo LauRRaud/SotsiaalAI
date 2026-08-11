@@ -2599,6 +2599,41 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** MIME tuleb kinnitada sisu järgi ja vastuolu sulgeda. Parserid vajavad protsessi-/tööjärjekorra tasemel timeout'i, PDF lehepiiri, ZIP kirjete ning lahtipakitud kogumahu/suhte lage ja absoluutset ekstraktitud tähemärkide piiri. `/analyze` ei tohi tagastada piiramatut `fullText` välja; UI-le piisab versioonitud piiratud preview/chunk-lepingust. Negatiivsed testid peavad katma võlts-MIME-i, ZIP-pommi, ülisuure lehearvu, 25 MB teksti ja parseri timeout'i.
 
+**Seis (11.08.2026): DONE, ÜKS KRITEERIUMI OSA NIMELISELT TEGEMATA (parseri timeout).**
+- **Tuum: deklaratsioon ei vali enam parserit.** `_detect_mime()` tagastas `declared` väärtuse kohe
+  ja libmagic'ut kutsuti ainult siis, kui deklaratsioon puudus — kasutaja sai ise otsustada,
+  milline parser tema baite näeb. Uus `rag-service/upload_limits.py` `mime_conflict()` on
+  **fail-closed**: tundmatu sisu EI kinnita ühtegi deklaratsiooni, ja „ütlen text/plain, saadan
+  ZIP-pommi" annab **415**.
+- **Kaks väravat kahes protsessis, teadlikult.** Node-poolel on peegel
+  `analyzeMimeConflict()` (`lib/chat/analyzeFileConfig.js`), mis kontrollib sisu **enne** 25 MB
+  faili edasisaatmist; teenus kaitseb ennast ka teiste kutsujate eest. See ei ole dublikaat, vaid
+  kaks eri küsimust: „kas tasub saata" ja „kas tohib parsida".
+- **Võimenduse piirid on nüüd olemas:** ZIP kataloogi kontroll **enne lahtipakkimist** (kirjete
+  arv, lahtipakitud kogumaht, tihendussuhe — kõik `zipfile`'i kataloogist, midagi ei pakita lahti),
+  PDF lehepiir, absoluutne ekstraktitud tähemärkide lagi. Kõik env-ist muudetavad.
+- **`/analyze` leping on versioonitud ja piiratud:** `analyzeContract: "v2"`, `fullText` on lae all
+  (`ANALYZE_RESPONSE_MAX_CHARS`, vaikimisi 400k) ja kärbe on kliendile **nähtav**
+  (`truncated`, `truncatedReasons`, `extractedChars`). Mõju kasutajale on ainult **kuvamisel** —
+  mudelisse läheb `chunks`, mitte `fullText` (kontrollitud: `fullText` ainus tarbija on
+  eelvaatepaneel).
+- **Node ei usalda ka vastajat:** vastus loeti varem tingimusteta üheks stringiks; nüüd on
+  `readBoundedText()` lae all ja ületamine on **viga**, mitte vaikne kärbe (poolik JSON ei ole
+  tulemus).
+- **Testid: `rag-service/test_upload_limits.py` 12/12** (jookseb `unittest`-iga, ilma pytest-i
+  sõltuvuseta — auditikeskkonnas puudus see moodul) + `tests/chat/analyzeFileLimits.test.js` 7 uut.
+  Kaetud: võlts-MIME mõlemas suunas, päris ZIP-pomm (50 MB nulle → tagasi lükatud **suhte järgi,
+  enne lahtipakkimist**), lehearvu ja tähemärgikärbe, loetamatu ZIP. **Negatiivkontroll mõlemas
+  failis nimeliselt:** lubatud sisendid PEAVAD läbi minema, muidu tõendaks „lükka kõik tagasi"
+  sama hästi.
+- **TEGEMATA ja see on nimeline: parseri protsessi-/tööjärjekorra timeout.** Sisendipiirid
+  tõkestavad võimenduse (väike fail → tohutu töö), mis on tegelik ründevektor, aga „tapa parser N
+  sekundi pärast" nõuab eraldi tööprotsessi — FastAPI sünkroonset parserit ei saa jooksvalt
+  katkestada. See on omaette töö ja kuulub SOL-RAGSVC peatüki juurde, kus teenuse tööjärjekord
+  niikuinii lahti on.
+- **Deploy'mata.** Muudatus puudutab `rag-service`'it, seega jõustub alles järgmisel deploy'l.
+  `runtime: not_run` — päris ZIP-pommi ei ole päris teenuse vastu saadetud.
+
 ### SOL-CHAT-10 — vestluse ekspordi kohustuslik audit võib vaikselt puududa — P2
 
 **Tõend.** Ekspordirada genereerib faili, kutsub `logDocumentsAudit("chat.exported")` ja tagastab seejärel PDF/DOCX-i (`app/api/chat/export/route.js:115-175`). `logDocumentsAudit()` kasutab moodulitaseme globaalset Prismat ning neelab `documentAudit.create()` vea täielikult, andmata kutsujale ebaõnnestumisest märku (`lib/documents/audit.js:23-45`). Olemasolev test kontrollib ainult auditipayload'i kuju ja kutse paiknemist pärast autoriseerimist/generatsiooni, mitte rea loomist või veakäitumist (`tests/chat/exportRouteContract.test.js:7-38`).

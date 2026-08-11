@@ -9,6 +9,7 @@ import { CHAT_NO_STORE_HEADERS } from "@/lib/chat/routeServerUtils";
 import {
   DEFAULT_ANALYZE_ALLOWED_MIME_CSV,
   DEFAULT_ANALYZE_MAX_UPLOAD_MB,
+  analyzeMimeConflict,
   readAnalyzeMaxUploadMb,
   resolveAnalyzeMimeType
 } from "@/lib/chat/analyzeFileConfig";
@@ -100,6 +101,39 @@ function isLocalBaseUrl(url) {
   }
 }
 
+const ANALYZE_RESPONSE_MAX_BYTES = readChatRateLimit(
+  process.env.CHAT_ANALYZE_RESPONSE_MAX_BYTES,
+  8 * 1024 * 1024,
+  64 * 1024
+);
+
+/** Loe vastus lagi all. Ületamine on VIGA, mitte vaikne kärbe — poolik JSON ei ole tulemus. */
+async function readBoundedText(res) {
+  const body = res.body;
+  if (!body || typeof body.getReader !== "function") return res.text();
+  const reader = body.getReader();
+  const decoder = new TextDecoder();
+  let total = 0;
+  let out = "";
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    if (!value) continue;
+    total += value.byteLength;
+    if (total > ANALYZE_RESPONSE_MAX_BYTES) {
+      try {
+        await reader.cancel();
+      } catch {}
+      const error = new Error("api.chat.analyze.response_too_large");
+      error.status = 502;
+      throw error;
+    }
+    out += decoder.decode(value, { stream: true });
+  }
+  out += decoder.decode();
+  return out;
+}
+
 async function callRagAnalyze(formData) {
   if (!RAG_SERVICE_KEY) throw new Error("api.chat.analyze.rag_key_missing");
 
@@ -123,7 +157,11 @@ async function callRagAnalyze(formData) {
       signal: controller.signal
     });
 
-    const text = await res.text();
+    /* SOL-CHAT-09: vastus loeti varem tingimusteta üheks stringiks ja alles siis parsiti.
+       Kärpimata `fullText` tähendas, et Node'i mälukulu sõltus sellest, kui hästi kasutaja
+       sisend paisub. Teenus ise piirab nüüd vastust, aga see piir on TEISE protsessi oma —
+       siin on oma lagi, sest kutsuja ei tohi sõltuda sellest, et vastaja käitub hästi. */
+    const text = await readBoundedText(res);
     let data = null;
     try {
       data = text ? JSON.parse(text) : null;
@@ -207,6 +245,20 @@ export async function POST(request) {
     allowedMime: [...ALLOWED_MIME]
   });
   if (!resolvedMimeType) {
+    return errorJson("api.chat.analyze.mime_not_allowed", 415, locale);
+  }
+
+  /* SOL-CHAT-09: kõik kolm ülalolevat kandidaati on KLIENDI oma. Sisu peab deklaratsiooni
+     kinnitama enne, kui 25 MB fail üldse parserini jõuab. */
+  let headBytes;
+  try {
+    headBytes = new Uint8Array(await file.slice(0, 8192).arrayBuffer());
+  } catch {
+    return errorJson("api.chat.analyze.file_required", 400, locale);
+  }
+  const mimeConflict = analyzeMimeConflict(headBytes, resolvedMimeType);
+  if (mimeConflict) {
+    console.warn("[analyze-file] declared mime does not match content:", mimeConflict);
     return errorJson("api.chat.analyze.mime_not_allowed", 415, locale);
   }
 
