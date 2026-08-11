@@ -2608,7 +2608,9 @@
       "message_too_long": "Your message is too long. Please shorten it to 4000 characters.",
       "retry": "Try again",
       "invalid_conv_id": "Conversation id is invalid.",
-      "openai_request_failed": "OpenAI request failed."
+      "openai_request_failed": "OpenAI request failed.",
+      "service_unavailable": "The service is currently unavailable.",
+      "not_saved": "The answer could not be saved to the conversation, so it was not delivered. Your quota was not charged — please try again."
     },
     "menu": {
       "label": "Conversations"

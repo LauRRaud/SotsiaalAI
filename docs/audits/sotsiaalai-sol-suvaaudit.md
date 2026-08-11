@@ -2332,6 +2332,39 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 
 **Vastuvõtukriteerium.** Ühe pöörde kavatsus, kasutussündmus, kasutajasõnum ja assistendi terminaltulemus vajavad taastatavat ühist olekut. API ei tohi vastata `COMPLETED`, kui nõutud püsistus pole kinnitatud; pärast provider'i valmimist tekkinud DB-viga peab jätma sama võtmega taastatava tulemuse, mitte kadunud vastuse. Veasüstetestid peavad katkestama iga püsistusastme eraldi nii stream- kui non-stream-rajal ja kontrollima kasutust, vastust ning `/api/chat/run` olekut.
 
+**Seis (11.08.2026): DONE — koos SOL-CHAT-02-ga üks plokk, sest neil on üks juur.**
+- **Parandus on JÄRJEKORD, mitte uus valve.** Arveldus ei ole enam oma samm: `persistDone()` võtab
+  `settleUsage`-i ja jooksutab teda OMA TEHINGUS, terminalmarkeri kõrval. Kolm vastuserada
+  (no-context, tavavastus, voog) annavad commit'i kaasa; kolm terminalrada (provideri viga, Stop,
+  voo viga) annavad kaasa release'i. Sellega ei ole „arvestatud, aga kadunud" ja „püsiv, aga
+  arveldamata" enam olekud, mida kood suudab toota — rollback viib mõlemad korraga tagasi.
+- **`usageService.release` sai `tx` toe** (commit'il oli see juba SOL-MEET-02 ajast olemas). See on
+  ainus uus võimekus; ülejäänu on olemasoleva kasutamine õiges kohas.
+- **Kasutaja küsimuse kirjutamine on nüüd pöörde EELDUS.** `persistInit()` tagastab `true/false` ja
+  `false` peatab pöörde **enne providerit**: tasulist kutset ei tehta, reservatsioon vabastatakse,
+  vastuseks 503 `chat.error.not_saved`. Varem läks küsimuseta pööre täies mahus läbi.
+- **Kinnitamata püsistus ei anna enam `done`-i.** Voog emiteerib `event: error` võtmega
+  `chat.error.not_saved`; non-stream ja no-context annavad 503. Ühik on selleks hetkeks vabastatud,
+  seega korduskatse ei maksa kaks korda.
+- **Tõendatud päris PostgreSQL-is: `npm run chat:settle:probe` 23/23.** Sondi tuum on rollback,
+  mida fake-Prisma ei saa tõendada (`$transaction` on seal lihtsalt funktsioonikutse): arvelduse
+  viga tehingus **kustutab ka juba kirjutatud assistendisõnumi**, ja vastupidi — vabastuse viga ei
+  jäta ABORTED markerit kettale. Kaetud on ka päris `USAGE_RESERVATION_STATE_CONFLICT` (mitte ainult
+  visatud erand) ja võõra omaniku vestlus (ei sõnumit, arveldust ei kutsuta üldse).
+- **Negatiivkontroll sondis:** sama harness jäljendab vana järjekorda (commit enne püsistust) ja
+  NÕUAB, et keelatud seis tekiks — arvestatud ühik ilma vestlusse jõudnud vastuseta. Ta tekib,
+  seega ülejäänud 22 rohelist on paranduse teene, mitte harnessi oma.
+- **Ühiktestid:** `tests/chat/turnDurability.test.js` (7 uut) mõõdab marsruudi otsust: 503 +
+  vabastus + eraldi commit'i puudumine, voog ilma `done`-ita, `persist=false` raja endine käitumine,
+  provideri kutsumata jätmine `persistInit` vea järel. `tests/usage/chatRouteUsage.test.js` vana
+  kujuleping **pöörati ümber**: ta mõõtis varem, et commit KUTSUTAKSE kolmel rajal — just see oli
+  leid. Nüüd nõuab ta, et ükski rada ei commit'i ise.
+- **Aus piir.** `persist === false` (ruumirada ilma vestluseta) jääb eraldi commit'i sammuks, sest
+  siduda ei ole millegagi; see on koodis nimeliselt välja öeldud. Kriteeriumi lause „sama võtmega
+  taastatav tulemus" katab **SOL-CHAT-03** (stabiilne pöördevõti) — siin on tagatud ainult see, et
+  kadunud vastuse eest ei võeta tasu. `/api/chat/run` olekukontroll ja päris brauserirada on
+  katmata: `runtime: not_run`.
+
 ### SOL-CHAT-02 — kasutuse commit/release'i viga neelatakse alla ja vestlus jätkub vale arvestusseisuga — P1
 
 **Tõend.** `settleChatUsage()` püüab nii commit'i kui release'i vea kinni, kirjutab ainult logi ja ei anna kutsujale ebaõnnestumisest märku (`lib/chat/mainResponseHandler.js:539-548`). Kõik põhivestluse edurajad kasutavad seda helperit ning jätkavad vastuse püsistamise/tagastamisega ka ebaõnnestunud commit'i järel (`:631-653`, `:697-742`, `:833-895`). Provider'i vea ja Stop'i rajad jätkavad terminalmarkeri kirjutamisega ka ebaõnnestunud release'i järel (`:756-804`, `:901-929`, `:996-1011`). Reservatsioonil on 15-minutiline TTL ning adapter ei loo settlement'i retry/outbox'i (`lib/usage/routeAdapter.js:7-32`, `:93-109`).
@@ -2339,6 +2372,26 @@ aga neid **eraldi markeriga ei süstitud** — kriteerium nimetas kolme allikat,
 **Mõju.** Edukas AI-vastus võib jääda üksnes reserveerituks ja hiljem reaper'iga tasuta vabastuda; nurjunud või katkestatud pööre võib jääda ajutiselt limiiti kinni. Logikirje ei taasta kasutuse ja tulemuse kooskõla ning korduskatse uue võtmega võib olukorda dubleerida.
 
 **Vastuvõtukriteerium.** Settlement peab olema idempotentne ja püsivalt retry-tav või kuuluma sama pöörde olekumasinasse; terminalseis peab näitama `commit_pending/release_pending`, kuni arvestus on kinnitatud. Testid peavad süstima commit/release'i enne tehingut ja ebamäärase vea pärast tehingut, käivitama retry/reaper'i ning tõendama täpselt ühe lõpparvestuse.
+
+**Seis (11.08.2026): DONE — sama plokk mis SOL-CHAT-01, vt sealt tõendid.**
+- **Kriteerium lubas kaks teed ja valitud on TEINE:** „kuuluma sama pöörde olekumasinasse".
+  Arveldus on nüüd terminalse kirjutusega ühes tehingus, seega vahepealset seisu
+  `commit_pending`/`release_pending` **ei ole olemas** — ei ole akent, mille jaoks teda vaja oleks.
+  Esimene tee (püsiv pending-seis + kordaja) oleks olnud kolmas koht, kus sama tõde hoitakse:
+  reservatsioon, marker ja pending-märge. Vt SOL-DOC-07 sama otsust loenduriveeru kohta.
+- **Neelamine on kadunud sealt, kus ta valetas.** `settleChatUsage()` (best-effort + logi) on alles
+  ainult kahel rajal, kus siduda ei ole millegagi: `persist=false` commit ja see haru, kus
+  terminalmarkerit ennast ei õnnestunud kirjutada. Mõlemad on koodis nimeliselt välja öeldud, mitte
+  vaikimisi. Kõik ülejäänud rajad kannavad arvelduse vea EDASI — tehing kukub, kutsuja saab teada.
+- **Topeltarveldust ei teki:** iga terminalrada vaatab, kas marker (ja koos temaga arveldus) jõudis
+  kettale (`releasedWithMarker`), ja alles siis kaalub eraldi vabastust. Voo tehnilise vea rada sai
+  ühtlasi `!streamFinalized` värava — vana kood kirjutas ERROR markeri ka juba edukalt lõpetatud
+  pöörde otsa.
+- **Mõõdetud:** `npm run chat:settle:probe` 23/23 päris PostgreSQL-is (sh vabastuse viga → markerit
+  ei jää; ABORTED marker + RELEASED reservatsioon ühes tehingus; ämbri `used`/`reserved` mõlemas
+  suunas). `npm test` **3644/3644**, `npm run i18n:check` OK, `npx eslint` puhas.
+- **Katmata:** reaper'i enda rada (`USAGE_RESERVATION_REAPER` on toodangus vaikimisi väljas) ja
+  päris HTTP-tasemel veasüst. `runtime: not_run`.
 
 ### SOL-CHAT-03 — kliendi pöördel puudub stabiilne idempotentsusvõti ja Retry seos kaob — P1
 

@@ -420,8 +420,13 @@ export async function POST(req, deps = {}) {
     logInfo: logChatInfo,
     logError: logChatError,
     logEvent: routeRuntime.logEvent,
-    onUsageCommit: () => routeRuntime.commitUsageForRequest(chatUsageHandle),
-    onUsageRelease: (reason) => routeRuntime.releaseUsageForRequest(chatUsageHandle, { reason })
+    /* SOL-CHAT-01/-02: mõlemad võtavad nüüd valikulise tehingukliendi, sest arveldus kuulub
+       pöörde terminalse kirjutusega ühte tehingusse. Ilma `tx`-ita käitub kumbki nagu varem. */
+    onUsageCommit: (tx) => routeRuntime.commitUsageForRequest(chatUsageHandle, { tx: tx || undefined }),
+    onUsageRelease: (reason, tx) => routeRuntime.releaseUsageForRequest(chatUsageHandle, {
+      reason,
+      tx: tx || undefined
+    })
   });
 }
 export async function GET(req) {

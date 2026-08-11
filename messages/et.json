@@ -2608,7 +2608,9 @@
       "message_too_long": "Sõnum on liiga pikk. Palun lühenda seda kuni 4000 tähemärgini.",
       "retry": "Proovi uuesti",
       "invalid_conv_id": "Vestluse ID on vigane.",
-      "openai_request_failed": "OpenAI päring ebaõnnestus."
+      "openai_request_failed": "OpenAI päring ebaõnnestus.",
+      "service_unavailable": "Teenus ei ole praegu saadaval.",
+      "not_saved": "Vastust ei õnnestunud vestlusse salvestada, seega jäi see saatmata. Limiiti ei arvestatud — palun proovi uuesti."
     },
     "menu": {
       "label": "Vestlused"

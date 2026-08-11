@@ -25,12 +25,36 @@ test("main chat reserves reply usage before retrieval and RAG usage only at the 
   assert.match(source, /onUsageRelease:[\s\S]*releaseUsageForRequest/);
 });
 
-test("chat response handler settles usage across no-context, non-stream and stream paths", () => {
+/* SOL-CHAT-01: see test mõõtis varem, et commit KUTSUTAKSE kolmel rajal. Just see oli leid —
+   commit oli oma samm ja käis püsistusest ees. Nüüd mõõdetakse vastupidist: ükski vastuserada ei
+   tohi commit'ida ise, vaid annab arvelduse `settleUsage`-na püsistuse tehingusse. */
+test("chat response handler binds usage settlement to the durable turn write on every reply path", () => {
   const source = read("lib/chat/mainResponseHandler.js");
 
   assert.match(source, /onUsageCommit = null/);
   assert.match(source, /onUsageRelease = null/);
-  assert.ok((source.match(/usage\.chat_commit\.error/g) || []).length >= 3);
+
+  // Kolm vastuserada (no-context, tavavastus, voog) annavad arvelduse finaliseerijale kaasa …
+  assert.equal(
+    (source.match(/settleUsage: typeof onUsageCommit === "function"/g) || []).length,
+    3
+  );
+  // … ja kontrollivad tulemust ühe ja sama väravaga.
+  assert.equal((source.match(/await settleAfterFinalize\(/g) || []).length, 3);
+
+  // Commit'i eraldi sammuna EI OLE: `settleChatUsage(onUsageCommit …)` tohib esineda ainult
+  // `settleAfterFinalize` sees, kus ta katab persist=false raja.
+  const commitCalls = source.match(/settleChatUsage\(\s*onUsageCommit/g) || [];
+  assert.equal(commitCalls.length, 1);
+  assert.match(
+    source,
+    /async function settleAfterFinalize\([\s\S]*?settleChatUsage\(onUsageCommit/
+  );
+
+  // Terminalseisud vabastavad ühiku oma markeri tehingus.
+  assert.match(source, /status: wasAborted \? "ABORTED" : "ERROR"[\s\S]*?settleUsage:/);
+  assert.match(source, /status: "ABORTED"[\s\S]*?onUsageRelease\("chat_stream_aborted", tx\)/);
+  assert.match(source, /status: "ERROR"[\s\S]*?onUsageRelease\("chat_stream_failed", tx\)/);
   assert.match(source, /chat_provider_failed/);
   assert.match(source, /chat_stream_failed/);
 });
