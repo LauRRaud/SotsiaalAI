@@ -130,8 +130,8 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 130/403 leidu, 10/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
-SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**). **Auditis ei ole enam ühtegi lahtist P0-d.**
+**SOL-süvaaudit: 133/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
 **AUDIT ISE ON LÕPUNI VIIDUD** — kõik 20 funktsiooni, Haldus, Ruumid ja Töölaud on kaetud,
@@ -214,14 +214,19 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3805/3805** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM ja
-SOL-CALL-07/-08/-09** — server on `1ed23452`. Deploy'mata on ka **migratsioon
-`20260811220000`** (`VerificationLinkDispatch`); SOL-CALL-07…-09 skeemi ei muutnud.
+`npm test` **3824/3824** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL
+ja kogu SOL-INV** — server on `1ed23452`. Deploy'mata on ka **migratsioon
+`20260811220000`** (`VerificationLinkDispatch`); SOL-CALL ja SOL-INV skeemi ei muutnud.
 
-**Kolm uut sondi 11.08 kõnepeatükist:** `call:seat:probe` 12/12 (deterministlik võistlus
-viimase koha pärast + tehingu tagasipööramine) · `call:audit:probe` 11/11 (otsus ja tema
-jälg commit'ivad koos või mitte kumbki) · mõlemal negatiivkontroll vana kuju vastu.
+**Neli uut sondi 11.08 kõne- ja kutsepeatükist:** `call:seat:probe` 12/12 (deterministlik
+võistlus viimase koha pärast + tehingu tagasipööramine) · `call:audit:probe` 11/11 (otsus ja
+tema jälg commit'ivad koos või mitte kumbki) · `invite:seat:probe` 11/11 (kaks eri kutset
+seisus 49/50) · `invite:mail:probe` 16/16 (kogu ahel päris outbox-workeriga). Igaühel
+negatiivkontroll vana kuju vastu.
+
+**Mõõdetud serverist 11.08:** `sotsiaalai-payment-emails.timer` on toodangus **enabled ja
+active** (iga ~3 min). See on SOL-INV-03 eeldus — kirjade järjekord ei ole surnud postkast.
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
@@ -460,11 +465,23 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **193 P1, 79 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
-6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7) ja SOL-CALL (13/13) on 11.08
-lõpetatud** — kõige eespool täiesti lahtine peatükk on nüüd **SOL-INV (0/3: 1 × P1, 2 × P2)**,
-kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
+Lahtiseks jääb **192 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
+on 11.08 lõpetatud** — kõige eespool täiesti lahtine peatükk on nüüd **SOL-PAY (0/11:
+9 × P1, 2 × P2)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
 otsuse ja brauseri-QA taga.
+
+**Kutsepeatükk sai 11.08 kolm leidu ja on täis.** Sponsorkoht on nüüd päriselt piir:
+50 tasutud kohta ei saa enam ületada ka siis, kui kaks inimest võtavad kaks eri kutset
+täpselt korraga vastu — varem said mõlemad sisse ja host maksis 51 koha eest. **Keelatud
+päring on kõrvalmõjuta:** ruumi ID-d teadev võõras sai varem 403-ga lõppeva päringuga muuta
+ruumi omaniku kuvatavat nime ja taasaktiveerida lõpetatud liikmesuse; nüüd ei kirjuta
+kutsevoog enne autoriseerimist mitte midagi ja omaniku nimi tuleb tema enda profiilist.
+**Kutse saatmine ütleb tulemuse välja:** iga adressaadi kohta on vastuses `sent`, `queued`
+või `failed`, kohale toimetamata kiri jääb päris järjekorda ja server saadab ta ise uuesti;
+liides nimetab jõudmata jäänud aadressid. Varem öeldi kõigi kohta ühetaoliselt „saadetud",
+ka siis, kui kiri ei läinud kunagi välja ja saatja ootas vastust inimeselt, kes ei saanud
+kunagi linki.
 
 **Kõnepeatükk sai 11.08 kolm viimast leidu ja on täis.** Salvestisel on nüüd **üks kandja**:
 teade „salvestis on saadaval" läheb ainult sellele, kes salvestamist taotles, ja

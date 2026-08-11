@@ -3508,6 +3508,36 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Sponsorkoht peab olema ruumipõhiselt atomaarne reservatsioon või serialiseeritud loendur samas tehingus. Päris PostgreSQLi test peab saatma vähemalt kaks eri kutset paralleelselt seisus 49/50 ning tõendama täpselt ühe liikmesuse ja ühe sponsoreeritud tellimuse aktiveerimise.
 
+**Seis (11.08.2026): DONE — kogu liikmesuse otsus käib ruumiluku all; `npm run invite:seat:probe` 11/11 päris PostgreSQL-is. Commit `a32f4230`.**
+
+Piiri ei saa jõustada unikaalindeksi ega tingimusliku kirjutusega: „aktiivseid
+sponsoreeritud liikmeid on alla 50" ei ole ühegi ÜHE rea omadus. Seepärast on lahendus
+serialiseerimine — kogu otsus (kas ma olen juba liige · kas kohti on · loo liikmesus ja
+tellimus) ruumipõhise nõuandeluku all, **sama võtmega, mida kasutavad omanikuvahetus ja
+lahkumine** (SOL-ROOM-04: omanik ja liikmesus on üks invariant). Loenduriveergu ruumile EI
+lisatud — see oleks teine tõde, mida tuleks sünkroonis hoida (sama argument, mis
+SOL-DOC-07 loenduriveerul ja SOL-CALL-08 osalejapiiril).
+
+Lukk võetakse ENNE esimest liikmesuse lugemist, mitte alles loenduse ees: kolm küsimust on
+üks otsus. Lukujärjekord on kutse → ruum; ruumiluku teised võtjad ei puutu `Invite` ridu,
+seega tsüklit ei teki.
+
+Sond kannab kriteeriumi sõna-sõnalt: kaks ERI kutset seisus 49/50, deterministlik võistlus
+(kolmas tehing hoiab sama ruumiluku ja MÕÕDETAKSE, et mõlemad ootavad) → täpselt üks
+liikmesus, täpselt üks sponsoreeritud tellimus, täpselt üks kasutatud kutse.
+**Negatiivkontroll on vana jada transkriptsioon ja ta annab 51/50.** Kaks lisakontrolli
+mõõdavad, et piir ei muutunud liiga rangeks: viimane vaba koht antakse välja ja lahkunu
+vabastab koha järgmisele.
+
+Fake-tx sai mõõdetava `$executeRaw`-i — no-op lukk oleks tõendanud, et kood töötab ka ilma
+lukuta.
+
+**KATMATA:** `app/api/invites/sponsored/init` teeb enne checkout'i oma `hasSponsorCapacity`
+kontrolli, mis on endiselt lukuta. See ei ole sama leid (seal ei teki liikmesust ega
+tellimust, ainult makse algatus), aga tema tulemus võib olla aegunud selleks hetkeks, kui
+makse laekub — sponsorkutse võib jõuda checkout'ist läbi ja seejärel vastuvõtul 409-ga
+põrgata.
+
 ### SOL-INV-02 — kutse autoriseerimiseelne ruumisünk võib muuta teise kasutaja liikmerida — P2
 
 **Tõend.** `requireRoomRole()` kutsub esmalt `ensureRoom()`, mis olemasoleva roomId korral teeb enne küsija rolli kontrolli `ensureOwnerMembership(room.id, room.ownerId, ownerDisplayName)` (`app/api/invites/route.js:145-181`, `:230-267`). Helper upsert'ib tegeliku omaniku liikmerea rolliks OWNER, seab `leftAt:null` ja võib kirjutada küsija payload'ist tulnud displayName'i (`:145-165`). Alles pärast seda kontrollitakse, kas küsija ise on omanik või lubatud rollis. Seega ruumi ID-d teadev mitteliige või MEMBER võib keelatud POST-i kaudu enne 403 vastust omaniku nime muuta või lõpetatud omaniku liikmesuse taasaktiveerida.
@@ -3516,6 +3546,38 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Kõik owner/membership parandused peavad toimuma alles pärast küsija autoriseerimist ning kasutama serverist tuletatud omaniku profiili, mitte võõra payload'i displayName'i. Negatiivne route-test peab võrdlema DB seisu enne ja pärast mitteliikme/MEMBER-i GET ja POST päringut ning nõudma null kõrvalmõju.
 
+**Seis (11.08.2026): DONE — keelatud päring on kõrvalmõjuta, parandus käib autoriseerimise järel ja nimi tuleb serverist. Commit `c8048127`.**
+
+Kolm reeglit, üks koht (`lib/invites/roomAccess.js`):
+
+1. **Lugemine ei kirjuta.** Olemasoleva ruumi haru ei puutu ühtki rida.
+2. **Parandus käib autoriseerimise JÄREL** ja ainult siis, kui küsija ise on ruumi omanik.
+   Võõra rea „parandamine" ei ole selle voo töö.
+3. **Nimi tuleb serverist** — omaniku enda profiilist — ja OLEMASOLEVAT nime ei kirjutata
+   üle: inimese enda valitud nimi ei ole hooldusraja otsustada. Küsija enda nime
+   (`host_display_name`) kirjutab marsruut ise oma reale, pärast autoriseerimist, nagu
+   varemgi. E-posti liikmeloendisse ei kirjutata — see on teistele nähtav väli.
+
+**SAMA VIGA ELAS KAHES KOOPIAS.** Raport nimetas ainult `app/api/invites/route.js`-i, aga
+`app/api/invites/sponsored/init` kandis sama koodi sama defektiga. Mõlemad käivad nüüd
+ühest väravast. **Sellega jõuab sponsoreeritud rajale esimest korda ka SOL-ROOM-01
+arhiivikontroll**, mis oli olemas ainult teises koopias: lõpetatud ruumi ei saa nüüd ka
+sponsorkutsega täiendada.
+
+Testid mõõdavad seda, mida päring ENDAST maha jättis: iga kirjutus läheb `writes`
+massiivi ja keelatud päringu järel peab ta olema tühi. Üks test otsib payload'i nime
+kõigist kirjutustest TEKSTINA — nii ei aita ka mõni tulevane kaudne rada teda omaniku
+reale tagasi.
+
+Väravad: `npm test` **3816/3816** · eslint puhas. **Negatiivkontroll: 5 uut testi 8-st
+kukub vana kuju peal** (kolm on regressioonivalve: arhiivikontroll, värske ruum,
+profiilita omanik).
+
+**KATMATA:** kriteerium nimetab route-testi. Testid käivad jagatud värava vastu, mitte
+HTTP kaudu — ruumivärav on nüüd moodul, mille mõlemad marsruudid ainult kutsuvad
+(tekstileping `tests/rooms/accessGuard.test.js`-is nõuab seda), aga marsruudi enda
+läbisõitu päris sessiooniga ei ole tehtud.
+
 ### SOL-INV-03 — e-kirja saatmise viga tagastab kutse loomise edukana ja kaotab esmase tokeni kasutajateelt — P2
 
 **Tõend.** Tavaline invite POST loob SENT kutse ja toortokeni esmalt DB-s, seejärel püüab `sendInviteEmail()` vea kinni ainult logiga ning jätkab (`app/api/invites/route.js:519-558`). Eduvastusest eemaldatakse toortoken (`:560-564`), nii et kasutaja ei saa ebaõnnestunud kirja linki käsitsi edastada. Kutse jääb SENT olekusse ning UI saab vea avastada ainult siis, kui kasutaja ise hiljem resend'i proovib; algvastus ei sisalda delivery staatust.
@@ -3523,6 +3585,46 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Kasutajale öeldakse, et kutse loodi, kuid saaja ei saa liitumislinki ning saatja ei näe põhjust. Mitme e-posti batch'is võivad mõned kirjad jõuda ja teised mitte, kuid vastus raporteerib kõik ühetaoliselt edukana.
 
 **Vastuvõtukriteerium.** Kutsel peab olema püsiv delivery olek/outbox ja idempotentne resend; API peab tagastama iga adressaadi `queued/sent/failed` tulemuse ilma toortokenit logimata. Mailer-veasüstetest peab tõendama nähtava osalise vea ja taastuva sama kutse saatmise, mitte uue kutse loomise.
+
+**Seis (11.08.2026): DONE — püsiv järjekord + aus vastus + idempotentne kordus; `npm run invite:mail:probe` 16/16 päris PostgreSQL-is ja päris workeriga. Commit `b7af4ec0`.**
+
+Kaks asja, mis üksinda kumbki ei piisa:
+
+- **PÜSIV OLEK.** Iga kutse-kiri läheb enne saatmist `PaymentEmailOutbox`-i — samasse
+  järjekorda, mida kordussaatmine juba kasutas. Rida ON delivery olek: `PENDING` = kohale
+  toimetamata, `SENT` = kinnitatud. Idempotentsus tuleb `dedupeKey`-st, mis kannab kutse
+  id-d ja TOKENI RÄSI, mitte toortokenit.
+- **AUS VASTUS.** Kohene katse tehakse ikka (inimene ootab kirja kohe, mitte kolme minuti
+  pärast), aga tema tulemus öeldakse iga adressaadi kohta välja: `sent` · `queued` ·
+  `failed`. Liides ei ütle enam tingimusteta „Kutsed saadetud" — jõudmata jäänud aadressid
+  on nimeliselt kirjas, kolmes keeles.
+
+**Kordussaatmine käib nüüd sama teed.** Varem läks ta AINULT järjekorda ja vastas alati
+`ok: true`, seega „saatsin uuesti" oli kavatsuse, mitte tulemuse kirjeldus. Kutse ise jääb
+sama — uut kutset ei looda, mida kriteerium eraldi nõudis.
+
+**Kirja SISU renderdatakse ühest kohast** (`renderInviteOutboxEmail`): kohene saatmine ja
+taasproov ehitasid enne kaks eri teostust sama kirja jaoks ja need oleksid lahknenud
+esimese muudatusega.
+
+**Mõõdetud serverist, mitte eeldatud:** `sotsiaalai-payment-emails.timer` on toodangus
+`enabled` + `active` (iga ~3 min), seega see järjekord ei ole surnud postkast ja `queued`
+on lubadus, mille keegi täidab. Ilma selle kontrollita oleks kogu parandus võinud
+tähendada „kiri ei lähe kunagi välja, aga me ütleme selle kohta ilusa sõna".
+
+Sond käib kogu ahela läbi PÄRIS workeriga: kukkunud saatmine jätab püsiva `PENDING` rea
+kutse küljes → worker leiab ta üles ja saadab päris liitumislingiga → teine jooks ei saada
+teist kirja → kinnitatud kohene saatmine võtab rea workeri käest ära. **Sond pargib võõrad
+järjekorraread tunniks ette ja paneb `finally`-s täpselt tagasi** — ta ei tohi kellegi
+teise kirja oma stub-mailer'iga „ära saata".
+
+Väravad: `npm test` **3824/3824** (Europe/Tallinn ja UTC) · `i18n:check` OK · eslint puhas.
+**Negatiivkontroll: 7 uut testi 8-st kukub vana kuju peal.**
+
+**KATMATA:** negatiivkontroll on transkriptsioon, sest vanal teostusel ei olnud
+moodulipiiri, mille vastu jooksutada (sama aus piir nagu SOL-FIELD-04-l). Sponsoreeritud
+kutse (`invite_sponsored`) käis outbox'i kaudu juba varem ja tema vastus ei kanna veel
+delivery seisu — ta ei kuulunud selle leiu tõendisse.
 
 ### SOL-AUTH-03 — konto taastamise ja e-posti kinnitamise bearer-tokenid on andmebaasis toorkujul — P1
 
