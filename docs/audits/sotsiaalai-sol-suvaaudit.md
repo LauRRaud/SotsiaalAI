@@ -2509,6 +2509,29 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Tavavestluse stream on edukas ainult pärast valideeritud `done` sündmust. EOF ilma `done`-ita peab andma nähtava vea või küsima `/api/chat/run` kaudu sama pöörde terminalseisu; ainult kinnitatud `COMPLETED` võib muuta UI edukaks. Brauseri-/hook-test peab katma meta+delta+EOF, tühi EOF, malformed done ja võrgukatkestuse.
 
+**Seis (11.08.2026): DONE — kriteeriumi MÕLEMAD teed, mitte üks neist.**
+- **Klient küsib serverilt, mitte ei eelda.** EOF ilma `done`-ita läheb nüüd
+  `readPersistedConversationResult()` kaudu `/api/chat/run` peale (funktsioon oli olemas, aga teda
+  kasutati ainult pika uuringu rajal — sama „lahendus oli koodibaasis olemas" muster). Kinnitatud
+  tulemus lõpetab pöörde ausalt COMPLETED-ina ja **kirjutab ka teksti/allikad serveri omaga üle**;
+  kinnituseta EOF annab nähtava vea `chat.error.stream_incomplete` ja Retry-nupu.
+- **Marsruudi tõde tuli kaasa parandada, muidu oleks kinnitus olnud sama heuristika.**
+  `/api/chat/run` luges seisu „viimane sõnum oli kasutajalt" reeglist; nüüd loeb ta **`ChatTurn`
+  rida** (`resolveRunStatusFromTurn`) ja langeb tuletusele ainult siis, kui rida puudub (enne
+  11.08 migratsiooni loodud vestlused). See on **SOL-CHAT-04 kriteeriumi viimane lause**, mis oli
+  seal teadlikult siia edasi lükatud.
+- **Rippuma jäänud RUNNING pööre ei ole „veel töös"** — lease'ist vanem annab `ERROR`, seega
+  klient saab ta korrata. Ilma selleta oleks uus tõeallikas teinud igavese RUNNING-u võimalikuks.
+- **Testid** (`tests/chat/streamCompletionTruth.test.js`, 3 uut): pöörde rida vs tuletus kõigis
+  seisudes + aegumine; marsruudi eelistusjärjekord ja **omanikupiir** (`userId: auth.userId`);
+  kliendi leping, sh **positsioonikontroll** — voo `COMPLETED` märgend peab olema EOF-värava
+  TAGA. Viimane on kirjutatud viimase esinemise peale ja põhjus on kommentaaris: teine `COMPLETED`
+  kuulub JSON-vastuse rajale, kus server vastas 200-ga ja voogu ei olnudki.
+- **Aus piir.** Ruumirežiimis (`isRoomMode`) kinnitust ei küsita, sest `/api/chat/run` on vestluse-,
+  mitte ruumipõhine — seal jääb EOF endiselt veaks, mitte vaikseks eduks. Kriteeriumi neli
+  brauseristsenaariumi (meta+delta+EOF, tühi EOF, malformed done, võrgukatkestus) on kaetud
+  lepingutasemel, mitte päris brauseris: `runtime: not_run`.
+
 ### SOL-CHAT-07 — platvormiadmin saab liikmesuseta suvalisse privaatsesse ruumi AI-sõnumi kirjutada — P1
 
 **Tõend.** Chat bootstrap kontrollib aktiivset `RoomMember` rida ainult siis, kui kasutaja ei ole administraator (`lib/chat/requestBootstrap.js:222-227`). Admin läbib tellimusevärava automaatselt (`lib/authz.js:64-83`) ning saab kliendi antud `roomId` väärtusega käivitada mudeli. Finalizer kutsub `saveAssistantRoomMessage()`, mis teeb `roomMessage.create()` ainult `roomId`, admini `authorId` ja sisuga; liikmesust ega ruumi olekut uuesti ei kontrollita (`lib/chat/responseFinalizer.js:242-247`, `lib/chat/mainRouteRuntime.js:64-101`). Tavaline ruumisõnumite route nõuab seevastu kõigilt, ka adminilt, aktiivset liikmesust enne lugemist või kirjutamist (`app/api/rooms/[roomId]/messages/route.js:95-163`, `:189-199`).

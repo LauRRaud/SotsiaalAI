@@ -2596,6 +2596,7 @@
       "rate_limit_generic": "Liiga palju päringuid. Proovi varsti uuesti.",
       "no_response": "Assistent ei vastanud.",
       "no_answer": "Vabandust, ma ei saanud praegu vastust koostada.",
+      "stream_incomplete": "Vastus jäi pooleli ja seda ei kinnitatud. Palun proovi uuesti.",
       "stream_missing": "Assistent ei saatnud voogu.",
       "stream_failed": "Voo viga.",
       "interrupted": "Vastuse genereerimine peatati.",

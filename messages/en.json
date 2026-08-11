@@ -2596,6 +2596,7 @@
       "rate_limit_generic": "Too many requests. Please try again soon.",
       "no_response": "The assistant did not respond.",
       "no_answer": "Sorry, I couldn't generate an answer right now.",
+      "stream_incomplete": "The answer was cut off and could not be confirmed. Please try again.",
       "stream_missing": "The assistant did not send a stream.",
       "stream_failed": "Stream error.",
       "interrupted": "Answer generation was stopped.",

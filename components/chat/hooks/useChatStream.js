@@ -754,6 +754,7 @@ export function useChatStream(config) {
     );
     const clientTurnKey = chatIntentRef.current.key;
 
+    const turnStartedAtMs = Date.now();
     const clientTimeout = setTimeout(() => controller.abort(), 180000);
     let streamingMessageId = null;
     let visibleText = "";
@@ -930,6 +931,8 @@ export function useChatStream(config) {
             completionStatus: "COMPLETED"
           }));
 
+          // Sama reegel mis voo rajal: lahendatud kavatsus vabastab võtme (SOL-CHAT-03).
+          chatIntentRef.current = null;
           dispatchHelpListingsRefresh(workflow);
           cfg.requestConversationsRefresh?.();
           streamingMessageId = null;
@@ -1011,6 +1014,31 @@ export function useChatStream(config) {
             } catch {}
             break;
           }
+        }
+
+        /* SOL-CHAT-06: `streamCompleted` on tõene AINULT valideeritud `done` sündmuse järel. Kui
+           keha lõppes tavalise reader-EOF-iga (võrk, proxy, serveri surm), ei tohi UI näidata
+           poolikut vastust lõpliku edukana ega jätta Retry-nuppu pakkumata. Serveri tõde küsitakse
+           `/api/chat/run` pealt — see marsruut loeb nüüd pöörde enda rida (vt SOL-CHAT-04). */
+        if (!streamCompleted) {
+          const confirmed = !cfg.isRoomMode
+            ? await readPersistedConversationResult({
+                convId: cfg.convId,
+                normalizeSources: cfg.normalizeSources,
+                expectedUserText: text,
+                startedAtMs: turnStartedAtMs
+              }).catch(() => null)
+            : null;
+          if (!confirmed) {
+            flushAllPending();
+            throw createLocalizedError("chat.error.stream_incomplete");
+          }
+          visibleText = confirmed.text || visibleText;
+          sources = confirmed.sources?.length ? confirmed.sources : sources;
+          attachments = confirmed.attachments?.length ? confirmed.attachments : attachments;
+          cards = confirmed.cards?.length ? confirmed.cards : cards;
+          workflow = confirmed.workflow || workflow;
+          streamCompleted = true;
         }
 
         if (streamCompleted && pendingCrisisState !== null) {

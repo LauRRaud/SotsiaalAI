@@ -5,7 +5,7 @@ import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-lim
 import { safeError } from "@/lib/privacy/safeError";
 import { getSourceAttributionId } from "@/lib/chat/sourceAttribution";
 import { serializeDisplayedSourceTrust } from "@/lib/chat/sourceTrust";
-import { normalizeCompletionStatus, resolveRunStatus } from "@/lib/chat/turnStatus";
+import { normalizeCompletionStatus, resolveRunStatus, resolveRunStatusFromTurn } from "@/lib/chat/turnStatus";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -163,7 +163,7 @@ export async function GET(req) {
       return errorJson("api.common.forbidden", 403);
     }
 
-    const [latestMessage, recentMessages] = await Promise.all([
+    const [latestMessage, recentMessages, latestTurn] = await Promise.all([
       prisma.conversationMessage.findFirst({
         where: {
           conversationId: convId,
@@ -194,6 +194,14 @@ export async function GET(req) {
           metadata: true,
           createdAt: true
         }
+      }),
+      /* SOL-CHAT-04/-06: pöörde tõde tuleb tema oma realt, mitte „viimane sõnum oli kasutajalt"
+         heuristikast. Klient kinnitab selle marsruudiga voo lõppu, seega vale vastus siin muudaks
+         katkenud voo vaikselt „lõpetatuks". */
+      prisma.chatTurn.findFirst({
+        where: { conversationId: convId, userId: auth.userId },
+        orderBy: { startedAt: "desc" },
+        select: { status: true, updatedAt: true }
       })
     ]);
 
@@ -228,13 +236,14 @@ export async function GET(req) {
     const latestAssistantIsCurrent = latestTurnRole === "ASSISTANT";
     const currentAssistant = latestAssistantIsCurrent ? latestMessage : null;
     const lastActivityMs = conversation.lastActivityAt ? new Date(conversation.lastActivityAt).getTime() : 0;
-    const status = resolveRunStatus({
-      latestTurnRole,
-      metadata: currentAssistant?.metadata,
-      lastActivityMs,
-      nowMs: Date.now(),
-      stallMs: CHAT_RUN_STALL_MS
-    });
+    const status = resolveRunStatusFromTurn(latestTurn, { nowMs: Date.now() })
+      ?? resolveRunStatus({
+        latestTurnRole,
+        metadata: currentAssistant?.metadata,
+        lastActivityMs,
+        nowMs: Date.now(),
+        stallMs: CHAT_RUN_STALL_MS
+      });
     const text = currentAssistant?.content || (!latestMessage ? conversation.summary || "" : "");
 
     return json({
