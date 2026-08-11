@@ -2142,6 +2142,56 @@ protsessipõhine; mitme app-protsessi korral skaneerib igaüks sama kataloogi.
 
 **Vastuvõtukriteerium.** Kataloog vajab restart-kindlat sweep'i, mis loeb iga snapshoti, valideerib skeemi ning eemaldab terminalfaili TTL-i järgi; vigased `.json` ja `.tmp` failid vajavad eraldi fail-closed/orphan poliitikat. Restart-test peab looma terminalsnapshoti, tühjendama runtime-Map'i, nihutama aja üle TTL-i ja tõendama sisu kustutamise.
 
+**Seis (11.08.2026): DONE.**
+
+**TTL oli olemas ainult nende tööde jaoks, mille elas üle sama protsess.** Koristus käis läbi
+protsessi `jobs` Map'i ja kustutas snapshoti ainult sealt leitud terminalobjekti puhul. Pärast
+restarti on Map tühi — ja kuna snapshot kannab valmis `summaryText` välja, jäi kohtumise tundlik
+kokkuvõte `AGENT_STORAGE_DIR`-i **tähtajatult** seisma. „30-minutiline TTL" oli seega lubadus, mis
+kehtis täpselt nii kaua, kuni server ei taaskäivitunud.
+
+**`sweepMeetingSummarySnapshots()` loeb nüüd kataloogi ennast.** Kolm poliitikat, sest tegu on
+kolme eri asjaga:
+
+1. **kehtiv terminalkirje** — tähtaeg tema enda `endedAt` järgi, sama `shouldDelete` reegel;
+2. **kehtiv, aga rippuv töö** — `queued`/`running`, mille protsess suri: katkestatakse (see
+   **vabastab ka reservatsiooni**, mis muidu hoiaks kvooti kuni TTL-ini) ja alles seejärel hakkab
+   tema enda tähtaeg jooksma;
+3. **loetamatu `.json` ja orb `.tmp`** — FAIL-CLOSED faili muutmisaja järgi. Nende sisu me ei
+   mõista, aga just seetõttu ei tohi nad igavesti alles jääda: **tundliku teksti puhul on „ei
+   suutnud lugeda" argument kustutamise POOLT, mitte vastu.** Ooteaeg on olemas ainult selleks, et
+   mitte kustutada teise protsessi pooleliolevat kirjutust.
+
+**Skeemivalideerimine on siin sisuline, mitte kosmeetiline.** Ilma selleta ei oska sweep vahet teha
+„terminaaltöö, mille tähtaeg on käes" ja „fail, mille sisu ma ei mõista" vahel — ja teine neist
+jääks igaveseks alles just seetõttu, et teda ei õnnestunud lugeda.
+
+**Elava töö snapshotti kataloogisweep ei puutu** (omanik on protsess ise), muidu võiks pikk
+transkriptsioon saada 15 minuti pealt „rippuvaks" ja iseenda alt kustutatud.
+
+**Mõõdetud (7 uut testi, kokku failis 15/15).** Otse kettale kirjutatud snapshot ONGI restardi
+tingimus: seda faili ei ole see protsess kunagi näinud. Tõendatud: aegunud terminalsnapshot kaob
+**koos sisuga** (kontrollitakse markeri kadumist, mitte ainult faili puudumist) · värske jääb alles ·
+pooleli arveldusega jääb alles ka üle TTL-i · rippuv `running` katkestatakse, vabastab **mõlemad**
+reservatsioonid ja aegub alles järgmisel ringil · seisnud katkine `.json` ja orb `.tmp` kaovad,
+värsked mitte · tundmatu staatusega kirje loetakse loetamatuks · elava töö oma jääb puutumata.
+
+**Negatiivkontroll.** Sweepi tagasipööramine vana semantika peale („ainult protsessi enda tööd")
+kukutab **5 seitsmest**. Ülejäänud kaks on negatiivsed väited („ei tohi kustutada") ja neid rahuldab
+ka mittemidagitegev sweep — nad valvavad ülekustutamise, mitte alakustutamise vastu, ja seda tuleb
+nii ka lugeda.
+
+**Elutsüklikaart parandatud** (`fable-5-failide-ja-meedia-elutsukkel.md`), sest leid viitas talle
+tõendina. Seal olnud väide „konto kustutus ei sihi kataloogi" oli **juba enne seda tööd aegunud** —
+`lib/privacy/userDeletion.js:143` kutsub `purgeMeetingSummarySnapshotsForUser`.
+
+**Aus piir.** (1) Sweep on protsessipõhine: mitme app-protsessi korral skaneerib igaüks sama
+kataloogi ja teeb sama tööd — see on ohutu (kustutus on idempotentne), aga mitte koordineeritud.
+(2) Kataloogi loetakse nüüd minutis kaks korda — kord arvelduse korduse, kord selle sweepi jaoks.
+30-minutise TTL-i juures on kataloog väike, seega neid ei ühendatud; kui failide arv kunagi kasvab,
+on see esimene koht, mida liita. (3) Päris serveri restarti ei ole jooksutatud — tõend on selles, et
+sweep ei kasuta protsessi mälu üldse, mitte selles, et masin oleks taaskäivitatud.
+
 ### SOL-MEET-04 — ühe aktiivse töö piirang on paralleelsete POST-ide korral ületatav — P1
 
 **Tõend.** Mõlemad POST-id reserveerivad STT ja dokumentide kasutuse enne job'i loomist (`app/api/documents/meeting-summary/jobs/route.js:93-143`). `createMeetingSummaryJob()` kontrollib aktiivsete tööde arvu Map'i ja snapshotkataloogi lugemisega ning lisab uue job'i hiljem; puudub kasutajapõhine lukk või DB unikaalsus (`lib/documents/meetingSummaryJobs.js:314-342`, `:391-415`). Kahe await'idega põimuva kutse puhul saavad mõlemad lugeda null aktiivset tööd ning luua eri ID ja eri usage-võtmega job'i.

@@ -9,15 +9,15 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 
 | | |
 |---|---|
-| Tehtud leidu | **87 / 357** |
+| Tehtud leidu | **88 / 357** |
 | Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 196 × P1 · 73 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 195 × P1 · 73 × P2 · 1 × P3 |
 | Toodangus | **üheteistkümnes deploy 11.08 10:17 omaniku selgel loal: server = `aafe4eaa`**, 30 commit'i (kogu SOL-DOC 01…09, kogu SOL-RES 01…07 + docs) ja kaks migratsiooni. Mõõdetud, mitte eeldatud: `.next` 10:17, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` **200**, `/registreerimine` 307, veatasemel logi tühi. Mõlemad migratsioonid `_prisma_migrations`-is lõpetatud ja tagasi kerimata; `ResearchJob.clientIntentKey` + unikaalne `(userId, clientIntentKey)` indeks olemas, `DocumentAuditAction` sai `ANALYSIS_SAVE`/`ANALYSIS_DELETE`. (Kümnes deploy 10.08 23:34 = `44144aba`, üheksas 22:49 = `a2aa7435`.) |
-| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on käsil** (2/6). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
+| Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on käsil** (3/6). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**85 tehtud leidu 87-st on tootmises.** Deploy'mata on **SOL-MEET-01 ja -02** (migratsioonita).
+**85 tehtud leidu 88-st on tootmises.** Deploy'mata on **SOL-MEET-01…-03** (migratsioonita).
 Üheteistkümnes deploy (11.08 10:17, server `aafe4eaa`) viis välja kogu SOL-DOC peatüki
 (01…09) ja SOL-RES-01…-07
 koos mõlema migratsiooniga: **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust) ja
@@ -47,7 +47,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 | Välitöö | SOL-FIELD | **6/6** | – | – | – | **tehtud** |
 | Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | – | – | **tehtud** |
 | Uuringud | SOL-RES | 6/7 | – | – | 1 | **käsil**, lahtine ainult RES-07 (kvalifitseeritud) |
-| Koosolekukokkuvõtted | SOL-MEET | 2/6 | – | 3 | 1 | **käsil**, MEET-01 ja -02 tehtud |
+| Koosolekukokkuvõtted | SOL-MEET | 3/6 | – | 2 | 1 | **käsil**, MEET-01…-03 tehtud |
 | Vestlus | SOL-CHAT | 0/13 | – | 9 | 4 | |
 | Hääl (STT/TTS) | SOL-VOICE | 0/3 | – | 2 | 1 | |
 | Ruumid | SOL-ROOM | 0/7 | – | 5 | 2 | |
@@ -418,6 +418,15 @@ Kvooti saab jõustada just sellepärast, et commit on tehingu sees. `commit_pend
 seda ei lugenud keegi tagasi — nüüd on püsiv kordus, ja sama sweep ei tohi enam pooleli arveldusega
 snapshotit ära visata. **`npm run meeting:summary:probe` 12/12** päris PostgreSQL-is, sh päris
 rollback. Migratsiooni ei ole vaja.
+
+**SOL-MEET-03 (11.08): TTL kehtis täpselt nii kaua, kuni server ei taaskäivitunud.** Koristus käis
+läbi protsessi mälu ja kustutas snapshoti ainult sealt leitud terminaaltöö puhul; pärast restarti on
+see mälu tühi, aga snapshot kannab valmis kokkuvõtte teksti — seega jäi kohtumise tundlik sisu
+kettale tähtajatult. Nüüd loeb sweep kataloogi ennast: kehtiv terminalkirje aegub oma `endedAt`
+järgi, rippuma jäänud `queued`/`running` katkestatakse ja vabastab kvoodi, ning loetamatu `.json`
+ja orb `.tmp` kaovad **fail-closed** faili vanuse järgi — tundliku teksti puhul on „ei suutnud
+lugeda" argument kustutamise POOLT. **7 uut testi**; negatiivkontroll kukutab 5 seitsmest.
+Migratsiooni ei ole vaja.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
