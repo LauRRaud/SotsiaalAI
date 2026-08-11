@@ -22,12 +22,33 @@ test("meeting summary reserves STT and document units and settles each completed
   // märge ja tema etapi commit oleksid KÕRVUTI — seda vana regexp ei nõudnud ja seega ei
   // takistanud ta märke ja arvelduse lahku triivimist.
   assert.match(jobs, /job\.usage\.stt\.workCompleted = true;\s*\r?\n\s*await settleMeetingSummaryUsage\(job, "stt", "commit"[,)]/);
-  assert.match(jobs, /job\.usage\.document\.workCompleted = true;\s*\r?\n\s*await settleMeetingSummaryUsage\(job, "document", "commit"[,)]/);
   assert.match(jobs, /releaseIncompleteMeetingSummaryUsage/);
 
   // Süstitava teenuse VAIKEVÄÄRTUS peab olema päris arveldus, muidu saaks testiõmblus
   // arvelduse vaikselt välja lülitada.
   assert.match(jobs, /usage = usageService/);
+
+  // SOL-MEET-02: dokumendi ühikut ei tohi enam ENNE dokumenti eraldi commit'ida — ta võetakse
+  // dokumendi reaga samas tehingus. Vana kuju oli `settleMeetingSummaryUsage(job, "document",
+  // "commit")` enne `persistMeetingSummaryDocument()` kutset; nõue on nüüd rangem, mitte lõdvem.
+  assert.doesNotMatch(jobs, /settleMeetingSummaryUsage\(job, "document", "commit"/);
+  assert.match(jobs, /withStorageQuota\(/);
+  assert.match(jobs, /\.commit\(\{\s*\r?\n\s*tx,/);
+
+  // Süstitava dokumendiraja VAIKEVÄÄRTUS peab olema päris kirjutus, muidu saaks testiõmblus
+  // kvoodi ja tehingu vaikselt kõrvale jätta.
+  assert.match(jobs, /persistDocument = persistMeetingSummaryDocument/);
+
+  const documentCallAt = jobs.indexOf("await persistDocument({");
+  const documentCompletedAt = jobs.indexOf("job.usage.document.workCompleted = true");
+  assert.ok(documentCallAt > 0, "dokumendi loomise kutse peab olemas olema");
+  assert.ok(
+    documentCompletedAt > documentCallAt,
+    "`workCompleted` tohib dokumendi ühikul tõeseks saada ALLES pärast dokumendi loomist — just tema keelab hiljem release'i"
+  );
+
+  // SOL-MEET-02: `commit_pending` vajab püsivat kordust, muidu on ta lihtsalt vaikne märge.
+  assert.match(jobs, /retryPendingMeetingSummaryUsageSettlements/);
 });
 
 test("admin user analytics reads ledger events and buckets instead of AnalyzeUsage", () => {

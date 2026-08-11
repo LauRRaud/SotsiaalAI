@@ -6,7 +6,9 @@ import test from "node:test";
 
 import {
   createMeetingSummaryJob,
+  retryPendingMeetingSummaryUsageSettlements,
   runMeetingSummaryJob,
+  shouldDeleteMeetingSummaryJob,
 } from "../../lib/documents/meetingSummaryJobs.js";
 
 // SOL-MEET-01. Leid oli VAIKNE kahes kohas korraga.
@@ -230,4 +232,184 @@ test("nurjunud rename ei jäta poolikut .tmp faili kataloogi", async () => {
     restoreEnv();
     await fs.rm(root, { recursive: true, force: true });
   }
+});
+
+// ---------------------------------------------------------------------------------------------
+// SOL-MEET-02. Ühik commit'iti ENNE kasutajale kuuluva dokumendi loomist ja `workCompleted` seati
+// samal hetkel tõeseks. Kui dokument siis kukkus, kutsus catch küll üldise release'i, aga
+// `settleMeetingSummaryUsage()` keeldub release'ist just `workCompleted` tõttu: kasutaja oli ühiku
+// kulutanud ja dokumenti ei olnud kuskilt leida. Siin mõõdetakse kahte suunda ja `commit_pending`
+// kordust; tehingu päris atomaarsust (rollback) mõõdab `npm run meeting:summary:probe`.
+// ---------------------------------------------------------------------------------------------
+
+async function runToDocument(job, { usage, persistDocument }) {
+  const transcript = { text: "kohtumise tekst", usage: { type: "duration", seconds: 12 } };
+  const summary = { output_text: "kokkuvõte" };
+  class FakeOpenAI {
+    constructor() {
+      this.audio = { transcriptions: { create: async () => transcript } };
+      this.responses = { create: async () => summary };
+    }
+  }
+  return runMeetingSummaryJob(job, {
+    usage,
+    persistDocument,
+    loadOpenAI: async () => ({ default: FakeOpenAI }),
+  });
+}
+
+test("dokumendi loomise viga VABASTAB dokumendiühiku ega jäta tasutud tööd õhku", async () => {
+  const root = await makeRoot();
+  const userId = "meet-02-user-fail";
+
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const job = await createMeetingSummaryJob({
+      userId,
+      payload: samplePayload(),
+      usage: reservedUsage("doc-fail"),
+    });
+
+    const usage = usageRecorder();
+    await runToDocument(job, {
+      usage,
+      persistDocument: async () => {
+        throw new Error("documents.errors.storage_quota_exceeded");
+      },
+    });
+
+    assert.equal(job.status, "error");
+
+    // STT on päriselt kulunud (provider vastas), seega tema commit JÄÄB.
+    assert.equal(job.usage.stt.state, "committed");
+    // Dokumendiühik peab olema vabastatud — see on kogu leiu tuum.
+    assert.equal(job.usage.document.state, "released");
+    assert.notEqual(job.usage.document.workCompleted, true);
+
+    const documentCalls = usage.calls.filter(call => call.idempotencyKey === "doc-fail-doc");
+    assert.deepEqual(documentCalls.map(call => call.action), ["release"]);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("õnnestunud dokument annab ühe koherentse tulemuse: dokument JA võetud ühik", async () => {
+  const root = await makeRoot();
+  const userId = "meet-02-user-ok";
+
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const job = await createMeetingSummaryJob({
+      userId,
+      payload: samplePayload(),
+      usage: reservedUsage("doc-ok"),
+    });
+
+    const usage = usageRecorder();
+    const seen = [];
+    await runToDocument(job, {
+      usage,
+      persistDocument: async (input) => {
+        seen.push(input);
+        // Päris rada commit'ib tehingu sees; siin jäljendame ainult seda, et ühik saab võetud.
+        await input.usageCommit.usage.commit({
+          userId: input.userId,
+          idempotencyKey: input.usageCommit.idempotencyKey,
+        });
+        return { id: "doc_1", title: "Kokkuvõte" };
+      },
+    });
+
+    assert.equal(job.status, "done");
+    assert.equal(job.result.document.id, "doc_1");
+    assert.equal(job.usage.document.state, "committed");
+    assert.equal(job.usage.document.workCompleted, true);
+
+    // Dokumendirajale peab jõudma roll — ilma temata ei saa kvooti üldse arvutada.
+    assert.equal(seen[0].role, "USER");
+    assert.equal(seen[0].usageCommit.idempotencyKey, "doc-ok-doc");
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("commit_pending jäetakse alles ja korratakse kuni ta õnnestub", async () => {
+  const root = await makeRoot();
+  const userId = "meet-02-user-pending";
+
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    const jobId = "11111111-2222-3333-4444-555555555555";
+    const ended = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    await fs.mkdir(jobsDirFor(root), { recursive: true });
+    await fs.writeFile(
+      path.join(jobsDirFor(root), `${jobId}.json`),
+      JSON.stringify({
+        id: jobId,
+        userId,
+        status: "done",
+        createdAt: ended,
+        updatedAt: ended,
+        startedAt: ended,
+        endedAt: ended,
+        error: null,
+        result: { summaryText: "kokkuvõte" },
+        usage: {
+          stt: { idempotencyKey: "pending-stt", state: "commit_pending" },
+          document: { idempotencyKey: "pending-doc", state: "committed" },
+        },
+      }),
+      "utf8"
+    );
+
+    let attempts = 0;
+    const flaky = {
+      async commit(input) {
+        attempts += 1;
+        if (attempts === 1) throw new Error("temporary database failure");
+        return { idempotencyKey: input.idempotencyKey };
+      },
+      async release() {
+        throw new Error("release ei tohiks siin juhtuda");
+      },
+    };
+
+    const first = await retryPendingMeetingSummaryUsageSettlements({ usage: flaky });
+    assert.equal(first.committed, 0);
+    assert.equal(first.stillPending, 1);
+
+    const second = await retryPendingMeetingSummaryUsageSettlements({ usage: flaky });
+    assert.equal(second.committed, 1);
+
+    const persisted = JSON.parse(
+      await fs.readFile(path.join(jobsDirFor(root), `${jobId}.json`), "utf8")
+    );
+    assert.equal(persisted.usage.stt.state, "committed");
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("pooleli arveldusega snapshotit ei visata TTL-i järgi ära", () => {
+  const stale = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const base = { id: "j1", status: "done", endedAt: stale, updatedAt: stale, createdAt: stale };
+
+  assert.equal(
+    shouldDeleteMeetingSummaryJob({ ...base, usage: { stt: { state: "committed" } } }, Date.now()),
+    true,
+    "arveldatud terminaaltöö tohib TTL-i järel kaduda"
+  );
+  assert.equal(
+    shouldDeleteMeetingSummaryJob({ ...base, usage: { stt: { state: "commit_pending" } } }, Date.now()),
+    false,
+    "pooleli arveldus on korduse AINUS sisend — teda ei tohi ära visata"
+  );
 });
