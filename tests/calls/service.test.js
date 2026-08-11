@@ -172,7 +172,7 @@ function createModel(initial = []) {
 }
 
 function createPrisma() {
-  return {
+  const db = {
     callSession: createModel(),
     callParticipant: createModel(),
     callSpeakRequest: createModel(),
@@ -192,9 +192,79 @@ function createPrisma() {
     agentArtifact: createModel(),
     savedAnalysis: createModel(),
     user: createModel(),
-    roomMessage: createModel(),
-    $transaction: async callback => callback(createPrisma())
+    roomMessage: createModel()
   };
+  /**
+   * SOL-CALL-08/-09 — TEHING PEAB NÄGEMA SAMU ANDMEID, PÖÖRAMA TAGASI JA LUKUSTAMA.
+   *
+   * Siin seisis `callback(createPrisma())`, mis andis tehingu sisse VÄRSKE TÜHJA
+   * andmebaasi: iga tehingus tehtud lugemine oleks tagastanud `null` ja iga
+   * kirjutus oleks kadunud koos ajutise objektiga. Tehingusse kolinud koht oleks
+   * testis „töötanud" täpselt vastupidiselt sellele, mida ta päriselt teeb.
+   *
+   * Kolm asja on nüüd modelleeritud, sest ilma igaüheta jääks üks leid
+   * tõendamatuks:
+   *   1. sama andmestik — muidu ei mõõda tehingutest MITTE MIDAGI;
+   *   2. TAGASIPÖÖRAMINE — SOL-CALL-09 kandev väide on „audititõrge pöörab
+   *      seisumuutuse tagasi", ja läbilaskev fake teeks sellest rohelise müra;
+   *   3. `pg_advisory_xact_lock` võtmepõhise mutex'ina — SOL-CALL-08 osalejapiir
+   *      on lukk, mitte tingimuslik kirjutus, ja no-op lukuga oleks kahe liituja
+   *      võidujooks fake'i peal PÄRIS võidujooks (mõlemad mahuksid ära).
+   *
+   * AUS PIIR: tõmmis võetakse LAISALT, esimese kirjutuse peale — st juba luku
+   * sees. Varasem katse võtta ta tehingu alguses tegi vaikselt katki
+   * paralleeltesti: kaotaja tagasipööramine kustutas ka võitja äsja loodud rea.
+   * Kahe kirjutava tehingu puhul, mis EI võta sama lukku, jääb see mudel
+   * ebatäpseks; päris isolatsiooni tõendab sond PostgreSQL-i vastu.
+   */
+  const WRITE_METHODS = ["create", "update", "updateMany", "deleteMany", "upsert"];
+  const lockTails = new Map();
+  const acquireLock = async key => {
+    const previous = lockTails.get(key) || Promise.resolve();
+    let release;
+    const mine = new Promise(resolve => { release = resolve; });
+    lockTails.set(key, previous.then(() => mine));
+    await previous;
+    return release;
+  };
+  db.$transaction = async callback => {
+    const models = Object.values(db).filter(value => value && Array.isArray(value.rows));
+    const releases = [];
+    let snapshot = null;
+    const takeSnapshot = () => {
+      if (!snapshot) snapshot = models.map(model => [model, model.rows.map(row => ({ ...row }))]);
+    };
+    const tx = Object.create(db);
+    tx.$executeRaw = async (_strings, ...values) => {
+      releases.push(await acquireLock(values.map(String).join("|")));
+      return 1;
+    };
+    for (const [name, model] of Object.entries(db)) {
+      if (!model || !Array.isArray(model.rows)) continue;
+      const wrapped = Object.create(model);
+      for (const method of WRITE_METHODS) {
+        if (typeof model[method] !== "function") continue;
+        wrapped[method] = (...args) => {
+          takeSnapshot();
+          return model[method](...args);
+        };
+      }
+      tx[name] = wrapped;
+    }
+    try {
+      return await callback(tx);
+    } catch (error) {
+      for (const [model, rows] of snapshot || []) {
+        model.rows.length = 0;
+        model.rows.push(...rows);
+      }
+      throw error;
+    } finally {
+      // Nõuandelukk on tehingupõhine: ta vabaneb tehingu lõpus, ka tõrke korral.
+      for (const release of releases) release();
+    }
+  };
+  return db;
 }
 
 test("Covision call payload exposes only opaque participant identifiers", () => {
@@ -298,6 +368,97 @@ test("joining respects max active participants", async () => {
     () => service.joinCall({ callSessionId: call.id, userId: "user_2" }),
     /call.participants_full/
   );
+});
+
+/* SOL-CALL-08 — OSALEJAPIIR JA KÕNE ALGSEIS.
+   Piir oli „loe arv → otsusta → kirjuta" ja kõne sündis kolmes eraldi sammus.
+   Need testid mõõdavad mõlemat poolt: viimase koha võistlust ja seda, et poolik
+   kõne ei jää alles. Lukk on fake'is modelleeritud võtmepõhise mutex'ina (vt
+   `createPrisma`), päris `pg_advisory_xact_lock` tõendab sond. */
+
+test("SOL-CALL-08: kõne sünnib tervikuna — providerinimi ja HOST tulevad koos", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "user_1" });
+
+  assert.ok(call.providerRoomName.includes(call.id), "providerinimi peab kandma kõne id-d");
+  assert.equal(prisma.callSession.rows[0].providerRoomName, call.providerRoomName);
+  const host = prisma.callParticipant.rows.find(row => row.callSessionId === call.id);
+  assert.equal(host?.role, "HOST");
+  assert.equal(host?.userId, "user_1");
+});
+
+test("SOL-CALL-08: HOST-osaluse tõrge ei jäta maha hostita ACTIVE kõnet", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  prisma.callParticipant.create = async () => {
+    throw new Error("db down");
+  };
+
+  await assert.rejects(() => service.startRoomCall({ roomId: "room_1", userId: "user_1" }), /db down/);
+
+  // Vana kood jättis siia ACTIVE kõne, mille järgmine start tagastas muutmata —
+  // katkine seis oli püsiv ja iseparanevat teed ei olnud.
+  assert.equal(prisma.callSession.rows.length, 0);
+  assert.equal(prisma.callParticipant.rows.length, 0);
+});
+
+test("SOL-CALL-08: kaks eri kasutajat viimasele kohale — täpselt üks mahub", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, maxParticipants: 2 });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+
+  const results = await Promise.allSettled([
+    service.joinCall({ callSessionId: call.id, userId: "user_a" }),
+    service.joinCall({ callSessionId: call.id, userId: "user_b" })
+  ]);
+
+  const accepted = results.filter(entry => entry.status === "fulfilled");
+  const rejected = results.filter(entry => entry.status === "rejected");
+  assert.equal(accepted.length, 1, "täpselt üks liituja mahub");
+  assert.match(String(rejected[0].reason?.message), /call.participants_full/);
+  const active = prisma.callParticipant.rows.filter(row => row.leftAt == null);
+  assert.equal(active.length, 2, `aktiivseid osalejaid ${active.length}, piir on 2`);
+});
+
+test("SOL-CALL-08: juba liitunu kordusliitumine ei võta teist kohta", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma, maxParticipants: 2 });
+  const call = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+  await service.joinCall({ callSessionId: call.id, userId: "user_a" });
+
+  await service.joinCall({ callSessionId: call.id, userId: "user_a" });
+
+  const active = prisma.callParticipant.rows.filter(row => row.leftAt == null);
+  assert.equal(active.length, 2);
+});
+
+test("SOL-CALL-08: vana tühja providerinimega kõne parandatakse esimesel puutumisel", async () => {
+  const prisma = createPrisma();
+  const service = createCallService({ prisma });
+  // Vana kolmesammulise loomise jäänuk: ACTIVE kõne, mille nimekirjutus kukkus.
+  const legacy = await prisma.callSession.create({
+    data: {
+      id: "call_legacy",
+      contextType: "ROOM",
+      contextId: "room_1",
+      roomId: "room_1",
+      provider: "MOCK",
+      providerRoomName: "",
+      mode: "AUDIO",
+      status: "ACTIVE",
+      startedByUserId: "host",
+      startedAt: new Date("2026-08-01T09:00:00Z"),
+      maxParticipants: 8
+    }
+  });
+
+  const started = await service.startRoomCall({ roomId: "room_1", userId: "host" });
+
+  assert.equal(started.id, legacy.id);
+  assert.ok(started.providerRoomName.includes(legacy.id));
+  assert.equal(prisma.callSession.rows[0].providerRoomName, started.providerRoomName);
 });
 
 test("leaving as the last active participant ends the call and writes a system message", async () => {
