@@ -29,9 +29,18 @@ function makeInvite(overrides = {}) {
   };
 }
 
-function makeTx({ existingMember = null, activeSub = false, existingSub = null } = {}) {
-  const calls = { subCreate: [], subUpdate: [], memberUpsert: [], inviteUpdate: [] };
+function makeTx({ existingMember = null, activeSub = false, existingSub = null, sponsoredCount = 0 } = {}) {
+  const calls = { subCreate: [], subUpdate: [], memberUpsert: [], inviteUpdate: [], locks: [], order: [] };
   const tx = {
+    /* SOL-INV-01: nõuandelukk on fake'is MÕÕDETAV, mitte vaikselt puuduv. Kui
+       `$executeRaw`-i siin ei oleks, kukuks `lockRoom` ja test näitaks seda
+       veana — aga kui ta oleks lihtsalt no-op, ei tõendaks miski, et lukku üldse
+       võetakse. Kirjutame ta üles koos järjekorraga. */
+    $executeRaw: async (_strings, ...values) => {
+      calls.locks.push(values.map(String).join("|"));
+      calls.order.push("lock");
+      return 1;
+    },
     subscription: {
       findFirst: async (args) => {
         if (args?.where?.status === "ACTIVE") {
@@ -50,8 +59,12 @@ function makeTx({ existingMember = null, activeSub = false, existingSub = null }
     },
     roomMember: {
       findFirst: async () => existingMember,
-      count: async () => 0,
+      count: async () => {
+        calls.order.push("count");
+        return sponsoredCount;
+      },
       upsert: async ({ where, create, update }) => {
+        calls.order.push("upsert");
         calls.memberUpsert.push({ where, create, update });
         return {};
       }
@@ -222,4 +235,74 @@ test("an already-active member short-circuits without touching billing", async (
   assert.equal(calls.subCreate.length, 0);
   assert.equal(calls.subUpdate.length, 0);
   assert.equal(calls.inviteUpdate.length, 0, "does not re-consume the invite");
+});
+
+/* SOL-INV-01 — SPONSORKOHT ON RUUMI OMADUS.
+
+   Kutse vastuvõtt lukustas ainult oma Invite rea, seega kaks ERI kutset samasse
+   ruumi lugesid mõlemad sama vaba koha ja lisasid mõlemad liikme — 50 koha piir
+   oli ületatav. Fake ei saa võistlust ise tõendada (üks lõim), aga ta saab
+   tõendada, et lukk VÕETAKSE ja et ta võetakse enne loendust. Päris võistlust
+   mõõdab `npm run invite:seat:probe`. */
+
+test("SOL-INV-01: sponsorkoha otsus käib ruumiluku all ja lukk tuleb enne loendust", async () => {
+  const { tx, calls } = makeTx();
+  const invite = makeInvite();
+
+  await acceptInviteWithinTx({
+    tx,
+    invite,
+    auth: guestAuth,
+    userEmail: "guest@example.com",
+    displayName: null
+  });
+
+  assert.equal(calls.locks.length, 1, "ruumilukk võetakse täpselt üks kord");
+  assert.match(calls.locks[0], /room:room1/, "lukk on RUUMI, mitte kutse peal");
+  assert.equal(calls.order[0], "lock", "lukk tuleb enne kõike muud");
+  assert.ok(
+    calls.order.indexOf("lock") < calls.order.indexOf("count"),
+    "vaba koha loendus jookseb luku SEES"
+  );
+  assert.ok(
+    calls.order.indexOf("count") < calls.order.indexOf("upsert"),
+    "loendus ja liikmesuse kirjutus on sama luku sees"
+  );
+});
+
+test("SOL-INV-01: täis sponsorkohtade korral ei teki liikmesust ega tellimust", async () => {
+  const { tx, calls } = makeTx({ sponsoredCount: 50 });
+  const invite = makeInvite();
+
+  await assert.rejects(
+    () => acceptInviteWithinTx({
+      tx,
+      invite,
+      auth: guestAuth,
+      userEmail: "guest@example.com",
+      displayName: null
+    }),
+    (error) => error.code === "SPONSOR_CAPACITY_FULL" && error.status === 409
+  );
+
+  assert.equal(calls.memberUpsert.length, 0);
+  assert.equal(calls.subCreate.length, 0);
+  assert.equal(calls.subUpdate.length, 0);
+});
+
+test("SOL-INV-01: viimane vaba koht antakse välja (piir on ülempiir, mitte lävi)", async () => {
+  const { tx, calls } = makeTx({ sponsoredCount: 49 });
+  const invite = makeInvite();
+
+  const result = await acceptInviteWithinTx({
+    tx,
+    invite,
+    auth: guestAuth,
+    userEmail: "guest@example.com",
+    displayName: null
+  });
+
+  assert.equal(result.billing_source, "SPONSORED_BY_HOST");
+  assert.equal(calls.memberUpsert.length, 1);
+  assert.equal(calls.subCreate.length, 1);
 });
