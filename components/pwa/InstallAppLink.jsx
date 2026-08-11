@@ -393,6 +393,14 @@ export default function InstallAppLink({
   const keepInstalledState = showInstalledState || variant === "station";
   if (isStandalone) {
     if (!keepInstalledState) return null;
+    if (variant === "station") {
+      return (
+        <>
+          <strong className="pwa-install-installed-heading">{t("pwa.installed_heading")}</strong>
+          <p className="pwa-install-installed-body">{t("pwa.installed_body")}</p>
+        </>
+      );
+    }
     return (
       <div className="pwa-install-station" data-state="installed">
         <strong>{t("pwa.installed_heading")}</strong>
@@ -470,7 +478,7 @@ export default function InstallAppLink({
 
   if (variant === "station") {
     return (
-      <div className="pwa-install-station" data-state={canInstall ? "ready" : "manual"}>
+      <>
         <p className="pwa-install-station-lead">{t("pwa.fullscreen_body")}</p>
         <Button
           type="button"
@@ -484,7 +492,7 @@ export default function InstallAppLink({
           {t("pwa.install_short")}
         </Button>
         {helpInline}
-      </div>
+      </>
     );
   }
 

@@ -68,19 +68,13 @@
 
   .a11f-plane .csp-step.a11f-install {
     display: grid;
-    justify-items: stretch;
+    justify-items: center;
     gap: 1.8rem;
+    text-align: center;
     /* Kolmerealise installijaama nupp peab maanduma samale horisondile
        kaherealise Salvesta-jaama nupuga. Mõlemad jäävad nüüd lennul
        visuaalselt paigale, kuigi installijaamal on üks selgitusrida rohkem. */
     transform: translateY(-1.2rem);
-  }
-
-  /* a11y-modal.css `.csp-step > div` on teadlikult tugev üldreegel ja
-     vähendas selle vahe 0,55rem-ni. Installijaamas peab selgituse ja nupu
-     vahel olema sama 1,8rem hingamisruum mis Salvesta-jaamas. */
-  .a11f-install .pwa-install-station {
-    gap: 1.8rem;
   }
 
   .a11f-install-title {
@@ -148,6 +142,18 @@
   }
 
   .pwa-install-station[data-state="installed"] p {
+    max-width: 27rem;
+    margin: 0;
+    color: var(--room-text-soft);
+    line-height: 1.5;
+  }
+
+  .pwa-install-installed-heading {
+    color: var(--room-text);
+    font-size: 1.2rem;
+  }
+
+  .pwa-install-installed-body {
     max-width: 27rem;
     margin: 0;
     color: var(--room-text-soft);

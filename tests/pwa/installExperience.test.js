@@ -89,6 +89,20 @@ test("accessibility journey includes optional full-screen install before save", 
     source,
     /onInstallChoice=\{\(outcome\) => \{[\s\S]*outcome === "accepted"[\s\S]*advanceAfterChoice\(\)/
   );
+
+  const installLinkSource = readFileSync(
+    new URL("../../components/pwa/InstallAppLink.jsx", import.meta.url),
+    "utf8"
+  );
+  const stationBranch = installLinkSource.slice(
+    installLinkSource.lastIndexOf('if (variant === "station")'),
+    installLinkSource.indexOf('if (variant === "quickIcon")')
+  );
+  assert.doesNotMatch(
+    stationBranch,
+    /<div className="pwa-install-station"/,
+    "install station must stay flat like the save station, without a scroll wrapper"
+  );
 });
 
 test("public and profile navigation expose install near primary choices", () => {
