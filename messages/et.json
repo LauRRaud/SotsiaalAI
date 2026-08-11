@@ -3683,6 +3683,7 @@
       "failed": "Süvauuring ebaõnnestus.",
       "interrupted": "Süvauuring katkes serveri taaskäivituse või ühenduse katkestuse tõttu. Palun käivita see uuesti.",
       "not_found": "Süvauuringu tööd ei leitud.",
+      "intent_conflict": "Sama katse tunnusega on juba teine päring. Alusta uut uuringut.",
       "stop_before_delete": "Peata töö enne kustutamist.",
       "openai_key_missing": "Süvauuringu AI seadistus puudub.",
       "query_too_long": "Süvauuringu küsimus on liiga pikk.",

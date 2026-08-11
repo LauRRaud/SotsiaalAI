@@ -1785,6 +1785,8 @@ model ResearchJob {
   id         String    @id
   userId     String
   payload    Json
+  /// SOL-RES-02: kliendi ühe kavatsuse võti. NULL = võtmeta töö (vana või sisemine).
+  clientIntentKey String?
   status     String    @default("queued")
   error      String?
   result     Json?
@@ -1799,6 +1801,7 @@ model ResearchJob {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([userId, clientIntentKey], map: "ResearchJob_userId_clientIntentKey_key")
   @@index([userId, status, updatedAt])
   @@index([status, updatedAt])
   @@index([status, leaseUntil, updatedAt])

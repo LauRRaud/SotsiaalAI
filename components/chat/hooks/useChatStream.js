@@ -2,6 +2,7 @@ import { startTransition, useCallback, useEffect, useRef, useState } from "react
 import { createSSEReader as defaultCreateSSEReader } from "../utils/sse";
 import { normalizeSources as defaultNormalizeSources } from "../utils/sources";
 import { localizePath } from "@/lib/localizePath";
+import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
 
 function formatI18n(template, values) {
   if (!values) return template;
@@ -245,6 +246,8 @@ export function useChatStream(config) {
 
   const abortRef = useRef(null);
   const researchJobIdRef = useRef(null);
+  // SOL-RES-02: ühe kavatsuse võti, mis elab kuni serveri kindla vastuseni.
+  const researchIntentRef = useRef(null);
   const researchStreamingMessageIdRef = useRef(null);
 
   // Local-only teardown: stop reading the current stream and reset generating state, WITHOUT
@@ -416,16 +419,26 @@ export function useChatStream(config) {
 
       const runResearch = async () => {
         try {
+          // SOL-RES-02: kavatsuse võti elab kuni serveri kindla vastuseni. Ilma selleta lõi iga
+          // võrgu- või vastusevea kordus UUE tasulise uuringu; nüüd tagastab server sama töö.
+          const researchPayload = {
+            query: text,
+            convId: cfg.convId,
+            persist: true,
+            uiLocale: cfg.locale || "et"
+          };
+          researchIntentRef.current = resolveIntentKey(
+            researchIntentRef.current,
+            buildIntentSignature(researchPayload)
+          );
           const createResponse = await fetch("/api/research/jobs", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              query: text,
-              convId: cfg.convId,
-              persist: true,
-              uiLocale: cfg.locale || "et"
+              ...researchPayload,
+              idempotencyKey: researchIntentRef.current.key
             }),
             signal: controller.signal
           });
@@ -462,6 +475,8 @@ export function useChatStream(config) {
             throw createLocalizedError(readApiErrorKey(createPayload) || "chat.deep_research.error_generic");
           }
 
+          // Server andis kindla vastuse ja töö on olemas: kavatsus on lahendatud.
+          researchIntentRef.current = null;
           const jobId = String(createPayload.id || "").trim();
           if (!jobId) {
             throw createLocalizedError("chat.deep_research.error_generic");

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { enforceChatRateLimit, readChatRateLimit } from "@/lib/chat-api-rate-limit";
 import { requireResearchAuth } from "@/lib/research/auth";
-import { createResearchJob, getActiveResearchJobCount, listResearchJobsForOwner } from "@/lib/research/jobStore";
+import { claimResearchJobForIntent, getActiveResearchJobCount, listResearchJobsForOwner } from "@/lib/research/jobStore";
 import { buildPaginationMeta, parseListLimit, parseListOffset } from "@/lib/documents/listing";
 import { runDeepResearchJob } from "@/lib/research/pipeline";
 import { safeError } from "@/lib/privacy/safeError";
@@ -248,13 +248,27 @@ export async function POST(req) {
 
   normalizedPayload.usageIdempotencyKey = usageHandle.idempotencyKey;
 
+  // SOL-RES-02: kliendi kavatsuse võti seob nüüd reservatsiooni JA töö. Sama võtmega korduskatse
+  // tagastab olemasoleva töö (ka lõppenu), mitte ei käivita uut tasulist jooksu.
   let job;
+  let reusedIntent = false;
   try {
-    job = await createResearchJob({
+    const claim = await claimResearchJobForIntent({
       userId: auth.userId,
       payload: normalizedPayload,
+      clientIntentKey: payload?.idempotencyKey,
     });
+    job = claim.job;
+    reusedIntent = claim.outcome === "reused";
   } catch (error) {
+    if (error?.code === "INTENT_CONFLICT") {
+      try {
+        await releaseUsageForRequest(usageHandle, { reason: "research_intent_conflict" });
+      } catch (releaseError) {
+        console.error("[research] usage release failed", safeError(releaseError));
+      }
+      return errorJson("research.error.intent_conflict", 409);
+    }
     try {
       await releaseUsageForRequest(usageHandle, { reason: "research_job_create_failed" });
     } catch (releaseError) {
@@ -269,6 +283,11 @@ export async function POST(req) {
     }
     console.error("[research] job create failed", safeError(error));
     return errorJson("research.error.failed", 503);
+  }
+
+  // Korduskatse ei ole uus päring: ei uut logirida ega uut jooksu.
+  if (reusedIntent) {
+    return json({ ok: true, id: job.id, status: job.status || "queued", reused: true });
   }
 
   prisma.chatLog.create({

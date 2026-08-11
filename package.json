@@ -50,6 +50,7 @@
     "storage:quota:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/storage-quota-race-probe.mjs",
     "analysis:audit:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/analysis-audit-probe.mjs",
     "research:delete:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-delete-probe.mjs",
+    "research:intent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/research-intent-probe.mjs",
     "field:pack:probe": "node scripts/field-pack-retention-probe.mjs",
     "mtr:refresh": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs",
     "mtr:refresh:dry": "node --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-refresh.mjs --dry",

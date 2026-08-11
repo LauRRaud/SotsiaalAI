@@ -283,6 +283,28 @@ test("research reads are subscription-free and delete really deletes", () => {
   assert.doesNotMatch(hook, /research\/jobs\/\$\{encodeURIComponent\(activeResearchJobId\)\}`, \{\s*method: "DELETE"/);
 });
 
+// SOL-RES-02. Idempotentsus toimis kahes kihis vastupidise tähendusega: võti sidus kasutusühikut,
+// aga töö loodi alati uue UUID-ga, ja tavaklient ei saatnud võtit üldse.
+test("one client intent binds one research job", () => {
+  const route = read("app/api/research/jobs/route.js");
+  const store = read("lib/research/jobStore.js");
+  const hook = read("components/chat/hooks/useChatStream.js");
+
+  assert.match(route, /claimResearchJobForIntent\(/, "the route must claim the job by intent key");
+  assert.doesNotMatch(route, /await createResearchJob\(/, "the raw create must not bypass the intent claim");
+  assert.match(route, /clientIntentKey: payload\?\.idempotencyKey/);
+  assert.match(route, /INTENT_CONFLICT[\s\S]{0,400}research\.error\.intent_conflict", 409/, "same key with a different payload is a conflict");
+  assert.match(route, /if \(reusedIntent\)[\s\S]{0,160}reused: true/, "a retry must not start a second run");
+
+  assert.match(store, /clientIntentKey: clientIntentKey \|\| null/);
+  // Kaks eri unikaalsust ei tohi ühe veateate alla suruda.
+  assert.match(store, /target\.includes\("clientIntentKey"\)/);
+
+  // Klient saadab stabiilse võtme ja kustutab ta alles serveri kindla vastuse peale.
+  assert.match(hook, /idempotencyKey: researchIntentRef\.current\.key/);
+  assert.match(hook, /researchIntentRef\.current = null/);
+});
+
 // --- Contract 5: deep research survives soft navigation; only an explicit Stop cancels it. ---
 
 test("the chat stream hook cancels the durable job only on explicit stop, never on soft detach", () => {

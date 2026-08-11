@@ -3683,6 +3683,7 @@
       "failed": "Deep research failed.",
       "interrupted": "Deep research was interrupted by a server restart or connection break. Please start it again.",
       "not_found": "Deep research job was not found.",
+      "intent_conflict": "Another request already uses this attempt id. Start a new research run.",
       "stop_before_delete": "Stop the job before deleting it.",
       "openai_key_missing": "Deep research AI configuration is missing.",
       "query_too_long": "The deep research question is too long.",
