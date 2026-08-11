@@ -2086,6 +2086,54 @@ arvelduse lahku triivimist), ning süstitava teenuse vaikeväärtus peab olema p
 
 **Vastuvõtukriteerium.** Summary ja kasutajale kuuluv dokument tuleb enne kasutuse commit'i püsivalt siduda või viia taastatavasse finalization-olekusse. `commit_pending` vajab püsivat retry'd; dokument peab läbima atomaarse salvestusreservatsiooni. Veasüstetest peab katma usage commit'i, snapshoti, failikirjutuse ja DB create'i kõik järjekorrad ning tõendama üht koherentset tulemust.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (12/12).**
+
+**Lahendus oli koodibaasis juba olemas ja kasutamata.** `usageService.commit()` võtab `tx`
+parameetri just selleks, et kutsuja saaks arvelduse siduda oma püsiva kirjutusega ühte tehingusse —
+ja `meetingSummaryJobs.js` oli kogu koodibaasis selle meetodi **ainus kutsuja**, kes seda võimalust
+ei kasutanud. `withStorageQuota()` omakorda võtab `write(tx)` tagasikutse ja serialiseerib ta
+kasutajapõhise nõuandelukuga. Kaks olemasolevat tükki klapivad kokku ilma midagi leiutamata.
+
+**Nüüd sünnivad kvoodikontroll, `UserDocument` rida ja `DOCUMENT_GENERATE` commit ühes tehingus:**
+kas kõik kolm maanduvad või mitte ükski. `workCompleted` saab tõeseks alles pärast tehingut — just
+tema keelas varem release'i ja tegi kasutaja arveldatuks ilma dokumendita.
+
+**Kvooti saab siin JÕUSTADA just sellepärast, et commit on tehingu sees.** Vana kood pidi kvoodist
+mööda vaatama (vrd `persistDraft.js` `enforceQuota:false` — „tasutud mustandit ei visata marginaalse
+ületuse pärast ära"), sest ühik oli juba võetud. Meil ei ole enne tehingut midagi võetud, seega üle
+kvoodi jäänud kasutaja **ei ole arveldatud**. See on tootekäitumise muutus ja ta on teadlik: üle
+salvestuspiiri kasutaja saab nüüd kokkuvõtte asemel vea, dokumendiühikut temalt ei võeta.
+
+**`commit_pending` OLI olemas, aga teda ei lugenud keegi kunagi tagasi.** Märge kirjutati juba enne
+seda parandust, ainult et ükski rada ei korranud teda — ajutine andmebaasi tõrge muutis tehtud töö
+tasuta tööks (reservatsioon jäi `RESERVED`-iks ja 24 h reaper vabastas ta kasutamata ühikuna). Nüüd
+loeb `retryPendingMeetingSummaryUsageSettlements()` snapshotid kettalt, seega kordus on protsessi
+restardist sõltumatu; ta käib olemasoleva minutise sweep'i sees. Sellega tuli kaasa **teine, raportis
+kirjas mitte olnud lõks**: sama sweep oleks pooleli arveldusega terminalsnapshoti TTL-i järgi ära
+visanud — ja koos temaga korduse ainsa sisendi. `shouldDelete` hoiab ta nüüd alles.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run meeting:summary:probe`, **12/12**): dokumendirida +
+`COMMITTED` reservatsioon + `used=1, reserved=0` · tundmatu võtmega commit kukutab kogu tehingu ja
+dokumendirida **EI JÄÄ ALLES** (päris rollback, mida fake-Prisma `$transaction` põhimõtteliselt
+mõõta ei saa) ning poolik fail koristatakse kettalt · üle kvoodi jäänud kutse jätab reservatsiooni
+`RESERVED`-iks ja kasutuse nulli · sama võtmega teine commit ei võta teist ühikut.
+
+**`npm test` pool** (`tests/documents/meetingSummaryJobLifecycle.test.js`, 8/8): dokumendi vea korral
+on dokumendiühik `released` ja STT oma jääb `committed` (provider vastas, väline kulu tekkis
+päriselt) · õnnestumisel on tulemus koherentne ja dokumendirajale jõuab roll, ilma milleta kvooti ei
+saa arvutada · `commit_pending` kordub kuni õnnestumiseni ja jääb seni kettale alles.
+
+**Negatiivkontroll.** Ainult järjekorra tagasipööramine (ühik enne dokumenti) annab täpselt selle
+kahju, mida leid kirjeldab: dokumendiühik on `committed`, kuigi dokumenti ei tekkinud.
+
+**Aus piir.** (1) Puhast failikirjutuse viga eraldi ei süstita — kaetud on commit, kvoot, DB-tasandi
+rollback ja snapshot; failikirjutuse tõrge jookseb sama `catch`-i kaudu, aga tal ei ole oma
+veasüsti. (2) STT ühik commit'itakse endiselt kohe pärast providerit ja see on **teadlik**: väline
+kulu on selleks hetkeks päriselt tekkinud. (3) Kui protsess sureb tehingu ja `markMeetingSummaryDone`
+vahel, jääb töö `error`-iks, kuigi dokument on olemas ja ühik võetud — dokument on „Minu
+dokumentides" olemas, aga töö seis valetab. See rada jääb lahtiseks. (4) Kordussweep on
+protsessipõhine; mitme app-protsessi korral skaneerib igaüks sama kataloogi.
+
 ### SOL-MEET-03 — 30-minutilised tundlikud snapshotid võivad pärast restarti jääda tähtajatult alles — P1
 
 **Tõend.** Job-snapshot sisaldab lõpptulemuse `summaryText` väärtust (`lib/documents/meetingSummaryJobs.js:68-81`, `:693-696`). 30-minutiline cleanup-timer läbib ainult aktiivse protsessi `jobs` Map'i ja kustutab snapshoti vaid sealt leitava terminalobjekti puhul (`:26-27`, `:254-262`). Pärast protsessi restarti on Map tühi; koodis pole kataloogi terminalfailide TTL-sweep'i. Faili loetakse ainult konkreetse ID GET-il või aktiivse töö loendamisel ning terminalset vana snapshoti ka siis ei kustutata (`:353-414`). Dokumentide elutsüklikaart kirjeldab sama snapshoti vaikimisi 30-minutilise jobina (`docs/platvormi arendus/fable-5-failide-ja-meedia-elutsukkel.md:81-82`).
