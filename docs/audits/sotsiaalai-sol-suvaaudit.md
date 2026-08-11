@@ -4275,6 +4275,49 @@ haru jääks selle taha ja seepärast on valitud taaskasutus.
 
 **Vastuvõtukriteerium.** Omamakse init peab ühes tehingus looma eraldi SELF tellimuse või puhastama kõik sponsori seosed ja allika, säilitades ajaloo eraldi ledgeris. Test peab katma aegunud hosti- ja organisatsioonisponsorluse → SELF checkout → PAID → cancel/refund ning tõendama õiget maksjat.
 
+**Seis (12.08.2026): DONE — päritolu kirjutatakse tervikuna ja tema vahetus jätab ledgerisse jälje; `npm run pay:origin:probe` 19/19 päris PostgreSQL-is päris marsruutidega (init → PAID → cancel → refund).**
+
+**Leid ei ole kosmeetiline, sest `billingSource` on VÄRAV.** Tühistamine nõuab
+`billingSource: "SELF"` (`app/api/subscription/route.js`), seega omamaksja ei saanud oma
+tellimust lõpetada — ja sponsori hilisem tagasimakse clawback'is perioodi, mille eest maksis
+kasutaja ise. Sond mõõdab mõlemat lõppu, mitte ainult välja väärtust.
+
+**Päritolu on nüüd üks otsus, mitte viis välja** (`lib/payments/subscriptionOrigin.js`): iga
+ehitaja tagastab KÕIK viis välja, ka need, mis tuleb nullida. **Sama auk elas sponsorluste
+VAHEL ja seda raport ei nimetanud:** organisatsioonisponsorlus kirjutas `sponsorOrganizationId`
+ja jättis varasema `sponsorUserId`/`inviteId` rea külge (ja vastupidi) — `lib/org/accessContext.js`
+valib sponsori just nende väljade järgi. Kolm rada (omamakse aktiveerimine, kutse vastuvõtt,
+organisatsioonisponsorluse vastuvõtt) kasutavad nüüd sama ehitajat.
+
+**Kriteeriumist kõrvalekalle, teadlik:** kriteerium ütleb „omamakse **init** peab … puhastama".
+Puhastus käib **aktiveerimise** tehingus, mitte init'is. Init on kavatsus, mitte tõend (vt
+SOL-PAY-02): checkout'i avamine ei tähenda, et makse tuleb, ja lõpetamata makse kustutaks
+sponsori päritolu perioodilt, mille eest sponsor päriselt maksis. „Ühes tehingus" nõue on
+täidetud — vahetus ja ledgeririda commit'ivad koos webhooki lukustatud tehingus.
+
+**Ledger on `DataAuditLog`** (`subscription.billing_source_changed`, from/to + paymentId), mitte
+`logPaymentAudit()`: viimane kirjutab `ChatLog`-i globaalse kliendiga põhitehingust VÄLJAS ja on
+ise eraldi lahtine leid (SOL-PAY-08).
+
+**Kõrvalparandus, mis tegi selle vea nähtamatuks:** tühistus vastas `ok`-iga ka siis, kui ükski
+rida ei liikunud. Kasutaja klõpsas „lõpeta", sai eduka vastuse ja tellimus uuenes edasi.
+Sponsoreeritud tellimust kasutaja endiselt ei tühista — aga see öeldakse nüüd välja
+(`409 api.subscription.cancel_not_self_paid`).
+
+**Kaks negatiivkontrolli, mõlemad vana kuju transkriptsioonid:** sama rida jäetakse
+`SPONSORED_BY_HOST` päritoluga ja päris „lõpeta" ei liiguta mitte midagi · sponsori
+tagasimakse clawback'ib kogu perioodi. Uue kuju all jääb omamakstud periood alles.
+
+Väravad: `npm test` **3895/3895** (Europe/Tallinn ja UTC) · i18n ja eslint puhtad ·
+`db:migrate:check` OK. Skeemimuudatust see leid ei vajanud.
+
+**KATMATA:** brauserist läbi käidud ei ole (tühistusnupu uus 409-tekst on lepingutestiga lukus,
+mitte klõpsuga tõendatud). Vanad read ei parane tagantjärele — päritolu vahetub alles järgmise
+omamakse aktiveerimisel. **Backfilli ei ole vaja ja see on mõõdetud, mitte eeldatud:** toodangus
+on 11 tellimust (8 `SELF`, 3 `SPONSORED_BY_HOST`) ja kokku 4 makset; ühelgi sponsoreeritud real
+EI OLE oma `PAID` makset, seega ühtki „ise maksis, aga rida ütleb sponsor" rida praegu ei
+eksisteeri (mõõdetud `ssh sotsiaalai` + psql 12.08).
+
 ### SOL-PAY-05 — allkirjastatud webhooki PAID otsus ei võrdle makstud summat ega valuutat kohaliku tellimusega — P1
 
 **Tõend.** Payment mudelis on autoriteetsed `amount` ja `currency` väljad (`prisma/schema.prisma:1141-1157`), kuid webhooki lukustatud select neid ei loe (`app/api/subscription/webhook/route.js:307-324`). Otsus vajab ainult kehtivat MAC-i, leitavat providerPaymentId-d ja PAID-iks mapitavat staatust (`:245-294`, `:364-387`); provider payload'i summa/valuuta salvestatakse projektsioonina, kuid ei võrrelda (`lib/payments/rawProjection.js:24-62`). MakeCommerce'i ametlik juhend rõhutab, et merchant peab vastuvõetud summa oodatuga võrdlema: [Payment Links – MakeCommerce Developer Portal](https://developer.makecommerce.net/guides/custom-api/paymentLinks).
@@ -4282,6 +4325,42 @@ haru jääks selle taha ja seepärast on valitud taaskasutus.
 **Mõju.** Allkirja kehtivus tõendab sõnumi päritolu, mitte seda, et selle tehingu summa ja valuuta vastavad kohaliku õiguse hinnale. Providerikonfiguratsiooni, osalise makse, vale transaction/reference sidumise või tulevase integratsioonimuutuse korral saab väiksem/vale makse täismahus kuu või sponsorkutse õiguse.
 
 **Vastuvõtukriteerium.** Enne PAID üleminekut tuleb kanooniliselt võrrelda provider reference/transaction ID, täpset Decimal-summat, valuutat, merchant_data payment/subscription ID-d ja oodatud makseliiki; mittevastavus läheb nähtavasse `REVIEW_REQUIRED`, mitte õiguse aktiveerimisse. Negatiivtestid peavad muutma iga välja eraldi.
+
+**Seis (12.08.2026): DONE — `PAID` peab enne õiguse andmist sellele maksele ja selle summa eest vastama; mittevastavus läheb `REVIEW_REQUIRED` seisu. `npm run pay:verify:probe` 19/19 päris PostgreSQL-is, iga väli eraldi muudetud. Vajab migratsiooni `20260812010000`.**
+
+**Kaks piiri, mis hoiavad kontrolli ausana** (`lib/payments/paymentVerification.js`):
+
+- **Puuduv väli ei ole vastavus.** Kui sõnum summat üldse ei kanna, ei saa öelda „klapib" —
+  see on mittevastavus. Vastupidine valik teeks kontrollist möödapääsu välja ära jättes.
+- **`merchant_data` võrreldakse ainult siis, kui ta kohal on.** Teda ei kanna iga sõnumitüüp ja
+  tema puudumine ei ole tõend millegi vastu; kohal olles peab ta osutama SELLELE maksele.
+
+**Summa võrdlus on kümnendvõrdlus, mitte ujukoma:** `"7.9"` = `"7.90"` = Prisma `Decimal`
+`7.99`… ja `"7.999"` ei ole esitatav, seega ta EI vasta (ümardamine oleks vaikne summa muutmine).
+
+**`REVIEW_REQUIRED` ei ole automaatika lahendada.** Reconciliation küsiks providerilt sama
+`PAID`-i, mis kontrolli üldse kukutas — seepärast on ta teadlikult VÄLJAS reconciliation-worker'i
+valikust, aga SEES kordusmakse blokeerivate seisude hulgas (raha võis liikuda) ja nähtav kolmes
+kohas: omaniku teade outbox'i kaudu, admini analüütika seisujaotus ja eraldi loendur.
+
+**Sond muudab iga välja eraldi, nagu kriteerium nõuab** — summa, valuuta, viide ja
+`merchant_data` makse-ID — ja iga sõnum kannab KEHTIVAT MAC-i: just see ongi leiu tuum.
+Mõõdetakse kaks asja korraga: makse läks ülevaatusesse JA tellimus jäi aktiveerimata.
+**Positiivkontroll on sama tähtis** — täpselt vastav sõnum peab endiselt kuu andma, muidu oleks
+parandus lihtsalt „ei aktiveeri enam midagi". **Negatiivkontroll on vana otsuse
+transkriptsioon:** sama 0,01-eurose sõnumi peale tehakse käsitsi see, mida vana kood tegi
+(`status = PAID` + `activateSubscriptionFromPayment`) — üks sent ostis terve kuu.
+
+**Sond leidis ka päris kõrvalmõju:** SOL-PAY-02 sond saatis oma väljamõeldud summa (`9.90`) ja
+läks selle paranduse järel punaseks — täpselt nagu peabki. Ta loeb summa nüüd realt, mitte ei
+kirjuta teda endasse.
+
+Väravad: `npm test` **3895/3895** (Europe/Tallinn ja UTC) · i18n ja eslint puhtad ·
+`db:migrate:check` OK · kõik viis maksesondi rohelised (13/13 · 27/27 · 27/27 · 19/19 · 19/19).
+
+**KATMATA:** `REVIEW_REQUIRED` rea lahendamiseks ei ole admini nuppu — seis on nähtav, aga
+lahendus käib praegu käsitsi andmebaasist. Osalise tagasimakse summa-loogika on eraldi leid
+(SOL-PAY-06) ja `REFUNDED` sõnumeid see kontroll teadlikult ei puuduta.
 
 ### SOL-PAY-06 — osaline tagasimakse tõlgendatakse täistagastusena ja lõpetab kogu ligipääsu — P1
 

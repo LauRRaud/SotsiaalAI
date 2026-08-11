@@ -130,7 +130,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 136/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 138/403 leidu, 11/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
@@ -214,13 +214,19 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **15/15 päris PostgreSQL-is**, mitte kunagi laheneva provideriga. Brauserikiht jääb
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
-`npm test` **3866/3866** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
+`npm test` **3895/3895** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
 **Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
-kogu SOL-INV ja SOL-PAY-01/-02/-03** — server on `1ed23452`. Deploy'mata on **kaks
-migratsiooni**: `20260811220000` (`VerificationLinkDispatch`) ja `20260811230000`
-(`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus; olemasolevaid ridu
-ei puudutata). Toodangu PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE`
-migratsioonitehingus nõuab PG 12+.
+kogu SOL-INV ja SOL-PAY-01…-05** — server on `1ed23452`. Deploy'mata on **kolm
+migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
+(`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus) ja `20260812010000`
+(`PaymentStatus.REVIEW_REQUIRED`). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
+PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE` migratsioonitehingus nõuab
+PG 12+.
+
+**Toodangu maksepilt mõõdetud 12.08** (SOL-PAY-04 backfilli küsimuse pärast): 11 tellimust
+(8 `SELF`, 3 `SPONSORED_BY_HOST`) ja 4 makset (3 `PAID`, 1 `REFUNDED`). Ühelgi sponsoreeritud
+real ei ole oma `PAID` makset, seega ühtki vale päritoluga rida praegu ei ole ja backfilli ei
+ole vaja.
 
 **Neli uut sondi 11.08 kõne- ja kutsepeatükist:** `call:seat:probe` 12/12 (deterministlik
 võistlus viimase koha pärast + tehingu tagasipööramine) · `call:audit:probe` 11/11 (otsus ja
@@ -228,12 +234,15 @@ tema jälg commit'ivad koos või mitte kumbki) · `invite:seat:probe` 11/11 (kak
 seisus 49/50) · `invite:mail:probe` 16/16 (kogu ahel päris outbox-workeriga). Igaühel
 negatiivkontroll vana kuju vastu.
 
-**Maksepeatükk lisas kolm sondi:** `pay:renewal:probe` 13/13 · `pay:outcome:probe` **27/27**
+**Maksepeatükk lisas viis sondi:** `pay:renewal:probe` 13/13 · `pay:outcome:probe` **27/27**
 (päris marsruudid + päris HTTP-provider, mille vastust sond juhib: 500, katkenud ühendus keset
 laadimist, päris `P2002` pärast õnnestunud laadimist, 402) · `pay:checkout:probe` **27/27**
-(deterministlik võistlus nõuandeluku peal, mõõdetud on makseridade JA provideri kutsete arv).
-Mõlemal uuel sondil on negatiivkontroll vana kuju vastu ja `pay:outcome` lisaks
-vastassuunaline: providerilt kinnitatud eitus PEAB jääma lõplikuks.
+(deterministlik võistlus nõuandeluku peal, mõõdetud on makseridade JA provideri kutsete arv) ·
+`pay:origin:probe` **19/19** (aegunud hosti- ja organisatsioonisponsorlus → omamakse → PAID →
+cancel/refund) · `pay:verify:probe` **19/19** (iga väli eraldi muudetud, iga sõnum kehtiva
+allkirjaga). Igal sondil on negatiivkontroll vana kuju vastu; `pay:outcome` ja `pay:verify`
+kannavad lisaks vastassuunalist kontrolli — kinnitatud eitus peab jääma lõplikuks ja vastav
+sõnum peab endiselt õiguse andma.
 
 **Mõõdetud serverist 11.08:** `sotsiaalai-payment-emails.timer` on toodangus **enabled ja
 active** (iga ~3 min). See on SOL-INV-03 eeldus — kirjade järjekord ei ole surnud postkast.
@@ -475,9 +484,9 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **189 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+Lahtiseks jääb **187 P1, 77 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
 6/7.** **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3)
-on 11.08 lõpetatud** — käsil on **SOL-PAY (3/11)**, kui just jätkufaile ette ei tõsteta.
+on 11.08 lõpetatud** — käsil on **SOL-PAY (5/11)**, kui just jätkufaile ette ei tõsteta.
 SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
 **SOL-PAY-01 tehtud: automaatne uuendamine ei anna enam alla esimese tõrke peale.** Üks
@@ -504,6 +513,21 @@ oma tunnust: sama kavatsus annab sama makseakna, teine vahekaart saab sama akna,
 saabunud päringutest saab tasutava akna täpselt üks. **Lahtine ja sinu teada:** sponsorkutse
 checkout ei ole endiselt idempotentne — see ei ole üheski auditileiu tekstis, aga ta on sama
 klassi asi.
+
+**SOL-PAY-04 tehtud: kes maksab, on nüüd üks otsus.** Kui inimene maksis pärast sponsorluse
+lõppu ise, jäi andmebaasi kirja endine maksja — ja see ei olnud kosmeetika: **oma tellimust ei
+saanud lõpetada** (tühistus nõuab omamakset) ning sponsori hilisem tagasimakse võttis ligipääsu
+ära perioodilt, mille eest inimene ise maksis. Sama auk oli sponsorluste vahel: organisatsiooni
+sponsorlus jättis eelmise inimsponsori seosed rea külge. Nüüd kirjutatakse päritolu tervikuna,
+vahetus jätab ledgerisse jälje (kes maksis eelmise perioodi eest) ja **„lõpeta" ei vasta enam
+eduga siis, kui ta ei lõpetanud midagi**.
+
+**SOL-PAY-05 tehtud: allkiri tõendab päritolu, mitte summat.** „Makstud" otsuseks piisas seni
+kehtivast allkirjast ja leitavast viitest — makstud summat ja valuutat ei võrreldud kunagi
+sellega, mida see makse pidi maksma. Ühe sendiga oleks saanud kuu või sponsorkutse õiguse. Nüüd
+peab sõnum vastama sellele maksele ja selle summa eest; mittevastavus ei anna õigust, vaid läheb
+nähtavasse ülevaatuse seisu (omanikule teade, halduses loendur) ja hoiab ka kordusmakse kinni.
+Täpselt vastav sõnum annab kuu edasi nagu enne.
 
 **Kutsepeatükk sai 11.08 kolm leidu ja on täis.** Sponsorkoht on nüüd päriselt piir:
 50 tasutud kohta ei saa enam ületada ka siis, kui kaks inimest võtavad kaks eri kutset
