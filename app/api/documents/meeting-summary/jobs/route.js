@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import { effectiveRoleFromSession } from "@/lib/authz";
-import { readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
+import { estimateMaxAudioSecondsFromBytes, readAudioDurationSecondsFromBuffer } from "@/lib/audio/duration";
 import {
   createMeetingSummaryJob,
   getMeetingSummaryJobPublic,
@@ -91,6 +91,16 @@ export async function POST(request) {
   }
 
   const inputDurationSeconds = await readAudioDurationSecondsFromBuffer(buffer, file.type || null);
+  // SOL-MEET-05: tundmatu kestus reserveeris varem alati täpselt 60 sekundit, ka 12 MB faili
+  // puhul — see oli süsteemne möödapääs `STT_SECONDS` kuulimiidist. Nüüd on tundmatu kestuse
+  // korral reservatsioon failimahust tuletatud OHUTU ÜLEMPIIR; lõplik arveldus toimub pärast
+  // providerit mõõdetud tegeliku kestusega, seega kasutaja maksab ikkagi ainult tõe eest.
+  const knownDurationSeconds = Number(inputDurationSeconds);
+  const sttReservedSeconds =
+    Number.isFinite(knownDurationSeconds) && knownDurationSeconds > 0
+      ? Math.max(1, Math.ceil(knownDurationSeconds))
+      : Math.max(1, estimateMaxAudioSecondsFromBytes(buffer.byteLength) || 60);
+
   const usageAttemptId = crypto.randomUUID();
   const usageHandles = [];
   try {
@@ -98,10 +108,13 @@ export async function POST(request) {
       request,
       userId: auth.userId,
       metric: "STT_SECONDS",
-      amount: Math.max(1, Math.ceil(Number(inputDurationSeconds) || 60)),
+      amount: sttReservedSeconds,
       scope: "meeting_summary.stt",
       idempotencyKey: usageAttemptId,
-      metadata: { fileSizeBytes: buffer.byteLength }
+      metadata: {
+        fileSizeBytes: buffer.byteLength,
+        durationSource: Number.isFinite(knownDurationSeconds) && knownDurationSeconds > 0 ? "parsed" : "size_estimate"
+      }
     }));
     usageHandles.push(await reserveUsageForRequest({
       request,
@@ -133,7 +146,10 @@ export async function POST(request) {
       usage: {
         stt: {
           idempotencyKey: usageHandles[0].idempotencyKey,
-          state: "reserved"
+          state: "reserved",
+          // SOL-MEET-05: töö vajab reserveeritud mahtu, et lõplik commit saaks mõõdetud tegeliku
+          // kestuse SELLE piiri sisse klammerdada.
+          reservedAmount: sttReservedSeconds
         },
         document: {
           idempotencyKey: usageHandles[1].idempotencyKey,

@@ -49,6 +49,18 @@ test("meeting summary reserves STT and document units and settles each completed
 
   // SOL-MEET-02: `commit_pending` vajab püsivat kordust, muidu on ta lihtsalt vaikne märge.
   assert.match(jobs, /retryPendingMeetingSummaryUsageSettlements/);
+
+  // SOL-MEET-05: tundmatu kestus ei tohi enam anda fikseeritud 60 sekundit — see oli süsteemne
+  // möödapääs kuulimiidist. Reserv tuleb failimahust ja lõplik commit kannab mõõdetud tegelikku.
+  assert.doesNotMatch(route, /Number\(inputDurationSeconds\) \|\| 60/);
+  assert.match(route, /estimateMaxAudioSecondsFromBytes\(buffer\.byteLength\)/);
+  assert.match(route, /reservedAmount: sttReservedSeconds/);
+  assert.match(jobs, /actualAmount: sttActualSeconds/);
+
+  // SOL-MEET-06: avalik viga peab käima allowlist'ist läbi; toorviga ainult redigeeritud logisse.
+  assert.match(jobs, /publicErrorMessageKey\(/);
+  assert.match(jobs, /safeError\(errorOrKey\)/);
+  assert.doesNotMatch(jobs, /job\.error = String\(errorMessage/);
 });
 
 test("admin user analytics reads ledger events and buckets instead of AnalyzeUsage", () => {

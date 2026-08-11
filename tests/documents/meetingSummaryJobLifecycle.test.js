@@ -855,3 +855,183 @@ test("elavat claim'i ei saa üle võtta — jooks värskendab teda ise", async (
     await fs.rm(root, { recursive: true, force: true });
   }
 });
+
+// ---------------------------------------------------------------------------------------------
+// SOL-MEET-05. Tundmatu kestus reserveeris ALATI täpselt 60 sekundit, ka 12 MB faili puhul, ja
+// commit tehti ilma `actualAmount`-ita — seega võeti alati kogu reserveeritud maht. Kokku andis
+// see süsteemse möödapääsu `STT_SECONDS` kuulimiidist.
+// SOL-MEET-06. Väline veatekst salvestati snapshoti ja tagastati kliendile puhastamata.
+// ---------------------------------------------------------------------------------------------
+
+function transcriptionOpenAI({ seconds = null, summary = "kokkuvõte" } = {}) {
+  return class {
+    constructor() {
+      this.audio = {
+        transcriptions: {
+          create: async () => ({
+            text: "kohtumise tekst",
+            ...(seconds == null ? {} : { usage: { type: "duration", seconds } }),
+          }),
+        },
+      };
+      this.responses = { create: async () => ({ output_text: summary }) };
+    }
+  };
+}
+
+async function runWithReservation(userId, { reservedAmount, providerSeconds, parsedSeconds = null }) {
+  const usage = usageRecorder();
+  const job = await createMeetingSummaryJob({
+    userId,
+    payload: { ...samplePayload(), inputDurationSeconds: parsedSeconds },
+    usage: {
+      stt: { idempotencyKey: `${userId}-stt`, state: "reserved", reservedAmount },
+      document: { idempotencyKey: `${userId}-doc`, state: "reserved" },
+    },
+  });
+
+  await runMeetingSummaryJob(job, {
+    usage,
+    loadOpenAI: async () => ({ default: transcriptionOpenAI({ seconds: providerSeconds }) }),
+    persistDocument: async () => ({ id: "doc", title: "Kokkuvõte" }),
+  });
+
+  const sttCommit = usage.calls.find(c => c.action === "commit" && c.idempotencyKey === `${userId}-stt`);
+  return { job, sttCommit };
+}
+
+test("mõõdetud lühem kestus võetakse arvele tegeliku, mitte reserveeritud mahuga", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    // Tundmatu kestus → mahupõhine ohutu reserv 3000 s; päris audio oli 42 s.
+    const { job, sttCommit } = await runWithReservation("meet-05-short", {
+      reservedAmount: 3000,
+      providerSeconds: 42,
+    });
+
+    assert.equal(job.status, "done");
+    assert.equal(sttCommit.actualAmount, 42, "arvele läheb mõõdetud kestus, mitte reserv");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("mõõdetud kestus klammerdub reservatsiooni piiri — rohkem kui reserveeriti ei võeta", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const { sttCommit } = await runWithReservation("meet-05-clamp", {
+      reservedAmount: 100,
+      providerSeconds: 5000,
+    });
+
+    assert.equal(sttCommit.actualAmount, 100);
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("murdosa sekundit ümardatakse ÜLES, mitte alla", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const { sttCommit } = await runWithReservation("meet-05-ceil", {
+      reservedAmount: 600,
+      providerSeconds: 12.2,
+    });
+
+    assert.equal(sttCommit.actualAmount, 13);
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("kui kestust ei õnnestunud kuskilt mõõta, jääb commit reservatsiooni peale", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const { sttCommit } = await runWithReservation("meet-05-unknown", {
+      reservedAmount: 600,
+      providerSeconds: null,
+      parsedSeconds: null,
+    });
+
+    assert.equal(sttCommit.actualAmount, undefined, "tundmatu mõõdu korral ei tohi väiksemat summat välja mõelda");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("provideri toorviga EI jõua snapshoti ega kasutajani", async () => {
+  const root = await makeRoot();
+  const userId = "meet-06-user";
+  const SALADUS = "sk-live-SECRET-KEY /var/lib/sotsiaalai/agent/internal";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    process.env.OPENAI_API_KEY = "test-key";
+
+    const job = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("leak"),
+    });
+
+    await runMeetingSummaryJob(job, {
+      usage: usageRecorder(),
+      loadOpenAI: async () => {
+        throw new Error(`OpenAI request failed: ${SALADUS}`);
+      },
+    });
+
+    assert.equal(job.status, "error");
+    assert.equal(job.error, "documents.agent_workspace.meeting_summary.error",
+      "avalik viga peab olema allowlistitud võti");
+    assert.ok(!job.error.includes("sk-live"), "võti ei tohi kanda toorteksti");
+
+    const persisted = await fs.readFile(path.join(jobsDirFor(root), `${job.id}.json`), "utf8");
+    assert.ok(!persisted.includes("sk-live"), "saladus ei tohi püsivasse snapshoti jõuda");
+    assert.ok(!persisted.includes("/var/lib/sotsiaalai"), "sisemine tee ei tohi snapshoti jõuda");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("meie oma võtmega viga jõuab kasutajani muutmata", async () => {
+  const root = await makeRoot();
+  const userId = "meet-06-key";
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    delete process.env.OPENAI_API_KEY;
+
+    const job = await createMeetingSummaryJob({
+      userId, payload: samplePayload(), usage: reservedUsage("key"),
+    });
+
+    await runMeetingSummaryJob(job, { usage: usageRecorder() });
+
+    assert.equal(job.status, "error");
+    assert.equal(job.error, "api.stt.not_configured",
+      "seadistusviga on kasutajale mõistetav ja peab võtmena alles jääma");
+  } finally {
+    restoreEnv();
+    db.rows.clear();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
