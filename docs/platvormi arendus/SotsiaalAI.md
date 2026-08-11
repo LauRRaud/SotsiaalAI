@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 81/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 82/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -328,10 +328,16 @@ sai ühe kuulimiidi ühikuga käivitada järjest uusi täismahus uuringuid. Vest
 kavatsusel oma tunnus andmebaasis: sama tunnus tagastab sama töö (ka lõppenu), teine sisend annab
 ausa vea. **See vajab migratsiooni** (uus veerg + unikaalsus, olemasolevaid ridu ei muuda).
 
-Lahtiseks jääb **202 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (2/7), kõige eespool lahtine on
+**SOL-RES-03: uuring võis olla ammu valmis, aga ekraanil seisis „ootel".** Kui uuringuid jooksutab
+eraldi tööprotsess (nii on server seadistatav), siis hoidis töö loonud protsess oma mälus vana
+seisu ja näitas seda ka sulle — töö lõppes andmebaasis, aga detail ja edenemisvoog jäid lõputult
+`queued` peale. Nüüd on lihtne reegel: mälukoopia on ainult sellel protsessil, kes tööd päriselt
+teeb; kõik teised loevad andmebaasist. Tõendatud **päris kahe protsessiga 8/8**.
+
+Lahtiseks jääb **201 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (3/7), kõige eespool lahtine on
 endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01 ja -02** — migratsiooni vajavad
+**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01…-03** — migratsiooni vajavad
 DOC-09 ja RES-02, kumbki olemasolevaid ridu muutmata. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`

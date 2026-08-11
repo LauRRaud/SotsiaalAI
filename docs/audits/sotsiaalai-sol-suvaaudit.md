@@ -1766,6 +1766,41 @@ indeksi; olemasolevaid ridu ei muuda (kõik saavad `NULL`).
 
 **Vastuvõtukriteerium.** Worker-režiimis peab DB olema oleku autoriteet: frontend ei tohi aktiivset DB-job'i lokaalse Map'iga varjutada ning SSE peab pollima/subscribima protsessideülese kanali kaudu. Integratsioonitest peab kasutama kahte eraldi protsessi, looma töö frontendist, lõpetama workeris ja tõendama queued → running → done/error/cancelled olekut detailis ning streamis.
 
+**Seis (11.08.2026): DONE — koos päris kaheprotsessilise runtime-tõendiga (8/8).**
+
+**KAKS PROTSESSI, KAKS TÕDE.** Töö loonud frontend-protsess pani IGA uue töö oma lokaalsesse `jobs`
+Map'i. Worker-režiimis claim'ib sama DB-rea aga eraldi `research-worker` protsess ja uuendab OMA
+runtime-objekti — päritoluprotsessi Map neid sündmusi kunagi ei saa. Kuna snapshot, result ja SSE
+eelistasid kõik Map'i andmebaasile, võis töö DB-s edukalt lõppeda, samal ajal kui teda loonud
+protsess andis detailis ja voos **lõputult `queued`**. Stale objekt ei kadunud kunagi, sest sweep ei
+kustuta queued/running seisu.
+
+**Parandus on omandi küsimus, mitte sünkroonimise oma.** Runtime-objekt on ainult sellel protsessil,
+kes tööd PÄRISELT jooksutab: worker-režiimis ei pane loonud protsess teda enam Map'i üldse. Kes tööd
+ei jooksuta, loeb andmebaasist — ja siis on andmebaas ainus tõde, mitte kaks võistlevat. Sünkroonimist
+ei ole vaja, kui teist koopiat ei ole.
+
+**SSE tuleb kaasa ilma eraldi mehhanismita.** Voog valib andmebaasi pollimise täpselt siis, kui
+lokaalset objekti ei ole — ja worker-režiimis teda enam ei ole. Poll ON protsessideülene kanal;
+varem ei jõudnud voog selle haruni, sest stale objekt oli olemas ja voog tellis sündmusi, mida keegi
+kunagi ei saatnud.
+
+**Mõõdetud PÄRIS kahe protsessiga** (`npm run research:worker:probe`, **8/8**). Sellist viga ei saa
+mõõta ühe protsessi sees — kogu viga ongi selles, et kaks protsessi hoiavad eri tõde. Sond käivitab
+`spawn`-iga abilise (`scripts/probes/research-job-child.mjs`), kontrollib et tema **pid on päriselt
+teine**, laseb tal töö andmebaasis lõpetada ja mõõdab, et loonud protsess näeb lõppu kohe — nii
+seisus kui tulemuses.
+
+**Negatiivkontroll on sama harnessi teine pool.** Laps loob töö INLINE-režiimis (seega jääb tal
+runtime-objekt), vanem lõpetab töö andmebaasis, ja laps ütleb, mida TEMA arvab seisuks. Ta ütleb
+`queued`. Seega mehhanism, mille vastu parandus käib, on päris — ja täpselt seda tegi worker-režiimis
+varem ka frontend.
+
+**Aus piir mõõtmises.** Sond lõpetab töö andmebaasis, mitte päris `research-worker` pipeline'i
+kaudu (see kutsuks mudelit ja RAG-i). Mõõdetud on seega nähtavuse invariant — „teise protsessi
+kirjutatud lõppseis on kohe nähtav" — mitte kogu worker-pipeline. `running` vahepealset seisu sond
+eraldi ei mõõda: sama mehhanism kannab teda, sest lugeja ei hoia enam ühtki lokaalset koopiat.
+
 ### SOL-RES-04 — lease'i kaotanud worker võib uuringut jätkata ja uue workeri tulemuse võita — P1
 
 **Tõend.** Heartbeat uuendab rida tingimusel `workerId`, kuid ei kontrolli `updateMany.count` väärtust ega katkesta lokaalset tööd, kui lease kuulub juba teisele workerile (`lib/research/jobStore.js:643-682`). Progressi persistence kasutab omakorda tingimusteta `update where id` ning kirjutab lokaalse vana `workerId/leaseUntil` tagasi (`:187-199`, `:370-396`). Done/error/cancel terminalsiire nõuab ainult aktiivset staatust, mitte praegust workerId-d ega lease'i kehtivust (`:201-210`, `:399-471`). Pipeline kontrollib DB-st ainult `cancelled` olekut, mitte lease'i omanikku (`lib/research/pipeline.js:134-140`).
