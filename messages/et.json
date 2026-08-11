@@ -1560,6 +1560,7 @@
     "logout_all_devices": "Logi kõikjalt välja",
     "logout_all_confirm": "Kas logida välja kõigist seadmetest ja brauseritest ning eemaldada usaldatud seadmed?",
     "logging_out_all": "Logime välja kõigist seadmetest",
+    "logout_failed": "Väljalogimine ei jõudnud serverisse — sa oled endiselt sisse logitud. Palun proovi uuesti.",
     "logout_all_failed": "Kõigist seadmetest väljalogimine ebaõnnestus.",
     "logout_hint": "Lõpetab aktiivse seansi selles seadmes.",
     "logout_hint_device": "Lõpetab aktiivse seansi selles seadmes: {device}.",

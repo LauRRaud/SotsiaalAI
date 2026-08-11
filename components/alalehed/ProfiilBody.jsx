@@ -355,6 +355,27 @@ export default function ProfiilBody({
     setError("");
     setLoggingOut(true);
     try {
+      // SOL-AUTH-14: server tühistab jälgitava sessiooni ESIMESENA ja ütleb, kas see
+      // õnnestus. `signOut()` (= küpsise eemaldamine) tohib järgneda ainult kinnitusele —
+      // muidu näeb kasutaja end väljas, kuigi kopeeritud JWT autoriseerib edasi.
+      const res = await fetch("/api/profile/logout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept-Language": locale
+        },
+        body: JSON.stringify({ locale })
+      });
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setError(resolveApiMessage({
+          payload,
+          t,
+          fallbackKey: "profile.logout_failed"
+        }));
+        return;
+      }
+
       await signOut({
         callbackUrl: localizePath("/", locale)
       });

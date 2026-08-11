@@ -19,12 +19,12 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **115 / 403** |
+| Tehtud leidu | **116 / 403** |
 | Peatükke lõpuni | **6 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 201 × P1 · 86 × P2 · 1 × P3 |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 86 × P2 · 1 × P3 |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
 | Toodangus | **viieteistkümnes deploy 11.08 18:31: server = `1ed23452`.** **Kõik 115 tehtud leidu on nüüd tootmises** — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH on käsil, 13/15.** Lahtised on ainult **AUTH-14** (P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist) ja **AUTH-15** (P2 — paralleelsed paroolitaaste päringud tühistavad teineteise lingi); need kaks lõpetavad peatüki. SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
+| Järgmine peatükk | **SOL-AUTH on käsil, 14/15.** Lahtine on ainult **AUTH-15** (P2 — paralleelsed paroolitaaste päringud tühistavad teineteise lingi); tema lõpetab peatüki. SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
 | Käsil oleva peatüki saba | SOL-AUTH 2 lahtist (1 × P1, 1 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
@@ -89,7 +89,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 |---|---|---|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
 | Build | SOL-BUILD | **1/1** | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 13/15 | 1 × P1 · 1 × P2 | **käsil**, AUTH-01…-13 tehtud; lahtised ainult -14 ja -15 |
+| Autentimine ja autoriseerimine | SOL-AUTH | 14/15 | 1 × P2 | **käsil**, AUTH-01…-14 tehtud; lahtine ainult -15 |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
@@ -202,6 +202,19 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   igale instantsile oma täie limiidi · ilma peibutusräsita on tundmatu konto rada kordades
   kiirem. Ühikuid 12. **Brauseris mõõdetud päris HTTP kaudu**: tundmatu 440/442/413 ms vs
   vale PIN 441/437/436 ms, mõlemal sama kood ja sõnum; 9. katse annab 429.
+- **SOL-AUTH-14** (11.08) — **väljalogimine ütles „tehtud" enne, kui midagi oli tehtud.**
+  NextAuthi `signOut` event kustutas jälgitava sessiooni best-effort'ina ja neelas iga vea
+  peale `P2025`: kasutaja kaotas küpsise ja nägi end väljas, aga sama JWT varem kopeerinud
+  osapool autoriseeris edasi. Nüüd tühistab `POST /api/profile/logout` rea ENNE küpsise
+  eemaldamist ja klient kutsub `signOut()` ainult kinnituse peale — **muster oli olemas ja
+  kasutamata**, `logout-all` teeb täpselt sama. `sessionRecordId` loetakse tokenist, mitte
+  kliendi kehast, ja kustutus on tingimuslik (`{ id, userId }`), sest `count === 0` tähendab
+  kahte vastupidist asja: juba kadunud rida või VÕÕRAS rida. **`npm run auth:logout:probe`
+  14/14 päris PostgreSQL-is**; tõend on `refreshTokenAuthorization()` vastus, mitte rea
+  puudumine — enne annab, pärast `SESSION_REVOKED`, teine seade jääb sisse. Kaks
+  negatiivkontrolli vana raja koodiga: ta raporteeris tõrke kiuste edu · ta kustutas võõra
+  sessiooni omanikku küsimata. **Brauseris päris sessiooniga:** `/api/auth/session` annab
+  pärast väljalogimist `null` ka siis, kui küpsist ei eemaldatud.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude

@@ -3596,6 +3596,40 @@ oma migratsioon on `20260811210000`).
 
 **Vastuvõtukriteerium.** Logout peab siduma serveripoolse revokatsiooni kasutajale raporteeritava tulemusega või kirjutama enne küpsise eemaldamist püsiva retry'ga revoke-käsu. Véasüstetest peab sundima `Session.delete` vea ja tõendama, et vana JWT ei autoriseeri järgmist päringut või et kasutaja saab ausa taastatava vea.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Valitud on kriteeriumi esimene haru: revokatsioon ja nähtav tulemus on üks asi.** Uus
+  `POST /api/profile/logout` tühistab jälgitava sessiooni ja ütleb, kas see õnnestus;
+  `ProfiilBody` kutsub `signOut()`-i — st eemaldab küpsise — **ainult eduka vastuse peale**.
+  Teine haru (püsiv retry-käsk) oleks nõudnud uut tabelit ja teist tõde; siin on retry
+  kasutaja enda järgmine vajutus.
+- **Muster oli koodibaasis olemas ja kasutamata:** `POST /api/profile/logout-all` teeb juba
+  täpselt sama — server teeb töö, klient kontrollib vastust, alles siis `signOut()`. Ühe
+  seadme logout oli ainus väljalogimisrada, mis seda ei teinud.
+- **`sessionRecordId` loetakse TOKENIST, mitte kliendi kehast.** Ta ei ole avalikus
+  sessiooniobjektis; kliendi antud ID oleks olnud võõra sessiooni tühistamise tee.
+- **`count === 0` tähendab kahte vastupidist asja ja neid ei tohi ühte lugeda:** rida oli
+  juba läinud (soovitud lõppseis) või rida on olemas ja kuulub kellelegi teisele (siis ei ole
+  midagi tühistatud → 409). Kustutus on tingimuslik (`{ id, userId }`), mitte mälus
+  kontrollitud.
+- **`auth.js` `signOut` event jääb varuvõrguks** nendele kutsujatele, kes kutsuvad
+  `signOut()` otse (ruumi kliendi surnud-sessiooni rada), aga ta ei ole enam revokatsiooni
+  põhirada. Teel sai ta ise kaks parandust: `delete({ where: { id } })` → `deleteMany` koos
+  **omanikutingimusega**, ja `P2025` vaikimine kadus koos best-effort lepinguga.
+- **`npm run auth:logout:probe` 14/14 päris PostgreSQL-is.** Tõend ei ole rea puudumine, vaid
+  **`refreshTokenAuthorization()` vastus** — sama funktsioon, mille NextAuth igal JWT-kutsel
+  jooksutab: enne väljalogimist AUTORISEERIB, pärast annab `SESSION_REVOKED`, ja teine seade
+  jääb sisse. **Veasüst:** `session.deleteMany` viskab → viga jõuab kutsujani, rida jääb alles
+  ja token autoriseerib edasi — see on AUS seis, mitte regressioon. **Kaks negatiivkontrolli
+  vana raja koodiga:** ta raporteeris tõrke kiuste edu (ja token elas edasi) · ta kustutas
+  võõra sessiooni ilma omanikku küsimata.
+- **Brauseris läbi käidud päris sessiooniga** (dev-admin): `/api/profile/logout` →
+  `{ ok: true, outcome: "revoked" }`, ja `/api/auth/session` annab pärast seda `null`
+  **ilma et küpsist oleks eemaldatud** — täpselt see, mida leid nõudis. Uus marsruut on ka
+  dev-serveri registris (`content-type: application/json`, mitte HTML 404).
+- **Aus piir:** kui andmebaas on maas, ei saa kasutaja üldse välja logida. See on teadlik —
+  alternatiiv on öelda „oled väljas", kui ta ei ole. `logout-all` on samal ajal sama katki,
+  seega uut ummikteed juurde ei tekkinud.
+
 ### SOL-AUTH-15 — paralleelsed paroolitaaste päringud võivad mõlemad välja saadetud lingid tühistada — P2
 
 **Tõend.** Iga reset-POST loob uue `VerificationToken` rea, saadab selle lingi ja alles pärast edukat saatmist kustutab sama identifikaatori kõik teised tokenid (`app/api/auth/password/reset/route.js:163-191`). Kahe paralleelse päringu jadas A:create → B:create → A:send → B:send → A:delete-not-A → B:delete-not-B kustutab A tokeni B ning B tokeni A; mõlemad route'id võivad siiski `ok:true` tagastada. Testid katavad üksiku tokeni tarbimist, mitte POST-route'i paralleelsust (`tests/auth/passwordResetLifecycle.test.js`).

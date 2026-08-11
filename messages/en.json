@@ -1560,6 +1560,7 @@
     "logout_all_devices": "Sign out everywhere",
     "logout_all_confirm": "Sign out on all devices and browsers and remove trusted devices?",
     "logging_out_all": "Signing out everywhere",
+    "logout_failed": "The sign-out did not reach the server — you are still signed in. Please try again.",
     "logout_all_failed": "Failed to sign out on all devices.",
     "logout_hint": "Ends the active session on this device.",
     "logout_hint_device": "Ends the active session on this device: {device}.",
