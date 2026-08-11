@@ -3638,6 +3638,52 @@ oma migratsioon on `20260811210000`).
 
 **Vastuvõtukriteerium.** Sama e-posti reset-algatus peab olema serialiseeritud/idempotentne ning saatmise ja aktiivse tokeni seos püsivalt jälgitav. Paralleeltest peab käivitama kaks POST-i kõigi oluliste interleaving'utega ja tõendama, et vähemalt viimasena edukaks raporteeritud kiri sisaldab üht kehtivat tokenit.
 
+**Seis (11.08.2026): DONE. Vajab migratsiooni** (`20260811220000`, uus tabel
+`VerificationLinkDispatch`; olemasolevaid ridu ei puudutata).
+- **Järjekord oli õige, omand puudus.** `mint → SAADA → alles siis rotatsioon` on sama leping,
+  mille SOL-AUTH-06 ja -13 paika panid, ja teda ei muudetud. Vale oli sõna „ülejäänud":
+  rotatsioon luges stale'iks ka selle tokeni, mille teine samaaegne päring oli just välja
+  saatnud. Parandus ei ole uus järjekord, vaid see, et **mint ja saatmine on üks omand** —
+  identifikaatoripõhise nõuandeluku (`4714`) all tehtud claim, mille jälg on
+  `VerificationLinkDispatch` rida.
+- **See rida ON kriteeriumi „püsivalt jälgitav seos":** `tokenValue` ütleb, milline token
+  teele läks, ja rotatsioon tohib kustutada ainult neid, mille peale rida EI näita. Kui rida
+  ei näita enam minu tokeni peale (`count === 0`), siis ma **ei rotreeri midagi** — sama
+  lugemine mis SOL-AUTH-14-s: null tähendab kas „ma olen aegunud omanik" või „rida on üle
+  võetud", ja kummalgi juhul ei ole teiste ridade kustutamine minu asi.
+- **Teine samaaegne päring on idempotentne, mitte 409:** ta ei mindi ega saada midagi ja
+  vastab `ok`-iga. Topeltklikk annab ühe kirja ühe kehtiva lingiga; see on kriteeriumi lubatud
+  „serialiseeritud VÕI idempotentne" haru ja ainus, mis ei tekita kasutajale uut ummikteed.
+- **Vananemisaken (2 min) on lepingu osa, mitte peidetud detail** — ilma temata lukustaks üks
+  surnud saatja konto taastamise igaveseks (sama argument, mis SOL-DOC-06 claim'is). SMTP enda
+  timeout on 15 s, seega aken on saatmise ülempiir.
+- **Tarnetõrge ei kustuta minu tokenit.** „Viskas" ei tähenda „ei jõudnud kohale" — SMTP võib
+  kirja vastu võtta ja alles siis timeout'ida, seega kustutamine tapaks lingi, mis on kasutaja
+  postkastis. Vabastatakse ainult liisung, et kordus ei ootaks akent.
+- **`npm run auth:reset:probe` 31/31 päris PostgreSQL-is.** Tõend ei ole rea olemasolu, vaid
+  **sama marsruudi `PUT`** — see, mille kasutaja lingile klikkides käivitab — ja token loetakse
+  sealt, kust kasutaja ta saab: VÄLJA SAADETUD KIRJAST (mailer on stub, ajastus on mõõteriist).
+  Kaetud on kolm olulist interleaving'ut: tarne pooleli (üks kiri, üks kehtiv link),
+  järjestikused POST-id (viimane kiri võidab, vana on rotreeritud) ja hüljatud liisungi
+  ülevõtmine. **Negatiivkontroll jooksutab VANA rada samas harnessis sama andmebaasi vastu:**
+  mõlemad päringud raporteerivad edu, mõlemad kirjad lähevad teele ja **andmebaasi ei jää
+  ühtki tokenit** — kumbki link ei taasta kontot.
+- **Kõrvalparandus:** puuduv baas-URL või saatja andis varem 500 ainult OLEMASOLEVALE kontole
+  (olematu vastas `ok`-iga juba enne) — konfiguratsioonivea kujul oli see sama oraakel, mille
+  SOL-AUTH-10 sulges. Kontroll käib nüüd ENNE kasutaja otsimist. Arendusmasinal, kus saatjat
+  `.env`-is ei ole kunagi olnud, jääb kehtima endine vaikne rada.
+- **Aus piir:** tarnetõrge jääb kasutaja jaoks `ok`-iks. Erinev vastus ütleks ära, et konto on
+  olemas (SOL-AUTH-10), seega valitud on vaikimine — erinevalt SOL-AUTH-13-st, kus kasutaja on
+  juba tuvastatud ja 502 ei leki midagi.
+- `runtime: not_run` brauseri mõttes: marsruudi PÄRIS `POST` ja `PUT` on sondis päris
+  andmebaasi vastu läbi käidud, aga dev-serverist läbi ei ole — kaustalukk hoiab teise
+  sessiooni serverit ja **skeemimuudatuse järel kannab ta vana Prisma klienti**. Sama põhjus
+  on ka operatiivne: uus tabel jõuab jooksvasse dev-serverisse alles taaskäivitusega.
+- **Sama muster elab veel kahes kohas** (`app/api/verify-email/route.js:641-655` ja
+  `app/api/register/route.js:326-345`): e-posti kinnituse resend ja registreerimine teevad
+  identse `create → send → deleteMany(NOT mina)` paari. Auditis neid ei ole; jagatud
+  `dispatchVerificationLink()` on kirjutatud nii, et nad saavad selle üle võtta ühe kutsega.
+
 ### SOL-PAY-01 — kirjeldatud kordusmakse retry ei saa pärast esimest tõrget enam käivituda — P1
 
 **Tõend.** Renewal-worker valib ainult `status: ACTIVE` tellimused, mille maksemeetod on `ACTIVE` (`lib/payments/recurring.js:132-143`, kasutus `app/api/jobs/subscription-renewals/route.js:96-116`). Esimese charge-vea catch muudab tellimuse `PAST_DUE`-ks ja maksemeetodi `FAILED`-iks, kuigi arvutab `nextRetryAt` ning retry-loenduri (`app/api/jobs/subscription-renewals/route.js:249-285`). Ka provider-webhooki FAILED/CANCELED rada muudab renewal-tellimuse `PAST_DUE`-ks (`app/api/subscription/webhook/route.js:581-607`). Ükski järgmine valik ei kaasa `PAST_DUE` tellimusi ega `FAILED` maksemeetodit, seega `SUBSCRIPTION_RENEWAL_MAX_RETRY_COUNT`, päevagraafik ja lõplik cancel ei jõua teise katseni. Test kontrollib ainult query kuju ja kuupäevaarvutust eraldi, mitte failure → järgmine worker-run jada (`tests/payments/recurringDue.test.js`).

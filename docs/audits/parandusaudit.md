@@ -5,8 +5,8 @@ see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist
 käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
 (`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
 ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **11.08.2026 õhtul** (kuues mõõtmine, pärast SOL-AUTH-09/-10; eelmised olid pärast
--08/-12/-13 ja pärast -07/-11 koos loenduri enda parandusega).
+Mõõdetud **11.08.2026 hilisõhtul** (seitsmes mõõtmine, pärast SOL-AUTH-15 — peatükk on
+täis); eelmised olid pärast -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
 
 **Loendur ise oli 11.08-ni vaikiv ja andis seetõttu vale nimetaja.** Range muster tundis
 ainult kaheosalist koodi, seega jätkufaili `SOL-DOC-J-01…-06` (6 leidu) ei olnud kordagi
@@ -19,13 +19,13 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **116 / 403** |
-| Peatükke lõpuni | **6 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 86 × P2 · 1 × P3 |
+| Tehtud leidu | **117 / 403** |
+| Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 85 × P2 · 1 × P3 |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **viieteistkümnes deploy 11.08 18:31: server = `1ed23452`.** **Kõik 115 tehtud leidu on nüüd tootmises** — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH on käsil, 14/15.** Lahtine on ainult **AUTH-15** (P2 — paralleelsed paroolitaaste päringud tühistavad teineteise lingi); tema lõpetab peatüki. SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
-| Käsil oleva peatüki saba | SOL-AUTH 2 lahtist (1 × P1, 1 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
+| Toodangus | **DEPLOY'MATA JÄÄK: 2 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is) ja SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
+| Järgmine peatükk | **SOL-AUTH on LÕPETATUD (15/15)** — auditi seitsmes täis peatükk ja ühtlasi suurim. Dokumendi järjekorras järgmised on kvalifitseeritud või jätkufailide päralt (SOL-CW 3 lahtist = kaks otsust + üks brauseritest · SOL-ORG ja SOL-DOC lahtised tulevad AINULT jätkufailidest · SOL-RES-07 kvalifitseeritud), seega esimene puutumata peatükk on **SOL-VOICE (0/3)** — kui just ei otsustata jätkufaile ette tõsta. Vt lahtist tooteotsust allpool. |
+| Käsil oleva peatüki saba | SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
 ## Jätkuauditid — miks nimetaja muutus
@@ -53,7 +53,9 @@ Kolm tagajärge, mis ei ole kosmeetika:
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**Kõik 115 tehtud leidu on 11.08 18:31 seisuga tootmises.** Deploy'mata jääki EI OLE.
+**115 tehtud leidu on 11.08 18:31 seisuga tootmises. Deploy'mata on kaks: SOL-AUTH-14 ja
+SOL-AUTH-15**, viimane koos migratsiooniga `20260811220000` (uus tabel
+`VerificationLinkDispatch`; olemasolevaid ridu ei puudutata).
 
 **Üks asi, mille see ring välja tõi ja mis on siia varem valesti kirjutatud:** eelmine
 versioon väitis, et „AUTH-03…-07 ja -11 on `origin/main`-is". Mõõdetuna oli **`a4e00e43`
@@ -89,7 +91,7 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 |---|---|---|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
 | Build | SOL-BUILD | **1/1** | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 14/15 | 1 × P2 | **käsil**, AUTH-01…-14 tehtud; lahtine ainult -15 |
+| Autentimine ja autoriseerimine | SOL-AUTH | **15/15** | – | **tehtud** — auditi suurim lõpetatud peatükk |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
@@ -215,6 +217,25 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   negatiivkontrolli vana raja koodiga: ta raporteeris tõrke kiuste edu · ta kustutas võõra
   sessiooni omanikku küsimata. **Brauseris päris sessiooniga:** `/api/auth/session` annab
   pärast väljalogimist `null` ka siis, kui küpsist ei eemaldatud.
+- **SOL-AUTH-15** (11.08) — **peatüki lõpetas leid, kus järjekord oli õige ja omand puudus.**
+  Iga paroolitaaste-POST mintis tokeni, saatis lingi ja kustutas siis „kõik ülejäänud" —
+  aga „ülejäänud" hulka kuulus ka see token, mille teine samaaegne päring oli just välja
+  saatnud. Kaks näiliselt edukat kirja, null töötavat linki; topeltklikk või aeglane tarne
+  muutis konto taastamise juhuslikult võimatuks. `mint → SAADA → rotatsioon` (SOL-AUTH-06,
+  -13) jäi puutumata; juurde tuli **omand**: identifikaatoripõhine nõuandelukk `4714` ja
+  claim'i jälg `VerificationLinkDispatch` (migratsioon `20260811220000`), mis ütleb, MILLINE
+  token teele läks. Rotatsioon kustutab ainult neid, mille peale rida ei näita, ja ainult
+  siis, kui rida näitab veel minu peale — `count === 0` loetakse siin sama rangelt kui
+  AUTH-14-s. Teine samaaegne päring on **idempotentne** (ei mindi, ei saada, vastab `ok`).
+  Vananemisaken 2 min on lepingu osa, muidu lukustaks surnud saatja konto igaveseks.
+  **`npm run auth:reset:probe` 31/31 päris PostgreSQL-is**; tõend on sama marsruudi `PUT` —
+  kasutaja kliki rada — ja token loetakse VÄLJA SAADETUD KIRJAST. Negatiivkontroll jooksutab
+  vana rada samas harnessis: mõlemad raporteerivad edu, mõlemad kirjad lähevad teele ja
+  andmebaasi ei jää ühtki tokenit. **Kõrvalparandus:** puuduv baas-URL või saatja andis 500
+  ainult olemasolevale kontole — konfiguratsioonivea kujul sama oraakel, mille AUTH-10 sulges;
+  kontroll käib nüüd enne kasutaja otsimist. **Sama muster elab veel `verify-email` resend'is
+  ja registreerimises** — auditis neid ei ole, jagatud `dispatchVerificationLink()` on
+  kirjutatud nende ülevõtmiseks.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
@@ -668,8 +689,8 @@ kood ei anna:
 - **Järjekorra reegel: P0 EES, dokumendi järjekord on tasavägiste vahel otsustaja.** Reegel
   tekkis 09.08, sest pelk dokumendijärjekord ei kannatanud tabelit välja. **P0-sid ei ole
   auditis enam ühtegi** (viimased kaks olid SPROF-01 ja -02, mõlemad 10.08 kaetud), seega
-  järjekord ON langenud tagasi puhtale dokumendijärjekorrale — ja selle järgi on käsil õige
-  peatükk, **SOL-AUTH**.
+  järjekord ON langenud tagasi puhtale dokumendijärjekorrale. **SOL-AUTH on 11.08 lõpetatud**,
+  ja järgmine peatükk sõltub nüüd otseselt allolevast jätkufailide otsusest.
 - **Reegel ei ütle veel midagi jätkufailide kohta ja see on lahtine otsus.** Kui nad
   liidetakse peaauditi järjekorda, tuleb SOL-ORG-13…-17 ette SOL-AUTH-i sabast; kui nad
   jäävad eraldi järjekorraks, tuleb kokku leppida, millal seda tehakse.

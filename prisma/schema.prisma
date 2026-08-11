@@ -947,6 +947,27 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+/// SOL-AUTH-15: üks saatmine korraga ühe identifikaatori kohta, ja PÜSIV seos
+/// „mis link teele läks" ↔ „mis token kehtib".
+///
+/// Iga paroolitaaste-POST mintis uue tokeni, saatis lingi ja kustutas seejärel
+/// kõik ülejäänud sama identifikaatori tokenid. Kahe paralleelse päringu korral
+/// kustutas A tema, mille B oli just välja saatnud, ja B selle, mille A oli
+/// saatnud — kasutaja sai kaks näiliselt edukat kirja, millest kumbki link ei
+/// töötanud. `claimedAt` on liisung (surnud saatja ei tohi identifikaatorit
+/// igaveseks lukku panna) ja `sentAt` + `tokenValue` on see püsiv seos:
+/// rotatsioon tohib kustutada ainult neid tokeneid, mille peale see rida EI
+/// näita. `tokenValue` on rea SALVESTUSKUJU (sha256, vt SOL-AUTH-03) — toorlink
+/// elab ainult e-kirjas.
+model VerificationLinkDispatch {
+  identifier String    @id
+  tokenValue String
+  claimedAt  DateTime
+  sentAt     DateTime?
+
+  @@index([claimedAt])
+}
+
 // Verify-then-swap email change (T02 ACCOUNT-V1 E2). The login identity
 // (User.email) stays unchanged until the owner of the new address confirms via
 // the emailed link. One pending change per user; tokenHash is sha256 of the

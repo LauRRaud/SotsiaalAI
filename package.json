@@ -29,6 +29,7 @@
     "auth:emaillink:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/login-email-link-probe.mjs",
     "auth:throttle:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/login-throttle-probe.mjs",
     "auth:logout:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/session-revocation-probe.mjs",
+    "auth:reset:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/password-reset-dispatch-probe.mjs",
     "mtr:probe": "node --conditions=react-server --import ./scripts/register-node-test-loader.mjs scripts/mtr-licence-probe.mjs",
     "case:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/case-work-probe.mjs",
     "jta:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/jta-probe.mjs",

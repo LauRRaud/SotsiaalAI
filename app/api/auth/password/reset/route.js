@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import { prisma } from "@/lib/prisma";
 import { resetPasswordWithToken } from "@/lib/auth/passwordResetLifecycle";
-import { createVerificationTokenSecret } from "@/lib/auth/verificationTokens";
+import { dispatchVerificationLink } from "@/lib/auth/verificationLinkDispatch";
 import { getMailer, resolveBaseUrl } from "@/lib/mailer";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
@@ -161,33 +161,35 @@ export async function POST(request) {
       return err("api.auth.reset.invalid_email", 400, locale);
     }
 
+    // Puuduv konfiguratsioon on kogu marsruudi viga, mitte konto oma. Kui ta selguks alles
+    // saatmisel, vastaks olemasolev konto 500-ga ja olematu `ok`-iga — täpselt see oraakel,
+    // mille SOL-AUTH-10 sulges. Seepärast kontrollitakse teda ENNE kasutaja otsimist.
+    // Arendusmasinal puudub saatja ALATI (`.env`-is ei ole `EMAIL_FROM`-i), seega seal jääb
+    // kehtima endine vaikne rada — muidu jäljendaks puuduv konfiguratsioon koodiviga.
+    const senderConfigured =
+      Boolean(process.env.EMAIL_FROM || process.env.SMTP_FROM) ||
+      process.env.NODE_ENV === "development";
+    if (!resolveBaseUrl() || !senderConfigured) {
+      console.error("password reset link cannot be built: mail origin or sender is not configured");
+      return err("api.auth.reset.request_failed", 500, locale);
+    }
+
     const user = await prisma.user.findUnique({ where: { email } });
     if (!user) return ok();
 
-    // raw goes into the link, stored goes into the row — never the reverse.
-    const { raw: token, stored } = createVerificationTokenSecret();
-    const expires = new Date(Date.now() + TOKEN_EXPIRY_MINUTES * 60 * 1000);
-    const identifier = buildResetIdentifier(email);
-
-    await prisma.verificationToken.create({
-      data: {
-        identifier,
-        token: stored,
-        expires
-      }
+    // Mint → SAADA → alles siis rotatsioon, ja kogu kolmik ühe identifikaatori omandis
+    // (SOL-AUTH-15). Toorlink sünnib ainult `deliver` sees; andmebaasi läheb salvestuskuju.
+    const dispatch = await dispatchVerificationLink({
+      db: prisma,
+      identifier: buildResetIdentifier(email),
+      expires: new Date(Date.now() + TOKEN_EXPIRY_MINUTES * 60 * 1000),
+      deliver: (rawToken) => sendResetEmail(email, buildResetUrl(rawToken, locale), locale)
     });
 
-    const resetUrl = buildResetUrl(token, locale);
-    try {
-      await sendResetEmail(email, resetUrl, locale);
-      await prisma.verificationToken.deleteMany({
-        where: {
-          identifier,
-          NOT: { token: stored }
-        }
-      });
-    } catch (sendError) {
-      console.error("password reset email send failed", safeError(sendError));
+    // Tarnetõrge jääb kasutaja jaoks `ok`-iks: erinev vastus ütleks ära, kas konto on olemas.
+    // Aus piir — vt SOL-AUTH-15 Seis-lõiku. Varem saadetud link jääb kehtima.
+    if (dispatch.outcome === "delivery_failed") {
+      console.error("password reset email send failed", safeError(dispatch.error));
     }
 
     return ok();

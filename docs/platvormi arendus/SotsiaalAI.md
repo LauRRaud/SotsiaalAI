@@ -130,35 +130,29 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 110/397 leidu, 7/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
-SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, **SOL-CHAT**). **Auditis ei ole enam ühtegi
-lahtist P0-d.**
+**SOL-süvaaudit: 117/403 leidu, 7/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT). **Auditis ei ole enam ühtegi lahtist P0-d.**
+Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 
-**Nimetaja ei ole 357 — ja ta LIIGUB.** Loend `parandusaudit.md`-s loeb ainult peafaili
-pealkirju, seega kõik jätkufailid on tema alt VÄLJAS. 11.08 õhtul mõõdetuna on neid **viis
-lõpetatut, kokku 35 leidu (18 × P1, 17 × P2), kõik NOT_DONE** — ja kuues
-(`…-jatk-dokumendid.md`) oli kirjutamise ajal veel pooleli, seega 392 on **alumine** piir:
+**Nimetaja ei ole 357 — ta liikus jätkufailidega 403-ni.** Loendur luges algul ainult peafaili
+pealkirju, seega jätkufailid olid tema alt VÄLJAS; 11.08 õhtul mõõdetuna on neid **seitse,
+kokku 46 leidu, kõik NOT_DONE** (`…-jatk-materjalid` 13 · `…-teenusekaart` 8 ·
+`…-dokumendid` 6 · `…-minu-jagamised` 5 · `…-koosta-dokument` 5 · `…-organisatsioonid` 5 ·
+`…-tooheaolu` 4). Loendur kukub nüüd nimeliselt, kui mõni pealkiri tema mustrile ei vasta —
+vaikselt väiksemat nimetajat ta enam anda ei saa.
 
-| Jätkufail | Leiud | Mida ta teeb |
-|---|---|---|
-| `…-jatk-materjalid.md` | SOL-MAT-01…-13 | **uus peatükk**, tabelis ei ole |
-| `…-jatk-teenusekaart.md` | 8 | **uus peatükk** |
-| `…-jatk-minu-jagamised.md` | SOL-SHARE-01…-05 | **uus peatükk** |
-| `…-jatk-organisatsioonid.md` | SOL-ORG-13…-17 | laiendab lõpetatuks loetud peatükki |
-| `…-jatk-tooheaolu.md` | SOL-WB-15…-18 | laiendab olemasolevat (14 → 18) |
+**„SOL-ORG 12/12 tehtud" ja „SOL-DOC 9/9 tehtud" ei kehti enam** — mõlemad said jätkufailist
+lahtiseid leide juurde, seepärast on lõpetatuid 7, mitte 9. SOL-MAT-01 on tavaline
+serveripiiri puudumine tasulisel spetsialistifunktsioonil, mitte ääreala. **Otsustamata ja see
+otsus määrab, mis on järgmine töö: kas jätkufailid liidetakse peaauditi dokumendijärjekorda
+või jäävad eraldi järjekorraks.**
 
-**SOL-ORG-13…-17 tähendab, et „SOL-ORG 12/12 tehtud" ei kehti enam** — seepärast on lõpetatuid
-siin 7, mitte 8. SOL-MAT-01 on tavaline serveripiiri puudumine tasulisel
-spetsialistifunktsioonil, mitte ääreala. **Otsustamata ja see otsus on vaja teha enne järgmist
-loenduse mõõtmist: kas jätkufailid liidetakse peaauditisse (siis kehtib nende peale sama
-dokumendijärjekorra reegel) või jäävad eraldi järjekorraks.**
-
-**Käsil: SOL-AUTH, 8/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
+**SOL-AUTH on lõpetatud: 15/15.** AUTH-03 tehtud (commit `14501377`) — toortoken kadus
 `VerificationToken` reast (`lib/auth/verificationTokens.js`, `v2:` + sha256) ja tarbimine sai
 atomaarse ühekordse claim'i. `npm run auth:token:probe` **26/26 päris PostgreSQL-is**, kaks
 negatiivkontrolli: vana rea väärtus ON töötav link, vana claim-muster viskab kaotaja peal erindi.
 
-**AUTH-04 + -05 + -06 tehtud (commit'imata), üks juur: kinnitus otsustas asjade üle, mida ta ei
+**AUTH-04 + -05 + -06, üks juur: kinnitus otsustas asjade üle, mida ta ei
 hoidnud kinni.** -04: GET ei muuda enam identiteeti — sama skannerikaitse vaheleht, mis
 `verify-email`-is juba oli (GET ei tee ühtki DB-päringut, POST vahetab). -05: kogu otsus kolis
 tehingusse, rea lukk tuli lugemise ETTE ja tarbimine on tingimuslik `deleteMany({id, tokenHash})`
@@ -169,7 +163,7 @@ eduteade asendus `502`-ga ja esmane PUT kannab ausat `emailDelivery` seisu.
 GET-rada vahetab identiteedi pelgalt avamisel · vana kinnitusmuster vahetab VANA aadressi peale ja
 hävitab värske tokeni · vana resend-järjekord tapab varem kohale jõudnud lingi.
 
-**AUTH-07 + -11 tehtud (commit'imata): `LoginTempToken` elutsükkel.** -07: PIN-i vahetus kasvatas
+**AUTH-07 + -11: `LoginTempToken` elutsükkel.** -07: PIN-i vahetus kasvatas
 ainult `sessionVersion`-it, aga vana PIN-iga alustatud sisselogimine loeb tarbimisel KÄESOLEVAT
 versiooni — rotatsioon nägi välja nagu tühistaks kõik ja ei tühistanud. Nüüd kustutatakse samas
 tehingus `LoginTempToken`, `EmailOtpCode`, `TrustedDevice` ja `Session`, täpselt nagu paroolitaaste
@@ -182,8 +176,22 @@ negatiivkontrolli. **Sond leidis lõksu, mis oleks tõendi tühjaks teinud:** `p
 next-auth'i tühi stub (`() => null`) ja päris funktsioon on `provider.options.authorize` — kinni
 püüdis baasjoone kontroll „enne vahetust ANNAB".
 
-Migratsioone ei vaja ükski kolmest plokist. `npm test` **3718/3718**, i18n ja eslint puhtad.
-Lahtised AUTH-08, -09, -10, -12, -13, -14, -15 (7 leidu).
+**AUTH-08…-14 said 11.08 tehtud ja on `origin/main`-is** (sisselogimislingi kinnitus nõuab
+nüüd vajutust, turvalingi origin tuleb ainult konfiguratsioonist, PIN-katsete loendur elab
+andmebaasis ja on instantsiülene, tundmatu konto vastus on ajastuselt sama mis vale PIN-i oma,
+ning väljalogimine ütleb „tehtud" alles siis, kui serveripoolne rida on tühistatud).
+
+**AUTH-15 lõpetas peatüki: paroolitaaste kaks samaaegset päringut tapsid teineteise lingi.**
+Kasutaja sai kaks näiliselt edukat kirja ja kumbki link ei töötanud — topeltklikk või aeglane
+meilitarne võis konto taastamise juhuslikult võimatuks muuta. Nüüd on lingi mintimine ja
+saatmine ÜKS omand: kuni üks kiri on teel, teine päring midagi ei mindi ega saada (topeltklikk
+annab ühe kirja), ja vana link vahetub välja alles siis, kui uus on päriselt teele läinud.
+`npm run auth:reset:probe` **31/31 päris PostgreSQL-is**; tõend on marsruudi enda `PUT` — see,
+mille kasutaja lingile klikkides käivitab. **Vajab migratsiooni `20260811220000`** (uus tabel
+`VerificationLinkDispatch`).
+
+`npm test` **3756/3756**, i18n ja eslint puhtad, `db:migrate:check` OK.
+**Deploy'mata: AUTH-14 (`b7539345`) ja AUTH-15** — server on `1ed23452`.
 **Omaniku otsused 11.08:** SOL-CHAT-10 jääb **fail-closed**, SOL-CHAT-08 jääb **efemeerseks** —
 mõlemad kirjas leidude Seis-lõikudes. Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
@@ -422,8 +430,10 @@ korratakse üle, kuni teenus kinnitab.
 teed tagasi. Elava edenemisvoo taastamine on veel tegemata: see nõuab vestluse voo-koodi
 väljatõstmist, mis on omaette töö. Seepärast loeb loend selle leiu endiselt lahtiseks.
 
-Lahtiseks jääb **198 P1, 73 P2 ja 1 P3**. **SOL-RES on 6/7.** Kõige eespool lahtine on endiselt
-**SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
+Lahtiseks jääb **200 P1, 85 P2 ja 1 P3** (nimetaja kasvas jätkufailidega, vt S1). **SOL-RES on
+6/7.** **SOL-AUTH on 11.08 lõpetatud, 15/15** — kõige eespool lahtine peatükk on nüüd
+**SOL-VOICE (0/3)**, kui just jätkufaile ette ei tõsteta. SOL-CW-09/-14/-19 seisavad sinu
+otsuse ja brauseri-QA taga.
 
 **Kogu SOL-DOC peatükk (01…09) ja SOL-RES-01…-07 on LIVE** (üheteistkümnes deploy 11.08 10:17,
 vt S1) koos migratsioonidega `20260811020000` (`ANALYSIS_SAVE`/`ANALYSIS_DELETE`) ja
