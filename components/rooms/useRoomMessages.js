@@ -2,217 +2,93 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-function toMillis(value) {
-  const ms = new Date(value || 0).getTime();
-  return Number.isFinite(ms) ? ms : 0;
-}
+import {
+  EMPTY_ROOM_META,
+  createRoomMessageSession,
+  mergeById
+} from "@/lib/rooms/roomMessageSession";
 
-function compareRoomMessagesAsc(a, b) {
-  const ta = toMillis(a?.createdAt);
-  const tb = toMillis(b?.createdAt);
-  if (ta !== tb) return ta - tb;
-  return String(a?.id || "").localeCompare(String(b?.id || ""));
-}
-
-function mergeById(prev, incoming) {
-  const map = new Map();
-  (Array.isArray(prev) ? prev : []).forEach(msg => {
-    if (!msg?.id) return;
-    map.set(msg.id, msg);
-  });
-  (Array.isArray(incoming) ? incoming : []).forEach(msg => {
-    if (!msg?.id) return;
-    const existing = map.get(msg.id);
-    map.set(msg.id, existing ? {
-      ...existing,
-      ...msg
-    } : msg);
-  });
-  return Array.from(map.values()).sort(compareRoomMessagesAsc);
-}
-
+/**
+ * Kest ümber `createRoomMessageSession`-i (SOL-ROOM-02, SOL-ROOM-03).
+ *
+ * Kogu ajastus — abort, põlvkond, taimerid, SSE elutsükkel ja terminaalne 401/403 — elab
+ * seansis, mis on Reactist väljas ja seetõttu tõendatav. Siin jääb ainult kaks asja:
+ * seansi elu seotakse RUUMI IDENTITEEDIGA (mitte muutuva olekuga, mis lammutas varem just
+ * avatud ühenduse) ja seisupilt peegeldatakse Reacti.
+ */
 export function useRoomMessages(roomId, pollMs = 3000, options = {}) {
   const initialIsHelpMatchRoom = options.initialIsHelpMatchRoom === true;
-  const [messages, setMessages] = useState([]);
-  const [blocked, setBlocked] = useState(false);
-  const [authRequired, setAuthRequired] = useState(false);
-  const [roomMeta, setRoomMeta] = useState({
-    roomId: String(roomId || ""),
-    roomTitle: "",
-    roomRole: "",
-    isHelpMatchRoom: initialIsHelpMatchRoom,
-    roomOrigin: null,
-    summaryApprovals: []
-  });
-  const [useSse, setUseSse] = useState(false);
-  const cursorRef = useRef(null);
-  const timerRef = useRef(null);
-  const esRef = useRef(null);
-  const retryRef = useRef(2000);
-  const reconnectTimerRef = useRef(null);
-  const lastReadMarkAtRef = useRef(0);
-  const roomPathId = encodeURIComponent(String(roomId || ""));
-  const markRead = useCallback(async (force = false) => {
-    if (!roomId || blocked || authRequired) return;
-    const now = Date.now();
-    if (!force && now - lastReadMarkAtRef.current < 5000) return;
-    lastReadMarkAtRef.current = now;
-    try {
-      await fetch(`/api/rooms/${roomPathId}/read`, {
-        method: "PUT"
-      });
-    } catch {}
-  }, [roomId, roomPathId, blocked, authRequired]);
-  const load = useCallback(async (reset = false) => {
-    if (!roomId) return;
-    const url = new URL(`/api/rooms/${roomPathId}/messages`, window.location.origin);
-    if (!reset && useSse && cursorRef.current) {
-      url.searchParams.set("cursor", cursorRef.current);
-    }
-    const res = await fetch(url.toString());
-    const data = await res.json().catch(() => ({}));
-    if (res.status === 401) {
-      setAuthRequired(true);
-      setBlocked(false);
-      setMessages([]);
-      if (timerRef.current) clearInterval(timerRef.current);
-      return;
-    }
-    if (res.status === 403) {
-      setBlocked(true);
-      setAuthRequired(false);
-      setMessages([]);
-      return;
-    }
-    if (!res.ok || data?.ok === false) return;
-    setAuthRequired(false);
-    setBlocked(false);
-    setRoomMeta({
+  const [snapshot, setSnapshot] = useState(() => ({
+    messages: [],
+    blocked: false,
+    authRequired: false,
+    useSse: false,
+    meta: {
+      ...EMPTY_ROOM_META,
       roomId: String(roomId || ""),
-      roomTitle: String(data.roomTitle || ""),
-      roomRole: String(data.roomRole || "").trim().toUpperCase(),
-      isHelpMatchRoom: data.isHelpMatchRoom === true,
-      roomOrigin: data.roomOrigin && typeof data.roomOrigin === "object" ? data.roomOrigin : null,
-      /* T20 P2: aktiivsete kinnitusringide seis tuleb sama päringuga. */
-      summaryApprovals: Array.isArray(data.summaryApprovals) ? data.summaryApprovals : []
+      isHelpMatchRoom: initialIsHelpMatchRoom
+    }
+  }));
+  const sessionRef = useRef(null);
+
+  useEffect(() => {
+    setSnapshot({
+      messages: [],
+      blocked: false,
+      authRequired: false,
+      useSse: false,
+      meta: {
+        ...EMPTY_ROOM_META,
+        roomId: String(roomId || ""),
+        isHelpMatchRoom: initialIsHelpMatchRoom
+      }
     });
-    const items = Array.isArray(data.messages) ? data.messages.slice().reverse() : [];
-    if (reset) {
-      setMessages(items);
-      cursorRef.current = data.nextCursor || null;
-      void markRead(true);
-      return;
-    }
-    setMessages(prev => mergeById(prev, items));
-    void markRead(false);
-  }, [roomId, roomPathId, useSse, markRead]);
-  const connectSse = useCallback(() => {
-    if (!roomId || blocked || authRequired) return;
-    if (reconnectTimerRef.current) {
-      clearTimeout(reconnectTimerRef.current);
-      reconnectTimerRef.current = null;
-    }
-    if (esRef.current) esRef.current.close();
-    const es = new EventSource(`/api/rooms/${roomPathId}/messages/stream`);
-    esRef.current = es;
-    es.onopen = () => {
-      setUseSse(true);
-      retryRef.current = 2000;
-      if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-    es.onerror = () => {
-      setUseSse(false);
-      if (!timerRef.current) {
-        timerRef.current = setInterval(() => load(false), pollMs);
-      }
-      es.close();
-      esRef.current = null;
-      const delay = Math.min(30000, retryRef.current);
-      retryRef.current = Math.min(30000, retryRef.current * 2);
-      if (!blocked && !authRequired) {
-        reconnectTimerRef.current = setTimeout(() => {
-          reconnectTimerRef.current = null;
-          connectSse();
-        }, delay);
-      }
-    };
-    es.onmessage = ev => {
-      try {
-        const data = JSON.parse(ev.data);
-        if (data.type === "message" && data.message) {
-          setMessages(prev => mergeById(prev, [data.message]));
-          void markRead(false);
-        } else if (data.type === "delete" && data.id) {
-          setMessages(prev => prev.filter(m => m.id !== data.id));
-        }
-      } catch {}
-    };
-  }, [roomId, roomPathId, blocked, authRequired, load, pollMs, markRead]);
-  useEffect(() => {
-    lastReadMarkAtRef.current = 0;
-  }, [roomId]);
-  useEffect(() => {
+
     if (!roomId) {
-      setMessages([]);
-      setBlocked(false);
-      setAuthRequired(false);
-      cursorRef.current = null;
-      setRoomMeta({
-        roomId: "",
-        roomTitle: "",
-        roomRole: "",
-        isHelpMatchRoom: false,
-        roomOrigin: null,
-        summaryApprovals: []
-      });
-      return;
+      sessionRef.current = null;
+      return undefined;
     }
-    setRoomMeta({
-      roomId: String(roomId || ""),
-      roomTitle: "",
-      roomRole: "",
-      isHelpMatchRoom: initialIsHelpMatchRoom,
-      roomOrigin: null,
-      summaryApprovals: []
+
+    const session = createRoomMessageSession({
+      roomId,
+      pollMs,
+      initialIsHelpMatchRoom,
+      onChange: (next) => setSnapshot(next)
     });
-    setMessages([]);
-    setBlocked(false);
-    setAuthRequired(false);
-    cursorRef.current = null;
-    load(true);
-    timerRef.current = setInterval(() => load(false), pollMs);
-    connectSse();
+    sessionRef.current = session;
+    session.start();
+
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-      if (esRef.current) esRef.current.close();
-      if (reconnectTimerRef.current) {
-        clearTimeout(reconnectTimerRef.current);
-        reconnectTimerRef.current = null;
-      }
+      session.close();
+      if (sessionRef.current === session) sessionRef.current = null;
     };
-  }, [roomId, roomPathId, pollMs, load, connectSse, initialIsHelpMatchRoom]);
-  const metaMatchesRoom = roomMeta.roomId === String(roomId || "");
-  const roomTitle = metaMatchesRoom ? roomMeta.roomTitle : "";
-  const roomRole = metaMatchesRoom ? roomMeta.roomRole : "";
-  const isHelpMatchRoom = metaMatchesRoom
-    ? roomMeta.isHelpMatchRoom
-    : initialIsHelpMatchRoom;
-  const roomOrigin = metaMatchesRoom ? roomMeta.roomOrigin : null;
-  const summaryApprovals = metaMatchesRoom ? roomMeta.summaryApprovals : [];
+    // AINULT ruumi identiteet ja seaded. Muutuv olek elab seansis — vastasel juhul
+    // lammutaks iga olekumuutus just avatud ühenduse (SOL-ROOM-03).
+  }, [roomId, pollMs, initialIsHelpMatchRoom]);
+
+  const reload = useCallback(() => sessionRef.current?.reload(), []);
+
+  // Optimistlik lisamine jääb kliendi käes: seanss ühendab ta järgmisel laadimisel oma
+  // loendiga sama `mergeById` reegli järgi.
+  const setMessages = useCallback(updater => {
+    setSnapshot(prev => {
+      const nextMessages = typeof updater === "function" ? updater(prev.messages) : updater;
+      return { ...prev, messages: mergeById([], nextMessages) };
+    });
+  }, []);
+
+  const metaMatchesRoom = snapshot.meta.roomId === String(roomId || "");
   return {
-    messages,
-    blocked,
-    authRequired,
-    roomTitle,
-    roomRole,
-    isHelpMatchRoom,
-    roomOrigin,
-    summaryApprovals,
-    reload: () => load(true),
+    messages: snapshot.messages,
+    blocked: snapshot.blocked,
+    authRequired: snapshot.authRequired,
+    roomTitle: metaMatchesRoom ? snapshot.meta.roomTitle : "",
+    roomRole: metaMatchesRoom ? snapshot.meta.roomRole : "",
+    isHelpMatchRoom: metaMatchesRoom ? snapshot.meta.isHelpMatchRoom : initialIsHelpMatchRoom,
+    roomOrigin: metaMatchesRoom ? snapshot.meta.roomOrigin : null,
+    summaryApprovals: metaMatchesRoom ? snapshot.meta.summaryApprovals : [],
+    reload,
     setMessages,
-    useSse
+    useSse: snapshot.useSse
   };
 }

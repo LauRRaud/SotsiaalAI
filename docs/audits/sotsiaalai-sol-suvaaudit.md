@@ -2868,6 +2868,20 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Fetch, EventSource ja timerid peavad kuuluma konkreetsele roomId-põlvkonnale; cleanup abortib päringu ning ükski vana callback ei kirjuta uude state'i. Hook-/brauseritest peab avama A, vahetama B-le, lahendama B vastuse esimesena ja A vastuse viimasena ning tõendama, et B sõnumid ja meta ei muutu.
 
+**Seis (11.08.2026): DONE koos SOL-ROOM-03-ga, üks plokk. Migratsiooni ei ole vaja.**
+- **Otsused kolisid Reactist välja** (`lib/rooms/roomMessageSession.js`), sest leid ON
+  ajastus ja ajastust ei saa tõendada lähtekoodi kuju vaadates — testijooksja ei renderda
+  hooke. Sama muster, mis SOL-CALL-11…-13 puhul (`lib/calls/clientState.js`). Hook on nüüd
+  kest: annab seansile päris `fetch`-i ja `EventSource`-i ning peegeldab seisu.
+- **Üks seanss ruumi kohta** kannab oma `AbortController`-it, kursorit, taimereid ja voogu.
+  Iga võrguvastus küsib enne kirjutamist `isCurrent()` — suletud seanss ei kirjuta. Vana
+  ruumi vastus ei jõua uude vaatesse ka siis, kui ta saabub hiljem.
+- **Sulgemine katkestab päringu**, mitte ei unusta teda: `controller.abort()` on cleanup'i
+  osa ja katkestust EI loeta tõrkeks (`isAbortError`).
+- **Tõend on täpselt kriteeriumi jada:** ava A → vaheta B-le → lahenda B esimesena ja A
+  VIIMASENA → B sõnumid ja meta ei muutu. Lisaks kaks eraldi mõõtu: katkestatud päringu
+  signaal on `aborted` ja suletud seanss ei tekita ühtki `onChange` kutset.
+
 ### SOL-ROOM-03 — sõnumihook lammutab SSE-ühenduse olekumuutustel ja võib 401/403 korral laadimistsüklisse minna — P2
 
 **Tõend.** Peaeffect sõltub `load`-ist ja `connectSse`-st (`components/rooms/useRoomMessages.js:154-191`). `load` sõltub `useSse`, `blocked` ja `authRequired` olekutest ning `connectSse` sõltub omakorda neist ja `load`-ist (`:64-108`, `:109-153`). EventSource'i `onopen` muudab `useSse=true`, mis loob callback'id uuesti, käivitab cleanup'i, sulgeb just avatud ühenduse, tühjendab sõnumid ja loob uue ühenduse. 401/403 seab `authRequired/blocked`, kuid effect'i uus käivitus nullib need lipud kohe enne järgmist laadimist (`:75-84`, `:181-186`); nii võib keelatud või aegunud sessioon tekitada korduva GET/SSE avamise ning vilkuva oleku. Testikogumis on ainult lähtekoodikuju kontroll `useRoomCall` cleanup'ile, mitte selle hook'i olekumasinale.
@@ -2875,6 +2889,21 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 **Mõju.** Tavalisel avamisel tehakse tarbetu topeltühendus ja sõnumiloend võib vilkuda. Ligipääsu kaol võib klient jätkata perioodilisi keelatud päringuid, näidata ebastabiilselt blocked/login olekut ja koormata serverit selle asemel, et üheselt peatuda.
 
 **Vastuvõtukriteerium.** Ühenduse elutsükkel peab sõltuma stabiilselt ainult ruumi identiteedist; muutuvad olekud tuleb lugeda ref'ist või eraldi reducer'ist. 401 ja 403 on terminalsed kuni sessiooni/ruumi muutuseni ega tohi effect'is nullituda. Fake EventSource + fetch test peab loendama ühendused open/error/401/403/reconnect jadades ja tõendama ühe kontrollitud kanali.
+
+**Seis (11.08.2026): DONE koos SOL-ROOM-02-ga, üks plokk. Migratsiooni ei ole vaja.**
+- **Effect sõltub nüüd AINULT ruumi identiteedist ja seadetest.** Muutuv olek (`useSse`,
+  `blocked`, `authRequired`) elab seansi sees, mitte callback'ide sõltuvustes — just see
+  ahel tegi `onopen`-ist iseenda lammutaja: `useSse=true` → uued callback'id → cleanup →
+  just avatud ühendus kinni → uus ühendus.
+- **401 ja 403 on terminaalsed SEANSI sees.** Varem olid nad olekus, mille järgmine
+  effect-jooks kohe nullis, seega keelatud sessioon küsis lõputult edasi. Nüüd: pollimine
+  seisab, voog suletakse, taasühendust ei planeerita ja isegi käsitsi `reload()` ei tekita
+  päringut. Uus seanss (ruumi või sessiooni vahetus) alustab puhtalt.
+- **Tõend loendab ühendusi**, nagu kriteerium nõuab: avamisel täpselt üks · `onopen` EI tee
+  teist ja ei sulge esimest · `onerror` toob pollimise tagasi ja ajastab taasühenduse
+  backoff'iga (2000 ms) · 401/403 järel null taimerit, null uut ühendust.
+- Võltskell on süstitud, seega backoff ja taasühendus on mõõdetud **ilma ühegi päris
+  ootamiseta**.
 
 ### SOL-ROOM-04 — omanikuvahetus ja sihtliikme lahkumine võivad jätta ruumi aktiivse omanikuta — P1
 
