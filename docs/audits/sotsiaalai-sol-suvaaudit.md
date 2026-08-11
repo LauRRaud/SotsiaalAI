@@ -2540,6 +2540,27 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** AI ruumirežiim peab kasutama sama aktiivse liikmesuse ja billing-access'i kontrolli nagu ruumisõnumite API; administraatori erakorraline ligipääs, kui seda üldse vajatakse, peab olema eraldi põhjendatud break-glass toiming auditi ja kasutajale nähtava jäljega. Negatiivne HTTP-test peab tõendama, et liikmesuseta admin ei saa ruumi lugeda, AI-d käivitada ega sinna sündmust kirjutada.
 
+**Seis (11.08.2026): DONE — erand kustutatud ja kirjutuskohale antud oma värav.**
+- **Leid oli KAHE REEGLI VAHE**, mitte puuduv kontroll: ruumisõnumite API nõuab liikmesust kõigilt,
+  chat bootstrap tegi adminile erandi (`!roleState.isAdmin`), ja sõnumi kirjutaja ise ei
+  kontrollinud midagi. Erand on kustutatud — sama küsimus, sama vastus.
+- **Teine värav on seal, kus KIRJUTUS on.** `saveAssistantRoomMessage()` kontrollib nüüd ise
+  aktiivset liikmesust (`leftAt: null`) ja **VISKAB** `ROOM_MEMBERSHIP_REQUIRED`, kui teda ei ole.
+  Põhjus on kutsujate arv: finalizer jookseb nii voo- kui tavarajal ja ainus koht, kust mööda ei
+  saa, on kirjutus ise. Viskamine, mitte vaikne `null`: ruumipöördel on `persist === false`, seega
+  ruumisõnum on **ainus** püsiv tulemus ja tema puudumine on pöörde ebaõnnestumine.
+- **Break-glass'i EI ehitatud.** Kriteerium lubab erakorralise ligipääsu „kui seda üldse
+  vajatakse"; praegu ei ole ühtegi toodet, mis seda nõuaks, ja poolik break-glass oleks lihtsalt
+  sama auk teise nime all. Kui vaja tuleb, on ta eraldi toiming oma jäljega.
+- **Testid** (`tests/chat/roomAssistantMembership.test.js`, 5 uut): mõlemad väravad eraldi (üks
+  neist üksi ei ole tõend) + **käitumine süstitud kliendiga** — liikmesuseta kirjutus viskab ja
+  `roomMessage.create` ei jookse **mitte kordagi**; liikmega kirjutus läheb läbi ja kannab
+  `ASSISTANT` päritolu. Lisaks leping, et adminierandi muster ei tohi lähtekoodi tagasi tulla.
+- **Katmata:** `hasRoomBillingAccess` kontrolli chat-rajale ei lisatud — ruumisõnumite API teeb
+  seda oma marsruudil ja siin oleks ta kolmas koopia samast reeglist; leiu tegelik kahju
+  (liikmesuseta kirjutus) on kaetud. Negatiivne **HTTP**-test päris admini sessiooniga on tegemata:
+  `runtime: not_run`.
+
 ### SOL-CHAT-08 — failianalüüsi valmis tulemus võib commit'i vea järel kaduda ja retry kulutab uue ühiku — P1
 
 **Tõend.** `/api/chat/analyze-file` saab esmalt RAG-teenuselt täieliku analüüsi, seab `analysisCompleted = true` ning proovib alles seejärel `FILE_ANALYZE` kasutust commit'ida (`app/api/chat/analyze-file/route.js:246-257`). Commit'i vea korral läheb kood catch'i, kuid ei vabasta reservatsiooni, sest completed-lipp on juba tõene, ja tagastab analüüsi asemel vea (`:258-269`). Tulemust ei püsistata taastamiseks. Klient ei saada vormis route'i toetatud `idempotencyKey` välja (`components/chat/hooks/useChatAnalysisController.js:321-329`), mistõttu retry saab adapterilt uue UUID ja käivitab uue analüüsi (`lib/usage/routeAdapter.js:41-55`).
