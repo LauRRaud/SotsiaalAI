@@ -1,6 +1,10 @@
 {
   "name": "SotsiaalAI",
   "short_name": "SotsiaalAI",
+  "description": "SotsiaalAI on täisekraaniliseks kasutuseks loodud sotsiaalvaldkonna töö- ja tugiplatvorm.",
+  "lang": "et",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities"],
   "id": "/",
   "start_url": "/",
   "scope": "/",
@@ -8,6 +12,7 @@
   "background_color": "#0f0805",
   "theme_color": "#140b07",
   "orientation": "portrait-primary",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192-v20260712.png",

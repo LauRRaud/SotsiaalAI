@@ -1700,6 +1700,8 @@
     "motion": "Liikumine ja jõudlus",
     "theme": "Teema",
     "ambient": "Taustaheli",
+    "install": "SotsiaalAI rakendus",
+    "install_nav": "Rakendus",
     "options": {
       "language": {
         "et": "Eesti",
@@ -4112,8 +4114,18 @@
     "cta": "Paigalda mobiili või arvutisse",
     "cta_mobile": "Paigalda mobiili",
     "cta_desktop": "Paigalda arvutisse",
+    "install_short": "Paigalda",
+    "fullscreen_body": "Parima kasutuskogemuse saad täisekraanil.",
+    "installed_heading": "Rakendusvaade on kasutusel",
+    "installed_body": "SotsiaalAI on selles aknas avatud paigaldatud rakendusena.",
+    "promotion_title": "Ava SotsiaalAI omaette ruumina",
+    "promotion_body": "Paigalda platvorm seadmesse, et avada see edaspidi otse ja täisekraanil.",
+    "promotion_cta": "Paigalda rakendus",
+    "promotion_later": "Mitte praegu",
+    "promotion_announcement": "SotsiaalAI saab avada täisekraanilise rakendusena.",
     "instructions": {
       "ios": "Vajuta \"Jaga\" ja seejärel \"Vaata veel\". Ekraanile lisamiseks vajuta.",
+      "ios_other_browser": "Salvesta esmalt eelistused. Seejärel ava see leht iPhone'is või iPadis Safaris, vajuta „Jaga” ja vali „Lisa avakuvale”.",
       "ios_steps": {
         "step_1_prefix": "Vajuta",
         "step_2_prefix": "Vali",

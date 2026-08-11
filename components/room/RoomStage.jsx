@@ -130,6 +130,10 @@ const InstallAppLink = dynamic(() => import("@/components/pwa/InstallAppLink"), 
   ssr: false,
   loading: () => null,
 });
+const InstallPromotion = dynamic(() => import("@/components/pwa/InstallPromotion"), {
+  ssr: false,
+  loading: () => null,
+});
 
 /* Sügavuslaua astmete jaotus elab lib/deskZones.js-is — üks allikas, mida
    saab muuta ilma seda komponenti puutumata (ja mida testid loevad). */
@@ -1011,10 +1015,10 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "juhend", label: t("about.guide.jump_link"), href: "/kasutusjuhend", icon: <GuideBookIcon /> },
       { key: "login", label: t("nav.login"), action: "login", icon: <LoginKeyIcon /> },
       { key: "meist", label: t("meist.title"), href: "/meist", icon: <BrandSIcon /> },
+      { key: "paigalda", label: t("room.install_card"), action: "paigalda", icon: <InstallIcon /> },
       { key: "tingimused", label: t("about.links.terms"), href: "/kasutustingimused", icon: <TermsDocIcon /> },
       { key: "privaatsus", label: t("about.links.privacy"), href: "/privaatsustingimused", icon: <PrivacyShieldIcon /> },
       { key: "hinnastus", label: t("about.links.pricing"), href: "/hinnastus", icon: <PricingTagIcon /> },
-      { key: "paigalda", label: t("room.install_card"), action: "paigalda", icon: <InstallIcon /> },
       { key: "kontakt", label: t("about.contact.title"), action: "kontakt", icon: <ContactMailIcon /> },
     ],
     [t]
@@ -1030,7 +1034,6 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
       { key: "tingimused", label: t("about.links.terms"), href: "/kasutustingimused", icon: <TermsDocIcon /> },
       { key: "privaatsus", label: t("about.links.privacy"), href: "/privaatsustingimused", icon: <PrivacyShieldIcon /> },
       { key: "hinnastus", label: t("about.links.pricing"), href: "/hinnastus", icon: <PricingTagIcon /> },
-      { key: "paigalda", label: t("room.install_card"), action: "paigalda", icon: <InstallIcon /> },
       { key: "kontakt", label: t("about.contact.title"), action: "kontakt", icon: <ContactMailIcon /> },
       { key: "raamleping", label: t("room.framework_card"), href: "/tooalase-kasutuse-raamistik", icon: <AcceptShieldIcon /> },
       { key: "tagasi", label: t("room.back_card"), action: "teave-tagasi", icon: <BackArrowIcon /> },
@@ -1194,6 +1197,7 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
   const profileItems = useMemo(
     () => [
       { key: "keel", label: t("profile.preferences.title"), action: "a11y", icon: <LanguageAccessIcon /> },
+      { key: "paigalda", label: t("room.install_card"), action: "paigalda", icon: <InstallIcon /> },
       { key: "epost", label: t("profile.update_email_cta"), href: "/uuenda-epost", icon: <ContactMailIcon /> },
       { key: "konto", label: t("profile.account_settings"), href: "/profiil?sektsioon=konto", icon: <AccountGearIcon /> },
       { key: "pin", label: t("profile.change_password_cta"), href: "/uuenda-pin", icon: <PinLockIcon /> },
@@ -1894,6 +1898,15 @@ export default function RoomStage({ initiallyCompletedArrival = false }) {
           />
         </div>
       ) : null}
+      <InstallPromotion
+        authenticated={status === "authenticated"}
+        suppressed={
+          !showQuickbar ||
+          isLoginOpen ||
+          Boolean(openInfoModal) ||
+          Boolean(a11y?.isModalOpen)
+        }
+      />
       <RoomQuickbar
         ambientOn={ambientOn}
         containerRef={topbarRef}

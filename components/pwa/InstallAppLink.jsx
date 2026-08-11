@@ -4,6 +4,10 @@ import { createPortal } from "react-dom";
 import { useEffect, useLayoutEffect, useState, useCallback, useRef } from "react";
 import useT from "@/components/i18n/useT";
 import { useI18n } from "@/components/i18n/I18nProvider";
+import {
+  detectPwaEnvironment,
+  shouldUseNativeInstallPrompt,
+} from "@/lib/pwa/installExperience";
 
 function InstallHintIcon({ children }) {
   return (
@@ -80,15 +84,18 @@ export default function InstallAppLink({
   tabIndex,
   showWhenUnavailable = false,
   allowDesktopInstructions = true,
+  showInstalledState = false,
+  onAvailabilityChange,
+  onInstallChoice,
   children
 }) {
   const [canInstall, setCanInstall] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [isStandalone, setIsStandalone] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
+  const [isIOSSafari, setIsIOSSafari] = useState(false);
   const [isMacSafari, setIsMacSafari] = useState(false);
-  const [isMobileViewport, setIsMobileViewport] = useState(false);
-  const [inlineMessage, setInlineMessage] = useState("");
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const [helpOpen, setHelpOpen] = useState(false);
   const [helpPopoverPlacement, setHelpPopoverPlacement] = useState(null);
   const triggerRef = useRef(null);
@@ -101,6 +108,7 @@ export default function InstallAppLink({
   const installCtaDesktop = t("pwa.cta_desktop");
   const iosHint = t("pwa.instructions.ios");
   const androidHint = t("pwa.instructions.android");
+  const iosOtherBrowserHint = t("pwa.instructions.ios_other_browser");
   const macHint = t("pwa.instructions.mac");
   const desktopHint = t("pwa.instructions.desktop");
   const desktopHintNode = <span>{isMacSafari ? macHint : desktopHint}</span>;
@@ -147,13 +155,11 @@ export default function InstallAppLink({
       ]}
     />
   ) : androidHint;
-  const mobileHintNode = isIOS ? iosHintNode : androidHintNode;
-
-  useEffect(() => {
-    if (!inlineMessage) return;
-    const id = window.setTimeout(() => setInlineMessage(""), 7000);
-    return () => window.clearTimeout(id);
-  }, [inlineMessage]);
+  const mobileHintNode = isIOS
+    ? isIOSSafari
+      ? iosHintNode
+      : iosOtherBrowserHint
+    : androidHintNode;
 
   useEffect(() => {
     if (!helpOpen) return;
@@ -179,7 +185,7 @@ export default function InstallAppLink({
   }, [helpOpen]);
 
   useLayoutEffect(() => {
-    if (!helpOpen || typeof window === "undefined") {
+    if (!helpOpen || variant === "station" || typeof window === "undefined") {
       setHelpPopoverPlacement(null);
       return undefined;
     }
@@ -242,7 +248,7 @@ export default function InstallAppLink({
       window.removeEventListener("scroll", onScroll, true);
       window.removeEventListener("resize", onResize);
     };
-  }, [helpOpen, isIOS, mobilePopoverPreferAbove]);
+  }, [helpOpen, isIOS, mobilePopoverPreferAbove, variant]);
 
   useEffect(() => {
     const standalone =
@@ -255,19 +261,17 @@ export default function InstallAppLink({
       const vendor = navigator.vendor || "";
       const platform =
         navigator.userAgentData?.platform || navigator.platform || "";
-      const likelyIOS =
-        /iPhone|iPad|iPod/i.test(ua) ||
-        (platform === "MacIntel" && navigator.maxTouchPoints > 1);
-      const isSafariEngine =
-        /Safari/i.test(ua) && /Apple Computer/i.test(vendor);
-      const likelyMac = /Mac/i.test(platform) && !likelyIOS;
+      const environment = detectPwaEnvironment({
+        userAgent: ua,
+        vendor,
+        platform,
+        maxTouchPoints: navigator.maxTouchPoints,
+      });
 
-      setIsIOS(likelyIOS);
-      setIsMacSafari(Boolean(likelyMac && isSafariEngine));
-      setIsMobileViewport(
-        window.matchMedia?.("(max-width: 768px)")?.matches ??
-          /Android|iPhone|iPad|iPod/i.test(ua)
-      );
+      setIsIOS(environment.isIOS);
+      setIsIOSSafari(environment.isIOSSafari);
+      setIsMacSafari(environment.isMacSafari);
+      setIsMobileDevice(environment.isMobile);
     } catch {}
 
     const syncStoredPrompt = () => {
@@ -307,6 +311,23 @@ export default function InstallAppLink({
     };
   }, []);
 
+  const installAvailable =
+    !isStandalone &&
+    Boolean(
+      canInstall ||
+        isIOS ||
+        isMobileDevice ||
+        (allowDesktopInstructions && isMacSafari)
+    );
+
+  useEffect(() => {
+    onAvailabilityChange?.({
+      available: installAvailable,
+      isIOS,
+      isStandalone,
+    });
+  }, [installAvailable, isIOS, isStandalone, onAvailabilityChange]);
+
   const handleClick = useCallback(
     async e => {
       e.preventDefault();
@@ -315,25 +336,27 @@ export default function InstallAppLink({
           ? true
           : installTarget === "desktop"
             ? false
-            : isMobileViewport || isIOS;
+            : isMobileDevice || isIOS;
 
-      if (isMobile) {
-        setHelpOpen((current) => !current);
-        setInlineMessage("");
-        return;
-      }
-
-      if (deferredPrompt) {
+      if (shouldUseNativeInstallPrompt({ deferredPrompt, isIOS })) {
         deferredPrompt.prompt();
+        let outcome = "dismissed";
         try {
-          await deferredPrompt.userChoice;
+          const choice = await deferredPrompt.userChoice;
+          outcome = choice?.outcome || outcome;
         } finally {
           try {
             window.__deferredPWAInstallPrompt = null;
           } catch {}
           setDeferredPrompt(null);
           setCanInstall(false);
+          onInstallChoice?.(outcome);
         }
+        return;
+      }
+
+      if (isMobile) {
+        setHelpOpen((current) => !current);
         return;
       }
 
@@ -349,7 +372,6 @@ export default function InstallAppLink({
 
       if (message) {
         setHelpOpen((current) => !current);
-        setInlineMessage("");
       }
     },
     [
@@ -358,20 +380,30 @@ export default function InstallAppLink({
       desktopHint,
       iosHint,
       isIOS,
-      isMobileViewport,
+      isMobileDevice,
       isMacSafari,
       installTarget,
       allowDesktopInstructions,
-      macHint
+      macHint,
+      onInstallChoice,
     ]
   );
 
-  if (isStandalone) return null;
+  const keepInstalledState = showInstalledState || variant === "station";
+  if (isStandalone) {
+    if (!keepInstalledState) return null;
+    return (
+      <div className="pwa-install-station" data-state="installed">
+        <strong>{t("pwa.installed_heading")}</strong>
+        <p>{t("pwa.installed_body")}</p>
+      </div>
+    );
+  }
 
   const shouldHideDesktopInstall =
     !showWhenUnavailable &&
     installTarget === "auto" &&
-    !isMobileViewport &&
+    !isMobileDevice &&
     !isIOS &&
     !canInstall;
   if (shouldHideDesktopInstall) return null;
@@ -381,14 +413,26 @@ export default function InstallAppLink({
       ? true
       : installTarget === "desktop"
         ? false
-        : isMobileViewport || isIOS;
+        : isMobileDevice || isIOS;
   const installCta = isMobileInstallTarget ? installCtaMobile : installCtaDesktop;
 
+  const helpBody = (
+    <div className="pwa-install-help-body">
+      {isMobileInstallTarget ? mobileHintNode : desktopHintNode}
+    </div>
+  );
+  const helpInline =
+    helpOpen && variant === "station" ? (
+      <div ref={helpPopoverRef} className="pwa-install-inline-help" role="status">
+        {helpBody}
+      </div>
+    ) : null;
   const helpPopover =
-    helpOpen && typeof document !== "undefined"
+    helpOpen && variant !== "station" && typeof document !== "undefined"
       ? createPortal(
           <div
             ref={helpPopoverRef}
+            className="pwa-install-help"
             role="dialog"
             aria-modal="false"
             aria-label={isMobileInstallTarget ? t("pwa.cta_mobile") : t("pwa.cta_desktop")}
@@ -411,20 +455,36 @@ export default function InstallAppLink({
           >
         <button
           type="button"
+          className="pwa-install-help-close"
           aria-label={t("buttons.close")}
           onClick={() => setHelpOpen(false)}
         >
               {t("symbols.times")}
             </button>
-            <div>
-              <div>
-                {isMobileInstallTarget ? mobileHintNode : desktopHintNode}
-              </div>
-            </div>
+            {helpBody}
           </div>,
           document.body
         )
       : null;
+
+  if (variant === "station") {
+    return (
+      <div className="pwa-install-station" data-state={canInstall ? "ready" : "manual"}>
+        <p className="pwa-install-station-lead">{t("pwa.fullscreen_body")}</p>
+        <button
+          type="button"
+          ref={triggerRef}
+          className="pwa-install-action"
+          data-autofocus=""
+          onClick={handleClick}
+          aria-expanded={helpOpen || undefined}
+        >
+          {t("pwa.install_short")}
+        </button>
+        {helpInline}
+      </div>
+    );
+  }
 
   if (variant === "quickIcon") {
     return (
@@ -432,7 +492,7 @@ export default function InstallAppLink({
         <button
           type="button"
           ref={triggerRef}
-          className={className}
+          className={className || "pwa-install-action"}
           onClick={handleClick}
           aria-label={ariaLabel || installCta}
           tabIndex={tabIndex}
@@ -446,14 +506,14 @@ export default function InstallAppLink({
 
   if (variant === "section") {
     return (
-      <section>
+      <section className="pwa-install-section">
         <p>
           <strong>{resolvedHeading}</strong>
         </p>
         <p>
-          <a href="#" ref={triggerRef} onClick={handleClick}>
+          <button type="button" className="pwa-install-action" ref={triggerRef} onClick={handleClick}>
             {installCta}
-          </a>
+          </button>
           {helpPopover}
         </p>
       </section>
@@ -462,25 +522,25 @@ export default function InstallAppLink({
 
   if (variant === "row") {
     return (
-      <span>
-        <a
-          href="#"
+      <span className="pwa-install-row">
+        <button
+          type="button"
           ref={triggerRef}
-          className={className}
+          className={className || "pwa-install-action"}
           onClick={handleClick}
         >
           {installCta}
-        </a>
+        </button>
         {helpPopover}
       </span>
     );
   }
 
   return (
-    <li>
-      <a href="#" ref={triggerRef} onClick={handleClick}>
+    <li className="pwa-install-list-item">
+      <button type="button" className="pwa-install-action" ref={triggerRef} onClick={handleClick}>
         {installCta}
-      </a>
+      </button>
       {helpPopover}
     </li>
   );

@@ -28,6 +28,7 @@ import OptionCard from "@/components/ui/OptionCard";
    joon 1,45 selle sees — samas ringis loeb see hoopis jämedama ja
    kõrgema nooleks (omanik 25.07: "nool on vale keele omas"). */
 import { BackArrowIcon } from "@/components/brand/icons/CardIcons";
+import InstallAppLink from "@/components/pwa/InstallAppLink";
 import useStationFlight from "@/components/register/useStationFlight";
 import {
   AMBIENT_MODES,
@@ -45,6 +46,7 @@ const STATIONS = [
   { key: "screen_profile", legend: "accessibility.screen_profile" },
   { key: "motion", legend: "accessibility.motion" },
   { key: "ambient", legend: "accessibility.ambient" },
+  { key: "install", legend: "accessibility.install_nav" },
   { key: "save", legend: "profile.preferences.title" },
 ];
 
@@ -593,6 +595,21 @@ export default function AccessibilityModal({
               ))}
             </div>
           </fieldset>
+        );
+      case "install":
+        return (
+          <div className="csp-step a11f-install">
+            <p className="a11f-install-title">{t("accessibility.install")}</p>
+            <InstallAppLink
+              variant="station"
+              mobilePopoverPreferAbove
+              showWhenUnavailable
+              showInstalledState
+              onInstallChoice={(outcome) => {
+                if (outcome === "accepted") advanceAfterChoice();
+              }}
+            />
+          </div>
         );
       case "save":
       default:

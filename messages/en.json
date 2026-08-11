@@ -1700,6 +1700,8 @@
     "motion": "Motion and performance",
     "theme": "Theme",
     "ambient": "Background sound",
+    "install": "SotsiaalAI app",
+    "install_nav": "App",
     "options": {
       "language": {
         "et": "Estonian",
@@ -4112,8 +4114,18 @@
     "cta": "Install on mobile or desktop",
     "cta_mobile": "Install on mobile",
     "cta_desktop": "Install on desktop",
+    "install_short": "Install",
+    "fullscreen_body": "For the best experience, use SotsiaalAI full screen.",
+    "installed_heading": "App view is in use",
+    "installed_body": "SotsiaalAI is open in this window as an installed app.",
+    "promotion_title": "Open SotsiaalAI as its own space",
+    "promotion_body": "Install the platform on this device to open it directly and full screen next time.",
+    "promotion_cta": "Install app",
+    "promotion_later": "Not now",
+    "promotion_announcement": "SotsiaalAI can be opened as a full-screen app.",
     "instructions": {
       "ios": "1. Tap \"Share\". 2. Choose \"More\". 3. Tap \"Add to Home Screen\".",
+      "ios_other_browser": "Save your preferences first. Then open this page in Safari on iPhone or iPad, tap Share, and choose Add to Home Screen.",
       "ios_steps": {
         "step_1_prefix": "Tap",
         "step_2_prefix": "Choose",
