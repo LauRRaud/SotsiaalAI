@@ -9,6 +9,7 @@ import {
   retryPendingMeetingSummaryUsageSettlements,
   runMeetingSummaryJob,
   shouldDeleteMeetingSummaryJob,
+  sweepMeetingSummarySnapshots,
 } from "../../lib/documents/meetingSummaryJobs.js";
 
 // SOL-MEET-01. Leid oli VAIKNE kahes kohas korraga.
@@ -412,4 +413,219 @@ test("pooleli arveldusega snapshotit ei visata TTL-i järgi ära", () => {
     false,
     "pooleli arveldus on korduse AINUS sisend — teda ei tohi ära visata"
   );
+});
+
+// ---------------------------------------------------------------------------------------------
+// SOL-MEET-03. Koristus käis AINULT protsessi `jobs` Map'i läbi. Pärast restarti on Map tühi, aga
+// snapshot kannab valmis `summaryText` välja — seega jäi kohtumise tundlik kokkuvõte kettale
+// TÄHTAJATULT. Otse kettale kirjutatud snapshot ONGI restardi tingimus: seda faili ei ole see
+// protsess kunagi näinud.
+// ---------------------------------------------------------------------------------------------
+
+const SALADUS = "KLIENDI-NIMI-JA-DIAGNOOS";
+
+async function writeSnapshot(root, record) {
+  await fs.mkdir(jobsDirFor(root), { recursive: true });
+  const file = path.join(jobsDirFor(root), `${record.id}.json`);
+  await fs.writeFile(file, JSON.stringify(record), "utf8");
+  return file;
+}
+
+function terminalSnapshot(id, { userId = "meet-03-user", agoMs = 0, usage = null } = {}) {
+  const stamp = new Date(Date.now() - agoMs).toISOString();
+  return {
+    id,
+    userId,
+    status: "done",
+    createdAt: stamp,
+    updatedAt: stamp,
+    startedAt: stamp,
+    endedAt: stamp,
+    error: null,
+    result: { summaryText: `Kokkuvõte: ${SALADUS}`, document: { id: "doc_1" } },
+    usage,
+  };
+}
+
+async function ageFile(file, ms) {
+  const when = new Date(Date.now() - ms);
+  await fs.utimes(file, when, when);
+}
+
+test("restardi järel kustutab kataloogisweep aegunud terminalsnapshoti KOOS sisuga", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    const file = await writeSnapshot(root, terminalSnapshot("aegunud-1", { agoMs: 2 * 60 * 60 * 1000 }));
+    assert.ok((await fs.readFile(file, "utf8")).includes(SALADUS), "eeldus: sisu on kettal olemas");
+
+    const summary = await sweepMeetingSummarySnapshots({ usage: usageRecorder() });
+
+    assert.equal(summary.removed, 1);
+    await assert.rejects(fs.readFile(file, "utf8"), /ENOENT/);
+    const left = await fs.readdir(jobsDirFor(root));
+    assert.deepEqual(left, [], "kataloogi ei tohi jääda ühtki jälge");
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("värske terminalsnapshot jääb TTL-i sees alles", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    await writeSnapshot(root, terminalSnapshot("varske-1", { agoMs: 60 * 1000 }));
+
+    const summary = await sweepMeetingSummarySnapshots({ usage: usageRecorder() });
+
+    assert.equal(summary.removed, 0);
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), ["varske-1.json"]);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("pooleli arveldusega snapshot jääb alles ka üle TTL-i", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    await writeSnapshot(
+      root,
+      terminalSnapshot("pending-1", {
+        agoMs: 2 * 60 * 60 * 1000,
+        usage: { stt: { idempotencyKey: "k", state: "commit_pending" } },
+      })
+    );
+
+    const summary = await sweepMeetingSummarySnapshots({ usage: usageRecorder() });
+
+    assert.equal(summary.removed, 0);
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), ["pending-1.json"]);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("restardist rippuma jäänud running-töö katkestatakse, kasutus vabastatakse ja siis ta aegub", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+
+    const hangingAt = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    await writeSnapshot(root, {
+      id: "rippuv-1",
+      userId: "meet-03-user",
+      status: "running",
+      createdAt: hangingAt,
+      updatedAt: hangingAt,
+      startedAt: hangingAt,
+      endedAt: null,
+      error: null,
+      result: null,
+      usage: {
+        stt: { idempotencyKey: "rippuv-stt", state: "reserved" },
+        document: { idempotencyKey: "rippuv-doc", state: "reserved" },
+      },
+    });
+
+    const usage = usageRecorder();
+    const first = await sweepMeetingSummarySnapshots({ usage });
+
+    assert.equal(first.interrupted, 1);
+    assert.equal(first.removed, 0, "katkestatud töö saab uue lõpuaja, seega ta ei aegu samal hetkel");
+    const released = usage.calls.filter(call => call.action === "release").map(call => call.idempotencyKey);
+    assert.deepEqual(released.sort(), ["rippuv-doc", "rippuv-stt"], "rippuv töö peab kvoodi vabastama");
+
+    // Teine sweep, kui ka tema oma tähtaeg on möödas.
+    const later = await sweepMeetingSummarySnapshots({
+      usage: usageRecorder(),
+      now: Date.now() + 2 * 60 * 60 * 1000,
+    });
+    assert.equal(later.removed, 1);
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), []);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("loetamatu .json ja orb .tmp kaovad FAIL-CLOSED, aga alles siis, kui nad on seisnud", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    await fs.mkdir(jobsDirFor(root), { recursive: true });
+
+    const brokenOld = path.join(jobsDirFor(root), "katki-vana.json");
+    const brokenFresh = path.join(jobsDirFor(root), "katki-varske.json");
+    const tmpOld = path.join(jobsDirFor(root), "orb-vana.json.123.456.tmp");
+    const tmpFresh = path.join(jobsDirFor(root), "orb-varske.json.123.456.tmp");
+
+    await fs.writeFile(brokenOld, `{katkine json ${SALADUS}`, "utf8");
+    await fs.writeFile(brokenFresh, `{katkine json ${SALADUS}`, "utf8");
+    await fs.writeFile(tmpOld, `pooleli ${SALADUS}`, "utf8");
+    await fs.writeFile(tmpFresh, `pooleli ${SALADUS}`, "utf8");
+    await ageFile(brokenOld, 2 * 60 * 60 * 1000);
+    await ageFile(tmpOld, 2 * 60 * 60 * 1000);
+
+    const summary = await sweepMeetingSummarySnapshots({ usage: usageRecorder() });
+
+    assert.equal(summary.orphans, 2, "kaks seisnud faili peavad kaduma");
+    const left = (await fs.readdir(jobsDirFor(root))).sort();
+    assert.deepEqual(left, ["katki-varske.json", "orb-varske.json.123.456.tmp"],
+      "värsket faili ei tohi ära võtta — teine protsess võib olla teda parajasti kirjutamas");
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("kehtiv, aga tundmatu staatusega kirje loetakse loetamatuks, mitte 'alles jätta'", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    const file = await writeSnapshot(root, {
+      id: "vale-staatus",
+      userId: "meet-03-user",
+      status: "midagi-muud",
+      createdAt: new Date().toISOString(),
+      result: { summaryText: SALADUS },
+    });
+    await ageFile(file, 2 * 60 * 60 * 1000);
+
+    const summary = await sweepMeetingSummarySnapshots({ usage: usageRecorder() });
+
+    assert.equal(summary.orphans, 1);
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), []);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
+});
+
+test("elava töö snapshotti kataloogisweep EI puutu", async () => {
+  const root = await makeRoot();
+  try {
+    process.env.AGENT_STORAGE_DIR = root;
+    const job = await createMeetingSummaryJob({
+      userId: "meet-03-user-live",
+      payload: samplePayload(),
+      usage: reservedUsage("live"),
+    });
+
+    const summary = await sweepMeetingSummarySnapshots({
+      usage: usageRecorder(),
+      now: Date.now() + 10 * 60 * 60 * 1000,
+    });
+
+    assert.equal(summary.removed, 0);
+    assert.equal(summary.interrupted, 0);
+    assert.deepEqual(await fs.readdir(jobsDirFor(root)), [`${job.id}.json`]);
+  } finally {
+    restoreEnv();
+    await fs.rm(root, { recursive: true, force: true });
+  }
 });
