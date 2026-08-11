@@ -5,8 +5,13 @@ see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist
 käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
 (`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
 ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **11.08.2026 hilisõhtul** (seitsmes mõõtmine, pärast SOL-AUTH-15 — peatükk on
-täis); eelmised olid pärast -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
+Mõõdetud **11.08.2026 hilisõhtul** (kaheksas mõõtmine, pärast SOL-PAY-02/-03); eelmised olid
+pärast SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
+
+**Selle faili jutustav osa („Mis on tehtud") lõpeb SOL-CHAT-08 juures ja on sealt edasi
+maas.** SOL-VOICE, SOL-ROOM, SOL-CALL, SOL-INV ja SOL-PAY plokke siin lahti kirjutatud ei ole —
+nende Seis-lõigud elavad raportis, kes on ainus allikas. Numbrid allpool on `sol:tally` omad ja
+nad on värsked; jutustuse järelejõudmine on eraldi töö.
 
 **Loendur ise oli 11.08-ni vaikiv ja andis seetõttu vale nimetaja.** Range muster tundis
 ainult kaheosalist koodi, seega jätkufaili `SOL-DOC-J-01…-06` (6 leidu) ei olnud kordagi
@@ -19,12 +24,12 @@ vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.
 
 | | |
 |---|---|
-| Tehtud leidu | **127 / 403** selle tööpuu loenduri järgi · **127 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
-| Peatükke lõpuni | **9 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM** |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 193 × P1 · 82 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 302) |
+| Tehtud leidu | **136 / 403** selle tööpuu loenduri järgi · **136 / 429** kogu auditikorpuse peale — **26 leidu üheksas failis ei ole `main`-is**, vt „Auditikorpus ei ole ühes puus" allpool |
+| Peatükke lõpuni | **11 / 39** — SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV** |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 189 × P1 · 77 × P2 · 1 × P3 (selle puu loenduri järgi; kogu korpuses 293) |
 | Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
-| Toodangus | **DEPLOY'MATA JÄÄK: 12 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**), kogu SOL-VOICE (01…03) ja kogu SOL-ROOM (01…07). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
-| Järgmine peatükk | **SOL-AUTH (15/15), SOL-VOICE (3/3) ja SOL-ROOM (7/7) on lõpetatud** — üheksa täis peatükki. Dokumendi järjekorras järgmine on **SOL-CALL** (10/13, kolm lahtist P2: CALL-07, -08, -09), siis **SOL-INV** (0/3) ja **SOL-PAY** (0/11, 9 × P1). Vt ka lahtist jätkufailide otsust allpool. |
+| Toodangus | **DEPLOY'MATA JÄÄK: 21 leidu** — SOL-AUTH-14 (`b7539345`, `origin/main`-is), SOL-AUTH-15 (**vajab migratsiooni `20260811220000`**), kogu SOL-VOICE (01…03), kogu SOL-ROOM (01…07), kogu SOL-CALL (07…09), kogu SOL-INV (01…03) ja SOL-PAY-01/-02/-03 (**vajab migratsiooni `20260811230000`**; toodangu PostgreSQL on mõõdetuna 16.14, seega `ALTER TYPE … ADD VALUE` migratsioonitehingus on lubatud). Viimane deploy oli viieteistkümnes, 11.08 18:31: server = `1ed23452`. Kõik 115 selle-eelset tehtud leidu on tootmises — see deploy viis välja kogu ülejäänud SOL-AUTH ploki (-07, -11 ja -08…-10, -12, -13). Mõõdetud: `.next` 18:31:01, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. Migratsioon **`20260811210000`** rakendatud 18:30:20 (`AuthThrottleCounter` olemas) ja `/etc/sotsiaalai/frontend.env`-i lisatud **`TRUSTED_PROXY_IP_HEADER=x-real-ip`** (varukoopia tehtud; nginx `proxy_set_header X-Real-IP $remote_addr` kirjutab päise üle, seega ta ei ole kliendi juhitav). **Läbiv smoke toodangus:** tundmatu e-post annab `401 INVALID_CREDENTIALS` 0,38 s (bcrypt jookseb) ja tekitab **mõlemad** loendurid `pin:email` + `pin:ip` — seega usaldatud IP luges päriselt. Sondi read koristatud. |
+| Järgmine peatükk | **SOL-AUTH (15/15), SOL-VOICE (3/3), SOL-ROOM (7/7), SOL-CALL (13/13) ja SOL-INV (3/3) on lõpetatud** — üksteist täis peatükki. Käsil on **SOL-PAY (3/11)**: lahtised on PAY-04…-08 ja -10/-11 ning **PAY-09, mis ootab omaniku + juristi/raamatupidaja otsust** (konto kustutamine kaskaadib makseajaloo enne seitsmeaastast säilitustähtaega). Vt ka lahtist jätkufailide otsust allpool. |
 | Suurimad lahtised sabad | SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-WB 18 · SOL-PRE 16 · SOL-JOUR 15 · SOL-SUP 15 · SOL-HELP 13 · SOL-MAT 13 · SOL-NET 11 · SOL-URG 11 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
@@ -149,9 +154,9 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 | Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
 | Hääl (STT/TTS) | SOL-VOICE | **3/3** | – | **tehtud** |
 | Ruumid | SOL-ROOM | **7/7** | – | **tehtud** |
-| Kõned ja salvestus | SOL-CALL | 10/13 | 3 × P2 | lahtised CALL-07, -08, -09 |
-| Kutsed ja sponsorlus | SOL-INV | 0/3 | 1 × P1 · 2 × P2 | |
-| Maksed | SOL-PAY | 0/11 | 9 × P1 · 2 × P2 | |
+| Kõned ja salvestus | SOL-CALL | **13/13** | – | **tehtud** |
+| Kutsed ja sponsorlus | SOL-INV | **3/3** | – | **tehtud** |
+| Maksed | SOL-PAY | 3/11 | 6 × P1 · 2 × P2 | käsil; PAY-09 ootab otsust, vt allpool |
 | Teavitused | SOL-NOTIF | 0/7 | 3 × P1 · 4 × P2 | |
 | Domeenisündmused | SOL-EVENT | 0/1 | 1 × P2 | |
 | Kiireloomuline abi | SOL-URG | 2/13 | 11 × P1 | mõlemad P0-d tehtud |
@@ -740,8 +745,15 @@ uuesti), sest analüüs on lepingu järgi efemeerne — vt leiu Seis-lõiku.
 
 ## Lahtised, mis EI OLE lihtsalt tegemata
 
-Neid nelja ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
+Neid viit ei saa „järgmise tööna" ette võtta — nad ootavad kas otsust või tõendust, mida
 kood ei anna:
+
+- **SOL-PAY-09** (P1) — *BLOCKED_DECISION, õiguslik.* Konto kustutamine kaskaadib makseajaloo
+  (`Payment`, `Subscription`, `BillingMethod`) kohe, kuigi `lib/retention.js` hoiaks makseid
+  seitse aastat ja raamatupidamise seadus § 12 nõuab algdokumentide säilitamist seitse aastat.
+  Vastuvõtukriteerium ütleb ise, et jurist/raamatupidaja peab kinnitama, **milline minimaalne
+  finantsdokument säilib ja kui kaua** — seda ei saa koodiga ette otsustada. Ülejäänud
+  SOL-PAY leiud sellest ei sõltu.
 
 - **SOL-CW-09** (P2) — *kood DONE, brauseritest NOT_PROVEN.* Parandus on olemas, aga
   tagasinupu käitumist ei ole päris brauserist läbi käidud. Loendis on ta seepärast lahtine.
