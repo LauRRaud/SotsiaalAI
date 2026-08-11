@@ -114,7 +114,7 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 80/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
+**SOL-süvaaudit: 81/357 leidu, 6/35 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD,
 SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC**). **Auditis ei ole enam ühtegi lahtist P0-d.** Viimased kaks (SOL-SPROF-01
 ja -02) said 10.08 õhtul kolm puuduvat otsa: päringuaegne fail-closed nõusolekuvärav
 (`lib/privacy/serviceProfileRetrievalGuard.js`), aus pending/failed seis liideses ja
@@ -321,11 +321,18 @@ sulle öeldi „kustutatud" ja rida ilmus kohe uuesti. Nüüd on lugemine, peata
 tellimusevabad (uue uuringu käivitamine jääb värava taha), peatamisel on oma nupp ja kustutus
 eemaldab rea päriselt. Tõendatud **päris andmebaasi vastu 15/15** kõigis viies olekus.
 
-Lahtiseks jääb **203 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (1/7), kõige eespool lahtine on
+**SOL-RES-02: sama katse tunnusega sai ühe ühiku eest tellida piiramatult uuringuid.** Kliendi
+võti sidus ainult kasutusühikut, aga töö loodi alati uue tunnusega — teadlikult sama võtit korrates
+sai ühe kuulimiidi ühikuga käivitada järjest uusi täismahus uuringuid. Vestlus ise ei saatnud võtit
+üldse, seega ebaselge võrguvea kordus tegi vastupidi: uus tasuline töö ja topelttulemus. Nüüd on
+kavatsusel oma tunnus andmebaasis: sama tunnus tagastab sama töö (ka lõppenu), teine sisend annab
+ausa vea. **See vajab migratsiooni** (uus veerg + unikaalsus, olemasolevaid ridu ei muuda).
+
+Lahtiseks jääb **202 P1, 73 P2 ja 1 P3**. Käsil on **SOL-RES** (2/7), kõige eespool lahtine on
 endiselt **SOL-AUTH** (13 lahtist). SOL-CW-09/-14/-19 seisavad sinu otsuse ja brauseri-QA taga.
 
-**Deploy'mata on kogu SOL-DOC peatükk (01…09) ja SOL-RES-01** — neist vajab migratsiooni ainult
-DOC-09 (kaks enum-väärtust). Ütle, kui viin serverisse.
+**Deploy'mata on kogu SOL-DOC peatükk (01…09) ning SOL-RES-01 ja -02** — migratsiooni vajavad
+DOC-09 ja RES-02, kumbki olemasolevaid ridu muutmata. Ütle, kui viin serverisse.
 
 **SOL-NET-01/-02 on LIVE** koos migratsiooniga `20260810180000`
 (`contentHash`, `confirmedContentHash`). Võrgustikujagamise kinnitus viitab nüüd TEKSTILE,

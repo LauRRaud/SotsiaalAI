@@ -1721,6 +1721,43 @@ brauserisessiooni, mis on selle paranduse skoobist väljas.
 
 **Vastuvõtukriteerium.** `(userId, clientIntentId)` peab unikaalselt siduma ühe usage-reservatsiooni ja ühe ResearchJob'i; sama payload'i retry tagastab olemasoleva job'i, erinev payload sama võtmega annab 409. Klient peab looma kavatsuse alguses stabiilse võtme ja säilitama selle kuni serveri kindla vastuseni. Testid peavad katma retry enne loomist, aktiivse töö ajal, pärast done/error/cancelled seisu ja sama võtme erineva payload'iga.
 
+**Seis (11.08.2026): DONE — koos päris PostgreSQL-i runtime-tõendiga (21/21). VAJAB MIGRATSIOONI.**
+
+**IDEMPOTENTSUS TOIMIS KAHES KIHIS VASTUPIDISE TÄHENDUSEGA.** Marsruut reserveeris kasutuse kliendi
+võtmega, aga lõi töö ALATI uue juhusliku UUID-ga — võtme ja `ResearchJob` vahel ei olnud mingit
+seost. Usage-teenus tagastab sama võtme olemasoleva reservatsiooni (ka terminalse) `reused: true`
+vastusena, seega **teadlikult sama võtit korrates sai ühe kuulimiidi ühikuga käivitada järjest
+piiramatult uusi täismahus uuringuid**. Tavaklient ei saatnud võtit üldse, mistõttu ebaselge
+võrguvea kordus tegi vastupidi: uus võti, uus tasuline töö, topelttöö.
+
+**Kavatsus sai oma veeru.** `ResearchJob.clientIntentKey` + unikaalne `(userId, clientIntentKey)`
+(migratsioon `20260811040000`). `claimResearchJobForIntent()` tagastab sama võtme peale olemasoleva
+töö — ka pärast lõppu — ja erineva sisendi peale **409**. Sisendi võrdlus käib kavatsuse allkirja
+järgi, millest on välja jäetud võtmest endast tuletatud väljad; muidu oleks iga korduskatse „uus
+kavatsus". NULL jääb piiranguta, seega võtmeta ja sisemised tööd käituvad nagu enne.
+
+**Kaks unikaalsust, kaks tähendust.** „Üks aktiivne töö kasutaja kohta" ja „üks kavatsus = üks töö"
+on eri reeglid ja kutsuja teeb nende peale eri asju, seega P2002 lahutatakse `meta.target` järgi —
+ühe veateate alla surumine oleks teinud konfliktist „limiit täis".
+
+**Klient.** Vestlus loob nüüd kavatsuse alguses stabiilse võtme (sama `lib/usage/intentKey.js`, mis
+SOL-DOC-01-l) ja kustutab ta alles serveri kindla vastuse peale.
+
+**Sond leidis kohe ühe päris vea, mida ma ise ei näinud.** Esimene versioon tagastas taaskasutatud
+töö protsessimälust — ja mälu kandis vana seisu, seega `done` töö vastas „queued". Lõppseisu
+autoriteet on nüüd ANDMEBAAS; lokaalset objekti kasutatakse ainult siis, kui töö on veel aktiivne
+(voo jaoks on tal vaja sündmusi ja tellijaid). See on sama klass, mida kirjeldab SOL-RES-03, ainult
+et siin oli ta paranduse enda sees.
+
+**Mõõdetud päris PostgreSQL-is** (`npm run research:intent:probe`, **21/21**): kordus enne loomist
+→ sama töö · kordus pärast `done`/`error`/`cancelled` → **sama töö ja tagastatakse lõppseis, mitte
+uus jooks** · sama võti + teine sisend → konflikt ilma uut tööd loomata · kaks eri kasutajat sama
+võtmega ei sega teineteist · võtmeta töö käitub nagu enne. Negatiivkontroll näitab, et sidumata
+võti annab sama võtme all kaks tööd.
+
+**Migratsioon.** `20260811040000_sol_res_02_research_client_intent` lisab veeru ja unikaalse
+indeksi; olemasolevaid ridu ei muuda (kõik saavad `NULL`).
+
 ### SOL-RES-03 — worker-režiimis jääb päritoluprotsessi job lõpmatult vanasse olekusse — P1
 
 **Tõend.** Job'i loonud frontend-protsess salvestab iga uue töö alati lokaalsesse `jobs` Map'i (`lib/research/jobStore.js:269-325`). Worker-režiimis claim'ib sama DB-rea eraldi `research-worker` protsess ja uuendab omaenda runtime-objekti (`scripts/research-worker.mjs:31-52`, `lib/research/jobStore.js:579-640`). Originaalse frontend-protsessi Map ei saa neid sündmusi. Stream valib DB pollimise ainult siis, kui lokaalset job'i pole; kohaliku stale job'i olemasolul ta ainult subscribib selle protsessi mälusündmustele (`app/api/research/jobs/[id]/stream/route.js:182-235`). Ka snapshot/result eelistavad Map'i DB-le ning queued/running runtime-objekte ei sweep'ita kunagi (`lib/research/jobStore.js:254-267`, `:336-349`, `:507-519`).
