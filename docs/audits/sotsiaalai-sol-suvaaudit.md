@@ -3361,6 +3361,44 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Kirja GET peab kuvama konteksti ja jätma DB muutmata; kinnitamine peab nõudma kasutaja teadlikku POST-toimingut või tugevat samasse algvoogu seotud challenge'i. Skanneritest peab GET-i tegema ilma vormi saatmata ning tõendama `otpVerifiedAt:null`; eraldi kasutajatoiming peab kinnitama täpselt ühe konkreetse login-attempt'i.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Muster oli koodibaasis olemas, uut ei ehitatud:** `verify-email` ja e-posti vahetuse
+  kinnitus (SOL-AUTH-04) said juba GET = vaheleht, POST = otsus. Siin on ta **rangem kui
+  seal: auto-submit'i EI OLE.** Auto-submit oleks skanneri vastu piisav, aga mitte selle leiu
+  vastu — PIN-sisselogimist alustab RÜNDAJA oma brauseris ja kirja saab konto omanik, seega
+  ohver ise võib lingi uudishimust avada. JS-i käivitav brauser kinnitaks tema eest sama vaikselt
+  nagu skanner.
+- **Kontekst on siin mehhanism, mitte kaunistus.** Vaheleht näitab seadet, algusaega ja IP-d
+  (`summarizeUserAgent` + `formatSecurityEventTime` olid olemas, samad, mis uue seadme
+  hoiatuskirjas). Ilma selleta oleks nupp „Kinnita" mõttetu: kasutaja ei tea, KELLE katset ta
+  kinnitab. `createdAt`, `userAgent` ja `ipAddress` on `LoginTempToken`-il juba olemas, seega
+  migratsiooni ei ole.
+- **GET LOEB, aga ei kirjuta.** Kriteerium ütleb „jätma DB muutmata", mitte „puutumata" — ja
+  konteksti ei saa näidata ilma lugemata. Kehtetu, aegunud, juba kinnitatud ja juba tarbitud
+  link annavad kõik SAMA üldise vealehe **ilma kontekstita**, seega lugemine ei ava uut pinda.
+- **Otsus kolis marsruudist välja** (`lib/auth/login-email-link.js`:
+  `describeLoginEmailConfirmation` ja `confirmLoginEmailLink`) — sama põhjus mis
+  SOL-AUTH-11-l: piir, mida ei saa testida, ei ole piir.
+- **Hind on üks klikk ja see on teadlik.** Omaniku 28.07 vastuväide käis kinnituse-JÄRGSE kliki
+  kohta („pidi veel käsitsi Ava SotsiaalAI vajutama") — see jääb lahendatuks: pärast POST-i
+  töötab sama ootamis-, BroadcastChannel-handoff- ja automaatse suunamise loogika muutumatuna.
+  Uus klikk on kinnitus ISE, ja e-kiri ütleb juba praegu „vajuta nuppu KINNITAN". Kolmes keeles
+  täpsustatud ka `auth.login.otp_description`: „Ava kiri, vajuta linki ja kinnita avanenud lehel."
+- **Rate-limitit siia teadlikult EI lisatud.** Naaber (`email-change/confirm`) piirab IP järgi,
+  aga see on mälupõhine loendur, mille kohta SOL-AUTH-09 on veel lahtine leid — kolmas koopia
+  samast nõrgast mehhanismist annaks siin ainult eksitava „link ei kehti" lehe. Piir, mis siin
+  loeb, on tokeni entroopia (32 baiti) ja `login-step1` enda limiit.
+- **`npm run auth:emaillink:probe` 27/27 päris PostgreSQL-is**, kutsudes marsruudi PÄRIS `GET`-i
+  ja `POST`-i: skanneri GET jätab `otpVerifiedAt` nulliks ja lingi tarbimata · POST kinnitab
+  täpselt selle ühe katse (teine katse jääb puutumata) · sama link teist korda annab 400.
+  **Negatiivkontroll:** vana GET-rada kinnitab teise faktori pelgalt avamisel — rada oli päris.
+- **Brauseris läbi käidud** (localhost, päris rida andmebaasis): vahelehel `scripts: 0` (ühtki
+  skripti, seega ka mitte auto-submit'i), vorm `method="POST"` kahe peidetud väljaga, kontekst
+  nähtav („Safari on iPhone", aeg, IP); nupuvajutuse järel „Sisenemine kinnitatud",
+  `data-waiting="1"` ja poll-skript käivitub.
+- `runtime: not_run` päris meiliskanneri (Gmail/Outlook eelvaade) ja päris PIN-akna
+  läbiva voo osas — mõõdetud on marsruut, andmebaas ja kinnitusleht ise.
+
 ### SOL-AUTH-09 — lühikese PIN-i brute-force kaitse on protsessimälus ja kliendi IP-päiseid usaldav — P1
 
 **Tõend.** PIN võib vaikimisi olla ainult neli numbrit (`lib/auth/pin-login.js:9-10`, `:52-53`). Step1 piirab küll IP-d ja e-posti, kuid kasutab üldist `consumeRateLimit()` helperit (`app/api/auth/login-step1/route.js:192-214`). Helper hoiab kõik bucket'id mooduli lokaalses `Map`-is, mis ei jagune instantside/protsesside vahel ja kaob restartimisel (`lib/rate-limit.js:1-31`). IP võetakse otse esimesest kliendi saadetud `x-real-ip`/`x-forwarded-for` väärtusest ilma usaldatud proxy piirita (`lib/auth/pin-login.js:92-101`; sama muster `lib/request-ip.js:6-14`).
@@ -3369,6 +3407,51 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** PIN-katsete loendur peab olema atomaarne ja jagatud püsivas hoidlas, konto-/identiteedipõhise aeglustuse ning turvalise taastamisega; IP tuleb võtta ainult usaldatud edge-proxy normaliseeritud atribuudist. Test peab kasutama vähemalt kahte rakendusinstantsi ja restarti ning tõendama sama konto ühist limiiti; spoofitud forwarded-päis ei tohi uut bucket'it anda.
 
+**Seis (11.08.2026): DONE. VAJAB MIGRATSIOONI** (`20260811210000`, uus tabel
+`AuthThrottleCounter`; olemasolevaid ridu ei puudutata). **Vajab ka üht env-rida serveril —
+vt allpool.**
+
+- **Loendur elab nüüd andmebaasis** (`lib/auth/loginThrottle.js` + `AuthThrottleCounter`):
+  `(scope, subject)` on unikaalne ja see unikaalsus ONgi limiit. Kirjutust serialiseerib
+  kasutajapõhine nõuandelukk `4713` (kõrvuti AUTH-02 `4711` ja AUTH-11 `4712`-ga) ja ta tuleb
+  **lugemise ETTE** — esimesel katsel rida veel ei ole, seega lukustada saab ainult võtit,
+  mitte rida (`FOR UPDATE` siia ei sobi).
+- **Subjekt on e-posti räsi, MITTE kasutaja ID, ja see on SOL-AUTH-10 osa.** Konto järgi käiv
+  loendur lukustaks ainult olemasoleva konto — ja 429 ise oleks siis uus oraakel, mis ütleks
+  ära, kas aadress on registreeritud. Räsi tähendab ühtlasi, et e-post ei seisa loenduri reas
+  toorelt.
+- **Aeglustus ja turvaline taastamine:** limiit (vaikimisi 8 katset 15 min kohta e-posti,
+  40 IP kohta) ületamisel lukk 15 minutiks; lukust vabanemine alustab UUE akna, seega keegi
+  ei jää igaveseks kinni; õnnestunud PIN kustutab loenduri. `pruneExpiredLoginThrottles()`
+  koristab aegunud read.
+- **IP tuleb ainult konfigureeritud edge-päisest** (`getTrustedRequestIp`,
+  `TRUSTED_PROXY_IP_HEADER`) ja sealt **viimasest** väärtusest, sest usaldatud edge lisab enda
+  nähtu loendi lõppu — esimene väärtus on täpselt see, mille klient ise kirjutas. Ilma
+  seadistuseta on vastus `null` ja IP-piir jäetakse vahele: see EI ole „luba kõik", vaid
+  „ära tee turvaotsust võltsitava sisendi peal" — brute-force'i vastu loeb identiteedipiir,
+  mis on püsiv ja mida spoofitud päis ei puuduta.
+- **Vana mälupõhine `consumeRateLimit` jäi teadlikult alles** odava eelväravana (ei puuduta
+  andmebaasi), aga ta ei ole enam turvapiir ja see on koodis kommentaariga välja öeldud.
+- **Otsus kolis marsruudist välja** (`lib/auth/pinLoginAttempt.js`), sest `login-step1`
+  impordib `next/headers` ega lae testijooksjas ega sondis üldse — sama põhjus mis
+  SOL-AUTH-08/-11-l. Marsruuti katab lähtekoodi leping.
+- **`npm run auth:throttle:probe` 23/23 päris PostgreSQL-is**, sh **päris teine protsess**
+  (`spawn`, kontrollitud pid): vanem kulutab 2 katset, teine instants saab ainult ülejäänud
+  ühe, kolmas värskelt käivitunud instants ei saa ühtki. Kuus samaaegset katset limiidiga 3
+  annavad **täpselt 3** lubatut. **Negatiivkontroll:** sama laps vana mälupõhise loenduriga
+  annab IGALE instantsile oma täie limiidi — see on leiu enda mehhanism.
+- **Brauseris läbi käidud päris HTTP rajal**: 9. katse annab 429 ja ka ÕIGE PIN saab pärast
+  lukustust 429 (lukk ei ole PIN-i kontrolli tagajärg, vaid tema eeltingimus).
+- **Deploy'l on üks käsitsi samm:** `TRUSTED_PROXY_IP_HEADER=x-real-ip` tuleb lisada serveri
+  `.env`-i (nginx seab `proxy_set_header X-Real-IP $remote_addr`). Ilma selleta töötab
+  e-posti-põhine piir, aga IP-põhine jääb välja — teadlikult, sest võltsitava päise peal
+  IP-piir ei ole piir.
+- **Jääk, mida see parandus EI lahenda:** ründaja saab võõra konto sihilikult 15 minutiks
+  lukustada. See on iga konto-lukustuse hind; alternatiiv (lukustus ainult IP kaupa) oleks
+  täpselt see, mille leid ümber lükkab. Aken on lühike ja lukk ei nulli midagi püsivat.
+- `runtime: not_run` mitme päris Next-instantsi (klastri) osas — kaks protsessi on tõendatud,
+  aga mitte kaks `next start` protsessi koormustasakaalustaja taga.
+
 ### SOL-AUTH-10 — login-step1 avaldab, kas e-posti aadressiga konto eksisteerib — P2
 
 **Tõend.** Süntaktiliselt sobiva tundmatu e-posti korral tagastab route `EMAIL_NOT_FOUND` (`app/api/auth/login-step1/route.js:230-245`), aga olemasoleva konto vale PIN annab `PIN_INCORRECT` (`:248-258`). Klient kasutab neid koode eraldi: tundmatu e-post märgitakse e-posti veana, vale PIN jäetakse „teadaoleva e-posti” voogu (`components/LoginModal.jsx:629-641`). Paroolitaastuse route kasutab samas olukorras teadlikult ühetaolist edu nii tundmatu kui olemasoleva kasutaja puhul (`app/api/auth/password/reset/route.js:160-191`).
@@ -3376,6 +3459,39 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Automatiseeritud küsija saab koostada registreeritud klientide ja spetsialistide e-posti loendi. Sotsiaaltööplatvormi liikmelisus ise võib olla tundlik ning kinnitatud kontoloend parandab phishing'u, PIN-brute-force'i ja sihitud rünnete täpsust.
 
 **Vastuvõtukriteerium.** Avalik vastus, staatus, kood ja võimalikult ka ajastus peavad tundmatu konto ning vale PIN-i korral olema võrreldavad; täpne põhjus võib jääda ainult turvalisse serverilogisse. Negatiivtest peab võrdlema mõlemat rada ning kasutajaliides peab näitama ühist credential-viga.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja** (tuli koos SOL-AUTH-09 plokiga, mille
+oma migratsioon on `20260811210000`).
+
+- **Kolm eri vastust said üheks.** `EMAIL_NOT_FOUND` (400 ja 401) ning `PIN_INCORRECT`
+  asendas üks `INVALID_CREDENTIALS` 401 ühe sõnumiga („E-posti aadress või PIN ei ole õige.",
+  kolmes keeles). Sama vastuse saavad nüüd ka **peatatud konto** ja **kontod ilma PIN-ita** —
+  varem oli neil oma rada.
+- **Ajastus on osa vastusest ja seda ei saanud koodiga üksi lahendada.** Bcrypt cost 12 võtab
+  ~200 ms; tundmatu konto rada ei kutsunud teda üldse, seega vastus tuli kordades kiiremini ja
+  lekitas konto puudumise ka siis, kui iga sõna oleks olnud identne. Nüüd jookseb bcrypt
+  **alati**, tundmatul kontol peibutusräsi vastu, mille cost on sama, mis päris PIN-idel
+  (`register`, `passwordResetLifecycle`, `accountLifecycle` — kõik 12).
+- **Liidese pool suleti samuti:** `LoginModal` märkis `EMAIL_NOT_FOUND` peale e-posti välja
+  punaseks ja `PIN_INCORRECT` peale mitte — see eristus oli serveri oraakli nähtav ots.
+  `rememberKnownEmail` kutsutakse nüüd mõlemal rajal, muidu oleks eeltäitmine ise oraakel.
+- **Lukustus ei tohtinud saada uueks oraakliks** ja just see sidus leiu SOL-AUTH-09-ga:
+  loenduri subjekt on e-posti räsi, mitte kasutaja ID, seega tundmatu aadress lukustub
+  täpselt samamoodi.
+- **`npm run auth:throttle:probe` 23/23 päris PostgreSQL-is**: vale PIN, tundmatu e-post ja
+  peatatud konto annavad sama tulemuse; kuue katse jada on **märgi haaval identne** tuntud ja
+  tundmatu aadressi vahel. **Negatiivkontroll ajastusele:** paljas `findUnique` ilma
+  bcryptita on kordades kiirem kui katse ise — seega vahe, mille peibutusräsi ära kaotab, oli
+  päris.
+- **Brauseris mõõdetud päris HTTP kaudu** (kolm mõõtmist kummalgi rajal, pärast soojendust):
+  tundmatu 440/442/413 ms · vale PIN olemasoleval kontol 441/437/436 ms · mõlemal
+  `401 INVALID_CREDENTIALS` ja sama sõnum.
+- **Aus piir:** `PIN_INVALID` (400) jäi eraldi vastuseks. See on vormiviga PIN-i kuju kohta,
+  ei ütle konto kohta midagi ega kuluta katseid. Ajastuse ühtlustus on „võrreldav", mitte
+  konstantne — võrgu- ja andmebaasimüra jääb alles; kriteerium ütleb „võimalikult ka
+  ajastus".
+- `runtime: not_run` päris serveri koormuse all — mõõdetud on lokaalne dev-server ja
+  teenusetasand.
 
 ### SOL-AUTH-11 — üks kinnitatud temp-token võib enne sessiooni claim'i luua korduvalt usaldatud seadmeid — P2
 
@@ -3421,6 +3537,28 @@ tekstilepinguga. Commit `79d54db7`.
 
 **Vastuvõtukriteerium.** Production peab ilma allowlistitud kanoonilise avaliku originita fail-closed käivituma või login-maili saatmisest keelduma; turvatokeni URL-i ei tohi kunagi tuletada kliendi Host/Forwarded päisest. Konfiguratsiooni- ja host-header test peab tõendama, et võõras origin ei satu kirja ega redirecti.
 
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Valitud on kriteeriumi teine haru: login-mailist keeldumine.** `buildLoginConfirmUrl` võtab
+  origini AINULT `resolveBaseUrl()`-ist ja **viskab** `api.auth.login.base_url_missing`, kui
+  konfiguratsiooni ei ole — täpselt nagu paroolitaaste (`buildResetUrl`) ja e-posti vahetus
+  (`buildEmailChangeConfirmUrl`) juba teevad. Sisselogimise link oli ainus turvalink, mis
+  puuduva baas-URL-i korral kliendi päise peale tagasi langes.
+- **Parandus on ka STRUKTUURNE, mitte ainult tingimuslik:** `getRequestBaseUrl(request)` on
+  kustutatud ja funktsiooni allkirjast kadus `request`. Päist, mida ei anta, ei saa usaldada —
+  ja seda mõõdab test nimeliselt (`buildLoginConfirmUrl.length === 2` + lähtekoodi leping, et
+  moodulis ei esine enam `x-forwarded-host`/`x-forwarded-proto`/`host`).
+- **Fail-closed on terve rada, mitte üks funktsioon.** `login-step1`-s on kirja saatmine värav:
+  viga läheb üldisesse catch'i, kasutaja saab 500 ja `LoginTempToken` jääb kinnitamata
+  (`requiresOtp: true`, `otpVerifiedAt: null`), seega teist faktorit ei saa läbida. Ründaja
+  domeeniga linki ei teki üheski harus.
+- **Arendust see ei muuda:** `resolveBaseUrl()` annab `NODE_ENV=development` all
+  `http://localhost:3000`, seega lokaalne voog käitub nagu enne.
+- **`npm run auth:emaillink:probe`** katab selle ploki koos ülejäänud kahega (27/27): puuduv
+  baas-URL keeldub lingi ehitamisest · origin tuleb konfiguratsioonist · funktsioon ei võta enam
+  `request`-i. Ühiktest lisaks `tests/auth/loginEmailLink.test.js`-is.
+- `runtime: not_run` päris tootmiskonfiguratsiooni osas — serveril on `NEXTAUTH_URL` olemas,
+  seega leiu rada sai mõõdetud ainult tühjendatud keskkonnamuutujatega.
+
 ### SOL-AUTH-13 — login-lingi resend tühistab vana lingi enne uue kirja õnnestumist — P2
 
 **Tõend.** Resend genereerib uue e-posti tokeni ja kirjutab selle räsi `LoginTempToken` reale enne maileri kutset (`app/api/auth/login-resend-otp/route.js:156-167`). Kui `sendLoginLinkEmail()` ebaõnnestub, jõuab route catch'i ja tagastab 500, kuid vana tokeniräsi on juba üle kirjutatud (`:175-179`); rollback'i ega vana räsi taastamist pole. Uus toortoken eksisteeris ainult ebaõnnestunud saatmiskutses.
@@ -3428,6 +3566,27 @@ tekstilepinguga. Commit `79d54db7`.
 **Mõju.** Kasutaja võib vajutada resend'i ajal, mil tal on juba üks kohale jõudnud kehtiv link; ajutine SMTP-viga muudab selle vana lingi kohe kasutuks ning uus link ei jõua kohale. Alles jääb PIN-i uuesti alustamine, kuigi UI näitab lihtsalt resend-tõrget.
 
 **Vastuvõtukriteerium.** Uue tokeni aktiveerimine peab järgnema tõendatud enqueue/saatmisele või tokenitel peab olema lühike kontrollitud kattuvus ja püsiv delivery olek. Maileri veasüstetest peab tõendama, et vana link töötab edasi või et kasutajale antakse selge taastuv uus login-attempt.
+
+**Seis (11.08.2026): DONE. Migratsiooni ei ole vaja.**
+- **Parandus on JÄRJEKORD ja ta oli kõrval juba olemas:** SOL-AUTH-06 lahendas sama asja
+  e-posti vahetuse resend'is (mint → SAADA → alles siis rotatsioon). Uus
+  `resendLoginEmailLink()` teeb siin sama: `prepareLoginEmailLink()` ei puuduta andmebaasi ja
+  `persistLoginEmailLinkHash()` jookseb ALLES pärast õnnestunud tarnet. Rea peal olev räsi ON
+  kehtiv link, seega tema ülekirjutamine on lingi pensioneerimine — ja see ei tohi juhtuda
+  enne, kui asendus on teele läinud.
+- **Vale eduteade oli osa leiust, seega tarnetõrget ei neelata:** route vastab **502**
+  `DELIVERY_FAILED` ja tekst on kolmes keeles aus — „Varem saadetud link kehtib edasi — proovi
+  mõne hetke pärast uuesti." Kasutaja ei pea enam PIN-i uuesti alustama.
+- **Tõend ei ole räsi võrdlus, vaid kinnitus ise.** Sond nõuab, et pärast nurjunud resend'i
+  läheks vana lingiga POST **päriselt läbi** (200 + `otpVerifiedAt` seatud), ja õnnestunud
+  resend'i puhul mõõdab ta rida SAATMISE HETKEL: seal peab veel olema VANA räsi. **`npm run
+  auth:emaillink:probe` 27/27**, negatiivkontroll: vana järjekord tapab kohale jõudnud lingi
+  juba enne saatmiskatset.
+- **Püsivat `delivery` olekuveergu teadlikult ei tehtud.** Kriteerium lubab „või" — vana link
+  jääb kehtima, seega puuduv kiri ei ole enam ummiktee, ja `LoginTempToken` elab vaid
+  `LOGIN_TEMP_LOGIN_MINUTES` (vaikimisi 15 min). Veerg oleks teine tõde, mida tuleks
+  sünkroonis hoida.
+- `runtime: not_run` päris SMTP osas — tarnetõrge on sondis ja ühiktestis süstitud.
 
 ### SOL-AUTH-14 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist — P1
 

@@ -636,9 +636,10 @@ export default function LoginModal({
       if (!res.ok) {
         const code = String(payload?.code || "").toUpperCase();
         markPinError();
-        if (code === "EMAIL_NOT_FOUND") {
-          setEmailErrorVisual(true);
-        }
+        // SOL-AUTH-10: tundmatu e-post ja vale PIN annavad sama koodi ja sama vea. Varem
+        // märkis `EMAIL_NOT_FOUND` e-posti välja punaseks ja `PIN_INCORRECT` mitte — see
+        // eristus oli liides serveri oraaklile ja jättis registreeritud aadressid loetavaks.
+        // `rememberKnownEmail` peab käima MÕLEMAL rajal, muidu oleks eeltäitmine ise oraakel.
         if (code === "PIN_INCORRECT" || code === "INVALID_CREDENTIALS") {
           rememberKnownEmail(email);
           setInvalidCredentials(true);

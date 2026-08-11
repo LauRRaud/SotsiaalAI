@@ -2,7 +2,10 @@ export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { hashOpaqueToken } from "@/lib/auth/pin-login";
+import {
+  confirmLoginEmailLink,
+  describeLoginEmailConfirmation
+} from "@/lib/auth/login-email-link";
 import { normalizeServerLocale } from "@/lib/i18n/serverMessages";
 import { safeError } from "@/lib/privacy/safeError";
 
@@ -19,7 +22,14 @@ const COPY = {
     handoffBody: "Mine tagasi aknasse, kus sisselogimist alustasid — seal oled juba sees. Selle akna võid sulgeda.",
     invalidTitle: "Kinnituslink ei kehti",
     invalidBody: "Link on aegunud või juba kasutatud. Palun alusta sisselogimist uuesti.",
-    openLabel: "Ava SotsiaalAI"
+    openLabel: "Ava SotsiaalAI",
+    confirmTitle: "Kinnita sisselogimine",
+    confirmBody:
+      "Keegi sisestas sinu PIN-koodi ja ootab kinnitust. Kui see olid sina, vajuta nuppu. Kui ei olnud, sulge see aken ja vaheta PIN — kinnitamata jääb sisselogimine pooleli.",
+    confirmAction: "Jah, see olin mina",
+    deviceLabel: "Seade",
+    timeLabel: "Alustatud",
+    ipLabel: "IP-aadress"
   },
   en: {
     okTitle: "Sign-in confirmed",
@@ -28,7 +38,14 @@ const COPY = {
     handoffBody: "Go back to the window where you started signing in — you are already signed in there. You can close this window.",
     invalidTitle: "Confirmation link is invalid",
     invalidBody: "The link has expired or has already been used. Please start sign-in again.",
-    openLabel: "Open SotsiaalAI"
+    openLabel: "Open SotsiaalAI",
+    confirmTitle: "Confirm sign-in",
+    confirmBody:
+      "Someone entered your PIN and is waiting for confirmation. If that was you, press the button. If it was not, close this window and change your PIN — without confirmation the sign-in cannot continue.",
+    confirmAction: "Yes, this was me",
+    deviceLabel: "Device",
+    timeLabel: "Started",
+    ipLabel: "IP address"
   },
   ru: {
     okTitle: "Вход подтвержден",
@@ -37,7 +54,14 @@ const COPY = {
     handoffBody: "Вернитесь в окно, где вы начали вход, — вы уже вошли там. Это окно можно закрыть.",
     invalidTitle: "Ссылка подтверждения недействительна",
     invalidBody: "Ссылка устарела или уже использована. Начните вход заново.",
-    openLabel: "Открыть SotsiaalAI"
+    openLabel: "Открыть SotsiaalAI",
+    confirmTitle: "Подтвердите вход",
+    confirmBody:
+      "Кто-то ввел ваш PIN-код и ожидает подтверждения. Если это были вы, нажмите кнопку. Если нет — закройте это окно и смените PIN: без подтверждения вход не продолжится.",
+    confirmAction: "Да, это был я",
+    deviceLabel: "Устройство",
+    timeLabel: "Начато",
+    ipLabel: "IP-адрес"
   }
 };
 
@@ -143,10 +167,28 @@ function resolvePublicOrigin(requestUrl, headers) {
   return `${protocol}://${resolvedHost}`;
 }
 
-function htmlResponse(locale, ok, homeUrl) {
+function htmlResponse(locale, variant, homeUrl, { token = "", attempt = null } = {}) {
   const copy = COPY[locale] || COPY.et;
-  const title = ok ? copy.okTitle : copy.invalidTitle;
-  const body = ok ? copy.okBody : copy.invalidBody;
+  const ok = variant === "ok";
+  const confirming = variant === "confirm";
+  const title = confirming ? copy.confirmTitle : ok ? copy.okTitle : copy.invalidTitle;
+  const body = confirming ? copy.confirmBody : ok ? copy.okBody : copy.invalidBody;
+  // Kontekst on siin turvamehhanismi tuum, mitte kaunistus: PIN-sisselogimist
+  // alustab ründaja OMA brauseris ja kirja saab konto omanik — ainus, mis teda
+  // aitab, on näha võõrast seadet ENNE nupuvajutust.
+  const facts =
+    confirming && attempt
+      ? [
+          [copy.deviceLabel, attempt.device],
+          [copy.timeLabel, attempt.startedAt],
+          [copy.ipLabel, attempt.ipAddress]
+        ]
+          .map(
+            ([label, value]) =>
+              `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`
+          )
+          .join("")
+      : "";
   return new NextResponse(`<!doctype html>
 <html lang="${escapeHtml(locale)}">
   <head>
@@ -197,8 +239,23 @@ function htmlResponse(locale, ok, homeUrl) {
         max-width: 24rem;
         font-size: 1.04rem;
         line-height: 1.56;
-        color: ${ok ? "#c4c4c4" : "#e8a3a3"};
+        color: ${variant === "invalid" ? "#e8a3a3" : "#c4c4c4"};
       }
+      /* Katse kirjeldus kinnituslehel. Sildid ja väärtused kõrvuti, et võõras
+         seade jääks silma enne, kui käsi nupuni jõuab. */
+      .facts {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 0.35rem 0.9rem;
+        margin: 0;
+        width: 100%;
+        max-width: 24rem;
+        font-size: 0.96rem;
+        text-align: left;
+      }
+      .facts dt { color: #9a9a9a; }
+      .facts dd { margin: 0; color: #dcdcdc; word-break: break-word; }
+      form { margin: 0; display: contents; }
       /* NB: see plokk elab JS-i malli-stringis — siia EI TOHI kirjutada
          tagurpidi ülakoma ega dollar-loogsulgu (sama hoiatus mis allpool
          [hidden]-reegli juures; kirjutasin ta 10.08 ise üle ja leht andis
@@ -228,6 +285,11 @@ function htmlResponse(locale, ok, homeUrl) {
         font-size: 1rem;
         font-weight: 560;
         letter-spacing: 0.04em;
+        /* Kinnitusleht kasutab sama klassi <button>-il: font ja kursor ei päri. */
+        font-family: inherit;
+        cursor: pointer;
+        appearance: none;
+        -webkit-appearance: none;
         background-color: rgba(255, 255, 255, 0.10);
         background-image: none;
         -webkit-backdrop-filter: blur(32px);
@@ -291,13 +353,22 @@ function htmlResponse(locale, ok, homeUrl) {
     <main>
       <h1>${escapeHtml(title)}</h1>
       <p id="lc-msg" aria-live="polite"${ok ? ` data-waiting="${escapeHtml(copy.waitBody)}" data-handoff="${escapeHtml(copy.handoffBody)}"` : ""}>${escapeHtml(body)}</p>
-      <a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>
+      ${facts ? `<dl class="facts">${facts}</dl>` : ""}
+      ${
+        confirming
+          ? `<form method="POST" action="/api/auth/login-confirm"><input type="hidden" name="token" value="${escapeHtml(
+              token
+            )}" /><input type="hidden" name="locale" value="${escapeHtml(
+              locale
+            )}" /><button class="button" type="submit">${escapeHtml(copy.confirmAction)}</button></form>`
+          : `<a class="button" id="lc-open" href="${escapeHtml(homeUrl)}">${escapeHtml(copy.openLabel)}</a>`
+      }
       ${ok ? '<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>' : ""}
     </main>
     ${ok ? `<script>${REDIRECT_SCRIPT}</script>` : ""}
   </body>
 </html>`, {
-    status: ok ? 200 : 400,
+    status: variant === "invalid" ? 400 : 200,
     headers: {
       ...NO_STORE_HEADERS,
       "Content-Type": "text/html; charset=utf-8"
@@ -305,35 +376,64 @@ function htmlResponse(locale, ok, homeUrl) {
   });
 }
 
+/**
+ * GET EI KINNITA MIDAGI — ta ainult kirjeldab katset ja pakub nuppu.
+ *
+ * Varem kinnitas lingi pelk AVAMINE teise faktori: postkasti turvaskanner,
+ * lingieelvaade või automaatne URL-kontroll tegi seda konto omaniku eest, seega
+ * PIN-i teadnud ründaja sai oma brauseris sessiooni ilma ühegi inimese otsuseta
+ * (SOL-AUTH-08). Sama muster on kõrval juba kaks korda — `verify-email` ja
+ * e-posti vahetuse kinnitus — ja siin on ta rangem: auto-submit'i EI OLE, sest
+ * skanner ei ole ainus oht. Ohver ise võib lingi uudishimust avada ja peab siis
+ * nägema, KELLE katset ta kinnitab.
+ */
 export async function GET(request) {
   const url = new URL(request.url);
   const token = String(url.searchParams.get("token") || "").trim();
   const locale = normalizeServerLocale(url.searchParams.get("locale")) || "et";
   const homeUrl = `${resolvePublicOrigin(request.url, request.headers)}/`;
 
-  if (!token) return htmlResponse(locale, false, homeUrl);
+  if (!token) return htmlResponse(locale, "invalid", homeUrl);
 
   try {
-    const now = new Date();
-    const result = await prisma.loginTempToken.updateMany({
-      where: {
-        emailLinkTokenHash: hashOpaqueToken(token),
-        requiresOtp: true,
-        otpVerifiedAt: null,
-        usedAt: null,
-        expiresAt: {
-          gt: now
-        }
-      },
-      data: {
-        otpVerifiedAt: now,
-        emailLinkTokenHash: null
-      }
-    });
+    const described = await describeLoginEmailConfirmation({ db: prisma, token, locale });
+    if (!described.ok) return htmlResponse(locale, "invalid", homeUrl);
 
-    return htmlResponse(locale, result.count > 0, homeUrl);
+    return htmlResponse(locale, "confirm", homeUrl, {
+      token,
+      attempt: described.attempt
+    });
+  } catch (error) {
+    console.error("login-confirm page error", safeError(error), { locale });
+    return htmlResponse(locale, "invalid", homeUrl);
+  }
+}
+
+/** Kinnitus ise. Siia jõuab ainult päris brauseri teadlik nupuvajutus. */
+export async function POST(request) {
+  const contentType = String(request.headers.get("content-type") || "");
+  let fields = {};
+  if (
+    contentType.includes("application/x-www-form-urlencoded") ||
+    contentType.includes("multipart/form-data")
+  ) {
+    const form = await request.formData().catch(() => null);
+    if (form) fields = Object.fromEntries(form.entries());
+  } else {
+    fields = await request.json().catch(() => ({}));
+  }
+
+  const token = String(fields?.token || "").trim();
+  const locale = normalizeServerLocale(fields?.locale) || "et";
+  const homeUrl = `${resolvePublicOrigin(request.url, request.headers)}/`;
+
+  if (!token) return htmlResponse(locale, "invalid", homeUrl);
+
+  try {
+    const result = await confirmLoginEmailLink({ db: prisma, token });
+    return htmlResponse(locale, result.ok ? "ok" : "invalid", homeUrl);
   } catch (error) {
     console.error("login-confirm error", safeError(error), { locale });
-    return htmlResponse(locale, false, homeUrl);
+    return htmlResponse(locale, "invalid", homeUrl);
   }
 }

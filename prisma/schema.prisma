@@ -1655,6 +1655,27 @@ model ConversationMessage {
   @@index([authorId])
 }
 
+/// SOL-AUTH-09: sisselogimiskatsete loendur PÜSIVAS hoidlas.
+///
+/// Varem elasid PIN-katsete bucket'id `lib/rate-limit.js` mooduli lokaalses `Map`-is:
+/// iga Next-instants pidas oma arvet ja iga restart nullis kõik. Neljakohalise PIN-i
+/// 10 000 variandi juures oli see ainus konto-kaitse. `subject` on e-posti räsi või
+/// usaldatud edge-proxy IP, mitte kasutaja ID — muidu ütleks lukustumine ise ära, kas
+/// konto on olemas (SOL-AUTH-10). Seepärast puudub siin ka FK `User`-i peale.
+model AuthThrottleCounter {
+  id           String    @id @default(cuid())
+  scope        String
+  subject      String
+  count        Int       @default(0)
+  windowEndsAt DateTime
+  lockedUntil  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@unique([scope, subject])
+  @@index([windowEndsAt])
+}
+
 model EmailOtpCode {
   id        String    @id @default(cuid())
   userId    String

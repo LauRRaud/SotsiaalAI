@@ -1350,7 +1350,7 @@
       "register_link_closed": "Registreeru — peagi",
       "clear": "Kustuta PIN",
       "otp_title": "Kinnita sisenemine",
-      "otp_description": "Saatsime kinnituse aadressile {email}. Ava kiri ja vajuta linki.",
+      "otp_description": "Saatsime kinnituse aadressile {email}. Ava kiri, vajuta linki ja kinnita avanenud lehel.",
       "otp_spam_hint": "Kui kirja ei ole, vaata rämpsposti.",
       "otp_expires": "Link aegub kell {time}.",
       "otp_placeholder": "Kinnituslink",
@@ -5378,7 +5378,8 @@
         "resend_missing_token": "Puudub ajutine sisselogimise token.",
         "resend_token_invalid": "Seda kinnitust ei saa uuesti saata.",
         "user_missing": "Kasutajat ei leitud.",
-        "resend_failed": "Kinnituse saatmine ebaõnnestus.",
+        "invalid_credentials": "E-posti aadress või PIN ei ole õige.",
+        "resend_failed": "Kinnituse saatmine ebaõnnestus. Varem saadetud link kehtib edasi — proovi mõne hetke pärast uuesti.",
         "email_from_missing": "Saatja e-posti aadress ei ole seadistatud."
       },
       "register": {

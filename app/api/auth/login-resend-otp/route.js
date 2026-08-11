@@ -2,13 +2,10 @@ export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import {
-  hashOpaqueToken,
-  maskEmail,
-  generateOpaqueToken
-} from "@/lib/auth/pin-login";
+import { hashOpaqueToken, maskEmail } from "@/lib/auth/pin-login";
 import {
   buildLoginConfirmUrl,
+  resendLoginEmailLink,
   sendLoginLinkEmail
 } from "@/lib/auth/login-email-link";
 import { consumeRateLimit } from "@/lib/rate-limit";
@@ -153,22 +150,33 @@ export async function POST(request) {
       });
     }
 
-    const emailLinkToken = generateOpaqueToken(32);
-    await prisma.loginTempToken.update({
-      where: { id: loginToken.id },
-      data: {
-        emailLinkTokenHash: hashOpaqueToken(emailLinkToken)
-      }
+    // Järjekord ON parandus (SOL-AUTH-13): mint → SAADA → alles siis rotatsioon.
+    // Vana kood kirjutas uue räsi reale enne maileri kutset, seega ajutine
+    // SMTP-tõrge tappis kasutaja käes juba oleva kehtiva lingi ja uut ei tulnud
+    // asemele — alles jäi ainult PIN-i uuesti alustamine, kuigi UI näitas
+    // lihtsalt resend-tõrget.
+    const resent = await resendLoginEmailLink({
+      db: prisma,
+      loginTokenId: loginToken.id,
+      deliver: (emailLinkToken) =>
+        sendLoginLinkEmail(
+          user.email,
+          buildLoginConfirmUrl(emailLinkToken, locale),
+          locale
+        )
     });
 
-    await sendLoginLinkEmail(
-      user.email,
-      buildLoginConfirmUrl(request, emailLinkToken, locale),
-      locale
-    );
+    if (!resent.ok) {
+      console.error("login-resend-otp delivery failed", safeError(resent.error));
+      return errorJson("api.auth.login.resend_failed", 502, locale, {
+        code: "DELIVERY_FAILED",
+        delivery: "failed"
+      });
+    }
 
     return json({
       status: "resent",
+      delivery: "sent",
       email_mask: maskEmail(user.email),
       otp_expires_at: loginToken.expiresAt.toISOString()
     });

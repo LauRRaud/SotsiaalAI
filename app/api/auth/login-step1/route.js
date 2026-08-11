@@ -2,7 +2,6 @@ export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { compare } from "bcrypt";
 import { prisma } from "@/lib/prisma";
 import { safeError } from "@/lib/privacy/safeError";
 import {
@@ -26,6 +25,8 @@ import {
   sendLoginLinkEmail
 } from "@/lib/auth/login-email-link";
 import { consumeRateLimit } from "@/lib/rate-limit";
+import { getTrustedRequestIp } from "@/lib/request-ip";
+import { authenticatePinAttempt } from "@/lib/auth/pinLoginAttempt";
 import { serverT, normalizeServerLocale } from "@/lib/i18n/serverMessages";
 
 const LOGIN_STEP1_RATE_LIMIT_WINDOW_MS = Number(
@@ -43,6 +44,14 @@ const NO_STORE_HEADERS = {
   Pragma: "no-cache"
 };
 const LOCAL_HOST_RE = /^(localhost|127\.0\.0\.1|\[?::1\]?)(:\d+)?$/i;
+
+/** Üks ainus credential-vastus. Täpne põhjus jääb serverilogisse, mitte kliendile. */
+function invalidCredentials(locale, reason) {
+  if (reason) console.warn("login-step1 rejected", { reason });
+  return errorJson("api.auth.login.invalid_credentials", 401, locale, {
+    code: "INVALID_CREDENTIALS"
+  });
+}
 
 function json(payload, status = 200) {
   return NextResponse.json(
@@ -190,7 +199,12 @@ export async function POST(request) {
     const email = sanitizeEmail(body?.email);
     const pin = normalizePin(body?.pin);
     const ipAddress = computeIpFromHeaders(request.headers) || "unknown";
+    // Turvaotsuses kõlbab AINULT usaldatud edge-proxy normaliseeritud väärtus; `ipAddress`
+    // ülal jääb rea ja hoiatuskirja kirjelduseks, sest seda saab klient ise kirjutada.
+    const trustedIp = getTrustedRequestIp(request.headers);
 
+    // Mälupõhine piir jääb odavaks EELVÄRAVAKS (ei puuduta andmebaasi), aga ta EI OLE enam
+    // brute-force'i kaitse: ta ei jagune instantside vahel ja kaob restardil (SOL-AUTH-09).
     const ipLimit = consumeRateLimit(
       `login-step1:ip:${ipAddress}`,
       LOGIN_STEP1_RATE_LIMIT_PER_IP,
@@ -215,48 +229,36 @@ export async function POST(request) {
       }
     }
 
-    if (!email) {
-      return errorJson("api.auth.login.email_not_found", 400, locale, {
-        code: "EMAIL_NOT_FOUND"
-      });
-    }
-
     if (!isValidPin(pin)) {
+      // Vormiviga PIN-i kuju kohta ei ole katse ega ütle konto kohta midagi — ta ei tohi
+      // kuluta katseid ega kanda credential-vastust.
       return errorJson("api.auth.login.pin_invalid", 400, locale, {
         code: "PIN_INVALID"
       });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: {
-        id: true,
-        email: true,
-        passwordHash: true,
-        isAdmin: true,
-        role: true,
-        accessSuspendedAt: true
-      }
+    // PIN-katse otsus elab marsruudist väljas (`lib/auth/pinLoginAttempt.js`): püsiv piir,
+    // üks credential-vastus ja üks ajastus käivad kokku ja neid ei saa siin testida, sest
+    // see fail impordib `next/headers`. Sama põhjus mis SOL-AUTH-08/-11-l.
+    const attempt = await authenticatePinAttempt({
+      db: prisma,
+      email,
+      pin,
+      trustedIp
     });
 
-    if (!user) {
-      return errorJson("api.auth.login.email_not_found", 401, locale, {
-        code: "EMAIL_NOT_FOUND"
+    if (attempt.outcome === "rate_limited") {
+      return errorJson("api.auth.login.rate_limited", 429, locale, {
+        code: "RATE_LIMITED",
+        retry_after_sec: attempt.retryAfterSec
       });
     }
 
-    if (!user.passwordHash || user.accessSuspendedAt) {
-      return errorJson("api.auth.login.pin_incorrect", 401, locale, {
-        code: "PIN_INCORRECT"
-      });
+    if (attempt.outcome !== "ok") {
+      return invalidCredentials(locale, attempt.reason);
     }
 
-    const pinOk = await compare(pin, user.passwordHash);
-    if (!pinOk) {
-      return errorJson("api.auth.login.pin_incorrect", 401, locale, {
-        code: "PIN_INCORRECT"
-      });
-    }
+    const user = attempt.user;
 
     const userAgent = request.headers.get("user-agent") || "";
     const fingerprint = fingerprintUserAgent(userAgent);
@@ -342,9 +344,14 @@ export async function POST(request) {
       console.error("login-step1 device alert send failed", safeError(mailError));
     }
 
+    // Kirja saatmine on siin VÄRAV, mitte kõrvaltoiming: ilma kohale jõudnud
+    // lingita ei saa teist faktorit läbida, ja puuduva kanoonilise baas-URL-i
+    // korral VISKAB `buildLoginConfirmUrl` (SOL-AUTH-12) — vana kood tuletas
+    // origini kliendi Host-päisest ja saatis selle konto aadressile. Viga läheb
+    // üldisesse catch'i: kasutaja saab 500, mitte lingi ründaja domeenile.
     await sendLoginLinkEmail(
       user.email,
-      buildLoginConfirmUrl(request, emailLinkToken, locale),
+      buildLoginConfirmUrl(emailLinkToken, locale),
       locale
     );
 

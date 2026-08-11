@@ -5,25 +5,33 @@ see fail on ainult ülevaade ja ta ei ole allikas. Numbrid on **loetud raportist
 käsitsi kokku pandud — ja alates 11.08 on sellel väitel ka kate: **`npm run sol:tally`**
 (`scripts/sol-audit-tally.mjs`) loendab `### SOL-XXX-NN — … — Pn` pealkirju ja loeb tehtuks
 ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam ei kirjutata.
-Mõõdetud **11.08.2026 õhtul** (kolmas mõõtmine, pärast SOL-AUTH-03…-06).
+Mõõdetud **11.08.2026 õhtul** (kuues mõõtmine, pärast SOL-AUTH-09/-10; eelmised olid pärast
+-08/-12/-13 ja pärast -07/-11 koos loenduri enda parandusega).
+
+**Loendur ise oli 11.08-ni vaikiv ja andis seetõttu vale nimetaja.** Range muster tundis
+ainult kaheosalist koodi, seega jätkufaili `SOL-DOC-J-01…-06` (6 leidu) ei olnud kordagi
+loenduses — sama veaklass, mille pärast loendur üldse kirjutati (SOL-MAT). Parandatud:
+`-J` on tunnustatud jätku-nimeruum ja kuulub oma peatüki (`SOL-DOC`) alla, ning loendur
+**kukub nüüd nimeliselt**, kui mõni `### SOL-…` pealkiri rangele mustrile ei vasta —
+vaikselt väiksemat nimetajat ta enam anda ei saa (`tests/scripts/solAuditTally.test.js`).
 
 ## Kokkuvõte
 
 | | |
 |---|---|
-| Tehtud leidu | **110 / 397** |
-| Peatükke lõpuni | **7 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-DOC, SOL-MEET, SOL-CHAT |
-| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 200 × P1 · 86 × P2 · 1 × P3 |
-| Nimetaja kasvas 357 → 397 | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud seitset faili. |
-| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on kuus: SOL-AUTH-03…-07 ja -11** — nad on `origin/main`-is, aga server neid ei kanna. Migratsiooni ei vaja ükski. |
-| Järgmine peatükk | **SOL-AUTH on käsil, 6/15.** Järgmine plokk AUTH-07 + -11 (`LoginTempToken` elutsükkel). SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
-| Käsil oleva peatüki saba | SOL-AUTH 9 lahtist (5 × P1, 4 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
+| Tehtud leidu | **115 / 403** |
+| Peatükke lõpuni | **6 / 39** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT |
+| Lahtised prioriteedi järgi | **P0-sid EI OLE** · 201 × P1 · 86 × P2 · 1 × P3 |
+| Nimetaja kasvas 357 → 397 → **403** | **jätkuauditid, mis olid siit loendist täielikult väljas.** Vt eraldi lõiku allpool — see ei ole tagasiminek, vaid see, et loendus ei näinud esmalt seitset faili ja seejärel kuut leidu neist ühes. |
+| Toodangus | **neljateistkümnes deploy 11.08 13:45: server = `b7c9adf0`** (SOL-CHAT-09…-13, migratsioonita). Mõõdetud: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi. **Deploy'mata on üksteist: SOL-AUTH-03…-13** (kõik peale -01/-02). AUTH-03…-07 ja -11 on `origin/main`-is; **AUTH-08…-10 ja -12, -13 on veel commit'imata.** **Järgmine deploy VAJAB migratsiooni `20260811210000`** (`AuthThrottleCounter`, uus tabel) **ja üht env-rida: `TRUSTED_PROXY_IP_HEADER=x-real-ip`** — ilma selleta jääb AUTH-09 IP-piir välja (e-posti-põhine piir töötab). |
+| Järgmine peatükk | **SOL-AUTH on käsil, 13/15.** Lahtised on ainult **AUTH-14** (P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist) ja **AUTH-15** (P2 — paralleelsed paroolitaaste päringud tühistavad teineteise lingi); need kaks lõpetavad peatüki. SOL-CHAT lõpetatud (13/13), SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). |
+| Käsil oleva peatüki saba | SOL-AUTH 2 lahtist (1 × P1, 1 × P2) · SOL-NET 11 · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Lahtine tooteotsus | **kas jätkufailid liidetakse peaauditi dokumendijärjekorda või jäävad eraldi järjekorraks.** Kuni see on lahtine, ei ole „järgmine dokumendi järjekorras" üheselt määratud. |
 
 ## Jätkuauditid — miks nimetaja muutus
 
 Loendus luges ainult peafaili pealkirju, seega **iga jätkufail oli tema alt väljas**. 11.08
-õhtuks on neid seitse (üks veel pooleli), kokku **40 leidu, kõik NOT_DONE**:
+õhtuks on neid seitse, kokku **46 leidu, kõik NOT_DONE**:
 
 | Jätkufail | Peatükk | Leiud | Mida ta teeb |
 |---|---|---|---|
@@ -33,18 +41,25 @@ Loendus luges ainult peafaili pealkirju, seega **iga jätkufail oli tema alt vä
 | `…-jatk-koosta-dokument.md` | SOL-COMP | 5 | **uus peatükk** |
 | `…-jatk-organisatsioonid.md` | SOL-ORG | 5 | laiendab **lõpetatuks loetud** peatükki |
 | `…-jatk-tooheaolu.md` | SOL-WB | 4 | laiendab olemasolevat (14 → 18) |
-| `…-jatk-dokumendid.md` | – | 0 | kirjutamise ajal pooleli |
+| `…-jatk-dokumendid.md` | SOL-DOC | 6 | laiendab **lõpetatuks loetud** peatükki (9 → 15); ainus **`-J` nimeruumiga** fail |
 
-Kaks tagajärge, mis ei ole kosmeetika:
+Kolm tagajärge, mis ei ole kosmeetika:
 
-- **„SOL-ORG 12/12 tehtud" ei kehti enam** — SOL-ORG-13…-17 on lahtised, seega lõpetatud
-  peatükke on 7, mitte 8.
+- **„SOL-ORG 12/12 tehtud" ei kehti enam** — SOL-ORG-13…-17 on lahtised.
+- **„SOL-DOC 9/9 tehtud" ei kehti enam** — `SOL-DOC-J-01…-06` on lahtised, sh **`-02`
+  paralleelsed muudatused kirjutavad vaikides üksteise üle** ja **`-03` RAG-kasutusloa
+  tagasivõtmine ei eemalda indekseeritud koopiat** (mõlemad P1). Koos SOL-ORG-iga on
+  lõpetatud peatükke **6**, mitte 8.
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**104 tehtud leidu 110-st on tootmises; deploy'mata on kuus — SOL-AUTH-03…-07 ja -11.** Nad on
-`origin/main`-is (`14501377`, `380274df` ja järgnev), aga server neid ei kanna ja migratsiooni ei
-vaja ükski kolmest plokist. Kolmeteistkümnes deploy
+**104 tehtud leidu 115-st on tootmises; deploy'mata on üksteist — kogu SOL-AUTH-03…-13.**
+AUTH-03…-07 ja -11 on `origin/main`-is (`14501377`, `380274df` ja järgnev), AUTH-08…-10 ja -12,
+-13 on veel commit'imata; server ei kanna neist ühtki. **Erinevalt eelmistest ringidest vajab
+järgmine deploy migratsiooni** (`20260811210000`, uus tabel `AuthThrottleCounter`; olemasolevaid
+ridu ei puudutata) **ja üht env-rida** (`TRUSTED_PROXY_IP_HEADER=x-real-ip`), ilma milleta jääb
+AUTH-09 IP-piir teadlikult välja.
+Kolmeteistkümnes deploy
 (11.08 13:06, server `27af4a02`) viis välja kogu SOL-CHAT-01…-08 ploki koos migratsiooniga
 **`20260811160000`** (uus tabel `ChatTurn` + enum `ChatTurnStatus`; olemasolevaid ridu ei
 puudutatud) ning ühtlasi eelmisest ringist üle jäänud SOL-MEET-05/-06.
@@ -72,12 +87,12 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
 |---|---|---|---|---|
 | Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
 | Build | SOL-BUILD | **1/1** | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | 8/15 | 4 × P1 · 3 × P2 | **käsil**, AUTH-01…-07 ja -11 tehtud |
+| Autentimine ja autoriseerimine | SOL-AUTH | 13/15 | 1 × P1 · 1 × P2 | **käsil**, AUTH-01…-13 tehtud; lahtised ainult -14 ja -15 |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
 | Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
 | Välitöö | SOL-FIELD | **6/6** | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | **9/9** | – | **tehtud** |
+| Dokumendid ja AI-kasutus | SOL-DOC | 9/15 | 3 × P1 · 3 × P2 | **enam mitte lõpetatud** — 6 leidu jätkufailist (`SOL-DOC-J-*`) |
 | Uuringud | SOL-RES | 6/7 | 1 × P2 | lahtine ainult RES-07 (kvalifitseeritud) |
 | Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | **tehtud** |
 | Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
@@ -151,6 +166,40 @@ Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
   katsest KAKS seadet. **Sond leidis lõksu, mis oleks tõendi tühjaks teinud:**
   `provider.authorize` on next-auth'i tühi stub ja päris funktsioon on
   `provider.options.authorize` — kinni püüdis baasjoone kontroll „enne vahetust ANNAB".
+- **SOL-AUTH-08 + -12 + -13** (11.08) — **sisselogimise e-kirja link, üks plokk, ja kõigil
+  kolmel oli kõrval juba lahendatud vaste.** `-08`: kinnituslingi pelk AVAMINE kinnitas teise
+  faktori, seega postkasti turvaskanner tegi seda konto omaniku eest ja PIN-i teadnud ründaja
+  sai oma brauseris sessiooni — GET annab nüüd vahelehe ja POST kinnitab (muster
+  `verify-email`-ist, AUTH-04 kaudu), aga **siin ilma auto-submit'ita**: ohver ise võib lingi
+  avada, seega ta peab NÄGEMA seadet, aega ja IP-d, mille katset ta kinnitab. `-12`: turvalingi
+  origin langes puuduva baas-URL-i korral tagasi kliendi `Host`-päisele — nüüd tuleb ta ainult
+  `resolveBaseUrl()`-ist ja funktsiooni allkirjast kadus `request` (päist, mida ei anta, ei saa
+  usaldada); ilma originita jääb kiri saatmata ja teist faktorit ei saa läbida. `-13`: resend
+  kirjutas uue räsi reale enne maileri kutset, seega SMTP-tõrge tappis kohale jõudnud lingi —
+  järjekord on nüüd mint → SAADA → rotatsioon (sama, mis AUTH-06 e-posti vahetuses) ja tõrge
+  annab 502 koos ausa tekstiga „varem saadetud link kehtib edasi".
+  **`npm run auth:emaillink:probe` 27/27 päris PostgreSQL-is**, kutsudes marsruudi PÄRIS `GET`-i
+  ja `POST`-i; kaks negatiivkontrolli: vana GET-rada kinnitab pelgalt avamisel · vana järjekord
+  tapab lingi juba enne saatmiskatset. Ühikuid 9. **Brauseris läbi käidud** päris reaga:
+  vahelehel `scripts: 0` (ühtki skripti, seega ka mitte auto-submit'i) ja pärast nupuvajutust
+  töötab endine ootamis- ja handoff-loogika muutumatuna. Hind on **üks klikk** — omaniku 28.07
+  vastuväide käis kinnituse-JÄRGSE kliki kohta, mis jääb lahendatuks.
+- **SOL-AUTH-09 + -10** (11.08) — **kaks leidu, mida ei saa eraldi parandada.** `-09`:
+  PIN-katsete loendur elas mooduli mälus, seega iga instants pidas oma arvet ja iga restart
+  nullis kõik — neljakohalise PIN-i 10 000 variandi juures oli see ainus kaitse. Nüüd on ta
+  andmebaasis (`AuthThrottleCounter`, migratsioon **`20260811210000`**), kasutajapõhise
+  nõuandeluku `4713` taga, aeglustuse ja turvalise taastamisega; IP tuleb ainult
+  konfigureeritud edge-päisest (`TRUSTED_PROXY_IP_HEADER`) ja sealt VIIMASEST väärtusest,
+  ilma konfiguratsioonita IP-piiri ei tehta. `-10`: `EMAIL_NOT_FOUND` ja `PIN_INCORRECT`
+  asendas üks `INVALID_CREDENTIALS`, **ja ajastus ühtlustus peibutusräsiga** — bcrypt cost 12
+  jookseb nüüd ka tundmatul kontol, muidu oleks vastus kordades kiirem ja lekitaks konto
+  puudumise ka identse tekstiga. **Kokkupuutepunkt:** loenduri subjekt on e-posti räsi, MITTE
+  kasutaja ID — konto järgi käiv lukustus oleks teinud 429-st uue oraakli.
+  **`npm run auth:throttle:probe` 23/23 päris PostgreSQL-is**, sh **päris teine protsess**
+  (`spawn`, pid kontrollitud) ja restart; negatiivkontrollid: vana mälupõhine loendur annab
+  igale instantsile oma täie limiidi · ilma peibutusräsita on tundmatu konto rada kordades
+  kiirem. Ühikuid 12. **Brauseris mõõdetud päris HTTP kaudu**: tundmatu 440/442/413 ms vs
+  vale PIN 441/437/436 ms, mõlemal sama kood ja sõnum; 9. katse annab 429.
 - **SOL-CW-01…CW-08, CW-10…CW-13, CW-15…CW-18, CW-20** (17 leidu)
 - **SOL-RAGADMIN-01, -02, -03, -04** (peatükk lõpuni)
 - **SOL-CALL-01, -02, -03** — igal kolmel on vastuvõtukriteeriumist osa katmata, vt leidude
@@ -594,6 +643,10 @@ kood ei anna:
 - **Loendur loeb ka jätkufaile** (`…-jatk-*.md`) ja just nende puudumine oli senise loenduse
   suurim viga: SOL-MAT peatükk (13 leidu) ei olnud siin tabelis kordagi. Kui uus jätkufail
   lisandub, muutub nimetaja — jooksuta loendur uuesti, ära paranda numbrit käsitsi.
+- **Loenduri enda veaklass on vaikimine, mitte vale arvutus.** Sama viga kordus 11.08 teist
+  korda kitsamalt: `SOL-DOC-J-01…-06` ei vastanud rangele mustrile ja kadus. Nüüd nõuab
+  loendur, et **iga** `### SOL-…` pealkiri oleks arvestatud, ja kukub muidu nimeliselt —
+  seega „numbrid on raportist loetud" on kate ka tulevaste ID-vormingute peal.
 - **`runtime: not_run` ei tee leidu lahtiseks.** Enamik parandusi on tõendatud teenuse- ja
   andmebaasitasemel; „päris admini sessioonist läbi käimata" on kirjas iga leiu Seis-lõigus
   eraldi ja seda ei loeta siin puuduseks.

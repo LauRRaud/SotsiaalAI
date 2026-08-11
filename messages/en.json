@@ -1349,7 +1349,7 @@
       "register_link": "Create account",
       "register_link_closed": "Create account — coming soon",
       "otp_title": "Confirm sign-in",
-      "otp_description": "We sent a confirmation to {email}. Open the email and click the link.",
+      "otp_description": "We sent a confirmation to {email}. Open the email, click the link and confirm on the page that opens.",
       "otp_spam_hint": "No email? Check your spam folder.",
       "otp_expires": "Link expires at {time}.",
       "otp_placeholder": "Verification code (6 digits)",
@@ -5378,7 +5378,8 @@
         "resend_missing_token": "Missing temporary sign-in token.",
         "resend_token_invalid": "This confirmation cannot be resent.",
         "user_missing": "User not found.",
-        "resend_failed": "Failed to resend the confirmation.",
+        "invalid_credentials": "That email address or PIN is not correct.",
+        "resend_failed": "Failed to resend the confirmation. The link sent earlier still works — please try again in a moment.",
         "email_from_missing": "Sender email is not configured."
       },
       "register": {
