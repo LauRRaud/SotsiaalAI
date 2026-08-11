@@ -2569,6 +2569,28 @@ puuduvast asjast: pöördel ei olnud rida, mille külge kinnituda.**
 
 **Vastuvõtukriteerium.** Ühe faili analüüsikavatsusel peab olema enne upload'i loodud stabiilne võti ning taastatav serveripoolne tulemus või vähemalt tulemuse hash/olek. Commit'i retry peab sama tulemust taaskasutama, mitte faili uuesti parsima. Veasüstetestid peavad katma commit'i enne ja pärast DB tehingut ning tõendama üht analüüsi, üht kasutusühikut ja kasutajale taastatud tulemust.
 
+**Seis (11.08.2026): DONE koodis, ÜKS KRITEERIUMI OSA TEADLIKULT TÄITMATA (vt allpool).**
+- **Järjekord ja kaks piiri on nüüd `lib/usage/paidResult.js` reegli järgi.** Tasulise töö viga
+  vabastab; **commit'i enda viga ei vabasta ega tühista tulemust** — logi ja vastus lähevad välja,
+  reservatsioon jääb RESERVED-iks. Vana kood tegi täpselt vastupidist: `analysisCompleted` lipp
+  keelas vabastuse JA `catch` viskas valmis analüüsi ära, nii et kasutaja kaotas mõlemad.
+- **Lipp on kadunud, mitte parandatud.** Ta oli leiu mehhanism; test nõuab, et ta lähtekoodi
+  tagasi ei tuleks.
+- **Klient loob kavatsuse võtme enne üleslaadimist** (`resolveIntentKey`, sama primitiiv mis
+  SOL-CHAT-03 ja SOL-DOC-01) ja allkiri sõltub failist endast (nimi + suurus + muutmisaeg), mitte
+  ainult nimest. Marsruut toetas `idempotencyKey` välja juba varem — klient lihtsalt ei saatnud
+  teda. Kordus taaskasutab nüüd sama reservatsiooni; **teist nädalaühikut ei võeta**.
+- **Täitmata jäi „commit'i retry peab sama tulemust taaskasutama, mitte faili uuesti parsima".**
+  Selleks peaks server analüüsi tulemuse alles hoidma, aga analüüs on lepingu järgi **efemeerne**
+  (`privacy.ephemeral`, `api.chat.analyze.privacy_ephemeral`) — sisu on kasutaja dokument ja teda
+  ei säilitata. Valitud on privaatsus: kordus parsib faili uuesti, aga **ei maksa teist korda**.
+  See on tooteotsus, mitte tähelepanematus; kui omanik eelistab vastupidist, on muudatus üks
+  tabelirida ja üks säilitustähtaeg.
+- **Testid** (`tests/chat/analyzeFileDurability.test.js`, 2 uut) mõõdavad järjekorda ja mõlemat
+  piiri lähtekoodi tasemel: commit'i plokis EI TOHI olla `releaseUsageForRequest` ega `errorJson`.
+  Kriteeriumi „veasüst enne ja pärast DB tehingut" ei ole siin kohaldatav — see marsruut ei tee
+  ühtegi DB-kirjutust peale kasutusarvestuse. `runtime: not_run`.
+
 ### SOL-CHAT-09 — efemeerne failianalüüs usaldab deklareeritud MIME-i ja tagastab piiramatu täisteksti — P1
 
 **Tõend.** Next-route lubab kuni 25 MB faili ja valib MIME-i kliendi `mimeType`, brauseri `file.type` või laiendi järgi, sisu signatuuri kontrollimata (`lib/chat/analyzeFileConfig.js:33-64`, `app/api/chat/analyze-file/route.js:182-244`). RAG-teenuse `_detect_mime()` tagastab deklareeritud tüübi kohe ja kasutab libmagic'ut ainult siis, kui deklaratsioon puudub (`rag-service/main.py:804-812`). DOCX läheb `docx2txt.process()` kaudu lahtipakkimisele ilma tihendatud suhte, lahtipakitud mahu või ajapiirita; PDF parseril pole lehe-/tekstilage (`:987-1010`). `/analyze` piirab küll chunk'ide arvu, kuid tagastab `fullText: raw_text` täiesti kärpimata (`:3329-3382`). Node loeb kogu vastuse esmalt stringiks ja parsib siis JSON-iks (`app/api/chat/analyze-file/route.js:117-142`); klient hoiab `fullText` väärtust Reacti olekus ja renderduse eelvaate alusena (`components/chat/hooks/useChatAnalysisController.js:75-80`, `:344-358`).

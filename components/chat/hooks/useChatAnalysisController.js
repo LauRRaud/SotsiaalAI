@@ -6,6 +6,7 @@ import {
   readAnalyzeMaxUploadMb
 } from "@/lib/chat/analyzeFileConfig";
 import { resolveApiMessage } from "@/lib/i18n/resolveApiMessage";
+import { buildIntentSignature, resolveIntentKey } from "@/lib/usage/intentKey";
 export function useChatAnalysisController({
   t,
   locale: _locale,
@@ -25,6 +26,8 @@ export function useChatAnalysisController({
   const [_analysisPanelInline, setAnalysisPanelInline] = useState(false);
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const fileInputRef = useRef(null);
+  // SOL-CHAT-08: lahendamata analüüsikavatsused failinime kaupa (vt saatmiskoht allpool).
+  const analysisIntentsRef = useRef(new Map());
   const analysisPanelRef = useRef(null);
   const pageScrollRef = useRef(null);
   const normalizedRole = useMemo(
@@ -319,10 +322,25 @@ export function useChatAnalysisController({
           continue;
         }
         try {
+          /* SOL-CHAT-08: kavatsuse võti luuakse ENNE üleslaadimist ja on failipõhiselt stabiilne,
+             seega korduskatse taaskasutab sama reservatsiooni ega kuluta uut nädalaühikut.
+             Marsruut toetas `idempotencyKey` välja juba varem — klient lihtsalt ei saatnud teda,
+             ja adapter tegi iga katse jaoks uue UUID-i. */
+          const intent = resolveIntentKey(
+            analysisIntentsRef.current.get(file.name) || null,
+            buildIntentSignature({
+              name: file.name || "",
+              size: file.size || 0,
+              lastModified: file.lastModified || 0,
+              maxChunks: MAX_ANALYZE_CHUNKS
+            })
+          );
+          analysisIntentsRef.current.set(file.name, intent);
           const fd = new FormData();
           fd.append("file", file, file.name || "file");
           fd.append("mimeType", file.type || "");
           fd.append("maxChunks", String(MAX_ANALYZE_CHUNKS));
+          fd.append("idempotencyKey", intent.key);
           const res = await fetch("/api/chat/analyze-file", {
             method: "POST",
             body: fd
@@ -341,6 +359,8 @@ export function useChatAnalysisController({
             statusErr.userMessage = statusError;
             throw statusErr;
           }
+          // Kavatsus on lahendatud: sama faili tahtlik uus analüüs on aus uus töö.
+          analysisIntentsRef.current.delete(file.name);
           const chunksArray = Array.isArray(data.chunks) ? data.chunks : [];
           nextMaterials.push({
             fileName: data.fileName || file.name,

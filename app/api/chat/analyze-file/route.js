@@ -213,7 +213,6 @@ export async function POST(request) {
   const userId = String(session.user.id);
   const rawIdempotencyKey = fd.get("idempotencyKey");
   let usageHandle = null;
-  let analysisCompleted = false;
 
   try {
     usageHandle = await reserveUsageForRequest({
@@ -243,21 +242,25 @@ export async function POST(request) {
   }
   forward.append("maxChunks", String(maxChunks));
 
+  /* SOL-CHAT-08 — TULEMUS EI TOHI COMMIT'I VEA TAGA KADUDA.
+     Vana järjekord: analüüs valmis → „valmis" lipp tõeseks → commit → commit'i viga läks
+     `catch`-i, kus vabastust EI tehtud (lipp oli juba tõene) ja kasutajale läks analüüsi asemel
+     VIGA. Fail oli välisteenuses juba edukalt töödeldud, tulemus visati ära ja reservatsioon jäi
+     kinni. `lib/usage/paidResult.js` teine piir ütleb siin täpselt vastupidist: tasu enda viga ei
+     vabasta midagi JA ei tühista tulemust — reservatsioon jääb RESERVED-iks, mille sama võtmega
+     korduskatse commit'ib või mille aegumise korral reaper tagastab.
+
+     Miks tulemust ei püsistata serveris (kriteeriumi „taastatav serveripoolne tulemus"): analüüs
+     on lepingu järgi EFEMEERNE (`privacy.ephemeral`), tema sisu on kasutaja dokument ja teda ei
+     hoita serveris. Taastatavus on siin lahendatud kavatsuse võtmega: kordus taaskasutab SAMA
+     reservatsiooni, seega teist ühikut ei võeta. Faili uuesti parsimist see ei väldi — see on
+     teadlik hind privaatsuse eest ja mitte tähelepanematus. */
+  let data;
   try {
-    const data = await callRagAnalyze(forward);
-    analysisCompleted = true;
-    await commitUsageForRequest(usageHandle);
-    return json({
-      ...(data && typeof data === "object" ? data : {}),
-      ok: true,
-      privacy: {
-        ephemeral: true,
-        noteKey: "api.chat.analyze.privacy_ephemeral"
-      }
-    });
+    data = await callRagAnalyze(forward);
   } catch (e) {
     console.error("[analyze-file] RAG analyze error:", safeError(e));
-    if (usageHandle && !analysisCompleted) {
+    if (usageHandle) {
       try {
         await releaseUsageForRequest(usageHandle, { reason: "file_analysis_failed" });
       } catch (releaseError) {
@@ -267,4 +270,20 @@ export async function POST(request) {
     const status = Number(e?.status) || 502;
     return errorJson(e?.message || "api.chat.analyze.service_unavailable", status, locale);
   }
+
+  try {
+    await commitUsageForRequest(usageHandle);
+  } catch (commitError) {
+    // Teadlikult ilma vabastuseta ja ilma veata kasutajale: tulemus on olemas ja kuulub talle.
+    console.error("[analyze-file] usage commit failed:", safeError(commitError));
+  }
+
+  return json({
+    ...(data && typeof data === "object" ? data : {}),
+    ok: true,
+    privacy: {
+      ephemeral: true,
+      noteKey: "api.chat.analyze.privacy_ephemeral"
+    }
+  });
 }
