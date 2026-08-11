@@ -12,18 +12,19 @@ käsitsi kokku pandud: loendatakse `### SOL-XXX-NN — … — Pn` pealkirju ja 
 | Tehtud leidu | **89 / 357** |
 | Peatükke lõpuni | **6 / 35** — SOL-SCHEMA, SOL-BUILD, SOL-RAGADMIN, SOL-ORG, SOL-FIELD, **SOL-DOC** |
 | Lahtised prioriteedi järgi | **P0-sid EI OLE** · 194 × P1 · 73 × P2 · 1 × P3 |
-| Toodangus | **üheteistkümnes deploy 11.08 10:17 omaniku selgel loal: server = `aafe4eaa`**, 30 commit'i (kogu SOL-DOC 01…09, kogu SOL-RES 01…07 + docs) ja kaks migratsiooni. Mõõdetud, mitte eeldatud: `.next` 10:17, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` **200**, `/registreerimine` 307, veatasemel logi tühi. Mõlemad migratsioonid `_prisma_migrations`-is lõpetatud ja tagasi kerimata; `ResearchJob.clientIntentKey` + unikaalne `(userId, clientIntentKey)` indeks olemas, `DocumentAuditAction` sai `ANALYSIS_SAVE`/`ANALYSIS_DELETE`. (Kümnes deploy 10.08 23:34 = `44144aba`, üheksas 22:49 = `a2aa7435`.) |
+| Toodangus | **kaheteistkümnes deploy 11.08 11:42 omaniku selgel loal: server = `ae1f2055`**, kaheksa commit'i (SOL-MEET-01…-04 + docs) ja üks migratsioon. Mõõdetud, mitte eeldatud: `.next` 11:42, kolm teenust `active`, `/` `/vestlus` `/toolaud` `/teenusekaart` `/valitoo` **200**, veatasemel logi tühi. `20260811120000` lõpetatud ja tagasi kerimata; `MeetingSummaryJobClaim` olemas koos unikaalse `userId` indeksi ja `ON DELETE CASCADE` võtmega, ridu 0. (Üheteistkümnes deploy 11.08 10:17 = `aafe4eaa`, kümnes 10.08 23:34 = `44144aba`.) |
 | Järgmine peatükk (dokumendi järjekord; P0-sid enam ei ole) | **SOL-MEET on käsil** (4/6). SOL-RES jäi 6/7 (RES-07 kvalifitseeritud). Kõige eespool lahtine on endiselt **SOL-AUTH** (13 lahtist) |
 | Käsil oleva peatüki saba | SOL-NET 11 lahtist (9 × P1, 2 × P2) · SOL-PRE 16 · SOL-JOUR 15 · SOL-RAGSVC 26 · SOL-SLOG 19 · SOL-URG 11 · SOL-CALL 3 |
 | Esimene lahtine peatükk puhtas dokumendi järjekorras | SOL-AUTH (13 lahtist: 8 × P1, 5 × P2) — ootel, P0-sid ei ole |
 
-**85 tehtud leidu 89-st on tootmises.** Deploy'mata on **SOL-MEET-01…-04**; migratsiooni vajab **ainult MEET-04** (`20260811120000`, uus tabel).
-Üheteistkümnes deploy (11.08 10:17, server `aafe4eaa`) viis välja kogu SOL-DOC peatüki
-(01…09) ja SOL-RES-01…-07
-koos mõlema migratsiooniga: **SOL-DOC-09** (`20260811020000`, kaks enum-väärtust) ja
-**SOL-RES-02** (`20260811040000`, veerg + unikaalne indeks). Kumbki ei muutnud olemasolevaid
-ridu. `ResearchJob` on toodangus 0 rida, seega RES-02 unikaalne indeks läks läbi triviaalselt —
-esimene päris kinnitus tuleb siis, kui kaks sama võtmega kavatsust tõesti kohtuvad.
+**Kõik 89 tehtud leidu on tootmises** — deploy'mata parandusi EI OLE. Kaheteistkümnes deploy
+(11.08 11:42, server `ae1f2055`) viis välja SOL-MEET-01…-04 koos migratsiooniga
+**`20260811120000`** (uus tabel `MeetingSummaryJobClaim`; olemasolevaid ridu ei puudutatud).
+Üheteistkümnes deploy (11.08 10:17) oli kogu SOL-DOC (01…09) ja SOL-RES-01…-07 kahe
+migratsiooniga. `ResearchJob` ja `MeetingSummaryJobClaim` on toodangus mõlemad 0 rida, seega
+mõlemad unikaalsed indeksid läksid läbi triviaalselt — esimesed päris kinnitused tulevad alles
+päris koormusega. **Enne deploy'd mõõdetud:** SOL-MEET-03 snapshotikataloog oli toodangus tühi,
+seega uuel koristusel ei olnud midagi kustutada.
 Ainus P3 kogu auditis on SOL-SEARCH-i oma ja teda ei ole allpool eraldi veerus.
 
 **Deploy-järgne kontroll tõi ühe asja välja:** `npm run rag:path:probe` — RAGSVC-01/02

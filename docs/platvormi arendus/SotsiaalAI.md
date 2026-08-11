@@ -89,16 +89,24 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 11.08 hommikul (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja server
-on kõik **`aafe4eaa`** — deploy'mata tööd EI OLE. **Üheteistkümnes deploy 11.08 10:17 sinu
-selgel loal:** 30 commit'i (kogu SOL-DOC 01…09, kogu SOL-RES 01…07 + docs) ja kaks
-migratsiooni. Mõõdetud kohe pärast, mitte eeldatud: `.next` 10:17, kolm teenust `active`,
-`/` `/vestlus` `/toolaud` `/teenusekaart` **200**, frontend'i veatasemel logi tühi.
-Mõlemad migratsioonid on `_prisma_migrations`-is lõpetatud ja tagasi kerimata:
-`ResearchJob.clientIntentKey` ja unikaalne `(userId, clientIntentKey)` indeks on olemas,
-`DocumentAuditAction` sai `ANALYSIS_SAVE` ja `ANALYSIS_DELETE`. `ResearchJob` on toodangus
-0 rida, seega unikaalne indeks läks läbi triviaalselt — esimene päris kinnitus tuleb siis,
-kui kaks sama võtmega kavatsust tõesti kohtuvad.
+**Seis 11.08 keskpäeval (mõõdetud, mitte mäletatud):** lokaalne `main`, `origin/main` ja server
+on kõik **`ae1f2055`** — deploy'mata tööd EI OLE. **Kaheteistkümnes deploy 11.08 11:42 sinu
+selgel loal:** kaheksa commit'i (SOL-MEET-01…-04 + docs) ja üks migratsioon. Mõõdetud kohe
+pärast, mitte eeldatud: `.next` 11:42, kolm teenust `active`, `/` `/vestlus` `/toolaud`
+`/teenusekaart` `/valitoo` **200**, frontend'i veatasemel logi tühi. Migratsioon
+`20260811120000` on lõpetatud ja tagasi kerimata; `MeetingSummaryJobClaim` on olemas koos
+unikaalse `userId` indeksi ja `ON DELETE CASCADE` võtmega, ridu 0.
+
+**Enne deploy'd mõõdetud ja seetõttu ära jäänud mure:** SOL-MEET-03 toob kaasa
+snapshotikataloogi koristuse, aga `/var/lib/sotsiaalai/agent/meeting-summary-jobs` oli
+toodangus **tühi**, seega kustutada ei olnud midagi. Sama loogika esimene päris koormus tuleb
+alles siis, kui keegi kokkuvõttetöid päriselt käivitab.
+
+**Üheteistkümnes deploy 11.08 10:17** oli `aafe4eaa`: 30 commit'i (kogu SOL-DOC 01…09, kogu
+SOL-RES 01…07 + docs) ja kaks migratsiooni. Mõõdetud kohe pärast: `.next` 10:17, kolm teenust
+`active`, `/` `/vestlus` `/toolaud` `/teenusekaart` **200**, veatasemel logi tühi. `ResearchJob`
+on toodangus 0 rida, seega RES-02 unikaalne indeks läks läbi triviaalselt — esimene päris
+kinnitus tuleb siis, kui kaks sama võtmega kavatsust tõesti kohtuvad.
 
 **Kümnes deploy 10.08 23:34** oli `44144aba` (SOL-FIELD-04/-05/-06, migratsioonita) — vt S9.
 **Üheksas deploy 10.08 22:49** oli `a2aa7435`: neli commit'i (SOL-FIELD-02 ja -03 + docs),
