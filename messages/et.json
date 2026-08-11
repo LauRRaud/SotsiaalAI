@@ -5428,7 +5428,8 @@
       "checkout_terms_required": "Enne maksmist peab tingimustega nõustuma.",
       "checkout_intent_required": "Makse algatamise võti puudub. Värskenda leht ja proovi uuesti.",
       "checkout_in_progress": "Makse algatamine on juba pooleli. Lõpeta või sulge eelmine makseaken ja proovi hetke pärast uuesti.",
-      "checkout_intent_used": "See maksekatse on juba lõppenud. Alusta uut makset."
+      "checkout_intent_used": "See maksekatse on juba lõppenud. Alusta uut makset.",
+      "cancel_not_self_paid": "Selle tellimuse eest maksab keegi teine, seega sina seda lõpetada ei saa. Pöördu sponsori või oma organisatsiooni poole."
     },
     "invites": {
       "email_from_missing": "Saatja e-posti aadress ei ole seadistatud.",

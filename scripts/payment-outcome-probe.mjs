@@ -117,14 +117,25 @@ async function runRenewalJob() {
   return { status: response.status, body: await response.json() };
 }
 
-/** Päris allkirjastatud webhook — sama MAC, mida provider arvutab. */
+/**
+ * Päris allkirjastatud webhook — sama MAC, mida provider arvutab.
+ *
+ * Summa ja valuuta loetakse REALT, mitte ei kirjutata sonda sisse: SOL-PAY-05
+ * järel on „makstud" otsus seotud sellega, et sõnum vastab sellele maksele. Kui
+ * sond saadaks siia oma väljamõeldud summa, mõõdaks ta ülevaatuse-raja, mitte
+ * seda, mida ta tõendama on pandud.
+ */
 async function sendWebhook(providerPaymentId, status) {
+  const row = await prisma.payment.findFirst({
+    where: { providerPaymentId },
+    select: { amount: true, currency: true }
+  });
   const json = JSON.stringify({
     message_type: "payment_return",
     reference: providerPaymentId,
     status,
-    amount: "9.90",
-    currency: "EUR"
+    amount: String(row?.amount ?? "0.00"),
+    currency: row?.currency || "EUR"
   });
   const mac = crypto.createHash("sha512").update(`${json}${SECRET}`).digest("hex").toUpperCase();
   const response = await webhookPOST(

@@ -65,6 +65,10 @@ enum PaymentProvider {
 /// võrk, 5xx, meie enda kirjutusviga PÄRAST providerikutset) ei ole eitus: raha
 /// võis liikuda. Selle jaoks on `RECONCILE_PENDING` — mitteterminaalne seis,
 /// mille webhook või reconciliation-worker lahendab.
+///
+/// SOL-PAY-05: `REVIEW_REQUIRED` = allkiri oli kehtiv, aga sõnum ei vasta sellele
+/// maksele (summa, valuuta, viide, merchant_data või makseliik). Õigust EI anta ja
+/// automaatika ei lahenda seda ise — otsuse teeb inimene.
 enum PaymentStatus {
   INITIATED
   PAID
@@ -72,6 +76,7 @@ enum PaymentStatus {
   FAILED
   REFUNDED
   RECONCILE_PENDING
+  REVIEW_REQUIRED
 }
 
 enum PaymentKind {

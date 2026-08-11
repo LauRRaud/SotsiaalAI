@@ -11,7 +11,7 @@ import {
   normalizeSubscriptionRole,
   resolveRoleBoundSubscriptionPlan
 } from "@/lib/subscriptionPlans";
-import { serializeSubscription } from "@/lib/subscriptionView";
+import { isSponsoredBillingSource, serializeSubscription } from "@/lib/subscriptionView";
 import { logPaymentAudit } from "@/lib/payments/observability";
 import { safeError } from "@/lib/privacy/safeError";
 
@@ -245,12 +245,31 @@ export async function DELETE(request) {
       orderBy: [{ updatedAt: "desc" }]
     });
 
-    if (subscription && (periodEnd.count > 0 || pastDueCanceled.count > 0)) {
+    const canceledSomething = periodEnd.count > 0 || pastDueCanceled.count > 0;
+
+    if (subscription && canceledSomething) {
       logPaymentAudit({
         action: "subscription_cancel_requested",
         result: pastDueCanceled.count > 0 ? "canceled" : "cancel_at_period_end",
         subscriptionId: subscription.id,
         userId: session.userId
+      });
+    }
+
+    /* SOL-PAY-04 kõrvalparandus: tühistus nõuab `billingSource: "SELF"`, aga
+       vastus oli seni `ok` ka siis, kui ükski rida ei liikunud. Just see vaikimine
+       tegi päritolu-veast nähtamatu vea: omamaksja klõpsas „lõpeta", sai eduka
+       vastuse ja tellimus uuenes edasi. Sponsoreeritud tellimust kasutaja ei
+       tühista — aga see öeldakse nüüd välja. */
+    if (!canceledSomething && isSponsoredBillingSource(subscription?.billingSource)) {
+      logPaymentAudit({
+        action: "subscription_cancel_requested",
+        result: "sponsored_not_cancelable",
+        subscriptionId: subscription?.id || null,
+        userId: session.userId
+      });
+      return errorJson("api.subscription.cancel_not_self_paid", 409, locale, {
+        subscription: shape(subscription)
       });
     }
 

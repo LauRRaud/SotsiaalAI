@@ -3191,6 +3191,8 @@ export default function AnalyticsDashboard() {
                       // SOL-PAY-02: ebamäärane tulemus on oma seis. Ilma temata
                       // oleks järjekord siin vaikselt nähtamatu.
                       "RECONCILE_PENDING",
+                      // SOL-PAY-05: allkiri kehtis, sõnum ei vastanud maksele.
+                      "REVIEW_REQUIRED",
                       "FAILED",
                       "CANCELED",
                       "REFUNDED"

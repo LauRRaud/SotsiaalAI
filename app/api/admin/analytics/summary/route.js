@@ -933,6 +933,11 @@ export async function GET(req) {
         createdAt: { lt: stuckInitiatedCutoff }
       }
     });
+    /* SOL-PAY-05: ülevaatust ootavad maksed on eraldi loend, mitte „ummikus"
+       loenduri osa — nende juures ei aita ootamine ega kordamine, vaid otsus. */
+    const reviewRequiredCount = await prisma.payment.count({
+      where: { status: "REVIEW_REQUIRED" }
+    });
     // E1: mittesiduv plaani-rolli anomaalia agregaat (ei avalda ühegi kasutaja infot).
     const planRoleAnomalies = await countPlanRoleAnomalies(prisma, { now });
 
@@ -1062,6 +1067,9 @@ export async function GET(req) {
         stuckInitiated: {
           count: stuckInitiatedCount,
           olderThanMinutes: stuckInitiatedMinutes
+        },
+        reviewRequired: {
+          count: reviewRequiredCount
         },
         planRoleAnomalies
       },

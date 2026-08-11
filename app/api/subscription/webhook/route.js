@@ -24,6 +24,7 @@ import {
 } from "@/lib/payments/maksekeskus";
 import { enqueuePaymentEmail } from "@/lib/payments/emailOutbox";
 import { isTerminalPaymentStatus } from "@/lib/payments/providerOutcome";
+import { describeMismatches, verifyPaidPayload } from "@/lib/payments/paymentVerification";
 import {
   buildRenewalFailureSubscriptionUpdate,
   planRenewalFailure
@@ -109,7 +110,11 @@ function actionForStatus(status) {
 }
 
 function canSendOwnerNotification(result) {
-  return Boolean(result?.updated) && Boolean(result?.paymentId) && Boolean(result?.status);
+  /* SOL-PAY-05: ülevaatust vajav makse on täpselt see sõnum, mida omanik peab
+     nägema — ta ei ole „updated", aga ta on otsus, mille teeb inimene. */
+  return (
+    Boolean(result?.updated || result?.review) && Boolean(result?.paymentId) && Boolean(result?.status)
+  );
 }
 
 function asPlainObject(value) {
@@ -327,6 +332,12 @@ export async function POST(request) {
           userId: true,
           kind: true,
           billingMethodId: true,
+          /* SOL-PAY-05: summa ja valuuta ON siin real olemas — checkout kirjutas
+             nad ise. Vana select ei lugenud neid, seega otsus ei saanudki neid
+             võrrelda. */
+          providerPaymentId: true,
+          amount: true,
+          currency: true,
           raw: true
         }
       });
@@ -367,6 +378,49 @@ export async function POST(request) {
           status: payment.status,
           paymentLocale
         };
+      }
+
+      /* SOL-PAY-05: allkiri tõendab PÄRITOLU, mitte summat. Enne kui `PAID`
+         annab kuu või sponsorkutse õiguse, peab sõnum kuuluma SELLELE maksele ja
+         SELLE summa eest. Mittevastavus ei ole tõrge ega vaikne edu — ta on
+         nähtav `REVIEW_REQUIRED` seis, mille otsustab inimene. */
+      if (nextStatus === PaymentStatus.PAID) {
+        const verdict = verifyPaidPayload({ payment, payload });
+        if (!verdict.ok) {
+          const reviewedPayment = await tx.payment.update({
+            where: { id: payment.id },
+            data: {
+              status: PaymentStatus.REVIEW_REQUIRED,
+              raw: buildPaymentRawRecord(
+                {
+                  ...asPlainObject(payment.raw),
+                  source: "maksekeskus_webhook",
+                  review: {
+                    reason: "paid_payload_mismatch",
+                    fields: describeMismatches(verdict.mismatches),
+                    mismatches: verdict.mismatches
+                  }
+                },
+                payload
+              )
+            },
+            select: { id: true, status: true }
+          });
+          logPaymentAudit({
+            action: "payment_review_required",
+            result: describeMismatches(verdict.mismatches),
+            paymentId: payment.id,
+            subscriptionId: payment.subscriptionId,
+            inviteId: payment.inviteId
+          });
+          return {
+            review: true,
+            paymentId: reviewedPayment.id,
+            status: reviewedPayment.status,
+            mismatchedFields: describeMismatches(verdict.mismatches),
+            paymentLocale
+          };
+        }
       }
 
       const paidAt = nextStatus === PaymentStatus.PAID ? parsePaidAt(payload) : null;
@@ -664,7 +718,9 @@ export async function POST(request) {
       subscriptionAction: result?.subscriptionAction || "none",
       updated: Boolean(result?.updated),
       idempotent: Boolean(result?.idempotent),
-      ignored: Boolean(result?.ignored)
+      ignored: Boolean(result?.ignored),
+      review: Boolean(result?.review),
+      mismatchedFields: result?.mismatchedFields || ""
     });
 
     // T09 E6/L-06: kõik makse-/kutse e-kirjad lähevad idempotentse outbox'i

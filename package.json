@@ -49,6 +49,8 @@
     "pay:renewal:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-renewal-probe.mjs",
     "pay:outcome:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-outcome-probe.mjs",
     "pay:checkout:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-checkout-intent-probe.mjs",
+    "pay:origin:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-origin-probe.mjs",
+    "pay:verify:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-verify-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",
