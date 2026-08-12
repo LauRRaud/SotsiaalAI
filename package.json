@@ -201,7 +201,8 @@
     "rag:eval:golden": "node scripts/run-golden-eval.mjs",
     "rag:graph:plan": "node scripts/build-rag-graph.mjs",
     "rag:list:docs": "node scripts/list-rag-documents.mjs",
-    "rag:graph:apply": "node scripts/apply-rag-graph.mjs"
+    "rag:graph:apply": "node scripts/apply-rag-graph.mjs",
+    "pay:archive:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-archive-probe.mjs"
   },
   "dependencies": {
     "@google-cloud/text-to-speech": "^6.4.0",

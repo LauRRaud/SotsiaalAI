@@ -4537,12 +4537,33 @@ oleks proovinud luua makseviisi `userId: null`-iga ja andnud FK-vea kaudu 500. N
 ausalt, et maksjat ei ole enam.
 
 **Väravad:** `TZ=UTC npm test` **4161/4161** · `i18n:check` OK · eslint puhas ·
-`db:migrate:check` OK (165 migratsiooni). Negatiivkontroll jäljendab vana kaskaadireeglit sama
-andmestiku peal ja nõuab, et kaks reeglit annaksid ERI tulemuse.
+`db:migrate:check` OK (165 migratsiooni).
 
-**NOT_PROVEN:** kriteeriumi integratsioonitest („kustutada konto ning tõendada nii isikuandmete
-eemaldamine kui finantsjälje säilimine") on kaetud ühikutasemel, mitte päris PostgreSQL-i
-kustutusega — `SetNull` ise on andmebaasi käitumine, mida fake ei tõenda. Sond on kirjutamata.
+**Kriteeriumi integratsioonitest on 12.08 õhtul kaetud päris PostgreSQL-is:
+`npm run pay:archive:probe` 24/24.** Sond loob ajutise andmebaasi ja jooksutab sinna peale
+`prisma migrate deploy`, seega mõõdetav reegel on migratsiooniahela oma, mitte arendusbaasi
+triiv. Läbiv jaam teeb täpselt need kaks lauset samas järjekorras, mis päris kustutusrada
+(`lib/privacy/effectivePracticeAccountCleanup.js:276-278`): külmuta, siis `user.delete()`.
+
+**Kaks negatiivkontrolli, sest fiksil on kaks poolt.** *Järjekord:* kolmas maksja kustutatakse
+ILMA eelneva külmutamiseta ja alles siis proovitakse arhiveerida — rida elab üle, aga
+arhiveerija ei leia teda enam (`archived: 0`), koosseis jääb tühjaks ja plaanikoodi ei ole
+kuskilt küsida, sest tellimus kaskaadis kaasa. Ilma selle mõõtmiseta oleks „ENNE `user.delete`-i"
+ainult kommentaar. *Võõrvõti:* vana `ON DELETE CASCADE` pannakse samas andmebaasis sama
+andmestiku peale tagasi — alles jääb **0 rida**, uue reegli all 2. Külmutamine jooksis mõlemal
+juhul, seega vahe tuleb ainult reeglist.
+
+**Sond leidis vea iseendas ja see on leiu enda klass.** Esimene struktuurikontroll otsis
+võõrvõtit TABELIPAARI järgi, aga `Subscription` viitab `User`-ile KAHEST veerust vastupidiste
+reeglitega (`userId` = Cascade, `sponsorUserId` = SetNull) — mõõdik võttis neist suvalise ja
+näitas punast õige koodi peal. Otsing käib nüüd veeru järgi ja kontroll `1e` naelutab
+sponsoriseose eraldi `SetNull`-iks: kui need kaks kunagi kokku langeksid, oleks veerupõhine
+otsing tühi vaev ja seda oleks näha.
+
+**NOT_PROVEN jääb kaks asja.** Koosseis ise on õiguslik otsus, mitte mõõtmine — sond tõendab, et
+`PAYMENT_ARCHIVE_FIELDS` säilib kustutuse üle, mitte seda, et just see loend on raamatupidamise
+seaduse miinimum. Ja sond jooksutab kustutusraja kahte lauset, mitte kogu
+`effectivePracticeAccountCleanup()` funktsiooni — ülejäänud koristus on kaetud oma testidega.
 
 ### SOL-PAY-10 — callback ja webhook võivad luua samale recurring-mandaadile mitu aktiivset BillingMethod rida — P2
 
