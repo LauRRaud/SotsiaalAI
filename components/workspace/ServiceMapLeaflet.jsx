@@ -16,7 +16,7 @@ const ESTONIA_FIT_BOUNDS = [
 
 const DEFAULT_TILE_URL = "/api/service-map/tiles/{z}/{x}/{y}";
 
-const DEFAULT_ATTRIBUTION = "Maa- ja Ruumiamet";
+const DEFAULT_ATTRIBUTION = "Aluskaart: Maa- ja Ruumiamet";
 const DEFAULT_LEAFLET_SCRIPT_URL = "/vendor/leaflet/leaflet.js";
 const DEFAULT_LEAFLET_CSS_URL = "/vendor/leaflet/leaflet.css";
 const SERVICE_MAP_MIN_ZOOM = 8;

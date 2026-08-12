@@ -27,6 +27,7 @@ test("map UI pages server results and rejects stale append responses", () => {
 test("browser uses only the same-origin tile proxy and handles tile failures", () => {
   assert.match(map, /\/api\/service-map\/tiles\/\{z\}\/\{x\}\/\{y\}/);
   assert.doesNotMatch(map, /NEXT_PUBLIC_SERVICE_MAP_TILE_URL|tiles\.maaamet\.ee/);
+  assert.match(map, /const DEFAULT_ATTRIBUTION = "Aluskaart: Maa- ja Ruumiamet"/);
   assert.match(map, /tileLayer\.on\("tileerror"/);
   assert.match(map, /back_to_group/);
 });

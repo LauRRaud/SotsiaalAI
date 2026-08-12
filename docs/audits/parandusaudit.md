@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **251** / 429 · PARTIAL **5** / 429 · NOT_DONE **173** / 429 · peatükke täielikult DONE **17** / 40 · ametlikult lahtiseid 178 — 128 × P1 · 49 × P2 · 1 × P3
+DONE **252** / 429 · PARTIAL **4** / 429 · NOT_DONE **173** / 429 · peatükke täielikult DONE **18** / 40 · ametlikult lahtiseid 177 — 128 × P1 · 48 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -127,7 +127,7 @@ DONE **251** / 429 · PARTIAL **5** / 429 · NOT_DONE **173** / 429 · peatükke
 | Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
 | Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
-| Teenusekaart | SOL-SMAP | 8/9 | 1 | 0 | 1 × P2 | 9 jätkufailist |
+| Teenusekaart | SOL-SMAP | 9/9 | 0 | 0 | – | **tehtud**, 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 0/3 | 0 | 3 | 1 × P1 · 2 × P2 | 3 jätkufailist |
 
 ### PARTIAL leiud peatükkide kaupa
@@ -144,10 +144,6 @@ DONE **251** / 429 · PARTIAL **5** / 429 · NOT_DONE **173** / 429 · peatükke
 **Uuringud** (`SOL-RES`, 1 PARTIAL)
 
 - `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
-
-**Teenusekaart** (`SOL-SMAP`, 1 PARTIAL)
-
-- `SOL-SMAP-09` P2 — kaardi vaateala liigub otse välisele tile-serverile ilma Teenusekaardi-põhise teavituseta — PARTIAL; BLOCKED_OWNER_LEGAL_EVIDENCE. Tehniline otselekke rada on suletud: brauser kasutab ainult sama päritolu `/api/service-map/tiles/{z}/{x}/{y}` proxy't, millel on fikseeritud upstream ja päised, koordinaadi-, MIME-, mahu-, redirect- ja timeout-kontroll ning `no-store`; kliendi Cookie/Auth/Referer/XFF/IP/UA-d ei edastata. Chromiumi kontrollis tekkis pärast zoomi 10 sama päritolu tile-päringut ja 0 otsest `tiles.maaamet.ee` päringut; provider-failure jätab tulemuste loendi kasutatavaks. Täielik DONE vajab endiselt Maa- ja Ruumiameti rolli, tegelikult logitavate väljade, säilitusaja ning proxy/cache'i ja atributsiooni kasutustingimuste tõendit; poliitikasse ei ole neid oletatud.
 
 ### DONE leiud peatükkide kaupa
 
@@ -475,8 +471,9 @@ DONE **251** / 429 · PARTIAL **5** / 429 · NOT_DONE **173** / 429 · peatükke
 - `SOL-SHARE-04` P2 — abi-kuulutus märgitakse alati avalikul kaardil nähtavaks — DONE. Koond kasutab sama puhast avalikkuse klassifikaatorit mis Teenusekaardi tegelik projektsioon ning eristab `PUBLIC`, `HIDDEN`, `REVIEW`, `EXPIRED`, `MISSING` ja `OUT_OF_SYNC` seisu. Kombinatsioonitabeli sihttest ja dev-brauser kinnitasid, et silt tuleneb kaardirea tegelikust olekust; ET/EN/RU üldväited parandati.
 - `SOL-SHARE-05` P2 — mentorluse tagasivõetav ettevalmistus ei ole koondvaates tagasivõetav — DONE. Avamata ettevalmistusel on koondis kinnitusega päris tagasivõtt; puuduva suhteviite korral näidatakse toimingu puudumise põhjust. Avamise ja tagasivõtu advisory-lock'i võistlussond andis mõlemas järjekorras ühe võitja ning koherentse märkme, auditi ja teavituse; dev-brauseris sulges 409 dialoogi, värskendas avatuks muutunud seisu ja eemaldas surnud nupu.
 
-**Teenusekaart** (`SOL-SMAP`, 8/9)
+**Teenusekaart** (`SOL-SMAP`, 9/9)
 
+- `SOL-SMAP-09` P2 — kaardi vaateala liigub otse välisele tile-serverile ilma Teenusekaardi-põhise teavituseta — DONE. Algne otsene lõppkasutaja võrgu- ja vaatealainfo leke on proxy'ga suletud, välisteenuse rike ei muuda tulemuste loendit kasutamatuks, ametlik integratsiooniõigus ja allikaviite nõue on dokumenteeritud ning nähtav atributsioon on parandatud. Avaldamata upstream-logide täpne säilitusaeg ei blokeeri seda leidu, sest proxy ei saada upstream'i Teenusekaardi lõppkasutaja identifikaatorit ega otsingusisu.
 - `SOL-SMAP-01` P1 — aadressi automaatne vaste avaldab ülevaatamata kaardikirje — DONE. Geokodeerija kirjutus ei sisalda enam moderatsiooniseisu ning kõik 12 `DRAFT/NEEDS_REVIEW/PUBLISHED/HIDDEN × MATCHED/AMBIGUOUS/FAILED` kombinatsiooni säilitavad seisu. Avaldamine on adminiõiguse, põhjuse ja revision-CAS-iga tehing, mis kirjutab sama tehingu auditi; päris PostgreSQL-i sondis võitis kahest paralleelsest otsusest täpselt üks ja tekkis üks audit. Sihttestid ja `service-map:lifecycle:probe` 5/5 PASS.
 - `SOL-SMAP-02` P1 — allikast kadunud RAG- ja KOV-kontaktid jäävad Teenusekaardile avalikuks — DONE. Igal autoriteetsel allikal on eraldi namespace, collision-free ID, generatsioon ja PostgreSQL advisory-lock; terviklik reconcile peidab puuduvad ja ka vana NULL-generatsiooniga read, logides peidetud ID-d, kuid vigane/osaline allikavastus ei reconcile'i. Taasilmunud tombstone läheb uuesti ülevaatusele. Migratsioon kõrvaldab vana segapäritoluga KOV-ridade avaliku duplikaadiriski. Päris PostgreSQL-i sond tõendas stale/legacy peitmise, auditidentiteedid ja paralleelsete generatsioonide serialiseerimise (5/5 PASS).
 - `SOL-SMAP-03` P1 — kaart pakub keelatud teenusele e-posti ja pöördumise toimingut — DONE. Ühine serveripoolne teenuse+asukoha kontaktipoliitika projitseerib toimingud ning server kontrollib valitud teenuse ja asukoha kuuluvust nii salvestamisel, parandamisel kui vahetult enne e-kirja saatmist; ajalooline ID-deta teenuseosutaja mustand on fail-closed. Profiili/teenuse true/false/null maatriks, võõras seos ja send-time policy switch on sihttestidega kaetud. Päris brauseris oli teenuse lubatud platvormitoiming detailis olemas ning süvalink avas sama poliitikaga detaili.
