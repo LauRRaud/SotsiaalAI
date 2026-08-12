@@ -89,6 +89,18 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
+**DEPLOY'MATA EI OLE ENAM MIDAGI. Server on `954289fc`, `.next` 12.08 15:12** (kaks deploy'd
+omaniku selgel loal: `c169ca70` 15:07 ja `954289fc` 15:12). Mõõdetud kohe pärast mõlemat: kolm
+teenust `active`, `/` `/vestlus` `/toolaud` **200**, veatasemel logi tühi, **viis migratsiooni
+rakendatud** (uus tabel `WellbeingParticipation` + neli veergu; blokeerivaid migratsioonuridu 0).
+Välja läks **30 auditileidu** (SOL-EVENT-01, kogu SOL-URG, kogu SOL-WB) ning lisaks tänase õhtu
+töö. Tööpuu on puhas ja `origin/main..main` = 0.
+
+**Teise sessiooni PWA/a11y töö on samuti väljas** (`cb93e8e0`) — ta seisis tööpuus commit'imata:
+paigaldusviip, ligipääsetavuse modaal, taustaheli sammunupud, lühem sõnastus. Väravad enne
+commit'i: `i18n:check` OK (sh kattekontroll — eemaldatud võti `promotion_body` ei olnud kusagilt
+viidatud), eslint puhas, `TZ=UTC npm test` 4155/4155.
+
 **12.08 õhtu, pärast SOL-WB lõpetamist: kaks lahtist otsust on tehtud ja teostatud, üks uus
 kõrvalleid parandatud.** (1) **WB-04 analüüsiühik** — vaikimisi `latest_per_person`; ühik on nüüd
 nähtav aruandes ja kõigis kolmes ekspordis ning valitav päringus. „Vahetus on üks rida" ei pidanud
