@@ -89,10 +89,19 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**DEPLOY'MATA ON NELI COMMIT'I JA ÜKS MIGRATSIOON — SOL-PAY-09 ja SOL-WB-06 saba.** Mõõdetud
-12.08 hilisõhtul: server on endiselt `954289fc`. Jääk on `82722bbc` (PAY-09 mehhanism +
-migratsioon `20260812170000`), `909c7645` (PAY-09 sond + raporti Seis-lõik), `27dc45f3` (seis) ja
-`db97a10b` (**täiendav lahtrisummutus**, migratsioonita).
+**DEPLOY'MATA EI OLE MIDAGI. Server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
+deploy, omaniku selgel loal). Välja läksid **SOL-PAY-09** ja **SOL-WB-06 täiendav
+lahtrisummutus** — viis commit'i ja üks migratsioon (`20260812170000`). Tööpuu on puhas ka
+serveris ja `origin/main..main` = 0.
+
+**Mõõdetud ENNE ja PÄRAST, sest migratsioon puudutas tootmisandmetega tabelit.** Enne: 4
+`Payment` rida, `userId` kõigil täidetud, `Payment_userId_fkey` ja `Payment_subscriptionId_fkey`
+mõlemad **`c` (Cascade)**, blokeerivaid migratsiooniridu 0. Pärast: mõlemad **`n` (SetNull)**,
+`userId` nullitav (`is_nullable = YES`), **read endiselt 4, `userId_null = 0`, `archivedAt`
+täidetud 0 real** — migratsioon ei muutnud ühtki olemasolevat väärtust, nagu ta ette ütles.
+Kolm teenust `active`, `/` `/vestlus` `/toolaud` `/tooheaolu` **200**, kolme teenuse veatasemel
+logi **tühi**. Deploy jooksis lahtiühendatuna, skript **genereeritud `deploy-server.mjs`-ist**
+(md5 klappis mõlemas otsas), ajutised failid serverist koristatud.
 **Migratsioon ainult lõdvendab piiri** — `Payment.userId` `DROP NOT NULL` ja kaks võõrvõtme
 reeglit `Cascade` → `SetNull` — ega muuda ühtki olemasolevat väärtust; toodangus mõõdetud enne
 kirjutamist: 4 `Payment` rida, kõigil `userId` täidetud, 11 `Subscription`, 1 `BillingMethod`.
