@@ -92,7 +92,8 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 **DEPLOY'MATA EI OLE MIDAGI. Server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
 deploy, omaniku selgel loal). Välja läksid **SOL-PAY-09** ja **SOL-WB-06 täiendav
 lahtrisummutus** — viis commit'i ja üks migratsioon (`20260812170000`). Tööpuu on puhas ka
-serveris ja `origin/main..main` = 0.
+serveris. **Deploy'mata KOODI ei ole; `origin/main` on serverist ees ainult selle seisukirje
+võrra** — nii on see iga deploy järel, sest seisu kirjutamine tuleb mõõtmise järel.
 
 **Mõõdetud ENNE ja PÄRAST, sest migratsioon puudutas tootmisandmetega tabelit.** Enne: 4
 `Payment` rida, `userId` kõigil täidetud, `Payment_userId_fkey` ja `Payment_subscriptionId_fkey`
