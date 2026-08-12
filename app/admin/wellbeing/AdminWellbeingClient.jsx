@@ -190,6 +190,51 @@ export default function AdminWellbeingClient() {
     }
   }, [loadPilotScopes, selectedPilotScopeId, viewerEmail]);
 
+  /* SOL-WB-12: ligipääsu äravõtmine ja piloodi sulgemine kuuluvad tavapärasesse
+     haldusvoogu. Ilma nendeta ei saanud valesti lisatud, rolli vahetanud või
+     lahkunud vaatajat üldse eemaldada — ja seda tundlike koondite peal. */
+  const revokePilotViewer = useCallback(async (pilotScopeId, email) => {
+    setPilotStatus("saving");
+    setPilotError("");
+    try {
+      const response = await fetch(buildPilotScopeViewersUrl(pilotScopeId), {
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "Vaataja eemaldamine ebaõnnestus.");
+      await loadPilotScopes();
+    } catch (revokeError) {
+      setPilotError(revokeError?.message || "Vaataja eemaldamine ebaõnnestus.");
+      setPilotStatus("error");
+    }
+  }, [loadPilotScopes]);
+
+  const setPilotScopeActive = useCallback(async (pilotScopeId, active) => {
+    setPilotStatus("saving");
+    setPilotError("");
+    try {
+      const response = await fetch(buildPilotScopesUrl(), {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ pilotScopeId, active })
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok || !payload?.ok) throw new Error(payload?.message || "Piloodi muutmine ebaõnnestus.");
+      await loadPilotScopes();
+    } catch (updateError) {
+      setPilotError(updateError?.message || "Piloodi muutmine ebaõnnestus.");
+      setPilotStatus("error");
+    }
+  }, [loadPilotScopes]);
+
   const csvUrl = buildAggregateUrl({ ...filters, format: "csv" });
   const metrics = dataset?.metrics || [];
 
@@ -342,9 +387,31 @@ export default function AdminWellbeingClient() {
           {pilotScopes.length > 0 ? pilotScopes.map((scope) => (
             <article key={scope.id}>
               <strong>{scope.name}</strong>
-              <span>{scope.scopeType} · min {scope.minimumGroupSize}</span>
+              <span>{scope.scopeType} · min {scope.minimumGroupSize} · {scope.active ? "aktiivne" : "peatatud"}</span>
               <span>{(scope.roleGroups || []).join(", ")}</span>
-              <span>{(scope.viewerEmails || []).join(", ")}</span>
+              <div>
+                {(scope.viewerEmails || []).length > 0 ? (scope.viewerEmails || []).map((email) => (
+                  <span key={email}>
+                    {email}
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={() => revokePilotViewer(scope.id, email)}
+                      disabled={pilotStatus === "saving"}
+                    >
+                      Eemalda
+                    </Button>
+                  </span>
+                )) : <span>Vaatajaid ei ole.</span>}
+              </div>
+              <Button
+                type="button"
+                size="sm"
+                onClick={() => setPilotScopeActive(scope.id, !scope.active)}
+                disabled={pilotStatus === "saving"}
+              >
+                {scope.active ? "Peata piloot" : "Ava piloot"}
+              </Button>
             </article>
           )) : (
             <p>Piloodi skoobid puuduvad.</p>

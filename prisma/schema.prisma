@@ -1729,15 +1729,22 @@ model WellbeingPilotScope {
   @@index([startsAt, endsAt])
 }
 
+/* SOL-WB-12: e-posti rida on KUTSE, mitte igavene võti.
+   Vana leping: rida sobitus e-posti järgi alati, ja konto kustumisel jäi ta
+   `SetNull`-iga alles — seega samale aadressile hiljem loodud UUS konto päris
+   vana vaataja õiguse. Nüüd seotakse rida esimesel kasutamisel konkreetse
+   kontoga (`claimedAt`), pärast mida e-post enam ei sobitu, ja konto
+   kustutamine viib rea kaskaadiga kaasa. */
 model WellbeingPilotViewer {
   id           String   @id @default(cuid())
   pilotScopeId String
   userId       String?
   email        String?
+  claimedAt    DateTime?
   createdAt    DateTime @default(now())
 
   pilotScope WellbeingPilotScope @relation(fields: [pilotScopeId], references: [id], onDelete: Cascade)
-  user       User?                @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user       User?                @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([pilotScopeId, userId])
   @@unique([pilotScopeId, email])

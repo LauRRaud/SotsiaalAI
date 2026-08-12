@@ -9,7 +9,10 @@ import {
   newWellbeingCorrelationId,
   WELLBEING_UNEXPECTED_ERROR
 } from "@/lib/wellbeing/apiErrors";
-import { addWellbeingPilotViewer } from "@/lib/wellbeing/pilotScopes";
+import {
+  addWellbeingPilotViewer,
+  removeWellbeingPilotViewer
+} from "@/lib/wellbeing/pilotScopes";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -54,9 +57,29 @@ export async function POST(request, context) {
   const params = await context.params;
   const body = await request.json().catch(() => ({}));
   try {
-    const viewer = await addWellbeingPilotViewer(params.id, body);
+    const viewer = await addWellbeingPilotViewer(params.id, body, { actorUserId: String(session?.user?.id || "") });
     return json({ ok: true, viewer }, 201);
   } catch (error) {
     return failureJson(error, "pilot viewer add failed");
+  }
+}
+
+/* SOL-WB-12: ligipääsu äravõtmine. Ligipääs on luba, mitte ajalugu — rida
+   kustub ja jälg jääb auditisse. E-post tuleb kehast, mitte URL-ist: aadress ei
+   kuulu logitavasse päringureale. */
+export async function DELETE(request, context) {
+  const session = await getServerSession(authConfig).catch(() => null);
+  const authz = assertAdmin(session);
+  if (!authz.ok) {
+    return errorJson(authz.message || "api.common.forbidden", authz.status || 403);
+  }
+
+  const params = await context.params;
+  const body = await request.json().catch(() => ({}));
+  try {
+    const result = await removeWellbeingPilotViewer(params.id, body, { actorUserId: String(session?.user?.id || "") });
+    return json({ ok: true, ...result });
+  } catch (error) {
+    return failureJson(error, "pilot viewer revoke failed");
   }
 }

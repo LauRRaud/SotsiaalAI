@@ -38,7 +38,9 @@ test("wellbeing pilot scope input normalizes role groups, viewers, dates and min
 
 test("wellbeing pilot scope service creates DB pilot with email viewers", async () => {
   const createdPayloads = [];
+  const audits = [];
   const prisma = {
+    dataAuditLog: { create: async (query) => { audits.push(query.data); return query.data; } },
     wellbeingPilotScope: {
       create: async (payload) => {
         createdPayloads.push(payload);
@@ -62,7 +64,7 @@ test("wellbeing pilot scope service creates DB pilot with email viewers", async 
       viewerEmails: ["KOV@example.test"],
       minimumGroupSize: 5
     },
-    { prisma }
+    { prisma, actorUserId: "admin_1" }
   );
 
   assert.equal(createdPayloads[0].data.name, "Tartu piloot");
@@ -70,6 +72,14 @@ test("wellbeing pilot scope service creates DB pilot with email viewers", async 
   assert.deepEqual(createdPayloads[0].data.viewers.create, [{ email: "kov@example.test" }]);
   assert.equal(scope.minimumGroupSize, 5);
   assert.deepEqual(scope.viewerEmails, ["kov@example.test"]);
+
+  /* SOL-WB-13: skoobi loomine jätab jälje, milles on tegija, künnis ja skoobi
+     versioon — aga mitte ühtki koondi arvu. */
+  assert.equal(audits.length, 1);
+  assert.equal(audits[0].actorUserId, "admin_1");
+  assert.equal(audits[0].resourceType, "WellbeingPilotScope");
+  assert.equal(audits[0].meta.minimumGroupSize, 5);
+  assert.match(audits[0].meta.scopeVersion, /^[0-9a-f]{64}$/u);
 });
 
 test("wellbeing pilot scope list serializes scopes for admin UI", async () => {

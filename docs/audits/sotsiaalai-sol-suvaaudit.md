@@ -5377,6 +5377,28 @@ nendes failides, mida ma juhtusin avama.
 
 **Vastuvõtukriteerium.** Vajalikud on auditeeritud revoke/deactivate/update rajad, mis toimivad kohe nii userId kui e-posti seostele; konto/e-posti muutuse leping peab vältima vana aadressi õiguse pärimist. Testida viewer revoke'i, scope deactivate'i, konto kustutust ja sama e-postiga uut kontot.
 
+**Seis (12.08.2026): DONE — koos SOL-WB-13-ga, üks plokk: andmine ja äravõtmine on sama rada
+ja mõlemal on jälg.**
+
+Admini API pakkus ainult skoopide GET/POST-i ja vaataja lisamise POST-i. **Nüüd on olemas**
+`PATCH /api/admin/wellbeing/pilots` (nimi, rollirühmad, künnis, algus/lõpp, `active`) ja
+`DELETE …/pilots/[id]/viewers`. Deaktiveerimine võtab ligipääsu **kohe** — juurdepääs küsib
+`active: true` iga päringu peale ja vahemälu, mida oleks vaja tühjendada, ei ole. Mõlemad rajad on
+ka **admini liideses** (iga vaataja kõrval „Eemalda", piloodil „Peata piloot"), sest kriteerium
+räägib tavapärasest haldusvoost, mitte ainult endpoint'ist.
+
+**E-posti rida on KUTSE, mitte igavene võti** (migratsioon **`20260812100000`**). Vana leping:
+rida sobitus e-posti järgi alati ja konto kustumisel jäi ta `SetNull`-iga alles — samale
+aadressile hiljem loodud UUS konto päris kustutatud inimese vaate tundlikule koondile. Nüüd
+seotakse rida esimesel kasutamisel konkreetse kontoga (`claimedAt`), pärast mida **e-post enam ei
+sobitu**, ja `ON DELETE CASCADE` viib rea koos kontoga. Lunastamine on tingimuslik
+(`claimedAt: null` WHERE-is), seega kaks samaaegset päringut ei saa rida kaks korda siduda.
+
+**Kuus ühikut**, sh kriteeriumi neli juhtu: revoke · scope deactivate (ligipääs kaob JÄRGMISE
+päringu peale, mõõdetuna) · kustutatud konto aadressiga uus konto EI saa ligipääsu ·
+**negatiivkontroll** — lunastamata kutse sama aadressiga töötab edasi, seega piir käib
+lunastamise, mitte e-posti kohta.
+
 ### SOL-WB-13 — piloodiscope'i loomine ja vaatajate õiguste muutmine ei jäta administraatori auditijälge — P1
 
 **Tõend.** `WellbeingPilotScope` ja `WellbeingPilotViewer` mudelites puuduvad looja/muutja väljad või eraldi auditiseos (`prisma/schema.prisma:1538-1573`). Admin-route kontrollib sessiooni, kuid ei anna `authz.userId` teenusele edasi ning `createWellbeingPilotScope()`/`addWellbeingPilotViewer()` kirjutavad ainult konfiguratsiooniread (`app/api/admin/wellbeing/pilots/route.js:49-60`, `app/api/admin/wellbeing/pilots/[id]/viewers/route.js:30-43`, `lib/wellbeing/pilotScopes.js:142-215`).
@@ -5384,6 +5406,23 @@ nendes failides, mida ma juhtusin avama.
 **Mõju.** Ei ole tõendatav, kes andis kellele ligipääsu tundlikele tööheaolu koonditele, millise skoobi ja künnisega. Vea või väärkasutuse korral puudub vastutusahel.
 
 **Vastuvõtukriteerium.** Iga scope'i ja viewer'i create/update/revoke peab kirjutama sama tehinguga append-only auditi: actor, siht, scope'i versioon, künnis ja aeg ilma koondi sisuta. Veasüstitest peab tõendama, et õigus ei muutu ilma auditi õnnestumiseta.
+
+**Seis (12.08.2026): DONE — vt SOL-WB-12 plokk.**
+
+`WellbeingPilotScope` ja `-Viewer` ei kandnud looja ega muutja välju ning marsruut, kes teadis
+administraatorit, ei andnud teda teenusele edasi. Ei olnud tõendatav, **kes andis kellele**
+ligipääsu tundlikele koonditele, millise skoobi ja künnisega.
+
+Iga create/update/add/revoke/claim kirjutab nüüd `DataAuditLog` rea **põhimuudatusega samas
+tehingus**. **Tegija on KOHUSTUSLIK** — `actorUserId`-ta ei muutu midagi (`actor_required`, 400);
+vaikimisi `null` oleks tähendanud „keegi andis kellelegi ligipääsu" ja täpselt see seis oli enne.
+Meta kannab **skoobi versiooni** (kanooniline sha256 konfiguratsioonist, sama muster mis
+SOL-URG-12 `conditionsHash`), muudatuse korral **kaks versiooni — mille pealt ja mille peale** —,
+künnist ja muutunud väljade NIMESID. Koondi sisu, arve ega vastuseid jälg ei kanna.
+
+**Veasüst tabab AINULT auditikirjutust** ja tõendab, et vaataja rida jääb alles, kui jälg kukub.
+Tema kõrval on kaks negatiivkontrolli: tegijata toiming ei puuduta ühtki rida, ja sama toiming
+töötava auditiga läheb läbi (muidu mõõdaks süst lihtsalt seda, et erind lendas).
 
 ### SOL-WB-14 — piloodivaate hiline päring võib uuema filtrivaliku vana raportiga üle kirjutada — P2
 
