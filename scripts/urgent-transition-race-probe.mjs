@@ -22,6 +22,12 @@ import { randomUUID } from "node:crypto";
 import { prisma } from "../lib/prisma.js";
 import { lockDeskRow } from "../lib/urgent/desk.js";
 import {
+  conditionsHash,
+  removeUrgentDeskMember,
+  UrgentDeskAuditAction,
+  verifyUrgentDesk
+} from "../lib/urgent/deskAdmin.js";
+import {
   acceptUrgentHandover,
   convertUrgentRequestToPreInquiry,
   createUrgentRequest,
@@ -445,6 +451,41 @@ async function main() {
       "URG-10: CONVERTED jälgi on täpselt üks",
       (await eventKinds(converting.id)).filter((kind) => kind === "CONVERTED").length === 1
     );
+
+    // -----------------------------------------------------------------------
+    // 9. SOL-URG-12: kinnitajal on nimi ja adminitoimingul on jälg.
+    //    Skeemimuudatuse järel on siin ka lihtsalt üks PÄRIS päring: fake ei
+    //    valideeri veerge ega võõrvõtit.
+    // -----------------------------------------------------------------------
+    const verified = await verifyUrgentDesk({
+      prisma, deskId: deskC.id, actorUserId: staffC.id
+    });
+    check("URG-12: kinnitusel on aeg", Boolean(verified?.lastVerifiedAt));
+    check("URG-12: kinnitusel on KINNITAJA", verified?.lastVerifiedByUserId === staffC.id, String(verified?.lastVerifiedByUserId));
+    check(
+      "URG-12: kinnitusel on tekstiversioon",
+      verified?.verifiedConditionsHash === conditionsHash(verified),
+      String(verified?.verifiedConditionsHash).slice(0, 12)
+    );
+
+    const verifyAudit = await prisma.dataAuditLog.findMany({
+      where: { resourceType: "UrgentDesk", resourceId: deskC.id, action: UrgentDeskAuditAction.VERIFIED }
+    });
+    check("URG-12: kinnitamine jättis auditirea", verifyAudit.length === 1, `ridu ${verifyAudit.length}`);
+    check("URG-12: auditirida kannab tegijat", verifyAudit[0]?.actorUserId === staffC.id);
+
+    await removeUrgentDeskMember({
+      prisma, deskId: deskC.id, userId: staffC.id, actorUserId: staffC.id
+    });
+    const removalAudit = await prisma.dataAuditLog.findMany({
+      where: { resourceType: "UrgentDesk", resourceId: deskC.id, action: UrgentDeskAuditAction.MEMBER_REMOVED }
+    });
+    check("URG-12: viimase mehitaja eemaldamine jättis jälje", removalAudit.length === 1);
+    check(
+      "URG-12: jälg ütleb, et mehitajaid ei jäänud",
+      removalAudit[0]?.meta?.remainingActiveMembers === 0,
+      String(removalAudit[0]?.meta?.remainingActiveMembers)
+    );
   } finally {
     for (const requestId of created.requestIds) {
       await prisma.urgentRequestEvent.deleteMany({ where: { requestId } }).catch(() => null);
@@ -454,6 +495,9 @@ async function main() {
       await prisma.preInquiry.deleteMany({ where: { authorId: user.id } }).catch(() => null);
     }
     for (const desk of created.desks) {
+      await prisma.dataAuditLog.deleteMany({
+        where: { resourceType: "UrgentDesk", resourceId: desk.id }
+      }).catch(() => null);
       await prisma.urgentDeskMember.deleteMany({ where: { deskId: desk.id } }).catch(() => null);
       await prisma.urgentDesk.delete({ where: { id: desk.id } }).catch(() => null);
     }

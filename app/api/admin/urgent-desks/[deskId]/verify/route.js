@@ -26,7 +26,7 @@ export async function POST(request, { params }) {
   const deskId = await readDeskId(params);
 
   return handleDeskRoute(request, async () => {
-    const desk = await verifyUrgentDesk({ prisma, deskId });
+    const desk = await verifyUrgentDesk({ prisma, deskId, actorUserId: authz.userId });
     const activeMemberCount = await prisma.urgentDeskMember.count({
       where: { deskId: desk.id, isActive: true }
     });

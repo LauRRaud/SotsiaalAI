@@ -22,9 +22,14 @@ function createAdminPrisma({ desks = [], members = [] } = {}) {
     urgentDesk: createModel(desks, "desk"),
     urgentDeskMember: createModel(members, "member"),
     municipality: createModel([{ id: "muni_1", displayName: "Harku vald" }], "muni"),
-    user: createModel([{ id: "staff_1" }, { id: "staff_2" }], "user")
+    user: createModel([{ id: "staff_1" }, { id: "staff_2" }], "user"),
+    // SOL-URG-12: iga valmisolekut mõjutav adminitoiming jätab jälje.
+    dataAuditLog: createModel([], "audit")
   });
 }
+
+/** SOL-URG-12: tegija on kohustuslik — ilma temata ei kirjutata midagi. */
+const ADMIN = "admin_1";
 
 const VALID_CONDITIONS = {
   publicName: "Harku valla kiireloomuline abipalve",
@@ -51,7 +56,7 @@ async function expectFail(promise, code) {
 test("uus laud sünnib ALATI kinni — loomine ei ava piirkonda", async () => {
   const prisma = createAdminPrisma();
   const desk = await createUrgentDesk({
-    prisma,
+    prisma, actorUserId: ADMIN,
     municipalityId: "muni_1",
     data: VALID_CONDITIONS,
     now
@@ -75,7 +80,7 @@ test("tingimusteta lauda ei saa luua", async () => {
   for (const [field, code] of cases) {
     await expectFail(
       createUrgentDesk({
-        prisma,
+        prisma, actorUserId: ADMIN,
         municipalityId: "muni_1",
         data: { ...VALID_CONDITIONS, [field]: "   " },
         now
@@ -89,16 +94,16 @@ test("tingimusteta lauda ei saa luua", async () => {
 test("olematusse piirkonda lauda ei teki", async () => {
   const prisma = createAdminPrisma();
   await expectFail(
-    createUrgentDesk({ prisma, municipalityId: "muni_puudub", data: VALID_CONDITIONS, now }),
+    createUrgentDesk({ prisma, actorUserId: ADMIN, municipalityId: "muni_puudub", data: VALID_CONDITIONS, now }),
     "urgent_desk.municipality_not_found"
   );
 });
 
 test("kaks lauda samale piirkonnale ja saajatüübile ei mahu", async () => {
   const prisma = createAdminPrisma();
-  await createUrgentDesk({ prisma, municipalityId: "muni_1", data: VALID_CONDITIONS, now });
+  await createUrgentDesk({ prisma, actorUserId: ADMIN, municipalityId: "muni_1", data: VALID_CONDITIONS, now });
   await expectFail(
-    createUrgentDesk({ prisma, municipalityId: "muni_1", data: VALID_CONDITIONS, now }),
+    createUrgentDesk({ prisma, actorUserId: ADMIN, municipalityId: "muni_1", data: VALID_CONDITIONS, now }),
     "urgent_desk.already_exists"
   );
 });
@@ -106,7 +111,7 @@ test("kaks lauda samale piirkonnale ja saajatüübile ei mahu", async () => {
 test("tundmatu saajatüüp ei loo lauda", async () => {
   const prisma = createAdminPrisma();
   await expectFail(
-    createUrgentDesk({ prisma, municipalityId: "muni_1", recipientType: "MIDAGI", data: VALID_CONDITIONS, now }),
+    createUrgentDesk({ prisma, actorUserId: ADMIN, municipalityId: "muni_1", recipientType: "MIDAGI", data: VALID_CONDITIONS, now }),
     "urgent_desk.recipient_type_invalid"
   );
 });
@@ -116,7 +121,7 @@ test("mõistetamatu aegumisaken ei loo lauda", async () => {
   for (const hours of [0, 200, 2.5, "kaks"]) {
     await expectFail(
       createUrgentDesk({
-        prisma,
+        prisma, actorUserId: ADMIN,
         municipalityId: "muni_1",
         data: { ...VALID_CONDITIONS, requestLifetimeHours: hours },
         now
@@ -133,7 +138,7 @@ test("tingimuse muutmine tühistab kinnituse JA sulgeb laua", async () => {
   // oleks „viimati kinnitatud" kuupäev dekoratsioon.
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
   const updated = await updateUrgentDesk({
-    prisma,
+    prisma, actorUserId: ADMIN,
     deskId: "desk_1",
     data: { readingTimePromise: "Loeme läbi hiljemalt nädala jooksul." },
     now
@@ -160,7 +165,7 @@ test("iga kinnitust kandev väli tühistab kinnituse", async () => {
 
   for (const [field, value] of Object.entries(changes)) {
     const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
-    const updated = await updateUrgentDesk({ prisma, deskId: "desk_1", data: { [field]: value }, now });
+    const updated = await updateUrgentDesk({ prisma, actorUserId: ADMIN, deskId: "desk_1", data: { [field]: value }, now });
     assert.equal(updated.lastVerifiedAt, null, `${field} ei tühistanud kinnitust`);
     assert.equal(updated.isActive, false, `${field} ei sulgenud lauda`);
   }
@@ -169,7 +174,7 @@ test("iga kinnitust kandev väli tühistab kinnituse", async () => {
 test("sisemise korralduse muutmine EI tühista kinnitust", async () => {
   // Laua omanik ja teenusekaardi seos ei muuda seda, mida inimesele öeldakse.
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
-  const updated = await updateUrgentDesk({ prisma, deskId: "desk_1", data: { ownerUserId: "staff_2" }, now });
+  const updated = await updateUrgentDesk({ prisma, actorUserId: ADMIN, deskId: "desk_1", data: { ownerUserId: "staff_2" }, now });
   assert.ok(updated.lastVerifiedAt);
   assert.equal(updated.isActive, true);
   assert.equal(updated.ownerUserId, "staff_2");
@@ -177,7 +182,7 @@ test("sisemise korralduse muutmine EI tühista kinnitust", async () => {
 
 test("muutmata tingimustega salvestus ei tühista kinnitust", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
-  const updated = await updateUrgentDesk({ prisma, deskId: "desk_1", data: {}, now });
+  const updated = await updateUrgentDesk({ prisma, actorUserId: ADMIN, deskId: "desk_1", data: {}, now });
   assert.ok(updated.lastVerifiedAt);
   assert.equal(updated.isActive, true);
 });
@@ -193,7 +198,7 @@ test("conditionsChanged tunneb tüübivahetust ära", () => {
 test("mittevalmis lauda ei saa sisse lülitada — ja põhjused tulevad kaasa", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1", lastVerifiedAt: null }] });
   await assert.rejects(
-    setUrgentDeskActive({ prisma, deskId: "desk_1", isActive: true, now }),
+    setUrgentDeskActive({ prisma, actorUserId: ADMIN, deskId: "desk_1", isActive: true, now }),
     (error) => {
       assert.equal(error.code, "urgent_desk.not_ready");
       assert.ok(Array.isArray(error.reasons));
@@ -209,13 +214,13 @@ test("valmis laua saab sisse lülitada", async () => {
     desks: [{ ...READY_DESK, id: "desk_1", isActive: false }],
     members: [{ id: "m1", deskId: "desk_1", userId: "staff_1", isActive: true }]
   });
-  const desk = await setUrgentDeskActive({ prisma, deskId: "desk_1", isActive: true, now });
+  const desk = await setUrgentDeskActive({ prisma, actorUserId: ADMIN, deskId: "desk_1", isActive: true, now });
   assert.equal(desk.isActive, true);
 });
 
 test("sulgemine ei kontrolli midagi ega saa ebaõnnestuda", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1", readingTimePromise: "" }] });
-  const desk = await setUrgentDeskActive({ prisma, deskId: "desk_1", isActive: false, now });
+  const desk = await setUrgentDeskActive({ prisma, actorUserId: ADMIN, deskId: "desk_1", isActive: false, now });
   assert.equal(desk.isActive, false);
 });
 
@@ -225,15 +230,15 @@ test("mehitaja lisamine ja eemaldamine avab ning sulgeb laua", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1", isActive: false }] });
 
   await expectFail(
-    setUrgentDeskActive({ prisma, deskId: "desk_1", isActive: true, now }),
+    setUrgentDeskActive({ prisma, actorUserId: ADMIN, deskId: "desk_1", isActive: true, now }),
     "urgent_desk.not_ready"
   );
 
-  await addUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
-  const opened = await setUrgentDeskActive({ prisma, deskId: "desk_1", isActive: true, now });
+  await addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
+  const opened = await setUrgentDeskActive({ prisma, actorUserId: ADMIN, deskId: "desk_1", isActive: true, now });
   assert.equal(opened.isActive, true);
 
-  await removeUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
+  await removeUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
   const count = await prisma.urgentDeskMember.count({ where: { deskId: "desk_1", isActive: true } });
   assert.equal(count, 0);
   // Laud jääb formaalselt aktiivseks, aga valmidus on kadunud — ja valmidus on
@@ -244,8 +249,8 @@ test("mehitaja lisamine ja eemaldamine avab ning sulgeb laua", async () => {
 
 test("eemaldatud mehitaja kirje jääb alles, et vastutusjälg oleks loetav", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
-  await addUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
-  await removeUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
+  await addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
+  await removeUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
   assert.equal(prisma.urgentDeskMember.rows.length, 1);
   assert.equal(prisma.urgentDeskMember.rows[0].isActive, false);
 });
@@ -253,16 +258,16 @@ test("eemaldatud mehitaja kirje jääb alles, et vastutusjälg oleks loetav", as
 test("mehitajaks ei saa panna kedagi, keda ei ole", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
   await expectFail(
-    addUrgentDeskMember({ prisma, deskId: "desk_1", userId: "puudub" }),
+    addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "puudub" }),
     "urgent_desk.member_not_a_user"
   );
 });
 
 test("sama mehitaja teistkordne lisamine taastab ta, mitte ei dubleeri", async () => {
   const prisma = createAdminPrisma({ desks: [{ ...READY_DESK, id: "desk_1" }] });
-  await addUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
-  await removeUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
-  await addUrgentDeskMember({ prisma, deskId: "desk_1", userId: "staff_1" });
+  await addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
+  await removeUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
+  await addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_1", userId: "staff_1" });
   assert.equal(prisma.urgentDeskMember.rows.length, 1);
   assert.equal(prisma.urgentDeskMember.rows[0].isActive, true);
 });
@@ -297,7 +302,7 @@ test("saaja lisamine ühte piirkonda ei muuda teiste seisu", async () => {
     members: [{ id: "m1", deskId: "desk_a", userId: "staff_1", isActive: true }]
   });
   const before = await listUrgentDesks({ prisma, now });
-  await addUrgentDeskMember({ prisma, deskId: "desk_b", userId: "staff_2" });
+  await addUrgentDeskMember({ prisma, actorUserId: ADMIN, deskId: "desk_b", userId: "staff_2" });
   const after = await listUrgentDesks({ prisma, now });
 
   const beforeA = before.find((row) => row.id === "desk_a");

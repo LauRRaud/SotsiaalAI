@@ -27,7 +27,7 @@ export async function PATCH(request, { params }) {
   const body = await request.json().catch(() => ({}));
 
   return handleDeskRoute(request, async () => {
-    const desk = await updateUrgentDesk({ prisma, deskId, data: body || {} });
+    const desk = await updateUrgentDesk({ prisma, deskId, data: body || {}, actorUserId: authz.userId });
     const activeMemberCount = await prisma.urgentDeskMember.count({
       where: { deskId: desk.id, isActive: true }
     });

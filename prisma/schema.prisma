@@ -899,6 +899,7 @@ model User {
   // `urgentRequestEvents` kannab isikulist vastutusjälge (KOV-lepingu p 8):
   // iga vaatamine, toiming ja edasisuunamine seotakse konkreetse inimesega.
   urgentDesksOwned         UrgentDesk[]         @relation("UrgentDeskOwner")
+  urgentDesksVerified      UrgentDesk[]         @relation("UrgentDeskVerifier")
   urgentDeskMemberships    UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
   urgentRequestsAuthored   UrgentRequest[]      @relation("UrgentRequestAuthor")
   urgentRequestsTaken      UrgentRequest[]      @relation("UrgentRequestAssignee")
@@ -6181,12 +6182,18 @@ model UrgentDesk {
   /// Millal partner tingimusi viimati kinnitas. Aegunud kinnitus sulgeb laua
   /// (`DESK_VERIFICATION_MAX_AGE_DAYS`) — vana lubadus ei ole lubadus.
   lastVerifiedAt DateTime?
+  /// SOL-URG-12: KES kinnitas ja MILLISE tekstiversiooni. Ilma nendeta ütles
+  /// andmebaas ainult aega — „partner kinnitas tingimused" ei olnud tõendatav.
+  /// Räsi on `VERIFIED_CONDITION_FIELDS` kanooniline sha256 kinnitamise hetkel.
+  lastVerifiedByUserId   String?
+  verifiedConditionsHash String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   municipality Municipality       @relation(fields: [municipalityId], references: [id], onDelete: Cascade)
   owner        User?              @relation("UrgentDeskOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  verifiedBy   User?              @relation("UrgentDeskVerifier", fields: [lastVerifiedByUserId], references: [id], onDelete: SetNull)
   serviceEntry ServiceMapEntry?   @relation(fields: [serviceEntryId], references: [id], onDelete: SetNull)
   members      UrgentDeskMember[]
   requests     UrgentRequest[]    @relation("UrgentRequestDesk")

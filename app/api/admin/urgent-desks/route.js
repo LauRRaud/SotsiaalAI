@@ -40,7 +40,9 @@ export async function POST(request) {
       prisma,
       municipalityId: body?.municipalityId,
       recipientType: body?.recipientType || "KOV_CONTACT",
-      data: body || {}
+      data: body || {},
+      // SOL-URG-12: tegija läheb ALATI kaasa — ilma temata ei kirjutata midagi.
+      actorUserId: authz.userId
     });
     return deskJson({ ok: true, desk: adminDeskProjection(desk, { activeMemberCount: 0 }) }, 201);
   });

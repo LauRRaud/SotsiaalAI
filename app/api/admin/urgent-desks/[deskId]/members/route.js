@@ -20,7 +20,7 @@ export async function POST(request, { params }) {
   const body = await request.json().catch(() => ({}));
 
   return handleDeskRoute(request, async () => {
-    const member = await addUrgentDeskMember({ prisma, deskId, userId: body?.userId });
+    const member = await addUrgentDeskMember({ prisma, deskId, userId: body?.userId, actorUserId: authz.userId });
     return deskJson({ ok: true, member: { id: member.id, userId: member.userId, isActive: member.isActive } }, 201);
   });
 }
@@ -38,7 +38,7 @@ export async function DELETE(request, { params }) {
   const body = await request.json().catch(() => ({}));
 
   return handleDeskRoute(request, async () => {
-    const member = await removeUrgentDeskMember({ prisma, deskId, userId: body?.userId });
+    const member = await removeUrgentDeskMember({ prisma, deskId, userId: body?.userId, actorUserId: authz.userId });
     return deskJson({ ok: true, member: { id: member.id, userId: member.userId, isActive: member.isActive } });
   });
 }
