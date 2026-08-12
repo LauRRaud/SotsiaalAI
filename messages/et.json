@@ -7023,6 +7023,7 @@
       "period_month": "Kuu",
       "record_count": "Töövoo kirjeid",
       "quick_check_count": "Kiirkontrolle",
+      "truncated": "Ülevaade tabas kaitsepiiri ja ei sisalda kõiki selle perioodi kirjeid. Vali lühem periood, et näha tervikpilti.",
       "patterns": "Mustrid",
       "signals": "Signaalid",
       "work_demands": "Töö nõudmised",

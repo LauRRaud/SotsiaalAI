@@ -5216,6 +5216,9 @@ tõend on see, et värav ei lase seda väärtust temani. Sama string-boolean'iga
 
 **Vastuvõtukriteerium.** Kasutada täielikku DB-agregatsiooni või stabiilset lehekülgitamist; kaitsepiiri tabamisel peab raport fail-closed või selgelt `truncated/incomplete` olema. Testida vähemalt 10 001 rea ja mitme lehekülje determinismi.
 
+**Seis (12.08.2026): DONE — koos SOL-WB-10-ga, üks juur: vaikne kärbe, mis esitles end
+tervikuna.** Vt SOL-WB-10 all.
+
 ### SOL-WB-06 — künnis üksi ei kaitse kitsaste ja kattuvate koondpäringute kaudu üksikisiku tuletamise eest — P1
 
 **Tõend.** Admin ja piloodivaataja saavad vabalt kombineerida `periodStart`, `periodEnd`, `workflowType` ja rollirühma filtreid (`app/api/admin/wellbeing/aggregate/route.js:33-53`, `app/api/wellbeing/pilot/aggregate/route.js:41-72`). Väljund annab täpsed täisarvud ja osakaalud künnise ületamisel (`lib/wellbeing/aggregate.js:59-81`, `:165-173`). Minimaalne künnis tuleb keskkonnast ning üldfunktsioon lubab ka väärtuse 1 (`aggregate.js:27-37`). Puuduvad minimaalse ajavahemiku, päringute sidumise, väikeste alamkategooriate summutamise või differencing-kaitse piirid.
@@ -5255,6 +5258,37 @@ tõend on see, et värav ei lase seda väärtust temani. Sama string-boolean'iga
 **Mõju.** Pikaajalisel kasutajal kaovad vanemad kirjed trendist ja juhiga jagatavast memost ilma nähtava hoiatuseta. „Kõik” ei tähenda tegelikult kõiki.
 
 **Vastuvõtukriteerium.** Ülevaade peab agregeerima kogu valitud perioodi või märkima selgelt truncation'i ja võimaldama jätkamist. Testida vähemalt 101 kirjet, kus ainus punane signaal on vanim.
+
+**Seis (12.08.2026): DONE — SOL-WB-05 ja SOL-WB-10 on üks juur ja üks parandus.**
+
+Kaks vaikset kärbet, mõlemad esitatud täieliku tulemusena: koond luges `take: 10000`
+**ilma `orderBy`-ta** (suurema hulga korral otsustas valimi andmebaasi määramata reajärjestus —
+kaks järjestikust päringut võisid anda eri vastuse) ja isiklik ülevaade luges 100 uusimat kirjet,
+nimetades perioodi „Kõik".
+
+Mõlemad kasutavad nüüd üht lugejat (`lib/wellbeing/pagedRecords.js`): **stabiilne kursor
+`(createdAt, id)`**. `createdAt` üksi ei ole unikaalne — sama millisekundiga read (topeltklikk,
+import) korduksid või kaoksid lehekülje piiril; `id` teeb järjestuse totaalseks. Kursor on
+`skip: 1` mustriga, mitte `offset`, sest offset triivib, kui vahepeal ridu lisandub.
+
+**Kaitsepiir jäi alles, aga ta ei ole enam vaikne:** piirini jõudmine annab `truncated: true` ja
+see jõuab andmestikku (`truncationReason`, `recordLimit`), **piloodiraportisse**
+(`completenessNotice` — „arvud on alampiirid, ära tee neist osakaaluotsuseid"), **HTML- ja
+XLSX-eksporti** ning ülevaate liidesesse. Piir tuleb `options`-ist (serveri kood), mitte
+`filters`-ist (päringustring) — kliendi seatav kaitsepiir ei ole kaitsepiir. Koondil 100 000,
+ülevaatel 20 000 (kasutajapõhine).
+
+**Kuus + kaks ühikut** päris kursorisemantikat jäljendava fake'i vastu — ta austab `cursor`-it ja
+`skip`-i, seega vale lehekülgitus annaks vale arvu, mitte rohelise testi. Kaetud: **10 001 rida
+ilma lünkade ja kordusteta** · sama päring kahe eri leheküljesuurusega annab **identse
+järjestuse** · sama ajatempliga 25 rida loetakse täpselt üks kord · **täpselt piiri peale jäänud
+valim EI OLE poolik** (muidu kaotaks hoiatus tähenduse) · ülevaade **101 kirjega, kus ainus punane
+on VANIM** — vana rada jättis ta välja ja memo ütles juhile „roheline". Negatiivkontroll: sama
+andmestik piisava piiriga ei ole poolik, seega lipp mõõdab kärbet, mitte hulka.
+
+**KATMATA:** „võimaldada jätkamist" (kursoriga lehitsemine liideses) ei ole tehtud — piirini
+jõudmine ütleb praegu ausalt, et vaade on poolik, ja soovitab kitsamat perioodi. Päris
+lehitsemine on UI-töö ja tal ei ole täna kasutajat: piir on 20 000 kirjet ühe inimese kohta.
 
 ### SOL-WB-11 — mitmed tööheaolu API-d tagastavad ootamatu serverivea toorsõnumi kliendile — P2
 

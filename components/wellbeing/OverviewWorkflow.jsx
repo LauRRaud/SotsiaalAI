@@ -178,6 +178,14 @@ export default function OverviewWorkflow() {
           <span>{signalLabels[periodSignal] || signalLabels.insufficient_data}</span>
           <p>{t("wellbeing.overview.record_count", "Töövoo kirjeid")}: {recordCount}</p>
           <p>{t("wellbeing.overview.quick_check_count", "Kiirkontrolle")}: {quickCheckCount}</p>
+          {overview?.truncated ? (
+            <p>
+              {t(
+                "wellbeing.overview.truncated",
+                "Ülevaade tabas kaitsepiiri ja ei sisalda kõiki selle perioodi kirjeid. Vali lühem periood, et näha tervikpilti."
+              )}
+            </p>
+          ) : null}
           <p>{t("wellbeing.overview.period_label", "Periood")}: {overview?.period?.label || periodOptions.find((option) => option.key === selectedPeriod)?.label}</p>
         </div>
       </section>

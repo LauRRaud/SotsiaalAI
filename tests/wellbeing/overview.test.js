@@ -200,3 +200,56 @@ test("overview aggregates records across wellbeing workflows and builds a genera
   assert.match(overview.managerMemo.text, /Korduvad koormustegurid/);
   assert.doesNotMatch(overview.managerMemo.text, /complex_family_case|same_data_multiple_places|needs_organizational_change/);
 });
+
+/* SOL-WB-10: „Kõik" luges 100 UUSIMAT kirjet. Kriteerium nõuab täpselt seda
+   juhtu, kus ainus punane signaal on VANIM — vana rada jättis ta välja ja memo
+   ütles juhile „roheline", kuigi mustris oli punane. Fake austab kursorit, nii
+   et vale lehekülgitus annaks siin vale arvu. */
+function pagingPrisma(rows) {
+  const sorted = [...rows].sort((a, b) => {
+    const byTime = a.createdAt - b.createdAt;
+    return byTime !== 0 ? byTime : a.id.localeCompare(b.id);
+  });
+  return {
+    wellbeingRecord: {
+      findMany: async ({ take, cursor, skip }) => {
+        let start = 0;
+        if (cursor?.id) start = sorted.findIndex((row) => row.id === cursor.id) + (Number(skip) || 0);
+        return sorted.slice(start, start + take);
+      }
+    }
+  };
+}
+
+test("overview covers the whole period, including the oldest record", async () => {
+  const rows = Array.from({ length: 101 }, (_, index) => record({
+    id: `rec_${String(index).padStart(3, "0")}`,
+    computedSignal: { signalLevel: index === 0 ? "red" : "green" },
+    riskMarkers: index === 0 ? ["risk.difficult_case"] : [],
+    createdAt: new Date(Date.UTC(2026, 0, 1) + index * 60_000)
+  }));
+
+  const overview = await buildWellbeingOverviewForUser("user_1", {}, { prisma: pagingPrisma(rows) });
+
+  assert.equal(overview.recordCount, 101);
+  assert.equal(overview.signalCounts.red, 1);
+  assert.equal(overview.truncated, false);
+  assert.match(overview.managerMemo.text, /Töövoogude arv: 101/);
+  assert.match(overview.managerMemo.text, /raske juhtum/i);
+});
+
+test("overview admits it when the guard limit cut the period short", async () => {
+  const rows = Array.from({ length: 40 }, (_, index) => record({
+    id: `rec_${String(index).padStart(3, "0")}`,
+    createdAt: new Date(Date.UTC(2026, 0, 1) + index * 60_000)
+  }));
+
+  const overview = await buildWellbeingOverviewForUser(
+    "user_1",
+    {},
+    { prisma: pagingPrisma(rows), maxRecords: 25 }
+  );
+
+  assert.equal(overview.recordCount, 25);
+  assert.equal(overview.truncated, true);
+});

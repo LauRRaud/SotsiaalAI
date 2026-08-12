@@ -7023,6 +7023,7 @@
       "period_month": "Month",
       "record_count": "Workflow records",
       "quick_check_count": "Quick checks",
+      "truncated": "This overview hit a safety limit and does not include every record in the period. Choose a shorter period to see the full picture.",
       "patterns": "Patterns",
       "signals": "Signals",
       "work_demands": "Work demands",
