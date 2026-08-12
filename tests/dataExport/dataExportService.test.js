@@ -94,6 +94,8 @@ function createDb() {
     ] }] },
     journey: { findMany: async () => [] },
     wellbeingRecord: { findMany: async () => [] },
+    /* SOL-WB-18: mustandid on omaniku enda tekst ja nad kuuluvad koopiasse. */
+    wellbeingOutputDraft: { findMany: async () => [] },
     preInquiry: { findMany: async () => [{ topic: "Topic", situation: "Own situation", receiverNote: "secret recipient note", recipientOwnerId: "other", status: "DRAFT", recipientType: "SERVICE", deliveryChannel: "INTERNAL", createdAt: new Date(), updatedAt: new Date() }] },
     userDocument: { findMany: async () => [] },
     agentArtifact: { findMany: async () => [] }

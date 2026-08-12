@@ -67,7 +67,27 @@
 
 **Vastuvõtukriteerium.** Andmekoopia peab eksportima kirjete täieliku omanikuvaate koos checkpoint'i ja parandusahela metaandmetega ning eraldi kõik omaniku `WellbeingOutputDraft` read ja handoff'i fakti; kolmanda isiku sisu tuleb allowlist-projektsiooniga välistada. Test peab sisestama kõik väljad, tegema paranduse ja handoff'i ning võrdlema ekspordi semantilist täielikkust DB omanikuvaatega.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — koopia kannab nüüd elutsüklit, mitte hetketõmmist.**
+
+Projektsioon jättis välja täpselt need väljad, mis teevad kirjest elutsükli: `aggregationEligible`,
+`supersedesRecordId`, `checkpointDueOn` ja `checkpoint`. Kasutaja ei saanud oma plaani,
+järelhindamist ega parandusahelat taastada, kuigi manifest näis täielik. Nüüd on nad kõik sees,
+**pluss `supersededByRecordId`** — ahel peab olema loetav MÕLEMAST otsast, muidu ei saa koopia
+lugeja aru, et vana kirje on asendatud — ja `checkpointAnsweredAt` (SOL-WB-07 skalaar).
+
+**Mustandid said oma faili** (`wellbeing-output-drafts.ndjson`): kasutaja enda kirjutatud ja
+toimetatud tekst, adressaaditüüp, kinnitused ja üleandmise aeg. `covisionCaseId` on teadlikult
+VÄLJAS — kovisiooni juhtum on jagatud objekt ja tema ID ei kuulu ühe osaleja koopiasse; kaasa
+käib ainult FAKT, et üleandmine toimus (`handedOff`).
+
+**Neli ühikut ja värav, mis vananeb koos skeemiga:** test loeb `schema.prisma`-st mõlema mudeli
+veerud ja nõuab, et iga veerg oleks kas eksporditud või **nimeliselt välistatud**. Nii kukub ta
+siis, kui skeemi lisandub uus veerg ja keegi unustab otsustada, kas ta kuulub koopiasse — vaikne
+väljajätmine oligi leid. **Negatiivkontroll:** vana projektsioon EI läbi seda väravat ja test
+loetleb täpselt need viis veergu, mis puudu olid.
+
+**Runtime:** päris ZIP-i ja päris kasutaja koopiat ei jooksutatud (`not_run`) — teenusetestid
+katavad kogumise, aga mitte lõppfaili.
 
 ## Testid ja negatiivkontrollid
 
