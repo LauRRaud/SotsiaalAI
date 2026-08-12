@@ -54,6 +54,7 @@
     "pay:audit:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-audit-probe.mjs",
     "pay:mandate:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-mandate-probe.mjs",
     "pay:refund:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/payment-refund-probe.mjs",
+    "notif:progress:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/notification-progress-probe.mjs",
     "org:recall:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/org-inbox-recall-probe.mjs",
     "net:share:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/network-share-race-probe.mjs",
     "sprof:consent:probe": "node --import ./scripts/register-node-test-loader.mjs scripts/service-profile-consent-probe.mjs",

@@ -28,73 +28,113 @@ function authorized(request) {
   try { return crypto.timingSafeEqual(provided, expected); } catch { return false; }
 }
 
+/**
+ * SOL-NOTIF-06 — OHUTUSKRIITILINE TÖÖ EI TOHI SÕLTUDA TEISE TÖÖ TERVISEST.
+ *
+ * Kõik kuus etappi olid ÜHES `try` plokis järjestikuste `await`-idena ja välitöö
+ * dead-man kontroll ning kiire abi aegumine olid viimased. Ükskõik millise
+ * varasema etapi viga hüppas ühisesse `catch`-i ja need kaks jäid käivitamata:
+ * tavalise teavituse või SMTP infrastruktuuri rike blokeeris check-in
+ * eskalatsiooni ja abipalve nähtava lõpetamise.
+ *
+ * Iga etapp jookseb nüüd oma veapiiri sees ja tema seis on vastuses nähtav.
+ * Ohutusetapid ei ole enam „viimased, kui jõuame" — nad on eraldi ja nad
+ * käivituvad ALATI.
+ */
+async function runStage(name, statuses, work) {
+  try {
+    const value = await work();
+    statuses[name] = { ok: true };
+    return value;
+  } catch (error) {
+    statuses[name] = { ok: false, code: String(error?.code || error?.name || "STAGE_FAILED").slice(0, 80) };
+    console.error(`[jobs/notifications] stage failed: ${name}`, safeError(error));
+    return null;
+  }
+}
+
 export async function POST(request) {
   if (!authorized(request)) return json({ ok: false, message: "unauthorized" }, 401);
   const url = new URL(request.url);
   const dryRun = ["1", "true", "yes"].includes(String(url.searchParams.get("dryRun") || "").toLowerCase());
   const batchSize = Math.max(1, Math.min(Number(process.env.NOTIFICATION_JOB_BATCH_SIZE) || 40, 100));
-  try {
-    const reconciled = { considered: 0, created: 0, existing: 0, skipped: 0 };
-    const delivery = {
-      eligible: 0, claimed: 0, sent: 0, retried: 0, failed: 0,
-      skippedPreference: 0, skippedRecipient: 0, ambiguous: 0
-    };
-    const projected = {
-      considered: 0, created: 0, existing: 0, failed: 0, zeroRecipients: 0
-    };
-    const mentoring = await runMentoringSweep({ dryRun, batchSize });
-    let reconcileCursor = null;
-    let projectorCursor = null;
-    let deliveryCursor = null;
-    let reconcilePages = 0;
-    let projectorPages = 0;
-    let deliveryPages = 0;
+
+  const stages = {};
+  const reconciled = { considered: 0, created: 0, existing: 0, skipped: 0 };
+  const delivery = {
+    eligible: 0, claimed: 0, sent: 0, retried: 0, failed: 0,
+    skippedPreference: 0, skippedRecipient: 0, skippedSender: 0, ambiguous: 0
+  };
+  const projected = { considered: 0, created: 0, existing: 0, failed: 0, zeroRecipients: 0 };
+  let reconcileCursor = null;
+  let projectorCursor = null;
+  let deliveryCursor = null;
+  let reconcilePages = 0;
+  let projectorPages = 0;
+  let deliveryPages = 0;
+
+  const mentoring = await runStage("mentoring", stages, () => runMentoringSweep({ dryRun, batchSize }));
+
+  /* Iga silmus on oma eelarve: ühe etapi 100 lehekülge ei söö ära teise oma ja
+     tema viga ei võta teistelt käivitust. */
+  await runStage("reconcile", stages, async () => {
     for (; reconcilePages < 100; reconcilePages += 1) {
-      const reconcilePage = await reconcileNotificationEvents({ dryRun, batchSize, cursor: reconcileCursor });
-      for (const key of Object.keys(reconciled)) reconciled[key] += Number(reconcilePage[key] || 0);
-      reconcileCursor = reconcilePage.nextCursor || null;
+      const page = await reconcileNotificationEvents({ dryRun, batchSize, cursor: reconcileCursor });
+      for (const key of Object.keys(reconciled)) reconciled[key] += Number(page[key] || 0);
+      reconcileCursor = page.nextCursor || null;
       if (!reconcileCursor) break;
     }
+  });
+
+  await runStage("projector", stages, async () => {
     for (; projectorPages < 100; projectorPages += 1) {
-      const projectorPage = await projectDomainEvents({ dryRun, batchSize, cursor: projectorCursor });
-      for (const key of Object.keys(projected)) projected[key] += Number(projectorPage[key] || 0);
-      projectorCursor = projectorPage.nextCursor || null;
+      const page = await projectDomainEvents({ dryRun, batchSize, cursor: projectorCursor });
+      for (const key of Object.keys(projected)) projected[key] += Number(page[key] || 0);
+      projectorCursor = page.nextCursor || null;
       if (!projectorCursor) break;
     }
+  });
+
+  await runStage("delivery", stages, async () => {
     for (; deliveryPages < 100; deliveryPages += 1) {
-      const deliveryPage = await runNotificationDelivery({ dryRun, batchSize, cursor: deliveryCursor });
-      for (const key of Object.keys(delivery)) delivery[key] += Number(deliveryPage[key] || 0);
-      deliveryCursor = deliveryPage.nextCursor || null;
+      const page = await runNotificationDelivery({ dryRun, batchSize, cursor: deliveryCursor });
+      for (const key of Object.keys(delivery)) delivery[key] += Number(page[key] || 0);
+      deliveryCursor = page.nextCursor || null;
       if (!deliveryCursor) break;
     }
-    // FIELD-V1 safety check-in sweep rides the same production timer so the
-    // dead-man escalation needs no new ops surface.
-    const fieldSafety = await runFieldSafetySweep({ dryRun, batchSize });
-    // SK-V1 E5: urgent help requests that nobody answered within the desk's
-    // promised window must reach a visible end. Same timer, no new ops surface —
-    // silence is the worst possible outcome for the person who wrote at 23:47.
-    const urgentExpiry = await runUrgentExpirySweep({ dryRun, batchSize });
-    const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
-    projected.truncated = Boolean(projectorCursor);
-    if (truncated) console.error("[jobs/notifications] processing truncated", {
-      reconcile: Boolean(reconcileCursor), projector: Boolean(projectorCursor), delivery: Boolean(deliveryCursor)
-    });
-    return json({
-      ok: true,
-      dryRun,
-      reconcilePages: Math.min(reconcilePages + 1, 100),
-      projectorPages: Math.min(projectorPages + 1, 100),
-      deliveryPages: Math.min(deliveryPages + 1, 100),
-      truncated,
-      reconciled,
-      projected,
-      mentoring,
-      delivery,
-      fieldSafety,
-      urgentExpiry
-    });
-  } catch (error) {
-    console.error("[jobs/notifications] failed", safeError(error));
-    return json({ ok: false, message: "notification_job_failed" }, 500);
-  }
+  });
+
+  /* FIELD-V1 dead-man kontroll ja SK-V1 E5 kiire abi aegumine sõidavad sama
+     taimeriga, aga nad EI sõltu enam ülalolevate etappide tervisest. Vaikus on
+     halvim võimalik tulemus inimesele, kes kirjutas kell 23:47. */
+  const fieldSafety = await runStage("fieldSafety", stages, () => runFieldSafetySweep({ dryRun, batchSize }));
+  const urgentExpiry = await runStage("urgentExpiry", stages, () => runUrgentExpirySweep({ dryRun, batchSize }));
+
+  const truncated = Boolean(reconcileCursor || projectorCursor || deliveryCursor);
+  projected.truncated = Boolean(projectorCursor);
+  if (truncated) console.error("[jobs/notifications] processing truncated", {
+    reconcile: Boolean(reconcileCursor), projector: Boolean(projectorCursor), delivery: Boolean(deliveryCursor)
+  });
+
+  const failedStages = Object.entries(stages).filter(([, value]) => !value.ok).map(([name]) => name);
+  const safetyOk = stages.fieldSafety?.ok === true && stages.urgentExpiry?.ok === true;
+
+  return json({
+    // Ohutusetapid on eraldi väljas: „ok" ei tohi peita seda, et üks etapp kukkus.
+    ok: failedStages.length === 0,
+    safetyOk,
+    stages,
+    failedStages,
+    dryRun,
+    reconcilePages: Math.min(reconcilePages + 1, 100),
+    projectorPages: Math.min(projectorPages + 1, 100),
+    deliveryPages: Math.min(deliveryPages + 1, 100),
+    truncated,
+    reconciled,
+    projected,
+    mentoring,
+    delivery,
+    fieldSafety,
+    urgentExpiry
+  }, failedStages.length === 0 ? 200 : 207);
 }

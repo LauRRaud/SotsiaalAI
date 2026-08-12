@@ -47,8 +47,17 @@ function adapterDb() {
         return select?.email && !select?.notificationEmailEnabled ? { email: user.email } : user;
       }
     },
+    /* SOL-NOTIF-03/-04: autorid küsitakse kogu akna pealt (`distinct`) ja
+       dedupe-aken tuleb viimase sõnumi ajast (`aggregate`), mitte worker'i
+       kellast — fake peab mõlemat pakkuma, muidu ta ei mõõda seda rada. */
     roomMessage: {
-      async findMany() { return [{ roomId: "room-1", authorId: "author-1" }]; }
+      async findMany({ distinct } = {}) {
+        if (distinct) return [{ authorId: "author-1" }];
+        return [{ id: "msg-1", roomId: "room-1", authorId: "author-1" }];
+      },
+      async aggregate() {
+        return { _max: { createdAt: new Date("2026-07-19T11:00:00.000Z") } };
+      }
     },
     roomMember: {
       async findMany() { return [{ userId: "member-2" }]; },
