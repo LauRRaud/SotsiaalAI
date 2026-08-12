@@ -4496,6 +4496,54 @@ uus jälg algab sellest muudatusest. Admini vaated loevad endiselt telemeetriat 
 
 **Vastuvõtukriteerium.** Enne kasutaja hard-delete'i peab olema tõendatud, milline minimaalne finantsdokument/ledger säilib õigusliku aluse ja tähtajaga; otsene kasutaja-FK tuleb asendada pseudonüümse/anonymiseeritud arvestusidentiteediga või teha kontrollitud arhiiv. Jurist/raamatupidaja peab kinnitama väljade ja tähtaja lepingu. Integratsioonitest peab kustutama konto ning tõendama nii isikuandmete eemaldamise kui nõutava finantsjälje säilimise.
 
+**Seis (12.08.2026): DONE mehhanismi osas; koosseisu kinnitus jääb juristile.**
+
+**Leid ei olnud tingimuste ja koodi vastuolu, vaid KOODI JA KOODI oma.** `lib/retention.js`
+teostab juba täpselt seda, mida privaatsustingimuste punkt 7.9 kasutajale lubab — minimaalne
+kirje seitse aastat, teenusepakkuja toorvastus 90 päeva — ja võõrvõtme reegel võttis selle
+vaikselt tagasi. Andmebaasi tasand võitis teenusekihi ilma ühegi logireata. **Kriteeriumi lause
+„jurist peab kinnitama väljade JA TÄHTAJA lepingu" on tähtaja osas juba vastatud** ja vastus on
+avaldatud: 7.9 on `main`-is, `origin/main`-is ja deploy'tud commit'is, kõigis kolmes keeles.
+Lahtiseks jääb ainult **koosseis**.
+
+**Mis muutus.** `Payment.userId` on nullitav ja `SetNull`; `Payment.subscriptionId` samuti
+`SetNull`, sest ilma selleta oleks maksja seose parandamine olnud tühi töö — tellimus kaskaadib
+kasutajaga ja oleks võtnud maksekirje endaga kaasa teist teed pidi. Kolm külmutatud välja
+(`archivedAt`, `archivedPayerRef`, `archivedPlanCode`) kirjutatakse **kustutuse tehingu sees ja
+ENNE `user.delete`-i** — pärast seda ei ole enam kedagi, kelle ridu üles leida. Sama järjekorra
+argument mis SOL-SPROF-01 juures, sama fail.
+
+**Pseudonüüm on juhuslik, mitte tuletatud.** HMAC kasutaja ID-st oleks nõudnud võtit, ja võti on
+asi, mis lekib, roteerub ja puudub testkeskkonnas. Juhuslik viide on konstruktsiooni järgi tagasi
+arvutamatu ka siis, kui kogu andmebaas lekib; ühe inimese maksed jäävad omavahel seotuks, sest
+sama kustutus kirjutab sama viite kõigile ridadele. Külmutamine on **idempotentne** — kordus
+tähendaks uut pseudonüümi ja ühe inimese maksed laguneksid seostamatuks.
+
+**Paketi inimloetavat nime EI külmutata**, vaid sisemine tootekood: „supervisioonipakett"
+tõendaks seitse aastat, et see inimene oli supervisioonis, ja § 7 majanduslik sisu on kaetud koodi
+ning `kind` väljaga. **`BillingMethod` ja `Subscription` kaskaadivad teadlikult edasi** — makseviis
+on kasutatav token, mille säilitamine oleks halvem kui kustutamine, ja tellimus ei ole algdokument.
+Algdokument on maksekirje.
+
+**Koosseis on ÜHES kohas** (`PAYMENT_ARCHIVE_FIELDS`, `lib/privacy/paymentArchive.js`): kui jurist
+või raamatupidaja täpsustab miinimumi, muutub see loend seal, mitte laiali kustutusrajal.
+
+**Mõõdetud enne migratsiooni** (toodang, 12.08): 4 `Payment` rida, kõigil `userId` täidetud, 11
+`Subscription`, 1 `BillingMethod`. Migratsioon `20260812170000` ei muuda ühtki olemasolevat
+väärtust — `DROP NOT NULL` ainult lõdvendab piiri.
+
+**Kõrvalleid, mida raportis ei olnud:** hiline `token_return` callback kustutatud maksja rea peale
+oleks proovinud luua makseviisi `userId: null`-iga ja andnud FK-vea kaudu 500. Nüüd tunnistab ta
+ausalt, et maksjat ei ole enam.
+
+**Väravad:** `TZ=UTC npm test` **4161/4161** · `i18n:check` OK · eslint puhas ·
+`db:migrate:check` OK (165 migratsiooni). Negatiivkontroll jäljendab vana kaskaadireeglit sama
+andmestiku peal ja nõuab, et kaks reeglit annaksid ERI tulemuse.
+
+**NOT_PROVEN:** kriteeriumi integratsioonitest („kustutada konto ning tõendada nii isikuandmete
+eemaldamine kui finantsjälje säilimine") on kaetud ühikutasemel, mitte päris PostgreSQL-i
+kustutusega — `SetNull` ise on andmebaasi käitumine, mida fake ei tõenda. Sond on kirjutamata.
+
 ### SOL-PAY-10 — callback ja webhook võivad luua samale recurring-mandaadile mitu aktiivset BillingMethod rida — P2
 
 **Tõend.** `token_return` callback loeb Payment rea enne tehingut; kui `billingMethodId` puudub, loob ta tehingus uue BillingMethod rea (`app/api/subscription/callback/route.js:62-107`, `:112-162`). PAID webhooki `upsertRecurringBillingMethod()` loeb samuti subscriptioni viite ja võimaliku `providerMandateId` rea ning loob puudumisel uue (`lib/payments/subscriptionActivation.js:91-159`). Callback ei kasuta Payment row-lock'i ning skeemis on `providerMandateId` ainult indeks, mitte unikaalne piir (`prisma/schema.prisma:1173-1200`). Kaks callback'i või callback + webhook võivad mõlemad lugeda nulli ja luua eraldi aktiivse krüptitud tokenirea; viimase subscription/payment update võidab.

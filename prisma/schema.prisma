@@ -1215,7 +1215,12 @@ model Payment {
   id                String          @id @default(cuid())
   subscriptionId    String?
   inviteId          String?
-  userId            String
+  /// SOL-PAY-09: maksja seos on NULLITAV, sest maksekirje PEAB elama maksjast
+  /// kauem. Privaatsustingimuste p 7.9 lubab kasutajale, et minimaalne makse- ja
+  /// raamatupidamisalune kirje säilib kuni 7 aastat; `onDelete: Cascade` võttis
+  /// selle lubaduse tagasi ühe konto kustutusega. `NULL` tähendab siin „maksja on
+  /// kustutatud", mitte „makset ei olnud" — eristajaks on `archivedAt`.
+  userId            String?
   provider          PaymentProvider @default(MAKSEKESKUS)
   kind              PaymentKind     @default(OTHER)
   billingMethodId   String?
@@ -1238,10 +1243,30 @@ model Payment {
   raw               Json?
   createdAt         DateTime        @default(now())
 
-  subscription  Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  /// SOL-PAY-09 — KÜLMUTATUD MINIMAALNE FINANTSKIRJE.
+  /// Kirjutatakse maksja kustutamise tehingus ENNE `user.delete`-i. Koosseisu
+  /// ainus allikas on `lib/privacy/paymentArchive.js` — kui jurist täpsustab,
+  /// milline miinimum peab säilima, muutub see loend seal, mitte laiali koodis.
+  /// `archivedAt` on ainus aus eristaja „maksja kustutatud" ja „seost ei olnud"
+  /// vahel, sest `userId` on nullitav ka pärandridadel.
+  archivedAt        DateTime?
+  /// Pseudonüüm, mis seob ÜHE inimese maksed omavahel ilma teda tuvastamata.
+  /// Genereeritakse juhuslikult üks kord kustutuse kohta — võtit ei ole, seega
+  /// teda ei saa kellelegi tagasi arvutada ka võtme lekkimisel.
+  archivedPayerRef  String?
+  /// Mis müüdi, sisemise tootekoodina. Paketi INIMLOETAVAT nime siia teadlikult
+  /// ei külmutata: „supervisioonipakett" tõendaks seitse aastat, et see inimene
+  /// oli supervisioonis. Raamatupidamise seaduse § 7 majanduslik sisu on kaetud
+  /// koodi ja `kind` väljaga, mis on niikuinii sisemine.
+  archivedPlanCode  String?
+
+  subscription  Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
   billingMethod BillingMethod? @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
   invite        Invite?        @relation(fields: [inviteId], references: [id], onDelete: SetNull)
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  /// Tellimus ja makseviis kaskaadivad EDASI ja see on teadlik: makseviis on
+  /// krediit (token), mille säilitamine oleks halvem kui kustutamine, ja tellimus
+  /// ei ole algdokument. Algdokument on see rida.
+  user          User?          @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@unique([provider, providerPaymentId])
   @@unique([userId, clientIntentKey])
@@ -1251,6 +1276,8 @@ model Payment {
   @@index([userId])
   @@index([kind])
   @@index([status])
+  @@index([archivedAt])
+  @@index([archivedPayerRef])
 }
 
 model BillingMethod {

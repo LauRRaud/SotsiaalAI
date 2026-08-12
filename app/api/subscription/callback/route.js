@@ -94,6 +94,11 @@ async function persistRecurringToken(payload) {
     });
 
     if (!payment?.subscriptionId) return null;
+    /* SOL-PAY-09: `userId` on nüüd nullitav — kustutatud maksja kirje jääb
+       raamatupidamise jaoks alles. Hiline callback sellise rea peale ei tohi
+       proovida makseviisi luua: FK kukuks ja kasutaja saaks 500 selle asemel,
+       et me lihtsalt tunnistaksime, et maksjat ei ole enam. */
+    if (!payment.userId) return null;
 
     const method = await claimRecurringBillingMethod(tx, {
       userId: payment.userId,
