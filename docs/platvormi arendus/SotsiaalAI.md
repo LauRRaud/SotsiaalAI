@@ -96,11 +96,12 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 `SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja kogu `SOL-SLOG-01…24` parandused ning kiirem plokipõhine töökord on koodipuus. Kolmeastmelised arvud loetakse käsuga `npm run sol:progress`, neid siia ankrusse ei
 kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
 
-**Kogu 429-leiu auditikorpus on nüüd main'is ja loenduriga kaetud.** Eraldi tööpuudest lisandus
-26 varem loendamata NOT_DONE leidu: Välitöö 11, Teenuspäevik 7, Organisatsioonid 2, Minu
-jagamised 2, Teenusekaart 1 ja funktsioonideülene lõpetusring 3. Täpsed kolm astet tulevad
-`npm run sol:progress` väljundist. Järgmised SHARE-plokid on prioriteedi ja seose järgi
-`SOL-SHARE-01/02`, siis `SOL-SHARE-06/07`, seejärel `SOL-SHARE-03/04/05`.
+**„Minu jagamised” `SOL-SHARE-01…07` on lõpetatud.** Inimene näeb nüüd kõiki päris
+jagamisklasse, ühe allika tõrge ei peida ülejäänud ajalugu, abi-kaardi nähtavus ja mentorluse
+tagasivõtt on ausad ning jagamisajalugu jõuab sisuta andmekoopiasse. Tööheaolu toe sisu ja
+kolmeaastase minimaalse kviitungi elutsükkel järgib omaniku otsustatud poliitikat; juristi
+kinnitus on enne selle production-jõustumist väljalaske kontrollpunkt. Järgmine plokk on
+Teenusekaardi `SOL-SMAP-01/02/03`, seejärel `04/05/06` ja `07/08/09`.
 
 **SOL-RES-07 kood on valmis; brauseritõend on NOT_PROVEN.** Aktiivne uuring leitakse vestlusse
 naastes üles, elav progress jätkub ühe voona ja Stop jääb sama tööga seotuks; lokaalse dev-serveri

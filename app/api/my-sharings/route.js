@@ -15,10 +15,19 @@ export async function GET(request) {
   if (!userId) return errorJson("api.common.unauthorized", 401, locale);
 
   try {
-    const sharings = await loadMySharings(userId);
+    const section = String(new URL(request.url).searchParams.get("section") || "").trim() || null;
+    const sharings = await loadMySharings(userId, { sections: section });
     return json({ ok: true, sharings });
   } catch (error) {
     console.error("[my-sharings] load failed", safeError(error));
-    return errorJson("my_sharings.errors.load_failed", 500, locale);
+    const status = [400, 401, 403].includes(Number(error?.status)) ? Number(error.status) : 500;
+    const messageKey = status === 400
+      ? "my_sharings.errors.invalid_section"
+      : status === 401
+        ? "api.common.unauthorized"
+        : status === 403
+          ? "api.common.forbidden"
+          : "my_sharings.errors.load_failed";
+    return errorJson(messageKey, status, locale);
   }
 }

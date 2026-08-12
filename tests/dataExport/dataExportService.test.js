@@ -96,7 +96,17 @@ function createDb() {
     wellbeingRecord: { findMany: async () => [] },
     /* SOL-WB-18: mustandid on omaniku enda tekst ja nad kuuluvad koopiasse. */
     wellbeingOutputDraft: { findMany: async () => [] },
-    preInquiry: { findMany: async () => [{ topic: "Topic", situation: "Own situation", receiverNote: "secret recipient note", recipientOwnerId: "other", status: "DRAFT", recipientType: "SERVICE", deliveryChannel: "INTERNAL", createdAt: new Date(), updatedAt: new Date() }] },
+    preInquiry: { findMany: async ({ where } = {}) => where?.OR ? [] : [{ topic: "Topic", situation: "Own situation", receiverNote: "secret recipient note", recipientOwnerId: "other", status: "DRAFT", recipientType: "SERVICE", deliveryChannel: "INTERNAL", createdAt: new Date(), updatedAt: new Date() }] },
+    roomMember: { findMany: async () => [] },
+    roomSharedSummary: { findMany: async () => [] },
+    invite: { findMany: async () => [] },
+    helpRequest: { findMany: async () => [] },
+    helpOffer: { findMany: async () => [] },
+    mentoringPrivateNote: { findMany: async () => [] },
+    networkShare: { findMany: async () => [] },
+    urgentRequest: { findMany: async () => [] },
+    wellbeingSupportShare: { findMany: async () => [] },
+    serviceReportShare: { findMany: async () => [] },
     userDocument: { findMany: async () => [] },
     agentArtifact: { findMany: async () => [] },
     savedAnalysis: { findMany: async ({ where }) => where.ownerId === "owner" ? [{
@@ -157,6 +167,44 @@ test("registry ZIP contains only owner allowlists and manifest excludes content 
   assert.doesNotMatch(JSON.stringify(manifest), /Own situation|owner@example/);
   assert.equal(manifest.surfaces.every(surface => surface.thirdPartyExcluded), true);
   assert.equal(manifest.surfaces.find(surface => surface.name === "saved_analyses")?.recordCount, 1);
+  const sharingSurface = manifest.surfaces.find(surface => surface.name === "sharing_history");
+  assert.equal(sharingSurface?.version, "1.0");
+  assert.equal(sharingSurface?.thirdPartyExcluded, true);
+  assert.equal(sharingSurface?.recordCount, 0);
+  assert.equal(sharingSurface?.files[0]?.name, "sharing-history.ndjson");
+  assert.match(sharingSurface?.files[0]?.sha256 || "", /^[a-f0-9]{64}$/);
+});
+
+test("sharing-history surface reads every canonical owner direction without content", async () => {
+  const db = createDb();
+  const at = new Date("2026-07-17T10:00:00.000Z");
+  db.preInquiry.findMany = async ({ where }) => where.authorId === "owner" ? [{ id: "pre-own", status: "SENT", sentAt: at, deliveryChannel: "INTERNAL", situation: "PRIVATE-SITUATION" }] : [];
+  db.roomMember.findMany = async ({ where }) => where.userId === "owner" ? [{ id: "member-own", joinedAt: at, role: "MEMBER", room: { id: "room-own", title: "Own room" } }] : [];
+  db.roomSharedSummary.findMany = async ({ where }) => where.sharedByUserId === "owner" ? [{ id: "summary-own", sharedAt: at, room: { title: "Own room" }, summary: "PRIVATE-SUMMARY" }] : [];
+  db.invite.findMany = async ({ where }) => where.inviterId === "owner" ? [{ id: "invite-own", status: "SENT", createdAt: at, inviteeEmail: "recipient@example.test", room: { title: "Own room" } }] : [];
+  db.helpRequest.findMany = async ({ where }) => where.userId === "owner" ? [{ id: "request-own", status: "OPEN", userConfirmedAt: at, structuredSummary: "PRIVATE-REQUEST" }] : [];
+  db.helpOffer.findMany = async ({ where }) => where.userId === "owner" ? [{ id: "offer-own", status: "OPEN", userConfirmedAt: at, structuredSummary: "PRIVATE-OFFER" }] : [];
+  db.mentoringPrivateNote.findMany = async ({ where }) => where.ownerId === "owner" && where.sharedAt?.not === null ? [{ id: "mentoring-own", relationId: "relation-private", sharedAt: at, body: "PRIVATE-NOTE" }] : [];
+  db.networkShare.findMany = async ({ where }) => where.clientUserId === "owner"
+    ? [{ id: "network-client-own", status: "SENT", sentAt: at, recipient: null, sharedSnapshotJson: { secret: "PRIVATE-NETWORK" } }]
+    : where.workerId === "owner"
+      ? [{ id: "network-worker-own", status: "OPENED", sentAt: at, openedAt: at, recipient: null, sharedSnapshotJson: { secret: "PRIVATE-WORKER" } }]
+      : [];
+  db.urgentRequest.findMany = async ({ where }) => where.authorId === "owner" ? [{ id: "urgent-own", status: "SENT", recipientType: "MUNICIPALITY", sentAt: at, situation: "PRIVATE-URGENT" }] : [];
+  db.wellbeingSupportShare.findMany = async ({ where }) => where.ownerUserId === "owner" ? [{ id: "support-own", status: "OPENED", sentAt: at, openedAt: at, recipient: null, organization: null, sharedSnapshotJson: { secret: "PRIVATE-SUPPORT" } }] : [];
+  db.serviceReportShare.findMany = async ({ where }) => where.ownerUserId === "owner" ? [{ id: "report-own", status: "SENT", sentAt: at, recipient: null, snapshotJson: { secret: "PRIVATE-REPORT" } }] : [];
+
+  const { entries, manifest } = await dataExportInternals.collectExportEntries({ id: "job-shares", userId: "owner" }, { db, now: at });
+  const sharingEntry = entries.find(entry => entry.name === "sharing-history.ndjson");
+  const exported = sharingEntry.content.toString("utf8");
+  const types = exported.trim().split("\n").map(line => JSON.parse(line).type).sort();
+  assert.deepEqual(types, [
+    "HELP_OFFER", "HELP_REQUEST", "MENTORING_PREPARATION", "NETWORK_SHARE_CLIENT",
+    "NETWORK_SHARE_WORKER", "PRE_INQUIRY", "ROOM_INVITE", "ROOM_MEMBERSHIP",
+    "ROOM_SHARED_SUMMARY", "SERVICE_REPORT_SHARE", "URGENT_REQUEST", "WELLBEING_SUPPORT_SHARE"
+  ]);
+  assert.doesNotMatch(exported, /PRIVATE-|sharedSnapshotJson|snapshotJson|structuredSummary|situation|body/);
+  assert.equal(manifest.surfaces.find(surface => surface.name === "sharing_history")?.recordCount, 12);
 });
 
 test("worker creates a real ZIP and publishes one ready result", async () => {

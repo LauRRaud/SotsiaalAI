@@ -379,6 +379,7 @@
       "request_failed": "Toiming ebaõnnestus.",
       "role_forbidden": "Mentorlus on sotsiaalvaldkonna spetsialistide tööriist.",
       "conflict": "Seis on vahepeal muutunud. Värskenda vaadet ja proovi uuesti.",
+      "preparation_already_opened": "Mentor avas ettevalmistuse enne tagasivõtmist. Värske seis laaditi; jagatud koopiat enam tagasi võtta ei saa.",
       "rate_limited": "Sul on juba maksimaalne arv ootel taotlusi.",
       "capacity_full": "See mentor ei võta praegu uusi taotlusi vastu.",
       "cooldown_active": "Sellele mentorile saad uue taotluse esitada hiljem.",
@@ -1797,6 +1798,9 @@
     "section7": {
       "heading": "7. Säilitamine",
       "body": "<p><strong>7.1 Konto- ja profiiliandmed.</strong> Konto- ja profiiliandmeid säilitame üldjuhul kuni konto kustutamiseni, välja arvatud ulatuses, mida seadus nõuab pikemaks säilitamiseks.</p><p><strong>7.2 Autentimise ajutised andmed.</strong> E-posti kinnituse link säilib üldjuhul kuni 24 tundi, PIN-i lähtestamise token kuni 60 minutit, ühekordne sisselogimise kood kuni 15 minutit, ajutine sisselogimistoken kuni 15 minutit ja usaldatud seadme kirje kuni 30 päeva. Aegunud autentimiskirjed eemaldatakse regulaarselt.</p><p><strong>7.3 Vestlused ja jooksvad tööandmed.</strong> Vestlused, vestlussõnumid, vestluse jooksvad olekukirjed ja üldised kasutuslogid säilivad üldjuhul kuni 90 päeva alates viimasest aktiivsusest või vastava kirje loomise või uuendamise ajast.</p><p><strong>7.4 Ruumid ja abiandmed.</strong> Mitteaktiivsed ruumid ja nendega seotud sõnumid säilivad üldjuhul kuni 90 päeva pärast viimast sisulist aktiivsust. Suletud, tühistatud või arhiveeritud abisoovid ja abipakkumised ning lõpetatud või tagasi lükatud sobitused säilivad üldjuhul kuni 90 päeva pärast viimast uuendust.</p><p><strong>7.5 Dokumendid ja agendi tulemused.</strong> Dokumentide teeki laaditud failid, mallid, dokumendi koostamise tööruumi mustandid ning kinnitatud agendi tulemused säilivad üldjuhul kuni 90 päeva alates viimasest muutmisest. Kui vana dokument on tehniliselt seotud uuema tulemusega, võib seda säilitada lühiajaliselt seni, kuni uuem seos lõpeb.</p><p><strong>7.6 Kustutamine ja kustutustööde jälg.</strong> Kui kasutaja kustutab dokumendi, eemaldatakse see rakenduse aktiivsest dokumendihaldusest ning käivitatakse seotud faili ja RAG- või otsinguindeksi viite kustutamine, kui selline viide on olemas. Kui välise indeksi kustutamine ei õnnestu kohe, võib jääda tehniline kustutustöö kirje, et ebaõnnestunud või ootel kustutus oleks nähtav ja järelkäsitletav.</p><p><strong>7.7 Konto kustutamine.</strong> Konto kustutamisel eemaldatakse kasutajakonto ja sellega seotud aktiivsed kasutajaandmed rakenduse kustutusloogika kohaselt. Tehnilised auditikirjed ja kustutustööde kirjed võivad alles jääda piiratud metaandmetena, et tõendada kustutustoimingut, käsitleda pooleliolevaid kustutustöid, tagada turvalisus või täita õiguslikke kohustusi. Kohale toimetatud eelpöördumisest jääb adressaadile anonüümitud faktikiht ja tema enda töömärkmed; autori sisu kustutatakse.</p><p><strong>7.8 Varukoopiad ja töölogid.</strong> Kui kasutaja kustutab sisu, konto kustutatakse või kirje eemaldatakse kvoodi- või puhastusreeglite tõttu, võib see lühiajaliselt jääda varukoopiasse, süsteemi- või proxy-logidesse või teenusepakkuja tehnilistesse logidesse taastamise, turvalisuse, veaotsingu või õigusliku kohustuse tõttu ning seejärel eemaldatakse või muudetakse anonüümseks vastavalt vastavale ops- või teenusepakkuja seadistusele.</p><p><strong>7.9 Auditid, aktsepteerimised ja maksed.</strong> Üldised dokumentide auditikirjed, tehnilised töötluslogid ning tööalase kasutuse või andmetöötluse raamistikuga seotud tõendikirjed säilitatakse üldjuhul kuni 90 päeva, välja arvatud juhul, kui konkreetse aktsepteerimise, lepingulise suhte või õigusliku kohustuse tõendamiseks on mõistlikult vaja pikemat säilitamist. Makse teenusepakkujalt saadud detailne toores vastus või payload kärbitakse või eemaldatakse üldjuhul pärast 90 päeva. Minimaalne makse- ja raamatupidamisalune kirje säilib kuni 7 aastat või kauem, kui kohaldatav seadus seda nõuab.</p><p><strong>7.10 Professionaalsete töövahendite sisu.</strong> Kovisiooni, supervisiooni, mentorluse, refleksioonide, tööheaolu kirjete ja teekonna sisu säilib teenuse kasutamise ajal või kuni kasutaja selle kustutab ning kustutatakse konto kustutamisel koos kontoga. Välitöö visiitide andmetele kohaldub üldine 90-päevane säilitustähtaeg. Andmekoopia failid kustutatakse pärast tähtaja möödumist automaatselt.</p>"
+    },
+    "section7Support": {
+      "body": "<p><strong>7.11 Tööheaolu toe jagamine.</strong> Avamata jagatud sisu säilib kuni 30 päeva. Avatud või parandatud sisu säilib kuni sulgemiseni ja veel kuni 90 päeva, kuid mitte üle 12 kuu esmasest saatmisest; tagasivõtmisel sisu kustutatakse kohe. Saaja liikmesuse või organisatsiooni kustutamisel ligipääs lõpeb ja sisu kustutatakse. Konto kustutamisel võetakse avamata avaldus tagasi; juba avatud koopia võib jääda saajale sama lühikese tähtaja lõpuni. Pärast sisu kustutamist säilib kolm aastat piiratud jagamiskviitung ilma avalduse sisuta. Konkreetse vaide korral võib ainult vajalik materjal olla eraldi õigusnõude kaitse all.</p>"
     },
     "section8": {
       "heading": "8. Kasutaja õigused",
@@ -7840,7 +7844,8 @@
       "visible_to_mentor": "Näeb sinu mentor selles suhtes",
       "origin": "Sina andsid üle Tööheaolust",
       "shared_at": "Jagatud {date}",
-      "open_relation": "Ava suhteruum"
+      "open_relation": "Ava suhteruum",
+      "action_unavailable": "Tagasivõtmine ei ole siin saadaval, sest mentorlussuhte viide puudub. Ava suhteruum või võta ühendust toega."
     },
     "meta": {
       "title": "Minu jagamised",
@@ -7854,28 +7859,43 @@
       "pre_inquiries": "Saadetud eelpöördumised",
       "rooms": "Aktiivsed ruumid",
       "invites": "Aktiivsed kutsed",
-      "help": "Avaldatud abisoovid ja -pakkumised",
+      "help": "Minu abisoovid ja -pakkumised",
       "frameworks": "Minu kinnitused",
       "network_shares": "Võrgustikku kaasamine",
-      "urgent_requests": "Kiireloomulised abipalved"
+      "urgent_requests": "Kiireloomulised abipalved",
+      "outgoing_network_shares": "Minu saadetud võrgustikujagamised",
+      "wellbeing_support_shares": "Tööheaolu toe jagamised",
+      "service_report_shares": "Jagatud teenusaruanded",
+      "room_summaries": "Ruumis jagatud kokkuvõtted",
+      "private_records": "Privaatsed kinnitused"
     },
     "section_help": {
       "pre_inquiries": "Tagasivõtt eemaldab avamata platvormisisese pöördumise adressaadi aktiivsest loendist. Auditijälg jääb alles.",
       "rooms": "Ruumis näevad jagatud sisu selle aktiivsed liikmed.",
       "invites": "Kutse annab ligipääsu alles pärast vastuvõtmist.",
-      "help": "Need kirjed on avalikud kuni sulgemise või aegumiseni.",
+      "help": "Siin on iga kirje tegelik kaardinähtavus: avalik, peidetud, ülevaatusel, aegunud või sünkroonist väljas.",
       "frameworks": "Informatiivne ülevaade sinu kinnitatud raamistikest.",
       "network_shares": "Sotsiaaltöötaja soovib sinu olukorra kokkuvõtet jagada ühe teenuseosutajaga. Sina otsustad, kas ja mida jagatakse.",
-      "urgent_requests": "Abipalved, mille sa saatsid kohaliku omavalitsuse vastuvõtulauale. Siin on näha, kas keegi on need läbi lugenud ja mis vastus tuli."
+      "urgent_requests": "Abipalved, mille sa saatsid kohaliku omavalitsuse vastuvõtulauale. Siin on näha, kas keegi on need läbi lugenud ja mis vastus tuli.",
+      "outgoing_network_shares": "Kellele oled töötajana kliendi kinnitatud kokkuvõtte saatnud ja mis seisus jagamine on.",
+      "wellbeing_support_shares": "Tööheaolu toe avaldused, mille oled teadlikult valitud tugikontaktile saatnud.",
+      "service_report_shares": "Teenuspäeviku aruanded, mille oled valitud juhile saatnud.",
+      "room_summaries": "Sinu ruumis avaldatud külmutatud kokkuvõtete jagamisfaktid.",
+      "private_records": "Need kirjed on privaatsed ega täida jagamisregistrit."
     },
     "empty": {
       "pre_inquiries": "Saadetud eelpöördumisi ei ole.",
       "rooms": "Aktiivseid ruumiliikmesusi ei ole.",
       "invites": "Aktiivseid saadetud kutseid ei ole.",
-      "help": "Avaldatud abisoove ega -pakkumisi ei ole.",
+      "help": "Abisoove ega -pakkumisi ei ole.",
       "frameworks": "Raamistikukinnitusi ei ole.",
       "network_shares": "Ühtegi võrgustikku kaasamise ettepanekut ei ole.",
-      "urgent_requests": "Sa ei ole ühtegi kiireloomulist abipalvet saatnud."
+      "urgent_requests": "Sa ei ole ühtegi kiireloomulist abipalvet saatnud.",
+      "outgoing_network_shares": "Sa ei ole töötajana võrgustikujagamist saatnud.",
+      "wellbeing_support_shares": "Sa ei ole Tööheaolu toe avaldust jaganud.",
+      "service_report_shares": "Sa ei ole teenusaruannet jaganud.",
+      "room_summaries": "Sa ei ole ruumis kokkuvõtet jaganud.",
+      "private_records": "Privaatseid kinnitusi ei ole."
     },
     "ownership": {
       "visibility": "Kes näeb",
@@ -7886,11 +7906,18 @@
       "room_members": "Jagatud ruumi aktiivsete liikmetega",
       "invite_recipient": "Kutse saadetud: {name}",
       "public_map": "Avalik abikaardil",
+      "help_map_public": "Avalik Teenusekaardil",
+      "help_map_hidden": "Peidetud Teenusekaardilt",
+      "help_map_review": "Ülevaatusel; ei ole veel avalik",
+      "help_map_expired": "Aegunud; ei ole avalik",
+      "help_map_missing": "Kaardikirjet ei ole loodud",
+      "help_map_out_of_sync": "Kaardiseis vajab parandamist; ei ole avalik",
       "private_record": "Privaatne kinnitus sinu kontol",
       "you_sent": "Sina saatsid",
       "you_joined": "Sina liitusid",
       "you_invited": "Sina kutsusid",
       "you_published": "Sina avaldasid",
+      "you_submitted_help": "Sina kinnitasid abikirje",
       "you_confirmed": "Sina kinnitasid",
       "until_recall": "Tagasivõetav kuni adressaadi avamiseni",
       "opened": "Avatud {date}; ajalugu säilib",
@@ -7901,7 +7928,8 @@
       "owner": "Oled ruumi omanik; lahkumine vajab omandi üleandmist",
       "expires": "Aegub {date}",
       "no_expiry": "Aegumistähtaega pole määratud",
-      "accepted": "Kinnitatud {date}"
+      "accepted": "Kinnitatud {date}",
+      "closed": "Suletud {date}"
     },
     "labels": {
       "recipient": "Adressaat",
@@ -7922,7 +7950,8 @@
       "share_ends": "Kaasamine lõpeb",
       "share_incoming": "Ettepanek sinu kohta",
       "urgent_request": "Kiireloomuline abipalve",
-      "urgent_decline_reason": "Miks ei jõutud"
+      "urgent_decline_reason": "Miks ei jõutud",
+      "private_record": "Privaatne kirje"
     },
     "status": {
       "sent": "Saadetud",
@@ -7945,12 +7974,14 @@
       "use_redacted": "Kasuta varjatud versiooni",
       "send_original": "Saada algne tekst",
       "confirm_share": "Nõustun jagamisega",
-      "decline_share": "Ei nõustu"
+      "decline_share": "Ei nõustu",
+      "retry_section": "Proovi seda osa uuesti"
     },
     "confirm": {
       "recall": "Kas võtta see avamata pöördumine tagasi? See kaob adressaadi aktiivsest loendist, kuid auditijälg säilib.",
       "revoke": "Kas võtta kutse tagasi? Kutse link lõpetab töötamise.",
-      "leave": "Kas lahkuda ruumist? Sa ei näe pärast lahkumist ruumi uut sisu."
+      "leave": "Kas lahkuda ruumist? Sa ei näe pärast lahkumist ruumi uut sisu.",
+      "mentoringRecall": "Kas võtta mentorile jagatud avamata ettevalmistus tagasi? Pärast mentori avamist ei ole tagasivõtt enam võimalik."
     },
     "notice": {
       "memory": "Tagasivõtmine ei kustuta infot, mida adressaat võis juba näha või mäletada.",
@@ -7961,7 +7992,8 @@
       "room_left": "Lahkusid ruumist.",
       "share_confirmed": "Kinnitasid jagamise. Töötaja saab kokkuvõtte nüüd saata.",
       "share_declined": "Keeldusid. Seda kokkuvõtet ei saadeta.",
-      "urgent_recalled": "Abipalve on tagasi võetud."
+      "urgent_recalled": "Abipalve on tagasi võetud.",
+      "mentoring_recalled": "Mentorluse ettevalmistus võeti tagasi."
     },
     "correction": {
       "title": "Parandatud versioon",
@@ -7974,7 +8006,10 @@
     "errors": {
       "load_failed": "Sinu jagamisi ei saanud laadida.",
       "action_failed": "Toiming ebaõnnestus. Proovi uuesti.",
-      "refresh_failed": "Toiming õnnestus, kuid uuendatud ülevaadet ei saanud laadida. Proovi vaadet uuesti laadida."
+      "refresh_failed": "Toiming õnnestus, kuid uuendatud ülevaadet ei saanud laadida. Proovi vaadet uuesti laadida.",
+      "invalid_section": "Tundmatu jagamiste osa.",
+      "section_unavailable": "Seda jagamiste osa ei saanud praegu laadida. Ülejäänud andmed on endiselt nähtavad.",
+      "section_timeout": "Selle jagamiste osa laadimine võttis liiga kaua. Ülejäänud andmed on endiselt nähtavad."
     },
     "info": {
       "title": "Minu jagamised",
@@ -7985,7 +8020,7 @@
       "kinds_title": "Mis siin sees on",
       "kinds_inquiries": "Saadetud eelpöördumised — kellele saatsid ja kas adressaat on selle avanud.",
       "kinds_rooms": "Aktiivsed ruumid ja kutsed — ruumis näevad jagatud sisu selle aktiivsed liikmed, kutse aga annab ligipääsu alles pärast vastuvõtmist.",
-      "kinds_public": "Avaldatud abisoovid ja -pakkumised — need on avalikud kuni sulgemise või aegumiseni.",
+      "kinds_public": "Abisoovid ja -pakkumised — iga kirje juures on näha, kas see on Teenusekaardil avalik, peidetud, ülevaatusel või aegunud.",
       "kinds_records": "Mentorlusse üle antud ettevalmistused ja sinu kinnitatud raamistikud.",
       "recall_title": "Tagasivõtt",
       "recall_window": "Avamata platvormisisese pöördumise saad tagasi võtta: see kaob adressaadi aktiivsest loendist. Pärast avamist tagasivõtu aken sulgub.",
@@ -8903,7 +8938,7 @@
     "support": {
       "heading": "Tugi",
       "intro": "Siit saad saata toeavalduse valitud inimesele ja näha sulle saadetud avaldusi.",
-      "privacyNotice": "Toeavalduse algatad ja kinnitad sina. Organisatsioon ei näe, et sa vormi täitsid — ta näeb ainult seda, mille sa ise ära saatsid. Sinu tööheaolu kirjed jäävad sulle.",
+      "privacyNotice": "Toeavalduse algatad ja kinnitad sina. Organisatsioon ei näe, et sa vormi täitsid — ta näeb ainult seda, mille sa ise ära saatsid. Saadetud sisu säilib oleku järgi kuni 12 kuud; pärast sisu kustutamist säilib piiratud jagamiskviitung 3 aastat.",
       "recipients": "Kellele saan saata",
       "directManager": "Otsene juht",
       "alternate": "Alternatiivne tugikontakt",
@@ -8917,7 +8952,7 @@
       "needs": "Mida vajan",
       "agreements": "Ettepanek kokkuleppeks",
       "send": "Saada toeavaldus",
-      "confirm": "Kinnitan, et olen selle üle vaadanud ja soovin selle saata",
+      "confirm": "Kinnitan saatmise. Avamata sisu kustub 30 päeva järel; avatud sisu hiljemalt 12 kuu jooksul ja minimaalne jagamiskviitung 3 aasta järel.",
       "recall": "Võta tagasi",
       "correct": "Paranda",
       "close": "Sulge",

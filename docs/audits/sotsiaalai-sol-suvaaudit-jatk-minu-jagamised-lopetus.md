@@ -37,11 +37,11 @@ Fikseeritud koodis ei ole eelmise auditi commit'ist `c9cefd285e082c70ab7f573c0ab
 
 | Leid | Seis fikseeritud koodis |
 |---|---|
-| `SOL-SHARE-01` — koond jätab välja päris jagamisklasse | NOT_DONE |
-| `SOL-SHARE-02` — ühe allika viga võtab maha kogu koondi | NOT_DONE |
-| `SOL-SHARE-03` — P2021/P2022 muutub eksitavalt tühjaks sektsiooniks | NOT_DONE |
-| `SOL-SHARE-04` — abi-kuulutus märgitakse alati avalikuks | NOT_DONE |
-| `SOL-SHARE-05` — mentorluse `canRecall` on koondis kasutamata | NOT_DONE |
+| `SOL-SHARE-01` — koond jätab välja päris jagamisklasse | DONE |
+| `SOL-SHARE-02` — ühe allika viga võtab maha kogu koondi | DONE |
+| `SOL-SHARE-03` — P2021/P2022 muutub eksitavalt tühjaks sektsiooniks | DONE |
+| `SOL-SHARE-04` — abi-kuulutus märgitakse alati avalikuks | DONE |
+| `SOL-SHARE-05` — mentorluse `canRecall` on koondis kasutamata | DONE |
 
 Neid leide ei dubleeritud. Täielik tõend ja vastuvõtukriteerium on failis `docs/audits/sotsiaalai-sol-suvaaudit-jatk-minu-jagamised.md`.
 
@@ -55,7 +55,7 @@ Neid leide ei dubleeritud. Täielik tõend ja vastuvõtukriteerium on failis `do
 
 **Vastuvõtukriteerium.** Kanooniline jagamistüüpide register peab toitma nii „Minu jagamisi” kui versioonitud owner-skoobitud andmekoopia pinda. Eksport peab sisaldama vähemalt tüüpi, suunda, adressaadi minimaalset identifikaatorit/snapshot'i, olekut, saatmise, avamise, tagasivõtu ja kehtivuse aegu ning päritolu ilma kolmanda isiku privaatse sisuta. Negatiivtest peab looma kõik jagamisklassid kahele omanikule, tõendama ainult oma registri kaasamise, võõra sisu puudumise ja koopia valmimise vahetult enne konto kustutust.
 
-**Seis.** NOT_DONE; runtime `PARTIAL` (registry käitumine käivitati fake-DB-ga, production-andmekoopia worker `NOT_PROVEN`).
+**Seis.** DONE. Üks jagamisregister toidab nii koondit kui versioonitud `sharing_history` 1.0 andmekoopia pinda; eksport on UI lehepiiridest sõltumatu, omaniku-skoobitud ning sisaldab ainult normaliseeritud jagamisfakti, mitte jagatud sisu ega saaja töövoomärkmeid. Fake-DB test katab kõik kanoonilised mudelid/suunad ja päris PostgreSQL-i sond tõendas oma rea kaasamise, võõra rea ja tundliku snapshot'i puudumise ning manifestiga ZIP-sisu koostamise.
 
 ### SOL-SHARE-07 — toe külmutatud jagamiskoopia kaob omaniku, saajaliikmesuse või organisatsiooni kustutamisel — P1
 
@@ -65,7 +65,7 @@ Neid leide ei dubleeritud. Täielik tõend ja vastuvõtukriteerium on failis `do
 
 **Vastuvõtukriteerium.** Jagatud toe-snapshot'i elutsükkel tuleb eraldada kasutaja-, liikmesus- ja organisatsioonirea tehnilisest elutsüklist: kasutada otsustatud retention'i piires `SetNull`/erased-at identiteedisnapshot'i või eraldi retentsiooniarhiivi. Konto kustutuse ja organisatsiooni offboard/delete rajad peavad säilitama või nõuetekohaselt puhastama nii sisu kui sisuvaba tõendi ühe dokumenteeritud poliitika järgi. Päris PostgreSQL-i integratsioonitest peab katma omaniku, saajaliikmesuse ja organisatsiooni kustutuse, parandusahela, juba tagasi võetud rea ning deletion-job'i retry; üheski harus ei tohi toimuda vaikset jälje kadu.
 
-**Seis.** NOT_DONE; runtime `PARTIAL` (kolm vanemkustutust tõendatud lokaalsel PostgreSQL-il, production retention ja retry `NOT_PROVEN`).
+**Seis.** DONE. Omanikuotsus on rakendatud kahekihiliselt: olekupõhine sisu kuni 30 päeva / sulgemine + 90 päeva ja alati kuni 12 kuu ülempiirini ning piiratud sisuvaba jagamiskviitung kolm aastat viimasest sündmusest; tagasivõtt, saajaliikmesuse või organisatsiooni kustutus puhastab sisu kohe, avamata omaniku konto kustutus võtab jagamise tagasi ning avatud koopia säilib üksnes lühikese tähtajani. Kolm vanemseost on `SET NULL`, kustutustriggerid lõpetavad ligipääsu ilma uuele adressaadile ülekandeta, retention-sweep puhastab esmalt sisu ja hiljem kviitungi ning eraldi legal hold peatab mõlemad. Privaatsus- ja jagamiseelne teavitus on versioonitud; ajaloolistele ridadele ei rakendata uut avatud sisu erandit tagasiulatuvalt. Migratsiooniahel on puhas ja päris PostgreSQL-i sond andis 14/14 PASS, sh kõik kolm vanemkustutust, avatud/avamata eristus, sisu- ja kviitungitähtaeg, legal hold, omaniku-skoobitud eksport ning vana CASCADE negatiivkontroll. Kolme aasta pikkuse, konto kustutuse järgse avatud sisu tähtaja ja töötlejarollide juristikinnitus jääb enne production-poliitika jõustamist väljalaske kontrollpunktiks, mitte määratlemata koodikäitumiseks.
 
 ## Testide täpsed tulemused
 

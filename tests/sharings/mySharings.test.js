@@ -53,6 +53,7 @@ function fixtureDb() {
         originId: null
       }
     }], calls),
+    roomSharedSummary: model("roomSharedSummary", [], calls),
     invite: model("invite", [{
       id: "invite_1",
       roomId: "room_1",
@@ -150,7 +151,9 @@ function fixtureDb() {
         recalledAt: null,
         convertedPreInquiryId: null
       }
-    ], calls)
+    ], calls),
+    wellbeingSupportShare: model("wellbeingSupportShare", [], calls),
+    serviceReportShare: model("serviceReportShare", [], calls)
   };
   return { db, calls };
 }
@@ -159,7 +162,7 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const { db, calls } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(calls.length, 9);
+  assert.equal(calls.length, 14);
   assert.equal(calls.find((call) => call.name === "mentoringPrivateNote").query.where.ownerId, USER_ID);
   assert.equal(calls.find((call) => call.name === "preInquiry").query.where.authorId, USER_ID);
   assert.equal(calls.find((call) => call.name === "roomMember").query.where.userId, USER_ID);
@@ -171,22 +174,26 @@ test("aggregate is owner-scoped, action-ready, and excludes receiver-private wor
   const selection = calls.find((call) => call.name === "preInquiry").query.select;
   assert.equal(selection.receiverNote, undefined);
   assert.equal(selection.receiverChecklist, undefined);
-  assert.equal(result.preInquiries[0].receiverNote, undefined);
-  assert.equal(result.preInquiries[0].receiverChecklist, undefined);
-  assert.equal(result.preInquiries[0].canRecall, false);
-  assert.equal(result.preInquiries[0].canCorrect, true);
-  assert.equal(result.rooms[0].canLeave, true);
-  assert.equal(result.invites[0].canRevoke, true);
-  assert.equal(result.helpListings.length, 2);
+  assert.equal(result.preInquiries.items[0].receiverNote, undefined);
+  assert.equal(result.preInquiries.items[0].receiverChecklist, undefined);
+  assert.equal(result.preInquiries.items[0].canRecall, false);
+  assert.equal(result.preInquiries.items[0].canCorrect, true);
+  assert.equal(result.rooms.items[0].canLeave, true);
+  assert.equal(result.invites.items[0].canRevoke, true);
+  assert.equal(result.helpListings.items.length, 2);
   assert.deepEqual(Object.keys(result), [
     "preInquiries",
     "rooms",
+    "roomSummaries",
     "invites",
     "helpListings",
-    "frameworkAcceptances",
     "mentoringPreparations",
     "networkShares",
-    "urgentRequests"
+    "outgoingNetworkShares",
+    "urgentRequests",
+    "wellbeingSupportShares",
+    "serviceReportShares",
+    "privateRecords"
   ]);
 });
 
@@ -235,10 +242,10 @@ test("unopened internal SENT inquiry is recallable but external delivery is not"
   ];
 
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  assert.equal(result.preInquiries[0].canRecall, true);
-  assert.equal(result.preInquiries[0].canCorrect, false);
-  assert.equal(result.preInquiries[1].canRecall, false);
-  assert.equal(result.preInquiries[1].canCorrect, false);
+  assert.equal(result.preInquiries.items[0].canRecall, true);
+  assert.equal(result.preInquiries.items[0].canCorrect, false);
+  assert.equal(result.preInquiries.items[1].canRecall, false);
+  assert.equal(result.preInquiries.items[1].canCorrect, false);
 });
 
 test("a canonical shared room removes the optimistic recall action", async () => {
@@ -275,7 +282,7 @@ test("a canonical shared room removes the optimistic recall action", async () =>
   }];
 
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  assert.equal(result.preInquiries[0].canRecall, false);
+  assert.equal(result.preInquiries.items[0].canRecall, false);
 });
 
 test("an invite remains visible but is not revocable after room authority is lost", async () => {
@@ -292,7 +299,7 @@ test("an invite remains visible but is not revocable after room authority is los
   }];
 
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  assert.equal(result.invites[0].canRevoke, false);
+  assert.equal(result.invites.items[0].canRevoke, false);
 });
 
 test("room owners cannot leave and an empty user id is rejected before queries", async () => {
@@ -309,17 +316,18 @@ test("room owners cannot leave and an empty user id is rejected before queries",
     }
   }];
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  assert.equal(result.rooms[0].canLeave, false);
+  assert.equal(result.rooms.items[0].canLeave, false);
 
   await assert.rejects(loadMySharings("", { db, now: NOW }), (error) => {
     assert.equal(error.status, 401);
     assert.equal(error.message, "api.common.unauthorized");
     return true;
   });
-  // preInquiry, invite, helpRequest, helpOffer, frameworkAcceptance,
-  // mentoringPrivateNote, networkShare, urgentRequest
+  // preInquiry, roomSharedSummary, invite, helpRequest, helpOffer,
+  // frameworkAcceptance, mentoringPrivateNote (twice), networkShare (twice),
+  // urgentRequest, wellbeingSupportShare, serviceReportShare
   // (roomMember is overridden and does not push).
-  assert.equal(calls.length, 8);
+  assert.equal(calls.length, 13);
 });
 
 // --- COLLAB-P4: võrgustikujagamised „Minu jagamiste“ all ---------------------
@@ -331,16 +339,16 @@ test("otsust ootav võrgustikujagamine tuleb esimesena, mitte ei kao ajaloo siss
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
-  assert.equal(result.networkShares.length, 2);
-  assert.equal(result.networkShares[0].id, "share_waiting");
-  assert.equal(result.networkShares[0].awaitingDecision, true);
-  assert.equal(result.networkShares[1].awaitingDecision, false);
+  assert.equal(result.networkShares.items.length, 2);
+  assert.equal(result.networkShares.items[0].id, "share_waiting");
+  assert.equal(result.networkShares.items[0].awaitingDecision, true);
+  assert.equal(result.networkShares.items[1].awaitingDecision, false);
 });
 
 test("võrgustikujagamine kannab suunamärget, et kuvakiht ei peaks seda tüübist ära arvama", async () => {
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  for (const share of result.networkShares) {
+  for (const share of result.networkShares.items) {
     assert.equal(share.direction, "INCOMING_REQUEST");
   }
 });
@@ -348,7 +356,7 @@ test("võrgustikujagamine kannab suunamärget, et kuvakiht ei peaks seda tüübi
 test("klient näeb otsustamiseks vajalikku: kokkuvõtet, eesmärki, jagamispiiri ja lõppu", async () => {
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  const waiting = result.networkShares.find((share) => share.id === "share_waiting");
+  const waiting = result.networkShares.items.find((share) => share.id === "share_waiting");
   assert.equal(waiting.summaryText, "Ootab sinu otsust.");
   assert.equal(waiting.purpose, "Kooli sotsiaalpedagoogi kaasamine.");
   assert.equal(waiting.sharingBoundary, "Ainult koolikohustuse teema.");
@@ -374,19 +382,41 @@ test("migreerimata võrgustikutabel EI võta tervet 'Minu jagamiste' lehte maha"
 
   const result = await loadMySharings(USER_ID, { db, now: NOW });
   // Tuumlubadus jääb kehtima: eelpöördumised ja ruumid on endiselt nähtavad.
-  assert.equal(result.preInquiries.length, 1);
-  assert.equal(result.rooms.length, 1);
-  assert.deepEqual(result.networkShares, []);
+  assert.equal(result.preInquiries.items.length, 1);
+  assert.equal(result.rooms.items.length, 1);
+  assert.deepEqual(result.networkShares.items, []);
+  assert.equal(result.networkShares.status, "UNAVAILABLE");
+  assert.equal(result.networkShares.errorCode, "P2021");
 });
 
-test("PÄRIS andmebaasiviga ei jää vaikselt tühja loendi taha", async () => {
+test("PÄRIS andmebaasiviga on nähtav ainult oma sektsioonis", async () => {
   const { db } = fixtureDb();
   db.networkShare.findMany = async () => {
     const error = new Error("connection refused");
     error.code = "P1001";
     throw error;
   };
-  await assert.rejects(loadMySharings(USER_ID, { db, now: NOW }), /connection refused/);
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  assert.equal(result.networkShares.status, "UNAVAILABLE");
+  assert.equal(result.networkShares.errorCode, "SOURCE_ERROR");
+  assert.equal(result.preInquiries.items.length, 1);
+});
+
+test("ühe tavallika viga jätab teised jagamissektsioonid nähtavaks", async () => {
+  const { db } = fixtureDb();
+  db.helpRequest.findMany = async () => {
+    const error = new Error("help source unavailable");
+    error.code = "P1001";
+    throw error;
+  };
+
+  const result = await loadMySharings(USER_ID, { db, now: NOW });
+  assert.equal(result.preInquiries.status, "READY");
+  assert.equal(result.preInquiries.items.length, 1);
+  assert.equal(result.rooms.status, "READY");
+  assert.equal(result.rooms.items.length, 1);
+  assert.equal(result.helpListings.status, "UNAVAILABLE");
+  assert.equal(result.helpListings.errorCode, "SOURCE_ERROR");
 });
 
 // --- SK-V1: kiireloomuline abipalve „Minu jagamiste“ all ---------------------
@@ -400,16 +430,16 @@ test("kiireloomuline abipalve on „Minu jagamiste“ all ja vastust ootav tuleb
   const result = await loadMySharings(USER_ID, { db, now: NOW });
 
   assert.equal(calls.find((call) => call.name === "urgentRequest").query.where.authorId, USER_ID);
-  assert.equal(result.urgentRequests.length, 2);
-  assert.equal(result.urgentRequests[0].id, "urgent_waiting");
-  assert.equal(result.urgentRequests[0].awaitingAnswer, true);
-  assert.equal(result.urgentRequests[1].awaitingAnswer, false);
+  assert.equal(result.urgentRequests.items.length, 2);
+  assert.equal(result.urgentRequests.items[0].id, "urgent_waiting");
+  assert.equal(result.urgentRequests.items[0].awaitingAnswer, true);
+  assert.equal(result.urgentRequests.items[1].awaitingAnswer, false);
 });
 
 test("keeldumise PÕHJUS jõuab inimeseni — muidu on „DECLINED“ ainult kinni käinud uks", async () => {
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  const declined = result.urgentRequests.find((row) => row.id === "urgent_declined");
+  const declined = result.urgentRequests.items.find((row) => row.id === "urgent_declined");
   assert.equal(declined.status, "DECLINED");
   assert.match(declined.declineReason, /helista hommikul/);
 });
@@ -417,8 +447,8 @@ test("keeldumise PÕHJUS jõuab inimeseni — muidu on „DECLINED“ ainult kin
 test("lugemata abipalve on tagasivõetav, loetud mitte", async () => {
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  const waiting = result.urgentRequests.find((row) => row.id === "urgent_waiting");
-  const declined = result.urgentRequests.find((row) => row.id === "urgent_declined");
+  const waiting = result.urgentRequests.items.find((row) => row.id === "urgent_waiting");
+  const declined = result.urgentRequests.items.find((row) => row.id === "urgent_declined");
   assert.equal(waiting.canRecall, true);
   assert.equal(declined.canRecall, false);
 });
@@ -426,7 +456,7 @@ test("lugemata abipalve on tagasivõetav, loetud mitte", async () => {
 test("külmutatud lugemisaja lubadus on inimese vaates näha", async () => {
   const { db } = fixtureDb();
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  for (const row of result.urgentRequests) {
+  for (const row of result.urgentRequests.items) {
     assert.equal(row.readingTimePromise, "Loeme läbi 2 tunni jooksul.");
   }
 });
@@ -440,7 +470,30 @@ test("migreerimata SK-tabel EI võta tervet „Minu jagamiste“ lehte maha", as
   };
 
   const result = await loadMySharings(USER_ID, { db, now: NOW });
-  assert.equal(result.preInquiries.length, 1);
-  assert.equal(result.networkShares.length, 2);
-  assert.deepEqual(result.urgentRequests, []);
+  assert.equal(result.preInquiries.items.length, 1);
+  assert.equal(result.networkShares.items.length, 2);
+  assert.deepEqual(result.urgentRequests.items, []);
+  assert.equal(result.urgentRequests.status, "UNAVAILABLE");
+});
+
+test("a timed-out source is explicit and does not turn into an empty section", async () => {
+  const { db } = fixtureDb();
+  db.helpRequest.findMany = async () => new Promise(() => {});
+  const result = await loadMySharings(USER_ID, { db, now: NOW, sections: ["helpListings"], deadlineMs: 5 });
+  assert.equal(result.helpListings.status, "TIMEOUT");
+  assert.equal(result.helpListings.errorCode, "SOURCE_TIMEOUT");
+  assert.deepEqual(result.helpListings.items, []);
+});
+
+test("an authorization failure fails the aggregate closed instead of isolating it", async () => {
+  const { db } = fixtureDb();
+  db.helpRequest.findMany = async () => {
+    const error = new Error("api.common.forbidden");
+    error.status = 403;
+    throw error;
+  };
+  await assert.rejects(
+    () => loadMySharings(USER_ID, { db, now: NOW, sections: ["helpListings"] }),
+    (error) => error.status === 403 && error.message === "api.common.forbidden"
+  );
 });

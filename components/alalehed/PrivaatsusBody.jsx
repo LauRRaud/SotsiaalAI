@@ -77,9 +77,10 @@ export default function PrivaatsusBody() {
     }]
   }, {
     heading: t("privacy.section7.heading"),
-    content: [{
-      value: t("privacy.section7.body")
-    }]
+    content: [
+      { value: t("privacy.section7.body") },
+      { value: t("privacy.section7Support.body") }
+    ]
   }, {
     heading: t("privacy.section8.heading"),
     content: [{

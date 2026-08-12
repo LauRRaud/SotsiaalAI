@@ -38,7 +38,7 @@
 
 **Vastuvõtukriteerium.** Defineerida kanooniline jagamistüüpide register ja lisada kõik platvormisisesed adressaadiga koopiad suuna, saaja, nähtavuse, aluse, saatmis-/avamise-/tagasivõtuaja ja lubatud toiminguga. Privaatne mittejagatud kirje peab olema eraldi kategoorias, mitte täitma jagamisregistrit. Contract-test peab võrdlema registrit Prisma/teenuse jagamismudelite allowlistiga ning kukkuma uue klassi lisamisel.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Kanooniline `SHARING_TYPE_REGISTRY` seob kõik platvormi jagamismudelid ja suunad nii koondvaate kui andmekoopia adapteritega; `WellbeingSupportShare`, `ServiceReportShare`, töötaja saadetud `NetworkShare` ja ruumi külmutatud kokkuvõtted on omanikuvaates ning framework-kinnitus on selgelt privaatne mittejagamine. Registry-contract ja omaniku projektsioonide sihttestid on rohelised; päris PostgreSQL-i sond tõendas oma toejagamise kaasamise ning võõra rea välistamise.
 
 ### SOL-SHARE-02 — ühe allika tavaviga võtab maha kogu jagamiste läbipaistvusvaate — P1
 
@@ -48,7 +48,7 @@
 
 **Vastuvõtukriteerium.** Koond peab tagastama sektsioonipõhise tulemuse (`items`, `status`, `errorCode`, paging), säilitades edukad andmed; turva- või autoriseerimisvead peavad endiselt fail-closed olema. UI peab selgelt märkima mittelaadunud sektsiooni ning võimaldama selle eraldi retry'd. Negatiivtest peab süstima iga allika 500, timeout'i ja auth-vea ning kontrollima, millal lubatakse osaline vaade ja millal kogu vastus suletakse.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Iga allikas laetakse eraldi staatuse, veakoodi ja paging-ümbrisega; tavaviga või timeout jätab edukad sektsioonid nähtavaks, kuid 401/403 sulgeb vastuse tervikuna. Dev-brauseris säilisid edukad eelpöördumise ja mentorluse kaardid, vigane abi-sektsioon näitas ausat tõrget ning ainult selle sektsiooni retry taastas andmed teisi kaarte kaotamata.
 
 ### SOL-SHARE-03 — puuduva tabeli/veeru korral näidatakse sektsiooni ausa tõrke asemel tühjana — P2
 
@@ -58,7 +58,7 @@
 
 **Vastuvõtukriteerium.** Skeemi puudumine peab säilitama ülejäänud registri, kuid sektsioon peab olema `NOT_PROVEN/unavailable`, mitte tühi. Production'is peab tekkima struktureeritud alert/metric. Contract-test peab eristama päriselt null rida, P2021, P2022 ja ühendusviga ning UI peab iga seisundi eri tekstiga kuvama.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. P2021/P2022 annab nüüd `UNAVAILABLE`, timeout `TIMEOUT` ja päriselt null rida `READY`; production-logi kannab ainult sektsiooni ja stabiilset veakoodi. Contract-testid eristavad skeemi-, ühendus-, timeout- ja autoriseerimisvigu ning dev-brauser kinnitas eraldi tõrkepaneeli ja sektsioonipõhise taastumise.
 
 ### SOL-SHARE-04 — abi-kuulutus märgitakse alati avalikul kaardil nähtavaks — P2
 
@@ -68,7 +68,7 @@
 
 **Vastuvõtukriteerium.** Koond peab lugema minimaalse mapEntry projektsiooni ning eristama `public`, `hidden`, `review`, `expired` ja `missing/out_of_sync` seisu. Testida OPEN+hidden, OPEN+review, MATCHED+public, puuduva mapEntry ja aegunud kaardirea kombinatsioonid; UI silt peab vastama serveri tegelikule avalikule projektsioonile.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Koond kasutab sama puhast avalikkuse klassifikaatorit mis Teenusekaardi tegelik projektsioon ning eristab `PUBLIC`, `HIDDEN`, `REVIEW`, `EXPIRED`, `MISSING` ja `OUT_OF_SYNC` seisu. Kombinatsioonitabeli sihttest ja dev-brauser kinnitasid, et silt tuleneb kaardirea tegelikust olekust; ET/EN/RU üldväited parandati.
 
 ### SOL-SHARE-05 — mentorluse tagasivõetav ettevalmistus ei ole koondvaates tagasivõetav — P2
 
@@ -78,7 +78,7 @@
 
 **Vastuvõtukriteerium.** Kui `canRecall=true`, peab koond pakkuma kinnitusega recall-toimingut, kasutades sama serveriteenust ja värskendades sektsiooni serverivastusest; kui tegevus peab teadlikult jääma suhte detaili, peab `canRecall` asemel olema toimiv deep link ja selge juhis. Testida avamata, avatud, juba tagasi võetud, puuduva relationId ja stale samaaegse avamise juhud.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Avamata ettevalmistusel on koondis kinnitusega päris tagasivõtt; puuduva suhteviite korral näidatakse toimingu puudumise põhjust. Avamise ja tagasivõtu advisory-lock'i võistlussond andis mõlemas järjekorras ühe võitja ning koherentse märkme, auditi ja teavituse; dev-brauseris sulges 409 dialoogi, värskendas avatuks muutunud seisu ja eemaldas surnud nupu.
 
 ## Testid ja negatiivkontrollid
 

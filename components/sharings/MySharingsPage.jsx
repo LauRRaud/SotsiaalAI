@@ -19,13 +19,27 @@ import styles from "./MySharingsPage.module.css";
 const EMPTY_SHARINGS = Object.freeze({
   preInquiries: [],
   rooms: [],
+  roomSummaries: [],
   invites: [],
   helpListings: [],
-  frameworkAcceptances: [],
   mentoringPreparations: [],
   networkShares: [],
-  urgentRequests: []
+  outgoingNetworkShares: [],
+  urgentRequests: [],
+  wellbeingSupportShares: [],
+  serviceReportShares: [],
+  privateRecords: []
 });
+
+const SHARING_SECTION_KEYS = Object.freeze(Object.keys(EMPTY_SHARINGS));
+
+function emptySectionMeta() {
+  return Object.fromEntries(SHARING_SECTION_KEYS.map((key) => [key, {
+    status: "EMPTY",
+    errorCode: null,
+    paging: { complete: true, hasMore: false, limit: null }
+  }]));
+}
 
 function statusKey(item) {
   if (item.recalledAt) return "recalled";
@@ -33,16 +47,27 @@ function statusKey(item) {
   return String(item.status || "sent").toLowerCase();
 }
 
-function Section({ title, help, empty, items, children }) {
+function Section({ title, help, empty, items, sectionState, retrying = false, onRetry, retryLabel, unavailableLabel, children }) {
+  const unavailable = ["UNAVAILABLE", "TIMEOUT"].includes(sectionState?.status);
   return (
     <section className={styles.section}>
       <div className={styles.sectionHeading}>
         <h2>{title}</h2>
         <p>{help}</p>
       </div>
-      {items.length ? <div className={styles.cards}>{children}</div> : <p className={styles.empty}>{empty}</p>}
+      {unavailable ? (
+        <Panel variant="subpage" padding="sm" className={styles.sectionError}>
+          <p role="status">{unavailableLabel}</p>
+          <Button variant="secondary" disabled={retrying} onClick={onRetry}>{retryLabel}</Button>
+        </Panel>
+      ) : items.length ? <div className={styles.cards}>{children}</div> : <p className={styles.empty}>{empty}</p>}
     </section>
   );
+}
+
+function helpMapVisibilityKey(item) {
+  const value = String(item.mapVisibility || "OUT_OF_SYNC").toLowerCase();
+  return `my_sharings.ownership.help_map_${value}`;
 }
 
 export default function MySharingsPage() {
@@ -53,6 +78,8 @@ export default function MySharingsPage() {
      pealkirja alamärkus. */
   usePanelInfoSlot({ infoId: "my_sharings" });
   const [sharings, setSharings] = useState(EMPTY_SHARINGS);
+  const [sectionMeta, setSectionMeta] = useState(emptySectionMeta);
+  const [retryingSection, setRetryingSection] = useState("");
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
   const [feedback, setFeedback] = useState("");
@@ -76,10 +103,16 @@ export default function MySharingsPage() {
       : t("my_sharings.labels.unknown_time");
   }, [formatter, t]);
 
-  const loadSharings = useCallback(async ({ signal, preserveData = false } = {}) => {
+  const loadSharings = useCallback(async ({ signal, preserveData = false, section = null } = {}) => {
     if (!preserveData) setLoadError("");
+    if (section) setRetryingSection(section);
     try {
-      const response = await fetch("/api/my-sharings", { cache: "no-store", signal });
+      const response = section
+        ? await fetch(`/api/my-sharings?section=${encodeURIComponent(section)}`, {
+          cache: "no-store",
+          signal,
+        })
+        : await fetch("/api/my-sharings", { cache: "no-store", signal });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
         throw new Error(resolveApiMessage({
@@ -88,7 +121,27 @@ export default function MySharingsPage() {
           fallbackKey: "my_sharings.errors.load_failed"
         }));
       }
-      setSharings(payload?.sharings || EMPTY_SHARINGS);
+      const incoming = payload?.sharings && typeof payload.sharings === "object" ? payload.sharings : {};
+      setSharings((current) => {
+        const next = section ? { ...current } : { ...EMPTY_SHARINGS };
+        for (const [key, value] of Object.entries(incoming)) {
+          if (key in EMPTY_SHARINGS) next[key] = Array.isArray(value?.items) ? value.items : [];
+        }
+        return next;
+      });
+      setSectionMeta((current) => {
+        const next = section ? { ...current } : emptySectionMeta();
+        for (const [key, value] of Object.entries(incoming)) {
+          if (key in EMPTY_SHARINGS) {
+            next[key] = {
+              status: value?.status || "EMPTY",
+              errorCode: value?.errorCode || null,
+              paging: value?.paging || { complete: true, hasMore: false, limit: null }
+            };
+          }
+        }
+        return next;
+      });
       return true;
     } catch (error) {
       if (error?.name === "AbortError") return false;
@@ -97,6 +150,7 @@ export default function MySharingsPage() {
       }
       return false;
     } finally {
+      if (section) setRetryingSection("");
       if (!signal?.aborted) setLoading(false);
     }
   }, [t]);
@@ -220,25 +274,42 @@ export default function MySharingsPage() {
         ? `/api/pre-inquiries/${encodeURIComponent(action.item.id)}/recall`
         : action.kind === "revoke"
           ? `/api/invites/${encodeURIComponent(action.item.id)}/revoke`
-          : `/api/rooms/${encodeURIComponent(action.item.id)}/leave`;
+          : action.kind === "mentoringRecall"
+            ? `/api/mentoring/relations/${encodeURIComponent(action.item.relationId)}/preparation`
+            : `/api/rooms/${encodeURIComponent(action.item.id)}/leave`;
       const body = action.kind === "recall"
         ? { expectedUpdatedAt: action.item.updatedAt }
-        : { locale };
+        : action.kind === "mentoringRecall"
+          ? { action: "recall", noteId: action.item.id }
+          : { locale };
       const response = await fetch(target, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", "x-ui-locale": locale || "et" },
         body: JSON.stringify(body)
       });
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || payload?.ok === false) {
-        throw new Error(resolveApiMessage({
+        const message = resolveApiMessage({
           payload,
           t,
           fallbackKey: "my_sharings.errors.action_failed"
-        }));
+        });
+        if (action.kind === "mentoringRecall" && response.status === 409) {
+          await loadSharings({ preserveData: true, section: "mentoringPreparations" });
+          setConfirmAction(null);
+          setActionError(message);
+          return;
+        }
+        throw new Error(message);
       }
       setConfirmAction(null);
-      setFeedback(t(`my_sharings.notice.${action.kind === "recall" ? "recalled" : action.kind === "revoke" ? "invite_revoked" : "room_left"}`));
+      setFeedback(t(`my_sharings.notice.${action.kind === "recall"
+        ? "recalled"
+        : action.kind === "revoke"
+          ? "invite_revoked"
+          : action.kind === "mentoringRecall"
+            ? "mentoring_recalled"
+            : "room_left"}`));
       const refreshed = await loadSharings({ preserveData: true });
       if (!refreshed) setActionError(t("my_sharings.errors.refresh_failed"));
     } catch (error) {
@@ -309,6 +380,17 @@ export default function MySharingsPage() {
   }, [correction, loadSharings, resetMessages, t]);
 
   const allEmpty = Object.values(sharings).every((items) => !Array.isArray(items) || items.length === 0);
+  const hasUnavailableSection = Object.values(sectionMeta).some((meta) => ["UNAVAILABLE", "TIMEOUT"].includes(meta?.status));
+
+  const sectionProps = useCallback((key) => ({
+    sectionState: sectionMeta[key],
+    retrying: retryingSection === key,
+    retryLabel: t("my_sharings.actions.retry_section"),
+    unavailableLabel: t(sectionMeta[key]?.status === "TIMEOUT"
+      ? "my_sharings.errors.section_timeout"
+      : "my_sharings.errors.section_unavailable"),
+    onRetry: () => { void loadSharings({ preserveData: true, section: key }); }
+  }), [loadSharings, retryingSection, sectionMeta, t]);
 
   const preInquiryValidity = useCallback((item) => {
     if (item.recalledAt) return t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) });
@@ -346,13 +428,14 @@ export default function MySharingsPage() {
           </Panel>
         ) : null}
 
-        {!loading && !loadError && allEmpty ? <p className={styles.emptyAll}>{t("my_sharings.empty_all")}</p> : null}
+        {!loading && !loadError && allEmpty && !hasUnavailableSection ? <p className={styles.emptyAll}>{t("my_sharings.empty_all")}</p> : null}
 
         {!loading && !loadError ? (
           <div className={styles.ledger}>
             {/* Kõige ülal, sest need on ainsad read lehel, mis nõuavad inimeselt
                 tegutsemist. Ajaloo alla jäädes kaoksid nad ära. */}
             <Section
+              {...sectionProps("networkShares")}
               title={t("my_sharings.sections.network_shares")}
               help={t("my_sharings.section_help.network_shares")}
               empty={t("my_sharings.empty.network_shares")}
@@ -418,6 +501,7 @@ export default function MySharingsPage() {
                 mitte ajaloo all. Keeldumise PÕHJUS on siin nähtav tekst: ilma
                 temata oleks „ei jõudnud" ainult uks, mis kinni käis. */}
             <Section
+              {...sectionProps("urgentRequests")}
               title={t("my_sharings.sections.urgent_requests")}
               help={t("my_sharings.section_help.urgent_requests")}
               empty={t("my_sharings.empty.urgent_requests")}
@@ -467,6 +551,7 @@ export default function MySharingsPage() {
             </Section>
 
             <Section
+              {...sectionProps("preInquiries")}
               title={t("my_sharings.sections.pre_inquiries")}
               help={t("my_sharings.section_help.pre_inquiries")}
               empty={t("my_sharings.empty.pre_inquiries")}
@@ -546,7 +631,7 @@ export default function MySharingsPage() {
               })}
             </Section>
 
-            <Section title={t("my_sharings.sections.rooms")} help={t("my_sharings.section_help.rooms")} empty={t("my_sharings.empty.rooms")} items={sharings.rooms}>
+            <Section {...sectionProps("rooms")} title={t("my_sharings.sections.rooms")} help={t("my_sharings.section_help.rooms")} empty={t("my_sharings.empty.rooms")} items={sharings.rooms}>
               {sharings.rooms.map((item) => (
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}><h3>{item.title || t("my_sharings.sections.rooms")}</h3><span className={styles.eyebrow}>{t(item.role === "OWNER" ? "my_sharings.labels.room_owner" : "my_sharings.labels.room_member")}</span></div>
@@ -556,7 +641,7 @@ export default function MySharingsPage() {
               ))}
             </Section>
 
-            <Section title={t("my_sharings.sections.invites")} help={t("my_sharings.section_help.invites")} empty={t("my_sharings.empty.invites")} items={sharings.invites}>
+            <Section {...sectionProps("invites")} title={t("my_sharings.sections.invites")} help={t("my_sharings.section_help.invites")} empty={t("my_sharings.empty.invites")} items={sharings.invites}>
               {sharings.invites.map((item) => (
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span><h3>{item.roomTitle || item.inviteeEmail}</h3></div><time dateTime={item.expiresAt}>{formatDate(item.expiresAt)}</time></div>
@@ -566,16 +651,16 @@ export default function MySharingsPage() {
               ))}
             </Section>
 
-            <Section title={t("my_sharings.sections.help")} help={t("my_sharings.section_help.help")} empty={t("my_sharings.empty.help")} items={sharings.helpListings}>
+            <Section {...sectionProps("helpListings")} title={t("my_sharings.sections.help")} help={t("my_sharings.section_help.help")} empty={t("my_sharings.empty.help")} items={sharings.helpListings}>
               {sharings.helpListings.map((item) => (
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.kind}:${item.id}`}>
                   <div className={styles.cardTopline}><div><span className={styles.eyebrow}>{t(`my_sharings.labels.${item.kind}`)}</span><h3>{item.title || t(`my_sharings.labels.${item.kind}`)}</h3></div><span>{t(`my_sharings.status.${String(item.status).toLowerCase()}`)}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.public_map")} origin={t("my_sharings.ownership.you_published")} validity={item.expiresAt ? t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) }) : t("my_sharings.ownership.no_expiry")} />
+                  <OwnershipBar labels={ownershipLabels} visibility={t(helpMapVisibilityKey(item))} origin={t("my_sharings.ownership.you_submitted_help")} validity={item.expiresAt ? t("my_sharings.ownership.expires", { date: formatDate(item.expiresAt) }) : t("my_sharings.ownership.no_expiry")} />
                 </Panel>
               ))}
             </Section>
 
-            <Section title={t("my_sharings.mentoring.section_title")} help={t("my_sharings.mentoring.section_help")} empty={t("my_sharings.mentoring.empty")} items={sharings.mentoringPreparations || []}>
+            <Section {...sectionProps("mentoringPreparations")} title={t("my_sharings.mentoring.section_title")} help={t("my_sharings.mentoring.section_help")} empty={t("my_sharings.mentoring.empty")} items={sharings.mentoringPreparations || []}>
               {(sharings.mentoringPreparations || []).map((item) => (
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
                   <div className={styles.cardTopline}>
@@ -605,6 +690,15 @@ export default function MySharingsPage() {
                   />
                   {item.relationId ? (
                     <div className={styles.actions}>
+                      {item.canRecall ? (
+                        <Button
+                          variant="secondary"
+                          disabled={Boolean(busyKey)}
+                          onClick={() => openConfirmAction({ kind: "mentoringRecall", item })}
+                        >
+                          {t("my_sharings.actions.recall")}
+                        </Button>
+                      ) : null}
                       <Button
                         variant="secondary"
                         disabled={Boolean(busyKey)}
@@ -615,16 +709,54 @@ export default function MySharingsPage() {
                         {t("my_sharings.mentoring.open_relation")}
                       </Button>
                     </div>
+                  ) : item.sharedAt && !item.recalledAt && !item.openedAt ? (
+                    <p role="status" className={styles.memoryNote}>{t("my_sharings.mentoring.action_unavailable")}</p>
                   ) : null}
                 </Panel>
               ))}
             </Section>
 
-            <Section title={t("my_sharings.sections.frameworks")} help={t("my_sharings.section_help.frameworks")} empty={t("my_sharings.empty.frameworks")} items={sharings.frameworkAcceptances}>
-              {sharings.frameworkAcceptances.map((item) => (
+            <Section {...sectionProps("outgoingNetworkShares")} title={t("my_sharings.sections.outgoing_network_shares")} help={t("my_sharings.section_help.outgoing_network_shares")} empty={t("my_sharings.empty.outgoing_network_shares")} items={sharings.outgoingNetworkShares}>
+              {sharings.outgoingNetworkShares.map((item) => (
                 <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
-                  <div className={styles.cardTopline}><h3>{item.frameworkKey}</h3><span>{item.frameworkVersion}</span></div>
-                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.private_record")} origin={t("my_sharings.ownership.you_confirmed")} validity={t("my_sharings.ownership.accepted", { date: formatDate(item.acceptedAt) })} />
+                  <div className={styles.cardTopline}><h3>{item.recipientLabel || t("my_sharings.labels.unknown_recipient")}</h3><span>{t(`my_sharings.share_status.${item.status}`, item.status)}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.participationEndsOn ? t("my_sharings.ownership.expires", { date: formatDate(item.participationEndsOn) }) : t("my_sharings.ownership.active")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section {...sectionProps("wellbeingSupportShares")} title={t("my_sharings.sections.wellbeing_support_shares")} help={t("my_sharings.section_help.wellbeing_support_shares")} empty={t("my_sharings.empty.wellbeing_support_shares")} items={sharings.wellbeingSupportShares}>
+              {sharings.wellbeingSupportShares.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><h3>{item.recipientLabel || item.organizationName || t("my_sharings.labels.unknown_recipient")}</h3><span>{t(`my_sharings.share_status.${item.status}`, item.status)}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || item.organizationName || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.closedAt ? t("my_sharings.ownership.closed", { date: formatDate(item.closedAt) }) : t("my_sharings.ownership.active")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section {...sectionProps("serviceReportShares")} title={t("my_sharings.sections.service_report_shares")} help={t("my_sharings.section_help.service_report_shares")} empty={t("my_sharings.empty.service_report_shares")} items={sharings.serviceReportShares}>
+              {sharings.serviceReportShares.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><h3>{item.recipientLabel || t("my_sharings.labels.unknown_recipient")}</h3><span>{item.month}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.shared_with", { name: item.recipientLabel || t("my_sharings.labels.unknown_recipient") })} origin={t("my_sharings.ownership.you_sent")} validity={item.recalledAt ? t("my_sharings.ownership.recalled", { date: formatDate(item.recalledAt) }) : t("my_sharings.ownership.active")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section {...sectionProps("roomSummaries")} title={t("my_sharings.sections.room_summaries")} help={t("my_sharings.section_help.room_summaries")} empty={t("my_sharings.empty.room_summaries")} items={sharings.roomSummaries}>
+              {sharings.roomSummaries.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={item.id}>
+                  <div className={styles.cardTopline}><h3>{item.title || item.roomTitle || t("my_sharings.sections.room_summaries")}</h3><time dateTime={item.sharedAt || undefined}>{formatDate(item.sharedAt)}</time></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.room_members")} origin={t("my_sharings.ownership.you_sent")} validity={t("my_sharings.ownership.active")} />
+                </Panel>
+              ))}
+            </Section>
+
+            <Section {...sectionProps("privateRecords")} title={t("my_sharings.sections.private_records")} help={t("my_sharings.section_help.private_records")} empty={t("my_sharings.empty.private_records")} items={sharings.privateRecords}>
+              {sharings.privateRecords.map((item) => (
+                <Panel as="article" variant="glass" padding="sm" className={styles.card} key={`${item.privateType}:${item.id}`}>
+                  <div className={styles.cardTopline}><h3>{item.frameworkKey || t("my_sharings.labels.private_record")}</h3><span>{item.frameworkVersion || ""}</span></div>
+                  <OwnershipBar labels={ownershipLabels} visibility={t("my_sharings.ownership.private_record")} origin={t("my_sharings.ownership.you_confirmed")} validity={t("my_sharings.ownership.accepted", { date: formatDate(item.createdAt) })} />
                 </Panel>
               ))}
             </Section>
@@ -635,7 +767,7 @@ export default function MySharingsPage() {
       {confirmAction ? (
         <ModalConfirm
           message={t(`my_sharings.confirm.${confirmAction.kind}`)}
-          confirmLabel={t(`my_sharings.actions.${confirmAction.kind === "recall" ? "recall" : confirmAction.kind === "revoke" ? "revoke_invite" : "leave_room"}`)}
+          confirmLabel={t(`my_sharings.actions.${["recall", "mentoringRecall"].includes(confirmAction.kind) ? "recall" : confirmAction.kind === "revoke" ? "revoke_invite" : "leave_room"}`)}
           cancelLabel={t("my_sharings.actions.cancel")}
           disabled={Boolean(busyKey)}
           overlayClassName={styles.modalOverlay}

@@ -379,6 +379,7 @@
       "request_failed": "The action failed.",
       "role_forbidden": "Mentoring is a tool for social field professionals.",
       "conflict": "The state has changed in the meantime. Refresh the view and try again.",
+      "preparation_already_opened": "The mentor opened the preparation before recall. The current state was loaded; the shared copy can no longer be recalled.",
       "rate_limited": "You already have the maximum number of pending requests.",
       "capacity_full": "This mentor is not accepting new requests right now.",
       "cooldown_active": "You can send a new request to this mentor later.",
@@ -1797,6 +1798,9 @@
     "section7": {
       "heading": "7. Retention",
       "body": "<p><strong>7.1 Account and profile data.</strong> Account and profile data is generally retained until the account is deleted, except where the law requires longer retention.</p><p><strong>7.2 Temporary authentication data.</strong> An email verification link is generally retained for up to 24 hours, a PIN reset token for up to 60 minutes, a one-time sign-in code for up to 15 minutes, a temporary sign-in token for up to 15 minutes, and a trusted-device record for up to 30 days. Expired authentication records are removed regularly.</p><p><strong>7.3 Conversations and current work data.</strong> Conversations, chat messages, current conversation state records, and general usage logs are generally retained for up to 90 days from the last activity or from the relevant record's creation or update time.</p><p><strong>7.4 Rooms and help data.</strong> Inactive rooms and related messages are generally retained for up to 90 days after the last substantive activity. Closed, cancelled, or archived help requests and help offers, and completed or rejected matches, are generally retained for up to 90 days after the last update.</p><p><strong>7.5 Documents and agent outputs.</strong> Files uploaded to the document library, templates, document drafting workspace drafts, and confirmed agent outputs are generally retained for up to 90 days from the last modification. If an older document is technically linked to a newer output, it may be retained briefly until the newer link ends.</p><p><strong>7.6 Deletion and deletion-job tracking.</strong> When a user deletes a document, it is removed from active document management and deletion of the related file and RAG or search-index reference is triggered where such a reference exists. If deletion from an external index does not succeed immediately, a technical deletion-job record may remain so that a failed or pending deletion is visible and can be followed up.</p><p><strong>7.7 Account deletion.</strong> When an account is deleted, the user account and related active user data are removed according to the application's deletion logic. Technical audit records and deletion-job records may remain as limited metadata to prove the deletion action, handle pending deletion jobs, maintain security, or comply with legal obligations. A delivered pre-inquiry leaves the recipient an anonymised fact record and their own work notes; the author's content is deleted.</p><p><strong>7.8 Backups and operational logs.</strong> If content is deleted by the user, the account is deleted, or a record is removed because of quota or cleanup rules, it may briefly remain in backups, system or proxy logs, or service-provider technical logs for recovery, security, troubleshooting, or legal-compliance purposes, and is then removed or anonymised according to the relevant operations or provider configuration.</p><p><strong>7.9 Audits, acceptances, and payments.</strong> General document audit records, technical processing logs, and evidence records related to professional-use or data-processing frameworks are generally retained for up to 90 days, unless a longer period is reasonably needed to prove a specific acceptance, contractual relationship, or legal obligation. A detailed raw response or payload received from the payment provider is generally truncated or removed after 90 days. The minimal payment and accounting record is retained for up to 7 years or longer if required by applicable law.</p><p><strong>7.10 Content of professional work tools.</strong> The content of covision, supervision, mentoring, reflections, well-being records, and the Journey is kept while the service is used or until the user deletes it, and is deleted together with the account upon account deletion. Field work visit data is subject to the general 90-day retention period. Data copy files are deleted automatically after they expire.</p>"
+    },
+    "section7Support": {
+      "body": "<p><strong>7.11 Wellbeing support sharing.</strong> Unopened shared content is retained for up to 30 days. Opened or corrected content remains until closure and for up to 90 further days, but never beyond 12 months from first sending; recall deletes content immediately. Deleting the recipient membership or organisation ends access and deletes content. Account deletion recalls an unopened message; an already opened copy may remain with the recipient until the same short deadline. After content deletion, a restricted contentless sharing receipt remains for three years. Only material necessary for a concrete dispute may be placed under a separate legal hold.</p>"
     },
     "section8": {
       "heading": "8. Your Rights",
@@ -7840,7 +7844,8 @@
       "visible_to_mentor": "Visible to your mentor in this relationship",
       "origin": "You handed it over from Work wellbeing",
       "shared_at": "Shared {date}",
-      "open_relation": "Open relationship"
+      "open_relation": "Open relationship",
+      "action_unavailable": "Recall is unavailable here because the mentoring-relation reference is missing. Open the relationship or contact support."
     },
     "meta": {
       "title": "My shares",
@@ -7854,28 +7859,43 @@
       "pre_inquiries": "Sent pre-inquiries",
       "rooms": "Active rooms",
       "invites": "Active invites",
-      "help": "Published help requests and offers",
+      "help": "My help requests and offers",
       "frameworks": "My confirmations",
       "network_shares": "Network involvement",
-      "urgent_requests": "Urgent help requests"
+      "urgent_requests": "Urgent help requests",
+      "outgoing_network_shares": "Network shares I sent",
+      "wellbeing_support_shares": "Wellbeing support shares",
+      "service_report_shares": "Shared service reports",
+      "room_summaries": "Summaries shared in rooms",
+      "private_records": "Private confirmations"
     },
     "section_help": {
       "pre_inquiries": "Recall removes an unopened in-platform pre-inquiry from the recipient's active list. The audit trail remains.",
       "rooms": "Shared room content is visible to its active members.",
       "invites": "An invite grants access only after it is accepted.",
-      "help": "These listings are public until they are closed or expire.",
+      "help": "Each listing shows its actual map visibility: public, hidden, under review, expired, or out of sync.",
       "frameworks": "An informative overview of frameworks you confirmed.",
       "network_shares": "A social worker would like to share a summary of your situation with one service provider. You decide whether and what is shared.",
-      "urgent_requests": "Requests you sent to a municipality's intake desk. You can see here whether anyone has read them and what answer came back."
+      "urgent_requests": "Requests you sent to a municipality's intake desk. You can see here whether anyone has read them and what answer came back.",
+      "outgoing_network_shares": "Client-confirmed summaries you sent as a worker and their current status.",
+      "wellbeing_support_shares": "Wellbeing support requests you deliberately sent to a selected support contact.",
+      "service_report_shares": "Service-log reports you sent to a selected manager.",
+      "room_summaries": "Sharing records for frozen summaries you published in a room.",
+      "private_records": "These records are private and do not count as sharing history."
     },
     "empty": {
       "pre_inquiries": "No sent pre-inquiries.",
       "rooms": "No active room memberships.",
       "invites": "No active sent invites.",
-      "help": "No published help requests or offers.",
+      "help": "No help requests or offers.",
       "frameworks": "No framework confirmations.",
       "network_shares": "No network involvement proposals.",
-      "urgent_requests": "You have not sent any urgent help requests."
+      "urgent_requests": "You have not sent any urgent help requests.",
+      "outgoing_network_shares": "You have not sent a network share as a worker.",
+      "wellbeing_support_shares": "You have not shared a wellbeing support request.",
+      "service_report_shares": "You have not shared a service report.",
+      "room_summaries": "You have not shared a summary in a room.",
+      "private_records": "There are no private confirmations."
     },
     "ownership": {
       "visibility": "Who can see it",
@@ -7886,11 +7906,18 @@
       "room_members": "Shared with active room members",
       "invite_recipient": "Invite sent to: {name}",
       "public_map": "Public on the help map",
+      "help_map_public": "Public on the Service Map",
+      "help_map_hidden": "Hidden from the Service Map",
+      "help_map_review": "Under review; not public yet",
+      "help_map_expired": "Expired; not public",
+      "help_map_missing": "No map entry has been created",
+      "help_map_out_of_sync": "Map state needs repair; not public",
       "private_record": "Private confirmation on your account",
       "you_sent": "You sent it",
       "you_joined": "You joined",
       "you_invited": "You invited",
       "you_published": "You published it",
+      "you_submitted_help": "You confirmed the help listing",
       "you_confirmed": "You confirmed it",
       "until_recall": "Recallable until the recipient opens it",
       "opened": "Opened {date}; history is retained",
@@ -7901,7 +7928,8 @@
       "owner": "You own this room; leaving requires transferring ownership",
       "expires": "Expires {date}",
       "no_expiry": "No expiry date set",
-      "accepted": "Confirmed {date}"
+      "accepted": "Confirmed {date}",
+      "closed": "Closed {date}"
     },
     "labels": {
       "recipient": "Recipient",
@@ -7922,7 +7950,8 @@
       "share_ends": "Involvement ends",
       "share_incoming": "Proposal about you",
       "urgent_request": "Urgent help request",
-      "urgent_decline_reason": "Why it could not be taken on"
+      "urgent_decline_reason": "Why it could not be taken on",
+      "private_record": "Private record"
     },
     "status": {
       "sent": "Sent",
@@ -7945,12 +7974,14 @@
       "use_redacted": "Use redacted version",
       "send_original": "Send original text",
       "confirm_share": "I agree to this sharing",
-      "decline_share": "I do not agree"
+      "decline_share": "I do not agree",
+      "retry_section": "Retry this section"
     },
     "confirm": {
       "recall": "Recall this unopened pre-inquiry? It will disappear from the recipient's active list, but its audit trail remains.",
       "revoke": "Revoke this invite? The invite link will stop working.",
-      "leave": "Leave this room? You will no longer see new room content."
+      "leave": "Leave this room? You will no longer see new room content.",
+      "mentoringRecall": "Recall the unopened preparation shared with the mentor? Recall is no longer possible after the mentor opens it."
     },
     "notice": {
       "memory": "Recall cannot erase information the recipient may already have seen or remembered.",
@@ -7961,7 +7992,8 @@
       "room_left": "You left the room.",
       "share_confirmed": "You confirmed the sharing. The worker can now send the summary.",
       "share_declined": "You declined. This summary will not be sent.",
-      "urgent_recalled": "The request has been taken back."
+      "urgent_recalled": "The request has been taken back.",
+      "mentoring_recalled": "The mentoring preparation was recalled."
     },
     "correction": {
       "title": "Corrected version",
@@ -7974,7 +8006,10 @@
     "errors": {
       "load_failed": "Your shares could not be loaded.",
       "action_failed": "The action failed. Try again.",
-      "refresh_failed": "The action succeeded, but the updated overview could not be loaded. Try reloading the view."
+      "refresh_failed": "The action succeeded, but the updated overview could not be loaded. Try reloading the view.",
+      "invalid_section": "Unknown sharing section.",
+      "section_unavailable": "This sharing section could not be loaded. Your other data remains visible.",
+      "section_timeout": "This sharing section took too long to load. Your other data remains visible."
     },
     "info": {
       "title": "My shares",
@@ -7985,7 +8020,7 @@
       "kinds_title": "What is in here",
       "kinds_inquiries": "Sent pre-inquiries — who you sent them to and whether the recipient has opened them.",
       "kinds_rooms": "Active rooms and invites — in a room the shared content is visible to its active members, while an invite grants access only after it is accepted.",
-      "kinds_public": "Published help requests and offers — these are public until closed or expired.",
+      "kinds_public": "Help requests and offers — each listing shows whether it is public, hidden, under review, or expired on the Service Map.",
       "kinds_records": "Preparations handed over to mentoring and the frameworks you have confirmed.",
       "recall_title": "Recall",
       "recall_window": "You can recall an unopened in-platform inquiry: it disappears from the recipient's active list. Once opened, the recall window closes.",
@@ -8903,7 +8938,7 @@
     "support": {
       "heading": "Support",
       "intro": "From here you can send a support message to a chosen person and see the ones sent to you.",
-      "privacyNotice": "You start and confirm the support message yourself. The organisation cannot see that you filled in the form — only what you chose to send. Your wellbeing records stay yours.",
+      "privacyNotice": "You start and confirm the support message yourself. The organisation cannot see that you filled in the form — only what you chose to send. Sent content is retained by status for at most 12 months; a restricted sharing receipt remains for 3 years after content deletion.",
       "recipients": "Who I can send to",
       "directManager": "Direct manager",
       "alternate": "Alternate support contact",
@@ -8917,7 +8952,7 @@
       "needs": "What I need",
       "agreements": "Proposed agreement",
       "send": "Send support message",
-      "confirm": "I confirm that I have reviewed this and want to send it",
+      "confirm": "I confirm sending. Unopened content is deleted after 30 days; opened content within 12 months at the latest, and the minimal sharing receipt after 3 years.",
       "recall": "Recall",
       "correct": "Correct",
       "close": "Close",

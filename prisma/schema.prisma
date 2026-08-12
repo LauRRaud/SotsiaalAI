@@ -719,21 +719,21 @@ enum RoomSummaryApprovalStatus {
  */
 
 model User {
-  id                      String    @id @default(cuid())
-  email                   String?   @unique
-  emailVerified           DateTime?
-  emailVerificationSentAt DateTime?
-  passwordHash            String?
-  role                    Role      @default(CLIENT)
-  isAdmin                 Boolean   @default(false)
-  ragAdminCapability      RagAdminCapability @default(NONE)
-  sessionVersion          Int       @default(0)
-  accessSuspendedAt       DateTime?
-  accessSuspendedReason   String?
-  accessSuspendedByUserId String?
-  acceptsPreInquiries     Boolean   @default(false)
-  notificationEmailEnabled Boolean?
-  notificationPreferenceVersion Int @default(0)
+  id                            String             @id @default(cuid())
+  email                         String?            @unique
+  emailVerified                 DateTime?
+  emailVerificationSentAt       DateTime?
+  passwordHash                  String?
+  role                          Role               @default(CLIENT)
+  isAdmin                       Boolean            @default(false)
+  ragAdminCapability            RagAdminCapability @default(NONE)
+  sessionVersion                Int                @default(0)
+  accessSuspendedAt             DateTime?
+  accessSuspendedReason         String?
+  accessSuspendedByUserId       String?
+  acceptsPreInquiries           Boolean            @default(false)
+  notificationEmailEnabled      Boolean?
+  notificationPreferenceVersion Int                @default(0)
 
   // NextAuth
   accounts Account[]
@@ -755,78 +755,78 @@ model User {
   savedAnalyses          SavedAnalysis[]
 
   // Chat / runs
-  conversationRuns        ConversationRun[]
-  conversationMessages    ConversationMessage[]
-  conversations           Conversation[]
-  chatTurns               ChatTurn[]
-  usageBuckets            UsageBucket[]
-  usageReservations       UsageReservation[]
-  usageEvents             UsageEvent[]
-  usageOverrides          UserEntitlementOverride[] @relation("UsageOverrideUser")
-  grantedUsageOverrides   UserEntitlementOverride[] @relation("UsageOverrideAdmin")
-  emailOtpCodes           EmailOtpCode[]
-  trustedDevices          TrustedDevice[]
-  loginTempTokens         LoginTempToken[]
-  roomsOwned              Room[]
-  roomMemberships         RoomMember[]
-  sentInvites             Invite[]                 @relation("InviterUser")
-  sponsoredInvites        Invite[]                 @relation("InviteSponsorUser")
-  sponsoredMembers        RoomMember[]             @relation("RoomMemberSponsorUser")
-  acceptedInvites         Invite[]                 @relation("InviteAcceptedBy")
-  roomMessages            RoomMessage[]            @relation("RoomMessageAuthor")
-  roomSharedSummaries     RoomSharedSummary[]      @relation("RoomSharedSummarySharedBy")
-  roomSummaryCopies       RoomSummaryCopy[]
-  roomSummaryApprovals    RoomSummaryApproval[]
-  callSessionsStarted     CallSession[]            @relation("CallSessionStartedBy")
-  callParticipants        CallParticipant[]
-  callSpeakRequests       CallSpeakRequest[]
-  callSpeakRequestsClosed CallSpeakRequest[]        @relation("CallSpeakRequestResolvedBy")
-  callRecordingRequests   CallRecordingRequest[]    @relation("CallRecordingRequestRequestedBy")
-  callRecordingConsents   CallRecordingConsent[]
-  helpRequests            HelpRequest[]
-  helpOffers              HelpOffer[]
-  requestedHelpMatches    HelpMatch[]              @relation("HelpMatchRequester")
-  offeredHelpMatches      HelpMatch[]              @relation("HelpMatchOfferer")
-  researchJobs            ResearchJob[]
-  meetingSummaryJobClaim  MeetingSummaryJobClaim?
-  serviceProviderProfiles ServiceProviderProfile[]
-  authoredPreInquiries    PreInquiry[]             @relation("PreInquiryAuthor")
-  receivedPreInquiries    PreInquiry[]             @relation("PreInquiryRecipientOwner")
-  journeys                Journey[]
-  wellbeingRecords        WellbeingRecord[]
-  practiceReflections     PracticeReflection[]
-  wellbeingOutputDrafts   WellbeingOutputDraft[]
-  wellbeingPilotViewers   WellbeingPilotViewer[]
-  covisionCasesOwned      CovisionCase[]           @relation("CovisionCaseOwner")
-  covisionParticipants    CovisionParticipant[]    @relation("CovisionParticipantUser")
-  covisionMessages        CovisionMessage[]        @relation("CovisionMessageAuthor")
-  effectivePractices      EffectivePractice[]      @relation("EffectivePracticeAuthor")
-  topicSeeds              TopicSeed[]              @relation("TopicSeedOwner")
-  covisionPrivateStates   CovisionPrivateState[]   @relation("CovisionPrivateStateUser")
-  covisionStageSnapshots  CovisionStageSnapshot[]  @relation("CovisionStageSnapshotCompleter")
-  covisionClosuresOwned   CovisionClosure[]        @relation("CovisionClosureOwner")
-  covisionClosuresClosed  CovisionClosure[]        @relation("CovisionClosureClosedBy")
-  covisionClosuresAssigned CovisionClosure[]       @relation("CovisionClosureAssignee")
-  covisionFollowUps       CovisionFollowUp[]       @relation("CovisionFollowUpAssignee")
-  covisionFollowUpsDone   CovisionFollowUp[]       @relation("CovisionFollowUpCompleter")
-  covisionOwnerPackages   CovisionOwnerPackage[]   @relation("CovisionOwnerPackageOwner")
-  practiceCapabilities       PracticeCapability[]           @relation("PracticeCapabilityUser")
-  practiceCapabilitiesGranted PracticeCapability[]          @relation("PracticeCapabilityGranter")
-  effectivePracticeReviews   EffectivePracticeReview[]      @relation("EffectivePracticeReviewer")
-  effectivePracticeReviewAssignments EffectivePracticeReviewAssignment[] @relation("EffectivePracticeReviewAssignee")
-  effectivePracticeVersions  EffectivePracticeVersion[]     @relation("EffectivePracticeVersionPublisher")
-  effectivePracticeApplications EffectivePracticeApplication[] @relation("EffectivePracticeApplicationAuthor")
-  effectivePracticeApplicationsReviewed EffectivePracticeApplication[] @relation("EffectivePracticeApplicationReviewer")
-  effectivePracticeApplicationsAssigned EffectivePracticeApplication[] @relation("EffectivePracticeApplicationAssignee")
-  practiceCapabilityAuditsTarget PracticeCapabilityAudit[]      @relation("PracticeCapabilityAuditTarget")
-  practiceCapabilityAuditsActor PracticeCapabilityAudit[]       @relation("PracticeCapabilityAuditActor")
-  effectivePracticeAuditEvents EffectivePracticeAuditEvent[]    @relation("EffectivePracticeAuditActor")
-  sourceFeedbackReported       SourceFeedback[]                  @relation("SourceFeedbackReporter")
-  sourceFeedbackResolved       SourceFeedback[]                  @relation("SourceFeedbackResolver")
-  notificationEvents           NotificationEvent[]
-  domainEventsActed            DomainEvent[]              @relation("DomainEventActor")
-  pendingEmailChange           PendingEmailChange?
-  dataExportJobs               DataExportJob[]
+  conversationRuns                      ConversationRun[]
+  conversationMessages                  ConversationMessage[]
+  conversations                         Conversation[]
+  chatTurns                             ChatTurn[]
+  usageBuckets                          UsageBucket[]
+  usageReservations                     UsageReservation[]
+  usageEvents                           UsageEvent[]
+  usageOverrides                        UserEntitlementOverride[]           @relation("UsageOverrideUser")
+  grantedUsageOverrides                 UserEntitlementOverride[]           @relation("UsageOverrideAdmin")
+  emailOtpCodes                         EmailOtpCode[]
+  trustedDevices                        TrustedDevice[]
+  loginTempTokens                       LoginTempToken[]
+  roomsOwned                            Room[]
+  roomMemberships                       RoomMember[]
+  sentInvites                           Invite[]                            @relation("InviterUser")
+  sponsoredInvites                      Invite[]                            @relation("InviteSponsorUser")
+  sponsoredMembers                      RoomMember[]                        @relation("RoomMemberSponsorUser")
+  acceptedInvites                       Invite[]                            @relation("InviteAcceptedBy")
+  roomMessages                          RoomMessage[]                       @relation("RoomMessageAuthor")
+  roomSharedSummaries                   RoomSharedSummary[]                 @relation("RoomSharedSummarySharedBy")
+  roomSummaryCopies                     RoomSummaryCopy[]
+  roomSummaryApprovals                  RoomSummaryApproval[]
+  callSessionsStarted                   CallSession[]                       @relation("CallSessionStartedBy")
+  callParticipants                      CallParticipant[]
+  callSpeakRequests                     CallSpeakRequest[]
+  callSpeakRequestsClosed               CallSpeakRequest[]                  @relation("CallSpeakRequestResolvedBy")
+  callRecordingRequests                 CallRecordingRequest[]              @relation("CallRecordingRequestRequestedBy")
+  callRecordingConsents                 CallRecordingConsent[]
+  helpRequests                          HelpRequest[]
+  helpOffers                            HelpOffer[]
+  requestedHelpMatches                  HelpMatch[]                         @relation("HelpMatchRequester")
+  offeredHelpMatches                    HelpMatch[]                         @relation("HelpMatchOfferer")
+  researchJobs                          ResearchJob[]
+  meetingSummaryJobClaim                MeetingSummaryJobClaim?
+  serviceProviderProfiles               ServiceProviderProfile[]
+  authoredPreInquiries                  PreInquiry[]                        @relation("PreInquiryAuthor")
+  receivedPreInquiries                  PreInquiry[]                        @relation("PreInquiryRecipientOwner")
+  journeys                              Journey[]
+  wellbeingRecords                      WellbeingRecord[]
+  practiceReflections                   PracticeReflection[]
+  wellbeingOutputDrafts                 WellbeingOutputDraft[]
+  wellbeingPilotViewers                 WellbeingPilotViewer[]
+  covisionCasesOwned                    CovisionCase[]                      @relation("CovisionCaseOwner")
+  covisionParticipants                  CovisionParticipant[]               @relation("CovisionParticipantUser")
+  covisionMessages                      CovisionMessage[]                   @relation("CovisionMessageAuthor")
+  effectivePractices                    EffectivePractice[]                 @relation("EffectivePracticeAuthor")
+  topicSeeds                            TopicSeed[]                         @relation("TopicSeedOwner")
+  covisionPrivateStates                 CovisionPrivateState[]              @relation("CovisionPrivateStateUser")
+  covisionStageSnapshots                CovisionStageSnapshot[]             @relation("CovisionStageSnapshotCompleter")
+  covisionClosuresOwned                 CovisionClosure[]                   @relation("CovisionClosureOwner")
+  covisionClosuresClosed                CovisionClosure[]                   @relation("CovisionClosureClosedBy")
+  covisionClosuresAssigned              CovisionClosure[]                   @relation("CovisionClosureAssignee")
+  covisionFollowUps                     CovisionFollowUp[]                  @relation("CovisionFollowUpAssignee")
+  covisionFollowUpsDone                 CovisionFollowUp[]                  @relation("CovisionFollowUpCompleter")
+  covisionOwnerPackages                 CovisionOwnerPackage[]              @relation("CovisionOwnerPackageOwner")
+  practiceCapabilities                  PracticeCapability[]                @relation("PracticeCapabilityUser")
+  practiceCapabilitiesGranted           PracticeCapability[]                @relation("PracticeCapabilityGranter")
+  effectivePracticeReviews              EffectivePracticeReview[]           @relation("EffectivePracticeReviewer")
+  effectivePracticeReviewAssignments    EffectivePracticeReviewAssignment[] @relation("EffectivePracticeReviewAssignee")
+  effectivePracticeVersions             EffectivePracticeVersion[]          @relation("EffectivePracticeVersionPublisher")
+  effectivePracticeApplications         EffectivePracticeApplication[]      @relation("EffectivePracticeApplicationAuthor")
+  effectivePracticeApplicationsReviewed EffectivePracticeApplication[]      @relation("EffectivePracticeApplicationReviewer")
+  effectivePracticeApplicationsAssigned EffectivePracticeApplication[]      @relation("EffectivePracticeApplicationAssignee")
+  practiceCapabilityAuditsTarget        PracticeCapabilityAudit[]           @relation("PracticeCapabilityAuditTarget")
+  practiceCapabilityAuditsActor         PracticeCapabilityAudit[]           @relation("PracticeCapabilityAuditActor")
+  effectivePracticeAuditEvents          EffectivePracticeAuditEvent[]       @relation("EffectivePracticeAuditActor")
+  sourceFeedbackReported                SourceFeedback[]                    @relation("SourceFeedbackReporter")
+  sourceFeedbackResolved                SourceFeedback[]                    @relation("SourceFeedbackResolver")
+  notificationEvents                    NotificationEvent[]
+  domainEventsActed                     DomainEvent[]                       @relation("DomainEventActor")
+  pendingEmailChange                    PendingEmailChange?
+  dataExportJobs                        DataExportJob[]
   supervisorGrants                      SupervisorGrant[]                   @relation("SupervisorGrantUser")
   supervisorGrantsGranted               SupervisorGrant[]                   @relation("SupervisorGrantGrantedBy")
   supervisorGrantsRevoked               SupervisorGrant[]                   @relation("SupervisorGrantRevokedBy")
@@ -840,58 +840,55 @@ model User {
   supervisionClosuresClosed             SupervisionClosure[]                @relation("SupervisionClosureClosedBy")
   supervisionPersonalOutcomes           SupervisionPersonalOutcome[]        @relation("SupervisionPersonalOutcomeOwner")
   supervisionAuditEvents                SupervisionAuditEvent[]             @relation("SupervisionAuditActor")
-  mentorProfile                MentorProfile?             @relation("MentorProfileUser")
-  mentorProfilesReviewed       MentorProfile[]            @relation("MentorProfileReviewer")
-  mentoringRequestsSent        MentoringRequest[]         @relation("MentoringRequestMentee")
-  mentoringRequestsReceived    MentoringRequest[]         @relation("MentoringRequestMentorUser")
-  mentoringRelationsAsMentor   MentoringRelation[]        @relation("MentoringRelationMentor")
-  mentoringRelationsAsMentee   MentoringRelation[]        @relation("MentoringRelationMentee")
-  mentoringRelationsClosed     MentoringRelation[]        @relation("MentoringRelationClosedBy")
-  mentoringAgreementAcceptances MentoringAgreementAcceptance[] @relation("MentoringAgreementAcceptanceUser")
-  mentoringMeetingsCreated     MentoringMeeting[]         @relation("MentoringMeetingCreator")
-  mentoringSummariesCreated    MentoringSummary[]         @relation("MentoringSummaryCreator")
-  mentoringSummaryConfirmations MentoringSummaryConfirmation[] @relation("MentoringSummaryConfirmationUser")
-  mentoringPrivateNotes        MentoringPrivateNote[]     @relation("MentoringPrivateNoteOwner")
-  mentoringAuditEventsActed    MentoringAuditEvent[]      @relation("MentoringAuditActor")
-  fieldVisits                  FieldVisit[]               @relation("FieldVisitOwner")
+  mentorProfile                         MentorProfile?                      @relation("MentorProfileUser")
+  mentorProfilesReviewed                MentorProfile[]                     @relation("MentorProfileReviewer")
+  mentoringRequestsSent                 MentoringRequest[]                  @relation("MentoringRequestMentee")
+  mentoringRequestsReceived             MentoringRequest[]                  @relation("MentoringRequestMentorUser")
+  mentoringRelationsAsMentor            MentoringRelation[]                 @relation("MentoringRelationMentor")
+  mentoringRelationsAsMentee            MentoringRelation[]                 @relation("MentoringRelationMentee")
+  mentoringRelationsClosed              MentoringRelation[]                 @relation("MentoringRelationClosedBy")
+  mentoringAgreementAcceptances         MentoringAgreementAcceptance[]      @relation("MentoringAgreementAcceptanceUser")
+  mentoringMeetingsCreated              MentoringMeeting[]                  @relation("MentoringMeetingCreator")
+  mentoringSummariesCreated             MentoringSummary[]                  @relation("MentoringSummaryCreator")
+  mentoringSummaryConfirmations         MentoringSummaryConfirmation[]      @relation("MentoringSummaryConfirmationUser")
+  mentoringPrivateNotes                 MentoringPrivateNote[]              @relation("MentoringPrivateNoteOwner")
+  mentoringAuditEventsActed             MentoringAuditEvent[]               @relation("MentoringAuditActor")
+  fieldVisits                           FieldVisit[]                        @relation("FieldVisitOwner")
   // TEENUSPÄEVIK-V1: kaks eri rolli, seega kaks eri seost. Sisestaja on
   // spetsialist, klient on teenuse saaja — sama inimene EI ole kunagi mõlemad
   // ühel kirjel, aga skeem ei tohi neid ühte lahtrisse suruda.
-  serviceEntriesEntered        ServiceEntry[]             @relation("ServiceEntryOwner")
-  serviceLogTimeSamples        ServiceLogTimeSample[]     @relation("ServiceLogTimeSampleOwner")
-  serviceEntriesAsClient       ServiceEntry[]             @relation("ServiceEntryClient")
-  serviceReferralsAsClient     ServiceReferral[]          @relation("ServiceReferralClient")
-  serviceNarrativesAsClient    ServiceMonthlyNarrative[]  @relation("ServiceNarrativeClient")
-  serviceEntryCorrections      ServiceEntryCorrection[]   @relation("ServiceEntryCorrectionActor")
+  serviceEntriesEntered                 ServiceEntry[]                      @relation("ServiceEntryOwner")
+  serviceLogTimeSamples                 ServiceLogTimeSample[]              @relation("ServiceLogTimeSampleOwner")
+  serviceEntriesAsClient                ServiceEntry[]                      @relation("ServiceEntryClient")
+  serviceReferralsAsClient              ServiceReferral[]                   @relation("ServiceReferralClient")
+  serviceNarrativesAsClient             ServiceMonthlyNarrative[]           @relation("ServiceNarrativeClient")
+  serviceEntryCorrections               ServiceEntryCorrection[]            @relation("ServiceEntryCorrectionActor")
   // T25 ORG-FOUNDATION-V1: liikmesus on eraldi objekt, MITTE kasutaja väli.
   // `User.role` jääb hinnastatavaks tootepersonaks; organisatsioonisisene
   // õigus elab `OrganizationCapabilityGrant`-is (arenduskava §D3).
-  organizationMemberships          OrganizationMembership[]      @relation("OrganizationMembershipUser")
-  organizationMembershipsInvited   OrganizationMembership[]      @relation("OrganizationMembershipInvitedBy")
-  organizationsCreated             Organization[]                @relation("OrganizationCreatedBy")
-  organizationsVerified            Organization[]                @relation("OrganizationVerifiedBy")
-  organizationModulesActivated     OrganizationModule[]          @relation("OrganizationModuleActivatedBy")
-  organizationCapabilitiesGranted  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityGrantedBy")
-  organizationCapabilitiesRevoked  OrganizationCapabilityGrant[] @relation("OrganizationCapabilityRevokedBy")
-  organizationInvitesSent          OrganizationInvite[]          @relation("OrganizationInviteInvitedBy")
-  organizationInvitesAccepted      OrganizationInvite[]          @relation("OrganizationInviteAcceptedBy")
+  organizationMemberships               OrganizationMembership[]            @relation("OrganizationMembershipUser")
+  organizationMembershipsInvited        OrganizationMembership[]            @relation("OrganizationMembershipInvitedBy")
+  organizationsCreated                  Organization[]                      @relation("OrganizationCreatedBy")
+  organizationsVerified                 Organization[]                      @relation("OrganizationVerifiedBy")
+  organizationModulesActivated          OrganizationModule[]                @relation("OrganizationModuleActivatedBy")
+  organizationCapabilitiesGranted       OrganizationCapabilityGrant[]       @relation("OrganizationCapabilityGrantedBy")
+  organizationCapabilitiesRevoked       OrganizationCapabilityGrant[]       @relation("OrganizationCapabilityRevokedBy")
+  organizationInvitesSent               OrganizationInvite[]                @relation("OrganizationInviteInvitedBy")
+  organizationInvitesAccepted           OrganizationInvite[]                @relation("OrganizationInviteAcceptedBy")
   // T25 viil B
-  organizationSeatPlansCreated     OrganizationSeatPlan[]        @relation("OrganizationSeatPlanCreatedBy")
-  organizationSeatsAssigned        OrganizationSeatAssignment[]  @relation("OrganizationSeatAssignedBy")
-  organizationWorkAssigned         OrganizationWorkAssignment[]  @relation("OrganizationWorkAssignedBy")
-  orgClientSponsorshipsSent        OrganizationClientSponsorship[] @relation("OrgClientSponsorshipInvitedBy")
-  orgClientSponsorshipsAccepted    OrganizationClientSponsorship[] @relation("OrgClientSponsorshipAcceptedBy")
+  organizationSeatPlansCreated          OrganizationSeatPlan[]              @relation("OrganizationSeatPlanCreatedBy")
+  organizationSeatsAssigned             OrganizationSeatAssignment[]        @relation("OrganizationSeatAssignedBy")
+  organizationWorkAssigned              OrganizationWorkAssignment[]        @relation("OrganizationWorkAssignedBy")
+  orgClientSponsorshipsSent             OrganizationClientSponsorship[]     @relation("OrgClientSponsorshipInvitedBy")
+  orgClientSponsorshipsAccepted         OrganizationClientSponsorship[]     @relation("OrgClientSponsorshipAcceptedBy")
   // T25 viil C
-  organizationReportingLinesCreated OrganizationReportingLine[]     @relation("OrganizationReportingCreatedBy")
-  organizationSupportContactsCreated OrganizationSupportContact[]   @relation("OrganizationSupportContactCreatedBy")
-  wellbeingSupportShares           WellbeingSupportShare[]          @relation("WellbeingSupportShareOwner")
+  organizationReportingLinesCreated     OrganizationReportingLine[]         @relation("OrganizationReportingCreatedBy")
+  organizationSupportContactsCreated    OrganizationSupportContact[]        @relation("OrganizationSupportContactCreatedBy")
+  wellbeingSupportShares                WellbeingSupportShare[]             @relation("WellbeingSupportShareOwner")
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([acceptsPreInquiries])
-  @@index([accessSuspendedAt])
-  serviceReportShares  ServiceReportShare[]  @relation("ServiceReportShareOwner")
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  serviceReportShares ServiceReportShare[] @relation("ServiceReportShareOwner")
 
   // COLLAB-P4: kolm eri rolli samas jagamises — töötaja koostab, klient
   // kinnitab, saaja loeb. Eraldi relatsioonid, sest need kolm ei ole
@@ -905,12 +902,12 @@ model User {
   // ja mehitajad, sest ilma nendeta ei ole kellelegi vastutust omistada.
   // `urgentRequestEvents` kannab isikulist vastutusjälge (KOV-lepingu p 8):
   // iga vaatamine, toiming ja edasisuunamine seotakse konkreetse inimesega.
-  urgentDesksOwned         UrgentDesk[]         @relation("UrgentDeskOwner")
-  urgentDesksVerified      UrgentDesk[]         @relation("UrgentDeskVerifier")
-  urgentDeskMemberships    UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
-  urgentRequestsAuthored   UrgentRequest[]      @relation("UrgentRequestAuthor")
-  urgentRequestsTaken      UrgentRequest[]      @relation("UrgentRequestAssignee")
-  urgentRequestEvents      UrgentRequestEvent[] @relation("UrgentRequestEventActor")
+  urgentDesksOwned       UrgentDesk[]         @relation("UrgentDeskOwner")
+  urgentDesksVerified    UrgentDesk[]         @relation("UrgentDeskVerifier")
+  urgentDeskMemberships  UrgentDeskMember[]   @relation("UrgentDeskMemberUser")
+  urgentRequestsAuthored UrgentRequest[]      @relation("UrgentRequestAuthor")
+  urgentRequestsTaken    UrgentRequest[]      @relation("UrgentRequestAssignee")
+  urgentRequestEvents    UrgentRequestEvent[] @relation("UrgentRequestEventActor")
 
   // JUHTUM-V1: KAKS ERI ROLLI ja neid ei tohi segada.
   // `caseWorkAssistsOwned` = töötaja enda juhtumid (Cascade — kustuvad koos kontoga).
@@ -918,8 +915,11 @@ model User {
   // (SetNull). Kliendi konto kustutamine ei tohi töötaja juhtumit hävitada, aga
   // FK `SetNull` üksi ei määra `clientErasedAt`-i — seda teeb
   // `eraseCaseClientReference()` konto kustutamise rajalt (leping L17).
-  caseWorkAssistsOwned     CaseWorkAssist[]     @relation("CaseWorkAssistOwner")
-  caseWorkAssistsAsClient  CaseWorkAssist[]     @relation("CaseWorkAssistClient")
+  caseWorkAssistsOwned    CaseWorkAssist[] @relation("CaseWorkAssistOwner")
+  caseWorkAssistsAsClient CaseWorkAssist[] @relation("CaseWorkAssistClient")
+
+  @@index([acceptsPreInquiries])
+  @@index([accessSuspendedAt])
 }
 
 model Profile {
@@ -1013,42 +1013,46 @@ model PendingEmailChange {
 }
 
 model Subscription {
-  id                String             @id @default(cuid())
-  userId            String
-  status            SubscriptionStatus @default(NONE)
-  plan              String             @default("free")
-  billingMode       BillingMode        @default(ONE_OFF)
-  billingInterval   BillingInterval?
-  billingMethodId   String?
-  billingSource     BillingSource      @default(SELF)
-  sponsorUserId     String?
-  inviteId          String?
-  /* T25 viil B: organisatsioon maksjana. TEADLIKULT eraldi väljad
-     `sponsorUserId`/`inviteId` kõrval — inimsponsor ja organisatsioon on eri
-     maksjad ning nende segamine teeks `payerSource` arvutuse mitmeseks.
-     Mõlemad on nullable ja vaikimisi NULL: olemasolevad tellimused ei muutu. */
-  sponsorOrganizationId    String?
-  orgClientSponsorshipId   String?
-  validUntil        DateTime?
-  nextBilling       DateTime?
-  lastBilledAt      DateTime?
-  pastDueSince      DateTime?
-  billingRetryCount Int                @default(0)
-  cancelAtPeriodEnd Boolean            @default(false)
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
-  canceledAt        DateTime?
-  planDefinitionId  String?
+  id                     String             @id @default(cuid())
+  userId                 String
+  status                 SubscriptionStatus @default(NONE)
+  plan                   String             @default("free")
+  billingMode            BillingMode        @default(ONE_OFF)
+  billingInterval        BillingInterval?
+  billingMethodId        String?
+  billingSource          BillingSource      @default(SELF)
+  sponsorUserId          String?
+  inviteId               String?
+  /**
+   * T25 viil B: organisatsioon maksjana. TEADLIKULT eraldi väljad
+   * `sponsorUserId`/`inviteId` kõrval — inimsponsor ja organisatsioon on eri
+   * maksjad ning nende segamine teeks `payerSource` arvutuse mitmeseks.
+   * Mõlemad on nullable ja vaikimisi NULL: olemasolevad tellimused ei muutu.
+   */
+  sponsorOrganizationId  String?
+  orgClientSponsorshipId String?
+  validUntil             DateTime?
+  nextBilling            DateTime?
+  lastBilledAt           DateTime?
+  pastDueSince           DateTime?
+  billingRetryCount      Int                @default(0)
+  cancelAtPeriodEnd      Boolean            @default(false)
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+  canceledAt             DateTime?
+  planDefinitionId       String?
 
-  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  planDefinition PlanDefinition? @relation(fields: [planDefinitionId], references: [id], onDelete: SetNull)
-  billingMethod  BillingMethod?  @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
-  sponsorUser    User?           @relation("SubscriptionSponsorUser", fields: [sponsorUserId], references: [id], onDelete: SetNull)
-  invite         Invite?         @relation("InviteGrantedSubscription", fields: [inviteId], references: [id], onDelete: SetNull)
-  payments       Payment[]
-  /* SetNull mõlemal: organisatsiooni või sponsorluse kadumine EI tohi kustutada
-     inimese tellimust ega tema ligipääsu ajalugu (arenduskava §5.6 „ligipääsu
-     lõpp ei tohi sulgeda pöörduja oma andmete lugemist"). */
+  user                 User                           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planDefinition       PlanDefinition?                @relation(fields: [planDefinitionId], references: [id], onDelete: SetNull)
+  billingMethod        BillingMethod?                 @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
+  sponsorUser          User?                          @relation("SubscriptionSponsorUser", fields: [sponsorUserId], references: [id], onDelete: SetNull)
+  invite               Invite?                        @relation("InviteGrantedSubscription", fields: [inviteId], references: [id], onDelete: SetNull)
+  payments             Payment[]
+  /**
+   * SetNull mõlemal: organisatsiooni või sponsorluse kadumine EI tohi kustutada
+   * inimese tellimust ega tema ligipääsu ajalugu (arenduskava §5.6 „ligipääsu
+   * lõpp ei tohi sulgeda pöörduja oma andmete lugemist").
+   */
   sponsorOrganization  Organization?                  @relation("SubscriptionSponsorOrganization", fields: [sponsorOrganizationId], references: [id], onDelete: SetNull)
   orgClientSponsorship OrganizationClientSponsorship? @relation("SubscriptionOrgSponsorship", fields: [orgClientSponsorshipId], references: [id], onDelete: SetNull)
 
@@ -1256,16 +1260,16 @@ model Payment {
   /// milline miinimum peab säilima, muutub see loend seal, mitte laiali koodis.
   /// `archivedAt` on ainus aus eristaja „maksja kustutatud" ja „seost ei olnud"
   /// vahel, sest `userId` on nullitav ka pärandridadel.
-  archivedAt        DateTime?
+  archivedAt       DateTime?
   /// Pseudonüüm, mis seob ÜHE inimese maksed omavahel ilma teda tuvastamata.
   /// Genereeritakse juhuslikult üks kord kustutuse kohta — võtit ei ole, seega
   /// teda ei saa kellelegi tagasi arvutada ka võtme lekkimisel.
-  archivedPayerRef  String?
+  archivedPayerRef String?
   /// Mis müüdi, sisemise tootekoodina. Paketi INIMLOETAVAT nime siia teadlikult
   /// ei külmutata: „supervisioonipakett" tõendaks seitse aastat, et see inimene
   /// oli supervisioonis. Raamatupidamise seaduse § 7 majanduslik sisu on kaetud
   /// koodi ja `kind` väljaga, mis on niikuinii sisemine.
-  archivedPlanCode  String?
+  archivedPlanCode String?
 
   subscription  Subscription?  @relation(fields: [subscriptionId], references: [id], onDelete: SetNull)
   billingMethod BillingMethod? @relation(fields: [billingMethodId], references: [id], onDelete: SetNull)
@@ -1288,22 +1292,22 @@ model Payment {
 }
 
 model BillingMethod {
-  id                 String              @id @default(cuid())
-  userId             String
-  provider           PaymentProvider     @default(MAKSEKESKUS)
-  status             BillingMethodStatus @default(PENDING)
-  providerCustomerId String?
-  providerToken      String?
+  id                  String              @id @default(cuid())
+  userId              String
+  provider            PaymentProvider     @default(MAKSEKESKUS)
+  status              BillingMethodStatus @default(PENDING)
+  providerCustomerId  String?
+  providerToken       String?
   providerTokenCipher String?
-  providerTokenKeyId String?
-  providerMandateId  String?
-  label              String?
-  expiresAt          DateTime?
-  activatedAt        DateTime?
-  revokedAt          DateTime?
-  lastUsedAt         DateTime?
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
+  providerTokenKeyId  String?
+  providerMandateId   String?
+  label               String?
+  expiresAt           DateTime?
+  activatedAt         DateTime?
+  revokedAt           DateTime?
+  lastUsedAt          DateTime?
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
 
   user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   subscriptions Subscription[]
@@ -1523,19 +1527,19 @@ model Conversation {
 /// loodud stabiilne kavatsuse võti; unikaalsus `(userId, clientTurnKey)` teeb kavatsusest ühe rea,
 /// mis on ainus koht, kus korduse ja võistluse saab päriselt lõpetada.
 model ChatTurn {
-  id             String         @id @default(cuid())
-  userId         String
-  conversationId String
-  clientTurnKey  String
+  id                 String         @id @default(cuid())
+  userId             String
+  conversationId     String
+  clientTurnKey      String
   /// Mitmes katse sama kavatsuse peal. Kordus EI tee uut rida — ta kasvatab seda numbrit.
-  attempt        Int            @default(1)
-  status         ChatTurnStatus @default(RUNNING)
+  attempt            Int            @default(1)
+  status             ChatTurnStatus @default(RUNNING)
   /// Pöörde kaks poolt ühe rea küljes: nii on USER- ja ASSISTANT-kirje seotud, mitte tuletatud.
   userMessageId      String?
   assistantMessageId String?
-  startedAt          DateTime  @default(now())
+  startedAt          DateTime       @default(now())
   /// Südamelöök: aegunud RUNNING pööre ei tohi vestlust igaveseks lukku panna (vt SOL-MEET-04).
-  updatedAt          DateTime  @updatedAt
+  updatedAt          DateTime       @updatedAt
   endedAt            DateTime?
 
   user         User         @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -1574,53 +1578,61 @@ model Journey {
 }
 
 model WellbeingRecord {
-  id                  String   @id @default(cuid())
-  ownerUserId         String
-  schemaVersion       String   @default("1.0")
-  scoringVersion      String
-  workflowType        String
-  period              String?
-  roleGroup           String?
-  standardizedFields  Json
-  computedSignal      Json
-  loadFactors         Json
-  resourceFactors     Json
-  riskMarkers         Json
-  recommendedActions  Json
-  visibility          String   @default("private")
-  aggregationEligible Boolean  @default(true)
-  supersedesRecordId  String?  @unique
-  /* WB-V2-P2 kontrollpunkt. TEADLIKULT eraldi väljadel, mitte
-     `standardizedFields`-i sees: „kas pidas?" on hilisem muudatus ja kui ta
-     elaks vastuste sees, muutuks vastuste plokp pärast salvestamist. Vastused
-     jäävad puutumatuks (TO-1 piir), plaan ja järelmärge elavad kõrval.
-     `checkpointDueOn` on skalaar ja indekseeritud, sest U1 taimer peab leidma
-     saabunud kontrollpunktid ilma JSON-skaneeringuta. */
-  checkpointDueOn     DateTime?
-  /* SOL-WB-07: „kas vastatud?" elas AINULT `checkpoint` JSON-i sees, seega
-     taimer ei saanud vastatuid SQL-is välja jätta — ta luges 1000 vanimat ja
-     filtreeris mälus, mistõttu piisav hulk vastatud vanu ridu näljutas kõik
-     hilisemad tähtajad taimerist välja. Skalaar on siin selleks, et päring
-     vastaks küsimusele, mitte kandidaadid. */
+  id                   String    @id @default(cuid())
+  ownerUserId          String
+  schemaVersion        String    @default("1.0")
+  scoringVersion       String
+  workflowType         String
+  period               String?
+  roleGroup            String?
+  standardizedFields   Json
+  computedSignal       Json
+  loadFactors          Json
+  resourceFactors      Json
+  riskMarkers          Json
+  recommendedActions   Json
+  visibility           String    @default("private")
+  aggregationEligible  Boolean   @default(true)
+  supersedesRecordId   String?   @unique
+  /**
+   * WB-V2-P2 kontrollpunkt. TEADLIKULT eraldi väljadel, mitte
+   * `standardizedFields`-i sees: „kas pidas?" on hilisem muudatus ja kui ta
+   * elaks vastuste sees, muutuks vastuste plokp pärast salvestamist. Vastused
+   * jäävad puutumatuks (TO-1 piir), plaan ja järelmärge elavad kõrval.
+   * `checkpointDueOn` on skalaar ja indekseeritud, sest U1 taimer peab leidma
+   * saabunud kontrollpunktid ilma JSON-skaneeringuta.
+   */
+  checkpointDueOn      DateTime?
+  /**
+   * SOL-WB-07: „kas vastatud?" elas AINULT `checkpoint` JSON-i sees, seega
+   * taimer ei saanud vastatuid SQL-is välja jätta — ta luges 1000 vanimat ja
+   * filtreeris mälus, mistõttu piisav hulk vastatud vanu ridu näljutas kõik
+   * hilisemad tähtajad taimerist välja. Skalaar on siin selleks, et päring
+   * vastaks küsimusele, mitte kandidaadid.
+   */
   checkpointAnsweredAt DateTime?
-  checkpoint          Json?
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  checkpoint           Json?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
 
   owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
 
-  /* TO-1 „paranda uue kirjena" (WB-V2-P2): parandus on UUS kirje, mis viitab
-     parandatavale. `@unique` teeb sellest 1:1 sideme — sama kirjet ei saa kaks
-     korda parandada, sest siis jääks koondisse kaks „kehtivat" versiooni ja
-     mustri-statistika topeltloendaks. Ahel A ← B ← C on lubatud.
-     `SetNull`: parandatava päris kustutamisel (§19.8) jääb parandus alles ja
-     loetavaks, viide lihtsalt tühjeneb. */
+  /**
+   * TO-1 „paranda uue kirjena" (WB-V2-P2): parandus on UUS kirje, mis viitab
+   * parandatavale. `@unique` teeb sellest 1:1 sideme — sama kirjet ei saa kaks
+   * korda parandada, sest siis jääks koondisse kaks „kehtivat" versiooni ja
+   * mustri-statistika topeltloendaks. Ahel A ← B ← C on lubatud.
+   * `SetNull`: parandatava päris kustutamisel (§19.8) jääb parandus alles ja
+   * loetavaks, viide lihtsalt tühjeneb.
+   */
   supersedes   WellbeingRecord? @relation("WellbeingRecordSupersede", fields: [supersedesRecordId], references: [id], onDelete: SetNull)
   supersededBy WellbeingRecord? @relation("WellbeingRecordSupersede")
 
-  /* SOL-WB-01 ja SOL-WB-02: osalusprojektsioon (vt `WellbeingParticipation`).
-     Kirje ise ei saa organisatsiooni võtit — §D8 keelab selle ja see keeld
-     jääb. Koond ei loe siit ühtki välja peale selle seose. */
+  /**
+   * SOL-WB-01 ja SOL-WB-02: osalusprojektsioon (vt `WellbeingParticipation`).
+   * Kirje ise ei saa organisatsiooni võtit — §D8 keelab selle ja see keeld
+   * jääb. Koond ei loe siit ühtki välja peale selle seose.
+   */
   participation WellbeingParticipation?
 
   @@index([ownerUserId, workflowType, createdAt])
@@ -1630,46 +1642,48 @@ model WellbeingRecord {
   @@index([checkpointDueOn, checkpointAnsweredAt])
 }
 
-/* T21 P3 Meetodipeegel V1 (O-CW-3, analüüsidoc ptk 3).
-   PRIVATE on INVARIANT, mitte veerg: mudelil ei ole visibility-/jagamisvälju,
-   sest jagatav ei ole kunagi kirje ise, vaid ainult deidentifitseeritud +
-   kasutaja kinnitatud TULETIS (ptk 3.5) — tuletise rada on eraldi töö.
-   Päritolumärgistus on välja-tasemel strukturaalne: clientGoal/clientReaction
-   kannavad KLIENDI_OELDUD, workerObservation TOOTAJA_TAHELEPANEK ja
-   interpretation TOOTAJA_TOLGENDUS semantikat (tähelepanek ≠ tõlgendus = ERI
-   veerud, ideed 8.3) — markerit ei saa väljalt lahutada.
-   sourceKind/sourceId on VIIDE ILMA FK-ta: allika kustumisel kirje JÄÄB
-   (ptk 3.3 „Seos"); olemasolu lahendatakse lugemisel omanik-skoobis.
-   Meetod on vabatekst + valikuline kataloogiviide KUNI O-CW-5 kinnitab
-   kataloogi. AI-hüpoteesi veergu EI OLE: V1-s ei ole AI-rada (meetodi-
-   soovitused BLOKEERITUD kuni O-CW-5, ptk 3.4) ja veerg tuleb koos rajaga. */
+/**
+ * T21 P3 Meetodipeegel V1 (O-CW-3, analüüsidoc ptk 3).
+ * PRIVATE on INVARIANT, mitte veerg: mudelil ei ole visibility-/jagamisvälju,
+ * sest jagatav ei ole kunagi kirje ise, vaid ainult deidentifitseeritud +
+ * kasutaja kinnitatud TULETIS (ptk 3.5) — tuletise rada on eraldi töö.
+ * Päritolumärgistus on välja-tasemel strukturaalne: clientGoal/clientReaction
+ * kannavad KLIENDI_OELDUD, workerObservation TOOTAJA_TAHELEPANEK ja
+ * interpretation TOOTAJA_TOLGENDUS semantikat (tähelepanek ≠ tõlgendus = ERI
+ * veerud, ideed 8.3) — markerit ei saa väljalt lahutada.
+ * sourceKind/sourceId on VIIDE ILMA FK-ta: allika kustumisel kirje JÄÄB
+ * (ptk 3.3 „Seos"); olemasolu lahendatakse lugemisel omanik-skoobis.
+ * Meetod on vabatekst + valikuline kataloogiviide KUNI O-CW-5 kinnitab
+ * kataloogi. AI-hüpoteesi veergu EI OLE: V1-s ei ole AI-rada (meetodi-
+ * soovitused BLOKEERITUD kuni O-CW-5, ptk 3.4) ja veerg tuleb koos rajaga.
+ */
 model PracticeReflection {
-  id             String  @id @default(cuid())
-  ownerUserId    String
-  schemaVersion  String  @default("1.0")
-  sourceKind     String?
-  sourceId       String?
+  id                String   @id @default(cuid())
+  ownerUserId       String
+  schemaVersion     String   @default("1.0")
+  sourceKind        String?
+  sourceId          String?
   // Valik — nelja tasandi mudel (ptk 3.2) + valiku põhjus
-  approach       String?
-  method         String?
-  action         String?
-  supportTechnique String?
-  choiceReason   String?
-  methodCatalogRef String?
+  approach          String?
+  method            String?
+  action            String?
+  supportTechnique  String?
+  choiceReason      String?
+  methodCatalogRef  String?
   // Vaatlus — päritolu on välja semantikas (vt mudelikommentaar)
-  clientGoal     String?
-  clientReaction String?
+  clientGoal        String?
+  clientReaction    String?
   workerObservation String?
   // Tõlgendus — eraldi väljad, ei liitu vaatlusega
-  interpretation String?
-  whatWorked     String?
-  whatDidNot     String?
+  interpretation    String?
+  whatWorked        String?
+  whatDidNot        String?
   // Järeldus
-  nextStep       String?
-  supportNeed    String?
-  interimOutcome String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  nextStep          String?
+  supportNeed       String?
+  interimOutcome    String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
 
   owner User @relation(fields: [ownerUserId], references: [id], onDelete: Cascade)
 
@@ -1678,23 +1692,23 @@ model PracticeReflection {
 }
 
 model WellbeingOutputDraft {
-  id                 String   @id @default(cuid())
+  id                 String    @id @default(cuid())
   userId             String
   sourceWorkflowType String
   sourceRecordId     String?
   outputType         String
   recipientType      String
-  generatedText      String   @db.Text
-  editedText         String?  @db.Text
-  userReviewed       Boolean  @default(false)
-  userConfirmed      Boolean  @default(false)
-  visibility         String   @default("private")
-  status             String   @default("draft")
-  schemaVersion      String   @default("1.0")
-  covisionCaseId     String?  @unique
+  generatedText      String    @db.Text
+  editedText         String?   @db.Text
+  userReviewed       Boolean   @default(false)
+  userConfirmed      Boolean   @default(false)
+  visibility         String    @default("private")
+  status             String    @default("draft")
+  schemaVersion      String    @default("1.0")
+  covisionCaseId     String?   @unique
   handedOffAt        DateTime?
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
 
   user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   covisionCase CovisionCase? @relation("WellbeingOutputDraftCovisionCase", fields: [covisionCaseId], references: [id], onDelete: SetNull)
@@ -1704,30 +1718,29 @@ model WellbeingOutputDraft {
   @@index([sourceWorkflowType, outputType, createdAt])
 }
 
-/* SOL-WB-01 ja SOL-WB-02 — OSALUSPROJEKTSIOON.
-   Küsimus, millele see tabel vastab, on üksainus: **millise piloodi valimisse
-   see kirje kuulub?** Seni vastas sellele kliendi saadetud `roleGroup` string
-   ja piloodi organisatsioon/KOV ei jõudnud päringusse üldse.
-
-   MIKS ERALDI TABEL, MITTE VEERUD KIRJE PEAL. §D8 on kõva piir: `WellbeingRecord`
-   ei saa organisatsiooni omandivõtit ega juhi nähtavust, ja seda piiri hoiavad
-   lepingutestid (`tests/org/contracts.test.js`, `tests/org/profileSupport.test.js`).
-   Auditi vastuvõtukriteerium lubab teise haru — „koond kasutab eraldi
-   osalusprojektsiooni" — ja see on tema. Lähtekirje EI muutu organisatsiooni
-   varaks: ta ei kanna ühtki organisatsiooni välja, tema omanik ja nähtavus ei
-   muutu, ja juhile ei avane ühtki uut lugemisteed. Avaneb ainult see, mille
-   omandileping juba ette näeb — ANONÜÜMNE külmutatud koond piisava rühma kohta.
-
-   RIDA ON OLEMAS AINULT SIIS, KUI OSALUS ON TÕENDATUD. `organizationId` ja
-   `roleGroup` on kohustuslikud; rea puudumine tähendab „ei kuulu ühessegi
-   pilooti" ja see on kirje vaikeseis. Nii ei ole olemas poolikut osalust, mille
-   üle koond peaks mälus otsustama.
-
-   ORGANISATSIOONI KÜLGE VÕÕRVÕTIT EI OLE — väärtus on snapshot kirje sünni
-   hetkest (sama muster mis `ServiceVisit.assignedOrganizationId`). Kustutatud
-   või ümber nimetatud organisatsioon ei tohi tõendit kaasa võtta ega
-   kustutamisel blokeeruda. Kirje enda külge käib võõrvõti kaskaadiga: projektsioon
-   on kirje tuletis ja ta ei tohi elada kirjest kauem. */
+/**
+ * SOL-WB-01 ja SOL-WB-02 — OSALUSPROJEKTSIOON.
+ * Küsimus, millele see tabel vastab, on üksainus: **millise piloodi valimisse
+ * see kirje kuulub?** Seni vastas sellele kliendi saadetud `roleGroup` string
+ * ja piloodi organisatsioon/KOV ei jõudnud päringusse üldse.
+ * MIKS ERALDI TABEL, MITTE VEERUD KIRJE PEAL. §D8 on kõva piir: `WellbeingRecord`
+ * ei saa organisatsiooni omandivõtit ega juhi nähtavust, ja seda piiri hoiavad
+ * lepingutestid (`tests/org/contracts.test.js`, `tests/org/profileSupport.test.js`).
+ * Auditi vastuvõtukriteerium lubab teise haru — „koond kasutab eraldi
+ * osalusprojektsiooni" — ja see on tema. Lähtekirje EI muutu organisatsiooni
+ * varaks: ta ei kanna ühtki organisatsiooni välja, tema omanik ja nähtavus ei
+ * muutu, ja juhile ei avane ühtki uut lugemisteed. Avaneb ainult see, mille
+ * omandileping juba ette näeb — ANONÜÜMNE külmutatud koond piisava rühma kohta.
+ * RIDA ON OLEMAS AINULT SIIS, KUI OSALUS ON TÕENDATUD. `organizationId` ja
+ * `roleGroup` on kohustuslikud; rea puudumine tähendab „ei kuulu ühessegi
+ * pilooti" ja see on kirje vaikeseis. Nii ei ole olemas poolikut osalust, mille
+ * üle koond peaks mälus otsustama.
+ * ORGANISATSIOONI KÜLGE VÕÕRVÕTIT EI OLE — väärtus on snapshot kirje sünni
+ * hetkest (sama muster mis `ServiceVisit.assignedOrganizationId`). Kustutatud
+ * või ümber nimetatud organisatsioon ei tohi tõendit kaasa võtta ega
+ * kustutamisel blokeeruda. Kirje enda külge käib võõrvõti kaskaadiga: projektsioon
+ * on kirje tuletis ja ta ei tohi elada kirjest kauem.
+ */
 model WellbeingParticipation {
   recordId       String   @id
   organizationId String
@@ -1742,18 +1755,18 @@ model WellbeingParticipation {
 }
 
 model WellbeingPilotScope {
-  id               String   @id @default(cuid())
+  id               String    @id @default(cuid())
   name             String
-  scopeType        String   @default("role_group")
+  scopeType        String    @default("role_group")
   municipalityId   String?
   organizationId   String?
   roleGroups       Json
-  minimumGroupSize Int      @default(3)
-  active           Boolean  @default(true)
+  minimumGroupSize Int       @default(3)
+  active           Boolean   @default(true)
   startsAt         DateTime?
   endsAt           DateTime?
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
 
   viewers WellbeingPilotViewer[]
 
@@ -1763,22 +1776,24 @@ model WellbeingPilotScope {
   @@index([startsAt, endsAt])
 }
 
-/* SOL-WB-12: e-posti rida on KUTSE, mitte igavene võti.
-   Vana leping: rida sobitus e-posti järgi alati, ja konto kustumisel jäi ta
-   `SetNull`-iga alles — seega samale aadressile hiljem loodud UUS konto päris
-   vana vaataja õiguse. Nüüd seotakse rida esimesel kasutamisel konkreetse
-   kontoga (`claimedAt`), pärast mida e-post enam ei sobitu, ja konto
-   kustutamine viib rea kaskaadiga kaasa. */
+/**
+ * SOL-WB-12: e-posti rida on KUTSE, mitte igavene võti.
+ * Vana leping: rida sobitus e-posti järgi alati, ja konto kustumisel jäi ta
+ * `SetNull`-iga alles — seega samale aadressile hiljem loodud UUS konto päris
+ * vana vaataja õiguse. Nüüd seotakse rida esimesel kasutamisel konkreetse
+ * kontoga (`claimedAt`), pärast mida e-post enam ei sobitu, ja konto
+ * kustutamine viib rea kaskaadiga kaasa.
+ */
 model WellbeingPilotViewer {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   pilotScopeId String
   userId       String?
   email        String?
   claimedAt    DateTime?
-  createdAt    DateTime @default(now())
+  createdAt    DateTime  @default(now())
 
   pilotScope WellbeingPilotScope @relation(fields: [pilotScopeId], references: [id], onDelete: Cascade)
-  user       User?                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user       User?               @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([pilotScopeId, userId])
   @@unique([pilotScopeId, email])
@@ -1934,19 +1949,19 @@ model SourceFeedback {
 }
 
 model DataDeletionJob {
-  id           String   @id @default(cuid())
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-  actorUserId  String?
-  targetUserId String?
-  action       String
-  resourceType String
-  resourceId   String?
-  storagePath  String?
-  externalRef  String?
-  status       String   @default("pending")
-  attempts     Int      @default(0)
-  lastError    String?
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  actorUserId   String?
+  targetUserId  String?
+  action        String
+  resourceType  String
+  resourceId    String?
+  storagePath   String?
+  externalRef   String?
+  status        String    @default("pending")
+  attempts      Int       @default(0)
+  lastError     String?
   // P1-A: durable retry scheduling for the RAG ingest/delete recovery worker.
   // Generic (used by RAG_DELETE and the new RAG_INGEST action). nextAttemptAt is
   // when the job becomes eligible again; maxAttempts caps retries; lastErrorCode
@@ -1964,24 +1979,24 @@ model DataDeletionJob {
 // A private, owner-requested portable data copy. The output reference is kept
 // separately from the public API and is removed with the ZIP at expiry.
 model DataExportJob {
-  id              String   @id @default(cuid())
-  userId          String
-  idempotencyKey  String
-  status          String   @default("queued")
-  requestedAt     DateTime @default(now())
-  startedAt       DateTime?
-  readyAt         DateTime?
-  downloadedAt    DateTime?
-  cancelledAt     DateTime?
-  expiresAt       DateTime?
-  outputPath      String?
-  outputSha256    String?
-  outputBytes     Int?
-  manifest        Json?
-  failureCode     String?
-  attempts        Int      @default(0)
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  id             String    @id @default(cuid())
+  userId         String
+  idempotencyKey String
+  status         String    @default("queued")
+  requestedAt    DateTime  @default(now())
+  startedAt      DateTime?
+  readyAt        DateTime?
+  downloadedAt   DateTime?
+  cancelledAt    DateTime?
+  expiresAt      DateTime?
+  outputPath     String?
+  outputSha256   String?
+  outputBytes    Int?
+  manifest       Json?
+  failureCode    String?
+  attempts       Int       @default(0)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -1991,22 +2006,22 @@ model DataExportJob {
 }
 
 model ResearchJob {
-  id         String    @id
-  userId     String
-  payload    Json
+  id              String    @id
+  userId          String
+  payload         Json
   /// SOL-RES-02: kliendi ühe kavatsuse võti. NULL = võtmeta töö (vana või sisemine).
   clientIntentKey String?
-  status     String    @default("queued")
-  error      String?
-  result     Json?
-  metrics    Json?
-  attempts   Int       @default(0)
-  workerId   String?
-  leaseUntil DateTime?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  startedAt  DateTime?
-  endedAt    DateTime?
+  status          String    @default("queued")
+  error           String?
+  result          Json?
+  metrics         Json?
+  attempts        Int       @default(0)
+  workerId        String?
+  leaseUntil      DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  startedAt       DateTime?
+  endedAt         DateTime?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -2201,68 +2216,74 @@ model OrganizationAdminFile {
 }
 
 model ServiceProviderProfile {
-  id                          String                       @id @default(cuid())
-  /* T25 viil C (E8) — KAKS OMANDIREŽIIMI (arenduskava §5.9).
-     `ownerId` on nüüd NULLABLE: org-profiilil ei ole ühte inimomanikku ja
-     tema püsimine EI TOHI sõltuda ühe töötaja konto kustutamisest. Enne seda
-     viilu oli seos `onDelete: Cascade` — konto kustutus HÄVITAS profiili
-     (E0 leid L4). Nüüd `SetNull`.
-     Osalised unikaalindeksid migratsioonis: üks SOLO profiil `ownerId` kohta,
-     üks ORGANIZATION profiil `organizationId` kohta. Prisma `@@unique` seda ei
-     väljenda, sest ta ei tunne `WHERE`-i. */
-  ownerId                     String?
-  /* `@unique` on siin OHUTU ja sisuliselt õige: Postgresis EI OLE kaks NULL-i
-     võrdsed, seega piiramatu arv SOLO-profiile (organizationId = NULL) elab
-     kõrvuti, aga ühel organisatsioonil saab olla ainult üks põhiprofiil
-     (arenduskava §5.9).
-     `ownerId` jääb Prisma tasemel unikaalsuseta — tema piirang on OSALINE
-     (ainult SOLO-režiimis) ja elab migratsioonis. Nii saab solo-profiili
-     org-profiiliks teisendanud inimene hiljem endale uue solo-profiili teha,
-     ilma et vana omanikuviide teda blokiks. */
-  organizationId              String?                      @unique
-  ownershipMode               ServiceProviderOwnershipMode @default(SOLO)
-  organizationName            String
-  organizationType            String?
+  id                             String                       @id @default(cuid())
+  /**
+   * T25 viil C (E8) — KAKS OMANDIREŽIIMI (arenduskava §5.9).
+   * `ownerId` on nüüd NULLABLE: org-profiilil ei ole ühte inimomanikku ja
+   * tema püsimine EI TOHI sõltuda ühe töötaja konto kustutamisest. Enne seda
+   * viilu oli seos `onDelete: Cascade` — konto kustutus HÄVITAS profiili
+   * (E0 leid L4). Nüüd `SetNull`.
+   * Osalised unikaalindeksid migratsioonis: üks SOLO profiil `ownerId` kohta,
+   * üks ORGANIZATION profiil `organizationId` kohta. Prisma `@@unique` seda ei
+   * väljenda, sest ta ei tunne `WHERE`-i.
+   */
+  ownerId                        String?
+  /**
+   * `@unique` on siin OHUTU ja sisuliselt õige: Postgresis EI OLE kaks NULL-i
+   * võrdsed, seega piiramatu arv SOLO-profiile (organizationId = NULL) elab
+   * kõrvuti, aga ühel organisatsioonil saab olla ainult üks põhiprofiil
+   * (arenduskava §5.9).
+   * `ownerId` jääb Prisma tasemel unikaalsuseta — tema piirang on OSALINE
+   * (ainult SOLO-režiimis) ja elab migratsioonis. Nii saab solo-profiili
+   * org-profiiliks teisendanud inimene hiljem endale uue solo-profiili teha,
+   * ilma et vana omanikuviide teda blokiks.
+   */
+  organizationId                 String?                      @unique
+  ownershipMode                  ServiceProviderOwnershipMode @default(SOLO)
+  organizationName               String
+  organizationType               String?
   /// A4 identiteedivõti: MTR-i päring käib SELLE koodi järgi, mitte nime
   /// järgi. Sarnase nimega MTÜ ja OÜ on eri juriidilised isikud ja load
   /// võivad olla ainult ühel neist.
-  registryCode                String?
-  shortDescription            String?                      @db.Text
-  longDescription             String?                      @db.Text
-  services                    String[]                     @default([])
-  serviceCategories           String[]                     @default([])
-  targetGroups                String[]                     @default([])
-  serviceArea                 String?                      @db.Text
-  serviceAreaMunicipalityIds  String[]                     @default([])
-  county                      String?
-  address                     String?
-  normalizedAddress           String?
-  phone                       String?
-  email                       String?
-  website                     String?
-  primaryContactName          String?
-  languages                   String[]                     @default([])
-  accessibilityInfo           String?                      @db.Text
-  generalAccessibilityNote    String?                      @db.Text
-  feeType                     ServiceProviderFeeType       @default(UNKNOWN)
-  mapVisible                  Boolean                      @default(false)
-  acceptsPlatformPreInquiries Boolean                      @default(true)
-  acceptsEmailPreInquiries    Boolean                      @default(true)
-  assistantRecommendationAllowed Boolean                   @default(false)
-  status                      ServiceProviderProfileStatus @default(DRAFT)
-  publicSlug                  String?                      @unique
-  publishedAt                 DateTime?
-  hiddenAt                    DateTime?
-  checkedAt                   DateTime?
-  ragSourceId                 String?
-  ragMetadata                 Json?
-  createdAt                   DateTime                     @default(now())
-  updatedAt                   DateTime                     @updatedAt
+  registryCode                   String?
+  shortDescription               String?                      @db.Text
+  longDescription                String?                      @db.Text
+  services                       String[]                     @default([])
+  serviceCategories              String[]                     @default([])
+  targetGroups                   String[]                     @default([])
+  serviceArea                    String?                      @db.Text
+  serviceAreaMunicipalityIds     String[]                     @default([])
+  county                         String?
+  address                        String?
+  normalizedAddress              String?
+  phone                          String?
+  email                          String?
+  website                        String?
+  primaryContactName             String?
+  languages                      String[]                     @default([])
+  accessibilityInfo              String?                      @db.Text
+  generalAccessibilityNote       String?                      @db.Text
+  feeType                        ServiceProviderFeeType       @default(UNKNOWN)
+  mapVisible                     Boolean                      @default(false)
+  acceptsPlatformPreInquiries    Boolean                      @default(true)
+  acceptsEmailPreInquiries       Boolean                      @default(true)
+  assistantRecommendationAllowed Boolean                      @default(false)
+  status                         ServiceProviderProfileStatus @default(DRAFT)
+  publicSlug                     String?                      @unique
+  publishedAt                    DateTime?
+  hiddenAt                       DateTime?
+  checkedAt                      DateTime?
+  ragSourceId                    String?
+  ragMetadata                    Json?
+  createdAt                      DateTime                     @default(now())
+  updatedAt                      DateTime                     @updatedAt
 
-  /* SetNull, MITTE Cascade: organisatsiooni profiil peab konto kustutamise üle
-     elama. Solo-profiili puhul jääb rida samuti alles — omanikuta solo-profiil
-     on nähtav ainult admin-rajal ja teda saab uuele omanikule määrata või
-     arhiveerida, mis on parem kui vaikne kadu. */
+  /**
+   * SetNull, MITTE Cascade: organisatsiooni profiil peab konto kustutamise üle
+   * elama. Solo-profiili puhul jääb rida samuti alles — omanikuta solo-profiil
+   * on nähtav ainult admin-rajal ja teda saab uuele omanikule määrata või
+   * arhiveerida, mis on parem kui vaikne kadu.
+   */
   owner            User?                     @relation(fields: [ownerId], references: [id], onDelete: SetNull)
   organization     Organization?             @relation(fields: [organizationId], references: [id], onDelete: SetNull)
   serviceMapEntry  ServiceMapEntry?
@@ -2272,10 +2293,12 @@ model ServiceProviderProfile {
 
   // TEENUSPÄEVIK-V1. NB seosed on `Restrict`, mitte `Cascade` — vt mudelite
   // juures olevat säilituse-selgitust.
-  serviceReferrals  ServiceReferral[]
-  serviceEntries    ServiceEntry[]
+  serviceReferrals      ServiceReferral[]
+  serviceEntries        ServiceEntry[]
   serviceLogTimeSamples ServiceLogTimeSample[]
-  serviceNarratives ServiceMonthlyNarrative[]
+  serviceNarratives     ServiceMonthlyNarrative[]
+  serviceWorkRoutes     ServiceWorkRoute[]
+  serviceVisits         ServiceVisit[]
 
   // `@@unique([ownerId])` on ASENDATUD osaliste unikaalindeksitega migratsioonis.
   @@index([ownershipMode, status])
@@ -2286,8 +2309,6 @@ model ServiceProviderProfile {
   @@index([acceptsPlatformPreInquiries])
   @@index([acceptsEmailPreInquiries])
   @@index([publicSlug])
-  serviceWorkRoutes ServiceWorkRoute[]
-  serviceVisits     ServiceVisit[]
 }
 
 model ServiceProviderService {
@@ -2346,12 +2367,12 @@ model ServiceProviderService {
   // LOETELUST, mitte ei kirjutataks vabatekstina — see on Riigi Teataja
   // koduteenuse kordade päris nõue. Kataloog elab teenuse küljes, sest
   // „toimingud" on teenusepõhised: koduteenusel poeskäik, tugiisikul saatmine.
-  activityCatalog             String[]                     @default([])
+  activityCatalog String[] @default([])
   /// Teenuse ARVELDUSÜHIK (HOUR | SESSION | DAY | MONTH).
   /// Ilma selleta pidi sisestus ühikut oletama ja oletus oli `HOUR` —
   /// kord-põhine teenus muutus vaikselt tunnipõhiseks ning kogus arvutati
   /// kestusest. Ühik on TEENUSE omadus, mitte kirje oma.
-  defaultUnit                 String?
+  defaultUnit     String?
 
   /// A4: seos loakohustuse kataloogiga (`lib/mtr/licensedServices.js`).
   ///
@@ -2359,13 +2380,13 @@ model ServiceProviderService {
   /// sidumata teenus EI tekita MTR-i päringut ega ühtki avalikku loaväidet —
   /// ei märgist, ei „ei vaja luba", ei „ei leitud". String, MITTE enum:
   /// kataloogi kasvamine peab olema andmeline muudatus.
-  serviceKey                  String?
+  serviceKey String?
 
   locationLinks ServiceProviderServiceLocation[]
 
-  serviceReferrals   ServiceReferral[]
-  serviceEntries     ServiceEntry[]
-  licenceAssessment  ServiceLicenceAssessment?
+  serviceReferrals  ServiceReferral[]
+  serviceEntries    ServiceEntry[]
+  licenceAssessment ServiceLicenceAssessment?
 
   @@index([providerProfileId])
   @@index([serviceKey])
@@ -2470,10 +2491,12 @@ model PreInquiry {
   authorErasedAt          DateTime?
   recipientOwnerId        String?
   recipientEntryId        String?
-  /* T25 viil B: organisatsiooni vastuvõtulaud adressaadina. Nullable ja
-     vaikimisi NULL — olemasolevad eelpöördumised ei muutu. Adressaadiväljad
-     on TEADLIKULT eraldi, mitte üks polümorfne `recipientId`: iga adressaadi-
-     liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus. */
+  /**
+   * T25 viil B: organisatsiooni vastuvõtulaud adressaadina. Nullable ja
+   * vaikimisi NULL — olemasolevad eelpöördumised ei muutu. Adressaadiväljad
+   * on TEADLIKULT eraldi, mitte üks polümorfne `recipientId`: iga adressaadi-
+   * liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus.
+   */
   recipientOrganizationId String?
   sourceJourneyId         String?
   recipientType           PreInquiryRecipientType
@@ -2497,17 +2520,21 @@ model PreInquiry {
   createdAt               DateTime                  @default(now())
   updatedAt               DateTime                  @updatedAt
 
-  author         User?            @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  author                     User?            @relation("PreInquiryAuthor", fields: [authorId], references: [id], onDelete: SetNull)
   /// JUHTUM-V1 päritolu (L12). SetNull: pöördumise kustutus ei hävita juhtumit.
-  caseWorkAssists CaseWorkAssist[] @relation("CaseWorkAssistPreInquiry")
-  recipientOwner User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
-  recipientEntry ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
-  recipientOrganization Organization? @relation("PreInquiryRecipientOrganization", fields: [recipientOrganizationId], references: [id], onDelete: SetNull)
-  sourceJourney  Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)
-  supersededBy   PreInquiry?      @relation("PreInquirySupersession", fields: [supersededById], references: [id], onDelete: SetNull)
-  supersedes     PreInquiry?      @relation("PreInquirySupersession")
-  covisionCases  CovisionCase[]
-  fieldVisits    FieldVisit[]
+  caseWorkAssists            CaseWorkAssist[] @relation("CaseWorkAssistPreInquiry")
+  recipientOwner             User?            @relation("PreInquiryRecipientOwner", fields: [recipientOwnerId], references: [id], onDelete: SetNull)
+  recipientEntry             ServiceMapEntry? @relation(fields: [recipientEntryId], references: [id], onDelete: SetNull)
+  recipientOrganization      Organization?    @relation("PreInquiryRecipientOrganization", fields: [recipientOrganizationId], references: [id], onDelete: SetNull)
+  sourceJourney              Journey?         @relation(fields: [sourceJourneyId], references: [id], onDelete: SetNull)
+  supersededBy               PreInquiry?      @relation("PreInquirySupersession", fields: [supersededById], references: [id], onDelete: SetNull)
+  supersedes                 PreInquiry?      @relation("PreInquirySupersession")
+  covisionCases              CovisionCase[]
+  fieldVisits                FieldVisit[]
+  networkShares              NetworkShare[]   @relation("NetworkShareSource")
+  /// SK-V1 E5: esiuks → tuba. Kiireloomulisest abipalvest saab teha
+  /// eelpöördumise, ilma et inimene peaks midagi uuesti trükkima.
+  convertedFromUrgentRequest UrgentRequest?   @relation("UrgentRequestConversion")
 
   @@index([authorId, updatedAt])
   @@index([authorId, sentAt])
@@ -2515,15 +2542,12 @@ model PreInquiry {
   @@index([recipientOwnerId, recalledAt, updatedAt])
   @@index([recipientOwnerId, nextContactOn, status])
   @@index([recipientEntryId])
-  /* E0 leid L5: viiest olemasolevast adressaadiindeksist ei kata ükski
-     org-postkasti päringut. Need kaks on selle jaoks. */
+  /**
+   * E0 leid L5: viiest olemasolevast adressaadiindeksist ei kata ükski
+   * org-postkasti päringut. Need kaks on selle jaoks.
+   */
   @@index([recipientOrganizationId, status, updatedAt])
   @@index([recipientOrganizationId, sentAt])
-  networkShares NetworkShare[] @relation("NetworkShareSource")
-  /// SK-V1 E5: esiuks → tuba. Kiireloomulisest abipalvest saab teha
-  /// eelpöördumise, ilma et inimene peaks midagi uuesti trükkima.
-  convertedFromUrgentRequest UrgentRequest? @relation("UrgentRequestConversion")
-
   @@index([sourceJourneyId])
   @@index([recipientType])
   @@index([deliveryChannel])
@@ -2581,27 +2605,27 @@ model NotificationEvent {
 }
 
 model DomainEvent {
-  id               String    @id @default(cuid())
-  type             String
-  version          Int       @default(1)
-  occurredAt       DateTime
-  actorKind        String
-  actorUserId      String?
-  sourceFeature    String
-  sourceType       String
-  sourceId         String
-  workspaceKind    String?
-  workspaceId      String?
-  audienceRule     String
-  audienceHint     Json?
-  visibilityClass  String    @default("personal")
-  actionKind       String
-  actionTarget     String
-  idempotencyKey   String    @unique
-  retentionClass   String    @default("standard90")
-  meta             Json?
-  projectedAt      DateTime?
-  createdAt        DateTime  @default(now())
+  id              String    @id @default(cuid())
+  type            String
+  version         Int       @default(1)
+  occurredAt      DateTime
+  actorKind       String
+  actorUserId     String?
+  sourceFeature   String
+  sourceType      String
+  sourceId        String
+  workspaceKind   String?
+  workspaceId     String?
+  audienceRule    String
+  audienceHint    Json?
+  visibilityClass String    @default("personal")
+  actionKind      String
+  actionTarget    String
+  idempotencyKey  String    @unique
+  retentionClass  String    @default("standard90")
+  meta            Json?
+  projectedAt     DateTime?
+  createdAt       DateTime  @default(now())
 
   actor User? @relation("DomainEventActor", fields: [actorUserId], references: [id], onDelete: SetNull)
 
@@ -2655,10 +2679,10 @@ model FieldVisit {
   createdAt                     DateTime  @default(now())
   updatedAt                     DateTime  @updatedAt
 
-  owner       User                   @relation("FieldVisitOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
-  preInquiry  PreInquiry?            @relation(fields: [preInquiryId], references: [id], onDelete: SetNull)
-  notes       FieldVisitNote[]
-  attachments FieldVisitAttachment[]
+  owner         User                   @relation("FieldVisitOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
+  preInquiry    PreInquiry?            @relation(fields: [preInquiryId], references: [id], onDelete: SetNull)
+  notes         FieldVisitNote[]
+  attachments   FieldVisitAttachment[]
   /// JUHTUM-V1 seos (L15), Cascade — vt `UserDocument.caseWorkItems`.
   caseWorkItems CaseWorkItem[]
 
@@ -2746,10 +2770,10 @@ model TopicSeed {
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt
 
-  owner        User          @relation("TopicSeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  covisionCase CovisionCase? @relation("TopicSeedCovisionCase", fields: [covisionCaseId], references: [id], onDelete: SetNull)
-  sourceForClosures CovisionClosure[] @relation("CovisionClosureSourceTopicSeed")
-  continuationForClosure CovisionClosure? @relation("CovisionClosureContinuationTopicSeed")
+  owner                  User              @relation("TopicSeedOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  covisionCase           CovisionCase?     @relation("TopicSeedCovisionCase", fields: [covisionCaseId], references: [id], onDelete: SetNull)
+  sourceForClosures      CovisionClosure[] @relation("CovisionClosureSourceTopicSeed")
+  continuationForClosure CovisionClosure?  @relation("CovisionClosureContinuationTopicSeed")
 
   @@index([ownerId, updatedAt])
   @@index([status])
@@ -2774,19 +2798,19 @@ model CovisionCase {
   createdAt             DateTime           @default(now())
   updatedAt             DateTime           @updatedAt
 
-  owner            User                  @relation("CovisionCaseOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  sourcePreInquiry PreInquiry?           @relation(fields: [sourcePreInquiryId], references: [id], onDelete: SetNull)
-  journeySteps     CovisionJourneyStep[]
-  parties          CovisionParty[]
-  riskFactors      CovisionRiskFactor[]
-  participants     CovisionParticipant[]
-  messages         CovisionMessage[]
-  summaryRecord    CovisionSummary?
-  practices        EffectivePractice[]
-  sourceTopicSeed  TopicSeed?             @relation("TopicSeedCovisionCase")
+  owner                      User                  @relation("CovisionCaseOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  sourcePreInquiry           PreInquiry?           @relation(fields: [sourcePreInquiryId], references: [id], onDelete: SetNull)
+  journeySteps               CovisionJourneyStep[]
+  parties                    CovisionParty[]
+  riskFactors                CovisionRiskFactor[]
+  participants               CovisionParticipant[]
+  messages                   CovisionMessage[]
+  summaryRecord              CovisionSummary?
+  practices                  EffectivePractice[]
+  sourceTopicSeed            TopicSeed?            @relation("TopicSeedCovisionCase")
   sourceWellbeingOutputDraft WellbeingOutputDraft? @relation("WellbeingOutputDraftCovisionCase")
-  sessionState     CovisionSessionState?
-  closure          CovisionClosure?
+  sessionState               CovisionSessionState?
+  closure                    CovisionClosure?
 
   @@index([ownerId, updatedAt])
   @@index([sourcePreInquiryId])
@@ -2861,8 +2885,8 @@ model CovisionParticipant {
   createdAt      DateTime                @default(now())
   updatedAt      DateTime                @updatedAt
 
-  covisionCase CovisionCase @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
-  user         User?        @relation("CovisionParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
+  covisionCase CovisionCase              @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  user         User?                     @relation("CovisionParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
   sessionState CovisionParticipantState?
   workItems    CovisionWorkItem[]
 
@@ -2876,20 +2900,20 @@ model CovisionParticipant {
 // Persistent server-owned Kovisioon state. The browser submits commands with an
 // expected integer version; it never replaces this object wholesale.
 model CovisionSessionState {
-  id                  String   @id @default(cuid())
-  covisionCaseId      String   @unique
-  stage               Int      @default(1)
-  phase               String   @default("waiting_room")
-  version             Int      @default(0)
+  id                  String    @id @default(cuid())
+  covisionCaseId      String    @unique
+  stage               Int       @default(1)
+  phase               String    @default("waiting_room")
+  version             Int       @default(0)
   startedAt           DateTime?
-  stageStartedAt      DateTime @default(now())
+  stageStartedAt      DateTime  @default(now())
   pausedAt            DateTime?
-  totalPausedMs       Int      @default(0)
+  totalPausedMs       Int       @default(0)
   settings            Json?
   caseConfirmedAt     DateTime?
   settingsConfirmedAt DateTime?
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 
   covisionCase      CovisionCase               @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
   participantStates CovisionParticipantState[]
@@ -2983,37 +3007,37 @@ model CovisionStageSnapshot {
 // only from the frozen stage 7/8 output. It deliberately has no message,
 // transcript or raw-case-content relation.
 model CovisionClosure {
-  id                       String                           @id @default(cuid())
-  covisionCaseId           String                           @unique
-  sourceTopicSeedId        String?
-  continuationTopicSeedId  String?                          @unique
-  ownerId                  String
-  assignedFollowUpUserId   String?
-  closedById               String?
-  generalizedTitle         String
-  workFocus                String                           @db.Text
-  selectedDirection        String                           @db.Text
-  nextStep                 String                           @db.Text
-  timeframe                String
-  progressMarker           String                           @db.Text
-  decisionNote             String?                          @db.Text
-  sessionStartedAt         DateTime?
-  closedAt                 DateTime                         @default(now())
-  ownerConfirmedAt         DateTime
-  lifecycleStatus          CovisionClosureLifecycleStatus  @default(FOLLOW_UP_PENDING)
-  practiceStatus           CovisionPracticeCandidateStatus @default(NONE)
-  packageStatus            CovisionPackageStatus            @default(NOT_CREATED)
-  retentionStatus          CovisionRetentionStatus
-  version                  Int                              @default(0)
-  createdAt                DateTime                         @default(now())
-  updatedAt                DateTime                         @updatedAt
+  id                      String                          @id @default(cuid())
+  covisionCaseId          String                          @unique
+  sourceTopicSeedId       String?
+  continuationTopicSeedId String?                         @unique
+  ownerId                 String
+  assignedFollowUpUserId  String?
+  closedById              String?
+  generalizedTitle        String
+  workFocus               String                          @db.Text
+  selectedDirection       String                          @db.Text
+  nextStep                String                          @db.Text
+  timeframe               String
+  progressMarker          String                          @db.Text
+  decisionNote            String?                         @db.Text
+  sessionStartedAt        DateTime?
+  closedAt                DateTime                        @default(now())
+  ownerConfirmedAt        DateTime
+  lifecycleStatus         CovisionClosureLifecycleStatus  @default(FOLLOW_UP_PENDING)
+  practiceStatus          CovisionPracticeCandidateStatus @default(NONE)
+  packageStatus           CovisionPackageStatus           @default(NOT_CREATED)
+  retentionStatus         CovisionRetentionStatus
+  version                 Int                             @default(0)
+  createdAt               DateTime                        @default(now())
+  updatedAt               DateTime                        @updatedAt
 
-  covisionCase          CovisionCase       @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
-  sourceTopicSeed       TopicSeed?          @relation("CovisionClosureSourceTopicSeed", fields: [sourceTopicSeedId], references: [id], onDelete: SetNull)
-  continuationTopicSeed TopicSeed?          @relation("CovisionClosureContinuationTopicSeed", fields: [continuationTopicSeedId], references: [id], onDelete: SetNull)
-  owner                 User                @relation("CovisionClosureOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  assignedFollowUpUser  User?               @relation("CovisionClosureAssignee", fields: [assignedFollowUpUserId], references: [id], onDelete: SetNull)
-  closedBy              User?               @relation("CovisionClosureClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
+  covisionCase          CovisionCase          @relation(fields: [covisionCaseId], references: [id], onDelete: Cascade)
+  sourceTopicSeed       TopicSeed?            @relation("CovisionClosureSourceTopicSeed", fields: [sourceTopicSeedId], references: [id], onDelete: SetNull)
+  continuationTopicSeed TopicSeed?            @relation("CovisionClosureContinuationTopicSeed", fields: [continuationTopicSeedId], references: [id], onDelete: SetNull)
+  owner                 User                  @relation("CovisionClosureOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  assignedFollowUpUser  User?                 @relation("CovisionClosureAssignee", fields: [assignedFollowUpUserId], references: [id], onDelete: SetNull)
+  closedBy              User?                 @relation("CovisionClosureClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
   followUps             CovisionFollowUp[]
   ownerPackage          CovisionOwnerPackage?
   effectivePractice     EffectivePractice?
@@ -3026,26 +3050,26 @@ model CovisionClosure {
 }
 
 model CovisionFollowUp {
-  id                String                 @id @default(cuid())
-  closureId         String
-  assignedToUserId  String?
-  status            CovisionFollowUpStatus @default(SCHEDULED)
-  scheduleLabel     String
-  scheduledFor      DateTime?
-  responsibleParty  String
-  channel           String
-  whatWasDone       String?                @db.Text
-  whatChanged       String?                @db.Text
-  learning          String?                @db.Text
-  resourceUsed      String?                @db.Text
-  conditionChanged  String?                @db.Text
-  completedById     String?
-  completedAt       DateTime?
-  createdAt         DateTime               @default(now())
-  updatedAt         DateTime               @updatedAt
+  id               String                 @id @default(cuid())
+  closureId        String
+  assignedToUserId String?
+  status           CovisionFollowUpStatus @default(SCHEDULED)
+  scheduleLabel    String
+  scheduledFor     DateTime?
+  responsibleParty String
+  channel          String
+  whatWasDone      String?                @db.Text
+  whatChanged      String?                @db.Text
+  learning         String?                @db.Text
+  resourceUsed     String?                @db.Text
+  conditionChanged String?                @db.Text
+  completedById    String?
+  completedAt      DateTime?
+  createdAt        DateTime               @default(now())
+  updatedAt        DateTime               @updatedAt
 
-  closure    CovisionClosure @relation(fields: [closureId], references: [id], onDelete: Cascade)
-  assignedTo User?           @relation("CovisionFollowUpAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
+  closure     CovisionClosure @relation(fields: [closureId], references: [id], onDelete: Cascade)
+  assignedTo  User?           @relation("CovisionFollowUpAssignee", fields: [assignedToUserId], references: [id], onDelete: SetNull)
   completedBy User?           @relation("CovisionFollowUpCompleter", fields: [completedById], references: [id], onDelete: SetNull)
 
   @@index([closureId, createdAt])
@@ -3108,51 +3132,51 @@ model CovisionSummary {
 }
 
 model EffectivePractice {
-  id                            String                          @id @default(cuid())
-  publicId                      String                          @unique @default(uuid())
-  authorId                      String?
-  sourceCovisionCaseId          String?
-  sourceClosureId               String?                         @unique
-  title                         String
-  summary                       String?                         @db.Text
-  background                    String?                         @db.Text
-  mainChallenge                 String?                         @db.Text
-  whatHelped                    String?                         @db.Text
-  networkOrServiceRole          String?                         @db.Text
-  outcome                       String?                         @db.Text
-  learningPoints                String?                         @db.Text
-  limitations                   String?                         @db.Text
-  sources                       String?                         @db.Text
-  suitableContext               String?                         @db.Text
-  conditions                    String[]                        @default([])
-  steps                         String[]                        @default([])
-  practiceType                  String?
-  targetGroups                  String[]                        @default([])
-  environments                  String[]                        @default([])
-  maturityLevel                 String                          @default("practice_candidate")
-  riskLevel                     EffectivePracticeRiskLevel      @default(LOW)
-  topics                        String[]                        @default([])
-  tags                          String[]                        @default([])
-  status                        EffectivePracticeStatus         @default(DRAFT)
-  version                       Int                             @default(0)
-  contentVersion                Int                             @default(0)
-  publishedVersion              Int?
-  ownerConfirmedNoIdentifiersAt DateTime?
+  id                                 String                     @id @default(cuid())
+  publicId                           String                     @unique @default(uuid())
+  authorId                           String?
+  sourceCovisionCaseId               String?
+  sourceClosureId                    String?                    @unique
+  title                              String
+  summary                            String?                    @db.Text
+  background                         String?                    @db.Text
+  mainChallenge                      String?                    @db.Text
+  whatHelped                         String?                    @db.Text
+  networkOrServiceRole               String?                    @db.Text
+  outcome                            String?                    @db.Text
+  learningPoints                     String?                    @db.Text
+  limitations                        String?                    @db.Text
+  sources                            String?                    @db.Text
+  suitableContext                    String?                    @db.Text
+  conditions                         String[]                   @default([])
+  steps                              String[]                   @default([])
+  practiceType                       String?
+  targetGroups                       String[]                   @default([])
+  environments                       String[]                   @default([])
+  maturityLevel                      String                     @default("practice_candidate")
+  riskLevel                          EffectivePracticeRiskLevel @default(LOW)
+  topics                             String[]                   @default([])
+  tags                               String[]                   @default([])
+  status                             EffectivePracticeStatus    @default(DRAFT)
+  version                            Int                        @default(0)
+  contentVersion                     Int                        @default(0)
+  publishedVersion                   Int?
+  ownerConfirmedNoIdentifiersAt      DateTime?
   ownerConfirmedNoIdentifiersVersion Int?
-  anonymityCheckedAt            DateTime?
-  anonymityCheckedVersion       Int?
-  professionalReviewedAt        DateTime?
-  reviewedAt                    DateTime?
-  publishedAt                   DateTime?
-  nextReviewAt                  DateTime?
-  ragSourceId                   String?
-  ragMetadata                   Json?
-  createdAt                     DateTime                        @default(now())
-  updatedAt                     DateTime                        @updatedAt
+  anonymityCheckedAt                 DateTime?
+  anonymityCheckedVersion            Int?
+  professionalReviewedAt             DateTime?
+  reviewedAt                         DateTime?
+  publishedAt                        DateTime?
+  nextReviewAt                       DateTime?
+  ragSourceId                        String?
+  ragMetadata                        Json?
+  createdAt                          DateTime                   @default(now())
+  updatedAt                          DateTime                   @updatedAt
 
-  author             User?                          @relation("EffectivePracticeAuthor", fields: [authorId], references: [id], onDelete: SetNull)
-  sourceCovisionCase CovisionCase?                  @relation(fields: [sourceCovisionCaseId], references: [id], onDelete: SetNull)
-  sourceClosure      CovisionClosure?               @relation(fields: [sourceClosureId], references: [id], onDelete: SetNull)
+  author             User?                               @relation("EffectivePracticeAuthor", fields: [authorId], references: [id], onDelete: SetNull)
+  sourceCovisionCase CovisionCase?                       @relation(fields: [sourceCovisionCaseId], references: [id], onDelete: SetNull)
+  sourceClosure      CovisionClosure?                    @relation(fields: [sourceClosureId], references: [id], onDelete: SetNull)
   reviews            EffectivePracticeReview[]
   reviewAssignments  EffectivePracticeReviewAssignment[]
   versions           EffectivePracticeVersion[]
@@ -3180,7 +3204,7 @@ model PracticeCapability {
   createdAt       DateTime               @default(now())
   updatedAt       DateTime               @updatedAt
 
-  user      User @relation("PracticeCapabilityUser", fields: [userId], references: [id], onDelete: Cascade)
+  user      User  @relation("PracticeCapabilityUser", fields: [userId], references: [id], onDelete: Cascade)
   grantedBy User? @relation("PracticeCapabilityGranter", fields: [grantedByUserId], references: [id], onDelete: SetNull)
 
   @@unique([userId, type, scope])
@@ -3189,20 +3213,20 @@ model PracticeCapability {
 }
 
 model EffectivePracticeReview {
-  id              String                           @id @default(cuid())
+  id              String                          @id @default(cuid())
   practiceId      String
   reviewerId      String?
   capabilityType  PracticeCapabilityType
-  scope           String                           @default("")
+  scope           String                          @default("")
   reviewedVersion Int
   decision        EffectivePracticeReviewDecision @default(PENDING)
   conflictStatus  EffectivePracticeConflictStatus @default(NONE)
-  authorFeedback  String?                          @db.Text
-  privateNotes    String?                          @db.Text
-  conflictNote    String?                          @db.Text
+  authorFeedback  String?                         @db.Text
+  privateNotes    String?                         @db.Text
+  conflictNote    String?                         @db.Text
   decidedAt       DateTime?
-  createdAt       DateTime                         @default(now())
-  updatedAt       DateTime                         @updatedAt
+  createdAt       DateTime                        @default(now())
+  updatedAt       DateTime                        @updatedAt
 
   practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
   reviewer User?             @relation("EffectivePracticeReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
@@ -3212,17 +3236,17 @@ model EffectivePracticeReview {
 }
 
 model EffectivePracticeReviewAssignment {
-  id              String                                  @id @default(cuid())
-  practiceId      String
-  reviewerId      String?
-  capabilityType  PracticeCapabilityType
-  scope           String                                  @default("")
-  contentVersion  Int
-  status          EffectivePracticeReviewAssignmentStatus @default(ASSIGNED)
-  assignedAt      DateTime                                @default(now())
-  completedAt     DateTime?
-  createdAt       DateTime                                @default(now())
-  updatedAt       DateTime                                @updatedAt
+  id             String                                  @id @default(cuid())
+  practiceId     String
+  reviewerId     String?
+  capabilityType PracticeCapabilityType
+  scope          String                                  @default("")
+  contentVersion Int
+  status         EffectivePracticeReviewAssignmentStatus @default(ASSIGNED)
+  assignedAt     DateTime                                @default(now())
+  completedAt    DateTime?
+  createdAt      DateTime                                @default(now())
+  updatedAt      DateTime                                @updatedAt
 
   practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
   reviewer User?             @relation("EffectivePracticeReviewAssignee", fields: [reviewerId], references: [id], onDelete: SetNull)
@@ -3233,52 +3257,52 @@ model EffectivePracticeReviewAssignment {
 }
 
 model EffectivePracticeVersion {
-  id                       String   @id @default(cuid())
-  practiceId               String
-  version                  Int
-  publicSnapshot           Json
-  professionalReviewRoles  String[] @default([])
-  publishedById            String?
-  publishedAt              DateTime @default(now())
-  nextReviewAt             DateTime?
-  createdAt                DateTime @default(now())
+  id                      String    @id @default(cuid())
+  practiceId              String
+  version                 Int
+  publicSnapshot          Json
+  professionalReviewRoles String[]  @default([])
+  publishedById           String?
+  publishedAt             DateTime  @default(now())
+  nextReviewAt            DateTime?
+  createdAt               DateTime  @default(now())
 
-  practice   EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
-  publishedBy User?            @relation("EffectivePracticeVersionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
+  practice    EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  publishedBy User?             @relation("EffectivePracticeVersionPublisher", fields: [publishedById], references: [id], onDelete: SetNull)
 
   @@unique([practiceId, version])
   @@index([practiceId, publishedAt])
 }
 
 model EffectivePracticeApplication {
-  id               String                             @id @default(cuid())
-  publicId         String                             @unique @default(uuid())
-  practiceId       String
-  authorId         String
-  reviewedById     String?
-  assignedReviewerId String?
+  id                     String                             @id @default(cuid())
+  publicId               String                             @unique @default(uuid())
+  practiceId             String
+  authorId               String
+  reviewedById           String?
+  assignedReviewerId     String?
   assignedCapabilityType PracticeCapabilityType?
-  versionUsed      Int
-  practiceSnapshot Json
-  context          String                             @db.Text
-  targetGroup      String                             @db.Text
-  adaptations      String                             @db.Text
-  whatWorked       String                             @db.Text
-  whatDidNot       String                             @db.Text
-  limitationOrRisk String                             @db.Text
-  followUpAt       DateTime?
-  needsReview      Boolean                            @default(false)
-  status           EffectivePracticeApplicationStatus @default(DRAFT)
-  version          Int                                @default(0)
-  reviewNote       String?                            @db.Text
-  reviewedAt       DateTime?
-  createdAt        DateTime                           @default(now())
-  updatedAt        DateTime                           @updatedAt
+  versionUsed            Int
+  practiceSnapshot       Json
+  context                String                             @db.Text
+  targetGroup            String                             @db.Text
+  adaptations            String                             @db.Text
+  whatWorked             String                             @db.Text
+  whatDidNot             String                             @db.Text
+  limitationOrRisk       String                             @db.Text
+  followUpAt             DateTime?
+  needsReview            Boolean                            @default(false)
+  status                 EffectivePracticeApplicationStatus @default(DRAFT)
+  version                Int                                @default(0)
+  reviewNote             String?                            @db.Text
+  reviewedAt             DateTime?
+  createdAt              DateTime                           @default(now())
+  updatedAt              DateTime                           @updatedAt
 
-  practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
-  author   User              @relation("EffectivePracticeApplicationAuthor", fields: [authorId], references: [id], onDelete: Cascade)
-  reviewedBy User?           @relation("EffectivePracticeApplicationReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
-  assignedReviewer User?      @relation("EffectivePracticeApplicationAssignee", fields: [assignedReviewerId], references: [id], onDelete: SetNull)
+  practice         EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
+  author           User              @relation("EffectivePracticeApplicationAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  reviewedBy       User?             @relation("EffectivePracticeApplicationReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  assignedReviewer User?             @relation("EffectivePracticeApplicationAssignee", fields: [assignedReviewerId], references: [id], onDelete: SetNull)
 
   @@index([practiceId, status, createdAt])
   @@index([authorId, updatedAt])
@@ -3305,23 +3329,23 @@ model PracticeCapabilityAudit {
 }
 
 model EffectivePracticeAuditEvent {
-  id           String   @id @default(cuid())
-  practiceId   String
-  actorId      String?
-  action       String
-  fromStatus   String?
-  toStatus     String?
-  contentVersion Int
-  metadata     Json?
+  id                      String   @id @default(cuid())
+  practiceId              String
+  actorId                 String?
+  action                  String
+  fromStatus              String?
+  toStatus                String?
+  contentVersion          Int
+  metadata                Json?
   // P1-D: immutable review-justification ledger. Append-only (never updated), the
   // actor is nullable (SetNull on account deletion, keeping the decision audit).
   // justificationVisibility gates who may read the text: "private" (reviewer-only),
   // "author" (author-visible feedback) or "public". Reviewer-private reasoning must
   // never reach the author or a public serializer.
   decisionType            String?
-  justification           String? @db.Text
+  justification           String?  @db.Text
   justificationVisibility String?
-  createdAt    DateTime @default(now())
+  createdAt               DateTime @default(now())
 
   practice EffectivePractice @relation(fields: [practiceId], references: [id], onDelete: Cascade)
   actor    User?             @relation("EffectivePracticeAuditActor", fields: [actorId], references: [id], onDelete: SetNull)
@@ -3539,18 +3563,18 @@ model HelpOfferTargetGroup {
 }
 
 model HelpMatch {
-  id            String          @id @default(cuid())
-  requestId     String
-  offerId       String
-  requesterId   String
-  offererId     String
+  id                String          @id @default(cuid())
+  requestId         String
+  offerId           String
+  requesterId       String
+  offererId         String
   initiatedByUserId String
-  roomId        String?         @unique
-  status        HelpMatchStatus @default(PENDING)
-  scoreSnapshot Float?
-  reasonsJson   Json?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  roomId            String?         @unique
+  status            HelpMatchStatus @default(PENDING)
+  scoreSnapshot     Float?
+  reasonsJson       Json?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
 
   request   HelpRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
   offer     HelpOffer   @relation(fields: [offerId], references: [id], onDelete: Cascade)
@@ -3567,25 +3591,25 @@ model HelpMatch {
 }
 
 model Room {
-  id            String    @id @default(cuid())
-  ownerId       String
-  title         String?
-  description   String?
-  originType    String?
-  originId      String?
-  originLabel   String?
-  originMeta    Json?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  archivedAt    DateTime?
+  id          String    @id @default(cuid())
+  ownerId     String
+  title       String?
+  description String?
+  originType  String?
+  originId    String?
+  originLabel String?
+  originMeta  Json?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  archivedAt  DateTime?
 
-  owner     User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  members   RoomMember[]
-  invites   Invite[]
-  messages  RoomMessage[]
-  helpMatch HelpMatch?
-  calls     CallSession[]
-  mentoringMeetings MentoringMeeting[] @relation("MentoringMeetingRoom")
+  owner             User                @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  members           RoomMember[]
+  invites           Invite[]
+  messages          RoomMessage[]
+  helpMatch         HelpMatch?
+  calls             CallSession[]
+  mentoringMeetings MentoringMeeting[]  @relation("MentoringMeetingRoom")
   sharedSummaries   RoomSharedSummary[]
 
   networkShare NetworkShare? @relation("NetworkShareRoom")
@@ -3675,23 +3699,23 @@ model RoomMessage {
 // juba jagatut ümber kirjutada. Rida kaob koos ruumiga — seetõttu tehakse
 // koopiad ENNE kustutust (copy-first).
 model RoomSharedSummary {
-  id             String   @id @default(cuid())
-  roomId         String
-  artifactId     String
-  messageId      String?
-  sharedByUserId String
-  title          String?
-  content        String   @db.Text
-  sharedAt       DateTime @default(now())
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id                  String    @id @default(cuid())
+  roomId              String
+  artifactId          String
+  messageId           String?
+  sharedByUserId      String
+  title               String?
+  content             String    @db.Text
+  sharedAt            DateTime  @default(now())
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
   // T20 COLLAB-P2 (O-CO-2 = a): kinnitusring on VALIKULINE — jagaja otsustab.
   // Null = ringi ei küsitud; ajatempel = ring on avatud alates sellest hetkest.
   approvalRequestedAt DateTime?
 
-  room     Room                  @relation(fields: [roomId], references: [id], onDelete: Cascade)
-  sharedBy User                  @relation("RoomSharedSummarySharedBy", fields: [sharedByUserId], references: [id], onDelete: Cascade)
-  copies   RoomSummaryCopy[]
+  room      Room                  @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  sharedBy  User                  @relation("RoomSharedSummarySharedBy", fields: [sharedByUserId], references: [id], onDelete: Cascade)
+  copies    RoomSummaryCopy[]
   approvals RoomSummaryApproval[]
 
   @@unique([roomId, artifactId])
@@ -3812,19 +3836,19 @@ model CallSpeakRequest {
 }
 
 model CallRecordingRequest {
-  id                  String                     @id @default(cuid())
-  callSessionId       String
-  requestedByUserId   String
-  purpose             CallRecordingPurpose       @default(GENERAL_SUMMARY)
-  purposeText         String?                    @db.Text
-  status              CallRecordingRequestStatus @default(REQUESTED)
-  consentTextVersion  String
-  consentTextSnapshot String                     @db.Text
+  id                    String                     @id @default(cuid())
+  callSessionId         String
+  requestedByUserId     String
+  purpose               CallRecordingPurpose       @default(GENERAL_SUMMARY)
+  purposeText           String?                    @db.Text
+  status                CallRecordingRequestStatus @default(REQUESTED)
+  consentTextVersion    String
+  consentTextSnapshot   String                     @db.Text
   // Nõusolekuteksti sisse küpsetatud küsija nimi eraldi väljana, et sama teksti
   // saaks hiljem teises keeles uuesti renderdada ilma nime tekstist välja
   // parsimata. NULL = enne 04.08.2026 loodud taotlus.
   requesterNameSnapshot String?
-  requestedAt         DateTime                   @default(now())
+  requestedAt           DateTime                   @default(now())
   // SOL-CALL-02/03 — ÜHE start-katse töö-ID + lease + fencing-loend.
   //   · `startClaimId`         — ainult SEDA id-d kandev rida tohib katse tulemuse
   //     kirjutada; hiline zombi ei kirjuta üle plaani, mille vahepeal võttis teine
@@ -3832,14 +3856,14 @@ model CallRecordingRequest {
   //     surnud protsess ei jäta luku igaveseks kinni
   //   · `rosterVersionAtStart` — `CallSession.rosterVersion` claim'i hetkel. Kui ta
   //     enne ACTIVE-ks minekut muutub, tuleb start katkestada ja egress peatada
-  startClaimId         String?
-  startClaimedAt       DateTime?
-  rosterVersionAtStart Int?
-  startedAt           DateTime?
-  stoppedAt           DateTime?
-  completedAt         DateTime?
-  createdAt           DateTime                   @default(now())
-  updatedAt           DateTime                   @updatedAt
+  startClaimId          String?
+  startClaimedAt        DateTime?
+  rosterVersionAtStart  Int?
+  startedAt             DateTime?
+  stoppedAt             DateTime?
+  completedAt           DateTime?
+  createdAt             DateTime                   @default(now())
+  updatedAt             DateTime                   @updatedAt
 
   callSession CallSession            @relation(fields: [callSessionId], references: [id], onDelete: Cascade)
   requestedBy User                   @relation("CallRecordingRequestRequestedBy", fields: [requestedByUserId], references: [id], onDelete: Cascade)
@@ -3882,25 +3906,25 @@ model CallRecordingConsent {
 }
 
 model CallRecordingFile {
-  id                 String                  @id @default(cuid())
-  recordingRequestId String
-  callSessionId      String
-  egressId           String?
-  storageProvider    String?
-  filePath           String?
-  mimeType           String?
-  fileSizeBytes      Int?
-  durationSeconds    Int?
-  checksum           String?
-  status             CallRecordingFileStatus @default(NOT_CREATED)
-  createdDocumentId  String?
-  retentionUntil     DateTime?
+  id                      String                  @id @default(cuid())
+  recordingRequestId      String
+  callSessionId           String
+  egressId                String?
+  storageProvider         String?
+  filePath                String?
+  mimeType                String?
+  fileSizeBytes           Int?
+  durationSeconds         Int?
+  checksum                String?
+  status                  CallRecordingFileStatus @default(NOT_CREATED)
+  createdDocumentId       String?
+  retentionUntil          DateTime?
   // SOL-CALL-01 — hetk, mil PROVIDER ISE ütles egress'i kohta terminaalse seisu.
   // NULL tähendab „ei ole tõendatud", mitte „ei ole lõppenud". Ainult mitte-NULL
   // väärtus annab õiguse kirjutada taotlusele lõppseisu.
   providerStopConfirmedAt DateTime?
-  createdAt          DateTime                @default(now())
-  updatedAt          DateTime                @updatedAt
+  createdAt               DateTime                @default(now())
+  updatedAt               DateTime                @updatedAt
 
   recordingRequest CallRecordingRequest @relation(fields: [recordingRequestId], references: [id], onDelete: Cascade)
   callSession      CallSession          @relation(fields: [callSessionId], references: [id], onDelete: Cascade)
@@ -3930,20 +3954,20 @@ model UserDocument {
   createdAt             DateTime     @default(now())
   updatedAt             DateTime     @updatedAt
 
-  owner               User                          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  frameworkAcceptance FrameworkAcceptance?          @relation(fields: [frameworkAcceptanceId], references: [id], onDelete: SetNull)
-  sourceDocument      UserDocument?                  @relation("UserDocumentSource", fields: [sourceDocumentId], references: [id], onDelete: SetNull)
-  derivedDocuments    UserDocument[]                 @relation("UserDocumentSource")
-  templateArtifacts   AgentArtifact[]               @relation("AgentArtifactTemplate")
-  sourceArtifactLinks AgentArtifactSourceDocument[]
-  sourceTranscriptionJobs TranscriptionJob[]             @relation("TranscriptionJobSource")
-  transcriptTranscriptionJobs TranscriptionJob[]         @relation("TranscriptionJobTranscript")
-  audits              DocumentAudit[]
-  callRecordingFiles  CallRecordingFile[]
-  fieldVisitAttachments FieldVisitAttachment[]         @relation("FieldVisitAttachmentDocument")
+  owner                       User                          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  frameworkAcceptance         FrameworkAcceptance?          @relation(fields: [frameworkAcceptanceId], references: [id], onDelete: SetNull)
+  sourceDocument              UserDocument?                 @relation("UserDocumentSource", fields: [sourceDocumentId], references: [id], onDelete: SetNull)
+  derivedDocuments            UserDocument[]                @relation("UserDocumentSource")
+  templateArtifacts           AgentArtifact[]               @relation("AgentArtifactTemplate")
+  sourceArtifactLinks         AgentArtifactSourceDocument[]
+  sourceTranscriptionJobs     TranscriptionJob[]            @relation("TranscriptionJobSource")
+  transcriptTranscriptionJobs TranscriptionJob[]            @relation("TranscriptionJobTranscript")
+  audits                      DocumentAudit[]
+  callRecordingFiles          CallRecordingFile[]
+  fieldVisitAttachments       FieldVisitAttachment[]        @relation("FieldVisitAttachmentDocument")
   /// JUHTUM-V1 seos (L15). Cascade: dokumendi kustutus eemaldab seose ANDMEBAASIST,
   /// mitte rakenduse kustutusteelt — seega rippuvat viidet ei jää ka otse-SQL kustutusel.
-  caseWorkItems       CaseWorkItem[]
+  caseWorkItems               CaseWorkItem[]
 
   @@index([ownerId, updatedAt])
   @@index([ownerId, kind, updatedAt])
@@ -3999,18 +4023,18 @@ model FrameworkAcceptance {
 }
 
 model AgentArtifact {
-  id         String              @id @default(cuid())
-  ownerId    String
-  type       AgentArtifactType
-  title      String?
-  status     AgentArtifactStatus @default(DRAFT)
-  content    String              @db.Text
-  metadata   Json?
-  approvedAt DateTime?
-  templateId String?
+  id             String              @id @default(cuid())
+  ownerId        String
+  type           AgentArtifactType
+  title          String?
+  status         AgentArtifactStatus @default(DRAFT)
+  content        String              @db.Text
+  metadata       Json?
+  approvedAt     DateTime?
+  templateId     String?
   idempotencyKey String?
-  createdAt  DateTime            @default(now())
-  updatedAt  DateTime            @updatedAt
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
 
   owner           User                          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   template        UserDocument?                 @relation("AgentArtifactTemplate", fields: [templateId], references: [id], onDelete: SetNull)
@@ -4093,7 +4117,7 @@ model SavedAnalysis {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
 
-  owner            User              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  owner             User              @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   roomSummaryCopies RoomSummaryCopy[]
 
   @@index([ownerId, updatedAt])
@@ -4341,14 +4365,14 @@ model SupervisionProcess {
   supervisor            User                         @relation("SupervisionProcessSupervisor", fields: [supervisorId], references: [id], onDelete: Cascade)
   activeContractVersion SupervisionContractVersion?  @relation("SupervisionActiveContractVersion", fields: [activeContractVersionId], references: [id], onDelete: SetNull)
   contractVersions      SupervisionContractVersion[] @relation("SupervisionContractVersions")
-  participations       SupervisionParticipation[]
-  sharedTopics         SupervisionSharedTopic[]
-  meetings             SupervisionMeeting[]
-  summaries            SupervisionSummary[]
-  closure              SupervisionClosure?
-  auditEvents          SupervisionAuditEvent[]
-  privateItems         SupervisionPrivateItem[]     @relation("SupervisionPrivateItemProcess") @ignore
-  personalOutcomes     SupervisionPersonalOutcome[] @relation("SupervisionPersonalOutcomeProcess") @ignore
+  participations        SupervisionParticipation[]
+  sharedTopics          SupervisionSharedTopic[]
+  meetings              SupervisionMeeting[]
+  summaries             SupervisionSummary[]
+  closure               SupervisionClosure?
+  auditEvents           SupervisionAuditEvent[]
+  privateItems          SupervisionPrivateItem[]     @relation("SupervisionPrivateItemProcess") @ignore
+  personalOutcomes      SupervisionPersonalOutcome[] @relation("SupervisionPersonalOutcomeProcess") @ignore
 
   @@index([supervisorId, status, updatedAt])
   @@index([status, lastActivityAt])
@@ -4385,9 +4409,9 @@ model SupervisionParticipation {
   createdAt       DateTime                       @default(now())
   updatedAt       DateTime                       @updatedAt
 
-  process          SupervisionProcess             @relation(fields: [processId], references: [id], onDelete: Cascade)
-  user             User                           @relation("SupervisionParticipationUser", fields: [userId], references: [id], onDelete: Cascade)
-  invitedByUser    User?                          @relation("SupervisionParticipationInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
+  process          SupervisionProcess              @relation(fields: [processId], references: [id], onDelete: Cascade)
+  user             User                            @relation("SupervisionParticipationUser", fields: [userId], references: [id], onDelete: Cascade)
+  invitedByUser    User?                           @relation("SupervisionParticipationInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
   acceptances      SupervisionContractAcceptance[]
   authoredTopics   SupervisionSharedTopic[]
   summaryApprovals SupervisionSummaryApproval[]
@@ -4468,8 +4492,8 @@ model SupervisionMeeting {
   createdAt          DateTime                 @default(now())
   updatedAt          DateTime                 @updatedAt
 
-  process          SupervisionProcess @relation(fields: [processId], references: [id], onDelete: Cascade)
-  markedHeldByUser User?              @relation("SupervisionMeetingMarkedHeldBy", fields: [markedHeldByUserId], references: [id], onDelete: SetNull)
+  process          SupervisionProcess  @relation(fields: [processId], references: [id], onDelete: Cascade)
+  markedHeldByUser User?               @relation("SupervisionMeetingMarkedHeldBy", fields: [markedHeldByUserId], references: [id], onDelete: SetNull)
   summary          SupervisionSummary?
 
   @@unique([processId, seq])
@@ -4489,9 +4513,9 @@ model SupervisionSummary {
   createdAt       DateTime                 @default(now())
   updatedAt       DateTime                 @updatedAt
 
-  process       SupervisionProcess  @relation(fields: [processId], references: [id], onDelete: Cascade)
-  meeting       SupervisionMeeting? @relation(fields: [meetingId], references: [id], onDelete: SetNull)
-  createdByUser User?               @relation("SupervisionSummaryCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  process       SupervisionProcess           @relation(fields: [processId], references: [id], onDelete: Cascade)
+  meeting       SupervisionMeeting?          @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  createdByUser User?                        @relation("SupervisionSummaryCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
   approvals     SupervisionSummaryApproval[]
 
   @@index([processId, kind, status])
@@ -4596,8 +4620,8 @@ model MentorProfile {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
 
-  user       User? @relation("MentorProfileUser", fields: [userId], references: [id], onDelete: Cascade)
-  reviewedBy User? @relation("MentorProfileReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
+  user       User?              @relation("MentorProfileUser", fields: [userId], references: [id], onDelete: Cascade)
+  reviewedBy User?              @relation("MentorProfileReviewer", fields: [reviewedByUserId], references: [id], onDelete: SetNull)
   requests   MentoringRequest[]
 
   @@index([status, updatedAt])
@@ -4621,9 +4645,9 @@ model MentoringRequest {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
-  mentee        User          @relation("MentoringRequestMentee", fields: [menteeId], references: [id], onDelete: Cascade)
-  mentorUser    User          @relation("MentoringRequestMentorUser", fields: [mentorUserId], references: [id], onDelete: Cascade)
-  mentorProfile MentorProfile @relation(fields: [mentorProfileId], references: [id], onDelete: Cascade)
+  mentee        User               @relation("MentoringRequestMentee", fields: [menteeId], references: [id], onDelete: Cascade)
+  mentorUser    User               @relation("MentoringRequestMentorUser", fields: [mentorUserId], references: [id], onDelete: Cascade)
+  mentorProfile MentorProfile      @relation(fields: [mentorProfileId], references: [id], onDelete: Cascade)
   relation      MentoringRelation?
 
   @@index([mentorUserId, status, updatedAt])
@@ -4653,9 +4677,9 @@ model MentoringRelation {
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 
-  mentorUser User? @relation("MentoringRelationMentor", fields: [mentorUserId], references: [id], onDelete: SetNull)
-  menteeUser User? @relation("MentoringRelationMentee", fields: [menteeUserId], references: [id], onDelete: SetNull)
-  closedBy   User? @relation("MentoringRelationClosedBy", fields: [closedByUserId], references: [id], onDelete: SetNull)
+  mentorUser User?             @relation("MentoringRelationMentor", fields: [mentorUserId], references: [id], onDelete: SetNull)
+  menteeUser User?             @relation("MentoringRelationMentee", fields: [menteeUserId], references: [id], onDelete: SetNull)
+  closedBy   User?             @relation("MentoringRelationClosedBy", fields: [closedByUserId], references: [id], onDelete: SetNull)
   request    MentoringRequest? @relation(fields: [requestId], references: [id], onDelete: SetNull)
 
   agreementAcceptances MentoringAgreementAcceptance[]
@@ -4688,21 +4712,21 @@ model MentoringAgreementAcceptance {
 // EM5 — kohtumine (faktikirje; roomId on viide, MITTE omandus — SetNull).
 // Kustutamist ei ole; vale kirje parandatakse muutmisega.
 model MentoringMeeting {
-  id              String    @id @default(cuid())
+  id              String   @id @default(cuid())
   relationId      String
   occurredAt      DateTime
-  mode            String    @default("EXTERNAL")
+  mode            String   @default("EXTERNAL")
   roomId          String?
-  topicSummary    String?   @db.Text
-  status          String    @default("PLANNED")
+  topicSummary    String?  @db.Text
+  status          String   @default("PLANNED")
   createdByUserId String?
-  version         Int       @default(0)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  version         Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  relation  MentoringRelation @relation(fields: [relationId], references: [id], onDelete: Cascade)
-  room      Room?             @relation("MentoringMeetingRoom", fields: [roomId], references: [id], onDelete: SetNull)
-  createdBy User?             @relation("MentoringMeetingCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  relation  MentoringRelation  @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  room      Room?              @relation("MentoringMeetingRoom", fields: [roomId], references: [id], onDelete: SetNull)
+  createdBy User?              @relation("MentoringMeetingCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
   summaries MentoringSummary[]
 
   @@index([relationId, occurredAt])
@@ -4725,11 +4749,11 @@ model MentoringSummary {
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
-  relation     MentoringRelation  @relation(fields: [relationId], references: [id], onDelete: Cascade)
-  meeting      MentoringMeeting?  @relation(fields: [meetingId], references: [id], onDelete: SetNull)
-  supersededBy MentoringSummary?  @relation("MentoringSummarySupersedes", fields: [supersededById], references: [id], onDelete: SetNull)
-  supersedes   MentoringSummary[] @relation("MentoringSummarySupersedes")
-  createdBy    User?              @relation("MentoringSummaryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
+  relation      MentoringRelation              @relation(fields: [relationId], references: [id], onDelete: Cascade)
+  meeting       MentoringMeeting?              @relation(fields: [meetingId], references: [id], onDelete: SetNull)
+  supersededBy  MentoringSummary?              @relation("MentoringSummarySupersedes", fields: [supersededById], references: [id], onDelete: SetNull)
+  supersedes    MentoringSummary[]             @relation("MentoringSummarySupersedes")
+  createdBy     User?                          @relation("MentoringSummaryCreator", fields: [createdByUserId], references: [id], onDelete: SetNull)
   confirmations MentoringSummaryConfirmation[]
 
   @@index([relationId, status, updatedAt])
@@ -4898,28 +4922,28 @@ enum OrganizationInviteStatus {
 }
 
 model Organization {
-  id               String                @id @default(cuid())
-  displayName      String
-  legalName        String?
-  registryCode     String?
-  legalKind        OrganizationLegalKind
-  municipalityId   String?
-  status           OrganizationStatus    @default(DRAFT)
-  defaultLocale    String                @default("et")
-  timezone         String                @default("Europe/Tallinn")
-  createdByUserId  String?
-  verifiedAt       DateTime?
-  verifiedByUserId String?
-  verificationNote String?
-  activatedAt      DateTime?
-  suspendedAt      DateTime?
-  suspendedReason  String?
-  archivedAt       DateTime?
-  archivedReason   String?
+  id                     String                @id @default(cuid())
+  displayName            String
+  legalName              String?
+  registryCode           String?
+  legalKind              OrganizationLegalKind
+  municipalityId         String?
+  status                 OrganizationStatus    @default(DRAFT)
+  defaultLocale          String                @default("et")
+  timezone               String                @default("Europe/Tallinn")
+  createdByUserId        String?
+  verifiedAt             DateTime?
+  verifiedByUserId       String?
+  verificationNote       String?
+  activatedAt            DateTime?
+  suspendedAt            DateTime?
+  suspendedReason        String?
+  archivedAt             DateTime?
+  archivedReason         String?
   creationClientActionId String?
   creationPayloadHash    String?
-  createdAt        DateTime              @default(now())
-  updatedAt        DateTime              @updatedAt
+  createdAt              DateTime              @default(now())
+  updatedAt              DateTime              @updatedAt
 
   // SetNull kõikjal: konto kustutamine ei tohi organisatsiooni kaotada ega
   // blokeeruda (arenduskava §E10 „konto jääb alles", GDPR-kustutusrada).
@@ -4927,10 +4951,10 @@ model Organization {
   createdBy    User?         @relation("OrganizationCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
   verifiedBy   User?         @relation("OrganizationVerifiedBy", fields: [verifiedByUserId], references: [id], onDelete: SetNull)
 
-  modules     OrganizationModule[]
-  units       OrganizationUnit[]
-  memberships OrganizationMembership[]
-  invites     OrganizationInvite[]
+  modules                OrganizationModule[]
+  units                  OrganizationUnit[]
+  memberships            OrganizationMembership[]
+  invites                OrganizationInvite[]
   // T25 viil B
   seatPlans              OrganizationSeatPlan[]
   inboxItems             OrganizationInboxItem[]
@@ -4939,16 +4963,16 @@ model Organization {
   supportContacts        OrganizationSupportContact[]
   supportShares          WellbeingSupportShare[]
   serviceProviderProfile ServiceProviderProfile?
-  preInquiries           PreInquiry[]                   @relation("PreInquiryRecipientOrganization")
-  sponsoredSubscriptions Subscription[]                 @relation("SubscriptionSponsorOrganization")
+  preInquiries           PreInquiry[]                    @relation("PreInquiryRecipientOrganization")
+  sponsoredSubscriptions Subscription[]                  @relation("SubscriptionSponsorOrganization")
+  serviceReportShares    ServiceReportShare[]
 
+  @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   @@index([status])
   @@index([legalKind])
   @@index([municipalityId])
   @@index([createdByUserId])
   @@index([registryCode])
-  @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
-  serviceReportShares ServiceReportShare[]
 }
 
 model OrganizationModule {
@@ -5021,17 +5045,17 @@ model OrganizationMembership {
   user         User         @relation("OrganizationMembershipUser", fields: [userId], references: [id], onDelete: Cascade)
   invitedBy    User?        @relation("OrganizationMembershipInvitedBy", fields: [invitedByUserId], references: [id], onDelete: SetNull)
 
-  units            OrganizationMembershipUnit[]
-  capabilityGrants OrganizationCapabilityGrant[]
+  units                 OrganizationMembershipUnit[]
+  capabilityGrants      OrganizationCapabilityGrant[]
   // T25 viil B
-  seatAssignments  OrganizationSeatAssignment[]
-  workAssignments  OrganizationWorkAssignment[] @relation("OrganizationWorkAssignmentAssignee")
-  serviceReportShares ServiceReportShare[]         @relation("ServiceReportShareRecipient")
+  seatAssignments       OrganizationSeatAssignment[]
+  workAssignments       OrganizationWorkAssignment[]  @relation("OrganizationWorkAssignmentAssignee")
+  serviceReportShares   ServiceReportShare[]          @relation("ServiceReportShareRecipient")
   // T25 viil C
-  reportingAsMember   OrganizationReportingLine[]  @relation("OrganizationReportingMember")
-  reportingAsManager  OrganizationReportingLine[]  @relation("OrganizationReportingManager")
-  supportContacts     OrganizationSupportContact[]
-  receivedSupportShares WellbeingSupportShare[]    @relation("WellbeingSupportShareRecipient")
+  reportingAsMember     OrganizationReportingLine[]   @relation("OrganizationReportingMember")
+  reportingAsManager    OrganizationReportingLine[]   @relation("OrganizationReportingManager")
+  supportContacts       OrganizationSupportContact[]
+  receivedSupportShares WellbeingSupportShare[]       @relation("WellbeingSupportShareRecipient")
 
   // Üks AKTIIVNE liikmesus org + kasutaja kohta → osaline unikaalindeks migratsioonis.
   @@index([organizationId, status])
@@ -5074,11 +5098,13 @@ model OrganizationCapabilityGrant {
   updatedAt       DateTime                        @updatedAt
 
   membership OrganizationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
-  /* Cascade, MITTE Restrict: tavakäigus üksust ei kustutata (ta arhiveeritakse
-     ja arhiveerimine on `archiveUnit` väravate taga). Restrict blokeeriks aga
-     organisatsiooni PÄRIS kustutamise — org → üksus kaskaad jääks grandi taha
-     kinni ja ükski andmekustutuse rada ei töötaks. Üksuseta üksuse-skoop on
-     niikuinii mõttetu. */
+  /**
+   * Cascade, MITTE Restrict: tavakäigus üksust ei kustutata (ta arhiveeritakse
+   * ja arhiveerimine on `archiveUnit` väravate taga). Restrict blokeeriks aga
+   * organisatsiooni PÄRIS kustutamise — org → üksus kaskaad jääks grandi taha
+   * kinni ja ükski andmekustutuse rada ei töötaks. Üksuseta üksuse-skoop on
+   * niikuinii mõttetu.
+   */
   scopeUnit  OrganizationUnit?      @relation(fields: [scopeUnitId], references: [id], onDelete: Cascade)
   grantedBy  User?                  @relation("OrganizationCapabilityGrantedBy", fields: [grantedByUserId], references: [id], onDelete: SetNull)
   revokedBy  User?                  @relation("OrganizationCapabilityRevokedBy", fields: [revokedByUserId], references: [id], onDelete: SetNull)
@@ -5407,16 +5433,16 @@ model OrganizationReportingLine {
 /// toe mooduli aktiveerimisel oleks VÄHEMALT ÜKS alternatiivne tugitee —
 /// töötaja ei tohi olla sunnitud pöörduma just oma otsese juhi poole.
 model OrganizationSupportContact {
-  id              String                          @id @default(cuid())
+  id              String                         @id @default(cuid())
   organizationId  String
   unitId          String?
   membershipId    String
   contactType     OrganizationSupportContactType
-  validFrom       DateTime                        @default(now())
+  validFrom       DateTime                       @default(now())
   validUntil      DateTime?
   createdByUserId String?
-  createdAt       DateTime                        @default(now())
-  updatedAt       DateTime                        @updatedAt
+  createdAt       DateTime                       @default(now())
+  updatedAt       DateTime                       @updatedAt
 
   organization Organization           @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   unit         OrganizationUnit?      @relation(fields: [unitId], references: [id], onDelete: SetNull)
@@ -5443,17 +5469,35 @@ model OrganizationSupportContact {
 /// kustutamine EI muuda seda, mida saaja juba nägi.
 model WellbeingSupportShare {
   id                     String                      @id @default(cuid())
-  ownerUserId            String
-  organizationId         String
-  recipientMembershipId  String
+  ownerUserId            String?
+  organizationId         String?
+  recipientMembershipId  String?
   supportContactId       String?
   /// VIIDE ILMA FK-ta ja TEADLIKULT: see on omaniku ja auditi sisekasutuseks.
   /// Saaja päring ei tohi kunagi selle kaudu lähtekirjeni jõuda.
   sourceDraftId          String?
   sourceRecordId         String?
   /// Kasutaja kinnitatud minimaalne jagatav koopia. Külmutatud.
-  sharedSnapshotJson     Json
+  sharedSnapshotJson     Json?
   snapshotSchemaVersion  String                      @default("1.0")
+  preShareNoticeVersion  String                      @default("2026-08-13")
+  retentionPolicyVersion String                      @default("2.0")
+  /// Võtmega pseudonüümitud viited säilituskviitungil; need ei ole FK-d.
+  ownerPseudonym         String?
+  organizationPseudonym  String?
+  recipientPseudonym     String?
+  recipientRoleSnapshot  String?
+  /// Snapshot'i HMAC tõendab muutumatust ilma sisu ennast säilitamata.
+  contentHmac            String?
+  contentDeletionDueAt   DateTime?
+  contentDeletedAt       DateTime?
+  contentDeletionReason  String?
+  receiptRetentionEndsAt DateTime                    @default(dbgenerated("(now() + '3 years'::interval)"))
+  legalHoldUntil         DateTime?
+  legalHoldReasonCode    String?
+  ownerErasedAt          DateTime?
+  organizationErasedAt   DateTime?
+  recipientErasedAt      DateTime?
   status                 WellbeingSupportShareStatus @default(SENT)
   sentAt                 DateTime                    @default(now())
   openedAt               DateTime?
@@ -5466,9 +5510,9 @@ model WellbeingSupportShare {
   createdAt              DateTime                    @default(now())
   updatedAt              DateTime                    @updatedAt
 
-  owner          User                        @relation("WellbeingSupportShareOwner", fields: [ownerUserId], references: [id], onDelete: Cascade)
-  organization   Organization                @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-  recipient      OrganizationMembership      @relation("WellbeingSupportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: Cascade)
+  owner          User?                       @relation("WellbeingSupportShareOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
+  organization   Organization?               @relation(fields: [organizationId], references: [id], onDelete: SetNull)
+  recipient      OrganizationMembership?     @relation("WellbeingSupportShareRecipient", fields: [recipientMembershipId], references: [id], onDelete: SetNull)
   supportContact OrganizationSupportContact? @relation(fields: [supportContactId], references: [id], onDelete: SetNull)
 
   supersedes   WellbeingSupportShare? @relation("WellbeingSupportShareCorrection", fields: [supersedesShareId], references: [id], onDelete: SetNull)
@@ -5477,49 +5521,46 @@ model WellbeingSupportShare {
   @@index([ownerUserId, sentAt])
   @@index([recipientMembershipId, status, sentAt])
   @@index([organizationId, status])
+  @@index([contentDeletionDueAt, contentDeletedAt])
+  @@index([receiptRetentionEndsAt])
 }
 
-/* ============================================================================
-   TEENUSPÄEVIK-V1 — E1 andmemudel.
-   Leping: `docs/platvormi arendus/aruandlus-teenuskirje-disain.md` ptk 8.1.
-
-   ÜKS AATOM, NELI VÄLJUNDIT (leping ptk 1a). Aruandlus ei ole igale teenusele
-   eri funktsioon: muutumatu tuum on alati sama (klient + teenus + millal +
-   ühik×kogus + kelle poolt) ja varieeruvad ainult parameetrid. Seepärast on
-   siin kolm mudelit, mitte KOV-i või teenuse kaupa eraldi tabelid — mallid A–D
-   loevad kõik SAMA kirjet.
-
-   K1 REEGEL: elutsükkel, päritolu ja ühikud elavad rakenduskihis, MITTE
-   PostgreSQL-i enum'ina. Seepärast on `unit`, `status`, `allocationPeriod` ja
-   `noteProvenance` String. Päritoluväärtuste AINUS sõnastik on
-   `lib/workspaces/provenance.js` — siia teist koopiat ei teki.
-
-   SÄILITUS ON SIIN TEISTSUGUNE KUI MUJAL PLATVORMIL (leping ptk 5.1 ja 8.9).
-   Teenuskirje on arve alusdokument → raamatupidamise seaduse 7-aastane
-   säilitus. Kolm tagajärge, mis on skeemis nähtavad:
-
-   (a) `retentionClass` vaikeväärtus on "accounting7y", mitte platvormi tavaline
-       "standard90" (vrd `FieldVisit`). Hard-delete keeld <7a elab teenuskihis,
-       aga klass on kirje küljes juba sünnihetkest — nii ei sõltu säilitus
-       sellest, kas mõni hilisem koristaja mäletab erandit.
-
-   (b) INIMESE VIITED ON `SetNull` + `...ErasedAt`, MITTE `Cascade`. Konto
-       kustutamine kustutab inimese, mitte raamatupidamisdokumendi. Sama muster,
-       mis on juba toodangus `PreInquiry.authorErasedAt` juures
-       (`lib/privacy/effectivePracticeAccountCleanup.js:154`).
-
-   (c) OSUTAJA PROFIILI SEOS ON `Restrict`. Profiili kustutamine EI TOHI vaikselt
-       hävitada 7-aastase säilitusega kirjeid. Leping 8.9 jätab teadlikult
-       lahtiseks, kumb lahendus tuleb — anonüümitud säilitus või
-       eksport-ja-kustutus. Kuni see otsus on langetamata, ütleb andmebaas „ei"
-       valjult, selle asemel et andmed vaikselt kaotada. NB see on TEADLIK
-       valik, mitte T25 E0 leiu L-tüüpi õnnetus: seal oli `Restrict`
-       dokumenteerimata ja blokeeris ootamatult kaskaadi, siin on ta kirjas ja
-       tema avamine on omaniku otsus.
-
-   MINIMEERIMINE (leping ptk 5.3): vähetundlik maht (tunnid) ja tundlik sisu
-   (märkmed) on eri väljades, et eksport saaks valida, mis kaasa läheb.
-   ========================================================================== */
+/**
+ * ============================================================================
+ * TEENUSPÄEVIK-V1 — E1 andmemudel.
+ * Leping: `docs/platvormi arendus/aruandlus-teenuskirje-disain.md` ptk 8.1.
+ * ÜKS AATOM, NELI VÄLJUNDIT (leping ptk 1a). Aruandlus ei ole igale teenusele
+ * eri funktsioon: muutumatu tuum on alati sama (klient + teenus + millal +
+ * ühik×kogus + kelle poolt) ja varieeruvad ainult parameetrid. Seepärast on
+ * siin kolm mudelit, mitte KOV-i või teenuse kaupa eraldi tabelid — mallid A–D
+ * loevad kõik SAMA kirjet.
+ * K1 REEGEL: elutsükkel, päritolu ja ühikud elavad rakenduskihis, MITTE
+ * PostgreSQL-i enum'ina. Seepärast on `unit`, `status`, `allocationPeriod` ja
+ * `noteProvenance` String. Päritoluväärtuste AINUS sõnastik on
+ * `lib/workspaces/provenance.js` — siia teist koopiat ei teki.
+ * SÄILITUS ON SIIN TEISTSUGUNE KUI MUJAL PLATVORMIL (leping ptk 5.1 ja 8.9).
+ * Teenuskirje on arve alusdokument → raamatupidamise seaduse 7-aastane
+ * säilitus. Kolm tagajärge, mis on skeemis nähtavad:
+ * (a) `retentionClass` vaikeväärtus on "accounting7y", mitte platvormi tavaline
+ * "standard90" (vrd `FieldVisit`). Hard-delete keeld <7a elab teenuskihis,
+ * aga klass on kirje küljes juba sünnihetkest — nii ei sõltu säilitus
+ * sellest, kas mõni hilisem koristaja mäletab erandit.
+ * (b) INIMESE VIITED ON `SetNull` + `...ErasedAt`, MITTE `Cascade`. Konto
+ * kustutamine kustutab inimese, mitte raamatupidamisdokumendi. Sama muster,
+ * mis on juba toodangus `PreInquiry.authorErasedAt` juures
+ * (`lib/privacy/effectivePracticeAccountCleanup.js:154`).
+ * (c) OSUTAJA PROFIILI SEOS ON `Restrict`. Profiili kustutamine EI TOHI vaikselt
+ * hävitada 7-aastase säilitusega kirjeid. Leping 8.9 jätab teadlikult
+ * lahtiseks, kumb lahendus tuleb — anonüümitud säilitus või
+ * eksport-ja-kustutus. Kuni see otsus on langetamata, ütleb andmebaas „ei"
+ * valjult, selle asemel et andmed vaikselt kaotada. NB see on TEADLIK
+ * valik, mitte T25 E0 leiu L-tüüpi õnnetus: seal oli `Restrict`
+ * dokumenteerimata ja blokeeris ootamatult kaskaadi, siin on ta kirjas ja
+ * tema avamine on omaniku otsus.
+ * MINIMEERIMINE (leping ptk 5.3): vähetundlik maht (tunnid) ja tundlik sisu
+ * (märkmed) on eri väljades, et eksport saaks valida, mis kaasa läheb.
+ * ==========================================================================
+ */
 
 /// Suunamine — KOV-i suunamisotsus, mis kannab MAHTU. Osutaja peab jälgima
 /// jääki, sest üle suunatud mahu ei maksta (leping ptk 1).
@@ -5560,12 +5601,12 @@ model ServiceReferral {
 
   entries    ServiceEntry[]
   narratives ServiceMonthlyNarrative[]
+  visits     ServiceVisit[]
 
   @@index([providerProfileId, status])
   @@index([providerProfileId, periodStart])
   @@index([clientUserId])
   @@index([serviceId])
-  visits ServiceVisit[]
 }
 
 /// TEENUSPÄEVIK E8 — aruandlusaja proov (DoD 1 ja 5).
@@ -5604,30 +5645,30 @@ model ServiceLogTimeSample {
 /// Teenuskirje — aatom, millest kasvavad kõik neli malli. Sünnib seal, kus töö
 /// lõpeb (leping ptk 0 kaitsereegel a), mitte õhtul mälu järgi.
 model ServiceEntry {
-  id                 String    @id @default(cuid())
-  providerProfileId  String
+  id                  String    @id @default(cuid())
+  providerProfileId   String
   /// Sisestaja. Nullable, sest konto võib kustuda ENNE 7 aasta täitumist —
   /// kirje jääb, inimene kaob (`ownerErasedAt`).
-  ownerUserId        String?
-  ownerErasedAt      DateTime?
-  referralId         String?
-  serviceId          String?
-  clientUserId       String?
-  clientErasedAt     DateTime?
-  clientDisplayName  String?
-  clientExternalRef  String?
+  ownerUserId         String?
+  ownerErasedAt       DateTime?
+  referralId          String?
+  serviceId           String?
+  clientUserId        String?
+  clientErasedAt      DateTime?
+  clientDisplayName   String?
+  clientExternalRef   String?
   /// Teenuse KALENDRIPÄEV, mitte ajahetk — seepärast `@db.Date`. Kuuaruande
   /// piir on täpselt see koht, kus ajavööndiga DateTime hakkaks kirjeid vale
   /// kuu alla nihutama.
-  date               DateTime  @db.Date
+  date                DateTime  @db.Date
   /// Nelja märke voog (leping E2b): LÄKSIN → KOHAL → LAHKUSIN → TAGASI.
   /// KOHAL–LAHKUSIN annab teenuse kestuse (kogus tuletatakse ise), LÄKSIN–KOHAL
   /// ja LAHKUSIN–TAGASI annavad sõiduaja. LÄKSIN ilma TAGASI-ta tähtajaks on
   /// välitöö turvasignaali käivitus.
-  departedForVisitAt DateTime?
-  arrivedAt          DateTime?
-  leftAt             DateTime?
-  returnedAt         DateTime?
+  departedForVisitAt  DateTime?
+  arrivedAt           DateTime?
+  leftAt              DateTime?
+  returnedAt          DateTime?
   /// ÜHEKORDSED asukohatemplid kinnituse hetkel, mitte jada. Täidetakse AINULT
   /// siis, kui `SERVICE_LOG_LOCATION_STAMP` on sees, ja töötajale on alati
   /// nähtav, mis salvestati.
@@ -5640,24 +5681,24 @@ model ServiceEntry {
   /// Leping on selle piiri vahepeal OSALISELT TÜHISTANUD — E12 toob kerge
   /// sõidupäeviku (odomeeter või templipõhine hinnang), mille TÖÖTAJA kinnitab;
   /// töötaja enda kasuks tuletatud km ei ole jälgimine. Pideva jälje keeld JÄÄB.
-  locationStamps     Json?
-  unit               String    @default("HOUR")
-  quantity           Decimal   @db.Decimal(10, 2)
+  locationStamps      Json?
+  unit                String    @default("HOUR")
+  quantity            Decimal   @db.Decimal(10, 2)
   /// Tegevused teenuse `activityCatalog`-ist (mall B linnukesed).
-  activities         String[]  @default([])
+  activities          String[]  @default([])
   /// Kliendi raha kasutamine (nt poeskäik) — Riigi Teataja koduteenuse kordade
   /// päris nõue. Lülitatakse sisse teenusetüübi kaupa, mitte kõigil.
-  moneyAmount        Decimal?  @db.Decimal(10, 2)
-  moneyNote          String?
-  workerName         String?
+  moneyAmount         Decimal?  @db.Decimal(10, 2)
+  moneyNote           String?
+  workerName          String?
   /// LÜHIKE faktimärge = sisuaruande tooraine. Tundlik sisu EI kuulu siia
   /// (leping 8.9 minimeerimine); UI ja ⓘ ütlevad seda kasutajale välja.
-  note               String?   @db.Text
+  note                String?   @db.Text
   /// Päritolu `lib/workspaces/provenance.js` sõnastikust. Fakti ja tõlgenduse
   /// lahusus on see, mis teeb aruande paremaks kui Wordi-praktika.
-  noteProvenance     String?
+  noteProvenance      String?
   /// Kliendi paberil-kinnituse märge (väline klient); E7 digikinnitus on eraldi.
-  confirmedManually  Boolean   @default(false)
+  confirmedManually   Boolean   @default(false)
   confirmedByClientAt DateTime?
   /// DRAFT | FINAL | VOID (rakendustaseme sõnastik, K1 reegel).
   ///
@@ -5666,8 +5707,8 @@ model ServiceEntry {
   /// teda parandatakse jälgitavalt (`ServiceEntryCorrection`) või tühistatakse.
   /// See on RPS § 10 nõue: paranduse sisu, põhjus ja aeg peavad olema
   /// jälgitavad.
-  status             String    @default("DRAFT")
-  finalizedAt        DateTime?
+  status              String    @default("DRAFT")
+  finalizedAt         DateTime?
   /// MAJANDUSAASTA, MILLE JOOKSUL KIRJE KIRJENDATI.
   ///
   /// RPS § 12 järgi algab säilitustähtaeg selle majandusaasta LÕPUST, mil
@@ -5676,10 +5717,10 @@ model ServiceEntry {
   /// liiga vara ja tagantjärele sisestamisel veelgi varem. Salvestame aasta
   /// KIRJENDAMISE hetkel, et hilisem majandusaasta muutus ei liigutaks juba
   /// tekkinud tähtaega.
-  recordedFiscalYear Int?
-  voidedAt           DateTime?
-  voidReason         String?   @db.Text
-  retentionClass     String    @default("accounting7y")
+  recordedFiscalYear  Int?
+  voidedAt            DateTime?
+  voidReason          String?   @db.Text
+  retentionClass      String    @default("accounting7y")
   /// KLIENDIPOOLNE IDEMPOTENTSUSVÕTI võrguta sisestuse jaoks.
   ///
   /// Koduhooldaja töötab keldrites ja levita piirkondades — kirje sünnib
@@ -5689,10 +5730,10 @@ model ServiceEntry {
   ///
   /// Nullable, sest võrgus sisestus seda ei vaja; unikaalsus on profiili SEES,
   /// et kahe osutaja seadmed ei saaks teineteise võtmeid blokeerida.
-  clientRequestId    String?
+  clientRequestId     String?
   /// Kanoniseeritud sisendi sha256. Sama idempotentsusvõti on replay ainult
   /// siis, kui ta kirjeldab sama tööd; eri räsi annab 409.
-  clientRequestHash  String?
+  clientRequestHash   String?
   /// LÄHTEKÜLASTUS Välitööst (leping 8.4).
   ///
   /// Eeltäide tekitas selle viite juba varem, aga teda ei saadetud ega
@@ -5707,9 +5748,9 @@ model ServiceEntry {
   /// SEOST ENNAST (`@relation`) EI OLE: külastus on eri säilitusega ja tema
   /// kustumine ei tohi teenuskirjet kaasa viia ega takistada. Viide on
   /// päritolumärge, mitte võtmeseos.
-  sourceFieldVisitId String?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  sourceFieldVisitId  String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
 
   providerProfile ServiceProviderProfile  @relation(fields: [providerProfileId], references: [id], onDelete: Restrict)
   owner           User?                   @relation("ServiceEntryOwner", fields: [ownerUserId], references: [id], onDelete: SetNull)
@@ -5720,6 +5761,7 @@ model ServiceEntry {
   service         ServiceProviderService? @relation(fields: [serviceId], references: [id], onDelete: SetNull)
 
   corrections ServiceEntryCorrection[]
+  sourceVisit ServiceVisit?            @relation("ServiceVisitEntry")
 
   @@unique([providerProfileId, clientRequestId])
   @@unique([providerProfileId, sourceFieldVisitId])
@@ -5729,7 +5771,6 @@ model ServiceEntry {
   @@index([ownerUserId, date])
   @@index([serviceId])
   @@index([providerProfileId, status, date])
-  sourceVisit ServiceVisit? @relation("ServiceVisitEntry")
 }
 
 /// PARANDUSJÄLG (RPS § 10).
@@ -5769,32 +5810,32 @@ model ServiceEntryCorrection {
 /// Eraldi objekt, sest tundlikkus ja säilitus erinevad kirjemärkmetest
 /// (leping ptk 3 „Sisuline aruanne").
 model ServiceMonthlyNarrative {
-  id                String    @id @default(cuid())
-  providerProfileId String
-  referralId        String?
-  clientUserId      String?
-  clientErasedAt    DateTime?
-  clientDisplayName String?
+  id                        String    @id @default(cuid())
+  providerProfileId         String
+  referralId                String?
+  clientUserId              String?
+  clientErasedAt            DateTime?
+  clientDisplayName         String?
   /// Väliskliendi stabiilne minimeeritud viide. Nimi ei ole identiteet.
-  clientExternalRef String?
+  clientExternalRef         String?
   /// Migratsioonieelne nimepõhine rida vajab inimese seostamist päris viitega.
-  clientIdentityNeedsReview Boolean @default(false)
-  periodYear        Int
-  periodMonth       Int
+  clientIdentityNeedsReview Boolean   @default(false)
+  periodYear                Int
+  periodMonth               Int
   /// Inimese KINNITATUD lõpptekst. AI mustand ei jõua siia ilma kinnituseta —
   /// `draftSource` ütleb ausalt, kas tekst sündis mustandist.
-  bodyText          String    @db.Text
-  draftSource       String?
+  bodyText                  String    @db.Text
+  draftSource               String?
   /// ETTEPANEK: CONTINUE | CHANGE_VOLUME | END (mall C lõpp).
   ///
   /// Eraldi väli, mitte lõigu lõpulause: see on ainus koht narratiivis, mida
   /// KOV loeb OTSUSENA — tema järgi sünnib järgmine suunamisotsus. Tekstis
   /// peidetuna oleks ta masinale nähtamatu ja lugejale kergesti kadunud.
-  proposal          String?
-  proposalNote      String?   @db.Text
-  retentionClass    String    @default("accounting7y")
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  proposal                  String?
+  proposalNote              String?   @db.Text
+  retentionClass            String    @default("accounting7y")
+  createdAt                 DateTime  @default(now())
+  updatedAt                 DateTime  @updatedAt
 
   providerProfile ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Restrict)
   referral        ServiceReferral?       @relation(fields: [referralId], references: [id], onDelete: SetNull)
@@ -5891,33 +5932,29 @@ enum ServiceReportShareStatus {
   RECALLED
 }
 
-/* ============================================================================
-   TEENUSPÄEVIK — E2c PÄEVATEEKOND.
-
-   MIS OLI KATKI. OSA I andis ühe külastuse neli fikseeritud märget
-   [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI]. Koduhooldaja, kes teeb kuus külastust
-   järjest, EI LÄHE kuhugi tagasi — ta läheb järgmise kliendi juurde. Tema
-   valik oli seni: jätta [TAGASI] vajutamata (siis kaob üks sõidulõik) või
-   märkida midagi, mida ei juhtunud.
-
-   Päevateekonnal ON JÄRGMISE TÖÖ `EN_ROUTE→ARRIVED` EELMISE LAHKUMISE
-   SÕIDULÕIK. Fiktiivset tagasitulekut ei ole vaja, sest ta ei ole enam ainus
-   viis sõiduaega kirja saada.
-
-   KAKS MUDELIT, KAKS ERI ELU:
-
-   `ServiceVisit` on TÖÖOBJEKT. Ta võib jääda ära (`CANCELLED`), mitte teoks
-   saada (`NOT_DONE`) või vajada parandust — need EI OLE arve alusdokumendid ja
-   nad ei tohi elada `ServiceEntry` tabelis. Leping: „töötaja kinnitatud
-   külastus muutub teenuskirjeks, mitte vastupidi."
-
-   `ServiceWorkRoute` on TÖÖPÄEV. Ilma temata ei ole „päeva algus/lõpp" ega
-   „paus" kellegi oma ja lahtiseks jäänud külastust ei saa turvasignaal sulgeda.
-
-   MIDA SIIN EI OLE: koordinaatide jada. Külastus kannab ÜHT punkti (saabumine),
-   täpselt nagu `ServiceEntry`. Tööteekond ei kanna ühtegi — päeva algus ja lõpp
-   on tihti kodu ja seda me ei kogu (leping E12).
-   ============================================================================ */
+/**
+ * ============================================================================
+ * TEENUSPÄEVIK — E2c PÄEVATEEKOND.
+ * MIS OLI KATKI. OSA I andis ühe külastuse neli fikseeritud märget
+ * [LÄKSIN]→[KOHAL]→[LAHKUSIN]→[TAGASI]. Koduhooldaja, kes teeb kuus külastust
+ * järjest, EI LÄHE kuhugi tagasi — ta läheb järgmise kliendi juurde. Tema
+ * valik oli seni: jätta [TAGASI] vajutamata (siis kaob üks sõidulõik) või
+ * märkida midagi, mida ei juhtunud.
+ * Päevateekonnal ON JÄRGMISE TÖÖ `EN_ROUTE→ARRIVED` EELMISE LAHKUMISE
+ * SÕIDULÕIK. Fiktiivset tagasitulekut ei ole vaja, sest ta ei ole enam ainus
+ * viis sõiduaega kirja saada.
+ * KAKS MUDELIT, KAKS ERI ELU:
+ * `ServiceVisit` on TÖÖOBJEKT. Ta võib jääda ära (`CANCELLED`), mitte teoks
+ * saada (`NOT_DONE`) või vajada parandust — need EI OLE arve alusdokumendid ja
+ * nad ei tohi elada `ServiceEntry` tabelis. Leping: „töötaja kinnitatud
+ * külastus muutub teenuskirjeks, mitte vastupidi."
+ * `ServiceWorkRoute` on TÖÖPÄEV. Ilma temata ei ole „päeva algus/lõpp" ega
+ * „paus" kellegi oma ja lahtiseks jäänud külastust ei saa turvasignaal sulgeda.
+ * MIDA SIIN EI OLE: koordinaatide jada. Külastus kannab ÜHT punkti (saabumine),
+ * täpselt nagu `ServiceEntry`. Tööteekond ei kanna ühtegi — päeva algus ja lõpp
+ * on tihti kodu ja seda me ei kogu (leping E12).
+ * ============================================================================
+ */
 
 model ServiceWorkRoute {
   id                String                 @id @default(cuid())
@@ -5953,19 +5990,19 @@ enum ServiceWorkRouteStatus {
 }
 
 model ServiceVisit {
-  id                String             @id @default(cuid())
-  providerProfileId String
-  routeId           String?
-  ownerUserId       String?
-  referralId        String?
-  serviceId         String?
-  clientUserId      String?
-  clientDisplayName String?
-  clientExternalRef String?
+  id                     String             @id @default(cuid())
+  providerProfileId      String
+  routeId                String?
+  ownerUserId            String?
+  referralId             String?
+  serviceId              String?
+  clientUserId           String?
+  clientDisplayName      String?
+  clientExternalRef      String?
   /// Aadress on PLAANI oma, mitte mõõtmise oma: ta tuleb suunamisest või juhi
   /// plaanist ja tema järgi saab töötaja navigeerida (E11). Asukohapunkt on
   /// eraldi väli ja tema allikas on seade.
-  address           String?
+  address                String?
   /// AADRESSI KOORDINAAT MAA-AMETI REGISTRIST (in-ADS), mitte seadmest.
   ///
   /// Teenusekaart geokodeerib osutajate asukohti juba ammu
@@ -5979,9 +6016,9 @@ model ServiceVisit {
   ///
   /// EI ASENDA asukohatemplit: aadress ütleb, kuhu MINDI, tempel ütleb, kus
   /// KEEGI OLI. Tõend on ainult teine.
-  addressLat        Float?
-  addressLng        Float?
-  addressAdsId      String?
+  addressLat             Float?
+  addressLng             Float?
+  addressAdsId           String?
   /// ETTE ARVUTATUD SÕIT: mitu kilomeetrit ja minutit on siia jõudmiseks.
   ///
   /// Arvutatakse SÕIDU ALGUSE hetkel, mitte pärast: töötaja peab teadma ENNE
@@ -5992,30 +6029,30 @@ model ServiceVisit {
   /// EI OLE ARVE ALUS. Arvele läheb tegelik sõit (`enRouteAt`→`arrivedAt`
   /// punktide vahelt); see arv on plaan ja tema säilitamine lubab hiljem näha,
   /// kas päev läks nii, nagu arvati.
-  plannedTravelKm      Float?
-  plannedTravelMinutes Int?
-  status            ServiceVisitStatus @default(PLANNED)
+  plannedTravelKm        Float?
+  plannedTravelMinutes   Int?
+  status                 ServiceVisitStatus @default(PLANNED)
   /// Plaanitud algus. NULL = planeerimata töö, mille töötaja ise lisas —
   /// päevateekond peab toimima ka ilma päevaplaanita (leping E2a).
-  plannedStartAt    DateTime?
-  sortOrder         Int                @default(0)
-  enRouteAt         DateTime?
-  arrivedAt         DateTime?
-  completedAt       DateTime?
-  cancelledAt       DateTime?
+  plannedStartAt         DateTime?
+  sortOrder              Int                @default(0)
+  enRouteAt              DateTime?
+  arrivedAt              DateTime?
+  completedAt            DateTime?
+  cancelledAt            DateTime?
   /// Miks ära jäi või tegemata jäi. Ilma põhjuseta `NOT_DONE` on number, mille
   /// tähendust keegi hiljem ei tea.
-  outcomeReason     String?
-  note              String?
-  noteProvenance    String?
+  outcomeReason          String?
+  note                   String?
+  noteProvenance         String?
   /// ÜKS punkt: saabumine. Sama kuju mis `ServiceEntry.locationStamps`.
-  locationStamps    Json?
+  locationStamps         Json?
   /// Tekkinud teenuskirje. Viide ILMA võõrvõtita EI OLE siin õige — mõlemad on
   /// osutaja enda objektid ja kirje kadumine peab külastuse küljest ka näha
   /// olema.
-  serviceEntryId    String?            @unique
+  serviceEntryId         String?            @unique
   /// Idempotentsus: sama nupuvajutus võrgu taastumisel ei loo teist külastust.
-  clientRequestId   String?
+  clientRequestId        String?
   /// TÖÖ ORGANISATSIOONILINE PÄRITOLU, KÜLMUTATUD LOOMISE HETKEL
   /// (SOL-SLOG-17 ja -18, mõlemad P0).
   ///
@@ -6045,8 +6082,8 @@ model ServiceVisit {
   /// kustutus ja säilituse purge käivad kaskaadina läbi. Prisma ei näe
   /// triggereid, seega seda rida ei tohi lugeda skeemist tuletatuks.
   assignedOrganizationId String?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
 
   profile  ServiceProviderProfile @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
   route    ServiceWorkRoute?      @relation(fields: [routeId], references: [id], onDelete: SetNull)
@@ -6095,30 +6132,30 @@ enum ServiceVisitStatus {
 // `summaryText` on KÜLMUTATUD väljavõte (jagamisklass 9 CONFIRMED_SUMMARY),
 // mitte viide originaalile. Klassid 1–2 ei lahku kunagi originaalina.
 model NetworkShare {
-  id                  String             @id @default(cuid())
-  sourcePreInquiryId  String
-  workerId            String
+  id                 String @id @default(cuid())
+  sourcePreInquiryId String
+  workerId           String
 
   /// Klient KAHEL RAJAL, sama muster mis `ServiceReferral`-il (omanik 04.08):
   /// võrgustikutöö on sotsiaaltöötaja tööülesanne ja me EI SAA nõuda, et klient
   /// oleks platvormi kasutaja. Kui ta on — kinnitab ta ise. Kui ei ole —
   /// kannab töötaja tema kinnituse üle ja see märgitakse eraldi meetodina.
   /// Väline rada hoiab MIINIMUMI: kuvanimi võib olla initsiaal või roll.
-  clientUserId        String?
-  clientDisplayName   String?
-  clientExternalRef   String?
+  clientUserId      String?
+  clientDisplayName String?
+  clientExternalRef String?
 
   /// Saaja PEAB olema platvormi kasutaja. Vt mudeli päise punkt 1.
-  recipientUserId     String
+  recipientUserId String
 
   /// Külmutatud kokkuvõte — see, mida klient nägi ja kinnitas.
-  summaryText         String             @db.Text
+  summaryText         String   @db.Text
   /// Miks see osapool kaasatakse.
-  purpose             String             @db.Text
+  purpose             String   @db.Text
   /// Mida saaja tohib näha ja mida mitte — töötaja sõnastuses.
-  sharingBoundary     String             @db.Text
+  sharingBoundary     String   @db.Text
   /// Kaardistamise lõpp on KOHUSTUSLIK väli. „Igavesti vaikimisi" on keelatud.
-  participationEndsOn DateTime           @db.Date
+  participationEndsOn DateTime @db.Date
 
   /// SOL-NET-01/-02: KINNITUS VIITAB TEKSTILE, MITTE REALE.
   ///
@@ -6134,10 +6171,10 @@ model NetworkShare {
   contentHash          String
   confirmedContentHash String?
 
-  status              NetworkShareStatus @default(DRAFT)
-  clientConfirmedAt   DateTime?
-  clientDeclinedAt    DateTime?
-  clientDecisionNote  String?            @db.Text
+  status             NetworkShareStatus @default(DRAFT)
+  clientConfirmedAt  DateTime?
+  clientDeclinedAt   DateTime?
+  clientDecisionNote String?            @db.Text
 
   /// Kuidas kinnitus saadi. `IN_APP` = klient ise oma kontolt. Ülejäänud on
   /// TÖÖTAJA ÜLEKANTUD kinnitus ja see on nõrgem tõend — neid ei tohi kunagi
@@ -6145,16 +6182,16 @@ model NetworkShare {
   /// ei esitata inimese ütlusena".
   clientConfirmationMethod       ClientConfirmationMethod?
   clientConfirmationAttestedById String?
-  sentAt              DateTime?
-  openedAt            DateTime?
-  recalledAt          DateTime?
-  respondedAt         DateTime?
+  sentAt                         DateTime?
+  openedAt                       DateTime?
+  recalledAt                     DateTime?
+  respondedAt                    DateTime?
 
   /// Kirjalik ruum avaneb alles saatmisel, mitte mustandi loomisel.
-  roomId              String?            @unique
+  roomId String? @unique
 
-  createdAt           DateTime           @default(now())
-  updatedAt           DateTime           @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   sourcePreInquiry PreInquiry @relation("NetworkShareSource", fields: [sourcePreInquiryId], references: [id], onDelete: Cascade)
   worker           User       @relation("NetworkShareWorker", fields: [workerId], references: [id], onDelete: Cascade)
@@ -6272,7 +6309,7 @@ model UrgentDesk {
   publicName String
 
   /// Laud on funktsionaalne, aga omanik on nimeline (KOV-lepingu p 1).
-  ownerUserId String?
+  ownerUserId    String?
   /// Teenuseosutaja laud on seotud teenusekaardi kirjega.
   serviceEntryId String?
 
@@ -6305,10 +6342,10 @@ model UrgentDesk {
   directContactAllowed Boolean @default(false)
 
   /// Mehitatud ja avatud. Vaikimisi VÄLJAS — laud ei teki kogemata.
-  isActive       Boolean   @default(false)
+  isActive               Boolean   @default(false)
   /// Millal partner tingimusi viimati kinnitas. Aegunud kinnitus sulgeb laua
   /// (`DESK_VERIFICATION_MAX_AGE_DAYS`) — vana lubadus ei ole lubadus.
-  lastVerifiedAt DateTime?
+  lastVerifiedAt         DateTime?
   /// SOL-URG-12: KES kinnitas ja MILLISE tekstiversiooni. Ilma nendeta ütles
   /// andmebaas ainult aega — „partner kinnitas tingimused" ei olnud tõendatav.
   /// Räsi on `VERIFIED_CONDITION_FIELDS` kanooniline sha256 kinnitamise hetkel.
@@ -6444,24 +6481,24 @@ model UrgentRequestEvent {
   @@index([actorId, createdAt])
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   A4 E3 — MTR tegevusloa kontrolli andmemudel.
-
-   KAHEKSA LUKUSTATUD PÕHIMÕTET (omanik 05.08), mis seletavad, miks skeem on
-   just selline:
-
-   1. `serviceKey` on LAIENDATAV STRING, mitte DB-enum. Uue kataloogirea
-      lisamine peab olema andmeline muudatus, mitte migratsioon.
-   2. `catalogueVersion` salvestatakse iga hinnangu juurde.
-   3. Loakohustuse otsus salvestatakse KONTROLLI HETKE KOOPIANA — vana kirje
-      tähendus ei tohi tagantjärele muutuda, kui vastavustabel muutub.
-   4. `EXACT_MATCH` ja `ACTIVITY_MATCH_ONLY` on eraldi seisud.
-   5. `missingOrderedColumns` säilib kontrolli tehnilise metaandmena.
-   6. Rikastusvälja puudumine ei kustuta identiteedi ja tegevusala põhjal
-      saadud usaldusväärset tulemust.
-   7. SIDUMATA teenus ei tekita MTR-i päringut ega avalikku loaväidet.
-   8. Uus `serviceKey` = andmed või konfiguratsioon, mitte skeemimuudatus.
-   ───────────────────────────────────────────────────────────────────────────── */
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * A4 E3 — MTR tegevusloa kontrolli andmemudel.
+ * KAHEKSA LUKUSTATUD PÕHIMÕTET (omanik 05.08), mis seletavad, miks skeem on
+ * just selline:
+ * 1. `serviceKey` on LAIENDATAV STRING, mitte DB-enum. Uue kataloogirea
+ * lisamine peab olema andmeline muudatus, mitte migratsioon.
+ * 2. `catalogueVersion` salvestatakse iga hinnangu juurde.
+ * 3. Loakohustuse otsus salvestatakse KONTROLLI HETKE KOOPIANA — vana kirje
+ * tähendus ei tohi tagantjärele muutuda, kui vastavustabel muutub.
+ * 4. `EXACT_MATCH` ja `ACTIVITY_MATCH_ONLY` on eraldi seisud.
+ * 5. `missingOrderedColumns` säilib kontrolli tehnilise metaandmena.
+ * 6. Rikastusvälja puudumine ei kustuta identiteedi ja tegevusala põhjal
+ * saadud usaldusväärset tulemust.
+ * 7. SIDUMATA teenus ei tekita MTR-i päringut ega avalikku loaväidet.
+ * 8. Uus `serviceKey` = andmed või konfiguratsioon, mitte skeemimuudatus.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 
 /// Kontrolli tulemus tervikuna. Tahtlikult kaheväärtuseline: kõik täpsem
 /// (miks ei õnnestunud) elab `reason`-is STRINGINA, sest põhjuste loend kasvab
@@ -6502,7 +6539,7 @@ enum LicencePublicStatus {
 /// Kirje jääb alles ka siis, kui päring ebaõnnestus — „me proovisime ja ei
 /// saanud" on omaette fakt, mida osutaja ja admin peavad nägema.
 model LicenceCheck {
-  id                String             @id @default(cuid())
+  id                String @id @default(cuid())
   providerProfileId String
   /// Kood, MILLEGA päriti. Ta ei pruugi enam võrduda profiili praeguse
   /// koodiga — ajalooline kirje peab ütlema, mida tol hetkel küsiti.
@@ -6520,7 +6557,7 @@ model LicenceCheck {
 
   /// Identiteedivärav: kas kood vastas MTR-is päris juriidilisele isikule.
   /// Ilma selleta ei tohi tekkida väidet „luba puudub".
-  entityResolved Boolean @default(false)
+  entityResolved Boolean  @default(false)
   /// Registrist tulnud nimi — anomaaliakontrolliks profiili nime vastu.
   entityName     String?
   /// KOLM väärtust: true = kontrollnumber klapib · false = ei klapi ·
@@ -6530,13 +6567,13 @@ model LicenceCheck {
   /// Kolm ERI aega. `attemptedAt` = päring algas. `licenceSourceCheckedAt` =
   /// lubade vastus loeti. `verifiedAt` = KOGU kontroll õnnestus (sh
   /// identiteet) — ainult see kõlbab avaliku märgise kuupäevaks.
-  attemptedAt            DateTime  @default(now())
-  licenceSourceCheckedAt DateTime?
-  verifiedAt             DateTime?
-  nextCheckAt            DateTime?
+  attemptedAt             DateTime  @default(now())
+  licenceSourceCheckedAt  DateTime?
+  verifiedAt              DateTime?
+  nextCheckAt             DateTime?
   /// Mitmes järjestikune ebaõnnestumine see on. Ilma selleta ei saa
   /// korduskatsete astmestik (1 h → 6 h → 24 h) tegelikult rakenduda.
-  consecutiveFailureCount Int @default(0)
+  consecutiveFailureCount Int       @default(0)
 
   /// Tehnilised metaandmed E6 alarmi jaoks (põhimõtted 5 ja 6).
   unknownColumns        String[] @default([])
@@ -6544,10 +6581,10 @@ model LicenceCheck {
 
   createdAt DateTime @default(now())
 
-  providerProfile   ServiceProviderProfile     @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
-  licences          LicenceRecord[]
-  lastAttemptFor    ServiceLicenceAssessment[] @relation("AssessmentLastAttempt")
-  statusSourceFor   ServiceLicenceAssessment[] @relation("AssessmentStatusSource")
+  providerProfile ServiceProviderProfile     @relation(fields: [providerProfileId], references: [id], onDelete: Cascade)
+  licences        LicenceRecord[]
+  lastAttemptFor  ServiceLicenceAssessment[] @relation("AssessmentLastAttempt")
+  statusSourceFor ServiceLicenceAssessment[] @relation("AssessmentStatusSource")
 
   @@index([providerProfileId, attemptedAt])
   @@index([registryCode, attemptedAt])
@@ -6575,11 +6612,11 @@ model LicenceRecord {
   indefinite Boolean   @default(false)
   valid      Boolean   @default(false)
 
-  organizationName    String
+  organizationName   String
   /// TEGEVUSLOAL LUBATUD MAKSIMAALNE MAHT, mitte vabad kohad. Nime pikkus on
   /// tahtlik: „maxPersons" oleks varem või hiljem loetud kättesaadavuseks.
-  licensedMaxPersons  Int?
-  note                String? @db.Text
+  licensedMaxPersons Int?
+  note               String? @db.Text
 
   createdAt DateTime @default(now())
 
@@ -6593,9 +6630,9 @@ model LicenceRecord {
 /// Loa tegevuskoht. Eraldi tabel, sest luba käib teenuse JA KOHA külge —
 /// ühe maja luba ei rohelista teist maja.
 model LicenceRecordLocation {
-  id       String  @id @default(cuid())
-  recordId String
-  address  String
+  id                 String @id @default(cuid())
+  recordId           String
+  address            String
   licensedMaxPersons Int?
 
   record LicenceRecord @relation(fields: [recordId], references: [id], onDelete: Cascade)
@@ -6630,8 +6667,8 @@ model ServiceLicenceAssessment {
   activityExpected        String?
   activityTypeExpected    String?
 
-  coverage     LicenceCoverage
-  publicStatus LicencePublicStatus
+  coverage         LicenceCoverage
+  publicStatus     LicencePublicStatus
   /// Miks seis selline on (`CHECK_STALE`, `IDENTITY_UNRESOLVED`,
   /// `PENDING_SECOND_CHECK`, allikakliendi põhjus). Ilma selleta ei oska
   /// osutaja vaade öelda, mida parandada.
@@ -6645,7 +6682,7 @@ model ServiceLicenceAssessment {
   coveringLicenceNumber  String?
   /// V1 märgis on ORGANISATSIOONI tasandi kontroll: ta ütleb, et osutajal on
   /// sellele teenusele luba, MITTE et just see teeninduskoht on kaetud.
-  coverageScope          String @default("ORGANISATION")
+  coverageScope          String    @default("ORGANISATION")
 
   /// Mitu järjestikust EDUKAT registrivastust on luba puudunud. Tehniline
   /// tõrge NULLIB selle — muidu loeks kaks tõrkega eraldatud puudumist
@@ -6665,22 +6702,19 @@ model ServiceLicenceAssessment {
   @@index([publicStatusValidUntil])
 }
 
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   JUHTUM-V1 (CASEWORK-P7) — juhtumi objekt.
-
-   Leping: docs/platvormi arendus/juhtum-v1-arendusleping.md (v6).
-
-   MIS SEE ON: töötaja enda töökorralduse KONTEINER. Ta seob olemasolevat ja
-   EI KOPEERI ühtegi rida. Mustandeid hoiab endiselt `AgentArtifact`.
-
-   MIS SEE EI OLE: kliendiregister. Isikuvälju siin ei ole — klient on kahe raja
-   mustris (L11), sama muster mis `ServiceReferral`-il ja `NetworkShare`-il.
-
-   PIIR CASEWORK-P2 VASTU (leping ptk „Piir"): mustandi ülekandeahel (8 elementi
-   × 7 seisu) EI KUULU siia ja on kolme otsuse taga (O-CW-2/4/10). Sellepärast ei
-   ole üheski siinses mudelis ülekande- ega ülevaatuse seisu välja.
-   ───────────────────────────────────────────────────────────────────────────── */
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * JUHTUM-V1 (CASEWORK-P7) — juhtumi objekt.
+ * Leping: docs/platvormi arendus/juhtum-v1-arendusleping.md (v6).
+ * MIS SEE ON: töötaja enda töökorralduse KONTEINER. Ta seob olemasolevat ja
+ * EI KOPEERI ühtegi rida. Mustandeid hoiab endiselt `AgentArtifact`.
+ * MIS SEE EI OLE: kliendiregister. Isikuvälju siin ei ole — klient on kahe raja
+ * mustris (L11), sama muster mis `ServiceReferral`-il ja `NetworkShare`-il.
+ * PIIR CASEWORK-P2 VASTU (leping ptk „Piir"): mustandi ülekandeahel (8 elementi
+ * × 7 seisu) EI KUULU siia ja on kolme otsuse taga (O-CW-2/4/10). Sellepärast ei
+ * ole üheski siinses mudelis ülekande- ega ülevaatuse seisu välja.
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
 
 enum CaseWorkRetentionState {
   ACTIVE
@@ -6803,43 +6837,51 @@ model CaseWorkAssist {
   id          String @id @default(cuid())
   ownerUserId String
 
-  /* PÄRITOLU (L12). Kaks otsevälja, MAKSIMAALSELT ÜKS määratud — CHECK
-     migratsioonis. Nad EI ole `CaseWorkItem` sihttüübid: sama seos kahel viisil
-     laseks kahel tõel lahku minna.
-     Päritolu määratakse loomisel ja V1-s ei muudeta. Päritoluobjekti kustutus
-     annab `SetNull` — juhtum ise säilib. */
+  /**
+   * PÄRITOLU (L12). Kaks otsevälja, MAKSIMAALSELT ÜKS määratud — CHECK
+   * migratsioonis. Nad EI ole `CaseWorkItem` sihttüübid: sama seos kahel viisil
+   * laseks kahel tõel lahku minna.
+   * Päritolu määratakse loomisel ja V1-s ei muudeta. Päritoluobjekti kustutus
+   * annab `SetNull` — juhtum ise säilib.
+   */
   preInquiryId    String?
   urgentRequestId String?
 
-  /* KLIENT KAHEL RAJAL (L11), sama muster mis `ServiceReferral`-il ja
-     `NetworkShare`-il (omaniku otsus 04.08).
-       Rada A — `clientUserId`: platvormi kasutaja. V1-s tohib ta olla AINULT
-       päritoluobjekti autor; kliendiotsingut ega kasutajakataloogi ei ole.
-       Rada B — `clientDisplayName` / `clientExternalRef`: miinimumkuju, kuvanimi
-       võib olla initsiaal või roll.
-     Päritolu olemasolu EI KEELA rada B: pöördumise võib esitada lähedane või
-     esindaja, ja siis ei ole autor klient. Automaatset tuletust ei tehta —
-     `PreInquiry`-l ega `UrgentRequest`-il EI OLE kliendivälja, on ainult autor.
-     `clientExternalRef` on ISIKU tunnus. Menetluse viide elab `externalReference`-is. */
+  /**
+   * KLIENT KAHEL RAJAL (L11), sama muster mis `ServiceReferral`-il ja
+   * `NetworkShare`-il (omaniku otsus 04.08).
+   * Rada A — `clientUserId`: platvormi kasutaja. V1-s tohib ta olla AINULT
+   * päritoluobjekti autor; kliendiotsingut ega kasutajakataloogi ei ole.
+   * Rada B — `clientDisplayName` / `clientExternalRef`: miinimumkuju, kuvanimi
+   * võib olla initsiaal või roll.
+   * Päritolu olemasolu EI KEELA rada B: pöördumise võib esitada lähedane või
+   * esindaja, ja siis ei ole autor klient. Automaatset tuletust ei tehta —
+   * `PreInquiry`-l ega `UrgentRequest`-il EI OLE kliendivälja, on ainult autor.
+   * `clientExternalRef` on ISIKU tunnus. Menetluse viide elab `externalReference`-is.
+   */
   clientUserId      String?
   clientDisplayName String?
   clientExternalRef String?
   /// Kustutus nullib kõik kolm välja ja jätab ainult selle märke (L17).
   /// FK `SetNull` üksi EI PIISA — ta ei määra seda välja.
-  clientErasedAt DateTime?
+  clientErasedAt    DateTime?
 
-  /* STAR-i viide (L6). Mõlemad või kumbki — CHECK migratsioonis. */
+  /**
+   * STAR-i viide (L6). Mõlemad või kumbki — CHECK migratsioonis.
+   */
   externalSystem    CaseWorkExternalSystem?
   externalReference String?
 
   nextContactAt DateTime?
 
-  /* IDEMPOTENTSUSVÕTI (SOL-CW-12). Kliendi loodud võti; topeltklõps, võrgu
-     timeout või kliendi korduskatse peavad andma SAMA juhtumi, mitte teist.
-     Jõustaja on unikaalne indeks `(ownerUserId, clientActionId)`, mitte
-     teenuskihi eelkontroll — kaks paralleelset päringut jõuaksid eelkontrollist
-     mõlemad läbi. NULL on lubatud ja NULL-id ei põrka: vana klient ja
-     serveripoolne loomine töötavad edasi. */
+  /**
+   * IDEMPOTENTSUSVÕTI (SOL-CW-12). Kliendi loodud võti; topeltklõps, võrgu
+   * timeout või kliendi korduskatse peavad andma SAMA juhtumi, mitte teist.
+   * Jõustaja on unikaalne indeks `(ownerUserId, clientActionId)`, mitte
+   * teenuskihi eelkontroll — kaks paralleelset päringut jõuaksid eelkontrollist
+   * mõlemad läbi. NULL on lubatud ja NULL-id ei põrka: vana klient ja
+   * serveripoolne loomine töötavad edasi.
+   */
   clientActionId String?
 
   /// L14: ainult ACTIVE → READ_ONLY → ARCHIVED, tagasisiirdeid ei ole.
@@ -6864,11 +6906,13 @@ model CaseWorkAssist {
   retentionAudit CaseWorkRetentionAudit[]
   erasureAudit   CaseWorkClientErasureAudit[]
 
-  /* ÜKS JUHTUM LÄHTEOBJEKTI KOHTA OMANIKU KOHTA (SOL-CW-12, omanik 09.08.2026).
-     Postgres loeb NULL-id eristuvaks, seega päritoluta juhtumeid see ei puuduta
-     ja sama pöördumisest võib juhtumi teha KAKS ERI töötajat. Jõustus on siin,
-     mitte teenuskihis: kaks paralleelset päringut jõuaksid eelkontrollist
-     mõlemad läbi ja tekitaksid kaks juhtumit ühest pöördumisest. */
+  /**
+   * ÜKS JUHTUM LÄHTEOBJEKTI KOHTA OMANIKU KOHTA (SOL-CW-12, omanik 09.08.2026).
+   * Postgres loeb NULL-id eristuvaks, seega päritoluta juhtumeid see ei puuduta
+   * ja sama pöördumisest võib juhtumi teha KAKS ERI töötajat. Jõustus on siin,
+   * mitte teenuskihis: kaks paralleelset päringut jõuaksid eelkontrollist
+   * mõlemad läbi ja tekitaksid kaks juhtumit ühest pöördumisest.
+   */
   @@unique([ownerUserId, preInquiryId])
   @@unique([ownerUserId, urgentRequestId])
   @@unique([ownerUserId, clientActionId])
@@ -6880,18 +6924,17 @@ model CaseWorkAssist {
   @@index([clientUserId])
 }
 
-/* SEOS (L15) — TYPED-FK, MITTE POLÜMORFNE.
-
-   `PreInquiry` skeemikommentaar ütleb platvormi reegli välja: „iga adressaadi-
-   liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus."
-   Polümorfne `targetType + targetId` tähendaks, et lubadus „ei jää rippuvat
-   viidet" on ainult nii tugev kui rakenduse kustutusteede kaetus. Typed-FK +
-   `onDelete: Cascade` annab garantii ANDMEBAASIST — ta kehtib ka otse-SQL
-   kustutuse korral.
-
-   Hind on teadlik: uus sihttüüp on migratsioon, mitte rea lisamine loendisse.
-
-   `updatedAt` PUUDUB TEADLIKULT — seos on kas olemas või mitte, teda ei muudeta. */
+/**
+ * SEOS (L15) — TYPED-FK, MITTE POLÜMORFNE.
+ * `PreInquiry` skeemikommentaar ütleb platvormi reegli välja: „iga adressaadi-
+ * liik kannab oma võtit ja oma FK-d, muidu kaob referentsiaalne terviklikkus."
+ * Polümorfne `targetType + targetId` tähendaks, et lubadus „ei jää rippuvat
+ * viidet" on ainult nii tugev kui rakenduse kustutusteede kaetus. Typed-FK +
+ * `onDelete: Cascade` annab garantii ANDMEBAASIST — ta kehtib ka otse-SQL
+ * kustutuse korral.
+ * Hind on teadlik: uus sihttüüp on migratsioon, mitte rea lisamine loendisse.
+ * `updatedAt` PUUDUB TEADLIKULT — seos on kas olemas või mitte, teda ei muudeta.
+ */
 model CaseWorkItem {
   id               String @id @default(cuid())
   caseWorkAssistId String
@@ -6907,8 +6950,10 @@ model CaseWorkItem {
   agentArtifact  AgentArtifact? @relation(fields: [agentArtifactId], references: [id], onDelete: Cascade)
   fieldVisit     FieldVisit?    @relation(fields: [fieldVisitId], references: [id], onDelete: Cascade)
 
-  /* NULL-e ei loeta Postgresis võrdseks, seega mitu `NULL`-iga rida elab kõrvuti
-     ja unikaalsus kehtib ainult päris seostele — täpselt see, mida vaja. */
+  /**
+   * NULL-e ei loeta Postgresis võrdseks, seega mitu `NULL`-iga rida elab kõrvuti
+   * ja unikaalsus kehtib ainult päris seostele — täpselt see, mida vaja.
+   */
   @@unique([caseWorkAssistId, userDocumentId])
   @@unique([caseWorkAssistId, agentArtifactId])
   @@unique([caseWorkAssistId, fieldVisitId])
@@ -6921,13 +6966,15 @@ model CaseWorkMissingInfo {
 
   text String @db.Text
 
-  /* L5: päritolusõnastik on `lib/workspaces/provenance.js` (8 väärtust,
-     CASEWORK-P0). TEKST, mitte DB-enum — muidu tekiks teine tõde ja sõnastiku
-     muutus nõuaks migratsiooni. Sama põhjendus mis A4 `serviceKey`-l.
-     Validaator elab teenuskihis ja tundmatu väärtus lükatakse tagasi. */
+  /**
+   * L5: päritolusõnastik on `lib/workspaces/provenance.js` (8 väärtust,
+   * CASEWORK-P0). TEKST, mitte DB-enum — muidu tekiks teine tõde ja sõnastiku
+   * muutus nõuaks migratsiooni. Sama põhjendus mis A4 `serviceKey`-l.
+   * Validaator elab teenuskihis ja tundmatu väärtus lükatakse tagasi.
+   */
   provenance String
 
-  status CaseWorkMissingInfoStatus @default(OPEN)
+  status     CaseWorkMissingInfoStatus @default(OPEN)
   /// Invariant: OPEN → NULL; RESOLVED/NOT_APPLICABLE → serveris määratud.
   resolvedAt DateTime?
 
@@ -7057,7 +7104,7 @@ model CaseWorkQuestion {
 /// kirje on eemaldatav, märge tervikuna mitte — juhtumi kustutus viib ta
 /// kaskaadis.
 model CaseWorkMeetingNote {
-  id               String @id @default(cuid())
+  id               String  @id @default(cuid())
   caseWorkAssistId String
   meetingPrepId    String?
 
@@ -7068,8 +7115,8 @@ model CaseWorkMeetingNote {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  caseWorkAssist CaseWorkAssist       @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
-  meetingPrep    CaseWorkMeetingPrep? @relation(fields: [meetingPrepId], references: [id], onDelete: SetNull)
+  caseWorkAssist CaseWorkAssist             @relation(fields: [caseWorkAssistId], references: [id], onDelete: Cascade)
+  meetingPrep    CaseWorkMeetingPrep?       @relation(fields: [meetingPrepId], references: [id], onDelete: SetNull)
   entries        CaseWorkMeetingNoteEntry[]
 
   @@index([caseWorkAssistId, meetingAt])
@@ -7103,25 +7150,31 @@ model CaseWorkMeetingNoteEntry {
 
   ordinal Int @default(0)
 
-  /* MITMES VERSIOON SEE RIDA ON (SOL-CW-15). 1 = esmane salvestus. Iga parandus
-     kasvatab teda ühe võrra ja paneb ASENDATAVA versiooni
-     `CaseWorkMeetingNoteEntryRevision`-isse. Ilma loendurita ei saaks ajalugu
-     järjestada ega öelda, mitu korda rida on muutunud. */
+  /**
+   * MITMES VERSIOON SEE RIDA ON (SOL-CW-15). 1 = esmane salvestus. Iga parandus
+   * kasvatab teda ühe võrra ja paneb ASENDATAVA versiooni
+   * `CaseWorkMeetingNoteEntryRevision`-isse. Ilma loendurita ei saaks ajalugu
+   * järjestada ega öelda, mitu korda rida on muutunud.
+   */
   revision Int @default(1)
 
-  /* TÜHISTUS, MITTE KUSTUTUS (SOL-CW-15). Varem oli kirje kõvasti kustutatav
-     ilma versiooni, paranduse ega auditireata: kõik read sai ükshaaval ära
-     võtta ja alles jäi tühi konteiner, mis näis endiselt kohtumise tõendina.
-     Nüüd jääb rida alles, tema sisu läheb tühistuse hetkel ajalukku ja
-     aktiivselt pinnalt kaob ainult tekst. */
+  /**
+   * TÜHISTUS, MITTE KUSTUTUS (SOL-CW-15). Varem oli kirje kõvasti kustutatav
+   * ilma versiooni, paranduse ega auditireata: kõik read sai ükshaaval ära
+   * võtta ja alles jäi tühi konteiner, mis näis endiselt kohtumise tõendina.
+   * Nüüd jääb rida alles, tema sisu läheb tühistuse hetkel ajalukku ja
+   * aktiivselt pinnalt kaob ainult tekst.
+   */
   retractedAt DateTime?
 
-  /* NEED KAKS OLID ANDMEBAASIS, AGA MITTE MUDELIS (SOL-SCHEMA-01).
-     `20260808160000_jta_v1_meeting_note` lõi `"updatedAt" TIMESTAMP(3) NOT NULL`
-     ILMA vaikeväärtuseta; mudel neid ei kandnud, seega Prisma ei saatnud neid
-     kaasa ja iga kirje loomine kukkus päris PostgreSQL-is `23502`-ga. Sviit oli
-     roheline, sest fake-Prisma ei jõusta `NOT NULL`-i, ja `db:migrate:check`
-     rakendab migratsioone, aga ei kirjuta ühtegi rida. */
+  /**
+   * NEED KAKS OLID ANDMEBAASIS, AGA MITTE MUDELIS (SOL-SCHEMA-01).
+   * `20260808160000_jta_v1_meeting_note` lõi `"updatedAt" TIMESTAMP(3) NOT NULL`
+   * ILMA vaikeväärtuseta; mudel neid ei kandnud, seega Prisma ei saatnud neid
+   * kaasa ja iga kirje loomine kukkus päris PostgreSQL-is `23502`-ga. Sviit oli
+   * roheline, sest fake-Prisma ei jõusta `NOT NULL`-i, ja `db:migrate:check`
+   * rakendab migratsioone, aga ei kirjuta ühtegi rida.
+   */
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -7142,18 +7195,18 @@ enum CaseWorkNoteRevisionKind {
   RETRACTION
 }
 
-/* KOHTUMISE MÄRKME PARANDUSTE JA TÜHISTUSTE AJALUGU (SOL-CW-15).
-
-   MIKS ERALDI TABEL, MITTE VÄLI KIRJE PEAL. Üks „eelmine tekst" väli kannaks
-   ainult viimast muutust; teine parandus kirjutaks esimese üle ja lubadus
-   „eelmine versioon säilib" katkeks vaikselt just siis, kui teda kõige rohkem
-   vaja on — korduvalt muudetud rea juures.
-
-   RIDA ON MUUTUMATU ja seda jõustab migratsioonis `BEFORE UPDATE` trigger, sama
-   muster mis `UsageEvent`-il. `DELETE`-i trigger EI blokeeri: konto kustutus ja
-   säilituse purge peavad kaskaadi kaudu läbi minema, ja nemad viivad kaasa kogu
-   juhtumi, mitte üksiku tõendi. Piir on aus: sisu ei saa MUUTA, ta saab kaduda
-   ainult koos juhtumiga. */
+/**
+ * KOHTUMISE MÄRKME PARANDUSTE JA TÜHISTUSTE AJALUGU (SOL-CW-15).
+ * MIKS ERALDI TABEL, MITTE VÄLI KIRJE PEAL. Üks „eelmine tekst" väli kannaks
+ * ainult viimast muutust; teine parandus kirjutaks esimese üle ja lubadus
+ * „eelmine versioon säilib" katkeks vaikselt just siis, kui teda kõige rohkem
+ * vaja on — korduvalt muudetud rea juures.
+ * RIDA ON MUUTUMATU ja seda jõustab migratsioonis `BEFORE UPDATE` trigger, sama
+ * muster mis `UsageEvent`-il. `DELETE`-i trigger EI blokeeri: konto kustutus ja
+ * säilituse purge peavad kaskaadi kaudu läbi minema, ja nemad viivad kaasa kogu
+ * juhtumi, mitte üksiku tõendi. Piir on aus: sisu ei saa MUUTA, ta saab kaduda
+ * ainult koos juhtumiga.
+ */
 model CaseWorkMeetingNoteEntryRevision {
   id      String @id @default(cuid())
   entryId String
@@ -7164,9 +7217,11 @@ model CaseWorkMeetingNoteEntryRevision {
 
   kind CaseWorkNoteRevisionKind
 
-  /* SISU, MIS SEISAB SELLE VERSIOONI TAGA. Parandusel on see ASENDATUD tekst,
-     tühistusel tühistamise hetke tekst. Kiht ja päritolu käivad kaasa, sest
-     ka nemad on muudetavad ja ilma nendeta ei saaks vana rida taastada. */
+  /**
+   * SISU, MIS SEISAB SELLE VERSIOONI TAGA. Parandusel on see ASENDATUD tekst,
+   * tühistusel tühistamise hetke tekst. Kiht ja päritolu käivad kaasa, sest
+   * ka nemad on muudetavad ja ilma nendeta ei saaks vana rida taastada.
+   */
   layer      String
   text       String @db.Text
   provenance String
@@ -7275,16 +7330,16 @@ model CaseWorkDraftField {
   @@index([draftId])
 }
 
-/* AUDITID (L8, L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.
-
-   `DataAuditLog` on ADMINI LOETAV (kasutusel `app/api/admin/usage/*`
-   marsruutidel), ja retention-põhjus ON juhtumi sisu. L2 ütleb, et admin ei näe
-   juhtumi sisu — seega olemasolev audititaristu ei sobi mõõdetud faktil, mitte
-   eelistusel. `lib/privacy/audit.js` on sama tabeli ümbris.
-
-   Kõik kolm on APPEND-ONLY: update- ja delete-API-t ei eksisteeri.
-   `actorUserId` on FK-ta String (sama muster mis `DataAuditLog`-il) — auditirida
-   ei tohi kaduda ega muutuda kasutaja kustutamisest. */
+/**
+ * AUDITID (L8, L18, L21) — OMA MUDELID, MITTE `DataAuditLog`.
+ * `DataAuditLog` on ADMINI LOETAV (kasutusel `app/api/admin/usage/*`
+ * marsruutidel), ja retention-põhjus ON juhtumi sisu. L2 ütleb, et admin ei näe
+ * juhtumi sisu — seega olemasolev audititaristu ei sobi mõõdetud faktil, mitte
+ * eelistusel. `lib/privacy/audit.js` on sama tabeli ümbris.
+ * Kõik kolm on APPEND-ONLY: update- ja delete-API-t ei eksisteeri.
+ * `actorUserId` on FK-ta String (sama muster mis `DataAuditLog`-il) — auditirida
+ * ei tohi kaduda ega muutuda kasutaja kustutamisest.
+ */
 
 /// JTA-V1 (E6) — STAR2 ülekandeaudit. FAKT + VÄLJADE LOEND, MITTE SNAPSHOT (L8).
 ///
@@ -7322,13 +7377,15 @@ model CaseWorkTransferEvent {
   /// Milliste väljade `fieldKey`-d kopeeriti. VÄÄRTUSI SIIN EI OLE.
   fieldKeys String[] @default([])
 
-  /* KOPEERITUD SISU KANOONILINE SÕRMEJÄLG (SOL-CW-16, sha256 hex).
-     Rida tõendas seni teo aega ja väljanimesid, aga MITTE seda, milline tekst
-     lõikelauale läks: sisu sai auditi ja kopeerimise vahel asendada ja audit
-     võeti vastu. Räsi seob rea tekstiversiooniga ILMA väärtusi hoidmata — L8
-     keelab snapshot'i, sest see elaks üle E7 sisu-purge'i ja oleks
-     varju-register. `String?`, sest `MARKED_AS_TRANSFERRED` real plokki ei ole;
-     kohustuslikkust `kind` järgi jõustab `CHECK` migratsioonis. */
+  /**
+   * KOPEERITUD SISU KANOONILINE SÕRMEJÄLG (SOL-CW-16, sha256 hex).
+   * Rida tõendas seni teo aega ja väljanimesid, aga MITTE seda, milline tekst
+   * lõikelauale läks: sisu sai auditi ja kopeerimise vahel asendada ja audit
+   * võeti vastu. Räsi seob rea tekstiversiooniga ILMA väärtusi hoidmata — L8
+   * keelab snapshot'i, sest see elaks üle E7 sisu-purge'i ja oleks
+   * varju-register. `String?`, sest `MARKED_AS_TRANSFERRED` real plokki ei ole;
+   * kohustuslikkust `kind` järgi jõustab `CHECK` migratsioonis.
+   */
   contentHash String?
 
   /// L22 idempotentsusvõti. `String?` on TAHTLIK: Postgres loeb `NULL`-e
@@ -7349,23 +7406,23 @@ model CaseWorkTransferEvent {
   @@index([ownerUserId, createdAt])
   @@index([draftId, createdAt])
 }
-/* SÄILITUSTÖÖ JOOKSU LOGI (SOL-CW-14).
 
-   MIKS ANDMEBAASIS, MITTE LOGIFAILIS. Leid oli, et koodis olev säilitusreegel
-   ei muutu iseenesest päris tööks: `runRetention()` oli olemas ja testitud, aga
-   teda kutsus ainult käsitsi käivitatav skript ning cron oli näide skripti
-   päises, mitte repositooriumi hallatav ajastus. Ilma püsiva jooksuseisuta ei
-   saa keegi vastata kolmele küsimusele, mida järelevalve küsib: **millal töö
-   viimati õnnestus**, **millal ta järgmine kord käib** ja **kas keegi märkab,
-   kui ta lakkab käimast**. Logifail vastab neist mitte ühelegi masinloetavalt
-   ja kaob koos hostiga.
-
-   RIDA ON JOOKSU KOHTA, MITTE JUHTUMI KOHTA — siin ei ole ühtegi isikuandmete
-   välja ja `CaseWorkRetentionAudit` (mis on juhtumi oma) jääb puutumata.
-
-   VEATEADET SIIN EI SALVESTATA, ainult erindi klass ja kood. Prisma paneb
-   ebaõnnestunud päringu argumendid teatesse ja mõni teenuskiht kirje teksti —
-   sama põhjendus, mis laual (workbench L13). */
+/**
+ * SÄILITUSTÖÖ JOOKSU LOGI (SOL-CW-14).
+ * MIKS ANDMEBAASIS, MITTE LOGIFAILIS. Leid oli, et koodis olev säilitusreegel
+ * ei muutu iseenesest päris tööks: `runRetention()` oli olemas ja testitud, aga
+ * teda kutsus ainult käsitsi käivitatav skript ning cron oli näide skripti
+ * päises, mitte repositooriumi hallatav ajastus. Ilma püsiva jooksuseisuta ei
+ * saa keegi vastata kolmele küsimusele, mida järelevalve küsib: **millal töö
+ * viimati õnnestus**, **millal ta järgmine kord käib** ja **kas keegi märkab,
+ * kui ta lakkab käimast**. Logifail vastab neist mitte ühelegi masinloetavalt
+ * ja kaob koos hostiga.
+ * RIDA ON JOOKSU KOHTA, MITTE JUHTUMI KOHTA — siin ei ole ühtegi isikuandmete
+ * välja ja `CaseWorkRetentionAudit` (mis on juhtumi oma) jääb puutumata.
+ * VEATEADET SIIN EI SALVESTATA, ainult erindi klass ja kood. Prisma paneb
+ * ebaõnnestunud päringu argumendid teatesse ja mõni teenuskiht kirje teksti —
+ * sama põhjendus, mis laual (workbench L13).
+ */
 model CaseWorkRetentionRun {
   id String @id @default(cuid())
 

@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **236** / 429 · PARTIAL **4** / 429 · NOT_DONE **189** / 429 · peatükke täielikult DONE **16** / 40 · ametlikult lahtiseid 193 — 135 × P1 · 57 × P2 · 1 × P3
+DONE **243** / 429 · PARTIAL **4** / 429 · NOT_DONE **182** / 429 · peatükke täielikult DONE **17** / 40 · ametlikult lahtiseid 186 — 131 × P1 · 54 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -126,7 +126,7 @@ DONE **236** / 429 · PARTIAL **4** / 429 · NOT_DONE **189** / 429 · peatükke
 | Teenuseosutaja profiil | SOL-SPROF | 2/15 | 0 | 13 | 6 × P1 · 7 × P2 |  |
 | Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
 | Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
-| Minu jagamised | SOL-SHARE | 0/7 | 0 | 7 | 4 × P1 · 3 × P2 | 7 jätkufailist |
+| Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
 | Teenusekaart | SOL-SMAP | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 | 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 0/3 | 0 | 3 | 1 × P1 · 2 × P2 | 3 jätkufailist |
 
@@ -460,6 +460,16 @@ DONE **236** / 429 · PARTIAL **4** / 429 · NOT_DONE **189** / 429 · peatükke
 
 - `SOL-SPROF-01` P0 — konto kustutamine jätab SOLO-teenuseprofiili avalikuks ja RAG-i — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
 - `SOL-SPROF-02` P0 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
+
+**Minu jagamised** (`SOL-SHARE`, 7/7)
+
+- `SOL-SHARE-06` P1 — isikuandmete koopia jätab jagamisregistri ja selle saajaajaloo välja — DONE. Üks jagamisregister toidab nii koondit kui versioonitud `sharing_history` 1.0 andmekoopia pinda; eksport on UI lehepiiridest sõltumatu, omaniku-skoobitud ning sisaldab ainult normaliseeritud jagamisfakti, mitte jagatud sisu ega saaja töövoomärkmeid. Fake-DB test katab kõik kanoonilised mudelid/suunad ja päris PostgreSQL-i sond tõendas oma rea kaasamise, võõra rea ja tundliku snapshot'i puudumise ning manifestiga ZIP-sisu koostamise.
+- `SOL-SHARE-07` P1 — toe külmutatud jagamiskoopia kaob omaniku, saajaliikmesuse või organisatsiooni kustutamisel — DONE. Omanikuotsus on rakendatud kahekihiliselt: olekupõhine sisu kuni 30 päeva / sulgemine + 90 päeva ja alati kuni 12 kuu ülempiirini ning piiratud sisuvaba jagamiskviitung kolm aastat viimasest sündmusest; tagasivõtt, saajaliikmesuse või organisatsiooni kustutus puhastab sisu kohe, avamata omaniku konto kustutus võtab jagamise tagasi ning avatud koopia säilib üksnes lühikese tähtajani. Kolm vanemseost on `SET NULL`, kustutustriggerid lõpetavad ligipääsu ilma uuele adressaadile ülekandeta, retention-sweep puhastab esmalt sisu ja hiljem kviitungi ning eraldi legal hold peatab mõlemad. Privaatsus- ja jagamiseelne teavitus on versioonitud; ajaloolistele ridadele ei rakendata uut avatud sisu erandit tagasiulatuvalt. Migratsiooniahel on puhas ja päris PostgreSQL-i sond andis 14/14 PASS, sh kõik kolm vanemkustutust, avatud/avamata eristus, sisu- ja kviitungitähtaeg, legal hold, omaniku-skoobitud eksport ning vana CASCADE negatiivkontroll. Kolme aasta pikkuse, konto kustutuse järgse avatud sisu tähtaja ja töötlejarollide juristikinnitus jääb enne production-poliitika jõustamist väljalaske kontrollpunktiks, mitte määratlemata koodikäitumiseks.
+- `SOL-SHARE-01` P1 — koond jätab välja mitu päris platvormisisest jagamisklassi — DONE. Kanooniline `SHARING_TYPE_REGISTRY` seob kõik platvormi jagamismudelid ja suunad nii koondvaate kui andmekoopia adapteritega; `WellbeingSupportShare`, `ServiceReportShare`, töötaja saadetud `NetworkShare` ja ruumi külmutatud kokkuvõtted on omanikuvaates ning framework-kinnitus on selgelt privaatne mittejagamine. Registry-contract ja omaniku projektsioonide sihttestid on rohelised; päris PostgreSQL-i sond tõendas oma toejagamise kaasamise ning võõra rea välistamise.
+- `SOL-SHARE-02` P1 — ühe allika tavaviga võtab maha kogu jagamiste läbipaistvusvaate — DONE. Iga allikas laetakse eraldi staatuse, veakoodi ja paging-ümbrisega; tavaviga või timeout jätab edukad sektsioonid nähtavaks, kuid 401/403 sulgeb vastuse tervikuna. Dev-brauseris säilisid edukad eelpöördumise ja mentorluse kaardid, vigane abi-sektsioon näitas ausat tõrget ning ainult selle sektsiooni retry taastas andmed teisi kaarte kaotamata.
+- `SOL-SHARE-03` P2 — puuduva tabeli/veeru korral näidatakse sektsiooni ausa tõrke asemel tühjana — DONE. P2021/P2022 annab nüüd `UNAVAILABLE`, timeout `TIMEOUT` ja päriselt null rida `READY`; production-logi kannab ainult sektsiooni ja stabiilset veakoodi. Contract-testid eristavad skeemi-, ühendus-, timeout- ja autoriseerimisvigu ning dev-brauser kinnitas eraldi tõrkepaneeli ja sektsioonipõhise taastumise.
+- `SOL-SHARE-04` P2 — abi-kuulutus märgitakse alati avalikul kaardil nähtavaks — DONE. Koond kasutab sama puhast avalikkuse klassifikaatorit mis Teenusekaardi tegelik projektsioon ning eristab `PUBLIC`, `HIDDEN`, `REVIEW`, `EXPIRED`, `MISSING` ja `OUT_OF_SYNC` seisu. Kombinatsioonitabeli sihttest ja dev-brauser kinnitasid, et silt tuleneb kaardirea tegelikust olekust; ET/EN/RU üldväited parandati.
+- `SOL-SHARE-05` P2 — mentorluse tagasivõetav ettevalmistus ei ole koondvaates tagasivõetav — DONE. Avamata ettevalmistusel on koondis kinnitusega päris tagasivõtt; puuduva suhteviite korral näidatakse toimingu puudumise põhjust. Avamise ja tagasivõtu advisory-lock'i võistlussond andis mõlemas järjekorras ühe võitja ning koherentse märkme, auditi ja teavituse; dev-brauseris sulges 409 dialoogi, värskendas avatuks muutunud seisu ja eemaldas surnud nupu.
 
 <!-- sol:tally lõpp -->
 

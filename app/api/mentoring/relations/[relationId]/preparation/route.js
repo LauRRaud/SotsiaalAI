@@ -1,4 +1,4 @@
-import { json } from "@/lib/documents/server";
+import { errorJson, json } from "@/lib/documents/server";
 import {
   mentoringErrorResponse,
   mentoringLocale,
@@ -49,6 +49,9 @@ export async function POST(request, context) {
     }
     return json({ ok: true, preparation });
   } catch (error) {
+    if (error?.status === 409 && error?.code === "PREPARATION_ALREADY_OPENED") {
+      return errorJson("mentoring.errors.preparation_already_opened", 409, locale);
+    }
     return mentoringErrorResponse(error, locale, "[mentoring] preparation action failed", "mentoring.errors.save_failed");
   }
 }
