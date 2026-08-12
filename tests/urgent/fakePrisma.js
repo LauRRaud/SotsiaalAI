@@ -4,14 +4,27 @@
 // ligipääsupiiri ja päris andmebaasi käitumist tõendab ainult autenditud
 // läbisõit. See on kirjas ka lõpparuandes.
 
+function compareValues(a, b) {
+  if (a instanceof Date || b instanceof Date) {
+    const left = new Date(a).getTime();
+    const right = new Date(b).getTime();
+    return left === right ? 0 : left < right ? -1 : 1;
+  }
+  return a === b ? 0 : a < b ? -1 : 1;
+}
+
 function matches(row, where = {}) {
   return Object.entries(where).every(([key, condition]) => {
     const value = row[key];
     if (condition && typeof condition === "object" && !(condition instanceof Date)) {
       if ("in" in condition) return condition.in.includes(value);
       if ("notIn" in condition) return !condition.notIn.includes(value);
-      if ("lte" in condition) return value != null && new Date(value) <= new Date(condition.lte);
-      if ("gt" in condition) return value != null && new Date(value) > new Date(condition.gt);
+      /* Võrdlus ei tohi eeldada kuupäeva: `id` on string ja SOL-URG-11
+         lehekülgitamine küsib `id: { gt: cursor }`. `new Date("req_7")` on
+         `NaN` ja iga võrdlus temaga on `false` — kursor oleks vaikselt seisma
+         jäänud ja koond oleks lugenud ainult esimese lehekülje. */
+      if ("lte" in condition) return value != null && compareValues(value, condition.lte) <= 0;
+      if ("gt" in condition) return value != null && compareValues(value, condition.gt) > 0;
       if ("equals" in condition) return value === condition.equals;
       if ("not" in condition) return value !== condition.not;
     }
