@@ -8,10 +8,17 @@ ainult need, mille Seis-lõik ALGAB sõnaga `DONE`. Käsitsi siia numbreid enam 
 Mõõdetud **12.08.2026** (neljateistkümnes mõõtmine, pärast SOL-WB peatüki lõpetamist); eelmised olid pärast
 SOL-NOTIF-i, SOL-PAY-02/-03, SOL-AUTH-15, -09/-10, -08/-12/-13 ja -07/-11 koos loenduri enda parandusega.
 
-**Selle faili jutustav osa („Mis on tehtud") lõpeb SOL-CHAT-08 juures ja on sealt edasi
-maas.** SOL-VOICE, SOL-ROOM, SOL-CALL, SOL-INV ja SOL-PAY plokke siin lahti kirjutatud ei ole —
-nende Seis-lõigud elavad raportis, kes on ainus allikas. Numbrid allpool on `sol:tally` omad ja
-nad on värsked; jutustuse järelejõudmine on eraldi töö.
+**„Mis on tehtud" on 12.08 õhtust alates GENEREERITUD** (`npm run sol:tally -- --write`)
+raporti enda Seis-lõikudest ja ta ei saa enam maha jääda. Varem oli ta käsitsi kirjutatud
+jutustus, mis lõppes **SOL-CHAT-08 juures** — üheksa lõpetatud peatükki (SOL-VOICE, SOL-ROOM,
+SOL-CALL, SOL-INV, SOL-PAY, SOL-NOTIF, SOL-EVENT, SOL-URG, SOL-WB) ei olnud siin kunagi kirjas
+ja fail nimetas järelejõudmist „eraldi tööks", mida keegi ette ei võtnud. **Sama veaklass mis
+numbritel, ainult aeglasem.** Ploki värskust hoiab test: `parandusaudit.md` läheb punaseks
+kohe, kui mõni Seis-lõik raportis muutub ja plokki ei ole üle genereeritud.
+
+**Käsitsi kirjutatud jutustus on alles**, aga uue nime all („Jutustus — MIKS, mitte MIS") ja
+tema roll on nüüd ainus, mida ta täita suudab: seletada, MIKS parandus selline on ja mis
+kirjutamise ajal välja tuli. Olekut ega numbreid ta ei kanna.
 
 **Loendur ise oli 11.08-ni vaikiv ja andis seetõttu vale nimetaja.** Range muster tundis
 ainult kaheosalist koodi, seega jätkufaili `SOL-DOC-J-01…-06` (6 leidu) ei olnud kordagi
@@ -171,54 +178,327 @@ vastab vaenuliku faili enda nimele ka pärast korrektset puhastust). Parandatud:
 hoidla juure kontrollfailist ja küsib „kus fail on", mitte „kas nimi näeb kahtlane välja".
 Teine jooks: **`PROBE_OK 8/8`**.
 
-## Peatükid dokumendi järjekorras
+<!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->
 
-Tabel on `npm run sol:tally` väljund; järjestus on peatüki ESIMESE leiu koht dokumendis.
-Jätkufailidest tulnud leiud on read sees ja märkuses eraldi välja toodud.
+## Mis on tehtud
+
+**See plokk on genereeritud** (`npm run sol:tally -- --write`) raporti enda Seis-lõikudest.
+Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea
+lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus.
+
+**181 / 403 leidu · 16 / 39 peatükki · lahtiseid 222 — 157 × P1 · 64 × P2 · 1 × P3**
 
 | Peatükk | Kood | Tehtud | Lahtised | Märkus |
 |---|---|---|---|---|
-| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | **1/1** | – | **tehtud** |
-| Build | SOL-BUILD | **1/1** | – | **tehtud** |
-| Autentimine ja autoriseerimine | SOL-AUTH | **15/15** | – | **tehtud** — auditi suurim lõpetatud peatükk |
-| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 | kolm kvalifitseeritud seisu, vt allpool |
-| RAG-i admin ja failihaldus | SOL-RAGADMIN | **4/4** | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | **enam mitte lõpetatud** — 5 leidu jätkufailist |
-| Välitöö | SOL-FIELD | **6/6** | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 9/15 | 3 × P1 · 3 × P2 | **enam mitte lõpetatud** — 6 leidu jätkufailist (`SOL-DOC-J-*`) |
-| Uuringud | SOL-RES | 6/7 | 1 × P2 | lahtine ainult RES-07 (kvalifitseeritud) |
-| Koosolekukokkuvõtted | SOL-MEET | **6/6** | – | **tehtud** |
-| Vestlus | SOL-CHAT | **13/13** | – | **tehtud** |
-| Hääl (STT/TTS) | SOL-VOICE | **3/3** | – | **tehtud** |
-| Ruumid | SOL-ROOM | **7/7** | – | **tehtud** |
-| Kõned ja salvestus | SOL-CALL | **13/13** | – | **tehtud** |
-| Kutsed ja sponsorlus | SOL-INV | **3/3** | – | **tehtud** |
-| Maksed | SOL-PAY | 10/11 | 1 × P1 | käsil; PAY-09 ootab otsust, vt allpool |
-| Teavitused | SOL-NOTIF | **7/7** | – | **tehtud** |
+| Skeemi ja Prisma mudeli vastavus | SOL-SCHEMA | 1/1 | – | **tehtud** |
+| Build | SOL-BUILD | 1/1 | – | **tehtud** |
+| Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | – | **tehtud** |
+| Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 |  |
+| RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | – | **tehtud** |
+| Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | 5 jätkufailist |
+| Välitöö | SOL-FIELD | 6/6 | – | **tehtud** |
+| Dokumendid ja AI-kasutus | SOL-DOC | 9/15 | 3 × P1 · 3 × P2 | 6 jätkufailist |
+| Uuringud | SOL-RES | 6/7 | 1 × P2 |  |
+| Koosolekukokkuvõtted | SOL-MEET | 6/6 | – | **tehtud** |
+| Vestlus | SOL-CHAT | 13/13 | – | **tehtud** |
+| Hääl (STT/TTS) | SOL-VOICE | 3/3 | – | **tehtud** |
+| Ruumid | SOL-ROOM | 7/7 | – | **tehtud** |
+| Kõned ja salvestus | SOL-CALL | 13/13 | – | **tehtud** |
+| Kutsed ja sponsorlus | SOL-INV | 3/3 | – | **tehtud** |
+| Maksed | SOL-PAY | 11/11 | – | **tehtud** |
+| Teavitused | SOL-NOTIF | 7/7 | – | **tehtud** |
 | Domeenisündmused | SOL-EVENT | 1/1 | – | **tehtud** |
 | Kiireloomuline abi | SOL-URG | 13/13 | – | **tehtud** |
-| Tööheaolu | SOL-WB | **18/18** | – | **tehtud** — 4 leidu jätkufailist; kaks lahtist OMANIKU OTSUST, vt allpool |
-| Teenuspäevik | SOL-SLOG | 5/24 | 18 × P1 · 1 × P2 | **P0-dest tühi**, SLOG-01/13/14/17/18 tehtud |
-| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 | suurim peatükk; mõlemad P0 tehtud |
-| Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 | |
-| Mentorlus | SOL-MENT | 0/7 | 7 × P1 | |
-| Supervisioon | SOL-SUP | 0/15 | 11 × P1 · 4 × P2 | |
-| Kovisioon | SOL-COV | 0/8 | 8 × P1 | |
-| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 8 × P1 | |
-| Teemaseemned | SOL-SEED | 0/5 | 3 × P1 · 2 × P2 | |
-| Teekond ja jagamine | SOL-JOUR | 2/17 | 12 × P1 · 3 × P2 | mõlemad P0 tehtud |
-| Eelpöördumised | SOL-PRE | 2/18 | 15 × P1 · 1 × P2 | mõlemad P0 tehtud |
-| Abikuulutused | SOL-HELP | 0/13 | 11 × P1 · 2 × P2 | |
-| Võrgustikutöö | SOL-NET | 2/13 | 9 × P1 · 2 × P2 | mõlemad P0 tehtud |
-| Refleksioonid | SOL-REF | 0/9 | 3 × P1 · 6 × P2 | |
-| Otsing | SOL-SEARCH | 0/7 | 1 × P1 · 5 × P2 · 1 × P3 | auditi ainus P3 |
-| Teenuseosutaja profiil | SOL-SPROF | 2/15 | 6 × P1 · 7 × P2 | auditi viimased kaks P0-d, mõlemad tehtud |
-| Dokumendi koostamine | SOL-COMP | 0/5 | 3 × P1 · 2 × P2 | **ainult jätkufailis** |
-| Materjalid | SOL-MAT | 0/13 | 8 × P1 · 5 × P2 | **ainult jätkufailis**, suurim uus peatükk |
-| Minu jagamised | SOL-SHARE | 0/5 | 2 × P1 · 3 × P2 | **ainult jätkufailis** |
-| Teenusekaart | SOL-SMAP | 0/8 | 3 × P1 · 5 × P2 | **ainult jätkufailis** |
+| Tööheaolu | SOL-WB | 18/18 | – | **tehtud**, 4 jätkufailist |
+| Teenuspäevik | SOL-SLOG | 5/24 | 18 × P1 · 1 × P2 |  |
+| RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 |  |
+| Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 |  |
+| Mentorlus | SOL-MENT | 0/7 | 7 × P1 |  |
+| Supervisioon | SOL-SUP | 0/15 | 11 × P1 · 4 × P2 |  |
+| Kovisioon | SOL-COV | 0/8 | 8 × P1 |  |
+| Tõenduspõhised praktikad | SOL-PRAC | 0/8 | 8 × P1 |  |
+| Teemaseemned | SOL-SEED | 0/5 | 3 × P1 · 2 × P2 |  |
+| Teekond ja jagamine | SOL-JOUR | 2/17 | 12 × P1 · 3 × P2 |  |
+| Eelpöördumised | SOL-PRE | 2/18 | 15 × P1 · 1 × P2 |  |
+| Abikuulutused | SOL-HELP | 0/13 | 11 × P1 · 2 × P2 |  |
+| Võrgustikutöö | SOL-NET | 2/13 | 9 × P1 · 2 × P2 |  |
+| Refleksioonid | SOL-REF | 0/9 | 3 × P1 · 6 × P2 |  |
+| Otsing | SOL-SEARCH | 0/7 | 1 × P1 · 5 × P2 · 1 × P3 |  |
+| Teenuseosutaja profiil | SOL-SPROF | 2/15 | 6 × P1 · 7 × P2 |  |
+| Dokumendi koostamine | SOL-COMP | 0/5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
+| Materjalid | SOL-MAT | 0/13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
+| Minu jagamised | SOL-SHARE | 0/5 | 2 × P1 · 3 × P2 | 5 jätkufailist |
+| Teenusekaart | SOL-SMAP | 0/8 | 3 × P1 · 5 × P2 | 8 jätkufailist |
 
-## Mis on tehtud
+### Tehtud leiud peatükkide kaupa
+
+**Skeemi ja Prisma mudeli vastavus** (`SOL-SCHEMA`, 1/1)
+
+- `SOL-SCHEMA-01` P0 — kohtumise märkme kirjet EI SAA päris andmebaasis luua — DONE — parandus, negatiivkontroll ja väravatest.
+
+**Build** (`SOL-BUILD`, 1/1)
+
+- `SOL-BUILD-01` P2 — projekti Webpack production-build ei kompileeru — DONE.
+
+**Autentimine ja autoriseerimine** (`SOL-AUTH`, 15/15)
+
+- `SOL-AUTH-01` P1 — ootamatu andmebaasiviga jätab JWT varasemad õigused kehtima — DONE — kood ja testid; runtime: not_run.
+- `SOL-AUTH-02` P2 — aktiivsete sessioonide ülempiir ei ole paralleelsete sisselogimiste korral atomaarne — DONE — kaasa arvatud päris PostgreSQL-i runtime.
+- `SOL-AUTH-03` P1 — konto taastamise ja e-posti kinnitamise bearer-tokenid on andmebaasis toorkujul — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-04` P1 — e-posti vahetuse lingi pelk avamine muudab konto identiteeti — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-05` P1 — asendatud e-posti vahetustoken võib pooleliolevas päringus siiski võita — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-06` P2 — e-posti vahetuse resend tühistab vana lingi enne uue kirja kohaletoimetamist ja raporteerib mailerivea eduna — DONE. Migratsiooni ei ole vaja, outbox'i ei ehitatud.
+- `SOL-AUTH-07` P1 — profiili PIN-i muutus ei tühista enne muudatust väljastatud ajutisi sisselogimisvolitusi — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-08` P1 — kirjalinki automaatselt avav skanner võib ründaja PIN-sisselogimise teise faktori kinnitada — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-09` P1 — lühikese PIN-i brute-force kaitse on protsessimälus ja kliendi IP-päiseid usaldav — DONE. VAJAB MIGRATSIOONI (`20260811210000`, uus tabel
+- `SOL-AUTH-10` P2 — login-step1 avaldab, kas e-posti aadressiga konto eksisteerib — DONE. Migratsiooni ei ole vaja (tuli koos SOL-AUTH-09 plokiga, mille
+- `SOL-AUTH-11` P2 — üks kinnitatud temp-token võib enne sessiooni claim'i luua korduvalt usaldatud seadmeid — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-12` P1 — puuduva avaliku baas-URL-i korral saab login-kirja hosti päringupäisega mürgitada — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-13` P2 — login-lingi resend tühistab vana lingi enne uue kirja õnnestumist — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-14` P1 — ühe seadme logout ei garanteeri kopeeritud JWT tühistamist — DONE. Migratsiooni ei ole vaja.
+- `SOL-AUTH-15` P2 — paralleelsed paroolitaaste päringud võivad mõlemad välja saadetud lingid tühistada — DONE. Vajab migratsiooni (`20260811220000`, uus tabel
+
+**Juhtumitöö (JTA-V1)** (`SOL-CW`, 17/20)
+
+- `SOL-CW-01` P2 — tasulise juhtumitöö UI ja serveri ligipääsureegel räägivad eri tõde — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-02` P2 — juhtumitöö suletud lehed ei ole tõendatult olematust marsruudist eristamatud — DONE — koos päris production-build'i runtime-tõendiga.
+- `SOL-CW-03` P2 — READ_ONLY ja ARCHIVED juhtumite mustandid jäävad tegevuslauale — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-04` P1 — ülekandesündmus võib pärast edukat tehingut jäädavalt kaduda — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-05` P2 — uus kopeerimine võib kirjutamata kopeerimisauditi üle kirjutada — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-06` P2 — kopeerimisauditi idempotentsusvõti ei kontrolli algse payload’i vastavust — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-07` P1 — retention-hoiatuste fikseeritud batch võib uuemad juhtumid näljutada — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-08` P2 — tundmatu `retentionState` muutub kliendivea asemel 500-ks — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-10` P3 — „Näita rohkem” lubab paralleelseid sama kursori päringuid — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-11` P1 — tagasivõetud või saatmata päritoluobjektist saab endiselt juhtumi luua — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-12` P2 — juhtumi loomise kordus võib tekitada ühest lähteobjektist mitu juhtumit — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
+- `SOL-CW-13` P2 — „aktiivsed ettevalmistused” ei loe kohtumise ettevalmistusi — DONE — kood ja testid; runtime: not_run.
+- `SOL-CW-15` P1 — kohtumise „kustutamatu” märkme sisu saab jäljetult muuta ja täielikult eemaldada — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
+- `SOL-CW-16` P1 — STAR2 kopeerimisaudit ei ole seotud kopeeritud tekstiversiooniga — DONE — kood, migratsioon ja testid; migratsiooniahel tõendatud päris PostgreSQL-i vastu, rakenduse runtime: not_run.
+- `SOL-CW-17` P2 — workbench'i rohelised privaatsustestid ei läbi kahte uut sektsiooni — DONE — testid; tootmiskoodi see leid ei muutnud.
+- `SOL-CW-18` P2 — workbench'i timeout ei lõpeta aegunud päringuid — DONE — kood, testid ja KOORMUSSOND päris PostgreSQL-i vastu; rakenduse brauseri-runtime: not_run.
+- `SOL-CW-20` P2 — juhtumiloendi cursor tugineb muutlikule järjestusväljale — DONE — kood, testid ja päris PostgreSQL-i sond; rakenduse brauseri-runtime: not_run.
+
+**RAG-i admin ja failihaldus** (`SOL-RAGADMIN`, 4/4)
+
+- `SOL-RAGADMIN-01` P1 — faili metadata ja failisüsteem võivad asendamisel või kustutamisel lahkneda — DONE — protokoll, neli rada, retry-rada ja veasüstetestid; rakenduse runtime: not_run.
+- `SOL-RAGADMIN-02` P1 — KOV RAG reset raporteerib edu ka kustutamata dokumentide korral — DONE — protokoll, kolm raja koristus, püsiv järjekord ja aus UI; rakenduse runtime: not_run.
+- `SOL-RAGADMIN-03` P1 — `INGESTING` lukk ei ole atomaarne ega taastuv — DONE — claim + lease, lepitus, kolm rada, migratsioon, 17 testi ja 21/21 päris PostgreSQL-i sond; rakenduse runtime: not_run.
+- `SOL-RAGADMIN-04` P2 — hävitav RAG reset ei seo dry-run plaani serveripoolse kinnitusega — DONE — jagatud värav, sõrmejälg täisloendina, ühekordne broneering ja 13 testi; rakenduse runtime: not_run.
+
+**Organisatsioonid ja skoop** (`SOL-ORG`, 12/17)
+
+- `SOL-ORG-01` P1 — töötaja kaudu tuletatud graafikuskoop lekib mitme organisatsiooni töö üle tenantide piiri — DONE — kood, migratsioon ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 19/19).
+- `SOL-ORG-02` P1 — graafiku kirjutusrada möödub peatatud organisatsiooni ja mooduli väravast — DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 24/24).
+- `SOL-ORG-03` P1 — töö määramine võib õnnestuda ilma kohustusliku auditijäljeta — DONE — kood (SOL-SLOG-18), veasüstetestid ja päris PostgreSQL-i tagasikerimine (`npm run slog:org:probe` 30/30).
+- `SOL-ORG-04` P2 — üksuse capability ei kata graafikus lubatud alampuud — DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 34/34).
+- `SOL-ORG-05` P1 — kohaplaani limiiti ja lõpetamist saab paralleelse kohaandmisega rikkuda — DONE — kood ja paralleelsussond (`npm run org:seat:probe` 26/26; vana koodi vastu 10 punast).
+- `SOL-ORG-06` P1 — sponsorluse vastuvõtmine ja tühistamine võivad anda vastuolulise lõppseisu — DONE — kood ja paralleelsussond (`npm run org:sponsor:probe` 33/33; vana koodi vastu 10 punast).
+- `SOL-ORG-07` P2 — organisatsiooni sponsoreeritud tellimus kuvatakse kasutajale omamaksena — DONE — kood ja testid.
+- `SOL-ORG-08` P1 — suletud või tagasivõetud pöördumise saab uuesti töötajale avada — DONE — kood, testid ja võistlussond (`npm run org:inbox:probe` 51/51).
+- `SOL-ORG-09` P1 — tagasivõetud liikmekutse võib samaaegse vastuvõtmisega siiski õigused anda — DONE — kood ja paralleelsussond (`npm run org:invite:probe` 38/38; vana koodi vastu 14 punast).
+- `SOL-ORG-10` P1 — offboarding võib lõppeda aktiivse töö või kohaga — DONE — kood ja paralleelsussond (`npm run org:offboard:probe` 39/39; vana koodi vastu 13 punast).
+- `SOL-ORG-11` P1 — viimase organisatsiooniomaniku õiguse saab eemaldada — DONE — kood ja sond (`npm run org:offboard:probe` 48/48).
+- `SOL-ORG-12` P1 — paralleelne olekusiire võib arhiveeritud organisatsiooni taas aktiveerida — DONE — kood ja sond (`npm run org:offboard:probe` 60/60; vana koodi vastu 6 punast).
+
+**Välitöö** (`SOL-FIELD`, 6/6)
+
+- `SOL-FIELD-01` P1 — saatmata kohalik sisu võib kustuda ilma kolme kasutajale näidatud hoiatuseta — DONE — kood ja testid; brauserikiht NOT_PROVEN (vt allpool).
+- `SOL-FIELD-02` P1 — tundlikud külastuspaketid ei läbi automaatset kohalikku retention’it — DONE — kood, testid ja runtime-tõend PÄRIS IndexedDB vastu.
+- `SOL-FIELD-03` P1 — välitöö kohustuslik audit ei kuulu põhitehingusse ja võib vaikselt kaduda — DONE — kood ja testid; veasüstiga tõendatud, ilma globaalse ühenduseta.
+- `SOL-FIELD-04` P1 — võrguühenduseta saabumise/lahkumise markerit ei salvestata ja flush võib vea järel selle kustutada — DONE — kood, testid ja runtime-tõend päris IndexedDB vastu.
+- `SOL-FIELD-05` P2 — transkripti kinnituse serveriviga peidetakse ning toorheli kustutuskell ei käivitu — DONE — kood ja testid.
+- `SOL-FIELD-06` P2 — lubatud automaatne retry/backoff ei käivitu tähtaja saabumisel — DONE — kood ja testid võltskella all.
+
+**Dokumendid ja AI-kasutus** (`SOL-DOC`, 9/15)
+
+- `SOL-DOC-01` P1 — AI-kasutus arvestatakse enne püsivat või kasutajale tagastatud tulemust — DONE — kood ja testid; runtime: not_run.
+- `SOL-DOC-02` P1 — transkriptsiooni ja transkripti kokkuvõtte rajad mööduvad kasutuslimiitidest — DONE — kood ja testid; runtime: not_run.
+- `SOL-DOC-03` P1 — paralleelne muutmine saab FINAL-artefakti pärast kinnitamist üle kirjutada — DONE — koos päris PostgreSQL-i runtime-tõendiga (33/33).
+- `SOL-DOC-04` P1 — transkripti fail ja andmebaas võivad osalise vea järel eri sisu näidata — DONE — koos päris PostgreSQL-i ja päris hoidla runtime-tõendiga (17/17).
+- `SOL-DOC-05` P2 — kolme refinement'i piirang pole paralleelsete päringute korral jõustatud — DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).
+- `SOL-DOC-06` P1 — sama helifaili paralleelne transkribeerimine teeb mitu kallist tööd ja mitu transkripti — DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).
+- `SOL-DOC-07` P2 — faili- ja salvestuskvoodid on paralleelselt ületatavad — DONE — koos päris PostgreSQL-i runtime-tõendiga (8/8).
+- `SOL-DOC-08` P1 — salvestatud analüüside sisu ei lähe salvestuskvoodi arvestusse — DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).
+- `SOL-DOC-09` P2 — analüüsi salvestamise ja kustutamise auditikutsed ei loo auditirida — DONE — koos päris PostgreSQL-i runtime-tõendiga (10/10). VAJAB MIGRATSIOONI.
+
+**Uuringud** (`SOL-RES`, 6/7)
+
+- `SOL-RES-01` P1 — kasutaja ei saa oma uuringut kustutada ja tellimuse lõpp sulgeb ka lugemise — DONE — koos päris PostgreSQL-i runtime-tõendiga (15/15).
+- `SOL-RES-02` P1 — idempotentsusvõti seob ainult kasutusühiku, mitte uuringutöö — DONE — koos päris PostgreSQL-i runtime-tõendiga (21/21). VAJAB MIGRATSIOONI.
+- `SOL-RES-03` P1 — worker-režiimis jääb päritoluprotsessi job lõpmatult vanasse olekusse — DONE — koos päris kaheprotsessilise runtime-tõendiga (8/8).
+- `SOL-RES-04` P1 — lease'i kaotanud worker võib uuringut jätkata ja uue workeri tulemuse võita — DONE — fencing tõendatud kahe päris workeriga (9/9) ja kriteeriumi viimane
+- `SOL-RES-05` P1 — vestlusse püsivalt salvestamise viga ei takista tasulise uuringu edukaks märkimist — DONE — koos päris PostgreSQL-i runtime-tõendiga (10/10).
+- `SOL-RES-06` P1 — kasutuse lõplik commit/release on best-effort ja võib lõpptulemusest lahkneda — DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).
+
+**Koosolekukokkuvõtted** (`SOL-MEET`, 6/6)
+
+- `SOL-MEET-01` P1 — snapshoti tõrge võib jätta koosolekukokkuvõtte igaveseks aktiivseks — DONE.
+- `SOL-MEET-02` P1 — kokkuvõtte ühik commit'itakse enne kasutajale kuuluva dokumendi loomist — DONE — koos päris PostgreSQL-i runtime-tõendiga (12/12).
+- `SOL-MEET-03` P1 — 30-minutilised tundlikud snapshotid võivad pärast restarti jääda tähtajatult alles — DONE.
+- `SOL-MEET-04` P1 — ühe aktiivse töö piirang on paralleelsete POST-ide korral ületatav — DONE — koos päris PostgreSQL-i samaaegsustõendiga (16/16).
+- `SOL-MEET-05` P1 — tundmatu audio kestus arvestatakse alati 60 sekundina ka pikema faili puhul — DONE.
+- `SOL-MEET-06` P2 — väline veateade salvestatakse ja tagastatakse kasutajale puhastamata — DONE.
+
+**Vestlus** (`SOL-CHAT`, 13/13)
+
+- `SOL-CHAT-01` P1 — tasuline vestlusvastus commit'itakse enne püsivat vestlust ja salvestusviga raporteeritakse eduna — DONE — koos SOL-CHAT-02-ga üks plokk, sest neil on üks juur.
+- `SOL-CHAT-02` P1 — kasutuse commit/release'i viga neelatakse alla ja vestlus jätkub vale arvestusseisuga — DONE — sama plokk mis SOL-CHAT-01, vt sealt tõendid.
+- `SOL-CHAT-03` P1 — kliendi pöördel puudub stabiilne idempotentsusvõti ja Retry seos kaob — DONE — koos SOL-CHAT-04-ga üks plokk, sest mõlema kriteerium algab samast
+- `SOL-CHAT-04` P1 — sama vestluse paralleelsed pöörded rikuvad järjekorda ja sessioonipiiri — DONE — sama plokk mis SOL-CHAT-03, vt sealt mudel ja sond.
+- `SOL-CHAT-05` P1 — Stop võib provider'i `done` järel siiski commit'ida kasutajale kuvamata täisvastuse — DONE — kaks eraldi viga ühe pealkirja all.
+- `SOL-CHAT-06` P2 — enneaegselt lõppenud SSE märgitakse kliendis edukalt lõpetatuks — DONE — kriteeriumi MÕLEMAD teed, mitte üks neist.
+- `SOL-CHAT-07` P1 — platvormiadmin saab liikmesuseta suvalisse privaatsesse ruumi AI-sõnumi kirjutada — DONE — erand kustutatud ja kirjutuskohale antud oma värav.
+- `SOL-CHAT-08` P1 — failianalüüsi valmis tulemus võib commit'i vea järel kaduda ja retry kulutab uue ühiku — DONE koodis, ÜKS KRITEERIUMI OSA TEADLIKULT TÄITMATA (vt allpool).
+- `SOL-CHAT-09` P1 — efemeerne failianalüüs usaldab deklareeritud MIME-i ja tagastab piiramatu täisteksti — DONE, ÜKS KRITEERIUMI OSA NIMELISELT TEGEMATA (parseri timeout).
+- `SOL-CHAT-10` P2 — vestluse ekspordi kohustuslik audit võib vaikselt puududa — DONE — fail-closed, sama valik mis SOL-DOC-09-l.
+- `SOL-CHAT-11` P1 — üldine vestluse ID kandub konto ja rolli vahetusel valesse kasutajakonteksti — DONE — klient JA server, sest leid oli mõlemal pool.
+- `SOL-CHAT-12` P2 — kattuvad ajaloo laadimised võivad uuema vestluse oleku vanema vastusega tagasi pöörata — DONE.
+- `SOL-CHAT-13` P2 — ruumide külgriba laadimisviga näib tühja loendina ja asendatud päring võib uue laadimisoleku lõpetada — DONE — sama leping mõlemal rajal, mitte uus mehhanism.
+
+**Hääl (STT/TTS)** (`SOL-VOICE`, 3/3)
+
+- `SOL-VOICE-01` P1 — STT arvestus ei kasuta provider'i tegelikku kestust ja kliendil puudub idempotentsus — DONE, ühe kvalifikatsiooniga (vt viimane punkt). Migratsiooni ei ole vaja.
+- `SOL-VOICE-02` P1 — STT ning Google/OpenAI TTS providerikutsetel puudub rakenduse timeout — DONE. Migratsiooni ei ole vaja.
+- `SOL-VOICE-03` P2 — „Peata ettelugemine” ei katkesta pooleliolevat serverisünteesi — DONE, brauserikiht NOT_PROVEN. Migratsiooni ei ole vaja.
+
+**Ruumid** (`SOL-ROOM`, 7/7)
+
+- `SOL-ROOM-01` P1 — arhiveeritud ruum ei ole serveris tegelikult kirjutuskaitstud — DONE, HTTP-kiht NOT_PROVEN. Migratsiooni ei ole vaja.
+- `SOL-ROOM-02` P1 — vana ruumi hiline laadimisvastus võib uues ruumis kuvada eelmise ruumi sõnumeid — DONE koos SOL-ROOM-03-ga, üks plokk. Migratsiooni ei ole vaja.
+- `SOL-ROOM-03` P2 — sõnumihook lammutab SSE-ühenduse olekumuutustel ja võib 401/403 korral laadimistsüklisse minna — DONE koos SOL-ROOM-02-ga, üks plokk. Migratsiooni ei ole vaja.
+- `SOL-ROOM-04` P1 — omanikuvahetus ja sihtliikme lahkumine võivad jätta ruumi aktiivse omanikuta — DONE koos SOL-ROOM-05-ga, üks plokk. Migratsiooni ei ole vaja.
+- `SOL-ROOM-05` P1 — ruumi lõpetamise ja omanikuvahetuse kõrvalmõjud ei ole ühe ausa lõpptulemusega seotud — DONE koos SOL-ROOM-04-ga, üks plokk. Migratsiooni ei ole vaja.
+- `SOL-ROOM-06` P1 — kokkuvõtte jagamine võib õnnestuda ilma hilisema privaatkoopia ja kinnitusringi kandjata — DONE. Migratsiooni ei ole vaja.
+- `SOL-ROOM-07` P2 — enne ruumi lõppu lahkunud osaleja ei saa talle lubatud kokkuvõttekoopiat — DONE. Migratsiooni ei ole vaja.
+
+**Kõned ja salvestus** (`SOL-CALL`, 13/13)
+
+- `SOL-CALL-01` P0 — nõusoleku tagasivõtu järel võib egress edasi salvestada, kuigi API vastab eduga — DONE — tingimuslik lõppseis, kolm uut seisu, jagatud kinnitusloogika, püsiv taasproov ja 3 uut testi; rakenduse runtime: not_run.
+- `SOL-CALL-02` P0 — salvestuse start võib võita hilise liituja või nõusoleku tagasivõtu ja alustada nõusolekuta — DONE — atomaarne claim, fencing-loend, tingimuslikud üleminekud ja 3 võidujooksutesti; rakenduse runtime: not_run.
+- `SOL-CALL-03` P0 — provider võib salvestada ilma taastatava ACTIVE-seisuta — DONE — püsiv STARTING claim, kompensatsioon mõlemal DB-tõrkel, ruumipõhine orvukontroll ja 3 veasüstetesti; rakenduse runtime: not_run.
+- `SOL-CALL-04` P1 — paralleelne salvestuse Start võib käivitada mitu egressi — DONE — katsepõhine failivõti ja idempotentne kordus; kaks varasemat märkust allpool jäävad ajalooks.
+- `SOL-CALL-05` P1 — sama osaleja nõusolekurida võib paralleelselt dubleeruda — DONE — unikaalne indeks + üks jagatud `upsert`-tee, tõendatud päris PostgreSQL-is (`npm run call:consent:probe` 8/8).
+- `SOL-CALL-06` P1 — salvestise kustutus ja retention raporteerivad edu ka kustutamata faili korral — DONE — astmeline `DELETE_PENDING` kustutus, mis on ise oma taasproovi allikas. Commit `74d5cc80`.
+- `SOL-CALL-07` P2 — nõustunud osaleja saab „salvestis saadaval” teate, kuid fail kuulub ainult taotlejale — DONE — omaniku otsus on „ainult taotleja oma"; teade, saaja-verifitseerimine ja nõusolekutekst jõustavad nüüd ühte ja sama lepingut. Commit `4d2df0af`.
+- `SOL-CALL-08` P2 — osalejapiir ja kõne algseis pole paralleelselt ega veasüstiga usaldusväärsed — DONE — koht võetakse kõneluku all, kõne sünnib ühes tehingus; `npm run call:seat:probe` 12/12 päris PostgreSQL-is. Commit `1f2df87c`.
+- `SOL-CALL-09` P2 — kõnesalvestuse audit on best-effort ja võib vaikides puududa — DONE — jälg elab sama tehingu sees, mis tema otsus; `npm run call:audit:probe` 11/11 päris PostgreSQL-is. Commit `70d53835`.
+- `SOL-CALL-10` P1 — piiramatu kestusega salvestis loetakse finaliseerimisel tervikuna Node'i mällu — DONE — kolm piiri, kus enne oli null. Commit `446932e6`.
+- `SOL-CALL-11` P1 — ebaõnnestunud LiveKit-liitumine võib jätta mikrofoni ja serveriosaluse aktiivseks — DONE — fail-closed connect, liitumis-ID enne providerit, serveri leave veakäsitluses; brauseri veasüstetest NOT_PROVEN.
+- `SOL-CALL-12` P0 — teise vahekaardi mute-nupp võib näidata mikrofoni väljas, kuigi heli läheb edasi — DONE — track'i omanik on omaette tõde, nupp on kinni ilma temata, lipp läheb DB-sse alles track'i kinnituse järel; kahe brauserikontekstiga mõõtmine NOT_PROVEN.
+- `SOL-CALL-13` P1 — vana ruumi kõneseisu vastus võib uue ruumi vaate ja ühenduse üle kirjutada — DONE — põlvkond + ruumi identiteet, abort ruumivahetusel, cleanup aegunud vastuse käest ära võetud; hook-tasandi test NOT_PROVEN.
+
+**Kutsed ja sponsorlus** (`SOL-INV`, 3/3)
+
+- `SOL-INV-01` P1 — sponsoreeritud liikmete 50 koha piir on eri kutsete paralleelvastuvõtul ületatav — DONE — kogu liikmesuse otsus käib ruumiluku all; `npm run invite:seat:probe` 11/11 päris PostgreSQL-is. Commit `a32f4230`.
+- `SOL-INV-02` P2 — kutse autoriseerimiseelne ruumisünk võib muuta teise kasutaja liikmerida — DONE — keelatud päring on kõrvalmõjuta, parandus käib autoriseerimise järel ja nimi tuleb serverist. Commit `c8048127`.
+- `SOL-INV-03` P2 — e-kirja saatmise viga tagastab kutse loomise edukana ja kaotab esmase tokeni kasutajateelt — DONE — püsiv järjekord + aus vastus + idempotentne kordus; `npm run invite:mail:probe` 16/16 päris PostgreSQL-is ja päris workeriga. Commit `b7af4ec0`.
+
+**Maksed** (`SOL-PAY`, 11/11)
+
+- `SOL-PAY-01` P1 — kirjeldatud kordusmakse retry ei saa pärast esimest tõrget enam käivituda — DONE — valik näeb korduskatse seisu ja maksemeetod märgitakse katkiseks alles loobumisel; `npm run pay:renewal:probe` 13/13 päris PostgreSQL-is. Commit `d988ef87`.
+- `SOL-PAY-02` P1 — ebamäärane provideritulemus märgitakse lõplikult FAILED-iks ja hilisem PAID webhook visatakse ära — DONE — ebamäärane tulemus on oma seis (`RECONCILE_PENDING`), millest hilisem PAID veel õiguse annab; `npm run pay:outcome:probe` 27/27 päris PostgreSQL-is päris marsruutide ja päris HTTP-provideriga. Vajab migratsiooni `20260811230000`.
+- `SOL-PAY-03` P1 — tellimuse init pole idempotentne ja võib luua mitu tasutavat recurring-checkout'i — DONE — kliendi kavatsuse võti + kasutajapõhine lukustatud claim; `npm run pay:checkout:probe` 27/27 päris PostgreSQL-is, päris marsruudiga ja deterministliku võistlusega. Vajab migratsiooni `20260811230000`.
+- `SOL-PAY-04` P1 — pärast sponsorluse lõppu tehtud omamakse säilitab vana sponsori allika — DONE — päritolu kirjutatakse tervikuna ja tema vahetus jätab ledgerisse jälje; `npm run pay:origin:probe` 19/19 päris PostgreSQL-is päris marsruutidega (init → PAID → cancel → refund).
+- `SOL-PAY-05` P1 — allkirjastatud webhooki PAID otsus ei võrdle makstud summat ega valuutat kohaliku tellimusega — DONE — `PAID` peab enne õiguse andmist sellele maksele ja selle summa eest vastama; mittevastavus läheb `REVIEW_REQUIRED` seisu. `npm run pay:verify:probe` 19/19 päris PostgreSQL-is, iga väli eraldi muudetud. Vajab migratsiooni `20260812010000`.
+- `SOL-PAY-06` P1 — osaline tagasimakse tõlgendatakse täistagastusena ja lõpetab kogu ligipääsu — DONE — osaline tagastus on oma seis oma summaga ja ta EI lõpeta ligipääsu; `npm run pay:refund:probe` 22/22 päris PostgreSQL-is päris allkirjastatud webhookidega. Vajab migratsiooni `20260812020000`.
+- `SOL-PAY-07` P1 — tasutud sponsorkutse join-token võib outbox'i vea järel jäädavalt kaduda — DONE — toortoken ja tema kandja sünnivad ühes tehingus ja kordus taastab kadunud kandja ilma uue õiguse või makseta; `npm run pay:refund:probe` 22/22 (jaam 7) päris PostgreSQL-is.
+- `SOL-PAY-08` P1 — makseaudit pole põhitehingu osa ja kasutab süstitud tehingu asemel globaalset Prismat — DONE — otsus ja tema püsiv jälg commit'ivad koos või mitte kumbki; `npm run pay:audit:probe` 11/11 päris PostgreSQL-is, veasüst on päris andmebaasi trigger.
+- `SOL-PAY-09` P1 — konto kustutamine kaskaadib makseajaloo enne seadistatud seitsmeaastast retentsiooni — DONE mehhanismi osas; koosseisu kinnitus jääb juristile.
+- `SOL-PAY-10` P2 — callback ja webhook võivad luua samale recurring-mandaadile mitu aktiivset BillingMethod rida — DONE — üks mandaat = üks rida, mõlemad rajad kasutavad sama lukustatud claim'i; `npm run pay:mandate:probe` 13/13 päris PostgreSQL-is deterministliku võistlusega. Vajab migratsiooni `20260812030000`.
+- `SOL-PAY-11` P2 — e-posti outbox'i timeout/recovery võib sama kirja mitu korda saata — DONE — püsiv Message-ID + `AMBIGUOUS` oma seisuna; tundlik kiri EI lähe pimedale kordusele. Ühiktestid 8/8 (`tests/payments/emailOutboxAmbiguous.test.js`), sh timeout, mille järel esimene saatmine ikkagi õnnestub. Vajab migratsiooni `20260812040000`.
+
+**Teavitused** (`SOL-NOTIF`, 7/7)
+
+- `SOL-NOTIF-01` P1 — notification-worker ei anna päris SMTP-transpordile saatja aadressi — DONE — worker annab envelope-saatja ja puuduv saatja ei jää lõputusse korduskatsesse; `npm run notif:progress:probe` 14/14 päris PostgreSQL-is (jaam 4).
+- `SOL-NOTIF-02` P1 — reconciler alustab igal käivitusel algusest ja võib kõik read pärast esimest 10 000 kirjet jäädavalt näljutada — DONE — allika edenemine on püsiv ja ringi käiv; `npm run notif:progress:probe` 14/14 (jaam 3). Vajab migratsiooni `20260812050000`.
+- `SOL-NOTIF-03` P2 — ruumiaktiivsuse teade välistab autorid ainult ühe andmelehekülje piires — DONE — autorid välistatakse kogu akna pealt; sond 14/14 (jaam 1).
+- `SOL-NOTIF-04` P2 — liikuv kuue tunni otsinguaken ja job'i kellast tuletatud dedupe-aken võivad sama tegevuse kaks korda teavitada — DONE — dedupe-aken tuleb SÜNDMUSEST, mitte worker'i kellast; sond 14/14 (jaam 2).
+- `SOL-NOTIF-05` P2 — delivery timeout märgib teadmata tulemuse automaatselt retry'ks, kuigi algset SMTP saatmist ei katkestata — DONE — timeout on TEADMATUS (`UNKNOWN`), mitte pime korduskatse.
+- `SOL-NOTIF-06` P1 — ühe varasema sweep'i viga jätab välitöö ohutuskontrolli ja kiire abi aegumise käivitamata — DONE — iga etapp jookseb oma veapiiri sees ja ohutusetapid käivituvad ALATI; `npm run notif:progress:probe` 14/14 (jaam 6, veasüst on päris andmebaasi trigger).
+- `SOL-NOTIF-07` P2 — teavituste loendi fikseeritud kahekordne eelvalik võib peita vanemad kehtivad teated — DONE — loend liigub lehekülgede kaupa, kuni nähtavaid ridu on `limit`; sond 14/14 (jaam 5).
+
+**Domeenisündmused** (`SOL-EVENT`, 1/1)
+
+- `SOL-EVENT-01` P2 — domeenisündmuse idempotentsuskonflikt ei kontrolli, kas olemasolev sündmus vastab uuele teole — DONE — sama võti annab edu ainult sama teo peal, teistsugune teoidentiteet
+
+**Kiireloomuline abi** (`SOL-URG`, 13/13)
+
+- `SOL-URG-01` P0 — 200 ajaloolist kirjet võivad kõik uued kiireloomulised abipalved laua eest peita — DONE — töö ja ajalugu on eri päringud. Commit `0dd6bb18`.
+- `SOL-URG-02` P0 — konto kustutamine jätab kiire abi nime, telefoni ja olukorra toorteksti andmebaasi — DONE — sisu ja kontaktid kaovad, vastutusjälje skelett jääb. Commit `97b28080`.
+- `SOL-URG-03` P1 — server ja vorm käsitlevad vastamata ohuküsimust vastusena „ei” — DONE — edasi pääseb ainult OTSENE „ei".
+- `SOL-URG-04` P1 — klient saab suvalise teksti vastuvõtjale „AI koostatud mustandina” salvestada — DONE — AI-mustandit ei võeta kliendilt.
+- `SOL-URG-05` P1 — kiire abi olekumuutus ja kohustuslik vastutusjälg ei ole üks tehing — DONE — iga siire on üks tehing.
+- `SOL-URG-06` P1 — olekusiirded on kontrolli järel tingimusteta kirjutused ja võivad paralleelselt üksteist üle kirjutada — DONE — oodatav seis elab WHERE-tingimuses.
+- `SOL-URG-07` P1 — „Võtan” ei salvesta pöördumise vastutavat töötajat — DONE — vastutaja on põhirea peal, mitte ainult sündmuslogis.
+- `SOL-URG-08` P1 — üleandmine lubab aktiivset, kuid tegelikult mittevalmis sihtlauda — DONE — siht läbib sama vastuvõtuvalmiduse kontrolli mis uue pöördumise loomine.
+- `SOL-URG-09` P1 — laua valmidus võib loomise kontrolli ja kirjutuse vahel kaduda — DONE — laua rida ON valmiduse mutex.
+- `SOL-URG-10` P1 — paralleelne konversioon võib luua mitu eelpöördumise mustandit ja osalise tulemuse — DONE — konversioon on täpselt üks kord.
+- `SOL-URG-11` P1 — kiire abi koond kärbib 20 000 rea järel vaikides ja kasutab Eesti kellaaja asemel UTC-d — DONE — kogu valim ja Eesti kell.
+- `SOL-URG-12` P1 — kiire abi partnerikinnitus ja kriitilised lauamuudatused ei salvesta otsustajat ega auditit — DONE — kinnitusel on kinnitaja ja tekstiversioon; igal adminitoimingul on jälg.
+- `SOL-URG-13` P1 — tundliku pöördumise täisloendi API möödub „iga vaatamine jätab jälje” lepingust — DONE — dubleeriv täisloend on eemaldatud.
+
+**Tööheaolu** (`SOL-WB`, 18/18)
+
+- `SOL-WB-01` P1 — piloodi organisatsiooni- ja omavalitsusskoop ei jõua andmepäringusse — DONE — koos SOL-WB-02-ga, üks juur ja üks parandus. Vt SOL-WB-02 all.
+- `SOL-WB-02` P1 — kliendi suvaline `roleGroup` määrab, millise piloodi koondisse kirje läheb — DONE — SOL-WB-01 ja SOL-WB-02 on üks juur: koond ei teadnud, kelle
+- `SOL-WB-03` P1 — server kontrollib ainult väljade olemasolu ning tundmatu ohuväärtus muutub madalaks riskiks — DONE — teadmatust ei hinnata enam ohutuks.
+- `SOL-WB-04` P1 — koondi `sampleSize` on inimesed, kuid meetrikad on piiramata kirjete arvud — DONE — ühik on valitud, nähtav ja valitav. Commit `285686ad`.
+- `SOL-WB-05` P1 — 10 000 kirje piir kärbib tööheaolu koondit vaikides — DONE — koos SOL-WB-10-ga, üks juur: vaikne kärbe, mis esitles end
+- `SOL-WB-06` P1 — künnis üksi ei kaitse kitsaste ja kattuvate koondpäringute kaudu üksikisiku tuletamise eest — DONE osas, mis on kood; üks haru jäi teadlikult lahti (vt allpool).
+- `SOL-WB-07` P1 — vastatud vanad kontrollpunktid võivad hilisemad tähtajad taimerist välja näljutada — DONE — vastatud read ei ole enam kandidaadid.
+- `SOL-WB-08` P2 — kirje parandamine jätab sama kontrollpunkti aktiivseks nii vanal kui uuel real — DONE — kokkulepe LIIGUB parandusega, mitte ei kopeeru.
+- `SOL-WB-09` P2 — kontrollpunkti ja soovituse read-modify-write rajad võivad uuema muudatuse vana snapshotiga üle kirjutada — DONE — kokkuleppel on nüüd identiteet ja kirjutamine on jagamatu.
+- `SOL-WB-10` P2 — „Kõik” tööheaolu ülevaade kasutab vaikides ainult 100 uusimat kirjet — DONE — SOL-WB-05 ja SOL-WB-10 on üks juur ja üks parandus.
+- `SOL-WB-11` P2 — mitmed tööheaolu API-d tagastavad ootamatu serverivea toorsõnumi kliendile — DONE — 4xx staatus üksi ei ole enam luba rääkida.
+- `SOL-WB-12` P1 — piloodivaataja ligipääsu ei saa platvormi API kaudu tühistada — DONE — koos SOL-WB-13-ga, üks plokk: andmine ja äravõtmine on sama rada
+- `SOL-WB-13` P1 — piloodiscope'i loomine ja vaatajate õiguste muutmine ei jäta administraatori auditijälge — DONE — vt SOL-WB-12 plokk.
+- `SOL-WB-14` P2 — piloodivaate hiline päring võib uuema filtrivaliku vana raportiga üle kirjutada — DONE — kaks väravat, sest kumbki üksi ei piisa.
+- `SOL-WB-15` P2 — „Minu kirjed” ja mustandid lõpevad vaikides 100/50 rea juures — DONE — loend ei lõpe enam vaikselt.
+- `SOL-WB-16` P1 — salvestatud mustandit ei saa avada, jätkata ega kustutada — DONE — mustand on nüüd avatav, jätkatav ja kustutatav.
+- `SOL-WB-17` P1 — kolm neljast toevalikust ei jõua tegeliku adressaadini — DONE kriteeriumi MÕLEMA haru kaudu — üks rada ehitati, kolm said ausa nime.
+- `SOL-WB-18` P1 — kasutaja andmekoopia jätab mustandid ja kirjete elutsükliandmed välja — DONE — koopia kannab nüüd elutsüklit, mitte hetketõmmist.
+
+**Teenuspäevik** (`SOL-SLOG`, 5/24)
+
+- `SOL-SLOG-01` P0 — seadme mustand ja saatmisjärjekord võivad järgmise konto andmed eelmise konto päevikusse saata — DONE. Seadme read on nüüd konto omad, mitte brauseri omad.
+- `SOL-SLOG-13` P0 — pelk otsese juhi seos annab tundliku kliendiaruande sisuõiguse vastupidiselt org-lepingule — DONE — autoriseerib ainult capability, juhiseos võtab sõna. Commit `bcff4903`.
+- `SOL-SLOG-14` P0 — aruandesaajate päring kirjutab kehtivusfiltri üle ja lubab aegunud capability — DONE — kehtivus ja skoop on ühe `AND` eri harudes. Commit `bcff4903`.
+- `SOL-SLOG-17` P0 — mitme organisatsiooniga töötaja kaudu näeb üks juht teise organisatsiooni klienditöid — DONE. Parandatud koos SOL-SLOG-18-ga — sama juur, kaks otsa.
+- `SOL-SLOG-18` P0 — ühe organisatsiooni juht saab teise organisatsiooni külastuse ümber määrata — DONE. Sama plokk mis SOL-SLOG-17 (üks juur: külastusel puudus
+
+**RAG-teenus ja ingest** (`SOL-RAGSVC`, 2/28)
+
+- `SOL-RAGSVC-01` P0 — kaks ingest-rada võimaldavad kirjutada faili väljapoole RAG-hoidlat — DONE (kood); HTTP-negatiivtest deploy-järgne, vt allpool.
+- `SOL-RAGSVC-02` P0 — tekstidokumendi `source_path` annab serverifaili lugemise primitiivi — DONE — HTTP-negatiivtest jooksutatud toodangus, `PROBE_OK 8/8`.
+
+**Teekond ja jagamine** (`SOL-JOUR`, 2/17)
+
+- `SOL-JOUR-01` P0 — eelpöördumise teine jagamisvalik ei juhi tegelikult salvestatavat ega saadetavat teksti — DONE. Valitud on kriteeriumi TEINE haru: valikuid jääb kaks, aga
+- `SOL-JOUR-02` P0 — seadmesse salvestatud tundlik Teekonna mustand võib samas vahekaardis järgmisele kontole taastuda — DONE.
+
+**Eelpöördumised** (`SOL-PRE`, 2/18)
+
+- `SOL-PRE-01` P0 — konto kustutamine jätab saatmata eelpöördumiste tundliku sisu autorita alles — DONE — saatmata mustandid kustutatakse samas lukustatud tehingus. Commit `97b28080`.
+- `SOL-PRE-02` P0 — tagasivõetud organisatsioonipöördumise sisu saab hiljem avada ja uuesti töötajale määrata — DONE — terminalne seis ei anna sisu ega tööd. Sond `npm run org:recall:probe` 42/42 päris PostgreSQL-is.
+
+**Võrgustikutöö** (`SOL-NET`, 2/13)
+
+- `SOL-NET-01` P0 — paralleelne muutmine võib kinnitada teksti, mida klient ei näinud — DONE — kinnitus viitab TEKSTILE, mitte reale. Sond `npm run net:share:probe` 30/30 päris PostgreSQL-is.
+- `SOL-NET-02` P0 — paralleelne muutmine ja saatmine võivad edastada kinnitamata uue teksti — DONE — `SENT` nõuab sama versiooni kinnitustõendit. Sama sond, `net:share:probe` 30/30.
+
+**Teenuseosutaja profiil** (`SOL-SPROF`, 2/15)
+
+- `SOL-SPROF-01` P0 — konto kustutamine jätab SOLO-teenuseprofiili avalikuks ja RAG-i — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
+- `SOL-SPROF-02` P0 — soovitusloa tagasivõtmine võib vastata eduga, kuigi vana RAG-dokument jääb aktiivseks — DONE — kood, testid ja päris PostgreSQL-i runtime (`npm run sprof:consent:probe` 22/22).
+
+<!-- sol:tally lõpp -->
+
+## Jutustus — MIKS, mitte MIS
+
+**Ülalolev genereeritud plokk ütleb, MIS on tehtud, ja ta on alati värske.** Allolev jutustus
+ütleb, MIKS ja mis paranduse kirjutamisel välja tuli — ta on käsitsi kirjutatud, ta **lõpeb
+SOL-CHAT-08 juures** ja tema järelejõudmine on eraldi töö. Ta ei kanna olekut ega numbreid;
+kui ta millegagi vastuollu läheb, kehtib genereeritud plokk ja tema taga raport.
 
 - **SOL-SCHEMA-01** · **SOL-BUILD-01**
 - **SOL-AUTH-01, AUTH-02**
@@ -829,5 +1109,9 @@ kitsamaks kui kirjeldus:
 - **Reegel ei ütle veel midagi jätkufailide kohta ja see on lahtine otsus.** Kui nad
   liidetakse peaauditi järjekorda, tuleb SOL-ORG-13…-17 ette SOL-AUTH-i sabast; kui nad
   jäävad eraldi järjekorraks, tuleb kokku leppida, millal seda tehakse.
-- **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on — see fail võib olla
-  vananenud, raport ei ole.
+- **Uue ploki alustamisel loe ENNE raportist**, mis juba tehtud on. Genereeritud plokk
+  („Mis on tehtud") on raportiga alati sünkroonis ja tema all olev jutustus EI OLE — kui nad
+  lahku lähevad, kehtib plokk ja tema taga raport.
+- **Kui muudad mõne leiu Seis-lõiku, jooksuta `npm run sol:tally -- --write`.** Muidu läheb
+  `tests/scripts/solAuditTally.test.js` punaseks — see on tahtlik ja ta on ainus asi, mis
+  hoiab seda faili raporti küljes. Käsi ploki sisse ei lähe.

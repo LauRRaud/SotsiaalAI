@@ -2,8 +2,10 @@
 /**
  * SOL-süvaauditi loendur.
  *
- *   npm run sol:tally            → koond + peatükkide tabel
- *   npm run sol:tally -- --open  → lisaks iga lahtise leiu pealkiri
+ *   npm run sol:tally             → koond + peatükkide tabel
+ *   npm run sol:tally -- --open   → lisaks iga lahtise leiu pealkiri
+ *   npm run sol:tally -- --write  → kirjutab „Mis on tehtud" ploki
+ *                                   `parandusaudit.md`-sse markerite vahele
  *
  * `parandusaudit.md` väidab enda kohta, et tema numbrid on RAPORTIST LOETUD, mitte
  * käsitsi kokku pandud. Seni ei olnud seda väidet millegagi katta — käesolev skript
@@ -23,7 +25,7 @@
  * nimeliselt enne, kui ta jõuab vale numbri välja trükkida.
  */
 
-import { readdir, readFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -134,6 +136,120 @@ export function chapterRows(findings) {
   });
 }
 
+/* „Mis on tehtud" oli `parandusaudit.md`-s KÄSITSI kirjutatud jutustus ja ta jäi
+   üheksa peatüki võrra maha (lõppes SOL-CHAT-08 juures) — fail ise tunnistas seda
+   ja nimetas järelejõudmise „eraldi tööks", mida keegi kunagi ette ei võtnud.
+   Sama veaklass mis numbritel, ainult aeglasem: käsitsi hoitav tuletis lahkneb.
+   Nüüd tuleb ta samast allikast mis numbrid — leiu enda Seis-lõigust. */
+/* Peatüki eestikeelne nimi ei ole leiu pealkirjast tuletatav ja ta on ainus asi
+   siin failis, mida hoitakse käsitsi. Ta on ka ohutu: ükski ARV temast ei sõltu
+   ja puuduv nimi langeb tagasi koodile, mitte tühjusele. */
+export const CHAPTER_NAMES = Object.freeze({
+  "SOL-SCHEMA": "Skeemi ja Prisma mudeli vastavus",
+  "SOL-BUILD": "Build",
+  "SOL-AUTH": "Autentimine ja autoriseerimine",
+  "SOL-CW": "Juhtumitöö (JTA-V1)",
+  "SOL-RAGADMIN": "RAG-i admin ja failihaldus",
+  "SOL-ORG": "Organisatsioonid ja skoop",
+  "SOL-FIELD": "Välitöö",
+  "SOL-DOC": "Dokumendid ja AI-kasutus",
+  "SOL-RES": "Uuringud",
+  "SOL-MEET": "Koosolekukokkuvõtted",
+  "SOL-CHAT": "Vestlus",
+  "SOL-VOICE": "Hääl (STT/TTS)",
+  "SOL-ROOM": "Ruumid",
+  "SOL-CALL": "Kõned ja salvestus",
+  "SOL-INV": "Kutsed ja sponsorlus",
+  "SOL-PAY": "Maksed",
+  "SOL-NOTIF": "Teavitused",
+  "SOL-EVENT": "Domeenisündmused",
+  "SOL-URG": "Kiireloomuline abi",
+  "SOL-WB": "Tööheaolu",
+  "SOL-SLOG": "Teenuspäevik",
+  "SOL-RAGSVC": "RAG-teenus ja ingest",
+  "SOL-PRISMA": "Migratsioonid",
+  "SOL-MENT": "Mentorlus",
+  "SOL-SUP": "Supervisioon",
+  "SOL-COV": "Kovisioon",
+  "SOL-PRAC": "Tõenduspõhised praktikad",
+  "SOL-SEED": "Teemaseemned",
+  "SOL-JOUR": "Teekond ja jagamine",
+  "SOL-PRE": "Eelpöördumised",
+  "SOL-HELP": "Abikuulutused",
+  "SOL-NET": "Võrgustikutöö",
+  "SOL-REF": "Refleksioonid",
+  "SOL-SEARCH": "Otsing",
+  "SOL-SPROF": "Teenuseosutaja profiil",
+  "SOL-COMP": "Dokumendi koostamine",
+  "SOL-MAT": "Materjalid",
+  "SOL-SHARE": "Minu jagamised",
+  "SOL-SMAP": "Teenusekaart"
+});
+
+export const BLOCK_START = "<!-- sol:tally algus — GENEREERITUD, ÄRA TOIMETA KÄSITSI -->";
+export const BLOCK_END = "<!-- sol:tally lõpp -->";
+
+export function renderDoneBlock(findings) {
+  const done = findings.filter((row) => row.done);
+  const open = findings.filter((row) => !row.done);
+  const rows = chapterRows(findings);
+  const lines = [];
+
+  lines.push(BLOCK_START);
+  lines.push("");
+  lines.push("## Mis on tehtud");
+  lines.push("");
+  lines.push(
+    "**See plokk on genereeritud** (`npm run sol:tally -- --write`) raporti enda Seis-lõikudest.",
+    "Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea",
+    "lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus."
+  );
+  lines.push("");
+  lines.push(
+    `**${done.length} / ${findings.length} leidu · ` +
+      `${rows.filter((row) => row.done === row.total).length} / ${rows.length} peatükki · ` +
+      `lahtiseid ${open.length} — ${byPriority(open)}**`
+  );
+  lines.push("");
+  lines.push("| Peatükk | Kood | Tehtud | Lahtised | Märkus |");
+  lines.push("|---|---|---|---|---|");
+  for (const row of rows) {
+    const name = CHAPTER_NAMES[row.chapter] || row.chapter;
+    lines.push(`| ${name} | ${row.chapter} | ${row.done}/${row.total} | ${row.open} | ${row.note} |`);
+  }
+  lines.push("");
+  lines.push("### Tehtud leiud peatükkide kaupa");
+  lines.push("");
+
+  for (const row of rows) {
+    const chapterDone = done.filter((item) => item.chapter === row.chapter);
+    if (chapterDone.length === 0) continue;
+    lines.push(`**${CHAPTER_NAMES[row.chapter] || row.chapter}** (\`${row.chapter}\`, ${row.done}/${row.total})`);
+    lines.push("");
+    for (const item of chapterDone) {
+      lines.push(`- \`${item.id}\` ${item.priority} — ${item.title} — ${item.status}`);
+    }
+    lines.push("");
+  }
+
+  lines.push(BLOCK_END);
+  return lines.join("\n");
+}
+
+/* Asendus, mitte lisamine: puuduv marker VISKAB. Vaikne lisamine faili lõppu
+   tähendaks kahte „Mis on tehtud" plokki, millest vanem oleks eespool ja teda
+   loetaks esimesena — täpselt see viga, mille see plokk kaotama peaks. */
+export function replaceBlock(source, block) {
+  const start = source.indexOf(BLOCK_START);
+  const end = source.indexOf(BLOCK_END);
+  if (start === -1 || end === -1 || end < start) {
+    throw new Error(
+      `sol:tally --write — markereid ei leitud. Fail peab sisaldama ridu:\n  ${BLOCK_START}\n  ${BLOCK_END}`
+    );
+  }
+  return source.slice(0, start) + block + source.slice(end + BLOCK_END.length);
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const { files, findings } = await collectFindings();
   const main_ = findings.filter((row) => row.file === MAIN_FILE);
@@ -152,6 +268,18 @@ export async function main(argv = process.argv.slice(2)) {
   console.log("|---|---|---|---|");
   for (const row of chapterRows(findings)) {
     console.log(`| ${row.chapter} | ${row.done}/${row.total} | ${row.open} | ${row.note} |`);
+  }
+
+  if (argv.includes("--write")) {
+    const target = path.join(AUDIT_DIR, "parandusaudit.md");
+    const source = await readFile(target, "utf8");
+    const next = replaceBlock(source, renderDoneBlock(findings));
+    if (next === source) {
+      console.log(`\n[sol:tally --write] ${target} oli juba värske.`);
+    } else {
+      await writeFile(target, next);
+      console.log(`\n[sol:tally --write] ${target} uuendatud — ${done.length} tehtud leidu.`);
+    }
   }
 
   if (argv.includes("--open")) {
