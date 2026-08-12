@@ -3,7 +3,6 @@ export const runtime = "nodejs";
 import { NextResponse } from "next/server";
 import {
   BillingInterval,
-  BillingMethodStatus,
   BillingMode,
   PaymentProvider,
 } from "@/generated/prisma/client";
@@ -16,13 +15,10 @@ import {
   parseMaksekeskusFormMessage,
   verifyMaksekeskusMac,
 } from "@/lib/payments/maksekeskus";
-import {
-  extractRecurringToken,
-  extractRecurringTokenValidUntil,
-} from "@/lib/payments/recurring";
+import { extractRecurringToken } from "@/lib/payments/recurring";
 import { logPaymentEvent } from "@/lib/payments/observability";
 import { buildPaymentRawRecord } from "@/lib/payments/rawProjection";
-import { encryptRecurringToken } from "@/lib/payments/tokenCrypto";
+import { claimRecurringBillingMethod } from "@/lib/payments/billingMethodClaim";
 
 function mapCallbackState(rawStatus) {
   const status = String(rawStatus || "")
@@ -49,12 +45,6 @@ function pickLocale(url, req, payload = null) {
   return fromHeader || "en";
 }
 
-function parseDate(value) {
-  if (!value) return null;
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? null : date;
-}
-
 function asPlainObject(value) {
   return value && typeof value === "object" && !Array.isArray(value) ? value : {};
 }
@@ -62,7 +52,6 @@ function asPlainObject(value) {
 async function persistRecurringToken(payload) {
   const providerPaymentId = extractProviderPaymentId(payload);
   const tokenId = extractRecurringToken(payload);
-  const tokenValidUntil = parseDate(extractRecurringTokenValidUntil(payload));
   const isMultiUse = payload?.token?.multiuse === true || String(payload?.token?.multiuse || "").toLowerCase() === "true";
 
   if (!providerPaymentId || !tokenId || !isMultiUse) {
@@ -72,82 +61,47 @@ async function persistRecurringToken(payload) {
     };
   }
 
-  // E3/O-J1 fail-closed: krüpti recurring token serveri võtmega; ilma võtmeta
-  // mandaati EI salvestata (webhook on nagunii autoriteetne aktiveerija).
-  let encrypted;
-  try {
-    encrypted = encryptRecurringToken(tokenId);
-  } catch (error) {
-    logPaymentEvent("subscription_callback_token_encryption_unavailable", {
-      providerPaymentId,
-      code: error?.code || "PAYMENT_TOKEN_KEY_UNAVAILABLE",
-    });
-    return {
-      updated: false,
-      providerPaymentId,
-      reason: "encryption_unavailable",
-    };
-  }
-
-  const payment = await prisma.payment.findUnique({
-    where: {
-      provider_providerPaymentId: {
-        provider: PaymentProvider.MAKSEKESKUS,
-        providerPaymentId,
-      },
-    },
-    select: {
-      id: true,
-      userId: true,
-      subscriptionId: true,
-      billingMethodId: true,
-      raw: true,
-    },
-  });
-
-  if (!payment?.subscriptionId) {
-    return {
-      updated: false,
-      providerPaymentId,
-    };
-  }
-
   const now = new Date();
-  const billingMethod = await prisma.$transaction(async (tx) => {
-    // Krüptitud tokenit ei saa plaintekstina otsida; toetu makse
-    // billingMethodId-le, muidu loo uus mandaat.
-    const existing = payment.billingMethodId
-      ? await tx.billingMethod.findUnique({
-          where: { id: payment.billingMethodId },
-          select: { id: true },
-        })
-      : null;
+  /* SOL-PAY-10: kogu otsus käib ÜHES tehingus ja LUKUSTATUD makse rea peal.
+     Vana kood luges makse tehingust väljas ja tegi mandaadi salvestuse oma
+     teostusega — kaks callback'i või callback + webhook võisid mõlemad lugeda
+     nulli ja luua eraldi aktiivse tokenirea.
 
-    const data = {
-      status: BillingMethodStatus.ACTIVE,
-      provider: PaymentProvider.MAKSEKESKUS,
-      providerToken: null,
-      providerTokenCipher: encrypted.cipher,
-      providerTokenKeyId: encrypted.keyId,
-      expiresAt: tokenValidUntil,
-      activatedAt: now,
-      lastUsedAt: now,
-      revokedAt: null,
-    };
+     LUKUJÄRJEKORD on sama mis webhookis: makse rida FOR UPDATE → nõuandelukk
+     kasutaja peale (viimase võtab `claimRecurringBillingMethod`). Vastupidine
+     järjekord siin tähendaks ummikut nende kahe raja vahel. */
+  const outcome = await prisma.$transaction(async (tx) => {
+    await tx.$queryRaw`
+      SELECT 1 FROM "Payment"
+      WHERE "providerPaymentId" = ${providerPaymentId}
+      FOR UPDATE
+    `;
 
-    const method = existing?.id
-      ? await tx.billingMethod.update({
-          where: { id: existing.id },
-          data,
-          select: { id: true },
-        })
-      : await tx.billingMethod.create({
-          data: {
-            userId: payment.userId,
-            ...data,
-          },
-          select: { id: true },
-        });
+    const payment = await tx.payment.findUnique({
+      where: {
+        provider_providerPaymentId: {
+          provider: PaymentProvider.MAKSEKESKUS,
+          providerPaymentId,
+        },
+      },
+      select: {
+        id: true,
+        userId: true,
+        subscriptionId: true,
+        billingMethodId: true,
+        raw: true,
+      },
+    });
+
+    if (!payment?.subscriptionId) return null;
+
+    const method = await claimRecurringBillingMethod(tx, {
+      userId: payment.userId,
+      preferredBillingMethodId: payment.billingMethodId,
+      payload,
+      at: now,
+    });
+    if (!method?.id) return null;
 
     await tx.payment.update({
       where: { id: payment.id },
@@ -169,10 +123,17 @@ async function persistRecurringToken(payload) {
     return method;
   });
 
+  if (!outcome?.id) {
+    return {
+      updated: false,
+      providerPaymentId,
+    };
+  }
+
   return {
     updated: true,
     providerPaymentId,
-    billingMethodId: billingMethod.id,
+    billingMethodId: outcome.id,
   };
 }
 

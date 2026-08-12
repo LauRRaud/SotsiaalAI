@@ -1273,6 +1273,10 @@ model BillingMethod {
   subscriptions Subscription[]
   payments      Payment[]
 
+  /// SOL-PAY-10: üks mandaat = üks rida. Varem oli see ainult indeks, seega
+  /// callback ja webhook võisid mõlemad luua eraldi aktiivse tokenirea. NULL
+  /// jääb piiranguta — mandaadita read ei ole duplikaadid.
+  @@unique([provider, userId, providerMandateId])
   @@index([userId])
   @@index([status])
   @@index([provider])
@@ -1291,6 +1295,10 @@ model PaymentEmailOutbox {
   template      String
   toEmail       String
   locale        String    @default("en")
+  /// SOL-PAY-11: PÜSIV RFC Message-ID. Timeout ja lease-taaste ei tea, kas SMTP
+  /// kirja vastu võttis; korduskatse kannab sama ID-d, seega duplikaat on
+  /// adressaadi kliendi jaoks SAMA kiri, mitte teine.
+  messageId     String?
   payload       Json?
   paymentId     String?
   inviteId      String?
