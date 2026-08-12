@@ -191,6 +191,12 @@ faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 **SOL-süvaaudit: 181/403 leidu, 16/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
+**12.08 õhtust alates on `parandusaudit.md` peatükk „Mis on tehtud" samuti GENEREERITUD**
+(`npm run sol:tally -- --write`) — 181 tehtud leidu peatükkide kaupa, iga rea lõpus leiu
+Seis-lõigu esimene lause sõna-sõnalt. Varem oli ta käsitsi kirjutatud ja maas üheksa lõpetatud
+peatüki võrra. Ploki värskust hoiab test, mitte lubadus. **Per-leiu loendit siia ei kopeerita:**
+S1 kannab kogusummat, raport kannab leiu enda seisu, `parandusaudit.md` kannab tuletatud
+ülevaadet — kolmas käsitsi hoitav koopia oleks järgmine lahknemine.
 
 **SOL-WB (Tööheaolu) lõpetatud 12.08 — 18/18, sh neli leidu jätkufailist.** Kandvad parandused:
 **osalusprojektsioon** (`WellbeingParticipation`) — kirje kuulub sellesse piloodikoondisse, kelle
