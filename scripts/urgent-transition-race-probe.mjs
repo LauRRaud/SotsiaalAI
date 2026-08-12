@@ -23,6 +23,7 @@ import { prisma } from "../lib/prisma.js";
 import { lockDeskRow } from "../lib/urgent/desk.js";
 import {
   acceptUrgentHandover,
+  convertUrgentRequestToPreInquiry,
   createUrgentRequest,
   expireOverdueUrgentRequests,
   handOverUrgentRequest,
@@ -58,6 +59,7 @@ function sequencedClient({ onLoaded, gate }) {
       updateMany: (args) => prisma.urgentRequest.updateMany(args)
     },
     urgentRequestEvent: { create: (args) => prisma.urgentRequestEvent.create(args) },
+    preInquiry: { create: (args) => prisma.preInquiry.create(args) },
     urgentDesk: { findFirst: (args) => prisma.urgentDesk.findFirst(args) },
     urgentDeskMember: {
       findFirst: (args) => prisma.urgentDeskMember.findFirst(args),
@@ -405,10 +407,51 @@ async function main() {
     check("URG-08: üleandmist ei kirjutatud", (afterTarget?.handoverDeskId ?? null) === null);
     check("URG-08: HANDED_OVER jälge ei tekkinud", !(await eventKinds(toUnready.id)).includes("HANDED_OVER"));
     await prisma.urgentDeskMember.updateMany({ where: { deskId: deskB.id }, data: { isActive: true } });
+
+    // -----------------------------------------------------------------------
+    // 8. SOL-URG-10: konversioon täpselt üks kord. Kaotaja tehing peab oma
+    //    mustandi TERVENI tagasi veeretama — muidu jääb kasutaja kontole teine
+    //    koopia samast tundlikust verbatim-tekstist, ilma päritoluseoseta.
+    // -----------------------------------------------------------------------
+    const converting = await fresh();
+    const beforeDrafts = await prisma.preInquiry.count({ where: { authorId: author.id } });
+    const convertRace = await race({
+      loser: (client) => convertUrgentRequestToPreInquiry({
+        prisma: client, requestId: converting.id, userId: author.id
+      }),
+      winner: () => convertUrgentRequestToPreInquiry({
+        prisma, requestId: converting.id, userId: author.id
+      })
+    });
+    const afterConvert = await prisma.urgentRequest.findFirst({ where: { id: converting.id } });
+    const afterDrafts = await prisma.preInquiry.count({ where: { authorId: author.id } });
+    check(
+      "URG-10: üks konversioon õnnestus",
+      Boolean(convertRace.winner.value?.preInquiry?.id),
+      String(convertRace.winner.error?.code)
+    );
+    check(
+      "URG-10: teine katse kaotas ausa koodiga",
+      convertRace.loser.error?.code === "urgent_request.already_converted",
+      String(convertRace.loser.error?.code || convertRace.loser.value?.preInquiry?.id)
+    );
+    check("URG-10: mustandeid tekkis TÄPSELT ÜKS", afterDrafts - beforeDrafts === 1, `${beforeDrafts} → ${afterDrafts}`);
+    check(
+      "URG-10: viide osutab võitja mustandile",
+      afterConvert?.convertedPreInquiryId === convertRace.winner.value?.preInquiry?.id,
+      String(afterConvert?.convertedPreInquiryId)
+    );
+    check(
+      "URG-10: CONVERTED jälgi on täpselt üks",
+      (await eventKinds(converting.id)).filter((kind) => kind === "CONVERTED").length === 1
+    );
   } finally {
     for (const requestId of created.requestIds) {
       await prisma.urgentRequestEvent.deleteMany({ where: { requestId } }).catch(() => null);
       await prisma.urgentRequest.delete({ where: { id: requestId } }).catch(() => null);
+    }
+    for (const user of created.users) {
+      await prisma.preInquiry.deleteMany({ where: { authorId: user.id } }).catch(() => null);
     }
     for (const desk of created.desks) {
       await prisma.urgentDeskMember.deleteMany({ where: { deskId: desk.id } }).catch(() => null);
