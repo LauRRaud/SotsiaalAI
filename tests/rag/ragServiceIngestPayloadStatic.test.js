@@ -90,30 +90,23 @@ test("RAG service PDF ingest maps sectionIndex into chunk metadata", () => {
   assert.match(fn, /"disallowed_claim_types": section_meta\.get\("disallowed_claim_types"\)/);
 });
 
-test("RAG URL ingest rejects private hosts before fetch", () => {
-  const source = readRagServiceMain();
-  const hostGuard = extractPythonFunction(source, "_host_resolves_to_non_public_ip");
-  const urlGuard = extractPythonFunction(source, "_assert_safe_fetch_url");
-
-  assert.match(hostGuard, /raw_host\.lower\(\) == "localhost"/);
-  assert.match(hostGuard, /ipaddress\.ip_address\(raw_host\)/);
-  assert.match(hostGuard, /return not parsed_ip\.is_global/);
-  assert.match(hostGuard, /socket\.getaddrinfo\(raw_host, None, proto=socket\.IPPROTO_TCP\)/);
-  assert.match(hostGuard, /return True/);
-
-  assert.match(urlGuard, /parsed\.scheme not in \{"http", "https"\}/);
-  assert.match(urlGuard, /not parsed\.netloc/);
-  assert.match(urlGuard, /not ALLOW_PRIVATE_URL_FETCH and _host_resolves_to_non_public_ip\(parsed\.hostname or ""\)/);
-  assert.match(urlGuard, /Private or local network URLs are not allowed/);
+test("RAG URL ingest resolves once, connects to the pinned IP and verifies the peer", () => {
+  const source = fs.readFileSync(new URL("../../rag-service/pinned_fetch.py", import.meta.url), "utf8");
+  assert.match(source, /resolver\(host, port/);
+  assert.match(source, /any\(not address\.is_global for address in addresses\)/);
+  assert.match(source, /HTTPSConnectionPool\(/);
+  assert.match(source, /server_hostname/);
+  assert.match(source, /assert_hostname/);
+  assert.match(source, /sock\.getpeername\(\)\[0\]/);
+  assert.match(source, /peer != pinned/);
 });
 
 test("RAG URL ingest revalidates redirect targets before following them", () => {
   const fn = extractPythonFunction(readRagServiceMain(), "_fetch_remote_html");
 
-  assert.match(fn, /_assert_safe_fetch_url\(url\)/);
-  assert.match(fn, /allow_redirects=False/);
+  assert.match(fn, /open_pinned_response\(/);
   assert.match(fn, /300 <= response\.status_code < 400/);
   assert.match(fn, /location = response\.headers\.get\("location"\)/);
-  assert.match(fn, /current = _assert_safe_fetch_url\(urljoin\(current, location\)\)/);
+  assert.match(fn, /current = urljoin\(current, location\)/);
   assert.match(fn, /Too many redirects/);
 });

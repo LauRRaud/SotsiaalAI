@@ -167,6 +167,23 @@ test("searchRagQueries sends hybrid retriever request and preserves returned cha
   }
 });
 
+test("searchRagQueries throws on rag-service retrieval 503 instead of returning no evidence", async () => {
+  const originalFetch = global.fetch;
+  global.fetch = async () => ({
+    ok: false,
+    status: 503,
+    text: async () => JSON.stringify({ detail: { code: "RAG_RETRIEVAL_UNAVAILABLE", request_id: "req-failed" } })
+  });
+  try {
+    await assert.rejects(
+      searchRagQueries({ queries: ["failure"], timeoutMs: 1000 }),
+      (error) => error?.code === "RAG_RETRIEVAL_UNAVAILABLE" && error?.status === 503
+    );
+  } finally {
+    global.fetch = originalFetch;
+  }
+});
+
 test("buildRagSearchQuery anchors short follow-ups to recent assistant sources", () => {
   const history = [
     {

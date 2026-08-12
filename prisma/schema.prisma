@@ -16,6 +16,12 @@ enum Role {
   CLIENT
 }
 
+enum RagAdminCapability {
+  NONE
+  KNOWLEDGE_STEWARD
+  PLATFORM_ADMIN
+}
+
 enum SubscriptionStatus {
   NONE
   ACTIVE
@@ -720,6 +726,7 @@ model User {
   passwordHash            String?
   role                    Role      @default(CLIENT)
   isAdmin                 Boolean   @default(false)
+  ragAdminCapability      RagAdminCapability @default(NONE)
   sessionVersion          Int       @default(0)
   accessSuspendedAt       DateTime?
   accessSuspendedReason   String?
