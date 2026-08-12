@@ -89,7 +89,7 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**Seis 11.08 pärastlõunal (mõõdetud, mitte mäletatud):** server on **`b7c9adf0`** ja `origin/main` sama — deploy'mata koodi EI OLE. **Neljateistkümnes deploy 11.08 13:45 sinu selgel loal:** SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud. Mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
+**Seis 12.08 hommikul (mõõdetud, mitte mäletatud):** server on **`1443b6a0`** ja `origin/main` sama — deploy'mata koodi EI OLE. **Viieteistkümnes deploy 12.08 08:12 sinu selgel loal:** 34 commit'i — AUTH-14, AUTH-15, kogu SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF — ja **seitse migratsiooni**, kõik lisavad. Mõõdetud kohe pärast: `.next` 08:12:44, kolm teenust `active`, `sotsiaal.ai` ja `127.0.0.1:3000` **200**, serveri tööpuu puhas, kolme teenuse veatasemel logi tühi. Deploy jooksis serveris lahtiühendatuna (`setsid` + logifail), sest SSH-kanal katkes väljundivoo peale ka seekord — jälgija sai `Connection reset by peer`, deploy ise seda ei märganud. **Neljateistkümnes deploy 11.08 13:45** oli `b7c9adf0`: SOL-CHAT-09…-13 (peatükk LÕPETATUD, 13/13), migratsioone ei olnud; mõõdetud kohe pärast: `.next` 13:45:53, kolm teenust `active`, `/` `/vestlus` `/toolaud` **200**, frontend'i JA rag-teenuse veatasemel logi tühi. **Kolmeteistkümnes deploy 11.08 13:06** oli `27af4a02`: SOL-CHAT-01…-08 + SOL-MEET-05/-06 ja migratsioon `20260811160000` (uus tabel `ChatTurn`, ridu 0).
 
 **Kaheteistkümnes deploy 11.08 11:42** oli `ae1f2055`: kaheksa commit'i (SOL-MEET-01…-04 + docs)
 ja üks migratsioon. Mõõdetud kohe pärast: `.next` 11:42, kolm teenust `active`, viis lehte **200**,
@@ -215,8 +215,9 @@ fail maksis varem alati minuti, ka siis, kui ta oli tunni pikkune. `npm run voic
 **NOT_PROVEN** (DOM-testisviiti ei ole).
 
 `npm test` **3950/3950** (Europe/Tallinn ja UTC), i18n ja eslint puhtad, `db:migrate:check` OK.
-**Deploy'mata: AUTH-14 (`b7539345`), AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL,
-kogu SOL-INV, SOL-PAY-01…-08, -10, -11 ja kogu SOL-NOTIF** — server on `1ed23452`. Deploy'mata on **seitse
+**Deploy tehtud 12.08 08:12 (omaniku luba samal päeval) — deploy'mata ei ole midagi.** Välja
+läksid AUTH-14, AUTH-15, kogu SOL-VOICE, kogu SOL-ROOM, kogu SOL-CALL, kogu SOL-INV,
+SOL-PAY-01…-08, -10, -11 ja kogu SOL-NOTIF; server on `1443b6a0`. Peale läksid ka kõik **seitse
 migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
 (`PaymentStatus.RECONCILE_PENDING` + `Payment.clientIntentKey` unikaalsus), `20260812010000`
 (`PaymentStatus.REVIEW_REQUIRED`), `20260812020000` (`PaymentStatus.PART_REFUNDED` +
@@ -224,6 +225,13 @@ migratsiooni**: `20260811220000` (`VerificationLinkDispatch`), `20260811230000`
 (outbox'i püsiv Message-ID) ja `20260812050000` (teavituste reconcile-kursor). Ükski neist ei puuduta olemasolevaid ridu. Toodangu
 PostgreSQL on **16.14** — mõõdetud, sest `ALTER TYPE … ADD VALUE` migratsioonitehingus nõuab
 PG 12+.
+
+**Mandaadi unikaalsust mõõdeti toodangu pealt ENNE deploy'd.** `20260812030000` loob
+`CREATE UNIQUE INDEX`-i ilma eelneva dedupeta — ja just duplikaat oli see, mida SOL-PAY-10
+kirjeldas. Duplikaadi peal oleks migratsioon kukkunud ja jäänud `_prisma_migrations`-i „failed"
+seisu, mis blokeerib iga järgmise `migrate deploy` kuni käsitsi lahendamiseni. Mõõdetud:
+**0 duplikaati** (1 `BillingMethod` rida, 4 makset). Sama kontroll käib iga tulevase
+unikaalsuspiirangu ette.
 
 **Toodangu maksepilt mõõdetud 12.08** (SOL-PAY-04 backfilli küsimuse pärast): 11 tellimust
 (8 `SELF`, 3 `SPONSORED_BY_HOST`) ja 4 makset (3 `PAID`, 1 `REFUNDED`). Ühelgi sponsoreeritud

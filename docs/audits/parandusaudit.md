@@ -105,9 +105,10 @@ Kolm tagajärge, mis ei ole kosmeetika:
 - **SOL-MAT-01 on serveripiiri puudumine tasulisel spetsialistifunktsioonil** — iga autentitud
   konto saab otse-API kaudu üles laadida. See ei ole ääreala ja ta ei olnud kunagi loendis.
 
-**115 tehtud leidu on 11.08 18:31 seisuga tootmises. Deploy'mata on kaks: SOL-AUTH-14 ja
-SOL-AUTH-15**, viimane koos migratsiooniga `20260811220000` (uus tabel
-`VerificationLinkDispatch`; olemasolevaid ridu ei puudutata).
+**Kõik 150 tehtud leidu on 12.08 08:12 seisuga tootmises — deploy'mata ei ole midagi.**
+Server on `1443b6a0`, sama mis `main` ja `origin/main`. Välja läksid AUTH-14 ja -15, kogu
+SOL-VOICE, SOL-ROOM, SOL-CALL ja SOL-INV, SOL-PAY-01…-08, -10, -11 ning kogu SOL-NOTIF —
+34 commit'i ja seitse migratsiooni, kõik lisavad.
 
 **Üks asi, mille see ring välja tõi ja mis on siia varem valesti kirjutatud:** eelmine
 versioon väitis, et „AUTH-03…-07 ja -11 on `origin/main`-is". Mõõdetuna oli **`a4e00e43`
