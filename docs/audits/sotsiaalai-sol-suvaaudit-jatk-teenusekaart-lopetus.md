@@ -44,7 +44,7 @@ Kasutaja tagasiside põhjal tehtud Teenusekaardi visuaalparandus elab eraldi har
 | `SOL-SMAP-04` — vaikne 500/24 kärbe | NOT_DONE | klient küsib endiselt `limit=500`, tulemusriba lõikab 24 peale ning vastuses puudub cursor/truncation leping |
 | `SOL-SMAP-05` — grupipopup kaotab detaili | NOT_DONE; runtime reproduced | kahe samal koordinaadil sünteetilise KOV-kontakti popup näitas nime, telefoni, e-posti ja `Kirjuta`, kuid mitte kummagi teenuseid, ligipääsuteed ega platvormipöördumist |
 | `SOL-SMAP-06` — süvalink ei ava kirjet | NOT_DONE; runtime reproduced | `?entryId=audit-entry-target&type=SERVICE_PROVIDER` valis tüübi ja kuvas rea/markeri, kuid ei valinud kirjet ega avanud popup'i; sama parser eirab `listing` ja `match` linke |
-| `SOL-SMAP-07` — ühe allika viga võtab maha kogu kaardi | NOT_DONE | ühendroute on endiselt ühise `Promise.all`-i ja ühise 500 veaga; settled/partial leping puudub |
+| `SOL-SMAP-07` — ühe allika viga võtab maha kogu kaardi | PARTIAL; BLOCKED_OWNER_DECISION | settled-leping, allikakoodid ja fail-closed turvapiir on valmis, kuid osalise tulemuse tootepoliitika ei ole aktiveeritud ega brauseris tõendatud |
 | `SOL-SMAP-08` — anonüümsele näidatakse keelatud peer-filtreid | NOT_DONE; runtime reproduced | päris anonüümne API tagastas `peerListingsAvailable:false`, kuid UI näitas endiselt `Abisoovid` ja `Abipakkumised` valikuid |
 
 `SOL-SMAP-06` alla kuuluvad lisaks eelpöördumise `entryId`-le kaks sama juurpõhjusega teavitusrada: `ActionKind.OPEN_LISTING` loob `/teenusekaart?listing=...` ja sobitusteavitus `/teenusekaart?match=...`, kuid `readInitialServiceMapFilters()` loeb ainult märksõna, piirkonna ja tüübi. Neile ei tehtud uusi duplikaat-ID-sid.
@@ -61,7 +61,7 @@ Privaatsuspoliitika nimetab tehniliste andmetena IP-aadressi, brauseri ja seadme
 
 **Vastuvõtukriteerium.** Omanik peab dokumenteerima tile-teenuse andmevoo, osapoolte rolli, logitavad väljad ja retention'i ning viima privaatsuspoliitika/UI tegeliku arhitektuuriga kooskõlla. Tehniline lahendus peab kas proxy'ma/cache'ima tile'id nii, et lõppkasutaja IP/UA ei lähe välisele teenusele, või andma enne otseühendust selge funktsioonipõhise teavituse ja minimeerima `Referer`/muu meta. Brauseritest peab tõendama lubatud domeenid, request-headerid, küpsiste puudumise, Teekonna/märksõna puudumise ning käitumise juhul, kui välisteenus ebaõnnestub või kasutaja otseühendust ei luba.
 
-**Seis.** NOT_DONE; runtime: otsene tile-request reproduced; teenusepakkuja tegelik logimine, retention ja õiguslik roll `NOT_PROVEN`.
+**Seis.** PARTIAL; BLOCKED_OWNER_LEGAL_EVIDENCE. Tehniline otselekke rada on suletud: brauser kasutab ainult sama päritolu `/api/service-map/tiles/{z}/{x}/{y}` proxy't, millel on fikseeritud upstream ja päised, koordinaadi-, MIME-, mahu-, redirect- ja timeout-kontroll ning `no-store`; kliendi Cookie/Auth/Referer/XFF/IP/UA-d ei edastata. Chromiumi kontrollis tekkis pärast zoomi 10 sama päritolu tile-päringut ja 0 otsest `tiles.maaamet.ee` päringut; provider-failure jätab tulemuste loendi kasutatavaks. Täielik DONE vajab endiselt Maa- ja Ruumiameti rolli, tegelikult logitavate väljade, säilitusaja ning proxy/cache'i ja atributsiooni kasutustingimuste tõendit; poliitikasse ei ole neid oletatud.
 
 ## Testide ja runtime'i täpsed tulemused
 

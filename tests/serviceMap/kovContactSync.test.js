@@ -63,8 +63,10 @@ test("sync reads central KOV contact registry before folder contact items", asyn
       upsert: async (payload) => {
         upserts.push(payload);
         return payload.create;
-      }
-    }
+      },
+      updateMany: async () => ({ count: 0 })
+    },
+    dataAuditLog: { create: async () => null }
   };
 
   const result = await syncKovContactsToServiceMap({

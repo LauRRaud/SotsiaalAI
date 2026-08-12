@@ -1,21 +1,78 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 
-import { geocodeServiceMapAddress, suggestServiceMapAddresses } from "../../lib/serviceMap/geocoding.js";
+import {
+  geocodeServiceMapAddress,
+  geocodeServiceMapEntries,
+  geocodingUpdateForEntry,
+  suggestServiceMapAddresses
+} from "../../lib/serviceMap/geocoding.js";
 
 const originalFetch = globalThis.fetch;
 const originalProvider = process.env.SERVICE_MAP_GEOCODER_PROVIDER;
 const originalBaseUrl = process.env.SERVICE_MAP_GEOCODER_BASE_URL;
+const originalFixtures = process.env.SERVICE_MAP_GEOCODER_FIXTURES;
 
 function restoreEnv() {
   if (originalProvider === undefined) delete process.env.SERVICE_MAP_GEOCODER_PROVIDER;
   else process.env.SERVICE_MAP_GEOCODER_PROVIDER = originalProvider;
   if (originalBaseUrl === undefined) delete process.env.SERVICE_MAP_GEOCODER_BASE_URL;
   else process.env.SERVICE_MAP_GEOCODER_BASE_URL = originalBaseUrl;
+  if (originalFixtures === undefined) delete process.env.SERVICE_MAP_GEOCODER_FIXTURES;
+  else process.env.SERVICE_MAP_GEOCODER_FIXTURES = originalFixtures;
   globalThis.fetch = originalFetch;
 }
 
 test.afterEach(restoreEnv);
+
+test("geocoding updates coordinates without changing moderation status", async () => {
+  process.env.SERVICE_MAP_GEOCODER_FIXTURES = JSON.stringify({
+    "Testi 1": [{ address: "Testi 1", normalizedAddress: "Testi tn 1", latitude: 59.4, longitude: 24.7, adsObjectId: "ads-1" }]
+  });
+  const writes = [];
+  const statuses = ["DRAFT", "NEEDS_REVIEW", "PUBLISHED", "HIDDEN"];
+  const prisma = {
+    serviceMapEntry: {
+      findMany: async () => statuses.map((status, index) => ({
+        id: `entry-${index}`,
+        type: "KOV_SOCIAL_CONTACT",
+        title: status,
+        municipalityName: "Tallinn",
+        county: "Harjumaa",
+        address: "Testi 1",
+        status,
+        geocodingStatus: "PENDING"
+      })),
+      update: async (payload) => {
+        writes.push(payload);
+        return payload.data;
+      }
+    }
+  };
+
+  await geocodeServiceMapEntries({ prisma, provider: "fixture" });
+
+  assert.ok(writes.every((write) => !("status" in write.data)));
+  assert.ok(writes.every((write) => write.data.geocodingStatus === "MATCHED"));
+});
+
+test("all moderation states survive matched, ambiguous and failed geocoding", () => {
+  for (const status of ["DRAFT", "NEEDS_REVIEW", "PUBLISHED", "HIDDEN"]) {
+    for (const geocodingStatus of ["MATCHED", "AMBIGUOUS", "FAILED"]) {
+      const update = geocodingUpdateForEntry({ status }, {
+        status: geocodingStatus,
+        provider: "fixture",
+        rawAddress: "Testi 1",
+        normalizedAddress: "Testi tn 1",
+        latitude: 59.4,
+        longitude: 24.7,
+        adsObjectId: "ads",
+        raw: {}
+      });
+      assert.equal("status" in update, false, `${status}/${geocodingStatus}`);
+    }
+  }
+});
 
 test("Maa- ja Ruumiamet suggestions expose selectable official address candidates", async () => {
   process.env.SERVICE_MAP_GEOCODER_PROVIDER = "maaruum";

@@ -2203,6 +2203,13 @@
       "map_label": "Teenusekaardi eelvaade",
       "loading": "Laen kaardikirjeid...",
       "loading_map": "Laen Eesti kaarti...",
+      "loading_more": "Laen juurde…",
+      "load_more": "Laadi veel",
+      "loaded_count": "Laaditud {count} tulemust.",
+      "peer_login_required": "Abikuulutuste vaatamiseks logi sisse. Avalik Teenusekaart ei avalda, kas kuulutusi leidub.",
+      "target_not_public": "See kirje ei ole enam avalik või sulle nähtav.",
+      "partial_warning": "Üks Teenusekaardi andmeallikas ei ole praegu saadaval. Näitame toimiva allika osalisi tulemusi.",
+      "partial_empty": "Kõiki Teenusekaardi allikaid ei saanud kontrollida, seega ei saa tulemuste puudumist kinnitada.",
       "results": "tulemust",
       "no_address": "Asukoht vajab täpsustamist",
       "actions": {
@@ -2226,7 +2233,12 @@
       },
       "errors": {
         "load_failed": "Kaardikirjeid ei saanud laadida.",
-        "map_failed": "Kaarti ei saanud laadida."
+        "map_failed": "Kaarti ei saanud laadida.",
+        "tiles_failed": "Kaardipõhi ei ole praegu saadaval. Tulemuste loend jääb kasutatavaks.",
+        "invalid_cursor": "Tulemuste järjeviide ei kehti enam.",
+        "target_not_public": "See kirje ei ole enam avalik või sulle nähtav.",
+        "target_load_failed": "Kirjet ei saanud praegu avada.",
+        "load_more_failed": "Järgmisi tulemusi ei saanud laadida. Senised tulemused jäävad nähtavaks."
       },
       "popup": {
         "provider": "Teenuseosutaja",
@@ -2238,6 +2250,7 @@
         "write": "Kirjuta",
         "website": "Veeb",
         "start_pre_inquiry": "Alusta pöördumist",
+        "back_to_group": "Tagasi kontaktide juurde",
         "services": "Teenused",
         "group_title": "{count} kontakti"
       },

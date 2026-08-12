@@ -100,8 +100,15 @@ kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2�
 jagamisklasse, ühe allika tõrge ei peida ülejäänud ajalugu, abi-kaardi nähtavus ja mentorluse
 tagasivõtt on ausad ning jagamisajalugu jõuab sisuta andmekoopiasse. Tööheaolu toe sisu ja
 kolmeaastase minimaalse kviitungi elutsükkel järgib omaniku otsustatud poliitikat; juristi
-kinnitus on enne selle production-jõustumist väljalaske kontrollpunkt. Järgmine plokk on
-Teenusekaardi `SOL-SMAP-01/02/03`, seejärel `04/05/06` ja `07/08/09`.
+kinnitus on enne selle production-jõustumist väljalaske kontrollpunkt.
+
+**Teenusekaardi `SOL-SMAP-01…06` ja `08` on lõpetatud; `07` ja `09` on päriselt blokeeritud.**
+Kaardi avaldamine, allikast kadumine, teenuse kanalid, paginatsioon, grupid, süvalingid ja
+anonüümne peer-piir on nüüd serveri-, PostgreSQL-i ja brauseritõendiga kaetud ning tile'id
+liiguvad lõppkasutaja asemel sama päritolu proxy kaudu. `SOL-SMAP-07` turvaline settled-teostus
+on valmis, kuid tootmises jääb vaikimisi fail-closed, kuni omanik otsustab ühe tehniliselt rikkis
+allika osalise vastuse lepingu; `SOL-SMAP-09` lõpetamiseks on
+vaja Maa- ja Ruumiameti rolli, logide, säilituse ning proxy/cache'i tingimuste õiguslikku tõendit.
 
 **SOL-RES-07 kood on valmis; brauseritõend on NOT_PROVEN.** Aktiivne uuring leitakse vestlusse
 naastes üles, elav progress jätkub ühe voona ja Stop jääb sama tööga seotuks; lokaalse dev-serveri

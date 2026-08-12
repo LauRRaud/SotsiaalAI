@@ -2458,6 +2458,10 @@ model ServiceMapEntry {
   website           String?
   sourceUrl         String?
   sourceDocId       String?
+  sourceNamespace   String?
+  sourceGeneration  String?
+  lastSeenAt        DateTime?
+  tombstonedAt      DateTime?
   checkedAt         DateTime?
   accessPath        Json?
   providerProfileId String?                   @unique
@@ -2467,6 +2471,7 @@ model ServiceMapEntry {
   longitude         Float?
   adsObjectId       String?
   geocodingRaw      Json?
+  revision          Int                       @default(1)
   createdAt         DateTime                  @default(now())
   updatedAt         DateTime                  @updatedAt
 
@@ -2482,6 +2487,8 @@ model ServiceMapEntry {
   @@index([municipalityName])
   @@index([county])
   @@index([providerProfileId])
+  @@index([sourceNamespace, sourceGeneration])
+  @@index([sourceNamespace, lastSeenAt])
   @@index([status, geocodingStatus])
 }
 
@@ -2491,6 +2498,8 @@ model PreInquiry {
   authorErasedAt          DateTime?
   recipientOwnerId        String?
   recipientEntryId        String?
+  recipientServiceId      String?
+  recipientLocationId     String?
   /**
    * T25 viil B: organisatsiooni vastuvõtulaud adressaadina. Nullable ja
    * vaikimisi NULL — olemasolevad eelpöördumised ei muutu. Adressaadiväljad

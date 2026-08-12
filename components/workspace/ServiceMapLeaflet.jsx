@@ -14,8 +14,7 @@ const ESTONIA_FIT_BOUNDS = [
   [59.85, 28.22]
 ];
 
-const DEFAULT_TILE_URL =
-  "https://tiles.maaamet.ee/tm/tms/1.0.0/hallkaart@GMC/{z}/{x}/{y}.png&ASUTUS=SOTSIAALAI&KESKKOND=LIVE&IS=TEENUSEKAART";
+const DEFAULT_TILE_URL = "/api/service-map/tiles/{z}/{x}/{y}";
 
 const DEFAULT_ATTRIBUTION = "Maa- ja Ruumiamet";
 const DEFAULT_LEAFLET_SCRIPT_URL = "/vendor/leaflet/leaflet.js";
@@ -377,7 +376,7 @@ function formatLicenceDate(value) {
   return new Intl.DateTimeFormat("et-EE", { dateStyle: "long", timeZone: "Europe/Tallinn" }).format(date);
 }
 
-function appendServiceItems(parent, entry, t) {
+function appendServiceItems(parent, entry, t, onStartPreInquiry) {
   const services = (entry?.providerProfile?.serviceItems || [])
     .filter((service) => service?.mapVisible !== false && String(service?.status || "PUBLISHED").toUpperCase() === "PUBLISHED")
     .slice(0, 8);
@@ -427,6 +426,27 @@ function appendServiceItems(parent, entry, t) {
     appendText(availabilityBlock, "p", "service-map-popup__availability-warning", availability.warning);
     item.appendChild(availabilityBlock);
     appendLicenceBadge(item, service.licenceBadge, t);
+    const policy = (entry.serviceActions || []).find((action) => action.providerServiceId === service.id);
+    if (policy?.platformAllowed || policy?.emailAllowed) {
+      const actions = document.createElement("div");
+      actions.className = "service-map-popup__actions";
+      if (policy.platformAllowed) {
+        appendActionButton(
+          actions,
+          readText(t, "workspace_feature_pages.service_map.popup.start_pre_inquiry", "Alusta pöördumist"),
+          () => onStartPreInquiry?.(entry, policy)
+        );
+      }
+      if (policy.emailAllowed && policy.email) {
+        appendActionLink(
+          actions,
+          `mailto:${policy.email}`,
+          readText(t, "workspace_feature_pages.service_map.popup.write", "Kirjuta"),
+          { forceLocation: true }
+        );
+      }
+      item.appendChild(actions);
+    }
     section.appendChild(item);
   }
 
@@ -504,19 +524,22 @@ function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
   );
   appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.phone", "Telefon"), entry.phone);
   appendMeta(root, readText(t, "workspace_feature_pages.service_map.popup.email", "E-post"), entry.email);
-  appendServiceItems(root, entry, t);
+  appendServiceItems(root, entry, t, onStartPreInquiry);
   appendAccessPath(root, entry, t);
 
   const websiteUrl = safeWebsiteUrl(entry.website);
-  if (websiteUrl || entry.email || onStartPreInquiry) {
+  const hasServiceActions = Array.isArray(entry.serviceActions);
+  if (websiteUrl || entry.email || (!hasServiceActions && onStartPreInquiry)) {
     const actions = document.createElement("div");
     actions.className = "service-map-popup__actions";
 
-    appendActionButton(
-      actions,
-      readText(t, "workspace_feature_pages.service_map.popup.start_pre_inquiry", "Alusta pöördumist"),
-      () => onStartPreInquiry?.(entry)
-    );
+    if (!hasServiceActions) {
+      appendActionButton(
+        actions,
+        readText(t, "workspace_feature_pages.service_map.popup.start_pre_inquiry", "Alusta pöördumist"),
+        () => onStartPreInquiry?.(entry, null)
+      );
+    }
 
     if (entry.email) {
       appendActionLink(
@@ -542,7 +565,7 @@ function createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry) {
   return root;
 }
 
-function appendGroupedPopupContact(parent, entry, t, onSelectEntry, selectedEntryId, onConnectHelpEntry) {
+function appendGroupedPopupContact(parent, entry, t, onSelectEntry, selectedEntryId, onConnectHelpEntry, onStartPreInquiry) {
   const item = document.createElement("article");
   item.className = "service-map-popup__contact";
   if (entry?.id === selectedEntryId) item.dataset.selected = "true";
@@ -550,10 +573,11 @@ function appendGroupedPopupContact(parent, entry, t, onSelectEntry, selectedEntr
   const button = document.createElement("button");
   button.type = "button";
   button.className = "service-map-popup__contact-button";
+  button.setAttribute("aria-expanded", entry?.id === selectedEntryId ? "true" : "false");
   button.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
-    onSelectEntry?.(entry.id);
+    if (entry.id !== selectedEntryId) onSelectEntry?.(entry.id);
   });
 
   appendText(button, "span", "service-map-popup__contact-title", entry.title);
@@ -562,39 +586,23 @@ function appendGroupedPopupContact(parent, entry, t, onSelectEntry, selectedEntr
 
   appendContactMeta(item, entry);
 
-  const websiteUrl = safeWebsiteUrl(entry.website);
-  if (isHelpMapEntry(entry) && !entry?.isOwn) {
-    const actions = document.createElement("div");
-    actions.className = "service-map-popup__actions service-map-popup__contact-actions";
-    appendActionButton(
-      actions,
-      readText(t, "workspace_feature_pages.service_map.popup.connect", "Võta ühendust"),
-      () => onConnectHelpEntry?.(entry)
-    );
-    item.appendChild(actions);
-  } else if (entry.email || websiteUrl) {
-    const actions = document.createElement("div");
-    actions.className = "service-map-popup__actions service-map-popup__contact-actions";
-
-    if (entry.email) {
-      appendActionLink(
-        actions,
-        `mailto:${entry.email}`,
-        readText(t, "workspace_feature_pages.service_map.popup.write", "Kirjuta"),
-        { forceLocation: true }
-      );
-    }
-
-    if (websiteUrl) {
-      appendActionLink(
-        actions,
-        websiteUrl,
-        readText(t, "workspace_feature_pages.service_map.popup.website", "Veeb"),
-        { target: "_blank", rel: "noreferrer" }
-      );
-    }
-
-    item.appendChild(actions);
+  if (entry?.id === selectedEntryId) {
+    const detail = createPopupContent(entry, t, onConnectHelpEntry, onStartPreInquiry);
+    detail.classList.add("service-map-popup__contact-detail");
+    const back = document.createElement("button");
+    back.type = "button";
+    back.className = "service-map-popup__contact-back";
+    back.textContent = readText(t, "workspace_feature_pages.service_map.popup.back_to_group", "Tagasi kontaktide juurde");
+    back.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      detail.remove();
+      delete item.dataset.selected;
+      button.setAttribute("aria-expanded", "false");
+      button.focus();
+    });
+    detail.insertBefore(back, detail.firstChild);
+    item.appendChild(detail);
   }
 
   parent.appendChild(item);
@@ -623,7 +631,7 @@ function createGroupedPopupContent(group, t, onSelectEntry, selectedEntryId, onC
   const list = document.createElement("div");
   list.className = "service-map-popup__contacts";
   for (const entry of group.entries) {
-    appendGroupedPopupContact(list, entry, t, onSelectEntry, selectedEntryId, onConnectHelpEntry);
+    appendGroupedPopupContact(list, entry, t, onSelectEntry, selectedEntryId, onConnectHelpEntry, onStartPreInquiry);
   }
   root.appendChild(list);
 
@@ -795,8 +803,8 @@ export default function ServiceMapLeaflet({
           fadeAnimation: false
         });
 
-        L.tileLayer(process.env.NEXT_PUBLIC_SERVICE_MAP_TILE_URL || DEFAULT_TILE_URL, {
-          attribution: process.env.NEXT_PUBLIC_SERVICE_MAP_ATTRIBUTION || DEFAULT_ATTRIBUTION,
+        const tileLayer = L.tileLayer(DEFAULT_TILE_URL, {
+          attribution: DEFAULT_ATTRIBUTION,
           minZoom: SERVICE_MAP_MIN_ZOOM,
           maxZoom: 18,
           tms: true,
@@ -804,6 +812,9 @@ export default function ServiceMapLeaflet({
           updateWhenIdle: true,
           keepBuffer: 3
         }).addTo(map);
+        tileLayer.on("tileerror", () => {
+          if (!cancelled) setMapError(readText(tRef.current, "workspace_feature_pages.service_map.errors.tiles_failed", "Kaardipõhi ei ole praegu saadaval. Tulemuste loend jääb kasutatavaks."));
+        });
         L.control.attribution({ prefix: false }).addTo(map);
 
         map.fitBounds(ESTONIA_FIT_BOUNDS, { padding: [12, 12] });

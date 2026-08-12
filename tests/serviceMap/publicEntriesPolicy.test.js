@@ -9,7 +9,7 @@ test("public service-map query ignores review and unlocated preview flags", () =
   );
 
   assert.equal(query.keyword, "abi");
-  assert.equal(query.limit, "250");
+  assert.equal(query.limit, 100);
   assert.equal(query.includeNeedsReview, false);
   assert.equal(query.includeUnlocated, false);
 });

@@ -2203,6 +2203,13 @@
       "map_label": "Service map preview",
       "loading": "Loading map entries...",
       "loading_map": "Loading the Estonia map...",
+      "loading_more": "Loading more…",
+      "load_more": "Load more",
+      "loaded_count": "Loaded {count} results.",
+      "peer_login_required": "Sign in to view peer help listings. The public Service Map does not reveal whether any listings exist.",
+      "target_not_public": "This entry is no longer public or visible to you.",
+      "partial_warning": "One service map data source is unavailable. Results from the working source are shown as partial.",
+      "partial_empty": "Not all service map sources could be checked, so the absence of results cannot be confirmed.",
       "results": "results",
       "no_address": "Location needs clarification",
       "actions": {
@@ -2226,7 +2233,12 @@
       },
       "errors": {
         "load_failed": "Map entries could not be loaded.",
-        "map_failed": "The map could not be loaded."
+        "map_failed": "The map could not be loaded.",
+        "tiles_failed": "The map background is unavailable. The results list remains usable.",
+        "invalid_cursor": "The result cursor is no longer valid.",
+        "target_not_public": "This entry is no longer public or visible to you.",
+        "target_load_failed": "The entry could not be opened right now.",
+        "load_more_failed": "More results could not be loaded. Existing results remain visible."
       },
       "popup": {
         "provider": "Service provider",
@@ -2238,6 +2250,7 @@
         "write": "Write",
         "website": "Website",
         "start_pre_inquiry": "Start pre-inquiry",
+        "back_to_group": "Back to contacts",
         "services": "Services",
         "group_title": "{count} contacts"
       },

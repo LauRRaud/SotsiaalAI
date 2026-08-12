@@ -41,7 +41,7 @@ const contactChunk = {
 test("KOV RAG contact chunk maps to a structured service-map entry", () => {
   const entry = mapKovRagContactChunkToServiceMapEntry(contactChunk, { municipality });
 
-  assert.equal(entry.id, "kov-contact-kov-parnu-linn-social-contacts");
+  assert.equal(entry.id, "rag-kov-contact-kov-parnu-linn-social-contacts");
   assert.equal(entry.type, "KOV_SOCIAL_CONTACT");
   assert.equal(entry.title, "Pärnu linnavalitsuse sotsiaalosakond");
   assert.equal(entry.municipalityId, "parnu-id");
@@ -73,8 +73,10 @@ test("sync reads ingested KOV contact chunks from RAG and upserts map entries", 
       upsert: async (payload) => {
         upserts.push(payload);
         return payload.create;
-      }
-    }
+      },
+      updateMany: async () => ({ count: 0 })
+    },
+    dataAuditLog: { create: async () => null }
   };
   const ragClient = {
     listDocumentChunks: async (docId, filters) => {
@@ -96,7 +98,7 @@ test("sync reads ingested KOV contact chunks from RAG and upserts map entries", 
   assert.equal(result.scannedContacts, 1);
   assert.equal(result.upserted, 1);
   assert.equal(upserts.length, 1);
-  assert.equal(upserts[0].where.id, "kov-contact-kov-parnu-linn-social-contacts");
+  assert.equal(upserts[0].where.id, "rag-kov-contact-kov-parnu-linn-social-contacts");
   assert.equal(upserts[0].create.email, "linnavalitsus@parnu.ee");
 });
 
@@ -214,8 +216,10 @@ test("sync reads service provider organization documents from RAG and upserts ma
       upsert: async (payload) => {
         upserts.push(payload);
         return payload.create;
-      }
-    }
+      },
+      updateMany: async () => ({ count: 0 })
+    },
+    dataAuditLog: { create: async () => null }
   };
   const ragClient = {
     listDocuments: async () => [

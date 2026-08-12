@@ -42,7 +42,7 @@
 
 **Vastuvõtukriteerium.** Geokodeerimine tohib muuta ainult geokodeerimisvälju; `NEEDS_REVIEW → PUBLISHED` peab olema eraldi autentitud adminitoiming koos actor'i, põhjuse, revision/CAS-i ja püsiva auditiga. Negatiivtest peab geokodeerima `DRAFT`, `NEEDS_REVIEW`, `PUBLISHED` ja `HIDDEN` kirjed nii MATCHED/AMBIGUOUS/FAILED tulemusega ning tõendama, et tehniline töö ei tõsta ühegi ülevaatamata kirje avaldamisse.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Geokodeerija kirjutus ei sisalda enam moderatsiooniseisu ning kõik 12 `DRAFT/NEEDS_REVIEW/PUBLISHED/HIDDEN × MATCHED/AMBIGUOUS/FAILED` kombinatsiooni säilitavad seisu. Avaldamine on adminiõiguse, põhjuse ja revision-CAS-iga tehing, mis kirjutab sama tehingu auditi; päris PostgreSQL-i sondis võitis kahest paralleelsest otsusest täpselt üks ja tekkis üks audit. Sihttestid ja `service-map:lifecycle:probe` 5/5 PASS.
 
 ### SOL-SMAP-02 — allikast kadunud RAG- ja KOV-kontaktid jäävad Teenusekaardile avalikuks — P1
 
@@ -52,7 +52,7 @@
 
 **Vastuvõtukriteerium.** Edukas terviklik sünk vajab allikanimeruumi ja generatsiooni: nähtud ID-d märgitakse, varasema täieliku generatsiooni puuduvad read lähevad auditeeritud `HIDDEN`/tombstone seisu. Osalise või nurjunud allikapäringu korral ei tohi massiliselt peita. Testida A+B → järgmine täielik sünk ainult B, ajutine RAG-viga, tühi autoriteetne allikas, ID muutus ja retry; A peab kaduma avalikust vastusest ainult tõendatud täieliku sünkroniseerimise järel.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Igal autoriteetsel allikal on eraldi namespace, collision-free ID, generatsioon ja PostgreSQL advisory-lock; terviklik reconcile peidab puuduvad ja ka vana NULL-generatsiooniga read, logides peidetud ID-d, kuid vigane/osaline allikavastus ei reconcile'i. Taasilmunud tombstone läheb uuesti ülevaatusele. Migratsioon kõrvaldab vana segapäritoluga KOV-ridade avaliku duplikaadiriski. Päris PostgreSQL-i sond tõendas stale/legacy peitmise, auditidentiteedid ja paralleelsete generatsioonide serialiseerimise (5/5 PASS).
 
 ### SOL-SMAP-03 — kaart pakub keelatud teenusele e-posti ja pöördumise toimingut — P1
 
@@ -62,7 +62,7 @@
 
 **Vastuvõtukriteerium.** Kaardi toimingud peavad tulema ühest serveripoolsest teenuse+asukoha kontaktipoliitika projektsioonist. Keelatud e-post ei tohi jõuda `mailto:`-sse ja keelatud platvormikanal ei tohi pakkuda pöördumist; server peab sama reeglit uuesti jõustama teenuse stabiilse ID järgi. Negatiivtestid peavad katma profiili- ja teenusetaseme kõik true/false/null kombinatsioonid, mitu teenust ühes asukohas ning muudetud kliendi otsekutse.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Ühine serveripoolne teenuse+asukoha kontaktipoliitika projitseerib toimingud ning server kontrollib valitud teenuse ja asukoha kuuluvust nii salvestamisel, parandamisel kui vahetult enne e-kirja saatmist; ajalooline ID-deta teenuseosutaja mustand on fail-closed. Profiili/teenuse true/false/null maatriks, võõras seos ja send-time policy switch on sihttestidega kaetud. Päris brauseris oli teenuse lubatud platvormitoiming detailis olemas ning süvalink avas sama poliitikaga detaili.
 
 ### SOL-SMAP-04 — otsing ja tulemuste loend on vaikides osalised — P2
 
@@ -72,7 +72,7 @@
 
 **Vastuvõtukriteerium.** Märksõna, piirkond ja tüüp peavad minema serveripäringusse enne stabiilset cursor-paginatsiooni; vastus kannab `hasMore/nextCursor` ja UI koguarvu või ausat osalise tulemuse teadet. Ka asukohaks laiendatud kirjetel peab olema stabiilne sort/võti. Testida vähemalt 501 teenusekirjet, 501. kohal olev märksõnavaste, 25+ sama tüübi tulemust, võrdsed sortimisväljad ja kogu lehtede läbimine ilma kaduva/duplitseeruva reata.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Märksõna, piirkond ja täpne allikas lähevad serverisse; opaque cursor on seotud allika, filtrite ja preview-skoobiga ning UI lehitseb, deduplikeerib ja tõrjub hilise vana vastuse. Päris PostgreSQL-i 502-realises sondis läbiti 501 avalikku rida täpselt üks kord, peidetud rida jäi välja ja 501. märksõnavaste leiti enne `take`-piiri (4/4 PASS). Brauseris laeti 24→30 tulemust ausa loenduriga.
 
 ### SOL-SMAP-05 — sama koordinaadiga kontaktidel kaovad teenuse detail ja platvormipöördumine — P2
 
@@ -82,7 +82,7 @@
 
 **Vastuvõtukriteerium.** Grupivaade peab lubama avada iga kirje sama täisdetaili ja samad poliitikaga lubatud toimingud nagu üksikpopup, säilitades selge tagasitee gruppi. Komponenditest peab paigutama vähemalt kaks KOV-i, kaks teenuseosutajat ja segagrupi täpselt samale koordinaadile ning tõendama iga kirje detaili, ligipääsuteed ja pöördumistoimingut.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Grupikontakt kasutab iga kirje jaoks sama täisdetaili ja kanalipoliitika renderdajat kui üksikpopup ning eraldi „Tagasi kontaktide juurde” toiming sulgeb detaili, säilitab grupi ja taastab fookuse. Päris Chromiumi fixture tõendas grupi avatuks jäämise, teise kontakti kättesaadavuse ja teenuseosutaja poliitikatoimingu.
 
 ### SOL-SMAP-06 — „Vaata teenusekaardil” süvalink ei ava viidatud kirjet — P2
 
@@ -92,7 +92,7 @@
 
 **Vastuvõtukriteerium.** Süvalink peab serveris/klientis lahendama avaliku kirje ID, valima õige tüübi, laadima kirje ka väljaspool esimest lehte, keskendama markeri ja avama detaili. Peidetud/puuduv ID peab andma turvalise „ei ole enam avalik” seisu ilma kontaktilekketa. Testida KOV-i, teenuseosutaja asukohaliit-ID-d, help-kirjet, 501. kirjet, tundmatut ja `HIDDEN` ID-d.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Serveripoolne resolver lahendab täpselt ühe `entryId|listing|match` sihi kanoonilise avalikkuse ja kasutaja-skoobiga, liit-ID seob õige teeninduskoha ning peidetud/võõras siht normaliseerub neutraalseks 404-ks. Klient valib resolveri tüübi, lisab sihi leheväliselt ja avab markeri/popupi. Sihttestid, päris PostgreSQL-i peidetud sihi kontroll ning brauseri provider-location süvalink PASS.
 
 ### SOL-SMAP-07 — ühe andmeallika viga võtab maha kogu Teenusekaardi — P2
 
@@ -102,7 +102,7 @@
 
 **Vastuvõtukriteerium.** Omanik peab määrama fail-closed vs osalise tulemuse lepingu. Kui andmeallika tehniline rike lubab osalist vastust, tuleb kasutada liigipõhist settled-tulemust, tagastada `partial:true` ja allika stabiilne veakood ning näidata UI-s ausat hoiatust; autentimis-/õigusevead jäävad fail-closed. Testida teenuse-, help- ja mõlema allika eraldi viga ning tõendada, et ükski tundlik sisemine veatekst ei leki.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** PARTIAL; BLOCKED_OWNER_DECISION. Liigipõhine `allSettled`-leping, stabiilsed allikakoodid, vigase vastuse kuju tõrje, konstantne vealogimine ja osalise vastuse UI on tehniliselt valmis. Teenuse-, help-, mõlema allika, 401/403, andmebaasi õiguse, sessiooniteenuse ja sisemise saladuse negatiivkontrollid läbisid; hiline vana 500/append ei saa uuemat tulemust kustutada ning tehniline teenuseallika viga ei võta autenditud kasutajalt peer-võimekust. Toodangu vaikeleping säilitab praegu fail-closed käitumise: osaline vastus aktiveerub ainult süstitud testipoliitikaga, kuni omanik otsustab, kas ühe sõltumatu tehnilise allika rikke korral tohib terve allika tulemused nähtava `partial` hoiatusega tagastada. Autentimis- ja õigusevead jäävad mõlemal juhul kogu vastuse ulatuses fail-closed; runtime partial-vaade `NOT_PROVEN`.
 
 ### SOL-SMAP-08 — anonüümsele kasutajale näidatakse keelatud abikuulutuste filtreid tühja tulemusena — P2
 
@@ -112,9 +112,13 @@
 
 **Vastuvõtukriteerium.** UI peab kasutama serveri võimekuslippu: kas peitma peer-filtrid või näitama selget privaatsust säilitavat sisselogimiskutset, mis ei avalda kirjete arvu ega olemasolu. Testida anonüümset ja autenditud kasutajat nii nulli kui olemasolevate kuulutustega ning kontrollida, et anonüümne vastus ei võimalda olemasolu tuletada.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis.** DONE. Peer-kuulutuste võimekus tuleb serverist ega sõltu kirjete arvust; anonüümsele ei laadita peer-andmeid ega näidata nende filtreid või nulltulemust, vaid invariantset sisselogimisselgitust. Päris PostgreSQL-i sondis olid anonüümsed vastused enne ja pärast peer-rea lisamist identsed, autenditud null säilitas võimekuse ja autenditud olemasolev rida tagastati turvalise projektsioonina (4/4 PASS). Brauser kinnitas anonüümse piiri.
 
 ## Testid ja negatiivkontrollid
+
+- Parandatud muutumatu koodipuu Teenusekaardi sihtlõige: **85/85 PASS**; sellest allikavea, fail-closed ja mitteläbiva veateksti puhas/route-leping **11/11 PASS**.
+- Päris PostgreSQL-i sondid: allika elutsükkel ja paralleelsus **5/5 PASS**, anonüümse peer-ligipääsu piir **4/4 PASS**, 501+ rea paginatsioon ja peidetud siht **4/4 PASS**; kõik ajutised andmebaasid koristati.
+- Peatüki muutumatu koodipuu UTC täissviit: **4346/4346 PASS**. `npm run i18n:check`, muudetud koodifailide ESLint, `npm run db:migrate:check` kõigi 173 migratsiooniga ja `git diff --check` läbisid.
 
 - Esimene sihttestide käivitus enne auditi worktree lokaalse genereeritud Prisma kliendi taastamist: **35 testi läbis**, **7 testifaili ei laadinud** veaga `ERR_MODULE_NOT_FOUND: generated/prisma/client.ts`. See oli worktree setup'i, mitte tootmiskoodi testitulemus.
 - `npx prisma generate` fikseeritud koopias: **õnnestus**, Prisma Client genereeriti; genereeritud failid on ignoreeritud ja auditikoodi ei muudetud.

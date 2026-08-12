@@ -85,7 +85,7 @@ Käsitsi siia ei kirjutata. DONE algab sõnaga `DONE`, PARTIAL sõnaga `PARTIAL`
 on NOT_DONE. Kvalifitseeritud DONE-väide vale algusega katkestab genereerimise, et ta ei
 kaoks vaikselt valesse rühma. Iga loetletud leiu lõpus on Seis-lõik **sõna-sõnalt**.
 
-DONE **243** / 429 · PARTIAL **4** / 429 · NOT_DONE **182** / 429 · peatükke täielikult DONE **17** / 40 · ametlikult lahtiseid 186 — 131 × P1 · 54 × P2 · 1 × P3
+DONE **250** / 429 · PARTIAL **6** / 429 · NOT_DONE **173** / 429 · peatükke täielikult DONE **17** / 40 · ametlikult lahtiseid 179 — 128 × P1 · 50 × P2 · 1 × P3
 
 | Peatükk | Kood | DONE | PARTIAL | NOT_DONE | Lahtiste prioriteedid | Märkus |
 |---|---|---:|---:|---:|---|---|
@@ -127,7 +127,7 @@ DONE **243** / 429 · PARTIAL **4** / 429 · NOT_DONE **182** / 429 · peatükke
 | Dokumendi koostamine | SOL-COMP | 0/5 | 0 | 5 | 3 × P1 · 2 × P2 | 5 jätkufailist |
 | Materjalid | SOL-MAT | 0/13 | 0 | 13 | 8 × P1 · 5 × P2 | 13 jätkufailist |
 | Minu jagamised | SOL-SHARE | 7/7 | 0 | 0 | – | **tehtud**, 7 jätkufailist |
-| Teenusekaart | SOL-SMAP | 0/9 | 0 | 9 | 3 × P1 · 6 × P2 | 9 jätkufailist |
+| Teenusekaart | SOL-SMAP | 7/9 | 2 | 0 | 2 × P2 | 9 jätkufailist |
 | Funktsioonideülene lõpetusring | SOL-XFUNC | 0/3 | 0 | 3 | 1 × P1 · 2 × P2 | 3 jätkufailist |
 
 ### PARTIAL leiud peatükkide kaupa
@@ -144,6 +144,11 @@ DONE **243** / 429 · PARTIAL **4** / 429 · NOT_DONE **182** / 429 · peatükke
 **Uuringud** (`SOL-RES`, 1 PARTIAL)
 
 - `SOL-RES-07` P2 — soft-nav'i järel pole aktiivse uuringuga taasühendumise ega Stop'i kasutajateed — PARTIAL — kood/refaktor DONE ja sihttestidega mõõdetud; nõutud brauserirada NOT_PROVEN lokaalse React hydration'i blokeeringu tõttu. Leid jääb loendis LAHTISEKS.
+
+**Teenusekaart** (`SOL-SMAP`, 2 PARTIAL)
+
+- `SOL-SMAP-09` P2 — kaardi vaateala liigub otse välisele tile-serverile ilma Teenusekaardi-põhise teavituseta — PARTIAL; BLOCKED_OWNER_LEGAL_EVIDENCE. Tehniline otselekke rada on suletud: brauser kasutab ainult sama päritolu `/api/service-map/tiles/{z}/{x}/{y}` proxy't, millel on fikseeritud upstream ja päised, koordinaadi-, MIME-, mahu-, redirect- ja timeout-kontroll ning `no-store`; kliendi Cookie/Auth/Referer/XFF/IP/UA-d ei edastata. Chromiumi kontrollis tekkis pärast zoomi 10 sama päritolu tile-päringut ja 0 otsest `tiles.maaamet.ee` päringut; provider-failure jätab tulemuste loendi kasutatavaks. Täielik DONE vajab endiselt Maa- ja Ruumiameti rolli, tegelikult logitavate väljade, säilitusaja ning proxy/cache'i ja atributsiooni kasutustingimuste tõendit; poliitikasse ei ole neid oletatud.
+- `SOL-SMAP-07` P2 — ühe andmeallika viga võtab maha kogu Teenusekaardi — PARTIAL; BLOCKED_OWNER_DECISION. Liigipõhine `allSettled`-leping, stabiilsed allikakoodid, vigase vastuse kuju tõrje, konstantne vealogimine ja osalise vastuse UI on tehniliselt valmis. Teenuse-, help-, mõlema allika, 401/403, andmebaasi õiguse, sessiooniteenuse ja sisemise saladuse negatiivkontrollid läbisid; hiline vana 500/append ei saa uuemat tulemust kustutada ning tehniline teenuseallika viga ei võta autenditud kasutajalt peer-võimekust. Toodangu vaikeleping säilitab praegu fail-closed käitumise: osaline vastus aktiveerub ainult süstitud testipoliitikaga, kuni omanik otsustab, kas ühe sõltumatu tehnilise allika rikke korral tohib terve allika tulemused nähtava `partial` hoiatusega tagastada. Autentimis- ja õigusevead jäävad mõlemal juhul kogu vastuse ulatuses fail-closed; runtime partial-vaade `NOT_PROVEN`.
 
 ### DONE leiud peatükkide kaupa
 
@@ -470,6 +475,16 @@ DONE **243** / 429 · PARTIAL **4** / 429 · NOT_DONE **182** / 429 · peatükke
 - `SOL-SHARE-03` P2 — puuduva tabeli/veeru korral näidatakse sektsiooni ausa tõrke asemel tühjana — DONE. P2021/P2022 annab nüüd `UNAVAILABLE`, timeout `TIMEOUT` ja päriselt null rida `READY`; production-logi kannab ainult sektsiooni ja stabiilset veakoodi. Contract-testid eristavad skeemi-, ühendus-, timeout- ja autoriseerimisvigu ning dev-brauser kinnitas eraldi tõrkepaneeli ja sektsioonipõhise taastumise.
 - `SOL-SHARE-04` P2 — abi-kuulutus märgitakse alati avalikul kaardil nähtavaks — DONE. Koond kasutab sama puhast avalikkuse klassifikaatorit mis Teenusekaardi tegelik projektsioon ning eristab `PUBLIC`, `HIDDEN`, `REVIEW`, `EXPIRED`, `MISSING` ja `OUT_OF_SYNC` seisu. Kombinatsioonitabeli sihttest ja dev-brauser kinnitasid, et silt tuleneb kaardirea tegelikust olekust; ET/EN/RU üldväited parandati.
 - `SOL-SHARE-05` P2 — mentorluse tagasivõetav ettevalmistus ei ole koondvaates tagasivõetav — DONE. Avamata ettevalmistusel on koondis kinnitusega päris tagasivõtt; puuduva suhteviite korral näidatakse toimingu puudumise põhjust. Avamise ja tagasivõtu advisory-lock'i võistlussond andis mõlemas järjekorras ühe võitja ning koherentse märkme, auditi ja teavituse; dev-brauseris sulges 409 dialoogi, värskendas avatuks muutunud seisu ja eemaldas surnud nupu.
+
+**Teenusekaart** (`SOL-SMAP`, 7/9)
+
+- `SOL-SMAP-01` P1 — aadressi automaatne vaste avaldab ülevaatamata kaardikirje — DONE. Geokodeerija kirjutus ei sisalda enam moderatsiooniseisu ning kõik 12 `DRAFT/NEEDS_REVIEW/PUBLISHED/HIDDEN × MATCHED/AMBIGUOUS/FAILED` kombinatsiooni säilitavad seisu. Avaldamine on adminiõiguse, põhjuse ja revision-CAS-iga tehing, mis kirjutab sama tehingu auditi; päris PostgreSQL-i sondis võitis kahest paralleelsest otsusest täpselt üks ja tekkis üks audit. Sihttestid ja `service-map:lifecycle:probe` 5/5 PASS.
+- `SOL-SMAP-02` P1 — allikast kadunud RAG- ja KOV-kontaktid jäävad Teenusekaardile avalikuks — DONE. Igal autoriteetsel allikal on eraldi namespace, collision-free ID, generatsioon ja PostgreSQL advisory-lock; terviklik reconcile peidab puuduvad ja ka vana NULL-generatsiooniga read, logides peidetud ID-d, kuid vigane/osaline allikavastus ei reconcile'i. Taasilmunud tombstone läheb uuesti ülevaatusele. Migratsioon kõrvaldab vana segapäritoluga KOV-ridade avaliku duplikaadiriski. Päris PostgreSQL-i sond tõendas stale/legacy peitmise, auditidentiteedid ja paralleelsete generatsioonide serialiseerimise (5/5 PASS).
+- `SOL-SMAP-03` P1 — kaart pakub keelatud teenusele e-posti ja pöördumise toimingut — DONE. Ühine serveripoolne teenuse+asukoha kontaktipoliitika projitseerib toimingud ning server kontrollib valitud teenuse ja asukoha kuuluvust nii salvestamisel, parandamisel kui vahetult enne e-kirja saatmist; ajalooline ID-deta teenuseosutaja mustand on fail-closed. Profiili/teenuse true/false/null maatriks, võõras seos ja send-time policy switch on sihttestidega kaetud. Päris brauseris oli teenuse lubatud platvormitoiming detailis olemas ning süvalink avas sama poliitikaga detaili.
+- `SOL-SMAP-04` P2 — otsing ja tulemuste loend on vaikides osalised — DONE. Märksõna, piirkond ja täpne allikas lähevad serverisse; opaque cursor on seotud allika, filtrite ja preview-skoobiga ning UI lehitseb, deduplikeerib ja tõrjub hilise vana vastuse. Päris PostgreSQL-i 502-realises sondis läbiti 501 avalikku rida täpselt üks kord, peidetud rida jäi välja ja 501. märksõnavaste leiti enne `take`-piiri (4/4 PASS). Brauseris laeti 24→30 tulemust ausa loenduriga.
+- `SOL-SMAP-05` P2 — sama koordinaadiga kontaktidel kaovad teenuse detail ja platvormipöördumine — DONE. Grupikontakt kasutab iga kirje jaoks sama täisdetaili ja kanalipoliitika renderdajat kui üksikpopup ning eraldi „Tagasi kontaktide juurde” toiming sulgeb detaili, säilitab grupi ja taastab fookuse. Päris Chromiumi fixture tõendas grupi avatuks jäämise, teise kontakti kättesaadavuse ja teenuseosutaja poliitikatoimingu.
+- `SOL-SMAP-06` P2 — „Vaata teenusekaardil” süvalink ei ava viidatud kirjet — DONE. Serveripoolne resolver lahendab täpselt ühe `entryId|listing|match` sihi kanoonilise avalikkuse ja kasutaja-skoobiga, liit-ID seob õige teeninduskoha ning peidetud/võõras siht normaliseerub neutraalseks 404-ks. Klient valib resolveri tüübi, lisab sihi leheväliselt ja avab markeri/popupi. Sihttestid, päris PostgreSQL-i peidetud sihi kontroll ning brauseri provider-location süvalink PASS.
+- `SOL-SMAP-08` P2 — anonüümsele kasutajale näidatakse keelatud abikuulutuste filtreid tühja tulemusena — DONE. Peer-kuulutuste võimekus tuleb serverist ega sõltu kirjete arvust; anonüümsele ei laadita peer-andmeid ega näidata nende filtreid või nulltulemust, vaid invariantset sisselogimisselgitust. Päris PostgreSQL-i sondis olid anonüümsed vastused enne ja pärast peer-rea lisamist identsed, autenditud null säilitas võimekuse ja autenditud olemasolev rida tagastati turvalise projektsioonina (4/4 PASS). Brauser kinnitas anonüümse piiri.
 
 <!-- sol:tally lõpp -->
 

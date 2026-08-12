@@ -55,7 +55,6 @@ import ServiceMapLeaflet from "./ServiceMapLeaflet";
 import ServiceLicenceStatus, { useServiceLicenceStatuses } from "@/components/service-provider/ServiceLicenceStatus";
 
 const CHAT_WORKSPACE_RESTORE_STORAGE_KEY = "__SOTSIAALAI_CHAT_WORKSPACE_RESTORE__";
-const SERVICE_MAP_ENTRIES_FETCH_LIMIT = 500;
 const SERVICE_MAP_RESULT_BUTTON_LIMIT = 24;
 
 // Kujundus stripitud (Fable 5 teeb visuaali). Allesjäänud klassikonstandid on
@@ -817,6 +816,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
   const [recipientQuery, setRecipientQuery] = useState("");
   const [entries, setEntries] = useState([]);
   const [selectedRecipientId, setSelectedRecipientId] = useState("");
+  const [selectedProviderServiceId, setSelectedProviderServiceId] = useState("");
+  const [selectedProviderLocationId, setSelectedProviderLocationId] = useState("");
   const [draft, setDraft] = useState("");
   const [assistantInput, setAssistantInput] = useState("");
   const [assistantMessage, setAssistantMessage] = useState("");
@@ -875,18 +876,29 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       setLoading(true);
       setError("");
       try {
-        const [entriesResponse, inquiriesResponse, preferencesResponse] = await Promise.all([
-          fetch(`/api/service-map/entries?limit=${SERVICE_MAP_ENTRIES_FETCH_LIMIT}&includeUnlocated=1&includeNeedsReview=1`, { cache: "no-store" }),
+        async function loadAllRecipients() {
+          const all = [];
+          for (const type of ["KOV_CONTACT", "SERVICE_PROVIDER"]) {
+            let cursor = "";
+            do {
+              const params = new URLSearchParams({ limit: "100", type });
+              if (cursor) params.set("cursor", cursor);
+              const response = await fetch(`/api/service-map/entries?${params}`, { cache: "no-store" });
+              const payload = await response.json().catch(() => ({}));
+              if (!response.ok) throw new Error(payload?.message || "Recipients could not be loaded.");
+              all.push(...(Array.isArray(payload?.entries) ? payload.entries : []));
+              cursor = payload?.page?.hasMore ? String(payload.page.nextCursor || "") : "";
+            } while (cursor);
+          }
+          return all;
+        }
+        const [loadedEntries, inquiriesResponse, preferencesResponse] = await Promise.all([
+          loadAllRecipients(),
           fetch("/api/pre-inquiries", { cache: "no-store" }),
           fetch("/api/pre-inquiries/preferences", { cache: "no-store" })
         ]);
-        const entriesPayload = await entriesResponse.json().catch(() => ({}));
         const inquiriesPayload = await inquiriesResponse.json().catch(() => ({}));
         const preferencesPayload = await preferencesResponse.json().catch(() => ({}));
-        if (!entriesResponse.ok) {
-          // Tõlge ESIMESENA — API message võib olla toores võtmestring
-          throw new Error(readText(t, "workspace_feature_pages.service_map.errors.load_failed", entriesPayload?.message || "Recipients could not be loaded."));
-        }
         if (!inquiriesResponse.ok) {
           throw new Error(inquiriesPayload?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.load_failed", "Pre-inquiries could not be loaded."));
         }
@@ -894,7 +906,7 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           throw new Error(preferencesPayload?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.preferences_load_failed", "Preferences could not be loaded."));
         }
         if (!cancelled) {
-          setEntries(Array.isArray(entriesPayload?.entries) ? entriesPayload.entries : []);
+          setEntries(loadedEntries);
           setInquiries(Array.isArray(inquiriesPayload?.inquiries) ? inquiriesPayload.inquiries : []);
           setAcceptsPreInquiries(Boolean(preferencesPayload?.preferences?.acceptsPreInquiries));
         }
@@ -1259,6 +1271,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
         setRecipientType(["KOV_CONTACT", "SERVICE_PROVIDER"].includes(prefill.recipientType) ? prefill.recipientType : "");
         setRecipientQuery(String(prefill.municipality || ""));
         setSelectedRecipientId("");
+        setSelectedProviderServiceId("");
+        setSelectedProviderLocationId("");
         setDraft(String(prefill.suggestedMessageDraft || ""));
         setAssistantInput("");
         setAssistantMessage("");
@@ -1392,10 +1406,17 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     ].map((key) => String(params.get(key) || "").trim()).find(Boolean);
     if (!requestedRecipientId) return;
 
-    const entry = entries.find((item) => item.id === requestedRecipientId);
+    const requestedServiceId = String(params.get("providerServiceId") || "").trim();
+    const requestedLocationId = String(params.get("providerLocationId") || "").trim();
+    const entry = entries.find((item) => (
+      item.id === requestedRecipientId ||
+      (item.parentEntryId === requestedRecipientId && (!requestedLocationId || item.providerLocationId === requestedLocationId))
+    ));
     if (!entry) return;
     recipientPrefillLoadedRef.current = true;
     setSelectedRecipientId(entry.id);
+    setSelectedProviderServiceId(requestedServiceId);
+    setSelectedProviderLocationId(requestedLocationId || entry.providerLocationId || "");
     setRecipientType(entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
     setRecipientQuery(entry.municipalityName || entry.county || entry.title || "");
     setAssessmentState((current) => {
@@ -1566,6 +1587,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setRecipientType("");
     setRecipientQuery("");
     setSelectedRecipientId("");
+    setSelectedProviderServiceId("");
+    setSelectedProviderLocationId("");
     setDraft("");
     setAssistantInput("");
     setAssistantMessage("");
@@ -1599,6 +1622,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setRecipientType(inquiry.recipientType || "");
     setRecipientQuery("");
     setSelectedRecipientId(inquiry.recipientEntryId || "");
+    setSelectedProviderServiceId(inquiry.recipientServiceId || "");
+    setSelectedProviderLocationId(inquiry.recipientLocationId || "");
     setDraft(inquiry.userEditedDraft || inquiry.generatedDraft || "");
     setAssistantInput("");
     setAssistantMessage("");
@@ -1656,6 +1681,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
           assessmentState: assessmentStateForSave,
           recipientType,
           recipientEntryId: selectedRecipient?.id || null,
+          recipientServiceId: selectedProviderServiceId || null,
+          recipientLocationId: selectedProviderLocationId || selectedRecipient?.providerLocationId || null,
           selectedRecipientName: selectedRecipient?.title || "",
           selectedRecipientEmail: selectedRecipient?.email || "",
           userEditedDraft: draft,
@@ -2026,10 +2053,18 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
       }
       const firstSuggestion = suggestions[0] || null;
       if (firstSuggestion?.id) {
-        setSelectedRecipientId(firstSuggestion.id);
+        const eligibleActions = Array.isArray(firstSuggestion.serviceActions)
+          ? firstSuggestion.serviceActions.filter((action) => action.platformAllowed || action.emailAllowed)
+          : [];
+        const unambiguousAction = eligibleActions.length === 1 ? eligibleActions[0] : null;
+        setSelectedRecipientId(firstSuggestion.type === "SERVICE_PROVIDER" && !unambiguousAction ? "" : firstSuggestion.id);
+        setSelectedProviderServiceId(unambiguousAction?.providerServiceId || "");
+        setSelectedProviderLocationId(unambiguousAction?.providerLocationId || firstSuggestion.providerLocationId || "");
         setRecipientType(firstSuggestion.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
       } else {
         setSelectedRecipientId("");
+        setSelectedProviderServiceId("");
+        setSelectedProviderLocationId("");
       }
     } catch (assistError) {
       setError(assistError?.message || readText(t, "workspace_feature_pages.pre_inquiries.errors.assist_failed", "Assistant could not prepare the pre-inquiry."));
@@ -2061,9 +2096,11 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
     setActiveWorkflowStep("collect");
   }
 
-  function handleSelectRecipient(entry) {
+  function handleSelectRecipient(entry, serviceAction = null) {
     if (!entry?.id) return;
     setSelectedRecipientId(entry.id);
+    setSelectedProviderServiceId(serviceAction?.providerServiceId || "");
+    setSelectedProviderLocationId(serviceAction?.providerLocationId || entry.providerLocationId || "");
     setRecipientType(entry.type === "SERVICE_PROVIDER" ? "SERVICE_PROVIDER" : "KOV_CONTACT");
     setDraftTouched(false);
     setActiveWorkflowStep("preview");
@@ -2761,6 +2798,8 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                 onChange={() => {
                   setRecipientType((current) => current === value ? "" : value);
                   setSelectedRecipientId("");
+                  setSelectedProviderServiceId("");
+                  setSelectedProviderLocationId("");
                   setShowMoreContacts(false);
                   setDraftTouched(false);
                 }}
@@ -2845,9 +2884,17 @@ function PreInquiriesSurface({ t, locale = "et", activeRole = "SOCIAL_WORKER", i
                   </span>
                 ))}
                 <span>
-                  <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
-                    {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
-                  </Button>
+                  {entry.type === "SERVICE_PROVIDER" && Array.isArray(entry.serviceActions)
+                    ? entry.serviceActions.filter((action) => action.platformAllowed || action.emailAllowed).map((action) => (
+                        <Button key={action.providerServiceId} type="button" size="sm" onClick={() => handleSelectRecipient(entry, action)}>
+                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}: {action.name}
+                        </Button>
+                      ))
+                    : entry.type !== "SERVICE_PROVIDER" ? (
+                        <Button type="button" size="sm" onClick={() => handleSelectRecipient(entry)}>
+                          {readText(t, "workspace_feature_pages.pre_inquiries.actions.choose_contact", "Vali see kontakt")}
+                        </Button>
+                      ) : null}
                   <Button as="a" href={localizePath(`/teenusekaart?entryId=${encodeURIComponent(entry.id)}`, locale)} size="sm" variant="linkBrand">
                     {readText(t, "workspace_feature_pages.pre_inquiries.actions.view_service_map", "Vaata teenusekaardil")}
                   </Button>
@@ -3082,6 +3129,7 @@ function ServiceMapSurface({
   locale = "et",
   activeRole = "SOCIAL_WORKER",
   isAdmin = false,
+  isAuthenticated = false,
   onRoleChange,
   onBack
 }) {
@@ -3097,10 +3145,21 @@ function ServiceMapSurface({
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [counterpartSelection, setCounterpartSelection] = useState(null);
+  const [serviceMapPage, setServiceMapPage] = useState({ hasMore: false, nextCursor: null });
+  const [peerListingsAvailable, setPeerListingsAvailable] = useState(Boolean(isAuthenticated));
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [partialResult, setPartialResult] = useState(false);
+  const [loadMoreError, setLoadMoreError] = useState("");
+  const [deepLinkEntry, setDeepLinkEntry] = useState(null);
+  const serviceMapRequestRef = useRef(0);
   const workspaceRef = useRef(null);
   const filtersShellRef = useRef(null);
   const keywordPlaceholder = readText(t, "workspace_feature_pages.service_map.placeholders.keyword", "Service, contact or need");
   const regionPlaceholder = readText(t, "workspace_feature_pages.service_map.placeholders.region", "Municipality or county");
+
+  useEffect(() => {
+    setPeerListingsAvailable(Boolean(isAuthenticated));
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const initialFilters = readInitialServiceMapFilters();
@@ -3108,6 +3167,30 @@ function ServiceMapSurface({
     if (initialFilters.region) setRegion(initialFilters.region);
     if (initialFilters.entryType !== "KOV_SOCIAL_CONTACT") setEntryType(initialFilters.entryType);
   }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const current = new URLSearchParams(window.location.search || "");
+    const key = ["entryId", "listing", "match"].find((name) => String(current.get(name) || "").trim());
+    if (!key) return;
+    const params = new URLSearchParams({ [key]: current.get(key) });
+    const controller = new AbortController();
+    void fetch(`/api/service-map/entries/resolve?${params.toString()}`, { cache: "no-store", signal: controller.signal })
+      .then(async (response) => ({ response, payload: await response.json().catch(() => ({})) }))
+      .then(({ response, payload }) => {
+        if (!response.ok || !payload?.entry) {
+          setNotice(readText(t, "workspace_feature_pages.service_map.target_not_public", "See kirje ei ole enam avalik või sulle nähtav."));
+          return;
+        }
+        setDeepLinkEntry(payload.entry);
+        setEntryType(payload.entryType === "KOV_GENERAL_CONTACT" ? "KOV_SOCIAL_CONTACT" : payload.entryType);
+        setSelectedEntryId(payload.canonicalEntryId);
+      })
+      .catch((error) => {
+        if (error?.name !== "AbortError") setNotice(readText(t, "workspace_feature_pages.service_map.target_not_public", "See kirje ei ole enam avalik või sulle nähtav."));
+      });
+    return () => controller.abort();
+  }, [t]);
 
   useLayoutEffect(() => {
     if (typeof document === "undefined") return undefined;
@@ -3166,84 +3249,80 @@ function ServiceMapSurface({
     return () => mobileQuery.removeEventListener?.("change", syncPanelMode);
   }, []);
 
-  useEffect(() => {
-    let cancelled = false;
-    async function loadEntries() {
-      setLoading(true);
-      setError("");
-      try {
-        const response = await fetch(`/api/service-map/entries?limit=${SERVICE_MAP_ENTRIES_FETCH_LIMIT}`, { cache: "no-store" });
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok) {
-          // Tõlge ESIMESENA — API message võib olla toores võtmestring
-          throw new Error(readText(t, "workspace_feature_pages.service_map.errors.load_failed", payload?.message || "Map entries could not be loaded."));
-        }
-        if (!cancelled) setEntries(Array.isArray(payload?.entries) ? payload.entries : []);
-      } catch (loadError) {
-        if (!cancelled) {
-          setEntries([]);
-          setError(loadError?.message || readText(t, "workspace_feature_pages.service_map.errors.load_failed", "Map entries could not be loaded."));
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
+  const loadServiceMapPage = useCallback(async ({ cursor = "", append = false, signal } = {}) => {
+    const requestId = ++serviceMapRequestRef.current;
+    if (append) setLoadingMore(true);
+    else setLoading(true);
+    if (append) setLoadMoreError("");
+    setError("");
+    try {
+      const requestType = entryType === "KOV_SOCIAL_CONTACT" ? "KOV_CONTACT" : entryType;
+      const params = new URLSearchParams({ limit: String(SERVICE_MAP_RESULT_BUTTON_LIMIT), type: requestType });
+      if (keyword.trim()) params.set("q", keyword.trim());
+      if (region.trim()) params.set("municipality", region.trim());
+      if (cursor) params.set("cursor", cursor);
+      const response = await fetch(`/api/service-map/entries?${params.toString()}`, { cache: "no-store", signal });
+      const payload = await response.json().catch(() => ({}));
+      if (requestId !== serviceMapRequestRef.current) return;
+      if (!response.ok) throw new Error(readText(t, "workspace_feature_pages.service_map.errors.load_failed", payload?.message || "Map entries could not be loaded."));
+      const nextEntries = Array.isArray(payload?.entries) ? payload.entries : [];
+      setEntries((current) => {
+        if (!append) return nextEntries;
+        const merged = new Map(current.map((entry) => [entry.id, entry]));
+        for (const entry of nextEntries) merged.set(entry.id, entry);
+        return [...merged.values()];
+      });
+      setServiceMapPage(payload?.page || { hasMore: false, nextCursor: null });
+      setPartialResult((current) => append ? current || payload?.partial === true : payload?.partial === true);
+      if (typeof payload?.peerListingsAvailable === "boolean") {
+        setPeerListingsAvailable(payload.peerListingsAvailable);
+      }
+    } catch (loadError) {
+      if (requestId !== serviceMapRequestRef.current) return;
+      throw loadError;
+    } finally {
+      if (requestId === serviceMapRequestRef.current) {
+        if (append) setLoadingMore(false);
+        else setLoading(false);
       }
     }
-    void loadEntries();
+  }, [entryType, keyword, region, t]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    setEntries([]);
+    setServiceMapPage({ hasMore: false, nextCursor: null });
+    setPartialResult(false);
+    setLoading(true);
+    setLoadingMore(false);
+    setLoadMoreError("");
+    setError("");
+    const timer = setTimeout(() => {
+      void loadServiceMapPage({ signal: controller.signal }).catch((loadError) => {
+        if (loadError?.name === "AbortError") return;
+        setEntries([]);
+        setError(loadError?.message || readText(t, "workspace_feature_pages.service_map.errors.load_failed", "Map entries could not be loaded."));
+      });
+    }, 180);
     return () => {
-      cancelled = true;
+      clearTimeout(timer);
+      controller.abort();
+      serviceMapRequestRef.current += 1;
     };
-  }, [t]);
+  }, [loadServiceMapPage, t]);
+
+  useEffect(() => {
+    if (peerListingsAvailable === false && (entryType === "HELP_REQUEST" || entryType === "HELP_OFFER")) {
+      setEntryType("KOV_SOCIAL_CONTACT");
+    }
+  }, [entryType, peerListingsAvailable, t]);
 
   const filteredEntries = useMemo(() => {
-    const query = keyword.trim().toLocaleLowerCase("et");
-    const regionQuery = region.trim().toLocaleLowerCase("et");
-    return entries.filter((entry) => {
-      if (!serviceMapEntryMatchesType(entry, entryType)) return false;
-      const haystack = [
-        entry.title,
-        entry.description,
-        entry.address,
-        entry.categoryLabel,
-        entry.helpTypeLabel,
-        entry.timeTypeLabel,
-        entry.regionLabel,
-        entry.availabilityOrStart,
-        entry.compensationDetails,
-        ...(entry.targetGroupLabels || []),
-        ...(entry.needTags || []),
-        ...(entry.relatedServiceCategories || []),
-        ...(entry.lifeDomains || []),
-        ...(entry.deliveryModes || []),
-        entry.providerProfile?.organizationName,
-        ...(entry.providerProfile?.services || []),
-        ...(entry.providerProfile?.serviceCategories || []),
-        ...(entry.providerProfile?.targetGroups || []),
-        ...(entry.providerProfile?.serviceItems || [])
-          .filter((service) => service?.mapVisible !== false && String(service?.status || "PUBLISHED").toUpperCase() === "PUBLISHED")
-          .flatMap((service) => [
-            service?.name,
-            service?.description,
-            service?.category,
-            service?.priceDescription,
-            ...(service?.targetGroups || [])
-          ])
-      ].join(" ").toLocaleLowerCase("et");
-      const regionText = [
-        entry.municipalityName,
-        entry.municipality?.displayName,
-        entry.county,
-        entry.address,
-        entry.serviceArea,
-        entry.regionLabel,
-        entry.providerProfile?.serviceArea,
-        ...(entry.providerProfile?.serviceAreas || []),
-        ...(entry.providerProfile?.serviceItems || [])
-          .filter((service) => service?.mapVisible !== false && String(service?.status || "PUBLISHED").toUpperCase() === "PUBLISHED")
-          .map((service) => service?.serviceArea)
-      ].join(" ").toLocaleLowerCase("et");
-      return (!query || haystack.includes(query)) && (!regionQuery || regionText.includes(regionQuery));
-    });
-  }, [entries, entryType, keyword, region]);
+    const sourceEntries = deepLinkEntry
+      ? [deepLinkEntry, ...entries.filter((entry) => entry.id !== deepLinkEntry.id)]
+      : entries;
+    return sourceEntries.filter((entry) => serviceMapEntryMatchesType(entry, entryType));
+  }, [deepLinkEntry, entries, entryType]);
 
   const mappableEntries = useMemo(
     () => filteredEntries.filter((entry) => hasServiceMapCoordinates(entry)),
@@ -3277,10 +3356,13 @@ function ServiceMapSurface({
     if (entryId && isMobilePanel) setPanelOpen(false);
   }, [isMobilePanel]);
 
-  const handleStartPreInquiry = useCallback((entry) => {
+  const handleStartPreInquiry = useCallback((entry, policy = null) => {
     const recipientEntryId = String(entry?.parentEntryId || entry?.id || "").trim();
     if (!recipientEntryId) return;
-    pushWithTransition(router, `/eelpoordumised?recipientEntryId=${encodeURIComponent(recipientEntryId)}`);
+    const params = new URLSearchParams({ recipientEntryId });
+    if (policy?.providerServiceId) params.set("providerServiceId", policy.providerServiceId);
+    if (policy?.providerLocationId) params.set("providerLocationId", policy.providerLocationId);
+    pushWithTransition(router, `/eelpoordumised?${params.toString()}`);
   }, [router]);
 
   const submitHelpMatch = useCallback(async (entry, ownListing) => {
@@ -3370,8 +3452,10 @@ function ServiceMapSurface({
             {[
               ["KOV_SOCIAL_CONTACT", readText(t, "workspace_feature_pages.service_map.types.kov", "KOV")],
               ["SERVICE_PROVIDER", readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused")],
-              ["HELP_REQUEST", readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoovid")],
-              ["HELP_OFFER", readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumised")]
+              ...(peerListingsAvailable === true ? [
+                ["HELP_REQUEST", readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoovid")],
+                ["HELP_OFFER", readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumised")]
+              ] : [])
             ].map(([value, label]) => (
               <OptionCard
                 key={value}
@@ -3386,12 +3470,25 @@ function ServiceMapSurface({
               </OptionCard>
             ))}
           </div>
+          {peerListingsAvailable === false ? (
+            <p className="service-map-peer-login" role="note">
+              {readText(t, "workspace_feature_pages.service_map.peer_login_required", "Abikuulutuste vaatamiseks logi sisse. Avalik Teenusekaart ei avalda, kas kuulutusi leidub.")}
+            </p>
+          ) : null}
+          {partialResult ? (
+            <p className="service-map-partial-warning" role="status" aria-live="polite">
+              {filteredEntries.length
+                ? readText(t, "workspace_feature_pages.service_map.partial_warning", "Üks Teenusekaardi andmeallikas ei ole praegu saadaval. Näitame toimiva allika osalisi tulemusi.")
+                : readText(t, "workspace_feature_pages.service_map.partial_empty", "Kõiki Teenusekaardi allikaid ei saanud kontrollida, seega ei saa tulemuste puudumist kinnitada.")}
+            </p>
+          ) : null}
 
           {showResults ? (
             <div className="service-map-results" aria-label={readText(t, "workspace_feature_pages.service_map.results", "Tulemused")}>
               {loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loading", "Laen kirjeid…")}</p> : null}
-              {!loading && !filteredEntries.length ? <p role="status">{readText(t, "workspace_feature_pages.service_map.empty", "Selle filtriga kirjeid ei leitud.")}</p> : null}
-              {filteredEntries.slice(0, SERVICE_MAP_RESULT_BUTTON_LIMIT).map((entry) => (
+              {!loading && !partialResult && !filteredEntries.length ? <p role="status">{readText(t, "workspace_feature_pages.service_map.empty", "Selle filtriga kirjeid ei leitud.")}</p> : null}
+              {!loading ? <p role="status">{readText(t, "workspace_feature_pages.service_map.loaded_count", "Laaditud {count} tulemust.").replace("{count}", String(filteredEntries.length))}</p> : null}
+              {filteredEntries.map((entry) => (
                 <button
                   key={entry.id}
                   type="button"
@@ -3401,6 +3498,19 @@ function ServiceMapSurface({
                   <span>{[entry.type === "HELP_REQUEST" ? readText(t, "workspace_feature_pages.service_map.types.help_request", "Abisoov") : entry.type === "HELP_OFFER" ? readText(t, "workspace_feature_pages.service_map.types.help_offer", "Abipakkumine") : entry.type === "SERVICE_PROVIDER" ? readText(t, "workspace_feature_pages.service_map.types.provider", "Teenused") : readText(t, "workspace_feature_pages.service_map.types.kov", "KOV"), entry.title, entry.regionLabel || entry.municipalityName || entry.county].filter(Boolean).join(" · ")}</span>
                 </button>
               ))}
+              {loadMoreError ? <p role="status">{loadMoreError}</p> : null}
+              {serviceMapPage?.hasMore && serviceMapPage?.nextCursor ? (
+                <Button
+                  type="button"
+                  size="sm"
+                  disabled={loadingMore}
+                  onClick={() => void loadServiceMapPage({ cursor: serviceMapPage.nextCursor, append: true }).catch(() => setLoadMoreError(readText(t, "workspace_feature_pages.service_map.errors.load_more_failed", "Järgmisi tulemusi ei saanud laadida. Senised tulemused jäävad nähtavaks.")))}
+                >
+                  {loadingMore
+                    ? readText(t, "workspace_feature_pages.service_map.loading_more", "Laen juurde…")
+                    : readText(t, "workspace_feature_pages.service_map.load_more", "Laadi veel")}
+                </Button>
+              ) : null}
             </div>
           ) : null}
         </div>
@@ -5204,7 +5314,7 @@ export default function WorkspaceFeaturePage({ feature, embedded = false, onBack
             </SubpageHeader>
           ) : null}
           {featureKey === "pre_inquiries" ? <PreInquiriesSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} currentUserId={session?.user?.id || ""} embedded={embedded} /> : null}
-          {featureKey === "service_map" ? <ServiceMapSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} onRoleChange={handleAdminWorkspaceRoleChange} onBack={handleBack} /> : null}
+          {featureKey === "service_map" ? <ServiceMapSurface t={t} locale={locale} activeRole={activeWorkspaceRole} isAdmin={isAdmin} isAuthenticated={Boolean(session?.user?.id)} onRoleChange={handleAdminWorkspaceRoleChange} onBack={handleBack} /> : null}
           {featureKey === "service_profile" ? <ServiceProfileSurface t={t} /> : null}
         </div>
       </div>

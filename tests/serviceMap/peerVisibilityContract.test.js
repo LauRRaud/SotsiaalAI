@@ -10,6 +10,7 @@ const mapEntries = readFileSync(join(root, "lib/help/mapEntries.js"), "utf8");
 
 test("anonymous service-map requests do not load peer listings", () => {
   assert.match(route, /const canReadPeerListings = Boolean\(session\?\.user\?\.id\)/);
+  assert.match(route, /loadPeerServiceMapEntries/);
   assert.match(route, /shouldLoadHelp && canReadPeerListings/);
   assert.match(route, /peerListingsAvailable: canReadPeerListings/);
 });

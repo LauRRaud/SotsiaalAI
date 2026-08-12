@@ -127,7 +127,10 @@ test("service provider location entry prefers service contact over location and 
                 contactName: "Teenuse kontakt",
                 phone: "service-phone",
                 email: "service@example.test",
-                website: "https://service.example.test"
+                website: "https://service.example.test",
+                directContactAllowed: "Jah",
+                acceptsPlatformPreInquiries: true,
+                acceptsEmailPreInquiries: true
               }
             }
           ]
@@ -138,8 +141,10 @@ test("service provider location entry prefers service contact over location and 
 
   assert.equal(entries.length, 1);
   assert.equal(entries[0].contactName, "Teenuse kontakt");
-  assert.equal(entries[0].phone, "service-phone");
-  assert.equal(entries[0].email, "service@example.test");
+  assert.equal(entries[0].phone, null);
+  assert.equal(entries[0].email, null);
+  assert.equal(entries[0].serviceActions[0].phone, "service-phone");
+  assert.equal(entries[0].serviceActions[0].email, "service@example.test");
   assert.equal(entries[0].website, "https://service.example.test");
 });
 
@@ -166,4 +171,33 @@ test("service provider map does not fall back to provider marker when locations 
   });
 
   assert.equal(entries.length, 0);
+});
+
+test("location contact actions are projected per service and blocked contacts do not leak", () => {
+  const entries = splitServiceLocationMapEntries({
+    id: "provider-entry",
+    type: "SERVICE_PROVIDER",
+    email: "profile@example.test",
+    providerProfile: {
+      acceptsPlatformPreInquiries: true,
+      acceptsEmailPreInquiries: true,
+      serviceItems: [
+        { id: "allowed", name: "Allowed", directContactAllowed: "Jah", email: "allowed@example.test", acceptsPlatformPreInquiries: true, acceptsEmailPreInquiries: true },
+        { id: "blocked", name: "Blocked", directContactAllowed: "Ei", email: "blocked@example.test", acceptsPlatformPreInquiries: false, acceptsEmailPreInquiries: false }
+      ],
+      serviceLocations: [{
+        id: "location",
+        latitude: 59.4,
+        longitude: 24.7,
+        geocodingStatus: "MATCHED",
+        serviceLinks: [{ providerServiceId: "allowed" }, { providerServiceId: "blocked" }]
+      }]
+    }
+  });
+
+  assert.equal(entries[0].email, null);
+  assert.equal(entries[0].phone, null);
+  assert.equal(entries[0].serviceActions[0].email, "allowed@example.test");
+  assert.equal(entries[0].serviceActions[1].email, null);
+  assert.equal(entries[0].serviceActions[1].platformAllowed, false);
 });

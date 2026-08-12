@@ -4,22 +4,40 @@ import { authConfig } from "@/auth";
 import { errorJson, json, localeFromRequest } from "@/lib/documents/server";
 import { listPublishedHelpMapEntries } from "@/lib/help";
 import { listPublishedServiceMapEntries } from "@/lib/serviceProviderProfiles";
-import { safeError } from "@/lib/privacy/safeError";
 import { isAdmin } from "@/lib/authz";
 import { readServiceMapEntriesQuery } from "@/lib/serviceMap/entriesQueryPolicy";
 import { consumeRateLimit } from "@/lib/rate-limit";
 import { getRequestIpFromRequest } from "@/lib/request-ip";
+import { loadPeerServiceMapEntries } from "@/lib/serviceMap/peerAccess";
+import { combineServiceMapSourceResults, isServiceMapAccessError, isServiceMapSourcePermissionError } from "@/lib/serviceMap/sourceResults";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function GET(request) {
+export async function GET(request, deps = {}) {
   const locale = localeFromRequest(request);
+  const getSession = deps.getSession || (() => getServerSession(authConfig));
+  const loadServices = deps.loadServices || listPublishedServiceMapEntries;
+  const loadPeerListings = deps.loadPeerListings || loadPeerServiceMapEntries;
+  const applyRateLimit = deps.consumeRateLimit || consumeRateLimit;
+  const allowPartialResults = deps.allowPartialResults === true;
+
+  let session;
+  try {
+    session = await getSession();
+  } catch {
+    console.error("[service-map] auth dependency unavailable", { code: "SERVICE_MAP_AUTH_UNAVAILABLE" });
+    return errorJson(
+      "workspace_feature_pages.service_map.errors.load_failed",
+      503,
+      locale,
+      { code: "SERVICE_MAP_AUTH_UNAVAILABLE", partial: false }
+    );
+  }
 
   try {
-    const session = await getServerSession(authConfig).catch(() => null);
-    const limiter = consumeRateLimit(
+    const limiter = applyRateLimit(
       `service-map:entries:${session?.user?.id || "anonymous"}:${getRequestIpFromRequest(request)}`,
       90,
       60_000
@@ -28,30 +46,93 @@ export async function GET(request) {
     const query = readServiceMapEntriesQuery(request, {
       canPreviewReviewEntries: isAdmin(session?.user)
     });
+    if (query.invalidCursor) return errorJson("workspace_feature_pages.service_map.errors.invalid_cursor", 400, locale);
     const requestedType = String(query.type || "").trim().toUpperCase();
     const serviceOnlyTypes = new Set(["KOV_SOCIAL_CONTACT", "KOV_GENERAL_CONTACT", "KOV_CONTACT", "SERVICE_PROVIDER", "SERVICES_CONTACTS"]);
     const helpOnlyTypes = new Set(["HELP_REQUEST", "HELP_OFFER", "HELP_LISTINGS"]);
     const shouldLoadServices = !requestedType || requestedType === "ALL" || serviceOnlyTypes.has(requestedType);
     const shouldLoadHelp = !requestedType || requestedType === "ALL" || helpOnlyTypes.has(requestedType);
     const canReadPeerListings = Boolean(session?.user?.id);
-    const [serviceEntries, helpEntries] = await Promise.all([
-      shouldLoadServices ? listPublishedServiceMapEntries(query) : Promise.resolve([]),
+    const [serviceSettled, peerListingsSettled] = await Promise.allSettled([
+      shouldLoadServices ? loadServices(query) : Promise.resolve({ entries: [], page: null }),
       shouldLoadHelp && canReadPeerListings
-        ? listPublishedHelpMapEntries({
-            ...query,
-            locale,
-            currentUserId: session?.user?.id || ""
-          })
-        : Promise.resolve([])
+        ? loadPeerListings({ userId: session?.user?.id || "", query: { ...query, locale }, loadHelpEntries: listPublishedHelpMapEntries })
+        : Promise.resolve({ entries: [], page: null, peerListingsAvailable: canReadPeerListings, peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED" })
     ]);
+    const combined = combineServiceMapSourceResults({
+      servicesRequested: shouldLoadServices,
+      peerListingsRequested: shouldLoadHelp,
+      peerListingsAuthorized: canReadPeerListings,
+      serviceSettled,
+      peerListingsSettled
+    });
+    if (combined.partial && !allowPartialResults) {
+      const error = new Error("SERVICE_MAP_PARTIAL_RESULTS_NOT_APPROVED");
+      error.code = "SERVICE_MAP_SOURCES_UNAVAILABLE";
+      error.status = 503;
+      throw error;
+    }
+    for (const [source, state] of Object.entries(combined.sources)) {
+      if (state.status !== "unavailable") continue;
+      console.error("[service-map] independent source unavailable", {
+        source,
+        code: state.errorCode
+      });
+    }
+    const { serviceResult, peerResult } = combined;
+    const serviceEntries = Array.isArray(serviceResult) ? serviceResult : serviceResult.entries;
+    const helpEntries = peerResult.entries;
+    const helpResult = peerResult;
     const entries = [...serviceEntries, ...helpEntries];
+    const activePage = shouldLoadServices && !shouldLoadHelp
+      ? serviceResult.page
+      : shouldLoadHelp && !shouldLoadServices
+        ? helpResult.page
+        : {
+            hasMore: Boolean(serviceResult?.page?.hasMore || helpResult?.page?.hasMore),
+            nextCursor: null,
+            returnedCount: entries.length,
+            truncated: Boolean(serviceResult?.page?.hasMore || helpResult?.page?.hasMore),
+            requiresSourceFilter: true
+          };
     return json({
       ok: true,
       entries,
-      peerListingsAvailable: canReadPeerListings
+      page: activePage,
+      partial: combined.partial,
+      sources: combined.sources,
+      peerListingsAvailable: canReadPeerListings,
+      peerListingsAccess: canReadPeerListings ? "AUTHORIZED" : "AUTH_REQUIRED"
     });
   } catch (error) {
-    console.error("[service-map] entries load failed", safeError(error));
-    return errorJson("service_map.errors.load_failed", 500, locale);
+    if (isServiceMapAccessError(error)) {
+      const status = Number(error?.status || error?.statusCode || 0) === 401 ? 401 : 403;
+      const code = status === 401 ? "SERVICE_MAP_AUTH_REQUIRED" : "SERVICE_MAP_ACCESS_DENIED";
+      console.error("[service-map] entries access failure", { code });
+      return errorJson(
+        status === 401 ? "api.common.unauthorized" : "api.common.forbidden",
+        status,
+        locale,
+        { code, partial: false }
+      );
+    }
+    if (isServiceMapSourcePermissionError(error)) {
+      console.error("[service-map] source permission unavailable", { code: "SERVICE_MAP_SOURCE_PERMISSION_UNAVAILABLE" });
+      return errorJson(
+        "workspace_feature_pages.service_map.errors.load_failed",
+        503,
+        locale,
+        { code: "SERVICE_MAP_SOURCE_PERMISSION_UNAVAILABLE", partial: false }
+      );
+    }
+    const status = error?.code === "SERVICE_MAP_SOURCES_UNAVAILABLE" ? 503 : 500;
+    const code = status === 503 ? "SERVICE_MAP_SOURCES_UNAVAILABLE" : "SERVICE_MAP_ENTRIES_LOAD_FAILED";
+    console.error("[service-map] entries load failed", { code });
+    return errorJson(
+      "workspace_feature_pages.service_map.errors.load_failed",
+      status,
+      locale,
+      { code, partial: false }
+    );
   }
 }
