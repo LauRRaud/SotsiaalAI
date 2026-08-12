@@ -164,7 +164,7 @@ test("transcript writes stage the file and publish it only after the database", 
       /writeStoredTextDocument\(/,
       `${rel} must not write storage directly before the database`
     );
-    assert.match(src, /(update|create)DocumentWithStagedText\(/, `${rel} must publish through the staged writer`);
+    assert.match(src, /(update|create)(Owned)?DocumentWithStagedText\(/, `${rel} must publish through the staged writer`);
   }
 
   const staging = read("lib/documents/transcriptContent.js");
@@ -387,7 +387,7 @@ test("an active research job can be found again and stopped after a soft nav", (
   const documents = read("components/documents/DocumentsPage.jsx");
 
   // Server oskab anda sama vestluse aktiivse töö.
-  assert.match(store, /convId = null, activeOnly = false/);
+  assert.match(store, /convId = null,[\s\S]{0,80}activeOnly = false/);
   assert.match(store, /payload: \{ path: \["convId"\], equals: conversationId \}/);
   assert.match(store, /activeOnly \? \{ status: \{ in: ACTIVE_STATUSES \} \}/);
   assert.match(route, /convId: requestUrl\.searchParams\.get\("convId"\)/);

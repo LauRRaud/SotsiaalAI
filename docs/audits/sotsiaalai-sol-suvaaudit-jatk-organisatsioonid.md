@@ -37,7 +37,7 @@
 
 **Vastuvõtukriteerium.** Auditivaade peab kasutama stabiilset `(createdAt,id)` cursor-paginatsiooni ja serveri koguarvu/`hasMore`-t. Eksport peab läbima kogu auditi stabiilsete lehtedena või fail-closed katkema; manifest peab kandma rea arvu ja tervikluse kontrolli. Testida vähemalt 201 sündmust, võrdseid ajatempleid ning eksporti, kus esimene ja viimane sündmus mõlemad säilivad.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — auditivaade kasutab stabiilset `(createdAt,id)` cursorit koos serveri `total`/`hasMore`-ga ning organisatsiooni eksport läbib kogu auditi või katkeb fail-closed; manifest kannab täielikkust ja rea arvu.** `npm run org:audit:probe` 14/14 päris PostgreSQL-is (205 rida, võrdsed ajatemplid, esimene ja viimane säilisid, cleanup 0/0); käitumistest 4/4, vana koodi vastas puuduva täieliku lehitsemislepingu tõttu punane; `TZ=UTC npm test` 4182/4182.
 
 ### SOL-ORG-14 — vastuvõtu-, toe- ja aruandeloendid kaotavad vanemad aktiivsed read — P2
 
@@ -47,7 +47,7 @@
 
 **Vastuvõtukriteerium.** Kõik operatiivloendid vajavad staatuse/prioriteedi serverifiltrit ja stabiilset cursor-paginatsiooni koos `hasMore`-ga. Aktiivsed, avamata ja tähtaja ületanud read peavad olema leitavad sõltumata ajaloo mahust. Negatiivtestid peavad looma 201 inbox-rida, 101 saadud toeavaldust ja 201 avamata aruannet ning tõendama täielikku, duplikaadivaba läbimist.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — vastuvõtu-, toe-, aruande-, kutse- ja sponsorlusloendid kasutavad nüüd stabiilset liitcursorit, serveri filtreid ja kasutajale nähtavat jätkamistoimingut.** Sihttest 5/5 katab staatuse, saatja märgitud kiireloomulisuse, tähtaja ületuse ja avamata filtrid ning 201/101/201 rea duplikaadivaba läbimise; `npm run org:operational-pagination:probe` 6/6 kinnitas samad kolm piiri päris PostgreSQL-is ja koristas kõik sünteetilised read (0/0/0). Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
 
 ### SOL-ORG-15 — toeavalduse terminalseid seise saab otsese API-kutsega tagasi pöörata — P1
 
@@ -57,7 +57,7 @@
 
 **Vastuvõtukriteerium.** Defineerida suletud olekumasin; iga mutatsioon peab luku all tegema tingimusliku `updateMany` lubatud lähteseisu ja revision/`updatedAt` järgi. `RECALLED`, `CORRECTED` ja `CLOSED` peavad olema terminalsed vastavalt lepingule. Päris PostgreSQL-i test peab katma open-vs-recall, close-vs-correct ja topelt-close võidujooksud; kaotaja saab 409 ja auditirida puudub.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — toeavalduse `SENT → OPENED/RECALLED`, `SENT/OPENED → CLOSED` ja `OPENED → CORRECTED` siirded on rea `FOR UPDATE` luku all ning iga kirjutus nõuab lubatud lähteseisu ja sama `updatedAt` revisjoni.** `RECALLED`, `CORRECTED` ja `CLOSED` ei pöördu enam ühegi mutatsiooniga tagasi; kaotaja saab 409 ja audit tekib ainult võitjale. `npm run org:support-share:probe` 12/12 päris PostgreSQL-is kattis open-vs-recall, close-vs-correct ja topelt-close võidujooksud ning cleanup jäi `shares=0 audits=0 org=0 user=0`; terminalsete tagasipöörete sihttest 4/4. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
 
 ### SOL-ORG-16 — aruande „avatud” seis võib tekkida enne ühegi baidi väljastamist — P2
 
@@ -67,7 +67,7 @@
 
 **Vastuvõtukriteerium.** Faili olemasolu, suurus ja räsi tuleb kontrollida enne avamisoleku reserveerimist; download peab väljastuse edukuse siduma taastatava delivery/audit olekuga või kasutama ausat `access_attempted` ja `delivered` eristust. UI peab seisu muutma ainult serveri kinnitatud vastusest. Veasüst peab katma puuduva faili, räsivea, stream'i katkestuse ja auditirea vea.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — aruande GET autoriseerib, loeb ja kontrollib enne väljastust külmutatud faili suuruse ning SHA-256 räsi, kirjutab kohustusliku `access_attempted` auditi ja loob `OPENED` seisu alles kogu vastuse vastuvõtu järel allkirjastatud delivery-kinnitusega.** Audititõrke korral ei väljasta GET ühtegi faili baiti; pahatahtlikult kinnitamata jäetud täielik lugemine jääb ausalt ligipääsukatseks, mitte avatuks. Eelvaade ja allalaadimine kinnitavad serverile alles pärast täielikku `json()`/`blob()` lugemist; katkenud stream ei kinnita ega muuda UI seisu. Kinnitus lukustab jagamisrea ning kirjutab `OPENED` ja delivered-tähendusega auditi samas tehingus, seega selle audititõrge pöörab seisu tagasi. Veasüsti sihttest 7/7 kattis puuduva faili, räsivea, streami katkestuse, mõlema auditikihi vea ja eduka tarne; `npm run org:report-delivery:probe` 5/5 kinnitas OPENED-aatomilisuse päris PostgreSQL-is, cleanup `shares=0 audits=0 org=0 user=0`. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
 
 ### SOL-ORG-17 — organisatsiooni loomisel puuduvad idempotentsus ja serveri rate-limit — P2
 
@@ -77,7 +77,7 @@
 
 **Vastuvõtukriteerium.** Loomine peab nõudma kasutajaga seotud `clientActionId`/idempotency key'd ja sama võtme eri payload peab andma 409; lisada mõistlik serveri rate-limit. Paralleeltest peab saatma sama võtmega vähemalt neli päringut ning tõendama ühe organisatsiooni, ühe liikmesuse ja ühe audititoimingu; eri sisu ja rate-limiti negatiivjuhud peavad olema kaetud.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — organisatsiooni loomine nõuab kasutaja `clientActionId`-d, mille `(createdByUserId, creationClientActionId)` unikaalsus ja payload-räsi on andmebaasi leping; sama võtme eri sisu annab 409.** Muutmata vormi retry kasutab kliendis sama võtit, route rakendab kasutajapõhist ja olemasolul usaldatud-IP põhist tunnist rate-limit’i. `npm run org:create:probe` 7/7 saatis neli paralleelpäringut ning tõendas ühe organisatsiooni, ühe liikmesuse, ühe grantide komplekti ja ühe auditi; konflikt ei loonud teist rida, cleanup `org=0 audits=0 user=0`. Rate-limit’i ja kliendi retry sihttest 3/3; migratsioon `20260812200000_sol_org_17_creation_idempotency` rakendus kohalikus PostgreSQL-is ja `prisma migrate status` on puhas. Peatükilõpu `TZ=UTC npm test` 4199/4199, lint 0 viga, i18n puhas; autentitud brauserivoog `not_run`.
 
 ## Testid ja negatiivkontrollid
 

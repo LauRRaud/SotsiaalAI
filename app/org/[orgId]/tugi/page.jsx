@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import OrgSupportClient from "@/components/org/OrgSupportClient";
 import { listSupportRecipients } from "@/lib/org/support";
-import { listOwnSupportShares, listReceivedSupportShares } from "@/lib/org/supportShare";
+import { listOwnSupportSharePage, listReceivedSupportSharePage } from "@/lib/org/supportShare";
 
 import { requireOrgPageContext } from "../../_serverContext";
 
@@ -33,18 +33,18 @@ export default async function OrgSupportPage({ params }) {
   const membershipId = auth.context.membership?.id;
   if (!membershipId) notFound();
 
-  const [recipients, received, sent] = await Promise.all([
+  const [recipients, receivedPage, sentPage] = await Promise.all([
     listSupportRecipients(orgId, membershipId),
-    listReceivedSupportShares(membershipId),
-    listOwnSupportShares(auth.userId)
+    listReceivedSupportSharePage(membershipId),
+    listOwnSupportSharePage(auth.userId, { organizationId: orgId })
   ]);
 
   return (
     <OrgSupportClient
       context={auth.context}
       recipients={recipients}
-      received={received}
-      sent={sent.filter((share) => share.organizationId === orgId)}
+      receivedPage={receivedPage}
+      sentPage={sentPage}
     />
   );
 }

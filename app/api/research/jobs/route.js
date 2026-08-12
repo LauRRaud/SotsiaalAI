@@ -148,7 +148,8 @@ export async function GET(req) {
       offset,
       // SOL-RES-07: vestluse avamisel küsib klient just selle vestluse aktiivset tööd.
       convId: requestUrl.searchParams.get("convId"),
-      activeOnly: String(requestUrl.searchParams.get("status") || "").trim().toLowerCase() === "active"
+      activeOnly: String(requestUrl.searchParams.get("status") || "").trim().toLowerCase() === "active",
+      search: requestUrl.searchParams.get("search")
     });
   } catch (error) {
     console.error("[research] list failed", safeError(error));

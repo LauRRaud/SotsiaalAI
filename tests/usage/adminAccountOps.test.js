@@ -5,7 +5,16 @@ import test from "node:test";
 import { createDeletionJobRetryService } from "../../lib/privacy/deletionJobRetryService.js";
 
 function fakeDeletionDb(job, { failTransaction = false } = {}) {
-  const state = { job: { ...job }, audits: [], practice: { id: job.resourceId, ragSourceId: job.externalRef, ragMetadata: null } };
+  const state = {
+    job: { ...job },
+    audits: [],
+    practice: { id: job.resourceId, ragSourceId: job.externalRef, ragMetadata: null },
+    document: {
+      id: job.resourceId,
+      agentAllowed: false,
+      metadata: { ragRemoval: { jobId: job.id, externalRef: job.externalRef, status: "failed" } }
+    }
+  };
   const db = {
     state,
     dataDeletionJob: {
@@ -24,6 +33,13 @@ function fakeDeletionDb(job, { failTransaction = false } = {}) {
         if (state.practice.id !== where.id || state.practice.ragSourceId !== where.ragSourceId) return { count: 0 };
         Object.assign(state.practice, data);
         return { count: 1 };
+      }
+    },
+    userDocument: {
+      async findUnique() { return { ...state.document }; },
+      async update({ data }) {
+        Object.assign(state.document, data);
+        return { ...state.document };
       }
     },
     async $transaction(callback) {
@@ -114,6 +130,18 @@ test("effective-practice RAG retry stays pending when the atomic final transacti
   await assert.rejects(retry({ jobId: "job_rag_2", actorUserId: "admin-1" }), /database_unavailable/);
   assert.equal(db.state.job.status, "pending");
   assert.equal(db.state.practice.ragSourceId, "effective-practice::p2::v1");
+});
+
+test("document RAG retry moves the recoverable permission-removal state to done", async () => {
+  const db = fakeDeletionDb({
+    id: "job_doc_rag_1", action: "RAG_DELETE", resourceType: "UserDocument",
+    resourceId: "document-1", externalRef: "agent::document-1::sha", attempts: 0, status: "failed"
+  });
+  const retry = createDeletionJobRetryService({ db, deleteRag: async () => ({ ok: true }) });
+  const result = await retry({ jobId: "job_doc_rag_1", actorUserId: "admin-1" });
+  assert.equal(result.status, "done");
+  assert.equal(db.state.document.metadata.ragRemoval.status, "done");
+  assert.equal(db.state.document.metadata.ragRemoval.reason, "durable_deletion_job");
 });
 
 test("account deletion retry delegates to the privacy cleanup before completing", async () => {

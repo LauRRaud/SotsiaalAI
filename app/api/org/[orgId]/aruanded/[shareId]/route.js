@@ -1,19 +1,24 @@
 /**
  * TEENUSPÄEVIK — juht avab talle saadetud kuuaruande (E10a).
  *
- * AVAMINE JA LUGEMINE ON ÜKS TOIMING. Kaks eraldi kutset ("märgi avatuks",
- * "lae fail") tähendaks, et faili saab lugeda ilma avamise jälge jätmata — ja
- * just see jälg on see, mida töötaja peab nägema: kas juht luges või mitte.
+ * GET valmistab ja kontrollib faili; POST kinnitab, et klient sai kogu vastuse.
+ * Nii ei teki OPENED seisu puuduva, rikutud ega pooleli jäänud tarne korral.
  *
- * OMANIKUKONTROLLI EI TEHTA SIIN. `openShareForRecipient` lubab lugeda AINULT
+ * OMANIKUKONTROLLI EI TEHTA SIIN. `prepareShareDelivery` lubab lugeda AINULT
  * seda dokumenti, mis on selle liikmesuse jagamise küljes; teekonda dokumendi
  * ID-lt failini siin ei ole.
  */
-import { buildDownloadHeaders, readStoredDocument } from "@/lib/documents/server";
+import { buildDownloadHeaders } from "@/lib/documents/server";
 import { createPdfBufferFromText, isPdfTextSupported } from "@/lib/chat/exportDocument";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
-import { openShareForRecipient } from "@/lib/serviceLog/reportShare";
-import { orgErrorResponse, orgJson, requireOrgContext } from "../../../_shared";
+import {
+  confirmShareDelivery,
+  createReportDeliveryToken,
+  prepareShareDelivery,
+  recordShareAccessAttempt,
+  readVerifiedReportFile
+} from "@/lib/serviceLog/reportShare";
+import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../../_shared";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -30,12 +35,16 @@ export async function GET(request, context) {
     const shareId = String(params?.shareId || "").trim();
     const membershipId = auth.context?.membership?.id;
 
-    const document = await openShareForRecipient(shareId, {
-      membershipIds: membershipId ? [membershipId] : [],
-      actorUserId: auth.userId
+    const document = await prepareShareDelivery(shareId, {
+      membershipIds: membershipId ? [membershipId] : []
     });
 
-    const fileBuffer = await readStoredDocument(document.storagePath);
+    const fileBuffer = await readVerifiedReportFile(document);
+    await recordShareAccessAttempt(
+      shareId,
+      { membershipIds: membershipId ? [membershipId] : [], actorUserId: auth.userId }
+    );
+    const deliveryToken = createReportDeliveryToken(document, { actorUserId: auth.userId });
 
     /**
      * EELVAADE: aruanne LOETAVAKS, mitte ainult allalaaditavaks.
@@ -45,16 +54,16 @@ export async function GET(request, context) {
      * üle vaadata, peab avama teise programmi. Aruanne on meie enda andmetest —
      * tema näitamine ei vaja midagi juurde peale ühe vaate.
      *
-     * AVAMINE ON JUBA MÄRGITUD: `openShareForRecipient` tegi seda ülal.
-     * Vaatamine JA allalaadimine on mõlemad avamine — kui eelvaade seda ei
-     * märgiks, näeks saatja „avamata" ka siis, kui juht luges.
+     * Klient kinnitab avamise alles pärast terve JSON-vastuse vastuvõttu.
      *
      * AINULT CSV. PDF ja DOCX ei ole tekst ja nende „eelvaade" oleks prügi —
      * siis jääb allalaadimine ainsaks teeks ja seda öeldakse kliendile välja.
      */
     if (new URL(request.url).searchParams.get("eelvaade") === "1") {
       const isCsv = String(document.mime || "").includes("csv");
-      if (!isCsv) return orgJson({ ok: true, previewable: false, fileName: document.originalName });
+      if (!isCsv) {
+        return orgJson({ ok: true, previewable: false, fileName: document.fileName, deliveryToken });
+      }
       const rows = fileBuffer
         .toString("utf8")
         .split(/\r?\n/)
@@ -63,7 +72,7 @@ export async function GET(request, context) {
            välja siin ei ole — CSV-süsti kaitse eemaldas nad juba ekspordis. */
         .map((line) => line.split(";"))
         .slice(0, 500);
-      return orgJson({ ok: true, previewable: true, fileName: document.originalName, rows });
+      return orgJson({ ok: true, previewable: true, fileName: document.fileName, rows, deliveryToken });
     }
 
     /**
@@ -84,7 +93,7 @@ export async function GET(request, context) {
       if (!isCsv) return orgJson({ ok: false, message: "org.reports.no_pdf" }, 400);
 
       const text = [
-        document.originalName,
+        document.fileName,
         "",
         /* AUS PÄIS. Ilma temata võiks keegi selle PDF-i KOV-ile edasi saata ja
            arvata, et ta on esitatud dokument. */
@@ -101,17 +110,44 @@ export async function GET(request, context) {
          vaikne andmekadu. Parem aus tõrge ja CSV, mis kannab kõike. */
       if (!isPdfTextSupported(text)) return orgJson({ ok: false, message: "org.reports.no_pdf" }, 422);
 
-      const name = document.originalName.replace(/\.csv$/i, "") + ".pdf";
+      const name = document.fileName.replace(/\.csv$/i, "") + ".pdf";
       return new Response(createPdfBufferFromText(text), {
         status: 200,
-        headers: buildDownloadHeaders(name, "application/pdf")
+        headers: {
+          ...buildDownloadHeaders(name, "application/pdf"),
+          "X-SotsiaalAI-Report-Delivery": deliveryToken
+        }
       });
     }
 
     return new Response(fileBuffer, {
       status: 200,
-      headers: buildDownloadHeaders(document.originalName, document.mime)
+      headers: {
+        ...buildDownloadHeaders(document.fileName, document.mime),
+        "X-SotsiaalAI-Report-Delivery": deliveryToken
+      }
     });
+  } catch (error) {
+    return orgErrorResponse(error, "org.errors.not_found", "org");
+  }
+}
+
+export async function POST(request, context) {
+  const auth = await requireOrgContext(request, context);
+  if (!auth.ok) return auth.response;
+
+  try {
+    if (!isServiceLogEnabled()) return orgErrorResponse({ status: 404 }, "org.errors.not_found", "org");
+    const params = await context?.params;
+    const shareId = String(params?.shareId || "").trim();
+    const membershipId = auth.context?.membership?.id;
+    const body = await readJsonBody(request);
+    const result = await confirmShareDelivery(body?.deliveryToken, {
+      membershipIds: membershipId ? [membershipId] : [],
+      actorUserId: auth.userId,
+      shareId
+    });
+    return orgJson({ ok: true, ...result });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.not_found", "org");
   }

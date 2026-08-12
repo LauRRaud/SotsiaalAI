@@ -4888,6 +4888,8 @@ model Organization {
   suspendedReason  String?
   archivedAt       DateTime?
   archivedReason   String?
+  creationClientActionId String?
+  creationPayloadHash    String?
   createdAt        DateTime              @default(now())
   updatedAt        DateTime              @updatedAt
 
@@ -4917,6 +4919,7 @@ model Organization {
   @@index([municipalityId])
   @@index([createdByUserId])
   @@index([registryCode])
+  @@unique([createdByUserId, creationClientActionId], name: "Organization_creation_action_unique")
   serviceReportShares ServiceReportShare[]
 }
 

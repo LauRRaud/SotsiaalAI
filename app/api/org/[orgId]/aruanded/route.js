@@ -9,7 +9,7 @@
  * JUHT NÄEB SEDA, MIS TALLE SAADETI. Mitte kõike, mis organisatsioonis liigub,
  * ja mitte teenuspäevikut ennast: jagamise algatab töötaja (vt reportShare.js).
  */
-import { listReceivedShares } from "@/lib/serviceLog/reportShare";
+import { listReceivedSharePage } from "@/lib/serviceLog/reportShare";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
 import { orgErrorResponse, orgJson, requireOrgContext } from "../../_shared";
 
@@ -24,10 +24,18 @@ export async function GET(request, context) {
   try {
     /* Lipp väljas = funktsiooni ei ole. Tühi loend, mitte viga: juhi vaade ei
        tohi lipust sõltuvalt katki minna. */
-    if (!isServiceLogEnabled()) return orgJson({ ok: true, items: [] });
+    if (!isServiceLogEnabled()) {
+      return orgJson({ ok: true, items: [], hasMore: false, nextCursor: null });
+    }
     const membershipId = auth.context?.membership?.id;
-    const items = await listReceivedShares(membershipId ? [membershipId] : []);
-    return orgJson({ ok: true, items });
+    const requestUrl = new URL(request.url);
+    const page = await listReceivedSharePage(membershipId ? [membershipId] : [], {
+      cursor: requestUrl.searchParams.get("cursor"),
+      take: requestUrl.searchParams.get("take"),
+      status: requestUrl.searchParams.get("status"),
+      unopened: requestUrl.searchParams.get("unopened") === "1"
+    });
+    return orgJson({ ok: true, ...page });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

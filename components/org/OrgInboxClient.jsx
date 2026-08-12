@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { useCallback, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
+import Button from "@/components/ui/Button";
 
 import OrgHeader from "./OrgHeader";
+import { useOrgApi } from "./useOrgApi";
 
 /**
  * Vastuvõtulaua LOEND.
@@ -17,9 +20,25 @@ import OrgHeader from "./OrgHeader";
  * tühja lauda kui organisatsioon, kuhu pole veel keegi pöördunud. Just see
  * teeb loendist mittepaljastava pinna.
  */
-export default function OrgInboxClient({ context, items }) {
+export default function OrgInboxClient({ context, initialPage }) {
   const { t } = useI18n();
+  const { call, busy, error } = useOrgApi();
   const organizationId = context.organization.id;
+  const [items, setItems] = useState(initialPage?.items || []);
+  const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
+  const [hasMore, setHasMore] = useState(Boolean(initialPage?.hasMore));
+
+  const loadMore = useCallback(async () => {
+    if (!nextCursor) return;
+    const payload = await call(`/api/org/${organizationId}/inbox?cursor=${encodeURIComponent(nextCursor)}`);
+    if (!payload?.items) return;
+    setItems((current) => {
+      const known = new Set(current.map((item) => item.id));
+      return [...current, ...payload.items.filter((item) => !known.has(item.id))];
+    });
+    setNextCursor(payload.nextCursor || null);
+    setHasMore(Boolean(payload.hasMore));
+  }, [call, nextCursor, organizationId]);
 
   return (
     <section className="ow-shell">
@@ -80,6 +99,14 @@ export default function OrgInboxClient({ context, items }) {
           </table>
         </div>
       )}
+      {hasMore ? (
+        <div className="ow-actions">
+          <Button type="button" variant="secondary" disabled={busy} onClick={loadMore}>
+            {t("org.pagination.loadMore")}
+          </Button>
+        </div>
+      ) : null}
+      {error ? <p className="ow-notice ow-notice--warning">{error}</p> : null}
     </section>
   );
 }

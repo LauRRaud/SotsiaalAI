@@ -10,7 +10,7 @@
 import { errorJson, json } from "@/lib/documents/server";
 import { safeError } from "@/lib/privacy/safeError";
 import { guardServiceLogRequest } from "@/lib/serviceLog/access";
-import { finalizeEntry, updateEntry, voidEntry } from "@/lib/serviceLog/entries";
+import { finalizeEntry, setManualConfirmation, voidEntry } from "@/lib/serviceLog/entries";
 import { ServiceLogError } from "@/lib/serviceLog/errors";
 import { ServiceLogDisabledError } from "@/lib/serviceLog/flags";
 
@@ -43,8 +43,8 @@ export async function POST(req, context) {
        ja seda EI TOHI siit teha: osutaja ei tohi kliendi nimel kinnitada. */
     if (action === "confirm_manual" || action === "unconfirm_manual") {
       return json({
-        entry: await updateEntry(userId, String(id), {
-          confirmedManually: action === "confirm_manual"
+        entry: await setManualConfirmation(userId, String(id), {
+          confirmed: action === "confirm_manual"
         })
       });
     }
@@ -57,7 +57,7 @@ export async function POST(req, context) {
     return errorJson("service_log.errors.invalid_input", 400, locale);
   } catch (error) {
     if (error instanceof ServiceLogDisabledError || error instanceof ServiceLogError) {
-      return errorJson(error.messageKey, error.status, locale);
+      return errorJson(error.messageKey, error.status, locale, error.details || {});
     }
     console.error("[service-entries lifecycle] unexpected", safeError(error));
     return errorJson("api.common.server_error", 500, locale);

@@ -96,9 +96,18 @@ export async function GET(request) {
     maxLimit: DOCUMENT_LIST_LIMIT
   })
   const offset = parseListOffset(requestUrl.searchParams.get("offset"))
+  const search = String(requestUrl.searchParams.get("search") || "").trim().slice(0, 200)
   const where = {
     ownerId: auth.userId,
-    ...(kind ? { kind } : {})
+    ...(kind ? { kind } : {}),
+    ...(search
+      ? {
+          OR: [
+            { title: { contains: search, mode: "insensitive" } },
+            { originalName: { contains: search, mode: "insensitive" } }
+          ]
+        }
+      : {})
   }
 
   try {

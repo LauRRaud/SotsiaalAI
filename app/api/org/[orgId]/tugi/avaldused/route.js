@@ -3,7 +3,7 @@ import { badRequest } from "@/lib/org/errors";
 import {
   closeSupportShare,
   correctSupportShare,
-  listOwnSupportShares,
+  listOwnSupportSharePage,
   notifySupportShareRecipient,
   recallSupportShare,
   sendSupportShare
@@ -27,8 +27,14 @@ export async function GET(request, context) {
 
   try {
     // Omaniku enda saadetud avaldused — tema TOHIB näha lähteviidet.
-    const shares = await listOwnSupportShares(auth.userId);
-    return orgJson({ ok: true, shares });
+    const requestUrl = new URL(request.url);
+    const sentPage = await listOwnSupportSharePage(auth.userId, {
+      organizationId: auth.organizationId,
+      cursor: requestUrl.searchParams.get("cursor"),
+      take: requestUrl.searchParams.get("take"),
+      status: requestUrl.searchParams.get("status")
+    });
+    return orgJson({ ok: true, sentPage });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

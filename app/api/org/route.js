@@ -3,6 +3,8 @@ import { safeError } from "@/lib/privacy/safeError";
 import { createOrganization, listUserOrganizations } from "@/lib/org/organizations";
 import { listPendingInvitesForEmail } from "@/lib/org/inviteService";
 import { assertOrgCreationEnabled } from "@/lib/org/flags";
+import { consumeOrganizationCreationLimit } from "@/lib/org/creationRateLimit";
+import { getTrustedRequestIpFromRequest } from "@/lib/request-ip";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgUser } from "./_shared";
 
 export const runtime = "nodejs";
@@ -44,6 +46,16 @@ export async function POST(request) {
 
   const body = await readJsonBody(request);
   try {
+    const rateLimit = consumeOrganizationCreationLimit({
+      userId: auth.userId,
+      trustedIp: getTrustedRequestIpFromRequest(request)
+    });
+    if (!rateLimit.allowed) {
+      return orgJson(
+        { ok: false, message: "org.errors.creation_rate_limited", messageKey: "org.errors.creation_rate_limited" },
+        429
+      );
+    }
     const { organization } = await createOrganization({
       userId: auth.userId,
       productRole: auth.roleState?.effectiveRole,
@@ -51,7 +63,8 @@ export async function POST(request) {
       legalKind: body?.legalKind,
       legalName: body?.legalName,
       registryCode: body?.registryCode,
-      municipalityId: body?.municipalityId
+      municipalityId: body?.municipalityId,
+      clientActionId: body?.clientActionId
     });
     return orgJson({ ok: true, organization }, 201);
   } catch (error) {

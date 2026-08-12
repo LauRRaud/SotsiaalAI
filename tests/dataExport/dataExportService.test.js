@@ -98,7 +98,17 @@ function createDb() {
     wellbeingOutputDraft: { findMany: async () => [] },
     preInquiry: { findMany: async () => [{ topic: "Topic", situation: "Own situation", receiverNote: "secret recipient note", recipientOwnerId: "other", status: "DRAFT", recipientType: "SERVICE", deliveryChannel: "INTERNAL", createdAt: new Date(), updatedAt: new Date() }] },
     userDocument: { findMany: async () => [] },
-    agentArtifact: { findMany: async () => [] }
+    agentArtifact: { findMany: async () => [] },
+    savedAnalysis: { findMany: async ({ where }) => where.ownerId === "owner" ? [{
+      id: "analysis-own",
+      ownerId: "owner",
+      title: "Own analysis",
+      content: "own saved analysis",
+      sourceDocumentIds: ["deleted-source"],
+      metadata: { disclaimer: "ai_explanation_not_official_decision" },
+      createdAt: new Date("2026-07-16T10:00:00Z"),
+      updatedAt: new Date("2026-07-16T11:00:00Z")
+    }] : [] }
   };
   db.$transaction = fn => fn(db);
   return db;
@@ -138,12 +148,15 @@ test("registry ZIP contains only owner allowlists and manifest excludes content 
   assert.match(exported, /Own situation/);
   assert.match(exported, /own words/);
   assert.match(exported, /visible answer/);
+  assert.match(exported, /own saved analysis/);
+  assert.match(exported, /deleted-source/);
   // Another user's message inside the same conversation, third-party notes and
   // internal SYSTEM turns must never reach the copy.
   assert.doesNotMatch(exported, /other user words/);
   assert.doesNotMatch(exported, /secret recipient note|do not export|recipientOwnerId/);
   assert.doesNotMatch(JSON.stringify(manifest), /Own situation|owner@example/);
   assert.equal(manifest.surfaces.every(surface => surface.thirdPartyExcluded), true);
+  assert.equal(manifest.surfaces.find(surface => surface.name === "saved_analyses")?.recordCount, 1);
 });
 
 test("worker creates a real ZIP and publishes one ready result", async () => {
@@ -156,6 +169,34 @@ test("worker creates a real ZIP and publishes one ready result", async () => {
     const content = await fs.readFile(path.join(directory, "job-1.zip"));
     assert.equal(content.subarray(0, 2).toString("utf8"), "PK");
     assert.equal(db.rows[0].manifest.schemaVersion, "data-export-v1");
+  });
+});
+
+test("missing original file makes the job FAILED, never an unmarked READY copy", async () => {
+  const db = createDb();
+  db.userDocument.findMany = async () => [{
+    id: "missing-document-id",
+    title: "Missing",
+    originalName: "missing.txt",
+    kind: "MATERIAL",
+    mime: "text/plain",
+    size: 12,
+    sha256: "f".repeat(64),
+    storagePath: "uploads/definitely-missing-export-file.txt",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  }];
+  const now = new Date("2026-07-17T10:00:00.000Z");
+  await requestDataExport("owner", { db, now, audit: silent });
+  await withStorageDir(async (directory) => {
+    await assert.rejects(
+      () => runNextDataExport({ db, now, audit: silent, notify: async () => ({ created: true }) }),
+      /data_export\.document_file_unreadable\|missing-document-id\|missing/
+    );
+    assert.equal(db.rows[0].status, "failed");
+    assert.equal(db.rows[0].failureCode, "data_export.document_file_unreadable|missing-document-id|missing");
+    assert.equal(db.rows[0].outputPath, null);
+    assert.deepEqual(await fs.readdir(directory), []);
   });
 });
 

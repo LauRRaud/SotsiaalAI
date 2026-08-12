@@ -19,10 +19,11 @@ import { useOrgApi } from "./useOrgApi";
  * on ainult räsi — kui link kaob, tuleb saata uus kutse. See on teadlik piir,
  * mitte puudujääk.
  */
-export default function OrgInvitesClient({ context, initialInvites, units }) {
+export default function OrgInvitesClient({ context, initialPage, units }) {
   const { t } = useI18n();
   const { call, busy, error } = useOrgApi();
-  const [invites, setInvites] = useState(initialInvites || []);
+  const [invites, setInvites] = useState(initialPage?.items || []);
+  const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
   const [email, setEmail] = useState("");
   const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
   const [templateKey, setTemplateKey] = useState("MEMBER");
@@ -35,8 +36,22 @@ export default function OrgInvitesClient({ context, initialInvites, units }) {
 
   const reload = useCallback(async () => {
     const payload = await call(`/api/org/${organizationId}/invites`);
-    if (payload?.invites) setInvites(payload.invites);
+    if (payload?.items) {
+      setInvites(payload.items);
+      setNextCursor(payload.nextCursor || null);
+    }
   }, [call, organizationId]);
+
+  const loadMore = useCallback(async () => {
+    if (!nextCursor) return;
+    const payload = await call(`/api/org/${organizationId}/invites?cursor=${encodeURIComponent(nextCursor)}`);
+    if (!payload?.items) return;
+    setInvites((current) => {
+      const known = new Set(current.map((item) => item.id));
+      return [...current, ...payload.items.filter((item) => !known.has(item.id))];
+    });
+    setNextCursor(payload.nextCursor || null);
+  }, [call, nextCursor, organizationId]);
 
   const create = useCallback(
     async (event) => {
@@ -199,6 +214,13 @@ export default function OrgInvitesClient({ context, initialInvites, units }) {
           </table>
         </div>
       )}
+      {nextCursor ? (
+        <div className="ow-actions">
+          <Button type="button" variant="secondary" disabled={busy} onClick={loadMore}>
+            {t("org.pagination.loadMore")}
+          </Button>
+        </div>
+      ) : null}
 
       {error ? (
         <p className="ow-notice ow-notice--warning" role="alert">

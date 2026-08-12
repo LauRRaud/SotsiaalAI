@@ -1,4 +1,4 @@
-import { logDocumentsAudit } from "@/lib/documents/audit"
+import { writeDocumentAudit } from "@/lib/documents/audit"
 import { prisma } from "@/lib/prisma"
 import { enforceDocumentsRateLimit, readDocumentsRateLimit } from "@/lib/documents/rateLimit"
 import {
@@ -63,7 +63,7 @@ export async function GET(request, { params }) {
     }
 
     const fileBuffer = await readStoredDocument(document.storagePath)
-    await logDocumentsAudit("document.downloaded", {
+    await writeDocumentAudit("document.downloaded", {
       userId: auth.userId,
       documentId: document.id,
       title: document.title,

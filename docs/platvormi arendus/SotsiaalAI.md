@@ -61,8 +61,9 @@ on ainult **tootepiir**, mille inimene või partner peab teadma (nt „AI ei hin
 teenusele", „ei ole hädaabinumber") — see ei ole hüljatud variant, vaid lubadus.
 
 **Muud reeglid.** Olekut kannab AINULT see fail. `ideed.md` (kontseptsioonid ja taust) ning
-~130 analüüsi-, lepingu- ja auditifaili on detail ja tõend, mitte olek; vastuolu korral kehtib see fail. Pooleliolek kirjutatakse siia KOHE,
-mitte töö lõpus.
+~130 analüüsi-, lepingu- ja auditifaili on detail ja tõend, mitte olek; vastuolu korral kehtib
+see fail. Aktiivse sidusa ploki vaheetappe siia ei kirjutata: seis uuendatakse ühe korra ploki
+lõpus või kohe siis, kui plokk jääb blokituna/pooleli maha.
 
 ### Osa I sektsioonid
 
@@ -89,11 +90,17 @@ tegemata tööriistad elavad ainult S4-s ja neid ei dubleerita.
 
 ## S1. Alus
 
-**DEPLOY'MATA EI OLE MIDAGI. Server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
+### S1.0. Aktiivne tööots — loe uues aknas seda, mitte kogu S1
+
+**Teenuspäeviku peatükis on `SOL-SLOG-06…10` DONE; järgmine sidus plokk on `SOL-SLOG-11…12` (kliendi kuusnapshot ja säilitatava aruande kustutuspiir).**
+`SOL-ORG-13`–`17`, `SOL-DOC-J-01`–`06` ja `SOL-SLOG-06…10` parandused ning kiirem plokipõhine töökord on koodipuus; serverisse deploy'mata. Arvud loetakse käsuga `npm run sol:tally`, neid siia ankrusse ei
+kopeerita. Kui ülesanne ei ole SOL-parandus, loe S11 järel ainult vastavat S2–S10 sektsiooni.
+
+**Viimati mõõdetud server on `387ebc5d`, `.next` 12.08 16:15:02** (seitsmeteistkümnes
 deploy, omaniku selgel loal). Välja läksid **SOL-PAY-09** ja **SOL-WB-06 täiendav
 lahtrisummutus** — viis commit'i ja üks migratsioon (`20260812170000`). Tööpuu on puhas ka
-serveris. **Deploy'mata KOODI ei ole; `origin/main` on serverist ees ainult selle seisukirje
-võrra** — nii on see iga deploy järel, sest seisu kirjutamine tuleb mõõtmise järel.
+serveris. Selle deploy mõõtmise hetkel deploy'mata koodi ei olnud; **praegune lokaalne tööots on
+ainult S1.0-s** ning `origin/main`/serveri suhe mõõdetakse käsuga enne järgmist push'i või deploy'd.
 
 **Mõõdetud ENNE ja PÄRAST, sest migratsioon puudutas tootmisandmetega tabelit.** Enne: 4
 `Payment` rida, `userId` kõigil täidetud, `Payment_userId_fkey` ja `Payment_subscriptionId_fkey`
@@ -188,15 +195,106 @@ deploy'd): **`PROBE_OK 8/8`** päris teenuse vastu, kettal ei ole ühtki faili h
 väljas. Esimene jooks andis punase, aga viga oli **sondis** — tema reegel vastas vaenuliku
 faili enda nimele ka pärast korrektset puhastust. Sond parandatud.
 
-**SOL-süvaaudit: 181/403 leidu, 16/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
+**SOL-süvaaudit: 182/403 leidu, 16/39 peatükki lõpuni** (SOL-SCHEMA, SOL-BUILD, **SOL-AUTH**,
 SOL-RAGADMIN, SOL-FIELD, SOL-MEET, SOL-CHAT, **SOL-VOICE**, **SOL-ROOM**, **SOL-CALL**, **SOL-INV**, **SOL-PAY**, **SOL-NOTIF**, **SOL-EVENT**, **SOL-URG**, **SOL-WB**). **Auditis ei ole enam ühtegi lahtist P0-d.**
 Numbrid tulevad `npm run sol:tally` väljundist, käsitsi neid siia ei kirjutata.
 **12.08 õhtust alates on `parandusaudit.md` peatükk „Mis on tehtud" samuti GENEREERITUD**
-(`npm run sol:tally -- --write`) — 181 tehtud leidu peatükkide kaupa, iga rea lõpus leiu
+(`npm run sol:tally -- --write`) — tehtud leiud peatükkide kaupa, iga rea lõpus leiu
 Seis-lõigu esimene lause sõna-sõnalt. Varem oli ta käsitsi kirjutatud ja maas üheksa lõpetatud
 peatüki võrra. Ploki värskust hoiab test, mitte lubadus. **Per-leiu loendit siia ei kopeerita:**
 S1 kannab kogusummat, raport kannab leiu enda seisu, `parandusaudit.md` kannab tuletatud
 ülevaadet — kolmas käsitsi hoitav koopia oleks järgmine lahknemine.
+
+**SOL-ORG-13 tehtud 12.08 — organisatsiooni audit ei kärbi enam vastutusjälge vaikides.**
+Auditivaade kannab serveri koguarvu ja stabiilset `(createdAt,id)` cursorit; eksport läbib kogu
+auditi või katkeb ning manifest ütleb rea arvu ja täielikkuse välja. `npm run org:audit:probe`
+**14/14 päris PostgreSQL-is** 205 sünteetilise reaga, sh võrdsed ajatemplid ja esimese/viimase
+rea säilimine; sond koristas kõik enda read (`audit=0`, `organization=0`).
+
+**SOL-ORG-14 tehtud 12.08 — aktiivne töö ei kao enam vaikse 50/100/200 rea lõike taha.**
+Vastuvõtt, saadud ja saadetud toeavaldused, juhile saadetud aruanded, kutsed ning sponsorlused
+kasutavad stabiilset liitcursorit ja nõudmisel järgmise lehe laadimist; serveris on seisu ning
+asjakohased kiireloomulisuse, tähtaja ületuse ja avamata filtrid. Sihttest **5/5** läbis
+201/101/201 rea piirid; `npm run org:operational-pagination:probe` **6/6 päris PostgreSQL-is**
+ning cleanup jäi `inbox=0 support=0 reports=0`. Peatüki täissviit tuleb peatüki lõpus, mitte
+iga ploki järel.
+
+**SOL-ORG-15 tehtud 12.08 — toeavalduse terminalset seisu ei saa enam stale või paralleelse
+API-kutsega tagasi pöörata.** Kõik neli mutatsiooni lukustavad sama avalduserea ja kirjutavad
+ainult lubatud lähteseisu ning sama `updatedAt` revisjoni pealt; `RECALLED`, `CORRECTED` ja
+`CLOSED` on terminalsed. `npm run org:support-share:probe` **12/12 päris PostgreSQL-is** kattis
+open-vs-recall, close-vs-correct ja topelt-close võidujooksud: üks võitja, kaotajale 409, üks
+audit. Cleanup `shares=0 audits=0 org=0 user=0`; sihttest **4/4**.
+
+**SOL-ORG-16 tehtud 12.08 — aruande „avatud” seis järgib nüüd päriselt brauserisse jõudnud
+terviklikku faili.** GET kontrollib enne vastust suuruse ja SHA-256 ning kirjutab kohustusliku
+`access_attempted` auditi; audititõrke korral bait'e ei väljastata. Klient loeb kogu JSON-i või
+blob'i ning saadab alles siis lühiajalise allkirjastatud delivery-kinnituse. See muudab `OPENED`
+seisu ja kirjutab `delivered`-tähendusega auditi ühes tehingus. Veasüsti sihttest **7/7** kattis
+puuduva faili, räsivea, katkenud streami ning mõlema auditikihi tõrke;
+`npm run org:report-delivery:probe` **5/5 päris
+PostgreSQL-is**, cleanup `shares=0 audits=0 org=0 user=0`.
+
+**SOL-ORG-17 tehtud 12.08 — organisatsiooni loomise retry ei tee enam topelt tööruumi ning
+loomist piirab server.** Kasutaja ja `clientActionId` on DB unikaalpiir, normaliseeritud payload'i
+räsi teeb sama võtme eri sisust 409 ning muutmata vorm hoiab retry ajal sama võtit. Route'il on
+kasutaja- ja usaldatud proxy korral ka IP-põhine tunnine piir. `npm run org:create:probe`
+**7/7 päris PostgreSQL-is**: neli paralleelpäringut, üks organisatsioon, üks liikmesus, üks
+grantide komplekt ja üks audit; cleanup `org=0 audits=0 user=0`. Migratsioon
+`20260812200000_sol_org_17_creation_idempotency` rakendus kohalikult ja migratsiooniseis on
+puhas. Peatükilõpu värav: `TZ=UTC npm test` **4199/4199**, lint 0 viga, i18n puhas ja
+`git diff --check` puhas. Sellega on **SOL-ORG 17/17**; järgmine dokumendijärgne plokk on
+**SOL-DOC-J-01…-06**.
+
+**SOL-DOC-J-01 tehtud 12.08 — Dokumendid-vaate vanemad omanikuobjektid on nüüd päriselt
+kättesaadavad.** Neli peret kasutavad dünaamilist offsetti ja ühist „laadi vanemad” toimingut;
+otsing läheb kõigis neljas serverisse enne count'i/paginatsiooni. Sihttest **3/3** lõi igasse
+peresse 51 rida, kattuva lehega jäi 204 unikaalset objekti ja iga pere 51. rida jõudis samasse
+töötoimingute renderdusse. Kolme uue otsingupäringu Prisma kuju valideeriti päris PostgreSQL-i
+vastu.
+
+**SOL-DOC-J-02 tehtud 12.08 — kaks vahekaarti ei kirjuta enam sama dokumenti vaikides üle.**
+PATCH nõuab nähtud `updatedAt` versiooni ja teeb `id + ownerId + updatedAt` CAS-i; 409 kannab
+värske rea tagasi kliendile. Sama piir on staged transkripti avaldamise ees, nii et kaotaja ei
+muuda faili. Sihttestid **12/12**; `npm run doc:mutation:probe` **10/10 päris PostgreSQL-is ja
+päris kettal** kattis rename'i, transkripti ning `agentAllowed true/false` võistlused. Igas oli
+üks võitja ja 409 kaotaja, DB/fail jäid koherentseks, staged jääke 0 ja cleanup `users=0`.
+Järgmine leid on **SOL-DOC-J-03** — loa tagasivõtmisel taastatav RAG-delete.
+
+**SOL-DOC-J-03 kood ja DB-rada tehtud 12.08, ametlik seis PARTIAL kuni päris RAG-tõendini.**
+Keelamine kirjutab CAS-tehingus enne kaugkatset auditeeritud `DataDeletionJob` töö ja
+`pending` seisu; tõrge jääb `failed`, retry viib sama töö `done`-iks. Pending/failed blokeerib
+nii korduslubamise kui ingest'i ning on Dokumendid-vaates nähtav. Sihttestid **15/15**;
+`npm run doc:rag-removal:probe` **15/15 päris PostgreSQL-is** kattis tõrke, retry,
+idempotentsuse ja paralleelse keela/luba võistluse, cleanup `users=0 jobs=0 audits=0`.
+**NOT_PROVEN:** päris RAG ingest → keela → GET/search puudub ja konto kustutuse välisots —
+kohalikus masinas pole RAG-võtit ega porti 8000 kuulavat teenust. J-03 muutub DONE-iks alles
+välise tõendi järel; muud dokumendiparandused võivad sellest sõltumatult edasi liikuda.
+
+**SOL-DOC-J-04 tehtud 12.08 — salvestatud analüüs kuulub nüüd tervikandmekoopiasse.**
+Eraldi versioonitud `saved_analyses` pind ekspordib omaniku sisu, pealkirja, disclaimer'i,
+ajatemplid ja allikaviited; kustutatud allika ID säilib, võõra analüüs ei läbi owner-filtrit.
+Andmekoopia sihttestid **12/12** ja `npm run doc:saved-analysis-export:probe` **6/6 päris
+PostgreSQL-is**; manifest `recordCount=1`, cleanup `users=0`. Järgmine leid on
+**SOL-DOC-J-05** — puuduva algfailiga andmekoopia peab ausalt katkema või olema partial.
+
+**SOL-DOC-J-05 tehtud 12.08 — puuduva või loetamatu algfailiga koopia ei saa enam READY-ks.**
+ENOENT, ligipääsu-, containment- ja keset lugemist tekkinud viga katkestavad kogu töö stabiilse
+`documentId + reason` koodiga; toortee ja erind ei leki. Sihttestid **13/13**;
+`npm run doc:missing-export-file:probe` **6/6 päris PostgreSQL-is** kinnitas FAILED seisu,
+puuduva outputPath/ZIP-i ja `DATA_EXPORT_FAILED` auditi, cleanup `users=0`. Järgmine leid on
+**SOL-DOC-J-06** — dokumentide allalaadimise ja artefakti kustutuse kohustuslik audit.
+
+**SOL-DOC-J-06 tehtud 12.08 — download ega artefakti kustutus ei saa enam auditita õnnestuda.**
+Mõlemad allalaadimised auditeerivad pärast baitide valmimist, enne vastust; kustutuse audit ja
+DELETE on üks tehing. FK `SET NULL` tõttu jääb kustutatud artefakti ID metaossa püsima.
+Sihttestid **5/5** ja `npm run doc:artifact-audit:probe` **5/5 päris PostgreSQL-is**:
+audititõrke järel artefakt 1/audit 0, edu järel artefakt 0/audit 1, cleanup `users=0`.
+Dokumendiploki peatükilõpu värav: `TZ=UTC npm test` **4223/4223**, lint **0 viga**
+(kolm varasemat hoiatust), i18n puhas, Prisma **166 migratsiooni** ajakohased ja
+`git diff --check` puhas. Täissviit käis kokkulepitult üks kord peatüki lõpus.
+Dokumendiploki järel on järgmine dokumendijärgne peatükk **SOL-SLOG**, esimene lahtine leid
+**SOL-SLOG-06**; J-03 päris RAG-tõend jääb eraldi selgelt nähtavaks võlaks.
 
 **SOL-WB (Tööheaolu) lõpetatud 12.08 — 18/18, sh neli leidu jätkufailist.** Kandvad parandused:
 **osalusprojektsioon** (`WellbeingParticipation`) — kirje kuulub sellesse piloodikoondisse, kelle
@@ -2505,7 +2603,8 @@ Seadmematriksis nimeliselt: **eestikeelse ettelugemise PCM16-heli päris iOS/Saf
 
 **Uude aknasse kleepimiseks üks rida:**
 
-> Loe `docs/platvormi arendus/SotsiaalAI.md` ja jätka sealt.
+> Loe `AGENTS.md` ning `SotsiaalAI.md`-st S1.0, S11 ja S1.0 nimetatud järgmise töö teemasektsioon;
+> ära loe kogu faili uuesti.
 
 Uue teema väljastamiseks lisa lepingufaili nimi (nt `sotsiaalkiirabi-v1-arendusleping.md`).
 Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
@@ -2513,14 +2612,40 @@ Töökaust: `C:\Users\rauds\Desktop\SotsiaalAI`.
 ### Reeglid
 
 1. **Töö käib otse `main`-is.** Harusid ega worktree-kaustu ei tehta. Üks teema korraga.
-2. **Väravad enne igat commit'i:** `npm test`, `npm run i18n:check`, eslint muudetud failidel; skeemimuudatusel `npm run db:migrate:check`.
+2. **Ploki järel väike värav, peatüki lõpus täisvärav.** Ploki järel: sihttestid, nõutud sond,
+   eslint muudetud koodifailidel ja `git diff --check`; i18n ainult tõlkemuudatusel ning
+   `db:migrate:check` kohe skeemimuudatusel. `TZ=UTC npm test` käib peatüki lõpus ning alati enne
+   push'i/deploy'd, mitte iga ploki järel. Sama muutumatu koodipuu täissviiti ei korrata pärast
+   raporti/koondi/S1 uuendust.
 3. **Push ja deploy ainult omaniku selgel loal.** Sama kehtib päris e-kirjade, päris maksete ja päris partnerini jõudmise kohta. *(Parandatud 06.08: siin seisis „merge ja deploy". Reegel 1 järgi käib töö otse `main`-is, seega merge'imist ei toimu ja väravaks on **push** — vana sõnastus jättis lokaalse commit'i ja `origin`-i vahelise sammu nimetamata.)*
 4. **Ära loe tootmiskasutajate sisu** ega kasuta päris kasutajaid testimiseks.
 5. **Ära käivita `OPS-FINAL-A0`** — see on release candidate'i lõppvärav.
-6. **Ära korda teostaja teste, build'i ega auditeid**, kui lõpparuanne juba sisaldab nende tulemusi.
-7. **Olekut kannab ainult see fail.** Pooleliolek kirjutatakse siia kohe, mitte töö lõpus.
+6. **Ära korda teostaja teste, build'i ega auditeid**, kui sama muutumatu puu tulemus on juba
+   olemas. Uus jooks peab vastama uuele riskile, mitte rituaalile.
+7. **Olekut kannab ainult see fail.** Aktiivse ploki vaheetappe ei logita; uuenda seis ploki
+   lõpus ühe koondina või kohe, kui töö jääb blokituna/pooleli maha.
 
 Miks need reeglid tekkisid — `git show db514ba0:"docs/platvormi arendus/SEIS.md"`.
+
+### Kiirrežiim SOL-parandustele (omanik 12.08: üle 100 leiu, liigume plokkidena)
+
+- **Tööühik on 2–8 seotud leidu**, millel on sama helper, teenus, andmemudel või runtime-rada.
+  Üks suur mitmekihiline leid võib olla omaette plokk; seoseta leide ei liideta.
+- Alguses üks lühike kaart: vastuvõtukriteerium → failid → sihttest → DB/brauseri vajadus.
+  Täpsest raportist, seotud koodist ja testist kaugemale ei loeta ilma põhjuseta.
+- Üks kandev negatiivkontroll käitumisklassi kohta. Sama shared helperi täpsetele kasutajatele
+  ei tehta koopiat; erinevad invariantid peavad endiselt eraldi punaseks minema.
+- Fake-prisma piiri tabamisel kavandatakse üks plokisond **enne koodi lõpetamist**, mitte pärast
+  esimest täissviiti. Brauser avatakse ainult siis, kui vastuvõtukriteerium või ligipääsupiir
+  seda vajab; muidu märgitakse runtime ausalt `not_run`.
+- Ploki lõpus: kõik Seis-lõigud → **üks** `npm run sol:tally -- --write` → S1.0 tööots ja
+  vajadusel üks lühike teemakoond → väike värav. Peatüki viimase ploki järel üks täisvärav.
+  Testi-/sondidetail jääb raportisse, mitte S1 teostuslooks. Kui pärast täisväravat muutus ainult
+  see kolmik, piisab `solAuditTally.test.js`-ist.
+- Kohaliku vahecommit'i võib teha väikese värava järel, märkega `full gate: pending chapter
+  close`. **Enne push'i või deploy'd peab peatüki täisvärav olema roheline.** Skeemi-, turva-,
+  makse-, privaatsus-, võistlus- või laia shared-helperi muudatus saab vajadusel laiema kontrolli
+  kohe; globaalset sviiti ei käivitata siiski rituaalselt, kui löögiala on sihttestiga tõendatud.
 
 ### Ülesande lõpus
 

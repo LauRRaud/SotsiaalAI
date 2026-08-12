@@ -1,5 +1,5 @@
 import { assertCapability } from "@/lib/org/accessContext";
-import { listOrgAuditEvents } from "@/lib/org/audit";
+import { listOrgAuditEventPage } from "@/lib/org/audit";
 import { OrganizationCapability } from "@/lib/org/constants";
 import { orgErrorResponse, orgJson, requireOrgContext } from "../../_shared";
 
@@ -23,10 +23,11 @@ export async function GET(request, context) {
   try {
     assertCapability(auth.context, OrganizationCapability.AUDIT_VIEWER);
     const requestUrl = new URL(request.url);
-    const events = await listOrgAuditEvents(auth.organizationId, {
-      take: Number(requestUrl.searchParams.get("take")) || 100
+    const page = await listOrgAuditEventPage(auth.organizationId, {
+      take: Number(requestUrl.searchParams.get("take")) || 100,
+      cursor: requestUrl.searchParams.get("cursor")
     });
-    return orgJson({ ok: true, events });
+    return orgJson({ ok: true, ...page });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

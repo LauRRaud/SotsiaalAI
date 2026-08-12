@@ -5,7 +5,7 @@ import OrgFundingClient from "@/components/org/OrgFundingClient";
 import { isOrgSeatsEnabled } from "@/lib/org/flags";
 import { listMembers } from "@/lib/org/members";
 import { listSeatPlans } from "@/lib/org/seats";
-import { listClientSponsorships } from "@/lib/org/sponsorship";
+import { listClientSponsorshipPage } from "@/lib/org/sponsorship";
 
 import { requireOrgPageContext } from "../../_serverContext";
 
@@ -31,9 +31,9 @@ export default async function OrgFundingPage({ params }) {
   const granted = new Set((auth.context.capabilities || []).map((grant) => grant.capability));
   if (!granted.has("BILLING_MANAGER")) notFound();
 
-  const [seatPlans, sponsorships, members] = await Promise.all([
+  const [seatPlans, sponsorshipPage, members] = await Promise.all([
     listSeatPlans(orgId),
-    listClientSponsorships(orgId),
+    listClientSponsorshipPage(orgId),
     listMembers(orgId)
   ]);
 
@@ -41,7 +41,7 @@ export default async function OrgFundingPage({ params }) {
     <OrgFundingClient
       context={auth.context}
       initialSeatPlans={seatPlans}
-      initialSponsorships={sponsorships}
+      initialSponsorshipPage={sponsorshipPage}
       members={members}
     />
   );

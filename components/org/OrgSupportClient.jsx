@@ -35,7 +35,7 @@ function recipientLabel(entry) {
   const name = [entry.firstName, entry.lastName].filter(Boolean).join(" ");
   return name || entry.jobTitle || entry.email || "—";
 }
-export default function OrgSupportClient({ context, recipients, received, sent }) {
+export default function OrgSupportClient({ context, recipients, receivedPage, sentPage }) {
   const { t } = useI18n();
   const { call, busy, error } = useOrgApi();
   const [recipientMembershipId, setRecipientMembershipId] = useState("");
@@ -43,9 +43,38 @@ export default function OrgSupportClient({ context, recipients, received, sent }
   const [needs, setNeeds] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [done, setDone] = useState("");
+  const [received, setReceived] = useState(receivedPage?.items || []);
+  const [receivedCursor, setReceivedCursor] = useState(receivedPage?.nextCursor || null);
+  const [sent, setSent] = useState(sentPage?.items || []);
+  const [sentCursor, setSentCursor] = useState(sentPage?.nextCursor || null);
 
   const organizationId = context.organization.id;
   const writable = context?.writable !== false;
+
+  const appendPage = useCallback((setter, items) => {
+    setter((current) => {
+      const known = new Set(current.map((item) => item.id));
+      return [...current, ...items.filter((item) => !known.has(item.id))];
+    });
+  }, []);
+
+  const loadReceived = useCallback(async () => {
+    if (!receivedCursor) return;
+    const payload = await call(`/api/org/${organizationId}/tugi?cursor=${encodeURIComponent(receivedCursor)}`);
+    if (!payload?.receivedPage) return;
+    appendPage(setReceived, payload.receivedPage.items || []);
+    setReceivedCursor(payload.receivedPage.nextCursor || null);
+  }, [appendPage, call, organizationId, receivedCursor]);
+
+  const loadSent = useCallback(async () => {
+    if (!sentCursor) return;
+    const payload = await call(
+      `/api/org/${organizationId}/tugi/avaldused?cursor=${encodeURIComponent(sentCursor)}`
+    );
+    if (!payload?.sentPage) return;
+    appendPage(setSent, payload.sentPage.items || []);
+    setSentCursor(payload.sentPage.nextCursor || null);
+  }, [appendPage, call, organizationId, sentCursor]);
 
   const send = useCallback(
     async (event) => {
@@ -210,7 +239,7 @@ export default function OrgSupportClient({ context, recipients, received, sent }
                     ))}
                   </ul>
                 ) : null}
-                {writable && share.status !== "CLOSED" ? (
+                {writable && ["SENT", "OPENED"].includes(share.status) ? (
                   <div className="ow-actions">
                     <Button type="button" onClick={() => act("close", share.id)} disabled={busy}>
                       {t("org.support.close")}
@@ -221,6 +250,13 @@ export default function OrgSupportClient({ context, recipients, received, sent }
             ))}
           </ul>
         )}
+        {receivedCursor ? (
+          <div className="ow-actions">
+            <Button type="button" variant="secondary" disabled={busy} onClick={loadReceived}>
+              {t("org.pagination.loadMore")}
+            </Button>
+          </div>
+        ) : null}
       </section>
 
       <section className="ow-card" aria-labelledby="ow-sent-support">
@@ -265,6 +301,13 @@ export default function OrgSupportClient({ context, recipients, received, sent }
             </table>
           </div>
         )}
+        {sentCursor ? (
+          <div className="ow-actions">
+            <Button type="button" variant="secondary" disabled={busy} onClick={loadSent}>
+              {t("org.pagination.loadMore")}
+            </Button>
+          </div>
+        ) : null}
       </section>
 
       {done ? <p className="ow-notice ow-notice--privacy">{done}</p> : null}

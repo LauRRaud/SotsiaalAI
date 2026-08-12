@@ -1,5 +1,5 @@
 import { assertOrgInboxEnabled } from "@/lib/org/flags";
-import { listInboxItems } from "@/lib/org/inbox";
+import { listInboxItemPage } from "@/lib/org/inbox";
 import { orgErrorResponse, orgJson, requireOrgContext } from "../../_shared";
 
 export const runtime = "nodejs";
@@ -23,10 +23,14 @@ export async function GET(request, context) {
   try {
     assertOrgInboxEnabled();
     const requestUrl = new URL(request.url);
-    const items = await listInboxItems(auth.context, {
-      includeClosed: requestUrl.searchParams.get("includeClosed") === "1"
+    const page = await listInboxItemPage(auth.context, {
+      includeClosed: requestUrl.searchParams.get("includeClosed") === "1",
+      cursor: requestUrl.searchParams.get("cursor"),
+      take: requestUrl.searchParams.get("take"),
+      status: requestUrl.searchParams.get("status"),
+      priority: requestUrl.searchParams.get("priority")
     });
-    return orgJson({ ok: true, items });
+    return orgJson({ ok: true, ...page });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

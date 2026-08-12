@@ -31,11 +31,12 @@ function formatCents(cents, locale) {
   }).format((Number(cents) || 0) / 100);
 }
 
-export default function OrgFundingClient({ context, initialSeatPlans, initialSponsorships, members }) {
+export default function OrgFundingClient({ context, initialSeatPlans, initialSponsorshipPage, members }) {
   const { t, locale } = useI18n();
   const { call, busy, error } = useOrgApi();
   const [seatPlans, setSeatPlans] = useState(initialSeatPlans || []);
-  const [sponsorships, setSponsorships] = useState(initialSponsorships || []);
+  const [sponsorships, setSponsorships] = useState(initialSponsorshipPage?.items || []);
+  const [sponsorshipCursor, setSponsorshipCursor] = useState(initialSponsorshipPage?.nextCursor || null);
   const [seatRole, setSeatRole] = useState("SOCIAL_WORKER");
   const [seatLimit, setSeatLimit] = useState(1);
   const [sponsorEmail, setSponsorEmail] = useState("");
@@ -58,8 +59,24 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
       call(`/api/org/${organizationId}/sponsorships`)
     ]);
     if (plans?.seatPlans) setSeatPlans(plans.seatPlans);
-    if (sponsors?.sponsorships) setSponsorships(sponsors.sponsorships);
+    if (sponsors?.items) {
+      setSponsorships(sponsors.items);
+      setSponsorshipCursor(sponsors.nextCursor || null);
+    }
   }, [call, organizationId]);
+
+  const loadSponsorships = useCallback(async () => {
+    if (!sponsorshipCursor) return;
+    const payload = await call(
+      `/api/org/${organizationId}/sponsorships?cursor=${encodeURIComponent(sponsorshipCursor)}`
+    );
+    if (!payload?.items) return;
+    setSponsorships((current) => {
+      const known = new Set(current.map((item) => item.id));
+      return [...current, ...payload.items.filter((item) => !known.has(item.id))];
+    });
+    setSponsorshipCursor(payload.nextCursor || null);
+  }, [call, organizationId, sponsorshipCursor]);
 
   const addPlan = useCallback(
     async (event) => {
@@ -320,6 +337,13 @@ export default function OrgFundingClient({ context, initialSeatPlans, initialSpo
             ))}
           </ul>
         )}
+        {sponsorshipCursor ? (
+          <div className="ow-actions">
+            <Button type="button" variant="secondary" disabled={busy} onClick={loadSponsorships}>
+              {t("org.pagination.loadMore")}
+            </Button>
+          </div>
+        ) : null}
 
         {writable ? (
           <Form onSubmit={sponsor} className="ow-grid">

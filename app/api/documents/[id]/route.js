@@ -18,7 +18,16 @@ import {
   normalizeTemplateFor,
   requireDocumentUser
 } from "@/lib/documents/server"
-import { updateDocumentWithStagedText } from "@/lib/documents/transcriptContent"
+import {
+  parseExpectedDocumentVersion,
+  updateOwnedDocument,
+  updateOwnedDocumentWithStagedText
+} from "@/lib/documents/documentMutation"
+import { deleteDocumentIndex } from "@/lib/documents/embeddings"
+import {
+  attemptDocumentRagRemoval,
+  prepareDocumentRagPermissionChange
+} from "@/lib/documents/ragPermission"
 
 export const runtime = "nodejs"
 export const dynamic = "force-dynamic"
@@ -202,6 +211,7 @@ export async function PATCH(request, { params }) {
   }
 
   try {
+    const expectedUpdatedAt = parseExpectedDocumentVersion(body?.expectedUpdatedAt)
     const { document: existing, frameworkSchemaAvailable } = await findDocumentWithFrameworkState(id, auth.userId)
     if (!existing) {
       return errorJson("documents.errors.not_found", 404, locale)
@@ -232,6 +242,21 @@ export async function PATCH(request, { params }) {
       return errorJson("documents.errors.read_only_document", 403, locale)
     }
 
+    const nextMetadata = nextContent === undefined
+      ? existing.metadata
+      : {
+          ...(existing.metadata && typeof existing.metadata === "object" ? existing.metadata : {}),
+          reviewedAt: new Date().toISOString(),
+          reviewedByUserId: auth.userId
+        }
+    const permissionPlan = prepareDocumentRagPermissionChange({
+      document: existing,
+      nextAgentAllowed: agentAllowed,
+      metadata: nextMetadata,
+      actorUserId: auth.userId,
+      targetUserId: auth.userId
+    })
+
     const documentSelect = {
       id: true,
       ownerId: true,
@@ -242,6 +267,7 @@ export async function PATCH(request, { params }) {
       agentAllowed: true,
       mime: true,
       size: true,
+      sha256: true,
       storagePath: true,
       sourceDocumentId: true,
       content: true,
@@ -253,15 +279,20 @@ export async function PATCH(request, { params }) {
     // Sisu muutmisel läheb uus tekst esmalt AJUTISSE faili ja avaldatakse alles pärast
     // andmebaasi. Varem kirjutati vana faili peale ENNE DB-d: vea korral luges allalaadimine
     // juba uut sisu, aga API ja AI-kokkuvõte vana `content` välja — kaks tõde ühest dokumendist.
-    const document =
+    let document =
       nextContent === undefined
-        ? await prisma.userDocument.update({
-            where: { id },
+        ? await updateOwnedDocument({
+            documentId: id,
+            ownerId: auth.userId,
+            expectedUpdatedAt,
             data: { title, kind, templateFor, agentAllowed },
-            select: documentSelect
+            select: documentSelect,
+            prepareWithin: permissionPlan.prepareWithin
           })
-        : await updateDocumentWithStagedText({
-            where: { id },
+        : await updateOwnedDocumentWithStagedText({
+            documentId: id,
+            ownerId: auth.userId,
+            expectedUpdatedAt,
             storagePath: existing.storagePath,
             content: nextContent,
             data: {
@@ -269,15 +300,19 @@ export async function PATCH(request, { params }) {
               kind,
               templateFor,
               agentAllowed,
-              metadata: {
-                ...(existing.metadata && typeof existing.metadata === "object" ? existing.metadata : {}),
-                reviewedAt: new Date().toISOString(),
-                reviewedByUserId: auth.userId
-              }
+              metadata: nextMetadata
             },
-            select: documentSelect
+            select: documentSelect,
+            prepareWithin: permissionPlan.prepareWithin
           })
     contentWasReplaced = nextContent !== undefined
+
+    if (permissionPlan.removalRequested) {
+      document = await attemptDocumentRagRemoval(
+        { document, actorUserId: auth.userId, targetUserId: auth.userId },
+        { deleteIndex: deleteDocumentIndex }
+      )
+    }
 
     await logDocumentsAudit("document.updated", {
       userId: auth.userId,
@@ -308,6 +343,13 @@ export async function PATCH(request, { params }) {
   } catch (error) {
     if (error?.status === 403) {
       return errorJson("api.common.forbidden", 403, locale)
+    }
+    if ([400, 404, 409].includes(Number(error?.status))) {
+      return errorJson(error.message, Number(error.status), locale, {
+        ...(error?.freshDocument
+          ? { document: serializeDocument({ ...error.freshDocument, frameworkAcceptance: null }) }
+          : {})
+      })
     }
     console.error("[documents] update failed", safeError(error))
     return errorJson("documents.errors.update_failed", 500, locale)

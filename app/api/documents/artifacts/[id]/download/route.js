@@ -1,4 +1,4 @@
-import { logDocumentsAudit } from "@/lib/documents/audit"
+import { writeDocumentAudit } from "@/lib/documents/audit"
 import { buildArtifactFileName } from "@/lib/documents/artifacts"
 import { DOCX_MIME_TYPE, PDF_MIME_TYPE } from "@/lib/documents/constants"
 import { createArtifactDocxBuffer } from "@/lib/documents/docxExport"
@@ -119,7 +119,7 @@ export async function GET(request, { params }) {
           templateBuffer
         })
 
-    await logDocumentsAudit("artifact.downloaded", {
+    await writeDocumentAudit("artifact.downloaded", {
       userId: auth.userId,
       artifactId: artifact.id,
       title: artifact.title,

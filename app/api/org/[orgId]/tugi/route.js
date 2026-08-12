@@ -7,7 +7,7 @@ import {
   listSupportRecipients,
   setReportingLine
 } from "@/lib/org/support";
-import { listReceivedSupportShares } from "@/lib/org/supportShare";
+import { listReceivedSupportSharePage } from "@/lib/org/supportShare";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
 export const runtime = "nodejs";
@@ -31,11 +31,17 @@ export async function GET(request, context) {
 
   try {
     const membershipId = auth.context.membership?.id;
-    const [received, recipients] = await Promise.all([
-      listReceivedSupportShares(membershipId),
+    const requestUrl = new URL(request.url);
+    const [receivedPage, recipients] = await Promise.all([
+      listReceivedSupportSharePage(membershipId, {
+        cursor: requestUrl.searchParams.get("cursor"),
+        take: requestUrl.searchParams.get("take"),
+        status: requestUrl.searchParams.get("status"),
+        unopened: requestUrl.searchParams.get("unopened") === "1"
+      }),
       listSupportRecipients(auth.organizationId, membershipId)
     ]);
-    return orgJson({ ok: true, received, recipients });
+    return orgJson({ ok: true, receivedPage, recipients });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

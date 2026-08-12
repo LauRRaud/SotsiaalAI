@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import OrgInboxClient from "@/components/org/OrgInboxClient";
 import { isOrgInboxEnabled } from "@/lib/org/flags";
-import { listInboxItems } from "@/lib/org/inbox";
+import { listInboxItemPage } from "@/lib/org/inbox";
 import { resolveOrgAccessContext } from "@/lib/org/accessContext";
 
 import { requireOrgPageContext } from "../../_serverContext";
@@ -37,7 +37,7 @@ export default async function OrgInboxPage({ params }) {
     isPlatformAdmin: Boolean(auth.roleState?.isAdmin),
     productRole: auth.roleState?.effectiveRole
   });
-  const items = await listInboxItems(fullContext);
+  const page = await listInboxItemPage(fullContext);
 
-  return <OrgInboxClient context={auth.context} items={items} />;
+  return <OrgInboxClient context={auth.context} initialPage={page} />;
 }

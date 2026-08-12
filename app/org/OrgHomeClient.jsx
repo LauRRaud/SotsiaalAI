@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { useI18n } from "@/components/i18n/I18nProvider";
 import Button from "@/components/ui/Button";
@@ -30,6 +30,7 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
   const [registryCode, setRegistryCode] = useState("");
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const creationActionRef = useRef(null);
 
   const submit = useCallback(
     async (event) => {
@@ -37,16 +38,22 @@ export default function OrgHomeClient({ organizations, pendingInvites, canCreate
       setBusy(true);
       setError("");
       try {
+        const fingerprint = JSON.stringify({ displayName, legalKind, legalName, registryCode });
+        if (creationActionRef.current?.fingerprint !== fingerprint) {
+          creationActionRef.current = { fingerprint, id: crypto.randomUUID() };
+        }
+        const clientActionId = creationActionRef.current.id;
         const response = await fetch("/api/org", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ displayName, legalKind, legalName, registryCode })
+          body: JSON.stringify({ displayName, legalKind, legalName, registryCode, clientActionId })
         });
         const payload = await response.json().catch(() => ({}));
         if (!response.ok || !payload?.ok) {
           setError(resolveApiMessage({ payload, t, fallbackKey: "org.errors.create_failed" }));
           return;
         }
+        creationActionRef.current = null;
         router.push(`/org/${payload.organization.id}`);
       } catch {
         setError(t("org.errors.create_failed"));

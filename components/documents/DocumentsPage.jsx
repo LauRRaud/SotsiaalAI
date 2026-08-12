@@ -25,6 +25,7 @@ import {
   workspaceTypeLabel
 } from "@/lib/documents/presentation"
 import { buildWorkspaceItems } from "@/lib/documents/workspace"
+import { familyHasNextPage, mergeOwnerPage } from "@/lib/documents/workspacePagination"
 import { WORKER_FRAMEWORK_SIGNED_HREF, WORKER_FRAMEWORK_VERSION } from "@/lib/frameworkAcceptances"
 import { localizePath } from "@/lib/localizePath"
 import { pushWithTransition } from "@/lib/routeTransition"
@@ -69,8 +70,11 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   const [analysesState, setAnalysesState] = useState(() => emptyFamily())
   const [researchState, setResearchState] = useState(() => emptyFamily({ enabled: true }))
   const [loading, setLoading] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
 
   const [typeFilter, setTypeFilter] = useState("ALL")
+  const [searchDraft, setSearchDraft] = useState("")
+  const [searchQuery, setSearchQuery] = useState("")
   const [successNotice, setSuccessNotice] = useState(null)
   const [actionError, setActionError] = useState("")
 
@@ -98,70 +102,90 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     [t]
   )
 
-  const loadDocuments = useCallback(async () => {
+  const loadDocuments = useCallback(async (offset = 0) => {
     try {
-      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
+      if (searchQuery) params.set("search", searchQuery)
       const response = await fetch(`/api/documents?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_documents"))
-      setDocsState({
-        items: Array.isArray(payload?.documents) ? payload.documents : [],
-        total: Number(payload?.pagination?.total) || 0,
-        error: ""
-      })
+      setDocsState((current) => mergeOwnerPage(current, {
+        items: payload?.documents,
+        total: payload?.pagination?.total,
+        offset
+      }))
     } catch (error) {
-      setDocsState(emptyFamily({ error: error?.message || t("documents.errors.load_documents") }))
+      setDocsState((current) =>
+        offset
+          ? { ...current, error: error?.message || t("documents.errors.load_documents") }
+          : emptyFamily({ error: error?.message || t("documents.errors.load_documents") })
+      )
     }
-  }, [t])
+  }, [searchQuery, t])
 
-  const loadArtifacts = useCallback(async () => {
+  const loadArtifacts = useCallback(async (offset = 0) => {
     try {
-      const params = new URLSearchParams({ limit: String(ARTIFACT_LIST_LIMIT_ALL), offset: "0", sort: "updated_desc" })
+      const params = new URLSearchParams({ limit: String(ARTIFACT_LIST_LIMIT_ALL), offset: String(offset), sort: "updated_desc" })
+      if (searchQuery) params.set("search", searchQuery)
       const response = await fetch(`/api/documents/artifacts?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.errors.load_artifacts"))
-      setArtifactsState({
-        items: Array.isArray(payload?.artifacts) ? payload.artifacts : [],
-        total: Number(payload?.pagination?.total) || 0,
-        error: ""
-      })
+      setArtifactsState((current) => mergeOwnerPage(current, {
+        items: payload?.artifacts,
+        total: payload?.pagination?.total,
+        offset
+      }))
     } catch (error) {
-      setArtifactsState(emptyFamily({ error: error?.message || t("documents.errors.load_artifacts") }))
+      setArtifactsState((current) =>
+        offset
+          ? { ...current, error: error?.message || t("documents.errors.load_artifacts") }
+          : emptyFamily({ error: error?.message || t("documents.errors.load_artifacts") })
+      )
     }
-  }, [t])
+  }, [searchQuery, t])
 
-  const loadAnalyses = useCallback(async () => {
+  const loadAnalyses = useCallback(async (offset = 0) => {
     try {
-      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
+      if (searchQuery) params.set("search", searchQuery)
       const response = await fetch(`/api/documents/analyses?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.analyses.errors.list_failed"))
-      setAnalysesState({
-        items: Array.isArray(payload?.analyses) ? payload.analyses : [],
-        total: Number(payload?.pagination?.total) || 0,
-        error: ""
-      })
+      setAnalysesState((current) => mergeOwnerPage(current, {
+        items: payload?.analyses,
+        total: payload?.pagination?.total,
+        offset
+      }))
     } catch (error) {
-      setAnalysesState(emptyFamily({ error: error?.message || t("documents.analyses.errors.list_failed") }))
+      setAnalysesState((current) =>
+        offset
+          ? { ...current, error: error?.message || t("documents.analyses.errors.list_failed") }
+          : emptyFamily({ error: error?.message || t("documents.analyses.errors.list_failed") })
+      )
     }
-  }, [t])
+  }, [searchQuery, t])
 
-  const loadResearch = useCallback(async () => {
+  const loadResearch = useCallback(async (offset = 0) => {
     try {
-      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: "0" })
+      const params = new URLSearchParams({ limit: String(WORKSPACE_WINDOW), offset: String(offset) })
+      if (searchQuery) params.set("search", searchQuery)
       const response = await fetch(`/api/research/jobs?${params.toString()}`, { cache: "no-store" })
       const payload = await response.json().catch(() => ({}))
       if (!response.ok) throw new Error(payload?.message || t("documents.workspace.research_load_failed"))
-      setResearchState({
-        items: Array.isArray(payload?.jobs) ? payload.jobs : [],
-        total: Number(payload?.pagination?.total) || 0,
-        enabled: payload?.enabled !== false,
-        error: ""
-      })
+      setResearchState((current) => mergeOwnerPage(current, {
+        items: payload?.jobs,
+        total: payload?.pagination?.total,
+        offset,
+        extra: { enabled: payload?.enabled !== false }
+      }))
     } catch (error) {
-      setResearchState(emptyFamily({ enabled: true, error: error?.message || t("documents.workspace.research_load_failed") }))
+      setResearchState((current) =>
+        offset
+          ? { ...current, error: error?.message || t("documents.workspace.research_load_failed") }
+          : emptyFamily({ enabled: true, error: error?.message || t("documents.workspace.research_load_failed") })
+      )
     }
-  }, [t])
+  }, [searchQuery, t])
 
   const loadWorkspace = useCallback(async () => {
     setLoading(true)
@@ -170,6 +194,27 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   }, [loadDocuments, loadArtifacts, loadAnalyses, loadResearch])
 
   useEffect(() => { void loadWorkspace() }, [loadWorkspace])
+
+  const loadMoreWorkspace = useCallback(async () => {
+    const requests = []
+    if (familyHasNextPage(docsState)) requests.push(loadDocuments(docsState.items.length))
+    if (familyHasNextPage(artifactsState)) requests.push(loadArtifacts(artifactsState.items.length))
+    if (familyHasNextPage(analysesState)) requests.push(loadAnalyses(analysesState.items.length))
+    if (familyHasNextPage(researchState)) requests.push(loadResearch(researchState.items.length))
+    if (!requests.length) return
+    setLoadingMore(true)
+    await Promise.allSettled(requests)
+    setLoadingMore(false)
+  }, [
+    analysesState,
+    artifactsState,
+    docsState,
+    loadAnalyses,
+    loadArtifacts,
+    loadDocuments,
+    loadResearch,
+    researchState
+  ])
 
   // Säilita vanad süvalingid /documents?artifacts=all#artifacts (chat + koostamine): maandu
   // ühtsel loendil, eelvalitud koostatud objektidele — sama tööruumi tähendusega.
@@ -228,10 +273,10 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
 
   const anyFamilyError = docsState.error || artifactsState.error || analysesState.error || researchState.error
   const anyTruncated =
-    docsState.total > docsState.items.length ||
-    artifactsState.total > artifactsState.items.length ||
-    analysesState.total > analysesState.items.length ||
-    researchState.total > researchState.items.length
+    familyHasNextPage(docsState) ||
+    familyHasNextPage(artifactsState) ||
+    familyHasNextPage(analysesState) ||
+    familyHasNextPage(researchState)
 
   const handleBack = useCallback(() => {
     if (typeof onBack === "function") {
@@ -286,13 +331,25 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
     setSuccessNotice(null)
     setActionError("")
     try {
+      const currentDocument = docsState.items.find((document) => document.id === id)
+      if (!currentDocument?.updatedAt) throw new Error(t("documents.errors.save_failed"))
       const response = await fetch(`/api/documents/${encodeURIComponent(id)}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ ...data, expectedUpdatedAt: currentDocument.updatedAt })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.save_failed"))
+      if (!response.ok) {
+        if (response.status === 409 && payload?.document?.id) {
+          setDocsState((current) => ({
+            ...current,
+            items: current.items.map((document) =>
+              document.id === payload.document.id ? payload.document : document
+            )
+          }))
+        }
+        throw new Error(payload?.message || t("documents.errors.save_failed"))
+      }
       setSuccessNotice({ message: t(successKey) })
       await loadDocuments()
       return true
@@ -570,6 +627,7 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
   function renderRow(item) {
     const prov = describeProvenance(item, t)
     const raw = item.raw || {}
+    const ragRemovalPending = ["pending", "failed"].includes(String(raw?.metadata?.ragRemoval?.status || ""))
     const isEditing = editingId === item.id && (item.type === "source" || item.type === "transcript")
     return (
       <article key={item.key} className="documents-item">
@@ -609,9 +667,12 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
             <Checkbox
               bare
               checked={Boolean(raw.agentAllowed)}
+              disabled={ragRemovalPending}
               onChange={(checked) => void patchDocument(item.id, { agentAllowed: checked })}
             />
-            <span>{t("documents.workspace.rag_toggle")}</span>
+            <span>{ragRemovalPending
+              ? t(`documents.workspace.rag_removal_${raw.metadata.ragRemoval.status}`)
+              : t("documents.workspace.rag_toggle")}</span>
           </label>
         ) : null}
 
@@ -747,6 +808,24 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
         <Panel as="section" id="artifacts" variant="secondary" padding="sm">
           <div className="documents-list__head">
             <h2>{t("documents.workspace.list_title")}</h2>
+            <Form
+              className="documents-list__search"
+              onSubmit={(event) => {
+                event.preventDefault()
+                setSearchQuery(searchDraft.trim())
+              }}
+            >
+              <Input
+                type="search"
+                value={searchDraft}
+                onChange={(event) => setSearchDraft(event.target.value)}
+                placeholder={t("documents.workspace.search_placeholder")}
+                aria-label={t("documents.workspace.search_placeholder")}
+              />
+              <Button type="submit" variant="secondary">
+                {t("documents.workspace.search")}
+              </Button>
+            </Form>
             <div className="documents-list__filters" role="group" aria-label={t("documents.workspace.filter_label")}>
               {filterChips.map((chip) => (
                 <OptionCard
@@ -778,7 +857,14 @@ export default function DocumentsPage({ embedded = false, onBack = null, hideHea
             </div>
           )}
 
-          {anyTruncated ? <p className="documents-list__truncated">{t("documents.workspace.truncated")}</p> : null}
+          {anyTruncated ? (
+            <div className="documents-list__truncated">
+              <p>{t("documents.workspace.truncated")}</p>
+              <Button type="button" variant="secondary" disabled={loadingMore} onClick={loadMoreWorkspace}>
+                {loadingMore ? t("documents.loading") : t("documents.workspace.load_more")}
+              </Button>
+            </div>
+          ) : null}
         </Panel>
       </div>
     </>

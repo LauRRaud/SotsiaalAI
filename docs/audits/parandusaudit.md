@@ -186,7 +186,7 @@ Teine jooks: **`PROBE_OK 8/8`**.
 Käsitsi siia ei kirjutata — varem kirjutati ja ta jäi üheksa peatüki võrra maha. Iga rea
 lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus.
 
-**181 / 403 leidu · 16 / 39 peatükki · lahtiseid 222 — 157 × P1 · 64 × P2 · 1 × P3**
+**196 / 403 leidu · 17 / 39 peatükki · lahtiseid 207 — 149 × P1 · 57 × P2 · 1 × P3**
 
 | Peatükk | Kood | Tehtud | Lahtised | Märkus |
 |---|---|---|---|---|
@@ -195,9 +195,9 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 | Autentimine ja autoriseerimine | SOL-AUTH | 15/15 | – | **tehtud** |
 | Juhtumitöö (JTA-V1) | SOL-CW | 17/20 | 2 × P1 · 1 × P2 |  |
 | RAG-i admin ja failihaldus | SOL-RAGADMIN | 4/4 | – | **tehtud** |
-| Organisatsioonid ja skoop | SOL-ORG | 12/17 | 2 × P1 · 3 × P2 | 5 jätkufailist |
+| Organisatsioonid ja skoop | SOL-ORG | 17/17 | – | **tehtud**, 5 jätkufailist |
 | Välitöö | SOL-FIELD | 6/6 | – | **tehtud** |
-| Dokumendid ja AI-kasutus | SOL-DOC | 9/15 | 3 × P1 · 3 × P2 | 6 jätkufailist |
+| Dokumendid ja AI-kasutus | SOL-DOC | 14/15 | 1 × P1 | 6 jätkufailist |
 | Uuringud | SOL-RES | 6/7 | 1 × P2 |  |
 | Koosolekukokkuvõtted | SOL-MEET | 6/6 | – | **tehtud** |
 | Vestlus | SOL-CHAT | 13/13 | – | **tehtud** |
@@ -210,7 +210,7 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 | Domeenisündmused | SOL-EVENT | 1/1 | – | **tehtud** |
 | Kiireloomuline abi | SOL-URG | 13/13 | – | **tehtud** |
 | Tööheaolu | SOL-WB | 18/18 | – | **tehtud**, 4 jätkufailist |
-| Teenuspäevik | SOL-SLOG | 5/24 | 18 × P1 · 1 × P2 |  |
+| Teenuspäevik | SOL-SLOG | 10/24 | 14 × P1 |  |
 | RAG-teenus ja ingest | SOL-RAGSVC | 2/28 | 19 × P1 · 7 × P2 |  |
 | Migratsioonid | SOL-PRISMA | 0/4 | 3 × P1 · 1 × P2 |  |
 | Mentorlus | SOL-MENT | 0/7 | 7 × P1 |  |
@@ -285,7 +285,7 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-RAGADMIN-03` P1 — `INGESTING` lukk ei ole atomaarne ega taastuv — DONE — claim + lease, lepitus, kolm rada, migratsioon, 17 testi ja 21/21 päris PostgreSQL-i sond; rakenduse runtime: not_run.
 - `SOL-RAGADMIN-04` P2 — hävitav RAG reset ei seo dry-run plaani serveripoolse kinnitusega — DONE — jagatud värav, sõrmejälg täisloendina, ühekordne broneering ja 13 testi; rakenduse runtime: not_run.
 
-**Organisatsioonid ja skoop** (`SOL-ORG`, 12/17)
+**Organisatsioonid ja skoop** (`SOL-ORG`, 17/17)
 
 - `SOL-ORG-01` P1 — töötaja kaudu tuletatud graafikuskoop lekib mitme organisatsiooni töö üle tenantide piiri — DONE — kood, migratsioon ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 19/19).
 - `SOL-ORG-02` P1 — graafiku kirjutusrada möödub peatatud organisatsiooni ja mooduli väravast — DONE — kood ja testid; tõendatud päris PostgreSQL-i vastu (`npm run slog:org:probe` 24/24).
@@ -299,6 +299,11 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-ORG-10` P1 — offboarding võib lõppeda aktiivse töö või kohaga — DONE — kood ja paralleelsussond (`npm run org:offboard:probe` 39/39; vana koodi vastu 13 punast).
 - `SOL-ORG-11` P1 — viimase organisatsiooniomaniku õiguse saab eemaldada — DONE — kood ja sond (`npm run org:offboard:probe` 48/48).
 - `SOL-ORG-12` P1 — paralleelne olekusiire võib arhiveeritud organisatsiooni taas aktiveerida — DONE — kood ja sond (`npm run org:offboard:probe` 60/60; vana koodi vastu 6 punast).
+- `SOL-ORG-13` P1 — auditi vaade ja organisatsiooni eksport kärbivad vastutusjälje vaikides — DONE — auditivaade kasutab stabiilset `(createdAt,id)` cursorit koos serveri `total`/`hasMore`-ga ning organisatsiooni eksport läbib kogu auditi või katkeb fail-closed; manifest kannab täielikkust ja rea arvu. `npm run org:audit:probe` 14/14 päris PostgreSQL-is (205 rida, võrdsed ajatemplid, esimene ja viimane säilisid, cleanup 0/0); käitumistest 4/4, vana koodi vastas puuduva täieliku lehitsemislepingu tõttu punane; `TZ=UTC npm test` 4182/4182.
+- `SOL-ORG-14` P2 — vastuvõtu-, toe- ja aruandeloendid kaotavad vanemad aktiivsed read — DONE — vastuvõtu-, toe-, aruande-, kutse- ja sponsorlusloendid kasutavad nüüd stabiilset liitcursorit, serveri filtreid ja kasutajale nähtavat jätkamistoimingut. Sihttest 5/5 katab staatuse, saatja märgitud kiireloomulisuse, tähtaja ületuse ja avamata filtrid ning 201/101/201 rea duplikaadivaba läbimise; `npm run org:operational-pagination:probe` 6/6 kinnitas samad kolm piiri päris PostgreSQL-is ja koristas kõik sünteetilised read (0/0/0). Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
+- `SOL-ORG-15` P1 — toeavalduse terminalseid seise saab otsese API-kutsega tagasi pöörata — DONE — toeavalduse `SENT → OPENED/RECALLED`, `SENT/OPENED → CLOSED` ja `OPENED → CORRECTED` siirded on rea `FOR UPDATE` luku all ning iga kirjutus nõuab lubatud lähteseisu ja sama `updatedAt` revisjoni. `RECALLED`, `CORRECTED` ja `CLOSED` ei pöördu enam ühegi mutatsiooniga tagasi; kaotaja saab 409 ja audit tekib ainult võitjale. `npm run org:support-share:probe` 12/12 päris PostgreSQL-is kattis open-vs-recall, close-vs-correct ja topelt-close võidujooksud ning cleanup jäi `shares=0 audits=0 org=0 user=0`; terminalsete tagasipöörete sihttest 4/4. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
+- `SOL-ORG-16` P2 — aruande „avatud” seis võib tekkida enne ühegi baidi väljastamist — DONE — aruande GET autoriseerib, loeb ja kontrollib enne väljastust külmutatud faili suuruse ning SHA-256 räsi, kirjutab kohustusliku `access_attempted` auditi ja loob `OPENED` seisu alles kogu vastuse vastuvõtu järel allkirjastatud delivery-kinnitusega. Audititõrke korral ei väljasta GET ühtegi faili baiti; pahatahtlikult kinnitamata jäetud täielik lugemine jääb ausalt ligipääsukatseks, mitte avatuks. Eelvaade ja allalaadimine kinnitavad serverile alles pärast täielikku `json()`/`blob()` lugemist; katkenud stream ei kinnita ega muuda UI seisu. Kinnitus lukustab jagamisrea ning kirjutab `OPENED` ja delivered-tähendusega auditi samas tehingus, seega selle audititõrge pöörab seisu tagasi. Veasüsti sihttest 7/7 kattis puuduva faili, räsivea, streami katkestuse, mõlema auditikihi vea ja eduka tarne; `npm run org:report-delivery:probe` 5/5 kinnitas OPENED-aatomilisuse päris PostgreSQL-is, cleanup `shares=0 audits=0 org=0 user=0`. Peatükilõpu `TZ=UTC npm test` 4199/4199; autentitud brauserivoog `not_run`.
+- `SOL-ORG-17` P2 — organisatsiooni loomisel puuduvad idempotentsus ja serveri rate-limit — DONE — organisatsiooni loomine nõuab kasutaja `clientActionId`-d, mille `(createdByUserId, creationClientActionId)` unikaalsus ja payload-räsi on andmebaasi leping; sama võtme eri sisu annab 409. Muutmata vormi retry kasutab kliendis sama võtit, route rakendab kasutajapõhist ja olemasolul usaldatud-IP põhist tunnist rate-limit’i. `npm run org:create:probe` 7/7 saatis neli paralleelpäringut ning tõendas ühe organisatsiooni, ühe liikmesuse, ühe grantide komplekti ja ühe auditi; konflikt ei loonud teist rida, cleanup `org=0 audits=0 user=0`. Rate-limit’i ja kliendi retry sihttest 3/3; migratsioon `20260812200000_sol_org_17_creation_idempotency` rakendus kohalikus PostgreSQL-is ja `prisma migrate status` on puhas. Peatükilõpu `TZ=UTC npm test` 4199/4199, lint 0 viga, i18n puhas; autentitud brauserivoog `not_run`.
 
 **Välitöö** (`SOL-FIELD`, 6/6)
 
@@ -309,7 +314,7 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-FIELD-05` P2 — transkripti kinnituse serveriviga peidetakse ning toorheli kustutuskell ei käivitu — DONE — kood ja testid.
 - `SOL-FIELD-06` P2 — lubatud automaatne retry/backoff ei käivitu tähtaja saabumisel — DONE — kood ja testid võltskella all.
 
-**Dokumendid ja AI-kasutus** (`SOL-DOC`, 9/15)
+**Dokumendid ja AI-kasutus** (`SOL-DOC`, 14/15)
 
 - `SOL-DOC-01` P1 — AI-kasutus arvestatakse enne püsivat või kasutajale tagastatud tulemust — DONE — kood ja testid; runtime: not_run.
 - `SOL-DOC-02` P1 — transkriptsiooni ja transkripti kokkuvõtte rajad mööduvad kasutuslimiitidest — DONE — kood ja testid; runtime: not_run.
@@ -320,6 +325,11 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-DOC-07` P2 — faili- ja salvestuskvoodid on paralleelselt ületatavad — DONE — koos päris PostgreSQL-i runtime-tõendiga (8/8).
 - `SOL-DOC-08` P1 — salvestatud analüüside sisu ei lähe salvestuskvoodi arvestusse — DONE — koos päris PostgreSQL-i runtime-tõendiga (13/13).
 - `SOL-DOC-09` P2 — analüüsi salvestamise ja kustutamise auditikutsed ei loo auditirida — DONE — koos päris PostgreSQL-i runtime-tõendiga (10/10). VAJAB MIGRATSIOONI.
+- `SOL-DOC-J-01` P2 — omanikuvaade peidab iga objektipere vanemad kui 50 kirjet — DONE — omanikuvaate neli objektiperet kasutavad nüüd oma serveripoolset koguarvu ja dünaamilist offset-paginatsiooni ning ühine „laadi vanemad objektid” toiming lisab järgmised lehed ID järgi duplikaadivabalt. Sama otsingutermin läheb kõigisse nelja API-sse enne count'i ja paginatsiooni, seega otsing ei piirdu enam esimese 50 reaga; 51. kirje jõuab samasse `renderRow` avamis-/allalaadimis-/kustutusrajale nagu esimene. Sihttest 3/3 lõi igasse peresse 51 kirjet, lisas kattuva lehe ja tõendas 204 unikaalse rea ning kõigi nelja 51. rea jõudmise ühtsesse tööruumi; dokumentide, analüüside ja uuringute otsingupäring valideeriti päris PostgreSQL-i vastu. Autentitud brauserivoog `not_run`; peatüki lõpu täissviit 4223/4223 PASS.
+- `SOL-DOC-J-02` P1 — dokumendi paralleelsed muudatused kirjutavad vaikides üksteise üle — DONE — `UserDocument` PATCH nõuab nüüd kliendi nähtud `expectedUpdatedAt` versiooni ning kirjutab ühe tingimusliku `id + ownerId + updatedAt` CAS-lausega; kaotaja saab 409 koos värske dokumendiga. Sama CAS on staged transkripti faili avaldamise ees, seega konflikt koristab kandidaadi ja jätab vana faili puutumata. Kõik Dokumendid- ja Dokirežiimi PATCH-kliendid saadavad oma nähtud revisjoni ning võtavad 409 vastusest värske rea. Sihttestid 12/12 kattis CAS-i, kohustusliku revisjoni, staged rollback'i ja varasema failikoherentsuse; `npm run doc:mutation:probe` 10/10 päris PostgreSQL-is ja päris kettal kattis kaks rename'i, kaks transkripti PATCH-i ning `agentAllowed true/false` ristvõistluse, igas täpselt ühe võitja ja 409 kaotaja. DB/fail olid koherentsed, staged jääke 0 ja sünteetilise kasutaja cleanup 0; autentitud brauserivoog `not_run`, peatüki lõpu täissviit 4223/4223 PASS.
+- `SOL-DOC-J-04` P1 — salvestatud analüüsid puuduvad kasutaja tervikandmekoopiast — DONE — `SavedAnalysis` on nüüd andmekoopia eraldi versioonitud `saved_analyses` allowlist-pind, mis ekspordib ainult omaniku analüüsi ID, pealkirja, sisu, disclaimer'i, ajatemplid ja allikadokumendi ID-d. Kustutatud allika ID säilib päritoluviitena, kuid võõra omaniku rida ei läbi `ownerId` filtrit; manifest loendab pinna read eraldi ja täpselt. Andmekoopia sihttestid 12/12 ning `npm run doc:saved-analysis-export:probe` 6/6 päris PostgreSQL-is tõendas ühe omaniku ja ühe võõra analüüsiga omaniku sisu, disclaimer'i, kustutatud allikaviite, võõra sisu puudumise, versiooni `1.0` ja manifesti `recordCount=1`; cleanup `users=0`.
+- `SOL-DOC-J-05` P2 — puuduv algfail ei muuda andmekoopiat veaks ega ausalt osaliseks — DONE — Dokumendid-pinna ükskõik milline algfaili lugemisviga katkestab nüüd kogu andmekoopia töö stabiilse `documentId + reason` failureCode'iga; märgistamata READY koopiat ega ZIP-faili ei teki. Põhjused eristavad `missing`, `access_denied`, `containment` ja muud `read_failed` vead, kuid storage path'i ega toore erindi teksti ei lekitata. Veasüsti sihttestid 13/13 katsid ENOENT, EACCES, containment'i ja keset lugemist tekkinud tõrke ning FAILED-worker'i; `npm run doc:missing-export-file:probe` 6/6 päris PostgreSQL-is kinnitas FAILED seisu, masinloetava koodi, puuduva outputPath/ZIP-i ja kohustusliku `DATA_EXPORT_FAILED` auditi, cleanup `users=0`.
+- `SOL-DOC-J-06` P2 — dokumendi allalaadimise ja artefakti kustutuse audit võib vaikides puududa — DONE — dokumendi ja FINAL-artefakti allalaadimine kasutavad nüüd kohustuslikku `writeDocumentAudit()` rada pärast baitide valmimist, kuid enne `Response` loomist; audititõrge katkestab väljastuse. Artefakti kustutuse audit kirjutatakse enne DELETE-i ja mõlemad on samas tehingus: audititõrke korral rida säilib, delete-tõrke korral audit pöördub tagasi. Kuna FK `artifactId` muutub kustutamisel `SET NULL`-iks, jääb kustutatud artefakti stabiilne ID auditi metaossa `deletedArtifactId`. Sihttestid 5/5 katsid mõlema download-auditi veasüsti, vastuse järjekorra ning kustutuse edu/tõrke; `npm run doc:artifact-audit:probe` 5/5 päris PostgreSQL-is tõendas audititõrke järel alles artefakti ja 0 auditit ning eduka tehingu järel 0 artefakti ja täpselt ühe stabiilse ID-ga auditi, cleanup `users=0`.
 
 **Uuringud** (`SOL-RES`, 6/7)
 
@@ -458,9 +468,14 @@ lõpus on leiu Seis-lõigu esimene lause **sõna-sõnalt**, mitte ümberjutustus
 - `SOL-WB-17` P1 — kolm neljast toevalikust ei jõua tegeliku adressaadini — DONE kriteeriumi MÕLEMA haru kaudu — üks rada ehitati, kolm said ausa nime.
 - `SOL-WB-18` P1 — kasutaja andmekoopia jätab mustandid ja kirjete elutsükliandmed välja — DONE — koopia kannab nüüd elutsüklit, mitte hetketõmmist.
 
-**Teenuspäevik** (`SOL-SLOG`, 5/24)
+**Teenuspäevik** (`SOL-SLOG`, 10/24)
 
 - `SOL-SLOG-01` P0 — seadme mustand ja saatmisjärjekord võivad järgmise konto andmed eelmise konto päevikusse saata — DONE. Seadme read on nüüd konto omad, mitte brauseri omad.
+- `SOL-SLOG-06` P1 — sama nimega väliskliendi suunamist saab kasutada teise välisviitega kirjel — DONE — suunamise terviklikkus võrdleb väliskliendi puhul nüüd normaliseeritud nime ja `clientExternalRef`-i paari nii loomisel kui parandamisel; sama nimi ei varja enam viite vastuolu. Suunamise päring valib välisviite mõlemal rajal ning vastuolu annab enne kirjutust `400 service_log.errors.referral_client_mismatch`. Teenuskihi negatiivtest lõi sama nimega `external-a` suunamise ja proovis seda `external-b` kirjel: vastus 400 ja kirjeid 0; õige nime-viite paar salvestus ühe reana.
+- `SOL-SLOG-07` P2 — tühi tegevuskataloog muudab serveri allowlist'i vabatekstiks — DONE — tühi või puuduv tegevuskataloog lubab nüüd ainult tühja tegevusmassiivi ning kataloogiväline väärtus annab nähtava 400 valideerimisvea, mitte ei muutu vabatekstiks ega kao vaikselt. ET/EN/RU veateade nimetab, et tegevus ei kuulu teenuse kataloogi. Negatiivtestid katsid teenuseta kirje, tühja teenusekataloogi ja tundmatu väärtuse; positiivkontroll salvestas ainult kataloogis oleva tegevuse. Ploki sihttestid 29/29 PASS.
+- `SOL-SLOG-08` P1 — kinnitamine ja tühistamine võivad samaaegselt üksteist tingimusteta üle kirjutada — DONE — `finalizeEntry()` ja `voidEntry()` kasutavad nüüd sama `id + providerProfileId + status + updatedAt` CAS-kirjutust; eellugemine ei anna enam õigust hiljem tingimusteta üle kirjutada. Finalize puhastab tühistusväljad ning DRAFT-ist tühistamine hoiab kirjendamisaasta/finaliseerimise väljad nullina. `npm run slog:entry:probe` 16/16 päris PostgreSQL-is tõendas finalize/finalize ja finalize/void võistlustes täpselt ühe võitja, ühe 409 kaotaja ja mõlemal juhul olekuga kooskõlalise lõpprea.
+- `SOL-SLOG-09` P1 — paralleelsed kinnitatud kirje parandused ei moodusta usaldusväärset muutmisahelat — DONE — kirje PATCH nõuab nüüd kliendi nähtud `expectedUpdatedAt` versiooni ning ServiceEntry CAS ja `ServiceEntryCorrection` sünnivad samas tehingus; stale kaotaja saab 409 koos värske reaga. Paranduse `previousValues` arvutatakse ainult CAS-iga kaitstud snapshotist. Päris PostgreSQL-i sond võistles eraldi sama välja ja eri väljade parandustega: mõlemas üks võitja, üks värske reaga 409 ning täpselt üks correction, mitte kaks sama vana lähtega haru.
+- `SOL-SLOG-10` P1 — osutaja saab platvormikliendi digikinnituse asemel märkida käsitsi kinnituse — DONE — paberkinnituse märge on nüüd eraldi `setManualConfirmation()` elutsüklirada, mida saab kasutada ainult FINAL väliskliendi kirjel; üld-PATCH on selle välja jaoks suletud ja platvormikliendi katse annab 409. Iga tegelik märkimine ja eemaldamine loob samas CAS-tehingus `ServiceEntryCorrection` rea, mis kannab tegijat, aega, vana boolean-väärtust ja toimingu liiki. Päeva- ja kuuvaade ei näita nuppu platvormikliendile ega mustandile. PostgreSQL-i sond tõendas platvormikliendi muutmata rea/auditite 0 ning väliskliendi true→false järel kaks järjestikust auditirida; Teenuspäeviku testslice 342/342 PASS, muudetud failide eslint ja i18n puhtad.
 - `SOL-SLOG-13` P0 — pelk otsese juhi seos annab tundliku kliendiaruande sisuõiguse vastupidiselt org-lepingule — DONE — autoriseerib ainult capability, juhiseos võtab sõna. Commit `bcff4903`.
 - `SOL-SLOG-14` P0 — aruandesaajate päring kirjutab kehtivusfiltri üle ja lubab aegunud capability — DONE — kehtivus ja skoop on ühe `AND` eri harudes. Commit `bcff4903`.
 - `SOL-SLOG-17` P0 — mitme organisatsiooniga töötaja kaudu näeb üks juht teise organisatsiooni klienditöid — DONE. Parandatud koos SOL-SLOG-18-ga — sama juur, kaks otsa.

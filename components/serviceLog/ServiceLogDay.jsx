@@ -1247,15 +1247,17 @@ export default function ServiceLogDay() {
                     nägi „Kinnita" välja täpselt nagu silt, mitte nagu nupp —
                     omanik ei saanud aru, et sinna saab vajutada. */}
                 <div className="sl-entry-actions">
-                  <button
-                    type="button"
-                    className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
-                    disabled={finalizing === entry.id}
-                    aria-pressed={Boolean(entry.confirmedManually)}
-                    onClick={() => toggleManualConfirm(entry)}
-                  >
-                    {t("service_log.list.manual_confirm", "")}
-                  </button>
+                  {!entry.clientUserId && entry.status === "FINAL" ? (
+                    <button
+                      type="button"
+                      className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
+                      disabled={finalizing === entry.id}
+                      aria-pressed={Boolean(entry.confirmedManually)}
+                      onClick={() => toggleManualConfirm(entry)}
+                    >
+                      {t("service_log.list.manual_confirm", "")}
+                    </button>
+                  ) : null}
                   {entry.status === "DRAFT" ? (
                     <button
                       type="button"

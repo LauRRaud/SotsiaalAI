@@ -2,7 +2,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 
 import OrgInvitesClient from "@/components/org/OrgInvitesClient";
-import { listInvites } from "@/lib/org/inviteService";
+import { listInvitePage } from "@/lib/org/inviteService";
 import { listUnits } from "@/lib/org/structure";
 
 import { requireOrgPageContext } from "../../_serverContext";
@@ -23,6 +23,6 @@ export default async function OrgInvitesPage({ params }) {
   const granted = new Set((auth.context.capabilities || []).map((grant) => grant.capability));
   if (!granted.has("MEMBER_ADMIN")) notFound();
 
-  const [invites, units] = await Promise.all([listInvites(orgId), listUnits(orgId)]);
-  return <OrgInvitesClient context={auth.context} initialInvites={invites} units={units} />;
+  const [initialPage, units] = await Promise.all([listInvitePage(orgId), listUnits(orgId)]);
+  return <OrgInvitesClient context={auth.context} initialPage={initialPage} units={units} />;
 }

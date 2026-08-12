@@ -1,4 +1,5 @@
 import { logDocumentsAudit } from "@/lib/documents/audit"
+import { deleteOwnedArtifactWithAudit } from "@/lib/documents/artifactDeletion"
 import { effectiveRoleFromSession } from "@/lib/authz"
 import {
   assertDraftArtifactEditable,
@@ -268,16 +269,7 @@ export async function DELETE(request, { params }) {
       return errorJson("documents.artifacts.errors.not_found", 404, locale)
     }
 
-    await prisma.agentArtifact.delete({
-      where: { id }
-    })
-
-    await logDocumentsAudit("artifact.deleted", {
-      userId: auth.userId,
-      artifactId: artifact.id,
-      title: artifact.title,
-      status: artifact.status
-    })
+    await deleteOwnedArtifactWithAudit({ artifact, ownerId: auth.userId })
 
     return json({
       ok: true,
@@ -286,6 +278,9 @@ export async function DELETE(request, { params }) {
   } catch (error) {
     if (error?.status === 403) {
       return errorJson("api.common.forbidden", 403, locale)
+    }
+    if (error?.status === 404) {
+      return errorJson(error.message, 404, locale)
     }
     console.error("[documents artifacts] delete failed", safeError(error))
     return errorJson("documents.artifacts.errors.delete_failed", 500, locale)

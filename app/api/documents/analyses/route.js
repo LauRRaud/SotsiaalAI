@@ -29,9 +29,15 @@ export async function GET(request) {
     maxLimit: ARTIFACT_LIST_LIMIT_ALL
   })
   const offset = parseListOffset(requestUrl.searchParams.get("offset"))
+  const search = String(requestUrl.searchParams.get("search") || "").trim().slice(0, 200)
 
   try {
-    const { total, analyses } = await listSavedAnalysesForOwner({ userId: auth.userId, limit, offset })
+    const { total, analyses } = await listSavedAnalysesForOwner({
+      userId: auth.userId,
+      limit,
+      offset,
+      search
+    })
     return json({
       ok: true,
       analyses,

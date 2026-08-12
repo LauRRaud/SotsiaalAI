@@ -7,7 +7,7 @@
 
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createEntry, updateEntry } from "../../lib/serviceLog/entries.js";
+import { createEntry, setManualConfirmation, updateEntry } from "../../lib/serviceLog/entries.js";
 import {
   CLIENT_VIEW_LIMIT,
   confirmClientMonth,
@@ -21,7 +21,7 @@ const ENV_MEASURE = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_MEASUREMENT: "1" };
 const ENV_CLIENT = { SERVICE_LOG_ENABLED: "1", SERVICE_LOG_CLIENT_VIEW: "1" };
 const PROFILE = { id: "profile-1", ownershipMode: "SOLO" };
 
-function makeDb({ entries = [], samples = [] } = {}) {
+function makeDb({ entries = [], samples = [], corrections = [] } = {}) {
   let seq = 0;
   const db = {
     entries,
@@ -32,8 +32,15 @@ function makeDb({ entries = [], samples = [] } = {}) {
     },
     serviceReferral: { findFirst: async () => null },
     serviceProviderService: { findFirst: async () => null },
-    serviceEntryCorrection: { create: async () => ({}) },
-    $transaction: async (ops) => Promise.all(ops),
+    serviceEntryCorrection: {
+      create: async ({ data }) => {
+        const row = { ...data, id: `correction-${corrections.length + 1}`, createdAt: new Date() };
+        corrections.push(row);
+        return row;
+      }
+    },
+    $transaction: async (work) =>
+      typeof work === "function" ? work(db) : Promise.all(work),
     serviceLogTimeSample: {
       create: async ({ data }) => {
         samples.push({ ...data, recordedAt: new Date() });
@@ -61,7 +68,21 @@ function makeDb({ entries = [], samples = [] } = {}) {
         Object.assign(row, data);
         return row;
       },
-      updateMany: async () => ({ count: 0 }),
+      updateMany: async ({ where, data }) => {
+        const row = entries.find(
+          (item) =>
+            item.id === where.id &&
+            (where.providerProfileId === undefined || item.providerProfileId === where.providerProfileId) &&
+            (where.status === undefined || item.status === where.status) &&
+            (where.clientUserId === undefined || item.clientUserId === where.clientUserId) &&
+            (where.updatedAt === undefined || item.updatedAt?.getTime() === where.updatedAt?.getTime())
+        );
+        if (!row) return { count: 0 };
+        Object.assign(row, data, {
+          updatedAt: new Date((row.updatedAt || new Date()).getTime() + 1)
+        });
+        return { count: 1 };
+      },
       create: async ({ data }) => {
         /* Andmebaasi unikaalsused elavad SIIN, sest just neid me testime. */
         const clash = entries.find(
@@ -134,8 +155,11 @@ test("kordussaatmine jääb kordussaatmiseks ka külastusega kirjel", async () =
 /* LEID (P2): tavaline töökäik on „kinnita kirje → märgi paberil kinnitatuks".
    Põhjuse nõudmine tegi selle võimatuks: kasutaja oleks pidanud allkirja
    märkimist PÕHJENDAMA. */
-test("lõplikul kirjel saab paberkinnituse märkida ilma parandamise põhjuseta", async () => {
+test("lõplikul väliskliendi kirjel jätab paberkinnitus tegija ja vana väärtusega jälje", async () => {
+  const updatedAt = new Date("2026-08-03T12:00:00.000Z");
+  const corrections = [];
   const db = makeDb({
+    corrections,
     entries: [
       {
         id: "entry-1",
@@ -146,20 +170,26 @@ test("lõplikul kirjel saab paberkinnituse märkida ilma parandamise põhjuseta"
         unit: "HOUR",
         quantity: 2,
         clientDisplayName: "Mari",
-        confirmedManually: false
+        clientUserId: null,
+        confirmedManually: false,
+        updatedAt
       }
     ]
   });
-  const updated = await updateEntry("user-1", "entry-1", { confirmedManually: true }, {
+  const updated = await setManualConfirmation("user-1", "entry-1", { confirmed: true,
     db,
     env: ENV
   });
   assert.equal(updated.confirmedManually, true);
+  assert.equal(corrections.length, 1);
+  assert.equal(corrections[0].actorUserId, "user-1");
+  assert.deepEqual(corrections[0].previousValues, { confirmedManually: false });
 });
 
 /* Piir on kitsas: põhjuseta tohib muutuda AINULT kinnituse märge. Kogus on
    arvestatav fakt ja tema muutmine jääb RPS § 10 alla. */
 test("muu välja muutmine nõuab endiselt põhjust", async () => {
+  const updatedAt = new Date("2026-08-03T12:00:00.000Z");
   const db = makeDb({
     entries: [
       {
@@ -171,13 +201,17 @@ test("muu välja muutmine nõuab endiselt põhjust", async () => {
         unit: "HOUR",
         quantity: 2,
         clientDisplayName: "Mari",
-        confirmedManually: false
+        confirmedManually: false,
+        updatedAt
       }
     ]
   });
-  const error = await updateEntry("user-1", "entry-1", { quantity: "5" }, { db, env: ENV }).catch(
-    (e) => e
-  );
+  const error = await updateEntry(
+    "user-1",
+    "entry-1",
+    { quantity: "5", expectedUpdatedAt: updatedAt.toISOString() },
+    { db, env: ENV }
+  ).catch((e) => e);
   assert.equal(error.status, 400);
   assert.equal(error.messageKey, "service_log.errors.reason_required");
 });

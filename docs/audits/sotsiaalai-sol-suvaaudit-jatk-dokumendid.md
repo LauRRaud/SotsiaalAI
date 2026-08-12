@@ -44,7 +44,7 @@
 
 **Vastuvõtukriteerium.** Kõigil neljal perel peab olema stabiilne cursor või offset-paginatsioon ja kasutatav järgmise lehe toiming; filter/otsing peab töötama kogu serveripoolse hulga, mitte esimese 50 peal. Test peab looma igasse peresse vähemalt 51 omaniku kirjet, läbima kõik lehed ilma kadumise/duplikaadita ning avama ja kustutama 51. kirje.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — omanikuvaate neli objektiperet kasutavad nüüd oma serveripoolset koguarvu ja dünaamilist offset-paginatsiooni ning ühine „laadi vanemad objektid” toiming lisab järgmised lehed ID järgi duplikaadivabalt.** Sama otsingutermin läheb kõigisse nelja API-sse enne count'i ja paginatsiooni, seega otsing ei piirdu enam esimese 50 reaga; 51. kirje jõuab samasse `renderRow` avamis-/allalaadimis-/kustutusrajale nagu esimene. Sihttest 3/3 lõi igasse peresse 51 kirjet, lisas kattuva lehe ja tõendas 204 unikaalse rea ning kõigi nelja 51. rea jõudmise ühtsesse tööruumi; dokumentide, analüüside ja uuringute otsingupäring valideeriti päris PostgreSQL-i vastu. Autentitud brauserivoog `not_run`; peatüki lõpu täissviit 4223/4223 PASS.
 
 ### SOL-DOC-J-02 — dokumendi paralleelsed muudatused kirjutavad vaikides üksteise üle — P1
 
@@ -54,7 +54,7 @@
 
 **Vastuvõtukriteerium.** PATCH peab nõudma omaniku nähtud revision'i/`updatedAt` väärtust ja tegema tingimusliku `id + ownerId + expected version` kirjutuse; staged failivahetus peab sama konflikti korral vana faili säilitama. Kaotaja saab 409 ja värske seisu. Päris PostgreSQL-i võistlustest peab katma kaks rename'i, kaks transkripti PATCH-i ning `agentAllowed true/false` ristvõistluse koos ketta/DB koherentsusega.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — `UserDocument` PATCH nõuab nüüd kliendi nähtud `expectedUpdatedAt` versiooni ning kirjutab ühe tingimusliku `id + ownerId + updatedAt` CAS-lausega; kaotaja saab 409 koos värske dokumendiga.** Sama CAS on staged transkripti faili avaldamise ees, seega konflikt koristab kandidaadi ja jätab vana faili puutumata. Kõik Dokumendid- ja Dokirežiimi PATCH-kliendid saadavad oma nähtud revisjoni ning võtavad 409 vastusest värske rea. Sihttestid 12/12 kattis CAS-i, kohustusliku revisjoni, staged rollback'i ja varasema failikoherentsuse; `npm run doc:mutation:probe` 10/10 päris PostgreSQL-is ja päris kettal kattis kaks rename'i, kaks transkripti PATCH-i ning `agentAllowed true/false` ristvõistluse, igas täpselt ühe võitja ja 409 kaotaja. DB/fail olid koherentsed, staged jääke 0 ja sünteetilise kasutaja cleanup 0; autentitud brauserivoog `not_run`, peatüki lõpu täissviit 4223/4223 PASS.
 
 ### SOL-DOC-J-03 — RAG-kasutusloa tagasivõtmine ei eemalda juba indekseeritud koopiat — P1
 
@@ -64,7 +64,7 @@
 
 **Vastuvõtukriteerium.** `agentAllowed true → false` peab looma auditeeritud, idempotentse RAG-delete'i ja jätma loa eemaldamise oleku `pending/failed/done` kujul taastatavaks; korduslubamine tohib ingestida alles koherentse värske versiooni. Testida päris RAG-is ingest → keela → GET/search puudub, RAG-i tõrge + retry, paralleelne keela/luba ja konto kustutus. Üldotsingu deny-piir peab jääma kaitseks alles.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): PARTIAL — koodis on `agentAllowed true → false` nüüd auditeeritud ja idempotentne püsiv `DataDeletionJob`: töö ning `metadata.ragRemoval=pending` sünnivad enne kaugkatset samas CAS-tehingus, tõrge jääb `failed`-ina taastatavaks ja kinnitatud kustutus liigub `done`-iks.** Lõpetamata töö blokeerib nii korduslubamise kui `ensureDocumentIndexed()` ingest'i; retry viib sama jobId-ga dokumendi seisu `done`, misjärel lubamine saab ingestida ainult värske SHA/`updatedAt` versiooni. Liides näitab pending/failed seisu ega luba seda lülitiga peita. Sihttestid 15/15 katsid järjekorra, tõrke, done-seisu, re-enable/ingest tõkke ja retry; `npm run doc:rag-removal:probe` 15/15 päris PostgreSQL-is kattis püsiva job'i, auditid, tõrke + retry, paralleelse keela/luba võistluse, idempotentsuse ning cleanup'i `users=0 jobs=0 audits=0`. Päris RAG-i ingest → keela → GET/search puudub ja konto kustutuse välisots on siiski **NOT_PROVEN**, sest kohalikus keskkonnas puuduvad RAG-võti ja kuulav teenus; leidu ei märgita enne seda DONE-iks.
 
 ### SOL-DOC-J-04 — salvestatud analüüsid puuduvad kasutaja tervikandmekoopiast — P1
 
@@ -74,7 +74,7 @@
 
 **Vastuvõtukriteerium.** `SavedAnalysis` peab olema andmekoopia allowlistis eraldi versioonitud pinnana või dokumentide pinna osana, koos sisu, pealkirja, disclaimer'i, ajatemplite ja omaniku allikaviidetega; manifest peab näitama täpset arvu. Negatiivtest peab lisama ainult analüüsi omava kasutaja, võõra analüüsi ja kustutatud allikad ning kontrollima, et oma sisu on kaasas ja võõras mitte.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — `SavedAnalysis` on nüüd andmekoopia eraldi versioonitud `saved_analyses` allowlist-pind, mis ekspordib ainult omaniku analüüsi ID, pealkirja, sisu, disclaimer'i, ajatemplid ja allikadokumendi ID-d.** Kustutatud allika ID säilib päritoluviitena, kuid võõra omaniku rida ei läbi `ownerId` filtrit; manifest loendab pinna read eraldi ja täpselt. Andmekoopia sihttestid 12/12 ning `npm run doc:saved-analysis-export:probe` 6/6 päris PostgreSQL-is tõendas ühe omaniku ja ühe võõra analüüsiga omaniku sisu, disclaimer'i, kustutatud allikaviite, võõra sisu puudumise, versiooni `1.0` ja manifesti `recordCount=1`; cleanup `users=0`.
 
 ### SOL-DOC-J-05 — puuduv algfail ei muuda andmekoopiat veaks ega ausalt osaliseks — P2
 
@@ -84,7 +84,7 @@
 
 **Vastuvõtukriteerium.** Algfaili puudumine peab kas lõpetama töö selge FAILED-seisuga või andma kasutaja kinnitatud `partial` koopia, mille manifest loetleb iga puuduva objekti stabiilse ID, põhjuse ja retry-seisu. Testida ENOENT, ligipääsuviga, containment-viga ja lugemise keskel tekkinud viga; ükski neist ei tohi anda märgistamata READY „täiskoopiat”.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — Dokumendid-pinna ükskõik milline algfaili lugemisviga katkestab nüüd kogu andmekoopia töö stabiilse `documentId + reason` failureCode'iga; märgistamata READY koopiat ega ZIP-faili ei teki.** Põhjused eristavad `missing`, `access_denied`, `containment` ja muud `read_failed` vead, kuid storage path'i ega toore erindi teksti ei lekitata. Veasüsti sihttestid 13/13 katsid ENOENT, EACCES, containment'i ja keset lugemist tekkinud tõrke ning FAILED-worker'i; `npm run doc:missing-export-file:probe` 6/6 päris PostgreSQL-is kinnitas FAILED seisu, masinloetava koodi, puuduva outputPath/ZIP-i ja kohustusliku `DATA_EXPORT_FAILED` auditi, cleanup `users=0`.
 
 ### SOL-DOC-J-06 — dokumendi allalaadimise ja artefakti kustutuse audit võib vaikides puududa — P2
 
@@ -94,7 +94,9 @@
 
 **Vastuvõtukriteerium.** Omanik peab nende toimingute auditile valima sama selge lepingu nagu vestluse ekspordil: allalaadimine fail-closed enne faili või durable transactional outbox; artefakti kustutus ja audit samas DB-tehingus. Veasüstetest peab katkestama auditirea loomise pärast faili genereerimist ja artefakti delete'i juures ning tõendama, et ei teki auditita edukat vastust ega auditita kustutust.
 
-**Seis.** NOT_DONE; runtime: not_run.
+**Seis (12.08.2026): DONE — dokumendi ja FINAL-artefakti allalaadimine kasutavad nüüd kohustuslikku `writeDocumentAudit()` rada pärast baitide valmimist, kuid enne `Response` loomist; audititõrge katkestab väljastuse.** Artefakti kustutuse audit kirjutatakse enne DELETE-i ja mõlemad on samas tehingus: audititõrke korral rida säilib, delete-tõrke korral audit pöördub tagasi. Kuna FK `artifactId` muutub kustutamisel `SET NULL`-iks, jääb kustutatud artefakti stabiilne ID auditi metaossa `deletedArtifactId`. Sihttestid 5/5 katsid mõlema download-auditi veasüsti, vastuse järjekorra ning kustutuse edu/tõrke; `npm run doc:artifact-audit:probe` 5/5 päris PostgreSQL-is tõendas audititõrke järel alles artefakti ja 0 auditit ning eduka tehingu järel 0 artefakti ja täpselt ühe stabiilse ID-ga auditi, cleanup `users=0`.
+
+**Paranduste peatükilõpu värav (12.08.2026):** `TZ=UTC npm test` **4223/4223 PASS**; `npm run i18n:check` puhas; Prisma **166 migratsiooni**, andmebaas ajakohane; `git diff --check` puhas. ESLint: **0 viga**, kolm varasemat selle plokiga mitteseotud hoiatust. Täissviiti jooksutati ploki lõpus, mitte iga leiu järel.
 
 ## Testid ja negatiivkontrollid
 

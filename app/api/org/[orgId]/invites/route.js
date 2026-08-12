@@ -1,6 +1,6 @@
 import { assertCapability, assertWritable } from "@/lib/org/accessContext";
 import { OrganizationCapability } from "@/lib/org/constants";
-import { createInvite, listInvites } from "@/lib/org/inviteService";
+import { createInvite, listInvitePage } from "@/lib/org/inviteService";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
 export const runtime = "nodejs";
@@ -14,10 +14,13 @@ export async function GET(request, context) {
   try {
     assertCapability(auth.context, OrganizationCapability.MEMBER_ADMIN);
     const requestUrl = new URL(request.url);
-    const invites = await listInvites(auth.organizationId, {
-      includeClosed: requestUrl.searchParams.get("includeClosed") === "1"
+    const page = await listInvitePage(auth.organizationId, {
+      includeClosed: requestUrl.searchParams.get("includeClosed") === "1",
+      cursor: requestUrl.searchParams.get("cursor"),
+      take: requestUrl.searchParams.get("take"),
+      status: requestUrl.searchParams.get("status")
     });
-    return orgJson({ ok: true, invites });
+    return orgJson({ ok: true, ...page });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

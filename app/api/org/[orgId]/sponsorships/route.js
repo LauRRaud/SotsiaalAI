@@ -1,7 +1,7 @@
 import { assertCapability, assertWritable } from "@/lib/org/accessContext";
 import { OrganizationCapability } from "@/lib/org/constants";
 import { assertOrgSeatsEnabled } from "@/lib/org/flags";
-import { createClientSponsorship, listClientSponsorships } from "@/lib/org/sponsorship";
+import { createClientSponsorship, listClientSponsorshipPage } from "@/lib/org/sponsorship";
 import { orgErrorResponse, orgJson, readJsonBody, requireOrgContext } from "../../_shared";
 
 export const runtime = "nodejs";
@@ -23,10 +23,13 @@ export async function GET(request, context) {
     assertOrgSeatsEnabled();
     assertCapability(auth.context, OrganizationCapability.BILLING_MANAGER);
     const requestUrl = new URL(request.url);
-    const sponsorships = await listClientSponsorships(auth.organizationId, {
-      includeClosed: requestUrl.searchParams.get("includeClosed") === "1"
+    const page = await listClientSponsorshipPage(auth.organizationId, {
+      includeClosed: requestUrl.searchParams.get("includeClosed") === "1",
+      cursor: requestUrl.searchParams.get("cursor"),
+      take: requestUrl.searchParams.get("take"),
+      status: requestUrl.searchParams.get("status")
     });
-    return orgJson({ ok: true, sponsorships });
+    return orgJson({ ok: true, ...page });
   } catch (error) {
     return orgErrorResponse(error, "org.errors.list_failed", "org");
   }

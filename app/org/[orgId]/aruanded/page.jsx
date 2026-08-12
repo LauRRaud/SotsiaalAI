@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import OrgServiceReportsClient from "@/components/org/OrgServiceReportsClient";
 import { isServiceLogEnabled } from "@/lib/serviceLog/flags";
-import { listReceivedShares } from "@/lib/serviceLog/reportShare";
+import { listReceivedSharePage } from "@/lib/serviceLog/reportShare";
 
 import { requireOrgPageContext } from "../../_serverContext";
 
@@ -40,7 +40,7 @@ export default async function OrgServiceReportsPage({ params }) {
      mulje, et aruandeid ei ole saadetud — seepärast siin 404, mitte tühjus. */
   if (!isServiceLogEnabled()) notFound();
 
-  const items = await listReceivedShares([membershipId]);
+  const initialPage = await listReceivedSharePage([membershipId]);
 
-  return <OrgServiceReportsClient organizationId={orgId} items={items} />;
+  return <OrgServiceReportsClient organizationId={orgId} initialPage={initialPage} />;
 }

@@ -246,17 +246,19 @@ export default function ServiceLogMonth({ month, onMonthChange }) {
                   </span>
                 ) : null}
                 <div className="sl-entry-actions">
-                  <button
-                    type="button"
-                    className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
-                    disabled={busy === entry.id}
-                    aria-pressed={Boolean(entry.confirmedManually)}
-                    onClick={() =>
-                      lifecycle(entry.id, entry.confirmedManually ? "unconfirm_manual" : "confirm_manual")
-                    }
-                  >
-                    {t("service_log.list.manual_confirm", "")}
-                  </button>
+                  {!entry.clientUserId && entry.status === "FINAL" ? (
+                    <button
+                      type="button"
+                      className={`sl-entry-btn${entry.confirmedManually ? " is-active" : ""}`}
+                      disabled={busy === entry.id}
+                      aria-pressed={Boolean(entry.confirmedManually)}
+                      onClick={() =>
+                        lifecycle(entry.id, entry.confirmedManually ? "unconfirm_manual" : "confirm_manual")
+                      }
+                    >
+                      {t("service_log.list.manual_confirm", "")}
+                    </button>
+                  ) : null}
                   {entry.status === "DRAFT" ? (
                     <button
                       type="button"

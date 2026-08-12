@@ -5773,6 +5773,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Välise kliendi identiteet peab tulema suunamisest või võrdlema vähemalt nime ja välisviite normaliseeritud paari; vastuolu peab andma 400. Integratsioonitest peab looma kaks sama nime ja eri viitega klienti ning proovima ristkasutust.
 
+**Seis (12.08.2026): DONE — suunamise terviklikkus võrdleb väliskliendi puhul nüüd normaliseeritud nime ja `clientExternalRef`-i paari nii loomisel kui parandamisel; sama nimi ei varja enam viite vastuolu.** Suunamise päring valib välisviite mõlemal rajal ning vastuolu annab enne kirjutust `400 service_log.errors.referral_client_mismatch`. Teenuskihi negatiivtest lõi sama nimega `external-a` suunamise ja proovis seda `external-b` kirjel: vastus 400 ja kirjeid 0; õige nime-viite paar salvestus ühe reana.
+
 ### SOL-SLOG-07 — tühi tegevuskataloog muudab serveri allowlist'i vabatekstiks — P2
 
 **Tõend.** `normalizeActivities()` lükkab tundmatu tegevuse välja ainult siis, kui lubatud kataloogi `Set` pole tühi (`lib/serviceLog/entries.js:101-120`). Seega teenuseta kirje või tühja `activityCatalog`-iga teenus salvestab kuni 50 suvalist kliendi saadetud tegevust, kuigi kommentaar ja mall B leping nõuavad valikut teenuse kataloogist. Loomisrada rakendab seda tulemust otse (`entries.js:516-524`, `:548-568`).
@@ -5780,6 +5782,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 **Mõju.** Otsene API või vananenud klient saab aruandesse kontrollimata kategooriad; võrdlusstatistika ja linnukeste tähendus lahknevad teenuste vahel.
 
 **Vastuvõtukriteerium.** Puuduv/tühi kataloog peab lubama ainult tühja tegevusmassiivi või serveri otsustatud üldsõnastikku; tundmatu väärtus peab andma nähtava valideerimisvea. Testida teenuseta ja tühja kataloogiga sisendit.
+
+**Seis (12.08.2026): DONE — tühi või puuduv tegevuskataloog lubab nüüd ainult tühja tegevusmassiivi ning kataloogiväline väärtus annab nähtava 400 valideerimisvea, mitte ei muutu vabatekstiks ega kao vaikselt.** ET/EN/RU veateade nimetab, et tegevus ei kuulu teenuse kataloogi. Negatiivtestid katsid teenuseta kirje, tühja teenusekataloogi ja tundmatu väärtuse; positiivkontroll salvestas ainult kataloogis oleva tegevuse. Ploki sihttestid 29/29 PASS.
 
 ### SOL-SLOG-08 — kinnitamine ja tühistamine võivad samaaegselt üksteist tingimusteta üle kirjutada — P1
 
@@ -5789,6 +5793,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Elutsüklisiire peab olema üks tingimuslik DB-kirjutus või lukustatud tehing, mis sisaldab oodatud lähteolekut; kaotaja peab saama 409 ja lõpprea väljad peavad olekuga kooskõlas olema. Päris paralleeltest peab võistlema finalize/finalize ja finalize/void.
 
+**Seis (12.08.2026): DONE — `finalizeEntry()` ja `voidEntry()` kasutavad nüüd sama `id + providerProfileId + status + updatedAt` CAS-kirjutust; eellugemine ei anna enam õigust hiljem tingimusteta üle kirjutada.** Finalize puhastab tühistusväljad ning DRAFT-ist tühistamine hoiab kirjendamisaasta/finaliseerimise väljad nullina. `npm run slog:entry:probe` 16/16 päris PostgreSQL-is tõendas finalize/finalize ja finalize/void võistlustes täpselt ühe võitja, ühe 409 kaotaja ja mõlemal juhul olekuga kooskõlalise lõpprea.
+
 ### SOL-SLOG-09 — paralleelsed kinnitatud kirje parandused ei moodusta usaldusväärset muutmisahelat — P1
 
 **Tõend.** `updateEntry()` loeb kogu olemasoleva rea enne tehingut, arvutab sellest `previousValues` ning teeb hiljem update'i ja correction-create'i küll ühe tehinguna, kuid ilma versiooni või `updatedAt` eeltingimuseta (`lib/serviceLog/entries.js:609-620`, `:692-747`). Kaks parandajat saavad seega mõlemad logida sama vana väärtuse ja kirjutada teineteise tulemuse üle.
@@ -5797,6 +5803,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 
 **Vastuvõtukriteerium.** Parandus peab kasutama rea versiooni/CAS-i või lukku ning correction'i eelmine väärtus peab tulema samas serialiseeritud tehingus. Teine stale parandus peab saama 409 koos värske reaga; testida sama ja eri välja paralleelmuudatusi.
 
+**Seis (12.08.2026): DONE — kirje PATCH nõuab nüüd kliendi nähtud `expectedUpdatedAt` versiooni ning ServiceEntry CAS ja `ServiceEntryCorrection` sünnivad samas tehingus; stale kaotaja saab 409 koos värske reaga.** Paranduse `previousValues` arvutatakse ainult CAS-iga kaitstud snapshotist. Päris PostgreSQL-i sond võistles eraldi sama välja ja eri väljade parandustega: mõlemas üks võitja, üks värske reaga 409 ning täpselt üks correction, mitte kaks sama vana lähtega haru.
+
 ### SOL-SLOG-10 — osutaja saab platvormikliendi digikinnituse asemel märkida käsitsi kinnituse — P1
 
 **Tõend.** Lifecycle-route lubab kõigil teenuskirjetel `confirm_manual` ja `unconfirm_manual` toiminguid ning annab need otse `updateEntry()`-le (`app/api/service-entries/[id]/lifecycle/route.js:41-49`). Teenus ei kontrolli, et `clientUserId` oleks tühi või klient tõesti väline; lõpliku rea `confirmedManually` saab ka põhjuse ja correction-reata tagasi `false`-ks muuta (`lib/serviceLog/entries.js:713-733`).
@@ -5804,6 +5812,8 @@ sisaldab teise konto ridu; meie sessioon ei näe ega saada neid).
 **Mõju.** Teenuseosutaja saab platvormil oleva kliendi eest kinnituse sisestada või selle hiljem jäljetult eemaldada, kuigi kommentaar lubab osutajale ainult välise kliendi paberkinnitust ja platvormikliendile eraldi digirada. Ekspordis võib tekkida vale kinnitusfakt.
 
 **Vastuvõtukriteerium.** Käsitsi kinnitus peab serveris olema lubatud ainult väliskliendi real ning kandma kinnitaja, aja ja pöördumatu/parandatava auditireegli. Platvormikliendi katse peab andma 409/403; eemaldamine peab olema jälgitav parandus, mitte vaikne boolean.
+
+**Seis (12.08.2026): DONE — paberkinnituse märge on nüüd eraldi `setManualConfirmation()` elutsüklirada, mida saab kasutada ainult FINAL väliskliendi kirjel; üld-PATCH on selle välja jaoks suletud ja platvormikliendi katse annab 409.** Iga tegelik märkimine ja eemaldamine loob samas CAS-tehingus `ServiceEntryCorrection` rea, mis kannab tegijat, aega, vana boolean-väärtust ja toimingu liiki. Päeva- ja kuuvaade ei näita nuppu platvormikliendile ega mustandile. PostgreSQL-i sond tõendas platvormikliendi muutmata rea/auditite 0 ning väliskliendi true→false järel kaks järjestikust auditirida; Teenuspäeviku testslice 342/342 PASS, muudetud failide eslint ja i18n puhtad.
 
 ### SOL-SLOG-11 — kliendi kuupõhine kinnitus võib hõlmata kontrolli järel lisatud nähtamatut kirjet — P1
 

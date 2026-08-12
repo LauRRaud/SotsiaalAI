@@ -848,7 +848,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
         },
         body: JSON.stringify({
           kind: "MATERIAL",
-          agentAllowed: true
+          agentAllowed: true,
+          expectedUpdatedAt: uploadedDocument.updatedAt
         })
       })
       const allowPayload = await allowResponse.json().catch(() => ({}))
@@ -875,6 +876,8 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
   async function handleClientRemoveDocument(documentId) {
     const nextId = String(documentId || "").trim()
     if (!nextId) return
+    const currentDocument = documents.find((document) => document.id === nextId)
+    if (!currentDocument?.updatedAt) return
 
     clearResultMessages()
     try {
@@ -884,10 +887,17 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "Content-Type": "application/json",
           "x-ui-locale": locale
         },
-        body: JSON.stringify({ agentAllowed: false })
+        body: JSON.stringify({ agentAllowed: false, expectedUpdatedAt: currentDocument.updatedAt })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.update_failed"))
+      if (!response.ok) {
+        if (response.status === 409 && payload?.document?.id) {
+          setDocuments((current) => current.map((document) =>
+            document.id === payload.document.id ? payload.document : document
+          ))
+        }
+        throw new Error(payload?.message || t("documents.errors.update_failed"))
+      }
 
       setSelectedDocumentIds((current) => current.filter((id) => id !== nextId))
       setDocuments((current) => current.filter((document) => document.id !== nextId))
@@ -1037,10 +1047,18 @@ export default function AgentModePage({ initialDocumentIds = [], initialArtifact
           "Content-Type": "application/json",
           "x-ui-locale": locale
         },
-        body: JSON.stringify({ content: audioTranscriptDraft })
+        body: JSON.stringify({
+          content: audioTranscriptDraft,
+          expectedUpdatedAt: transcript.updatedAt
+        })
       })
       const payload = await response.json().catch(() => ({}))
-      if (!response.ok) throw new Error(payload?.message || t("documents.errors.update_failed"))
+      if (!response.ok) {
+        if (response.status === 409 && payload?.document?.id) {
+          setAudioTranscriptDocument(payload.document)
+        }
+        throw new Error(payload?.message || t("documents.errors.update_failed"))
+      }
       const updated = payload?.document || transcript
       setAudioTranscriptDocument(updated)
       setAudioTranscriptDraft(String(updated.content || "").trim())

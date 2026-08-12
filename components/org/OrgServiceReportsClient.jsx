@@ -22,6 +22,7 @@ import { useI18n } from "@/components/i18n/I18nProvider";
 import { usePanelInfoSlot } from "@/components/ui/PanelInfoSlot";
 import Panel from "@/components/ui/Panel";
 import Button from "@/components/ui/Button";
+import { receiveReportBody } from "@/lib/serviceLog/reportDeliveryClient";
 
 function formatDate(value, locale) {
   if (!value) return "";
@@ -34,18 +35,42 @@ function formatDate(value, locale) {
   }
 }
 
-export default function OrgServiceReportsClient({ organizationId, items = [] }) {
+export default function OrgServiceReportsClient({ organizationId, initialPage }) {
   const { t, locale } = useI18n();
   /* KIIRMENÜÜ INFO IGAL LEHEL (omaniku reegel): lehe nimi ja sektsioonid on
      kirjas `lib/dashboardInfoContent.js`-is, mitte laiali komponentides. */
   usePanelInfoSlot({ infoId: "org_service_reports" });
-  const [rows, setRows] = useState(items);
+  const [rows, setRows] = useState(initialPage?.items || []);
+  const [nextCursor, setNextCursor] = useState(initialPage?.nextCursor || null);
+  const [pageError, setPageError] = useState(false);
   /* Eelvaade on ÜHE aruande kohta korraga: kaks tabelit kõrvuti ei aita
      kedagi ja juht vaatab niikuinii ühte rida korraga. */
   const [preview, setPreview] = useState(null);
   const [busy, setBusy] = useState("");
   /* Vormingu valik on ÜHE aruande kohta lahti korraga. */
   const [picking, setPicking] = useState("");
+
+  const loadMore = useCallback(async () => {
+    if (!nextCursor) return;
+    setPageError(false);
+    setBusy("page");
+    try {
+      const response = await fetch(
+        `/api/org/${organizationId}/aruanded?cursor=${encodeURIComponent(nextCursor)}`
+      );
+      if (!response.ok) throw new Error("page");
+      const payload = await response.json();
+      setRows((current) => {
+        const known = new Set(current.map((item) => item.id));
+        return [...current, ...(payload.items || []).filter((item) => !known.has(item.id))];
+      });
+      setNextCursor(payload.nextCursor || null);
+    } catch {
+      setPageError(true);
+    } finally {
+      setBusy("");
+    }
+  }, [nextCursor, organizationId]);
 
   /* Avamine muudab seisu serveris. Loendi kohalik uuendamine hoiab ära selle,
      et juht vajutab teist korda, sest ekraanil ei muutunud midagi. */
@@ -58,6 +83,19 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
       )
     );
   }, []);
+
+  const confirmDelivery = useCallback(
+    async (shareId, deliveryToken) => {
+      if (!deliveryToken) return false;
+      const response = await fetch(`/api/org/${organizationId}/aruanded/${shareId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ deliveryToken })
+      });
+      return response.ok;
+    },
+    [organizationId]
+  );
 
   /**
    * VAATA — aruanne loetavaks brauseris.
@@ -78,8 +116,15 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
           headers: { "x-ui-locale": locale || "et" }
         });
         if (!response.ok) return;
-        const body = await response.json();
-        setPreview({ shareId, ...body });
+        const body = await receiveReportBody(response, {
+          readBody: (value) => value.json(),
+          tokenFromBody: true,
+          confirm: (deliveryToken) => confirmDelivery(shareId, deliveryToken)
+        });
+        if (!body) return;
+        const previewBody = { ...body };
+        delete previewBody.deliveryToken;
+        setPreview({ shareId, ...previewBody });
         markOpened(shareId);
       } catch {
         /* Eelvaade on mugavus, mitte ainus tee: allalaadimine jääb alles. */
@@ -87,7 +132,42 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
         setBusy("");
       }
     },
-    [locale, markOpened, organizationId]
+    [confirmDelivery, locale, markOpened, organizationId]
+  );
+
+  const download = useCallback(
+    async (row, format) => {
+      setBusy(row.id);
+      try {
+        const suffix = format === "pdf" ? "?vorming=pdf" : "";
+        const response = await fetch(`/api/org/${organizationId}/aruanded/${row.id}${suffix}`);
+        if (!response.ok) return;
+        /* `blob()` lõpeb alles siis, kui kogu vastus on brauserisse jõudnud.
+           Katkenud stream viskab ja kinnituskutset ei tehta. */
+        const blob = await receiveReportBody(response, {
+          readBody: (value) => value.blob(),
+          confirm: (deliveryToken) => confirmDelivery(row.id, deliveryToken)
+        });
+        if (!blob) return;
+
+        const href = URL.createObjectURL(blob);
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.download =
+          format === "pdf" ? String(row.fileName || "report.csv").replace(/\.csv$/i, ".pdf") : row.fileName;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        URL.revokeObjectURL(href);
+        setPicking("");
+        markOpened(row.id);
+      } catch {
+        /* Ebaõnnestunud või katkenud tarne ei muuda OPENED seisu. */
+      } finally {
+        setBusy("");
+      }
+    },
+    [confirmDelivery, markOpened, organizationId]
   );
 
   return (
@@ -141,22 +221,12 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
                       fail — tema räsi tõendab, et see on täpselt see, mis
                       KOV-ile läks. PDF on lugemiseks renditud koopia ja ta
                       ütleb seda ka failis endas. */}
-                  <a
-                    className="org-inline-btn"
-                    href={`/api/org/${organizationId}/aruanded/${row.id}`}
-                    download
-                    onClick={() => { markOpened(row.id); setPicking(""); }}
-                  >
+                  <Button type="button" variant="secondary" onClick={() => download(row, "csv")}>
                     {t("org.reports.format_csv")}
-                  </a>
-                  <a
-                    className="org-inline-btn"
-                    href={`/api/org/${organizationId}/aruanded/${row.id}?vorming=pdf`}
-                    download
-                    onClick={() => { markOpened(row.id); setPicking(""); }}
-                  >
+                  </Button>
+                  <Button type="button" variant="secondary" onClick={() => download(row, "pdf")}>
                     {t("org.reports.format_pdf")}
-                  </a>
+                  </Button>
                 </div>
               ) : null}
 
@@ -186,6 +256,12 @@ export default function OrgServiceReportsClient({ organizationId, items = [] }) 
           ))}
         </ul>
       )}
+      {nextCursor ? (
+        <Button type="button" variant="secondary" disabled={Boolean(busy)} onClick={loadMore}>
+          {t("org.pagination.loadMore")}
+        </Button>
+      ) : null}
+      {pageError ? <p className="org-hint">{t("org.pagination.loadFailed")}</p> : null}
       <p className="org-hint">{t("org.reports.audit_note")}</p>
     </Panel>
   );
