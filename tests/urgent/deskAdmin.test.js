@@ -13,15 +13,17 @@ import {
   VERIFIED_CONDITION_FIELDS
 } from "../../lib/urgent/deskAdmin.js";
 import { deskReadiness } from "../../lib/urgent/desk.js";
-import { createModel, NOW, now, READY_DESK } from "./fakePrisma.js";
+import { createClient, createModel, NOW, now, READY_DESK } from "./fakePrisma.js";
 
 function createAdminPrisma({ desks = [], members = [] } = {}) {
-  return {
+  /* SOL-URG-09 järel käib iga valmidust muutev adminitoiming tehingus ja võtab
+     laua rea luku — sama luku, mille all pöördumise loomine valmidust hindab. */
+  return createClient({
     urgentDesk: createModel(desks, "desk"),
     urgentDeskMember: createModel(members, "member"),
     municipality: createModel([{ id: "muni_1", displayName: "Harku vald" }], "muni"),
     user: createModel([{ id: "staff_1" }, { id: "staff_2" }], "user")
-  };
+  });
 }
 
 const VALID_CONDITIONS = {

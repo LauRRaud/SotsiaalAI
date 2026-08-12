@@ -133,6 +133,15 @@ export function createClient(models) {
   const client = {
     ...models,
     txRuns: 0,
+    /* Reavastane lukk on ÜHES LÕIMES MÕÕTMATU: fake ei saa teda modelleerida ja
+       tema päris mõju tõendab ainult sond (`urgent:race:probe`). Meetod peab
+       siiski olemas olema — `lockDeskRow` nõuab teda ja viskab muidu vea, et
+       lukk ei kaoks vaikselt esimese refaktori peale. */
+    rawCalls: [],
+    async $queryRaw(strings, ...values) {
+      client.rawCalls.push({ sql: Array.isArray(strings) ? strings.join("?") : String(strings), values });
+      return [];
+    },
     async $transaction(fn) {
       client.txRuns += 1;
       const snapshot = Object.values(models).map((model) => [model, model.rows.map((row) => ({ ...row }))]);

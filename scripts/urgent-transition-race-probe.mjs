@@ -20,6 +20,7 @@
 import { randomUUID } from "node:crypto";
 
 import { prisma } from "../lib/prisma.js";
+import { lockDeskRow } from "../lib/urgent/desk.js";
 import {
   acceptUrgentHandover,
   createUrgentRequest,
@@ -321,6 +322,89 @@ async function main() {
     check("veasüst: seis EI liikunud", afterInjection?.status === "SENT", String(afterInjection?.status));
     check("veasüst: vastutajat ei omistatud", (afterInjection?.takenByUserId ?? null) === null);
     check("veasüst: TAKEN jälge ei tekkinud", !(await eventKinds(injected.id)).includes("TAKEN"));
+
+    // -----------------------------------------------------------------------
+    // 6. SOL-URG-09: laua rida ON valmiduse mutex.
+    //
+    //    Admin hoiab luku all olles tehingut lahti. Kui lukk töötab, ei saa
+    //    loomine samal ajal EDASI liikuda — ja just see ootamine on tõend.
+    //    Vana koodis luges loomine valmiduse ilma lukuta ja jõudis lõpuni enne,
+    //    kui admini muudatus commit'is.
+    //
+    //    Admini kirjutused on siin samad, mida `setUrgentDeskActive` ja
+    //    `removeUrgentDeskMember` teevad — nemad võtavad sama luku ise, seega
+    //    neid siit kutsuda ei saa (lukk oleks juba meie käes).
+    // -----------------------------------------------------------------------
+    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function createWhileAdminHoldsLock(label, adminWrite, restore) {
+      let release;
+      const hold = new Promise((resolve) => { release = resolve; });
+      const admin = prisma.$transaction(async (tx) => {
+        await lockDeskRow(tx, deskMain.id);
+        await adminWrite(tx);
+        await hold;
+      }, { timeout: 15_000 });
+
+      await sleep(150); // admin jõuab luku võtta
+      const creating = createUrgentRequest({
+        prisma,
+        authorId: author.id,
+        municipalityId: municipality.id,
+        situationVerbatim: "Mul ei ole täna öösel kuhugi minna.",
+        contactName: "Sondi Kadri",
+        contactPhone: "+372 5123 4567",
+        safetyAnswer: false
+      }).then((value) => { created.requestIds.push(value.id); return { value }; }, (error) => ({ error }));
+
+      const blocked = await Promise.race([creating, sleep(600).then(() => "OOTAB")]);
+      check(`${label}: lukk peatas loomise`, blocked === "OOTAB", String(blocked?.value?.id || blocked?.error?.code));
+
+      release();
+      await admin;
+      const result = await creating;
+      check(
+        `${label}: loomine keeldus pärast admini muudatust`,
+        result.error?.code === "urgent_request.desk_not_available",
+        String(result.error?.code || result.value?.id)
+      );
+      await restore();
+    }
+
+    await createWhileAdminHoldsLock(
+      "sulgemine",
+      (tx) => tx.urgentDesk.update({ where: { id: deskMain.id }, data: { isActive: false } }),
+      () => prisma.urgentDesk.update({ where: { id: deskMain.id }, data: { isActive: true } })
+    );
+
+    await createWhileAdminHoldsLock(
+      "viimane mehitaja",
+      (tx) => tx.urgentDeskMember.updateMany({ where: { deskId: deskMain.id }, data: { isActive: false } }),
+      () => prisma.urgentDeskMember.updateMany({ where: { deskId: deskMain.id }, data: { isActive: true } })
+    );
+
+    // -----------------------------------------------------------------------
+    // 7. SOL-URG-08: üleandmise siht peab kandma vastuvõtulubadust.
+    // -----------------------------------------------------------------------
+    const toUnready = await fresh();
+    await prisma.urgentDeskMember.updateMany({ where: { deskId: deskB.id }, data: { isActive: false } });
+    let targetError = null;
+    try {
+      await handOverUrgentRequest({
+        prisma, requestId: toUnready.id, userId: staffA.id, targetDeskId: deskB.id
+      });
+    } catch (error) {
+      targetError = error;
+    }
+    const afterTarget = await prisma.urgentRequest.findFirst({ where: { id: toUnready.id } });
+    check(
+      "URG-08: mehitamata siht keeldub",
+      targetError?.code === "urgent_request.handover_target_not_ready",
+      String(targetError?.code)
+    );
+    check("URG-08: üleandmist ei kirjutatud", (afterTarget?.handoverDeskId ?? null) === null);
+    check("URG-08: HANDED_OVER jälge ei tekkinud", !(await eventKinds(toUnready.id)).includes("HANDED_OVER"));
+    await prisma.urgentDeskMember.updateMany({ where: { deskId: deskB.id }, data: { isActive: true } });
   } finally {
     for (const requestId of created.requestIds) {
       await prisma.urgentRequestEvent.deleteMany({ where: { requestId } }).catch(() => null);
